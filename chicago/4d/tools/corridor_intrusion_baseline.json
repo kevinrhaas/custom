@@ -60,21 +60,6 @@
       "street": "south_water",
       "structure": "chicago_american_office"
     },
-    "chicago_democrat_office:frame_1833": {
-      "anchor_in": [],
-      "anchor_offset_m": 14.7,
-      "body_toward_street": true,
-      "category": "building",
-      "centroid_in": [
-        "south_water"
-      ],
-      "depth_m": 5.11,
-      "layer": "research",
-      "phase": "frame_1833",
-      "position_confidence": "inferred",
-      "street": "south_water",
-      "structure": "chicago_democrat_office"
-    },
     "cook_county_courthouse_1835:wood_1835": {
       "anchor_in": [],
       "anchor_offset_m": 14.97,
@@ -183,17 +168,15 @@
       "anchor_in": [
         "clark"
       ],
-      "anchor_offset_m": 14.7,
-      "body_toward_street": true,
+      "anchor_offset_m": 12.03,
+      "body_toward_street": false,
       "category": "building",
-      "centroid_in": [
-        "south_water"
-      ],
-      "depth_m": 5.31,
+      "centroid_in": [],
+      "depth_m": 0.21,
       "layer": "research",
       "phase": "frame_1833",
       "position_confidence": "inferred",
-      "street": "south_water",
+      "street": "clark",
       "structure": "harmon_loomis_store"
     },
     "hogan_store:log_1831": {
@@ -210,21 +193,6 @@
       "position_confidence": "inferred",
       "street": "south_water",
       "structure": "hogan_store"
-    },
-    "jh_kinzie_forwarding_store:frame_1830s": {
-      "anchor_in": [],
-      "anchor_offset_m": 12.94,
-      "body_toward_street": true,
-      "category": "building",
-      "centroid_in": [
-        "south_water"
-      ],
-      "depth_m": 6.87,
-      "layer": "research",
-      "phase": "frame_1830s",
-      "position_confidence": "reconstructed",
-      "street": "south_water",
-      "structure": "jh_kinzie_forwarding_store"
     },
     "lasalle_slough_crossing:crossing_1835": {
       "anchor_in": [
@@ -260,20 +228,16 @@
       "structure": "log_jail"
     },
     "madore_beaubien_house:log_1831": {
-      "anchor_in": [
-        "south_water"
-      ],
-      "anchor_offset_m": 11.84,
+      "anchor_in": [],
+      "anchor_offset_m": 21.13,
       "body_toward_street": true,
       "category": "building",
-      "centroid_in": [
-        "south_water"
-      ],
-      "depth_m": 5.98,
+      "centroid_in": [],
+      "depth_m": 0.2,
       "layer": "research",
       "phase": "log_1831",
       "position_confidence": "inferred",
-      "street": "south_water",
+      "street": "dearborn",
       "structure": "madore_beaubien_house"
     },
     "newberry_dole_slaughterhouse_south_branch:works_1834": {
@@ -325,17 +289,15 @@
     },
     "peck_store:frame_1833": {
       "anchor_in": [],
-      "anchor_offset_m": 15.3,
+      "anchor_offset_m": 24.22,
       "body_toward_street": true,
       "category": "building",
-      "centroid_in": [
-        "south_water"
-      ],
-      "depth_m": 4.51,
+      "centroid_in": [],
+      "depth_m": 0.16,
       "layer": "research",
       "phase": "frame_1833",
       "position_confidence": "inferred",
-      "street": "south_water",
+      "street": "lasalle",
       "structure": "peck_store"
     },
     "philo_carpenter_log_shop:log_1832": {
@@ -404,21 +366,6 @@
       "position_confidence": "inferred",
       "street": "state",
       "structure": "st_marys_church"
-    },
-    "temple_building:frame_1833": {
-      "anchor_in": [],
-      "anchor_offset_m": 14.07,
-      "body_toward_street": true,
-      "category": "building",
-      "centroid_in": [
-        "south_water"
-      ],
-      "depth_m": 5.49,
-      "layer": "research",
-      "phase": "frame_1833",
-      "position_confidence": "inferred",
-      "street": "south_water",
-      "structure": "temple_building"
     },
     "tremont_house_1:frame_1833": {
       "anchor_in": [

@@ -1,8 +1,16 @@
 #!/usr/bin/env python3
-"""Reconcile the 665-roof programme against the town that has actually been built.
+"""Reconcile the roof programme against the town that has actually been built.
 
-ROADMAP T-A1. `data/reconstruction/1835_building_inventory.json` states the target — 665
-roofs, split by district, by group and by a 35-family schedule — and it has never been
+THE 665 IN THIS TOOL'S NAME IS HISTORY, and it is kept deliberately. The authored total
+became **662** on 2026-08-27 (ticket T-0032): three of family I3's six civic slots were
+shown to count nothing — the town's public buildings with a roof on 1835-07-01 are three
+named records — so the three came off the total rather than being re-typed into ordinary
+families. Renaming the file, the tool and every reference to them is churn; the live total
+is read from the inventory on every run and written to `remaining.of_target`. Nothing in
+here hardcodes it.
+
+ROADMAP T-A1. `data/reconstruction/1835_building_inventory.json` states the target —
+roofs split by district, by group and by a 35-family schedule — and it has never been
 subtracted from. The crosswalk still calls 617 roofs "remaining", a figure that predates
 the North parcel, the West parcel, the inferred-household buildings and every documented
 roof the research has since placed. A programme whose remainder is wrong by 185 roofs
@@ -32,7 +40,7 @@ What each part of the output is entitled to claim:
   rather than inventing a block number this project has never read off a sheet.
 * **A per-unit family mix** is an apportionment of that district's remainder, not a claim
   about any block. It is what makes the schedule addable: every unit's families sum to its
-  count, every district's units sum to its remainder, and the districts sum to 665.
+  count, every district's units sum to its remainder, and the districts sum to the target.
 
     tools/reconcile_665.py            regenerate the programme file
     tools/reconcile_665.py --check    fail if the committed file is not what the dataset
@@ -75,9 +83,13 @@ ANCILLARY_GROUPS = {"barns_stables", "small_outbuildings"}
 
 DISTRICTS = ["south", "west", "north", "fort"]
 
-# Ancillary roofs at the programme's own ratio: the inventory's targets are 511 principal
-# to 154 ancillary, which is a reading of the dataset rather than a tuning knob.
-ANCILLARY_PER_PRINCIPAL = 154 / 511
+# Ancillary roofs at the programme's own ratio: the inventory's targets are 508 principal
+# to 154 ancillary, which is a reading of the dataset rather than a tuning knob. It was
+# 154:511 until T-0032 took three phantom civic roofs off the total; all three were
+# principal, so the ancillary half did not move. The ceiling is unchanged either way — an
+# eight-lot block rounds to seven yard buildings at both ratios — which is worth saying,
+# because a capacity that HAD moved would have re-dealt blocks this ticket never touched.
+ANCILLARY_PER_PRINCIPAL = 154 / 508
 
 # THE CORE DENSITY STANDARD (T-0079), and it replaces one principal roof per platted lot.
 #
@@ -116,8 +128,9 @@ ANCILLARY_PER_PRINCIPAL = 154 / 511
 #
 # The owner's ruling of 2026-08-18 is the warrant for taking the decision now: "there
 # should be more and denser buildings. this is important." What it does NOT do is grow the
-# 665-roof total — the roofs come out of `south_plat_beyond_committed_control`, the district
-# balance waiting on street control that may never arrive, and the marginals still close.
+# authored roof total — the roofs come out of `south_plat_beyond_committed_control`, the
+# district balance waiting on street control that may never arrive, and the marginals
+# still close.
 ROW_UNITS_PER_LOT = 3
 
 
@@ -423,9 +436,9 @@ def programme_document():
     overrun = {f: built_family.get(f, 0) - t
                for f, t in sorted(targets.items()) if built_family.get(f, 0) > t}
     remaining_family = {f: max(0, t - built_family.get(f, 0)) for f, t in targets.items()}
-    # The excess has to come out of somewhere, because 665 is the target and a documented
-    # roof is not removable. It comes out one slot at a time, each from whichever invented
-    # family has the most slack at that moment.
+    # The excess has to come out of somewhere, because the authored total is the target and
+    # a documented roof is not removable. It comes out one slot at a time, each from
+    # whichever invented family has the most slack at that moment.
     absorbed: dict[str, int] = {}
     for _ in range(sum(overrun.values())):
         family = sorted(remaining_family, key=lambda f: (-remaining_family[f], f))[0]
@@ -615,8 +628,8 @@ def programme_document():
             if unit["id"] == balance_id:
                 # The district balance is the bucket for roofs no named unit can hold, so
                 # it takes what is left rather than a fixed slice. A roof a block has no
-                # lot for does not stop being one of the 665; it goes back to waiting on
-                # coverage, which is a statement the ledger can make and "nowhere" is not.
+                # lot for does not stop being one of the programme's roofs; it goes back to
+                # waiting on coverage, a statement the ledger can make where "nowhere" is not.
                 take, pool = pool, []
                 unit["capacity_roofs"] = unit["headroom"] = len(take)
             else:
@@ -662,7 +675,11 @@ def programme_document():
                         "re-derives it. Do not hand-edit: every number here is a function "
                         "of the committed structure records, the physical-roof "
                         "reconciliation and the authored target in "
-                        "1835_building_inventory.json.",
+                        "1835_building_inventory.json. THE 665 IN THE NAME IS HISTORY: the "
+                        "authored total became 662 on 2026-08-27 (T-0032), when three of "
+                        "family I3's six civic slots were shown to count nothing. The "
+                        "filename and the tool keep their names because renaming them is "
+                        "churn; the live total is always `remaining.of_target`.",
         "id": "chicago_july_1835_665_roof_programme",
         "target_date": "1835-07-01",
         "programme_id": inventory["id"],
@@ -681,7 +698,9 @@ def programme_document():
                                "chronology puts outside July 1835 contribute nothing; the "
                                "physical-roof reconciliation decides, record by record.",
             "capacity": f"{ROW_UNITS_PER_LOT} principal roofs per platted lot plus "
-                        f"ancillary at the programme's own {154}:{511} ratio (T-0079, the "
+                        f"ancillary at the programme's own "
+                        f"{inventory['targets']['ancillary']}:"
+                        f"{inventory['targets']['principal_functional']} ratio (T-0079, the "
                         "core density standard). The frontage rule is measured at the worst "
                         "case: the smallest lot on the committed grid carries 23.56 m, the "
                         "plat module keeps 1.5 m clear of a side line at each end of a run, "
@@ -730,7 +749,7 @@ def programme_document():
                          "ground this project has already surveyed, platted and modelled. "
                          f"The other {gated} have nowhere to go until street control, "
                          "terrain and hydrology reach them. The binding constraint on the "
-                         "665-roof programme is coverage, not recipes.",
+                         f"{roof_total}-roof programme is coverage, not recipes.",
             "platted_lots": sum(len(b["lots"]) for b in grid["blocks"]),
             "blocks_named": sum(1 for u in units if u["kind"].startswith("platted_block")),
         },
@@ -759,7 +778,8 @@ def main() -> int:
             return 1
     else:
         OUT_PATH.write_text(text, encoding="utf-8")
-    print(f"{'verified' if args.check else 'generated'} the 665-roof programme: "
+    print(f"{'verified' if args.check else 'generated'} the "
+          f"{programme['remaining']['of_target']}-roof programme: "
           f"{programme['standing']['physical_roofs']['min']} standing, "
           f"{programme['remaining']['roofs']} remaining, "
           f"{programme['coverage']['schedulable_on_committed_ground']} of them on ground "

@@ -59,6 +59,23 @@ scope decisions have nothing in the data to point at. When evidence settles a cl
 or the model catches up with an omission, move the entry to **Resolved** — the gate exempts that
 section, which is what lets an append-only document survive its data being corrected.
 
+## Where a new entry goes, and why Resolved is not the last section
+
+**A new liberty is appended at the END OF THIS FILE**, which is the end of the per-subject
+register, and that is the whole rule. It was not always safe: **Resolved** used to be the last
+section, so an entry appended at the end of the file landed inside the one section the gate
+exempts, and **23 of the 71 entries numbered L111 and above compiled as already settled** —
+including L127, written for a fence that stands in the town today (T-0054). Nothing said so on
+screen except a chip on the card reading *resolved*, and nothing could: the markdown and the
+compiled JSON agreed exactly, because both read the fault the same way.
+
+So **Resolved sits above the per-subject register** rather than below it. Appending, which is the
+operation this document mandates, now lands where a new liberty belongs. An entry becomes
+resolved by BOTH gaining a `**Resolved:**` line that says what settled it AND being moved into
+that section, and `tools/compile_liberties.py` refuses either half on its own: the exemption is
+granted only where the entry and its position agree, and an entry sitting under **Resolved**
+saying nothing about what settled it compiles as a standing liberty and names itself at the gate.
+
 ---
 
 ## Standing liberties
@@ -111,6 +128,449 @@ the single most important fact about this landscape and the reason the city late
 itself out of the mud. Exaggeration aids legibility and falsifies the experience, so it is opt-in
 and clearly labeled.
 **Recorded:** 2026-08-09.
+
+---
+
+## Resolved
+
+Entries here were true when they were written and are kept verbatim, with a **Resolved:**
+line saying what settled them. The gate exempts this section from the check that a claimed
+value is still an invention, which is what lets an append-only document survive its own data
+being corrected.
+
+**This section sits ABOVE the per-subject register on purpose**, and the reason is the exemption
+in the sentence before this one. While it was the last section in the file, every liberty
+appended at the end of the file — the operation this document tells you to perform — landed in
+it and was exempted from a check it should have been subject to (T-0054). The `**Resolved:**`
+line is now load-bearing rather than a courtesy: an entry here without one is a standing liberty
+that has been misfiled, and `tools/compile_liberties.py` says so and compiles it as standing.
+
+
+### L46 — The fort stands on a bank the model has no cut or fill for
+**Decision:** the **stockade** and the **commandant's quarters** stand clear of the terrain on
+their north sides — 1.40 m and 0.46 m at the worst point — and are declared
+`approach_not_modelled`. No cut, fill, revetment, platform or foundation is modelled anywhere in
+the complex.
+**Why:** the fort sits on a plateau at about 3.33 m that falls away to the river between local
+N +245 and N +270, which is what a fort on a river bank inside a bend should do. The north wall
+of the stockade and the north face of the brick range cross the top of that fall, and the
+archetypes build a level base at one elevation. The real work plainly had something under it —
+a picket line is set in a trench and a brick range needs footings — and no source reached
+describes either.
+**Consequence:** walk round to the river side of the fort and the pickets stand up out of the
+slope on nothing. It is the honest picture of two things at once: a fort correctly placed on a
+bank, and a model with no earthworks in it.
+**How to resolve:** a levelled section of the bank, which no source gives; or terrain work that
+models the platform the fort stood on, which is a terrain parcel rather than a structure one.
+**Covers:** `fort_dearborn_palisade.picket_1816.ground_contact`, `fort_dearborn_commandants_quarters.brick_1816.ground_contact`.
+**Recorded:** 2026-08-11.
+**Revised:** 2026-08-11, hours after it was written, and the revision is the good kind. This
+entry was originally titled *"The fort stands 832 m beyond the modelled ground, and nothing
+could see it"* and covered the **ground contact of all fourteen** structures in this complex,
+because the `e1834_harbor_cut` heightfield stopped at local E +320 and the fort is at E +1152.
+**S2e parcel (b) landed while this parcel was being written** — the field now reaches E +1700 —
+so twelve of the fourteen simply land, their declarations are gone from the records, and the two
+that remain fail for a completely different and much more interesting reason, which is what the
+entry above now describes. Two of the twelve had to move to get there: the **lighthouse** and
+the **root house**, whose positions were always `conjectural`, had been put where no ground
+existed to contradict them and turned out to be standing in the channel; both moved onto the
+bank top and both notes say so.
+**The half of the original entry that is NOT superseded, because it is about the machinery and
+not about the ground.** `tools/heightfield.py` clamps outside the box, so while the fort was 832
+m past the edge it sampled the clamped edge for its base AND for every point of its outline, the
+two agreed to the millimetre, and the ground-contact gate — the gate this project wrote
+specifically to catch a building standing on nothing — reported a **perfect landing**. Every
+structure L40 covers was caught only because the clamped edge varies along a wall and produced a
+gap; the fort was far enough out and square enough on to produce none. The gate could see
+buildings that were nearly right and was blind to the one that was completely wrong.
+`Heightfield.covers()`, the `outside_modelled_ground` state and the two-way check that a
+declaration matches the measurement were written for that and stay whether or not any structure
+currently needs them — and turning them on immediately flagged two structures in other parcels
+that nothing had caught. See `docs/STATUS.md` § "Known weaknesses" 0a.
+**Resolved:** 2026-08-21, by exactly the terrain work this entry asked for. T-0125 narrowed the bank face across the fort's river frontage from 20 m to 8 m (L155), on the owner's ruling that the ground should give rather than the bake or the placement; the ground under the stockade's north wall rose from 1.26 m to 2.57 m and both structures now LAND on the terrain, within the gate's 0.35 m. The `approach_not_modelled` declarations are dropped from both records in the same commit. Note what did and did not happen: the fall to the river is still there and is still uncut — no revetment, platform or footing is modelled anywhere in the complex, and a picket line is still set in no trench. What changed is that the fort's own ground now reaches its walls, so the pickets no longer stand up out of the slope on nothing.
+
+### L30 — The bridge lands on nothing, and no approach is modelled
+**Decision:** the North Branch bridge's deck stops at the traced 1834 waterline at both ends,
+2.42 m above the ground beneath it, and **no approach of any kind is built** — no embankment, no
+ramp, no sloping run of deck. The crossing stands in the river and touches neither bank.
+**Why:** the deck sits 2.22 m above the water (Cleaver's inferred six-foot clearance plus the
+stringer and plank depth under it), and the modelled ground at both landings is Z = 0 by
+construction, because the terrain surface crosses the datum exactly along the drawn waterline.
+The highest land anywhere in the 640 m box is 1.31 m. So there is nothing for the deck to arrive
+at, and nothing anybody wrote says what did. Andreas gives the stringers; Cleaver gives the
+width and log abutments "in the shallow water near the banks"; no source reached describes how a
+person or a team got from the bank up onto the deck. Building one would stack a second invention
+on top of the clearance figure — which is itself only `inferred`, and unsourced in the dossier
+that supplied it — and unlike the fifteen cribs of L29, it is the invention a visitor would walk
+over rather than look at.
+**Consequence:** the crossing reads as a bridge to nowhere. From the bank you cannot step onto
+it, and the walkthrough cannot pretend otherwise: the walker follows the terrain, so the deck is
+scenery you pass under. That is honest about the evidence and wrong about the town — a bridge
+that carried a procession of hundreds in August 1835 plainly met its banks. Every part of that
+gap is unrecorded, so it is stated rather than drawn.
+**How to resolve:** a period depiction of the crossing or a levelled section. The 1834/1835
+Wabansia and Kinzie's Addition plat, contemporaneous to within two weeks of the scene date, is
+the best candidate; a sourced clearance figure would also narrow it, since a lower deck needs
+less approach and the six feet is the weakest number in the record.
+**Covers:** `north_branch_bridge.log_1832.ground_contact`.
+**Recorded:** 2026-08-10.
+**Evidence since:** both candidates named above were pulled on 2026-08-10 and **the gap is
+unchanged, but two of the escape routes out of it are closed.** The Wabansia and Kinzie's
+Addition plat is the sheet this project already holds as `hathaway_1834`; inspected at the
+crossing's own georeferenced pixel it draws no bridge, and neither does Wright 1834 — both stop
+their street lines at the waterline, because a platted street is a dedication and not a
+structure. And the six feet is no longer "the weakest number in the record": Caton, Bates,
+Cleaver and Noble state it in 1883, and state why — the bridges "were about six feet above the
+water, so that teams passed under them on the ice freely" — so a lower deck is not available as
+the cheap way to shorten an approach nobody described. The same sentence calls these **wagon**
+bridges, which means a wagon reached the deck somehow. The approach is therefore better attested
+as a fact and no better described than it was. See `docs/RESEARCH/north_branch_bridge.md` §6.
+**Revised:** 2026-08-10.
+**Resolved:** 2026-08-19. T-0046 built the approaches. Terrain earthworks (`approaches` in
+`terrain_spec.json`, every entry graded `reconstructed`) now raise Kinzie Street to the deck at
+1 in 12 at both ends; the ground-contact gate measures both end edges within its 0.35 m
+tolerance of the deck, and the declaration is off the record. The invention this entry refused
+to make is made and declared instead — L147 is its record. What changed the reasoning is the
+owner's standing instruction (AGENTS.md § RECONSTRUCTED IS A TIER): the 1883 statement this
+entry already quotes makes these WAGON bridges, so an approach is a necessity of the evidence,
+and a declared reconstruction is honest where a bridge to nowhere is wrong about the town.
+
+
+### L38 — The South Branch bridge lands on ground that is not there
+**Decision:** `south_branch_raft_bridge` does not reach the terrain at either end.
+**Why:** the same admission L30 already makes for the North Branch bridge, for the same reason
+and with the same cause. The bridge is placed and dimensioned from the traced 1834 waterlines,
+which is real evidence about where the water was; the ground it should land on is the terrain
+heightfield, which is modelled from a zone table and does not carry a graded approach. Neither
+is wrong on its own, and the model still shows a bridge arriving nowhere.
+**Consequence:** a visitor who walks to either end steps off the deck. Because both branch
+bridges now do this, it reads as a characteristic of the model rather than a defect in one
+record, which is if anything worse — it makes the crossing look deliberate.
+**How to resolve:** approach embankments, which are terrain work rather than structure work,
+and which nothing in the sources describes for either bridge.
+**Covers:** `south_branch_raft_bridge.log_1833.ground_contact`.
+**Recorded:** 2026-08-10.
+**Resolved:** 2026-08-19. The same resolution as L30, in the same pass: T-0046's approach
+earthworks (L147) raise the ground to this deck at both ends and the declaration is off the
+record.
+
+
+### L69 — Two structures stand at their documented sites beyond the modelled ground
+**Decision:** `brickyard_north_side` and `slough_log_bridge` are placed at the sites their sources
+give — the north bank between Clark and Dearborn, and the Water Street crossing at the foot of State
+Street — which lie 300 m and 490 m east of the modelled terrain box. Both phases declare
+`ground_contact: {state: "outside_modelled_ground"}`.
+**Why:** the opposite choice was available and was taken for the Clybourne records (L64), which were
+pulled to the modelled edge because their sites are kilometres away and only loosely fixed. These two
+are different: the brickyard's site is attested to a 120 m span of street frontage (Andreas scan
+p. 1161) and the bridge's to the meeting of a named street and a named stream mouth, so displacing
+them would throw away the best evidence either record holds. What is missing here is terrain, not
+evidence.
+**Consequence:** neither structure meets any ground. `tools/heightfield.py` clamps at the box edge, so
+without the declaration the gate would have reported both as landing perfectly on terrain that does
+not exist. The slough bridge is worse off again: the South Division slough it crosses is not cut into
+this terrain epoch at all — the only modelled watercourse besides the river is an unnamed slough on
+the north side — so it stands over flat ground with no stream beneath it, and the `bridge_timber`
+archetype anchors it to the river's water surface, which the hydrology dossier puts 0.15–0.45 m below
+the slough's own.
+**How to resolve:** extend the terrain epoch east over the South Division and the north bank as far as
+Dearborn, and cut the slough's documented route into it. Then both declarations come off and this
+entry moves to Resolved.
+**Covers:** `slough_log_bridge.log_1833.ground_contact`.
+**Evidence since, 2026-08-11:** the brickyard's token is withdrawn — S2e extended the
+heightfield east and Blodgett's yard now lands on modelled ground. The slough crossing still
+stands clear of it, but for the different reason recorded on that record: the South Division
+slough it crosses is still not cut into this terrain epoch, so it spans nothing.
+**Recorded:** 2026-08-11.
+**Resolved:** 2026-08-19. In two halves, two runs apart. The brickyard's half was already
+withdrawn above (S2e, 2026-08-11). The slough crossing's half closed when T-0046 graded its
+banks down to the deck at both ends (a cut — L147), so the `outside_modelled_ground` /
+`approach_not_modelled` declarations are off the record and the crossing can be walked. What
+this entry's last sentence asked for — the South Division slough cut into the terrain epoch, so
+the bridge spans water rather than solid ground — is still not done, and is re-filed as ticket
+T-0109 rather than left implied here.
+**Evidence since, 2026-08-24:** **the last sentence above is answered and this entry is closed
+out for good.** T-0005 carved dossier zone 14 — the South Division's drain — into
+`e1834_harbor_cut` on 2026-08-20, and T-0118 straightened its last reach to run square beneath
+this deck the same day. Neither was aimed at this entry or at T-0109; both are why it can be
+retired. Measured on the committed heightfield by `tools/measure_slough_crossing.py`: **3.30 m
+of open water in the deck's 8.00 m span** (41 %), **0.53 m deep**, **2.35 m of dry abutment seat
+at each end**, and the channel unbroken from the planks to the river. The one clause above that
+did NOT come true is the diagnosis about levels — this entry expected the archetype to anchor
+the deck to a river surface 0.15–0.45 m below the slough's own, and the drain as built backs up
+into the river as one pool at one surface, so the offset never arose. What is still invented is
+what it always was: the depth and the width of a watercourse whose route is documented and whose
+section nobody recorded. That invention lives in **L149** with the swales, not here.
+
+
+### L40 — Two thirds of the town stands on ground that has not been built
+**Decision:** twenty of the thirty-three structures now in the dataset stand **outside the
+modelled heightfield** and do not reach the terrain beneath them. Their records are correct and
+their positions are derived through the same fitted transform as everything else; there is
+simply no ground there yet.
+**Why:** the heightfield covers **E −320 … +320, N −320 … +320** — a 640 m square around the
+forks, built when the forks was the whole scene. The town is not that shape. South Water Street
+runs from about **E +347** (`h_jones_store`) to **E +745** (`frederick_thomas_shop`); the
+Dearborn Street bridge is at **+699**; Cobweb Castle, the north-bank agency house, is at
+**+814**; the Beaubien homestead is at **+1090**. The entire business district — the reason the
+town existed — sits east of the modelled world, along with the bridge that crossed to it.
+This was not discovered by inspection. It surfaced the moment the project stopped building only
+the best-evidenced structures and started building the town: the forks quadrant was sufficient
+for eight buildings and is nowhere near sufficient for thirty-three.
+**Consequence:** those twenty buildings currently float. A visitor who walks east finds the
+ground end and the town continue. **This is worse than the buildings being absent**, because an
+absent building makes no claim while a floating one makes a false one, and the confidence view
+cannot mark it — the tint grades what a building WAS, not whether it stands anywhere. It is
+recorded here as a liberty rather than left as a bug because it is a known, measured, deliberate
+intermediate state: the records were built first on the argument that evidence is harder to come
+by than geometry, and the geometry is now the thing holding.
+**How to resolve:** ROADMAP § S2e — extend the heightfield east to about **E +1700**, a
+~2.0 km × 0.7 km field, using the shore, the 1834 cut, the sand bar and the old southward
+channel already traced in `data/traces/vectors/wright_1834_east.json` and
+`shoreline.geojson`. That work is in progress. **When it lands, this entry moves to Resolved**
+rather than being edited, and any structure still floating afterwards — the North Branch
+industry sits well north of even the extended box — gets an entry of its own naming it.
+**Covers:** `bates_auction_room.frame_1834.ground_contact`, `carpenter_south_water_store.frame_1833.ground_contact`, `chicago_american_office.frame_1835.ground_contact`, `chicago_democrat_office.frame_1833.ground_contact`, `dole_warehouse_south.frame_1832.ground_contact`, `frederick_thomas_shop.frame_1835.ground_contact`, `h_jones_store.frame_1833.ground_contact`, `harmon_loomis_store.frame_1833.ground_contact`, `jb_beaubien_homestead.factory_1817.ground_contact`, `madore_beaubien_house.log_1831.ground_contact`, `old_bank_building.frame_1834.ground_contact`, `peck_store.frame_1833.ground_contact`, `pruyne_kimball_drugstore.frame_1830s.ground_contact`, `h_jones_store.frame_1833.footprint`, `h_jones_store.frame_1833.position`, `h_jones_store.frame_1833.form.stories`, `jh_kinzie_forwarding_store.frame_1830s.footprint`, `jh_kinzie_forwarding_store.frame_1830s.position`, `jh_kinzie_forwarding_store.frame_1830s.form.stories`, `north_pier.crib_1835.ground_contact`, `south_pier.crib_1835.ground_contact`, `cobweb_castle.log_1820.ground_contact`, `blacksmith_shop_state_st.log_1823.ground_contact`, `north_side_school_1833.log_1833.ground_contact`, `steamboat_hotel.frame_1835.ground_contact`, `council_house.log_1834.ground_contact`, `first_presbyterian_church.frame_1834.ground_contact`, `st_marys_church.frame_1833.ground_contact`, `log_jail.log_1833.ground_contact`, `estray_pen.pen_1833.ground_contact`, `cook_county_courthouse_1835.wood_1835.ground_contact`, `chappel_infant_school.log_1833.ground_contact`, `watkins_school_house.house_1833.ground_contact`.
+**Recorded:** 2026-08-10.
+
+**Resolved:** 2026-08-11. The ground was built. ROADMAP § S2e extended the heightfield east from a
+640 m square to **E −320 … +1700, N −400 … +400** — 809 × 321 samples at 2.5 m — and twenty-seven of
+the structures this entry covers now land on real terrain. The declarations came off those records in
+the same pass that moved this entry here.
+
+Three things are worth keeping from it rather than deleting with it. **The finding was only visible
+because the town got built**: eight well-evidenced buildings at the forks all sat comfortably inside
+the old box, and it took building the business district to discover the business district had no
+ground under it. **The gate could not see it either** — `tools/heightfield.py` clamped outside the
+box, so a structure 832 m past the edge sampled the clamped edge for its base and for every contact
+point, agreed to the millimetre, and was reported as landing perfectly. Fort Dearborn is what exposed
+that, and the fix (`Heightfield.covers()`, plus a two-way check that a declaration matches the
+measurement) immediately flagged two more structures nothing had caught. And **not everything came
+back**: the Clybourne records still stand about three kilometres from their attested ground up the
+North Branch, and the stockade's north wall and the commandant's quarters now cross the top of the
+river bank because no cut, fill, revetment or foundation is modelled anywhere in this project. Those
+are L64 and L46's business, not this entry's.
+
+### L13 — Composite log-and-frame buildings are extruded to a single wall height
+**Decision:** `miller_house` and `wolf_point_tavern` are each modelled at one wall height,
+although both are attested as composites — Miller's as a two-storey frame range fronting the
+river with a one-storey log cabin behind, the Wolf Point Tavern as "partly log and partly frame".
+**Why:** the `log_dwelling` archetype does not yet build a mixed-height mass, and averaging the
+two heights would produce a building matching neither description. The records carry the taller
+element's height and flag the overstatement rather than hiding it.
+**Consequence:** a geometry requirement for `log_dwelling`, discovered from the evidence in the
+same way the Sauganash's attached log wing was (L4a). Until it lands, the log elements render
+taller than they were.
+**Recorded:** 2026-08-09.
+**Revised:** 2026-08-10 — half of this is no longer true. The archetype does build a mixed-height
+mass: a frame addition carries its own storey count and its own height, and the Wolf Point Tavern
+now stands as a 2.6 m log core with a 2.55 m frame bay rather than one extrusion. Miller's house
+is unchanged and still the case this entry describes — its record carries the taller element's
+5.2 m and its log cabin is rendered two storeys high — because setting its frame range's height
+without also settling how much of the footprint the range takes would swap one overstatement for
+a different one. The entry stays here rather than moving to Resolved for exactly that reason.
+**Resolved:** 2026-08-10 — the other half landed the same day, in the slice the Revised line
+above asks for. Miller's range now carries its own width (9 m), depth (6 m), storey count (2,
+`documented`) and height (5.2 m), so the 5.2 m came off `wall_height_m` and the log cabin stands
+at the 2.6 m this record has named for it since it was written. Neither building is a single
+extrusion any more, and the overstatement this entry existed to flag is gone rather than
+described. Worth keeping the sentence "the records carry the taller element's height": for
+Miller's house that had a sharper edge than it reads. `stories` was `2, documented`, and the
+archetype reads `stories` as the LOG CORE's — so the documented claim was spent on the cabin,
+the range fell back to a default height of 4.7 m, and the model stood the taller element behind
+the shorter one. The invented dimensions that replaced the defaults are admitted in L27.
+
+### L20 — Wolf Point Tavern: the frame half and the painted wolf sign are recorded and unbuilt
+**Decision:** the record states `frame_extension: true` and `signage: painted_wolf_sign`, both
+`documented`, and the mesh contains neither. What stands at Wolf Point is a plain hewn-log cabin
+with no frame piece and no sign.
+**Why:** not a judgement — an accident, and it is recorded as one rather than dressed up. The
+`log_dwelling` archetype reads `frame_addition` and `sign`; this record spells the same two
+things `frame_extension` and `signage`. Neither spelling is wrong and neither resolver ever
+complained, because `from_phase` fills an absent attribute with a default: no frame addition, no
+sign. The building was baked from those defaults and nothing anywhere said the two best-attested
+features of the house had been dropped.
+**Consequence:** this is the worst case the confidence model has, because the model is working
+exactly as designed and still misleads. `documented` is the strongest claim the project makes.
+A visitor who picks the tavern reads *signage · painted wolf sign · documented* on a building
+with no sign on it, and *construction · partly log and partly frame* on a building that is
+entirely log — and the one thing every source agrees the Wolf Point tavern was known by is the
+painted wolf hung outside it. The chips were true about the evidence and false about the view.
+**How to resolve:** rename the two attributes to the parameters the archetype reads and re-bake.
+That is a data change plus geometry, and the two have to land in one slice, so it is queued in
+`docs/ROADMAP.md` rather than half-done here. Until it lands the record admits the gap.
+**Covers:** `wolf_point_tavern.log_frame_1828.form.frame_extension`, `wolf_point_tavern.log_frame_1828.form.signage`.
+**Recorded:** 2026-08-10.
+**Resolved:** 2026-08-10 — the two attributes are spelled `frame_addition` and `sign`, the
+names the archetype reads, and the tavern was re-baked in the same slice: a frame bay stands
+at the north end of the log core and a board hangs from a bracket on the river front. The
+record now carries the frame part's side, width, depth and storey count explicitly rather
+than inheriting the archetype's defaults, and every invented one of those is admitted in
+L24; what the board shows is admitted in L25. This entry stays exactly as written, including
+the two spellings that no longer resolve, because a silently corrected admission is not one.
+
+
+### L21 — Chimneys are counted in the records and fixed in the archetypes
+**Decision:** every record states a chimney count and no archetype reads it. `frame_tavern`
+builds two stacks at 0.22 and 0.78 of the frontage; `log_dwelling` builds one, at the gable end.
+The records that say two get two only where the archetype already built two.
+**Why:** the counts were written from the depictions ("both depictions show two") and the
+archetypes were written from the same depictions, so they have never disagreed — which is
+precisely why nothing caught that they were never connected. Samuel Miller's house is the case
+that shows it: the record says two chimneys and the `log_dwelling` archetype builds one.
+**Consequence:** a record could raise a chimney count on new evidence and the town would not
+change. For Miller's house the model already shows one stack fewer than the record claims.
+**How to resolve:** make the count a parameter in both archetypes and re-bake — a small change
+on the data side, a geometry change on the other, so it lands as one slice.
+**Covers:** `green_tree_tavern.form.chimneys`, `miller_house.form.chimneys`, `sauganash_hotel.form.chimneys`, `walker_meeting_house.form.chimneys`, `western_hotel.form.chimneys`, `wolf_point_tavern.form.chimneys`.
+**Recorded:** 2026-08-10.
+**Resolved:** 2026-08-10 — `chimneys` is a parameter of both archetypes and the number built is
+the number recorded. Miller's house has its second stack, on the frame range, which is where the
+record's own reasoning for counting two puts it. The `log_dwelling` half was not a missing
+feature but a third misspelling of the kind L20 records: the parameter was `chimney`, a boolean,
+and no record has ever contained that word — so `from_phase` took its default and built one stack
+on every log building whatever the record said. That class of defect is now a test rather than a
+discovery (`test_consumed_attributes_actually_reach_the_parameters`): an attribute an archetype
+declares it consumes has to change the resolved parameters when its value changes. What this
+entry admitted is discharged; what it did not admit — that a stack's position, size and material
+are invented on every building — is now stated on its own, in L26.
+
+### L29 — The North Branch bridge stands on fifteen piers nobody recorded
+**Decision:** the bridge is built with cribs every 4.5 m, which over its 71.83 m span puts
+**fifteen log cribs standing in the river** between the two abutments. The spacing is tagged
+`conjectural` on the record.
+**Why:** what survives about this bridge is its width, its material and its ends. Cleaver:
+"The abutments were built of heavy logs in the shallow water near the banks. These bridges were
+ten feet wide." Andreas: "formed of stringers." Nothing anybody wrote describes the middle of it.
+Something had to hold up 71.83 m of log stringer, so intermediate supports are not the invention
+— their number, their spacing and their form are. 4.5 m is the archetype's own default, kept
+deliberately rather than replaced with a fresh guess, because a new number would look like a
+finding and would not be one.
+**Consequence:** this is the most conspicuous invention in the structure and it is invisible in
+the confidence view, because the tint on the piers grades what a crib IS rather than how many of
+them there were. A visitor walking the bank sees a regular colonnade marching across the water
+and reads it as a fact about the bridge. It is a fact about the archetype. The span it divides is
+itself the drawn waterline-to-waterline distance, and Cleaver's abutments stood *inside* that
+line by an unrecorded amount, so the true bay count was smaller than fifteen by an unknown
+margin.
+**How to resolve:** a period depiction or a survey of the crossing. Two are worth trying: the
+1834/1835 Wabansia and Kinzie's Addition plat, which is contemporaneous to within two weeks of
+the scene date, and Andreas vol. 1 at page-image level, where the bridge prose transcribed here
+sits.
+**Covers:** `north_branch_bridge.log_1832.form.pier_spacing_m`.
+**Recorded:** 2026-08-10.
+**Evidence since:** the sentence above — "nothing anybody wrote describes the middle of it" — is
+no longer true, and the entry stays here rather than moving to Resolved because the model still
+shows fifteen cribs. Somebody did write it down: at the foot of Andreas pp. 631-632 is a
+statement signed by J. D. Caton, John Bates, Charles Cleaver and John Noble, agreed at a meeting
+of old settlers in the fall of 1883, saying that both branch bridges "were built on abutments and
+two 'bents'", each bent "of four heavy logs, resting on the bottom, in deeper water". **Two
+intermediate supports, not fifteen**, and bents rather than cribs. It was found by reading the
+printed pages either side of the passage this project already quoted, rather than by searching
+the index, which does not reach it. Until the record and its re-bake land together the river
+still carries a colonnade that the evidence does not, and this admission stands exactly as
+written. Source: `old_settlers_bridges_1883`; the finding is
+`docs/RESEARCH/north_branch_bridge.md` §6 and the work order is `docs/STATUS.md` §23.
+**Revised:** 2026-08-10.
+**Resolved:** 2026-08-10 — the mesh shows two bents, so this entry moves here, and not before,
+which is what the Revised line above said it was waiting for. `pier_spacing_m` is gone from the
+record and from the archetype: `pier_count: 2, documented` replaces it, `pier_kind` is `bent`,
+and `bridge_timber` builds four heavy logs under a cap at each of them. The parameter changed
+rather than the number, because a spacing is a builder's convenience nobody would remember and a
+count is what a user of a bridge does. **What this entry admitted is discharged and what it did
+not is now L31**: the letter gives two bents and never says where along the span they stood, so
+the positions are still the archetype's, and the tint still cannot say so. The sentence in
+**Consequence** about the true bay count being "smaller than fifteen by an unknown margin" turned
+out to be true in the wrong direction and by a factor of five.
+
+### L116 — The American sycamore is drawn as an American elm from the bark outwards
+
+**Decision:** the sycamore now planted in the gallery (ROADMAP **K45(b1)**) is drawn with
+**`ulmus_americana`'s draw archetype** — its bole fraction, its taper, its trunk diameter band,
+its puff count and **its bark colour**. Its height, its crown width, its July foliage colour and
+its confidence come from its own record, as they do for every species. It is the only placed
+species in the scene without an archetype of its own, and `tools/measure_planting_reach.py` banks
+that fact by name, exactly, in both directions.
+
+**What a visitor is therefore not seeing.** The one thing `data/flora/zones/z05_riverbank_timber`
+singles the species out for is its bark: *"Rare, at its northern edge; **white mottled bark
+flashing on the upper limbs**."* That sentence is the reason a sycamore is identifiable at 200 m
+in a floodplain wood, and this scene draws the tree with the elm's dark brown trunk. A visitor
+looking for a sycamore cannot find one by looking.
+
+**Why it was not invented instead.** `SPECIES` carries a bark colour as an sRGB constant per
+species and **no record in `data/flora/` carries a bark colour at all** — the dossiers behind
+these records are a presettlement land survey and a regional vegetation reconstruction, and
+neither states a colour. Choosing a hex for "white mottled" is a straightforward invention, and it
+is a *conspicuous* one: it would be the palest trunk in the scene and the first thing a visitor
+noticed about that stretch of river. Inventing it inside a parcel whose subject is one mix entry
+would put a highly visible guess into the frame on the authority of nobody. The substitution is
+recorded here instead, where it can be read.
+
+**Consequence, stated so a reader can weigh it.** The tree's *presence* is evidenced — the record
+places it on this riverbank at 1–3 per hectare — and its size and foliage are the record's. Only
+its trunk is another species'. That is an omission plus a substitution, not an overstatement: no
+attribute is graded higher than its evidence and nothing in `data/` moved.
+
+**How to resolve:** a `SPECIES.platanus_occidentalis` archetype, whose bark colour is either
+sourced or recorded here as invented in its own right; the mottling itself would need a second
+material or a vertex-colour break, which is **R-W2b/R-W2c** territory — the town's chimneys are
+in the same queue for the same reason. When it lands, the entry has to leave
+`drawn_as_another_species` with `--update` in the same commit.
+
+Related: **L114**, which recorded the omission this half-resolves, and **L115**, the other
+drawing convention in the same layer.
+**Recorded:** 2026-08-16.
+**Resolved:** 2026-08-16 (ROADMAP **K47**) — `SPECIES.platanus_occidentalis` exists, so the
+species is drawn with its own bole, taper, diameter band, puff count and bark, and
+`drawn_as_another_species` is empty where it held this one substitution. The **How to resolve**
+line above offered a choice — sourced, or recorded as invented — and there was never a source to
+find: no record in `data/flora/` carries a bark colour, so the colours are invented within stated
+bounds and are **L118**. What this entry admitted is discharged, and the half it did not — the
+*mottling*, as against the pale-versus-dark break — is carried forward in L118 rather than closed
+here.
+
+### L60 — The estray pen is a fence, and the model gives it a roof
+**Decision:** Chicago's first public building — the estray pen on the south-west corner of the
+public square — is built with the `outbuilding` archetype as a log-walled box 30 × 20 ft and
+8 ft high, with a gate and **a shed roof at the shallowest pitch the generator will accept**.
+Every one of those values is tagged `conjectural`.
+**Why:** what the sources attest is a municipal FUNCTION, a corner and a month. A pound is an
+enclosure; there is no reason to think this one was roofed and nothing mentions a roof. This
+project has no generator that builds an enclosure — `palisade` is named in the schema and has no
+module behind it — and `outbuilding`, the only archetype that will build a low walled rectangle,
+cannot build a roofless structure. So the choice was a roofed box or no building at all, and the
+working policy for this parcel is that an absent building is invisible while a conjectural one is
+legible and correctable.
+**Consequence:** the roof is the model's, not the record's, and it is the most conspicuous thing
+about the structure. It is set to `shed` at 6 degrees — a 0.64 m rise over the pen's 6 m run, as
+close to flat as the generator goes — which is a deliberate attempt to minimise a feature that
+probably was not there rather than a finding about a roof that was. The material is invented too,
+and the live alternative would look completely different: most frontier pounds were split-rail or
+post-and-rail, which is open and horizontal and see-through, where this is a closed notched log
+wall. The gate is a doorway in a wall where the real thing was probably a hung rail gate. What
+survives of the evidence in the mesh is a rectangle of about the right size in about the right
+place.
+**How to resolve:** an enclosure archetype — post-and-rail or notched log, ROOFLESS, gated,
+taking a perimeter rather than a footprint. It would serve this record, the fenced-or-unfenced
+state of the public square itself, the garrison gardens and every yard in the town, and it is
+the honest fix. A town or county order establishing the pound would settle the size and the
+material at the same time.
+**Covers:** `estray_pen.pen_1833.footprint`, `estray_pen.pen_1833.form.construction`, `estray_pen.pen_1833.form.roof_type`, `estray_pen.pen_1833.form.roof_pitch_deg`, `estray_pen.pen_1833.form.wall_height_m`, `estray_pen.pen_1833.form.door`.
+**Recorded:** 2026-08-11.
+
+**Resolved:** 2026-08-18 (T-0051). The enclosure layer arrived and the pen was the second record on it.
+`data/enclosures/estray_pen.json` walks the same 30 × 20 ft rectangle, on the same corner, as a **roofless
+post-and-rail perimeter with a gateway**, drawn by `renderers/web/js/enclosures.js` at load and needing no
+bake. The five invented values this entry claimed — `construction`, `roof_type`, `roof_pitch_deg`,
+`wall_height_m` and `door` — are **retired from the record rather than re-graded**, the GLB and its manifest
+entry are deleted, and the phase carries a `drawn_by` block that `tools/validate.py` holds to all of that.
+Andreas is now quoted for the thing he actually says: *"the 'pen' was a small wooden enclosure and quite
+roofless"*. What this entry still covers, and what keeps it worth reading, is the **footprint** — the
+rectangle, its size and its corner-of-a-block placement are as invented as they ever were, and the fence
+that now stands on them is invented in its own right and claimed at **L128**. The generator half of the fix
+this entry asked for is still open: `palisade` still has no enclosure form behind it, so a future scene that
+wants the pen baked with the rest of the town still needs one.
 
 ---
 
@@ -6024,9 +6484,30 @@ proportion the archetype derives, not a value the record states — and claiming
 not the invention being confessed. The honest form is an entry that claims nothing in the
 machine-readable field and says in prose exactly what was made up. The day a `picket_head`
 attribute exists on the record, this entry claims it.
-**Ticket:** T-0094, opened by T-0044, closed as refuted. **Related:** **L47** (the fabric of this
-wall), **L42** (the fort's buildings), **L174** (the ground outside its walls).
+
+**Covers:** `fort_dearborn_palisade.picket_1816.form.picket_head_m`.
+**Ticket:** T-0094, opened by T-0044, closed as refuted; **T-0200** claimed the attribute.
+**Related:** **L47** (the fabric of this wall), **L42** (the fort's buildings), **L174** (the
+ground outside its walls).
 **Recorded:** 2026-08-24.
+**Revised:** 2026-08-24 (T-0200), hours after it was written — **that day is today, so the "No
+`Covers:` field, deliberately" paragraph under *Held by* is superseded and the field is
+filled.** `form.picket_head_m` now
+stands on `fort_dearborn_palisade`, `reconstructed`, at **0.312 m**: the identical number
+`PalisadeParams.picket_point_m` had been deriving, asserted equal to the derivation before it was
+written and then proved by a real bake — `fort_dearborn_palisade__picket_1816.glb` came back
+**byte-for-byte the file that stood before**, 21,728 vertices, none moved. Only the manifest's
+input hash changed, `579cb33f…` → `dd0c84b8…`, which is what a declaration is supposed to cost.
+That paragraph is kept verbatim rather than deleted because it was the right reading of the
+document and the wrong reading of the runner: **the head was deferred out of `form` for a reason
+that was false.** T-0094 recorded that the attribute "cannot be in this run … there is no Blender on
+this runner", and the pinned Blender 4.5.3 was installed on that runner the whole time. That was
+the integrator's error, not the ticket author's finding, and it is corrected here, in T-0094 and
+in `docs/STATUS.md` rather than quietly removed. What does NOT change: the head is still ours,
+still `reconstructed`, still unattested by any source, and `p4_0` still rules the cap flat. The
+derived proportion stays in the archetype as the fallback for any palisade record that states no
+head — the garrison garden's worm fence resolves through the same class and states none; it was
+rebaked too, because the new parameter restaled it, and it also came back byte-identical.
 
 
 ### L177 — The Lake face's street line is 0.80 m, and the plat module's lot margin gives way to it
@@ -6206,408 +6687,6 @@ approach earthworks) · tickets **T-0111**, **T-0110** (the drape fix and the re
 **T-0046** (the fills).
 **Recorded:** 2026-08-24.
 
-### L181 — The La Salle slough crossing: a whole structure committed on a ruling, and the two earthworks that get a wagon onto it
-**Decision:** `data/structures/lasalle_slough_crossing.json` puts a timber street crossing
-over the La Salle drain where South Water Street meets it — a 12 m span, 4.27 m wide, on one
-log bent at mid-span, its puncheon deck 0.84 m over the water — and
-`terrain_spec.json` grades the street up to each end of it as two `fill` approaches
-(`lasalle_crossing_west`, `lasalle_crossing_east`) at 1 in 12. **Every attribute of the
-structure is `reconstructed`, including whether it existed at all**, and the record says so on
-its face rather than in a footnote.
-**Why:** the owner ruled on 2026-08-21 (T-0129) that the drain should run unbroken into the
-river "and have plank crossings for both the road and the sidewalk". Carrying the water
-through the street corridor — L150's amendment — takes the ground out from under South Water
-Street, and a graded public street that meets six metres of water either crosses it or stops.
-The town trustees ordered South Water pitched and graded from the United States Reservation to
-Randolph in August 1833, so it did not stop. The sibling crossing four hundred metres east IS
-attested — "where Water Street crossed it a log bridge was needed until after 1840" — and this
-record borrows its whole argument, one attribute at a time, saying at each which figure is
-being borrowed from a crossing that is not this one.
-**What is invented, and what bounded each invention.** The EXISTENCE, first and worst: nothing
-records a crossing here. The POSITION is derived rather than authored — the drain's committed
-centreline crossed with the street's committed path — but the decision to lay the deck in the
-track's SOUTHERN half is this entry's, and it was measured: the river's traced re-entrant opens
-northward across this longitude, so the water under the corridor is 6.10 m wide at N +3 and
-12.90 m at N +11, and a deck on the platted centreline would have to span sixteen metres of a
-river mouth. The SPAN is sized off the stream exactly as the sibling's 8 m is, and comes out at
-the same proportion (12 m over 5.55 m of water on its own centre line, dry abutment seats 3.10 and 3.35 m,
-against 8 m over 3.30 m and 2.35 m). The WIDTH, 4.27 m, is the one figure that exceeds the sibling and
-it is the owner's ask made dimensional: eight feet of wagon way and a six-foot plank footway
-beside it, the walk width this project lays everywhere else. Cleaver's documented ten feet
-belongs to the BRANCH bridges and is a yardstick here, not a measurement. The CLEARANCE is the
-sibling's 0.5 m on the sibling's reasoning, and the measured 0.44 m of water under the deck is
-what makes it read the same here. The BENT COUNT is the span's: the sibling argues zero for
-8 m and the same carpentry cannot be claimed for 12, so one bent halves it into two 6 m runs —
-against the archetype's fallback spacing, which would have put two supports in a six-metre
-stream. CONSTRUCTION, DECK KIND, STRINGER and PLANK are local practice from the 1883
-old-settlers statement and the sibling record, none of them attested here. The two APPROACHES
-are fills where every other approach in this dataset is a cut, because this deck stands over
-its banks where the others sit below theirs; their form is invented at the house 1 in 12, and
-their one departure from the house pattern is `end_overhang_m` 1.0 against 3.0 — three metres
-of fill past each deck end would take two thirds of the channel this ticket opened and put the
-owner's bulge back at a smaller scale.
-**Consequence:** from the owner's stand the drain runs unbroken into the river and a timber
-crossing carries South Water Street over it, walkable end to end — onto the graded fill, across
-the deck, off the other side, with water running under the whole span. Every vertex of the
-crossing carries `reconstructed` in the confidence channel, so a visitor who hides that tier
-loses the crossing and is left looking at the water it spans, which is the honest picture of
-what is known here. Aiming at it opens its own card. `tools/measure_slough_crossing.py` takes
-the readings on every commit — the drain unbroken from its inland reach to the river, open
-water under the deck, dry seats at both abutments — so the deck and the stream cannot drift
-apart the way the sibling's did for two months before T-0109 caught it.
-**How to resolve:** any period document that crosses this ground — a bridge or culvert order
-for South Water Street west of Clark, a grading record, a lot survey, or any view of the
-street at La Salle. A source that says the street crossed on FILL would refute the structure
-and hand the ground back to L150's superseded reading; that is the shape of the evidence this
-entry is waiting for, and it would be welcome.
-**Covers:** `lasalle_slough_crossing.function`, `lasalle_slough_crossing.crossing_1835.footprint`, `lasalle_slough_crossing.crossing_1835.position`, `lasalle_slough_crossing.crossing_1835.documented_range`, `lasalle_slough_crossing.crossing_1835.form.construction`, `lasalle_slough_crossing.crossing_1835.form.width_m`, `lasalle_slough_crossing.crossing_1835.form.clearance_m`, `lasalle_slough_crossing.crossing_1835.form.pier_count`, `lasalle_slough_crossing.crossing_1835.form.pier_kind`, `lasalle_slough_crossing.crossing_1835.form.deck_kind`, `lasalle_slough_crossing.crossing_1835.form.stringer_d_m`, `lasalle_slough_crossing.crossing_1835.form.plank_t_m`, `terrain.e1834_harbor_cut.approaches.lasalle_crossing_west`, `terrain.e1834_harbor_cut.approaches.lasalle_crossing_east`.
-**Recorded:** 2026-08-24.
-
-## Resolved
-
-Entries here were true when they were written and are kept verbatim, with a **Resolved:**
-line saying what settled them. The gate exempts this section from the check that a claimed
-value is still an invention, which is what lets an append-only document survive its own data
-being corrected.
-
-
-### L46 — The fort stands on a bank the model has no cut or fill for
-**Decision:** the **stockade** and the **commandant's quarters** stand clear of the terrain on
-their north sides — 1.40 m and 0.46 m at the worst point — and are declared
-`approach_not_modelled`. No cut, fill, revetment, platform or foundation is modelled anywhere in
-the complex.
-**Why:** the fort sits on a plateau at about 3.33 m that falls away to the river between local
-N +245 and N +270, which is what a fort on a river bank inside a bend should do. The north wall
-of the stockade and the north face of the brick range cross the top of that fall, and the
-archetypes build a level base at one elevation. The real work plainly had something under it —
-a picket line is set in a trench and a brick range needs footings — and no source reached
-describes either.
-**Consequence:** walk round to the river side of the fort and the pickets stand up out of the
-slope on nothing. It is the honest picture of two things at once: a fort correctly placed on a
-bank, and a model with no earthworks in it.
-**How to resolve:** a levelled section of the bank, which no source gives; or terrain work that
-models the platform the fort stood on, which is a terrain parcel rather than a structure one.
-**Covers:** `fort_dearborn_palisade.picket_1816.ground_contact`, `fort_dearborn_commandants_quarters.brick_1816.ground_contact`.
-**Recorded:** 2026-08-11.
-**Revised:** 2026-08-11, hours after it was written, and the revision is the good kind. This
-entry was originally titled *"The fort stands 832 m beyond the modelled ground, and nothing
-could see it"* and covered the **ground contact of all fourteen** structures in this complex,
-because the `e1834_harbor_cut` heightfield stopped at local E +320 and the fort is at E +1152.
-**S2e parcel (b) landed while this parcel was being written** — the field now reaches E +1700 —
-so twelve of the fourteen simply land, their declarations are gone from the records, and the two
-that remain fail for a completely different and much more interesting reason, which is what the
-entry above now describes. Two of the twelve had to move to get there: the **lighthouse** and
-the **root house**, whose positions were always `conjectural`, had been put where no ground
-existed to contradict them and turned out to be standing in the channel; both moved onto the
-bank top and both notes say so.
-**The half of the original entry that is NOT superseded, because it is about the machinery and
-not about the ground.** `tools/heightfield.py` clamps outside the box, so while the fort was 832
-m past the edge it sampled the clamped edge for its base AND for every point of its outline, the
-two agreed to the millimetre, and the ground-contact gate — the gate this project wrote
-specifically to catch a building standing on nothing — reported a **perfect landing**. Every
-structure L40 covers was caught only because the clamped edge varies along a wall and produced a
-gap; the fort was far enough out and square enough on to produce none. The gate could see
-buildings that were nearly right and was blind to the one that was completely wrong.
-`Heightfield.covers()`, the `outside_modelled_ground` state and the two-way check that a
-declaration matches the measurement were written for that and stay whether or not any structure
-currently needs them — and turning them on immediately flagged two structures in other parcels
-that nothing had caught. See `docs/STATUS.md` § "Known weaknesses" 0a.
-**Resolved:** 2026-08-21, by exactly the terrain work this entry asked for. T-0125 narrowed the bank face across the fort's river frontage from 20 m to 8 m (L155), on the owner's ruling that the ground should give rather than the bake or the placement; the ground under the stockade's north wall rose from 1.26 m to 2.57 m and both structures now LAND on the terrain, within the gate's 0.35 m. The `approach_not_modelled` declarations are dropped from both records in the same commit. Note what did and did not happen: the fall to the river is still there and is still uncut — no revetment, platform or footing is modelled anywhere in the complex, and a picket line is still set in no trench. What changed is that the fort's own ground now reaches its walls, so the pickets no longer stand up out of the slope on nothing.
-
-### L30 — The bridge lands on nothing, and no approach is modelled
-**Decision:** the North Branch bridge's deck stops at the traced 1834 waterline at both ends,
-2.42 m above the ground beneath it, and **no approach of any kind is built** — no embankment, no
-ramp, no sloping run of deck. The crossing stands in the river and touches neither bank.
-**Why:** the deck sits 2.22 m above the water (Cleaver's inferred six-foot clearance plus the
-stringer and plank depth under it), and the modelled ground at both landings is Z = 0 by
-construction, because the terrain surface crosses the datum exactly along the drawn waterline.
-The highest land anywhere in the 640 m box is 1.31 m. So there is nothing for the deck to arrive
-at, and nothing anybody wrote says what did. Andreas gives the stringers; Cleaver gives the
-width and log abutments "in the shallow water near the banks"; no source reached describes how a
-person or a team got from the bank up onto the deck. Building one would stack a second invention
-on top of the clearance figure — which is itself only `inferred`, and unsourced in the dossier
-that supplied it — and unlike the fifteen cribs of L29, it is the invention a visitor would walk
-over rather than look at.
-**Consequence:** the crossing reads as a bridge to nowhere. From the bank you cannot step onto
-it, and the walkthrough cannot pretend otherwise: the walker follows the terrain, so the deck is
-scenery you pass under. That is honest about the evidence and wrong about the town — a bridge
-that carried a procession of hundreds in August 1835 plainly met its banks. Every part of that
-gap is unrecorded, so it is stated rather than drawn.
-**How to resolve:** a period depiction of the crossing or a levelled section. The 1834/1835
-Wabansia and Kinzie's Addition plat, contemporaneous to within two weeks of the scene date, is
-the best candidate; a sourced clearance figure would also narrow it, since a lower deck needs
-less approach and the six feet is the weakest number in the record.
-**Covers:** `north_branch_bridge.log_1832.ground_contact`.
-**Recorded:** 2026-08-10.
-**Evidence since:** both candidates named above were pulled on 2026-08-10 and **the gap is
-unchanged, but two of the escape routes out of it are closed.** The Wabansia and Kinzie's
-Addition plat is the sheet this project already holds as `hathaway_1834`; inspected at the
-crossing's own georeferenced pixel it draws no bridge, and neither does Wright 1834 — both stop
-their street lines at the waterline, because a platted street is a dedication and not a
-structure. And the six feet is no longer "the weakest number in the record": Caton, Bates,
-Cleaver and Noble state it in 1883, and state why — the bridges "were about six feet above the
-water, so that teams passed under them on the ice freely" — so a lower deck is not available as
-the cheap way to shorten an approach nobody described. The same sentence calls these **wagon**
-bridges, which means a wagon reached the deck somehow. The approach is therefore better attested
-as a fact and no better described than it was. See `docs/RESEARCH/north_branch_bridge.md` §6.
-**Revised:** 2026-08-10.
-**Resolved:** 2026-08-19. T-0046 built the approaches. Terrain earthworks (`approaches` in
-`terrain_spec.json`, every entry graded `reconstructed`) now raise Kinzie Street to the deck at
-1 in 12 at both ends; the ground-contact gate measures both end edges within its 0.35 m
-tolerance of the deck, and the declaration is off the record. The invention this entry refused
-to make is made and declared instead — L147 is its record. What changed the reasoning is the
-owner's standing instruction (AGENTS.md § RECONSTRUCTED IS A TIER): the 1883 statement this
-entry already quotes makes these WAGON bridges, so an approach is a necessity of the evidence,
-and a declared reconstruction is honest where a bridge to nowhere is wrong about the town.
-
-
-### L38 — The South Branch bridge lands on ground that is not there
-**Decision:** `south_branch_raft_bridge` does not reach the terrain at either end.
-**Why:** the same admission L30 already makes for the North Branch bridge, for the same reason
-and with the same cause. The bridge is placed and dimensioned from the traced 1834 waterlines,
-which is real evidence about where the water was; the ground it should land on is the terrain
-heightfield, which is modelled from a zone table and does not carry a graded approach. Neither
-is wrong on its own, and the model still shows a bridge arriving nowhere.
-**Consequence:** a visitor who walks to either end steps off the deck. Because both branch
-bridges now do this, it reads as a characteristic of the model rather than a defect in one
-record, which is if anything worse — it makes the crossing look deliberate.
-**How to resolve:** approach embankments, which are terrain work rather than structure work,
-and which nothing in the sources describes for either bridge.
-**Covers:** `south_branch_raft_bridge.log_1833.ground_contact`.
-**Recorded:** 2026-08-10.
-**Resolved:** 2026-08-19. The same resolution as L30, in the same pass: T-0046's approach
-earthworks (L147) raise the ground to this deck at both ends and the declaration is off the
-record.
-
-
-### L69 — Two structures stand at their documented sites beyond the modelled ground
-**Decision:** `brickyard_north_side` and `slough_log_bridge` are placed at the sites their sources
-give — the north bank between Clark and Dearborn, and the Water Street crossing at the foot of State
-Street — which lie 300 m and 490 m east of the modelled terrain box. Both phases declare
-`ground_contact: {state: "outside_modelled_ground"}`.
-**Why:** the opposite choice was available and was taken for the Clybourne records (L64), which were
-pulled to the modelled edge because their sites are kilometres away and only loosely fixed. These two
-are different: the brickyard's site is attested to a 120 m span of street frontage (Andreas scan
-p. 1161) and the bridge's to the meeting of a named street and a named stream mouth, so displacing
-them would throw away the best evidence either record holds. What is missing here is terrain, not
-evidence.
-**Consequence:** neither structure meets any ground. `tools/heightfield.py` clamps at the box edge, so
-without the declaration the gate would have reported both as landing perfectly on terrain that does
-not exist. The slough bridge is worse off again: the South Division slough it crosses is not cut into
-this terrain epoch at all — the only modelled watercourse besides the river is an unnamed slough on
-the north side — so it stands over flat ground with no stream beneath it, and the `bridge_timber`
-archetype anchors it to the river's water surface, which the hydrology dossier puts 0.15–0.45 m below
-the slough's own.
-**How to resolve:** extend the terrain epoch east over the South Division and the north bank as far as
-Dearborn, and cut the slough's documented route into it. Then both declarations come off and this
-entry moves to Resolved.
-**Covers:** `slough_log_bridge.log_1833.ground_contact`.
-**Evidence since, 2026-08-11:** the brickyard's token is withdrawn — S2e extended the
-heightfield east and Blodgett's yard now lands on modelled ground. The slough crossing still
-stands clear of it, but for the different reason recorded on that record: the South Division
-slough it crosses is still not cut into this terrain epoch, so it spans nothing.
-**Recorded:** 2026-08-11.
-**Resolved:** 2026-08-19. In two halves, two runs apart. The brickyard's half was already
-withdrawn above (S2e, 2026-08-11). The slough crossing's half closed when T-0046 graded its
-banks down to the deck at both ends (a cut — L147), so the `outside_modelled_ground` /
-`approach_not_modelled` declarations are off the record and the crossing can be walked. What
-this entry's last sentence asked for — the South Division slough cut into the terrain epoch, so
-the bridge spans water rather than solid ground — is still not done, and is re-filed as ticket
-T-0109 rather than left implied here.
-**Evidence since, 2026-08-24:** **the last sentence above is answered and this entry is closed
-out for good.** T-0005 carved dossier zone 14 — the South Division's drain — into
-`e1834_harbor_cut` on 2026-08-20, and T-0118 straightened its last reach to run square beneath
-this deck the same day. Neither was aimed at this entry or at T-0109; both are why it can be
-retired. Measured on the committed heightfield by `tools/measure_slough_crossing.py`: **3.30 m
-of open water in the deck's 8.00 m span** (41 %), **0.53 m deep**, **2.35 m of dry abutment seat
-at each end**, and the channel unbroken from the planks to the river. The one clause above that
-did NOT come true is the diagnosis about levels — this entry expected the archetype to anchor
-the deck to a river surface 0.15–0.45 m below the slough's own, and the drain as built backs up
-into the river as one pool at one surface, so the offset never arose. What is still invented is
-what it always was: the depth and the width of a watercourse whose route is documented and whose
-section nobody recorded. That invention lives in **L149** with the swales, not here.
-
-
-### L40 — Two thirds of the town stands on ground that has not been built
-**Decision:** twenty of the thirty-three structures now in the dataset stand **outside the
-modelled heightfield** and do not reach the terrain beneath them. Their records are correct and
-their positions are derived through the same fitted transform as everything else; there is
-simply no ground there yet.
-**Why:** the heightfield covers **E −320 … +320, N −320 … +320** — a 640 m square around the
-forks, built when the forks was the whole scene. The town is not that shape. South Water Street
-runs from about **E +347** (`h_jones_store`) to **E +745** (`frederick_thomas_shop`); the
-Dearborn Street bridge is at **+699**; Cobweb Castle, the north-bank agency house, is at
-**+814**; the Beaubien homestead is at **+1090**. The entire business district — the reason the
-town existed — sits east of the modelled world, along with the bridge that crossed to it.
-This was not discovered by inspection. It surfaced the moment the project stopped building only
-the best-evidenced structures and started building the town: the forks quadrant was sufficient
-for eight buildings and is nowhere near sufficient for thirty-three.
-**Consequence:** those twenty buildings currently float. A visitor who walks east finds the
-ground end and the town continue. **This is worse than the buildings being absent**, because an
-absent building makes no claim while a floating one makes a false one, and the confidence view
-cannot mark it — the tint grades what a building WAS, not whether it stands anywhere. It is
-recorded here as a liberty rather than left as a bug because it is a known, measured, deliberate
-intermediate state: the records were built first on the argument that evidence is harder to come
-by than geometry, and the geometry is now the thing holding.
-**How to resolve:** ROADMAP § S2e — extend the heightfield east to about **E +1700**, a
-~2.0 km × 0.7 km field, using the shore, the 1834 cut, the sand bar and the old southward
-channel already traced in `data/traces/vectors/wright_1834_east.json` and
-`shoreline.geojson`. That work is in progress. **When it lands, this entry moves to Resolved**
-rather than being edited, and any structure still floating afterwards — the North Branch
-industry sits well north of even the extended box — gets an entry of its own naming it.
-**Covers:** `bates_auction_room.frame_1834.ground_contact`, `carpenter_south_water_store.frame_1833.ground_contact`, `chicago_american_office.frame_1835.ground_contact`, `chicago_democrat_office.frame_1833.ground_contact`, `dole_warehouse_south.frame_1832.ground_contact`, `frederick_thomas_shop.frame_1835.ground_contact`, `h_jones_store.frame_1833.ground_contact`, `harmon_loomis_store.frame_1833.ground_contact`, `jb_beaubien_homestead.factory_1817.ground_contact`, `madore_beaubien_house.log_1831.ground_contact`, `old_bank_building.frame_1834.ground_contact`, `peck_store.frame_1833.ground_contact`, `pruyne_kimball_drugstore.frame_1830s.ground_contact`, `h_jones_store.frame_1833.footprint`, `h_jones_store.frame_1833.position`, `h_jones_store.frame_1833.form.stories`, `jh_kinzie_forwarding_store.frame_1830s.footprint`, `jh_kinzie_forwarding_store.frame_1830s.position`, `jh_kinzie_forwarding_store.frame_1830s.form.stories`, `north_pier.crib_1835.ground_contact`, `south_pier.crib_1835.ground_contact`, `cobweb_castle.log_1820.ground_contact`, `blacksmith_shop_state_st.log_1823.ground_contact`, `north_side_school_1833.log_1833.ground_contact`, `steamboat_hotel.frame_1835.ground_contact`, `council_house.log_1834.ground_contact`, `first_presbyterian_church.frame_1834.ground_contact`, `st_marys_church.frame_1833.ground_contact`, `log_jail.log_1833.ground_contact`, `estray_pen.pen_1833.ground_contact`, `cook_county_courthouse_1835.wood_1835.ground_contact`, `chappel_infant_school.log_1833.ground_contact`, `watkins_school_house.house_1833.ground_contact`.
-**Recorded:** 2026-08-10.
-
-**Resolved:** 2026-08-11. The ground was built. ROADMAP § S2e extended the heightfield east from a
-640 m square to **E −320 … +1700, N −400 … +400** — 809 × 321 samples at 2.5 m — and twenty-seven of
-the structures this entry covers now land on real terrain. The declarations came off those records in
-the same pass that moved this entry here.
-
-Three things are worth keeping from it rather than deleting with it. **The finding was only visible
-because the town got built**: eight well-evidenced buildings at the forks all sat comfortably inside
-the old box, and it took building the business district to discover the business district had no
-ground under it. **The gate could not see it either** — `tools/heightfield.py` clamped outside the
-box, so a structure 832 m past the edge sampled the clamped edge for its base and for every contact
-point, agreed to the millimetre, and was reported as landing perfectly. Fort Dearborn is what exposed
-that, and the fix (`Heightfield.covers()`, plus a two-way check that a declaration matches the
-measurement) immediately flagged two more structures nothing had caught. And **not everything came
-back**: the Clybourne records still stand about three kilometres from their attested ground up the
-North Branch, and the stockade's north wall and the commandant's quarters now cross the top of the
-river bank because no cut, fill, revetment or foundation is modelled anywhere in this project. Those
-are L64 and L46's business, not this entry's.
-
-### L13 — Composite log-and-frame buildings are extruded to a single wall height
-**Decision:** `miller_house` and `wolf_point_tavern` are each modelled at one wall height,
-although both are attested as composites — Miller's as a two-storey frame range fronting the
-river with a one-storey log cabin behind, the Wolf Point Tavern as "partly log and partly frame".
-**Why:** the `log_dwelling` archetype does not yet build a mixed-height mass, and averaging the
-two heights would produce a building matching neither description. The records carry the taller
-element's height and flag the overstatement rather than hiding it.
-**Consequence:** a geometry requirement for `log_dwelling`, discovered from the evidence in the
-same way the Sauganash's attached log wing was (L4a). Until it lands, the log elements render
-taller than they were.
-**Recorded:** 2026-08-09.
-**Revised:** 2026-08-10 — half of this is no longer true. The archetype does build a mixed-height
-mass: a frame addition carries its own storey count and its own height, and the Wolf Point Tavern
-now stands as a 2.6 m log core with a 2.55 m frame bay rather than one extrusion. Miller's house
-is unchanged and still the case this entry describes — its record carries the taller element's
-5.2 m and its log cabin is rendered two storeys high — because setting its frame range's height
-without also settling how much of the footprint the range takes would swap one overstatement for
-a different one. The entry stays here rather than moving to Resolved for exactly that reason.
-**Resolved:** 2026-08-10 — the other half landed the same day, in the slice the Revised line
-above asks for. Miller's range now carries its own width (9 m), depth (6 m), storey count (2,
-`documented`) and height (5.2 m), so the 5.2 m came off `wall_height_m` and the log cabin stands
-at the 2.6 m this record has named for it since it was written. Neither building is a single
-extrusion any more, and the overstatement this entry existed to flag is gone rather than
-described. Worth keeping the sentence "the records carry the taller element's height": for
-Miller's house that had a sharper edge than it reads. `stories` was `2, documented`, and the
-archetype reads `stories` as the LOG CORE's — so the documented claim was spent on the cabin,
-the range fell back to a default height of 4.7 m, and the model stood the taller element behind
-the shorter one. The invented dimensions that replaced the defaults are admitted in L27.
-
-### L20 — Wolf Point Tavern: the frame half and the painted wolf sign are recorded and unbuilt
-**Decision:** the record states `frame_extension: true` and `signage: painted_wolf_sign`, both
-`documented`, and the mesh contains neither. What stands at Wolf Point is a plain hewn-log cabin
-with no frame piece and no sign.
-**Why:** not a judgement — an accident, and it is recorded as one rather than dressed up. The
-`log_dwelling` archetype reads `frame_addition` and `sign`; this record spells the same two
-things `frame_extension` and `signage`. Neither spelling is wrong and neither resolver ever
-complained, because `from_phase` fills an absent attribute with a default: no frame addition, no
-sign. The building was baked from those defaults and nothing anywhere said the two best-attested
-features of the house had been dropped.
-**Consequence:** this is the worst case the confidence model has, because the model is working
-exactly as designed and still misleads. `documented` is the strongest claim the project makes.
-A visitor who picks the tavern reads *signage · painted wolf sign · documented* on a building
-with no sign on it, and *construction · partly log and partly frame* on a building that is
-entirely log — and the one thing every source agrees the Wolf Point tavern was known by is the
-painted wolf hung outside it. The chips were true about the evidence and false about the view.
-**How to resolve:** rename the two attributes to the parameters the archetype reads and re-bake.
-That is a data change plus geometry, and the two have to land in one slice, so it is queued in
-`docs/ROADMAP.md` rather than half-done here. Until it lands the record admits the gap.
-**Covers:** `wolf_point_tavern.log_frame_1828.form.frame_extension`, `wolf_point_tavern.log_frame_1828.form.signage`.
-**Recorded:** 2026-08-10.
-**Resolved:** 2026-08-10 — the two attributes are spelled `frame_addition` and `sign`, the
-names the archetype reads, and the tavern was re-baked in the same slice: a frame bay stands
-at the north end of the log core and a board hangs from a bracket on the river front. The
-record now carries the frame part's side, width, depth and storey count explicitly rather
-than inheriting the archetype's defaults, and every invented one of those is admitted in
-L24; what the board shows is admitted in L25. This entry stays exactly as written, including
-the two spellings that no longer resolve, because a silently corrected admission is not one.
-
-
-### L21 — Chimneys are counted in the records and fixed in the archetypes
-**Decision:** every record states a chimney count and no archetype reads it. `frame_tavern`
-builds two stacks at 0.22 and 0.78 of the frontage; `log_dwelling` builds one, at the gable end.
-The records that say two get two only where the archetype already built two.
-**Why:** the counts were written from the depictions ("both depictions show two") and the
-archetypes were written from the same depictions, so they have never disagreed — which is
-precisely why nothing caught that they were never connected. Samuel Miller's house is the case
-that shows it: the record says two chimneys and the `log_dwelling` archetype builds one.
-**Consequence:** a record could raise a chimney count on new evidence and the town would not
-change. For Miller's house the model already shows one stack fewer than the record claims.
-**How to resolve:** make the count a parameter in both archetypes and re-bake — a small change
-on the data side, a geometry change on the other, so it lands as one slice.
-**Covers:** `green_tree_tavern.form.chimneys`, `miller_house.form.chimneys`, `sauganash_hotel.form.chimneys`, `walker_meeting_house.form.chimneys`, `western_hotel.form.chimneys`, `wolf_point_tavern.form.chimneys`.
-**Recorded:** 2026-08-10.
-**Resolved:** 2026-08-10 — `chimneys` is a parameter of both archetypes and the number built is
-the number recorded. Miller's house has its second stack, on the frame range, which is where the
-record's own reasoning for counting two puts it. The `log_dwelling` half was not a missing
-feature but a third misspelling of the kind L20 records: the parameter was `chimney`, a boolean,
-and no record has ever contained that word — so `from_phase` took its default and built one stack
-on every log building whatever the record said. That class of defect is now a test rather than a
-discovery (`test_consumed_attributes_actually_reach_the_parameters`): an attribute an archetype
-declares it consumes has to change the resolved parameters when its value changes. What this
-entry admitted is discharged; what it did not admit — that a stack's position, size and material
-are invented on every building — is now stated on its own, in L26.
-
-### L29 — The North Branch bridge stands on fifteen piers nobody recorded
-**Decision:** the bridge is built with cribs every 4.5 m, which over its 71.83 m span puts
-**fifteen log cribs standing in the river** between the two abutments. The spacing is tagged
-`conjectural` on the record.
-**Why:** what survives about this bridge is its width, its material and its ends. Cleaver:
-"The abutments were built of heavy logs in the shallow water near the banks. These bridges were
-ten feet wide." Andreas: "formed of stringers." Nothing anybody wrote describes the middle of it.
-Something had to hold up 71.83 m of log stringer, so intermediate supports are not the invention
-— their number, their spacing and their form are. 4.5 m is the archetype's own default, kept
-deliberately rather than replaced with a fresh guess, because a new number would look like a
-finding and would not be one.
-**Consequence:** this is the most conspicuous invention in the structure and it is invisible in
-the confidence view, because the tint on the piers grades what a crib IS rather than how many of
-them there were. A visitor walking the bank sees a regular colonnade marching across the water
-and reads it as a fact about the bridge. It is a fact about the archetype. The span it divides is
-itself the drawn waterline-to-waterline distance, and Cleaver's abutments stood *inside* that
-line by an unrecorded amount, so the true bay count was smaller than fifteen by an unknown
-margin.
-**How to resolve:** a period depiction or a survey of the crossing. Two are worth trying: the
-1834/1835 Wabansia and Kinzie's Addition plat, which is contemporaneous to within two weeks of
-the scene date, and Andreas vol. 1 at page-image level, where the bridge prose transcribed here
-sits.
-**Covers:** `north_branch_bridge.log_1832.form.pier_spacing_m`.
-**Recorded:** 2026-08-10.
-**Evidence since:** the sentence above — "nothing anybody wrote describes the middle of it" — is
-no longer true, and the entry stays here rather than moving to Resolved because the model still
-shows fifteen cribs. Somebody did write it down: at the foot of Andreas pp. 631-632 is a
-statement signed by J. D. Caton, John Bates, Charles Cleaver and John Noble, agreed at a meeting
-of old settlers in the fall of 1883, saying that both branch bridges "were built on abutments and
-two 'bents'", each bent "of four heavy logs, resting on the bottom, in deeper water". **Two
-intermediate supports, not fifteen**, and bents rather than cribs. It was found by reading the
-printed pages either side of the passage this project already quoted, rather than by searching
-the index, which does not reach it. Until the record and its re-bake land together the river
-still carries a colonnade that the evidence does not, and this admission stands exactly as
-written. Source: `old_settlers_bridges_1883`; the finding is
-`docs/RESEARCH/north_branch_bridge.md` §6 and the work order is `docs/STATUS.md` §23.
-**Revised:** 2026-08-10.
-**Resolved:** 2026-08-10 — the mesh shows two bents, so this entry moves here, and not before,
-which is what the Revised line above said it was waiting for. `pier_spacing_m` is gone from the
-record and from the archetype: `pier_count: 2, documented` replaces it, `pier_kind` is `bent`,
-and `bridge_timber` builds four heavy logs under a cap at each of them. The parameter changed
-rather than the number, because a spacing is a builder's convenience nobody would remember and a
-count is what a user of a bridge does. **What this entry admitted is discharged and what it did
-not is now L31**: the letter gives two bents and never says where along the span they stood, so
-the positions are still the archetype's, and the tint still cannot say so. The sentence in
-**Consequence** about the true bay count being "smaller than fifteen by an unknown margin" turned
-out to be true in the wrong direction and by a factor of five.
-
 ### L111 — Every invented resident is called something else today, and nothing about any of them changed
 
 **Decision:** all **113** reconstructed residents in `data/residents/` were re-drawn from the same
@@ -6757,54 +6836,6 @@ live in any single attribute — no record's confidence changes and no attribute
 Related: **L35**, the same invention in the herbaceous layer, and **L113**, which recorded the
 omission this resolves half of.
 **Recorded:** 2026-08-16.
-
-
-### L116 — The American sycamore is drawn as an American elm from the bark outwards
-
-**Decision:** the sycamore now planted in the gallery (ROADMAP **K45(b1)**) is drawn with
-**`ulmus_americana`'s draw archetype** — its bole fraction, its taper, its trunk diameter band,
-its puff count and **its bark colour**. Its height, its crown width, its July foliage colour and
-its confidence come from its own record, as they do for every species. It is the only placed
-species in the scene without an archetype of its own, and `tools/measure_planting_reach.py` banks
-that fact by name, exactly, in both directions.
-
-**What a visitor is therefore not seeing.** The one thing `data/flora/zones/z05_riverbank_timber`
-singles the species out for is its bark: *"Rare, at its northern edge; **white mottled bark
-flashing on the upper limbs**."* That sentence is the reason a sycamore is identifiable at 200 m
-in a floodplain wood, and this scene draws the tree with the elm's dark brown trunk. A visitor
-looking for a sycamore cannot find one by looking.
-
-**Why it was not invented instead.** `SPECIES` carries a bark colour as an sRGB constant per
-species and **no record in `data/flora/` carries a bark colour at all** — the dossiers behind
-these records are a presettlement land survey and a regional vegetation reconstruction, and
-neither states a colour. Choosing a hex for "white mottled" is a straightforward invention, and it
-is a *conspicuous* one: it would be the palest trunk in the scene and the first thing a visitor
-noticed about that stretch of river. Inventing it inside a parcel whose subject is one mix entry
-would put a highly visible guess into the frame on the authority of nobody. The substitution is
-recorded here instead, where it can be read.
-
-**Consequence, stated so a reader can weigh it.** The tree's *presence* is evidenced — the record
-places it on this riverbank at 1–3 per hectare — and its size and foliage are the record's. Only
-its trunk is another species'. That is an omission plus a substitution, not an overstatement: no
-attribute is graded higher than its evidence and nothing in `data/` moved.
-
-**How to resolve:** a `SPECIES.platanus_occidentalis` archetype, whose bark colour is either
-sourced or recorded here as invented in its own right; the mottling itself would need a second
-material or a vertex-colour break, which is **R-W2b/R-W2c** territory — the town's chimneys are
-in the same queue for the same reason. When it lands, the entry has to leave
-`drawn_as_another_species` with `--update` in the same commit.
-
-Related: **L114**, which recorded the omission this half-resolves, and **L115**, the other
-drawing convention in the same layer.
-**Recorded:** 2026-08-16.
-**Resolved:** 2026-08-16 (ROADMAP **K47**) — `SPECIES.platanus_occidentalis` exists, so the
-species is drawn with its own bole, taper, diameter band, puff count and bark, and
-`drawn_as_another_species` is empty where it held this one substitution. The **How to resolve**
-line above offered a choice — sourced, or recorded as invented — and there was never a source to
-find: no record in `data/flora/` carries a bark colour, so the colours are invented within stated
-bounds and are **L118**. What this entry admitted is discharged, and the half it did not — the
-*mottling*, as against the pale-versus-dark break — is carried forward in L118 rather than closed
-here.
 
 ### L117 — Three canopy weights the records do not carry, kept because no record can carry them
 
@@ -7268,50 +7299,6 @@ and the courses in one line — a lawful-fence specification is exactly the kind
 order carries; an insurance or tax description of the lot would settle the rest.
 **Recorded:** 2026-08-18.
 
-
-### L60 — The estray pen is a fence, and the model gives it a roof
-**Decision:** Chicago's first public building — the estray pen on the south-west corner of the
-public square — is built with the `outbuilding` archetype as a log-walled box 30 × 20 ft and
-8 ft high, with a gate and **a shed roof at the shallowest pitch the generator will accept**.
-Every one of those values is tagged `conjectural`.
-**Why:** what the sources attest is a municipal FUNCTION, a corner and a month. A pound is an
-enclosure; there is no reason to think this one was roofed and nothing mentions a roof. This
-project has no generator that builds an enclosure — `palisade` is named in the schema and has no
-module behind it — and `outbuilding`, the only archetype that will build a low walled rectangle,
-cannot build a roofless structure. So the choice was a roofed box or no building at all, and the
-working policy for this parcel is that an absent building is invisible while a conjectural one is
-legible and correctable.
-**Consequence:** the roof is the model's, not the record's, and it is the most conspicuous thing
-about the structure. It is set to `shed` at 6 degrees — a 0.64 m rise over the pen's 6 m run, as
-close to flat as the generator goes — which is a deliberate attempt to minimise a feature that
-probably was not there rather than a finding about a roof that was. The material is invented too,
-and the live alternative would look completely different: most frontier pounds were split-rail or
-post-and-rail, which is open and horizontal and see-through, where this is a closed notched log
-wall. The gate is a doorway in a wall where the real thing was probably a hung rail gate. What
-survives of the evidence in the mesh is a rectangle of about the right size in about the right
-place.
-**How to resolve:** an enclosure archetype — post-and-rail or notched log, ROOFLESS, gated,
-taking a perimeter rather than a footprint. It would serve this record, the fenced-or-unfenced
-state of the public square itself, the garrison gardens and every yard in the town, and it is
-the honest fix. A town or county order establishing the pound would settle the size and the
-material at the same time.
-**Covers:** `estray_pen.pen_1833.footprint`, `estray_pen.pen_1833.form.construction`, `estray_pen.pen_1833.form.roof_type`, `estray_pen.pen_1833.form.roof_pitch_deg`, `estray_pen.pen_1833.form.wall_height_m`, `estray_pen.pen_1833.form.door`.
-**Recorded:** 2026-08-11.
-
-**Resolved:** 2026-08-18 (T-0051). The enclosure layer arrived and the pen was the second record on it.
-`data/enclosures/estray_pen.json` walks the same 30 × 20 ft rectangle, on the same corner, as a **roofless
-post-and-rail perimeter with a gateway**, drawn by `renderers/web/js/enclosures.js` at load and needing no
-bake. The five invented values this entry claimed — `construction`, `roof_type`, `roof_pitch_deg`,
-`wall_height_m` and `door` — are **retired from the record rather than re-graded**, the GLB and its manifest
-entry are deleted, and the phase carries a `drawn_by` block that `tools/validate.py` holds to all of that.
-Andreas is now quoted for the thing he actually says: *"the 'pen' was a small wooden enclosure and quite
-roofless"*. What this entry still covers, and what keeps it worth reading, is the **footprint** — the
-rectangle, its size and its corner-of-a-block placement are as invented as they ever were, and the fence
-that now stands on them is invented in its own right and claimed at **L128**. The generator half of the fix
-this entry asked for is still open: `palisade` still has no enclosure form behind it, so a future scene that
-wants the pen baked with the rest of the town still needs one.
-
-
 ### L144 — Three roofs on one lot at Lake and Clark, and the corner they are built to
 **Decision:** the Lake-and-Clark corner lot of `blk_lake_clark` — lot 0 of the committed plat
 grid, the last free lot on this block's business face — carries **three anonymous roofs standing
@@ -7436,9 +7423,9 @@ never a traced boundary. The terminus is a position from a 1933 pictorial recons
 north-side slough's measured 7.1 m band), both depths, the meander's exact swings (bent
 between the fixed readings, threading the committed roofs — old_bank_building cleared by
 2.4 m at the nearest pass) and the depth grading are invented outright, and the channel
-RAN OUT one cell short of the South Water corridor until 2026-08-24, because Wright draws
-the stream stopping at the street line and the street's crossing was read as fill or a
-culvert attested by that drawing and described by nothing. THE SILL WAS RESOLVED BY GRADING, NOT BY DEEPENING: the dossier's own
+starts one cell south of the South Water corridor because Wright draws the stream stopping
+at the street line — the street's crossing (fill or culvert) is attested by that drawing and
+described by nothing. THE SILL WAS RESOLVED BY GRADING, NOT BY DEEPENING: the dossier's own
 thalweg for these inland courses sits ABOVE datum ("wet mouths, damp inland courses" was
 chosen deliberately), so the join was not cut below water; the depth profile instead shallows
 the bed continuously from the wet reach (−0.5 m at the mouth) up through the join (+0.15 m)
@@ -7454,27 +7441,8 @@ carried at the grade that admits it.
 **How to resolve:** any period document locating the stream — a lot survey, a grading record,
 a bridge or culvert order for South Water Street west of Clark; see
 docs/RESEARCH/main_branch_sloughs_1833.md.
-**AMENDED 2026-08-24 (T-0129) — THE DRAIN NOW REACHES THE RIVER, AND FIFTEEN METRES OF IT
-ARE RECONSTRUCTED.** The owner, from South Water Street looking west at 277°: *"this slough
-has kind of a bulge of land and i would think that it would not have that and be a continous
-water drain into the river and have plank crossings for both the road and the sidewalk."*
-What he was looking at is what the unbroken corridor built — some ten metres of ground standing
-+0.37 m over datum between the drain's head and the river's traced re-entrant, so the
-watercourse read as two pools with a causeway between them. `lasalle_slough_lower` gains a head vertex at
-(466, +10), inside that re-entrant, its junction vertex moves 2.5 m east and 1 m north to
-(469.5, −6) so the deepened reach clears the platted block's north-west corner — measured at
-+0.32 m over datum afterwards, against the +0.14 m it held before this ticket — and its depth
-profile is restated in the longer arc length; the cut carried through is the SAME 3.2 ft and the SAME 4.0 m half-width
-as the rest of the reach, so no new depth and no new width is claimed — 16.4 m more of the
-same channel. Measured on the committed field afterwards: not one sample on the centreline
-from the head to N −30 stands above datum, and the water under the new crossing's deck runs
-5.55 m along its centre line, 0.17 m deep there and 0.38 m under its edges. WHAT IT COSTS: Wright's trace
-still stops at the street line, so those fifteen metres are reconstruction and not tracing.
-The fill-or-culvert reading they replace was never refuted by a source — it was superseded by
-a ruling — and what the ruling requires in exchange is a crossing no source places either,
-which is L181.
 **Covers:** `terrain.e1834_harbor_cut.swales.lasalle_slough_lower`, `terrain.e1834_harbor_cut.swales.lasalle_slough_upper`.
-**Recorded:** 2026-08-20. **Amended:** 2026-08-20 (T-0118), 2026-08-24 (T-0129).
+**Recorded:** 2026-08-20. **Amended:** 2026-08-20 (T-0118).
 
 ### L151 — Dooryard trees and bushes at 61 houses, every stem of them dealt
 **Decision:** `data/flora/plantings/town_dooryard_plantings.json` states 66 dooryard trees
@@ -7813,4 +7781,519 @@ Related: **L156**, the same tier giving up the sun's second pass over the same l
 same test applied to the wood; tickets **T-0150**, **T-0149** (the programme), **T-0135** (the stand
 set), **T-0147** (the ceilings that follow this down).
 **Recorded:** 2026-08-23.
+
+### L181 — Three poplar rows on the greens of the town's oldest houses, from a treatment attested at a fourth that is not in this scene
+**Decision:** `data/flora/plantings/town_planted_rows.json` stands twelve Lombardy poplars —
+four to a row, 3.5 m apart, in a straight file parallel to the waterline — on the river greens
+of `jb_beaubien_homestead` (18.0 m), `cobweb_castle` (15.5 m) and `clybourn_cabins` (12.0 m).
+Every coordinate, every height and the extension of the treatment to these three addresses are
+`reconstructed`, dealt by the rule in `tools/generate_planted_rows.py` and re-derived byte for
+byte on every commit. The species is newly held in `data/flora/zones/z10_settled_town.json` at
+a density of **zero per hectare**, and the zero is a claim: nothing grows this tree here, so no
+density over the settled town may ever deal one and every stem in the scene is stated by that
+record. `renderers/web/js/trees.js` gains the archetype it is drawn with — bole diameter, fork
+height, puff count, bark — invented within that file's own range like every number in its
+`SPECIES` table, and a `columnar` branch in `addTree` that files the foliage masses evenly up
+the leader instead of scattering them, which redraws the dune's quaking aspen and balsam poplar
+as well at no change in triangle cost.
+
+**What is ATTESTED, and it is the whole reason this is not a reconstruction from nothing.**
+Juliette Kinzie, *Wau-Bun*, ch. XVII "Chicago in 1831", of the mansion on the north bank facing
+the fort: *"A broad green space was inclosed between it and the river, and shaded by a row of
+Lombardy poplars."* Species, row, fenced green and side of the house, from somebody who lived
+there. Seven committed plates draw that row, and five independently drawn ones agree on **four
+stems at 0.195 of their own height apart, sd 0.010** — measured column by column off the plates'
+own skylines, not remembered. The count and the rhythm in this record are that measurement.
+
+**What is NOT attested, measured and stated:** a second address. Every one of the seven plates
+draws the poplars at the same place, the Kinzie group on the north bank; not one shows a
+Lombardy poplar at the fort, on South Water Street, or in any town view, and no text reached
+places one elsewhere. **And the house the row is attested at is excluded from this scene**
+(`data/exclusions.json` → `kinzie_house`, gone by 1835; its cottonwoods stay). So the source
+carries a TREATMENT and one location, and the location is unavailable — the same shape as L129's
+garden pickets, and answered the same way: the treatment is the source's, and a RULE says which
+ground gets it.
+
+**What bounds the invention.** The rule's load-bearing clause is age *as the dataset can
+evidence it*: a dwelling qualifies only if its own `documented_range.from` predates 1830, five
+growing seasons before the scene date. That refuses 133 of the town's 137 houses. It is
+deliberately NOT read as "those houses were new" — 131 of them carry a 1835 date because their
+records say *"no evidence establishes that this particular building existed"*, which is an
+admission of ignorance — but the consequence is the same either way, and it is the point: a
+grown ornamental at a house of unknown age is an invention resting on an invention. The fourth
+house that passes, James Kinzie's at Wolf Point, is refused **with its number** — 7.7 m of open
+ground to the water, under the 12 m this rule asks of a green — because a strip is not a green.
+Every other clause is derived from committed geometry: the green is measured from the waterline
+back to the house's own footprint edge; the row's direction is the local waterline's, read off
+the committed heightfield over an 8 m span, so a row is parallel to the water and not to a
+compass point; and every stem must clear each committed footprint, street track, fence line and
+neighbouring stem by the margins `generate_dooryard_plantings.py` asks of a dooryard tree. A row
+that cannot lay all four stems is refused whole, because a row of two is not the treatment.
+
+**What is invented outright:** the three addresses; that the row stands on the river side of the
+green (0.60 of the way over, capped at 24 m from the house, so a row stays a house's row); the
+metre a growing season that turns a house's documented age into a height; and the species' 12–18 m
+band, whose ceiling is the *floor* of the eastern cottonwood's band in the same record because
+every plate that draws both draws the cottonwoods standing above the poplars — which is Wau-Bun's
+reading too, since the cottonwoods are the "immense" ones.
+
+**Consequence:** three of the oldest houses in the town now carry the one ornamental planting
+this project can quote a source for, and the Agency House's row stands on the north-bank green
+facing Fort Dearborn — a few hundred metres east of the green Wau-Bun describes, which is as
+close as a scene without the Kinzie mansion can come. The cost is twelve trees nobody attests at
+those addresses, and the confidence channel says so on every stem.
+
+**How to resolve:** any sale notice, diary, view, plat annotation or nurseryman's list that
+places a Lombardy poplar at a second Chicago address would move these rows from `reconstructed`
+toward `inferred`; **T-0055**'s source record for the Kinzie-view plate would let the record cite
+a plate rather than a committed path; and a photograph-era survivor's girth would replace the
+height band.
+
+Related: **L129** (the garden pickets — a treatment from a plate, a rule for the ground) ·
+**L151** (the dooryard stems, which named this deal's absence in its own `research_note`) ·
+**L119** (every number in the tree archetypes is invented within the file's range) · tickets
+**T-0117**, **T-0074**, **T-0052**, **T-0055**.
+**Recorded:** 2026-08-24.
+
+### L182 — The end rule's criterion becomes the walk to the drawbridge, and the rule gains a floor
+**Decision:** the END RULE — which of the roofs a block was dealt stands where along its
+frontage — keeps the claim it has made since T-A8, that **the better roof stands nearer the
+Dearborn Street drawbridge, the only crossing of the main stem in July 1835**, and changes how
+that distance is measured. From 2026-08-27 it is the distance **walked along the committed
+street centrelines** from the roof's own frontage to the bridge's south abutment, not T-A11's
+straight line to it. The decision is carried in
+`data/reconstruction/1835_platted_block_parcels.json` → `placement_rule.end_rule`, where the
+next parcel reads it, and `tools/measure_end_rule.py` prints the number so it is quoted rather
+than re-argued.
+
+**THE CLAIM IS AND ALWAYS WAS AN INVENTION.** No source this project holds says a better
+dwelling stood nearer the bridge, or nearer anything. L102, L104 and L106 say so of the same
+rule and nothing here promotes it. What is being chosen is how to order an invention, and the
+only honest reasons to prefer one ordering to another are that it can tell its own cases apart
+and that it does not dress rounding up as reasoning.
+
+**WHAT WAS MEASURED, on all 36 faces of the platted grid.** The straight line measures how far
+away the BLOCK is, not where a roof stands on it: its worst step between two neighbouring
+party-line units falls from **6.06 m** on the blocks a kilometre out to **0.52 m** at
+`blk_randolph_clark`, because the bridge's bearing swings round toward the face and the
+criterion sees only the sine of the angle between them. It goes blind as a block approaches the
+bridge — weakest exactly where the bridge matters most. **It is below the floor on 12 of the 36
+faces**, the back face of `blk_south_water_clark` — the block T-A11 wrote the rule on — among
+them. The walk grades all 36, at a constant **6.072 m** step, because a metre of frontage is a
+metre of walk on every face of every block.
+
+**THE FLOOR IS THE PLACEMENT'S OWN DECLARED INVENTION AND IS NOT INVENTED FOR THE OCCASION.**
+The recipe deals its 48 principal slots setbacks from **4.0 m to 7.5 m** and grades them, in its
+own `placement_rule`, "a period typology and not a measurement of this lot". A setback moves a
+roof along the face's outward normal, broadly the axis the end rule grades along, so that
+**3.50 m** range is admitted positional invention measured along the very line the criterion
+reads. A criterion separating two neighbouring roofs by less than it is grading its own noise.
+The rule now states that where its step falls at or below that range the parcel **records the
+within-face order as arbitrary** rather than claiming a grading. Under the walk no committed
+face is in that position; the clause exists so the next exhaustion is caught by the command and
+not by a fifth block.
+
+**NOTHING THAT STANDS MOVED, AND THAT IS WHY THE DECISION COULD BE TAKEN.** The two criteria
+name **the same nearest lot on 36 of 36** platted block faces. K31 warned that the successor
+must not be chosen on a block where it agrees with the old rule; the answer is that they agree
+EVERYWHERE, so no block could ever have discriminated between them and the choice was never
+about which roof goes where. Not one roof is re-graded, no arrangement note written before this
+date is touched, and L102 onward stand verbatim.
+
+**WHAT THE RULE IS NOW ASKED TO DO, which is not what it was built for.** Until T-0079 a block
+carried one principal roof per platted lot, so the end rule ordered LOTS about 24.6 m apart. The
+core density standard retired that ceiling and a party-line run stands three units on ONE lot,
+about 6 m apart — so since T-0079 the rule has been ranking the front doors of what the plat
+calls a single property and no parcel said so. Under the straight line that step was 0.52 m to
+3.53 m across the Randolph–Washington row; under the walk it is the unit's own width.
+
+**How to resolve:** nothing about 1835 resolves it. A source placing any named 1835 dwelling
+against its neighbours on one block face would replace the rule outright rather than re-grade
+it; short of that, what is available is a better-argued ordering, and the command is where the
+argument would have to beat this one.
+
+Related: **L102**, **L104**, **L106** (the rule as applied, block by block, left verbatim) ·
+**L183** (the sentence that described it) · tickets **T-0023**, **T-0079** (the density standard
+that changed what the rule ranks), **T-0024** (K32, whether the face rule may rank a store).
+**Recorded:** 2026-08-27.
+
+
+### L183 — A party-line unit's card said it stood in a river row on streets 400 m from the water
+**Decision:** `tools/generate_block_infill.py` composes the two lines a visitor reads first on a
+party-line unit's card — the bold location line and the position's own reasoning beside it — and
+both were written for T-0078's run on South Water Street, where every literal in them was true.
+They have been printed verbatim on every frontage run since. Three claims are removed and
+nothing else changes: the location line said the building was **"one unit of the party-line
+river row"** and now says "one unit of the party-line row along it"; the note called the block
+face **"the town's river business front"** and now names the street the face actually fronts;
+and the note said the front looks at that street **"and the river beyond it, as every documented
+store on this face does"** and now says it looks square at the street.
+
+**WHY IT IS A LIBERTY AND NOT ONLY A TYPO.** Those sentences were the record's own account of
+what a visitor was looking at, and on 9 of the 23 records carrying them they described a
+different street. Three houses on **Washington Street**, 400 m from the water, were told they
+stood in a river row and faced a river; Washington's entire documented 1835 frontage is the
+estray pen, the town's pound for stray animals (`tools/measure_street_frontage.py randolph
+washington`: 1 documented record, 0 inferred households). Three more stand on Randolph and three
+on Lake. The remaining 14 are on South Water, where the sentences were true and stay true.
+
+**WHAT DID NOT CHANGE, and it is the whole of the geometry.** Not one coordinate, bearing,
+footprint or setback moved: the phrases describe the placement, they do not decide it. All 23
+records re-derive from the same recipe and the same committed block boundaries, and the gates
+that measure party walls, street lines and corridor intrusion read exactly what they read
+before.
+
+**WHAT IS STILL BORROWED, and the note now says so.** The 1834 South Water Street view is real
+evidence for the TREATMENT — a continuous working row of party walls rather than detached
+cottages set back on grass — and a row standing on any other face of the town is borrowing that
+treatment from one street. The note says that in terms instead of implying the view drew this
+row.
+
+**How to resolve:** a source describing a continuous built row on Randolph, Washington or Lake
+in 1835 would let the borrowing be retired for that face. This project holds none.
+
+Related: **L182** (the rule those sentences were describing) · tickets **T-0189**, **T-0078**
+(the South Water run the wording was written for), **T-0076** (what a card calls a building).
+**Recorded:** 2026-08-27.
+
+### L184 — The town's roof total is 662, and how it splits across the three divisions is ours
+
+**Decision:** the authored aggregate `roof_total` moves **665 → 662** and `principal_functional`
+**511 → 508**, because three of family I3's six civic slots were shown to count nothing. The three
+came OFF the total rather than back into the pool. In the same correction the
+`institutional_public` row of the district×group matrix is set to the census of named institutional
+records — **south 5 / west 1 / north 3**, where it read south 10 / west 1 / north 1 — and that
+carries the **South Division target 370 → 365** and the **North Division 150 → 152**. No other row
+of the matrix and no other family target moved.
+
+**Why:** T-I3(a) enumerated the town's public buildings from Andreas and found three roofs on
+1835-07-01, all three already committed named records. Six was therefore three real buildings and
+three slots that counted nothing, and the inventory's arithmetic is closed, so they could not
+simply be deleted. The owner ruled on 2026-08-17 — *"close it at 665 or 662 — either is close"* —
+and delegated the pick. **662** is taken because the alternative, re-typing three phantom civic
+slots into ordinary families by weight, would have invented three dwellings on the strength of an
+arithmetic artifact: the slots were a count of nothing, not real roofs filed under the wrong
+letter.
+
+**What bounds the invention:** the enumeration bounds the *institutional* half completely — the
+row is now nine named records and their divisions, which is evidence rather than judgement, and
+`tools/measure_institutional_claims.py` fails the gate if it drifts from them. What is NOT bounded
+by any source is **what the totals mean**. No source states how many roofs stood in Chicago on 1
+July 1835, nor how they divided between the South, West and North Divisions: 665 was an authored
+figure in the owner's reconstruction specification, and 662 is that figure less three. The
+`defensible_range` the same specification carries is [565, 765], so both readings sit deep inside
+it and the correction is not the difference between a defensible number and an indefensible one —
+it is the difference between a number that counts three buildings nobody can name and one that
+does not. Likewise **370 → 365 and 150 → 152**: those follow arithmetically from setting the
+institutional row to the census while leaving every other row exactly as authored, which is a
+choice this project made rather than a fact it read. The alternative — holding the district totals
+still and moving two roofs into another group instead — would have invented two dwellings, which
+is the same fault at a smaller scale.
+
+**Consequence:** the gate screen reads *338 buildings standing, of the 662 the town held* where it
+read 665. The programme's remainder falls **327 → 324** and its coverage-gated balance **299 →
+296**. Every I3 slot has left the block schedule — one at `blk_lake_franklin`, one at
+`blk_south_water_market`, three in the South balance — so those five deals now name families a
+generator will actually build. **Nothing in the scene moved**: no building was added, removed,
+re-typed or re-dated, and the standing count is 338 before and after. A visitor comparing two
+screenshots sees one number on the gate panel change and nothing else.
+
+**How to resolve:** a source that states the town's building count on or near the scene date, or a
+division-by-division count. Andreas's November 1835 town census gives **3,265 people in 398
+dwellings** four months later, which this project already quotes on the gate screen as the *town's*
+recorded figure and deliberately does not convert into a roof count for 1 July — dwellings are not
+roofs, four months is a building season in a town that was doubling, and the conversion would be a
+third invention stacked on two. If a new public building is ever attested it arrives as a named
+record, and the gate now forces the target, the district row and the town total to move with it
+consciously rather than quietly.
+
+Related: **L93** (the anonymous civic roof this project refused to build, and the one anonymous I2
+it keeps) · **L79** (the platted corridors are measured, the rest is drawn) · tickets **T-0032**,
+**T-I3(a)**.
+**Recorded:** 2026-08-27.
+
+### L185 — The prairie's forbs are planted at the TOP of every recorded abundance range, not at its middle
+**Decision:** the forb stratum's slot count is dealt off the **upper figure** of each species'
+own recorded abundance range instead of that range's midpoint
+(`renderers/web/js/flora.js`: `stemsHigh` → `subsetOn().densityHigh` → `forbShare`). No record
+changes and no record is overwritten: `data/flora` still states exactly what it stated, and the
+species lottery — *which* forb fills a slot that is dealt — still runs on the midpoints, so the
+mix of the sward is untouched and only the number of slots filled moves. It moves three
+communities and only three: the **mesic prairie** from 0.809 to 1.000 of the lattice, the **wet
+prairie** from 0.798 to 1.000, the **sand prairie** from 0.210 to 0.329. The other six forb
+layers were already over the lattice's ceiling and are drawn plant for plant as before. The
+shrub stratum is deliberately not included — a denser shrub layer is more bushes, not more
+bloom.
+
+**Why:** the ticket was "raise the bloom", and R-W4c(b1) had already measured that the bar it
+was to be raised against — a 4–6 % flower-load target — is unsourced on one half and does not
+reproduce on the other. The owner's ruling on T-0034 allows the bloom to be tuned as a
+**reconstructed** value provided the bound is stated and recorded. This is the tightest bound
+available, and the reason it is tight is that it never leaves the evidence: **the midpoint was
+never a sourced figure either.** Every abundance in `data/flora` is a *range* — 400–900 yellow
+coneflowers to the hectare — because a prairie's forb load is not one number, and the renderer
+had been quietly reading the average of the two ends and planting every hectare of the town as
+the average hectare. Reading the other end of the same range is the same kind of reading, made
+deliberately and written down. What it says is that this is a prairie at the dense end of what
+its sources describe, and not one plant past it.
+
+**What bounds it:** the record. No species is planted denser than its own record's larger
+figure, so the sward cannot leave the envelope its evidence draws however the ranges are read.
+The second bound is the lattice, and it is the one that actually bit: `forbShare` clamps at one
+plant per lattice slot — 4 slots to a 3.4 m cell, **0.346 forbs per m²** — and the mesic
+prairie's records sum to **0.408** at their upper bounds. So the records already ask for
+**18 % more bloom than the renderer can draw**, and what a visitor gets is the ceiling, not the
+top of the range.
+
+**What it is NOT:** it is not a claim any source makes about 1 July 1835, and it must never be
+promoted out of the reconstructed tier. Nobody counted the forbs on this ground. A reader
+counting coneflowers per square metre in this walkthrough is reading the upper end of a modern
+remnant range, clipped by a rendering lattice — the same warning L32 gives about the grass, one
+stratum up.
+
+**Consequence, measured** (`node tools/measure_bloom_headroom.mjs`, desktop, full detail): at
+`prairie_west` the frame goes from **206 forbs and 1,617 flower heads to 256 and 1,968**, for
+8,191 more sward triangles; at `prairie_south`, 125 and 949 to 155 and 1,122. **And it is the
+last raise either prairie can be given.** Both now read a share of 1.000 with no headroom left,
+so the next flower needs a different lattice (ROADMAP K58) rather than a different number.
+
+**How to resolve:** a stated stand-level forb density for the specific ground this scene stands
+on would replace the choice entirely — it would say where in the range, or outside it, this
+prairie sat, and the reading would stop being ours. Failing that, the honest successor is K58:
+give the forb stratum a lattice that can carry what the records already ask for, and the clamp
+stops deciding how much of the evidence a visitor sees.
+
+Related: **L32** (the absolute sward density is a rendering budget, and full recorded cover
+saturates the lattice) · **L113** (six researched plants reach no renderer) · ROADMAP **K55**
+(the forb stratum's slot count moved onto a count), **K58** (six forb layers ask for more than
+the lattice carries), **R-W4c(b1)** (there is no 4–6 % target) · tickets **T-0034**, **T-0208**
+(two head sets truncate at their cap), **T-0209** (the bloom reaches 1.8 % of the sward's ground).
+**Recorded:** 2026-08-27.
+
+### L186 — Which roof form each family gets is one rule, and where the specification offers a shed this town will not build, the record says so and says by how much
+
+**Decision:** `tools/roof_form.py` is the single statement of which of the roof forms a family's
+crosswalk roof line offers this project actually builds. **D2, A3, A4 and A5 are built as sheds;
+every other family is built with the gable its line also offers** — including the five whose line
+names a shed as well (C1, F1, F4, W4, W5). For the three whose own `ridge_ft` band cannot carry a
+shed, the refusal is now written on the record itself: **thirteen committed roofs — nine C1 shops,
+two F1 freight sheds and two W5 workshops — carry a new sentence on `roof_type` naming the form the
+specification offers, the span a shed would have to climb, the ridge band it would miss and how many
+of the family's own footprints miss it.** `tools/measure_ridge_reach.py` gates the statement against
+what the generators deal, in five ways, and `tools/ridge_model.py` is corrected to model the shed the
+archetypes actually build. No geometry moved: prose is not hashed into the staleness recipe, so
+thirteen cards changed and not one vertex.
+
+**Why the rule needed one home.** It had five, one literal inside each anonymous parcel — and the
+five had already drifted. `generate_north_infill.py`, `generate_west_infill.py` and
+`generate_inferred_households.py` named D2, A3, A4 and A5; `generate_block_infill.py` and
+`generate_inferred_infill.py` named D2, A3 and A4. One roof stands on the difference:
+`recon_1835_south_a5_044` is a gable where the other three A5 utility buildings in this town are
+sheds. Nobody chose that and nothing in the repository said it, because there was nowhere for the
+rule to be said.
+
+**What was measured, and it corrects the ticket that asked for it in two places.** T-0179 named C1,
+F1 and F4 as the families whose ridge band cannot carry a shed. Swept against what the archetypes
+actually build:
+
+- **C1** (small shop, `frame_storefront`): the archetype's `_shed_roof` falls from the back wall to
+  the facade and never reads the record's gable orientation, so the run is the DEPTH — and **231 of
+  the 441 plans C1's own footprint band allows** cannot reach its 15-20 ft ridge band at any eave in
+  its 9-11 ft band and any pitch in its 5:12-9:12. Refused, recorded.
+- **F1** (freight shed, `outbuilding`): no open side is authored, so the fall is front-to-back down
+  32-50 ft. **399 of 441.** Refused, recorded.
+- **F4** (lumber shed) is REFUTED. Closed it is 441 of 441, but F4's own entry says `levels: 1/open`,
+  "open posts with slab boards" and "part-open sides", and an open long side turns the archetype's
+  `shed_axis` to fall across the SHORT span (L73). Across its 24-36 ft width rather than its 45-70 ft
+  length, **F4 reaches its ridge band at every footprint in its band.** F4's shed is buildable inside
+  F4's own claims; nothing in the specification has to give way for it.
+- **W5** (sawmill or riverside shop) is ADDED, and it is a fault in the instrument rather than in the
+  ticket. W5 authors no rise:run, and the sweep reported a family with no pitch band before testing
+  any form — so W5's shed had never been measured at all. Against the 18 degrees a shed is actually
+  dealt, **84 of 441** of its own footprints miss its 20-29 ft ridge band.
+
+The archetype had already said the same thing in its own voice, which is worth more than a gate
+saying it: `outbuilding_params.default_roof_type` flips from shed to gable at 5 m of depth, "because
+the rise is the run times the pitch and a shallow pitch will not shed water off riven shakes… over
+5 m it rises 1.6 m, which is most of a wall again". F1's depth band starts at 9.8 m and F4's at
+13.7 m.
+
+**What is INVENTED here, plainly.** Two things, and neither is a reading of any source. First, that
+D2, A3, A4 and A5 are the families built with a single slope: the crosswalk offers "gable or shed"
+and says nothing about which, so the choice is this project's, bounded by the archetype's own
+depth rule and by the ridge band each family authors. Second, the reading of F4's entry as an
+open-sided building, which is what puts its shed across the short span — three clauses of F4's own
+entry say the building is open, but nothing states which elevation, and one open long side is the
+minimum that turns the axis. W5's "open work bay" is deliberately NOT read the same way: a framing
+bay is not a whole open elevation, and the phrase sits among variants beside "timber piles" and
+"rare crane/derrick". That judgement decides W5's verdict, so it is written down rather than left to
+a keyword.
+
+**What is refused and NOT recorded on a card:** F4 and W4, whose sheds their bands do carry. Those
+two are this town's choice and not the specification's refusal, and the gate prints them as such.
+Saying "refused" on a card where the only reason is taste would be the same false-provenance fault
+K33 spent a parcel undoing.
+
+**Consequence:** a visitor who opens any of nine anonymous shops, two freight sheds or two workshops
+and presses `why` on its roof now reads which other roof the specification allowed and the arithmetic
+that rules it out here. Nothing in the town moved. One roof, `recon_1835_south_a5_044`, is still a
+gable where its family's rule says shed: flipping it moves committed geometry and needs a bake, so
+the hold is named in `roof_form.AWAITING_BAKE`, banked by the gate so it may shrink and not grow, and
+owned by **T-0212**.
+
+**How to resolve:** an owner ruling on the crosswalk's `ridge_ft` column — it is written for a
+gable's half-span and three families' shed reading cannot live inside it — would retire the refusal
+for C1, F1 and W5 rather than recording it. A reading of W5's "open work bay" as an open elevation
+would move W5 to `OPEN_SIDED_FAMILIES` and the gate would follow it. Neither is a missing number, so
+neither is blocking: what stands today is measured, gated and declared.
+
+Related: **L176** (the eave drawn under the ridge band, which named these families as the residual) ·
+**L73** (the outbuilding's conventions, including the direction a shed roof falls) · **L171** ·
+tickets **T-0179**, **T-0148**, **T-0212**, **T-0172**.
+
+**Covers:** `inf_bakery_lake.inferred_1835.form.roof_type`, `inf_butcher_market.inferred_1835.form.roof_type`, `inf_sawpit_shed.inferred_1835.form.roof_type`, `physicians_office.inferred_1835.form.roof_type`, `recon_1835_north_c1_020.inferred_1835.form.roof_type`, `recon_1835_north_c1_047.inferred_1835.form.roof_type`, `recon_1835_north_f1_022.inferred_1835.form.roof_type`, `recon_1835_north_w5_040.inferred_1835.form.roof_type`, `recon_1835_south_c1_003.inferred_1835.form.roof_type`, `recon_1835_south_c1_010.inferred_1835.form.roof_type`, `recon_1835_south_c1_018.inferred_1835.form.roof_type`, `recon_1835_south_f1_038.inferred_1835.form.roof_type`, `recon_1835_west_007.inferred_1835.form.roof_type`.
+**Recorded:** 2026-08-27.
+
+### L187 — The log units in the South Water row, and the face rule that had kept them out
+**Decision:** the five log dwellings the 665-roof schedule dealt the five South Water blocks
+now stand IN the party-line river row on South Water Street, each in place of a frame cottage
+that has taken the Lake-face lot the cabin held. Ten records change places —
+`..._franklin_d1_04` ↔ `..._franklin_d3_03`, `..._wells_d1_05` ↔ `..._wells_d4_03`,
+`..._lasalle_d1_04` ↔ `..._lasalle_d3_03`, `..._clark_d1_04` ↔ `..._clark_d4_02`,
+`..._dearborn_d1_05` ↔ `..._dearborn_d3_03` — and **nothing else changes**: no roof is added
+or removed, no record changes id, family, footprint or any form value, the schedule's family
+totals are untouched, and no household is re-homed. What is admitted here is the arrangement,
+which was invented before and is invented now; what has changed is which invention the
+evidence supports.
+
+**THE PREMISE OF T-0022 IS REFUTED, AND THE NUMBER IS THE REFUTATION.** L99 and L100 both
+recorded the worry in the same words — the programme "has no notion of what a street was for"
+and "will keep dealing cabins to commercial frontage" — and ROADMAP K29 proposed the remedy
+that follows from believing it: a schedule term weighting the meanest dwelling families off the
+business front. Measured, the worry is backwards. Before this parcel, **15 invented buildings
+stood on South Water Street's line and not one of them was log**, 13 of the 15 being the
+party-line row itself, against a documented record for the same line of 8 buildings of which
+one — Hogan's store — is log. Every log dwelling the schedule had dealt those five blocks, all
+five, had been put on the Lake face by a rule the recipes state in their own prose: *"the two
+best dwellings the schedule deals take its two free lots … and the two meanest take Lake."*
+That rule is a preference. It is in no source, it is in no part of the programme, and Lake
+Street is the OTHER principal thoroughfare, so it moved the cabins from one commercial frontage
+to another and called it a fix.
+
+**What the evidence actually says, and it is three witnesses rather than one.** (i) The
+committed record already stands log buildings on the principal-street line and they are TRADE
+buildings — `hogan_store` (log, a store, South Water), `philo_carpenter_log_shop` (log, a drug
+shop, Lake), `madore_beaubien_house` (log, dwelling and store, South Water), `mansion_house`
+(log, a tavern, Lake) — and one street back `james_kinzie_house` is a documented log RESIDENCE
+on Lake. (ii) The only picture of this row, image 11 of the owner's brief of 2026-08-18
+(*"South Water Street in 1834"*), draws it as *"roughly ten one-storey log and frame buildings
+shoulder to shoulder facing the river, two two-storey frame stores anchoring the east end"* —
+the same plate T-0078 already cites as the warrant for the party-line treatment. **This project
+took the half of that sentence about shape and ignored the half about fabric.** (iii) The
+owner's ruling of 2026-08-27 on PR #371's fork, option (b): a business-front lot may carry a
+documented store at the street and an anonymous dwelling behind it, so the business front is
+not a district a dwelling is kept out of. L148 had already reached the same reading for one
+instance on Lake at Clark and said the question stayed open for the schedule; it is closed here.
+
+**What this parcel refuses to do, deliberately.** It does NOT re-apportion the schedule. K29's
+frontage term would have moved families between schedule units to keep cabins off the business
+front, and the measurement says the business front should have them; a term built on a refuted
+premise is worse than no term. The other half of K29 — weighting the trade families C, F and W
+ONTO the business front, which the same census does support at 80 % documented trade on South
+Water's line — is a genuine schedule change, is invisible until a block is built, and is filed
+as its own ticket rather than ridden in on this one.
+
+**What is invented, restated plainly, because the swap does not reduce it.** That any of these
+ten buildings stood at all; which of them was of logs; that the log one stood in the row rather
+than behind it; and that the row stood shoulder to shoulder. The plate supports the TREATMENT —
+a working row of log and frame on the water side of the street — and cannot say which building
+was which. Every value on all ten records still grades `reconstructed` with its own note saying
+so, and no confidence was upgraded by this parcel.
+
+**Consequence, and the measurement that holds it.** South Water Street's invented street line
+goes from **15 buildings, 0 log** to **15 buildings, 5 log**; the documented line beside it is 8
+buildings, 1 log. `tools/measure_frontage_fabric.py` is the census and carries the one
+assertion, absolutely and with no ratchet: *a principal street's invented frontage may not be
+more uniform in construction than the documented record of the same street.* It is red at the
+commit before this one and green at this one, and `tools/check.sh` runs it. The row's line, its
+length, its anchors, its unit count and the block's open lot are all unchanged; the closest any
+moved record comes to anything not its own party wall is **3.14 m**, Wells's cabin to
+Carpenter's South Water store, against a 3 m separation gate.
+
+**What moved downstream, and it is derived rather than chosen.** Four layers read whatever building
+stands on a lot, and a log cabin is not the footprint of a frame cottage, so they re-derived: dooryard
+garden plots 15 → 14, dooryard stems 130 → 128 across 63 → 62 dwellings, and town wagons 68 → 67. The
+lot-line fences kept their count exactly (111 fenced lots, 277 runs) and moved geometry only; the
+street edge kept all 1,214.5 m of its walk and changed only which building two of its refusal notes
+name. No rule was touched to get those numbers.
+
+**How to resolve:** parcel-level tax, deed, assessment or fire-insurance evidence for the South
+Water blocks would replace an invented roof with a named one on the same line — the 665-roof
+programme's substitution clause — and would say what each unit was built of instead of leaving
+it to a ratio the plate does not give. A legible, rights-cleared reproduction of image 11 (still
+`unidentified-pending` after T-0075) would let the fabric be read off the plate rather than off
+its written description.
+
+Related: **L99**, **L100**, **L101** (the three business-front blocks and the worry this
+refutes) · **L148** (the same reading, taken for one instance on Lake at Clark) · **L177** (one
+line per face) · tickets **T-0022**, **T-0024** (may the face rule rank a store).
+**Covers:** `recon_1835_blk_south_water_franklin_d1_04.inferred_1835.position`, `recon_1835_blk_south_water_franklin_d3_03.inferred_1835.position`, `recon_1835_blk_south_water_wells_d1_05.inferred_1835.position`, `recon_1835_blk_south_water_wells_d4_03.inferred_1835.position`, `recon_1835_blk_south_water_lasalle_d1_04.inferred_1835.position`, `recon_1835_blk_south_water_lasalle_d3_03.inferred_1835.position`, `recon_1835_blk_south_water_clark_d1_04.inferred_1835.position`, `recon_1835_blk_south_water_clark_d4_02.inferred_1835.position`, `recon_1835_blk_south_water_dearborn_d1_05.inferred_1835.position`, `recon_1835_blk_south_water_dearborn_d3_03.inferred_1835.position`
+**Recorded:** 2026-08-27.
+
+### L188 — The La Salle slough crossing: a whole structure committed on a ruling, and the two earthworks that get a wagon onto it
+**Decision:** `data/structures/lasalle_slough_crossing.json` puts a timber street crossing
+over the La Salle drain where South Water Street meets it — a 12 m span, 4.27 m wide, on one
+log bent at mid-span, its puncheon deck 0.84 m over the water — and
+`terrain_spec.json` grades the street up to each end of it as two `fill` approaches
+(`lasalle_crossing_west`, `lasalle_crossing_east`) at 1 in 12. **Every attribute of the
+structure is `reconstructed`, including whether it existed at all**, and the record says so on
+its face rather than in a footnote.
+**Why:** the owner ruled on 2026-08-21 (T-0129) that the drain should run unbroken into the
+river "and have plank crossings for both the road and the sidewalk". Carrying the water
+through the street corridor — L150's amendment — takes the ground out from under South Water
+Street, and a graded public street that meets six metres of water either crosses it or stops.
+The town trustees ordered South Water pitched and graded from the United States Reservation to
+Randolph in August 1833, so it did not stop. The sibling crossing four hundred metres east IS
+attested — "where Water Street crossed it a log bridge was needed until after 1840" — and this
+record borrows its whole argument, one attribute at a time, saying at each which figure is
+being borrowed from a crossing that is not this one.
+**What is invented, and what bounded each invention.** The EXISTENCE, first and worst: nothing
+records a crossing here. The POSITION is derived rather than authored — the drain's committed
+centreline crossed with the street's committed path — but the decision to lay the deck in the
+track's SOUTHERN half is this entry's, and it was measured: the river's traced re-entrant opens
+northward across this longitude, so the water under the corridor is 6.10 m wide at N +3 and
+12.90 m at N +11, and a deck on the platted centreline would have to span sixteen metres of a
+river mouth. The SPAN is sized off the stream exactly as the sibling's 8 m is, and comes out at
+the same proportion (12 m over 5.55 m of water on its own centre line, dry abutment seats 3.10 and 3.35 m,
+against 8 m over 3.30 m and 2.35 m). The WIDTH, 4.27 m, is the one figure that exceeds the sibling and
+it is the owner's ask made dimensional: eight feet of wagon way and a six-foot plank footway
+beside it, the walk width this project lays everywhere else. Cleaver's documented ten feet
+belongs to the BRANCH bridges and is a yardstick here, not a measurement. The CLEARANCE is the
+sibling's 0.5 m on the sibling's reasoning, and the measured 0.44 m of water under the deck is
+what makes it read the same here. The BENT COUNT is the span's: the sibling argues zero for
+8 m and the same carpentry cannot be claimed for 12, so one bent halves it into two 6 m runs —
+against the archetype's fallback spacing, which would have put two supports in a six-metre
+stream. CONSTRUCTION, DECK KIND, STRINGER and PLANK are local practice from the 1883
+old-settlers statement and the sibling record, none of them attested here. The two APPROACHES
+are fills where every other approach in this dataset is a cut, because this deck stands over
+its banks where the others sit below theirs; their form is invented at the house 1 in 12, and
+their one departure from the house pattern is `end_overhang_m` 1.0 against 3.0 — three metres
+of fill past each deck end would take two thirds of the channel this ticket opened and put the
+owner's bulge back at a smaller scale.
+**Consequence:** from the owner's stand the drain runs unbroken into the river and a timber
+crossing carries South Water Street over it, walkable end to end — onto the graded fill, across
+the deck, off the other side, with water running under the whole span. Every vertex of the
+crossing carries `reconstructed` in the confidence channel, so a visitor who hides that tier
+loses the crossing and is left looking at the water it spans, which is the honest picture of
+what is known here. Aiming at it opens its own card. `tools/measure_slough_crossing.py` takes
+the readings on every commit — the drain unbroken from its inland reach to the river, open
+water under the deck, dry seats at both abutments — so the deck and the stream cannot drift
+apart the way the sibling's did for two months before T-0109 caught it.
+**How to resolve:** any period document that crosses this ground — a bridge or culvert order
+for South Water Street west of Clark, a grading record, a lot survey, or any view of the
+street at La Salle. A source that says the street crossed on FILL would refute the structure
+and hand the ground back to L150's superseded reading; that is the shape of the evidence this
+entry is waiting for, and it would be welcome.
+**Covers:** `lasalle_slough_crossing.function`, `lasalle_slough_crossing.crossing_1835.footprint`, `lasalle_slough_crossing.crossing_1835.position`, `lasalle_slough_crossing.crossing_1835.documented_range`, `lasalle_slough_crossing.crossing_1835.form.construction`, `lasalle_slough_crossing.crossing_1835.form.width_m`, `lasalle_slough_crossing.crossing_1835.form.clearance_m`, `lasalle_slough_crossing.crossing_1835.form.pier_count`, `lasalle_slough_crossing.crossing_1835.form.pier_kind`, `lasalle_slough_crossing.crossing_1835.form.deck_kind`, `lasalle_slough_crossing.crossing_1835.form.stringer_d_m`, `lasalle_slough_crossing.crossing_1835.form.plank_t_m`, `terrain.e1834_harbor_cut.approaches.lasalle_crossing_west`, `terrain.e1834_harbor_cut.approaches.lasalle_crossing_east`.
+**Recorded:** 2026-08-24.
 

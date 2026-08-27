@@ -1052,6 +1052,17 @@ for (const [label, viewport, touch] of [
   // because of it. Ninety seconds is room for a slow machine, not permission
   // for a broken control: a click that never lands still fails, three times
   // slower.
+  //
+  // IT IS NOT RAISED AGAIN, AND T-0215 IS WHY. On 2026-08-27 the same starvation
+  // took the desktop half down again, and the honest reading is that a budget
+  // measured in frames is the wrong instrument for a scene whose frame cost is
+  // set by whatever else the machine is doing (17-27 s per frame, measured, on a
+  // runner where the identical scene also drew frames in 29 ms). Raising 90 to
+  // 180 buys one more town-sized month and pays for it in wall clock against a
+  // ten-minute per-command ceiling this gate has already been re-cut for twice.
+  // The answer is `clickChrome` below — not paying for the frames at all where
+  // the frames are not the subject. This number stays what it is: the backstop
+  // for the clicks that must remain a visitor's own mouse.
   page.setDefaultTimeout(90_000);
 
   // A fresh boot stands at the GATE SCREEN, and the part that enters the town
@@ -1075,6 +1086,80 @@ for (const [label, viewport, touch] of [
       document.getElementById('control-help-gotit')?.click();
     }
   });
+
+  // A click on the HUD chrome that does not have to race the render loop for it.
+  //
+  // THE HAZARD THE 90 s ABOVE ONLY POSTPONED. `page.click` is frame-bound three
+  // ways over: it polls the target's box on consecutive animation frames until it
+  // holds still, then scrolls it into view, then hit-tests it, and every one of
+  // those steps queues behind whatever the render loop is doing. STATUS
+  // 2026-08-13 raised the budget to 90 s for exactly that and said, in writing,
+  // that it was **a standing hazard and not a fixed one**: *"the same starvation
+  // will return as the town grows, and the next symptom will again look like a UI
+  // bug rather than a budget."* It returned on 2026-08-27 (T-0215), and it
+  // returned looking precisely like that: `SMOKE_VIEWPORT=desktop SMOKE_STAGE=8`
+  // died on its FIRST click, on the Settings tab, before a single one of part 8's
+  // assertions had run — and three agents in one day read that as the What's-new
+  // panel being broken. It was not. Driven by hand at the same moment the gate was
+  // dying, the panel opened and painted all 272 releases and cleared its unread
+  // dot; the tab was the topmost element at its own centre with no pointer lock.
+  // What had moved was the cost of a frame: **17.0 / 0.03 / 0.33 / 21.5 / 20.2 /
+  // 0.12 / 4.4 / 22.3 / 12.2 / 26.6 seconds**, measured on the loaded runner
+  // against the 0.46-1.10 s this file's comment above records. The 29 ms frames
+  // in that list are the proof it is the machine and not the scene — the renderer
+  // draws fast when it is given the CPU, and it was not being given it. Another
+  // number is not the answer to that; not needing the frames is. And note there
+  // is no trigger to find: timed at the same load, that identical click landed in
+  // 10.9 s cold, 28.4 s settled and 53.8 s after a reload before it blew ninety
+  // in the gate. It is a distribution with a tail across the budget, so any
+  // budget is a coin toss and only removing the dependency ends it.
+  //
+  // NOTHING IS SKIPPED, AND THAT IS THE POINT. Everything `page.click` asserts
+  // implicitly is asserted here explicitly, in the page, in ONE round trip: the
+  // element exists, is enabled, has a real box, and is the topmost thing at its
+  // own centre. That last one is T-0108's assertion verbatim — a control the
+  // HUD's `pointer-events: none` swallows returns the CANVAS from
+  // `elementFromPoint` and fails here exactly as it fails a visitor's mouse — and
+  // it now fails in one round trip with a sentence naming what covered it,
+  // instead of in ninety seconds with a call log that reads like a broken
+  // control. A real `page.click` stays the instrument wherever the trusted event
+  // ITSELF is the subject: the confidence menu in part 4 is the case, and it says
+  // so where it stands.
+  const clickChrome = async (sel) => {
+    const why = await page.evaluate((s) => {
+      const el = document.querySelector(s);
+      if (!el) return `nothing matches ${s}`;
+      if (el.disabled) return `${s} is disabled`;
+      // The same scroll `page.click` would do, in the same round trip as the
+      // reading — a result row far down the Go-to list is off the panel's
+      // viewport until this runs, and `elementFromPoint` would then answer for
+      // whatever is at those coordinates instead.
+      el.scrollIntoView({ block: 'center', inline: 'center' });
+      const b = el.getBoundingClientRect();
+      if (b.width < 1 || b.height < 1) {
+        return `${s} has no box (${Math.round(b.width)}x${Math.round(b.height)})`;
+      }
+      const top = document.elementFromPoint(b.x + b.width / 2, b.y + b.height / 2);
+      if (!top || !(top === el || el.contains(top))) {
+        const cls = top && typeof top.className === 'string' ? top.className : '';
+        return `${s} is covered at its own centre by `
+          + `<${top ? top.tagName.toLowerCase() : 'nothing'}${cls ? ` class="${cls}"` : ''}>`;
+      }
+      // A real mouse press FOCUSES a focusable control, and an untrusted
+      // `.click()` does not — which is a difference the suite already depends on
+      // and which this helper got wrong on its first run, honestly and visibly.
+      // Part 8 closes the panel and then presses `g`, and `g` only reaches the
+      // window shortcut if focus has left the Go-to search box first: the shared
+      // `isTyping(e.target)` guard swallows it otherwise, which is the whole
+      // point of that guard. Without this line the panel stayed shut, `g` did
+      // nothing, and the next reading was a result row with a 0x0 box. So this
+      // is fidelity to the click being replaced, not a convenience.
+      if (typeof el.focus === 'function') el.focus({ preventScroll: true });
+      el.click();
+      return null;
+    }, sel);
+    if (why) throw new Error(`clickChrome: ${why}`);
+  };
 
   const errors = [];
   page.on('pageerror', (e) => errors.push(`pageerror: ${e.message || e}`));
@@ -1527,6 +1612,39 @@ for (const [label, viewport, touch] of [
     // graph rather than off the screen.
     if (stageOn(1)) {
     inStageWork = true;
+
+    // --- the frame is multisampled, phone included (T-0157) ----------------
+    // `main.js` booted with `antialias: !coarse` from Milestone 0, so a touch
+    // device drew the whole town with no multisampling and its edges flipped
+    // whole. Measured at 390×780 on the published mirror by
+    // `tools/measure_phone_aa.mjs`: switching MSAA on takes every one of the 149
+    // pixels that were swapping surface outright under a 2 mm nudge — 25 aerial,
+    // 124 at Lake and Market — to ZERO, and the worst per-pixel movement from
+    // 105/140 to 28/37.
+    //
+    // This is asserted on the live CONTEXT rather than on a pixel count, and the
+    // measurement is why: the flicker COUNT goes UP when MSAA is switched on
+    // (1,056 → 2,482 aerial), because a partial resample touches more pixels
+    // than a whole flip does. Any gate written on the count would have to be
+    // written backwards.
+    //
+    // `antialias` is a context-creation attribute with no runtime handle, which
+    // is exactly what makes it worth a gate: the only way to lose it is a reboot
+    // with the flag off, and not one other check in this file would notice.
+    // `getContextAttributes()` alone will not do — it echoes what was ASKED for.
+    // `SAMPLES` is what the framebuffer actually has.
+    const multisample = await page.evaluate(() => {
+      const gl = window.__chicago4d.renderer.getContext();
+      return {
+        asked: gl.getContextAttributes().antialias,
+        samples: gl.getParameter(gl.SAMPLES),
+        coarse: window.matchMedia('(pointer: coarse)').matches,
+      };
+    });
+    check(`${label}: the frame is multisampled — the town's edges are resolved on a phone too`,
+      multisample.asked === true && multisample.samples >= 2,
+      `antialias=${multisample.asked} SAMPLES=${multisample.samples} `
+      + `pointer:coarse=${multisample.coarse}`);
 
     // --- the gate counts the town (T-0036) --------------------------------
     // The owner asked for the number of buildings and the number of people
@@ -3652,10 +3770,10 @@ for (const [label, viewport, touch] of [
       };
     });
     check(`${label}: the frontage layer lays all five records' walks and stands their posts`,
-      frontage.census?.records === 5 && frontage.census?.walks === 30
+      frontage.census?.records === 5 && frontage.census?.walks === 29
         && frontage.census?.crossings === 12
-        && frontage.census?.posts === 3 && frontage.census?.fences === 12
-        && frontage.census?.refused === 54
+        && frontage.census?.posts === 3 && frontage.census?.fences === 11
+        && frontage.census?.refused === 60
         && frontage.recordIds.join(',')
           === 'green_tree_frontage,sauganash_frontage,river_walk_frontage,'
             + 'lasalle_crossing_frontage,town_street_edge'
@@ -3702,18 +3820,21 @@ for (const [label, viewport, touch] of [
     // THE NAME IS DRAWN, AND IT IS THE RECORD'S. This is the only lettering in the
     // renderer (L135), and it is the record's wording rather than the renderer's:
     // a board whose painted name drifted from the record would be this project
-    // inventing a sign, which is exactly what L25 and L130 refuse. Thirty-eight
+    // inventing a sign, which is exactly what L25 and L130 refuse. Thirty-nine
     // meshes and no more — the shared timber, the river walk's fifteen culling
-    // chunks (T-0119) and the town street edge's twenty-one (T-0069, one per run
-    // of sidewalk), all on ONE material, and the painted name on
-    // its own mesh, the only thing here that may carry a texture.
+    // chunks (T-0119), the town street edge's twenty (T-0069 laid twenty-one;
+    // T-0188's six reconciled South Water placements welded two runs into one)
+    // and the TWO street-fence meshes T-0188 split off — one per covered street
+    // that carries a fence — so the boards could leave the shadow map while the
+    // fences stayed in it, all on ONE material, and the painted name on its own
+    // mesh, the only thing here that may carry a texture.
     check(`${label}: the board carries the record's own name, painted`,
       frontage.census?.lettered === 1 && frontage.letterVerts >= 6
         && frontage.letterMap === true && frontage.timberMap === false
         && frontage.lettering === frontage.recordText
         && frontage.recordText === 'GREEN TREE'
         && frontage.textGrade === 'inferred'
-        && frontage.meshes === 38,
+        && frontage.meshes === 39,
       `"${frontage.lettering}" on ${frontage.letterVerts} vertices across `
       + `${frontage.meshes} mesh(es) (${frontage.names?.join(', ')}), record says `
       + `"${frontage.recordText}" graded ${frontage.textGrade}`);
@@ -3953,43 +4074,59 @@ for (const [label, viewport, touch] of [
       const walks = (f?.walks ?? []).filter((w) => w.belongs_to === 'town_street_edge');
       const decks = (a.decks ?? []).filter((d) => /^blk_.*__footway_/.test(d.id));
 
-      // ---- WALKED END TO END, along one core street south of the river.
-      // Lake Street's north frontage through two whole platted blocks and the
-      // board crossing over Wells Street between them: about 220 m of walk, all
-      // of it derived from the plat and none of it placed. The walker is stood
-      // on the walk's own centreline every two metres and asked what is under
-      // their boots — the deck the record published, or the mud.
+      // ---- WALKED END TO END, on Lake Street and, since T-0188, on the one
+      // South Water block face whose walk the reconciliation made whole.
+      // The walker is stood on the walk's own centreline every two metres and
+      // asked what is under their boots — the deck the record published, or the
+      // mud. One sample in the mud is a hole in the sidewalk, so the bar is
+      // every one of them.
+      const marchChain = (ids) => {
+        const chain = ids.map((id) => walks.find((w) => w.id === id) ?? null);
+        const out = { samples: 0, onPlanks: 0, worstLift: Infinity, gaps: 0, run: 0,
+          missing: chain.filter((w) => !w).length };
+        let previous = null;
+        for (const w of chain) {
+          if (!w) continue;
+          const line = w.centreline_local_enu_m;
+          for (let s = 0; s + 1 < line.length; s += 1) {
+            const [ae, an] = line[s];
+            const [be, bn] = line[s + 1];
+            const len = Math.hypot(be - ae, bn - an);
+            out.run += len;
+            if (previous) {
+              out.gaps += Math.hypot(ae - previous[0], an - previous[1]) > 1.0 ? 1 : 0;
+            }
+            const steps = Math.max(2, Math.round(len / 2));
+            for (let i = 0; i <= steps; i += 1) {
+              const e = ae + (be - ae) * (i / steps);
+              const n = an + (bn - an) * (i / steps);
+              a.walker.teleport({ local_e: e, local_n: n, yaw_deg: 90 });
+              const lift = a.walker.state.groundY - a.terrain.walkHeight(e, n);
+              out.samples += 1;
+              if (lift > 0.04) out.onPlanks += 1;
+              out.worstLift = Math.min(out.worstLift, lift);
+            }
+            previous = [be, bn];
+          }
+        }
+        return out;
+      };
+      // LAKE STREET (T-0069): the north frontage through two whole platted
+      // blocks and the board crossing over Wells Street between them, about
+      // 220 m, all of it derived from the plat and none of it placed.
       const chain = ['blk_south_water_franklin_south_walk_1',
         'blk_south_water_franklin_south_crossing_blk_south_water_wells_south',
-        'blk_south_water_wells_south_walk_1']
-        .map((id) => walks.find((w) => w.id === id) ?? null);
-      const march = { samples: 0, onPlanks: 0, worstLift: Infinity, gaps: 0, run: 0,
-        missing: chain.filter((w) => !w).length };
-      let previous = null;
-      for (const w of chain) {
-        if (!w) continue;
-        const line = w.centreline_local_enu_m;
-        for (let s = 0; s + 1 < line.length; s += 1) {
-          const [ae, an] = line[s];
-          const [be, bn] = line[s + 1];
-          const len = Math.hypot(be - ae, bn - an);
-          march.run += len;
-          if (previous) {
-            march.gaps += Math.hypot(ae - previous[0], an - previous[1]) > 1.0 ? 1 : 0;
-          }
-          const steps = Math.max(2, Math.round(len / 2));
-          for (let i = 0; i <= steps; i += 1) {
-            const e = ae + (be - ae) * (i / steps);
-            const n = an + (bn - an) * (i / steps);
-            a.walker.teleport({ local_e: e, local_n: n, yaw_deg: 90 });
-            const lift = a.walker.state.groundY - a.terrain.walkHeight(e, n);
-            march.samples += 1;
-            if (lift > 0.04) march.onPlanks += 1;
-            march.worstLift = Math.min(march.worstLift, lift);
-          }
-          previous = [be, bn];
-        }
-      }
+        'blk_south_water_wells_south_walk_1'];
+      const march = marchChain(chain);
+      // SOUTH WATER STREET (T-0188): the whole north face of
+      // blk_south_water_franklin, 96.5 m of it, and it is the acceptance clause
+      // this ticket had to EARN rather than assert. Before the reconciliation
+      // that face carried two stumps of 25.4 m and 45.7 m with the Temple
+      // Building and Kinzie's forwarding store standing in the roadway between
+      // them; both were re-derived against this project's own committed street
+      // line and the face is now one unbroken run — the first whole block face
+      // of sidewalk this street has ever had.
+      const southWater = marchChain(['blk_south_water_franklin_north_walk_1']);
 
       // ---- AND WALKED, not teleported, over the crossing at the corner.
       // Start on the planks a few metres short of the crossing, point along it,
@@ -3997,7 +4134,7 @@ for (const [label, viewport, touch] of [
       // road and come off onto the far block's walk. A crossing that were only
       // drawn — no deck registered — would drop the walker into the ruts here
       // and every other check in this file would stay green.
-      const cross = chain[1];
+      const cross = walks.find((w) => w.id === chain[1]) ?? null;
       const gait = { blocked: 0, offPlanks: 0, strides: 0, worstStride: 0,
         startE: null, endE: null };
       if (cross) {
@@ -4098,13 +4235,13 @@ for (const [label, viewport, touch] of [
         faces: rec?.rule?.faces_laid ?? null,
         walkM: rec?.rule?.walk_m ?? null,
         decks: decks.length,
-        march, gait, track, floor,
+        march, southWater, gait, track, floor,
       };
     });
     check(`${label}: the street edge is generated from the plat, not placed on one block`,
       edge.hasRecord && edge.cardId === 'town_street_edge'
-        && edge.faces === 16 && edge.walkM >= 1100 && edge.fences >= 10
-        && edge.decks >= 80,
+        && edge.faces === 16 && edge.walkM >= 1200 && edge.fences >= 10
+        && edge.decks >= 85,
       `record ${edge.hasRecord}, card ${edge.cardId}, ${edge.faces} block face(s), `
       + `${edge.walkM} m of walk, ${edge.fences} fence run(s), `
       + `${edge.decks} walking deck(s) registered`);
@@ -4119,6 +4256,22 @@ for (const [label, viewport, touch] of [
       + `${edge.march.run?.toFixed(0)} m, ${edge.march.gaps} gap(s) in the chain, `
       + `least lift ${edge.march.worstLift?.toFixed(3)} m, `
       + `${edge.march.missing} run(s) missing from the record`);
+    // T-0188 — AND THE SAME CLAUSE ON THE STREET THAT HAD NEVER PASSED IT.
+    // South Water's frontages came out in pieces because eleven documented
+    // buildings on that side were placed against the modern kerb and stood up to
+    // 8.17 m out in the platted roadway. Six were reconciled against this
+    // project's own committed street line; this is the face where that closed a
+    // whole block. Asserted on the RUN as well as on the samples, because a
+    // shorter run with the same lift would pass a sample-only bar.
+    check(`${label}: South Water's reconciled block face is one walk, end to end`,
+      edge.southWater.missing === 0 && edge.southWater.samples > 45
+        && edge.southWater.onPlanks === edge.southWater.samples
+        && edge.southWater.gaps === 0 && edge.southWater.run > 95,
+      `${edge.southWater.onPlanks} of ${edge.southWater.samples} sample(s) stood on `
+      + `planks over ${edge.southWater.run?.toFixed(0)} m, `
+      + `${edge.southWater.gaps} gap(s), least lift `
+      + `${edge.southWater.worstLift?.toFixed(3)} m, `
+      + `${edge.southWater.missing} run(s) missing from the record`);
     check(`${label}: a board crossing carries the walker over the road at the corner`,
       edge.gait.strides > 0 && edge.gait.blocked === 0 && edge.gait.offPlanks === 0
         && edge.gait.reached < 1.5 && edge.gait.worstStride <= 0.35,
@@ -6328,7 +6481,8 @@ for (const [label, viewport, touch] of [
           worstTris: atStands.reduce((x, y) => (y.tris > x.tris ? y : x)),
           worstCalls: atStands.reduce((x, y) => (y.calls > x.calls ? y : x)),
           reachM: a.world.shadowRig.reachM, texelM: a.world.shadowRig.texelM,
-          furnitureMeshes: f.meshes, furnitureCasting: f.casting });
+          furnitureMeshes: f.meshes, furnitureCasting: f.casting,
+          furnitureGroundHugging: f.groundHugging });
       }
       await a.setDetail(started);
       return { seen, restored: a.detail === started, flying: a.flying,
@@ -6407,11 +6561,25 @@ for (const [label, viewport, touch] of [
     // The trim, asserted on the meshes rather than on the table that asked for
     // it: a policy that reaches `DETAIL` and not the scene passes every check
     // above unchanged, which is the failure this one exists to catch.
-    check(`${label}: the light tier draws no furniture into the shadow map`,
+    //
+    // T-0188 — AND THE TWO CASTING TIERS ARE NO LONGER HELD TO "EVERY MESH".
+    // The ground-hugging furniture (the plank-walk and board-crossing chunks of
+    // the town street edge and the river walk, 2.9 km of boards lying 0.11 m
+    // proud of the ground) is exempt at every tier, because its own cast shadow
+    // is about 0.04 m wide at noon and drawing it into the shadow map costs its
+    // whole triangle count and a draw call per chunk for nothing a visitor can
+    // see. The exemption is COUNTED rather than assumed: `furnitureShadows`
+    // reports `groundHugging`, the bar is `casting === meshes - groundHugging`,
+    // and the count is asserted to be non-zero — so a layer that silently
+    // stopped casting still fails here, and an exemption nobody declared cannot
+    // hide in the difference.
+    check(`${label}: the light tier draws no furniture into the shadow map, and only the ground-hugging timber is exempt above it`,
       light.furnitureMeshes > 0 && light.furnitureCasting === 0
-      && full.furnitureCasting === full.furnitureMeshes
-      && balanced.furnitureCasting === balanced.furnitureMeshes,
-      detail.seen.map((s) => `${s.level} ${s.furnitureCasting}/${s.furnitureMeshes}`).join(', '));
+      && full.furnitureGroundHugging > 0
+      && full.furnitureCasting === full.furnitureMeshes - full.furnitureGroundHugging
+      && balanced.furnitureCasting === balanced.furnitureMeshes - balanced.furnitureGroundHugging,
+      detail.seen.map((s) => `${s.level} ${s.furnitureCasting}/${s.furnitureMeshes} casting `
+        + `(${s.furnitureGroundHugging} ground-hugging)`).join(', '));
     /**
      * T-0150 — THE FURNITURE'S REACH, asserted as three separate claims because
      * three separate things can break it.
@@ -6523,6 +6691,11 @@ for (const [label, viewport, touch] of [
     // visitor's mouse, where an evaluate()'d .click() would quietly pass. It
     // runs here because the HUD only exists past the gate, and the guide that
     // covers this corner of it was dismissed by the check above.
+    //
+    // SO THESE FOUR STAY `page.click` (T-0215). Part 8's chrome clicks moved to
+    // `clickChrome`, which hit-tests at the element's own centre and would catch
+    // this same regression — but here the trusted event is not the means, it is
+    // the SUBJECT, and the instrument should be the visitor's own mouse.
     await page.click('#btn-confidence-more');
     await page.click('#cm-reconstructed');
     await page.waitForTimeout(120);
@@ -8441,6 +8614,15 @@ for (const [label, viewport, touch] of [
     // read eye height against the ground the visitor is standing on, and a
     // teleport here would be this part measuring somewhere the unfiltered run
     // never stands.
+    //
+    // EVERY CHROME CLICK IN THIS PART GOES THROUGH `clickChrome` (T-0215), and
+    // the reason is written where that helper is defined. The short of it: this
+    // part is nothing but panel chrome — fourteen clicks and almost no camera —
+    // so it is the part with the most to lose to a starved action, and on
+    // 2026-08-27 its FIRST click starved for ninety seconds and took the whole
+    // part down before one assertion had run. Not one assertion is dropped or
+    // softened by the change: `clickChrome` hit-tests the control at its own
+    // centre the way a real click does, and says what covered it when it fails.
     if (stageOn(8)) {
     inStageWork = true;
     await enterTown();
@@ -8466,7 +8648,7 @@ for (const [label, viewport, touch] of [
     // And free-fly must NOT be resettled — up there the eye height is an
     // altitude the visitor is flying, and dropping them to standing height mid
     // flight would be the setting reaching somewhere it has no business.
-    await page.click('.panel-tab[data-tab="settings"]');
+    await clickChrome('.panel-tab[data-tab="settings"]');
     const eye = await page.evaluate(async () => {
       const api = window.__chicago4d;
       const el = document.getElementById('s-eye');
@@ -8592,7 +8774,7 @@ for (const [label, viewport, touch] of [
       tabStrip.strayViewpointList === 0, `${tabStrip.strayViewpointList} stray node(s)`);
 
     // G, from the walk, with the panel shut.
-    await page.click('#panel-close');
+    await clickChrome('#panel-close');
     await page.keyboard.press('g');
     await page.waitForTimeout(60);
     const viaKey = await page.evaluate(() => ({
@@ -8695,15 +8877,15 @@ for (const [label, viewport, touch] of [
     check(`${label}: jump search finds an intersection by both street names`,
       jumps.filtered.some((r) => r.id === 'randolph_canal' && r.kind === 'intersection'),
       JSON.stringify(jumps.filtered));
-    await page.click('[data-jump-id="randolph_canal"]');
+    await clickChrome('[data-jump-id="randolph_canal"]');
     await page.waitForTimeout(80);
     const arrived = await page.evaluate(() => ({ ...window.__chicago4d.player }));
     check(`${label}: an intersection result moves the visitor there`,
       Math.abs(arrived.e + 155.24) < 0.2 && Math.abs(arrived.n + 251.19) < 0.2,
       `arrived (${arrived.e?.toFixed(2)}, ${arrived.n?.toFixed(2)})`);
 
-    await page.click('#btn-help');
-    await page.click('.panel-tab[data-tab="settings"]');
+    await clickChrome('#btn-help');
+    await clickChrome('.panel-tab[data-tab="settings"]');
     const toggles = await page.evaluate(() => {
       const compass = document.getElementById('s-compass');
       const map = document.getElementById('s-overview-map');
@@ -8725,14 +8907,14 @@ for (const [label, viewport, touch] of [
     check(`${label}: settings toggle all three navigation aids`,
       toggles.hidden.compass && toggles.hidden.map && toggles.hidden.street && toggles.restored,
       JSON.stringify(toggles));
-    await page.click('#panel-close');
+    await clickChrome('#panel-close');
 
     // The HUD toggle must drive the same view the harness does.
-    await page.click('#btn-confidence');
+    await clickChrome('#btn-confidence');
     await page.waitForTimeout(100);
     const viaHud = await page.evaluate(() => window.__chicago4d.confidenceView);
     check(`${label}: the HUD toggle drives the confidence view`, viaHud === true, `${viaHud}`);
-    await page.click('#btn-confidence');
+    await clickChrome('#btn-confidence');
 
     // --- what's new ---------------------------------------------------------
     // The changelog is authored inside the app and mirrored out by publish.sh.
@@ -8742,7 +8924,7 @@ for (const [label, viewport, touch] of [
     await page.evaluate(() => window.localStorage.removeItem('chicago4d.whatsnew.seen'));
     await page.reload({ waitUntil: 'domcontentloaded' });
     await page.waitForFunction(() => window.__chicago4d?.ready === true, null, { timeout: 30000 });
-    await page.click('#gate-btn');
+    await clickChrome('#gate-btn');
     await page.waitForTimeout(150);
     await page.evaluate(() => document.exitPointerLock?.());
 
@@ -8753,8 +8935,8 @@ for (const [label, viewport, touch] of [
     check(`${label}: a first-time visitor is told there are unread notes`,
       unread.chip && unread.tab, `chip ${unread.chip}, tab ${unread.tab}`);
 
-    await page.click('#btn-help');
-    await page.click('.panel-tab[data-tab="whatsnew"]');
+    await clickChrome('#btn-help');
+    await clickChrome('.panel-tab[data-tab="whatsnew"]');
     await page.waitForTimeout(120);
     const wn = await page.evaluate(() => {
       const host = document.getElementById('whatsnew');
@@ -8782,11 +8964,11 @@ for (const [label, viewport, touch] of [
     await page.evaluate(() => window.localStorage.setItem('chicago4d.whatsnew.seen', '3'));
     await page.reload({ waitUntil: 'domcontentloaded' });
     await page.waitForFunction(() => window.__chicago4d?.ready === true, null, { timeout: 30000 });
-    await page.click('#gate-btn');
+    await clickChrome('#gate-btn');
     await page.waitForTimeout(150);
     await page.evaluate(() => document.exitPointerLock?.());
-    await page.click('#btn-help');
-    await page.click('.panel-tab[data-tab="whatsnew"]');
+    await clickChrome('#btn-help');
+    await clickChrome('.panel-tab[data-tab="whatsnew"]');
     await page.waitForTimeout(120);
     const ret = await page.evaluate(() => ({
       flagged: [...document.querySelectorAll('#whatsnew .wn-entry.is-new .wn-title')]
@@ -9822,6 +10004,32 @@ for (const [label, viewport, touch] of [
     } catch (e) {
       inStageWork = false;
       thrown = e;
+    }
+
+    // T-0215 — WHEN AN ACTION TIMES OUT, SAY WHAT A FRAME COSTS, because that is
+    // the question the log leaves unanswered and the wrong answer has now been
+    // given twice. `TimeoutError: page.click: Timeout 90000ms exceeded` on a
+    // control that is visible, enabled and stable reads like a broken control,
+    // and on 2026-08-13 and again on 2026-08-27 it was not one: Playwright's
+    // click waits on animation frames, and this scene's frames cost 0.46-1.10 s
+    // on a quiet machine and 17-27 s on a loaded one. Three sampled frames turn a
+    // whole run of guessing into one line. It is a REPORT, never a bar — the
+    // failure above still fails, and a slow frame is not an excuse for a control
+    // that is genuinely gone.
+    if (thrown && /Timeout .* exceeded/.test(String(thrown))) {
+      try {
+        const f = await page.evaluate(() => new Promise((done) => {
+          const ms = []; let prev = performance.now();
+          const step = () => {
+            const now = performance.now(); ms.push(Math.round(now - prev)); prev = now;
+            if (ms.length >= 3) done(ms); else requestAnimationFrame(step);
+          };
+          requestAnimationFrame(step);
+        }), { timeout: 120_000 });
+        console.log(`        one animation frame costs ${f.join(' / ')} ms here `
+          + `(0.46-1.10 s is this scene's cost on a quiet machine — a reading in `
+          + `seconds means the action starved on frames, not on a missing control)`);
+      } catch { console.log('        the page would not report a frame at all'); }
     }
 
     if (KEEP) {

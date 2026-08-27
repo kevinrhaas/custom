@@ -220,6 +220,45 @@ run reported nothing about — T-0166's part 7 reading is literally ">10 m", and
 the stamp on, a killed run is still a profile of everything it reached, which is what places the
 next cut. It is off by default so the gate's own output stays comparable between runs.
 
+**AND EVERY NUMBER IN THE TABLE ABOVE IS A READING OF THE MACHINE AS MUCH AS OF THE SUITE —
+T-0167 said so, and 2026-08-27 put a factor on it.** T-0167 wrote that "these desktop numbers move
+by minutes between runs because SwiftShader's cost tracks whatever else the machine is doing", and
+sized its cuts on margin rather than on any single reading. **T-0215 measured how far that goes.**
+On a box carrying a dozen parallel agents — load average **38.7-51.7**, **71-115** concurrent
+Chromium processes — ten consecutive animation frames of this scene cost
+
+**17,036 · 29 · 333 · 21,451 · 20,211 · 119 · 4,420 · 22,280 · 12,242 · 26,580 ms**
+
+against the **0.46-1.10 s** of 2026-08-13. That is a factor of twenty on the quantity every
+Playwright action is denominated in, and the 29 ms frames in the same sample are the proof it is
+contention rather than the scene. Boot to `ready` measured **29 s, 106.8 s and 127.4 s** on one
+tree inside twenty minutes, against the 30 s the boot check allows; two runs had their browser
+killed outright; a `page.goto` against a **local static file server** timed out at 30 s. So:
+
+- **A part's timing is only comparable to another taken under the same load.** Record the load
+  average and the Chromium process count beside any reading added to the table above, the way
+  T-0215's are recorded in its ticket. A margin measured at load 2 is not a margin at load 50.
+- **A `page.click` timeout on this suite is a question, not a verdict.** It has now twice been
+  read as a broken control and twice been the budget — 2026-08-13 and 2026-08-27, the second time
+  by three separate agents on one day. The smoke now prints what a frame costs whenever an action
+  times out, and `clickChrome` (part 8's fourteen chrome clicks) takes the panel chrome out of the
+  race entirely without dropping one assertion. See STATUS 2026-08-27.
+- **The ten-minute ceiling this section exists to fit is not the binding constraint on a loaded
+  box.** Part 8 measured 6 m 10 s at desktop on 2026-08-24 and could not reach its first assertion
+  in 4 m 23 s on 2026-08-27. Cutting parts finer does not help that; running fewer of them at once
+  does (T-0216).
+
+**AND THE CONTROLLED A/B, TAKEN WHEN THE BOX DRAINED.** `origin/dev`'s own unmodified harness, on
+the same tree, at load 10.4-13.7 with 20-24 Chromium processes: **37 passed, 0 failed, all 28
+staged checks, SMOKE PASS — in 14 m 33 s.** Two readings to hold together. Stage 8 was never
+broken: the harness that failed three agents is green on a quieter machine. And it does not fit:
+**14 m 33 s is four and a half minutes past the ten-minute ceiling**, on a part T-0167 measured at
+6 m 10 s three days earlier and cut to that size deliberately. So the table above is a *floor* on
+what these parts cost on a shared box, not a description of it. T-0215's `clickChrome` puts part 8
+back at **6 m 10 s** — T-0167's figure to the second, all 28 checks — by not paying for frames
+where the frames are not the subject. Desktop-only: the same part costs 2 m 52 s at 390×780, where
+a frame covers a quarter the pixels.
+
 ### NEXT UP — every row says whether a visitor can SEE it
 
 **Rewritten 2026-08-15 on the owner's report that the loop does research and organisation rather
@@ -251,7 +290,7 @@ not at the top of the queue.
 | — | RENDERING | ~~R-BUG3c~~ | **DONE 2026-08-15** — neither surface moved: the publish step quantises the ground onto a **306 mm** vertical lattice AFTER the only gate that measures it, burying the road and the flora by up to **228 mm**. The heights are read back off the field at load, and two gates now hold the file that SHIPS. Read the box before quoting any ground number |
 | — | RENDERING | ~~R-W4c(a)~~ | **DONE 2026-08-15** — the flower-load recipe's hue cut at 50° runs through the middle of a July prairie's bloom, so `0.0012` is not a count of flowers. (a) landed the honest measurement; **(b) is the tuning half and must take (a)'s committed numbers as its baseline** |
 | — | RENDERING | ~~R-W4c(b1)~~ | **DONE 2026-08-15** — **there is no 4–6 % target.** Its remnant half cites no photograph this repository holds; its planting half does not reproduce (**5.54 %**, and 12.91 % is not on that frame under either ordering); and the repair R-W4c(a)'s diagnosis implies **fails** — reordering the tests takes precision **0.998 → 0.062**, so the flower test cannot see a flower either. Read its box before quoting any flower number |
-| — | RENDERING | **R-W4c(b2)** | **NOT A PICK — it is blocked on the owner.** "Raise the bloom" has no bar left to raise it against, and R-W4c(b1) measured that the bloom is planted from sourced `density_per_ha`, so moving it is a DATA change needing source support rather than a renderer tune. Three routes are written up in (b1)'s box for the owner to choose between; an agent picking one would be inventing the target this parcel just removed |
+| — | RENDERING | ~~R-W4c(b2)~~ | **DONE 2026-08-27 as T-0034 — the bar that governs the bloom is the LATTICE, and the records already asked for more bloom than it can draw.** `forbShare` clamps at one plant per lattice slot — **0.346 forbs per m²** — and the mesic prairie's own records sum to **0.408** at their upper bounds, so nothing had to be invented: the forb stratum is dealt off the TOP of every recorded range instead of its midpoint (L182), which is **1.236x** at the mesic prairie, **1.254x** at the wet prairie, **1.572x** on the sand prairie and, measurably, **nothing at the other six** — they were already over the ceiling. `prairie_west` **206 forbs / 1,617 heads → 256 / 1,968**. **It is the last raise either prairie can be given**: both now read a share of 1.000. Read its box before raising any flora density |
 | — | RENDERING | ~~R-W6~~ | **DONE 2026-08-16** — **yes, at 16 bits**, and the artefact was not invisible: the 14-bit ground stands up to **46.3 mm** above the field, past the 22 mm road lift at 87 sample points, **one of them 1.9 m from South Water Street's centreline**. 16 bits costs **1,116 bytes** and takes the worst error to 12.9 mm, under the lift everywhere; the uncompressed 5.8 MB would buy 12.9 → 7.7 mm, and 7.7 is DECIMATION the master carries too. Read its box before quoting any payload or lattice number. **Its 12.9 mm no longer describes the tree** — re-measured 2026-08-23 on the terrain as extended east, the same 16-bit ground is **77.1 mm** worst with **56** samples past the lift, on 60–90 % slopes that did not exist in the box R-W6 measured. T-0152 |
 | — | RENDERING | ~~R-BUG4~~ | **DONE 2026-08-15** — the wet-corner rule deleted the dry half of a road panel with the wet half. Clipped at the waterline now: **28 panels / 62.7 m** of roadway recovered, and the gate asserts the invariant rather than the number |
 | — | RENDERING | ~~R-W4a~~ | **DONE 2026-08-15** — the horizon figure counted the town's roofs as timber (62 % of it at `prairie_south`), the G−B discriminator this project named was measured and **refuted**, and the replacement cannot move when a block lands. Read its box before quoting any horizon number |
@@ -267,10 +306,11 @@ not at the top of the queue.
 | — | TOWN | ~~T-V1(a)~~ | **DONE 2026-08-15** — the stamp is **not** at `south_water`: every twin in the town is in the North Division parcel, **36 of its 60 roofs**, and the census found something bigger — **40 eaves outside the band their own note cites**, 18 of them in a parcel that samples its footprints and says so. (b) is written, measured and **blocked by a circular dependency in the pipeline** — read its box before touching any dimension on a baked record |
 | 2 | TOWN | **T-V1(b)** | the sixty North records: **NEEDS ONE BAKE**, and cannot go green on the improve runner. A policy question for the owner, not an engineering one |
 | — | TOWN | ~~T-I3(a)~~ | **DONE 2026-08-16** — the town's public buildings are **three roofs** and this project already had all three, so the refusal is now absolute rather than argued. The finding is the fourth building: **the court-house was not built yet** — Andreas fixes the season, the month AND the corner the record said nothing fixed, and the citation it had was a **picture caption** — so a record is taken OUT of a scene on evidence for the first time. Read its box before quoting any civic number |
-| 3 | TOWN | **T-I3(b)** | **NOT A PICK WITHOUT THE OWNER.** Three of the six I3 slots are a count of nothing; the inventory's arithmetic is closed, so removing them is either "the town had 662 roofs" or "three roofs were not civic". Two different claims about the town, and the research settles neither |
+| — | TOWN | ~~T-I3(b)~~ | **DONE 2026-08-27 as ticket T-0032, route 1** — the owner's "close it at 665 or 662" is closed at **662**: `roof_total` 665 → 662, `I3` 6 → 3, `principal_functional` 511 → 508. The correction found a **second** fault in the same row — `institutional_public` was apportioned south 10 / west 1 / north 1 while the named records stand **south 5 / west 1 / north 3** — so the south district goes 370 → **365** and the north 150 → **152**, not the 370 → 367 the box predicted. Every I3 slot has left the block schedule and the gate screen now reads *of the 662 the town held*. Read its box before quoting any civic or roof-total number |
 | — | TOWN | ~~K30(a)~~ | **DONE 2026-08-16** — it is **29 buildings on eight streets**, not three on one, and every one of them is a record a PERSON placed: **zero** generated roofs lap a corridor, across 332 placed phases. The depths are bimodal with an empty gap at 1.98–3.48 m, and **13 of the 17 deep ones are South Water**. T-A7's "fourteen" does not reproduce **at its own commit** (16 there, the same 16 today), and the anchor-convention suspect is **refuted** — recentring makes 10 of the 29 worse. Read its box before quoting any intrusion number |
 | — | TOWN | ~~K30(b)~~ | **DONE 2026-08-16 · ITS CAUSE IS REFUTED 2026-08-22 — read K30(d) before quoting any of this row.** The anchors it compares with the half-width are BACK corners, so the comparison could not see the displacement it looked for; the real cause is the committed `south_water` centreline standing 4.3–8.8 m south of the control the placements were offset from. Its own text follows: the cause is the **drawing**, and the Wacker made-ground suspect is **refuted** by arithmetic: the anchors sit 11.64–15.30 m from the centreline against a 12.192 m half-width, with both signs, so no displacement of 4.51–8.17 m is there. The records are derived to their FRONTAGE and drawn with the body growing north from it (331 of 333 footprints grow from the minimum corner), so each stands in the road by its own depth — **all 17** deep records, and reflection takes 12 of them under 1 m. **The residual law** settles the shallow tail without moving anything: what survives correct drawing IS the point's own penetration, to 0.10 m. Read its box before quoting any intrusion cause |
 | — | TOWN | ~~K20~~ | **DONE 2026-08-16** — the invented-name allocator, measured properly for the first time: **73 of 113 renamed by ONE new household**, not the 17–25 the eleven by-product measurements reported, and never zero in the two big buckets. It is **10** now, and the report prints each bucket's **pool pressure** so the residual cannot be misread — at 0.14× it renames **one**, at 2.03× it renames ten, and that is the pool being too small. Unwelding the given name from the surname exposed **two identical residents**. Read its box before quoting any churn number |
+| — | TOWN | ~~K29~~ | **SEEN** | **DONE 2026-08-27 (T-0022) — ITS PREMISE IS REFUTED AND THE RE-APPORTIONMENT IS REFUSED.** L99 and L100 worried that the schedule "will keep dealing cabins to commercial frontage"; measured, the fault ran the other way. South Water Street's line carried **15 invented buildings and NOT ONE of them log**, against a documented line of 8 with Hogan's log store on it, because the recipes' own face rule — "the two meanest take Lake" — had put all five dealt log dwellings on the OTHER principal thoroughfare. The owner's plate of the row draws it as *log and frame shoulder to shoulder* and this project had taken only the half of that sentence about shape. **No schedule term was written**: ten records changed places, nothing was added, and `tools/measure_frontage_fabric.py` now holds it. K29's other half — weighting the trade families ONTO the business front, which the same census supports at 80 % — is **T-0208**. Read its box before quoting any frontage rule |
 | — | TOWN | ~~K28~~ | **DONE 2026-08-16** — three questions, three clauses, **two gates, and not one record moved**. The table is **projections** (the pair reading is refused because it refuses T-A4's fourteenth labouring household, one of the four rule 6 says its third test recovers); there **is** a cap, one adoption per trade per block, which is what makes the projections safe; and test 1 means the trade's **own committed text**, so the laundresses' D2 and the teamsters' D4 are refused with the remedy named. All **21** standing block adoptions already obeyed it. Read its box before quoting any adoption rule |
 | — | TOWN | ~~K25a~~ | **DONE 2026-08-15** — it is **98 values on 80 of 249 records**, not 54 on 193, and **24 causes, not 98**: seven metre values hold all 54 eaves and six degree constants hold all 38 pitches, because the generator authors the archetype's constant and the note cites the family's band. **Roof pitch had never been measured by anything.** The sub-1-ft question is decided — they are failures, and nearness is the diagnosis. Read its box before quoting any band number |
 | — | TOWN | ~~K33~~ | **DONE 2026-08-15** — it is **623 values on 227 of 249 records**, not 581, and the extra 42 are the finding: `roof_pitch_deg` cites a band on five families whose roof line is **"gable or shed"**, a form with no slope, and K25(a) could not see them because **a value with no band is never tested against one**. Route 2 (split the note), and route 3 is measured as unavailable — the confidence floats are in the mesh hash and prose is not. The assertion is **absolute, not a ratchet**. Read its box before quoting any citation number |
@@ -305,8 +345,8 @@ rationed.**
 | **1** | RENDERING | **R-W2** | **SEEN** | **PROMOTED 2026-08-16 — R-W1 landed on `dev` and cannot leave it until this parcel runs.** Textured coverage is the only thing that buys back the contrast the honest sky costs: R-W1 takes `south_water` 250–600 m from **71 % to 16 %**, and the near band's opaque *ceiling* is 3.4–4.3 L\* whatever the light does. Every road band in the suite is now under or near its bar, and no amount of relighting fixes a surface with no texture on it. Read R-W2a's material sheet first — its findings 1 and 2 (the chimney is not a material; no record states a roof covering) bound what can be textured today |
 | — | RENDERING | ~~R-W3b(a)~~ | **SEEN** | **DONE 2026-08-17 — the sun threw a shadow within 60 m of the visitor and nowhere else: 5 to 8 of 331 structures and 0 to 41 of 730 stems, measured at all eight anchors.** It is ±120 m now, at the SAME texel size (the map doubles with the box), and `green_tree` goes 8 → 27 structures, `south_water` 8 → 26 and 12 → 54 stems. **Its finding is the ceiling: the reach is DRAW-CALL-bound, not fill-bound** — every batch entering the box is another call in the shadow pass, and the worst anchor reads 70 calls at 60 m, 74 at 120, 78 at 150 and **exactly 80 at 180, which is the budget**, with the town still two thirds outside the box. Read its box before raising the number |
 | — | RENDERING | ~~R-W5a2 + R-W3b(a2)~~ | **SEEN** | **DONE 2026-08-17 — 16 batches → 1, and the reach went straight from ±120 m to ±240 m on the calls it freed.** Roughness is the last thing that was splitting the town, and it is per-vertex now; the worst anchor reads **50 draw calls of 80 where it read 74 this morning**, at the SAME 11.7 cm texel. `green_tree` 27 → **49** of 331 structures and 0 → **70** of 730 stems; `south_water` 26 → **91** and 54 → **239**. **Its finding is that the batch merge is not neutral after all** — 942 pixels of 7,168,000 move across seven poses, all of them depth ties between co-planar surfaces of different materials, which is R-BUG6's own class one draw call in. Read its box before quoting a draw-call figure taken before this date |
-| — | RENDERING | ~~R-W4c(b2)~~ | — | **NOT A PICK — blocked on the owner.** "Raise the bloom" has no bar left to raise it to |
-| — | TOWN | ~~T-I3(b)~~ | — | **NOT A PICK — blocked on the owner.** Three of the six I3 slots are a count of nothing |
+| — | RENDERING | ~~R-W4c(b2)~~ | — | **DONE 2026-08-27 as T-0034** — the bar is the lattice, the records already ask for 18 % more bloom than it can draw, and the prairies are on the ceiling now |
+| — | TOWN | ~~T-I3(b)~~ | — | **DONE 2026-08-27 as ticket T-0032** — closed at **662** on the owner's delegated pick; the institutional matrix row is now the census, and the target is gated against a civic ledger re-derived on every run |
 | — | GROUND | **T-E5(b)** | UNSEEN | how much of the public square was wet — research, opened by T-E5(a) |
 | — | RENDERING | ~~K45(b) change one~~ | **SEEN** | **DONE 2026-08-17 as K45(b4) — 88 poplars stand on 4.30 ha of lakeshore sand that had never been offered a stem, and the placement rule is the SWARD'S.** The dune is a substrate and the heightfield does not carry substrate, so `communityAt` asks `flora.js` which zone a point is in rather than carrying a second copy of the beach. Two findings: the 40.2 ha refused east of the limits is **4.30 ha of plantable lakeshore and 33.6 ha of sand prairie whose own record carries no tree at all**, so most of it was never a woody omission; and **`SPECIES` is keyed by species id, which breaks the first time a species is recorded twice** — `populus_deltoides` is a 22–30 m gallery emergent AND a 5–15 m dune leaner, and the beach was one line from being planted with the wrong one. Read its box before adding a species to a second zone |
 | — | RENDERING | ~~K45(b3)~~ | **SEEN on `light`** | **DONE 2026-08-17 — the control was inert for the wood and was quietly halving the one thing that must not thin.** Measured before the repair: the three levels planted **472 / 470 / 437 trees** — one wood planted three times, exactly as K45(b2) predicted — while the point-bar willow screen went **258 / 190 / 133 stools**, because the thicket roll is a fixed per-cell chance and a coarser grid visits fewer bar cells. **So the only thing scene detail did was break the screen its own comment says must not be broken.** `keep` is now a fraction on the tree acceptance roll (1 / 0.80 / 0.60, the levels' own triangle ceilings read as a ratio — L121) and the thicket roll scales with its cell instead: **`light` 437 → 257 trees and 133 → 182 stools**, scene triangles **416,222 → 370,738**, `full` unchanged to the stem, and the wood reaches N +391.8 m at `light` against `full`'s +397.7. Read its box before quoting a stem count at any level but `full` |
@@ -348,7 +388,8 @@ stated here because the next run will otherwise spend a third of its budget redi
 Of the numbered picks left standing, **T-V1(b), K30(c), T-E3 and R-W2c all say NEEDS A BAKE** and
 cannot go green on the improve runner; **T-V2 landed 2026-08-16 (its `hold` was withdrawn — the
 number it was parked on had been fixed by other parcels), and R-W1 is still on `hold` PR #125**;
-**R-W4c(b2), T-I3(b) and R-M1b are blocked on the owner**; and **R-W5a2's own box says to take it
+**R-M1b is blocked on the owner** (R-W4c(b2) closed 2026-08-27 as T-0034, and T-I3(b)
+as ticket T-0032 on the owner's delegated pick); and **R-W5a2's own box says to take it
 only when the lane has nothing sharper**. That leaves **R-W2b** — whose R-W2a finding 2 makes it a
 schema change across 315 records with no source yet stating a roof covering, so it is larger than
 "unblocked" reads — and **T-E5**, whose ground half also needs a bake though its research and
@@ -584,6 +625,37 @@ it and then it is blocked on S9 street control and the terrain extensions, not o
 Acceptance numbers are copied from RENDERING §5 so a builder does not have to hold two
 documents open. Where a phase has a bake-dependent half, it is marked — ship the half you
 can and say so.
+
+### T-0179 — three families offer a shed their ridge band cannot carry · **DONE 2026-08-27 — two held, one refuted, and a fourth nobody had measured**
+
+**The reasoning archive for L182 and the STATUS box of the same date.** T-0148's sweep printed C1,
+F1 and F4 as NOTE lines: families whose crosswalk roof line offers a SHED their own `ridge_ft` band
+cannot carry, latent because no generator dealt them one. Asked of what the archetypes actually
+build:
+
+| family | ticket | measured | the reason |
+|---|---|---|---|
+| C1 | 231 of 441 | **231 of 441** | `frame_storefront._shed_roof` always falls back-to-front; the run is the 20-30 ft depth |
+| F1 | 399 of 441 | **399 of 441** | `outbuilding` with no open side, so the fall is down 32-50 ft |
+| F4 | 441 of 441 | **0 of 441** | F4's own entry is `1/open`, "open posts", "part-open sides" — the fall goes across the 24-36 ft width (L73) |
+| W5 | — | **84 of 441** | never swept: the sweep reports a family with no pitch band before testing any FORM |
+
+**Three findings worth keeping.** (1) The sweep constrained a claim it did not know it was
+constraining — the AXIS a shed falls down — exactly as T-0145 had constrained the eave; the shape of
+that error is now twice-observed and worth watching for a third time. (2) `ridge_model` turned the
+shed's span with `gable_front`; all three archetypes that build a shed ignore the orientation
+entirely, and no committed GLB is a shed on those archetypes, so the gate that exists to keep the
+model honest had nothing to compare against. **A model checked only against what has been built is
+unchecked wherever the build has not gone.** (3) The shed set was written five times and had drifted
+over A5 — one roof stands on the difference — which is the same one-rule-two-files fault
+`family_bands.py` was created to end, three files later.
+
+**Owner question, unresolved and not blocking:** the `ridge_ft` column is authored for a gable's
+half-span. Retiring the shed reading for C1, F1 and W5 in the crosswalk would be cleaner than
+recording a refusal on every one of their records; recording it is what an agent may do, editing the
+specification is not. See L182 "How to resolve".
+
+**Still owed:** T-0212, the one A5 roof held on a gable pending a bake.
 
 ### R-BUG5b — the trees are still in the river · **DONE 2026-08-16 · the whole wood was drawn mirrored**
 
@@ -2152,6 +2224,66 @@ between rather than an agent to pick:
 **Cost, measured.** The whole parcel: one 3-station desktop capture at **4 min 02 s**, and 19 s
 for `measure_bloom_target.mjs` (of which §2 is 4032×3024 pixels twice). No renderer file changed,
 so no bake and no new geometry.
+
+#### R-W4c(b2) — DONE 2026-08-27 as T-0034 · there was no target, but there was a CEILING, and the records were already over it
+
+**What it was.** "Raise the bloom." R-W4c(b1) had removed the bar it was to be raised against and
+left the parcel blocked on the owner with three routes in its box. The owner ruled on the ticket
+instead: *"I think you can adjust that without source"* — the bloom may be tuned as a
+**reconstructed** value, bounded, declared in `docs/LIBERTIES.md`, never promoted. So the target
+was never re-derived and is not quoted below. What the run had to find was the other half of the
+ticket's own title: **raising a number is only a raise if something downstream can carry it.**
+
+**The instrument.** `tools/measure_bloom_headroom.mjs`, new, committed, `--assert`. It drives the
+placer through its own entry points — `flora.update` with a synthetic camera, then `flora.stats`
+and `flora.communities()` — and asks the three ceilings between `density_per_ha` and a flower on
+the screen which of them binds. Two readings had to be wired for it, because they were inside the
+module and unreadable from outside: `flora.stats.caps` (the ceiling beside each set's count) and
+`flora.forbLattice` (the lattice geometry `forbShareOf` clamps against). **A share sitting on its
+clamp had looked exactly like a share that was simply small** — the same blindness K55 hit when it
+multiplied `z10_settled_town`'s forb density and drew the same 146 plants.
+
+**1 · THE BAR IS THE LATTICE, AND IT IS 0.346 FORBS PER SQUARE METRE.** `forbShareOf` is
+`min(1, density × cell² / perCell)`: four slots to a 3.4 m cell, one plant per slot, and not one
+plant more whatever any record says. Measured on the build before the change, **six of ten forb
+layers were already ON that clamp** (K58, still open) — for those, `density_per_ha` is a number
+the renderer cannot spend and a raise applied to it draws nothing.
+
+**2 · AND THE RECORDS ALREADY ASKED FOR MORE BLOOM THAN IT CAN DRAW.** Nothing had to be invented
+to raise the prairie. Every abundance in `data/flora` is a *range*, the renderer had been reading
+the **midpoint** — a figure no source states, chosen silently — and the top of the same range is a
+reading of the same evidence:
+
+| community | midpoint sum | recorded top | share was | share now | raise |
+|---|---|---|---|---|---|
+| `z02_mesic_prairie` | 0.2800 /m² | **0.4080** | 0.809 | **1.000** | 1.236x |
+| `z01_wet_prairie` | 0.2760 | **0.4070** | 0.798 | **1.000** | 1.254x |
+| `z09_sand_prairie` | 0.0725 | **0.1140** | 0.210 | 0.329 | 1.572x |
+| the other seven | — | — | 1.000 / 0 | 1.000 / 0 | **none** |
+
+The mesic prairie's own records sum to **0.408** where the lattice carries **0.346**, so **18 % of
+what the evidence asks for is clipped by a rendering constant**. The species lottery still runs on
+the midpoints, so the mix of the sward did not move: only how many slots are filled. Declared as
+**L182**, reconstructed tier, bounded by the records themselves — no species is planted denser
+than its own record's larger figure.
+
+**3 · WHAT A VISITOR GETS, AND THAT IT IS THE LAST OF IT.** At `prairie_west`, **206 forbs and
+1,617 flower heads → 256 and 1,968**, for 8,191 more sward triangles; at `prairie_south`, 125 and
+949 → 155 and 1,122. **Both prairies now read a share of 1.000 with no headroom left.** The next
+flower on that ground needs a different lattice (K58) and not a different number, and this box is
+the measurement that says so.
+
+**4 · TWO FINDINGS THE RUN DID NOT CAUSE, both filed.** Standing in every community at four
+bearings: `flora-head-spike` in the settled town and `flora-head-dome` in the wet woods stand at
+**820 of 820** and truncate silently — `maybeHead` stops pushing mid-plant — on the build *before*
+this raise as well as after (**T-0208**). And the head ring reaches **23.65 m** while the sward is
+carried to **175 m** as aggregate cards that carry no head at all, so **bloom covers 1.8 % of the
+ground the sward covers** (**T-0209**). That second one is the real answer to "raise the bloom"
+and it is a DISTANCE, not a density: this parcel spent the whole of the lattice's remaining 24 %
+and the frame past twenty-four metres did not change by a pixel.
+
+**Cost, measured.** One browser run of `measure_bloom_headroom.mjs` at about 70 s (32 mosaic stands
+plus 3 sweep poses); no bake, no new geometry files, no data record edited.
 
 ### R-W5 — water, post-lite, dynamic resolution · **SPLIT TWO WAYS — claim ONE**
 
@@ -6017,7 +6149,38 @@ chosen, so the answer is code rather than a habit; the four T-A9 candidates are 
 and the two refusals either stand with a reason or are adopted; **T-A4's fourteenth labouring
 household is re-decided too, because a pair reading refuses it**; `tools/check.sh` green.
 
-### K29 — the schedule deals log cabins to the town's commercial frontage · **UNCLAIMED · from T-A8 (L99) and T-A9 (L100)**
+### K29 — the schedule deals log cabins to the town's commercial frontage · **DONE 2026-08-27 (T-0022) — THE PREMISE IS REFUTED · from T-A8 (L99) and T-A9 (L100)**
+
+**THE FRONTAGE TERM PROPOSED BELOW WAS NOT WRITTEN, AND SHOULD NOT BE.** T-0022 measured the
+thing this box assumed and found it backwards. Before that run, **15 invented buildings stood on
+South Water Street's line and not one of them was log** — 13 of the 15 the party-line row itself
+— against a documented record for the same line of 8 buildings, one of them (`hogan_store`) log.
+The five log dwellings the schedule HAD dealt those blocks were all on the Lake face, put there
+by the recipes' own face rule (*"the two best dwellings … take its two free lots … and the two
+meanest take Lake"*), which is a preference in no source — and Lake is the other principal
+thoroughfare, so the rule moved cabins from one commercial frontage to another.
+
+**The evidence, three witnesses.** The committed record already stands log TRADE buildings on the
+principal-street line (`hogan_store`, `philo_carpenter_log_shop`, `madore_beaubien_house`,
+`mansion_house`) and a documented log residence one street back (`james_kinzie_house`). The only
+picture of the row — image 11 of the owner's 2026-08-18 brief, the plate T-0078 already cites for
+the party-line TREATMENT — draws it as *"roughly ten one-storey log and frame buildings shoulder
+to shoulder facing the river"*. And the owner's ruling of 2026-08-27 on PR #371's fork, option
+(b), puts an anonymous dwelling behind a documented store on a business-front lot outright.
+
+**What shipped instead: the arrangement moved, not the schedule.** Ten records changed places —
+five log dwellings into the South Water row, five frame cottages out to the Lake lots the cabins
+held. No roof added or removed, no family total moved, no id, footprint or form value changed, no
+bake. `tools/measure_frontage_fabric.py --gate` holds the result and is red at the commit before.
+L182 records the liberty.
+
+**What of this box survives.** Its FIRST half — weighting the commercial families (C, F, W) onto
+the business front — is not refuted: the same census reads South Water's documented line at 80 %
+trade. That is a genuine schedule change, it is invisible until a block is built, and it is
+**T-0208**. The text below is kept verbatim as the reasoning that was tested.
+
+---
+
 
 **Phase:** lane 2, data only · **Runner:** improve-runner (no Blender) · **Effort:** M
 
@@ -6341,6 +6504,42 @@ resolutions exist and the research settles none of them:
 counterfactual) · `docs/ROADMAP.md` · `chicago/4d/tickets/T-0009-*.md` (blocked on the owner) ·
 `renderers/web/js/changelog.js`. **No structure record, footprint, coordinate, confidence or
 baseline was touched, and `docs/LIBERTIES.md` gains no entry — nothing was invented.**
+
+#### K30(d) RESOLUTION 1 IS TAKEN FOR SIX OF THE ELEVEN — 2026-08-24, T-0127 → T-0188
+
+**The owner answered it, in a ticket, in his own ask.** K30(d) left three resolutions and said
+resolution 1 — *"the buildings follow the street"* — is *"a position change on sourced records,
+which is exactly what AGENTS.md forbids an agent to do alone"*, and T-0009 has sat `blocked-owner`
+on it since. **T-0127** (`requested_by: owner`, `seen: true`) is that decision: *"ten documented
+buildings on that side were placed against the MODERN kerb, read off OpenStreetMap, rather than
+against this project's own platted line… **Reconciling them with the committed plat closes those
+gaps and is worth doing on its own terms** — the disagreement is a finding about the dataset, not
+about the sidewalk."*
+
+**What T-0188 did with it.** Measuring the walk band found **eleven**, not ten — `temple_building`
+is the eleventh and no earlier count had it. **Six were reconciled**: `harmon_loomis_store`,
+`madore_beaubien_house`, `peck_store`, `chicago_democrat_office`, `temple_building` and
+`jh_kinzie_forwarding_store`, each translated along its block face's inward normal until its north
+wall stands 1.50 m back from the committed frontage line — the margin
+`generate_block_infill.py` already gives every reconstructed unit on those faces. **No along-street
+position moved and no confidence grade moved**: this is each record's OWN stated method
+(*"the south kerb taken 12.2 m south of it… so the north face sits on the South Water frontage"*)
+re-run against this project's committed centreline instead of the modern OpenStreetMap one, which
+is the reference frame K30(d) finding 4 identified as the whole cause. Town-wide corridor laps go
+**29 → 26**, and the six drop from 4.51–7.48 m to 0.16–0.21 m, on a cross street.
+
+**Five could NOT be, and the blocker is not the owner's this time.** `h_jones_store`,
+`carpenter_south_water_store`, `pruyne_kimball_drugstore`, `chicago_american_office` and
+`frederick_thomas_shop` each seat, once reconciled, on a platted lot the 665-roof schedule has
+already dealt to the anonymous South Water frontage run, and `generate_block_infill.py` refuses to
+deal a roof to a lot that already carries one. Each was tried alone to prove it was its own
+blocker. They are refused **in writing, per store**, in their own `position.note` and in
+`data/frontage/town_street_edge.json`'s `refused`. **T-0189** owns the untangling.
+
+**T-0009 is untouched here** — it is a `needs_bake` ticket about 29 bodies on eight streets and its
+`blocked_on` text is wider than these eleven — but its decision is now answered for the South Water
+cluster, and whoever picks it up should read this heading first.
+
 
 
 **Phase:** lane 2, data only · **Runner:** improve-runner (no Blender)
@@ -6747,7 +6946,34 @@ rename is not worth a bake.
 `data/structures/cook_county_courthouse_1835.json` · `data/structures/estray_pen.json` ·
 `data/exclusions.json` · `data/sidecars/1835/*` · `docs/LIBERTIES.md` (L110) · `docs/STATUS.md`
 
-### T-I3(b) — the six-roof target, which is a claim about the town and not about its public buildings · **BLOCKED ON THE OWNER · opened 2026-08-16 by T-I3(a)**
+### T-I3(b) — the six-roof target, which is a claim about the town and not about its public buildings · **DONE 2026-08-27 as ticket T-0032 · route 1 · opened 2026-08-16 by T-I3(a)**
+
+> **CLOSED.** The owner ruled on 2026-08-17 — *"close it at 665 or 662 — either is close"* — and
+> **route 1** is the one taken: `roof_total` **665 → 662**, `principal_functional` **511 → 508**,
+> `family_targets.I3` **6 → 3**. Route 2 was refused for the reason T-I3(a) established: the three
+> slots were a count of nothing rather than miscategorised real roofs, so re-typing them into
+> ordinary families would have invented three buildings on the strength of an arithmetic artifact.
+>
+> **The correction found a second fault in the same row.** The `institutional_public` matrix line
+> apportioned twelve roofs as south 10 / west 1 / north 1 while the named institutional records
+> stand **south 5 / west 1 / north 3** — so the schedule kept finding institutional headroom in the
+> South Division that no evidence supports, and none in the North where three of these buildings
+> are. The row is now the census, which is what carries the **south district target 370 → 365** and
+> the **north 150 → 152** rather than the 370 → 367 predicted below. No other matrix row moved.
+>
+> **What that bought.** Every I3 slot has left the schedule — one at `blk_lake_franklin`, one at
+> `blk_south_water_market`, three in the South balance — so no block is short a roof for arithmetic
+> reasons any more. The remainder falls **327 → 324**, the coverage-gated balance **299 → 296**, and
+> the gate screen a visitor meets first now reads *338 buildings standing, of the 662 the town held*.
+>
+> **And it is asserted rather than remembered.** `tools/measure_institutional_claims.py` carries the
+> civic ledger — every candidate settled against the committed dataset, not against this page — and
+> fails the gate if the I3 target is not the number of roofs that stood, or if the institutional row
+> is not the census. Nine self-tests break each assertion in memory to prove it fires. The filename
+> `1835_665_roof_programme.json` and the tool name `reconcile_665.py` **stay**, with a line in each
+> saying the number in the name is history; the live total is always `remaining.of_target`.
+
+
 
 **Three of the six I3 slots are a count of nothing.** That much is settled. What is not settled is
 what to do with them, and the reason an agent should not choose is the R-W4c(b2) reason: the
@@ -7365,7 +7591,52 @@ them; this is the second-lowest. K20 still owns the fix.
 `docs/ROADMAP.md` · `renderers/web/js/changelog.js` · the published mirror. **One tool file:
 `tools/measure_adoption_tests.py`, new, standalone, not wired into `check.sh`.**
 
-### K31 — the end rule is exhausted on the Randolph–Washington row · **UNCLAIMED · from T-A15 · Effort: S to decide, S to apply**
+### K31 — the end rule is exhausted on the Randolph–Washington row · **DECIDED 2026-08-27 · T-0023 · the criterion is the WALK**
+
+> **The decision, so nobody has to read the rest of this box to apply it.** The end rule keeps its
+> claim — the better roof stands nearer the Dearborn Street drawbridge — and its criterion becomes
+> **the distance WALKED along the committed street centrelines** from the roof's own frontage to the
+> bridge's south abutment. It is carried in
+> `data/reconstruction/1835_platted_block_parcels.json` → `placement_rule.end_rule`; run
+> `tools/measure_end_rule.py` and quote it. Full admission in `docs/LIBERTIES.md` **L182**.
+>
+> **Four things were measured on all 36 faces of the platted grid, and each answers one of the
+> questions this box asked.**
+>
+> 1. **The trap this box warned about cannot be sprung, because there is nothing to trap.** The two
+>    criteria name **the same nearest lot on 36 of 36 faces**. K31 said the successor must not be
+>    chosen on a block where it agrees with the old rule; they agree EVERYWHERE, so no block could
+>    have discriminated. **The choice was never about which roof goes where** — it was about whether
+>    the order could still be called reasoned. Nothing was re-graded and nothing was retro-fitted.
+> 2. **The straight line measures how far away the BLOCK is, not where a roof stands on it.** Its
+>    worst step between two neighbouring party-line units falls from **6.06 m** on the far blocks to
+>    **0.52 m** at `blk_randolph_clark`, and it is below the floor on **12 of the 36 faces** —
+>    including the back face of `blk_south_water_clark`, **the block T-A11 wrote the rule on**. The
+>    exhaustion was never a fact about this row; it reached this row first.
+> 3. **The floor is the recipe's own declared invention, not a threshold picked to suit.** The
+>    recipe deals its 48 principal slots setbacks of **4.0 m to 7.5 m** and calls them "a period
+>    typology and not a measurement of this lot"; a setback moves a roof along the outward normal,
+>    broadly the axis the rule grades along, so **3.50 m** is the noise the records already admit to
+>    on the same line. Below it a criterion is grading its own invention. The rule now says that
+>    where its step falls at or under that range **the parcel records the order as arbitrary** —
+>    this box's third candidate, kept as a bound rather than adopted as the answer.
+> 4. **What the rule is asked to rank changed under it in T-0079 and nobody noticed.** Before the
+>    core density standard a block carried one principal roof per lot, so the rule ordered LOTS
+>    ~24.6 m apart. A party-line run now stands three units on ONE lot ~6 m apart, so the rule has
+>    been ranking the front doors of what the plat calls a single property ever since. **That, more
+>    than the bridge's bearing, is why it ran out of room.** Under the walk the step is the unit's
+>    own 6.072 m on every face, because a metre of frontage is a metre of walk.
+>
+> **A reproduction the command owes its predecessors.** T-A11's eight figures on
+> `blk_south_water_clark` re-derive within **1.7 m** (ratio 2.908 against 2.86) — it read the
+> frontage. T-A15's read **26.4 m nearer**, which is the distance from a lot's frontage to its
+> middle: L106 names the point in passing ("the 49.3 m between the lot 2 and lot 6 **centroids**").
+> **The criterion had been read at two points 26.5 m apart on two blocks and neither parcel said
+> which.** T-A15's finding is unaffected — its spread reproduces at **7.86 m** against 7.5 m — and
+> that discrepancy is the ordinary reason a measurement becomes a command.
+
+**The box as it stood when it was opened, kept verbatim:**
+
 
 T-A11's criterion — the better roof goes to the free lot nearest the Dearborn Street drawbridge —
 has thinned on every block since it was written: **2.93× at T-A12, 1.13× at T-A13, 1.11× at T-A14,
@@ -9586,6 +9857,63 @@ surfaces OF that layer — one crown behind another, a chimney against its own r
 against the house behind it. Those are silhouettes too, and 94–98 % of the "interior" count is
 made of them. What is left of R-BUG6 at `from_above` is: 21 px exactly coplanar (b), 0 px of
 self-fight (here), and the rest is the town's own edges being resampled.
+
+### R-BUG6(c3) — the PHONE's half of the same edges · **ANSWERED 2026-08-24 by T-0157 · MSAA now ships on every device**
+
+Everything above was measured at 1280×800 on the DESKTOP boot, which has had `antialias: true`
+since Milestone 0. `main.js` read `antialias: !coarse`, so the device that was NOT measured was
+the only one drawing these edges with no multisampling at all — and mobile is a release gate here.
+
+**First, the instrument could not see a phone.** `measure_tie_class.mjs`'s `TIE_VIEWPORT=mobile`
+opens a plain `newPage({ viewport })`; `prefersTouch()` asks for `(pointer: coarse)` or
+`maxTouchPoints > 0 && innerWidth < 900`, and **a viewport satisfies neither**. So the existing
+"mobile" reading was the desktop renderer in a narrow window — `antialias: true`, `detail: full`,
+the pointer-lock backend. Same shape as T-0018's finding against `SWARD_VIEWPORT=mobile`.
+`tools/measure_phone_aa.mjs` uses a context with `hasTouch` and `deviceScaleFactor: 2`, the
+release gate's own, and prints `pointer: coarse`, the resolved detail level and the renderer's
+pixel ratio so the boot cannot be assumed.
+
+**And then the obvious number pointed the wrong way.** 390×780, published mirror, 2 mm nudge,
+shadow map off by R-BUG6(a)'s repaired control, control 0 px and return 0 px:
+
+```
+station        flicker px        hard flips (delta >= 64 of 255)   worst d    mean d
+from_above     1056 -> 2482            25 -> 0                   105 -> 28  15.6 -> 6.8
+lake_market    4843 -> 7310           124 -> 0                   140 -> 37  14.8 -> 6.4
+```
+
+**The flicker COUNT rises 135 % aerial and 51 % at eye height when MSAA is switched on** — the
+count this file quotes in three separate boxes as the measure of the defect. It rises because a
+partial resample touches more pixels than a whole flip does. What collapses is severity: all 149
+pixels that were swapping surface outright stop, and the worst single pixel moves about a quarter
+as far. **A parcel that had measured only the count would have refused the fix on its own
+evidence**, which is R-BUG2's lesson arriving from a new direction: measure before choosing, and
+be ready for the prime suspect's own metric to be the misleading one.
+
+**Cost, and its limit.** Ten scene anchors, clock held, `readPixels` fence, A/B/A: **+56.4 %**
+of a frame (24,457 → 43,283 ms), the runner drifting +26.3 % between its own two A passes; two
+four-station repeats read +49.3 % and +71.6 %. Drawn through SwiftShader, a SOFTWARE rasteriser
+resolving every sample on the CPU — the harshest witness there is for this change, so the figure
+is an upper bound. **Phone-silicon cost is not measured and not claimed.** The visitor's existing
+Render-quality control was timed rather than asserted: at pixel ratio 1 with MSAA the frame is
+6–9 % CHEAPER than the ratio-1.5 frame that shipped before, still antialiased. `light` stays the
+floor.
+
+**A second finding about the ownership instrument, from running it at EYE HEIGHT for the first
+time.** The footprint partition had only ever been read from the air, and its own header warns
+that a large overlap between two layers is a bug in the tool rather than a finding. Aerially the
+overlaps are 0–310 of 1,056 and the partition is sound. At `lake_market` the ground's footprint
+overlaps the streets' on **2,436 of its 2,607** flickering pixels — the street layer is a skin ON
+the heightfield, so hiding either moves the same pixels. Each pixel is still counted once, but
+the credit between those two layers falls to the LAYERS list order rather than to occlusion, so
+the eye-height `streets`/`ground` split is not an ownership claim. Nothing above depends on it:
+the frame totals are attribution-free.
+
+**A premise corrected on the way.** T-0157 held that a phone is "capped at 1.5 rather than 2".
+The boot-time `coarse ? 1.5 : 2` is superseded by `setPixelRatio(Math.min(dpr, hud.settings
+.quality))` and `quality` defaults to 1.5 on BOTH platforms — so the phone reports 1.5 at dpr 2
+and the desktop 1.0 at dpr 1. The phone was already supersampling more than the desktop; what it
+lacked was MSAA.
 
 ### R-BUG6(b) — the parcel as written, kept for the record
 

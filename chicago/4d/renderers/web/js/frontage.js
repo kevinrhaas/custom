@@ -675,15 +675,41 @@ export async function createFrontage({
    * one bounding sphere and one draw call rather than three of each.
    */
   const named = new Map();
-  const bufFor = (chunk, pickId) => {
+  const bufFor = (chunk, pickId, standing = false) => {
     if (!chunk) return null;
-    let hit = named.get(chunk);
+    const key = standing ? `${chunk}__standing` : chunk;
+    let hit = named.get(key);
     if (!hit) {
-      hit = { buf: { pos: [], nrm: [], conf: [] }, pickId };
-      named.set(chunk, hit);
+      hit = { buf: { pos: [], nrm: [], conf: [] }, pickId, standing };
+      named.set(key, hit);
     }
     return hit;
   };
+  /**
+   * T-0127 — WHY A FENCE NO LONGER SHARES ITS WALK'S MESH, and it is a shadow
+   * decision rather than a culling one.
+   *
+   * T-0069 put a face's sidewalk, its corner crossing and the fence behind it in
+   * ONE buffer, because three meshes where one would do is three draw calls and
+   * three bounding spheres. That was right while every furniture mesh cast the
+   * same shadow. It stops being right once the two halves want different
+   * answers from the sun: a plank walk lies 0.11 m proud of the ground and its
+   * own shadow is about 0.04 m wide at noon on 1 July — nothing a visitor can
+   * see — while a 1.37 m board fence throws about half a metre of it along the
+   * walk it stands behind (T-0115's ledger costed both). Drawing the boards into
+   * the shadow map buys nothing and costs their whole triangle count a second
+   * time, at the two tiers that cast at all.
+   *
+   * So the standing timber goes into its own buffer, keyed PER STREET rather
+   * than per face: one extra mesh for each covered street instead of one for
+   * each fenced face. That is the whole of the draw-call cost — three calls in
+   * the colour pass and three in the shadow pass — against the thirty-five
+   * ground-hugging chunks that leave the shadow pass entirely. Per-face
+   * standing meshes would have cost twenty-six of each and made the trade a
+   * loss.
+   */
+  const standingChunk = (record, item) => (
+    item.street ? `${record.id}__${item.street}__fences` : item.chunk);
   const cards = new Map();
   for (const [id, record, why] of loaded) {
     if (!record) { problems.push(`frontage: ${id} — ${why}`); continue; }
@@ -822,7 +848,7 @@ export async function createFrontage({
     // chunk falls back to the layer's shared mesh, exactly as a post does.
     for (const fence of record.fences ?? []) {
       const level = LEVEL[fence.confidence] ?? 1;
-      const bucket = bufFor(fence.chunk, fence.belongs_to);
+      const bucket = bufFor(standingChunk(record, fence), fence.belongs_to, true);
       const target = bucket ? bucket.buf : buf;
       const from = buf.pos.length / 9;
       if (!buildFence(target, fence, terrain, level, problems)) continue;
@@ -846,7 +872,9 @@ export async function createFrontage({
   // The named chunks join the polyline ones: same material, same render order,
   // one bounding sphere each (T-0069).
   for (const [id, hit] of named) {
-    if (hit.buf.pos.length) chunks.push({ buf: hit.buf, pickId: hit.pickId, id });
+    if (hit.buf.pos.length) {
+      chunks.push({ buf: hit.buf, pickId: hit.pickId, id, standing: hit.standing });
+    }
   }
   if (!buf.pos.length && !chunks.length) {
     if (out.census.records) {
@@ -908,7 +936,13 @@ export async function createFrontage({
     const cmesh = new THREE.Mesh(cgeo, mat);
     cmesh.renderOrder = 1;                 // same street-decal ordering as above
     cmesh.name = 'frontage-chunk';
-    cmesh.castShadow = true;
+    // T-0127 — GROUND-HUGGING TIMBER OPTS OUT OF THE SHADOW MAP. The flag is on
+    // the MESH and not on the layer, because within this one layer the boards
+    // and the fences want different answers (see `standingChunk` above).
+    // `applyShadowTier` in main.js reads it; a tier that casts still casts
+    // everything else, and `light`, which casts nothing, is unaffected.
+    cmesh.userData.groundHugging = !chunk.standing;
+    cmesh.castShadow = !!chunk.standing;
     cmesh.receiveShadow = true;
     cmesh.userData.pickId = chunk.pickId;
     group.add(cmesh);

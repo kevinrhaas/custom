@@ -36,20 +36,41 @@ concurrency:
 jobs:
   promote:
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    # 30, not 15. A promotion that dies in checkout is not a safe no-op to shrug
+    # at: it leaves main un-promoted while the log says "in progress", and the
+    # owner has to notice. See the checkout note below for why 15 stopped being
+    # enough.
+    timeout-minutes: 30
     steps:
+      # `filter: blob:none` — a PARTIAL clone, not a shallow one.
+      #
+      # This job needs the full COMMIT history (rev-list main..dev, merge-base,
+      # a real merge), so fetch-depth: 0 has to stay. What it does not need is
+      # every historical BLOB, and that is what got expensive: the nightly bake
+      # rewrites ~287 GLB masters, so the pack is 1.31 GiB and almost all of it
+      # is superseded binaries this job never opens. blob:none fetches commits
+      # and trees up front and pulls blobs on demand — here, essentially just
+      # the one tree that gets checked out.
+      #
+      # Measured, on 2026-08-24: the same fetch-depth-0 checkout of this repo
+      # took 37 s, 47 s, 54 s, 2m20s, 3m32s, 3m40s, 4m45s and 7m11s across the
+      # eight jobs of ONE bake run — and a ninth was still going at 30 minutes
+      # when it was cancelled. It is a lottery, and promotion run #12 drew the
+      # bad ticket and burned its 15-minute cap without reaching a single
+      # promotion step.
       - uses: actions/checkout@v4
         with:
           ref: main
           fetch-depth: 0
+          filter: blob:none
 
-      - uses: actions/setup-python@v5
-        with:
-          python-version: '3.11'
+      # No Python. This job runs git and one node script (check-changelog.mjs)
+      # and nothing else — `pip install jsonschema pyproj` was inherited from
+      # the workflows that run validate.py and cost ~20 s of every promotion to
+      # install libraries no step here imports.
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
-      - run: pip install --quiet jsonschema pyproj
 
       - name: What is on dev
         id: survey
