@@ -220,6 +220,45 @@ run reported nothing about — T-0166's part 7 reading is literally ">10 m", and
 the stamp on, a killed run is still a profile of everything it reached, which is what places the
 next cut. It is off by default so the gate's own output stays comparable between runs.
 
+**AND EVERY NUMBER IN THE TABLE ABOVE IS A READING OF THE MACHINE AS MUCH AS OF THE SUITE —
+T-0167 said so, and 2026-08-27 put a factor on it.** T-0167 wrote that "these desktop numbers move
+by minutes between runs because SwiftShader's cost tracks whatever else the machine is doing", and
+sized its cuts on margin rather than on any single reading. **T-0215 measured how far that goes.**
+On a box carrying a dozen parallel agents — load average **38.7-51.7**, **71-115** concurrent
+Chromium processes — ten consecutive animation frames of this scene cost
+
+**17,036 · 29 · 333 · 21,451 · 20,211 · 119 · 4,420 · 22,280 · 12,242 · 26,580 ms**
+
+against the **0.46-1.10 s** of 2026-08-13. That is a factor of twenty on the quantity every
+Playwright action is denominated in, and the 29 ms frames in the same sample are the proof it is
+contention rather than the scene. Boot to `ready` measured **29 s, 106.8 s and 127.4 s** on one
+tree inside twenty minutes, against the 30 s the boot check allows; two runs had their browser
+killed outright; a `page.goto` against a **local static file server** timed out at 30 s. So:
+
+- **A part's timing is only comparable to another taken under the same load.** Record the load
+  average and the Chromium process count beside any reading added to the table above, the way
+  T-0215's are recorded in its ticket. A margin measured at load 2 is not a margin at load 50.
+- **A `page.click` timeout on this suite is a question, not a verdict.** It has now twice been
+  read as a broken control and twice been the budget — 2026-08-13 and 2026-08-27, the second time
+  by three separate agents on one day. The smoke now prints what a frame costs whenever an action
+  times out, and `clickChrome` (part 8's fourteen chrome clicks) takes the panel chrome out of the
+  race entirely without dropping one assertion. See STATUS 2026-08-27.
+- **The ten-minute ceiling this section exists to fit is not the binding constraint on a loaded
+  box.** Part 8 measured 6 m 10 s at desktop on 2026-08-24 and could not reach its first assertion
+  in 4 m 23 s on 2026-08-27. Cutting parts finer does not help that; running fewer of them at once
+  does (T-0216).
+
+**AND THE CONTROLLED A/B, TAKEN WHEN THE BOX DRAINED.** `origin/dev`'s own unmodified harness, on
+the same tree, at load 10.4-13.7 with 20-24 Chromium processes: **37 passed, 0 failed, all 28
+staged checks, SMOKE PASS — in 14 m 33 s.** Two readings to hold together. Stage 8 was never
+broken: the harness that failed three agents is green on a quieter machine. And it does not fit:
+**14 m 33 s is four and a half minutes past the ten-minute ceiling**, on a part T-0167 measured at
+6 m 10 s three days earlier and cut to that size deliberately. So the table above is a *floor* on
+what these parts cost on a shared box, not a description of it. T-0215's `clickChrome` puts part 8
+back at **6 m 10 s** — T-0167's figure to the second, all 28 checks — by not paying for frames
+where the frames are not the subject. Desktop-only: the same part costs 2 m 52 s at 390×780, where
+a frame covers a quarter the pixels.
+
 ### NEXT UP — every row says whether a visitor can SEE it
 
 **Rewritten 2026-08-15 on the owner's report that the loop does research and organisation rather
@@ -276,6 +315,7 @@ not at the top of the queue.
 | — | TOWN | ~~K25a~~ | **DONE 2026-08-15** — it is **98 values on 80 of 249 records**, not 54 on 193, and **24 causes, not 98**: seven metre values hold all 54 eaves and six degree constants hold all 38 pitches, because the generator authors the archetype's constant and the note cites the family's band. **Roof pitch had never been measured by anything.** The sub-1-ft question is decided — they are failures, and nearness is the diagnosis. Read its box before quoting any band number |
 | — | TOWN | ~~K33~~ | **DONE 2026-08-15** — it is **623 values on 227 of 249 records**, not 581, and the extra 42 are the finding: `roof_pitch_deg` cites a band on five families whose roof line is **"gable or shed"**, a form with no slope, and K25(a) could not see them because **a value with no band is never tested against one**. Route 2 (split the note), and route 3 is measured as unavailable — the confidence floats are in the mesh hash and prose is not. The assertion is **absolute, not a ratchet**. Read its box before quoting any citation number |
 | — | GROUND | ~~T-E2~~ | **DONE 2026-08-15** — 26.5 % of the modelled land above the water surface is the reservation or the bar, and every gate this project had would have built on it. Nothing moved: **zero** anonymous roofs were there. Read its box before quoting any buildable-ground figure |
+| — | GROUND | ~~T-E4~~ | **REFUTED 2026-08-24 (T-0026)** — there is no southern buildable ground to widen onto. The modelled box ends at local **N -400 m**, INSIDE Washington Street's own platted corridor; of the 0.0819 ha of land south of that corridor, **0.0000 ha** is in the South Division. Madison — the plat's south boundary — is **125.2 m** further south, and the plat's last tier (6 blocks, 48 lots, 6.28 ha) has **0 of 24** boundary points on modelled ground. The South's 120 roofs were gated on street control; the blocker is **terrain**, and street control stops where the ground does. Read its box before quoting any southern-ground figure |
 
 **Every row is tagged. `SEEN` means a screenshot from the same spot looks different when it
 merges. `UNSEEN` means it does not — those are real work and this project needs them, but they are
@@ -308,7 +348,7 @@ rationed.**
 | — | RENDERING | ~~R-W5a2 + R-W3b(a2)~~ | **SEEN** | **DONE 2026-08-17 — 16 batches → 1, and the reach went straight from ±120 m to ±240 m on the calls it freed.** Roughness is the last thing that was splitting the town, and it is per-vertex now; the worst anchor reads **50 draw calls of 80 where it read 74 this morning**, at the SAME 11.7 cm texel. `green_tree` 27 → **49** of 331 structures and 0 → **70** of 730 stems; `south_water` 26 → **91** and 54 → **239**. **Its finding is that the batch merge is not neutral after all** — 942 pixels of 7,168,000 move across seven poses, all of them depth ties between co-planar surfaces of different materials, which is R-BUG6's own class one draw call in. Read its box before quoting a draw-call figure taken before this date |
 | — | RENDERING | ~~R-W4c(b2)~~ | — | **DONE 2026-08-27 as T-0034** — the bar is the lattice, the records already ask for 18 % more bloom than it can draw, and the prairies are on the ceiling now |
 | — | TOWN | ~~T-I3(b)~~ | — | **DONE 2026-08-27 as ticket T-0032** — closed at **662** on the owner's delegated pick; the institutional matrix row is now the census, and the target is gated against a civic ledger re-derived on every run |
-| — | GROUND | **T-E5(b)** | UNSEEN | how much of the public square was wet — research, opened by T-E5(a) |
+| — | GROUND | ~~T-E5(b)~~ | **SEEN** | **DONE 2026-08-24 as T-0027 — and it refuted its own question. There is no wet fraction to read: 43,885 samples at 0.5 m over the platted block, 0 of them at or below the water surface, and the block's whole relief is 1.49 in — INSIDE the spec's own micro-relief noise, so the terrain models no basin here and a fraction read off it would be a read of the seed. The answer is a DEPTH: the dossier's own bed for zone 15 is +1.0 to +2.0 ft and the committed ground stands 0.84 to 1.96 ft above it, so the pond has to be DUG, not chosen. What was wrong was the SWARD — `docs/research/02-flora.md` heads ZONE 3 with the Public Square by name and `z03`'s elevation-band extent could never reach a block drawn at the plain's height. Read its box before proposing an extent for zone 15 |
 | — | RENDERING | ~~K45(b) change one~~ | **SEEN** | **DONE 2026-08-17 as K45(b4) — 88 poplars stand on 4.30 ha of lakeshore sand that had never been offered a stem, and the placement rule is the SWARD'S.** The dune is a substrate and the heightfield does not carry substrate, so `communityAt` asks `flora.js` which zone a point is in rather than carrying a second copy of the beach. Two findings: the 40.2 ha refused east of the limits is **4.30 ha of plantable lakeshore and 33.6 ha of sand prairie whose own record carries no tree at all**, so most of it was never a woody omission; and **`SPECIES` is keyed by species id, which breaks the first time a species is recorded twice** — `populus_deltoides` is a 22–30 m gallery emergent AND a 5–15 m dune leaner, and the beach was one line from being planted with the wrong one. Read its box before adding a species to a second zone |
 | — | RENDERING | ~~K45(b3)~~ | **SEEN on `light`** | **DONE 2026-08-17 — the control was inert for the wood and was quietly halving the one thing that must not thin.** Measured before the repair: the three levels planted **472 / 470 / 437 trees** — one wood planted three times, exactly as K45(b2) predicted — while the point-bar willow screen went **258 / 190 / 133 stools**, because the thicket roll is a fixed per-cell chance and a coarser grid visits fewer bar cells. **So the only thing scene detail did was break the screen its own comment says must not be broken.** `keep` is now a fraction on the tree acceptance roll (1 / 0.80 / 0.60, the levels' own triangle ceilings read as a ratio — L121) and the thicket roll scales with its cell instead: **`light` 437 → 257 trees and 133 → 182 stools**, scene triangles **416,222 → 370,738**, `full` unchanged to the stem, and the wood reaches N +391.8 m at `light` against `full`'s +397.7. Read its box before quoting a stem count at any level but `full` |
 | — | RENDERING | ~~K45(b2)~~ | **SEEN** | **DONE 2026-08-16** — the planter sweeps the field (reach 27.05 % → 98.37 %), the timber gets the east end Andreas gives it, and `z05`'s own note had Wells Street 440 m from where the committed centreline puts it. Read its box before quoting a reach number or moving a woody east limit |
@@ -2504,7 +2544,7 @@ unchanged to the triangle; the same frame-difference budget R-W5a measured itsel
 | | parcel | scope |
 |---|---|---|
 | **R-W2a** | ~~**the material sheet**~~ · **DONE 2026-08-16 — `docs/RESEARCH/materials.md`. Read its §4 before texturing anything: the chimney is not a material here, no record states a roof covering, and 27 % of the town is painted by a generator that shares no colour with the other 73 %** | Research and write it: which surfaces exist, what each is made of, its **roughness** (not only colour and tiling rate — see the R-G1 finding below), tiling rates, and which archetype parameter selects it. **Files:** `docs/RESEARCH/materials.md` (new) only. No code, no records, so no smoke — it is a document, and it is the input everything downstream needs. |
-| **R-W2b** | ~~**wire the sheet in**~~ · **LANDED 2026-08-21 as T-0007** — `generators/common/materials.py` is the sheet as code and 207 of 243 committed GLBs were repainted from it. **The records needed no new material field:** `finish_key` (222 records) and `roof_condition` (218) were already committed in the `reconstruction` block, one level ABOVE the phase, which is exactly why no archetype could read them — so the wiring is `from_phase(phase, record)` rather than a 315-record schema change. Triangle delta 0 and material-count delta 0 (K36(a)'s five-material threshold binds hard). Findings 2 and 5 discharged; **finding 2's covering half stands untouched** — no `shingle` row exists and roofs are graded by weathering CONDITION. `docs/LIBERTIES.md` L155; materials.md §6; STATUS.md. | Take R-W2a's committed sheet and make the params and records name its surfaces. **Files:** `generators/archetypes/*_params.py` · `data/structures/*.json` (material fields only). Re-derives through the generators' `--check`. |
+| **R-W2b** | ~~**wire the sheet in**~~ · **LANDED 2026-08-21 as T-0007** — `generators/common/materials.py` is the sheet as code and 207 of 243 committed GLBs were repainted from it. **The records needed no new material field:** `finish_key` (222 records) and `roof_condition` (218) were already committed in the `reconstruction` block, one level ABOVE the phase, which is exactly why no archetype could read them — so the wiring is `from_phase(phase, record)` rather than a 315-record schema change. Triangle delta 0 and material-count delta 0 (K36(a)'s five-material threshold binds hard). Findings 2 and 5 discharged; **finding 2's covering half stands untouched** — no `shingle` row exists and roofs are graded by weathering CONDITION. `docs/LIBERTIES.md` L155 (now **L157** — the file is append-only and the number shifted); materials.md §6; STATUS.md. **The half it left is DONE 2026-08-24 as T-0126** — §2.3's dark openings and the glazing beside them, and finding 3's one name over two timbers. Re-measured first: §2.3 says FOUR values and **three ship**, because `inferred_placeholder.py` now paints no committed asset (`--check`: *0 flagged placeholder GLBs; 226 superseded by a canonical bake*), so §1's whole census is stale and must be re-measured before it is quoted again. One `dark` row at `0.072, 0.068, 0.060` / **0.60** over 287 slots — the roughness bounded between `glass` 0.25 and the bare fabrics 0.90–0.94 and taken at their midpoint, because every one of those slots carries surfaces that are certainly not glazed while 156 of them also carry windows, 112 of those sized off the one attested pane. `glass` comes onto the sheet unchanged; `timber` becomes `heavy_timber` + `sawn_framing`. Material-count delta 0, triangle delta 0 (484,903 both sides). L182; materials.md §7. | Take R-W2a's committed sheet and make the params and records name its surfaces. **Files:** `generators/archetypes/*_params.py` · `data/structures/*.json` (material fields only). Re-derives through the generators' `--check`. |
 
 **R-W2a costs almost nothing to run and unblocks the rest** — it is reading and writing, not
 rendering. Do not merge the two: a sheet argued and a sheet applied are different reviews.
@@ -6536,6 +6576,62 @@ blocker. They are refused **in writing, per store**, in their own `position.note
 `blocked_on` text is wider than these eleven — but its decision is now answered for the South Water
 cluster, and whoever picks it up should read this heading first.
 
+#### K30(d) RESOLUTION 1 IS NOW TAKEN FOR ALL ELEVEN — 2026-08-27, T-0199 → T-0220, ON THE OWNER'S RULING
+
+**The last five came onto the plat, and it took a decision rather than a measurement.** The
+blocker above was never geometry: reconciled, each of the five seats on a lot the 665-roof
+schedule had already dealt to this street's anonymous frontage run, and nothing overlapped —
+every one of the eleven was checked against every committed footprint in the town and the worst
+overlap is **zero**. What refused them was the standard itself, *one principal roof to a lot*,
+and the block programme had passed its own occupancy gate only because those buildings were
+drawn out in the road. The repair did not create that; it made it visible.
+
+**The fork, as it was put to the owner** (T-0220, and the recommendation was (b)):
+
+- **(a)** the lot rule holds, the frontage runs give the lots back, **eight roofs leave the town**
+  (338 → 330), four block recipes are re-authored and two households are re-homed or leave;
+- **(b)** a platted business-front lot may carry a documented store at the street **and** an
+  anonymous dwelling behind it; nothing physical objects, the block parcels keep every roof.
+
+**Kevin chose (b) on 2026-08-27**, on the reasoning the ticket recommended: the geometry already
+permits it, and (a) pays eight roofs and two households for a rule the corrected data has itself
+called into question. **This is a standard changing, not a bug being fixed.** It is the same
+argument T-0143 and T-0188 are about — the core density standard, T-0079's — and it decides that
+the town's business front is NOT one roof to a lot.
+
+**How it is written down, so it cannot be mistaken for an exemption later.**
+`tools/plat_occupancy.py` carries the ruling and the clause in its module docstring and answers
+two questions with two maps: `occupied_lots` — *what stands on this lot* — unchanged; and
+`exclusive_lots` — *what BARS another roof* — which is the first less this clause.
+`generate_block_infill.py` and `reconcile_665.py` both read the second, so the generator and the
+schedule cannot drift apart on it (T-A6, T-A7). **Three tests bound it and all three must hold:**
+the lot is named in its block's own `frontage` run in the committed parcel recipes; the standing
+building is RESEARCHED, not one this project's reconstruction programmes wrote; and it stands AT
+the street, its street wall no further back than the run's own units plus one lot margin. A
+fourth falls out: the store must be the lot's only occupant, which is what stops the schedule
+offering a block room it is already building on. **Nothing physical was relaxed and NO second rule was needed** —
+no overlap, the 1.5 m lot margin, the platted corridor and the three-metre separation all still
+bind, untouched. One pair failed the separation gate on the way, the run's westernmost unit at
+**2.40 m** from `carpenter_south_water_store` with their fronts level, and the fix was in the
+recipe rather than in the gate: that break is AUTHORED as `clear_west_of` + `clear_m` on
+`blk_south_water_wells`'s westernmost frontage slot, `place_frontage`'s own note says *"the three-metre separation
+rule — not this recipe — is what fixes the size of the break"*, and the 2.4 m had been authored
+while the store stood 6.62 m out in the roadway and the along-face break was not the real gap.
+On the plat it is. **The authored break moved to the gate — 2.4 → 3.0 m, one anonymous roof
+0.6 m further west, with `clear_why` written beside it.**
+
+**What it bought, measured against `dev` after T-0198:** the town's street edge goes from
+**1,214.5 m of walk in 20 runs to 1,297.3 m in 18**, corner crossings 9 → **11** (212.5 m →
+266.5 m), walking decks 89 → **96**; `blk_south_water_wells`'s and `blk_south_water_dearborn`'s
+South Water faces each go from two stumps to **one whole run** (97.6 m and 67.6 m). Town-wide
+corridor laps **26 → 21**, and all five leave the census outright at every depth, cross streets
+included. **`generate_frontage_works.py`'s march now refuses ZERO steps for a wall anywhere on
+South Water Street** — read off the march itself, step by step. The eleven wall-refused steps
+left in the town are all on **Lake Street** (T-0196), where this clause deliberately does not
+reach: neither `blk_lake_lasalle` nor `blk_lake_dearborn` has a frontage run for it to sit on.
+
+**Standing roofs: 338 before, 338 after. No household moved.**
+
 
 
 **Phase:** lane 2, data only · **Runner:** improve-runner (no Blender)
@@ -8060,7 +8156,65 @@ blocks, where the evidence does not support 2.5 m detail anyway.
 New geometry arrives via `chicago-4d-bake.yml` as a PR into `dev`. The data half ships here and
 says so.
 
-### T-E4 — the southern buildable ground, and the re-apportioned schedule · **UNCLAIMED · after T-E2**
+### T-E4 — the southern buildable ground, and the re-apportioned schedule · **REFUTED 2026-08-24 (T-0026)**
+
+**There is no southern buildable ground to widen onto, and the parcel's own acceptance is what
+refutes it.** T-E4 said a roof may stand only where the ground is *covered by the heightfield AND
+historically plausible*, and told the next run to widen the eligible ground south. Measured against
+the committed heightfield by `tools/measure_southern_ground.py`, the first condition is already
+unsatisfiable everywhere south of the town: **the modelled box ends at local N -400 m, and that line
+falls INSIDE Washington Street's own 80 ft platted corridor.**
+
+| | measured |
+|---|---|
+| land above the water surface south of Washington's platted corridor | **0.0819 ha** (131 cells) |
+| ...of it in the South Division | **0.0000 ha** — every cell is west of local E -10, the West Division bank across the South Branch |
+| Washington's own corridor lying off the field | **0.33 ha**, over **899 m** of its length, up to **7.29 m** deep |
+| Madison Street — the plat's south boundary — below the field's south edge | **125.2 m** at State, 119.2 m at Market |
+| the plat's last tier, Washington to Madison, Market to State | **6 blocks, 48 lots, 6.28 ha, 0 of 24 boundary points on modelled ground** |
+
+**The blocker the 665-roof programme named for the South was the wrong one, and it was pointing the
+next run at the wrong work.** `south_plat_beyond_committed_control` — 120 roofs, the largest of the
+three gated balances — said *"no block east of State or south of Washington has four committed
+centrelines (ROADMAP S9)"*. True, and downstream: **every north-south column of the south plat has
+its committed centreline cut at exactly N -400, the field's own south edge.** Market, Franklin,
+Wells, LaSalle, Clark, Dearborn and State all end on that line and not at a street. Street control
+stops where the ground does, and the control that would carry it further is already committed —
+`G1`, the PLSS corner at State & Madison, is an OpenStreetMap node with an id and a 13.9 m residual.
+Carry the lines south without the terrain and the plat module emits six blocks whose every placement
+`tools/generate_block_infill.py` refuses for *standing outside the modelled terrain*. **The southern
+unlock is a TERRAIN parcel, not a rule the programme can relax.**
+
+**What the terrain parcel needs, so it is not re-derived: one trace, and it is bounded.** The
+box's `n_min` is capped by evidence rather than by cost — *"the South Branch's traced water ends at
+N -404.5, where the forks tracing window closes, so a box reaching further south would show open
+prairie where the river actually continues"*. That is a statement about the **South Branch only**.
+The harbour-reach shoreline already reaches **N -589.2** and the sand bar **N -436**, both south of
+Madison; the old southward channel is traced through the whole of the new depth. So extending the
+box to Madison's corridor needs the South Branch's two banks carried from **N -405 to about N -531 —
+126 m per bank** — off a sheet this project already holds, and then a bake. Everything east of the
+river in that tier is dry ground with no water in it: at N -400 the branch occupies local E -8 to
++35 and the tier runs E +88 (Market) to +826 (State).
+
+**Nothing about the ground east of State changes and nothing was hoped for there.** T-E2 settled it:
+that is the United States Reservation, 22.57 ha, refused at any date. So the South balance is gated
+on exactly one thing now, and the programme says which.
+
+**What shipped.** `tools/measure_southern_ground.py` (new; the report, two assertions and a
+self-test, wired into `tools/check.sh`) · `tools/reconcile_665.py` composes the South balance's
+`waiting_on` from that measurement instead of authoring it, and carries the figures in
+`coverage.southern_ground` so a scheduler reads them without running a command ·
+`tools/compile_scene.py` puts the measured southern edge on the ground card a visitor opens. **No
+structure record moved, no roof was added or removed, the 665 total is unchanged, and no geometry
+was baked.**
+
+**The successor is `T-0219`**, filed at the QUEUE bottom: finish the heightfield SOUTH to Madison,
+the mirror of T-E3 / T-0010's eastern extension. It is the largest single unlock left in the
+programme and it is the only route to any of the South's **120** roofs — six blocks at the
+schedule's own 31-roof block capacity is 186 roofs of ground, so the tier would absorb the whole
+southern balance and still have room, against T-0163's 54-roof South Water unlock.
+
+### T-E4 (spec) — the original parcel definition
 
 The owner is right that south is where the room is: the sheet shows the town's platted blocks,
 then Canal Land and the School Section below Madison, with named claims scattered through. That
@@ -8160,7 +8314,62 @@ failed is not a check.
 parcel (c), and no research dossier was edited — those are committed verbatim, which is why the
 disagreement lives in `docs/RESEARCH/`.
 
-### T-E5(b) — how much of the square was wet · **UNCLAIMED · opened 2026-08-16 by T-E5(a) · Effort: M · NEEDS A BAKE**
+### T-E5(b) — how much of the square was wet · **DONE 2026-08-24 as T-0027 · NO BAKE NEEDED, and that is a finding**
+
+**IT REFUTED ITS OWN QUESTION, AND THE REFUTATION IS BETTER THAN THE NUMBER WOULD HAVE BEEN.**
+`tools/measure_public_square.py` (new, and wired into `check.sh`) samples the committed platted
+block at 0.5 m — **43,885 samples over 10,976 m²** — and reads:
+
+| | |
+|---|---|
+| ground | **+2.84 to +2.96 ft** above the summer-1835 water surface |
+| relief across the whole block | **1.49 in** |
+| **wet fraction** | **0.0 %** — 0 of 43,885 samples at or below the water |
+| the dossier's own bed (row 15) | +1.0 to +2.0 ft, which the ground stands **0.84 to 1.96 ft above** |
+| the square's drain, `state_slough_course` | heads **34.4 m** off the block's east kerb, outside it |
+
+**The zero is a reading of the MODEL, and the second row is what says so.** An inch and a half of
+relief across a city block is inside the spec's own declared micro-relief — ±0.10 ft of value noise
+that `micro_relief.note` calls *"a texture, not a claim"* — so the square carries no landform at
+all, and reading a wet fraction off it would be reading the noise seed. That is why the tool asserts
+the relief beside the water: assertion 1 is a statement about the model only for as long as
+assertion 2 holds.
+
+**So the answer to "how much" is a DEPTH, and it is the question this box did not ask.** The pond
+the dossier describes cannot be laid on this block; it has to be **dug**, one to two feet deep over
+10,976 m², out of the one land elevation in this box that rests on a documentary sentence (*"a level
+plain elevated only two to three feet above the river"*), under the block carrying Chicago's first
+public building, on no source that states a depth. `geometry conjectural` was carrying that. **The
+extent was never the whole question and the date was never the other half of it** — there is a third
+question underneath both, and it is the expensive one.
+
+**What was actually wrong was the SWARD, and no bake was needed to fix it.**
+`docs/research/02-flora.md` heads its ZONE 3 *"SLOUGH & SEDGE MEADOW (**Public Square** → Tremont
+House site → river at State St)"* and its § 1.2 calls that slough the single most important
+vegetation feature INSIDE the platted grid. `z03_sedge_meadow`'s extent is an **elevation band** of
++0.6 to +2.2 ft, which could never reach a block the terrain draws at +2.9 ft — *because zone 15 is
+deferred*. So the one block three sources describe as water was planted by the same rule as
+anonymous prairie 800 m west, and the pond quotation reached the flora layer nowhere. This is the
+mirror of what T-E5(a) found in the fauna: `z04_marsh` is a buffer of the mapped water and "has
+never reached the square" either.
+
+**Shipped:** `include_polygons` on the flora extent matcher (`renderers/web/js/flora.js`, mirrored
+in `tools/validate.py` and registered in `tools/measure_layer_reads.py`) — the exact mirror of
+`exclude_polygons`, for a community whose evidence is a PLACE and whose rule is a HEIGHT; the
+square's ring on `z03_sedge_meadow`, taken vertex for vertex from the committed plat and held there
+by the gate, so **nothing is fitted** — in particular nothing shaped around the estray pen, the log
+jail and the court-house, which stand ON the sward; `docs/LIBERTIES.md` **L188** for the one
+invention, that the wet ground stopped at the surveyor's line; the correction of
+`1835_reserved_ground.json`'s now-false *"the square renders as dry prairie"*; and
+`docs/RESEARCH/public_square_pond.md` § 6.
+
+**What it did NOT do.** It moved no ground, cut no basin, dated no water and promoted no confidence.
+Zone 15 is still deferred, still `not_established`, and still needs a bake and a source before it can
+be anything else. **Its fallback stands discharged:** the liberty this box asked for is written, and
+it admits a boundary rather than a pond.
+
+<details>
+<summary><b>The brief as T-E5(a) opened it, 2026-08-16</b></summary>
 
 What (a) deliberately did not answer. Its first question is not how to model an extent but
 **whether any source states one at all** — (a) found none, and the two corners this project has
@@ -8170,6 +8379,8 @@ buildings is a number chosen to look right, which is the failure mode R-M1b is p
 one this project has been handed twice. If the honest answer is that no extent is recoverable,
 that is a finding and it belongs in `docs/LIBERTIES.md` — but (a) is not it, because (a) invented
 nothing. Ground geometry means a bake either way.
+
+</details>
 
 <details>
 <summary><b>The original T-E5 brief, as opened by T-A16 on 2026-08-15</b></summary>

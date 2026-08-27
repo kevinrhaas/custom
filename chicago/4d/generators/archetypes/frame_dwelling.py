@@ -192,12 +192,19 @@ def build(params: FrameDwellingParams, name: str):
         # says nobody stated.
         simple_material("roof", roof_rgba, roughness=0.9),
         simple_material("trim", materials.trim_rgba(finish), roughness=0.85),
-        # `dark` is left as it stands. materials.md §2.3 records that FOUR values
-        # across four generators express this one idea and calls converging them a
-        # job for W2; it belongs with the openings and the glazing, not with the
-        # wall-and-roof family this parcel wires, and it is split out rather than
-        # half-done.
-        simple_material("dark", (0.07, 0.08, 0.09, 1.0), roughness=0.35),
+        # ONE DARK (T-0126). materials.md §2.3's convergence: this archetype's 112
+        # opening panels wore 0.070/0.080/0.090 at roughness 0.35, the outbuilding's
+        # 117 wore 0.072/0.068/0.060 at 0.60, and the fort, the stockade and the log
+        # cabins wore the first colour at 0.40 — three readings of one idea, and the
+        # roughness spread is the half a visitor sees, because a window here glinted
+        # and the identical opening on the shed next door did not. The sheet's `DARK`
+        # row is now the single answer. Its 0.60 is a bounded midpoint and the note
+        # on the row is the argument; what matters HERE is that these particular
+        # panels are the glazed end of the family — every one of them is sized off
+        # the Green Tree's attested 6x8 lights (WIN_W_M above) — which is what keeps
+        # the row off the bare-fabric roughnesses and holds some specular in it.
+        simple_material("dark", materials.DARK.rgba,
+                        roughness=materials.DARK.roughness),
         simple_material("shutter",
                         SHUTTER_RGBA.get(params.shutters or "", SHUTTER_RGBA["green"])),
     ]

@@ -8240,7 +8240,304 @@ line per face) · tickets **T-0022**, **T-0024** (may the face rule rank a store
 **Covers:** `recon_1835_blk_south_water_franklin_d1_04.inferred_1835.position`, `recon_1835_blk_south_water_franklin_d3_03.inferred_1835.position`, `recon_1835_blk_south_water_wells_d1_05.inferred_1835.position`, `recon_1835_blk_south_water_wells_d4_03.inferred_1835.position`, `recon_1835_blk_south_water_lasalle_d1_04.inferred_1835.position`, `recon_1835_blk_south_water_lasalle_d3_03.inferred_1835.position`, `recon_1835_blk_south_water_clark_d1_04.inferred_1835.position`, `recon_1835_blk_south_water_clark_d4_02.inferred_1835.position`, `recon_1835_blk_south_water_dearborn_d1_05.inferred_1835.position`, `recon_1835_blk_south_water_dearborn_d3_03.inferred_1835.position`
 **Recorded:** 2026-08-27.
 
-### L188 — Which side of South Water Street the timber stood on
+### L188 — Five business-front lots on South Water carry a documented store at the street and anonymous roofs beside and behind it
+
+**Decision:** on five platted lots of the town's business front — `blk_south_water_wells` lots 0
+and 2, `blk_south_water_clark` lot 2, `blk_south_water_dearborn` lots 0 and 2 — a **documented**
+building stands at the street AND the block programme's own anonymous roofs stand on the same
+lot: the party-line frontage run across the face, and on the two lot-0 cases a yard building at
+the alley end. Five lots, six anonymous roofs sharing ground with five documented ones. The
+documented buildings are H. Jones's grocery, Philo Carpenter's store, Pruyne & Kimball's
+drugstore, the Chicago American's office and Frederick Thomas's shop.
+
+**Why:** T-0199 and T-0208, and it is the OWNER'S RULING of 2026-08-27 rather than a
+derivation. Reconciling those five records with the committed plat (they had been set back off a
+2026 kerb line and stood up to 8.17 m out in the platted roadway) seated each of them on a lot
+the 665-roof schedule had already dealt. Nothing collides — all eleven South Water placements
+were checked against every committed footprint in the town and the worst overlap is **zero** —
+so the refusal was the standard itself, *one principal roof to a lot*, which L144 raised to
+three units per lot for a RUN but which still read one documented building as exhausting a lot.
+The fork was put to him: give eight roofs and two households back, or let a business-front lot
+carry both. **He chose both**, on the reasoning that the geometry already permits it and the
+other answer pays eight roofs and two households for a rule the corrected data had itself called
+into question. It is the same standard L144 records and the same ask behind it — *"there should
+be more and denser buildings. this is important."*
+
+**WHAT IS INVENTED.** That any anonymous building stood on these five lots at all, which L100,
+L101, L102 and L103 already claim for the roofs themselves and still do — this entry adds only
+the further claim that they stood there **while a documented shop stood in front of them on the
+same lot**. No source names an occupant of any of these lots, and none says how many roofs stood
+on one. What the owner's own reference for this reach supports is the TREATMENT: *"South Water
+Street in 1834"* draws a continuous trading front of log and frame buildings shoulder to
+shoulder, which is a street of shared lots rather than of detached cottages. **No coordinate was
+authored for it**: not one anonymous roof moved, and the five documented records moved only
+across the street, along their block face's own inward normal, by the metres their own
+`position.note` records.
+
+**WHAT IS NOT RELAXED, because a liberty that quietly widens is worse than none.** The clause is
+bounded to a lot named in its block's own `frontage` run, to a RESEARCHED standing building, and
+to one standing AT the street; the store must also be the lot's only other occupant. Nothing
+physical moved with it — no overlap, the 1.5 m lot margin, the platted corridor and the
+three-metre separation between roofs all still bind, untouched: the one pair that came out at
+2.40 m was opened to 3.0 m by widening the recipe's own authored break, not by moving the gate,
+and the reason is recorded on that slot as `clear_why`. The rule
+and its bounds are in `tools/plat_occupancy.py`; the reasoning is in `docs/ROADMAP.md` K30(d) and
+`docs/STATUS.md`.
+
+**How to resolve:** any period document naming an occupant on a numbered South Water lot — an
+advertisement giving an address, a tax or insurance description, an itemised loss list — would
+replace an invented roof with a named one, which is what the 665-roof programme's substitution
+clause exists for. A document showing detached houses set back behind these shops would retire
+the shared-lot claim instead.
+
+Related: **L144** (the density standard this extends) · **L100**, **L101**, **L102**, **L103**
+(the anonymous roofs on these four blocks) · **L142**, **L143** (the South Water row) ·
+**L160** (the plank walk this repair closed up) · tickets **T-0198**, **T-0199**, **T-0220**.
+**Recorded:** 2026-08-27.
+
+### L189 — One dark behind every opening in Chicago, at a gloss nobody stated
+
+**Decision:** the 287 dark panels this town uses to stand in for an opening — window and door
+panels on 112 frame dwellings, the log cabins' doors, windows and gable vents, the fort's
+loopholes and its root-house door, the stockade gate's shut leaves, and the outbuildings'
+interiors seen through a board gap, a vent or an open bay — all resolve to ONE row of
+`generators/common/materials.py`: `0.072, 0.068, 0.060` at **roughness 0.60**. Two of the three
+values they carried are retired. `glass` joins the same family on the sheet at exactly the value
+its 48 slots already shipped, `0.09, 0.11, 0.13` at 0.25, unchanged.
+**Why:** the town rendered one idea three ways and the spread was in the gloss, which is what
+decides whether a surface catches the sun: a doorway on a frame dwelling glinted at 0.35, the
+identical doorway on the shed beside it did not at 0.60, and the fort's loopholes sat between
+them at 0.40. None of the three carried a word of argument in the file that set it.
+**What is invented:** the roughness and the hue, and nothing else. **No source this repository
+holds states either, and the word "glass" appears in no source at all** — so this is
+`reconstructed`, a deliberate DOWNGRADE from the `inferred` the old `interior_dark` row carried.
+Neither number is free, though. The roughness is **bounded by two values already shipping and
+placed at their midpoint**: it cannot be `glass`'s 0.25, because EVERY ONE of the 287 slots
+carries surfaces that are certainly not glazed — doorways, gaps between boards, open bays,
+loopholes, gable vents, the stockade's two shut gate leaves — and at a glazing gloss an open bay
+takes the same sun glint a shop window does; and it cannot be the bare fabrics behind it (heavy
+timber 0.90, hewn log 0.92, sawn board 0.94), because 156 of the 287 ALSO carry windows, and on
+the 112 frame dwellings among them every window is sized off the Green Tree's attested 6 × 8 in
+lights (`chicagology_prefire127`, Gale's guest chamber "about 12x12, with two windows 6x8"), so
+those panels stand for glazed sash and a sash with no specular reads as a hole knocked in the
+wall. No slot in this family is purely one or the other — one slot paints a frame dwelling's
+doors AND its windows — which is why the bounds are stated by what a slot paints rather than as
+a percentage, and why the value belongs strictly between them.
+Nothing says where between them it sits, so it sits at the midpoint, 0.575, taken to the **0.60**
+the town already speaks on 117 slots rather than to a newly invented number 0.025 away. The hue
+is the warm near-black over the cool one because light reaching an unlit room here has bounced
+off timber and lime; a cool cast in an opening is SKY, and sky in an opening is `glass`'s job.
+**Consequence:** every opening in the town now catches the light the same way, and on the 170
+slots that moved the change a visitor sees is the sheen leaving — windows and doors on 112 frame
+dwellings, 44 log cabins, the fort's 13 buildings and the stockade read as recesses rather than
+as something faintly wet. **What it does NOT do is claim glazing**: a dwelling's window and a
+shed's open bay are still one material, because separating them costs a material on 112 assets
+and ROADMAP K36(a)'s palette threshold sits exactly at the count this town carries. That split is
+named in `docs/RESEARCH/materials.md` §7.1 and left open.
+**How to resolve:** a source that states a glazing — a pane count, a colour, or which buildings
+had glass at all — would move `glass` off `reconstructed` and would justify the material a frame
+dwelling's windows do not yet have. Nothing reached so far comes close: two records mention a
+sash and neither describes it.
+**Ticket:** T-0126. **Extends** L157 (the material sheet paints the town), which covers the wall,
+roof, log, chinking and heavy-timber families and deliberately left this one. **Supersedes
+nothing.**
+**Recorded:** 2026-08-24.
+
+### L190 — Madison Street's line, and seven street lines carried past their drawn ends, so the missing southern tier could be measured at all
+
+**Decision:** `tools/measure_southern_ground.py` measures how much buildable ground this
+reconstruction has south of the town, and to say how large the MISSING piece is it needs two
+lines that are not committed geometry. **Madison Street's centreline** is constructed from the
+PLSS section corner at State & Madison — `G1` in `data/traces/gcp/wright_1834_gcps.json`, whose
+own note calls it *the town plat's SE corner* — carried on the plat's east-west bearing that
+Lake, Randolph and Washington agree on to the sixth decimal. **The plat's seven north-south
+columns** (Market, Franklin, Wells, LaSalle, Clark, Dearborn, State) are carried south of their
+drawn ends on their own terminal bearings. Neither is traced; both are constructions of this
+project.
+
+**What that buys, and what it does not.** It buys three figures a visitor now reads on the
+ground card and a scheduler reads in `1835_665_roof_programme.json` — Madison is **125.2 m**
+south of the modelled field's edge at State, the plat's last tier is **6 blocks / 48 lots /
+6.28 ha**, and **0 of 24** of that tier's block-boundary points stand on modelled ground.
+**It commits no vertex.** No block, lot, corridor, road, structure or terrain sample is derived
+from either construction; the six tier blocks exist only inside the measuring command, are
+rebuilt from scratch on every run, and are written to no file. The figures that DO reach the
+dataset are distances and areas, and each is a statement about ground this scene does not
+contain.
+
+**What bounds the invention.** Madison's line is the same construction, from the same control
+point and the same bearing, that **L108** already declared for the United States Reservation's
+south boundary — Madison's line continued east of State is that boundary — so nothing new is
+being asserted about where Madison ran, and the grade stays `inferred` there too. `G1` carries
+a **13.9 m** residual, which is the honest error on the 125.2 m; the working horizontal
+uncertainty of anything traced off the 1834 sheets is about **20 m** (`data/datum.json`), so
+neither figure is quoted to better than the metre it is printed at. The columns' extrapolation
+is used only over **~130 m**, on straight two-point lines whose full drawn length already spans
+400 m or more.
+
+**Consequence:** the ground card tells a visitor where this reconstruction stops on the south
+and how much of the 1835 plat lies past that line, instead of leaving them to notice the edge
+from the air. The cost is that both numbers rest on a modern section corner and a bearing rather
+than on an 1835 survey, and the card says so in its own words: *"fixed here from the section
+corner at State and Madison"*.
+
+**How to resolve:** a traced Madison from Wright 1834 or the Thompson plat sheet would replace
+the construction outright; **T-0219**, the southern heightfield extension, would make the
+columns' extrapolation unnecessary by giving them ground to be drawn onto.
+
+Related: **L108** (the reservation's boundary, from this same corner and bearing) · **L79** (the
+platted corridor is measured, the travelled earth is not) · tickets **T-0026**, **T-0219**.
+**Recorded:** 2026-08-24.
+
+### L191 — The wet ground on the public square stops exactly at the platted block line
+
+**Decision:** the whole of the platted public square — `blk_randolph_lasalle`, Randolph to
+Washington, Clark to LaSalle — is planted as `z03_sedge_meadow`, the flora dossier's ZONE 3, by an
+`include_polygons` ring in that zone's extent rather than by the elevation band the rest of the zone
+uses. The ring is the committed plat's block boundary, vertex for vertex;
+`tools/measure_public_square.py` fails if it drifts by a centimetre. **No water is drawn**, and that
+is asserted at absolute zero by the same tool.
+
+**Why:** because the square is zone 3 *by name in the document that authors zone 3*.
+`docs/research/02-flora.md` heads the section "ZONE 3 — SLOUGH & SEDGE MEADOW (**Public Square** →
+Tremont House site → river at State St; river-shore strip)", and its § 1.2 calls the slough running
+from "the Public Square area (Randolph/Clark/LaSalle/Washington)" the single most important
+vegetation feature *inside* the platted grid. The committed extent could never reach it — an
+elevation band of +0.6 to +2.2 ft cannot find a block the terrain draws at the South Division plain's
++2.9 ft — and it could not because dossier zone 15, the pond basin, is deferred and unmodelled. So
+the square was being planted by the same rule that plants anonymous prairie 800 m west of it, and the
+one block in this town that three sources describe as water reached the flora layer nowhere at all.
+Lowering the band to reach one address would have moved this community everywhere else in the box.
+
+**What is invented, plainly.** That the wet ground ended at the surveyor's line. A prairie basin does
+not stop at a street; the sedge would have thinned across Randolph and Washington and run on down the
+drain, and this draws a rectangle because the block boundary is the only edge any source gives —
+"~1 city block" (`docs/research/01-terrain-hydrology.md` row 15) and a quotation that names the
+square. Invented too: that the community is uniform across the block, when the drain's head is off
+the east kerb and the west corners are the two the county built on first.
+
+**What is NOT invented, and it is why the boundary was taken whole rather than drawn.** Not the
+community, which is the dossier's. Not the place, which is the dossier's. Not the ring, which is
+`data/traces/vectors/thompson_lots.json`'s. And **not a shape fitted around the buildings** — the
+warning T-E5(b) was opened with was that "a partial pond fitted to clear the buildings is a number
+chosen to look right", and the answer to it is that nothing here was fitted: the estray pen, the log
+jail and the court-house stand *on* this sward, which is what a dried seasonal bed carries and open
+water does not.
+
+**What this deliberately does NOT claim.** Water. The zone's own `cover.standing_water_fraction` of
+0.10 describes the community in its trough and is not asserted here: measured at 0.5 m over the
+block, **0 of 43,885 samples** stand at or below the water surface, the block's entire relief is
+1.49 in — inside the terrain spec's own ±0.10 ft of micro-relief "texture, not a claim" — and the
+dossier's own bed for zone 15, +1.0 to +2.0 ft, sits 0.84 to 1.96 ft *below* the committed ground.
+The pond's date remains `not_established` (`data/terrain/1835_intown_water_dating.json` zone 15) and
+its geometry remains deferred. What is drawn is the July sward of ground the sources call seasonally
+ponded, on a scene dated 1 July, above a basin nobody has cut.
+
+**How to resolve:** a source that states the wet ground's edge, or a levelling that gives the block a
+basin. Either would replace the rectangle; until then the rectangle is the block, and the tool says
+so on every commit.
+
+Related: **L149** (the slough's invented depth and width) · **L107** (the reservation of the square)
+· `docs/RESEARCH/public_square_pond.md` (where one document argues both ways) · tickets **T-0027**,
+**T-0005**, **T-0118**.
+**Recorded:** 2026-08-24.
+
+### L192 — Eleven willows outside Fort Dearborn's west wall, on a plate that cannot date them
+**Decision:** `data/flora/plantings/fort_dearborn_wood.json` stands **eleven relict black
+willows, 9.3–11.4 m, on the ground immediately WEST of Fort Dearborn's palisade** — beyond the
+12 m of trodden apron **L174** already claims, wrapping 6 m past each end of that wall and
+running 40 m west of it, on a 12.5 m grid. **Existence is graded `reconstructed` and its
+`sources` are EMPTY.** Not one coordinate is authored: the band is derived from
+`fort_dearborn_palisade`'s own committed `footprint.polygon` and `placement` in the frame
+`docs/GLB-CONTRACT.md` fixes, its inner edge is read out of the apron record's own
+`apron_width_m`, and `tools/generate_fort_trees.py` re-derives the file byte for byte in
+`tools/check.sh`.
+**Why:** because **`p4_0` draws a substantial tree mass outside these walls and the render had
+none** — T-0044's image-accuracy pass listed it eighth of eight gaps, and `p4_1` draws trees
+round the buildings on both banks besides. A garrisoned post standing on bare prairie is what
+the render said and it is not what either plate shows.
+**THE SIDE IS A CORRECTION, and it is the first half of this entry.** T-0044's row 8 and ticket
+T-0098's own title both say the mass stands **east** of the walls. Both were read by eye.
+`tools/measure_fort_trees_plate.py` measures the plate instead: segmented for foliage, `p4_0`
+carries **33 334 connected pixels of canopy on the frame-RIGHT** of the drawn stockade, running
+from the stockade's end clean off the edge of the picture, while the largest connected patch on
+the frame-LEFT is **924 px of bank grass on the viewer's own side of the river**, below the
+waterline. And frame-right is **WEST**, settled off the stand rather than off the picture:
+`p4_0`'s viewpoint is the north bank at local `1145, 300` looking SOUTH, and the committed
+`chicago_lighthouse_1832` — 46.8 m west of the fort's centre — draws to the frame-RIGHT of the
+fort in the render from that same stand. **L179** struck the same table's row 3 the same week
+for the same reason; an eye reading of a lithograph is an impression, and this project places
+nothing on an impression.
+**AND THE PLATE CANNOT DATE ITS OWN TREES, which is the second half and the reason for the
+grade.** `data/exclusions.json` assigns `p4_0`'s flagstaff to **Whistler's FIRST fort of 1803**,
+and T-0095 measured the plate's two roofed, lanterned works at 0.435 and 0.521 of the wall —
+over the GATE, not at the angles — and reads two such works as first-fort signature besides.
+A growing share of this picture is a fort that burned in 1812. Everything struck so far is the
+fort's FABRIC, and both forts stood on the same ground — but **a draughtsman working decades
+later off first-fort descriptions was drawing a SCENE, and there is no reason his trees are
+better dated than his blockhouses.** Nor does the dataset help: `docs/research/02-flora.md`, on
+Andreas, ends the South Division's river timber belt **east at Wells Street**, some 900 m west
+of this reservation, and `renderers/web/js/trees.js` enforces that limit — so a BELT here would
+contradict the dataset outright. A few relict boles on used ground east of a belt's end would
+not, and that is exactly what `z10_settled_town` records its black willow as: *"Left along the
+bank where the landing was cut."*
+**What is invented.** That any tree stood here in 1835 at all. How far west the stand
+reaches — 40 m — which the plate cannot bound, because the mass leaves the right edge of the
+picture; how far it wraps past the wall's ends — 6 m; how far apart the stems stand — 12.5 m;
+and every coordinate and height inside those bounds.
+**What is NOT invented.** The SPECIES is the measurement's and not a preference. `p4_0`'s crowns
+stand 127 px above the wall foot: 8.8 m scaled on the fort's committed 53 m footprint, 10.9 m
+scaled on its committed 3.7 m picket height — the two scales are printed side by side and never
+averaged, and they differ by the ±20 % the palisade's own placement note already carries — plus
+the 0.54 m the bank falls under the stand, derived from the committed heightfield. Of the three
+trees `z10_settled_town` records, exactly one is banded low enough to carry that crown: the
+relict black willow at 9–14 m. The relict elm (16–24 m) and the relict cottonwood (18–26 m) are
+refused in the record's own prose, and `renderers/web/js/trees.js` would refuse the stem anyway
+— a 20 m cottonwood here would tower over a fort the plate draws it level with. Every stem's
+height is dealt inside the OVERLAP of the species' recorded band and the measured crown, so it
+satisfies the renderer's refusal and the picture at once. And the outline is the refusals' and
+not the file's: **13 of 24 dealt grid points are refused** — 6 for standing in the river's own
+bend north-west of the fort, 4 on the fort's own trodden apron, 2 inside a committed footprint's
+clearance and 1 on a bark canoe the boat layer draws up on this very bank — which is what cuts the stand back to the falling ground between wall and water.
+**THIS IS A STAND AND NOT THE PLATE'S MASS, AND THE RECORD SAYS SO.** `p4_0` draws one connected
+canopy with no sky through it; these stems stand 12.5 m apart against a recorded 6–10 m crown,
+so this canopy does not close. That is the grade above, and the grade alone: the record was first
+written as **forty** stems and cut on the evidence.
+**AND THE TRIANGLE CEILING TURNED OUT TO BE THE SMALLER HALF OF THAT STORY, WHICH IS WORTH THE
+SPACE.** The forty-stem version cost 12,800 triangles and put the release smoke's `balanced` tier
+at **1,218,562 of 1,210,000** at its worst stand. Twelve stems cost 3,520 and **still failed it**
+— so a control run was taken with this record unmounted altogether: **1,209,926 of 1,210,000,
+inside by SEVENTY-FOUR triangles.** A quarter of one tree, on a frame of 1.2 million. The middle
+rung had not been overspent by this parcel; it was simply full, and the next visible parcel of any
+size was going to fail it whatever it was. `full` carried 1.2 % of headroom in the same runs, so
+the squeeze was on `balanced` alone. **That is a fact about the ceiling, so it is answered at the
+ceiling**: `balanced` is re-budgeted 1,210,000 → **1,225,000** in `renderers/web/js/main.js`, with
+both readings written at the number, on the standing ruling that a performance ceiling is a number
+this project chose and not a claim about 1835. `light` is **untouched** at 1,050,000 and reads
+815,777 — 22 % under; the floor a weak machine boots into is not spent here. The new figure gives
+`balanced` the same proportional headroom `full` carries (about 1 %), so it buys no room for the
+parcel after this one — **T-0149** and **T-0147** still own the trim that would win the rung back.
+**What this deliberately does NOT claim.** The **two-storey frame house with the double gallery**
+that stands inside the mass in `p4_0` is not built: that is a structure record, no source this
+project holds identifies it, and a building invented to fill a lithograph is a far larger
+liberty than a tree. Nothing here regrades a metre of the bank or changes the ground treatment
+under the stand. And the record makes a claim about ONE side of the fort — the other three carry
+the apron and nothing else.
+**Consequence:** a visitor standing where `p4_0`'s artist stood sees the fort against a scatter
+of willows on its river-side flank instead of against empty prairie. The cost is eleven invented
+stems, every one carrying `reconstructed`, and a `refused` list naming each of the thirteen points
+the rule declined and why.
+**How to resolve:** an identification of either plate against a dated original would settle its
+date and its fort at once, and is the single thing that would do most for this record; failing
+that, an 1830s survey of the United States Reservation showing timber, or a garrison return or
+quartermaster's account of wood cut on the reservation.
+**Ticket:** T-0098, opened by T-0044; the grade answers **T-0197**. Related: **L174** (the
+trodden apron this stand stands off), **L179** (the picket point, the sibling refutation on this
+same plate), **L151** (the dooryard stems, the rule this one is shaped after), **L140** (the fort
+road that crosses the same reservation).
+**Recorded:** 2026-08-24.
+
+### L193 — Which side of South Water Street the timber stood on
 **Decision:** `FAR_TIMBER.main_stem_belt_east` in `renderers/web/js/trees.js` — the South Side
 body of timber along the main stem — is drawn on a line **12.192 m south of the committed
 `south_water` centreline**, running from the street's west end at the forks to the mean easting
@@ -8293,6 +8590,7 @@ Related: **L35** (the horizon band's haze cap — the same body of far timber) �
 number in the tree archetypes is invented within the file's range) · ROADMAP **R-BUG5** /
 **R-BUG5(b)** · tickets **T-0031**, **T-0017**.
 **Recorded:** 2026-08-27.
+
 
 
 
