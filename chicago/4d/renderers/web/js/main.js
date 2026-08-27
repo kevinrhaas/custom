@@ -295,6 +295,56 @@ const DETAIL = {
   // is UNTOUCHED at 600000 and still passes: the tier a weak machine boots
   // into keeps its floor, and this raise is spent only by machines that
   // asked for the middle setting.
+  //
+  // RE-BUDGETED AGAIN 2026-08-24, 1210000 -> 1225000 (T-0098), and the entry
+  // above asked for exactly this to be justified: "the next parcel that
+  // breaches them is breaching a bar that means something." It measured what
+  // the bar means before moving it, twice, at the release smoke's own worst
+  // stand (Lake Street at Canal, east down the axis, desktop 1280x800):
+  //
+  //   dev alone, this parcel unmounted     1,209,926 of 1,210,000   PASS by 74
+  //   dev plus a twelve-stem tree stand    1,213,446 of 1,210,000   FAIL by 3,446
+  //
+  // SEVENTY-FOUR TRIANGLES. That is a quarter of one tree, on a frame of 1.2
+  // million. The bar had not been reached by a parcel that overspent it; it had
+  // been reached, full stop, and the next VISIBLE parcel of any size at all was
+  // going to fail it whatever it was - which is a fact about the ceiling and not
+  // about the parcel that found it. `full` was measured in the same runs with
+  // 16,852 (1.2 %) of headroom, so the ladder was not uniformly full: the middle
+  // rung alone had been squeezed to nothing.
+  //
+  // WHERE 1,225,000 COMES FROM, so it is a principle and not "enough for me":
+  // it gives `balanced` the same PROPORTIONAL headroom `full` carries today
+  // (about 1 %) over the measured worst stand WITH this parcel in. The ladder
+  // keeps its shape; nothing was chosen to fit one record.
+  //
+  // WHAT WAS NOT DONE, and both halves matter. `light` IS UNTOUCHED at 1050000
+  // and reads 815,777 - 22 % under its own ceiling. The floor a weak machine
+  // boots into is not spent here, which is the standing constraint on every
+  // re-budget this table has taken. And this raise does NOT buy room for the
+  // parcel after this one: it restores about 1 % and no more, and the trim that
+  // would actually win the middle rung back is still T-0149 (the axial view) and
+  // T-0147 (the ceilings that follow a trim down). A ceiling raised to carry one
+  // record is not a ceiling anybody should spend twice.
+  // SUPERSEDED 2026-08-27, and the re-budget above is DEFERRED rather than
+  // dismissed: it was careful reasoning that later measurement overtook, twice.
+  //
+  //   (i)  It rests on `balanced` measuring 1,213,446 at the worst stand. dev
+  //        measures 1,252,802 there today, so 1,225,000 no longer clears the
+  //        breach it was raised to clear. It also rests on `full` carrying
+  //        1.2 % headroom; `full` is now OVER, at 1,412,120 of 1,400,000. Both
+  //        halves of the proportional-headroom argument have moved.
+  //   (ii) T-0209 measured what actually occupies the frame, which nobody had:
+  //        `trees` draws 360,926 triangles out of 181,900 it owns -- the whole
+  //        layer twice -- because trees.js submits kilometre-wide quadrant
+  //        meshes whole to a +/-240 m shadow box. 180,100 triangles, 14.4 % of
+  //        the frame, cast nothing any pixel of the shadow map can hold.
+  //
+  // Re-basing a ceiling with that still in it budgets for work the renderer
+  // should not be doing, and it would be the fifth raise. So the number stays
+  // at 1,210,000 and the budget question lives entirely in T-0209, which orders
+  // the trim first and the ceiling after. The tree stand this parcel adds ships
+  // regardless; its own smoke leg is red on dev with or without it.
   balanced: { triangles: 1210000, shadowReachM: 240, furnitureCastsShadow: true,
               furnitureReachM: null },
   light:    { triangles: 1050000, shadowReachM: 120, furnitureCastsShadow: false,

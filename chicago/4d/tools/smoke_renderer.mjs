@@ -911,11 +911,19 @@ const stamp = () => {
   const secs = Math.round((Date.now() - startedAt) / 1000);
   return `[${Math.floor(secs / 60)}:${String(secs % 60).padStart(2, '0')}] `;
 };
-function check(name, cond, detail = '') {
+// T-0187: `show` prints the detail on a PASS as well as on a failure, for the
+// handful of checks whose measured figure is the thing a run has to be able to
+// quote. The sward's outer reach is the case that asked for it: a change to the
+// boundary has to be able to say what the reach was before and after, and a
+// green line that prints nothing makes that a re-run with an edited gate.
+// Deterministic figures only — the output stays comparable between runs.
+function check(name, cond, detail = '', show = false) {
   if (inStageWork) stageWorkChecks += 1;
   const t = TIMING ? stamp() : '';
-  if (cond) { passes.push(name); console.log(`  pass  ${t}${name}`); }
-  else { failures.push(name); console.log(`  FAIL  ${t}${name}${detail ? ` — ${detail}` : ''}`); }
+  if (cond) {
+    passes.push(name);
+    console.log(`  pass  ${t}${name}${show && detail ? ` — ${detail}` : ''}`);
+  } else { failures.push(name); console.log(`  FAIL  ${t}${name}${detail ? ` — ${detail}` : ''}`); }
 }
 
 const server = http.createServer((req, res) => {
@@ -1570,8 +1578,70 @@ for (const [label, viewport, touch] of [
           if (!p || !covered(p[0], p[1])) approachGaps.push(`dearborn ${n}`);
         }
 
+        /**
+         * T-0184 — THE OUTSIDE OF EVERY TURN, stationed the way the approaches
+         * above are, and for the same reason: a claim about roadway is only
+         * worth what a point standing on it is worth.
+         *
+         * Every panel used to be square to its own chord, so at a bend the two
+         * rows crossed at the centreline and diverged towards the edges and the
+         * outside of the turn carried a triangle of unpainted ground — 23.47 m2
+         * of it town-wide, worst 4.29 m2 at South Water Street's west approach
+         * (`tools/measure_road_joints.mjs`, a 2 cm plan lattice). Nine stations
+         * are dropped INSIDE that sector at each authored bend, spread across
+         * its angle and out to nine tenths of the half-width, and each must land
+         * on drawn roadway. Every one of them was uncovered before the mitre.
+         *
+         * The full lattice lives in the instrument; these stations are the part
+         * a release can afford. A bend whose own centreline is wet carries no
+         * question — North Water Street's line runs inside the water mask from
+         * E 330 to E 576, and no ribbon may be drawn there at all.
+         */
+        const jointGaps = [];
+        let jointStations = 0;
+        for (const rec of a.streets.records) {
+          const line = rec.drawn ?? rec.path;
+          const half = (rec.track_width_m ?? 6) * 0.5;
+          for (let i = 1; i < line.length - 1; i++) {
+            const [A, P, B] = [line[i - 1], line[i], line[i + 1]];
+            let turn = Math.atan2(B[1] - P[1], B[0] - P[0])
+              - Math.atan2(P[1] - A[1], P[0] - A[0]);
+            if (turn > Math.PI) turn -= 2 * Math.PI;
+            if (turn < -Math.PI) turn += 2 * Math.PI;
+            if (Math.abs(turn) < 0.25 * Math.PI / 180) continue;
+            if (a.terrain.isWater(A[0], A[1]) || a.terrain.isWater(P[0], P[1])
+              || a.terrain.isWater(B[0], B[1])) continue;
+            const l1 = Math.hypot(P[0] - A[0], P[1] - A[1]);
+            const u1e = -(P[1] - A[1]) / l1;
+            const u1n = (P[0] - A[0]) / l1;
+            const sgn = turn > 0 ? 1 : -1;
+            for (let s = 0; s < 3; s++) {
+              const ang = ((s + 0.5) * turn) / 3;
+              const c = Math.cos(ang);
+              const sn = Math.sin(ang);
+              const ve = u1e * c - u1n * sn;
+              const vn = u1e * sn + u1n * c;
+              for (const f of [0.35, 0.65, 0.9]) {
+                const e = P[0] - sgn * ve * half * f;
+                const n = P[1] - sgn * vn * half * f;
+                if (a.terrain.isWater(e, n)) continue;
+                jointStations++;
+                if (!covered(e, n)) {
+                  jointGaps.push(`${rec.id} [${P[0]}, ${P[1]}] ${(turn * 180 / Math.PI)
+                    .toFixed(1)} deg at ${f}`);
+                }
+              }
+            }
+          }
+        }
+
         return {
-          worstSink, refinedPanels, approachGaps,
+          worstSink, refinedPanels, approachGaps, jointGaps, jointStations,
+          joints: a.streets.stats?.joints ?? null,
+          squareJoints: a.streets.stats?.squareJoints ?? null,
+          mitredJoints: a.streets.stats?.mitredJoints ?? null,
+          fannedJoints: a.streets.stats?.fannedJoints ?? null,
+          jointFanTriangles: a.streets.stats?.jointFanTriangles ?? null,
           records: a.streets.records.length, vertices, worstDrape, wetVertices,
           dryCentrelinePanels, clippedPanels, slivers, emittedQuads,
           canopyPresent, rootedPlants, worstPlantRoot, waterPlants, deepWaterPlants,
@@ -1588,10 +1658,14 @@ for (const [label, viewport, touch] of [
           // living exactly in that gap.
           farTimberWater: a.trees.farTimberWater?.() ?? null,
           // ...and the clip that keeps them off the screen, exercised. The band is
-          // solved around the camera, so this stands far enough back that
-          // `main_stem_belt_east` clears MIN_FAR_M and the solver actually reaches
-          // it: from the spawn point it is 329 m away and one metre inside the
-          // near cut-off, which is a green gate that has run nothing.
+          // solved around the camera, so this has to stand far enough back that a
+          // body in water clears MIN_FAR_M and the solver actually reaches it —
+          // from the spawn point the nearest one is a metre inside the near
+          // cut-off, which is a green gate that has run nothing. Since T-0031 the
+          // body it exercises is `north_branch_belt`, whose wet crossing begins at
+          // its first vertex (-95, 345) — 605 m from this stand, and the first
+          // sample of a segment is emitted at the vertex itself, so the clip is
+          // reached whatever the adaptive step does with the 16 m of wet run.
           horizonWetSkipped: (() => {
             a.walker.teleport({ local_e: -100, local_n: -260, yaw_deg: 44 });
             a.step();
@@ -3770,10 +3844,10 @@ for (const [label, viewport, touch] of [
       };
     });
     check(`${label}: the frontage layer lays all five records' walks and stands their posts`,
-      frontage.census?.records === 5 && frontage.census?.walks === 29
-        && frontage.census?.crossings === 12
+      frontage.census?.records === 5 && frontage.census?.walks === 27
+        && frontage.census?.crossings === 14
         && frontage.census?.posts === 3 && frontage.census?.fences === 11
-        && frontage.census?.refused === 60
+        && frontage.census?.refused === 54
         && frontage.recordIds.join(',')
           === 'green_tree_frontage,sauganash_frontage,river_walk_frontage,'
             + 'lasalle_crossing_frontage,town_street_edge'
@@ -3820,21 +3894,22 @@ for (const [label, viewport, touch] of [
     // THE NAME IS DRAWN, AND IT IS THE RECORD'S. This is the only lettering in the
     // renderer (L135), and it is the record's wording rather than the renderer's:
     // a board whose painted name drifted from the record would be this project
-    // inventing a sign, which is exactly what L25 and L130 refuse. Thirty-nine
+    // inventing a sign, which is exactly what L25 and L130 refuse. Thirty-seven
     // meshes and no more — the shared timber, the river walk's fifteen culling
-    // chunks (T-0119), the town street edge's twenty (T-0069 laid twenty-one;
-    // T-0188's six reconciled South Water placements welded two runs into one)
-    // and the TWO street-fence meshes T-0188 split off — one per covered street
-    // that carries a fence — so the boards could leave the shadow map while the
-    // fences stayed in it, all on ONE material, and the painted name on its own
-    // mesh, the only thing here that may carry a texture.
+    // chunks (T-0119), the town street edge's eighteen (T-0069 laid twenty-one;
+    // T-0198's six reconciled South Water placements welded two runs into one
+    // and T-0199's last five welded two more) and the TWO street-fence meshes
+    // T-0198 split off — one per covered street that carries a fence — so the
+    // boards could leave the shadow map while the fences stayed in it, all on
+    // ONE material, and the painted name on its own mesh, the only thing here
+    // that may carry a texture.
     check(`${label}: the board carries the record's own name, painted`,
       frontage.census?.lettered === 1 && frontage.letterVerts >= 6
         && frontage.letterMap === true && frontage.timberMap === false
         && frontage.lettering === frontage.recordText
         && frontage.recordText === 'GREEN TREE'
         && frontage.textGrade === 'inferred'
-        && frontage.meshes === 39,
+        && frontage.meshes === 37,
       `"${frontage.lettering}" on ${frontage.letterVerts} vertices across `
       + `${frontage.meshes} mesh(es) (${frontage.names?.join(', ')}), record says `
       + `"${frontage.recordText}" graded ${frontage.textGrade}`);
@@ -6822,6 +6897,21 @@ for (const [label, viewport, touch] of [
       streetLayer.approachGaps.length
         ? `uncovered stations: ${streetLayer.approachGaps.join(', ')}`
         : 'every approach station lands on drawn roadway');
+    // T-0184. Stations inside the sector on the OUTSIDE of every authored bend —
+    // the wedge of prairie a square joint opened, 23.47 m2 town-wide before the
+    // mitre. `squareJoints` is asserted at zero beside it because the module is
+    // allowed to give up on a hairpin it cannot mitre, and a town where every
+    // bend had quietly fallen through that guard would still have stations to
+    // pass if they were the only thing read here.
+    check(`${label}: no bend in the ribbon opens a wedge on the outside of its turn`,
+      streetLayer.jointGaps.length === 0 && streetLayer.jointStations > 100
+      && streetLayer.squareJoints === 0 && streetLayer.mitredJoints > 0,
+      streetLayer.jointGaps.length
+        ? `uncovered: ${streetLayer.jointGaps.slice(0, 6).join('; ')}`
+        : `${streetLayer.jointStations} stations across ${streetLayer.joints} joints — `
+          + `${streetLayer.mitredJoints} mitred, ${streetLayer.fannedJoints} cut into `
+          + `sub-mitres for ${streetLayer.jointFanTriangles} triangles, `
+          + `${streetLayer.squareJoints} left square`);
     check(`${label}: no elevated flora sheet can masquerade as a second terrain layer`,
       streetLayer.canopyPresent === false,
       `flora-canopy present ${streetLayer.canopyPresent}`);
@@ -8383,7 +8473,7 @@ for (const [label, viewport, touch] of [
         s.bins >= 12 && s.spreadPx >= 4,
         `${s.bins}/16 bearing bins from E ${seam.station.e} N ${seam.station.n}, boundary rows `
         + `spread ${s.spreadPx.toFixed(1)} px, reach ${s.minReach.toFixed(2)}`
-        + `-${s.maxReach.toFixed(2)} m`);
+        + `-${s.maxReach.toFixed(2)} m`, true);
       // ...and it is the fringe doing it. A hole in the sward would satisfy the
       // check above and would be a worse defect than the seam, so no bearing
       // may fall short of what the fringe alone can take off the ring, and the
@@ -8394,7 +8484,8 @@ for (const [label, viewport, touch] of [
         && s.meanReach >= s.nominal - 0.5 * s.fringe,
         `reach ${s.minReach.toFixed(2)}-${s.maxReach.toFixed(2)} m, mean `
         + `${s.meanReach.toFixed(2)} m against a nominal ${s.nominal.toFixed(2)} `
-        + `+/- ${s.fringe.toFixed(2)} m`);
+        + `+/- ${s.fringe.toFixed(2)} m (bars: min >= ${(s.nominal - s.fringe - 1.2).toFixed(2)}, `
+        + `mean >= ${(s.nominal - 0.5 * s.fringe).toFixed(2)})`, true);
       // The forb ring ends within a metre of the mid ring, so if only the grass
       // were fringed the flowers would go on drawing the line — and a flower is
       // the brightest thing in the field. It is measured on its RINGS rather
@@ -8410,7 +8501,7 @@ for (const [label, viewport, touch] of [
         && fb.ringLo >= fb.nominal - fb.fringe - 0.05
         && fb.ringHi <= fb.nominal + fb.fringe + 0.05,
         `forb rings span ${fb.ringLo.toFixed(2)}-${fb.ringHi.toFixed(2)} m about a nominal `
-        + `${fb.nominal.toFixed(2)} +/- ${fb.fringe.toFixed(2)} m`);
+        + `${fb.nominal.toFixed(2)} +/- ${fb.fringe.toFixed(2)} m`, true);
     }
     // A fringe that moved with the walker would be a boundary that swims — the
     // pop-in defect over again, one ring further out. Nine points on the ground

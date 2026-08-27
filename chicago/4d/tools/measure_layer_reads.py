@@ -170,6 +170,10 @@ FLORA_ZONE_READS: dict[str, tuple[str, str]] = {
     "extent.of": ("mesh", "if (x.of !== 'water') return false;"),
     "extent.distance_m": ("mesh", "x.distance_m ?? [0, 0]"),
     "extent.exclude_polygons": ("mesh", "x.exclude_polygons ?? []"),
+    # Ground a community holds that its own extent rule cannot reach — the mirror
+    # of the exclusions above. z03's evidence names the public square and its rule
+    # is an elevation band that cannot find a block the terrain draws flat.
+    "extent.include_polygons": ("mesh", "x.include_polygons ?? []"),
     "extent.priority": ("mesh", "rec.extent?.priority"),
     # Per species.
     "species[].role": ("mesh", "OUR_ROLES.has(sp.role)"),
@@ -207,6 +211,7 @@ FLORA_MANIFEST_READS: dict[str, tuple[str, str]] = {
     "zones[].extent.of": ("mesh", "rec.extent ?? entry.extent"),
     "zones[].extent.distance_m": ("mesh", "rec.extent ?? entry.extent"),
     "zones[].extent.exclude_polygons": ("mesh", "rec.extent ?? entry.extent"),
+    "zones[].extent.include_polygons": ("mesh", "rec.extent ?? entry.extent"),
     "zones[].extent.priority": ("mesh", "entry.priority ?? 0"),
     "zones[].priority": ("mesh", "entry.priority ?? 0"),
     # Read once at boot, to report a published shape this renderer has no

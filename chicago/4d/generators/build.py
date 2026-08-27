@@ -6,6 +6,9 @@
     --only <id>     build one structure id
     --scene <id>    scene to resolve phases against (default 1835)
     --no-bake       skip UV + AO baking (fast iteration)
+    --ao            bake ambient occlusion (opt-in; nothing in the nightly passes it —
+                    see bake_ao() for why, and generators/ao_export.py for the guard
+                    that refuses a GLB whose occlusion did not survive the export)
     --out <dir>     output directory (default assets/gltf)
 
 Refuses to run while data/datum.json is unverified — fixing the origin after
@@ -16,6 +19,7 @@ rather than merely discouraged.
 from __future__ import annotations
 
 import argparse
+import array
 import datetime as dt
 import json
 import sys
@@ -26,6 +30,7 @@ sys.path.insert(0, str(ROOT / "generators"))
 
 import bpy  # noqa: E402
 
+import ao_export  # noqa: E402
 import mesh_inputs  # noqa: E402
 
 from common.mesh import reset_scene  # noqa: E402
@@ -105,25 +110,61 @@ def unwrap(ob) -> None:
     bpy.ops.object.mode_set(mode="OBJECT")
 
 
-def bake_ao(ob, size: int = 512, samples: int = 48) -> None:
-    """Bake ambient occlusion and wire it in as the glTF occlusion texture.
+def bake_ao(ob, size: int = 512, samples: int = 48) -> float:
+    """Bake ambient occlusion, wire it in as the glTF occlusion texture, and
+    return the mean occlusion over the atlas so the caller can check that the
+    same number survives into the exported file.
 
     OFF BY DEFAULT, and that is a considered choice rather than an oversight.
     AO is the largest visible quality gain available on plain frame buildings,
     which is why this pipeline uses Blender at all — but it only works on
     geometry built for it. These archetypes model clapboard courses, window
     reveals and shutters as thin surfaces sitting a centimetre off the wall, and
-    every one of them occludes its neighbours: a measured bake comes out at mean
-    0.265 with 69% of texels below half, and the Sauganash renders brown when its
-    white paint is DOCUMENTED. Shortening the AO distance to 0.25 m only reaches
-    0.38. That is not a tuning problem, it is a geometry problem.
+    every one of them occludes its neighbours.
+
+    **The figures this docstring used to quote were wrong twice over — T-0158.**
+    "Mean 0.265, 69 % of texels below half" was (a) read off an sRGB-tagged buffer,
+    so it was the sRGB-ENCODED occlusion rather than the occlusion, and (b) taken
+    over the whole 512x512 atlas, **68.9 % of which is empty UV space** — so most
+    of what it counted was blank, not dark, and the 69 % is very nearly the empty
+    fraction itself. Re-measured on `sauganash_hotel` from the exported file:
+    atlas-wide raw mean 0.1665, and over the 81,458 texels the unwrap actually
+    writes, **mean 0.5358 with 58.7 % below half**. The "0.38 at a 0.25 m AO
+    distance" figure carries both faults and has NOT been re-measured.
+
+    The shape of the problem is unchanged — more than half the written surface sits
+    below half occlusion, on a building whose white paint is DOCUMENTED — but no
+    judgement about it should rest on the old numbers, and none of them was ever
+    taken from a file that carried the occlusion at all (T-0227 asks the question
+    properly, now that one can).
 
     The fix, when someone picks this up, is a low-poly AO cage — bake the massing
     only, and let the decorative surfaces inherit it — not a stronger denoiser.
     Until then `--ao` exists so the path stays exercised, and the manifest records
     honestly whether any given asset actually carries AO.
+
+    ## The order of the two lines below is the whole of T-0158
+
+    `colorspace_settings.name` is set BEFORE the bake and must stay there. Setting
+    it on a GENERATED image that has no file behind it and is not packed frees the
+    image buffer, which regenerates from `generated_color` — black — and clears
+    `is_dirty`, which is the flag Blender's own exporter tests in
+    `make_temp_image_copy()` before it will carry unsaved pixels across. Doing it
+    after the bake therefore destroyed the data AND switched off the exporter's
+    only rescue path, and shipped a uniformly black occlusion texture that glTF
+    reads as FULLY OCCLUDED while `assets/manifest.json` recorded `baked_ao: true`.
+    Measured on `sauganash_hotel`, 512x512, 48 samples: after the bake mean 0.2158
+    in memory, in the GLB min 0 max 0 over 262,144 texels. With the tag set first:
+    0.1665 in memory, 0.1665 in the GLB, 0.0 % drift.
+
+    Non-Color rather than sRGB, and not merely to dodge the wipe: `Image.pixels`
+    on an 8-bit buffer is raw in both directions, so the tag decides what the bake
+    WRITES. Under sRGB it stores the sRGB-encoded occlusion; glTF samples an
+    occlusion texture as `byte / 255` with no transfer decode, so that file was
+    already ~30 % too bright before it went black.
     """
     img = bpy.data.images.new(f"{ob.name}_ao", size, size)
+    img.colorspace_settings.name = "Non-Color"      # BEFORE the bake — see above
     for mat in ob.data.materials:
         nt = mat.node_tree
         tex = nt.nodes.new("ShaderNodeTexImage")
@@ -139,6 +180,13 @@ def bake_ao(ob, size: int = 512, samples: int = 48) -> None:
     sc.render.bake.margin = 4
     bpy.ops.object.bake(type="AO")
 
+    # What the bake actually put in the buffer, read before anything else touches
+    # the image. This is the figure `assert_ao_survived_export` holds the file to.
+    buf = array.array("f", bytes(4 * size * size * 4))
+    img.pixels.foreach_get(buf)
+    red = buf[0::4]
+    baked_mean = sum(red) / len(red)
+
     # Wire the baked image in as the glTF OCCLUSION texture. Without this the
     # exporter drops it and the GLB carries no AO at all — the bake silently
     # produces nothing, which is exactly what happened before this was added.
@@ -149,7 +197,6 @@ def bake_ao(ob, size: int = 512, samples: int = 48) -> None:
         tex = next((n for n in nt.nodes if n.name == "ao_tex"), None)
         if tex is None:
             continue
-        tex.image.colorspace_settings.name = "Non-Color"
         grp = bpy.data.node_groups.get("glTF Material Output")
         if grp is None:
             grp = bpy.data.node_groups.new("glTF Material Output", "ShaderNodeTree")
@@ -162,6 +209,7 @@ def bake_ao(ob, size: int = 512, samples: int = 48) -> None:
         sep = nt.nodes.new("ShaderNodeSeparateColor")
         nt.links.new(tex.outputs["Color"], sep.inputs["Color"])
         nt.links.new(sep.outputs["Red"], node.inputs["Occlusion"])
+    return baked_mean
 
 
 def export_glb(ob, structure_id: str, phase_id: str, out: Path) -> Path:
@@ -254,13 +302,14 @@ def main() -> int:
 
         reset_scene()
         ob = build_fn(params, name)
+        baked_mean = None
         if not args.no_bake:
             unwrap(ob)
             if args.ao:
-                bake_ao(ob)
+                baked_mean = bake_ao(ob)
         out = export_glb(ob, st["id"], phase["id"], outdir / f"{name}.glb")
 
-        manifest["assets"][out.name] = {
+        entry = {
             "kind": "generated",
             "structure_id": st["id"],
             "phase_id": phase["id"],
@@ -269,6 +318,24 @@ def main() -> int:
             "bytes": out.stat().st_size,
             "baked_ao": bool(args.ao and not args.no_bake),
         }
+        # Read the exported BYTES back and refuse a file whose occlusion texture is
+        # not the occlusion that was baked. On the bytes rather than on the in-memory
+        # image, because memory is not where this breaks: T-0158 shipped a bake that
+        # read min 0.000 / max 1.000 in Blender and min 0 / max 0 in the GLB, with the
+        # run exiting 0 and the manifest recording baked_ao: true. The manifest entry
+        # is written only if the file passes, so `baked_ao: true` cannot outlive the
+        # occlusion again.
+        if baked_mean is not None:
+            try:
+                stats = ao_export.assert_ao_survived_export(out, baked_mean)
+            except ao_export.AoExportError as e:
+                raise SystemExit(f"REFUSING TO RECORD THIS BAKE: {e}") from e
+            entry["ao_occlusion_mean"] = round(stats["mean"], 6)
+            print(f"       AO baked mean {baked_mean:.4f} -> exported mean "
+                  f"{stats['mean']:.4f} (min {stats['min']:.4f} max {stats['max']:.4f}) over "
+                  f"{stats['texels']:,} texels, "
+                  f"{abs(stats['mean'] - baked_mean) / max(baked_mean, 1e-9) * 100:.1f} % drift")
+        manifest["assets"][out.name] = entry
         tris = sum(len(p.vertices) - 2 for p in ob.data.polygons)
         print(f"built {out.name}  {out.stat().st_size:,} bytes  ~{tris} tris")
         built += 1

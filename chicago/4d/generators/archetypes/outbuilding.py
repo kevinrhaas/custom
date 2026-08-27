@@ -75,7 +75,11 @@ M_LOG, M_CHINK, M_BOARD, M_ROOF, M_DARK, M_TIMBER = 0, 1, 2, 3, 4, 5
 WEATHERED_BOARD_RGBA = materials.FINISHES["weathered_board"].rgba
 # What you see through a gap between boards, through the vent, and inside an open bay.
 # Near-black rather than black: an interior in daylight is dark, not a hole in the world.
-INTERIOR_RGBA = materials.INTERIOR_DARK.rgba
+# That argument is now the sheet's `DARK` row and it is the TOWN's, not this
+# archetype's: T-0126 converged the frame dwellings', the log cabins', the fort's and
+# the stockade's openings onto this colour and this roughness rather than the other way
+# about, so nothing here changes and 170 slots elsewhere came to meet it.
+INTERIOR_RGBA = materials.DARK.rgba
 # Heavy squared stock: posts, plates, jambs, headers, battens. A SIXTH material, added
 # after looking at a render in which the door frame was `HEWN_RGBA` and came out warmer
 # and no darker than the siding around it — so the one crude board building in the row
@@ -84,11 +88,12 @@ INTERIOR_RGBA = materials.INTERIOR_DARK.rgba
 # a post darkens from the foot up; the value is chosen to separate the two by hue as
 # well as by value. log_dwelling already carries six materials, so this is not new
 # ground for the draw-call budget.
-# On the sheet as `heavy_timber` (T-0007), whose row records materials.md finding 3:
-# `timber` is ONE NAME over TWO materials 3.2x apart in linear red — this one and
-# `frame_storefront`'s paler fresh-sawn value — of which only this one has ever
-# shipped, because no record in the dataset turns `framing_exposed` on. Splitting the
-# name is a follow-up; the sheet at least now says out loud that it needs splitting.
+# On the sheet as `heavy_timber` (T-0007). materials.md finding 3 — `timber` was ONE
+# NAME over TWO materials 3.2x apart in linear red, this one and frame_storefront's
+# paler fresh-sawn value, of which only this one has ever shipped because no record in
+# the dataset turns `framing_exposed` on — is discharged by T-0126: the two rows are
+# `HEAVY_TIMBER` and `SAWN_FRAMING`, and the material slot below is renamed to match so
+# the name in the shipped GLB says which of the two a reader is looking at.
 TIMBER_RGBA = materials.HEAVY_TIMBER.rgba
 
 # --- board work -------------------------------------------------------------------
@@ -193,9 +198,21 @@ def build(params: OutbuildingParams, name: str):
         # weathering condition, which the records do state.
         simple_material("roof", materials.roof_finish(p.roof_condition).rgba,
                         roughness=0.93),
-        simple_material("interior", INTERIOR_RGBA, roughness=0.6),
-        simple_material("timber", TIMBER_RGBA,
-                        roughness=materials.SUBSTRATES["heavy_timber"].roughness),
+        # ONE DARK (T-0126). The slot is renamed from `interior` and takes the
+        # sheet's `DARK` row, which converges this archetype's value with the
+        # `dark` the frame dwellings, the log cabins, the fort and the stockade
+        # carried at two other roughnesses. THE COLOUR AND THE ROUGHNESS ARE THIS
+        # ARCHETYPE'S OWN, unchanged: the sheet took the warm near-black and the
+        # 0.60 from here, so all 117 of these slots come out of the bake exactly as
+        # they went in and it is the other 170 in the town that moved onto them.
+        simple_material("dark", materials.DARK.rgba,
+                        roughness=materials.DARK.roughness),
+        # TWO TIMBERS, TWO NAMES (T-0126) — materials.md finding 3 discharged. The
+        # slot is renamed from `timber`, which was one name over this weathered
+        # heavy stock and frame_storefront's pale fresh mill stock, 3.2x apart in
+        # linear red. Value and roughness unchanged; only the name in the GLB moves.
+        simple_material("heavy_timber", TIMBER_RGBA,
+                        roughness=materials.HEAVY_TIMBER.roughness),
     ]
     return b.to_object(mats)
 

@@ -20,6 +20,10 @@
     {
       "label": "Measured relief",
       "text": "Land in the modelled box runs -1.978 to 12.285 ft above the water surface, and the channel floor reaches -17.405 ft below it. Measured from the committed heightfield, not asserted."
+    },
+    {
+      "label": "Where the ground stops on the south",
+      "text": "The modelled box ends 400 m south of the forks, and that line falls inside Washington Street's own 80 ft corridor: 0.33 ha of the street's south half, over 899 m of its length, lies off the field. Madison Street — the 1830 town plat's south boundary, fixed here from the section corner at State and Madison — is 125.2 m further south again, so the plat's last tier of blocks, 6.28 ha on 48 lots between Market and State, is not modelled ground at all. Of the 0.08 ha of land the field does hold south of Washington's corridor, none is in the South Division: it is the far bank of the South Branch. Past every edge of the box the ground is a plain skirt carrying the edge heights outward, which claims nothing about 1835. Measured from the committed heightfield and the committed street lines, not asserted."
     }
   ],
   "claims": [
