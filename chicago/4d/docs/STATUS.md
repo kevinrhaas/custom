@@ -1,5 +1,73 @@
 # STATUS
 
+## Shipped — T-0187: the phone's sward stops thinning five metres ahead of the walker, and the obvious fix is priced and refused
+
+**T-0187, the residue T-0093 banked rather than closed.** The near/mid run converted two boundaries
+from coverage ramps to density handovers and wrote down what it had not touched: *"the mid and forb
+rings' own OUTER coverage ramps are still screen-door ramps, and at `light` detail they reach in as
+far as 5.4 m and 7.4 m — inside the verge on a phone."* This is that run, and it does not close it
+the way that sentence expects.
+
+**What a visitor sees.** Stand in open prairie on a phone. The ground from about five metres out to
+the middle distance was drawn through a regular mesh of holes — every clump in that band carved by
+an ordered 4×4 screen door, at its most legible around eight to ten metres where the ramp is near
+half coverage. It is written solid now, and the sward no longer opens up ahead of the walker: the
+band the ramp used to thin is full ground cover. Flowers at the ring's edge last a little longer
+with it, out to 11.8 m where they stopped at 10.0 m.
+
+**The cause is one number that was never carried down.** `LOW` and `MID` in `renderers/web/js/
+flora.js` cut the ring radii — 27 m to 13 m — and scaled the fringe with them, *"about an eighth of
+the radius at every setting"*, its own comment. They left `band`, the width the outer edge fades
+over, at the full-detail 7.0 m and 5.0 m. A ramp sized for 18–27 m therefore sat on a 13 m ring and
+came out across the middle of the phone's field. `balanced` had it too, unnoticed: its mid ramp
+began at **8.2 m**, also inside the verge. Nothing about the phone was special.
+
+**THE OBVIOUS FIX WAS PRICED AND REFUSED, and the number is the whole of the reason.** Handing these
+edges over by density — `spreadOuter`, T-0093's own answer, and what the ticket points at — was
+simulated slot by slot on the published mirror, against every mid instance's own `aChiRing` and the
+gate's own sixteen bearing bins, before a parameter was touched:
+
+| detail | mean drawn reach now | with the band handed over by density | the bar |
+|---|---|---|---|
+| `full`, desktop | 26.81 m | 25.42 m | 24.90 m — survives |
+| `light`, mobile | 11.89 m | 9.64 m | **11.60 m — red** |
+
+Even a **one-metre** spread lands at 11.48 m at `light`. The loss is not a tuning artefact: the
+drawn edge of a stochastic thinning is the depth at which the thinning still leaves a plant standing
+in a given bearing, and the mid lattice deals about one slot per metre per bin at 12 m against two
+and a third at 26 m. No representation that draws a plant whole or not at all can reach as far as
+one that draws every plant faintly.
+
+**And the bar it fails is resting on plants nobody can see.** The smoke reads the boundary off *"the
+furthest plant in this bearing that is actually DRAWN"*, and drawn means `fadeAt > 0.02` — two per
+cent coverage, one pixel in fifty through the Bayer matrix. On a coverage ramp that admits every
+placed slot, so the statistic reports where the placer stopped placing, which the placement guard
+already guarantees, rather than where the field ends. **The bars were left exactly where they
+stood** and the instrument's defect is filed as T-0209 rather than fixed in passing here.
+
+**So the ramp is cut to the ring instead.** The rule, written where the numbers live: an outer band
+may not BEGIN inside the verge — `radius − step − fringe − 9.0`, the nine metres
+`tools/measure_near_verge.mjs` calls the ground a walker looks at. `light` takes **1.6 m** on both
+rings (the clearance binds at 1.8; it lands equal to the fringe, so the sward's edge thins over no
+more ground than it is ragged by). `balanced` takes the proportionate **4.7 m** and **3.4 m**, which
+already clear it. `full` is unchanged at 7.0 m and 5.0 m, clearing by 16.4 m and 17.4 m.
+
+**What it costs.** Nothing in the lattice: the ramp never paid for geometry — the placement guard
+and the lattice do — so the grass slots, the species deal and the drawn census are identical plant
+for plant. Two things do move. Fill, because the ground the ramp used to thin is now written solid
+and the fragment shader's discard sits before the lighting rather than after it. And the flower
+heads, because `headRingOf` hangs the head ring off the band: at `light` the forb heads run to
+11.8 m where they stopped at 10.0 m, which is more head instances against the same 240 cap.
+
+**Verification.** `tools/check.sh` CHECK PASS. `tools/smoke_renderer.mjs --published` part 7 at both
+viewports, with the reach now printed on the passing line as well as the failing one (a `show` flag
+on `check`, added because a change to the boundary has to be able to quote what it was before).
+
+**What this run did NOT do.** The outer edges are still coverage ramps and still dither, in the last
+1.6 m of the phone's ring and the last 7 m of the desktop's — outside the verge at every setting,
+which is the claim the fragment shader's own comment makes and could not make before. Making them
+density handovers waits on T-0209.
+
 ## Shipped — T-0207: three conflict markers reached production inside two liberty cards
 
 **Found by a gate that did not exist yet.** While merging one ticket branch the integrator wrote a

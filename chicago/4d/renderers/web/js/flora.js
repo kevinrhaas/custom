@@ -554,7 +554,8 @@ const LOW = {
   // the forb ring's from 7.4 m, both inside the verge, and every plant on them
   // was written through the 4x4 screen door. Measured on the published mirror
   // at 390x780: 15.4 % of the frame screen-doored inside 9 m at the open
-  // prairie stand, 179 mid cards and 35 forbs caught mid-ramp.
+  // prairie stand, off 179 mid cards and 35 forbs caught mid-ramp, 81 and 14
+  // of them inside the verge.
   //
   // The width here is the widest that keeps the WHOLE ramp outside the verge —
   // `radius - step - fringe - 9.0`, the last term being the nine metres

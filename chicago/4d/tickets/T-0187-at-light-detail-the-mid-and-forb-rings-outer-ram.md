@@ -49,3 +49,38 @@ of the verge at eye height on a phone.
 **Links:** T-0093 (which found it, and the instrument) · T-0086 (the far band, and why the outer
 edges were left) · ROADMAP § S6a items 3 and 3b · `renderers/web/js/flora.js` (`TUNE.mid.band`,
 `TUNE.forb.band`, `fringeOf`, `slotRing`).
+
+---
+
+**Closed 2026-08-27 — the artefact is real and the named fix is not affordable at `light`. Measured
+before a parameter was touched.**
+
+**Reproduced.** `tools/measure_near_verge.mjs --viewport mobile --gate` on the published mirror,
+390×780, booted `light` (the tool reads `window.__chicago4d.detail` back and prints it, so this is
+not T-0162's trap — the detail tier is confirmed from the page, not assumed from the viewport):
+15.395 % of the frame screen-doored inside 9 m at open prairie, 2.081 % from the South Water verge,
+1.729 % at Wells approaching Lake, 0.000 % in the middle of the South Water travel track. `flora-mid`
+partial over 5.19–13.04 m, `flora-forb` over 6.64–13.30 m. Exactly the banked figures, to the digit.
+
+**The cause is narrower than the ticket assumed.** Not the boundary's KIND but the ramp's WIDTH.
+`LOW` and `MID` cut the ring radii and scaled `fringe` with them — "about an eighth of the radius at
+every setting" — and left `band` at TUNE's full-detail 7.0 m and 5.0 m. `balanced` had it too, and
+nobody had noticed: its mid ramp began at 8.2 m, also inside the verge.
+
+**THE FIX THE TICKET NAMES WAS PRICED AND REFUSED.** A density spread of the outer band was
+simulated slot by slot against every mid instance's own `aChiRing` and the gate's own sixteen
+bearing bins. Mean drawn reach: `full` 26.81 → 25.42 m (bar 24.90 — survives); **`light` 11.89 →
+9.64 m against a bar of 11.60 m, of which only 0.29 m was unspent.** A one-metre spread lands at
+11.48 m. So the ticket's two acceptance clauses — 0.000 % inside 9 m AND both boundary checks green
+at their existing bars — cannot both be met by a density handover on this ring, and that is a fact
+about the bar rather than about the fix: the reach admits any plant at `fadeAt > 0.02`, two per cent
+coverage, which on a coverage ramp is every placed slot. Filed as **T-0209**. The bars were not
+touched.
+
+**Shipped instead:** the outer band is cut to the ring, under a rule written where the numbers live
+— an outer band may not BEGIN inside the verge, `radius − step − fringe − 9.0`. `light` 1.6 m on
+both rings, `balanced` the proportionate 4.7 m and 3.4 m, `full` unchanged. The grass lattice is
+untouched — the ramp never paid for geometry — so the species deal and the drawn census are
+identical plant for plant. Two things do move and both are stated in STATUS: fill, because the
+ground the ramp used to thin is written solid; and the flower heads, whose ring hangs off the band
+(`headRingOf`), so at `light` the forb heads run to 11.8 m where they stopped at 10.0 m.
