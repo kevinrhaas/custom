@@ -1,7 +1,7 @@
 ---
 id: T-0032
 title: The six-roof civic target counts three that were never built
-state: claimed
+state: done
 epic: TOWN
 requested_by: loop
 seen: false
@@ -9,8 +9,8 @@ effort: M
 legacy_id: T-I3(b)
 parent: null
 opened: 2026-08-17
-closed: null
-pr: null
+closed: 2026-08-27
+pr: 388
 claimed_by: run 8/26/2026, 11:26:54 PM CT
 blocked_on: null
 needs_bake: false
