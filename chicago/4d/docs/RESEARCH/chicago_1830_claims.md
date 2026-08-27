@@ -107,7 +107,7 @@ boundary, and the line this plate divides the Canal Land and School Section alon
 6.28 ha, Market to State) has **0 of 24** block-boundary points on modelled ground. So
 reading a subdivision distinction off this sheet cannot license a roof: the eligible-ground
 rule needs the ground first. The successor parcel is the southern heightfield extension,
-**T-0200**, and what it needs from the traces is narrow — the South Branch's two banks
+**T-0219**, and what it needs from the traces is narrow — the South Branch's two banks
 carried from N -405 to about N -531. The lake shore (N -589.2) and the bar (N -436) already
 reach past Madison.
 

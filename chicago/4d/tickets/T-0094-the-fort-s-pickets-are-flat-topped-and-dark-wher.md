@@ -62,11 +62,25 @@ head is now declared where a reader meets it: in the record's own `construction`
 card shows, and in **L179**, which records it as the invention L47 covered in general and never
 named. It is NOT a `form` attribute, and cannot be in this run: `generators/mesh_inputs.py` hashes
 the resolved archetype parameters, so **any new key under `form` restales the GLB** — verified by
-recomputing the hash, not assumed — and there is no Blender on this runner. **What needs baking, if
-a later run wants the attribute: nothing else.** Add `picket_head_m` (or a `picket_head` enum) to
-`form` and to `palisade_params.CONSUMED`, resolve it to the current derived 0.312 m so no vertex
-moves, and rebake `fort_dearborn_palisade__picket_1816` alone. The mesh would be unchanged; only
-the manifest hash needs a real bake to restamp honestly.
+recomputing the hash, not assumed — ~~and there is no Blender on this runner~~. **What needs
+baking, if a later run wants the attribute: nothing else.** Add `picket_head_m` (or a `picket_head`
+enum) to `form` and to `palisade_params.CONSUMED`, resolve it to the current derived 0.312 m so no
+vertex moves, and rebake `fort_dearborn_palisade__picket_1816` alone. The mesh would be unchanged;
+only the manifest hash needs a real bake to restamp honestly.
+
+> **THE STRUCK CLAUSE WAS FALSE, AND IT WAS THE INTEGRATOR'S ERROR — corrected 2026-08-24 by
+> T-0200, hours later.** The pinned Blender was on that runner the whole time: 4.5.3 LTS at
+> `blender-4.5.3-linux-x64`, exactly what `generators/blender.pin` names, and nobody ran
+> `--version` before writing the sentence. The hashing half of the paragraph is correct and was
+> measured; the "no Blender" half was assumed, and it is the assumption that deferred the work.
+> **It is struck rather than deleted** — the finding above it is the ticket author's and stands;
+> the excuse under it is not theirs. T-0200 did exactly what the paragraph specified, and the
+> paragraph was right about the cost: `form.picket_head_m` = 0.312 m `reconstructed`, asserted
+> equal to `PalisadeParams.picket_point_m`'s derivation before it was written, `picket_head_m`
+> added to `CONSUMED` with bounds of 4–50 % of the picket, and both palisade masters rebaked on
+> the pinned binary. **The mesh did not move: 21,728 vertices compared, 0 moved, and the GLB is
+> byte-for-byte the file that stood before** — only `assets/manifest.json` changed,
+> `579cb33f…` → `dd0c84b8…`. **L179 now carries the `Covers:` field it deliberately withheld.**
 
 **The tone half needed its own warrant and does not get one.** `p4_0` paints this single continuous
 north curtain across a **1.85×** range of tone in one view — median sRGB (200, 191, 158) / lum 191

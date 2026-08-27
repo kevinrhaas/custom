@@ -31,6 +31,19 @@ step "dataset (schema, provenance, date gates, licenses, staleness, publish)" \
 step "validator self-tests" \
   python3 tools/test_validate.py
 
+# Runs early and costs milliseconds, because the fault it catches is cheap to
+# make and expensive to ship: on 2026-08-24 three conflict-marker lines rode a
+# merge into docs/LIBERTIES.md, compiled into data/liberties.json, published to
+# the mirror and PROMOTED TO PRODUCTION, where a visitor opening L180 or L181
+# read `<<<<<<< HEAD` in the Evidence panel. Every structural gate passed it:
+# the liberties gate asks whether the markdown and the compiled JSON agree, and
+# they agreed perfectly — both carried the same garbage.
+step "no committed file carries a conflict marker" \
+  python3 tools/test_no_conflict_markers.py
+
+step "…and its own assertions still fire when broken" \
+  python3 tools/test_no_conflict_markers.py --self-test
+
 # Anonymous reconstruction infill is authored as a compact parcel recipe, then
 # expanded to ordinary one-file-per-structure records and visibly flagged GLBs.
 # Both derivations must stay reproducible without Blender.
@@ -264,6 +277,23 @@ step "a block face carries one street line, across every generator that builds o
 step "…and its own assertions still fire when broken" \
   python3 tools/measure_street_line.py --self-test
 
+# One line per face says nothing about what the wall on it is MADE of. L99 and L100 both
+# worried that the schedule "will keep dealing cabins to commercial frontage", and the
+# block recipes quietly acted on it: every log dwelling the five South Water blocks were
+# dealt was put on the Lake face, leaving 15 invented buildings on South Water's line and
+# not one of them log — against a documented record for the same line that carries Hogan's
+# log store, and against the only picture of that row, which draws it as log AND frame
+# shoulder to shoulder. T-0022 measured that, refused the re-apportionment K29 proposed,
+# and moved the arrangement instead. This holds it: a principal street's INVENTED frontage
+# may not be more uniform in construction than the documented record of the same street.
+# A floor of one, absolute — the plate gives no ratio, so a share would be a number
+# somebody chose.
+step "no principal frontage is more uniform than the record it reconstructs" \
+  python3 tools/measure_frontage_fabric.py --gate --quiet
+
+step "…and its own assertion still fires when broken" \
+  python3 tools/measure_frontage_fabric.py --self-test
+
 # A dwelling nobody named is a count-unit toward a documented aggregate; a PUBLIC
 # building nobody named is the claim that an institution stood here and left no record
 # at all. ROADMAP T-I3 enumerated them: on 1835-07-01 the town's public buildings with a
@@ -273,8 +303,20 @@ step "…and its own assertions still fire when broken" \
 # North, West and phase-one parcels ran before it existed and nothing had ever asked the
 # committed records. This asks all of them: absolute zero for I1 and I3, a ratchet at the
 # one anonymous I2 that L93 records rather than deletes.
-step "no anonymous roof claims to be a public building" \
+#
+# T-0032 CLOSED THE OTHER HALF, which had been open since T-I3: the I3 target was SIX and
+# the town's civic roofs are three, so three slots counted nothing and the schedule went on
+# dealing them to blocks where every generator refused them. The step now settles every
+# civic candidate against the committed dataset — a roof that stood, a building that came
+# later, a function that never had a building of its own — and holds the target and the
+# institutional district row to that ledger. It is the shape of fault this project has been
+# bitten by twice: the court-house stood in the scene for four days while another file
+# already credited it no roof, because nothing read the two together.
+step "no anonymous roof claims to be a public building, and the civic target is the ledger" \
   python3 tools/measure_institutional_claims.py --gate --quiet
+
+step "…and its own assertions still fire when broken" \
+  python3 tools/measure_institutional_claims.py --self-test
 
 # Uniformity is a claim, and no source makes it. 138 of the 218 anonymous records say
 # in their own footprint note that the rectangle was sampled inside the family's
@@ -320,6 +362,19 @@ step "no reconstructed roof's ridge is newly outside its family band" \
 # fails here, at the specification, instead of four runs later as a roof nobody can raise.
 step "every family's footprint, eave, pitch and ridge bands are satisfiable at once" \
   python3 tools/measure_ridge_reach.py --quiet
+
+# ...and the residual THAT gate printed as three NOTE lines, joined to what the
+# generators actually deal (T-0179). Nine families are offered a SHED by their roof line
+# and four cannot reach their own ridge band as one, because a shed's plane climbs the
+# whole span where a gable climbs half. Nothing was broken, because no parcel dealt those
+# four a shed — but which families get a shed was decided FIVE times, once inside each
+# parcel, and the five had already drifted over A5. The rule now lives in
+# tools/roof_form.py alone, the refusal is written on the card a visitor opens, and the
+# step above holds the two together: a family dealt a form its own bands cannot carry, a
+# record that does not carry its family's refusal, or a parcel that grows its own copy of
+# the shed set all fail here.
+step "…and its own assertions still fire when broken" \
+  python3 tools/measure_ridge_reach.py --self-test
 
 # And the question the two gates above cannot ask, because they read what LANDED: is
 # every family the 665-roof schedule may deal to a platted block buildable at every
@@ -488,8 +543,19 @@ step "datum re-derivation" \
 # states. LIBERTIES.md is append-only and is the source of truth; data/
 # liberties.json is derived and committed so the site needs no build step, which
 # only holds up if drift is a gate failure rather than a discovery.
+#
+# Since T-0054 it also asks WHICH SECTION each entry is in, from two independent
+# statements — the heading it sits under and the `**Resolved:**` line in its own
+# text — because `resolved` is the section validate.py stops checking. It used to
+# be the last section in a document whose one rule is that liberties are
+# APPENDED, so 23 entries landed in the exemption by doing what they were told,
+# and the drift check above could not see it: the markdown and the JSON agreed,
+# both reading the fault the same way (the T-0207 shape).
 step "liberties derived from docs/LIBERTIES.md" \
   python3 tools/compile_liberties.py --check
+
+step "…and its own assertions still fire when broken" \
+  python3 tools/compile_liberties.py --self-test
 
 # The renderer reads the sidecars and never the dataset, which only keeps the
 # walkthrough and the archive together if a record edited without a recompile is

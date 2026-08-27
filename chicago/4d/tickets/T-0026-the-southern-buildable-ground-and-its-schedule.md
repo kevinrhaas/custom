@@ -58,6 +58,6 @@ from the measurement and carries the figures in `coverage.southern_ground`;
 No structure record moved, no roof was added or removed, the 665 total is unchanged, nothing
 was baked. Full box: ROADMAP § T-E4; narrative: STATUS.md.
 
-**Successor: T-0200** — finish the heightfield south to Madison. What it needs is narrow: the
+**Successor: T-0219** — finish the heightfield south to Madison. What it needs is narrow: the
 South Branch's two banks carried from N -405 to about N -531, 126 m per bank. The lake shore
 (N -589.2) and the sand bar (N -436) already reach past Madison.
