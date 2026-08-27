@@ -10752,6 +10752,24 @@ phase, board-width irregularity — so no two share a face (extends L22/L23 rath
 repeating them). Log buildings: hewn vs round logs per record. Cite what you can; grade the
 rest `inferred` with the economics argument in the note.
 
+**"Board-width irregularity … so no two share a face" is now true of the whole town — T-0049 for
+the 24 named buildings, T-0112 for the other 131.** The named half could not reach the anonymous
+roofs because every one of them re-derives byte-for-byte from a parcel recipe, so T-0112 put the
+deal INSIDE the recipes (`tools/siding_stock.py`, imported by all five generators and by
+`tools/deal_siding_stock.py`). **The refutation worth keeping is about the KEY.** L148 bases a
+named building's stock on its phase's construction season, which the named records can carry
+because their dates differ; measured on the anonymous ones, **all 131 carry
+`documented_range.from = 1835-01-01`**, the programme's count-unit convention rather than a date
+anything was built. Re-using the season key there deals all 131 one stock — the archetypes'
+single course one step over, a range collapsed to a point, which is T-V1 and T-0142's fault a
+third time. So the base is drawn from the four-stock list on the record's own stable key and then
+advanced by the same 60 m separation. Clapboard pairs within 60 m wearing the same board fall
+**192/266 → 21/266** across the town and **186/186 → 16/186** among the anonymous roofs; 120 of
+131 anonymous roofs now differ from their nearest neighbour, where none did. The residual is
+stated rather than rounded: a recipe deals its own parcel only (a town-wide deal was measured at
+9/186 and refused, because it would make moving one roof restale every other parcel's meshes),
+and four stocks cannot separate a roof with nine neighbours. **L196.**
+
 ### K5 — The town's furniture: fences, yards, wagons, signs, porches, docks
 The scene is buildings on bare ground; a working town has STUFF. In order: (a) the
 **`enclosure` archetype** — fence line, gateway count, gate width, fence type (picket/rail/

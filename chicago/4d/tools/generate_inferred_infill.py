@@ -50,6 +50,10 @@ from plat_occupancy import footprints  # noqa: E402
 # The face of a committed block — the line a party-line row stands on — is one
 # rule in one module, imported by both generators that build a row (T-0078).
 from block_faces import extent, face_frame as block_face, project  # noqa: E402
+# T-0112. The clapboard stock is dealt at the end of the parcel, AFTER the frontage
+# runs move their buildings: it is the one form value that depends on where a
+# building's neighbours stand. See tools/siding_stock.py.
+from siding_stock import deal_records as deal_siding  # noqa: E402
 
 OCCUPANCY = occupancy()
 
@@ -594,6 +598,7 @@ def records_from_inputs() -> list[dict]:
                 record["_frontage"] = frontage
             records.append(record)
     place_on_frontage(records, parcel, datum)
+    deal_siding(records)
     validate_programme(inventory, parcel, records)
     check_frontage(records, parcel, datum)
     check_corridors(records, datum)

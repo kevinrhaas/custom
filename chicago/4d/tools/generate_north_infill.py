@@ -49,6 +49,10 @@ from family_bands import (dimensions_m, eave_floor, eave_for_ridge,  # noqa: E40
 from ridge_model import ridge_run_m  # noqa: E402
 from roof_form import note_refusal, roof_kind  # noqa: E402
 from inferred_occupancy import occupancy  # noqa: E402
+# T-0112. The clapboard stock is dealt HERE, at the end of the parcel, because it is
+# the one form value that depends on where a building's neighbours stand — and the
+# recipe is the only thing that knows the parcel whole. See tools/siding_stock.py.
+from siding_stock import deal_records as deal_siding  # noqa: E402
 
 OCCUPANCY = occupancy()
 FAMILIES = families()
@@ -456,6 +460,7 @@ def validate(records: list[dict], inventory: dict, recipe: dict, datum: dict) ->
 def records_from_inputs() -> list[dict]:
     inventory, recipe, datum = load(INVENTORY_PATH), load(RECIPE_PATH), load(DATA / "datum.json")
     records = [make_record(row, datum) for row in recipe["placements"]]
+    deal_siding(records)
     validate(records, inventory, recipe, datum)
     return records
 

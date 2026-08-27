@@ -37,7 +37,6 @@ T-0096 — Did the second Fort Dearborn carry a flagstaff, and can anything but 
 
 # --- FABRIC AND WHAT THE BUILDINGS ARE MADE OF — visible
 T-0138 — The placeholders' brick chimney is a different brick from the archetypes'
-T-0112 — Deal the anonymous roofs their own siding stocks, in their recipes
 
 # --- WHAT GROWS, AND WHAT A PHONE SEES — visible
 

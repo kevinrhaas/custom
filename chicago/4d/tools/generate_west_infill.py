@@ -54,6 +54,10 @@ sys.path.insert(0, str(ROOT / "tools"))
 from band_notes import split_notes  # noqa: E402
 from roof_form import note_refusal, roof_kind  # noqa: E402
 from inferred_occupancy import occupancy  # noqa: E402
+# T-0112. The clapboard stock is dealt at the end of the parcel, because it is the one
+# form value that depends on where a building's neighbours stand — and the recipe is
+# the only thing that knows the parcel whole. See tools/siding_stock.py.
+from siding_stock import deal_records as deal_siding  # noqa: E402
 
 OCCUPANCY = occupancy()
 
@@ -446,6 +450,7 @@ def records_from_inputs() -> list[dict]:
     inventory, recipe, datum = load(INVENTORY_PATH), load(RECIPE_PATH), load(DATA / "datum.json")
     build, held = split_placements(recipe)
     records = [make_record(row, i + 1, datum) for i, row in enumerate(build)]
+    deal_siding(records)
     validate(records, build, held, inventory, recipe, datum)
     return records
 

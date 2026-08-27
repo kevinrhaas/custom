@@ -91,9 +91,9 @@
           "note": "Nothing is attested about this building's street face, and the two uses the sources associate with it — a bank and a hog-packing floor — are both buildings without display windows. Inferred from the attested use rather than from any description; the archetype's default is a composed shopfront and turning it off is a claim this record makes."
         },
         "siding_exposure_m": {
-          "value": 0.152,
+          "value": 0.114,
           "confidence": "reconstructed",
-          "note": "INVENTED WITHIN A STOCK SET, NOT DERIVED. No source states the exposed face of any Chicago building's siding. The value is one of four period mill sidings — 4.5, 5, 5.5 or 6 in to the weather; this record wears 6 in — dealt by tools/deal_siding_stock.py: keyed to the phase's construction season, because buildings sided from the same season's shipments of St Joseph sawn lumber tend toward one stock, then advanced so no frame building within 60 m shares this one's. The separation is the surface variety T-0049 reconstructs, not a claim about 1835. docs/LIBERTIES.md L148 owns the invention."
+          "note": "INVENTED WITHIN A STOCK SET, NOT DERIVED. No source states the exposed face of any Chicago building's siding. The value is one of four period mill sidings — 4.5, 5, 5.5 or 6 in to the weather; this record wears 4.5 in — dealt by tools/deal_siding_stock.py: keyed to the phase's construction season, because buildings sided from the same season's shipments of St Joseph sawn lumber tend toward one stock, then advanced so no frame building within 60 m shares this one's. The separation is the surface variety T-0049 reconstructs, not a claim about 1835. docs/LIBERTIES.md L148 owns the invention."
         }
       },
       "change_note": "The building at the corner of Lake and LaSalle that Andreas calls 'the old bank building', in which Gurdon S. Hubbard packed some five thousand hogs in the 1834 season — the beginnings of the trade the city was later built on. What it was doing in July 1835 is unattested, and the name it carries here is one Chicago did not use until after the scene date."
