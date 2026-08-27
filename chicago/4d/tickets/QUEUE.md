@@ -75,7 +75,6 @@ T-0172 — The other three anonymous parcels still deal a retyped roof pitch, an
 T-0173 — The desktop smoke's part 4 and part 5 have under a minute of margin on the ceiling, and part 7 is over it
 T-0180 — The bake opens a content PR on every run, because the build stamp it writes is always dirty
 T-0181 — The desktop 7-9 smoke leg has 9m49s of margin against its 30-minute cap, and the margin was asserted rather than measured
-T-0179 — Three families offer a shed roof their own ridge band cannot carry: C1, F1 and F4
 T-0183 — The Market and South Water corner needs one control point, and the node rule may not be able to make it
 T-0182 — The household layer's two Lake-face buildings stand on a hand-authored coordinate, not on the face they front
 T-0185 — The plate draws the fort's pickets three times coarser than the model builds them

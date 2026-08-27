@@ -1,7 +1,7 @@
 ---
 id: T-0179
 title: Three families offer a shed roof their own ridge band cannot carry: C1, F1 and F4
-state: claimed
+state: done
 epic: META
 requested_by: loop
 seen: false
@@ -9,8 +9,8 @@ effort: S
 legacy_id: null
 parent: null
 opened: 2026-08-24
-closed: null
-pr: null
+closed: 2026-08-27
+pr: 384
 claimed_by: run 8/26/2026, 11:27:30 PM CT
 blocked_on: null
 needs_bake: false
