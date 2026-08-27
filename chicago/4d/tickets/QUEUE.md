@@ -104,3 +104,4 @@ T-0232 — The owner's production switch is a coin toss: one promotion in four n
 T-0233 — Eight of seventeen dealt lots carry none of their run's own roofs, and nothing was measuring it
 T-0234 — The account's GraphQL quota is exhausted while REST sits untouched, and a slice loses its PR to it
 T-0235 — The unfiltered renderer smoke takes 55 minutes on the steward runner, and three tickets reason against a 30-minute cap
+T-0236 — The loop's 10-minute heartbeat fires every one to four hours, and the gaps are widening
