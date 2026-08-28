@@ -433,6 +433,27 @@ step "no anonymous roof claims to be a public building, and the civic target is 
 step "…and its own assertions still fire when broken" \
   python3 tools/measure_institutional_claims.py --self-test
 
+# THE OTHER NINE ROWS, which T-0032 found were cross-checked against nothing (T-0211).
+# The matrix carries the same aggregate two ways that were authored independently — ten
+# group rows and four division columns — and reconcile_665.py asserted only that the
+# families sum to their group and the districts to the total. Nothing read a group's split
+# BY DIVISION, which is precisely the pair T-0032 found disagreeing.
+#
+# The I3 repair does not generalise and this does not attempt it: a row above what stands
+# is the ordinary, correct case for nine of these ten rows, because an anonymous dwelling
+# is a legitimate count-unit toward a documented aggregate. What is asserted is the weaker
+# pair that still catches the fault — the matrix must add up in BOTH directions, and a
+# division standing OVER one of its group rows must say so. The second is a ratchet on a
+# real residual: the North Division stands seven roofs above its rows (six freight, one
+# the L93 school), reconcile_665.py clamped the negative away, and the seven slots it
+# sheds to pay for them come out of the North's ordinary dwellings where nobody could see
+# the transfer. Both figures are now in the programme document.
+step "the group rows add up by division too, and every division over one declares it" \
+  python3 tools/measure_group_district_rows.py --gate --quiet
+
+step "…and its own assertions still fire when broken" \
+  python3 tools/measure_group_district_rows.py --self-test
+
 # Uniformity is a claim, and no source makes it. 138 of the 218 anonymous records say
 # in their own footprint note that the rectangle was sampled inside the family's
 # authored band; this holds them to it, and prints the census of what still is not —
