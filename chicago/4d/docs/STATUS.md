@@ -1,5 +1,66 @@
 # STATUS
 
+## Shipped 2026-08-28 — T-0138: the town's two brick chimneys become one
+
+`generators/inferred_placeholder.py` painted its stacks `placeholder_chimney_brick` at
+`#89503F` — `0.537, 0.314, 0.247` linear, roughness 0.88 — a literal written in that file and
+read nowhere else. T-0008 gave the 112 brick stacks on the archetype buildings the sheet's
+`CHIMNEY_BRICK` at `0.45, 0.23, 0.17`, roughness 0.85. **About 20 % apart in linear red, on
+buildings standing on the same streets** — `docs/RESEARCH/materials.md` finding 5's complaint
+(a generator with no shared palette) surviving the parcel meant to end it, and named as
+deliberately left alone in `chimneys.md` §4.
+
+**The literal loses, and not by a coin toss.** Nothing in this repository argues for `#89503F`:
+no source record, no note, no tier. `CHIMNEY_BRICK` is `frame_tavern`'s committed `BRICK_RGBA`,
+read off the Petford watercolour of the Sauganash (T-0092, **L154**) — the one coloured witness
+to any Chicago chimney — generalised to the town's other framed stacks on Blodgett's North Side
+brick-yard, spring 1833. An `inferred` value carrying a source beats an undocumented literal, so
+the literal goes and **no new number enters the sheet**. `CHIMNEY_BRICK`'s own argument is
+untouched.
+
+**The generator asks the selector, not the row.** It now calls
+`materials.chimney_finish("interior")`, which is what it actually builds: a box inside the
+footprint depth rising through the roof, the framed house's masonry flue. Asked the question
+rather than told the answer, a placeholder cannot drift from the archetypes again.
+
+**A log dwelling's placeholder still gets brick, and that is the massing's fault.** §3's
+stick-and-clay daub belongs to a stack standing OUTSIDE the gable; the placeholder puts every
+stack inside the roof, so the daub would be the right fabric on the wrong silhouette. Left alone
+with the reason written down rather than half-fixed.
+
+### THE HALF OF THE TICKET THAT NO LONGER EXISTS, AND SAYING SO IS MOST OF THIS ENTRY
+
+T-0138 was written on 2026-08-22 against **"90 committed masters"**, and asked for them, their
+compressed derivatives and the banked passthrough set to be regenerated in the same commit
+(K38, `--write-baseline`). That was the whole reason T-0008 did not smuggle the convergence in.
+Re-measured on `dev` before anything was edited:
+
+| measurement | reading |
+|---|---|
+| `python3 generators/inferred_placeholder.py --check` | `0 flagged placeholder GLBs; 230 superseded by a canonical bake` |
+| manifest entries with `kind: placeholder` | **0** of 349 |
+| committed GLBs under `assets/` containing `placeholder_chimney_brick` | **0** |
+
+So no master moved, no derivative moved, the passthrough baseline did not need re-banking, and
+**no building repaints — there is no before/after frame to take, because nothing renders this
+material.** The acceptance asked for one and the honest answer is that the subject of the
+photograph has been baked out from under the ticket. This is T-0126's shape exactly (materials.md
+§7): the divergence is closed at the source so it cannot walk back in the day a record outruns
+the bake and a placeholder is emitted again.
+
+**What a visitor sees, and it is one sentence.** L168's Evidence card said *"the 90 inferred
+placeholders keep their own `#89503F` brick"*. That sentence was false and it is on a card
+anybody can open, so it now says what happened instead. Nothing in the 3-D scene changed.
+
+**An invisible run, declared as one.** AGENTS.md's rule is that a run changes something a visitor
+can see; this one changes a card and a generator. It is the eighth of eight parallel slices on
+this queue and the seven above it are on visible parcels, so the one-in-four cap is not touched —
+but the entry says "nothing you can see" rather than dressing it up, which is the other half of
+that rule.
+
+**Gates.** `tools/check.sh` green, including `inferred_placeholder.py --check` and
+`compile_liberties.py --check`. Changelog contract green at v314.
+
 ## Shipped 2026-08-28 — T-0099: the bank track from the fort's north gate reaches the water
 
 `p4_0` — the fort from the north bank, the stand this project shoots it from — draws a track

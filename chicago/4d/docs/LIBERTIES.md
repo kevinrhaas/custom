@@ -6152,9 +6152,11 @@ through. The confidence view is unchanged: a stack still carries its record's `c
 confidence, so hiding `reconstructed` hides exactly what it hid before.
 
 **Not covered here.** The fort's ten garrison buildings keep roof-coloured stacks — 1816, federal
-ground, four constructions, and neither answer above reaches them (**T-0137**). The 90 inferred
-placeholders keep their own `#89503F` brick, about 20 % apart in linear red from this one
-(**T-0138**). And nothing here says what any roof was COVERED with; R-W2a finding 2 stands.
+ground, four constructions, and neither answer above reaches them (**T-0137**). The stand-in massing
+generator kept its own `#89503F` brick, about 20 % apart in linear red from this one, until
+**T-0138** pointed it at this row on 2026-08-28 — a convergence that repaints nothing, because
+all 230 of those buildings have since been baked from their archetypes and no placeholder GLB
+ships. And nothing here says what any roof was COVERED with; R-W2a finding 2 stands.
 
 **How to resolve:** a source describing a Chicago chimney — an insurance survey, a builder's
 account, a recollection naming brick or clay at a named house — promotes §2 to attested for that

@@ -1,4 +1,12 @@
 export const CHANGELOG = [ // newest first
+  { v: 314, title: 'The town’s two brick chimneys become one', kind: 'chore', ts: '2026-08-28T04:49:19.879Z', date: 'Aug 27, 2026, 11:49 PM CT',
+    items: [
+      'Nothing in the town looks different today. This is about a colour two different parts of the town-building machinery each held their own copy of, and about going to converge them and finding the buildings that would have changed are already gone.',
+      'There were two bricks. The chimneys on the 112 framed houses and stores were painted one shade; the stand-in boxes that fill in for a building nobody has modelled yet were painted another, about a fifth redder. Two generators, one town, no shared colour — which is exactly the split this project wrote down as a defect a fortnight ago and then left standing.',
+      'One of the two had a witness and the other did not. The archetypes’ brick is read off the Petford watercolour of the Sauganash Hotel — the only coloured picture in this repository of any Chicago chimney, and it paints them brick. The stand-ins’ brick is a hex code somebody typed. So the typed one goes, and no new number is invented to replace it.',
+      'The stand-in boxes now ask the same question the modelled buildings ask — “what is a chimney that rises inside the roof made of?” — instead of carrying an answer of their own. That is the part that lasts: the two cannot drift apart again by one of them being edited.',
+      'And nothing repaints, because there is nothing left to repaint. The ninety stand-in buildings this was written about have all been properly modelled since; not one of them still ships. The change is a fence across the gap rather than a coat of paint.',
+    ] },
   { v: 313, title: 'The bank track from the fort\u2019s north gate reaches the water', kind: 'feature', ts: '2026-08-28T04:08:12.593Z', date: 'Aug 27, 2026, 11:08 PM CT',
     items: [
       'Stand on the north bank and look across at Fort Dearborn: a pale track now leaves the fort\u2019s north gate and runs down the bank to the water\u2019s edge, the way to the ferry. The plate this project shoots the fort against has always drawn that track. The town had not, until today.',
