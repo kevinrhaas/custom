@@ -1,5 +1,11 @@
 {
   "schema": 1,
   "note": "The ONLY place two differently-spelled names may become one person. tools/compile_gazetteer.py keys the gazetteer on the whole normalized name, so nothing coalesces by accident; anything that should coalesce is declared here, with the judgement written out. Three rules the compiler enforces: a merge needs a `merge_rule`; the rule must name BOTH spellings verbatim, so it can be read back without the code; and same surname with different initials NEVER merges, rule or no rule — the 1835 letter lists are full of families and an initial is often the only thing separating two of them.",
-  "merges": []
+  "merges": [
+    {
+      "into": "Charles H. Chapman",
+      "from": "C. H. Chapman",
+      "merge_rule": "'Charles H. Chapman' is the Chicago Democrat's own spelling in the mechanic's-lien notice of 1834-08-13, which names him as the owner of the houses on Lot No. 3, Block No. 111; 'C. H. Chapman' is the abbreviated form the same corpus already carries. Same surname, same two initials C and H, same town, and the unabbreviated spelling is the one the fuller notice prints — so the abbreviation is merged into it rather than the other way round."
+    }
+  ]
 }

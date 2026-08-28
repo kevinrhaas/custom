@@ -1,0 +1,411 @@
+{
+  "schema": 1,
+  "issue_id": "chicago_democrat_1834_08_20",
+  "extracted": "2026-08-28",
+  "extracted_by": "hand, T-0290 — the Democrat read, August 1834",
+  "note": "Vol. I No. 38. Almost every advertisement in this issue is a standing one already read a week earlier, so the claims taken here are the ones where THIS printing says something the last did not: the block number under Solomon Juneau's South Water lot, the corner under G. Spring's office, Blue Island at the far end of the draw-bridge road, and the cross street under the blacksmiths. The Marine List is the issue's own, and it is twice the size of the week before.",
+  "claims": [
+    {
+      "id": "c001",
+      "kind": "shipping",
+      "reading": "transcription_mediated",
+      "quote": "MARINE LIST.\nPORT OF CHICAGO.\nARRIVED.\ndug. 13. Sloop\nWestward Ho, Banks, S\n13. Brig Jolm Kinzie, Bristol,\n• Phillips, Howe, St.\nPresident, Swcet,\nBuffa\nMa'h Antoinette, Scovil\nJesse Smith\n-, G\n• Hubbard, Brown, Bi\nHiram, Bassery\nWinnebago, Greene, Os\n[uncertain: Houseman wandere]\nWarren\n-, Bullato.\n[uncertain: Lueinda,Hugumın, St. J]\nSloop\n10. Schr. Juliet, Shooks, Detroit.\nAug. 14. Brig John Kinzie, St. Joseph.\nCLEARED.\n15. Sloop Dart,\n16. Schr.\ndo.\nPresident, Buffalo.\nWinnebago, Michigan (\nNancy Douseman, St. J\nPhillin\nMarial Antoinete, S..\nBubberl, Buffal\n18. Sloop Westward Ho,\n20.\n20. Schr. Hiram,\nWarren, Bufalo.",
+      "normalized": "MARINE LIST. PORT OF CHICAGO. ARRIVED. [A]ug. 13. Sloop Westward Ho, Banks, S[t. Joseph]. 13. Brig Jo[h]n Kinzie, Bristol, [—]. [Schr.] Phillips, Howe, St. [Joseph]. [Schr.] President, Sw[e]et, Buffa[lo]. Ma[ri]a Antoinette, Scovil[l], [—]. Jesse Smith, G[…]. [Schr.] Hubbard, Brown, B[uffalo]. Hiram, Basse[tt, —]. Winnebago, Greene, Os[wego]. [Nancy] [D]ouseman, [—]. Warren, [—], Bu[ff]alo. Lucinda, Hugu[n]in, St. J[oseph]. Sloop […]. [Aug.] 10[?]. Schr. Juliet, Shooks, Detroit. Aug. 14. Brig John Kinzie, St. Joseph. CLEARED. 15. Sloop Dart, [—]. 16. Schr. [—] do. [Schr.] President, Buffalo. [Schr.] Winnebago, Michigan (C[ity]). [Sloop] Nancy Douseman, St. J[oseph]. Phill[i]p[s, —]. Mari[a] Antoin[e]te, S[t. Joseph]. [Schr.] [Hu]bb[a]r[d], Buffal[o]. 18. Sloop Westward Ho, [—]. 20. 20. Schr. Hiram, [—]. Warren, Buf[f]alo.",
+      "locator": {
+        "artifact_role": "primary",
+        "issue_page": 3,
+        "column": 2,
+        "lines": [
+          2948,
+          3002
+        ],
+        "lines_of_claim": [
+          2948,
+          2949,
+          2953,
+          2954,
+          2955,
+          2957,
+          2959,
+          2961,
+          2962,
+          2964,
+          2966,
+          2967,
+          2969,
+          2970,
+          2971,
+          2972,
+          2974,
+          2975,
+          2976,
+          2978,
+          2979,
+          2980,
+          2981,
+          2983,
+          2984,
+          2985,
+          2987,
+          2989,
+          2991,
+          2992,
+          2994,
+          2995,
+          2998,
+          3000,
+          3001,
+          3002
+        ],
+        "interleaved": true
+      },
+      "entities": [
+        {
+          "as_printed": "Banks",
+          "normalized": "[?] Banks",
+          "role": "master of the sloop Westward Ho"
+        },
+        {
+          "as_printed": "Bristol",
+          "normalized": "[?] Bristol",
+          "role": "master of the brig John Kinzie"
+        },
+        {
+          "as_printed": "Swcet",
+          "normalized": "[?] Sweet",
+          "role": "master of the President"
+        },
+        {
+          "as_printed": "Scovil",
+          "normalized": "[?] Scovill",
+          "role": "master of the Maria Antoinette"
+        },
+        {
+          "as_printed": "Brown",
+          "normalized": "[?] Brown",
+          "role": "master of the Hubbard"
+        },
+        {
+          "as_printed": "Greene",
+          "normalized": "[?] Greene",
+          "role": "master of the Winnebago"
+        },
+        {
+          "as_printed": "Shooks",
+          "normalized": "[?] Shooks",
+          "role": "master of the schooner Juliet"
+        }
+      ],
+      "notes": "A SECOND WEEK OF THE PORT, AND IT IS TWICE THE FIRST. Where 1834-08-06 lists seven vessels for a week, this list carries about fifteen movements between 13 and 20 August — the Westward Ho, John Kinzie, Phillips, President, Maria Antoinette, Jesse Smith, Hubbard, Hiram, Winnebago, Nancy Douseman, Warren, Lucinda, Juliet and Dart. TWO OF THE VESSELS ARE NAMED AFTER MEN IN THIS TOWN: the brig John Kinzie and the schooner Hubbard, which is worth recording because it is evidence of who the town's shipping interest belonged to. A BRIG appears for the first time in this pass — a square-rigged two-master is a bigger hull than the sloops and schooners of the week before, and the harbour report of 1834-08-13 is about making the river take exactly that. The column is interleaved with the left-hand column's last characters, so the gutter lines are excluded and the port and master of several entries are lost with the line ends; nothing is supplied for them."
+    },
+    {
+      "id": "c002",
+      "kind": "person",
+      "reading": "transcription_mediated",
+      "quote": "tate of David Laughton\nsh, Judge of Probate for\nwill the sonoran\nproduce proper evidence te\nAug. 19, 1834.\nISAAC HAR\nAdm'r. with the Will",
+      "normalized": "[Administrator's Notice. All persons having claims against the es]tate of David Laughton [are requested to file them with … Ba]s[h?], Judge of Probate for [Cook county …] will […] produce proper evidence t[hereof …] Aug. 19, 1834. ISAAC HAR[MON], Adm'r. with the Will [annexed].",
+      "locator": {
+        "artifact_role": "primary",
+        "issue_page": 3,
+        "column": 3,
+        "lines": [
+          3005,
+          3017
+        ],
+        "lines_of_claim": [
+          3005,
+          3008,
+          3010,
+          3012,
+          3015,
+          3016,
+          3017
+        ],
+        "interleaved": true
+      },
+      "entities": [
+        {
+          "as_printed": "tate of David Laughton",
+          "normalized": "David Laughton",
+          "role": "deceased"
+        },
+        {
+          "as_printed": "ISAAC HAR",
+          "normalized": "Isaac Harmon",
+          "role": "administrator with the will annexed"
+        }
+      ],
+      "ad_copy_date": {
+        "verbatim": "Aug. 19, 1834.",
+        "iso": "1834-08-19"
+      },
+      "notes": "DAVID LAUGHTON IS DEAD BY 19 AUGUST 1834, and Isaac Harmon is administering his estate with the will annexed. Two names the reconstruction has reason to care about: Laughton for the Des Plaines trading house that carries the name, and Isaac Harmon as clerk to the Board of Trustees, which is how he attests the South Water Street grading ordinance printed in this corpus on 1834-07-30 (claim c001 there). The claim is deliberately thin — the notice is cut by the interleaved column and the probate judge's name is not readable — but a death with a date is a fact a card can carry, and it is dated eleven months before the scene."
+    },
+    {
+      "id": "c003",
+      "kind": "business",
+      "reading": "transcription_mediated",
+      "quote": "ATTORNEY AND COLNSELLOR\nAnd Soliciter in Chancery\nof Franklin and South Water.st\nserene bour west from l\nChuro, Do. 17. 1333",
+      "normalized": "[G. SPRING,] ATTORNEY AND CO[U]NSELLOR [AT LAW,] And Solicit[o]r in Chancery. [OFFICE] se[co]n[d] [d]o[o]r west from [the corner] of Franklin and South Water-st[reets]. Ch[icag]o, D[ec]. 17. 18[3]3.",
+      "locator": {
+        "artifact_role": "primary",
+        "issue_page": 3,
+        "column": 4,
+        "lines": [
+          3272,
+          3276
+        ],
+        "lines_of_claim": [
+          3272,
+          3273,
+          3274,
+          3275,
+          3276
+        ],
+        "interleaved": false
+      },
+      "entities": [
+        {
+          "as_printed": "ATTORNEY AND COLNSELLOR",
+          "normalized": "G. Spring",
+          "role": "proprietor",
+          "occupations": [
+            "attorney",
+            "solicitor in chancery"
+          ],
+          "associated_places": [
+            "Franklin and South Water streets"
+          ]
+        }
+      ],
+      "business": {
+        "name": "G. Spring, attorney and counsellor at law",
+        "proprietors": [
+          "G. Spring"
+        ],
+        "trade": "attorney and solicitor in chancery",
+        "goods": [],
+        "street": "South Water Street",
+        "placement": {
+          "class": "relative",
+          "anchor": "the corner of Franklin and South Water streets",
+          "offset_text": "serene bour west from l",
+          "offset_normalized": "se[co]nd [d]oor west from [the corner of Franklin and South Water streets]",
+          "street": "South Water Street"
+        }
+      },
+      "ad_copy_date": {
+        "verbatim": "Churo, Do. 17. 1333",
+        "iso": "1833-12-17"
+      },
+      "notes": "A LAW OFFICE PLACED OFF A CORNER: second door west of Franklin and South Water. That is a `relative` placement with a corner anchor, which is as close to a street number as this town gets, and it puts a professional office on the principal street two blocks west of the ones the storefronts occupy. THE PROPRIETOR'S NAME IS SUPPLIED FROM THE SAME STANDING ADVERTISEMENT ONE WEEK EARLIER. The heading is cut away here; on 1834-08-13 the identical advertisement runs with 'Go SPRING' over it and 'PricE eecond door West trom' beneath (page 3, column 4, lines 2985-2988), the same 'Dec. 17, 1833' dateline and the same two lines of title. The cross-issue join is what gives the name, it is bracketed, and this note is where it is recorded — the 1834-08-13 printing is NOT separately claimed, because its own copy carries no anchor and a placement of `none` from the earlier file would have set the gazetteer's entry before this one could correct it."
+    },
+    {
+      "id": "c004",
+      "kind": "building",
+      "reading": "transcription_mediated",
+      "quote": "To Lease,\nFEET front, 150 Feet rear, of\nBlock 18. on South wal\nthe above Lot, fronting on Clark-str\nFor termis, inquire at the Print\nSOLOMON IN\nChicago, Guly 2, 1831.",
+      "normalized": "To Lease, [50] FEET front, 150 Feet rear, of [Lot … in] Block 18, on South Wa[ter street …] the above Lot, fronting on Clark-str[eet …]. For term[s], inquire at the Print[ing Office]. SOLOMON J[U]N[EAU]. Chicago, [J]uly 2, 183[4].",
+      "locator": {
+        "artifact_role": "primary",
+        "issue_page": 3,
+        "column": 4,
+        "lines": [
+          3193,
+          3200
+        ],
+        "lines_of_claim": [
+          3193,
+          3194,
+          3196,
+          3197,
+          3198,
+          3199,
+          3200
+        ],
+        "interleaved": true
+      },
+      "entities": [
+        {
+          "as_printed": "SOLOMON IN",
+          "normalized": "Solomon Juneau",
+          "role": "lessor",
+          "associated_places": [
+            "Block 18, South Water Street"
+          ]
+        }
+      ],
+      "ad_copy_date": {
+        "verbatim": "Chicago, Guly 2, 1831.",
+        "iso": "1834-07-02"
+      },
+      "notes": "A LOT ON THE GROUND, BY BLOCK NUMBER AND BY BOTH ITS FRONTAGES: Block 18, fronting South Water Street and fronting Clark Street, offered to lease in two parcels of 50 by 150 feet. This is the second plat-level placement of the month (the first is the Payne lien of 1834-08-13, claim c009 there), and it is the more useful of the two because it gives DEPTH as well as frontage — 50 feet of front to 150 of rear is the shape of the commercial lot this town was subdivided into. SOLOMON JUNEAU, of Milwaukee, is the lessor, which says something about who held South Water Street ground in 1834. The earlier printing of the same advertisement (1834-08-13, page 3, column 4, lines 2906-2912) gives the frontages as '[50] FEET front, 150 Feet rear' and 'Also 50 feet front, 22 feet [rear?]' but does NOT carry the block number, which this one does; both stand."
+    },
+    {
+      "id": "c005",
+      "kind": "street",
+      "reading": "transcription_mediated",
+      "quote": "SHE Auetion Store on the\nAnction Store.\nStr\nand blue island, is in readiness to rec\ntrom we oraw mince to the\nto be misposco or al private sale qr F\nat any limited price.\nN. B. No Goods will be\nJ. BATES\noffered\nChicago, July 15, 1831",
+      "normalized": "[T]HE Auction Store on the [Street leading] fro[m] [th]e [d]raw[ ]b[ridge] to the o[ak woods] and Blue Island, is in readiness to rec[eive goods,] to be [d]isp[o]s[ed] o[f] a[t] private sale or p[ublic sale,] at any limited price. N. B. No Goods will be offered [at auction …]. J. BATES[, jr. AUCT.] Chicago, July 15, 183[4].",
+      "locator": {
+        "artifact_role": "primary",
+        "issue_page": 3,
+        "column": 5,
+        "lines": [
+          3431,
+          3442
+        ],
+        "lines_of_claim": [
+          3431,
+          3432,
+          3433,
+          3434,
+          3435,
+          3437,
+          3438,
+          3439,
+          3440,
+          3441,
+          3442
+        ],
+        "interleaved": true
+      },
+      "entities": [
+        {
+          "as_printed": "J. BATES",
+          "normalized": "J. Bates",
+          "role": "auctioneer",
+          "occupations": [
+            "auctioneer"
+          ]
+        }
+      ],
+      "ad_copy_date": {
+        "verbatim": "Chicago, July 15, 1831",
+        "iso": "1834-07-15"
+      },
+      "notes": "A STREET NAMED BY WHERE IT GOES: 'the Street leading from the draw-bridge to the oak woods and Blue Island'. In August 1834 a Chicago address can be given without a street name at all, by naming the two ends of the road, and this is the clearest instance in the corpus. It also confirms A DRAW-BRIDGE over the river as a fixed landmark people navigate by — the reconstruction has to decide whether a bridge stands and what kind, and the paper says draw-bridge. 'Blue Island' is the reading this printing adds: the version of 1834-07-30 (claim c009 there) has 'the draw-bridge to the oil woods | and' with the destination cut, and here it prints 'and blue island' whole, so the road runs south-west out of town. The claim is filed as `street` rather than `business` because that is what it establishes; the auction store itself is J. Bates's and is already on record from July."
+    },
+    {
+      "id": "c006",
+      "kind": "business",
+      "reading": "transcription_mediated",
+      "quote": "J. S. C. HOGAI\nFFERS at Wholesale and Rail,\nin South Water Street,\nthe Post Office,\nDry Goods, Groces\nHardware, Crockery and Gin",
+      "normalized": "J. S. C. HOGA[N], [O]FFERS at Wholesale and R[et]ail, [at his store] in South Water Street, [one door … of] the Post Office, Dry Goods, Groce[ries,] Hardware, Crockery and G[lass].",
+      "locator": {
+        "artifact_role": "primary",
+        "issue_page": 3,
+        "column": 5,
+        "lines": [
+          3334,
+          3340
+        ],
+        "lines_of_claim": [
+          3334,
+          3335,
+          3336,
+          3338,
+          3339,
+          3340
+        ],
+        "interleaved": true
+      },
+      "entities": [
+        {
+          "as_printed": "J. S. C. HOGAI",
+          "normalized": "J. S. C. Hogan",
+          "role": "proprietor",
+          "occupations": [
+            "merchant"
+          ],
+          "associated_places": [
+            "South Water Street"
+          ]
+        }
+      ],
+      "business": {
+        "name": "J. S. C. Hogan's store in South Water Street",
+        "proprietors": [
+          "J. S. C. Hogan"
+        ],
+        "trade": "dry goods and groceries",
+        "goods": [
+          "dry goods",
+          "groceries",
+          "hardware",
+          "crockery",
+          "glass"
+        ],
+        "street": "South Water Street",
+        "placement": {
+          "class": "relative",
+          "anchor": "the Post Office",
+          "offset_text": "in South Water Street,",
+          "offset_normalized": "in South Water Street, [one door … of] the Post Office",
+          "street": "South Water Street"
+        }
+      },
+      "notes": "THE SECOND PRINTING OF THE POST-OFFICE PLACEMENT, one week after 1834-08-13's claim c013. It is claimed again rather than folded into that one because the two printings are the evidence that the relationship is the advertisement's settled wording and not a one-week accident of the OCR: 'in South Water Street' and 'the Post Office' stand on their own lines in both weeks, with the direction word lost in both. A business's date range is built out of mentions like this, and this mention carries the store to 20 August 1834."
+    },
+    {
+      "id": "c007",
+      "kind": "business",
+      "reading": "transcription_mediated",
+      "quote": "Blacksmi\nRESPECTFULLY;\nPIERCE R\ntown of Chicago\namit business. in\nand Canel streets, opp\npied by Pierce and Abbc\nhere they wi\nto order.",
+      "normalized": "Blacksmi[thing]. PIERCE [&] F[RENCH] RESPECTFULLY [inform the citizens of the] town of Chicago [that they are carrying on the blacksm]ith business, in [… the corner of Lake] and Can[a]l streets, opp[osite the shop formerly occu]pied by Pierce and Abb[ott], [w]here they wi[ll do all work] to order.",
+      "locator": {
+        "artifact_role": "primary",
+        "issue_page": 4,
+        "column": 5,
+        "lines": [
+          4412,
+          4435
+        ],
+        "lines_of_claim": [
+          4412,
+          4415,
+          4416,
+          4419,
+          4421,
+          4429,
+          4430,
+          4434,
+          4435
+        ],
+        "interleaved": true
+      },
+      "entities": [
+        {
+          "as_printed": "PIERCE R",
+          "normalized": "[?] Pierce",
+          "role": "partner",
+          "occupations": [
+            "blacksmith"
+          ],
+          "associated_places": [
+            "the corner of Lake and Canal streets"
+          ]
+        }
+      ],
+      "business": {
+        "name": "Pierce & French, blacksmiths",
+        "proprietors": [
+          "[?] Pierce"
+        ],
+        "trade": "blacksmith",
+        "goods": [
+          "blacksmith work"
+        ],
+        "street": "Canal street",
+        "placement": {
+          "class": "corner",
+          "anchor": "the corner of Lake and Canal streets",
+          "offset_text": "and Canel streets, opp",
+          "offset_normalized": "[the corner of Lake] and Can[a]l streets",
+          "street": "Canal street"
+        }
+      },
+      "notes": "THE OTHER HALF OF THE BLACKSMITH'S ADDRESS. 1834-08-13 prints 'on the corner of Lak[e' and stops; this printing of the same standing advertisement prints 'and Can[a]l streets' and, crucially, 'opp[osite …] pied by Pierce and Abb[ott]' — so the predecessor firm was PIERCE AND ABBOTT, which puts the same Pierce in both partnerships and makes this a succession within a trade rather than a newcomer taking a shop. THE TWO PRINTINGS DISAGREE ABOUT THE BUILDING and the disagreement is recorded rather than settled: last week's says the new firm has the OLD SHOP formerly occupied by Abbott, this week's says the new stand is OPPOSITE the shop formerly occupied by Pierce and Abbott. One of those two readings is the OCR's fault and the page images would say which; neither is preferred here, and the placement recorded on the business is the corner, which both weeks agree on."
+    }
+  ]
+}

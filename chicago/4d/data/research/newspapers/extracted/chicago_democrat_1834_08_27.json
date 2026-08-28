@@ -1,0 +1,234 @@
+{
+  "schema": 1,
+  "issue_id": "chicago_democrat_1834_08_27",
+  "extracted": "2026-08-28",
+  "extracted_by": "hand, T-0290 — the Democrat read, August 1834",
+  "note": "Vol. I No. 39, the last issue of the month. The advertising is largely the standing matter of the three issues before it, so the claims here are the new ones: the steamboat Michigan in the Marine List, the militia battalion election called at the Mansion House, and a book and stationery store about to open. Page 3 column 3 also carries a runaway advertisement from St. Louis (W. H. Ashley, 17 August 1834), which is NOT extracted: it is reprinted matter about Missouri and says nothing about this town.",
+  "claims": [
+    {
+      "id": "c001",
+      "kind": "shipping",
+      "reading": "transcription_mediated",
+      "quote": "MARINE LEST.\nPORT OF CHICAGO.\nAng. 21. Seop Westward He, Banks,\nwalker.\nH1. s. B. Michigau, PensOevege.\n31. Beli. Detroit,\ne5. Stoop Lorain, Kimball, Cleave\nCLEARED.\nAng. 93. Schr. Hizam, Basesst, Boftslo.\nMichigan,\nPease,\n22. Schr.\nHogain, Fr\n22. Sloop Dart, Bernard, St. Joaopt\nWestward Ho, Banks,\n[uncertain: 2. Scir. Joine a Detroit]\naliet, Shook\nNorton, Oliver, Bias",
+      "normalized": "MARINE L[I]ST. PORT OF CHICAGO. [ARRIVED.] A[u]g. 21. S[l]oop Westward H[o], Banks, [—]. [—] walker. [2]1. S. B. Michiga[n], Pe[a]s[e], O[sw]e[go]. [2]1. B[rig?]. [—] Detroit. [2]5. S[l]oop Lorain, Kimball, Cleave[land]. CLEARED. A[u]g. [2]3. Schr. Hi[r]am, Bas[s]e[tt], B[u]f[fa]lo. [S.] B. Michigan, Pease, Mich[igan City?]. 22. Schr. [—] Hoga[n], Fr[…]. 22. Sloop Dart, B[a]rnard, St. Jo[se]p[h]. [Sloop] Westward Ho, Banks, [—]. [2]2. Sc[h]r. J[u]l[i]et, Shook[s], Detroit. [Schr.] Norton, Oliver, B[uffalo?].",
+      "locator": {
+        "artifact_role": "primary",
+        "issue_page": 3,
+        "column": 2,
+        "lines": [
+          2670,
+          2705
+        ],
+        "lines_of_claim": [
+          2670,
+          2672,
+          2675,
+          2677,
+          2680,
+          2681,
+          2683,
+          2685,
+          2688,
+          2691,
+          2692,
+          2695,
+          2696,
+          2698,
+          2699,
+          2702,
+          2703,
+          2705
+        ],
+        "interleaved": true
+      },
+      "entities": [
+        {
+          "as_printed": "Pease,",
+          "normalized": "[?] Pease",
+          "role": "master of the steam boat Michigan"
+        },
+        {
+          "as_printed": "e5. Stoop Lorain, Kimball, Cleave",
+          "normalized": "[?] Kimball",
+          "role": "master of the sloop Lorain"
+        },
+        {
+          "as_printed": "Norton, Oliver, Bias",
+          "normalized": "[?] Oliver",
+          "role": "master of the Norton"
+        }
+      ],
+      "notes": "THE STEAMBOAT MICHIGAN IS AT CHICAGO, and this is the first steam vessel in the three Marine Lists this pass has read. 'S. B. Michigan, Pease' arrives on 21 August and clears again — the 'S. B.' prefix is the paper's own abbreviation for steam boat and is distinguished in the column from 'Schr.' and 'Sloop'. For a reconstruction that has to decide what lies off the town, a steamboat is a different silhouette and a different draught from anything in the earlier lists, and it is a documented visitor in the summer before the scene. There is also a SCHOONER HOGAN in the cleared list, a third vessel this month carrying a Chicago name after the brig John Kinzie and the schooner Hubbard of 1834-08-20. The column is interleaved with the left-hand column and several ports and dates are lost with the line ends; nothing is supplied for them."
+    },
+    {
+      "id": "c002",
+      "kind": "event",
+      "reading": "transcription_mediated",
+      "quote": "Attention!!!\n[uncertain: selection will he hola]\nop the third Saturday in Sop\nMansion-House in\n, Chi\nber next, for two\nBattalion\nregiment in\nounty trot\nOak Woo\nof including the settlements ir\nhe asapiain river and north\ncago,\nUnk Woods,\nof'er Battalion will cor\nAng. 26, 1831",
+      "normalized": "Attention!!! [An e]lection will be h[e]l[d] o[n] the third Saturday in Sep[tem]ber next, [at the] Mansion-House in [Chi]cago, for two [officers of the] Battalion [… of the] regiment in [Cook c]ounty, [running] fro[m] Oak Woo[ds …] [and] including the settlements [on t]he [Des]plaines river and north [of Chi]cago[; the second Battalion will c]o[mprise …]. A[u]g. 26, 183[4].",
+      "locator": {
+        "artifact_role": "primary",
+        "issue_page": 3,
+        "column": 3,
+        "lines": [
+          2789,
+          2815
+        ],
+        "lines_of_claim": [
+          2789,
+          2791,
+          2792,
+          2793,
+          2794,
+          2796,
+          2797,
+          2799,
+          2801,
+          2802,
+          2806,
+          2807,
+          2809,
+          2810,
+          2812,
+          2815
+        ],
+        "interleaved": true
+      },
+      "entities": [],
+      "notes": "THE MANSION HOUSE IS THE TOWN'S PUBLIC ROOM, and this is the second use of it documented in five weeks: the trustee election of 11 August was held there (the notice of 1834-07-30, claim c003 there, names it 'the Mansion [House] (E. H. Hadduck's)') and now the militia battalion officers are to be elected there in September. A building that hosts the town poll and the regimental election is not just a tavern, and a reconstruction that puts a card on it can say so from print. THE MILITIA GEOGRAPHY IS THE OTHER HALF: the battalion runs from the Oak Woods and takes in the settlements on the Des Plaines river and north of Chicago, which is the county's own account of where its people are in 1834. The line ends are cut by the interleaved column and the battalion numbers and the officers' titles are not readable; they are not supplied."
+    },
+    {
+      "id": "c003",
+      "kind": "business",
+      "reading": "transcription_mediated",
+      "quote": "Chicago Wholesale and Ret\nBook & Stationary Store\nthat they purpose opening a Store\nsive and well sasorted stock of\nreceived from Philadelphia, and others from N\nlue store is in brontese and homeo havel\n[uncertain: Pork and Boston are asset surr]\nChieugo, Aug. 26, 1834.",
+      "normalized": "Chicago Wholesale and Ret[ail] Book & Stationary Store. [The subscribers inform the public] that they purpose opening a Store [… an exten]sive and well [as]sorted stock of [Books and Stationery, part] received from Philadelphia, and others from N[ew York … t]he store is in [uncertain: brontese and homeo havel] [uncertain: … New York and Boston …]. Chic[a]go, Aug. 26, 1834.",
+      "locator": {
+        "artifact_role": "primary",
+        "issue_page": 3,
+        "column": 3,
+        "lines": [
+          2840,
+          2853
+        ],
+        "lines_of_claim": [
+          2840,
+          2842,
+          2844,
+          2846,
+          2848,
+          2849,
+          2851,
+          2853
+        ],
+        "interleaved": true
+      },
+      "entities": [],
+      "business": {
+        "name": "the Chicago Wholesale and Retail Book & Stationery Store",
+        "proprietors": [],
+        "trade": "bookseller and stationer",
+        "goods": [
+          "books",
+          "stationery"
+        ],
+        "street": null,
+        "placement": {
+          "class": "none",
+          "anchor": null,
+          "offset_text": null,
+          "offset_normalized": null,
+          "street": null
+        }
+      },
+      "ad_copy_date": {
+        "verbatim": "Chieugo, Aug. 26, 1834.",
+        "iso": "1834-08-26"
+      },
+      "notes": "A BOOKSELLER AND STATIONER OPENS IN CHICAGO IN AUGUST 1834 — the first specialist retailer this pass has found that is not a general store, a market, a smith or a factory. It is announced as about to open ('they purpose opening a Store'), so the documented date is the ANNOUNCEMENT and not the opening, and the claim says so rather than promoting one to the other. The stock comes from Philadelphia and New York, which is the trade route this town's specialist goods travel. THE ADDRESS IS NOT READABLE. Line 2849 plainly carries one — 'lue store is in brontese and homeo havel' — and it is left inside [uncertain: …] exactly as it stands rather than guessed into a street, because a storefront placed on the strength of that line would be invention. A later pass with the page images should be able to recover it; that is the single most valuable unread line in the month."
+    },
+    {
+      "id": "c004",
+      "kind": "notice",
+      "reading": "transcription_mediated",
+      "quote": "School Land Patents.\nI.L those having made payment in full\nComr. School Lands Cool co\n4ug. 20, 1831.",
+      "normalized": "School Land Patents. [A]LL those having made payment in full [… will receive their patents … ] Com[missione]r [of] School Lands, Cook co[unty]. [A]ug. 20, 183[4].",
+      "locator": {
+        "artifact_role": "primary",
+        "issue_page": 3,
+        "column": 3,
+        "lines": [
+          2817,
+          2825
+        ],
+        "lines_of_claim": [
+          2817,
+          2820,
+          2823,
+          2825
+        ],
+        "interleaved": true
+      },
+      "entities": [],
+      "notes": "THE SCHOOL SECTION IS BEING PATENTED OUT, and the notice is the administrative event behind a whole quarter of the town's ground. Section 16 — the school section — is the land the reconstruction's plat carries south-west of the river, and the advertising in these same issues repeatedly sells lots 'in the School Section' (1834-08-13, page 3 column 4: 'Lot No 3, in Block 120, in the Sch[ool Section]'; 1834-08-20: 'Blocks in the School Section'). A commissioner issuing patents in August 1834 is what turns those sales into title. The commissioner's own name is cut away with the line above and is not supplied."
+    },
+    {
+      "id": "c005",
+      "kind": "notice",
+      "reading": "transcription_mediated",
+      "quote": "Wants,\nA\nSITUATION se Clerk in a Dry Go\nGrocery Store n vonny man who t\na good hand, and is well acquainted with\nGood referetices can be risen.\nN. B. A letter addr\nPost Office\nwill be panctual\nAng 23, 1831.",
+      "normalized": "Wants. A SITUATION [a]s Clerk in a Dry Go[ods or] Grocery Store [by] a young man who [is] a good hand, and is well acquainted with [the … business]. Good refere[n]ces can be [g]i[v]en. N. B. A letter addr[essed … through the] Post Office will be punctual[ly attended to]. A[u]g 2[3], 183[4].",
+      "locator": {
+        "artifact_role": "primary",
+        "issue_page": 3,
+        "column": 2,
+        "lines": [
+          2709,
+          2725
+        ],
+        "lines_of_claim": [
+          2709,
+          2711,
+          2712,
+          2714,
+          2716,
+          2718,
+          2720,
+          2722,
+          2723,
+          2725
+        ],
+        "interleaved": true
+      },
+      "entities": [],
+      "notes": "A YOUNG MAN ADVERTISES FOR A CLERKSHIP, AND HE IS REACHED THROUGH THE POST OFFICE. The small fact underneath it is the useful one: the post office is where a man with no premises receives his letters, which is the same institution J. S. C. Hogan's store advertises itself next door to (1834-08-13, claim c013 there). The want itself is a scrap of the town's labour market — dry goods and grocery stores are the places a clerk expects to be hired, which is consistent with what the advertising columns of these four issues are almost entirely made of."
+    },
+    {
+      "id": "c006",
+      "kind": "building",
+      "reading": "transcription_mediated",
+      "quote": "For Sale.\nGOOD constortable Do\ncontiguous to th\nApply to\n[uncertain: SERIOD GIVE PRUY]\ndug. Test.",
+      "normalized": "For Sale. [A] GOOD com[f]ortable D[welling House …] contiguous to th[e …] Apply to [uncertain: … PRUY[NE]]. [A]ug. [26?].",
+      "locator": {
+        "artifact_role": "primary",
+        "issue_page": 3,
+        "column": 2,
+        "lines": [
+          2749,
+          2758
+        ],
+        "lines_of_claim": [
+          2749,
+          2752,
+          2754,
+          2756,
+          2757,
+          2758
+        ],
+        "interleaved": true
+      },
+      "entities": [],
+      "notes": "A DWELLING HOUSE FOR SALE, 'contiguous to' something the column has cut away. The claim is kept for two narrow reasons and neither is the house. First, 'contiguous to' is another instance of the addressing habit these four issues show throughout — a Chicago property in 1834 is located by what it is NEXT TO, not by a number. Second, Pruyne (P. Pruyne & Co. advertise elsewhere in the month) is acting as the agent, which is what the town has instead of an estate office. WHAT IT IS CONTIGUOUS TO IS NOT SUPPLIED, and without it the notice places nothing; it is filed so that a later scan-verified pass has the line number to go to."
+    }
+  ]
+}

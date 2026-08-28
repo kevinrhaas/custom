@@ -22,6 +22,13 @@
       "to": "1835-08-29",
       "ticket": "T-0261",
       "note": "The Chicago American complete, Vol. I No. 1 to 1835-08-29, thirteen issues, read through. Their transcriptions are the derived ones committed under text/, so every quote is machine-checked on `dev` itself. THE RUN CARRIES NO POST-OFFICE LETTER LIST: swept all thirteen files for every form the Democrat uses — 'list of letters', 'letters remaining', 'remaining in the post office', 'uncalled for', a signature ending 'P. M.' — for exactly one hit, a list of State Bank of Illinois officers reprinted from the Sangamon Journal (1835-06-27). T-0261's letter-list clause is therefore met by demonstrating absence; the American's post-office notices are its hours and rules, signed by the postmaster J. S. C. Hogan, and are extracted as `infrastructure`."
+    },
+    {
+      "publication": "chicago_democrat",
+      "from": "1834-08-01",
+      "to": "1834-08-31",
+      "ticket": "T-0290",
+      "note": "Vol. I Nos. 36-39, 1834-08-06 to 1834-08-27. Four issues, read through. Their transcriptions are deposit-held, so the quotes were machine-checked with `--check --deposit <path>` against a read-only copy of the deposit from `main`; on `dev` their claims are counted unresolved and reported, which is green (T-0275). THE MONTH'S ONE LIST OF LETTERS IS HENNEPIN'S, NOT CHICAGO'S: a heading DOES appear, on page 4 of 1834-08-06, which the ticket's survey had reported absent — it is the Hennepin, Ill. list of 1 July 1834 already read at 1834-07-30, identified by its postmaster's signature ('ER, Jr. P.M.' = 'THoS. GALAHER, Jr. P.M.') and by two of its names, and it is extracted here in both its cut halves (claims c009 and c010) WITHOUT minting residents, because ruling 1 mints a resident candidate from Chicago's list and not from another town's."
     }
   ]
 }

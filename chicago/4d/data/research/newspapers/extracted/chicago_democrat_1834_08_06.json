@@ -1,0 +1,528 @@
+{
+  "schema": 1,
+  "issue_id": "chicago_democrat_1834_08_06",
+  "extracted": "2026-08-28",
+  "extracted_by": "hand, T-0290 — the Democrat read, August 1834",
+  "note": "Vol. I No. 36, the first issue of the month. The local matter is concentrated on page 3: the county's returns from the general election of 4 August, a Marine List that is this pass's first week of the port, a town meeting called by an anonymous elector, one marriage, and the standing advertisements. THE PAGE-4 ADVERTISING IS THE WORST-SEGMENTED IN THE MONTH — six columns cut through the middle of every advertisement, so most of page 4 is not readable to the standard a claim needs and is left unread rather than guessed at. The List of Letters on that page is read anyway, because identifying WHOSE post office it is (Hennepin's, not Chicago's) was a question the ticket put.",
+  "claims": [
+    {
+      "id": "c001",
+      "kind": "shipping",
+      "reading": "transcription_mediated",
+      "quote": "MARINE LIST\nPORT OF CHICAGO.\nJuly 31. Schr.\n[uncertain: ACLES,]\n31.\nsucinda, Hugunin,St. Jo\nlusterlitz, M' Kinstry, Buffal\nAug. 4.\nBridget, Lundy,\nde.\nNew York,\n—-Cleverland\nJuly an. Schr.\n[uncertain: CLEANEU]\nRomp,\nChaver,\nDetroit.\nHuron, Eno, St. Joseph.\n[uncertain: Aug. s]\nAusterlitz, M' Kinstry, Detroi\nIncinda,\n[uncertain: Hugumın,]\nSt. Jos\nPhillips, Howe, St. Joseph\nDart, Barnard, Millwalkee",
+      "normalized": "MARINE LIST. PORT OF CHICAGO. [ARRIVED.] July 31. Schr. [uncertain: ACLES,] 31. [L]ucinda, Hugunin, St. Jo[seph]. [A]usterlitz, M'Kinstry, Buffal[o]. Aug. 4. Bridget, Lundy, [New York] — Cleve[l]and. [CLEARED.] July [30]. Schr. Romp, Chaver, Detroit. Huron, Eno, St. Joseph. Aug. [4]. Austerlitz, M'Kinstry, Detroi[t]. [L]ucinda, Hugu[n]in, St. Jos[eph]. Phillips, Howe, St. Joseph. Dart, Barnard, Mi[l]wa[u]kee. [The segmenter has shuffled the two sub-headings ARRIVED and CLEARED and the vessel lines beneath them; the vessels, masters and ports are read as printed and the ARRIVED/CLEARED split is [uncertain: read from the two date runs, 31 July-4 August and 30 July-4 August].]",
+      "locator": {
+        "artifact_role": "primary",
+        "issue_page": 3,
+        "column": 4,
+        "lines": [
+          2809,
+          2833
+        ],
+        "lines_of_claim": [
+          2809,
+          2810,
+          2811,
+          2812,
+          2813,
+          2814,
+          2815,
+          2816,
+          2817,
+          2818,
+          2819,
+          2820,
+          2821,
+          2822,
+          2823,
+          2824,
+          2825,
+          2826,
+          2827,
+          2828,
+          2829,
+          2830,
+          2831,
+          2832,
+          2833
+        ],
+        "interleaved": false
+      },
+      "entities": [
+        {
+          "as_printed": "Hugunin",
+          "normalized": "[?] Hugunin",
+          "role": "master of the Lucinda"
+        },
+        {
+          "as_printed": "M' Kinstry",
+          "normalized": "[?] M'Kinstry",
+          "role": "master of the Austerlitz"
+        },
+        {
+          "as_printed": "Lundy",
+          "normalized": "[?] Lundy",
+          "role": "master of the Bridget"
+        },
+        {
+          "as_printed": "Chaver",
+          "normalized": "[?] Chaver",
+          "role": "master of the Romp"
+        },
+        {
+          "as_printed": "Eno",
+          "normalized": "[?] Eno",
+          "role": "master of the Huron"
+        },
+        {
+          "as_printed": "Howe",
+          "normalized": "[?] Howe",
+          "role": "master of the Phillips"
+        },
+        {
+          "as_printed": "Barnard",
+          "normalized": "[?] Barnard",
+          "role": "master of the Dart"
+        }
+      ],
+      "notes": "THE PORT'S OWN WEEK, and the first Marine List this reading pass has taken out of the 1834 Democrat. Seven vessels, all of them schooners or sloops small enough for a river with a bar across its mouth: Lucinda (Hugunin), Austerlitz (M'Kinstry), Bridget (Lundy), Romp (Chaver), Huron (Eno), Phillips (Howe) and Dart (Barnard). The ports they run to are the whole of the town's trade in one week — St. Joseph four times, Detroit twice, Buffalo, New York, Cleveland and Milwaukee once each. St. Joseph is the dominant partner, which is what the Chicago and St. Joseph packet advertisement in this same issue (c007) is selling. NO STEAMBOAT appears in this week's list, which matters for a reconstruction that has to decide what lies at the wharves on a July day: a sloop and a schooner are what the 1834 river carries. The column's headings are transposed by the segmenter, so the ARRIVED/CLEARED assignment per vessel is NOT claimed — only the list and its week."
+    },
+    {
+      "id": "c002",
+      "kind": "event",
+      "reading": "transcription_mediated",
+      "quote": "TOWN MEETING.\n[uncertain: Teed to mete The Tr Chira]\n(S.\nAT THE\npropriety of\no'clock P.M. to telle into consideration the\nnomisting suitable person to be\nbusiness as may come before the\n[uncertain: ?cet? on mongay ne.]\nChicago, Auget 6, 1834,NV ELECTOR.\nsuch othe",
+      "normalized": "TOWN MEETING. [The citizens of Chicago are request]ed to me[e]t [at the … at …] o'clock P.M. to t[a]k[e] into consideration the propriety of nomi[na]ting [a] suitable person to be [… and] such othe[r] business as may come before the [m]eet[ing, on Monday ne]x[t]. Chicago, Aug[us]t 6, 1834. [A]N ELECTOR.",
+      "locator": {
+        "artifact_role": "primary",
+        "issue_page": 3,
+        "column": 4,
+        "lines": [
+          2834,
+          2844
+        ],
+        "lines_of_claim": [
+          2834,
+          2835,
+          2836,
+          2837,
+          2838,
+          2839,
+          2840,
+          2841,
+          2842,
+          2843,
+          2844
+        ],
+        "interleaved": false
+      },
+      "entities": [],
+      "notes": "A CALL FOR A TOWN MEETING, signed only 'AN ELECTOR' and dated the day of publication. What it is called for survives only in fragments — the propriety of nominating a suitable person, and such other business as may come before the meeting — and the office is NOT recoverable from this column, so nothing is supplied for it. Its value here is the practice rather than the subject: a town of this size settled its business in open meeting, called by an anonymous elector through the one newspaper, five days after the general election of 4 August that the same page reports (c008)."
+    },
+    {
+      "id": "c003",
+      "kind": "person",
+      "reading": "transcription_mediated",
+      "quote": "MARRIED,\nLIZABETH Jerkies, all of this town\nWHITEHEAD, to Mies E",
+      "normalized": "MARRIED, [… Mr. …] WHITEHEAD, to Miss E[LIZABETH] Jerkies, all of this town. [The two lines of the notice stand in the file in reverse order; the reading restores them. The bride's surname is [uncertain: Jerkies] — the transcription carries no second witness for it.]",
+      "locator": {
+        "artifact_role": "primary",
+        "issue_page": 3,
+        "column": 4,
+        "lines": [
+          2845,
+          2847
+        ],
+        "lines_of_claim": [
+          2845,
+          2846,
+          2847
+        ],
+        "interleaved": false
+      },
+      "entities": [
+        {
+          "as_printed": "WHITEHEAD",
+          "normalized": "[?] Whitehead",
+          "role": "bridegroom"
+        },
+        {
+          "as_printed": "LIZABETH Jerkies",
+          "normalized": "E[l]izabeth [uncertain: Jerkies]",
+          "role": "bride"
+        }
+      ],
+      "notes": "THE MONTH'S ONE MARRIAGE NOTICE, and 'all of this town' is what makes it worth a card: both parties are Chicago residents in August 1834. The groom's given name is cut away with the line above and is NOT supplied. Whitehead is independently in the town this month — 'Enquire of Whitehead & c[o.]' stands over a To Let advertisement in the issue of 1834-08-13 (page 3, column 5) — but nothing here says the two are the same man, and no entity is minted for the firm on that resemblance."
+    },
+    {
+      "id": "c004",
+      "kind": "business",
+      "reading": "transcription_mediated",
+      "quote": "(-NEW\nGOODS. O\nWholesale and\nRetail\nJOHN H. KINZIE,\nTAS just receive\nthe EAst end of his Was it opening, (i\nGooDs, commisting in part of\nFoRT DEARBORN,) &\nvery\nFancy and Staple Dry Goode,\n[uncertain: SADDERT,]\nGroceries, of all soris;\nCrockery, Tineare, Hardware\nIron, Steel, Paints, Oils, and • variety o",
+      "normalized": "NEW GOODS. Wholesale and Retail. JOHN H. KINZIE, [h]as just receive[d and] is [n]ow opening, (i[n] the [E]ast end of his Wa[re]house, [near] FORT DEARBORN,) a very [large assortment of] GOODS, cons[i]sting in part of Fancy and Staple Dry Good[s], [SADDLERY,] Groceries, of all sor[t]s; Crockery, Tin[w]are, Hardware, Iron, Steel, Paints, Oils, and a variety o[f other articles]. [The line carrying the shop's position is cut through by the neighbouring column and reads, verbatim, 'the EAst end of his Was it opening, (i'; the reading joins it to line 2869's 'FoRT DEARBORN,) &'.]",
+      "locator": {
+        "artifact_role": "primary",
+        "issue_page": 3,
+        "column": 4,
+        "lines": [
+          2861,
+          2875
+        ],
+        "lines_of_claim": [
+          2861,
+          2862,
+          2863,
+          2864,
+          2865,
+          2866,
+          2867,
+          2868,
+          2869,
+          2870,
+          2871,
+          2872,
+          2873,
+          2874,
+          2875
+        ],
+        "interleaved": false
+      },
+      "entities": [
+        {
+          "as_printed": "JOHN H. KINZIE",
+          "normalized": "John H. Kinzie",
+          "role": "proprietor",
+          "occupations": [
+            "merchant"
+          ],
+          "associated_places": [
+            "Fort Dearborn"
+          ]
+        }
+      ],
+      "business": {
+        "name": "John H. Kinzie's warehouse store at Fort Dearborn",
+        "proprietors": [
+          "John H. Kinzie"
+        ],
+        "trade": "general merchant",
+        "goods": [
+          "dry goods",
+          "saddlery",
+          "groceries",
+          "crockery",
+          "tinware",
+          "hardware",
+          "iron",
+          "steel",
+          "paints",
+          "oils"
+        ],
+        "street": null,
+        "placement": {
+          "class": "relative",
+          "anchor": "Fort Dearborn",
+          "offset_text": "the EAst end of his Was it opening, (i",
+          "offset_normalized": "the [E]ast end of his Wa[re]house, [near] FORT DEARBORN",
+          "street": null
+        }
+      },
+      "notes": "JOHN H. KINZIE SELLS OUT OF A WAREHOUSE AT FORT DEARBORN, which is a placement a reconstruction can use: not a lot number, but a building whose position is fixed by the fort itself. THE END OF THE WAREHOUSE IS READ 'East' ON TWO WITNESSES OF THREE. The same standing advertisement runs on 1834-08-20 as 'the KAst end of his Wast Hot[use]' (page 3, column 4, line 3175) and on 1834-08-13 as 'the rest end of his WAnt HoUsE' (page 3, column 4, line 2888) — 'KAst' and 'EAst' agree, 'rest' is the odd reading, and no page image is available here to settle it, so the supply is bracketed and this note is the record of the disagreement. The goods list is the ordinary frontier general stock and is kept because the trade a storefront carries is what its sign and its street frontage have to look like."
+    },
+    {
+      "id": "c005",
+      "kind": "business",
+      "reading": "transcription_mediated",
+      "quote": "Insurance by Fire.\nHE webserbers having been appointed\nAgents for the Howard Fire In\nof the city of New-York, for Chi\nvicinity, will insure property a-\ngainat loss by Fire, on reasonable terme\nJuly 1.\nHUBBARD & CO.",
+      "normalized": "Insurance by Fire. [T]HE [su]bscr[i]bers having been appointed Agents for the Howard Fire In[surance Company] of the city of New-York, for Chi[cago and its] vicinity, will insure property a-gain[s]t loss by Fire, on reasonable term[s]. July 1. HUBBARD & CO.",
+      "locator": {
+        "artifact_role": "primary",
+        "issue_page": 3,
+        "column": 6,
+        "lines": [
+          2985,
+          2992
+        ],
+        "lines_of_claim": [
+          2985,
+          2986,
+          2987,
+          2988,
+          2989,
+          2990,
+          2991,
+          2992
+        ],
+        "interleaved": false
+      },
+      "entities": [],
+      "business": {
+        "name": "Hubbard & Co., agents for the Howard Fire Insurance Company",
+        "proprietors": [],
+        "trade": "commission merchants and insurance agents",
+        "goods": [
+          "fire insurance"
+        ],
+        "street": null,
+        "placement": {
+          "class": "none",
+          "anchor": null,
+          "offset_text": null,
+          "offset_normalized": null,
+          "street": null
+        }
+      },
+      "ad_copy_date": {
+        "verbatim": "July 1.",
+        "iso": "1834-07-01"
+      },
+      "notes": "FIRE INSURANCE IS BEING SOLD IN CHICAGO IN 1834, by Hubbard & Co. as agents for a New York company. Two things follow for the reconstruction and neither is about insurance: a town whose buildings are worth underwriting is a town of built property rather than a post, and a firm that can be appointed a New York company's agent is a firm with a counting-room. The advertisement gives no address, so the placement is `none` rather than a guess; Hubbard & Co. appear elsewhere in this month as references for a tailor (1834-08-06, page 3, column 5) and as sellers of wines, cigars, flour, salt and nails."
+    },
+    {
+      "id": "c006",
+      "kind": "business",
+      "reading": "transcription_mediated",
+      "quote": "WANTED by the suliscribers, a good E:\nTo Engineers.\n[uncertain: crep rm sar-mile one need apply bat on]\n[uncertain: anateeto WHom Coou waves a00 sua]\n[uncertain: workmen]\n[uncertain: inet sicam satr-mite]\nOBLE & WESENCHAF\nClucago, May 26, 1834",
+      "normalized": "To Engineers. WANTED by the s[u]bscribers, a good E[ngineer for their steam saw-mill; none need apply but on]e [who is a first rate workman, to whom good wages and stea]d[y employment will be given at] the[ir] steam saw-mill. [N]OBLE & WESENC[R]AF[T]. C[hi]cago, May 26, 1834.",
+      "locator": {
+        "artifact_role": "primary",
+        "issue_page": 3,
+        "column": 5,
+        "lines": [
+          2897,
+          2904
+        ],
+        "lines_of_claim": [
+          2897,
+          2898,
+          2899,
+          2900,
+          2901,
+          2902,
+          2903,
+          2904
+        ],
+        "interleaved": false
+      },
+      "entities": [],
+      "business": {
+        "name": "Noble & Wesencraft's steam saw-mill",
+        "proprietors": [
+          "Noble",
+          "Wesencraft"
+        ],
+        "trade": "steam saw-mill",
+        "goods": [
+          "sawn lumber"
+        ],
+        "street": null,
+        "placement": {
+          "class": "none",
+          "anchor": null,
+          "offset_text": null,
+          "offset_normalized": null,
+          "street": null
+        }
+      },
+      "ad_copy_date": {
+        "verbatim": "Clucago, May 26, 1834",
+        "iso": "1834-05-26"
+      },
+      "notes": "THERE IS A STEAM SAW-MILL IN CHICAGO IN 1834 and it is looking for an engineer. That is a fact about the town's industry, not its retail: steam power, a saw frame and a yard for the lumber it cuts. The advertisement is a standing one dated 26 May and it is still running in August; the issue of 1834-08-13 carries the same firm advertising for 'A FIRST rate Sawyer … at the Stea[m] Saw Mill' over the date 13 August, so the mill is working and hiring through the month. The column is cut and the trade terms are supplied from that second, cleaner printing rather than invented; the mill's SITE is nowhere in either, so no placement is claimed."
+    },
+    {
+      "id": "c007",
+      "kind": "shipping",
+      "reading": "transcription_mediated",
+      "quote": "Chieago and St. Josepla\n[uncertain: PACRET.]\nTHIE Schooner Phit-\n, regularly between Chier of the\n[uncertain: nas commenceu mu:]\n[uncertain: US BOL.]\ngo and SL. Joseph, for the remainder\n[uncertain: enter, is enabled io rusino huth poris, ticre]\n[uncertain: ine cul]\ninvers are saveu tne arsa recavie neccas\n*h on ar caca piaco, during rouga wea\n[uncertain: oard, oor phe store or Messrs Ne]\nfreight or\nto the",
+      "normalized": "Chi[c]ago and St. Joseph [PACKET.] TH[E] Schooner Phi[llips] ha[s] commence[d] [running] regularly between Chi[ca]go and S[t]. Joseph, for the remainder of the [season, and is enabled to run into both ports, where] [passe]n[ge]rs are [s]ave[d] the [dre]a[ry] r[o]w a[shore] … on [e]a[ch] p[l]a[ce], during roug[h] wea[ther]. [For] freight or [passage apply on b]oard, o[r at] the store of Messrs N[…] … to the [master?]. [Most of this advertisement survives only as bracketed OCR; every reading not directly legible is marked.]",
+      "locator": {
+        "artifact_role": "primary",
+        "issue_page": 3,
+        "column": 5,
+        "lines": [
+          2905,
+          2918
+        ],
+        "lines_of_claim": [
+          2905,
+          2906,
+          2907,
+          2908,
+          2909,
+          2910,
+          2911,
+          2912,
+          2913,
+          2914,
+          2915,
+          2916,
+          2917,
+          2918
+        ],
+        "interleaved": false
+      },
+      "entities": [],
+      "notes": "A SCHEDULED PACKET RUNS BETWEEN CHICAGO AND ST. JOSEPH, and the Marine List at the head of this same page (c001) shows the Phillips clearing for St. Joseph in the week the advertisement runs. What the advertisement is selling is the thing the harbour works are meant to end: a vessel that can enter the river at both ends of the run saves its passengers the row ashore in rough weather. Read beside the North Pier report of 1834-08-13 (c001 there), it is the same fact from the passenger's side of it — in August 1834 getting off a boat at Chicago is still an event worth advertising against."
+    },
+    {
+      "id": "c008",
+      "kind": "event",
+      "reading": "transcription_mediated",
+      "quote": "general electin for state and county of\ni We are enable only to give the vote\nwas held thronghout lue blate on mon\nof the four precincte embraced in tais\ne marked thus [*1 are Jacksos men.\ncandidatos for Senator and Reprreentive\nSeneral Assembly, were not run with ref-\nto their political principtes, but wore sup\nentirely with respect to their known\nin favor of the Illinois and Michigan Ca\nthough both are Jackson men.\nThe oth\ncure below were supported without respect\n[uncertain: ty.]\nFor Gazernor,\nPrecincti\nK. A Laughi\nes Adams\nsander N Jenkins,\nan B. Archer,\namin Mille,\n[uncertain: 218]\nSenular to the Cineral sembly Ns\nes W. Stephenson,\npresentative to the General Arsemblu\nid S. Kimberly,\nmiah King.\nFor Sherif;\nW. Sherman,\nIRO\n104\n28\nFor Coroner,\nbei Stocie\nFor\nCounty Cormissione\nou ta Hunter.\ndes Kinzie.\nScaredi\nplen M. Salsburg.",
+      "normalized": "[The] general elect[io]n for state and county of[ficers] was held thro[u]ghout [t]he [S]tate on [M]on[day last. We are enab]le[d] only to give the vote of the four precinct[s] embraced in t[h]i[s] [county. Those] marked thus [*] are Jackso[n] men. [The] candidat[e]s for Senator and Repr[e]sent[at]ive [to the] [G]eneral Assembly, were not run with ref[erence] to their political princip[l]es, but w[e]re sup[ported] entirely with respect to their known [views] in favor of the Illinois and Michigan Ca[nal], though both are Jackson men. The oth[ers who are] [named] below were supported without respect [to par]ty. For G[ov]ernor, [by] Precinct[s]: [uncertain: R]. K. [M']Laughi[n]; [Jam]es Adams; [Alex]ander [M.] Jenkins; [Willi]am B. Archer; [Benj]amin Mill[s]. [For] Sena[t]or to the [G]eneral [As]sembly: [Jam]es W. Stephenson. [For Re]presentative to the General A[s]sembl[y]: [Edmund] S. Kimberly; [Nehe]miah King. For Sherif[f]: [Silas] W. Sherman. For Coroner: [uncertain: … Stocie]. For County Co[m]missione[rs]: [Edward E.] Hunter; [Jam]es Kinzie; [Isaac] Scarre[tt]; [Ste]p[h]en M. Salsburg. [The vote figures stand in the column as bare numbers — 218, 104, 28 among them — and are NOT attached to candidates here, because the column's rules have been lost and an assignment would be invention.]",
+      "locator": {
+        "artifact_role": "primary",
+        "issue_page": 3,
+        "column": 1,
+        "lines": [
+          2444,
+          2483
+        ],
+        "lines_of_claim": [
+          2444,
+          2445,
+          2446,
+          2447,
+          2448,
+          2449,
+          2450,
+          2451,
+          2452,
+          2453,
+          2454,
+          2455,
+          2456,
+          2457,
+          2458,
+          2459,
+          2460,
+          2461,
+          2462,
+          2463,
+          2464,
+          2465,
+          2466,
+          2467,
+          2468,
+          2469,
+          2470,
+          2471,
+          2472,
+          2473,
+          2474,
+          2475,
+          2476,
+          2477,
+          2478,
+          2479,
+          2480,
+          2481,
+          2482,
+          2483
+        ],
+        "interleaved": false
+      },
+      "entities": [
+        {
+          "as_printed": "W. Sherman",
+          "normalized": "Silas W. Sherman",
+          "role": "candidate for sheriff"
+        },
+        {
+          "as_printed": "des Kinzie.",
+          "normalized": "James Kinzie",
+          "role": "candidate for county commissioner"
+        },
+        {
+          "as_printed": "ou ta Hunter.",
+          "normalized": "[?] Hunter",
+          "role": "candidate for county commissioner"
+        },
+        {
+          "as_printed": "plen M. Salsburg.",
+          "normalized": "Ste[p]hen M. Salsburg",
+          "role": "candidate for county commissioner"
+        },
+        {
+          "as_printed": "id S. Kimberly,",
+          "normalized": "[Edmund] S. Kimberly",
+          "role": "candidate for representative to the General Assembly"
+        },
+        {
+          "as_printed": "miah King.",
+          "normalized": "Nehemiah King",
+          "role": "candidate for representative to the General Assembly"
+        },
+        {
+          "as_printed": "es W. Stephenson,",
+          "normalized": "James W. Stephenson",
+          "role": "candidate for senator to the General Assembly"
+        }
+      ],
+      "notes": "THE COUNTY VOTES, 4 AUGUST 1834, AND THE OFFICERS IT NAMES. Cook County has FOUR PRECINCTS at this date, which is the fact of record here: the Democrat can give the returns of 'the four precincts embraced in this county'. The candidate names are the reason to keep it — Silas W. Sherman for sheriff (whose own card to the electors ran on 1834-07-30), and for county commissioner Hunter, James Kinzie, Scarrett and Salsbury, several of whom carry Chicago addresses elsewhere in this corpus. THE NUMBERS ARE DELIBERATELY NOT READ. The table's ruling is gone and the surviving figures cannot be tied to the rows above them without inventing the alignment; a wrong vote total attached to a real name would be worse than none. The canal test the paper describes — both legislative candidates run on their views on the Illinois and Michigan Canal rather than on party — is the local politics of the reconstruction's own subject matter."
+    },
+    {
+      "id": "c009",
+      "kind": "notice",
+      "reading": "transcription_mediated",
+      "quote": "List of Let\nIN the PostOfice at 11\nIt day of July\nDavid Austin\n[uncertain: Jota Baroma]\nRobert Barms 2\nGaylord Hayes\n[uncertain: Jobn Knoz]",
+      "normalized": "List of Let[ters remaining in] the Post O[f]fice at [Hennepin, Ill. on the 1]st day of July[, 1834]: David Austin; [J]o[h]n Ba[rc]oma; Robert Bar[n]s 2; Gaylord Hayes; Jo[h]n Kno[x]. [Only these five names of the list survive in this segmenter column; the rest of the column is lost between the two halves the segmenter cut. Every name is marked [uncertain] by the transcription's own spelling.]",
+      "locator": {
+        "artifact_role": "primary",
+        "issue_page": 4,
+        "column": 2,
+        "lines": [
+          3395,
+          3422
+        ],
+        "lines_of_claim": [
+          3395,
+          3397,
+          3399,
+          3403,
+          3406,
+          3410,
+          3417,
+          3422
+        ],
+        "interleaved": true
+      },
+      "letter_list_only": true,
+      "entities": [],
+      "notes": "THE MONTH'S ONLY LIST OF LETTERS IS HENNEPIN'S, NOT CHICAGO'S — and that is the finding this claim exists to record, because the ticket asked for the survey to be confirmed while reading rather than trusted. A heading DOES appear in August 1834, here on page 4; the survey that reported none in these four issues missed it. It is the SAME LIST already read at 1834-07-30 (claim c007 there): the Hennepin, Illinois post office, 1 July 1834, signed 'THoS. GALAHER, Jr. P.M.' — whose signature survives in this issue as 'ER, Jr. P.M.' at line 3602, in the second half of the same cut list (claim c010). A three-week standing insertion, in other words, and not a new list. RULING 1 IS THEREFORE NOT ENGAGED: a name on Hennepin's list is not a Chicago resident candidate, so no person is minted from it here. The names are recorded in the quote so the identification can be checked, and 'Gaylord Hayes' is flagged: a 'Gaylard Hayes' appraises the estray in the notice of 1834-07-30, and the coincidence is noted rather than resolved — his alphabetical position between Bar[n]s and Kno[x] is what places him in the list."
+    },
+    {
+      "id": "c010",
+      "kind": "notice",
+      "reading": "transcription_mediated",
+      "quote": "not taken out\nsent to the\nPos\nP. Miller\nMiller\nWin. Royal\nWhittaker 2\nWallace\nWood\nER, Jr. P.M.",
+      "normalized": "[… if] not taken out [before the 1st of October, will be] sent to the Pos[t Office Department as dead letters]: P. Miller; [H. F.?] Miller; W[m]. Royal; [?] Whittaker 2; [?] Wallace; [?] Wood. [THOS. GALAH]ER, Jr. P.M. [Six names and the postmaster's signature are all that survive of this half of the list; the given names of Whittaker, Wallace and Wood are lost with the column and are NOT supplied.]",
+      "locator": {
+        "artifact_role": "primary",
+        "issue_page": 4,
+        "column": 3,
+        "lines": [
+          3564,
+          3602
+        ],
+        "lines_of_claim": [
+          3564,
+          3569,
+          3570,
+          3575,
+          3577,
+          3587,
+          3592,
+          3596,
+          3598,
+          3602
+        ],
+        "interleaved": true
+      },
+      "letter_list_only": true,
+      "entities": [],
+      "notes": "THE SECOND CUT HALF OF THE SAME HENNEPIN LIST, and the line that identifies it. 'ER, Jr. P.M.' is the tail of 'THoS. GALAHER, Jr. P.M.', which is how the list of 1834-07-30 signs off (claim c007 there); 'W[m]. Royal' is that list's 'Kev. Wui. Royal' and a Miller is its 'Henry F. Miller'. Two independent joins on one signature and two names is what carries the identification, and it is what lets this issue's heading be reported as a repeat rather than as a new Chicago list. NO PERSON IS MINTED, for the reason c009 gives. Recording the surviving names anyway is the point: the claim is checkable, and a later pass with the page images can hold it to account."
+    }
+  ]
+}
