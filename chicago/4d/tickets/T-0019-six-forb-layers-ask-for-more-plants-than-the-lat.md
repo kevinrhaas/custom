@@ -1,16 +1,17 @@
 ---
 id: T-0019
 title: Six forb layers ask for more plants than the lattice holds
-state: open
+state: claimed
 epic: FLORA
 requested_by: loop
 seen: true
 effort: M
 legacy_id: K58
+parent: null
 opened: 2026-08-17
 closed: null
 pr: null
-claimed_by: null
+claimed_by: run 8/28/2026, 4:18:45 AM CT
 blocked_on: null
 needs_bake: false
 ---

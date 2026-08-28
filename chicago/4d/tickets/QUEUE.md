@@ -41,7 +41,6 @@ T-0096 — Did the second Fort Dearborn carry a flagstaff, and can anything but 
 # --- FABRIC AND WHAT THE BUILDINGS ARE MADE OF — visible
 
 # --- WHAT GROWS, AND WHAT A PHONE SEES — visible
-T-0019 — Six forb layers ask for more plants than the lattice holds
 
 # --- THE NEWSPAPERS — placed here by the owner, 2026-08-28: "put all that legwork
 # --- after the visible things". The invisible extraction tickets at the top of this
@@ -113,3 +112,6 @@ T-0274 — The inferred-household parcel's form values come from the archetype a
 T-0275 — Back-merge main into dev: the newspaper deposit is on main, and 60 Finder-duplicate files on main turn the dev gate red
 T-0277 — The mid and forb rings' outer edges are re-priced for a density handover, now the reach statistic is honest
 T-0279 — 2,526 of 18,911 drawn flower heads stand over open ground with no plant under their own stalk, on an unmodified dev
+T-0280 — The far band's grass-or-flower split is made on the forb lattice's CLAMPED share
+T-0281 — The ten plant communities reach no card a visitor can open
+T-0019 — Six forb layers ask for more plants than the lattice holds
