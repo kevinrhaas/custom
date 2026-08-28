@@ -59,7 +59,6 @@ T-0264 — Documented people replace the invented
 # --- MEASUREMENT, GATES AND PROVENANCE — invisible, and nothing below blocks the above
 T-0227 — Is the AO bake actually too dark? Every figure that said so was wrong twice over
 T-0211 — The other nine group rows are cross-checked against nothing
-T-0224 — A critic baseline standing on the public square
 T-0210 — The desktop smoke's stage 9 times out clicking the panel close, on an unmodified tree
 T-0190 — A second street tier for the street edge, and the ceiling that refuses it
 T-0164 — The rule module that decides whether a mesh is built at all now sits inside the hash of what a mesh is built from

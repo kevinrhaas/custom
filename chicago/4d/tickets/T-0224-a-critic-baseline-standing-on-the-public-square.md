@@ -1,7 +1,7 @@
 ---
 id: T-0224
 title: A critic baseline standing on the public square
-state: claimed
+state: done
 epic: META
 requested_by: loop
 seen: false
@@ -9,8 +9,8 @@ effort: S
 legacy_id: null
 parent: null
 opened: 2026-08-24
-closed: null
-pr: null
+closed: 2026-08-28
+pr: 465
 claimed_by: run 8/28/2026, 6:46:39 AM CT
 blocked_on: null
 needs_bake: false
