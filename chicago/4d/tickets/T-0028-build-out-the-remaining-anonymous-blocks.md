@@ -97,14 +97,14 @@ the run's 1.499 m.
 
 **Refused, not dropped:** the fourth dealt roof is F3, a large river warehouse, and the nearest
 water to this block is 134 m away. It is deferred in the recipe with its reason, F3 is now in the
-generator's `REFUSED_FAMILIES`, and the fault is filed against the deal as **T-0308**. Recorded as
+generator's `REFUSED_FAMILIES`, and the fault is filed against the deal as **T-0316**. Recorded as
 liberty **L203**.
 
-**Successor filed: T-0309**, per this ticket's own programme rule. It names what is left: no
+**Successor filed: T-0317**, per this ticket's own programme rule. It names what is left: no
 ungenerated platted block but `blk_south_water_market`, which is the owner's call at T-0183; and
 five `open` blocks that all already stand, whose next roofs are the core density standard rather
 than a new block. `blk_randolph_market`'s second deal is the workable ground.
 
-**Closed on this block.** The programme continues in T-0309, which is the shape this ticket's own
+**Closed on this block.** The programme continues in T-0317, which is the shape this ticket's own
 sizing note asked for.
 

@@ -9223,7 +9223,7 @@ duplicate a counted pier"*. Sampled against the committed heightfield `e1834_har
 nearest water to this block's boundary is 134 m away. So the slot is deferred in the recipe with
 its reason, `generate_block_infill.py` now refuses F3 by name, and the roof is still owed: the
 wharf and landing ground beyond South Water and Market is where it belongs, and that the deal keeps
-sending F3 onto inland platted blocks is filed as **T-0308** against the deal.
+sending F3 onto inland platted blocks is filed as **T-0316** against the deal.
 **WHAT IS INVENTED.** That any building stood on this ground at all; that there were two of them;
 that they stood shoulder to shoulder rather than apart; that the westernmost was of logs; that the
 household on the lot kept a stable. Every dimension is sampled inside the family band the
@@ -9245,6 +9245,6 @@ American extraction tickets (T-0256 onward) are the corpus most likely to carry 
 
 Related: **L144** (three roofs on one lot, the core density standard this run spends two of) ·
 **L177** (one street line to a face) · **L182** (the end rule) · **L200** (where a non-dwelling
-stands) · tickets **T-0028** (this), **T-0308**, **T-0022**, **T-0188**, **T-0213**.
+stands) · tickets **T-0028** (this), **T-0316**, **T-0022**, **T-0188**, **T-0213**.
 **Covers:** `recon_1835_blk_lake_franklin_d5_01.inferred_1835.position`, `recon_1835_blk_lake_franklin_d5_01.inferred_1835.footprint`, `recon_1835_blk_lake_franklin_d1_02.inferred_1835.position`, `recon_1835_blk_lake_franklin_d1_02.inferred_1835.footprint`, `recon_1835_blk_lake_franklin_a1_03.inferred_1835.position`, `recon_1835_blk_lake_franklin_a1_03.inferred_1835.footprint`.
 **Recorded:** 2026-08-28.

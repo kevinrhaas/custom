@@ -50,7 +50,7 @@ and the roof stays on the books.
 
 **That is a stopgap and it is filed as one.** Treating a fault in the DEAL at the block means every
 future platted block dealt an F3 will defer it, and three warehouse roofs will pile up as deferrals
-nobody is scheduled to build. **T-0308** asks the deal to stop sending them inland, in the same
+nobody is scheduled to build. **T-0316** asks the deal to stop sending them inland, in the same
 shape as T-0213 — and notes that F3 is absent from the generator's `FUNCTIONS` table and from the
 `block` arm of `measure_family_deal.py` too, so the deal was reaching for a family the parcel shape
 has never been able to name.
@@ -59,7 +59,7 @@ has never been able to name.
 of 662; the block goes to 14 standing, 1 of headroom, 1 free lot. No roof is added to the town — the
 three come out of `south_plat_beyond_committed_control`. Baked with `bake.sh --only` per structure;
 `tools/check.sh` and `tools/smoke_renderer.mjs` green. Liberty **L203**. T-0028 closes on this one block
-with its successor **T-0309** filed, which is what its own sizing note asks of every run: one run,
+with its successor **T-0317** filed, which is what its own sizing note asks of every run: one run,
 one demonstration, one successor.
 
 ## Shipped 2026-08-28 — T-0246: the log jail comes onto the plat, and Randolph's walk reaches its corner
