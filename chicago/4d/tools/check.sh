@@ -297,6 +297,16 @@ step "no water stands on the public square, and its sward is the one the dossier
 step "no building has newly been drawn standing in a platted street" \
   python3 tools/measure_corridor_intrusion.py --gate --quiet
 
+# The absolute half of that gate rests on ONE reading: which evidence layer a record
+# belongs to. It used to be read off the record's ID PREFIX, and `physicians_office`
+# carries no prefix while being a product of the inferred-household programme — so a
+# generated record was scored against the ratchet, which may be re-baselined, instead of
+# against the absolute, which may not (T-0221). The reading moved onto the record itself
+# in plat_occupancy.layer_of_record; this puts a generated roof in a roadway, in memory,
+# under both readings and checks which one the gate catches.
+step "…and its absolute assertion still fires when a generated roof is put in a street" \
+  python3 tools/measure_corridor_intrusion.py --self-test
+
 # Two generators build party-line rows onto the committed block faces and each asserts
 # that ITS OWN run stands on one line; neither could see the other. The Lake face of
 # blk_lake_clark is built by both and carried two lines 0.70 m apart, ten metres apart

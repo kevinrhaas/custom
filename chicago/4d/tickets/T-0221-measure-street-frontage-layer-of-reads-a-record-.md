@@ -1,7 +1,7 @@
 ---
 id: T-0221
 title: measure_street_frontage.layer_of reads a record's evidence layer off its filename, and misreads physicians_office
-state: open
+state: claimed
 epic: META
 requested_by: loop
 seen: false
@@ -11,7 +11,7 @@ parent: null
 opened: 2026-08-27
 closed: null
 pr: null
-claimed_by: null
+claimed_by: run 8/27/2026, 9:14:57 PM CT
 blocked_on: null
 needs_bake: false
 ---
@@ -51,3 +51,24 @@ generated roof is put in a corridor. Never by weakening a gate.
 
 **Links:** T-0199 / T-0220 (where it was found) · `tools/plat_occupancy.py` `researched_ids` ·
 ROADMAP K30.
+
+---
+
+**RESOLVED 2026-08-28.** The reading is `plat_occupancy.layer_of_record`, and it reads the
+record's `reconstruction` block — which `data/structures.schema.json` states as a rule
+("Named/documented structures do not carry this block") and whose `status` enum names which
+programme wrote it. `layer_of` is a lookup into `plat_occupancy.layers()` and refuses an id that
+carries no committed record rather than guessing from its shape; `researched_ids()` is the
+research layer of the same map. One reading, three callers.
+
+`tools/measure_corridor_intrusion.py --self-test` (in `check.sh`) puts a roof on the Lake Street
+centreline in memory and checks WHICH assertion fires: the absolute for an anonymous
+`recon_1835_*` roof, the absolute for `physicians_office` under the reading in force, and only
+the RATCHET for it under the id-prefix reading — which is kept in the module, refuted, so the
+difference stays demonstrated. The reading also measures its own scope: across all 349 committed
+records the name and the record disagree on exactly `physicians_office`.
+
+**Movement in the numbers.** `--gate` unchanged (20 of 349 lapping, 0 generated, 3 refused);
+`measure_frontage_fabric --gate` unchanged. `measure_street_frontage` moves one building's column
+on the two streets it stands within 25 m of: lake research 17 → 16 / household 7 → 8, clark
+research 6 → 5 / household 1 → 2. No gate was weakened and no threshold moved.
