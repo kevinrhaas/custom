@@ -165,6 +165,20 @@ twenty-six do not, so a reading pass over 1833 and the first half of 1834 meets 
 letter-list clause mostly by demonstrating absence. Where a list IS there it is the census
 proxy and ruling 1 applies in full.
 
+**THAT SWEEP WAS WRONG, AND READING APRIL 1834 IS HOW IT WAS FOUND OUT (T-0313).** It is
+six of the thirty, not four, and the two it names for April are the wrong two. **1834-04-23
+and 1834-04-30 carry the HENNEPIN list**, not Chicago's — as does 1834-04-16, which the sweep
+missed as well — and out-of-county lists mint nobody here (T-0290, T-0292). Chicago's own
+list of letters remaining on **1 April 1834**, over J. S. C. Hogan's signature, is printed
+twice, in **1834-04-01** and **1834-04-08**, in the two issues the sweep passed over. The
+reason a keyword sweep cannot find it is the reason a keyword sweep cannot be trusted on this
+deposit: on 1834-04-01 the heading reads `SQA AINIG init` — that is `REMAINING` — and the
+words *List of Letters* stand in the NEXT segmenter column, over the list's second half. So
+every form of the heading this file lists was searched for, and every one of them returned
+Hennepin. **Sweep for a list by reading the columns of the issues in the range, not by
+searching them**; the eight issues of 1835 that only the deposit can open (T-0298) have never
+been swept any other way.
+
 **The Chicago American carries no post-office letter list.** Searched across all thirteen
 issues for every form the Democrat uses — *list of letters*, *letters remaining*,
 *remaining in the post office*, *uncalled for*, a signature ending *P. M.* — for exactly
