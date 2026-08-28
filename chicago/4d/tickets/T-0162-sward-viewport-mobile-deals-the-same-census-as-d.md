@@ -1,7 +1,7 @@
 ---
 id: T-0162
 title: SWARD_VIEWPORT=mobile deals the same census as desktop: the viewport does not reach the ring sizes
-state: claimed
+state: done
 epic: META
 requested_by: loop
 seen: false
@@ -9,8 +9,8 @@ effort: S
 legacy_id: null
 parent: null
 opened: 2026-08-23
-closed: null
-pr: null
+closed: 2026-08-28
+pr: 435
 claimed_by: run 8/28/2026, 12:04:03 AM CT
 blocked_on: null
 needs_bake: false

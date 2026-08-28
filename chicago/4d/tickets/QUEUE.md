@@ -50,7 +50,6 @@ T-0209 — The bloom reaches 1.8 per cent of the ground the sward covers
 T-0214 — Two flower-head archetypes truncate silently at their instance cap
 T-0019 — Six forb layers ask for more plants than the lattice holds
 T-0225 — The sward's drawn reach is measured off plants at two per cent coverage
-T-0162 — SWARD_VIEWPORT=mobile deals the same census as desktop: the viewport does not reach the ring sizes
 
 # --- MEASUREMENT, GATES AND PROVENANCE — invisible, and nothing below blocks the above
 T-0227 — Is the AO bake actually too dark? Every figure that said so was wrong twice over
