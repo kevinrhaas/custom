@@ -101,6 +101,15 @@ Mobile's own ceiling sweep is inside stage `3-4`, which passed 114/0. **No ceili
 this**, and the balanced margin of 5,952 is worth reading beside T-0241: Washington Street still
 does not fit, and 31 m of Lake Street walk did not make it fit.
 
+**RE-VERIFIED AFTER MERGING `dev`** (#417 T-0195, #419 T-0213, #420 T-0182 — the last of which
+moves two Lake-face buildings 8 cm, so the re-take is not a formality). `./tools/check.sh` PASS.
+Desktop stage `2` 80/**1** — the same inherited T-0244 and every touched assertion green. Both
+ceiling sweeps re-taken on the merged mirror and unchanged to the triangle: desktop
+1,372,635 / 1,204,048 / 746,028 against 1,400,000 / 1,210,000 / 785,000; mobile
+1,274,689 / 1,150,060 / 695,154 against the same three. The frontage census the smoke pins
+re-derives identically on the merged tree — walks 43, crossings 32, refusals 72, meshes 54 — so
+`dev`'s geometry did not move this layer.
+
 ## Shipped 2026-08-27 — T-0213: the trade families are weighted onto the business front
 
 The surviving half of ROADMAP **K29**. T-0022 refuted the other half — the schedule may deal log
