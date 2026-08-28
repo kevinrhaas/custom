@@ -127,16 +127,16 @@
         "proprietors": [],
         "trade": "tailoring",
         "goods": [],
-        "street": "Franklin Street",
+        "street": null,
         "placement": {
-          "class": "street_only",
+          "class": "none",
           "anchor": null,
           "offset_text": "ere taken a Bhop ia ‘rroklia, beg leave siost revpec",
           "offset_normalized": "[has] taken a Shop i[n] [F]r[an]kli[n street]",
-          "street": "Franklin Street"
+          "street": null
         }
       },
-      "notes": "THE TAILOR'S STREET, FIVE WEEKS AFTER HIS FIRST INSERTION. 1835-06-27 prints 'Shop in Frank eter street' and that claim REFUSED to complete it to Franklin, because the fragment between could not be accounted for and a shop placed on a guess is a shop in the wrong street. This printing reads 'taken a Bhop ia rroklia' — 'a Shop in Franklin' — with the intrusive fragment gone, and the street is now recorded. A worked example of why the earlier refusal was worth making: the answer arrived from the corpus, not from a plausible reading of a damaged line. The proprietor is still only 'EDWARD' and no person is minted."
+      "notes": "THE TAILOR'S STREET, FIVE WEEKS AFTER HIS FIRST INSERTION. 1835-06-27 prints 'Shop in Frank eter street' and that claim REFUSED to complete it to Franklin, because the fragment between could not be accounted for and a shop placed on a guess is a shop in the wrong street. This printing reads 'taken a Bhop ia rroklia' — 'a Shop in Franklin' — with the intrusive fragment gone, and the street looked settled. IT WAS NOT, AND THIS FILE NO LONGER ASSERTS IT. Two later printings of the same advertisement read the street as LAKE — 1835-08-01 'Shop in Laks runlie' and 1835-08-15 'having taken a [shop in] lake - street', the second of them clean — so the corpus carries Franklin on one witness and Lake on two, and the business therefore records NO street until a page image settles it. The quote and the normalized reading here stand exactly as this printing sets them; what has been withdrawn is the inference drawn from them. Worth leaving visible: reading forward corrected this claim twice, first by supplying a street and then by taking it away. The proprietor is only 'EDWARD' in this printing and is named Edward Burton on 1835-08-15."
     },
     {
       "id": "c003",
