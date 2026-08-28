@@ -28,16 +28,21 @@ refuses a face that carries more than one.
    own — which is the case the two run-local gates structurally cannot reach, because
    the target belongs to another generator.
 
-## What is banked rather than asserted
+## Nothing is banked — and the one thing that was, was repaired rather than relaxed
 
-`inf_butcher_market` (T-0104 again, then T-0182). `recon_1835_south_d3_013` shares a
-party wall with it, and it is 0.016 m proud of the row's line. It is not a frontage
-record: `tools/generate_inferred_households.py` places it from a hand-authored
-`center_local_enu_m` in the household programme at bearing 0, where this face runs at
-0.465 — so it is not merely off the line, it is not parallel to it. Sixteen
-millimetres is invisible and the repair is the household layer adopting the committed
-face, which is its own ticket. Banked BY NAME and by size: it may shrink, and it may
-not grow, and no second one may join it.
+`inf_butcher_market` was the exception (T-0104, then T-0182). `recon_1835_south_d3_013`
+shares a party wall with it and stood 0.016 m proud of the row's line, because
+`tools/generate_inferred_households.py` placed the butcher from a hand-authored
+`center_local_enu_m` at bearing 0 where this face runs at 0.465 — not merely off the
+line, not parallel to it. Sixteen millimetres was invisible, so it was banked BY NAME
+and by size while the repair waited on its own ticket.
+
+T-0182 made the repair: the household layer's two Lake-face buildings now take their
+line, bearing and outward offset from the same committed block boundary this module
+reads, the party wall closes to 0 mm, and the bank is gone rather than widened. There
+is no allowance list here now, and a residual that cannot be repaired should be a
+ticket and a red gate rather than a name in a dictionary — that is what the bank cost
+to carry, and why it is not being kept warm for the next one.
 
 ## What is only reported
 
@@ -70,11 +75,6 @@ TOL_M = 0.005
 # reports it. Three metres is the separation rule the household layer already runs.
 NEAR_M = 3.0
 
-# The one party wall that does not close, named rather than pattern-matched, with
-# the size it is allowed to be. See the module docstring.
-BANKED_PARTY_WALLS = {
-    ("recon_1835_south_d3_013", "inf_butcher_market"): 0.016,
-}
 
 
 def load(path: Path) -> dict:
@@ -185,12 +185,9 @@ def failures(measured: dict) -> list[str]:
             continue
         # to the millimetre, because that is the precision a placement is written at
         gap = round(abs(front - row["front"]), 3)
-        allowed = BANKED_PARTY_WALLS.get((row["id"], target), TOL_M)
-        if gap > allowed:
-            banked = (f" — banked at {allowed:.3f} m, so this is a regression"
-                      if (row["id"], target) in BANKED_PARTY_WALLS else "")
+        if gap > TOL_M:
             out.append(f"{row['id']} shares a party wall with {target} and their "
-                       f"front walls are {gap:.3f} m apart{banked}. One wall, from "
+                       f"front walls are {gap:.3f} m apart. One wall, from "
                        f"either side")
     return out
 
@@ -316,20 +313,24 @@ def self_test() -> int:
     checks.append(("a 4 mm reading is rounding, not a second line",
                    not out, "; ".join(out) or "clean"))
 
-    banked = copy.deepcopy(recs)
-    banked[0]["id"] = "inf_butcher_market"
-    banked[0]["frontage"] = None
-    banked[1]["id"] = "recon_1835_south_d3_013"
-    banked[1]["frontage"]["abuts"] = "inf_butcher_market"
-    banked[0]["phase"]["position"]["utm_n"] = -1.5 - 6.0 + 0.016
-    out = _run(banked, origin, faces)
-    checks.append(("the banked 16 mm party wall is allowed at its banked size",
-                   not out, "; ".join(out) or "clean"))
+    # T-0182 retired the one banked residual, so the assertion is now that the pair it
+    # was written for gets no allowance either: 16 mm is a failure under these exact
+    # names, and it is the size the bank used to permit.
+    unbanked = copy.deepcopy(recs)
+    unbanked[0]["id"] = "inf_butcher_market"
+    unbanked[0]["frontage"] = None
+    unbanked[1]["id"] = "recon_1835_south_d3_013"
+    unbanked[1]["frontage"]["abuts"] = "inf_butcher_market"
+    unbanked[0]["phase"]["position"]["utm_n"] = -1.5 - 6.0 + 0.016
+    out = _run(unbanked, origin, faces)
+    checks.append(("the party wall T-0104 banked at 16 mm is no longer excused",
+                   any("party wall" in m and "apart" in m for m in out),
+                   "; ".join(out) or "nothing"))
 
-    banked[0]["phase"]["position"]["utm_n"] = -1.5 - 6.0 + 0.05
-    out = _run(banked, origin, faces)
-    checks.append(("…and a regression past it is caught",
-                   any("regression" in m for m in out), "; ".join(out) or "nothing"))
+    unbanked[0]["phase"]["position"]["utm_n"] = -1.5 - 6.0
+    out = _run(unbanked, origin, faces)
+    checks.append(("…and the same pair standing on one line is clean",
+                   not out, "; ".join(out) or "clean"))
 
     ok = True
     for label, passed, detail in checks:
