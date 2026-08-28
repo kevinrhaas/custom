@@ -16,6 +16,10 @@
 #   3. Related work runs together, so a run can carry the context of the last one.
 # The `# ---` band headers are comments; the parser reads only lines starting T-NNNN.
 #
+# A third owner instruction, 2026-08-28: the NEWSPAPERS band was added and placed
+# after the visible bands on his explicit direction, its seeding tickets ordered
+# behind the extraction that feeds them.
+#
 # Labels on these lines are regenerated from each ticket's own `title:` field. If a
 # label and its ticket disagree, the ticket wins — one line was found mislabelled
 # on 2026-08-27, damage from the `ticket.mjs restamp` bug that T-0217 records.
@@ -27,23 +31,13 @@
 # --- THE TOWN AND ITS STREETS — visible
 T-0028 — Build out the NEXT anonymous block (one per run)
 T-0192 — The cross streets' own frontages get the street edge
-T-0221 — measure_street_frontage.layer_of reads a record's evidence layer off its filename, and misreads physicians_office
 
 # --- THE RIVER, THE WHARVES AND THE GROUND — visible
-T-0059 — The generator half of the wharf layer: a river-wharf mode of pier_crib
-T-0134 — The south bank at the Dearborn reach has no ground outside the platted street corridor
-T-0226 — North Water Street runs inside the water mask for 477 m and draws no ribbon at all
 
 # --- THE FORT — visible, mostly small
-T-0099 — The bank track from the fort's north gate down to the water
-T-0137 — The fort's stacks are still roof-coloured, and its 1816 date fits neither chimney answer
 T-0096 — Did the second Fort Dearborn carry a flagstaff, and can anything but a retrospective plate say so
-T-0185 — The plate draws the fort's pickets three times coarser than the model builds them
-T-0197 — Three of the fort image-accuracy table's eight rows were refuted in two days; audit the rest before building to them
 
 # --- FABRIC AND WHAT THE BUILDINGS ARE MADE OF — visible
-T-0138 — The placeholders' brick chimney is a different brick from the archetypes'
-T-0212 — The one A5 roof still dealt a gable takes the shed its family gets everywhere else
 T-0172 — The other three anonymous parcels still deal a retyped roof pitch, and none of them bounds an eave band by what the archetype can carry
 T-0024 — May the face rule rank a store
 T-0025 — Three records carry the standing constraint and say why nowhere
@@ -54,7 +48,21 @@ T-0209 — The bloom reaches 1.8 per cent of the ground the sward covers
 T-0214 — Two flower-head archetypes truncate silently at their instance cap
 T-0019 — Six forb layers ask for more plants than the lattice holds
 T-0225 — The sward's drawn reach is measured off plants at two per cent coverage
-T-0162 — SWARD_VIEWPORT=mobile deals the same census as desktop: the viewport does not reach the ring sizes
+
+# --- THE NEWSPAPERS — placed here by the owner, 2026-08-28: "put all that legwork
+# --- after the visible things". The invisible extraction tickets at the top of this
+# --- band BLOCK the visible seeding at its bottom — documented storefronts and real
+# --- people replacing invented ones — which is why they sit above other invisible work.
+# --- Three owner rulings govern the epic; each ticket carries them in full.
+T-0256 — The newspaper corpus becomes a source this project can cite
+T-0257 — An extraction schema, and the gazetteer the papers compile into
+T-0258 — Reading the Democrat, part one: November 1833 to June 1834
+T-0259 — Reading the Democrat, part two: July to December 1834
+T-0260 — Reading the Democrat, part three: January to August 1835
+T-0261 — Reading the American: June to August 1835
+T-0262 — The July 1, 1835 register: who and what the papers put in the town
+T-0263 — The documented storefronts take their places on South Water and Lake
+T-0264 — Documented people replace the invented
 
 # --- MEASUREMENT, GATES AND PROVENANCE — invisible, and nothing below blocks the above
 T-0227 — Is the AO bake actually too dark? Every figure that said so was wrong twice over
@@ -97,5 +105,11 @@ T-0243 — The two timber-placement gates match no mesh since the lattice landed
 T-0244 — T-0194's twelve hitching posts draw no vertices the gate can find, on dev
 T-0246 — log_jail stands on two steps of Randolph Street's new plank walk, the same OSM-kerb fault Lake and South Water answered
 T-0247 — The light tier draws 83 calls against the 80-call floor restored yesterday, on an unmodified dev
-T-0245 — South Water Street can have its first control point, at Franklin, and nothing has claimed it
-T-0253 — The west end of South Water's Franklin face lost its walk to a 10 mm ground change
+T-0252 — Decide once whether a baked town carries the nine renderer-drawn layers, or none of them
+T-0253 — May an invented building stand on the river margin of a platted street corridor
+T-0254 — North Water Street west of the slough, and the crossing it needs
+T-0255 — The dooryard planting rule reads every street in the town with no bound on reach, so a track across the river can turn a house's yard
+T-0265 — The sward census fails its own gate at a phone: z10_settled_town owes xanthium_strumarium a whole slot and draws it nowhere
+T-0266 — On a phone from across the river the stockade's picket rhythm falls under the pixel grid and beats
+T-0267 — The fort's wall brick is a third brick, 0.47/0.26/0.20 against the sheet's 0.45/0.23/0.17
+T-0268 — The west end of South Water's Franklin face lost its walk to a 10 mm ground change

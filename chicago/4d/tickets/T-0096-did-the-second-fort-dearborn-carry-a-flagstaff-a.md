@@ -37,3 +37,14 @@ plate against chicagology's numbering that dates what it claims to show.
 Either evidence that reaches the second fort is found and cited, and the staff is built at the tier
 that evidence earns — or the search is recorded as a negative finding in
 `docs/RESEARCH/fort_dearborn.md` with what was looked at, the way `quaife_1913` records its own.
+
+**The plate half is now measured (T-0197, 2026-08-28), and it does not answer this ticket —
+it sharpens it.** `tools/measure_fort_ways_plate.py` puts `p4_0`'s staff at **0.495 of the
+drawn wall run**, truck at row 158, rising 15.2–18.8 m over the picket head, with the flag
+at rows 195–220 — that is **over the GATE**, between the two roofed lanterned works T-0095
+measured at 0.435 and 0.521. `data/exclusions.json` locates the flagstaff it excludes **in
+the parade**. So the two are not in the same place, and "the exclusion already covers it"
+is not a way to close this. Either the staff, the two towers and the gate work are one
+first-fort composition or none of them is, and the sheet cannot say which. The acceptance
+below is unchanged: a source that reaches the 1816 post, or a recorded negative finding.
+Working in `docs/RESEARCH/fort_dearborn_image_accuracy.md` § "Rows 1, 2 and 6 measured".

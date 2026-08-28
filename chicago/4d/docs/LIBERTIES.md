@@ -1446,6 +1446,18 @@ between 1816 and 1836. A picket count or a quantity of timber would settle the h
 spacing together.
 **Covers:** `fort_dearborn_palisade.picket_1816.form.picket_height_m`, `fort_dearborn_palisade.picket_1816.form.picket_width_m`, `fort_dearborn_palisade.picket_1816.form.picket_spacing_m`, `fort_dearborn_palisade.picket_1816.form.gate_width_m`, `fort_dearborn_palisade.picket_1816.form.bastion_length_m`, `fort_dearborn_palisade.picket_1816.form.bastion_projection_m`, `fort_dearborn_palisade.picket_1816.form.posterns`.
 **Recorded:** 2026-08-11.
+**Evidence since, 2026-08-28 (T-0185):** the gap between the posts — the part of this entry
+that "decides whether you can see through the wall" — was challenged by the one picture of the
+fort, and holds. `p4_0` resolves separate posts at a 10 px rhythm on a 42.9 px curtain, 0.23 of
+the wall's height per post against this record's 0.081, and nothing had ever tested whether that
+was a reading of the fort or of the lithograph. It is of the lithograph: at the plate's own scale
+of 11.6 px per metre this wall's rhythm is 2.78 px of post and **0.70 px of gap**, and the
+narrowest gap the plate holds anywhere on that curtain is 2 px. It could not have drawn this wall
+whatever the fort was made of, so its coarser pitch is the floor of the medium — and 0.23 of a
+3.7 m wall is an 0.86 m post, which is not a picket. **Nothing is upgraded and nothing moved.**
+Both figures stay `reconstructed` and this liberty stands exactly as written; what is new is that
+the disagreement is now measured and recorded, so the next run reads it rather than re-opening it.
+`tools/measure_picket_plate.py` prints both sides.
 
 ### L42 — The fort's buildings stand at heights, under roofs and behind stacks nobody recorded
 **Decision:** across the six modelled buildings inside Fort Dearborn, the **storey counts** of
@@ -6151,10 +6163,18 @@ the log cabins, and in both cases a chimney that no longer disappears into the r
 through. The confidence view is unchanged: a stack still carries its record's `chimneys`
 confidence, so hiding `reconstructed` hides exactly what it hid before.
 
-**Not covered here.** The fort's ten garrison buildings keep roof-coloured stacks — 1816, federal
-ground, four constructions, and neither answer above reaches them (**T-0137**). The 90 inferred
-placeholders keep their own `#89503F` brick, about 20 % apart in linear red from this one
-(**T-0138**). And nothing here says what any roof was COVERED with; R-W2a finding 2 stands.
+**Not covered here.** The fort's ten garrison stacks were left roof-coloured by this parcel — 1816,
+federal ground, four constructions, and neither answer above reached them. **T-0137 has since
+answered them on the fort's own evidence, on 2026-08-28, and they take the brick above**: brick is
+attested inside that fort twice over (Hubbard's "the brick building, just within the north stockade"
+and "the magazine, of brick"), so those flues never needed Blodgett's yard, and
+`fort_structure._chimneys` builds an interior stack, which is the disposition this entry answers
+with brick. It is INFERRED and invents nothing, so it adds no liberty of its own;
+`docs/RESEARCH/chimneys.md` §6 is the argument. The stand-in massing
+generator kept its own `#89503F` brick, about 20 % apart in linear red from this one, until
+**T-0138** pointed it at this row on 2026-08-28 — a convergence that repaints nothing, because
+all 230 of those buildings have since been baked from their archetypes and no placeholder GLB
+ships. And nothing here says what any roof was COVERED with; R-W2a finding 2 stands.
 
 **How to resolve:** a source describing a Chicago chimney — an insurance survey, a builder's
 account, a recollection naming brick or clay at a named house — promotes §2 to attested for that
@@ -8692,7 +8712,8 @@ stays inside the half-width at the corner, and this project would rather admit 2
 street's half-width — the gate that catches a mirrored ribbon, run on every release at both viewports.
 So the overhang is bounded by an instrument that existed before this liberty and was not touched for
 it: the census still reads **0 strays, worst 0.00 m**, and its negative control still fails a mirrored
-build. Five bends in the town are too sharp for one mitre (three at 17-20 deg, north_water's 30.5 and
+build. Five bends in the town are too sharp for one mitre (three at 17-20 deg, north_water's 44.1 —
+30.5 when this was written, until T-0226 re-derived that street from the committed north bank — and
 the fort road's 39.3) and are cut into two or three sub-mitres for 22 triangles town-wide.
 
 **What is NOT invented.** No width, no centreline and no record moved. `track_width_m` is unchanged on
@@ -8926,3 +8947,58 @@ than a convention.
 Related: **L141** (the row whose line this face carries) · **L177** (the one-line rule, and the
 bank this removes) · tickets **T-0182** (this), **T-0104**, **T-0077**.
 **Recorded:** 2026-08-27.
+
+### L199 — The bank track below the fort's north gate: two derived ends and an invented line between them
+**Decision:** `fort_bank_track` is drawn — a single straight chord, 23.91 m long and 3.60 m wide,
+from outside Fort Dearborn's NORTH gate obliquely down the graded bank to the water. L140 refused
+this track in as many words: *"The track `p4_0` draws descending the bank from the NORTH gate to the
+water is not drawn, because the bank it descends is the flat plateau T-0004 exists to grade and a
+ramp down an ungraded bank would be two inventions stacked."* T-0004 graded that reach on
+2026-08-20, so the second invention is gone and the first is what this entry admits to.
+
+**What is NOT invented, and it is both ends of the line.** The START is the north gate's own
+centre — 26.5 m along a 53 m wall, the same midpoint `tools/measure_fort_gates.py` reads the
+shipped leaves at — carried out along the wall's outward normal by **6.740 m**, which is the
+standoff the fort road already keeps from the SOUTH gate. Both gates therefore hand their last
+stride to the apron's bare trodden earth (L174), and this record invents no second convention for
+the north one. The END, `[1133.40, 259.61]`, is the committed heightfield's own Z = 0 waterline on
+the easting of the WEST END of the commandant's quarters — the one place on this bank that any
+source puts anything, the 1855 Hesler key locating the ferry landing *"under the west chimney of
+the Commandant's quarters"*, the same caption this project already reads for that building's two
+chimneys and its 25 × 50 ft. The WIDTH is the gate's: 3.60 m, the palisade's committed
+`gate_width_m`, rather than a fourth invented distance on this reservation; the corridor is the
+fort road's 12.0 m for the same reason.
+
+**READ THE DATE ON THE LANDING, because `wentworth_1881_fort_dearborn` says so on its own face.**
+The Hesler key is 1855 and describes the compound after the garrison marched out. It is read here
+as an inference that a landing fixed by the shape of a bank stood where it stood twenty years
+earlier — never as a measurement of 1835 — and it does not lift this record off `reconstructed`.
+
+**WHAT IS INVENTED is the line between those two points, and its obliquity is the whole of it.**
+Nobody traced this track, nobody measured it, and no source names it; the 1830 Harrison plan names
+*the Ferry* among the ground round the fort and draws no route to it. What bounds the invention is
+the ground. Straight north out of the gate the graded bank falls 3.60 m in under 10 m — about
+**1 in 2.7**, a scramble rather than a way to a boat. Swung west onto the landing the same fall
+spreads over 23.91 m: **1 in 6.65 mean, 1 in 3.65 at its steepest metre**, measured on the
+committed heightfield at `[1140.0, 257.99]`. That worst metre is gentler than ground this project
+already draws roadway on — South Water Street reaches 1 in 3.0 at the river bank, Randolph and
+Washington 1 in 4.1 — so the swing is what makes the track walkable and is not a shape chosen for
+its own sake. It is ONE chord and not several, so no joint opens a wedge of prairie at a bend
+(L178, L194), and it is clipped by the water mask like every other track, so it stops at the water
+instead of painting a ford.
+
+**Consequence:** a visitor standing where `p4_0`'s artist stood — the north bank, looking south —
+sees what the plate draws: a pale track leaving the fort's north gate and running down the bank to
+the water's edge, instead of a graded bank with nothing on it. The 1835 name is DESCRIPTIVE and
+not a proper name; the 2026 name is the ground the modern bridge approach covers, not a descent of
+name.
+
+**How to resolve:** the 1830 Harrison sheet re-read for its road and ferry line specifically —
+this project has taken the fort, the garden, the barn and the ferry off that plate and never the
+routes between them; or any survey of the United States Reservation before its 1839 subdivision,
+which would fix both this line and the landing at once.
+
+Related: **L140** (the fort road, and the refusal this discharges) · **L174** (the apron both gates
+hand their last stride to) · **L178** (why one chord and not several) · **L194** (the mitred corner
+a bend would have needed) · tickets **T-0099** (this), **T-0004**, **T-0044**.
+**Recorded:** 2026-08-28.

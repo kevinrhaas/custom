@@ -52,8 +52,8 @@
       "id": "cobweb_castle_tree_1",
       "species": "populus_deltoides",
       "at_local_enu_m": [
-        802.45,
-        136.66
+        803.48,
+        132.8
       ],
       "height_m": 18.6,
       "confidence": "reconstructed",
@@ -129,8 +129,8 @@
       "id": "inf_boatman_cabin_north_tree_1",
       "species": "ulmus_americana",
       "at_local_enu_m": [
-        245.88,
-        145.36
+        247.7,
+        121.4
       ],
       "height_m": 18.5,
       "confidence": "reconstructed",
@@ -163,7 +163,7 @@
       "species": "ulmus_americana",
       "at_local_enu_m": [
         380.0,
-        183.43
+        190.43
       ],
       "height_m": 16.9,
       "confidence": "reconstructed",
@@ -536,7 +536,7 @@
       "id": "recon_1835_north_d1_001_tree_1",
       "species": "populus_deltoides",
       "at_local_enu_m": [
-        475.76,
+        484.24,
         165.83
       ],
       "height_m": 19.1,
@@ -701,8 +701,8 @@
       "id": "recon_1835_north_d3_002_tree_1",
       "species": "ulmus_americana",
       "at_local_enu_m": [
-        506.97,
-        167.15
+        519.22,
+        180.75
       ],
       "height_m": 16.1,
       "confidence": "reconstructed",
@@ -734,8 +734,8 @@
       "id": "recon_1835_north_d3_016_tree_1",
       "species": "ulmus_americana",
       "at_local_enu_m": [
-        710.83,
-        165.57
+        715.0,
+        166.12
       ],
       "height_m": 18.4,
       "confidence": "reconstructed",
@@ -745,8 +745,8 @@
       "id": "recon_1835_north_d3_016_tree_2",
       "species": "ulmus_americana",
       "at_local_enu_m": [
-        715.0,
-        166.12
+        710.83,
+        165.57
       ],
       "height_m": 18.2,
       "confidence": "reconstructed",
@@ -888,8 +888,8 @@
       "id": "recon_1835_north_d4_017_tree_1",
       "species": "ulmus_americana",
       "at_local_enu_m": [
-        749.47,
-        179.58
+        755.0,
+        182.06
       ],
       "height_m": 16.9,
       "confidence": "reconstructed",
@@ -943,8 +943,8 @@
       "id": "recon_1835_north_d4_039_tree_1",
       "species": "populus_deltoides",
       "at_local_enu_m": [
-        1140.0,
-        317.87
+        1142.88,
+        324.25
       ],
       "height_m": 19.7,
       "confidence": "reconstructed",
@@ -954,8 +954,8 @@
       "id": "recon_1835_north_d4_039_tree_2",
       "species": "populus_deltoides",
       "at_local_enu_m": [
-        1135.57,
-        318.45
+        1137.12,
+        324.25
       ],
       "height_m": 18.3,
       "confidence": "reconstructed",
@@ -1020,8 +1020,8 @@
       "id": "recon_1835_north_d5_019_tree_1",
       "species": "populus_deltoides",
       "at_local_enu_m": [
-        855.34,
-        174.24
+        857.55,
+        172.55
       ],
       "height_m": 20.2,
       "confidence": "reconstructed",
@@ -1120,7 +1120,7 @@
       "species": "ulmus_americana",
       "at_local_enu_m": [
         450.0,
-        181.98
+        186.98
       ],
       "height_m": 16.8,
       "confidence": "reconstructed",
