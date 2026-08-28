@@ -368,6 +368,91 @@ def curtain_height_px(px, x0, x1, cap):
     return round(statistics.median(heights), 1)
 
 
+def strokes(px, x0, x1, y0, y1):
+    """The narrowest thing the plate ACTUALLY DRAWS on this curtain, in its own px.
+
+    T-0185's question is not "does the plate disagree" — it plainly does, at a
+    10 px pitch on a 43 px wall, which is 0.23 of the wall's height per post and
+    therefore an 0.85 m picket nobody split. The question is whether that pitch
+    is a reading of the fort or the floor of the medium. So: take the same column
+    profile `rhythm` autocorrelates, split it about its own mean, and measure the
+    run lengths. The dark runs are the drawn posts and the pale runs are the gaps
+    between them, and the NARROWEST of each is what this plate could hold.
+
+    The first and last run are dropped — both are cut by the crop rather than by
+    the draughtsman, so their length is the rectangle's and not the plate's.
+    """
+    prof = [sum(_lum(px[x, y]) for y in range(y0, y1)) / (y1 - y0)
+            for x in range(x0, x1)]
+    mean = sum(prof) / len(prof)
+    runs, state, n = [], None, 0
+    for v in prof:
+        pale = v > mean
+        if pale == state:
+            n += 1
+        else:
+            if state is not None:
+                runs.append((state, n))
+            state, n = pale, 1
+    runs.append((state, n))
+    runs = runs[1:-1]
+    pale = [n for s, n in runs if s]
+    dark = [n for s, n in runs if not s]
+    if not pale or not dark:
+        return None
+    return {
+        "posts_drawn": len(dark),
+        "min_stroke_px": min(dark), "median_stroke_px": statistics.median(dark),
+        "min_gap_px": min(pale), "median_gap_px": statistics.median(pale),
+    }
+
+
+def record_pickets() -> dict:
+    """The three figures this ticket is about, off the record rather than the mesh.
+
+    The GLB carries the height and the post count; it cannot carry the WIDTH and
+    the SPACING separately, because a shaft of one width set at another pitch and
+    a wider shaft at a wider pitch build the same silhouette from the front. Both
+    are `reconstructed` on the record and both are what T-0185 asks about, so
+    they are read where they are stated.
+    """
+    phase = json.loads(RECORD.read_text())["phases"][0]["form"]
+    out = {}
+    for key in ("picket_height_m", "picket_width_m", "picket_spacing_m"):
+        out[key] = float(phase[key]["value"])
+        out[key + "_confidence"] = phase[key]["confidence"]
+    out["gap_m"] = round(out["picket_spacing_m"] - out["picket_width_m"], 4)
+    return out
+
+
+def drawn_scale(plate: dict, pickets: dict) -> dict | None:
+    """The plate's own scale, and the model's rhythm expressed in the plate's px.
+
+    ONE assumption, and it is the plate's own: that the curtain it draws is the
+    wall this record builds, so the 42.9 px it stands is the record's 3.7 m. That
+    is not a claim about 1816 — it is the only way to put two pictures of the same
+    wall into one unit, and it is exactly the assumption the ticket's own "0.23 of
+    the wall's height per post" already makes.
+    """
+    if not plate.get("curtain_px"):
+        return None
+    px_per_m = plate["curtain_px"] / pickets["picket_height_m"]
+    east, west = plate.get("east_strokes"), plate.get("west_strokes")
+    finest_gap = min(s["min_gap_px"] for s in (east, west) if s) if (east or west) else None
+    finest_stroke = min(s["min_stroke_px"] for s in (east, west) if s) if (east or west) else None
+    return {
+        "px_per_m": round(px_per_m, 2),
+        "model_pitch_px": round(pickets["picket_spacing_m"] * px_per_m, 2),
+        "model_post_px": round(pickets["picket_width_m"] * px_per_m, 2),
+        "model_gap_px": round(pickets["gap_m"] * px_per_m, 2),
+        "plate_pitch_m": round(plate["east_rhythm"]["pitch_px"] / px_per_m, 3),
+        "finest_gap_px": finest_gap,
+        "finest_stroke_px": finest_stroke,
+        "undrawable": finest_gap is not None
+        and pickets["gap_m"] * px_per_m < finest_gap,
+    }
+
+
 def tone(px, boxes):
     out = []
     for label, (x0, y0, x1, y1) in boxes:
@@ -406,10 +491,14 @@ def plate_reading() -> dict | None:
         "east_cap": east_cap,
         "east_rhythm": rhythm(px, EAST_CURTAIN[0], EAST_CURTAIN[1], *EAST_BODY_ROWS),
         "west_rhythm": rhythm(px, WEST_CURTAIN[0], WEST_CURTAIN[1], *WEST_BODY_ROWS),
+        "east_strokes": strokes(px, EAST_CURTAIN[0], EAST_CURTAIN[1], *EAST_BODY_ROWS),
+        "west_strokes": strokes(px, WEST_CURTAIN[0], WEST_CURTAIN[1], *WEST_BODY_ROWS),
         "curtain_px": curtain_height_px(px, EAST_CURTAIN[0], EAST_CURTAIN[1], east_cap),
         "tone": tone(px, TONE_BOXES),
         "albedo": model_albedo(),
+        "pickets": record_pickets(),
     }
+    out["scale"] = drawn_scale(out, out["pickets"])
     if PLATE_WIDE.exists():
         wpx = Image.open(PLATE_WIDE).convert("RGB").load()
         out["wide_cap"] = cap_line(wpx, *WIDE_CAP)
@@ -451,6 +540,34 @@ def report(head: dict, plate: dict | None) -> None:
         w = plate["wide_cap"]
         print(f"    p4_1 rules the same flat cap, {w['columns_resolved']} columns at "
               f"{w['rms_px']} px rms — corroboration, too coarse to quantify")
+    sc = plate.get("scale")
+    pk = plate["pickets"]
+    if sc:
+        print("\n  THE SCALE — what the plate COULD have drawn, in its own pixels (T-0185)")
+        print(f"    the curtain is {plate['curtain_px']} px for the record's "
+              f"{pk['picket_height_m']} m wall, so the plate draws at {sc['px_per_m']} px/m")
+        print(f"    the model's rhythm at that scale: {sc['model_pitch_px']} px pitch = "
+              f"{sc['model_post_px']} px of post and {sc['model_gap_px']} px of gap")
+        east, west = plate["east_strokes"], plate["west_strokes"]
+        for label, st in (("east", east), ("west", west)):
+            if st:
+                print(f"    {label} reach draws {st['posts_drawn']} posts: strokes "
+                      f"{st['min_stroke_px']}-{st['median_stroke_px']:.0f} px, gaps "
+                      f"{st['min_gap_px']}-{st['median_gap_px']:.0f} px")
+        if sc["undrawable"]:
+            print(f"    THE PLATE COULD NOT DRAW THIS WALL: the model's gap is "
+                  f"{sc['model_gap_px']} px and the narrowest gap the plate holds "
+                  f"anywhere on this curtain is {sc['finest_gap_px']} px — "
+                  f"{sc['finest_gap_px'] / max(sc['model_gap_px'], 1e-9):.1f}x wider")
+            print(f"    so its {plate['east_rhythm']['pitch_px']} px pitch "
+                  f"({sc['plate_pitch_m']} m per post, on a "
+                  f"{pk['picket_height_m']} m wall) is the FLOOR OF THE MEDIUM, not a "
+                  f"reading of the fort: an {sc['plate_pitch_m']} m post is not a picket")
+        else:
+            print(f"    the plate had the resolution for the model's own rhythm "
+                  f"({sc['model_gap_px']} px gap against a {sc['finest_gap_px']} px "
+                  f"floor) and drew a coarser one — the disagreement is REAL")
+
     print("\n  THE TONE — medians in sRGB, all five anchors inside the one plate")
     for row in plate["tone"]:
         print(f"      {row['what']:<30s} {str(row['rgb']):<18s} lum {row['lum']:>3d}")

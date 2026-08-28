@@ -48,10 +48,10 @@ may owe a species a whole slot and draw it nowhere in the scene — **passes at 
 7,153 slots) and FAILS at mobile (1 pair over 2,763 slots)**:
 `z10_settled_town.forb.xanthium_strumarium`, common cocklebur, owed 1.49 of a slot by the settled
 town's own cover records and drawn nowhere at a phone's ring sizes. That is not a regression this
-branch caused — it is the reading nobody had ever taken — and it is **T-0265**, not a fix made in
+branch caused — it is the reading nobody had ever taken — and it is **T-0266**, not a fix made in
 passing.
 
-**Filed by this run:** T-0265 (the phone census's own gate is red).
+**Filed by this run:** T-0266 (the phone census's own gate is red).
 ## Shipped 2026-08-28 — T-0138: the town's two brick chimneys become one
 
 `generators/inferred_placeholder.py` painted its stacks `placeholder_chimney_brick` at
