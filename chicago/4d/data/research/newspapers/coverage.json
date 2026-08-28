@@ -4,6 +4,13 @@
   "ranges": [
     {
       "publication": "chicago_democrat",
+      "from": "1833-11-01",
+      "to": "1833-11-30",
+      "ticket": "T-0308",
+      "note": "Vol. I No. 1, 1833-11-26 — the only Democrat printed in November 1833 and the first number of the paper. Read through, 33 claims. Declared as the calendar month because that is the seam T-0258 was split on (T-0308..T-0315, one month each); the month holds one issue and the range therefore asserts exactly that one. THE SCAN RECORD IS SENIOR HERE and six claims carry `reading: scan_verified` where data/sources/chicago_democrat_1833_11_26.json read type the transcription could not, or read it differently. NO POST-OFFICE LETTER LIST in this issue — swept for every form the Democrat uses, for no hit — so ruling 1 is met by demonstrating absence, as T-0261 met it for the American. The transcription is deposit-held, so the quotes were machine-checked with `--check --deposit <path>` against a read-only copy of the deposit from `main`; on `dev` their claims are counted unresolved and reported, which is green (T-0275)."
+    },
+    {
+      "publication": "chicago_democrat",
       "from": "1834-07-01",
       "to": "1834-07-31",
       "ticket": "T-0289",

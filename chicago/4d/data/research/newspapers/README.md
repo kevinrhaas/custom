@@ -37,6 +37,25 @@ headings, the page once and each column under it:
     Newspaper Page 1 — Source PDF Page 13
     Column 1
 
+**AND THE WHOLE OF 1833 SPEAKS A FIFTH SHAPE, which is a third of T-0258's range.** The five
+issues 1833-11-26 to 1833-12-24 separate the page from the column instead of ruling them onto
+one line — a page banner, then a rule before each column:
+
+    ===== SOURCE PDF PAGE 9 / ISSUE PAGE 1 =====      1833-12-10 .. 1833-12-24
+    SOURCE PDF PAGE 1                                  1833-11-26, 1833-12-03
+    --- Column 1 ---
+
+Counted on 2026-08-28 over the thirty issues of Vol. I Nos. 1-30: **five** are dash-column,
+**five** (1833-12-31 to 1834-01-28) are the prose pair, and the remaining **twenty** are
+ruled. 121 column markers were invisible to the resolver, and — the same blind spot T-0289
+recorded — `dev` could not tell, because the page/column assertion is skipped outright when
+the text cannot be opened. The bare banner names the SCAN page and not the issue's (the
+Democrat of 1833-12-03 opens at PDF page 5, because No. 1 occupies 1-4), so it is resolved
+**by ordinal**: the first page banner of a transcription is issue page 1. That is the only
+rule here not lifted verbatim off the line, it is a reading of the transcription's own stated
+method — "assembled in printed page and column order" — and it is not used when the banner
+states the issue page itself. The self-test carries a case per dialect plus three negatives.
+
 **The middle ruled shape is the majority and it was the one nobody had.** Counted across
 the deposit on 2026-08-28 while reading July 1834 (T-0289): 1,176 of the 1,266 ruled column
 markers say `SOURCE PDF PAGE`, 90 say the bare `PDF PAGE`, and four say `ORIGINAL PDF
@@ -140,6 +159,12 @@ gate; only the grain is finer. It is optional and additive: a claim without `spa
 behaves exactly as before, which is why the T-0257 fixture and the Democrat read needed no
 edit. All 130 of the American's claims use it.
 
+**Nor does the Democrat's own first issue, and only four of T-0258's thirty do.** Swept the
+same way: 1834-01-28, 1834-02-04, 1834-04-23 and 1834-04-30 carry a list and the other
+twenty-six do not, so a reading pass over 1833 and the first half of 1834 meets the epic's
+letter-list clause mostly by demonstrating absence. Where a list IS there it is the census
+proxy and ruling 1 applies in full.
+
 **The Chicago American carries no post-office letter list.** Searched across all thirteen
 issues for every form the Democrat uses — *list of letters*, *letters remaining*,
 *remaining in the post office*, *uncalled for*, a signature ending *P. M.* — for exactly
@@ -168,6 +193,21 @@ initials never merges, rule or no rule.
 The scene-date Democrat, `extracted/chicago_democrat_1835_07_01.json`, is both the worked
 fixture (claims c001-c003, T-0257 — Peter Cohen and J. S. C. Hogan on South Water Street,
 and one letter-list name) and the first issue read through (c004-c021, T-0295).
+
+**And `extracted/chicago_democrat_1833_11_26.json` is the one issue where the scan outranks
+the transcription in practice rather than in principle** (T-0308, the first piece of T-0258).
+Vol. I No. 1 is the only issue in the corpus with a per-issue source record read off the page
+images, `data/sources/chicago_democrat_1833_11_26.json`, and six of its thirty-three claims
+carry `reading: scan_verified` because the record supplies type the transcription lost — the
+schooner's master, the tavern keeper, Philo Carpenter's name, Kimball's address, Goss & Cobb's
+address, the imprint. One claim runs the other way and is worth as much: the record warns that
+*a* transcription of this issue read "C. & L. Harmon" for "C. & I. HARMON", and the deposit
+transcription read here has the I, so the warning now attaches to a named artefact instead of
+to transcriptions generally. Two advertisers the record does not enumerate — C. H. Chapman and
+S. Foot — are added by the transcription pass, and three traps the record quarantines are
+claimed by neither: the stock engraving over "Two Buildings to Let", the pencilled "S. W." in
+the margin beside the imprint, and the estray notices, which are county filings from Du Page
+and Walker's Grove and not Chicago.
 
 **It is read from the deposit `primary`, not from the `-2` rebuild `dev` can open**, and
 the reason is the letter list: the primary sets it legibly at name level and the alternate

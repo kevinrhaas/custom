@@ -47,7 +47,13 @@ T-0096 — Did the second Fort Dearborn carry a flagstaff, and can anything but 
 # --- band BLOCK the visible seeding at its bottom — documented storefronts and real
 # --- people replacing invented ones — which is why they sit above other invisible work.
 # --- Three owner rulings govern the epic; each ticket carries them in full.
-T-0258 — Reading the Democrat, part one: November 1833 to June 1834
+T-0309 — Reading the Democrat, December 1833: Vol. I Nos. 2-6
+T-0310 — Reading the Democrat, January 1834: Vol. I Nos. 7-10
+T-0311 — Reading the Democrat, February 1834: Vol. I Nos. 11-14
+T-0312 — Reading the Democrat, March 1834: Vol. I Nos. 15-17
+T-0313 — Reading the Democrat, April 1834: Vol. I Nos. 18-22
+T-0314 — Reading the Democrat, May 1834: Vol. I Nos. 23-26
+T-0315 — Reading the Democrat, June 1834: Vol. I Nos. 27-30
 T-0291 — Reading the Democrat, September 1834: Vol I Nos 40-43
 T-0293 — Reading the Democrat, November 1834: Vol I Nos 49-52
 T-0294 — Reading the Democrat, December 1834: Vol II Nos 1-4
@@ -112,7 +118,6 @@ T-0285 — An asset carrying its own AO map cannot batch with the town: +2 draw 
 T-0286 — The AO unwrap leaves 68.9 per cent of every atlas empty, and the map is priced as if it were full
 T-0301 — Every visible ticket at the top of the queue is parked on hold or in flight, and five straight invisible runs merged under it
 T-0299 — Three printings of one letter list mint 298 people three times, and identity.json is empty
-T-0300 — T-0258 is sized M on the measurement that split T-0259 into six
 T-0302 — The .lib-body grid resolves toward max-content under all six other Evidence sections, and only the plants section is fixed
 T-0304 — The gazetteer merges persons by a declared rule and has no equivalent for firms, so 'L. Wilson & Co.' and 'Jno. Wilson & Co.' are two businesses
 T-0305 — Four readings the American contradicts itself on need the page images: the tailor's street, which Water street two forwarding houses stood in, and the corner of Cobb's saddlery
