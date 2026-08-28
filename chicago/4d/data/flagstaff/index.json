@@ -1,0 +1,9 @@
+{
+  "_doc": "Manifest for the flagstaff layer — the mast that stood over Fort Dearborn and the colours it flew (T-0096). A static host cannot be globbed, which is why this file exists: the renderer fetches this manifest and then exactly the files it names, never a probe. A flagstaff is NOT a structure record and NOT baked geometry — it is a spar standing on ground this project has already drawn, so it is drawn at load by renderers/web/js/flagstaff.js from these numbers and the committed heightfield alone, the same argument that lets data/boats/ float a hull on the water plane, data/wharves/ stand a deck on cribs and data/yard/ stand a barrel on the footway. Records here are AUTHORED, not generated: there is exactly one mast and one source sentence behind it, so no rule has anything to derive. THE EXISTENCE AND THE HEIGHT ARE ATTESTED and the position is not — see the record's own notes and docs/RESEARCH/fort_dearborn.md § 10.",
+  "version": 1,
+  "scene": "1835",
+  "scene_date": "1835-07-01",
+  "flagstaffs": [
+    { "id": "fort_dearborn_flagstaff", "file": "fort_dearborn_flagstaff.json" }
+  ]
+}

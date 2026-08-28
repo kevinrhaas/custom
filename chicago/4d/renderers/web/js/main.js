@@ -36,6 +36,7 @@ import { createFrontage } from './frontage.js';
 import { createFarMerge } from './far-merge.js';
 import { createWharves } from './wharves.js';
 import { createBoats } from './boats.js';
+import { createFlagstaff } from './flagstaff.js';
 import { mountExclusions } from './exclusions.js';
 import { mountFauna } from './fauna.js';
 import { mountResidents } from './residents.js';
@@ -983,6 +984,23 @@ async function boot() {
   scene3d.add(boats.group);
   api.boats = boats;
 
+  // The flagstaff over Fort Dearborn (T-0096) — the one parcel on this
+  // reservation that two earlier passes deliberately REFUSED. `p4_0` draws a
+  // staff and `data/exclusions.json` excludes one, and both of those are about
+  // the FIRST fort; what stood this mast up is Andreas vol. 1 p. 128, in a
+  // passage headed "Chicago from 1833 to 1837" that gives the fort a flagstaff
+  // "some fifty feet high" and dates itself. Derived at load like the boats and
+  // the docks, and AUTHORED rather than ruled — one mast, one sentence. The
+  // layer splits its own confidence: the spar is attested at every vertex and
+  // the colours are reconstructed, so hiding reconstructed geometry strikes the
+  // flag and leaves the staff. Mounted after the boats for reading order; the
+  // two never touch, the mast standing on the parade inside the pickets.
+  const flagstaff = await createFlagstaff({
+    dataBase: bases.dataBase, terrain, confidence, problems,
+  });
+  scene3d.add(flagstaff.group);
+  api.flagstaff = flagstaff;
+
   /**
    * What the PLANTERS treat as built ground: the buildings' footprints plus the
    * wharf decks. A deck is a floor, and a forb growing up through the planks
@@ -1595,6 +1613,16 @@ async function boot() {
     const boat = boats.pickAt(ndc, camera);
     if (boat && boat.record && (!hit || boat.distance < hit.distance)) {
       hit = { ...boat };
+    }
+    /**
+     * So can the fort's flagstaff, on the same footing as a boat and for the
+     * same reason: the mast belongs to no structure record, so it answers with
+     * its own card out of data/flagstaff/ — what Andreas states, what is
+     * reconstructed, and the wrong-fort guard that kept it out until T-0096.
+     */
+    const staff = flagstaff.pickAt(ndc, camera);
+    if (staff && staff.record && (!hit || staff.distance < hit.distance)) {
+      hit = { ...staff };
     }
     if (!hit) {
       popup.close();

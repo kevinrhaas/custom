@@ -226,6 +226,13 @@ same ground as the last Fort, … was differently constructed."
 (`fort_dearborn_first_1803`), the sally-port (`fort_dearborn_sally_port`), the three
 artillery pieces and the fifty invalids (`fort_dearborn_artillery_pieces_1812`).
 
+**And the flagstaff — which is the one item on that list that has since been carried by
+OTHER evidence.** The excluded staff is the one in the parade of Whistler's 1808 draught,
+and it stays excluded. But T-0096 asked whether anything but a retrospective plate reaches
+the SECOND fort, and something does: Andreas p. 128, in a passage that dates itself to
+1833-37. **§ 10 is that finding**, and it is written up separately because it reverses a
+refusal this dossier made twice.
+
 **Correction 1 — the sally-port.** `docs/research/04-structures-south.md` § 1.2 tags it
 `[DOC]` as "attested for the 1816 fort's north side". The page it cites is describing the
 pre-1812 fort, and Whistler's own 1808 index lists the feature as "N. 33 Covered Way to
@@ -271,6 +278,9 @@ carries the `geometry:` declaration and a liberty:
   would be almost entirely invention today — the plan gives a symbol and a label and no
   form. The **Fort Cemetery** in particular is left alone deliberately.
 - **The ordnance.** No gun is drawn. See § 6.
+- **The flagstaff is no longer on this list.** It was, until 2026-08-28, on the strength of
+  the exclusion in § 6. It is now BUILT — see **§ 10** for the evidence that moved it and
+  `docs/LIBERTIES.md` **L200** for the four things about it that remain invented.
 
 ---
 
@@ -296,10 +306,108 @@ source lifts one value without a rewrite. The three that would move most:
 | id | what it gave |
 |---|---|
 | `harrison_1830_river_mouth` | **the plan** — arrangement, proportions, rotation, the named ground |
-| `andreas_1884_v1` | the square stockade, the two gates, the corner works, Hubbard's 1827 interior, the garrison chronology, the lighthouse sentence, the 1827 fire |
+| `andreas_1884_v1` | the square stockade, the two gates, the corner works, Hubbard's 1827 interior, the garrison chronology, the lighthouse sentence, the 1827 fire, **and the flagstaff and its fifty feet (p. 128, § 10)** |
 | `wentworth_1881_fort_dearborn` | the 1855 photograph key (the only stated dimensions), Fergus's 1850 addendum, the commandants, Beaubien's purchase |
 | `kinzie_waubun_1856` | high pickets, bastions at alternate angles, gates north and south, posterns, the company gardens, the root-houses, the parade south of the pickets |
 | `quaife_1913` | Whistler's 1808 draught and index (used only as a **guard**), Long's 1816 report, and the scholarly negative on the second fort's dimensions |
 | `drloih_fort_dearborn` | the dated commandants table that brackets the scene date |
 | `lighthousefriends_chicago` | the 1832 tower's height, builder, reflectors and lantern |
 | `chicagology_prefire052` | the same text as `wentworth_1881_fort_dearborn`, at a URL; cite that one |
+
+---
+
+## 10. The flagstaff — T-0096, and a refusal reversed
+
+**Run 2026-08-28.** T-0096 asked, in its own words: *"Did the second Fort Dearborn carry a
+flagstaff, and can anything but a retrospective plate say so."* It was raised and
+deliberately REFUSED by T-0044's image-accuracy pass, and that refusal was right on the
+evidence it had. **Something else says so, and it has been in this project's own source list
+since the beginning.**
+
+### What was found
+
+**Andreas, *History of Chicago* vol. 1, p. 128** — in the section headed *"Chicago from 1833
+to 1837"*, under the running head *"CHICAGO IN 1833-37"*, describing *"the new town of
+Chicago as organized in the fall of 1833"*:
+
+> It did not show a single steeple nor a chimney four feet above any roof. **A flagstaff at
+> the fort, some fifty feet high, flaunted, in pleasant weather and on holidays — a
+> weather-beaten flag**, as an emblem of civilization, patriotic pride, national domain, or
+> anything else that might stir hearts of the denizens of the town. The buildings of the fort
+> were low posted, and none of them exceeding two low stories in height.
+
+and, five sentences later on the same page, the same mast seen from the southern approach:
+
+> …only a thin cloud of smoke from the shanty chimneys, a line of almost indefinable
+> structures, and **the flag over the fort, if perchance it was flying**.
+
+### Why this reaches the second fort, when the plate does not
+
+Three things, and the ticket demanded all three.
+
+1. **It dates itself, twice.** The passage sits between the page-128 and page-129 running
+   heads, the second of which reads *"CHICAGO IN 1833-37"*, and its own section heading is
+   *"Chicago from 1833 to 1837"*. The preceding page's head is *"CHICAGO IN 1830-33"*. There
+   is no window here in which the fort of 1803–12 could be the subject.
+2. **It is a description of the town, not of a fort.** The first fort is not mentioned in it.
+   The paragraph is an inventory of what a person standing in the village in the mid-1830s
+   could see — no steeple, no tall chimney, a flagstaff, low buildings — and the flagstaff is
+   in it on the same footing as the absent steeple.
+3. **Its neighbouring sentence describes the fort this project models.** *"The buildings of
+   the fort were low posted, and none of them exceeding two low stories in height"* is the
+   second fort's fabric, and it agrees with the ranges already committed here.
+
+### What it is NOT
+
+It is **not** `p4_0`, and the plate is still not evidence. It is **not** the excluded
+flagstaff of § 6 — that one is in the parade of Whistler's 1808 draught, in the passage that
+closes *"Such was the old Fort previous to 1812"*, and `data/exclusions.json` still says none
+of it may be borrowed. The exclusion is untouched and this finding does not lean on it. That
+both forts put a staff on their parade is a consequence of both having exactly one open
+court; it is not a fact carried over from the 1808 plan.
+
+It is also **not a measurement**. Andreas is a tier-3 compilation written fifty years after
+the fact, and *"some fifty feet"* is a figure to the nearest ten feet. What makes it
+load-bearing here is not its authority but its **date range** — it is the only witness
+reached that describes a flagstaff at Chicago and says which decade it is describing.
+
+### What was searched, and what it cost
+
+Andreas vol. 1's full OCR text was read locally rather than through the archive.org full-text
+index, because that index tokenises `"flag staff"` into an OR of `flag` and `staff` and
+returns thirty largely irrelevant paragraphs; the source record for `andreas_1884_v1` already
+warns that *"'not found' is not 'not present'"* on that endpoint. Searched over the whole
+volume: `flagstaff`, `flag staff`, `flag-staff`, `liberty pole`, and every occurrence of
+`flag*` within 300 characters of `fort`. **The volume contains exactly two flagstaffs**: this
+one, and the one a fire company threw a stream over in the public square in 1848.
+
+The other leads T-0096 named were not what settled it and remain open as upgrades: no
+garrison return, quartermaster's account or repair estimate for the 1816 post was reached;
+the 1830 Harrison plan has not been re-read for a staff specifically; and the identification
+of `p4_0` against chicagology's numbering is still not made.
+
+### What was built
+
+`data/flagstaff/fort_dearborn_flagstaff.json`, drawn by `renderers/web/js/flagstaff.js` — a
+spar is not baked geometry, the same argument that lets `data/boats/` float a hull and
+`data/yard/` stand a barrel. The layer **splits its own confidence**: the mast carries
+`attested` at every vertex and the colours carry `reconstructed`, because Andreas makes the
+flag conditional twice (*"in pleasant weather and on holidays"*, *"if perchance it was
+flying"*). A visitor who hides reconstructed geometry therefore **strikes the flag and leaves
+the staff standing**.
+
+Four things are invented and all four are claimed at `docs/LIBERTIES.md` **L200**: the
+POSITION (the centroid of the committed parade rectangle — no source places the staff, and
+that is the only open ground inside the pickets), the flag BEING ALOFT at noon on 1 July
+1835, the ensign's SIZE, and the spar's scantlings and the wind's direction. **No star count
+is asserted and no star is drawn**: the count is derivable from the Flag Act of 1818 in
+principle, this project holds no source record for that act, and a star of this canton is
+under one pixel at both release viewports from any point a visitor may stand.
+
+### How this can be upgraded
+
+The three upgrades of § 8 all reach it. A garrison return or repair estimate naming a staff
+would fix its position and lift L200's first clause; a measured reading of the 1850
+daguerreotype or the 1855 photograph would do the same, with the § 6 caution that both show
+the compound after the garrison left; and the 1830 Harrison sheet re-read for a staff
+specifically is the cheapest of the three, because the plate is already committed.

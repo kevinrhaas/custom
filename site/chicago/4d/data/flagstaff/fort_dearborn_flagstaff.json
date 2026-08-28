@@ -1,0 +1,99 @@
+{
+  "_doc": "The flagstaff at Fort Dearborn on 1835-07-01, and the colours it flew. ATTESTED: Andreas, History of Chicago vol. 1 p. 128, describing the town of 1833-37 — 'A flagstaff at the fort, some fifty feet high, flaunted, in pleasant weather and on holidays — a weather-beaten flag' — and, five sentences later, the same mast seen from the approach: 'a line of almost indefinable structures, and the flag over the fort, if perchance it was flying.' This is the SECOND fort and the passage says so on its own face; see the wrong_fort_guard block below, which is the whole reason this record took eight months to exist. Drawn at load by renderers/web/js/flagstaff.js — a spar is not baked geometry.",
+  "id": "fort_dearborn_flagstaff",
+  "name": "Fort Dearborn — the flagstaff",
+  "kind": "flagstaff",
+  "scene": "1835",
+  "target_date": "1835-07-01",
+  "coordinates": "Local East-North-Up metres from data/datum.json's origin. The mast is stepped into the terrain the layer samples under its own foot; heights below are measured from that surface.",
+  "stands_on": "fort_dearborn_parade",
+
+  "existence": {
+    "value": true,
+    "confidence": "attested",
+    "sources": ["andreas_1884_v1"],
+    "note": "ANDREAS VOL. 1 P. 128, IN THE SECTION HEADED 'Chicago from 1833 to 1837' AND UNDER THE RUNNING HEAD 'CHICAGO IN 1833-37': 'A flagstaff at the fort, some fifty feet high, flaunted, in pleasant weather and on holidays — a weather-beaten flag, as an emblem of civilization, patriotic pride, national domain, or anything else that might stir hearts of the denizens of the town.' The sentence immediately before it dates the view — 'The new town of Chicago as organized in the fall of 1833' — and the sentence immediately after it describes the same compound this project models: 'The buildings of the fort were low posted, and none of them exceeding two low stories in height.' A second, independent sighting stands on the same page, in the approach from the south: 'a line of almost indefinable structures, and the flag over the fort, if perchance it was flying.' Andreas is a tier-3 compilation of 1884 and is cited by page as this project cites it everywhere; what makes it load-bearing HERE is not its authority but its DATE RANGE — it is describing 1833-37 and nothing else, which is the one thing every other witness to a flagstaff at Chicago fails to do."
+  },
+
+  "wrong_fort_guard": {
+    "value": "cleared",
+    "confidence": "attested",
+    "sources": ["andreas_1884_v1", "quaife_1913"],
+    "note": "THIS IS THE TRAP THE RECORD EXISTS TO GET PAST, AND IT IS WHY THE STAFF WAS REFUSED TWICE BEFORE. data/exclusions.json holds a flagstaff already — the one in the parade of Captain John Whistler's FIRST fort, from the 1808 draught Quaife prints, in the passage that closes 'Such was the old Fort previous to 1812' — and that entry says in terms that 'none of it may be borrowed for the second fort's records'. T-0044's image-accuracy pass then refused the flagstaff that plate p4_0 draws, correctly: a retrospective engraving conflates the two forts, the courthouse plate in the same directory is filed as a negative reference for exactly that reason, and raising a staff on a tier-5 view alone would be the commonest error in the popular literature committed on purpose. NOTHING IN THIS RECORD COMES FROM EITHER OF THOSE. It comes from a passage dated to the years 1833-37 by its own section heading and its own running head, in a town description that never mentions the first fort at all. The exclusion stands untouched and this record does not lean on it: the 1808 parade staff remains excluded, and what is drawn here is a different mast attested twenty-one years later."
+  },
+
+  "position_local_enu_m": [1150.83, 221.67],
+  "position": {
+    "confidence": "reconstructed",
+    "sources": [],
+    "note": "INVENTED POSITION, AND IT IS THE ONLY INVENTED THING ABOUT THE MAST ITSELF. Andreas puts the staff 'at the fort' and no source reached puts it anywhere more precise: the 1830 Harrison plan, which is the only plan of this fort anyone has found and from which this project takes the compound's whole arrangement, draws no staff; Kinzie, inside the stockade in 1831, does not mention one; the 1855 photograph key does not list one. So the point is chosen, and what bounds it is the ground: it is the CENTROID of the committed parade rectangle — fort_dearborn_parade's 21.8 x 33.2 m polygon, hung at local [1137.73, 206.75] and rotated 8 degrees with the fort — which is the one open ground inside the pickets and the only point on it that requires no further choice. It is NOT borrowed from Whistler's 1808 plan: that plan puts the FIRST fort's staff in ITS parade, and the exclusion forbids carrying it over. The agreement between the two is a consequence of both forts having exactly one open court, not evidence about this one. Uncertainty is the parade's own half-diagonal, about 20 m: the staff stood somewhere on this ground and this project does not know where."
+  },
+
+  "form": {
+    "height_m": {
+      "value": 15.24,
+      "confidence": "attested",
+      "sources": ["andreas_1884_v1"],
+      "note": "'some fifty feet high' (Andreas vol. 1 p. 128), converted at 0.3048 m to the foot. 'SOME' IS ANDREAS'S OWN HEDGE AND IT IS KEPT: this is a figure given to the nearest ten feet by a compiler writing fifty years later, not a measurement, and it is graded attested because a source states it — not because it is precise. The renderer draws exactly this number above the sampled ground and nothing rounds it."
+    },
+    "butt_diameter_m": {
+      "value": 0.34,
+      "confidence": "reconstructed",
+      "sources": [],
+      "note": "Not stated anywhere. A single-stick mast of fifty feet is a shaped tree, and its butt is sized here at about 1/45 of its length, which is the ordinary proportion for a standing spar of this length and the same order as the 0.26 m the boat layer draws a schooner's mast at. Bounded by the fact that a visitor cannot read it: at the nearest point a walker may stand, the butt subtends well under a degree."
+    },
+    "truck_diameter_m": {
+      "value": 0.16,
+      "confidence": "reconstructed",
+      "sources": [],
+      "note": "The taper, also not stated. Slightly under half the butt, which is what a shaped spar does. Drawn rather than assumed constant because an untapered fifty-foot pole reads as a pipe."
+    },
+    "material": {
+      "value": "shaved timber, unpainted",
+      "confidence": "reconstructed",
+      "sources": [],
+      "note": "Not stated. Nothing in the passage or anywhere else describes the mast's finish. Left as weathered bare timber — the same tone the wharf and boat layers draw working spars at — rather than the white a later garrison flagpole would carry, because a painted mast is a claim and bare timber at a frontier post is the lower one."
+    }
+  },
+
+  "flag": {
+    "flying": {
+      "value": true,
+      "confidence": "reconstructed",
+      "sources": ["andreas_1884_v1"],
+      "note": "ANDREAS MAKES THE FLAG CONDITIONAL AND THIS RECORD DOES NOT PRETEND OTHERWISE. He flies it 'in pleasant weather and on holidays' and then, from the southern approach, 'if perchance it was flying' — so a flag aloft is a sometimes, not an always, and no source says what was aloft at Chicago at half past noon on 1 July 1835. What is held: the scene's own record (data/scenes/1835.json) states a fine early-afternoon 1 July, which is the 'pleasant weather' half of Andreas's own condition, and the post was garrisoned on that date (see the commandants table on drloih_fort_dearborn, bracketed in docs/RESEARCH/fort_dearborn.md). So the colours are drawn, graded reconstructed, and a visitor who hides reconstructed geometry sees the bare mast Andreas equally describes. The 4 July three days later is NOT used as an argument: that would be flying a flag on the wrong day and calling it evidence."
+    },
+    "hoist_m": {
+      "value": 2.6,
+      "confidence": "reconstructed",
+      "sources": [],
+      "note": "Not stated. Sized off the one number that IS attested: at 2.6 m the hoist is about a sixth of the staff's fifty feet, which is the ordinary relation of a flag to its pole and keeps it clear of the ground when struck. Deliberately NOT the 20 x 36 ft garrison flag of later regulation — that is a claim about establishment sizes at a post nobody measured, and on a fifty-foot staff it would hang to within a few feet of the parade."
+    },
+    "fly_m": {
+      "value": 4.9,
+      "confidence": "reconstructed",
+      "sources": [],
+      "note": "Not stated. Held at about 1.9 times the hoist, the proportion the United States ensign of this period is commonly built to; the Flag Act of 1818 fixes the stars and stripes and says nothing about proportions, so this is a convention and is graded as one."
+    },
+    "device": {
+      "value": "canton and stripes, stars not drawn",
+      "confidence": "reconstructed",
+      "sources": [],
+      "note": "WHAT IS PAINTED AND WHAT IS DELIBERATELY NOT. The flag carries a blue canton and red-and-white stripes, which is what any United States ensign of 1835 carried and what is legible at this distance. THE STARS ARE NOT DRAWN AND NO STAR COUNT IS CLAIMED. The count is derivable in principle — the Flag Act of 1818 adds a star on the 4 July following a state's admission, which puts the ensign at twenty-four stars from 1822 until Arkansas's admission moves it to twenty-five on 4 July 1836 — but this project holds no source record for that act, and a star is in any case far below the size a canton of this hoist can resolve from any point a visitor may stand: at the nearest standing point on the parade a single star subtends a small fraction of one pixel at both release viewports. So the canton is drawn plain rather than lettered with a count this project would be asserting rather than citing. Claimed at docs/LIBERTIES.md L200."
+    },
+    "condition": {
+      "value": "weather-beaten",
+      "confidence": "attested",
+      "sources": ["andreas_1884_v1"],
+      "note": "'a weather-beaten flag' — Andreas's own adjective, vol. 1 p. 128. It is drawn as a muted, sun-bleached red and blue rather than fresh bunting, which is the one thing about the colours a source actually states."
+    }
+  },
+
+  "not_drawn": {
+    "halyard": "No halyard, cleat or truck is drawn. Nothing describes them, and at this scale a rope of that diameter is under a pixel from any standing point — it would be invention that cannot even be seen.",
+    "stays": "No stays or shrouds. A single-stick staff of fifty feet may well have been stayed and nothing says it was; an invented rigging plan on a mast whose position is already invented is two inventions stacked, which is the test L140 applied to the fort's bank track.",
+    "second_staff": "One mast only. Andreas writes 'A flagstaff', singular, and no source reached puts a second anywhere on the reservation."
+  },
+
+  "geometry_note": "The mast is an octagonal tapered prism stepped 0.6 m into the sampled terrain, so its foot beds into the parade rather than resting on it and no gap opens if the drawn ground and the sampled heightfield disagree by a centimetre. The flag is a waved sheet on the hoist side of the truck. The layer carries ONE material and ONE draw call, and every vertex carries its own confidence — the mast at attested, the flag at reconstructed — so hiding reconstructed geometry strikes the colours and leaves the staff standing, which is exactly the partition the sources make."
+}

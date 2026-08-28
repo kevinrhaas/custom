@@ -3,7 +3,7 @@
   "source": "docs/LIBERTIES.md",
   "standard": "A visitor should be able to tell you which parts we made up.",
   "note": "The confidence model covers attributes. These are the decisions that live above any single attribute: scope, omission, simplification, and the choices a visitor would otherwise have to reverse-engineer.",
-  "count": 199,
+  "count": 200,
   "liberties": [
     {
       "id": "L1",
@@ -12809,6 +12809,35 @@
         {
           "label": "How to resolve",
           "text": "the 1830 Harrison sheet re-read for its road and ferry line specifically — this project has taken the fort, the garden, the barn and the ferry off that plate and never the routes between them; or any survey of the United States Reservation before its 1839 subdivision, which would fix both this line and the landing at once. Related: **L140** (the fort road, and the refusal this discharges) · **L174** (the apron both gates hand their last stride to) · **L178** (why one chord and not several) · **L194** (the mitred corner a bend would have needed) · tickets **T-0099** (this), **T-0004**, **T-0044**."
+        },
+        {
+          "label": "Recorded",
+          "text": "2026-08-28."
+        }
+      ]
+    },
+    {
+      "id": "L200",
+      "title": "Fort Dearborn's flagstaff: an attested mast, an invented place to stand it, and colours that flew only sometimes",
+      "section": "per_subject",
+      "subjects": [
+        "fort_dearborn_parade"
+      ],
+      "covers": [],
+      "recorded": "2026-08-28",
+      "revised": null,
+      "fields": [
+        {
+          "label": "Decision",
+          "text": "a flagstaff is drawn on the parade inside Fort Dearborn — `data/flagstaff/fort_dearborn_flagstaff.json`, drawn by `renderers/web/js/flagstaff.js`: a tapered octagonal spar 15.24 m tall with a United States ensign streaming from its head. **The mast and its height are NOT a liberty and are not claimed here** — Andreas, *History of Chicago* vol. 1 **p. 128**, in the section headed \"Chicago from 1833 to 1837\" and under the running head \"CHICAGO IN 1833-37\", writes: *\"A flagstaff at the fort, some fifty feet high, flaunted, in pleasant weather and on holidays — a weather-beaten flag\"*, and five sentences later, from the southern approach, *\"a line of almost indefinable structures, and the flag over the fort, if perchance it was flying.\"* Those carry the spar at `attested`. This entry claims the four things that sentence does not give. **What this entry admits to.** (1) THE POSITION. Andreas puts the staff \"at the fort\" and nothing reached puts it anywhere more precise — the 1830 Harrison plan, the only plan of this fort anyone has found and the source of the compound's whole arrangement, draws no staff; Juliette Kinzie, living inside the pickets in 1831, never mentions one; the 1855 photograph key does not list one. The mast stands at the **centroid of the committed parade rectangle**, `[1150.83, 221.67]` — `fort_dearborn_parade`'s 21.8 × 33.2 m polygon rotated 8° with the fort — because that is the only open ground inside the stockade and the one point on it that requires no further choice. Uncertainty is the parade's own half-diagonal, about **20 m**. (2) THE FLAG BEING ALOFT at half past noon on 1 July 1835: Andreas makes it explicitly conditional twice over, so a flag flying is a *sometimes*. (3) THE ENSIGN'S SIZE — 2.6 m hoist by 4.9 m fly, about a sixth of the staff and at the 1:1.9 proportion the period ensign is commonly built to; the Flag Act of 1818 fixes stars and stripes and says nothing about proportions. (4) THE SPAR'S SCANTLINGS and its bare-timber finish, and **the direction the wind blows** — east-north-east, off the land and out over the lake — because a flag has to blow somewhere and a vertical rag reads as a fault in the model. **What bounds the invention.** The position is bounded by the pickets: wherever the staff stood, it stood inside a compound this project has already drawn to a plan, and the parade is the only ground in it that is not a building. The flag's being aloft is bounded by Andreas's own condition — he flies it \"in pleasant weather\" and the scene record (`data/scenes/1835.json`) states a fine early-July afternoon — and by the post being garrisoned on the date, which the commandants table brackets. The size is bounded by the one number that IS attested: a 20 × 36 ft garrison flag of later regulation would hang to within a few feet of the parade off a fifty-foot staff, so it is deliberately not drawn. **THE STARS ARE NOT DRAWN AND NO STAR COUNT IS ASSERTED**, and that is a refusal rather than an omission. The count is derivable in principle — the 1818 act adds a star on the 4 July after a state's admission, which holds the ensign at twenty-four stars from 1822 until Arkansas moves it to twenty-five on 4 July 1836 — but **this project holds no source record for that act**, and a star of this canton is far under one pixel at both release viewports from any point a visitor may stand. Drawing one would be asserting a number nobody could read and nothing here cites. The canton is painted plain. **The wrong-fort guard, which is why this took until T-0096.** `data/exclusions.json` already excludes a flagstaff — the one in the parade of Captain Whistler's **first** fort, from the 1808 draught Quaife prints, in the passage closing *\"Such was the old Fort previous to 1812\"*, whose entry says *\"none of it may be borrowed for the second fort's records\"*. T-0044 then refused the staff that plate `p4_0` draws, correctly: a retrospective engraving conflates the two forts, and the changelog said so out loud — *\"The flagstaff in the plate is a trap, and it stays out.\"* **Neither of those is what built this mast**, the exclusion stands untouched, and the plate is still not evidence. That the first fort's staff also stood in its parade is a consequence of both forts having exactly one open court, not a fact borrowed from the 1808 plan."
+        },
+        {
+          "label": "Consequence",
+          "text": "the confidence view splits the object in half. The spar carries `attested` at every vertex and the colours carry `reconstructed`, so a visitor who hides reconstructed geometry **strikes the flag and leaves the staff standing** — which is precisely the partition the sources make."
+        },
+        {
+          "label": "How to resolve",
+          "text": "a garrison return, quartermaster's account or repair estimate for the 1816 post naming a staff or its position; Andreas or the 1830 Harrison sheet re-read for a staff specifically; or any measured reading of the 1850 daguerreotype or the 1855 photograph, either of which would fix the position and probably the height at once. Related: **L140**, **L199** (the two-inventions-stacked test this applies to the rigging) · **L146** (the other authored, non-structure layer) · tickets **T-0096** (this), **T-0044**, **T-0095**."
         },
         {
           "label": "Recorded",

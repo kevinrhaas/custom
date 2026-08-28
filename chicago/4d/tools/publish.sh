@@ -199,6 +199,16 @@ if [ -d data/boats ]; then
   cp -a data/boats "$SITE/data/boats"
 fi
 
+# The flagstaff layer — the mast over Fort Dearborn and the colours it flew
+# (T-0096), drawn by renderers/web/js/flagstaff.js straight from these numbers.
+# Same argument as the boats above and the same failure if it is left out: no
+# GLB carries any of it, so an unmirrored directory is a 404 on the deployed
+# site while the dev tree stands the mast perfectly.
+if [ -d data/flagstaff ]; then
+  rm -rf "$SITE/data/flagstaff"
+  cp -a data/flagstaff "$SITE/data/flagstaff"
+fi
+
 # The frontage layer — the plank walks, the board crossing and the named board
 # on its post that stand between a building and the street it fronts on, drawn by
 # renderers/web/js/frontage.js straight from these numbers. Same argument as the

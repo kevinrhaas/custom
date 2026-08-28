@@ -65,6 +65,14 @@ RENDERER_JS = RENDERERS / "web" / "js"
 # @ a638614c (T-0059). `--gate` holds the live measurement to it. Moving a figure
 # here is a claim that the reach changed, and it belongs in the same commit as
 # whatever changed it.
+#
+# 2026-08-28, T-0096: `layers_drawn_at_load` 9 -> 10. `data/flagstaff/` is a TENTH
+# drawn layer — the mast over Fort Dearborn and the colours it flew, drawn by
+# `renderers/web/js/flagstaff.js` from one authored record. Nothing else moved:
+# the layer carries no GLB and no archetype, so `assets` and every `restales`
+# figure are untouched, and `layers_with_a_generator` stays 0 — the new layer owes
+# the same generator half the other nine do, and the debt this file measures is
+# now one layer larger rather than differently shaped.
 STATED = {
     "assets": 349,
     "restales": {
@@ -73,7 +81,7 @@ STATED = {
         "generators/terrain_gen.py": 2,
         "generators/archetypes/pier_crib.py": 2,
     },
-    "layers_drawn_at_load": 9,
+    "layers_drawn_at_load": 10,
     "layers_with_a_generator": 0,
     "renderers": 1,
 }
@@ -85,6 +93,7 @@ STATED = {
 DRAWN_AT_LOAD = {
     "boats": "boats.js",
     "enclosures": "enclosures.js",
+    "flagstaff": "flagstaff.js",
     "fauna": "fauna.js",
     "flora": "flora.js",
     "frontage": "frontage.js",
@@ -187,7 +196,7 @@ def layer_debt() -> tuple[list, list]:
             # The manifests do not agree on a key — `wharves`, `zones`,
             # `households`, and `flora` carries three lists at once — so the count
             # is not "the first list": it is every entry in the document that names
-            # a record FILE, which is the one thing all nine manifests do agree on
+            # a record FILE, which is the one thing all ten manifests do agree on
             # and the only thing this column is claiming.
             records = sum(1 for v in doc.values() if isinstance(v, list)
                           for e in v if isinstance(e, dict) and e.get("file"))
