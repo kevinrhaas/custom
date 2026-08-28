@@ -3902,10 +3902,16 @@ for (const [label, viewport, touch] of [
       // T-0228 then cut the river walk's wharf reach in two where Carpenter's
       // and Jones's landings come ashore across it — 50 walks to 51 — and states
       // each gap where it refuses to lay boards: 82 refusals to 84.
+      // T-0246 reconciled log_jail onto the committed plat, off the modern kerb
+      // it was placed from. The WALK count does not move — the two steps it
+      // returns extend an existing run to the full face rather than opening a
+      // new one — but a walk that stopped short of its corner had refused the
+      // corner CROSSING with it, and two of those are now laid: 37 crossings to
+      // 39, and the refusal that named them retires, 84 to 83.
       frontage.census?.records === 5 && frontage.census?.walks === 51
-        && frontage.census?.crossings === 37
+        && frontage.census?.crossings === 39
         && frontage.census?.posts === 15 && frontage.census?.fences === 35
-        && frontage.census?.refused === 84
+        && frontage.census?.refused === 83
         && frontage.recordIds.join(',')
           === 'green_tree_frontage,sauganash_frontage,river_walk_frontage,'
             + 'lasalle_crossing_frontage,town_street_edge'

@@ -1,5 +1,112 @@
 # STATUS
 
+## Shipped 2026-08-28 — T-0246: the log jail comes onto the plat, and Randolph's walk reaches its corner
+
+**The fault is the modern-kerb read, for the fourth time.** `log_jail` was placed on 2026-08-11
+from Andreas's *"northwest corner of the court-house square"*, and the square's four inside corners
+were computed for that parcel from **modern OpenStreetMap intersection centres** stepped 12.2 m into
+the block. That is the same derivation T-0127 found under the eleven South Water records and T-0196
+found under Lake Street's four. Measured against this project's own committed line — the
+`data/streets/1835.json` centreline offset by half the committed 80 ft corridor, which is what
+`tools/generate_plat_lots.py` builds every block edge from — the jail's north wall stood **3.48 m
+out past `blk_randolph_lasalle`'s Randolph frontage**, with its centroid inside the corridor.
+
+**What it cost, and the second half was not obvious.** `tools/generate_frontage_works.py`'s march
+refused the two steps of the square's own Randolph walk that the jail covered, 0.0 to 10.4 m along
+the face. A walk refused short of its corner then takes the corner **crossing** with it — the rule
+lays a crossing only where both walks reach the corner — so the LaSalle Street crossing at Randolph
+was refused in turn, *"the two walks stop 34.8 m apart"*. One misplaced building was costing 10.4 m
+of boards **and two board crossings**.
+
+**The repair is this record's own method run against this project's own line.** The footprint is
+translated **4.981 m** along the face's inward normal — dE −0.040, dN −4.981 in local ENU, so
+UTM E 447538.25 N 4637126.21 becomes **E 447538.21 N 4637121.23** — which leaves its north wall
+**1.50 m** back from the committed frontage line. The square is not subdivided, so there is no lot
+line to stand off: 1.50 m is `plat_occupancy.LOT_MARGIN_M`, the plat module's own margin off a
+boundary, and it is the same figure every reconciled South Water and Lake record took.
+
+**Nothing along the street moved and no grade changed.** The along-face position, the block, the
+corner and the side are untouched; the confidence stays `inferred`, because re-deriving a coordinate
+from better geometry is not new evidence. The record's own 20 m working uncertainty from the
+georeference is unchanged and is four times this move — so this reconciles two of this project's own
+lines and does **not** claim to have located the jail better. The facade bearing stays 0 while the
+face runs at 0.46°, which leaves the front wall between 1.50 and 1.55 m back across its width;
+rotating a documented record is a second claim and this is a repair.
+
+**Measured, before → after.**
+
+| | before | after |
+|---|---:|---:|
+| `log_jail` lap of the Randolph corridor | 3.48 m | none |
+| placed phases lapping a platted corridor | 20 of 349 | **19 of 349** |
+| in the DEEP mode (≥ 3.48 m) | 6 | **5** |
+| records lapping Randolph | 2 | **1** |
+| `blk_randolph_lasalle` north walk | 10.4 → 99.0 m of the face | **0.0 → 99.0 m** |
+| its walking decks | 6 | **7** |
+| street edge, walk/crossing runs | 88 | **90** |
+| street edge, walk laid | 3,160.3 m | **3,170.7 m** |
+| street edge, crossings | 34 (811.0 m) | **36 (857.5 m)** |
+| street edge, refusals stated | 84 | **83** |
+
+The two new crossings are `blk_randolph_wells_north_crossing_blk_randolph_lasalle_north` (over
+LaSalle Street) and `blk_lake_lasalle_south_crossing_over_randolph` (over Randolph). No refusal was
+added, and no run was lost.
+
+**What is left on Randolph, and it is not this fault.** One record still laps it:
+`newberry_dole_slaughterhouse_south_branch`, 11.45 m in at the far west end, whose body is drawn
+toward the street from its own anchor (K30(b)). Nothing here touches it.
+
+**One earlier reading is now stale by five metres.** T-0224 fixed the `public_square` critic stand
+by bisecting the estray pen and the log jail, and quotes the jail at **131.2 m off at 319.9°**. With
+the jail reconciled it is **127.2 m at 320.2°** from the same stand. The bisector moves by 0.15°,
+which is far inside the frame, and the stand was **not** re-derived here — the number is recorded as
+moved rather than silently left reading as though it had not.
+
+**The smoke's frontage census moved, and it is the ledger rather than an assertion weakened.**
+`tools/smoke_renderer.mjs`'s "the frontage layer lays all five records' walks" carries a running
+count with the reason for each move. Crossings 37 → **39** and refusals 84 → **83**; walks, posts
+and fence runs do not move, because the returned steps EXTEND an existing run rather than opening
+a new one. The comment says so, as T-0241, T-0196, T-0024 and T-0228 each did before it.
+
+**Gates, and one of them is red — inherited, and one number is mine.** `tools/check.sh` **PASS**
+(after `generate_yard_goods.py`, `compile_scene.py --all` and
+`measure_corridor_intrusion.py --write-baseline`, which is the ratchet's own way to bank a repair).
+`node tools/smoke_renderer.mjs --published`, run in staged legs at **both** viewports — mobile
+390×780 (1-2, 3-4, 5-6, 7-9) and desktop 1280×800 (1…9) — **zero page errors** anywhere. Every red
+is on `dev` before this branch, each named to an open ticket:
+
+| leg | red | whose |
+|---|---|---|
+| mobile 1-2, desktop 2 | twelve street-edge hitching posts measure `-Infinity` | **T-0244** — byte-identical to `dev`'s own standing record (`dev-smoke-state`, 2026-08-28T10:27) |
+| mobile 7-9, desktop 7 | the tree-station assertion reads 0 of 0 vertices | **T-0243** — byte-identical to `dev`'s standing record |
+| desktop 7 | 2,526 of 18,911 flower heads over open ground | **T-0279**, to its own figure |
+| desktop 4 | the `light` tier draws 85 calls against its 80-call floor | **T-0247/T-0249** — **85 on a clean `origin/dev` worktree too**, so not this branch (`dev`'s stored 83 is a stale tree) |
+| desktop 4 | `balanced` over its ceiling at the forks | **T-0271/T-0223** — and **1,160 triangles of it are mine** |
+
+**The one number this branch moves on a red gate, stated rather than buried.** Measured on a clean
+`origin/dev` worktree and on this branch, same stand (the forks, from Wolf Point), same command:
+
+| | clean `origin/dev` | this branch | delta |
+|---|---:|---:|---:|
+| `balanced` at the forks | 1,214,417 | **1,215,577** | **+1,160** |
+| over the 1,210,000 ceiling by | 4,417 | **5,577** | +1,160 |
+
+That is 10.4 m of plank walk, two board crossings and one more walking deck, at the street edge's
+measured 42.8 triangles a metre. **The ceiling was already breached and it is not breached by this**
+— but T-0223's complaint is precisely that content lands while the budget is over, so the increment
+is recorded here rather than left for the next reading to discover. It was merged anyway on three
+grounds: the dev gate is `check.sh` and nothing else (`docs/PIPELINE.md`), the breach is
+owner-acknowledged and carried by four open tickets, and the alternative is leaving a documented
+building drawn standing in a platted street. Nothing was weakened to pass.
+
+**No bake.** The position lives in the sidecar the renderer reads, not in the mesh, and
+`validate.py --stale` stayed green across the move.
+
+**One side effect, and the rule is right.** `data/yard/town_trade_goods.json` re-derives with one
+fewer wagon: `town_wagon_lasalle_2` stood on the verge the new LaSalle crossing now occupies, and
+the yard rule refuses it — *"A footway is a floor and a wagon parked across it is the town's own
+Ordinance 9 complaint, drawn."* 64 wagons to 63, and the refusal states itself.
+
 ## Shipped 2026-08-28 — T-0224: a critic baseline standing on the public square
 
 **T-0027 replanted a whole city block and nothing in this project could show it in a picture.** The
