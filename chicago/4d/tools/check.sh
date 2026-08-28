@@ -183,6 +183,22 @@ step "the fort wood re-derives from the palisade and the apron it stands off" \
 step "the river wharves re-derive from the records that state a dock" \
   python3 tools/generate_river_wharves.py --check
 
+# ROADMAP K5 (e) also asked for "a river-wharf mode of pier_crib", so that a town
+# assembled from GLBs alone would carry its docks; T-0059 was that clause and was
+# WITHDRAWN on 2026-08-27 on the three readings this holds. Not on an opinion about
+# wharves: on the count of renderers that could read such a GLB (one, and it draws
+# the wharves already), on the count of drawn-at-load layers that owe a generator
+# half (nine of nine, so the debt is general and the wharf is not special), and on
+# what each route into the bake re-stales. The last of those cuts BOTH ways and the
+# gate states it either way — a mode inside pier_crib.py costs two meshes, which is
+# cheap, while a new archetype edits build.py's registry and costs the town. The
+# reading is gated rather than remembered because every figure in it is a thing the
+# tree can change underneath the decision: a second renderer, a tenth layer, or the
+# first drawn layer to grow a generator each fail here and send somebody back to the
+# ticket.
+step "the case T-0059 was withdrawn on still holds" \
+  python3 tools/measure_generator_half.py --gate --quiet
+
 # The frontage works are the fifth record of this shape and the first derived from
 # a building AND a street at once: where a plank walk may lie is decided by the
 # travelled track's own half-width out of data/streets/1835.json, not by the wall
