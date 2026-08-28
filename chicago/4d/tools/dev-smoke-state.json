@@ -3,6 +3,68 @@
   "readings": [
     {
       "viewport": "mobile",
+      "stage": "4",
+      "parts": [
+        4
+      ],
+      "verdict": "pass",
+      "target": "published",
+      "passed": 51,
+      "failed": 0,
+      "failures": [],
+      "wallSeconds": 376,
+      "takenAt": "2026-08-28T04:03:34.860Z",
+      "ref": "steward/t-0219-heightfield-south-madison",
+      "commit": "564a0f73b1a4",
+      "devCommit": "a638614c75d3",
+      "treeHash": "sha256:933f34f768a9371d",
+      "treeDirty": false,
+      "changelogHash": "sha256:a92323a5fbcd1da2",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          4.2,
+          4.6,
+          4.2
+        ]
+      },
+      "source": "/tmp/sm4.txt"
+    },
+    {
+      "viewport": "mobile",
+      "stage": "9",
+      "parts": [
+        9
+      ],
+      "verdict": "pass",
+      "target": "published",
+      "passed": 88,
+      "failed": 0,
+      "failures": [],
+      "wallSeconds": 141,
+      "takenAt": "2026-08-28T04:03:34.778Z",
+      "ref": "steward/t-0219-heightfield-south-madison",
+      "commit": "564a0f73b1a4",
+      "devCommit": "a638614c75d3",
+      "treeHash": "sha256:933f34f768a9371d",
+      "treeDirty": false,
+      "changelogHash": "sha256:a92323a5fbcd1da2",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          4.2,
+          4.6,
+          4.2
+        ]
+      },
+      "source": "/tmp/sm9.txt"
+    },
+    {
+      "viewport": "mobile",
       "stage": "1-2",
       "parts": [
         1,
