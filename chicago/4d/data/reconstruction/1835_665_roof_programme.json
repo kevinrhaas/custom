@@ -17,6 +17,46 @@
   "capacity": "3 principal roofs per platted lot plus ancillary at the programme's own 154:508 ratio (T-0079, the core density standard). The frontage rule is measured at the worst case: the smallest lot on the committed grid carries 23.56 m, the plat module keeps 1.5 m clear of a side line at each end of a run, and the eighteen committed party-line units average 6.072 m wide — so three fit on the meanest lot in the town and the fourth does not. It replaces one roof per lot, which five of the twelve core blocks already stood above. Capacity is a ceiling; `block_rooms` carries the restraint.",
   "overrun": "Where evidence has put more roofs into a family than the target allows, the excess is reported and the remainder is reduced in the families with the most slack. A documented roof is never removed to protect a family cap.",
   "family_mix": "An apportionment of the district's remainder across its schedule units, not a claim about any block. Hamilton's method throughout, so every marginal closes exactly.",
+  "business_front": {
+   "what": "Which of a district's principal roofs land on which platted block is weighted by what the block FRONTS, because the documented trade share is monotone in the committed street hierarchy. It is a permutation of the families the district deal already placed, among the same blocks, so no total moves: not the target, not a district, not a family, not any block's roof count.",
+   "measured": "tools/measure_frontage_fabric.py --trade — the share of DOCUMENTED buildings carrying a trade family (C stores, F warehouses, W workshops), by the traffic class of the street they stand nearest. The research layer only: weighting the schedule by what the schedule invented would ratchet.",
+   "weight": "A block's weight is the mean of its four faces' class shares, read off data/streets/1835.json. Re-class a street there and every block on it re-weights in the same commit.",
+   "trade_share_by_class": {
+    "light": {
+     "n": 19,
+     "trade": 0,
+     "share": 0.0
+    },
+    "ordinary": {
+     "n": 22,
+     "trade": 10,
+     "share": 0.4545
+    },
+    "principal": {
+     "n": 27,
+     "trade": 21,
+     "share": 0.7778
+    }
+   },
+   "moved": [
+    {
+     "district": "south",
+     "blocks": 7,
+     "trade_roofs": 9,
+     "blocks_redealt": 7,
+     "quota": {
+      "blk_south_water_franklin": 1,
+      "blk_south_water_lasalle": 1,
+      "blk_south_water_clark": 1,
+      "blk_south_water_dearborn": 0,
+      "blk_lake_franklin": 1,
+      "blk_randolph_market": 0,
+      "blk_south_water_market": 5
+     }
+    }
+   ],
+   "ticket": "T-0213"
+  },
   "naming": "A unit is named for a block only where the plat module reaches it. Everything else is a district balance that states what it waits on."
  },
  "standing": {
@@ -293,12 +333,14 @@
    "roofs": 4,
    "families": {
     "A1": 1,
+    "C2": 1,
     "D3": 1,
-    "D4": 1,
-    "D5": 1
+    "D4": 1
    },
    "principal": 3,
-   "ancillary": 1
+   "ancillary": 1,
+   "frontage_weight": 0.6162,
+   "trade_roofs": 1
   },
   {
    "id": "blk_south_water_wells",
@@ -345,15 +387,17 @@
    "families": {
     "A2": 1,
     "A3": 1,
+    "C3": 1,
     "D1": 1,
     "D2": 1,
-    "D6": 1,
-    "D7": 1,
+    "D5": 1,
     "H1": 1,
     "H2": 1
    },
    "principal": 6,
-   "ancillary": 2
+   "ancillary": 2,
+   "frontage_weight": 0.6162,
+   "trade_roofs": 1
   },
   {
    "id": "blk_south_water_clark",
@@ -376,12 +420,14 @@
    "roofs": 4,
    "families": {
     "A4": 1,
-    "C2": 1,
-    "F2": 1,
-    "H3": 1
+    "D6": 1,
+    "D7": 1,
+    "F2": 1
    },
    "principal": 3,
-   "ancillary": 1
+   "ancillary": 1,
+   "frontage_weight": 0.6162,
+   "trade_roofs": 1
   },
   {
    "id": "blk_south_water_dearborn",
@@ -404,12 +450,14 @@
    "roofs": 4,
    "families": {
     "A5": 1,
-    "C3": 1,
+    "D3": 1,
     "D4": 1,
-    "D5": 1
+    "H3": 1
    },
    "principal": 3,
-   "ancillary": 1
+   "ancillary": 1,
+   "frontage_weight": 0.5025,
+   "trade_roofs": 0
   },
   {
    "id": "blk_lake_clinton",
@@ -478,12 +526,14 @@
    "roofs": 4,
    "families": {
     "A1": 1,
-    "C4": 1,
-    "D3": 1,
+    "D1": 1,
+    "D5": 1,
     "F3": 1
    },
    "principal": 3,
-   "ancillary": 1
+   "ancillary": 1,
+   "frontage_weight": 0.5354,
+   "trade_roofs": 1
   },
   {
    "id": "blk_lake_wells",
@@ -621,12 +671,14 @@
    "roofs": 4,
    "families": {
     "A3": 1,
+    "D2": 1,
     "D3": 1,
-    "D4": 1,
-    "D5": 1
+    "D4": 1
    },
    "principal": 3,
-   "ancillary": 1
+   "ancillary": 1,
+   "frontage_weight": 0.4217,
+   "trade_roofs": 0
   },
   {
    "id": "blk_randolph_franklin",
@@ -783,11 +835,12 @@
     "A4": 2,
     "C2": 1,
     "C3": 1,
-    "D1": 2,
-    "D2": 2,
+    "C4": 1,
+    "D1": 1,
+    "D2": 1,
     "D3": 2,
     "D4": 2,
-    "D5": 2,
+    "D5": 3,
     "D6": 1,
     "D7": 1,
     "F2": 1,
@@ -797,7 +850,9 @@
     "H3": 1
    },
    "principal": 21,
-   "ancillary": 6
+   "ancillary": 6,
+   "frontage_weight": 0.697,
+   "trade_roofs": 5
   },
   {
    "id": "blk_south_water_clinton",

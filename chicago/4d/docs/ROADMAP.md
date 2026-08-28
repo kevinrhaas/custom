@@ -310,7 +310,7 @@ not at the top of the queue.
 | — | TOWN | ~~K30(a)~~ | **DONE 2026-08-16** — it is **29 buildings on eight streets**, not three on one, and every one of them is a record a PERSON placed: **zero** generated roofs lap a corridor, across 332 placed phases. The depths are bimodal with an empty gap at 1.98–3.48 m, and **13 of the 17 deep ones are South Water**. T-A7's "fourteen" does not reproduce **at its own commit** (16 there, the same 16 today), and the anchor-convention suspect is **refuted** — recentring makes 10 of the 29 worse. Read its box before quoting any intrusion number |
 | — | TOWN | ~~K30(b)~~ | **DONE 2026-08-16 · ITS CAUSE IS REFUTED 2026-08-22 — read K30(d) before quoting any of this row.** The anchors it compares with the half-width are BACK corners, so the comparison could not see the displacement it looked for; the real cause is the committed `south_water` centreline standing 4.3–8.8 m south of the control the placements were offset from. Its own text follows: the cause is the **drawing**, and the Wacker made-ground suspect is **refuted** by arithmetic: the anchors sit 11.64–15.30 m from the centreline against a 12.192 m half-width, with both signs, so no displacement of 4.51–8.17 m is there. The records are derived to their FRONTAGE and drawn with the body growing north from it (331 of 333 footprints grow from the minimum corner), so each stands in the road by its own depth — **all 17** deep records, and reflection takes 12 of them under 1 m. **The residual law** settles the shallow tail without moving anything: what survives correct drawing IS the point's own penetration, to 0.10 m. Read its box before quoting any intrusion cause |
 | — | TOWN | ~~K20~~ | **DONE 2026-08-16** — the invented-name allocator, measured properly for the first time: **73 of 113 renamed by ONE new household**, not the 17–25 the eleven by-product measurements reported, and never zero in the two big buckets. It is **10** now, and the report prints each bucket's **pool pressure** so the residual cannot be misread — at 0.14× it renames **one**, at 2.03× it renames ten, and that is the pool being too small. Unwelding the given name from the surname exposed **two identical residents**. Read its box before quoting any churn number |
-| — | TOWN | ~~K29~~ | **SEEN** | **DONE 2026-08-27 (T-0022) — ITS PREMISE IS REFUTED AND THE RE-APPORTIONMENT IS REFUSED.** L99 and L100 worried that the schedule "will keep dealing cabins to commercial frontage"; measured, the fault ran the other way. South Water Street's line carried **15 invented buildings and NOT ONE of them log**, against a documented line of 8 with Hogan's log store on it, because the recipes' own face rule — "the two meanest take Lake" — had put all five dealt log dwellings on the OTHER principal thoroughfare. The owner's plate of the row draws it as *log and frame shoulder to shoulder* and this project had taken only the half of that sentence about shape. **No schedule term was written**: ten records changed places, nothing was added, and `tools/measure_frontage_fabric.py` now holds it. K29's other half — weighting the trade families ONTO the business front, which the same census supports at 80 % — is **T-0208**. Read its box before quoting any frontage rule |
+| — | TOWN | ~~K29~~ | **SEEN** | **DONE 2026-08-27 (T-0022) — ITS PREMISE IS REFUTED AND THE RE-APPORTIONMENT IS REFUSED.** L99 and L100 worried that the schedule "will keep dealing cabins to commercial frontage"; measured, the fault ran the other way. South Water Street's line carried **15 invented buildings and NOT ONE of them log**, against a documented line of 8 with Hogan's log store on it, because the recipes' own face rule — "the two meanest take Lake" — had put all five dealt log dwellings on the OTHER principal thoroughfare. The owner's plate of the row draws it as *log and frame shoulder to shoulder* and this project had taken only the half of that sentence about shape. **No schedule term was written**: ten records changed places, nothing was added, and `tools/measure_frontage_fabric.py` now holds it. K29's other half — weighting the trade families ONTO the business front, which the same census supports at 80 % — **shipped 2026-08-27 as T-0213**: the documented trade share is monotone in the committed street hierarchy (0.7778 principal / 0.4545 ordinary / 0.0000 light) and `tools/reconcile_665.py` now weights each platted block by its own four faces. Read its box before quoting any frontage rule |
 | — | TOWN | ~~K28~~ | **DONE 2026-08-16** — three questions, three clauses, **two gates, and not one record moved**. The table is **projections** (the pair reading is refused because it refuses T-A4's fourteenth labouring household, one of the four rule 6 says its third test recovers); there **is** a cap, one adoption per trade per block, which is what makes the projections safe; and test 1 means the trade's **own committed text**, so the laundresses' D2 and the teamsters' D4 are refused with the remedy named. All **21** standing block adoptions already obeyed it. Read its box before quoting any adoption rule |
 | — | TOWN | ~~K25a~~ | **DONE 2026-08-15** — it is **98 values on 80 of 249 records**, not 54 on 193, and **24 causes, not 98**: seven metre values hold all 54 eaves and six degree constants hold all 38 pitches, because the generator authors the archetype's constant and the note cites the family's band. **Roof pitch had never been measured by anything.** The sub-1-ft question is decided — they are failures, and nearness is the diagnosis. Read its box before quoting any band number |
 | — | TOWN | ~~K33~~ | **DONE 2026-08-15** — it is **623 values on 227 of 249 records**, not 581, and the extra 42 are the finding: `roof_pitch_deg` cites a band on five families whose roof line is **"gable or shed"**, a form with no slope, and K25(a) could not see them because **a value with no band is never tested against one**. Route 2 (split the note), and route 3 is measured as unavailable — the confidence floats are in the mesh hash and prose is not. The assertion is **absolute, not a ratchet**. Read its box before quoting any citation number |
@@ -6224,7 +6224,7 @@ chosen, so the answer is code rather than a habit; the four T-A9 candidates are 
 and the two refusals either stand with a reason or are adopted; **T-A4's fourteenth labouring
 household is re-decided too, because a pair reading refuses it**; `tools/check.sh` green.
 
-### K29 — the schedule deals log cabins to the town's commercial frontage · **DONE 2026-08-27 (T-0022) — THE PREMISE IS REFUTED · from T-A8 (L99) and T-A9 (L100)**
+### K29 — the schedule deals log cabins to the town's commercial frontage · **DONE 2026-08-27 (T-0022) — THE PREMISE IS REFUTED · SECOND HALF SHIPPED 2026-08-27 (T-0213) · from T-A8 (L99) and T-A9 (L100)**
 
 **THE FRONTAGE TERM PROPOSED BELOW WAS NOT WRITTEN, AND SHOULD NOT BE.** T-0022 measured the
 thing this box assumed and found it backwards. Before that run, **15 invented buildings stood on
@@ -6251,8 +6251,25 @@ L182 records the liberty.
 
 **What of this box survives.** Its FIRST half — weighting the commercial families (C, F, W) onto
 the business front — is not refuted: the same census reads South Water's documented line at 80 %
-trade. That is a genuine schedule change, it is invisible until a block is built, and it is
-**T-0208**. The text below is kept verbatim as the reasoning that was tested.
+trade. That is a genuine schedule change, it is invisible until a block is built, and it was
+**T-0213** (the pointer here read T-0208 until that ticket closed; the queue's own note records
+the `ticket.mjs restamp` fault that mislabelled it).
+
+**T-0213 shipped it on 2026-08-27, and it is not the term this box drafted.** The draft would have
+had "a block face's street decide the family mix", which is a rule somebody writes. What shipped is
+a MEASUREMENT with the hierarchy read off the committed street records: the share of documented
+buildings carrying a trade family is **monotone in `traffic`** — 0.7778 of the 27 standing nearest
+a `principal` street, 0.4545 of the 22 on an `ordinary` one, 0.0000 of the 19 on a `light` one, and
+the ordering survives adding the lodging families (0.8889 / 0.6364 / 0.0526). A block's weight is
+the mean of its own four faces' shares, so re-classing a street on `data/streets/1835.json`
+re-weights every block on it in the same commit, and nothing about the term is typed.
+
+The deal it changes is a **permutation**: the district apportionment still decides how many
+principal roofs each block gets and which families the district holds; the frontage term only
+decides which block gets which, among the blocks of that district. Seven of the south's platted
+blocks changed deal — `blk_south_water_franklin` and `blk_south_water_lasalle` had twelve of the
+business front's roofs between them and not one store, warehouse or workshop, and each now takes
+one. The text below is kept verbatim as the reasoning that was tested.
 
 ---
 
