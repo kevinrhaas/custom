@@ -39,7 +39,6 @@ T-0219 — Finish the heightfield SOUTH to Madison Street, the plat's last tier
 T-0096 — Did the second Fort Dearborn carry a flagstaff, and can anything but a retrospective plate say so
 
 # --- FABRIC AND WHAT THE BUILDINGS ARE MADE OF — visible
-T-0172 — The other three anonymous parcels still deal a retyped roof pitch, and none of them bounds an eave band by what the archetype can carry
 
 # --- WHAT GROWS, AND WHAT A PHONE SEES — visible
 T-0019 — Six forb layers ask for more plants than the lattice holds
@@ -110,3 +109,6 @@ T-0266 — On a phone from across the river the stockade's picket rhythm falls u
 T-0267 — The fort's wall brick is a third brick, 0.47/0.26/0.20 against the sheet's 0.45/0.23/0.17
 T-0268 — A building held under the standing constraint says so nowhere a visitor can see
 T-0271 — The balanced ceiling is breached at the forks by 5,290 triangles on an unmodified dev, and both open tickets name a different stand
+T-0272 — The West Division parcel's form values come from the archetype and cite the family band: 8 families, 11 claims outside it
+T-0273 — The South Division infill parcel's form values come from the archetype and cite the family band: 9 families, 10 claims outside it
+T-0274 — The inferred-household parcel's form values come from the archetype and cite the family band: 8 families, 10 claims outside it
