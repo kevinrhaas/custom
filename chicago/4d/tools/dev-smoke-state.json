@@ -2,6 +2,136 @@
   "note": "T-0216 — dev's standing smoke result, so a branch can answer \"is this red mine, or did I inherit it?\" from the record instead of re-running the stage on a clean worktree (three agents paid that price on one red on 2026-08-27; T-0215). Written by tools/dev-smoke-state.mjs, which parses a smoke log — local or from a chicago-4d-smoke.yml run. Every reading carries the CONDITIONS it was taken under, because a quiet CI runner does not predict a loaded steward box: T-0215 measured a factor of twenty on one tree. loadavg is sampled when the reading is filed, so it includes the smoke's own load. `treeHash` digests exactly what the smoke exercises (renderers, data, assets, smoke_renderer.mjs, the published mirror), so a reading whose hash matches yours is a reading OF YOUR TREE. A RECORD, NOT A BAR: nothing here gates anything.",
   "readings": [
     {
+      "viewport": "mobile",
+      "stage": "8",
+      "parts": [
+        8
+      ],
+      "verdict": "pass",
+      "target": "source",
+      "passed": 35,
+      "failed": 0,
+      "failures": [],
+      "wallSeconds": null,
+      "takenAt": "2026-08-28T10:06:08.783Z",
+      "ref": "steward/t-0225-sward-reach-visible-coverage",
+      "commit": "cf2e6683e890",
+      "devCommit": "5b69f17cede8",
+      "treeHash": "sha256:d6f68d78ad91e6fd",
+      "treeDirty": false,
+      "changelogHash": "sha256:2b7a97b488dbf3e6",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          2.5,
+          3.9,
+          3.7
+        ]
+      },
+      "source": "/tmp/s8.txt"
+    },
+    {
+      "viewport": "desktop",
+      "stage": "8",
+      "parts": [
+        8
+      ],
+      "verdict": "pass",
+      "target": "source",
+      "passed": 37,
+      "failed": 0,
+      "failures": [],
+      "wallSeconds": null,
+      "takenAt": "2026-08-28T10:06:08.783Z",
+      "ref": "steward/t-0225-sward-reach-visible-coverage",
+      "commit": "cf2e6683e890",
+      "devCommit": "5b69f17cede8",
+      "treeHash": "sha256:d6f68d78ad91e6fd",
+      "treeDirty": false,
+      "changelogHash": "sha256:2b7a97b488dbf3e6",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          2.5,
+          3.9,
+          3.7
+        ]
+      },
+      "source": "/tmp/s8.txt"
+    },
+    {
+      "viewport": "desktop",
+      "stage": "7",
+      "parts": [
+        7
+      ],
+      "verdict": "fail",
+      "target": "source",
+      "passed": 40,
+      "failed": 3,
+      "failures": [
+        "desktop 1280x800: every tree drawn stands at its own station — 0 of 0 vertices further than 24 m from any of 849 stations across 0 merged meshes; worst 0 m",
+        "desktop 1280x800: every drawn flower head has a plant under its own stalk — 2526 of 18911 drawn heads over 40 poses had nothing under the foot of their own stalk; worst flora-head-corymb at from_above 270deg, foot 1.61 m, 0.61 m over its base over open ground",
+        "desktop 1280x800: the suite body ran to completion — Error: page.click: Target page, context or browser has been closed"
+      ],
+      "wallSeconds": 600,
+      "takenAt": "2026-08-28T10:06:08.700Z",
+      "ref": "steward/t-0225-sward-reach-visible-coverage",
+      "commit": "cf2e6683e890",
+      "devCommit": "5b69f17cede8",
+      "treeHash": "sha256:d6f68d78ad91e6fd",
+      "treeDirty": false,
+      "changelogHash": "sha256:2b7a97b488dbf3e6",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          2.5,
+          3.9,
+          3.7
+        ]
+      },
+      "source": "/tmp/d7b.txt"
+    },
+    {
+      "viewport": "mobile",
+      "stage": "7",
+      "parts": [
+        7
+      ],
+      "verdict": "fail",
+      "target": "source",
+      "passed": 44,
+      "failed": 1,
+      "failures": [
+        "mobile 390x780: every tree drawn stands at its own station — 0 of 0 vertices further than 24 m from any of 563 stations across 0 merged meshes; worst 0 m"
+      ],
+      "wallSeconds": 357,
+      "takenAt": "2026-08-28T10:06:08.616Z",
+      "ref": "steward/t-0225-sward-reach-visible-coverage",
+      "commit": "cf2e6683e890",
+      "devCommit": "5b69f17cede8",
+      "treeHash": "sha256:d6f68d78ad91e6fd",
+      "treeDirty": false,
+      "changelogHash": "sha256:2b7a97b488dbf3e6",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          2.5,
+          3.9,
+          3.7
+        ]
+      },
+      "source": "/tmp/m7.txt"
+    },
+    {
       "viewport": "desktop",
       "stage": "1",
       "parts": [
