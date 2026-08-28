@@ -1,7 +1,7 @@
 ---
 id: T-0210
 title: The desktop smoke's stage 9 times out clicking the panel close, on an unmodified tree
-state: open
+state: claimed
 epic: META
 requested_by: steward
 seen: false
@@ -11,7 +11,7 @@ parent: null
 opened: 2026-08-27
 closed: null
 pr: null
-claimed_by: null
+claimed_by: run 8/28/2026, 10:43:08 AM CT
 blocked_on: null
 needs_bake: false
 ---
