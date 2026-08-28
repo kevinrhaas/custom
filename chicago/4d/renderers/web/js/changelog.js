@@ -1,4 +1,12 @@
 export const CHANGELOG = [ // newest first
+  { v: 304, title: 'The stores are dealt to the street the stores were on', kind: 'chore', ts: '2026-08-28T00:07:32.974Z', date: 'Aug 27, 2026, 7:07 PM CT',
+    items: [
+      'Nothing you can see changed today. This is about what gets built NEXT on the four blocks of South Water Street that are still half empty \u2014 and about a plan that, until now, could not tell that street from a back lane.',
+      'The town is built to a roof-by-roof plan: 662 buildings, sorted into 35 kinds, shared out by which of the three divisions of the town they stand in. That is the whole of it. The plan knows a building is in the South Division; it does not know whether it faces the wharves or a paddock two streets back. So it dealt the business front ordinary cottages, and it had no way to know it was wrong.',
+      'What the record says, counted rather than assumed. Of the documented buildings standing nearest one of the town\u2019s two turnpiked thoroughfares, 78 per cent were a store, a warehouse or a workshop. On an ordinary street, 45 per cent. On the quiet lanes at the edge of the plat, none at all \u2014 not one of nineteen. The town\u2019s own street list already grades every street into those three; nobody had ever asked it this question.',
+      'So each block is now weighted by the four streets that bound it, and the trade moves toward the frontage the record puts trade on. Two South Water blocks that between them held twelve roofs still to build, and not one store, warehouse or workshop among them, now each take one.',
+      'No roof was added, moved between divisions, or taken away, and no building already standing was touched. The same 662, the same kinds, in the same numbers \u2014 dealt to different blocks. That is checked every build, not claimed.',
+    ] },
   { v: 303, title: 'Three corner stores admit what they still get wrong', kind: 'chore', ts: '2026-08-27T23:28:34.381Z', date: 'Aug 27, 2026, 6:28 PM CT',
     items: [
       'Nothing you can see changed in the town. Three building cards changed: Harmon & Loomis\u2019s store at Clark, Madore Beaubien\u2019s log house at Dearborn, and Peck\u2019s store at LaSalle now say, on the card you open, that they still stand a fraction inside the cross street \u2014 and why nobody is going to move them.',

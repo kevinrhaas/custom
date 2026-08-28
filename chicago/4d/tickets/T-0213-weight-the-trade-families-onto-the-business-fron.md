@@ -1,7 +1,7 @@
 ---
 id: T-0213
 title: Weight the trade families onto the business front
-state: open
+state: done
 epic: TOWN
 requested_by: loop
 seen: false
@@ -9,9 +9,9 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-08-26
-closed: null
-pr: null
-claimed_by: null
+closed: 2026-08-27
+pr: 419
+claimed_by: run 8/27/2026, 6:18:26 PM CT
 blocked_on: null
 needs_bake: false
 ---
