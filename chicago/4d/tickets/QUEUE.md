@@ -56,7 +56,6 @@ T-0294 — Reading the Democrat, December 1834: Vol II Nos 1-4
 T-0296 — Reading the Democrat, 8 to 29 July 1835: the rest of the scene month
 T-0297 — Reading the Democrat, August 1835: the four issues after the scene date
 T-0298 — Reading the Democrat, January to June 1835: the eight issues only the deposit can open
-T-0261 — Reading the American: June to August 1835
 T-0262 — The July 1, 1835 register: who and what the papers put in the town
 T-0263 — The documented storefronts take their places on South Water and Lake
 T-0264 — Documented people replace the invented
@@ -119,3 +118,6 @@ T-0301 — Every visible ticket at the top of the queue is parked on hold or in 
 T-0299 — Three printings of one letter list mint 298 people three times, and identity.json is empty
 T-0300 — T-0258 is sized M on the measurement that split T-0259 into six
 T-0302 — The .lib-body grid resolves toward max-content under all six other Evidence sections, and only the plants section is fixed
+T-0304 — The gazetteer merges persons by a declared rule and has no equivalent for firms, so 'L. Wilson & Co.' and 'Jno. Wilson & Co.' are two businesses
+T-0305 — Four readings the American contradicts itself on need the page images: the tailor's street, which Water street two forwarding houses stood in, and the corner of Cobb's saddlery
+T-0306 — The American names six Chicago storefronts with usable placements and none of them is standing in the model yet
