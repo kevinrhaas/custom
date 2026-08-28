@@ -48,7 +48,6 @@ T-0096 — Did the second Fort Dearborn carry a flagstaff, and can anything but 
 # --- Three owner rulings govern the epic; each ticket carries them in full.
 T-0311 — Reading the Democrat, February 1834: Vol. I Nos. 11-14
 T-0312 — Reading the Democrat, March 1834: Vol. I Nos. 15-17
-T-0313 — Reading the Democrat, April 1834: Vol. I Nos. 18-22
 T-0314 — Reading the Democrat, May 1834: Vol. I Nos. 23-26
 T-0315 — Reading the Democrat, June 1834: Vol. I Nos. 27-30
 T-0293 — Reading the Democrat, November 1834: Vol I Nos 49-52
@@ -122,3 +121,4 @@ T-0307 — The derivation's running maximum costs 42 m of verge where the bank t
 T-0316 — The 665-roof deal puts a large river warehouse on an inland platted block, and the block generator cannot build one
 T-0317 — Build out the NEXT anonymous block: after blk_lake_franklin the last ungenerated block is owner-blocked, and the roofs left stand on blocks that already stand
 T-0318 — The January 1834 letter list is 97 names and the printed list was longer; the page images can close the gap
+T-0321 — The 1 April 1834 Chicago letter list is 179 names and nineteen lines of debris stand where more did
