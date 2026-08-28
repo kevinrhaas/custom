@@ -113,3 +113,4 @@ T-0255 — The dooryard planting rule reads every street in the town with no bou
 T-0265 — The sward census fails its own gate at a phone: z10_settled_town owes xanthium_strumarium a whole slot and draws it nowhere
 T-0266 — On a phone from across the river the stockade's picket rhythm falls under the pixel grid and beats
 T-0267 — The fort's wall brick is a third brick, 0.47/0.26/0.20 against the sheet's 0.45/0.23/0.17
+T-0268 — A building held under the standing constraint says so nowhere a visitor can see

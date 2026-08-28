@@ -1,6 +1,6 @@
 {
   "project": "chicago-4d",
-  "generated_ct": "Aug 28, 2026, 1:37 AM",
+  "generated_ct": "Aug 28, 2026, 2:56 AM",
   "tickets": [
     {
       "id": "T-0001",
@@ -434,16 +434,17 @@
     {
       "id": "T-0025",
       "title": "Three records carry the standing constraint and say why nowhere",
-      "state": "open",
+      "state": "claimed",
       "epic": "TOWN",
       "requested_by": "loop",
       "seen": false,
       "effort": "M",
       "legacy_id": "K35",
+      "parent": null,
       "opened": "2026-08-17",
       "closed": null,
       "pr": null,
-      "claimed_by": null,
+      "claimed_by": "run 8/28/2026, 2:52:53 AM CT",
       "blocked_on": null,
       "needs_bake": false,
       "queue_rank": 6
@@ -4584,6 +4585,24 @@
       "blocked_on": null,
       "needs_bake": true,
       "queue_rank": 61
+    },
+    {
+      "id": "T-0268",
+      "title": "A building held under the standing constraint says so nowhere a visitor can see",
+      "state": "open",
+      "epic": "META",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "M",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-08-28",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "queue_rank": 62
     }
   ]
 }

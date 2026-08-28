@@ -13,7 +13,7 @@ Nothing had ever measured what that sentence covers.
     tools/measure_review_constraint.py --gate    exit 1 on a divergence
     tools/measure_review_constraint.py --update  rewrite the baseline (deliberate act)
 
-FIVE ASSERTIONS, AND FOUR OF THEM ARE ABSOLUTE. There is no ratchet here on purpose:
+SIX ASSERTIONS, AND FIVE OF THEM ARE ABSOLUTE. There is no ratchet here on purpose:
 a ratchet is the right instrument for a fault being paid down, and this is not a fault
 being paid down. It is a constraint the project has committed to, so the honest bar is
 zero rather than "no worse than yesterday".
@@ -51,6 +51,35 @@ zero rather than "no worse than yesterday".
     a record in `tools/review_constraint_baseline.json` has lost its flag, and names
     what clearing one is supposed to mean: the consultation AGENTS.md commits to has
     happened. New flags pass, print, and are folded in by `--update`.
+
+6.  **A flagged record says WHY it is flagged** — T-0025, and it is a correction of
+    this tool's own K34 write-up as much as a new rule.
+
+    K34 finished by naming three structures that "state no reason at all" —
+    `beaubien_barn`, `clybourn_slaughterhouse`, `robert_kinzie_store` — and left the
+    question open as K35. **Two of the three had said it all along**, in the records'
+    committed bytes at K34's own commit: the barn in its `research_note` (*"REVIEW IS
+    FLAGGED for the reason data/structures/jb_beaubien_homestead.json … give"*), the
+    slaughterhouse in its `function.note` (*"flagged for review with the rest of this
+    record's Indigenous content rather than paraphrased away"*). A fourth record K34
+    never named, `council_house`, said it in `function.note` too. The finding was a
+    hand-read of one field on a record whose reasoning is spread across several, and
+    the ONE real gap in it — `robert_kinzie_store` — sat behind two records that were
+    not gaps. That is the argument for reading the whole record here, exactly as
+    assertion 1 already does, rather than the field a reader expects it in.
+
+    So the bar is two halves, both inside the record's own prose, wherever in it they
+    fall: it must (a) refer to the flag, in one of the phrasings this dataset uses, and
+    (b) name the subject AGENTS.md's constraint is about. **Record-level and not
+    sentence-level, deliberately** — `cobweb_castle` opens with *"THE RECORD IS FLAGGED
+    review_required BECAUSE OF WHAT THIS BUILDING WAS"* and spends the next two
+    sentences saying what that was, which is good writing and would fail a
+    same-sentence rule.
+
+    K35 called this route "the weakest, because 'says something' is not 'says why'",
+    and that is still true and is why the census PRINTS the sentence it matched under
+    every flagged id. The gate can hold the shape of the claim; only a reader can
+    judge the argument, and this makes the argument the thing a reader is handed.
 """
 
 from __future__ import annotations
@@ -70,6 +99,33 @@ BASELINE = ROOT / "tools" / "review_constraint_baseline.json"
 CLAIM_CARRIES = re.compile(r"carries\s+review_required", re.I)
 CLAIM_NOT_SET = re.compile(r"review_required\s+is\s+set\s+false", re.I)
 
+# Assertion 6's two halves. The first is an ENUMERATION of the phrasings this dataset
+# actually uses to refer to the flag — `review_required` named outright, "flagged for
+# review", "REVIEW IS FLAGGED", "carries the review flag" — and not a sniff for the
+# topic: a record can discuss the removal at length (`robert_kinzie_store` did, in three
+# fields) without ever saying that it is held. A phrasing outside this list stops the
+# claim being made in a form anything can check, which is the thing to fail over rather
+# than to widen the pattern for.
+FLAG_PHRASE = re.compile(
+    r"review[_ ]required"
+    r"|flagged\s+for\s+review"
+    r"|review\s+is\s+flagged"
+    r"|flagged\s+review"
+    r"|held\s+for\s+review"
+    r"|review\s+flag\b",
+    re.I)
+# The second half: the subject AGENTS.md places under the constraint. Broad on purpose —
+# it is asking whether the record names the subject at all, and the sentence it matched
+# is printed for a reader to judge.
+CONSTRAINT_SUBJECT = re.compile(
+    r"potawatomi|pottawatomie|indigenous|native|removal|consultation|consult\b"
+    r"|indian\s+(?:trade|goods|agency|traders|agent)",
+    re.I)
+# A full stop followed by whitespace and a capital. Not `[.:]` and not any full stop:
+# these notes cite pages ("scan p. 253"), and a splitter that broke there reported
+# `clybourn_slaughterhouse`'s reason as beginning "253), a treaty-provision post".
+SENTENCE_SPLIT = re.compile(r"(?<=\.)\s+(?=[A-Z'\"])")
+
 LINK_FIELDS = ("lives_at", "works_at")
 
 
@@ -86,6 +142,31 @@ def prose(obj) -> list[str]:
     if isinstance(obj, list):
         return [s for v in obj for s in prose(v)]
     return []
+
+
+def reason_sentence(text: str) -> str | None:
+    """The first sentence in which a record refers to the flag it carries.
+
+    Printed rather than merely counted: assertion 6 can only hold that the claim is
+    made, and whether the claim is a REASON is a judgement no regex makes. Handing
+    the reader the sentence is the difference between a green tick and evidence.
+
+    A sentence carrying BOTH halves is preferred over the first one carrying the flag,
+    because the first is often not the reason: `jb_beaubien_homestead` refers to the
+    field in an occupants note ("see review_required and the research note") four
+    paragraphs before it argues the flag, and printing that sentence would report the
+    cross-reference as the argument.
+    """
+    fallback = None
+    for s in SENTENCE_SPLIT.split(text):
+        if not FLAG_PHRASE.search(s):
+            continue
+        s = " ".join(s.split())
+        if CONSTRAINT_SUBJECT.search(s):
+            return s
+        if fallback is None:
+            fallback = s
+    return fallback
 
 
 def value_of(field) -> str | None:
@@ -223,12 +304,52 @@ def measure() -> tuple[dict, list[str]]:
         problems.append(f"{BASELINE.name} is missing, so nothing can say whether a flag "
                         f"has been cleared")
 
+    # ---- assertion 6: a flagged record says why it is flagged ---------------------
+    # The whole record, not one field: K34's finding that three structures "state no
+    # reason at all" was a read of `research_note` alone, and two of the three said it
+    # in `function.note`. See the module docstring.
+    reasons: dict[str, str] = {}
+
+    def reasoned(where: str, rec: dict, extra: str = "") -> None:
+        text = " ".join(prose(rec)) + " " + extra
+        sentence = reason_sentence(text)
+        if not sentence:
+            problems.append(
+                f"{where}: carries review_required and its own text never says so. "
+                f"AGENTS.md's constraint is the one thing in this project that outranks "
+                f"the work, and a bare boolean tells the next reader that a decision was "
+                f"made and nothing about what it rests on. Write the reason into the "
+                f"record — the convention eight of these records already keep")
+            return
+        if not CONSTRAINT_SUBJECT.search(text):
+            problems.append(
+                f"{where}: refers to the flag ({sentence[:80]!r}) and names nowhere the "
+                f"subject AGENTS.md places under the constraint. Saying a record is held "
+                f"is not saying what it is held for")
+            return
+        reasons[where] = sentence
+
+    for sid in sorted(flagged_structures):
+        reasoned(f"structure {sid}", structures[sid])
+    for hid in sorted(flagged_households):
+        reasoned(f"household {hid}", households[hid])
+    for hid, person in persons:
+        if not person.get("review_required"):
+            continue
+        # A person may stand on the household's reasoning as well as its own: this
+        # dataset argues a person's provenance in the household record, and a person
+        # whose household says why is not an unexplained flag. Both are read; the
+        # sentence reported is whichever states it.
+        reasoned(f"person {hid}/{person.get('id')}", person,
+                 extra=" ".join(prose(households[hid])))
+
     census = {
         "structures": {"total": len(structures), "flagged": flagged_structures},
         "households": {"total": len(households), "flagged": flagged_households},
         "persons": {"total": len(persons), "flagged": flagged_persons},
         "links": links,
         "added": added,
+        "reasons": reasons,
     }
     return census, problems
 
@@ -285,6 +406,10 @@ def print_census(c: dict) -> None:
         print("  " + row(layer))
         for rid in c[layer]["flagged"]:
             print(f"                 {rid}")
+            key = f"{layer[:-1]} {rid}"
+            said = c["reasons"].get(key)
+            if said:
+                print(f"                   why: {said[:150]}")
     print(f"\n  {len(c['links'])} link(s) from a constrained household to a building:")
     for hid, field, target, ok in c["links"]:
         print(f"    {'ok  ' if ok else 'FAIL'} {hid} {field} -> {target}")
@@ -331,7 +456,8 @@ def main() -> int:
         n_p = len(census["persons"]["flagged"])
         print(f"standing constraint: {n_s} structure(s), {n_h} household(s), {n_p} person(s) "
               f"carry review_required; {len(census['links'])} link(s) reach a building that "
-              f"carries it too; a scene marked released is refused for every one of them")
+              f"carries it too; a scene marked released is refused for every one of them, "
+              f"and every one of them says in its own words what it is held for")
     return 0
 
 

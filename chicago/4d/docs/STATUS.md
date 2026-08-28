@@ -1,5 +1,46 @@
 # STATUS
 
+## Shipped 2026-08-28 — T-0025: the census that said three records were silent had read one field of a record that argues in four
+
+**K35, opened by K34, asked what to do about three structures carrying AGENTS.md's standing
+constraint with "no text anywhere in the record" saying what for. Two of the three were not
+silent.** Read at K34's own commit (`23bb280b`), over the whole record rather than
+`research_note`: `beaubien_barn` said it in `research_note`, `clybourn_slaughterhouse` said it in
+`function.note` — *"flagged for review with the rest of this record's Indigenous content rather
+than paraphrased away"*, in the same field that names Archibald Clybourne "the Government butcher
+for the Pottawatomies" — and `council_house`, which K34 never named as a gap, said it in
+`function.note` too. **Eight of the nine kept the convention, not six.** Only
+`robert_kinzie_store` was bare.
+
+This is not a scolding of K34; it is the reason the gate now reads what it reads. A building's
+reasoning here is spread across `function.note`, `position.note`, the per-attribute notes and
+`research_note`, and a policy sentence can honestly live in any of them.
+
+**The one real gap is closed from the record's own attested business.** Andreas lists the store's
+keeper among the town's Indian traders (scan p. 235) and among those licensed to sell goods (scan
+p. 249); chicagology has it dealing in "groceries and Indian goods"; the record's `aka` carries
+the source's own "R. A. Kinzie, Indian trader". The trade that names the building is the trade
+the 1833 treaty ended, and the removal it ended in was under way six weeks after the scene date.
+The paragraph states that and stops — no confidence moved, no source added, no liberty owed, and
+the flag not lifted (lifting it is the claim that the consultation has happened, which assertion
+5 already refuses).
+
+**`tools/measure_review_constraint.py` gains assertion 6**, absolute, at every layer: a flagged
+record must refer to the flag in one of the phrasings this dataset uses AND name the subject the
+constraint is about, both in its own prose. Record-level, not sentence-level — `cobweb_castle`
+opens "THE RECORD IS FLAGGED review_required BECAUSE OF WHAT THIS BUILDING WAS" and answers
+itself over the next two sentences. **K35's objection to this route — "says something" is not
+"says why" — stands, and the answer is that the census now PRINTS the sentence it matched under
+every flagged id**, so what the gate cannot judge is at least in front of a reader. Both halves
+were broken in memory against the real dataset and both fire; the restored tree passes.
+
+**What is NOT claimed.** No visitor sees anything new: a building held under the constraint still
+says so nowhere on its card, and the flag reaches the browser only as a `scene-loader.js` console
+line. That is **T-0268**, filed by this unit rather than folded into it. `tools/check.sh` green
+(the full gate, including `--stale`, the sidecar recompile check and the changelog contract);
+`SMOKE_VIEWPORT=mobile` and the desktop smoke as recorded in the PR. No renderer file, no
+geometry, no coordinate, no bake.
+
 ## Shipped 2026-08-28 — T-0162: the sward census stands at a phone, and its first honest phone reading is red
 
 `tools/measure_sward_draw.mjs` has carried a `SWARD_VIEWPORT=mobile` flag since T-0018, and its own
