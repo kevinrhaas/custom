@@ -677,12 +677,31 @@ def programme_document():
     # absorption rule inside the district and for the same reason.
     district_families: dict[str, dict[str, int]] = {}
     district_group_remaining: dict[str, dict[str, int]] = {}
+    # …and BOTH halves of what the clamp on the next line does, reported rather than
+    # swallowed (T-0211). `max(0, …)` hides a division standing over one of its group
+    # rows, and hiding it is not free: the ten clamped heads then sum to more than the
+    # division's own remainder, by exactly the overshoot, and the loop below sheds the
+    # difference out of whichever groups have the most head. So an authored row that is
+    # wrong by six roofs quietly costs six roofs somewhere else in the same division, and
+    # read exactly like a row that is right. tools/measure_group_district_rows.py gates
+    # the overshoot; these two fields are what a reader of the ledger sees.
+    district_group_overshoot: dict[str, dict[str, int]] = {}
+    district_group_shed: dict[str, dict[str, int]] = {}
     for district in DISTRICTS:
         head = {g: max(0, matrix[g][district] - built_district_group.get((district, g), 0))
                 for g in matrix}
+        over = {g: built_district_group.get((district, g), 0) - matrix[g][district]
+                for g in matrix
+                if built_district_group.get((district, g), 0) > matrix[g][district]}
+        if over:
+            district_group_overshoot[district] = dict(sorted(over.items()))
+        shed: dict[str, int] = {}
         for _ in range(max(0, sum(head.values()) - remaining_district[district])):
             group = sorted(head, key=lambda g: (-head[g], g))[0]
             head[group] -= 1
+            shed[group] = shed.get(group, 0) + 1
+        if shed:
+            district_group_shed[district] = dict(sorted(shed.items()))
         mix: dict[str, int] = {}
         for group, count in sorted(head.items()):
             families = sorted(f for f in targets if group_of(f) == group)
@@ -1006,6 +1025,11 @@ def programme_document():
             "by_district_family": district_families,
             "family_targets_already_exceeded": overrun,
             "absorbed_from": absorbed,
+            # T-0211. The same pair of facts one level up, by division and group: what
+            # stands ABOVE a group row, and which groups paid for it. Declared and
+            # ratcheted in tools/measure_group_district_rows.py.
+            "district_group_rows_overshot": district_group_overshoot,
+            "district_group_slots_shed": district_group_shed,
         },
         "coverage": {
             "schedulable_on_committed_ground": schedulable,
