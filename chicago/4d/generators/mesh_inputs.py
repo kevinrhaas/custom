@@ -56,13 +56,15 @@ import sys
 from dataclasses import asdict, is_dataclass
 from pathlib import Path
 
+import code_inputs
+
 ROOT = Path(__file__).resolve().parent.parent
 
 # Bump when the recipe below changes. assets/manifest.json records the scheme it
 # was stamped under, so a definition change is a visible, dated event rather than
 # an unexplained wave of staleness — and the gate refuses a manifest whose scheme
 # it does not know instead of comparing hashes that mean different things.
-SCHEME = "resolved-params-v2"
+SCHEME = "resolved-params-v3"
 
 
 class InputsError(ValueError):
@@ -79,10 +81,16 @@ def _code_shas(archetype: str) -> dict[str, str]:
     Not the parameter modules — see the note above. Not `terrain_gen.py`, which
     builds the ground and shares nothing with a building. Not this file, which
     computes the hash and makes no geometry.
+
+    And not, since T-0164, whatever happens to be filed in `common/`: the
+    directory is asked through `code_inputs.geometry_modules()`, which names the
+    modules that make geometry rather than listing the ones that share a folder.
+    `common/phases.py` decides whether a mesh is built at all and makes none, and
+    while it was globbed in, one comment line in it staled 349 of 349 assets.
     """
     gen = ROOT / "generators"
     wanted = [gen / "build.py", gen / "archetypes" / f"{archetype}.py"]
-    wanted += sorted((gen / "common").glob("*.py"))
+    wanted += code_inputs.geometry_modules()
     out = {}
     for p in wanted:
         if not p.exists():

@@ -1,5 +1,5 @@
 ---
-id: T-0301
+id: T-0304
 title: The gazetteer merges persons by a declared rule and has no equivalent for firms, so 'L. Wilson & Co.' and 'Jno. Wilson & Co.' are two businesses
 state: open
 epic: META

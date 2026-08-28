@@ -10259,6 +10259,43 @@ against the house behind it. Those are silhouettes too, and 94–98 % of the "in
 made of them. What is left of R-BUG6 at `from_above` is: 21 px exactly coplanar (b), 0 px of
 self-fight (here), and the rest is the town's own edges being resampled.
 
+**2026-08-28 — THE INSTRUMENT NOW REPORTS THIS SPLIT ITSELF (T-0156).** Everything above was
+measured with a second tool and the measured tool was deliberately left alone, because closing a
+ticket by rewriting the instrument that measured it is the one move this project does not allow.
+Five days later `measure_tie_class.mjs` was still printing `INTERIOR TOTAL: ... the pixels where a
+layer fights ITSELF`, so anyone reading the instrument rather than this box read the refuted claim
+— and the column's name asserted it too. It now prints the split beside the count, from
+`tools/depth_field.mjs`: T-0013's discriminator, extracted so the two instruments cannot answer
+the same question differently. The column is called `SURROUNDED`, which is what it measures.
+
+**Nothing was re-thresholded and no baseline moved.** The surrounded counts are identical, pixel
+for pixel at all six layers, to the run taken immediately before the change. Read as above — the
+published mirror, `from_above`, 1280×800, 2 mm nudge, shadow map off by R-BUG6(a)'s repaired
+control, control 0 px and return 0 px — with both tools run the same afternoon on the same mirror:
+
+```
+                 measure_tie_class.mjs               diagnose_interior_flicker.mjs
+layer      surrounded  edge  reorder  same  nodepth   interior  edge  reorder  same  nodepth
+structures      421     402      0      0      19        421     402      0      0      19
+trees           231     218      0      0      13        231     218      0      0      13
+ground           66      65      0      0       1         77      74      0      0       3
+streets          10      10      0      0       0          —       —      —      —       —
+water             3       3      0      0       0          —       —      —      —       —
+flora             0       0      0      0       0          —       —      —      —       —
+```
+
+`structures` and `trees` agree pixel for pixel. `ground` does not, and the difference is the two
+tools' LAYER LISTS rather than the discriminator: a pixel is attributed to the FIRST layer whose
+footprint claims it, and `measure_tie_class` carries `streets`, `flora` and `water`, which
+`diagnose_interior_flicker` does not — so eleven pixels those layers own here fall to `ground`
+there. Both readings say the same thing about them.
+
+**The shares hold against 2026-08-23; the counts do not, and that is the town growing.**
+structures 370 → 421, trees 257 → 231, ground 78 → 77 over five days of content. The
+internal-edge share reads 95 / 94 / 98 % against 94 / 98 / 96 %, and the self-fight count is
+**0 in every layer on both dates** — this run's total is **0 of 731 surrounded pixels**. What
+this box claims is the share and the zero, and both survive a town that grew under them.
+
 ### R-BUG6(c3) — the PHONE's half of the same edges · **ANSWERED 2026-08-24 by T-0157 · MSAA now ships on every device**
 
 Everything above was measured at 1280×800 on the DESKTOP boot, which has had `antialias: true`

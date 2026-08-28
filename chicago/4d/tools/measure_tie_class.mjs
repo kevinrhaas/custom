@@ -36,6 +36,26 @@
  *
  * Defaults to the PUBLISHED mirror, for the reason every other measurement here
  * does: depth precision is a property of the geometry that actually ships.
+ *
+ * **T-0156 — THE SECOND COLUMN DID NOT MEAN WHAT IT WAS CALLED.** The partition
+ * above was split again, into a layer's OUTLINE against the rest of the scene
+ * and its INTERIOR, and the interior share was published and quoted as *the
+ * layer fighting itself*. It is not: `interiorOf` sees one layer's outline
+ * against everything else and is blind to the boundary between two surfaces OF
+ * that layer, so one crown behind another and a chimney against its own roof
+ * both land in it. T-0013 measured the size of the error with a depth pass —
+ * 94-98 % of the "interior" count sits on a depth BREAK, i.e. is a silhouette
+ * by any honest reading, and 0 % is a depth reorder or a shading resample
+ * (ROADMAP § R-BUG6(c2)) — and the instrument was deliberately NOT changed in
+ * the run that measured it, because closing a ticket by rewriting the
+ * instrument that measured it is the one move this project does not allow.
+ *
+ * This is the change, made afterwards and by ADDING rather than by loosening:
+ * the surrounded column is reported with its own composition beside it, from
+ * the same depth-break discriminator, shared as `tools/depth_field.mjs` so the
+ * two instruments cannot answer the question differently. Nothing here is
+ * re-thresholded and no baseline moves; the counts are the counts they were,
+ * and what changes is that the file now says which of them is a defect.
  */
 import http from 'node:http';
 import fs from 'node:fs';
@@ -44,6 +64,11 @@ import zlib from 'node:zlib';
 import { execSync } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
 import { decodePng } from './critic_metrics.mjs';
+// T-0156: the interior column is SPLIT by what the depth field does there, using
+// T-0013's discriminator rather than a second copy of it.
+import {
+  BREAK_M, REORDER_M, FAR_M, swapDepthMaterials, lineariseDepth, classifyDepth,
+} from './depth_field.mjs';
 
 async function loadPlaywright() {
   let ns;
@@ -211,7 +236,9 @@ async function stand(pose) {
     api.setFly(typeof p.altitude_m === 'number');
     api.walker.teleport(p);
     for (let i = 0; i < 8; i++) await api.capture(4);
-    return { y: api.player.y, drawCalls: api.stats().drawCalls };
+    // `cameraNear` reads back what the render actually used, and the depth pass
+    // below cannot linearise a window depth without it.
+    return { y: api.player.y, drawCalls: api.stats().drawCalls, near: api.stats().cameraNear };
   }, pose);
 }
 
@@ -264,21 +291,29 @@ const base = await shot();
 const drift = maskOf(a, base);
 
 /**
- * THE DISCRIMINATOR, and it is what turns a partition into a diagnosis.
+ * THE FOOTPRINT SPLIT — and READ WHAT IT IS, BECAUSE IT IS NOT WHAT IT WAS CALLED.
  *
- * A pixel whose owner's footprint surrounds it on all eight sides is in the
- * INTERIOR of that surface: nothing else is drawn there, so a pixel that
- * changes is two surfaces of that layer disagreeing about which is in front.
- * That is a depth tie, and it is the defect this parcel was opened to find.
+ * A pixel on the EDGE of a layer's footprint is a silhouette — the boundary
+ * between this layer and whatever is behind it. A camera that moves at all
+ * resamples every such boundary, because the edge crosses the pixel's sample
+ * points somewhere new. That is antialiasing working, not a surface fighting,
+ * and it is present in every correct renderer ever written.
  *
- * A pixel on the EDGE of the footprint is a silhouette — the boundary between
- * this layer and whatever is behind it. A camera that moves at all resamples
- * every such boundary, because the edge crosses the pixel's sample points
- * somewhere new. That is antialiasing working, not a surface fighting, and it
- * is present in every correct renderer ever written.
+ * A pixel the footprint surrounds on all eight sides was called the INTERIOR
+ * and read as *the layer fighting itself*. **That reading was wrong, and
+ * T-0013 measured how wrong** (ROADMAP § R-BUG6(c2)): `interiorOf` knows the
+ * layer's outline against the REST OF THE SCENE and cannot see the boundary
+ * between two surfaces OF that layer — one crown behind another, a chimney
+ * against its own roof, a house against the house behind it. Those are
+ * silhouettes too, and 94-98 % of the count was made of them. The number drove
+ * a ticket for six days and would have driven the next one.
  *
- * The two are indistinguishable in a pixel count and opposite in meaning, which
- * is why the count on its own supported three different guesses.
+ * So this function still draws the mask — the geometry of "surrounded by my own
+ * footprint" is exactly what an internal edge hides inside — and the depth pass
+ * below is what says which of the two a surrounded pixel actually is. T-0156
+ * is that repair, and it is done by ADDING a measurement rather than by
+ * loosening this one: the interior count is unchanged and is now reported with
+ * its own composition beside it.
  */
 function interiorOf(foot, W, H) {
   const inner = new Uint8Array(foot.m.length);
@@ -317,9 +352,11 @@ for (const layer of LAYERS) {
   const inner = interiorOf(foot, a.width, a.height);
   let mine = 0;
   let overlap = 0;
-  let interior = 0;
   let worstInterior = 0;
   let worstEdge = 0;
+  // The pixel INDICES, not only the count: the depth pass below classifies them
+  // one at a time and cannot do it from a total.
+  const interiorPx = [];
   for (let p = 0; p < foot.m.length; p++) {
     if (!foot.m[p]) continue;
     if (!flicker.m[p]) continue;
@@ -327,7 +364,7 @@ for (const layer of LAYERS) {
     if (owned[p]) { overlap++; continue; }
     owned[p] = 1;
     if (inner[p]) {
-      interior++;
+      interiorPx.push(p);
       interiorMask[p] = 1;
       worstInterior = Math.max(worstInterior, delta(p));
     } else {
@@ -341,8 +378,9 @@ for (const layer of LAYERS) {
     flicker_px: mine,
     overlap,
     exclusive: mine - overlap,
-    interior,
-    edge: mine - overlap - interior,
+    interiorPx,
+    interior: interiorPx.length,
+    edge: mine - overlap - interiorPx.length,
     worst_interior: worstInterior,
     worst_edge: worstEdge,
   });
@@ -356,8 +394,8 @@ console.log(`R-BUG6(b) — who owns the flicker · ${WANT_STATION} · ${VIEWPORT
   + `${VIEWPORT.height} · ${NUDGE_M * 1000} mm nudge · eye ${arrived.y.toFixed(1)} m · `
   + `${arrived.drawCalls} draw calls\n`);
 console.log(`the frame flickers on ${flicker.count} pixels of ${flicker.m.length}\n`);
-console.log('layer          footprint px   its flicker   share    INTERIOR   silhouette   '
-  + 'worst int / edge');
+console.log('layer          footprint px   its flicker   share   SURROUNDED   outline edge   '
+  + 'worst srd / edge');
 for (const r of rows) {
   console.log(`${r.id.padEnd(14)} ${w(r.footprint_px, 12)} ${w(r.exclusive, 13)} `
     + `${w((100 * r.exclusive / (flicker.count || 1)).toFixed(1) + ' %', 8)}`
@@ -365,6 +403,65 @@ for (const r of rows) {
 }
 console.log(`${'unattributed'.padEnd(14)} ${w('-', 12)} ${w(unattributed, 13)} `
   + `${w((100 * unattributed / (flicker.count || 1)).toFixed(1) + ' %', 8)}`);
+
+/**
+ * ---- IS A SURROUNDED PIXEL A FIGHT, OR AN EDGE THE FOOTPRINT HID? -------- //
+ *
+ * The column above is a fact about the FOOTPRINT — this layer is drawn on all
+ * eight neighbours — and for six days it was quoted as a fact about the DEPTH.
+ * It is not one, and only the depth field can say which. So ask it: photograph
+ * a packed-depth pass at the base pose and at the nudged pose, and classify
+ * every surrounded-and-flickering pixel by what the depth does there
+ * (`tools/depth_field.mjs`, T-0013's discriminator, shared with
+ * `tools/diagnose_interior_flicker.mjs` so the two cannot drift apart).
+ *
+ * The `internal edge` column is a SILHOUETTE by any honest reading and belongs
+ * with the outline column, not against it. `depth reorder` and `same surface`
+ * are the two ways a layer can actually fight itself, and their sum is the only
+ * number in this file that ever meant what "interior" was taken to mean.
+ *
+ * Printed only when the pass puts the frame back exactly, because a depth swap
+ * that leaves a mark would be classifying the instrument.
+ */
+const classes = new Map();
+{
+  await swapDepthMaterials(page, true);
+  await stand(pose);
+  const d0 = await shot();
+  await stand({ ...pose, local_e: pose.local_e + NUDGE_M });
+  const d1 = await shot();
+  await stand(pose);
+  await swapDepthMaterials(page, false);
+  const back = maskOf(a, await shot());
+  if (back.count) {
+    console.log(`\nthe depth pass did not put the frame back (${back.count} px) — the split of `
+      + 'the surrounded column would be measuring the instrument, so it is not printed');
+  } else {
+    const lin0 = lineariseDepth(d0, arrived.near, FAR_M);
+    const lin1 = lineariseDepth(d1, arrived.near, FAR_M);
+    console.log('\nWHAT THE DEPTH FIELD DOES AT EACH SURROUNDED PIXEL — the split T-0156 asked '
+      + 'for');
+    console.log('layer        surrounded   internal edge   depth reorder   same surface   '
+      + 'no depth');
+    for (const r of rows) {
+      const c = classifyDepth(r.interiorPx, lin0, lin1, a.width);
+      classes.set(r.id, c);
+      const pc = (n) => `${String(n).padStart(4)} `
+        + `${String(`(${(100 * n / (r.interior || 1)).toFixed(0)}%)`).padStart(6)}`;
+      console.log(`${r.id.padEnd(12)} ${String(r.interior).padStart(8)}   ${pc(c.break.length)}`
+        + `    ${pc(c.reorder.length)}   ${pc(c.smooth.length)}  ${String(c.sky.length).padStart(4)}`);
+    }
+    console.log(`\n  internal edge  = a depth BREAK (second difference > ${BREAK_M} m) inside the `
+      + "layer's own footprint:\n                   one surface of the layer in front of another, "
+      + 'which any camera resamples.\n  depth reorder  = locally smooth depth, front-most surface '
+      + `${REORDER_M} m+ further or nearer after the\n                   nudge — two surfaces `
+      + 'swapped. This is the fight the column was read as.\n  same surface   = same distance, '
+      + 'same shape, different colour — shading, not geometry;\n                   a near-coplanar '
+      + 'pair swaps without moving the depth, so it lands here.\n  no depth       = the packed '
+      + 'depth does not decode: more than one surface in the pixel,\n                   which is an '
+      + 'edge again (a packed depth blended through MSAA is not linear).');
+  }
+}
 /**
  * ---- IS ANYTHING ACTUALLY CO-PLANAR? ------------------------------------- //
  *
@@ -519,24 +616,45 @@ if (OUT) {
       chunk('IHDR', ihdr), chunk('IDAT', zlib.deflateSync(raw)), chunk('IEND', Buffer.alloc(0)),
     ]));
   };
-  // Interior ties in magenta, silhouette resampling in green: the two colours
-  // are the finding, and they do not need a caption to tell apart.
+  // Green is an outline edge, magenta an edge the footprint HID, red a genuine
+  // self-fight: the three colours are the finding, and they do not need a
+  // caption to tell apart. Before T-0156 the magenta and the red were one
+  // colour and the picture asserted the reading the depth pass refutes.
+  const fightMask = new Uint8Array(flicker.m.length);
+  for (const c of classes.values()) {
+    for (const p of c.reorder) fightMask[p] = 1;
+    for (const p of c.smooth) fightMask[p] = 1;
+  }
   const paint = new Uint8Array(a.data);
   for (let p = 0; p < flicker.m.length; p++) {
     if (!flicker.m[p]) continue;
     const i = p * 4;
-    if (interiorMask[p]) { paint[i] = 255; paint[i + 1] = 0; paint[i + 2] = 255; }
+    if (fightMask[p]) { paint[i] = 255; paint[i + 1] = 0; paint[i + 2] = 0; }
+    else if (interiorMask[p]) { paint[i] = 255; paint[i + 1] = 0; paint[i + 2] = 255; }
     else { paint[i] = 0; paint[i + 1] = 255; paint[i + 2] = 0; }
   }
   writePng(path.join(OUT, `${WANT_STATION}.png`), a);
   writePng(path.join(OUT, `${WANT_STATION}-ties.png`), { width: a.width, height: a.height, data: paint });
-  console.log(`\nmasks written to ${OUT} — magenta is an interior tie, green a silhouette.`);
+  console.log(`\nmasks written to ${OUT} — green is an outline edge, magenta an edge the `
+    + 'footprint hid, red a self-fight.');
 }
 const interiorTotal = rows.reduce((s, r) => s + r.interior, 0);
-console.log(`\nINTERIOR TOTAL: ${interiorTotal} of ${flicker.count} `
-  + `(${(100 * interiorTotal / (flicker.count || 1)).toFixed(1)} %) — the pixels where a layer `
-  + 'fights ITSELF.\nThe rest is the boundary between one layer and the next, which any camera '
+console.log(`\nSURROUNDED TOTAL: ${interiorTotal} of ${flicker.count} `
+  + `(${(100 * interiorTotal / (flicker.count || 1)).toFixed(1)} %) — the pixels a layer's own `
+  + 'footprint\nsurrounds. The rest is its outline against the next layer, which any camera '
   + 'movement resamples.');
+if (classes.size) {
+  const sum = (k) => rows.reduce((t, r) => t + (classes.get(r.id)?.[k].length ?? 0), 0);
+  const edges = sum('break') + sum('sky');
+  const fight = sum('reorder') + sum('smooth');
+  console.log(`  of which INTERNAL EDGES: ${edges} `
+    + `(${(100 * edges / (interiorTotal || 1)).toFixed(0)} %) — silhouettes the footprint hid, `
+    + 'and not a defect.');
+  console.log(`  of which SELF-FIGHT:     ${fight} `
+    + `(${(100 * fight / (interiorTotal || 1)).toFixed(0)} %) — a depth reorder or a shading `
+    + 'resample.\n  The second number is the one this instrument was read as reporting all '
+    + 'along (T-0156).');
+}
 
 console.log(`\nEXACTLY CO-PLANAR? — the depth test switched from LessEqual to Less across all `
   + `${coplanar.materials} materials,\nwhich can change a pixel only where two surfaces have `
@@ -544,7 +662,7 @@ console.log(`\nEXACTLY CO-PLANAR? — the depth test switched from LessEqual to 
 console.log(`  the switch moves           ${coplanar.count} px of the frame`);
 console.log(`  of which flickering        ${coplanar.onFlicker} px `
   + `(${(100 * coplanar.onFlicker / (flicker.count || 1)).toFixed(1)} % of the flicker)`);
-console.log(`  of which interior          ${coplanar.onInterior} px`);
+console.log(`  of which surrounded        ${coplanar.onInterior} px`);
 console.log(`  switching it back restores the frame to within ${coplanar.restored} px `
   + '(0 = the control is sound)');
 
