@@ -1,7 +1,7 @@
 ---
 id: T-0256
 title: The newspaper corpus becomes a source this project can cite
-state: claimed
+state: done
 epic: PAPERS
 requested_by: owner
 seen: false
@@ -9,8 +9,8 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-08-27
-closed: null
-pr: null
+closed: 2026-08-28
+pr: 454
 claimed_by: run 8/28/2026, 4:35:22 AM CT
 blocked_on: null
 needs_bake: false
