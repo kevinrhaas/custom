@@ -1,4 +1,13 @@
 export const CHANGELOG = [ // newest first
+  { v: 310, title: 'South Water Street gets its first fixed corner', kind: 'chore', ts: '2026-08-28T02:30:15.243Z', date: 'Aug 27, 2026, 9:30 PM CT',
+    items: [
+      'Nothing in the town looks different today. This is the corner the last piece of work promised to come back for, and coming back for it confirmed the reconstruction rather than corrected it.',
+      'Every building and street here is placed by measuring out from a handful of modern crossings that have not moved since 1835. Until today there were four of them, and not one was anywhere on South Water Street \u2014 the busiest street the town had, and the one the whole riverfront is measured along.',
+      'There is now a fifth, where Franklin Street crosses it. It is a real crossing and not the trap a block west at Market, where one road quietly becomes the other: here both roads carry on through on both sides, and which map lines do that is written down so the next person does not have to take it on trust. The reading was re-run twice today against the live map and came back to the centimetre.',
+      'What it buys is a check nobody could make before. This project\u2019s South Water Street does not sit on the modern road. It is deliberately shifted south, into the dry half of the eighty-foot street, because the north half was riverbank. That was a sentence. It is now eight metres and twenty-eight centimetres \u2014 a little over two thirds of the way from the crossing to the street\u2019s southern edge, with just under four metres left, if the platted street is centred on the modern one.',
+      'Franklin Street itself lands within three centimetres of the new corner, and that is a smaller claim than it sounds: the modern map was already one of Franklin\u2019s stated sources, so what it shows is that the line can now be re-derived from the source it names \u2014 which, until today, it could not be.',
+      'Nothing moved, and that is the result rather than a disappointment. A corner is worth having when it agrees; the eight metres are a decision about dry ground that this project made on purpose, and now anybody can measure it instead of reading about it. The corner has a story too: the town\u2019s first post office stood on its south-west side from November 1832 to March 1837, which puts it there on the day this scene is set.',
+    ] },
   { v: 309, title: 'Three Lake Street buildings step back off the sidewalk', kind: 'fix', ts: '2026-08-28T01:41:14.347Z', date: 'Aug 27, 2026, 8:41 PM CT',
     items: [
       'Walk the north side of Lake Street and two more of its corners now carry you over the road on boards. Yesterday the walk stopped short of them, because a building was standing where the boards had to go.',

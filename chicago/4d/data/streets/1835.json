@@ -25,7 +25,7 @@
       "surface_confidence": "inferred",
       "wear_confidence": "reconstructed",
       "sources": ["chicago_dpw_1891_streets", "wright_1834", "osm_streets_2026"],
-      "note": "The curved west approach follows the dry south bank resolved by the committed heightfield; east of Franklin the line follows the modern Wacker control used by the structure placements but is shifted into the dry half of the platted riverfront corridor. The street stops at the United States Reservation, matching the 1833 order. Track width and ruts are visual interpretation, not measurements."
+      "note": "The curved west approach follows the dry south bank resolved by the committed heightfield; east of Franklin the line follows the modern Wacker control used by the structure placements but is shifted into the dry half of the platted riverfront corridor, AND SINCE 2026-08-28 THAT SHIFT IS A MEASUREMENT RATHER THAN A SENTENCE: 8.28 m south, measured perpendicular to this centreline from `control.south_water_franklin` in data/traces/street_control.json, the first control point ever committed on this street. That is 68 per cent of the 12.192 m half of the 80 ft platted module, so the line sits inside the corridor's dry half with 3.91 m to spare before its south edge if the corridor is centred on the modern junction. Nothing was re-derived and nothing moved — the standoff is the reconstruction decision this note already described, and it is now checkable. The corner of the two committed centrelines falls at local (208.49, +2.83) against the control's (208.46, +11.41): the whole 8.58 m disagreement is across this street and 0.03 m of it is across Franklin. The street stops at the United States Reservation, matching the 1833 order. Track width and ruts are visual interpretation, not measurements."
     },
     {
       "id": "lake",
@@ -97,7 +97,8 @@
       "geometry_confidence": "inferred",
       "surface_confidence": "inferred",
       "wear_confidence": "reconstructed",
-      "sources": ["wright_1834", "osm_streets_2026"]
+      "sources": ["wright_1834", "osm_streets_2026"],
+      "note": "The north end of this line is the one place on the reconstruction where a modern junction can be made on South Water Street, and 2026-08-28 it was: `control.south_water_franklin` in data/traces/street_control.json, the mean of Franklin's two crossings of Wacker Drive's carriageways. The committed line extended to that junction's northing gives easting 208.49 against the control's 208.46 \u2014 0.03 m. That is a reproduction, not an independent confirmation: `osm_streets_2026` is already one of this record's sources, so what it establishes is that the line can be re-derived from the source it names, which until now it could not be. Nothing moved."
     },
     {
       "id": "wells",

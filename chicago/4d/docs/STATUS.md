@@ -1,5 +1,69 @@
 # STATUS
 
+## Shipped 2026-08-28 — T-0245: South Water Street gets its first control point, at Franklin
+
+`data/traces/street_control.json` held four control points — `lake_canal`, `lake_market`,
+`randolph_canal`, `kinzie_canal` — and **none of them was anywhere on South Water Street**, the
+riverfront street the whole south bank is measured along. There are five now.
+`control.south_water_franklin` is committed at E 447281.16, N 4637407.21 (41.8868373 N,
+-87.6354394 W; local ENU **208.46, +11.41**), the mean of OSM nodes `28358883` and `28358941` —
+North Franklin Street's two crossings of West Upper Wacker Drive's carriageways, 15.28 m apart on
+the same easting to 0.08 m.
+
+**It is a crossing, and it is shown to be one rather than asserted.** `node_rule`'s third failure
+mode — the one T-0183 found at Market one block west — is that two named surface roadways share
+nodes wherever one CHANGES NAME INTO the other at a bend, which reads identically in the output.
+The discriminator recorded on this entry is that **both named ways continue through the shared
+set on both sides**: North Franklin Street arrives on way `452188414` from local (208.2, -12.3),
+passes `28358941`, runs on to `28358883` on way `253745133` and carries north; West Upper Wacker
+crosses east-west on a different carriageway at each node (`319358165` → `931237159` through the
+first, `319358163` → `1136945346` through the second). At Market neither holds: North Upper
+Wacker *ends* at its node and West Upper Wacker *begins* there.
+
+Reproduced twice on the day, from the committed record, against the live map:
+
+```
+  tools/refetch_control.py --discover south_water_franklin
+      2 shared node(s), mean E 447281.16 N 4637407.21, spread 15.28 m, drift 0.00 m
+  tools/refetch_control.py                    (the default verify pass, all five)
+      south_water_franklin ok  2 node(s), drift 0.00 m (tolerance 1.00)
+      lake_market 0.04 · kinzie_canal 0.01 · lake_canal 0.00 · randolph_canal 0.00
+```
+
+**AND NOTHING MOVED — these are the numbers.** The point's value is that it makes two committed
+lines checkable for the first time, which is a different thing from correcting them.
+
+| measured against `control.south_water_franklin` | |
+|---|---:|
+| committed South Water × Franklin corner (intersection of the two centrelines) | local (208.49, +2.83) |
+| the control | local (208.46, +11.41) |
+| separation | **8.58 m** (ΔE −0.03, ΔN +8.58) |
+| perpendicular standoff from South Water's own line (it runs 15.4° N of E here) | **8.28 m** |
+| that, against the 12.192 m half of the 80 ft platted module | **68 %**, 3.91 m to spare |
+| Franklin's committed easting at the junction's northing | **0.03 m** |
+
+So the whole disagreement is *across* South Water and none of it is *along* it. The 8.28 m south
+is the standoff `data/streets/1835.json` has described since it was written as *"shifted into the
+dry half of the platted riverfront corridor"* — a reconstruction decision about dry ground, not
+an error in an offset — and that sentence now carries the measurement. Re-deriving the street
+onto the modern centreline would *undo* it, so nothing is re-derived and no placement names this
+control. Franklin's 0.03 m is a **reproduction, not an independent confirmation**: `franklin`
+already lists `osm_streets_2026` among its sources, so what it establishes is that the line can be
+re-derived from the source it names, which until today it could not be.
+
+**It does not unlock `blk_south_water_market`.** That block's gap is at its WEST corner and South
+Water already reaches Franklin; the 27 roofs still wait on the owner decision `refused_control.
+market_south_water` states. T-0028 therefore stays where it is — see below.
+
+**The corner has a document.** The first post office stood at the south-west corner of Franklin
+and South Water from 2 Nov 1832 to 3 Mar 1837 (`docs/research/03-structures-north.md`), so it is
+a corner on the scene date and not only a modern junction.
+
+Files: `data/traces/street_control.json` (the control point, plus `streets.franklin` named and
+`streets.south_water`'s "no committed control point anywhere on it" retired),
+`data/streets/1835.json` (`south_water` and `franklin` notes), recompiled sidecar index,
+published mirror, changelog v310.
+
 ## Shipped 2026-08-27 — T-0196: three Lake Street buildings come onto the plat, and the fourth is refused with the number that refused it
 
 The Lake Street half of the repair T-0198 and T-0199 made on South Water. Four documented

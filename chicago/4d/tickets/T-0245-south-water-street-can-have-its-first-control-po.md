@@ -1,7 +1,7 @@
 ---
 id: T-0245
 title: South Water Street can have its first control point, at Franklin, and nothing has claimed it
-state: open
+state: claimed
 epic: META
 requested_by: loop
 seen: false
@@ -11,7 +11,7 @@ parent: null
 opened: 2026-08-27
 closed: null
 pr: null
-claimed_by: null
+claimed_by: run 8/27/2026, 9:15:24 PM CT
 blocked_on: null
 needs_bake: false
 ---
