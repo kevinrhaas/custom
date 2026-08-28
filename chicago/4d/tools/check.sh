@@ -723,6 +723,36 @@ step "sidecars derived from data/" \
 step "every dossier link a card offers resolves" \
   python3 tools/check_dossier_links.py
 
+# The same question one rung further out, and about text rather than about a
+# dossier: the newspaper corpus (T-0256). Eighty-six issues of the Chicago
+# Democrat and the Chicago American either side of the scene date are indexed in
+# data/research/newspapers/corpus.json, and every ticket in the PAPERS epic
+# resolves its citations against it. A citation that cannot be resolved is not a
+# citation, so this asserts the issue COUNT rather than observing it — an issue
+# that silently leaves the index fails the build — checks every text path BY
+# CONTENT rather than by existence, holds the dates to a strictly increasing
+# sequence per publication, and refuses to let 2.7 MB of transcription reach the
+# published payload. It also reports, rather than hides, the one thing it cannot
+# resolve: the transcriptions themselves are the owner's deposit under
+# chicago/reference/, which is on `main` and not on `dev`, so on a dev checkout
+# the reference paths are recorded and hashed and not opened. The half this
+# repository owns — the derived text under data/research/newspapers/text/ — is
+# resolved and hashed on every branch, unconditionally.
+step "the newspaper corpus resolves, and its count is asserted" \
+  python3 tools/check_newspaper_corpus.py
+
+step "…and its own assertions still fire when broken" \
+  python3 tools/check_newspaper_corpus.py --self-test
+
+# The extractor those derived texts come out of. Its determinism is the contract,
+# not a nicety: the text is cited by file and line range, so a re-run that
+# reflowed a paragraph would silently invalidate every line number anybody wrote
+# down. This builds a .docx in a temp directory, extracts it twice and asserts
+# the two runs are byte-identical — and that a changed document still comes out
+# different, so the comparison is not blind.
+step "the .docx extractor is deterministic" \
+  python3 tools/docx_text.py --self-test
+
 # Renderer JS must at least parse. The repo's deploy workflow does the same thing
 # for site/, and a syntax error there is a blank page for everyone.
 check_js() {
