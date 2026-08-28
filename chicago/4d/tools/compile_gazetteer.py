@@ -80,6 +80,7 @@ CORPUS = RESEARCH / "corpus.json"
 EXTRACTED = RESEARCH / "extracted"
 IDENTITY = RESEARCH / "identity.json"
 GAZETTEER = RESEARCH / "gazetteer.json"
+COVERAGE = RESEARCH / "coverage.json"
 
 SCHEMA_VERSION = 1
 SCENE_DATE = date(1835, 7, 1)
@@ -425,7 +426,7 @@ def initials(name):
 
 
 def check(extracted=EXTRACTED, gazetteer=GAZETTEER, identity=IDENTITY, corpus=CORPUS,
-          deposit=DEPOSIT, repo=REPO, quiet=False):
+          deposit=DEPOSIT, repo=REPO, quiet=False, coverage=COVERAGE):
     bad = []
     corpus_doc = load_json(corpus)
     issues = issue_index(corpus_doc)
@@ -578,6 +579,38 @@ def check(extracted=EXTRACTED, gazetteer=GAZETTEER, identity=IDENTITY, corpus=CO
             bad.append("%s has no mention — every entry is compiled FROM a claim, so an "
                        "entry with none cannot have come from one" % entry["id"])
 
+    # COVERAGE, ASSERTED RATHER THAN EYEBALLED (T-0289). A reading pass declares the
+    # range it read in `coverage.json`; the gate then resolves that range against
+    # corpus.json and refuses if any issue inside it has no extraction file. Without
+    # this a pass can quietly skip the hardest issue in its month and nothing notices —
+    # the file that is not there is exactly the file no other assertion can see.
+    covered = 0
+    cov_doc = load_json(coverage) if Path(coverage).exists() else {"ranges": []}
+    have = {p.stem for p in files}
+    for rng in cov_doc.get("ranges", []):
+        label = "coverage.json %s %s..%s" % (rng.get("publication"), rng.get("from"), rng.get("to"))
+        try:
+            first, last = date.fromisoformat(rng["from"]), date.fromisoformat(rng["to"])
+        except (KeyError, TypeError, ValueError):
+            bad.append("%s: a range needs `from` and `to` as ISO dates" % label)
+            continue
+        if first > last:
+            bad.append("%s: `from` is after `to`" % label)
+            continue
+        inside = [e for e in corpus_doc.get("issues", [])
+                  if e.get("publication") == rng.get("publication")
+                  and first <= date.fromisoformat(e["date"]) <= last]
+        if not inside:
+            bad.append("%s: no issue of that publication falls in that range — a declared "
+                       "range nothing resolves to is a claim about work that was not done"
+                       % label)
+            continue
+        missing = sorted(e["id"] for e in inside if e["id"] not in have)
+        if missing:
+            bad.append("%s: declared read, but %d of its %d issue(s) have no extraction "
+                       "file: %s" % (label, len(missing), len(inside), ", ".join(missing)))
+        covered += len(inside)
+
     if not quiet:
         state = "present" if Path(deposit).exists() else "absent (this branch has no deposit)"
         print("  ok    %d extraction file(s), %d claim(s), deposit %s"
@@ -586,6 +619,8 @@ def check(extracted=EXTRACTED, gazetteer=GAZETTEER, identity=IDENTITY, corpus=CO
               % checked_quotes)
         print("  ok    %d person(s), %d business(es), compile deterministic and committed"
               % (len(doc["persons"]), len(doc["businesses"])))
+        print("  ok    %d declared range(s) covering %d issue(s), every one with an "
+              "extraction file" % (len(cov_doc.get("ranges", [])), covered))
         if unresolved:
             print("  note  %d claim(s) cite deposit-held text not readable here — it is on "
                   "`main` (T-0275), so their quotes are checked there" % unresolved)
@@ -659,7 +694,7 @@ def self_test():
         print("FAIL: no extraction fixture to break", file=sys.stderr)
         return 1
 
-    def run(mutate, want, label, identity=None):
+    def run(mutate, want, label, identity=None, cov=None):
         d = copy.deepcopy(base)
         ident = copy.deepcopy(identity) if identity else {"merges": []}
         mutate(d, ident)
@@ -673,8 +708,10 @@ def self_test():
             gz = Path(td) / "gazetteer.json"
             doc, _ = compile_gazetteer(sorted(ex.glob("*.json")), ident, corpus_doc)
             gz.write_text(dumps(doc), encoding="utf-8")
+            cp = Path(td) / "coverage.json"
+            cp.write_text(json.dumps(cov if cov is not None else {"ranges": []}))
             bad = check(extracted=ex, gazetteer=gz, identity=ip, corpus=CORPUS,
-                        deposit=DEPOSIT, repo=REPO, quiet=True)
+                        deposit=DEPOSIT, repo=REPO, quiet=True, coverage=cp)
         if want is None:
             if bad:
                 failures.append("%s: expected a clean run, got %r" % (label, bad))
@@ -699,6 +736,17 @@ def self_test():
     run(lambda d, i: d.update(issue_id="chicago_democrat_1999_01_01"),
         "does not resolve against corpus.json", "an issue that is not in the corpus")
     run(lambda d, i: d.update(claims=[]), "no claims", "an extraction file with no claims")
+
+    # COVERAGE (T-0289): a declared range with an unread issue in it, a range that
+    # resolves to nothing, and a range with no dates.
+    run(lambda d, i: None, "have no extraction file", "a declared range with an unread issue",
+        cov={"ranges": [{"publication": "chicago_democrat",
+                         "from": "1834-07-01", "to": "1834-07-31"}]})
+    run(lambda d, i: None, "no issue of that publication", "a range nothing resolves to",
+        cov={"ranges": [{"publication": "chicago_democrat",
+                         "from": "1799-01-01", "to": "1799-12-31"}]})
+    run(lambda d, i: None, "needs `from` and `to`", "a range with no dates",
+        cov={"ranges": [{"publication": "chicago_democrat"}]})
     run(lambda d, i: d.update(schema=99), "schema is", "a schema bump")
 
     # The identity policy, both halves.
@@ -737,8 +785,10 @@ def self_test():
                 doc, _ = compile_gazetteer(sorted(ex.glob("*.json")), {"merges": []}, corpus_doc)
                 gz = Path(td) / "gazetteer.json"
                 gz.write_text(dumps(doc), encoding="utf-8")
+                cp = Path(td) / "coverage.json"
+                cp.write_text(json.dumps({"ranges": []}))
                 bad = check(extracted=ex, gazetteer=gz, identity=ip, corpus=CORPUS,
-                            deposit=DEPOSIT, repo=REPO, quiet=True)
+                            deposit=DEPOSIT, repo=REPO, quiet=True, coverage=cp)
             if want is None:
                 if bad:
                     failures.append("%s: expected a clean run, got %r" % (label, bad))
@@ -759,6 +809,20 @@ def self_test():
                        lines=[10 ** 7, 10 ** 7], lines_of_claim=[10 ** 7]),
                    "of a", "a line past the end of the transcription")
 
+    # THE THREE MARKER DIALECTS, one case each. T-0257's pattern matched only the bare
+    # `PDF PAGE` form, which is 90 of the deposit's 1,266 ruled markers, and nothing on
+    # `dev` could see the gap because the deposit is not there to read. A dialect added
+    # without a case here will be caught by this list failing to grow.
+    for dialect in (
+            "===== ISSUE PAGE 3 / PDF PAGE 19 / COLUMN 5 OF 6 =====",
+            "===== ISSUE PAGE 3 / SOURCE PDF PAGE 19 / COLUMN 5 OF 6 =====",
+            "===== ISSUE PAGE 3 / ORIGINAL PDF PAGE 19 / COLUMN 5 OF 6 ====="):
+        m = COLUMN_MARKER.match(dialect)
+        if not m or (int(m.group(1)), int(m.group(3))) != (3, 5):
+            failures.append("the column marker %r does not resolve to page 3 column 5" % dialect)
+    if COLUMN_MARKER.match("===== ISSUE PAGE 3 / COLUMN 5 OF 6 ====="):
+        failures.append("the column marker pattern matched a line with no scan page")
+
     # A hand-edit to the generated file, which is the fault nothing downstream can see.
     with tempfile.TemporaryDirectory() as td:
         ex = Path(td) / "extracted"
@@ -771,13 +835,15 @@ def self_test():
         doc["persons"][0]["occupations"].append("merchant, surely")
         gz = Path(td) / "gazetteer.json"
         gz.write_text(dumps(doc), encoding="utf-8")
+        cp = Path(td) / "coverage.json"
+        cp.write_text(json.dumps({"ranges": []}))
         bad = check(extracted=ex, gazetteer=gz, identity=ip, corpus=CORPUS,
-                    deposit=DEPOSIT, repo=REPO, quiet=True)
+                    deposit=DEPOSIT, repo=REPO, quiet=True, coverage=cp)
         if not any("hand-edited" in b for b in bad):
             failures.append("a hand-edit to gazetteer.json was not caught")
         gz.unlink()
         bad = check(extracted=ex, gazetteer=gz, identity=ip, corpus=CORPUS,
-                    deposit=DEPOSIT, repo=REPO, quiet=True)
+                    deposit=DEPOSIT, repo=REPO, quiet=True, coverage=cp)
         if not any("is missing" in b for b in bad):
             failures.append("a missing gazetteer.json was not caught")
 
@@ -785,7 +851,7 @@ def self_test():
         for f in failures:
             print("FAIL: " + f, file=sys.stderr)
         return 1
-    print("  ok    every gazetteer assertion fires when broken (23 cases)")
+    print("  ok    every gazetteer assertion fires when broken (26 cases), and the\n        three marker dialects all resolve")
     return 0
 
 

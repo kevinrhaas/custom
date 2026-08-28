@@ -176,22 +176,22 @@
           "role": "addressee"
         }
       ],
-      "notes": "RULING 1 — a listed name mints a resident candidate, and `letter_list_only` is true so the compiler keeps the weaker evidence distinguishable. Part 1 of 12 of the list of letters remaining in the Post Office at Chicago on 1 July 1834. THE HEADING is the list's own at lines 369-371: 'List of Letters' / '[REMAIN]ING in the Post-Office at Chicago, Ill. July 1, 1834.', and JOHN S. C. HOGAN, P.M. signs it at line 776. THIS IS THE SAME LIST as the issue of 1834-07-02 carries at page 3 column 2, and it is the BETTER WITNESS: there the two printed sub-columns were cut so that one kept its forenames and lost its surnames and the other lost its forenames, and 128 lines could yield no name at all. Here both sub-columns survive whole enough to name, so the claims in this file supersede nothing — both stand, with their own locators, and a reader comparing them can see which reading each name rests on. THREE STREAMS are woven through this column: the list's two sub-columns and slivers of page 1's body text ('Chid', 'Ite', 'And', 'The'), which are excluded. NORMALIZATION. The left sub-column's FIRST LETTER is what the segmenter damaged — 'onathan Burbee', 'Javid Bigelow', 'larvey A. Blakesley', 'Lobert Baines' — and the restored letter is bracketed in every case ('[J]onathan', '[D]avid', '[H]arvey', '[R]obert'). The restoration is supported by the surname's place in an unbroken alphabetical run and by the forename being a common one; where it is not, the letter stays '[?]' rather than being chosen ('[?]bey Blankinship', '[?]oon Bowrassa', '[?]kiler Brown'). A trailing numeral on a printed line is the count of letters held for that person, not part of the name, and is dropped from `normalized` while staying in the verbatim quote. Nothing is corrected on shape alone."
+      "notes": "RULING 1 — a listed name mints a resident candidate, and `letter_list_only` is true so the compiler keeps the weaker evidence distinguishable. Part 1 of 12 of the list of letters remaining in the Post Office at Chicago on 1 July 1834. THE HEADING is the list's own at lines 369-371: 'List of Letters' / '[REMAIN]ING in the Post-Office at Chicago, Ill. July 1, 1834.', and JOHN S. C. HOGAN, P.M. signs it at line 776. THIS IS THE SAME LIST as the issue of 1834-07-02 carries at page 3 column 2, and it is the BETTER WITNESS: there the two printed sub-columns were cut so that one kept its forenames and lost its surnames and the other lost its forenames, and 128 lines could yield no name at all. Here both sub-columns survive whole enough to name, so the claims in this file supersede nothing — both stand, with their own locators, and a reader comparing them can see which reading each name rests on. THREE STREAMS are woven through this column: the list's two sub-columns and slivers of page 1's body text ('Chid', 'Ite', 'And', 'The'), which are excluded. NORMALIZATION. The left sub-column's FIRST LETTER is what the segmenter damaged — 'onathan Burbee', 'Javid Bigelow', 'larvey A. Blakesley', 'Lobert Baines' — and the restored letter is bracketed in every case ('[J]onathan', '[D]avid', '[H]arvey', '[R]obert'). The restoration is supported by the surname's place in an unbroken alphabetical run and by the forename being a common one; where it is not, the letter stays '[?]' rather than being chosen ('[?]bey Blankinship', '[?]oon Bowrassa', '[?]kiler Brown'). A trailing numeral on a printed line is the count of letters held for that person, not part of the name, and is dropped from `normalized` while staying in the verbatim quote. Nothing is corrected on shape alone. A HAND COUNT, made against this column on 2026-08-28: page 1 column 2 runs 404 lines from 372 to 775; 298 of them are entries in the list and 106 are one- and two-word slivers of the body column woven through it. The extraction holds 298 entries. The issue of 1834-07-16 prints the same list in 373 lines and also yields 298 — two independent segmentations of one printing agreeing on the count, which is the strongest check available without the page images. FOUR NAMES WERE ADDED after the count: 'stephen May', 'handler Fi her', 'JON. awartwout jr.' and 'acob Gur 2', all dropped by a first pass that required a surname of four letters."
     },
     {
       "id": "c002",
       "kind": "person",
       "reading": "transcription_mediated",
       "letter_list_only": true,
-      "quote": "Reid Lewis\nJavid C. Butterfield\nJohn Lovell\nTimothy Barbour\nLyman B. Lovell\nAra Brundaze\nRobert Loveland\nlarvey A. Blakesley\nIsaac W. Mcclure\nAddison P. Benton\nLobert Baines\nT. . Moreland\nI. C. Bristol\nDaniel Miller\nonathan Burbee 2\nAlonzo Murray\nJavid Bigelow\nJesse Morgan\noseph Babeue\nJ. Mecarty\noseph Boucher\nJames MeFadden\nAbey Blankinship\nJacob V. Miller\ncoon Bowrassa",
-      "normalized": "Reid Lewis / [D]avid C. Butterfield / John Lovell / Timothy Barbour / Lyman B. Lovell / Ara Brundaze / Robert Loveland / [H]arvey A. Blakesley / Isaac W. Mcclure / Addison P. Benton / [R]obert Baines / T. [H]. Moreland / I. C. Bristol / Daniel Miller / [J]onathan Burbee / Alonzo Murray / [D]avid Bigelow / Jesse Morgan / [J]oseph Babeue / J. Mecarty / [J]oseph Boucher / James MeFadden / [?]bey Blankinship / Jacob V. Miller / [?]oon Bowrassa",
+      "quote": "Reid Lewis\nJavid C. Butterfield\nJohn Lovell\nTimothy Barbour\nLyman B. Lovell\nAra Brundaze\nRobert Loveland\nlarvey A. Blakesley\nIsaac W. Mcclure\nAddison P. Benton\nstephen May\nLobert Baines\nT. . Moreland\nI. C. Bristol\nDaniel Miller\nonathan Burbee 2\nAlonzo Murray\nJavid Bigelow\nJesse Morgan\noseph Babeue\nJ. Mecarty\noseph Boucher\nJames MeFadden\nAbey Blankinship\nJacob V. Miller",
+      "normalized": "Reid Lewis / [D]avid C. Butterfield / John Lovell / Timothy Barbour / Lyman B. Lovell / Ara Brundaze / Robert Loveland / [H]arvey A. Blakesley / Isaac W. Mcclure / Addison P. Benton / Stephen May / [R]obert Baines / T. [H]. Moreland / I. C. Bristol / Daniel Miller / [J]onathan Burbee / Alonzo Murray / [D]avid Bigelow / Jesse Morgan / [J]oseph Babeue / J. Mecarty / [J]oseph Boucher / James MeFadden / [?]bey Blankinship / Jacob V. Miller",
       "locator": {
         "artifact_role": "primary",
         "issue_page": 1,
         "column": 2,
         "lines": [
           403,
-          435
+          433
         ],
         "lines_of_claim": [
           403,
@@ -204,6 +204,7 @@
           412,
           413,
           414,
+          415,
           417,
           418,
           419,
@@ -217,8 +218,7 @@
           430,
           431,
           432,
-          433,
-          435
+          433
         ],
         "interleaved": true
       },
@@ -271,6 +271,11 @@
         {
           "as_printed": "Addison P. Benton",
           "normalized": "Addison P. Benton",
+          "role": "addressee"
+        },
+        {
+          "as_printed": "stephen May",
+          "normalized": "Stephen May",
           "role": "addressee"
         },
         {
@@ -342,11 +347,6 @@
           "as_printed": "Jacob V. Miller",
           "normalized": "Jacob V. Miller",
           "role": "addressee"
-        },
-        {
-          "as_printed": "coon Bowrassa",
-          "normalized": "[?]oon Bowrassa",
-          "role": "addressee"
         }
       ],
       "notes": "RULING 1 — a listed name mints a resident candidate, and `letter_list_only` is true so the compiler keeps the weaker evidence distinguishable. Part 2 of 12 of the list of letters remaining in the Post Office at Chicago on 1 July 1834. See claim c001 for the heading, the signature, the interleave and the normalization rule."
@@ -356,17 +356,18 @@
       "kind": "person",
       "reading": "transcription_mediated",
       "letter_list_only": true,
-      "quote": "George R. Makepiece\nSkiler Brown\nMatthias B. Miller\nohn Brink\nWareham Mack\nra Bonner 2\nDavid Meigs\nEdwin A. Brown\nFobes H. Miner\nlobert Burnelt\nThomas u. Moreland\n1. Beegle\nJohn G. McDonald\nra H. Betts\nJacob Melnterfer\nChu. L.. Barry\n1. Blair 2\nJacob MeIntyfer\nF. H. Morland\nohn S. Barre\nLorin Miller\noseph Burnap\nNehemiah Myrick\namnee Ball\nAndrew Miles",
-      "normalized": "George R. Makepiece / [?]kiler Brown / Matthias B. Miller / [J]ohn Brink / Wareham Mack / [I]ra Bonner / David Meigs / Edwin A. Brown / Fobes H. Miner / [R]obert Burnelt / Thomas U. Moreland / [?]. Beegle / John G. McDonald / [I]ra H. Betts / Jacob Melnterfer / [C]h[a]s. L. Barry / [?]. Blair / Jacob MeIntyfer / F. H. Morland / [J]ohn S. Barre / Lorin Miller / [J]oseph Burnap / Nehemiah Myrick / [?]amnee Ball / Andrew Miles",
+      "quote": "coon Bowrassa\nGeorge R. Makepiece\nSkiler Brown\nMatthias B. Miller\nohn Brink\nWareham Mack\nra Bonner 2\nDavid Meigs\nEdwin A. Brown\nFobes H. Miner\nlobert Burnelt\nThomas u. Moreland\n1. Beegle\nJohn G. McDonald\nra H. Betts\nJacob Melnterfer\nChu. L.. Barry\n1. Blair 2\nJacob MeIntyfer\nF. H. Morland\nohn S. Barre\nLorin Miller\noseph Burnap\nNehemiah Myrick\namnee Ball",
+      "normalized": "[?]oon Bowrassa / George R. Makepiece / [?]kiler Brown / Matthias B. Miller / [J]ohn Brink / Wareham Mack / [I]ra Bonner / David Meigs / Edwin A. Brown / Fobes H. Miner / [R]obert Burnelt / Thomas U. Moreland / [?]. Beegle / John G. McDonald / [I]ra H. Betts / Jacob Melnterfer / [C]h[a]s. L. Barry / [?]. Blair / Jacob MeIntyfer / F. H. Morland / [J]ohn S. Barre / Lorin Miller / [J]oseph Burnap / Nehemiah Myrick / [?]amnee Ball",
       "locator": {
         "artifact_role": "primary",
         "issue_page": 1,
         "column": 2,
         "lines": [
-          436,
-          468
+          435,
+          467
         ],
         "lines_of_claim": [
+          435,
           436,
           438,
           439,
@@ -390,12 +391,16 @@
           463,
           464,
           465,
-          467,
-          468
+          467
         ],
         "interleaved": true
       },
       "entities": [
+        {
+          "as_printed": "coon Bowrassa",
+          "normalized": "[?]oon Bowrassa",
+          "role": "addressee"
+        },
         {
           "as_printed": "George R. Makepiece",
           "normalized": "George R. Makepiece",
@@ -515,11 +520,6 @@
           "as_printed": "amnee Ball",
           "normalized": "[?]amnee Ball",
           "role": "addressee"
-        },
-        {
-          "as_printed": "Andrew Miles",
-          "normalized": "Andrew Miles",
-          "role": "addressee"
         }
       ],
       "notes": "RULING 1 — a listed name mints a resident candidate, and `letter_list_only` is true so the compiler keeps the weaker evidence distinguishable. Part 3 of 12 of the list of letters remaining in the Post Office at Chicago on 1 July 1834. See claim c001 for the heading, the signature, the interleave and the normalization rule."
@@ -529,17 +529,18 @@
       "kind": "person",
       "reading": "transcription_mediated",
       "letter_list_only": true,
-      "quote": "Thomas Brown\nNicholas Boilvin\nNewell David 2\nJames Vial 2\nThomas Buckle\nJoin V. Nalla 3\nleaben Beech\nJohn R. Odell\nMm. Bandie\nsamuel Olingar\noseph Brown\nlifed Charchill\nLukeil Pullen 2\nTimothy E. Parsona\nAugustus H, Conant\nTheron Parsons\nVilliam chandler\nD. Pock\nVilliam Cleyborn\nsaci. P. Pennington\n[uncertain: Lebcca Clerland]\nchester Pratt 3\nJaptis Cloutier*\nAlmon Perring\nJavid Curtin",
-      "normalized": "Thomas Brown / Nicholas Boilvin / Newell David / James V[i]al / Thomas Buckle / Jo[h]n V. Nalla / [R]euben Beech / John R. Odell / [W]m. Bandie / Samuel Olingar / [J]oseph Brown / [A]lf[r]ed Charchill / [L]udwell Pullen / Timothy E. Parsona / Augustus H, Conant / Theron Parsons / [W]illiam Chandler / D. Po[c]k / [W]illiam Cleyborn / [I]saa[c] P. Pennington / [uncertain: Rebecca Cleveland] / Chester Pratt / [B]aptis Cloutier / Almon Perring / [D]avid Curtin",
+      "quote": "Andrew Miles\nThomas Brown\nNicholas Boilvin\nNewell David 2\nJames Vial 2\nThomas Buckle\nJoin V. Nalla 3\nleaben Beech\nJohn R. Odell\nMm. Bandie\nsamuel Olingar\noseph Brown\nlifed Charchill\nLukeil Pullen 2\nTimothy E. Parsona\nAugustus H, Conant\nTheron Parsons\nVilliam chandler\nD. Pock\nVilliam Cleyborn\nsaci. P. Pennington\n[uncertain: Lebcca Clerland]\nchester Pratt 3\nJaptis Cloutier*\nAlmon Perring",
+      "normalized": "Andrew Miles / Thomas Brown / Nicholas Boilvin / Newell David / James V[i]al / Thomas Buckle / Jo[h]n V. Nalla / [R]euben Beech / John R. Odell / [W]m. Bandie / Samuel Olingar / [J]oseph Brown / [A]lf[r]ed Charchill / [L]udwell Pullen / Timothy E. Parsona / Augustus H, Conant / Theron Parsons / [W]illiam Chandler / D. Po[c]k / [W]illiam Cleyborn / [I]saa[c] P. Pennington / [uncertain: Rebecca Cleveland] / Chester Pratt / [B]aptis Cloutier / Almon Perring",
       "locator": {
         "artifact_role": "primary",
         "issue_page": 1,
         "column": 2,
         "lines": [
-          470,
-          501
+          468,
+          499
         ],
         "lines_of_claim": [
+          468,
           470,
           471,
           472,
@@ -563,12 +564,16 @@
           495,
           496,
           498,
-          499,
-          501
+          499
         ],
         "interleaved": true
       },
       "entities": [
+        {
+          "as_printed": "Andrew Miles",
+          "normalized": "Andrew Miles",
+          "role": "addressee"
+        },
         {
           "as_printed": "Thomas Brown",
           "normalized": "Thomas Brown",
@@ -688,11 +693,6 @@
           "as_printed": "Almon Perring",
           "normalized": "Almon Perring",
           "role": "addressee"
-        },
-        {
-          "as_printed": "Javid Curtin",
-          "normalized": "[D]avid Curtin",
-          "role": "addressee"
         }
       ],
       "notes": "RULING 1 — a listed name mints a resident candidate, and `letter_list_only` is true so the compiler keeps the weaker evidence distinguishable. Part 4 of 12 of the list of letters remaining in the Post Office at Chicago on 1 July 1834. See claim c001 for the heading, the signature, the interleave and the normalization rule."
@@ -702,17 +702,18 @@
       "kind": "person",
       "reading": "transcription_mediated",
       "letter_list_only": true,
-      "quote": "Rocrick R. Purcell\nfathan Christy\nAron Parcell\ntumsey Christy\nrancis Carlin\nDas el Platt 2\nBolton l'arsons\nThomas Conger\nohn Chronch\nstep ben W. Patch\nleo. L. Chapinan\nLewis Peet\nohn Clarke\nJulies Perrin\nParker M. Cole\nHenry Parker\nJaney W. Porter\nTartin Cleland\nEdinaud Poke\nohn A. Chark\nPorter & conkling\nCalvin Clifford\n.. C. Chamberlain\nJ. chester Reid\nDaniel O. Robian",
-      "normalized": "Ro[d]rick R. Purcell / [N]athan Christy / Aron Parcell / [R]umsey Christy / [F]rancis Carlin / Dan[ie]l Platt / Bolton [P]arsons / Thomas Conger / [J]ohn Chronch / Step[h]en W. Patch / [G]eo. L. Chap[m]an / Lewis Peet / [J]ohn Clarke / [J]ulius Perrin / Parker M. Cole / Henry Parker / [J]ames W. Porter / [M]artin Cleland / [E]dm[u]nd Poke / [J]ohn A. Chark / Porter & Conkling / Calvin Clifford / [?]. C. Chamberlain / J. Chester Reid / Daniel O. Robian",
+      "quote": "Javid Curtin\nRocrick R. Purcell\nfathan Christy\nAron Parcell\ntumsey Christy\nrancis Carlin\nDas el Platt 2\nBolton l'arsons\nThomas Conger\nohn Chronch\nstep ben W. Patch\nleo. L. Chapinan\nLewis Peet\nohn Clarke\nJulies Perrin\nParker M. Cole\nHenry Parker\nJaney W. Porter\nTartin Cleland\nEdinaud Poke\nohn A. Chark\nPorter & conkling\nCalvin Clifford\n.. C. Chamberlain\nJ. chester Reid",
+      "normalized": "[D]avid Curtin / Ro[d]rick R. Purcell / [N]athan Christy / Aron Parcell / [R]umsey Christy / [F]rancis Carlin / Dan[ie]l Platt / Bolton [P]arsons / Thomas Conger / [J]ohn Chronch / Step[h]en W. Patch / [G]eo. L. Chap[m]an / Lewis Peet / [J]ohn Clarke / [J]ulius Perrin / Parker M. Cole / Henry Parker / [J]ames W. Porter / [M]artin Cleland / [E]dm[u]nd Poke / [J]ohn A. Chark / Porter & Conkling / Calvin Clifford / [?]. C. Chamberlain / J. Chester Reid",
       "locator": {
         "artifact_role": "primary",
         "issue_page": 1,
         "column": 2,
         "lines": [
-          502,
-          531
+          501,
+          529
         ],
         "lines_of_claim": [
+          501,
           502,
           503,
           504,
@@ -736,12 +737,16 @@
           525,
           527,
           528,
-          529,
-          531
+          529
         ],
         "interleaved": true
       },
       "entities": [
+        {
+          "as_printed": "Javid Curtin",
+          "normalized": "[D]avid Curtin",
+          "role": "addressee"
+        },
         {
           "as_printed": "Rocrick R. Purcell",
           "normalized": "Ro[d]rick R. Purcell",
@@ -861,11 +866,6 @@
           "as_printed": "J. chester Reid",
           "normalized": "J. Chester Reid",
           "role": "addressee"
-        },
-        {
-          "as_printed": "Daniel O. Robian",
-          "normalized": "Daniel O. Robian",
-          "role": "addressee"
         }
       ],
       "notes": "RULING 1 — a listed name mints a resident candidate, and `letter_list_only` is true so the compiler keeps the weaker evidence distinguishable. Part 5 of 12 of the list of letters remaining in the Post Office at Chicago on 1 July 1834. See claim c001 for the heading, the signature, the interleave and the normalization rule."
@@ -875,17 +875,18 @@
       "kind": "person",
       "reading": "transcription_mediated",
       "letter_list_only": true,
-      "quote": "lohn Camp\nAbsolam Reel\n[uncertain: seri Cas]\ncharles H. Roberts\nQuartus J. Carley\nDaniel Barclay Kessege\ndward B. Coleman\nBenjamin Richardson\nsane Clark\nDavid Reel\nVathaniel C. Clark\nThomis Reed\ni. W. & P. Cord\nOliver Raymand\nawson Carrier\nNiles Rose\nsase Clark\nKiah B. sewall\nMerrit M. Clark\nEdward simone\nPhineous sherman\nlames A. Curry\nBenjamin sloas\nloseph C. Cone\nJacob shook 2",
-      "normalized": "[J]ohn Camp / Absolam Reel / [uncertain: seri Cas…] / [C]harles H. Roberts / Quartus J. Carley / Daniel Barclay [K]essege / [E]dward B. Coleman / Benjamin Richardson / [I]saac Clark / David Reel / [N]athaniel C. Clark / Thomis Reed / [G]. W. & P. Cord / Oliver Raymand / [L]awson Carrier / Niles Rose / [I]saac Clark / Kiah B. Sewall / Merrit M. Clark / Edward Simone / Phineous Sherman / [J]ames A. Curry / Benjamin Sloas / [J]oseph C. Cone / Jacob Shook",
+      "quote": "Daniel O. Robian\nlohn Camp\nAbsolam Reel\n[uncertain: seri Cas]\ncharles H. Roberts\nQuartus J. Carley\nDaniel Barclay Kessege\ndward B. Coleman\nBenjamin Richardson\nsane Clark\nDavid Reel\nVathaniel C. Clark\nThomis Reed\ni. W. & P. Cord\nOliver Raymand\nawson Carrier\nNiles Rose\nsase Clark\nKiah B. sewall\nMerrit M. Clark\nEdward simone\nPhineous sherman\nlames A. Curry\nBenjamin sloas\nloseph C. Cone",
+      "normalized": "Daniel O. Robian / [J]ohn Camp / Absolam Reel / [uncertain: seri Cas…] / [C]harles H. Roberts / Quartus J. Carley / Daniel Barclay [K]essege / [E]dward B. Coleman / Benjamin Richardson / [I]saac Clark / David Reel / [N]athaniel C. Clark / Thomis Reed / [G]. W. & P. Cord / Oliver Raymand / [L]awson Carrier / Niles Rose / [I]saac Clark / Kiah B. Sewall / Merrit M. Clark / Edward Simone / Phineous Sherman / [J]ames A. Curry / Benjamin Sloas / [J]oseph C. Cone",
       "locator": {
         "artifact_role": "primary",
         "issue_page": 1,
         "column": 2,
         "lines": [
-          532,
-          565
+          531,
+          564
         ],
         "lines_of_claim": [
+          531,
           532,
           533,
           535,
@@ -909,12 +910,16 @@
           560,
           561,
           563,
-          564,
-          565
+          564
         ],
         "interleaved": true
       },
       "entities": [
+        {
+          "as_printed": "Daniel O. Robian",
+          "normalized": "Daniel O. Robian",
+          "role": "addressee"
+        },
         {
           "as_printed": "lohn Camp",
           "normalized": "[J]ohn Camp",
@@ -1034,11 +1039,6 @@
           "as_printed": "loseph C. Cone",
           "normalized": "[J]oseph C. Cone",
           "role": "addressee"
-        },
-        {
-          "as_printed": "Jacob shook 2",
-          "normalized": "Jacob Shook",
-          "role": "addressee"
         }
       ],
       "notes": "RULING 1 — a listed name mints a resident candidate, and `letter_list_only` is true so the compiler keeps the weaker evidence distinguishable. Part 6 of 12 of the list of letters remaining in the Post Office at Chicago on 1 July 1834. See claim c001 for the heading, the signature, the interleave and the normalization rule."
@@ -1048,17 +1048,18 @@
       "kind": "person",
       "reading": "transcription_mediated",
       "letter_list_only": true,
-      "quote": "•orentus A. H. CorbinJames A. sawyer 2\nohn O. Deel\nThomas smith\nVilliam HI. Davis\nJ. L. sackett\nohn Dunlap\nElijah smith\n. D. Doty\nR. stewart\nharics C. Drake\nNathan seymour\noretizo Downing\n. Wm. stapleton 2\nVestley Diggins\nsamuel stout\nInson HI. Delamatter elsase scarrett\nielson Dougiass\nWalton slato\nosoph Dolly\nMalancion savage\nohn Donnel\nDo 11. scolt\nIlva Dunlap.\nJohn sewell\nVilliam R. Dorby",
-      "normalized": "James A. Sawyer / [J]ohn O. Deel / Thomas Smith / [W]illiam H. Davis / J. L. Sackett / [J]ohn Dunlap / Elijah Smith / [?]. D. Doty / R. Stewart / [C]harles C. Drake / Nathan Seymour / [L]orenzo Downing / [?] Wm. Stapleton / [W]estley Diggins / Samuel Stout / [?]saac Scarrett / [N]elson Douglass / Walton Slato / [J]oseph Dolly / Malancion Savage / [J]ohn Donnel / [?]. [H]. Scott / [A]lva Dunlap / John Sewell / [W]illiam R. Dorby",
+      "quote": "Jacob shook 2\n•orentus A. H. CorbinJames A. sawyer 2\nohn O. Deel\nThomas smith\nVilliam HI. Davis\nJ. L. sackett\nohn Dunlap\nElijah smith\n. D. Doty\nR. stewart\nharics C. Drake\nNathan seymour\noretizo Downing\n. Wm. stapleton 2\nVestley Diggins\nsamuel stout\nInson HI. Delamatter elsase scarrett\nielson Dougiass\nWalton slato\nosoph Dolly\nMalancion savage\nohn Donnel\nDo 11. scolt\nIlva Dunlap.\nJohn sewell",
+      "normalized": "Jacob Shook / James A. Sawyer / [J]ohn O. Deel / Thomas Smith / [W]illiam H. Davis / J. L. Sackett / [J]ohn Dunlap / Elijah Smith / [?]. D. Doty / R. Stewart / [C]harles C. Drake / Nathan Seymour / [L]orenzo Downing / [?] Wm. Stapleton / [W]estley Diggins / Samuel Stout / [?]saac Scarrett / [N]elson Douglass / Walton Slato / [J]oseph Dolly / Malancion Savage / [J]ohn Donnel / [?]. [H]. Scott / [A]lva Dunlap / John Sewell",
       "locator": {
         "artifact_role": "primary",
         "issue_page": 1,
         "column": 2,
         "lines": [
-          567,
-          602
+          565,
+          600
         ],
         "lines_of_claim": [
+          565,
           567,
           569,
           570,
@@ -1082,12 +1083,16 @@
           596,
           597,
           599,
-          600,
-          602
+          600
         ],
         "interleaved": true
       },
       "entities": [
+        {
+          "as_printed": "Jacob shook 2",
+          "normalized": "Jacob Shook",
+          "role": "addressee"
+        },
         {
           "as_printed": "•orentus A. H. CorbinJames A. sawyer 2",
           "normalized": "James A. Sawyer",
@@ -1207,11 +1212,6 @@
           "as_printed": "John sewell",
           "normalized": "John Sewell",
           "role": "addressee"
-        },
-        {
-          "as_printed": "Villiam R. Dorby",
-          "normalized": "[W]illiam R. Dorby",
-          "role": "addressee"
         }
       ],
       "notes": "RULING 1 — a listed name mints a resident candidate, and `letter_list_only` is true so the compiler keeps the weaker evidence distinguishable. Part 7 of 12 of the list of letters remaining in the Post Office at Chicago on 1 July 1834. See claim c001 for the heading, the signature, the interleave and the normalization rule."
@@ -1221,17 +1221,18 @@
       "kind": "person",
       "reading": "transcription_mediated",
       "letter_list_only": true,
-      "quote": "samuel stuart\nJavid Evert\nJohn stringer\ni. W. Easling\nJames sanderson\nharles Friend\nRuel starr\nLewis sperry\nacob P. Foster\nRobert strong 2\n1. Fisher\nramuel shuvely\nJean Fereen\nJudge silver\nohn Fitzsimmons\nJacob sipler\nNihu D. Filer\nA. shepherd\nIrah Fowler\nJosephi schindler\nteuben Farnsworth\nHenry stark\nVIbert Fowler\nFrancis c. sherman\ninn M. Gooding",
-      "normalized": "Samuel Stuart / [D]avid Evert / John Stringer / [?]. W. Easling / James Sanderson / [C]harles Friend / Ruel Starr / Lewis Sperry / [J]acob P. Foster / Robert Strong / [?]. Fisher / Ramuel Shuvely / [?]ean Fereen / Judge Silver / [J]ohn Fitzsimmons / Jacob Sipler / [E]lihu D. Filer / A. Shepherd / [?]rah Fowler / Joseph[i] Schindler / [R]euben Farnsworth / Henry Stark / [A]lbert Fowler / Francis C. Sherman / [?]nn M. Gooding",
+      "quote": "Villiam R. Dorby\nsamuel stuart\nJavid Evert\nJohn stringer\ni. W. Easling\nJames sanderson\nharles Friend\nRuel starr\nhandler Fi her\nLewis sperry\nacob P. Foster\nRobert strong 2\n1. Fisher\nramuel shuvely\nJean Fereen\nJudge silver\nohn Fitzsimmons\nJacob sipler\nNihu D. Filer\nA. shepherd\nIrah Fowler\nJosephi schindler\nteuben Farnsworth\nHenry stark\nVIbert Fowler",
+      "normalized": "[W]illiam R. Dorby / Samuel Stuart / [D]avid Evert / John Stringer / [?]. W. Easling / James Sanderson / [C]harles Friend / Ruel Starr / [C]handler Fi[s]her / Lewis Sperry / [J]acob P. Foster / Robert Strong / [?]. Fisher / Ramuel Shuvely / [?]ean Fereen / Judge Silver / [J]ohn Fitzsimmons / Jacob Sipler / [E]lihu D. Filer / A. Shepherd / [?]rah Fowler / Joseph[i] Schindler / [R]euben Farnsworth / Henry Stark / [A]lbert Fowler",
       "locator": {
         "artifact_role": "primary",
         "issue_page": 1,
         "column": 2,
         "lines": [
-          603,
-          639
+          602,
+          635
         ],
         "lines_of_claim": [
+          602,
           603,
           604,
           605,
@@ -1239,6 +1240,7 @@
           608,
           609,
           610,
+          612,
           613,
           615,
           616,
@@ -1254,13 +1256,16 @@
           629,
           632,
           633,
-          635,
-          637,
-          639
+          635
         ],
         "interleaved": true
       },
       "entities": [
+        {
+          "as_printed": "Villiam R. Dorby",
+          "normalized": "[W]illiam R. Dorby",
+          "role": "addressee"
+        },
         {
           "as_printed": "samuel stuart",
           "normalized": "Samuel Stuart",
@@ -1294,6 +1299,11 @@
         {
           "as_printed": "Ruel starr",
           "normalized": "Ruel Starr",
+          "role": "addressee"
+        },
+        {
+          "as_printed": "handler Fi her",
+          "normalized": "[C]handler Fi[s]her",
           "role": "addressee"
         },
         {
@@ -1375,16 +1385,6 @@
           "as_printed": "VIbert Fowler",
           "normalized": "[A]lbert Fowler",
           "role": "addressee"
-        },
-        {
-          "as_printed": "Francis c. sherman",
-          "normalized": "Francis C. Sherman",
-          "role": "addressee"
-        },
-        {
-          "as_printed": "inn M. Gooding",
-          "normalized": "[?]nn M. Gooding",
-          "role": "addressee"
         }
       ],
       "notes": "RULING 1 — a listed name mints a resident candidate, and `letter_list_only` is true so the compiler keeps the weaker evidence distinguishable. Part 8 of 12 of the list of letters remaining in the Post Office at Chicago on 1 July 1834. See claim c001 for the heading, the signature, the interleave and the normalization rule."
@@ -1394,17 +1394,20 @@
       "kind": "person",
       "reading": "transcription_mediated",
       "letter_list_only": true,
-      "quote": ".. M. Fish\n. Smith\nasper A. Gooding\nRichard G. smith 2\nlacob Galutia 2\nS. sherwood\noseph Graybem\nBenjamın swena\nlohn Graham\nEzekiel Turner\naroline Gooding\nWm. Tuller\nc. e. Townsend\nAbbot Gicen\nsamuel. Toby\nGoodrich Honey\nBenjamin Thompeon\nMariah Green\nEdward Trimble\nHarriet Gridley\nJacob Van Acker\nTimothy Gridley\nRalph W. Gridley\nAlanson B. Vaughan\nAlison B. Vaughn",
-      "normalized": "[?]. M. Fish / [?]. Smith / [J]asper A. Gooding / Richard G. Smith / [J]acob Galutia / S. Sherwood / [J]oseph Graybem / Benjamın Swena / [J]ohn Graham / Ezekiel Turner / [C]aroline Gooding / Wm. Tuller / C. E. Townsend / Abbot G[r]een / Samuel. Toby / Goodrich Ho[n]ey / Benjamin Thompeon / Mariah Green / Edward Trimble / Harriet Gridley / Jacob Van Acker / Timothy Gridley / Ralph W. Gridley / Alanson B. Vaughan / Alison B. Vaughn",
+      "quote": "JON. awartwout jr.\nFrancis c. sherman\ninn M. Gooding\n.. M. Fish\n. Smith\nasper A. Gooding\nRichard G. smith 2\nlacob Galutia 2\nS. sherwood\noseph Graybem\nBenjamın swena\nlohn Graham\nEzekiel Turner\naroline Gooding\nWm. Tuller\nacob Gur 2\nc. e. Townsend\nAbbot Gicen\nsamuel. Toby\nGoodrich Honey\nBenjamin Thompeon\nMariah Green\nEdward Trimble\nHarriet Gridley\nJacob Van Acker",
+      "normalized": "J[n]o. Swartwout jr. / Francis C. Sherman / [?]nn M. Gooding / [?]. M. Fish / [?]. Smith / [J]asper A. Gooding / Richard G. Smith / [J]acob Galutia / S. Sherwood / [J]oseph Graybem / Benjamın Swena / [J]ohn Graham / Ezekiel Turner / [C]aroline Gooding / Wm. Tuller / [J]acob Gur / C. E. Townsend / Abbot G[r]een / Samuel. Toby / Goodrich Ho[n]ey / Benjamin Thompeon / Mariah Green / Edward Trimble / Harriet Gridley / Jacob Van Acker",
       "locator": {
         "artifact_role": "primary",
         "issue_page": 1,
         "column": 2,
         "lines": [
-          640,
-          674
+          636,
+          669
         ],
         "lines_of_claim": [
+          636,
+          637,
+          639,
           640,
           641,
           643,
@@ -1417,6 +1420,7 @@
           652,
           654,
           655,
+          657,
           658,
           660,
           661,
@@ -1425,15 +1429,26 @@
           665,
           666,
           668,
-          669,
-          671,
-          672,
-          673,
-          674
+          669
         ],
         "interleaved": true
       },
       "entities": [
+        {
+          "as_printed": "JON. awartwout jr.",
+          "normalized": "J[n]o. Swartwout jr.",
+          "role": "addressee"
+        },
+        {
+          "as_printed": "Francis c. sherman",
+          "normalized": "Francis C. Sherman",
+          "role": "addressee"
+        },
+        {
+          "as_printed": "inn M. Gooding",
+          "normalized": "[?]nn M. Gooding",
+          "role": "addressee"
+        },
         {
           "as_printed": ".. M. Fish",
           "normalized": "[?]. M. Fish",
@@ -1495,6 +1510,11 @@
           "role": "addressee"
         },
         {
+          "as_printed": "acob Gur 2",
+          "normalized": "[J]acob Gur",
+          "role": "addressee"
+        },
+        {
           "as_printed": "c. e. Townsend",
           "normalized": "C. E. Townsend",
           "role": "addressee"
@@ -1538,26 +1558,6 @@
           "as_printed": "Jacob Van Acker",
           "normalized": "Jacob Van Acker",
           "role": "addressee"
-        },
-        {
-          "as_printed": "Timothy Gridley",
-          "normalized": "Timothy Gridley",
-          "role": "addressee"
-        },
-        {
-          "as_printed": "Ralph W. Gridley",
-          "normalized": "Ralph W. Gridley",
-          "role": "addressee"
-        },
-        {
-          "as_printed": "Alanson B. Vaughan",
-          "normalized": "Alanson B. Vaughan",
-          "role": "addressee"
-        },
-        {
-          "as_printed": "Alison B. Vaughn",
-          "normalized": "Alison B. Vaughn",
-          "role": "addressee"
         }
       ],
       "notes": "RULING 1 — a listed name mints a resident candidate, and `letter_list_only` is true so the compiler keeps the weaker evidence distinguishable. Part 9 of 12 of the list of letters remaining in the Post Office at Chicago on 1 July 1834. See claim c001 for the heading, the signature, the interleave and the normalization rule."
@@ -1567,17 +1567,21 @@
       "kind": "person",
       "reading": "transcription_mediated",
       "letter_list_only": true,
-      "quote": "Peter D. Huguenin\nJohn Vallect\nFreak Holderman\nThomas Vhn Valzah\nWilliam Hunter\nGurtrude Watkins\nDaniel Hasslen\nLewis T. White\ncyrneus Holmer\nA. M. Wing\nNorman M. HarzingionDelany Welln\nHenry Hopkins\nGeorge E. Walker 2\nValerius Hall\nSally L. Warren 2\nFrederick A. Howell\nPeter White\nSamuel Harbour\nWm. s. Welch\nElisha H. Hazzard\nPierce Howley\nElihu Walter\nWm. W. Wattles 2\nJames Hendrix\nJames Wheklon",
-      "normalized": "Peter D. Huguenin / John Vallect / [F]rank Holderman / Thomas Vhn Valzah / William Hunter / Gurtrude Watkins / Daniel Hasslen / Lewis T. White / [C]yr[e]nius Holmer / A. M. Wing / Delany Wells / Henry Hopkins / George E. Walker / Valerius Hall / Sally L. Warren / Frederick A. Howell / Peter White / Samuel Harbour / Wm. S. Welch / Elisha H. Hazzard / Pierce Howley / Elihu Walter / Wm. W. Wattles / James Hendrix / James Wheklon",
+      "quote": "Timothy Gridley\nRalph W. Gridley\nAlanson B. Vaughan\nAlison B. Vaughn\nPeter D. Huguenin\nJohn Vallect\nFreak Holderman\nThomas Vhn Valzah\nWilliam Hunter\nGurtrude Watkins\nDaniel Hasslen\nLewis T. White\ncyrneus Holmer\nA. M. Wing\nNorman M. HarzingionDelany Welln\nHenry Hopkins\nGeorge E. Walker 2\nValerius Hall\nSally L. Warren 2\nFrederick A. Howell\nPeter White\nSamuel Harbour\nWm. s. Welch\nElisha H. Hazzard\nPierce Howley",
+      "normalized": "Timothy Gridley / Ralph W. Gridley / Alanson B. Vaughan / Alison B. Vaughn / Peter D. Huguenin / John Vallect / [F]rank Holderman / Thomas Vhn Valzah / William Hunter / Gurtrude Watkins / Daniel Hasslen / Lewis T. White / [C]yr[e]nius Holmer / A. M. Wing / Delany Wells / Henry Hopkins / George E. Walker / Valerius Hall / Sally L. Warren / Frederick A. Howell / Peter White / Samuel Harbour / Wm. S. Welch / Elisha H. Hazzard / Pierce Howley",
       "locator": {
         "artifact_role": "primary",
         "issue_page": 1,
         "column": 2,
         "lines": [
-          676,
-          711
+          671,
+          705
         ],
         "lines_of_claim": [
+          671,
+          672,
+          673,
+          674,
           676,
           678,
           679,
@@ -1598,15 +1602,31 @@
           701,
           702,
           704,
-          705,
-          706,
-          708,
-          710,
-          711
+          705
         ],
         "interleaved": true
       },
       "entities": [
+        {
+          "as_printed": "Timothy Gridley",
+          "normalized": "Timothy Gridley",
+          "role": "addressee"
+        },
+        {
+          "as_printed": "Ralph W. Gridley",
+          "normalized": "Ralph W. Gridley",
+          "role": "addressee"
+        },
+        {
+          "as_printed": "Alanson B. Vaughan",
+          "normalized": "Alanson B. Vaughan",
+          "role": "addressee"
+        },
+        {
+          "as_printed": "Alison B. Vaughn",
+          "normalized": "Alison B. Vaughn",
+          "role": "addressee"
+        },
         {
           "as_printed": "Peter D. Huguenin",
           "normalized": "Peter D. Huguenin",
@@ -1711,26 +1731,6 @@
           "as_printed": "Pierce Howley",
           "normalized": "Pierce Howley",
           "role": "addressee"
-        },
-        {
-          "as_printed": "Elihu Walter",
-          "normalized": "Elihu Walter",
-          "role": "addressee"
-        },
-        {
-          "as_printed": "Wm. W. Wattles 2",
-          "normalized": "Wm. W. Wattles",
-          "role": "addressee"
-        },
-        {
-          "as_printed": "James Hendrix",
-          "normalized": "James Hendrix",
-          "role": "addressee"
-        },
-        {
-          "as_printed": "James Wheklon",
-          "normalized": "James Wheklon",
-          "role": "addressee"
         }
       ],
       "notes": "RULING 1 — a listed name mints a resident candidate, and `letter_list_only` is true so the compiler keeps the weaker evidence distinguishable. Part 10 of 12 of the list of letters remaining in the Post Office at Chicago on 1 July 1834. See claim c001 for the heading, the signature, the interleave and the normalization rule."
@@ -1740,17 +1740,21 @@
       "kind": "person",
       "reading": "transcription_mediated",
       "letter_list_only": true,
-      "quote": "Ira Herrick\nDaniel Wright\nW. Harrison\nseth Wercott\ncyrenius e. Holmes\nHannah Hurlburt\nAlexander Wilkes\ncharles T. Ward\nJohn Hazlet 3\nDaniel Howland\nPhebe Williams\nWilliam H. Hunt/\nJeddiah Wooley\nGiles Williams 4\nSyman Huntles\nJames Wood\nAlexander H. Howard\nElijah Wentworth sen.\nJno. c. Hugunin\nRobert F. Harin\n• Henry Watkina\nJohn Walton\nRobt. Hill\nHannah Hill\nHenry c. West",
-      "normalized": "Ira Herrick / Daniel Wright / W. Harrison / Seth Wercott / [C]yrenius [C]. Holmes / Hannah Hurlburt / Alexander Wilkes / [C]harles T. Ward / John Hazlet / Daniel Howland / Phebe Williams / William H. Hunt / Jeddiah Wooley / Giles Williams / [L]yman Huntley / James Wood / Alexander H. Howard / Elijah Wentworth sen. / Jno. C. Hugunin / Robert F. Har[r]is / Henry Watkin[s] / John Walton / Rob[e]rt Hill / Hannah Hill / Henry C. West",
+      "quote": "Elihu Walter\nWm. W. Wattles 2\nJames Hendrix\nJames Wheklon\nIra Herrick\nDaniel Wright\nW. Harrison\nseth Wercott\ncyrenius e. Holmes\nHannah Hurlburt\nAlexander Wilkes\ncharles T. Ward\nJohn Hazlet 3\nDaniel Howland\nPhebe Williams\nWilliam H. Hunt/\nJeddiah Wooley\nGiles Williams 4\nSyman Huntles\nJames Wood\nAlexander H. Howard\nElijah Wentworth sen.\nJno. c. Hugunin\nRobert F. Harin\n• Henry Watkina",
+      "normalized": "Elihu Walter / Wm. W. Wattles / James Hendrix / James Wheklon / Ira Herrick / Daniel Wright / W. Harrison / Seth Wercott / [C]yrenius [C]. Holmes / Hannah Hurlburt / Alexander Wilkes / [C]harles T. Ward / John Hazlet / Daniel Howland / Phebe Williams / William H. Hunt / Jeddiah Wooley / Giles Williams / [L]yman Huntley / James Wood / Alexander H. Howard / Elijah Wentworth sen. / Jno. C. Hugunin / Robert F. Har[r]is / Henry Watkin[s]",
       "locator": {
         "artifact_role": "primary",
         "issue_page": 1,
         "column": 2,
         "lines": [
-          713,
-          747
+          706,
+          741
         ],
         "lines_of_claim": [
+          706,
+          708,
+          710,
+          711,
           713,
           714,
           715,
@@ -1771,15 +1775,31 @@
           737,
           739,
           740,
-          741,
-          742,
-          744,
-          746,
-          747
+          741
         ],
         "interleaved": true
       },
       "entities": [
+        {
+          "as_printed": "Elihu Walter",
+          "normalized": "Elihu Walter",
+          "role": "addressee"
+        },
+        {
+          "as_printed": "Wm. W. Wattles 2",
+          "normalized": "Wm. W. Wattles",
+          "role": "addressee"
+        },
+        {
+          "as_printed": "James Hendrix",
+          "normalized": "James Hendrix",
+          "role": "addressee"
+        },
+        {
+          "as_printed": "James Wheklon",
+          "normalized": "James Wheklon",
+          "role": "addressee"
+        },
         {
           "as_printed": "Ira Herrick",
           "normalized": "Ira Herrick",
@@ -1884,26 +1904,6 @@
           "as_printed": "• Henry Watkina",
           "normalized": "Henry Watkin[s]",
           "role": "addressee"
-        },
-        {
-          "as_printed": "John Walton",
-          "normalized": "John Walton",
-          "role": "addressee"
-        },
-        {
-          "as_printed": "Robt. Hill",
-          "normalized": "Rob[e]rt Hill",
-          "role": "addressee"
-        },
-        {
-          "as_printed": "Hannah Hill",
-          "normalized": "Hannah Hill",
-          "role": "addressee"
-        },
-        {
-          "as_printed": "Henry c. West",
-          "normalized": "Henry C. West",
-          "role": "addressee"
         }
       ],
       "notes": "RULING 1 — a listed name mints a resident candidate, and `letter_list_only` is true so the compiler keeps the weaker evidence distinguishable. Part 11 of 12 of the list of letters remaining in the Post Office at Chicago on 1 July 1834. See claim c001 for the heading, the signature, the interleave and the normalization rule."
@@ -1913,17 +1913,21 @@
       "kind": "person",
       "reading": "transcription_mediated",
       "letter_list_only": true,
-      "quote": "Wm. c Whittely\nDavid Ingersall\nJohn c Williams\nHardin M. Irevin\nJ L Warren\nAdiel S. Jones\nT. Jobnston\nsophia Wellhelm\nHorace Wood\nDay Jones\nB. Jones\nGeorge Walker\ncharles Jones\nsaml Ward\nJoshua Kinsey\nAram Winsor\nWm. Kimbal\nstephen Winship\ncharles Worke",
-      "normalized": "Wm. C Whittely / David Ingersall / John C Williams / Hardin M. Ir[v]in / J L Warren / Adiel S. Jones / T. Jo[h]nston / Sophia Wellhelm / Horace Wood / Day Jones / B. Jones / George Walker / [C]harles Jones / Saml Ward / Joshua Kinsey / Aram Winsor / Wm. Kimbal / Stephen Winship / [C]harles Work[s]",
+      "quote": "John Walton\nRobt. Hill\nHannah Hill\nHenry c. West\nWm. c Whittely\nDavid Ingersall\nJohn c Williams\nHardin M. Irevin\nJ L Warren\nAdiel S. Jones\nT. Jobnston\nsophia Wellhelm\nHorace Wood\nDay Jones\nB. Jones\nGeorge Walker\ncharles Jones\nsaml Ward\nJoshua Kinsey\nAram Winsor\nWm. Kimbal\nstephen Winship\ncharles Worke",
+      "normalized": "John Walton / Rob[e]rt Hill / Hannah Hill / Henry C. West / Wm. C Whittely / David Ingersall / John C Williams / Hardin M. Ir[v]in / J L Warren / Adiel S. Jones / T. Jo[h]nston / Sophia Wellhelm / Horace Wood / Day Jones / B. Jones / George Walker / [C]harles Jones / Saml Ward / Joshua Kinsey / Aram Winsor / Wm. Kimbal / Stephen Winship / [C]harles Work[s]",
       "locator": {
         "artifact_role": "primary",
         "issue_page": 1,
         "column": 2,
         "lines": [
-          748,
+          742,
           775
         ],
         "lines_of_claim": [
+          742,
+          744,
+          746,
+          747,
           748,
           750,
           751,
@@ -1947,6 +1951,26 @@
         "interleaved": true
       },
       "entities": [
+        {
+          "as_printed": "John Walton",
+          "normalized": "John Walton",
+          "role": "addressee"
+        },
+        {
+          "as_printed": "Robt. Hill",
+          "normalized": "Rob[e]rt Hill",
+          "role": "addressee"
+        },
+        {
+          "as_printed": "Hannah Hill",
+          "normalized": "Hannah Hill",
+          "role": "addressee"
+        },
+        {
+          "as_printed": "Henry c. West",
+          "normalized": "Henry C. West",
+          "role": "addressee"
+        },
         {
           "as_printed": "Wm. c Whittely",
           "normalized": "Wm. C Whittely",

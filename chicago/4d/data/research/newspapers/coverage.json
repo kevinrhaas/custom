@@ -1,0 +1,13 @@
+{
+  "schema": 1,
+  "note": "WHAT HAS BEEN READ, declared so the gate can check it. A reading pass in the PAPERS epic names the range it read here; tools/compile_gazetteer.py --check resolves each range against corpus.json and refuses if any issue inside it has no file under extracted/. Coverage is the one property no other assertion can see: every rule in the gate is about a claim that EXISTS, and a skipped issue leaves nothing behind to fail. Add a range only when its issues have all been read — this file is a statement about work done, not a plan.",
+  "ranges": [
+    {
+      "publication": "chicago_democrat",
+      "from": "1834-07-01",
+      "to": "1834-07-31",
+      "ticket": "T-0289",
+      "note": "Vol. I Nos. 31-35, 1834-07-02 to 1834-07-30. Five issues, read from the deposit on `main` with --deposit; on `dev` their claims are counted unresolved and reported, which is green (T-0275)."
+    }
+  ]
+}

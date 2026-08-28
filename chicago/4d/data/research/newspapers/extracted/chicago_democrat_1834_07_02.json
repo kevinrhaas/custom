@@ -2716,15 +2716,15 @@
       "kind": "person",
       "reading": "transcription_mediated",
       "letter_list_only": true,
-      "quote": "Avery\n[uncertain: Ayct?]\nAnderson\nInderson\nzer Alden\nn Andress\nArrowsmith\nkins\nB. Albyn 3\nr. Bently\nr W. Borland\n, Burnet\nBurnap\nC. Butterfield\nay Barbour\n, A. Blakesley\nn P. Benton\n[uncertain: . Baincs]\nBristol\nan Burbee 2\nBigelow\nBabete\nBoucher\nBankinship\n[uncertain: Bowrassa]\nBrown\nrink\nuner 2\nA. Brown\nBurnett\nBetts\nir 2",
-      "normalized": "[…]Avery / […][uncertain: Ayct?] / […]Anderson / […]Inderson / […]zer Alden / […]n Andress / […]Arrowsmith / […]kins / […]B. Albyn 3 / […]r. Bently / […]r W. Borland / […], Burnet / […]Burnap / […]C. Butterfield / […]ay Barbour / […], A. Blakesley / […]n P. Benton / […][uncertain: . Baincs] / […]Bristol / […]an Burbee 2 / […]Bigelow / […]Babete / […]Boucher / […]Bankinship / […][uncertain: Bowrassa] / […]Brown / […]rink / […]uner 2 / […]A. Brown / […]Burnett / […]Betts / […]ir 2",
+      "quote": "Avery\n[uncertain: Ayct?]\nAnderson\nInderson\nzer Alden\nn Andress\nArrowsmith\nkins\nB. Albyn 3\nr. Bently\nr W. Borland\n, Burnet\nBurnap\nC. Butterfield\nay Barbour\nandage\n, A. Blakesley\nn P. Benton\n[uncertain: . Baincs]\nBristol\nan Burbee 2\nBigelow\nBabete\nBoucher\nBankinship\n[uncertain: Bowrassa]\nBrown\nrink\nuner 2\nA. Brown\nBurnett\nBetts\nir 2\n. Barry\n. Barre\nBurnap",
+      "normalized": "[…]Avery / […][uncertain: Ayct?] / […]Anderson / […]Inderson / […]zer Alden / […]n Andress / […]Arrowsmith / […]kins / […]B. Albyn 3 / […]r. Bently / […]r W. Borland / […], Burnet / […]Burnap / […]C. Butterfield / […]ay Barbour / […]andage / […], A. Blakesley / […]n P. Benton / […][uncertain: . Baincs] / […]Bristol / […]an Burbee 2 / […]Bigelow / […]Babete / […]Boucher / […]Bankinship / […][uncertain: Bowrassa] / […]Brown / […]rink / […]uner 2 / […]A. Brown / […]Burnett / […]Betts / […]ir 2 / […]. Barry / […]. Barre / […]Burnap",
       "locator": {
         "artifact_role": "primary",
         "issue_page": 3,
         "column": 2,
         "lines": [
           3130,
-          3220
+          3228
         ],
         "lines_of_claim": [
           3130,
@@ -2742,6 +2742,7 @@
           3163,
           3166,
           3169,
+          3171,
           3173,
           3175,
           3178,
@@ -2758,37 +2759,38 @@
           3209,
           3212,
           3217,
-          3220
+          3220,
+          3223,
+          3226,
+          3228
         ],
         "interleaved": true
       },
       "entities": [],
-      "notes": "THE FIRST SUB-COLUMN OF THE SAME LIST, CUT AT THE LEFT EDGE, part 1 of 4, and it yields NO entities on purpose. Every line here is a surname or a surname with one surviving initial whose forename the column edge removed — 'Brown', 'Burnap', ', A. Blakesley', 'ck A. Howell'. Ruling 1 mints a resident from a LISTED NAME; a bare surname is not one, and there are four Browns, two Burnaps, two Fowlers, two Greens, three Gridleys and two Christys in this fragment alone, so supplying forenames would be inventing people rather than reading them. The lines are quoted in full so the list is on the record complete, and '[…]' in `normalized` marks the cut at the head of every one. The alphabetical run A-B-C-D-E-F-G-H-I-J-K is unbroken across the four claims, which is the evidence that these lines are one sub-column and not scattered damage. WHAT IS NOT ASSIGNED: lines 3258 ('D. Perk'), 3259 ('T. S. For in') and 3290-3296's neighbours sit out of alphabetical order and could belong either to this sub-column or to the advertisement woven through it; they are left out of both claims rather than assigned to one. A LATER WITNESS IS WHAT FIXES THIS: the same list stands in the four following issues of July 1834, and a different segmentation of the same page may cut it elsewhere."
+      "notes": "THE FIRST SUB-COLUMN OF THE SAME LIST, CUT AT THE LEFT EDGE, part 1 of 4, and it yields NO entities on purpose. Every line here is a surname, or a surname with one surviving initial, whose forename the column edge removed — 'Brown', 'Burnap', ', A. Blakesley', 'ck A. Howell'. Ruling 1 mints a resident from a LISTED NAME; a bare surname is not one, and there are four Browns, two Burnaps, two Fowlers, two Greens, three Gridleys and two Christys in this fragment alone, so supplying forenames would be inventing people rather than reading them. The lines are quoted in full so the list is on the record complete, and '[…]' in `normalized` marks the cut at the head of every one. The alphabetical run A-B-C-D-E-F-G-H-I-J-K is unbroken across the four claims, which is the evidence that these lines are one sub-column and not scattered damage. THE NAMES ARE MINTED ELSEWHERE: the issues of 1834-07-09 and 1834-07-16 print this same sub-column with its forenames on, and their claims carry the people. WHAT IS DELIBERATELY LEFT OUT of both this claim and the whole-name one: lines 3258 ('D. Perk'), 3259 ('T. S. For in'), 3190 ('Th'), 3214 ('gle') and 3425 ('Blai') sit out of the alphabetical run and could belong either to this sub-column or to the advertisement woven through it. They are assigned to neither. A HAND COUNT, made against this column on 2026-08-28 and the reason thirteen lines were added to this claim after it was first written: page 3 column 2 runs 409 lines from 3130 to 3538; 150 of them are whole names, 141 are this cut sub-column, and the remaining 118 are the advertisement and the list's own heading and signature. The first pass of this claim held 128 of the 141 and the count is what found the other thirteen."
     },
     {
       "id": "c036",
       "kind": "person",
       "reading": "transcription_mediated",
       "letter_list_only": true,
-      "quote": ". Barry\n. Barre\nBurnap\nBall\ns Brown\nas Boilvin •\n• Buckle\n• Beech\nBrown\nCharchill\nus H. Conant\na chandler\na Cleyborn *\n, Clevland\nCloutier\nCurtin\n1 Christy\ny Christy\n• Carlin\n9 Conger\n[uncertain: hrouch]\n• Chapman\nlarke\nM. Cole\nCleland\n. Chark\nClifford\nChamberlsin\nCamp\n18 J. Carley\nd B. Coleman\nClark",
-      "normalized": "[…]. Barry / […]. Barre / […]Burnap / […]Ball / […]s Brown / […]as Boilvin • / […]• Buckle / […]• Beech / […]Brown / […]Charchill / […]us H. Conant / […]a chandler / […]a Cleyborn * / […], Clevland / […]Cloutier / […]Curtin / […]1 Christy / […]y Christy / […]• Carlin / […]9 Conger / […][uncertain: hrouch] / […]• Chapman / […]larke / […]M. Cole / […]Cleland / […]. Chark / […]Clifford / […]Chamberlsin / […]Camp / […]18 J. Carley / […]d B. Coleman / […]Clark",
+      "quote": "Ball\ns Brown\nas Boilvin •\n• Buckle\n• Beech\nlandle\nBrown\nCharchill\nus H. Conant\na chandler\na Cleyborn *\n, Clevland\nCloutier\nCurtin\n1 Christy\ny Christy\n• Carlin\n9 Conger\n[uncertain: hrouch]\n• Chapman\nlarke\nM. Cole\nCleland\n. Chark\nClifford\nChamberlsin\nCamp\nady\n18 J. Carley\nd B. Coleman\nClark\nsiei C. Clark\n& P. Card\nn Carrier\nClark\nM. Clark",
+      "normalized": "[…]Ball / […]s Brown / […]as Boilvin • / […]• Buckle / […]• Beech / […]landle / […]Brown / […]Charchill / […]us H. Conant / […]a chandler / […]a Cleyborn * / […], Clevland / […]Cloutier / […]Curtin / […]1 Christy / […]y Christy / […]• Carlin / […]9 Conger / […][uncertain: hrouch] / […]• Chapman / […]larke / […]M. Cole / […]Cleland / […]. Chark / […]Clifford / […]Chamberlsin / […]Camp / […]ady / […]18 J. Carley / […]d B. Coleman / […]Clark / […]siei C. Clark / […]& P. Card / […]n Carrier / […]Clark / […]M. Clark",
       "locator": {
         "artifact_role": "primary",
         "issue_page": 3,
         "column": 2,
         "lines": [
-          3223,
-          3316
+          3231,
+          3330
         ],
         "lines_of_claim": [
-          3223,
-          3226,
-          3228,
           3231,
           3234,
           3238,
           3240,
           3244,
+          3247,
           3249,
           3252,
           3254,
@@ -2810,36 +2812,37 @@
           3299,
           3302,
           3305,
+          3308,
           3311,
           3314,
-          3316
+          3316,
+          3319,
+          3321,
+          3324,
+          3325,
+          3330
         ],
         "interleaved": true
       },
       "entities": [],
-      "notes": "THE FIRST SUB-COLUMN OF THE SAME LIST, CUT AT THE LEFT EDGE, part 2 of 4, and it yields NO entities on purpose. Every line here is a surname or a surname with one surviving initial whose forename the column edge removed — 'Brown', 'Burnap', ', A. Blakesley', 'ck A. Howell'. Ruling 1 mints a resident from a LISTED NAME; a bare surname is not one, and there are four Browns, two Burnaps, two Fowlers, two Greens, three Gridleys and two Christys in this fragment alone, so supplying forenames would be inventing people rather than reading them. The lines are quoted in full so the list is on the record complete, and '[…]' in `normalized` marks the cut at the head of every one. The alphabetical run A-B-C-D-E-F-G-H-I-J-K is unbroken across the four claims, which is the evidence that these lines are one sub-column and not scattered damage. WHAT IS NOT ASSIGNED: lines 3258 ('D. Perk'), 3259 ('T. S. For in') and 3290-3296's neighbours sit out of alphabetical order and could belong either to this sub-column or to the advertisement woven through it; they are left out of both claims rather than assigned to one. A LATER WITNESS IS WHAT FIXES THIS: the same list stands in the four following issues of July 1834, and a different segmentation of the same page may cut it elsewhere."
+      "notes": "THE FIRST SUB-COLUMN OF THE SAME LIST, CUT AT THE LEFT EDGE, part 2 of 4, and it yields NO entities on purpose. Every line here is a surname, or a surname with one surviving initial, whose forename the column edge removed — 'Brown', 'Burnap', ', A. Blakesley', 'ck A. Howell'. Ruling 1 mints a resident from a LISTED NAME; a bare surname is not one, and there are four Browns, two Burnaps, two Fowlers, two Greens, three Gridleys and two Christys in this fragment alone, so supplying forenames would be inventing people rather than reading them. The lines are quoted in full so the list is on the record complete, and '[…]' in `normalized` marks the cut at the head of every one. The alphabetical run A-B-C-D-E-F-G-H-I-J-K is unbroken across the four claims, which is the evidence that these lines are one sub-column and not scattered damage. THE NAMES ARE MINTED ELSEWHERE: the issues of 1834-07-09 and 1834-07-16 print this same sub-column with its forenames on, and their claims carry the people. WHAT IS DELIBERATELY LEFT OUT of both this claim and the whole-name one: lines 3258 ('D. Perk'), 3259 ('T. S. For in'), 3190 ('Th'), 3214 ('gle') and 3425 ('Blai') sit out of the alphabetical run and could belong either to this sub-column or to the advertisement woven through it. They are assigned to neither. A HAND COUNT, made against this column on 2026-08-28 and the reason thirteen lines were added to this claim after it was first written: page 3 column 2 runs 409 lines from 3130 to 3538; 150 of them are whole names, 141 are this cut sub-column, and the remaining 118 are the advertisement and the list's own heading and signature. The first pass of this claim held 128 of the 141 and the count is what found the other thirteen."
     },
     {
       "id": "c037",
       "kind": "person",
       "reading": "transcription_mediated",
       "letter_list_only": true,
-      "quote": "siei C. Clark\n& P. Card\nn Carrier\nClark\nM. Clark\nA. Curry\nC. Cono\n. Deel\nn H. Davis\nunlap\nDoty\n, C. Drake\no Downing\ny Diggin:\nH. Delamatte\nDouglass\nDolly\nunlap\nn R. Dorby\nEvert\nEasling\nr Fi her\n. Foster\nitzsimmons\n). Filer\nFowler\n1 Fornsworth\nFowler\nFish\nI. Gooding\nA. Gooding •\nGrayhem",
-      "normalized": "[…]siei C. Clark / […]& P. Card / […]n Carrier / […]Clark / […]M. Clark / […]A. Curry / […]C. Cono / […]. Deel / […]n H. Davis / […]unlap / […]Doty / […], C. Drake / […]o Downing / […]y Diggin: / […]H. Delamatte / […]Douglass / […]Dolly / […]unlap / […]n R. Dorby / […]Evert / […]Easling / […]r Fi her / […]. Foster / […]itzsimmons / […]). Filer / […]Fowler / […]1 Fornsworth / […]Fowler / […]Fish / […]I. Gooding / […]A. Gooding • / […]Grayhem",
+      "quote": "A. Curry\nC. Cono\n. Deel\nn H. Davis\nunlap\nDoty\n, C. Drake\no Downing\ny Diggin:\nH. Delamatte\nDouglass\nDolly\nunlap\nn R. Dorby\nEvert\nEasling\nFriend\nr Fi her\n. Foster\nerson\nitzsimmons\n). Filer\nFowler\n1 Fornsworth\nFowler\nFish\nI. Gooding\nA. Gooding •\njalatia 2\nGrayhem\n, Gooding\nGreen\nch Henry\nGreen\nGridley\ny Gridley",
+      "normalized": "[…]A. Curry / […]C. Cono / […]. Deel / […]n H. Davis / […]unlap / […]Doty / […], C. Drake / […]o Downing / […]y Diggin: / […]H. Delamatte / […]Douglass / […]Dolly / […]unlap / […]n R. Dorby / […]Evert / […]Easling / […]Friend / […]r Fi her / […]. Foster / […]erson / […]itzsimmons / […]). Filer / […]Fowler / […]1 Fornsworth / […]Fowler / […]Fish / […]I. Gooding / […]A. Gooding • / […]jalatia 2 / […]Grayhem / […], Gooding / […]Green / […]ch Henry / […]Green / […]Gridley / […]y Gridley",
       "locator": {
         "artifact_role": "primary",
         "issue_page": 3,
         "column": 2,
         "lines": [
-          3319,
-          3418
+          3333,
+          3439
         ],
         "lines_of_claim": [
-          3319,
-          3321,
-          3324,
-          3325,
-          3330,
           3333,
           3336,
           3341,
@@ -2856,8 +2859,10 @@
           3371,
           3373,
           3376,
+          3378,
           3381,
           3383,
+          3389,
           3392,
           3395,
           3397,
@@ -2866,34 +2871,36 @@
           3406,
           3409,
           3412,
-          3418
+          3416,
+          3418,
+          3423,
+          3427,
+          3430,
+          3433,
+          3436,
+          3439
         ],
         "interleaved": true
       },
       "entities": [],
-      "notes": "THE FIRST SUB-COLUMN OF THE SAME LIST, CUT AT THE LEFT EDGE, part 3 of 4, and it yields NO entities on purpose. Every line here is a surname or a surname with one surviving initial whose forename the column edge removed — 'Brown', 'Burnap', ', A. Blakesley', 'ck A. Howell'. Ruling 1 mints a resident from a LISTED NAME; a bare surname is not one, and there are four Browns, two Burnaps, two Fowlers, two Greens, three Gridleys and two Christys in this fragment alone, so supplying forenames would be inventing people rather than reading them. The lines are quoted in full so the list is on the record complete, and '[…]' in `normalized` marks the cut at the head of every one. The alphabetical run A-B-C-D-E-F-G-H-I-J-K is unbroken across the four claims, which is the evidence that these lines are one sub-column and not scattered damage. WHAT IS NOT ASSIGNED: lines 3258 ('D. Perk'), 3259 ('T. S. For in') and 3290-3296's neighbours sit out of alphabetical order and could belong either to this sub-column or to the advertisement woven through it; they are left out of both claims rather than assigned to one. A LATER WITNESS IS WHAT FIXES THIS: the same list stands in the four following issues of July 1834, and a different segmentation of the same page may cut it elsewhere."
+      "notes": "THE FIRST SUB-COLUMN OF THE SAME LIST, CUT AT THE LEFT EDGE, part 3 of 4, and it yields NO entities on purpose. Every line here is a surname, or a surname with one surviving initial, whose forename the column edge removed — 'Brown', 'Burnap', ', A. Blakesley', 'ck A. Howell'. Ruling 1 mints a resident from a LISTED NAME; a bare surname is not one, and there are four Browns, two Burnaps, two Fowlers, two Greens, three Gridleys and two Christys in this fragment alone, so supplying forenames would be inventing people rather than reading them. The lines are quoted in full so the list is on the record complete, and '[…]' in `normalized` marks the cut at the head of every one. The alphabetical run A-B-C-D-E-F-G-H-I-J-K is unbroken across the four claims, which is the evidence that these lines are one sub-column and not scattered damage. THE NAMES ARE MINTED ELSEWHERE: the issues of 1834-07-09 and 1834-07-16 print this same sub-column with its forenames on, and their claims carry the people. WHAT IS DELIBERATELY LEFT OUT of both this claim and the whole-name one: lines 3258 ('D. Perk'), 3259 ('T. S. For in'), 3190 ('Th'), 3214 ('gle') and 3425 ('Blai') sit out of the alphabetical run and could belong either to this sub-column or to the advertisement woven through it. They are assigned to neither. A HAND COUNT, made against this column on 2026-08-28 and the reason thirteen lines were added to this claim after it was first written: page 3 column 2 runs 409 lines from 3130 to 3538; 150 of them are whole names, 141 are this cut sub-column, and the remaining 118 are the advertisement and the list's own heading and signature. The first pass of this claim held 128 of the 141 and the count is what found the other thirteen."
     },
     {
       "id": "c038",
       "kind": "person",
       "reading": "transcription_mediated",
       "letter_list_only": true,
-      "quote": ", Gooding\nGreen\nGreen\nGridley\ny Gridley\nW. Gridiey\n). Huguenin\nfolderman\na Hunter\nHasslen\n: Holmer\nHopkins\n\" Hall\nck A. Howell\nHarbour\nHowley\nH. Hazzard\nHendrix\ns c. Holmes\n[uncertain: 1 Huriburt]\nHowland\noH. Hunt\n[uncertain: L Hardock]\n[uncertain: Hunter]\nder H. Howard\nHugunin\nF. Haria\n1 Hill\nM. Irevin\n• Jones\nJones\nKinsey",
-      "normalized": "[…], Gooding / […]Green / […]Green / […]Gridley / […]y Gridley / […]W. Gridiey / […]). Huguenin / […]folderman / […]a Hunter / […]Hasslen / […]: Holmer / […]Hopkins / […]\" Hall / […]ck A. Howell / […]Harbour / […]Howley / […]H. Hazzard / […]Hendrix / […]s c. Holmes / […][uncertain: 1 Huriburt] / […]Howland / […]oH. Hunt / […][uncertain: L Hardock] / […][uncertain: Hunter] / […]der H. Howard / […]Hugunin / […]F. Haria / […]1 Hill / […]M. Irevin / […]• Jones / […]Jones / […]Kinsey",
+      "quote": "W. Gridiey\n). Huguenin\nfolderman\na Hunter\nHasslen\n: Holmer\nHopkins\n\" Hall\nck A. Howell\nHarbour\nHowley\nH. Hazzard\nHendrix\nrick\nrrison\ns c. Holmes\n[uncertain: 1 Huriburt]\nazlet 2\nHowland\noH. Hunt\n[uncertain: L Hardock]\n[uncertain: Hunter]\nder H. Howard\nHugunin\nF. Haria\nTill\n1 Hill\nM. Irevin\n• Jones\naston\nJones\nKinsey\nimbal",
+      "normalized": "[…]W. Gridiey / […]). Huguenin / […]folderman / […]a Hunter / […]Hasslen / […]: Holmer / […]Hopkins / […]\" Hall / […]ck A. Howell / […]Harbour / […]Howley / […]H. Hazzard / […]Hendrix / […]rick / […]rrison / […]s c. Holmes / […][uncertain: 1 Huriburt] / […]azlet 2 / […]Howland / […]oH. Hunt / […][uncertain: L Hardock] / […][uncertain: Hunter] / […]der H. Howard / […]Hugunin / […]F. Haria / […]Till / […]1 Hill / […]M. Irevin / […]• Jones / […]aston / […]Jones / […]Kinsey / […]imbal",
       "locator": {
         "artifact_role": "primary",
         "issue_page": 3,
         "column": 2,
         "lines": [
-          3423,
-          3533
+          3442,
+          3536
         ],
         "lines_of_claim": [
-          3423,
-          3427,
-          3433,
-          3436,
-          3439,
           3442,
           3445,
           3448,
@@ -2907,8 +2914,11 @@
           3472,
           3473,
           3478,
+          3480,
+          3483,
           3486,
           3489,
+          3491,
           3493,
           3495,
           3497,
@@ -2916,16 +2926,19 @@
           3502,
           3505,
           3508,
+          3511,
           3513,
           3517,
           3519,
+          3522,
           3530,
-          3533
+          3533,
+          3536
         ],
         "interleaved": true
       },
       "entities": [],
-      "notes": "THE FIRST SUB-COLUMN OF THE SAME LIST, CUT AT THE LEFT EDGE, part 4 of 4, and it yields NO entities on purpose. Every line here is a surname or a surname with one surviving initial whose forename the column edge removed — 'Brown', 'Burnap', ', A. Blakesley', 'ck A. Howell'. Ruling 1 mints a resident from a LISTED NAME; a bare surname is not one, and there are four Browns, two Burnaps, two Fowlers, two Greens, three Gridleys and two Christys in this fragment alone, so supplying forenames would be inventing people rather than reading them. The lines are quoted in full so the list is on the record complete, and '[…]' in `normalized` marks the cut at the head of every one. The alphabetical run A-B-C-D-E-F-G-H-I-J-K is unbroken across the four claims, which is the evidence that these lines are one sub-column and not scattered damage. WHAT IS NOT ASSIGNED: lines 3258 ('D. Perk'), 3259 ('T. S. For in') and 3290-3296's neighbours sit out of alphabetical order and could belong either to this sub-column or to the advertisement woven through it; they are left out of both claims rather than assigned to one. A LATER WITNESS IS WHAT FIXES THIS: the same list stands in the four following issues of July 1834, and a different segmentation of the same page may cut it elsewhere."
+      "notes": "THE FIRST SUB-COLUMN OF THE SAME LIST, CUT AT THE LEFT EDGE, part 4 of 4, and it yields NO entities on purpose. Every line here is a surname, or a surname with one surviving initial, whose forename the column edge removed — 'Brown', 'Burnap', ', A. Blakesley', 'ck A. Howell'. Ruling 1 mints a resident from a LISTED NAME; a bare surname is not one, and there are four Browns, two Burnaps, two Fowlers, two Greens, three Gridleys and two Christys in this fragment alone, so supplying forenames would be inventing people rather than reading them. The lines are quoted in full so the list is on the record complete, and '[…]' in `normalized` marks the cut at the head of every one. The alphabetical run A-B-C-D-E-F-G-H-I-J-K is unbroken across the four claims, which is the evidence that these lines are one sub-column and not scattered damage. THE NAMES ARE MINTED ELSEWHERE: the issues of 1834-07-09 and 1834-07-16 print this same sub-column with its forenames on, and their claims carry the people. WHAT IS DELIBERATELY LEFT OUT of both this claim and the whole-name one: lines 3258 ('D. Perk'), 3259 ('T. S. For in'), 3190 ('Th'), 3214 ('gle') and 3425 ('Blai') sit out of the alphabetical run and could belong either to this sub-column or to the advertisement woven through it. They are assigned to neither. A HAND COUNT, made against this column on 2026-08-28 and the reason thirteen lines were added to this claim after it was first written: page 3 column 2 runs 409 lines from 3130 to 3538; 150 of them are whole names, 141 are this cut sub-column, and the remaining 118 are the advertisement and the list's own heading and signature. The first pass of this claim held 128 of the 141 and the count is what found the other thirteen."
     },
     {
       "id": "c039",

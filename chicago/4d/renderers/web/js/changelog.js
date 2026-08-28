@@ -1,4 +1,13 @@
 export const CHANGELOG = [ // newest first
+  { v: 336, title: 'Five weeks of the town\u2019s own newspaper, read', kind: 'chore', ts: '2026-08-28T16:19:47.034Z', date: 'Aug 28, 2026, 11:19 AM CT',
+    items: [
+      'Nothing you can see changed today. The Chicago Democrat for July 1834 \u2014 five issues, four dense pages each \u2014 has been read end to end, and 129 things it says about the town are now written down with the page, column and line they came from.',
+      'The best of them is a town ordinance. The trustees told the surveyor to shape South Water Street so that its crown runs along the north line of every block and the water falls into the river at each cross street. That is the profile of the town\u2019s main street, printed, a year before the day this reconstruction stands on.',
+      'Also on the record now: the harbour piers were still being filled \u2014 a thousand cords of prairie stone, wanted from the tenth of August, up to twenty-four cords a day. An auction store gave its address as the street running from the draw-bridge to the oak woods. A girls\u2019 school stood on Randolph behind the Presbyterian church, between Clark and Dearborn, at three dollars a quarter. A dwelling in Wabansia had four rooms, a kitchen, a barn and a garden. Brick, stone, lime and shingles had prices.',
+      'And 298 people. The post office\u2019s list of letters for the first of July 1834 is the closest thing this town has to a census, and it is now transcribed in full \u2014 three times over, because three issues printed it and the segmenter cut each of them differently. Where one printing lost the forenames, another kept them.',
+      'The count was checked by hand rather than trusted. Counting the lines of one printed column against the names taken out of it found twelve people the first pass had dropped \u2014 every one of them a short surname or a line the transcriber had flagged as uncertain.',
+      'A gate now refuses to let a month be declared read unless every issue in it has a file. And the tool that checks a citation against the page had been speaking the wrong dialect: it understood ninety of the deposit\u2019s twelve hundred column markers, and none at all in the issues read here. Nothing had noticed, because the pages it reads are not on this branch.',
+    ] },
   { v: 335, title: 'A fixed camera now stands on the public square', kind: 'chore', ts: '2026-08-28T12:44:18.603Z', date: 'Aug 28, 2026, 7:44 AM CT',
     items: [
       'Nothing you can see changed today. The public square \u2014 the block bounded by Randolph, Clark, Washington and LaSalle, the one block this town kept for itself \u2014 now has a fixed camera standing on it.',

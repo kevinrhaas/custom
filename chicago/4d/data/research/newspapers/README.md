@@ -23,11 +23,13 @@ A claim that cannot name its column cannot be made. Resolve the issue through
 > *Chicago Democrat*, 1835-07-01, Vol. II, No. 11, issue page 3, column 4 —
 > `chicago/reference/newspapers/Transcriptions/Chicago_Democrat_1833-11_to_1835-08/Chicago_Democrat_1835-07-01_Vol2_No11_Transcription.txt`, lines 812-819.
 
-Page and column come from the transcription's own column markers — and there are **two
-dialects of them**, which this file used to claim there was one of (corrected 2026-08-28,
-T-0257). The sixty-six issues the deposit delivered as committed `.txt` carry
+Page and column come from the transcription's own column markers — and there are **three
+dialects of them**, which this file has now been wrong about twice. The sixty-six issues
+the deposit delivered as committed `.txt` carry a ruled marker in one of three shapes:
 
     ===== ISSUE PAGE 4 / PDF PAGE 36 / COLUMN 5 OF 6 =====
+    ===== ISSUE PAGE 4 / SOURCE PDF PAGE 36 / COLUMN 5 OF 6 =====
+    ===== ISSUE PAGE 4 / ORIGINAL PDF PAGE 36 / COLUMN 5 OF 6 =====
 
 and the twenty-three extracted here from `.docx` carry the same two facts as prose
 headings, the page once and each column under it:
@@ -35,9 +37,15 @@ headings, the page once and each column under it:
     Newspaper Page 1 — Source PDF Page 13
     Column 1
 
-`tools/compile_gazetteer.py` reads both. It matters more than a formatting note: the
-twenty-three are exactly the issues resolvable on `dev`, so a tool that spoke only the
-first dialect could check a locator on no issue this branch can open.
+**The middle one is the majority and it was the one nobody had.** Counted across the
+deposit on 2026-08-28 while reading July 1834 (T-0289): 1,176 of the 1,266 ruled column
+markers say `SOURCE PDF PAGE`, 90 say `PDF PAGE`, and four say `ORIGINAL PDF PAGE`.
+T-0257's resolver matched only the bare form, so it could find a column marker in none of
+the twenty-six 1834 issues of the second half of the year. Nothing caught it because the
+gate skips the page/column assertion outright when it cannot read the text, and on `dev`
+it never can — a resolver that speaks no dialect and one that speaks all three are
+indistinguishable on this branch. `tools/compile_gazetteer.py` now reads all four shapes
+and its self-test carries a case per ruled dialect.
 
 ## Where the text is, and why it is in two places
 
@@ -89,9 +97,24 @@ Deterministic: the same deposit produces byte-identical `corpus.json` and `text/
 | `identity.json` | the only place two differently-spelled names may become one person |
 | `gazetteer.json` | **generated** by `tools/compile_gazetteer.py --build` — never hand-edited |
 
+| `coverage.json` | which ranges have been READ, so the gate can check it rather than take it on trust |
+
     tools/compile_gazetteer.py --build       recompile the gazetteer
     tools/compile_gazetteer.py --check       the gate (in check.sh)
     tools/compile_gazetteer.py --self-test   its assertions still fire
+
+**Coverage is asserted, not eyeballed** (T-0289). A reading pass declares the range it
+read in `coverage.json`; `--check` resolves that range against `corpus.json` and refuses
+if any issue inside it has no file under `extracted/`. This is the one property no other
+rule can see: every other assertion is about a claim that EXISTS, and an issue that was
+quietly skipped leaves nothing behind to fail. Add a range only once its issues are read
+— the file states work done, not work planned.
+
+**Where the deposit is not readable, run the gate against a copy of it.**
+`--deposit <path>` re-roots deposit-held citations exactly as `newspaper_corpus.py` does,
+so a reading pass on `dev` can machine-check every quote it makes against the real text
+on `main` before opening its PR, and `check.sh` on `dev` then counts those claims
+unresolved and reports them, which is green.
 
 **A claim quotes verbatim and normalizes beside it, never instead.** `quote` is the
 transcription's own text including its uncertainty brackets; `normalized` is the reading
