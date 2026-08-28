@@ -242,6 +242,17 @@ FLORA_ZONE_READS: dict[str, tuple[str, str]] = {
     # trees.js shows the July note and the common name in the timber panel.
     "species[].july.appearance": ("shown", "sp.july?.appearance"),
     "species[].common": ("shown", "sp.common ?? base.common"),
+    # T-0281 — the plants section of the Evidence panel. These two were banked as
+    # reaching nothing and are read by `renderers/web/js/plants.js` now, which is
+    # this census doing exactly what it is for: the commit that wires a figure up
+    # is the commit that reclassifies it. Both are `shown` and neither is `mesh` —
+    # nothing here changes what is planted, it changes what a visitor can read
+    # about what is planted.
+    "cover.standing_water_fraction": ("shown", "cover.standing_water_fraction"),
+    # Three of the ten communities have no modelled ground in this scene, and the
+    # card says so rather than listing them as though a visitor could walk to
+    # them. Still gated by validate.py; it is now also read.
+    "plantable_in_scene": ("shown", "zone.plantable_in_scene ?? entry.plantable_in_scene"),
 }
 
 FLORA_MANIFEST_READS: dict[str, tuple[str, str]] = {
@@ -262,6 +273,17 @@ FLORA_MANIFEST_READS: dict[str, tuple[str, str]] = {
     # Read once at boot, to report a published shape this renderer has no
     # archetype for. Nothing is drawn from the list itself.
     "vocabulary.inflorescence_shapes": ("probe", "index.vocabulary?.inflorescence_shapes"),
+    # T-0281. The manifest's closed sets are shown to a visitor under "the words
+    # on these cards", which is the wildlife section's argument (K51) applied to
+    # the plants: every chip on every card comes out of one of these lists, and a
+    # word the renderer invented would be a gloss the dataset never agreed to. So
+    # the lists are the dataset's own, and showing them is how that stays true.
+    "vocabulary.roles": ("shown", "rank(vocab.roles, a.role)"),
+    "vocabulary.substrates": ("shown", "vocab.substrates"),
+    "vocabulary.forms_flora": ("shown", "vocab.forms_flora"),
+    "vocabulary.forms_trees": ("shown", "vocab.forms_trees"),
+    # The community's own claim about whether it stands anywhere in this scene.
+    "zones[].plantable_in_scene": ("shown", "zone.plantable_in_scene ?? entry.plantable_in_scene"),
 }
 
 FLORA_PALETTE_READS: dict[str, tuple[str, str]] = {
@@ -993,8 +1015,14 @@ def self_test() -> int:
          "bare_soil_fraction: 0.45" not in src),
         ("the reverse scan sees a read it should see",
          reads_leaf(src, "cover.matrix_fraction")),
+        # THE NEGATIVE EXAMPLE HAS TO BE A FIGURE NOBODY ACTUALLY READS, so it
+        # moves when one gets wired up — which is the assertion working, not
+        # eroding. This was `cover.standing_water_fraction` until T-0281 put the
+        # plants on a card and showed it. `cover.litter_fraction` is the
+        # replacement: one record carries it, it is banked as unread, and nothing
+        # under renderers/ has ever opened it.
         ("the reverse scan does not see a field nobody reads",
-         not reads_leaf(src, "cover.standing_water_fraction")),
+         not reads_leaf(src, "cover.litter_fraction")),
         ("the parent-qualified form is used for an ambiguous leaf",
          not reads_leaf(src, "ground.rgb") and reads_leaf(src, "diffuseColor.rgb")),
         ("the layer scan sees the layer the renderer does open",

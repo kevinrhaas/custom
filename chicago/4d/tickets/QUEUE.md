@@ -48,18 +48,21 @@ T-0096 — Did the second Fort Dearborn carry a flagstaff, and can anything but 
 # --- people replacing invented ones — which is why they sit above other invisible work.
 # --- Three owner rulings govern the epic; each ticket carries them in full.
 T-0258 — Reading the Democrat, part one: November 1833 to June 1834
-T-0259 — Reading the Democrat, part two: July to December 1834
-T-0260 — Reading the Democrat, part three: January to August 1835
+T-0290 — Reading the Democrat, August 1834: Vol I Nos 36-39
+T-0291 — Reading the Democrat, September 1834: Vol I Nos 40-43
+T-0292 — Reading the Democrat, October 1834: Vol I Nos 44-48
+T-0293 — Reading the Democrat, November 1834: Vol I Nos 49-52
+T-0294 — Reading the Democrat, December 1834: Vol II Nos 1-4
+T-0296 — Reading the Democrat, 8 to 29 July 1835: the rest of the scene month
+T-0297 — Reading the Democrat, August 1835: the four issues after the scene date
+T-0298 — Reading the Democrat, January to June 1835: the eight issues only the deposit can open
 T-0261 — Reading the American: June to August 1835
 T-0262 — The July 1, 1835 register: who and what the papers put in the town
 T-0263 — The documented storefronts take their places on South Water and Lake
 T-0264 — Documented people replace the invented
 
 # --- MEASUREMENT, GATES AND PROVENANCE — invisible, and nothing below blocks the above
-T-0210 — The desktop smoke's stage 9 times out clicking the panel close, on an unmodified tree
 T-0190 — A second street tier for the street edge, and the ceiling that refuses it
-T-0164 — The rule module that decides whether a mesh is built at all now sits inside the hash of what a mesh is built from
-T-0156 — The interior/silhouette discriminator counts edges internal to a layer as interior
 T-0155 — The changelog stamper has the same after-publish trap the ticket tool just lost
 T-0136 — The eight owner-brief plates T-0075 could not identify: Andreas at page-image level, and two museum objects
 T-0055 — Hold the Kinzie-view plate as a source record
@@ -108,8 +111,11 @@ T-0275 — Back-merge main into dev: the newspaper deposit is on main, and 60 Fi
 T-0277 — The mid and forb rings' outer edges are re-priced for a density handover, now the reach statistic is honest
 T-0279 — 2,526 of 18,911 drawn flower heads stand over open ground with no plant under their own stalk, on an unmodified dev
 T-0280 — The far band's grass-or-flower split is made on the forb lattice's CLAMPED share
-T-0281 — The ten plant communities reach no card a visitor can open
 T-0283 — The North Division's warehouse row allows one freight roof and six documented ones stand above it
 T-0284 — Two slices of one batch claimed T-0256 and both built it — a claim is written where the next slice cannot see it
 T-0285 — An asset carrying its own AO map cannot batch with the town: +2 draw calls for one building
 T-0286 — The AO unwrap leaves 68.9 per cent of every atlas empty, and the map is priced as if it were full
+T-0301 — Every visible ticket at the top of the queue is parked on hold or in flight, and five straight invisible runs merged under it
+T-0299 — Three printings of one letter list mint 298 people three times, and identity.json is empty
+T-0300 — T-0258 is sized M on the measurement that split T-0259 into six
+T-0302 — The .lib-body grid resolves toward max-content under all six other Evidence sections, and only the plants section is fixed

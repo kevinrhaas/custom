@@ -9696,6 +9696,109 @@ for (const [label, viewport, touch] of [
       && /this is the research, not a population/i.test(fauna.prose),
       fauna.prose.slice(0, 200));
 
+    // --- what grows here, in the same panel (T-0281) ------------------------
+    // The third layer this project found researched, graded, cited and reaching
+    // no reader — after the animals (K51) and the households (K52) — and the one
+    // that carries a finding of its own. `data/flora/` is planted by flora.js and
+    // was on no card, so a visitor could see the sward and not judge it; and nine
+    // of the ten communities ask for more small plants than the sward lattice can
+    // hold, a fact declared in tools/forb_clamp_baseline.json and docs/STATUS.md
+    // and, until this section, nowhere a visitor reads.
+    const plants = await page.evaluate(async () => {
+      const mount = document.getElementById('plants');
+      // Open one community and one species inside it: the figures, the reasoning
+      // and the citation join are all in the collapsed half, which is exactly the
+      // half a check on the closed card cannot see.
+      const zone = mount?.querySelector('details.plant-zone');
+      if (zone) zone.open = true;
+      const sp = zone?.querySelector('details.plant-sp');
+      if (sp) sp.open = true;
+      // The dense forest is the sharpest case and the one the note names, so it
+      // is read by id rather than by position.
+      const dense = [...(mount?.querySelectorAll('details.plant-zone') ?? [])]
+        .find((d) => /z06_dense_forest/.test(d.textContent));
+      if (dense) dense.open = true;
+      await new Promise((r) => setTimeout(r, 50));
+      return {
+        zones: window.__chicago4d.plants?.zones ?? 0,
+        species: window.__chicago4d.plants?.species ?? 0,
+        clamped: window.__chicago4d.plants?.clamped ?? 0,
+        clampedZones: window.__chicago4d.plants?.clampedZones ?? 0,
+        ceiling: window.__chicago4d.plants?.ceilingPerM2 ?? 0,
+        error: window.__chicago4d.plants?.error ?? 'no plants on the handle',
+        renderedZones: mount ? mount.querySelectorAll('details.plant-zone').length : 0,
+        renderedSpecies: mount ? mount.querySelectorAll('details.plant-sp').length : 0,
+        clampChips: mount ? mount.querySelectorAll('.plant-clamped').length : 0,
+        clampLists: mount ? mount.querySelectorAll('.plant-clamp').length : 0,
+        busy: mount ? mount.hasAttribute('aria-busy') : true,
+        cites: mount ? mount.querySelectorAll('.cites .cite-text').length : 0,
+        text: mount ? mount.textContent : '',
+        denseText: (dense?.textContent ?? '').replace(/\s+/g, ' '),
+        note: document.getElementById('plants-note')?.textContent ?? '',
+        collapsed: zone ? [...mount.querySelectorAll('details.plant-zone')]
+          .filter((d) => d !== zone && d !== dense).every((d) => !d.open) : false,
+        // The section's own box, measured the way T-0281 found it broken: the
+        // mount widened past the panel and every line of reasoning was clipped
+        // at the right edge, on a grid track that resolves toward max-content.
+        fits: mount ? mount.scrollWidth <= mount.clientWidth : false,
+        overflow: document.documentElement.scrollWidth <= window.innerWidth + 1,
+      };
+    });
+    check(`${label}: the plant list loads every community`,
+      plants.zones === 10 && plants.renderedZones === 10 && !plants.busy,
+      `${plants.zones} loaded / ${plants.renderedZones} rendered (${plants.error})`);
+    check(`${label}: every species in the ten communities is on the card`,
+      plants.species === 155 && plants.renderedSpecies === 155,
+      `${plants.species} counted / ${plants.renderedSpecies} rendered`);
+    // The finding, asserted as numbers so it cannot quietly go away: ten
+    // (community, stratum, side) layers are over the lattice's ceiling, across
+    // eight communities, and each of those communities says so on its own card.
+    check(`${label}: the communities the sward lattice cannot draw say so`,
+      plants.clamped === 10 && plants.clampedZones === 8
+      && plants.clampChips === 8 && plants.clampLists === 8,
+      `${plants.clamped} clamped layer(s) in ${plants.clampedZones} community(ies), `
+      + `${plants.clampChips} chip(s) / ${plants.clampLists} list(s)`);
+    // And the number itself, read off the declaration rather than typed into the
+    // renderer. If `tools/forb_clamp_baseline.json` moves and the sidecar does
+    // not, `compile_scene.py --check` fails first; this is the other end of that
+    // rope — the figure a visitor reads is the figure the gate holds.
+    check(`${label}: the share a visitor is standing in comes off the declaration`,
+      Math.abs(plants.ceiling - 0.34602076124567477) < 1e-9
+      && /0\.5 %/.test(plants.denseText)
+      && /66\.4 plants per m²/.test(plants.denseText)
+      && /0\.346/.test(plants.denseText),
+      `ceiling ${plants.ceiling} · dense forest says `
+      + `"${plants.denseText.slice(Math.max(0, plants.denseText.indexOf('records ask')), 
+        Math.max(240, plants.denseText.indexOf('records ask') + 240))}"`);
+    check(`${label}: the note names the worst case rather than only the total`,
+      /155 plants across 10 communities/.test(plants.note)
+      && /dense forest/.test(plants.note) && /0\.5 %/.test(plants.note),
+      plants.note.slice(0, 220));
+    check(`${label}: the plant records quote their sources, not their source ids`,
+      plants.cites >= 1 && !/chicagology_prefire273/.test(plants.text),
+      `${plants.cites} citation(s) rendered`);
+    // T-0021's fault, and this section shipped it on its first render: `july
+    // .inflorescence` is a record and not a word, and handing it to a text
+    // renderer put "[object Object]" on ninety-seven species. Every assertion
+    // above passed while it did, because a card that renders the WRONG STRING
+    // renders a string. Two more fields of the same shape sit beside it.
+    check(`${label}: no figure reaches a plant's row as [object Object]`,
+      !/\[object Object\]/.test(plants.text),
+      plants.text.slice(Math.max(0, plants.text.indexOf('[object Object]') - 80), 200));
+    check(`${label}: the communities start collapsed, like every other disclosure here`,
+      plants.collapsed);
+    // The layout fault this section found, and it was NOT only this section's:
+    // `.liberties` and `.lib-body` are one-column grids on the default `auto`
+    // track, which resolves toward max-content, so a card holding one long
+    // unbreakable run widens the column and the panel clips its text instead of
+    // wrapping it. Measured at 390 px: the mount reached 419 px against a 338 px
+    // box. A check on `documentElement` alone cannot see it — the document did
+    // not overflow while every line of reasoning was being cut off — so the
+    // mount's own box is measured here.
+    check(`${label}: the plants section wraps inside the panel rather than clipping`,
+      plants.fits, `mount ${plants.fits ? 'fits' : 'is wider than its box'}`);
+    check(`${label}: the plants section does not overflow the panel`, plants.overflow);
+
     // The document's own account of what this list is. It is compiled out of
     // `docs/LIBERTIES.md` and was rendered nowhere, while the panel opened with a
     // hand-written paraphrase of it — a restatement with nothing holding it to
@@ -10273,7 +10376,31 @@ for (const [label, viewport, touch] of [
       marking.unbuilt.slice(0, 140));
     check(`${label}: the Evidence panel still does not overflow with the ground on it`,
       ground.overflow);
-    await page.click('#panel-close');
+    // T-0210, and it was the LAST frame-bound chrome click in the file. This one
+    // close timed out at ninety seconds on an unmodified tree and took the desktop
+    // half of part 9 down with it, which read as a broken control and was not one.
+    // Measured here at the click site itself, on the published mirror at 1280x800,
+    // at three machine loads on one runner:
+    //
+    //   frame cost   2.18 s      3.17 s      7.05 s
+    //   page.click   28.4 s      43.5 s      89.8 s    (13.0 / 13.7 / 12.7 frames)
+    //   clickChrome   3.9 s       6.0 s      13.5 s    ( 1.8 /  1.9 /  1.9 frames)
+    //
+    // and `elementFromPoint` answered THIS BUTTON at its own centre in all three:
+    // 26x26, enabled, uncovered, no pointer lock. So the control is fine and the
+    // cost is a CONSTANT NUMBER OF FRAMES — a `page.click` here is thirteen of
+    // them however fast the box is, which is why 90 s is not a budget but a coin
+    // toss: it is breached the moment a frame costs more than 6.9 s, and this
+    // runner reached 7.05 s with four burners on four cores. The loaded reading
+    // landed at 89.8 s against the 90 s budget with two tenths of a second to
+    // spare, which is the failure the ticket saw, caught mid-air.
+    //
+    // NOTHING IS WEAKENED BY THE SWAP. `clickChrome` asserts everything the real
+    // click asserts implicitly — the element exists, is enabled, has a real box,
+    // and is the topmost thing at its own centre — and fails in one round trip
+    // naming what covered it. T-0215 made that argument and this is the same
+    // control on the same page; the trusted-event clicks it names stay as they are.
+    await clickChrome('#panel-close');
 
     // --- free-fly -----------------------------------------------------------
     // Three properties worth pinning, all of which would rot silently:

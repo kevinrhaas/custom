@@ -38,6 +38,7 @@ import { createWharves } from './wharves.js';
 import { createBoats } from './boats.js';
 import { mountExclusions } from './exclusions.js';
 import { mountFauna } from './fauna.js';
+import { mountPlants } from './plants.js';
 import { mountResidents } from './residents.js';
 import { mountGround } from './ground.js';
 import { mountGateCensus } from './census.js';
@@ -1411,6 +1412,20 @@ async function boot() {
   api.fauna = await mountFauna({
     mount: document.getElementById('fauna'),
     noteMount: document.getElementById('fauna-note'),
+    dataBase: bases.dataBase,
+    sceneId: loaded.scene.id ?? YEAR,
+    problems,
+  });
+
+  // And what GROWS here, which flora.js has planted from the beginning and no
+  // card has ever shown. The third time this project found a researched layer
+  // reaching no reader, and the one that carries a finding of its own: nine of
+  // the ten communities ask for more small plants than the sward lattice can
+  // hold, and until this section the share a visitor actually stands in was
+  // declared in docs/STATUS.md and nowhere a visitor reads.
+  api.plants = await mountPlants({
+    mount: document.getElementById('plants'),
+    noteMount: document.getElementById('plants-note'),
     dataBase: bases.dataBase,
     sceneId: loaded.scene.id ?? YEAR,
     problems,
