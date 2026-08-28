@@ -53,3 +53,31 @@ reported unreadable at the image too, and the claim's `reading` becomes `scan_ve
 **Links:** T-0310 (the month, and the claim) · `data/research/newspapers/identity.json`
 (the rule that keeps same-surname-different-initial apart, which is what makes the bare
 surnames unmatchable) · `data/research/newspapers/README.md` § Quality is not uniform.
+
+## Update, 2026-08-28 (T-0311): there is a THIRD printing, and the images are no longer the only route
+
+T-0311 read February 1834 and found the same 1 January 1834 list printed twice more —
+**whole on 1834-02-04 (page 4, columns 2 and 3)** and woven through the poetry column on
+1834-02-11. The February issues are in the RULED dialect, transcribed one printed line to
+one file line, which is the thing the January `.docx` extraction could not do.
+
+So the claim above that "the two printings do not repair each other and the images are the
+only route" was made without two witnesses that exist, and it is half wrong:
+
+- **A to G is repaired without a scan.** 1834-02-04 page 4 column 2 sets that run one name
+  to a line. `William Cr[…]` is **William Criss**; `[?] Devoe` is **Samuel Devoe**;
+  `[uncertain: Dagenet]` is **Noel Dagenet**; `[?] Gooding` is **Jos. A. Gooding**;
+  `[uncertain: Childress]` is **James Childress**; `[uncertain: D. P. Cleviny]` is **D. P.
+  Clevinger**; `[uncertain: Orinda Guryl]` is **Orinda Gary**; `G. W. Ewin[g]` is **G. W.
+  Ewing**. About twenty names January does not carry at all are added.
+- **H to W is not.** The same printing's column 3 has every initial cut away by the crop —
+  seventy-three bare surnames, minted by nobody. January is the better witness there.
+
+What is left for this ticket is therefore the H-to-W residue, the two readings where the
+witnesses disagree (`I. K.`/`J. K. Blodgett`, `Jane Forster`/`Jane Forrister`), and the
+`scan_verified` upgrade. The identity merges the repairs imply were deliberately NOT
+declared by T-0311, because several are same-surname pairs the gazetteer refuses to merge
+and the rest turn on one damaged letter; settling them off the images is this ticket's.
+
+**Links:** T-0311 (`data/research/newspapers/coverage.json`, the 1834-02 range) ·
+`extracted/chicago_democrat_1834_02_04.json` claims c013 and c014.

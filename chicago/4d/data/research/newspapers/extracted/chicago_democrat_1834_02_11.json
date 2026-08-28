@@ -1,0 +1,298 @@
+{
+  "schema": 1,
+  "issue_id": "chicago_democrat_1834_02_11",
+  "extracted": "2026-08-28",
+  "extracted_by": "hand, T-0311 — the Democrat read, February 1834",
+  "note": "Vol. I No. 12. The issue that prints the town's MAIL TIMETABLE over the postmaster's name — four routes, their arrival days and their departure hours — reports the Chicago Academy's examination from inside the room, and carries a merchant winding up and leaving for New-York, which is ruling 3's veto in its clearest form.",
+  "claims": [
+    {
+      "id": "c001",
+      "kind": "infrastructure",
+      "reading": "transcription_mediated",
+      "quote": "1     Eikn.  N Mail arrives every Wednesda\nea     departs, Thursdays at 8 A.-M.\nOnis} Western 3     arrives overy Tuesday ; depa:\n00) ;} Thoradays at 6 A. M.\nNorthern Mail arrives every Tuesday; «\n1      parts Thursdays at 6 A. M.\nour |” Southern Mail arrives every Tuesday; «\n45,-| parts Saturdays at 6A: M.\nJ. 8. C. HOGAN, P. M.",
+      "normalized": "[Eastern] Mail arrives every Wednesda[y;] departs, Thursdays at 8 A. M. Western [Mail] arrives every Tuesday; depa[rts] Th[u]rsdays at 6 A. M. Northern Mail arrives every Tuesday; [de]parts Thursdays at 6 A. M. Southern Mail arrives every Tuesday; [de]parts Saturdays at 6 A. M. J. S. C. HOGAN, P. M.",
+      "locator": {
+        "artifact_role": "primary",
+        "issue_page": 3,
+        "column": 3,
+        "lines": [
+          2197,
+          2205
+        ]
+      },
+      "entities": [
+        {
+          "as_printed": "J. 8. C. HOGAN, P. M.",
+          "normalized": "John S. C. Hogan",
+          "role": "postmaster at Chicago",
+          "occupations": [
+            "postmaster"
+          ],
+          "associated_places": [
+            "the Post Office, Chicago"
+          ]
+        }
+      ],
+      "notes": "THE TOWN'S TRAFFIC, IN THE POSTMASTER'S OWN TABLE. Four mails serve Chicago in February 1834 — Eastern, Western, Northern and Southern — and all four ARRIVE on a Tuesday or a Wednesday and LEAVE on a Thursday or a Saturday, at six or eight in the morning. For a reconstruction this is a rhythm, not a decoration: the post office is a crowded room twice a week and empty the rest of it, and the roads into town carry a mail on named days. It also fixes the head of the stage system the next issue advertises in full (1834-02-18, claim c002 there), where the Detroit mail's connection at Chicago is the thing the timetable is built around. Hogan signs as postmaster here, on the January letter list (1834-02-04, claim c013 there) and on the scene-date issue."
+    },
+    {
+      "id": "c002",
+      "kind": "event",
+      "reading": "transcription_mediated",
+      "quote": "pointed said Delegst\nErsolved, That P.P. Beek, J. H. Col\nW Clark,\n1. N. Fullerton, be a Corresponding Com\n[uncertain: Dont Aimer.]\nRowieed, That this meeting adjourn to mr\nwith\ng. S. C. Hoess, Secy.",
+      "normalized": "[… ap]pointed said Delegat[e.] [R]esolved, That P. F. [P]eck, J. H. Col[lins, … ] W[.] Clark, [… and ] [J]. N. Fullerton, be a Corresponding Com[mittee. …] R[eso]lved, That this meeting adjourn to m[eet …] with […] J. S. C. Ho[gan], Sec[re]y.",
+      "locator": {
+        "artifact_role": "primary",
+        "issue_page": 3,
+        "column": 1,
+        "lines": [
+          1913,
+          1920
+        ]
+      },
+      "entities": [
+        {
+          "as_printed": "P.P. Beek",
+          "normalized": "P. F. W. Peck",
+          "role": "of the corresponding committee",
+          "occupations": [
+            "merchant"
+          ]
+        },
+        {
+          "as_printed": "J. H. Col",
+          "normalized": "James H. Collins",
+          "role": "of the corresponding committee",
+          "occupations": [
+            "attorney"
+          ]
+        },
+        {
+          "as_printed": "W Clark,",
+          "normalized": "[uncertain: W.] Clark",
+          "role": "of the corresponding committee"
+        },
+        {
+          "as_printed": "1. N. Fullerton,",
+          "normalized": "J. N. Fullerton",
+          "role": "of the corresponding committee"
+        },
+        {
+          "as_printed": "g. S. C. Hoess, Secy.",
+          "normalized": "John S. C. Hogan",
+          "role": "secretary of the meeting",
+          "occupations": [
+            "postmaster"
+          ]
+        }
+      ],
+      "notes": "A CHICAGO TOWN MEETING NAMES ITS CORRESPONDING COMMITTEE, and the men on it are the men whose shops this month's advertisements place: P. F. Peck at the corner of LaSalle and South Water, J. H. Collins one door east of Brewster, Hogan & Co., and the postmaster in the chair as secretary. This is the meeting the notice at the Eagle Hotel called a week earlier (1834-02-04, claim c002 there). The proceedings are cut by the column's left edge and the two names read 'W Clark' and '1. N. Fullerton' are bracketed rather than completed; a fourth committeeman may stand in the cut and is not invented."
+    },
+    {
+      "id": "c003",
+      "kind": "building",
+      "reading": "transcription_mediated",
+      "quote": "CHICAGO ACADEMY.\nWe attended the Examination of the Po\nthe institution on truay less perce\ntermination of his hrst quarter\nTo say that we were gratibe\n[uncertain: •usb ana ur abetu ?ata?epa]\nery Geography. Astronomy and the M\nor to) appeared as Familler, as all e\nhe whole school (with the",
+      "normalized": "CHICAGO ACADEMY. We attended the Examination of the [pupils of] this institution on [F]riday last, [at the] termination of [its] first quarter[. …] To say that we were gratifi[ed …] [uncertain: •usb ana ur abetu ?ata?epa] [… ] [Geog]raphy, Astronomy and the M[athematics …] appeared as familiar[ ]as all […] the whole school (with the [exception of …])",
+      "locator": {
+        "artifact_role": "primary",
+        "issue_page": 3,
+        "column": 1,
+        "lines": [
+          1921,
+          1929
+        ]
+      },
+      "entities": [],
+      "notes": "THE ACADEMY'S FIRST QUARTER ENDS, WHICH DATES ITS OPENING. The paper attended the examination the card of 1834-02-04 advertised (claim c004 there) and calls it 'the termination of [its] first quarter' — so the Chicago Academy opened about November 1833 and was a going school, teaching geography, astronomy and mathematics to a whole school of pupils, twenty months before the scene date. The subjects are the only curriculum this corpus has for it before the second term advertisement of 1834-02-25 (claim c001 there). The middle of the notice is unreadable and is left inside its bracket."
+    },
+    {
+      "id": "c004",
+      "kind": "business",
+      "reading": "transcription_mediated",
+      "quote": "\"Butter! Butter !!\nary:         POUNDS of Fresh Butter, just\nNDs             just |\n90D rN and for sale by   4\n) in=                          PETER COHEN.\nChicago, Feb. VW, 1834.",
+      "normalized": "Butter! Butter!! [… ]POUNDS of Fresh Butter, just [received] and for sale by PETER COHEN. Chicago, Feb. [11], 1834.",
+      "locator": {
+        "artifact_role": "primary",
+        "issue_page": 3,
+        "column": 3,
+        "lines": [
+          2191,
+          2196
+        ]
+      },
+      "entities": [
+        {
+          "as_printed": "PETER COHEN.",
+          "normalized": "Peter Cohen",
+          "role": "proprietor",
+          "occupations": [
+            "merchant"
+          ],
+          "associated_places": [
+            "the east end of South Water Street"
+          ]
+        }
+      ],
+      "business": {
+        "name": "Peter Cohen",
+        "proprietors": [
+          "Peter Cohen"
+        ],
+        "trade": "merchant",
+        "goods": [
+          "butter"
+        ],
+        "street": "South Water Street",
+        "placement": {
+          "class": "street_only",
+          "street": "South Water Street"
+        }
+      },
+      "ad_copy_date": {
+        "verbatim": "Chicago, Feb. VW, 1834.",
+        "iso": "1834-02-11"
+      },
+      "notes": "A DATED, PERISHABLE STOCK. Peter Cohen's standing card in this same issue sets him at 'EAST END OF SOUTH WATER-STREET' (1834-02-04 page 3 column 6 line 2761), which is the address the scene-date issue and the first issue both carry, so the street is taken from him and not from this line. What this advertisement adds is a DATE: fresh butter in quantity, advertised the day the paper went to press in the middle of February, which is a town being supplied from the country by sleigh and not by the lake. The quantity is cut and is not supplied."
+    },
+    {
+      "id": "c005",
+      "kind": "business",
+      "reading": "transcription_mediated",
+      "quote": "Tcke Farticular Notice.\nTT E subscriber having sold out hi\nStock of Goods, &e. &c. and wishing t\nleive for New-York as soon as he can make set\nthments of his accounts, he therefore request:\ndl who are indebted to him te make immediat\npayment without delay; and he hopes and con\nfidently believes that those indebted,       be\npunctual in the     ent of debts due him, anc\nthat payment should be made to him alone\nas he has not authorizedany person to set\ntle any debts due him. This notico is also t\nforbid any person trusting any one on his ac\ncount, as he will pay no         bts,\nO. T. BREED.",
+      "normalized": "Take Particular Notice. TH[E] subscriber having sold out hi[s] Stock of Goods, &c. &c. and wishing t[o] leave for New-York as soon as he can make set[t]lements of his accounts, he therefore requests [al]l who are indebted to him to make immediate payment without delay; and he hopes and confidently believes that those indebted, [will] be punctual in the [paym]ent of debts due him, and that payment should be made to him alone, as he has not authorized any person to settle any debts due him. This notice is also to forbid any person trusting any one on his account, as he will pay no [de]bts. O. T. BREED.",
+      "locator": {
+        "artifact_role": "primary",
+        "issue_page": 3,
+        "column": 4,
+        "lines": [
+          2276,
+          2290
+        ]
+      },
+      "entities": [
+        {
+          "as_printed": "O. T. BREED.",
+          "normalized": "[uncertain: O. T.] Breed",
+          "role": "merchant winding up his Chicago business",
+          "occupations": [
+            "merchant"
+          ]
+        }
+      ],
+      "business": {
+        "name": "O. T. Breed",
+        "proprietors": [
+          "[uncertain: O. T.] Breed"
+        ],
+        "trade": "merchant",
+        "goods": [],
+        "street": null,
+        "placement": {
+          "class": "none",
+          "street": null
+        }
+      },
+      "contradicts": true,
+      "notes": "RULING 3'S VETO, PRINTED. A Chicago merchant has SOLD OUT HIS STOCK and is leaving for New-York as soon as his accounts are settled — so this business does NOT stand at the scene date, and the claim carries `contradicts` so the compiler computes `built_at_scene_date: false` rather than a reader asserting it. This is the first business in the corpus to be closed by its own notice. THE SAME MAN IS ON THE JANUARY LETTER LIST five weeks earlier — the Democrat's post-office column of 1834-02-04 sets '[O]. T. Breed' among the B's (claim c013 there, line 2883) — which is what a man expects who has letters waiting and is about to leave. The forename initials are cut in the list and printed here, and the reading is bracketed in both because 'O. T.' is read off a damaged line."
+    },
+    {
+      "id": "c006",
+      "kind": "business",
+      "reading": "transcription_mediated",
+      "quote": "P. F• PECK,\nORNER OF LASALLE ARD SOUTH WATER-STARRTe.\n[uncertain: HAs someone to the cof cheap e]\nthe exigencies\n[uncertain: pistol compies, olented.]\nDry Goods, Hardware,\nGroceries, Crockery,\nBOOTS& SHOES, BATS,\nand a variety of miscellaneoue articles.",
+      "normalized": "P. F. PECK, C[O]RNER OF LASALLE A[N]D SOUTH WATER-STRE[E]TS. [uncertain: HAs someone to the cof cheap e] the exigencies [uncertain: pistol compies, olented.] Dry Goods, Hardware, Groceries, Crockery, BOOTS & SHOES, [H]ATS, and a variety of miscellaneou[s] articles.",
+      "locator": {
+        "artifact_role": "primary",
+        "issue_page": 3,
+        "column": 6,
+        "lines": [
+          2535,
+          2543
+        ]
+      },
+      "entities": [
+        {
+          "as_printed": "P. F• PECK,",
+          "normalized": "P. F. W. Peck",
+          "role": "proprietor",
+          "occupations": [
+            "merchant"
+          ],
+          "associated_places": [
+            "the corner of LaSalle and South Water streets"
+          ]
+        }
+      ],
+      "business": {
+        "name": "P. F. W. Peck",
+        "proprietors": [
+          "P. F. W. Peck"
+        ],
+        "trade": "dry goods and general merchant",
+        "goods": [
+          "dry goods",
+          "hardware",
+          "groceries",
+          "crockery",
+          "boots and shoes",
+          "hats"
+        ],
+        "street": "South Water Street",
+        "placement": {
+          "class": "corner",
+          "anchor": "the corner of LaSalle and South Water streets",
+          "offset_text": "ORNER OF LASALLE ARD SOUTH WATER-STARRTe.",
+          "offset_normalized": "C[O]RNER OF LASALLE A[N]D SOUTH WATER-STRE[E]TS",
+          "street": "South Water Street"
+        }
+      },
+      "notes": "A DOCUMENTED STOREFRONT ON A NAMED CORNER, twenty months before the scene date. The corner of LaSalle and South Water is the address the gazetteer already carries for P. F. W. Peck out of the 1835 papers; this is the same corner in February 1834, which is what a survival argument needs — the same man, the same corner, seventeen months apart, with no notice between them moving him. The trade is a general store: dry goods, hardware, groceries, crockery, boots and shoes and hats. Peck also reports the paper's weekly prices current (1834-02-04, claim c011 there)."
+    },
+    {
+      "id": "c007",
+      "kind": "business",
+      "reading": "transcription_mediated",
+      "quote": "FLOUR.\n[uncertain: 30 Be buses Fickorh]\nine Ohio FLOUR.\nBREWSTER, HOGAN & CO.\nChicago, Feb. 4, 1634.",
+      "normalized": "FLOUR. [uncertain: 30 Be buses Fickorh] [Superf]ine Ohio FLOUR. BREWSTER, HOGAN & CO. Chicago, Feb. 4, 183[4].",
+      "locator": {
+        "artifact_role": "primary",
+        "issue_page": 3,
+        "column": 6,
+        "lines": [
+          2517,
+          2521
+        ]
+      },
+      "entities": [
+        {
+          "as_printed": "BREWSTER, HOGAN & CO.",
+          "normalized": "Brewster, Hogan & Co.",
+          "role": "the firm advertising",
+          "occupations": [
+            "forwarding and commission merchants"
+          ]
+        }
+      ],
+      "business": {
+        "name": "Brewster, Hogan & Co.",
+        "proprietors": [],
+        "trade": "forwarding and commission merchants, and dealers in flour and produce",
+        "goods": [
+          "flour",
+          "hickory nuts"
+        ],
+        "street": "South Water Street",
+        "placement": {
+          "class": "street_only",
+          "street": "South Water Street"
+        }
+      },
+      "ad_copy_date": {
+        "verbatim": "Chicago, Feb. 4, 1634.",
+        "iso": "1834-02-04"
+      },
+      "notes": "THE FIRM THE STREET IS MEASURED FROM. Brewster, Hogan & Co. is the anchor Collins & Caton's office is placed against in the same month — 'one door east of Brewster, Hogan & Co., South Water street' (1834-02-04, claim c006 there) — so the firm is ON South Water Street, and the street is taken from that cross-reference rather than from this card, which gives no address at all. The placement class is `street_only` for exactly that reason: the paper puts them on a street and not at a point. The quantity of barrels and the bushels of hickory nuts beside them are cut in every printing this month and are not supplied."
+    }
+  ]
+}

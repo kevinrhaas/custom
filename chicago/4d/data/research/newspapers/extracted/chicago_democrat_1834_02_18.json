@@ -1,0 +1,366 @@
+{
+  "schema": 1,
+  "issue_id": "chicago_democrat_1834_02_18",
+  "extracted": "2026-08-28",
+  "extracted_by": "hand, T-0311 — the Democrat read, February 1834",
+  "note": "Vol. I No. 13, and the densest issue of the month for buildings a visitor could walk to: a LIVERY STABLE opening at the Point, a SMOKE HOUSE fitted up by Elston & Co., the county clerk's office moved to a building placed off Col. Owen's house, a showman exhibiting at Graves's, and the whole Illinois stage system printed with its distances, days and fares.",
+  "claims": [
+    {
+      "id": "c001",
+      "kind": "business",
+      "reading": "transcription_mediated",
+      "quote": "HE citizens of Chicago are heroby i\ned, thata LIVERY STABLE is opened\nat the Point, and that prepara-\nrations are being male to ac-\ncommodate the public, Sad-\ndle horses, single horse Carria-\nces will bo kept on band. All\nof which can be had day or pga (for Cash on-\n\\y,) st reasonable charges. Al’ property to be\ned sound aa when taken from the stable,\n7 the person hiring will be held responsible. —\nHorses kept by the day or week,\nTHOS. EPERSON & One",
+      "normalized": "[LIVERY STABLE.] [T]HE citizens of Chicago are hereby inform[ed], that a LIVERY STABLE is opened at the Point, and that preparations are being ma[d]e to accommodate the public. Saddle horses, single horse Carria[g]es will be kept on hand. All of which can be had day or [ni]g[ht] (for Cash only,) at reasonable charges. Al[l] property to be [return]ed sound as when taken from the stable, [or] the person hiring will be held responsible.— Horses kept by the day or week. THOS. E[P]PERSON & CO.",
+      "locator": {
+        "artifact_role": "primary",
+        "issue_page": 3,
+        "column": 3,
+        "lines": [
+          2349,
+          2361
+        ]
+      },
+      "entities": [
+        {
+          "as_printed": "THOS. EPERSON & One",
+          "normalized": "[uncertain: Thomas Epperson]",
+          "role": "livery stable keeper at the Point",
+          "occupations": [
+            "livery stable keeper"
+          ],
+          "associated_places": [
+            "the Point, Chicago"
+          ]
+        }
+      ],
+      "business": {
+        "name": "the livery stable at the Point",
+        "proprietors": [
+          "[uncertain: Thomas Epperson]"
+        ],
+        "trade": "livery stable",
+        "goods": [
+          "saddle horses",
+          "single-horse carriages"
+        ],
+        "street": null,
+        "placement": {
+          "class": "relative",
+          "anchor": "the Point",
+          "offset_text": "at the Point, and that prepara-",
+          "offset_normalized": "a LIVERY STABLE is opened at the Point",
+          "street": null
+        }
+      },
+      "notes": "A NEW BUILDING WITH A NAMED USE, AT THE ONE PLACE IN THIS TOWN EVERYBODY CALLS BY A NAME. 'The Point' is Wolf Point, where the branches meet, and a livery stable there in February 1834 is a stable large enough for saddle horses and single-horse carriages kept ready day or night. The notice is a CLAIM ABOUT FABRIC as much as trade: horses kept by the day or week need standing room and hay, and the stable takes property back 'sound as when taken from the stable'. WHAT IS NOT SAID is which side of which branch, what the building was made of, or whether it was new-built or taken over; none is supplied. The proprietor is set 'THOS. EPERSON & One' — the reading Thomas Epperson is bracketed, and the '& Co.' behind it is read off the same broken line."
+    },
+    {
+      "id": "c002",
+      "kind": "infrastructure",
+      "reading": "transcription_mediated",
+      "quote": "For the Information    the Public.\n_. FRY AISES OF SPLENDID FOUR HORSE\nPOST COL4GHBS,\nIN ILLINOIS.\n1 From St. Louis, by way of Carrollton, White\nHall and Jacksonville toSpringfield, twice a\n2. From St. Louis, by way of Edwardsville to\nSpringfield, twice a week, 115 miles, through | -\n3. From Springfield by way of Sh\n4. From Springfield by w          ‘Goupin Point\nand Hillsboro to Vandalle, the seat of gov.\ntwice a week, 90 miles,through in 1 1-2 days, | ,\n6. From Springfield by way of Sylvan Grove to\nBeardstown, once a week, 45 mules, through\n6. From Springfield by way Irish Grove and\nPleasant Grove to Peoria, twice a week, 70\n7. From Peoria by way of Burcan Grove and |,\nDixon's Ferry to Galena, twice a week, 160 |\"\n8. Frou Peoria by way of Hennepin to Ottawa,\nonce a week, 85 miles, through in 61-2 days,\n9. Fron Ottawa by way of Holderman’s Grove,\nWalker's Grove and Laughton's to Chicago,\nounce a week, 60 miles, through in § 1-2 days,\nRemarkg.—The conncetion at Teste Haute | ;\nwith the Cincinnati route, 1s made so as to pre-\nWith the Detroit Mail, connection is made at\nChicag@ s0 that the mail leaves  for St. Louis\ntho next morning after arriving at Chicago, and\narrivos at St. Louis in siz days from Chicago,\nINTERS, MILLS & CO,\nP. 8. The Route from Chicago to Dixon's fer-\nry and Galena, in four Horse Post Coaches,\nleaves Chicago avery  Thersdey  thus making |»\nJ. D. WINTERS & CO.\nJanuary, 1534.",
+      "normalized": "For the Information [of] the Public. [LI]NES OF SPLENDID FOUR HORSE POST COACHES, IN ILLINOIS. 1. From St. Louis, by way of Carrollton, White Hall and Jacksonville to Springfield, twice a week, 130 miles, through in 2 d[ays … ] 2. From St. Louis, by way of Edwardsville to Springfield, twice a week, 115 miles, through in 2 days, fare $5 00. 3. From Springfield by way of Sh[elbyvil]le, &c. to Terre Haute, [Indiana, … ] miles, through in 3 d[ays … ] 4. From Springfield by way [of] Goupin Point and Hillsboro to Vandal[i]a, the seat of gov[ernment,] twice a week, 90 miles, through in 1 1-2 days, fare $5 00. 5. From Springfield by way of Sylvan Grove to Beardstown, once a week, 45 mi[l]es, through [in] 1-2 a day, fare $2 50. 6. From Springfield by way [of] Irish Grove and Pleasant Grove to Peoria, twice a week, 70 m[i]les, through in 1 day, fare $4 00. 7. From Peoria by way of Bur[ea]u Grove and Dixon's Ferry to Galena, twice a week, 160 mi[l]es, throug[h] in 3 days, fare $10 00. 8. From Peoria by way of Hennepin to Ottawa, once a week, 85 miles, through in 6 1-2 days, fare $[3] 00. 9. From Ottawa by way of Holderman's Grove, Walker's Grove and Laughton's to Chicago, once a week, 60 miles, through in 5 1-2 days, fare $5 00. Remarks.—The connection at Terre Haute with the Cincinnati route, is made so as to prevent delay to persons going West or N. West. With the Detroit Mail, connection is made at Chicago so that the mail leaves for St. Louis the next morning after arriving at Chicago, and arrives at St. Louis in six days from Chicago, travelling by day[light]. [W]INTERS, MILLS & CO. P. S. The Route from Chicago to Dixon's ferry and Galena, in four Horse Post Coaches, leaves Chicago every Thursday, thus making a perfect connection with the Detroit mail. J. D. WINTERS & CO. January, 1834.",
+      "locator": {
+        "artifact_role": "primary",
+        "issue_page": 3,
+        "column": 3,
+        "lines": [
+          2370,
+          2419
+        ],
+        "lines_of_claim": [
+          2370,
+          2372,
+          2373,
+          2374,
+          2375,
+          2376,
+          2378,
+          2379,
+          2381,
+          2384,
+          2385,
+          2386,
+          2388,
+          2389,
+          2391,
+          2392,
+          2394,
+          2395,
+          2397,
+          2398,
+          2401,
+          2402,
+          2403,
+          2405,
+          2406,
+          2408,
+          2409,
+          2410,
+          2411,
+          2413,
+          2414,
+          2415,
+          2416,
+          2418,
+          2419
+        ],
+        "interleaved": true
+      },
+      "entities": [
+        {
+          "as_printed": "INTERS, MILLS & CO,",
+          "normalized": "[uncertain: Winters], Mills & Co.",
+          "role": "stage proprietors",
+          "occupations": [
+            "stage proprietor"
+          ]
+        },
+        {
+          "as_printed": "J. D. WINTERS & CO.",
+          "normalized": "J. D. Winters",
+          "role": "stage proprietor, of the Chicago-Galena route",
+          "occupations": [
+            "stage proprietor"
+          ]
+        }
+      ],
+      "notes": "HOW A VISITOR REACHED THIS TOWN, WITH THE DISTANCES, THE DAYS AND THE FARES PRINTED. Two of the nine routes touch Chicago: number 9, Ottawa by Holderman's Grove, Walker's Grove and Laughton's, ONCE A WEEK, 60 miles, $5; and the postscript's Chicago to Dixon's Ferry and Galena, leaving Chicago EVERY THURSDAY. Both are four-horse post coaches. Read against the postmaster's timetable a week earlier (1834-02-11, claim c001 there) they agree: the mails leave Chicago on Thursday, and the Galena coach leaves Thursday to meet the Detroit mail. FOR A RECONSTRUCTION this is the arrival rhythm of the town — a coach in and out on named days rather than a road with traffic on it. Two of the printed figures are internally inconsistent and are QUOTED, NOT CORRECTED: route 8 is '85 miles, through in 6 1-2 days' where the reprint a week later sets 1 1-2 (1834-02-25 line 2442), and route 9's '5 1-2 days' for 60 miles is 1 1-2 there. The reprint also sets route 9 at 80 miles against this issue's 60. The lines are interleaved with an adjoining column and the thirty-five named here are the ones the advertisement can be followed through."
+    },
+    {
+      "id": "c003",
+      "kind": "building",
+      "reading": "transcription_mediated",
+      "quote": "QMO ww GMOI33\nQUANTITY of highly flavoured Hams, | F\nFletches of Bacon, Mess and Prime Pork,\nfo be sold by D, Elston &      who acquaint} —\nthe public they have fitted up,a Smoke Howse,\nfor the smoking of Hams, Bacon, &c. Ke., and\nare prepared to commence the drying thereof.    é\nChicago, Feb. 15, 1834.                  13/¢@",
+      "normalized": "[BACON AND HAMS.] [A] QUANTITY of highly flavoured Hams, [F]l[i]tches of Bacon, Mess and Prime Pork, to be sold by D. Elston & [Co.,] who acquaint the public they have fitted up a Smoke House, for the smoking of Hams, Bacon, &c. &c., and are prepared to commence the drying thereof. Chicago, Feb. 15, 1834.",
+      "locator": {
+        "artifact_role": "primary",
+        "issue_page": 3,
+        "column": 3,
+        "lines": [
+          2362,
+          2369
+        ]
+      },
+      "entities": [
+        {
+          "as_printed": "D, Elston &",
+          "normalized": "Daniel Elston",
+          "role": "proprietor of the smoke house",
+          "occupations": [
+            "manufacturer"
+          ],
+          "associated_places": [
+            "Chicago"
+          ]
+        }
+      ],
+      "ad_copy_date": {
+        "verbatim": "Chicago, Feb. 15, 1834.",
+        "iso": "1834-02-15"
+      },
+      "notes": "A PURPOSE-BUILT STRUCTURE, DATED TO THE WEEK IT OPENED. 'They have fitted up a Smoke House, for the smoking of Hams, Bacon, &c.' — Chicago, 15 February 1834. A smoke house is a small, closed, blind building with a fire in it, and it is the kind of outbuilding a reconstruction of a working town needs and cannot invent: here one is documented, with an owner, a use and a date. WHERE IT STOOD IS NOT SAID. Daniel Elston & Co. are already in the corpus as the Chicago Soap and Candle Manufactory, whose standing card runs in the same issues (page 3 column 6, lines 2795-2800), so the same firm is running a soap and candle works and a smoke house in the same month; whether they shared a yard is not said and is not inferred. No `business` block is claimed here on purpose — the smoke house is fabric, and the firm's trade is already carried by its own card."
+    },
+    {
+      "id": "c004",
+      "kind": "building",
+      "reading": "transcription_mediated",
+      "quote": ":   REMOVAL.\nHE office of the Clerk of the Circuit and\ncounty Courts fur Cook county, i» remov-\n» the building one door West of the house\nCol. Owen,",
+      "normalized": "REMOVAL. [T]HE office of the Clerk of the Circuit and [C]ounty Courts for Cook county, is removed [to] the building one door West of the house [of] Col. Owen.",
+      "locator": {
+        "artifact_role": "primary",
+        "issue_page": 3,
+        "column": 6,
+        "lines": [
+          2760,
+          2764
+        ]
+      },
+      "entities": [
+        {
+          "as_printed": "Col. Owen,",
+          "normalized": "Col. Owen",
+          "role": "owner of the house the clerk's office is placed against",
+          "associated_places": [
+            "a house in Chicago, one door east of the clerk's new office"
+          ]
+        }
+      ],
+      "notes": "A PUBLIC OFFICE MOVES INTO A NAMED BUILDING, AND THE BUILDING IS PLACED OFF A PRIVATE HOUSE. 'The building one door West of the house of Col. Owen' is the whole of the address, and it is enough to be worth recording: it says the county's records were kept in an ordinary building in a row, not in a courthouse, and that Col. Owen's house was a landmark the town navigated by. Col. Owen is Thomas J. V. Owen, the Indian agent, whose agency house stood in the town — but THIS NOTICE DOES NOT SAY SO and the identification is not made here. Where the row was is not said. The clerk is Richard J. Hamilton, who signs the estray notices in the same issues as Clerk of the Circuit Court of Cook county."
+    },
+    {
+      "id": "c005",
+      "kind": "business",
+      "reading": "transcription_mediated",
+      "quote": "20 uo   Seperfas Flour.\nGO qt. boxes Cigars. For sale b\nJ. K. BOTSFORD,\nFab. 17.         next door to Graves’",
+      "normalized": "[… ] 20 [barrels] Superf[ine] Flour. [5]0 qr. boxes Cigars. For sale b[y] J. K. BOTSFORD, Feb. 17. next door to Graves'.",
+      "locator": {
+        "artifact_role": "primary",
+        "issue_page": 3,
+        "column": 3,
+        "lines": [
+          2340,
+          2343
+        ]
+      },
+      "entities": [
+        {
+          "as_printed": "J. K. BOTSFORD,",
+          "normalized": "J. K. Botsford",
+          "role": "proprietor",
+          "occupations": [
+            "merchant",
+            "tinsmith"
+          ]
+        }
+      ],
+      "ad_copy_date": {
+        "verbatim": "Fab. 17.",
+        "iso": "1834-02-17"
+      },
+      "notes": "BOTSFORD IS PLACED TWICE IN THIS MONTH AND THE TWO PLACES ARE NOT THE SAME WORDS. Here, on 17 February, he sells flour and cigars 'next door to Graves''; a week later his tin-ware card sets him at the 'Corner of Dearborn and Lake-sts' (1834-02-25, claim c002 there), which is the address the gazetteer already carries for him out of the second half of 1834. Both are the paper's own and neither corrects the other, so the pair is a RELATION and not a contradiction: Graves's house stood next door to the corner of Dearborn and Lake, or Botsford kept two doors. THIS CLAIM CARRIES NO `business` BLOCK ON PURPOSE — putting a second placement on the same business would overwrite the corner address with this one in the compile, and the corner is the better-witnessed of the two. The relation is recorded here in words instead, for a placement pass to spend. Graves is D. Graves, whose house the showman exhibits in the same issue (claim c007 here)."
+    },
+    {
+      "id": "c006",
+      "kind": "event",
+      "reading": "transcription_mediated",
+      "quote": "EXHIBITION.\nJoy huth ita limits, we but borrow\nOne hour of mirth, from months of sorrow.\nHE Ladies’ and Gentlemen of Chicago, are\nMost respectfully informed that Mr. Bow- |\ners, Professeur de tours Amusant, has arrived in\ntown, and will give an Exhibition at the house\nof Mr. D. Graves, on Monday evening next.",
+      "normalized": "EXHIBITION. 'Joy hath its limits, we but borrow One hour of mirth, from months of sorrow.' [T]HE Ladies' and Gentlemen of Chicago, are most respectfully informed that Mr. Bowers, Professeur de tours Amusant, has arrived in town, and will give an Exhibition at the house of Mr. D. Graves, on Monday evening next.",
+      "locator": {
+        "artifact_role": "primary",
+        "issue_page": 3,
+        "column": 3,
+        "lines": [
+          2302,
+          2309
+        ]
+      },
+      "entities": [
+        {
+          "as_printed": "Mr. Bow- |\ners,",
+          "normalized": "[uncertain: Mr. Bowers]",
+          "role": "travelling showman, 'Professeur de tours Amusant'",
+          "occupations": [
+            "showman"
+          ]
+        },
+        {
+          "as_printed": "Mr. D. Graves,",
+          "normalized": "D. Graves",
+          "role": "keeper of the house the exhibition is given in",
+          "occupations": [
+            "tavern keeper"
+          ],
+          "associated_places": [
+            "Graves's house, Chicago"
+          ]
+        }
+      ],
+      "notes": "A TRAVELLING CONJUROR PLAYS A CHICAGO ROOM ON A MONDAY EVENING IN FEBRUARY 1834, and the room is somebody's house. 'Mr. Bowers, Professeur de tours Amusant' — a professor of amusing tricks — advertises to the Ladies and Gentlemen of Chicago an Exhibition 'at the house of Mr. D. Graves'. That is a PUBLIC ROOM in a private-sounding building, which is what a tavern is, and Graves's house is the same landmark Botsford advertises next door to (claim c005 here) and Matthias Mason's smithy stands nearly opposite (1834-02-25, claim c004 there). The town had somewhere to put an audience twenty months before the scene date; how big, and in what room, is not said and is not supplied."
+    },
+    {
+      "id": "c007",
+      "kind": "notice",
+      "reading": "transcription_mediated",
+      "quote": "Look out for Trouble.\nLL persons who have or shall be found\nMA trespassing upon the fractional Section\n‘0, 29, in Township 39, north range 14 east, +\nainmonly called Hardscrabble, shall be several-\nprosecuted by the subscriber, without any re-\nard,                     BEAUBIEN.\nChicago, Dea 4, 1880.”",
+      "normalized": "Look out for Trouble. [A]LL persons who have or shall be found [t]respassing upon the fractional Section [N]o. 29, in Township 39, north range 14 east, [co]mmonly called Hardscrabble, shall be several[l]y prosecuted by the subscriber, without any re[g]ard. [J. B.] BEAUBIEN. Chicago, De[c.] 4, 183[3].",
+      "locator": {
+        "artifact_role": "primary",
+        "issue_page": 3,
+        "column": 6,
+        "lines": [
+          2735,
+          2742
+        ]
+      },
+      "entities": [
+        {
+          "as_printed": "BEAUBIEN.",
+          "normalized": "J. B. Beaubien",
+          "role": "claimant of fractional section 29, 'commonly called Hardscrabble'",
+          "associated_places": [
+            "Hardscrabble, fractional section 29, T39N R14E"
+          ]
+        }
+      ],
+      "notes": "A PLACE-NAME FIXED TO A SURVEY DESCRIPTION. 'The fractional Section No. 29, in Township 39, north range 14 east, commonly called Hardscrabble' is the town's own gloss on its own landscape, printed by the man who claimed it — the south branch settlement above the forks. For a reconstruction the value is the EQUIVALENCE, not the trespass: a named locality this project's records may cite in words is given a section, a township and a range, which is a thing a placement pass can resolve. NOT RESOLVED HERE. The signature reads only 'BEAUBIEN' in this printing and the initials are supplied from the 1834-02-04 printing of the same standing notice, which sets 'J. B. BEAUBIEN' (page 3 column 6, line 2692)."
+    },
+    {
+      "id": "c008",
+      "kind": "event",
+      "reading": "transcription_mediated",
+      "quote": "‘jinterest in the  contemplated public in:prove-\nment between Chicago and the navigable wa-/\n| tere of the Illinois river, and that we will sup-\n{port no manasa Candidate for Senator andj\nRepresentative, who will not use his influence\nin favur of the immediate commencement of|\nthat inserts improvement,\n_ Rezolved, That the proceedings of this mec-\nting be signed by the Chairmae and Secreta-\nry, and published in the Chicago Democrat.\nARMSTEAD RUNION, Ch'n.\nL. C. Cnampencatx, Sec’y.",
+      "normalized": "[… we feel a deep] interest in the contemplated public improvement between Chicago and the navigable waters of the Illinois river, and that we will support no [uncertain: manasa] Candidate for Senator and Representative, who will not use his influence in favour of the immediate commencement of that i[mportant] improvement. Resolved, That the proceedings of this meeting be signed by the Chairma[n] and Secretary, and published in the Chicago Democrat. ARMSTEAD RUNION, Ch'n. L. C. CHAMBERLAIN, Sec'y.",
+      "locator": {
+        "artifact_role": "primary",
+        "issue_page": 3,
+        "column": 3,
+        "lines": [
+          2290,
+          2301
+        ]
+      },
+      "entities": [
+        {
+          "as_printed": "ARMSTEAD RUNION, Ch'n.",
+          "normalized": "Armstead Runion",
+          "role": "chairman of the meeting"
+        },
+        {
+          "as_printed": "L. C. Cnampencatx, Sec’y.",
+          "normalized": "[uncertain: L. C. Chamberlain]",
+          "role": "secretary of the meeting"
+        }
+      ],
+      "notes": "THE CANAL IS THE ONE THING THIS COUNTY WILL NOT VOTE AGAINST, and the meeting says so in a resolution that binds its candidates. Read beside the Eagle Hotel notice (1834-02-04, claim c002 there) and the corresponding committee (1834-02-11, claim c002 there), it is the third meeting in three weeks on the same question. The chairman and secretary are not otherwise in the corpus and the secretary's surname is read Chamberlain off 'Cnampencatx' and bracketed. WHERE THE MEETING SAT is not printed in the surviving lines."
+    },
+    {
+      "id": "c009",
+      "kind": "business",
+      "reading": "transcription_mediated",
+      "quote": "Fer Sale,\n10 BARRELS WHITE FISH.\nBO do. Old Whiskey.\nGO do, Best Okio Flour, by +\n7.                    A. KINZIE.",
+      "normalized": "For Sale, 10 BARRELS WHITE FISH. [1]0 do. Old Whiskey. [5]0 do. Best Ohio Flour, by [Feb. 1]7. A. KINZIE.",
+      "locator": {
+        "artifact_role": "primary",
+        "issue_page": 3,
+        "column": 3,
+        "lines": [
+          2344,
+          2348
+        ]
+      },
+      "entities": [
+        {
+          "as_printed": "A. KINZIE.",
+          "normalized": "[uncertain: A.] Kinzie",
+          "role": "seller",
+          "occupations": [
+            "merchant"
+          ]
+        }
+      ],
+      "business": {
+        "name": "A. Kinzie",
+        "proprietors": [
+          "[uncertain: A.] Kinzie"
+        ],
+        "trade": "merchant",
+        "goods": [
+          "white fish",
+          "whiskey",
+          "flour"
+        ],
+        "street": null,
+        "placement": {
+          "class": "none",
+          "street": null
+        }
+      },
+      "ad_copy_date": {
+        "verbatim": "7.",
+        "iso": "1834-02-17"
+      },
+      "notes": "A SECOND KINZIE TRADING IN CHICAGO IN FEBRUARY 1834. John H. Kinzie's storage and forwarding card stands three columns away in the same issue with its six correspondents printed (page 3 column 6, lines 2720-2730); this is a different initial and a different trade — barrelled fish, whiskey and Ohio flour sold outright. The initial is read A. in this printing and again on 1834-02-25 ('RA KINZIE', line 2391), and it is bracketed because a single damaged letter is all that carries it. NO ADDRESS IS GIVEN in either printing, so the placement class is `none` rather than a street guessed at from the surname."
+    }
+  ]
+}
