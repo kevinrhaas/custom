@@ -1,7 +1,7 @@
 ---
 id: T-0021
 title: Census what the residents' figures reach
-state: claimed
+state: done
 epic: TOWN
 requested_by: loop
 seen: false
@@ -9,8 +9,8 @@ effort: M
 legacy_id: K52
 parent: null
 opened: 2026-08-17
-closed: null
-pr: null
+closed: 2026-08-28
+pr: 442
 claimed_by: run 8/28/2026, 2:52:03 AM CT
 blocked_on: null
 needs_bake: false
