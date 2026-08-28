@@ -1,4 +1,13 @@
 export const CHANGELOG = [ // newest first
+  { v: 331, title: 'A place to stand on the public square', kind: 'feature', ts: '2026-08-28T12:22:30.268Z', date: 'Aug 28, 2026, 7:22 AM CT',
+    items: [
+      'Open the Go-to list and there is a new place in it \u2014 the public square, the one block in the platted town that was never lots for sale. You arrive at its Clark and Washington corner, looking across it, and nothing was offering you that view until today.',
+      'What fills the frame is the square\u2019s own ground. Five days ago this block stopped growing ordinary prairie and started growing sedge meadow, because three separate accounts of it describe wet ground and one remembers it as a pond. That change covered a whole city block and there was no place a visitor could stand to see it.',
+      'Two of the county\u2019s three public buildings are in the view: the estray pen at the far corner on your left, which was the first public building Chicago ever put up, and the log jail at the corner beyond it on your right. Neither had anywhere to be looked at from either.',
+      'The court-house is not in the frame and cannot be. The three buildings sit on three different corners of a block a hundred metres square, so no one standing on it can hold all three at once on a phone, and standing far enough back to gather them would put every one of them in the haze.',
+      'Where you arrive was not chosen by eye. The corner is the block\u2019s own surveyed corner, six metres in; the direction you face splits the difference between the two buildings exactly, so neither is nearer the edge of the picture than the other.',
+      'The measuring rig that photographs this reconstruction from fixed points now stands here as well, and took its first reading of the square today \u2014 the same frame four times over, identical to the pixel each time.',
+    ] },
   { v: 330, title: 'How many flowers you see, and the ceiling that decides it', kind: 'chore', ts: '2026-08-28T11:05:25.411Z', date: 'Aug 28, 2026, 6:05 AM CT',
     items: [
       'Nothing in the town moved today. Open the Evidence panel, go to the list of the liberties this project takes, and there is a new one \u2014 about how many flowers you are actually standing in.',

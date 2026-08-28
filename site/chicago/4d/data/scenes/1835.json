@@ -78,6 +78,14 @@
       "pitch_deg": -6.0
     },
     {
+      "id": "public_square",
+      "label": "The public square, from its Clark and Washington corner",
+      "local_e": 561.0,
+      "local_n": -371.8,
+      "yaw_deg": 292.0,
+      "note": "T-0224. The public square is the one platted block the town held in common (blk_randolph_lasalle, data/reconstruction/1835_reserved_ground.json) and it carries the county's only three public buildings, and until this anchor a visitor was offered no way to stand on it. NOT ONE NUMBER HERE IS AUTHORED. The block's inside corners are the ones data/structures/log_jail.json derives and quotes (UTM 447538.25/4637130.78 NW through 447639.80/4637018.05 SE); through data/datum.json those are local (465.55, -265.02) NW and (567.10, -377.75) SE, and the stand is 6 m inside the Clark-and-Washington corner. Ground 0.875 m on the committed heightfield, which is flat to 0.04 m across the whole block. The bearing is the BISECTOR of the two buildings the stand is there to carry: the estray pen at the south-west corner bears 266.6 deg and the log jail at the north-west corner 316.9 deg, so each sits 25.2 deg off centre, inside the 28.2 deg half-frame a 390x780 phone actually draws. THE 1835 COURT-HOUSE IS NOT IN THIS FRAME and no stand on this block can hold all three - they sit on three different corners of a 101 x 112 m block, so their angular spread from anywhere on it is over 90 deg against a 56 deg mobile frame, and standing back far enough to gather them would put every one past 200 m. What the frame is FOR is the ground: T-0027 replanted this block as sedge meadow and nothing in this project could show that in a picture."
+    },
+    {
       "id": "from_above",
       "label": "From above \u2014 the whole town",
       "local_e": 60.0,

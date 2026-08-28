@@ -1,5 +1,77 @@
 # STATUS
 
+## Shipped 2026-08-28 — T-0224: the public square gets a place to stand, and its first reading
+
+**T-0027 replanted a whole platted block and nothing in this project could show it in a picture.**
+The public square — `blk_randolph_lasalle`, the one block the town held in common — grows sedge
+meadow instead of wet prairie since 2026-08-23, and that change was verified by a zone lookup and a
+zero-pageerror pass, never by a frame. `tools/critic_shots.mjs` had no stand on or facing the block,
+and neither did the visitor: **the county's own three public buildings, which are the only public
+buildings in this town, had no viewpoint of any kind.**
+
+**It is a SCENE ANCHOR and not a rig-only pose, which is the whole difference.** The harness's own
+head says it: *"If a future station wants a new capability, the answer is a scene anchor in
+`data/scenes/`, not a new hook in the renderer"* — and an anchor station is driven by `goTo`, so the
+rig cannot drift from a viewpoint a visitor is offered. So `public_square` goes into
+`data/scenes/1835.json`, the Go-to list gains a row by construction (`hud.js` builds that list from
+the scene), and `critic_shots.mjs` picks the station up without being told: its station list reads
+the anchor count out of the file rather than carrying it as a number, which is what made this a
+one-line change to the rig instead of a new array. Eleven anchors now, plus the three re-established
+sweep stands — **fourteen stations**, against the eleven the 2026-08-14 baseline table below was shot
+at.
+
+**NOT ONE COORDINATE IS AUTHORED.** The block's inside corners are the ones
+`data/structures/log_jail.json` derives and quotes for its own placement (UTM 447538.25 / 4637130.78
+NW through 447639.80 / 4637018.05 SE); through `data/datum.json` those are local (465.55, −265.02) NW
+and (567.10, −377.75) SE. The stand is set 6 m inside the Clark-and-Washington corner at **(561.0,
+−371.8)**, ground **0.875 m** on the committed heightfield — which is flat to **0.04 m** across the
+whole 101 × 112 m block, 0.865 to 0.905, the same "inside the spec's own micro-relief noise" the
+reserved-ground record states. So this stand measures the SWARD and not a landform.
+
+**The bearing is a bisector, not a taste.** 292° puts the estray pen (local 468.50, −377.31; the
+square's south-west corner, and Chicago's first public building, March 1833) at **266.6°** and the
+log jail (465.55, −269.59; the north-west corner, fall 1833) at **316.9°** — **25.2° either side of
+centre**, inside the **28.2°** half-frame a 390×780 phone actually draws. `main.js` holds a 76°
+horizontal Hor+ field and lets the vertical follow; at portrait aspect the 94° vertical clamp bites
+and cuts the real horizontal field to about 56°.
+
+**And the court-house is not in the frame, which is a finding rather than a compromise.** No stand on
+this block can hold all three buildings. They sit on three different corners of a 101 × 112 m block,
+so from anywhere on it their angular spread is over 90° against a 56° mobile frame; the 1835
+court-house (559.25, −271.04) bears **359.0°** from this stand, 67° off centre. Standing back far
+enough to gather all three puts every one of them past 200 m, which measures fog rather than
+buildings. Two of three, at 94 m and 139 m, is what this block can actually be photographed as.
+
+**The row is a reading and not a target** — the acceptance's own words, and it was taken four times.
+The station was shot through the pose, then through the anchor's `goTo`, and twice more under
+`--stability`'s separate-browser contract: **four independent browser processes, one sha256 per
+viewport** (`33bcc1fefd74` mobile, `94933026b322` desktop), byte-identical every time, pitch 0.0° as
+declared, **zero page errors** at both. Eye 2.55 m, which is the 0.875 m ground plus the walker's own
+1.68 m — the stand landed on the ground it was computed against.
+
+**What the numbers say about this frame.** Sky is half of it (0.494 desktop / 0.499 mobile), which is
+what an open block on a flat plain looks like. Shadows do NOT clip here — **0 literal black pixels at
+both viewports**, against 12,063 at `river_bank` and 11,015 at `first_post_office` in the 2026-08-14
+table — and the darkest decile reads L 11.0 / 11.4, the closest any station has stood to the §5 floor
+of L ≥ 14 without the aerial's help. The recipe's flower load is 0.0005 mobile against 0.0032
+desktop, a sixfold split between two viewports of the same ground, which is the mobile flower cut
+(v323) showing up in a metric rather than in an adjective; measured by subtraction the bloom is
+0.0059 / 0.0047 of ground, and the recipe's own recall here is **0.2 % mobile and 1.2 % desktop** —
+the worst recall this rig has recorded anywhere, on ground whose bloom is mostly sedge-meadow forbs.
+
+**The most expensive stand the rig has ever stood at, and it is inside its budget.** 165 draw calls
+and **1,024,051 triangles** desktop, 158 and 946,928 mobile, at `full` — against `DETAIL.full`'s
+1,400,000-triangle ceiling and `BUDGET.drawCalls` of 215. Inside both, with 27 % and 23 % of room.
+But it is well past the 2026-08-14 table's worst (`prairie_west`, 97 calls / 618,686 triangles), and
+past the 141 desktop / 137 mobile `full` reaches the smoke's own five-stand ceiling check last
+recorded. **Filed as T-0285**: the scene-detail ceilings are gated at five stands and this is not one
+of them, so the gate may not be standing at the worst place in the town. Not fixed here, and not
+claimed as a breach — it is a reading, taken with a rig that had never been pointed at this block.
+
+**What did NOT change.** No structure record, no footprint, no confidence, no liberty, no terrain and
+no flora. The town is exactly the town it was; what is new is a place to stand in it and a row in the
+baseline.
+
 ## Shipped 2026-08-28 — T-0282: the shrub stratum joins the ceiling declaration, and a visitor can read it
 
 **T-0019 declared the forb lattice's ceiling this morning and the declaration could not see half of
@@ -12069,6 +12141,41 @@ re-shot on one build on 2026-08-23 so the move can be read separately from the t
 top of this file. No other station in these tables moved; `newberry_dole_wharf` (T-0041) and
 `north_branch_bridge_deck` (T-0001) were added to the scene afterwards and have no row here at all,
 so the rig now stands at **thirteen** stations against this table's eleven.
+
+### Added 2026-08-28 — `public_square`, the twelfth row (T-0224)
+
+**A row, not a re-shoot.** The eleven rows above are the 2026-08-14 baseline and are left exactly as
+they were; this is one station added to the rig on 2026-08-28 and read on that day's tree, so it is
+NOT comparable to them — the town has grown by more than a hundred roofs in between and the flora
+layer has been rebuilt twice. It is here because the acceptance for T-0224 asks for the row to be
+named in this file, and because the next reading of this station needs something to be a delta from.
+
+The stand is the scene anchor `public_square` in `data/scenes/1835.json` — local **(561.0, −371.8)**,
+**yaw 292°**, ground 0.875 m, 6 m inside the Clark-and-Washington corner of `blk_randolph_lasalle`.
+Every figure below was taken by `node tools/critic_shots.mjs --metrics --stations public_square` on
+the source tree, and reproduced byte-for-byte in four separate browser processes.
+
+| viewport | timber all | timber centre | crown fine | crown G−B | decile L | literal black px | RMS far/mid/near | flower load | bloom of ground | draws / triangles |
+|---|---|---|---|---|---|---|---|---|---|---|
+| desktop 1280×800 | 0.702 | 0.761 | 0.757 | 15.5 | 11.03 | **0** | 14.6 / 22.5 / 26.1 | 0.0032 | 0.0047 | 165 / 1,024,051 |
+| mobile 390×780 | 0.849 | 0.811 | 0.652 | 15.1 | 11.38 | **0** | 21.9 / 27.6 / 20.2 | 0.0005 | 0.0059 | 158 / 946,928 |
+
+Three things in that table are worth reading rather than filing:
+
+- **No literal black, at either viewport.** Every other station that stands on open ground clips
+  somewhere — 12,063 pixels at `river_bank`, 11,015 at `first_post_office`, 2,315 at
+  `prairie_south`. This block has no wall, no eave and no bank on it, and the darkest decile reads
+  L 11.0 / 11.4, the nearest any station has come to the §5 floor of L ≥ 14 without flying.
+- **The recipe's flower load differs sixfold between the two viewports of the same ground** —
+  0.0032 desktop against 0.0005 mobile. That is the mobile distant-flower cut (v323, a decision
+  and not a fault) landing in a number for the first time. Measured by subtraction the bloom is
+  0.0047 / 0.0059 of ground, so the recipe's own **recall is 1.2 % desktop and 0.2 % mobile** —
+  the worst this rig has recorded, and consistent with R-W4c's account of the hue cut running
+  through a July prairie's own bloom.
+- **It is the dearest stand the rig has.** 165 calls / 1,024,051 triangles desktop, inside the
+  215-call budget and the 1,400,000-triangle `full` ceiling, and well past the 2026-08-14 worst
+  (`prairie_west`, 97 / 618,686). Filed as **T-0285** — the smoke gates the ceilings at T-0135's
+  five stands, and this is not one of them.
 
 **What the baseline says, against the RENDERING §5 targets.**
 

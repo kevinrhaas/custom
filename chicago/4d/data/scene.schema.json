@@ -81,6 +81,10 @@
           "label": {
             "type": "string"
           },
+          "note": {
+            "type": "string",
+            "description": "Where this viewpoint's coordinate comes from. An anchor is an authored camera and not a claim about 1835, but its NUMBERS can still be derived rather than chosen \u2014 public_square's are read off the platted block's own committed corners \u2014 and this project does not carry a derived number without its derivation beside it. Free text, read by nobody at runtime."
+          },
           "local_e": {
             "type": "number"
           },

@@ -110,8 +110,12 @@ const ENTRY = PUBLISHED ? '/walk/' : '/renderers/web/index.html';
 /**
  * THE STATIONS.
  *
- * The eight scene anchors come from `data/scenes/1835.json` and are driven by
+ * The scene anchors come from `data/scenes/1835.json` and are driven by
  * `goTo`, so the harness cannot drift from the viewpoints a visitor is offered.
+ * There were eight when this rig was built and there are eleven now; the count
+ * is read from the file rather than written down here, so a new anchor joins the
+ * rig without anyone remembering to add it — which is how `public_square`
+ * (T-0224) arrived, as a place a visitor is offered and not as a rig-only pose.
  *
  * The three prairie-sweep stations are poses, not anchors, and they are
  * RE-ESTABLISHED rather than recovered: the 2026-08-10 sweep's own coordinates
@@ -169,9 +173,9 @@ if (PICK.length && !ALL_STATIONS.length) {
 /**
  * `--stations a,b,c` — shoot a subset, WHILE ITERATING ONLY.
  *
- * The full rig is eleven stations at two viewports and takes about twelve
- * minutes, which is the right cost for a baseline and the wrong cost for the
- * tenth trial of a constant. A phase that has to wait twelve minutes to see a
+ * The full rig is fourteen stations at two viewports — eleven scene anchors and
+ * three re-established sweep stands — and takes something over twelve minutes, which is the right cost for a baseline and the wrong cost for
+ * the tenth trial of a constant. A phase that has to wait twelve minutes to see a
  * number tunes by eye instead, which is the failure G0 exists to end.
  *
  * It is deliberately NOT a way to report a subset as a result: a phase quotes
@@ -364,7 +368,7 @@ async function round(viewportName, viewport, dir) {
       // Eight frames: the first carries the teleport and the rest let the
       // camera-driven rebuilds settle — the flora rings, the tree horizon and
       // the terrain's own solve all re-run on arrival, and three frames left
-      // four of the eleven stations still moving between rounds. They advance no
+      // four of the then eleven stations still moving between rounds. They advance no
       // time; the clock is held, so this costs frames and not a second of wind.
       for (let i = 0; i < 8; i++) await api.capture(4);
       const stats = api.stats();
