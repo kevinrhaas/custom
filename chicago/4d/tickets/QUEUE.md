@@ -29,7 +29,6 @@ T-0028 — Build out the NEXT anonymous block (one per run)
 T-0192 — The cross streets' own frontages get the street edge
 
 # --- THE RIVER, THE WHARVES AND THE GROUND — visible
-T-0226 — North Water Street runs inside the water mask for 477 m and draws no ribbon at all
 T-0219 — Finish the heightfield SOUTH to Madison Street, the plat's last tier
 
 # --- THE FORT — visible, mostly small
@@ -97,3 +96,4 @@ T-0246 — log_jail stands on two steps of Randolph Street's new plank walk, the
 T-0247 — The light tier draws 83 calls against the 80-call floor restored yesterday, on an unmodified dev
 T-0252 — Decide once whether a baked town carries the nine renderer-drawn layers, or none of them
 T-0253 — May an invented building stand on the river margin of a platted street corridor
+T-0254 — North Water Street west of the slough, and the crossing it needs

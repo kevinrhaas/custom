@@ -1,4 +1,13 @@
 export const CHANGELOG = [ // newest first
+  { v: 312, title: 'North Water Street is a street again', kind: 'fix', ts: '2026-08-28T03:13:16.211Z', date: 'Aug 27, 2026, 10:13 PM CT',
+    items: [
+      'Walk the north bank of the river and there is a road under your feet. There was none \u2014 not a short stretch missing, not a rough patch: no roadway at all along the whole of North Water Street, for as long as anyone had been able to walk there.',
+      'The street was in the river. Its line ran 477 of its 843 metres inside the water, so the town drew nothing on it, exactly as it is supposed to when a road is asked to paint across a channel. Three of its six corners stood in the main stem.',
+      'Two records disagreed, and only one of them could be wrong. The riverbank is traced from an 1834 survey, with the method and the margin of error written down. The street was a line drawn by eye \u2014 its own note said so \u2014 and it missed the bank by up to 86 metres, four times anything the tracing could explain. The town had already settled the same argument once, when it placed the houses on this bank and ruled that the water wins.',
+      'So the street was redrawn from the bank rather than beside it, by a tool that anyone can re-run: its south edge laid on the water\u2019s edge, the centre half a street\u2019s width north of that. The bank was not touched.',
+      'It now runs 807 metres of dry roadway, from the slough east to the fort road, past the houses that have been standing there facing nothing. Four freight sheds below the Dearborn draw have stepped back with it \u2014 they were placed off the old line, and the corrected road ran straight through them.',
+      'It stops at the slough, and that is honest rather than tidy. A small creek documented on the 1834 map crosses the street\u2019s west end, and a road may not be painted over water \u2014 the town\u2019s two other creek crossings are built bridges. That one is filed as its own piece of work.',
+    ] },
   { v: 311, title: 'South Water Street gets its first fixed corner', kind: 'chore', ts: '2026-08-28T03:04:39.784Z', date: 'Aug 27, 2026, 10:04 PM CT',
     items: [
       'One small thing IS different: open Go to and the list of surveyed crossings you can jump straight to has gone from four to five. The new one is South Water Street and Franklin Street. Everything else here is about why it can be there.',

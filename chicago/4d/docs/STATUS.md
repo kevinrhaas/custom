@@ -832,13 +832,35 @@ ribbon reaches the full mitre point, so subdividing that side would pull the rib
 recorded width and open a gap on the inside of the turn to close one on the outside. The asymmetry is
 forced by the geometry, not chosen.
 
-### Found and filed rather than fixed: T-0226
+### Found and filed rather than fixed: T-0226 — and CLOSED 2026-08-28
 
-Three of North Water Street's six bends carry no joint question at all, because its committed
-centreline runs **inside the water mask** and no ribbon may be drawn there — the first reading of this
+Three of North Water Street's six bends carried no joint question at all, because its committed
+centreline ran **inside the water mask** and no ribbon may be drawn there — the first reading of this
 instrument reported them as 33.8 m2 of uncovered ground apiece and it was the tool that was wrong, not
 the town. The nominal ribbon is now defined as ground the module is ALLOWED to paint, and those bends
 are counted separately so they cannot hide.
+
+**T-0226 settled it, and the street was the record that was wrong.** 477.4 m of its 843.3 m stood in
+the river. The bank is a Wright 1834 trace with a stated ±20 m; the street line was a hand-drawn
+schematic that said so in its own note, graded `reconstructed`, standing on no control, and missing
+the bank by up to 86 m — 4.3× that uncertainty. The North Division placement recipe had already ruled
+in writing that *"proximity to North Water Street never overrides the authoritative water mask"*, and
+not one building in the town was placed against the old line. So the bank was left alone and the
+street was re-derived FROM it by `tools/derive_north_water.py`, gated in `check.sh`: the platted
+corridor's south line on the bank, the centreline 12.192 m north of it. Six bends,
+`[240, 136.5] [560, 106.2] [780, 110.2] [830, 108.5] [920, 190] [970, 270]`, 807.3 m of centreline
+with none of it wet, and the probe reads **0 bends refused for water** where it read 3. The full
+reasoning is `docs/RESEARCH/north_water_street_and_the_bank.md`. The bend list above is the reading
+taken before that, and north_water's sharp bend is now 44.1 degrees at `[830, 108.5]`.
+
+Two consequences, both carried in the same change. The four `north_bank_shed_dearborn_*` records
+derive their coordinate from this street's north edge, and left where they were they would have had
+the corrected roadway drawn through them — 0.12 to 2.73 m from the new centreline against a 3.0 m
+half-width — so they were re-derived by their own unchanged rule and stand 2.00 m back from the
+track's north edge again. And the street's west terminus is now the east shoulder of the attested
+north-side slough rather than a point 85.8 m out in the river: a ribbon may not paint a watercourse
+and this town's other two slough crossings are modelled structures, so **T-0254** carries the reach
+west of it.
 
 ### The picture
 
@@ -4219,13 +4241,17 @@ building stood there at all, and `docs/LIBERTIES.md` **L164** claims all 44 inve
 **Where they stand, and it is a rule rather than a hand.** A tier-5 pictorial may drive massing,
 form, materials and setting and may never drive a coordinate, so the plate decides only THAT sheds
 stood here. The front wall is set 2.00 m back from the north edge of North Water Street's committed
-track at each station, squared to the street's own bearing there, and every corner has to stand on
+track at each station, squared to the street's own bearing there — re-run on 2026-08-28 against the
+line T-0226 corrected, which moved all four about 13 m north and dropped their bearing from 5.6-8.0
+to 1.04 degrees; the rule did not change, its input did — and every corner has to stand on
 modelled ground above the water with ≤ 0.35 m of relief across the rectangle — the clause the infill
 generators hold themselves to. All four clear the platted corridors, the committed footprints and
 each other.
 
-**Two limits stated in the open.** (1) They stand 4.5–10.5 m back from the traced 1834 waterline
-with the river street between, not on the bank edge where the plate reads them: the modelled bank
+**Two limits stated in the open.** (1) They stand 17.2–17.4 m back from the traced 1834 waterline
+with the river street between (4.5–10.5 m before T-0226 corrected that street's line, which now
+carries a full platted corridor between them and the water), not on the bank edge where the plate
+reads them: the modelled bank
 climbs from water to plateau in three to four metres, and a building on that slope fails the relief
 clause. T-0004 (raise and graduate the banks) is what would change the answer. (2) **The south bank
 is empty for a measured reason.** At the Dearborn reach the platted South Water Street corridor
