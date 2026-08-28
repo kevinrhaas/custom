@@ -29,7 +29,6 @@
 # --- THE TRIANGLE BUDGET — invisible, and it gates EVERY visible ticket that adds geometry
 
 # --- THE TOWN AND ITS STREETS — visible
-T-0028 — Build out the NEXT anonymous block (one per run)
 T-0192 — The cross streets' own frontages get the street edge
 
 # --- THE RIVER, THE WHARVES AND THE GROUND — visible

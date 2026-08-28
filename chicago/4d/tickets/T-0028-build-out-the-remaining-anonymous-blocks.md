@@ -1,7 +1,7 @@
 ---
 id: T-0028
 title: Build out the NEXT anonymous block (one per run)
-state: claimed
+state: done
 epic: TOWN
 requested_by: loop
 seen: true
@@ -9,8 +9,8 @@ effort: M
 legacy_id: T-A13+
 parent: null
 opened: 2026-08-17
-closed: null
-pr: null
+closed: 2026-08-28
+pr: 456
 claimed_by: run 8/28/2026, 4:22:23 AM CT
 blocked_on: null
 needs_bake: true
