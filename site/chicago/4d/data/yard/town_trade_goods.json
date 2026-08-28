@@ -9,15 +9,15 @@
   "counts": {
     "frontages": 26,
     "objects": 148,
-    "wagons": 65,
+    "wagons": 63,
     "wagons_by_kind": {
-      "farm_box": 27,
-      "covered": 23,
+      "farm_box": 26,
+      "covered": 22,
       "cart": 15
     },
-    "wagons_at_street_verges": 59,
+    "wagons_at_street_verges": 57,
     "wagons_in_yards": 3,
-    "wagon_stands_refused": 38,
+    "wagon_stands_refused": 40,
     "benches": 1,
     "sheds": 1,
     "marked_objects": 148,
@@ -3845,23 +3845,6 @@
       "note": "A covered emigrant wagon standing at the verge of Lake Street, and it is HERE because the rule put it here. The owner asked for the town's wagons, 2026-08-18: 'there can be more wagons! of course there would be more wagons all over the place in a frontier town.' He gave no place, so the place is derived: a stand is offered every 48 m along this street's committed centreline (its traffic class is 'principal'), at the verge 1.05 m clear of the travelled track, drawn up along the road and facing the way traffic on this side of it goes. THE TEAM IS NOT DRAWN and never will be: this project models no animal in the scene, so the wagon stands unhitched with its tongue down on the ground and its ox-yoke laid by on the grass. Everything about it is invented — that it stood here at noon on 1 July 1835, whose it was, and what it was carrying, which is why it carries no mark of any kind: docs/LIBERTIES.md L162."
     },
     {
-      "id": "town_wagon_lake_17",
-      "kind": "farm_box",
-      "stands_on": "lake",
-      "belongs_to": null,
-      "tilt": false,
-      "yoke": false,
-      "confidence": "reconstructed",
-      "at_local_enu_m": [
-        471.92,
-        -120.57
-      ],
-      "bearing_deg": 270.5,
-      "drawn_up": "along the road",
-      "clear_of_track_m": 1.05,
-      "note": "A farm box wagon standing at the verge of Lake Street, and it is HERE because the rule put it here. The owner asked for the town's wagons, 2026-08-18: 'there can be more wagons! of course there would be more wagons all over the place in a frontier town.' He gave no place, so the place is derived: a stand is offered every 48 m along this street's committed centreline (its traffic class is 'principal'), at the verge 1.05 m clear of the travelled track, drawn up along the road and facing the way traffic on this side of it goes. THE TEAM IS NOT DRAWN and never will be: this project models no animal in the scene, so the wagon stands unhitched with its tongue down on the ground. Everything about it is invented — that it stood here at noon on 1 July 1835, whose it was, and what it was carrying, which is why it carries no mark of any kind: docs/LIBERTIES.md L162."
-    },
-    {
       "id": "town_wagon_lake_18",
       "kind": "covered",
       "stands_on": "lake",
@@ -3928,23 +3911,6 @@
       "drawn_up": "along the road",
       "clear_of_track_m": 1.05,
       "note": "A farm box wagon standing at the verge of Lake Street, and it is HERE because the rule put it here. The owner asked for the town's wagons, 2026-08-18: 'there can be more wagons! of course there would be more wagons all over the place in a frontier town.' He gave no place, so the place is derived: a stand is offered every 48 m along this street's committed centreline (its traffic class is 'principal'), at the verge 1.05 m clear of the travelled track, drawn up along the road and facing the way traffic on this side of it goes. THE TEAM IS NOT DRAWN and never will be: this project models no animal in the scene, so the wagon stands unhitched with its tongue down on the ground. Everything about it is invented — that it stood here at noon on 1 July 1835, whose it was, and what it was carrying, which is why it carries no mark of any kind: docs/LIBERTIES.md L162."
-    },
-    {
-      "id": "town_wagon_lake_22",
-      "kind": "covered",
-      "stands_on": "lake",
-      "belongs_to": null,
-      "tilt": true,
-      "yoke": true,
-      "confidence": "reconstructed",
-      "at_local_enu_m": [
-        711.91,
-        -122.52
-      ],
-      "bearing_deg": 270.5,
-      "drawn_up": "along the road",
-      "clear_of_track_m": 1.05,
-      "note": "A covered emigrant wagon standing at the verge of Lake Street, and it is HERE because the rule put it here. The owner asked for the town's wagons, 2026-08-18: 'there can be more wagons! of course there would be more wagons all over the place in a frontier town.' He gave no place, so the place is derived: a stand is offered every 48 m along this street's committed centreline (its traffic class is 'principal'), at the verge 1.05 m clear of the travelled track, drawn up along the road and facing the way traffic on this side of it goes. THE TEAM IS NOT DRAWN and never will be: this project models no animal in the scene, so the wagon stands unhitched with its tongue down on the ground and its ox-yoke laid by on the grass. Everything about it is invented — that it stood here at noon on 1 July 1835, whose it was, and what it was carrying, which is why it carries no mark of any kind: docs/LIBERTIES.md L162."
     },
     {
       "id": "town_wagon_lake_23",
@@ -4648,6 +4614,16 @@
       "stand": "lake 14",
       "street": "Lake Street",
       "why": "on the left verge, it reaches into the Wells Street travelled track, which is where a visitor walks. Nothing on this layer is drawn in a roadway."
+    },
+    {
+      "stand": "lake 17",
+      "street": "Lake Street",
+      "why": "on the right verge, it stands on the plank walk blk_south_water_lasalle_south_crossing_over_lake (T-0119). A footway is a floor and a wagon parked across it is the town's own Ordinance 9 complaint, drawn."
+    },
+    {
+      "stand": "lake 22",
+      "street": "Lake Street",
+      "why": "on the right verge, it stands on the plank walk blk_south_water_dearborn_south_crossing_over_lake (T-0119). A footway is a floor and a wagon parked across it is the town's own Ordinance 9 complaint, drawn. · on the left verge, it stands on the plank walk blk_south_water_dearborn_south_crossing_over_lake (T-0119). A footway is a floor and a wagon parked across it is the town's own Ordinance 9 complaint, drawn."
     },
     {
       "stand": "lasalle 5",

@@ -822,8 +822,8 @@
     "old_bank_building__frame_1834.glb": {
       "archetype": "frame_storefront",
       "baked_ao": false,
-      "bytes": 40892,
-      "inputs_sha256": "a00c3a9988b28e58cfc36a27ce79c91484deff887254ee0370d75d61e03c9509",
+      "bytes": 38396,
+      "inputs_sha256": "8650498a04bb4641068cd86d4332158158baf596b94fe821571ebdb03dd61c2b",
       "kind": "generated",
       "phase_id": "frame_1834",
       "structure_id": "old_bank_building"

@@ -3864,10 +3864,16 @@ for (const [label, viewport, touch] of [
       // thirteen: 42 walks to 49, 28 crossings to 33, 26 fence runs to 35 and
       // 74 refusals to 83. The post count does NOT move — Washington's
       // frontages carry no named trade the hitching rule accepts.
-      frontage.census?.records === 5 && frontage.census?.walks === 49
-        && frontage.census?.crossings === 33
+      // T-0196 then took three documented buildings off Lake Street's walk, which
+      // opened one more run and FOUR more corner crossings (two on Lake's north
+      // side, two on the South Water faces those walks now reach the corner of)
+      // and retired two refusals: 49 walks to 50, 33 crossings to 37, 83
+      // refusals to 81. Fences and posts do not move — a wall 1.50 m back from
+      // the frontage line is still inside the 3.0 m a street fence needs.
+      frontage.census?.records === 5 && frontage.census?.walks === 50
+        && frontage.census?.crossings === 37
         && frontage.census?.posts === 15 && frontage.census?.fences === 35
-        && frontage.census?.refused === 83
+        && frontage.census?.refused === 81
         && frontage.recordIds.join(',')
           === 'green_tree_frontage,sauganash_frontage,river_walk_frontage,'
             + 'lasalle_crossing_frontage,town_street_edge'
@@ -3916,11 +3922,14 @@ for (const [label, viewport, touch] of [
     // a board whose painted name drifted from the record would be this project
     // inventing a sign, which is exactly what L25 and L130 refuse. Thirty-seven
     // meshes and no more — the shared timber, the river walk's fifteen culling
-    // chunks (T-0119), the town street edge's thirty-three (T-0069 laid
+    // chunks (T-0119), the town street edge's thirty-four (T-0069 laid
     // twenty-one; T-0198's six reconciled South Water placements welded two runs
     // into one and T-0199's last five welded two more, taking it to eighteen;
     // T-0240 laid Randolph Street's thirteen block faces and took it to
-    // thirty-three) and the THREE street-fence meshes — one per covered street
+    // thirty-three; T-0196 reconciled three Lake Street placements, and clearing
+    // old_bank_building off blk_lake_lasalle's north face opened a fourteenth
+    // Lake run west of the ground break that still cuts it) and the THREE
+    // street-fence meshes — one per covered street
     // that carries a fence, which T-0198 split off so the boards could leave the
     // shadow map while the fences stayed in it, and which is why this number
     // moves with `EDGE_STREETS` — all on ONE material, and the painted name on
@@ -3933,8 +3942,9 @@ for (const [label, viewport, touch] of [
         && frontage.textGrade === 'inferred'
         // 53 -> 61 with T-0241's Washington faces, for the reason stated above:
         // this number moves with `EDGE_STREETS` because the walk is chunked one
-        // mesh per run and Washington laid eight more of them.
-        && frontage.meshes === 61,
+        // mesh per run and Washington laid eight more of them. T-0196's Lake
+        // Street repair opens a forty-first run, so 62.
+        && frontage.meshes === 62,
       `"${frontage.lettering}" on ${frontage.letterVerts} vertices across `
       + `${frontage.meshes} mesh(es) (${frontage.names?.join(', ')}), record says `
       + `"${frontage.recordText}" graded ${frontage.textGrade}`);

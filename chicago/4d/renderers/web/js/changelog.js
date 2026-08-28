@@ -1,4 +1,12 @@
 export const CHANGELOG = [ // newest first
+  { v: 309, title: 'Three Lake Street buildings step back off the sidewalk', kind: 'fix', ts: '2026-08-28T01:41:14.347Z', date: 'Aug 27, 2026, 8:41 PM CT',
+    items: [
+      'Walk the north side of Lake Street and two more of its corners now carry you over the road on boards. Yesterday the walk stopped short of them, because a building was standing where the boards had to go.',
+      'Three buildings were in the way: the old bank at La Salle, Dole\u2019s warehouse at Dearborn, and St Mary\u2019s church further east. All three stood between one and three metres out past their own lot line, in the middle of the platted street. They have stepped back onto their lots, and the walk has been laid along the ground they were covering.',
+      'They were never meant to be there. Their across-the-street position had been measured off a modern kerb line read from a present-day map of Chicago, rather than off this project\u2019s own surveyed 1835 street. Nothing about what is claimed of these buildings changed — only the line the claim was measured against, which is the same repair eleven South Water Street buildings took in August.',
+      'The town gains thirty-one metres of plank sidewalk and four board crossings, and the count of places on Lake Street where a documented building stands on its own footway falls from eleven to two.',
+      'Both of the two left are the First Presbyterian Church, and it is not moving today. The same repair would set it down on top of the physician\u2019s house behind it — they are three metres apart now and would overlap — so the church stays where it is and the reason is written on its record for you to read. Whether a researched building may push an inferred one off its ground is a question about the whole town, not about this corner.',
+    ] },
   { v: 308, title: 'The corner that cannot be found on a modern map', kind: 'chore', ts: '2026-08-28T01:07:24.774Z', date: 'Aug 27, 2026, 8:07 PM CT',
     items: [
       'Nothing in the town looks different today. This is about a block that is missing from it, and about going to fetch the one thing it was waiting for and coming back without it.',

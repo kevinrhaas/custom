@@ -1,5 +1,146 @@
 # STATUS
 
+## Shipped 2026-08-27 — T-0196: three Lake Street buildings come onto the plat, and the fourth is refused with the number that refused it
+
+The Lake Street half of the repair T-0198 and T-0199 made on South Water. Four documented
+records stood out past their own frontage line, in the platted roadway, because their
+cross-street coordinate was taken off a **modern OpenStreetMap kerb line** rather than off this
+project's committed 1835 centreline. `tools/generate_frontage_works.py`'s march refuses every
+step a wall stands on, which is why Lake Street's north side came out in stumps.
+
+**The four, measured on the march rather than estimated.** Each repair is the record's own
+method run against this project's own line: translate along the block face's inward normal
+until the street wall stands `LOT_MARGIN_M` (1.50 m) back from the committed frontage line.
+No `local_e` moved — the along-street coordinate is the axis the sources argue.
+
+| record | face | out past the line | moved | steps of walk it refused |
+|---|---|---:|---:|---:|
+| `old_bank_building` | `blk_lake_lasalle` north | 1.62 m | **3.124 m** | 4 |
+| `dole_warehouse_south` | `blk_lake_dearborn` north | 1.28 m | **2.784 m** | 3 |
+| `st_marys_church` | `blk_lake_dearborn` north | 3.03 m | **4.532 m** | 2 |
+| `first_presbyterian_church` | `blk_lake_lasalle` north | 1.90 m | **refused** | 2 |
+
+**What it did to the town's street edge**, re-derived and read off the record:
+
+```
+  walk        2,468.3 m in 33 runs  ->  2,499.5 m in 34 runs
+  crossings   25 (596.2 m)          ->  29 (689.1 m)
+  decks       140                   ->  142
+  refusals    68                    ->  66
+  wall-refused march steps in the town   13 -> 4
+```
+
+Two new corner crossings on Lake Street's north side (`blk_lake_clark × blk_lake_dearborn`,
+`blk_lake_wells × blk_lake_lasalle`) and two more on the South Water faces those walks now
+reach the corner of. `blk_lake_dearborn` north goes from 36.3 m to 51.8 m in one run;
+`blk_lake_lasalle` north from 57.3 m to 72.9 m in two, the break being its own ground and not a
+wall. `tools/measure_corridor_intrusion.py` banks two records cleared outright (22 lapping
+phases to 20); `st_marys_church` stays in the census on **State** Street, which is a cross-street
+lap and a different ticket.
+
+**THE FOURTH IS REFUSED, AND THE NUMBERS ARE WHY.** `first_presbyterian_church` needs 3.395 m.
+`physicians_office` stands 3.15 m behind it on the lot it would come onto:
+
+| move along the inward normal | gap to `physicians_office` |
+|---:|---:|
+| 0.0 m (as committed) | 3.15 m |
+| 0.2 m | 2.95 m — inside the 3.0 m separation gate |
+| 3.2 m | 0 — the footprints overlap |
+
+There is no translation along this normal that both clears the walk and leaves the pair apart.
+**The owner's 2026-08-27 business-front clause does not reach it**, and that was measured rather
+than assumed: the clause is bounded to a lot named in its block's own `frontage` run, and
+`blk_lake_lasalle` has no frontage run at all — its roofs came from the pre-plat South Division
+parcel. So nothing committed says what happens when a **documented** building's correct position
+is held by an **inferred** one. Filed as **T-0251**, `blocked-owner`, with the three options and
+the figures. The record's own `position.note` carries the refusal, so a visitor opening the card
+reads it.
+
+**Nothing else moved.** The three reconciled records keep their confidence grade — re-deriving a
+coordinate from better geometry is not new evidence — their block, their corner, their side and
+every uncertainty they state. No gate was weakened, no threshold moved, and no roof left the
+town: all three seat on lots that already carry anonymous roofs, and the nearest of those stands
+6.99, 7.11 and 8.14 m away, clear of the 3.0 m the separation gate asks.
+
+**Also found, and filed rather than folded in:** T-0196's own count of "eleven refused steps,
+all on Lake Street" was read before T-0240 laid Randolph. Re-read after it, the town carried
+thirteen — the other two are `log_jail` on `blk_randolph_lasalle`'s north face, 3.48 m into the
+Randolph corridor with its centroid inside. **T-0246.**
+
+**The smoke's pinned frontage census moved with the walk**: walks 42→43, crossings 28→32,
+refusals 74→72, meshes 53→54 (one culling chunk per run of sidewalk). Shape, not threshold —
+nothing here is a gate being loosened.
+
+**Verified in the foreground on the branch.** `./tools/check.sh` **PASS** — which is the dev gate
+(`docs/PIPELINE.md`: "the dev gate is `check.sh` and nothing else"). Smoke against the published
+mirror, **mobile 390×780, all nine parts**: `1-2` 147/**1**, `3-4` 114/0, `5-6` 43/0, `7-9`
+151/**1**. Smoke **desktop 1280×800**: `1` 76/0, `2` 80/**1** — and every assertion this branch
+touched is green in it, including *Lake Street's walk is continuous and walkable end to end* and
+*a board crossing carries the walker over the road at the corner*. Zero page errors at both
+viewports.
+
+**The three failures are two, and both are `dev`'s with tickets already filed.** The Sauganash
+hitching-post check is **T-0244** (T-0194's twelve street-edge posts resolve to an empty vertex
+set; the two Sauganash posts still measure correctly, and this branch moves no post — the
+census still reads 15 posts, 12 of them hitching). The tree-station check is **T-0243** (T-0223's
+`BatchedMesh` renamed `timber__q0…q3` to `timber`, so the gate's regex matches nothing; no tree
+moved). Neither is touched here.
+
+**The desktop ceiling sweep was taken with `tools/measure_detail_ceilings.mjs`** rather than
+desktop stage 4, which does not fit the ten-minute foreground command ceiling on this runner and
+which `tools/dev-smoke-state.json` records as FAIL on `dev` itself at `2026-08-27T20:16` (the
+T-0210/T-0215 loaded-box failure). Every tier is inside its ceiling with the new boards laid:
+
+| tier | ceiling | worst stand | clear by |
+|---|---:|---|---:|
+| `full` | 1,400,000 | 1,372,635 — the forks, from Wolf Point | 27,365 |
+| `balanced` | 1,210,000 | 1,204,048 — the forks, from Wolf Point | 5,952 |
+| `light` | 785,000 | 746,028 — Lake Street at Canal | 38,972 |
+
+Mobile's own ceiling sweep is inside stage `3-4`, which passed 114/0. **No ceiling was moved for
+this**, and the balanced margin of 5,952 is worth reading beside T-0241: Washington Street still
+does not fit, and 31 m of Lake Street walk did not make it fit.
+
+**RE-VERIFIED AFTER MERGING `dev`** (#417 T-0195, #419 T-0213, #420 T-0182 — the last of which
+moves two Lake-face buildings 8 cm, so the re-take is not a formality). `./tools/check.sh` PASS.
+Desktop stage `2` 80/**1** — the same inherited T-0244 and every touched assertion green. Both
+ceiling sweeps re-taken on the merged mirror and unchanged to the triangle: desktop
+1,372,635 / 1,204,048 / 746,028 against 1,400,000 / 1,210,000 / 785,000; mobile
+1,274,689 / 1,150,060 / 695,154 against the same three. The frontage census the smoke pins
+re-derives identically on the merged tree — walks 43, crossings 32, refusals 72, meshes 54 — so
+`dev`'s geometry did not move this layer.
+
+**And once more after #421 (T-0193) landed on `dev`**, which is the last thing to merge under
+this branch: `./tools/check.sh` PASS, desktop stage `2` 80/**1** (the same inherited T-0244),
+desktop ceilings 1,372,635 / 1,204,048 / 746,028 — identical to the reading above, because that
+ticket refused its block rather than laying it. The frontage census re-derives at walks 43,
+crossings 32, refusals 72, meshes 54 for the third time.
+
+**AND ONCE MORE AFTER #423 (T-0241, Washington Street) landed on `dev`** — a whole street of
+boards arriving under this branch, so the street edge was **re-derived** on the merged data
+rather than hand-resolved, and every figure re-taken. The deltas are additive and the pins now
+carry both: walks 49→**50**, crossings 33→**37**, refusals 83→**81**, meshes 61→**62**; fences
+(35) and posts (15) do not move, because a wall 1.50 m back from the frontage line is still
+inside the 3.0 m a street fence needs. Town street edge on the merged tree: **3,160.3 m of walk
+in 41 runs, 34 crossings, 35 fence runs, 249 walking decks, 36 block faces.**
+
+`./tools/check.sh` PASS. Desktop stage `2` 80/**1** — the inherited T-0244, every touched
+assertion green. Mobile stage `3-4` **116/0**, which is the ceiling sweep AND the draw-call
+budget at the worst frame. Desktop ceilings with both streets laid:
+
+| tier | ceiling | worst stand | clear by |
+|---|---:|---|---:|
+| `full` | 1,400,000 | 1,388,091 — the forks, from Wolf Point | 11,909 |
+| `balanced` | 1,210,000 | 1,197,398 — the forks, from Wolf Point | 12,602 |
+| `light` | 785,000 | 761,528 — Lake Street at Canal | 23,472 |
+
+**No ceiling was moved, by either ticket.** Worth recording beside T-0247, which is `dev`'s:
+`light` reads **85** draw calls at Lake and Market on the desktop sweep against the 80-call
+floor T-0147 restored. That ticket measured 83 on an unmodified `dev` before Washington; the
+sweep above is the first reading with both streets on it. The mobile gate that actually asserts
+the budget is green (116/0), and this branch adds **one** culling chunk — the forty-first run of
+sidewalk — to a street edge that grew by eight under #423.
+
 ## Shipped 2026-08-27 — T-0213: the trade families are weighted onto the business front
 
 The surviving half of ROADMAP **K29**. T-0022 refuted the other half — the schedule may deal log

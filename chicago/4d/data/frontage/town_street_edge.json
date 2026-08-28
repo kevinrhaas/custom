@@ -25,10 +25,10 @@
       "washington"
     ],
     "faces_laid": 36,
-    "walk_m": 3129.1,
-    "crossing_m": 718.1,
+    "walk_m": 3160.3,
+    "crossing_m": 811.0,
     "fence_m": 1718.0,
-    "walking_decks": 239,
+    "walking_decks": 249,
     "hitching_posts": 12
   },
   "card": {
@@ -44,10 +44,10 @@
         "note": "Asked for by the owner, 2026-08-18, of the first Cook County jail engraving: 'note the fences lining the street and what appears to be plank sidewalks. all of the streets should be updated like this... at least south of the river or near the river.' No 1835 source names a walk or a fence on any particular stretch of these streets."
       },
       "walk_m": {
-        "value": 3129.1,
+        "value": 3160.3,
         "confidence": "reconstructed",
         "sources": [],
-        "note": "40 run(s) of sidewalk on 36 platted block face(s), plus 718.1 m of board crossing at 30 corner(s). Nothing measured: every metre is derived from the committed plat and audited against the committed ground."
+        "note": "41 run(s) of sidewalk on 36 platted block face(s), plus 811.0 m of board crossing at 34 corner(s). Nothing measured: every metre is derived from the committed plat and audited against the committed ground."
       },
       "fence_m": {
         "value": 1718.0,
@@ -71,6 +71,80 @@
     "research_note": "A walk from data/frontage/ — not a structure record. WHAT BOUNDED THE RUN, in one place. The treatment is laid on the platted block faces that front THREE east-west streets of the South Division — SOUTH WATER STREET, which is the river bank itself; LAKE STREET one block behind it, both frontages; and RANDOLPH STREET one block behind that, both frontages — between Market Street and State Street. South Water and Lake are the owner's 'at least south of the river or near the river' and the town's trading core in 1835; Randolph is the first tier that is not on the river, added because 'all of the streets should be updated like this' does not stop at the bank. Every face is a committed street centreline offset by half the committed 80 ft corridor, so the line a walk lies on is the street network's and not this file's: move a centreline and every board here moves with it. Within that boundary the march decides, face by face and step by step — a stretch carries a walk where the ground is dry committed ground, flat enough for one walking deck, clear of the travelled track and clear of anything already standing on it — and `refused` says which clause refused every stretch that does not. THE SOUTH WATER FRONTAGES STILL COME OUT IN PIECES, and the reason is a finding rather than a fault of this rule: eleven documented buildings on that side were placed against the MODERN kerb rather than against this project's own platted line and stood 4.5 to 8.2 m out past it. Six were reconciled with the plat and their stretch of walk closed; the other five are named one by one in `refused`, with the metres each would have to move and the reason the roof schedule cannot yet absorb the move. Randolph Street, Washington Street, the cross streets' own frontages and the West Division across the South Branch are the same rule on more faces. Every one of them was RUN THROUGH THIS RULE AND MEASURED before being refused — Randolph was built, published and read at the release gate's whole stand set — and `refused` carries the triangle counts that refused them rather than a promise. What would move it off reconstruction: a Chicago town order on sidewalks of the right date — the corporation legislated wooden walks within a few years of 1835, and an order would give a width and a material at a stroke; a tax, insurance or sale description naming a walk or a fence in front of a named lot; or holding the jail, Green Tree and Sauganash plates as proper source records (T-0075)."
   },
   "walks": [
+    {
+      "id": "blk_lake_clark_north_crossing_blk_lake_dearborn_north",
+      "belongs_to": "town_street_edge",
+      "kind": "board_crossing",
+      "confidence": "reconstructed",
+      "street": "lake",
+      "street_name": "Lake Street",
+      "chunk": "blk_lake_clark_north_1",
+      "centreline_local_enu_m": [
+        [
+          685.91,
+          -126.29
+        ],
+        [
+          710.3,
+          -126.49
+        ]
+      ],
+      "width_m": 1.83,
+      "rise_m": 0.06,
+      "plank_run": "along",
+      "plank_count": 6,
+      "plank_thickness_m": 0.055,
+      "plank_underside": false,
+      "plank_step_m": 1.8,
+      "run_m": 24.39,
+      "footway_decks": [
+        {
+          "y": 0.855,
+          "pts": [
+            [
+              685.82,
+              -127.2
+            ],
+            [
+              698.18,
+              -127.3
+            ],
+            [
+              698.19,
+              -125.47
+            ],
+            [
+              685.84,
+              -125.37
+            ]
+          ],
+          "ground_roll_m": 0.005
+        },
+        {
+          "y": 0.855,
+          "pts": [
+            [
+              698.02,
+              -127.3
+            ],
+            [
+              710.37,
+              -127.4
+            ],
+            [
+              710.39,
+              -125.57
+            ],
+            [
+              698.03,
+              -125.47
+            ]
+          ],
+          "ground_roll_m": 0.0
+        }
+      ],
+      "note": "A BOARD CROSSING OVER LAKE STREET. Images 6 and 8 give plank sidewalks WITH board crossings at the town's two inns, so the fact is the plates' and every dimension is invented. Its boards run the way a foot travels rather than across it, which is what a crossing is FOR — it spans the ruts instead of lying in them — and it lies lower than the walk because a wheel crosses it. WHERE is derived: the two ends are the two walks it joins, so the run is the corridor those walks stop either side of, 24.4 m of it, and the crossing exists only where both of them were laid. docs/LIBERTIES.md L160."
+    },
     {
       "id": "blk_lake_clark_north_walk_1",
       "belongs_to": "town_street_edge",
@@ -520,8 +594,8 @@
       "chunk": "blk_lake_dearborn_north_1",
       "centreline_local_enu_m": [
         [
-          725.85,
-          -126.61
+          710.3,
+          -126.49
         ],
         [
           762.13,
@@ -539,33 +613,55 @@
       "verge_to_track_m": 4.86,
       "footway_decks": [
         {
-          "y": 0.91,
+          "y": 0.905,
           "pts": [
             [
-              725.76,
-              -127.53
+              710.21,
+              -127.4
             ],
             [
-              746.65,
-              -127.69
+              731.1,
+              -127.57
             ],
             [
-              746.67,
-              -125.86
+              731.12,
+              -125.74
             ],
             [
-              725.78,
-              -125.7
+              710.23,
+              -125.57
             ]
           ],
-          "ground_roll_m": 0.005
+          "ground_roll_m": 0.0
         },
         {
           "y": 0.915,
           "pts": [
             [
-              746.49,
-              -127.69
+              730.94,
+              -127.57
+            ],
+            [
+              751.84,
+              -127.74
+            ],
+            [
+              751.85,
+              -125.91
+            ],
+            [
+              730.96,
+              -125.74
+            ]
+          ],
+          "ground_roll_m": 0.01
+        },
+        {
+          "y": 0.915,
+          "pts": [
+            [
+              751.68,
+              -127.74
             ],
             [
               762.2,
@@ -576,14 +672,14 @@
               -125.99
             ],
             [
-              746.51,
-              -125.86
+              751.69,
+              -125.91
             ]
           ],
           "ground_roll_m": 0.017
         }
       ],
-      "note": "THE PLANK SIDEWALK ON THE LAKE STREET FRONTAGE of blk_lake_dearborn's north face, at the lot line. WHERE is DERIVED and nothing here is placed: the face is a committed street centreline offset by half the committed 80 ft corridor (data/traces/vectors/thompson_lots.json, re-derived by tools/generate_plat_lots.py), and the walk's centre lies 1.165 m outward of it — 0.25 m of daylight off the fence line and half a walk's width — leaving 4.86 m of verge between its outer edge and the Lake Street track. This run is the stretch from 15.5 m to 51.8 m along the face that passed the march: dry committed ground, flat enough for one walking deck, and nothing already standing on it. What is invented is the width, the rise, the plank pitch and that a walk stood on this ground at noon on 1 July 1835: docs/LIBERTIES.md L160."
+      "note": "THE PLANK SIDEWALK ON THE LAKE STREET FRONTAGE of blk_lake_dearborn's north face, at the lot line. WHERE is DERIVED and nothing here is placed: the face is a committed street centreline offset by half the committed 80 ft corridor (data/traces/vectors/thompson_lots.json, re-derived by tools/generate_plat_lots.py), and the walk's centre lies 1.165 m outward of it — 0.25 m of daylight off the fence line and half a walk's width — leaving 4.86 m of verge between its outer edge and the Lake Street track. This run is the stretch from 0.0 m to 51.8 m along the face that passed the march: dry committed ground, flat enough for one walking deck, and nothing already standing on it. What is invented is the width, the rise, the plank pitch and that a walk stood on this ground at noon on 1 July 1835: docs/LIBERTIES.md L160."
     },
     {
       "id": "blk_lake_dearborn_south_crossing_over_randolph",
@@ -1290,6 +1386,59 @@
       "street": "lake",
       "street_name": "Lake Street",
       "chunk": "blk_lake_lasalle_north_1",
+      "centreline_local_enu_m": [
+        [
+          463.92,
+          -124.48
+        ],
+        [
+          479.56,
+          -124.6
+        ]
+      ],
+      "width_m": 1.83,
+      "rise_m": 0.11,
+      "plank_run": "across",
+      "plank_pitch_m": 0.32,
+      "plank_thickness_m": 0.055,
+      "plank_underside": false,
+      "stringer_pitch_m": 2.08,
+      "lot_line_offset_m": 1.17,
+      "verge_to_track_m": 4.86,
+      "footway_decks": [
+        {
+          "y": 0.895,
+          "pts": [
+            [
+              463.83,
+              -125.39
+            ],
+            [
+              479.63,
+              -125.52
+            ],
+            [
+              479.64,
+              -123.69
+            ],
+            [
+              463.85,
+              -123.56
+            ]
+          ],
+          "ground_roll_m": 0.005
+        }
+      ],
+      "note": "THE PLANK SIDEWALK ON THE LAKE STREET FRONTAGE of blk_lake_lasalle's north face, at the lot line. WHERE is DERIVED and nothing here is placed: the face is a committed street centreline offset by half the committed 80 ft corridor (data/traces/vectors/thompson_lots.json, re-derived by tools/generate_plat_lots.py), and the walk's centre lies 1.165 m outward of it — 0.25 m of daylight off the fence line and half a walk's width — leaving 4.86 m of verge between its outer edge and the Lake Street track. This run is the stretch from 0.0 m to 15.6 m along the face that passed the march: dry committed ground, flat enough for one walking deck, and nothing already standing on it. What is invented is the width, the rise, the plank pitch and that a walk stood on this ground at noon on 1 July 1835: docs/LIBERTIES.md L160."
+    },
+    {
+      "id": "blk_lake_lasalle_north_walk_2",
+      "belongs_to": "town_street_edge",
+      "kind": "plank_walk",
+      "confidence": "reconstructed",
+      "street": "lake",
+      "street_name": "Lake Street",
+      "chunk": "blk_lake_lasalle_north_2",
       "centreline_local_enu_m": [
         [
           495.2,
@@ -2207,6 +2356,80 @@
         }
       ],
       "note": "THE PLANK SIDEWALK ON THE RANDOLPH STREET FRONTAGE of blk_lake_market's south face, at the lot line. WHERE is DERIVED and nothing here is placed: the face is a committed street centreline offset by half the committed 80 ft corridor (data/traces/vectors/thompson_lots.json, re-derived by tools/generate_plat_lots.py), and the walk's centre lies 1.165 m outward of it — 0.25 m of daylight off the fence line and half a walk's width — leaving 6.62 m of verge between its outer edge and the Randolph Street track. This run is the stretch from 0.0 m to 94.5 m along the face that passed the march: dry committed ground, flat enough for one walking deck, and nothing already standing on it. What is invented is the width, the rise, the plank pitch and that a walk stood on this ground at noon on 1 July 1835: docs/LIBERTIES.md L160."
+    },
+    {
+      "id": "blk_lake_wells_north_crossing_blk_lake_lasalle_north",
+      "belongs_to": "town_street_edge",
+      "kind": "board_crossing",
+      "confidence": "reconstructed",
+      "street": "lake",
+      "street_name": "Lake Street",
+      "chunk": "blk_lake_wells_north_1",
+      "centreline_local_enu_m": [
+        [
+          439.53,
+          -124.28
+        ],
+        [
+          463.92,
+          -124.48
+        ]
+      ],
+      "width_m": 1.83,
+      "rise_m": 0.06,
+      "plank_run": "along",
+      "plank_count": 6,
+      "plank_thickness_m": 0.055,
+      "plank_underside": false,
+      "plank_step_m": 1.8,
+      "run_m": 24.39,
+      "footway_decks": [
+        {
+          "y": 0.856,
+          "pts": [
+            [
+              439.44,
+              -125.19
+            ],
+            [
+              451.8,
+              -125.29
+            ],
+            [
+              451.81,
+              -123.46
+            ],
+            [
+              439.46,
+              -123.36
+            ]
+          ],
+          "ground_roll_m": 0.006
+        },
+        {
+          "y": 0.85,
+          "pts": [
+            [
+              451.64,
+              -125.29
+            ],
+            [
+              463.99,
+              -125.39
+            ],
+            [
+              464.01,
+              -123.56
+            ],
+            [
+              451.65,
+              -123.46
+            ]
+          ],
+          "ground_roll_m": 0.005
+        }
+      ],
+      "note": "A BOARD CROSSING OVER LAKE STREET. Images 6 and 8 give plank sidewalks WITH board crossings at the town's two inns, so the fact is the plates' and every dimension is invented. Its boards run the way a foot travels rather than across it, which is what a crossing is FOR — it spans the ruts instead of lying in them — and it lies lower than the walk because a wheel crosses it. WHERE is derived: the two ends are the two walks it joins, so the run is the corridor those walks stop either side of, 24.4 m of it, and the crossing exists only where both of them were laid. docs/LIBERTIES.md L160."
     },
     {
       "id": "blk_lake_wells_north_walk_1",
@@ -6030,6 +6253,80 @@
       "note": "THE PLANK SIDEWALK ON THE SOUTH WATER STREET FRONTAGE of blk_south_water_dearborn's north face, at the lot line. WHERE is DERIVED and nothing here is placed: the face is a committed street centreline offset by half the committed 80 ft corridor (data/traces/vectors/thompson_lots.json, re-derived by tools/generate_plat_lots.py), and the walk's centre lies 1.165 m outward of it — 0.25 m of daylight off the fence line and half a walk's width — leaving 4.86 m of verge between its outer edge and the South Water Street track. This run is the stretch from 0.0 m to 67.6 m along the face that passed the march: dry committed ground, flat enough for one walking deck, and nothing already standing on it. What is invented is the width, the rise, the plank pitch and that a walk stood on this ground at noon on 1 July 1835: docs/LIBERTIES.md L160."
     },
     {
+      "id": "blk_south_water_dearborn_south_crossing_over_lake",
+      "belongs_to": "town_street_edge",
+      "kind": "board_crossing",
+      "confidence": "reconstructed",
+      "street": "lake",
+      "street_name": "Lake Street",
+      "chunk": "blk_south_water_dearborn_south_1",
+      "centreline_local_enu_m": [
+        [
+          714.43,
+          -104.46
+        ],
+        [
+          714.45,
+          -126.52
+        ]
+      ],
+      "width_m": 1.83,
+      "rise_m": 0.06,
+      "plank_run": "along",
+      "plank_count": 6,
+      "plank_thickness_m": 0.055,
+      "plank_underside": false,
+      "plank_step_m": 1.8,
+      "run_m": 22.06,
+      "footway_decks": [
+        {
+          "y": 0.855,
+          "pts": [
+            [
+              713.52,
+              -104.38
+            ],
+            [
+              713.52,
+              -115.57
+            ],
+            [
+              715.35,
+              -115.57
+            ],
+            [
+              715.35,
+              -104.38
+            ]
+          ],
+          "ground_roll_m": 0.005
+        },
+        {
+          "y": 0.855,
+          "pts": [
+            [
+              713.52,
+              -115.41
+            ],
+            [
+              713.53,
+              -126.6
+            ],
+            [
+              715.36,
+              -126.6
+            ],
+            [
+              715.35,
+              -115.41
+            ]
+          ],
+          "ground_roll_m": 0.0
+        }
+      ],
+      "note": "A BOARD CROSSING OVER LAKE STREET. The Petford watercolour and the Braunhold engraving of the Sauganash (images 8 and 9) both put a board crossing over the road between walks on opposite frontages. Its boards run the way a foot travels rather than across it, which is what a crossing is FOR — it spans the ruts instead of lying in them — and it lies lower than the walk because a wheel crosses it. WHERE is derived: the two ends are the two walks it joins, so the run is the corridor those walks stop either side of, 22.1 m of it, and the crossing exists only where both of them were laid. docs/LIBERTIES.md L160."
+    },
+    {
       "id": "blk_south_water_dearborn_south_walk_1",
       "belongs_to": "town_street_edge",
       "kind": "plank_walk",
@@ -6844,6 +7141,80 @@
         }
       ],
       "note": "A BOARD CROSSING OVER LAKE STREET. Images 6 and 8 give plank sidewalks WITH board crossings at the town's two inns, so the fact is the plates' and every dimension is invented. Its boards run the way a foot travels rather than across it, which is what a crossing is FOR — it spans the ruts instead of lying in them — and it lies lower than the walk because a wheel crosses it. WHERE is derived: the two ends are the two walks it joins, so the run is the corridor those walks stop either side of, 24.4 m of it, and the crossing exists only where both of them were laid. docs/LIBERTIES.md L160."
+    },
+    {
+      "id": "blk_south_water_lasalle_south_crossing_over_lake",
+      "belongs_to": "town_street_edge",
+      "kind": "board_crossing",
+      "confidence": "reconstructed",
+      "street": "lake",
+      "street_name": "Lake Street",
+      "chunk": "blk_south_water_lasalle_south_1",
+      "centreline_local_enu_m": [
+        [
+          468.04,
+          -102.46
+        ],
+        [
+          468.06,
+          -124.51
+        ]
+      ],
+      "width_m": 1.83,
+      "rise_m": 0.06,
+      "plank_run": "along",
+      "plank_count": 6,
+      "plank_thickness_m": 0.055,
+      "plank_underside": false,
+      "plank_step_m": 1.8,
+      "run_m": 22.05,
+      "footway_decks": [
+        {
+          "y": 0.84,
+          "pts": [
+            [
+              467.13,
+              -102.38
+            ],
+            [
+              467.13,
+              -113.56
+            ],
+            [
+              468.96,
+              -113.56
+            ],
+            [
+              468.96,
+              -102.38
+            ]
+          ],
+          "ground_roll_m": 0.0
+        },
+        {
+          "y": 0.843,
+          "pts": [
+            [
+              467.13,
+              -113.4
+            ],
+            [
+              467.14,
+              -124.59
+            ],
+            [
+              468.97,
+              -124.59
+            ],
+            [
+              468.96,
+              -113.4
+            ]
+          ],
+          "ground_roll_m": 0.003
+        }
+      ],
+      "note": "A BOARD CROSSING OVER LAKE STREET. The Petford watercolour and the Braunhold engraving of the Sauganash (images 8 and 9) both put a board crossing over the road between walks on opposite frontages. Its boards run the way a foot travels rather than across it, which is what a crossing is FOR — it spans the ruts instead of lying in them — and it lies lower than the walk because a wheel crosses it. WHERE is derived: the two ends are the two walks it joins, so the run is the corridor those walks stop either side of, 22.1 m of it, and the crossing exists only where both of them were laid. docs/LIBERTIES.md L160."
     },
     {
       "id": "blk_south_water_lasalle_south_walk_1",
@@ -7665,7 +8036,7 @@
       "confidence": "reconstructed",
       "street": "lake",
       "street_name": "Lake Street",
-      "chunk": "blk_lake_lasalle_north_1",
+      "chunk": "blk_lake_lasalle_north_2",
       "path_local_enu_m": [
         [
           495.19,
@@ -8893,11 +9264,6 @@
       "why": "inf_harness_shop stands 1.15 m from this lot's frontage line, inside the 3.0 m a street fence needs — the building IS the street wall here, and a fence in front of it would be a second one."
     },
     {
-      "structure_id": "blk_lake_clark_north_crossing_blk_lake_dearborn_north",
-      "wall": "corner crossing",
-      "why": "the two walks stop 39.9 m apart, wider than the platted corridor between them — the walk on one side was refused short of its corner, so no crossing is laid."
-    },
-    {
       "structure_id": "blk_lake_clinton",
       "wall": "Lake Street's West Division frontage, across the South Branch",
       "why": "REFUSED ON A MEASURED FRAME BUDGET AT ONE STAND, AT ONE TIER, AT ONE VIEWPORT (T-0193) — and it is a number now rather than the promise this clause used to carry. This block stands in the WEST DIVISION, across the South Branch from the town the owner's 'south of the river or near the river' names, separated from every other face on this record by a river with one bridge on it, and it is the last platted block this rule has never looked at. THE SAME RULE DOES LAY THE SAME WALK THERE, and it was run rather than assumed: both faces generate cleanly — the Lake face T-0069 named, and the Randolph face that only became coverable when T-0240 put Randolph in the covered streets the day before — for +2 block faces, +192.2 m of walk in 2 unbroken runs, +1 board crossing over Randolph and +3 street-lining fences, with the march refusing only what it refuses everywhere else (a building standing ON the frontage line is the street wall, an unimproved lot takes no fence, and a blacksmith's yard gate takes no hitching post). Published and read at T-0135's five stands at BOTH viewports: `full` and `light` pass everywhere and mobile passes every tier, clearing `balanced` by 34,712. DESKTOP `balanced` does not — 1,228,110 against a 1,210,000 ceiling, OVER BY 18,110 — and the whole of that cost lands at the single stand `lake_at_canal`, which stands at this block's own east end and looks east down the axis where nothing culls: +27,932 triangles there against a flat +8,460 at the other four. AND HALF OF IT DOES NOT FIT EITHER, which is what makes this a fact about the budget rather than about the block: the Lake face ALONE, exactly what T-0069 refused, still reads 1,223,890 and is over by 13,890. `balanced` stood 1,201,344 of 1,210,000 before this was tried — 8,656 triangles, 0.7 % of headroom — so no street frontage of any size fits under that rung today. The unblock is T-0190's second street tier, not a sixth raising of the ceiling, which T-0237's acceptance refuses in as many words."
@@ -8905,12 +9271,12 @@
     {
       "structure_id": "blk_lake_dearborn_lot0",
       "wall": "blk_lake_dearborn north face, lot 0",
-      "why": "dole_warehouse_south stands -1.28 m from this lot's frontage line, inside the 3.0 m a street fence needs — the building IS the street wall here, and a fence in front of it would be a second one."
+      "why": "dole_warehouse_south stands 0.55 m from this lot's frontage line, inside the 3.0 m a street fence needs — the building IS the street wall here, and a fence in front of it would be a second one."
     },
     {
       "structure_id": "blk_lake_dearborn_lot6",
       "wall": "blk_lake_dearborn north face, lot 6",
-      "why": "recon_1835_south_a3_045 stands -3.03 m from this lot's frontage line, inside the 3.0 m a street fence needs — the building IS the street wall here, and a fence in front of it would be a second one."
+      "why": "recon_1835_south_a3_045 stands 1.50 m from this lot's frontage line, inside the 3.0 m a street fence needs — the building IS the street wall here, and a fence in front of it would be a second one."
     },
     {
       "structure_id": "blk_lake_dearborn_lot7",
@@ -8930,7 +9296,7 @@
     {
       "structure_id": "blk_lake_lasalle_lot0",
       "wall": "blk_lake_lasalle north face, lot 0",
-      "why": "old_bank_building stands -1.62 m from this lot's frontage line, inside the 3.0 m a street fence needs — the building IS the street wall here, and a fence in front of it would be a second one."
+      "why": "old_bank_building stands 1.50 m from this lot's frontage line, inside the 3.0 m a street fence needs — the building IS the street wall here, and a fence in front of it would be a second one."
     },
     {
       "structure_id": "blk_lake_lasalle_lot6",
@@ -8976,11 +9342,6 @@
       "structure_id": "blk_lake_wells_lot6",
       "wall": "blk_lake_wells north face, lot 6",
       "why": "inf_teamster_dwelling_south stands 0.66 m from this lot's frontage line, inside the 3.0 m a street fence needs — the building IS the street wall here, and a fence in front of it would be a second one."
-    },
-    {
-      "structure_id": "blk_lake_wells_north_crossing_blk_lake_lasalle_north",
-      "wall": "corner crossing",
-      "why": "the two walks stop 55.7 m apart, wider than the platted corridor between them — the walk on one side was refused short of its corner, so no crossing is laid."
     },
     {
       "structure_id": "blk_randolph_clark_lot0",
