@@ -1523,6 +1523,10 @@ export async function createFlora({
         forbShare: z.forbShare,
         forbShareWet: z.forbShareWet,
         shrubShare: z.shrubShare,
+        /** T-0282. The shrub stratum's own over-water share, the one of the four
+         *  `shareOf` deals that was never exported. Without it the ceiling
+         *  declaration cannot see a quarter of the lattice it exists to state. */
+        shrubShareWet: z.shrubShareWet,
         /** The sum each is dealt off, so a reader can tell a share that is
          *  clamped from one that is small. `null` for the matrix by
          *  `SLOT_BASIS` — its slot count is `matrixShare` above.
@@ -1542,6 +1546,11 @@ export async function createFlora({
          *  layers the clamp binds. */
         forbDensityWet: z.wet.forbs.densityHigh,
         shrubDensity: z.dry.shrubs.density,
+        /** T-0282. And the sum behind `shrubShareWet`, for the same reason
+         *  T-0019 exported `forbDensityWet`: a clamped share is one plant per
+         *  slot whatever the slot is, so the density is what says how far a
+         *  layer is from the ceiling and how much of its record it loses. */
+        shrubDensityWet: z.wet.shrubs.density,
       }));
     },
     /** The lattice/fade rings and the rebuild step, for the gate that checks a

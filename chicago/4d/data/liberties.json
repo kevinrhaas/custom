@@ -3,7 +3,7 @@
   "source": "docs/LIBERTIES.md",
   "standard": "A visitor should be able to tell you which parts we made up.",
   "note": "The confidence model covers attributes. These are the decisions that live above any single attribute: scope, omission, simplification, and the choices a visitor would otherwise have to reverse-engineer.",
-  "count": 200,
+  "count": 201,
   "liberties": [
     {
       "id": "L1",
@@ -12842,6 +12842,37 @@
         {
           "label": "How to resolve",
           "text": "nothing resolves the clauses themselves, which are a reconstruction and are meant to be read as one. What would move them is more record: a documented store, warehouse or workshop on a light street would retire the light-street refusal, and any Chicago frontage survey before the 1839 subdivision would replace the setback convention with a measurement. Related: **L93** (the institutional refusal no frontage rule reaches) · **L99**, **L100** (the two liberties on what a street was for) · **L102** (the face rule as first written) · **L182** (the end rule, the other half of where a roof stands on its face) · tickets **T-0024** (this), **T-0022**, **T-0079**."
+        },
+        {
+          "label": "Recorded",
+          "text": "2026-08-28."
+        }
+      ]
+    },
+    {
+      "id": "L201",
+      "title": "Ten of the sward's layers are drawn at the lattice's ceiling, not at the density their records ask for",
+      "section": "per_subject",
+      "subjects": [],
+      "covers": [],
+      "recorded": "2026-08-28",
+      "revised": null,
+      "fields": [
+        {
+          "label": "Decision",
+          "text": "the forb and shrub strata are dealt over a lattice that holds **one plant per slot** — four slots to a 3.4 m cell, so **2.890 m² of ground a slot and 0.34602 plants per m²** — and `renderers/web/js/flora.js` `forbShareOf` is `min(1, density × cell² / perCell)`. That `min` is a ceiling, and **ten of the eighteen populated (community, stratum, side) layers in this scene sit on it.** Those ten are drawn at a density `TUNE.forb` chose and **not at one any record states**: | layer | its records ask | the lattice draws | share of its own evidence | |---|---|---|---| | `z06_dense_forest` forb | 66.381 /m² | 0.346 /m² | **0.5 %** | | `z04_marsh` forb, dry and wet | 22.000 /m² | 0.346 /m² | **1.6 %** | | `z10_settled_town` forb | 11.866 /m² | 0.346 /m² | **2.9 %** | | `z05_riverbank_timber` forb | 3.851 /m² | 0.346 /m² | **9.0 %** | | `z03_sedge_meadow` forb | 1.812 /m² | 0.346 /m² | **19.1 %** | | `z08_lakeshore` forb | 0.630 /m² | 0.346 /m² | **54.9 %** | | `z02_mesic_prairie` forb | 0.408 /m² | 0.346 /m² | **84.8 %** | | `z01_wet_prairie` forb | 0.407 /m² | 0.346 /m² | **85.0 %** | | `z06_dense_forest` shrub | 0.403 /m² | 0.346 /m² | **85.8 %** | The eight that fit are `z09_sand_prairie`'s forbs (0.114 /m²) and every shrub stratum but the dense forest's. `z07_bur_oak_savanna` records no forbs at all."
+        },
+        {
+          "label": "Why this is a liberty and not a defect",
+          "text": "the cell and its four slots were fitted against the reference photographs on a closed prairie sward (**L32**), where they reproduce what a visitor should see. They are a **rendering budget**. The moment a community's records ask for more plants than that budget carries, the budget — and not the evidence — is deciding how much bloom a visitor gets, and nothing on screen said so. A share of 1.000 reads identically whether the records asked for 0.36 plants per m² or for 66, so the thin flower floor under the dense timber west of town read as a gap in the research when it is a gap in the lattice."
+        },
+        {
+          "label": "What is NOT ours",
+          "text": "every density in the table is the community's own records, summed at the top of each species' recorded range (**L185**) and read straight out of `data/flora`. No record is overwritten, no confidence is upgraded, and the species lottery — *which* forb fills a slot that is dealt — is untouched, so the MIX of the sward is still the evidence's. What is ours is only how many slots there are to fill. **What bounds it, and it is a gate.** `tools/forb_clamp_baseline.json` states each of the ten layers with the density it asks for, the density the lattice offers it and the fraction between them, and `node tools/measure_sward_draw.mjs --gate` fails when the measured set stops matching: a layer joining the ceiling, a layer leaving it, the ceiling moving, or a record's density moving past half a per cent. So this liberty's figures cannot go stale in silence. **The count has been wrong twice, and each time for the same reason.** K58 was opened at **six** forb layers. **L185** then dealt the stratum off the top of each recorded range and pushed the mesic and the wet prairie onto the ceiling — eight — and the marsh's over-water side made nine when T-0019 first declared it. The tenth is the **shrub** stratum: `z06_dense_forest`'s clump density has been over this ceiling since **K54** named it, one stratum outside where anybody was counting. That is what an undeclared ceiling produces, and it is why the declaration is now a gate rather than a paragraph."
+        },
+        {
+          "label": "How to resolve",
+          "text": "ROADMAP **K58** sets out three routes and this entry takes the third — a per-stratum cell, more than one plant per slot where the record asks for it, or accepting the ceiling and declaring it. Raising the lattice is not free: it buys its plants in exactly the two communities that already carry the most geometry, and the scene-detail ceiling is breached today (tickets **T-0203**, **T-0218**). A stated stand-level density for this specific ground would not resolve it either, because the clamp would still bind. What resolves it is a lattice that can carry what the records already ask for. Related: **L32** (the sward's absolute density is a rendering budget, and full recorded cover saturates the lattice) · **L185** (the forbs are planted at the top of every recorded range, and its own closing line — *\"the next flower needs a different lattice\"*) · **L113** (six researched plants reach no renderer) · ROADMAP **K54** (the shrub stratum's own lattice), **K55**, **K58** (this) · tickets **T-0019** (the declaration), **T-0282** (this), **T-0281** (the flora section this table belongs in next), **T-0034**, **T-0203**, **T-0218**."
         },
         {
           "label": "Recorded",

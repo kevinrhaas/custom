@@ -1,5 +1,52 @@
 # STATUS
 
+## Shipped 2026-08-28 — T-0282: the shrub stratum joins the ceiling declaration, and a visitor can read it
+
+**T-0019 declared the forb lattice's ceiling this morning and the declaration could not see half of
+what it was declaring.** `flora.js` deals FOUR (stratum, side) lotteries through the same `shareOf`
+against the same 0.34602 plants/m² ceiling — forb dry, forb wet, shrub dry, shrub wet — and the
+baseline listed forb layers only. `z06_dense_forest`'s shrub records ask **0.403 clumps per m²**
+against that ceiling and have been over it since **K54** named that community as the one whose shrub
+density reaches the clamp. `shrubShareWet` and `shrubDensityWet` were not exported from `flora.js`
+at all, so a quarter of the lattice was unreadable from outside it.
+
+**The gate that exists to stop a layer joining the clamp in silence was itself silent about a
+stratum.** It is ten layers of eighteen now, not nine of ten, and the identity of a declared line is
+`(community, stratum, side)`. The gate was verified reading RED on the real tree before the
+re-declare — `z06_dense_forest.shrub.dry is on the lattice ceiling and is NOT declared` — and green
+after it. A declaration written before this carries no `stratum` and is read as `forb`, so the file
+migrates on the next `--declare` instead of failing every line at once.
+
+| layer | asks | draws | share of its own evidence |
+|---|---|---|---|
+| `z06_dense_forest` forb | 66.381 /m² | 0.346 /m² | **0.5 %** |
+| `z04_marsh` forb, dry and wet | 22.000 /m² | 0.346 /m² | **1.6 %** |
+| `z10_settled_town` forb | 11.866 /m² | 0.346 /m² | **2.9 %** |
+| `z05_riverbank_timber` forb | 3.851 /m² | 0.346 /m² | **9.0 %** |
+| `z03_sedge_meadow` forb | 1.812 /m² | 0.346 /m² | **19.1 %** |
+| `z08_lakeshore` forb | 0.630 /m² | 0.346 /m² | **54.9 %** |
+| `z02_mesic_prairie` forb | 0.408 /m² | 0.346 /m² | **84.8 %** |
+| `z01_wet_prairie` forb | 0.407 /m² | 0.346 /m² | **85.0 %** |
+| **`z06_dense_forest` shrub** | **0.403 /m²** | **0.346 /m²** | **85.8 %** |
+
+**The second half is the one a visitor gets, and it is why this was worth a run rather than a
+follow-up line.** T-0019 put the debt in `tools/forb_clamp_baseline.json` and in this file — where a
+reviewer reads, and nowhere a visitor does. T-0281, filed by that run, says it plainly: *a visitor
+standing in the dense forest is looking at half a per cent of the flowers the research put there and
+has no way to find that out.* **`docs/LIBERTIES.md` L201** now carries the table above, what is ours
+in it (the number of slots) and what is not (every density in it, straight from `data/flora`), and
+it compiles into `data/liberties.json` — so it stands in the Evidence panel's liberties list beside
+the other two hundred. That is not T-0281's full "What grows here" section and does not close it;
+it is the clamp reaching the register this project already ships to visitors.
+
+**Nothing was raised and no plant moved.** K58's other two routes buy their plants in exactly the
+two communities that carry the most geometry, and the scene-detail ceiling is breached at Lake and
+Canal at both viewports today (T-0203, T-0218). The frame is identical.
+
+Verified: `tools/check.sh`, `node tools/measure_sward_draw.mjs --gate` (both assertions PASS, and
+the clamp assertion shown RED first), `node tools/smoke_renderer.mjs --published` across both
+viewports.
+
 ## Shipped 2026-08-28 — T-0225: the sward's drawn reach is read at a coverage the screen door can hold
 
 **The defect.** `tools/smoke_renderer.mjs` part 7 reports the sward's outer boundary by binning the

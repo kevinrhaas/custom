@@ -1,4 +1,13 @@
 export const CHANGELOG = [ // newest first
+  { v: 330, title: 'How many flowers you see, and the ceiling that decides it', kind: 'chore', ts: '2026-08-28T11:05:25.411Z', date: 'Aug 28, 2026, 6:05 AM CT',
+    items: [
+      'Nothing in the town moved today. Open the Evidence panel, go to the list of the liberties this project takes, and there is a new one \u2014 about how many flowers you are actually standing in.',
+      'The small plants are dealt onto a grid: four places to a three-and-a-half-metre square, one plant to a place. That works out at about a third of a plant per square metre, and it was fitted against photographs of real prairie, where it looks right.',
+      'It stops being right wherever a community\u2019s own records ask for more than that. Ten of the eighteen plant layers in this scene do. The dense timber west of town asks for sixty-six flowering plants a square metre and gets a third of one \u2014 half of one per cent of what the research says. The marsh gets 1.6 per cent, the settled blocks 2.9, the two prairies about 85.',
+      'So the thin flower floor under those trees is a limit of the drawing and not a gap in the research. That was worked out yesterday and written down where a reviewer reads it; the new card is the same table where a visitor can find it, with what each layer asks for beside what it draws.',
+      'It also found one more layer than the count knew about. The bushes are dealt on the same grid as the flowers, and the dense timber\u2019s bushes have been over the limit for a fortnight in a place nobody was counting. Nine became ten.',
+      'Nothing was raised to close the gap, because more plants cost drawing time in exactly the two places that already carry the most, and both are over their budget already. What did land is a check that will not let this list change again without the change being written down.',
+    ] },
   { v: 329, title: 'The riverside plank walk stops at the docks', kind: 'fix', ts: '2026-08-28T10:18:30.885Z', date: 'Aug 28, 2026, 5:18 AM CT',
     items: [
       'Walk west along the plank sidewalk on the south bank of the river. Where Philo Carpenter\u2019s dock and Jones\u2019s dock come ashore, the boards now stop at the dock and pick up again beyond it. Until today they ran straight underneath \u2014 a dock slab half a metre over the planks with about a third of a metre of daylight between.',
