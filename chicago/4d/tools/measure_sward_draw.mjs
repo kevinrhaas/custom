@@ -1,7 +1,7 @@
 /**
  * ROADMAP K49(a) — THE SWARD'S DRAWN CENSUS, ACROSS EVERY COMMUNITY.
  *
- *   node tools/measure_sward_draw.mjs [--source] [--gate]
+ *   node tools/measure_sward_draw.mjs [--source] [--gate] [--declare]
  *
  * `flora.js` keeps the census (`stats.draws`); the release smoke reads it at
  * whatever station the gate happens to be standing in, and that is one
@@ -30,6 +30,22 @@
  * hundred slots so two draws of different sizes can be compared. The shrub
  * stratum is its own list here because it is its own lattice pass in the
  * renderer; before K54 its rows were inside `forb`.
+ *
+ * `SWARD_VIEWPORT=mobile` stands the run at a PHONE and not merely at a phone's
+ * window (T-0162). The ring sizes a station deals over are cut from the sward
+ * tune, and the tune is reached by the DEVICE guess — a coarse pointer, or a
+ * touch point under a 900 px window — so a bare 390 px viewport resolved the
+ * desktop tune and the two runs came back identical, row for row. The run now
+ * prints the stand it reached (window, touch points, pointer, detail level, tune
+ * and every layer's ring reach) before its first figure, and REFUSES to print a
+ * census at all if the stand it reached is not the one that was asked for.
+ *
+ * T-0019 / ROADMAP K58 — it also prints what the FORB LATTICE'S CEILING costs each
+ * community: the plants per m² its own records ask for, the 0.346 the lattice can
+ * carry, and the share of its record the layer is therefore able to draw. Nine of
+ * the ten populated forb layers sit on that ceiling. `--gate` asserts the set
+ * against `tools/forb_clamp_baseline.json`, which is the declaration itself, and
+ * `--declare` rewrites that file from the measurement.
  *
  * ROADMAP K49(f) — `--gate` exits non-zero when any list owes a species a WHOLE
  * slot and deals it none. The same assertion now runs inside
@@ -63,6 +79,11 @@ const { chromium } = await loadPlaywright();
 const HERE = path.dirname(fileURLToPath(import.meta.url));
 const wantSource = process.argv.includes('--source');
 const wantGate = process.argv.includes('--gate');
+/** T-0019. Rewrite `tools/forb_clamp_baseline.json` from this run's measurement.
+ *  The declaration has to be re-made by hand whenever a flora record moves, and a
+ *  figure re-typed off a console is a figure that can be re-typed wrongly — so the
+ *  tool that measures it is the tool that writes it, and the diff is the review. */
+const wantDeclare = process.argv.includes('--declare');
 const ROOT = wantSource
   ? path.resolve(HERE, '..')
   : path.resolve(HERE, '../../../site/chicago/4d');
@@ -99,13 +120,94 @@ const browser = await chromium.launch({ executablePath: process.env.PW_EXECUTABL
 // The viewport decides the ring sizes and therefore how many slots a station
 // deals, so the census has to be answerable at both. `SWARD_VIEWPORT=mobile`
 // stands it at the smoke's phone size (ROADMAP K49(f)).
-const VIEWPORT = process.env.SWARD_VIEWPORT === 'mobile'
-  ? { width: 390, height: 780 } : { width: 1280, height: 800 };
-const page = await browser.newPage({ viewport: VIEWPORT });
+//
+// AND UNTIL T-0162 IT DID NOT STAND THERE, which is why this block is now six
+// lines instead of one and why the stand is printed and asserted below. The
+// page's ring sizes come from `flora.js` `mergeTune(lowSpec && detail === 'full'
+// ? 'light' : detail)`, and `lowSpec` is `controls/touch.js` `prefersTouch()` —
+// `(pointer: coarse)`, or a touch point with a window under 900 px. A bare
+// `browser.newPage({ viewport })` sets the WINDOW and nothing else: Chromium
+// reports `navigator.maxTouchPoints === 0` and a fine pointer, so a 390-px page
+// resolved `full` exactly as the 1280-px one did and the two runs came back with
+// identical censuses, row for row, 7,844 slots either way (T-0018 measured it;
+// T-0162 found the cause). A measurement that names a viewport it did not reach
+// is worse than no measurement, so the flag now drives the guess itself.
+//
+// The context options are the smoke's, copied from `tools/smoke_renderer.mjs`
+// (`['mobile 390x780', { width: 390, height: 780 }, true]` and the context it
+// builds from it) rather than invented here, INCLUDING `isMobile: false` and the
+// comment that goes with it — the two tools have to stand in the same place or
+// the census cannot be read against the gate's own figures. Copied and not
+// imported for the reason `measure_detail_ceilings.mjs` copies the stand list:
+// the smoke is a script and not a module, so a drift makes this tool less
+// complete, never wrong.
+const MOBILE = process.env.SWARD_VIEWPORT === 'mobile';
+const VIEWPORT = MOBILE ? { width: 390, height: 780 } : { width: 1280, height: 800 };
+const context = await browser.newContext({
+  viewport: VIEWPORT,
+  hasTouch: MOBILE,
+  isMobile: false,          // isMobile forces mobile emulation Chromium-side
+  deviceScaleFactor: MOBILE ? 2 : 1,
+});
+const page = await context.newPage();
 const errors = [];
 page.on('pageerror', (e) => errors.push(String(e)));
 await page.goto(`http://127.0.0.1:${PORT}${ENTRY}?year=${YEAR}`, { waitUntil: 'load' });
 await page.waitForFunction(() => window.__chicago4d?.ready === true, null, { timeout: 240000 });
+
+// WHERE THIS RUN ACTUALLY STOOD, printed before any figure it produces and
+// asserted before any figure is believed (T-0162). The ring sizes are the whole
+// reason the viewport is a flag, so the run states the level they were cut at
+// and the radii themselves rather than leaving a reader to assume the window
+// size reached them.
+const stand = await page.evaluate(() => {
+  const a = window.__chicago4d;
+  // `controls/touch.js` `prefersTouch()`, asked of the page rather than
+  // re-implemented against the launch options: the device guess this reports is
+  // the one `main.js` actually passed to `flora.build`.
+  const coarse = !!(window.matchMedia?.('(pointer: coarse)').matches
+    || (navigator.maxTouchPoints > 0 && window.innerWidth < 900));
+  const detail = a.detail;
+  return {
+    width: window.innerWidth,
+    height: window.innerHeight,
+    touchPoints: navigator.maxTouchPoints,
+    coarse,
+    detail,
+    // `flora.js` line for line: the tune a phone reaches is `light` even when
+    // nobody has chosen a level, because the device guess outranks the default.
+    tune: coarse && detail === 'full' ? 'light' : detail,
+    ringR: Object.fromEntries(Object.entries(a.flora.rings.layers)
+      .map(([layer, r]) => [layer, r.fade[0]])),
+  };
+});
+// Two decimals: `ringsFor` multiplies its way to the fade radius, so `near`
+// prints as 3.9999999999999996 raw and a reader would be right to distrust a
+// measurement tool that cannot say four.
+const ringLine = Object.entries(stand.ringR)
+  .map(([layer, r]) => `${layer} ${Number(r.toFixed(2))} m`).join(', ');
+console.log(`stand: ${MOBILE ? 'MOBILE' : 'desktop'} ${stand.width}x${stand.height}, `
+  + `${stand.touchPoints} touch point(s), pointer ${stand.coarse ? 'COARSE' : 'fine'} — `
+  + `detail ${stand.detail}, sward tune ${stand.tune}`);
+console.log(`       ring reach: ${ringLine}\n`);
+
+// THE ASSERTION THE FLAG WAS MISSING. `SWARD_VIEWPORT=mobile` exists to move the
+// ring sizes, so a run that asked for the phone and got the desktop's tune is a
+// measurement claiming a viewport it did not stand at — it fails here rather
+// than printing a desktop census under a mobile heading, which is exactly what
+// it did from T-0018 until T-0162. The desktop stand is asserted the same way
+// and for the same reason: a runner that reported a coarse pointer would deal
+// this tool a phone's census while the header said 1280x800.
+const wantTune = MOBILE ? 'light' : 'full';
+if (stand.tune !== wantTune) {
+  console.error(`REFUSING TO REPORT: asked for the ${MOBILE ? 'mobile' : 'desktop'} `
+    + `stand and reached the '${stand.tune}' tune, not '${wantTune}'. The ring sizes `
+    + `are what the viewport is a flag for, so this census would carry a heading it `
+    + `did not earn (T-0162).`);
+  await browser.close();
+  server.close();
+  process.exit(2);
+}
 
 const measured = await page.evaluate(() => {
   const a = window.__chicago4d;
@@ -206,6 +308,68 @@ const measured = await page.evaluate(() => {
   return { spots: Object.keys(spots), rows, sets, abundance: a.flora.stats.abundance };
 });
 
+/* -------------------------------------------------------------------------- */
+/* T-0019 / ROADMAP K58 — WHAT THE FORB LATTICE'S CEILING COSTS, PER COMMUNITY */
+/* -------------------------------------------------------------------------- */
+/**
+ * `forbShareOf` is `min(1, density x cell^2 / perCell)`, and that `min` is a
+ * lattice ceiling of one plant per slot. Where a community's own records ask for
+ * more plants per square metre than the lattice can carry, the clamp bites and
+ * **the layer is drawn at a density `TUNE.forb` chose and not at one any record
+ * states** — `z06_dense_forest` draws a fraction of its recorded cover for that
+ * reason and not for want of research.
+ *
+ * The clamp was invisible from outside `flora.js`: a share reading 1.000 is one
+ * plant per slot whatever the slot is, so a layer sitting ON the ceiling and one
+ * tuned to it printed the same number. K55 took the count of clamped layers from
+ * four to six and nothing said so; T-0034 raised the two prairies onto it and
+ * nothing said that either.
+ *
+ * So this is the declaration T-0019's acceptance asks for. It states, per
+ * community and per SIDE of the waterline, the plants per square metre the
+ * records ask for, the ceiling, and the share of its own record the layer can
+ * actually draw. It is not a fix: the ceiling stands, because raising it is
+ * geometry in exactly the communities that already carry the most and the
+ * project's triangle ceilings are the binding constraint (T-0223, T-0229).
+ * What changes is that the debt is now a number this project prints rather than
+ * one a reader has to derive from a saturated share.
+ */
+const clamp = await page.evaluate(() => {
+  const a = window.__chicago4d;
+  const lat = a.flora.forbLattice;
+  const rows = [];
+  for (const z of a.flora.communities()) {
+    // T-0282 — BOTH STRATA, because both are dealt through the same `shareOf`
+    // against the same ceiling. T-0019 declared the forb layers only, and the
+    // gate it built was therefore blind to half of what it was gating:
+    // `z06_dense_forest`'s SHRUB layer sits on this ceiling too and has since
+    // K54 named it, drawing 85.8 % of its own recorded clump density. A
+    // declaration whose whole purpose is that no layer joins the clamp in
+    // silence cannot be silent about a stratum.
+    for (const [stratum, side, asked, share] of [
+      ['forb', 'dry', z.forbDensity, z.forbShare],
+      ['forb', 'wet', z.forbDensityWet, z.forbShareWet],
+      ['shrub', 'dry', z.shrubDensity, z.shrubShare],
+      ['shrub', 'wet', z.shrubDensityWet, z.shrubShareWet],
+    ]) {
+      if (!(asked > 0)) continue;
+      rows.push({
+        community: z.id,
+        stratum,
+        side,
+        asked,
+        share,
+        // The plants per m2 the lattice actually offers this layer: the share
+        // it resolved to, back over the ground one slot stands for. Below the
+        // ceiling this IS `asked`, to floating point.
+        offered: share / lat.slotArea,
+        clamped: share >= 1,
+      });
+    }
+  }
+  return { lattice: lat, rows };
+});
+
 const slots = measured.rows.reduce((t, r) => t + r.drawn, 0);
 const lists = new Set(measured.rows.map((r) => `${r.community}.${r.list}`));
 const absent = measured.rows.flatMap((r) => r.absent.map(
@@ -287,6 +451,108 @@ for (const m of ab.mixed) {
     + (m.basis === null
       ? " — slot count off cover.matrix_fraction, not this sum (lottery only)"
       : ` — slot count off '${m.basis}'`));
+}
+
+/* -------------------------------------------------------------------------- */
+/* T-0019 / K58 — THE DECLARATION, AND THE GATE THAT HOLDS IT                  */
+/* -------------------------------------------------------------------------- */
+/**
+ * `tools/forb_clamp_baseline.json` is the declaration itself: every (community,
+ * stratum, side) the ceiling binds, with the density its records ask for and the
+ * share of that density the lattice can draw. `--gate` fails when the measured
+ * set stops matching it — a layer joining the clamp, one leaving it, the ceiling
+ * moving, or a record's asked density moving past the tolerance.
+ *
+ * T-0282 added the STRATUM to that identity. As T-0019 wrote it the declaration
+ * covered the forb layers alone, so the one thing it existed to prevent — a
+ * layer joining the clamp with nobody saying so — could still happen in the
+ * shrub stratum, which is dealt through the same `shareOf` against the same
+ * ceiling and which had `z06_dense_forest` sitting on it the whole time.
+ *
+ * A gate on the SET and not on a total, because the fault this closes is silence
+ * rather than size: the four-to-six drift of K55 and T-0034's two prairies both
+ * happened under a green tree, and both would fail here.
+ */
+const CLAMP_BASELINE = path.join(HERE, 'forb_clamp_baseline.json');
+const REL_TOL = 0.005;         // half a per cent, on the asked density
+const base = JSON.parse(fs.readFileSync(CLAMP_BASELINE, 'utf8'));
+const near = (a, b) => Math.abs(a - b) <= REL_TOL * Math.max(Math.abs(b), 1e-9);
+/** T-0282 — the identity of a declared layer is (community, stratum, side).
+ *  A declaration written before the shrub stratum joined carries no `stratum`,
+ *  and it meant `forb`: reading it that way migrates the file on the next
+ *  `--declare` instead of failing every line of it at once. */
+const key = (r) => `${r.community}.${r.stratum ?? 'forb'}.${r.side}`;
+const clampProblems = [];
+if (!near(clamp.lattice.ceilingPerM2, base.ceilingPerM2)) {
+  clampProblems.push(`the forb lattice's ceiling is ${clamp.lattice.ceilingPerM2.toFixed(4)} `
+    + `plants/m2, declared ${base.ceilingPerM2.toFixed(4)} — every shortfall below is `
+    + `measured against it, so re-declare them together`);
+}
+const declared = new Map(base.clamped.map((d) => [key(d), d]));
+const measuredClamped = clamp.rows.filter((r) => r.clamped);
+for (const r of measuredClamped) {
+  const d = declared.get(key(r));
+  if (!d) {
+    clampProblems.push(`${key(r)} is on the lattice ceiling and is NOT declared: its records `
+      + `ask ${r.asked.toFixed(3)} plants/m2 and the lattice draws `
+      + `${clamp.lattice.ceilingPerM2.toFixed(3)}`);
+  } else if (!near(r.asked, d.askedPerM2)) {
+    clampProblems.push(`${key(r)} asks ${r.asked.toFixed(3)} plants/m2, declared `
+      + `${d.askedPerM2.toFixed(3)} — the records moved, so the declared shortfall is stale`);
+  }
+}
+for (const d of base.clamped) {
+  if (!measuredClamped.some((r) => key(r) === key(d))) {
+    clampProblems.push(`${key(d)} is declared clamped and no longer is — `
+      + `withdraw its line rather than leaving a debt on record that is paid`);
+  }
+}
+
+console.log(`\nT-0019/K58 — THE FORB LATTICE'S CEILING. One plant per slot, a slot is `
+  + `${clamp.lattice.slotArea.toFixed(2)} m2\n  (${clamp.lattice.cell} m cell, `
+  + `${clamp.lattice.perCell} per cell), so the most any community may draw is `
+  + `${clamp.lattice.ceilingPerM2.toFixed(3)} plants/m2.\n  `
+  + `'draws' is the share of its OWN recorded density a layer can put on the ground.`);
+for (const r of clamp.rows.slice().sort((x, y) => y.asked - x.asked)) {
+  const frac = r.offered / r.asked;
+  console.log(`  ${r.community.padEnd(22)} ${r.stratum.padEnd(5)} ${r.side.padEnd(3)} `
+    + `asks ${r.asked.toFixed(3).padStart(8)} /m2  offered `
+    + `${r.offered.toFixed(3).padStart(6)}  share ${r.share.toFixed(3)}  `
+    + `draws ${`${(frac * 100).toFixed(1)}%`.padStart(6)}`
+    + `${r.clamped ? `  CLAMPED — short ${(r.asked - r.offered).toFixed(3)} /m2` : ''}`);
+}
+console.log(`  ${measuredClamped.length} of ${clamp.rows.length} populated (community, stratum, `
+  + `side) layer(s) sit on the ceiling; ${base.clamped.length} declared in `
+  + `tools/forb_clamp_baseline.json`);
+for (const m of clampProblems) console.log(`  - ${m}`);
+if (wantDeclare) {
+  const doc = {
+    _: base._ ?? '',
+    measured: new Date().toISOString().slice(0, 10),
+    stand: MOBILE ? 'mobile' : 'desktop',
+    cell: clamp.lattice.cell,
+    perCell: clamp.lattice.perCell,
+    slotAreaM2: clamp.lattice.slotArea,
+    ceilingPerM2: clamp.lattice.ceilingPerM2,
+    clamped: measuredClamped
+      .slice().sort((x, y) => y.asked - x.asked)
+      .map((r) => ({
+        community: r.community,
+        stratum: r.stratum,
+        side: r.side,
+        askedPerM2: r.asked,
+        offeredPerM2: r.offered,
+        drawsFraction: r.offered / r.asked,
+      })),
+    fits: clamp.rows.filter((r) => !r.clamped)
+      .slice().sort((x, y) => y.asked - x.asked)
+      .map((r) => ({
+        community: r.community, stratum: r.stratum, side: r.side, askedPerM2: r.asked,
+      })),
+  };
+  fs.writeFileSync(CLAMP_BASELINE, `${JSON.stringify(doc, null, 2)}\n`);
+  console.log(`  wrote ${path.relative(process.cwd(), CLAMP_BASELINE)} — `
+    + `${doc.clamped.length} clamped, ${doc.fits.length} fitting`);
 }
 
 /* -------------------------------------------------------------------------- */
@@ -434,5 +700,11 @@ if (wantGate) {
   console.log(`\nGATE: ${nowhere.length ? 'FAIL' : 'PASS'} — ${nowhere.length} (list, species) `
     + `pair(s) owed a whole slot and drawn nowhere in the scene, over ${slots} slots in `
     + `${lists.size} list(s)`);
+  // T-0019. The second assertion, and it is on the DECLARATION rather than on
+  // the clamp: a layer is allowed to sit on the lattice ceiling, and it is not
+  // allowed to do so without its shortfall written down.
+  console.log(`GATE: ${clampProblems.length ? 'FAIL' : 'PASS'} — the sward lattice's clamped `
+    + `layers match their declaration in tools/forb_clamp_baseline.json `
+    + `(${measuredClamped.length} clamped, ${clampProblems.length} problem(s))`);
 }
-process.exit(errors.length || (wantGate && nowhere.length) ? 1 : 0);
+process.exit(errors.length || (wantGate && (nowhere.length || clampProblems.length)) ? 1 : 0);

@@ -25,7 +25,7 @@
       "surface_confidence": "inferred",
       "wear_confidence": "reconstructed",
       "sources": ["chicago_dpw_1891_streets", "wright_1834", "osm_streets_2026"],
-      "note": "The curved west approach follows the dry south bank resolved by the committed heightfield; east of Franklin the line follows the modern Wacker control used by the structure placements but is shifted into the dry half of the platted riverfront corridor. The street stops at the United States Reservation, matching the 1833 order. Track width and ruts are visual interpretation, not measurements."
+      "note": "The curved west approach follows the dry south bank resolved by the committed heightfield; east of Franklin the line follows the modern Wacker control used by the structure placements but is shifted into the dry half of the platted riverfront corridor, AND SINCE 2026-08-28 THAT SHIFT IS A MEASUREMENT RATHER THAN A SENTENCE: 8.28 m south, measured perpendicular to this centreline from `control.south_water_franklin` in data/traces/street_control.json, the first control point ever committed on this street. That is 68 per cent of the 12.192 m half of the 80 ft platted module, so the line sits inside the corridor's dry half with 3.91 m to spare before its south edge if the corridor is centred on the modern junction. Nothing was re-derived and nothing moved — the standoff is the reconstruction decision this note already described, and it is now checkable. The corner of the two committed centrelines falls at local (208.49, +2.83) against the control's (208.46, +11.41): the whole 8.58 m disagreement is across this street and 0.03 m of it is across Franklin. The street stops at the United States Reservation, matching the 1833 order. Track width and ruts are visual interpretation, not measurements."
     },
     {
       "id": "lake",
@@ -97,7 +97,8 @@
       "geometry_confidence": "inferred",
       "surface_confidence": "inferred",
       "wear_confidence": "reconstructed",
-      "sources": ["wright_1834", "osm_streets_2026"]
+      "sources": ["wright_1834", "osm_streets_2026"],
+      "note": "The north end of this line is the one place on the reconstruction where a modern junction can be made on South Water Street, and 2026-08-28 it was: `control.south_water_franklin` in data/traces/street_control.json, the mean of Franklin's two crossings of Wacker Drive's carriageways. The committed line extended to that junction's northing gives easting 208.49 against the control's 208.46 \u2014 0.03 m. That is a reproduction, not an independent confirmation: `osm_streets_2026` is already one of this record's sources, so what it establishes is that the line can be re-derived from the source it names, which until now it could not be. Nothing moved."
     },
     {
       "id": "wells",
@@ -220,7 +221,7 @@
       "name_1835": "North Water Street",
       "name_2026": "N Water Street",
       "name_changed": false,
-      "path_local_enu_m": [[200, 55], [330, 66], [452, 75], [576, 86], [699, 98], [827, 116], [920, 190], [970, 270]],
+      "path_local_enu_m": [[-30, 45.2], [-15, 45.2], [10, 7], [105, 63.2], [150, 127], [165, 145], [170, 150], [183, 157.5], [189, 157.5], [195, 157.5], [210, 158], [265, 128.7], [390, 121.5], [585, 106.2], [770, 110.2], [790, 110.2], [830, 104.2], [920, 190], [970, 270]],
       "track_width_m": 6.0,
       "surface": "light_worn_earth",
       "traffic": "light",
@@ -228,7 +229,7 @@
       "surface_confidence": "inferred",
       "wear_confidence": "reconstructed",
       "sources": ["hathaway_1834", "wright_1834", "osm_streets_2026"],
-      "note": "A schematic bank-following path used for orientation and readout. The 1834 sheets and surviving name establish the corridor, but the committed street module does not yet carry enough control to claim this curve as a trace."
+      "note": "DERIVED FROM THE COMMITTED NORTH BANK by tools/derive_north_water.py, not drawn beside it. The line this replaced was a hand-drawn schematic that ran 477.4 m of its 843.3 m INSIDE the terrain's water mask, so the renderer drew no roadway at all across that reach and three of its six bends stood in the river (T-0226). The bank is a trace of Wright 1834 with a stated +/-20 m; this line was not a trace of anything and said so; the old line missed the bank by 1 to 86 m, up to 4.3x that uncertainty; and the North Division placement recipe had already ruled that proximity to North Water Street never overrides the water mask. So the street was the record that was wrong. North Water Street fronted the main stem, so its platted corridor is laid with its south line on the bank and the centreline falls 12.192 m north of it - half the 80 ft thompson_module_1830, fitted in the fewest straight runs that clear every 5 m station with 0.5 m of give, which is 2.5 % of the bank trace's own uncertainty. THE SLOUGH IS NOW CROSSED RATHER THAN STOPPED AT (T-0254). The line runs in TWO REACHES with a structure between them: the east reach from the deck of north_water_slough_crossing at E +195 out to E +830, the west reach from the deck's other end at E +183 to the North Branch at E -30, and one bend at [189, 157.5] standing in the water at the deck's midpoint. That wet bend is deliberate and it is the only one: R-BUG4 drops a panel whose centreline endpoint is wet, so the two panels the deck replaces are dropped and the crossing carries the street. Carrying the line across with dry bends at each shoulder would have painted a 6.65 m ford. Each reach's smoothing window is clamped inside its own reach, because at E +190 the slough and the river funnel are one water run reaching N +165 and a window that saw it would push the street up the slough instead of over it. WHAT THE WEST REACH COSTS, stated because the tool measures it: the road stands 12.0 m to 41.5 m from the water, perpendicular, against a 12.192 m setback. The 41.5 is one 15 m stretch at the base of Wolf Point, where the bank turns through nearly a right angle from the main stem into the North Branch and the derivation's running maximum - which holds the street north of EVERY bank point within 15 m of it - lags the turn. The rule is doing what it says; on a bank that falls 45 m in 35 m of easting it is expensive. Filed as its own ticket rather than tuned here. Geometry stays reconstructed - a bank is a proxy for a street, not evidence of one, and west of the slough there is not even a building on it. Track width and wear remain visual interpretation."
     },
     {
       "id": "wolcott",
@@ -273,6 +274,36 @@
       "wear_confidence": "reconstructed",
       "sources": ["harrison_1830_river_mouth", "andreas_1884_v1", "kinzie_waubun_1856"],
       "note": "THE ROAD THE FORT PLAINLY HAD, DRAWN AT THE RECONSTRUCTED TIER, and which part is which is stated rather than implied. WHAT IS DOCUMENTED: the fort had large gates north and south - Juliette Kinzie inside it in 1831, Andreas independently, and a break in each of those two walls and in neither of the others on the 1830 Harrison plan - and the garrison garden's own record reads off that same plan that the plot lies 'west of the road'. So the plan draws a road on the reservation, and a road that is east of that garden and arrives at that gate has to run about here. WHAT IS NOT DOCUMENTED: nobody traced this line, nobody measured it, and no source names it. The 1835 name is DESCRIPTIVE, not a proper name; the 2026 name is the street that runs over this ground today, not a descent of name. THE WESTERN REACH IS THE INVENTION AND IT IS THE REASON THIS RECORD IS RECONSTRUCTED: South Water Street stops at the United States Reservation, matching the 1833 order, so the connection from the town to the fort gate was never a platted street - it is drawn because a garrisoned post that mustered, traded and drew its stores through the town had a way in, and a visitor who walks east out of South Water Street should find one instead of trackless prairie. The line is routed clear of the garden's east corner and of the Beaubien buildings, and it is clipped by the water mask like every other track, so it makes honest gaps rather than fords where the ground is wet. Recorded in docs/LIBERTIES.md; T-0044."
+    },
+    {
+        "id": "fort_bank_track",
+        "name_1835": "The bank track",
+        "name_2026": "N Michigan Avenue, at the bridge's south approach",
+        "name_changed": true,
+        "path_local_enu_m": [
+              [
+                    1156.63,
+                    253.92
+              ],
+              [
+                    1133.4,
+                    259.61
+              ]
+        ],
+        "corridor_width_m": 12.0,
+        "track_width_m": 3.6,
+        "surface": "light_worn_earth",
+        "traffic": "light",
+        "geometry_confidence": "reconstructed",
+        "surface_confidence": "inferred",
+        "wear_confidence": "reconstructed",
+        "sources": [
+              "harrison_1830_river_mouth",
+              "wentworth_1881_fort_dearborn",
+              "andreas_1884_v1",
+              "kinzie_waubun_1856"
+        ],
+        "note": "THE TRACK p4_0 DRAWS DESCENDING THE BANK FROM THE NORTH GATE, held back by L140 until the bank it descends had been graded (T-0004) and built now that it has (T-0099). WHICH PART IS WHICH. WHAT IS DOCUMENTED: the fort's north gate — 'large gates opened to the north and south' (Juliette Kinzie, inside it in 1831), 'one on the north and the other on the south side' (Andreas), a break in each of those two walls and in neither of the others on the 1830 Harrison plan — and that the plan names a ferry among the ground round the fort. WHAT IS NOT DOCUMENTED: this line. Nobody traced it, nobody measured it, and no source names it; the 1835 name is DESCRIPTIVE, and the 2026 name is the ground the modern bridge approach covers, not a descent of name. BOTH ENDS ARE DERIVED FROM COMMITTED RECORDS AND THE MIDDLE IS ONE STRAIGHT CHORD. It begins at [1156.63, 253.92]: the north gate's own centre — 26.5 m along a 53 m wall, the midpoint tools/measure_fort_gates.py reads the shipped leaves at — carried out along the wall's outward normal by 6.74 m, which is the standoff the fort road already keeps from the SOUTH gate. The apron's bare trodden earth carries the last stride to the pickets at both gates, and this record invents no second convention for the north one. It ends at [1133.40, 259.61]: the Z = 0 waterline of the committed heightfield, on the easting of the WEST END of the commandant's quarters — the one place on this bank any source puts anything, the 1855 Hesler key locating the ferry landing 'under the west chimney of the Commandant's quarters'. READ THE DATE: that key is 1855 and describes the post-military compound, so it is read here as an inference that a landing fixed by the shape of a bank stood where it stood twenty years earlier, and never as a measurement of 1835. WHY ONE OBLIQUE CHORD AND NOT A RAMP STRAIGHT DOWN. Straight north out of the gate the graded bank falls 3.60 m in under 10 m, about 1 in 2.7, which is a scramble rather than a way to a boat. Swung west onto the landing the same fall is spread over 23.91 m: 1 in 6.65 mean and 1 in 3.65 at its steepest metre, measured on the committed heightfield at [1140.0, 257.99]. That worst metre is GENTLER THAN GROUND THIS PROJECT ALREADY DRAWS ROADWAY ON — South Water Street reaches 1 in 3.0 at the river bank, Randolph and Washington 1 in 4.1 — so the obliquity is what makes the track walkable and is not a shape chosen for its own sake. One chord means no joint, so no wedge of prairie opens at a bend (L178). The width is the GATE'S: 3.60 m, the committed gate_width_m of the palisade this track leaves by, rather than a fourth invented figure on this reservation. The corridor is the fort road's 12.0 m for the same reason. Clipped by the water mask like every other track, so the ribbon stops at the water instead of painting a ford. Recorded in docs/LIBERTIES.md L199; T-0099."
     }
   ]
 }

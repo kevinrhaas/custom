@@ -1,7 +1,7 @@
 ---
 id: T-0212
 title: The one A5 roof still dealt a gable takes the shed its family gets everywhere else
-state: open
+state: done
 epic: META
 requested_by: loop
 seen: false
@@ -9,9 +9,9 @@ effort: S
 legacy_id: null
 parent: null
 opened: 2026-08-26
-closed: null
-pr: null
-claimed_by: null
+closed: 2026-08-28
+pr: 437
+claimed_by: run 8/27/2026, 11:35:22 PM CT
 blocked_on: null
 needs_bake: true
 ---

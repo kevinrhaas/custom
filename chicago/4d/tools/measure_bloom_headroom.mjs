@@ -49,10 +49,21 @@
  *     with no headroom, so the next flower needs a different lattice (K58) and
  *     not a different number.
  *
- * The one thing it found that T-0034 did NOT cause, and that wants its own
- * parcel: `flora-head-spike` in the settled town and `flora-head-dome` in the
- * wet woods stand AT 820 of 820 and truncate silently, before and after the
- * raise alike. Those are heads the placer dealt and the frame never drew.
+ * The one thing it found that T-0034 did NOT cause: `flora-head-spike` in the
+ * settled town and `flora-head-dome` in the dense forest stood AT 820 of 820 and
+ * truncated silently, before and after the raise alike. Those were heads the
+ * placer dealt and the frame never drew.
+ *
+ * **T-0214 CLOSED IT, and §2a is what it added.** The nine head sets shared one
+ * ceiling written nine times; they now share one BUDGET split by measured
+ * demand (`HEAD_SHARE` in `renderers/web/js/flora.js`), and the total is the
+ * same 7,380 instances it was. The demand figures the shares are sized on are
+ * §2a's own table, so this tool is both the measurement and the gate: `--assert`
+ * fails if any head set is at its cap at any pose in the mosaic, or if the nine
+ * ceilings stop summing to 7,380. What made the truncation measurable at all is
+ * that the placer now counts DEMAND — every instance the records asked a set
+ * for, including the ones a plant abandons after the set fills — so a set that
+ * had nothing to draw and one that was cut off mid-plant stopped looking alike.
  *
  * It measures the placer through its own entry points — `flora.update` with a
  * synthetic camera, then `flora.stats` and `flora.communities()` — the way
@@ -178,6 +189,8 @@ const out = await page.evaluate((stands) => {
       triangles: s.triangles,
       forbRows,
       far: s.sets['flora-far'] ?? 0,
+      demand: { ...s.demand },
+      shortfall: { ...s.shortfall },
     });
   }
   // EVERY COMMUNITY, not only the three sweep poses. A head set that truncates
@@ -215,6 +228,10 @@ const out = await page.evaluate((stands) => {
         yaw,
         sets: { ...s.sets },
         capped: s.capped.slice(),
+        // T-0214: what the records asked each set for at this pose, so the
+        // table below can report a shortfall by name rather than inferring one
+        // from a count that happens to equal a ceiling.
+        demand: { ...s.demand },
       });
     }
   }
@@ -224,6 +241,7 @@ const out = await page.evaluate((stands) => {
     lattice,
     communities,
     caps: a.flora.stats.caps,
+    trisPer: a.flora.stats.trisPer,
     rows,
     reach: {
       forbOuter: ring.fade[0],
@@ -320,6 +338,49 @@ console.log(`  sets AT a cap anywhere in the mosaic: ${overCapped.length
   ? [...new Set(overCapped.flatMap((s) => s.capped))].join(', ')
   : 'NONE — no set truncates, so every head the placer deals is drawn'}`);
 
+// ---- §2a the shortfall, by name and count (T-0214) ----------------------- //
+//
+// A set sitting on its ceiling says nothing about how much it refused. The
+// placer now counts DEMAND — every instance the records asked each set for,
+// including the ones a plant gave up on after the set filled — so the two
+// questions this ticket exists to separate can be asked separately: how full is
+// a set, and how many inflorescences did the frame drop.
+console.log('\n§2a WHAT WAS ASKED FOR, AND WHAT WAS REFUSED — every set, every pose\n');
+const want = {};
+for (const st of [...out.sweep, ...out.rows.map((r) => ({ zone: r.zone, yaw: 'stand', demand: r.demand, sets: r.heads }))]) {
+  for (const [k, d] of Object.entries(st.demand || {})) {
+    if (!k.startsWith('flora-head-')) continue;
+    if (!want[k] || d > want[k].demand) {
+      want[k] = { demand: d, drawn: st.sets[k] ?? 0, zone: st.zone, yaw: st.yaw };
+    }
+  }
+}
+const headTotalCap = Object.entries(out.caps)
+  .filter(([k]) => k.startsWith('flora-head-')).reduce((a, [, v]) => a + v, 0);
+const wantRows = Object.entries(want).sort((a, b) => b[1].demand - a[1].demand);
+console.log(`  ${'set'.padEnd(22)}${'cap'.padStart(6)}${'asked'.padStart(8)}${'drawn'.padStart(7)}`
+  + `${'refused'.padStart(9)}   at its own worst pose`);
+let refusedTotal = 0;
+for (const [k, w] of wantRows) {
+  const short = Math.max(0, w.demand - out.caps[k]);
+  refusedTotal += short;
+  console.log(`  ${k.padEnd(22)}${String(out.caps[k]).padStart(6)}${String(w.demand).padStart(8)}`
+    + `${String(Math.min(w.demand, out.caps[k])).padStart(7)}${(short ? String(short) : '—').padStart(9)}`
+    + `   ${w.zone} facing ${w.yaw}${w.yaw === 'stand' ? '' : '°'}`);
+}
+const wantSum = wantRows.reduce((a, [, w]) => a + w.demand, 0);
+console.log(`  ${'—'.padEnd(22)}${String(headTotalCap).padStart(6)}${String(wantSum).padStart(8)}`
+  + `${''.padStart(7)}${String(refusedTotal).padStart(9)}   summed over each set's OWN worst pose`);
+const refusedTris = wantRows.reduce((a, [k, w]) => a
+  + Math.max(0, w.demand - out.caps[k]) * (out.trisPer[k] ?? 0), 0);
+console.log(`\n  Every set's worst pose at once is a bound no single frame ever draws, and it is `
+  + `\n  ${wantSum} against a ${headTotalCap}-instance head budget. So the shortfall is an ALLOCATION `
+  + '\n  and not a budget: what a set needs is what it is asked for at its own worst pose.');
+console.log(`\n  What the refusals cost the frame if every one of them were drawn: `
+  + `${refusedTris.toLocaleString()} triangles`);
+console.log(`  ${Object.entries(out.trisPer).filter(([k]) => k.startsWith('flora-head-'))
+  .map(([k, t]) => `${k.replace('flora-head-', '')} ${t}`).join(' · ')} triangles an instance`);
+
 // ---- §2b the reach ------------------------------------------------------- //
 
 console.log('\n§2b THE REACH — how far out any bloom is drawn at all\n');
@@ -386,13 +447,36 @@ if (ASSERT) {
   // these are exact readings and not samples; the tolerance is for a build that
   // moves the ground under the stand, which is a real change and should fail.
   want('prairie_west forbs drawn', west?.forbs, 256, 12);
-  want('prairie_west heads drawn', west?.headTotal, 1968, 60);
+  // T-0214 RESTATED THIS FROM T-0034's 1,968, and the reason is not this ticket:
+  // T-0209 carried the bloom out past the near ring the same day, and more reach
+  // is more heads. On `dev` at c39167b4 the figure reads 2,441 and `--assert`
+  // fails on BOTH this line and the truncation line below — `flora-head-raydroop`
+  // stands at its cap at prairie_west there, which is 2,441 drawn out of 2,469
+  // asked for. With the head budget allocated on measured demand nothing
+  // truncates and the stand draws all 2,469, so this is the figure with no set
+  // refusing anything, and the two lines agree again.
+  want('prairie_west heads drawn', west?.headTotal, 2469, 60);
   // The raise is only a raise if nothing downstream truncates it. The two sets
   // that DO stand at their cap are `spike` in the settled town and `dome` in
   // the wet woods, and both were at it before T-0034 — see the header.
   if (west && west.capped.some((c) => c.startsWith('flora-head-'))) {
     problems.push(`prairie_west truncates ${west.capped.join(', ')} — the raise is not all drawn`);
   }
+  // T-0214, and this is the ticket's own gate: NO head set at its cap at any
+  // pose in the mosaic, not merely at the three named stands. The allocation in
+  // `HEAD_SHARE` is sized on the demand §2a measures, so a set that fills again
+  // means the demand has moved and the shares are stale.
+  const stillCapped = [...new Set(out.sweep.flatMap((st) => st.capped)
+    .concat(out.rows.flatMap((r) => r.capped)))].filter((c) => c.startsWith('flora-head-'));
+  if (stillCapped.length) {
+    problems.push(`head sets still at their cap: ${stillCapped.join(', ')} — `
+      + 're-measure §2a and re-size HEAD_SHARE in renderers/web/js/flora.js');
+  }
+  // ...and the allocation must never be a raise. Nine shares averaging one is
+  // the promise `HEAD_SHARE` makes; this is it read back off the built meshes.
+  const headCapTotal = Object.entries(out.caps)
+    .filter(([k]) => k.startsWith('flora-head-')).reduce((a, [, v]) => a + v, 0);
+  want('the nine head ceilings summed', headCapTotal, 7380, 9);
   console.log('');
   if (problems.length) {
     for (const p of problems) console.log(`FAIL  ${p}`);

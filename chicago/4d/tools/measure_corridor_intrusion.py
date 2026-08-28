@@ -33,7 +33,9 @@ source outranks a corridor this project derived from a module and a traced centr
     tools/measure_corridor_intrusion.py --recentre     K30(a)'s refuted counterfactual
     tools/measure_corridor_intrusion.py --reflect      K30(b)'s cause, REFUTED by --anchors
     tools/measure_corridor_intrusion.py --anchors      K30(d): is the point the kerb or the back
+    tools/measure_corridor_intrusion.py --escape       T-0195: which way OUT, and what it costs
     tools/measure_corridor_intrusion.py --gate         the ratchet check.sh runs
+    tools/measure_corridor_intrusion.py --self-test    break the absolute assertion
     tools/measure_corridor_intrusion.py --write-baseline   only to record a repair
 
 This tool exists in the shape it does because of what K30(a) found about T-A7 and T-A14
@@ -45,6 +47,10 @@ come out of here.
 from __future__ import annotations
 
 import argparse
+import contextlib
+import copy
+import datetime as _dt
+import io
 import json
 import math
 import sys
@@ -53,9 +59,11 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT / "tools"))
 
-from generate_plat_lots import point_in_polygon  # noqa: E402
-from measure_street_frontage import layer_of  # noqa: E402
-from plat_corridors import corridors, intrusion  # noqa: E402
+from generate_plat_lots import point_in_polygon, point_to_ring_m  # noqa: E402
+from measure_street_frontage import (  # noqa: E402
+    LAYERS, layer_of, layer_of_record)
+from plat_occupancy import layers, researched_ids  # noqa: E402
+from plat_corridors import corridors, intrusion, sampled  # noqa: E402
 from plat_occupancy import world_polygon  # noqa: E402
 
 BASELINE = ROOT / "tools" / "corridor_intrusion_baseline.json"
@@ -148,15 +156,21 @@ def centreline_frame(points: list, px: float, py: float) -> tuple[float, tuple, 
     return best
 
 
-def measure() -> dict:
-    """Every committed structure's deepest lap into any platted corridor."""
+def measure(placed: list | None = None) -> dict:
+    """Every committed structure's deepest lap into any platted corridor.
+
+    `placed` defaults to the committed tree's placed phases and is a parameter so
+    `--self-test` can measure a tree broken in memory — a roof actually moved into a
+    roadway, with its depth computed by this same function rather than typed in
+    (T-0221).
+    """
     datum = json.loads((ROOT / "data" / "datum.json").read_text(encoding="utf-8"))
     lanes = corridors()
     origin_e = float(datum["origin_utm_e"])
     origin_n = float(datum["origin_utm_n"])
 
     rows: dict[str, dict] = {}
-    placed = placed_phases()
+    placed = placed_phases() if placed is None else placed
     for structure_id, phase_id, phase, polygon, category in placed:
         street, depth = intrusion(polygon, lanes)
         if street is None:
@@ -536,11 +550,200 @@ def anchors() -> str:
     return "\n".join(lines)
 
 
+# How close two bearings have to run before this tool will say one is ALONG the other.
+# The committed centrelines are traced polylines, not a drafted grid: the cross streets in
+# the business core run at 0.34-0.36 degrees and South Water at 89.53-90.93, so a tolerance
+# tighter than a degree would call the same relationship "along" on one block and not on
+# the next. Five degrees is comfortably inside the smallest angle any two DIFFERENT streets
+# in this plat make with each other, which is what the tolerance actually has to separate.
+ALONG_TOLERANCE_DEG = 5.0
+
+# The furthest a corridor may be from a footprint's centroid and still be counted as one of
+# the streets that footprint stands on. A corner lot's two streets are both within a street
+# module of it; the next street over is a block away.
+NEIGHBOUR_M = 60.0
+
+
+def _bearing(vector: tuple[float, float]) -> float:
+    """Compass bearing of a local-ENU vector, degrees clockwise from grid north."""
+    return math.degrees(math.atan2(vector[0], vector[1])) % 360.0
+
+
+def _angle_between_lines(a_deg: float, b_deg: float) -> float:
+    """The acute angle between two UNDIRECTED bearings — a street has no forward end."""
+    delta = abs(a_deg - b_deg) % 180.0
+    return min(delta, 180.0 - delta)
+
+
+def depth_into(polygon: list, lane: dict) -> float:
+    """How deep a footprint reaches into ONE named corridor, in metres from its edge.
+
+    `plat_corridors.intrusion()` answers a different question — the DEEPEST corridor of all
+    — and a record standing in two of them at once cannot be asked about one of them
+    through it. That distinction is not academic: `first_presbyterian_church` laps both
+    Clark and Lake, and a search that stops when the deepest corridor merely CHANGES NAME
+    reports it escaping Clark in 28 mm when it has done nothing of the kind.
+    """
+    ring = lane["ring"]
+    worst = 0.0
+    for point in sampled(polygon):
+        if point_in_polygon(point, ring):
+            worst = max(worst, point_to_ring_m(point, ring))
+    return worst
+
+
+def escape(json_out: bool = False) -> str:
+    """T-0195 — WHICH WAY WOULD A LAPPING RECORD HAVE TO MOVE, AND WHAT DOES THE MOVE SPEND?
+
+    The table above says how deep each record stands in a roadway. It has never said what
+    getting it out would COST, and on a corner that is the whole question. A corner lot has
+    two streets. The South Water repair (T-0198, T-0199, and T-0127's method before them)
+    re-derived eleven records against this project's own committed centreline for the street
+    they FRONT, and translated each one along that street's normal. Three of the eleven
+    stand on a corner, and the move that answers the frontage street cannot answer the one
+    the building turns onto: they lap the CROSS street's corridor by 0.16-0.21 m.
+
+    So this mode measures the way out, per record, and names what the way out runs along:
+
+    * **escape** — the shortest translation along the lapped corridor's own normal, away
+      from it, that takes the footprint clear of that corridor. Bisected against
+      `plat_corridors.intrusion()` rather than assumed equal to the depth, because a
+      corridor is an offset polyline and its ring is not parallel to a building's wall.
+    * **vs front** — that escape bearing read against the record's OWN facade bearing, the
+      authored `position.rotation_deg`. `across` means the escape runs into or out of the
+      building's front, so the move changes its SETBACK. `along` means the escape runs
+      sideways across its front, so the move changes WHERE ALONG THE STREET IT STANDS.
+      `oblique` is neither, and on this plat only a record whose facade is not square to
+      its own street reads that way.
+
+    A grid tempts a looser test — "is there a nearby street parallel to the escape?" — and
+    on an orthogonal plat that test is TRUE FOR EVERY RECORD, because the street crossing
+    the one you lap always runs the way you have to move. It says nothing. The facade
+    bearing is what distinguishes the two cases, because it is the record's own statement
+    about which street it stands on the front of.
+
+    That distinction is the whole of T-0195's refusal. Moving a documented record ACROSS
+    its front is re-deriving a setback against a better line, which is what T-0127 did and
+    defended: the claim does not move, only the line it was derived against. Moving one
+    ALONG its front moves the corner attribution itself — the one part of these three
+    placements a source actually argues — to make a derived number smaller, which is the
+    thing this file's own note forbids in as many words.
+    """
+    lanes = corridors()
+    rows = []
+    for structure_id, phase_id, _phase, polygon, category in placed_phases():
+        street, depth = intrusion(polygon, lanes)
+        if street is None:
+            continue
+        cx = sum(p[0] for p in polygon) / len(polygon)
+        cy = sum(p[1] for p in polygon) / len(polygon)
+        _, axis, foot = centreline_frame(lanes[street]["points"], cx, cy)
+        normal = (-axis[1], axis[0])
+        side = math.copysign(1.0, (cx - foot[0]) * normal[0] + (cy - foot[1]) * normal[1])
+        out = (side * normal[0], side * normal[1])
+
+        def moved_by(distance: float) -> list:
+            return [(x + out[0] * distance, y + out[1] * distance) for x, y in polygon]
+
+        # Bisect for the clearance, against THIS corridor rather than against whichever is
+        # deepest. The upper bound starts at the depth — the answer on a straight corridor —
+        # and doubles until the record is actually clear, so a ring that is not parallel to
+        # the wall cannot make the search miss.
+        high = max(depth, 0.01)
+        while depth_into(moved_by(high), lanes[street]) > 0.0 and high < 50.0:
+            high *= 2.0
+        low = 0.0
+        for _ in range(40):
+            mid = (low + high) / 2.0
+            if depth_into(moved_by(mid), lanes[street]) > 0.0:
+                low = mid
+            else:
+                high = mid
+        after_street, after_depth = intrusion(moved_by(high), lanes)
+
+        bearing = _bearing(out)
+        facade = float(_phase["position"].get("rotation_deg") or 0.0) % 360.0
+        # The acute angle between the escape and the FACADE NORMAL. Zero means the escape
+        # runs straight out of the front (or straight into it); ninety means it runs
+        # sideways along the front.
+        offset = _angle_between_lines(bearing, facade)
+        if offset <= ALONG_TOLERANCE_DEG:
+            versus = "across"
+        elif abs(offset - 90.0) <= ALONG_TOLERANCE_DEG:
+            versus = "along"
+        else:
+            versus = "oblique"
+        # The street the facade actually faces, for legibility: the nearest corridor whose
+        # axis is square to the facade normal. Named, never listed.
+        fronts, fronts_m = None, None
+        for other_id, lane in lanes.items():
+            distance, other_axis, _foot = centreline_frame(lane["points"], cx, cy)
+            if distance > NEIGHBOUR_M:
+                continue
+            if abs(_angle_between_lines(facade, _bearing(other_axis)) - 90.0) > ALONG_TOLERANCE_DEG:
+                continue
+            if fronts_m is None or distance < fronts_m:
+                fronts, fronts_m = other_id, distance
+        rows.append({
+            "structure": structure_id,
+            "phase": phase_id,
+            "category": category,
+            "street": street,
+            "depth_m": round(depth, PLACES),
+            "escape_m": round(high, 3),
+            "escape_bearing_deg": round(bearing, 2),
+            "facade_bearing_deg": round(facade, 2),
+            "escape_vs_facade": versus,
+            "escape_facade_offset_deg": round(offset, 2),
+            "fronts": fronts,
+            "fronts_m": None if fronts_m is None else round(fronts_m, PLACES),
+            "then_laps": after_street,
+            "then_depth_m": round(after_depth, PLACES),
+        })
+
+    rows.sort(key=lambda r: r["escape_m"])
+    if json_out:
+        return json.dumps(rows, indent=2, sort_keys=True)
+
+    lines = [f"{'structure':<44}{'laps':<13}{'depth m':>8}{'escape m':>10}"
+             f"{'bearing':>9}  {'vs front':<9}fronts"]
+    for r in rows:
+        fronts = r["fronts"] or "—"
+        lines.append(f"{r['structure']:<44}{r['street']:<13}{r['depth_m']:>8.2f}"
+                     f"{r['escape_m']:>10.3f}{r['escape_bearing_deg']:>9.2f}  "
+                     f"{r['escape_vs_facade']:<9}{fronts}")
+
+    along = [r for r in rows if r["escape_vs_facade"] == "along"]
+    lines += [
+        "",
+        f"{len(along)} of {len(rows)} records can only get clear by sliding SIDEWAYS ACROSS "
+        f"their own front, which moves where along the street the record stands:",
+    ]
+    for r in along:
+        lines.append(f"   {r['structure']:<44}{r['escape_m']:.2f} m along "
+                     f"{r['fronts'] or 'its frontage'}, to clear {r['street']}")
+    lines += [
+        "",
+        "The rest escape ACROSS their own front, which is the operation T-0127 and the "
+        "South Water repairs performed: the setback is re-derived against this project's "
+        "own committed centreline and the along-street coordinate never moves.",
+        "A record whose escape leaves it lapping a SECOND street cannot be repaired by "
+        "translation at all — it would trade one corridor for another.",
+    ]
+    traded = [r for r in rows if r["then_laps"]]
+    for r in traded:
+        lines.append(f"   {r['structure']:<44}clears {r['street']} at "
+                     f"{r['escape_m']:.2f} m and then laps {r['then_laps']} "
+                     f"at {r['then_depth_m']:.2f} m")
+    return "\n".join(lines)
+
+
 def _baseline() -> dict:
     return json.loads(BASELINE.read_text(encoding="utf-8"))
 
 
-def gate(quiet: bool = False) -> int:
+def gate(quiet: bool = False, result: dict | None = None,
+         failures_out: list[str] | None = None) -> int:
     """The ratchet. A new intruder fails; a deeper one fails; a shallower one is a repair.
 
     Plus two ABSOLUTE assertions that are not ratchets. No generated roof may lap a
@@ -549,8 +752,14 @@ def gate(quiet: bool = False) -> int:
     than a debt. And no record may CHANGE CATEGORY: street furniture is the one exemption
     in this table, so the way to abuse it is to make a store into a bridge, and that is
     the check which makes the rule safe to have (ROADMAP K30(b) item 2).
+
+    `result` is the measurement to gate, and defaults to the committed tree's. It is a
+    parameter so `--self-test` can hand this function a tree broken in memory and watch
+    the absolute assertion fire, rather than asserting in prose that it would (T-0221).
+    `failures_out`, when given, is filled with the failure lines so a caller can assert
+    on WHICH one fired instead of only on the exit code.
     """
-    result = measure()
+    result = measure() if result is None else result
     baseline = _baseline()
     committed = baseline["lapping"]
     failures: list[str] = []
@@ -577,6 +786,25 @@ def gate(quiet: bool = False) -> int:
                 f"street furniture is an exemption and may not be acquired by editing an "
                 f"archetype or a function")
 
+    # A refusal is a written argument attached to a lap (T-0195). It is checked, not
+    # trusted: it has to name a lap that is still there, and it may not quietly become the
+    # justification for a DIFFERENT number than the one it was written about.
+    refused = baseline.get("refused") or {}
+    for key, entry in sorted(refused.items()):
+        if key not in result["lapping"]:
+            failures.append(
+                f"{key} is refused in writing but no longer laps anything — withdraw the "
+                f"refusal with --write-baseline, and take the paragraph out of the "
+                f"record's position.note with it")
+            continue
+        row = result["lapping"][key]
+        if row["street"] != entry.get("street"):
+            failures.append(f"{key} is refused for {entry.get('street')} and now laps "
+                            f"{row['street']}; the refusal argues about a different street")
+        elif row["depth_m"] > float(entry.get("depth_m", 0.0)) + TOLERANCE_M:
+            failures.append(f"{key} laps deeper than the depth it was refused at: "
+                            f"{entry.get('depth_m')} -> {row['depth_m']:.2f} m")
+
     repaired = sorted(set(committed) - set(result["lapping"]))
     shallower = sorted(k for k, r in result["lapping"].items()
                        if k in committed and r["depth_m"] < committed[k]["depth_m"] - TOLERANCE_M)
@@ -588,12 +816,179 @@ def gate(quiet: bool = False) -> int:
         print(f"   {len(result['lapping']) - furniture} buildings, {furniture} street "
               f"furniture (a bridge in a street is not an intrusion)")
         print(f"   generated roofs lapping a corridor: {len(generated)} (must be 0)")
+        print(f"   refused in writing: {len(refused)} "
+              f"(each one argued in its own record's position.note)")
     if repaired or shallower:
         print(f"   {len(repaired)} cleared and {len(shallower)} shallower than the "
               f"baseline — re-run with --write-baseline to bank the repair")
     for line in failures:
         print(f"   {line}")
+    if failures_out is not None:
+        failures_out[:] = failures
     return 1 if failures else 0
+
+
+def _id_prefix_layer(structure_id: str) -> str:
+    """The reading T-0221 REMOVED, kept here and nowhere else so it stays refuted.
+
+    `layer_of` answered from the id until 2026-08-28. This is that answer, verbatim, and
+    the only thing it is used for is proving that the reading in force is a different one
+    and that the difference is the physician's office. Nothing measures with it.
+    """
+    if structure_id.startswith("recon_1835_"):
+        return "reconstruction"
+    if structure_id.startswith("inf_"):
+        return "inferred_household"
+    return "research"
+
+
+def _moved_into_the_roadway(structure_id: str, street: str) -> list:
+    """The committed placed phases, with one record translated onto a street centreline.
+
+    The centreline is the middle of the roadway, so a footprint whose anchor is put on it
+    is unambiguously inside the corridor whatever its shape — and the DEPTH is still
+    computed by `measure()` from the moved geometry rather than asserted here. Position
+    point and world polygon move by the same vector, because `measure()` reads both and a
+    fixture that moved only one would be testing a record this project cannot author.
+    """
+    lanes = corridors()
+    points = lanes[street]["points"]
+    moved = []
+    for sid, phase_id, phase, polygon, category in placed_phases():
+        if sid != structure_id:
+            moved.append((sid, phase_id, phase, polygon, category))
+            continue
+        cx = sum(pt[0] for pt in polygon) / len(polygon)
+        cy = sum(pt[1] for pt in polygon) / len(polygon)
+        _, _, (fx, fy) = centreline_frame(points, cx, cy)
+        dx, dy = fx - cx, fy - cy
+        shifted = copy.deepcopy(phase)
+        shifted["position"]["utm_e"] = float(shifted["position"]["utm_e"]) + dx
+        shifted["position"]["utm_n"] = float(shifted["position"]["utm_n"]) + dy
+        moved.append((sid, phase_id, shifted,
+                      [(x + dx, y + dy) for x, y in polygon], category))
+    return moved
+
+
+def _gate_failures(result: dict | None = None) -> list[str]:
+    """The failure lines `gate` would print, with its report swallowed.
+
+    The self-test runs the gate several times and is reading WHICH assertion fired; its
+    running commentary would bury the checks it is printing.
+    """
+    out: list[str] = []
+    with contextlib.redirect_stdout(io.StringIO()):
+        gate(quiet=True, result=result, failures_out=out)
+    return out
+
+
+def self_test() -> int:
+    """The absolute assertion, broken in memory, and the reading it now rests on.
+
+    T-0221. This gate's censuses and its uncrossable clause — no GENERATED roof laps a
+    platted corridor — both ask `layer_of` which evidence layer a record belongs to. That
+    question used to be answered from the record's ID PREFIX, so a generated record whose
+    filename happens to carry no prefix was scored against the RATCHET, which a
+    `--write-baseline` may bank, instead of against the absolute, which nothing may. One
+    record was in that position. The last two checks below are that record, put in a
+    roadway under both readings.
+    """
+    checks: list[tuple[str, bool, str]] = []
+    committed = layers()
+
+    # 1. the reading is off the record, and the record says which programme wrote it
+    record = json.loads(
+        (STRUCTURES / "physicians_office.json").read_text(encoding="utf-8"))
+    checks.append(("physicians_office reads as the layer its own record declares",
+                   layer_of("physicians_office") == "inferred_household"
+                   == layer_of_record(record),
+                   f"{layer_of('physicians_office')} / "
+                   f"{record['reconstruction']['status']}"))
+    checks.append(("…and read from its NAME it was research — the fault, reproduced",
+                   _id_prefix_layer("physicians_office") == "research",
+                   _id_prefix_layer("physicians_office")))
+    checks.append(("…so this test distinguishes the fix from the fault",
+                   layer_of("physicians_office")
+                   != _id_prefix_layer("physicians_office"), "the two readings differ"))
+
+    # 2. and it is the ONLY record they differ on, measured rather than remembered
+    disagree = sorted(sid for sid, layer in committed.items()
+                      if layer != _id_prefix_layer(sid))
+    checks.append((f"across all {len(committed)} committed records the name and the "
+                   f"record disagree on exactly one",
+                   disagree == ["physicians_office"],
+                   ", ".join(disagree) or "none"))
+
+    # 3. one reading, both callers. `researched_ids` used to carry its own copy.
+    checks.append(("plat_occupancy.researched_ids is the research layer of the same map",
+                   researched_ids()
+                   == {sid for sid, layer in committed.items() if layer == "research"},
+                   f"{len(researched_ids())} documented"))
+    for layer in LAYERS:
+        checks.append((f"…and every record lands in a named layer — {layer}",
+                       all(v in LAYERS for v in committed.values()),
+                       f"{sum(1 for v in committed.values() if v == layer)}"))
+
+    # 4. an id with no record is refused rather than guessed at from its name
+    try:
+        layer_of("recon_1835_no_such_record")
+        refused = False
+    except KeyError:
+        refused = True
+    checks.append(("an id carrying no committed record is refused, not read off its "
+                   "prefix", refused, "KeyError" if refused else "answered anyway"))
+
+    # 5. the negative control: the tree as committed crosses nothing
+    live = _gate_failures()
+    generated = [m for m in live if "generated roof" in m]
+    checks.append(("the committed tree passes the absolute assertion",
+                   not generated, "; ".join(live) or "clean"))
+    checks.append(("…and physicians_office laps no corridor today, so nothing in the "
+                   "tree moves under the fix",
+                   not any(k.startswith("physicians_office:")
+                           for k in measure()["lapping"]), "clear"))
+
+    # 6. put an ANONYMOUS roof in a roadway: the assertion fires. This is the case the
+    #    id reading also caught, and it is here as the control for the one below it.
+    anonymous = next(sid for sid in sorted(committed)
+                     if committed[sid] == "reconstruction"
+                     and any(p[0] == sid for p in placed_phases()))
+    broken = _gate_failures(measure(_moved_into_the_roadway(anonymous, "lake")))
+    checks.append((f"a reconstruction roof moved onto the Lake Street centreline is "
+                   f"caught by the absolute assertion — {anonymous}",
+                   any("generated roof" in m for m in broken),
+                   next((m for m in broken if "generated roof" in m), "NOT CAUGHT")))
+
+    # 7. and now the ticket's record, in the same roadway, under both readings
+    crossed = measure(_moved_into_the_roadway("physicians_office", "lake"))
+    fixed = _gate_failures(crossed)
+    checks.append(("physicians_office moved onto the same centreline is caught by the "
+                   "absolute assertion",
+                   any("generated roof" in m and "physicians_office" in m
+                       for m in fixed),
+                   next((m for m in fixed if "generated roof" in m), "NOT CAUGHT")))
+
+    as_named = copy.deepcopy(crossed)
+    for row in as_named["lapping"].values():
+        row["layer"] = _id_prefix_layer(row["structure"])
+    named = _gate_failures(as_named)
+    checks.append(("…and read from its NAME the absolute assertion never fires for it — "
+                   "the gate's reach, before the fix",
+                   not any("generated roof" in m for m in named),
+                   next((m for m in named if "generated roof" in m),
+                        "no absolute failure; only the ratchet")))
+    checks.append(("…which left it to the RATCHET, and a ratchet can be re-baselined",
+                   any(m.startswith("physicians_office:") and "newly laps" in m
+                       for m in named),
+                   next((m for m in named if m.startswith("physicians_office:")),
+                        "nothing fired at all")))
+
+    ok = True
+    for label, passed, detail in checks:
+        print(f"  {'ok  ' if passed else 'FAIL'}  {label} — {detail}")
+        ok &= passed
+    print("\nSELF-TEST " + ("PASS" if ok else "FAIL"))
+    return 0 if ok else 1
 
 
 def main() -> int:
@@ -605,12 +1000,22 @@ def main() -> int:
                         help="K30(b)'s confirmed cause — a diagnosis, not a proposal")
     parser.add_argument("--anchors", action="store_true",
                         help="K30(d)'s test — is the point the kerb face or the back corner")
+    parser.add_argument("--escape", action="store_true",
+                        help="T-0195 — the way out per record, and what the move spends")
     parser.add_argument("--gate", action="store_true", help="the ratchet check.sh runs")
+    parser.add_argument("--self-test", action="store_true",
+                        help="put a generated roof in a roadway in memory and check the "
+                             "absolute assertion fires")
     parser.add_argument("--write-baseline", action="store_true",
                         help="rewrite the committed table — only to record a repair")
+    parser.add_argument("--measured", default=None, metavar="YYYY-MM-DD",
+                        help="the date to stamp the baseline with; defaults to today")
     parser.add_argument("--quiet", action="store_true")
     parser.add_argument("--json", action="store_true")
     args = parser.parse_args()
+
+    if args.self_test:
+        return self_test()
 
     if args.gate:
         return gate(quiet=args.quiet)
@@ -627,6 +1032,10 @@ def main() -> int:
         print(anchors())
         return 0
 
+    if args.escape:
+        print(escape(json_out=args.json))
+        return 0
+
     result = measure()
 
     if args.write_baseline:
@@ -640,11 +1049,32 @@ def main() -> int:
             "whose depth has grown. It is NOT an allowance — K30(b) owns the fix, and "
             "these are the numbers it takes as its baseline. Never move a documented "
             "building to make an entry smaller: a position with a source outranks a "
-            "corridor this project derived.")
-        baseline["measured"] = args.__dict__.get("measured") or "2026-08-16"
+            "corridor this project derived. `refused` is the other half of that "
+            "sentence (T-0195): a lap whose only escape would move a source-argued "
+            "coordinate is refused IN WRITING, per record, here and in the record's own "
+            "position.note — not tolerated by silence. A refusal may not outlive the lap "
+            "it refuses; the gate says so and --write-baseline drops the stale ones.")
+        # NOT a constant. This read "2026-08-16" for as long as the file existed, and no
+        # --measured option was ever defined to override it, so every repair banked since
+        # August has been stamped with the date of the first measurement rather than its
+        # own. A banked number whose date is a fossil is the shape of fault this tool was
+        # written to stop (T-0195).
+        baseline["measured"] = args.measured or _dt.date.today().isoformat()
         baseline["placed_phases"] = result["placed_phases"]
         baseline["corridors"] = result["corridors"]
         baseline["lapping"] = result["lapping"]
+        # A refusal is an argument about a lap that exists. When the lap goes, so does the
+        # argument — otherwise the file accumulates written refusals of nothing, and the
+        # gate below would fail forever on work that was actually a repair.
+        refused = baseline.get("refused") or {}
+        stale = sorted(k for k in refused if k not in result["lapping"])
+        for key in stale:
+            refused.pop(key)
+        if refused or stale:
+            baseline["refused"] = refused
+        if stale:
+            print(f"   dropped {len(stale)} refusal(s) whose lap is gone: "
+                  f"{', '.join(stale)}")
         BASELINE.write_text(json.dumps(baseline, indent=2, sort_keys=True) + "\n",
                             encoding="utf-8")
         print(f"   wrote {BASELINE.relative_to(ROOT)}: {len(result['lapping'])} record(s)")

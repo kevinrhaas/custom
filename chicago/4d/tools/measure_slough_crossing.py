@@ -69,11 +69,21 @@ SCENE = "1835"
 # step instead of one. Each entry is a committed bridge record and the swale entry
 # whose water it is supposed to span — nothing else about a crossing is stated
 # here, because everything else is read out of the records themselves.
+# `downstream` is which way the river is FROM THE DECK, and it has to be stated because
+# assertion 3 walks only the reach below the crossing. Both South Division drains run
+# NORTH into the main stem; T-0254's crossing is on the other bank and its slough runs
+# SOUTH into the same river. Reading the direction off the geometry would have meant
+# guessing which end of a centreline is the mouth, which is a record's business.
 CROSSINGS = [
     {"bridge": "slough_log_bridge", "watercourse": "state_slough_mouth",
+     "downstream": "north",
      "label": "The Slough Log Bridge, Water Street"},
     {"bridge": "lasalle_slough_crossing", "watercourse": "lasalle_slough_lower",
+     "downstream": "north",
      "label": "The La Salle Slough Crossing, South Water Street"},
+    {"bridge": "north_water_slough_crossing", "watercourse": "north_side_slough",
+     "downstream": "south",
+     "label": "The North Water Street Slough Crossing"},
 ]
 
 # The step the transects are read at. Finer than the 2.5 m grid on purpose: the
@@ -103,6 +113,32 @@ REACH_M = 40.0
 
 def load(path: Path):
     return json.loads(path.read_text(encoding="utf-8"))
+
+
+def course_line(course: dict, epoch_dir: Path):
+    """The watercourse's centreline in local ENU metres, or None.
+
+    A `swales` entry states its own `line` in local metres. A `watercourses` entry
+    states `from: <file>` instead and the line lives in that file, in EPSG:26916 —
+    T-0254's slough is the first crossing whose stream is one of those. Both are read
+    here rather than in the caller so assertion 3 does not care which kind it got.
+    """
+    if course.get("line"):
+        return [(float(p[0]), float(p[1])) for p in course["line"]]
+    src = course.get("from")
+    if not src or not (epoch_dir / src).exists():
+        return None
+    datum = load(DATA / "datum.json")
+    oe, on = float(datum["origin_utm_e"]), float(datum["origin_utm_n"])
+    doc = load(epoch_dir / src)
+    for feature in doc.get("features", []):
+        if feature.get("id") != course["id"]:
+            continue
+        geom = feature.get("geometry") or {}
+        if geom.get("type") != "LineString":
+            return None
+        return [(float(e) - oe, float(n) - on) for e, n in geom["coordinates"]]
+    return None
 
 
 def deck_geometry(sidecar: dict) -> dict:
@@ -209,14 +245,23 @@ def measure(crossing: dict) -> tuple[dict, list[str]]:
 
     # --- 3: down the watercourse to the river ------------------------------
     spec = load(epoch_dir / "terrain_spec.json")
-    course = next((s for s in spec.get("swales", []) if s.get("id") == WATERCOURSE), None)
+    course = next((s for s in spec.get("swales", []) + spec.get("watercourses", [])
+                   if s.get("id") == WATERCOURSE), None)
     mouth = []
     if course is None:
-        problems.append(f"the terrain spec carries no swale '{WATERCOURSE}', so the "
-                        f"reach from the crossing to the river cannot be walked")
+        problems.append(f"the terrain spec carries no swale or watercourse "
+                        f"'{WATERCOURSE}', so the reach from the crossing to the river "
+                        f"cannot be walked")
     else:
-        line = [(float(p[0]), float(p[1])) for p in course["line"]]
+        line = course_line(course, epoch_dir)
+        if line is None:
+            problems.append(f"'{WATERCOURSE}' states neither its own `line` nor a "
+                            f"`from` file this tool can read, so its course cannot be "
+                            f"walked")
+            return reading, problems
         deck_n = deck["centre"][1]
+        below = (lambda n: n < deck_n) if crossing["downstream"] == "north" \
+            else (lambda n: n > deck_n)
         walked, dry = 0, []
         for i in range(len(line) - 1):
             (ae, an), (be, bn) = line[i], line[i + 1]
@@ -224,7 +269,7 @@ def measure(crossing: dict) -> tuple[dict, list[str]]:
             for k in range(int(length / STEP_M) + 1):
                 t = k * STEP_M / length
                 e, n = ae + (be - ae) * t, an + (bn - an) * t
-                if n < deck_n:
+                if below(n):
                     continue          # upstream of the deck: not asserted, see the docstring
                 walked += 1
                 if hf.height(e, n) >= water_y:

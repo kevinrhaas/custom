@@ -1446,6 +1446,18 @@ between 1816 and 1836. A picket count or a quantity of timber would settle the h
 spacing together.
 **Covers:** `fort_dearborn_palisade.picket_1816.form.picket_height_m`, `fort_dearborn_palisade.picket_1816.form.picket_width_m`, `fort_dearborn_palisade.picket_1816.form.picket_spacing_m`, `fort_dearborn_palisade.picket_1816.form.gate_width_m`, `fort_dearborn_palisade.picket_1816.form.bastion_length_m`, `fort_dearborn_palisade.picket_1816.form.bastion_projection_m`, `fort_dearborn_palisade.picket_1816.form.posterns`.
 **Recorded:** 2026-08-11.
+**Evidence since, 2026-08-28 (T-0185):** the gap between the posts — the part of this entry
+that "decides whether you can see through the wall" — was challenged by the one picture of the
+fort, and holds. `p4_0` resolves separate posts at a 10 px rhythm on a 42.9 px curtain, 0.23 of
+the wall's height per post against this record's 0.081, and nothing had ever tested whether that
+was a reading of the fort or of the lithograph. It is of the lithograph: at the plate's own scale
+of 11.6 px per metre this wall's rhythm is 2.78 px of post and **0.70 px of gap**, and the
+narrowest gap the plate holds anywhere on that curtain is 2 px. It could not have drawn this wall
+whatever the fort was made of, so its coarser pitch is the floor of the medium — and 0.23 of a
+3.7 m wall is an 0.86 m post, which is not a picket. **Nothing is upgraded and nothing moved.**
+Both figures stay `reconstructed` and this liberty stands exactly as written; what is new is that
+the disagreement is now measured and recorded, so the next run reads it rather than re-opening it.
+`tools/measure_picket_plate.py` prints both sides.
 
 ### L42 — The fort's buildings stand at heights, under roofs and behind stacks nobody recorded
 **Decision:** across the six modelled buildings inside Fort Dearborn, the **storey counts** of
@@ -5443,7 +5455,7 @@ is unseen). One that gave a WORDING, a COLOUR or a MOUNTING for a named house wo
 thing this project has ever held that could take one of those three off the reconstructed tier.
 **Recorded:** 2026-08-21.
 
-### L160 — South Water Street and Lake Street get plank sidewalks, board crossings and street-lining fences, all of it invented and all of it derived from the plat
+### L160 — South Water, Lake and Randolph Streets get plank sidewalks, board crossings, street-lining fences and hitching posts, all of it invented and all of it derived from the plat
 **Decision:** `data/frontage/town_street_edge.json` lays the STREET EDGE along the two
 streets that run beside the river's south bank — **South Water Street, which is the bank
 itself, and Lake Street one block behind it, both frontages, from Market Street to State
@@ -5522,7 +5534,84 @@ replace the fence's height and stock outright; a tax, insurance or sale descript
 a walk or a fence in front of a named lot; or holding the jail, Green Tree and Sauganash
 plates as proper source records with their institutions and dates (T-0075), which would
 turn the committed path in `existence.note` into a source_id.
+**Amended 2026-08-27 — the trading frontages get hitching posts (T-0194):** twelve posts
+now stand in the verge outside the walk, one at each frontage the rule accepts. THE POST
+ITSELF IS NOT NEW AND NEITHER IS ITS PLACE: it is the Sauganash's own post — 1.30 m of
+0.16 m timber under a 0.22 m capped head, standing 0.90 m beyond the walk's outer edge —
+carried across unchanged from **L136**, where it is claimed from that hotel's three
+reference views and the saddled horse tied to one of them. What is new here is only WHICH
+OTHER FRONTAGES get one, and that is a rule with five clauses, every one of them already
+argued somewhere in this repository: a committed building stands on the lot; its
+`function` is one of the trades `tools/generate_business_signboards.py` already rules take
+their custom from a stranger off the street (the table is IMPORTED, not restated, so the
+two layers cannot drift — a works or a warehouse took carts and drays at a yard gate and
+is refused in writing); that trade is held `attested`, `documented` or `inferred` rather
+than dealt by the roof schedule, which is what keeps posts off the anonymous slots; the
+walk was actually laid in front of it; and the post's own stand is dry committed ground
+with ≥ 0.35 m still between its outer face and the travelled track. It stands at 0.28 of
+the BUILDING's own projected frontage rather than the lot's, because two trades can share
+one platted lot on these streets and a fraction of the lot would put both posts in the
+same hole. Seven frontages are refused and each names its clause — including the Sauganash
+itself, which already stands its own two under L136 and is refused rather than given a
+third. **What it cost: nothing in draw calls.** A post is standing timber, so it lands in
+its street's existing standing mesh beside the fences (`frontage.js` `standingChunk`,
+renamed from `__fences` because it is no longer only fences) — twelve posts, twenty-four
+boxes, no new mesh and no new bounding sphere. **What is invented remains what L136
+invents:** that a post stood on this ground at noon on 1 July 1835, and its height, its
+section and its capped head. No source in this repository states that one did.
 **Recorded:** 2026-08-21.
+**AMENDED 2026-08-27 — RANDOLPH STREET IS NOW INSIDE THIS LIBERTY (T-0240).** Everything
+above holds unchanged: the same rule, the same invented widths, rises, pitches, board
+counts, fence heights and clearances, the same march in 5.2 m steps over the same committed
+plat, and the same `reconstructed` on every vertex. **What changed is the scope, and only
+the scope** — `EDGE_STREETS` in `tools/generate_frontage_works.py` carries a third street,
+so **13 of Randolph Street's 14 platted block faces** are now laid by it. The record's own
+`rule` block, which is the auditable statement of the whole scope, reads:
+
+|  | before | after |
+|---|---:|---:|
+| block faces laid | 16 | **29** |
+| plank sidewalk | 1,297.3 m | **2,468.3 m** |
+| board crossings | 11 | **25** |
+| street-lining fence runs | 11 (494.4 m) | **26 (1,345.6 m)** |
+| walking decks | 96 | **190** |
+
+The fourteenth Randolph face is refused rather than laid, and the record's `refused` names
+the clause that refused it, exactly as every other refusal here does.
+
+**No new invention is claimed and none is needed.** Not one number in the paragraphs above
+moves; a third street is the SAME reconstruction applied to more of the plat, which is what
+made it a generated layer rather than 1.1 km of typing. The owner's ask — *"all of the
+streets should be updated like this... at least south of the river or near the river"* —
+is the same ask, and Randolph is one block further from the bank than Lake.
+
+**WHY IT COULD NOT BE LAID UNTIL NOW, and it was never about Randolph.** This street was
+built and measured for T-0188 and taken back out: it read 97,588 triangles over `full` and
+145,638 over `balanced`. That ledger's own conclusion was that the binding fact was the
+frame, not the street — `balanced` stood 0.35 % under its ceiling **before** the parcel.
+T-0223 then found the sun drawing 180,100 triangles of timber outside the ±240 m shadow
+box, casting nothing the shadow map can hold, and culled it. Re-measured on the published
+mirror with `tools/measure_detail_ceilings.mjs`, worst of T-0135's five stands:
+
+| tier | desktop 1280×800 | mobile 390×780 | ceiling | original ceiling |
+|---|---:|---:|---:|---:|
+| `full` | 1,369,835 | 1,272,801 | 1,425,000 | 1,400,000 |
+| `balanced` | 1,201,248 | 1,148,172 | 1,260,000 | 1,210,000 |
+| `light` | 745,904 | 695,030 | 1,050,000 | 1,050,000 |
+
+Draw calls at the worst stand: 155 desktop, 146 mobile, of 215. Every tier is inside its
+ceiling at every stand at both viewports, **and inside the ORIGINAL ceilings T-0229 exists
+to restore** — `balanced` clears the original by 8,752 — so this street does not stand on
+the temporary raise and is not unwound with it.
+
+**WASHINGTON STREET IS DELIBERATELY NOT IN THIS LIBERTY (T-0241).** Both streets were
+generated together first: 36 faces, 3,129.1 m of walk, and desktop `balanced` read
+**1,260,174 of 1,260,000 — over by 174 triangles.** Washington's seven faces cost 58,926
+at `balanced` and about 15,400 at each tier either side, so what refuses it is that one
+rung rather than the town. It is filed with its number attached rather than bought with a
+sixth re-basing of a ceiling, which is what T-0223, T-0229 and T-0237 exist to make harder.
+**Recorded:** 2026-08-27.
+**Revised:** 2026-08-27.
 
 ### L161 — The town encloses its property: a yard fence on 109 platted lots, in three types, every metre of it invented
 
@@ -6074,10 +6163,18 @@ the log cabins, and in both cases a chimney that no longer disappears into the r
 through. The confidence view is unchanged: a stack still carries its record's `chimneys`
 confidence, so hiding `reconstructed` hides exactly what it hid before.
 
-**Not covered here.** The fort's ten garrison buildings keep roof-coloured stacks — 1816, federal
-ground, four constructions, and neither answer above reaches them (**T-0137**). The 90 inferred
-placeholders keep their own `#89503F` brick, about 20 % apart in linear red from this one
-(**T-0138**). And nothing here says what any roof was COVERED with; R-W2a finding 2 stands.
+**Not covered here.** The fort's ten garrison stacks were left roof-coloured by this parcel — 1816,
+federal ground, four constructions, and neither answer above reached them. **T-0137 has since
+answered them on the fort's own evidence, on 2026-08-28, and they take the brick above**: brick is
+attested inside that fort twice over (Hubbard's "the brick building, just within the north stockade"
+and "the magazine, of brick"), so those flues never needed Blodgett's yard, and
+`fort_structure._chimneys` builds an interior stack, which is the disposition this entry answers
+with brick. It is INFERRED and invents nothing, so it adds no liberty of its own;
+`docs/RESEARCH/chimneys.md` §6 is the argument. The stand-in massing
+generator kept its own `#89503F` brick, about 20 % apart in linear red from this one, until
+**T-0138** pointed it at this row on 2026-08-28 — a convergence that repaints nothing, because
+all 230 of those buildings have since been baked from their archetypes and no placeholder GLB
+ships. And nothing here says what any roof was COVERED with; R-W2a finding 2 stands.
 
 **How to resolve:** a source describing a Chicago chimney — an insurance survey, a builder's
 account, a recollection naming brick or clay at a named house — promotes §2 to attested for that
@@ -8615,7 +8712,8 @@ stays inside the half-width at the corner, and this project would rather admit 2
 street's half-width — the gate that catches a mirrored ribbon, run on every release at both viewports.
 So the overhang is bounded by an instrument that existed before this liberty and was not touched for
 it: the census still reads **0 strays, worst 0.00 m**, and its negative control still fails a mirrored
-build. Five bends in the town are too sharp for one mitre (three at 17-20 deg, north_water's 30.5 and
+build. Five bends in the town are too sharp for one mitre (three at 17-20 deg, north_water's 44.1 —
+30.5 when this was written, until T-0226 re-derived that street from the committed north bank — and
 the fort road's 39.3) and are cut into two or three sub-mitres for 22 triangles town-wide.
 
 **What is NOT invented.** No width, no centreline and no record moved. `track_width_m` is unchanged on
@@ -8785,3 +8883,368 @@ Related: **L132** (the docks themselves, invented in every dimension) · **L9** 
 authored beside a mesh instead of taken from it) · ticket **T-0058**.
 **Recorded:** 2026-08-27.
 
+
+### L198 — The household layer's two Lake-face buildings stand on the committed face, and the 16 mm party wall closes
+
+**Decision:** `inf_bakery_lake` and `inf_butcher_market` — the two inferred-household roofs on
+the Lake Street frontage of `blk_lake_clark` — no longer stand at a centre typed into
+`data/reconstruction/1835_inferred_household_programme.json`. They stand **on the committed
+block face**: their line, their bearing and their outward offset are read from the block boundary
+in `data/traces/vectors/thompson_lots.json` through `tools/block_faces.py`, the module both
+anonymous-infill generators already use for their party-line rows. Both front walls now stand at
+0.800 m, on the one street line the other seven records on that face stand on, at the face's own
+bearing of 0.465. The party wall `recon_1835_south_d3_013` declares with the butcher closes to
+**0 mm**, and the residual banked by name in `tools/measure_street_line.py` is **removed rather
+than relaxed**: that module now carries no allowance list at all.
+
+**Why:** T-0182. Written as centres at bearing 0, the two stood at **0.804 m and 0.784 m** off a
+face that runs at 0.465 — near the line, parallel to nothing, and by an arithmetic nobody
+re-derived. Two things rested on that. The party wall was 16 mm open and could not be repaired
+from the infill side, so T-0104 had to bank it BY NAME while the household layer's own repair
+waited on its own ticket; and L141's 0.80 m setback cites "the alignment the two frontage
+buildings already standing on this face use", which was a reading of two free-ground placements
+rather than of a line. The 0.80 m is still a convention and not a measurement of 1835 — nothing
+here makes it one — but it is now a convention the whole face is built to, instead of a
+coincidence two hand-typed coordinates happened to sit near.
+
+**What is NOT invented here, and it is worth being exact.** No roof is added, removed, renamed,
+re-familied or re-dimensioned. The household programme's totals do not move — 38 structure
+records, 101 reconstructed households, 113 persons, the same ids and the same family bands. The
+two footprints are the ones they were, and **no mesh goes stale**: a position is not one of the
+inputs a GLB is hashed over, so nothing rebakes. The bakery's centre moves 43 mm and the
+butcher's 33 mm; the largest movement any corner of either makes is 84 mm, which is invisible at
+any distance a visitor stands.
+
+**WHAT IS INVENTED, and it is the same thing it always was.** That either building existed; that
+a bakehouse and a meat market stood on this frontage; that they stood where they stand. What the
+programme still authors for each is where ALONG the face its west wall lands — 28.935 m and
+68.936 m from the face's west end, which are the positions they already occupied, chosen so this
+repair moves no building along the street. That is the same interpretive choice a frontage row
+makes as its corner clearance, and it is expressed in the face's own frame rather than as a
+coordinate beside the plat. Their positions still grade `reconstructed` and their derivations
+still read `not_derivable`: **standing on a derived block face is not standing on a recovered
+lot**, and nothing here upgrades a confidence.
+
+**What this supersedes.** L177's paragraph beginning *"What the measurement found that the ticket
+did not know"* describes the two buildings as standing at 0.804 m and 0.784 m at bearing 0, and
+describes the 16 mm residual as banked and awaiting its own ticket. Both were true when written
+and neither is true now; this document is append-only, so the correction is here rather than
+there. L141's *"the line the two frontage buildings already standing on this face use"* now reads
+straight — those two buildings do use it — but the warrant runs the other way round from the
+order the sentence implies, and this entry is where that is written down.
+
+**What now asserts it.** `tools/measure_street_line.py --gate`, in `tools/check.sh`, with no
+allowance list: every front wall on the face is projected onto the committed line and a face
+carrying more than one is refused, absolutely. Its self-test now asserts that the pair the bank
+was written for gets **no** excuse — 16 mm under those exact names is a failure — so the bank
+cannot come back without somebody deleting a test that says why it went.
+
+**How to resolve:** any period document placing a named occupant on a numbered lot on this face —
+an advertisement giving an address, a tax or insurance description, an itemised 1839 fire loss —
+would replace an invented roof with a named one and give the face a line that is a reading rather
+than a convention.
+
+Related: **L141** (the row whose line this face carries) · **L177** (the one-line rule, and the
+bank this removes) · tickets **T-0182** (this), **T-0104**, **T-0077**.
+**Recorded:** 2026-08-27.
+
+### L199 — The bank track below the fort's north gate: two derived ends and an invented line between them
+**Decision:** `fort_bank_track` is drawn — a single straight chord, 23.91 m long and 3.60 m wide,
+from outside Fort Dearborn's NORTH gate obliquely down the graded bank to the water. L140 refused
+this track in as many words: *"The track `p4_0` draws descending the bank from the NORTH gate to the
+water is not drawn, because the bank it descends is the flat plateau T-0004 exists to grade and a
+ramp down an ungraded bank would be two inventions stacked."* T-0004 graded that reach on
+2026-08-20, so the second invention is gone and the first is what this entry admits to.
+
+**What is NOT invented, and it is both ends of the line.** The START is the north gate's own
+centre — 26.5 m along a 53 m wall, the same midpoint `tools/measure_fort_gates.py` reads the
+shipped leaves at — carried out along the wall's outward normal by **6.740 m**, which is the
+standoff the fort road already keeps from the SOUTH gate. Both gates therefore hand their last
+stride to the apron's bare trodden earth (L174), and this record invents no second convention for
+the north one. The END, `[1133.40, 259.61]`, is the committed heightfield's own Z = 0 waterline on
+the easting of the WEST END of the commandant's quarters — the one place on this bank that any
+source puts anything, the 1855 Hesler key locating the ferry landing *"under the west chimney of
+the Commandant's quarters"*, the same caption this project already reads for that building's two
+chimneys and its 25 × 50 ft. The WIDTH is the gate's: 3.60 m, the palisade's committed
+`gate_width_m`, rather than a fourth invented distance on this reservation; the corridor is the
+fort road's 12.0 m for the same reason.
+
+**READ THE DATE ON THE LANDING, because `wentworth_1881_fort_dearborn` says so on its own face.**
+The Hesler key is 1855 and describes the compound after the garrison marched out. It is read here
+as an inference that a landing fixed by the shape of a bank stood where it stood twenty years
+earlier — never as a measurement of 1835 — and it does not lift this record off `reconstructed`.
+
+**WHAT IS INVENTED is the line between those two points, and its obliquity is the whole of it.**
+Nobody traced this track, nobody measured it, and no source names it; the 1830 Harrison plan names
+*the Ferry* among the ground round the fort and draws no route to it. What bounds the invention is
+the ground. Straight north out of the gate the graded bank falls 3.60 m in under 10 m — about
+**1 in 2.7**, a scramble rather than a way to a boat. Swung west onto the landing the same fall
+spreads over 23.91 m: **1 in 6.65 mean, 1 in 3.65 at its steepest metre**, measured on the
+committed heightfield at `[1140.0, 257.99]`. That worst metre is gentler than ground this project
+already draws roadway on — South Water Street reaches 1 in 3.0 at the river bank, Randolph and
+Washington 1 in 4.1 — so the swing is what makes the track walkable and is not a shape chosen for
+its own sake. It is ONE chord and not several, so no joint opens a wedge of prairie at a bend
+(L178, L194), and it is clipped by the water mask like every other track, so it stops at the water
+instead of painting a ford.
+
+**Consequence:** a visitor standing where `p4_0`'s artist stood — the north bank, looking south —
+sees what the plate draws: a pale track leaving the fort's north gate and running down the bank to
+the water's edge, instead of a graded bank with nothing on it. The 1835 name is DESCRIPTIVE and
+not a proper name; the 2026 name is the ground the modern bridge approach covers, not a descent of
+name.
+
+**How to resolve:** the 1830 Harrison sheet re-read for its road and ferry line specifically —
+this project has taken the fort, the garden, the barn and the ferry off that plate and never the
+routes between them; or any survey of the United States Reservation before its 1839 subdivision,
+which would fix both this line and the landing at once.
+
+Related: **L140** (the fort road, and the refusal this discharges) · **L174** (the apron both gates
+hand their last stride to) · **L178** (why one chord and not several) · **L194** (the mitred corner
+a bend would have needed) · tickets **T-0099** (this), **T-0004**, **T-0044**.
+**Recorded:** 2026-08-28.
+
+### L200 — A non-dwelling is placed by its function, and the town's invented store steps onto the street line
+**Decision:** the face rule — *the best dwellings the schedule deals a block take its better
+street, the meanest take the back one* — is declared to rank **dwellings only**, and a
+non-dwelling roof is placed by its own **function** instead. Two clauses follow, both authored in
+`data/reconstruction/1835_platted_block_parcels.json` under
+`placement_rule.non_dwelling_placement` and both refused at the generator: a store, warehouse or
+workshop takes the block's **better face** by the committed street hierarchy and may never take a
+**light** one, and a **commercial** roof stands **ON the street line** rather than back at a
+dwelling's typology setback. One roof moved on account of it: `blk_randolph_clark`'s C2
+store-residence came forward from **4.5 m to 1.50 m**, out of the row of house fronts it had been
+standing in.
+
+**What this replaces is an agent's invention, and it is named as one.** T-A15 was dealt the first
+store any block parcel had ever had to place, found the face rule said nothing about a store, and
+EXTENDED the ranking to cover it — commerce above the better dwelling — on the reasoning that a
+store-residence's claim on the better frontage is *"functional rather than social, the only one of
+the six roofs whose purpose requires that a stranger can find it"*. That parcel flagged its own
+extension as ROADMAP K32 and asked the next block dealt a commercial family to follow it or refute
+it rather than re-decide it privately. This is the refusal: the ranking does not survive, because
+the schedule still holds C1…C4, F1…F4, H3, T1 and W1…W5 for blocks not yet built and a warehouse's
+claim on frontage is plainly not a store's.
+
+**WHAT IS NOT INVENTED is the function, and that is the whole reason this reading was taken over
+the other two.** Of the three readings the ROADMAP set out — keep the ranking, place non-dwellings
+by function, or refuse the question — only the second can be READ OFF THE COMMITTED RECORD. This
+project holds 48 documented buildings its own reconciliation credits a non-dwelling family, and
+where they stand is a measurement rather than an argument. By the traffic class
+`data/streets/1835.json` authors for the street each stands nearest: **stores** 15 records, 10
+principal, 5 ordinary, **0 light**; **warehouses** 9, all nine principal; **workshops** 7, two
+principal, five ordinary, **0 light**; lodging 8, three, four and one; institutions 9, one, four
+and four. Not one documented store, warehouse or workshop in this town stands on a light street —
+a zero across **31 buildings**, on the three letters a block parcel may actually be dealt. Lodging's
+single light-street instance is the Steamboat Hotel, which stands 287 m from the State Street
+centreline and does not front it; the institutional families are refused to a block parcel by name
+(L93) and no frontage rule reaches them. The setback clause is the same kind of reading: **every
+documented store standing on a platted street stands on its line**, thirteen of the fifteen inside
+the measured street-line band, the two outside it being Robert Kinzie's store at Wolf Point and the
+Miller house, both off the platted grid entirely.
+
+**WHAT IS INVENTED is that these clauses govern an invented building at all.** No source says where
+a store stood on a block nobody recorded, because no source says the block carried a store. The
+distribution above is 48 buildings in one town in one year and it is not a law of frontage; it is
+this project's own reconstruction of what its own documented record does, applied to roofs the same
+project invented. The 1.50 m is not a measurement of any store: it is the closest line the plat
+module's own margin allows, and it is chosen because it is the line the party-line runs on South
+Water and Lake already stand on — one convention rather than a second.
+
+**Consequence:** walk east along Randolph Street from the courthouse square and the store-residence
+opposite it now meets the street, three metres ahead of the two houses beside it, instead of sitting
+back in line with them. The street-lining yard fence on that face stops one lot short as a result —
+the rule that lays it looks for a lot standing back from its own frontage, and a shop front is not
+one — so 24.6 m of fence comes off the block and the shop front is what a walker meets.
+
+**How to resolve:** nothing resolves the clauses themselves, which are a reconstruction and are
+meant to be read as one. What would move them is more record: a documented store, warehouse or
+workshop on a light street would retire the light-street refusal, and any Chicago frontage survey
+before the 1839 subdivision would replace the setback convention with a measurement.
+
+Related: **L93** (the institutional refusal no frontage rule reaches) · **L99**, **L100** (the two
+liberties on what a street was for) · **L102** (the face rule as first written) · **L182** (the end
+rule, the other half of where a roof stands on its face) · tickets **T-0024** (this), **T-0022**,
+**T-0079**.
+**Recorded:** 2026-08-28.
+
+### L201 — Ten of the sward's layers are drawn at the lattice's ceiling, not at the density their records ask for
+**Decision:** the forb and shrub strata are dealt over a lattice that holds **one plant per
+slot** — four slots to a 3.4 m cell, so **2.890 m² of ground a slot and 0.34602 plants per m²** —
+and `renderers/web/js/flora.js` `forbShareOf` is `min(1, density × cell² / perCell)`. That `min` is
+a ceiling, and **ten of the eighteen populated (community, stratum, side) layers in this scene sit
+on it.** Those ten are drawn at a density `TUNE.forb` chose and **not at one any record states**:
+
+| layer | its records ask | the lattice draws | share of its own evidence |
+|---|---|---|---|
+| `z06_dense_forest` forb | 66.381 /m² | 0.346 /m² | **0.5 %** |
+| `z04_marsh` forb, dry and wet | 22.000 /m² | 0.346 /m² | **1.6 %** |
+| `z10_settled_town` forb | 11.866 /m² | 0.346 /m² | **2.9 %** |
+| `z05_riverbank_timber` forb | 3.851 /m² | 0.346 /m² | **9.0 %** |
+| `z03_sedge_meadow` forb | 1.812 /m² | 0.346 /m² | **19.1 %** |
+| `z08_lakeshore` forb | 0.630 /m² | 0.346 /m² | **54.9 %** |
+| `z02_mesic_prairie` forb | 0.408 /m² | 0.346 /m² | **84.8 %** |
+| `z01_wet_prairie` forb | 0.407 /m² | 0.346 /m² | **85.0 %** |
+| `z06_dense_forest` shrub | 0.403 /m² | 0.346 /m² | **85.8 %** |
+
+The eight that fit are `z09_sand_prairie`'s forbs (0.114 /m²) and every shrub stratum but the dense
+forest's. `z07_bur_oak_savanna` records no forbs at all.
+
+**Why this is a liberty and not a defect:** the cell and its four slots were fitted against the
+reference photographs on a closed prairie sward (**L32**), where they reproduce what a visitor
+should see. They are a **rendering budget**. The moment a community's records ask for more plants
+than that budget carries, the budget — and not the evidence — is deciding how much bloom a visitor
+gets, and nothing on screen said so. A share of 1.000 reads identically whether the records asked
+for 0.36 plants per m² or for 66, so the thin flower floor under the dense timber west of town read
+as a gap in the research when it is a gap in the lattice.
+
+**What is NOT ours:** every density in the table is the community's own records, summed at the top
+of each species' recorded range (**L185**) and read straight out of `data/flora`. No record is
+overwritten, no confidence is upgraded, and the species lottery — *which* forb fills a slot that is
+dealt — is untouched, so the MIX of the sward is still the evidence's. What is ours is only how
+many slots there are to fill.
+
+**What bounds it, and it is a gate.** `tools/forb_clamp_baseline.json` states each of the ten
+layers with the density it asks for, the density the lattice offers it and the fraction between
+them, and `node tools/measure_sward_draw.mjs --gate` fails when the measured set stops matching:
+a layer joining the ceiling, a layer leaving it, the ceiling moving, or a record's density moving
+past half a per cent. So this liberty's figures cannot go stale in silence.
+
+**The count has been wrong twice, and each time for the same reason.** K58 was opened at **six**
+forb layers. **L185** then dealt the stratum off the top of each recorded range and pushed the mesic
+and the wet prairie onto the ceiling — eight — and the marsh's over-water side made nine when T-0019
+first declared it. The tenth is the **shrub** stratum: `z06_dense_forest`'s clump density has been
+over this ceiling since **K54** named it, one stratum outside where anybody was counting. That is
+what an undeclared ceiling produces, and it is why the declaration is now a gate rather than a
+paragraph.
+
+**How to resolve:** ROADMAP **K58** sets out three routes and this entry takes the third — a
+per-stratum cell, more than one plant per slot where the record asks for it, or accepting the
+ceiling and declaring it. Raising the lattice is not free: it buys its plants in exactly the two
+communities that already carry the most geometry, and the scene-detail ceiling is breached today
+(tickets **T-0203**, **T-0218**). A stated stand-level density for this specific ground would not
+resolve it either, because the clamp would still bind. What resolves it is a lattice that can carry
+what the records already ask for.
+
+Related: **L32** (the sward's absolute density is a rendering budget, and full recorded cover
+saturates the lattice) · **L185** (the forbs are planted at the top of every recorded range, and its
+own closing line — *"the next flower needs a different lattice"*) · **L113** (six researched plants
+reach no renderer) · ROADMAP **K54** (the shrub stratum's own lattice), **K55**, **K58** (this) ·
+tickets **T-0019** (the declaration), **T-0282** (this), **T-0281** (the flora section this table
+belongs in next), **T-0034**, **T-0203**, **T-0218**.
+**Recorded:** 2026-08-28.
+
+### L202 — A third slough crossing, on North Water Street, where nothing records one at all
+**Decision:** `north_water_slough_crossing` — a 12 m log deck, 3 m wide, laid square across the
+attested north-side slough at local **E +183 .. +195, N +156 .. +159**, carrying North Water
+Street over the stream at the narrow reach above its funnel. Every dimension and the crossing's
+whole existence are `reconstructed`.
+**Why:** Wright 1834 draws the slough running north out of the main stem across Kinzie Street to
+Michigan Street, and the 1830 plat lays North Water Street along the river's north side. Those
+two lines meet, and a platted street that meets a stream either stops at it or gets across it.
+Nothing states which. T-0226 re-derived North Water Street from the committed north bank after
+finding 477 m of its old line inside the water mask, and had to stop the derived line on the
+slough's east shoulder, because a road ribbon may not paint a ford — leaving the North
+Division's whole river front with no roadway west of E +240. This is what carries it over, built
+at the tier AGENTS.md § *reconstructed is a tier* prescribes rather than left as a gap.
+**What is invented, item by item.** That anyone bridged this stream. The date range (opened at
+its two siblings', the start of 1833, when the town began building crossings at all; closed at
+the end of 1835 by convention). The bearing — laid east-west at rotation 0 across a channel
+whose traced centreline bears 010° through this reach. The 12 m span, the 3 m width, the log
+construction, the puncheon deck, the 0.25 m stringers, the 0.08 m planks, the zero piers and
+the 0.35 m clearance.
+**What bounds each of them, because that is the difference between reconstruction and
+invention.** The SPAN is the stream's: 6.65 m of open water at this northing on the committed
+heightfield, leaving 2.60 m and 2.75 m of dry abutment seat — the proportion both siblings hold
+(8 m over 3.30 with 2.35 m seats; 12 m over 5.55 with 3.10 and 3.35). The SITE is the channel's:
+this slough is a 68.5 m funnel where it meets the river and a steady 5–7 m channel above it,
+with a 2.5 m sill between, so the deck sits above the sill where a town could put a log across.
+The WIDTH is the smallest of the three because the street is: North Water Street's own record
+calls its traffic `light` and gives it a 6.0 m track, against South Water Street's 10.5 m. The
+CLEARANCE is the abutments': the ground stands +0.63 m and +0.73 m where the deck's ends land,
+so a walk surface at 0.68 m lies level with the street at both ends and this crossing needs
+neither the cut its eldest sibling needed nor the fill the La Salle one did. The CONSTRUCTION,
+the DECK KIND and the STRINGERS are local practice — every crossing anybody in this town
+described was logs with puncheons on them.
+**Consequence:** the North Division's river-front street runs unbroken from the North Branch to
+Kinzie Street, and a visitor can walk it. If North Water Street did not in fact reach west of
+the slough in 1835 — nothing places a building on that side of it, and the division's own
+initial parcel puts its roofs north of N +105 — then this crossing did not stand and the street
+should stop where T-0226 stopped it.
+**How to resolve:** any period document that puts North Water Street west of the slough, or a
+town order for a bridge or culvert on it — a lot survey, a grading order, a Kinzie-ward
+assessment. The Chicago Democrat's 1834–35 numbers are the first place to look, and the corpus
+this project now holds makes that a readable question rather than an aspiration.
+Related: **L69** (the Slough Log Bridge's invented clearance, and its refusal of the branch
+bridges' documented one) · **L150** (the La Salle slough's inland course) · **L149** (the La
+Salle crossing) · tickets **T-0254** (this), **T-0226** (the street this carries), **T-0129**
+(the second crossing), **T-0109** (the gate all three answer to).
+**Covers:** `north_water_slough_crossing.function`, `north_water_slough_crossing.crossing_1835.footprint`, `north_water_slough_crossing.crossing_1835.position`, `north_water_slough_crossing.crossing_1835.documented_range`, `north_water_slough_crossing.crossing_1835.form.construction`, `north_water_slough_crossing.crossing_1835.form.width_m`, `north_water_slough_crossing.crossing_1835.form.clearance_m`, `north_water_slough_crossing.crossing_1835.form.pier_count`, `north_water_slough_crossing.crossing_1835.form.pier_kind`, `north_water_slough_crossing.crossing_1835.form.deck_kind`, `north_water_slough_crossing.crossing_1835.form.stringer_d_m`, `north_water_slough_crossing.crossing_1835.form.plank_t_m`.
+**Recorded:** 2026-08-28.
+
+### L203 — Two roofs and a stable on Lake Street at Franklin, and the warehouse slot that was refused rather than massed
+**Decision:** lot 4 of `blk_lake_franklin` — an interior lot on the block's Lake Street face,
+bounded by Lake, Wells, Randolph and Franklin — carries **two anonymous principal roofs standing
+shoulder to shoulder on the Lake frontage** on one line, at one 1.499 m setback, on one shared
+party wall: a deep-plan frame cottage anchored at the east end of the lot's own frontage and an
+older log dwelling abutting west of it. A stable stands in the same lot's yard at the alley end.
+The run occupies 59.60–71.83 m along the block face. Lot 7, on Randolph, is left open. The block's
+fourth dealt roof, a large river warehouse, is **deferred and named rather than built**.
+**Why:** T-0028, the block programme's ticket, and the first platted block this project has opened
+since 2026-08-23, when that ticket re-derived the schedule and found nothing left to open. What
+reopened this one is the DEAL rather than street control: until T-0213 weighted the trade families
+onto the business front on 2026-08-26 this block was dealt I3 alongside F3, and
+`tools/generate_block_infill.py` refuses I3 by name, so T-0188 read the pair on 2026-08-27 and
+recorded that the block *"cannot carry a three-unit run as dealt"*. Re-derived with
+`tools/reconcile_665.py` the deal is A1, D1, D5 and F3 — three of four buildable.
+**THE FACE RULE AND THE END RULE NAME THE SAME LOT,** which is the first thing that makes the
+arrangement an argument rather than a preference. `tools/measure_street_frontage.py` counts 16
+documented records and 8 inferred households within 25 m of Lake Street's committed centreline
+against Randolph's 7 and 7 — the reconstruction column is this programme's own output and does not
+vote — so Lake is the block's business face and its free lot takes the row. `tools/measure_end_rule.py`
+puts lot 4's frontage 441.12 m from the foot of the Dearborn Street drawbridge against lot 7's
+473.20 m straight, and 550.45 m against 668.96 m walked along the committed streets, so lot 7 is the
+farther on both readings and is the one left open. Inside the run the same rule grades the roofs:
+the better of the two stands at the east end, nearest the only crossing of the main stem in July 1835.
+**THE STREET LINE WAS NOT ADOPTED — IT AGREED.** This face carried no frontage-declaring record
+before this run, so there was no built line to adopt under L177/T-0104 and the floor is the plat
+module's own 1.5 m lot margin. `temple_lake_st_building`, a documented record placed by another
+parcel that declares no frontage at all, stands with its front wall 1.492 m off this same face at
+75.73–82.52 m along. The run stands at 1.499 m, 7 mm outside it, and stops 3.90 m short of it along
+the face. The face reads as one street line, and it does so by coincidence of the data rather than
+by anything this parcel chose; it is recorded here so a later run does not mistake the agreement
+for a measurement.
+**THE REFUSED SLOT, AND WHY IT IS AN ADMISSION RATHER THAN A DROP.** The schedule dealt this block
+three principal roofs and one of them is F3, a large river warehouse. This generator authors no
+coordinates: every metre comes from a committed lot polygon inside a block bounded by four platted
+streets. F3's own crosswalk entry makes water access a precondition of the form — the required
+variant is *"multiple cargo doors; landing apron; sparse glazing"* and its assumption note reads
+*"Landing apron and cargo-door arrangement must follow site access and cannot extend into water or
+duplicate a counted pier"*. Sampled against the committed heightfield `e1834_harbor_cut`, the
+nearest water to this block's boundary is 134 m away. So the slot is deferred in the recipe with
+its reason, `generate_block_infill.py` now refuses F3 by name, and the roof is still owed: the
+wharf and landing ground beyond South Water and Market is where it belongs, and that the deal keeps
+sending F3 onto inland platted blocks is filed as **T-0316** against the deal.
+**WHAT IS INVENTED.** That any building stood on this ground at all; that there were two of them;
+that they stood shoulder to shoulder rather than apart; that the westernmost was of logs; that the
+household on the lot kept a stable. Every dimension is sampled inside the family band the
+reconstruction spec authors and every value on all three records grades `reconstructed` with its
+own note saying so. **No coordinate is authored:** the line, its bearing, the lot's stretch of it
+and the end the run packs away from are all read from the committed block boundary in
+`data/traces/vectors/thompson_lots.json`. No lot is numbered — this project has never read
+Thompson's numbering off a sheet — and the side lot line the row crosses between its two units is
+conjectural. **The 662-roof total does not move:** the three roofs come out of
+`south_plat_beyond_committed_control`, the district balance waiting on street control past State
+and Washington.
+**A log dwelling on a business frontage is still an open question** (T-0022), and this parcel does
+not settle it; it is one more recorded instance on the same ground L144 recorded the first.
+**How to resolve:** any period document placing a named occupant on a numbered lot on the Lake
+Street face between Franklin and Wells — an advertisement giving an address, a tax or insurance
+description, an itemised loss list — would replace an invented roof with a named one on the same
+line, which is what the 665-roof programme's substitution clause exists for. The Democrat and the
+American extraction tickets (T-0256 onward) are the corpus most likely to carry one.
+
+Related: **L144** (three roofs on one lot, the core density standard this run spends two of) ·
+**L177** (one street line to a face) · **L182** (the end rule) · **L200** (where a non-dwelling
+stands) · tickets **T-0028** (this), **T-0316**, **T-0022**, **T-0188**, **T-0213**.
+**Covers:** `recon_1835_blk_lake_franklin_d5_01.inferred_1835.position`, `recon_1835_blk_lake_franklin_d5_01.inferred_1835.footprint`, `recon_1835_blk_lake_franklin_d1_02.inferred_1835.position`, `recon_1835_blk_lake_franklin_d1_02.inferred_1835.footprint`, `recon_1835_blk_lake_franklin_a1_03.inferred_1835.position`, `recon_1835_blk_lake_franklin_a1_03.inferred_1835.footprint`.
+**Recorded:** 2026-08-28.

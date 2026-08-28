@@ -1,7 +1,7 @@
 ---
 id: T-0216
 title: dev has no standing smoke result of its own, so every branch re-derives dev's reds by hand
-state: open
+state: done
 epic: PIPELINE
 requested_by: loop
 seen: false
@@ -9,9 +9,9 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-08-27
-closed: null
-pr: null
-claimed_by: null
+closed: 2026-08-27
+pr: 402
+claimed_by: run 8/27/2026, 10:23:32 AM CT
 blocked_on: null
 needs_bake: false
 ---

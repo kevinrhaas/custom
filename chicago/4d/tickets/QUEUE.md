@@ -16,73 +16,50 @@
 #   3. Related work runs together, so a run can carry the context of the last one.
 # The `# ---` band headers are comments; the parser reads only lines starting T-NNNN.
 #
+# A third owner instruction, 2026-08-28: the NEWSPAPERS band was added and placed
+# after the visible bands on his explicit direction, its seeding tickets ordered
+# behind the extraction that feeds them.
+#
 # Labels on these lines are regenerated from each ticket's own `title:` field. If a
 # label and its ticket disagree, the ticket wins — one line was found mislabelled
 # on 2026-08-27, damage from the `ticket.mjs restamp` bug that T-0217 records.
 
 # --- BLOCKERS — small, and each one corrupts or blocks the work below
-T-0217 — ticket.mjs restamp rewrites the WRONG queue line when the id it is repairing is the duplicated one
-T-0186 — LIBERTIES.md has no merge driver and no duplicate check, so two branches that each append L-NNN merge clean
-T-0216 — dev has no standing smoke result of its own, so every branch re-derives dev's reds by hand
 
 # --- THE TRIANGLE BUDGET — invisible, and it gates EVERY visible ticket that adds geometry
-T-0223 — The 'full' and 'balanced' ceilings are both breached on dev, with no parcel in flight that spends them
-T-0229 — The full and balanced ceilings are raised on the owner's decision, and the raise expires with T-0209's timber cull
-T-0146 — Merge far chunks back into single draws
-T-0147 — Re-lower the ceilings once the trims land
-T-0089 — The 'light' scene-detail ceiling is breached, and it was breached before this run's geometry
-T-0056 — The enclosure layer pays its full triangle cost at every scene-detail level
 
 # --- THE TOWN AND ITS STREETS — visible
-T-0028 — Build out the NEXT anonymous block (one per run)
-T-0191 — Randolph and Washington get the street edge
 T-0192 — The cross streets' own frontages get the street edge
-T-0193 — blk_lake_clinton, the West Division block T-0069 refused
-T-0194 — Hitching posts at the commercial frontages
-T-0213 — Weight the trade families onto the business front
-T-0182 — The household layer's two Lake-face buildings stand on a hand-authored coordinate, not on the face they front
-T-0183 — The Market and South Water corner needs one control point, and the node rule may not be able to make it
-T-0195 — Three South Water corner stores lap the cross street's corridor by 0.16-0.21 m, which the plat reconciliation could not reach
-T-0196 — Four documented buildings still stand on Lake Street's plank walk, the same OSM-kerb fault the South Water repair answered
-T-0208 — A party-line unit's card says its EAST wall is fixed by the WEST end of the run
-T-0221 — measure_street_frontage.layer_of reads a record's evidence layer off its filename, and misreads physicians_office
 
 # --- THE RIVER, THE WHARVES AND THE GROUND — visible
-T-0059 — The generator half of the wharf layer: a river-wharf mode of pier_crib
-T-0134 — The south bank at the Dearborn reach has no ground outside the platted street corridor
-T-0226 — North Water Street runs inside the water mask for 477 m and draws no ribbon at all
 T-0219 — Finish the heightfield SOUTH to Madison Street, the plat's last tier
 
 # --- THE FORT — visible, mostly small
-T-0099 — The bank track from the fort's north gate down to the water
-T-0137 — The fort's stacks are still roof-coloured, and its 1816 date fits neither chimney answer
 T-0096 — Did the second Fort Dearborn carry a flagstaff, and can anything but a retrospective plate say so
-T-0185 — The plate draws the fort's pickets three times coarser than the model builds them
-T-0197 — Three of the fort image-accuracy table's eight rows were refuted in two days; audit the rest before building to them
 
 # --- FABRIC AND WHAT THE BUILDINGS ARE MADE OF — visible
-T-0138 — The placeholders' brick chimney is a different brick from the archetypes'
-T-0212 — The one A5 roof still dealt a gable takes the shed its family gets everywhere else
-T-0172 — The other three anonymous parcels still deal a retyped roof pitch, and none of them bounds an eave band by what the archetype can carry
-T-0024 — May the face rule rank a store
-T-0025 — Three records carry the standing constraint and say why nowhere
-T-0021 — Census what the residents' figures reach
 
 # --- WHAT GROWS, AND WHAT A PHONE SEES — visible
-T-0209 — The bloom reaches 1.8 per cent of the ground the sward covers
-T-0214 — Two flower-head archetypes truncate silently at their instance cap
-T-0019 — Six forb layers ask for more plants than the lattice holds
-T-0225 — The sward's drawn reach is measured off plants at two per cent coverage
-T-0162 — SWARD_VIEWPORT=mobile deals the same census as desktop: the viewport does not reach the ring sizes
+
+# --- THE NEWSPAPERS — placed here by the owner, 2026-08-28: "put all that legwork
+# --- after the visible things". The invisible extraction tickets at the top of this
+# --- band BLOCK the visible seeding at its bottom — documented storefronts and real
+# --- people replacing invented ones — which is why they sit above other invisible work.
+# --- Three owner rulings govern the epic; each ticket carries them in full.
+T-0312 — Reading the Democrat, March 1834: Vol. I Nos. 15-17
+T-0314 — Reading the Democrat, May 1834: Vol. I Nos. 23-26
+T-0315 — Reading the Democrat, June 1834: Vol. I Nos. 27-30
+T-0293 — Reading the Democrat, November 1834: Vol I Nos 49-52
+T-0294 — Reading the Democrat, December 1834: Vol II Nos 1-4
+T-0296 — Reading the Democrat, 8 to 29 July 1835: the rest of the scene month
+T-0297 — Reading the Democrat, August 1835: the four issues after the scene date
+T-0298 — Reading the Democrat, January to June 1835: the eight issues only the deposit can open
+T-0262 — The July 1, 1835 register: who and what the papers put in the town
+T-0263 — The documented storefronts take their places on South Water and Lake
+T-0264 — Documented people replace the invented
 
 # --- MEASUREMENT, GATES AND PROVENANCE — invisible, and nothing below blocks the above
-T-0227 — Is the AO bake actually too dark? Every figure that said so was wrong twice over
-T-0211 — The other nine group rows are cross-checked against nothing
-T-0224 — A critic baseline standing on the public square
-T-0210 — The desktop smoke's stage 9 times out clicking the panel close, on an unmodified tree
 T-0190 — A second street tier for the street edge, and the ceiling that refuses it
-T-0164 — The rule module that decides whether a mesh is built at all now sits inside the hash of what a mesh is built from
-T-0156 — The interior/silhouette discriminator counts edges internal to a layer as interior
 T-0155 — The changelog stamper has the same after-publish trap the ticket tool just lost
 T-0136 — The eight owner-brief plates T-0075 could not identify: Andreas at page-image level, and two museum objects
 T-0055 — Hold the Kinzie-view plate as a source record
@@ -97,4 +74,52 @@ T-0181 — The desktop 7-9 smoke leg has 9m49s of margin against its 30-minute c
 # --- PROBABLY ALREADY ANSWERED — verify, then withdraw. Not withdrawn by an agent.
 T-0203 — The 'balanced' scene-detail ceiling is breached at Lake and Canal by 4,015 triangles
 T-0218 — The 'balanced' scene-detail ceiling is breached at Lake and Canal, at both viewports
-T-0228 — Two wharf decks oversail the riverside plank walk, and the walk now meets a half-metre riser at their edge
+
+# --- NEWLY FILED — appended here by `ticket.mjs new`, which writes to the END of
+# --- this file. NOT yet placed by the owner, and NOT part of the band above:
+# --- these are new tickets, not tickets to withdraw.
+T-0231 — T-0229's expiry was blocked on a flora ticket, so the raised ceilings would never have come down
+T-0232 — The owner's production switch is a coin toss: one promotion in four never reaches a promotion step
+T-0233 — Eight of seventeen dealt lots carry none of their run's own roofs, and nothing was measuring it
+T-0234 — The account's GraphQL quota is exhausted while REST sits untouched, and a slice loses its PR to it
+T-0235 — The unfiltered renderer smoke takes 55 minutes on the steward runner, and three tickets reason against a 30-minute cap
+T-0236 — The loop's 10-minute heartbeat fires every one to four hours, and the gaps are widening
+T-0238 — Two parallel slices took the same ticket, because the rule that ranks them is evaluated per-slice
+T-0237 — The full ceiling has 1,145 triangles clear on the published mirror, twelve hours after T-0229 raised it
+T-0239 — Nothing tests the party-line note's prose against the placement it describes
+T-0230 — Two named South Water frontages carry a reconstructed trade, so neither a signboard nor a hitching post will ever stand at them
+T-0243 — The two timber-placement gates match no mesh since the lattice landed, and one of them is now red on dev
+T-0244 — T-0194's twelve hitching posts draw no vertices the gate can find, on dev
+T-0247 — The light tier draws 83 calls against the 80-call floor restored yesterday, on an unmodified dev
+T-0252 — Decide once whether a baked town carries the nine renderer-drawn layers, or none of them
+T-0253 — May an invented building stand on the river margin of a platted street corridor
+T-0255 — The dooryard planting rule reads every street in the town with no bound on reach, so a track across the river can turn a house's yard
+T-0265 — The sward census fails its own gate at a phone: z10_settled_town owes xanthium_strumarium a whole slot and draws it nowhere
+T-0266 — On a phone from across the river the stockade's picket rhythm falls under the pixel grid and beats
+T-0267 — The fort's wall brick is a third brick, 0.47/0.26/0.20 against the sheet's 0.45/0.23/0.17
+T-0268 — A building held under the standing constraint says so nowhere a visitor can see
+T-0271 — The balanced ceiling is breached at the forks by 5,290 triangles on an unmodified dev, and both open tickets name a different stand
+T-0272 — The West Division parcel's form values come from the archetype and cite the family band: 8 families, 11 claims outside it
+T-0273 — The South Division infill parcel's form values come from the archetype and cite the family band: 9 families, 10 claims outside it
+T-0274 — The inferred-household parcel's form values come from the archetype and cite the family band: 8 families, 10 claims outside it
+T-0275 — Back-merge main into dev: the newspaper deposit is on main, and 60 Finder-duplicate files on main turn the dev gate red
+T-0277 — The mid and forb rings' outer edges are re-priced for a density handover, now the reach statistic is honest
+T-0279 — 2,526 of 18,911 drawn flower heads stand over open ground with no plant under their own stalk, on an unmodified dev
+T-0280 — The far band's grass-or-flower split is made on the forb lattice's CLAMPED share
+T-0283 — The North Division's warehouse row allows one freight roof and six documented ones stand above it
+T-0284 — Two slices of one batch claimed T-0256 and both built it — a claim is written where the next slice cannot see it
+T-0285 — An asset carrying its own AO map cannot batch with the town: +2 draw calls for one building
+T-0286 — The AO unwrap leaves 68.9 per cent of every atlas empty, and the map is priced as if it were full
+T-0301 — Every visible ticket at the top of the queue is parked on hold or in flight, and five straight invisible runs merged under it
+T-0299 — Three printings of one letter list mint 298 people three times, and identity.json is empty
+T-0302 — The .lib-body grid resolves toward max-content under all six other Evidence sections, and only the plants section is fixed
+T-0304 — The gazetteer merges persons by a declared rule and has no equivalent for firms, so 'L. Wilson & Co.' and 'Jno. Wilson & Co.' are two businesses
+T-0305 — Four readings the American contradicts itself on need the page images: the tailor's street, which Water street two forwarding houses stood in, and the corner of Cobb's saddlery
+T-0306 — The American names six Chicago storefronts with usable placements and none of them is standing in the model yet
+T-0307 — The derivation's running maximum costs 42 m of verge where the bank turns a right angle at Wolf Point
+T-0316 — The 665-roof deal puts a large river warehouse on an inland platted block, and the block generator cannot build one
+T-0317 — Build out the NEXT anonymous block: after blk_lake_franklin the last ungenerated block is owner-blocked, and the roofs left stand on blocks that already stand
+T-0318 — The January 1834 letter list is 97 names and the printed list was longer; the page images can close the gap
+T-0321 — The 1 April 1834 Chicago letter list is 179 names and nineteen lines of debris stand where more did
+T-0323 — The 1 January 1834 letter list has a third printing that T-0318 did not know about, and it repairs the A-H half without page images
+T-0324 — J. K. Botsford advertises two addresses in one issue, and Graves' Tavern cannot be placed until they are reconciled

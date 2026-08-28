@@ -172,6 +172,18 @@ step "the fort apron re-derives from the palisade it is measured off" \
 step "the fort wood re-derives from the palisade and the apron it stands off" \
   python3 tools/generate_fort_trees.py --check
 
+# T-0008 took every chimney in the town off the ROOF material — R-W2a finding 1, a stack
+# painted whatever weathering condition its own roof was dealt — and nothing measured the
+# result, so it left ten stacks behind for four months: `fort_structure` was excluded
+# deliberately (1816, before the town had a brick-yard) and the exclusion outlived the
+# reason for it, which T-0137 answered off the fort's own attested brick. This gate is what
+# stops that class of miss recurring, and it is stated on the BYTES rather than on any
+# generator: a stack has to clear the roof to draw at all, so a building whose record counts
+# a chimney and whose highest geometry IS the roof material has its stack inside the roof's
+# own primitive. It reads the committed masters' accessor bounds and decodes no mesh.
+step "no stack in the town is painted the colour of the roof it passes through" \
+  python3 tools/measure_stack_fabric.py --gate --quiet
+
 # The river wharves are the fourth record of this shape and the first whose rule
 # reads a record's OWN attribute rather than a trade table: a sidecar standing on
 # the scene date whose `dock` is true and graded attested or inferred. Two
@@ -182,6 +194,22 @@ step "the fort wood re-derives from the palisade and the apron it stands off" \
 # wharf with it or fail here (ROADMAP K5 (e), T-0041).
 step "the river wharves re-derive from the records that state a dock" \
   python3 tools/generate_river_wharves.py --check
+
+# ROADMAP K5 (e) also asked for "a river-wharf mode of pier_crib", so that a town
+# assembled from GLBs alone would carry its docks; T-0059 was that clause and was
+# WITHDRAWN on 2026-08-27 on the three readings this holds. Not on an opinion about
+# wharves: on the count of renderers that could read such a GLB (one, and it draws
+# the wharves already), on the count of drawn-at-load layers that owe a generator
+# half (nine of nine, so the debt is general and the wharf is not special), and on
+# what each route into the bake re-stales. The last of those cuts BOTH ways and the
+# gate states it either way — a mode inside pier_crib.py costs two meshes, which is
+# cheap, while a new archetype edits build.py's registry and costs the town. The
+# reading is gated rather than remembered because every figure in it is a thing the
+# tree can change underneath the decision: a second renderer, a tenth layer, or the
+# first drawn layer to grow a generator each fail here and send somebody back to the
+# ticket.
+step "the case T-0059 was withdrawn on still holds" \
+  python3 tools/measure_generator_half.py --gate --quiet
 
 # The frontage works are the fifth record of this shape and the first derived from
 # a building AND a street at once: where a plank walk may lie is decided by the
@@ -250,6 +278,20 @@ step "nothing unpermitted stands on reserved ground" \
 step "nothing unpermitted stands on refused ground, and the refusal still reaches it" \
   python3 tools/measure_no_build_ground.py --gate
 
+# T-0134. The plate the Dearborn reach was built from draws warehouses on BOTH banks and
+# only the north one stands. The south side was refused on a single spot reading taken by
+# hand — "the corridor reaches to within about 1.7 m of the waterline" — and the whole bank
+# was left empty on it. This is that refusal as a command, at every relief tolerance it
+# could turn on: beside the platted street not one position takes the smallest footprint
+# family F1 allows. It fails if a fit ever APPEARS, because a fit is the question re-opening
+# and not a number to bank — which is the assertion that fires the day the terrain is
+# extended, the plat is re-derived or the waterline is re-traced.
+step "the south bank at the Dearborn reach still carries no ground outside its own street" \
+  python3 tools/measure_south_bank_ground.py --gate --quiet
+
+step "…and its own assertions still fire when broken" \
+  python3 tools/measure_south_bank_ground.py --self-test
+
 # The terrain spec defers four in-town water features — the slough, the public-square
 # pond, the Frog Pond and the Wells Street marsh — under one shared phrase, "existence
 # documented, geometry conjectural". Existence is a claim about a PLACE and the scene is
@@ -297,6 +339,16 @@ step "no water stands on the public square, and its sward is the one the dossier
 step "no building has newly been drawn standing in a platted street" \
   python3 tools/measure_corridor_intrusion.py --gate --quiet
 
+# The absolute half of that gate rests on ONE reading: which evidence layer a record
+# belongs to. It used to be read off the record's ID PREFIX, and `physicians_office`
+# carries no prefix while being a product of the inferred-household programme — so a
+# generated record was scored against the ratchet, which may be re-baselined, instead of
+# against the absolute, which may not (T-0221). The reading moved onto the record itself
+# in plat_occupancy.layer_of_record; this puts a generated roof in a roadway, in memory,
+# under both readings and checks which one the gate catches.
+step "…and its absolute assertion still fires when a generated roof is put in a street" \
+  python3 tools/measure_corridor_intrusion.py --self-test
+
 # Two generators build party-line rows onto the committed block faces and each asserts
 # that ITS OWN run stands on one line; neither could see the other. The Lake face of
 # blk_lake_clark is built by both and carried two lines 0.70 m apart, ten metres apart
@@ -306,6 +358,17 @@ step "no building has newly been drawn standing in a platted street" \
 # after T-0104 the number is zero. It also closes party walls from BOTH sides, which is
 # the case neither run-local gate can reach when the other half belongs to another
 # generator.
+# T-0226. North Water Street's line was a hand-drawn schematic that ran 477.4 m of its
+# 843.3 m inside the water mask, so the renderer drew no roadway at all across that
+# reach — and NOTHING SAW IT, because the panel-accounting gate asks whether every panel
+# with a DRY centreline reached the ribbon and every one of them did. A street whose
+# centreline is wet is invisible to that question by construction. The line is now
+# derived from the committed north bank, and this is the gate that keeps it derived: it
+# re-runs the derivation and refuses a committed line that is not the one it produces,
+# so a bank that moves under the street is a red build rather than a silent hole.
+step "north water street is still the line its own derivation produces, and still dry" \
+  python3 tools/derive_north_water.py --gate
+
 step "a block face carries one street line, across every generator that builds on it" \
   python3 tools/measure_street_line.py --gate --quiet
 
@@ -328,6 +391,23 @@ step "no principal frontage is more uniform than the record it reconstructs" \
 
 step "…and its own assertion still fires when broken" \
   python3 tools/measure_frontage_fabric.py --self-test
+
+# What a frontage is MADE OF was T-0022; what a non-dwelling standing on it is FOR is
+# T-0024, legacy K32. The face rule ranks dwellings — best to the better street, meanest
+# to the back one — and T-A15, dealt the first store any block parcel had had to place,
+# extended the ranking to cover it rather than leaving the placement unreasoned. That
+# extension was an agent's invention about 1835 commerce and was opened for the next
+# commercial family to follow or refute. It is refused as a RULE and replaced by one that
+# can be read off the committed record instead of argued: not one of the 31 documented
+# stores, warehouses and workshops in this town stands on a light street, and every
+# documented store standing on a platted street stands on its line. Two absolute
+# assertions over the roofs the block parcels place, no ratchet, both green the day they
+# were written — which is the only kind of absolute worth adding.
+step "no block parcel stands a non-dwelling where the documented record puts none" \
+  python3 tools/measure_face_rule.py --gate --quiet
+
+step "…and its own assertions still fire when broken" \
+  python3 tools/measure_face_rule.py --self-test
 
 # A dwelling nobody named is a count-unit toward a documented aggregate; a PUBLIC
 # building nobody named is the claim that an institution stood here and left no record
@@ -352,6 +432,27 @@ step "no anonymous roof claims to be a public building, and the civic target is 
 
 step "…and its own assertions still fire when broken" \
   python3 tools/measure_institutional_claims.py --self-test
+
+# THE OTHER NINE ROWS, which T-0032 found were cross-checked against nothing (T-0211).
+# The matrix carries the same aggregate two ways that were authored independently — ten
+# group rows and four division columns — and reconcile_665.py asserted only that the
+# families sum to their group and the districts to the total. Nothing read a group's split
+# BY DIVISION, which is precisely the pair T-0032 found disagreeing.
+#
+# The I3 repair does not generalise and this does not attempt it: a row above what stands
+# is the ordinary, correct case for nine of these ten rows, because an anonymous dwelling
+# is a legitimate count-unit toward a documented aggregate. What is asserted is the weaker
+# pair that still catches the fault — the matrix must add up in BOTH directions, and a
+# division standing OVER one of its group rows must say so. The second is a ratchet on a
+# real residual: the North Division stands seven roofs above its rows (six freight, one
+# the L93 school), reconcile_665.py clamped the negative away, and the seven slots it
+# sheds to pay for them come out of the North's ordinary dwellings where nobody could see
+# the transfer. Both figures are now in the programme document.
+step "the group rows add up by division too, and every division over one declares it" \
+  python3 tools/measure_group_district_rows.py --gate --quiet
+
+step "…and its own assertions still fire when broken" \
+  python3 tools/measure_group_district_rows.py --self-test
 
 # Uniformity is a claim, and no source makes it. 138 of the 218 anonymous records say
 # in their own footprint note that the rectangle was sampled inside the family's
@@ -420,7 +521,14 @@ step "…and its own assertions still fire when broken" \
 # one. It found H2 unbuildable over the top third of its authored eave band, D6 over
 # the bottom of its own, a rounding step that put a pitch outside the band it was drawn
 # from, and W2 fatal to the generator on the day it is first dealt (T-0142).
-step "every family the block schedule may deal builds at every size its band allows" \
+# T-0172 took the sweep off the block generator alone and onto all FOUR anonymous
+# parcels — west, South Division infill and the inferred households deal the same
+# families through the same archetypes and had never been asked. None of them refuses a
+# deal; every one of them authors form values as per-family CONSTANTS whose note cites
+# the family band, and 31 of those constants sit outside the band they cite. The gate is
+# therefore a RATCHET from here: a refusal never passes, and an off-band claim passes
+# only while tools/family_deal_baseline.json names it with the reason it stands.
+step "every family every parcel may deal builds, and every band claim is named" \
   python3 tools/measure_family_deal.py --gate
 
 # AGENTS.md puts one constraint above the work — the final removal of the Potawatomi
@@ -579,6 +687,24 @@ step "p4_0 raises no work at either angle of the fort it draws" \
 
 step "…and its own assertions still fire when broken" \
   python3 tools/measure_fort_works_plate.py --self-test
+
+# T-0197 audited the rest of that table, because three of its eight rows had been
+# struck as wrong in a week and rows 1, 2 and 6 had never been measured at all —
+# while already carrying TWO built ways on the reservation. Row 2 is the first row
+# of that table to survive measurement: p4_0 draws one bare corridor, it meets the
+# wall at the gate, it runs west, and it reaches the shore. Row 1's "both plates"
+# is struck (p4_1 draws no way at the fort, on a detector that finds the way it
+# draws elsewhere on the same bank). Row 6's flagstaff stands at 0.495 of the wall
+# — over the gate, not in the parade where exclusions.json puts the FIRST fort's.
+# Two of the three assertions here ask the TOWN about the plates, which is why this
+# one gates where T-0094's plate half does not: they fire the day fort_bank_track
+# is swung back east, or either way's geometry_confidence is promoted on the
+# strength of a tier-5 lithograph.
+step "the ways the fort plates draw are still the ways the town was built to" \
+  python3 tools/measure_fort_ways_plate.py --gate --quiet
+
+step "…and its own assertions still fire when broken" \
+  python3 tools/measure_fort_ways_plate.py --self-test
 
 # The datum must remain the output of its committed ground control, never a
 # hand-edited number. Skips (exit 0) when pyproj is not installed.
@@ -748,6 +874,25 @@ fi
 step "closing a ticket leaves the mirror fresh, and a stale one still fails" \
   node tools/test_ticket_mirror.mjs
 
+# The duplicate-id remedy, tested in the only state it ever runs in. `restamp`
+# used to find the ticket by FILE (its own comment explains that with two files
+# sharing an id, nothing else can tell them apart) and then edit the queue by ID,
+# so it rewrote whichever of the two lines the owner had ranked higher — a coin
+# toss, and on 2026-08-27 it clobbered a real ticket's line and left a stale one
+# behind with every gate green (T-0217). This runs the repair on BOTH orderings of
+# the same fixture, because the old code passed one of them by luck.
+step "restamp moves the queue line it was handed, not the other one" \
+  node tools/test_ticket_restamp.mjs
+
+# The other restamp, and the more dangerous one: `tools/restamp_inputs.py` rewrites
+# `assets/manifest.json`'s input hashes without a bake, which is the only honest
+# answer to a change in the input-hash RECIPE (T-0164) and would be a silent way to
+# bless a stale mesh at any other moment. Its guard is that a SCHEME constant must
+# have moved, and a committed tree — where the schemes agree by construction — is
+# exactly the negative fixture that proves the guard still holds.
+step "restamping the input hashes is refused when no recipe changed" \
+  python3 tools/test_restamp_inputs.py
+
 # The integration preview's assembler. It lives at the repo root because the
 # deploy workflow does, but nothing else tests it, and it is the only thing that
 # marks the preview as a preview — the noindex, the banner, the build stamp. A
@@ -841,6 +986,37 @@ step "a street's invented line reaches the picture" \
 # flora.js rather than keeping a copy, so it fails by name if that file moves.
 step "a spatial filter still cannot bias the sward's rank deal" \
   node tools/measure_rank_bias.mjs --self-test
+
+# The 1833-1835 newspaper corpus is the PAPERS epic's foundation: eighty-six issues
+# that the project could not cite until they had a register to resolve against. The
+# register is only worth something if it is true, so this asserts the count rather
+# than observing it (a silently dropped issue is otherwise invisible), requires dates
+# to increase strictly per publication, and re-hashes every derived text file. The
+# deposit itself is on `main` and not on `dev` (T-0275), which is why the check knows
+# three deposit states and not two: present, absent, and PARTIAL — and partial is
+# always red, because that is the state that means damage.
+step "the newspaper corpus resolves, and nothing under data/research/ is published" \
+  python3 tools/newspaper_corpus.py --check
+
+step "…and its own assertions still fire when broken" \
+  python3 tools/newspaper_corpus.py --self-test
+
+step "the .docx extractor is deterministic and keeps its uncertainty brackets" \
+  python3 tools/docx_text.py --self-test
+
+# T-0257. The corpus made the papers citable; this is what a READING out of them looks
+# like once it has been made, and the gate that keeps one honest. The assertion worth
+# knowing about: a claim names the exact transcription lines its quote is built from,
+# and this reassembles the quote out of the transcription and refuses any that differs
+# by a character. "Never silently smoothed" is otherwise a hope — a tidied quote is
+# invisible to every other check here, and the smoothed reading has a field of its own
+# (`normalized`) to live in. gazetteer.json is GENERATED, so this also refuses a
+# hand-edit to it, the same way the board and the published mirror are refused stale.
+step "every newspaper claim resolves, quotes verbatim, and the gazetteer is compiled" \
+  python3 tools/compile_gazetteer.py --check
+
+step "…and its own assertions still fire when broken" \
+  python3 tools/compile_gazetteer.py --self-test
 
 printf '\n'
 if [ "$FAILED" -eq 0 ]; then

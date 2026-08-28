@@ -44,6 +44,11 @@ project's first target year. It is the most historically significant event of th
   built environment accurately and leave human depiction out of scope. An empty, accurate town
   is honest. A populated, invented one is not.
 - `review_required: true` on any record blocks a scene from being marked `released`.
+- **A flagged record says why, in its own words.** `tools/measure_review_constraint.py`
+  asserts that every record carrying the flag refers to it somewhere in its own prose AND
+  names the subject it is held for, and prints the sentence it matched under each id. A
+  bare boolean tells the next reader that a decision was made and nothing about what it
+  rests on (T-0025).
 
 Note also that the great Potawatomi gathering and the last war dance are **August 1835**,
 weeks after the 1835 scene date. Staging them in the 1835 scene would be wrong twice over.
@@ -277,6 +282,12 @@ straight to production.* The fleet pilot is `kevinrhaas/jobtracker.polecat.live`
   `kevinrhaas/custom` is a monorepo of unrelated personal projects — CAD, print models,
   the Joliet game, a landing site. A run that edits any of them is out of bounds, and the
   workflow files are outside scope too: changing one needs an interactive, owner-visible PR.
+- **Before you re-run a stage to find out whose red it is, ASK THE RECORD**: `node
+  tools/dev-smoke-state.mjs ask --viewport desktop --stage 8` answers "was dev already red
+  here, and when did it last pass" from `tools/dev-smoke-state.json` without running
+  anything, and says whether the reading was taken on your exact tree. Four runs re-derived
+  the same two reds by hand on 2026-08-27 for want of it (T-0215, T-0216). File the smoke
+  you ran anyway: `node tools/dev-smoke-state.mjs record <log>`.
 - **Both gates, in the foreground, before merging**: `tools/check.sh` (needs `jsonschema` +
   `pyproj`) and `node tools/smoke_renderer.mjs` (Playwright, 390×780 AND 1280×800, zero
   page errors). Mobile is a release gate. **Never weaken an assertion to pass.** The

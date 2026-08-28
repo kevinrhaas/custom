@@ -1,7 +1,7 @@
 ---
 id: T-0183
 title: The Market and South Water corner needs one control point, and the node rule may not be able to make it
-state: open
+state: blocked-owner
 epic: META
 requested_by: steward
 seen: false
@@ -11,8 +11,8 @@ parent: null
 opened: 2026-08-24
 closed: null
 pr: null
-claimed_by: null
-blocked_on: null
+claimed_by: run 8/27/2026, 6:17:17 PM CT
+blocked_on: blk_south_water_market has 27 roofs of headroom on measured dry ground and NO derivable control at its west corner — Market x South Water is a bend in Wacker Drive, not a crossing, and the node rule returns lake_market's own two nodes 110 m away (measured 2026-08-27; tools/refetch_control.py --discover market_south_water now refuses it). So the question is no longer 'may a bend node be control' — that is answered, and it is no. It is: should South Water Street's committed west end be CLOSED onto Market's corridor from the 1834 sheets and the committed bank, the same basis the rest of that curve already stands on and graded for what it is, or should the block's 27 roofs stop being scheduled as gated on street control and go back to the South balance, the way blk_south_water_clinton's did when T-0163 measured them?
 needs_bake: false
 ---
 
@@ -77,3 +77,93 @@ and on `node_rule`, and the owner is asked the one question that would settle it
 
 `tools/measure_block_gating.py` must keep passing either way: if the block starts building,
 it leaves the refusal list and the gate stops measuring it.
+
+---
+
+## WHAT WAS FOUND — 2026-08-27. The rule cannot make the point, and it does not say so.
+
+The check this ticket asked for was run, against today's OpenStreetMap, and it reproduces:
+
+    python3 tools/refetch_control.py --discover market_south_water    # exits 1
+
+`--discover` learned two things in this slice. It can now read a junction out of the new
+`refused_control` section of `data/traces/street_control.json` — entries with the `osm_ways`
+and the search centre but deliberately **no coordinate**, because a refused junction has no
+committed position — and it now compares the set it discovers against the control already in
+the file and refuses one it recognises.
+
+### The reading
+
+| | |
+|---|---|
+| named ways | `North Upper Wacker Drive` × `West Upper Wacker Drive` |
+| shared surface-roadway nodes | **2** — `28358888`, `28358944` |
+| mean | E 447161.86, N 4637285.38 — local **(89.16, −110.42)** |
+| spread | 17.68 m |
+| and that is | **`lake_market`**, already committed, to the id and to the centimetre |
+
+The way geometry says why. North Upper Wacker's northernmost way (`931237154`) **ends** at
+node `28358944`; West Upper Wacker's first way (`319358162`) **begins** at it and runs
+north-east to E 447213.3, N 4637344.7; its other carriageway (`319358170`) comes back down to
+`28358888`. The two arms are one carriageway pair changing name through a **bend at the Lake
+Street junction** — not two streets crossing at South Water. The ticket guessed exactly this
+("plausibly the SAME carriageway changing name at a bend") and it is now measured rather than
+suspected.
+
+### The part that was not anticipated, and is the actual finding
+
+**The rule does not fail loudly — it returns a wrong answer that looks right.** Two nodes, a
+17.68 m spread, a clean mean: the same shape `lake_market` itself has. Committed,
+`market_south_water` would have stood **on Lake Street, 110 m south of the corner it names**,
+and `blk_south_water_market` would have been generated with no depth at all. Nothing in the
+old output said "bend". That guard is what the tool change buys, and it is why the refusal is
+recorded as an entry rather than left as an absence.
+
+### Why there is no crossing to find
+
+Not because the modern city lost the corner — because it lost the **street**. Wacker Drive
+only reaches South Water's platted line (about local N +5 to +11) at Franklin, 120 m east of
+Market; west of Franklin it turns south-west onto the Lake and Market corner. That is also why
+`data/streets/1835.json` already describes South Water's west approach as following *"the dry
+south bank resolved by the committed heightfield"*: the modern control was never there to
+follow. **The 24 m gap at Market is a question about the 1834 sheets and the bank, not about
+OpenStreetMap.**
+
+### One thing the errand did find, and did not adopt
+
+The same extract and the same rule read **`West Upper Wacker Drive` × `North Franklin Street`**
+as a clean two-node crossing: `28358941` (E 447281.12, N 4637399.57) and `28358883`
+(E 447281.20, N 4637414.85), mean E 447281.16, N 4637407.21, spread 15.28 m, local
+**(208.46, +11.41)** — 6.4 m north of Franklin's committed north end, and the corner the first
+post office stood on from 2 Nov 1832 to 3 Mar 1837. It would be this dataset's **first control
+point anywhere on South Water Street**. Measured here, recorded in `refused_control`'s
+`not_the_same_as`, and deliberately **not** adopted: committing it re-derives placements, and
+it does nothing for this block, whose gap is at the west end. Filed as its own ticket.
+
+### Where it was recorded
+
+- `data/traces/street_control.json` — `node_rule` gains the bend failure mode; new
+  `refused_control.market_south_water` holds the reading, the verdict and the question; the
+  `streets` table gains `south_water`, so a street a refusal names resolves.
+- `tools/refetch_control.py` — `--discover` reads refusals, tolerates a missing committed
+  coordinate, and exits 1 on a set already committed under another name.
+- `tools/reconcile_665.py` → `data/reconstruction/1835_665_roof_programme.json` — the block's
+  `waiting_on` now says what it is really waiting on.
+- `docs/RESEARCH/thompson_plat_grid.md` § 6.1.
+
+### The one question, and it is not the one this ticket opened with
+
+The ticket expected to ask *"may a bend node be control?"*. That question is answered by
+measurement and the answer is no — a bend node here is not a looser kind of control, it is a
+point 110 m wrong. What is left is genuinely the owner's, because either answer sets a
+precedent for every block after this one:
+
+> **`blk_south_water_market` has 27 roofs of headroom on measured dry ground and no
+> derivable control at its west corner. Should South Water Street's committed west end be
+> CLOSED onto Market's corridor from the 1834 sheets and the committed bank — the same basis
+> the rest of that curve already stands on, graded for what it is — or should its 27 roofs
+> stop being scheduled as gated on street control and go back to the South balance, the way
+> `blk_south_water_clinton`'s did when T-0163 measured them?**
+
+`tools/measure_block_gating.py` still passes: nothing here moved a street line, so the block
+is still classified `awaiting_control` and still measures dry.

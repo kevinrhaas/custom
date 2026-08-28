@@ -71,6 +71,7 @@ SIDECARS = DATA / "sidecars" / "1835"
 STRUCTURES = DATA / "structures"
 STREETS = DATA / "streets" / "1835.json"
 ENCLOSURES = DATA / "enclosures"
+FRONTAGE = DATA / "frontage"
 ZONE = DATA / "flora" / "zones" / "z10_settled_town.json"
 EXISTING = DATA / "flora" / "plantings" / "sauganash_yard.json"
 EPOCH = DATA / "terrain" / "epochs" / "e1834_harbor_cut"
@@ -86,6 +87,23 @@ FOOTPRINT_MARGIN_M = 5.0  # this tool's stricter bound over CLEAR_MARGIN_M
 TRACK_SHOULDER_M = 0.65   # streets.js blocksGrowth's shoulder off the track
 TRACK_MARGIN_M = 2.0      # this tool's stricter bound over the shoulder
 FENCE_MARGIN_M = 1.2      # no bole in a committed fence line
+# A PLANK WALK IS A FLOOR, AND NOTHING GROWS UP THROUGH ONE (T-0240). `main.js`
+# hands the planters `frontage.keepOut` inside the same `planting` array as the
+# building footprints, so `trees.js` refuses a stem standing on a walk exactly as
+# it refuses one standing in a wall — and this tool did not know it, because when
+# it was written the street edge reached no block a dooryard stands on. T-0240
+# laid Randolph Street and two dealt bushes came out underneath it
+# (`blk_randolph_clinton_d4_02_bush_1`, `blk_randolph_dearborn_d1_12_bush_2`):
+# still in the record, refused at load, visible only in the smoke's problem list.
+# Read here from `data/frontage/`, the same records `frontage.js` builds its
+# rectangles from, so the two agree by construction rather than by luck.
+# The margin is `trees.js` CLEAR_MARGIN plus this tool's usual half metre, the
+# same pair as FOOTPRINT_MARGIN_M above and for the same reason: `blocked()`
+# refuses a stem within CLEAR_MARGIN of ANY polygon edge in the `planting`
+# array, and a keep-out rectangle is in that array beside the footprints. The
+# two refused bushes stood 0.99 m and 2.63 m off a walk edge — clear of the
+# boards and well inside the 4.5 m.
+WALK_MARGIN_M = 5.0       # outside the walk's own half-width
 DRY_FLOOR_M = 0.9         # trees.js asks +0.20 over water; this tool asks more
 STEM_SPACING_M = 3.0      # stems keep clear of each other
 EDGE_INSET_M = 6.0        # and off the heightfield's own edge
@@ -213,14 +231,28 @@ def world():
             pts = run.get("path_local_enu_m") or []
             if len(pts) >= 2:
                 fences.append(pts)
+    # The plank walks and board crossings, segment by segment with their own
+    # half-width — the same rectangles `frontage.js` hands the planters as
+    # `keepOut`, derived here from the same records the way
+    # `tools/generate_yard_goods.py` derives them.
+    walks = []
+    for path in sorted(FRONTAGE.glob("*.json")):
+        if path.name == "index.json":
+            continue
+        rec = load(path)
+        for walk in rec.get("walks") or []:
+            line = walk.get("centreline_local_enu_m") or []
+            half = float(walk.get("width_m") or 1.83) / 2.0
+            for i in range(len(line) - 1):
+                walks.append((tuple(line[i]), tuple(line[i + 1]), half))
     hf = Heightfield.load(EPOCH)
     if hf is None:
         raise SystemExit("no heightfield at " + str(EPOCH))
     taken = [tuple(stem["at_local_enu_m"]) for stem in load(EXISTING)["stems"]]
-    return sidecars, obstructions, streets, fences, hf, taken
+    return sidecars, obstructions, streets, fences, walks, hf, taken
 
 
-def clear(p, obstructions, streets, fences, hf, taken) -> bool:
+def clear(p, obstructions, streets, fences, walks, hf, taken) -> bool:
     e, n = p
     if not (hf.origin_e + EDGE_INSET_M <= e
             <= hf.origin_e + (hf.cols - 1) * hf.cell_m - EDGE_INSET_M
@@ -242,10 +274,13 @@ def clear(p, obstructions, streets, fences, hf, taken) -> bool:
     for pts in fences:
         if path_dist(p, pts) < FENCE_MARGIN_M:
             return False
+    for a, b, half in walks:
+        if seg_dist(p, a, b) < half + WALK_MARGIN_M:
+            return False
     return all(math.hypot(e - te, n - tn) >= STEM_SPACING_M for te, tn in taken)
 
 
-def candidates(sc, obstructions, streets, fences, hf, taken):
+def candidates(sc, obstructions, streets, fences, walks, hf, taken):
     """Allowed points around one house, each scored for yard-ness.
 
     A ring scan around the footprint centroid: 24 compass bearings by radii from
@@ -264,7 +299,7 @@ def candidates(sc, obstructions, streets, fences, hf, taken):
         for k in range(24):
             b = math.radians(k * 15.0)
             p = (round(cx + math.sin(b) * r, 2), round(cy + math.cos(b) * r, 2))
-            if not clear(p, obstructions, streets, fences, hf, taken):
+            if not clear(p, obstructions, streets, fences, walks, hf, taken):
                 continue
             street = min((path_dist(p, pts) for pts, _ in streets), default=99.0)
             near = poly_edge_dist(p, fp)
@@ -274,7 +309,7 @@ def candidates(sc, obstructions, streets, fences, hf, taken):
 
 
 def build():
-    sidecars, obstructions, streets, fences, hf, taken = world()
+    sidecars, obstructions, streets, fences, walks, hf, taken = world()
     z10 = {sp["id"]: sp for sp in load(ZONE)["species"]}
     stems, refused = [], []
     houses = kept = 0
@@ -296,7 +331,7 @@ def build():
         n_bushes = deal(rnd(sid, "bushes"), BUSH_DEAL)
         if not n_trees and not n_bushes:
             continue
-        pool = candidates(sc, obstructions, streets, fences, hf, taken)
+        pool = candidates(sc, obstructions, streets, fences, walks, hf, taken)
         placed_here = 0
         for i in range(n_trees):
             pool = [c for c in pool

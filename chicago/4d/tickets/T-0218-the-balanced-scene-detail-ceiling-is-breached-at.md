@@ -81,3 +81,29 @@ stated as a percentage so the next parcel knows what it is spending.
 **Links:** T-0135 (the stand set and the last re-argument) · T-0147 (re-lower once the trims
 land) · T-0149 (win the floor back by trimming the axial view) · T-0146 (merge far chunks) ·
 T-0115 (the tier ledger) · T-0089 · T-0199 (where this was measured).
+
+---
+## 2026-08-28 — RE-READ on `dev`, and both the size of the breach and the stand have moved
+
+`tools/measure_detail_ceilings.mjs --only desktop`, published mirror, `origin/dev` at
+`a9a3a2f9`. Taken while working T-0214, beside a branch that changes no geometry a gate
+stand can see — the two trees agree to the triangle at four of the five stands, which is
+what makes this `dev`'s reading rather than a branch's:
+
+| tier | ceiling | worst | stand |
+|---|---:|---:|---|
+| `full` | 1,400,000 | 1,376,419 PASS by 23,581 | the forks, from Wolf Point |
+| `balanced` | 1,210,000 | **1,213,481 — OVER by 3,481** | the forks, from Wolf Point |
+| `light` | 785,000 | 755,194 PASS by 29,806 | Lake at Canal, east |
+
+(Read twice, four hours apart, either side of T-0209: at `a9a3a2f9` the breach was 5,290
+at the same stand, at `c39167b4` it is 3,481. The stand does not move between them.)
+
+**Two things have changed since this ticket's own table.** The breach is **3,481**, not
+43,630 — the town has shrunk under it. And **the worst stand is no longer the axial
+view**: Lake at Canal now reads 1,197,353, inside the ceiling by 12,647, while *the forks,
+from Wolf Point* has become the binding frame at both `full` and `balanced`. A run that
+goes looking for these triangles down the Lake Street axis will not find them. Mobile
+390x780 passes all three tiers by 75,190–113,179.
+
+`light`'s draw-call floor (T-0247) is a separate red and is untouched by this reading.

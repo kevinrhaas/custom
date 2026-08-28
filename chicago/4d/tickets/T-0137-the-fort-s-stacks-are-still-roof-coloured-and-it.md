@@ -1,7 +1,7 @@
 ---
 id: T-0137
 title: The fort's stacks are still roof-coloured, and its 1816 date fits neither chimney answer
-state: open
+state: done
 epic: RENDERING
 requested_by: loop
 seen: false
@@ -9,9 +9,9 @@ effort: S
 legacy_id: null
 parent: null
 opened: 2026-08-22
-closed: null
-pr: null
-claimed_by: null
+closed: 2026-08-28
+pr: 438
+claimed_by: run 8/28/2026, 1:10:53 AM CT
 blocked_on: null
 needs_bake: false
 ---

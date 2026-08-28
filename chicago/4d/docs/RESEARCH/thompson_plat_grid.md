@@ -115,6 +115,55 @@ the river front, is one of the most built-up in the 1835 town, and the reason it
 generated is that the street layer does not yet carry South Water west of E +100. It is the same
 control § S9 records as owed, arriving from a different direction.
 
+### 6.1 And the control it is owed cannot be fetched — measured 2026-08-27
+
+T-0183 read the refusal as an errand: one control point at Market × South Water, the committed
+set holds four and none of them is anywhere on South Water, go and derive it. The errand was run
+and **the rule cannot make the point.** The reading reproduces with
+
+    python3 tools/refetch_control.py --discover market_south_water
+
+which now exits 1 rather than reporting a junction, and is filed with its node ids under
+`refused_control` in `data/traces/street_control.json`.
+
+Under `node_rule` a junction is the set of nodes shared by the two named modern surface roadways.
+Market's successor is North Upper Wacker Drive and South Water's is West Upper Wacker Drive, and
+they share **exactly two nodes — 28358888 and 28358944 — which are `lake_market`'s own committed
+pair**, to the id, to the coordinate and to the 17.68 m spread. The way geometry says why: North
+Upper Wacker's northernmost way ends at 28358944, West Upper Wacker's first way begins at it and
+runs north-east, and its other carriageway comes back down to 28358888. The two arms are one
+carriageway pair changing name through a **bend at the Lake Street junction**, not two streets
+crossing at South Water.
+
+**The failure mode worth carrying away is that the rule does not fail loudly.** It returns the
+right node count, a plausible spread and a clean mean, and nothing in the output says "bend".
+Committed, `market_south_water` would have stood at local (89.16, −110.42) — on Lake Street,
+**110 m south of the corner it names** — and the block it was fetched to unlock would have been
+generated with no depth at all. `--discover` now compares its result against the control already
+in the file and refuses a set it recognises, which is the cheap guard against the next one.
+
+The reason is not that the modern city lost the corner; it is that it lost the **street**. Wacker
+Drive only reaches South Water's platted line (about local N +5 to +11) at Franklin, 120 m east of
+Market, and west of Franklin it turns south-west onto the Lake and Market corner. That is also why
+`data/streets/1835.json` already describes South Water's west approach as following *"the dry
+south bank resolved by the committed heightfield"* rather than modern control: the modern control
+was never there to follow.
+
+So `blk_south_water_market` is no longer waiting on somebody fetching a junction. It is waiting on
+a decision — close South Water's west end onto Market's corridor from the 1834 sheets and the
+committed bank, on the same basis as the rest of that curve and graded for what it is; or return
+its 27 roofs to the South balance the way T-0163 returned `blk_south_water_clinton`'s to the West.
+That is the owner's call, because a corner closed without control widens what a block face is
+allowed to stand on for every block after it.
+
+**One thing the errand did find.** The same extract and the same rule read *West Upper Wacker
+Drive × North Franklin Street* as a clean two-node crossing — 28358941 and 28358883, mean
+E 447281.16, N 4637407.21, spread 15.28 m, local (208.46, +11.41). That is the corner the first
+post office stood on from 2 Nov 1832 to 3 Mar 1837, and it would be this dataset's **first**
+control point anywhere on South Water Street. It is recorded and deliberately not adopted here:
+committing it re-derives placements, and it does nothing for this block, whose gap is at the west
+end.
+
 ## 7. The cross-check: where the town's buildings actually stand
 
 `tools/generate_plat_lots.py --report` puts every placed structure in the 1835 scene against the

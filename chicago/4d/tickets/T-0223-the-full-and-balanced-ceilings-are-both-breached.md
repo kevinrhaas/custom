@@ -1,7 +1,7 @@
 ---
 id: T-0223
 title: The 'full' and 'balanced' ceilings are both breached on dev, with no parcel in flight that spends them
-state: open
+state: done
 epic: META
 requested_by: loop
 seen: false
@@ -9,9 +9,9 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-08-27
-closed: null
-pr: null
-claimed_by: null
+closed: 2026-08-27
+pr: 411
+claimed_by: run 8/27/2026, 1:54:47 PM CT
 blocked_on: null
 needs_bake: false
 ---
@@ -162,3 +162,74 @@ refuses) - T-0147 and T-0149 (win the axial frame back, then let the ceilings fo
 (the same shape at `light`, 2026-08-18, and the first branch charged for a breach it did not
 open) - T-0056 - T-0115's ledger - `renderers/web/js/main.js` `DETAIL` -
 `renderers/web/js/trees.js` (the stale +/-60 m comment at `mesh.castShadow`).
+
+---
+
+## WHAT WAS DONE — step 1, and it is A TRIM, not a re-budget
+
+The plan's item 1. `renderers/web/js/trees.js` builds the near timber on a **120 m
+lattice** — 71 cells carry timber — instead of four world quadrants, and submits the whole
+lattice as **one `THREE.BatchedMesh`**. That is what makes fine chunks affordable: three
+culls per chunk against the view frustum in `onBeforeRender` AND against the shadow camera
+in `onBeforeShadow`, and issues the survivors as a single `WEBGL_multi_draw`. The ticket's
+own warning — *"the colour pass must NOT gain 40 calls to save the shadow pass"* — is
+answered by the draw calls going DOWN.
+
+Items 2-5 (`structures`' shadow split, `yard`, T-0146, T-0147) are untouched and stay open.
+
+### The reading, same instrument, same runner, both trees
+
+`tools/measure_stand_budget.mjs`' method — hide the layer, let two frames pass, read
+`renderer.info.render`, restore; then clear `castShadow` on it and read again — at
+`balanced`, **Lake Street at Canal, east down the axis**, desktop 1280x800, published
+mirror. `dev` here is `d9b437dd`, re-read on this runner rather than quoted from the table
+above (which was `29eebdef`).
+
+| | dev @ `d9b437dd` | this branch | delta |
+|---|---:|---:|---:|
+| the whole frame | 1,239,486 / 199 calls | **1,073,218 / 193 calls** | **-166,268 / -6** |
+| `trees`, whole cost | 337,692 / 9 calls | **171,424 / 3 calls** | -166,268 / -6 |
+| ...of which the sun's pass | **168,464 / 4 calls** | **46,464 / 1 call** | **-122,000 / -3** |
+| everything else (`trees` hidden) | 901,794 / 190 calls | **901,794 / 190 calls** | **0 / 0** |
+| baseline re-read against itself | 0 tris, 0 calls | 0 tris, 0 calls | — |
+
+The fourth row is the control that matters: with the layer hidden the two trees agree **to
+the triangle and to the draw call**, so the whole delta is the timber and nothing else moved.
+The layer still OWNS 169,228 triangles on both trees — no geometry was removed, thinned or
+retyped. 53 of the 71 cells are drawn at that stand.
+
+### Acceptance, read by `tools/measure_detail_ceilings.mjs` on the published mirror
+
+Worst of T-0135's five stands, **both release viewports**:
+
+| tier | ceiling | desktop 1280x800 | mobile 390x780 | the ORIGINAL ceiling |
+|---|---:|---:|---:|---:|
+| `full` | 1,425,000 | **1,252,519** | **1,145,025** | 1,400,000 — inside it |
+| `balanced` | 1,260,000 | **1,083,932** | **1,020,396** | 1,210,000 — inside it |
+| `light` | 1,050,000 | **702,212** | **649,224** | 1,050,000 — inside it |
+
+`every tier inside its ceiling`, at both viewports, and inside the ceilings that stood
+BEFORE T-0229's raise as well. Worst draw-call count 195 of 215 (desktop) and 186 (mobile),
+against dev's 204. **T-0229's expiry condition is met** — putting the two numbers back is
+that ticket's own change, and `DETAIL` in `main.js` now records the reading it needs.
+
+### Where the estimate landed
+
+The plan's upper bound was ~180,100 at `balanced`. The sun's pass over the timber fell by
+**122,000** of it; the remaining ~46,000 is timber genuinely inside the +/-240 m box plus one
+chunk-radius of lattice margin. The colour pass gave back another ~55,900 that was not
+budgeted for at all — the quadrants were never culled from the camera either. The `DETAIL`
+block predicted "roughly 1,232,000 (full) and 1,072,000 (balanced)"; measured 1,252,519 and
+1,083,932, within 2 %.
+
+### What is NOT claimed
+
+`renderer.info` counts a multi-draw as one call because it is one GL call, but the driver
+still issues a sub-draw per surviving chunk. The lattice is 120 m rather than 40 for exactly
+that reason: the shadow saving is nearly all won by the first halving and the sub-draw count
+is what pays for the rest. The frame-signature control is structural rather than
+photographic — three's per-chunk cull is conservative (bounding sphere against the frustum),
+so it can only drop chunks that contributed no pixel, and the shadow camera clipped the same
+timber at +/-240 m before this change anyway. `tools/measure_stand_budget.mjs`' own full
+thirteen-layer sweep was NOT re-run: it does not finish inside this runner's per-command
+ceiling. The three-reading probe above uses its method on the one layer that changed.

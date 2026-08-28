@@ -33,10 +33,12 @@ import { createFencedGround } from './yards.js';
 import { createSignage } from './signage.js';
 import { createYardGoods } from './yard.js';
 import { createFrontage } from './frontage.js';
+import { createFarMerge } from './far-merge.js';
 import { createWharves } from './wharves.js';
 import { createBoats } from './boats.js';
 import { mountExclusions } from './exclusions.js';
 import { mountFauna } from './fauna.js';
+import { mountPlants } from './plants.js';
 import { mountResidents } from './residents.js';
 import { mountGround } from './ground.js';
 import { mountGateCensus } from './census.js';
@@ -106,6 +108,65 @@ const VERSION = '0.1.0';
  * the second one is the one being answered.
  */
 const FURNITURE_REACH_LIGHT_M = 350;
+
+/**
+ * THE MIDDLE RUNG GETS A REACH TOO — T-0241, 2026-08-27, and it is the tier
+ * ladder finally being a ladder.
+ *
+ * `light` has had a reach since T-0150 and `balanced` had NONE, so "turn the
+ * quality down and less is drawn" was true of the bottom rung and false of the
+ * one above it: `balanced` drew every plank walk, fence, barrel, wharf deck and
+ * moored hull in Chicago at any distance, exactly as `full` does. That is what
+ * refused Washington Street. With the street laid, `balanced` read 1,259,442 at
+ * the axial stand against its 1,210,000 — OVER by 49,442 — while `full` passed
+ * with 14,613 clear and `light` with 23,440. One rung, and not the town.
+ *
+ * The three honest routes past that were named in T-0241 and two of them were
+ * already spent: T-0056 measured the enclosure layer and found it ALREADY
+ * thinning at `balanced`, and T-0223's cull had landed and been given back as
+ * T-0229's ceiling restoration. A sixth re-basing is what T-0223, T-0229 and
+ * T-0237 exist to make harder. So: the trim.
+ *
+ * MEASURED BEFORE IT WAS SET, same instrument as `light` above
+ * (`tools/measure_furniture_reach.mjs`, now with `--level` so it can be pointed
+ * at a tier other than the floor), published mirror, WITH Washington laid, at
+ * T-0135's five stands and both release viewports:
+ *
+ *   desktop 1280x800        drawn whole      at 800 m        saved   frame 48^2
+ *   Lake at Canal, east   1,259,442 / 151  1,190,670 / 146   68,772   0.00 / 0
+ *   the forks             1,245,668 / 157  1,195,188 / 152   50,480   0.00 / 0
+ *   Lake and Market         969,677 / 157    969,677 / 157        0   0.00 / 0
+ *   the open aerial         792,819 / 122    792,387 / 121      432   0.00 / 0
+ *   the Sauganash at 26 m   811,265 / 115    810,401 / 113      864   0.00 / 0
+ *
+ *   mobile 390x780
+ *   Lake at Canal, east   1,201,716 / 151  1,133,376 / 147   68,340   0.00 / 0
+ *   the forks             1,101,700 / 142  1,062,216 / 136   39,484   0.00 / 0
+ *   Lake and Market         784,108 / 143    784,108 / 143        0   0.00 / 0
+ *   the open aerial         663,078 / 101    663,078 / 101        0   0.00 / 0
+ *   the Sauganash at 26 m   733,227 / 105    733,227 / 105        0   0.00 / 0
+ *
+ * THE FRAME DOES NOT MOVE. Not "moves a little": the 48² signature reads a worst
+ * cell of ZERO against the same frame drawn whole, at every stand, at both
+ * viewports, with the clock held — where the residual of the baseline against
+ * itself is also 0, so the instrument is known to be reading signal. `light`'s
+ * own 350 m could not say that; it moves the open aerial by a worst cell of 6.
+ * Say the limit of the claim as plainly as the claim: a 48² signature is a
+ * downsample, and at 800 m a 1.2 m fence pale subtends 1.1 CSS pixels of this
+ * frame, which is below what it can resolve. What is being asserted is that
+ * nothing this instrument can see changes, and the pixel arithmetic says why.
+ *
+ * WHY 800 AND NOT 700, WHICH SAVES NEARLY TWICE AS MUCH (126,070 at the axial
+ * stand). Because a cull is a deletion and the rule here is to cut as little as
+ * buys the room. 800 m is the LONGEST reach in the sweep that gets `balanced`
+ * inside its ceiling, and it lands the tier on 1,195,188 of 1,210,000 — 1.2 %
+ * clear, against `full`'s 1.0 % and `light`'s 3.0 %. The ladder keeps its shape,
+ * which is the test this table has been re-taught five times, and 700 m stays on
+ * the table for whatever asks for room next rather than being spent here.
+ *
+ * WHAT THIS IS NOT: a ceiling raise. Nothing in `DETAIL` below moves.
+ */
+const FURNITURE_REACH_BALANCED_M = 800;
 
 /**
  * Scene detail: how much geometry the visitor asks for.
@@ -284,52 +345,51 @@ const DETAIL = {
   // and it is a separate ticket precisely so that the trim has to be measured
   // before the ceiling is allowed to follow it down. A ceiling lowered in the
   // same breath as the trim that justified it is a ceiling nobody checked.
-  // ── RE-BUDGETED 2026-08-27 ON THE OWNER'S DECISION, AND IT EXPIRES ──────────
+  // ── THE 2026-08-27 RAISE IS TAKEN BACK OUT, T-0229 ─────────────────────────
   //
-  // `full` and `balanced` are raised to clear a breach that is REAL but whose
-  // cause is measured and is NOT the town's content. Both numbers come back
-  // down when T-0209's first step lands. This is written here rather than in a
-  // ticket because the next person to read these constants is the one who needs
-  // to know they are provisional.
+  // For one day these two numbers read 1,425,000 and 1,260,000. They were
+  // raised on the owner's decision to clear a breach that was real and whose
+  // cause was measured and was NOT the town's content: `trees.js` submitted
+  // kilometre-wide quadrant meshes whole to a ±240 m shadow box, so the sun
+  // drew 180,100 triangles of timber it could not cast — 14.4 % of the worst
+  // frame, roughly four times the headroom either ceiling needed (T-0223's
+  // layer table). The raise was filed WITH an expiry TICKET rather than as a
+  // comment promising to be temporary, and this is that ticket closing.
   //
-  // THE MEASUREMENT (T-0209, `tools/measure_stand_budget.mjs`, at the release
-  // smoke's own worst stand — Lake Street at Canal, east down the axis):
+  // T-0223 landed the cull: the near timber is chunked on a 120 m lattice and
+  // submitted as one batched multi-draw, so the sun's box and the view frustum
+  // both cull it per cell. Re-read afterwards on the published mirror with
+  // `tools/measure_detail_ceilings.mjs` — the instrument that reproduces the
+  // gate's own five-stand sweep to the triangle — at the WORST of T-0135's five
+  // stands, on the tree these constants ship in:
   //
-  //   full      1,412,120 of 1,400,000   over by 12,120
-  //   balanced  1,252,802 of 1,210,000   over by 42,802
+  //              desktop 1280x800              mobile 390x780        here
+  //   full       1,252,879 (the forks)         1,145,313 (Lake)   1,400,000
+  //   balanced   1,084,292 (the forks)         1,020,684 (Lake)   1,210,000
+  //   light        703,610 (the forks)           649,296 (Lake)   1,050,000
   //
-  //   trees     360,926 triangles drawn, of 181,900 the layer OWNS.
-  //             180,100 of that is the sun's pass over timber that lies
-  //             outside the +/-240 m shadow box — 14.4 % of the whole frame,
-  //             casting nothing any pixel of the shadow map can hold.
+  // So `full` comes home with 147,121 triangles clear and `balanced` with
+  // 125,708 — about 10 % of each ceiling. The raise had bought 12,880 at `full`,
+  // and T-0237 measured 91 % of that spent within twelve hours by content
+  // landing behind it: a ceiling raised to be temporary was consumed faster
+  // than the trim that was meant to retire it could land.
   //
-  // So the frame carries roughly FOUR TIMES the headroom either ceiling needs,
-  // in work the renderer should not be doing at all. trees.js builds the near
-  // timber as four quadrant meshes spanning kilometres, and a mesh whose
-  // bounding sphere merely touches the shadow box is submitted whole — there is
-  // nothing to cull per-mesh until the timber is chunked. That is why this is a
-  // raise today and not a trim: the trim is real work, not a flag.
+  // THE WORST STAND MOVED WITH THE CULL, from Lake Street at Canal to the forks
+  // at Wolf Point, and that is the five-stand sweep earning its place. A
+  // one-camera instrument pointed down the axial street reads 1,207,211 at
+  // `full` here — 45,668 triangles short of the frame that actually costs the
+  // most, and it was the axial street that was the worst stand before the cull.
   //
-  // WHY RAISE AT ALL, since the content is not at fault: the nightly bake's
-  // desktop 3-4 leg is red on every branch until one of the two happens, so it
-  // reports nothing about the branch under test, and production cannot ship
-  // without a known breach. A red gate that is red for everyone is a gate
-  // nobody reads.
+  // T-0229's escape clause was that if the cull recovered materially less than
+  // 180,100 these ceilings had to be re-argued from a fresh measurement rather
+  // than quietly kept at the raised numbers. It did not: both tiers land under
+  // the ORIGINAL figures at both viewports, so the original figures are what
+  // stand here and nothing in this table is provisional any more.
   //
-  // THE NUMBERS: the measured worst stand plus ~0.6 % — the smallest step that
-  // clears the breach and leaves a normal parcel room, NOT a round number and
-  // NOT chosen to fit a particular record.
-  //
-  // WHEN THIS COMES OUT: T-0209 step one culls the timber from the sun's
-  // camera. At that point the worst stand should fall to roughly 1,232,000
-  // (full) and 1,072,000 (balanced) — comfortably under the ORIGINAL
-  // 1,400,000 / 1,210,000. Put them back. If the cull recovers materially less
-  // than 180,100, that is a finding and these numbers need re-arguing, not
-  // quietly keeping.
-  //
-  // This is the FIFTH re-basing of these ceilings. The count is the argument
-  // for T-0209, and it is recorded here so the sixth is harder to reach for.
-  full:     { triangles: 1425000, shadowReachM: 240, furnitureCastsShadow: true,
+  // FIVE RE-BASINGS OF THESE CEILINGS ARE RECORDED ABOVE THIS LINE AND THIS IS
+  // THE FIRST ONE EVER GIVEN BACK. That is the count a sixth raise has to argue
+  // against, and it is now a count of five raises and one return.
+  full:     { triangles: 1400000, shadowReachM: 240, furnitureCastsShadow: true,
               furnitureReachM: null },
   // RE-BUDGETED 2026-08-21, 800000 -> 900000, on the owner's ruling that a
   // ceiling is a number this project chose rather than a claim about 1835.
@@ -379,7 +439,7 @@ const DETAIL = {
   //        breach it was raised to clear. It also rests on `full` carrying
   //        1.2 % headroom; `full` is now OVER, at 1,412,120 of 1,400,000. Both
   //        halves of the proportional-headroom argument have moved.
-  //   (ii) T-0209 measured what actually occupies the frame, which nobody had:
+  //   (ii) T-0223 measured what actually occupies the frame, which nobody had:
   //        `trees` draws 360,926 triangles out of 181,900 it owns -- the whole
   //        layer twice -- because trees.js submits kilometre-wide quadrant
   //        meshes whole to a +/-240 m shadow box. 180,100 triangles, 14.4 % of
@@ -387,14 +447,72 @@ const DETAIL = {
   //
   // Re-basing a ceiling with that still in it budgets for work the renderer
   // should not be doing, and it would be the fifth raise. So the number stays
-  // at 1,210,000 and the budget question lives entirely in T-0209, which orders
+  // at 1,210,000 and the budget question lives entirely in T-0223, which orders
   // the trim first and the ceiling after. The tree stand this parcel adds ships
   // regardless; its own smoke leg is red on dev with or without it.
-  // Raised with `full` above, same reasoning, same expiry: measured 1,252,802
-  // at the worst stand, over by 42,802. Returns to 1,210,000 with T-0209.
-  balanced: { triangles: 1260000, shadowReachM: 240, furnitureCastsShadow: true,
-              furnitureReachM: null },
-  light:    { triangles: 1050000, shadowReachM: 120, furnitureCastsShadow: false,
+  // Raised with `full` above on 2026-08-27 and RETURNED WITH IT (T-0229): it
+  // read 1,260,000 for a day, on a worst stand of 1,252,802 that measured
+  // 1,083,932 once T-0223's cull landed. The reading, both viewports, is in the
+  // block above `full` rather than written out twice.
+  // T-0241 GIVES THIS RUNG A FURNITURE REACH, 800 m — the first trim `balanced`
+  // has ever carried, and the whole reading is at `FURNITURE_REACH_BALANCED_M`
+  // above. The ceiling here is UNTOUCHED at 1,210,000; what changed is what the
+  // tier draws, which is the other way round from every entry above it.
+  balanced: { triangles: 1210000, shadowReachM: 240, furnitureCastsShadow: true,
+              furnitureReachM: FURNITURE_REACH_BALANCED_M },
+  // -- T-0147, 2026-08-27 -- AND THE FLOOR IS WON BACK: 1,050,000 -> 785,000 --
+  //
+  // The third and last piece of T-0149, whose whole complaint is the sentence
+  // near the top of this block: `light` carried MORE than `full` had promised
+  // the day before, so the tier a weak machine boots into was not a floor
+  // anybody could be promised. The trims that were supposed to earn it back
+  // have all landed -- T-0150 (the derived furniture distance-culled at `light`
+  // alone, 350 m), T-0146 (far chunks merged back into single draws), and
+  // T-0223's timber cull, which arrived between them and gave more than either.
+  //
+  // MEASURED FIRST AND LOWERED SECOND, which is the entire reason this is a
+  // separate ticket from the trims: a ceiling lowered in the same breath as the
+  // trim that justified it is a ceiling nobody checked.
+  // `tools/measure_detail_ceilings.mjs`, published mirror, T-0135's five
+  // stands, BOTH release viewports, dev @ f7aca445:
+  //
+  //                    desktop 1280x800          mobile 390x780
+  //   worst frame      703,610 at the forks      649,296 at Lake/Canal
+  //   worst calls           76 at Lake+Market         69 at Lake+Market
+  //
+  // WHERE 785,000 COMES FROM, so it is a principle and not "enough for today".
+  // It gives `light` the same PROPORTIONAL headroom over its own measured worst
+  // stand that `full` carries over its: 1,400,000 against 1,252,879 is 11.7 %,
+  // and 785,000 against 703,610 is 11.6 %. The ladder keeps its shape, and the
+  // figure is a WORST-STAND number rather than a reference-stand one, which is
+  // the rule this table has now been re-taught five times. (`full`'s figure is
+  // the 1,400,000 immediately above -- T-0229 landed its restoration while this
+  // was being gated, so the two numbers this compares are both live.)
+  //
+  // WHAT IT RESTORES, said as plainly as the thing it answers: 785,000 is
+  // 21.5 % BELOW the 1,000,000 `full` promised before 2026-08-22. The bottom
+  // rung is a fifth cheaper than the old top rung again, so it is a floor and
+  // not merely the cheapest of three expensive settings.
+  //
+  // AND THE DRAW-CALL PROMISE COMES BACK AS A COUNT, in
+  // `tools/smoke_renderer.mjs`, where the check that used to hold `light` inside
+  // 80 calls was weakened to a ratio on 2026-08-22 and its own comment asked
+  // this ticket to turn it back. 80 is the number this project chose before any
+  // of the 2026-08 content landed, not one tuned to today's 76 -- four calls of
+  // room, and the next chunked layer that reaches it is reaching a bar that
+  // means something. It is worth naming how thin that is: this branch read 75
+  // before T-0194's hitching posts merged and 76 after, so one ordinary visible
+  // parcel spent a quarter of the margin. That is the bar working, and the
+  // answer when it goes red is a trim or an argued re-budget -- never a
+  // weakening of the assertion, which is the move T-0223 forbade by name.
+  //
+  // WHAT THIS DELIBERATELY DOES NOT DO. `full` and `balanced` are untouched:
+  // taking T-0229's raise back out was T-0229's own change with its own
+  // reading, and this one does not reach across it. Nothing in the renderer
+  // moves -- no geometry, no reach, no shadow tier, no cull. This is only the
+  // ceiling following a trim DOWN, which T-0149 named as the strongest evidence
+  // that a trim worked.
+  light:    { triangles: 785000, shadowReachM: 120, furnitureCastsShadow: false,
               furnitureReachM: FURNITURE_REACH_LIGHT_M },
 };
 const DETAIL_ORDER = ['full', 'balanced', 'light'];
@@ -689,6 +807,14 @@ async function boot() {
   api.scene = loaded.scene;
   api.datum = loaded.datum;
   api.registry = loaded.registry;
+  // The survey junctions the Go-to menu offers, from the same list the menu is
+  // built from. Exposed because the smoke asserted the menu's junction count
+  // against a LITERAL 4, so committing a fifth control point failed a gate that
+  // was measuring nothing: the intersections are compiled into the sidecar index
+  // from data/traces/street_control.json on every check, and the count is
+  // therefore data, not a constant. Same shape as `scene.anchors`, which the
+  // next assertion in that block already reads (T-0245).
+  api.intersections = loaded.index?.intersections ?? [];
 
   const world = createWorld({
     renderer, scene: scene3d, sceneJson: loaded.scene, datum: loaded.datum, lowSpec: coarse,
@@ -943,7 +1069,11 @@ async function boot() {
       // furniture at all, so nothing here changes it.
       group.traverse((o) => {
         if (!o.isMesh) return;
-        o.castShadow = casts && !o.userData.groundHugging;
+        // A merged far batch (T-0146) never casts: it is only ever drawn for a
+        // cluster every part of which is beyond 340 m, which is outside the
+        // sun's ±240 m box whatever the bearing, so its members were casting
+        // nothing either. The shadow map reads the same with the merge on.
+        o.castShadow = casts && !o.userData.groundHugging && !o.userData.farMerged;
       });
     }
     return { reachM: want.shadowReachM, furnitureCastsShadow: casts };
@@ -1007,6 +1137,10 @@ async function boot() {
       group.updateWorldMatrix(true, true);
       group.traverse((o) => {
         if (!o.isMesh || !o.geometry) return;
+        // The merged far batches (T-0146) are drawn FROM these chunks, not
+        // alongside them: banking one would have the reach culling a batch and
+        // the batch drawing the chunks the reach had just culled.
+        if (o.userData.farMerged) return;
         if (!o.geometry.boundingSphere) o.geometry.computeBoundingSphere();
         const sph = o.geometry.boundingSphere?.clone();
         if (!sph) return;
@@ -1018,9 +1152,22 @@ async function boot() {
   /** The reach in force, from the level — and every mesh made visible again on
    *  the way back up the ladder, so switching down and up returns the frame the
    *  visitor had rather than a permanently thinner one. */
+  /**
+   * T-0146 — the second half of the same idea, and the piece of T-0149 that is
+   * about the two tiers with NO reach. Where the reach asks "is this too far to
+   * be worth drawing", this asks "is the frustum skipping anything in return
+   * for these chunk boundaries" — and where the answer is no, submits the
+   * cluster as one call. `far-merge.js` states both conditions and why each one
+   * makes the merge free; it is fed the spheres banked just above rather than
+   * walking the layers a second time.
+   */
+  const farMerge = createFarMerge({
+    scene: scene3d, camera, layers: FURNITURE_LAYERS,
+  });
   function applyFurnitureReach(level) {
     const want = DETAIL[level] ?? DETAIL.full;
     collectFurniture();
+    farMerge.rebuild(furniture.spheres);
     furniture.reachM = typeof want.furnitureReachM === 'number'
       ? want.furnitureReachM : null;
     updateFurnitureReach();
@@ -1049,10 +1196,20 @@ async function boot() {
         far = Math.sqrt(dx * dx + dy * dy + dz * dz) - sph.r > reach;
       }
       sph.mesh.visible = !far;
+      // Recorded on the mesh as well as counted, because two things now set
+      // `visible` on a furniture chunk and only ONE of them is the reach: the
+      // far merge (T-0146) hides a chunk it is drawing itself. The probes below
+      // and the merge's own composition rule both read this flag rather than
+      // `visible`, so "held back for distance" keeps meaning what T-0150's
+      // gates assert it means.
+      sph.mesh.userData.reachCulled = far;
       if (far) culled++; else drawn++;
     }
     furniture.drawn = drawn;
     furniture.culled = culled;
+    // After the reach and never before it: a cluster with a member the reach is
+    // holding back is left chunked, which is read off the flag just written.
+    farMerge.update();
   }
   applyFurnitureReach(detailLevel);
 
@@ -1255,6 +1412,20 @@ async function boot() {
   api.fauna = await mountFauna({
     mount: document.getElementById('fauna'),
     noteMount: document.getElementById('fauna-note'),
+    dataBase: bases.dataBase,
+    sceneId: loaded.scene.id ?? YEAR,
+    problems,
+  });
+
+  // And what GROWS here, which flora.js has planted from the beginning and no
+  // card has ever shown. The third time this project found a researched layer
+  // reaching no reader, and the one that carries a finding of its own: nine of
+  // the ten communities ask for more small plants than the sward lattice can
+  // hold, and until this section the share a visitor actually stands in was
+  // declared in docs/STATUS.md and nowhere a visitor reads.
+  api.plants = await mountPlants({
+    mount: document.getElementById('plants'),
+    noteMount: document.getElementById('plants-note'),
     dataBase: bases.dataBase,
     sceneId: loaded.scene.id ?? YEAR,
     problems,
@@ -1778,6 +1949,19 @@ async function boot() {
       updateFurnitureReach();
       return furniture.reachM;
     },
+    /** T-0146, HARNESS ONLY and never a visitor setting, for the reason
+     *  `setFurnitureReach` above is one: the merge's whole claim is that it
+     *  changes the call count and not the triangle count, and the only honest
+     *  way to read that is the same frame with it off and with it on.
+     *  `tools/measure_far_merge.mjs` is what does. */
+    setFarMerge(on) {
+      const state = farMerge.setEnabled(on);
+      // The merge only ever hides a chunk; the reach is what makes one visible
+      // again, so turning the merge OFF has to run that pass rather than just
+      // hiding the batches.
+      updateFurnitureReach();
+      return state;
+    },
     /** Force one frame — for tests that must not race the animation loop. */
     step() { tick(); },
     /** Keep rendering, advance nothing — for tests comparing two frames of the
@@ -1834,6 +2018,11 @@ async function boot() {
           if (!group) continue;
           group.traverse((o) => {
             if (!o.isMesh) return;
+            // The merged far batches are a BATCHING of these same meshes, not
+            // furniture of their own, and they never cast (T-0146). Counting
+            // them would put a non-caster into both sides of the bar
+            // `casting === meshes - groundHugging` and quietly weaken it.
+            if (o.userData.farMerged) return;
             meshes += 1;
             if (o.userData.groundHugging) groundHugging += 1;
             if (o.castShadow) casting += 1;
@@ -1861,8 +2050,13 @@ async function boot() {
           if (!group) continue;
           group.traverse((o) => {
             if (!o.isMesh) return;
+            if (o.userData.farMerged) return;
             meshes += 1;
-            if (!o.visible) hidden += 1;
+            // `reachCulled` and not `!visible`: since T-0146 a chunk can also be
+            // invisible because its cluster is being drawn as one mesh, and
+            // reporting that as "the reach held it back" would make this
+            // reading say `full` has a reach when it has none.
+            if (o.userData.reachCulled) hidden += 1;
           });
         }
         return { reachM: furniture.reachM, layers: FURNITURE_LAYERS.slice(),
@@ -1870,6 +2064,15 @@ async function boot() {
       },
       enumerable: true,
     },
+    /**
+     * T-0146. What the far merge is doing at this instant — clusters formed,
+     * clusters merged in the frame just drawn, and the calls that saved. A
+     * function of where the visitor stands, like `furnitureReach`: 0 merged in
+     * a frame that is looking at a wall, and most of them merged down an axial
+     * street. Read off the clusters rather than off the constants, for the
+     * reason R-A1 gives above.
+     */
+    farMerge: { get: () => farMerge.state, enumerable: true },
     confidenceView: { get: () => confidence.enabled, enumerable: true },
     controlBackend: { get: () => backends.name, enumerable: true },
     footprints: { get: () => footprints, enumerable: false },

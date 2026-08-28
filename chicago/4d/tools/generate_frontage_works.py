@@ -86,6 +86,14 @@ from pathlib import Path
 # point lands. `tools/` is this script's own directory, so it is on sys.path.
 from block_faces import face_frame, project
 
+# WHICH TRADE TAKES ITS CUSTOM OFF THE STREET, imported rather than re-decided
+# (T-0194). `tools/generate_business_signboards.py` already rules on exactly that
+# question — it is clause 2 of the rule that chooses which frontage hangs a board
+# — and a hitching post asks the same one: did a stranger arrive at this door? So
+# the table is imported from where it is argued, and there is one answer in this
+# repository rather than two that can drift apart.
+from generate_business_signboards import PUBLIC_TRADES, TRADE_GRADES, WORKS_TRADES
+
 ROOT = Path(__file__).resolve().parent.parent
 DATA = ROOT / "data"
 SIDECARS = DATA / "sidecars" / "1835"
@@ -190,6 +198,42 @@ RIVER_WHARF_REACH = [[459.5, 14.3], [455.0, 24.0], [448.0, 32.0], [428.0, 37.5],
                      [396.0, 40.2], [357.5, 40.3]]    # La Salle mouth .. Jones's landing
 RIVER_DEARBORN_CROSS_N = 13.92   # the board crossing over Dearborn runs level at this N
 
+# WHERE A LANDING COMES ASHORE, NO BOARD IS LAID (T-0228). The committed wharves
+# tie their decks 2.0 m back into the same bank this walk threads, and their
+# boarding stairs step down landward of that heel onto it. Until it was measured
+# the walk simply ran underneath: 33 boards under Carpenter's deck and 19 under
+# Jones's, the slab half a metre over the planks with 0.36 m of daylight between
+# — less than a visitor is tall — and, since T-0058 registered the deck as a
+# floor, a 0.50 m riser standing across the walk's own path that the walker's
+# 0.35 m step-up rule refuses. Nobody had chosen that. Three answers were open
+# and this is the first of them: a plank sidewalk stops where a working wharf
+# comes ashore, exactly as this same record already stops at the La Salle mouth,
+# and the landing's own deck and boarding stair are the walking surface there.
+#   NOT the second answer (cut the dock's heel back to the walk): L132 states the
+# 2.0 m tie-in is the least that reads as a deck built off a bank rather than a
+# raft moored against one, and it is the same invented form at all seven
+# landings — trimming two of them to clear a walk laid afterwards would make the
+# wharves' shape a function of the sidewalk.
+#   NOT the third (leave it and say so): a board under a dock is not something a
+# visitor can read as a decision, and the walk's own stringers stand in the deck's
+# crib. What the walk had to say about the landings, it now says by stopping.
+LANDING_CLEAR_M = 0.2       # the last board stops this far short of a landing's works
+LANDING_MIN_RUN_M = 3.0     # a surviving stretch shorter than this is a landing, not a walk
+LANDING_CUT_PITCH_M = 0.05  # how finely a reach is marched to find the works it crosses
+# The boarding stair's reach is the RENDERER's number, not this file's: wharves.js
+# plans the treads at load because how many there are is a terrain answer, and
+# on the committed heightfield today it comes to one or two treads at the seven
+# landings. So the band cut here is the CEILING that module will never exceed —
+# `STAIR_MAX_TREADS` goings — and the literal is read back from the module below
+# rather than copied here and left to drift.
+#   It is the treads and NOTHING ELSE. wharves.js also samples the ground a metre
+# landward of the stair's foot to decide how many treads it needs; that metre is
+# a measurement, not timber, and nothing stands on it. Counting it would have cut
+# 2.8 m of good boards out of this walk at Peck's landing, whose stair stops
+# 1.71 m short of the nearest board and clears it by 0.21 m even at the ceiling.
+STAIR_MAX_TREADS = 4
+WHARVES_JS = ROOT / "renderers" / "web" / "js" / "wharves.js"
+
 # THE TOWN'S STREET EDGE (T-0069). The owner, of the first Cook County jail
 # engraving: "note the fences lining the street and what appears to be plank
 # sidewalks. all of the streets should be updated like this... at least south of
@@ -218,36 +262,121 @@ RIVER_DEARBORN_CROSS_N = 13.92   # the board crossing over Dearborn runs level a
 # That is "at least south of the river or near the river", and it is the town's
 # whole trading core in 1835.
 #
-# RANDOLPH STREET WAS BUILT, MEASURED AND TAKEN BACK OUT (T-0127/T-0188), and the
-# reading is written here because it is the only thing that answers "why is this
-# tuple still two streets" for the next run. Randolph is the widest frontage the
-# platted grid holds — 14 block faces against Lake's 12 and South Water's 5 — and
-# through this same rule it lays 13 faces and +1,237.9 m of walk, +14 crossings,
-# +14 fences, +97 walking decks. Built and published, it read, at the T-0135
-# stand set on the published mirror, desktop 1280x800, at the axial stand (Lake
-# Street at Canal, east):
+# RANDOLPH STREET WAS BUILT, MEASURED, TAKEN BACK OUT, AND IS NOW BACK IN
+# (T-0127/T-0188, then T-0240). It is the widest frontage the platted grid holds —
+# 14 block faces against Lake's 12, Washington's 7 and South Water's 5 — and
+# through this same rule it lays 13 of them: the record's own `rule` block goes
+# from 16 faces to 29, 1,297.3 m of walk to 2,468.3, 11 board crossings to 25,
+# 11 street fence runs to 26 (494.4 m to 1,345.6), and 96 walking decks to 190.
+# One Randolph face is refused rather than laid, and the record's `refused`
+# names it. The history is kept here
+# because it is the only thing that answers "why is this tuple the length it is"
+# for the next run, and because WHAT CHANGED was not the street.
+#
+# WHEN IT WAS REFUSED (T-0188), at the T-0135 stand set on the published mirror,
+# desktop 1280x800, at the axial stand (Lake Street at Canal, east):
 #
 #   full      1,378,984 -> 1,497,588 of 1,400,000   (+118,604; 97,588 OVER)
 #   balanced  1,205,762 -> 1,355,638 of 1,210,000   (+149,876; 145,638 OVER)
 #   light       812,753 ->   869,731 of 1,050,000   (inside, 180,269 spare)
 #
-# — mobile 390x780 the same shape (+115,360 and +150,684, both tiers over). THE
-# LEVER T-0115 COSTED FOR THIS PARCEL WAS TAKEN FIRST AND IT IS NOT ENOUGH: the
-# ground-hugging boards no longer cast into the shadow map (see `frontage.js`
-# `standingChunk` and `main.js applyShadowTier`), and turning OFF the layer's five
-# remaining shadow casters at that stand — the fences this ledger argued should
-# keep casting, and the shared mesh with the sign post on it — reads 44,110
-# triangles and 3 calls, measured, against a 145,638 shortfall.
-# THE BINDING FACT IS NOT RANDOLPH: `balanced` stood at 1,205,762 of 1,210,000
-# BEFORE this parcel — 4,238 triangles, 0.35 % — and `full` at 1.5 %, where
-# T-0135 set both on 2026-08-22 with "about 6 % of headroom". No street tier fits
-# until that is addressed, and raising a ceiling a fifth time to fit one reading
-# is what T-0135 named as the bug rather than the remedy.
+# — mobile 390x780 the same shape. The lever T-0115 costed for this parcel had
+# already been taken and was not enough: the ground-hugging boards do not cast
+# into the shadow map (see `frontage.js` `standingChunk` and `main.js`
+# `applyShadowTier`), and turning OFF the layer's five remaining shadow casters
+# read 44,110 triangles against a 145,638 shortfall. The ledger's own conclusion
+# was that THE BINDING FACT WAS NOT RANDOLPH: `balanced` stood at 1,205,762 of
+# 1,210,000 BEFORE the parcel — 0.35 % — so no street tier fitted until that was
+# addressed.
 #
-# So Randolph, Washington, the cross streets' own frontages and the West Division
-# across the South Branch stay out, and the record's own `refused` carries every
-# one of these numbers rather than a promise.
-EDGE_STREETS = ("south_water", "lake")
+# IT WAS ADDRESSED, AND BY THE TICKET THAT LEDGER POINTED AT. T-0223 found the
+# sun drawing 180,100 triangles of timber lying outside the +/-240 m shadow box —
+# 14.4 % of the frame, casting nothing the shadow map can hold — and culled it.
+# The worst stand fell from 1,412,120 to 1,252,519 at `full` and 1,252,802 to
+# 1,083,932 at `balanced`. That is the headroom this street was refused for, and
+# it was never Randolph's to give back.
+#
+# RE-MEASURED FOR T-0240 on the published mirror with
+# `tools/measure_detail_ceilings.mjs`, worst of T-0135's five stands, BOTH
+# viewports — not the axial stand alone, because with this street laid the worst
+# stand at two of the three tiers moves to the forks:
+#
+#                 desktop 1280x800            mobile 390x780        ORIGINAL
+#   full      1,369,835 of 1,425,000      1,272,801 of 1,425,000   1,400,000
+#   balanced  1,201,248 of 1,260,000      1,148,172 of 1,260,000   1,210,000
+#   light       745,904 of 1,050,000        695,030 of 1,050,000   1,050,000
+#
+#   draw calls, worst stand: 155 desktop, 146 mobile, of 215.
+#
+# Every tier is inside its ceiling at every stand at both viewports, and — the
+# clause that matters, because T-0229 exists to take the raise back out — every
+# tier is also inside the ORIGINAL 1,400,000 / 1,210,000 / 1,050,000. `balanced`
+# clears the original by 8,752. So this street does NOT depend on the temporary
+# raise and does not have to be unwound with it.
+#
+# WASHINGTON IS HERE NOW (T-0241), AND WHAT LET IT IN WAS A TRIM AND NOT A
+# CEILING. It is worth keeping the refusal beside the admission, because the two
+# readings are a day apart and the street did not change between them.
+#
+# WHEN IT WAS REFUSED, one run ago (T-0240): both streets were generated together
+# — 36 faces, 3,129.1 m of walk — and measured against the ceilings as they stood
+# that hour, which were the raised ones T-0229 was about to give back:
+#
+#   full      1,385,207 of 1,425,000   PASS by 39,793
+#   balanced  1,260,174 of 1,260,000   OVER BY 174
+#   light       761,404 of 1,050,000   PASS
+#
+# THE 174 WAS NEVER THE REAL NUMBER. T-0229 landed before that reading shipped
+# and put `balanced` back to its original 1,210,000, so re-measured on dev with
+# Washington laid the shortfall was **49,442**, not 174 — 1,259,442 of 1,210,000
+# at the axial stand, with `full` clear by 14,613 and `light` by 23,440. A run
+# quoting the earlier figure would have gone looking for a hundred and seventy
+# triangles and found fifty thousand.
+#
+# WHAT PAID FOR IT. `balanced` was the only rung of the scene-detail ladder with
+# NO furniture reach at all: it drew every plank walk, fence, barrel, wharf deck
+# and moored hull in Chicago at any distance, exactly as `full` does, while
+# `light` had been distance-culling since T-0150. Giving it 800 m gives back
+# 68,772 triangles at the worst stand for a 48^2 frame signature that does not
+# move by a single count at any of the five stands at either viewport. The whole
+# reading is at `FURNITURE_REACH_BALANCED_M` in `renderers/web/js/main.js`, and
+# not one ceiling in `DETAIL` moved.
+#
+# The cross streets' own frontages (T-0192) and the West Division across the
+# South Branch (T-0193) likewise stay out, and the record's own `refused` carries
+# every one of these numbers rather than a promise.
+EDGE_STREETS = ("south_water", "lake", "randolph", "washington")
+#
+# THE WEST DIVISION WAS BUILT AND MEASURED RATHER THAN ESTIMATED (T-0193), and it
+# is refused by ONE STAND AT ONE TIER AT ONE VIEWPORT. `blk_lake_clinton` is the
+# last platted block this rule never looked at; T-0069 refused it as "one stranded
+# block" and T-0127 promised it to a follow-up without a number. Here is the
+# number. Both its faces were generated — the Lake face T-0069 named, and the
+# Randolph face that only became coverable when T-0240 put Randolph in
+# `EDGE_STREETS` the day before — giving +2 faces, +192.2 m of walk, +1 crossing
+# and +3 street-lining fences. Published and read with
+# `tools/measure_detail_ceilings.mjs` at T-0135's five stands, both viewports,
+# against `dev`:
+#
+#   tier       ceiling     desktop worst           mobile worst
+#   full      1,400,000   1,378,391  PASS         1,299,917  PASS
+#   balanced  1,210,000   1,228,110  OVER 18,110  1,175,288  PASS
+#   light       785,000     750,290  PASS           699,416  PASS
+#
+# The whole cost lands at ONE stand — `lake_at_canal`, which stands at this
+# block's own east end and looks east down the axis where nothing culls. There
+# the block costs +27,932 triangles; at the other four stands it costs a flat
+# +8,460, and mobile clears `balanced` by 34,712.
+#
+# HALF OF IT DOES NOT FIT EITHER, WHICH IS THE FINDING. The Lake face ALONE —
+# exactly what T-0069 refused, with the Randolph face held back — costs +23,712 at
+# that stand and reads 1,223,890, still OVER by 13,890. So this is not a block
+# that is too big: `balanced` stood 1,201,344 of 1,210,000 on `dev` BEFORE this
+# ticket, 8,656 triangles and 0.7 % of headroom, and no street frontage of any
+# size fits under it today. That is the same binding fact T-0240 recorded for
+# Washington one rung earlier, and it is why T-0193 is blocked on T-0190 rather
+# than bought with a sixth ceiling raise — which T-0237's acceptance refuses in
+# as many words.
 EDGE_SKIP_BLOCKS = ("blk_lake_clinton",)   # across the South Branch — see above
 EDGE_FENCE_CLEAR_M = 0.25   # daylight between the fence line and the walk's inner edge
 EDGE_OFFSET_M = EDGE_FENCE_CLEAR_M + WALK_W_M / 2.0   # walk centre, out from the lot line
@@ -307,6 +436,59 @@ EDGE_FENCE_POST_SPACING_M = 2.44
 EDGE_FENCE_POST_SQ_M = 0.12
 EDGE_FENCE_COURSES = 2
 
+# THE HITCHING POSTS AT THE TRADING FRONTAGES (T-0194). T-0069 allowed them to
+# ride along and T-0127 kept them back to hold that parcel to one demonstration:
+# *"the rule would put them in the verge outside the walk at the trading
+# frontages."* This is that rule, and it invents no post and no place to put one
+# — both already exist. The Sauganash's two posts (T-0090, docs/LIBERTIES.md
+# L136) stand HITCH_VERGE_M beyond the outer edge of its own front walk, at the
+# thirds of the frontage, and are drawn from the plates that show a saddled horse
+# tied to one. What is new here is only WHICH OTHER FRONTAGES get one, and that
+# question is answered by a table this repository already argues.
+#
+# THE RULE, and each clause is doing work.
+#
+#   1. A COMMITTED BUILDING STANDS ON THE LOT. Clause 2 of the fence rule above,
+#      for the same reason: an unimproved lot is prairie and nobody tied a horse
+#      to prairie.
+#   2. ITS TRADE TAKES ITS CUSTOM OFF THE STREET — `function.value` is one of
+#      `generate_business_signboards.PUBLIC_TRADES`, the set that file defines as
+#      "trades whose customer was a stranger off the street". It is IMPORTED
+#      rather than restated so the two layers cannot drift. A WORKS OR WAREHOUSE
+#      trade is refused in writing: a tannery, a packing house and a brickyard
+#      took carts and drays at a yard gate, which is a different fitting from a
+#      post a rider ties a bridle to, and that distinction is the one the
+#      signboard rule already draws between a board over a footway and a name
+#      painted on a front. A dwelling gets nothing at all.
+#   3. THE TRADE IS HELD ON EVIDENCE — `attested`, `documented` or `inferred`,
+#      which is clause 3 of the signboard rule verbatim. This is what keeps posts
+#      off the anonymous slots: an `inf_` roof's trade was DEALT BY A SCHEDULE,
+#      and standing a hitching post at it would be furniture resting on an
+#      invention resting on a rule. Note that the signboard rule's OTHER
+#      exclusion — an anonymous slot has no name to paint — does NOT apply here
+#      and is deliberately not copied: a post carries no lettering. The clause
+#      that bites is the trade's grade, not its anonymity.
+#   4. THE WALK WAS ACTUALLY LAID IN FRONT OF IT. A post stands in the verge
+#      OUTSIDE a walk, so where the march refused the boards there is no verge to
+#      measure from and no walk to stand beside. This also means every post
+#      inherits the march's own audit of the ground it fronts.
+#   5. ITS OWN STAND HOLDS IT — dry committed ground, nothing committed already
+#      standing on it, and EDGE_TRACK_MARGIN_M still between its outer face and
+#      the street's travelled track. A post in the roadway is the one thing this
+#      layer has refused since T-0082, and a post is audited for it separately
+#      from the walk because it stands most of a metre further out.
+#
+# WHERE IT STANDS is the building's own frontage and not the lot's: two trades
+# can share one platted lot on these streets (the Sauganash and Philo
+# Carpenter's shop do), and a post at a fraction of the LOT would put both of
+# them in the same hole. So the footprint is projected onto the face it fronts
+# and the post stands at EDGE_HITCH_ALONG of that span — the same fraction, off
+# the corner and off the door, that HITCH_ALONG's first post uses at the inns.
+EDGE_HITCH_ALONG = HITCH_ALONG[0]
+# Out from the lot line: past the walk's outer edge, then the same verge the
+# sign post and the inns' own hitching posts stand in.
+EDGE_HITCH_OFFSET_M = EDGE_OFFSET_M + WALK_W_M / 2.0 + HITCH_VERGE_M
+
 # THE SOUTH WATER PLACEMENTS (T-0127), NAMED HERE BECAUSE THE RECORD IS WHERE A
 # READER MEETS THEM. Eleven documented buildings on South Water Street's south
 # side were placed in August 2026 by reading the MODERN West Wacker Drive
@@ -337,6 +519,40 @@ EDGE_RECONCILED = {
     "h_jones_store": 9.67, "carpenter_south_water_store": 8.12,
     "pruyne_kimball_drugstore": 7.05, "chicago_american_office": 8.41,
     "frederick_thomas_shop": 7.75,
+}
+
+# AND THE SAME FAULT ON LAKE STREET, WHICH IS WHERE IT WENT NEXT. T-0199 closed
+# South Water and named the eleven march steps left in the town; they were all on
+# Lake Street, and their cause is the same modern-kerb read (T-0196). Three are
+# reconciled here by the same derivation, against the same committed line, to the
+# same 1.50 m. THE FOURTH IS NOT, and it is not an omission: the same translation
+# would set `first_presbyterian_church` down ON TOP of `physicians_office`, which
+# stands 3.15 m behind it on the lot it would come onto — moved 0.2 m the two are
+# inside the three-metre separation gate and moved 3.2 m they overlap. There is no
+# translation along this normal that both clears the walk and leaves the pair
+# standing apart, and choosing between a documented church and an inferred
+# household is a rule rather than a metre, so it went to the owner as T-0251. Two
+# steps of Lake Street's walk stay unlaid and the record below says whose they are.
+EDGE_RECONCILED_LAKE = {
+    "old_bank_building": 3.124, "dole_warehouse_south": 2.784,
+    "st_marys_church": 4.532,
+}
+
+# AND ONCE MORE ON RANDOLPH STREET, on the one block this town kept for itself
+# (T-0246). `log_jail` reached the scene the same way as the eleven: Andreas puts it
+# on "the northwest corner of the court-house square", and the square's four inside
+# corners were computed from modern OpenStreetMap intersection centres stepped 12.2 m
+# into the block. Measured against this project's own committed line its north wall
+# stood 3.48 m OUT PAST blk_randolph_lasalle's Randolph frontage, with its centroid
+# inside the corridor — deeper than any of the four Lake Street records. THE COST WAS
+# NOT ONLY THE BOARDS. It refused the first two steps of the square's own Randolph
+# walk, 0.0 to 10.4 m, and a walk refused short of its corner takes the corner
+# CROSSING with it: the LaSalle Street crossing at Randolph was refused in turn,
+# "the two walks stop 34.8 m apart". Reconciled here by the same derivation, against
+# the same committed line, to the same 1.50 m — the walk now runs the full 99.0 m of
+# the face and both refused crossings are laid.
+EDGE_RECONCILED_RANDOLPH = {
+    "log_jail": 4.981,
 }
 
 # The record's own id, and the liberty that claims every invented metre in it.
@@ -1005,16 +1221,24 @@ def _heightfield():
 
 
 def _polyline_stations(line, pitch=PLANK_PITCH_M):
-    """Every board centre along a polyline, the same march frontage.js makes."""
+    """Every board centre along a polyline, the same march frontage.js makes.
+
+    Each station carries the board's own ACROSS axis with it, because a board is
+    1.83 m of plank laid square to the run and half of it can be somewhere the
+    centre is not — under a wharf deck (T-0228), over the water, in the track.
+    """
     out = []
     for i in range(len(line) - 1):
         (ax, ay), (bx, by) = line[i], line[i + 1]
         seg = math.hypot(bx - ax, by - ay)
+        if seg == 0:
+            continue
         n = max(1, round(seg / pitch))
         step = seg / n
+        de, dn = (bx - ax) / seg, (by - ay) / seg
         for j in range(n):
             t = (j + 0.5) * step / seg
-            out.append((ax + (bx - ax) * t, ay + (by - ay) * t))
+            out.append((ax + (bx - ax) * t, ay + (by - ay) * t, -dn, de))
     return out
 
 
@@ -1037,17 +1261,28 @@ def _e_on_path(path, n):
     return None
 
 
-def _audit_river_reach(name, line, hf, streets, problems):
-    """Every board station on dry committed ground, clear of the travelled way.
+def _audit_river_reach(name, line, hf, streets, problems, works=()):
+    """Every board station on dry committed ground, clear of the travelled way,
+    and clear of every landing that comes ashore on this bank.
 
     This is the walk's own placement gate, run on every regeneration: the knots
     above are authored, and an authored coordinate nobody re-audits is a number
-    somebody typed. A station under water or in the track refuses the RECORD,
-    not just the board — the whole run is one claim.
+    somebody typed. A station under water, in the track or under a wharf deck
+    refuses the RECORD, not just the board — the whole run is one claim.
+
+    The landing clause is run on the CUT runs, after `_cut_reach_at_landings`
+    has taken the crossings out. It is not a second opinion about the cut: it is
+    what catches a landing that moves, or a new one built on this bank, without
+    anyone re-reading this file (T-0228).
     """
     sw = streets.get("south_water")
     hw = WALK_W_M / 2.0
-    for (e, n) in _polyline_stations(line):
+    for (e, n, ue, un) in _polyline_stations(line):
+        hit = _board_in_works(e, n, ue, un, works, hw)
+        if hit is not None:
+            problems.append(f"{name}: board at ({e:.1f}, {n:.1f}) lies under the "
+                            f"{hit[2]} of {hit[1]} — no walk runs under a "
+                            "landing (T-0228)")
         g = hf.height(e, n)
         if g < RIVER_DRY_M:
             problems.append(f"{name}: board at ({e:.1f}, {n:.1f}) stands on ground at "
@@ -1060,6 +1295,214 @@ def _audit_river_reach(name, line, hf, streets, problems):
                     problems.append(f"{name}: board at ({e:.1f}, {n:.1f}) laps the "
                                     f"South Water track (edge N {edge:.2f}) — no walk "
                                     "is written")
+
+
+def _assert_stair_reach() -> None:
+    """The stair's tread ceiling above is the renderer's number; drift would
+    silently shrink the band this generator cuts a walk against. Read it back."""
+    src = WHARVES_JS.read_text(encoding="utf-8")
+    for name, value in (("STAIR_MAX_TREADS", STAIR_MAX_TREADS),):
+        found = None
+        for raw in src.splitlines():
+            head = raw.split("//")[0].strip()
+            if head.startswith(f"const {name} = ") and head.endswith(";"):
+                found = head[len(f"const {name} = "):-1].strip()
+        if found is None or float(found) != float(value):
+            raise SystemExit(
+                "generate_frontage_works: renderers/web/js/wharves.js no longer "
+                f"sets {name} = {value} (found {found}) — the boarding-stair band "
+                "the river walk is cut against comes off it and must be re-read")
+
+
+def _landing_works(wharves, hf) -> list:
+    """Every committed landing's footprint ON THE BANK: the deck outline itself,
+    and the ground its boarding stair's treads stand on landward of the heel.
+
+    Returns `[(structure_id, where, part, polygon)]` in local ENU, two per
+    landing — the deck and its stair, named apart so an audit can say which.
+
+    THE STAIR IS DERIVED, NOT ASSUMED, because the renderer derives it: how far
+    it reaches inland is how many treads the rise takes, and the rise is the
+    terrain's answer at each site. So this walks the same fixed point
+    `renderers/web/js/wharves.js` walks — deck top is the highest of the three
+    heel samples and the freeboard floor, each tread's foot is the lowest ground
+    across the stair's width from there, add goings until the rise divides under
+    the record's ceiling — against the same committed heightfield. On the
+    heightfield as committed that is one or two treads, 0.75 m or 1.50 m of
+    reach; `STAIR_MAX_TREADS` is the renderer's own refusal to build more, and a
+    site the search cannot answer takes the full ceiling band rather than none.
+
+    Cutting against the ground the timber actually stands on is what keeps this
+    from over-cutting: at the tread CEILING, Peck's stair would have closed
+    0.66 m of otherwise sound walk (and 1.06 m once cleared), against boards its
+    real two treads stop 1.71 m short of.
+    """
+    form = wharves.get("form") or {}
+
+    def _formv(key, default):
+        v = (form.get(key) or {}).get("value")
+        return float(v) if isinstance(v, (int, float)) else default
+
+    stair_half = _formv("boarding_stair_width_m", 2.4) / 2.0
+    tread = _formv("boarding_stair_tread_m", 0.75)
+    rise_max = _formv("boarding_stair_rise_m", 0.30)
+    freeboard = _formv("freeboard_m", 0.90)
+    out = []
+    for w in wharves.get("wharves", []):
+        quad = w.get("deck_quad_local_enu_m")
+        if not (isinstance(quad, list) and len(quad) == 4):
+            continue
+        sid = w.get("structure_id")
+        label = w.get("name") or sid
+        heel_l, heel_r, face_r, face_l = quad
+        where = f"the landing at {label}"
+        out.append((sid, where, "deck", [tuple(p) for p in quad]))
+        # The stair, at the middle of the landward edge and stepping away from
+        # the water — the same two axes wharves.js takes off the outline itself.
+        mid = ((heel_l[0] + heel_r[0]) / 2.0, (heel_l[1] + heel_r[1]) / 2.0)
+        fmid = ((face_l[0] + face_r[0]) / 2.0, (face_l[1] + face_r[1]) / 2.0)
+        ue, un = _unit(heel_r[0] - heel_l[0], heel_r[1] - heel_l[1])
+        oe, on = _unit(fmid[0] - mid[0], fmid[1] - mid[1])
+        deck_y = max([hf.height(p[0], p[1]) for p in (heel_l, mid, heel_r)]
+                     + [freeboard])
+        treads = STAIR_MAX_TREADS
+        for n in range(1, STAIR_MAX_TREADS + 2):
+            foot = (n - 1) * tread
+            g = min(hf.height(mid[0] + ue * a - oe * foot, mid[1] + un * a - on * foot)
+                    for a in (-stair_half, 0.0, stair_half))
+            if deck_y - g <= n * rise_max + 1e-9:
+                treads = n - 1
+                break
+        back = max(treads, 0) * tread
+        if back <= 0:
+            continue
+        out.append((sid, where, "boarding stair", [
+            (mid[0] - ue * stair_half, mid[1] - un * stair_half),
+            (mid[0] + ue * stair_half, mid[1] + un * stair_half),
+            (mid[0] + ue * stair_half - oe * back, mid[1] + un * stair_half - on * back),
+            (mid[0] - ue * stair_half - oe * back, mid[1] - un * stair_half - on * back),
+        ]))
+    return out
+
+
+def _in_works(e, n, works):
+    """The landing whose works stand at this point, or None — `(sid, where, part)`."""
+    for sid, where, part, poly in works:
+        if _inside((e, n), poly):
+            return sid, where, part
+    return None
+
+
+def _board_in_works(e, n, ue, un, works, half):
+    """A board is 1.83 m of plank laid ACROSS the run, so it is inside a landing
+    if any part of its width is — the centre clearing the deck is not enough."""
+    if not works:
+        return None
+    for k in range(9):
+        s = -half + 2.0 * half * k / 8.0
+        hit = _in_works(e + ue * s, n + un * s, works)
+        if hit is not None:
+            return hit
+    return None
+
+
+def _gap_phrase(gap) -> str:
+    """What closed a gap, named by the LANDING rather than by the part of it a
+    board happened to touch: a deck and the stair that boards it are one thing
+    standing in the way, and a gap closed by two neighbouring wharves says both."""
+    names = gap["names"]
+    if len(names) == 1:
+        return names[0]
+    return ", ".join(names[:-1]) + f" and {names[-1]}"
+
+
+def _cut_reach_at_landings(line, works, half):
+    """Split a reach wherever a committed landing's works cross it (T-0228).
+
+    Marches the polyline at `LANDING_CUT_PITCH_M`, blocks every station whose
+    BOARD touches a landing, widens each blocked span by `LANDING_CLEAR_M` so the
+    last board stops short of the timber instead of against it, and returns
+    `(runs, gaps)` — the surviving stretches as polylines, east to west, and one
+    description per gap naming what closed it.
+
+    A surviving stretch under `LANDING_MIN_RUN_M` is dropped into its own gap:
+    two metres of boards between two docks is a landing, not a sidewalk, and the
+    same judgement the street edge already makes at `EDGE_MIN_RUN_M`.
+    """
+    segs = []
+    total = 0.0
+    knots = [0.0]
+    for i in range(len(line) - 1):
+        (ax, ay), (bx, by) = line[i], line[i + 1]
+        seg = math.hypot(bx - ax, by - ay)
+        if seg == 0:
+            continue
+        segs.append((total, seg, ax, ay, (bx - ax) / seg, (by - ay) / seg))
+        total += seg
+        knots.append(total)
+    if not segs:
+        return [], []
+
+    def at(s):
+        s = min(max(s, 0.0), total)
+        for s0, seg, ax, ay, de, dn in segs:
+            if s <= s0 + seg + 1e-9:
+                t = s - s0
+                return ax + de * t, ay + dn * t, -dn, de
+        s0, seg, ax, ay, de, dn = segs[-1]
+        return ax + de * seg, ay + dn * seg, -dn, de
+
+    steps = max(1, int(round(total / LANDING_CUT_PITCH_M)))
+    marks = []
+    for i in range(steps + 1):
+        e, n, ue, un = at(total * i / steps)
+        marks.append(_board_in_works(e, n, ue, un, works, half))
+
+    spans = []   # [lo, hi, [(sid, label), ...]] in arc length, already widened
+    i = 0
+    while i <= steps:
+        if marks[i] is None:
+            i += 1
+            continue
+        j = i
+        named = []
+        while j <= steps and marks[j] is not None:
+            if marks[j] not in named:
+                named.append(marks[j])
+            j += 1
+        lo = total * i / steps
+        hi = total * (j - 1) / steps
+        spans.append([lo - LANDING_CLEAR_M, hi + LANDING_CLEAR_M, named, lo, hi])
+        i = j
+
+    # A short survivor between two spans is not a walk; fold it into them.
+    merged = True
+    while merged and len(spans) > 1:
+        merged = False
+        for k in range(len(spans) - 1):
+            if spans[k + 1][0] - spans[k][1] < LANDING_MIN_RUN_M:
+                a, b = spans[k], spans[k + 1]
+                names = a[2] + [x for x in b[2] if x not in a[2]]
+                spans[k:k + 2] = [[a[0], b[1], names, a[3], b[4]]]
+                merged = True
+                break
+
+    runs = []
+    cuts = [0.0] + [x for sp in spans for x in (sp[0], sp[1])] + [total]
+    for a, b in zip(cuts[0::2], cuts[1::2]):
+        a, b = max(a, 0.0), min(b, total)
+        if b - a < LANDING_MIN_RUN_M:
+            continue
+        pts = [at(a)[:2]]
+        pts += [at(k)[:2] for k in knots if a + 1e-6 < k < b - 1e-6]
+        pts.append(at(b)[:2])
+        runs.append([[_round(e), _round(n)] for e, n in pts])
+
+    gaps = [{"names": list(dict.fromkeys(where for _sid, where, _part in sp[2])),
+             "ids": sorted({sid for sid, _where, _part in sp[2]}),
+             "from": at(sp[3])[:2], "to": at(sp[4])[:2],
+             "run_m": _round(sp[4] - sp[3], 1)} for sp in spans]
+    return runs, gaps
 
 
 def build_river_walk() -> tuple[list, list]:
@@ -1097,15 +1540,25 @@ def build_river_walk() -> tuple[list, list]:
         raise SystemExit("generate_frontage_works: h_jones_store no longer states a "
                          "wharf — the river walk's west terminus is gone and the "
                          "authored run must be re-bounded")
-    foot = jones["bank_foot_local_enu_m"]
-    end = RIVER_WHARF_REACH[-1]
-    if math.hypot(end[0] - foot[0], end[1] - foot[1]) > 6.5:
-        raise SystemExit("generate_frontage_works: the river walk's last knot is "
-                         f"{math.hypot(end[0] - foot[0], end[1] - foot[1]):.1f} m from "
-                         "Jones's landing — the wharf moved, re-author the run's end")
-
     streets = _streets()
     hf = _heightfield()
+
+    # WHAT BOUNDS THE RUN ON THE WEST is the landing itself, and since T-0228 the
+    # audit says so in the landing's own terms: the authored end must lie inside
+    # Jones's works, which is the statement "the walk runs INTO the landing and
+    # the cut below is what stops it there". A tolerance in metres was the old
+    # form of this, and it passed happily while the last five metres of boards
+    # lay under the deck.
+    _assert_stair_reach()
+    works = _landing_works(wharves, hf)
+    end, before = RIVER_WHARF_REACH[-1], RIVER_WHARF_REACH[-2]
+    ue, un = _unit(-(end[1] - before[1]), end[0] - before[0])
+    landed = _board_in_works(end[0], end[1], ue, un, works, WALK_W_M / 2.0)
+    if landed is None or landed[0] != "h_jones_store":
+        raise SystemExit("generate_frontage_works: the river walk's last board no "
+                         "longer lies in Jones's landing's works (it lies in "
+                         f"{landed[1] if landed else 'open ground'}) — the wharf "
+                         "moved, re-author the run's end")
 
     # THE DEARBORN CROSSING'S FIXED LINE: the street's own committed centreline,
     # crossed square where the walk meets it, reaching past the travelled track
@@ -1130,6 +1583,12 @@ def build_river_walk() -> tuple[list, list]:
     west_line = ([[cross_e_west, RIVER_DEARBORN_CROSS_N]]
                  + [[_round(e), _round(n)] for e, n in RIVER_WEST_REACH])
     wharf_line = [[_round(e), _round(n)] for e, n in RIVER_WHARF_REACH]
+    # THE AUTHORED LINE RUNS THROUGH TWO LANDINGS, and no board is laid in one.
+    wharf_runs, wharf_gaps = _cut_reach_at_landings(wharf_line, works, WALK_W_M / 2.0)
+    if not wharf_runs:
+        raise SystemExit("generate_frontage_works: the committed landings now close "
+                         "the whole wharf reach — no riverside walk survives, and "
+                         "that is a re-authoring rather than a regeneration")
 
     # The audits. The footway's own boards ride the committed deck, so only its
     # two approach ends are asked of the ground; every other board is.
@@ -1137,15 +1596,19 @@ def build_river_walk() -> tuple[list, list]:
         if hf.height(e, n) < RIVER_DRY_M:
             problems.append(f"{RIVER_WALK_ID}: the crossing footway's approach at "
                             f"({e:.1f}, {n:.1f}) stands on wet ground")
-    _audit_river_reach(f"{RIVER_WALK_ID} east reach", east_line, hf, streets, problems)
-    _audit_river_reach(f"{RIVER_WALK_ID} west reach", west_line, hf, streets, problems)
-    _audit_river_reach(f"{RIVER_WALK_ID} wharf reach", wharf_line, hf, streets, problems)
+    _audit_river_reach(f"{RIVER_WALK_ID} east reach", east_line, hf, streets, problems,
+                       works)
+    _audit_river_reach(f"{RIVER_WALK_ID} west reach", west_line, hf, streets, problems,
+                       works)
+    for i, run in enumerate(wharf_runs):
+        _audit_river_reach(f"{RIVER_WALK_ID} wharf reach {i + 1}", run, hf, streets,
+                           problems, works)
     # And the stated reason for the one break in the run must still be true: the
     # gap between the two reaches crosses the La Salle slough's traced mouth. If
     # this ground ever comes up dry, the refusal below is wrong and the walk
     # should be re-authored continuous.
-    gap_mid_e = (west_line[-1][0] + wharf_line[0][0]) / 2.0
-    gap_mid_n = (west_line[-1][1] + wharf_line[0][1]) / 2.0
+    gap_mid_e = (west_line[-1][0] + wharf_runs[0][0][0]) / 2.0
+    gap_mid_n = (west_line[-1][1] + wharf_runs[0][0][1]) / 2.0
     if hf.height(gap_mid_e, gap_mid_n) >= 0.0:
         problems.append(f"{RIVER_WALK_ID}: the La Salle mouth gap at ({gap_mid_e:.1f}, "
                         f"{gap_mid_n:.1f}) is dry ground — the stated refusal no "
@@ -1254,30 +1717,62 @@ def build_river_walk() -> tuple[list, list]:
                 f"regeneration. The knots are invented: docs/LIBERTIES.md {liberty}."
             ),
         },
-        {
-            "id": f"{RIVER_WALK_ID}_wharf_reach",
+    ]
+    # THE LAST REACH, IN AS MANY RUNS AS THE LANDINGS LEAVE IT (T-0228). The
+    # authored line is one claim about where a riverside walk went; the runs are
+    # what survives the wharves that come ashore across it, and the gaps between
+    # them are in `refused` under the landing that closed each one.
+    for i, run in enumerate(wharf_runs):
+        east_bound = ("the west lip of the La Salle slough's mouth" if i == 0
+                      else _gap_phrase(wharf_gaps[i - 1]))
+        west_bound = (_gap_phrase(wharf_gaps[i]) if i < len(wharf_gaps)
+                      else "the authored run's western end")
+        walks.append({
+            "id": f"{RIVER_WALK_ID}_wharf_reach_{i + 1}",
             "belongs_to": RIVER_WALK_ID,
             "kind": "plank_walk",
             "confidence": "reconstructed",
-            "centreline_local_enu_m": wharf_line,
+            "centreline_local_enu_m": run,
             "width_m": WALK_W_M,
             "rise_m": WALK_RISE_M,
             "plank_run": "across",
             "plank_pitch_m": PLANK_PITCH_M,
             "plank_thickness_m": PLANK_T_M,
             "note": (
-                "THE RIVERSIDE WALK'S LAST REACH, from the west lip of the La Salle "
-                "mouth out along the swinging bank to Jones's landing — the "
-                "easternmost wharf on the South Water bank, whose committed "
-                "`bank_foot` this reach is audited to end within a landing's width "
-                "of. That wharf is where the town's own riverfront walking surface "
-                "begins, which is what bounds this run on the west. The knots are "
-                f"invented: docs/LIBERTIES.md {liberty}."
+                f"THE RIVERSIDE WALK'S LAST REACH, run {i + 1} of "
+                f"{len(wharf_runs)}, from {east_bound} west along the swinging "
+                f"bank to {west_bound}. The reach is authored as one line from "
+                "the La Salle mouth to Jones's landing and then CUT wherever a "
+                "committed landing's deck or boarding stair stands across it: a "
+                "plank sidewalk stops where a working wharf comes ashore, and the "
+                "landing's own deck — a walker's floor since T-0058 — is the "
+                "surface there. Every board of this run is audited clear of every "
+                "landing's works on every regeneration, so a wharf that moves or "
+                "a new one built on this bank re-cuts the walk rather than "
+                f"oversailing it. The knots are invented: docs/LIBERTIES.md {liberty}."
             ),
-        },
-    ]
+        })
     walks.sort(key=lambda w: w["id"])
     refused = [
+        {
+            "structure_id": RIVER_WALK_ID,
+            "wall": (f"{_gap_phrase(g)} (E "
+                     f"{g['to'][0]:+.0f} to {g['from'][0]:+.0f})"),
+            "why": (
+                f"{_gap_phrase(g)} comes ashore across the walk's authored line, "
+                f"and {g['run_m']} m of boards are refused rather than laid under "
+                "it. The deck ties 2.0 m back into this bank (L132) and its "
+                "boarding stair steps down landward of that heel onto the same "
+                "ground; a walk laid through them ran under a slab standing half "
+                "a metre over the planks, with 0.36 m of daylight between, and "
+                "since T-0058 put a floor on that slab it also stood a 0.50 m "
+                "riser across the walker's path — over the 0.35 m step-up rule, "
+                "so refused. What a walker meets here is the landing: its deck is "
+                "the walking surface and its boarding stair is the way up. "
+                "T-0228."
+            ),
+        } for g in wharf_gaps
+    ] + [
         {
             "structure_id": RIVER_WALK_ID,
             "wall": "the La Salle slough mouth (E +489 to +459)",
@@ -1604,9 +2099,12 @@ def river_record(walks: list, refused: list) -> dict:
         "line is the verge between the South Water track's committed edge and the "
         "traced 1834 bank; the run breaks at the La Salle slough's traced mouth, "
         "where no crossing is committed and the street's own fill carries the foot "
-        "passenger; and it ends at Jones's landing, the easternmost committed "
-        "wharf, where the town's riverfront walking surface begins. Everything "
-        "between those pins is invented and audited: docs/LIBERTIES.md L153."
+        "passenger; it breaks again at each committed landing that comes ashore "
+        "across it, because a plank sidewalk stops where a working wharf lands and "
+        "the wharf's own deck is the surface there (T-0228); and it ends at "
+        "Jones's landing, the easternmost committed wharf, where the town's "
+        "riverfront walking surface begins. Everything between those pins is "
+        "invented and audited: docs/LIBERTIES.md L153."
     )
     return {
         "_doc": (
@@ -1619,8 +2117,8 @@ def river_record(walks: list, refused: list) -> dict:
             "already built, drawn at load by renderers/web/js/frontage.js. "
             "Generated by tools/generate_frontage_works.py and re-derived byte "
             "for byte by tools/check.sh; the generator audits every board "
-            "station against the committed heightfield and the committed street "
-            "before it will write this file."
+            "station against the committed heightfield, the committed street "
+            "and the committed landings before it will write this file."
         ),
         "id": "river_walk_frontage",
         "name": ("The river plank walk: the footway over the slough mouth, and "
@@ -1673,7 +2171,8 @@ def river_record(walks: list, refused: list) -> dict:
                 "bridge deck, the Dearborn centreline, Jones's landing — and its "
                 "authored knots are audited on every regeneration: every board "
                 "station must stand on committed ground above the water "
-                f"({RIVER_DRY_M} m over datum) and clear the South Water track's "
+                f"({RIVER_DRY_M} m over datum), clear every committed landing's "
+                "deck and boarding stair, and clear the South Water track's "
                 "own edge, the crossing must span Dearborn's track with "
                 f"{RIVER_CROSS_CLEAR_M} m to spare each side, the run must end "
                 "within a landing's width of Jones's committed bank foot, and "
@@ -1793,8 +2292,15 @@ def _placed_footprints() -> list[dict]:
         ce = sum(p[0] for p in pts) / len(pts)
         cn = sum(p[1] for p in pts) / len(pts)
         r = max(math.hypot(p[0] - ce, p[1] - cn) for p in pts)
+        # The trade rides along with the footprint (T-0194). It is the sidecar's
+        # own `attributes.function`, which is the field the signboard rule reads,
+        # so the two layers ask the same record the same question.
+        fn = (sc.get("attributes") or {}).get("function") or {}
         out.append({"id": sc.get("id") or path.stem, "pts": pts,
                     "e": ce, "n": cn, "r": r,
+                    "name": sc.get("name") or "",
+                    "trade": fn.get("value"),
+                    "trade_grade": fn.get("confidence"),
                     "at": (float(place["local_e"]), float(place["local_n"]))})
     return out
 
@@ -2081,9 +2587,147 @@ def _fence_runs(entry, laid, buildings, hf, refused):
     return welded
 
 
+# The frontages that already stand their own posts, taken from the table above
+# rather than typed a second time (T-0194). The Sauganash's two are drawn from
+# ITS OWN plates and claimed under L136 — a stronger claim than the rule below
+# makes — so the street edge refuses to stand a third beside them.
+EDGE_OWN_POSTS = {b["structure_id"] for b in BUILDINGS if b.get("hitching")}
+
+
+def _edge_hitching(entry, laid, chunks, buildings, hf, streets, refused):
+    """The hitching posts on one face: one per trading frontage the rule accepts.
+
+    Every clause is stated beside EDGE_HITCH_ALONG above and every refusal below
+    names the one that refused it, so the record says why a frontage has no post
+    rather than leaving the reader to guess it was never considered.
+    """
+    frame = entry["frame"]
+    block = entry["block"]
+    face = entry["face"]
+    street = entry["street"]
+    name = streets[street]["name"]
+    out = []
+    for index, lot in enumerate(block.get("lots", [])):
+        if lot.get("tier") != face:
+            continue
+        here = [b for b in buildings if _inside(b["at"], lot["polygon"])]
+        for b in sorted(here, key=lambda x: x["id"]):
+            where = f"{block['id']} {face} face, lot {index}"
+            trade = b["trade"]
+            if b["id"] in EDGE_OWN_POSTS:
+                refused.append({"structure_id": b["id"], "wall": where, "why": (
+                    f"{b['id']} already stands its own hitching post(s): its frontage "
+                    "record in this same layer draws them from its own reference "
+                    "plates, which is a stronger claim than this rule makes. A post "
+                    "here would be the street edge duplicating one of the two "
+                    "frontages the layer was built from.")})
+                continue
+            if trade in WORKS_TRADES:
+                refused.append({"structure_id": b["id"], "wall": where, "why": (
+                    f"{b['id']} is a {trade} — a works and a warehouse took carts and "
+                    "drays at a yard gate, not riders at a post, which is the same "
+                    "distinction that hangs a board over a footway at a counter and "
+                    "paints a firm's name on a works front. No hitching post is set.")})
+                continue
+            if trade not in PUBLIC_TRADES:
+                continue          # a dwelling, a privy, a stable — nothing to refuse
+            if b["trade_grade"] not in TRADE_GRADES:
+                refused.append({"structure_id": b["id"], "wall": where, "why": (
+                    f"the trade at {b['id']} is {b['trade_grade']} — dealt by the roof "
+                    "schedule rather than held on evidence. A hitching post there "
+                    "would be furniture standing on an invention. No post is set.")})
+                continue
+            spans = [project(frame, tuple(p)) for p in b["pts"]]
+            f0 = min(t for t, _ in spans)
+            f1 = max(t for t, _ in spans)
+            at_t = f0 + EDGE_HITCH_ALONG * (f1 - f0)
+            run = None
+            for k, (lo, hi) in enumerate(laid, start=1):
+                if lo - 1e-6 <= at_t <= hi + 1e-6:
+                    run = k
+            if run is None:
+                refused.append({"structure_id": b["id"], "wall": where, "why": (
+                    f"no walk is laid at {at_t:.1f} m along this face, where a post off "
+                    f"{b['id']}'s own frontage would stand — a post stands in the verge "
+                    "OUTSIDE a walk, and there is no walk here to stand outside of.")})
+                continue
+            at = _point_on(frame, at_t, EDGE_HITCH_OFFSET_M)
+            half = HITCH_SQ_M / 2.0
+            blocked = _wall_on(at, half, frame["outward"], buildings)
+            if blocked:
+                refused.append({"structure_id": b["id"], "wall": where, "why": (
+                    f"{blocked} stands on the ground a post off {b['id']}'s frontage "
+                    "would occupy. No post is set.")})
+                continue
+            ground = min(hf.height(at[0] + frame["outward"][0] * o,
+                                   at[1] + frame["outward"][1] * o)
+                         for o in (-half, 0.0, half))
+            if ground is None or ground < EDGE_DRY_M:
+                refused.append({"structure_id": b["id"], "wall": where, "why": (
+                    f"the ground under a post off {b['id']}'s frontage stands at "
+                    f"{ground:+.2f} m — at or under the water, and this project sinks "
+                    "no post into the river. No post is set.")})
+                continue
+            d, _p = _nearest_on_path((at[0] + frame["outward"][0] * half,
+                                      at[1] + frame["outward"][1] * half),
+                                     streets[street]["path"])
+            clear = d - streets[street]["track_w"] / 2.0
+            if clear < EDGE_TRACK_MARGIN_M:
+                refused.append({"structure_id": b["id"], "wall": where, "why": (
+                    f"a post off {b['id']}'s frontage would leave {clear:.2f} m between "
+                    f"its outer face and the {name} track, under the "
+                    f"{EDGE_TRACK_MARGIN_M} m this layer keeps out of the travelled "
+                    "way. No post is set.")})
+                continue
+            out.append({
+                "id": f"{block['id']}_{face}_hitching_{b['id']}",
+                "belongs_to": STREET_EDGE_ID,
+                "kind": "hitching_post",
+                "confidence": "reconstructed",
+                "street": street,
+                "street_name": name,
+                "chunk": chunks[run - 1],
+                "stands_at": b["id"],
+                "trade": trade,
+                "trade_confidence": b["trade_grade"],
+                "at_local_enu_m": [_round(at[0]), _round(at[1])],
+                "facade_bearing_deg": _round(
+                    math.degrees(math.atan2(frame["outward"][0], frame["outward"][1])) % 360.0, 1),
+                "post_height_m": HITCH_H_M,
+                "post_square_m": HITCH_SQ_M,
+                "cap_square_m": HITCH_CAP_SQ_M,
+                "cap_thickness_m": HITCH_CAP_T_M,
+                "along_frontage_frac": EDGE_HITCH_ALONG,
+                "clear_of_track_m": _round(clear),
+                "stands_on_m": _round(ground),
+                "note": (
+                    f"A POST AT THE ROAD EDGE OUTSIDE {b['name'] or b['id']}, for a "
+                    "rider to tie to. WHY HERE is a rule and not a placement: this "
+                    f"frontage's trade is `{trade}` — one of the trades this project "
+                    "already rules take their custom from a stranger off the street "
+                    "(tools/generate_business_signboards.py, PUBLIC_TRADES, the same "
+                    "clause that decides which frontage hangs a board) — and that "
+                    f"trade is held `{b['trade_grade']}` rather than dealt by a "
+                    "schedule. WHERE is derived: the footprint is projected onto its "
+                    f"own platted face, the post stands at {EDGE_HITCH_ALONG:.2f} of "
+                    f"that frontage and {EDGE_HITCH_OFFSET_M:.2f} m out from the lot "
+                    f"line — {HITCH_VERGE_M:.2f} m clear of the walk's outer edge, the "
+                    "same verge the Sauganash's own posts stand in — on committed "
+                    f"ground at {ground:+.2f} m with {clear:.2f} m still between it and "
+                    f"the {name} track. WHAT IS INVENTED: that a post stood on this "
+                    "ground at noon on 1 July 1835, and its height, its section and its "
+                    "capped head, which are the Sauganash's numbers carried across "
+                    f"(docs/LIBERTIES.md L136). docs/LIBERTIES.md {STREET_EDGE_LIBERTY}."
+                ),
+            })
+    out.sort(key=lambda q: q["id"])
+    return out
+
+
 def build_street_edge() -> tuple[list, list, list, dict]:
     """The town's street edge: the walks, the corner crossings, the street-lining
-    fences, and every refusal that shaped them."""
+    fences, the hitching posts at its trading frontages, and every refusal that
+    shaped them."""
     hf = _heightfield()
     streets = _streets()
     lots_doc = _lots()
@@ -2093,10 +2737,11 @@ def build_street_edge() -> tuple[list, list, list, dict]:
 
     walks: list = []
     fences: list = []
+    posts: list = []
     refused: list = []
     laid_by_face: dict = {}
     census = {"faces": 0, "runs": 0, "walk_m": 0.0, "crossings": 0, "cross_m": 0.0,
-              "fences": 0, "fence_m": 0.0, "decks": 0}
+              "fences": 0, "fence_m": 0.0, "decks": 0, "hitching": 0}
 
     for entry in faces:
         block = entry["block"]
@@ -2174,8 +2819,16 @@ def build_street_edge() -> tuple[list, list, list, dict]:
                     f"{STREET_EDGE_LIBERTY}."
                 ),
             })
+        face_chunks = [f"{key}_{k}" for k in range(1, len(runs) + 1)]
         laid_by_face[key] = {"entry": entry, "laid": laid, "verge": verge,
-                             "chunks": [f"{key}_{k}" for k in range(1, len(runs) + 1)]}
+                             "chunks": face_chunks}
+        # The hitching posts at this face's trading frontages (T-0194), which
+        # stand in the verge OUTSIDE the walk just laid and are therefore asked
+        # for after it rather than beside it.
+        for post in _edge_hitching(entry, laid, face_chunks, buildings, hf,
+                                   streets, refused):
+            census["hitching"] += 1
+            posts.append(post)
         for run in _fence_runs(entry, laid, buildings, hf, refused):
             a = run["a"]
             b = run["b"]
@@ -2410,24 +3063,49 @@ def build_street_edge() -> tuple[list, list, list, dict]:
         "structure_id": "blk_lake_clinton",
         "wall": "Lake Street's West Division frontage, across the South Branch",
         "why": (
-            "this block stands in the WEST DIVISION, across the South Branch from "
-            "the town the owner's 'south of the river or near the river' names, "
-            "and it is separated from every other face on this record by a river "
-            "with one bridge on it. The same rule would lay the same walk there; "
-            "it belongs with the rest of the town in the follow-up ticket rather "
-            "than as one stranded block."
+            "REFUSED ON A MEASURED FRAME BUDGET AT ONE STAND, AT ONE TIER, AT ONE "
+            "VIEWPORT (T-0193) — and it is a number now rather than the promise this "
+            "clause used to carry. This block stands in the WEST DIVISION, across the "
+            "South Branch from the town the owner's 'south of the river or near the "
+            "river' names, separated from every other face on this record by a river "
+            "with one bridge on it, and it is the last platted block this rule has "
+            "never looked at. THE SAME RULE DOES LAY THE SAME WALK THERE, and it was "
+            "run rather than assumed: both faces generate cleanly — the Lake face "
+            "T-0069 named, and the Randolph face that only became coverable when "
+            "T-0240 put Randolph in the covered streets the day before — for +2 block "
+            "faces, +192.2 m of walk in 2 unbroken runs, +1 board crossing over "
+            "Randolph and +3 street-lining fences, with the march refusing only what "
+            "it refuses everywhere else (a building standing ON the frontage line is "
+            "the street wall, an unimproved lot takes no fence, and a blacksmith's "
+            "yard gate takes no hitching post). Published and read at T-0135's five "
+            "stands at BOTH viewports: `full` and `light` pass everywhere and mobile "
+            "passes every tier, clearing `balanced` by 34,712. DESKTOP `balanced` does "
+            "not — 1,228,110 against a 1,210,000 ceiling, OVER BY 18,110 — and the "
+            "whole of that cost lands at the single stand `lake_at_canal`, which "
+            "stands at this block's own east end and looks east down the axis where "
+            "nothing culls: +27,932 triangles there against a flat +8,460 at the other "
+            "four. AND HALF OF IT DOES NOT FIT EITHER, which is what makes this a fact "
+            "about the budget rather than about the block: the Lake face ALONE, "
+            "exactly what T-0069 refused, still reads 1,223,890 and is over by 13,890. "
+            "`balanced` stood 1,201,344 of 1,210,000 before this was tried — 8,656 "
+            "triangles, 0.7 % of headroom — so no street frontage of any size fits "
+            "under that rung today. The unblock is T-0190's second street tier, not a "
+            "sixth raising of the ceiling, which T-0237's acceptance refuses in as "
+            "many words."
         ),
     })
     walks.sort(key=lambda w: w["id"])
     fences.sort(key=lambda f: f["id"])
+    posts.sort(key=lambda q: q["id"])
     refused.sort(key=lambda r: (r["structure_id"], r.get("wall", "")))
     census["walk_m"] = _round(census["walk_m"], 1)
     census["cross_m"] = _round(census["cross_m"], 1)
     census["fence_m"] = _round(census["fence_m"], 1)
-    return walks, fences, refused, census
+    return walks, fences, posts, refused, census
 
 
-def street_edge_record(walks: list, fences: list, refused: list, census: dict) -> dict:
+def street_edge_record(walks: list, fences: list, posts: list, refused: list,
+                       census: dict) -> dict:
     bounds_note = (
         "WHAT BOUNDED THE RUN, in one place. The treatment is laid on the platted "
         "block faces that front THREE east-west streets of the South Division — "
@@ -2461,8 +3139,10 @@ def street_edge_record(walks: list, fences: list, refused: list, census: dict) -
     return {
         "_doc": (
             "The town's street edge (T-0069) — the plank sidewalks at the lot line, "
-            "the board crossings at the corners, and the board fences that line the "
-            "street behind them, along South Water Street and Lake Street. NOT "
+            "the board crossings at the corners, the board fences that line the "
+            "street behind them, and the hitching posts standing in the verge "
+            "outside the walk at the trading frontages (T-0194), along South Water "
+            "Street and Lake Street. NOT "
             "structure records and NOT baked geometry: boards and posts standing on "
             "ground this project has already built, drawn at load by "
             "renderers/web/js/frontage.js. GENERATED by "
@@ -2474,8 +3154,9 @@ def street_edge_record(walks: list, fences: list, refused: list, census: dict) -
             "and fence in this file moves with it."
         ),
         "id": STREET_EDGE_RECORD_ID,
-        "name": ("The town's street edge: plank sidewalks, board crossings and the "
-                 "fences that line the street"),
+        "name": ("The town's street edge: plank sidewalks, board crossings, the "
+                 "fences that line the street and the hitching posts at the trading "
+                 "frontages"),
         "kind": "frontage",
         "scene": "1835",
         "target_date": "1835-07-01",
@@ -2533,7 +3214,12 @@ def street_edge_record(walks: list, fences: list, refused: list, census: dict) -
                 "not the Sauganash's private six-foot yard wall — of "
                 f"{EDGE_FENCE_BOARD_W_M} m boards butted at {EDGE_FENCE_BOARD_GAP_M} m "
                 f"on {EDGE_FENCE_COURSES} stringers, posts every "
-                f"{EDGE_FENCE_POST_SPACING_M} m. Not one of those numbers is a "
+                f"{EDGE_FENCE_POST_SPACING_M} m. Hitching posts {HITCH_H_M} m tall "
+                f"and {HITCH_SQ_M} m square under a {HITCH_CAP_SQ_M} m capped head — "
+                "the Sauganash's own numbers (T-0090, docs/LIBERTIES.md L136) carried "
+                f"across unchanged — standing {HITCH_VERGE_M} m beyond the walk's "
+                "outer edge, in the same verge that hotel's own posts stand in. Not "
+                "one of those numbers is a "
                 "record's; they are how the layer is DRAWN."
             ),
         },
@@ -2551,7 +3237,19 @@ def street_edge_record(walks: list, fences: list, refused: list, census: dict) -
                 "where two runs stop either side of one corridor. A lot gets a street "
                 "fence iff it is improved and its nearest committed wall stands "
                 f"{EDGE_FENCE_SETBACK_M} m or more back from its own frontage line — "
-                "where it does not, the building is the street wall. Every refusal "
+                "where it does not, the building is the street wall. A FRONTAGE GETS "
+                "A HITCHING POST iff a committed building stands on its lot, that "
+                "building's trade is one this project already rules takes its custom "
+                "from a stranger off the street (PUBLIC_TRADES in "
+                "tools/generate_business_signboards.py — a works or a warehouse took "
+                "carts at a yard gate and is refused in writing), that trade is held "
+                "attested, documented or inferred rather than dealt by the roof "
+                "schedule, the walk was actually laid in front of it, and the post's "
+                f"own stand is dry committed ground clearing the track by "
+                f"{EDGE_TRACK_MARGIN_M} m. It stands at {EDGE_HITCH_ALONG:.2f} of the "
+                "BUILDING's own frontage — not the lot's, because two trades can "
+                f"share a lot — and {EDGE_HITCH_OFFSET_M:.2f} m out from the lot line. "
+                "Every refusal "
                 "below names the clause that refused it. Read them in "
                 "tools/generate_frontage_works.py."
             ),
@@ -2561,6 +3259,7 @@ def street_edge_record(walks: list, fences: list, refused: list, census: dict) -
             "crossing_m": census["cross_m"],
             "fence_m": census["fence_m"],
             "walking_decks": census["decks"],
+            "hitching_posts": census["hitching"],
         },
         "card": {
             "id": STREET_EDGE_ID,
@@ -2608,6 +3307,22 @@ def street_edge_record(walks: list, fences: list, refused: list, census: dict) -
                         "frontage line."
                     ),
                 },
+                "hitching_posts": {
+                    "value": census["hitching"],
+                    "confidence": "reconstructed",
+                    "sources": [],
+                    "note": (
+                        f"{census['hitching']} post(s) at the road edge, one at each "
+                        "trading frontage the rule accepts — a trade this project "
+                        "holds on evidence and rules takes its custom from a stranger "
+                        "off the street, with a walk laid in front of it and dry "
+                        "ground clear of the track to stand on. Every frontage it "
+                        "refused is named in `refused` with the clause that refused "
+                        "it. No source states that a post stood at any of them; what "
+                        "the plates give is that the town's frontages had them at all "
+                        "(T-0090)."
+                    ),
+                },
                 "width_m": {
                     "value": WALK_W_M,
                     "confidence": "reconstructed",
@@ -2627,7 +3342,7 @@ def street_edge_record(walks: list, fences: list, refused: list, census: dict) -
         },
         "walks": walks,
         "fences": fences,
-        "posts": [],
+        "posts": posts,
         "refused": refused,
         "research_note": (
             "WHAT WOULD MOVE ANY OF THIS OFF RECONSTRUCTION: a Chicago town order on "
@@ -2711,12 +3426,13 @@ def main() -> int:
                    json.dumps(lasalle_record(lasalle_walks, lasalle_refused), indent=2,
                               ensure_ascii=False) + "\n",
                    "the La Salle crossing footway"))
-    edge_walks, edge_fences, edge_refused, edge_census = build_street_edge()
-    totals = [totals[0] + len(edge_walks), totals[1], totals[2] + len(edge_refused)]
+    edge_walks, edge_fences, edge_posts, edge_refused, edge_census = build_street_edge()
+    totals = [totals[0] + len(edge_walks), totals[1] + len(edge_posts),
+              totals[2] + len(edge_refused)]
     fences_written = len(edge_fences)
     wanted.append((OUTDIR / "town_street_edge.json",
-                   json.dumps(street_edge_record(edge_walks, edge_fences, edge_refused,
-                                                 edge_census), indent=2,
+                   json.dumps(street_edge_record(edge_walks, edge_fences, edge_posts,
+                                                 edge_refused, edge_census), indent=2,
                               ensure_ascii=False) + "\n",
                    "the town's street edge"))
     wanted.append((INDEX, json.dumps(index_record(), indent=2, ensure_ascii=False) + "\n",
@@ -2750,7 +3466,8 @@ def main() -> int:
           f"{edge_census['walk_m']} m of walk in {edge_census['runs']} run(s), "
           f"{edge_census['crossings']} crossing(s) ({edge_census['cross_m']} m), "
           f"{edge_census['fences']} fence run(s) ({edge_census['fence_m']} m), "
-          f"{edge_census['decks']} walking deck(s)")
+          f"{edge_census['decks']} walking deck(s), "
+          f"{edge_census['hitching']} hitching post(s)")
     return 0
 
 
