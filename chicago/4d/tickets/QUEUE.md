@@ -41,7 +41,6 @@ T-0096 — Did the second Fort Dearborn carry a flagstaff, and can anything but 
 # --- FABRIC AND WHAT THE BUILDINGS ARE MADE OF — visible
 T-0172 — The other three anonymous parcels still deal a retyped roof pitch, and none of them bounds an eave band by what the archetype can carry
 T-0024 — May the face rule rank a store
-T-0025 — Three records carry the standing constraint and say why nowhere
 T-0021 — Census what the residents' figures reach
 
 # --- WHAT GROWS, AND WHAT A PHONE SEES — visible
