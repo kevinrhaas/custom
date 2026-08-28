@@ -1,7 +1,7 @@
 ---
 id: T-0221
 title: measure_street_frontage.layer_of reads a record's evidence layer off its filename, and misreads physicians_office
-state: claimed
+state: done
 epic: META
 requested_by: loop
 seen: false
@@ -9,8 +9,8 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-08-27
-closed: null
-pr: null
+closed: 2026-08-27
+pr: 425
 claimed_by: run 8/27/2026, 9:14:57 PM CT
 blocked_on: null
 needs_bake: false
