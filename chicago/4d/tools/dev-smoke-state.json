@@ -3,34 +3,241 @@
   "readings": [
     {
       "viewport": "desktop",
-      "stage": "3",
+      "stage": "2",
       "parts": [
-        3
+        2
+      ],
+      "verdict": "fail",
+      "target": "published",
+      "passed": 80,
+      "failed": 1,
+      "failures": [
+        "desktop 1280x800: the Sauganash's two hitching posts stand on their own ground, carrying nothing — sauganash_hotel_hitching_post_1 1.30/1.3 m, foot -0.000 m, 3.87 m clear | sauganash_hotel_hitching_post_2 1.30/1.3 m, foot -0.000 m, 3.87 m clear | blk_lake_market_north_hitching_philo_carpenter_log_shop -Infinity/1.3 m, foot Infinity m, 3.88 m clear | blk_south_water_clark_north_hitching_madore_beaubien_house -Infinity/1.3 m, foot Infinity m, 3.88 m clear | blk_south_water_clark_north_hitching_pruyne_kimball_drugstore -Infinity/1.3 m, foot Infinity m, 3.88 m clear | blk_south_water_dearborn_north_hitching_chicago_american_office -Infinity/1.3 m, foot Infinity m, 3.88 m clear | blk_south_water_dearborn_south_hitching_mansion_house -Infinity/1.3 m, foot Infinity m, 3.89 m clear | blk_south_water_franklin_north_hitching_jh_kinzie_forwarding_store -Infinity/1.3 m, foot Infinity m, 3.88 m clear | blk_south_water_lasalle_north_hitching_chicago_democrat_office -Infinity/1.3 m, foot Infinity m, 3.88 m clear | blk_south_water_lasalle_south_hitching_thomas_church_store -Infinity/1.3 m, foot Infinity m, 3.88 m clear | blk_south_water_wells_north_hitching_brown_boarding_house -Infinity/1.3 m, foot Infinity m, 3.88 m clear | blk_south_water_wells_north_hitching_carpenter_south_water_store -Infinity/1.3 m, foot Infinity m, 3.88 m clear | blk_south_water_wells_north_hitching_h_jones_store -Infinity/1.3 m, foot Infinity m, 3.88 m clear | blk_south_water_wells_north_hitching_peck_store -Infinity/1.3 m, foot Infinity m, 3.88 m clear — 1 board(s) lettered in the layer, record says a board on a post here: false"
+      ],
+      "wallSeconds": 192,
+      "takenAt": "2026-08-28T08:57:22.753Z",
+      "ref": "steward/t-0219-heightfield-south-madison",
+      "commit": "708b1022863f",
+      "devCommit": "a9a3a2f966d0",
+      "treeHash": "sha256:375ff0c37adb0d01",
+      "treeDirty": false,
+      "changelogHash": "sha256:4dac3a0c094151bf",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          1.9,
+          3.8,
+          4.1
+        ]
+      },
+      "source": "/tmp/d2.log"
+    },
+    {
+      "viewport": "desktop",
+      "stage": "4",
+      "parts": [
+        4
+      ],
+      "verdict": "fail",
+      "target": "published",
+      "passed": 44,
+      "failed": 4,
+      "failures": [
+        "desktop 1280x800: scene detail 'full' stays inside its own ceiling at the WORST stand — 1,434,231 tris of 1,400,000 at the forks, from Wolf Point, 158 calls of 215 at the forks, from Wolf Point — spread: the forks, from Wolf Point 1,434,231/158c · Lake Street at Canal, east down the axis 1,428,057/155c · Lake and Market, the corner itself 1,128,939/156c · the open aerial 940,720/120c · the Sauganash at 26 m 936,373/115c",
+        "desktop 1280x800: scene detail 'balanced' stays inside its own ceiling at the WORST stand — 1,266,498 tris of 1,210,000 at the forks, from Wolf Point, 156 calls of 215 at Lake and Market, the corner itself — spread: the forks, from Wolf Point 1,266,498/152c · Lake Street at Canal, east down the axis 1,245,970/148c · Lake and Market, the corner itself 1,024,536/156c · the Sauganash at 26 m 855,855/113c · the open aerial 843,499/119c",
+        "desktop 1280x800: scene detail 'light' stays inside its own ceiling at the WORST stand — 795,974 tris of 785,000 at Lake Street at Canal, east down the axis, 85 calls of 215 at Lake and Market, the corner itself — spread: Lake Street at Canal, east down the axis 795,974/70c · the forks, from Wolf Point 792,591/69c · Lake and Market, the corner itself 686,167/85c · the open aerial 578,714/69c · the Sauganash at 26 m 570,620/62c",
+        "desktop 1280x800: the light tier draws inside its 80-call floor at the worst stand — 85 calls at light, worst stand Lake and Market, the corner itself — floor 80, the count this project chose before the 2026-08 content landed, restored by T-0147 once T-0150, T-0146 and T-0223 had trimmed the axial view"
+      ],
+      "wallSeconds": 490,
+      "takenAt": "2026-08-28T08:47:36.805Z",
+      "ref": "steward/t-0219-heightfield-south-madison",
+      "commit": "708b1022863f",
+      "devCommit": "a9a3a2f966d0",
+      "treeHash": "sha256:375ff0c37adb0d01",
+      "treeDirty": false,
+      "changelogHash": "sha256:4dac3a0c094151bf",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          4.8,
+          4.4,
+          4.1
+        ]
+      },
+      "source": "/tmp/d4.log"
+    },
+    {
+      "viewport": "desktop",
+      "stage": "1-2",
+      "parts": [
+        1,
+        2
+      ],
+      "verdict": "fail",
+      "target": "published",
+      "passed": 146,
+      "failed": 2,
+      "failures": [
+        "desktop 1280x800: the board carries the record's own name, painted — \"GREEN TREE\" on 12 vertices across 67 mesh(es) (frontage, frontage-chunk, frontage-chunk, frontage-chunk, frontage-chunk, frontage-chunk, frontage-chunk, frontage-chunk, frontage-chunk, frontage-chunk, frontage-chunk, frontage-chunk, frontage-chunk, frontage-chunk, frontage-chunk, frontage-chunk, frontage-chunk, frontage-chunk, frontage-chunk, frontage-chunk, frontage-chunk, frontage-chunk, frontage-chunk, frontage-chunk, frontage-chunk, frontage-chunk, frontage-chunk, frontage-chunk, frontage-chunk, frontage-chunk, frontage-chunk, frontage-chunk, frontage-chunk, frontage-chunk, frontage-chunk, frontage-chunk, frontage-chunk, frontage-chunk, frontage-chunk, frontage-chunk, frontage-chunk, frontage-chunk, frontage-chunk, frontage-chunk, frontage-chunk, frontage-chunk, frontage-chunk, frontage-chunk, frontage-chunk, frontage-chunk, frontage-chunk, frontage-chunk, frontage-chunk, frontage-chunk, frontage-chunk, frontage-chunk, frontage-chunk, frontage-chunk, frontage-chunk, frontage-chunk, frontage-chunk, frontage-lettering, frontage-far-merge, frontage-far-merge, frontage-far-merge, frontage-far-merge, frontage-far-merge), record says \"GREEN TREE\" graded inferred",
+        "desktop 1280x800: the Sauganash's two hitching posts stand on their own ground, carrying nothing — sauganash_hotel_hitching_post_1 1.30/1.3 m, foot -0.000 m, 3.87 m clear | sauganash_hotel_hitching_post_2 1.30/1.3 m, foot 0.000 m, 3.87 m clear | blk_lake_market_north_hitching_philo_carpenter_log_shop -Infinity/1.3 m, foot Infinity m, 3.88 m clear | blk_south_water_clark_north_hitching_madore_beaubien_house -Infinity/1.3 m, foot Infinity m, 3.88 m clear | blk_south_water_clark_north_hitching_pruyne_kimball_drugstore -Infinity/1.3 m, foot Infinity m, 3.88 m clear | blk_south_water_dearborn_north_hitching_chicago_american_office -Infinity/1.3 m, foot Infinity m, 3.88 m clear | blk_south_water_dearborn_south_hitching_mansion_house -Infinity/1.3 m, foot Infinity m, 3.89 m clear | blk_south_water_franklin_north_hitching_jh_kinzie_forwarding_store -Infinity/1.3 m, foot Infinity m, 3.88 m clear | blk_south_water_lasalle_north_hitching_chicago_democrat_office -Infinity/1.3 m, foot Infinity m, 3.88 m clear | blk_south_water_lasalle_south_hitching_thomas_church_store -Infinity/1.3 m, foot Infinity m, 3.88 m clear | blk_south_water_wells_north_hitching_brown_boarding_house -Infinity/1.3 m, foot Infinity m, 3.88 m clear | blk_south_water_wells_north_hitching_carpenter_south_water_store -Infinity/1.3 m, foot Infinity m, 3.88 m clear | blk_south_water_wells_north_hitching_h_jones_store -Infinity/1.3 m, foot Infinity m, 3.88 m clear | blk_south_water_wells_north_hitching_peck_store -Infinity/1.3 m, foot Infinity m, 3.88 m clear — 1 board(s) lettered in the layer, record says a board on a post here: false"
+      ],
+      "wallSeconds": 386,
+      "takenAt": "2026-08-28T08:39:12.003Z",
+      "ref": "HEAD",
+      "commit": "a9a3a2f966d0",
+      "devCommit": "a9a3a2f966d0",
+      "treeHash": "sha256:9229f8570da40b36",
+      "treeDirty": false,
+      "changelogHash": "sha256:09ebcd62712d9924",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          3.6,
+          3.9,
+          3.8
+        ]
+      },
+      "source": "/tmp/dev_d12.log"
+    },
+    {
+      "viewport": "desktop",
+      "stage": "1-2",
+      "parts": [
+        1,
+        2
+      ],
+      "verdict": "fail",
+      "target": "published",
+      "passed": 146,
+      "failed": 2,
+      "failures": [
+        "desktop 1280x800: the board carries the record's own name, painted — \"GREEN TREE\" on 12 vertices across 67 mesh(es) (frontage, frontage-chunk, frontage-chunk, frontage-chunk, frontage-chunk, frontage-chunk, frontage-chunk, frontage-chunk, frontage-chunk, frontage-chunk, frontage-chunk, frontage-chunk, frontage-chunk, frontage-chunk, frontage-chunk, frontage-chunk, frontage-chunk, frontage-chunk, frontage-chunk, frontage-chunk, frontage-chunk, frontage-chunk, frontage-chunk, frontage-chunk, frontage-chunk, frontage-chunk, frontage-chunk, frontage-chunk, frontage-chunk, frontage-chunk, frontage-chunk, frontage-chunk, frontage-chunk, frontage-chunk, frontage-chunk, frontage-chunk, frontage-chunk, frontage-chunk, frontage-chunk, frontage-chunk, frontage-chunk, frontage-chunk, frontage-chunk, frontage-chunk, frontage-chunk, frontage-chunk, frontage-chunk, frontage-chunk, frontage-chunk, frontage-chunk, frontage-chunk, frontage-chunk, frontage-chunk, frontage-chunk, frontage-chunk, frontage-chunk, frontage-chunk, frontage-chunk, frontage-chunk, frontage-chunk, frontage-chunk, frontage-lettering, frontage-far-merge, frontage-far-merge, frontage-far-merge, frontage-far-merge, frontage-far-merge), record says \"GREEN TREE\" graded inferred",
+        "desktop 1280x800: the Sauganash's two hitching posts stand on their own ground, carrying nothing — sauganash_hotel_hitching_post_1 1.30/1.3 m, foot -0.000 m, 3.87 m clear | sauganash_hotel_hitching_post_2 1.30/1.3 m, foot -0.000 m, 3.87 m clear | blk_lake_market_north_hitching_philo_carpenter_log_shop -Infinity/1.3 m, foot Infinity m, 3.88 m clear | blk_south_water_clark_north_hitching_madore_beaubien_house -Infinity/1.3 m, foot Infinity m, 3.88 m clear | blk_south_water_clark_north_hitching_pruyne_kimball_drugstore -Infinity/1.3 m, foot Infinity m, 3.88 m clear | blk_south_water_dearborn_north_hitching_chicago_american_office -Infinity/1.3 m, foot Infinity m, 3.88 m clear | blk_south_water_dearborn_south_hitching_mansion_house -Infinity/1.3 m, foot Infinity m, 3.89 m clear | blk_south_water_franklin_north_hitching_jh_kinzie_forwarding_store -Infinity/1.3 m, foot Infinity m, 3.88 m clear | blk_south_water_lasalle_north_hitching_chicago_democrat_office -Infinity/1.3 m, foot Infinity m, 3.88 m clear | blk_south_water_lasalle_south_hitching_thomas_church_store -Infinity/1.3 m, foot Infinity m, 3.88 m clear | blk_south_water_wells_north_hitching_brown_boarding_house -Infinity/1.3 m, foot Infinity m, 3.88 m clear | blk_south_water_wells_north_hitching_carpenter_south_water_store -Infinity/1.3 m, foot Infinity m, 3.88 m clear | blk_south_water_wells_north_hitching_h_jones_store -Infinity/1.3 m, foot Infinity m, 3.88 m clear | blk_south_water_wells_north_hitching_peck_store -Infinity/1.3 m, foot Infinity m, 3.88 m clear — 1 board(s) lettered in the layer, record says a board on a post here: false"
+      ],
+      "wallSeconds": 383,
+      "takenAt": "2026-08-28T08:28:15.813Z",
+      "ref": "steward/t-0219-heightfield-south-madison",
+      "commit": "708b1022863f",
+      "devCommit": "a9a3a2f966d0",
+      "treeHash": "sha256:375ff0c37adb0d01",
+      "treeDirty": false,
+      "changelogHash": "sha256:4dac3a0c094151bf",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          4.4,
+          4.4,
+          3.8
+        ]
+      },
+      "source": "/tmp/d12.log"
+    },
+    {
+      "viewport": "mobile",
+      "stage": "7-9",
+      "parts": [
+        7,
+        8,
+        9
+      ],
+      "verdict": "fail",
+      "target": "published",
+      "passed": 151,
+      "failed": 1,
+      "failures": [
+        "mobile 390x780: every tree drawn stands at its own station — 0 of 0 vertices further than 24 m from any of 604 stations across 0 merged meshes; worst 0 m"
+      ],
+      "wallSeconds": 413,
+      "takenAt": "2026-08-28T08:21:40.679Z",
+      "ref": "steward/t-0219-heightfield-south-madison",
+      "commit": "708b1022863f",
+      "devCommit": "a9a3a2f966d0",
+      "treeHash": "sha256:375ff0c37adb0d01",
+      "treeDirty": false,
+      "changelogHash": "sha256:4dac3a0c094151bf",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          5.3,
+          4.5,
+          3.5
+        ]
+      },
+      "source": "/tmp/m79.log"
+    },
+    {
+      "viewport": "mobile",
+      "stage": "5-6",
+      "parts": [
+        5,
+        6
       ],
       "verdict": "pass",
       "target": "published",
-      "passed": 74,
+      "passed": 43,
       "failed": 0,
       "failures": [],
-      "wallSeconds": 103,
-      "takenAt": "2026-08-28T02:30:20.537Z",
-      "ref": "steward/t-0059-generator-half-measured",
-      "commit": "a638614c75d3",
-      "devCommit": "a638614c75d3",
-      "treeHash": "sha256:eb35c30b22a8a378",
+      "wallSeconds": 327,
+      "takenAt": "2026-08-28T08:14:44.198Z",
+      "ref": "steward/t-0219-heightfield-south-madison",
+      "commit": "708b1022863f",
+      "devCommit": "a9a3a2f966d0",
+      "treeHash": "sha256:375ff0c37adb0d01",
       "treeDirty": false,
-      "changelogHash": "sha256:0c012ea61c60d2c0",
+      "changelogHash": "sha256:4dac3a0c094151bf",
       "host": {
         "kind": "steward-runner",
         "cpus": 4,
         "memGB": 15.6,
         "loadavg": [
           4.3,
-          3.2,
-          1.6
+          4.2,
+          2.9
         ]
       },
-      "source": "/tmp/smoke_d3.log"
+      "source": "/tmp/m56.log"
+    },
+    {
+      "viewport": "mobile",
+      "stage": "3-4",
+      "parts": [
+        3,
+        4
+      ],
+      "verdict": "pass",
+      "target": "published",
+      "passed": 116,
+      "failed": 0,
+      "failures": [],
+      "wallSeconds": 325,
+      "takenAt": "2026-08-28T08:09:13.014Z",
+      "ref": "steward/t-0219-heightfield-south-madison",
+      "commit": "708b1022863f",
+      "devCommit": "a9a3a2f966d0",
+      "treeHash": "sha256:375ff0c37adb0d01",
+      "treeDirty": false,
+      "changelogHash": "sha256:4dac3a0c094151bf",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          4.5,
+          3.7,
+          2.1
+        ]
+      },
+      "source": "/tmp/m34.log"
     },
     {
       "viewport": "mobile",
@@ -44,27 +251,123 @@
       "passed": 147,
       "failed": 1,
       "failures": [
-        "mobile 390x780: the Sauganash's two hitching posts stand on their own ground, carrying nothing — sauganash_hotel_hitching_post_1 1.30/1.3 m, foot -0.000 m, 3.87 m clear | sauganash_hotel_hitching_post_2 1.30/1.3 m, foot 0.000 m, 3.87 m clear | blk_lake_market_north_hitching_philo_carpenter_log_shop -Infinity/1.3 m, foot Infinity m, 3.88 m clear | blk_south_water_clark_north_hitching_madore_beaubien_house -Infinity/1.3 m, foot Infinity m, 3.88 m clear | blk_south_water_clark_north_hitching_pruyne_kimball_drugstore -Infinity/1.3 m, foot Infinity m, 3.88 m clear | blk_south_water_dearborn_north_hitching_chicago_american_office -Infinity/1.3 m, foot Infinity m, 3.88 m clear | blk_south_water_dearborn_south_hitching_mansion_house -Infinity/1.3 m, foot Infinity m, 3.89 m clear | blk_south_water_franklin_north_hitching_jh_kinzie_forwarding_store -Infinity/1.3 m, foot Infinity m, 3.88 m clear | blk_south_water_lasalle_north_hitching_chicago_democrat_office -Infinity/1.3 m, foot Infinity m, 3.88 m clear | blk_south_water_lasalle_south_hitching_thomas_church_store -Infinity/1.3 m, foot Infinity m, 3.88 m clear | blk_south_water_wells_north_hitching_brown_boarding_house -Infinity/1.3 m, foot Infinity m, 3.88 m clear | blk_south_water_wells_north_hitching_carpenter_south_water_store -Infinity/1.3 m, foot Infinity m, 3.88 m clear | blk_south_water_wells_north_hitching_h_jones_store -Infinity/1.3 m, foot Infinity m, 3.88 m clear | blk_south_water_wells_north_hitching_peck_store -Infinity/1.3 m, foot Infinity m, 3.88 m clear — 1 board(s) lettered in the layer, record says a board on a post here: false"
+        "mobile 390x780: the Sauganash's two hitching posts stand on their own ground, carrying nothing — sauganash_hotel_hitching_post_1 1.30/1.3 m, foot -0.000 m, 3.87 m clear | sauganash_hotel_hitching_post_2 1.30/1.3 m, foot -0.000 m, 3.87 m clear | blk_lake_market_north_hitching_philo_carpenter_log_shop -Infinity/1.3 m, foot Infinity m, 3.88 m clear | blk_south_water_clark_north_hitching_madore_beaubien_house -Infinity/1.3 m, foot Infinity m, 3.88 m clear | blk_south_water_clark_north_hitching_pruyne_kimball_drugstore -Infinity/1.3 m, foot Infinity m, 3.88 m clear | blk_south_water_dearborn_north_hitching_chicago_american_office -Infinity/1.3 m, foot Infinity m, 3.88 m clear | blk_south_water_dearborn_south_hitching_mansion_house -Infinity/1.3 m, foot Infinity m, 3.89 m clear | blk_south_water_franklin_north_hitching_jh_kinzie_forwarding_store -Infinity/1.3 m, foot Infinity m, 3.88 m clear | blk_south_water_lasalle_north_hitching_chicago_democrat_office -Infinity/1.3 m, foot Infinity m, 3.88 m clear | blk_south_water_lasalle_south_hitching_thomas_church_store -Infinity/1.3 m, foot Infinity m, 3.88 m clear | blk_south_water_wells_north_hitching_brown_boarding_house -Infinity/1.3 m, foot Infinity m, 3.88 m clear | blk_south_water_wells_north_hitching_carpenter_south_water_store -Infinity/1.3 m, foot Infinity m, 3.88 m clear | blk_south_water_wells_north_hitching_h_jones_store -Infinity/1.3 m, foot Infinity m, 3.88 m clear | blk_south_water_wells_north_hitching_peck_store -Infinity/1.3 m, foot Infinity m, 3.88 m clear — 1 board(s) lettered in the layer, record says a board on a post here: false"
       ],
-      "wallSeconds": 210,
-      "takenAt": "2026-08-28T02:30:20.467Z",
-      "ref": "steward/t-0059-generator-half-measured",
-      "commit": "a638614c75d3",
+      "wallSeconds": 213,
+      "takenAt": "2026-08-28T08:03:44.621Z",
+      "ref": "steward/t-0219-heightfield-south-madison",
+      "commit": "708b1022863f",
+      "devCommit": "a9a3a2f966d0",
+      "treeHash": "sha256:375ff0c37adb0d01",
+      "treeDirty": false,
+      "changelogHash": "sha256:4dac3a0c094151bf",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          4.1,
+          2.6,
+          1.2
+        ]
+      },
+      "source": "/tmp/m12.log"
+    },
+    {
+      "viewport": "mobile",
+      "stage": "4",
+      "parts": [
+        4
+      ],
+      "verdict": "pass",
+      "target": "published",
+      "passed": 51,
+      "failed": 0,
+      "failures": [],
+      "wallSeconds": 376,
+      "takenAt": "2026-08-28T04:03:34.860Z",
+      "ref": "steward/t-0219-heightfield-south-madison",
+      "commit": "564a0f73b1a4",
+      "devCommit": "a638614c75d3",
+      "treeHash": "sha256:933f34f768a9371d",
+      "treeDirty": false,
+      "changelogHash": "sha256:a92323a5fbcd1da2",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          4.2,
+          4.6,
+          4.2
+        ]
+      },
+      "source": "/tmp/sm4.txt"
+    },
+    {
+      "viewport": "mobile",
+      "stage": "9",
+      "parts": [
+        9
+      ],
+      "verdict": "pass",
+      "target": "published",
+      "passed": 88,
+      "failed": 0,
+      "failures": [],
+      "wallSeconds": 141,
+      "takenAt": "2026-08-28T04:03:34.778Z",
+      "ref": "steward/t-0219-heightfield-south-madison",
+      "commit": "564a0f73b1a4",
+      "devCommit": "a638614c75d3",
+      "treeHash": "sha256:933f34f768a9371d",
+      "treeDirty": false,
+      "changelogHash": "sha256:a92323a5fbcd1da2",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          4.2,
+          4.6,
+          4.2
+        ]
+      },
+      "source": "/tmp/sm9.txt"
+    },
+    {
+      "viewport": "mobile",
+      "stage": "1-2",
+      "parts": [
+        1,
+        2
+      ],
+      "verdict": "fail",
+      "target": "published",
+      "passed": 147,
+      "failed": 1,
+      "failures": [
+        "mobile 390x780: the Sauganash's two hitching posts stand on their own ground, carrying nothing — sauganash_hotel_hitching_post_1 1.30/1.3 m, foot -0.000 m, 3.87 m clear | sauganash_hotel_hitching_post_2 1.30/1.3 m, foot -0.000 m, 3.87 m clear | blk_lake_market_north_hitching_philo_carpenter_log_shop -Infinity/1.3 m, foot Infinity m, 3.88 m clear | blk_south_water_clark_north_hitching_madore_beaubien_house -Infinity/1.3 m, foot Infinity m, 3.88 m clear | blk_south_water_clark_north_hitching_pruyne_kimball_drugstore -Infinity/1.3 m, foot Infinity m, 3.88 m clear | blk_south_water_dearborn_north_hitching_chicago_american_office -Infinity/1.3 m, foot Infinity m, 3.88 m clear | blk_south_water_dearborn_south_hitching_mansion_house -Infinity/1.3 m, foot Infinity m, 3.89 m clear | blk_south_water_franklin_north_hitching_jh_kinzie_forwarding_store -Infinity/1.3 m, foot Infinity m, 3.88 m clear | blk_south_water_lasalle_north_hitching_chicago_democrat_office -Infinity/1.3 m, foot Infinity m, 3.88 m clear | blk_south_water_lasalle_south_hitching_thomas_church_store -Infinity/1.3 m, foot Infinity m, 3.88 m clear | blk_south_water_wells_north_hitching_brown_boarding_house -Infinity/1.3 m, foot Infinity m, 3.88 m clear | blk_south_water_wells_north_hitching_carpenter_south_water_store -Infinity/1.3 m, foot Infinity m, 3.88 m clear | blk_south_water_wells_north_hitching_h_jones_store -Infinity/1.3 m, foot Infinity m, 3.88 m clear | blk_south_water_wells_north_hitching_peck_store -Infinity/1.3 m, foot Infinity m, 3.88 m clear — 1 board(s) lettered in the layer, record says a board on a post here: false"
+      ],
+      "wallSeconds": 288,
+      "takenAt": "2026-08-28T03:44:31.760Z",
+      "ref": "steward/t-0219-heightfield-south-madison",
+      "commit": "bffa2ddd9208",
       "devCommit": "a638614c75d3",
       "treeHash": "sha256:eb35c30b22a8a378",
-      "treeDirty": false,
+      "treeDirty": true,
       "changelogHash": "sha256:0c012ea61c60d2c0",
       "host": {
         "kind": "steward-runner",
         "cpus": 4,
         "memGB": 15.6,
         "loadavg": [
-          4.3,
-          3.2,
-          1.6
+          3.9,
+          3.5,
+          3.4
         ]
       },
-      "source": "/tmp/smoke_m12.log"
+      "source": "/tmp/sm12b.txt"
     },
     {
       "viewport": "mobile",
@@ -191,66 +494,35 @@
       "source": "/tmp/smoke_desktop_9.log"
     },
     {
-      "viewport": "mobile",
-      "stage": "4",
+      "viewport": "desktop",
+      "stage": "3",
       "parts": [
-        4
+        3
       ],
       "verdict": "pass",
       "target": "published",
-      "passed": 51,
+      "passed": 74,
       "failed": 0,
       "failures": [],
-      "wallSeconds": 376,
-      "takenAt": "2026-08-28T04:03:34.860Z",
-      "ref": "steward/t-0219-heightfield-south-madison",
-      "commit": "564a0f73b1a4",
+      "wallSeconds": 103,
+      "takenAt": "2026-08-28T02:30:20.537Z",
+      "ref": "steward/t-0059-generator-half-measured",
+      "commit": "a638614c75d3",
       "devCommit": "a638614c75d3",
-      "treeHash": "sha256:933f34f768a9371d",
+      "treeHash": "sha256:eb35c30b22a8a378",
       "treeDirty": false,
-      "changelogHash": "sha256:a92323a5fbcd1da2",
+      "changelogHash": "sha256:0c012ea61c60d2c0",
       "host": {
         "kind": "steward-runner",
         "cpus": 4,
         "memGB": 15.6,
         "loadavg": [
-          4.2,
-          4.6,
-          4.2
+          4.3,
+          3.2,
+          1.6
         ]
       },
-      "source": "/tmp/sm4.txt"
-    },
-    {
-      "viewport": "mobile",
-      "stage": "9",
-      "parts": [
-        9
-      ],
-      "verdict": "pass",
-      "target": "published",
-      "passed": 88,
-      "failed": 0,
-      "failures": [],
-      "wallSeconds": 141,
-      "takenAt": "2026-08-28T04:03:34.778Z",
-      "ref": "steward/t-0219-heightfield-south-madison",
-      "commit": "564a0f73b1a4",
-      "devCommit": "a638614c75d3",
-      "treeHash": "sha256:933f34f768a9371d",
-      "treeDirty": false,
-      "changelogHash": "sha256:a92323a5fbcd1da2",
-      "host": {
-        "kind": "steward-runner",
-        "cpus": 4,
-        "memGB": 15.6,
-        "loadavg": [
-          4.2,
-          4.6,
-          4.2
-        ]
-      },
-      "source": "/tmp/sm9.txt"
+      "source": "/tmp/smoke_d3.log"
     },
     {
       "viewport": "mobile",
@@ -264,27 +536,27 @@
       "passed": 147,
       "failed": 1,
       "failures": [
-        "mobile 390x780: the Sauganash's two hitching posts stand on their own ground, carrying nothing — sauganash_hotel_hitching_post_1 1.30/1.3 m, foot -0.000 m, 3.87 m clear | sauganash_hotel_hitching_post_2 1.30/1.3 m, foot -0.000 m, 3.87 m clear | blk_lake_market_north_hitching_philo_carpenter_log_shop -Infinity/1.3 m, foot Infinity m, 3.88 m clear | blk_south_water_clark_north_hitching_madore_beaubien_house -Infinity/1.3 m, foot Infinity m, 3.88 m clear | blk_south_water_clark_north_hitching_pruyne_kimball_drugstore -Infinity/1.3 m, foot Infinity m, 3.88 m clear | blk_south_water_dearborn_north_hitching_chicago_american_office -Infinity/1.3 m, foot Infinity m, 3.88 m clear | blk_south_water_dearborn_south_hitching_mansion_house -Infinity/1.3 m, foot Infinity m, 3.89 m clear | blk_south_water_franklin_north_hitching_jh_kinzie_forwarding_store -Infinity/1.3 m, foot Infinity m, 3.88 m clear | blk_south_water_lasalle_north_hitching_chicago_democrat_office -Infinity/1.3 m, foot Infinity m, 3.88 m clear | blk_south_water_lasalle_south_hitching_thomas_church_store -Infinity/1.3 m, foot Infinity m, 3.88 m clear | blk_south_water_wells_north_hitching_brown_boarding_house -Infinity/1.3 m, foot Infinity m, 3.88 m clear | blk_south_water_wells_north_hitching_carpenter_south_water_store -Infinity/1.3 m, foot Infinity m, 3.88 m clear | blk_south_water_wells_north_hitching_h_jones_store -Infinity/1.3 m, foot Infinity m, 3.88 m clear | blk_south_water_wells_north_hitching_peck_store -Infinity/1.3 m, foot Infinity m, 3.88 m clear — 1 board(s) lettered in the layer, record says a board on a post here: false"
+        "mobile 390x780: the Sauganash's two hitching posts stand on their own ground, carrying nothing — sauganash_hotel_hitching_post_1 1.30/1.3 m, foot -0.000 m, 3.87 m clear | sauganash_hotel_hitching_post_2 1.30/1.3 m, foot 0.000 m, 3.87 m clear | blk_lake_market_north_hitching_philo_carpenter_log_shop -Infinity/1.3 m, foot Infinity m, 3.88 m clear | blk_south_water_clark_north_hitching_madore_beaubien_house -Infinity/1.3 m, foot Infinity m, 3.88 m clear | blk_south_water_clark_north_hitching_pruyne_kimball_drugstore -Infinity/1.3 m, foot Infinity m, 3.88 m clear | blk_south_water_dearborn_north_hitching_chicago_american_office -Infinity/1.3 m, foot Infinity m, 3.88 m clear | blk_south_water_dearborn_south_hitching_mansion_house -Infinity/1.3 m, foot Infinity m, 3.89 m clear | blk_south_water_franklin_north_hitching_jh_kinzie_forwarding_store -Infinity/1.3 m, foot Infinity m, 3.88 m clear | blk_south_water_lasalle_north_hitching_chicago_democrat_office -Infinity/1.3 m, foot Infinity m, 3.88 m clear | blk_south_water_lasalle_south_hitching_thomas_church_store -Infinity/1.3 m, foot Infinity m, 3.88 m clear | blk_south_water_wells_north_hitching_brown_boarding_house -Infinity/1.3 m, foot Infinity m, 3.88 m clear | blk_south_water_wells_north_hitching_carpenter_south_water_store -Infinity/1.3 m, foot Infinity m, 3.88 m clear | blk_south_water_wells_north_hitching_h_jones_store -Infinity/1.3 m, foot Infinity m, 3.88 m clear | blk_south_water_wells_north_hitching_peck_store -Infinity/1.3 m, foot Infinity m, 3.88 m clear — 1 board(s) lettered in the layer, record says a board on a post here: false"
       ],
-      "wallSeconds": 288,
-      "takenAt": "2026-08-28T03:44:31.760Z",
-      "ref": "steward/t-0219-heightfield-south-madison",
-      "commit": "bffa2ddd9208",
+      "wallSeconds": 210,
+      "takenAt": "2026-08-28T02:30:20.467Z",
+      "ref": "steward/t-0059-generator-half-measured",
+      "commit": "a638614c75d3",
       "devCommit": "a638614c75d3",
       "treeHash": "sha256:eb35c30b22a8a378",
-      "treeDirty": true,
+      "treeDirty": false,
       "changelogHash": "sha256:0c012ea61c60d2c0",
       "host": {
         "kind": "steward-runner",
         "cpus": 4,
         "memGB": 15.6,
         "loadavg": [
-          3.9,
-          3.5,
-          3.4
+          4.3,
+          3.2,
+          1.6
         ]
       },
-      "source": "/tmp/sm12b.txt"
+      "source": "/tmp/smoke_m12.log"
     },
     {
       "viewport": "mobile",
