@@ -1,5 +1,5 @@
 ---
-id: T-0316
+id: T-0318
 title: The January 1834 letter list is 97 names and the printed list was longer; the page images can close the gap
 state: open
 epic: META
@@ -17,8 +17,6 @@ needs_bake: false
 ---
 
 The January 1834 letter list is 97 names and the printed list was longer; the page images can close the gap.
-
-
 
 T-0310 read the list of letters remaining in the Post Office at Chicago on 1 January 1834
 (`chicago_democrat_1834_01_28`, page 4 column 2, lines 1105-1127) and minted **97 residents**

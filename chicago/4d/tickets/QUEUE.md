@@ -29,7 +29,6 @@
 # --- THE TRIANGLE BUDGET — invisible, and it gates EVERY visible ticket that adds geometry
 
 # --- THE TOWN AND ITS STREETS — visible
-T-0028 — Build out the NEXT anonymous block (one per run)
 T-0192 — The cross streets' own frontages get the street edge
 
 # --- THE RIVER, THE WHARVES AND THE GROUND — visible
@@ -53,7 +52,6 @@ T-0312 — Reading the Democrat, March 1834: Vol. I Nos. 15-17
 T-0313 — Reading the Democrat, April 1834: Vol. I Nos. 18-22
 T-0314 — Reading the Democrat, May 1834: Vol. I Nos. 23-26
 T-0315 — Reading the Democrat, June 1834: Vol. I Nos. 27-30
-T-0291 — Reading the Democrat, September 1834: Vol I Nos 40-43
 T-0293 — Reading the Democrat, November 1834: Vol I Nos 49-52
 T-0294 — Reading the Democrat, December 1834: Vol II Nos 1-4
 T-0296 — Reading the Democrat, 8 to 29 July 1835: the rest of the scene month
@@ -122,4 +120,6 @@ T-0304 — The gazetteer merges persons by a declared rule and has no equivalent
 T-0305 — Four readings the American contradicts itself on need the page images: the tailor's street, which Water street two forwarding houses stood in, and the corner of Cobb's saddlery
 T-0306 — The American names six Chicago storefronts with usable placements and none of them is standing in the model yet
 T-0307 — The derivation's running maximum costs 42 m of verge where the bank turns a right angle at Wolf Point
-T-0316 — The January 1834 letter list is 97 names and the printed list was longer; the page images can close the gap
+T-0316 — The 665-roof deal puts a large river warehouse on an inland platted block, and the block generator cannot build one
+T-0317 — Build out the NEXT anonymous block: after blk_lake_franklin the last ungenerated block is owner-blocked, and the roofs left stand on blocks that already stand
+T-0318 — The January 1834 letter list is 97 names and the printed list was longer; the page images can close the gap
