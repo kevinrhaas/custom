@@ -22,13 +22,14 @@
       "south_water",
       "lake",
       "randolph",
-      "washington"
+      "washington",
+      "market"
     ],
-    "faces_laid": 36,
-    "walk_m": 3170.7,
-    "crossing_m": 857.5,
+    "faces_laid": 38,
+    "walk_m": 3379.4,
+    "crossing_m": 881.9,
     "fence_m": 1669.0,
-    "walking_decks": 254,
+    "walking_decks": 269,
     "hitching_posts": 12
   },
   "card": {
@@ -44,10 +45,10 @@
         "note": "Asked for by the owner, 2026-08-18, of the first Cook County jail engraving: 'note the fences lining the street and what appears to be plank sidewalks. all of the streets should be updated like this... at least south of the river or near the river.' No 1835 source names a walk or a fence on any particular stretch of these streets."
       },
       "walk_m": {
-        "value": 3170.7,
+        "value": 3379.4,
         "confidence": "reconstructed",
         "sources": [],
-        "note": "41 run(s) of sidewalk on 36 platted block face(s), plus 857.5 m of board crossing at 36 corner(s). Nothing measured: every metre is derived from the committed plat and audited against the committed ground."
+        "note": "43 run(s) of sidewalk on 38 platted block face(s), plus 881.9 m of board crossing at 37 corner(s). Nothing measured: every metre is derived from the committed plat and audited against the committed ground."
       },
       "fence_m": {
         "value": 1669.0,
@@ -2430,6 +2431,169 @@
         }
       ],
       "note": "THE PLANK SIDEWALK ON THE RANDOLPH STREET FRONTAGE of blk_lake_market's south face, at the lot line. WHERE is DERIVED and nothing here is placed: the face is a committed street centreline offset by half the committed 80 ft corridor (data/traces/vectors/thompson_lots.json, re-derived by tools/generate_plat_lots.py), and the walk's centre lies 1.165 m outward of it — 0.25 m of daylight off the fence line and half a walk's width — leaving 6.62 m of verge between its outer edge and the Randolph Street track. This run is the stretch from 0.0 m to 94.5 m along the face that passed the march: dry committed ground, flat enough for one walking deck, and nothing already standing on it. What is invented is the width, the rise, the plank pitch and that a walk stood on this ground at noon on 1 July 1835: docs/LIBERTIES.md L160."
+    },
+    {
+      "id": "blk_lake_market_west_walk_1",
+      "belongs_to": "town_street_edge",
+      "kind": "plank_walk",
+      "confidence": "reconstructed",
+      "street": "market",
+      "street_name": "Market Street",
+      "chunk": "blk_lake_market_west_1",
+      "centreline_local_enu_m": [
+        [
+          99.19,
+          -241.07
+        ],
+        [
+          99.96,
+          -143.27
+        ]
+      ],
+      "width_m": 1.83,
+      "rise_m": 0.11,
+      "plank_run": "across",
+      "plank_pitch_m": 0.32,
+      "plank_thickness_m": 0.055,
+      "plank_underside": false,
+      "stringer_pitch_m": 2.08,
+      "lot_line_offset_m": 1.17,
+      "verge_to_track_m": 6.11,
+      "footway_decks": [
+        {
+          "y": 0.865,
+          "pts": [
+            [
+              100.1,
+              -241.16
+            ],
+            [
+              100.26,
+              -220.41
+            ],
+            [
+              98.43,
+              -220.39
+            ],
+            [
+              98.27,
+              -241.14
+            ]
+          ],
+          "ground_roll_m": 0.0
+        },
+        {
+          "y": 0.865,
+          "pts": [
+            [
+              100.26,
+              -220.57
+            ],
+            [
+              100.43,
+              -199.82
+            ],
+            [
+              98.6,
+              -199.8
+            ],
+            [
+              98.43,
+              -220.55
+            ]
+          ],
+          "ground_roll_m": 0.001
+        },
+        {
+          "y": 0.865,
+          "pts": [
+            [
+              100.43,
+              -199.98
+            ],
+            [
+              100.59,
+              -179.23
+            ],
+            [
+              98.76,
+              -179.21
+            ],
+            [
+              98.6,
+              -199.96
+            ]
+          ],
+          "ground_roll_m": 0.005
+        },
+        {
+          "y": 0.862,
+          "pts": [
+            [
+              100.59,
+              -179.39
+            ],
+            [
+              100.75,
+              -158.64
+            ],
+            [
+              98.92,
+              -158.63
+            ],
+            [
+              98.76,
+              -179.37
+            ]
+          ],
+          "ground_roll_m": 0.021
+        },
+        {
+          "y": 0.853,
+          "pts": [
+            [
+              100.75,
+              -158.8
+            ],
+            [
+              100.84,
+              -148.34
+            ],
+            [
+              99.01,
+              -148.33
+            ],
+            [
+              98.92,
+              -158.79
+            ]
+          ],
+          "ground_roll_m": 0.067
+        },
+        {
+          "y": 0.82,
+          "pts": [
+            [
+              100.84,
+              -148.5
+            ],
+            [
+              100.88,
+              -143.2
+            ],
+            [
+              99.05,
+              -143.18
+            ],
+            [
+              99.01,
+              -148.49
+            ]
+          ],
+          "ground_roll_m": 0.066
+        }
+      ],
+      "note": "THE PLANK SIDEWALK ON THE MARKET STREET FRONTAGE of blk_lake_market's west face, at the lot line. WHERE is DERIVED and nothing here is placed: the face is a committed street centreline offset by half the committed 80 ft corridor (data/traces/vectors/thompson_lots.json, re-derived by tools/generate_plat_lots.py), and the walk's centre lies 1.165 m outward of it — 0.25 m of daylight off the fence line and half a walk's width — leaving 6.11 m of verge between its outer edge and the Market Street track. This run is the stretch from 0.0 m to 97.8 m along the face that passed the march: dry committed ground, flat enough for one walking deck, and nothing already standing on it. What is invented is the width, the rise, the plank pitch and that a walk stood on this ground at noon on 1 July 1835: docs/LIBERTIES.md L160."
     },
     {
       "id": "blk_lake_wells_north_crossing_blk_lake_lasalle_north",
@@ -5359,6 +5523,265 @@
         }
       ],
       "note": "THE PLANK SIDEWALK ON THE WASHINGTON STREET FRONTAGE of blk_randolph_market's south face, at the lot line. WHERE is DERIVED and nothing here is placed: the face is a committed street centreline offset by half the committed 80 ft corridor (data/traces/vectors/thompson_lots.json, re-derived by tools/generate_plat_lots.py), and the walk's centre lies 1.165 m outward of it — 0.25 m of daylight off the fence line and half a walk's width — leaving 7.21 m of verge between its outer edge and the Washington Street track. This run is the stretch from 0.0 m to 94.8 m along the face that passed the march: dry committed ground, flat enough for one walking deck, and nothing already standing on it. What is invented is the width, the rise, the plank pitch and that a walk stood on this ground at noon on 1 July 1835: docs/LIBERTIES.md L160."
+    },
+    {
+      "id": "blk_randolph_market_west_crossing_blk_lake_market_west",
+      "belongs_to": "town_street_edge",
+      "kind": "board_crossing",
+      "confidence": "reconstructed",
+      "street": "market",
+      "street_name": "Market Street",
+      "chunk": "blk_randolph_market_west_1",
+      "centreline_local_enu_m": [
+        [
+          99.0,
+          -265.46
+        ],
+        [
+          99.19,
+          -241.07
+        ]
+      ],
+      "width_m": 1.83,
+      "rise_m": 0.06,
+      "plank_run": "along",
+      "plank_count": 6,
+      "plank_thickness_m": 0.055,
+      "plank_underside": false,
+      "plank_step_m": 1.8,
+      "run_m": 24.39,
+      "footway_decks": [
+        {
+          "y": 0.815,
+          "pts": [
+            [
+              99.91,
+              -265.55
+            ],
+            [
+              100.01,
+              -253.19
+            ],
+            [
+              98.18,
+              -253.18
+            ],
+            [
+              98.08,
+              -265.53
+            ]
+          ],
+          "ground_roll_m": 0.0
+        },
+        {
+          "y": 0.815,
+          "pts": [
+            [
+              100.0,
+              -253.35
+            ],
+            [
+              100.1,
+              -241.0
+            ],
+            [
+              98.27,
+              -240.98
+            ],
+            [
+              98.17,
+              -253.34
+            ]
+          ],
+          "ground_roll_m": 0.0
+        }
+      ],
+      "note": "A BOARD CROSSING OVER MARKET STREET. Images 6 and 8 give plank sidewalks WITH board crossings at the town's two inns, so the fact is the plates' and every dimension is invented. Its boards run the way a foot travels rather than across it, which is what a crossing is FOR — it spans the ruts instead of lying in them — and it lies lower than the walk because a wheel crosses it. WHERE is derived: the two ends are the two walks it joins, so the run is the corridor those walks stop either side of, 24.4 m of it, and the crossing exists only where both of them were laid. docs/LIBERTIES.md L160."
+    },
+    {
+      "id": "blk_randolph_market_west_walk_1",
+      "belongs_to": "town_street_edge",
+      "kind": "plank_walk",
+      "confidence": "reconstructed",
+      "street": "market",
+      "street_name": "Market Street",
+      "chunk": "blk_randolph_market_west_1",
+      "centreline_local_enu_m": [
+        [
+          98.12,
+          -376.4
+        ],
+        [
+          99.0,
+          -265.46
+        ]
+      ],
+      "width_m": 1.83,
+      "rise_m": 0.11,
+      "plank_run": "across",
+      "plank_pitch_m": 0.32,
+      "plank_thickness_m": 0.055,
+      "plank_underside": false,
+      "stringer_pitch_m": 2.08,
+      "lot_line_offset_m": 1.17,
+      "verge_to_track_m": 6.11,
+      "footway_decks": [
+        {
+          "y": 0.884,
+          "pts": [
+            [
+              99.03,
+              -376.49
+            ],
+            [
+              99.16,
+              -360.48
+            ],
+            [
+              97.33,
+              -360.46
+            ],
+            [
+              97.2,
+              -376.47
+            ]
+          ],
+          "ground_roll_m": 0.004
+        },
+        {
+          "y": 0.88,
+          "pts": [
+            [
+              99.16,
+              -360.64
+            ],
+            [
+              99.28,
+              -344.63
+            ],
+            [
+              97.45,
+              -344.62
+            ],
+            [
+              97.33,
+              -360.62
+            ]
+          ],
+          "ground_roll_m": 0.0
+        },
+        {
+          "y": 0.88,
+          "pts": [
+            [
+              99.28,
+              -344.79
+            ],
+            [
+              99.41,
+              -328.78
+            ],
+            [
+              97.58,
+              -328.77
+            ],
+            [
+              97.45,
+              -344.78
+            ]
+          ],
+          "ground_roll_m": 0.005
+        },
+        {
+          "y": 0.877,
+          "pts": [
+            [
+              99.41,
+              -328.94
+            ],
+            [
+              99.53,
+              -312.93
+            ],
+            [
+              97.7,
+              -312.92
+            ],
+            [
+              97.58,
+              -328.93
+            ]
+          ],
+          "ground_roll_m": 0.007
+        },
+        {
+          "y": 0.871,
+          "pts": [
+            [
+              99.53,
+              -313.09
+            ],
+            [
+              99.66,
+              -297.09
+            ],
+            [
+              97.83,
+              -297.07
+            ],
+            [
+              97.7,
+              -313.08
+            ]
+          ],
+          "ground_roll_m": 0.001
+        },
+        {
+          "y": 0.87,
+          "pts": [
+            [
+              99.66,
+              -297.25
+            ],
+            [
+              99.78,
+              -281.24
+            ],
+            [
+              97.95,
+              -281.22
+            ],
+            [
+              97.83,
+              -297.23
+            ]
+          ],
+          "ground_roll_m": 0.005
+        },
+        {
+          "y": 0.865,
+          "pts": [
+            [
+              99.78,
+              -281.4
+            ],
+            [
+              99.91,
+              -265.39
+            ],
+            [
+              98.08,
+              -265.37
+            ],
+            [
+              97.95,
+              -281.38
+            ]
+          ],
+          "ground_roll_m": 0.0
+        }
+      ],
+      "note": "THE PLANK SIDEWALK ON THE MARKET STREET FRONTAGE of blk_randolph_market's west face, at the lot line. WHERE is DERIVED and nothing here is placed: the face is a committed street centreline offset by half the committed 80 ft corridor (data/traces/vectors/thompson_lots.json, re-derived by tools/generate_plat_lots.py), and the walk's centre lies 1.165 m outward of it — 0.25 m of daylight off the fence line and half a walk's width — leaving 6.11 m of verge between its outer edge and the Market Street track. This run is the stretch from 0.0 m to 110.9 m along the face that passed the march: dry committed ground, flat enough for one walking deck, and nothing already standing on it. What is invented is the width, the rise, the plank pitch and that a walk stood on this ground at noon on 1 July 1835: docs/LIBERTIES.md L160."
     },
     {
       "id": "blk_randolph_wells_north_crossing_blk_randolph_lasalle_north",

@@ -345,7 +345,7 @@ WHARVES_JS = ROOT / "renderers" / "web" / "js" / "wharves.js"
 # The cross streets' own frontages (T-0192) and the West Division across the
 # South Branch (T-0193) likewise stay out, and the record's own `refused` carries
 # every one of these numbers rather than a promise.
-EDGE_STREETS = ("south_water", "lake", "randolph", "washington")
+EDGE_STREETS = ("south_water", "lake", "randolph", "washington", "market")
 #
 # THE WEST DIVISION WAS BUILT AND MEASURED RATHER THAN ESTIMATED (T-0193), and it
 # is refused by ONE STAND AT ONE TIER AT ONE VIEWPORT. `blk_lake_clinton` is the
@@ -2495,9 +2495,25 @@ def _track_verge(frame, offset_m, half_w, streets, street_id) -> float:
     return worst
 
 
+# A BLOCK FACE, THE SIDE OF THE ROAD IT STANDS ON, AND THE AXIS THAT ORDERS IT.
+# The block lies south of a street it bounds on its NORTH face, so that face stands
+# on the street's SOUTH side, and the same the other three ways round. The side is
+# what pairs two faces across the same road.
+#
+# THE AXIS IS WHY THIS IS A TABLE AND NOT AN `if`. Until T-0192 this generator only
+# ever looked at north and south faces, so "further along this street" could be read
+# straight off the easting; a CROSS STREET runs north-south and its faces are ordered
+# by NORTHING. Every place that asks where a face sits along its own street reads the
+# index here, so a cross street is the same rule on another axis rather than a second
+# copy of it.
+FACE_SIDE = {"north": "south", "south": "north", "east": "west", "west": "east"}
+FACE_AXIS = {"north": 0, "south": 0, "east": 1, "west": 1}
+SIDE_PAIRS = {0: ("north", "south"), 1: ("east", "west")}
+
+
 def _edge_faces(lots_doc):
-    """Every platted block face that fronts one of the two covered streets, with
-    its committed frame. The faces are the plat's, and the plat's are the street
+    """Every platted block face that fronts one of the covered streets, with its
+    committed frame. The faces are the plat's, and the plat's are the street
     network's: `tools/generate_plat_lots.py` builds every one of these edges by
     offsetting a committed centreline out of `data/streets/1835.json`."""
     out = []
@@ -2505,20 +2521,19 @@ def _edge_faces(lots_doc):
         if block["id"] in EDGE_SKIP_BLOCKS:
             continue
         bounded = block.get("bounded_by") or {}
-        for face in ("north", "south"):
+        for face in ("north", "south", "east", "west"):
             street = bounded.get(face)
             if street not in EDGE_STREETS:
                 continue
             frame = face_frame(block, face)
-            # The block lies south of a street it bounds on its NORTH face, so
-            # that face stands on the street's SOUTH side, and the other way
-            # round. The side is what pairs two faces across the same road.
             out.append({
                 "block": block, "face": face, "street": street,
-                "side": "south" if face == "north" else "north",
+                "side": FACE_SIDE[face],
+                "axis": FACE_AXIS[face],
                 "frame": frame,
             })
-    out.sort(key=lambda f: (f["street"], f["side"], f["frame"]["origin"][0]))
+    out.sort(key=lambda f: (f["street"], f["side"],
+                            f["frame"]["origin"][f["axis"]]))
     return out
 
 
@@ -2973,7 +2988,8 @@ def build_street_edge() -> tuple[list, list, list, dict]:
     for key, rec in laid_by_face.items():
         sides.setdefault((rec["entry"]["street"], rec["entry"]["side"]), []).append((key, rec))
     for (street, side), members in sorted(sides.items()):
-        members.sort(key=lambda m: m[1]["entry"]["frame"]["origin"][0])
+        members.sort(key=lambda m: m[1]["entry"]["frame"]["origin"][
+            m[1]["entry"]["axis"]])
         for (ka, ra), (kb, rb) in zip(members, members[1:]):
             fa = ra["entry"]["frame"]
             fb = rb["entry"]["frame"]
@@ -2994,21 +3010,26 @@ def build_street_edge() -> tuple[list, list, list, dict]:
     # Across a street: the two sides of the same street, where a face on one is
     # opposite a face on the other.
     for street in EDGE_STREETS:
-        north = sides.get((street, "north"), [])
-        south = sides.get((street, "south"), [])
+        # WHICH TWO SIDES FACE EACH OTHER depends on which way the street runs, and
+        # the axis of its own faces is what says so — north/south across an east-west
+        # street, east/west across a cross street (T-0192).
+        axis = next((e["axis"] for e in faces if e["street"] == street), 0)
+        near_side, far_side = SIDE_PAIRS[axis]
+        north = sides.get((street, near_side), [])
+        south = sides.get((street, far_side), [])
         for kn, rn in north:
             fn = rn["entry"]["frame"]
-            n0 = fn["origin"][0]
+            n0 = fn["origin"][axis]
             n1 = n0 + fn["length"]
             for ks, rs in south:
                 fs = rs["entry"]["frame"]
-                s0 = fs["origin"][0]
+                s0 = fs["origin"][axis]
                 s1 = s0 + fs["length"]
                 overlap = min(n1, s1) - max(n0, s0)
                 if overlap < 40.0:
                     continue
-                # At the WEST end of the overlap, a few metres in: a crossing over
-                # the road is at a corner, not in the middle of a block.
+                # At the WEST (or SOUTH) end of the overlap, a few metres in: a
+                # crossing over the road is at a corner, not in the middle of a block.
                 at_e = max(n0, s0) + 4.0
                 tn = at_e - n0
                 ts = at_e - s0
