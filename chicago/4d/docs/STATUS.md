@@ -1,5 +1,57 @@
 # STATUS
 
+## Shipped 2026-08-28 — T-0162: the sward census stands at a phone, and its first honest phone reading is red
+
+`tools/measure_sward_draw.mjs` has carried a `SWARD_VIEWPORT=mobile` flag since T-0018, and its own
+header said why it had to exist: *"the viewport decides the ring sizes and therefore how many slots a
+station deals, so the census has to be answerable at both."* It was not answerable at both. The two
+runs came back **identical, row for row** — T-0018 measured 7,844 slots either way — and nobody could
+see why, because both numbers were real numbers taken from a real page.
+
+**THE WINDOW IS NOT THE DEVICE, AND THE RING SIZES ARE CUT FROM THE DEVICE.** `flora.js` sizes every
+ring off `mergeTune(lowSpec && detail === 'full' ? 'light' : detail)`, and `lowSpec` is
+`controls/touch.js` `prefersTouch()` — `(pointer: coarse)`, or a touch point under a 900 px window.
+`browser.newPage({ viewport })` sets the window and nothing else: Chromium then reports
+`navigator.maxTouchPoints === 0` and a fine pointer, so a 390-px page resolved `full` exactly as the
+1280-px one did. The flag reached the CSS and never reached the tune.
+
+**What it stands at now**, copied from `tools/smoke_renderer.mjs`'s own mobile context rather than
+invented here (`hasTouch`, `deviceScaleFactor: 2`, and `isMobile: false` with the comment that goes
+with it), so the census and the gate stand in the same place:
+
+```
+  stand: desktop 1280x800, 0 touch point(s), pointer fine   — detail full,  sward tune full
+         ring reach: near 7 m, mid 26.4 m, forb 25.4 m
+  stand: MOBILE  390x780,  1 touch point(s), pointer COARSE — detail light, sward tune light
+         ring reach: near 4 m, mid 12.4 m, forb 12.4 m
+```
+
+**And the two censuses now differ, which is the demonstration.** Same 29 station-rows, same published
+mirror, one command apart:
+
+| | desktop 1280×800 | mobile 390×780 |
+|---|---:|---:|
+| slots dealt | **7,973** | **2,672** |
+| drawn | 6,090 | 2,152 |
+| refused by the two filters | 23.6 % | 19.5 % |
+| pooled B/Bnull | 0.64 | 1.08 |
+
+**THE STAND IS PRINTED AND IT IS ASSERTED.** The acceptance clause was *"no measurement is left
+claiming a viewport it did not stand at"*, so the run states the stand it reached — window, touch
+points, pointer, detail level, tune, and every layer's ring reach — before its first figure, and
+EXITS 2 rather than print a census under a heading it did not earn. The desktop stand is asserted the
+same way and for the same reason: a runner that reported a coarse pointer would deal this tool a
+phone's census while its header said 1280×800.
+
+**THE FIRST HONEST PHONE READING IS RED, ON ITS FIRST RUN.** `--gate` — the assertion that no list
+may owe a species a whole slot and draw it nowhere in the scene — **passes at desktop (0 pairs over
+7,153 slots) and FAILS at mobile (1 pair over 2,763 slots)**:
+`z10_settled_town.forb.xanthium_strumarium`, common cocklebur, owed 1.49 of a slot by the settled
+town's own cover records and drawn nowhere at a phone's ring sizes. That is not a regression this
+branch caused — it is the reading nobody had ever taken — and it is **T-0265**, not a fix made in
+passing.
+
+**Filed by this run:** T-0265 (the phone census's own gate is red).
 ## Shipped 2026-08-28 — T-0138: the town's two brick chimneys become one
 
 `generators/inferred_placeholder.py` painted its stacks `placeholder_chimney_brick` at

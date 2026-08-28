@@ -53,7 +53,6 @@ T-0209 — The bloom reaches 1.8 per cent of the ground the sward covers
 T-0214 — Two flower-head archetypes truncate silently at their instance cap
 T-0019 — Six forb layers ask for more plants than the lattice holds
 T-0225 — The sward's drawn reach is measured off plants at two per cent coverage
-T-0162 — SWARD_VIEWPORT=mobile deals the same census as desktop: the viewport does not reach the ring sizes
 
 # --- THE NEWSPAPERS — placed here by the owner, 2026-08-28: "put all that legwork
 # --- after the visible things". The invisible extraction tickets at the top of this
@@ -115,3 +114,4 @@ T-0252 — Decide once whether a baked town carries the nine renderer-drawn laye
 T-0253 — May an invented building stand on the river margin of a platted street corridor
 T-0254 — North Water Street west of the slough, and the crossing it needs
 T-0255 — The dooryard planting rule reads every street in the town with no bound on reach, so a track across the river can turn a house's yard
+T-0265 — The sward census fails its own gate at a phone: z10_settled_town owes xanthium_strumarium a whole slot and draws it nowhere
