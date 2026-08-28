@@ -65,6 +65,66 @@ desktop part-7 pass on this runner on any tree. The desktop figures above are fr
 `measure_sward_reach.mjs` at the gate's own station with the gate's own arithmetic, which is what
 the tool was written for.
 
+## Shipped 2026-08-28 — T-0019 (K58): the forb lattice's ceiling is declared, and it binds NINE layers, not six
+
+**The clamp, stated plainly.** `forbShareOf` in `renderers/web/js/flora.js` is
+`min(1, density × cell² / perCell)`, and that `min` is a lattice ceiling of **one plant per slot**.
+`TUNE.forb` is a 3.4 m cell dealt 4 times, so a slot stands for **2.89 m²** and the lattice cannot
+draw more than **0.346 flowering plants per m²** whatever a community's records say. K58 opened on
+that, and its acceptance offered two ways out: each clamped layer either FITS or its shortfall is
+declared in the census gate. Fitting is not available — see the last section — so this run declares.
+
+**K58's own count is superseded: it is nine of the ten populated forb layers, not six, and the
+figures are bigger than the ones on record.** K58 counted six at the midpoints of the recorded
+ranges. T-0034 moved the forb stratum onto the TOP of every range (L182), so the asked densities
+are the upper bounds now, and the two prairies and the lakeshore joined the clamp:
+
+| community | side | records ask | lattice offers | draws |
+|---|---|---:|---:|---:|
+| `z06_dense_forest` | dry | 66.381 /m² | 0.346 | **0.5 %** |
+| `z04_marsh` | dry | 22.000 | 0.346 | 1.6 % |
+| `z04_marsh` | **wet** | 22.000 | 0.346 | 1.6 % |
+| `z10_settled_town` | dry | 11.866 | 0.346 | 2.9 % |
+| `z05_riverbank_timber` | dry | 3.851 | 0.346 | 9.0 % |
+| `z03_sedge_meadow` | dry | 1.812 | 0.346 | 19.1 % |
+| `z08_lakeshore` | dry | 0.630 | 0.346 | 54.9 % |
+| `z02_mesic_prairie` | dry | 0.408 | 0.346 | 84.8 % |
+| `z01_wet_prairie` | dry | 0.407 | 0.346 | 85.0 % |
+| `z09_sand_prairie` | dry | 0.114 | 0.114 | **100 % — the only one that fits** |
+
+K58's midpoint figures for the same layers were 44.545 (`z06`), 14.5 (`z04`) and 7.760 (`z08`,
+`z10`). **The marsh's WET side appears here for the first time**: `forbShareWet` is clamped exactly
+as `forbShare` is, and the density behind it was not exported from `flora.js` until this run
+(`communities().forbDensityWet`).
+
+**Why nobody saw the drift.** A share reading `1.000` is one plant per slot whatever the slot is,
+so a layer sitting ON the ceiling printed identically to one tuned below it, and the size of the
+debt could only be recovered by re-deriving it from the records. Both movements happened under a
+green tree: **K55 took the clamped count from four to six** by fixing a cover-fraction/count unit
+error, and **T-0034 took it from six to nine** by dealing off the upper bound. Neither showed up
+anywhere.
+
+**The declaration and its gate.** `tools/forb_clamp_baseline.json` is the ledger: every
+(community, side) the ceiling binds, the density its records ask for, and the share of that density
+the lattice can carry. `node tools/measure_sward_draw.mjs --gate` now prints the whole table and
+FAILS when the measured set stops matching the declaration — a layer joining the clamp, a layer
+leaving it, the lattice ceiling moving, or an asked density moving more than half a per cent.
+`--declare` rewrites the file from the measurement, so the figure is never re-typed off a console.
+
+**The gate was shown reading red three ways before it was trusted**, which is this project's own
+bar: with an empty declaration it named all nine undeclared layers; with `z04_marsh.wet` declared
+at 18.0 against a measured 22.0 it called the declaration stale; with `z09_sand_prairie` declared
+clamped when it is not it asked for the line to be withdrawn. Green with the committed file:
+`9 clamped, 0 problem(s)`.
+
+**What was NOT done, and it is a decision rather than an omission.** No ceiling constant moved.
+`TUNE.forb.cell` and `TUNE.forb.perCell` are what they were. K58's routes out — a per-stratum cell,
+more than one plant per slot where the record asks for it — all buy plants with geometry, and they
+buy the most of it in `z06_dense_forest` and `z10_settled_town`, which are the two layers already
+carrying the most. The `full` and `balanced` scene-detail ceilings are breached on `dev` as this is
+written (T-0223, T-0229), so this is not the run to spend triangles on. The routes stay open and
+they now have a number written against each of them.
+
 ## Shipped 2026-08-28 — T-0024: the face rule ranks dwellings, and the store steps onto the street line
 
 **The question, and it has been open since 2026-08-15.** The face rule orders the DWELLINGS a
