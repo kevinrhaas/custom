@@ -53,11 +53,11 @@ and not a reading of the fort (0.23 of a 3.7 m wall is an 0.86 m post, which is 
 And the model resolves as separate posts at every stand a visitor can reach: 34 px at the north
 gate on a desktop, 16 px on a phone, 4 px against an expected 4.49 px from the river stand. It
 falls under the pixel grid at one place only — a phone at the river stand, 1.62 px beating into a
-4 px moire — which is **T-0265** rather than a reason to coarsen the wall. 768 posts and 21,504
+4 px moire — which is **T-0266** rather than a reason to coarsen the wall. 768 posts and 21,504
 positions on the picket surface, unchanged: no vertex moved, so `needs_bake` cost nothing.
 
 **Links:** T-0094 (the pass that found the disagreement) · L47 (the liberty that owns the gap
-between the posts) · T-0265 (the phone moire) · `tools/measure_picket_plate.py` § 4 ·
+between the posts) · T-0266 (the phone moire) · `tools/measure_picket_plate.py` § 4 ·
 `tools/measure_picket_reading.mjs` · docs/RESEARCH/fort_dearborn_image_accuracy.md.
 
 Either `picket_width_m` and `picket_spacing_m` move together, at the tier the reasoning earns, with

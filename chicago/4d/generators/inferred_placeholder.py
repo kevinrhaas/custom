@@ -149,13 +149,51 @@ def record_geometry(record: dict) -> tuple[dict[str, list], list[dict]]:
             cx = w * (.35 if i == 0 else .68)
             box(groups["chimney"], cx-.18, cx+.18, wall_h+.35, top, -d*.56, -d*.45)
 
+    # AND THE CHIMNEY IS THE LAST OF THEM (T-0138). `placeholder_chimney_brick` was
+    # the one row left holding a local literal — #89503F, (0.537, 0.314, 0.247) linear,
+    # written here and argued nowhere — while T-0008 gave the 112 brick stacks on the
+    # archetype buildings the sheet's CHIMNEY_BRICK at (0.45, 0.23, 0.17). The two are
+    # about 20 % apart in linear red and they stand on the same streets, which is
+    # docs/RESEARCH/materials.md §4 finding 4 in one line: *an atlas that textures one
+    # path and not the other splits the town visibly in half.*
+    #
+    # WHICH VALUE SURVIVES, and it is not a coin toss. #89503F has no witness behind
+    # it: no source record, no note, nothing in this repository that argues for the
+    # number. CHIMNEY_BRICK is `frame_tavern`'s committed BRICK_RGBA, read off the
+    # Petford watercolour of the Sauganash (T-0092, L154) — the ONE coloured witness
+    # to any Chicago chimney — and generalised to the town's other framed stacks on
+    # the town's own warrant, Blodgett's North Side brick-yard from the spring of 1833.
+    # An `inferred` value with a source beats an undocumented literal, so the literal
+    # goes and nothing about the brick is re-argued here.
+    #
+    # THE SELECTOR, not the row, because the sheet owns the choice as well as the
+    # colour: this generator builds ONE kind of stack — a box inside the footprint
+    # depth, rising through the roof — which is `chimney_finish`'s `interior` case, the
+    # framed house's masonry flue. It is asked the question rather than told the
+    # answer, so a placeholder cannot drift from the archetypes again by being pointed
+    # at a row that has since moved. (What this does NOT do is give a log dwelling the
+    # exterior-gable stick-and-clay stack its archetype builds: the placeholder's
+    # GEOMETRY puts every stack inside the roof, so claiming the daub here would paint
+    # a fabric onto the wrong silhouette. That is the placeholder's massing, not its
+    # palette, and it is out of this parcel.)
+    #
+    # NOTHING REPAINTS, AND THE TICKET EXPECTED OTHERWISE. T-0138 was written against
+    # "90 committed masters" and asked for them, their derivatives and the banked
+    # passthrough set to be regenerated in the same commit. There are none left:
+    # `--check` reports **0 flagged placeholder GLBs; 230 superseded by a canonical
+    # bake**, and no committed GLB in `assets/` carries the string
+    # `placeholder_chimney_brick`. So this is T-0126's shape exactly — the divergence
+    # is closed at the source so it cannot walk back in the day a placeholder is
+    # emitted again, and no building changes colour today.
+    _chimney = materials.chimney_finish("interior")
+
     # `mats`, not `materials`: the module of that name is the sheet these values now
     # come from, and shadowing it here would silently reintroduce the local palette.
     mats = [
         {"name": f"placeholder_wall_{meta['finish_key']}", "pbrMetallicRoughness": {"baseColorFactor": list(WALL_COLOURS[meta["finish_key"]]), "metallicFactor": 0, "roughnessFactor": .86}, "doubleSided": True},
         {"name": f"placeholder_roof_{meta['roof_condition']}", "pbrMetallicRoughness": {"baseColorFactor": list(ROOF_COLOURS[meta["roof_condition"]]), "metallicFactor": 0, "roughnessFactor": .9}, "doubleSided": True},
         {"name": "placeholder_opening_dark", "pbrMetallicRoughness": {"baseColorFactor": list(materials.DARK.rgba), "metallicFactor": 0, "roughnessFactor": materials.DARK.roughness}, "doubleSided": True},
-        {"name": "placeholder_chimney_brick", "pbrMetallicRoughness": {"baseColorFactor": list(materials.hex_rgba("#89503F")), "metallicFactor": 0, "roughnessFactor": .88}, "doubleSided": True},
+        {"name": f"placeholder_{_chimney.key}", "pbrMetallicRoughness": {"baseColorFactor": list(_chimney.rgba), "metallicFactor": 0, "roughnessFactor": _chimney.roughness}, "doubleSided": True},
     ]
     return groups, mats
 

@@ -31,6 +31,15 @@
  * stratum is its own list here because it is its own lattice pass in the
  * renderer; before K54 its rows were inside `forb`.
  *
+ * `SWARD_VIEWPORT=mobile` stands the run at a PHONE and not merely at a phone's
+ * window (T-0162). The ring sizes a station deals over are cut from the sward
+ * tune, and the tune is reached by the DEVICE guess — a coarse pointer, or a
+ * touch point under a 900 px window — so a bare 390 px viewport resolved the
+ * desktop tune and the two runs came back identical, row for row. The run now
+ * prints the stand it reached (window, touch points, pointer, detail level, tune
+ * and every layer's ring reach) before its first figure, and REFUSES to print a
+ * census at all if the stand it reached is not the one that was asked for.
+ *
  * ROADMAP K49(f) — `--gate` exits non-zero when any list owes a species a WHOLE
  * slot and deals it none. The same assertion now runs inside
  * `tools/smoke_renderer.mjs`, which is where it belongs; this flag is here so
@@ -99,13 +108,94 @@ const browser = await chromium.launch({ executablePath: process.env.PW_EXECUTABL
 // The viewport decides the ring sizes and therefore how many slots a station
 // deals, so the census has to be answerable at both. `SWARD_VIEWPORT=mobile`
 // stands it at the smoke's phone size (ROADMAP K49(f)).
-const VIEWPORT = process.env.SWARD_VIEWPORT === 'mobile'
-  ? { width: 390, height: 780 } : { width: 1280, height: 800 };
-const page = await browser.newPage({ viewport: VIEWPORT });
+//
+// AND UNTIL T-0162 IT DID NOT STAND THERE, which is why this block is now six
+// lines instead of one and why the stand is printed and asserted below. The
+// page's ring sizes come from `flora.js` `mergeTune(lowSpec && detail === 'full'
+// ? 'light' : detail)`, and `lowSpec` is `controls/touch.js` `prefersTouch()` —
+// `(pointer: coarse)`, or a touch point with a window under 900 px. A bare
+// `browser.newPage({ viewport })` sets the WINDOW and nothing else: Chromium
+// reports `navigator.maxTouchPoints === 0` and a fine pointer, so a 390-px page
+// resolved `full` exactly as the 1280-px one did and the two runs came back with
+// identical censuses, row for row, 7,844 slots either way (T-0018 measured it;
+// T-0162 found the cause). A measurement that names a viewport it did not reach
+// is worse than no measurement, so the flag now drives the guess itself.
+//
+// The context options are the smoke's, copied from `tools/smoke_renderer.mjs`
+// (`['mobile 390x780', { width: 390, height: 780 }, true]` and the context it
+// builds from it) rather than invented here, INCLUDING `isMobile: false` and the
+// comment that goes with it — the two tools have to stand in the same place or
+// the census cannot be read against the gate's own figures. Copied and not
+// imported for the reason `measure_detail_ceilings.mjs` copies the stand list:
+// the smoke is a script and not a module, so a drift makes this tool less
+// complete, never wrong.
+const MOBILE = process.env.SWARD_VIEWPORT === 'mobile';
+const VIEWPORT = MOBILE ? { width: 390, height: 780 } : { width: 1280, height: 800 };
+const context = await browser.newContext({
+  viewport: VIEWPORT,
+  hasTouch: MOBILE,
+  isMobile: false,          // isMobile forces mobile emulation Chromium-side
+  deviceScaleFactor: MOBILE ? 2 : 1,
+});
+const page = await context.newPage();
 const errors = [];
 page.on('pageerror', (e) => errors.push(String(e)));
 await page.goto(`http://127.0.0.1:${PORT}${ENTRY}?year=${YEAR}`, { waitUntil: 'load' });
 await page.waitForFunction(() => window.__chicago4d?.ready === true, null, { timeout: 240000 });
+
+// WHERE THIS RUN ACTUALLY STOOD, printed before any figure it produces and
+// asserted before any figure is believed (T-0162). The ring sizes are the whole
+// reason the viewport is a flag, so the run states the level they were cut at
+// and the radii themselves rather than leaving a reader to assume the window
+// size reached them.
+const stand = await page.evaluate(() => {
+  const a = window.__chicago4d;
+  // `controls/touch.js` `prefersTouch()`, asked of the page rather than
+  // re-implemented against the launch options: the device guess this reports is
+  // the one `main.js` actually passed to `flora.build`.
+  const coarse = !!(window.matchMedia?.('(pointer: coarse)').matches
+    || (navigator.maxTouchPoints > 0 && window.innerWidth < 900));
+  const detail = a.detail;
+  return {
+    width: window.innerWidth,
+    height: window.innerHeight,
+    touchPoints: navigator.maxTouchPoints,
+    coarse,
+    detail,
+    // `flora.js` line for line: the tune a phone reaches is `light` even when
+    // nobody has chosen a level, because the device guess outranks the default.
+    tune: coarse && detail === 'full' ? 'light' : detail,
+    ringR: Object.fromEntries(Object.entries(a.flora.rings.layers)
+      .map(([layer, r]) => [layer, r.fade[0]])),
+  };
+});
+// Two decimals: `ringsFor` multiplies its way to the fade radius, so `near`
+// prints as 3.9999999999999996 raw and a reader would be right to distrust a
+// measurement tool that cannot say four.
+const ringLine = Object.entries(stand.ringR)
+  .map(([layer, r]) => `${layer} ${Number(r.toFixed(2))} m`).join(', ');
+console.log(`stand: ${MOBILE ? 'MOBILE' : 'desktop'} ${stand.width}x${stand.height}, `
+  + `${stand.touchPoints} touch point(s), pointer ${stand.coarse ? 'COARSE' : 'fine'} — `
+  + `detail ${stand.detail}, sward tune ${stand.tune}`);
+console.log(`       ring reach: ${ringLine}\n`);
+
+// THE ASSERTION THE FLAG WAS MISSING. `SWARD_VIEWPORT=mobile` exists to move the
+// ring sizes, so a run that asked for the phone and got the desktop's tune is a
+// measurement claiming a viewport it did not stand at — it fails here rather
+// than printing a desktop census under a mobile heading, which is exactly what
+// it did from T-0018 until T-0162. The desktop stand is asserted the same way
+// and for the same reason: a runner that reported a coarse pointer would deal
+// this tool a phone's census while the header said 1280x800.
+const wantTune = MOBILE ? 'light' : 'full';
+if (stand.tune !== wantTune) {
+  console.error(`REFUSING TO REPORT: asked for the ${MOBILE ? 'mobile' : 'desktop'} `
+    + `stand and reached the '${stand.tune}' tune, not '${wantTune}'. The ring sizes `
+    + `are what the viewport is a flag for, so this census would carry a heading it `
+    + `did not earn (T-0162).`);
+  await browser.close();
+  server.close();
+  process.exit(2);
+}
 
 const measured = await page.evaluate(() => {
   const a = window.__chicago4d;

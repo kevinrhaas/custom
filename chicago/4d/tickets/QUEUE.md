@@ -16,6 +16,10 @@
 #   3. Related work runs together, so a run can carry the context of the last one.
 # The `# ---` band headers are comments; the parser reads only lines starting T-NNNN.
 #
+# A third owner instruction, 2026-08-28: the NEWSPAPERS band was added and placed
+# after the visible bands on his explicit direction, its seeding tickets ordered
+# behind the extraction that feeds them.
+#
 # Labels on these lines are regenerated from each ticket's own `title:` field. If a
 # label and its ticket disagree, the ticket wins — one line was found mislabelled
 # on 2026-08-27, damage from the `ticket.mjs restamp` bug that T-0217 records.
@@ -37,7 +41,6 @@ T-0096 — Did the second Fort Dearborn carry a flagstaff, and can anything but 
 T-0197 — Three of the fort image-accuracy table's eight rows were refuted in two days; audit the rest before building to them
 
 # --- FABRIC AND WHAT THE BUILDINGS ARE MADE OF — visible
-T-0138 — The placeholders' brick chimney is a different brick from the archetypes'
 T-0212 — The one A5 roof still dealt a gable takes the shed its family gets everywhere else
 T-0172 — The other three anonymous parcels still deal a retyped roof pitch, and none of them bounds an eave band by what the archetype can carry
 T-0024 — May the face rule rank a store
@@ -49,7 +52,21 @@ T-0209 — The bloom reaches 1.8 per cent of the ground the sward covers
 T-0214 — Two flower-head archetypes truncate silently at their instance cap
 T-0019 — Six forb layers ask for more plants than the lattice holds
 T-0225 — The sward's drawn reach is measured off plants at two per cent coverage
-T-0162 — SWARD_VIEWPORT=mobile deals the same census as desktop: the viewport does not reach the ring sizes
+
+# --- THE NEWSPAPERS — placed here by the owner, 2026-08-28: "put all that legwork
+# --- after the visible things". The invisible extraction tickets at the top of this
+# --- band BLOCK the visible seeding at its bottom — documented storefronts and real
+# --- people replacing invented ones — which is why they sit above other invisible work.
+# --- Three owner rulings govern the epic; each ticket carries them in full.
+T-0256 — The newspaper corpus becomes a source this project can cite
+T-0257 — An extraction schema, and the gazetteer the papers compile into
+T-0258 — Reading the Democrat, part one: November 1833 to June 1834
+T-0259 — Reading the Democrat, part two: July to December 1834
+T-0260 — Reading the Democrat, part three: January to August 1835
+T-0261 — Reading the American: June to August 1835
+T-0262 — The July 1, 1835 register: who and what the papers put in the town
+T-0263 — The documented storefronts take their places on South Water and Lake
+T-0264 — Documented people replace the invented
 
 # --- MEASUREMENT, GATES AND PROVENANCE — invisible, and nothing below blocks the above
 T-0227 — Is the AO bake actually too dark? Every figure that said so was wrong twice over
@@ -96,4 +113,5 @@ T-0252 — Decide once whether a baked town carries the nine renderer-drawn laye
 T-0253 — May an invented building stand on the river margin of a platted street corridor
 T-0254 — North Water Street west of the slough, and the crossing it needs
 T-0255 — The dooryard planting rule reads every street in the town with no bound on reach, so a track across the river can turn a house's yard
-T-0265 — On a phone from across the river the stockade's picket rhythm falls under the pixel grid and beats
+T-0265 — The sward census fails its own gate at a phone: z10_settled_town owes xanthium_strumarium a whole slot and draws it nowhere
+T-0266 — On a phone from across the river the stockade's picket rhythm falls under the pixel grid and beats
