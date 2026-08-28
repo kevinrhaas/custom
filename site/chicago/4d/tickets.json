@@ -1,6 +1,6 @@
 {
   "project": "chicago-4d",
-  "generated_ct": "Aug 28, 2026, 4:18 AM",
+  "generated_ct": "Aug 28, 2026, 4:47 AM",
   "tickets": [
     {
       "id": "T-0001",
@@ -4677,6 +4677,24 @@
       "blocked_on": null,
       "needs_bake": true,
       "queue_rank": 60
+    },
+    {
+      "id": "T-0276",
+      "title": "2,526 of 18,911 drawn flower heads stand over open ground with no plant under their own stalk, on an unmodified dev",
+      "state": "open",
+      "epic": "META",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "M",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-08-28",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "queue_rank": 61
     }
   ]
 }

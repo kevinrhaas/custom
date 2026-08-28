@@ -8649,6 +8649,39 @@ for (const [label, viewport, touch] of [
 
       const BINS = 16;
       const HALF = 30 * Math.PI / 180;
+      // T-0225. THE COVERAGE AT WHICH A PLANT COUNTS AS DRAWN, and it is the
+      // screen door's own number rather than a perceptual one.
+      //
+      // The outer edges of the mid and forb rings still ramp in COVERAGE, and
+      // that coverage is resolved by the ordered 4x4 Bayer matrix in
+      // `flora.js` (`chiBayer4`): sixteen thresholds at `(v + 0.5) / 16`,
+      // equally spaced by 1/16, offset per instance by `vChiDither` and
+      // wrapped — so within one 4x4 tile the surviving pixel count is
+      // `floor(16 x coverage)` or one more, whatever the instance's phase.
+      // Two consequences, and the second is the finding:
+      //   * at coverage >= 1/16 every tile the plant covers keeps AT LEAST one
+      //     pixel, whatever its phase;
+      //   * BELOW 1/16 the count is 0 or 1, and which one is decided by the
+      //     dither phase and not by the coverage. The renderer has not
+      //     committed to drawing the plant at all.
+      // So 1/16 is the screen door's quantum — the finest mark it can draw,
+      // one pixel per tile — and the least coverage at which "drawn" is a
+      // property of the plant rather than of where it happens to land on the
+      // dither lattice. This gate used to read its boundary at 0.02, which is
+      // a twentieth of a plant kept as one pixel in fifty, sampled: below the
+      // quantum, and therefore off plants the renderer may not have drawn.
+      //
+      // It is not raised further, and the reason is that nothing else here is
+      // measured. A perceptual threshold ("the coverage at which a visitor
+      // notices the plant") would need a measurement this project has not
+      // taken, and picking one would be the same kind of unbacked number the
+      // 0.02 was. The quantum is the one figure the MECHANISM supplies.
+      //
+      // `LEGACY` is kept and reported beside it so a run can quote both
+      // readings without an edited gate — the `show` flag T-0187 added exists
+      // for exactly this, and T-0225's acceptance asks for both.
+      const SEEN = 1 / 16;
+      const LEGACY = 0.02;
       const out = {};
       for (const [name, layer] of Object.entries(SETS)) {
         const mesh = a.flora.group.getObjectByName(name);
@@ -8656,6 +8689,7 @@ for (const [label, viewport, touch] of [
         const ring = mesh?.geometry.getAttribute('aChiRing')?.array;
         const r = a.flora.rings.layers[layer];
         const bins = new Array(BINS).fill(null);
+        const legacyBins = new Array(BINS).fill(null);
         let ringLo = Infinity;
         let ringHi = -Infinity;
         for (let i = 0; m && ring && i < mesh.count; i++) {
@@ -8677,24 +8711,47 @@ for (const [label, viewport, touch] of [
           // mid ring's inner boundary is spread per slot since T-0093, and the
           // outer radius alone would have `fadeAt` answer off the layer's
           // nominal inner edge.
-          if (a.flora.fadeAt(name, d, [ring[i * 4], ring[i * 4 + 1],
-            ring[i * 4 + 2], ring[i * 4 + 3]]) <= 0.02) continue;
+          const cov = a.flora.fadeAt(name, d, [ring[i * 4], ring[i * 4 + 1],
+            ring[i * 4 + 2], ring[i * 4 + 3]]);
+          if (cov <= LEGACY) continue;
           const b = Math.min(BINS - 1, Math.floor((da + HALF) / (2 * HALF / BINS)));
+          if (!legacyBins[b] || d > legacyBins[b].d) legacyBins[b] = { d, y };
+          // T-0225: the gated statistic. A plant between LEGACY and SEEN is
+          // inside the screen door's quantum — it is counted for the legacy
+          // reading, which exists to be quoted, and not for the boundary.
+          if (cov <= SEEN) continue;
           if (!bins[b] || d > bins[b].d) bins[b] = { d, y };
         }
-        const used = bins.filter(Boolean);
-        const rows = used.map((b) => rowOf(b.d, b.y));
-        const reach = used.map((b) => b.d);
+        const statsOf = (bs) => {
+          const used = bs.filter(Boolean);
+          const rows = used.map((b) => rowOf(b.d, b.y));
+          const reach = used.map((b) => b.d);
+          return {
+            bins: used.length,
+            spreadPx: rows.length ? Math.max(...rows) - Math.min(...rows) : 0,
+            minReach: reach.length ? Math.min(...reach) : 0,
+            maxReach: reach.length ? Math.max(...reach) : 0,
+            meanReach: reach.length ? reach.reduce((s, v) => s + v, 0) / reach.length : 0,
+          };
+        };
         out[layer] = {
-          bins: used.length,
-          spreadPx: rows.length ? Math.max(...rows) - Math.min(...rows) : 0,
-          minReach: reach.length ? Math.min(...reach) : 0,
-          maxReach: reach.length ? Math.max(...reach) : 0,
-          meanReach: reach.length ? reach.reduce((s, v) => s + v, 0) / reach.length : 0,
+          ...statsOf(bins),
+          legacy: statsOf(legacyBins),
           ringLo: Number.isFinite(ringLo) ? ringLo : 0,
           ringHi: Number.isFinite(ringHi) ? ringHi : 0,
           nominal: r.fade[0],
           fringe: r.fringe ?? 0,
+          // The band the outer edge ramps across, at THIS detail setting —
+          // T-0187 cut it to the ring, so it is 7.0 m at `full` and about half
+          // that on a phone, and the depth below is not a constant either.
+          band: r.fade[1],
+          seen: SEEN,
+          // T-0225: how far INSIDE a slot's own outer radius the boundary is
+          // now read. Coverage falls linearly across `band`, so a slot whose
+          // own outer radius is R reads as drawn out to `R - SEEN x band`.
+          // This is the whole of the shift between the two readings, and it is
+          // what the two bars below are re-derived by.
+          edge: SEEN * r.fade[1],
         };
       }
       // The placer's own answer, so the gate is not a second copy of the noise:
@@ -8726,19 +8783,44 @@ for (const [label, viewport, touch] of [
         s.bins >= 12 && s.spreadPx >= 4,
         `${s.bins}/16 bearing bins from E ${seam.station.e} N ${seam.station.n}, boundary rows `
         + `spread ${s.spreadPx.toFixed(1)} px, reach ${s.minReach.toFixed(2)}`
-        + `-${s.maxReach.toFixed(2)} m`, true);
+        + `-${s.maxReach.toFixed(2)} m at ${(s.seen * 100).toFixed(2)}% coverage `
+        + `(at the old 2%: ${s.legacy.bins}/16 bins, spread `
+        + `${s.legacy.spreadPx.toFixed(1)} px, reach ${s.legacy.minReach.toFixed(2)}`
+        + `-${s.legacy.maxReach.toFixed(2)} m)`, true);
       // ...and it is the fringe doing it. A hole in the sward would satisfy the
       // check above and would be a worse defect than the seam, so no bearing
       // may fall short of what the fringe alone can take off the ring, and the
       // raggedness may not be bought by shrinking the ring on average.
+      //
+      // T-0225 — WHY THE TWO BARS CARRY `s.edge`, AND WHY THAT IS NOT A
+      // SLACKENING. Both bars are statements about the RING: no bearing may
+      // fall further short of the nominal radius than the fringe (plus a
+      // metre of lattice-step slop) can take off it, and the mean may not be
+      // bought down by more than half the fringe's range. The statistic they
+      // are read from now stops `SEEN x band` short of a slot's own outer
+      // radius instead of `0.02 x band` short, because coverage falls linearly
+      // across the band and the boundary is read at a higher coverage. So the
+      // bars move by exactly that depth and by nothing else: the CLAIM about
+      // the ring is identical, stated against a statistic whose zero point
+      // moved. Anything beyond `s.edge` would be a real concession and this
+      // ticket is explicit that it is not one — if the honest statistic puts
+      // the sward under these bars, that is a finding about the sward and gets
+      // its own ticket rather than a softer number here.
+      const minBar = s.nominal - s.fringe - s.edge - 1.2;
+      const meanBar = s.nominal - 0.5 * s.fringe - s.edge;
       check(`${label}: the boundary's variation is the fringe, not a hole in the field`,
         s.bins >= 12
-        && s.minReach >= s.nominal - s.fringe - 1.2
-        && s.meanReach >= s.nominal - 0.5 * s.fringe,
+        && s.minReach >= minBar
+        && s.meanReach >= meanBar,
         `reach ${s.minReach.toFixed(2)}-${s.maxReach.toFixed(2)} m, mean `
         + `${s.meanReach.toFixed(2)} m against a nominal ${s.nominal.toFixed(2)} `
-        + `+/- ${s.fringe.toFixed(2)} m (bars: min >= ${(s.nominal - s.fringe - 1.2).toFixed(2)}, `
-        + `mean >= ${(s.nominal - 0.5 * s.fringe).toFixed(2)})`, true);
+        + `+/- ${s.fringe.toFixed(2)} m (bars: min >= ${minBar.toFixed(2)}, `
+        + `mean >= ${meanBar.toFixed(2)}; read at ${(s.seen * 100).toFixed(2)}% coverage, `
+        + `${s.edge.toFixed(2)} m inside each slot's own radius on a `
+        + `${s.band.toFixed(2)} m band) — at the old 2%: min `
+        + `${s.legacy.minReach.toFixed(2)} m, mean ${s.legacy.meanReach.toFixed(2)} m, `
+        + `i.e. ${(s.legacy.meanReach - s.meanReach).toFixed(2)} m of reach that was `
+        + `bought below the screen door's quantum`, true);
       // The forb ring ends within a metre of the mid ring, so if only the grass
       // were fringed the flowers would go on drawing the line — and a flower is
       // the brightest thing in the field. It is measured on its RINGS rather
