@@ -1,7 +1,7 @@
 ---
 id: T-0254
 title: North Water Street west of the slough, and the crossing it needs
-state: claimed
+state: done
 epic: TOWN
 requested_by: loop
 seen: false
@@ -9,8 +9,8 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-08-27
-closed: null
-pr: null
+closed: 2026-08-28
+pr: 473
 claimed_by: run 8/28/2026, 10:43:06 AM CT
 blocked_on: null
 needs_bake: false
