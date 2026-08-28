@@ -26,7 +26,6 @@
 
 # --- THE TOWN AND ITS STREETS — visible
 T-0028 — Build out the NEXT anonymous block (one per run)
-T-0241 — Washington gets the street edge
 T-0192 — The cross streets' own frontages get the street edge
 T-0193 — blk_lake_clinton, the West Division block T-0069 refused
 T-0213 — Weight the trade families onto the business front
