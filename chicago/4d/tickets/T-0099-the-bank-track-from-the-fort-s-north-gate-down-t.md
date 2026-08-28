@@ -1,7 +1,7 @@
 ---
 id: T-0099
 title: The bank track from the fort's north gate down to the water
-state: open
+state: done
 epic: TOWN
 requested_by: loop
 seen: false
@@ -9,9 +9,9 @@ effort: S
 legacy_id: null
 parent: null
 opened: 2026-08-18
-closed: null
-pr: null
-claimed_by: null
+closed: 2026-08-27
+pr: 431
+claimed_by: run 8/27/2026, 9:18:39 PM CT
 blocked_on: null
 needs_bake: false
 ---

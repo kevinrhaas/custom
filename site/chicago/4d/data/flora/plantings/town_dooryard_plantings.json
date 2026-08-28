@@ -943,8 +943,8 @@
       "id": "recon_1835_north_d4_039_tree_1",
       "species": "populus_deltoides",
       "at_local_enu_m": [
-        1140.0,
-        317.87
+        1142.88,
+        324.25
       ],
       "height_m": 19.7,
       "confidence": "reconstructed",
@@ -954,8 +954,8 @@
       "id": "recon_1835_north_d4_039_tree_2",
       "species": "populus_deltoides",
       "at_local_enu_m": [
-        1135.57,
-        318.45
+        1137.12,
+        324.25
       ],
       "height_m": 18.3,
       "confidence": "reconstructed",
