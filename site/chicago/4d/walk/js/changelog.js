@@ -1,4 +1,12 @@
 export const CHANGELOG = [ // newest first
+  { v: 335, title: 'A fixed camera now stands on the public square', kind: 'chore', ts: '2026-08-28T12:44:18.603Z', date: 'Aug 28, 2026, 7:44 AM CT',
+    items: [
+      'Nothing you can see changed today. The public square \u2014 the block bounded by Randolph, Clark, Washington and LaSalle, the one block this town kept for itself \u2014 now has a fixed camera standing on it.',
+      'Five days ago the whole of that block was replanted, from wet prairie to sedge meadow. Nothing here could show it in a picture. There was no camera on the square or facing it, so a change over a whole city block was checked by looking things up in a table.',
+      'The camera stands in the south-east corner and looks across the long diagonal. The bearing is not a guess: it is aimed exactly between the two county buildings that stood there on 1 July 1835 \u2014 the estray pen, the town pound, 82 m away, and the log jail, 131 m away, at the far corner. On a wide screen you can see both. On a phone the frame is narrower and you get the meadow.',
+      'The county court-house is not in the picture, and should not be. It was built on the north-east corner in the autumn of 1835, months after the day this town is set on.',
+      'What the first reading says about the square: no part of it is crushed to pure black, unlike the riverbank; and the flowers standing in the meadow come to about a third of one per cent of the ground, which is the same shortfall the open prairie has.',
+    ] },
   { v: 334, title: 'What the shading test showed, and why it stays off', kind: 'chore', ts: '2026-08-28T12:31:02.503Z', date: 'Aug 28, 2026, 7:31 AM CT',
     items: [
       'Nothing you can see changed today. This project has said for months that its buildings come out too dark when a shading map is baked onto them \u2014 and nobody had ever looked at a picture of one that carried it. The export was broken until yesterday, so every opinion about it was formed on a building that had none.',

@@ -1,5 +1,90 @@
 # STATUS
 
+## Shipped 2026-08-28 — T-0224: a critic baseline standing on the public square
+
+**T-0027 replanted a whole city block and nothing in this project could show it in a picture.** The
+public square — the block bounded by Randolph, Clark, Washington and LaSalle, the one block
+`data/reconstruction/1835_reserved_ground.json` holds was never private building ground — went from
+wet prairie to sedge meadow on 2026-08-23, and it was verified by a zone lookup and a zero-pageerror
+pass. `tools/critic_shots.mjs` had no stand on it or facing it, so the sward over the town's only
+reserved block, and the county buildings standing on it, had no reading of any kind.
+
+**The stand.** `public_square`, a pose station rather than an anchor: local `(550, -370)`, ground
+0.885 m, bearing **292°**, pitch 0. It stands inside the block's south-east corner and looks across
+its long diagonal, which is the longest run of reserved sward in the town.
+
+**The bearing is derived, not chosen by eye.** It is the bisector of the two county buildings that
+stand on 1 July 1835 — the estray pen at the south-west corner, **81.8 m off at 264.9°**, and the
+log jail at the north-west corner, **131.2 m off at 319.9°**. They are 55.1° apart, so each sits
+27.5° off centre. Both were projected through the renderer's own camera before the pose was fixed,
+which is what settles the composition question the frame itself cannot: at 1280×800 the camera
+reports fov 55 and aspect 1.6 — half-FOV 39.8° — and puts them at **x = 246 and x = 1047 of 1280**;
+at 390×780 it reports fov 94 and aspect 0.5 — half-FOV 28.2° — which leaves **0.7° of margin** and
+puts them at the extreme edges. **So the desktop row reads the ground and the two buildings, and
+the mobile row reads the ground.** No stand on this block does better: its corners are 108 m apart
+and the buildings sit on two of them.
+
+**The third county building is not in the frame, and a frame that showed it would be the bug.** The
+ticket names three; only two of them exist on the scene date. The first Cook County court-house was
+erected on the north-east corner in the **fall** of 1835 — `documented_range.from` is `1835-10-01`
+in `data/structures/cook_county_courthouse_1835.json`, on three independent Andreas passages — so it
+is dated out of a 1 July scene and is absent from the registry, which the probe confirmed
+(`inRegistry: false`, against `true` for the other two).
+
+**The rows.** Shot against the committed tree, `--metrics`, source tree, full detail.
+
+| viewport | timber all | timber centre | …town's share of breaks | crown fine | crown G−B | decile L | literal black px | RMS far/mid/near | flower load | BLOOM share of ground | draws / triangles |
+|---|---|---|---|---|---|---|---|---|---|---|---|
+| desktop 1280×800 | 0.689 | 0.748 | 0.123 | 0.759 | 16.91 | 10.3 | 0 | 14.4 / 24.0 / 26.0 | 0.0034 | 0.0048 | 162 / 1,016,672 |
+| mobile 390×780 | 0.844 | 0.808 | 0.051 | 0.629 | 15.49 | 9.34 | 0 | 22.0 / 27.7 / 20.5 | 0.0007 | 0.0037 | 158 / 954,133 |
+
+`sha256` `b08cedcd3653…` desktop, `875e290b2dd1…` mobile. Land/sky boundary row 401 of 800 and 391
+of 780 — the horizon sits within a percent of the frame's own middle at both viewports, which is
+what a level pitch on flat ground should give and is the cheapest available check that the pose
+landed.
+
+**What the rows say, and the one figure worth arguing with.**
+
+- **This is the third station where flower load means anything.** Harness note 3 in *The critic
+  baseline — 2026-08-14* holds that the flower denominator is only vegetation at the open-prairie
+  stands; the near band here is reserved sward with no street, wall or roof in it, so `public_square`
+  joins `prairie_south` and `prairie_west`. Desktop reads **0.0034**, which sits between those two
+  (0.0031 and 0.0012 on 2026-08-14) and two orders under the 4–6 % brief. The block was replanted;
+  it was not repopulated.
+- **Mobile reads 0.0007 against desktop's 0.0034 — a factor of five at one stand, on one build.**
+  The portrait frame is narrower and closer to the ground plane, and 103 flower-hued pixels of
+  151,309 is a small numerator. Do not read the two viewports against each other here.
+- **No literal black at either viewport**, against 12,063 pixels at `river_bank` and 11,015 at
+  `first_post_office` in the 2026-08-14 table. The darkest decile is L 9.34–10.3, still under the §5
+  floor of L ≥ 14, and R-W1 still owns it.
+- **The town is 12.3 % of what breaks this skyline on desktop and 5.1 % on mobile.** The rest is
+  timber. That is the R-W4a subtraction doing its job at a stand where the horizon is mostly the
+  north and west sides of the block and the town beyond them.
+
+**The repeat, and it is a stronger reading than the one that was planned.** `--stability` did not
+finish inside the run's ten-minute-per-command ceiling, so the harness's own repeat contract was not
+exercised. What replaced it is better evidence for the same question: the pair of frames was shot
+TWICE, in two separate browser processes, **half an hour and five sibling merges apart** — the
+second round after this branch was replayed onto a `dev` carrying T-0227's AO work — and all four
+frames are **byte-identical**, `b08cedcd3653…` desktop and `875e290b2dd1…` mobile both times, with
+every metric repeating exactly. So 2/2 at both viewports across processes, which is what the
+2026-08-14 table reports for its eleven, and the run's own churn is the control. It does not assert
+the ≤ 1 % metric-drift half of the contract by the harness's own instrument; that is the part still
+owed.
+
+**The rig now stands at fourteen stations** — ten scene anchors and four poses — against the eleven
+the 2026-08-14 table records.
+
+**Verified.** `tools/check.sh` (PASS) — which is the dev gate in full, per `docs/PIPELINE.md`.
+`node tools/critic_shots.mjs --stations public_square --metrics` at both viewports on the source
+tree, and `--published --stations public_square` at both viewports on the mirror this PR writes:
+the station resolves, the declared pitch is met and `page_errors` is empty in all four. The
+unfiltered `tools/smoke_renderer.mjs` was NOT run — it takes about 55 minutes on this runner
+(T-0235) against a run ceiling of ten minutes per command, and it was started and killed at that
+ceiling rather than quietly skipped. Nothing under `renderers/`, `generators/`, `data/` or
+`assets/` is touched by this change; the diff is one tool, this file, the changelog and the
+publish mirror's copy of it.
+
 ## Shipped 2026-08-28 — T-0227: the AO bake is too dark, and now something has actually looked at it
 
 **Nothing in the town moved.** This run answers a question the project has been holding an opinion
@@ -12174,7 +12259,9 @@ re-shot on one build on 2026-08-23 so the move can be read separately from the t
 *Re-shot 2026-08-23 — the `south_water` baseline row measures a stand that no longer exists* at the
 top of this file. No other station in these tables moved; `newberry_dole_wharf` (T-0041) and
 `north_branch_bridge_deck` (T-0001) were added to the scene afterwards and have no row here at all,
-so the rig now stands at **thirteen** stations against this table's eleven.
+so the rig now stands at **fourteen** stations against this table's eleven — the fourteenth is
+`public_square` (T-0224, 2026-08-28), a pose on the reserved block, whose two rows are at the top of
+this file.
 
 **What the baseline says, against the RENDERING §5 targets.**
 
