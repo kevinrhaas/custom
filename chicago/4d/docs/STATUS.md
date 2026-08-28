@@ -61,11 +61,16 @@ landed.
   timber. That is the R-W4a subtraction doing its job at a stand where the horizon is mostly the
   north and west sides of the block and the town beyond them.
 
-**Not claimed.** The repeat contract. `--stability` at this station did not finish inside the run's
-own ceiling, so these are single-process readings and no byte-identity figure is quoted for them —
-unlike the eleven rows of the 2026-08-14 table, which were 11/11 byte-identical across two
-processes. That is the one thing this row is weaker than that table on, and it is stated rather than
-implied.
+**The repeat, and it is a stronger reading than the one that was planned.** `--stability` did not
+finish inside the run's ten-minute-per-command ceiling, so the harness's own repeat contract was not
+exercised. What replaced it is better evidence for the same question: the pair of frames was shot
+TWICE, in two separate browser processes, **half an hour and five sibling merges apart** — the
+second round after this branch was replayed onto a `dev` carrying T-0227's AO work — and all four
+frames are **byte-identical**, `b08cedcd3653…` desktop and `875e290b2dd1…` mobile both times, with
+every metric repeating exactly. So 2/2 at both viewports across processes, which is what the
+2026-08-14 table reports for its eleven, and the run's own churn is the control. It does not assert
+the ≤ 1 % metric-drift half of the contract by the harness's own instrument; that is the part still
+owed.
 
 **The rig now stands at fourteen stations** — ten scene anchors and four poses — against the eleven
 the 2026-08-14 table records.
