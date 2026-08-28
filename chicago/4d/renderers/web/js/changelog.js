@@ -1,4 +1,11 @@
 export const CHANGELOG = [ // newest first
+  { v: 314, title: 'The fort\u2019s chimneys stop being the colour of its roofs', kind: 'fix', ts: '2026-08-28T04:47:22.057Z', date: 'Aug 27, 2026, 11:47 PM CT',
+    items: [
+      'Look at Fort Dearborn from the north bank. Its ten chimneys are brick now. Until today they were painted whatever colour the roof they came through was painted \u2014 the last chimneys in Chicago that were, after every house in the town got a real one in August.',
+      'The fort was skipped on purpose, and the reason was wrong. It was left out because these buildings are the 1816 fort, seventeen years older than the brickyard that let the town build in brick. Nobody checked the fort\u2019s own records, which say plainly that brick was already standing inside the stockade: the commandant\u2019s house is called brick by a man who walked through the gate in 1827 and again by a photograph caption in 1855, and the powder magazine is called brick too.',
+      'So a garrison had brick here before the settlement did, which is the ordinary order of things \u2014 army building, army supply. Every stack in the fort rises inside its building and breaks the ridge, and a flue carrying fire up through a timber roof has to be masonry. It takes the same brick the rest of the town\u2019s indoor chimneys take.',
+      'The clay-and-stick chimney the log cabins have was considered and refused, in writing. That one is built standing clear of the gable so it can be pulled away when it catches fire; not one chimney in the fort stands there. The claim is labelled inferred, and the buildings with no chimney \u2014 the magazine, the store house, the root house \u2014 are untouched.',
+    ] },
   { v: 313, title: 'The bank track from the fort\u2019s north gate reaches the water', kind: 'feature', ts: '2026-08-28T04:08:12.593Z', date: 'Aug 27, 2026, 11:08 PM CT',
     items: [
       'Stand on the north bank and look across at Fort Dearborn: a pale track now leaves the fort\u2019s north gate and runs down the bank to the water\u2019s edge, the way to the ferry. The plate this project shoots the fort against has always drawn that track. The town had not, until today.',

@@ -91,13 +91,59 @@ Nothing states where between the two it sits, so it sits at the **midpoint**, to
 decimals: **0.562 / 0.527 / 0.468**. Roughness is the sheet's `earth` substrate (0.95),
 because the surface is daub. `docs/LIBERTIES.md` **L168** records the invention.
 
-## 4 · What is deliberately left alone
+## 4 · The fort: brick, INFERRED — and the reason it looked unreachable
 
-- **The fort.** `fort_structure` still builds its stacks with `M_ROOF`. Its buildings are
-  the second Fort Dearborn of **1816** — seventeen years before Blodgett dug his first
-  clay — on federal ground, with `construction` running log, brick, earth and stone across
-  ten records. Neither answer above reaches it without inventing a third, so it is a ticket
-  and not a guess: **T-0137**.
+**This section used to say the fort was deliberately left alone.** It read: *"its buildings
+are the second Fort Dearborn of 1816 — seventeen years before Blodgett dug his first clay —
+on federal ground … neither answer above reaches it without inventing a third."* That was
+written from §1's town evidence and **never checked against the fort's own records**, and
+those records refute it. T-0137 is the ticket that made someone look.
+
+**Brick stood inside this stockade in 1816, and this repository attests it twice over.**
+
+| record | `construction` | confidence | what says so |
+|---|---|---|---|
+| `fort_dearborn_commandants_quarters` | `brick` | **attested** | Hubbard, standing in the fort in 1827: *"the brick building, just within the north stockade previously occupied by the commanding officers"*. The 1855 photograph key, twenty-eight years later and independent: *"the Commandant's Quarters, A (brick, about 25×50 ft.)"*. |
+| `fort_dearborn_magazine` | `brick` | **attested** | Hubbard again: *"the magazine, of brick"*. |
+
+Blodgett's yard bounds when the **town** could build in brick. It says nothing about what
+the Army had already put up inside the stockade seventeen years earlier, and it was never
+evidence about the fort — §1's sentence is *"a brick stack in July 1835 needs no import and
+no invention"*, about a townsman's house. A garrison post is exactly where masonry appears
+first: it is federal work, provisioned by the Quartermaster rather than by whatever a
+settlement of a few hundred could fire for itself, and this one demonstrably had brick for
+its powder and for its commanding officer.
+
+**The disposition decides, here as everywhere else on the sheet.** `fort_structure._chimneys`
+stands every stack at the midline of the building's depth and rises it from the ground
+through the ridge — §2's interior stack, not §3's. An interior stack carries a fire up
+through a timber roof and has to be masonry to do it. So the fort takes **`CHIMNEY_BRICK`**,
+the row §2 already argues, at **`inferred`**: reasoned from evidence about this ground and
+this date rather than stated of any flue. No third row, and no new invention to record —
+`docs/LIBERTIES.md` **L26** still owns where every stack stands, and **L168** still owns only
+the cat-and-clay fabric it was written for.
+
+**Cat-and-clay is refused, and this is the refusal.** §3's argument is not "log walls, so a
+clay stack" — it is a stack standing OUTSIDE the gable, which can be pulled away from the
+building when it catches fire and does not eat floor space. Five of the fort's six chimneyed
+buildings are log, and not one of their stacks stands outside a gable. Applying §3 on the
+strength of the wall material alone would take the colour and drop the sentence that earns
+it. If the fort's stacks are ever re-dispositioned to the gable, this ruling goes with them.
+
+**What it covers:** ten stacks on six buildings — the barracks (3), the commandant's
+quarters (2), the officers' quarters (2), the blockhouse, the guard house and the sutler's
+store. Two of the ten stand on a building whose own walls are attested brick, which is as
+direct as this dataset gets. The other four fort buildings, the parade, the root house and
+the lighthouse count no stack and are untouched: the material is appended only where a record
+counts one, so their masters keep the four-material list they shipped with.
+
+**What would replace this:** a source describing any flue at this post — a Quartermaster
+return, a repair estimate, an inspection report — turns `inferred` into `attested` for the
+building it names, or refutes it. A source putting the fort's stacks outside the gable moves
+them to §3 instead. Neither exists in this repository today.
+
+## 4b · What is still deliberately left alone
+
 - **The 90 inferred placeholders**, which already ship a `placeholder_chimney_brick` at
   `#89503F` — a different brick from the archetypes', 20 % apart in linear red. R-W2a
   finding 4 is right that a town painted by two generators with no shared palette splits

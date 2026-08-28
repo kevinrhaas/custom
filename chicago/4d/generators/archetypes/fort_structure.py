@@ -42,6 +42,13 @@ from common.mesh import MeshBuilder, ROOF_RGBA, simple_material  # noqa: E402
 from archetypes.fort_structure_params import FortStructureParams  # noqa: E402
 
 M_WALL, M_ROOF, M_DARK, M_TRIM = 0, 1, 2, 3
+# Appended only where the record counts a stack (T-0137), exactly as `frame_dwelling`
+# and `log_dwelling` append theirs: an unreferenced material slot still reaches the
+# glTF, so adding one unconditionally would rewrite the magazine, the store house,
+# the artillery house, the root house, the parade and the lighthouse for a colour
+# none of them uses. Six of this archetype's buildings count a stack; they are the
+# only six whose material list runs to five.
+M_CHIMNEY = 4
 
 WALL_RGBA = {
     "log": HEWN_RGBA,
@@ -98,12 +105,33 @@ def build(params: FortStructureParams, name: str):
         # plank door and every opening the complex cuts. Two uses on this archetype
         # are not openings and the row's note names them: the sun-dial's brass plate
         # and the lighthouse lantern's glazed drum. Both are dark and small, and
-        # splitting either would take this archetype from four materials to five.
+        # splitting either would add a material to EVERY building this archetype
+        # makes, chimneyed or not — which is the cost the stack row below refuses
+        # to pay by appending itself only where a record counts a stack.
         simple_material("dark", materials.DARK.rgba,
                         roughness=materials.DARK.roughness),
         simple_material("chinking", CHINK_RGBA,
                         roughness=materials.SUBSTRATES["chinking"].roughness),
     ]
+    # THE STACKS (T-0137). T-0008 gave every dwelling's chimney its own fabric and
+    # left this archetype building its ten stacks with `M_ROOF`, so the garrison held
+    # the last roof-coloured chimneys in Chicago. chimneys.md §4 left the fort out on
+    # the reading that its 1816 date is seventeen years before Blodgett's brick-yard
+    # and so reaches neither of the sheet's two rows. THAT READING IS REFUTED BY THIS
+    # FORT'S OWN RECORDS: the commandant's quarters is brick twice attested (Hubbard
+    # in 1827, "the brick building, just within the north stockade"; the 1855 key,
+    # "brick, about 25x50 ft.") and the magazine is brick once ("the magazine, of
+    # brick"). Brick stood on this ground in 1816. The town yard bounds when the TOWN
+    # could build in brick; it says nothing about what the Army had already put up
+    # inside the stockade, and a garrison post is exactly where masonry appears
+    # first. So the fort takes the sheet's existing brick at `inferred`, and the
+    # cat-and-clay row is REFUSED here in writing: §3's whole argument is a stack
+    # standing outside a gable to be pulled away when it fires, and no stack in this
+    # fort stands outside a gable. Fabric follows disposition, as it does everywhere
+    # else on the sheet. docs/RESEARCH/chimneys.md §4 is the argument in full.
+    if params.chimneys:
+        stack = materials.chimney_finish("interior")
+        mats.append(simple_material("chimney", stack.rgba, roughness=stack.roughness))
     return b.to_object(mats)
 
 
@@ -155,7 +183,7 @@ def _building(b: MeshBuilder, p: FortStructureParams) -> None:
     if p.gallery:
         _gallery(b, p, p.conf("gallery", "reconstructed"))
     if p.chimneys:
-        _chimneys(b, p, ridge, p.conf("chimneys", "reconstructed"))
+        _chimneys(b, p, ridge, p.conf("chimneys", "reconstructed"), M_CHIMNEY)
 
 
 def _roof(b: MeshBuilder, p: FortStructureParams, x0, y0, x1, y1,
@@ -334,11 +362,19 @@ def _gallery(b: MeshBuilder, p: FortStructureParams, conf: float) -> None:
 
 
 def _chimneys(b: MeshBuilder, p: FortStructureParams, ridge_z: float,
-              conf: float) -> None:
+              conf: float, mat: int) -> None:
     """As many stacks as the record counts, spaced across the building's length.
 
     The count is the record's; every other property of a stack is the archetype's,
     exactly as it is for the dwellings, and docs/LIBERTIES.md owns the arrangement.
+
+    WHERE THIS STACK STANDS is the argument for what it is made of, and it stands
+    INSIDE: at the midline of the depth, rising from the ground through the ridge.
+    That is the same disposition `frame_dwelling` builds and the opposite of
+    `log_dwelling`'s, which stands clear of the gable so it can be pulled away when
+    it fires. An interior stack carries a fire up through a timber roof, so it is
+    masonry — and the masonry THIS post had is brick, on this ground and at this
+    date. See `docs/RESEARCH/chimneys.md` §4.
     """
     w, d = p.width_m, p.depth_m
     yc = d / 2.0
@@ -346,10 +382,10 @@ def _chimneys(b: MeshBuilder, p: FortStructureParams, ridge_z: float,
     for i in range(p.chimneys):
         x = w * (i + 0.5) / p.chimneys
         b.add_box(x - half_x, yc - half_y, 0.0, x + half_x, yc + half_y,
-                  ridge_z + 0.60, conf, M_ROOF, skip=("bottom",))
+                  ridge_z + 0.60, conf, mat, skip=("bottom",))
         b.add_box(x - half_x - 0.08, yc - half_y - 0.08, ridge_z + 0.60,
                   x + half_x + 0.08, yc + half_y + 0.08, ridge_z + 0.78,
-                  conf, M_ROOF, skip=("bottom",))
+                  conf, mat, skip=("bottom",))
 
 
 # ------------------------------------------------------------ ground furniture

@@ -1,6 +1,6 @@
 {
   "project": "chicago-4d",
-  "generated_ct": "Aug 27, 2026, 11:08 PM",
+  "generated_ct": "Aug 28, 2026, 12:00 AM",
   "tickets": [
     {
       "id": "T-0001",
@@ -2428,7 +2428,7 @@
     {
       "id": "T-0137",
       "title": "The fort's stacks are still roof-coloured, and its 1816 date fits neither chimney answer",
-      "state": "open",
+      "state": "claimed",
       "epic": "RENDERING",
       "requested_by": "loop",
       "seen": false,
@@ -2438,7 +2438,7 @@
       "opened": "2026-08-22",
       "closed": null,
       "pr": null,
-      "claimed_by": null,
+      "claimed_by": "run 8/27/2026, 11:34:21 PM CT",
       "blocked_on": null,
       "needs_bake": false,
       "queue_rank": 3
@@ -4368,6 +4368,24 @@
       "blocked_on": null,
       "needs_bake": false,
       "queue_rank": 55
+    },
+    {
+      "id": "T-0265",
+      "title": "The commandant's quarters now carries two bricks: the fort's wall brick and the sheet's chimney brick",
+      "state": "open",
+      "epic": "RENDERING",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "XS",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-08-27",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": true,
+      "queue_rank": 56
     }
   ]
 }

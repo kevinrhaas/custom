@@ -1,5 +1,61 @@
 # STATUS
 
+## Shipped 2026-08-28 — T-0137: the fort's chimneys stop being roof-coloured
+
+T-0008 gave every dwelling in Chicago a chimney made of something and **left the fort out**, so
+`fort_structure` went on building its ten stacks with `M_ROOF` and the garrison held the last
+roof-coloured chimneys in the town. The reason it was left out is recorded in
+`docs/RESEARCH/chimneys.md` §4, and **it does not survive contact with the fort's own records.**
+
+**The refutation, in one table.** §4 argued that these buildings are the second Fort Dearborn of
+**1816**, seventeen years before Blodgett's brick-yard opened, so brick was unreachable and neither
+of the sheet's two rows could apply without inventing a third. That was reasoned from §1's evidence
+about the TOWN and never checked against `data/structures/fort_dearborn_*.json`:
+
+| record | `construction` | confidence | source |
+|---|---|---|---|
+| `fort_dearborn_commandants_quarters` | `brick` | **attested** | Hubbard 1827, *"the brick building, just within the north stockade"*; the 1855 key, *"(brick, about 25×50 ft.)"* — two statements twenty-eight years apart |
+| `fort_dearborn_magazine` | `brick` | **attested** | Hubbard, *"the magazine, of brick"* |
+
+Brick stood inside this stockade in 1816. Blodgett's yard bounds when the **town** could build in
+brick and says nothing about what the Quartermaster had already put up behind the pickets — a
+garrison post is where masonry appears first, not last.
+
+**What shipped.** `fort_structure` grows the same conditional `M_CHIMNEY` the other four archetypes
+carry, reading `materials.chimney_finish("interior")` — the sheet's existing `CHIMNEY_BRICK`,
+0.450/0.230/0.170 at roughness 0.85, at tier **`inferred`**. No third row, no new value, and **no
+new liberty**: L26 still owns where every stack stands and L168 still owns only the cat-and-clay
+fabric it was written for.
+
+- **The disposition is the argument, here as everywhere on the sheet.** `_chimneys` stands every
+  fort stack at the midline of the depth and rises it from the ground through the ridge — §2's
+  interior stack. An interior flue carries fire up through a timber roof, so it is masonry.
+- **Cat-and-clay is refused in writing.** §3's claim is not "log walls, therefore clay"; it is a
+  stack standing OUTSIDE the gable so it can be pulled away when it fires. Five of the six
+  chimneyed fort buildings are log and not one of their stacks stands there. If the fort's stacks
+  are ever re-dispositioned to the gable, the ruling goes with them.
+- **Ten stacks on six buildings** — barracks 3, commandant's quarters 2, officers' quarters 2,
+  blockhouse, guard house, sutler's store. Two of the ten rise out of walls that are themselves
+  attested brick. Town-wide this takes T-0008's count from **157 stacks on 143 buildings to 167 on
+  149**, and no roof-coloured stack is left in Chicago.
+
+**Seven fort masters are byte-identical, and that is the check.** The material is appended only
+where a record counts a stack, exactly as `frame_dwelling` and `log_dwelling` append theirs — an
+unreferenced slot still reaches the glTF. So the magazine, the store house, the artillery house,
+the root house, the parade, the lighthouse and the Lake House shell come out of the rebake
+unchanged to the byte; only the six chimneyed buildings move, and only by the bytes of one material
+(barracks 63,852 → 64,908).
+
+**Found on the way, and ticketed rather than smuggled in (T-0265).** The commandant's quarters now
+rises a stack of the sheet's brick out of a wall of `fort_structure.WALL_RGBA["brick"]`
+(0.470/0.260/0.200) — 4 % apart in linear red, 18 % in blue. It is the same latent split T-0138
+carries for the placeholder generator, and converging it is a change with a bake attached.
+
+**Verification.** 13 `fort_structure` masters rebuilt on the runner's own pinned Blender 4.5.3, web
+derivatives regenerated, sidecars recompiled, `tools/publish.sh` run in the same commit;
+`tools/check.sh` and `node tools/smoke_renderer.mjs` green at 390×780 and 1280×800 — readings filed
+in `tools/dev-smoke-state.json`.
+
 ## Shipped 2026-08-28 — T-0099: the bank track from the fort's north gate reaches the water
 
 `p4_0` — the fort from the north bank, the stand this project shoots it from — draws a track
@@ -4065,10 +4121,12 @@ stacks on 199 buildings*. The resolved parameters of the committed masters give 
 2026-08-16 figure is not re-derivable from anything committed and is left as written; this run's
 number is the one measured here, on this tree.
 
-**What is NOT fixed, in writing.** The fort's ten garrison buildings keep roof-coloured stacks —
+**What is NOT fixed, in writing.** ~~The fort's ten garrison buildings keep roof-coloured stacks —
 1816, seventeen years before the brick-yard, federal ground, and `construction` running log, brick,
 earth and stone across the records, so neither answer above reaches them without inventing a third
-(**T-0137**). The 90 inferred placeholders keep their own `#89503F` brick, about 20 % apart in
+(**T-0137**).~~ **DISCHARGED 2026-08-28 by T-0137, and the reasoning above was wrong**: the fort's
+own records attest brick standing inside the stockade in 1816 twice over, so the brick-yard date
+was never evidence about the fort. See the entry at the top of this file. The 90 inferred placeholders keep their own `#89503F` brick, about 20 % apart in
 linear red from the archetypes' (**T-0138**); converging it rewrites 90 masters and the banked
 passthrough set. Nothing here says what any roof was COVERED with — R-W2a finding 2 stands.
 And a trap surfaced on the way: `generators/build.py` cannot build
