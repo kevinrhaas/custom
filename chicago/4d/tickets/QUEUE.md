@@ -26,7 +26,6 @@
 
 # --- THE TOWN AND ITS STREETS — visible
 T-0028 — Build out the NEXT anonymous block (one per run)
-T-0241 — Washington gets the street edge
 T-0192 — The cross streets' own frontages get the street edge
 T-0183 — The Market and South Water corner needs one control point, and the node rule may not be able to make it
 T-0196 — Four documented buildings still stand on Lake Street's plank walk, the same OSM-kerb fault the South Water repair answered

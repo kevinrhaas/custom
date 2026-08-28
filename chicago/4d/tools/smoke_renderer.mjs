@@ -3860,10 +3860,14 @@ for (const [label, viewport, touch] of [
       };
     });
     check(`${label}: the frontage layer lays all five records' walks and stands their posts`,
-      frontage.census?.records === 5 && frontage.census?.walks === 42
-        && frontage.census?.crossings === 28
-        && frontage.census?.posts === 15 && frontage.census?.fences === 26
-        && frontage.census?.refused === 74
+      // T-0241 laid Washington's seven block faces on top of Randolph's
+      // thirteen: 42 walks to 49, 28 crossings to 33, 26 fence runs to 35 and
+      // 74 refusals to 83. The post count does NOT move — Washington's
+      // frontages carry no named trade the hitching rule accepts.
+      frontage.census?.records === 5 && frontage.census?.walks === 49
+        && frontage.census?.crossings === 33
+        && frontage.census?.posts === 15 && frontage.census?.fences === 35
+        && frontage.census?.refused === 83
         && frontage.recordIds.join(',')
           === 'green_tree_frontage,sauganash_frontage,river_walk_frontage,'
             + 'lasalle_crossing_frontage,town_street_edge'
@@ -3927,7 +3931,10 @@ for (const [label, viewport, touch] of [
         && frontage.lettering === frontage.recordText
         && frontage.recordText === 'GREEN TREE'
         && frontage.textGrade === 'inferred'
-        && frontage.meshes === 53,
+        // 53 -> 61 with T-0241's Washington faces, for the reason stated above:
+        // this number moves with `EDGE_STREETS` because the walk is chunked one
+        // mesh per run and Washington laid eight more of them.
+        && frontage.meshes === 61,
       `"${frontage.lettering}" on ${frontage.letterVerts} vertices across `
       + `${frontage.meshes} mesh(es) (${frontage.names?.join(', ')}), record says `
       + `"${frontage.recordText}" graded ${frontage.textGrade}`);
@@ -4333,14 +4340,16 @@ for (const [label, viewport, touch] of [
     });
     // T-0240 RAISED EVERY FIGURE HERE by laying Randolph Street: 16 block faces
     // to 29, 1,297.3 m of walk to 2,468.3, 11 street fence runs to 26 and 96
-    // walking decks to 190. `faces` is an equality and the other three are
-    // floors, which is the same division as before — the face count is the
-    // scope statement and has to be exact, and a walk that shrank under a floor
-    // would be a march quietly refusing ground it used to lay.
+    // walking decks to 190. T-0241 raised them again with Washington's seven
+    // faces: 29 to 36, 2,468.3 m to 3,129.1, 26 fence runs to 35 and 190 decks
+    // to 239. `faces` is an equality and the other three are floors, which is
+    // the same division as before — the face count is the scope statement and
+    // has to be exact, and a walk that shrank under a floor would be a march
+    // quietly refusing ground it used to lay.
     check(`${label}: the street edge is generated from the plat, not placed on one block`,
       edge.hasRecord && edge.cardId === 'town_street_edge'
-        && edge.faces === 29 && edge.walkM >= 2400 && edge.fences >= 25
-        && edge.decks >= 185,
+        && edge.faces === 36 && edge.walkM >= 3050 && edge.fences >= 34
+        && edge.decks >= 232,
       `record ${edge.hasRecord}, card ${edge.cardId}, ${edge.faces} block face(s), `
       + `${edge.walkM} m of walk, ${edge.fences} fence run(s), `
       + `${edge.decks} walking deck(s) registered`);
@@ -6842,22 +6851,26 @@ for (const [label, viewport, touch] of [
      * T-0150 — THE FURNITURE'S REACH, asserted as three separate claims because
      * three separate things can break it.
      *
-     * FIRST, that only the bottom rung holds anything back. A reach that leaked
-     * into `full` or `balanced` would be a tier a visitor chose deliberately
-     * being quietly cheapened, which is the opposite of what the control is for.
+     * FIRST, that the reach is a LADDER and that `full` sits at the top of it
+     * holding nothing back. Until T-0241 this check read "only the bottom rung
+     * holds anything back", because only the bottom rung did; `balanced` now
+     * carries 800 m to `light`'s 350 m, which is what makes "turn the quality
+     * down and less is drawn" true of the middle rung as well as the floor.
+     * What must never happen is a reach leaking into `full` — the tier whose
+     * whole promise is that nothing is held back — or the rungs crossing, which
+     * would be a visitor stepping DOWN a setting and getting more geometry.
      * Read off the MESHES (`hidden`, counted at every stand) as well as off the
      * level, for the reason `furnitureShadows` is: a policy that reaches `DETAIL`
      * and not the scene passes every ceiling check unchanged.
      */
-    const hiddenAbove = detail.seen.filter((lv) => lv.level !== 'light')
-      .flatMap((lv) => lv.atStands.map((x) => ({ level: lv.level, ...x })))
-      .filter((x) => x.hidden > 0);
-    check(`${label}: only the light tier holds any furniture back for distance`,
-      light.furnitureReachM !== null && full.furnitureReachM === null
-      && balanced.furnitureReachM === null
-      && hiddenAbove.length === 0 && light.bankedSpheres > 0,
-      hiddenAbove.length
-        ? `${hiddenAbove[0].level} hid ${hiddenAbove[0].hidden} at ${hiddenAbove[0].label}`
+    const hiddenAtFull = full.atStands.filter((x) => x.hidden > 0);
+    check(`${label}: the furniture reach is a ladder — full holds nothing back, and each rung below reaches less far`,
+      full.furnitureReachM === null && hiddenAtFull.length === 0
+      && balanced.furnitureReachM !== null && light.furnitureReachM !== null
+      && light.furnitureReachM < balanced.furnitureReachM
+      && light.bankedSpheres > 0,
+      hiddenAtFull.length
+        ? `full hid ${hiddenAtFull[0].hidden} at ${hiddenAtFull[0].label}`
         : detail.seen.map((lv) => `${lv.level} reach ${lv.furnitureReachM ?? 'none'}`).join(', ')
           + ` — ${light.bankedSpheres} furniture chunk(s) banked`);
     /**
@@ -6914,6 +6927,31 @@ for (const [label, viewport, touch] of [
         : `turning the reach off adds ${axial.trimTris.toLocaleString('en-US')} triangles `
           + `and ${axial.trimCalls} draw calls at ${axial.label} `
           + `(need 120,000 and 50)`);
+    /**
+     * AND THE SAME TWO CLAIMS FOR THE MIDDLE RUNG — T-0241. `balanced`'s 800 m
+     * is what carries Washington Street, so it is the reach whose going dead
+     * would put a tier over its ceiling rather than merely cost it a saving.
+     *
+     * TRIANGLES ONLY, and the missing call bar is a measurement rather than an
+     * omission: 800 m gives back 68,772 triangles at this stand and FIVE draw
+     * calls (151 -> 146 desktop, 151 -> 147 mobile), because the chunks it hides
+     * at that range are the ones T-0146's far merge had already collapsed into
+     * single calls. A bar on five is a bar on noise. The triangle bar is half the
+     * measured 68,772, the same ratchet-not-a-budget margin the `light` bar
+     * above carries and for the same reason.
+     */
+    const axialBalanced = balanced.atStands.find((x) => x.id === 'lake_at_canal');
+    check(`${label}: the balanced tier holds furniture back down the axial street`,
+      !!axialBalanced && axialBalanced.hidden > 0,
+      axialBalanced ? `${axialBalanced.hidden} of ${balanced.furnitureMeshesReach} furniture `
+        + `chunk(s) beyond ${balanced.furnitureReachM} m at ${axialBalanced.label}`
+        : 'the axial stand was not walked at balanced');
+    check(`${label}: the furniture reach is what makes the balanced tier cheaper down that street`,
+      !!axialBalanced && axialBalanced.trimTris >= 34000,
+      axialBalanced?.trimTris === undefined
+        ? 'the trim was not measured at the axial stand at balanced'
+        : `turning the reach off adds ${axialBalanced.trimTris.toLocaleString('en-US')} `
+          + `triangles at ${axialBalanced.label} (need 34,000)`);
     check(`${label}: the light tier's shorter shadow reach costs no texel`,
       light.reachM < full.reachM && Math.abs(light.texelM - full.texelM) < 1e-6,
       detail.seen.map((s) => `${s.level} ±${s.reachM} m at `
