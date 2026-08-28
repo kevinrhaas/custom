@@ -1,4 +1,12 @@
 export const CHANGELOG = [ // newest first
+  { v: 339, title: 'The tool that names where the picture shimmers stops overstating it', kind: 'chore', ts: '2026-08-28T16:41:17.938Z', date: 'Aug 28, 2026, 11:41 AM CT',
+    items: [
+      'Nothing you can see changed today. A measuring tool was corrected \u2014 the one that asks which part of the town is responsible when the picture shimmers under a camera movement of two millimetres.',
+      'It sorted the shimmering pixels into two piles: the edge of a thing against whatever is behind it, which every camera resamples and no renderer avoids, and the middle of a thing, which it reported as the town fighting itself.',
+      'A separate check five days ago showed the second pile is almost entirely the first. One roof in front of another roof is an edge too, and the tool could not see it, because it only knew each layer\u2019s outline against the rest of the scene.',
+      'The tool now says so itself, using the same test as the check that found it, kept in one place so the two can never drift apart. Today it reads 731 such pixels and not one of them a fight.',
+      'No threshold was loosened and no count changed to make that come out: the numbers are identical, pixel for pixel, to the run taken just before the change.',
+    ] },
   { v: 338, title: 'Five weeks of the town\u2019s own newspaper, read', kind: 'chore', ts: '2026-08-28T16:36:52.149Z', date: 'Aug 28, 2026, 11:36 AM CT',
     items: [
       'Nothing you can see changed today. The Chicago Democrat for July 1834 \u2014 five issues, four dense pages each \u2014 has been read end to end, and 129 things it says about the town are now written down with the page, column and line they came from.',

@@ -1,5 +1,48 @@
 # STATUS
 
+## Shipped 2026-08-28 — T-0156: the flicker instrument stops overstating what it found
+
+**A column called INTERIOR was quoted for six days as *the layer fighting itself*, and it never
+meant that.** `tools/measure_tie_class.mjs` partitions a 2 mm-nudge flicker by which layer owns
+each moving pixel, then splits each layer's share into its outline against the rest of the scene
+and the pixels its own footprint surrounds on all eight sides. The second number was read as a
+depth tie — the defect R-BUG6 was opened to find — and printed under the sentence *"the pixels
+where a layer fights ITSELF"*.
+
+`interiorOf` cannot support that reading. It knows one layer's outline against everything else and
+is blind to the boundary between two surfaces OF that layer, so one crown behind another and a
+chimney against its own roof both land inside it. T-0013 measured the size of the error on
+2026-08-23 with a depth pass and found **94–98 % of the count sitting on a depth BREAK** — a
+silhouette by any honest reading — and **0 % a depth reorder or a shading resample**. It changed
+nothing in the instrument, deliberately: closing a ticket by rewriting the tool that measured it is
+the one move this project does not allow.
+
+**Five days later the instrument was still printing the refuted sentence**, so anybody reading the
+tool rather than ROADMAP § R-BUG6(c2) read the wrong claim. This ships the repair, by ADDING a
+measurement rather than loosening one:
+
+- `tools/depth_field.mjs` — T-0013's discriminator extracted whole (the packed-depth swap, the
+  linearisation, the second-difference break test), imported by both instruments so they cannot
+  answer the same question differently. The trade table in `generate_frontage_works.py` and the
+  face arithmetic in `block_faces` are the same move for the same reason.
+- `measure_tie_class.mjs` prints the split beside the count, names the column `SURROUNDED` — which
+  is what it measures — and ends on the only total that ever meant what "interior" was taken to
+  mean. Its `--out` masks now paint an internal edge and a self-fight different colours; before,
+  one colour asserted the reading the depth pass refutes.
+
+**The demonstration, both tools run the same afternoon on the same published mirror**, `from_above`,
+1280×800, 2 mm nudge, shadow map off, control 0 px and return 0 px: `structures` 421 surrounded →
+**402 internal edge / 0 reorder / 0 same-surface / 19 no-depth**, and `trees` 231 → **218 / 0 / 0 /
+13** — agreeing pixel for pixel with `diagnose_interior_flicker.mjs`'s independent run. `ground`
+reads 66 here against 77 there, and the gap is the tools' own layer lists rather than the
+discriminator: `measure_tie_class` also carries `streets`, `flora` and `water`, which claim eleven
+pixels first. **Self-fight across all six layers: 0 of 731.**
+
+The surrounded counts are byte-identical to the run taken immediately before the change, so the
+split is an addition and not a re-measurement. Against 2026-08-23 the counts moved (structures 370
+→ 421, trees 257 → 231) and the shares did not (95 / 94 / 98 % against 94 / 98 / 96 %) — five days
+of content under a claim that survives it.
+
 ## Shipped 2026-08-28 — T-0224: a critic baseline standing on the public square
 
 **T-0027 replanted a whole city block and nothing in this project could show it in a picture.** The

@@ -64,7 +64,6 @@ T-0264 — Documented people replace the invented
 # --- MEASUREMENT, GATES AND PROVENANCE — invisible, and nothing below blocks the above
 T-0210 — The desktop smoke's stage 9 times out clicking the panel close, on an unmodified tree
 T-0190 — A second street tier for the street edge, and the ceiling that refuses it
-T-0156 — The interior/silhouette discriminator counts edges internal to a layer as interior
 T-0155 — The changelog stamper has the same after-publish trap the ticket tool just lost
 T-0136 — The eight owner-brief plates T-0075 could not identify: Andreas at page-image level, and two museum objects
 T-0055 — Hold the Kinzie-view plate as a source record
@@ -118,5 +117,6 @@ T-0283 — The North Division's warehouse row allows one freight roof and six do
 T-0284 — Two slices of one batch claimed T-0256 and both built it — a claim is written where the next slice cannot see it
 T-0285 — An asset carrying its own AO map cannot batch with the town: +2 draw calls for one building
 T-0286 — The AO unwrap leaves 68.9 per cent of every atlas empty, and the map is priced as if it were full
+T-0301 — Every visible ticket at the top of the queue is parked on hold or in flight, and five straight invisible runs merged under it
 T-0299 — Three printings of one letter list mint 298 people three times, and identity.json is empty
 T-0300 — T-0258 is sized M on the measurement that split T-0259 into six
