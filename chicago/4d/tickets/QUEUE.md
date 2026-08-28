@@ -113,4 +113,3 @@ T-0277 — The mid and forb rings' outer edges are re-priced for a density hando
 T-0279 — 2,526 of 18,911 drawn flower heads stand over open ground with no plant under their own stalk, on an unmodified dev
 T-0280 — The far band's grass-or-flower split is made on the forb lattice's CLAMPED share
 T-0281 — The ten plant communities reach no card a visitor can open
-T-0276 — The 'Verified' 1833 transcription reads NOV. 19, and the Democrat published no such issue

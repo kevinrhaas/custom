@@ -1,7 +1,7 @@
 ---
 id: T-0276
 title: The 'Verified' 1833 transcription reads NOV. 19, and the Democrat published no such issue
-state: open
+state: done
 epic: PAPERS
 requested_by: loop
 seen: false
@@ -9,8 +9,8 @@ effort: S
 legacy_id: null
 parent: null
 opened: 2026-08-28
-closed: null
-pr: null
+closed: 2026-08-28
+pr: 457
 claimed_by: null
 blocked_on: null
 needs_bake: false

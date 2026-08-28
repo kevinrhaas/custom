@@ -1,6 +1,6 @@
 {
   "project": "chicago-4d",
-  "generated_ct": "Aug 28, 2026, 6:43 AM",
+  "generated_ct": "Aug 28, 2026, 6:48 AM",
   "tickets": [
     {
       "id": "T-0001",
@@ -4700,7 +4700,7 @@
     {
       "id": "T-0276",
       "title": "The 'Verified' 1833 transcription reads NOV. 19, and the Democrat published no such issue",
-      "state": "open",
+      "state": "done",
       "epic": "PAPERS",
       "requested_by": "loop",
       "seen": false,
@@ -4708,12 +4708,12 @@
       "legacy_id": null,
       "parent": null,
       "opened": "2026-08-28",
-      "closed": null,
-      "pr": null,
+      "closed": "2026-08-28",
+      "pr": "457",
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 62
+      "queue_rank": null
     },
     {
       "id": "T-0277",
