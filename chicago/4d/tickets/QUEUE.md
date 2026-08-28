@@ -34,7 +34,6 @@ T-0219 — Finish the heightfield SOUTH to Madison Street, the plat's last tier
 # --- THE FORT — visible, mostly small
 T-0137 — The fort's stacks are still roof-coloured, and its 1816 date fits neither chimney answer
 T-0096 — Did the second Fort Dearborn carry a flagstaff, and can anything but a retrospective plate say so
-T-0185 — The plate draws the fort's pickets three times coarser than the model builds them
 T-0197 — Three of the fort image-accuracy table's eight rows were refuted in two days; audit the rest before building to them
 
 # --- FABRIC AND WHAT THE BUILDINGS ARE MADE OF — visible
