@@ -1,6 +1,6 @@
 {
   "project": "chicago-4d",
-  "generated_ct": "Aug 28, 2026, 5:18 AM",
+  "generated_ct": "Aug 28, 2026, 6:43 AM",
   "tickets": [
     {
       "id": "T-0001",
@@ -4700,7 +4700,7 @@
     {
       "id": "T-0276",
       "title": "The 'Verified' 1833 transcription reads NOV. 19, and the Democrat published no such issue",
-      "state": "blocked-owner",
+      "state": "open",
       "epic": "PAPERS",
       "requested_by": "loop",
       "seen": false,
@@ -4711,9 +4711,9 @@
       "closed": null,
       "pr": null,
       "claimed_by": null,
-      "blocked_on": "Does the top of the first supplied 1833 scan page read NOV. 19 or NOV. 26? The scans are yours; the answer decides whether the deposit holds an issue this project does not know about, or the transcription misread its own masthead.",
+      "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": null
+      "queue_rank": 62
     },
     {
       "id": "T-0277",

@@ -80,25 +80,34 @@ PUBLICATIONS = {
     },
 }
 
-# The one artifact in the deposit whose filename carries no issue date, and the
-# one identification in this file that is a judgement rather than a reading. It
-# is attached to 1833-11-26 as an ALTERNATE witness, at `inferred`, with the
-# discrepancy preserved: T-0276 asks the owner to settle it against the scan.
+# The one artifact in the deposit whose filename carries no issue date. It is
+# attached to 1833-11-26 as an ALTERNATE witness, and T-0276 settled the
+# attachment on 2026-08-28 against the extent of the owner's scan holdings.
+# Both of the artifact's own non-dates survive on the record, unrepaired.
 UNDATED = {
     "Chicago_Democrat_1833_11-16-Verified_Transcription.docx": {
         "attach_to": "1833-11-26",
-        "confidence": "inferred",
+        "confidence": "documented",
         "note": (
-            "Filed under the Democrat's 1833 set and headed 'Best-effort verified reading "
-            "transcription of the three supplied scan pages'. THREE supplied images of an "
-            "1833 Democrat is the scan set data/sources/chicago_democrat_1833_11_26.json "
-            "describes and was verified against, which is the whole of the reasoning for "
-            "attaching it here — the filename's '11-16' is not a date the Democrat ever "
-            "published under. The transcription's own first page reads 'Visible date at the "
-            "top of this supplied page: NOV. 19, 1833', which is ALSO not an issue date: the "
-            "Democrat's Vol. I No. 1 is 1833-11-26 and nothing preceded it. The reading is "
-            "preserved rather than repaired, per the corpus workflow's rule 2.3. Nothing may "
-            "be cited from this artifact as though the identification were settled."
+            "SETTLED 2026-08-28 by the owner's ruling under T-0276, recorded verbatim: "
+            "\"NOV. 26 is the first issue date I have scanned.\" The deposit's scan "
+            "holdings begin at Vol. I No. 1, so there is no earlier 1833 Democrat scan "
+            "set for this transcription to be a reading of. It is headed 'Best-effort "
+            "verified reading transcription of the three supplied scan pages', and the "
+            "three-image set is the one data/sources/chicago_democrat_1833_11_26.json "
+            "describes and was verified against. The attachment is therefore documented "
+            "by elimination against the deposit, not inferred from the heading alone. "
+            "TWO NON-DATES SURVIVE ON THIS ARTIFACT AND ARE PRESERVED, NOT REPAIRED, per "
+            "the corpus workflow's rule 2.3 ('Do not silently repair a visibly printed "
+            "date or number; note the discrepancy'): the filename's '11-16', and the "
+            "transcription's own first-page line 'Visible date at the top of this "
+            "supplied page: NOV. 19, 1833'. The Democrat published under neither date. "
+            "Both are artifacts of the transcription and its naming, not readings of "
+            "1830s type, and neither may be cited as evidence that any such issue "
+            "existed. NOTE THE LIMIT OF THE RULING: it establishes where the scan "
+            "holdings START, and nobody re-opened the page images to re-read that "
+            "masthead — so the NOV. 19 line stands quarantined and unexplained rather "
+            "than corrected, and a scan read would still outrank everything here."
         ),
     }
 }
