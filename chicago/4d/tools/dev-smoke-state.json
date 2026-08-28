@@ -77,6 +77,130 @@
       "passed": 37,
       "failed": 0,
       "failures": [],
+      "wallSeconds": 74,
+      "takenAt": "2026-08-28T02:46:47.321Z",
+      "ref": "steward/t-0134-south-bank-dearborn",
+      "commit": "78fe789279db",
+      "devCommit": "a638614c75d3",
+      "treeHash": "sha256:42a7d5f82d10f06b",
+      "treeDirty": false,
+      "changelogHash": "sha256:197bb1e811da8df3",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          3.9,
+          3.9,
+          2.6
+        ]
+      },
+      "source": "/tmp/smoke_mobile_8.log"
+    },
+    {
+      "viewport": "mobile",
+      "stage": "9",
+      "parts": [
+        9
+      ],
+      "verdict": "pass",
+      "target": "published",
+      "passed": 88,
+      "failed": 0,
+      "failures": [],
+      "wallSeconds": 103,
+      "takenAt": "2026-08-28T02:46:47.073Z",
+      "ref": "steward/t-0134-south-bank-dearborn",
+      "commit": "78fe789279db",
+      "devCommit": "a638614c75d3",
+      "treeHash": "sha256:42a7d5f82d10f06b",
+      "treeDirty": false,
+      "changelogHash": "sha256:197bb1e811da8df3",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          4.2,
+          4,
+          2.6
+        ]
+      },
+      "source": "/tmp/smoke_mobile_9.log"
+    },
+    {
+      "viewport": "desktop",
+      "stage": "8",
+      "parts": [
+        8
+      ],
+      "verdict": "pass",
+      "target": "published",
+      "passed": 37,
+      "failed": 0,
+      "failures": [],
+      "wallSeconds": 128,
+      "takenAt": "2026-08-28T02:46:47.006Z",
+      "ref": "steward/t-0134-south-bank-dearborn",
+      "commit": "78fe789279db",
+      "devCommit": "a638614c75d3",
+      "treeHash": "sha256:42a7d5f82d10f06b",
+      "treeDirty": false,
+      "changelogHash": "sha256:197bb1e811da8df3",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          4.2,
+          4,
+          2.6
+        ]
+      },
+      "source": "/tmp/smoke_desktop_8.log"
+    },
+    {
+      "viewport": "desktop",
+      "stage": "9",
+      "parts": [
+        9
+      ],
+      "verdict": "pass",
+      "target": "published",
+      "passed": 88,
+      "failed": 0,
+      "failures": [],
+      "wallSeconds": 192,
+      "takenAt": "2026-08-28T02:46:46.940Z",
+      "ref": "steward/t-0134-south-bank-dearborn",
+      "commit": "78fe789279db",
+      "devCommit": "a638614c75d3",
+      "treeHash": "sha256:42a7d5f82d10f06b",
+      "treeDirty": false,
+      "changelogHash": "sha256:197bb1e811da8df3",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          4.2,
+          4,
+          2.6
+        ]
+      },
+      "source": "/tmp/smoke_desktop_9.log"
+    },
+    {
+      "viewport": "mobile",
+      "stage": "8",
+      "parts": [
+        8
+      ],
+      "verdict": "pass",
+      "target": "published",
+      "passed": 37,
+      "failed": 0,
+      "failures": [],
       "wallSeconds": 95,
       "takenAt": "2026-08-28T01:06:43.765Z",
       "ref": "steward/t-0183-market-south-water",
