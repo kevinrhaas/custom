@@ -16,6 +16,10 @@
 #   3. Related work runs together, so a run can carry the context of the last one.
 # The `# ---` band headers are comments; the parser reads only lines starting T-NNNN.
 #
+# A third owner instruction, 2026-08-28: the NEWSPAPERS band was added and placed
+# after the visible bands on his explicit direction, its seeding tickets ordered
+# behind the extraction that feeds them.
+#
 # Labels on these lines are regenerated from each ticket's own `title:` field. If a
 # label and its ticket disagree, the ticket wins — one line was found mislabelled
 # on 2026-08-27, damage from the `ticket.mjs restamp` bug that T-0217 records.
@@ -52,6 +56,21 @@ T-0214 — Two flower-head archetypes truncate silently at their instance cap
 T-0019 — Six forb layers ask for more plants than the lattice holds
 T-0225 — The sward's drawn reach is measured off plants at two per cent coverage
 T-0162 — SWARD_VIEWPORT=mobile deals the same census as desktop: the viewport does not reach the ring sizes
+
+# --- THE NEWSPAPERS — placed here by the owner, 2026-08-28: "put all that legwork
+# --- after the visible things". The invisible extraction tickets at the top of this
+# --- band BLOCK the visible seeding at its bottom — documented storefronts and real
+# --- people replacing invented ones — which is why they sit above other invisible work.
+# --- Three owner rulings govern the epic; each ticket carries them in full.
+T-0256 — The newspaper corpus becomes a source this project can cite
+T-0257 — An extraction schema, and the gazetteer the papers compile into
+T-0258 — Reading the Democrat, part one: November 1833 to June 1834
+T-0259 — Reading the Democrat, part two: July to December 1834
+T-0260 — Reading the Democrat, part three: January to August 1835
+T-0261 — Reading the American: June to August 1835
+T-0262 — The July 1, 1835 register: who and what the papers put in the town
+T-0263 — The documented storefronts take their places on South Water and Lake
+T-0264 — Documented people replace the invented
 
 # --- MEASUREMENT, GATES AND PROVENANCE — invisible, and nothing below blocks the above
 T-0227 — Is the AO bake actually too dark? Every figure that said so was wrong twice over
