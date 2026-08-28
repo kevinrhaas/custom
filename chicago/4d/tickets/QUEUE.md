@@ -42,7 +42,6 @@ T-0096 — Did the second Fort Dearborn carry a flagstaff, and can anything but 
 
 # --- WHAT GROWS, AND WHAT A PHONE SEES — visible
 T-0019 — Six forb layers ask for more plants than the lattice holds
-T-0225 — The sward's drawn reach is measured off plants at two per cent coverage
 
 # --- THE NEWSPAPERS — placed here by the owner, 2026-08-28: "put all that legwork
 # --- after the visible things". The invisible extraction tickets at the top of this
