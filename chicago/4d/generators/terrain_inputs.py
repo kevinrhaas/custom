@@ -74,13 +74,15 @@ import hashlib
 import json
 from pathlib import Path
 
+import code_inputs
+
 ROOT = Path(__file__).resolve().parent.parent
 
 # Bump when the recipe below changes. assets/manifest.json records the scheme its
 # terrain entries were stamped under, so a definition change is a visible, dated
 # event and the gate refuses a manifest it cannot compute rather than comparing
 # two hashes that mean different things.
-SCHEME = "resolved-spec-v2"
+SCHEME = "resolved-spec-v3"
 
 # Keys whose values are written for a reader, plus the one that is written for a
 # reader AND a gate: `mesh` declares what the ground does with a figure this
@@ -251,9 +253,14 @@ def _code_shas() -> dict[str, str]:
 
     Not this file, which computes the hash. Not `build.py` or the archetypes,
     which build structures and share nothing with the ground.
+
+    `common/` is asked through `code_inputs.geometry_modules()` since T-0164,
+    for the reason written there. The ground had the worse end of the old glob:
+    it was hashing `common/phases.py`, a rule about which STRUCTURE phases get a
+    mesh, which the ground does not have and never reads.
     """
     gen = ROOT / "generators"
-    wanted = [gen / "terrain_gen.py"] + sorted((gen / "common").glob("*.py"))
+    wanted = [gen / "terrain_gen.py"] + code_inputs.geometry_modules()
     return {p.relative_to(gen).as_posix(): _sha_file(p) for p in wanted}
 
 
