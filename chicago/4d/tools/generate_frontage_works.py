@@ -298,6 +298,37 @@ RIVER_DEARBORN_CROSS_N = 13.92   # the board crossing over Dearborn runs level a
 # South Branch (T-0193) likewise stay out, and the record's own `refused` carries
 # every one of these numbers rather than a promise.
 EDGE_STREETS = ("south_water", "lake", "randolph")
+#
+# THE WEST DIVISION WAS BUILT AND MEASURED RATHER THAN ESTIMATED (T-0193), and it
+# is refused by ONE STAND AT ONE TIER AT ONE VIEWPORT. `blk_lake_clinton` is the
+# last platted block this rule never looked at; T-0069 refused it as "one stranded
+# block" and T-0127 promised it to a follow-up without a number. Here is the
+# number. Both its faces were generated — the Lake face T-0069 named, and the
+# Randolph face that only became coverable when T-0240 put Randolph in
+# `EDGE_STREETS` the day before — giving +2 faces, +192.2 m of walk, +1 crossing
+# and +3 street-lining fences. Published and read with
+# `tools/measure_detail_ceilings.mjs` at T-0135's five stands, both viewports,
+# against `dev`:
+#
+#   tier       ceiling     desktop worst           mobile worst
+#   full      1,400,000   1,378,391  PASS         1,299,917  PASS
+#   balanced  1,210,000   1,228,110  OVER 18,110  1,175,288  PASS
+#   light       785,000     750,290  PASS           699,416  PASS
+#
+# The whole cost lands at ONE stand — `lake_at_canal`, which stands at this
+# block's own east end and looks east down the axis where nothing culls. There
+# the block costs +27,932 triangles; at the other four stands it costs a flat
+# +8,460, and mobile clears `balanced` by 34,712.
+#
+# HALF OF IT DOES NOT FIT EITHER, WHICH IS THE FINDING. The Lake face ALONE —
+# exactly what T-0069 refused, with the Randolph face held back — costs +23,712 at
+# that stand and reads 1,223,890, still OVER by 13,890. So this is not a block
+# that is too big: `balanced` stood 1,201,344 of 1,210,000 on `dev` BEFORE this
+# ticket, 8,656 triangles and 0.7 % of headroom, and no street frontage of any
+# size fits under it today. That is the same binding fact T-0240 recorded for
+# Washington one rung earlier, and it is why T-0193 is blocked on T-0190 rather
+# than bought with a sixth ceiling raise — which T-0237's acceptance refuses in
+# as many words.
 EDGE_SKIP_BLOCKS = ("blk_lake_clinton",)   # across the South Branch — see above
 EDGE_FENCE_CLEAR_M = 0.25   # daylight between the fence line and the walk's inner edge
 EDGE_OFFSET_M = EDGE_FENCE_CLEAR_M + WALK_W_M / 2.0   # walk centre, out from the lot line
@@ -2667,12 +2698,35 @@ def build_street_edge() -> tuple[list, list, list, dict]:
         "structure_id": "blk_lake_clinton",
         "wall": "Lake Street's West Division frontage, across the South Branch",
         "why": (
-            "this block stands in the WEST DIVISION, across the South Branch from "
-            "the town the owner's 'south of the river or near the river' names, "
-            "and it is separated from every other face on this record by a river "
-            "with one bridge on it. The same rule would lay the same walk there; "
-            "it belongs with the rest of the town in the follow-up ticket rather "
-            "than as one stranded block."
+            "REFUSED ON A MEASURED FRAME BUDGET AT ONE STAND, AT ONE TIER, AT ONE "
+            "VIEWPORT (T-0193) — and it is a number now rather than the promise this "
+            "clause used to carry. This block stands in the WEST DIVISION, across the "
+            "South Branch from the town the owner's 'south of the river or near the "
+            "river' names, separated from every other face on this record by a river "
+            "with one bridge on it, and it is the last platted block this rule has "
+            "never looked at. THE SAME RULE DOES LAY THE SAME WALK THERE, and it was "
+            "run rather than assumed: both faces generate cleanly — the Lake face "
+            "T-0069 named, and the Randolph face that only became coverable when "
+            "T-0240 put Randolph in the covered streets the day before — for +2 block "
+            "faces, +192.2 m of walk in 2 unbroken runs, +1 board crossing over "
+            "Randolph and +3 street-lining fences, with the march refusing only what "
+            "it refuses everywhere else (a building standing ON the frontage line is "
+            "the street wall, an unimproved lot takes no fence, and a blacksmith's "
+            "yard gate takes no hitching post). Published and read at T-0135's five "
+            "stands at BOTH viewports: `full` and `light` pass everywhere and mobile "
+            "passes every tier, clearing `balanced` by 34,712. DESKTOP `balanced` does "
+            "not — 1,228,110 against a 1,210,000 ceiling, OVER BY 18,110 — and the "
+            "whole of that cost lands at the single stand `lake_at_canal`, which "
+            "stands at this block's own east end and looks east down the axis where "
+            "nothing culls: +27,932 triangles there against a flat +8,460 at the other "
+            "four. AND HALF OF IT DOES NOT FIT EITHER, which is what makes this a fact "
+            "about the budget rather than about the block: the Lake face ALONE, "
+            "exactly what T-0069 refused, still reads 1,223,890 and is over by 13,890. "
+            "`balanced` stood 1,201,344 of 1,210,000 before this was tried — 8,656 "
+            "triangles, 0.7 % of headroom — so no street frontage of any size fits "
+            "under that rung today. The unblock is T-0190's second street tier, not a "
+            "sixth raising of the ceiling, which T-0237's acceptance refuses in as "
+            "many words."
         ),
     })
     walks.sort(key=lambda w: w["id"])
