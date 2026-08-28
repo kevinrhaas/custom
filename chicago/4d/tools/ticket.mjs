@@ -98,7 +98,11 @@ const EFFORT = {
   M: 'one run, tight — or one run plus a bake',
   L: 'MORE THAN ONE RUN — must be split before it can be claimed',
 };
-const EPICS = ['RENDERING', 'TOWN', 'GROUND', 'FLORA', 'PIPELINE', 'META'];
+// PAPERS: the newspaper-corpus epic — extraction from the 1833-1835 Democrat
+// and American transcriptions, and the documented businesses/residents seeded
+// from them. Registered 2026-08-28 with the epic's nine founding tickets
+// (T-0256..T-0264), on the owner's instruction.
+const EPICS = ['RENDERING', 'TOWN', 'GROUND', 'FLORA', 'PIPELINE', 'META', 'PAPERS'];
 const BY = ['owner', 'loop', 'steward'];
 // Workable = an agent may take it off the queue. `claimed`/`review` stay in the
 // queue so a crashed run's ticket is still visible in priority order rather
