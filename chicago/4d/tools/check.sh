@@ -631,6 +631,24 @@ step "p4_0 raises no work at either angle of the fort it draws" \
 step "…and its own assertions still fire when broken" \
   python3 tools/measure_fort_works_plate.py --self-test
 
+# T-0197 audited the rest of that table, because three of its eight rows had been
+# struck as wrong in a week and rows 1, 2 and 6 had never been measured at all —
+# while already carrying TWO built ways on the reservation. Row 2 is the first row
+# of that table to survive measurement: p4_0 draws one bare corridor, it meets the
+# wall at the gate, it runs west, and it reaches the shore. Row 1's "both plates"
+# is struck (p4_1 draws no way at the fort, on a detector that finds the way it
+# draws elsewhere on the same bank). Row 6's flagstaff stands at 0.495 of the wall
+# — over the gate, not in the parade where exclusions.json puts the FIRST fort's.
+# Two of the three assertions here ask the TOWN about the plates, which is why this
+# one gates where T-0094's plate half does not: they fire the day fort_bank_track
+# is swung back east, or either way's geometry_confidence is promoted on the
+# strength of a tier-5 lithograph.
+step "the ways the fort plates draw are still the ways the town was built to" \
+  python3 tools/measure_fort_ways_plate.py --gate --quiet
+
+step "…and its own assertions still fire when broken" \
+  python3 tools/measure_fort_ways_plate.py --self-test
+
 # The datum must remain the output of its committed ground control, never a
 # hand-edited number. Skips (exit 0) when pyproj is not installed.
 step "datum re-derivation" \

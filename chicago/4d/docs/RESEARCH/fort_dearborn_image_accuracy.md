@@ -1,5 +1,28 @@
 # Fort Dearborn, against its two plates — the image-accuracy pass (T-0044)
 
+> **HOW A ROW OF THE TABLE BELOW MAY BE ESTABLISHED, AND IT IS NOT BY LOOKING** (T-0197,
+> 2026-08-28). Eight rows were written here by eye. **Three were struck as wrong within a
+> week** — row 3 was backwards in both halves, row 4 mislocated the plate's most prominent
+> structures by half a wall, row 5 described as missing a thing that had been built all
+> along — and a fourth, row 8, had its compass word struck. Two of them had already become
+> tickets, and both of those runs spent their whole budget establishing that the ticket was
+> wrong rather than improving anything a visitor sees. So, from here on:
+>
+> 1. **A row states a measurement, names the tool that made it, and prints the number.** An
+>    impression of a lithograph is not a reading of one. Rows 3, 4, 5, 8 and now 1, 2 and 6
+>    each have a committed detector under `tools/measure_*_plate.py`, banked against a
+>    baseline so a later edit to the detector cannot move the reading in silence.
+> 2. **A row that has not been measured may not seed a ticket.** File the measurement first.
+>    It is cheaper than the run that discovers the row was wrong.
+> 3. **A row says which FORT its feature belongs to, or says that it cannot.** Both plates
+>    are retrospective and both conflate the 1803 and 1816 forts; `data/exclusions.json`
+>    already assigns one of `p4_0`'s features to the first. "Render versus plate, plate
+>    wins" is the wrong question on a sheet like this one.
+> 4. **A measurement that AGREES with the render is a finding too, and gets written down.**
+>    Row 2 is the worked example: it is the first row of this table to survive measurement.
+>
+> The audit that produced this header is § "Rows 1, 2 and 6 measured" below.
+
 **Run 2026-08-19.** The third and last piece of T-0006, the owner's K2 ask: *render each
 landmark from its reference plate's viewpoint, compare, improve.* The Green Tree (T-0042)
 and the Sauganash (T-0043) were the first two. The next two UNticketed plates in the
@@ -40,12 +63,12 @@ notice it:
 
 | # | the gap | can this runner close it |
 |---|---|---|
-| 1 | **No road anywhere on the reservation.** Both plates show a travelled way at the fort; the render has trackless prairie between the town and the gate. | **yes — this pass ships it** |
-| 2 | The track descending the bank from the north gate to the water (`p4_0`). | no while the bank is ungraded — T-0004 owns the bank |
+| 1 | **No road anywhere on the reservation.** ~~Both plates show a travelled way at the fort;~~ **HALF STRUCK — measured 2026-08-28 by T-0197.** The render's half was true and this pass closed it (`fort_road`). The plates' half is not: `p4_0` draws exactly ONE way and it is row 2's bank track, counted here a second time; `p4_1` draws NONE at the fort, on a detector that finds the way it draws elsewhere on the same bank. See below. | **shipped — and the road stands on the 1830 plan, not on these plates** |
+| 2 | The track descending the bank from the north gate to the water (`p4_0`). **MEASURED AND CONFIRMED 2026-08-28 by T-0197 — the first row of this table to survive measurement.** One bare mass, 38,361 px, meeting the wall's foot at the gate and descending frame-right to the shore. | **closed 2026-08-27 by T-0099** — `fort_bank_track`, and the plate agrees on its direction |
 | 3 | ~~Pickets are flat-topped and dark; the plate's are pointed and pale.~~ **This row was wrong in both halves — see below. Refuted and closed 2026-08-24 by T-0094.** The one thing about the pickets the plate DOES say — that it draws them three times coarser — was left open by that pass and is **settled 2026-08-28 by T-0185, see below.** | nothing to bake |
 | 4 | ~~The corner works do not rise above the curtain with roofs and lanterns as the plate draws them.~~ **`p4_0` draws no work at either angle it shows. Refuted and closed 2026-08-24 by T-0095 — see below.** | nothing to bake |
 | 5 | ~~No gate is drawn in either documented wall;~~ **a gate has been drawn in both since the archetype was written — but both stood a QUARTER OPEN, and that is now fixed. Closed 2026-08-24 by T-0095 — see below.** The plate's log-faced work over the gate is not built, and § "Row 4" says why. | **closed — one asset rebaked** |
-| 6 | **A flagstaff and flag over the fort** — the most conspicuous single feature of `p4_0`. | **NOT a bake question, and NOT to be built on this plate alone** — see below |
+| 6 | **A flagstaff and flag over the fort** — the most conspicuous single feature of `p4_0`. **MEASURED 2026-08-28 by T-0197: drawn, and it stands at 0.495 of the wall — over the GATE, between the two works at 0.435 and 0.521, and NOT in the parade where `data/exclusions.json` puts the first fort's.** | **NOT a bake question, and NOT to be built on this plate alone** — see below; carried by **T-0096**, whose question the measurement sharpens rather than answers |
 | 7 | The ground round the walls is full prairie sward; both plates show it bare and trodden. | **closed 2026-08-23 by T-0097** — a 12 m band of trodden earth outside the palisade, derived from the stockade's own committed footprint (`data/enclosures/fort_dearborn_apron.json`, L174); before/after at `docs/evidence/t-0097-{before,after}.png` |
 | 8 | No trees at the fort; `p4_0` puts a tree mass ~~east~~ **WEST** of the walls and `p4_1` trees round the buildings on both banks. **The compass word in this row was wrong — see "Row 8's east is west" below.** | **closed 2026-08-24 by T-0098** — the mass is WEST, measured; and the plate cannot DATE it, so 12 relict black willows stand there `reconstructed` rather than the plate's closed canopy (`data/flora/plantings/fort_dearborn_wood.json`, L188); before/after at `docs/evidence/t-0098-{before,after}.png` |
 
@@ -309,3 +332,120 @@ stand rather than the plate's closed canopy** — the record states the differen
 letting a visitor infer that the plate's mass was reproduced. For T-0197's audit: **row 8's
 compass word is struck, and row 8's implicit date is struck with it.** What is left standing of
 the row is that a draughtsman drawing this fort put trees outside its walls, on the west side.
+
+## Rows 1, 2 and 6 measured — and the audit of what is left (T-0197, 2026-08-28)
+
+Rows 3, 4, 5 and 8 had each been measured by the run that struck them. **Rows 1, 2 and 6
+never had been**, and between them they had already put two built ways on the reservation —
+`fort_road` (row 1, this pass) and `fort_bank_track` (row 2, T-0099, merged the day before
+this audit). This section measures all three, off the plates, with `tools/
+measure_fort_ways_plate.py`. It runs in `tools/check.sh`, banks its reading in
+`tools/fort_ways_plate_baseline.json` so a later edit to the detector cannot move it in
+silence, and carries three assertions that ask the TOWN about the plates rather than the
+other way round. The overlay is `docs/evidence/t-0197-ways-measured.png` — the segmented
+corridor tinted on the sheet, with the wall's ends, the picket band, the flagstaff and the
+two works of T-0095 drawn on it.
+
+### Row 2 is CONFIRMED, and it is the first row of this table to survive measurement
+
+`p4_0`'s bank is segmented for bare trodden ground — warmer than the sward (red over green
+by 6) and paler than it (luminance 150 against the sward's 108–124), then the same 7×7
+majority filter the trees tool uses to kill the stipple. The river fails the warmth clause
+outright (R−G 0.5) and so does the sky (−5.3).
+
+**One connected mass carries the whole thing: 38,361 px, rows 421–621, columns 751–1199.**
+
+* It **meets the wall at the gate.** Its head touches the picket foot at column 752 — 10 px
+  from the gate work `p4_0` raises at 0.521 of the drawn wall run (T-0095's own reading), so
+  0.509 of that run. It does not begin at an angle, at a corner, or anywhere else on the
+  wall.
+* It **runs west.** Its per-row centre travels 840 → 1193 as it descends, drifting **+1.219
+  columns a row** — frame-RIGHT, which on this plate's settled stand (§ "Row 8's east is
+  west") is **WEST**.
+* It **reaches the shore.** At its closest the mass's foot comes within **37 px** of the
+  drawn waterline, at column 1140 — 2.6 m on the footprint scale and 3.2 m on the picket
+  scale, both read at the FORT's depth, and the foot is nearer the viewer than the fort, so
+  both are upper bounds. What lies between is the plate's own dark shore rule.
+* **There is no second way.** The next bare mass anywhere on this bank is 151 px.
+
+`fort_bank_track` as T-0099 built it runs **23.23 m west** over a 23.92 m chord out of the
+north gate. The plate agrees on the direction and on the gate, and **cannot** agree or
+disagree on the length: a line running away from a monocular viewer has none, and no
+arithmetic on a lithograph recovers it. Which is why the record still reads
+`geometry_confidence: reconstructed`, and why this file's second assertion fires the day
+somebody promotes it on the strength of this section.
+
+### Row 1 is HALF STRUCK: it counted one drawn way twice, and cited a plate that draws none
+
+Row 1 reads *"No road anywhere on the reservation. Both plates show a travelled way at the
+fort."* Two claims, and they do not stand together.
+
+**The render's half was true**, and this pass closed it by shipping `fort_road`.
+
+**"Both plates" is not.**
+
+* On `p4_0`, the travelled way is the one measured above — row 2's bank track, descending
+  from the NORTH gate to the water. **It is the same feature row 2 names.** The table
+  counted it twice and read the second count as independent support for a road approaching
+  the fort from the town, which is a different thing on the far side of the compound and is
+  not drawn on this sheet at all. (It could not be: from `p4_0`'s stand the south side is
+  behind the fort.)
+* On `p4_1`, there is **no way at the fort.** Measured with a detector normalised to each
+  window's own quartiles, so the two plates' very different palettes are comparable: a 9 px
+  box mean to kill the stipple, then anything standing above the window's own third quartile
+  by half its own interquartile range. Over the fort's ground — the bank between the drawn
+  stockade's two ends, columns 378–755, below the wall foot — the largest pale mass is
+  **340 px at +0.5 IQR and 0 px at +2.0 IQR**: it does not survive the stiffer threshold at
+  all. Run unchanged over the house-group bank at frame-left, where the draughtsman DID draw
+  a trodden way, the same detector finds **563 px at +0.5 IQR and 97 px at +2.0 IQR** — an
+  elongated streak at rows 285–291, columns 145–186, still there at four times the margin.
+  **The same detector, the same settings, the same sheet: it finds the way `p4_1` draws and
+  finds nothing at the fort.** A null with a positive control beside it.
+
+What this does NOT do is unbuild the fort road. That road never rested on these plates:
+its own record and **L140** put it on the 1830 Harrison plan — which places the garrison
+garden *west of a road* — with the western reach stated as this project's reconstruction
+because South Water Street stops at the United States Reservation by the 1833 order. The
+plate sentence in row 1 was decoration on a documented argument. It is struck so that the
+next reader does not mistake it for the argument.
+
+### Row 6 is CONFIRMED as drawn — and the measurement moves the first-fort question
+
+`p4_0` does draw a flagstaff, and the row is right that it is conspicuous. Measured as the
+tallest thin dark vertical standing in the sky over the fort (darker than the sky's own 80th
+percentile by 45): **column 740, truck at row 158, 112 px of staff before the roofline takes
+it**, rising **219 px over the picket head — 15.24 m on the footprint scale, 18.84 m on the
+picket scale**, printed side by side and never averaged. The flag is there too: **378
+red-dominant pixels at rows 195–220, columns 715–734**, flying frame-left of the truck.
+
+The number the row never asked for is WHERE ALONG THE WALL it stands, and it is the one that
+matters:
+
+**0.495 of the drawn wall run** — between T-0095's two roofed, lanterned works at **0.435**
+and **0.521**, over the GATE.
+
+`data/exclusions.json` excludes a flagstaff and locates the excluded one **in the parade**,
+in the passage that ends *"Such was the old Fort previous to 1812"*. The staff `p4_0` draws
+is not in the parade. It rises from the gate work's own roofline, wedged exactly between the
+two works that T-0095 read as first-fort signature (two blockhouses), so **the plate's
+flagstaff and the plate's two towers are one composition standing over one gate** — either
+all of it is the second fort or none of it is, and this sheet cannot say which. That is a
+sharper form of the same trap the pass refused, not a way past it: **T-0096's question is
+unchanged and still needs a source that reaches the 1816 post.** What is now recorded is
+that the excluded first-fort staff and the drawn staff are not in the same place, so
+"`exclusions.json` already covers it" is not an answer either.
+
+### The tickets descending from these rows, re-read
+
+| ticket | from row | verdict against the measurement |
+|---|---|---|
+| **T-0099** (done, PR #431) | 2 | **CONFIRMED.** The plate draws the track it built, out of the gate it built from, running the direction it swung. The length it chose is its own and is labelled `reconstructed`; the plate neither warrants nor refutes it. |
+| **T-0096** (open) | 6 | **CONFIRMED, and sharpened.** The staff is drawn; where it stands is now measured; the first-fort question is not settled by `exclusions.json` because the excluded staff is in the parade and this one is over the gate. The ticket's acceptance is unchanged — evidence reaching the 1816 post, or a recorded negative finding. |
+| **T-0098** (done) | 8 | **CONFIRMED as measured** by its own run: the compass word struck, the date struck, twelve `reconstructed` relict stems built rather than the plate's closed canopy. No new work. |
+| **T-0094** (refuted), **T-0095** (refuted), **T-0097** (done) | 3, 4, 5, 7 | already closed by measurement; not re-opened here. |
+| `fort_road` (built by this pass, row 1) | 1 | **STANDS, on a different warrant than the row claimed.** The 1830 Harrison plan and L140, not the plates. No record changes; the row's plate sentence is struck. |
+
+Nothing in this section moves a coordinate, a confidence or a mesh. **That is the point of
+it**: the table is now eight rows of which seven have been measured, and the eighth — row 7 —
+was closed by construction. There is nothing left in it that a future run can build to on the
+strength of somebody's impression.

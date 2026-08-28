@@ -1,7 +1,7 @@
 ---
 id: T-0197
 title: Three of the fort image-accuracy table's eight rows were refuted in two days; audit the rest before building to them
-state: open
+state: claimed
 epic: META
 requested_by: steward
 seen: false
@@ -11,7 +11,7 @@ parent: null
 opened: 2026-08-24
 closed: null
 pr: null
-claimed_by: null
+claimed_by: run 8/27/2026, 11:31:47 PM CT
 blocked_on: null
 needs_bake: false
 ---
