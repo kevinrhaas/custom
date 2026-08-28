@@ -1,4 +1,12 @@
 export const CHANGELOG = [ // newest first
+  { v: 303, title: 'The plank walk turns its first corner, onto Market Street', kind: 'feature', ts: '2026-08-28T00:02:47.205Z', date: 'Aug 27, 2026, 7:02 PM CT',
+    items: [
+      'Until today the boarded walk could only ever run east and west. The rule that lays it read a block\u2019s north and south sides \u2014 the ones facing Lake, South Water and Randolph \u2014 and never looked at the other two, so a cross street could not have been given a walk however much room there was for it. Both sides are read now, and Market Street is the first to get one: a raised plank sidewalk down its frontage at the west end of town, and a board crossing where it meets Lake.',
+      'Walk east along Lake from Canal and you no longer step off the boards at the corner. That is the whole of what this changes to look at, and it is the point of it.',
+      'Nothing was placed by hand here either. The same surveyed centreline stepped out by half the platted street width decides where a board may lie, and the same march decides where it may not \u2014 wet ground, uneven ground, too narrow a verge, or something already standing there.',
+      'The cross streets carry no fences and no hitching posts, and that is the plat\u2019s answer rather than a gap. Every lot in these blocks fronts an east-west street, so a cross-street side is the END of a row of lots, not a frontage any lot owns \u2014 and both of those rules stand on a lot. The record says so rather than leaving it a silence.',
+      'The other six cross streets are measured and refused, with their numbers on the record: they run from a third again the size of Market to three times it, and the middle quality setting had 8,656 triangles of room in a frame of 1.21 million.',
+    ] },
   { v: 302, title: 'Randolph Street gets its plank walks, crossings and fences', kind: 'feature', ts: '2026-08-27T23:11:50.233Z', date: 'Aug 27, 2026, 6:11 PM CT',
     items: [
       'Walk one block south of Lake Street and the ground under your feet changes. Randolph now has the same boarded walk the two river streets have had since August \u2014 a raised plank sidewalk at the lot line, board crossings over the roadway at the corners, and board fences standing behind the walk wherever a lot is improved but its building sits back from the street.',

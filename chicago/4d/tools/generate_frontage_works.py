@@ -299,6 +299,21 @@ RIVER_DEARBORN_CROSS_N = 13.92   # the board crossing over Dearborn runs level a
 # every one of these numbers rather than a promise.
 EDGE_STREETS = ("south_water", "lake", "randolph")
 EDGE_SKIP_BLOCKS = ("blk_lake_clinton",)   # across the South Branch — see above
+# THE CROSS STREETS' OWN FRONTAGES (T-0192). The three streets above run
+# east-west and bound a block on its NORTH or SOUTH face; a cross street runs
+# north-south and bounds the same block on its EAST or WEST one. Until this
+# ticket `_edge_faces` enumerated two faces of four, so naming a cross street in
+# `EDGE_STREETS` would have laid nothing at all — the record's own boundary
+# refusal said exactly that. Both are enumerated now, and which cross streets are
+# COVERED is this tuple.
+#
+# WHY IT IS NOT ALL SEVEN, and the number is measured rather than argued. Balanced
+# is the binding rung and it stood 8,656 triangles inside its 1,210,000 ceiling on
+# `dev` at 2ab3065a, worst of T-0135's five stands (the forks, from Wolf Point).
+# The seven cross streets are 34 platted faces and 3,562.8 m of frontage — three
+# times the whole of the record above — so no reading of the budget fits them and
+# no trim in the queue is worth their order of magnitude either.
+EDGE_CROSS_STREETS = ("market",)
 EDGE_FENCE_CLEAR_M = 0.25   # daylight between the fence line and the walk's inner edge
 EDGE_OFFSET_M = EDGE_FENCE_CLEAR_M + WALK_W_M / 2.0   # walk centre, out from the lot line
 EDGE_SPAN_M = 5.2           # the march step: twenty boards, and the unit a face is laid in
@@ -2099,6 +2114,24 @@ def _track_verge(frame, offset_m, half_w, streets, street_id) -> float:
     return worst
 
 
+# THE FOUR FACES OF A BLOCK, and for each one: the streets covered on it, the
+# SIDE of the street the face stands on (a block bounded on its north face lies
+# SOUTH of that street, so the face is the street's south side), and the axis the
+# street runs along — 0 for the east-west streets, 1 for the cross streets. That
+# last number is the whole of what makes a north-south street work here: every
+# ordering in this generator used to assume a face's position along its street
+# was its x, which is true of Lake and false of Clark.
+EDGE_FACES = {
+    "north": (EDGE_STREETS, "south", 0),
+    "south": (EDGE_STREETS, "north", 0),
+    "east": (EDGE_CROSS_STREETS, "west", 1),
+    "west": (EDGE_CROSS_STREETS, "east", 1),
+}
+# The two sides of a street, by the axis it runs along — used to pair a face on
+# one frontage with the face opposite it.
+EDGE_SIDES = {0: ("north", "south"), 1: ("east", "west")}
+
+
 def _edge_faces(lots_doc):
     """Every platted block face that fronts one of the two covered streets, with
     its committed frame. The faces are the plat's, and the plat's are the street
@@ -2109,20 +2142,25 @@ def _edge_faces(lots_doc):
         if block["id"] in EDGE_SKIP_BLOCKS:
             continue
         bounded = block.get("bounded_by") or {}
-        for face in ("north", "south"):
+        for face in EDGE_FACES:
             street = bounded.get(face)
-            if street not in EDGE_STREETS:
+            if street not in EDGE_FACES[face][0]:
                 continue
             frame = face_frame(block, face)
             # The block lies south of a street it bounds on its NORTH face, so
             # that face stands on the street's SOUTH side, and the other way
-            # round. The side is what pairs two faces across the same road.
+            # round — and east/west the same way about. The side is what pairs
+            # two faces across the same road.
+            side, axis = EDGE_FACES[face][1], EDGE_FACES[face][2]
             out.append({
                 "block": block, "face": face, "street": street,
-                "side": "south" if face == "north" else "north",
+                "side": side, "axis": axis,
                 "frame": frame,
             })
-    out.sort(key=lambda f: (f["street"], f["side"], f["frame"]["origin"][0]))
+    # A face is ordered along the street it fronts: east-west streets run in x
+    # and the cross streets in y, so the axis the frames are sorted on is the
+    # street's and not always the first one.
+    out.sort(key=lambda f: (f["street"], f["side"], f["frame"]["origin"][f["axis"]]))
     return out
 
 
@@ -2426,6 +2464,22 @@ def build_street_edge() -> tuple[list, list, list, dict]:
         face_chunks = [f"{key}_{k}" for k in range(1, len(runs) + 1)]
         laid_by_face[key] = {"entry": entry, "laid": laid, "verge": verge,
                              "chunks": face_chunks}
+        # A CROSS STREET'S FRONTAGE CARRIES NO FENCE AND NO HITCHING POST, and
+        # that is the plat's answer rather than this generator's. Both rules are
+        # per-LOT — a fence stands on an improved lot set back from its own
+        # frontage line, a post stands at a trading building's own frontage —
+        # and every one of Thompson's lots in these blocks fronts an east-west
+        # street. A cross-street face is the END of a lot row: no lot fronts it,
+        # so neither rule has anything to stand on. Said here rather than left
+        # as a silence, because a reader counting fences will otherwise wonder.
+        if entry["axis"] == 1:
+            refused.append({"structure_id": f"{key}_fences", "wall": f"{block['id']} {face} face", "why": (
+                f"no fence and no hitching post are laid on this {name} frontage: both "
+                "rules are per-lot, and not one of this block's platted lots fronts a "
+                "cross street — every lot in the Thompson plat fronts an east-west "
+                "street, so this face is the END of a lot row rather than a frontage "
+                "any lot owns. The walk is laid; the fence line behind it belongs to "
+                "the lots either side, which carry their own on their own frontages.")})
         # The hitching posts at this face's trading frontages (T-0194), which
         # stand in the verge OUTSIDE the walk just laid and are therefore asked
         # for after it rather than beside it.
@@ -2577,7 +2631,7 @@ def build_street_edge() -> tuple[list, list, list, dict]:
     for key, rec in laid_by_face.items():
         sides.setdefault((rec["entry"]["street"], rec["entry"]["side"]), []).append((key, rec))
     for (street, side), members in sorted(sides.items()):
-        members.sort(key=lambda m: m[1]["entry"]["frame"]["origin"][0])
+        members.sort(key=lambda m: m[1]["entry"]["frame"]["origin"][m[1]["entry"]["axis"]])
         for (ka, ra), (kb, rb) in zip(members, members[1:]):
             fa = ra["entry"]["frame"]
             fb = rb["entry"]["frame"]
@@ -2597,16 +2651,18 @@ def build_street_edge() -> tuple[list, list, list, dict]:
                      "is invented.")
     # Across a street: the two sides of the same street, where a face on one is
     # opposite a face on the other.
-    for street in EDGE_STREETS:
-        north = sides.get((street, "north"), [])
-        south = sides.get((street, "south"), [])
+    for street, axis in ([(x, 0) for x in EDGE_STREETS]
+                        + [(x, 1) for x in EDGE_CROSS_STREETS]):
+        near_side, far_side = EDGE_SIDES[axis]
+        north = sides.get((street, near_side), [])
+        south = sides.get((street, far_side), [])
         for kn, rn in north:
             fn = rn["entry"]["frame"]
-            n0 = fn["origin"][0]
+            n0 = fn["origin"][axis]
             n1 = n0 + fn["length"]
             for ks, rs in south:
                 fs = rs["entry"]["frame"]
-                s0 = fs["origin"][0]
+                s0 = fs["origin"][axis]
                 s1 = s0 + fs["length"]
                 overlap = min(n1, s1) - max(n0, s0)
                 if overlap < 40.0:
@@ -2634,33 +2690,28 @@ def build_street_edge() -> tuple[list, list, list, dict]:
     # that bounded the run say so here rather than only in a comment.
     refused.append({
         "structure_id": "town_street_edge",
-        "wall": ("Randolph Street, Washington Street and the cross streets' own "
-                 "frontages"),
+        "wall": ("Washington Street and the six cross streets east of Market"),
         "why": (
-            "REFUSED ON A FRAME BUDGET, AND THE NUMBER IS HERE RATHER THAN A PROMISE "
-            "(T-0127/T-0188). The owner's ask reaches further than this record does — "
-            "'all of the streets should be updated like this' — and every one of these "
-            "is the same rule on more platted faces, with no new argument in it. "
-            "RANDOLPH WAS BUILT AND MEASURED RATHER THAN ESTIMATED: 13 more faces, "
-            "+1,237.9 m of walk, +14 crossings, +14 fences. Published and read at the "
-            "release gate's whole stand set, desktop, at the axial stand, it takes "
-            "`full` from 1,378,984 to 1,497,588 against a 1,400,000 ceiling and "
-            "`balanced` from 1,205,762 to 1,355,638 against 1,210,000 — over by 97,588 "
-            "and 145,638, and the same shape on mobile. `light`, the tier a weak "
-            "machine boots into, stays inside with 180,269 to spare. THE LEVER T-0115 "
-            "COSTED FOR IT WAS TAKEN FIRST AND IS NOT ENOUGH: the plank walks no "
-            "longer cast into the shadow map, and turning off every shadow caster this "
-            "layer has left at that stand is worth a measured 44,110 triangles against "
-            "that 145,638. AND THE BINDING FACT "
-            "IS NOT RANDOLPH — `balanced` stood 4,238 triangles (0.35 %) inside its "
-            "ceiling BEFORE this parcel, where T-0135 set it two days earlier with "
-            "about 6 % of headroom, so no street tier of any size fits today. "
-            "WASHINGTON adds 7 faces. THE CROSS STREETS (Market, Franklin, Wells, La "
-            "Salle, Clark, Dearborn, State) are 34 platted faces and 3,562.8 m of walk "
-            "— three times this whole record — and they also need a code change rather "
-            "than only a name in `EDGE_STREETS`: `_edge_faces` enumerates a block's "
-            "NORTH and SOUTH faces, and a cross street bounds its EAST and WEST ones. "
-            "Until then a walker turning a corner still steps off the boards."
+            "REFUSED ON A FRAME BUDGET, AND EVERY NUMBER HERE IS MEASURED RATHER THAN "
+            "PROMISED (T-0127/T-0192/T-0241). The owner's ask reaches further than this "
+            "record does — 'all of the streets should be updated like this' — and each "
+            "of these is the same rule on more platted faces, with no new argument in "
+            "it. THE CODE NO LONGER REFUSES THEM: until T-0192 `_edge_faces` enumerated "
+            "a block's NORTH and SOUTH faces only, so a cross street — which bounds a "
+            "block on its EAST and WEST — could not have been laid whatever the budget "
+            "said. It is enumerated now, and what refuses the other six is a number. "
+            "THE BINDING RUNG IS `balanced`, which stood 8,656 triangles inside its "
+            "1,210,000 ceiling on `dev` at 2ab3065a, worst of T-0135's five stands. "
+            "MARKET STREET, the smallest of the seven, is what fits: 2 faces, +208.8 m "
+            "of walk, +1 crossing. Re-derived here rather than estimated, the other six "
+            "add between 309.2 m (State) and 646.0 m (Clark) of walk each and 3,354.0 m "
+            "in total — the whole seven are 34 platted faces and 3,562.8 m, three times "
+            "this record before Market — and the layer's own measured 42.8 triangles a "
+            "metre puts any one of them over that headroom on its own. WASHINGTON "
+            "STREET is refused on the same rung by a measured 58,926 triangles and "
+            "keeps its own ticket, T-0241. Neither is a claim that the rule fails "
+            "there: it is what the frame costs, and the trims in T-0146 and T-0209 are "
+            "what would buy them."
         ),
     })
     refused.append({
@@ -2710,11 +2761,15 @@ def street_edge_record(walks: list, fences: list, posts: list, refused: list,
         "it. Six were reconciled with the plat and their stretch of walk closed; the "
         "other five are named one by one in `refused`, with the metres each would have "
         "to move and the reason the roof schedule cannot yet absorb the move. "
-        "Randolph Street, Washington Street, the cross streets' own frontages and the "
-        "West Division across the South Branch are the same rule on more faces. Every "
-        "one of them was RUN THROUGH THIS RULE AND MEASURED before being refused — "
-        "Randolph was built, published and read at the release gate's whole stand set "
-        "— and `refused` carries the triangle counts that refused them rather than a "
+        "AND THE WALK NOW TURNS A CORNER: MARKET STREET, the first cross street to "
+        "carry it, takes the same treatment on both of its platted faces — the west "
+        "frontages of the Lake and Randolph blocks — so a walker coming east along "
+        "Lake no longer steps off the boards where the town's west edge begins. The "
+        "other six cross streets, Washington Street and the West Division across the "
+        "South Branch are the same rule on more faces. Every one of them was RUN "
+        "THROUGH THIS RULE AND MEASURED before being refused — Randolph and Market "
+        "were built, published and read at the release gate's whole stand set — and "
+        "`refused` carries the triangle counts that refused the rest rather than a "
         "promise."
     )
     return {
@@ -2723,7 +2778,7 @@ def street_edge_record(walks: list, fences: list, posts: list, refused: list,
             "the board crossings at the corners, the board fences that line the "
             "street behind them, and the hitching posts standing in the verge "
             "outside the walk at the trading frontages (T-0194), along South Water "
-            "Street and Lake Street. NOT "
+            "Street, Lake Street, Randolph Street and Market Street. NOT "
             "structure records and NOT baked geometry: boards and posts standing on "
             "ground this project has already built, drawn at load by "
             "renderers/web/js/frontage.js. GENERATED by "
@@ -2834,7 +2889,7 @@ def street_edge_record(walks: list, fences: list, posts: list, refused: list,
                 "below names the clause that refused it. Read them in "
                 "tools/generate_frontage_works.py."
             ),
-            "covered_streets": list(EDGE_STREETS),
+            "covered_streets": list(EDGE_STREETS) + list(EDGE_CROSS_STREETS),
             "faces_laid": census["faces"],
             "walk_m": census["walk_m"],
             "crossing_m": census["cross_m"],
@@ -2846,9 +2901,10 @@ def street_edge_record(walks: list, fences: list, posts: list, refused: list,
             "id": STREET_EDGE_ID,
             "name": "The town's street edge",
             "symbolic_location": (
-                "South Water Street and Lake Street, between Market Street and State "
-                "Street — the plank sidewalks at the lot line, the board crossings at "
-                "the corners and over the road, and the fences behind them."
+                "South Water, Lake and Randolph Streets between Market Street and "
+                "State Street, and Market Street's own frontage — the plank "
+                "sidewalks at the lot line, the board crossings at the corners and "
+                "over the road, and the fences behind them."
             ),
             "position_note": bounds_note,
             "attributes": {
