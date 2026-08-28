@@ -47,7 +47,14 @@ T-0096 — Did the second Fort Dearborn carry a flagstaff, and can anything but 
 # --- band BLOCK the visible seeding at its bottom — documented storefronts and real
 # --- people replacing invented ones — which is why they sit above other invisible work.
 # --- Three owner rulings govern the epic; each ticket carries them in full.
-T-0258 — Reading the Democrat, part one: November 1833 to June 1834
+T-0308 — Reading the Democrat, November 1833: Vol. I No. 1, the scan-verified first issue
+T-0309 — Reading the Democrat, December 1833: Vol. I Nos. 2-6
+T-0310 — Reading the Democrat, January 1834: Vol. I Nos. 7-10
+T-0311 — Reading the Democrat, February 1834: Vol. I Nos. 11-14
+T-0312 — Reading the Democrat, March 1834: Vol. I Nos. 15-17
+T-0313 — Reading the Democrat, April 1834: Vol. I Nos. 18-22
+T-0314 — Reading the Democrat, May 1834: Vol. I Nos. 23-26
+T-0315 — Reading the Democrat, June 1834: Vol. I Nos. 27-30
 T-0291 — Reading the Democrat, September 1834: Vol I Nos 40-43
 T-0292 — Reading the Democrat, October 1834: Vol I Nos 44-48
 T-0293 — Reading the Democrat, November 1834: Vol I Nos 49-52
