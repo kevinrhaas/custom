@@ -103,3 +103,5 @@ T-0230 — Two named South Water frontages carry a reconstructed trade, so neith
 T-0243 — The two timber-placement gates match no mesh since the lattice landed, and one of them is now red on dev
 T-0244 — T-0194's twelve hitching posts draw no vertices the gate can find, on dev
 T-0245 — South Water Street can have its first control point, at Franklin, and nothing has claimed it
+T-0249 — The light tier's 80-call floor is breached on dev at 83 calls, the day after T-0147 restored it
+T-0250 — The tree-station assertion reads 0 of 0 vertices across 0 merged meshes, so it fails by finding nothing to check

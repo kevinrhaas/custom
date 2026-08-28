@@ -1,6 +1,6 @@
 {
   "project": "chicago-4d",
-  "generated_ct": "Aug 27, 2026, 6:26 PM",
+  "generated_ct": "Aug 27, 2026, 7:56 PM",
   "tickets": [
     {
       "id": "T-0001",
@@ -4188,6 +4188,42 @@
       "blocked_on": null,
       "needs_bake": false,
       "queue_rank": 61
+    },
+    {
+      "id": "T-0249",
+      "title": "The light tier's 80-call floor is breached on dev at 83 calls, the day after T-0147 restored it",
+      "state": "open",
+      "epic": "META",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "M",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-08-27",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "queue_rank": 62
+    },
+    {
+      "id": "T-0250",
+      "title": "The tree-station assertion reads 0 of 0 vertices across 0 merged meshes, so it fails by finding nothing to check",
+      "state": "open",
+      "epic": "META",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "M",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-08-27",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "queue_rank": 63
     }
   ]
 }
