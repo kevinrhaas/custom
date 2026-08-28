@@ -36,14 +36,18 @@
       "sha256": "202319cfd3bc14446c4818510bfc4702b0d79193392a957580df2006e5d250e4"
     },
     {
+      "file": "chicago/4d/data/research/newspapers/extracted/chicago_american_1835_08_01.json",
+      "sha256": "5d11b880c20eb8825908f790dc2362f47b9bac48d4392504f2e084f9a36e57ed"
+    },
+    {
       "file": "chicago/4d/data/research/newspapers/extracted/chicago_democrat_1835_07_01.json",
       "sha256": "6200cbfa1c6c37f6146da30f1b9a0a55c29eb7d8c372aec7765491aa4c714162"
     }
   ],
   "counts": {
-    "claims": 103,
-    "persons": 107,
-    "businesses": 37
+    "claims": 109,
+    "persons": 109,
+    "businesses": 38
   },
   "persons": [
     {
@@ -386,6 +390,26 @@
         "brewer"
       ],
       "associated_places": []
+    },
+    {
+      "id": "person_d_a_smith",
+      "name": "D. A. Smith",
+      "variants": [
+        {
+          "as_printed": "1D 4. SMITH",
+          "claim": "chicago_american_1835_08_01#c006"
+        }
+      ],
+      "mentions": [
+        "chicago_american_1835_08_01#c006"
+      ],
+      "first_seen": "1835-08-01",
+      "last_seen": "1835-08-01",
+      "letter_list_only": false,
+      "occupations": [],
+      "associated_places": [
+        "Courtland, Alabama"
+      ]
     },
     {
       "id": "person_d_robinson",
@@ -1795,6 +1819,26 @@
       ]
     },
     {
+      "id": "person_s_abell",
+      "name": "S. Abell",
+      "variants": [
+        {
+          "as_printed": "S. ABELL",
+          "claim": "chicago_american_1835_08_01#c003"
+        }
+      ],
+      "mentions": [
+        "chicago_american_1835_08_01#c003"
+      ],
+      "first_seen": "1835-08-01",
+      "last_seen": "1835-08-01",
+      "letter_list_only": false,
+      "occupations": [
+        "attorney"
+      ],
+      "associated_places": []
+    },
+    {
       "id": "person_s_b_cobb",
       "name": "S. B. Cobb",
       "variants": [
@@ -2332,7 +2376,7 @@
       },
       "evidence": {
         "first_issue": "1835-06-27",
-        "last_issue": "1835-07-25",
+        "last_issue": "1835-08-01",
         "copy_dates": [
           "1835-06-27"
         ]
@@ -2340,7 +2384,8 @@
       "contradicted_by": [],
       "mentions": [
         "chicago_american_1835_06_27#c008",
-        "chicago_american_1835_07_25#c002"
+        "chicago_american_1835_07_25#c002",
+        "chicago_american_1835_08_01#c005"
       ],
       "built_at_scene_date": true,
       "survival_liberty_required": false
@@ -3371,6 +3416,34 @@
         "chicago_american_1835_06_08#c015",
         "chicago_american_1835_06_13#c019",
         "chicago_american_1835_07_04#c006"
+      ],
+      "built_at_scene_date": true,
+      "survival_liberty_required": false
+    },
+    {
+      "id": "business_s_abell_attorney_and_counsellor",
+      "name": "S. Abell, attorney and counsellor",
+      "proprietors": [
+        "S. Abell"
+      ],
+      "trade": "attorney, counsellor and land conveyancer",
+      "goods": [],
+      "street": null,
+      "placement": {
+        "class": "none",
+        "anchor": null,
+        "offset_text": null,
+        "offset_normalized": null,
+        "street": null
+      },
+      "evidence": {
+        "first_issue": "1835-08-01",
+        "last_issue": "1835-08-01",
+        "copy_dates": []
+      },
+      "contradicted_by": [],
+      "mentions": [
+        "chicago_american_1835_08_01#c003"
       ],
       "built_at_scene_date": true,
       "survival_liberty_required": false
