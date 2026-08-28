@@ -6163,8 +6163,14 @@ the log cabins, and in both cases a chimney that no longer disappears into the r
 through. The confidence view is unchanged: a stack still carries its record's `chimneys`
 confidence, so hiding `reconstructed` hides exactly what it hid before.
 
-**Not covered here.** The fort's ten garrison buildings keep roof-coloured stacks — 1816, federal
-ground, four constructions, and neither answer above reaches them (**T-0137**). The stand-in massing
+**Not covered here.** The fort's ten garrison stacks were left roof-coloured by this parcel — 1816,
+federal ground, four constructions, and neither answer above reached them. **T-0137 has since
+answered them on the fort's own evidence, on 2026-08-28, and they take the brick above**: brick is
+attested inside that fort twice over (Hubbard's "the brick building, just within the north stockade"
+and "the magazine, of brick"), so those flues never needed Blodgett's yard, and
+`fort_structure._chimneys` builds an interior stack, which is the disposition this entry answers
+with brick. It is INFERRED and invents nothing, so it adds no liberty of its own;
+`docs/RESEARCH/chimneys.md` §6 is the argument. The stand-in massing
 generator kept its own `#89503F` brick, about 20 % apart in linear red from this one, until
 **T-0138** pointed it at this row on 2026-08-28 — a convergence that repaints nothing, because
 all 230 of those buildings have since been baked from their archetypes and no placeholder GLB

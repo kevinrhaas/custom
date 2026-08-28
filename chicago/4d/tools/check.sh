@@ -172,6 +172,18 @@ step "the fort apron re-derives from the palisade it is measured off" \
 step "the fort wood re-derives from the palisade and the apron it stands off" \
   python3 tools/generate_fort_trees.py --check
 
+# T-0008 took every chimney in the town off the ROOF material — R-W2a finding 1, a stack
+# painted whatever weathering condition its own roof was dealt — and nothing measured the
+# result, so it left ten stacks behind for four months: `fort_structure` was excluded
+# deliberately (1816, before the town had a brick-yard) and the exclusion outlived the
+# reason for it, which T-0137 answered off the fort's own attested brick. This gate is what
+# stops that class of miss recurring, and it is stated on the BYTES rather than on any
+# generator: a stack has to clear the roof to draw at all, so a building whose record counts
+# a chimney and whose highest geometry IS the roof material has its stack inside the roof's
+# own primitive. It reads the committed masters' accessor bounds and decodes no mesh.
+step "no stack in the town is painted the colour of the roof it passes through" \
+  python3 tools/measure_stack_fabric.py --gate --quiet
+
 # The river wharves are the fourth record of this shape and the first whose rule
 # reads a record's OWN attribute rather than a trade table: a sidecar standing on
 # the scene date whose `dock` is true and graded attested or inferred. Two

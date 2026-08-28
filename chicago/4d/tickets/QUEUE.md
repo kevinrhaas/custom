@@ -36,7 +36,6 @@ T-0192 — The cross streets' own frontages get the street edge
 T-0219 — Finish the heightfield SOUTH to Madison Street, the plat's last tier
 
 # --- THE FORT — visible, mostly small
-T-0137 — The fort's stacks are still roof-coloured, and its 1816 date fits neither chimney answer
 T-0096 — Did the second Fort Dearborn carry a flagstaff, and can anything but a retrospective plate say so
 
 # --- FABRIC AND WHAT THE BUILDINGS ARE MADE OF — visible
@@ -113,3 +112,4 @@ T-0254 — North Water Street west of the slough, and the crossing it needs
 T-0255 — The dooryard planting rule reads every street in the town with no bound on reach, so a track across the river can turn a house's yard
 T-0265 — The sward census fails its own gate at a phone: z10_settled_town owes xanthium_strumarium a whole slot and draws it nowhere
 T-0266 — On a phone from across the river the stockade's picket rhythm falls under the pixel grid and beats
+T-0267 — The fort's wall brick is a third brick, 0.47/0.26/0.20 against the sheet's 0.45/0.23/0.17

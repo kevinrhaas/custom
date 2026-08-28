@@ -93,11 +93,14 @@ because the surface is daub. `docs/LIBERTIES.md` **L168** records the invention.
 
 ## 4 · What is deliberately left alone
 
-- **The fort.** `fort_structure` still builds its stacks with `M_ROOF`. Its buildings are
-  the second Fort Dearborn of **1816** — seventeen years before Blodgett dug his first
-  clay — on federal ground, with `construction` running log, brick, earth and stone across
-  ten records. Neither answer above reaches it without inventing a third, so it is a ticket
-  and not a guess: **T-0137**.
+- ~~**The fort.**~~ — **ANSWERED 2026-08-28, T-0137, in §6 below.** `fort_structure` built its
+  stacks with `M_ROOF` when this file was written, because its buildings are the second Fort
+  Dearborn of **1816** — seventeen years before Blodgett dug his first clay — on federal
+  ground, with `construction` running log, brick, earth and stone across ten records, and
+  neither §2 nor §3 reached them without inventing a third answer. T-0137 asked the evidence
+  question the way this section says to, and no third answer is needed: **brick is attested
+  inside this fort, twice, in 1816.** §6 is the argument, and the fort's ten stacks now take
+  §2's row. This bullet is kept rather than deleted because tickets cite it.
 - ~~**The 90 inferred placeholders**~~ — **CONVERGED 2026-08-28, T-0138.** They shipped a
   `placeholder_chimney_brick` at `#89503F`, a different brick from the archetypes' and 20 %
   apart in linear red; R-W2a finding 4 is right that a town painted by two generators with no
@@ -128,3 +131,66 @@ recollection naming brick or clay at a named house — turns §2 from `inferred`
 that, an inventory of Blodgett's output would bound how much of the town could have been
 brick at all; the record already says the yard's first working season was 1833 and says
 nothing about how many thousand it burned.
+
+## 6 · The fort: brick, INFERRED — and no third row (T-0137)
+
+**The premise that made the fort an exception is the one thing about it that is wrong.**
+§4 excluded the garrison because 1816 is seventeen years before Blodgett's brick-yard, so
+§2's warrant — *a working yard two blocks away* — cannot reach it. True, and beside the
+point: the fort did not need a yard in town, because **brick is attested inside the fort
+itself**, twice, independently, and both statements are already committed on the records.
+
+| the statement | the source | the record it is committed on |
+|---|---|---|
+| "the brick building, just within the north stockade" | Hubbard, standing in the fort in 1827 (Andreas vol. 1) | `fort_dearborn_commandants_quarters`, `construction: brick`, **attested** |
+| "(brick, about 25x50 ft.)" | the 1855 key (Wentworth, 1881) | the same record — two independent statements twenty-eight years apart |
+| "the magazine, of brick" | Hubbard, same walk | `fort_dearborn_magazine`, `construction: brick`, **attested** |
+
+Two of the fort's eleven built structures are attested masonry. That is a garrison with
+brick on the ground and men who could lay it, and it settles the only question §4 could not:
+whether a masonry flue at this post in 1816 needs anything invented. It does not.
+
+### The disposition decides which row, and it was already committed
+
+`common/materials.py::chimney_finish` selects on **where the stack stands**, not on the
+record, "because no record in this dataset states a chimney fabric except the Sauganash's".
+The fort's geometry has always answered that question, in `fort_structure._chimneys`: each
+stack stands on the **depth midline**, rises from the ground **inside the building**, and
+breaks the roof at the ridge. That is §2's interior stack exactly — the same thing
+`frame_dwelling` builds and for the same reason, a flue carried up through a timber roof
+has to be masonry.
+
+It is emphatically **not** §3's. The cat-and-clay row is argued from a stack built *outside*
+the gable so that it "can be pulled away from the building when it catches fire", and no
+building in this fort has one. Painting a cat-and-clay flue up the middle of a barracks
+would contradict the geometry the archetype has built since it was written.
+
+So the fort takes **§2's brick row, unchanged** — `CHIMNEY_BRICK`, 0.45/0.23/0.17 linear at
+roughness 0.85, the town's one brick. No third row, no new number, and no new liberty:
+`docs/LIBERTIES.md` **L26** already owns where a fort stack stands, and the fabric here is
+reasoned from attested evidence rather than invented, so it is **inferred** and L168's own
+"not covered here" paragraph is corrected rather than extended.
+
+### What is NOT claimed
+
+- **Not that the tone is read off the fort.** Nothing in this repository shows the colour of
+  any fort chimney. The tone is §2's, which is read off the Petford watercolour of a town
+  building of the 1830s, and using one brick for the town is the convergence
+  `docs/RESEARCH/materials.md` §2.3 asks for rather than a claim that the two bricks matched.
+  The fort's own WALL brick is a third value — `fort_structure.WALL_RGBA["brick"]`,
+  0.47/0.26/0.20 — and converging it is **T-0267**, not this parcel: it moves two committed
+  masters and is a separate argument.
+- **Not that every fort building had a chimney.** The COUNT is the record's, as everywhere
+  else. Six of the thirteen `fort_structure` masters count one; the magazine's record says
+  in terms that a magazine has none, and the tool below reads the records, not the geometry.
+- **Not anything about the roofs.** A stack that is no longer roof-coloured makes no claim
+  about the roof it passes through. R-W2a finding 2 still stands.
+
+### The gate
+
+`tools/measure_stack_fabric.py` reads the committed masters and asks, of every building whose
+record counts a chimney, whether **anything stands above its roof material**. A stack has to
+clear the roof to draw at all, so if the highest thing over the roof is the roof, the stack is
+inside the roof's own primitive and is painted with it. That is the fault R-W2a found, stated
+as a property of the bytes rather than of a generator, and `tools/check.sh` now fails on it.
+Before this parcel: **6 buildings, 10 stacks**, all of them the fort's. After: none.
