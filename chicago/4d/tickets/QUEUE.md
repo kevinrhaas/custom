@@ -49,7 +49,6 @@ T-0225 — The sward's drawn reach is measured off plants at two per cent covera
 # --- band BLOCK the visible seeding at its bottom — documented storefronts and real
 # --- people replacing invented ones — which is why they sit above other invisible work.
 # --- Three owner rulings govern the epic; each ticket carries them in full.
-T-0256 — The newspaper corpus becomes a source this project can cite
 T-0257 — An extraction schema, and the gazetteer the papers compile into
 T-0258 — Reading the Democrat, part one: November 1833 to June 1834
 T-0259 — Reading the Democrat, part two: July to December 1834
