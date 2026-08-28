@@ -6519,6 +6519,10 @@ caught by reading the join by hand. Extending the census to this layer is **K52(
 not done — the tool's kinds, baseline and negative control are all written around the other
 two layers.
 
+> **CLOSED 2026-08-28 by T-0021 / K52(b).** The layer list is one table now and the census
+> covers three layers. Eleven days is how long the hole stayed open, and the answer it
+> produced is below.
+
 ### What shipped, and what it does not do
 
 The Evidence panel's people section: the manifest in one fetch, all 173 households with their
@@ -8954,6 +8958,73 @@ lattice R-BUG3c found buries the road. Both are open parcels in `docs/ROADMAP.md
 **Not verified here:** the desktop half of the smoke (~13 min against this harness's 10-minute
 per-command ceiling). `tools/check.sh` and the mobile half of `--published` are green, and the
 desktop draw-call numbers above are measured at 1280×800 by the new tool.
+
+## New 2026-08-28 — the residents census, and 113 person rows reading `[object Object]`
+
+**T-0021 / ROADMAP K52(b).** K52 gave `data/residents/` a second reader on 2026-08-17 and
+K42's assertion 3a did not fire, because the assertion can only fail for a layer
+`tools/measure_layer_reads.py` walks and its layer list was two names long. That is the hole
+this closes, and the census it made possible is what found the fault below.
+
+| layer | figures | mesh | shown | unread |
+|---|---|---|---|---|
+| `residents/household` | 44 | 0 | 42 | 2 |
+| `residents/manifest` | 25 | 0 | 22 | 3 |
+| **the layer** | **69** | **0** | **64** | **5** |
+
+**Nothing here is `mesh` and nothing ever will be.** L1 and AGENTS.md's standing constraint
+hold: v1 draws no human figures, so no figure of a person moves a vertex in this scene.
+`shown` is the whole of the read side.
+
+### The fault: a figure can be shipped, fetched, rendered and still not read
+
+`age_on_scene_date`, `birth_year` and `name_basis` are graded claim blocks —
+`{value, confidence, note, sources}`, exactly like the household's own claims — and
+`personHtml` passed all three whole to a function that escapes what it is given.
+
+- **113 of 209 person rows** read `How this person is named — [object Object]`.
+- **9 of them** read it twice more, for the age and the birth year.
+- **Every stage-9 assertion passed throughout.** The suite asked whether the section loads,
+  counts, marks its 17 off-card households, quotes its sources and starts collapsed. A card
+  that renders the WRONG string renders a string, and none of those questions can see it.
+
+What was lost is not decoration. `name_basis.value` is the pool an invented name was drawn
+from, and 113 of this town's people carry names this project invented. Fixed by routing the
+three through `claimRow`, which is what every other graded claim on the card already used.
+
+**Three new smoke checks, each verified to fail against the old render path before it was
+kept** — measured, not asserted: no figure reaches a person's row as `[object Object]`; an
+invented name says which pool it came from; a dated person carries an age and a birth year,
+both graded. A fourth was written and **discarded**: an assertion on the sentence *"THE NAME
+IS INVENTED"* passes on the broken build, because that sentence is in the person's `note` and
+the note reached the card throughout. A check that cannot fail is not a check.
+
+### Two smaller holes, wired in the same commit
+
+`counts.by_grade` reached nothing behind *"every one of them graded"* — true, and it tells a
+reader nothing. The note gives the tally now: **76 attested, 20 inferred, 113 reconstructed**.
+And `vocabulary.sexes` was the one closed set the panel withheld while showing `persons[].sex`
+on every person's row.
+
+### The five refusals, in writing and in the bank
+
+`tools/layer_reads_baseline.json` gained a `refused_because` field. `counts.households`,
+`households[].present_on_scene_date` and the household record's own `division` are
+denormalised copies of things already shown — the manifest's flat copy of a graded claim
+carries neither its confidence, its reasoning nor its sources, so showing it would be showing
+less. `head`, in both copies, is a foreign key into `persons[].id`; the fact it states already
+reaches the visitor as that person's `relationship`. **A refusal is not a permission** — the
+entries stay banked, assertion 4 still fails on a new unread figure and assertion 5 still
+fails if one of these leaves the data.
+
+### What is NOT verified
+
+The census is a **text scan** over `renderers/web/js/*.js` with comments stripped, and on this
+layer the leaf names are the renderer's own vocabulary — `value`, `note`, `name`, `head`. Five
+of the unread entries are therefore **stated** rather than proven, listed as such by the tool
+and named in `STATED_SHARED` with what each collides with. Verification was stages 8 and 9 at
+both viewports, four legs, 0 failed, 0 page errors; the other seven stages were not re-run,
+and nothing outside the Evidence panel was touched.
 
 ## New 2026-08-16 — the town on the site has 75 textures, and the repository has none
 

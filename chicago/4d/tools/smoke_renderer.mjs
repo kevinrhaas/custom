@@ -9405,13 +9405,23 @@ for (const [label, viewport, touch] of [
       // manifest loaded, so one is opened here and read back.
       const target = rows.find((r) => r.dataset.id === 'hh_beaubien_mark') || rows[0];
       const collapsed = rows.length ? rows.every((r) => !r.open) : false;
-      if (target) {
-        target.open = true;
-        for (let i = 0; i < 100 && target.querySelector('.res-hh-body .legend-note'); i++) {
+      // T-0021. Two more rows, because the three graded claims that were being
+      // printed as objects are not on the Beaubien record: `name_basis` is on
+      // the 113 reconstructed people and `age_on_scene_date`/`birth_year` on the
+      // nine the sources date. A row that carries neither cannot fail for them.
+      const named = rows.find((r) => r.dataset.id === 'hh_inf_baker_south_01');
+      const dated = rows.find((r) => r.dataset.id === 'hh_egan_william_b');
+      for (const el of [target, named, dated]) {
+        if (!el) continue;
+        el.open = true;
+        for (let i = 0; i < 100 && el.querySelector('.res-hh-body .legend-note'); i++) {
           await new Promise((r) => setTimeout(r, 50));
         }
       }
+      const bodyOf = (el) => (el ? el.textContent.replace(/\s+/g, ' ') : '');
       return {
+        namedText: bodyOf(named),
+        datedText: bodyOf(dated),
         households: window.__chicago4d.residents?.households ?? 0,
         persons: window.__chicago4d.residents?.persons ?? 0,
         offCard: window.__chicago4d.residents?.offCard ?? -1,
@@ -9464,6 +9474,32 @@ for (const [label, viewport, touch] of [
     check(`${label}: the households start collapsed, like every other disclosure here`,
       residents.collapsed);
     check(`${label}: the people section does not overflow the panel`, residents.overflow);
+    // T-0021, and the reason this check is a string match on four words. A
+    // person's `name_basis`, `age_on_scene_date` and `birth_year` are graded
+    // claim blocks, and this card handed all three whole to a text renderer:
+    // 113 rows read "How this person is named — [object Object]" and nine said
+    // it twice more. Every assertion above passed throughout, because a card
+    // that renders the WRONG STRING renders a string. The layer-read census
+    // (tools/measure_layer_reads.py) is what found it; this is what would have.
+    check(`${label}: no figure reaches a person's row as [object Object]`,
+      !/\[object Object\]/.test(residents.text),
+      residents.text.slice(Math.max(0, residents.text.indexOf('[object Object]') - 80), 200));
+    // And the row the fault was hiding. It matches the VALUE and not the note:
+    // the note under "What the sources say" carries "THE NAME IS INVENTED" on
+    // these records too and reached the card throughout, so an assertion on that
+    // sentence passes on the broken build — checked, and it did. What was lost
+    // is which pool the name was drawn from, and that is only in `name_basis`.
+    check(`${label}: an invented name says on the card which pool it came from`,
+      /How this person is named/.test(residents.namedText)
+      && /invented from the [A-Za-z ]+ pool/.test(residents.namedText),
+      residents.namedText.slice(0, 200));
+    // The nine the sources actually date, with the reasoning that says which of
+    // the two figures the source states and which is arithmetic off it.
+    check(`${label}: a dated person carries an age and a birth year, both graded`,
+      /Age on 1 July 1835/.test(residents.datedText)
+      && /\bBorn\b/.test(residents.datedText)
+      && /28 September 1808/.test(residents.datedText),
+      residents.datedText.slice(0, 200));
     // The one thing this section must never imply, and the constraint that
     // outranks every other consideration in this project: v1 draws no human
     // figures, and the removal of August 1835 is not staged anywhere.

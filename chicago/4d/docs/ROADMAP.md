@@ -961,16 +961,44 @@ per-command ceiling (§ THE RUN BUDGET). The mobile half ran on the published mi
 passed, 2 failed**, and both failures are the road-contrast bands `dev` already carries red —
 see `docs/STATUS.md` § *Landed with two bands red*. This parcel changes no 3-D rendering.
 
-### K52(b) — extend the read census to `data/residents/` · **UNCLAIMED · UNSEEN · opened 2026-08-17 by K52 · Effort: S–M**
+### K52(b) — extend the read census to `data/residents/` · **DONE 2026-08-28 (T-0021) — the census found 113 person rows reading `[object Object]`, which is what a figure looks like when it is shipped, fetched, rendered and still not read**
 
-`tools/measure_layer_reads.py` covers `flora` and `fauna` by name — its kinds, its baseline
-and its self-test's negative control are all written around those two — so `residents` gaining
-a reader today fired nothing. K52 answered the question by hand (finding 1 and finding 2
-above, both measured off the join); what it did not do is put the answer under a gate, so the
-next figure this layer adds can go unread exactly as the last 20 did.
+`tools/measure_layer_reads.py` covered `flora` and `fauna` **by name** — its kinds, its
+baseline and its self-test's negative control all written around those two — so `residents`
+gaining a reader on 2026-08-17 fired nothing. The layer list is one table now (`LAYER_KINDS`),
+read by the record walk, the citation census and assertion 3a alike, and the self-test carries
+a new control for the shape of the hole itself: **every layer with a read map is a layer this
+file walks.** A blind gate and a wrong gate are the same outcome from a visitor's side.
 
-**It is UNSEEN and carries no exemption of its own.** Take it the way K52 was taken, or behind
-a parcel that ends in something visible.
+**69 residents figures classified: 64 `shown`, 0 `mesh`, 5 unread.** None is `mesh` and none
+ever will be — L1 stands, v1 draws no human figures, so no figure of a person moves a vertex.
+
+**AND THE CENSUS FOUND WHAT A CENSUS IS FOR.** Three of a person's figures —
+`age_on_scene_date`, `birth_year` and `name_basis` — are graded claim blocks
+(`{value, confidence, note, sources}`) and `personHtml` was handing all three **whole** to a
+text renderer. **113 of the 209 person rows read "How this person is named — [object Object]"**
+and nine said it twice more for the age and the birth year. Every assertion in the stage-9
+suite passed throughout, because a card that renders the wrong string still renders a string;
+what was lost is the pool an invented name was drawn from, on the 113 people whose names this
+project invented. They go through `claimRow` now, with the swatch, the reasoning and the
+citations every other graded claim on the card gets, and three smoke checks hold it — each one
+verified to FAIL against the old render path before it was kept.
+
+**Two smaller holes, wired in the same commit.** `counts.by_grade` reached nothing behind the
+sentence *"every one of them graded"*, which is true and tells a reader nothing; the note now
+gives the tally (76 attested, 20 inferred, 113 reconstructed). And `vocabulary.sexes` was the
+one closed set the panel withheld while showing the value it governs.
+
+**Five figures reach nobody and stay that way, each with a written reason in the bank**
+(`refused_because`, new in `tools/layer_reads_baseline.json`): `counts.households` and
+`households[].present_on_scene_date` and the household's own `division` are denormalised
+copies of things already shown — showing the poorer copy would be showing less — and
+`head`, in both copies, is a foreign key into `persons[].id` whose fact already reaches the
+visitor as that person's `relationship`. A refusal is **not a permission**: the entries stay
+banked, assertion 4 still fails on a new one and assertion 5 still fails if one leaves.
+
+**Files:** `tools/measure_layer_reads.py` · `tools/layer_reads_baseline.json` ·
+`renderers/web/js/residents.js` · `tools/smoke_renderer.mjs` (stage 9).
 
 ### K53 — every shrub in the town is drawn as a giant forb · **DONE 2026-08-17 — the archetype is in, the recorded width is drawn, and the reason only fourteen of them stand is measured**
 

@@ -107,13 +107,26 @@ function claimRow(label, value, block, citationsById) {
  * printed here: an unnamed wife or "four children" is an ADMISSION carrying a
  * count, and the record says in as many words that it must not be counted as an
  * individual. That sentence belongs in front of a reader, not in a JSON file.
+ *
+ * THREE OF THESE ARE GRADED CLAIM BLOCKS AND WERE PRINTED AS OBJECTS. `age_on_
+ * scene_date`, `birth_year` and `name_basis` carry `{value, confidence, note,
+ * sources}` exactly like the household's own claims, and this function handed
+ * the whole block to `row()`, which escapes whatever it is given: 113 person
+ * rows read `How this person is named — [object Object]` and nine read it twice
+ * more for the age and the birth year. The census of ROADMAP K52 (T-0021) is
+ * what found it, and it is the finding that section exists to make — a figure
+ * that reaches the card as `[object Object]` has not reached a visitor, and the
+ * sentence it was hiding is the one this project most needs read: *"THE NAME IS
+ * INVENTED. No source names this resident."* They go through `claimRow` now,
+ * with the same swatch, reasoning and citations every other graded claim gets.
  */
 function personHtml(person, citationsById) {
   const occ = person.occupation || {};
   const cites = (person.sources || []).map((id) => citationsById.get(id)).filter(Boolean);
   const occCites = (occ.sources || []).map((id) => citationsById.get(id)).filter(Boolean);
-  const age = person.age_on_scene_date === null || person.age_on_scene_date === undefined
-    ? '' : `${person.age_on_scene_date}`;
+  const born = person.birth_year || null;
+  const aged = person.age_on_scene_date || null;
+  const named = person.name_basis || null;
   return `<details class="lib res-person">
     <summary><span class="lib-title">${swatch(person.grade)}${escapeHtml(person.name || 'unnamed')}</span>
       <span class="res-role">${escapeHtml(words(person.relationship))}${
@@ -121,12 +134,12 @@ function personHtml(person, citationsById) {
     <dl class="lib-body">
       ${row('In the household as', words(person.relationship))}
       ${row('Sex', words(person.sex))}
-      ${row('Age on 1 July 1835', age)}
-      ${row('Born', person.birth_year)}
+      ${claimRow('Age on 1 July 1835', aged && aged.value, aged, citationsById)}
+      ${claimRow('Born', born && born.value, born, citationsById)}
       ${occ.value ? `<dt>Occupation</dt><dd>${swatch(occ.confidence)}${escapeHtml(words(occ.value))}${
         occ.note ? `<br><span class="res-why">${escapeHtml(occ.note)}</span>` : ''}${
         occCites.length ? `<ol class="cites">${citationItems(occCites)}</ol>` : ''}</dd>` : ''}
-      ${row('How this person is named', person.name_basis)}
+      ${claimRow('How this person is named', named && named.value, named, citationsById)}
       ${person.note ? `<dt>What the sources say</dt><dd>${escapeHtml(person.note)}</dd>` : ''}
       ${cites.length ? `<dt>Sources</dt><dd><ol class="cites">${citationItems(cites)}</ol></dd>` : ''}
     </dl>
@@ -234,6 +247,11 @@ function vocabularyHtml(vocab) {
     ['Divisions of the town', vocab.divisions],
     ['How exact an arrival year is', vocab.arrival_precision],
     ['Places in a household', vocab.relationships],
+    // Shown because `sex` is shown. The census of T-0021 found this set reaching
+    // nothing while the value it governs was on every person's card — five closed
+    // sets listed and the sixth withheld, which reads as a set the dataset does
+    // not have rather than one nobody printed.
+    ['Sex, as the records give it', vocab.sexes],
     ['Trades', vocab.occupations],
   ];
   const rows = sets
@@ -325,8 +343,15 @@ export async function mountResidents({ mount, noteMount = null, sceneId, dataBas
     .reduce((n, e) => n + (e.persons || 0), 0);
 
   if (noteMount) {
-    noteMount.textContent = `${entries.length} households and ${persons} people, `
-      + `every one of them graded for how much of the person is reconstructed. `
+    // The layer's own grade tally, which the manifest has always carried and
+    // nothing read (T-0021). "Every one of them graded" was true and told a
+    // visitor nothing: the shape of this dataset is that most of its people are
+    // hypotheses, and a sentence that does not say so is the wrong sentence.
+    const byGrade = counts.by_grade || {};
+    noteMount.textContent = `${entries.length} households and ${persons} people — `
+      + `${byGrade.attested} named by a source, ${byGrade.inferred} real people whose `
+      + `details are partly reconstructed, and ${byGrade.reconstructed} hypothesised to `
+      + `fill a demonstrable need of the town. `
       + `${offCard} of the households are attached to no building in this scene — neither `
       + `where they lived nor where they worked is attested on 1 July 1835 — so ${offCardPersons} `
       + `people reached no card anywhere until this section existed. Nobody is drawn: this `
