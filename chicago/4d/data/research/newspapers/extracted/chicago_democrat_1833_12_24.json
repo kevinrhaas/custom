@@ -1,0 +1,367 @@
+{
+  "schema": 1,
+  "issue_id": "chicago_democrat_1833_12_24",
+  "extracted": "2026-08-28",
+  "extracted_by": "hand, T-0258 piece 2 — the Democrat read, December 1833 (Vol. I Nos. 2-6)",
+  "note": "Vol. I No. 5, 1833-12-24 — the issue the month's hardest readings come from. Seven claims, and four of them are claimed HERE rather than in an earlier issue because this is the setting where the line that carries the evidence survives: the bridge ordinance reading 'repairing' rather than the January reprint's supplied 'building' (c001), Brewster, Hogan & Co.'s corner of LaSalle and South Water (c002), the building-materials prices (c003) and the wharfing clause's eighty feet (c006). THE PRICES CURRENT IS THE HARDEST THING IN THE MONTH: the segmenter has broken the table one token to a line, so c003's quote is verbatim and unreadable as a table and its rows are paired to their labels from the 1833-12-17 and 1833-12-31 settings, which is stated in the claim. THE DIALECT: `===== ORIGINAL PDF PAGE n / ISSUE PAGE m =====`, the rarest of the four ruled shapes — four occurrences in the whole deposit, all of them in this issue. T-0258 PIECE 2 — DECEMBER 1833, Vol. I Nos. 2-6, five issues, read through. NO POST-OFFICE LETTER LIST STANDS ANYWHERE IN THE MONTH: all five transcriptions were swept for every form the Democrat uses elsewhere — 'list of letters', 'letters remaining', 'remaining in the post office', 'uncalled for', a signature ending 'P. M.' and the bare words 'post office' — for three hits, none of them a list (a Detroit post-office contract and a 'send by the Post-Office at our risk' line on 1833-12-10, and the President's message on the General Post Office Department on 1833-12-31). The epic's ruling 1 is therefore met by demonstrating absence, as T-0261 met it for the American and T-0308 for November; only four of T-0258's thirty issues carry a list and none of them is in December. THE MONTH'S STANDING ADVERTISEMENTS ARE CLAIMED ONCE, AT THEIR BEST-READ PRINTING, NOT FIVE TIMES. Sixteen cards run unchanged across two or more of these issues, and the OCR of each varies wildly from setting to setting; a claim is made in the issue where the line that carries the evidence is legible, and the other settings are named in its note as the cross-check. That is why the per-issue counts are uneven (8/12/7/7/7) and why a card that first appears in Vol. I No. 2 may be claimed from Vol. I No. 3. The alternative — one claim per printing — would have multiplied the same forty-one readings into about ninety and made the gazetteer's first_seen dates no better. THE ESTRAY NOTICES ARE QUARANTINED AND NOT CLAIMED, as T-0308 quarantined them: 'Taken Up' by Harry Boardman on the Du Page, by William See at Walker's Grove and by William Taylor in the county are Cook county filings attested by the Clerk of the Commissioners' Court, not Chicago matter, and the animals and appraisers in them belong to the county's prairie and not to the town. THE DEPOSIT IS ON `main` AND THIS BRANCH IS `dev`, so every quote here was machine-checked with `tools/compile_gazetteer.py --check --deposit <a read-only copy of the deposit from main>` before the PR was opened; on `dev` these claims are counted unresolved and reported, which is green (T-0275).",
+  "claims": [
+    {
+      "id": "c001",
+      "kind": "infrastructure",
+      "reading": "transcription_mediated",
+      "quote": "13. Be it further Ordained by the Board of\nrustees of the town of Chicago, That G. W.\nDole, Medore B. Beaubien, Edmund S. Kimberly and John Miller, be appointed a Committee\n• make a contract with some person, for repair-\nag the Bridges on the North and South branch-\na of the Chicago River in said town.",
+      "normalized": "13. Be it further Ordained by the Board of [T]rustees of the town of Chicago, That G. W. Dole, Medore B. Beaubien, Edmund S. Kimberly and John Miller, be appointed a Committee [to] make a contract with some person, for repair[in]g the Bridges on the North and South branch[es] of the Chicago River in said town.",
+      "locator": {
+        "artifact_role": "primary",
+        "issue_page": 4,
+        "column": 5,
+        "lines": [
+          3954,
+          3959
+        ],
+        "lines_of_claim": [
+          3954,
+          3955,
+          3956,
+          3957,
+          3958,
+          3959
+        ],
+        "interleaved": false
+      },
+      "entities": [
+        {
+          "as_printed": "G. W.\nDole",
+          "normalized": "Dole, G. W.",
+          "role": "appointed to the bridge committee",
+          "occupations": [
+            "merchant"
+          ]
+        },
+        {
+          "as_printed": "Medore B. Beaubien",
+          "normalized": "Beaubien, Medore B.",
+          "role": "appointed to the bridge committee"
+        },
+        {
+          "as_printed": "Edmund S. Kimberly",
+          "normalized": "Kimberly, Edmund S.",
+          "role": "appointed to the bridge committee"
+        },
+        {
+          "as_printed": "John Miller",
+          "normalized": "Miller, John",
+          "role": "appointed to the bridge committee"
+        }
+      ],
+      "notes": "THE BRIDGES ARE BEING REPAIRED, NOT BUILT — AND THE JANUARY READING OF THIS ORDINANCE SAYS THE OPPOSITE. 1834-01-07 c004 read the same clause from the January reprint as '…for [build]ing the Bridg[e]s on the North and South branches', supplying 'build' into a line the column edge had cut. THIS PRINTING IS NOT CUT. It reads 'repairing', and so does 1833-12-17 (page 3 column 6, 'for repair / e Kridges') and 1833-12-10 (page 3 column 5, 'for repair- / ing the Bridges'). THREE DECEMBER SETTINGS AGAINST ONE SUPPLIED JANUARY WORD, and the three agree. That is a fact about the town and not about the ordinance: bridges on BOTH branches of the Chicago river were already standing on 4 December 1833 and needed work, which the ordinance of 26 November independently confirms by fining anyone who removes a plank 'from either of the bridges in said town' (1833-11-26 c027). The reconstruction should carry two standing bridges at the scene's antecedent date, not two under construction. The committee is named: G. W. Dole, Medore B. Beaubien, Edmund S. Kimberly, John Miller."
+    },
+    {
+      "id": "c002",
+      "kind": "business",
+      "reading": "transcription_mediated",
+      "quote": "BEWSTER, HOGAN & CO.\norwarding de Commission\nMERCHANTS,\n‹ hicago-illiaois.\nCORNER OF LASALLE AND SOUTH WATER-STREETS.\nAS now on hund, many of the stapie ar.\nticles requisite to the exigencies",
+      "normalized": "B[R]EWSTER, HOGAN & CO. [F]orwarding [&] Commission MERCHANTS, [C]hicago-[Il]li[n]ois. CORNER OF LASALLE AND SOUTH WATER-STREETS. [H]AS now on hund, many of the stap[l]e ar[ti]cles requisite to the exigencies",
+      "locator": {
+        "artifact_role": "primary",
+        "issue_page": 3,
+        "column": 5,
+        "lines": [
+          2995,
+          3010
+        ],
+        "lines_of_claim": [
+          2995,
+          2997,
+          2999,
+          3002,
+          3007,
+          3009,
+          3010
+        ],
+        "interleaved": true
+      },
+      "entities": [
+        {
+          "as_printed": "BEWSTER, HOGAN & CO.",
+          "normalized": "Brewster, Hogan & Co.",
+          "role": "proprietor",
+          "occupations": [
+            "forwarding and commission merchant"
+          ],
+          "associated_places": [
+            "South Water Street",
+            "LaSalle Street"
+          ]
+        }
+      ],
+      "business": {
+        "name": "Brewster, Hogan & Co.",
+        "proprietors": [
+          "Brewster, Hogan & Co."
+        ],
+        "trade": "forwarding and commission merchants",
+        "goods": [
+          "Boots and shoes",
+          "Crockery",
+          "Dry goods",
+          "Flour",
+          "Groceries",
+          "Hardware",
+          "Hats",
+          "Whiskey"
+        ],
+        "street": "South Water Street",
+        "placement": {
+          "class": "corner",
+          "anchor": "the corner of LaSalle and South Water streets",
+          "offset_text": "CORNER OF LASALLE AND SOUTH WATER-STREETS.",
+          "offset_normalized": "CORNER OF LASALLE AND SOUTH WATER-STREETS.",
+          "street": "South Water Street",
+          "note": "The JUNCTION only. Which of the four corners is not stated, here or in any other printing of the card."
+        }
+      },
+      "notes": "BREWSTER, HOGAN & CO. ON THE CORNER OF LASALLE AND SOUTH WATER, AND THIS IS THE READING THE MONTH TURNS ON. The firm advertises in every December issue and its address line is set differently every time — 'ANER OF LACELLE AND SOUTH WATER-STREE' on 1833-12-10, '\"OF LASALLE AND SOUTH WATER-STRERTS' on 1833-12-31 — and here it stands whole. It matters beyond this one storefront because J. D. Caton places his own law office 'one door east of Brewster, Hogan & Co, South Water street' (1833-12-17 c002), so this corner is the fixed end of a two-step chain and the only thing that lets Caton be placed at all. THE COLUMN IS INTERLEAVED and the segmenter has woven a neighbouring column's lines through this one — 'P. F. PECK.' sits between the town line and the address line and belongs to the prices current, not to this advertisement. The claim names only the lines that are the firm's own."
+    },
+    {
+      "id": "c003",
+      "kind": "price",
+      "reading": "transcription_mediated",
+      "quote": "Building Materiale-\nLumber, poplar ass'd 1000\n20\n/ 00 n 23 00\nShingles\n3\n50\n4\n00\nSquare timber, length\nBrick,\nper 1009\n6\n:00\nStone,\nperch\nLime,\n50\nbbl\nWood,\ncord\n25\n2\n: 50 $ 3 00",
+      "normalized": "Building Material[s]— Lumber, poplar ass'd [per] 1000 [ft] 20[.]00 [a] 23 00 — Shingles [do.] 3 50 [a] 4 00 — Square timber, [per] length [5 a 6] — Brick, per 100[0] 6[.]00 — Stone, per perch [1 50] — Lime, [per] bbl [1 25] — Wood, [per] cord 2[.]50 [a] 3 00",
+      "locator": {
+        "artifact_role": "primary",
+        "issue_page": 3,
+        "column": 5,
+        "lines": [
+          2892,
+          2915
+        ],
+        "lines_of_claim": [
+          2892,
+          2893,
+          2894,
+          2895,
+          2896,
+          2897,
+          2898,
+          2899,
+          2900,
+          2901,
+          2902,
+          2903,
+          2904,
+          2905,
+          2906,
+          2907,
+          2908,
+          2909,
+          2910,
+          2911,
+          2912,
+          2913,
+          2914,
+          2915
+        ],
+        "interleaved": false
+      },
+      "notes": "WHAT IT COST TO BUILD IN CHICAGO IN DECEMBER 1833, IN THE TOWN'S OWN WEEKLY PRICES CURRENT. This is the only contemporary price list for building materials anywhere in this corpus, and the reconstruction's fabric layer has never had one. Assorted poplar lumber $20 to $23 the thousand feet; shingles $3.50 to $4.00; square timber 5 to 6 cents the running foot; BRICK SIX DOLLARS THE THOUSAND; stone $1.50 the perch; lime $1.25 the barrel; firewood $2.50 to $3.00 the cord. THE FIGURES ARE PAIRED TO THEIR LABELS FROM A SECOND PRINTING, NOT FROM THIS ONE. The segmenter has broken this table one token to a line, so the quote is verbatim and unreadable as a table; the pairing is taken from 1833-12-17 (page 3 column 6, lines 2891-2898), where the same week's rows run 'ber, poplar ass a 1000 R 90 00. 23 00 / gles 350 a. 00 / re timber, length 5. / per 1000 6.00 / perch 1 50 / bbl 1 25 / cord 250 a 3 00' in the printed order, and from 1833-12-31 (page 3 column 5, line 837), which agrees on the lumber and shingle rows. Every figure is bracketed in the normalized reading where THIS printing does not carry it on the same line as its label. NOTHING IS INVENTED: no row is supplied that all three settings do not carry."
+    },
+    {
+      "id": "c004",
+      "kind": "price",
+      "reading": "transcription_mediated",
+      "quote": "EXCHANGE.\nDrafts on Detroit, Bufalo and New-York,\nCash'd at par.\nForeign Bank Notes not exceeding 5 per cent\nfiscoent at New York, taken at par in trade,\nnd discounted for sporie or United States pa-\ner at from 1 to 5 percent.",
+      "normalized": "EXCHANGE. Drafts on Detroit, Bu[ff]alo and New-York, Cash'd at par. Foreign Bank Notes not exceeding 5 per cent [d]is[c]o[u]nt at New York, taken at par in trade, [a]nd discounted for sp[ec]ie or United States pa[p]er at from 1 to 5 per cent.",
+      "locator": {
+        "artifact_role": "primary",
+        "issue_page": 3,
+        "column": 5,
+        "lines": [
+          2916,
+          2922
+        ],
+        "lines_of_claim": [
+          2916,
+          2917,
+          2918,
+          2919,
+          2920,
+          2921,
+          2922
+        ],
+        "interleaved": false
+      },
+      "notes": "THE TOWN'S MONEY, AND WHERE IT REACHED. Drafts on Detroit, Buffalo and New-York cash at par in Chicago in December 1833 — those three and no others — which is the commercial map of the place in one line: the lake route east and nothing south or west. Foreign bank notes pass at par in trade and are discounted 1 to 5 per cent for specie or United States paper. Recorded because it dates the town's integration into the eastern exchange system to the month the corpus opens, and because 'at par in trade' says plainly that Chicago in 1833 was still a barter economy with a paper overlay."
+    },
+    {
+      "id": "c005",
+      "kind": "business",
+      "reading": "transcription_mediated",
+      "quote": "Hoosiers, Wolverines and\nSuckers, Behold!!!!!!\n4E subscribers respectfilly tender to their\nabove named friends, and to his liberal\npatrons, the Potlawatamies, their sincere thanks\nfor past favors, and informs them that thoy\nhave on hand at their Man Trap, one door north\nof Mr. R. A. Kinzie's Store, a constant supply\nof fresh Bread Cakes, Pastry, &c., also, LI-\nQUORS, of'every description, which they will\nsell at reduced prices, and their friends can come\nand get tired for nothing.\nChicago, Dec. 10, 1833.\nJOHN WELLMAKER & CO.",
+      "normalized": "Hoosiers, Wolverines and Suckers, Behold!!!!!! [TH]E subscribers respectf[u]lly tender to their above named friends, and to [t]he[i]r liberal patrons, the Pot[t]awata[m]ies, their sincere thanks for past favors, and inform[s] them that they have on hand at their Man Trap, one door north of Mr. R. A. Kinzie's Store, a constant supply of fresh Bread[,] Cakes, Pastry, &c., also, LIQUORS, of every description, which they will sell at reduced prices, and their friends can come and get tired for nothing. Chicago, Dec. 10, 1833. JOHN WELLMAKER & CO.",
+      "locator": {
+        "artifact_role": "primary",
+        "issue_page": 3,
+        "column": 6,
+        "lines": [
+          3083,
+          3096
+        ],
+        "lines_of_claim": [
+          3083,
+          3084,
+          3085,
+          3086,
+          3087,
+          3088,
+          3089,
+          3090,
+          3091,
+          3092,
+          3093,
+          3094,
+          3095,
+          3096
+        ],
+        "interleaved": false
+      },
+      "entities": [
+        {
+          "as_printed": "JOHN WELLMAKER & CO.",
+          "normalized": "Wellmaker, John, & Co.",
+          "role": "proprietor",
+          "occupations": [
+            "baker",
+            "liquor seller"
+          ]
+        },
+        {
+          "as_printed": "Mr. R. A. Kinzie's Store",
+          "normalized": "Kinzie, R. A.",
+          "role": "named as the anchor for another business",
+          "occupations": [
+            "merchant"
+          ]
+        }
+      ],
+      "ad_copy_date": {
+        "verbatim": "Chicago, Dec. 10, 1833.",
+        "iso": "1833-12-10"
+      },
+      "business": {
+        "name": "the Man Trap",
+        "proprietors": [
+          "John Wellmaker & Co."
+        ],
+        "trade": "baker and liquor seller",
+        "goods": [
+          "Bread",
+          "Cakes",
+          "Liquors",
+          "Pastry"
+        ],
+        "street": null,
+        "placement": {
+          "class": "relative",
+          "anchor": "Mr. R. A. Kinzie's Store",
+          "offset_text": "have on hand at their Man Trap, one door north\nof Mr. R. A. Kinzie's Store, a constant supply",
+          "offset_normalized": "at their Man Trap, one door north of Mr. R. A. Kinzie's Store",
+          "street": null,
+          "note": "UNRESOLVED ANCHOR. R. A. Kinzie’s store is named four times in December and placed by none of them, so the offset points at nothing this reconstruction holds."
+        }
+      },
+      "notes": "A BAKERY AND LIQUOR SHOP CALLED THE MAN TRAP, ONE DOOR NORTH OF R. A. KINZIE'S STORE. The name of the house is the claim: 'their Man Trap' is a trade sign, and the placement is a doorway count off a named store — Robert A. Kinzie's — which is the second such chain this month (see 1833-12-17 c002, Caton off Brewster, Hogan & Co.). R. A. Kinzie's store is not placed by any December issue, so the chain does not close and the Man Trap is NOT put on the ground here. THE ADVERTISEMENT NAMES THE POTTAWATOMIE AS CUSTOMERS, and this project's standing constraint on Indigenous history governs what may be done with that. It is recorded because refusing to record it would be editing the record; it is NOT evidence for any depiction, figure, dress, activity or presence in the scene, and it may not be used as such. AGENTS.md is unambiguous: v1 ships no human figures at all, and Native presence is a subject for consultation and not for inference from a bakery's advertising copy. The claim stops at what the paper printed."
+    },
+    {
+      "id": "c006",
+      "kind": "infrastructure",
+      "reading": "transcription_mediated",
+      "quote": "15. Be it further Ordained by the Board of\nTrustees of the town of Chicago, That each and\nvery owner or occupant ofany lot in said town,\nronting upon the Chicago River or its branch-\n*, where the street runs to said river, be per-\nnitted to occupy the vacant ground on said riv-\ner. leaving eighty feet for a street, for wharling\nprivileges only: And for the porpose of guaran-",
+      "normalized": "15. Be it further Ordained by the Board of Trustees of the town of Chicago, That each and [e]very owner or occupant of any lot in said town, [f]ronting upon the Chicago River or its branch[es], where the street runs to said river, be per[m]itted to occupy the vacant ground on said river[,] leaving eighty feet for a street, for wharfing privileges only[;] And for the p[u]rpose of guaran[t]e[e]ing",
+      "locator": {
+        "artifact_role": "primary",
+        "issue_page": 4,
+        "column": 5,
+        "lines": [
+          3965,
+          3972
+        ],
+        "lines_of_claim": [
+          3965,
+          3966,
+          3967,
+          3968,
+          3969,
+          3970,
+          3971,
+          3972
+        ],
+        "interleaved": false
+      },
+      "notes": "EIGHTY FEET FOR A STREET, SET WITHOUT A BREAK. This is the cleanest of the four printings of the wharfing clause — 1833-12-10 c011 carries the whole ordinance and this carries the sentence that constrains geometry, unbroken: the riverfront occupier takes the vacant ground BUT LEAVES EIGHTY FEET FOR A STREET. That figure is a hard edge for the wharf layer. It says the town intended a continuous eighty-foot public way along the river behind every private wharf, so a wharf structure that fills the ground right up to the lot line is contradicted by the ordinance the wharves were built under. Whether the eighty feet was ever kept is a different question and this notice cannot answer it."
+    },
+    {
+      "id": "c007",
+      "kind": "business",
+      "reading": "transcription_mediated",
+      "quote": "BITANDS SWEET\nFFERS for sale at his Barn, near the East\nBranch of the Dupage, about 23 miles\nt of this place,\n1500 Bushels of good Corn.\nAlso, can be had oi\nexceeding 330 bushels.\nChicago, Dee. 3, 1833.",
+      "normalized": "[R]I[CH]A[RD M.] SWEET [O]FFERS for sale at his Barn, near the East Branch of the Dupage, about 23 miles [wes]t of this place, 1500 Bushels of good Corn. […] Also, can be had o[f] […] [not] exceeding 3[0]0 bushels. […] Chicago, De[c]. 3, 1833.",
+      "locator": {
+        "artifact_role": "primary",
+        "issue_page": 4,
+        "column": 5,
+        "lines": [
+          3906,
+          3918
+        ],
+        "lines_of_claim": [
+          3906,
+          3907,
+          3908,
+          3909,
+          3910,
+          3912,
+          3915,
+          3918
+        ],
+        "interleaved": false
+      },
+      "entities": [
+        {
+          "as_printed": "BITANDS SWEET",
+          "normalized": "Sweet, Richard M.",
+          "role": "proprietor",
+          "occupations": [
+            "farmer",
+            "corn dealer"
+          ]
+        }
+      ],
+      "ad_copy_date": {
+        "verbatim": "Chicago, Dee. 3, 1833.",
+        "iso": "1833-12-03"
+      },
+      "business": {
+        "name": "Richard M. Sweet",
+        "proprietors": [
+          "Richard M. Sweet"
+        ],
+        "trade": "corn dealer",
+        "goods": [
+          "Corn"
+        ],
+        "street": null,
+        "placement": {
+          "class": "relative",
+          "anchor": "his barn, near the East Branch of the Du Page, about 23 miles west of Chicago",
+          "offset_text": "FFERS for sale at his Barn, near the East\nBranch of the Dupage, about 23 miles",
+          "offset_normalized": "at his Barn, near the East Branch of the Dupage, about 23 miles [wes]t of this place",
+          "street": null,
+          "note": "OUTSIDE THE SCENE. The barn is twenty-three miles west; only the agency in Chicago touches the town, and that is not placed."
+        }
+      },
+      "notes": "FIFTEEN HUNDRED BUSHELS OF CORN, TWENTY-THREE MILES OUT, AND AN AGENT IN TOWN. The barn is on the East Branch of the Du Page and outside anything the reconstruction draws; what is inside it is the second half of the notice, which 1833-12-10 sets more fully (page 4 column 5, lines 3636-3638): the corn 'can be had of [Mr.] Sweet, in Chicago, at all times, any quantity not exceeding 300 bushels'. So the town holds a standing 300-bushel buffer of grain against a country supply — which is the shape of the provision trade the butcher's market (1833-12-03 c006) and the grocers sit on. THE NAME IS RECOVERED, NOT READ: this setting gives 'BITANDS SWEET' and 1833-12-31 gives 'RICHARD Wt. OWMBT', neither legible; Richard M. Sweet appraises an estray in the same month's issues (1833-12-03, page 3 column 5) and is the only Sweet in December's Cook county matter, which is the reasoning and not a certainty. The claim would stand on the surname alone."
+    }
+  ]
+}

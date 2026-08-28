@@ -1,0 +1,466 @@
+{
+  "schema": 1,
+  "issue_id": "chicago_democrat_1833_12_31",
+  "extracted": "2026-08-28",
+  "extracted_by": "hand, T-0258 piece 2 — the Democrat read, December 1833 (Vol. I Nos. 2-6)",
+  "note": "Vol. I No. 6, 1833-12-31 — the last Democrat of 1833, and the only December issue in the PROSE dialect (`Newspaper Page n — Source PDF Page m` with `Column k` under it). Seven claims. THE COLUMNS ARRIVE AS SINGLE LINES OF UP TO 1,022 CHARACTERS, each carrying several advertisements and the neighbouring column's text woven through them, so five of the seven claims use `locator.spans` — the character-level grain T-0261 built for the American — rather than naming whole lines. Without it, quoting David Carver's lumber yard would have quoted four other advertisements with it. WHAT THE LAST ISSUE OF THE YEAR ADDS: a lumber yard announced for the opening of navigation and a store house already standing (c001), a cabinet shop hiring journeymen (c002), a partnership dissolving and its trade moving to Michigan (c003), the forwarding house's correspondents from New-York to Galena (c004), and the two names 1833-12-10 could not read — Chester Ingersoll at the Traveller's Home, and L. W. Montgomery next door to Peter Cohen's store (c005, c006). T-0258 PIECE 2 — DECEMBER 1833, Vol. I Nos. 2-6, five issues, read through. NO POST-OFFICE LETTER LIST STANDS ANYWHERE IN THE MONTH: all five transcriptions were swept for every form the Democrat uses elsewhere — 'list of letters', 'letters remaining', 'remaining in the post office', 'uncalled for', a signature ending 'P. M.' and the bare words 'post office' — for three hits, none of them a list (a Detroit post-office contract and a 'send by the Post-Office at our risk' line on 1833-12-10, and the President's message on the General Post Office Department on 1833-12-31). The epic's ruling 1 is therefore met by demonstrating absence, as T-0261 met it for the American and T-0308 for November; only four of T-0258's thirty issues carry a list and none of them is in December. THE MONTH'S STANDING ADVERTISEMENTS ARE CLAIMED ONCE, AT THEIR BEST-READ PRINTING, NOT FIVE TIMES. Sixteen cards run unchanged across two or more of these issues, and the OCR of each varies wildly from setting to setting; a claim is made in the issue where the line that carries the evidence is legible, and the other settings are named in its note as the cross-check. That is why the per-issue counts are uneven (8/12/7/7/7) and why a card that first appears in Vol. I No. 2 may be claimed from Vol. I No. 3. The alternative — one claim per printing — would have multiplied the same forty-one readings into about ninety and made the gazetteer's first_seen dates no better. THE ESTRAY NOTICES ARE QUARANTINED AND NOT CLAIMED, as T-0308 quarantined them: 'Taken Up' by Harry Boardman on the Du Page, by William See at Walker's Grove and by William Taylor in the county are Cook county filings attested by the Clerk of the Commissioners' Court, not Chicago matter, and the animals and appraisers in them belong to the county's prairie and not to the town. THE DEPOSIT IS ON `main` AND THIS BRANCH IS `dev`, so every quote here was machine-checked with `tools/compile_gazetteer.py --check --deposit <a read-only copy of the deposit from main>` before the PR was opened; on `dev` these claims are counted unresolved and reported, which is green (T-0275).",
+  "claims": [
+    {
+      "id": "c001",
+      "kind": "building",
+      "reading": "transcription_mediated",
+      "quote": "‘Vo the Public. as HE subscriber would inform his old cus\ntomers, and the public, that ho is now tn 3 | king measures to ostablish a lumber yard in thi 1-| town, where he indetermnined to aupply all arti .g | cles in the Iuinber lino, at the opening of navi S| gation, as cheap as can be procured in this place\nHe has also furnishod himself with « Store. | Houso, where he will receive,’ either to. sell | on commission, or to store, all articles in the 1} Provision and Grocery linc.\nDAVID CARVER, Chicago, Dec, 81, 1833. 6",
+      "normalized": "[T]o the Public. [T]HE subscriber would inform his old customers, and the public, that h[e] is now t[a]king measures to [e]stablish a lumber yard in thi[s] town, where he i[s] determ[i]ned to [s]upply all arti[c]les in the [l]umber lin[e], at the opening of navigation, as cheap as can be procured in this place […] He has also furnish[e]d himself with a Store House, where he will receive, either to sell on commission, or to store, all articles in the Provision and Grocery lin[e]. […] DAVID CARVER, Chicago, Dec. [3]1, 1833.",
+      "locator": {
+        "artifact_role": "primary",
+        "issue_page": 3,
+        "column": 3,
+        "lines": [
+          601,
+          603
+        ],
+        "lines_of_claim": [
+          601,
+          603
+        ],
+        "interleaved": false,
+        "spans": [
+          {
+            "line": 601,
+            "from": 96,
+            "to": 153
+          },
+          {
+            "line": 603,
+            "from": 0,
+            "to": 252
+          },
+          {
+            "line": 603,
+            "from": 495,
+            "to": 668
+          },
+          {
+            "line": 603,
+            "from": 983,
+            "to": 1022
+          }
+        ]
+      },
+      "entities": [
+        {
+          "as_printed": "DAVID CARVER",
+          "normalized": "Carver, David",
+          "role": "proprietor",
+          "occupations": [
+            "lumber merchant",
+            "commission merchant"
+          ]
+        },
+        {
+          "as_printed": "Cal vin Brit",
+          "normalized": "Britain, Calvin",
+          "role": "his agent at the mouth of the St. Joseph’s"
+        }
+      ],
+      "ad_copy_date": {
+        "verbatim": "DAVID CARVER, Chicago, Dec, 81, 1833. 6",
+        "iso": "1833-12-31"
+      },
+      "business": {
+        "name": "David Carver's lumber yard and store house",
+        "proprietors": [
+          "David Carver"
+        ],
+        "trade": "lumber merchant, and storage and commission",
+        "goods": [
+          "Lumber",
+          "Groceries",
+          "Provisions"
+        ],
+        "street": null,
+        "placement": {
+          "class": "none",
+          "anchor": null,
+          "offset_text": null,
+          "offset_normalized": null,
+          "street": null,
+          "note": "NOT PLACED, and for a lumber yard that is the whole difficulty. The advertisement says \"in this town\" and nothing finer."
+        }
+      },
+      "notes": "A LUMBER YARD AND A STORE HOUSE, ANNOUNCED ON THE LAST DAY OF 1833. This is the largest single addition December makes to the town's fabric, and it is a statement of intent rather than of standing stock: David Carver is 'now taking measures to establish a lumber yard in this town', to be supplied AT THE OPENING OF NAVIGATION — so the yard is a spring 1834 thing and does not stand in December. THE STORE HOUSE IS DIFFERENT AND IS IN THE PAST TENSE: 'He has ALSO FURNISHED himself with a Store House, where he will receive … all articles in the Provision and Grocery line'. A store house therefore stands, or is fitted out, at the turn of the year. NEITHER IS PLACED. No street, no lot, no anchor, in this or any December issue — which for a lumber yard is a real loss, because a yard is a large open footprint and the reconstruction cannot site it. 1834-01-28 c005 carries the same advertisement a month later and names Calvin Britain as the Michigan agent, as this one does; that claim reads the continuation, this one reads the announcement."
+    },
+    {
+      "id": "c002",
+      "kind": "business",
+      "reading": "transcription_mediated",
+      "quote": "WANTED, Tr. or THREE Journeymen Cabinet Mc\nhers, to whiom good wages will bo paid by : ¥ J. W. REED. 8] Chicago, Dec. 11, 1833.",
+      "normalized": "WANTED, T[WO] or THREE Journeymen Cabinet M[a]kers, to wh[o]m good wages will b[e] paid by J. W. REED. Chicago, Dec. 11, 1833.",
+      "locator": {
+        "artifact_role": "primary",
+        "issue_page": 3,
+        "column": 3,
+        "lines": [
+          599,
+          601
+        ],
+        "lines_of_claim": [
+          599,
+          601
+        ],
+        "interleaved": false,
+        "spans": [
+          {
+            "line": 599,
+            "from": 11,
+            "to": 53
+          },
+          {
+            "line": 601,
+            "from": 0,
+            "to": 84
+          }
+        ]
+      },
+      "entities": [
+        {
+          "as_printed": "J. W. REED.",
+          "normalized": "Reed, J. W.",
+          "role": "proprietor",
+          "occupations": [
+            "cabinet maker"
+          ]
+        }
+      ],
+      "ad_copy_date": {
+        "verbatim": "Chicago, Dec. 11, 1833.",
+        "iso": "1833-12-11"
+      },
+      "business": {
+        "name": "J. W. Reed",
+        "proprietors": [
+          "J. W. Reed"
+        ],
+        "trade": "cabinet maker",
+        "goods": [
+          "Cabinet work"
+        ],
+        "street": null,
+        "placement": {
+          "class": "none",
+          "anchor": null,
+          "offset_text": null,
+          "offset_normalized": null,
+          "street": null
+        }
+      },
+      "notes": "A CABINET SHOP HIRING, WHICH MEANS THERE IS ONE. J. W. Reed wants two or three JOURNEYMEN cabinet makers at good wages — journeymen, not apprentices, so the shop is past its first year of work and needs trained hands. This is the first cabinet maker in the corpus and a trade the reconstruction's business mix did not hold: December 1833 has blacksmiths (two), a saddler, a baker, a druggist, a butcher, a printer and now a furniture shop. It is not placed. The count is worth keeping as a labour figure — a town of a few hundred that can absorb three more skilled woodworkers in one advertisement."
+    },
+    {
+      "id": "c003",
+      "kind": "business",
+      "reading": "transcription_mediated",
+      "quote": "Dissolu\n» of Britain & Phelan, is mutual consent. All-perinst said firm, are requésted to present them to. Andrew J.'F. Phefor payment, and all persons indebted to said , are requested to make payment to sax Andrew J.cP, Pholan,\nNOTICE, The SPOR A AIM,\nforwarding & Commission Business, will be continued at St. Josoph by:\nCALVIN BRITAIN.",
+      "normalized": "Dissolu[tion.] […] [The partnership] of Britain & Phelan, is [dissolved by] mutual consent. All [persons having claims against] said firm, are requested to present them to Andrew J. F. Phe[lan] for payment, and all persons indebted to said [firm], are requested to make payment to sa[id] Andrew J. P[.] Phelan, […] NOTICE, The […] forwarding & Commission Business, will be continued at St. Jos[e]ph by CALVIN BRITAIN.",
+      "locator": {
+        "artifact_role": "primary",
+        "issue_page": 3,
+        "column": 3,
+        "lines": [
+          623,
+          633
+        ],
+        "lines_of_claim": [
+          623,
+          627,
+          629,
+          631,
+          633
+        ],
+        "interleaved": false
+      },
+      "entities": [
+        {
+          "as_printed": "Britain & Phelan",
+          "normalized": "Britain & Phelan",
+          "role": "the dissolved partnership",
+          "occupations": [
+            "forwarding and commission merchant"
+          ]
+        },
+        {
+          "as_printed": "Andrew J.'F. Phe",
+          "normalized": "Phelan, Andrew J. F.",
+          "role": "the settling partner"
+        },
+        {
+          "as_printed": "CALVIN BRITAIN.",
+          "normalized": "Britain, Calvin",
+          "role": "continues the business at St. Joseph"
+        }
+      ],
+      "business": {
+        "name": "Britain & Phelan",
+        "proprietors": [
+          "Andrew J. F. Phelan",
+          "Calvin Britain"
+        ],
+        "trade": "forwarding and commission merchants",
+        "goods": [],
+        "street": null,
+        "placement": {
+          "class": "none",
+          "anchor": null,
+          "offset_text": null,
+          "offset_normalized": null,
+          "street": null,
+          "note": "DISSOLVED IN THIS NOTICE, and never placed while it traded. The successor business is at St. Joseph, Michigan, outside the scene entirely."
+        }
+      },
+      "notes": "A PARTNERSHIP DISSOLVES, AND THE TRADE MOVES OUT OF THE STATE. Britain & Phelan is wound up by mutual consent at the end of December 1833: Andrew J. F. Phelan takes the debts on both sides, and the forwarding and commission business itself is CONTINUED AT ST. JOSEPH by Calvin Britain — the same Calvin Britain who is David Carver's agent at the mouth of the St. Joseph's in the column beside this one (c001). So the two notices read together: one Chicago house closes its forwarding trade and reopens it across the lake, and its principal becomes the Michigan end of a Chicago lumber merchant's supply. THIS IS EXACTLY THE SHAPE THE TICKET'S RULING 3 IS FOR — a business documented in this window and gone from the town before the scene date, which must not be carried into 1835 on the strength of having existed in 1833. It is recorded as closing, and nothing places it while it was open."
+    },
+    {
+      "id": "c004",
+      "kind": "business",
+      "reading": "transcription_mediated",
+      "quote": "mm) BD BB Ae. Gp Es'g, orwwarding & Commission RTH ER Swap TWAROCHANT, CHICAGO—ILLINOIS, REFERENC 'Seasi, Jacnson & Co,, New-York, —S. Promrsox & Buffalo, N.Y, 3. R. Donn & © E & Bnusu, Green Bay, M. T, Joseem Rovers, Prario du Chien, M: T Jonxstox & Sram, Galena, Ul.",
+      "normalized": "[JOHN H. KINZIE,] [F]orwarding & Commission [ME]RCHANT, CHICAGO—ILLINOIS, REFERENC[ES] [S]ea[r]s, Ja[ck]son & Co., New-York, —S. [Thompson] & [Co.,] Buffalo, N.Y[.,] [J]. R. D[o]d[ge] & [Co.,] […] & B[ru]s[h], Green Bay, M. T[.,] Jose[ph] Ro[lette], Prair[ie] du Chien, M[.] T[.,] Jo[h]n[s]to[n] & S[tahl], Galena, Il[l].",
+      "locator": {
+        "artifact_role": "primary",
+        "issue_page": 3,
+        "column": 3,
+        "lines": [
+          637,
+          637
+        ],
+        "lines_of_claim": [
+          637
+        ],
+        "interleaved": false,
+        "spans": [
+          {
+            "line": 637,
+            "from": 0,
+            "to": 268
+          }
+        ]
+      },
+      "entities": [
+        {
+          "as_printed": "mm) BD BB Ae. Gp Es'g",
+          "normalized": "Kinzie, John H.",
+          "role": "proprietor",
+          "occupations": [
+            "forwarding and commission merchant"
+          ]
+        }
+      ],
+      "business": {
+        "name": "John H. Kinzie",
+        "proprietors": [
+          "John H. Kinzie"
+        ],
+        "trade": "forwarding and commission merchant",
+        "goods": [],
+        "street": null,
+        "placement": {
+          "class": "none",
+          "anchor": null,
+          "offset_text": null,
+          "offset_normalized": null,
+          "street": null
+        }
+      },
+      "notes": "THE FORWARDING HOUSE'S CORRESPONDENTS, WHICH ARE THE TOWN'S TRADE ROUTES WRITTEN OUT. The card's own name line is unreadable in this setting — 'mm) BD BB Ae. Gp Es'g' — and is taken from 1833-12-10 c004, where the identical card in the identical standing position reads JOHN H. KINZIE. That identification is a reading of the run and not of this line, and it is stated as such. WHAT THIS LINE DOES CARRY IS THE REFERENCE LIST, and it is the more useful half: New-York, Buffalo, GREEN BAY, PRAIRIE DU CHIEN and GALENA. Two lake ports east and three interior posts north and west — the fur-and-lead country — so a Chicago forwarding merchant at the end of 1833 stands at the hinge between the eastern canal trade and the upper Mississippi, and settles with houses at both ends. No address in Chicago is given."
+    },
+    {
+      "id": "c005",
+      "kind": "business",
+      "reading": "transcription_mediated",
+      "quote": "Shoe Making.\nITE subscriber haying recntly commenced | ? the above business, next doar to P. Co- F] en's Storo, will be kept on band 8 quod assortment of\nL. W. MONTGOMERY.",
+      "normalized": "[Boot &] Shoe Making. [TH]E subscriber ha[v]ing rec[e]ntly commenced the above business, next d[oo]r to P. Co[h]en's Stor[e], will [keep] on hand [a] good assortment of […] L. W. MONTGOMERY.",
+      "locator": {
+        "artifact_role": "primary",
+        "issue_page": 3,
+        "column": 3,
+        "lines": [
+          643,
+          659
+        ],
+        "lines_of_claim": [
+          643,
+          645,
+          659
+        ],
+        "interleaved": false,
+        "spans": [
+          {
+            "line": 643,
+            "from": 0,
+            "to": 12
+          },
+          {
+            "line": 645,
+            "from": 0,
+            "to": 140
+          },
+          {
+            "line": 659,
+            "from": 0,
+            "to": 17
+          }
+        ]
+      },
+      "entities": [
+        {
+          "as_printed": "L. W. MONTGOMERY.",
+          "normalized": "Montgomery, L. W.",
+          "role": "proprietor",
+          "occupations": [
+            "boot and shoe maker"
+          ]
+        },
+        {
+          "as_printed": "P. Co- F] en's Storo",
+          "normalized": "Cohen, Peter",
+          "role": "named as the anchor for another business",
+          "occupations": [
+            "merchant"
+          ]
+        }
+      ],
+      "business": {
+        "name": "L. W. Montgomery, boot and shoe maker",
+        "proprietors": [
+          "L. W. Montgomery"
+        ],
+        "trade": "boot and shoe making",
+        "goods": [
+          "Boots",
+          "Shoes"
+        ],
+        "street": "South Water Street",
+        "placement": {
+          "class": "relative",
+          "anchor": "P. Cohen's Store",
+          "offset_text": "the above business, next doar to P. Co- F] en's Storo, will be kept on band 8 quod assortment of",
+          "offset_normalized": "next d[oo]r to P. Co[h]en's Stor[e]",
+          "street": "South Water Street",
+          "note": "THE ONE ANCHOR THIS MONTH THAT IS ITSELF PLACED. P. Cohen's store is at the east end of South Water-street by his own December advertisement, so this shop is on South Water; 'next door' is still a doorway count and not a frontage."
+        }
+      },
+      "notes": "MONTGOMERY'S SHOEMAKING, FOUR WEEKS EARLIER THAN THE CORPUS HAD IT, AND WITH A FULLER NAME. 1834-01-28 c008 claimed this card as 'W. Montgomery' from the January reprint; this printing gives L. W. MONTGOMERY and the same anchor — 'next door to P. Cohen's Store'. THE CHAIN CLOSES HERE, AND IT IS THE ONLY ONE THIS MONTH THAT DOES. 'P. Cohen' is read as Peter Cohen because the same month prints the name in full over his own advertisement; the gazetteer's standing rule that a bare initial never merges with a given name is why the expansion is made HERE, in the reading, rather than left for identity.json to paper over. Peter Cohen's store is placed by his own advertisement in the same month at the EAST END OF SOUTH WATER-STREET (1833-12-10, page 2 column 1), so the shoemaker's shop is next door to a store that is itself placed on a named street at a named end — the tightest siting December offers, and the only relative placement of the five in this month's reading whose anchor is not itself floating. 'Recently commenced' dates the shop to the closing weeks of 1833."
+    },
+    {
+      "id": "c006",
+      "kind": "building",
+      "reading": "transcription_mediated",
+      "quote": "B weer ! CRRASRBR ENGhRSOLD, na Chicago--Illinois. Sal Tho subscriber bas takon that noted Tavern | Fl ts Btn in Chicago, lately: occupied by Mr. Bim. es ¥. Wattles, which he will make ever y possible ry betes to weer the Traveller's Tome. : muro} if i Tho patronage the igs will be gratefully",
+      "normalized": "[TRAVELLER'S HOME.] KEPT BY [CHESTER INGERSOLL,] Chicago--Illinois. Th[e] subscriber ha[s] tak[e]n that noted Tavern [S]t[a]n[d] in Chicago, lately occupied by Mr. [W]m. Y. Wattles, which he will make ever[y] possible [exertion] to [rend]er the Traveller's [H]ome. Th[e] patronage [of] the [public] will be gratefully [acknowledged.]",
+      "locator": {
+        "artifact_role": "primary",
+        "issue_page": 3,
+        "column": 4,
+        "lines": [
+          679,
+          679
+        ],
+        "lines_of_claim": [
+          679
+        ],
+        "interleaved": false,
+        "spans": [
+          {
+            "line": 679,
+            "from": 0,
+            "to": 293
+          }
+        ]
+      },
+      "entities": [
+        {
+          "as_printed": "CRRASRBR ENGhRSOLD",
+          "normalized": "Ingersoll, Chester",
+          "role": "the incoming tavern keeper",
+          "occupations": [
+            "tavern keeper"
+          ]
+        },
+        {
+          "as_printed": "Mr. Bim. es ¥. Wattles",
+          "normalized": "Wattles, Wm. W.",
+          "role": "the tavern stand’s previous occupant",
+          "occupations": [
+            "tavern keeper"
+          ]
+        }
+      ],
+      "business": {
+        "name": "the Traveller's Home",
+        "proprietors": [
+          "Chester Ingersoll"
+        ],
+        "trade": "tavern",
+        "goods": [],
+        "street": null,
+        "placement": {
+          "class": "none",
+          "anchor": null,
+          "offset_text": null,
+          "offset_normalized": null,
+          "street": null,
+          "note": "NEVER PLACED. Four printings of this card across November, December and January, and not one of them gives the tavern a street."
+        }
+      },
+      "notes": "THE INCOMING KEEPER'S NAME, WHICH 1833-12-10 c002 COULD NOT SUPPLY. The 'KEPT BY' line is blank in the 10 December setting and here it reads 'CRRASRBR ENGhRSOLD' — which is CHESTER INGERSOLL, the reading 1833-11-26 c006 took from the same line and the scan record for Vol. I No. 1 supports. THIS PRINTING ALSO SETTLES THE PREDECESSOR'S NAME AS WATTLES, against 'Watts' on 10 December, agreeing with 1833-11-26 c006 and with 1834-01-28 c009's John W. Wattles. The middle initial is taken as W from 1833-11-26 c006; this line's own character is one the segmenter cannot render and no third spelling is minted from it. So the succession is Wattles out, Ingersoll in, at a tavern stand already 'noted' in October 1833 — an established house changing hands, not a new one opening. STILL NO SITE. Four printings across two months and none of them says where the Traveller's Home stands."
+    },
+    {
+      "id": "c007",
+      "kind": "notice",
+      "reading": "transcription_mediated",
+      "quote": "ns to whom I am i, iF accounts immety, asf ‘ork on the first of February. All persons indebted to me must pay up their accounte before that time, or f shall bt\ncompelled to loave them in the hands of an Gee af the lar. CHAS. H. CHAPMAN, Dee. 24, 1533. 5",
+      "normalized": "[All perso]ns to whom I am i[ndebted will please present their] accounts imme[dia]tely, as [I leave for New] [Y]ork on the first of February. All persons indebted to me must pay up their accounts before that time, or [I] shall b[e] compelled to leave them in the hands of an [officer] of the la[w]. CHAS. H. CHAPMAN, De[c]. 24, 183[3].",
+      "locator": {
+        "artifact_role": "primary",
+        "issue_page": 3,
+        "column": 3,
+        "lines": [
+          619,
+          621
+        ],
+        "lines_of_claim": [
+          619,
+          621
+        ],
+        "interleaved": false,
+        "spans": [
+          {
+            "line": 619,
+            "from": 0,
+            "to": 159
+          },
+          {
+            "line": 621,
+            "from": 0,
+            "to": 93
+          }
+        ]
+      },
+      "entities": [
+        {
+          "as_printed": "CHAS. H. CHAPMAN,",
+          "normalized": "Chapman, Chas. H.",
+          "role": "subscriber to the notice",
+          "occupations": [
+            "merchant"
+          ]
+        }
+      ],
+      "ad_copy_date": {
+        "verbatim": "CHAS. H. CHAPMAN, Dee. 24, 1533. 5",
+        "iso": "1833-12-24"
+      },
+      "notes": "A MERCHANT SETTLING UP TO LEAVE FOR NEW YORK ON 1 FEBRUARY. C. H. Chapman is one of the two advertisers the scan record for Vol. I No. 1 does not enumerate and this pass's predecessor added by hand (1833-11-26 c008, the ox waggon); five weeks later he is calling in his accounts because he goes east at the start of February. RULING 3 TURNS ON NOTICES LIKE THIS ONE. A trip is not a departure — merchants went east every winter to buy — and nothing here says he does not come back. But it is a dated interruption in a documented Chicago business fifteen months before the scene, and it is the kind of thing a survival liberty for Chapman would have to cite. Recorded as a notice, not as a closure."
+    }
+  ]
+}

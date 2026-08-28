@@ -1,0 +1,374 @@
+{
+  "schema": 1,
+  "issue_id": "chicago_democrat_1833_12_17",
+  "extracted": "2026-08-28",
+  "extracted_by": "hand, T-0258 piece 2 — the Democrat read, December 1833 (Vol. I Nos. 2-6)",
+  "note": "Vol. I No. 4, 1833-12-17 — the professions' issue. Seven claims, and five of them are men advertising a service rather than a stock: two attorneys with offices placed off named corners and named storefronts (c001, c002), a tavern on the Ottawa road (c003), the county's public administrator (c004) and the Commissioner of School Lands lending money (c005). THE TWO LAW OFFICES ARE THE MOST PRECISELY PLACED BUSINESSES IN THE WHOLE MONTH — 'second door west from the corner of Franklin and South Water-streets' and 'one door east of Brewster, Hogan & Co, South Water street' — and both are earlier printings of cards the corpus already held from January, so December moves their documented dates back by six weeks. THE DIALECT: ruled page banners as No. 3. T-0258 PIECE 2 — DECEMBER 1833, Vol. I Nos. 2-6, five issues, read through. NO POST-OFFICE LETTER LIST STANDS ANYWHERE IN THE MONTH: all five transcriptions were swept for every form the Democrat uses elsewhere — 'list of letters', 'letters remaining', 'remaining in the post office', 'uncalled for', a signature ending 'P. M.' and the bare words 'post office' — for three hits, none of them a list (a Detroit post-office contract and a 'send by the Post-Office at our risk' line on 1833-12-10, and the President's message on the General Post Office Department on 1833-12-31). The epic's ruling 1 is therefore met by demonstrating absence, as T-0261 met it for the American and T-0308 for November; only four of T-0258's thirty issues carry a list and none of them is in December. THE MONTH'S STANDING ADVERTISEMENTS ARE CLAIMED ONCE, AT THEIR BEST-READ PRINTING, NOT FIVE TIMES. Sixteen cards run unchanged across two or more of these issues, and the OCR of each varies wildly from setting to setting; a claim is made in the issue where the line that carries the evidence is legible, and the other settings are named in its note as the cross-check. That is why the per-issue counts are uneven (8/12/7/7/7) and why a card that first appears in Vol. I No. 2 may be claimed from Vol. I No. 3. The alternative — one claim per printing — would have multiplied the same forty-one readings into about ninety and made the gazetteer's first_seen dates no better. THE ESTRAY NOTICES ARE QUARANTINED AND NOT CLAIMED, as T-0308 quarantined them: 'Taken Up' by Harry Boardman on the Du Page, by William See at Walker's Grove and by William Taylor in the county are Cook county filings attested by the Clerk of the Commissioners' Court, not Chicago matter, and the animals and appraisers in them belong to the county's prairie and not to the town. THE DEPOSIT IS ON `main` AND THIS BRANCH IS `dev`, so every quote here was machine-checked with `tools/compile_gazetteer.py --check --deposit <a read-only copy of the deposit from main>` before the PR was opened; on `dev` these claims are counted unresolved and reported, which is green (T-0275).",
+  "claims": [
+    {
+      "id": "c001",
+      "kind": "business",
+      "reading": "transcription_mediated",
+      "quote": "ae = NG.\nATTORNEY AND COUNSELLOR AT LAW\nAnd Soliciter tn Chancery, of\nFFICE second door west from\nOo of Franklin and South Warten\nteago, Dec. 17, 1333,",
+      "normalized": "[G. SPRI]NG. ATTORNEY AND COUNSELLOR AT LAW And Solicit[o]r [i]n Chancery, […] [O]FFICE second door west from [the corner] o[f] Franklin and South Wa[ter-streets] […] [Chi]cago, Dec. 17, 183[3].",
+      "locator": {
+        "artifact_role": "primary",
+        "issue_page": 3,
+        "column": 5,
+        "lines": [
+          2604,
+          2611
+        ],
+        "lines_of_claim": [
+          2604,
+          2605,
+          2606,
+          2608,
+          2609,
+          2611
+        ],
+        "interleaved": false
+      },
+      "entities": [
+        {
+          "as_printed": "ae = NG.",
+          "normalized": "Spring, G.",
+          "role": "proprietor",
+          "occupations": [
+            "attorney",
+            "solicitor in chancery"
+          ],
+          "associated_places": [
+            "South Water Street",
+            "Franklin Street"
+          ]
+        }
+      ],
+      "ad_copy_date": {
+        "verbatim": "teago, Dec. 17, 1333,",
+        "iso": "1833-12-17"
+      },
+      "business": {
+        "name": "G. Spring, attorney and counsellor at law",
+        "proprietors": [
+          "G. Spring"
+        ],
+        "trade": "attorney and solicitor in chancery",
+        "goods": [],
+        "street": "South Water Street",
+        "placement": {
+          "class": "relative",
+          "anchor": "the corner of Franklin and South Water streets",
+          "offset_text": "FFICE second door west from\nOo of Franklin and South Warten",
+          "offset_normalized": "[O]FFICE second door west from [the corner] o[f] Franklin and South Wa[ter-streets]",
+          "street": "South Water Street"
+        }
+      },
+      "notes": "G. SPRING'S OFFICE, SIX WEEKS EARLIER THAN THE CORPUS HAD IT. 1834-01-28 c006 carries this card with the same anchor — 'OFFICE second door west from the corner of Franklin and South Water-streets' — and its dateline already read 'Dec. 17'; this is that dateline's own issue, so the office is documented from the day the advertisement was written rather than from the day a later issue happened to be read. THE ANCHOR IS RESOLVABLE ON THE PLAT: the corner of Franklin and South Water is a junction this reconstruction holds, and 'second door west' from it is a placement on the South Water frontage of the block west of Franklin — the same kind of offset the household layer already stands on. It is not a lot number and does not become one here."
+    },
+    {
+      "id": "c002",
+      "kind": "business",
+      "reading": "transcription_mediated",
+      "quote": "U. BD. CATON,\nATTORNEY §& COUNSELLOR AT LA w,\nAnd Solicitor in Chancery,\npe door cast of Brewster, Hogan & Co,\nay Syater sical, Chicago, Mineiw,",
+      "normalized": "[J]. D. CATON, ATTORNEY & COUNSELLOR AT LAW, And Solicitor in Chancery, [one] door east of Brewster, Hogan & Co, [South] Water str[ee]t, Chicago, Illin[ois,]",
+      "locator": {
+        "artifact_role": "primary",
+        "issue_page": 3,
+        "column": 5,
+        "lines": [
+          2673,
+          2678
+        ],
+        "lines_of_claim": [
+          2673,
+          2674,
+          2675,
+          2676,
+          2678
+        ],
+        "interleaved": false
+      },
+      "entities": [
+        {
+          "as_printed": "U. BD. CATON,",
+          "normalized": "Caton, J. D.",
+          "role": "proprietor",
+          "occupations": [
+            "attorney",
+            "solicitor in chancery"
+          ],
+          "associated_places": [
+            "South Water Street"
+          ]
+        }
+      ],
+      "business": {
+        "name": "J. D. Caton, attorney and counsellor at law",
+        "proprietors": [
+          "J. D. Caton"
+        ],
+        "trade": "attorney and solicitor in chancery",
+        "goods": [],
+        "street": "South Water Street",
+        "placement": {
+          "class": "relative",
+          "anchor": "Brewster, Hogan & Co., South Water street",
+          "offset_text": "pe door cast of Brewster, Hogan & Co,\n\nay Syater sical, Chicago, Mineiw,",
+          "offset_normalized": "[one] door east of Brewster, Hogan & Co, [South] Water street, Chicago, Illinois",
+          "street": "South Water Street"
+        }
+      },
+      "notes": "THE TOWN ATTORNEY'S OWN OFFICE, PLACED OFF A MERCHANT'S DOOR. John Dean Caton was appointed attorney for the corporation by the ordinance of 4 December 1833 (1833-12-10 c008's meeting, and 1834-01-07 c005), and a fortnight later he advertises his practice 'one door east of Brewster, Hogan & Co, South Water street'. THAT MAKES A CHAIN THE RECONSTRUCTION CAN FOLLOW: Brewster, Hogan & Co. give their own placement in the same month as the corner of LaSalle and South Water (1833-12-24 c002), so Caton's office is one door east of that corner, on South Water — the tightest two-step placement anywhere in this month's reading. It is still an offset and not a lot: 'one door' is a doorway count, not a frontage measurement, and nothing here says how wide a door is. 1834-01-28 c007 has the practice as J. H. Collins & J. D. Caton, so the partnership forms after this printing and Caton is advertising alone here."
+    },
+    {
+      "id": "c003",
+      "kind": "building",
+      "reading": "transcription_mediated",
+      "quote": "PUBLIC HOUSE,\nH E. WENTWORTH,\n49 opened a TAVERN on Flag Creek. 18\n18 miles South of Chicago, an fs read ¥\nleading to Ottawa. His house will\nbe furtished with the best the coun\ntry affords, ind solicits travellers to\non hand CORN and OATS, saagetands",
+      "normalized": "PUBLIC HOUSE, [E]. WENTWORTH, [H]A[S] opened a TAVERN on Flag Creek. 1[3] […] 13 miles South of Chicago, on [the] road […] leading to Ottawa. His house will be fur[n]ished with the best the country affords, [a]nd solicits travellers to […] on hand CORN and OATS,",
+      "locator": {
+        "artifact_role": "primary",
+        "issue_page": 3,
+        "column": 5,
+        "lines": [
+          2613,
+          2627
+        ],
+        "lines_of_claim": [
+          2613,
+          2614,
+          2616,
+          2618,
+          2622,
+          2623,
+          2624,
+          2627
+        ],
+        "interleaved": false
+      },
+      "entities": [
+        {
+          "as_printed": "H E. WENTWORTH,",
+          "normalized": "Wentworth, E.",
+          "role": "proprietor",
+          "occupations": [
+            "tavern keeper"
+          ]
+        }
+      ],
+      "ad_copy_date": {
+        "verbatim": "[uncertain: Dec. 17, 1833. 4|G]",
+        "iso": "1833-12-17"
+      },
+      "business": {
+        "name": "E. Wentworth’s public house on Flag Creek",
+        "proprietors": [
+          "E. Wentworth"
+        ],
+        "trade": "tavern",
+        "goods": [
+          "Corn",
+          "Oats"
+        ],
+        "street": null,
+        "placement": {
+          "class": "relative",
+          "anchor": "Flag Creek, on the road leading to Ottawa",
+          "offset_text": "49 opened a TAVERN on Flag Creek. 18\n\n18 miles South of Chicago, an fs read ¥",
+          "offset_normalized": "opened a TAVERN on Flag Creek, 1[3] miles South of Chicago, on [the] road leading to Ottawa",
+          "street": null,
+          "note": "OUTSIDE THE SCENE. Thirteen miles south of Chicago is outside every extent this reconstruction draws; the placement is recorded for the road it names, not for the house."
+        }
+      },
+      "notes": "A TAVERN OUTSIDE THE TOWN, ON A NAMED ROAD, AND ITS FIRST PRINTING. 1834-01-07 c011 carries the same card three weeks later; this is the insertion its own dateline names. It is claimed even though it stands THIRTEEN MILES SOUTH OF THE SCENE — outside anything this reconstruction will ever draw — because what it documents is the ROAD: 'the road leading to Ottawa', running south out of Chicago and carrying enough traffic in December 1833 to keep a public house with corn and oats for the horses. The reconstruction holds the town's streets and not its country roads, and this is one of very few contemporary statements that the Ottawa road existed and was travelled in the scene's own decade. The distance reads '18' twice and '1[3]' once in this setting; 1834-01-07 c011 reads 13, which the normalized reading takes."
+    },
+    {
+      "id": "c004",
+      "kind": "person",
+      "reading": "transcription_mediated",
+      "quote": "Administrater’s Notice.\nHEREAS lottors of Administration on Pr\nths estate of Samuel Calhoun, deceas-\ned, have been granted to me, the undersigned\nby the Hon, Court of Probate for Cook county,\nnent. J. B. BEAUBIES,\nPublic Adm’r. for Cookco. and ad:\nlate of Samurl Calhoun, deed,",
+      "normalized": "Administrat[o]r's Notice. [W]HEREAS l[e]tters of Administration on [the] estate of Samuel Calhoun, deceased, have been granted to me, the undersigned[,] by the Hon[.] Court of Probate for Cook county, […] J. B. BEAUBIE[N], […] Public Adm'r. for Cook co. and ad[m'r. of the] […] [es]tate of Samu[e]l Calhoun, dec[eas]ed,",
+      "locator": {
+        "artifact_role": "primary",
+        "issue_page": 3,
+        "column": 5,
+        "lines": [
+          2632,
+          2650
+        ],
+        "lines_of_claim": [
+          2632,
+          2634,
+          2635,
+          2637,
+          2638,
+          2645,
+          2649,
+          2650
+        ],
+        "interleaved": false
+      },
+      "entities": [
+        {
+          "as_printed": "Samuel Calhoun",
+          "normalized": "Calhoun, Samuel",
+          "role": "the deceased whose estate is in administration"
+        },
+        {
+          "as_printed": "J. B. BEAUBIES,",
+          "normalized": "Beaubien, J. B.",
+          "role": "public administrator for Cook county",
+          "occupations": [
+            "public administrator"
+          ]
+        }
+      ],
+      "notes": "A DEATH IN THE TOWN, AND THE COUNTY'S PROBATE MACHINERY WORKING. Samuel Calhoun's estate is in administration in December 1833 and J. B. Beaubien signs as Public Administrator for Cook county — the same man who warns trespassers off Hardscrabble a week earlier (1833-12-10 c012), now in an office. THE SURNAME IS THE EDITOR'S: the Democrat is printed 'By J. Calhoun', and this corpus holds no statement of any relation between John Calhoun the printer and Samuel Calhoun the deceased. None is asserted here. Recorded as a person claim rather than a notice because what it fixes is a named resident, dead before the year was out, and a county office with a named holder."
+    },
+    {
+      "id": "c005",
+      "kind": "infrastructure",
+      "reading": "transcription_mediated",
+      "quote": "TO LOAN, [ine\nsume to suit applicants. Apply to Wood,\nRICIND. 1. HAMILTON,\nysis. of School Lands for Cook co. Dra",
+      "normalized": "TO LOAN, […] sum[s] to suit applicants. Apply to […] RIC[H']D. [J]. HAMILTON, […] [Commis'r]. of School Lands for Cook co.",
+      "locator": {
+        "artifact_role": "primary",
+        "issue_page": 3,
+        "column": 5,
+        "lines": [
+          2691,
+          2696
+        ],
+        "lines_of_claim": [
+          2691,
+          2693,
+          2694,
+          2696
+        ],
+        "interleaved": false
+      },
+      "entities": [
+        {
+          "as_printed": "RICIND. 1. HAMILTON,",
+          "normalized": "Hamilton, Rich’d J.",
+          "role": "commissioner of school lands for Cook county",
+          "occupations": [
+            "commissioner of school lands",
+            "clerk of the Commissioners’ Court"
+          ]
+        }
+      ],
+      "notes": "THE SCHOOL SECTION HAS A LENDING OFFICE. Richard J. Hamilton is Clerk of the Commissioners' Court all through this month's estray attestations, and here he advertises in a second capacity: Commissioner of School Lands for Cook county, lending sums to suit applicants. THAT IS THE MACHINERY BEHIND SECTION 16. The School Section is the ground the reconstruction's south-west blocks are platted on, and 1834-01-21 c004 has Pruyne & Co. selling 'LOT No 3, in Block 120, in the School Section' a month later — this notice is the office that turned that land into money. NO ADDRESS: the notice says 'Apply to' and names a man, not a room."
+    },
+    {
+      "id": "c006",
+      "kind": "business",
+      "reading": "transcription_mediated",
+      "quote": "NMORSES! HORSES?! [tron,\n[uncertain: 4 7 AN TED, twenty-five or |5%]\nthirty young Horses, mr, a\nhich Cash will be paid. hoe\nJOHN T. TEMPLE. i yitei\nChieayo, Dec. 2, 1533. 3w2) Lumb",
+      "normalized": "[H]ORSES! HORSES!! [WAN]TED, twenty-five or […] thirty young Horses, […] [for w]hich Cash will be paid. […] JOHN T. TEMPLE. [Chi]ca[g]o, Dec. [1]7, 1[8]33. 3w",
+      "locator": {
+        "artifact_role": "primary",
+        "issue_page": 3,
+        "column": 5,
+        "lines": [
+          2679,
+          2687
+        ],
+        "lines_of_claim": [
+          2679,
+          2680,
+          2682,
+          2684,
+          2686,
+          2687
+        ],
+        "interleaved": false
+      },
+      "entities": [
+        {
+          "as_printed": "JOHN T. TEMPLE.",
+          "normalized": "Temple, John T.",
+          "role": "advertiser",
+          "occupations": [
+            "horse buyer"
+          ]
+        }
+      ],
+      "ad_copy_date": {
+        "verbatim": "Chieayo, Dec. 2, 1533. 3w2) Lumb",
+        "iso": "1833-12-17"
+      },
+      "business": {
+        "name": "John T. Temple",
+        "proprietors": [
+          "John T. Temple"
+        ],
+        "trade": "buyer of horses",
+        "goods": [
+          "Horses"
+        ],
+        "street": null,
+        "placement": {
+          "class": "none",
+          "anchor": null,
+          "offset_text": null,
+          "offset_normalized": null,
+          "street": null
+        }
+      },
+      "notes": "A DEMAND FOR THIRTY HORSES AT ONCE, PAID IN CASH. John T. Temple is buying twenty-five to thirty young horses in a town of a few hundred people, three weeks running. He held the mail contract on the Chicago-to-Fort Howard route, which is the likeliest reason a single man wants thirty horses in December, but this corpus does not say so and the connection is NOT claimed here — what is claimed is the advertisement. It is recorded because the reconstruction's yard layer holds wagons and stock and has no contemporary figure at all for how much horseflesh the town moved; this is one."
+    },
+    {
+      "id": "c007",
+      "kind": "building",
+      "reading": "transcription_mediated",
+      "quote": "Two Bul Rangs to Let,\nWILL the firet day of June 1834\nPossession given immediately\nEnquire of JOHN WRIGUT",
+      "normalized": "Two Bu[il]d[i]ngs to Let, [UNT]IL the fir[s]t day of June 1834[.] Possession given immediately[.] Enquire of JOHN WRIG[H]T",
+      "locator": {
+        "artifact_role": "primary",
+        "issue_page": 3,
+        "column": 6,
+        "lines": [
+          2837,
+          2843
+        ],
+        "lines_of_claim": [
+          2837,
+          2839,
+          2841,
+          2843
+        ],
+        "interleaved": false
+      },
+      "entities": [
+        {
+          "as_printed": "JOHN WRIGUT",
+          "normalized": "Wright, John",
+          "role": "the person to enquire of",
+          "occupations": [
+            "merchant"
+          ]
+        }
+      ],
+      "business": {
+        "name": "two buildings to let",
+        "proprietors": [
+          "John Wright"
+        ],
+        "trade": "buildings offered to let",
+        "goods": [],
+        "street": null,
+        "placement": {
+          "class": "none",
+          "anchor": null,
+          "offset_text": null,
+          "offset_normalized": null,
+          "street": null,
+          "note": "NO PLACEMENT AT ALL, in any of its four printings. Two vacant buildings are documented; where they stand is not."
+        }
+      },
+      "notes": "TWO BUILDINGS STANDING EMPTY, AND THE NAME OF WHOEVER HOLDS THEM IS LEGIBLE HERE. 1833-11-26 c010 claimed this same notice and had to supply the name from a broken line; this printing carries JOHN WRIGHT whole. What the notice says about the town is worth more than the name: two buildings in Chicago are vacant in December 1833 and available only UNTIL 1 June 1834, which is a short let ending at the opening of the season — the shape of a town letting rooms to whoever winters in it. NOTHING PLACES THEM. Neither building is given a street, a lot or an anchor in any of the four issues that print this notice, so no site is claimed and none may be inferred."
+    }
+  ]
+}

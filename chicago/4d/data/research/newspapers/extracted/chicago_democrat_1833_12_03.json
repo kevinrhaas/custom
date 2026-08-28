@@ -1,0 +1,432 @@
+{
+  "schema": 1,
+  "issue_id": "chicago_democrat_1833_12_03",
+  "extracted": "2026-08-28",
+  "extracted_by": "hand, T-0258 piece 2 — the Democrat read, December 1833 (Vol. I Nos. 2-6)",
+  "note": "Vol. I No. 2, 1833-12-03 — the second number ever printed in Chicago, and the first ordinary issue. Eight claims. THE TOWN IS ON PAGES 1 AND 3: page 1 column 1 carries the paper's own imprint and then the standing advertisement column, and page 3 columns 5 and 6 carry the school, the butcher, the prices current and the village ordinances; pages 2 and 4 are national reprint, Congressional matter and miscellany and carry no town claim. THIS ISSUE'S BOTTOM-OF-COLUMN OCR IS THE WORST IN THE MONTH — lines 92 to 134 of page 1 column 1 hold four advertisements and are barely English — so the two claims taken from that stretch (c002 Goss & Cobb, c003 W. Kimball) rest on their one legible line each and say so. THE DIALECT: a bare `SOURCE PDF PAGE 5` banner, which names the SCAN page and not the issue's (No. 1 occupies pages 1-4), so page numbers here are resolved ORDINALLY by the rule data/research/newspapers/README.md states. WHAT THIS ISSUE ADDS THAT NOTHING BEFORE IT HAD: the Chicago English & Classical Academy's address (c005) and the market square (c006). T-0258 PIECE 2 — DECEMBER 1833, Vol. I Nos. 2-6, five issues, read through. NO POST-OFFICE LETTER LIST STANDS ANYWHERE IN THE MONTH: all five transcriptions were swept for every form the Democrat uses elsewhere — 'list of letters', 'letters remaining', 'remaining in the post office', 'uncalled for', a signature ending 'P. M.' and the bare words 'post office' — for three hits, none of them a list (a Detroit post-office contract and a 'send by the Post-Office at our risk' line on 1833-12-10, and the President's message on the General Post Office Department on 1833-12-31). The epic's ruling 1 is therefore met by demonstrating absence, as T-0261 met it for the American and T-0308 for November; only four of T-0258's thirty issues carry a list and none of them is in December. THE MONTH'S STANDING ADVERTISEMENTS ARE CLAIMED ONCE, AT THEIR BEST-READ PRINTING, NOT FIVE TIMES. Sixteen cards run unchanged across two or more of these issues, and the OCR of each varies wildly from setting to setting; a claim is made in the issue where the line that carries the evidence is legible, and the other settings are named in its note as the cross-check. That is why the per-issue counts are uneven (8/12/7/7/7) and why a card that first appears in Vol. I No. 2 may be claimed from Vol. I No. 3. The alternative — one claim per printing — would have multiplied the same forty-one readings into about ninety and made the gazetteer's first_seen dates no better. THE ESTRAY NOTICES ARE QUARANTINED AND NOT CLAIMED, as T-0308 quarantined them: 'Taken Up' by Harry Boardman on the Du Page, by William See at Walker's Grove and by William Taylor in the county are Cook county filings attested by the Clerk of the Commissioners' Court, not Chicago matter, and the animals and appraisers in them belong to the county's prairie and not to the town. THE DEPOSIT IS ON `main` AND THIS BRANCH IS `dev`, so every quote here was machine-checked with `tools/compile_gazetteer.py --check --deposit <a read-only copy of the deposit from main>` before the PR was opened; on `dev` these claims are counted unresolved and reported, which is green (T-0275).",
+  "claims": [
+    {
+      "id": "c001",
+      "kind": "building",
+      "reading": "transcription_mediated",
+      "quote": "THE DEMOCRAT,\nIs published every Tuesday, in the village of Chicago, Cook co. Ill., in the building on the corner of South Water and Clark-streets.",
+      "normalized": "THE DEMOCRAT, Is published every Tuesday, in the village of Chicago, Cook co. Ill., in the building on the corner of South Water and Clark-streets.",
+      "locator": {
+        "artifact_role": "primary",
+        "issue_page": 1,
+        "column": 1,
+        "lines": [
+          19,
+          20
+        ],
+        "lines_of_claim": [
+          19,
+          20
+        ],
+        "interleaved": false
+      },
+      "entities": [
+        {
+          "as_printed": "J. Calhoun",
+          "normalized": "Calhoun, John",
+          "role": "proprietor and editor",
+          "occupations": [
+            "printer",
+            "newspaper editor"
+          ],
+          "associated_places": [
+            "South Water Street",
+            "Clark Street"
+          ]
+        }
+      ],
+      "business": {
+        "name": "The Chicago Democrat",
+        "proprietors": [
+          "John Calhoun"
+        ],
+        "trade": "newspaper printing and job printing",
+        "goods": [
+          "Blanks",
+          "Books",
+          "Cards",
+          "Handbills",
+          "Pamphlets",
+          "Subscriptions"
+        ],
+        "street": "South Water Street",
+        "placement": {
+          "class": "corner",
+          "anchor": "the corner of South Water and Clark streets",
+          "offset_text": "in the building on the corner of South Water and Clark-streets.",
+          "offset_normalized": "in the building on the corner of South Water and Clark-streets",
+          "street": "South Water Street",
+          "note": "The JUNCTION only, as at 1833-11-26 c033 — which of the four corners is not stated."
+        }
+      },
+      "notes": "THE PRINTING OFFICE, AND THE CLEANEST READING OF ITS ADDRESS THIS CORPUS HOLDS. Vol. I No. 1 carries the same sentence and its transcription is broken across it (1833-11-26 c033, where 'corner of South Water and Clark stree' is all the line gives); here the whole imprint stands in one unbroken line and needs no supply at all. It is the SAME standing imprint, not a second building, and it corroborates c033 rather than adding to it. The junction only: 'on the corner of' does not say which of the four corners, and nothing in December's five issues narrows it."
+    },
+    {
+      "id": "c002",
+      "kind": "business",
+      "reading": "transcription_mediated",
+      "quote": "Saddle & Harness Making.\nogo & COR,\n— on the conner of Lake ap\nCanal-stretsa, where",
+      "normalized": "Saddle & Harness Making. GO[SS] & CO[BB] […] [respectfully inform the inhabit]ants of Chic[ago … that they have taken a sh]op […] on the co[r]ner of Lake a[nd] Canal-str[eet]s, where [they will] […] manufacture to order […] Ladies' and Gentlemen's SADDLES […] Brass, Silver and Common Mounted [BRI]DLES […] Trunks, Chaise and Travelling Bags",
+      "locator": {
+        "artifact_role": "primary",
+        "issue_page": 1,
+        "column": 1,
+        "lines": [
+          92,
+          98
+        ],
+        "lines_of_claim": [
+          92,
+          93,
+          97,
+          98
+        ],
+        "interleaved": false
+      },
+      "entities": [
+        {
+          "as_printed": "ogo & COR,",
+          "normalized": "Goss & Cobb",
+          "role": "proprietor",
+          "occupations": [
+            "saddler",
+            "harness maker"
+          ],
+          "associated_places": [
+            "Lake Street",
+            "Canal Street"
+          ]
+        }
+      ],
+      "business": {
+        "name": "Goss & Cobb",
+        "proprietors": [
+          "Goss & Cobb"
+        ],
+        "trade": "saddle and harness making",
+        "goods": [
+          "Bridles",
+          "Chaise bags",
+          "Saddles",
+          "Travelling bags",
+          "Trunks"
+        ],
+        "street": "Lake Street",
+        "placement": {
+          "class": "corner",
+          "anchor": "corner of Lake and Canal streets",
+          "offset_text": "— on the conner of Lake ap\nCanal-stretsa, where",
+          "offset_normalized": "on the co[r]ner of Lake a[nd] Canal-str[eet]s, where",
+          "street": "Lake Street"
+        }
+      },
+      "notes": "GOSS & COBB AT LAKE AND CANAL STREETS, SEVEN MONTHS BEFORE THE 'OLD STAND' AD. The firm's 1834-06-04 notice (1834_07_02 c001) says 'at their old stand, corner of Lake and Canal streets' and nothing in it dates the stand; this printing does — the same corner, advertised in December 1833. The column is the worst-set in the issue and the reading rests on the corner line alone; the goods list is supplied from the same firm's cleaner printings and every supply is bracketed. The scan record for Vol. I No. 1 (data/sources/chicago_democrat_1833_11_26.json) gives this firm's address independently, which is why the corner is stated here as read rather than as inferred."
+    },
+    {
+      "id": "c003",
+      "kind": "business",
+      "reading": "transcription_mediated",
+      "quote": "[uncertain: Just Opened and for Sale]\n[uncertain: x i Sevocktuent of Fangy end]\nDRY\nant® S9ons,\n[uncertain: Grockers & Glass]\nHARDWARE and CUTTLERY,\nMen's and Boys For and Cloth CAP:\nCotton Batting, Yarn and Wicking,\n[uncertain: = Hears, Nor. 1933, W. KIMBALL.]",
+      "normalized": "Just Opened and for Sale, [an assortment of Fancy and staple] DRY GOODS, [Gr]o[c]e[rie]s, Crockery & Glass Ware, HARDWARE and CUTLERY, Men's and Boys' F[u]r and Cloth CAPS, Cotton Batting, Yarn and Wicking, all of w[hi]ch will be [s]old at t[h]e lowest prices. [Chicago, Nov.] 1833. W. KIMBALL.",
+      "locator": {
+        "artifact_role": "primary",
+        "issue_page": 1,
+        "column": 1,
+        "lines": [
+          118,
+          128
+        ],
+        "lines_of_claim": [
+          118,
+          119,
+          120,
+          121,
+          122,
+          124,
+          125,
+          126,
+          128
+        ],
+        "interleaved": false
+      },
+      "entities": [
+        {
+          "as_printed": "W. KIMBALL.",
+          "normalized": "Kimball, W.",
+          "role": "proprietor",
+          "occupations": [
+            "merchant"
+          ]
+        }
+      ],
+      "business": {
+        "name": "W. Kimball",
+        "proprietors": [
+          "W. Kimball"
+        ],
+        "trade": "dry goods and hardware merchant",
+        "goods": [
+          "Caps",
+          "Cotton batting",
+          "Crockery",
+          "Cutlery",
+          "Dry goods",
+          "Glass ware",
+          "Groceries",
+          "Hardware",
+          "Wicking",
+          "Yarn"
+        ],
+        "street": null,
+        "placement": {
+          "class": "none",
+          "anchor": null,
+          "offset_text": null,
+          "offset_normalized": null,
+          "street": null
+        }
+      },
+      "notes": "W. KIMBALL'S NEW STORE, STILL WITHOUT ITS ADDRESS IN DECEMBER. The scan record supplied the corner of South Water and Clark for this advertiser at Vol. I No. 1 (1833-11-26 c012, `scan_verified`), and 1834-01-21 c003 prints it in full — 'at the New Store on the corner of South Water and Clark-streets'. This December setting drops the address line altogether, so the placement here is recorded as `none` on this printing's own evidence and the corner stands on the two claims that state it. Recording the gap rather than importing the address is the point."
+    },
+    {
+      "id": "c004",
+      "kind": "business",
+      "reading": "transcription_mediated",
+      "quote": "1 4 Gaur TE\nCHICAGO-JL.L.\n[uncertain: DRUGS, MEDICINE:]\n[uncertain: Gig Paine PICLV ES]\n-ALSO_\nWie, jose, 1? Clay Nate, he,",
+      "normalized": "[PHILO CARPENTER,] CHICAGO—ILL. [Will keep constantly on hand, a general assortment of] DRUGS, MEDICINE[S,] [Oils,] Paints, [Dye-Stuffs,] &c. &c. —ALSO— [Dry Groceries,] Glass, Nails, &c.",
+      "locator": {
+        "artifact_role": "primary",
+        "issue_page": 1,
+        "column": 1,
+        "lines": [
+          129,
+          134
+        ],
+        "lines_of_claim": [
+          129,
+          130,
+          131,
+          132,
+          133,
+          134
+        ],
+        "interleaved": false
+      },
+      "entities": [
+        {
+          "as_printed": "CHICAGO-JL.L.",
+          "normalized": "Carpenter, Philo",
+          "role": "proprietor",
+          "occupations": [
+            "druggist"
+          ]
+        }
+      ],
+      "business": {
+        "name": "Philo Carpenter",
+        "proprietors": [
+          "Philo Carpenter"
+        ],
+        "trade": "druggist",
+        "goods": [
+          "Drugs",
+          "Dye-stuffs",
+          "Glass",
+          "Medicines",
+          "Nails",
+          "Oils",
+          "Paints"
+        ],
+        "street": null,
+        "placement": {
+          "class": "none",
+          "anchor": null,
+          "offset_text": null,
+          "offset_normalized": null,
+          "street": null
+        }
+      },
+      "notes": "PHILO CARPENTER, DRUGGIST — the same standing card as 1833-11-26 c011, and this printing is the WORSE of the two. It is claimed here only because 1833-12-10 sets it clean (that issue's page 1 column 2, 'PHILO CARPENTER, CHICAGO-ILL. … DRUGS AND MEDICINE, Oils, Paints, Dye-Stuffs, &c. &c. -ALSO- Dry Groceries, Glass, Nails, &c. Nov. 22, 1833'), and the pair fixes the trade list beyond OCR doubt. NO ADDRESS in any December printing: the card names the town and nothing finer."
+    },
+    {
+      "id": "c005",
+      "kind": "building",
+      "reading": "transcription_mediated",
+      "quote": "CHICAGO,\nENGLISH & CLASSICAL ACADEMY.\nCORNER OF WATER AND FRANKLIN-STS.\nG. T. SPROAT, Preceptor.",
+      "normalized": "CHICAGO, ENGLISH & CLASSICAL ACADEMY. CORNER OF WATER AND FRANKLIN-STS. […] G. T. SPROAT, Preceptor.",
+      "locator": {
+        "artifact_role": "primary",
+        "issue_page": 3,
+        "column": 5,
+        "lines": [
+          2187,
+          2253
+        ],
+        "lines_of_claim": [
+          2187,
+          2188,
+          2189,
+          2253
+        ],
+        "interleaved": false
+      },
+      "entities": [
+        {
+          "as_printed": "G. T. SPROAT, Preceptor.",
+          "normalized": "Sproat, G. T.",
+          "role": "preceptor",
+          "occupations": [
+            "schoolmaster"
+          ],
+          "associated_places": [
+            "Water Street",
+            "Franklin Street"
+          ]
+        }
+      ],
+      "business": {
+        "name": "the Chicago English and Classical Academy",
+        "proprietors": [
+          "G. T. Sproat"
+        ],
+        "trade": "academy",
+        "goods": [],
+        "street": "Water Street",
+        "placement": {
+          "class": "corner",
+          "anchor": "the corner of Water and Franklin streets",
+          "offset_text": "CORNER OF WATER AND FRANKLIN-STS.",
+          "offset_normalized": "CORNER OF WATER AND FRANKLIN-STS.",
+          "street": "Water Street"
+        }
+      },
+      "notes": "THE SCHOOL GETS AN ADDRESS, AND THIS IS THE FIRST ISSUE THAT PRINTS IT. Vol. I No. 1 reported only that 'A school has recently been established in this village, By Mr. Sproat of Boston' (1833-11-26 c003) — no place, no name. Here it is the Chicago English & Classical Academy standing at the corner of Water and Franklin streets, under G. T. Sproat as preceptor, a fortnight later. 1834-01-07 c010 carries the same heading a month on, so the address is stable across the winter; this is its earliest printing. The corner is the JUNCTION and not a quadrant, and nothing here says whether the school occupies a building of its own or a room in one — the advertisement says only 'It has a room well adapted for the purpose' (1833-12-10, page 1 column 2), which if anything argues it is a room in another building."
+    },
+    {
+      "id": "c006",
+      "kind": "business",
+      "reading": "transcription_mediated",
+      "quote": "Butchering.\nBL to five hundred HOGS this, present\nWeek, all of which have been well fitted on\n[uncertain: Coin, \"He wishes to inform his ald coroner,]\n[uncertain: and the people genoyally, that be intends selling]\n[uncertain: Cheap for Cushe at wholesale, at iix Butchers]\nShop two miles from Chicago, and at yholessie\n'and retail at his market, on the market «q7are\nin Chicago,",
+      "normalized": "Butchering. [The subscriber intends butchering from] four [hundred] to five hundred HOGS this present week, all of which have been well fitted on Co[r]n. He wishes to inform his o[l]d c[ustomers], and the people gene[r]ally, that he intends selling Cheap for Cash, at wholesale, at [h]is Butcher's Shop two miles from Chicago, and at [w]holes[al]e and retail at his market, on the market sq[u]are in Chicago,",
+      "locator": {
+        "artifact_role": "primary",
+        "issue_page": 3,
+        "column": 5,
+        "lines": [
+          2287,
+          2297
+        ],
+        "lines_of_claim": [
+          2287,
+          2290,
+          2291,
+          2292,
+          2293,
+          2294,
+          2295,
+          2296,
+          2297
+        ],
+        "interleaved": false
+      },
+      "business": {
+        "name": "the butcher's market on the market square",
+        "proprietors": [],
+        "trade": "butcher",
+        "goods": [
+          "Beef",
+          "Cattle",
+          "Hogs",
+          "Pork"
+        ],
+        "street": null,
+        "placement": {
+          "class": "relative",
+          "anchor": "the market square in Chicago",
+          "offset_text": "and retail at his market, on the market «q7are",
+          "offset_normalized": "and retail at his market, on the market sq[u]are in Chicago",
+          "street": null,
+          "note": "UNRESOLVED ANCHOR. This reconstruction holds no feature named \"the market square\"; the phrase is recorded as the paper prints it and mapped onto nothing."
+        }
+      },
+      "notes": "THE MARKET SQUARE, NAMED AS A PLACE A BUILDING STANDS ON. This is the first mention in the corpus of a butcher's market ON the market square, and it is a placement in the town: a wholesale butcher's shop two miles out, and the retail market in Chicago on the square. The proprietor's name is the one thing this column will not give up — the signature line reads 'tela ed rial ok BR BUR,' and every candidate reading of it would be an invention, so NO NAME IS CLAIMED and the business is recorded unnamed. The hog count (four to five hundred in one week, corn-fed) is the strongest single figure this corpus holds on the scale of the town's provision trade in 1833."
+    },
+    {
+      "id": "c007",
+      "kind": "notice",
+      "reading": "transcription_mediated",
+      "quote": "NOTICE.\n[uncertain: LL pertons having unsettled noronniae Wits]\nthe proper o\nhe proper officer far collection,\nBREWSTER, HOGAN & CO.\nDec. 3, 1833.",
+      "normalized": "NOTICE. [A]LL persons having unsettled [accounts with the subscribers, will please call and settle them before the first day of February next, otherwise their notes or accounts will be left with] the proper o[fficer] […] [t]he proper officer for collection. BREWSTER, HOGAN & CO. Dec. 3, 1833.",
+      "locator": {
+        "artifact_role": "primary",
+        "issue_page": 3,
+        "column": 5,
+        "lines": [
+          2280,
+          2286
+        ],
+        "lines_of_claim": [
+          2280,
+          2281,
+          2283,
+          2284,
+          2285,
+          2286
+        ],
+        "interleaved": false
+      },
+      "entities": [
+        {
+          "as_printed": "BREWSTER, HOGAN & CO.",
+          "normalized": "Brewster, Hogan & Co.",
+          "role": "subscriber to the notice",
+          "occupations": [
+            "merchant"
+          ]
+        }
+      ],
+      "ad_copy_date": {
+        "verbatim": "Dec. 3, 1833.",
+        "iso": "1833-12-03"
+      },
+      "notes": "BREWSTER, HOGAN & CO. CALLING IN THEIR ACCOUNTS. Claimed for the dateline and the firm rather than for the notice: 'Dec. 3, 1833' is this advertisement's own copy date, which is the day of the issue, so the firm is trading in Chicago on that day under that style. The body is recovered from the same notice set clean in 1833-12-10 (page 1 column 2, lines 225-234) and every supply is bracketed. The transcription DUPLICATES a line here — 'the proper o' and then 'he proper officer far collection' — and both copies are quoted as they stand and read once."
+    },
+    {
+      "id": "c008",
+      "kind": "price",
+      "reading": "transcription_mediated",
+      "quote": "CHICAGO PRICES CURRENT,\na ported fir the Democrat by P,P. Pee,",
+      "normalized": "CHICAGO PRICES CURRENT, [Re]ported f[o]r the Democrat by P. [F.] Pe[ck].",
+      "locator": {
+        "artifact_role": "primary",
+        "issue_page": 3,
+        "column": 6,
+        "lines": [
+          2333,
+          2334
+        ],
+        "lines_of_claim": [
+          2333,
+          2334
+        ],
+        "interleaved": false
+      },
+      "entities": [
+        {
+          "as_printed": "P,P. Pee,",
+          "normalized": "Peck, P. F.",
+          "role": "reporter of the prices current",
+          "occupations": [
+            "merchant"
+          ]
+        }
+      ],
+      "notes": "THE PRICES CURRENT BEGINS, AND ITS REPORTER IS NAMED. This is the first weekly Chicago price current in the corpus. The reporter's name is garbled differently in every December setting — 'P,P. Pee' here, 'P. E. Pack' on 1833-12-10, 'P. I. Ped' on 1833-12-17 — and 1833-12-24 sets it clean as 'P. F. Peck' (c003 of that issue), which is what the normalized reading takes. THE TABLE ITSELF IS NOT CLAIMED FROM THIS PRINTING: the segmenter has scattered its figures away from their labels here past reconstruction, and the December table is claimed once, from 1833-12-24, where the labels and the figures still stand together."
+    }
+  ]
+}

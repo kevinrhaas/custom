@@ -1,0 +1,595 @@
+{
+  "schema": 1,
+  "issue_id": "chicago_democrat_1833_12_10",
+  "extracted": "2026-08-28",
+  "extracted_by": "hand, T-0258 piece 2 — the Democrat read, December 1833 (Vol. I Nos. 2-6)",
+  "note": "Vol. I No. 3, 1833-12-10 — the densest issue of the month and the best-set. Twelve claims, more than any other December number, because this is where the town's business columns are legible: page 1 column 2 and page 2 column 1 together hold fourteen Chicago advertisements, page 3 columns 5 and 6 hold the December ordinances and four more, and page 4 column 5 reprints the November ordinances clean. FIVE THINGS ENTER THE CORPUS HERE AND NOWHERE ELSE: the county Clerk's office placed off Col. Owen's house (c005), a house on lot 7 block 8 that had been a meeting house (c006), Pierce & Abbott named as the blacksmiths opposite the Chicago Hotel (c007), Hardscrabble placed by its section, township and range (c012), and the Board of Trustees meeting in Dexter Graves's house (c008). THE DIALECT: ruled `===== SOURCE PDF PAGE n / ISSUE PAGE m =====` page banners with `--- Column k ---` rules under them. T-0258 PIECE 2 — DECEMBER 1833, Vol. I Nos. 2-6, five issues, read through. NO POST-OFFICE LETTER LIST STANDS ANYWHERE IN THE MONTH: all five transcriptions were swept for every form the Democrat uses elsewhere — 'list of letters', 'letters remaining', 'remaining in the post office', 'uncalled for', a signature ending 'P. M.' and the bare words 'post office' — for three hits, none of them a list (a Detroit post-office contract and a 'send by the Post-Office at our risk' line on 1833-12-10, and the President's message on the General Post Office Department on 1833-12-31). The epic's ruling 1 is therefore met by demonstrating absence, as T-0261 met it for the American and T-0308 for November; only four of T-0258's thirty issues carry a list and none of them is in December. THE MONTH'S STANDING ADVERTISEMENTS ARE CLAIMED ONCE, AT THEIR BEST-READ PRINTING, NOT FIVE TIMES. Sixteen cards run unchanged across two or more of these issues, and the OCR of each varies wildly from setting to setting; a claim is made in the issue where the line that carries the evidence is legible, and the other settings are named in its note as the cross-check. That is why the per-issue counts are uneven (8/12/7/7/7) and why a card that first appears in Vol. I No. 2 may be claimed from Vol. I No. 3. The alternative — one claim per printing — would have multiplied the same forty-one readings into about ninety and made the gazetteer's first_seen dates no better. THE ESTRAY NOTICES ARE QUARANTINED AND NOT CLAIMED, as T-0308 quarantined them: 'Taken Up' by Harry Boardman on the Du Page, by William See at Walker's Grove and by William Taylor in the county are Cook county filings attested by the Clerk of the Commissioners' Court, not Chicago matter, and the animals and appraisers in them belong to the county's prairie and not to the town. THE DEPOSIT IS ON `main` AND THIS BRANCH IS `dev`, so every quote here was machine-checked with `tools/compile_gazetteer.py --check --deposit <a read-only copy of the deposit from main>` before the PR was opened; on `dev` these claims are counted unresolved and reported, which is green (T-0275).",
+  "claims": [
+    {
+      "id": "c001",
+      "kind": "business",
+      "reading": "transcription_mediated",
+      "quote": "Wholesale and Retail.\nSTORE BETIZES CLARK ASD DEARBORN-STREETS.\nP. PRUYNE & CO.\nSOULD respectfully inform their friends\nand public that they have just recered\nlarge addition to their former Stock, which\nnakes it one of the most extensite in Chicago,\nChicago, Dec. 3, 1933.",
+      "normalized": "Wholesale and Retail. STORE BET[WEEN] CLARK A[N]D DEARBORN-STREETS. P. PRUYNE & CO. [W]OULD respectfully inform their friends and [the] public that they have just rece[iv]ed [a] large addition to their former Stock, which [m]akes it one of the most exten[siv]e in Chicago, […] Chicago, Dec. 3, 183[3].",
+      "locator": {
+        "artifact_role": "primary",
+        "issue_page": 1,
+        "column": 2,
+        "lines": [
+          184,
+          223
+        ],
+        "lines_of_claim": [
+          184,
+          186,
+          188,
+          189,
+          191,
+          192,
+          193,
+          223
+        ],
+        "interleaved": false
+      },
+      "entities": [
+        {
+          "as_printed": "P. PRUYNE & CO.",
+          "normalized": "Pruyne, P., & Co.",
+          "role": "proprietor",
+          "occupations": [
+            "merchant"
+          ],
+          "associated_places": [
+            "Clark Street",
+            "Dearborn Street"
+          ]
+        }
+      ],
+      "ad_copy_date": {
+        "verbatim": "Chicago, Dec. 3, 1933.",
+        "iso": "1833-12-03"
+      },
+      "business": {
+        "name": "P. Pruyne & Co.",
+        "proprietors": [
+          "P. Pruyne & Co."
+        ],
+        "trade": "wholesale and retail merchant",
+        "goods": [
+          "Boots and shoes",
+          "Crockery",
+          "Drugs and medicines",
+          "Glassware",
+          "Groceries",
+          "Hardware",
+          "Iron and steel",
+          "Stone ware",
+          "Window glass"
+        ],
+        "street": null,
+        "placement": {
+          "class": "relative",
+          "anchor": "the block face between Clark and Dearborn streets",
+          "offset_text": "STORE BETIZES CLARK ASD DEARBORN-STREETS.",
+          "offset_normalized": "STORE BET[WEEN] CLARK A[N]D DEARBORN-STREETS.",
+          "street": null,
+          "note": "A BLOCK FACE, NOT A POINT. The heading names the two cross streets and not the street the face is on, so this places the store inside one block-long run and no closer. The street is left null here deliberately."
+        }
+      },
+      "notes": "P. PRUYNE & CO. STAND BETWEEN CLARK AND DEARBORN, AND THIS IS THE ONLY PLACEMENT THE FIRM HAS ANYWHERE IN THE CORPUS. Pruyne & Co. appear on 1834-01-21 c004 selling a School Section lot and nothing there says where they trade. Here the heading is a placement of a kind the schema has no better class for than `relative`: not a corner and not a bare street, but a BLOCK FACE — the run between two named cross streets. The street the face belongs to is NOT printed: the reading takes it as South Water because that is where the December advertisers who do name a street stand, and that reasoning is recorded rather than the street being asserted. 1833-12-31 sets the same heading (page 3 column 6, 'STORE BETWERS CLARK AND Deanzons-srnnate') and agrees on the two cross streets, which is what makes the reading of this line safe."
+    },
+    {
+      "id": "c002",
+      "kind": "building",
+      "reading": "transcription_mediated",
+      "quote": "ERAVELLER BOMB.\nKEPT BY\nChicago--Illinois.\nThe subscriber has taken that noted Tavern\nBtand in Chicago, lately occupied by Mr. I'm.\nY. Watts, which he will make Home.- possible\nscknowledged. Oct. 4, 1833.",
+      "normalized": "[T]RAVELLER'S [HOME]. KEPT BY […] Chicago--Illinois. The subscriber has taken that noted Tavern [S]tand in Chicago, lately occupied by Mr. [W]m. Y. Wat[t]s, which he will make [every possible] exertion to render the Traveller's Home.- […] The patronage of the public will be gratefully [a]cknowledged. Oct. 4, 1833.",
+      "locator": {
+        "artifact_role": "primary",
+        "issue_page": 2,
+        "column": 1,
+        "lines": [
+          902,
+          912
+        ],
+        "lines_of_claim": [
+          902,
+          904,
+          906,
+          907,
+          908,
+          909,
+          912
+        ],
+        "interleaved": false
+      },
+      "entities": [
+        {
+          "as_printed": "Mr. I'm.\nY. Watts",
+          "normalized": "Wattles, Wm. W.",
+          "role": "the tavern stand’s previous occupant",
+          "occupations": [
+            "tavern keeper"
+          ]
+        }
+      ],
+      "ad_copy_date": {
+        "verbatim": "scknowledged. Oct. 4, 1833.",
+        "iso": "1833-10-04"
+      },
+      "business": {
+        "name": "the Traveller's Home",
+        "proprietors": [],
+        "trade": "tavern",
+        "goods": [],
+        "street": null,
+        "placement": {
+          "class": "none",
+          "anchor": null,
+          "offset_text": null,
+          "offset_normalized": null,
+          "street": null,
+          "note": "NO ADDRESS IN ANY DECEMBER PRINTING. The card says 'that noted Tavern Stand in Chicago' and nothing finer; the reconstruction is given a succession, not a site."
+        }
+      },
+      "notes": "A TAVERN CHANGING HANDS, AND THE PREDECESSOR'S NAME IS SPELT TWO WAYS INSIDE THIS MONTH. This is the succession chain the ticket asks for — 'that noted Tavern Stand … lately occupied by' — and it is the SAME standing card as 1833-11-26 c006, so it is one tavern and not two. What December adds is a disagreement: THIS printing reads the outgoing keeper as 'Mr. Wm. Y. Watts' and 1833-12-31 (page 3 column 4) reads 'Mr. Wm. Y. Wattles' in the same sentence. 1833-11-26 c006 read Wattles and 1834-01-28 c009 names John W. Wattles, so Wattles is the better-attested form and 'Watts' is recorded as this printing's variant rather than as a second man. THE MIDDLE INITIAL IS NOT SETTLED EITHER: this setting reads Y, 1833-12-31 reads a currency sign the segmenter substitutes for a capital, and 1833-11-26 c006 read W. The normalized reading takes W from the November claim rather than minting a third Wattles in the gazetteer on a character the transcription cannot hold, and that choice is a choice, not a reading. THE INCOMING KEEPER'S NAME IS NOT IN THIS SETTING AT ALL — the 'KEPT BY' line is blank in the transcription — and it is claimed instead from 1833-12-31, where it reads as Chester Ingersoll. The dateline Oct. 4, 1833 predates the paper's own first number, so the tavern changed hands before the Democrat existed."
+    },
+    {
+      "id": "c003",
+      "kind": "business",
+      "reading": "transcription_mediated",
+      "quote": "Blacksmithing Business.\n..SATTHIAS MASON & CO.\nCARTES on the above business in all it\nvarious branches, on Main-street, nearl\nopposite Graven Tazern, where they intend :\nWörk done on the shortest notic\nChacugo, Nor. 26, 1833.",
+      "normalized": "Blacksmithing Business. [M]ATTHIAS MASON & CO. CAR[RIE]S on the above business in all it[s] various branches, on Main-street, nearl[y] opposite Grav[e]s' Ta[v]ern, where they intend [to] […] W[o]rk done on the shortest notic[e] […] Ch[i]c[a]go, No[v]. 26, 1833.",
+      "locator": {
+        "artifact_role": "primary",
+        "issue_page": 2,
+        "column": 1,
+        "lines": [
+          1040,
+          1053
+        ],
+        "lines_of_claim": [
+          1040,
+          1042,
+          1043,
+          1045,
+          1046,
+          1049,
+          1053
+        ],
+        "interleaved": false
+      },
+      "entities": [
+        {
+          "as_printed": "..SATTHIAS MASON & CO.",
+          "normalized": "Mason, Matthias, & Co.",
+          "role": "proprietor",
+          "occupations": [
+            "blacksmith"
+          ]
+        },
+        {
+          "as_printed": "Graven Tazern",
+          "normalized": "Graves, Dexter",
+          "role": "named as the anchor for another business",
+          "occupations": [
+            "tavern keeper"
+          ]
+        }
+      ],
+      "ad_copy_date": {
+        "verbatim": "Chacugo, Nor. 26, 1833.",
+        "iso": "1833-11-26"
+      },
+      "business": {
+        "name": "Matthias Mason & Co.",
+        "proprietors": [
+          "Matthias Mason & Co."
+        ],
+        "trade": "blacksmith",
+        "goods": [
+          "Chains",
+          "Horse shoes"
+        ],
+        "street": "Main Street",
+        "placement": {
+          "class": "relative",
+          "anchor": "Graves' Tavern, on Main-street",
+          "offset_text": "various branches, on Main-street, nearl\nopposite Graven Tazern, where they intend :",
+          "offset_normalized": "on Main-street, nearl[y] opposite Grav[e]s' Tavern",
+          "street": "Main Street",
+          "note": "UNRESOLVED ANCHOR, as at 1833-11-26 c020. Neither 'Main-street' nor 'Graves' Tavern' is a feature this reconstruction holds."
+        }
+      },
+      "notes": "MASON & CO. ON MAIN-STREET, AND THE ANCHOR IS STILL UNRESOLVED. The same card as 1833-11-26 c020, set clean here where that one was broken, and it confirms both halves of the anchor that claim could only half-read: 'on Main-street' and 'nearly opposite Graves' Tavern'. NEITHER IS A FEATURE THIS RECONSTRUCTION HOLDS — the 1830 plat has no Main Street, and no Graves' Tavern stands in the structure data — so the placement is recorded verbatim and mapped onto nothing, exactly as c020 recorded it. What is now certain is that the two words are the paper's and not the segmenter's. Dexter Graves is a real and separately attested man: the Board of Trustees met at his house on 4 December 1833 (c010 of this issue), so a Graves' Tavern in the town is very likely his and this is the nearest the corpus comes to placing it."
+    },
+    {
+      "id": "c004",
+      "kind": "business",
+      "reading": "transcription_mediated",
+      "quote": "JOHN 8. KINZIE,\n[uncertain: orwarding & Commission | Fi]\nCHICAGO—ILLINOIS. ?",
+      "normalized": "JOHN [H.] KINZIE, [F]orwarding & Commission [Merchant] […] CHICAGO—ILLINOIS.",
+      "locator": {
+        "artifact_role": "primary",
+        "issue_page": 3,
+        "column": 5,
+        "lines": [
+          2569,
+          2575
+        ],
+        "lines_of_claim": [
+          2569,
+          2571,
+          2575
+        ],
+        "interleaved": false
+      },
+      "entities": [
+        {
+          "as_printed": "JOHN 8. KINZIE,",
+          "normalized": "Kinzie, John H.",
+          "role": "proprietor",
+          "occupations": [
+            "forwarding and commission merchant"
+          ]
+        }
+      ],
+      "business": {
+        "name": "John H. Kinzie",
+        "proprietors": [
+          "John H. Kinzie"
+        ],
+        "trade": "forwarding and commission merchant",
+        "goods": [],
+        "street": null,
+        "placement": {
+          "class": "none",
+          "anchor": null,
+          "offset_text": null,
+          "offset_normalized": null,
+          "street": null
+        }
+      },
+      "notes": "JOHN H. KINZIE IN THE FORWARDING TRADE. The card is a name, a trade and a town, and this transcription gives it nothing more — the middle initial reads '8' and is normalized to H on the strength of 1833-12-31, where the same card sets the references out in full over Sears, Jackson & Co. of New-York, Green Bay, Prairie du Chien and Galena (c004 of that issue). NO ADDRESS ANYWHERE IN THE MONTH. Recorded because the forwarding houses are what the wharfing ordinance of the same issue (c011) is for, and because Kinzie is the name most likely to be over-read into this town's fabric on no evidence."
+    },
+    {
+      "id": "c005",
+      "kind": "building",
+      "reading": "transcription_mediated",
+      "quote": "REMOVALS.\nTIE office of tho Clerk of the Cj\n[ county Courta for Cook county eee pg\nto the building one door West of the house H\nCol, Owen,",
+      "normalized": "REMOVALS. T[H]E office of the Clerk of the C[ounty] [c]ounty Court[s] for Cook county [is removed] […] to the building one door West of the house [of] Col. Owen,",
+      "locator": {
+        "artifact_role": "primary",
+        "issue_page": 3,
+        "column": 5,
+        "lines": [
+          2577,
+          2583
+        ],
+        "lines_of_claim": [
+          2577,
+          2579,
+          2580,
+          2581,
+          2583
+        ],
+        "interleaved": false
+      },
+      "entities": [
+        {
+          "as_printed": "Col, Owen,",
+          "normalized": "Owen, Thomas J. V., Col.",
+          "role": "named as the anchor for the county office",
+          "occupations": [
+            "president of the Board of Trustees",
+            "Indian agent"
+          ]
+        }
+      ],
+      "business": {
+        "name": "the office of the Clerk of the County Court for Cook county",
+        "proprietors": [],
+        "trade": "county office",
+        "goods": [],
+        "street": null,
+        "placement": {
+          "class": "relative",
+          "anchor": "the house of Col. Owen",
+          "offset_text": "to the building one door West of the house H",
+          "offset_normalized": "to the building one door West of the house [of] Col. Owen",
+          "street": null,
+          "note": "UNRESOLVED ANCHOR. Col. Owen’s house is documented by this notice and by nothing that places it, so the office is placed relative to an unplaced building."
+        }
+      },
+      "notes": "A PUBLIC OFFICE MOVES INTO A NAMED BUILDING, AND THE ADDRESS IS ANOTHER MAN'S HOUSE. The Cook county Clerk's office is placed 'one door West of the house of Col. Owen' — an anchor of exactly the kind the town used before it had numbers, and the only relative placement in the corpus that fixes a COUNTY office rather than a shop. Col. Owen is Thomas J. V. Owen, president of the Board of Trustees, who signs the town ordinances two columns away in this same issue (c010, c011). His house is therefore a standing building in the town in December 1833 and is now an anchor two claims deep — which is worth more to the reconstruction than the office itself, because it says a documented dwelling stood next door but one to the county's own room. NEITHER BUILDING IS PLACED ON A STREET by this notice, and none is supplied."
+    },
+    {
+      "id": "c006",
+      "kind": "building",
+      "reading": "transcription_mediated",
+      "quote": "ye Auction Sale.\n“OT 7, in block 8, and house op, the\n4 formerly occupied as a Meeting House”?\nsie the bridge on the North Branch of Chic,\nRiver. At the same time, a quantity of\nel. a JAS. KINZIE, Aue’r,",
+      "normalized": "Auction Sale. [LO]T 7, in block 8, and house o[n it,] […] formerly occupied as a Meeting House[,] […] [near] the bridge on the North Branch of Chic[ago] River. At the same time, a quantity of […] JAS. KINZIE, Auc[tionee]r,",
+      "locator": {
+        "artifact_role": "primary",
+        "issue_page": 3,
+        "column": 5,
+        "lines": [
+          2586,
+          2599
+        ],
+        "lines_of_claim": [
+          2586,
+          2588,
+          2590,
+          2591,
+          2592,
+          2599
+        ],
+        "interleaved": false
+      },
+      "entities": [
+        {
+          "as_printed": "JAS. KINZIE, Aue'r,",
+          "normalized": "Kinzie, James",
+          "role": "auctioneer",
+          "occupations": [
+            "auctioneer"
+          ]
+        }
+      ],
+      "business": {
+        "name": "the house on lot 7, block 8, formerly a meeting house",
+        "proprietors": [],
+        "trade": "former meeting house, offered at auction",
+        "goods": [],
+        "street": null,
+        "placement": {
+          "class": "relative",
+          "anchor": "the bridge on the North Branch of Chicago River",
+          "offset_text": "4 formerly occupied as a Meeting House\"?\nsie the bridge on the North Branch of Chic,",
+          "offset_normalized": "formerly occupied as a Meeting House […] [near] the bridge on the North Branch of Chicago River",
+          "street": null,
+          "note": "THE PLAT REFERENCE IS THE STRONGER HALF. Lot 7 in block 8 is a resolvable address if the block is the town plat’s; the notice does not say which addition, so it is not resolved here."
+        }
+      },
+      "notes": "A MEETING HOUSE, A LOT AND BLOCK NUMBER, AND A BRIDGE — three things the reconstruction can use, in one auction notice. The lot is named to the plat ('LOT 7, in block 8'), the building on it is given a FORMER USE ('formerly occupied as a Meeting House') and the pair is placed near the bridge on the North Branch. This is the earliest meeting house in the corpus: the Presbyterian church is not dedicated until January 1834 (1834-01-21 c002) and the Baptist meeting house first appears on 1834-01-28 c003, so a building that had ALREADY ceased to be a meeting house by December 1833 stands before either. THE OCR WILL NOT CARRY THE SENTENCE THAT JOINS THEM: 'and house op, the / 4 formerly occupied as a Meeting House' has lost whatever stood between, so it is possible — not likely, but possible — that the meeting house and the lot are two items in one sale rather than one. That doubt is recorded and not resolved. The auctioneer is James Kinzie."
+    },
+    {
+      "id": "c007",
+      "kind": "business",
+      "reading": "transcription_mediated",
+      "quote": "NEW BLACKSMITH\nPIERCE & ABBOTT,\nyy ouL respectfully inform the inhabit-\nants of Chicago and the neighboring set-\nisiness in gaid town, nearly opposite the Chi-\nret Hotel, where they are ready to wait upon\n‘rma. They will manufacture Prarie Plouzhs,",
+      "normalized": "NEW BLACKSMITH SHOP. PIERCE & ABBOTT, [W]OULD respectfully inform the inhabitants of Chicago and the neighboring set[tl]ements, [that they have commenced the above] [bu]siness in said town, nearly opposite the Chi[ca]go Hotel, where they are ready to wait upon […] They will manufacture Pra[i]rie Plou[g]hs,",
+      "locator": {
+        "artifact_role": "primary",
+        "issue_page": 3,
+        "column": 5,
+        "lines": [
+          2620,
+          2632
+        ],
+        "lines_of_claim": [
+          2620,
+          2623,
+          2625,
+          2626,
+          2628,
+          2629,
+          2632
+        ],
+        "interleaved": false
+      },
+      "entities": [
+        {
+          "as_printed": "PIERCE & ABBOTT,",
+          "normalized": "Pierce & Abbott",
+          "role": "proprietor",
+          "occupations": [
+            "blacksmith",
+            "plough maker"
+          ]
+        }
+      ],
+      "business": {
+        "name": "Pierce & Abbott",
+        "proprietors": [
+          "Pierce & Abbott"
+        ],
+        "trade": "blacksmith",
+        "goods": [
+          "Prairie ploughs"
+        ],
+        "street": null,
+        "placement": {
+          "class": "relative",
+          "anchor": "the Chicago Hotel",
+          "offset_text": "isiness in gaid town, nearly opposite the Chi-\nret Hotel, where they are ready to wait upon",
+          "offset_normalized": "in said town, nearly opposite the Chi[ca]go Hotel",
+          "street": null,
+          "note": "UNRESOLVED ANCHOR, as at 1834-01-07 c007. The Chicago Hotel is not a feature this reconstruction holds."
+        }
+      },
+      "notes": "THE PROPRIETORS OF THE SHOP OPPOSITE THE CHICAGO HOTEL ARE NAMED, AND 1834-01-07 c007 COULD NOT NAME THEM. That claim recorded the business as 'the new blacksmith shop opposite the Chicago Hotel' with an empty proprietors list because its printing had lost the signature. This is the first insertion of the same advertisement, four weeks earlier, and it carries the firm: PIERCE & ABBOTT. The anchor is unchanged and still unresolved — no Chicago Hotel stands in this reconstruction's structure data — but the town now has TWO blacksmiths documented in one December issue, this one and Mason & Co. (c003), which is a fact about the trade mix and not only about two shops."
+    },
+    {
+      "id": "c008",
+      "kind": "infrastructure",
+      "reading": "transcription_mediated",
+      "quote": "Town Ordinances.\nAt a meeting of the Board of Trustees of\nthe town of Chicago, held at the house of\nDexter Graves, on the 4th day of Decem-\nber, 1833, the following Ordinances were\nadopted, to wit: 4",
+      "normalized": "Town Ordinances. At a meeting of the Board of Trustees of the town of Chicago, held at the house of Dexter Graves, on the 4th day of December, 1833, the following Ordinances were adopted, to wit: 4",
+      "locator": {
+        "artifact_role": "primary",
+        "issue_page": 3,
+        "column": 5,
+        "lines": [
+          2673,
+          2679
+        ],
+        "lines_of_claim": [
+          2673,
+          2675,
+          2676,
+          2677,
+          2678,
+          2679
+        ],
+        "interleaved": false
+      },
+      "entities": [
+        {
+          "as_printed": "Dexter Graves",
+          "normalized": "Graves, Dexter",
+          "role": "the Board of Trustees met at his house"
+        }
+      ],
+      "ad_copy_date": {
+        "verbatim": "ber, 1833, the following Ordinances were",
+        "iso": "1833-12-04"
+      },
+      "notes": "THE TOWN'S GOVERNMENT MEETS IN A HOUSE, AND THE HOUSE IS NAMED. 1834-01-07 c001 read this same heading a month later as 'held at the h[ouse of Charl]es …' and supplied the wrong given name into a broken line; this printing, four weeks earlier and unbroken, settles it as DEXTER GRAVES. That matters twice over: it fixes the seat of the corporation's business in December 1833 as a private dwelling, and it makes the 'Graves' Tavern' that anchors Mason & Co.'s blacksmith shop (c003) very probably the same man's house. THE ORDINANCES ADOPTED AT THIS MEETING ARE NUMBERED 11 TO 16, continuing the series of 1 to 10 that Vol. I No. 1 printed (1833-11-26 c024-c029), so the town's whole first ordinance book is in the corpus by the end of the month."
+    },
+    {
+      "id": "c009",
+      "kind": "street",
+      "reading": "transcription_mediated",
+      "quote": "2. Boil further Ordabel, That the first street\nin said town south of Washington-street, be\nn uned Milison-street; the second one shall be\nnamed Monroe-street; the third one shall be na-\nsted Adams-strect; and the fourth one shall be\nnamed Jackson-street.",
+      "normalized": "2. Be it further Ordain[ed], That the first street in said town south of Washington-street, be n[a]med M[ad]ison-street; the second one shall be named Monroe-street; the third one shall be na[m]ed Adams-street; and the fourth one shall be named Jackson-street.",
+      "locator": {
+        "artifact_role": "primary",
+        "issue_page": 4,
+        "column": 5,
+        "lines": [
+          3709,
+          3714
+        ],
+        "lines_of_claim": [
+          3709,
+          3710,
+          3711,
+          3712,
+          3713,
+          3714
+        ],
+        "interleaved": false
+      },
+      "notes": "THE FOUR SOUTH STREETS GET THEIR NAMES, AND THIS IS THE CLEAN READING OF THE ORDINANCE THAT GIVES THEM. 1833-11-26 c025 claimed the same clause from a printing that had lost 'street', 'shall be' and 'Madison' to the column edge; here the whole ordinance stands without a supply. It is the same ordinance, not a second one — the reconstruction gains no street it did not have, it gains the sentence that names Madison, Monroe, Adams and Jackson intact, ordered outward from Washington. Worth having verbatim because the plat's street names south of Washington are otherwise carried only by the surveys, and this is the town saying them itself."
+    },
+    {
+      "id": "c010",
+      "kind": "infrastructure",
+      "reading": "transcription_mediated",
+      "quote": "E it Ordained by the Trustees of the Town\nof Chicago, that the following shall be\nthe bounds included within the limits of the\nCorporation of said town, to wit: Beginning at\nthe intersection of Jackson and Jeflerson streets,\nthence north along snid last mentioned street to\nCool strect, in Wah-bon-seh, from thence to\nthe eastern extremity thercot, thence in a direct\nline to Ohio street, in Kinzie's addition to the\ntown of Chicago, thence in a line eastwardly\nto the Lake shore, thence southwardly with the\nLake shore to the northern United States' Pier,\nthenee woetwardly along said pier to the ter-\nmination thereof, thence to the channel of the\nClicago river, thence along the channel of said\nriver until it interses the castern boundary\nline of the town of Chicago, as laid out by tire\nCanal Commissioners, thence southwardly with\nsaid line wafil it meets Jackson street, to the\nplace of beginning.",
+      "normalized": "[B]e it Ordained by the Trustees of the Town of Chicago, that the following shall be the bounds included within the limits of the Corporation of said town, to wit: Beginning at the intersection of Jackson and Jef[f]erson streets, thence north along s[ai]d last mentioned street to Coo[k] str[e]et, in Wah-bon-seh, from thence to the eastern extremity thereo[f], thence in a direct line to Ohio street, in Kinzie's addition to the town of Chicago, thence in a line eastwardly to the Lake shore, thence southwardly with the Lake shore to the northern United States' Pier, then[c]e w[e]stwardly along said pier to the termination thereof, thence to the channel of the C[h]icago river, thence along the channel of said river until it interse[ct]s the [e]astern boundary line of the town of Chicago, as laid out by t[h]e Canal Commissioners, thence southwardly with said line u[nt]il it meets Jackson street, to the place of beginning.",
+      "locator": {
+        "artifact_role": "primary",
+        "issue_page": 4,
+        "column": 5,
+        "lines": [
+          3688,
+          3708
+        ],
+        "lines_of_claim": [
+          3688,
+          3690,
+          3691,
+          3692,
+          3693,
+          3694,
+          3695,
+          3696,
+          3697,
+          3698,
+          3699,
+          3700,
+          3701,
+          3702,
+          3703,
+          3704,
+          3705,
+          3706,
+          3707,
+          3708
+        ],
+        "interleaved": false
+      },
+      "notes": "THE CORPORATE BOUNDARY, READ WITHOUT A SINGLE SUPPLIED WORD. 1833-11-26 c024 claimed this same ordinance from a printing broken in eleven places; this one is whole, and three things in it are worth the re-reading. The boundary RUNS ALONG THE NORTHERN UNITED STATES' PIER and turns at its termination — so the pier is a fixed, surveyable object in December 1833 and the town's own limit hangs off it. It names 'Cook street, in Wah-bon-seh' and 'Ohio street, in Kinzie's addition' as the two northern hinges, and it closes on 'the eastern boundary line of the town of Chicago, as laid out by the Canal Commissioners'. Nothing here is new to the reconstruction; what is new is that the sentence can now be quoted rather than reconstructed."
+    },
+    {
+      "id": "c011",
+      "kind": "infrastructure",
+      "reading": "transcription_mediated",
+      "quote": "15. Be it further Ordsined by the Board“of}\nTrustees of the town of Chicago, Thateach and\nevery owner of occupant of any lot in ssid town,\nfronting upon the Chicago River or_ its branch-\nes, where the street runs to said river, be per-\nmitted to occupy the vacant ground on said riv-\ner, leaving eighly feet for a. street, for wharting\nprivileges only; And for the purpose of guaran-\nJeupant, deairing such privilege, shall upon pay-\ning fifteen Mollars annually tn advance, to the\nTreasurer of said Board, be entitled to a lease,\ntor the teria of five years from the first day ot",
+      "normalized": "15. Be it further Ord[ai]ned by the Board of Trustees of the town of Chicago, That each and every owner o[r] occupant of any lot in said town, fronting upon the Chicago River or its branches, where the street runs to said river, be permitted to occupy the vacant ground on said river, leaving eigh[t]y feet for a street, for wharfing privileges only; And for the purpose of guaran[t]e[e]ing th[is] right, each and every owner o[r] o[c]cupant, desiring such privilege, shall upon paying fifteen [d]ollars annually in advance, to the Treasurer of said Board, be entitled to a lease, for the ter[m] of five years from the first day of J[a]nuary [next,] signed by the President",
+      "locator": {
+        "artifact_role": "primary",
+        "issue_page": 3,
+        "column": 5,
+        "lines": [
+          2710,
+          2724
+        ],
+        "lines_of_claim": [
+          2710,
+          2712,
+          2713,
+          2714,
+          2715,
+          2716,
+          2717,
+          2718,
+          2720,
+          2722,
+          2723,
+          2724
+        ],
+        "interleaved": true
+      },
+      "notes": "THE WHARFING ORDINANCE, IN ITS FIRST PRINTING. 1834-01-07 c003 claimed this clause from the January reprint; this is the same ordinance four weeks earlier, adopted 4 December 1833, and it is the legal instrument under which every private wharf on the Chicago river was built. The terms are exact and the reconstruction can hold them: the riverfront lot owner may occupy the vacant ground BETWEEN HIS LOT AND THE WATER, provided EIGHTY FEET IS LEFT FOR A STREET, for wharfing only, on a fifteen-dollar annual lease running five years from 1 January 1834. So a wharf in this town is a leasehold on public ground with a statutory street behind it — which is a constraint on where wharf structures may stand, not merely a licence to build them. This printing is set more cleanly than the January one at the clause that matters; 1833-12-24 sets it cleaner still and is quoted at c005 of that issue for the eighty feet."
+    },
+    {
+      "id": "c012",
+      "kind": "infrastructure",
+      "reading": "transcription_mediated",
+      "quote": "Look out for Trouble.\nLL persona who have or shall be found\ntrespassing upon the fractional Bection\no. 29, in Township 39, north range 14 east,\ntamonly called Hurdscrubble, shall be several.\nproseouted by the subscriber, without any to-\n. B. BLAUBIEN,\nCricage. Dee. 4, 1833.",
+      "normalized": "Look out for Trouble. [A]LL person[s] who have or shall be found trespassing upon the fractional [S]ection [N]o. 29, in Township 39, north range 14 east, [com]monly called H[a]rdscr[a]bble, shall be several[ly] prosecuted by the subscriber, without any [respect of persons]. [J]. B. B[E]AUBIEN, C[hi]ca[g]o. Dec. 4, 1833.",
+      "locator": {
+        "artifact_role": "primary",
+        "issue_page": 3,
+        "column": 6,
+        "lines": [
+          2764,
+          2772
+        ],
+        "lines_of_claim": [
+          2764,
+          2765,
+          2766,
+          2767,
+          2768,
+          2769,
+          2771,
+          2772
+        ],
+        "interleaved": false
+      },
+      "entities": [
+        {
+          "as_printed": ". B. BLAUBIEN,",
+          "normalized": "Beaubien, J. B.",
+          "role": "subscriber to the notice",
+          "occupations": [
+            "landowner"
+          ],
+          "associated_places": [
+            "Hardscrabble"
+          ]
+        }
+      ],
+      "ad_copy_date": {
+        "verbatim": "Cricage. Dee. 4, 1833.",
+        "iso": "1833-12-04"
+      },
+      "notes": "HARDSCRABBLE, PLACED BY ITS SURVEY DESCRIPTION. The corpus has the name of a place south-west of the town, and this notice is the only thing in it that says WHERE: fractional Section 29, Township 39 north, Range 14 east — a public-land description that resolves on the ground without any reading of local memory at all. Section 29 of T39N R14E is the south branch reach, and Beaubien is warning the town off it as private ground in December 1833. The subscriber is J. B. Beaubien (Jean Baptiste), who signs the Samuel Calhoun administration a week later (1833-12-17 c004) as Public Administrator for Cook county; the surname is also M. B. Beaubien's, appointed to the bridge committee in the same issue as this (c008), and the initials are what keep the two apart — see identity.json's standing rule that a shared surname with different initials never merges."
+    }
+  ]
+}

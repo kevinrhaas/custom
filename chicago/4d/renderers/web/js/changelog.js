@@ -1,4 +1,13 @@
 export const CHANGELOG = [ // newest first
+  { v: 350, title: 'December 1833, read: two bridges standing, and eighty feet of river', kind: 'chore', ts: '2026-08-28T19:23:34.290Z', date: 'Aug 28, 2026, 2:23 PM CT',
+    items: [
+      'Nothing you can see changed today. The five December 1833 issues of the Chicago Democrat \u2014 the paper\u2019s second month \u2014 have been read through, and 41 readings came out of them, each with the page, column and line it stands on.',
+      'The best of them corrects a reading this project already had. A town ordinance passed on 4 December 1833 appointed four men to contract for REPAIRING the bridges on both branches of the river. The January reprint was cut at that word and it was read as \u201Cbuilding\u201D. Three December settings all say repairing \u2014 so both bridges were already standing, and already worn.',
+      'The same sitting let any owner whose lot fronted the river occupy the vacant ground down to the water for fifteen dollars a year, provided he left eighty feet for a street. Here is that clause in its first printing, unbroken.',
+      'Building got a price list, and it is the only one in this corpus. Brick six dollars the thousand; assorted poplar lumber twenty to twenty-three; shingles three and a half to four; square timber five to six cents the foot; stone a dollar fifty the perch; lime a dollar twenty-five the barrel; firewood two fifty to three the cord.',
+      'And the town filled in a little. A school at the corner of Water and Franklin. A butcher\u2019s market on the market square. A lumber yard promised for the opening of navigation, with a store house already standing. Two attorneys placed off named corners. A bakery and liquor shop called the Man Trap. And a house on lot 7, block 8 that had been a meeting house before any church here was dedicated.',
+      'No post office list of letters this month. All five issues were swept for six forms of the heading, for none \u2014 an absence looked for is evidence; an absence nobody looked for is a hole.',
+    ] },
   { v: 349, title: 'Ninety-seven people, two churches and eighty feet of street', kind: 'chore', ts: '2026-08-28T18:57:09.453Z', date: 'Aug 28, 2026, 1:57 PM CT',
     items: [
       'Nothing you can see changed today. The four January 1834 issues of the Chicago Democrat have been read \u2014 the town\u2019s first winter, eighteen months before the day this reconstruction stands in \u2014 and thirty-one readings came out of them.',

@@ -18,6 +18,13 @@
     },
     {
       "publication": "chicago_democrat",
+      "from": "1833-12-01",
+      "to": "1833-12-31",
+      "ticket": "T-0309",
+      "note": "Vol. I Nos. 2-6, 1833-12-03 to 1833-12-31 — five issues, the whole of the Democrat's second month, read through. 41 claims. NO POST-OFFICE LETTER LIST ANYWHERE IN THE MONTH: swept all five transcriptions for every form the Democrat uses — 'list of letters', 'letters remaining', 'remaining in the post office', 'uncalled for', a signature ending 'P. M.', and the bare words 'post office' — for three hits, none of them a list. Ruling 1 is met by demonstrating absence, as T-0308 met it for November and T-0261 for the American. THE MONTH SPEAKS THREE DIALECTS, which is why it was cut as its own piece: Vol. I No. 2 carries the bare `SOURCE PDF PAGE n` banner resolved ordinally, Nos. 3-5 the ruled `SOURCE PDF PAGE / ISSUE PAGE` and `ORIGINAL PDF PAGE / ISSUE PAGE` banners, and No. 6 the prose `Newspaper Page n` pair whose columns arrive as single lines of up to 1,022 characters and needed `locator.spans` for five of its seven claims. STANDING ADVERTISEMENTS ARE CLAIMED ONCE, AT THEIR BEST-READ PRINTING, and the other settings are cited in the claim's note as the cross-check — sixteen cards run across two or more of these issues. The estray 'Taken Up' notices are quarantined as Cook county filings, not town matter, as T-0308 quarantined them. Their transcriptions are deposit-held, so the quotes were machine-checked with `--check --deposit <path>` against a read-only copy of the deposit from `main`; on `dev` their claims are counted unresolved and reported, which is green (T-0275)."
+    },
+    {
+      "publication": "chicago_democrat",
       "from": "1834-07-01",
       "to": "1834-07-31",
       "ticket": "T-0289",
