@@ -113,3 +113,4 @@ T-0283 — The North Division's warehouse row allows one freight roof and six do
 T-0284 — Two slices of one batch claimed T-0256 and both built it — a claim is written where the next slice cannot see it
 T-0285 — An asset carrying its own AO map cannot batch with the town: +2 draw calls for one building
 T-0286 — The AO unwrap leaves 68.9 per cent of every atlas empty, and the map is priced as if it were full
+T-0295 — Every visible ticket at the top of the queue is parked on hold or in flight, and five straight invisible runs merged under it
