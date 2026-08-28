@@ -336,7 +336,7 @@ rationed.**
 | — | RENDERING | ~~K56~~ | **SEEN** | **DONE 2026-08-17 — 16 sprays → 32, shell fill 17.7 % → 30.9 %, and the lowest band arches down over the stems.** The size did NOT move: a spray is a leaf MASS, not a leaf, so shrinking it would have bought a smaller plate with more sky round it. Follow-up **K57** |
 | — | RENDERING | ~~K57~~ | **SEEN** | **DONE 2026-08-17 — the question cannot be asked at a fixed plate area, because the plates are what carries the RECORDED clump width.** 64 sprays at the shipped total area buy 8.5 points of cover and pay **reach 0.990 → 0.890** of the recorded half-width for them, plate 37 → 26 cm. So the grain trades against TRIANGLES: at the shipped plate size, 32 → 48 → 64 sprays cover **36.9 % → 46.9 % → 51.3 %** of the outline for 72 → 104 → 136 triangles, and **48 is where the return halves**. Stem cover 40.9 % → 51.3 %, 38.8 % of the frame changed. Two findings: **K56's 17.7 %/30.9 % were taken by a script nobody committed** — the instrument is `tools/measure_spray_grain.mjs` now, reproducing K56's plate area to the digit off `renderers/web/js/shrub-grain.js`, which imports nothing; and the wet woods' ring is **167 shrubs, not the 156 K54 and K56 quote**. Opened **K59**, which is now DONE and spent the 4.4 points: read K59's box before timing anything in a browser here. Read this one before shrinking any archetype plate |
 | — | RENDERING | ~~K55~~ | **SEEN, and only just** | **DONE 2026-08-17 — the same fault runs BOTH WAYS, and for the herbs it ran the other one.** A cover fraction read as a count over-planted the 2.25 m dogwood by 8.8× and UNDER-planted the riverbank's 10 cm ground layer by **96×**: `z05` 0.025 → 2.407 plants/m², `z03` 0.123 → 1.254, forb slots **781 → 923** over the eight stations, `z03`'s own layer **31 → 84**, matrix and shrub unchanged to the second decimal. Three findings: the sign of the fault is decided by whether one plant covers more or less than a square metre, so the queue inherited "over-planting" from the case measured first; **three of the parcel's six named rows were never faults** — the `basis` column was printing `subsetOn`'s default argument and the matrix slot count comes off `cover.matrix_fraction`; and the count moved a fifth while the frame moved **0.15 %**, with `z10_settled_town` — the parcel's predicted visible half — not moving at all, because its share was clamped before and after. Opened **K58**. Read its box before quoting a forb count or calling a mixed list a defect |
-| **1** | RENDERING | **K58** | **SEEN** | **six forb layers of ten now ask for more plants than the lattice can carry**, so their drawn cover is bounded by `TUNE.forb` and not by any research figure — `z06_dense_forest` draws 40.1 % of a recorded 94.9 % for that reason and not for want of data. Opened 2026-08-17 by K55, which took the clamped count from four to six |
+| — | RENDERING | ~~K58~~ | **SEEN** | **DONE 2026-08-28 as T-0019 — it is NINE forb layers of ten, not six, and the shortfall is now declared rather than derived.** `tools/forb_clamp_baseline.json` names every (community, side) the 0.346 plants/m² lattice ceiling binds, and `measure_sward_draw.mjs --gate` fails when the set drifts. K58's six were counted at the recorded MIDPOINTS; T-0034 deals the forb stratum off the upper bound, so `z06_dense_forest` asks **66.381 /m² and draws 0.5 %**, the marsh 22.000 and 1.6 %, and the two prairies and the lakeshore joined the clamp. The marsh's WET side is measured for the first time. No ceiling was raised: every route out buys plants with geometry in the two layers already carrying the most, and the detail ceilings are breached on dev. Read its box before quoting a forb density or the count of clamped layers **AMENDED 2026-08-28 by T-0282 — it is TEN, and the tenth is a stratum the declaration could not see.** `flora.js` deals four (stratum, side) lotteries through the same `shareOf` against the same ceiling; T-0019 declared the forb ones. `z06_dense_forest`'s SHRUB layer asks 0.403 clumps/m² against 0.346 and has been over it since K54 named it, and `shrubShareWet`/`shrubDensityWet` were not exported at all. The declared identity is now (community, stratum, side), and `docs/LIBERTIES.md` **L201** is the visitor's copy of the table. |
 | — | TOWN | ~~K30(c)~~ | **SEEN** | **REFUTED 2026-08-22 (T-0009, K30(d)) — DO NOT RUN THIS REPAIR.** The 29 buildings are still drawn standing in the roadway, but not for this reason: `--anchors` finds the record's point at the BACK corner on **all 17** of the deep records and on the kerb face on **none** of them, so the street-facing FACE is what was placed on the frontage and reflection would take twelve documented buildings a full depth behind their own frontage. The cause is the committed `south_water` centreline, deliberately shifted 4.3–8.8 m south of the control the placements were offset from. **What to do about it is the owner's, and T-0009 is blocked on him** |
 | **2** | RENDERING | **R-W2b** | **SEEN** | wire R-W2a's committed material sheet into the params and records — 1,353 materials measured out of the shipped GLBs and currently reaching nothing. **This is what repaints the town**, and R-W2 owns the worst-scored axis on R-G1's whole table (texture, **1.4**) |
 | — | RENDERING | ~~R-W2c~~ | **SEEN** | **DONE 2026-08-22 (T-0008) — the stack is not the roof.** 157 stacks on 143 buildings now carry a masonry material of their own: **brick on 112 framed buildings**, off `frame_tavern`'s committed Petford value moved into the sheet, and a **cat-and-clay daub on 31 log cabins** at the midpoint of the two committed values that bound it. `docs/RESEARCH/chimneys.md` is the fabric argument; L168 records the invention. **Three findings.** It was NOT a one-file fix and it was not palette-only: the two dispositions the archetypes had already argued in prose are two materials, and the fabric had to be researched before either could be chosen. **It cost NO draw call** — `buildings.js::materialKey` batches on maps and flags, never on colour or roughness, both of which ride per vertex, so 113 calls before and 113 after at `south_water`. And R-W2a's *219 stacks on 199 buildings* does not reproduce: the resolved parameters of the committed masters give **157 on 143** across four archetypes. Left standing: the fort (**T-0137**) and the placeholders' second brick (**T-0138**) |
@@ -1450,7 +1450,11 @@ The ratio is the answer, and it argues in the safe direction: a software rasteri
 fill-sensitive renderer available, so it is the harshest witness for the one risk here (overdraw
 1.33 → 1.56). The reading L121, L156 and L174 all still want — a real low-end machine — is not this.
 
-### K58 — six forb layers of ten now ask for more plants than the lattice can carry · **UNCLAIMED · SEEN · opened 2026-08-17 by K55 · Effort: M**
+### K58 — six forb layers of ten now ask for more plants than the lattice can carry · **DONE 2026-08-28 as T-0019 — NINE of ten, and declared rather than fixed**
+
+**Answered.** The count in this box's title is wrong twice over and both errors are worth keeping: it is **nine** populated forb layers of ten, and the densities below are the recorded MIDPOINTS while the renderer has dealt the forb stratum off each record's UPPER BOUND since T-0034. Measured 2026-08-28, `tools/measure_sward_draw.mjs --source`: `z06_dense_forest` asks **66.381** plants/m² against 44.545 here and draws **0.5 %** of it; `z04_marsh` 22.000 against 14.5 (and its WET side the same, measured for the first time); `z10_settled_town` 11.866 against 7.760; and `z08_lakeshore` (0.630), `z02_mesic_prairie` (0.408) and `z01_wet_prairie` (0.407) have joined the clamp since. `z09_sand_prairie` alone fits.
+
+**Route taken: the third one this box names — print the shortfall — and it is now a declaration with a gate on it** rather than a printed line: `tools/forb_clamp_baseline.json`, asserted by `measure_sward_draw.mjs --gate`, which fails on a layer joining the clamp, a layer leaving it, the ceiling moving, or an asked density drifting. Shown reading red three ways. **No ceiling constant was raised**: the other two routes buy plants with geometry, most of it in `z06` and `z10`, and the `full` and `balanced` detail ceilings are breached on dev (T-0223, T-0229). See `docs/STATUS.md` 2026-08-28. The original box follows.
 
 `forbShareOf` is `min(1, density × cell² / perCell)`, and the clamp is a lattice ceiling of one
 plant per slot. K55 took the number of communities sitting ON that clamp from four to six — `z05`
@@ -2788,7 +2792,7 @@ filed together only because RENDERING §4 groups them:**
 
 | | parcel | scope |
 |---|---|---|
-| **R-W3a** | **the AO cage rule** | §1 item 10: the bake works end to end and fails because clapboard courses and window reveals a centimetre off the wall occlude each other. ~~mean 0.265, 69 % of texels below half~~ — **both figures void, T-0158; read the correction below before claiming this, and see T-0227.** It needs a **low-poly cage**, not tuning. **Files:** `docs/RESEARCH/ao-cage.md` (new) · `generators/archetypes/*.py` (cage emission). |
+| **R-W3a** | **the AO cage rule** | §1 item 10: the bake works end to end and fails because clapboard courses and window reveals a centimetre off the wall occlude each other. ~~mean 0.265, 69 % of texels below half~~ — **both figures void, T-0158.** **T-0227 answered the question on the frame, 2026-08-28: yes, far too dark — the Sauganash's own pixels fall from mean L\* 33.8 to 11.1 with 6,532 of them at literal black. Correction 3 below carries the tables, and the acceptance is now a frame reading, not an atlas mean.** It needs a **low-poly cage**, not tuning. **Files:** `docs/RESEARCH/ao-cage.md` (new) · `generators/archetypes/*.py` (cage emission) · `tools/measure_ao_frame.mjs` (the before/after reading). |
 | **R-W3b** | **cascaded shadows** | `renderers/web/js/world.js` only — today one 1024² map on a ±60 m follow ortho, nothing beyond 60 m. **Touches no generator and no record**, so it shares nothing with 3a and can run beside it. **SPLIT 2026-08-17 into R-W3b(a) — the reach of the one map, DONE — and R-W3b(b) — true cascades, which (a)'s measurement says is now the only route past ±120 m that does not start by cutting batches.** |
 | **R-W3c** | **openings** | The silhouette failure R-G1 names: no reveal, no sill, no sash, no muntin anywhere in the set, so the 6-over-6 rhythm the Green Tree plate documents does not exist. Archetype geometry. |
 
@@ -2822,6 +2826,38 @@ changes the parcel's target.**
    black). **T-0227 answers it from a rendered frame before this parcel builds a cage to improve
    a figure nobody has measured correctly**, and carries the unwrap with it: an atlas two-thirds
    empty is two-thirds of every occlusion map's bytes spent on nothing.
+
+3. **AND THE ANSWER, T-0227, 2026-08-28: yes — and the atlas statistic understates it badly.**
+   `sauganash_hotel` baked with `--ao` (the fixed export: baked 0.1665 -> exported 0.1665, 0.0 %
+   drift), swapped into the source tree, and shot at both Sauganash anchors and both viewports
+   against the same tree without it. `tools/measure_ao_frame.mjs` reads the building's own
+   visible pixels — the structures mask intersected with what moved between the two conditions —
+   so the reading is of the walls rather than of the frame or of the atlas:
+
+   | station | viewport | pixels read | mean L* without → with | L* < 20 | literal black px |
+   |---|---|---|---|---|---|
+   | `sauganash` | desktop | 87,893 | **33.8 → 11.1** | 31.1 % → **88.9 %** | 0 → **6,532** |
+   | `sauganash` | mobile | 20,010 | 33.4 → 11.1 | 31.8 % → 89.5 % | 0 → 1,289 |
+   | `sauganash_wing` | desktop | 99,681 | 39.1 → 17.9 | 15.4 % → 64.9 % | 0 → 3,781 |
+   | `sauganash_wing` | mobile | 17,511 | 41.9 → 20.6 | 4.9 % → 56.5 % | 0 → 340 |
+
+   The whole-frame critic table agrees from the other side: `literal black px` 0 → 6,841 and
+   `shadow darkest decile L` 4.67 → 2.00 at `sauganash` desktop, with triangles unchanged.
+   **A documented white wall loses two thirds of its lightness and puts thousands of pixels at
+   0,0,0.** Why so much worse than "0.5358 mean over written texels" suggests: glTF occlusion
+   scales the INDIRECT term only, and at the scene's 70.5° sun the street-facing elevations a
+   walker sees are carried by little else (§1 items 9–11) — so occlusion near 1 there removes
+   essentially all of their light. **The parcel keeps its cage and loses its target: acceptance
+   is `measure_ao_frame.mjs` showing the walls hold their lightness, not an atlas mean moving.**
+
+   **Two costs this parcel now inherits, measured on that one asset.** The atlas is **31.1 %
+   occupied** — 81,458 written texels of 262,144, the master 94,420 → 202,292 bytes (+114 %) —
+   so the ~107 KB occlusion PNG is two-thirds empty space before any decision about resolution.
+   And **`aoMap` is part of `materialKey`** in `renderers/web/js/buildings.js`, so an asset
+   carrying its own map cannot batch with one that does not: **+2 draw calls at every station
+   and both viewports for a single building**, against a draw-call ceiling already breached.
+   A per-asset map is therefore a batching decision as well as a byte-budget one (T-0285), and
+   the empty two thirds of the atlas is its own ticket (T-0286).
 
 **And a cost figure the bake half has to answer first.** With the export working, one asset's
 master goes **94,420 → 202,292 bytes (+114 %)**: a 512×512 occlusion PNG carrying real variation
@@ -10222,6 +10258,43 @@ surfaces OF that layer — one crown behind another, a chimney against its own r
 against the house behind it. Those are silhouettes too, and 94–98 % of the "interior" count is
 made of them. What is left of R-BUG6 at `from_above` is: 21 px exactly coplanar (b), 0 px of
 self-fight (here), and the rest is the town's own edges being resampled.
+
+**2026-08-28 — THE INSTRUMENT NOW REPORTS THIS SPLIT ITSELF (T-0156).** Everything above was
+measured with a second tool and the measured tool was deliberately left alone, because closing a
+ticket by rewriting the instrument that measured it is the one move this project does not allow.
+Five days later `measure_tie_class.mjs` was still printing `INTERIOR TOTAL: ... the pixels where a
+layer fights ITSELF`, so anyone reading the instrument rather than this box read the refuted claim
+— and the column's name asserted it too. It now prints the split beside the count, from
+`tools/depth_field.mjs`: T-0013's discriminator, extracted so the two instruments cannot answer
+the same question differently. The column is called `SURROUNDED`, which is what it measures.
+
+**Nothing was re-thresholded and no baseline moved.** The surrounded counts are identical, pixel
+for pixel at all six layers, to the run taken immediately before the change. Read as above — the
+published mirror, `from_above`, 1280×800, 2 mm nudge, shadow map off by R-BUG6(a)'s repaired
+control, control 0 px and return 0 px — with both tools run the same afternoon on the same mirror:
+
+```
+                 measure_tie_class.mjs               diagnose_interior_flicker.mjs
+layer      surrounded  edge  reorder  same  nodepth   interior  edge  reorder  same  nodepth
+structures      421     402      0      0      19        421     402      0      0      19
+trees           231     218      0      0      13        231     218      0      0      13
+ground           66      65      0      0       1         77      74      0      0       3
+streets          10      10      0      0       0          —       —      —      —       —
+water             3       3      0      0       0          —       —      —      —       —
+flora             0       0      0      0       0          —       —      —      —       —
+```
+
+`structures` and `trees` agree pixel for pixel. `ground` does not, and the difference is the two
+tools' LAYER LISTS rather than the discriminator: a pixel is attributed to the FIRST layer whose
+footprint claims it, and `measure_tie_class` carries `streets`, `flora` and `water`, which
+`diagnose_interior_flicker` does not — so eleven pixels those layers own here fall to `ground`
+there. Both readings say the same thing about them.
+
+**The shares hold against 2026-08-23; the counts do not, and that is the town growing.**
+structures 370 → 421, trees 257 → 231, ground 78 → 77 over five days of content. The
+internal-edge share reads 95 / 94 / 98 % against 94 / 98 / 96 %, and the self-fight count is
+**0 in every layer on both dates** — this run's total is **0 of 731 surrounded pixels**. What
+this box claims is the share and the zero, and both survive a town that grew under them.
 
 ### R-BUG6(c3) — the PHONE's half of the same edges · **ANSWERED 2026-08-24 by T-0157 · MSAA now ships on every device**
 

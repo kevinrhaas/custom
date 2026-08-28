@@ -1,22 +1,10 @@
 {
   "_doc": "Every figure in data/flora and data/fauna that no renderer reads, as of the last deliberate change. A figure is a leaf of a record that is not identity, file routing or provenance; 'reads' is scanned against renderers/web/js/*.js with the comments stripped. This is a measurement and not a permission: tools/measure_layer_reads.py holds it exact in both directions, so a new one fails and a wired-up one has to be un-banked here in the commit that wired it. Read ROADMAP K42 before adding a line. `refused_because` is a STATED REFUSAL (T-0021): somebody decided this figure should not reach a visitor and wrote down why. It is not a permission and it does not soften any assertion \u2014 the entry is banked exactly like every other.",
   "entries": {
-    "flora/manifest:vocabulary.forms_flora": {
-      "records": 1
-    },
-    "flora/manifest:vocabulary.forms_trees": {
-      "records": 1
-    },
     "flora/manifest:vocabulary.forms_unimplemented": {
       "records": 1
     },
     "flora/manifest:vocabulary.phenology": {
-      "records": 1
-    },
-    "flora/manifest:vocabulary.roles": {
-      "records": 1
-    },
-    "flora/manifest:vocabulary.substrates": {
       "records": 1
     },
     "flora/manifest:zones[].bare_soil_fraction": {
@@ -26,9 +14,6 @@
       "records": 10
     },
     "flora/manifest:zones[].ground_wet_rgb": {
-      "records": 10
-    },
-    "flora/manifest:zones[].plantable_in_scene": {
       "records": 10
     },
     "flora/palette:budget.instances_mid": {
@@ -70,16 +55,10 @@
     "flora/zone:cover.litter_fraction": {
       "records": 1
     },
-    "flora/zone:cover.standing_water_fraction": {
-      "records": 10
-    },
     "flora/zone:ground.rgb": {
       "records": 10
     },
     "flora/zone:ground.wet_rgb": {
-      "records": 10
-    },
-    "flora/zone:plantable_in_scene": {
       "records": 10
     },
     "flora/zone:species[].july.inflorescence.fruit": {

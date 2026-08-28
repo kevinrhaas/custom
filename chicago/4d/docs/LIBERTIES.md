@@ -9067,7 +9067,121 @@ rule, the other half of where a roof stands on its face) · tickets **T-0024** (
 **T-0079**.
 **Recorded:** 2026-08-28.
 
-### L201 — Two roofs and a stable on Lake Street at Franklin, and the warehouse slot that was refused rather than massed
+### L201 — Ten of the sward's layers are drawn at the lattice's ceiling, not at the density their records ask for
+**Decision:** the forb and shrub strata are dealt over a lattice that holds **one plant per
+slot** — four slots to a 3.4 m cell, so **2.890 m² of ground a slot and 0.34602 plants per m²** —
+and `renderers/web/js/flora.js` `forbShareOf` is `min(1, density × cell² / perCell)`. That `min` is
+a ceiling, and **ten of the eighteen populated (community, stratum, side) layers in this scene sit
+on it.** Those ten are drawn at a density `TUNE.forb` chose and **not at one any record states**:
+
+| layer | its records ask | the lattice draws | share of its own evidence |
+|---|---|---|---|
+| `z06_dense_forest` forb | 66.381 /m² | 0.346 /m² | **0.5 %** |
+| `z04_marsh` forb, dry and wet | 22.000 /m² | 0.346 /m² | **1.6 %** |
+| `z10_settled_town` forb | 11.866 /m² | 0.346 /m² | **2.9 %** |
+| `z05_riverbank_timber` forb | 3.851 /m² | 0.346 /m² | **9.0 %** |
+| `z03_sedge_meadow` forb | 1.812 /m² | 0.346 /m² | **19.1 %** |
+| `z08_lakeshore` forb | 0.630 /m² | 0.346 /m² | **54.9 %** |
+| `z02_mesic_prairie` forb | 0.408 /m² | 0.346 /m² | **84.8 %** |
+| `z01_wet_prairie` forb | 0.407 /m² | 0.346 /m² | **85.0 %** |
+| `z06_dense_forest` shrub | 0.403 /m² | 0.346 /m² | **85.8 %** |
+
+The eight that fit are `z09_sand_prairie`'s forbs (0.114 /m²) and every shrub stratum but the dense
+forest's. `z07_bur_oak_savanna` records no forbs at all.
+
+**Why this is a liberty and not a defect:** the cell and its four slots were fitted against the
+reference photographs on a closed prairie sward (**L32**), where they reproduce what a visitor
+should see. They are a **rendering budget**. The moment a community's records ask for more plants
+than that budget carries, the budget — and not the evidence — is deciding how much bloom a visitor
+gets, and nothing on screen said so. A share of 1.000 reads identically whether the records asked
+for 0.36 plants per m² or for 66, so the thin flower floor under the dense timber west of town read
+as a gap in the research when it is a gap in the lattice.
+
+**What is NOT ours:** every density in the table is the community's own records, summed at the top
+of each species' recorded range (**L185**) and read straight out of `data/flora`. No record is
+overwritten, no confidence is upgraded, and the species lottery — *which* forb fills a slot that is
+dealt — is untouched, so the MIX of the sward is still the evidence's. What is ours is only how
+many slots there are to fill.
+
+**What bounds it, and it is a gate.** `tools/forb_clamp_baseline.json` states each of the ten
+layers with the density it asks for, the density the lattice offers it and the fraction between
+them, and `node tools/measure_sward_draw.mjs --gate` fails when the measured set stops matching:
+a layer joining the ceiling, a layer leaving it, the ceiling moving, or a record's density moving
+past half a per cent. So this liberty's figures cannot go stale in silence.
+
+**The count has been wrong twice, and each time for the same reason.** K58 was opened at **six**
+forb layers. **L185** then dealt the stratum off the top of each recorded range and pushed the mesic
+and the wet prairie onto the ceiling — eight — and the marsh's over-water side made nine when T-0019
+first declared it. The tenth is the **shrub** stratum: `z06_dense_forest`'s clump density has been
+over this ceiling since **K54** named it, one stratum outside where anybody was counting. That is
+what an undeclared ceiling produces, and it is why the declaration is now a gate rather than a
+paragraph.
+
+**How to resolve:** ROADMAP **K58** sets out three routes and this entry takes the third — a
+per-stratum cell, more than one plant per slot where the record asks for it, or accepting the
+ceiling and declaring it. Raising the lattice is not free: it buys its plants in exactly the two
+communities that already carry the most geometry, and the scene-detail ceiling is breached today
+(tickets **T-0203**, **T-0218**). A stated stand-level density for this specific ground would not
+resolve it either, because the clamp would still bind. What resolves it is a lattice that can carry
+what the records already ask for.
+
+Related: **L32** (the sward's absolute density is a rendering budget, and full recorded cover
+saturates the lattice) · **L185** (the forbs are planted at the top of every recorded range, and its
+own closing line — *"the next flower needs a different lattice"*) · **L113** (six researched plants
+reach no renderer) · ROADMAP **K54** (the shrub stratum's own lattice), **K55**, **K58** (this) ·
+tickets **T-0019** (the declaration), **T-0282** (this), **T-0281** (the flora section this table
+belongs in next), **T-0034**, **T-0203**, **T-0218**.
+**Recorded:** 2026-08-28.
+
+### L202 — A third slough crossing, on North Water Street, where nothing records one at all
+**Decision:** `north_water_slough_crossing` — a 12 m log deck, 3 m wide, laid square across the
+attested north-side slough at local **E +183 .. +195, N +156 .. +159**, carrying North Water
+Street over the stream at the narrow reach above its funnel. Every dimension and the crossing's
+whole existence are `reconstructed`.
+**Why:** Wright 1834 draws the slough running north out of the main stem across Kinzie Street to
+Michigan Street, and the 1830 plat lays North Water Street along the river's north side. Those
+two lines meet, and a platted street that meets a stream either stops at it or gets across it.
+Nothing states which. T-0226 re-derived North Water Street from the committed north bank after
+finding 477 m of its old line inside the water mask, and had to stop the derived line on the
+slough's east shoulder, because a road ribbon may not paint a ford — leaving the North
+Division's whole river front with no roadway west of E +240. This is what carries it over, built
+at the tier AGENTS.md § *reconstructed is a tier* prescribes rather than left as a gap.
+**What is invented, item by item.** That anyone bridged this stream. The date range (opened at
+its two siblings', the start of 1833, when the town began building crossings at all; closed at
+the end of 1835 by convention). The bearing — laid east-west at rotation 0 across a channel
+whose traced centreline bears 010° through this reach. The 12 m span, the 3 m width, the log
+construction, the puncheon deck, the 0.25 m stringers, the 0.08 m planks, the zero piers and
+the 0.35 m clearance.
+**What bounds each of them, because that is the difference between reconstruction and
+invention.** The SPAN is the stream's: 6.65 m of open water at this northing on the committed
+heightfield, leaving 2.60 m and 2.75 m of dry abutment seat — the proportion both siblings hold
+(8 m over 3.30 with 2.35 m seats; 12 m over 5.55 with 3.10 and 3.35). The SITE is the channel's:
+this slough is a 68.5 m funnel where it meets the river and a steady 5–7 m channel above it,
+with a 2.5 m sill between, so the deck sits above the sill where a town could put a log across.
+The WIDTH is the smallest of the three because the street is: North Water Street's own record
+calls its traffic `light` and gives it a 6.0 m track, against South Water Street's 10.5 m. The
+CLEARANCE is the abutments': the ground stands +0.63 m and +0.73 m where the deck's ends land,
+so a walk surface at 0.68 m lies level with the street at both ends and this crossing needs
+neither the cut its eldest sibling needed nor the fill the La Salle one did. The CONSTRUCTION,
+the DECK KIND and the STRINGERS are local practice — every crossing anybody in this town
+described was logs with puncheons on them.
+**Consequence:** the North Division's river-front street runs unbroken from the North Branch to
+Kinzie Street, and a visitor can walk it. If North Water Street did not in fact reach west of
+the slough in 1835 — nothing places a building on that side of it, and the division's own
+initial parcel puts its roofs north of N +105 — then this crossing did not stand and the street
+should stop where T-0226 stopped it.
+**How to resolve:** any period document that puts North Water Street west of the slough, or a
+town order for a bridge or culvert on it — a lot survey, a grading order, a Kinzie-ward
+assessment. The Chicago Democrat's 1834–35 numbers are the first place to look, and the corpus
+this project now holds makes that a readable question rather than an aspiration.
+Related: **L69** (the Slough Log Bridge's invented clearance, and its refusal of the branch
+bridges' documented one) · **L150** (the La Salle slough's inland course) · **L149** (the La
+Salle crossing) · tickets **T-0254** (this), **T-0226** (the street this carries), **T-0129**
+(the second crossing), **T-0109** (the gate all three answer to).
+**Covers:** `north_water_slough_crossing.function`, `north_water_slough_crossing.crossing_1835.footprint`, `north_water_slough_crossing.crossing_1835.position`, `north_water_slough_crossing.crossing_1835.documented_range`, `north_water_slough_crossing.crossing_1835.form.construction`, `north_water_slough_crossing.crossing_1835.form.width_m`, `north_water_slough_crossing.crossing_1835.form.clearance_m`, `north_water_slough_crossing.crossing_1835.form.pier_count`, `north_water_slough_crossing.crossing_1835.form.pier_kind`, `north_water_slough_crossing.crossing_1835.form.deck_kind`, `north_water_slough_crossing.crossing_1835.form.stringer_d_m`, `north_water_slough_crossing.crossing_1835.form.plank_t_m`.
+**Recorded:** 2026-08-28.
+
+### L203 — Two roofs and a stable on Lake Street at Franklin, and the warehouse slot that was refused rather than massed
 **Decision:** lot 4 of `blk_lake_franklin` — an interior lot on the block's Lake Street face,
 bounded by Lake, Wells, Randolph and Franklin — carries **two anonymous principal roofs standing
 shoulder to shoulder on the Lake frontage** on one line, at one 1.499 m setback, on one shared
@@ -9109,7 +9223,7 @@ duplicate a counted pier"*. Sampled against the committed heightfield `e1834_har
 nearest water to this block's boundary is 134 m away. So the slot is deferred in the recipe with
 its reason, `generate_block_infill.py` now refuses F3 by name, and the roof is still owed: the
 wharf and landing ground beyond South Water and Market is where it belongs, and that the deal keeps
-sending F3 onto inland platted blocks is filed as **T-0275** against the deal.
+sending F3 onto inland platted blocks is filed as **T-0308** against the deal.
 **WHAT IS INVENTED.** That any building stood on this ground at all; that there were two of them;
 that they stood shoulder to shoulder rather than apart; that the westernmost was of logs; that the
 household on the lot kept a stable. Every dimension is sampled inside the family band the
@@ -9131,6 +9245,6 @@ American extraction tickets (T-0256 onward) are the corpus most likely to carry 
 
 Related: **L144** (three roofs on one lot, the core density standard this run spends two of) ·
 **L177** (one street line to a face) · **L182** (the end rule) · **L200** (where a non-dwelling
-stands) · tickets **T-0028** (this), **T-0275**, **T-0022**, **T-0188**, **T-0213**.
+stands) · tickets **T-0028** (this), **T-0308**, **T-0022**, **T-0188**, **T-0213**.
 **Covers:** `recon_1835_blk_lake_franklin_d5_01.inferred_1835.position`, `recon_1835_blk_lake_franklin_d5_01.inferred_1835.footprint`, `recon_1835_blk_lake_franklin_d1_02.inferred_1835.position`, `recon_1835_blk_lake_franklin_d1_02.inferred_1835.footprint`, `recon_1835_blk_lake_franklin_a1_03.inferred_1835.position`, `recon_1835_blk_lake_franklin_a1_03.inferred_1835.footprint`.
 **Recorded:** 2026-08-28.

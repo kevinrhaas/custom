@@ -1,5 +1,5 @@
 ---
-id: T-0275
+id: T-0308
 title: The 665-roof deal puts a large river warehouse on an inland platted block, and the block generator cannot build one
 state: open
 epic: META
@@ -59,4 +59,4 @@ while you are there: F4 ("Lumber shed") carries the same site logic and F2 ("nar
 warehouse") may not.
 
 Related: **T-0028** (found it), **T-0213** (the deal fix this should be shaped like),
-**L201** (the liberty that records the deferral).
+**L203** (the liberty that records the deferral).

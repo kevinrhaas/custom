@@ -40,32 +40,27 @@ T-0096 — Did the second Fort Dearborn carry a flagstaff, and can anything but 
 # --- FABRIC AND WHAT THE BUILDINGS ARE MADE OF — visible
 
 # --- WHAT GROWS, AND WHAT A PHONE SEES — visible
-T-0019 — Six forb layers ask for more plants than the lattice holds
-T-0225 — The sward's drawn reach is measured off plants at two per cent coverage
 
 # --- THE NEWSPAPERS — placed here by the owner, 2026-08-28: "put all that legwork
 # --- after the visible things". The invisible extraction tickets at the top of this
 # --- band BLOCK the visible seeding at its bottom — documented storefronts and real
 # --- people replacing invented ones — which is why they sit above other invisible work.
 # --- Three owner rulings govern the epic; each ticket carries them in full.
-T-0256 — The newspaper corpus becomes a source this project can cite
-T-0257 — An extraction schema, and the gazetteer the papers compile into
 T-0258 — Reading the Democrat, part one: November 1833 to June 1834
-T-0259 — Reading the Democrat, part two: July to December 1834
-T-0260 — Reading the Democrat, part three: January to August 1835
-T-0261 — Reading the American: June to August 1835
+T-0290 — Reading the Democrat, August 1834: Vol I Nos 36-39
+T-0291 — Reading the Democrat, September 1834: Vol I Nos 40-43
+T-0292 — Reading the Democrat, October 1834: Vol I Nos 44-48
+T-0293 — Reading the Democrat, November 1834: Vol I Nos 49-52
+T-0294 — Reading the Democrat, December 1834: Vol II Nos 1-4
+T-0296 — Reading the Democrat, 8 to 29 July 1835: the rest of the scene month
+T-0297 — Reading the Democrat, August 1835: the four issues after the scene date
+T-0298 — Reading the Democrat, January to June 1835: the eight issues only the deposit can open
 T-0262 — The July 1, 1835 register: who and what the papers put in the town
 T-0263 — The documented storefronts take their places on South Water and Lake
 T-0264 — Documented people replace the invented
 
 # --- MEASUREMENT, GATES AND PROVENANCE — invisible, and nothing below blocks the above
-T-0227 — Is the AO bake actually too dark? Every figure that said so was wrong twice over
-T-0211 — The other nine group rows are cross-checked against nothing
-T-0224 — A critic baseline standing on the public square
-T-0210 — The desktop smoke's stage 9 times out clicking the panel close, on an unmodified tree
 T-0190 — A second street tier for the street edge, and the ceiling that refuses it
-T-0164 — The rule module that decides whether a mesh is built at all now sits inside the hash of what a mesh is built from
-T-0156 — The interior/silhouette discriminator counts edges internal to a layer as interior
 T-0155 — The changelog stamper has the same after-publish trap the ticket tool just lost
 T-0136 — The eight owner-brief plates T-0075 could not identify: Andreas at page-image level, and two museum objects
 T-0055 — Hold the Kinzie-view plate as a source record
@@ -84,7 +79,6 @@ T-0218 — The 'balanced' scene-detail ceiling is breached at Lake and Canal, at
 # --- NEWLY FILED — appended here by `ticket.mjs new`, which writes to the END of
 # --- this file. NOT yet placed by the owner, and NOT part of the band above:
 # --- these are new tickets, not tickets to withdraw.
-T-0228 — Two wharf decks oversail the riverside plank walk, and the walk now meets a half-metre riser at their edge
 T-0231 — T-0229's expiry was blocked on a flora ticket, so the raised ceilings would never have come down
 T-0232 — The owner's production switch is a coin toss: one promotion in four never reaches a promotion step
 T-0233 — Eight of seventeen dealt lots carry none of their run's own roofs, and nothing was measuring it
@@ -97,11 +91,9 @@ T-0239 — Nothing tests the party-line note's prose against the placement it de
 T-0230 — Two named South Water frontages carry a reconstructed trade, so neither a signboard nor a hitching post will ever stand at them
 T-0243 — The two timber-placement gates match no mesh since the lattice landed, and one of them is now red on dev
 T-0244 — T-0194's twelve hitching posts draw no vertices the gate can find, on dev
-T-0246 — log_jail stands on two steps of Randolph Street's new plank walk, the same OSM-kerb fault Lake and South Water answered
 T-0247 — The light tier draws 83 calls against the 80-call floor restored yesterday, on an unmodified dev
 T-0252 — Decide once whether a baked town carries the nine renderer-drawn layers, or none of them
 T-0253 — May an invented building stand on the river margin of a platted street corridor
-T-0254 — North Water Street west of the slough, and the crossing it needs
 T-0255 — The dooryard planting rule reads every street in the town with no bound on reach, so a track across the river can turn a house's yard
 T-0265 — The sward census fails its own gate at a phone: z10_settled_town owes xanthium_strumarium a whole slot and draws it nowhere
 T-0266 — On a phone from across the river the stockade's picket rhythm falls under the pixel grid and beats
@@ -111,5 +103,21 @@ T-0271 — The balanced ceiling is breached at the forks by 5,290 triangles on a
 T-0272 — The West Division parcel's form values come from the archetype and cite the family band: 8 families, 11 claims outside it
 T-0273 — The South Division infill parcel's form values come from the archetype and cite the family band: 9 families, 10 claims outside it
 T-0274 — The inferred-household parcel's form values come from the archetype and cite the family band: 8 families, 10 claims outside it
-T-0275 — The 665-roof deal puts a large river warehouse on an inland platted block, and the block generator cannot build one
-T-0277 — Build out the NEXT anonymous block: after blk_lake_franklin the last ungenerated block is owner-blocked, and the roofs left stand on blocks that already stand
+T-0275 — Back-merge main into dev: the newspaper deposit is on main, and 60 Finder-duplicate files on main turn the dev gate red
+T-0277 — The mid and forb rings' outer edges are re-priced for a density handover, now the reach statistic is honest
+T-0279 — 2,526 of 18,911 drawn flower heads stand over open ground with no plant under their own stalk, on an unmodified dev
+T-0280 — The far band's grass-or-flower split is made on the forb lattice's CLAMPED share
+T-0283 — The North Division's warehouse row allows one freight roof and six documented ones stand above it
+T-0284 — Two slices of one batch claimed T-0256 and both built it — a claim is written where the next slice cannot see it
+T-0285 — An asset carrying its own AO map cannot batch with the town: +2 draw calls for one building
+T-0286 — The AO unwrap leaves 68.9 per cent of every atlas empty, and the map is priced as if it were full
+T-0301 — Every visible ticket at the top of the queue is parked on hold or in flight, and five straight invisible runs merged under it
+T-0299 — Three printings of one letter list mint 298 people three times, and identity.json is empty
+T-0300 — T-0258 is sized M on the measurement that split T-0259 into six
+T-0302 — The .lib-body grid resolves toward max-content under all six other Evidence sections, and only the plants section is fixed
+T-0304 — The gazetteer merges persons by a declared rule and has no equivalent for firms, so 'L. Wilson & Co.' and 'Jno. Wilson & Co.' are two businesses
+T-0305 — Four readings the American contradicts itself on need the page images: the tailor's street, which Water street two forwarding houses stood in, and the corner of Cobb's saddlery
+T-0306 — The American names six Chicago storefronts with usable placements and none of them is standing in the model yet
+T-0307 — The derivation's running maximum costs 42 m of verge where the bank turns a right angle at Wolf Point
+T-0308 — The 665-roof deal puts a large river warehouse on an inland platted block, and the block generator cannot build one
+T-0309 — Build out the NEXT anonymous block: after blk_lake_franklin the last ungenerated block is owner-blocked, and the roofs left stand on blocks that already stand

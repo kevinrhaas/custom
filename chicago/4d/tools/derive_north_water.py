@@ -45,13 +45,30 @@ station's requirement and never wander more than MAX_ABOVE_M beyond it, so the d
 6 m track sits between 9.2 m and 15.2 m clear of the water along the whole reach and
 no panel is trimmed.
 
-THE WEST TERMINUS IS THE SLOUGH, and that is a finding, not a shortcut. The attested
-"Unnamed slough, north side" (`hydrology.geojson`, confidence `attested`, Wright 1834
-draws it running north out of the main stem across Kinzie Street) meets the river in a
-funnel between E +170 and E +270. A ribbon may not paint over it -- the town's other
-two slough crossings are modelled STRUCTURES, `slough_log_bridge` and the La Salle
-Slough Crossing -- so the derived line begins on the slough's east bank and the reach
-west of it is left for a crossing record. T-0254 carries that.
+THE SLOUGH IS CROSSED, NOT STOPPED AT -- T-0254, and it is why this tool derives TWO
+reaches with a structure between them. The attested "Unnamed slough, north side"
+(`hydrology.geojson`, confidence `attested`, Wright 1834 draws it running north out of
+the main stem across Kinzie Street) meets the river in a funnel between E +170 and
+E +270 reaching N +145; north of that funnel the channel settles to a steady 5-7 m.
+A ribbon may not paint over a watercourse -- the town's other two slough crossings are
+modelled STRUCTURES, `slough_log_bridge` and the La Salle Slough Crossing -- so the
+street goes ROUND THE HEAD OF THE BAY and crosses the narrow reach above it on a third
+one, `north_water_slough_crossing`, whose deck runs E +183 .. +195 at N +157.5.
+
+  * the EAST reach runs from the deck's east end to E +830, as before;
+  * the WEST reach runs from the deck's west end to the North Branch at E -30, laid on
+    the same bank with the same setback;
+  * ONE BEND STANDS IN THE WATER, at the deck's midpoint. That is deliberate and it is
+    the thing R-BUG4 is for: `renderers/web/js/streets.js` drops a panel whose
+    centreline endpoint is wet, so the two panels either side of that bend are dropped
+    and the deck carries the crossing. Carrying the line across with dry bends at each
+    shoulder would have drawn a 6.65 m ford in silence -- the fault T-0254 was filed to
+    avoid, not a shortcut past it.
+
+Each reach's smoothing window is clamped INSIDE its own reach. The running maximum
+exists to clear metre-scale notches in a trace, and looking across the crossing is not
+that: at E +190 the funnel and the slough are one water run reaching N +165, and a
+window that saw it would push the street 20 m up the slough instead of over it.
 
     tools/derive_north_water.py            print the derivation
     tools/derive_north_water.py --write    write it into data/streets/1835.json
@@ -79,9 +96,19 @@ STATION_M = 5.0             # how finely the bank is read
 MAX_ABOVE_M = 8.0           # how far a straight run may stand north of what it needs
 SMOOTH_M = 15.0             # a bank notch this short is cleared, not followed
 BELOW_M = 0.5               # how far a run may fall short of the setback (see fit)
-E_WEST = 240.0              # the slough's east bank; west of it is T-0248's crossing
 E_EAST = 830.0              # where the street leaves the bank and climbs to Kinzie
 TAIL = [[920.0, 190.0], [970.0, 270.0]]   # unchanged: dry, drawn, and not in question
+
+# THE CROSSING (T-0254). These three numbers are the deck's, and they are read off
+# `data/structures/north_water_slough_crossing.json` rather than restated -- the
+# structure record is the one that decides where the crossing is, and a deck that moves
+# has to move the street with it or the two disagree in silence.
+CROSSING = "north_water_slough_crossing"
+# The North Branch. West of E -35 the widest water run at an easting is no longer the
+# main stem: the branch merges into it and its north edge jumps from N +33 to N +216 in
+# one 5 m step, so the setback rule has nothing to read. The street ends where the
+# street ended -- at the branch.
+E_WEST_END = -30.0
 
 
 def load_field():
@@ -140,29 +167,78 @@ def north_bank(is_water, e, step=0.25):
     return max(runs, key=lambda r: r[1] - r[0])[1]
 
 
-def stations(is_water):
-    """Bank and required centreline at every station.
+def deck():
+    """The crossing's deck, read out of the structure record.
+
+    Returns (west_end_e, east_end_e, centreline_n). The record's footprint polygon IS
+    the deck -- u along the span, v across the width -- laid at the placement, exactly
+    as tools/measure_slough_crossing.py reads it. Read rather than restated so a deck
+    that is re-sized or re-sited moves this street with it instead of leaving the two
+    records disagreeing about where the town crosses its own slough.
+    """
+    rec = json.loads((ROOT / "data" / "structures" / (CROSSING + ".json")).read_text())
+    phase = rec["phases"][0]
+    poly = [(float(u), float(v)) for u, v in phase["footprint"]["polygon"]]
+    if float(phase["position"].get("rotation_deg", 0.0)) != 0.0:
+        raise SystemExit("%s is no longer laid square; this tool reads an east-west "
+                         "deck and would have to be taught the rotation" % CROSSING)
+    e0 = float(phase["position"]["utm_e"])
+    n0 = float(phase["position"]["utm_n"])
+    datum = json.loads((ROOT / "data" / "datum.json").read_text())
+    e0 -= float(datum["origin_utm_e"])
+    n0 -= float(datum["origin_utm_n"])
+    us = [u for u, _ in poly]
+    vs = [v for _, v in poly]
+    return e0 + min(us), e0 + max(us), n0 + 0.5 * (min(vs) + max(vs))
+
+
+def stations(is_water, e_from, e_to, anchor=None):
+    """Bank and required centreline at every station of ONE reach.
 
     The requirement is a running MAXIMUM of the bank over +/-SMOOTH_M rather than the
     bank at the station itself, because a 2.5 m heightfield cell reading a trace with
     +/-20 m of paper stretch in it produces metre-scale notches, and a line that
     followed those would be a street with a bend every 5 m. Clearing them is the
     honest reading: the bank is where it is, and the street stands north of all of it.
+
+    THE WINDOW IS CLAMPED TO THE REACH. It used to reach SMOOTH_M past both ends, which
+    was harmless while the reach ended in open bank; it is not harmless now that a reach
+    ends AT THE CROSSING, because the water on the far side of the deck is the slough
+    and the running maximum would read its far bank as this street's.
+
+    `anchor` is (easting, northing) -- the deck's own abutment, imposed at the reach's
+    crossing end: the
+    street has to arrive AT the abutment, not at where the setback rule would have put
+    it. The two differ by 7.6 m at the west abutment -- the bay's edge is still climbing
+    there -- and that difference is the crossing's approach, carried by the fit's
+    ordinary MAX_ABOVE_M slack rather than by a special case.
     """
     raw = []
-    e = E_WEST - SMOOTH_M
-    while e <= E_EAST + SMOOTH_M + 1e-9:
+    e = e_from
+    while e <= e_to + 1e-9:
         bank = north_bank(is_water, e)
         if bank is None:
             raise SystemExit("no north bank at E %.1f" % e)
         raw.append((e, bank))
         e += STATION_M
+    if abs(raw[-1][0] - e_to) > 1e-9:
+        bank = north_bank(is_water, e_to)
+        if bank is None:
+            raise SystemExit("no north bank at E %.1f" % e_to)
+        raw.append((e_to, bank))
     out = []
-    for i, (e, bank) in enumerate(raw):
-        if e < E_WEST - 1e-9 or e > E_EAST + 1e-9:
-            continue
+    for e, bank in raw:
         window = [b for f, b in raw if abs(f - e) <= SMOOTH_M + 1e-9]
         out.append((e, bank, max(window) + SETBACK_M))
+    if anchor is not None:
+        ae, an = anchor
+        for i, (e, bank, _) in enumerate(out):
+            if abs(e - ae) < 1e-9:
+                out[i] = (e, bank, an)
+                break
+        else:
+            raise SystemExit("the deck's abutment at E %.1f is not a station of the "
+                             "reach E %.1f .. %.1f" % (ae, e_from, e_to))
     return out
 
 
@@ -212,17 +288,27 @@ def fit(st):
     return pts
 
 
+def reach(is_water, e_from, e_to, anchor):
+    st = stations(is_water, e_from, e_to, anchor)
+    pts = [[round(e, 1), round(n, 1)] for e, n in fit(st)]
+    # Rounding to a decimetre can only move a vertex 5 cm; lift any that fell short.
+    for pt in pts:
+        need = next(s for s in st if abs(s[0] - pt[0]) < 1e-6)[2]
+        if pt[1] < need:
+            pt[1] = round(need + 0.05, 1)
+    return pts, st
+
+
 def derive():
     is_water = load_field()
-    st = stations(is_water)
-    pts = fit(st)
-    pts = [[round(e, 1), round(n, 1)] for e, n in pts]
-    # Rounding to a decimetre can only move a vertex 5 cm; lift any that fell short.
-    for p, (_, _, need) in zip(pts, [next(s for s in st if abs(s[0] - p[0]) < 1e-6)
-                                     for p in pts]):
-        if p[1] < need:
-            p[1] = round(need + 0.05, 1)
-    return pts + [list(t) for t in TAIL], st, is_water
+    w_end, e_end, n_deck = deck()
+    west, st_w = reach(is_water, E_WEST_END, w_end, (w_end, n_deck))
+    east, st_e = reach(is_water, e_end, E_EAST, (e_end, n_deck))
+    # THE BEND IN THE WATER. One vertex at the deck's midpoint, and it is wet on
+    # purpose: R-BUG4 drops a panel whose centreline endpoint is wet, so the two panels
+    # that reach the abutments go with it and the deck is what a visitor crosses on.
+    mid = [round(0.5 * (w_end + e_end), 1), round(n_deck, 1)]
+    return west + [mid] + east + [list(t) for t in TAIL], st_w + st_e, is_water
 
 
 def report(path, st, is_water):
@@ -232,6 +318,7 @@ def report(path, st, is_water):
     worst_low, worst_high = 99.0, 0.0
     wet = 0.0
     total = 0.0
+    w_end, e_end, _n_deck = deck()
     for i in range(len(path) - 1):
         e0, n0 = path[i]
         e1, n1 = path[i + 1]
@@ -244,14 +331,66 @@ def report(path, st, is_water):
             if is_water(e, n):
                 wet += 0.5
     for e, bank, need in st:
+        if w_end - 1e-9 <= e <= e_end + 1e-9:
+            continue          # the deck's own span: measured by measure_slough_crossing
         n = at(path, e)
         worst_low = min(worst_low, n - bank)
         worst_high = max(worst_high, n - bank)
     print("  length %.1f m, of which wet centreline: %.1f m" % (total, wet))
-    print("  clearance from the waterline: %.2f m .. %.2f m" % (worst_low, worst_high))
-    dry_edges = all(not is_water(*p) for p in edge_probes(path))
-    print("  the drawn 6 m track's own edges: %s" % ("all dry" if dry_edges else "SOME WET"))
-    print("  bends standing in water: %d" % sum(1 for p in path if is_water(*p)))
+    print("  clearance from the waterline, northward: %.2f m .. %.2f m"
+          % (worst_low, worst_high))
+    # THE NORTHWARD FIGURE IS NOT THE CLEARANCE A WALKER SEES, and on the west reach the
+    # two part company. The setback is applied northward and the running maximum is
+    # taken over +/-SMOOTH_M, both of which were written for the east reach's roughly
+    # east-west bank. West of the slough the bank runs at 30-60 degrees as it comes
+    # round Wolf Point into the forks, so a northward offset buys only its cosine in
+    # perpendicular clearance while the running maximum, lagging a steadily rising
+    # bank, adds it back and more. Neither is wrong -- the street stands north of every
+    # bank point within 15 m of it, which is what the rule says -- but the honest
+    # statement of how far the road is from the water is this one.
+    print("  clearance from the waterline, perpendicular: %.2f m .. %.2f m"
+          % perpendicular_clearance(path, is_water, w_end, e_end))
+    _w, _e, n_deck = w_end, e_end, deck()[2]
+    dry_edges = [q for q in edge_probes(path)
+                 if not (w_end - 4.0 <= q[0] <= e_end + 4.0) and is_water(*q)]
+    print("  the drawn 6 m track's own edges, off the deck: %s"
+          % ("all dry" if not dry_edges else "%d WET" % len(dry_edges)))
+    print("  bends standing in water: %s"
+          % (" ".join("[%g, %g]" % (e, n) for e, n in path if is_water(e, n)) or "none"))
+    print("  the crossing: %s, deck E %g .. %g at N %g" % (CROSSING, w_end, e_end, n_deck))
+
+
+def perpendicular_clearance(path, is_water, w_end, e_end, step=2.0):
+    """Shortest distance from the drawn centreline to water, off the deck's own span.
+
+    Walked rather than solved: at every station along the path a ray is pushed out
+    square to the chord, on both sides, until it finds water or gives up at 80 m. The
+    minimum and maximum of those are the two numbers -- how close the road comes to the
+    river anywhere, and how far it stands off it at its worst.
+    """
+    lo, hi = 999.0, 0.0
+    for i in range(len(path) - 1):
+        e0, n0 = path[i]
+        e1, n1 = path[i + 1]
+        length = ((e1 - e0) ** 2 + (n1 - n0) ** 2) ** 0.5
+        if length < 1e-9:
+            continue
+        ue, un = -(n1 - n0) / length, (e1 - e0) / length
+        for k in range(int(length / step) + 1):
+            t = k * step / length
+            e, n = e0 + (e1 - e0) * t, n0 + (n1 - n0) * t
+            if w_end - 4.0 <= e <= e_end + 4.0:
+                continue          # the deck's own reach; the crossing owns that water
+            d = 80.0
+            for side in (1, -1):
+                r = 0.0
+                while r < d:
+                    r += 0.5
+                    if is_water(e + ue * side * r, n + un * side * r):
+                        d = r
+                        break
+            lo, hi = min(lo, d), max(hi, d)
+    return lo, hi
 
 
 def at(path, e):
@@ -296,11 +435,18 @@ def main():
             print("  committed %s" % committed)
             print("  derived   %s" % path)
             return 1
+        # ONE bend may stand in water and exactly one: the crossing's, at the deck's
+        # midpoint. Every other wet bend is the fault T-0226 found -- three of the old
+        # line's six bends stood in the river and the roadway simply vanished.
+        w_end, e_end, n_deck = deck()
         wet = [p for p in committed if is_water(*p)]
-        if wet:
-            print("north_water bends standing in water: %s" % wet)
+        expect = [round(0.5 * (w_end + e_end), 1), round(n_deck, 1)]
+        if wet != [expect]:
+            print("north_water's bends in water are %s; the only one allowed is the "
+                  "crossing's, at %s" % (wet, expect))
             return 1
-        print("north_water: derived line committed, %d bends, none in water" % len(committed))
+        print("north_water: derived line committed, %d bends, one in water and it is "
+              "%s's deck midpoint" % (len(committed), CROSSING))
         return 0
 
     report(path, st, is_water)

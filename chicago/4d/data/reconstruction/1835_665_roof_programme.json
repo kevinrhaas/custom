@@ -59,7 +59,7 @@
   "naming": "A unit is named for a block only where the plat module reaches it. Everything else is a district balance that states what it waits on."
  },
  "standing": {
-  "structure_records": 352,
+  "structure_records": 353,
   "physical_roofs": {
    "min": 341,
    "max": 342,
@@ -136,6 +136,7 @@
    "lasalle_slough_crossing",
    "north_branch_bridge",
    "north_pier",
+   "north_water_slough_crossing",
    "slough_log_bridge",
    "south_branch_raft_bridge",
    "south_pier"
@@ -291,6 +292,17 @@
   },
   "absorbed_from": {
    "D4": 9
+  },
+  "district_group_rows_overshot": {
+   "north": {
+    "institutional_public": 1,
+    "warehouses_freight": 6
+   }
+  },
+  "district_group_slots_shed": {
+   "north": {
+    "ordinary_dwellings": 7
+   }
   }
  },
  "coverage": {

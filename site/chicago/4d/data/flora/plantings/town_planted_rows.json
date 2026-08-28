@@ -108,8 +108,8 @@
       "id": "cobweb_castle_poplar_1",
       "species": "populus_nigra_italica",
       "at_local_enu_m": [
-        815.19,
-        102.24
+        802.19,
+        102.61
       ],
       "height_m": 15.5,
       "confidence": "reconstructed",
@@ -119,8 +119,8 @@
       "id": "cobweb_castle_poplar_2",
       "species": "populus_nigra_italica",
       "at_local_enu_m": [
-        811.69,
-        102.34
+        798.69,
+        102.71
       ],
       "height_m": 15.5,
       "confidence": "reconstructed",
@@ -130,8 +130,8 @@
       "id": "cobweb_castle_poplar_3",
       "species": "populus_nigra_italica",
       "at_local_enu_m": [
-        808.19,
-        102.44
+        795.2,
+        102.81
       ],
       "height_m": 15.5,
       "confidence": "reconstructed",
@@ -141,8 +141,8 @@
       "id": "cobweb_castle_poplar_4",
       "species": "populus_nigra_italica",
       "at_local_enu_m": [
-        804.69,
-        102.54
+        791.7,
+        102.91
       ],
       "height_m": 15.5,
       "confidence": "reconstructed",

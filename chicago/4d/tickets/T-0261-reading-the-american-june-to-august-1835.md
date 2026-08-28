@@ -1,7 +1,7 @@
 ---
 id: T-0261
 title: Reading the American: June to August 1835
-state: open
+state: done
 epic: PAPERS
 requested_by: owner
 seen: false
@@ -9,8 +9,8 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-08-27
-closed: null
-pr: null
+closed: 2026-08-28
+pr: 472
 claimed_by: null
 blocked_on: T-0257
 needs_bake: false

@@ -61,6 +61,12 @@ import path from 'node:path';
 import { execSync } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
 import { decodePng } from './critic_metrics.mjs';
+// The discriminator itself, in one place because `tools/measure_tie_class.mjs`
+// asks the same question of the same frames (T-0156). Two copies would be two
+// discriminators the moment either was tuned.
+import {
+  BREAK_M, REORDER_M, FAR_M, swapDepthMaterials, lineariseDepth, classifyDepth,
+} from './depth_field.mjs';
 
 async function loadPlaywright() {
   let ns;
@@ -87,10 +93,6 @@ const PORT = Number(process.env.TIE_PORT || 4195);
 const YEAR = process.env.TIE_YEAR || '1835';
 const NUDGE_M = Number(process.env.TIE_NUDGE_M || 0.002);
 const CHANNEL_EPS = 2;
-/** A depth break, in metres of second difference. 2 mm of camera cannot make one. */
-const BREAK_M = Number(process.env.TIE_BREAK_M || 0.3);
-/** A different surface, in metres. A 2 mm nudge moves a real one by 2 mm. */
-const REORDER_M = Number(process.env.TIE_REORDER_M || 0.3);
 
 const STATIONS = {
   from_above: { local_e: 60, local_n: -330, yaw_deg: 0, altitude_m: 175, pitch_deg: -30 },
@@ -282,50 +284,14 @@ for (const layer of LAYERS) {
 }
 
 // ---- the depth field, at both poses --------------------------------------- //
-/**
- * Every mesh keeps its own `onBeforeCompile`, because the trees' wind patch
- * displaces vertices there: a depth pass without it would photograph the town's
- * geometry and the timber's ghost, and every crown would read as a break.
- */
-const swap = async (on) => page.evaluate(async (want) => {
-  const api = window.__chicago4d;
-  // The page's OWN three, resolved through its own import map, so the depth
-  // material is the same class the renderer already compiled against.
-  if (!window.__chiTHREE) {
-    const map = JSON.parse(document.querySelector('script[type=importmap]').textContent);
-    window.__chiTHREE = await import(new URL(map.imports.three, location.href).href);
-  }
-  const THREE = window.__chiTHREE;
-  api.scene3d.traverse((o) => {
-    if (!o.isMesh || !o.material) return;
-    if (want) {
-      const src = Array.isArray(o.material) ? o.material[0] : o.material;
-      if (!o.userData.__origMat) o.userData.__origMat = o.material;
-      const d = new THREE.MeshDepthMaterial({ depthPacking: THREE.RGBADepthPacking });
-      d.side = src.side;
-      d.alphaTest = src.alphaTest ?? 0;
-      if (src.alphaMap) d.alphaMap = src.alphaMap;
-      if (typeof src.onBeforeCompile === 'function') d.onBeforeCompile = src.onBeforeCompile;
-      d.customProgramCacheKey = () => `chi-depth-${src.uuid}`;
-      o.material = d;
-    } else if (o.userData.__origMat) {
-      o.material.dispose?.();
-      o.material = o.userData.__origMat;
-      delete o.userData.__origMat;
-    }
-  });
-  for (let i = 0; i < 4; i++) await api.capture(4);
-  return want;
-}, on);
-
 let depthOk = true;
-await swap(true);
+await swapDepthMaterials(page, true);
 await stand(pose);
 const d0 = await shot();
 await stand({ ...pose, local_e: pose.local_e + NUDGE_M });
 const d1 = await shot();
 await stand(pose);
-await swap(false);
+await swapDepthMaterials(page, false);
 const restored = maskOf(a, await shot());
 if (restored.count) {
   console.log(`\nthe depth pass did not put the frame back (${restored.count} px) — `
@@ -333,39 +299,10 @@ if (restored.count) {
   depthOk = false;
 }
 
-const NEAR = arrived.near;
-const FAR = 3000;
-/** three's packDepthToRGBA, read back: UnpackDownscale / (256^3, 256^2, 256, 1). */
-function unpack(img, p) {
-  const i = p * 4;
-  const v = (img.data[i] / 255) / 16777216
-    + (img.data[i + 1] / 255) / 65536
-    + (img.data[i + 2] / 255) / 256
-    + (img.data[i + 3] / 255);
-  return v * (255 / 256);
-}
-/** Window depth [0,1] -> metres along the view axis. */
-function metres(z) {
-  const ndc = 2 * z - 1;
-  return (2 * NEAR * FAR) / (FAR + NEAR - ndc * (FAR - NEAR));
-}
 const W = a.width;
-const lin0 = new Float64Array(W * a.height);
-const lin1 = new Float64Array(W * a.height);
-for (let p = 0; p < lin0.length; p++) { lin0[p] = metres(unpack(d0, p)); lin1[p] = metres(unpack(d1, p)); }
-
-function classify(px) {
-  const out = { break: [], reorder: [], smooth: [], sky: [] };
-  for (const p of px) {
-    if (lin0[p] > FAR * 0.9) { out.sky.push(p); continue; }
-    const sx = Math.abs(lin0[p - 1] + lin0[p + 1] - 2 * lin0[p]);
-    const sy = Math.abs(lin0[p - W] + lin0[p + W] - 2 * lin0[p]);
-    if (Math.max(sx, sy) > BREAK_M) { out.break.push(p); continue; }
-    if (Math.abs(lin1[p] - lin0[p]) > REORDER_M) { out.reorder.push(p); continue; }
-    out.smooth.push(p);
-  }
-  return out;
-}
+const lin0 = lineariseDepth(d0, arrived.near, FAR_M);
+const lin1 = lineariseDepth(d1, arrived.near, FAR_M);
+const classify = (px) => classifyDepth(px, lin0, lin1, W);
 const classes = new Map();
 if (depthOk) {
   console.log('\nWHAT THE DEPTH FIELD DOES AT EACH INTERIOR-FLICKERING PIXEL');

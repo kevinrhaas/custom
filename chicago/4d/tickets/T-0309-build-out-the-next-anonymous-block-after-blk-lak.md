@@ -1,5 +1,5 @@
 ---
-id: T-0277
+id: T-0309
 title: Build out the NEXT anonymous block: after blk_lake_franklin the last ungenerated block is owner-blocked, and the roofs left stand on blocks that already stand
 state: open
 epic: META
@@ -47,8 +47,8 @@ time of the run rather than trusting this note — but as it stood on 2026-08-28
   `blk_randolph_dearborn` carries three and is the worked example.
 
 **Watch for the F3 refusal.** `blk_south_water_dearborn` is dealt **F3**, the large river warehouse,
-which `tools/generate_block_infill.py` now refuses by name (T-0028, L201). Defer it in the recipe
-with its reason rather than reaching for a shape — and read **T-0275**, which asks the deal to stop
+which `tools/generate_block_infill.py` now refuses by name (T-0028, L203). Defer it in the recipe
+with its reason rather than reaching for a shape — and read **T-0308**, which asks the deal to stop
 sending warehouses onto inland blocks in the first place.
 
 **This needs a bake.** Placeholder GLBs a Blender-free run writes are crude massings beside their
@@ -57,4 +57,4 @@ half is seconds, and `tools/web_derivatives.sh --only <name>.glb` afterwards avo
 full derivative pass that `bake.sh` runs unconditionally.
 
 Related: **T-0028** (parent), **T-0183**, **T-0009** (both `blocked-owner`), **T-0143**, **T-0188**
-(the core density line), **T-0275**, **L201**.
+(the core density line), **T-0308**, **L203**.

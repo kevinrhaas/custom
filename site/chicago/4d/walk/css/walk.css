@@ -419,7 +419,15 @@ body.is-touch .gate-touch { display: block; }
   font-size: 11px; letter-spacing: .14em; text-transform: uppercase;
   color: var(--accent);
 }
-.liberties { margin-top: 10px; display: grid; gap: 4px; }
+/* `minmax(0, 1fr)` and not the default `auto`, because an `auto` grid track
+   resolves toward MAX-CONTENT: a card holding one long unbreakable run widens
+   the whole column and the panel's text is then clipped at the right edge
+   instead of wrapping. Every section that mounts here had fitted anyway, so the
+   fault was latent until T-0281's plant vocabularies — thirty words in one row —
+   pushed a 390 px panel's content to 419 px against its 338 px box. This says
+   the column may shrink below its content, which is what makes text wrap; the
+   sections that already fitted are unchanged by it. */
+.liberties { margin-top: 10px; display: grid; grid-template-columns: minmax(0, 1fr); gap: 4px; }
 
 .lib { border: 1px solid var(--edge); border-radius: 9px; background: rgb(255 255 255 / 3%); }
 .lib summary {
@@ -503,6 +511,44 @@ body.is-touch .gate-touch { display: block; }
    holds the vocabulary, which is exactly why it is worth drawing: a card that
    silently prints an unknown word is a card that hides a broken gate. */
 .fauna-unknown { border-color: var(--con); color: var(--con); }
+
+/* The plants section (T-0281) reuses the wildlife's box for the fifth time, and
+   deliberately reuses its CLASSES too rather than cloning them under a new
+   prefix: a community with its species nested inside it is structurally a
+   habitat with its animals nested inside it, and a second set of rules saying
+   the same thing is a second place for the two to drift apart. Only what is
+   genuinely new to this section is named here. */
+/* THE GRID COLUMN HAS TO BE TOLD IT MAY BE NARROW, and this is the one rule here
+   that is not cosmetic. `.lib-body` is a one-column grid with the default
+   `auto` track, and an `auto` track resolves toward MAX-CONTENT — so a `dd`
+   holding a long unbroken run widens the whole card instead of wrapping inside
+   it. The liberties, the wildlife and the people never showed it because their
+   longest line is short enough to fit anyway; this section's vocabulary lists
+   are not (`inflorescence_shapes` alone is thirty words), and at 390 px the
+   first render pushed the panel's content to 419 px against a 338 px box and
+   clipped every line of reasoning at the right edge. `minmax(0, 1fr)` is the
+   column saying it may shrink below its content, which is what makes the text
+   wrap. Scoped to this section deliberately: the same latent fault sits under
+   every other card here and correcting it globally is a layout change to four
+   sections this ticket did not measure. */
+.plant-vocab .lib-body, .plant-zone > .lib-body, .plant-sp .lib-body {
+  grid-template-columns: minmax(0, 1fr);
+}
+/* A community's summary carries FOUR things where a habitat's carries three —
+   the id, the name, the species count and, on eight of the ten, the chip saying
+   the sward lattice cannot draw what this community's records ask for. `.lib
+   summary` is a flex row that does not wrap, so the fourth chip ran the line
+   past the panel's right edge at 390 px. Wrapping is the honest answer rather
+   than dropping the chip: the chip is the finding. */
+.plant-zone > summary { flex-wrap: wrap; }
+.plant-zone > summary .lib-title { min-width: 0; }
+.plant-clamp { margin: 4px 0 0; padding-left: 16px; display: grid; gap: 4px; }
+.plant-clamp li { line-height: 1.45; }
+/* The chip that says a community is drawing less than its records ask for. It
+   takes the conjectural colour on purpose — not because the RECORD is weak, but
+   because what a visitor sees there is the lattice's answer and not the
+   evidence's, and this panel's colours already mean exactly that. */
+.plant-clamped { border-color: var(--con); color: var(--con); }
 
 /* The people section (ROADMAP K52) reuses the same box for the fourth time, and
    the nesting is the wildlife section's exactly: a household is a liberty-shaped

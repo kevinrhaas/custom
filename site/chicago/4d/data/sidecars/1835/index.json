@@ -1437,20 +1437,72 @@
       "name_changed": false,
       "path_local_enu_m": [
         [
-          240,
-          136.5
+          -30,
+          45.2
         ],
         [
-          560,
+          -15,
+          45.2
+        ],
+        [
+          10,
+          7
+        ],
+        [
+          105,
+          63.2
+        ],
+        [
+          150,
+          127
+        ],
+        [
+          165,
+          145
+        ],
+        [
+          170,
+          150
+        ],
+        [
+          183,
+          157.5
+        ],
+        [
+          189,
+          157.5
+        ],
+        [
+          195,
+          157.5
+        ],
+        [
+          210,
+          158
+        ],
+        [
+          265,
+          128.7
+        ],
+        [
+          390,
+          121.5
+        ],
+        [
+          585,
           106.2
         ],
         [
-          780,
+          770,
+          110.2
+        ],
+        [
+          790,
           110.2
         ],
         [
           830,
-          108.5
+          104.2
         ],
         [
           920,
@@ -1468,7 +1520,7 @@
       "geometry_confidence": "reconstructed",
       "surface_confidence": "inferred",
       "wear_confidence": "reconstructed",
-      "note": "DERIVED FROM THE COMMITTED NORTH BANK by tools/derive_north_water.py, not drawn beside it. The line this replaced was a hand-drawn schematic that ran 477.4 m of its 843.3 m INSIDE the terrain's water mask, so the renderer drew no roadway at all across that reach and three of its six bends stood in the river (T-0226). The bank is a trace of Wright 1834 with a stated +/-20 m; this line was not a trace of anything and said so; the old line missed the bank by 1 to 86 m, up to 4.3x that uncertainty; and the North Division placement recipe had already ruled that proximity to North Water Street never overrides the water mask. So the street was the record that was wrong. North Water Street fronted the main stem, so its platted corridor is laid with its south line on the bank and the centreline falls 12.192 m north of it - half the 80 ft thompson_module_1830, fitted in the fewest straight runs that clear every 5 m station with 0.5 m of give, which is 2.5 % of the bank trace's own uncertainty. The west terminus is the east shoulder of the attested north-side slough, 16.5 m clear of its water: a ribbon may not paint over a watercourse and the town's other two slough crossings are modelled structures, so the reach west of it waits on T-0254. Geometry stays reconstructed - a bank is a proxy for a street, not evidence of one. Track width and wear remain visual interpretation.",
+      "note": "DERIVED FROM THE COMMITTED NORTH BANK by tools/derive_north_water.py, not drawn beside it. The line this replaced was a hand-drawn schematic that ran 477.4 m of its 843.3 m INSIDE the terrain's water mask, so the renderer drew no roadway at all across that reach and three of its six bends stood in the river (T-0226). The bank is a trace of Wright 1834 with a stated +/-20 m; this line was not a trace of anything and said so; the old line missed the bank by 1 to 86 m, up to 4.3x that uncertainty; and the North Division placement recipe had already ruled that proximity to North Water Street never overrides the water mask. So the street was the record that was wrong. North Water Street fronted the main stem, so its platted corridor is laid with its south line on the bank and the centreline falls 12.192 m north of it - half the 80 ft thompson_module_1830, fitted in the fewest straight runs that clear every 5 m station with 0.5 m of give, which is 2.5 % of the bank trace's own uncertainty. THE SLOUGH IS NOW CROSSED RATHER THAN STOPPED AT (T-0254). The line runs in TWO REACHES with a structure between them: the east reach from the deck of north_water_slough_crossing at E +195 out to E +830, the west reach from the deck's other end at E +183 to the North Branch at E -30, and one bend at [189, 157.5] standing in the water at the deck's midpoint. That wet bend is deliberate and it is the only one: R-BUG4 drops a panel whose centreline endpoint is wet, so the two panels the deck replaces are dropped and the crossing carries the street. Carrying the line across with dry bends at each shoulder would have painted a 6.65 m ford. Each reach's smoothing window is clamped inside its own reach, because at E +190 the slough and the river funnel are one water run reaching N +165 and a window that saw it would push the street up the slough instead of over it. WHAT THE WEST REACH COSTS, stated because the tool measures it: the road stands 12.0 m to 41.5 m from the water, perpendicular, against a 12.192 m setback. The 41.5 is one 15 m stretch at the base of Wolf Point, where the bank turns through nearly a right angle from the main stem into the North Branch and the derivation's running maximum - which holds the street north of EVERY bank point within 15 m of it - lags the turn. The rule is doing what it says; on a bank that falls 45 m in 35 m of easting it is expensive. Filed as its own ticket rather than tuned here. Geometry stays reconstructed - a bank is a proxy for a street, not evidence of one, and west of the slough there is not even a building on it. Track width and wear remain visual interpretation.",
       "citations": [
         {
           "source_id": "chicago_dpw_1891_streets",
@@ -2585,6 +2637,12 @@
       "name": "North Side School House",
       "sidecar": "sidecars/1835/north_side_school_1833.json",
       "asset": "gltf/north_side_school_1833__log_1833.glb"
+    },
+    {
+      "id": "north_water_slough_crossing",
+      "name": "The North Water Street Slough Crossing",
+      "sidecar": "sidecars/1835/north_water_slough_crossing.json",
+      "asset": "gltf/north_water_slough_crossing__crossing_1835.glb"
     },
     {
       "id": "old_bank_building",

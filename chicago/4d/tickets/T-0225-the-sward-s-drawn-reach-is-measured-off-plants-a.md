@@ -1,7 +1,7 @@
 ---
 id: T-0225
 title: The sward's drawn reach is measured off plants at two per cent coverage
-state: open
+state: done
 epic: META
 requested_by: loop
 seen: false
@@ -9,9 +9,9 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-08-27
-closed: null
-pr: null
-claimed_by: null
+closed: 2026-08-28
+pr: 450
+claimed_by: run 8/28/2026, 4:18:27 AM CT
 blocked_on: null
 needs_bake: false
 ---
@@ -50,3 +50,15 @@ puts the present sward below them, that is a finding about the sward and gets it
 **Links:** `tools/smoke_renderer.mjs` (part 7, `seam`, the `fadeAt(...) <= 0.02` cull) ·
 `renderers/web/js/flora.js` (`fadeOf`, `ringsFor`, `slotRing`) · T-0187 · T-0093 · T-0086 ·
 ROADMAP § S6a item 3.
+
+---
+
+**RESOLVED 2026-08-28.** The threshold is `1/16` — the screen door's own quantum, the smallest
+value at which "drawn" is a property of the plant's coverage rather than of its dither phase, since
+`chiBayer4` has sixteen levels and `vChiDither` only slides them. Both bars carry `band x 1/16`,
+the inset a linear ramp costs at that coverage (0.44 m desktop, 0.10 m phone), because they are
+stated against the placed boundary and the statistic reads the drawn one. Both readings print from
+the check. Measured: desktop `full` 25.00-28.00 m, mean 26.61 (was 26.81 at 2 %), bars 21.76/24.46;
+mobile `light` 10.32-13.22 m, mean 11.96 (unchanged at 2 %), bars 9.50/11.50. Both clear both bars,
+so no finding about the sward falls out. `tools/measure_sward_reach.mjs` is the instrument, and
+T-0277 carries the re-pricing of the density handover the old statistic refused.

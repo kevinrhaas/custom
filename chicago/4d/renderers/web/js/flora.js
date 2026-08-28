@@ -165,6 +165,22 @@ const TUNE = {
    *
    * So the outer edges keep their ramp, and what T-0187 fixes is the ramp's
    * WIDTH: it must not begin inside the verge. See `LOW` and `MID`.
+   *
+   * T-0225 — THE HALF OF THAT ARGUMENT THAT WAS THE INSTRUMENT'S, and it is
+   * repaired now rather than restated. Every figure above was read at
+   * `fadeAt > 0.02`, which the 4x4 screen door renders as nothing at all for
+   * two instance phases in three, so the reach a coverage ramp "reports" was
+   * very nearly the radius the placer stopped at: measured with
+   * `tools/measure_sward_reach.mjs`, the placed boundary and the 2 % reading
+   * are 0.54 m apart at `full` and 0.56 m at `light`. The gate now reads the
+   * boundary at 1/16 — the screen door's own quantum, below which "drawn" is a
+   * property of the dither phase and not of the coverage — and carries the
+   * `band x 1/16` that costs, so a density handover is no longer compared
+   * against a statistic only a coverage ramp can produce.
+   *
+   * What that does NOT do is settle whether these edges should be spread. The
+   * bar is off the scale now; the measurement of what a spread costs was taken
+   * against the old statistic and has to be retaken. T-0277 is that work.
    */
   near: { radius: 7.6, cell: 0.74, perCell: 4, tuftsPerM2: 7.30, band: 2.2,
     spreadOuter: true },
@@ -1507,6 +1523,10 @@ export async function createFlora({
         forbShare: z.forbShare,
         forbShareWet: z.forbShareWet,
         shrubShare: z.shrubShare,
+        /** T-0282. The shrub stratum's own over-water share, the one of the four
+         *  `shareOf` deals that was never exported. Without it the ceiling
+         *  declaration cannot see a quarter of the lattice it exists to state. */
+        shrubShareWet: z.shrubShareWet,
         /** The sum each is dealt off, so a reader can tell a share that is
          *  clamped from one that is small. `null` for the matrix by
          *  `SLOT_BASIS` — its slot count is `matrixShare` above.
@@ -1518,7 +1538,19 @@ export async function createFlora({
          *  ate the rest of it without re-deriving either. */
         forbDensity: z.dry.forbs.densityHigh,
         forbDensityMid: z.dry.forbs.density,
+        /** T-0019. The same sum on the WET side of the waterline, which nothing
+         *  outside this module could read: `forbShareWet` is clamped exactly as
+         *  `forbShare` is, so a wet layer sitting on the ceiling was
+         *  indistinguishable from one tuned to it. Four of the ten communities
+         *  plant a different list over water, and two of them are among the
+         *  layers the clamp binds. */
+        forbDensityWet: z.wet.forbs.densityHigh,
         shrubDensity: z.dry.shrubs.density,
+        /** T-0282. And the sum behind `shrubShareWet`, for the same reason
+         *  T-0019 exported `forbDensityWet`: a clamped share is one plant per
+         *  slot whatever the slot is, so the density is what says how far a
+         *  layer is from the ceiling and how much of its record it loses. */
+        shrubDensityWet: z.wet.shrubs.density,
       }));
     },
     /** The lattice/fade rings and the rebuild step, for the gate that checks a
