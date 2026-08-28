@@ -1,0 +1,470 @@
+{
+  "schema": 1,
+  "issue_id": "chicago_democrat_1834_04_30",
+  "extracted": "2026-08-28",
+  "extracted_by": "hand, T-0313 — the Democrat read, April 1834",
+  "note": "Vol. I No. 22. THREE NAMED CORNERS IN ONE ISSUE — Kimball's new store at South Water and Clark, P. F. Peck at LaSalle and South Water, and J. K. Botsford's iron and stove store at Dearborn and Lake — which is more `corner` placements than the rest of April put together and the best return this month makes to T-0263. The issue also carries the Hennepin letter list for the second time, in its worst printing, which is the second of the two lists T-0313 was written expecting to be Chicago's.",
+  "claims": [
+    {
+      "id": "c001",
+      "kind": "business",
+      "reading": "transcription_mediated",
+      "quote": "pened and fer Sate,\nNew Store on the corner of South V\ngad Clark-streots, Ciicago, Il.\nlendid assortment of Fancy and Sta-| Ad\nBY GOODS, |»\nery & Glass Ware, jo\nWARD aud CUTTLERY,  [*\"\nBoys For and Cloth CABS,| 5\nBatting, Yarn and Wicking, | ~\nand Shirting, Blankets, &e. Ke.\n» will be sold at the lowest prices |\nuntry Product,\nW. KIMBALL.\nNor. 1238 1",
+      "normalized": "[Just o]pened and fo[r] Sa[l]e, [at the] New Store on the corner of South W[ater] [an]d Clark-streets, C[h]icago, Il[l.] [A sp]lendid assortment of Fancy and Sta[ple DR]Y GOODS, [Crock]ery & Glass Ware, [HARD]WAR[E] and CUTTLERY, [Men’s and] Boys F[u]r and Cloth CA[P]S, [Cotton] Batting, Yarn and Wicking, [Sheeting] and Shirting, Blankets, &c. &c. [which] will be sold at the lowest prices [for cash or co]untry Produc[e]. [W.] W. KIMBALL. No[v]. 12[, 18]3[3.]",
+      "locator": {
+        "artifact_role": "primary",
+        "issue_page": 4,
+        "column": 2,
+        "lines": [
+          3817,
+          3830
+        ],
+        "lines_of_claim": [
+          3817,
+          3818,
+          3819,
+          3820,
+          3821,
+          3822,
+          3823,
+          3824,
+          3825,
+          3826,
+          3827,
+          3828,
+          3829,
+          3830
+        ],
+        "interleaved": true
+      },
+      "ad_copy_date": {
+        "verbatim": "Nor. 1238 1",
+        "iso": "1833-11-12"
+      },
+      "business": {
+        "name": "W. Kimball, New Store",
+        "proprietors": [
+          "W. Kimball"
+        ],
+        "trade": "dry goods, crockery, hardware and cutlery",
+        "goods": [
+          "dry goods",
+          "crockery",
+          "glass ware",
+          "hardware",
+          "cutlery",
+          "caps",
+          "blankets"
+        ],
+        "street": "South Water Street",
+        "placement": {
+          "class": "corner",
+          "anchor": "the corner of South Water and Clark streets",
+          "street": "South Water Street"
+        }
+      },
+      "entities": [
+        {
+          "as_printed": "W. KIMBALL.",
+          "normalized": "W. Kimball",
+          "role": "advertiser",
+          "occupations": [
+            "storekeeper"
+          ]
+        }
+      ],
+      "notes": "A NEW STORE ON THE CORNER OF SOUTH WATER AND CLARK — the same corner the Chicago Democrat's own building stands on (1834-04-08 c005). Kimball's is a `corner` placement with both streets named, and it puts a general dry-goods store at the town's busiest intersection. T-0308 recorded that the per-issue source record for 1833-11-26 supplies 'Kimball's address' where the transcription lost it; this printing gives the address in the transcription itself, on copy dated 12 November 1833 — a fortnight before the paper's first number — and still running on 30 April 1834, which is a five-and-a-half-month documented window on the storefront. The proprietor's initial is read 'W. Kimball' here and the 1 April strip of the same advertisement reads 'V. KIMBALL' (1834-04-01 p4 c2); neither is asserted over the other and the printed form is kept."
+    },
+    {
+      "id": "c002",
+      "kind": "business",
+      "reading": "transcription_mediated",
+      "quote": "House for sale.\nHouse\nthe corne\nstreets.\n[uncertain: P. F. PECK,]\nOF LASALLI AND SOCTI WATER-STREET\nnow on hand, many of the staple a\ncite requisic lo the\nand mutenes in future to kee\nmily solicited.\n[uncertain: • share or babu]\nry Goods,\nHardarare,\nGroceries, Crockery,\nOTS& SIDES, BATS\nI a variety of miscellaneous articles.\n+ bbis. of hard Bread.\ngo, Dec. 3, 1833",
+      "normalized": "House for sale. [A] House [on] the corne[r of … ]streets. P. F. PECK, [CORNER] OF LASALL[E] AND SO[U]T[H] WATER-STREET[S, has] now on hand, many of the staple a[rticles requi]site [t]o the [town’s consumption] and [i]nte[n]ds in future to kee[p a general and full supply. A share of public patronage is] r[e]s[pectfully] solicited. [His stock comprises] Dry Goods, Hard[wa]re, Groceries, Crockery, [BO]OTS & S[HO]ES, [H]ATS [and] a variety of miscellaneous articles. [Now on hand, 20 b]bls. of hard Bread. [Chica]go, Dec. 3, 1833.",
+      "locator": {
+        "artifact_role": "primary",
+        "issue_page": 3,
+        "column": 5,
+        "lines": [
+          3257,
+          3274
+        ],
+        "lines_of_claim": [
+          3257,
+          3258,
+          3259,
+          3260,
+          3261,
+          3262,
+          3263,
+          3264,
+          3265,
+          3266,
+          3267,
+          3268,
+          3269,
+          3270,
+          3271,
+          3272,
+          3273,
+          3274
+        ],
+        "interleaved": true
+      },
+      "ad_copy_date": {
+        "verbatim": "go, Dec. 3, 1833",
+        "iso": "1833-12-03"
+      },
+      "business": {
+        "name": "P. F. Peck, storekeeper",
+        "proprietors": [
+          "P. F. Peck"
+        ],
+        "trade": "dry goods, hardware, groceries and crockery",
+        "goods": [
+          "dry goods",
+          "hardware",
+          "groceries",
+          "crockery",
+          "boots",
+          "shoes",
+          "hats",
+          "hard bread"
+        ],
+        "street": "South Water Street",
+        "placement": {
+          "class": "corner",
+          "anchor": "the corner of LaSalle and South Water streets",
+          "street": "South Water Street"
+        }
+      },
+      "entities": [
+        {
+          "as_printed": "P. F. PECK,",
+          "normalized": "P. F. Peck",
+          "role": "advertiser",
+          "occupations": [
+            "storekeeper"
+          ]
+        }
+      ],
+      "notes": "PECK'S STORE GETS ITS CORNER. The worked fixture of this whole corpus (T-0257, 1835-07-01) places Peter Cohen and J. S. C. Hogan on South Water Street; P. F. Peck has been in the corpus since the first number as the man who reports the Chicago prices current, and here the paper sets his own advertisement under a standing head naming BOTH streets — LaSalle and South Water. That is a `corner` placement, and it is the third named corner this month after the Democrat's own building and Kimball's new store, all three on South Water. The copy is dated 3 December 1833 and is still running on 30 April 1834. The 'House for sale' notice immediately above is a separate advertisement whose own corner the strip cut away; it is quoted because it stands inside the cited lines and is NOT claimed as Peck's."
+    },
+    {
+      "id": "c003",
+      "kind": "business",
+      "reading": "transcription_mediated",
+      "quote": "IMBER.\nors naving mis day ma\nth Mr. A. MG\nhe public, on\nd in\nChicago, Pine Timber\nm 12 to 60 n. in length, and\nfor which it\n[uncertain: On FRUYTE & CO.]\nIron and Store\nKROEN AND LAKE-STREETS.\n[uncertain: contente]\nthankfilly receiv\nJ. K. BOTSFORD\n80\ni for Sale.\nMarch\nELS PORI\nams and Shoulde\n[uncertain: FOL & ROTSFORD.]\n10\nner of Dearborn and Take-sts.",
+      "normalized": "[T]IMBER. [The subscrib]ers [h]aving t[h]is day ma[de an arrangement wi]th Mr. A. M[c…] [will supply] t[h]e public, on [… delivere]d in [the town of] Chicago, Pine Timber [fro]m 12 to 60 f[ee]t in length, and [… for which it will …] [P.] PRUYN[E] & CO. Iron and Stove [Store, CORNER OF DEARB]ORN AND LAKE-STREETS. […] thankf[u]lly receiv[ed …] J. K. BOTSFORD [… corn]er of Dearborn and [L]ake-sts.",
+      "locator": {
+        "artifact_role": "primary",
+        "issue_page": 3,
+        "column": 4,
+        "lines": [
+          3126,
+          3147
+        ],
+        "lines_of_claim": [
+          3126,
+          3127,
+          3128,
+          3129,
+          3130,
+          3131,
+          3132,
+          3133,
+          3134,
+          3135,
+          3136,
+          3137,
+          3138,
+          3139,
+          3140,
+          3141,
+          3142,
+          3143,
+          3144,
+          3145,
+          3146,
+          3147
+        ],
+        "interleaved": true
+      },
+      "business": {
+        "name": "J. K. Botsford, iron and stove store",
+        "proprietors": [
+          "J. K. Botsford"
+        ],
+        "trade": "iron and stove store",
+        "goods": [
+          "iron",
+          "stoves",
+          "tin ware"
+        ],
+        "street": "Dearborn Street",
+        "placement": {
+          "class": "corner",
+          "anchor": "the corner of Dearborn and Lake streets",
+          "street": "Dearborn Street"
+        }
+      },
+      "entities": [
+        {
+          "as_printed": "J. K. BOTSFORD",
+          "normalized": "J. K. Botsford",
+          "role": "advertiser",
+          "occupations": [
+            "tinsmith",
+            "merchant"
+          ]
+        },
+        {
+          "as_printed": "On FRUYTE & CO.",
+          "normalized": "P. Pruyne & Co.",
+          "role": "advertiser in the timber notice above",
+          "occupations": [
+            "merchant"
+          ]
+        }
+      ],
+      "notes": "THE CORNER OF DEARBORN AND LAKE IS AN IRON AND STOVE STORE BY THE END OF APRIL, and the same corner was advertised on 16 April as a tin manufactory about to open 'on the opening of navigation' (1834-04-16 c002). The trade named on the sign has changed inside a fortnight; the man and the corner have not. The strip carries the corner twice, once under the standing head and once under Botsford's own signature, which is why the placement is stated rather than inferred. THE TIMBER NOTICE ABOVE IT IS ITS OWN FACT and is quoted here because it stands inside the cited lines: P. Pruyne & Co. undertake to deliver PINE TIMBER FROM 12 TO 60 FEET IN LENGTH in the town of Chicago — a size range that says directly what the town was framing buildings out of in the spring of 1834, and a supply arrangement dated to the day it was made."
+    },
+    {
+      "id": "c004",
+      "kind": "business",
+      "reading": "transcription_mediated",
+      "quote": "WW BLACKSMITH = |~\nTIERCE & ABBOTT, ‘\nLD respectfully inform the inhabit-| 4,\nsof Chicago and the neighboring sct-\nhat they have commenced the above |p),\n‘said town, nearly opposite the Chi-\n|, where thoy are ready to wait upon A\nsho may have any kind of work to do\nng of business, on the most liberal]\nhey will manufacture Prarie Ploughs, Ce\nnd on the shortest notice. By strict be\n‘0 business, they hope to receive a| °°\nutrouage. es\n1633. 3 he",
+      "normalized": "[NE]W BLACKSMITH[ING. PIERCE] & ABBOTT, [WOU]LD respectfully inform the inhabit[ant]s of Chicago and the neighboring s[e]t[tlements, t]hat they have commenced the above [business in] said town, nearly opposite the Chi[…], where th[e]y are ready to wait upon [all who] may have any kind of work to do [in their li]ne of business, on the most liberal [terms. T]hey will manufacture Prarie Ploughs, [… a]nd on the shortest notice. By strict [attention t]o business, they hope to receive a [share of public p]atr[o]nage. [Chicago, … 1]833.",
+      "locator": {
+        "artifact_role": "primary",
+        "issue_page": 4,
+        "column": 2,
+        "lines": [
+          3855,
+          3868
+        ],
+        "lines_of_claim": [
+          3855,
+          3856,
+          3857,
+          3858,
+          3859,
+          3860,
+          3861,
+          3862,
+          3863,
+          3864,
+          3865,
+          3866,
+          3867,
+          3868
+        ],
+        "interleaved": true
+      },
+      "business": {
+        "name": "Pierce & Abbott, blacksmiths",
+        "proprietors": [],
+        "trade": "blacksmithing and plough making",
+        "goods": [
+          "prairie ploughs",
+          "blacksmith work"
+        ],
+        "street": null,
+        "placement": {
+          "class": "none",
+          "street": null
+        }
+      },
+      "entities": [
+        {
+          "as_printed": "TIERCE & ABBOTT, ‘",
+          "normalized": "[P]ierce & Abbott",
+          "role": "advertisers",
+          "occupations": [
+            "blacksmith"
+          ]
+        }
+      ],
+      "notes": "A SECOND BLACKSMITH'S SHOP, AND AN ANCHOR THE COLUMN EDGE CUT IN HALF. Pierce & Abbott are working 'nearly opposite the Chi—' and the sentence stops there in BOTH printings of this advertisement — here and on 1834-04-16 (p4 c2, 'rly opponite the Chi-'), because the strip boundary falls in the same place each time. The anchor is therefore genuinely unresolved IN THIS ISSUE and the placement is `none`, because '[…]' marks an absence rather than inviting a supply. IT IS ALMOST CERTAINLY THE CHICAGO HOTEL, and the evidence for that is five months downstream rather than here: T-0291's read of September 1834 found the successor firm Pierce & French keeping 'the blacksmith shop formerly occupied by Pierce and Abbott, on the corner of Lake [and Canal] streets, opposite the Chicago Hotel'. That is a different printing about the same shop and it resolves both the anchor and the corner — but it is that claim's evidence, not this one's, so the placement here stays `none` and the identification is recorded rather than borrowed. WHAT IS DOCUMENTED HERE IS THE TRADE: they manufacture PRAIRIE PLOUGHS, which is a farm-implement shop rather than a horseshoer's, and with Matthias Mason opposite Graves's Tavern (1834-04-01 c004) the town has two blacksmiths advertising in the same month."
+    },
+    {
+      "id": "c005",
+      "kind": "building",
+      "reading": "transcription_mediated",
+      "quote": "ROW GUROGIB 33\nNTITY of highly fisvoured Hams,\nhee of Bacon, Mess and Prime Pork,\ny D. Elston’ & Co, who acquaint\nthey have fitted up a Smoke se,\nking of Hans, Bacon, &e. &e., and\n-1 to commence the drying there\nFeb. V5, 1",
+      "normalized": "[G]RO[C]E[R]I[ES.] [A qua]ntity of highly fi[a]voured Hams, [and pie]ces of Bacon, Mess and Prime Pork, [for sale b]y D. Elston & Co, who acquaint [the public that] they have fitted up a Smoke [Hou]se, [for the smo]king of Hams, Bacon, &c. &c., and [are prepared] to commence the drying there[of. Chicago,] Feb. [1]5, 1[834.]",
+      "locator": {
+        "artifact_role": "primary",
+        "issue_page": 4,
+        "column": 2,
+        "lines": [
+          3847,
+          3854
+        ],
+        "lines_of_claim": [
+          3847,
+          3848,
+          3849,
+          3850,
+          3851,
+          3852,
+          3853,
+          3854
+        ],
+        "interleaved": true
+      },
+      "ad_copy_date": {
+        "verbatim": "Feb. V5, 1",
+        "iso": "1834-02-15"
+      },
+      "business": {
+        "name": "D. Elston & Co., smoke house",
+        "proprietors": [
+          "D. Elston"
+        ],
+        "trade": "provisions and meat curing",
+        "goods": [
+          "hams",
+          "bacon",
+          "mess pork",
+          "prime pork"
+        ],
+        "street": null,
+        "placement": {
+          "class": "none",
+          "street": null
+        }
+      },
+      "entities": [
+        {
+          "as_printed": "D. Elston’ & Co,",
+          "normalized": "D. Elston & Co.",
+          "role": "proprietors",
+          "occupations": [
+            "provision merchant",
+            "meat curer"
+          ]
+        }
+      ],
+      "notes": "A SMOKE HOUSE, FITTED UP AND NAMED. This is a working structure the reconstruction would otherwise have no warrant for: D. Elston & Co. say they have 'fitted up a Smoke House' for hams and bacon, on copy dated 15 February 1834 and still running at the end of April. The same firm's soap and candle manufactory is announced three weeks later on 1834-04-08 (claim c004 there), so one proprietor is standing up two industrial works in the town inside a single spring. NO ADDRESS IS GIVEN for either, which is why the placement is `none` — the building is documented to exist, not to sit anywhere in particular, and a smoke house sited on nothing but plausibility would be a liberty rather than a source."
+    },
+    {
+      "id": "c006",
+      "kind": "building",
+      "reading": "transcription_mediated",
+      "quote": "[uncertain: EAGLE HO]\n[uncertain: E.]\n[uncertain: Regor the parte]\n[uncertain: he has taken the EAGLI HOT]\n[uncertain: , his lime will be punctually att]\n[uncertain: TOR DE SROTDOUIROS SE OSTIO]\n[uncertain: aparente mayor lam]\n[uncertain: SO I5, TESI]",
+      "normalized": "[The] EAGLE HO[TEL. … the subscriber] [re]s[p]e[ctfully informs] the p[ublic … that] he has taken the EAGL[E] HOT[EL … and that all who favour] his li[n]e will be punctually att[ended … 18]3[4.]",
+      "locator": {
+        "artifact_role": "primary",
+        "issue_page": 3,
+        "column": 2,
+        "lines": [
+          2934,
+          2941
+        ],
+        "lines_of_claim": [
+          2934,
+          2935,
+          2936,
+          2937,
+          2938,
+          2939,
+          2940,
+          2941
+        ],
+        "interleaved": true
+      },
+      "business": {
+        "name": "the Eagle Hotel",
+        "proprietors": [],
+        "trade": "hotel",
+        "goods": [],
+        "street": null,
+        "placement": {
+          "class": "none",
+          "street": null
+        }
+      },
+      "entities": [],
+      "notes": "A NAMED HOTEL CHANGES HANDS. The Eagle Hotel is a building with a proper name, taken by a new keeper in the spring of 1834, and the corpus has not carried it before. THE STRIP IS ALMOST ENTIRELY LOST — every line of this claim is inside an `[uncertain: …]` block, the keeper's name is not in it, and no street is given — so what is claimed is only what survives twice over in the same passage: the house's NAME and that it was taken. It is recorded rather than passed over because a named hotel is exactly the kind of building T-0263 will want to place, and the next pass that opens the page images will know which column to open. Nothing here is placed and nothing is inferred."
+    },
+    {
+      "id": "c007",
+      "kind": "shipping",
+      "reading": "transcription_mediated",
+      "quote": "On Co\n1ST. BARRELS\n: 125 basket\n13\n, Abel, St. Joseph, BO boxes |\n‘Kinstry, Detroit, to mae ;\neer de meee\nengers. A small assortment\nBrandy, St.\nixon, St. Joseph. Coffee, Mola\nect, lower Lakes.\nWINDOW SAS\nDistro BU 30-1 trot the Factory at\nks, St. Joseph. : =\nKinstry, Buffalo. | Chicage, April 22,\nman-from Michi-| ,N- B. Wanted, w!\nBay, is ashore one thers, and a few whi\nplace.",
+      "normalized": "[…] BARRELS [… 1]25 basket[s …] [… ]Abel, St. Joseph, [8]0 boxes [… Mc]Kinstry, Detroit, [… ] [pass]engers. [… ] Brandy, St. [… D]ixon, St. Joseph[; …] Coffee, Mola[sses … dir]ect, lower Lakes. [… ]ks, St. Joseph; [… Mc]Kinstry, Buffalo. [… a vessel … ]man from Michi[limackinac, or Green] Bay, is ashore [… near] th[i]s place.",
+      "locator": {
+        "artifact_role": "primary",
+        "issue_page": 3,
+        "column": 3,
+        "lines": [
+          2945,
+          2962
+        ],
+        "lines_of_claim": [
+          2945,
+          2946,
+          2947,
+          2948,
+          2949,
+          2950,
+          2951,
+          2952,
+          2953,
+          2954,
+          2955,
+          2956,
+          2957,
+          2958,
+          2959,
+          2960,
+          2961,
+          2962
+        ],
+        "interleaved": true
+      },
+      "entities": [],
+      "notes": "THE MARINE LIST, AND A WRECK OFF THE TOWN. The arrivals name St. Joseph, Detroit, Buffalo and the lower lakes, and the cargoes are boxes, baskets, brandy, coffee and molasses — the ordinary traffic of a harbour that has no harbour yet. The line worth the card is the last: a vessel from Michilimackinac or Green Bay 'is ashore [near] this place'. A grounding reported as local news is direct evidence about the state of the river mouth in April 1834, which is a fact about the GROUND the reconstruction models and not merely about shipping. The strip is a Tesseract-fallback read and the vessel's name and the exact wording of where she lies do not survive; neither is supplied."
+    },
+    {
+      "id": "c008",
+      "kind": "notice",
+      "reading": "transcription_mediated",
+      "quote": "List of Letters\n[uncertain: MAINIG]\n[uncertain: in theM]\n[uncertain: Vory of April, Tea.]\n, Brown 3\nJoan Pool 2\nMichael Planter sen.\nReede\nthe stephen\nReede\ni Lads\n[uncertain: I Hall]\nStewart\nTarris\n12\ningrove eeg\nJohnston\nCasley 3s. GALAHEI, JF. P.M.",
+      "normalized": "List of Letters [RE]MAINI[N]G in the [Post Office at Hennepin, Ill., on the first] [d]ay of April, [1834:] [… ]Brown 3; Joan Pool 2; Michael Planter sen.; Reede; [… ]Stephen; Reede; [… ]Lads; [… ]Hall; Stewart; Tarris; [… ]ingrove; Johnston; Casley. [S.] GALAHE[R], J[r]. P. M.",
+      "locator": {
+        "artifact_role": "primary",
+        "issue_page": 3,
+        "column": 5,
+        "lines": [
+          3303,
+          3320
+        ],
+        "lines_of_claim": [
+          3303,
+          3304,
+          3305,
+          3306,
+          3307,
+          3308,
+          3309,
+          3310,
+          3311,
+          3312,
+          3313,
+          3314,
+          3315,
+          3316,
+          3317,
+          3318,
+          3319,
+          3320
+        ],
+        "interleaved": true
+      },
+      "entities": [],
+      "notes": "THE HENNEPIN LIST FOR THE THIRD AND LAST TIME IN APRIL, AND ITS WORST PRINTING — RECORDED, NOT MINTED. Eight of these fourteen entries are bare surnames with the forename cut away, and two of them are the same word twice ('Reede'), so the strip cannot even be counted reliably. It is the same quarterly return the paper printed on 16 and 23 April, signed by the same postmaster, S. Galaher Jr. of Hennepin in Putnam County; it mints nobody in Chicago (T-0292). THIS IS THE SECOND OF THE TWO LISTS T-0313 EXPECTED TO BE CHICAGO'S, and it is the third printing of an out-of-county one. The month's real census proxy is in the issues of 1 and 16 April."
+    }
+  ]
+}

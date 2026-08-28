@@ -1,6 +1,6 @@
 {
   "project": "chicago-4d",
-  "generated_ct": "Aug 28, 2026, 2:08 PM",
+  "generated_ct": "Aug 28, 2026, 2:25 PM",
   "tickets": [
     {
       "id": "T-0001",
@@ -5398,6 +5398,42 @@
       "blocked_on": null,
       "needs_bake": false,
       "queue_rank": 71
+    },
+    {
+      "id": "T-0319",
+      "title": "The Democrat's blacksmiths advertise on a Main-street the plat does not carry, twice, five months apart",
+      "state": "open",
+      "epic": "META",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "S",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-08-28",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "queue_rank": 72
+    },
+    {
+      "id": "T-0320",
+      "title": "The April 1834 letter list mints 159 of at least 174 printed names, and only the page images can close the gap",
+      "state": "open",
+      "epic": "META",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "M",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-08-28",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "queue_rank": 73
     }
   ]
 }

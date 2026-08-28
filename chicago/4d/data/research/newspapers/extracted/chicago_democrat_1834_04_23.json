@@ -1,0 +1,293 @@
+{
+  "schema": 1,
+  "issue_id": "chicago_democrat_1834_04_23",
+  "extracted": "2026-08-28",
+  "extracted_by": "hand, T-0313 — the Democrat read, April 1834",
+  "note": "Vol. I No. 21. The 'List of Letters' this issue carries is the HENNEPIN one, not Chicago's — T-0313 was written expecting the month's two letter lists here and on 30 April, and both of those are Hennepin's quarterly return signed by S. Galaher Jr.; the Chicago list is in the issues of 1 and 16 April. The issue's substance is John H. Kinzie's warehouse opposite Fort Dearborn in its fuller printing, a cabinet and chair manufactory on South Water Street, the bakery still standing where it stood on 8 April, and an estate notice that uses an attorney's office as a public address.",
+  "claims": [
+    {
+      "id": "c001",
+      "kind": "building",
+      "reading": "transcription_mediated",
+      "quote": "aN @. KINZIE, =\nding # Commission\naR} C\n9\nSELTSASO. y\nor the Troy & Erie Line, ayy\n-ES :—\nu, New-York, =a\nrritu & Co, Troy N.Y.\nSram & Sons, Rochester,\nSON ep\nTots Buffalo, N.Y.\nSaLpwis,Prasr & Co,Cleaveland,\n= Co. St. ,M.T.\nJnoTuens, St, Louis, Mo.\n2 gents Sor Troy and Enie Line.\n& Stan, Galena, Il,\nTH & Bavsu, Green Bay, M. T.\nconstantly on hand, Salt, Win- Co\nass, Nails, §c. low for Cash, at}  <\n2USR, Opposite to Fort Dearborn.\n834,",
+      "normalized": "[JOH]N [H]. KINZIE, [Forwar]ding [&] Commission [ME]R[CHANT, CHICAGO, ILLINOIS. Agent] for the Troy & Erie Line. [REFERENC]ES:— [S. Putnam], New-York; [G. P. Ga]rrit[t] & Co, Troy N.Y.; [Garritts, Brothers & Sons], Rochester; [S. Thomp]son [& Co. and Townsend & C]ott[,] Buffalo, N.Y.; [Giddings, B]aldwin, Pease & Co, Cleaveland; [J. R. Dowe &] Co. St. [Joseph], M.T.; [Smith & B]rothers, St. Louis, Mo.; [also A]gents for Troy and E[r]ie Line; [Johnston] & Stan[ton], Galena, Ill.; [Farnswor]th & B[r]ush, Green Bay, M. T. [Keeps] constantly on hand, Salt, Win[dow Sash, Gl]ass, Nails, &c. low for Cash, at [his WARE HO]USE, Opposite to Fort Dearborn. [April 14, 1]834.",
+      "locator": {
+        "artifact_role": "primary",
+        "issue_page": 3,
+        "column": 4,
+        "lines": [
+          2924,
+          2945
+        ],
+        "lines_of_claim": [
+          2924,
+          2925,
+          2926,
+          2927,
+          2928,
+          2929,
+          2930,
+          2931,
+          2932,
+          2933,
+          2934,
+          2935,
+          2936,
+          2937,
+          2938,
+          2939,
+          2940,
+          2941,
+          2942,
+          2943,
+          2944,
+          2945
+        ],
+        "interleaved": true
+      },
+      "ad_copy_date": {
+        "verbatim": "834,",
+        "iso": "1834-04-14"
+      },
+      "business": {
+        "name": "John H. Kinzie, forwarding and commission merchant",
+        "proprietors": [
+          "John H. Kinzie"
+        ],
+        "trade": "forwarding and commission merchant",
+        "goods": [
+          "salt",
+          "window sash",
+          "glass",
+          "nails"
+        ],
+        "street": null,
+        "placement": {
+          "class": "relative",
+          "anchor": "Fort Dearborn",
+          "offset_text": "2USR, Opposite to Fort Dearborn.",
+          "offset_normalized": "[his WARE HO]USE, Opposite to Fort Dearborn",
+          "street": null
+        }
+      },
+      "entities": [
+        {
+          "as_printed": "aN @. KINZIE",
+          "normalized": "John H. Kinzie",
+          "role": "advertiser",
+          "occupations": [
+            "forwarding and commission merchant"
+          ]
+        }
+      ],
+      "notes": "THE WAREHOUSE OPPOSITE THE FORT, SECOND WITNESS — and this printing reads 'WARE HOUSE' in capitals and keeps 'Agent for the Troy & Erie Line', which the 16 April strip lost. Two printings of the same copy, dated 14 April 1834, both placing John H. Kinzie's warehouse opposite Fort Dearborn: the placement is documented twice inside ten days and needs no inference. Taken with 1834-04-16 c001 this is the one building in the April corpus that a reconstruction can site against a structure whose own position is independently fixed."
+    },
+    {
+      "id": "c002",
+      "kind": "business",
+      "reading": "transcription_mediated",
+      "quote": "CABINET AND CHAI\nMANeracrear.\nA. FILER & CO.\nAVING commenced the above busio\njehaeoge Water street, ee doors _\n} house, wil on\nneral prteracca don oe\nCABINET WARE\nof the first quality ; Also,\null descriptions, By their endeavors to g\ny to receive a share of public patro:\n‘ai who are emigrating to thie se\nthe country, will do well to call, ae they\nsuppiied on the mest reasonable terms.\nYucage, March 4, 1834.",
+      "normalized": "CABINET AND CHAI[R] MAN[U]FACT[O]R[Y]. A. FILER & CO. [H]AVING commenced the above busin[ess on Sout]h [Wat]er street, [thr]ee doors [… of the … ]house, wil[l keep on hand a ge]neral [asso]rt[ment of] CABINET WARE of the first quality; Also, [CHAIRS of a]ll descriptions. By their endeavors to [please the]y [hope] to receive a share of public patro[nage.] [All who] are emigrating to thi[s] se[ction of] the country, will do well to call, as they [will be] supplied on the most reasonable terms. [Chi]cago, March 4, 1834.",
+      "locator": {
+        "artifact_role": "primary",
+        "issue_page": 3,
+        "column": 5,
+        "lines": [
+          3073,
+          3087
+        ],
+        "lines_of_claim": [
+          3073,
+          3074,
+          3075,
+          3076,
+          3077,
+          3078,
+          3079,
+          3080,
+          3081,
+          3082,
+          3083,
+          3084,
+          3085,
+          3086,
+          3087
+        ],
+        "interleaved": true
+      },
+      "ad_copy_date": {
+        "verbatim": "Yucage, March 4, 1834.",
+        "iso": "1834-03-04"
+      },
+      "business": {
+        "name": "A. Filer & Co., cabinet and chair manufactory",
+        "proprietors": [
+          "A. Filer"
+        ],
+        "trade": "cabinet and chair making",
+        "goods": [
+          "cabinet ware",
+          "chairs"
+        ],
+        "street": "South Water Street",
+        "placement": {
+          "class": "street_only",
+          "street": "South Water Street"
+        }
+      },
+      "entities": [
+        {
+          "as_printed": "A. FILER & CO.",
+          "normalized": "A. Filer & Co.",
+          "role": "proprietors",
+          "occupations": [
+            "cabinet maker",
+            "chair maker"
+          ]
+        }
+      ],
+      "notes": "A CABINET AND CHAIR MANUFACTORY ON SOUTH WATER STREET, and the offset the reconstruction wants is half-lost. 'Three doors' survives; what it is three doors from does not — the strip reads 'ee doors _' and then '} house, wil on', so the anchor is a house whose name the column edge cut away. The placement is therefore recorded as street_only with the offset text kept verbatim, rather than as a relative placement anchored on a building this pass would have had to name for it. The advertisement is dated 4 March 1834 and runs again on 1834-04-30 (p3 c5), so the works is documented across two months. Furniture made IN the town rather than shipped to it is a fact about the town's trades, and it is aimed squarely at the emigrants: 'all who are emigrating to this section of the country, will do well to call'."
+    },
+    {
+      "id": "c003",
+      "kind": "business",
+      "reading": "transcription_mediated",
+      "quote": "D. GRAVES, .\nD inform the'citizens of Chicago, | of\nthe neighboring settlements, a\nnenced the Baking Business, in this | ¢p,\nuth Water-street, a few doors north | i¢\nNe vbury & Dole'e' store, where he | or,\nkeep on hand, frosh Bread, Crackers,\n&c. and is ready to supply’ the citi-\ntown, es low as can afforded. —\n| a distance altonded to immediately.",
+      "normalized": "[D.] GRAVES, [woul]d inform the citizens of Chicago, [and] the neighboring settlements, [that he has comm]enced the Baking Business, in this [town, on So]uth Water-street, a few doors north [of Ne]w[b]ury & Dole’s store, where he [will] keep on hand, fro[s]h Bread, Crackers, [&]c. and is ready to supply the citi[zens of this] town, [a]s low as can [be] afforded.— [Orders from] a distance a[t]tended to immediately.",
+      "locator": {
+        "artifact_role": "primary",
+        "issue_page": 4,
+        "column": 3,
+        "lines": [
+          3685,
+          3694
+        ],
+        "lines_of_claim": [
+          3685,
+          3686,
+          3687,
+          3688,
+          3689,
+          3690,
+          3691,
+          3692,
+          3693,
+          3694
+        ],
+        "interleaved": true
+      },
+      "business": {
+        "name": "D. Graves, baker",
+        "proprietors": [
+          "D. Graves"
+        ],
+        "trade": "baking",
+        "goods": [
+          "bread",
+          "crackers"
+        ],
+        "street": "South Water Street",
+        "placement": {
+          "class": "relative",
+          "anchor": "Newberry & Dole's store",
+          "offset_text": "uth Water-street, a few doors north | i¢\nNe vbury & Dole'e' store, where he | or,",
+          "offset_normalized": "[on So]uth Water-street, a few doors north [of Ne]w[b]ury & Dole’s store",
+          "street": "South Water Street"
+        }
+      },
+      "entities": [
+        {
+          "as_printed": "D. GRAVES, .",
+          "normalized": "D. Graves",
+          "role": "advertiser",
+          "occupations": [
+            "baker"
+          ]
+        }
+      ],
+      "notes": "THE BAKERY IS STILL THERE A FORTNIGHT LATER, at the same place and in the same words — 'in this town, on South Water-street, a few doors north of Newbury & Dole's store'. The same advertisement ran on 1834-04-08 (claim c001 there). Two printings is what turns a storefront from a notice into a WINDOW: D. Graves's bakery is documented on South Water Street from 8 April 1834 at the latest, placed against a building the corpus can locate on its own. That the copy is unchanged also settles that the two are one business and not two openings."
+    },
+    {
+      "id": "c004",
+      "kind": "notice",
+      "reading": "transcription_mediated",
+      "quote": "List of Letters\nEMAINIG in the Pest Office ot Hes\nyipin, LIL. om the fret doy of Apel, lex\nley Browa 3 Thos. M'Connell\n2s Booth\nh Clark\nbunley\nMichsel Plaster sen.\nhese William Rood .\nWiilliam Miller",
+      "normalized": "List of Letters [R]EMAINI[N]G in the P[o]st Office o[t Henne]pin, ILL. o[n] the f[i]r[s]t d[a]y of Ap[ri]l, [1834:] [… Whee]ley Brow[n] 3; Thos. M‘Connell; [… Ja]s. Booth; [Josia]h Clark; [… Dun]ley; Michael Plaster sen.; [… ]hese; William Rood; Wi[l]liam Miller.",
+      "locator": {
+        "artifact_role": "primary",
+        "issue_page": 3,
+        "column": 5,
+        "lines": [
+          3128,
+          3137
+        ],
+        "lines_of_claim": [
+          3128,
+          3129,
+          3130,
+          3131,
+          3132,
+          3133,
+          3134,
+          3135,
+          3136,
+          3137
+        ],
+        "interleaved": true
+      },
+      "entities": [],
+      "notes": "THE HENNEPIN LIST AGAIN — RECORDED, AND NOT MINTED. Same return as 1834-04-16 c005, printed a week later and cut differently: this strip keeps 'Whee]ley Brown 3', 'Jas. Booth', 'Josiah Clark', 'Michael Plaster sen.' and 'William Rood' where the 16 April strip kept 'Nathan Owen', 'B. Smith', 'Alpha Stephens' and 'Jesse Sawyer'. Neither printing is whole and neither mints anybody, because Hennepin is in Putnam County and its post office's letters say nothing about who was in Chicago (T-0292's rule for the Du Page, Plainfield and Hennepin lists). It is recorded so a later pass can see this list was read rather than skipped — an absence somebody looked for is evidence, an absence nobody looked for is a hole."
+    },
+    {
+      "id": "c005",
+      "kind": "person",
+      "reading": "transcription_mediated",
+      "quote": "tice is hereby given, that the un-\ntaken out letters of Admin-\ngoods and chattels, rights and\nrius Hi. Laughton, deceased, and\nch “administrator. All persons\ngainst the estate of the deceas-\nnotified and sequested to exhibit\n, oF to the Court of Probate for\nooh Aa stenieny, Wane nine\ne@ date hereof, ter hICago,\nDAVID LAUGHTON. *\nAdministrator.\nScuinet the above estate may be\nof Collinge & Caton.",
+      "normalized": "[No]tice is hereby given, that the un[dersigned has] taken out letters of Admin[istration on the] goods and chattels, rights and [credits of Berna]rdus H. Laughton, deceased, and [is qualified as su]ch administrator. All persons [having claims a]gainst the estate of the deceas[ed are hereby] notified and [re]quested to exhibit [them to the undersigned] or to the Court of Probate for [Cook County … within ni]n[e months of th]e date hereof. […] Chicago, DAVID LAUGHTON, Administrator. [All claims a]gainst the above estate may be [left at the office] of Collin[s] & Caton.",
+      "locator": {
+        "artifact_role": "primary",
+        "issue_page": 3,
+        "column": 8,
+        "lines": [
+          3273,
+          3286
+        ],
+        "lines_of_claim": [
+          3273,
+          3274,
+          3275,
+          3276,
+          3277,
+          3278,
+          3279,
+          3280,
+          3281,
+          3282,
+          3283,
+          3284,
+          3285,
+          3286
+        ],
+        "interleaved": true
+      },
+      "entities": [
+        {
+          "as_printed": "rius Hi. Laughton, deceased",
+          "normalized": "Bernardus H. Laughton",
+          "role": "deceased, whose estate is administered"
+        },
+        {
+          "as_printed": "DAVID LAUGHTON. *",
+          "normalized": "David Laughton",
+          "role": "administrator of the estate"
+        },
+        {
+          "as_printed": "of Collinge & Caton.",
+          "normalized": "Collins & Caton",
+          "role": "attorneys at whose office claims against the estate may be left"
+        }
+      ],
+      "notes": "A DEATH, AN ESTATE, AND THE LAWYERS' OFFICE AS AN ADDRESS. Bernardus H. Laughton is dead by April 1834 and David Laughton has taken administration; the notice also appears in fragment on 1834-04-08 (p3 c2, 'cuedle Bernardus H. Laughton, de[ceased]'). The line that earns this a card is the last one: claims against the estate 'may be left at the office of Collins & Caton' — which is a public instruction to go to a NAMED STOREFRONT, the attorneys' office on South Water Street placed at 1834-04-01 c005 and at 1834-01-28 c007. An address given as a place to leave papers is a stronger sign that a building was actually there and actually findable than an advertisement is. B. H. Laughton also stands in the 1 April letter list (1834-04-01 c002) with a letter waiting for him, which is the corpus's own before-and-after."
+    }
+  ]
+}

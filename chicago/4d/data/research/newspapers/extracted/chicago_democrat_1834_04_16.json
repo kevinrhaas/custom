@@ -1,0 +1,369 @@
+{
+  "schema": 1,
+  "issue_id": "chicago_democrat_1834_04_16",
+  "extracted": "2026-08-28",
+  "extracted_by": "hand, T-0313 — the Democrat read, April 1834",
+  "note": "Vol. I No. 20, the first issue on the paper's Wednesday line. Its own weight is not the letter list — that is a reprint of the 1 April Chicago return already minted at 1834-04-01, recorded here at c004 and deliberately unminted — but JOHN H. KINZIE'S WARE HOUSE, OPPOSITE FORT DEARBORN, dated two days before the issue, which is the most placeable building in the month. The issue also carries the Hennepin list (c005), which is the list T-0313 was written expecting to find on 23 and 30 April.",
+  "claims": [
+    {
+      "id": "c001",
+      "kind": "building",
+      "reading": "transcription_mediated",
+      "quote": "JOHN 1. KINZ!\n| Forwarding & Comn\nUERGHAN\nPRE LAS.\nREFERENCES:\nR. Putsam, New-Y\nG, P. Garrity & Co, Troy N.\nGairrits, Baorness & Sons, R\n&. Tuompson & Co., ? p\nTownsexp & Cort, i Butalo,\nGwor1xas, BaLowis, Pease & Co.\nJ. R. Down & Co., Detroit M.'\nGarntn & Co, St. Joseph, M.\nSanta & Brotuens, St. Lous,\no Agents for Troy and\nh| Jonxsrox & Stantz, Galena, II].\ng| Fanxswontu & Buvsu, Green B\n1 (Keeps constantly on hand, |\n8} dow Sash, Glass, Nails, §&c. low for\n[uncertain: ?/ his Wane House, opposite to Fort]\ne| April 14, 1834.",
+      "normalized": "JOHN [H]. KINZ[IE,] Forwarding & Comm[ission] [M]ERCHAN[T, CHICAGO, ILLINOIS.] REFERENCES: [S.] Put[n]am, New-Y[ork;] G. P. Garri[t]t & Co, Troy N.[Y.;] Garritts, Bro[t]he[r]s & Sons, R[ochester;] [S.] Thompson & Co., [and] Townse[n]d & Cot[t,] Bu[ff]alo; G[i]d[d]i[n]gs, Baldwin, Pease & Co. [Cleaveland;] J. R. Dow[e] & Co., Detroit M.[T.;] Garn[e]r & Co, St. Joseph, M.[T.;] Smit[h] & Brothers, St. Lou[is;] [als]o Agents for Troy and [Erie Line;] Johnston & Stant[o]n, Galena, Ill.; Farnsworth & B[r]ush, Green B[ay, M. T.] Keeps constantly on hand, [Salt, Win]dow Sash, Glass, Nails, &c. low for [Cash, at] his Ware House, opposite to Fort [Dearborn.] April 14, 1834.",
+      "locator": {
+        "artifact_role": "primary",
+        "issue_page": 3,
+        "column": 2,
+        "lines": [
+          2755,
+          2775
+        ],
+        "lines_of_claim": [
+          2755,
+          2756,
+          2757,
+          2758,
+          2759,
+          2760,
+          2761,
+          2762,
+          2763,
+          2764,
+          2765,
+          2766,
+          2767,
+          2768,
+          2769,
+          2770,
+          2771,
+          2772,
+          2773,
+          2774,
+          2775
+        ],
+        "interleaved": true
+      },
+      "ad_copy_date": {
+        "verbatim": "e| April 14, 1834.",
+        "iso": "1834-04-14"
+      },
+      "business": {
+        "name": "John H. Kinzie, forwarding and commission merchant",
+        "proprietors": [
+          "John H. Kinzie"
+        ],
+        "trade": "forwarding and commission merchant",
+        "goods": [
+          "salt",
+          "window sash",
+          "glass",
+          "nails"
+        ],
+        "street": null,
+        "placement": {
+          "class": "relative",
+          "anchor": "Fort Dearborn",
+          "offset_text": "[uncertain: ?/ his Wane House, opposite to Fort]",
+          "offset_normalized": "his Ware House, opposite to Fort [Dearborn]",
+          "street": null
+        }
+      },
+      "entities": [
+        {
+          "as_printed": "JOHN 1. KINZ!",
+          "normalized": "John H. Kinzie",
+          "role": "advertiser",
+          "occupations": [
+            "forwarding and commission merchant"
+          ]
+        }
+      ],
+      "notes": "A DOCUMENTED WAREHOUSE OPPOSITE FORT DEARBORN, DATED TWO DAYS BEFORE THE ISSUE. This is the single most placeable building claim in April 1834: John H. Kinzie's forwarding and commission warehouse, sited by the paper against the fort — the one structure in the reconstruction whose position is fixed independently of every advertisement. The agent list is worth keeping whole because it is a trade map: Troy, Rochester, Buffalo, Cleaveland, Detroit, St. Joseph, St. Louis, Galena and Green Bay, which is the shape of the lake and river trade the wharves existed to serve. The goods named — salt, window sash, glass, nails — are BUILDING MATERIALS, so the warehouse is also evidence of what the town was importing to build itself with in the spring of 1834. The same advertisement runs on 1834-04-23 (p3 c2, claim c001 there), and the placement is `relative` because 'opposite to' names a side but no distance."
+    },
+    {
+      "id": "c002",
+      "kind": "business",
+      "reading": "transcription_mediated",
+      "quote": "¢ for} | The subscriber would inform th\nnine }ja the opening of navigation, ° lu\n-ag0, /nenee the manufacturing cf Tin,\nN.  /kous branches, IK, BOT\nafer) Comer of Dearborn a1\nsy be} Bebruaryy 24, 1034,",
+      "normalized": "The subscriber would inform th[e public that o]n the opening of navigation, [he will comm]ence the manufacturing [o]f Tin, [in all its vari]ous branches. [J.] K. BOT[SFORD,] Corner of Dearborn a[nd Lake-streets.] [F]ebruary 24, 1[8]34.",
+      "locator": {
+        "artifact_role": "primary",
+        "issue_page": 3,
+        "column": 7,
+        "lines": [
+          3496,
+          3501
+        ],
+        "lines_of_claim": [
+          3496,
+          3497,
+          3498,
+          3499,
+          3500,
+          3501
+        ],
+        "interleaved": true
+      },
+      "ad_copy_date": {
+        "verbatim": "sy be} Bebruaryy 24, 1034,",
+        "iso": "1834-02-24"
+      },
+      "business": {
+        "name": "J. K. Botsford, tin manufacturer",
+        "proprietors": [
+          "J. K. Botsford"
+        ],
+        "trade": "tin manufacture",
+        "goods": [
+          "tin ware"
+        ],
+        "street": "Dearborn Street",
+        "placement": {
+          "class": "corner",
+          "anchor": "the corner of Dearborn and Lake streets",
+          "street": "Dearborn Street"
+        }
+      },
+      "entities": [
+        {
+          "as_printed": "IK. BOT",
+          "normalized": "J. K. Botsford",
+          "role": "advertiser",
+          "occupations": [
+            "tinsmith",
+            "merchant"
+          ]
+        }
+      ],
+      "notes": "A TIN MANUFACTORY ON A NAMED CORNER, AND A BUSINESS THAT WAITS FOR THE ICE. Botsford gives both streets — Dearborn and Lake — which is a `corner` placement, the strongest this schema records, and it puts a working trade one block off the river rather than on the South Water frontage where nearly every other documented storefront in this range sits. The copy is dated 24 February and promises to commence 'on the opening of navigation', so the advertisement is a seasonal one running against the thaw; by 30 April the same corner is advertising as an iron and stove store (1834-04-30 p3 c4, claim c003 there), which is the business actually open. This is the same J. K. Botsford who is 'next door to Graves’ Tavern' on 1834-04-01 (c003 there) — one man with a corner shop and a whiskey consignment, not two."
+    },
+    {
+      "id": "c003",
+      "kind": "business",
+      "reading": "transcription_mediated",
+      "quote": "NEY AND. COUNSELLOR AT LAji\n\\nd Soliciter in Chancery.\nCE second door west from the corner’\nFranklin and South Water-streets. |\n10, Diz. 17, 1333 4 |",
+      "normalized": "[ATTOR]NEY AND COUNSELLOR AT LA[W] [a]nd Solicit[o]r in Chancery. [OFFI]CE second door west from the corner [of] Franklin and South Water-streets. [Chicag]o, D[e]c. 17, 18[3]3.",
+      "locator": {
+        "artifact_role": "primary",
+        "issue_page": 4,
+        "column": 4,
+        "lines": [
+          4117,
+          4121
+        ],
+        "lines_of_claim": [
+          4117,
+          4118,
+          4119,
+          4120,
+          4121
+        ],
+        "interleaved": true
+      },
+      "ad_copy_date": {
+        "verbatim": "10, Diz. 17, 1333 4 |",
+        "iso": "1833-12-17"
+      },
+      "business": {
+        "name": "[an] attorney and counsellor at law",
+        "proprietors": [],
+        "trade": "attorney and solicitor in chancery",
+        "goods": [],
+        "street": "South Water Street",
+        "placement": {
+          "class": "relative",
+          "anchor": "the corner of Franklin and South Water streets",
+          "offset_text": "CE second door west from the corner’\nFranklin and South Water-streets. |",
+          "offset_normalized": "second door west from the corner [of] Franklin and South Water-streets",
+          "street": "South Water Street"
+        }
+      },
+      "entities": [],
+      "notes": "THE SAME OFFICE, THE SAME WORDS, THREE AND A HALF MONTHS ON — and the advertiser's name is the one thing this strip loses. T-0310 read this advertisement whole on 1834-01-28 (c006 there) and it is G. Spring's; here the signature line falls above the strip's first legible line and only the address survives. The name is therefore NOT asserted from this issue — T-0291's read of August 1834 has since found the address printed whole in its own sentence, so 'Franklin and South Water' is settled and only the signature is missing here. The claim records an attorney's office second door west of the corner of Franklin and South Water-streets, the identification is left with the issue that actually prints it, and the value of this printing is the WINDOW — the same office is still being advertised in the middle of April 1834, on copy dated 17 December 1833."
+    },
+    {
+      "id": "c004",
+      "kind": "person",
+      "reading": "transcription_mediated",
+      "quote": "ef Letters FFIC\nthe Post Office at Chicego, | Sy’ of F\nat day of April, 1834. Chicago,\n‘homas Jacubus\nJno, M. Jones\nSanford Johnson\nJohn Kilpatrick\nPaul Kingston\nMons. Lath\nHarlow Kim\nArchibald Knox ate Fi -\n» — Ivin Lou\nJacob 3. Lansing 3 suited to t\nSamuel Louis wishing F\nGregory E. Legg modated v\nRobert Loveland ble atyle.\n2 = 2B.H. Laughton on hand, |\nRead Lewis ‘\nWilson McClinton 3 | Chicags\nThomas McClintock Ensen\nWm. J. Marlatt | Fren\nne Lucy B. McEwen i HE:\nLeonard Morse\nIsaac Serr\nChas. Manning °\nJomes Mulford juaerny\nPhilo C. Mills Flowrin\nJames McKeo Lesa)\nHenry 8. Misner to fill on:\nEmily Morgan olor\ns Jacob Miller pc\nStephen Mack nables t\nMary Meacham beanie\norbin Ralph Mastin Hse AL\n2 James D. Myres cet\nnan 2 Pera Matay A Dr\nMichael Nowlan weet\neford Francis BeNorthrop | ye\nRebecca Ostrander *\nRobt ley Hois\nP. F. W. Peck d\nWilliam Power\nDadly Peck\n2 Geo. N, Powell\nk Timothy E. Parsons\n‘Wm. Prendergust\nLauretta Plimpton\nAustin Parsalls\nEdward Poor\nGer. B. Richardson\n‘Thos. H. Richy 2\nRobt. Stephens 2\nMason B. Smith\n, Mr. Smith\nJeremiah Sherwood\nin Mrs. 8. Stephens\ninson Win. V. Smith\nEli Strattan\n, Douglass Shoan\nkle —-—- Robt. Strong\nSainuel Shaw\nCyrus Schillborn\nLyman Smith\ng Franklin Spalding\ngan Philip Scott\nOrin R. Stevens\nVeter Schauder r\nld Stephen M. Salsby\nBenjarnin Smith .\n2 Ira Saymoro zine.\nerton 3 Geo. Saver The\nodus Joseph Skinner the Pu\ner 2 Wm. Teall past V\nHarmon Turner future\nger William Tay tor Tho\n. George Tryon\nzs Dr. Trimball of Pe\n2 D. V. 8. Torry bed\nnin 2 Elam Tuller meron\n2 Alason B. Vaugha: too hij\nway jt. 2Amy C. Wost 2 for the\nne Andrew 8, Wells 2 tion ni\nine KR. Walford as far\nGertrade Watkins lic in {\nuntton Matson Washbarn Per\nMamield Wheeler ‘\nGeo. % Walker dataly\nley ——_-Jeddinh Wrotley rene\nIton = —- Edmond Wight Unitec\nHarriet Warn the V\nnd Elihu Walter Month\nford G. H. Walker of the\nelt Tho. C. Web) ture, t\nChaiacey Wodruff reset\nPhilip Whitter;ore Editor\n218) will b\n”\n[uncertain: JOHN 8. ?. HOGAN, } M.]",
+      "normalized": "[List] of Letters [REMAINING in] the Post Office at Chic[a]go, [on the fir]st day of April, 1834. [The alphabet from Jacubus to Whittemore, then] JOHN S. [C.] HOGAN, [P.] M. [Persons] calling for any of the above let[ters will pleas]e say they are a[d]vertised. [Verbatim, and not minted a second time — this is the reprint of the list minted at 1834-04-01 c002.]",
+      "locator": {
+        "artifact_role": "primary",
+        "issue_page": 4,
+        "column": 3,
+        "lines": [
+          3955,
+          4052
+        ],
+        "lines_of_claim": [
+          3955,
+          3956,
+          3957,
+          3958,
+          3959,
+          3960,
+          3961,
+          3962,
+          3963,
+          3964,
+          3965,
+          3966,
+          3967,
+          3968,
+          3969,
+          3970,
+          3971,
+          3972,
+          3973,
+          3974,
+          3975,
+          3976,
+          3977,
+          3978,
+          3979,
+          3980,
+          3981,
+          3982,
+          3983,
+          3984,
+          3985,
+          3986,
+          3987,
+          3988,
+          3989,
+          3990,
+          3991,
+          3992,
+          3993,
+          3994,
+          3995,
+          3996,
+          3997,
+          3998,
+          3999,
+          4000,
+          4001,
+          4002,
+          4003,
+          4004,
+          4005,
+          4006,
+          4007,
+          4008,
+          4009,
+          4010,
+          4011,
+          4012,
+          4013,
+          4014,
+          4015,
+          4016,
+          4017,
+          4018,
+          4019,
+          4020,
+          4021,
+          4022,
+          4023,
+          4024,
+          4025,
+          4026,
+          4027,
+          4028,
+          4029,
+          4030,
+          4031,
+          4032,
+          4033,
+          4034,
+          4035,
+          4036,
+          4037,
+          4038,
+          4039,
+          4040,
+          4041,
+          4042,
+          4043,
+          4044,
+          4045,
+          4046,
+          4047,
+          4048,
+          4049,
+          4050,
+          4051,
+          4052
+        ],
+        "interleaved": true
+      },
+      "letter_list_only": true,
+      "entities": [],
+      "notes": "THE 1 APRIL LIST, PRINTED AGAIN A FORTNIGHT LATER — RECORDED, NOT MINTED. The Chicago post office's quarterly return runs a second time here, set across p4 c2 (Abbott to Jackson) and this strip (Jacubus to Whittemore, and the postmaster's signature). ONE LIST MAKES ONE COHORT OF PEOPLE (T-0299, and T-0292's handling of the three printings of the 1 October 1834 list), so this claim carries NO entities and every name in it is minted at 1834-04-01 c001 and c002 instead. What the reprint is good for is READINGS: it is the cleaner of the two impressions in several places and supplies 'Josept Habeas', 'Robt. V. n', 'Robert W. Chapma[n]', 'Mons. Lath', 'Ivin Lou', 'Gregory E. Legg', 'Dr. Trimball' and 'Geo. E. Walker' where the 1 April printing lost them, and reads 'Benjarnin Smith' and 'Ira Saymoro' where the first has 'Benjamin Reed' and 'Ira Raymore'. None of those is minted here; they are written down so that a later pass with the page images knows exactly which ten names are in question and why."
+    },
+    {
+      "id": "c005",
+      "kind": "notice",
+      "reading": "transcription_mediated",
+      "quote": "I Letters\nAlso, Wh\nat Henne\n[uncertain: Dry]\n[uncertain: hos. M'Connel]\nVilliam Mille\nNathan Owen\nMAN •\nB. Smith\nAlpha Stephens\nthrough\nJesse Sawyer\nApmil 1,\nValua\n[uncertain: SANAN]\nSALAHER, Jr. P. M.",
+      "normalized": "[List of] Letters [remaining in the Post Office] at Henne[pin, Ill., on the first day of April, 1834:] [T]hos. M‘Connel[l;] [W]illiam Mille[r;] Nathan Owen; [… B.] Smith; Alpha Stephens; […] Jesse Sawyer. Ap[r]il 1, [1834.] [S.] SALAHER, Jr. P. M.",
+      "locator": {
+        "artifact_role": "primary",
+        "issue_page": 3,
+        "column": 4,
+        "lines": [
+          3028,
+          3043
+        ],
+        "lines_of_claim": [
+          3028,
+          3029,
+          3030,
+          3031,
+          3032,
+          3033,
+          3034,
+          3035,
+          3036,
+          3037,
+          3038,
+          3039,
+          3040,
+          3041,
+          3042,
+          3043
+        ],
+        "interleaved": true
+      },
+      "entities": [],
+      "notes": "THE HENNEPIN LIST — RECORDED, AND NOT MINTED, BECAUSE THESE ARE NOT CHICAGO PEOPLE. Hennepin is in Putnam County, a hundred miles down the Illinois, and its postmaster S. Galaher Jr. signs his own quarterly return which the Democrat prints as a service to the country readership. T-0292 settled the handling for exactly this case with the Du Page, Plainfield and Hennepin lists of October 1834: an out-of-county list is recorded so that a later pass can see it was looked at, and its names mint nobody in this town. THIS MATTERS FOR THE MONTH'S ACCOUNTING. T-0313 was written expecting the April letter lists to be in the issues of 23 and 30 April; those two ARE this same Hennepin list, cut to pieces, and the CHICAGO list is in the issues of 1 and 16 April instead. So the month holds two lists and four printings, not two lists."
+    },
+    {
+      "id": "c006",
+      "kind": "infrastructure",
+      "reading": "transcription_mediated",
+      "quote": ">, ‘Arvicaliand Departures 0° th\n[uncertain: have ASTERN Mail arrives every ?]\nat BAM.\nand de; ‘Tharsdeys ey\ntion ‘estern arrives every.\nevery Te",
+      "normalized": "Arri[v]al[s] and Departures o[f the Mails.] [E]ASTERN Mail arrives every [Thursday] at 6 A. M. and de[parts] Thursdays ev[ery … W]estern arrives every [… and departs] every T[uesday]",
+      "locator": {
+        "artifact_role": "primary",
+        "issue_page": 3,
+        "column": 7,
+        "lines": [
+          3513,
+          3518
+        ],
+        "lines_of_claim": [
+          3513,
+          3514,
+          3515,
+          3516,
+          3517,
+          3518
+        ],
+        "interleaved": true
+      },
+      "notes": "THE EASTERN MAIL AT SIX IN THE MORNING, TWICE ATTESTED. The same standing table appears on 1834-04-01 (claim c007 there) and the two printings agree on the one figure both keep — 6 A. M. — and on the eastern mail's Thursday. The western mail's days survive in neither strip well enough to state. Both columns are Tesseract-fallback reads, and the honest content of this card is that Chicago's eastern mail was a once-a-week Thursday morning arrival in April 1834, which is what a post-office label in the walkthrough can say without inventing a timetable."
+    }
+  ]
+}
