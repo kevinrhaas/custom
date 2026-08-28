@@ -1,6 +1,6 @@
 {
   "project": "chicago-4d",
-  "generated_ct": "Aug 28, 2026, 1:38 PM",
+  "generated_ct": "Aug 28, 2026, 1:48 PM",
   "tickets": [
     {
       "id": "T-0001",
@@ -5344,6 +5344,24 @@
       "blocked_on": null,
       "needs_bake": false,
       "queue_rank": 10
+    },
+    {
+      "id": "T-0316",
+      "title": "The January 1834 letter list is 97 names and the printed list was longer; the page images can close the gap",
+      "state": "open",
+      "epic": "META",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "M",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-08-28",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "queue_rank": 72
     }
   ]
 }
