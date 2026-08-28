@@ -1,5 +1,5 @@
 export const CHANGELOG = [ // newest first
-  { v: 328, title: 'The riverside plank walk stops at the docks', kind: 'fix', ts: '2026-08-28T10:09:38.279Z', date: 'Aug 28, 2026, 5:09 AM CT',
+  { v: 329, title: 'The riverside plank walk stops at the docks', kind: 'fix', ts: '2026-08-28T10:18:30.885Z', date: 'Aug 28, 2026, 5:18 AM CT',
     items: [
       'Walk west along the plank sidewalk on the south bank of the river. Where Philo Carpenter\u2019s dock and Jones\u2019s dock come ashore, the boards now stop at the dock and pick up again beyond it. Until today they ran straight underneath \u2014 a dock slab half a metre over the planks with about a third of a metre of daylight between.',
       'Nothing about the docks moved. What was wrong is the sidewalk, laid along this bank after the docks were already built out from it, and laid as though they were not there. Its timber stood inside the two dock outlines and inside the stairs that board them.',
@@ -7,6 +7,15 @@ export const CHANGELOG = [ // newest first
       'Three answers were open and this is the one taken: a plank sidewalk stops where a working wharf comes ashore, and the dock\u2019s own deck and stair are what carries you across. The docks were not trimmed back to make room. Their shape is one invented shape used at all seven landings, and cutting two of them to suit a sidewalk laid afterwards would have made the wharves a function of the pavement.',
       'The two gaps are written into the record as gaps \u2014 which landing closed each one, and how many metres of boards it refused \u2014 the same way this walk already records the one place it cannot cross, the La Salle slough\u2019s mouth.',
       'Two checks hold it. The record now refuses to regenerate if a single board of it lies under any landing\u2019s deck or boarding stair, and the loaded page is asked the same question about what was actually drawn. A dock that moves, or a new one built on this bank, re-cuts the walk instead of oversailing it.',
+    ] },
+  { v: 328, title: 'What the flower grid cannot draw is written down', kind: 'chore', ts: '2026-08-28T10:05:15.605Z', date: 'Aug 28, 2026, 5:05 AM CT',
+    items: [
+      'Nothing you can see changed today. The flowers in this reconstruction are planted on a grid, and a grid square holds one plant. A square is 2.89 square metres, so the most any place in the town can be given is about a third of a flowering plant per square metre \u2014 however thickly its own records say it grew.',
+      'Nine of the ten plant communities ask for more than that. The dense forest west of town is the worst: its records add up to 66 flowering plants a square metre, and it can be given 0.35. It draws half a per cent of what the research says stood there. The marsh draws 1.6 per cent, the settled blocks 2.9, the riverbank timber 9. Only the sand prairie fits inside the grid.',
+      'None of that was visible from outside the code that plants them. A community sitting hard against the ceiling and one tuned comfortably below it printed the same number, so the shortfall could only be found by deriving it. It has quietly grown twice on a green build \u2014 from four communities to six when a unit mistake was corrected, and from six to nine yesterday, when the flowers began to be dealt at the top of each record\u2019s range instead of its middle.',
+      'The project had been carrying the figure of six, taken at the midpoints. It is nine, and here are the numbers.',
+      'The debt is now a file rather than an inference, and the plant census refuses to let it drift: a community joining the ceiling, one leaving it, or a record whose density moves fails the check until the list is re-made. It was shown failing all three ways before it was trusted.',
+      'It is not fixed, and that is a decision. More flowers means more geometry in exactly the places already carrying the most, and this town is over its triangle budget as this is written. The ways out stay open, and they now have a price written against them.',
     ] },
   { v: 327, title: 'The check on how far the grass reaches was reading invisible plants', kind: 'chore', ts: '2026-08-28T09:57:50.231Z', date: 'Aug 28, 2026, 4:57 AM CT',
     items: [

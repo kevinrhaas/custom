@@ -1377,6 +1377,192 @@
         ]
       },
       "source": "/tmp/mobile-1-2.log"
+    },
+    {
+      "viewport": "mobile",
+      "stage": "8",
+      "parts": [
+        8
+      ],
+      "verdict": "pass",
+      "target": "published",
+      "passed": 37,
+      "failed": 0,
+      "failures": [],
+      "wallSeconds": 97,
+      "takenAt": "2026-08-28T10:13:03.459Z",
+      "ref": "steward/t-0019-lattice-ceiling-declared",
+      "commit": "44be7c4cdbb6",
+      "devCommit": "333a5b1e07a9",
+      "treeHash": "sha256:25750c79515c3d8f",
+      "treeDirty": false,
+      "changelogHash": "sha256:5c1dfab045add0c3",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          4.8,
+          3.7,
+          2.5
+        ]
+      },
+      "source": "/tmp/s3.m8.log"
+    },
+    {
+      "viewport": "desktop",
+      "stage": "8",
+      "parts": [
+        8
+      ],
+      "verdict": "pass",
+      "target": "published",
+      "passed": 37,
+      "failed": 0,
+      "failures": [],
+      "wallSeconds": 167,
+      "takenAt": "2026-08-28T10:13:03.373Z",
+      "ref": "steward/t-0019-lattice-ceiling-declared",
+      "commit": "44be7c4cdbb6",
+      "devCommit": "333a5b1e07a9",
+      "treeHash": "sha256:25750c79515c3d8f",
+      "treeDirty": false,
+      "changelogHash": "sha256:5c1dfab045add0c3",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          4.8,
+          3.7,
+          2.5
+        ]
+      },
+      "source": "/tmp/s3.d8.log"
+    },
+    {
+      "viewport": "mobile",
+      "stage": "8",
+      "parts": [
+        8
+      ],
+      "verdict": "pass",
+      "target": "published",
+      "passed": 37,
+      "failed": 0,
+      "failures": [],
+      "wallSeconds": 97,
+      "takenAt": "2026-08-28T10:04:25.120Z",
+      "ref": "steward/t-0019-lattice-ceiling-declared",
+      "commit": "d2f47f0de3a5",
+      "devCommit": "eae025287691",
+      "treeHash": "sha256:fe3a112b281a9a08",
+      "treeDirty": false,
+      "changelogHash": "sha256:7802695104a8bf65",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          4.5,
+          3.3,
+          2
+        ]
+      },
+      "source": "/tmp/s2.m8.log"
+    },
+    {
+      "viewport": "desktop",
+      "stage": "8",
+      "parts": [
+        8
+      ],
+      "verdict": "pass",
+      "target": "published",
+      "passed": 37,
+      "failed": 0,
+      "failures": [],
+      "wallSeconds": 173,
+      "takenAt": "2026-08-28T10:04:25.036Z",
+      "ref": "steward/t-0019-lattice-ceiling-declared",
+      "commit": "d2f47f0de3a5",
+      "devCommit": "eae025287691",
+      "treeHash": "sha256:fe3a112b281a9a08",
+      "treeDirty": false,
+      "changelogHash": "sha256:7802695104a8bf65",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          4.5,
+          3.3,
+          2
+        ]
+      },
+      "source": "/tmp/s2.d8.log"
+    },
+    {
+      "viewport": "mobile",
+      "stage": "8",
+      "parts": [
+        8
+      ],
+      "verdict": "pass",
+      "target": "published",
+      "passed": 37,
+      "failed": 0,
+      "failures": [],
+      "wallSeconds": 98,
+      "takenAt": "2026-08-28T09:52:00.763Z",
+      "ref": "steward/t-0186-liberties-dupes",
+      "commit": "5b69f17cede8",
+      "devCommit": "5b69f17cede8",
+      "treeHash": "sha256:d577e1404d154d68",
+      "treeDirty": true,
+      "changelogHash": "sha256:ec2332aa62416fe5",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          3.2,
+          1.6,
+          1.1
+        ]
+      },
+      "source": "/tmp/smoke.m8.log"
+    },
+    {
+      "viewport": "desktop",
+      "stage": "8",
+      "parts": [
+        8
+      ],
+      "verdict": "pass",
+      "target": "published",
+      "passed": 37,
+      "failed": 0,
+      "failures": [],
+      "wallSeconds": 170,
+      "takenAt": "2026-08-28T09:50:14.431Z",
+      "ref": "steward/t-0186-liberties-dupes",
+      "commit": "5b69f17cede8",
+      "devCommit": "5b69f17cede8",
+      "treeHash": "sha256:d577e1404d154d68",
+      "treeDirty": true,
+      "changelogHash": "sha256:ec2332aa62416fe5",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          0.1,
+          0.4,
+          0.7
+        ]
+      },
+      "source": "/tmp/smoke.d8.log"
     }
   ]
 }

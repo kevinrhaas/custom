@@ -1534,6 +1534,13 @@ export async function createFlora({
          *  ate the rest of it without re-deriving either. */
         forbDensity: z.dry.forbs.densityHigh,
         forbDensityMid: z.dry.forbs.density,
+        /** T-0019. The same sum on the WET side of the waterline, which nothing
+         *  outside this module could read: `forbShareWet` is clamped exactly as
+         *  `forbShare` is, so a wet layer sitting on the ceiling was
+         *  indistinguishable from one tuned to it. Four of the ten communities
+         *  plant a different list over water, and two of them are among the
+         *  layers the clamp binds. */
+        forbDensityWet: z.wet.forbs.densityHigh,
         shrubDensity: z.dry.shrubs.density,
       }));
     },
