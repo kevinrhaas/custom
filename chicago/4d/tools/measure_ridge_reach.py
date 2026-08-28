@@ -195,10 +195,12 @@ def shed_offer() -> dict:
             "held": dict(roof_form.AWAITING_BAKE), "refused": sorted(refused)}
 
 
-# The one parcel held back from the shared rule, banked by name. It may SHRINK — the day
-# `recon_1835_south_a5_044` is re-baked as the shed its family gets everywhere else, this
-# goes to empty — and it may not grow. See `roof_form.AWAITING_BAKE` and T-0212.
-HELD_BASELINE = {("generate_inferred_infill.py", "A5"): "gable"}
+# The parcels held back from the shared rule, banked by name. It went to EMPTY on
+# 2026-08-28, when T-0212 re-baked `recon_1835_south_a5_044` as the shed its family gets
+# everywhere else and the last entry came out of `roof_form.AWAITING_BAKE`. It may shrink
+# and it may not grow, so at `{}` every parcel now reads the shared rule and any parcel
+# that opts a family out fails here. See `roof_form.AWAITING_BAKE` and T-0212.
+HELD_BASELINE: dict[tuple[str, str], str] = {}
 
 
 def report_shed_offer(offer: dict) -> list[str]:

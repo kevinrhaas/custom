@@ -94,20 +94,19 @@ FT = 0.3048
 # `tools/measure_ridge_reach.py` tests exactly that claim on every commit.
 SHED_FAMILIES = ("D2", "A3", "A4", "A5")
 
-# THE ONE PARCEL HELD BACK FROM THE RULE, and it is a drift being paid down rather than a
-# decision. `generate_inferred_infill.py` is one of the two parcels that retyped the shed
-# set without A5, and one roof stands on the difference: `recon_1835_south_a5_044` is a
+# NO PARCEL IS HELD BACK FROM THE RULE ANY MORE, and the table is kept empty rather than
+# deleted because emptiness is the claim being made. One entry stood here from T-0179 to
+# T-0212: `generate_inferred_infill.py` was one of the two parcels that retyped the shed
+# set without A5, and one roof stood on the difference — `recon_1835_south_a5_044` was a
 # gable where the other three A5s in this town are sheds. Giving it the shared answer
-# CHANGES THE SHAPE OF A BUILDING — it stales that record's GLB, which `tools/check.sh`
-# refuses until the mesh is rebuilt and landed in the same commit. That is its own unit of
-# work with its own visible outcome, and holding this adoption hostage to it would have
-# left the rule in five places for the sake of one small utility roof.
+# CHANGED THE SHAPE OF A BUILDING, so it stale the record's GLB and could not land without
+# a bake; T-0212 did that bake, in the same commit as the record, and the entry came out.
 #
-# So the hold is NAMED, here, beside the rule it suspends, rather than left inside the
-# parcel looking like a choice. `tools/measure_ridge_reach.py` holds this table to exactly
-# what is written below: it may shrink and it may not grow, so a second parcel cannot
-# quietly opt a second family out. Owned by T-0212.
-AWAITING_BAKE = {("generate_inferred_infill.py", "A5"): "gable"}
+# The mechanism stays because the next drift will want it: a parcel may name itself here
+# to hold ONE family back while its bake is owed. `tools/measure_ridge_reach.py` holds
+# this table to `HELD_BASELINE`, which is now `{}` — so it may not grow at all, and a
+# parcel that opts a family out fails the gate rather than waiting quietly.
+AWAITING_BAKE: dict[tuple[str, str], str] = {}
 
 # The footprint band is swept on a grid rather than at its corners — same grid as the
 # family sweep, and for the same reason: the run is monotone in width and depth for every

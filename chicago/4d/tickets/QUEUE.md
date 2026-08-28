@@ -40,7 +40,6 @@ T-0137 — The fort's stacks are still roof-coloured, and its 1816 date fits nei
 T-0096 — Did the second Fort Dearborn carry a flagstaff, and can anything but a retrospective plate say so
 
 # --- FABRIC AND WHAT THE BUILDINGS ARE MADE OF — visible
-T-0212 — The one A5 roof still dealt a gable takes the shed its family gets everywhere else
 T-0172 — The other three anonymous parcels still deal a retyped roof pitch, and none of them bounds an eave band by what the archetype can carry
 T-0024 — May the face rule rank a store
 T-0025 — Three records carry the standing constraint and say why nowhere
