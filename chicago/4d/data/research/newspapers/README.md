@@ -87,11 +87,21 @@ Deterministic: the same deposit produces byte-identical `corpus.json` and `text/
 |---|---|
 | `extracted/<issue_id>.json` | one file per issue, holding `claims[]` — hand-authored |
 | `identity.json` | the only place two differently-spelled names may become one person |
+| `coverage.json` | the ranges a reading pass has DECLARED it read, and the gate holds it to them |
 | `gazetteer.json` | **generated** by `tools/compile_gazetteer.py --build` — never hand-edited |
 
     tools/compile_gazetteer.py --build       recompile the gazetteer
     tools/compile_gazetteer.py --check       the gate (in check.sh)
     tools/compile_gazetteer.py --self-test   its assertions still fire
+
+**A declared range may not have a hole in it.** The failure a reading pass is prone to is
+not a bad claim — the quote gate catches those — but a MISSING ISSUE: fourteen of fifteen
+read, and nothing anywhere saying which one was skipped. Counting extraction files cannot
+answer it, because the count that should have been is exactly the thing in question. So a
+pass names the range it read in `coverage.json` and `--check` resolves that range against
+`corpus.json` and refuses any issue inside it with no extraction file. Declaring is what
+makes the assertion: an issue nobody has declared is simply not read yet and is not a
+fault, and a range is only widened by the pass that widens the reading (T-0295).
 
 **A claim quotes verbatim and normalizes beside it, never instead.** `quote` is the
 transcription's own text including its uncertainty brackets; `normalized` is the reading
@@ -120,5 +130,17 @@ name, so `Cohen, P.` and `Cohen, J.` are two people. A merge is declared in
 `identity.json` with a `merge_rule` naming both spellings; same surname with different
 initials never merges, rule or no rule.
 
-The worked fixture is the scene-date Democrat, `extracted/chicago_democrat_1835_07_01.json`
-— Peter Cohen and J. S. C. Hogan on South Water Street, and one letter-list name.
+The scene-date Democrat, `extracted/chicago_democrat_1835_07_01.json`, is both the worked
+fixture (claims c001-c003, T-0257 — Peter Cohen and J. S. C. Hogan on South Water Street,
+and one letter-list name) and the first issue read through (c004-c021, T-0295).
+
+**It is read from the deposit `primary`, not from the `-2` rebuild `dev` can open**, and
+the reason is the letter list: the primary sets it legibly at name level and the alternate
+does not. So its quotes are verified with
+
+    tools/compile_gazetteer.py --check --deposit <a materialised deposit>
+
+and the committed gate on `dev` reports them unresolved-but-green until T-0275 lands. The
+segmenter cut each printed column in half and alternates the halves line by line, so nearly
+every claim there is `interleaved`, and most bracketed supplies are read off the OTHER half
+of the same printed lines — each claim's note names the lines they came from.
