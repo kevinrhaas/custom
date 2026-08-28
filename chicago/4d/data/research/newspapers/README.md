@@ -128,6 +128,27 @@ columns line by line, so one advertisement occupies a SUBSET of a line range wit
 woven through it. `locator.lines` is the range cited; `locator.lines_of_claim` names the
 lines the quote is built from, and the gate checks the subset lies inside the range.
 
+**And it happens INSIDE a line too, which is what `locator.spans` is for (T-0261).** The
+Democrat's transcriptions carry one line per printed line, so naming lines names an
+advertisement. The American's do not: its densest advertising columns arrive as ONE line
+of up to 11,361 characters carrying four separate advertisements and the segmenter's own
+coordinate telemetry, so naming that line quotes seven other things. `spans` is the
+character-level sibling of `lines_of_claim` — a list of `{line, from, to}` half-open
+ranges — and when it is present the quote is those ranges joined by a newline instead of
+those whole lines. Every range is still verbatim and still rebuilt from the file by the
+gate; only the grain is finer. It is optional and additive: a claim without `spans`
+behaves exactly as before, which is why the T-0257 fixture and the Democrat read needed no
+edit. All 130 of the American's claims use it.
+
+**The Chicago American carries no post-office letter list.** Searched across all thirteen
+issues for every form the Democrat uses — *list of letters*, *letters remaining*,
+*remaining in the post office*, *uncalled for*, a signature ending *P. M.* — for exactly
+one hit, and it is a list of State Bank of Illinois officers reprinted from the *Sangamon
+Journal* (1835-06-27). The American's post-office notices are its hours and rules, signed
+by the postmaster J. S. C. Hogan, and are extracted as `infrastructure`. The epic's
+letter-list ruling has nothing to bite on in this paper; the census proxy is the
+Democrat's.
+
 **`[…]` marks absence, `[word]` marks a supply.** Text the column edge cut away is a gap,
 not an invitation. The worked fixture leaves *'a few doors below'* unsupplied for exactly
 that reason and says where a fuller witness might be found.

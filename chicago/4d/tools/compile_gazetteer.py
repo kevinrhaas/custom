@@ -45,6 +45,18 @@ claim whose text does not match, character for character. That is what makes "ne
 silently smoothed" enforceable instead of aspirational: a smoothed quote fails the gate,
 and the smoothed reading has a field of its own to live in (`normalized`).
 
+AND THE INTERLEAVE HAPPENS INSIDE A LINE TOO (T-0261). The Democrat's transcriptions
+carry one line per printed line, so naming lines is enough to name an advertisement.
+The American's do not: its densest advertising columns arrive as ONE line of up to
+11,361 characters in which four separate advertisements and the segmenter's own
+coordinate telemetry are woven together. Naming that line quotes seven other things,
+which is not a citation. `locator.spans` is therefore the character-level sibling of
+`lines_of_claim`: a list of {line, from, to} half-open character ranges, and when it
+is present the quote is those ranges joined by a newline instead of those whole lines.
+Every range is still verbatim and still machine-checked — the honesty is unchanged,
+only the grain is finer. Optional and additive: a claim without `spans` behaves exactly
+as it did before, which is why the fixture and the Democrat read need no edit.
+
 INTERLEAVED COLUMNS ARE THE NORMAL CASE, NOT AN EXCEPTION. The deposit's advertising type
 is segmented into six physical columns per page and the segmenter frequently alternates
 two of them line by line, so a single advertisement occupies a SUBSET of a line range with
@@ -230,6 +242,56 @@ def column_span(lines, issue_page, column):
             end = starts[i + 1][0] - 1 if i + 1 < len(starts) else len(lines)
             return (n + 1, end)
     return None
+
+
+def quoted_text(lines, used, spans):
+    """What the transcription says at a locator: whole lines, or named char ranges.
+
+    `spans` is the finer grain (T-0261). Each entry is one verbatim piece and the
+    pieces are joined by a newline, exactly as whole lines are — so the two forms
+    differ in what they name, never in what a quote MEANS.
+    """
+    if spans:
+        return "\n".join(lines[s["line"] - 1][s["from"]:s["to"]] for s in spans)
+    return "\n".join(lines[n - 1] for n in used)
+
+
+def span_problems(spans, used, lines):
+    """Everything a `spans` list can be wrong about. Empty list means it is sound."""
+    out = []
+    if not isinstance(spans, list) or not spans:
+        return ["locator.spans must be a non-empty list of {line, from, to}"]
+    seen = []
+    for sp in spans:
+        if not isinstance(sp, dict) or not all(
+                isinstance(sp.get(k), int) for k in ("line", "from", "to")):
+            out.append("every span needs integer `line`, `from` and `to`")
+            return out
+        n = sp["line"]
+        if n not in used:
+            out.append("span cites line %d, which lines_of_claim does not name — a span "
+                       "narrows a claimed line, it cannot add one" % n)
+            continue
+        if lines is not None:
+            width = len(lines[n - 1])
+            if not (0 <= sp["from"] < sp["to"] <= width):
+                out.append("span %d[%d:%d] is not inside a %d-character line"
+                           % (n, sp["from"], sp["to"], width))
+                continue
+        seen.append((n, sp["from"], sp["to"]))
+    if seen != sorted(seen):
+        out.append("spans must be in reading order, by line then by character")
+    for a, b in zip(seen, seen[1:]):
+        if a[0] == b[0] and b[1] < a[2]:
+            out.append("spans %s and %s overlap — a quote cannot say the same "
+                       "characters twice" % (list(a), list(b)))
+    if lines is not None:
+        named = {n for n, _, _ in seen}
+        for n in used:
+            if n not in named:
+                out.append("line %d is claimed but no span quotes any of it — a claimed "
+                           "line the quote does not use is a line that was not read" % n)
+    return out
 
 
 # --------------------------------------------------------------------------
@@ -577,6 +639,9 @@ def check(extracted=EXTRACTED, gazetteer=GAZETTEER, identity=IDENTITY, corpus=CO
 
             lines = text_lines(art.get("text_path", ""), deposit, repo)
             if lines is None:
+                if loc.get("spans"):
+                    bad.extend("%s %s: %s" % (at, key, p)
+                               for p in span_problems(loc["spans"], used, None))
                 unresolved += 1
                 continue
             if span[1] > len(lines):
@@ -593,7 +658,13 @@ def check(extracted=EXTRACTED, gazetteer=GAZETTEER, identity=IDENTITY, corpus=CO
                            "transcription's own markers"
                            % (at, key, span, loc.get("issue_page"), loc.get("column"), list(col)))
             # THE QUOTE IS THE TRANSCRIPTION'S, character for character.
-            want = "\n".join(lines[n - 1] for n in used)
+            spans = loc.get("spans")
+            if spans is not None:
+                sp_bad = span_problems(spans, used, lines)
+                bad.extend("%s %s: %s" % (at, key, p) for p in sp_bad)
+                if sp_bad:
+                    continue
+            want = quoted_text(lines, used, spans)
             if claim.get("quote") is not None and claim["quote"] != want:
                 bad.append("%s %s: the quote is not what lines %s of the transcription "
                            "say. A quote is verbatim including its uncertainty brackets; "
@@ -818,6 +889,41 @@ def self_test():
                        lines=[10 ** 7, 10 ** 7], lines_of_claim=[10 ** 7]),
                    "of a", "a line past the end of the transcription")
 
+        # T-0261's finer grain. The control narrows the backed claim to two character
+        # ranges of its own line and quotes exactly those, so every case below is
+        # unambiguously about `spans` and not about the line it sits in.
+        n0 = backed["claims"][0]["locator"]["lines_of_claim"][0]
+        whole = backed["claims"][0]["quote"]
+        half = max(2, len(whole) // 2)
+
+        def with_spans(d, spans, quote=None):
+            d["claims"][0]["locator"]["spans"] = spans
+            if quote is not None:
+                d["claims"][0]["quote"] = quote
+
+        run_backed(lambda d: with_spans(d, [{"line": n0, "from": 0, "to": 2},
+                                            {"line": n0, "from": half, "to": half + 2}],
+                                        whole[0:2] + "\n" + whole[half:half + 2]),
+                   None, "a quote narrowed to two character ranges of its line")
+        run_backed(lambda d: with_spans(d, [{"line": n0, "from": 0, "to": 2}], whole),
+                   "not what lines", "a spans quote that still carries the whole line")
+        run_backed(lambda d: with_spans(d, [{"line": n0 + 500000, "from": 0, "to": 2}]),
+                   "lines_of_claim does not name",
+                   "a span on a line the claim never claimed")
+        run_backed(lambda d: with_spans(d, [{"line": n0, "from": 0, "to": 10 ** 7}]),
+                   "is not inside a", "a span running past the end of its line")
+        run_backed(lambda d: with_spans(d, [{"line": n0, "from": half, "to": half + 2},
+                                            {"line": n0, "from": 0, "to": 2}]),
+                   "reading order", "spans out of reading order")
+        run_backed(lambda d: with_spans(d, [{"line": n0, "from": 0, "to": half + 2},
+                                            {"line": n0, "from": half, "to": half + 4}]),
+                   "overlap", "two spans quoting the same characters twice")
+        run_backed(lambda d: (d["claims"][0]["locator"].update(
+                       lines=[n0, n0 + 1], lines_of_claim=[n0, n0 + 1]),
+                       with_spans(d, [{"line": n0, "from": 0, "to": 2}])),
+                   "no span quotes any of it",
+                   "a claimed line the spans never quote")
+
     # THE COVERAGE RANGE, which is the only assertion here about an issue that is NOT
     # in the tree. Every other case breaks something present; these break something by
     # its absence, which is the shape of the fault a reading pass actually has.
@@ -904,7 +1010,7 @@ def self_test():
         for f in failures:
             print("FAIL: " + f, file=sys.stderr)
         return 1
-    print("  ok    every gazetteer assertion fires when broken (29 cases), and the\n"
+    print("  ok    every gazetteer assertion fires when broken (36 cases), and the\n"
           "        three ruled marker dialects all resolve")
     return 0
 

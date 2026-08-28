@@ -4,6 +4,58 @@
   "scene_date": "1835-07-01",
   "compiled_from": [
     {
+      "file": "chicago/4d/data/research/newspapers/extracted/chicago_american_1835_06_08.json",
+      "sha256": "6228aad88ae244ec287be59a2c2c9dfd3b83c2560b8e9429d9f745e3a0c737b3"
+    },
+    {
+      "file": "chicago/4d/data/research/newspapers/extracted/chicago_american_1835_06_13.json",
+      "sha256": "811397b35a8f63b27d178d64e050d5aaf3bf4d6bbc642f0367a62fc9aa9cd783"
+    },
+    {
+      "file": "chicago/4d/data/research/newspapers/extracted/chicago_american_1835_06_20.json",
+      "sha256": "f9a1fcd58573d4cf2e2f1e57a2d7a7453b06fd6b3521789c03e3eea6bbccc330"
+    },
+    {
+      "file": "chicago/4d/data/research/newspapers/extracted/chicago_american_1835_06_27.json",
+      "sha256": "f0286ea7f1077d4ebd39bca6554ae165adea52b0868a5c637915649c58c90e18"
+    },
+    {
+      "file": "chicago/4d/data/research/newspapers/extracted/chicago_american_1835_07_04.json",
+      "sha256": "69333016af81f2331a6e8a3e4ead8cdf41d9c8b9c169956c97a37138b7c386b7"
+    },
+    {
+      "file": "chicago/4d/data/research/newspapers/extracted/chicago_american_1835_07_11.json",
+      "sha256": "66c9f1aab446d276443b3e5bf8bf04f050c0cdd6b78447ac4d990f83b3f2dcad"
+    },
+    {
+      "file": "chicago/4d/data/research/newspapers/extracted/chicago_american_1835_07_18.json",
+      "sha256": "632104ddd0836a68ac5d230a9cf9aa10fbf9ab9c29975beac8ae3deeeaf06d3a"
+    },
+    {
+      "file": "chicago/4d/data/research/newspapers/extracted/chicago_american_1835_07_25.json",
+      "sha256": "e62970190357b552d456ded7c4113774965aea885f43ecabb417d54a5d89adfa"
+    },
+    {
+      "file": "chicago/4d/data/research/newspapers/extracted/chicago_american_1835_08_01.json",
+      "sha256": "5d11b880c20eb8825908f790dc2362f47b9bac48d4392504f2e084f9a36e57ed"
+    },
+    {
+      "file": "chicago/4d/data/research/newspapers/extracted/chicago_american_1835_08_08.json",
+      "sha256": "e67d57d220e81087a87ee9627a634c802e17e952b2273f722a065529b891a7c6"
+    },
+    {
+      "file": "chicago/4d/data/research/newspapers/extracted/chicago_american_1835_08_15.json",
+      "sha256": "36946113a673b9e4d5c2b9b1eeea6b4b8614e682300b882c8f696e2c24589a06"
+    },
+    {
+      "file": "chicago/4d/data/research/newspapers/extracted/chicago_american_1835_08_22.json",
+      "sha256": "507f2ccd292a9a73a1d31a1f02be3d5c130432a9fac3f3517da34c72b784b741"
+    },
+    {
+      "file": "chicago/4d/data/research/newspapers/extracted/chicago_american_1835_08_29.json",
+      "sha256": "597a9da3deb3c3c52636db3974b8a140cf7aa264aa5ef6b4bebf8dc63485b117"
+    },
+    {
       "file": "chicago/4d/data/research/newspapers/extracted/chicago_democrat_1834_07_02.json",
       "sha256": "9be52382c5529a52170706b5bd956e39f39a3ceb98993c0ddeb70093cd3ad590"
     },
@@ -29,11 +81,31 @@
     }
   ],
   "counts": {
-    "claims": 147,
-    "persons": 1136,
-    "businesses": 52
+    "claims": 277,
+    "persons": 1244,
+    "businesses": 89
   },
   "persons": [
+    {
+      "id": "person_a_a_barber",
+      "name": "A. A. Barber",
+      "variants": [
+        {
+          "as_printed": "AA Barber",
+          "claim": "chicago_american_1835_06_20#c011"
+        }
+      ],
+      "mentions": [
+        "chicago_american_1835_06_20#c011"
+      ],
+      "first_seen": "1835-06-20",
+      "last_seen": "1835-06-20",
+      "letter_list_only": false,
+      "occupations": [],
+      "associated_places": [
+        "Green Bay"
+      ]
+    },
     {
       "id": "person_a_a_ron_parcell",
       "name": "A[a]ron Parcell",
@@ -69,6 +141,154 @@
       "letter_list_only": true,
       "occupations": [],
       "associated_places": []
+    },
+    {
+      "id": "person_a_c_paterson",
+      "name": "A. C. Paterson",
+      "variants": [
+        {
+          "as_printed": "AC Patesson",
+          "claim": "chicago_american_1835_06_20#c011"
+        }
+      ],
+      "mentions": [
+        "chicago_american_1835_06_20#c011"
+      ],
+      "first_seen": "1835-06-20",
+      "last_seen": "1835-06-20",
+      "letter_list_only": false,
+      "occupations": [],
+      "associated_places": [
+        "Buffalo, N.Y."
+      ]
+    },
+    {
+      "id": "person_a_g_starrett",
+      "name": "A. G. Starrett",
+      "variants": [
+        {
+          "as_printed": "AG Starrett",
+          "claim": "chicago_american_1835_06_20#c011"
+        }
+      ],
+      "mentions": [
+        "chicago_american_1835_06_20#c011"
+      ],
+      "first_seen": "1835-06-20",
+      "last_seen": "1835-06-20",
+      "letter_list_only": false,
+      "occupations": [],
+      "associated_places": [
+        "Boston, Mass."
+      ]
+    },
+    {
+      "id": "person_a_garrett",
+      "name": "A. Garrett",
+      "variants": [
+        {
+          "as_printed": "A. Gatren",
+          "claim": "chicago_american_1835_07_25#c003"
+        },
+        {
+          "as_printed": "RRSTT",
+          "claim": "chicago_american_1835_08_15#c002"
+        }
+      ],
+      "mentions": [
+        "chicago_american_1835_07_25#c003",
+        "chicago_american_1835_08_15#c002"
+      ],
+      "first_seen": "1835-07-25",
+      "last_seen": "1835-08-15",
+      "letter_list_only": false,
+      "occupations": [
+        "auctioneer"
+      ],
+      "associated_places": [
+        "Dearborn Street",
+        "South Water Street"
+      ]
+    },
+    {
+      "id": "person_a_h_friel",
+      "name": "A. H. Friel",
+      "variants": [
+        {
+          "as_printed": "All Friel",
+          "claim": "chicago_american_1835_06_20#c011"
+        }
+      ],
+      "mentions": [
+        "chicago_american_1835_06_20#c011"
+      ],
+      "first_seen": "1835-06-20",
+      "last_seen": "1835-06-20",
+      "letter_list_only": false,
+      "occupations": [],
+      "associated_places": [
+        "Monroe County"
+      ]
+    },
+    {
+      "id": "person_a_hayward",
+      "name": "A. Hayward",
+      "variants": [
+        {
+          "as_printed": "A Hayward",
+          "claim": "chicago_american_1835_06_20#c011"
+        }
+      ],
+      "mentions": [
+        "chicago_american_1835_06_20#c011"
+      ],
+      "first_seen": "1835-06-20",
+      "last_seen": "1835-06-20",
+      "letter_list_only": false,
+      "occupations": [],
+      "associated_places": [
+        "York, Livingston County"
+      ]
+    },
+    {
+      "id": "person_a_j_mead",
+      "name": "A. J. Mead",
+      "variants": [
+        {
+          "as_printed": "4AJ Mend",
+          "claim": "chicago_american_1835_06_20#c011"
+        }
+      ],
+      "mentions": [
+        "chicago_american_1835_06_20#c011"
+      ],
+      "first_seen": "1835-06-20",
+      "last_seen": "1835-06-20",
+      "letter_list_only": false,
+      "occupations": [],
+      "associated_places": [
+        "Meadville, Pa."
+      ]
+    },
+    {
+      "id": "person_a_l_p_waters",
+      "name": "A. L. P. Waters",
+      "variants": [
+        {
+          "as_printed": "ALP Weters",
+          "claim": "chicago_american_1835_06_20#c011"
+        }
+      ],
+      "mentions": [
+        "chicago_american_1835_06_20#c011"
+      ],
+      "first_seen": "1835-06-20",
+      "last_seen": "1835-06-20",
+      "letter_list_only": false,
+      "occupations": [],
+      "associated_places": [
+        "Chicago, Illinois"
+      ]
     },
     {
       "id": "person_a_lbert_fowler",
@@ -209,6 +429,26 @@
       "associated_places": []
     },
     {
+      "id": "person_a_n_fullerton",
+      "name": "A. N. Fullerton",
+      "variants": [
+        {
+          "as_printed": "A, N. Fullerton",
+          "claim": "chicago_american_1835_06_13#c004"
+        }
+      ],
+      "mentions": [
+        "chicago_american_1835_06_13#c004"
+      ],
+      "first_seen": "1835-06-13",
+      "last_seen": "1835-06-13",
+      "letter_list_only": false,
+      "occupations": [
+        "attorney"
+      ],
+      "associated_places": []
+    },
+    {
       "id": "person_a_shepherd",
       "name": "A. Shepherd",
       "variants": [
@@ -253,6 +493,26 @@
       "letter_list_only": false,
       "occupations": [],
       "associated_places": []
+    },
+    {
+      "id": "person_a_townsend",
+      "name": "A. Townsend",
+      "variants": [
+        {
+          "as_printed": "ava A. Townsend",
+          "claim": "chicago_american_1835_06_20#c011"
+        }
+      ],
+      "mentions": [
+        "chicago_american_1835_06_20#c011"
+      ],
+      "first_seen": "1835-06-20",
+      "last_seen": "1835-06-20",
+      "letter_list_only": false,
+      "occupations": [],
+      "associated_places": [
+        "Albany"
+      ]
     },
     {
       "id": "person_aaron_j_davis",
@@ -1201,6 +1461,26 @@
       ]
     },
     {
+      "id": "person_asury_waters",
+      "name": "Asury Waters",
+      "variants": [
+        {
+          "as_printed": "Asury Waters",
+          "claim": "chicago_american_1835_06_20#c011"
+        }
+      ],
+      "mentions": [
+        "chicago_american_1835_06_20#c011"
+      ],
+      "first_seen": "1835-06-20",
+      "last_seen": "1835-06-20",
+      "letter_list_only": false,
+      "occupations": [],
+      "associated_places": [
+        "Chenango County"
+      ]
+    },
+    {
       "id": "person_augustus_h_conant",
       "name": "Augustus H, Conant",
       "variants": [
@@ -1278,6 +1558,24 @@
       "first_seen": "1834-07-09",
       "last_seen": "1834-07-09",
       "letter_list_only": true,
+      "occupations": [],
+      "associated_places": []
+    },
+    {
+      "id": "person_b_beaubien",
+      "name": "B. Beaubien",
+      "variants": [
+        {
+          "as_printed": "B. Beanbien",
+          "claim": "chicago_american_1835_08_29#c001"
+        }
+      ],
+      "mentions": [
+        "chicago_american_1835_08_29#c001"
+      ],
+      "first_seen": "1835-08-29",
+      "last_seen": "1835-08-29",
+      "letter_list_only": false,
       "occupations": [],
       "associated_places": []
     },
@@ -2588,6 +2886,26 @@
       ]
     },
     {
+      "id": "person_brown",
+      "name": "Brown",
+      "variants": [
+        {
+          "as_printed": "BROWN",
+          "claim": "chicago_american_1835_06_08#c005"
+        }
+      ],
+      "mentions": [
+        "chicago_american_1835_06_08#c005"
+      ],
+      "first_seen": "1835-06-08",
+      "last_seen": "1835-06-08",
+      "letter_list_only": false,
+      "occupations": [
+        "painter"
+      ],
+      "associated_places": []
+    },
+    {
       "id": "person_brown_aron",
       "name": "Brown, Aron",
       "variants": [
@@ -3125,6 +3443,29 @@
       "associated_places": []
     },
     {
+      "id": "person_c_h_chapman",
+      "name": "C. H. Chapman",
+      "variants": [
+        {
+          "as_printed": "Cc. H. CHAPMA",
+          "claim": "chicago_american_1835_06_08#c010"
+        },
+        {
+          "as_printed": "©, MO CHARM",
+          "claim": "chicago_american_1835_06_20#c017"
+        }
+      ],
+      "mentions": [
+        "chicago_american_1835_06_08#c010",
+        "chicago_american_1835_06_20#c017"
+      ],
+      "first_seen": "1835-06-08",
+      "last_seen": "1835-06-20",
+      "letter_list_only": false,
+      "occupations": [],
+      "associated_places": []
+    },
+    {
       "id": "person_c_handler_fi_s_her",
       "name": "[C]handler Fi[s]her",
       "variants": [
@@ -3252,6 +3593,44 @@
       "first_seen": "1834-07-09",
       "last_seen": "1834-07-09",
       "letter_list_only": true,
+      "occupations": [],
+      "associated_places": []
+    },
+    {
+      "id": "person_c_harrington",
+      "name": "C. Harrington",
+      "variants": [
+        {
+          "as_printed": "C1 Harringfon",
+          "claim": "chicago_american_1835_06_20#c011"
+        }
+      ],
+      "mentions": [
+        "chicago_american_1835_06_20#c011"
+      ],
+      "first_seen": "1835-06-20",
+      "last_seen": "1835-06-20",
+      "letter_list_only": false,
+      "occupations": [],
+      "associated_places": [
+        "Buffalo"
+      ]
+    },
+    {
+      "id": "person_c_pettit",
+      "name": "C. Pettit",
+      "variants": [
+        {
+          "as_printed": "C. Pettil",
+          "claim": "chicago_american_1835_07_18#c001"
+        }
+      ],
+      "mentions": [
+        "chicago_american_1835_07_18#c001"
+      ],
+      "first_seen": "1835-07-18",
+      "last_seen": "1835-07-18",
+      "letter_list_only": false,
       "occupations": [],
       "associated_places": []
     },
@@ -3772,6 +4151,26 @@
       ]
     },
     {
+      "id": "person_charles_felch",
+      "name": "Charles Felch",
+      "variants": [
+        {
+          "as_printed": "Charles Feleh",
+          "claim": "chicago_american_1835_06_20#c011"
+        }
+      ],
+      "mentions": [
+        "chicago_american_1835_06_20#c011"
+      ],
+      "first_seen": "1835-06-20",
+      "last_seen": "1835-06-20",
+      "letter_list_only": false,
+      "occupations": [],
+      "associated_places": [
+        "New York"
+      ]
+    },
+    {
       "id": "person_charles_friend",
       "name": "Charles Friend",
       "variants": [
@@ -3810,6 +4209,26 @@
       "last_seen": "1834-07-16",
       "letter_list_only": true,
       "occupations": [],
+      "associated_places": []
+    },
+    {
+      "id": "person_charles_hunt",
+      "name": "Charles Hunt",
+      "variants": [
+        {
+          "as_printed": "[ARLES HUNT",
+          "claim": "chicago_american_1835_08_29#c002"
+        }
+      ],
+      "mentions": [
+        "chicago_american_1835_08_29#c002"
+      ],
+      "first_seen": "1835-08-29",
+      "last_seen": "1835-08-29",
+      "letter_list_only": false,
+      "occupations": [
+        "schoolteacher"
+      ],
       "associated_places": []
     },
     {
@@ -4450,6 +4869,26 @@
       ]
     },
     {
+      "id": "person_crawford",
+      "name": "Crawford",
+      "variants": [
+        {
+          "as_printed": "fy CRAWFORD",
+          "claim": "chicago_american_1835_06_20#c003"
+        }
+      ],
+      "mentions": [
+        "chicago_american_1835_06_20#c003"
+      ],
+      "first_seen": "1835-06-20",
+      "last_seen": "1835-06-20",
+      "letter_list_only": false,
+      "occupations": [
+        "brewer"
+      ],
+      "associated_places": []
+    },
+    {
       "id": "person_crawford_james",
       "name": "Crawford, James",
       "variants": [
@@ -4567,6 +5006,26 @@
       "occupations": [],
       "associated_places": [
         "Chicago"
+      ]
+    },
+    {
+      "id": "person_d_a_smith",
+      "name": "D. A. Smith",
+      "variants": [
+        {
+          "as_printed": "1D 4. SMITH",
+          "claim": "chicago_american_1835_08_01#c006"
+        }
+      ],
+      "mentions": [
+        "chicago_american_1835_08_01#c006"
+      ],
+      "first_seen": "1835-08-01",
+      "last_seen": "1835-08-01",
+      "letter_list_only": false,
+      "occupations": [],
+      "associated_places": [
+        "Courtland, Alabama"
       ]
     },
     {
@@ -4716,6 +5175,26 @@
       "letter_list_only": true,
       "occupations": [],
       "associated_places": []
+    },
+    {
+      "id": "person_d_robinson",
+      "name": "D. Robinson",
+      "variants": [
+        {
+          "as_printed": "D Robinsun",
+          "claim": "chicago_american_1835_06_20#c011"
+        }
+      ],
+      "mentions": [
+        "chicago_american_1835_06_20#c011"
+      ],
+      "first_seen": "1835-06-20",
+      "last_seen": "1835-06-20",
+      "letter_list_only": false,
+      "occupations": [],
+      "associated_places": [
+        "Vermont"
+      ]
     },
     {
       "id": "person_dally_youngs",
@@ -5566,6 +6045,26 @@
       ]
     },
     {
+      "id": "person_dr_temple",
+      "name": "Dr. Temple",
+      "variants": [
+        {
+          "as_printed": "Dr, Teniple’s",
+          "claim": "chicago_american_1835_08_22#c001"
+        }
+      ],
+      "mentions": [
+        "chicago_american_1835_08_22#c001"
+      ],
+      "first_seen": "1835-08-22",
+      "last_seen": "1835-08-22",
+      "letter_list_only": false,
+      "occupations": [
+        "physician"
+      ],
+      "associated_places": []
+    },
+    {
       "id": "person_dykine_elias_s",
       "name": "Dykine, Elias S.",
       "variants": [
@@ -5603,6 +6102,28 @@
       "occupations": [],
       "associated_places": [
         "Chicago"
+      ]
+    },
+    {
+      "id": "person_e_c_brackett",
+      "name": "E. C. Brackett",
+      "variants": [
+        {
+          "as_printed": "Es C, BRACKETT",
+          "claim": "chicago_american_1835_07_04#c012"
+        }
+      ],
+      "mentions": [
+        "chicago_american_1835_07_04#c012"
+      ],
+      "first_seen": "1835-07-04",
+      "last_seen": "1835-07-04",
+      "letter_list_only": false,
+      "occupations": [
+        "wine and liquor merchant"
+      ],
+      "associated_places": [
+        "Dearborn Street"
       ]
     },
     {
@@ -5660,6 +6181,26 @@
       "associated_places": []
     },
     {
+      "id": "person_e_g_quick",
+      "name": "E. G. Quick",
+      "variants": [
+        {
+          "as_printed": "EG Quek",
+          "claim": "chicago_american_1835_06_20#c011"
+        }
+      ],
+      "mentions": [
+        "chicago_american_1835_06_20#c011"
+      ],
+      "first_seen": "1835-06-20",
+      "last_seen": "1835-06-20",
+      "letter_list_only": false,
+      "occupations": [],
+      "associated_places": [
+        "Ontario County"
+      ]
+    },
+    {
       "id": "person_e_h_haddock",
       "name": "E. H. Haddock",
       "variants": [
@@ -5689,18 +6230,24 @@
       "name": "E. K. Hubbard",
       "variants": [
         {
+          "as_printed": "E. K. IUBBARD",
+          "claim": "chicago_american_1835_06_20#c015"
+        },
+        {
           "as_printed": "E. K. I",
           "claim": "chicago_democrat_1835_07_01#c017"
         }
       ],
       "mentions": [
+        "chicago_american_1835_06_20#c015",
         "chicago_democrat_1835_07_01#c017"
       ],
-      "first_seen": "1835-07-01",
+      "first_seen": "1835-06-20",
       "last_seen": "1835-07-01",
       "letter_list_only": false,
       "occupations": [
-        "fire insurance agent"
+        "fire insurance agent",
+        "insurance agent"
       ],
       "associated_places": [
         "Chicago"
@@ -5810,6 +6357,26 @@
       ]
     },
     {
+      "id": "person_e_sproat",
+      "name": "E. Sproat",
+      "variants": [
+        {
+          "as_printed": "E.Sproa)",
+          "claim": "chicago_american_1835_06_20#c011"
+        }
+      ],
+      "mentions": [
+        "chicago_american_1835_06_20#c011"
+      ],
+      "first_seen": "1835-06-20",
+      "last_seen": "1835-06-20",
+      "letter_list_only": false,
+      "occupations": [],
+      "associated_places": [
+        "Plymouth, Mass."
+      ]
+    },
+    {
       "id": "person_e_wentworth",
       "name": "E. Wentworth",
       "variants": [
@@ -5846,6 +6413,29 @@
       "letter_list_only": true,
       "occupations": [],
       "associated_places": []
+    },
+    {
+      "id": "person_ebenezer_s_more",
+      "name": "Ebenezer S. More",
+      "variants": [
+        {
+          "as_printed": "BUCENBER S. MOR",
+          "claim": "chicago_american_1835_07_04#c009"
+        }
+      ],
+      "mentions": [
+        "chicago_american_1835_07_04#c009"
+      ],
+      "first_seen": "1835-07-04",
+      "last_seen": "1835-07-04",
+      "letter_list_only": false,
+      "occupations": [
+        "attorney"
+      ],
+      "associated_places": [
+        "Monroe Street",
+        "the Public Square"
+      ]
     },
     {
       "id": "person_ebenozer_alden",
@@ -5905,6 +6495,66 @@
       "letter_list_only": true,
       "occupations": [],
       "associated_places": []
+    },
+    {
+      "id": "person_edward_burton",
+      "name": "Edward Burton",
+      "variants": [
+        {
+          "as_printed": "KOWARD BURTON",
+          "claim": "chicago_american_1835_08_15#c002"
+        }
+      ],
+      "mentions": [
+        "chicago_american_1835_08_15#c002"
+      ],
+      "first_seen": "1835-08-15",
+      "last_seen": "1835-08-15",
+      "letter_list_only": false,
+      "occupations": [
+        "tailor"
+      ],
+      "associated_places": []
+    },
+    {
+      "id": "person_edward_e_henthuy",
+      "name": "Edward E. Henthuy",
+      "variants": [
+        {
+          "as_printed": "fabward E. Henthuy",
+          "claim": "chicago_american_1835_06_20#c011"
+        }
+      ],
+      "mentions": [
+        "chicago_american_1835_06_20#c011"
+      ],
+      "first_seen": "1835-06-20",
+      "last_seen": "1835-06-20",
+      "letter_list_only": false,
+      "occupations": [],
+      "associated_places": [
+        "Albany"
+      ]
+    },
+    {
+      "id": "person_edward_n_shelton",
+      "name": "Edward N. Shelton",
+      "variants": [
+        {
+          "as_printed": "Faward N. Shelton",
+          "claim": "chicago_american_1835_06_20#c011"
+        }
+      ],
+      "mentions": [
+        "chicago_american_1835_06_20#c011"
+      ],
+      "first_seen": "1835-06-20",
+      "last_seen": "1835-06-20",
+      "letter_list_only": false,
+      "occupations": [],
+      "associated_places": [
+        "Huntington"
+      ]
     },
     {
       "id": "person_edward_simone",
@@ -6327,6 +6977,26 @@
       "letter_list_only": true,
       "occupations": [],
       "associated_places": []
+    },
+    {
+      "id": "person_f_w_miller",
+      "name": "F. W. Miller",
+      "variants": [
+        {
+          "as_printed": "FW Miller",
+          "claim": "chicago_american_1835_06_20#c011"
+        }
+      ],
+      "mentions": [
+        "chicago_american_1835_06_20#c011"
+      ],
+      "first_seen": "1835-06-20",
+      "last_seen": "1835-06-20",
+      "letter_list_only": false,
+      "occupations": [],
+      "associated_places": [
+        "Pennsylvania"
+      ]
     },
     {
       "id": "person_fadhams_ddward",
@@ -6804,6 +7474,33 @@
       "associated_places": []
     },
     {
+      "id": "person_frederick_thomas",
+      "name": "Frederick Thomas",
+      "variants": [
+        {
+          "as_printed": "HEDERICK THOMAS",
+          "claim": "chicago_american_1835_06_13#c018"
+        },
+        {
+          "as_printed": "ERICK THOMAS",
+          "claim": "chicago_american_1835_06_20#c009"
+        }
+      ],
+      "mentions": [
+        "chicago_american_1835_06_13#c018",
+        "chicago_american_1835_06_20#c009"
+      ],
+      "first_seen": "1835-06-13",
+      "last_seen": "1835-06-20",
+      "letter_list_only": false,
+      "occupations": [
+        "druggist"
+      ],
+      "associated_places": [
+        "Water Street"
+      ]
+    },
+    {
       "id": "person_fullerton_botsford",
       "name": "Fullerton & Botsford",
       "variants": [
@@ -6824,6 +7521,26 @@
       "associated_places": [
         "Dearborn Street",
         "Lake Street"
+      ]
+    },
+    {
+      "id": "person_g_c_bowe",
+      "name": "G. C. Bowe",
+      "variants": [
+        {
+          "as_printed": "GC Bowe",
+          "claim": "chicago_american_1835_06_20#c011"
+        }
+      ],
+      "mentions": [
+        "chicago_american_1835_06_20#c011"
+      ],
+      "first_seen": "1835-06-20",
+      "last_seen": "1835-06-20",
+      "letter_list_only": false,
+      "occupations": [],
+      "associated_places": [
+        "Genesee County"
       ]
     },
     {
@@ -6921,6 +7638,26 @@
       ]
     },
     {
+      "id": "person_g_t_camp",
+      "name": "G. T. Camp",
+      "variants": [
+        {
+          "as_printed": "GT’ Campy",
+          "claim": "chicago_american_1835_06_20#c011"
+        }
+      ],
+      "mentions": [
+        "chicago_american_1835_06_20#c011"
+      ],
+      "first_seen": "1835-06-20",
+      "last_seen": "1835-06-20",
+      "letter_list_only": false,
+      "occupations": [],
+      "associated_places": [
+        "Chautauque County"
+      ]
+    },
+    {
       "id": "person_g_w_laird",
       "name": "G. W. Laird",
       "variants": [
@@ -6993,6 +7730,26 @@
       "letter_list_only": false,
       "occupations": [],
       "associated_places": []
+    },
+    {
+      "id": "person_g_w_woodward",
+      "name": "G. W. Woodward",
+      "variants": [
+        {
+          "as_printed": "GW Woodward",
+          "claim": "chicago_american_1835_06_20#c011"
+        }
+      ],
+      "mentions": [
+        "chicago_american_1835_06_20#c011"
+      ],
+      "first_seen": "1835-06-20",
+      "last_seen": "1835-06-20",
+      "letter_list_only": false,
+      "occupations": [],
+      "associated_places": [
+        "Boston"
+      ]
     },
     {
       "id": "person_gabbs_james_i1",
@@ -7095,6 +7852,26 @@
       ]
     },
     {
+      "id": "person_george_e_hands",
+      "name": "George E. Hands",
+      "variants": [
+        {
+          "as_printed": "George E'Hands",
+          "claim": "chicago_american_1835_06_20#c011"
+        }
+      ],
+      "mentions": [
+        "chicago_american_1835_06_20#c011"
+      ],
+      "first_seen": "1835-06-20",
+      "last_seen": "1835-06-20",
+      "letter_list_only": false,
+      "occupations": [],
+      "associated_places": [
+        "Detroit"
+      ]
+    },
+    {
       "id": "person_george_e_walker",
       "name": "George E. Walker",
       "variants": [
@@ -7121,6 +7898,46 @@
       "letter_list_only": true,
       "occupations": [],
       "associated_places": []
+    },
+    {
+      "id": "person_george_m_brooks",
+      "name": "George M. Brooks",
+      "variants": [
+        {
+          "as_printed": "George M Brooks",
+          "claim": "chicago_american_1835_06_20#c011"
+        }
+      ],
+      "mentions": [
+        "chicago_american_1835_06_20#c011"
+      ],
+      "first_seen": "1835-06-20",
+      "last_seen": "1835-06-20",
+      "letter_list_only": false,
+      "occupations": [],
+      "associated_places": [
+        "United States"
+      ]
+    },
+    {
+      "id": "person_george_mcwilliams",
+      "name": "George McWilliams",
+      "variants": [
+        {
+          "as_printed": "George McWilliams",
+          "claim": "chicago_american_1835_06_20#c011"
+        }
+      ],
+      "mentions": [
+        "chicago_american_1835_06_20#c011"
+      ],
+      "first_seen": "1835-06-20",
+      "last_seen": "1835-06-20",
+      "letter_list_only": false,
+      "occupations": [],
+      "associated_places": [
+        "Green Bay"
+      ]
     },
     {
       "id": "person_george_r_makepe_a_ce",
@@ -7162,6 +7979,26 @@
       "letter_list_only": true,
       "occupations": [],
       "associated_places": []
+    },
+    {
+      "id": "person_george_reed",
+      "name": "George Reed",
+      "variants": [
+        {
+          "as_printed": "George Reed",
+          "claim": "chicago_american_1835_06_20#c011"
+        }
+      ],
+      "mentions": [
+        "chicago_american_1835_06_20#c011"
+      ],
+      "first_seen": "1835-06-20",
+      "last_seen": "1835-06-20",
+      "letter_list_only": false,
+      "occupations": [],
+      "associated_places": [
+        "Castleton, Vt."
+      ]
     },
     {
       "id": "person_george_walker",
@@ -7706,15 +8543,25 @@
       "name": "Gurdon S. Hubbard",
       "variants": [
         {
+          "as_printed": "Gurdon 4. Hubbard",
+          "claim": "chicago_american_1835_07_04#c010"
+        },
+        {
+          "as_printed": "GS HUBBARD",
+          "claim": "chicago_american_1835_07_11#c002"
+        },
+        {
           "as_printed": "GURDOs S. HUBBARD",
           "claim": "chicago_democrat_1835_07_01#c016"
         }
       ],
       "mentions": [
+        "chicago_american_1835_07_04#c010",
+        "chicago_american_1835_07_11#c002",
         "chicago_democrat_1835_07_01#c016"
       ],
       "first_seen": "1835-07-01",
-      "last_seen": "1835-07-01",
+      "last_seen": "1835-07-11",
       "letter_list_only": false,
       "occupations": [
         "commission and forwarding merchant"
@@ -7777,6 +8624,46 @@
       "occupations": [],
       "associated_places": [
         "Juliet"
+      ]
+    },
+    {
+      "id": "person_h_bower",
+      "name": "H. Bower",
+      "variants": [
+        {
+          "as_printed": "If Bower",
+          "claim": "chicago_american_1835_06_20#c011"
+        }
+      ],
+      "mentions": [
+        "chicago_american_1835_06_20#c011"
+      ],
+      "first_seen": "1835-06-20",
+      "last_seen": "1835-06-20",
+      "letter_list_only": false,
+      "occupations": [],
+      "associated_places": [
+        "Galena, Illinois"
+      ]
+    },
+    {
+      "id": "person_h_c_swift",
+      "name": "H. C. Swift",
+      "variants": [
+        {
+          "as_printed": "HC Switt",
+          "claim": "chicago_american_1835_06_20#c011"
+        }
+      ],
+      "mentions": [
+        "chicago_american_1835_06_20#c011"
+      ],
+      "first_seen": "1835-06-20",
+      "last_seen": "1835-06-20",
+      "letter_list_only": false,
+      "occupations": [],
+      "associated_places": [
+        "Phelps, Ontario County"
       ]
     },
     {
@@ -7864,6 +8751,66 @@
       "letter_list_only": true,
       "occupations": [],
       "associated_places": []
+    },
+    {
+      "id": "person_h_loomis",
+      "name": "H. Loomis",
+      "variants": [
+        {
+          "as_printed": "H Leondis",
+          "claim": "chicago_american_1835_06_20#c011"
+        }
+      ],
+      "mentions": [
+        "chicago_american_1835_06_20#c011"
+      ],
+      "first_seen": "1835-06-20",
+      "last_seen": "1835-06-20",
+      "letter_list_only": false,
+      "occupations": [],
+      "associated_places": [
+        "Ballston Spa"
+      ]
+    },
+    {
+      "id": "person_h_mccloud",
+      "name": "H. McCloud",
+      "variants": [
+        {
+          "as_printed": "H MeChud",
+          "claim": "chicago_american_1835_06_20#c011"
+        }
+      ],
+      "mentions": [
+        "chicago_american_1835_06_20#c011"
+      ],
+      "first_seen": "1835-06-20",
+      "last_seen": "1835-06-20",
+      "letter_list_only": false,
+      "occupations": [],
+      "associated_places": [
+        "Vienna, Ontario County"
+      ]
+    },
+    {
+      "id": "person_h_p_van_cleve",
+      "name": "H. P. Van Cleve",
+      "variants": [
+        {
+          "as_printed": "HP Yau Cleve",
+          "claim": "chicago_american_1835_06_20#c011"
+        }
+      ],
+      "mentions": [
+        "chicago_american_1835_06_20#c011"
+      ],
+      "first_seen": "1835-06-20",
+      "last_seen": "1835-06-20",
+      "letter_list_only": false,
+      "occupations": [],
+      "associated_places": [
+        "Port Winnebago"
+      ]
     },
     {
       "id": "person_h_porter",
@@ -8150,6 +9097,29 @@
       "first_seen": "1834-07-09",
       "last_seen": "1834-07-16",
       "letter_list_only": true,
+      "occupations": [],
+      "associated_places": []
+    },
+    {
+      "id": "person_hans_crocker",
+      "name": "Hans Crocker",
+      "variants": [
+        {
+          "as_printed": "HANS CROCK",
+          "claim": "chicago_american_1835_06_27#c005"
+        },
+        {
+          "as_printed": "VANS CROCKER",
+          "claim": "chicago_american_1835_07_04#c011"
+        }
+      ],
+      "mentions": [
+        "chicago_american_1835_06_27#c005",
+        "chicago_american_1835_07_04#c011"
+      ],
+      "first_seen": "1835-06-27",
+      "last_seen": "1835-07-04",
+      "letter_list_only": false,
       "occupations": [],
       "associated_places": []
     },
@@ -8492,6 +9462,56 @@
       "last_seen": "1834-07-16",
       "letter_list_only": true,
       "occupations": [],
+      "associated_places": []
+    },
+    {
+      "id": "person_henry_k",
+      "name": "Henry K.",
+      "variants": [
+        {
+          "as_printed": "Heary Ki",
+          "claim": "chicago_american_1835_06_20#c011"
+        }
+      ],
+      "mentions": [
+        "chicago_american_1835_06_20#c011"
+      ],
+      "first_seen": "1835-06-20",
+      "last_seen": "1835-06-20",
+      "letter_list_only": false,
+      "occupations": [],
+      "associated_places": [
+        "Brooklyn, N.Y."
+      ]
+    },
+    {
+      "id": "person_henry_moore",
+      "name": "Henry Moore",
+      "variants": [
+        {
+          "as_printed": "HUNKY MOOR)",
+          "claim": "chicago_american_1835_07_04#c001"
+        },
+        {
+          "as_printed": "Hiway Meoue",
+          "claim": "chicago_american_1835_07_11#c001"
+        },
+        {
+          "as_printed": "Hees Moone",
+          "claim": "chicago_american_1835_08_22#c005"
+        }
+      ],
+      "mentions": [
+        "chicago_american_1835_07_04#c001",
+        "chicago_american_1835_07_11#c001",
+        "chicago_american_1835_08_22#c005"
+      ],
+      "first_seen": "1835-07-04",
+      "last_seen": "1835-08-22",
+      "letter_list_only": false,
+      "occupations": [
+        "attorney"
+      ],
       "associated_places": []
     },
     {
@@ -8851,6 +9871,26 @@
       ]
     },
     {
+      "id": "person_hugh_robinson",
+      "name": "Hugh Robinson",
+      "variants": [
+        {
+          "as_printed": "Hugh Robinson",
+          "claim": "chicago_american_1835_06_20#c011"
+        }
+      ],
+      "mentions": [
+        "chicago_american_1835_06_20#c011"
+      ],
+      "first_seen": "1835-06-20",
+      "last_seen": "1835-06-20",
+      "letter_list_only": false,
+      "occupations": [],
+      "associated_places": [
+        "Albany"
+      ]
+    },
+    {
       "id": "person_hugunin_leonard_c",
       "name": "Hugunin, Leonard, C.",
       "variants": [
@@ -8869,6 +9909,26 @@
       "associated_places": [
         "Chicago"
       ]
+    },
+    {
+      "id": "person_hunt",
+      "name": "Hunt",
+      "variants": [
+        {
+          "as_printed": "{ABLES HUNT",
+          "claim": "chicago_american_1835_08_15#c001"
+        }
+      ],
+      "mentions": [
+        "chicago_american_1835_08_15#c001"
+      ],
+      "first_seen": "1835-08-15",
+      "last_seen": "1835-08-15",
+      "letter_list_only": false,
+      "occupations": [
+        "schoolteacher"
+      ],
+      "associated_places": []
     },
     {
       "id": "person_hunt_henry_n",
@@ -8929,6 +9989,24 @@
       "associated_places": [
         "Chicago"
       ]
+    },
+    {
+      "id": "person_hyram_king",
+      "name": "Hyram King",
+      "variants": [
+        {
+          "as_printed": "HYRAM KING",
+          "claim": "chicago_american_1835_06_20#c016"
+        }
+      ],
+      "mentions": [
+        "chicago_american_1835_06_20#c016"
+      ],
+      "first_seen": "1835-06-20",
+      "last_seen": "1835-06-20",
+      "letter_list_only": false,
+      "occupations": [],
+      "associated_places": []
     },
     {
       "id": "person_i_c_bristol",
@@ -9047,6 +10125,26 @@
       "letter_list_only": true,
       "occupations": [],
       "associated_places": []
+    },
+    {
+      "id": "person_i_w_louis",
+      "name": "I. W. Louis",
+      "variants": [
+        {
+          "as_printed": "IW Louis",
+          "claim": "chicago_american_1835_06_20#c011"
+        }
+      ],
+      "mentions": [
+        "chicago_american_1835_06_20#c011"
+      ],
+      "first_seen": "1835-06-20",
+      "last_seen": "1835-06-20",
+      "letter_list_only": false,
+      "occupations": [],
+      "associated_places": [
+        "Ballston Spa"
+      ]
     },
     {
       "id": "person_indebrand_jacob",
@@ -9263,6 +10361,26 @@
       "associated_places": []
     },
     {
+      "id": "person_isaiah_townsend",
+      "name": "Isaiah Townsend",
+      "variants": [
+        {
+          "as_printed": "Iasiah ",
+          "claim": "chicago_american_1835_06_20#c011"
+        }
+      ],
+      "mentions": [
+        "chicago_american_1835_06_20#c011"
+      ],
+      "first_seen": "1835-06-20",
+      "last_seen": "1835-06-20",
+      "letter_list_only": false,
+      "occupations": [],
+      "associated_places": [
+        "Albany"
+      ]
+    },
+    {
       "id": "person_j_a_collett",
       "name": "J. A. Collett",
       "variants": [
@@ -9420,6 +10538,28 @@
       "associated_places": []
     },
     {
+      "id": "person_j_b_barnard",
+      "name": "J. B. Barnard",
+      "variants": [
+        {
+          "as_printed": "DR. J, BH. BARNARD",
+          "claim": "chicago_american_1835_06_13#c009"
+        }
+      ],
+      "mentions": [
+        "chicago_american_1835_06_13#c009"
+      ],
+      "first_seen": "1835-06-13",
+      "last_seen": "1835-06-13",
+      "letter_list_only": false,
+      "occupations": [
+        "physician"
+      ],
+      "associated_places": [
+        "Lake Street"
+      ]
+    },
+    {
       "id": "person_j_b_beaubien",
       "name": "J. B. Beaubien",
       "variants": [
@@ -9534,6 +10674,26 @@
       "associated_places": []
     },
     {
+      "id": "person_j_c_bradley",
+      "name": "J. C. Bradley",
+      "variants": [
+        {
+          "as_printed": "R. J.C, BRADLEY",
+          "claim": "chicago_american_1835_06_20#c001"
+        }
+      ],
+      "mentions": [
+        "chicago_american_1835_06_20#c001"
+      ],
+      "first_seen": "1835-06-20",
+      "last_seen": "1835-06-20",
+      "letter_list_only": false,
+      "occupations": [
+        "surgeon dentist"
+      ],
+      "associated_places": []
+    },
+    {
       "id": "person_j_chester_reid",
       "name": "J. Chester Reid",
       "variants": [
@@ -9640,21 +10800,90 @@
       ]
     },
     {
+      "id": "person_j_ellis",
+      "name": "J. Ellis",
+      "variants": [
+        {
+          "as_printed": "JEllis",
+          "claim": "chicago_american_1835_06_20#c011"
+        }
+      ],
+      "mentions": [
+        "chicago_american_1835_06_20#c011"
+      ],
+      "first_seen": "1835-06-20",
+      "last_seen": "1835-06-20",
+      "letter_list_only": false,
+      "occupations": [],
+      "associated_places": [
+        "New Jersey"
+      ]
+    },
+    {
+      "id": "person_j_farson",
+      "name": "J. Farson",
+      "variants": [
+        {
+          "as_printed": "J Farvon",
+          "claim": "chicago_american_1835_06_20#c011"
+        }
+      ],
+      "mentions": [
+        "chicago_american_1835_06_20#c011"
+      ],
+      "first_seen": "1835-06-20",
+      "last_seen": "1835-06-20",
+      "letter_list_only": false,
+      "occupations": [],
+      "associated_places": [
+        "Vermont"
+      ]
+    },
+    {
+      "id": "person_j_green",
+      "name": "J. Green",
+      "variants": [
+        {
+          "as_printed": "J..GREEN",
+          "claim": "chicago_american_1835_06_13#c013"
+        }
+      ],
+      "mentions": [
+        "chicago_american_1835_06_13#c013"
+      ],
+      "first_seen": "1835-06-13",
+      "last_seen": "1835-06-13",
+      "letter_list_only": false,
+      "occupations": [
+        "army officer"
+      ],
+      "associated_places": [
+        "Fort Dearborn"
+      ]
+    },
+    {
       "id": "person_j_h_kinzie",
       "name": "J. H. Kinzie",
       "variants": [
+        {
+          "as_printed": "1. H. KLYZIE",
+          "claim": "chicago_american_1835_06_20#c005"
+        },
         {
           "as_printed": "J. H. Kinzie",
           "claim": "chicago_democrat_1835_07_01#c010"
         }
       ],
       "mentions": [
+        "chicago_american_1835_06_20#c005",
         "chicago_democrat_1835_07_01#c010"
       ],
-      "first_seen": "1835-07-01",
+      "first_seen": "1835-06-20",
       "last_seen": "1835-07-01",
       "letter_list_only": false,
-      "occupations": [],
+      "occupations": [
+        "merchant"
+      ],
       "associated_places": [
         "Chicago"
       ]
@@ -9846,6 +11075,26 @@
       "last_seen": "1834-07-09",
       "letter_list_only": true,
       "occupations": [],
+      "associated_places": []
+    },
+    {
+      "id": "person_j_n_story",
+      "name": "J. N. Story",
+      "variants": [
+        {
+          "as_printed": "J..N, Stary",
+          "claim": "chicago_american_1835_07_04#c012"
+        }
+      ],
+      "mentions": [
+        "chicago_american_1835_07_04#c012"
+      ],
+      "first_seen": "1835-07-04",
+      "last_seen": "1835-07-04",
+      "letter_list_only": false,
+      "occupations": [
+        "liveryman"
+      ],
       "associated_places": []
     },
     {
@@ -10196,22 +11445,68 @@
       "associated_places": []
     },
     {
+      "id": "person_j_r_cary",
+      "name": "J. R. Cary",
+      "variants": [
+        {
+          "as_printed": "JR Cary",
+          "claim": "chicago_american_1835_06_20#c011"
+        }
+      ],
+      "mentions": [
+        "chicago_american_1835_06_20#c011"
+      ],
+      "first_seen": "1835-06-20",
+      "last_seen": "1835-06-20",
+      "letter_list_only": false,
+      "occupations": [],
+      "associated_places": [
+        "Dutchess County"
+      ]
+    },
+    {
+      "id": "person_j_r_westcott",
+      "name": "J. R. Westcott",
+      "variants": [
+        {
+          "as_printed": "JR Weatcow",
+          "claim": "chicago_american_1835_06_20#c011"
+        }
+      ],
+      "mentions": [
+        "chicago_american_1835_06_20#c011"
+      ],
+      "first_seen": "1835-06-20",
+      "last_seen": "1835-06-20",
+      "letter_list_only": false,
+      "occupations": [],
+      "associated_places": [
+        "Saratoga Springs"
+      ]
+    },
+    {
       "id": "person_j_s_c_hogan",
       "name": "J. S. C. Hogan",
       "variants": [
+        {
+          "as_printed": "J, 8, G. HOGAN",
+          "claim": "chicago_american_1835_07_04#c007"
+        },
         {
           "as_printed": "J. S. C. HOGA",
           "claim": "chicago_democrat_1835_07_01#c002"
         }
       ],
       "mentions": [
+        "chicago_american_1835_07_04#c007",
         "chicago_democrat_1835_07_01#c002"
       ],
       "first_seen": "1835-07-01",
-      "last_seen": "1835-07-01",
+      "last_seen": "1835-07-04",
       "letter_list_only": false,
       "occupations": [
-        "merchant"
+        "merchant",
+        "postmaster"
       ],
       "associated_places": [
         "South Water Street"
@@ -10315,6 +11610,48 @@
       "letter_list_only": true,
       "occupations": [],
       "associated_places": []
+    },
+    {
+      "id": "person_j_wright",
+      "name": "J. Wright",
+      "variants": [
+        {
+          "as_printed": "J, WRIGHT",
+          "claim": "chicago_american_1835_07_11#c004"
+        }
+      ],
+      "mentions": [
+        "chicago_american_1835_07_11#c004"
+      ],
+      "first_seen": "1835-07-11",
+      "last_seen": "1835-07-11",
+      "letter_list_only": false,
+      "occupations": [
+        "merchant"
+      ],
+      "associated_places": [
+        "South Water Street"
+      ]
+    },
+    {
+      "id": "person_j_y_jackson",
+      "name": "J. Y. Jackson",
+      "variants": [
+        {
+          "as_printed": "JY Javkson",
+          "claim": "chicago_american_1835_06_20#c011"
+        }
+      ],
+      "mentions": [
+        "chicago_american_1835_06_20#c011"
+      ],
+      "first_seen": "1835-06-20",
+      "last_seen": "1835-06-20",
+      "letter_list_only": false,
+      "occupations": [],
+      "associated_places": [
+        "Ontario County"
+      ]
     },
     {
       "id": "person_ja_s_per_a_gooding",
@@ -10715,6 +12052,26 @@
       ]
     },
     {
+      "id": "person_james_h_murray",
+      "name": "James H. Murray",
+      "variants": [
+        {
+          "as_printed": "James li Murray",
+          "claim": "chicago_american_1835_06_20#c011"
+        }
+      ],
+      "mentions": [
+        "chicago_american_1835_06_20#c011"
+      ],
+      "first_seen": "1835-06-20",
+      "last_seen": "1835-06-20",
+      "letter_list_only": false,
+      "occupations": [],
+      "associated_places": [
+        "New York"
+      ]
+    },
+    {
       "id": "person_james_hendrix",
       "name": "James Hendrix",
       "variants": [
@@ -10833,6 +12190,46 @@
       "letter_list_only": true,
       "occupations": [],
       "associated_places": []
+    },
+    {
+      "id": "person_james_sheldon",
+      "name": "James Sheldon",
+      "variants": [
+        {
+          "as_printed": "eames Sheldon",
+          "claim": "chicago_american_1835_06_20#c011"
+        }
+      ],
+      "mentions": [
+        "chicago_american_1835_06_20#c011"
+      ],
+      "first_seen": "1835-06-20",
+      "last_seen": "1835-06-20",
+      "letter_list_only": false,
+      "occupations": [],
+      "associated_places": [
+        "Munroe County"
+      ]
+    },
+    {
+      "id": "person_james_smith",
+      "name": "James Smith",
+      "variants": [
+        {
+          "as_printed": "Janes Stmth",
+          "claim": "chicago_american_1835_06_20#c011"
+        }
+      ],
+      "mentions": [
+        "chicago_american_1835_06_20#c011"
+      ],
+      "first_seen": "1835-06-20",
+      "last_seen": "1835-06-20",
+      "letter_list_only": false,
+      "occupations": [],
+      "associated_places": [
+        "Erie County, New York"
+      ]
     },
     {
       "id": "person_james_v_i_al",
@@ -11390,6 +12787,48 @@
       ]
     },
     {
+      "id": "person_john_dave",
+      "name": "John Dave",
+      "variants": [
+        {
+          "as_printed": "5 JOHN DAVE:",
+          "claim": "chicago_american_1835_06_13#c006"
+        }
+      ],
+      "mentions": [
+        "chicago_american_1835_06_13#c006"
+      ],
+      "first_seen": "1835-06-13",
+      "last_seen": "1835-06-13",
+      "letter_list_only": false,
+      "occupations": [],
+      "associated_places": [
+        "North Water Street"
+      ]
+    },
+    {
+      "id": "person_john_davis",
+      "name": "John Davis",
+      "variants": [
+        {
+          "as_printed": "JOHN DAVIS",
+          "claim": "chicago_american_1835_07_04#c002"
+        }
+      ],
+      "mentions": [
+        "chicago_american_1835_07_04#c002"
+      ],
+      "first_seen": "1835-07-04",
+      "last_seen": "1835-07-04",
+      "letter_list_only": false,
+      "occupations": [
+        "forwarding and commission merchant"
+      ],
+      "associated_places": [
+        "South Water Street"
+      ]
+    },
+    {
       "id": "person_john_donnel",
       "name": "John Donnel",
       "variants": [
@@ -11525,15 +12964,25 @@
       "name": "John H. Kinzie",
       "variants": [
         {
+          "as_printed": "SOHN IL. KI",
+          "claim": "chicago_american_1835_06_27#c004"
+        },
+        {
+          "as_printed": "John H. Kindis",
+          "claim": "chicago_american_1835_07_04#c010"
+        },
+        {
           "as_printed": "John H. Kinzie, E",
           "claim": "chicago_democrat_1834_07_23#c004"
         }
       ],
       "mentions": [
+        "chicago_american_1835_06_27#c004",
+        "chicago_american_1835_07_04#c010",
         "chicago_democrat_1834_07_23#c004"
       ],
       "first_seen": "1834-07-23",
-      "last_seen": "1834-07-23",
+      "last_seen": "1835-07-04",
       "letter_list_only": false,
       "occupations": [],
       "associated_places": []
@@ -11573,6 +13022,68 @@
       "letter_list_only": true,
       "occupations": [],
       "associated_places": []
+    },
+    {
+      "id": "person_john_holbrook",
+      "name": "John Holbrook",
+      "variants": [
+        {
+          "as_printed": "JOHN HOLBROOK",
+          "claim": "chicago_american_1835_06_13#c012"
+        }
+      ],
+      "mentions": [
+        "chicago_american_1835_06_13#c012"
+      ],
+      "first_seen": "1835-06-13",
+      "last_seen": "1835-06-13",
+      "letter_list_only": false,
+      "occupations": [
+        "merchant"
+      ],
+      "associated_places": [
+        "South Water Street"
+      ]
+    },
+    {
+      "id": "person_john_k_clark",
+      "name": "John K. Clark",
+      "variants": [
+        {
+          "as_printed": "JOUN XK. CLARK",
+          "claim": "chicago_american_1835_07_11#c007"
+        }
+      ],
+      "mentions": [
+        "chicago_american_1835_07_11#c007"
+      ],
+      "first_seen": "1835-07-11",
+      "last_seen": "1835-07-11",
+      "letter_list_only": false,
+      "occupations": [],
+      "associated_places": [
+        "the North Branch"
+      ]
+    },
+    {
+      "id": "person_john_l_cory",
+      "name": "John L. Cory",
+      "variants": [
+        {
+          "as_printed": "John L Cory",
+          "claim": "chicago_american_1835_06_20#c011"
+        }
+      ],
+      "mentions": [
+        "chicago_american_1835_06_20#c011"
+      ],
+      "first_seen": "1835-06-20",
+      "last_seen": "1835-06-20",
+      "letter_list_only": false,
+      "occupations": [],
+      "associated_places": [
+        "Monroe County"
+      ]
     },
     {
       "id": "person_john_lovell",
@@ -11887,15 +13398,20 @@
       "name": "John Watkins",
       "variants": [
         {
+          "as_printed": "SOHN WATKING",
+          "claim": "chicago_american_1835_06_13#c002"
+        },
+        {
           "as_printed": "JOHN WATKINS.",
           "claim": "chicago_democrat_1834_07_09#c017"
         }
       ],
       "mentions": [
+        "chicago_american_1835_06_13#c002",
         "chicago_democrat_1834_07_09#c017"
       ],
       "first_seen": "1834-07-09",
-      "last_seen": "1834-07-09",
+      "last_seen": "1835-06-13",
       "letter_list_only": false,
       "occupations": [
         "bookseller",
@@ -12858,6 +14374,46 @@
       "associated_places": []
     },
     {
+      "id": "person_l_b_mizner",
+      "name": "L. B. Mizner",
+      "variants": [
+        {
+          "as_printed": "LB Mizner",
+          "claim": "chicago_american_1835_06_20#c011"
+        }
+      ],
+      "mentions": [
+        "chicago_american_1835_06_20#c011"
+      ],
+      "first_seen": "1835-06-20",
+      "last_seen": "1835-06-20",
+      "letter_list_only": false,
+      "occupations": [],
+      "associated_places": [
+        "Geneva, New York"
+      ]
+    },
+    {
+      "id": "person_l_baldwin",
+      "name": "L. Baldwin",
+      "variants": [
+        {
+          "as_printed": "UL bhaldwin",
+          "claim": "chicago_american_1835_06_20#c011"
+        }
+      ],
+      "mentions": [
+        "chicago_american_1835_06_20#c011"
+      ],
+      "first_seen": "1835-06-20",
+      "last_seen": "1835-06-20",
+      "letter_list_only": false,
+      "occupations": [],
+      "associated_places": [
+        "Syracuse"
+      ]
+    },
+    {
       "id": "person_l_c_chamber_l_ain",
       "name": "L. C. Chamber[l]ain",
       "variants": [
@@ -13143,6 +14699,26 @@
       ]
     },
     {
+      "id": "person_lathrop_johnson",
+      "name": "Lathrop Johnson",
+      "variants": [
+        {
+          "as_printed": "Lithtop Johnson",
+          "claim": "chicago_american_1835_06_27#c006"
+        }
+      ],
+      "mentions": [
+        "chicago_american_1835_06_27#c006"
+      ],
+      "first_seen": "1835-06-27",
+      "last_seen": "1835-06-27",
+      "letter_list_only": false,
+      "occupations": [
+        "liveryman"
+      ],
+      "associated_places": []
+    },
+    {
       "id": "person_law_s_on_carrier",
       "name": "Law[s]on Carrier",
       "variants": [
@@ -13337,6 +14913,26 @@
       "last_seen": "1834-07-16",
       "letter_list_only": true,
       "occupations": [],
+      "associated_places": []
+    },
+    {
+      "id": "person_lieut_j_allen",
+      "name": "Lieut. J. Allen",
+      "variants": [
+        {
+          "as_printed": "Lieut. J, Al",
+          "claim": "chicago_american_1835_07_18#c001"
+        }
+      ],
+      "mentions": [
+        "chicago_american_1835_07_18#c001"
+      ],
+      "first_seen": "1835-07-18",
+      "last_seen": "1835-07-18",
+      "letter_list_only": false,
+      "occupations": [
+        "army officer"
+      ],
       "associated_places": []
     },
     {
@@ -13930,6 +15526,26 @@
       "associated_places": []
     },
     {
+      "id": "person_martin_sct",
+      "name": "Martin Sct",
+      "variants": [
+        {
+          "as_printed": "Martin Sct",
+          "claim": "chicago_american_1835_06_20#c011"
+        }
+      ],
+      "mentions": [
+        "chicago_american_1835_06_20#c011"
+      ],
+      "first_seen": "1835-06-20",
+      "last_seen": "1835-06-20",
+      "letter_list_only": false,
+      "occupations": [],
+      "associated_places": [
+        "United States Army"
+      ]
+    },
+    {
       "id": "person_mason_sabrina_a",
       "name": "Mason Sabrina A.",
       "variants": [
@@ -14477,6 +16093,26 @@
       "associated_places": []
     },
     {
+      "id": "person_n_bird",
+      "name": "N. Bird",
+      "variants": [
+        {
+          "as_printed": "N Bird",
+          "claim": "chicago_american_1835_06_20#c011"
+        }
+      ],
+      "mentions": [
+        "chicago_american_1835_06_20#c011"
+      ],
+      "first_seen": "1835-06-20",
+      "last_seen": "1835-06-20",
+      "letter_list_only": false,
+      "occupations": [],
+      "associated_places": [
+        "Chautauque County, N.Y."
+      ]
+    },
+    {
       "id": "person_n_elson_douglass",
       "name": "[N]elson Douglass",
       "variants": [
@@ -14493,6 +16129,26 @@
       "letter_list_only": true,
       "occupations": [],
       "associated_places": []
+    },
+    {
+      "id": "person_n_g_sanford",
+      "name": "N. G. Sanford",
+      "variants": [
+        {
+          "as_printed": "NG Sanford",
+          "claim": "chicago_american_1835_06_20#c011"
+        }
+      ],
+      "mentions": [
+        "chicago_american_1835_06_20#c011"
+      ],
+      "first_seen": "1835-06-20",
+      "last_seen": "1835-06-20",
+      "letter_list_only": false,
+      "occupations": [],
+      "associated_places": [
+        "Woodbridge"
+      ]
     },
     {
       "id": "person_n_w_easling",
@@ -14986,6 +16642,24 @@
       "associated_places": [
         "Chicago"
       ]
+    },
+    {
+      "id": "person_oliver_goss",
+      "name": "Oliver Goss",
+      "variants": [
+        {
+          "as_printed": "OLtteR Gos",
+          "claim": "chicago_american_1835_06_13#c015"
+        }
+      ],
+      "mentions": [
+        "chicago_american_1835_06_13#c015"
+      ],
+      "first_seen": "1835-06-13",
+      "last_seen": "1835-06-13",
+      "letter_list_only": false,
+      "occupations": [],
+      "associated_places": []
     },
     {
       "id": "person_oliver_newberry",
@@ -15850,6 +17524,26 @@
       ]
     },
     {
+      "id": "person_peter_wendell",
+      "name": "Peter Wendell",
+      "variants": [
+        {
+          "as_printed": "Veter Wenttll",
+          "claim": "chicago_american_1835_06_20#c011"
+        }
+      ],
+      "mentions": [
+        "chicago_american_1835_06_20#c011"
+      ],
+      "first_seen": "1835-06-20",
+      "last_seen": "1835-06-20",
+      "letter_list_only": false,
+      "occupations": [],
+      "associated_places": [
+        "Phelps, Ontario"
+      ]
+    },
+    {
       "id": "person_peter_white",
       "name": "Peter White",
       "variants": [
@@ -15950,15 +17644,20 @@
       "name": "Philo Carpenter",
       "variants": [
         {
+          "as_printed": "PHILO CARPENTER",
+          "claim": "chicago_american_1835_06_27#c013"
+        },
+        {
           "as_printed": "CARPENTER,",
           "claim": "chicago_democrat_1834_07_02#c054"
         }
       ],
       "mentions": [
+        "chicago_american_1835_06_27#c013",
         "chicago_democrat_1834_07_02#c054"
       ],
       "first_seen": "1834-07-02",
-      "last_seen": "1834-07-02",
+      "last_seen": "1835-06-27",
       "letter_list_only": false,
       "occupations": [
         "druggist"
@@ -16161,6 +17860,26 @@
       "letter_list_only": true,
       "occupations": [],
       "associated_places": []
+    },
+    {
+      "id": "person_pierre_van_cortlandt",
+      "name": "Pierre Van Cortlandt",
+      "variants": [
+        {
+          "as_printed": "Pierre Vap Cortland)",
+          "claim": "chicago_american_1835_06_20#c011"
+        }
+      ],
+      "mentions": [
+        "chicago_american_1835_06_20#c011"
+      ],
+      "first_seen": "1835-06-20",
+      "last_seen": "1835-06-20",
+      "letter_list_only": false,
+      "occupations": [],
+      "associated_places": [
+        "Peekskill"
+      ]
     },
     {
       "id": "person_pike_luke",
@@ -16492,6 +18211,26 @@
       "associated_places": []
     },
     {
+      "id": "person_r_cochrane",
+      "name": "R. Cochrane",
+      "variants": [
+        {
+          "as_printed": "R Cochrane",
+          "claim": "chicago_american_1835_06_20#c011"
+        }
+      ],
+      "mentions": [
+        "chicago_american_1835_06_20#c011"
+      ],
+      "first_seen": "1835-06-20",
+      "last_seen": "1835-06-20",
+      "letter_list_only": false,
+      "occupations": [],
+      "associated_places": [
+        "Erie, Pa."
+      ]
+    },
+    {
       "id": "person_r_euben_beech",
       "name": "[R]euben Beech",
       "variants": [
@@ -16624,6 +18363,10 @@
       "name": "R. Stewart",
       "variants": [
         {
+          "as_printed": "RK, STEW ART",
+          "claim": "chicago_american_1835_06_13#c003"
+        },
+        {
           "as_printed": "R. stewart",
           "claim": "chicago_democrat_1834_07_02#c032"
         },
@@ -16637,14 +18380,17 @@
         }
       ],
       "mentions": [
+        "chicago_american_1835_06_13#c003",
         "chicago_democrat_1834_07_02#c032",
         "chicago_democrat_1834_07_09#c007",
         "chicago_democrat_1834_07_16#c007"
       ],
       "first_seen": "1834-07-02",
-      "last_seen": "1834-07-16",
-      "letter_list_only": true,
-      "occupations": [],
+      "last_seen": "1835-06-13",
+      "letter_list_only": false,
+      "occupations": [
+        "attorney"
+      ],
       "associated_places": []
     },
     {
@@ -17037,6 +18783,26 @@
       "associated_places": []
     },
     {
+      "id": "person_richard_j_hamilton",
+      "name": "Richard J. Hamilton",
+      "variants": [
+        {
+          "as_printed": "Ricmazo I. Hawterox",
+          "claim": "chicago_american_1835_08_22#c006"
+        }
+      ],
+      "mentions": [
+        "chicago_american_1835_08_22#c006"
+      ],
+      "first_seen": "1835-08-22",
+      "last_seen": "1835-08-22",
+      "letter_list_only": false,
+      "occupations": [
+        "clerk of the circuit court"
+      ],
+      "associated_places": []
+    },
+    {
       "id": "person_richard_jacob",
       "name": "Richard Jacob",
       "variants": [
@@ -17254,6 +19020,26 @@
       "associated_places": []
     },
     {
+      "id": "person_robert_townsend",
+      "name": "Robert Townsend",
+      "variants": [
+        {
+          "as_printed": "Robert Townsend",
+          "claim": "chicago_american_1835_06_20#c011"
+        }
+      ],
+      "mentions": [
+        "chicago_american_1835_06_20#c011"
+      ],
+      "first_seen": "1835-06-20",
+      "last_seen": "1835-06-20",
+      "letter_list_only": false,
+      "occupations": [],
+      "associated_places": [
+        "Albany"
+      ]
+    },
+    {
       "id": "person_roberts_sidney",
       "name": "Roberts Sidney",
       "variants": [
@@ -17291,6 +19077,33 @@
       "occupations": [],
       "associated_places": [
         "Chicago"
+      ]
+    },
+    {
+      "id": "person_rockwell",
+      "name": "Rockwell",
+      "variants": [
+        {
+          "as_printed": "ROCKWELL",
+          "claim": "chicago_american_1835_06_13#c017"
+        },
+        {
+          "as_printed": "ROCKWELL",
+          "claim": "chicago_american_1835_06_27#c002"
+        }
+      ],
+      "mentions": [
+        "chicago_american_1835_06_13#c017",
+        "chicago_american_1835_06_27#c002"
+      ],
+      "first_seen": "1835-06-13",
+      "last_seen": "1835-06-27",
+      "letter_list_only": false,
+      "occupations": [
+        "cabinet maker"
+      ],
+      "associated_places": [
+        "South Water Street"
       ]
     },
     {
@@ -17438,6 +19251,46 @@
       ]
     },
     {
+      "id": "person_s_abell",
+      "name": "S. Abell",
+      "variants": [
+        {
+          "as_printed": "S. ABELL",
+          "claim": "chicago_american_1835_08_01#c003"
+        }
+      ],
+      "mentions": [
+        "chicago_american_1835_08_01#c003"
+      ],
+      "first_seen": "1835-08-01",
+      "last_seen": "1835-08-01",
+      "letter_list_only": false,
+      "occupations": [
+        "attorney"
+      ],
+      "associated_places": []
+    },
+    {
+      "id": "person_s_b_cobb",
+      "name": "S. B. Cobb",
+      "variants": [
+        {
+          "as_printed": "Seb BLCOBs",
+          "claim": "chicago_american_1835_06_13#c016"
+        }
+      ],
+      "mentions": [
+        "chicago_american_1835_06_13#c016"
+      ],
+      "first_seen": "1835-06-13",
+      "last_seen": "1835-06-13",
+      "letter_list_only": false,
+      "occupations": [
+        "saddler"
+      ],
+      "associated_places": []
+    },
+    {
       "id": "person_s_g_trowbridge",
       "name": "S. G. Trowbridge",
       "variants": [
@@ -17455,6 +19308,26 @@
       "occupations": [],
       "associated_places": [
         "Chicago"
+      ]
+    },
+    {
+      "id": "person_s_mills",
+      "name": "S. Mills",
+      "variants": [
+        {
+          "as_printed": "8 Mille",
+          "claim": "chicago_american_1835_06_20#c011"
+        }
+      ],
+      "mentions": [
+        "chicago_american_1835_06_20#c011"
+      ],
+      "first_seen": "1835-06-20",
+      "last_seen": "1835-06-20",
+      "letter_list_only": false,
+      "occupations": [],
+      "associated_places": [
+        "Jefferson, Ohio"
       ]
     },
     {
@@ -17484,6 +19357,26 @@
       "letter_list_only": true,
       "occupations": [],
       "associated_places": []
+    },
+    {
+      "id": "person_s_sibley",
+      "name": "S. Sibley",
+      "variants": [
+        {
+          "as_printed": "S Bibley",
+          "claim": "chicago_american_1835_06_20#c011"
+        }
+      ],
+      "mentions": [
+        "chicago_american_1835_06_20#c011"
+      ],
+      "first_seen": "1835-06-20",
+      "last_seen": "1835-06-20",
+      "letter_list_only": false,
+      "occupations": [],
+      "associated_places": [
+        "Detroit"
+      ]
     },
     {
       "id": "person_saac_scarrett",
@@ -17889,6 +19782,26 @@
       "associated_places": []
     },
     {
+      "id": "person_samuel_townsend",
+      "name": "Samuel Townsend",
+      "variants": [
+        {
+          "as_printed": "Bamnel Townsend",
+          "claim": "chicago_american_1835_06_20#c011"
+        }
+      ],
+      "mentions": [
+        "chicago_american_1835_06_20#c011"
+      ],
+      "first_seen": "1835-06-20",
+      "last_seen": "1835-06-20",
+      "letter_list_only": false,
+      "occupations": [],
+      "associated_places": [
+        "Orange County"
+      ]
+    },
+    {
       "id": "person_sanford_ruth",
       "name": "Sanford, Ruth",
       "variants": [
@@ -17927,6 +19840,26 @@
       "associated_places": [
         "Chicago"
       ]
+    },
+    {
+      "id": "person_sarah_d_howe",
+      "name": "Sarah D. Howe",
+      "variants": [
+        {
+          "as_printed": "ARAH D. HOWE",
+          "claim": "chicago_american_1835_08_22#c001"
+        }
+      ],
+      "mentions": [
+        "chicago_american_1835_08_22#c001"
+      ],
+      "first_seen": "1835-08-22",
+      "last_seen": "1835-08-22",
+      "letter_list_only": false,
+      "occupations": [
+        "dressmaker"
+      ],
+      "associated_places": []
     },
     {
       "id": "person_saunders_william_s",
@@ -19312,6 +21245,26 @@
       ]
     },
     {
+      "id": "person_stuart",
+      "name": "Stuart",
+      "variants": [
+        {
+          "as_printed": "STUAWTS",
+          "claim": "chicago_american_1835_06_08#c008"
+        }
+      ],
+      "mentions": [
+        "chicago_american_1835_06_08#c008"
+      ],
+      "first_seen": "1835-06-08",
+      "last_seen": "1835-06-08",
+      "letter_list_only": false,
+      "occupations": [
+        "confectioner"
+      ],
+      "associated_places": []
+    },
+    {
       "id": "person_stuart_william",
       "name": "Stuart William",
       "variants": [
@@ -19706,6 +21659,46 @@
       ]
     },
     {
+      "id": "person_theodore_mumer",
+      "name": "Theodore Mumer",
+      "variants": [
+        {
+          "as_printed": "‘Theodore Mumer",
+          "claim": "chicago_american_1835_06_20#c011"
+        }
+      ],
+      "mentions": [
+        "chicago_american_1835_06_20#c011"
+      ],
+      "first_seen": "1835-06-20",
+      "last_seen": "1835-06-20",
+      "letter_list_only": false,
+      "occupations": [],
+      "associated_places": [
+        "New York"
+      ]
+    },
+    {
+      "id": "person_theodore_rameyn",
+      "name": "Theodore Rameyn",
+      "variants": [
+        {
+          "as_printed": "‘Theodore Rameyn",
+          "claim": "chicago_american_1835_06_20#c011"
+        }
+      ],
+      "mentions": [
+        "chicago_american_1835_06_20#c011"
+      ],
+      "first_seen": "1835-06-20",
+      "last_seen": "1835-06-20",
+      "letter_list_only": false,
+      "occupations": [],
+      "associated_places": [
+        "Albany"
+      ]
+    },
+    {
       "id": "person_theron_parsons",
       "name": "Theron Parsons",
       "variants": [
@@ -19811,6 +21804,26 @@
       "associated_places": []
     },
     {
+      "id": "person_thomas_bunnet",
+      "name": "Thomas Bunnet",
+      "variants": [
+        {
+          "as_printed": "‘Thumye Buanet",
+          "claim": "chicago_american_1835_06_20#c011"
+        }
+      ],
+      "mentions": [
+        "chicago_american_1835_06_20#c011"
+      ],
+      "first_seen": "1835-06-20",
+      "last_seen": "1835-06-20",
+      "letter_list_only": false,
+      "occupations": [],
+      "associated_places": [
+        "Liverpool, England"
+      ]
+    },
+    {
       "id": "person_thomas_conger",
       "name": "Thomas Conger",
       "variants": [
@@ -19832,6 +21845,26 @@
       "letter_list_only": true,
       "occupations": [],
       "associated_places": []
+    },
+    {
+      "id": "person_thomas_d_grant",
+      "name": "Thomas D. Grant",
+      "variants": [
+        {
+          "as_printed": "Thomae D Grant",
+          "claim": "chicago_american_1835_06_20#c011"
+        }
+      ],
+      "mentions": [
+        "chicago_american_1835_06_20#c011"
+      ],
+      "first_seen": "1835-06-20",
+      "last_seen": "1835-06-20",
+      "letter_list_only": false,
+      "occupations": [],
+      "associated_places": [
+        "Madison, New York"
+      ]
     },
     {
       "id": "person_thomas_fitzgerald",
@@ -19911,6 +21944,44 @@
       "associated_places": [
         "Juliet"
       ]
+    },
+    {
+      "id": "person_thomas_kip",
+      "name": "Thomas Kip",
+      "variants": [
+        {
+          "as_printed": "Thomas Kip",
+          "claim": "chicago_american_1835_06_20#c011"
+        }
+      ],
+      "mentions": [
+        "chicago_american_1835_06_20#c011"
+      ],
+      "first_seen": "1835-06-20",
+      "last_seen": "1835-06-20",
+      "letter_list_only": false,
+      "occupations": [],
+      "associated_places": [
+        "Buffalo"
+      ]
+    },
+    {
+      "id": "person_thomas_mather",
+      "name": "Thomas Mather",
+      "variants": [
+        {
+          "as_printed": "‘Thoinas Mather",
+          "claim": "chicago_american_1835_06_27#c001"
+        }
+      ],
+      "mentions": [
+        "chicago_american_1835_06_27#c001"
+      ],
+      "first_seen": "1835-06-27",
+      "last_seen": "1835-06-27",
+      "letter_list_only": false,
+      "occupations": [],
+      "associated_places": []
     },
     {
       "id": "person_thomas_s_eels",
@@ -20222,6 +22293,33 @@
       "occupations": [],
       "associated_places": [
         "Juliet"
+      ]
+    },
+    {
+      "id": "person_tuthill_king",
+      "name": "Tuthill King",
+      "variants": [
+        {
+          "as_printed": "TUTAILL ‘UNG",
+          "claim": "chicago_american_1835_06_20#c007"
+        },
+        {
+          "as_printed": "TUTUILL KIN",
+          "claim": "chicago_american_1835_07_04#c003"
+        }
+      ],
+      "mentions": [
+        "chicago_american_1835_06_20#c007",
+        "chicago_american_1835_07_04#c003"
+      ],
+      "first_seen": "1835-06-20",
+      "last_seen": "1835-07-04",
+      "letter_list_only": false,
+      "occupations": [
+        "clothier"
+      ],
+      "associated_places": [
+        "Dearborn Street"
       ]
     },
     {
@@ -21443,6 +23541,26 @@
       ]
     },
     {
+      "id": "person_v_a_wendell",
+      "name": "V. A. Wendell",
+      "variants": [
+        {
+          "as_printed": "VA Wendell",
+          "claim": "chicago_american_1835_06_20#c011"
+        }
+      ],
+      "mentions": [
+        "chicago_american_1835_06_20#c011"
+      ],
+      "first_seen": "1835-06-20",
+      "last_seen": "1835-06-20",
+      "letter_list_only": false,
+      "occupations": [],
+      "associated_places": [
+        "Mackinac"
+      ]
+    },
+    {
       "id": "person_valerius_hall",
       "name": "Valerius Hall",
       "variants": [
@@ -21686,6 +23804,24 @@
       ]
     },
     {
+      "id": "person_w_b_ogden",
+      "name": "W. B. Ogden",
+      "variants": [
+        {
+          "as_printed": "W. By Ogden",
+          "claim": "chicago_american_1835_06_20#c010"
+        }
+      ],
+      "mentions": [
+        "chicago_american_1835_06_20#c010"
+      ],
+      "first_seen": "1835-06-20",
+      "last_seen": "1835-06-20",
+      "letter_list_only": false,
+      "occupations": [],
+      "associated_places": []
+    },
+    {
       "id": "person_w_eake_cole",
       "name": "[W]eake, cole",
       "variants": [
@@ -21899,6 +24035,28 @@
       "occupations": [],
       "associated_places": [
         "Chicago"
+      ]
+    },
+    {
+      "id": "person_w_g_austin",
+      "name": "W. G. Austin",
+      "variants": [
+        {
+          "as_printed": "DR...W. G. AUST",
+          "claim": "chicago_american_1835_08_08#c001"
+        }
+      ],
+      "mentions": [
+        "chicago_american_1835_08_08#c001"
+      ],
+      "first_seen": "1835-08-08",
+      "last_seen": "1835-08-08",
+      "letter_list_only": false,
+      "occupations": [
+        "physician"
+      ],
+      "associated_places": [
+        "Lake Street"
       ]
     },
     {
@@ -22219,6 +24377,26 @@
       ]
     },
     {
+      "id": "person_w_l_newberry",
+      "name": "W. L. Newberry",
+      "variants": [
+        {
+          "as_printed": "W, L. NEWHERR:",
+          "claim": "chicago_american_1835_06_08#c004"
+        }
+      ],
+      "mentions": [
+        "chicago_american_1835_06_08#c004"
+      ],
+      "first_seen": "1835-06-08",
+      "last_seen": "1835-06-08",
+      "letter_list_only": false,
+      "occupations": [],
+      "associated_places": [
+        "Chicago River"
+      ]
+    },
+    {
       "id": "person_w_lutty_richard",
       "name": "[W]lutty, Richard",
       "variants": [
@@ -22314,6 +24492,28 @@
       "letter_list_only": true,
       "occupations": [],
       "associated_places": []
+    },
+    {
+      "id": "person_w_montgomery",
+      "name": "W. Montgomery",
+      "variants": [
+        {
+          "as_printed": "WW: MONTGOMERY",
+          "claim": "chicago_american_1835_07_04#c012"
+        }
+      ],
+      "mentions": [
+        "chicago_american_1835_07_04#c012"
+      ],
+      "first_seen": "1835-07-04",
+      "last_seen": "1835-07-04",
+      "letter_list_only": false,
+      "occupations": [
+        "auctioneer"
+      ],
+      "associated_places": [
+        "South Water Street"
+      ]
     },
     {
       "id": "person_w_olf_john",
@@ -22696,6 +24896,24 @@
       ]
     },
     {
+      "id": "person_william_b_archer",
+      "name": "William B. Archer",
+      "variants": [
+        {
+          "as_printed": "‘Wiliam 8. Archer",
+          "claim": "chicago_american_1835_07_04#c010"
+        }
+      ],
+      "mentions": [
+        "chicago_american_1835_07_04#c010"
+      ],
+      "first_seen": "1835-07-04",
+      "last_seen": "1835-07-04",
+      "letter_list_only": false,
+      "occupations": [],
+      "associated_places": []
+    },
+    {
       "id": "person_william_c_l_eyborn",
       "name": "William C[l]eyborn",
       "variants": [
@@ -22940,6 +25158,46 @@
       "associated_places": []
     },
     {
+      "id": "person_wm_brewster",
+      "name": "Wm. Brewster",
+      "variants": [
+        {
+          "as_printed": "Wa Brewster",
+          "claim": "chicago_american_1835_06_20#c011"
+        }
+      ],
+      "mentions": [
+        "chicago_american_1835_06_20#c011"
+      ],
+      "first_seen": "1835-06-20",
+      "last_seen": "1835-06-20",
+      "letter_list_only": false,
+      "occupations": [],
+      "associated_places": [
+        "Steuben County"
+      ]
+    },
+    {
+      "id": "person_wm_burpet",
+      "name": "Wm. Burpet",
+      "variants": [
+        {
+          "as_printed": "Win Burpet",
+          "claim": "chicago_american_1835_06_20#c011"
+        }
+      ],
+      "mentions": [
+        "chicago_american_1835_06_20#c011"
+      ],
+      "first_seen": "1835-06-20",
+      "last_seen": "1835-06-20",
+      "letter_list_only": false,
+      "occupations": [],
+      "associated_places": [
+        "Ontario County"
+      ]
+    },
+    {
       "id": "person_wm_c_whittely",
       "name": "Wm. C. Whittely",
       "variants": [
@@ -23039,6 +25297,46 @@
       "associated_places": []
     },
     {
+      "id": "person_wm_r_maskell",
+      "name": "Wm. R. Maskell",
+      "variants": [
+        {
+          "as_printed": "in ft Maskell",
+          "claim": "chicago_american_1835_06_20#c011"
+        }
+      ],
+      "mentions": [
+        "chicago_american_1835_06_20#c011"
+      ],
+      "first_seen": "1835-06-20",
+      "last_seen": "1835-06-20",
+      "letter_list_only": false,
+      "occupations": [],
+      "associated_places": [
+        "New York"
+      ]
+    },
+    {
+      "id": "person_wm_reuse",
+      "name": "Wm. Reuse",
+      "variants": [
+        {
+          "as_printed": "Win Reuse",
+          "claim": "chicago_american_1835_06_20#c011"
+        }
+      ],
+      "mentions": [
+        "chicago_american_1835_06_20#c011"
+      ],
+      "first_seen": "1835-06-20",
+      "last_seen": "1835-06-20",
+      "letter_list_only": false,
+      "occupations": [],
+      "associated_places": [
+        "Erie, Pa."
+      ]
+    },
+    {
       "id": "person_wm_s_welch",
       "name": "Wm. S. Welch",
       "variants": [
@@ -23055,6 +25353,28 @@
       "letter_list_only": true,
       "occupations": [],
       "associated_places": []
+    },
+    {
+      "id": "person_wm_sabine",
+      "name": "Wm. Sabine",
+      "variants": [
+        {
+          "as_printed": "WM. SABINE",
+          "claim": "chicago_american_1835_06_13#c005"
+        }
+      ],
+      "mentions": [
+        "chicago_american_1835_06_13#c005"
+      ],
+      "first_seen": "1835-06-13",
+      "last_seen": "1835-06-13",
+      "letter_list_only": false,
+      "occupations": [
+        "forwarding and commission merchant"
+      ],
+      "associated_places": [
+        "North Water Street"
+      ]
     },
     {
       "id": "person_wm_stapleton",
@@ -23198,6 +25518,332 @@
     }
   ],
   "businesses": [
+    {
+      "id": "business_a_chicago_stove_and_hollow_ware_dealer_august_1835",
+      "name": "a Chicago stove and hollow ware dealer, August 1835",
+      "proprietors": [],
+      "trade": "stoves, hollow ware and castings",
+      "goods": [
+        "Castings",
+        "Coal Stoves",
+        "Cooking Stoves",
+        "Hollow Ware"
+      ],
+      "street": null,
+      "placement": {
+        "class": "none",
+        "anchor": null,
+        "offset_text": null,
+        "offset_normalized": null,
+        "street": null
+      },
+      "evidence": {
+        "first_issue": "1835-08-08",
+        "last_issue": "1835-08-08",
+        "copy_dates": []
+      },
+      "contradicted_by": [],
+      "mentions": [
+        "chicago_american_1835_08_08#c002"
+      ],
+      "built_at_scene_date": true,
+      "survival_liberty_required": false
+    },
+    {
+      "id": "business_a_garrett_auctioneer",
+      "name": "A. Garrett, auctioneer",
+      "proprietors": [
+        "A. Garrett"
+      ],
+      "trade": "auction of town lots and land",
+      "goods": [],
+      "street": "Dearborn Street",
+      "placement": {
+        "class": "none",
+        "anchor": null,
+        "offset_text": null,
+        "offset_normalized": null,
+        "street": null
+      },
+      "evidence": {
+        "first_issue": "1835-08-22",
+        "last_issue": "1835-08-22",
+        "copy_dates": []
+      },
+      "contradicted_by": [],
+      "mentions": [
+        "chicago_american_1835_08_22#c004"
+      ],
+      "built_at_scene_date": true,
+      "survival_liberty_required": false
+    },
+    {
+      "id": "business_a_leather_stock_chicago_june_1835",
+      "name": "a leather stock, Chicago, June 1835",
+      "proprietors": [],
+      "trade": "leather",
+      "goods": [
+        "Harness Leather",
+        "Lamb Skins",
+        "Morocco Skins",
+        "Skirting"
+      ],
+      "street": null,
+      "placement": {
+        "class": "none",
+        "anchor": null,
+        "offset_text": null,
+        "offset_normalized": null,
+        "street": null
+      },
+      "evidence": {
+        "first_issue": "1835-06-13",
+        "last_issue": "1835-06-13",
+        "copy_dates": [
+          "1835-06-13"
+        ]
+      },
+      "contradicted_by": [],
+      "mentions": [
+        "chicago_american_1835_06_13#c011"
+      ],
+      "built_at_scene_date": true,
+      "survival_liberty_required": false
+    },
+    {
+      "id": "business_a_new_auction_and_commission_room_south_water_street",
+      "name": "a new auction and commission room, South Water Street",
+      "proprietors": [
+        "W. Montgomery"
+      ],
+      "trade": "auction and commission",
+      "goods": [
+        "Crockery",
+        "Dry Goods",
+        "Groceries",
+        "Hardware"
+      ],
+      "street": "South Water Street",
+      "placement": {
+        "class": "relative",
+        "anchor": "J. Wright's",
+        "offset_text": "woet of J. Wrights, for the purpose",
+        "offset_normalized": "w[e]st of J. Wright's",
+        "street": "South Water Street"
+      },
+      "evidence": {
+        "first_issue": "1835-06-27",
+        "last_issue": "1835-07-25",
+        "copy_dates": [
+          "1835-06-24",
+          "1835-06-27",
+          "1835-07-17",
+          "1835-07-18"
+        ]
+      },
+      "contradicted_by": [],
+      "mentions": [
+        "chicago_american_1835_06_27#c008",
+        "chicago_american_1835_07_04#c012",
+        "chicago_american_1835_07_11#c003",
+        "chicago_american_1835_07_18#c003",
+        "chicago_american_1835_07_25#c003"
+      ],
+      "built_at_scene_date": true,
+      "survival_liberty_required": false
+    },
+    {
+      "id": "business_a_new_tailoring_establishment_chicago_june_1835",
+      "name": "a new tailoring establishment, Chicago, June 1835",
+      "proprietors": [
+        "Edward Burton"
+      ],
+      "trade": "tailoring",
+      "goods": [],
+      "street": null,
+      "placement": {
+        "class": "none",
+        "anchor": null,
+        "offset_text": null,
+        "offset_normalized": null,
+        "street": null
+      },
+      "evidence": {
+        "first_issue": "1835-06-27",
+        "last_issue": "1835-08-15",
+        "copy_dates": [
+          "1835-06-27"
+        ]
+      },
+      "contradicted_by": [],
+      "mentions": [
+        "chicago_american_1835_06_27#c009",
+        "chicago_american_1835_07_25#c002",
+        "chicago_american_1835_08_01#c005",
+        "chicago_american_1835_08_15#c002"
+      ],
+      "built_at_scene_date": true,
+      "survival_liberty_required": false
+    },
+    {
+      "id": "business_a_travelling_dentist_at_the_new_york_house",
+      "name": "a travelling dentist at the New York House",
+      "proprietors": [
+        "J. C. Bradley"
+      ],
+      "trade": "dentistry",
+      "goods": [],
+      "street": null,
+      "placement": {
+        "class": "relative",
+        "anchor": "the New York House",
+        "offset_text": "Ile office atthe New York House, wher he will remain until after the Land Bale,",
+        "offset_normalized": "His office at the New York House, where he will remain until after the Land [S]ale",
+        "street": null
+      },
+      "evidence": {
+        "first_issue": "1835-06-13",
+        "last_issue": "1835-06-20",
+        "copy_dates": [
+          "1835-06-14"
+        ]
+      },
+      "contradicted_by": [],
+      "mentions": [
+        "chicago_american_1835_06_13#c008",
+        "chicago_american_1835_06_20#c001"
+      ],
+      "built_at_scene_date": true,
+      "survival_liberty_required": false
+    },
+    {
+      "id": "business_a_wholesale_wine_and_liquor_store_dearborn_street",
+      "name": "a wholesale wine and liquor store, Dearborn Street",
+      "proprietors": [],
+      "trade": "wholesale wine and liquors",
+      "goods": [
+        "Liquors",
+        "Wines"
+      ],
+      "street": "Dearborn Street",
+      "placement": {
+        "class": "street_only",
+        "anchor": null,
+        "offset_text": "Denrdorn Stree",
+        "offset_normalized": "De[a]rborn Stree[t]",
+        "street": "Dearborn Street"
+      },
+      "evidence": {
+        "first_issue": "1835-06-27",
+        "last_issue": "1835-06-27",
+        "copy_dates": [
+          "1835-06-24"
+        ]
+      },
+      "contradicted_by": [],
+      "mentions": [
+        "chicago_american_1835_06_27#c010"
+      ],
+      "built_at_scene_date": true,
+      "survival_liberty_required": false
+    },
+    {
+      "id": "business_an_iron_and_hardware_stock_chicago_june_1835",
+      "name": "an iron and hardware stock, Chicago, June 1835",
+      "proprietors": [],
+      "trade": "iron and hardware",
+      "goods": [
+        "Anvils",
+        "Bar Lead",
+        "Crowbars",
+        "Horse Shoes",
+        "Mill Irons",
+        "Saws",
+        "Vices"
+      ],
+      "street": null,
+      "placement": {
+        "class": "none",
+        "anchor": null,
+        "offset_text": null,
+        "offset_normalized": null,
+        "street": null
+      },
+      "evidence": {
+        "first_issue": "1835-06-13",
+        "last_issue": "1835-06-13",
+        "copy_dates": [
+          "1835-06-13"
+        ]
+      },
+      "contradicted_by": [],
+      "mentions": [
+        "chicago_american_1835_06_13#c010"
+      ],
+      "built_at_scene_date": true,
+      "survival_liberty_required": false
+    },
+    {
+      "id": "business_brown_painter",
+      "name": "Brown, painter",
+      "proprietors": [
+        "Brown"
+      ],
+      "trade": "carriage, sign, ornamental and figure painting, and gilding",
+      "goods": [],
+      "street": null,
+      "placement": {
+        "class": "none",
+        "anchor": null,
+        "offset_text": null,
+        "offset_normalized": null,
+        "street": null
+      },
+      "evidence": {
+        "first_issue": "1835-06-08",
+        "last_issue": "1835-08-15",
+        "copy_dates": []
+      },
+      "contradicted_by": [],
+      "mentions": [
+        "chicago_american_1835_06_08#c005",
+        "chicago_american_1835_06_13#c014",
+        "chicago_american_1835_08_15#c004"
+      ],
+      "built_at_scene_date": true,
+      "survival_liberty_required": false
+    },
+    {
+      "id": "business_carpenter_chicago_merchant",
+      "name": "Carpenter, Chicago merchant",
+      "proprietors": [],
+      "trade": "general merchandise on consignment",
+      "goods": [
+        "Crown Glass",
+        "Window Glass"
+      ],
+      "street": null,
+      "placement": {
+        "class": "none",
+        "anchor": null,
+        "offset_text": null,
+        "offset_normalized": null,
+        "street": null
+      },
+      "evidence": {
+        "first_issue": "1835-06-20",
+        "last_issue": "1835-06-20",
+        "copy_dates": [
+          "1835-06-12"
+        ]
+      },
+      "contradicted_by": [],
+      "mentions": [
+        "chicago_american_1835_06_20#c004"
+      ],
+      "built_at_scene_date": true,
+      "survival_liberty_required": false
+    },
     {
       "id": "business_clark_filer_co",
       "name": "Clark, Filer & Co.",
@@ -23372,6 +26018,37 @@
       "survival_liberty_required": true
     },
     {
+      "id": "business_dart_co_castings",
+      "name": "Dart & Co., castings",
+      "proprietors": [],
+      "trade": "iron castings",
+      "goods": [
+        "Cast Iron Ploughs",
+        "Castings"
+      ],
+      "street": null,
+      "placement": {
+        "class": "relative",
+        "anchor": "the Fulton Market",
+        "offset_text": "rant of the Falton Markys, opporit",
+        "offset_normalized": "[in f]ront of the F[u]lton Mark[et], opposit[e …]",
+        "street": null
+      },
+      "evidence": {
+        "first_issue": "1835-07-25",
+        "last_issue": "1835-07-25",
+        "copy_dates": [
+          "1835-07-25"
+        ]
+      },
+      "contradicted_by": [],
+      "mentions": [
+        "chicago_american_1835_07_25#c001"
+      ],
+      "built_at_scene_date": true,
+      "survival_liberty_required": false
+    },
+    {
       "id": "business_david_carver",
       "name": "David Carver",
       "proprietors": [
@@ -23438,6 +26115,64 @@
       "survival_liberty_required": false
     },
     {
+      "id": "business_dr_j_b_barnard",
+      "name": "Dr. J. B. Barnard",
+      "proprietors": [
+        "J. B. Barnard"
+      ],
+      "trade": "physician",
+      "goods": [],
+      "street": "Lake Street",
+      "placement": {
+        "class": "relative",
+        "anchor": "the New York House",
+        "offset_text": "ar tie New Yous Horse, Lane atneet,",
+        "offset_normalized": "a[t] t[h]e New Yor[k] Ho[u]se, La[k]e [s]t[r]eet",
+        "street": "Lake Street"
+      },
+      "evidence": {
+        "first_issue": "1835-06-13",
+        "last_issue": "1835-06-13",
+        "copy_dates": []
+      },
+      "contradicted_by": [],
+      "mentions": [
+        "chicago_american_1835_06_13#c009"
+      ],
+      "built_at_scene_date": true,
+      "survival_liberty_required": false
+    },
+    {
+      "id": "business_dr_w_g_austin_botanic_physician",
+      "name": "Dr. W. G. Austin, botanic physician",
+      "proprietors": [
+        "W. G. Austin"
+      ],
+      "trade": "botanic medicine",
+      "goods": [],
+      "street": "Lake Street",
+      "placement": {
+        "class": "relative",
+        "anchor": "the Post Office",
+        "offset_text": "ced the practice of medicine and openec on Lake esrevt, near the Pom Office.",
+        "offset_normalized": "opene[d an office] on Lake s[t]re[et], near the Po[st] Office",
+        "street": "Lake Street"
+      },
+      "evidence": {
+        "first_issue": "1835-08-08",
+        "last_issue": "1835-08-08",
+        "copy_dates": [
+          "1835-08-07"
+        ]
+      },
+      "contradicted_by": [],
+      "mentions": [
+        "chicago_american_1835_08_08#c001"
+      ],
+      "built_at_scene_date": true,
+      "survival_liberty_required": false
+    },
+    {
       "id": "business_e_k_hubbard_agent_for_the_howard_fire_insurance_company",
       "name": "E. K. Hubbard, agent for the Howard Fire Insurance Company",
       "proprietors": [
@@ -23450,17 +26185,20 @@
         "class": "none",
         "anchor": null,
         "offset_text": null,
+        "offset_normalized": null,
         "street": null
       },
       "evidence": {
-        "first_issue": "1835-07-01",
+        "first_issue": "1835-06-20",
         "last_issue": "1835-07-01",
         "copy_dates": [
+          "1835-06-20",
           "1835-07-01"
         ]
       },
       "contradicted_by": [],
       "mentions": [
+        "chicago_american_1835_06_20#c015",
         "chicago_democrat_1835_07_01#c017"
       ],
       "built_at_scene_date": true,
@@ -23551,6 +26289,36 @@
       "survival_liberty_required": true
     },
     {
+      "id": "business_ebenezer_s_more_attorney_at_law",
+      "name": "Ebenezer S. More, attorney at law",
+      "proprietors": [
+        "Ebenezer S. More"
+      ],
+      "trade": "attorney at law",
+      "goods": [],
+      "street": "Monroe Street",
+      "placement": {
+        "class": "relative",
+        "anchor": "the Public Square",
+        "offset_text": "the resent, ts hept at hia dwefling, sou Public Square, 02 Monrae bireet, wast of!",
+        "offset_normalized": "for the present, is kept at his dwelling, [sou…] [the] Public Square, o[n] Monr[o]e [s]treet, w[e]st of […]",
+        "street": "Monroe Street"
+      },
+      "evidence": {
+        "first_issue": "1835-07-04",
+        "last_issue": "1835-07-04",
+        "copy_dates": [
+          "1835-07-04"
+        ]
+      },
+      "contradicted_by": [],
+      "mentions": [
+        "chicago_american_1835_07_04#c009"
+      ],
+      "built_at_scene_date": true,
+      "survival_liberty_required": false
+    },
+    {
       "id": "business_edward_w_casey",
       "name": "Edward W. Casey",
       "proprietors": [
@@ -23577,6 +26345,58 @@
       ],
       "built_at_scene_date": true,
       "survival_liberty_required": true
+    },
+    {
+      "id": "business_frederick_thomas_drugs_and_paints",
+      "name": "Frederick Thomas, drugs and paints",
+      "proprietors": [
+        "Frederick Thomas"
+      ],
+      "trade": "drugs, paints, chemicals, perfumery and dye stuffs",
+      "goods": [
+        "Carminative Balm",
+        "Chemicals",
+        "Dye Stuffs",
+        "Epsom Salts",
+        "Ink",
+        "Lee's Pills",
+        "Letter Paper",
+        "Oils",
+        "Paints",
+        "Patent Medicines",
+        "Perfumery",
+        "Preserving Cordial",
+        "Seidlitz Powders",
+        "Tooth Powders",
+        "Turlington's Balsam"
+      ],
+      "street": null,
+      "placement": {
+        "class": "none",
+        "anchor": null,
+        "offset_text": null,
+        "offset_normalized": null,
+        "street": null
+      },
+      "evidence": {
+        "first_issue": "1835-06-08",
+        "last_issue": "1835-08-15",
+        "copy_dates": [
+          "1835-06-02",
+          "1835-06-24"
+        ]
+      },
+      "contradicted_by": [],
+      "mentions": [
+        "chicago_american_1835_06_08#c016",
+        "chicago_american_1835_06_13#c018",
+        "chicago_american_1835_06_20#c009",
+        "chicago_american_1835_06_27#c011",
+        "chicago_american_1835_07_04#c005",
+        "chicago_american_1835_08_15#c003"
+      ],
+      "built_at_scene_date": true,
+      "survival_liberty_required": false
     },
     {
       "id": "business_fullerton_botsford",
@@ -23612,6 +26432,36 @@
       ],
       "built_at_scene_date": true,
       "survival_liberty_required": true
+    },
+    {
+      "id": "business_fullerton_g_attorneys_and_counsellors",
+      "name": "Fullerton & G., attorneys and counsellors",
+      "proprietors": [
+        "A. N. Fullerton"
+      ],
+      "trade": "attorneys and counsellors at law",
+      "goods": [],
+      "street": null,
+      "placement": {
+        "class": "none",
+        "anchor": null,
+        "offset_text": null,
+        "offset_normalized": null,
+        "street": null
+      },
+      "evidence": {
+        "first_issue": "1835-06-13",
+        "last_issue": "1835-06-13",
+        "copy_dates": [
+          "1835-06-08"
+        ]
+      },
+      "contradicted_by": [],
+      "mentions": [
+        "chicago_american_1835_06_13#c004"
+      ],
+      "built_at_scene_date": true,
+      "survival_liberty_required": false
     },
     {
       "id": "business_g_spring",
@@ -23710,9 +26560,10 @@
       "id": "business_goss_cobb",
       "name": "Goss & Cobb",
       "proprietors": [
+        "Oliver Goss",
         "Goss & Cobb"
       ],
-      "trade": "saddle, harness and trunk making",
+      "trade": null,
       "goods": [
         "Bridles",
         "Harnesses",
@@ -23722,27 +26573,41 @@
         "Travelling Bags",
         "Trunks"
       ],
-      "street": "Lake Street",
+      "street": null,
       "placement": {
-        "class": "corner",
-        "anchor": "corner of Lake and Canal streets",
-        "offset_text": "at their old stand, corner\nof Lake and Canal streets",
-        "offset_normalized": "at their old stand, corner of Lake and Canal streets",
-        "street": "Lake Street"
+        "class": "none",
+        "anchor": null,
+        "offset_text": null,
+        "offset_normalized": null,
+        "street": null
       },
       "evidence": {
         "first_issue": "1834-07-02",
-        "last_issue": "1834-07-02",
+        "last_issue": "1835-06-13",
         "copy_dates": [
-          "1834-06-04"
+          "1834-06-04",
+          "1835-02-18"
         ]
       },
-      "contradicted_by": [],
+      "contradicted_by": [
+        {
+          "claim": "chicago_american_1835_06_08#c006",
+          "kind": "notice",
+          "issue": "1835-06-08"
+        },
+        {
+          "claim": "chicago_american_1835_06_13#c015",
+          "kind": "notice",
+          "issue": "1835-06-13"
+        }
+      ],
       "mentions": [
+        "chicago_american_1835_06_08#c006",
+        "chicago_american_1835_06_13#c015",
         "chicago_democrat_1834_07_02#c001"
       ],
-      "built_at_scene_date": true,
-      "survival_liberty_required": true
+      "built_at_scene_date": false,
+      "survival_liberty_required": false
     },
     {
       "id": "business_h_doty_co",
@@ -23794,39 +26659,81 @@
       "proprietors": [
         "Harmon, Loomis & Co."
       ],
-      "trade": "fancy and staple dry goods, groceries, liquors, hardware, crockery, iron and glass, wholesale and retail",
+      "trade": "wholesale and retail dry goods, groceries, hardware and crockery",
       "goods": [
+        "Brandy",
         "Confectionary",
         "Crockery",
         "Cutlery",
         "Dry Goods",
         "Glass",
+        "Glass Ware",
         "Groceries",
         "Hardware",
         "Iron",
         "Liquors",
+        "Molasses",
+        "Nails",
+        "Rum",
+        "Saleratus",
         "Steel",
         "Sugar",
-        "Tea"
+        "Tea",
+        "Wines"
       ],
-      "street": null,
+      "street": "South Water Street",
       "placement": {
-        "class": "none",
-        "street": null
+        "class": "street_only",
+        "anchor": null,
+        "offset_text": "Mme sete Sayth Water Street,",
+        "offset_normalized": "[…] So[u]th Water Street,",
+        "street": "South Water Street"
       },
       "evidence": {
         "first_issue": "1834-07-02",
-        "last_issue": "1834-07-02",
+        "last_issue": "1835-07-25",
         "copy_dates": [
-          "1834-05-20"
+          "1834-05-20",
+          "1835-06-08"
         ]
       },
       "contradicted_by": [],
       "mentions": [
+        "chicago_american_1835_06_08#c013",
+        "chicago_american_1835_06_20#c006",
+        "chicago_american_1835_07_25#c004",
         "chicago_democrat_1834_07_02#c005"
       ],
       "built_at_scene_date": true,
-      "survival_liberty_required": true
+      "survival_liberty_required": false
+    },
+    {
+      "id": "business_henry_moore_attorney_and_counsellor",
+      "name": "Henry Moore, attorney and counsellor",
+      "proprietors": [
+        "Henry Moore"
+      ],
+      "trade": "attorney, counsellor and solicitor in chancery",
+      "goods": [],
+      "street": null,
+      "placement": {
+        "class": "relative",
+        "anchor": "J. H. Kinzie's New Building",
+        "offset_text": "Office a J. H. Kenzic’s New",
+        "offset_normalized": "Office a[t] J. H. K[i]nzie's New [Building]",
+        "street": null
+      },
+      "evidence": {
+        "first_issue": "1835-07-04",
+        "last_issue": "1835-07-04",
+        "copy_dates": []
+      },
+      "contradicted_by": [],
+      "mentions": [
+        "chicago_american_1835_07_04#c001"
+      ],
+      "built_at_scene_date": true,
+      "survival_liberty_required": false
     },
     {
       "id": "business_hubbard_co",
@@ -23859,6 +26766,51 @@
         "chicago_democrat_1834_07_02#c045",
         "chicago_democrat_1834_07_02#c048",
         "chicago_democrat_1835_07_01#c016"
+      ],
+      "built_at_scene_date": true,
+      "survival_liberty_required": false
+    },
+    {
+      "id": "business_hubbard_co_forwarding_and_commission_merchants",
+      "name": "Hubbard & Co., forwarding and commission merchants",
+      "proprietors": [],
+      "trade": "forwarding and commission merchants",
+      "goods": [
+        "Claret",
+        "Copal Varnish",
+        "Lard",
+        "Linseed Oil",
+        "Pork Shoulders",
+        "Pot-Ash",
+        "Sauterne",
+        "Sperm Oil",
+        "White Lead",
+        "Wines",
+        "Yellow Ochre"
+      ],
+      "street": null,
+      "placement": {
+        "class": "none",
+        "anchor": null,
+        "offset_text": null,
+        "offset_normalized": null,
+        "street": null
+      },
+      "evidence": {
+        "first_issue": "1835-06-20",
+        "last_issue": "1835-08-29",
+        "copy_dates": [
+          "1835-06-20",
+          "1835-06-27",
+          "1835-08-29"
+        ]
+      },
+      "contradicted_by": [],
+      "mentions": [
+        "chicago_american_1835_06_20#c013",
+        "chicago_american_1835_06_27#c012",
+        "chicago_american_1835_07_11#c006",
+        "chicago_american_1835_08_29#c004"
       ],
       "built_at_scene_date": true,
       "survival_liberty_required": false
@@ -23933,6 +26885,40 @@
       ],
       "built_at_scene_date": true,
       "survival_liberty_required": true
+    },
+    {
+      "id": "business_j_h_kinzie_merchant",
+      "name": "J. H. Kinzie, merchant",
+      "proprietors": [
+        "J. H. Kinzie"
+      ],
+      "trade": "lumber, nails and salt",
+      "goods": [
+        "Lumber",
+        "Nails",
+        "Salt"
+      ],
+      "street": null,
+      "placement": {
+        "class": "none",
+        "anchor": null,
+        "offset_text": null,
+        "offset_normalized": null,
+        "street": null
+      },
+      "evidence": {
+        "first_issue": "1835-06-20",
+        "last_issue": "1835-06-20",
+        "copy_dates": [
+          "1835-06-08"
+        ]
+      },
+      "contradicted_by": [],
+      "mentions": [
+        "chicago_american_1835_06_20#c005"
+      ],
+      "built_at_scene_date": true,
+      "survival_liberty_required": false
     },
     {
       "id": "business_j_h_mulford",
@@ -24038,6 +27024,136 @@
       "contradicted_by": [],
       "mentions": [
         "chicago_democrat_1835_07_01#c002"
+      ],
+      "built_at_scene_date": true,
+      "survival_liberty_required": false
+    },
+    {
+      "id": "business_j_wright_merchant",
+      "name": "J. Wright, merchant",
+      "proprietors": [
+        "J. Wright"
+      ],
+      "trade": "leather, salt and lumber",
+      "goods": [
+        "Oak Scantling",
+        "Salt",
+        "Sole Leather",
+        "Upper Leather"
+      ],
+      "street": "South Water Street",
+      "placement": {
+        "class": "none",
+        "anchor": null,
+        "offset_text": null,
+        "offset_normalized": null,
+        "street": null
+      },
+      "evidence": {
+        "first_issue": "1835-07-11",
+        "last_issue": "1835-07-11",
+        "copy_dates": []
+      },
+      "contradicted_by": [],
+      "mentions": [
+        "chicago_american_1835_07_11#c004"
+      ],
+      "built_at_scene_date": true,
+      "survival_liberty_required": false
+    },
+    {
+      "id": "business_jno_wilson_co",
+      "name": "Jno. Wilson & Co.",
+      "proprietors": [],
+      "trade": "dry goods, groceries and hardware",
+      "goods": [
+        "Dry Goods",
+        "Groceries",
+        "Hardware",
+        "Window Glass",
+        "Window Sash"
+      ],
+      "street": null,
+      "placement": {
+        "class": "none",
+        "anchor": null,
+        "offset_text": null,
+        "offset_normalized": null,
+        "street": null
+      },
+      "evidence": {
+        "first_issue": "1835-06-20",
+        "last_issue": "1835-07-18",
+        "copy_dates": [
+          "1835-06-12"
+        ]
+      },
+      "contradicted_by": [],
+      "mentions": [
+        "chicago_american_1835_06_20#c002",
+        "chicago_american_1835_07_18#c005"
+      ],
+      "built_at_scene_date": true,
+      "survival_liberty_required": false
+    },
+    {
+      "id": "business_john_dave_north_water_street",
+      "name": "John Dave, North Water Street",
+      "proprietors": [
+        "John Dave"
+      ],
+      "trade": null,
+      "goods": [],
+      "street": "North Water Street",
+      "placement": {
+        "class": "street_only",
+        "anchor": null,
+        "offset_text": "NORTM WATER STREET,",
+        "offset_normalized": "NORT[H] WATER STREET",
+        "street": "North Water Street"
+      },
+      "evidence": {
+        "first_issue": "1835-06-13",
+        "last_issue": "1835-06-13",
+        "copy_dates": []
+      },
+      "contradicted_by": [],
+      "mentions": [
+        "chicago_american_1835_06_13#c006"
+      ],
+      "built_at_scene_date": true,
+      "survival_liberty_required": false
+    },
+    {
+      "id": "business_john_holbrook_hats_clothing_boots_and_shoes",
+      "name": "John Holbrook, hats, clothing, boots and shoes",
+      "proprietors": [
+        "John Holbrook"
+      ],
+      "trade": "hats, clothing, boots and shoes, wholesale and retail",
+      "goods": [
+        "Boots and Shoes",
+        "Clothing",
+        "Hats"
+      ],
+      "street": "South Water Street",
+      "placement": {
+        "class": "relative",
+        "anchor": "Dearborn Street",
+        "offset_text": "ack Water wirert, one door from Dee",
+        "offset_normalized": "[South] Water [st]reet, one door from De[arborn]",
+        "street": "South Water Street"
+      },
+      "evidence": {
+        "first_issue": "1835-06-13",
+        "last_issue": "1835-06-13",
+        "copy_dates": [
+          "1835-06-13"
+        ]
+      },
+      "contradicted_by": [],
+      "mentions": [
+        "chicago_american_1835_06_13#c012"
       ],
       "built_at_scene_date": true,
       "survival_liberty_required": false
@@ -24271,6 +27387,74 @@
       "survival_liberty_required": true
     },
     {
+      "id": "business_l_wilson_co",
+      "name": "L. Wilson & Co.",
+      "proprietors": [],
+      "trade": "dry goods, groceries and hardware",
+      "goods": [
+        "Dry Goods",
+        "Groceries",
+        "Hardware"
+      ],
+      "street": null,
+      "placement": {
+        "class": "none",
+        "anchor": null,
+        "offset_text": null,
+        "offset_normalized": null,
+        "street": null
+      },
+      "evidence": {
+        "first_issue": "1835-06-08",
+        "last_issue": "1835-06-08",
+        "copy_dates": [
+          "1835-06-08"
+        ]
+      },
+      "contradicted_by": [],
+      "mentions": [
+        "chicago_american_1835_06_08#c012"
+      ],
+      "built_at_scene_date": true,
+      "survival_liberty_required": false
+    },
+    {
+      "id": "business_lathrop_johnson_co_livery",
+      "name": "Lathrop Johnson & Co., livery",
+      "proprietors": [
+        "Lathrop Johnson"
+      ],
+      "trade": "livery",
+      "goods": [],
+      "street": null,
+      "placement": {
+        "class": "none",
+        "anchor": null,
+        "offset_text": null,
+        "offset_normalized": null,
+        "street": null
+      },
+      "evidence": {
+        "first_issue": "1835-06-27",
+        "last_issue": "1835-06-27",
+        "copy_dates": [
+          "1835-06-15"
+        ]
+      },
+      "contradicted_by": [
+        {
+          "claim": "chicago_american_1835_06_27#c006",
+          "kind": "notice",
+          "issue": "1835-06-27"
+        }
+      ],
+      "mentions": [
+        "chicago_american_1835_06_27#c006"
+      ],
+      "built_at_scene_date": false,
+      "survival_liberty_required": false
+    },
+    {
       "id": "business_m_cormick_moon",
       "name": "M'Cormick & Moon",
       "proprietors": [
@@ -24366,31 +27550,76 @@
       "survival_liberty_required": true
     },
     {
+      "id": "business_new_york_clothing_store",
+      "name": "New York Clothing Store",
+      "proprietors": [
+        "Tuthill King"
+      ],
+      "trade": "clothing, wholesale and retail",
+      "goods": [
+        "Brogans",
+        "Coats",
+        "Frock Coats",
+        "Jackets",
+        "Pantaloons",
+        "Vests"
+      ],
+      "street": "Dearborn Street",
+      "placement": {
+        "class": "relative",
+        "anchor": "three doors north of an unread anchor, in Dearborn Street",
+        "offset_text": "a tue abuve business three doors worth of i,",
+        "offset_normalized": "the above business three doors [n]orth of [uncertain: …]",
+        "street": "Dearborn Street"
+      },
+      "evidence": {
+        "first_issue": "1835-06-08",
+        "last_issue": "1835-07-04",
+        "copy_dates": [
+          "1835-06-08"
+        ]
+      },
+      "contradicted_by": [],
+      "mentions": [
+        "chicago_american_1835_06_08#c014",
+        "chicago_american_1835_06_20#c007",
+        "chicago_american_1835_07_04#c003"
+      ],
+      "built_at_scene_date": true,
+      "survival_liberty_required": false
+    },
+    {
       "id": "business_newberry_dole",
       "name": "Newberry & Dole",
       "proprietors": [
         "Newberry & Dole"
       ],
-      "trade": "storage, forwarding and commission merchants; agents for the Merchants' Line; wholesale and retail dealers in dry goods, groceries and provisions",
+      "trade": null,
       "goods": [
         "Dry Goods",
         "Groceries",
         "Provisions"
       ],
-      "street": "South Water Street",
+      "street": null,
       "placement": {
         "class": "none",
         "anchor": null,
         "offset_text": null,
-        "street": "South Water Street"
+        "offset_normalized": null,
+        "street": null
       },
       "evidence": {
-        "first_issue": "1835-07-01",
-        "last_issue": "1835-07-01",
-        "copy_dates": []
+        "first_issue": "1835-06-08",
+        "last_issue": "1835-07-04",
+        "copy_dates": [
+          "1835-06-08"
+        ]
       },
       "contradicted_by": [],
       "mentions": [
+        "chicago_american_1835_06_08#c011",
+        "chicago_american_1835_06_20#c014",
+        "chicago_american_1835_07_04#c002",
         "chicago_democrat_1835_07_01#c015"
       ],
       "built_at_scene_date": true,
@@ -24568,6 +27797,47 @@
       "survival_liberty_required": true
     },
     {
+      "id": "business_philo_carpenter_drugs_and_medicines",
+      "name": "Philo Carpenter, drugs and medicines",
+      "proprietors": [
+        "Philo Carpenter"
+      ],
+      "trade": "drugs, medicines, dye woods and dye stuffs",
+      "goods": [
+        "Dye Stuffs",
+        "Dye Woods",
+        "Grass Scythes",
+        "Hay Forks",
+        "Manure Forks",
+        "Perfumery",
+        "Rifles",
+        "Scythe Stones",
+        "Shovels",
+        "Surgical Instruments",
+        "Trusses"
+      ],
+      "street": null,
+      "placement": {
+        "class": "none",
+        "anchor": null,
+        "offset_text": null,
+        "offset_normalized": null,
+        "street": null
+      },
+      "evidence": {
+        "first_issue": "1835-06-27",
+        "last_issue": "1835-07-18",
+        "copy_dates": []
+      },
+      "contradicted_by": [],
+      "mentions": [
+        "chicago_american_1835_06_27#c013",
+        "chicago_american_1835_07_18#c004"
+      ],
+      "built_at_scene_date": true,
+      "survival_liberty_required": false
+    },
+    {
       "id": "business_pierce_french",
       "name": "Pierce & French",
       "proprietors": [
@@ -24599,6 +27869,292 @@
       ],
       "built_at_scene_date": true,
       "survival_liberty_required": true
+    },
+    {
+      "id": "business_r_stewart_attorney",
+      "name": "R. Stewart, attorney",
+      "proprietors": [
+        "R. Stewart"
+      ],
+      "trade": "attorney at law",
+      "goods": [],
+      "street": null,
+      "placement": {
+        "class": "none",
+        "anchor": null,
+        "offset_text": null,
+        "offset_normalized": null,
+        "street": null
+      },
+      "evidence": {
+        "first_issue": "1835-06-13",
+        "last_issue": "1835-06-13",
+        "copy_dates": []
+      },
+      "contradicted_by": [],
+      "mentions": [
+        "chicago_american_1835_06_13#c003"
+      ],
+      "built_at_scene_date": true,
+      "survival_liberty_required": false
+    },
+    {
+      "id": "business_rockwell_cabinet_furniture_warehouse",
+      "name": "Rockwell, cabinet furniture warehouse",
+      "proprietors": [
+        "Rockwell"
+      ],
+      "trade": "cabinet furniture",
+      "goods": [
+        "Bedsteads",
+        "Bureaus",
+        "Chairs",
+        "Foot Stools",
+        "Ottomans",
+        "Secretaries",
+        "Settees",
+        "Sideboards",
+        "Tables",
+        "Wardrobes"
+      ],
+      "street": null,
+      "placement": {
+        "class": "none",
+        "anchor": null,
+        "offset_text": null,
+        "offset_normalized": null,
+        "street": null
+      },
+      "evidence": {
+        "first_issue": "1835-06-13",
+        "last_issue": "1835-07-04",
+        "copy_dates": [
+          "1835-06-08"
+        ]
+      },
+      "contradicted_by": [],
+      "mentions": [
+        "chicago_american_1835_06_13#c017",
+        "chicago_american_1835_06_20#c008",
+        "chicago_american_1835_06_27#c002",
+        "chicago_american_1835_07_04#c004"
+      ],
+      "built_at_scene_date": true,
+      "survival_liberty_required": false
+    },
+    {
+      "id": "business_russell_clift_chicago_book_and_stationary_store",
+      "name": "Russell & Clift, Chicago Book and Stationary Store",
+      "proprietors": [],
+      "trade": "books, stationery and patent medicines",
+      "goods": [
+        "Books",
+        "Hats",
+        "Patent Medicines",
+        "Shoes",
+        "Stationery"
+      ],
+      "street": null,
+      "placement": {
+        "class": "none",
+        "anchor": null,
+        "offset_text": null,
+        "offset_normalized": null,
+        "street": null
+      },
+      "evidence": {
+        "first_issue": "1835-06-08",
+        "last_issue": "1835-08-29",
+        "copy_dates": []
+      },
+      "contradicted_by": [],
+      "mentions": [
+        "chicago_american_1835_06_08#c015",
+        "chicago_american_1835_06_13#c019",
+        "chicago_american_1835_07_04#c006",
+        "chicago_american_1835_08_29#c005"
+      ],
+      "built_at_scene_date": true,
+      "survival_liberty_required": false
+    },
+    {
+      "id": "business_s_abell_attorney_and_counsellor",
+      "name": "S. Abell, attorney and counsellor",
+      "proprietors": [
+        "S. Abell"
+      ],
+      "trade": "attorney, counsellor and land conveyancer",
+      "goods": [],
+      "street": null,
+      "placement": {
+        "class": "none",
+        "anchor": null,
+        "offset_text": null,
+        "offset_normalized": null,
+        "street": null
+      },
+      "evidence": {
+        "first_issue": "1835-08-01",
+        "last_issue": "1835-08-01",
+        "copy_dates": []
+      },
+      "contradicted_by": [],
+      "mentions": [
+        "chicago_american_1835_08_01#c003"
+      ],
+      "built_at_scene_date": true,
+      "survival_liberty_required": false
+    },
+    {
+      "id": "business_s_b_cobb_saddle_harness_and_trunk_manufactory",
+      "name": "S. B. Cobb, saddle, harness and trunk manufactory",
+      "proprietors": [
+        "S. B. Cobb"
+      ],
+      "trade": "saddle, harness and trunk manufactory",
+      "goods": [],
+      "street": "Lake Street",
+      "placement": {
+        "class": "corner",
+        "anchor": "the corner of Lake Street and an unread cross street",
+        "offset_text": "at his abop, comer of Lake anc Amor. | stvests",
+        "offset_normalized": "at his shop, corner of Lake an[d] [uncertain: Amor.] streets",
+        "street": "Lake Street"
+      },
+      "evidence": {
+        "first_issue": "1835-06-08",
+        "last_issue": "1835-07-11",
+        "copy_dates": [
+          "1835-06-08"
+        ]
+      },
+      "contradicted_by": [],
+      "mentions": [
+        "chicago_american_1835_06_08#c007",
+        "chicago_american_1835_06_13#c016",
+        "chicago_american_1835_07_11#c008"
+      ],
+      "built_at_scene_date": true,
+      "survival_liberty_required": false
+    },
+    {
+      "id": "business_sarah_d_howe_dress_cloak_and_habit_making",
+      "name": "Sarah D. Howe, dress, cloak and habit making",
+      "proprietors": [
+        "Sarah D. Howe"
+      ],
+      "trade": "dress, cloak and habit making",
+      "goods": [],
+      "street": null,
+      "placement": {
+        "class": "relative",
+        "anchor": "the house occupied by Dr. Austin, opposite Dr. Temple's",
+        "offset_text": "taken n room a street in the house eceapied by Dr. Aus",
+        "offset_normalized": "taken a room [in …] street, in the house [o]c[c]upied by Dr. Aus[tin], opposite Dr. Temple's",
+        "street": null
+      },
+      "evidence": {
+        "first_issue": "1835-08-22",
+        "last_issue": "1835-08-22",
+        "copy_dates": [
+          "1835-08-18"
+        ]
+      },
+      "contradicted_by": [],
+      "mentions": [
+        "chicago_american_1835_08_22#c001"
+      ],
+      "built_at_scene_date": true,
+      "survival_liberty_required": false
+    },
+    {
+      "id": "business_stuart_s_confectionary_and_perfumery",
+      "name": "Stuart's confectionary and perfumery",
+      "proprietors": [
+        "Stuart"
+      ],
+      "trade": "confectionary and perfumery",
+      "goods": [],
+      "street": null,
+      "placement": {
+        "class": "none",
+        "anchor": null,
+        "offset_text": null,
+        "offset_normalized": null,
+        "street": null
+      },
+      "evidence": {
+        "first_issue": "1835-06-08",
+        "last_issue": "1835-06-08",
+        "copy_dates": [
+          "1835-06-08"
+        ]
+      },
+      "contradicted_by": [],
+      "mentions": [
+        "chicago_american_1835_06_08#c008"
+      ],
+      "built_at_scene_date": true,
+      "survival_liberty_required": false
+    },
+    {
+      "id": "business_the_chicago_american_newspaper_and_job_printing_office",
+      "name": "the Chicago American, newspaper and job printing office",
+      "proprietors": [],
+      "trade": "newspaper publishing and job printing",
+      "goods": [
+        "Blank Cards",
+        "Printed Blanks"
+      ],
+      "street": "Water Street",
+      "placement": {
+        "class": "none",
+        "anchor": null,
+        "offset_text": null,
+        "offset_normalized": null,
+        "street": null
+      },
+      "evidence": {
+        "first_issue": "1835-08-22",
+        "last_issue": "1835-08-22",
+        "copy_dates": []
+      },
+      "contradicted_by": [],
+      "mentions": [
+        "chicago_american_1835_08_22#c007"
+      ],
+      "built_at_scene_date": true,
+      "survival_liberty_required": false
+    },
+    {
+      "id": "business_the_chicago_brewery",
+      "name": "the Chicago Brewery",
+      "proprietors": [
+        "Crawford"
+      ],
+      "trade": "brewing",
+      "goods": [],
+      "street": null,
+      "placement": {
+        "class": "none",
+        "anchor": null,
+        "offset_text": null,
+        "offset_normalized": null,
+        "street": null
+      },
+      "evidence": {
+        "first_issue": "1835-06-20",
+        "last_issue": "1835-06-20",
+        "copy_dates": [
+          "1835-06-13"
+        ]
+      },
+      "contradicted_by": [],
+      "mentions": [
+        "chicago_american_1835_06_20#c003"
+      ],
+      "built_at_scene_date": true,
+      "survival_liberty_required": false
     },
     {
       "id": "business_thomas_s_eels",
@@ -24891,6 +28447,39 @@
       ],
       "built_at_scene_date": true,
       "survival_liberty_required": true
+    },
+    {
+      "id": "business_wm_sabine_storage_forwarding_and_commission_merchant",
+      "name": "Wm. Sabine, storage, forwarding and commission merchant",
+      "proprietors": [
+        "Wm. Sabine"
+      ],
+      "trade": "storage, forwarding and commission merchant",
+      "goods": [
+        "Lumber Waggons",
+        "One Horse Pleasure Carriages",
+        "Whiskey"
+      ],
+      "street": "North Water Street",
+      "placement": {
+        "class": "street_only",
+        "anchor": null,
+        "offset_text": "Commission Mere NbeEM WATER ITREET,",
+        "offset_normalized": "Commission Merc[hant]. N[ORT]H WATER [S]TREET",
+        "street": "North Water Street"
+      },
+      "evidence": {
+        "first_issue": "1835-06-13",
+        "last_issue": "1835-07-11",
+        "copy_dates": []
+      },
+      "contradicted_by": [],
+      "mentions": [
+        "chicago_american_1835_06_13#c005",
+        "chicago_american_1835_07_11#c005"
+      ],
+      "built_at_scene_date": true,
+      "survival_liberty_required": false
     }
   ]
 }
