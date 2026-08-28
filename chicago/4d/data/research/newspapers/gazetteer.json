@@ -40,14 +40,18 @@
       "sha256": "5d11b880c20eb8825908f790dc2362f47b9bac48d4392504f2e084f9a36e57ed"
     },
     {
+      "file": "chicago/4d/data/research/newspapers/extracted/chicago_american_1835_08_08.json",
+      "sha256": "e67d57d220e81087a87ee9627a634c802e17e952b2273f722a065529b891a7c6"
+    },
+    {
       "file": "chicago/4d/data/research/newspapers/extracted/chicago_democrat_1835_07_01.json",
       "sha256": "6200cbfa1c6c37f6146da30f1b9a0a55c29eb7d8c372aec7765491aa4c714162"
     }
   ],
   "counts": {
-    "claims": 109,
-    "persons": 109,
-    "businesses": 38
+    "claims": 115,
+    "persons": 110,
+    "businesses": 40
   },
   "persons": [
     {
@@ -2104,6 +2108,28 @@
       "associated_places": []
     },
     {
+      "id": "person_w_g_austin",
+      "name": "W. G. Austin",
+      "variants": [
+        {
+          "as_printed": "DR...W. G. AUST",
+          "claim": "chicago_american_1835_08_08#c001"
+        }
+      ],
+      "mentions": [
+        "chicago_american_1835_08_08#c001"
+      ],
+      "first_seen": "1835-08-08",
+      "last_seen": "1835-08-08",
+      "letter_list_only": false,
+      "occupations": [
+        "physician"
+      ],
+      "associated_places": [
+        "Lake Street"
+      ]
+    },
+    {
       "id": "person_w_l_newberry",
       "name": "W. L. Newberry",
       "variants": [
@@ -2285,6 +2311,37 @@
     }
   ],
   "businesses": [
+    {
+      "id": "business_a_chicago_stove_and_hollow_ware_dealer_august_1835",
+      "name": "a Chicago stove and hollow ware dealer, August 1835",
+      "proprietors": [],
+      "trade": "stoves, hollow ware and castings",
+      "goods": [
+        "Castings",
+        "Coal Stoves",
+        "Cooking Stoves",
+        "Hollow Ware"
+      ],
+      "street": null,
+      "placement": {
+        "class": "none",
+        "anchor": null,
+        "offset_text": null,
+        "offset_normalized": null,
+        "street": null
+      },
+      "evidence": {
+        "first_issue": "1835-08-08",
+        "last_issue": "1835-08-08",
+        "copy_dates": []
+      },
+      "contradicted_by": [],
+      "mentions": [
+        "chicago_american_1835_08_08#c002"
+      ],
+      "built_at_scene_date": true,
+      "survival_liberty_required": false
+    },
     {
       "id": "business_a_leather_stock_chicago_june_1835",
       "name": "a leather stock, Chicago, June 1835",
@@ -2603,6 +2660,36 @@
       "contradicted_by": [],
       "mentions": [
         "chicago_american_1835_06_13#c009"
+      ],
+      "built_at_scene_date": true,
+      "survival_liberty_required": false
+    },
+    {
+      "id": "business_dr_w_g_austin_botanic_physician",
+      "name": "Dr. W. G. Austin, botanic physician",
+      "proprietors": [
+        "W. G. Austin"
+      ],
+      "trade": "botanic medicine",
+      "goods": [],
+      "street": "Lake Street",
+      "placement": {
+        "class": "relative",
+        "anchor": "the Post Office",
+        "offset_text": "ced the practice of medicine and openec on Lake esrevt, near the Pom Office.",
+        "offset_normalized": "opene[d an office] on Lake s[t]re[et], near the Po[st] Office",
+        "street": "Lake Street"
+      },
+      "evidence": {
+        "first_issue": "1835-08-08",
+        "last_issue": "1835-08-08",
+        "copy_dates": [
+          "1835-08-07"
+        ]
+      },
+      "contradicted_by": [],
+      "mentions": [
+        "chicago_american_1835_08_08#c001"
       ],
       "built_at_scene_date": true,
       "survival_liberty_required": false
