@@ -1,7 +1,7 @@
 ---
 id: T-0219
 title: Finish the heightfield SOUTH to Madison Street, the plat's last tier
-state: claimed
+state: done
 epic: GROUND
 requested_by: loop
 seen: false
@@ -9,8 +9,8 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-08-24
-closed: null
-pr: null
+closed: 2026-08-27
+pr: 432
 claimed_by: run 8/27/2026, 9:17:32 PM CT
 blocked_on: null
 needs_bake: true

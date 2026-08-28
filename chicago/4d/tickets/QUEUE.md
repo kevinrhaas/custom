@@ -33,7 +33,6 @@ T-0221 — measure_street_frontage.layer_of reads a record's evidence layer off 
 T-0059 — The generator half of the wharf layer: a river-wharf mode of pier_crib
 T-0134 — The south bank at the Dearborn reach has no ground outside the platted street corridor
 T-0226 — North Water Street runs inside the water mask for 477 m and draws no ribbon at all
-T-0219 — Finish the heightfield SOUTH to Madison Street, the plat's last tier
 
 # --- THE FORT — visible, mostly small
 T-0099 — The bank track from the fort's north gate down to the water
