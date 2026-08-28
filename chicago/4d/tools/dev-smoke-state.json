@@ -2,6 +2,68 @@
   "note": "T-0216 — dev's standing smoke result, so a branch can answer \"is this red mine, or did I inherit it?\" from the record instead of re-running the stage on a clean worktree (three agents paid that price on one red on 2026-08-27; T-0215). Written by tools/dev-smoke-state.mjs, which parses a smoke log — local or from a chicago-4d-smoke.yml run. Every reading carries the CONDITIONS it was taken under, because a quiet CI runner does not predict a loaded steward box: T-0215 measured a factor of twenty on one tree. loadavg is sampled when the reading is filed, so it includes the smoke's own load. `treeHash` digests exactly what the smoke exercises (renderers, data, assets, smoke_renderer.mjs, the published mirror), so a reading whose hash matches yours is a reading OF YOUR TREE. A RECORD, NOT A BAR: nothing here gates anything.",
   "readings": [
     {
+      "viewport": "mobile",
+      "stage": "8",
+      "parts": [
+        8
+      ],
+      "verdict": "pass",
+      "target": "published",
+      "passed": 37,
+      "failed": 0,
+      "failures": [],
+      "wallSeconds": 95,
+      "takenAt": "2026-08-28T01:06:43.765Z",
+      "ref": "steward/t-0183-market-south-water",
+      "commit": "f1c4e8f8d030",
+      "devCommit": "cabfcaf5ead4",
+      "treeHash": "sha256:34a020226b003475",
+      "treeDirty": false,
+      "changelogHash": "sha256:1530de49a481e150",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          2.9,
+          2.9,
+          3.3
+        ]
+      },
+      "source": "/tmp/pm8.log"
+    },
+    {
+      "viewport": "desktop",
+      "stage": "8",
+      "parts": [
+        8
+      ],
+      "verdict": "pass",
+      "target": "published",
+      "passed": 37,
+      "failed": 0,
+      "failures": [],
+      "wallSeconds": 167,
+      "takenAt": "2026-08-28T01:06:43.681Z",
+      "ref": "steward/t-0183-market-south-water",
+      "commit": "f1c4e8f8d030",
+      "devCommit": "cabfcaf5ead4",
+      "treeHash": "sha256:34a020226b003475",
+      "treeDirty": false,
+      "changelogHash": "sha256:1530de49a481e150",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          2.9,
+          2.9,
+          3.3
+        ]
+      },
+      "source": "/tmp/pd8.log"
+    },
+    {
       "viewport": "desktop",
       "stage": "9",
       "parts": [
