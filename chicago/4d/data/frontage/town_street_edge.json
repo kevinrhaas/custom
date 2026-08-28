@@ -27,7 +27,7 @@
     "faces_laid": 36,
     "walk_m": 3160.3,
     "crossing_m": 811.0,
-    "fence_m": 1718.0,
+    "fence_m": 1693.4,
     "walking_decks": 249,
     "hitching_posts": 12
   },
@@ -50,7 +50,7 @@
         "note": "41 run(s) of sidewalk on 36 platted block face(s), plus 811.0 m of board crossing at 34 corner(s). Nothing measured: every metre is derived from the committed plat and audited against the committed ground."
       },
       "fence_m": {
-        "value": 1718.0,
+        "value": 1693.4,
         "confidence": "reconstructed",
         "sources": [],
         "note": "35 street-lining fence run(s), on the lots the rule found improved and standing back from their own frontage line."
@@ -8203,8 +8203,8 @@
           -269.73
         ],
         [
-          685.01,
-          -270.24
+          660.47,
+          -270.04
         ]
       ],
       "height_m": 1.37,
@@ -8215,11 +8215,10 @@
       "rail_courses": 2,
       "lots": [
         2,
-        4,
-        6
+        4
       ],
-      "least_setback_m": 4.5,
-      "note": "A FENCE LINING THE STREET, on the lot line with the plank walk at its foot — which is the first Cook County jail engraving read literally (data/sources/assets/owner_brief_2026_08_18/README.md, image 1: board fences at the frontage line, a plank walk beside them). WHERE is derived: it stands on blk_randolph_clark's own platted frontage line from 36.3 m to 98.6 m along the north face, covering lot(s) 2, 4, 6 — every one of them improved by a committed building whose nearest wall stands 4.50 m back from that line, which is the clause that decides a fence is what lines the street here rather than a wall. The board width, the gap, the bay, the post and the height are the treatment the plate shows and no source gives: docs/LIBERTIES.md L160."
+      "least_setback_m": 5.0,
+      "note": "A FENCE LINING THE STREET, on the lot line with the plank walk at its foot — which is the first Cook County jail engraving read literally (data/sources/assets/owner_brief_2026_08_18/README.md, image 1: board fences at the frontage line, a plank walk beside them). WHERE is derived: it stands on blk_randolph_clark's own platted frontage line from 36.3 m to 74.1 m along the north face, covering lot(s) 2, 4 — every one of them improved by a committed building whose nearest wall stands 5.00 m back from that line, which is the clause that decides a fence is what lines the street here rather than a wall. The board width, the gap, the bay, the post and the height are the treatment the plate shows and no source gives: docs/LIBERTIES.md L160."
     },
     {
       "id": "blk_randolph_clark_south_fence_34",
@@ -9352,6 +9351,11 @@
       "structure_id": "blk_randolph_clark_lot1",
       "wall": "blk_randolph_clark south face, lot 1",
       "why": "no committed building stands on this platted lot — an unimproved lot is open prairie and takes no street fence."
+    },
+    {
+      "structure_id": "blk_randolph_clark_lot6",
+      "wall": "blk_randolph_clark north face, lot 6",
+      "why": "recon_1835_blk_randolph_clark_a4_07 stands 1.50 m from this lot's frontage line, inside the 3.0 m a street fence needs — the building IS the street wall here, and a fence in front of it would be a second one."
     },
     {
       "structure_id": "blk_randolph_clinton_lot4",

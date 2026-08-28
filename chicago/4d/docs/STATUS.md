@@ -1,5 +1,82 @@
 # STATUS
 
+## Shipped 2026-08-28 — T-0024: the face rule ranks dwellings, and the store steps onto the street line
+
+**The question, and it has been open since 2026-08-15.** The face rule orders the DWELLINGS a
+block parcel is dealt — the best take the better street, the meanest take the back one. T-A15 was
+dealt the first STORE any block parcel had ever had to place, found the rule said nothing about
+one, and EXTENDED the ranking to cover it: commerce above the better dwelling, on the reasoning
+that a store-residence's claim on the better frontage is *"functional rather than social, the only
+one of the six roofs whose purpose requires that a stranger can find it"*. It put the C2 on
+Randolph, sent a D6 to the back street, and flagged its own extension as ROADMAP K32 for the next
+block dealt a commercial family to follow or refute — the schedule still holds C1…C4, F1…F4, H3,
+T1 and W1…W5 for blocks not yet built, and a warehouse's claim on frontage is plainly not a
+store's.
+
+**Settled on reading 2 of the three the ROADMAP offered: the face rule ranks dwellings only, and a
+non-dwelling is placed by its own function.** Reading 1 was to keep the ranking, reading 3 to
+refuse the question and leave it to each parcel's arrangement note. Reading 2 is taken because it
+is the only one of the three that can be READ OFF THE COMMITTED RECORD instead of argued.
+
+**The reading.** Over the 48 documented buildings this project's own reconciliation credits a
+non-dwelling family, by the traffic class `data/streets/1835.json` authors for the street each
+stands nearest:
+
+| letter | n | principal | ordinary | light |
+|---|---|---|---|---|
+| C stores | 15 | 10 | 5 | **0** |
+| F warehouses | 9 | 9 | 0 | **0** |
+| W workshops | 7 | 2 | 5 | **0** |
+| T lodging | 8 | 3 | 4 | 1 |
+| I institutions | 9 | 1 | 4 | 4 |
+
+Not one documented store, warehouse or workshop stands on a light street — a zero across **31
+buildings**, on the three letters a block parcel may actually be dealt. Lodging's one is the
+Steamboat Hotel, 287 m from the State Street centreline, which does not front it; the institutional
+families are refused to a block parcel BY NAME (L93) and no frontage rule reaches them. The second
+reading is the setback: **every documented store standing on a platted street stands on its line**,
+thirteen of the fifteen inside the measured street-line band, the two outside it being Robert
+Kinzie's store at Wolf Point and the Miller house, both off the platted grid.
+
+**The two clauses, authored in the recipe and refused at the generator.** (1) A non-dwelling takes
+the block's better face by the committed street hierarchy, and a store, warehouse or workshop may
+never take a light one. (2) A commercial roof stands ON the street line, at the closest line the
+plat module's own margin allows — the same line the party-line runs on South Water and Lake already
+stand on, rather than a second convention.
+
+**What moved: ONE roof, and that is the finding rather than a convenience.** On `blk_randolph_clark`
+reading 1 and reading 2 put the store on the same face, so the ranking could be refused without
+re-dealing a block that already stands: no roof added or removed, no id, family, footprint or form
+value changed, no household re-homed, no bake. What changed is the SETBACK — the C2 came forward
+from 4.5 m to **1.50 m**, out of the 4.0–7.5 m band of house fronts it had been standing in. A
+building whose whole argument was that a stranger must be able to find it had been placed as though
+it were a cottage. One consequence follows it: the street-lining yard fence looks for a lot standing
+back from its own frontage, a shop front is not one, and **24.6 m of fence comes off** that face.
+
+**The 4.26 mm that was in the way, and it is named as what it is.** The per-lot margin gate compared
+the distance from a footprint CORNER to the nearest point of the lot RING against the plat module's
+1.5 m margin, while the setback a recipe authors is measured along the face normal. On a lot whose
+side lines are not exactly square to its face the two differ by millimetres, so a roof authored to
+stand exactly ON the margin read 1.4957 m and failed. It now carries the same 5 mm derivation
+tolerance the party-line frontage gate two hundred lines above it already uses, for the same reason.
+The margin is unchanged: 1.5 m is still the floor and a roof a centimetre inside it still fails.
+
+**The gates.** `tools/generate_block_infill.py` refuses a slot that breaks either clause — a
+light-street frontage, a face that is not the block's better one, or a commercial roof authored
+behind the line — and `tools/measure_face_rule.py` holds the reading the clauses are taken from,
+with two absolute assertions over the roofs the block parcels place and a `--self-test` that breaks
+both in memory. Both run in `tools/check.sh`.
+
+**What is reported and NOT asserted on.** The North, West and phase-one parcels ran before any of
+this and place another 23 non-dwelling roofs. Seven are assigned to State Street at 150 to 550 m of
+setback, which is not a frontage — it is the nearest committed centreline in a division with almost
+no street control, and gating on those would be gating on the absence of a street. The real residual
+is printed rather than fixed in passing: **two invented warehouses stand nearest Randolph at 12.9
+and 14.5 m, against a documented F record that is 9 of 9 on principal streets.** Moving them is a
+parcel's work on ground that is already built out, not a line in this one.
+
+**Liberty L200.** Ticket **T-0024**, ROADMAP **K32**.
+
 ## Shipped 2026-08-28 — T-0025: the census that said three records were silent had read one field of a record that argues in four
 
 **K35, opened by K34, asked what to do about three structures carrying AGENTS.md's standing

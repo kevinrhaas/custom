@@ -1,4 +1,13 @@
 export const CHANGELOG = [ // newest first
+  { v: 322, title: 'The store on Randolph steps out to the street', kind: 'fix', ts: '2026-08-28T08:30:38.617Z', date: 'Aug 28, 2026, 3:30 AM CT',
+    items: [
+      'Walk east along Randolph Street from the courthouse square. The store opposite it now meets the street, three metres ahead of the two houses beside it, instead of sitting back in line with them the way a house does.',
+      'It had been placed as though it were a house because the rule that placed it only knew about houses. That rule sorts the dwellings a block is dealt \u2014 the better ones onto the better street, the meanest round the back \u2014 and this was the first block in the town ever dealt a shop. Whoever built it slotted the shop in at the top of the same list and wrote down that somebody should settle the question properly.',
+      'Settled now, and against the record rather than by argument. This project holds 48 buildings it can actually name that were shops, warehouses, workshops, inns or public buildings. Not one of the 31 shops, warehouses and workshops among them stands on a back lane. And every shop of them that stands on a platted street stands hard on the street line, not behind a front yard.',
+      'So a shop takes the busier of its block\u2019s two streets and stands on the line, and the ranking that was invented for it is dropped. On this block both answers put the shop on the same street, which is why nothing else on it had to move: no building was re-dealt and nobody was re-housed.',
+      'One thing follows it. The yard fence that lines that side of the block stops a lot short now \u2014 the rule that lays it wants a building standing back from its own frontage, and a shop front is not one \u2014 so twenty-five metres of fence comes off and the shop front is what a walker meets.',
+      'The rule is written into the town\u2019s own recipe, and two checks now refuse a shop put on a back lane or left sitting behind a front yard.',
+    ] },
   { v: 321, title: 'The people cards stop saying [object Object]', kind: 'fix', ts: '2026-08-28T07:59:32.493Z', date: 'Aug 28, 2026, 2:59 AM CT',
     items: [
       'Open the Evidence panel, find the town\u2019s people, and open anybody. Until today 113 of the 209 person rows read \u201cHow this person is named \u2014 [object Object]\u201d, and nine of them said it twice more for the age and the birth year. Those rows read properly now.',
