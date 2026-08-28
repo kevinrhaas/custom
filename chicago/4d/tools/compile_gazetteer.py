@@ -99,23 +99,32 @@ READINGS = ("transcription_mediated", "scan_verified")
 # later pass can count them.
 PLACEMENT_CLASSES = ("corner", "relative", "street_only", "none")
 
-# THE DEPOSIT SPEAKS TWO MARKER DIALECTS, and only one of them was written down.
+# THE DEPOSIT SPEAKS THREE MARKER DIALECTS, and T-0257 could only see two of them.
 #
 # `data/research/newspapers/README.md` says page and column come from
 # `===== ISSUE PAGE n / PDF PAGE m / COLUMN k OF 6 =====` markers "which every issue in
-# both runs carries". Sixty-six of the eighty-six do — the ones the deposit delivered as
-# committed `.txt`. The twenty-three delivered as `.docx` and extracted here by
-# `tools/docx_text.py` carry the SAME facts as two prose headings instead:
+# both runs carries". Sixty-six of the eighty-six carry a ruled marker of some shape —
+# the ones the deposit delivered as committed `.txt`. The twenty-three delivered as
+# `.docx` and extracted here by `tools/docx_text.py` carry the SAME facts as two prose
+# headings instead:
 #
 #     Newspaper Page 1 — Source PDF Page 13
 #     Column 1
 #
-# Found building this file's fixture, 2026-08-28. It matters more than it looks: the
-# twenty-three are exactly the issues readable on `dev`, where the deposit is absent
-# (T-0275), so a resolver that speaks only the first dialect can check a locator on no
-# issue this branch can open. Both are read here and the README is corrected to say so.
+# THE THIRD DIALECT, and it is the majority one. Counted across the deposit on
+# 2026-08-28 while building T-0259: 1,176 of the 1,266 ruled column markers name the
+# scan page as `SOURCE PDF PAGE` and only 90 as the bare `PDF PAGE` the pattern was
+# written against; four more say `ORIGINAL PDF PAGE`. Every issue T-0259 reads —
+# the whole Democrat from 1834-07-02 to 1834-12-24 — is in the majority dialect, so
+# the pattern below matched a column marker in NONE of them.
+#
+# Nothing caught it because the deposit is absent on `dev` (T-0275): `check` skips the
+# page/column assertion outright when it cannot read the text, so a resolver that speaks
+# no dialect and a resolver that speaks all three are indistinguishable on this branch.
+# The word before `PDF PAGE` is optional here, and the self-test carries a case per
+# dialect so the next one cannot be added silently.
 COLUMN_MARKER = re.compile(
-    r"^=====\s*ISSUE PAGE\s+(\d+)\s*/\s*PDF PAGE\s+(\d+)\s*/\s*COLUMN\s+(\d+)\s+OF\s+(\d+)\s*=====\s*$")
+    r"^=====\s*ISSUE PAGE\s+(\d+)\s*/\s*(?:\w+\s+)?PDF PAGE\s+(\d+)\s*/\s*COLUMN\s+(\d+)\s+OF\s+(\d+)\s*=====\s*$")
 PAGE_HEADING = re.compile(r"^\s*Newspaper Page\s+(\d+)\b")
 COLUMN_HEADING = re.compile(r"^\s*Column\s+(\d+)\s*$")
 
