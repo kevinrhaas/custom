@@ -226,6 +226,26 @@ step "the frontage works re-derive from the rule that chose their walls" \
 step "the 665-roof programme reconciles with the town that stands" \
   python3 tools/reconcile_665.py --check
 
+# The inventory states the same aggregate three ways and, until T-0211, only the SUMS
+# were checked: the matrix's ten rows could disagree with the four district totals and
+# only the district totals were believed. Worse, a district standing OVER one of its
+# group rows was clamped to zero headroom and the shortfall shed from whichever group
+# had the most slack — so a row wrong by five roofs looked exactly like a row that was
+# right. T-0032 found that on the institutional row only after it had mis-dealt two
+# blocks and told the North Division it had room for a roof that already stood there.
+#
+# What is asserted is deliberately weaker than "the row equals what stands", which is
+# the WRONG test for nine of the ten groups: an anonymous dwelling is a legitimate
+# count-unit toward a documented aggregate, so a cell UNDER its row is the programme
+# working. What must hold is that the three views agree on the district axis too, and
+# that an overshoot is DECLARED in the inventory with its size and its reason rather
+# than clamped in silence. Two cells are declared today, both in the North Division.
+step "the district-group matrix agrees with the town, or declares where it does not" \
+  python3 tools/audit_group_matrix.py --check
+
+step "…and its own assertions still fire when broken" \
+  python3 tools/audit_group_matrix.py --self-test
+
 # T-0163. The plat grid is the cartesian product of its east-west rows and north-south
 # columns, so it proposes blocks that never existed, and it reports every refusal the same
 # way — as a distance. A distance cannot tell "the centreline has not been carried there

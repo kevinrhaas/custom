@@ -32,6 +32,11 @@
     "barns_stables": {"south": 35, "west": 20, "north": 17, "fort": 0, "total": 72},
     "small_outbuildings": {"south": 48, "west": 14, "north": 20, "fort": 0, "total": 82}
   },
+  "district_group_overshoots": {
+    "$note": "T-0211. A (district, group) cell where the town already stands OVER its row. tools/reconcile_665.py clamps these with max(0, ...) and sheds the excess from whichever group has the most slack, so an overshoot used to look exactly like a row that was right — that is how T-0032's institutional fault survived. tools/audit_group_matrix.py --check now refuses an UNDECLARED overshoot, a declaration whose size no longer matches the dataset, and a declaration for a cell that has stopped overshooting. Declaring an overshoot does not bless it; it says the number has been read and priced. The price is in 1835_665_roof_programme.json under remaining.district_group_shed_from.",
+    "north.warehouses_freight": {"target": 1, "standing": 7, "over": 6, "why": "The row is under-authored against the north bank the research has since recorded, not the town over-built. Six of the seven are pre-existing records — kinzie_hunter_warehouse, the four north_bank_shed_dearborn_* sheds and brickyard_north_side — and the seventh, recon_1835_north_f1_022, arrived with the audited North Division infill on 2026-08-12. Correcting the row means moving six roofs out of another North row: that changes the district's composition and is an authoring decision about the target, not a clamp. Filed as T-0283."},
+    "north.institutional_public": {"target": 3, "standing": 4, "over": 1, "why": "T-0032 set this row to the census of NAMED institutional records — council_house, north_side_school_1833 and watkins_school_house — which is the right basis for a group whose members are enumerable. A fourth roof stands beside them: recon_1835_north_i2_015, a generated I2 dealt in with the North Division infill on 2026-08-12, two weeks before that correction. The cell reads 4 against 3 and the overshoot is exactly that generated roof. Removing an adopted record is a separate decision from correcting a row. Filed as T-0283."}
+  },
   "family_targets": {
     "D1": 52, "D2": 38, "D3": 65, "D4": 75, "D5": 58, "D6": 29, "D7": 18,
     "H1": 18, "H2": 14, "H3": 10,

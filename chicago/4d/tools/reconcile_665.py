@@ -677,12 +677,28 @@ def programme_document():
     # absorption rule inside the district and for the same reason.
     district_families: dict[str, dict[str, int]] = {}
     district_group_remaining: dict[str, dict[str, int]] = {}
+    # …and the two things that clamp used to swallow (T-0211). A district standing OVER
+    # one of its group rows is clamped to zero headroom there, and the shortfall is then
+    # shed from whichever group has the most slack — so a row that is wrong by five roofs
+    # looked exactly like a row that was right. T-0032 found that on the tenth row after
+    # it had already mis-dealt two blocks. Both halves are named in the output now, and
+    # tools/audit_group_matrix.py --check refuses an overshoot the inventory has not
+    # declared.
+    district_group_overrun: dict[str, dict[str, int]] = {}
+    district_group_shed: dict[str, dict[str, int]] = {}
     for district in DISTRICTS:
         head = {g: max(0, matrix[g][district] - built_district_group.get((district, g), 0))
                 for g in matrix}
+        over = {g: built_district_group.get((district, g), 0) - matrix[g][district]
+                for g in matrix
+                if built_district_group.get((district, g), 0) > matrix[g][district]}
+        if over:
+            district_group_overrun[district] = dict(sorted(over.items()))
         for _ in range(max(0, sum(head.values()) - remaining_district[district])):
             group = sorted(head, key=lambda g: (-head[g], g))[0]
             head[group] -= 1
+            shed = district_group_shed.setdefault(district, {})
+            shed[group] = shed.get(group, 0) + 1
         mix: dict[str, int] = {}
         for group, count in sorted(head.items()):
             families = sorted(f for f in targets if group_of(f) == group)
@@ -1006,6 +1022,15 @@ def programme_document():
             "by_district_family": district_families,
             "family_targets_already_exceeded": overrun,
             "absorbed_from": absorbed,
+            # The same pair on the DISTRICT x GROUP axis, which had neither until T-0211.
+            # `district_group_already_exceeded` is every cell the town already stands over;
+            # `district_group_shed_from` is what that overshoot costs, and which group's
+            # remaining allocation in that district pays it. Both are declared in the
+            # inventory's `district_group_overshoots` and gated by
+            # tools/audit_group_matrix.py.
+            "district_group_already_exceeded": district_group_overrun,
+            "district_group_shed_from": {d: dict(sorted(g.items()))
+                                         for d, g in sorted(district_group_shed.items())},
         },
         "coverage": {
             "schedulable_on_committed_ground": schedulable,

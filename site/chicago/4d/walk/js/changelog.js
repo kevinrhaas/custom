@@ -1,4 +1,13 @@
 export const CHANGELOG = [ // newest first
+  { v: 331, title: 'Where the roof programme is over its own count', kind: 'chore', ts: '2026-08-28T11:54:10.751Z', date: 'Aug 28, 2026, 6:54 AM CT',
+    items: [
+      'Nothing you can see changed today. The buildings here are dealt from a plan that says how many roofs the town should have, written down three ways at once: by district, by kind of building, and by a schedule of thirty-five building families.',
+      'Those three views were only ever checked against each other in total. Nobody checked the split. Last month that let one row say the South Division had room for five public buildings it did not have, while the North was told it had room for one when three already stood there.',
+      'The split is now audited cell by cell \u2014 forty of them \u2014 against the buildings that actually stand. Two come up over. The North Division\u2019s warehouse row allows one roof and seven stand in it; its public-building row allows three and four stand.',
+      'Neither is the town being over-built. Six of those seven warehouses are documented records of the north bank \u2014 Kinzie\u2019s warehouse, the four sheds at the Dearborn reach, the brickyard \u2014 and the row was simply authored too small for the riverfront the research has since recorded.',
+      'What the overshoot costs is written down too: seven roofs come off the North Division\u2019s ordinary houses to pay for it. That used to happen in a loop that named nothing, so a row wrong by five roofs looked exactly like a row that was right.',
+      'Correcting the rows themselves would change what the town is meant to contain, so that is filed as its own question rather than guessed at here.',
+    ] },
   { v: 330, title: 'How many flowers you see, and the ceiling that decides it', kind: 'chore', ts: '2026-08-28T11:05:25.411Z', date: 'Aug 28, 2026, 6:05 AM CT',
     items: [
       'Nothing in the town moved today. Open the Evidence panel, go to the list of the liberties this project takes, and there is a new one \u2014 about how many flowers you are actually standing in.',

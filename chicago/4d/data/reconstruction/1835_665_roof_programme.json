@@ -292,6 +292,17 @@
   },
   "absorbed_from": {
    "D4": 9
+  },
+  "district_group_already_exceeded": {
+   "north": {
+    "institutional_public": 1,
+    "warehouses_freight": 6
+   }
+  },
+  "district_group_shed_from": {
+   "north": {
+    "ordinary_dwellings": 7
+   }
   }
  },
  "coverage": {
