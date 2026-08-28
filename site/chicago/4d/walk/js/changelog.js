@@ -1,4 +1,12 @@
 export const CHANGELOG = [ // newest first
+  { v: 340, title: 'What grows here, and how much of it you are standing in', kind: 'feat', ts: '2026-08-28T16:54:01.484Z', date: 'Aug 28, 2026, 11:54 AM CT',
+    items: [
+      'Open the Evidence panel and there is a new section: the ten plant communities this town is planted from, and every one of the 155 species researched into them. What each plant is doing in its community, how much of it the records ask for, how tall and how wide, whether it is in flower on 1 July, and the sources behind all of it.',
+      'The plants have been in the ground since the beginning and on no card you could open. The animals got one, the households got one, and this was the last of the three.',
+      'It carries something the scene could not tell you. The small plants are dealt onto a lattice that holds at most about a third of a plant per square metre, and eight of the ten communities record more than that. So each of those cards now says what share of its own record you are actually standing in \u2014 under the dense timber west of town it is half of one per cent.',
+      'That figure is read from the same declaration the build checks, not typed into the page: if the records move and the number does not, the build goes red.',
+      'The communities are honest about their weakest claim. The plants are documented; the line between one community and the next almost never is, and every card says which it is and why.',
+    ] },
   { v: 339, title: 'The tool that names where the picture shimmers stops overstating it', kind: 'chore', ts: '2026-08-28T16:41:17.938Z', date: 'Aug 28, 2026, 11:41 AM CT',
     items: [
       'Nothing you can see changed today. A measuring tool was corrected \u2014 the one that asks which part of the town is responsible when the picture shimmers under a camera movement of two millimetres.',
