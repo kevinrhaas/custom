@@ -1,5 +1,5 @@
 {
-  "_doc": "Every figure in data/flora and data/fauna that no renderer reads, as of the last deliberate change. A figure is a leaf of a record that is not identity, file routing or provenance; 'reads' is scanned against renderers/web/js/*.js with the comments stripped. This is a measurement and not a permission: tools/measure_layer_reads.py holds it exact in both directions, so a new one fails and a wired-up one has to be un-banked here in the commit that wired it. Read ROADMAP K42 before adding a line.",
+  "_doc": "Every figure in data/flora and data/fauna that no renderer reads, as of the last deliberate change. A figure is a leaf of a record that is not identity, file routing or provenance; 'reads' is scanned against renderers/web/js/*.js with the comments stripped. This is a measurement and not a permission: tools/measure_layer_reads.py holds it exact in both directions, so a new one fails and a wired-up one has to be un-banked here in the commit that wired it. Read ROADMAP K42 before adding a line. `refused_because` is a STATED REFUSAL (T-0021): somebody decided this figure should not reach a visitor and wrote down why. It is not a permission and it does not soften any assertion \u2014 the entry is banked exactly like every other.",
   "entries": {
     "flora/manifest:vocabulary.forms_flora": {
       "records": 1
@@ -84,6 +84,26 @@
     },
     "flora/zone:species[].july.inflorescence.fruit": {
       "records": 31
+    },
+    "residents/household:division": {
+      "records": 173,
+      "refused_because": "Denormalised. The MANIFEST's copy is what the panel groups and labels rows by, and validate.py fails the build if the two disagree; reading both would be two answers to one question."
+    },
+    "residents/household:head": {
+      "records": 173,
+      "refused_because": "The record's own copy of the same foreign key. Refused for the same reason, and it is the record that is authoritative."
+    },
+    "residents/manifest:counts.households": {
+      "records": 1,
+      "refused_because": "The panel renders one row per household and counts the rows. A tally shown beside a list it might disagree with is worse than no tally; validate.py holds the two equal, which is where a disagreement should surface, not on the card."
+    },
+    "residents/manifest:households[].head": {
+      "records": 173,
+      "refused_because": "A foreign key into `persons[].id`, not a figure \u2014 it names which person heads the household, and that fact already reaches the visitor as that person's `relationship`, shown on their own row."
+    },
+    "residents/manifest:households[].present_on_scene_date": {
+      "records": 173,
+      "refused_because": "The flat copy of a graded claim. `residents.js` shows the RECORD's block \u2014 its value, its confidence, its reasoning and its sources \u2014 and the manifest's bare value carries none of that. Showing the poorer copy would be showing less."
     }
   }
 }

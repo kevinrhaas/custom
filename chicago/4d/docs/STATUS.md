@@ -1,5 +1,123 @@
 # STATUS
 
+## Shipped 2026-08-28 — T-0024: the face rule ranks dwellings, and the store steps onto the street line
+
+**The question, and it has been open since 2026-08-15.** The face rule orders the DWELLINGS a
+block parcel is dealt — the best take the better street, the meanest take the back one. T-A15 was
+dealt the first STORE any block parcel had ever had to place, found the rule said nothing about
+one, and EXTENDED the ranking to cover it: commerce above the better dwelling, on the reasoning
+that a store-residence's claim on the better frontage is *"functional rather than social, the only
+one of the six roofs whose purpose requires that a stranger can find it"*. It put the C2 on
+Randolph, sent a D6 to the back street, and flagged its own extension as ROADMAP K32 for the next
+block dealt a commercial family to follow or refute — the schedule still holds C1…C4, F1…F4, H3,
+T1 and W1…W5 for blocks not yet built, and a warehouse's claim on frontage is plainly not a
+store's.
+
+**Settled on reading 2 of the three the ROADMAP offered: the face rule ranks dwellings only, and a
+non-dwelling is placed by its own function.** Reading 1 was to keep the ranking, reading 3 to
+refuse the question and leave it to each parcel's arrangement note. Reading 2 is taken because it
+is the only one of the three that can be READ OFF THE COMMITTED RECORD instead of argued.
+
+**The reading.** Over the 48 documented buildings this project's own reconciliation credits a
+non-dwelling family, by the traffic class `data/streets/1835.json` authors for the street each
+stands nearest:
+
+| letter | n | principal | ordinary | light |
+|---|---|---|---|---|
+| C stores | 15 | 10 | 5 | **0** |
+| F warehouses | 9 | 9 | 0 | **0** |
+| W workshops | 7 | 2 | 5 | **0** |
+| T lodging | 8 | 3 | 4 | 1 |
+| I institutions | 9 | 1 | 4 | 4 |
+
+Not one documented store, warehouse or workshop stands on a light street — a zero across **31
+buildings**, on the three letters a block parcel may actually be dealt. Lodging's one is the
+Steamboat Hotel, 287 m from the State Street centreline, which does not front it; the institutional
+families are refused to a block parcel BY NAME (L93) and no frontage rule reaches them. The second
+reading is the setback: **every documented store standing on a platted street stands on its line**,
+thirteen of the fifteen inside the measured street-line band, the two outside it being Robert
+Kinzie's store at Wolf Point and the Miller house, both off the platted grid.
+
+**The two clauses, authored in the recipe and refused at the generator.** (1) A non-dwelling takes
+the block's better face by the committed street hierarchy, and a store, warehouse or workshop may
+never take a light one. (2) A commercial roof stands ON the street line, at the closest line the
+plat module's own margin allows — the same line the party-line runs on South Water and Lake already
+stand on, rather than a second convention.
+
+**What moved: ONE roof, and that is the finding rather than a convenience.** On `blk_randolph_clark`
+reading 1 and reading 2 put the store on the same face, so the ranking could be refused without
+re-dealing a block that already stands: no roof added or removed, no id, family, footprint or form
+value changed, no household re-homed, no bake. What changed is the SETBACK — the C2 came forward
+from 4.5 m to **1.50 m**, out of the 4.0–7.5 m band of house fronts it had been standing in. A
+building whose whole argument was that a stranger must be able to find it had been placed as though
+it were a cottage. One consequence follows it: the street-lining yard fence looks for a lot standing
+back from its own frontage, a shop front is not one, and **24.6 m of fence comes off** that face.
+
+**The 4.26 mm that was in the way, and it is named as what it is.** The per-lot margin gate compared
+the distance from a footprint CORNER to the nearest point of the lot RING against the plat module's
+1.5 m margin, while the setback a recipe authors is measured along the face normal. On a lot whose
+side lines are not exactly square to its face the two differ by millimetres, so a roof authored to
+stand exactly ON the margin read 1.4957 m and failed. It now carries the same 5 mm derivation
+tolerance the party-line frontage gate two hundred lines above it already uses, for the same reason.
+The margin is unchanged: 1.5 m is still the floor and a roof a centimetre inside it still fails.
+
+**The gates.** `tools/generate_block_infill.py` refuses a slot that breaks either clause — a
+light-street frontage, a face that is not the block's better one, or a commercial roof authored
+behind the line — and `tools/measure_face_rule.py` holds the reading the clauses are taken from,
+with two absolute assertions over the roofs the block parcels place and a `--self-test` that breaks
+both in memory. Both run in `tools/check.sh`.
+
+**What is reported and NOT asserted on.** The North, West and phase-one parcels ran before any of
+this and place another 23 non-dwelling roofs. Seven are assigned to State Street at 150 to 550 m of
+setback, which is not a frontage — it is the nearest committed centreline in a division with almost
+no street control, and gating on those would be gating on the absence of a street. The real residual
+is printed rather than fixed in passing: **two invented warehouses stand nearest Randolph at 12.9
+and 14.5 m, against a documented F record that is 9 of 9 on principal streets.** Moving them is a
+parcel's work on ground that is already built out, not a line in this one.
+
+**Liberty L200.** Ticket **T-0024**, ROADMAP **K32**.
+
+## Shipped 2026-08-28 — T-0025: the census that said three records were silent had read one field of a record that argues in four
+
+**K35, opened by K34, asked what to do about three structures carrying AGENTS.md's standing
+constraint with "no text anywhere in the record" saying what for. Two of the three were not
+silent.** Read at K34's own commit (`23bb280b`), over the whole record rather than
+`research_note`: `beaubien_barn` said it in `research_note`, `clybourn_slaughterhouse` said it in
+`function.note` — *"flagged for review with the rest of this record's Indigenous content rather
+than paraphrased away"*, in the same field that names Archibald Clybourne "the Government butcher
+for the Pottawatomies" — and `council_house`, which K34 never named as a gap, said it in
+`function.note` too. **Eight of the nine kept the convention, not six.** Only
+`robert_kinzie_store` was bare.
+
+This is not a scolding of K34; it is the reason the gate now reads what it reads. A building's
+reasoning here is spread across `function.note`, `position.note`, the per-attribute notes and
+`research_note`, and a policy sentence can honestly live in any of them.
+
+**The one real gap is closed from the record's own attested business.** Andreas lists the store's
+keeper among the town's Indian traders (scan p. 235) and among those licensed to sell goods (scan
+p. 249); chicagology has it dealing in "groceries and Indian goods"; the record's `aka` carries
+the source's own "R. A. Kinzie, Indian trader". The trade that names the building is the trade
+the 1833 treaty ended, and the removal it ended in was under way six weeks after the scene date.
+The paragraph states that and stops — no confidence moved, no source added, no liberty owed, and
+the flag not lifted (lifting it is the claim that the consultation has happened, which assertion
+5 already refuses).
+
+**`tools/measure_review_constraint.py` gains assertion 6**, absolute, at every layer: a flagged
+record must refer to the flag in one of the phrasings this dataset uses AND name the subject the
+constraint is about, both in its own prose. Record-level, not sentence-level — `cobweb_castle`
+opens "THE RECORD IS FLAGGED review_required BECAUSE OF WHAT THIS BUILDING WAS" and answers
+itself over the next two sentences. **K35's objection to this route — "says something" is not
+"says why" — stands, and the answer is that the census now PRINTS the sentence it matched under
+every flagged id**, so what the gate cannot judge is at least in front of a reader. Both halves
+were broken in memory against the real dataset and both fire; the restored tree passes.
+
+**What is NOT claimed.** No visitor sees anything new: a building held under the constraint still
+says so nowhere on its card, and the flag reaches the browser only as a `scene-loader.js` console
+line. That is **T-0268**, filed by this unit rather than folded into it. `tools/check.sh` green
+(the full gate, including `--stale`, the sidecar recompile check and the changelog contract);
+`SMOKE_VIEWPORT=mobile` and the desktop smoke as recorded in the PR. No renderer file, no
+geometry, no coordinate, no bake.
+
 ## Shipped 2026-08-28 — T-0162: the sward census stands at a phone, and its first honest phone reading is red
 
 `tools/measure_sward_draw.mjs` has carried a `SWARD_VIEWPORT=mobile` flag since T-0018, and its own
@@ -6478,6 +6596,10 @@ caught by reading the join by hand. Extending the census to this layer is **K52(
 not done — the tool's kinds, baseline and negative control are all written around the other
 two layers.
 
+> **CLOSED 2026-08-28 by T-0021 / K52(b).** The layer list is one table now and the census
+> covers three layers. Eleven days is how long the hole stayed open, and the answer it
+> produced is below.
+
 ### What shipped, and what it does not do
 
 The Evidence panel's people section: the manifest in one fetch, all 173 households with their
@@ -8913,6 +9035,73 @@ lattice R-BUG3c found buries the road. Both are open parcels in `docs/ROADMAP.md
 **Not verified here:** the desktop half of the smoke (~13 min against this harness's 10-minute
 per-command ceiling). `tools/check.sh` and the mobile half of `--published` are green, and the
 desktop draw-call numbers above are measured at 1280×800 by the new tool.
+
+## New 2026-08-28 — the residents census, and 113 person rows reading `[object Object]`
+
+**T-0021 / ROADMAP K52(b).** K52 gave `data/residents/` a second reader on 2026-08-17 and
+K42's assertion 3a did not fire, because the assertion can only fail for a layer
+`tools/measure_layer_reads.py` walks and its layer list was two names long. That is the hole
+this closes, and the census it made possible is what found the fault below.
+
+| layer | figures | mesh | shown | unread |
+|---|---|---|---|---|
+| `residents/household` | 44 | 0 | 42 | 2 |
+| `residents/manifest` | 25 | 0 | 22 | 3 |
+| **the layer** | **69** | **0** | **64** | **5** |
+
+**Nothing here is `mesh` and nothing ever will be.** L1 and AGENTS.md's standing constraint
+hold: v1 draws no human figures, so no figure of a person moves a vertex in this scene.
+`shown` is the whole of the read side.
+
+### The fault: a figure can be shipped, fetched, rendered and still not read
+
+`age_on_scene_date`, `birth_year` and `name_basis` are graded claim blocks —
+`{value, confidence, note, sources}`, exactly like the household's own claims — and
+`personHtml` passed all three whole to a function that escapes what it is given.
+
+- **113 of 209 person rows** read `How this person is named — [object Object]`.
+- **9 of them** read it twice more, for the age and the birth year.
+- **Every stage-9 assertion passed throughout.** The suite asked whether the section loads,
+  counts, marks its 17 off-card households, quotes its sources and starts collapsed. A card
+  that renders the WRONG string renders a string, and none of those questions can see it.
+
+What was lost is not decoration. `name_basis.value` is the pool an invented name was drawn
+from, and 113 of this town's people carry names this project invented. Fixed by routing the
+three through `claimRow`, which is what every other graded claim on the card already used.
+
+**Three new smoke checks, each verified to fail against the old render path before it was
+kept** — measured, not asserted: no figure reaches a person's row as `[object Object]`; an
+invented name says which pool it came from; a dated person carries an age and a birth year,
+both graded. A fourth was written and **discarded**: an assertion on the sentence *"THE NAME
+IS INVENTED"* passes on the broken build, because that sentence is in the person's `note` and
+the note reached the card throughout. A check that cannot fail is not a check.
+
+### Two smaller holes, wired in the same commit
+
+`counts.by_grade` reached nothing behind *"every one of them graded"* — true, and it tells a
+reader nothing. The note gives the tally now: **76 attested, 20 inferred, 113 reconstructed**.
+And `vocabulary.sexes` was the one closed set the panel withheld while showing `persons[].sex`
+on every person's row.
+
+### The five refusals, in writing and in the bank
+
+`tools/layer_reads_baseline.json` gained a `refused_because` field. `counts.households`,
+`households[].present_on_scene_date` and the household record's own `division` are
+denormalised copies of things already shown — the manifest's flat copy of a graded claim
+carries neither its confidence, its reasoning nor its sources, so showing it would be showing
+less. `head`, in both copies, is a foreign key into `persons[].id`; the fact it states already
+reaches the visitor as that person's `relationship`. **A refusal is not a permission** — the
+entries stay banked, assertion 4 still fails on a new unread figure and assertion 5 still
+fails if one of these leaves the data.
+
+### What is NOT verified
+
+The census is a **text scan** over `renderers/web/js/*.js` with comments stripped, and on this
+layer the leaf names are the renderer's own vocabulary — `value`, `note`, `name`, `head`. Five
+of the unread entries are therefore **stated** rather than proven, listed as such by the tool
+and named in `STATED_SHARED` with what each collides with. Verification was stages 8 and 9 at
+both viewports, four legs, 0 failed, 0 page errors; the other seven stages were not re-run,
+and nothing outside the Evidence panel was touched.
 
 ## New 2026-08-16 — the town on the site has 75 textures, and the repository has none
 

@@ -961,16 +961,44 @@ per-command ceiling (§ THE RUN BUDGET). The mobile half ran on the published mi
 passed, 2 failed**, and both failures are the road-contrast bands `dev` already carries red —
 see `docs/STATUS.md` § *Landed with two bands red*. This parcel changes no 3-D rendering.
 
-### K52(b) — extend the read census to `data/residents/` · **UNCLAIMED · UNSEEN · opened 2026-08-17 by K52 · Effort: S–M**
+### K52(b) — extend the read census to `data/residents/` · **DONE 2026-08-28 (T-0021) — the census found 113 person rows reading `[object Object]`, which is what a figure looks like when it is shipped, fetched, rendered and still not read**
 
-`tools/measure_layer_reads.py` covers `flora` and `fauna` by name — its kinds, its baseline
-and its self-test's negative control are all written around those two — so `residents` gaining
-a reader today fired nothing. K52 answered the question by hand (finding 1 and finding 2
-above, both measured off the join); what it did not do is put the answer under a gate, so the
-next figure this layer adds can go unread exactly as the last 20 did.
+`tools/measure_layer_reads.py` covered `flora` and `fauna` **by name** — its kinds, its
+baseline and its self-test's negative control all written around those two — so `residents`
+gaining a reader on 2026-08-17 fired nothing. The layer list is one table now (`LAYER_KINDS`),
+read by the record walk, the citation census and assertion 3a alike, and the self-test carries
+a new control for the shape of the hole itself: **every layer with a read map is a layer this
+file walks.** A blind gate and a wrong gate are the same outcome from a visitor's side.
 
-**It is UNSEEN and carries no exemption of its own.** Take it the way K52 was taken, or behind
-a parcel that ends in something visible.
+**69 residents figures classified: 64 `shown`, 0 `mesh`, 5 unread.** None is `mesh` and none
+ever will be — L1 stands, v1 draws no human figures, so no figure of a person moves a vertex.
+
+**AND THE CENSUS FOUND WHAT A CENSUS IS FOR.** Three of a person's figures —
+`age_on_scene_date`, `birth_year` and `name_basis` — are graded claim blocks
+(`{value, confidence, note, sources}`) and `personHtml` was handing all three **whole** to a
+text renderer. **113 of the 209 person rows read "How this person is named — [object Object]"**
+and nine said it twice more for the age and the birth year. Every assertion in the stage-9
+suite passed throughout, because a card that renders the wrong string still renders a string;
+what was lost is the pool an invented name was drawn from, on the 113 people whose names this
+project invented. They go through `claimRow` now, with the swatch, the reasoning and the
+citations every other graded claim on the card gets, and three smoke checks hold it — each one
+verified to FAIL against the old render path before it was kept.
+
+**Two smaller holes, wired in the same commit.** `counts.by_grade` reached nothing behind the
+sentence *"every one of them graded"*, which is true and tells a reader nothing; the note now
+gives the tally (76 attested, 20 inferred, 113 reconstructed). And `vocabulary.sexes` was the
+one closed set the panel withheld while showing the value it governs.
+
+**Five figures reach nobody and stay that way, each with a written reason in the bank**
+(`refused_because`, new in `tools/layer_reads_baseline.json`): `counts.households` and
+`households[].present_on_scene_date` and the household's own `division` are denormalised
+copies of things already shown — showing the poorer copy would be showing less — and
+`head`, in both copies, is a foreign key into `persons[].id` whose fact already reaches the
+visitor as that person's `relationship`. A refusal is **not a permission**: the entries stay
+banked, assertion 4 still fails on a new one and assertion 5 still fails if one leaves.
+
+**Files:** `tools/measure_layer_reads.py` · `tools/layer_reads_baseline.json` ·
+`renderers/web/js/residents.js` · `tools/smoke_renderer.mjs` (stage 9).
 
 ### K53 — every shrub in the town is drawn as a giant forb · **DONE 2026-08-17 — the archetype is in, the recorded width is drawn, and the reason only fourteen of them stand is measured**
 
@@ -3507,7 +3535,11 @@ constraint ⇒ set the flag": three settler buildings that reasoned their way to
 writing are not defects, and a gate that could not tell them from finding 1 would have been
 a gate arguing for its own conclusion. **Three of the nine flagged structures — `beaubien_barn`,
 `clybourn_slaughterhouse`, `robert_kinzie_store` — state no reason at all**, which is the
-open end of this parcel and is left open rather than guessed at: see K35.
+open end of this parcel and is left open rather than guessed at: see K35. — **CORRECTED
+2026-08-28 by K35 / T-0025: it was ONE of the three, not three.** Two of them said it at
+this parcel's own commit, in a field this sentence did not read: the barn in `research_note`,
+the slaughterhouse in `function.note`. Only `robert_kinzie_store` was bare. The K35 box
+below carries the re-measurement and the gate that now holds it.
 
 **WHAT SHIPPED.** `tools/measure_review_constraint.py`, in `check.sh`, with **four absolute
 assertions and no ratchet** — a ratchet is the instrument for a fault being paid down, and
@@ -3534,31 +3566,79 @@ green against the published mirror. The desktop half was not run and is not clai
 needs ~13 minutes against this harness's 10-minute per-command ceiling (see the run-budget
 box at the top of this file). This parcel changes no renderer file and no geometry.
 
-### K35 — three records carry the standing constraint and say why nowhere · **UNCLAIMED · opened 2026-08-16 by K34 · Effort: S — a research question, then possibly a field**
+### K35 — three records carry the standing constraint and say why nowhere · **DONE 2026-08-28 (T-0025) · one of the three was bare, and the census that named three had read one field of a record whose reasoning is spread over four**
 
-`beaubien_barn`, `clybourn_slaughterhouse` and `robert_kinzie_store` carry
-`review_required: true` and no text anywhere in the record says what for. Six of the nine
-flagged structures do explain themselves in prose, and three settler buildings explain in
-prose why they are deliberately NOT flagged (K34 finding 3) — so the reason is *usually*
-written down, by convention rather than by rule.
+**Phase:** lane 2 · **Effort:** S · one data record, one gate, docs — no renderer file, no
+geometry, no coordinate, no bake
 
-**The question is not "why are these three flagged".** It is whether a bare boolean is the
-right carrier for a commitment this project puts above the work. Households have
-`touches_removal` beside `review_required` and structures have nothing equivalent, so on the
-building side there is no field in which a reason could live even if somebody wrote one.
+**THE FIRST THING THIS PARCEL DID WAS RE-MEASURE ITS OWN PREMISE, AND THE PREMISE WAS WRONG.**
+K34 finished by naming `beaubien_barn`, `clybourn_slaughterhouse` and `robert_kinzie_store` as
+carrying the flag with *"no text anywhere in the record"* saying what for. Checked against the
+committed bytes at K34's own commit (`23bb280b`), reading the WHOLE record rather than
+`research_note`:
 
-Three routes, and the choice belongs with the owner rather than with a gate:
+| record | at K34's commit | where |
+|---|---|---|
+| `beaubien_barn` | **said it** | `research_note` — *"REVIEW IS FLAGGED for the reason data/structures/jb_beaubien_homestead.json … give"* |
+| `clybourn_slaughterhouse` | **said it** | `function.note` — *"flagged for review with the rest of this record's Indigenous content rather than paraphrased away"* |
+| `robert_kinzie_store` | bare | — |
+| `council_house` (never named by K34) | **said it** | `function.note` — *"the reason it is flagged review_required: the events the sources attach to this building … are the removal"* |
 
-1. **Prose convention, asserted.** Require every flagged record to say something — K34's
-   assertion 1 already reads prose, so this is a small extension. Cheapest; also the weakest,
-   because "says something" is not "says why".
-2. **A `review_reason` string on the structure schema.** Explicit, greppable, and a schema
-   change across 9 records. Bake-free: a top-level structure field is not in
-   `generators/mesh_inputs.py`'s resolved-params recipe, so it stales no GLB — **but confirm
-   that against the placeholder records, whose `inputs_sha256` is the sha of the whole file.**
-   None of the nine is a `recon_*` placeholder today.
-3. **Leave it.** The flag is conservative in the direction that matters — it blocks — and an
-   unexplained block is not a hazard the way an unexplained claim is.
+So the convention was kept by **eight of nine** structures and not six, the one real gap sat
+behind two records that were not gaps, and a fourth record was credited with a silence it never
+had. The fault is not carelessness — it is the shape of these records. A building's reasoning is
+distributed across `function.note`, `position.note`, the per-attribute notes and `research_note`,
+and the one place a reader looks for a policy statement is the last of them. **`clybourn`'s
+sentence is in the field that names the man: "the Government butcher for the Pottawatomies", a
+treaty-provision post.** That is where the reason belonged.
+
+**THE ONE REAL GAP IS CLOSED, AND IT IS CLOSED WITH THE RECORD'S OWN ATTESTED BUSINESS.**
+`robert_kinzie_store` is not a shop that happened to stand near Native people: Andreas lists its
+keeper among the town's Indian traders (scan p. 235) and among those licensed to sell goods (scan
+p. 249), chicagology has it dealing in *"groceries and Indian goods"*, and the record's own `aka`
+carries the source's phrase — *"R. A. Kinzie, Indian trader"*. The trade that names the building
+is the trade the 1833 Treaty of Chicago ended, and the removal it ended in was under way six
+weeks after the scene date. The flag was already right; what was missing was the argument, and
+the argument was already inside the record in three fields that never said what it implied. The
+row agrees: `robinson_caldwell_cabins`, forty-odd metres along the same west-bank frontage,
+carries the flag for the same subject. **Nothing was regraded, no confidence moved, no source was
+added and the flag was not lifted** — lifting it is the claim that the consultation has happened,
+which assertion 5 already refuses.
+
+**ROUTE 1, ASSERTED — and route 2 is declined with a reason.** K34 left three routes and called
+the choice the owner's. The re-measurement decides it: a `review_reason` field would be a SECOND
+carrier for text that nine of nine records already write, and a second carrier for the same claim
+is the exact shape assertion 1 exists to catch (a record whose prose and whose field disagree).
+What the records needed was not a field, it was a reader that reads the record.
+
+`tools/measure_review_constraint.py` gains **assertion 6**: every record carrying the flag, at
+every layer, must (a) refer to it in one of the phrasings this dataset uses and (b) name the
+subject AGENTS.md places under the constraint — both in the record's own prose, wherever in it
+they fall. Record-level and not sentence-level on purpose: `cobweb_castle` opens *"THE RECORD IS
+FLAGGED review_required BECAUSE OF WHAT THIS BUILDING WAS"* and spends the next two sentences
+saying what that was, which is good writing and would fail a same-sentence rule. **K35's own
+objection to this route — "says something" is not "says why" — stands, and is answered the only
+honest way: the census PRINTS the sentence it matched under every flagged id.** The gate holds
+the shape of the claim; a reader judges the argument, and now has it in front of them without
+opening nine files.
+
+    structures       9 flagged of  349
+                     clybourn_slaughterhouse
+                       why: Andreas elsewhere calls Archibald Clybourne 'the Government
+                            butcher for the Pottawatomies' (scan p. 253), a treaty-provision
+                            post — recorded here because it is what the man was, and flagged
+                            for review with the rest of this record's Indigenous content …
+
+**Both halves were broken before the gate was trusted**, in memory against the real dataset: the
+flag phrasing scrubbed out of `robert_kinzie_store` (fires — *"carries review_required and its own
+text never says so"*), and the subject scrubbed out of `council_house` while its flag sentence
+stands (fires — *"refers to the flag … and names nowhere the subject"*). The restored tree passes.
+
+**WHAT IT DID NOT DO.** It moved no building, household or coordinate, built no geometry, and
+invented nothing — `docs/LIBERTIES.md` records inventions and there is none here. It did not give
+the visitor anything: a building held under the constraint still says so nowhere on the card a
+visitor opens, and the flag reaches the browser only as a console line in `scene-loader.js`. That
+is filed as T-0268 rather than smuggled in here.
 
 ### K36(a) — nothing compared a shipped derivative to the master it came from · **DONE 2026-08-16 · the site has 75 textures and the repository has none**
 

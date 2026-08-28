@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Which of a plant's or an animal's figures reaches a vertex.
+"""Which of a plant's, an animal's or a resident's figures reaches a vertex.
 
 ROADMAP K42, opened by K41. This project answers that question for two of its
 layers and had never asked it of the other two.
@@ -20,6 +20,28 @@ plant records across ten communities, 139 animal records across ten habitat
 zones, 202 and 30 citations of a source whose rights are unresolved (K41). Every
 figure in them is shipped to a browser, and until this ran nothing here could say
 which ones a visitor is looking at.
+
+AND NEITHER DID `data/residents/`, which is ROADMAP K52 and ticket T-0021. That
+layer is 173 households and 209 person entries, and its box says plainly why it
+was the harder of the two rather than the easier: it already had *a* reader —
+`tools/compile_scene.py` attaches a household to a building's sidecar and
+`popup.js` names it on the card — and **"a layer with one reader is exactly where
+an unread figure hides, because 'the browser has it' reads as 'somebody looks at
+it'."** K52 then gave it a second reader, the Evidence panel's people section,
+and the layer STILL was not censused: assertion 3a below can only fail for a
+layer this file knows about, and its layer list was two names long, so a
+directory a renderer opens and a map nobody wrote went to no assertion at all.
+That is the same expired-claim shape 3a exists to catch, one level up — the gate
+was blind rather than wrong.
+
+Censusing it found the thing a census is for. Three of a person's figures —
+`age_on_scene_date`, `birth_year` and `name_basis` — are graded claim blocks and
+were being handed whole to a text renderer, so **113 person rows read "How this
+person is named — [object Object]"**, hiding the sentence this project most needs
+read: *"THE NAME IS INVENTED. No source names this resident."* A figure that
+arrives on the card as `[object Object]` has not reached a visitor. They are
+`shown` here because they are shown now; the commit that declared them is the
+commit that fixed them, which is the only order that is honest.
 
 WHY THE MAP IS IN PYTHON AND THE READER IS JAVASCRIPT. `terrain_inputs.py` gives
 the argument for not co-locating a read-set with the code that reads: there the
@@ -101,7 +123,9 @@ FIVE ASSERTIONS.
 
 WHAT THIS DOES NOT DECIDE. Whether an unread figure should be deleted, wired up
 or declared is three different answers for three different findings, and none of
-them is this parcel's to make: `data/fauna/` is a research dataset whose value
+them is this parcel's to make — except where somebody has made it, which is what
+`REFUSALS` below is: a figure whose answer is "this should not reach a visitor,
+and here is why", written against the figure and carried into the bank: `data/fauna/` is a research dataset whose value
 does not depend on a renderer existing, the palette's wind and LOD blocks are
 render tuning that the renderer has since re-tuned in its own constants, and
 `plantable_in_scene` is gated by `tools/validate.py` on every run. The routes are
@@ -131,7 +155,8 @@ RENDERER_SKIP = ("changelog.js",)
 # business — the same strip `compile_scene.ground_fields` does before the
 # ground's geometry check sees a claim. A path declared in READS outranks this.
 MACHINERY_LEAVES = frozenset({
-    "_doc", "id", "zone", "file", "version", "scene_date", "dossier", "sources",
+    "_doc", "_researched_not_resident_doc",
+    "id", "zone", "file", "version", "scene_date", "dossier", "sources",
     "note", "name", "binomial", "synonym", "review_required", "palette",
     "species_count", "confidence", "reads_as",
 })
@@ -143,6 +168,26 @@ MACHINERY_LEAVES = frozenset({
 # removes the need for the rest.
 AMBIGUOUS_LEAVES = frozenset({
     "rgb",        # `diffuseColor.rgb` is a three.js shader field, in four files
+})
+
+# Unread leaves the reverse scan of assertion 3 cannot attribute, STATED rather
+# than proven — the same admission the derived `shared` list makes, for names the
+# derivation cannot reach because the collision is not with another DECLARED leaf.
+# A scan that cannot fail honestly is worse than a stated exemption, so each one
+# says here what it collides with and stays in the unread bank either way.
+STATED_SHARED = frozenset({
+    # `counts.households` is the manifest's own tally. `index.households` is the
+    # list the panel renders, and it is read — one `.households` in the renderer,
+    # two figures in the data, and no text scan can say which one it touched.
+    "households",
+    # The head-of-household name. `sp.head` is flora.js's flower head, in nine
+    # expressions across the sward, so a bare `.head` is the renderer's own
+    # vocabulary; and a top-level leaf has no parent to qualify it with.
+    "head",
+    # The manifest's denormalised copy of the household's presence claim. The
+    # RECORD's `present_on_scene_date` block is read and shown by residents.js;
+    # the manifest's copy of it is read by nothing, and the two are the same word.
+    "present_on_scene_date",
 })
 
 # ---------------------------------------------------------------------------
@@ -292,12 +337,171 @@ FAUNA_MANIFEST_READS: dict[str, tuple[str, str]] = {
     "vocabulary.active_periods": ("shown", "rank(vocab.active_periods, a)"),
 }
 
+# data/residents — ROADMAP K52, ticket T-0021. Two readers, so two routes, and
+# the map does not distinguish them because the scan is over the renderer as one
+# text: `residents.js` fetches the manifest and then a household record per row a
+# visitor opens, and `popup.js` reads the denormalised copy `compile_scene.py`
+# puts in a building's sidecar. A figure read by either has reached a visitor.
+#
+# NOTHING HERE IS `mesh`, and nothing here ever will be. docs/LIBERTIES.md L1 and
+# AGENTS.md's standing constraint hold: v1 draws no human figures, so no figure of
+# a person moves a vertex in this scene. `shown` is the whole of the read side,
+# and a state that said otherwise would be this map making a claim about the town.
+RESIDENTS_MANIFEST_READS: dict[str, tuple[str, str]] = {
+    # The count sentence under the section heading, and the layer's own grade
+    # tally inside it — how many of this town's people a source names, how many
+    # are real people partly reconstructed, and how many are hypotheses. The
+    # census of T-0021 found the tally reaching nothing behind the sentence
+    # "every one of them graded", which is true and says nothing.
+    "counts.persons": ("shown", "counts.persons ?? entries.reduce"),
+    "counts.by_grade.attested": ("shown", "${byGrade.attested} named by a source"),
+    "counts.by_grade.inferred": ("shown", "${byGrade.inferred} real people whose"),
+    "counts.by_grade.reconstructed": ("shown", "${byGrade.reconstructed} hypothesised to"),
+    # One row per household: which division it stands in, how many people it
+    # holds, and its grade tally as chips.
+    "households[].division": ("shown", "words(entry.division)"),
+    "households[].persons": ("shown", "entry.persons === 1"),
+    "households[].grades.attested": ("shown", "(grades || {})[g]"),
+    "households[].grades.inferred": ("shown", "(grades || {})[g]"),
+    "households[].grades.reconstructed": ("shown", "(grades || {})[g]"),
+    # The finding the section was built to carry: a household with neither
+    # residence nor workplace attested reaches no building sidecar, so these two
+    # copies are what puts "on no building card" on the row.
+    "households[].lives_at": ("shown", "Boolean(entry.lives_at || entry.works_at)"),
+    "households[].works_at": ("shown", "Boolean(entry.lives_at || entry.works_at)"),
+    # The researched-and-not-a-resident list — the exclusions-style half.
+    "researched_not_resident[].name": ("shown", "e.name || e.id"),
+    "researched_not_resident[].category": ("shown", "words(e.category)"),
+    "researched_not_resident[].reason": ("shown", "row('Why not a household here', e.reason)"),
+    "researched_not_resident[].note": ("shown", "escapeHtml(e.note)"),
+    # The closed sets, shown rather than paraphrased — a gloss invented in the
+    # renderer would be a vocabulary the dataset never agreed to. `presence` is
+    # declared at its call site because `vocab.presence` is a prefix of fauna's
+    # `vocab.presence_modes`, and an expression that matches another layer's line
+    # proves nothing about this one.
+    "vocabulary.grades": ("shown", "vocab.grades"),
+    "vocabulary.presence": ("shown", "['Here on the scene date', vocab.presence]"),
+    "vocabulary.divisions": ("shown", "rank(vocab.divisions, a.division)"),
+    "vocabulary.arrival_precision": ("shown", "vocab.arrival_precision"),
+    "vocabulary.relationships": ("shown", "vocab.relationships"),
+    # Shown because the value it governs is shown: `persons[].sex` is on every
+    # person's card and this was the one closed set the panel withheld.
+    "vocabulary.sexes": ("shown", "['Sex, as the records give it', vocab.sexes]"),
+    "vocabulary.occupations": ("shown", "vocab.occupations"),
+}
+
+RESIDENTS_HOUSEHOLD_READS: dict[str, tuple[str, str]] = {
+    # The household's own name, on the building card. `residents.js` labels its
+    # rows off the id; this is `popup.js` and the Go-to search, through the
+    # sidecar copy.
+    "name": ("shown", "households.map((h) => h.name)"),
+    # The seven graded claims. Each `value` is named at its own call site — a
+    # figure dug out inside a generic accessor is a figure this census cannot
+    # see in the file's text — and the three parts every claim block shares
+    # (`confidence`, `note`) are read once, in `claimRow`, so one expression
+    # covers them all because one line does.
+    "arrival.value": ("shown", "(hh.arrival || {}).value"),
+    "arrival.precision": ("shown", "words((hh.arrival || {}).precision)"),
+    "party_size_on_arrival.value": ("shown", "party && party.value"),
+    "origin.value": ("shown", "(hh.origin || {}).value"),
+    "reason_for_coming.value": ("shown", "(hh.reason_for_coming || {}).value"),
+    "lives_at.value": ("shown", "(hh.lives_at || {}).value"),
+    "works_at.value": ("shown", "(hh.works_at || {}).value"),
+    "present_on_scene_date.value": ("shown", "(hh.present_on_scene_date || {}).value"),
+    "arrival.confidence": ("shown", "swatch(block.confidence)"),
+    "party_size_on_arrival.confidence": ("shown", "swatch(block.confidence)"),
+    "origin.confidence": ("shown", "swatch(block.confidence)"),
+    "reason_for_coming.confidence": ("shown", "swatch(block.confidence)"),
+    "lives_at.confidence": ("shown", "swatch(block.confidence)"),
+    "works_at.confidence": ("shown", "swatch(block.confidence)"),
+    "present_on_scene_date.confidence": ("shown", "swatch(block.confidence)"),
+    # The reasoning, and on this layer it is the point: a note here routinely
+    # says the record is NOT attested and why the figure is carried anyway.
+    "arrival.note": ("shown", "escapeHtml(block.note)"),
+    "party_size_on_arrival.note": ("shown", "escapeHtml(block.note)"),
+    "origin.note": ("shown", "escapeHtml(block.note)"),
+    "reason_for_coming.note": ("shown", "escapeHtml(block.note)"),
+    "lives_at.note": ("shown", "escapeHtml(block.note)"),
+    "works_at.note": ("shown", "escapeHtml(block.note)"),
+    "present_on_scene_date.note": ("shown", "escapeHtml(block.note)"),
+    # The standing constraint, on the record that touches it.
+    "touches_removal": ("shown", "hh.touches_removal"),
+    "research_note": ("shown", "hh.research_note"),
+    # The person. `grade` is how much of the PERSON is reconstructed and the
+    # occupation's `confidence` is how well that one attribute is evidenced; the
+    # manifest is emphatic that the two axes must not be conflated, and they are
+    # two chips here for the same reason.
+    "persons[].name": ("shown", "escapeHtml(person.name || 'unnamed')"),
+    "persons[].grade": ("shown", "swatch(person.grade)"),
+    "persons[].relationship": ("shown", "words(person.relationship)"),
+    "persons[].sex": ("shown", "words(person.sex)"),
+    "persons[].note": ("shown", "escapeHtml(person.note)"),
+    "persons[].occupation.value": ("shown", "words(occ.value)"),
+    "persons[].occupation.confidence": ("shown", "swatch(occ.confidence)"),
+    "persons[].occupation.note": ("shown", "escapeHtml(occ.note)"),
+    # The three that were reaching the card as `[object Object]` until the commit
+    # this map arrived in. See the module docstring: they are graded claim blocks
+    # like the household's own, and they go through `claimRow` now.
+    "persons[].age_on_scene_date.value": ("shown", "claimRow('Age on 1 July 1835', aged && aged.value"),
+    "persons[].birth_year.value": ("shown", "claimRow('Born', born && born.value"),
+    "persons[].name_basis.value": ("shown", "claimRow('How this person is named', named && named.value"),
+    "persons[].age_on_scene_date.confidence": ("shown", "swatch(block.confidence)"),
+    "persons[].birth_year.confidence": ("shown", "swatch(block.confidence)"),
+    "persons[].name_basis.confidence": ("shown", "swatch(block.confidence)"),
+    "persons[].age_on_scene_date.note": ("shown", "escapeHtml(block.note)"),
+    "persons[].birth_year.note": ("shown", "escapeHtml(block.note)"),
+    "persons[].name_basis.note": ("shown", "escapeHtml(block.note)"),
+}
+
 READS: dict[str, dict[str, tuple[str, str]]] = {
     "flora/zone": FLORA_ZONE_READS,
     "flora/manifest": FLORA_MANIFEST_READS,
     "flora/palette": FLORA_PALETTE_READS,
     "fauna/zone": FAUNA_ZONE_READS,
     "fauna/manifest": FAUNA_MANIFEST_READS,
+    "residents/manifest": RESIDENTS_MANIFEST_READS,
+    "residents/household": RESIDENTS_HOUSEHOLD_READS,
+}
+
+# Which record kinds a layer keeps, and in which subdirectory. The layer list was
+# hardcoded to flora and fauna in two places and the record kinds in a third,
+# which is how `data/residents` gained two readers without ever reaching
+# assertion 3a. One table now, read by everything that walks a layer.
+LAYER_KINDS: dict[str, tuple[tuple[str, str], ...]] = {
+    "flora": (("zone", "zones"), ("palette", "palettes")),
+    "fauna": (("zone", "zones"), ("palette", "palettes")),
+    "residents": (("household", "households"),),
+}
+LAYERS = tuple(LAYER_KINDS)
+RECORD_KINDS = ("zone", "manifest", "palette", "household")
+
+# THE DECLARED REFUSALS. T-0021's acceptance is that every unreached figure gets
+# a ticket or a stated refusal, and a refusal written into a ticket nobody runs
+# is a refusal nobody reads. These sit against the figure they refuse, are
+# carried into `layer_reads_baseline.json` by `--update`, and are printed under
+# the census. A refusal is not a permission: the figure stays in the unread bank,
+# assertion 4 still fails if a new one appears, and assertion 5 still fails if
+# one of these leaves the data.
+REFUSALS: dict[str, str] = {
+    "residents/manifest:counts.households": (
+        "The panel renders one row per household and counts the rows. A tally shown "
+        "beside a list it might disagree with is worse than no tally; validate.py holds "
+        "the two equal, which is where a disagreement should surface, not on the card."),
+    "residents/manifest:households[].head": (
+        "A foreign key into `persons[].id`, not a figure — it names which person heads "
+        "the household, and that fact already reaches the visitor as that person's "
+        "`relationship`, shown on their own row."),
+    "residents/household:head": (
+        "The record's own copy of the same foreign key. Refused for the same reason, and "
+        "it is the record that is authoritative."),
+    "residents/household:division": (
+        "Denormalised. The MANIFEST's copy is what the panel groups and labels rows by, "
+        "and validate.py fails the build if the two disagree; reading both would be two "
+        "answers to one question."),
+    "residents/manifest:households[].present_on_scene_date": (
+        "The flat copy of a graded claim. `residents.js` shows the RECORD's block — its "
+        "value, its confidence, its reasoning and its sources — and the manifest's bare "
+        "value carries none of that. Showing the poorer copy would be showing less."),
 }
 
 STATES = ("mesh", "shown", "probe")
@@ -436,9 +640,9 @@ def merge(into: dict[str, int], more: dict[str, int]) -> None:
 
 
 def layer_records() -> dict[str, dict[str, int]]:
-    """Every field path in both layers, by layer and record kind."""
+    """Every field path in every layer, by layer and record kind."""
     found: dict[str, dict[str, int]] = {}
-    for layer in ("flora", "fauna"):
+    for layer in LAYERS:
         base = DATA / layer
         if not base.exists():
             continue
@@ -446,7 +650,7 @@ def layer_records() -> dict[str, dict[str, int]]:
         if manifest.exists():
             found.setdefault(f"{layer}/manifest", {})
             merge(found[f"{layer}/manifest"], field_paths(load(manifest)))
-        for kind, sub in (("zone", "zones"), ("palette", "palettes")):
+        for kind, sub in LAYER_KINDS[layer]:
             d = base / sub
             if not d.exists():
                 continue
@@ -474,7 +678,7 @@ def classify() -> dict:
         "ghosts": [],        # declared read, expression not in the renderer
         "phantoms": [],      # banked unread, and the renderer reads it
         "shared": [],        # unread, leaf name read under another record kind
-        "opened": {layer: layer_is_opened(src, layer) for layer in ("flora", "fauna")},
+        "opened": {layer: layer_is_opened(src, layer) for layer in LAYERS},
     }
     # A leaf name declared read anywhere is a name the text scan cannot attribute
     # to one record kind: `common` is read off a plant, and an animal has one
@@ -509,7 +713,8 @@ def classify() -> dict:
                 # The layer rule already settles it, absolutely: no renderer
                 # opens the directory, so no field in it is read.
                 continue
-            if leaf in read_leaves and leaf not in AMBIGUOUS_LEAVES:
+            if ((leaf in read_leaves or leaf in STATED_SHARED)
+                    and leaf not in AMBIGUOUS_LEAVES):
                 out["shared"].append(key)
                 continue
             if reads_leaf(src, path):
@@ -583,14 +788,15 @@ def citation_census(state: dict) -> dict:
     blocked = blocked_sources()
     mesh_paths = {k for k, s in state["declared"].items() if s == "mesh"}
     out = {}
-    for layer in ("flora", "fauna"):
+    for layer in LAYERS:
         base = DATA / layer
         if not base.exists():
             continue
+        by_dir = {sub: kind for kind, sub in LAYER_KINDS[layer]}
         tally = {"citations": 0, "blocked": 0, "blocked_on_mesh_node": 0}
         for path in sorted(base.rglob("*.json")):
             kind = ("manifest" if path.name == "index.json"
-                    else "palette" if path.parent.name == "palettes" else "zone")
+                    else by_dir.get(path.parent.name, "zone"))
             key = f"{layer}/{kind}"
 
             def walk(node, pre):
@@ -643,7 +849,7 @@ def evaluate(state: dict, bank: dict[str, dict]) -> list[str]:
     # not open, and a layer with declared reads must be opened. This is the
     # strong half of assertion 3 and the whole of it for `data/fauna`.
     for layer, opened in sorted(state["opened"].items()):
-        declares = any(READS.get(f"{layer}/{k}") for k in ("zone", "manifest", "palette"))
+        declares = any(READS.get(f"{layer}/{k}") for k in RECORD_KINDS)
         if declares and not opened:
             problems.append(
                 f"data/{layer} has declared reads and no renderer source opens the "
@@ -682,8 +888,8 @@ def evaluate(state: dict, bank: dict[str, dict]) -> list[str]:
     # banked, so an unbanked one is assertion 4 above; what is left to check is
     # that the map was applied to something at all.
     if not state["kinds"]:
-        problems.append("no flora or fauna records were found, so nothing was classified "
-                        "and a pass here means nothing")
+        problems.append("no flora, fauna or residents records were found, so nothing was "
+                        "classified and a pass here means nothing")
     return problems
 
 
@@ -694,7 +900,8 @@ def measure() -> tuple[dict, list[str]]:
 
 
 def print_census(c: dict) -> None:
-    print("Which of a flora or fauna figure reaches a vertex — ROADMAP K42.\n")
+    print("Which of a flora, fauna or residents figure reaches a visitor — ROADMAP "
+          "K42 and K52.\n")
     head = f"  {'record kind':<18}{'figures':>8}{'mesh':>7}{'shown':>7}{'probe':>7}{'unread':>8}"
     print(head)
     for kind, k in sorted(c["kinds"].items()):
@@ -704,7 +911,8 @@ def print_census(c: dict) -> None:
     unread = sum(k["unread"] for k in c["kinds"].values())
     print(f"\n  {unread} of {total} figure(s) reach nothing:")
     for key in sorted(c["unread"]):
-        print(f"    {key:<56} on {c['unread'][key]['records']:>4} record(s)")
+        print(f"    {key:<56} on {c['unread'][key]['records']:>4} record(s)"
+              f"{'  — refused, and why is in the bank' if key in REFUSALS else ''}")
     print(f"\n  {len(c['machinery'])} identity/provenance key(s) are not figures and are "
           f"not asked")
     for layer, opened in sorted(c["opened"].items()):
@@ -790,7 +998,14 @@ def self_test() -> int:
         ("the parent-qualified form is used for an ambiguous leaf",
          not reads_leaf(src, "ground.rgb") and reads_leaf(src, "diffuseColor.rgb")),
         ("the layer scan sees the layer the renderer does open",
-         layer_is_opened(src, "flora") and layer_is_opened(src, "fauna")),
+         all(layer_is_opened(src, layer) for layer in LAYERS)),
+        # T-0021. `data/residents` had two readers and no read map for eleven
+        # days, because this file's layer list was two names long and 3a can only
+        # fail for a layer it walks. The control is that every layer with a map
+        # is walked and every layer walked has a map — a blind gate and a wrong
+        # gate are the same outcome from a visitor's side.
+        ("every declared layer is a layer this file walks",
+         {k.split("/")[0] for k in READS} == set(LAYERS)),
         # The negative half used to be `not layer_is_opened(src, "fauna")`, and
         # ROADMAP K51 gave that layer a reader — at which point a control written
         # against the repository's own state stops being a control and becomes a
@@ -832,8 +1047,13 @@ def main() -> int:
                     "measurement and not a permission: tools/measure_layer_reads.py holds "
                     "it exact in both directions, so a new one fails and a wired-up one "
                     "has to be un-banked here in the commit that wired it. Read ROADMAP "
-                    "K42 before adding a line.",
-            "entries": {k: state["unread"][k] for k in sorted(state["unread"])},
+                    "K42 before adding a line. `refused_because` is a STATED REFUSAL "
+                    "(T-0021): somebody decided this figure should not reach a visitor "
+                    "and wrote down why. It is not a permission and it does not soften "
+                    "any assertion — the entry is banked exactly like every other.",
+            "entries": {k: ({**state["unread"][k], "refused_because": REFUSALS[k]}
+                             if k in REFUSALS else state["unread"][k])
+                        for k in sorted(state["unread"])},
         }, indent=2) + "\n", encoding="utf-8")
         print(f"wrote {BASELINE.relative_to(ROOT)} ({len(state['unread'])} entries)")
         return 0
@@ -851,6 +1071,8 @@ def main() -> int:
     mesh = sum(k["mesh"] for k in state["kinds"].values())
     fauna = sum(k["unread"] for kind, k in state["kinds"].items()
                 if kind.startswith("fauna/"))
+    residents = sum(k["unread"] for kind, k in state["kinds"].items()
+                    if kind.startswith("residents/"))
     shown = sum(k["shown"] for k in state["kinds"].values())
     if args.gate or args.quiet:
         # "which no renderer opens" stood on this line until ROADMAP K51, and by
@@ -858,10 +1080,11 @@ def main() -> int:
         # counted separately from `mesh` because a value a visitor reads on a
         # card and a value that moves a vertex are different answers, and rolling
         # them together is how a layer with no geometry starts sounding drawn.
-        print(f"layer reads: {mesh} of {total} flora/fauna figure(s) reach a vertex, "
-              f"{shown} reach a visitor as text on a card, {unread} reach nothing, "
-              f"{fauna} of those in data/fauna; the unread population is banked and "
-              f"may not grow")
+        print(f"layer reads: {mesh} of {total} flora/fauna/residents figure(s) reach a "
+              f"vertex, {shown} reach a visitor as text on a card, {unread} reach nothing, "
+              f"{fauna} of those in data/fauna and {residents} in data/residents "
+              f"({len(REFUSALS)} of them refused in writing); the unread population is "
+              f"banked and may not grow")
     return 0
 
 

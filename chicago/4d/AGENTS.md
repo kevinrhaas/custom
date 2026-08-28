@@ -44,6 +44,11 @@ project's first target year. It is the most historically significant event of th
   built environment accurately and leave human depiction out of scope. An empty, accurate town
   is honest. A populated, invented one is not.
 - `review_required: true` on any record blocks a scene from being marked `released`.
+- **A flagged record says why, in its own words.** `tools/measure_review_constraint.py`
+  asserts that every record carrying the flag refers to it somewhere in its own prose AND
+  names the subject it is held for, and prints the sentence it matched under each id. A
+  bare boolean tells the next reader that a decision was made and nothing about what it
+  rests on (T-0025).
 
 Note also that the great Potawatomi gathering and the last war dance are **August 1835**,
 weeks after the 1835 scene date. Staging them in the 1835 scene would be wrong twice over.

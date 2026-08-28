@@ -3,7 +3,7 @@
   "source": "docs/LIBERTIES.md",
   "standard": "A visitor should be able to tell you which parts we made up.",
   "note": "The confidence model covers attributes. These are the decisions that live above any single attribute: scope, omission, simplification, and the choices a visitor would otherwise have to reverse-engineer.",
-  "count": 199,
+  "count": 200,
   "liberties": [
     {
       "id": "L1",
@@ -12813,6 +12813,35 @@
         {
           "label": "How to resolve",
           "text": "the 1830 Harrison sheet re-read for its road and ferry line specifically — this project has taken the fort, the garden, the barn and the ferry off that plate and never the routes between them; or any survey of the United States Reservation before its 1839 subdivision, which would fix both this line and the landing at once. Related: **L140** (the fort road, and the refusal this discharges) · **L174** (the apron both gates hand their last stride to) · **L178** (why one chord and not several) · **L194** (the mitred corner a bend would have needed) · tickets **T-0099** (this), **T-0004**, **T-0044**."
+        },
+        {
+          "label": "Recorded",
+          "text": "2026-08-28."
+        }
+      ]
+    },
+    {
+      "id": "L200",
+      "title": "A non-dwelling is placed by its function, and the town's invented store steps onto the street line",
+      "section": "per_subject",
+      "subjects": [
+        "steamboat_hotel"
+      ],
+      "covers": [],
+      "recorded": "2026-08-28",
+      "revised": null,
+      "fields": [
+        {
+          "label": "Decision",
+          "text": "the face rule — *the best dwellings the schedule deals a block take its better street, the meanest take the back one* — is declared to rank **dwellings only**, and a non-dwelling roof is placed by its own **function** instead. Two clauses follow, both authored in `data/reconstruction/1835_platted_block_parcels.json` under `placement_rule.non_dwelling_placement` and both refused at the generator: a store, warehouse or workshop takes the block's **better face** by the committed street hierarchy and may never take a **light** one, and a **commercial** roof stands **ON the street line** rather than back at a dwelling's typology setback. One roof moved on account of it: `blk_randolph_clark`'s C2 store-residence came forward from **4.5 m to 1.50 m**, out of the row of house fronts it had been standing in. **What this replaces is an agent's invention, and it is named as one.** T-A15 was dealt the first store any block parcel had ever had to place, found the face rule said nothing about a store, and EXTENDED the ranking to cover it — commerce above the better dwelling — on the reasoning that a store-residence's claim on the better frontage is *\"functional rather than social, the only one of the six roofs whose purpose requires that a stranger can find it\"*. That parcel flagged its own extension as ROADMAP K32 and asked the next block dealt a commercial family to follow it or refute it rather than re-decide it privately. This is the refusal: the ranking does not survive, because the schedule still holds C1…C4, F1…F4, H3, T1 and W1…W5 for blocks not yet built and a warehouse's claim on frontage is plainly not a store's. **WHAT IS NOT INVENTED is the function, and that is the whole reason this reading was taken over the other two.** Of the three readings the ROADMAP set out — keep the ranking, place non-dwellings by function, or refuse the question — only the second can be READ OFF THE COMMITTED RECORD. This project holds 48 documented buildings its own reconciliation credits a non-dwelling family, and where they stand is a measurement rather than an argument. By the traffic class `data/streets/1835.json` authors for the street each stands nearest: **stores** 15 records, 10 principal, 5 ordinary, **0 light**; **warehouses** 9, all nine principal; **workshops** 7, two principal, five ordinary, **0 light**; lodging 8, three, four and one; institutions 9, one, four and four. Not one documented store, warehouse or workshop in this town stands on a light street — a zero across **31 buildings**, on the three letters a block parcel may actually be dealt. Lodging's single light-street instance is the Steamboat Hotel, which stands 287 m from the State Street centreline and does not front it; the institutional families are refused to a block parcel by name (L93) and no frontage rule reaches them. The setback clause is the same kind of reading: **every documented store standing on a platted street stands on its line**, thirteen of the fifteen inside the measured street-line band, the two outside it being Robert Kinzie's store at Wolf Point and the Miller house, both off the platted grid entirely. **WHAT IS INVENTED is that these clauses govern an invented building at all.** No source says where a store stood on a block nobody recorded, because no source says the block carried a store. The distribution above is 48 buildings in one town in one year and it is not a law of frontage; it is this project's own reconstruction of what its own documented record does, applied to roofs the same project invented. The 1.50 m is not a measurement of any store: it is the closest line the plat module's own margin allows, and it is chosen because it is the line the party-line runs on South Water and Lake already stand on — one convention rather than a second."
+        },
+        {
+          "label": "Consequence",
+          "text": "walk east along Randolph Street from the courthouse square and the store-residence opposite it now meets the street, three metres ahead of the two houses beside it, instead of sitting back in line with them. The street-lining yard fence on that face stops one lot short as a result — the rule that lays it looks for a lot standing back from its own frontage, and a shop front is not one — so 24.6 m of fence comes off the block and the shop front is what a walker meets."
+        },
+        {
+          "label": "How to resolve",
+          "text": "nothing resolves the clauses themselves, which are a reconstruction and are meant to be read as one. What would move them is more record: a documented store, warehouse or workshop on a light street would retire the light-street refusal, and any Chicago frontage survey before the 1839 subdivision would replace the setback convention with a measurement. Related: **L93** (the institutional refusal no frontage rule reaches) · **L99**, **L100** (the two liberties on what a street was for) · **L102** (the face rule as first written) · **L182** (the end rule, the other half of where a roof stands on its face) · tickets **T-0024** (this), **T-0022**, **T-0079**."
         },
         {
           "label": "Recorded",
