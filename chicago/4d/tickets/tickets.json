@@ -1,6 +1,6 @@
 {
   "project": "chicago-4d",
-  "generated_ct": "Aug 28, 2026, 4:59 PM",
+  "generated_ct": "Aug 28, 2026, 5:19 PM",
   "tickets": [
     {
       "id": "T-0001",
@@ -5398,6 +5398,24 @@
       "blocked_on": null,
       "needs_bake": false,
       "queue_rank": 71
+    },
+    {
+      "id": "T-0321",
+      "title": "The March 1834 letter list lost its date line and both its crops failed Vision; the page images can say which return it is",
+      "state": "open",
+      "epic": "PAPERS",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "M",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-08-28",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "queue_rank": 72
     }
   ]
 }
