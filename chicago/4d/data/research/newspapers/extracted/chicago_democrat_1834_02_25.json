@@ -1,0 +1,622 @@
+{
+  "schema": 1,
+  "issue_id": "chicago_democrat_1834_02_25",
+  "extracted": "2026-08-28",
+  "extracted_by": "hand, T-0311 — the Democrat read, February 1834",
+  "note": "Vol. I No. 14. The town is on page 3 columns 2, 3 and 6 and page 4 column 2. This is the issue that puts J. K. Botsford at the corner of Dearborn and Lake seven months earlier than this project had him, opens Hiram Pearsons's warehouse on South Water street and David Carver's lumber yard, gives the Chicago Academy's second term its trustees, and sells a whole Chicago household at auction item by item.",
+  "claims": [
+    {
+      "id": "c001",
+      "kind": "business",
+      "reading": "transcription_mediated",
+      "quote": "PRESS FROM DETROIT, ~\nNERAL assortment of TIN WARE,\nhich the subscriber offers  for sale, con-\nof Double Patent reflectin, Bukers, 0\nrate artic    Coffee Pots, Mik Pans, of\nBick Candle  Sticke, Covered\n+es, of all sizes; Milk Strains,\nlarge and small: Wash Ba-\nDippers, Tin Cups, Graters,\n“rloer would inform the pub\n\"0g Of navigation, he will «\nMacturing of Tin, in afl its vn\nJ. K. BOTSFORD,\nCorner of Dearborn ani Lake-sts,\nFebruery 4, 1834.            4",
+      "normalized": "[JUST RECEIVED] PRESS FROM DETROIT, [A GE]NERAL assortment of TIN WARE, [w]hich the subscriber offers for sale, con[sisting] of Double Patent reflectin[g] Ba[k]ers, [a first] rate artic[le], Coffee Pots, M[il]k Pans, [Candle] Sticks, Covered [Dish]es, of all sizes; Milk Strain[er]s, large and small; Wash Ba[sins], Dippers, Tin Cups, Graters, [… The subsc]riber would inform the pub[lic that on the openi]ng of navigation, he will [commence the man]ufacturing of Tin, in all its [branches]. J. K. BOTSFORD, Corner of Dearborn an[d] Lake-sts, Februa[r]y 4, 1834.",
+      "locator": {
+        "artifact_role": "primary",
+        "issue_page": 3,
+        "column": 3,
+        "lines": [
+          2292,
+          2306
+        ],
+        "lines_of_claim": [
+          2292,
+          2293,
+          2294,
+          2295,
+          2296,
+          2297,
+          2298,
+          2299,
+          2300,
+          2301,
+          2302,
+          2303,
+          2304,
+          2305,
+          2306
+        ]
+      },
+      "entities": [
+        {
+          "as_printed": "J. K. BOTSFORD,",
+          "normalized": "J. K. Botsford",
+          "role": "proprietor",
+          "occupations": [
+            "tin and stove manufacturer",
+            "grocer"
+          ],
+          "associated_places": [
+            "Dearborn Street",
+            "Lake Street"
+          ]
+        }
+      ],
+      "notes": "THE MONTH'S BEST GEOGRAPHIC READING, AND IT IS A CORNER SEVEN MONTHS EARLIER THAN THIS PROJECT HAD IT. The September 1834 read placed J. K. Botsford's tin and stove manufactory at the corner of Dearborn and Lake. Here he is at that corner on 4 February 1834, in an advertisement of his own setting, having just had a PRESS FROM DETROIT and intending to begin manufacturing tin in all its branches as soon as navigation opens.\\n\\nAND THE SAME ADVERTISER, ON 17 FEBRUARY, PLACES HIMSELF 'NEXT DOOR TO GRAVES' TAVERN' (1834-02-18, claim c009). Two placements a fortnight apart from one man. Read together they say that Graves's tavern stands next door to the corner of Dearborn and Lake — which would put the month's busiest anchor, the house the fire-eater performed in and the smith worked opposite, on a corner this reconstruction can find.\\n\\nTHAT INFERENCE IS NOT MADE HERE, and the reason is worth stating rather than leaving to be guessed at. A man may keep a shop at one address and sell whiskey and cigars out of a second; the two notices carry different goods and different datelines; and 'next door' in this paper is used loosely enough that the December 1833 read found a shopfront 'one door north of R. A. Kinzie's store' and a boot maker 'next door to Cohen's Store' without either being resolvable to a lot. So what is recorded is the two placements, each on its own claim, each with the paper's own words — and the relation between them as a NOTE. If a later pass wants Graves's tavern at Dearborn and Lake it must argue for it, and this is the evidence it would argue from.",
+      "ad_copy_date": {
+        "verbatim": "Februery 4, 1834.            4",
+        "iso": "1834-02-04"
+      },
+      "business": {
+        "name": "J. K. Botsford",
+        "proprietors": [
+          "J. K. Botsford"
+        ],
+        "trade": "tin and stove manufacturer and grocer",
+        "goods": [
+          "tin ware",
+          "patent reflecting bakers",
+          "coffee pots",
+          "milk pans",
+          "candle sticks",
+          "covered dishes",
+          "milk strainers",
+          "wash basins",
+          "dippers",
+          "tin cups",
+          "graters",
+          "Ohio whiskey",
+          "superfine flour",
+          "cigars",
+          "butter",
+          "lard",
+          "loaf sugar",
+          "dried peaches"
+        ],
+        "street": "Lake Street",
+        "placement": {
+          "class": "corner",
+          "anchor": "the corner of Dearborn and Lake streets",
+          "offset_text": "Corner of Dearborn ani Lake-sts,",
+          "offset_normalized": "Corner of Dearborn and Lake-sts",
+          "street": "Lake Street"
+        }
+      }
+    },
+    {
+      "id": "c002",
+      "kind": "business",
+      "reading": "transcription_mediated",
+      "quote": "HIRAM PEARSONS,\nStorage and Commission\n1 ESPECTPOLLY\nuse on Soil Water treet, where s\n[uncertain: ORCUIDE Of]\n[uncertain: nastation i the]\nSpring\npromptly atte\nand to all business in his line.",
+      "normalized": "HIRAM PEARSONS, Storage and Commission [MERCHANT.] [R]ESPECTFULLY [informs the public that he has taken a ware]house on So[uth] Water [s]treet, where [he … ] [uncertain: ORCUIDE Of] [uncertain: nastation i the] Spring [… will be] promptly atte[nded to,] and to all business in his line.",
+      "locator": {
+        "artifact_role": "primary",
+        "issue_page": 3,
+        "column": 2,
+        "lines": [
+          2243,
+          2251
+        ],
+        "lines_of_claim": [
+          2243,
+          2244,
+          2245,
+          2246,
+          2247,
+          2248,
+          2249,
+          2250,
+          2251
+        ]
+      },
+      "entities": [
+        {
+          "as_printed": "HIRAM PEARSONS,",
+          "normalized": "Hiram Pearsons",
+          "role": "proprietor",
+          "occupations": [
+            "storage and commission merchant"
+          ],
+          "associated_places": [
+            "South Water Street",
+            "Kinzie's Addition"
+          ]
+        }
+      ],
+      "notes": "A WAREHOUSE ON SOUTH WATER STREET, and the man who owns it is already in this corpus twice — Hiram Pearsons lost three sticks of square timber off Water Lot No. 12 in Kinzie's Addition in January, and advertised a lot for sale in the same column. This is a NEW BUSINESS opening for the coming season: storage and commission, in a warehouse, on the street this reconstruction's whole river frontage is built along. It is the fourth building-scale placement the month has produced, after the livery stable at the Point, Elston's smoke house and the county clerk's new office. The advertisement is badly cut and the word 'warehouse' survives only as its second half; it is supplied because the sentence has no other reading and because the trade named in the heading requires one. Placement is `relative` and not `corner`: a street and a building type, no cross street.",
+      "business": {
+        "name": "Hiram Pearsons",
+        "proprietors": [
+          "Hiram Pearsons"
+        ],
+        "trade": "storage and commission merchant",
+        "goods": [],
+        "street": "South Water Street",
+        "placement": {
+          "class": "relative",
+          "anchor": "a warehouse on South Water street",
+          "offset_text": "use on Soil Water treet, where s",
+          "offset_normalized": "[warehou]se on So[uth] Water [s]treet",
+          "street": "South Water Street"
+        }
+      }
+    },
+    {
+      "id": "c003",
+      "kind": "event",
+      "reading": "transcription_mediated",
+      "quote": "HIBITION.\n[uncertain: One hour of must felt]\nGraves, on Wednerday evening, Fel\nPARD 20 248.\n[uncertain: fraw a red hot ion across e]\n\"posn to convey the same to bie mouth\nPART SECOND.\nin? feats at wil introduce\nMr. Bow\nBy of which are oirint.\nmention",
+      "normalized": "[EX]HIBITION. ['Joy hath its limits, we but borrow] One hour of m[irth, from months of sorrow.' … at the house of Mr. D.] Graves, on Wednesday evening, Feb[ruary 26.] PAR[T FIRST … He will] draw a red hot i[r]on across [his tongue, hands, &c. … use of a red hot] [s]poon to convey the same to his mouth. PART SECOND. [Mr. Bowers w]ill introduce ma[ny very amus]ing feats [of Ventriloquism and Legerdemain, ma]ny of which are o[rig]in[al, and too numerous to] mention.",
+      "locator": {
+        "artifact_role": "primary",
+        "issue_page": 3,
+        "column": 2,
+        "lines": [
+          2230,
+          2240
+        ],
+        "lines_of_claim": [
+          2230,
+          2231,
+          2232,
+          2233,
+          2234,
+          2235,
+          2236,
+          2237,
+          2238,
+          2239,
+          2240
+        ]
+      },
+      "entities": [
+        {
+          "as_printed": "Mr. Bow",
+          "normalized": "Mr. Bowers",
+          "role": "performer",
+          "occupations": [
+            "fire-eater",
+            "ventriloquist"
+          ]
+        },
+        {
+          "as_printed": "Graves,",
+          "normalized": "D. Graves",
+          "role": "tavern keeper",
+          "occupations": [
+            "tavern keeper"
+          ],
+          "associated_places": [
+            "Graves' Tavern"
+          ]
+        }
+      ],
+      "notes": "THE FIRE-EATER STAYS A SECOND WEEK. The same advertisement as 18 February with the night changed — Monday becomes WEDNESDAY EVENING — which is the small fact that makes the first performance worth believing in: an itinerant showman does not book a second night in a town of a few hundred people unless the first one filled the room. Graves's house therefore has a room that filled twice in nine days. The transcription of this printing is much the worse of the two and it is extracted for the changed day alone; everything else in it is read from the 18 February column."
+    },
+    {
+      "id": "c004",
+      "kind": "event",
+      "reading": "transcription_mediated",
+      "quote": "The Chicego Academy.\nT HE secon term of this institution com-\n‘enced on Monday, tho 15th inst. Br\nJacing it under the  public funds for schools,\nhe Trustees are happy to render it air insti}\nition of general benetit for the rising gene\ntion, Its two departments will not onl\nclude all the branches us     tanght in com-\ntnon schools, but also all that is Necersary toa\nefal and finished education, Charta, Mape,\nlobes and other apparatus, will present to the\npupils a facility of acquiring, which is not com-\nmon in most public schools of the day,\ntherefore earnestly solicit of parents, as they\ny\nregard the future welfare of their children, and\nrhe risin\ngeneration, to avail themselves of\nthengivilege granted them by a liberal govern-\nment, xhich renders our Fituation, as an od\ncating cotmunity, traly enviable, and certain-\nly, without a teallel in the West.\nByforder of the bord of ‘Trustees,\n1. SNOW,\nMS.   I,\n|                    D. GRAVES\nG. T. Sproat, Pre.                   ‘\n|  Chicago, Feb, 21, 15                “4",
+      "normalized": "The Chicago Academy. THE second term of this institution com[m]enced on Monday, the 17th inst. B[y] placing it under the public funds for schools, the Trustees are happy to render it a[n] insti[tu]tion of general benefit for the rising gene[ra]tion. Its two departments will not on[ly in]clude all the branches us[ually] taught in com[m]on schools, but also all that is necessary to a [us]eful and finished education. Charts, Maps, [G]lobes and other apparatus, will present to the pupils a facility of acquiring, which is not common in most public schools of the day. [We] therefore earnestly solicit of parents, as they regard the future welfare of their children, and the risin[g] generation, to avail themselves of the [p]rivilege granted them by a liberal government, [w]hich renders our [si]tuation, as an ed[u]cating co[m]munity, truly enviable, and certainly, without a [p]arallel in the West. B[y] order of the bo[a]rd of Trustees, [G. W.] SNOW, [… ] D. GRAVES [… ] G. T. Sproat, Pr[in]. Chicago, Feb. 21, 18[34].",
+      "locator": {
+        "artifact_role": "primary",
+        "issue_page": 3,
+        "column": 3,
+        "lines": [
+          2307,
+          2334
+        ],
+        "lines_of_claim": [
+          2307,
+          2308,
+          2309,
+          2310,
+          2311,
+          2312,
+          2313,
+          2314,
+          2315,
+          2316,
+          2317,
+          2318,
+          2319,
+          2320,
+          2321,
+          2322,
+          2323,
+          2324,
+          2325,
+          2326,
+          2327,
+          2328,
+          2329,
+          2330,
+          2331,
+          2332,
+          2333,
+          2334
+        ]
+      },
+      "entities": [
+        {
+          "as_printed": "1. SNOW,",
+          "normalized": "G. W. Snow",
+          "role": "academy trustee"
+        },
+        {
+          "as_printed": "D. GRAVES",
+          "normalized": "D. Graves",
+          "role": "academy trustee",
+          "occupations": [
+            "tavern keeper"
+          ]
+        },
+        {
+          "as_printed": "G. T. Sproat, Pre.",
+          "normalized": "G. T. Sproat",
+          "role": "principal",
+          "occupations": [
+            "schoolmaster"
+          ]
+        }
+      ],
+      "notes": "THE TOWN'S SCHOOL, WITH ITS TRUSTEES AND ITS FURNITURE. The second term opened Monday 17 February 1834, the school is now drawing on the PUBLIC FUNDS FOR SCHOOLS — the school section's proceeds — and it has two departments, CHARTS, MAPS AND GLOBES. Two of the three signatures are men this corpus already holds: G. W. Snow, appointed assessor and surveyor of the town on 4 December 1833, and D. Graves, in whose tavern the fire-eater performed the night before this was written. The principal is G. T. Sproat, and the November 1833 read has a school kept by 'a Mr. Sproat of Boston' with a G. N. Sproat writing the hymn for the Presbyterian church's dedication in January. THE INITIALS DISAGREE ACROSS THREE READINGS and are NOT reconciled here: no merge rule is offered, because the corpus's identity policy refuses same-surname-different-initial merges outright, and a schoolmaster and a hymn-writer in one town is not evidence that they are one man. Still no building: three claims now date the Academy's terms and none of them says where it met.",
+      "ad_copy_date": {
+        "verbatim": "Chicago, Feb, 21, 15                “4",
+        "iso": "1834-02-21"
+      }
+    },
+    {
+      "id": "c005",
+      "kind": "business",
+      "reading": "transcription_mediated",
+      "quote": "|  Storage, Commission and   :\nLUMBER BUSINESS,\nHE subscriber takes this early opportu-\nT  nity of informing the public, that he has | -\nuimenced the above business  extensively,\nand will have on hand as soon as the ice is |,\nclear from the Lake, lath, shingles, red ceder\nposts, end all articles in the Jumber line, which\nhe is determined’to furnish ax cheap ax they\nan possibly be afforded in this market. He  [\nwill dlso heep generally on hand, at his Store,\nFlour, Grain, and other articles from the coun-\ntry, upon as reasonable terms as the place will\n‘mit. Having chartered the Schooner Post\nBoy for the two first trips, he will be able to |\nfurnish the first articles that ean  be procured\nfrom acrors the Lake. He would mention to\nhis friends in Michigan, who would wieh to\nship lumber or other articles to his care, that) i\nhe will receive all articles directed to him, and\npay freight and charges, and make immediate\nreturns upon the sale of the same; and he will\nalso make an advance in cash npon all saleable\narticles, if required. Calvin Britain Oeq. at St, |\nseph, and Col Sumsel Miller, Michigeg|\nty, cre his      ite, who will ip   diate  \\\nforward ony article directed to him.\n:           DAVID CARVER.\ncoma, Feb, 25, 1834,",
+      "normalized": "Storage, Commission and LUMBER BUSINESS. [T]HE subscriber takes this early opportunity of informing the public, that he has [co]mmenced the above business extensively, and will have on hand as soon as the ice is clear from the Lake, lath, shingles, red ce[d]er posts, and all articles in the lumber line, which he is determined to furnish a[s] cheap a[s] they [c]an possibly be afforded in this market. He will [a]lso keep generally on hand, at his Store, Flour, Grain, and other articles from the country, upon as reasonable terms as the place will [per]mit. Having chartered the Schooner Post Boy for the two first trips, he will be able to furnish the first articles that can be procured from acro[s]s the Lake. He would mention to his friends in Michigan, who would wi[s]h to ship lumber or other articles to his care, that he will receive all articles directed to him, and pay freight and charges, and make immediate returns upon the sale of the same; and he will also make an advance in cash [u]pon all saleable articles, if required. Calvin Britain [Es]q. at St. [Jo]seph, and Col. Sam[u]el Miller, Michiga[n Ci]ty, [a]re his [agen]ts, who will imme[diately] forward [a]ny article directed to him. DAVID CARVER. [Chi]ca[g]o, Feb. 25, 1834.",
+      "locator": {
+        "artifact_role": "primary",
+        "issue_page": 3,
+        "column": 3,
+        "lines": [
+          2336,
+          2364
+        ],
+        "lines_of_claim": [
+          2336,
+          2337,
+          2338,
+          2339,
+          2340,
+          2341,
+          2342,
+          2343,
+          2344,
+          2345,
+          2346,
+          2347,
+          2348,
+          2349,
+          2350,
+          2351,
+          2352,
+          2353,
+          2354,
+          2355,
+          2356,
+          2357,
+          2358,
+          2359,
+          2360,
+          2361,
+          2362,
+          2363,
+          2364
+        ]
+      },
+      "entities": [
+        {
+          "as_printed": "DAVID CARVER.",
+          "normalized": "David Carver",
+          "role": "proprietor",
+          "occupations": [
+            "lumber and commission merchant"
+          ]
+        },
+        {
+          "as_printed": "Calvin Britain Oeq.",
+          "normalized": "Calvin Britain",
+          "role": "agent",
+          "associated_places": [
+            "St. Joseph"
+          ]
+        },
+        {
+          "as_printed": "Col Sumsel Miller",
+          "normalized": "Col. Samuel Miller",
+          "role": "agent",
+          "associated_places": [
+            "Michigan City"
+          ]
+        }
+      ],
+      "notes": "WHERE THE TOWN'S BUILDING TIMBER WAS COMING FROM, in the lumber dealer's own words on the last day of the month. LATH, SHINGLES AND RED CEDAR POSTS, none of it available until THE ICE IS CLEAR FROM THE LAKE, all of it shipped from the Michigan shore — his agents are at St. Joseph and Michigan City — and he has chartered the SCHOONER POST BOY for the first two trips of the season to be sure of being first.\\n\\nTHIS IS THE SUPPLY SIDE OF THE PRICE CURRENT. The weekly table has poplar lumber at 20 to 23 dollars the thousand feet and shingles at 3.50 to 4.00 all through February, and this advertisement says why those are winter prices: nothing is landing. It also tells a reconstruction what a Chicago building in 1835 was made of and where it came from — sawn lumber and shingles across the lake from Michigan, cedar posts for fencing, and the steam saw mill on Section 4 for what could be cut here. He gives no address for the store.",
+      "ad_copy_date": {
+        "verbatim": "coma, Feb, 25, 1834,",
+        "iso": "1834-02-25"
+      },
+      "business": {
+        "name": "David Carver",
+        "proprietors": [
+          "David Carver"
+        ],
+        "trade": "storage, commission and lumber business",
+        "goods": [
+          "lath",
+          "shingles",
+          "red cedar posts",
+          "lumber",
+          "flour",
+          "grain"
+        ],
+        "street": null,
+        "placement": {
+          "class": "none"
+        }
+      }
+    },
+    {
+      "id": "c006",
+      "kind": "notice",
+      "reading": "transcription_mediated",
+      "quote": "ee  Auction Sale,\nfollowing pro)        ill     i\nof at Auction, Lislnstde ots\nday, the tenth da  of M:                        it\nof | aie oe   iy      larch next, commencin,\nA. Matt            joini:\njy the Post-Ofice, -” —* Nt the Store adjoinin\n[uncertain: ?] yoke four year old Catt]]\nl@} 1 do cight:   do   ay ars —_\nie} 1 good two horse Waggon,\ne     : ee ) with Calves,\nYearling Calves, 1,          igs.\n\"    1 or 2 Horses,          eee\nBeas, Bedding and Bed -Steads,\n-      Sets curtains—6 feather pillow        i\n| 10 Mackinac Blankets, ee\n.| 1 Large Dining Tables,\n1 Side Board and one Sofa,\nn} , A small and weil selected Library,\n| Aquanuty of Pots, Kettles, Griddles, Grid-\nirons, and a usual quantity of Tin Ware. ~\n:    A few farming Toole, and a  few carpenters\nToate.   Trunks, Tubs, Pails ; some etose and\n{Slos8 ware; some  remnants of .Gret qualit\n-| Provisions, beef, pork, flour, hams, &e,       q\n| J stubs twist Shot’ Gun 3 8 fine new Rifle,\nTSaddle. 1 first rate Gir Harness,\nJ. BATES, Jr. Aue'r,\n5, 1834,",
+      "normalized": "Auction Sale, [The] following pro[perty will be disposed] of at Auction, [on Monday? the] [t]en[t]h da[y] of March next, commencing [at … ] at the Store adjoining the Post-Office: [1] yoke four year old Cattl[e]; 1 do eight[ ]do [ye]ars; 1 good two horse Waggon; [2 Cows] with Calves; [2] Yearling Calves, [4 P]igs; 1 or 2 Horses; Beds, Bedding and Bed-Steads; [3] Sets curtains — 6 feather pillow[s]; 10 Mackinac Blankets, 1 Large Dining Table[s]; 1 Side Board and one Sofa; A small and well selected Library; A quan[ti]ty of Pots, Kettles, Griddles, Gridirons, and a usual quantity of Tin Ware; A few farming Tools, and a few carpenters [To]ols; Trunks, Tubs, Pails; some [st]one and [gl]ass ware; some remnants of [fi]r[s]t qualit[y] Provisions, beef, pork, flour, hams, &c.; 1 stubs twist Shot Gun; [1] fine new Rifle; [1] Saddle; 1 first rate G[i]g Harness. J. BATES, Jr. Auc'r.",
+      "locator": {
+        "artifact_role": "primary",
+        "issue_page": 3,
+        "column": 3,
+        "lines": [
+          2262,
+          2290
+        ],
+        "lines_of_claim": [
+          2262,
+          2263,
+          2264,
+          2265,
+          2266,
+          2267,
+          2268,
+          2269,
+          2270,
+          2271,
+          2272,
+          2273,
+          2274,
+          2275,
+          2276,
+          2277,
+          2278,
+          2279,
+          2280,
+          2281,
+          2282,
+          2283,
+          2284,
+          2285,
+          2286,
+          2287,
+          2288,
+          2289,
+          2290
+        ]
+      },
+      "entities": [
+        {
+          "as_printed": "J. BATES, Jr. Aue'r,",
+          "normalized": "J. Bates, Jr.",
+          "role": "auctioneer",
+          "occupations": [
+            "auctioneer"
+          ],
+          "associated_places": [
+            "Chicago post office"
+          ]
+        }
+      ],
+      "notes": "THE CONTENTS OF A CHICAGO HOUSEHOLD, ITEM BY ITEM — the single richest interior document this corpus holds, and it is an auction bill. A whole establishment is being sold up on 10 March 1834 AT THE STORE ADJOINING THE POST OFFICE: beds, bedsteads and bedding; THREE SETS OF CURTAINS and six feather pillows; TEN MACKINAC BLANKETS; a large dining table; A SIDE BOARD AND ONE SOFA; a small and well selected LIBRARY; pots, kettles, griddles, gridirons and the usual quantity of tin ware; trunks, tubs and pails; stone and glass ware; a few farming tools and A FEW CARPENTERS' TOOLS; provisions in remnants — beef, pork, flour, hams; a stubs-twist shot gun, a new rifle, a saddle and a gig harness. Outside: two yoke of cattle, a two-horse waggon, cows with calves, yearling calves, pigs, a horse or two.\\n\\nWHY IT MATTERS TO A RECONSTRUCTION. Everything this project puts inside a building in 1835 is currently either invented or borrowed from a general period source. This is a Chicago list, dated, of one specific house — and the shape of it is worth reading: a sofa and a sideboard and a library in the same house as pigs and a yoke of oxen. It also gives another anchor, THE STORE ADJOINING THE POST OFFICE, which is the second thing this month counted off the post office after Bates's own blasting powder. The auction's date words are half-eaten and the counts of most items are cut at the column edge; each is bracketed or left out, never rounded."
+    },
+    {
+      "id": "c007",
+      "kind": "business",
+      "reading": "transcription_mediated",
+      "quote": "Blacksmithing, Business,\nMATTHIAS       Ww de at ‘  T\nARRIES on the above business in all it\nEY vores back on Main-street, nearly Ww.\npposite Graves’ Tate, ses they intend to  Ww.\nkinds ‘ot Shor, Chains,\nBa ta perched n tps shortest notice,  ib\n‘Chip Nev, %6, 1893,               1g",
+      "normalized": "Blacksmithing Business. MATTHIAS [MASON &] C[O.] [C]ARRIES on the above business in all it[s branches,] back on Main-street, nearly [o]pposite Graves' Ta[vern, where] the[y] intend to [keep ready made all] kinds of Shoe[s], Chains, [&c. … work] [don]e [on t]he shortest no[t]ice. Chi[cago,] Nov. 26, 1833.",
+      "locator": {
+        "artifact_role": "primary",
+        "issue_page": 3,
+        "column": 5,
+        "lines": [
+          2692,
+          2699
+        ],
+        "lines_of_claim": [
+          2692,
+          2693,
+          2694,
+          2695,
+          2696,
+          2697,
+          2698,
+          2699
+        ]
+      },
+      "entities": [
+        {
+          "as_printed": "MATTHIAS       Ww de at ‘  T",
+          "normalized": "Matthias Mason & Co.",
+          "role": "firm",
+          "occupations": [
+            "blacksmith"
+          ]
+        }
+      ],
+      "notes": "THE ADDRESS IN FULL, AND IT NAMES A STREET THE PLAT DOES NOT HAVE. 'Back on MAIN-STREET, nearly opposite Graves' Tavern.' The September 1834 read met the same firm at 'Main-street, opposite the Tremont House' and recorded the problem then: Thompson's plat of Chicago has no Main Street. This printing is nine months earlier, gives the same street, and changes the anchor — GRAVES' TAVERN in February 1834, the Tremont House in September — which is the useful part. Either the two houses are the same building under two names, or Mason moved, or the street name is a colloquial one for a stretch of a platted street and the anchor moved with the shop. Nothing here settles it, and it is recorded as an open question rather than resolved: 'Main Street' goes into the placement AS PRINTED, because inventing a platted street for it would put a smithy on a lot on no evidence at all.\\n\\nWhat the claim does settle is the firm's name — MATTHIAS MASON, not the 'Nason' of the 4 February printing — and that the shop stood BACK from the street rather than on the frontage, which is the only word this corpus has anywhere about a Chicago building's setback from its own account.",
+      "ad_copy_date": {
+        "verbatim": "‘Chip Nev, %6, 1893,               1g",
+        "iso": "1833-11-26"
+      },
+      "business": {
+        "name": "Matthias Mason & Co.",
+        "proprietors": [
+          "Matthias Mason"
+        ],
+        "trade": "blacksmith",
+        "goods": [
+          "horse shoes",
+          "chains"
+        ],
+        "street": "Main Street",
+        "placement": {
+          "class": "relative",
+          "anchor": "Graves' Tavern",
+          "offset_text": "EY vores back on Main-street, nearly",
+          "offset_normalized": "back on Main-street, nearly opposite Graves' Tavern",
+          "street": "Main Street"
+        }
+      }
+    },
+    {
+      "id": "c008",
+      "kind": "business",
+      "reading": "transcription_mediated",
+      "quote": "holesale and Retail.\nWORK BETWEEN CLARK ann DP snsORs-OTRARTE,\nP. PRUYNE/& CO.\nv  ‘OVsMregpectfully inform their friends\n1     ae nawet they have just retel od\ni large addition to      St   S\nnak it one of the moartensivy es  hicago,\nOnsieting of\nGroceries, Hardtare,\nCrockery, Glassware,\nA LARGE atonTuENT or         x\nDRUGS & MEDICINES,\nBOOTS AND SHOEs,\nRON AND STEEL, WINDOW GLASS, dpe.\nleo, a large assortment of\nONE WARE,\n‘ensisting of Covered Jars, from 1 quart to\n3 gallons; Potsfrom 1 quert to 4 galls,\nugs from 1 pt. to4 gelle.; Pit\nera from 1 pt. to 3 galls.;\n2, 3and4 gall. Churne ;             ‘\nnd Stone Milk Pans (anew and excellent >\narticle,) Pails, Brooms, &e. &e.\nof which they offer for sale on the most &»\nnmoda tin,\nrms.\nUF'Cash wl ter all kinds of Some cee",
+      "normalized": "[W]holesale and Retail. [ST]ORE BETWEEN CLARK AND D[EA]R[B]OR[N]-STREETS. P. PRUYNE & CO. [W]OULD respectfully inform their friends [and the public th]at they have just recei[v]ed [a] large addition to [their former] St[ock, whi]ch [ma]k[es] it one of the mo[st ex]tensive [in C]hicago, [c]onsisting of Groceries, Hardware, Crockery, Glassware, A LARGE ASSORTMENT OF DRUGS & MEDICINES, BOOTS AND SHOES, [I]RON AND STEEL, WINDOW GLASS, &c. [A]lso, a large assortment of STONE WARE, [c]onsisting of Covered Jars, from 1 quart to 3 gallons; Pots from 1 quart to 4 galls.; [J]ugs from 1 pt. to 4 galls.; Pit[ch]ers from 1 pt. to 3 galls.; 2, 3 and 4 gall. Churns; [a]nd Stone Milk Pans (a new and excellent article,) Pails, Brooms, &c. &c. [all] of which they offer for sale on the most a[ccom]moda tin[g te]rms. Cash [paid] for all kinds of [Country Produce]. Chicago, Dec. 3, 183[3].",
+      "locator": {
+        "artifact_role": "primary",
+        "issue_page": 3,
+        "column": 6,
+        "lines": [
+          2781,
+          2807
+        ],
+        "lines_of_claim": [
+          2781,
+          2782,
+          2783,
+          2784,
+          2785,
+          2786,
+          2787,
+          2788,
+          2789,
+          2790,
+          2791,
+          2792,
+          2793,
+          2794,
+          2795,
+          2796,
+          2797,
+          2798,
+          2799,
+          2800,
+          2801,
+          2802,
+          2803,
+          2804,
+          2805,
+          2806,
+          2807
+        ]
+      },
+      "entities": [
+        {
+          "as_printed": "P. PRUYNE/& CO.",
+          "normalized": "P. Pruyne & Co.",
+          "role": "firm",
+          "occupations": [
+            "merchant"
+          ],
+          "associated_places": [
+            "Clark Street",
+            "Dearborn Street"
+          ]
+        }
+      ],
+      "notes": "A STORE PLACED BY THE BLOCK IT STANDS IN RATHER THAN THE CORNER IT STANDS ON — 'BETWEEN CLARK AND DEARBORN-STREETS' — which is a placement class this corpus has hardly seen and is a genuinely useful one: it names a block face without pretending to a lot. WHICH street it fronts is not stated, and the 4, 11 and 18 February printings of the same heading are cut to fragments ('AND DEARBORN-TREETS', '-ARK AND DEARKOUS-sTARRTs'), so this is the one printing that carries it. Given the rest of the month's addresses, South Water or Lake are the candidates and neither is asserted; the placement is `relative` on the pair of cross streets.\\n\\nTHE STOCK IS THE OTHER HALF. WINDOW GLASS, iron and steel, and a whole stoneware department priced by capacity — covered jars from a quart to three gallons, pots to four gallons, jugs, pitchers, two three and four gallon churns and STONE MILK PANS described as a new and excellent article. Window glass in a February advertisement is worth noting on its own: it says glazed sashes were obtainable in the town before the season opened.",
+      "ad_copy_date": {
+        "verbatim": "Chicago, Dec. 3, 188,",
+        "iso": "1833-12-03"
+      },
+      "business": {
+        "name": "P. Pruyne & Co.",
+        "proprietors": [
+          "P. Pruyne"
+        ],
+        "trade": "wholesale and retail groceries, hardware and drugs",
+        "goods": [
+          "groceries",
+          "hardware",
+          "crockery",
+          "glassware",
+          "drugs and medicines",
+          "boots and shoes",
+          "iron and steel",
+          "window glass",
+          "stone ware",
+          "covered jars",
+          "pots",
+          "jugs",
+          "pitchers",
+          "churns",
+          "stone milk pans",
+          "pails",
+          "brooms",
+          "Ohio flour",
+          "hard bread",
+          "sewed men's shoes"
+        ],
+        "street": null,
+        "placement": {
+          "class": "relative",
+          "anchor": "between Clark and Dearborn streets",
+          "offset_text": "WORK BETWEEN CLARK ann DP snsORs-OTRARTE,",
+          "offset_normalized": "[St]ore between Clark and D[ea]r[b]orn-streets",
+          "street": null
+        }
+      }
+    },
+    {
+      "id": "c009",
+      "kind": "notice",
+      "reading": "transcription_mediated",
+      "quote": "List of Let\nREMAINISG in the Pest",
+      "normalized": "List of Let[ters remaining in the Post-Office at Chicago, Ill., January 1, 1834 …]",
+      "locator": {
+        "artifact_role": "primary",
+        "issue_page": 4,
+        "column": 2,
+        "lines": [
+          2946,
+          2947
+        ],
+        "lines_of_claim": [
+          2946,
+          2947
+        ]
+      },
+      "entities": [],
+      "notes": "THE SEVENTH AND LAST PRINTING OF THE 1 JANUARY 1834 CHICAGO LETTER LIST, and this transcription has kept two words of its heading and nothing else legible on the line. It is recorded because the month's arithmetic has to be complete: the list is printed in ALL FOUR February issues as well as twice in January, it is minted ONCE — first half from 1834-02-04, second half from 1834-02-11 — and every other printing including this one is a reprint that mints nobody. A printing that survives as a heading is still a printing, and saying so here is what stops a later pass counting six appearances and finding five."
+    }
+  ]
+}

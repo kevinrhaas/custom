@@ -165,6 +165,28 @@ twenty-six do not, so a reading pass over 1833 and the first half of 1834 meets 
 letter-list clause mostly by demonstrating absence. Where a list IS there it is the census
 proxy and ruling 1 applies in full.
 
+**AND THAT SWEEP UNDERCOUNTED, because it looked for the heading and the list is often
+printed without a readable one.** Reading February 1834 through (T-0311) found the 1 January
+1834 Chicago list in ALL FOUR issues of the month and not only in 1834-02-04: it stands at
+page 4 columns 2-3 of the 4th, the 11th and the 18th, and at page 4 column 2 of the 25th,
+where the transcription keeps two words of the heading and nothing else. With the two
+January printings that is SEVEN appearances of one list in nine weeks. Why the sweep missed
+them is structural and worth writing down: in these reprints the segmenter cuts `List of
+Letters` to `List ef Let`, `List of Let` or nothing, and what actually identifies the column
+is the postmaster's signature at the foot of it — `1OGAN, P.M.`, `B. C. HOGAN, P.M.`,
+`N 8. C. HOGAN, P a.` — which no form of the heading search will find. **Sweep for the
+signature as well as the heading**, and sweep the whole issue rather than the columns a
+heading turned up in.
+
+**One list is minted ONCE, and when no printing carries it whole, once per HALF.** T-0292
+minted the October 1834 list from the single printing that carried it whole. The January
+1834 list has no such printing — the segmenter kept the left of its two alphabetical
+sub-columns every time and cut a different stretch of it in each — so T-0311 minted the
+first half from 1834-02-04 page 4 column 2 and the second from 1834-02-11 page 4 column 3,
+and recorded the other five printings as reprints with their names unminted. The rule is
+unchanged in kind: one list makes one cohort of people (T-0299), and the minting witness is
+named on the claim that mints.
+
 **The Chicago American carries no post-office letter list.** Searched across all thirteen
 issues for every form the Democrat uses — *list of letters*, *letters remaining*,
 *remaining in the post office*, *uncalled for*, a signature ending *P. M.* — for exactly

@@ -96,6 +96,22 @@
       "sha256": "7449967de91ffec52cc276374250d71c2bc95e21d00a68a1a88805f8f8c065a1"
     },
     {
+      "file": "chicago/4d/data/research/newspapers/extracted/chicago_democrat_1834_02_04.json",
+      "sha256": "56391be251ce208f669266edc7677334b904c5c3909620a84a29a129b4c117e2"
+    },
+    {
+      "file": "chicago/4d/data/research/newspapers/extracted/chicago_democrat_1834_02_11.json",
+      "sha256": "e871a98d6bd68cc270e0e6781ef6d918d4e578dee32d41bb7130a576e894886c"
+    },
+    {
+      "file": "chicago/4d/data/research/newspapers/extracted/chicago_democrat_1834_02_18.json",
+      "sha256": "73bef87d32416812f6f7895d8ba0b0495853b109ccdd0ccba847af986f4d3d71"
+    },
+    {
+      "file": "chicago/4d/data/research/newspapers/extracted/chicago_democrat_1834_02_25.json",
+      "sha256": "fe26d6bcd42ca88bdb39d720ebb6724644091acbc5c2f3d8330d1195d341d8ad"
+    },
+    {
       "file": "chicago/4d/data/research/newspapers/extracted/chicago_democrat_1834_07_02.json",
       "sha256": "9be52382c5529a52170706b5bd956e39f39a3ceb98993c0ddeb70093cd3ad590"
     },
@@ -173,9 +189,9 @@
     }
   ],
   "counts": {
-    "claims": 549,
-    "persons": 1689,
-    "businesses": 141
+    "claims": 615,
+    "persons": 1808,
+    "businesses": 152
   },
   "persons": [
     {
@@ -347,6 +363,24 @@
       ]
     },
     {
+      "id": "person_a_h_taylor",
+      "name": "A. H. Taylor",
+      "variants": [
+        {
+          "as_printed": "h A. H. Taylor",
+          "claim": "chicago_democrat_1834_02_11#c009"
+        }
+      ],
+      "mentions": [
+        "chicago_democrat_1834_02_11#c009"
+      ],
+      "first_seen": "1834-02-11",
+      "last_seen": "1834-02-11",
+      "letter_list_only": true,
+      "occupations": [],
+      "associated_places": []
+    },
+    {
       "id": "person_a_hayward",
       "name": "A. Hayward",
       "variants": [
@@ -481,6 +515,24 @@
       "associated_places": []
     },
     {
+      "id": "person_a_m_daniel",
+      "name": "A. M'Daniel",
+      "variants": [
+        {
+          "as_printed": "A. M' Daniel",
+          "claim": "chicago_democrat_1834_02_11#c009"
+        }
+      ],
+      "mentions": [
+        "chicago_democrat_1834_02_11#c009"
+      ],
+      "first_seen": "1834-02-11",
+      "last_seen": "1834-02-11",
+      "letter_list_only": true,
+      "occupations": [],
+      "associated_places": []
+    },
+    {
       "id": "person_a_m_gregor",
       "name": "A. M'Gregor",
       "variants": [
@@ -565,6 +617,49 @@
       "associated_places": []
     },
     {
+      "id": "person_a_o_t_breed",
+      "name": "A. O. T. Breed",
+      "variants": [
+        {
+          "as_printed": "A. 0. T. BREED",
+          "claim": "chicago_democrat_1834_02_04#c011"
+        },
+        {
+          "as_printed": "/.:0.1. Breed",
+          "claim": "chicago_democrat_1834_02_04#c025"
+        }
+      ],
+      "mentions": [
+        "chicago_democrat_1834_02_04#c011",
+        "chicago_democrat_1834_02_04#c025"
+      ],
+      "first_seen": "1834-02-04",
+      "last_seen": "1834-02-04",
+      "letter_list_only": false,
+      "occupations": [
+        "merchant"
+      ],
+      "associated_places": []
+    },
+    {
+      "id": "person_a_p_benton",
+      "name": "A. P. Benton",
+      "variants": [
+        {
+          "as_printed": "4. P, Benton",
+          "claim": "chicago_democrat_1834_02_04#c025"
+        }
+      ],
+      "mentions": [
+        "chicago_democrat_1834_02_04#c025"
+      ],
+      "first_seen": "1834-02-04",
+      "last_seen": "1834-02-04",
+      "letter_list_only": true,
+      "occupations": [],
+      "associated_places": []
+    },
+    {
       "id": "person_a_shepherd",
       "name": "A. Shepherd",
       "variants": [
@@ -637,13 +732,36 @@
         {
           "as_printed": "‘A. W. Flint",
           "claim": "chicago_democrat_1834_01_28#c001"
+        },
+        {
+          "as_printed": "A.W, Flint 2",
+          "claim": "chicago_democrat_1834_02_04#c025"
         }
       ],
       "mentions": [
-        "chicago_democrat_1834_01_28#c001"
+        "chicago_democrat_1834_01_28#c001",
+        "chicago_democrat_1834_02_04#c025"
       ],
       "first_seen": "1834-01-28",
-      "last_seen": "1834-01-28",
+      "last_seen": "1834-02-04",
+      "letter_list_only": true,
+      "occupations": [],
+      "associated_places": []
+    },
+    {
+      "id": "person_aaron_bemis",
+      "name": "Aaron Bemis",
+      "variants": [
+        {
+          "as_printed": "Aaron Demis",
+          "claim": "chicago_democrat_1834_02_04#c025"
+        }
+      ],
+      "mentions": [
+        "chicago_democrat_1834_02_04#c025"
+      ],
+      "first_seen": "1834-02-04",
+      "last_seen": "1834-02-04",
       "letter_list_only": true,
       "occupations": [],
       "associated_places": []
@@ -675,13 +793,18 @@
         {
           "as_printed": "Aaron Whitcomb",
           "claim": "chicago_democrat_1834_01_28#c001"
+        },
+        {
+          "as_printed": "Aaron Whitcomb",
+          "claim": "chicago_democrat_1834_02_11#c009"
         }
       ],
       "mentions": [
-        "chicago_democrat_1834_01_28#c001"
+        "chicago_democrat_1834_01_28#c001",
+        "chicago_democrat_1834_02_11#c009"
       ],
       "first_seen": "1834-01-28",
-      "last_seen": "1834-01-28",
+      "last_seen": "1834-02-11",
       "letter_list_only": true,
       "occupations": [],
       "associated_places": []
@@ -809,6 +932,24 @@
       ]
     },
     {
+      "id": "person_adam_vanderwerker",
+      "name": "Adam Vanderwerker",
+      "variants": [
+        {
+          "as_printed": "Adam Vanderwerker |",
+          "claim": "chicago_democrat_1834_02_11#c009"
+        }
+      ],
+      "mentions": [
+        "chicago_democrat_1834_02_11#c009"
+      ],
+      "first_seen": "1834-02-11",
+      "last_seen": "1834-02-11",
+      "letter_list_only": true,
+      "occupations": [],
+      "associated_places": []
+    },
+    {
       "id": "person_adam_vandorwerk",
       "name": "Adam Vandorwerk",
       "variants": [
@@ -823,6 +964,24 @@
       "first_seen": "1834-01-28",
       "last_seen": "1834-01-28",
       "letter_list_only": true,
+      "occupations": [],
+      "associated_places": []
+    },
+    {
+      "id": "person_addison_collins",
+      "name": "Addison Collins",
+      "variants": [
+        {
+          "as_printed": "Ad-1} dison Collins",
+          "claim": "chicago_democrat_1834_02_18#c004"
+        }
+      ],
+      "mentions": [
+        "chicago_democrat_1834_02_18#c004"
+      ],
+      "first_seen": "1834-02-18",
+      "last_seen": "1834-02-18",
+      "letter_list_only": false,
       "occupations": [],
       "associated_places": []
     },
@@ -998,13 +1157,18 @@
         {
           "as_printed": "Alburn Foster",
           "claim": "chicago_democrat_1834_01_28#c001"
+        },
+        {
+          "as_printed": "Alburn Foster",
+          "claim": "chicago_democrat_1834_02_04#c025"
         }
       ],
       "mentions": [
-        "chicago_democrat_1834_01_28#c001"
+        "chicago_democrat_1834_01_28#c001",
+        "chicago_democrat_1834_02_04#c025"
       ],
       "first_seen": "1834-01-28",
-      "last_seen": "1834-01-28",
+      "last_seen": "1834-02-04",
       "letter_list_only": true,
       "occupations": [],
       "associated_places": []
@@ -1016,13 +1180,18 @@
         {
           "as_printed": "Alden Taller",
           "claim": "chicago_democrat_1834_01_28#c001"
+        },
+        {
+          "as_printed": "Alden Taller",
+          "claim": "chicago_democrat_1834_02_11#c009"
         }
       ],
       "mentions": [
-        "chicago_democrat_1834_01_28#c001"
+        "chicago_democrat_1834_01_28#c001",
+        "chicago_democrat_1834_02_11#c009"
       ],
       "first_seen": "1834-01-28",
-      "last_seen": "1834-01-28",
+      "last_seen": "1834-02-11",
       "letter_list_only": true,
       "occupations": [],
       "associated_places": []
@@ -1079,14 +1248,37 @@
       "variants": [
         {
           "as_printed": "Alfred Churchill",
+          "claim": "chicago_democrat_1834_02_04#c025"
+        },
+        {
+          "as_printed": "Alfred Churchill",
           "claim": "chicago_democrat_1834_07_16#c004"
         }
       ],
       "mentions": [
+        "chicago_democrat_1834_02_04#c025",
         "chicago_democrat_1834_07_16#c004"
       ],
-      "first_seen": "1834-07-16",
+      "first_seen": "1834-02-04",
       "last_seen": "1834-07-16",
+      "letter_list_only": true,
+      "occupations": [],
+      "associated_places": []
+    },
+    {
+      "id": "person_alfred_clarke",
+      "name": "Alfred Clarke",
+      "variants": [
+        {
+          "as_printed": "Alfred Clarke",
+          "claim": "chicago_democrat_1834_02_04#c025"
+        }
+      ],
+      "mentions": [
+        "chicago_democrat_1834_02_04#c025"
+      ],
+      "first_seen": "1834-02-04",
+      "last_seen": "1834-02-04",
       "letter_list_only": true,
       "occupations": [],
       "associated_places": []
@@ -1298,13 +1490,18 @@
         {
           "as_printed": "Alva Fowler",
           "claim": "chicago_democrat_1834_01_28#c001"
+        },
+        {
+          "as_printed": "Alva Fowler",
+          "claim": "chicago_democrat_1834_02_04#c025"
         }
       ],
       "mentions": [
-        "chicago_democrat_1834_01_28#c001"
+        "chicago_democrat_1834_01_28#c001",
+        "chicago_democrat_1834_02_04#c025"
       ],
       "first_seen": "1834-01-28",
-      "last_seen": "1834-01-28",
+      "last_seen": "1834-02-04",
       "letter_list_only": true,
       "occupations": [],
       "associated_places": []
@@ -1598,6 +1795,24 @@
       ]
     },
     {
+      "id": "person_anthony_beers",
+      "name": "Anthony Beers",
+      "variants": [
+        {
+          "as_printed": "Anthony Becra",
+          "claim": "chicago_democrat_1834_02_04#c025"
+        }
+      ],
+      "mentions": [
+        "chicago_democrat_1834_02_04#c025"
+      ],
+      "first_seen": "1834-02-04",
+      "last_seen": "1834-02-04",
+      "letter_list_only": true,
+      "occupations": [],
+      "associated_places": []
+    },
+    {
       "id": "person_anthony_heere",
       "name": "Anthony Heere",
       "variants": [
@@ -1700,6 +1915,24 @@
       "associated_places": [
         "Chicago"
       ]
+    },
+    {
+      "id": "person_armstead_runion",
+      "name": "Armstead Runion",
+      "variants": [
+        {
+          "as_printed": "Ans-strap Ruxzos",
+          "claim": "chicago_democrat_1834_02_18#c004"
+        }
+      ],
+      "mentions": [
+        "chicago_democrat_1834_02_18#c004"
+      ],
+      "first_seen": "1834-02-18",
+      "last_seen": "1834-02-18",
+      "letter_list_only": false,
+      "occupations": [],
+      "associated_places": []
     },
     {
       "id": "person_aron_parcell",
@@ -1824,6 +2057,42 @@
       "associated_places": [
         "Chicago"
       ]
+    },
+    {
+      "id": "person_avice_blodget",
+      "name": "Avice Blodget",
+      "variants": [
+        {
+          "as_printed": "Avice Blodget",
+          "claim": "chicago_democrat_1834_02_04#c025"
+        }
+      ],
+      "mentions": [
+        "chicago_democrat_1834_02_04#c025"
+      ],
+      "first_seen": "1834-02-04",
+      "last_seen": "1834-02-04",
+      "letter_list_only": true,
+      "occupations": [],
+      "associated_places": []
+    },
+    {
+      "id": "person_axtel_steele",
+      "name": "Axtel & Steele",
+      "variants": [
+        {
+          "as_printed": "fete & Steele",
+          "claim": "chicago_democrat_1834_02_11#c009"
+        }
+      ],
+      "mentions": [
+        "chicago_democrat_1834_02_11#c009"
+      ],
+      "first_seen": "1834-02-11",
+      "last_seen": "1834-02-11",
+      "letter_list_only": true,
+      "occupations": [],
+      "associated_places": []
     },
     {
       "id": "person_ayres_levi",
@@ -2688,6 +2957,24 @@
       ]
     },
     {
+      "id": "person_benj_chapman",
+      "name": "Benj. Chapman",
+      "variants": [
+        {
+          "as_printed": "nj. Chapman",
+          "claim": "chicago_democrat_1834_02_04#c025"
+        }
+      ],
+      "mentions": [
+        "chicago_democrat_1834_02_04#c025"
+      ],
+      "first_seen": "1834-02-04",
+      "last_seen": "1834-02-04",
+      "letter_list_only": true,
+      "occupations": [],
+      "associated_places": []
+    },
+    {
       "id": "person_benj_cl",
       "name": "Benj. Cl[…]",
       "variants": [
@@ -2701,6 +2988,24 @@
       ],
       "first_seen": "1834-01-28",
       "last_seen": "1834-01-28",
+      "letter_list_only": true,
+      "occupations": [],
+      "associated_places": []
+    },
+    {
+      "id": "person_benj_harrison",
+      "name": "Benj. Harrison",
+      "variants": [
+        {
+          "as_printed": "Ben}. Harrison",
+          "claim": "chicago_democrat_1834_02_04#c025"
+        }
+      ],
+      "mentions": [
+        "chicago_democrat_1834_02_04#c025"
+      ],
+      "first_seen": "1834-02-04",
+      "last_seen": "1834-02-04",
       "letter_list_only": true,
       "occupations": [],
       "associated_places": []
@@ -3501,15 +3806,22 @@
         {
           "as_printed": "BREWSTER, HOGAN & CO.",
           "claim": "chicago_democrat_1833_12_03#c008"
+        },
+        {
+          "as_printed": "BREWSTER, HOGAN & CO.",
+          "claim": "chicago_democrat_1834_02_11#c006"
         }
       ],
       "mentions": [
-        "chicago_democrat_1833_12_03#c008"
+        "chicago_democrat_1833_12_03#c008",
+        "chicago_democrat_1834_02_11#c006"
       ],
       "first_seen": "1833-12-03",
-      "last_seen": "1833-12-03",
+      "last_seen": "1834-02-11",
       "letter_list_only": false,
-      "occupations": [],
+      "occupations": [
+        "merchant"
+      ],
       "associated_places": []
     },
     {
@@ -4234,6 +4546,24 @@
       ]
     },
     {
+      "id": "person_c_h_pease",
+      "name": "C. H. Pease",
+      "variants": [
+        {
+          "as_printed": "rier C. H, Pease",
+          "claim": "chicago_democrat_1834_02_11#c009"
+        }
+      ],
+      "mentions": [
+        "chicago_democrat_1834_02_11#c009"
+      ],
+      "first_seen": "1834-02-11",
+      "last_seen": "1834-02-11",
+      "letter_list_only": true,
+      "occupations": [],
+      "associated_places": []
+    },
+    {
       "id": "person_c_handler_fi_s_her",
       "name": "[C]handler Fi[s]her",
       "variants": [
@@ -4468,13 +4798,18 @@
         {
           "as_printed": "Caleb Foster",
           "claim": "chicago_democrat_1834_01_28#c001"
+        },
+        {
+          "as_printed": "Caleb Foster",
+          "claim": "chicago_democrat_1834_02_04#c025"
         }
       ],
       "mentions": [
-        "chicago_democrat_1834_01_28#c001"
+        "chicago_democrat_1834_01_28#c001",
+        "chicago_democrat_1834_02_04#c025"
       ],
       "first_seen": "1834-01-28",
-      "last_seen": "1834-01-28",
+      "last_seen": "1834-02-04",
       "letter_list_only": true,
       "occupations": [],
       "associated_places": []
@@ -4526,6 +4861,10 @@
           "claim": "chicago_democrat_1834_01_28#c005"
         },
         {
+          "as_printed": "Calvin Britain Oeq.",
+          "claim": "chicago_democrat_1834_02_25#c005"
+        },
+        {
           "as_printed": "CALVIN BRITAIP",
           "claim": "chicago_democrat_1835_07_01#c015"
         },
@@ -4538,6 +4877,7 @@
         "chicago_democrat_1833_12_24#c008",
         "chicago_democrat_1833_12_31#c001",
         "chicago_democrat_1834_01_28#c005",
+        "chicago_democrat_1834_02_25#c005",
         "chicago_democrat_1835_07_01#c015",
         "chicago_democrat_1835_07_01#c019"
       ],
@@ -4607,6 +4947,46 @@
       "associated_places": [
         "Chicago"
       ]
+    },
+    {
+      "id": "person_capt_d_wilcox",
+      "name": "Capt. D. Wilcox",
+      "variants": [
+        {
+          "as_printed": "apt. D, Wincox, U.S. A",
+          "claim": "chicago_democrat_1834_02_04#c002"
+        }
+      ],
+      "mentions": [
+        "chicago_democrat_1834_02_04#c002"
+      ],
+      "first_seen": "1834-02-04",
+      "last_seen": "1834-02-04",
+      "letter_list_only": false,
+      "occupations": [
+        "U.S. Army officer"
+      ],
+      "associated_places": []
+    },
+    {
+      "id": "person_capt_james_rowley",
+      "name": "Capt. James Rowley",
+      "variants": [
+        {
+          "as_printed": "Capt. Imes Rowxrr",
+          "claim": "chicago_democrat_1834_02_18#c004"
+        }
+      ],
+      "mentions": [
+        "chicago_democrat_1834_02_18#c004"
+      ],
+      "first_seen": "1834-02-18",
+      "last_seen": "1834-02-18",
+      "letter_list_only": false,
+      "occupations": [
+        "tavern or house keeper"
+      ],
+      "associated_places": []
     },
     {
       "id": "person_carli_p_s",
@@ -5332,6 +5712,24 @@
       "associated_places": []
     },
     {
+      "id": "person_chas_miller",
+      "name": "Chas. Miller",
+      "variants": [
+        {
+          "as_printed": "Chas. Miller",
+          "claim": "chicago_democrat_1834_02_11#c009"
+        }
+      ],
+      "mentions": [
+        "chicago_democrat_1834_02_11#c009"
+      ],
+      "first_seen": "1834-02-11",
+      "last_seen": "1834-02-11",
+      "letter_list_only": true,
+      "occupations": [],
+      "associated_places": []
+    },
+    {
       "id": "person_chase_peter",
       "name": "Chase, Peter",
       "variants": [
@@ -5432,6 +5830,24 @@
       "associated_places": [
         "Chicago"
       ]
+    },
+    {
+      "id": "person_chester_marshall",
+      "name": "Chester Marshall",
+      "variants": [
+        {
+          "as_printed": "Cinester Mefshall 2",
+          "claim": "chicago_democrat_1834_02_11#c009"
+        }
+      ],
+      "mentions": [
+        "chicago_democrat_1834_02_11#c009"
+      ],
+      "first_seen": "1834-02-11",
+      "last_seen": "1834-02-11",
+      "letter_list_only": true,
+      "occupations": [],
+      "associated_places": []
     },
     {
       "id": "person_chester_pratt",
@@ -5831,6 +6247,82 @@
       ],
       "associated_places": [
         "South Water Street"
+      ]
+    },
+    {
+      "id": "person_col_james_sayers",
+      "name": "Col. James Sayers",
+      "variants": [
+        {
+          "as_printed": "Co}. Jame: | Sayers",
+          "claim": "chicago_democrat_1834_02_18#c004"
+        }
+      ],
+      "mentions": [
+        "chicago_democrat_1834_02_18#c004"
+      ],
+      "first_seen": "1834-02-18",
+      "last_seen": "1834-02-18",
+      "letter_list_only": false,
+      "occupations": [],
+      "associated_places": []
+    },
+    {
+      "id": "person_col_owen",
+      "name": "Col. Owen",
+      "variants": [
+        {
+          "as_printed": "Col. Owen",
+          "claim": "chicago_democrat_1834_02_18#c010"
+        }
+      ],
+      "mentions": [
+        "chicago_democrat_1834_02_18#c010"
+      ],
+      "first_seen": "1834-02-18",
+      "last_seen": "1834-02-18",
+      "letter_list_only": false,
+      "occupations": [],
+      "associated_places": [
+        "Chicago"
+      ]
+    },
+    {
+      "id": "person_col_rich_d_j_hamilton",
+      "name": "Col. Rich'd J. Hamilton",
+      "variants": [
+        {
+          "as_printed": ". Rich'd, f. Hamilton",
+          "claim": "chicago_democrat_1834_02_04#c002"
+        }
+      ],
+      "mentions": [
+        "chicago_democrat_1834_02_04#c002"
+      ],
+      "first_seen": "1834-02-04",
+      "last_seen": "1834-02-04",
+      "letter_list_only": false,
+      "occupations": [],
+      "associated_places": []
+    },
+    {
+      "id": "person_col_samuel_miller",
+      "name": "Col. Samuel Miller",
+      "variants": [
+        {
+          "as_printed": "Col Sumsel Miller",
+          "claim": "chicago_democrat_1834_02_25#c005"
+        }
+      ],
+      "mentions": [
+        "chicago_democrat_1834_02_25#c005"
+      ],
+      "first_seen": "1834-02-25",
+      "last_seen": "1834-02-25",
+      "letter_list_only": false,
+      "occupations": [],
+      "associated_places": [
+        "Michigan City"
       ]
     },
     {
@@ -6289,9 +6781,42 @@
       "associated_places": []
     },
     {
+      "id": "person_d_elston_co",
+      "name": "D. Elston & Co.",
+      "variants": [
+        {
+          "as_printed": "D, Elston &",
+          "claim": "chicago_democrat_1834_02_18#c007"
+        }
+      ],
+      "mentions": [
+        "chicago_democrat_1834_02_18#c007"
+      ],
+      "first_seen": "1834-02-18",
+      "last_seen": "1834-02-18",
+      "letter_list_only": false,
+      "occupations": [
+        "provision dealer",
+        "soap and candle manufacturer"
+      ],
+      "associated_places": []
+    },
+    {
       "id": "person_d_graves",
       "name": "D. Graves",
       "variants": [
+        {
+          "as_printed": "Mr. D. Graves",
+          "claim": "chicago_democrat_1834_02_18#c005"
+        },
+        {
+          "as_printed": "Graves,",
+          "claim": "chicago_democrat_1834_02_25#c003"
+        },
+        {
+          "as_printed": "D. GRAVES",
+          "claim": "chicago_democrat_1834_02_25#c004"
+        },
         {
           "as_printed": "D. GRAVES,",
           "claim": "chicago_democrat_1834_07_09#c022"
@@ -6302,18 +6827,41 @@
         }
       ],
       "mentions": [
+        "chicago_democrat_1834_02_18#c005",
+        "chicago_democrat_1834_02_25#c003",
+        "chicago_democrat_1834_02_25#c004",
         "chicago_democrat_1834_07_09#c022",
         "chicago_democrat_1834_10_15#c008"
       ],
-      "first_seen": "1834-07-09",
+      "first_seen": "1834-02-18",
       "last_seen": "1834-10-15",
       "letter_list_only": false,
       "occupations": [
-        "baker"
+        "baker",
+        "tavern keeper"
       ],
       "associated_places": [
+        "Graves' Tavern",
         "South Water Street"
       ]
+    },
+    {
+      "id": "person_d_p_clevinger",
+      "name": "D. P. Clevinger",
+      "variants": [
+        {
+          "as_printed": "D. P. Cleyinger",
+          "claim": "chicago_democrat_1834_02_04#c025"
+        }
+      ],
+      "mentions": [
+        "chicago_democrat_1834_02_04#c025"
+      ],
+      "first_seen": "1834-02-04",
+      "last_seen": "1834-02-04",
+      "letter_list_only": true,
+      "occupations": [],
+      "associated_places": []
     },
     {
       "id": "person_d_peck",
@@ -6370,6 +6918,24 @@
       "associated_places": [
         "Vermont"
       ]
+    },
+    {
+      "id": "person_d_s_haight",
+      "name": "D. S. Haight",
+      "variants": [
+        {
+          "as_printed": "~ D.S. Haight",
+          "claim": "chicago_democrat_1834_02_11#c009"
+        }
+      ],
+      "mentions": [
+        "chicago_democrat_1834_02_11#c009"
+      ],
+      "first_seen": "1834-02-11",
+      "last_seen": "1834-02-11",
+      "letter_list_only": true,
+      "occupations": [],
+      "associated_places": []
     },
     {
       "id": "person_dally_youngs",
@@ -6473,6 +7039,24 @@
       "associated_places": []
     },
     {
+      "id": "person_daniel_b_clevinger",
+      "name": "Daniel B. Clevinger",
+      "variants": [
+        {
+          "as_printed": "Daniel B. Clevinger",
+          "claim": "chicago_democrat_1834_02_04#c025"
+        }
+      ],
+      "mentions": [
+        "chicago_democrat_1834_02_04#c025"
+      ],
+      "first_seen": "1834-02-04",
+      "last_seen": "1834-02-04",
+      "letter_list_only": true,
+      "occupations": [],
+      "associated_places": []
+    },
+    {
       "id": "person_daniel_barclay_k_essege",
       "name": "Daniel Barclay [K]essege",
       "variants": [
@@ -6515,6 +7099,10 @@
       "name": "Daniel Elston & Co.",
       "variants": [
         {
+          "as_printed": "DANIEL ELSTON & CO",
+          "claim": "chicago_democrat_1834_02_04#c022"
+        },
+        {
           "as_printed": "DANIEL ELSTON & co",
           "claim": "chicago_democrat_1834_07_02#c007"
         },
@@ -6524,15 +7112,17 @@
         }
       ],
       "mentions": [
+        "chicago_democrat_1834_02_04#c022",
         "chicago_democrat_1834_07_02#c007",
         "chicago_democrat_1834_07_02#c027"
       ],
-      "first_seen": "1834-07-02",
+      "first_seen": "1834-02-04",
       "last_seen": "1834-07-02",
       "letter_list_only": false,
       "occupations": [
         "chandler",
         "provision dealer",
+        "soap and candle manufacturer",
         "soap boiler"
       ],
       "associated_places": []
@@ -6668,6 +7258,24 @@
       ],
       "first_seen": "1834-07-02",
       "last_seen": "1834-07-16",
+      "letter_list_only": true,
+      "occupations": [],
+      "associated_places": []
+    },
+    {
+      "id": "person_daniel_warren",
+      "name": "Daniel Warren",
+      "variants": [
+        {
+          "as_printed": "Daniel Warren",
+          "claim": "chicago_democrat_1834_02_11#c009"
+        }
+      ],
+      "mentions": [
+        "chicago_democrat_1834_02_11#c009"
+      ],
+      "first_seen": "1834-02-11",
+      "last_seen": "1834-02-11",
       "letter_list_only": true,
       "occupations": [],
       "associated_places": []
@@ -6852,6 +7460,14 @@
           "claim": "chicago_democrat_1833_12_31#c001"
         },
         {
+          "as_printed": "VID CARVER",
+          "claim": "chicago_democrat_1834_02_11#c012"
+        },
+        {
+          "as_printed": "DAVID CARVER.",
+          "claim": "chicago_democrat_1834_02_25#c005"
+        },
+        {
           "as_printed": "DAVID CARVER",
           "claim": "chicago_democrat_1834_07_02#c006"
         },
@@ -6863,6 +7479,8 @@
       "mentions": [
         "chicago_democrat_1833_12_03#c009",
         "chicago_democrat_1833_12_31#c001",
+        "chicago_democrat_1834_02_11#c012",
+        "chicago_democrat_1834_02_25#c005",
         "chicago_democrat_1834_07_02#c006",
         "chicago_democrat_1835_07_01#c019"
       ],
@@ -6871,6 +7489,7 @@
       "letter_list_only": false,
       "occupations": [
         "commission merchant",
+        "lumber and commission merchant",
         "lumber dealer",
         "lumber dealer and commission merchant",
         "lumber merchant",
@@ -6905,13 +7524,18 @@
         {
           "as_printed": "David Dickson.",
           "claim": "chicago_democrat_1834_01_28#c001"
+        },
+        {
+          "as_printed": "avi    ichson",
+          "claim": "chicago_democrat_1834_02_04#c025"
         }
       ],
       "mentions": [
-        "chicago_democrat_1834_01_28#c001"
+        "chicago_democrat_1834_01_28#c001",
+        "chicago_democrat_1834_02_04#c025"
       ],
       "first_seen": "1834-01-28",
-      "last_seen": "1834-01-28",
+      "last_seen": "1834-02-04",
       "letter_list_only": true,
       "occupations": [],
       "associated_places": []
@@ -6941,13 +7565,18 @@
         {
           "as_printed": "David Groover",
           "claim": "chicago_democrat_1834_01_28#c001"
+        },
+        {
+          "as_printed": "David Groover",
+          "claim": "chicago_democrat_1834_02_04#c025"
         }
       ],
       "mentions": [
-        "chicago_democrat_1834_01_28#c001"
+        "chicago_democrat_1834_01_28#c001",
+        "chicago_democrat_1834_02_04#c025"
       ],
       "first_seen": "1834-01-28",
-      "last_seen": "1834-01-28",
+      "last_seen": "1834-02-04",
       "letter_list_only": true,
       "occupations": [],
       "associated_places": []
@@ -7043,13 +7672,18 @@
         {
           "as_printed": "David P.Frame",
           "claim": "chicago_democrat_1834_01_28#c001"
+        },
+        {
+          "as_printed": "David P. Frame",
+          "claim": "chicago_democrat_1834_02_04#c025"
         }
       ],
       "mentions": [
-        "chicago_democrat_1834_01_28#c001"
+        "chicago_democrat_1834_01_28#c001",
+        "chicago_democrat_1834_02_04#c025"
       ],
       "first_seen": "1834-01-28",
-      "last_seen": "1834-01-28",
+      "last_seen": "1834-02-04",
       "letter_list_only": true,
       "occupations": [],
       "associated_places": []
@@ -7089,13 +7723,18 @@
         {
           "as_printed": "David Sprague",
           "claim": "chicago_democrat_1834_01_28#c001"
+        },
+        {
+          "as_printed": "David Sprague",
+          "claim": "chicago_democrat_1834_02_11#c009"
         }
       ],
       "mentions": [
-        "chicago_democrat_1834_01_28#c001"
+        "chicago_democrat_1834_01_28#c001",
+        "chicago_democrat_1834_02_11#c009"
       ],
       "first_seen": "1834-01-28",
-      "last_seen": "1834-01-28",
+      "last_seen": "1834-02-11",
       "letter_list_only": true,
       "occupations": [],
       "associated_places": []
@@ -7188,13 +7827,18 @@
         {
           "as_printed": "‘Dean Farren",
           "claim": "chicago_democrat_1834_01_28#c001"
+        },
+        {
+          "as_printed": "Dean Farren",
+          "claim": "chicago_democrat_1834_02_04#c025"
         }
       ],
       "mentions": [
-        "chicago_democrat_1834_01_28#c001"
+        "chicago_democrat_1834_01_28#c001",
+        "chicago_democrat_1834_02_04#c025"
       ],
       "first_seen": "1834-01-28",
-      "last_seen": "1834-01-28",
+      "last_seen": "1834-02-04",
       "letter_list_only": true,
       "occupations": [],
       "associated_places": []
@@ -7244,13 +7888,18 @@
         {
           "as_printed": "Delaney Wells",
           "claim": "chicago_democrat_1834_01_28#c001"
+        },
+        {
+          "as_printed": "* Delaney Wells",
+          "claim": "chicago_democrat_1834_02_11#c009"
         }
       ],
       "mentions": [
-        "chicago_democrat_1834_01_28#c001"
+        "chicago_democrat_1834_01_28#c001",
+        "chicago_democrat_1834_02_11#c009"
       ],
       "first_seen": "1834-01-28",
-      "last_seen": "1834-01-28",
+      "last_seen": "1834-02-11",
       "letter_list_only": true,
       "occupations": [],
       "associated_places": []
@@ -7489,6 +8138,62 @@
       ]
     },
     {
+      "id": "person_dr_d_harmon",
+      "name": "Dr. D. Harmon",
+      "variants": [
+        {
+          "as_printed": ", D, Harmon",
+          "claim": "chicago_democrat_1834_02_04#c002"
+        }
+      ],
+      "mentions": [
+        "chicago_democrat_1834_02_04#c002"
+      ],
+      "first_seen": "1834-02-04",
+      "last_seen": "1834-02-04",
+      "letter_list_only": false,
+      "occupations": [],
+      "associated_places": []
+    },
+    {
+      "id": "person_dr_h_richey",
+      "name": "Dr. H. Richey",
+      "variants": [
+        {
+          "as_printed": "2        or. HE. Riche",
+          "claim": "chicago_democrat_1834_02_11#c009"
+        }
+      ],
+      "mentions": [
+        "chicago_democrat_1834_02_11#c009"
+      ],
+      "first_seen": "1834-02-11",
+      "last_seen": "1834-02-11",
+      "letter_list_only": true,
+      "occupations": [],
+      "associated_places": []
+    },
+    {
+      "id": "person_dr_h_van_den_bogart",
+      "name": "Dr. H. Van Den Bogart",
+      "variants": [
+        {
+          "as_printed": "r. H. Vax Den Bocart",
+          "claim": "chicago_democrat_1834_02_04#c002"
+        }
+      ],
+      "mentions": [
+        "chicago_democrat_1834_02_04#c002"
+      ],
+      "first_seen": "1834-02-04",
+      "last_seen": "1834-02-04",
+      "letter_list_only": false,
+      "occupations": [
+        "physician"
+      ],
+      "associated_places": []
+    },
+    {
       "id": "person_dr_j_t_temple",
       "name": "Dr. J. T. Temple",
       "variants": [
@@ -7509,6 +8214,46 @@
       "associated_places": [
         "Chicago"
       ]
+    },
+    {
+      "id": "person_dr_john_t_temple",
+      "name": "Dr. John T. Temple",
+      "variants": [
+        {
+          "as_printed": "Dr. Jous T. Terie",
+          "claim": "chicago_democrat_1834_02_04#c002"
+        }
+      ],
+      "mentions": [
+        "chicago_democrat_1834_02_04#c002"
+      ],
+      "first_seen": "1834-02-04",
+      "last_seen": "1834-02-04",
+      "letter_list_only": false,
+      "occupations": [
+        "physician"
+      ],
+      "associated_places": []
+    },
+    {
+      "id": "person_dr_josiah_c_goodhue",
+      "name": "Dr. Josiah C. Goodhue",
+      "variants": [
+        {
+          "as_printed": "Dr. Josian C. Goovnur",
+          "claim": "chicago_democrat_1834_02_04#c002"
+        }
+      ],
+      "mentions": [
+        "chicago_democrat_1834_02_04#c002"
+      ],
+      "first_seen": "1834-02-04",
+      "last_seen": "1834-02-04",
+      "letter_list_only": false,
+      "occupations": [
+        "physician"
+      ],
+      "associated_places": []
     },
     {
       "id": "person_dr_temple",
@@ -7635,13 +8380,18 @@
         {
           "as_printed": "E. Dimmick",
           "claim": "chicago_democrat_1834_01_28#c001"
+        },
+        {
+          "as_printed": "E Dimaiick",
+          "claim": "chicago_democrat_1834_02_04#c025"
         }
       ],
       "mentions": [
-        "chicago_democrat_1834_01_28#c001"
+        "chicago_democrat_1834_01_28#c001",
+        "chicago_democrat_1834_02_04#c025"
       ],
       "first_seen": "1834-01-28",
-      "last_seen": "1834-01-28",
+      "last_seen": "1834-02-04",
       "letter_list_only": true,
       "occupations": [],
       "associated_places": []
@@ -7897,6 +8647,24 @@
       ]
     },
     {
+      "id": "person_e_w_center",
+      "name": "E. W. Center",
+      "variants": [
+        {
+          "as_printed": "E. W. Center",
+          "claim": "chicago_democrat_1834_02_04#c025"
+        }
+      ],
+      "mentions": [
+        "chicago_democrat_1834_02_04#c025"
+      ],
+      "first_seen": "1834-02-04",
+      "last_seen": "1834-02-04",
+      "letter_list_only": true,
+      "occupations": [],
+      "associated_places": []
+    },
+    {
       "id": "person_e_w_conte",
       "name": "E. W. Conte",
       "variants": [
@@ -7923,12 +8691,17 @@
           "claim": "chicago_democrat_1834_01_07#c011"
         },
         {
+          "as_printed": "E. WENTWORT!",
+          "claim": "chicago_democrat_1834_02_04#c028"
+        },
+        {
           "as_printed": "E. WENTWORTH",
           "claim": "chicago_democrat_1834_07_02#c003"
         }
       ],
       "mentions": [
         "chicago_democrat_1834_01_07#c011",
+        "chicago_democrat_1834_02_04#c028",
         "chicago_democrat_1834_07_02#c003"
       ],
       "first_seen": "1834-01-07",
@@ -7964,13 +8737,18 @@
         {
           "as_printed": "Eben Griswold",
           "claim": "chicago_democrat_1834_01_28#c001"
+        },
+        {
+          "as_printed": "Eben Griswold",
+          "claim": "chicago_democrat_1834_02_04#c025"
         }
       ],
       "mentions": [
-        "chicago_democrat_1834_01_28#c001"
+        "chicago_democrat_1834_01_28#c001",
+        "chicago_democrat_1834_02_04#c025"
       ],
       "first_seen": "1834-01-28",
-      "last_seen": "1834-01-28",
+      "last_seen": "1834-02-04",
       "letter_list_only": true,
       "occupations": [],
       "associated_places": []
@@ -8302,6 +9080,10 @@
       "name": "Edward W. Casey",
       "variants": [
         {
+          "as_printed": "Edward W, Casey, esq",
+          "claim": "chicago_democrat_1834_02_04#c002"
+        },
+        {
           "as_printed": "EDWARD W",
           "claim": "chicago_democrat_1834_07_02#c055"
         },
@@ -8311,10 +9093,11 @@
         }
       ],
       "mentions": [
+        "chicago_democrat_1834_02_04#c002",
         "chicago_democrat_1834_07_02#c055",
         "chicago_democrat_1834_10_15#c003"
       ],
-      "first_seen": "1834-07-02",
+      "first_seen": "1834-02-04",
       "last_seen": "1834-10-15",
       "letter_list_only": false,
       "occupations": [
@@ -8416,14 +9199,24 @@
         {
           "as_printed": "Elam Tuller",
           "claim": "chicago_democrat_1834_01_28#c001"
+        },
+        {
+          "as_printed": "Elam Tuller",
+          "claim": "chicago_democrat_1834_02_11#c009"
+        },
+        {
+          "as_printed": "Elen: | Tuller",
+          "claim": "chicago_democrat_1834_02_18#c004"
         }
       ],
       "mentions": [
-        "chicago_democrat_1834_01_28#c001"
+        "chicago_democrat_1834_01_28#c001",
+        "chicago_democrat_1834_02_11#c009",
+        "chicago_democrat_1834_02_18#c004"
       ],
       "first_seen": "1834-01-28",
-      "last_seen": "1834-01-28",
-      "letter_list_only": true,
+      "last_seen": "1834-02-18",
+      "letter_list_only": false,
       "occupations": [],
       "associated_places": []
     },
@@ -8627,6 +9420,24 @@
       "associated_places": []
     },
     {
+      "id": "person_erastus_bowen",
+      "name": "Erastus Bowen",
+      "variants": [
+        {
+          "as_printed": "Grastus Bowen",
+          "claim": "chicago_democrat_1834_02_04#c025"
+        }
+      ],
+      "mentions": [
+        "chicago_democrat_1834_02_04#c025"
+      ],
+      "first_seen": "1834-02-04",
+      "last_seen": "1834-02-04",
+      "letter_list_only": true,
+      "occupations": [],
+      "associated_places": []
+    },
+    {
       "id": "person_es_jones_high",
       "name": "Es,Jones, High",
       "variants": [
@@ -8693,6 +9504,24 @@
       "associated_places": []
     },
     {
+      "id": "person_f_b_northrop",
+      "name": "F. B. Northrop",
+      "variants": [
+        {
+          "as_printed": "F. B. Northrop",
+          "claim": "chicago_democrat_1834_02_11#c009"
+        }
+      ],
+      "mentions": [
+        "chicago_democrat_1834_02_11#c009"
+      ],
+      "first_seen": "1834-02-11",
+      "last_seen": "1834-02-11",
+      "letter_list_only": true,
+      "occupations": [],
+      "associated_places": []
+    },
+    {
       "id": "person_f_h_morland",
       "name": "F. H. Morland",
       "variants": [
@@ -8716,6 +9545,24 @@
       ],
       "first_seen": "1834-07-02",
       "last_seen": "1834-07-16",
+      "letter_list_only": true,
+      "occupations": [],
+      "associated_places": []
+    },
+    {
+      "id": "person_f_miner",
+      "name": "F. Miner",
+      "variants": [
+        {
+          "as_printed": "F.       liner",
+          "claim": "chicago_democrat_1834_02_11#c009"
+        }
+      ],
+      "mentions": [
+        "chicago_democrat_1834_02_11#c009"
+      ],
+      "first_seen": "1834-02-11",
+      "last_seen": "1834-02-11",
       "letter_list_only": true,
       "occupations": [],
       "associated_places": []
@@ -9525,6 +10372,10 @@
           "claim": "chicago_democrat_1834_01_28#c006"
         },
         {
+          "as_printed": "Ge SPRI",
+          "claim": "chicago_democrat_1834_02_04#c027"
+        },
+        {
           "as_printed": "G. SPRING.",
           "claim": "chicago_democrat_1834_07_02#c053"
         },
@@ -9551,6 +10402,7 @@
       ],
       "mentions": [
         "chicago_democrat_1834_01_28#c006",
+        "chicago_democrat_1834_02_04#c027",
         "chicago_democrat_1834_07_02#c053",
         "chicago_democrat_1834_07_09#c021",
         "chicago_democrat_1834_07_09#c024",
@@ -9601,13 +10453,18 @@
         {
           "as_printed": "G. T. SPROAT",
           "claim": "chicago_democrat_1833_12_03#c015"
+        },
+        {
+          "as_printed": "G. T. Sproat, Pre.",
+          "claim": "chicago_democrat_1834_02_25#c004"
         }
       ],
       "mentions": [
-        "chicago_democrat_1833_12_03#c015"
+        "chicago_democrat_1833_12_03#c015",
+        "chicago_democrat_1834_02_25#c004"
       ],
       "first_seen": "1833-12-03",
-      "last_seen": "1833-12-03",
+      "last_seen": "1834-02-25",
       "letter_list_only": false,
       "occupations": [
         "schoolmaster"
@@ -9623,13 +10480,18 @@
         {
           "as_printed": "G, W. Dole",
           "claim": "chicago_democrat_1833_12_10#c006"
+        },
+        {
+          "as_printed": "G. W. DOLE",
+          "claim": "chicago_democrat_1834_02_04#c007"
         }
       ],
       "mentions": [
-        "chicago_democrat_1833_12_10#c006"
+        "chicago_democrat_1833_12_10#c006",
+        "chicago_democrat_1834_02_04#c007"
       ],
       "first_seen": "1833-12-10",
-      "last_seen": "1833-12-10",
+      "last_seen": "1834-02-04",
       "letter_list_only": false,
       "occupations": [
         "merchant"
@@ -9652,6 +10514,24 @@
       ],
       "first_seen": "1834-01-28",
       "last_seen": "1834-01-28",
+      "letter_list_only": true,
+      "occupations": [],
+      "associated_places": []
+    },
+    {
+      "id": "person_g_w_ewing",
+      "name": "G. W. Ewing",
+      "variants": [
+        {
+          "as_printed": "G. W. Ewing",
+          "claim": "chicago_democrat_1834_02_04#c025"
+        }
+      ],
+      "mentions": [
+        "chicago_democrat_1834_02_04#c025"
+      ],
+      "first_seen": "1834-02-04",
+      "last_seen": "1834-02-04",
       "letter_list_only": true,
       "occupations": [],
       "associated_places": []
@@ -9717,14 +10597,19 @@
       "name": "G. W. Snow",
       "variants": [
         {
+          "as_printed": "1. SNOW,",
+          "claim": "chicago_democrat_1834_02_25#c004"
+        },
+        {
           "as_printed": "@. W. Bow",
           "claim": "chicago_democrat_1834_07_02#c017"
         }
       ],
       "mentions": [
+        "chicago_democrat_1834_02_25#c004",
         "chicago_democrat_1834_07_02#c017"
       ],
-      "first_seen": "1834-07-02",
+      "first_seen": "1834-02-25",
       "last_seen": "1834-07-02",
       "letter_list_only": false,
       "occupations": [],
@@ -9855,13 +10740,18 @@
         {
           "as_printed": "Geo. H. Clark",
           "claim": "chicago_democrat_1834_01_28#c001"
+        },
+        {
+          "as_printed": "Geo. 1, Clark",
+          "claim": "chicago_democrat_1834_02_04#c025"
         }
       ],
       "mentions": [
-        "chicago_democrat_1834_01_28#c001"
+        "chicago_democrat_1834_01_28#c001",
+        "chicago_democrat_1834_02_04#c025"
       ],
       "first_seen": "1834-01-28",
-      "last_seen": "1834-01-28",
+      "last_seen": "1834-02-04",
       "letter_list_only": true,
       "occupations": [],
       "associated_places": []
@@ -10758,6 +11648,24 @@
       ]
     },
     {
+      "id": "person_green_pool",
+      "name": "Green Pool",
+      "variants": [
+        {
+          "as_printed": "reen Pool",
+          "claim": "chicago_democrat_1834_02_11#c009"
+        }
+      ],
+      "mentions": [
+        "chicago_democrat_1834_02_11#c009"
+      ],
+      "first_seen": "1834-02-11",
+      "last_seen": "1834-02-11",
+      "letter_list_only": true,
+      "occupations": [],
+      "associated_places": []
+    },
+    {
       "id": "person_greene",
       "name": "Greene",
       "variants": [
@@ -10864,6 +11772,24 @@
       "associated_places": []
     },
     {
+      "id": "person_h_a_bertrand",
+      "name": "H. A. Bertrand",
+      "variants": [
+        {
+          "as_printed": "1H A. Bertrand",
+          "claim": "chicago_democrat_1834_02_04#c025"
+        }
+      ],
+      "mentions": [
+        "chicago_democrat_1834_02_04#c025"
+      ],
+      "first_seen": "1834-02-04",
+      "last_seen": "1834-02-04",
+      "letter_list_only": true,
+      "occupations": [],
+      "associated_places": []
+    },
+    {
       "id": "person_h_arvey_a_blakesley",
       "name": "[H]arvey A. Blakesley",
       "variants": [
@@ -10900,6 +11826,24 @@
       "associated_places": [
         "Juliet"
       ]
+    },
+    {
+      "id": "person_h_b_hoffman",
+      "name": "H. B. Hoffman",
+      "variants": [
+        {
+          "as_printed": "H. B. Hoffman",
+          "claim": "chicago_democrat_1834_02_11#c009"
+        }
+      ],
+      "mentions": [
+        "chicago_democrat_1834_02_11#c009"
+      ],
+      "first_seen": "1834-02-11",
+      "last_seen": "1834-02-11",
+      "letter_list_only": true,
+      "occupations": [],
+      "associated_places": []
     },
     {
       "id": "person_h_b_steele",
@@ -10946,13 +11890,18 @@
         {
           "as_printed": "H.C. Shearman",
           "claim": "chicago_democrat_1834_01_28#c001"
+        },
+        {
+          "as_printed": "H.C. Shearman",
+          "claim": "chicago_democrat_1834_02_11#c009"
         }
       ],
       "mentions": [
-        "chicago_democrat_1834_01_28#c001"
+        "chicago_democrat_1834_01_28#c001",
+        "chicago_democrat_1834_02_11#c009"
       ],
       "first_seen": "1834-01-28",
-      "last_seen": "1834-01-28",
+      "last_seen": "1834-02-11",
       "letter_list_only": true,
       "occupations": [],
       "associated_places": []
@@ -10964,13 +11913,18 @@
         {
           "as_printed": "H.C. Sith",
           "claim": "chicago_democrat_1834_01_28#c001"
+        },
+        {
+          "as_printed": "H.C. Smith",
+          "claim": "chicago_democrat_1834_02_11#c009"
         }
       ],
       "mentions": [
-        "chicago_democrat_1834_01_28#c001"
+        "chicago_democrat_1834_01_28#c001",
+        "chicago_democrat_1834_02_11#c009"
       ],
       "first_seen": "1834-01-28",
-      "last_seen": "1834-01-28",
+      "last_seen": "1834-02-11",
       "letter_list_only": true,
       "occupations": [],
       "associated_places": []
@@ -11208,13 +12162,36 @@
         {
           "as_printed": "HLS. Bennett 2",
           "claim": "chicago_democrat_1834_01_28#c001"
+        },
+        {
+          "as_printed": "11, S, Bennett 2",
+          "claim": "chicago_democrat_1834_02_04#c025"
         }
       ],
       "mentions": [
-        "chicago_democrat_1834_01_28#c001"
+        "chicago_democrat_1834_01_28#c001",
+        "chicago_democrat_1834_02_04#c025"
       ],
       "first_seen": "1834-01-28",
-      "last_seen": "1834-01-28",
+      "last_seen": "1834-02-04",
+      "letter_list_only": true,
+      "occupations": [],
+      "associated_places": []
+    },
+    {
+      "id": "person_h_s_steele",
+      "name": "H. S. Steele",
+      "variants": [
+        {
+          "as_printed": "H. 8. Steele 2",
+          "claim": "chicago_democrat_1834_02_11#c009"
+        }
+      ],
+      "mentions": [
+        "chicago_democrat_1834_02_11#c009"
+      ],
+      "first_seen": "1834-02-11",
+      "last_seen": "1834-02-11",
       "letter_list_only": true,
       "occupations": [],
       "associated_places": []
@@ -11659,6 +12636,24 @@
       "associated_places": []
     },
     {
+      "id": "person_harriet_bradford",
+      "name": "Harriet Bradford",
+      "variants": [
+        {
+          "as_printed": "Aarrist Bradford",
+          "claim": "chicago_democrat_1834_02_04#c025"
+        }
+      ],
+      "mentions": [
+        "chicago_democrat_1834_02_04#c025"
+      ],
+      "first_seen": "1834-02-04",
+      "last_seen": "1834-02-04",
+      "letter_list_only": true,
+      "occupations": [],
+      "associated_places": []
+    },
+    {
       "id": "person_harriet_gridley",
       "name": "Harriet Gridley",
       "variants": [
@@ -11856,6 +12851,24 @@
       "associated_places": [
         "Chicago"
       ]
+    },
+    {
+      "id": "person_henry_b_clarke",
+      "name": "Henry B. Clarke",
+      "variants": [
+        {
+          "as_printed": "Henry B. Clarke 2",
+          "claim": "chicago_democrat_1834_02_04#c025"
+        }
+      ],
+      "mentions": [
+        "chicago_democrat_1834_02_04#c025"
+      ],
+      "first_seen": "1834-02-04",
+      "last_seen": "1834-02-04",
+      "letter_list_only": true,
+      "occupations": [],
+      "associated_places": []
     },
     {
       "id": "person_henry_c_west",
@@ -12203,13 +13216,18 @@
         {
           "as_printed": "Hiram Bennett",
           "claim": "chicago_democrat_1834_01_28#c001"
+        },
+        {
+          "as_printed": "HHtiram Bennott",
+          "claim": "chicago_democrat_1834_02_04#c025"
         }
       ],
       "mentions": [
-        "chicago_democrat_1834_01_28#c001"
+        "chicago_democrat_1834_01_28#c001",
+        "chicago_democrat_1834_02_04#c025"
       ],
       "first_seen": "1834-01-28",
-      "last_seen": "1834-01-28",
+      "last_seen": "1834-02-04",
       "letter_list_only": true,
       "occupations": [],
       "associated_places": []
@@ -12221,13 +13239,18 @@
         {
           "as_printed": "Hiram Bowen",
           "claim": "chicago_democrat_1834_01_28#c001"
+        },
+        {
+          "as_printed": "Hirain Bowse",
+          "claim": "chicago_democrat_1834_02_04#c025"
         }
       ],
       "mentions": [
-        "chicago_democrat_1834_01_28#c001"
+        "chicago_democrat_1834_01_28#c001",
+        "chicago_democrat_1834_02_04#c025"
       ],
       "first_seen": "1834-01-28",
-      "last_seen": "1834-01-28",
+      "last_seen": "1834-02-04",
       "letter_list_only": true,
       "occupations": [],
       "associated_places": []
@@ -12238,20 +13261,33 @@
       "variants": [
         {
           "as_printed": "HIRAM PEARSONS",
+          "claim": "chicago_democrat_1834_02_04#c009"
+        },
+        {
+          "as_printed": "HIRAM PEARSONS,",
+          "claim": "chicago_democrat_1834_02_25#c002"
+        },
+        {
+          "as_printed": "HIRAM PEARSONS",
           "claim": "chicago_democrat_1834_08_06#c012"
         }
       ],
       "mentions": [
+        "chicago_democrat_1834_02_04#c009",
+        "chicago_democrat_1834_02_25#c002",
         "chicago_democrat_1834_08_06#c012"
       ],
-      "first_seen": "1834-08-06",
+      "first_seen": "1834-02-04",
       "last_seen": "1834-08-06",
       "letter_list_only": false,
       "occupations": [
-        "land dealer"
+        "land dealer",
+        "storage and commission merchant"
       ],
       "associated_places": [
-        "Chicago"
+        "Chicago",
+        "Kinzie's Addition",
+        "South Water Street"
       ]
     },
     {
@@ -12809,6 +13845,26 @@
       "associated_places": []
     },
     {
+      "id": "person_i_arnold",
+      "name": "I. Arnold",
+      "variants": [
+        {
+          "as_printed": "ArNoLD",
+          "claim": "chicago_democrat_1834_02_18#c003"
+        }
+      ],
+      "mentions": [
+        "chicago_democrat_1834_02_18#c003"
+      ],
+      "first_seen": "1834-02-18",
+      "last_seen": "1834-02-18",
+      "letter_list_only": false,
+      "occupations": [
+        "postmaster"
+      ],
+      "associated_places": []
+    },
+    {
       "id": "person_i_c_bristol",
       "name": "I. C. Bristol",
       "variants": [
@@ -13269,13 +14325,18 @@
         {
           "as_printed": "Teanc Scarritt",
           "claim": "chicago_democrat_1834_01_28#c001"
+        },
+        {
+          "as_printed": "tense Scarritt",
+          "claim": "chicago_democrat_1834_02_11#c009"
         }
       ],
       "mentions": [
-        "chicago_democrat_1834_01_28#c001"
+        "chicago_democrat_1834_01_28#c001",
+        "chicago_democrat_1834_02_11#c009"
       ],
       "first_seen": "1834-01-28",
-      "last_seen": "1834-01-28",
+      "last_seen": "1834-02-11",
       "letter_list_only": true,
       "occupations": [],
       "associated_places": []
@@ -13542,6 +14603,10 @@
           "claim": "chicago_democrat_1833_12_17#c007"
         },
         {
+          "as_printed": "BEAUBIEN.",
+          "claim": "chicago_democrat_1834_02_18#c011"
+        },
+        {
           "as_printed": "J. BT. BEAUBIEN,",
           "claim": "chicago_democrat_1834_08_13#c013"
         },
@@ -13552,6 +14617,7 @@
       ],
       "mentions": [
         "chicago_democrat_1833_12_17#c007",
+        "chicago_democrat_1834_02_18#c011",
         "chicago_democrat_1834_08_13#c013",
         "chicago_democrat_1835_07_01#c010"
       ],
@@ -13563,7 +14629,9 @@
         "public administrator"
       ],
       "associated_places": [
-        "Chicago"
+        "Chicago",
+        "Hardscrabble",
+        "Section 29, Township 39 North, Range 14 East"
       ]
     },
     {
@@ -13637,8 +14705,20 @@
     },
     {
       "id": "person_j_bates_jr",
-      "name": "J. Bates jr.",
+      "name": "J. Bates, Jr.",
       "variants": [
+        {
+          "as_printed": "J, BATES, je. Aue'r",
+          "claim": "chicago_democrat_1834_02_04#c005"
+        },
+        {
+          "as_printed": "J. BATES, Jr.",
+          "claim": "chicago_democrat_1834_02_04#c013"
+        },
+        {
+          "as_printed": "J. BATES, Jr. Aue'r,",
+          "claim": "chicago_democrat_1834_02_25#c006"
+        },
         {
           "as_printed": "J. BATES, jr. Auc",
           "claim": "chicago_democrat_1834_07_16#c014"
@@ -13657,19 +14737,23 @@
         }
       ],
       "mentions": [
+        "chicago_democrat_1834_02_04#c005",
+        "chicago_democrat_1834_02_04#c013",
+        "chicago_democrat_1834_02_25#c006",
         "chicago_democrat_1834_07_16#c014",
         "chicago_democrat_1834_07_30#c009",
         "chicago_democrat_1834_08_13#c007",
         "chicago_democrat_1834_08_20#c005"
       ],
-      "first_seen": "1834-07-16",
+      "first_seen": "1834-02-04",
       "last_seen": "1834-08-20",
       "letter_list_only": false,
       "occupations": [
         "auctioneer"
       ],
       "associated_places": [
-        "Chicago"
+        "Chicago",
+        "Chicago post office"
       ]
     },
     {
@@ -13690,6 +14774,24 @@
       "occupations": [
         "surgeon dentist"
       ],
+      "associated_places": []
+    },
+    {
+      "id": "person_j_c_lacey",
+      "name": "J. C. Lacey",
+      "variants": [
+        {
+          "as_printed": "J. e. Lacey",
+          "claim": "chicago_democrat_1834_02_11#c009"
+        }
+      ],
+      "mentions": [
+        "chicago_democrat_1834_02_11#c009"
+      ],
+      "first_seen": "1834-02-11",
+      "last_seen": "1834-02-11",
+      "letter_list_only": true,
+      "occupations": [],
       "associated_places": []
     },
     {
@@ -13765,13 +14867,28 @@
         {
           "as_printed": "U. BD. CATON,",
           "claim": "chicago_democrat_1833_12_17#c006"
+        },
+        {
+          "as_printed": "J. D. CATON",
+          "claim": "chicago_democrat_1834_02_04#c008"
+        },
+        {
+          "as_printed": "J. D: CATON",
+          "claim": "chicago_democrat_1834_02_11#c005"
+        },
+        {
+          "as_printed": "J. D. CATON",
+          "claim": "chicago_democrat_1834_02_18#c014"
         }
       ],
       "mentions": [
-        "chicago_democrat_1833_12_17#c006"
+        "chicago_democrat_1833_12_17#c006",
+        "chicago_democrat_1834_02_04#c008",
+        "chicago_democrat_1834_02_11#c005",
+        "chicago_democrat_1834_02_18#c014"
       ],
       "first_seen": "1833-12-17",
-      "last_seen": "1833-12-17",
+      "last_seen": "1834-02-18",
       "letter_list_only": false,
       "occupations": [
         "attorney"
@@ -13796,6 +14913,26 @@
       "last_seen": "1834-07-16",
       "letter_list_only": true,
       "occupations": [],
+      "associated_places": []
+    },
+    {
+      "id": "person_j_d_winters_co",
+      "name": "J. D. Winters & Co.",
+      "variants": [
+        {
+          "as_printed": "J. D. WINTERS & CO.",
+          "claim": "chicago_democrat_1834_02_18#c008"
+        }
+      ],
+      "mentions": [
+        "chicago_democrat_1834_02_18#c008"
+      ],
+      "first_seen": "1834-02-18",
+      "last_seen": "1834-02-18",
+      "letter_list_only": false,
+      "occupations": [
+        "stage coach proprietor"
+      ],
       "associated_places": []
     },
     {
@@ -13851,6 +14988,24 @@
       ]
     },
     {
+      "id": "person_j_f_schermerhorn",
+      "name": "J. F. Schermerhorn",
+      "variants": [
+        {
+          "as_printed": "J. F. Schermerhorn",
+          "claim": "chicago_democrat_1834_02_11#c009"
+        }
+      ],
+      "mentions": [
+        "chicago_democrat_1834_02_11#c009"
+      ],
+      "first_seen": "1834-02-11",
+      "last_seen": "1834-02-11",
+      "letter_list_only": true,
+      "occupations": [],
+      "associated_places": []
+    },
+    {
       "id": "person_j_farson",
       "name": "J. Farson",
       "variants": [
@@ -13899,13 +15054,33 @@
         {
           "as_printed": "J: He COLLINS.",
           "claim": "chicago_democrat_1834_01_28#c007"
+        },
+        {
+          "as_printed": "J. H. COLLINS",
+          "claim": "chicago_democrat_1834_02_04#c008"
+        },
+        {
+          "as_printed": "J. H. Col",
+          "claim": "chicago_democrat_1834_02_11#c001"
+        },
+        {
+          "as_printed": "J. H. COLLINS",
+          "claim": "chicago_democrat_1834_02_11#c005"
+        },
+        {
+          "as_printed": "J. I. COLLINS",
+          "claim": "chicago_democrat_1834_02_18#c014"
         }
       ],
       "mentions": [
-        "chicago_democrat_1834_01_28#c007"
+        "chicago_democrat_1834_01_28#c007",
+        "chicago_democrat_1834_02_04#c008",
+        "chicago_democrat_1834_02_11#c001",
+        "chicago_democrat_1834_02_11#c005",
+        "chicago_democrat_1834_02_18#c014"
       ],
       "first_seen": "1834-01-28",
-      "last_seen": "1834-01-28",
+      "last_seen": "1834-02-18",
       "letter_list_only": false,
       "occupations": [
         "attorney"
@@ -13919,6 +15094,10 @@
         {
           "as_printed": "1. H. KLYZIE",
           "claim": "chicago_american_1835_06_20#c005"
+        },
+        {
+          "as_printed": ". H. Kinzie",
+          "claim": "chicago_democrat_1834_02_11#c009"
         },
         {
           "as_printed": "NOs He KINZIE",
@@ -13935,11 +15114,12 @@
       ],
       "mentions": [
         "chicago_american_1835_06_20#c005",
+        "chicago_democrat_1834_02_11#c009",
         "chicago_democrat_1834_10_01#c003",
         "chicago_democrat_1834_10_01#c004",
         "chicago_democrat_1835_07_01#c010"
       ],
-      "first_seen": "1834-10-01",
+      "first_seen": "1834-02-11",
       "last_seen": "1835-07-01",
       "letter_list_only": false,
       "occupations": [
@@ -13977,9 +15157,35 @@
       "associated_places": []
     },
     {
+      "id": "person_j_k_blodgett",
+      "name": "J. K. Blodgett",
+      "variants": [
+        {
+          "as_printed": "J, K. Blodgett",
+          "claim": "chicago_democrat_1834_02_04#c025"
+        }
+      ],
+      "mentions": [
+        "chicago_democrat_1834_02_04#c025"
+      ],
+      "first_seen": "1834-02-04",
+      "last_seen": "1834-02-04",
+      "letter_list_only": true,
+      "occupations": [],
+      "associated_places": []
+    },
+    {
       "id": "person_j_k_botsford",
       "name": "J. K. Botsford",
       "variants": [
+        {
+          "as_printed": "J. K. BOTSFORD,",
+          "claim": "chicago_democrat_1834_02_18#c009"
+        },
+        {
+          "as_printed": "J. K. BOTSFORD,",
+          "claim": "chicago_democrat_1834_02_25#c001"
+        },
         {
           "as_printed": "J. K. B",
           "claim": "chicago_democrat_1834_07_02#c058"
@@ -13994,16 +15200,20 @@
         }
       ],
       "mentions": [
+        "chicago_democrat_1834_02_18#c009",
+        "chicago_democrat_1834_02_25#c001",
         "chicago_democrat_1834_07_02#c058",
         "chicago_democrat_1834_07_09#c026",
         "chicago_democrat_1834_10_01#c006"
       ],
-      "first_seen": "1834-07-02",
+      "first_seen": "1834-02-18",
       "last_seen": "1834-10-01",
       "letter_list_only": false,
       "occupations": [
+        "grocer",
         "sheet iron worker",
         "stove dealer",
+        "tin and stove manufacturer",
         "tinsmith"
       ],
       "associated_places": [
@@ -14130,6 +15340,24 @@
       "first_seen": "1834-07-09",
       "last_seen": "1834-07-09",
       "letter_list_only": true,
+      "occupations": [],
+      "associated_places": []
+    },
+    {
+      "id": "person_j_n_fullerton",
+      "name": "J. N. Fullerton",
+      "variants": [
+        {
+          "as_printed": "1. N. Fullerton",
+          "claim": "chicago_democrat_1834_02_11#c001"
+        }
+      ],
+      "mentions": [
+        "chicago_democrat_1834_02_11#c001"
+      ],
+      "first_seen": "1834-02-11",
+      "last_seen": "1834-02-11",
+      "letter_list_only": false,
       "occupations": [],
       "associated_places": []
     },
@@ -14525,13 +15753,36 @@
         {
           "as_printed": "J.P. Converse",
           "claim": "chicago_democrat_1834_01_28#c001"
+        },
+        {
+          "as_printed": "J, P. Converse",
+          "claim": "chicago_democrat_1834_02_04#c025"
         }
       ],
       "mentions": [
-        "chicago_democrat_1834_01_28#c001"
+        "chicago_democrat_1834_01_28#c001",
+        "chicago_democrat_1834_02_04#c025"
       ],
       "first_seen": "1834-01-28",
-      "last_seen": "1834-01-28",
+      "last_seen": "1834-02-04",
+      "letter_list_only": true,
+      "occupations": [],
+      "associated_places": []
+    },
+    {
+      "id": "person_j_p_harkness",
+      "name": "J. P. Harkness",
+      "variants": [
+        {
+          "as_printed": "J.P. Harkness",
+          "claim": "chicago_democrat_1834_02_04#c025"
+        }
+      ],
+      "mentions": [
+        "chicago_democrat_1834_02_04#c025"
+      ],
+      "first_seen": "1834-02-04",
+      "last_seen": "1834-02-04",
       "letter_list_only": true,
       "occupations": [],
       "associated_places": []
@@ -14603,15 +15854,25 @@
           "claim": "chicago_american_1835_07_04#c007"
         },
         {
+          "as_printed": "g. S. C. Hoess",
+          "claim": "chicago_democrat_1834_02_11#c001"
+        },
+        {
+          "as_printed": "J. 8. C. HOGAN, P. M.",
+          "claim": "chicago_democrat_1834_02_11#c003"
+        },
+        {
           "as_printed": "J. S. C. HOGA",
           "claim": "chicago_democrat_1835_07_01#c002"
         }
       ],
       "mentions": [
         "chicago_american_1835_07_04#c007",
+        "chicago_democrat_1834_02_11#c001",
+        "chicago_democrat_1834_02_11#c003",
         "chicago_democrat_1835_07_01#c002"
       ],
-      "first_seen": "1835-07-01",
+      "first_seen": "1834-02-11",
       "last_seen": "1835-07-04",
       "letter_list_only": false,
       "occupations": [
@@ -14724,19 +15985,60 @@
       "associated_places": []
     },
     {
+      "id": "person_j_w_anderson",
+      "name": "J. W. Anderson",
+      "variants": [
+        {
+          "as_printed": "J. W. Anderson",
+          "claim": "chicago_democrat_1834_02_04#c025"
+        }
+      ],
+      "mentions": [
+        "chicago_democrat_1834_02_04#c025"
+      ],
+      "first_seen": "1834-02-04",
+      "last_seen": "1834-02-04",
+      "letter_list_only": true,
+      "occupations": [],
+      "associated_places": []
+    },
+    {
+      "id": "person_j_w_clark",
+      "name": "J. W. Clark",
+      "variants": [
+        {
+          "as_printed": "W Clark",
+          "claim": "chicago_democrat_1834_02_11#c001"
+        }
+      ],
+      "mentions": [
+        "chicago_democrat_1834_02_11#c001"
+      ],
+      "first_seen": "1834-02-11",
+      "last_seen": "1834-02-11",
+      "letter_list_only": false,
+      "occupations": [],
+      "associated_places": []
+    },
+    {
       "id": "person_j_w_lewis",
       "name": "J. W. Lewis",
       "variants": [
         {
           "as_printed": "J. Wi Lewis 2",
           "claim": "chicago_democrat_1834_01_28#c001"
+        },
+        {
+          "as_printed": "J. W. Lewis 2",
+          "claim": "chicago_democrat_1834_02_11#c009"
         }
       ],
       "mentions": [
-        "chicago_democrat_1834_01_28#c001"
+        "chicago_democrat_1834_01_28#c001",
+        "chicago_democrat_1834_02_11#c009"
       ],
       "first_seen": "1834-01-28",
-      "last_seen": "1834-01-28",
+      "last_seen": "1834-02-11",
       "letter_list_only": true,
       "occupations": [],
       "associated_places": []
@@ -14884,13 +16186,18 @@
         {
           "as_printed": "Jacob Fake.",
           "claim": "chicago_democrat_1834_01_28#c001"
+        },
+        {
+          "as_printed": "Jacob Fake",
+          "claim": "chicago_democrat_1834_02_04#c025"
         }
       ],
       "mentions": [
-        "chicago_democrat_1834_01_28#c001"
+        "chicago_democrat_1834_01_28#c001",
+        "chicago_democrat_1834_02_04#c025"
       ],
       "first_seen": "1834-01-28",
-      "last_seen": "1834-01-28",
+      "last_seen": "1834-02-04",
       "letter_list_only": true,
       "occupations": [],
       "associated_places": []
@@ -15260,13 +16567,36 @@
         {
           "as_printed": "james Burk",
           "claim": "chicago_democrat_1834_01_28#c001"
+        },
+        {
+          "as_printed": "James Burk",
+          "claim": "chicago_democrat_1834_02_04#c025"
         }
       ],
       "mentions": [
-        "chicago_democrat_1834_01_28#c001"
+        "chicago_democrat_1834_01_28#c001",
+        "chicago_democrat_1834_02_04#c025"
       ],
       "first_seen": "1834-01-28",
-      "last_seen": "1834-01-28",
+      "last_seen": "1834-02-04",
+      "letter_list_only": true,
+      "occupations": [],
+      "associated_places": []
+    },
+    {
+      "id": "person_james_childress",
+      "name": "James Childress",
+      "variants": [
+        {
+          "as_printed": "Janes Childress",
+          "claim": "chicago_democrat_1834_02_04#c025"
+        }
+      ],
+      "mentions": [
+        "chicago_democrat_1834_02_04#c025"
+      ],
+      "first_seen": "1834-02-04",
+      "last_seen": "1834-02-04",
       "letter_list_only": true,
       "occupations": [],
       "associated_places": []
@@ -15402,6 +16732,42 @@
       ],
       "first_seen": "1834-10-22",
       "last_seen": "1834-10-22",
+      "letter_list_only": true,
+      "occupations": [],
+      "associated_places": []
+    },
+    {
+      "id": "person_james_mackel",
+      "name": "James Mackel",
+      "variants": [
+        {
+          "as_printed": "James Mackel",
+          "claim": "chicago_democrat_1834_02_11#c009"
+        }
+      ],
+      "mentions": [
+        "chicago_democrat_1834_02_11#c009"
+      ],
+      "first_seen": "1834-02-11",
+      "last_seen": "1834-02-11",
+      "letter_list_only": true,
+      "occupations": [],
+      "associated_places": []
+    },
+    {
+      "id": "person_james_makie",
+      "name": "James Makie",
+      "variants": [
+        {
+          "as_printed": "James Makie",
+          "claim": "chicago_democrat_1834_02_11#c009"
+        }
+      ],
+      "mentions": [
+        "chicago_democrat_1834_02_11#c009"
+      ],
+      "first_seen": "1834-02-11",
+      "last_seen": "1834-02-11",
       "letter_list_only": true,
       "occupations": [],
       "associated_places": []
@@ -15732,6 +17098,24 @@
       "associated_places": []
     },
     {
+      "id": "person_jane_forrister",
+      "name": "Jane Forrister",
+      "variants": [
+        {
+          "as_printed": "Jane Forrister",
+          "claim": "chicago_democrat_1834_02_04#c025"
+        }
+      ],
+      "mentions": [
+        "chicago_democrat_1834_02_04#c025"
+      ],
+      "first_seen": "1834-02-04",
+      "last_seen": "1834-02-04",
+      "letter_list_only": true,
+      "occupations": [],
+      "associated_places": []
+    },
+    {
       "id": "person_jane_forster",
       "name": "Jane Forster",
       "variants": [
@@ -15869,6 +17253,24 @@
       ],
       "first_seen": "1834-01-28",
       "last_seen": "1834-01-28",
+      "letter_list_only": true,
+      "occupations": [],
+      "associated_places": []
+    },
+    {
+      "id": "person_jesse_b_winn_co",
+      "name": "Jesse B. Winn & Co.",
+      "variants": [
+        {
+          "as_printed": "Jesse B. Winn & Co,",
+          "claim": "chicago_democrat_1834_02_11#c009"
+        }
+      ],
+      "mentions": [
+        "chicago_democrat_1834_02_11#c009"
+      ],
+      "first_seen": "1834-02-11",
+      "last_seen": "1834-02-11",
       "letter_list_only": true,
       "occupations": [],
       "associated_places": []
@@ -16113,6 +17515,24 @@
       "associated_places": []
     },
     {
+      "id": "person_john_a_clark",
+      "name": "John A. Clark",
+      "variants": [
+        {
+          "as_printed": "JOUN A. CLARK, See’y,",
+          "claim": "chicago_democrat_1834_02_11#c011"
+        }
+      ],
+      "mentions": [
+        "chicago_democrat_1834_02_11#c011"
+      ],
+      "first_seen": "1834-02-11",
+      "last_seen": "1834-02-11",
+      "letter_list_only": false,
+      "occupations": [],
+      "associated_places": []
+    },
+    {
       "id": "person_john_anderson",
       "name": "John Anderson",
       "variants": [
@@ -16160,13 +17580,18 @@
         {
           "as_printed": "JOHN BATES, jr,",
           "claim": "chicago_democrat_1834_01_14#c002"
+        },
+        {
+          "as_printed": "JOHN BATES, Jr.",
+          "claim": "chicago_democrat_1834_02_04#c010"
         }
       ],
       "mentions": [
-        "chicago_democrat_1834_01_14#c002"
+        "chicago_democrat_1834_01_14#c002",
+        "chicago_democrat_1834_02_04#c010"
       ],
       "first_seen": "1834-01-14",
-      "last_seen": "1834-01-14",
+      "last_seen": "1834-02-04",
       "letter_list_only": false,
       "occupations": [
         "auctioneer"
@@ -16174,6 +17599,24 @@
       "associated_places": [
         "Fort Dearborn"
       ]
+    },
+    {
+      "id": "person_john_blackston",
+      "name": "John Blackston",
+      "variants": [
+        {
+          "as_printed": "John Blaxton",
+          "claim": "chicago_democrat_1834_02_18#c004"
+        }
+      ],
+      "mentions": [
+        "chicago_democrat_1834_02_18#c004"
+      ],
+      "first_seen": "1834-02-18",
+      "last_seen": "1834-02-18",
+      "letter_list_only": false,
+      "occupations": [],
+      "associated_places": []
     },
     {
       "id": "person_john_brink",
@@ -16487,6 +17930,14 @@
           "claim": "chicago_american_1835_07_04#c010"
         },
         {
+          "as_printed": "JOHN H. KINZIE",
+          "claim": "chicago_democrat_1834_02_11#c007"
+        },
+        {
+          "as_printed": "J¢HN 1. KINZIE",
+          "claim": "chicago_democrat_1834_02_18#c013"
+        },
+        {
           "as_printed": "John H. Kinzie, E",
           "claim": "chicago_democrat_1834_07_23#c004"
         },
@@ -16510,16 +17961,19 @@
       "mentions": [
         "chicago_american_1835_06_27#c004",
         "chicago_american_1835_07_04#c010",
+        "chicago_democrat_1834_02_11#c007",
+        "chicago_democrat_1834_02_18#c013",
         "chicago_democrat_1834_07_23#c004",
         "chicago_democrat_1834_08_06#c006",
         "chicago_democrat_1834_08_06#c015",
         "chicago_democrat_1834_08_13#c001",
         "chicago_democrat_1834_08_13#c010"
       ],
-      "first_seen": "1834-07-23",
+      "first_seen": "1834-02-11",
       "last_seen": "1835-07-04",
       "letter_list_only": false,
       "occupations": [
+        "forwarding and commission merchant",
         "merchant"
       ],
       "associated_places": [
@@ -16702,18 +18156,41 @@
         {
           "as_printed": "John Miller",
           "claim": "chicago_democrat_1833_12_10#c006"
+        },
+        {
+          "as_printed": "JOHN MILLER",
+          "claim": "chicago_democrat_1834_02_04#c007"
         }
       ],
       "mentions": [
-        "chicago_democrat_1833_12_10#c006"
+        "chicago_democrat_1833_12_10#c006",
+        "chicago_democrat_1834_02_04#c007"
       ],
       "first_seen": "1833-12-10",
-      "last_seen": "1833-12-10",
+      "last_seen": "1834-02-04",
       "letter_list_only": false,
       "occupations": [],
       "associated_places": [
         "Chicago"
       ]
+    },
+    {
+      "id": "person_john_monreou",
+      "name": "John Monreou",
+      "variants": [
+        {
+          "as_printed": "Jolin Monreou",
+          "claim": "chicago_democrat_1834_02_11#c009"
+        }
+      ],
+      "mentions": [
+        "chicago_democrat_1834_02_11#c009"
+      ],
+      "first_seen": "1834-02-11",
+      "last_seen": "1834-02-11",
+      "letter_list_only": true,
+      "occupations": [],
+      "associated_places": []
     },
     {
       "id": "person_john_o_deel",
@@ -16788,6 +18265,10 @@
           "claim": "chicago_democrat_1834_01_28#c001"
         },
         {
+          "as_printed": "N 8. C. HOGAN, P a.",
+          "claim": "chicago_democrat_1834_02_11#c009"
+        },
+        {
           "as_printed": "JOHN S. C. HOGAN, P.M.",
           "claim": "chicago_democrat_1834_07_02#c040"
         },
@@ -16814,6 +18295,7 @@
       ],
       "mentions": [
         "chicago_democrat_1834_01_28#c001",
+        "chicago_democrat_1834_02_11#c009",
         "chicago_democrat_1834_07_02#c040",
         "chicago_democrat_1834_07_09#c013",
         "chicago_democrat_1834_08_13#c001",
@@ -16883,6 +18365,10 @@
           "claim": "chicago_democrat_1834_01_28#c001"
         },
         {
+          "as_printed": "John Sewell",
+          "claim": "chicago_democrat_1834_02_11#c009"
+        },
+        {
           "as_printed": "John sewell",
           "claim": "chicago_democrat_1834_07_02#c032"
         },
@@ -16893,6 +18379,7 @@
       ],
       "mentions": [
         "chicago_democrat_1834_01_28#c001",
+        "chicago_democrat_1834_02_11#c009",
         "chicago_democrat_1834_07_02#c032",
         "chicago_democrat_1834_07_09#c007"
       ],
@@ -16968,6 +18455,24 @@
       ]
     },
     {
+      "id": "person_john_thompson",
+      "name": "John Thompson",
+      "variants": [
+        {
+          "as_printed": "John Thompson",
+          "claim": "chicago_democrat_1834_02_11#c009"
+        }
+      ],
+      "mentions": [
+        "chicago_democrat_1834_02_11#c009"
+      ],
+      "first_seen": "1834-02-11",
+      "last_seen": "1834-02-11",
+      "letter_list_only": true,
+      "occupations": [],
+      "associated_places": []
+    },
+    {
       "id": "person_john_v_nalla",
       "name": "John V. Nalla",
       "variants": [
@@ -17022,6 +18527,24 @@
       ],
       "first_seen": "1834-07-09",
       "last_seen": "1834-07-09",
+      "letter_list_only": true,
+      "occupations": [],
+      "associated_places": []
+    },
+    {
+      "id": "person_john_vandine",
+      "name": "John Vandine",
+      "variants": [
+        {
+          "as_printed": "John Vandine",
+          "claim": "chicago_democrat_1834_02_11#c009"
+        }
+      ],
+      "mentions": [
+        "chicago_democrat_1834_02_11#c009"
+      ],
+      "first_seen": "1834-02-11",
+      "last_seen": "1834-02-11",
       "letter_list_only": true,
       "occupations": [],
       "associated_places": []
@@ -17204,14 +18727,19 @@
       "name": "John Wright",
       "variants": [
         {
+          "as_printed": "JOHN WEIGH",
+          "claim": "chicago_democrat_1834_02_04#c018"
+        },
+        {
           "as_printed": "JOHN WRIGHT",
           "claim": "chicago_democrat_1834_07_02#c020"
         }
       ],
       "mentions": [
+        "chicago_democrat_1834_02_04#c018",
         "chicago_democrat_1834_07_02#c020"
       ],
-      "first_seen": "1834-07-02",
+      "first_seen": "1834-02-04",
       "last_seen": "1834-07-02",
       "letter_list_only": false,
       "occupations": [
@@ -17640,19 +19168,42 @@
       ]
     },
     {
+      "id": "person_jos_a_gooding",
+      "name": "Jos. A. Gooding",
+      "variants": [
+        {
+          "as_printed": "Jos, A. Gooding",
+          "claim": "chicago_democrat_1834_02_04#c025"
+        }
+      ],
+      "mentions": [
+        "chicago_democrat_1834_02_04#c025"
+      ],
+      "first_seen": "1834-02-04",
+      "last_seen": "1834-02-04",
+      "letter_list_only": true,
+      "occupations": [],
+      "associated_places": []
+    },
+    {
       "id": "person_jos_britton",
       "name": "Jos. Britton",
       "variants": [
         {
           "as_printed": "Jos. Britton",
           "claim": "chicago_democrat_1834_01_28#c001"
+        },
+        {
+          "as_printed": "Jos, Britton",
+          "claim": "chicago_democrat_1834_02_04#c025"
         }
       ],
       "mentions": [
-        "chicago_democrat_1834_01_28#c001"
+        "chicago_democrat_1834_01_28#c001",
+        "chicago_democrat_1834_02_04#c025"
       ],
       "first_seen": "1834-01-28",
-      "last_seen": "1834-01-28",
+      "last_seen": "1834-02-04",
       "letter_list_only": true,
       "occupations": [],
       "associated_places": []
@@ -17850,6 +19401,24 @@
       "associated_places": []
     },
     {
+      "id": "person_joseph_meeker",
+      "name": "Joseph Meeker",
+      "variants": [
+        {
+          "as_printed": "Joseph Mecker",
+          "claim": "chicago_democrat_1834_02_11#c009"
+        }
+      ],
+      "mentions": [
+        "chicago_democrat_1834_02_11#c009"
+      ],
+      "first_seen": "1834-02-11",
+      "last_seen": "1834-02-11",
+      "letter_list_only": true,
+      "occupations": [],
+      "associated_places": []
+    },
+    {
       "id": "person_joseph_r_oss",
       "name": "Joseph [R]oss",
       "variants": [
@@ -17962,13 +19531,18 @@
         {
           "as_printed": "Joshua Provis",
           "claim": "chicago_democrat_1834_01_28#c001"
+        },
+        {
+          "as_printed": "Joshua Pravis",
+          "claim": "chicago_democrat_1834_02_11#c009"
         }
       ],
       "mentions": [
-        "chicago_democrat_1834_01_28#c001"
+        "chicago_democrat_1834_01_28#c001",
+        "chicago_democrat_1834_02_11#c009"
       ],
       "first_seen": "1834-01-28",
-      "last_seen": "1834-01-28",
+      "last_seen": "1834-02-11",
       "letter_list_only": true,
       "occupations": [],
       "associated_places": []
@@ -18021,14 +19595,19 @@
       "name": "Julius Perrin",
       "variants": [
         {
+          "as_printed": "Julius Perrin 2",
+          "claim": "chicago_democrat_1834_02_11#c009"
+        },
+        {
           "as_printed": "Julius Perrin",
           "claim": "chicago_democrat_1834_07_02#c031"
         }
       ],
       "mentions": [
+        "chicago_democrat_1834_02_11#c009",
         "chicago_democrat_1834_07_02#c031"
       ],
-      "first_seen": "1834-07-02",
+      "first_seen": "1834-02-11",
       "last_seen": "1834-07-02",
       "letter_list_only": true,
       "occupations": [],
@@ -18694,6 +20273,24 @@
       "associated_places": []
     },
     {
+      "id": "person_l_c_chamberlain",
+      "name": "L. C. Chamberlain",
+      "variants": [
+        {
+          "as_printed": "L. C, Cusmpznsars",
+          "claim": "chicago_democrat_1834_02_18#c004"
+        }
+      ],
+      "mentions": [
+        "chicago_democrat_1834_02_18#c004"
+      ],
+      "first_seen": "1834-02-18",
+      "last_seen": "1834-02-18",
+      "letter_list_only": false,
+      "occupations": [],
+      "associated_places": []
+    },
+    {
       "id": "person_l_curtiss",
       "name": "L. Curtiss",
       "variants": [
@@ -18866,12 +20463,17 @@
           "claim": "chicago_democrat_1833_12_17#c003"
         },
         {
+          "as_printed": "L. W. MONT",
+          "claim": "chicago_democrat_1834_02_04#c026"
+        },
+        {
           "as_printed": "L. W. MONTGOMERY",
           "claim": "chicago_democrat_1834_07_02#c013"
         }
       ],
       "mentions": [
         "chicago_democrat_1833_12_17#c003",
+        "chicago_democrat_1834_02_04#c026",
         "chicago_democrat_1834_07_02#c013"
       ],
       "first_seen": "1833-12-17",
@@ -18881,7 +20483,8 @@
         "boot and shoe maker"
       ],
       "associated_places": [
-        "Chicago"
+        "Chicago",
+        "South Water Street"
       ]
     },
     {
@@ -18926,6 +20529,24 @@
       "associated_places": [
         "Chicago"
       ]
+    },
+    {
+      "id": "person_lamira_laura_carrier",
+      "name": "Lamira & Laura Carrier",
+      "variants": [
+        {
+          "as_printed": "Lamira& Laura Carrier",
+          "claim": "chicago_democrat_1834_02_04#c025"
+        }
+      ],
+      "mentions": [
+        "chicago_democrat_1834_02_04#c025"
+      ],
+      "first_seen": "1834-02-04",
+      "last_seen": "1834-02-04",
+      "letter_list_only": true,
+      "occupations": [],
+      "associated_places": []
     },
     {
       "id": "person_lan_s_ing_d_c",
@@ -19042,6 +20663,24 @@
       "associated_places": []
     },
     {
+      "id": "person_lauretta_plympton",
+      "name": "Lauretta Plympton",
+      "variants": [
+        {
+          "as_printed": "Lauretta Plympton",
+          "claim": "chicago_democrat_1834_02_11#c009"
+        }
+      ],
+      "mentions": [
+        "chicago_democrat_1834_02_11#c009"
+      ],
+      "first_seen": "1834-02-11",
+      "last_seen": "1834-02-11",
+      "letter_list_only": true,
+      "occupations": [],
+      "associated_places": []
+    },
+    {
       "id": "person_law_s_on_carrier",
       "name": "Law[s]on Carrier",
       "variants": [
@@ -19111,6 +20750,24 @@
       ],
       "first_seen": "1834-07-16",
       "last_seen": "1834-07-16",
+      "letter_list_only": true,
+      "occupations": [],
+      "associated_places": []
+    },
+    {
+      "id": "person_levi_hills",
+      "name": "Levi Hills",
+      "variants": [
+        {
+          "as_printed": "Levi Hille 2",
+          "claim": "chicago_democrat_1834_02_11#c009"
+        }
+      ],
+      "mentions": [
+        "chicago_democrat_1834_02_11#c009"
+      ],
+      "first_seen": "1834-02-11",
+      "last_seen": "1834-02-11",
       "letter_list_only": true,
       "occupations": [],
       "associated_places": []
@@ -19196,6 +20853,24 @@
       ]
     },
     {
+      "id": "person_lewis_churchival",
+      "name": "Lewis Churchival",
+      "variants": [
+        {
+          "as_printed": "Lewis Curchival",
+          "claim": "chicago_democrat_1834_02_18#c004"
+        }
+      ],
+      "mentions": [
+        "chicago_democrat_1834_02_18#c004"
+      ],
+      "first_seen": "1834-02-18",
+      "last_seen": "1834-02-18",
+      "letter_list_only": false,
+      "occupations": [],
+      "associated_places": []
+    },
+    {
       "id": "person_lewis_kercheval",
       "name": "Lewis Kercheval",
       "variants": [
@@ -19220,13 +20895,18 @@
         {
           "as_printed": "Lewis Lafton",
           "claim": "chicago_democrat_1834_01_28#c001"
+        },
+        {
+          "as_printed": "Lewis Lafton",
+          "claim": "chicago_democrat_1834_02_11#c009"
         }
       ],
       "mentions": [
-        "chicago_democrat_1834_01_28#c001"
+        "chicago_democrat_1834_01_28#c001",
+        "chicago_democrat_1834_02_11#c009"
       ],
       "first_seen": "1834-01-28",
-      "last_seen": "1834-01-28",
+      "last_seen": "1834-02-11",
       "letter_list_only": true,
       "occupations": [],
       "associated_places": []
@@ -19238,13 +20918,18 @@
         {
           "as_printed": "Lewis Lake",
           "claim": "chicago_democrat_1834_01_28#c001"
+        },
+        {
+          "as_printed": "Lewis Lake",
+          "claim": "chicago_democrat_1834_02_11#c009"
         }
       ],
       "mentions": [
-        "chicago_democrat_1834_01_28#c001"
+        "chicago_democrat_1834_01_28#c001",
+        "chicago_democrat_1834_02_11#c009"
       ],
       "first_seen": "1834-01-28",
-      "last_seen": "1834-01-28",
+      "last_seen": "1834-02-11",
       "letter_list_only": true,
       "occupations": [],
       "associated_places": []
@@ -19347,22 +21032,69 @@
       "associated_places": []
     },
     {
+      "id": "person_lewis_temple",
+      "name": "Lewis Temple",
+      "variants": [
+        {
+          "as_printed": "Lewis Tem",
+          "claim": "chicago_democrat_1834_02_11#c009"
+        }
+      ],
+      "mentions": [
+        "chicago_democrat_1834_02_11#c009"
+      ],
+      "first_seen": "1834-02-11",
+      "last_seen": "1834-02-11",
+      "letter_list_only": true,
+      "occupations": [],
+      "associated_places": []
+    },
+    {
       "id": "person_lieut_j_allen",
       "name": "Lieut. J. Allen",
       "variants": [
         {
           "as_printed": "Lieut. J, Al",
           "claim": "chicago_american_1835_07_18#c001"
+        },
+        {
+          "as_printed": "Lieut, J. Artex",
+          "claim": "chicago_democrat_1834_02_04#c001"
         }
       ],
       "mentions": [
-        "chicago_american_1835_07_18#c001"
+        "chicago_american_1835_07_18#c001",
+        "chicago_democrat_1834_02_04#c001"
       ],
-      "first_seen": "1835-07-18",
+      "first_seen": "1834-02-04",
       "last_seen": "1835-07-18",
       "letter_list_only": false,
       "occupations": [
-        "army officer"
+        "U.S. Army officer",
+        "army officer",
+        "harbour superintendent"
+      ],
+      "associated_places": [
+        "Chicago harbour"
+      ]
+    },
+    {
+      "id": "person_lieut_j_l_thompson",
+      "name": "Lieut. J. L. Thompson",
+      "variants": [
+        {
+          "as_printed": "eut. J. L.'l'nompsoy, U.S.A",
+          "claim": "chicago_democrat_1834_02_04#c002"
+        }
+      ],
+      "mentions": [
+        "chicago_democrat_1834_02_04#c002"
+      ],
+      "first_seen": "1834-02-04",
+      "last_seen": "1834-02-04",
+      "letter_list_only": false,
+      "occupations": [
+        "U.S. Army officer"
       ],
       "associated_places": []
     },
@@ -19388,6 +21120,26 @@
       "associated_places": [
         "Chicago"
       ]
+    },
+    {
+      "id": "person_lieut_l_t_jamison",
+      "name": "Lieut. L. T. Jamison",
+      "variants": [
+        {
+          "as_printed": "Lieut. Ly T. Jami-",
+          "claim": "chicago_democrat_1834_02_04#c002"
+        }
+      ],
+      "mentions": [
+        "chicago_democrat_1834_02_04#c002"
+      ],
+      "first_seen": "1834-02-04",
+      "last_seen": "1834-02-04",
+      "letter_list_only": false,
+      "occupations": [
+        "U.S. Army officer"
+      ],
+      "associated_places": []
     },
     {
       "id": "person_lil_l_ie_john",
@@ -19520,6 +21272,24 @@
       "associated_places": []
     },
     {
+      "id": "person_loiza_webb",
+      "name": "Loiza Webb",
+      "variants": [
+        {
+          "as_printed": "Loiza Webb",
+          "claim": "chicago_democrat_1834_02_11#c009"
+        }
+      ],
+      "mentions": [
+        "chicago_democrat_1834_02_11#c009"
+      ],
+      "first_seen": "1834-02-11",
+      "last_seen": "1834-02-11",
+      "letter_list_only": true,
+      "occupations": [],
+      "associated_places": []
+    },
+    {
       "id": "person_loner_oliver",
       "name": "Loner, Oliver",
       "variants": [
@@ -19599,6 +21369,24 @@
       ],
       "first_seen": "1834-07-02",
       "last_seen": "1834-07-16",
+      "letter_list_only": true,
+      "occupations": [],
+      "associated_places": []
+    },
+    {
+      "id": "person_loring_delano",
+      "name": "Loring Delano",
+      "variants": [
+        {
+          "as_printed": "Loring Delano",
+          "claim": "chicago_democrat_1834_02_04#c025"
+        }
+      ],
+      "mentions": [
+        "chicago_democrat_1834_02_04#c025"
+      ],
+      "first_seen": "1834-02-04",
+      "last_seen": "1834-02-04",
       "letter_list_only": true,
       "occupations": [],
       "associated_places": []
@@ -19775,6 +21563,24 @@
       "first_seen": "1834-08-06",
       "last_seen": "1834-08-06",
       "letter_list_only": false,
+      "occupations": [],
+      "associated_places": []
+    },
+    {
+      "id": "person_luther_hatch",
+      "name": "Luther Hatch",
+      "variants": [
+        {
+          "as_printed": "Luther Hatch",
+          "claim": "chicago_democrat_1834_02_04#c025"
+        }
+      ],
+      "mentions": [
+        "chicago_democrat_1834_02_04#c025"
+      ],
+      "first_seen": "1834-02-04",
+      "last_seen": "1834-02-04",
+      "letter_list_only": true,
       "occupations": [],
       "associated_places": []
     },
@@ -20455,6 +22261,26 @@
       ]
     },
     {
+      "id": "person_mark_noble_sen",
+      "name": "Mark Noble, Sen.",
+      "variants": [
+        {
+          "as_printed": "MARK NOBLE, Sen.",
+          "claim": "chicago_democrat_1834_02_04#c012"
+        }
+      ],
+      "mentions": [
+        "chicago_democrat_1834_02_04#c012"
+      ],
+      "first_seen": "1834-02-04",
+      "last_seen": "1834-02-04",
+      "letter_list_only": false,
+      "occupations": [],
+      "associated_places": [
+        "Section 4, Township 39 North, Range 14 East"
+      ]
+    },
+    {
       "id": "person_markham_mrs",
       "name": "Markham Mrs.",
       "variants": [
@@ -20575,13 +22401,36 @@
         {
           "as_printed": "Mary Barrows",
           "claim": "chicago_democrat_1834_01_28#c001"
+        },
+        {
+          "as_printed": "Mary Barrows",
+          "claim": "chicago_democrat_1834_02_04#c025"
         }
       ],
       "mentions": [
-        "chicago_democrat_1834_01_28#c001"
+        "chicago_democrat_1834_01_28#c001",
+        "chicago_democrat_1834_02_04#c025"
       ],
       "first_seen": "1834-01-28",
-      "last_seen": "1834-01-28",
+      "last_seen": "1834-02-04",
+      "letter_list_only": true,
+      "occupations": [],
+      "associated_places": []
+    },
+    {
+      "id": "person_mary_meriams",
+      "name": "Mary Meriams",
+      "variants": [
+        {
+          "as_printed": "Mary Meriams",
+          "claim": "chicago_democrat_1834_02_11#c009"
+        }
+      ],
+      "mentions": [
+        "chicago_democrat_1834_02_11#c009"
+      ],
+      "first_seen": "1834-02-11",
+      "last_seen": "1834-02-11",
       "letter_list_only": true,
       "occupations": [],
       "associated_places": []
@@ -20725,12 +22574,27 @@
           "claim": "chicago_democrat_1833_12_24#c003"
         },
         {
+          "as_printed": "TATTHIAS NASON & CO.",
+          "claim": "chicago_democrat_1834_02_04#c023"
+        },
+        {
+          "as_printed": "MATTHIAS MASON & CO.",
+          "claim": "chicago_democrat_1834_02_11#c008"
+        },
+        {
+          "as_printed": "MATTHIAS       Ww de at ‘  T",
+          "claim": "chicago_democrat_1834_02_25#c007"
+        },
+        {
           "as_printed": "MATTHIAS MASON & CO.",
           "claim": "chicago_democrat_1834_10_15#c007"
         }
       ],
       "mentions": [
         "chicago_democrat_1833_12_24#c003",
+        "chicago_democrat_1834_02_04#c023",
+        "chicago_democrat_1834_02_11#c008",
+        "chicago_democrat_1834_02_25#c007",
         "chicago_democrat_1834_10_15#c007"
       ],
       "first_seen": "1833-12-24",
@@ -21242,6 +23106,24 @@
       ]
     },
     {
+      "id": "person_miranda_miner",
+      "name": "Miranda Miner",
+      "variants": [
+        {
+          "as_printed": "Miands Miner 2",
+          "claim": "chicago_democrat_1834_02_11#c009"
+        }
+      ],
+      "mentions": [
+        "chicago_democrat_1834_02_11#c009"
+      ],
+      "first_seen": "1834-02-11",
+      "last_seen": "1834-02-11",
+      "letter_list_only": true,
+      "occupations": [],
+      "associated_places": []
+    },
+    {
       "id": "person_mkelly_wilham",
       "name": "MKelly, Wilham",
       "variants": [
@@ -21358,6 +23240,32 @@
       ]
     },
     {
+      "id": "person_mr_bowers",
+      "name": "Mr. Bowers",
+      "variants": [
+        {
+          "as_printed": "Mr. Bow- |ers",
+          "claim": "chicago_democrat_1834_02_18#c005"
+        },
+        {
+          "as_printed": "Mr. Bow",
+          "claim": "chicago_democrat_1834_02_25#c003"
+        }
+      ],
+      "mentions": [
+        "chicago_democrat_1834_02_18#c005",
+        "chicago_democrat_1834_02_25#c003"
+      ],
+      "first_seen": "1834-02-18",
+      "last_seen": "1834-02-25",
+      "letter_list_only": false,
+      "occupations": [
+        "fire-eater",
+        "ventriloquist"
+      ],
+      "associated_places": []
+    },
+    {
       "id": "person_mr_dexter_graves",
       "name": "Mr. [Dexter] Graves",
       "variants": [
@@ -21376,6 +23284,24 @@
       "associated_places": [
         "Chicago"
       ]
+    },
+    {
+      "id": "person_mr_roult",
+      "name": "Mr. Roult",
+      "variants": [
+        {
+          "as_printed": "Mr. Rouit 2°",
+          "claim": "chicago_democrat_1834_02_11#c009"
+        }
+      ],
+      "mentions": [
+        "chicago_democrat_1834_02_11#c009"
+      ],
+      "first_seen": "1834-02-11",
+      "last_seen": "1834-02-11",
+      "letter_list_only": true,
+      "occupations": [],
+      "associated_places": []
     },
     {
       "id": "person_muggs_david",
@@ -21632,13 +23558,18 @@
         {
           "as_printed": "Nathan Hopkine",
           "claim": "chicago_democrat_1834_01_28#c001"
+        },
+        {
+          "as_printed": "Nathan Hopkins",
+          "claim": "chicago_democrat_1834_02_04#c025"
         }
       ],
       "mentions": [
-        "chicago_democrat_1834_01_28#c001"
+        "chicago_democrat_1834_01_28#c001",
+        "chicago_democrat_1834_02_04#c025"
       ],
       "first_seen": "1834-01-28",
-      "last_seen": "1834-01-28",
+      "last_seen": "1834-02-04",
       "letter_list_only": true,
       "occupations": [],
       "associated_places": []
@@ -21650,13 +23581,18 @@
         {
           "as_printed": "Nathan Huchins",
           "claim": "chicago_democrat_1834_01_28#c001"
+        },
+        {
+          "as_printed": "Nathan Huchine",
+          "claim": "chicago_democrat_1834_02_04#c025"
         }
       ],
       "mentions": [
-        "chicago_democrat_1834_01_28#c001"
+        "chicago_democrat_1834_01_28#c001",
+        "chicago_democrat_1834_02_04#c025"
       ],
       "first_seen": "1834-01-28",
-      "last_seen": "1834-01-28",
+      "last_seen": "1834-02-04",
       "letter_list_only": true,
       "occupations": [],
       "associated_places": []
@@ -22112,6 +24048,42 @@
       "associated_places": []
     },
     {
+      "id": "person_noah_phelps",
+      "name": "Noah Phelps",
+      "variants": [
+        {
+          "as_printed": "Noah Phelps",
+          "claim": "chicago_democrat_1834_02_11#c009"
+        }
+      ],
+      "mentions": [
+        "chicago_democrat_1834_02_11#c009"
+      ],
+      "first_seen": "1834-02-11",
+      "last_seen": "1834-02-11",
+      "letter_list_only": true,
+      "occupations": [],
+      "associated_places": []
+    },
+    {
+      "id": "person_noel_dagenet",
+      "name": "Noel Dagenet",
+      "variants": [
+        {
+          "as_printed": "Noel Dagenet",
+          "claim": "chicago_democrat_1834_02_04#c025"
+        }
+      ],
+      "mentions": [
+        "chicago_democrat_1834_02_04#c025"
+      ],
+      "first_seen": "1834-02-04",
+      "last_seen": "1834-02-04",
+      "letter_list_only": true,
+      "occupations": [],
+      "associated_places": []
+    },
+    {
       "id": "person_northrop_francis_b",
       "name": "Northrop, Francis B.",
       "variants": [
@@ -22188,6 +24160,42 @@
       "associated_places": [
         "Chicago"
       ]
+    },
+    {
+      "id": "person_o_grant",
+      "name": "O. Grant",
+      "variants": [
+        {
+          "as_printed": "O. Grant",
+          "claim": "chicago_democrat_1834_02_04#c025"
+        }
+      ],
+      "mentions": [
+        "chicago_democrat_1834_02_04#c025"
+      ],
+      "first_seen": "1834-02-04",
+      "last_seen": "1834-02-04",
+      "letter_list_only": true,
+      "occupations": [],
+      "associated_places": []
+    },
+    {
+      "id": "person_o_p_catran",
+      "name": "O. P. Catran",
+      "variants": [
+        {
+          "as_printed": "O. P. Catran",
+          "claim": "chicago_democrat_1834_02_04#c025"
+        }
+      ],
+      "mentions": [
+        "chicago_democrat_1834_02_04#c025"
+      ],
+      "first_seen": "1834-02-04",
+      "last_seen": "1834-02-04",
+      "letter_list_only": true,
+      "occupations": [],
+      "associated_places": []
     },
     {
       "id": "person_oakley_benjamin_w",
@@ -22335,6 +24343,24 @@
       ],
       "first_seen": "1834-07-09",
       "last_seen": "1834-07-09",
+      "letter_list_only": true,
+      "occupations": [],
+      "associated_places": []
+    },
+    {
+      "id": "person_orinda_gary",
+      "name": "Orinda Gary",
+      "variants": [
+        {
+          "as_printed": "Orinda Gary",
+          "claim": "chicago_democrat_1834_02_04#c025"
+        }
+      ],
+      "mentions": [
+        "chicago_democrat_1834_02_04#c025"
+      ],
+      "first_seen": "1834-02-04",
+      "last_seen": "1834-02-04",
       "letter_list_only": true,
       "occupations": [],
       "associated_places": []
@@ -22526,26 +24552,46 @@
         {
           "as_printed": "P,P. Pee,",
           "claim": "chicago_democrat_1833_12_03#c016"
+        },
+        {
+          "as_printed": "P. F. Pech",
+          "claim": "chicago_democrat_1834_02_04#c016"
+        },
+        {
+          "as_printed": "PECK",
+          "claim": "chicago_democrat_1834_02_04#c020"
         }
       ],
       "mentions": [
         "chicago_democrat_1833_12_03#c010",
-        "chicago_democrat_1833_12_03#c016"
+        "chicago_democrat_1833_12_03#c016",
+        "chicago_democrat_1834_02_04#c016",
+        "chicago_democrat_1834_02_04#c020"
       ],
       "first_seen": "1833-12-03",
-      "last_seen": "1833-12-03",
+      "last_seen": "1834-02-04",
       "letter_list_only": false,
       "occupations": [
         "merchant"
       ],
       "associated_places": [
-        "Chicago"
+        "Chicago",
+        "La Salle Street",
+        "South Water Street"
       ]
     },
     {
       "id": "person_p_f_w_peck",
       "name": "P. F. W. Peck",
       "variants": [
+        {
+          "as_printed": "P.P. Beek",
+          "claim": "chicago_democrat_1834_02_11#c001"
+        },
+        {
+          "as_printed": "P. F. W. PacK, See y.",
+          "claim": "chicago_democrat_1834_02_18#c002"
+        },
         {
           "as_printed": "EF. Fe PECK",
           "claim": "chicago_democrat_1834_07_02#c023"
@@ -22568,13 +24614,15 @@
         }
       ],
       "mentions": [
+        "chicago_democrat_1834_02_11#c001",
+        "chicago_democrat_1834_02_18#c002",
         "chicago_democrat_1834_07_02#c023",
         "chicago_democrat_1834_07_23#c001",
         "chicago_democrat_1834_07_30#c006",
         "chicago_democrat_1834_08_06#c009",
         "chicago_democrat_1834_08_20#c008"
       ],
-      "first_seen": "1834-07-02",
+      "first_seen": "1834-02-11",
       "last_seen": "1834-08-20",
       "letter_list_only": false,
       "occupations": [
@@ -22586,6 +24634,24 @@
       ]
     },
     {
+      "id": "person_p_field",
+      "name": "P. Field",
+      "variants": [
+        {
+          "as_printed": "P. Field",
+          "claim": "chicago_democrat_1834_02_04#c025"
+        }
+      ],
+      "mentions": [
+        "chicago_democrat_1834_02_04#c025"
+      ],
+      "first_seen": "1834-02-04",
+      "last_seen": "1834-02-04",
+      "letter_list_only": true,
+      "occupations": [],
+      "associated_places": []
+    },
+    {
       "id": "person_p_pruyne_co",
       "name": "P. Pruyne & Co.",
       "variants": [
@@ -22594,12 +24660,17 @@
           "claim": "chicago_democrat_1833_12_03#c011"
         },
         {
+          "as_printed": "P. PRUYNE/& CO.",
+          "claim": "chicago_democrat_1834_02_25#c008"
+        },
+        {
           "as_printed": "P, PRUYNE & CO",
           "claim": "chicago_democrat_1834_07_02#c009"
         }
       ],
       "mentions": [
         "chicago_democrat_1833_12_03#c011",
+        "chicago_democrat_1834_02_25#c008",
         "chicago_democrat_1834_07_02#c009"
       ],
       "first_seen": "1833-12-03",
@@ -22607,9 +24678,13 @@
       "letter_list_only": false,
       "occupations": [
         "druggist",
-        "lumber dealer"
+        "lumber dealer",
+        "merchant"
       ],
-      "associated_places": []
+      "associated_places": [
+        "Clark Street",
+        "Dearborn Street"
+      ]
     },
     {
       "id": "person_p_ruyne_co",
@@ -22778,13 +24853,18 @@
         {
           "as_printed": "Palmer. Stearns",
           "claim": "chicago_democrat_1834_01_28#c001"
+        },
+        {
+          "as_printed": "Palmer Stearns 2",
+          "claim": "chicago_democrat_1834_02_11#c009"
         }
       ],
       "mentions": [
-        "chicago_democrat_1834_01_28#c001"
+        "chicago_democrat_1834_01_28#c001",
+        "chicago_democrat_1834_02_11#c009"
       ],
       "first_seen": "1834-01-28",
-      "last_seen": "1834-01-28",
+      "last_seen": "1834-02-11",
       "letter_list_only": true,
       "occupations": [],
       "associated_places": []
@@ -23368,6 +25448,14 @@
           "claim": "chicago_democrat_1834_01_07#c009"
         },
         {
+          "as_printed": "PETER COHEN",
+          "claim": "chicago_democrat_1834_02_04#c024"
+        },
+        {
+          "as_printed": "PETER COHEN",
+          "claim": "chicago_democrat_1834_02_11#c004"
+        },
+        {
           "as_printed": "Peter Coh",
           "claim": "chicago_democrat_1834_07_02#c057"
         },
@@ -23378,6 +25466,8 @@
       ],
       "mentions": [
         "chicago_democrat_1834_01_07#c009",
+        "chicago_democrat_1834_02_04#c024",
+        "chicago_democrat_1834_02_11#c004",
         "chicago_democrat_1834_07_02#c057",
         "chicago_democrat_1835_07_01#c001"
       ],
@@ -23385,6 +25475,8 @@
       "last_seen": "1835-07-01",
       "letter_list_only": false,
       "occupations": [
+        "clothier",
+        "grocer",
         "merchant"
       ],
       "associated_places": [
@@ -23439,6 +25531,24 @@
       "associated_places": [
         "Plainfield"
       ]
+    },
+    {
+      "id": "person_peter_temple",
+      "name": "Peter Temple",
+      "variants": [
+        {
+          "as_printed": "Peter Temple 3",
+          "claim": "chicago_democrat_1834_02_11#c009"
+        }
+      ],
+      "mentions": [
+        "chicago_democrat_1834_02_11#c009"
+      ],
+      "first_seen": "1834-02-11",
+      "last_seen": "1834-02-11",
+      "letter_list_only": true,
+      "occupations": [],
+      "associated_places": []
     },
     {
       "id": "person_peter_wendell",
@@ -23561,13 +25671,36 @@
         {
           "as_printed": "Philip Howard",
           "claim": "chicago_democrat_1834_01_28#c001"
+        },
+        {
+          "as_printed": "Philip Howard",
+          "claim": "chicago_democrat_1834_02_04#c025"
         }
       ],
       "mentions": [
-        "chicago_democrat_1834_01_28#c001"
+        "chicago_democrat_1834_01_28#c001",
+        "chicago_democrat_1834_02_04#c025"
       ],
       "first_seen": "1834-01-28",
-      "last_seen": "1834-01-28",
+      "last_seen": "1834-02-04",
+      "letter_list_only": true,
+      "occupations": [],
+      "associated_places": []
+    },
+    {
+      "id": "person_philip_willsee",
+      "name": "Philip Willsee",
+      "variants": [
+        {
+          "as_printed": "Philip Willsee",
+          "claim": "chicago_democrat_1834_02_11#c009"
+        }
+      ],
+      "mentions": [
+        "chicago_democrat_1834_02_11#c009"
+      ],
+      "first_seen": "1834-02-11",
+      "last_seen": "1834-02-11",
       "letter_list_only": true,
       "occupations": [],
       "associated_places": []
@@ -23605,6 +25738,18 @@
           "claim": "chicago_democrat_1833_12_17#c002"
         },
         {
+          "as_printed": "Pmio Carpenter",
+          "claim": "chicago_democrat_1834_02_04#c002"
+        },
+        {
+          "as_printed": "GCAWPUATUBB",
+          "claim": "chicago_democrat_1834_02_04#c017"
+        },
+        {
+          "as_printed": "SaiLO CARPENTER.",
+          "claim": "chicago_democrat_1834_02_11#c013"
+        },
+        {
           "as_printed": "CARPENTER,",
           "claim": "chicago_democrat_1834_07_02#c054"
         },
@@ -23616,6 +25761,9 @@
       "mentions": [
         "chicago_american_1835_06_27#c013",
         "chicago_democrat_1833_12_17#c002",
+        "chicago_democrat_1834_02_04#c002",
+        "chicago_democrat_1834_02_04#c017",
+        "chicago_democrat_1834_02_11#c013",
         "chicago_democrat_1834_07_02#c054",
         "chicago_democrat_1834_08_13#c016"
       ],
@@ -23770,15 +25918,22 @@
         {
           "as_printed": "PIERCE & ABBOTT",
           "claim": "chicago_democrat_1833_12_10#c011"
+        },
+        {
+          "as_printed": "PIERCE & ABBOTT",
+          "claim": "chicago_democrat_1834_02_04#c014"
         }
       ],
       "mentions": [
-        "chicago_democrat_1833_12_10#c011"
+        "chicago_democrat_1833_12_10#c011",
+        "chicago_democrat_1834_02_04#c014"
       ],
       "first_seen": "1833-12-10",
-      "last_seen": "1833-12-10",
+      "last_seen": "1834-02-04",
       "letter_list_only": false,
-      "occupations": [],
+      "occupations": [
+        "blacksmith"
+      ],
       "associated_places": []
     },
     {
@@ -23999,6 +26154,24 @@
       "associated_places": [
         "Chicago"
       ]
+    },
+    {
+      "id": "person_platt_thorn",
+      "name": "Platt Thorn",
+      "variants": [
+        {
+          "as_printed": "2 Platt Thora",
+          "claim": "chicago_democrat_1834_02_11#c009"
+        }
+      ],
+      "mentions": [
+        "chicago_democrat_1834_02_11#c009"
+      ],
+      "first_seen": "1834-02-11",
+      "last_seen": "1834-02-11",
+      "letter_list_only": true,
+      "occupations": [],
+      "associated_places": []
     },
     {
       "id": "person_poke_edward",
@@ -24406,12 +26579,17 @@
           "claim": "chicago_democrat_1834_01_28#c004"
         },
         {
+          "as_printed": "R. 1. HAMLET",
+          "claim": "chicago_democrat_1834_02_18#c002"
+        },
+        {
           "as_printed": "R. I. Hamilton",
           "claim": "chicago_democrat_1835_07_01#c010"
         }
       ],
       "mentions": [
         "chicago_democrat_1834_01_28#c004",
+        "chicago_democrat_1834_02_18#c002",
         "chicago_democrat_1835_07_01#c010"
       ],
       "first_seen": "1834-01-28",
@@ -24581,6 +26759,24 @@
       ],
       "first_seen": "1834-07-09",
       "last_seen": "1834-07-09",
+      "letter_list_only": true,
+      "occupations": [],
+      "associated_places": []
+    },
+    {
+      "id": "person_ralph_stowell",
+      "name": "Ralph Stowell",
+      "variants": [
+        {
+          "as_printed": "Ralph Stowell",
+          "claim": "chicago_democrat_1834_02_11#c009"
+        }
+      ],
+      "mentions": [
+        "chicago_democrat_1834_02_11#c009"
+      ],
+      "first_seen": "1834-02-11",
+      "last_seen": "1834-02-11",
       "letter_list_only": true,
       "occupations": [],
       "associated_places": []
@@ -24827,6 +27023,44 @@
       "associated_places": []
     },
     {
+      "id": "person_reuben_hart",
+      "name": "Reuben Hart",
+      "variants": [
+        {
+          "as_printed": "Reuben Hart",
+          "claim": "chicago_democrat_1834_02_04#c025"
+        }
+      ],
+      "mentions": [
+        "chicago_democrat_1834_02_04#c025"
+      ],
+      "first_seen": "1834-02-04",
+      "last_seen": "1834-02-04",
+      "letter_list_only": true,
+      "occupations": [],
+      "associated_places": []
+    },
+    {
+      "id": "person_rev_a_c_freeman",
+      "name": "Rev. A. C. Freeman",
+      "variants": [
+        {
+          "as_printed": "Rev. A. C. Freeman",
+          "claim": "chicago_democrat_1834_02_04#c002"
+        }
+      ],
+      "mentions": [
+        "chicago_democrat_1834_02_04#c002"
+      ],
+      "first_seen": "1834-02-04",
+      "last_seen": "1834-02-04",
+      "letter_list_only": false,
+      "occupations": [
+        "clergyman"
+      ],
+      "associated_places": []
+    },
+    {
       "id": "person_rev_w_m_royal",
       "name": "Rev. W[m]. Royal",
       "variants": [
@@ -24927,6 +27161,26 @@
       "associated_places": [
         "Chicago"
       ]
+    },
+    {
+      "id": "person_rezon_zarley",
+      "name": "Rezon Zarley",
+      "variants": [
+        {
+          "as_printed": "Reneun Zarley",
+          "claim": "chicago_democrat_1834_02_18#c004"
+        }
+      ],
+      "mentions": [
+        "chicago_democrat_1834_02_18#c004"
+      ],
+      "first_seen": "1834-02-18",
+      "last_seen": "1834-02-18",
+      "letter_list_only": false,
+      "occupations": [
+        "justice of the peace"
+      ],
+      "associated_places": []
     },
     {
       "id": "person_rich_d_j_hamilton",
@@ -25192,13 +27446,36 @@
         {
           "as_printed": "Rob't. Fisber",
           "claim": "chicago_democrat_1834_01_28#c001"
+        },
+        {
+          "as_printed": "Rob’t. Fisher”",
+          "claim": "chicago_democrat_1834_02_04#c025"
         }
       ],
       "mentions": [
-        "chicago_democrat_1834_01_28#c001"
+        "chicago_democrat_1834_01_28#c001",
+        "chicago_democrat_1834_02_04#c025"
       ],
       "first_seen": "1834-01-28",
-      "last_seen": "1834-01-28",
+      "last_seen": "1834-02-04",
+      "letter_list_only": true,
+      "occupations": [],
+      "associated_places": []
+    },
+    {
+      "id": "person_rob_t_robinson",
+      "name": "Rob't. Robinson",
+      "variants": [
+        {
+          "as_printed": "a Rob't obingon",
+          "claim": "chicago_democrat_1834_02_11#c009"
+        }
+      ],
+      "mentions": [
+        "chicago_democrat_1834_02_11#c009"
+      ],
+      "first_seen": "1834-02-11",
+      "last_seen": "1834-02-11",
       "letter_list_only": true,
       "occupations": [],
       "associated_places": []
@@ -25605,13 +27882,18 @@
         {
           "as_printed": "‘Russell Baldwin",
           "claim": "chicago_democrat_1834_01_28#c001"
+        },
+        {
+          "as_printed": "Russel Baldwin",
+          "claim": "chicago_democrat_1834_02_04#c025"
         }
       ],
       "mentions": [
-        "chicago_democrat_1834_01_28#c001"
+        "chicago_democrat_1834_01_28#c001",
+        "chicago_democrat_1834_02_04#c025"
       ],
       "first_seen": "1834-01-28",
-      "last_seen": "1834-01-28",
+      "last_seen": "1834-02-04",
       "letter_list_only": true,
       "occupations": [],
       "associated_places": []
@@ -25703,13 +27985,18 @@
         {
           "as_printed": "8. C. Stimaon 2",
           "claim": "chicago_democrat_1834_01_28#c001"
+        },
+        {
+          "as_printed": "8. C. Stimson",
+          "claim": "chicago_democrat_1834_02_11#c009"
         }
       ],
       "mentions": [
-        "chicago_democrat_1834_01_28#c001"
+        "chicago_democrat_1834_01_28#c001",
+        "chicago_democrat_1834_02_11#c009"
       ],
       "first_seen": "1834-01-28",
-      "last_seen": "1834-01-28",
+      "last_seen": "1834-02-11",
       "letter_list_only": true,
       "occupations": [],
       "associated_places": []
@@ -25721,15 +28008,40 @@
         {
           "as_printed": "8. F. Plumer",
           "claim": "chicago_democrat_1834_01_28#c001"
+        },
+        {
+          "as_printed": "e F. Plumer",
+          "claim": "chicago_democrat_1834_02_11#c009"
         }
       ],
       "mentions": [
-        "chicago_democrat_1834_01_28#c001"
+        "chicago_democrat_1834_01_28#c001",
+        "chicago_democrat_1834_02_11#c009"
       ],
       "first_seen": "1834-01-28",
-      "last_seen": "1834-01-28",
+      "last_seen": "1834-02-11",
       "letter_list_only": true,
       "occupations": [],
+      "associated_places": []
+    },
+    {
+      "id": "person_s_foot",
+      "name": "S. Foot",
+      "variants": [
+        {
+          "as_printed": "8. FOOT.",
+          "claim": "chicago_democrat_1834_02_11#c014"
+        }
+      ],
+      "mentions": [
+        "chicago_democrat_1834_02_11#c014"
+      ],
+      "first_seen": "1834-02-11",
+      "last_seen": "1834-02-11",
+      "letter_list_only": false,
+      "occupations": [
+        "grocer"
+      ],
       "associated_places": []
     },
     {
@@ -25766,6 +28078,24 @@
       ],
       "first_seen": "1834-10-22",
       "last_seen": "1834-10-22",
+      "letter_list_only": true,
+      "occupations": [],
+      "associated_places": []
+    },
+    {
+      "id": "person_s_l_scott",
+      "name": "S. L. Scott",
+      "variants": [
+        {
+          "as_printed": "8. I. Scott",
+          "claim": "chicago_democrat_1834_02_11#c009"
+        }
+      ],
+      "mentions": [
+        "chicago_democrat_1834_02_11#c009"
+      ],
+      "first_seen": "1834-02-11",
+      "last_seen": "1834-02-11",
       "letter_list_only": true,
       "occupations": [],
       "associated_places": []
@@ -25869,13 +28199,18 @@
         {
           "as_printed": "§. Scott",
           "claim": "chicago_democrat_1834_01_28#c001"
+        },
+        {
+          "as_printed": ". Scott",
+          "claim": "chicago_democrat_1834_02_11#c009"
         }
       ],
       "mentions": [
-        "chicago_democrat_1834_01_28#c001"
+        "chicago_democrat_1834_01_28#c001",
+        "chicago_democrat_1834_02_11#c009"
       ],
       "first_seen": "1834-01-28",
-      "last_seen": "1834-01-28",
+      "last_seen": "1834-02-11",
       "letter_list_only": true,
       "occupations": [],
       "associated_places": []
@@ -25935,13 +28270,18 @@
         {
           "as_printed": "8.W. Smith",
           "claim": "chicago_democrat_1834_01_28#c001"
+        },
+        {
+          "as_printed": "8. W. Smith",
+          "claim": "chicago_democrat_1834_02_11#c009"
         }
       ],
       "mentions": [
-        "chicago_democrat_1834_01_28#c001"
+        "chicago_democrat_1834_01_28#c001",
+        "chicago_democrat_1834_02_11#c009"
       ],
       "first_seen": "1834-01-28",
-      "last_seen": "1834-01-28",
+      "last_seen": "1834-02-11",
       "letter_list_only": true,
       "occupations": [],
       "associated_places": []
@@ -26091,6 +28431,24 @@
       "associated_places": []
     },
     {
+      "id": "person_sally_weed",
+      "name": "Sally Weed",
+      "variants": [
+        {
+          "as_printed": "Sally Weed",
+          "claim": "chicago_democrat_1834_02_11#c009"
+        }
+      ],
+      "mentions": [
+        "chicago_democrat_1834_02_11#c009"
+      ],
+      "first_seen": "1834-02-11",
+      "last_seen": "1834-02-11",
+      "letter_list_only": true,
+      "occupations": [],
+      "associated_places": []
+    },
+    {
       "id": "person_salmon_rutherford",
       "name": "Salmon Rutherford",
       "variants": [
@@ -26217,6 +28575,24 @@
       "associated_places": []
     },
     {
+      "id": "person_samuel_devoe",
+      "name": "Samuel Devoe",
+      "variants": [
+        {
+          "as_printed": "Samuel Devoe",
+          "claim": "chicago_democrat_1834_02_04#c025"
+        }
+      ],
+      "mentions": [
+        "chicago_democrat_1834_02_04#c025"
+      ],
+      "first_seen": "1834-02-04",
+      "last_seen": "1834-02-04",
+      "letter_list_only": true,
+      "occupations": [],
+      "associated_places": []
+    },
+    {
       "id": "person_samuel_e_toby",
       "name": "Samuel E. Toby",
       "variants": [
@@ -26235,6 +28611,24 @@
       ],
       "first_seen": "1834-07-02",
       "last_seen": "1834-07-16",
+      "letter_list_only": true,
+      "occupations": [],
+      "associated_places": []
+    },
+    {
+      "id": "person_samuel_eberiden",
+      "name": "Samuel Eberiden",
+      "variants": [
+        {
+          "as_printed": "Samuel Ebeniden",
+          "claim": "chicago_democrat_1834_02_04#c025"
+        }
+      ],
+      "mentions": [
+        "chicago_democrat_1834_02_04#c025"
+      ],
+      "first_seen": "1834-02-04",
+      "last_seen": "1834-02-04",
       "letter_list_only": true,
       "occupations": [],
       "associated_places": []
@@ -26354,6 +28748,10 @@
       "name": "Samuel Stout",
       "variants": [
         {
+          "as_printed": "Samuel Stout",
+          "claim": "chicago_democrat_1834_02_11#c009"
+        },
+        {
           "as_printed": "samuel stout",
           "claim": "chicago_democrat_1834_07_02#c032"
         },
@@ -26367,11 +28765,12 @@
         }
       ],
       "mentions": [
+        "chicago_democrat_1834_02_11#c009",
         "chicago_democrat_1834_07_02#c032",
         "chicago_democrat_1834_07_09#c007",
         "chicago_democrat_1834_07_16#c007"
       ],
-      "first_seen": "1834-07-02",
+      "first_seen": "1834-02-11",
       "last_seen": "1834-07-16",
       "letter_list_only": true,
       "occupations": [],
@@ -26450,13 +28849,18 @@
         {
           "as_printed": "Samuel Wright",
           "claim": "chicago_democrat_1834_01_28#c001"
+        },
+        {
+          "as_printed": "Samuel sight",
+          "claim": "chicago_democrat_1834_02_11#c009"
         }
       ],
       "mentions": [
-        "chicago_democrat_1834_01_28#c001"
+        "chicago_democrat_1834_01_28#c001",
+        "chicago_democrat_1834_02_11#c009"
       ],
       "first_seen": "1834-01-28",
-      "last_seen": "1834-01-28",
+      "last_seen": "1834-02-11",
       "letter_list_only": true,
       "occupations": [],
       "associated_places": []
@@ -27502,6 +29906,24 @@
       ]
     },
     {
+      "id": "person_solon_rutherford",
+      "name": "Solon Rutherford",
+      "variants": [
+        {
+          "as_printed": "Felon Patherford 3",
+          "claim": "chicago_democrat_1834_02_11#c009"
+        }
+      ],
+      "mentions": [
+        "chicago_democrat_1834_02_11#c009"
+      ],
+      "first_seen": "1834-02-11",
+      "last_seen": "1834-02-11",
+      "letter_list_only": true,
+      "occupations": [],
+      "associated_places": []
+    },
+    {
       "id": "person_soph_i_a_wei_l_heim",
       "name": "Soph[i]a Wei[l]heim",
       "variants": [
@@ -27944,16 +30366,25 @@
         {
           "as_printed": "& Steele",
           "claim": "chicago_democrat_1834_01_28#c001"
+        },
+        {
+          "as_printed": "Steele's",
+          "claim": "chicago_democrat_1834_02_04#c003"
         }
       ],
       "mentions": [
-        "chicago_democrat_1834_01_28#c001"
+        "chicago_democrat_1834_01_28#c001",
+        "chicago_democrat_1834_02_04#c003"
       ],
       "first_seen": "1834-01-28",
-      "last_seen": "1834-01-28",
-      "letter_list_only": true,
-      "occupations": [],
-      "associated_places": []
+      "last_seen": "1834-02-04",
+      "letter_list_only": false,
+      "occupations": [
+        "hotel keeper"
+      ],
+      "associated_places": [
+        "Eagle Hotel"
+      ]
     },
     {
       "id": "person_steele_ranson",
@@ -28093,13 +30524,18 @@
         {
           "as_printed": "Btephen Sherwood",
           "claim": "chicago_democrat_1834_01_28#c001"
+        },
+        {
+          "as_printed": "Stephen Sherwood",
+          "claim": "chicago_democrat_1834_02_11#c009"
         }
       ],
       "mentions": [
-        "chicago_democrat_1834_01_28#c001"
+        "chicago_democrat_1834_01_28#c001",
+        "chicago_democrat_1834_02_11#c009"
       ],
       "first_seen": "1834-01-28",
-      "last_seen": "1834-01-28",
+      "last_seen": "1834-02-11",
       "letter_list_only": true,
       "occupations": [],
       "associated_places": []
@@ -28829,13 +31265,18 @@
         {
           "as_printed": "T, R. Covell 2",
           "claim": "chicago_democrat_1834_01_28#c001"
+        },
+        {
+          "as_printed": "T. R. Covell 2",
+          "claim": "chicago_democrat_1834_02_04#c025"
         }
       ],
       "mentions": [
-        "chicago_democrat_1834_01_28#c001"
+        "chicago_democrat_1834_01_28#c001",
+        "chicago_democrat_1834_02_04#c025"
       ],
       "first_seen": "1834-01-28",
-      "last_seen": "1834-01-28",
+      "last_seen": "1834-02-04",
       "letter_list_only": true,
       "occupations": [],
       "associated_places": []
@@ -29211,13 +31652,18 @@
         {
           "as_printed": "Thomas Bennett,",
           "claim": "chicago_democrat_1834_01_28#c001"
+        },
+        {
+          "as_printed": "Thomas Bennett",
+          "claim": "chicago_democrat_1834_02_04#c025"
         }
       ],
       "mentions": [
-        "chicago_democrat_1834_01_28#c001"
+        "chicago_democrat_1834_01_28#c001",
+        "chicago_democrat_1834_02_04#c025"
       ],
       "first_seen": "1834-01-28",
-      "last_seen": "1834-01-28",
+      "last_seen": "1834-02-04",
       "letter_list_only": true,
       "occupations": [],
       "associated_places": []
@@ -29307,6 +31753,10 @@
       "variants": [
         {
           "as_printed": "Thomas Conger",
+          "claim": "chicago_democrat_1834_02_04#c025"
+        },
+        {
+          "as_printed": "Thomas Conger",
           "claim": "chicago_democrat_1834_07_09#c005"
         },
         {
@@ -29315,10 +31765,11 @@
         }
       ],
       "mentions": [
+        "chicago_democrat_1834_02_04#c025",
         "chicago_democrat_1834_07_09#c005",
         "chicago_democrat_1834_07_16#c005"
       ],
-      "first_seen": "1834-07-09",
+      "first_seen": "1834-02-04",
       "last_seen": "1834-07-16",
       "letter_list_only": true,
       "occupations": [],
@@ -29434,6 +31885,24 @@
       ],
       "first_seen": "1834-07-16",
       "last_seen": "1834-07-16",
+      "letter_list_only": true,
+      "occupations": [],
+      "associated_places": []
+    },
+    {
+      "id": "person_thomas_h_wrickey",
+      "name": "Thomas H. Wrickey",
+      "variants": [
+        {
+          "as_printed": "& Thomas H. Wriekey |",
+          "claim": "chicago_democrat_1834_02_11#c009"
+        }
+      ],
+      "mentions": [
+        "chicago_democrat_1834_02_11#c009"
+      ],
+      "first_seen": "1834-02-11",
+      "last_seen": "1834-02-11",
       "letter_list_only": true,
       "occupations": [],
       "associated_places": []
@@ -29678,6 +32147,28 @@
       "letter_list_only": true,
       "occupations": [],
       "associated_places": []
+    },
+    {
+      "id": "person_thos_e_person_co",
+      "name": "Thos. E. Person & Co.",
+      "variants": [
+        {
+          "as_printed": "THOS. EPERSON & One",
+          "claim": "chicago_democrat_1834_02_18#c006"
+        }
+      ],
+      "mentions": [
+        "chicago_democrat_1834_02_18#c006"
+      ],
+      "first_seen": "1834-02-18",
+      "last_seen": "1834-02-18",
+      "letter_list_only": false,
+      "occupations": [
+        "livery stable keeper"
+      ],
+      "associated_places": [
+        "the Point"
+      ]
     },
     {
       "id": "person_thos_galaher_jr",
@@ -30244,6 +32735,24 @@
       "associated_places": []
     },
     {
+      "id": "person_uncertain_cyitha_burbee",
+      "name": "[uncertain: Cyitha] Burbee",
+      "variants": [
+        {
+          "as_printed": "Cyitha Burbee",
+          "claim": "chicago_democrat_1834_02_04#c025"
+        }
+      ],
+      "mentions": [
+        "chicago_democrat_1834_02_04#c025"
+      ],
+      "first_seen": "1834-02-04",
+      "last_seen": "1834-02-04",
+      "letter_list_only": true,
+      "occupations": [],
+      "associated_places": []
+    },
+    {
       "id": "person_uncertain_d_p_cleviny",
       "name": "[uncertain: D. P. Cleviny]",
       "variants": [
@@ -30477,6 +32986,24 @@
       ]
     },
     {
+      "id": "person_uncertain_et_halet_atkins",
+      "name": "[uncertain: Et halet] Atkins",
+      "variants": [
+        {
+          "as_printed": "Et halet Atkins 2",
+          "claim": "chicago_democrat_1834_02_04#c025"
+        }
+      ],
+      "mentions": [
+        "chicago_democrat_1834_02_04#c025"
+      ],
+      "first_seen": "1834-02-04",
+      "last_seen": "1834-02-04",
+      "letter_list_only": true,
+      "occupations": [],
+      "associated_places": []
+    },
+    {
       "id": "person_uncertain_freak_holderman",
       "name": "[uncertain: Freak Holderman]",
       "variants": [
@@ -30546,6 +33073,26 @@
       "last_seen": "1834-07-16",
       "letter_list_only": true,
       "occupations": [],
+      "associated_places": []
+    },
+    {
+      "id": "person_uncertain_h_w_wattles",
+      "name": "[uncertain: H…] W. Wattles",
+      "variants": [
+        {
+          "as_printed": "My, Hin. Watihs",
+          "claim": "chicago_democrat_1834_02_04#c015"
+        }
+      ],
+      "mentions": [
+        "chicago_democrat_1834_02_04#c015"
+      ],
+      "first_seen": "1834-02-04",
+      "last_seen": "1834-02-04",
+      "letter_list_only": false,
+      "occupations": [
+        "tavern keeper"
+      ],
       "associated_places": []
     },
     {
@@ -30776,6 +33323,24 @@
       "associated_places": []
     },
     {
+      "id": "person_uncertain_jeane_hays",
+      "name": "[uncertain: Jeane] Hays",
+      "variants": [
+        {
+          "as_printed": "2 «Jeane Hays |",
+          "claim": "chicago_democrat_1834_02_11#c009"
+        }
+      ],
+      "mentions": [
+        "chicago_democrat_1834_02_11#c009"
+      ],
+      "first_seen": "1834-02-11",
+      "last_seen": "1834-02-11",
+      "letter_list_only": true,
+      "occupations": [],
+      "associated_places": []
+    },
+    {
       "id": "person_uncertain_john_knox",
       "name": "[uncertain: John Knox]",
       "variants": [
@@ -30888,6 +33453,24 @@
       ]
     },
     {
+      "id": "person_uncertain_joseph_babou",
+      "name": "[uncertain: Joseph Babou]",
+      "variants": [
+        {
+          "as_printed": "Joseph Babou",
+          "claim": "chicago_democrat_1834_02_04#c025"
+        }
+      ],
+      "mentions": [
+        "chicago_democrat_1834_02_04#c025"
+      ],
+      "first_seen": "1834-02-04",
+      "last_seen": "1834-02-04",
+      "letter_list_only": true,
+      "occupations": [],
+      "associated_places": []
+    },
+    {
       "id": "person_uncertain_joseph_loveland",
       "name": "[uncertain: Joseph Loveland]",
       "variants": [
@@ -30957,6 +33540,60 @@
       ],
       "first_seen": "1834-07-02",
       "last_seen": "1834-07-02",
+      "letter_list_only": true,
+      "occupations": [],
+      "associated_places": []
+    },
+    {
+      "id": "person_uncertain_kercheval",
+      "name": "[uncertain: …] Kercheval",
+      "variants": [
+        {
+          "as_printed": "ae Kerchevel",
+          "claim": "chicago_democrat_1834_02_11#c009"
+        }
+      ],
+      "mentions": [
+        "chicago_democrat_1834_02_11#c009"
+      ],
+      "first_seen": "1834-02-11",
+      "last_seen": "1834-02-11",
+      "letter_list_only": true,
+      "occupations": [],
+      "associated_places": []
+    },
+    {
+      "id": "person_uncertain_killigoss",
+      "name": "[uncertain: …] Killigoss",
+      "variants": [
+        {
+          "as_printed": "; ae Killigose",
+          "claim": "chicago_democrat_1834_02_11#c009"
+        }
+      ],
+      "mentions": [
+        "chicago_democrat_1834_02_11#c009"
+      ],
+      "first_seen": "1834-02-11",
+      "last_seen": "1834-02-11",
+      "letter_list_only": true,
+      "occupations": [],
+      "associated_places": []
+    },
+    {
+      "id": "person_uncertain_kinne",
+      "name": "[uncertain: …] Kinne",
+      "variants": [
+        {
+          "as_printed": "we Rinne",
+          "claim": "chicago_democrat_1834_02_11#c009"
+        }
+      ],
+      "mentions": [
+        "chicago_democrat_1834_02_11#c009"
+      ],
+      "first_seen": "1834-02-11",
+      "last_seen": "1834-02-11",
       "letter_list_only": true,
       "occupations": [],
       "associated_places": []
@@ -31126,6 +33763,24 @@
       ],
       "first_seen": "1834-10-22",
       "last_seen": "1834-10-22",
+      "letter_list_only": true,
+      "occupations": [],
+      "associated_places": []
+    },
+    {
+      "id": "person_uncertain_parsons",
+      "name": "[uncertain: …] Parsons",
+      "variants": [
+        {
+          "as_printed": "Let Fareons: -",
+          "claim": "chicago_democrat_1834_02_11#c009"
+        }
+      ],
+      "mentions": [
+        "chicago_democrat_1834_02_11#c009"
+      ],
+      "first_seen": "1834-02-11",
+      "last_seen": "1834-02-11",
       "letter_list_only": true,
       "occupations": [],
       "associated_places": []
@@ -31435,6 +34090,24 @@
       "first_seen": "1834-07-02",
       "last_seen": "1834-07-02",
       "letter_list_only": false,
+      "occupations": [],
+      "associated_places": []
+    },
+    {
+      "id": "person_uncertain_sprague",
+      "name": "[uncertain: …] Sprague",
+      "variants": [
+        {
+          "as_printed": "Sprague.",
+          "claim": "chicago_democrat_1834_02_11#c009"
+        }
+      ],
+      "mentions": [
+        "chicago_democrat_1834_02_11#c009"
+      ],
+      "first_seen": "1834-02-11",
+      "last_seen": "1834-02-11",
+      "letter_list_only": true,
       "occupations": [],
       "associated_places": []
     },
@@ -32609,6 +35282,10 @@
           "claim": "chicago_democrat_1834_01_21#c003"
         },
         {
+          "as_printed": "W. KIMBALL.",
+          "claim": "chicago_democrat_1834_02_18#c012"
+        },
+        {
           "as_printed": "W. Kimball",
           "claim": "chicago_democrat_1834_10_08#c005"
         }
@@ -32616,6 +35293,7 @@
       "mentions": [
         "chicago_democrat_1833_12_10#c002",
         "chicago_democrat_1834_01_21#c003",
+        "chicago_democrat_1834_02_18#c012",
         "chicago_democrat_1834_10_08#c005"
       ],
       "first_seen": "1833-12-10",
@@ -32626,6 +35304,8 @@
       ],
       "associated_places": [
         "Chicago",
+        "Clark Street",
+        "South Water Street",
         "the corner of South Water and Clark streets"
       ]
     },
@@ -32993,6 +35673,24 @@
       ]
     },
     {
+      "id": "person_w_vanzandt",
+      "name": "W. Vanzandt",
+      "variants": [
+        {
+          "as_printed": "W. Vi        it 2",
+          "claim": "chicago_democrat_1834_02_11#c009"
+        }
+      ],
+      "mentions": [
+        "chicago_democrat_1834_02_11#c009"
+      ],
+      "first_seen": "1834-02-11",
+      "last_seen": "1834-02-11",
+      "letter_list_only": true,
+      "occupations": [],
+      "associated_places": []
+    },
+    {
       "id": "person_w_wr_hirom",
       "name": "[W]wr, Hirom",
       "variants": [
@@ -33245,6 +35943,24 @@
       "associated_places": [
         "Chicago"
       ]
+    },
+    {
+      "id": "person_warren_hanks",
+      "name": "Warren Hanks",
+      "variants": [
+        {
+          "as_printed": "Warren Hanks",
+          "claim": "chicago_democrat_1834_02_04#c025"
+        }
+      ],
+      "mentions": [
+        "chicago_democrat_1834_02_04#c025"
+      ],
+      "first_seen": "1834-02-04",
+      "last_seen": "1834-02-04",
+      "letter_list_only": true,
+      "occupations": [],
+      "associated_places": []
     },
     {
       "id": "person_watkins_peter",
@@ -33559,19 +36275,60 @@
       "associated_places": []
     },
     {
+      "id": "person_william_criss",
+      "name": "William Criss",
+      "variants": [
+        {
+          "as_printed": "William Criss",
+          "claim": "chicago_democrat_1834_02_04#c025"
+        }
+      ],
+      "mentions": [
+        "chicago_democrat_1834_02_04#c025"
+      ],
+      "first_seen": "1834-02-04",
+      "last_seen": "1834-02-04",
+      "letter_list_only": true,
+      "occupations": [],
+      "associated_places": []
+    },
+    {
       "id": "person_william_elliot",
       "name": "William Elliot",
       "variants": [
         {
           "as_printed": "‘William Elliot 3",
           "claim": "chicago_democrat_1834_01_28#c001"
+        },
+        {
+          "as_printed": "William Elliot 3",
+          "claim": "chicago_democrat_1834_02_04#c025"
         }
       ],
       "mentions": [
-        "chicago_democrat_1834_01_28#c001"
+        "chicago_democrat_1834_01_28#c001",
+        "chicago_democrat_1834_02_04#c025"
       ],
       "first_seen": "1834-01-28",
-      "last_seen": "1834-01-28",
+      "last_seen": "1834-02-04",
+      "letter_list_only": true,
+      "occupations": [],
+      "associated_places": []
+    },
+    {
+      "id": "person_william_gooding",
+      "name": "William Gooding",
+      "variants": [
+        {
+          "as_printed": "William      ing 2",
+          "claim": "chicago_democrat_1834_02_04#c025"
+        }
+      ],
+      "mentions": [
+        "chicago_democrat_1834_02_04#c025"
+      ],
+      "first_seen": "1834-02-04",
+      "last_seen": "1834-02-04",
       "letter_list_only": true,
       "occupations": [],
       "associated_places": []
@@ -33733,13 +36490,18 @@
         {
           "as_printed": "Wiliam Teal",
           "claim": "chicago_democrat_1834_01_28#c001"
+        },
+        {
+          "as_printed": "William Teal",
+          "claim": "chicago_democrat_1834_02_11#c009"
         }
       ],
       "mentions": [
-        "chicago_democrat_1834_01_28#c001"
+        "chicago_democrat_1834_01_28#c001",
+        "chicago_democrat_1834_02_11#c009"
       ],
       "first_seen": "1834-01-28",
-      "last_seen": "1834-01-28",
+      "last_seen": "1834-02-11",
       "letter_list_only": true,
       "occupations": [],
       "associated_places": []
@@ -33899,6 +36661,26 @@
       "associated_places": []
     },
     {
+      "id": "person_winters_mills_co",
+      "name": "Winters, Mills & Co.",
+      "variants": [
+        {
+          "as_printed": "INTERS, MILLS & CO,",
+          "claim": "chicago_democrat_1834_02_18#c008"
+        }
+      ],
+      "mentions": [
+        "chicago_democrat_1834_02_18#c008"
+      ],
+      "first_seen": "1834-02-18",
+      "last_seen": "1834-02-18",
+      "letter_list_only": false,
+      "occupations": [
+        "stage coach proprietor"
+      ],
+      "associated_places": []
+    },
+    {
       "id": "person_winters_moses",
       "name": "Winters, Moses",
       "variants": [
@@ -33923,13 +36705,18 @@
         {
           "as_printed": "‘Win. B. Green.",
           "claim": "chicago_democrat_1834_01_28#c001"
+        },
+        {
+          "as_printed": "Wm. B. Green",
+          "claim": "chicago_democrat_1834_02_04#c025"
         }
       ],
       "mentions": [
-        "chicago_democrat_1834_01_28#c001"
+        "chicago_democrat_1834_01_28#c001",
+        "chicago_democrat_1834_02_04#c025"
       ],
       "first_seen": "1834-01-28",
-      "last_seen": "1834-01-28",
+      "last_seen": "1834-02-04",
       "letter_list_only": true,
       "occupations": [],
       "associated_places": []
@@ -34136,13 +36923,18 @@
         {
           "as_printed": "Wm. P. Cloaveland",
           "claim": "chicago_democrat_1834_01_28#c001"
+        },
+        {
+          "as_printed": "Wm. P. Cleayeland",
+          "claim": "chicago_democrat_1834_02_04#c025"
         }
       ],
       "mentions": [
-        "chicago_democrat_1834_01_28#c001"
+        "chicago_democrat_1834_01_28#c001",
+        "chicago_democrat_1834_02_04#c025"
       ],
       "first_seen": "1834-01-28",
-      "last_seen": "1834-01-28",
+      "last_seen": "1834-02-04",
       "letter_list_only": true,
       "occupations": [],
       "associated_places": []
@@ -34256,13 +37048,18 @@
         {
           "as_printed": "‘Wm. Shier",
           "claim": "chicago_democrat_1834_01_28#c001"
+        },
+        {
+          "as_printed": "Wm. Shier",
+          "claim": "chicago_democrat_1834_02_11#c009"
         }
       ],
       "mentions": [
-        "chicago_democrat_1834_01_28#c001"
+        "chicago_democrat_1834_01_28#c001",
+        "chicago_democrat_1834_02_11#c009"
       ],
       "first_seen": "1834-01-28",
-      "last_seen": "1834-01-28",
+      "last_seen": "1834-02-11",
       "letter_list_only": true,
       "occupations": [],
       "associated_places": []
@@ -34394,13 +37191,18 @@
         {
           "as_printed": "Wm. Winson",
           "claim": "chicago_democrat_1834_01_28#c001"
+        },
+        {
+          "as_printed": "h Wm. Winson",
+          "claim": "chicago_democrat_1834_02_11#c009"
         }
       ],
       "mentions": [
-        "chicago_democrat_1834_01_28#c001"
+        "chicago_democrat_1834_01_28#c001",
+        "chicago_democrat_1834_02_11#c009"
       ],
       "first_seen": "1834-01-28",
-      "last_seen": "1834-01-28",
+      "last_seen": "1834-02-11",
       "letter_list_only": true,
       "occupations": [],
       "associated_places": []
@@ -34473,6 +37275,24 @@
       ],
       "first_seen": "1834-10-22",
       "last_seen": "1834-10-22",
+      "letter_list_only": true,
+      "occupations": [],
+      "associated_places": []
+    },
+    {
+      "id": "person_wooster_harrison",
+      "name": "Wooster Harrison",
+      "variants": [
+        {
+          "as_printed": "Wooster Harrison 5",
+          "claim": "chicago_democrat_1834_02_04#c025"
+        }
+      ],
+      "mentions": [
+        "chicago_democrat_1834_02_04#c025"
+      ],
+      "first_seen": "1834-02-04",
+      "last_seen": "1834-02-04",
       "letter_list_only": true,
       "occupations": [],
       "associated_places": []
@@ -35129,7 +37949,9 @@
         "dry goods",
         "flour",
         "groceries",
-        "hardware"
+        "hardware",
+        "hickory nuts",
+        "superfine Ohio flour"
       ],
       "street": null,
       "placement": {
@@ -35140,14 +37962,16 @@
       },
       "evidence": {
         "first_issue": "1833-12-03",
-        "last_issue": "1833-12-03",
+        "last_issue": "1834-02-11",
         "copy_dates": [
-          "1833-12-03"
+          "1833-12-03",
+          "1834-02-04"
         ]
       },
       "contradicted_by": [],
       "mentions": [
-        "chicago_democrat_1833_12_03#c008"
+        "chicago_democrat_1833_12_03#c008",
+        "chicago_democrat_1834_02_11#c006"
       ],
       "built_at_scene_date": true,
       "survival_liberty_required": true
@@ -35398,6 +38222,42 @@
       "survival_liberty_required": true
     },
     {
+      "id": "business_chicago_soap_and_candle_manufactory",
+      "name": "Chicago Soap and Candle Manufactory",
+      "proprietors": [
+        "Daniel Elston & Co."
+      ],
+      "trade": "soap and candle manufactory",
+      "goods": [
+        "flitches of bacon",
+        "hams",
+        "hard soap",
+        "mess pork",
+        "prime pork",
+        "soft soap",
+        "tallow candles",
+        "wax candles"
+      ],
+      "street": null,
+      "placement": {
+        "class": "none"
+      },
+      "evidence": {
+        "first_issue": "1834-02-04",
+        "last_issue": "1834-02-18",
+        "copy_dates": [
+          "1834-02-15"
+        ]
+      },
+      "contradicted_by": [],
+      "mentions": [
+        "chicago_democrat_1834_02_04#c022",
+        "chicago_democrat_1834_02_18#c007"
+      ],
+      "built_at_scene_date": true,
+      "survival_liberty_required": true
+    },
+    {
       "id": "business_chicago_wholesale_and_retail_book_stationary_store",
       "name": "Chicago Wholesale and Retail Book & Stationary Store",
       "proprietors": [],
@@ -35463,6 +38323,32 @@
       "contradicted_by": [],
       "mentions": [
         "chicago_democrat_1834_07_02#c014"
+      ],
+      "built_at_scene_date": true,
+      "survival_liberty_required": true
+    },
+    {
+      "id": "business_clerk_of_the_circuit_and_county_courts_for_cook_county",
+      "name": "Clerk of the Circuit and County Courts for Cook County",
+      "proprietors": [],
+      "trade": "county clerk's office",
+      "goods": [],
+      "street": null,
+      "placement": {
+        "class": "relative",
+        "anchor": "the house of Col. Owen",
+        "offset_text": "» the building one door West of the house",
+        "offset_normalized": "the building one door West of the house of Col. Owen",
+        "street": null
+      },
+      "evidence": {
+        "first_issue": "1834-02-18",
+        "last_issue": "1834-02-18",
+        "copy_dates": []
+      },
+      "contradicted_by": [],
+      "mentions": [
+        "chicago_democrat_1834_02_18#c010"
       ],
       "built_at_scene_date": true,
       "survival_liberty_required": true
@@ -35708,7 +38594,12 @@
       "goods": [
         "Pine Lumber",
         "Poplar Lumber",
-        "flour"
+        "flour",
+        "grain",
+        "lath",
+        "lumber",
+        "red cedar posts",
+        "shingles"
       ],
       "street": null,
       "placement": {
@@ -35722,12 +38613,14 @@
         "last_issue": "1834-07-02",
         "copy_dates": [
           "1833-12-03",
+          "1834-02-25",
           "1834-05-25"
         ]
       },
       "contradicted_by": [],
       "mentions": [
         "chicago_democrat_1833_12_03#c009",
+        "chicago_democrat_1834_02_25#c005",
         "chicago_democrat_1834_07_02#c006"
       ],
       "built_at_scene_date": true,
@@ -35887,6 +38780,39 @@
       "survival_liberty_required": true
     },
     {
+      "id": "business_e_wentworth_s_public_house",
+      "name": "E. Wentworth's Public House",
+      "proprietors": [
+        "E. Wentworth"
+      ],
+      "trade": "tavern",
+      "goods": [
+        "corn",
+        "oats"
+      ],
+      "street": null,
+      "placement": {
+        "class": "relative",
+        "anchor": "the road from Chicago to Ottawa",
+        "offset_text": "H 18 miles South of Chicago",
+        "offset_normalized": "18 miles South of Chicago, [on the road] leading to Ottawa",
+        "street": null
+      },
+      "evidence": {
+        "first_issue": "1834-02-04",
+        "last_issue": "1834-02-04",
+        "copy_dates": [
+          "1833-12-17"
+        ]
+      },
+      "contradicted_by": [],
+      "mentions": [
+        "chicago_democrat_1834_02_04#c028"
+      ],
+      "built_at_scene_date": true,
+      "survival_liberty_required": true
+    },
+    {
       "id": "business_e_wentworth_s_tavern_flag_creek",
       "name": "E. Wentworth's tavern, Flag Creek",
       "proprietors": [
@@ -35956,6 +38882,7 @@
       "id": "business_eagle_hotel",
       "name": "Eagle Hotel",
       "proprietors": [
+        "Steele",
         "P. B. F. Cable",
         "J. Shrigley"
       ],
@@ -35963,11 +38890,10 @@
       "goods": [],
       "street": null,
       "placement": {
-        "class": "none",
-        "street": null
+        "class": "none"
       },
       "evidence": {
-        "first_issue": "1834-07-02",
+        "first_issue": "1834-02-04",
         "last_issue": "1834-10-08",
         "copy_dates": [
           "1834-04-15",
@@ -35982,6 +38908,7 @@
         }
       ],
       "mentions": [
+        "chicago_democrat_1834_02_04#c003",
         "chicago_democrat_1834_07_02#c004",
         "chicago_democrat_1834_10_08#c006"
       ],
@@ -36227,18 +39154,18 @@
       "proprietors": [
         "G. Spring"
       ],
-      "trade": "attorney and counsellor at law, and solicitor in chancery",
+      "trade": "attorney and counsellor at law, solicitor in chancery",
       "goods": [],
       "street": "South Water Street",
       "placement": {
         "class": "relative",
-        "anchor": "the corner of Franklin and South Water-streets",
-        "offset_text": "ICE second door west from the corner\nf Franklin and South Water-streets.",
-        "offset_normalized": "OFFICE second door west from the corner of Franklin and South Water-streets",
+        "anchor": "the corner of Franklin and South Water streets",
+        "offset_text": "FFICE second door west fro",
+        "offset_normalized": "second door west from the corner of Franklin and South Water [streets]",
         "street": "South Water Street"
       },
       "evidence": {
-        "first_issue": "1834-07-09",
+        "first_issue": "1834-02-04",
         "last_issue": "1834-10-15",
         "copy_dates": [
           "1833-12-17"
@@ -36246,6 +39173,7 @@
       },
       "contradicted_by": [],
       "mentions": [
+        "chicago_democrat_1834_02_04#c027",
         "chicago_democrat_1834_07_09#c021",
         "chicago_democrat_1834_08_20#c003",
         "chicago_democrat_1834_09_03#c015",
@@ -36565,6 +39493,34 @@
       "survival_liberty_required": false
     },
     {
+      "id": "business_hiram_pearsons",
+      "name": "Hiram Pearsons",
+      "proprietors": [
+        "Hiram Pearsons"
+      ],
+      "trade": "storage and commission merchant",
+      "goods": [],
+      "street": "South Water Street",
+      "placement": {
+        "class": "relative",
+        "anchor": "a warehouse on South Water street",
+        "offset_text": "use on Soil Water treet, where s",
+        "offset_normalized": "[warehou]se on So[uth] Water [s]treet",
+        "street": "South Water Street"
+      },
+      "evidence": {
+        "first_issue": "1834-02-25",
+        "last_issue": "1834-02-25",
+        "copy_dates": []
+      },
+      "contradicted_by": [],
+      "mentions": [
+        "chicago_democrat_1834_02_25#c002"
+      ],
+      "built_at_scene_date": true,
+      "survival_liberty_required": true
+    },
+    {
       "id": "business_hubbard_co",
       "name": "Hubbard & Co.",
       "proprietors": [
@@ -36759,6 +39715,37 @@
       "survival_liberty_required": true
     },
     {
+      "id": "business_j_bates_jr_at_the_post_office",
+      "name": "J. Bates, Jr. at the Post Office",
+      "proprietors": [
+        "J. Bates, Jr."
+      ],
+      "trade": "blasting powder and crowbars",
+      "goods": [
+        "blasting powder",
+        "crowbars"
+      ],
+      "street": null,
+      "placement": {
+        "class": "relative",
+        "anchor": "Chicago post office",
+        "offset_text": "aireof «J. BATES, Jr. at P. Office. :",
+        "offset_normalized": "enquire of J. Bates, Jr. at [the] P[ost] Office",
+        "street": null
+      },
+      "evidence": {
+        "first_issue": "1834-02-04",
+        "last_issue": "1834-02-04",
+        "copy_dates": []
+      },
+      "contradicted_by": [],
+      "mentions": [
+        "chicago_democrat_1834_02_04#c013"
+      ],
+      "built_at_scene_date": true,
+      "survival_liberty_required": true
+    },
+    {
       "id": "business_j_bates_jr_auction_store",
       "name": "J. Bates jr., Auction Store",
       "proprietors": [
@@ -36816,6 +39803,39 @@
       "contradicted_by": [],
       "mentions": [
         "chicago_democrat_1833_12_17#c006"
+      ],
+      "built_at_scene_date": true,
+      "survival_liberty_required": true
+    },
+    {
+      "id": "business_j_h_collins_j_d_caton",
+      "name": "J. H. Collins & J. D. Caton",
+      "proprietors": [
+        "J. H. Collins",
+        "J. D. Caton"
+      ],
+      "trade": "attorneys and counsellors at law, solicitors in chancery",
+      "goods": [],
+      "street": "South Water Street",
+      "placement": {
+        "class": "relative",
+        "anchor": "Brewster, Hogan & Co.",
+        "offset_text": "ast of Brewster, Hogan    ,",
+        "offset_normalized": "one door east of Brewster, Hogan & Co., South Water street",
+        "street": "South Water Street"
+      },
+      "evidence": {
+        "first_issue": "1834-02-04",
+        "last_issue": "1834-02-18",
+        "copy_dates": [
+          "1834-01-20"
+        ]
+      },
+      "contradicted_by": [],
+      "mentions": [
+        "chicago_democrat_1834_02_04#c008",
+        "chicago_democrat_1834_02_11#c005",
+        "chicago_democrat_1834_02_18#c014"
       ],
       "built_at_scene_date": true,
       "survival_liberty_required": true
@@ -36897,9 +39917,10 @@
       "proprietors": [
         "J. K. Botsford"
       ],
-      "trade": "tin, sheet iron and copper ware",
+      "trade": "tin and stove manufacturer and grocer",
       "goods": [
         "Copper Ware",
+        "Ohio whiskey",
         "Sheet Iron",
         "Sheet Iron Ware",
         "Sheet iron ware",
@@ -36907,25 +39928,46 @@
         "Stoves",
         "Tin Ware",
         "Tin ware",
-        "Window Sash"
+        "Window Sash",
+        "butter",
+        "candle sticks",
+        "cigars",
+        "coffee pots",
+        "covered dishes",
+        "dippers",
+        "dried peaches",
+        "graters",
+        "lard",
+        "loaf sugar",
+        "milk pans",
+        "milk strainers",
+        "patent reflecting bakers",
+        "superfine flour",
+        "tin cups",
+        "tin ware",
+        "wash basins"
       ],
-      "street": "Dearborn Street",
+      "street": null,
       "placement": {
-        "class": "corner",
-        "anchor": "CORNER OF DEARBORN AND LAKE-STREETS",
-        "offset_text": "CORNER OF DEARBORS AND LA!",
-        "offset_normalized": "CORNER OF DEARBORN AND LAKE-STREETS",
-        "street": "Dearborn Street"
+        "class": "relative",
+        "anchor": "Graves' Tavern",
+        "offset_text": "Fab. 17.         next door to Graves’",
+        "offset_normalized": "next door to Graves' [Tavern]",
+        "street": null
       },
       "evidence": {
-        "first_issue": "1834-07-02",
+        "first_issue": "1834-02-18",
         "last_issue": "1834-10-01",
         "copy_dates": [
+          "1834-02-04",
+          "1834-02-17",
           "1834-04-22"
         ]
       },
       "contradicted_by": [],
       "mentions": [
+        "chicago_democrat_1834_02_18#c009",
+        "chicago_democrat_1834_02_25#c001",
         "chicago_democrat_1834_07_02#c058",
         "chicago_democrat_1834_07_09#c026",
         "chicago_democrat_1834_09_10#c015",
@@ -37182,6 +40224,32 @@
       "survival_liberty_required": false
     },
     {
+      "id": "business_john_bates_jr",
+      "name": "John Bates, Jr.",
+      "proprietors": [
+        "John Bates, Jr."
+      ],
+      "trade": "auctioneer",
+      "goods": [],
+      "street": null,
+      "placement": {
+        "class": "none"
+      },
+      "evidence": {
+        "first_issue": "1834-02-04",
+        "last_issue": "1834-02-04",
+        "copy_dates": [
+          "1834-01-28"
+        ]
+      },
+      "contradicted_by": [],
+      "mentions": [
+        "chicago_democrat_1834_02_04#c010"
+      ],
+      "built_at_scene_date": true,
+      "survival_liberty_required": true
+    },
+    {
       "id": "business_john_dave_north_water_street",
       "name": "John Dave, North Water Street",
       "proprietors": [
@@ -37215,7 +40283,7 @@
       "proprietors": [
         "John H. Kinzie"
       ],
-      "trade": "wholesale and retail store",
+      "trade": "storage, forwarding and commission merchant",
       "goods": [
         "Crockery",
         "Dry Goods",
@@ -37242,14 +40310,10 @@
       ],
       "street": null,
       "placement": {
-        "class": "relative",
-        "anchor": "Fort Dearborn",
-        "offset_text": "the EAst end of his Was it opening, (i\nGooDs, commisting in part of\nFoRT DEARBORN,) &",
-        "offset_normalized": "the E[a]st end of his Wa[rehouse, opposite] FORT DEARBORN",
-        "street": null
+        "class": "none"
       },
       "evidence": {
-        "first_issue": "1834-08-06",
+        "first_issue": "1834-02-11",
         "last_issue": "1834-09-24",
         "copy_dates": [
           "1834-08-12"
@@ -37257,6 +40321,8 @@
       },
       "contradicted_by": [],
       "mentions": [
+        "chicago_democrat_1834_02_11#c007",
+        "chicago_democrat_1834_02_18#c013",
         "chicago_democrat_1834_08_06#c006",
         "chicago_democrat_1834_08_13#c010",
         "chicago_democrat_1834_09_24#c008"
@@ -37387,7 +40453,21 @@
         "Sugars",
         "Teas",
         "Tin Ware",
-        "Vestings"
+        "Vestings",
+        "boots and shoes",
+        "crockery",
+        "cut nails",
+        "dry goods",
+        "flannels",
+        "groceries",
+        "hardware",
+        "laces",
+        "prints",
+        "ready made clothing",
+        "ribbons",
+        "shawls",
+        "stationery",
+        "tin ware"
       ],
       "street": null,
       "placement": {
@@ -37406,6 +40486,7 @@
       "mentions": [
         "chicago_democrat_1833_11_26#c009",
         "chicago_democrat_1833_11_26#c023",
+        "chicago_democrat_1834_02_04#c018",
         "chicago_democrat_1834_07_02#c020"
       ],
       "built_at_scene_date": true,
@@ -37568,7 +40649,9 @@
         "Boots",
         "Shoes",
         "boots",
-        "shoes"
+        "fine boots",
+        "shoes",
+        "water proof boots"
       ],
       "street": null,
       "placement": {
@@ -37588,6 +40671,7 @@
       "contradicted_by": [],
       "mentions": [
         "chicago_democrat_1833_12_17#c003",
+        "chicago_democrat_1834_02_04#c026",
         "chicago_democrat_1834_07_02#c013"
       ],
       "built_at_scene_date": true,
@@ -37801,12 +40885,15 @@
       "id": "business_matthias_mason_co",
       "name": "Matthias Mason & Co.",
       "proprietors": [
-        "Matthias Mason & Co."
+        "Matthias Mason & Co.",
+        "Matthias Mason"
       ],
       "trade": "blacksmith",
       "goods": [
         "Chains",
-        "Scythes"
+        "Scythes",
+        "chains",
+        "horse shoes"
       ],
       "street": "Main Street",
       "placement": {
@@ -37827,6 +40914,9 @@
       "contradicted_by": [],
       "mentions": [
         "chicago_democrat_1833_11_26#c020",
+        "chicago_democrat_1834_02_04#c023",
+        "chicago_democrat_1834_02_11#c008",
+        "chicago_democrat_1834_02_25#c007",
         "chicago_democrat_1834_10_15#c007"
       ],
       "built_at_scene_date": true,
@@ -38006,6 +41096,43 @@
       "survival_liberty_required": true
     },
     {
+      "id": "business_p_carpenter_druggist",
+      "name": "P. Carpenter, druggist",
+      "proprietors": [
+        "Philo Carpenter"
+      ],
+      "trade": "druggist",
+      "goods": [
+        "Temperance Almanac for 1834",
+        "drugs",
+        "dry groceries",
+        "dye-stuffs",
+        "glass",
+        "medicines",
+        "nails",
+        "oils",
+        "paints"
+      ],
+      "street": null,
+      "placement": {
+        "class": "none"
+      },
+      "evidence": {
+        "first_issue": "1834-02-04",
+        "last_issue": "1834-02-11",
+        "copy_dates": [
+          "1833-11-22"
+        ]
+      },
+      "contradicted_by": [],
+      "mentions": [
+        "chicago_democrat_1834_02_04#c017",
+        "chicago_democrat_1834_02_11#c013"
+      ],
+      "built_at_scene_date": true,
+      "survival_liberty_required": true
+    },
+    {
       "id": "business_p_f_peck",
       "name": "P. F. Peck",
       "proprietors": [
@@ -38018,6 +41145,7 @@
         "crockery",
         "dry goods",
         "groceries",
+        "hard bread",
         "hardware",
         "hats",
         "superfine flour"
@@ -38032,14 +41160,15 @@
       },
       "evidence": {
         "first_issue": "1833-12-03",
-        "last_issue": "1833-12-03",
+        "last_issue": "1834-02-04",
         "copy_dates": [
           "1833-12-03"
         ]
       },
       "contradicted_by": [],
       "mentions": [
-        "chicago_democrat_1833_12_03#c010"
+        "chicago_democrat_1833_12_03#c010",
+        "chicago_democrat_1834_02_04#c020"
       ],
       "built_at_scene_date": true,
       "survival_liberty_required": true
@@ -38102,15 +41231,26 @@
       ],
       "trade": "wholesale and retail store — groceries, hardware, crockery and drugs",
       "goods": [
+        "Ohio flour",
         "Pine Timber",
         "Salt",
         "boots and shoes",
+        "brooms",
+        "churns",
+        "covered jars",
         "crockery",
         "drugs and medicines",
         "glassware",
         "groceries",
+        "hard bread",
         "hardware",
         "iron and steel",
+        "jugs",
+        "pails",
+        "pitchers",
+        "pots",
+        "sewed men's shoes",
+        "stone milk pans",
         "stone ware",
         "window glass"
       ],
@@ -38133,6 +41273,7 @@
       "contradicted_by": [],
       "mentions": [
         "chicago_democrat_1833_12_03#c011",
+        "chicago_democrat_1834_02_25#c008",
         "chicago_democrat_1834_07_02#c009"
       ],
       "built_at_scene_date": true,
@@ -38183,7 +41324,10 @@
         "Groceries",
         "Liquors",
         "Provisions",
-        "Winter Clothing"
+        "Winter Clothing",
+        "fresh butter",
+        "groceries",
+        "winter clothing"
       ],
       "street": "South Water Street",
       "placement": {
@@ -38198,12 +41342,15 @@
         "first_issue": "1833-11-26",
         "last_issue": "1835-07-01",
         "copy_dates": [
+          "1834-02-11",
           "1834-11-03"
         ]
       },
       "contradicted_by": [],
       "mentions": [
         "chicago_democrat_1833_11_26#c015",
+        "chicago_democrat_1834_02_04#c024",
+        "chicago_democrat_1834_02_11#c004",
         "chicago_democrat_1835_07_01#c001"
       ],
       "built_at_scene_date": true,
@@ -38318,6 +41465,39 @@
       ],
       "built_at_scene_date": true,
       "survival_liberty_required": false
+    },
+    {
+      "id": "business_pierce_abbott",
+      "name": "Pierce & Abbott",
+      "proprietors": [
+        "Pierce",
+        "Abbott"
+      ],
+      "trade": "blacksmith",
+      "goods": [
+        "prairie ploughs"
+      ],
+      "street": null,
+      "placement": {
+        "class": "relative",
+        "anchor": "Chicago Hotel",
+        "offset_text": "‘ness in said town, nearly opposite the Chi-",
+        "offset_normalized": "nearly opposite the Chicago Hotel",
+        "street": null
+      },
+      "evidence": {
+        "first_issue": "1834-02-04",
+        "last_issue": "1834-02-04",
+        "copy_dates": [
+          "1833-12-10"
+        ]
+      },
+      "contradicted_by": [],
+      "mentions": [
+        "chicago_democrat_1834_02_04#c014"
+      ],
+      "built_at_scene_date": true,
+      "survival_liberty_required": true
     },
     {
       "id": "business_pierce_french",
@@ -38625,11 +41805,23 @@
         "Dried Apples",
         "Gin",
         "Mackinac White Fish",
+        "Mackinac white fish",
         "Ohio Superfine Flour",
         "Ohio Whiskey",
+        "Ohio whiskey",
         "Rum",
         "Table Salt",
-        "Tin Ware"
+        "Tin Ware",
+        "brandy",
+        "buckwheat flour",
+        "crackers",
+        "dried apples",
+        "gin",
+        "rum",
+        "superfine flour",
+        "table salt",
+        "tin ware",
+        "wine"
       ],
       "street": null,
       "placement": {
@@ -38638,14 +41830,15 @@
       },
       "evidence": {
         "first_issue": "1833-11-26",
-        "last_issue": "1833-11-26",
+        "last_issue": "1834-02-11",
         "copy_dates": [
           "1833-11-26"
         ]
       },
       "contradicted_by": [],
       "mentions": [
-        "chicago_democrat_1833_11_26#c016"
+        "chicago_democrat_1833_11_26#c016",
+        "chicago_democrat_1834_02_11#c014"
       ],
       "built_at_scene_date": true,
       "survival_liberty_required": true
@@ -39052,6 +42245,30 @@
       "survival_liberty_required": true
     },
     {
+      "id": "business_the_noted_tavern_stand_lately_occupied_by_w_wattles",
+      "name": "the noted Tavern Stand lately occupied by W. Wattles",
+      "proprietors": [],
+      "trade": "tavern",
+      "goods": [],
+      "street": null,
+      "placement": {
+        "class": "none"
+      },
+      "evidence": {
+        "first_issue": "1834-02-04",
+        "last_issue": "1834-02-04",
+        "copy_dates": [
+          "1833-10-04"
+        ]
+      },
+      "contradicted_by": [],
+      "mentions": [
+        "chicago_democrat_1834_02_04#c015"
+      ],
+      "built_at_scene_date": true,
+      "survival_liberty_required": true
+    },
+    {
       "id": "business_the_traveller_s_home",
       "name": "the Traveller's Home",
       "proprietors": [],
@@ -39110,6 +42327,38 @@
         "chicago_democrat_1834_09_03#c019",
         "chicago_democrat_1834_09_24#c010",
         "chicago_democrat_1834_10_01#c007"
+      ],
+      "built_at_scene_date": true,
+      "survival_liberty_required": true
+    },
+    {
+      "id": "business_thos_e_person_co",
+      "name": "Thos. E. Person & Co.",
+      "proprietors": [
+        "Thos. E. Person"
+      ],
+      "trade": "livery stable",
+      "goods": [
+        "horses kept by the day or week",
+        "saddle horses",
+        "single horse carriages"
+      ],
+      "street": null,
+      "placement": {
+        "class": "relative",
+        "anchor": "the Point",
+        "offset_text": "at the Point, and that prepara-",
+        "offset_normalized": "at the Point",
+        "street": null
+      },
+      "evidence": {
+        "first_issue": "1834-02-18",
+        "last_issue": "1834-02-18",
+        "copy_dates": []
+      },
+      "contradicted_by": [],
+      "mentions": [
+        "chicago_democrat_1834_02_18#c006"
       ],
       "built_at_scene_date": true,
       "survival_liberty_required": true
@@ -39363,7 +42612,19 @@
         "Sheeting",
         "Shirting",
         "Wicking",
-        "Yarn"
+        "Yarn",
+        "blankets",
+        "cotton batting",
+        "crockery",
+        "cutlery",
+        "fancy and staple dry goods",
+        "fur and cloth caps",
+        "glass ware",
+        "hardware",
+        "sheeting",
+        "shirting",
+        "wicking",
+        "yarn"
       ],
       "street": "South Water Street",
       "placement": {
@@ -39376,14 +42637,15 @@
       },
       "evidence": {
         "first_issue": "1833-11-26",
-        "last_issue": "1833-11-26",
+        "last_issue": "1834-02-18",
         "copy_dates": [
           "1833-11-01"
         ]
       },
       "contradicted_by": [],
       "mentions": [
-        "chicago_democrat_1833_11_26#c012"
+        "chicago_democrat_1833_11_26#c012",
+        "chicago_democrat_1834_02_18#c012"
       ],
       "built_at_scene_date": true,
       "survival_liberty_required": true

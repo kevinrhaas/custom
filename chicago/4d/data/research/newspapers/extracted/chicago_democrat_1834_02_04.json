@@ -1,0 +1,2056 @@
+{
+  "schema": 1,
+  "issue_id": "chicago_democrat_1834_02_04",
+  "extracted": "2026-08-28",
+  "extracted_by": "hand, T-0311 — the Democrat read, February 1834",
+  "note": "Vol. I No. 11, and the issue that gives the harbour a superintendent and the bridges their timber sizes. The town is on page 2 column 6, page 3 columns 2-6 and page 4 columns 2-3. This issue carries the fourth printing of the 1 January 1834 Chicago letter list — its first half is minted here, and a SECOND, non-Chicago letter list is refused on page 3 column 6.",
+  "claims": [
+    {
+      "id": "c001",
+      "kind": "infrastructure",
+      "reading": "transcription_mediated",
+      "quote": "Lieut, J. Artex, ofthe U.S. Arms\nappointed Superintendent of the Har\nplace.\nMr. Allen is a young man, of\ntalents and indefatigable perseverane\nable engineer with untiring industry.\nompletion of thie public work, which\nvital interest to this community.",
+      "normalized": "Lieut. J. Allen, of the U.S. Arm[y, has been] appointed Superintendent of the Har[bor at this] place. Mr. Allen is a young man, of [fine] talents and indefatigable perseveran[ce … an] able engineer with untiring industry. [No] […] appointment could have been m[ade that] would have been met with more gene[ral satisfaction] from the public […] completion of this public work, which [is of] vital interest to this community.",
+      "locator": {
+        "artifact_role": "primary",
+        "issue_page": 2,
+        "column": 6,
+        "lines": [
+          1863,
+          1883
+        ],
+        "lines_of_claim": [
+          1863,
+          1865,
+          1868,
+          1869,
+          1870,
+          1872,
+          1881,
+          1883
+        ],
+        "interleaved": true
+      },
+      "entities": [
+        {
+          "as_printed": "Lieut, J. Artex",
+          "normalized": "Lieut. J. Allen",
+          "role": "harbour superintendent",
+          "occupations": [
+            "U.S. Army officer",
+            "harbour superintendent"
+          ],
+          "associated_places": [
+            "Chicago harbour"
+          ]
+        }
+      ],
+      "notes": "THE HARBOUR GETS A NAMED SUPERINTENDENT, four weeks after the engineer's report this project read in January (1834-01-21, claim c001 there) said almost nothing had been built. Lieutenant James Allen of the U.S. Army is appointed Superintendent of the harbour works at Chicago. The column is interleaved with the prairie-description column beside it line for line, so `lines_of_claim` names only the lines this paragraph can be followed through; the rest of the range is the neighbour's. What it fixes for a reconstruction is a date and an agency: from February 1834 the works have an officer of their own rather than the commanding officer at Fort Dearborn doing it alongside the garrison, and the pier that is crossing the bar by August 1834 (1834-08-13, claim c001) is built under him."
+    },
+    {
+      "id": "c002",
+      "kind": "event",
+      "reading": "transcription_mediated",
+      "quote": "ual Mecing of the Chicago Temperance | street\n_ Society.                     wet,\nhis Society held its annual meeting, accor- | way «\n‘to appointment, in the Presbyterian Churh, | had 1!\n\"hursday evening, January 30, for the elec-| of the\nof officers for the ensuing year, and to lis-}),,\nto an address prepared for the occasion,      fo\n[uncertain: was highly gratifying to the friends of the |°% ?]\niperance cause, to sec SO large an assem-    ex!\nof the respectable and intelligent citizens | ——=\nhicago,entering so cordially into the meas-\n\"proposed for the advancement of the) Th\ne.                                               reque\nhe following officers wore chosen :           on T!\nDr. Jous T. Terie, Pres'l.           purpe\nDr. Josian C. Goovnur, V. Pres't.     Distr\nPmio Carpenter, Secy and Treas'r.|tawa\napt. D, Wincox, U.S. A,               Mare\n, D, Harmon,                  Executive | candi\nr. H. Vax Den Bocart,      Committee, | this I\neut. J. L.‘l'nompsoy, U.S.A.                          N.\nhe address to the Society was read by re-|and t!\nt, by Edward W, Casey, esq. and by u-} Walk\nmous vote, a copy was requested for pub-|at as:\nion, Asitis coaeaty expected that the | select\nmunity will be favored .with this address |a mat\nint, it is unnecessary to remark upon its | have t\nllencies, or upon the high pleasure with | count\nh it was received by the audience.         egate\nsolutions were offered and seconded by\n. Rich'd, f. Hamilton, Lieut. Ly T. Jami-| pp,\nA. Rev. A. C. Freeman and Rev. |e,\n, referring          ures to be adopted | Saryyy\nhe increase of usefulness by the gociety, ject a\nh were unanimously carried.                propr\ncompliance with which, the following | yentic\nsures were adopted :                          Mond\nhe Society will mect on Tuesday Februa:| hay ;\n», in concert with the various branches of] make\nAmerican ‘Temperance Society throughout  pose.\nUnion, when addresses are expected from | terest\nJ, I’. Temple and Dr. J. C. Goodby\nour delegates fromi this society were Mis poe\nd to meet. delegates from other societies   Ter\nis county, at the time of the session of the\n[uncertain: sit Court, for the purpose of forming ?} ? Ip {]\nnty ‘Temperance Soc.\nne Secretary was ordered to subscribe for} nissa\ncopies of the Temperance Recorder, and} At\nhe American ‘Temperance Quarterly. Mag-| Mr. §\n». Also to prepare a brief of the prot      ca W\nof this meeting for publication in the Ch\nDemoe:\nis our pleas:\nconnected with this socic!\nher p\nPHILO CARPENTER, Sec'y.",
+      "normalized": "[Ann]ual Mee[t]ing of the Chicago Temperance Society. [T]his Society held its annual meeting, accor[ding] to appointment, in the Presbyterian Chur[c]h, [T]hursday evening, January 30, for the elec[tion] of officers for the ensuing year, and to lis[ten] to an address prepared for the occasion. [It] was highly gratifying to the friends of the [tem]perance cause, to see so large an assem[bly] of the respectable and intelligent citizens [of C]hicago, entering so cordially into the meas[ures] proposed for the advancement of the [caus]e. [T]he following officers were chosen: Dr. Jo[h]n T. Te[mp]le, Pres't. Dr. Josiah C. Goodhue, V. Pres't. P[h]ilo Carpenter, Sec'y and Treas'r. [C]apt. D. Wilcox, U.S. A., [D]r. D. Harmon, [D]r. H. Van Den Bogart, [Li]eut. J. L. Thompson, U.S.A. — Executive Committee. [T]he address to the Society was read by re[ques]t, by Edward W. Casey, esq. and by u[nani]mous vote, a copy was requested for pub[licat]ion. […] Resolutions were offered and seconded by [Col]. Rich'd J. Hamilton, Lieut. L. T. Jami[son, U.S.]A., Rev. A. C. Freeman and Rev. […] […] The Society will meet on Tuesday Februa[ry 25th], in concert with the various branches of [the] American Temperance Society throughout [the] Union, when addresses are expected from [Dr.] J. T. Temple and Dr. J. C. Goodh[ue]. [F]our delegates from this society were [appointe]d to meet delegates from other societies [in th]is county, at the time of the session of the [Cir]cuit Court, for the purpose of forming [a] [Cou]nty Temperance Soc[iety]. [T]he Secretary was ordered to subscribe for [six] copies of the Temperance Recorder, and [t]he American Temperance Quarterly Mag[azine]. Also to prepare a brief of the pro[ceedings] of this meeting for publication in the Ch[icago] Democ[rat]. […] PHILO CARPENTER, Sec'y.",
+      "locator": {
+        "artifact_role": "primary",
+        "issue_page": 3,
+        "column": 2,
+        "lines": [
+          2092,
+          2148
+        ],
+        "lines_of_claim": [
+          2092,
+          2093,
+          2094,
+          2095,
+          2096,
+          2097,
+          2098,
+          2099,
+          2100,
+          2101,
+          2102,
+          2103,
+          2104,
+          2105,
+          2106,
+          2107,
+          2108,
+          2109,
+          2110,
+          2111,
+          2112,
+          2113,
+          2114,
+          2115,
+          2116,
+          2117,
+          2118,
+          2119,
+          2120,
+          2121,
+          2122,
+          2123,
+          2124,
+          2125,
+          2126,
+          2127,
+          2128,
+          2129,
+          2130,
+          2131,
+          2132,
+          2133,
+          2134,
+          2135,
+          2136,
+          2137,
+          2138,
+          2139,
+          2140,
+          2141,
+          2142,
+          2143,
+          2144,
+          2145,
+          2146,
+          2147,
+          2148
+        ]
+      },
+      "entities": [
+        {
+          "as_printed": "Dr. Jous T. Terie",
+          "normalized": "Dr. John T. Temple",
+          "role": "society president",
+          "occupations": [
+            "physician"
+          ]
+        },
+        {
+          "as_printed": "Dr. Josian C. Goovnur",
+          "normalized": "Dr. Josiah C. Goodhue",
+          "role": "society vice-president",
+          "occupations": [
+            "physician"
+          ]
+        },
+        {
+          "as_printed": "Pmio Carpenter",
+          "normalized": "Philo Carpenter",
+          "role": "society secretary and treasurer",
+          "occupations": [
+            "druggist"
+          ]
+        },
+        {
+          "as_printed": "apt. D, Wincox, U.S. A",
+          "normalized": "Capt. D. Wilcox",
+          "role": "executive committee",
+          "occupations": [
+            "U.S. Army officer"
+          ]
+        },
+        {
+          "as_printed": ", D, Harmon",
+          "normalized": "Dr. D. Harmon",
+          "role": "executive committee"
+        },
+        {
+          "as_printed": "r. H. Vax Den Bocart",
+          "normalized": "Dr. H. Van Den Bogart",
+          "role": "executive committee",
+          "occupations": [
+            "physician"
+          ]
+        },
+        {
+          "as_printed": "eut. J. L.'l'nompsoy, U.S.A",
+          "normalized": "Lieut. J. L. Thompson",
+          "role": "executive committee",
+          "occupations": [
+            "U.S. Army officer"
+          ]
+        },
+        {
+          "as_printed": "Edward W, Casey, esq",
+          "normalized": "Edward W. Casey",
+          "role": "orator"
+        },
+        {
+          "as_printed": ". Rich'd, f. Hamilton",
+          "normalized": "Col. Rich'd J. Hamilton",
+          "role": "mover of resolutions"
+        },
+        {
+          "as_printed": "Lieut. Ly T. Jami-",
+          "normalized": "Lieut. L. T. Jamison",
+          "role": "seconder",
+          "occupations": [
+            "U.S. Army officer"
+          ]
+        },
+        {
+          "as_printed": "Rev. A. C. Freeman",
+          "normalized": "Rev. A. C. Freeman",
+          "role": "mover of resolutions",
+          "occupations": [
+            "clergyman"
+          ]
+        }
+      ],
+      "notes": "THE PRESBYTERIAN CHURCH IS IN USE AS A PUBLIC HALL five weeks after its dedication, which the January read recorded (1834-01-21, claim c002 there). That is the fact this claim carries for the model: the building this project already has stands, and the town's societies meet in it on a weekday evening. It also names eleven men at once — the officers of the Chicago Temperance Society for 1834 — with two physicians as president and vice-president, the druggist Philo Carpenter as secretary, and three serving officers of the garrison on the executive committee, which is a measure of how far Fort Dearborn's people were part of the town's civil life eighteen months before the scene date. The next meeting is set for Tuesday 25 February, which is the day of the last issue in this month's range."
+    },
+    {
+      "id": "c003",
+      "kind": "business",
+      "reading": "transcription_mediated",
+      "quote": "OTICE.                      or\ncitizens of Chicago and vicinity, are| each «\nested tomect at the Eayle Hotel, (Steele’s) | third,\n[uncertain: ursday next, at 2 o'clock P. M. for tho| ?, 2]\nof selecting a Delegate to meet the | *? >,\nt Convention, which will be held at Ot-| £2: §\n: Lasalle county, on the first Monday of  Se\nch next, which Convention will nominate  eae\nidates for Senator and Representatives for | 3w11\nDistrict.                                             coer",
+      "normalized": "[N]OTICE. [The] citizens of Chicago and vicinity, are [requ]ested to meet at the Ea[g]le Hotel, (Steele's) [on Th]ursday next, at 2 o'clock P. M. for the [purpose] of selecting a Delegate to meet the [Coun]t[y] Convention, which will be held at Ot[tawa,] Lasalle county, on the first Monday of [Mar]ch next, which Convention will nominate [cand]idates for Senator and Representatives for [this] District.",
+      "locator": {
+        "artifact_role": "primary",
+        "issue_page": 3,
+        "column": 3,
+        "lines": [
+          2251,
+          2260
+        ],
+        "lines_of_claim": [
+          2251,
+          2252,
+          2253,
+          2254,
+          2255,
+          2256,
+          2257,
+          2258,
+          2259,
+          2260
+        ]
+      },
+      "entities": [
+        {
+          "as_printed": "Steele's",
+          "normalized": "Steele",
+          "role": "hotel keeper",
+          "occupations": [
+            "hotel keeper"
+          ],
+          "associated_places": [
+            "Eagle Hotel"
+          ]
+        }
+      ],
+      "notes": "THE EAGLE HOTEL IS STEELE'S, and the paper says so in a parenthesis. This corpus has met the Eagle Hotel before — the October 1834 read has it changing hands from Paul J. Carli to J. Shrigley — and this is the earliest keeper it holds for the house, eight months earlier. NO ADDRESS is given: the notice places it by name only, which is the honest answer and is recorded as `none` rather than left blank. The house is the town's public meeting room this month: this notice and the Cook county call three paragraphs below it both convene there, and so does the auction of 6 February.",
+      "business": {
+        "name": "Eagle Hotel",
+        "proprietors": [
+          "Steele"
+        ],
+        "trade": "hotel",
+        "goods": [],
+        "street": null,
+        "placement": {
+          "class": "none"
+        }
+      }
+    },
+    {
+      "id": "c004",
+      "kind": "notice",
+      "reading": "transcription_mediated",
+      "quote": "ie citizens of Cook county, are requested\neet nt the Eagle Hotel-in Chicago, on\nday the 15th February next. The ob-\naf the call is to take into consideration the  H\nriety of sending Delegates to the Con- | servic\nion to be held at Rusgbville, on the first | capac\nday in April next; and if thought best to\n-@ representation in that Convention, to\n» ehoree of ontable persons for that pnr-  id he\n. ‘The matter is thought to be one of in-\nt, ‘apd theretore n call is desired by           leave\nMANY OF THE PEOPLE. _ | tleme",
+      "normalized": "[Th]e citizens of Cook county, are requested [to m]eet at the Eagle Hotel in Chicago, on [Satur]day the 15th February next. The ob[ject] of the call is to take into consideration the [prop]riety of sending Delegates to the Con[vent]ion to be held at Rushville, on the first [Mon]day in April next; and if thought best to [mak]e a representation in that Convention, to [make a] choice of [su]itable persons for that pur[pose]. The matter is thought to be one of in[teres]t, and therefore a call is desired by MANY OF THE PEOPLE.",
+      "locator": {
+        "artifact_role": "primary",
+        "issue_page": 3,
+        "column": 3,
+        "lines": [
+          2270,
+          2281
+        ],
+        "lines_of_claim": [
+          2270,
+          2271,
+          2272,
+          2273,
+          2274,
+          2275,
+          2276,
+          2277,
+          2278,
+          2279,
+          2280,
+          2281
+        ]
+      },
+      "entities": [],
+      "notes": "THE SECOND OF THE MONTH'S TWO CALLS TO THE EAGLE HOTEL, and the one the 18 February issue reports the proceedings of (1834-02-18, claim c002 there, R. J. Hamilton in the chair and P. F. W. Peck secretary). Kept as a claim of its own because it dates the meeting — Saturday 15 February 1834 — and because the pair of them establish what the Eagle Hotel was FOR in this town: it is where the county assembled."
+    },
+    {
+      "id": "c005",
+      "kind": "building",
+      "reading": "transcription_mediated",
+      "quote": "Auction Salc.\nILL be sold at Public Auction, on Thurs-\nday, Feb. 6, at 2 o’clock P. M. at the\nje Hotel in this town,\nWest half of Lot 3, in Block 44,\nLot 7, in Block 8; also,\nie Building formerly dceupied as the Meet-\nHouse, opposite the bridge over the North\nxch of the Chicago river,\nJ, BATES, je. Aue'r,\nb. 4, 1834.",
+      "normalized": "Auction Sale. [W]ill be sold at Public Auction, on Thurs[s]day, Feb. 6, at 2 o'clock P. M. at the [Eag]le Hotel in this town, [The] West half of Lot 3, in Block 44, [and] Lot 7, in Block 8; also, [t]he Building formerly [o]ccupied as the Meet[ing] House, opposite the bridge over the North [Bran]ch of the Chicago river. J. BATES, [J]r. Auc'r. [Fe]b. 4, 1834.",
+      "locator": {
+        "artifact_role": "primary",
+        "issue_page": 3,
+        "column": 3,
+        "lines": [
+          2310,
+          2320
+        ],
+        "lines_of_claim": [
+          2310,
+          2311,
+          2312,
+          2313,
+          2314,
+          2315,
+          2316,
+          2317,
+          2318,
+          2319,
+          2320
+        ]
+      },
+      "entities": [
+        {
+          "as_printed": "J, BATES, je. Aue'r",
+          "normalized": "J. Bates, Jr.",
+          "role": "auctioneer",
+          "occupations": [
+            "auctioneer"
+          ]
+        }
+      ],
+      "notes": "A BUILDING WITH A PLACEMENT AND A PAST USE, and both are worth having. It stood OPPOSITE THE BRIDGE OVER THE NORTH BRANCH — one of the two plank-and-timber bridges the November 1833 ordinances legislated about — and it had been the town's MEETING HOUSE before the Presbyterian church was dedicated in January 1834. So this is where the congregation met until five weeks ago, and it is being auctioned as a lot improvement in the same sale as two platted lots. The lots are named to block and half-lot (west half of Lot 3, Block 44; Lot 7, Block 8), which almost nothing else in this corpus does. NOT PLACED IN THE MODEL by this claim: 'opposite the bridge' names a side of the river and not a lot, and the North Branch bridge's own position is a separate question this project has open.",
+      "ad_copy_date": {
+        "verbatim": "b. 4, 1834.",
+        "iso": "1834-02-04"
+      }
+    },
+    {
+      "id": "c006",
+      "kind": "event",
+      "reading": "transcription_mediated",
+      "quote": "CaRD.\\\nWHERE will be a Public Examination of the\nicago Academy, on Friday neat, the\ninst. commencing at 2 o'clock B. M.\nic are Secoaanp toh\nhicago, Feb. 1,",
+      "normalized": "CARD. [T]here will be a Public Examination of the [Ch]icago Academy, on Friday ne[x]t, the [7th] inst. commencing at 2 o'clock [P]. M. [The publ]ic are [invited to attend]. [C]hicago, Feb. 1[, 1834].",
+      "locator": {
+        "artifact_role": "primary",
+        "issue_page": 3,
+        "column": 3,
+        "lines": [
+          2321,
+          2326
+        ],
+        "lines_of_claim": [
+          2321,
+          2322,
+          2323,
+          2324,
+          2325,
+          2326
+        ]
+      },
+      "entities": [],
+      "notes": "THE CHICAGO ACADEMY HOLDS A PUBLIC EXAMINATION on Friday 7 February 1834, and the paper reports having attended it a week later (1834-02-11, claim c003 there, 'the termination of his first quarter'). Together the two fix the school's calendar: a first quarter ending in the first week of February, a second term beginning Monday 17 February (1834-02-25, claim c004). NO BUILDING is named here or anywhere in the month — the Academy is an institution in this corpus and not yet an address.",
+      "ad_copy_date": {
+        "verbatim": "hicago, Feb. 1,",
+        "iso": "1834-02-01"
+      }
+    },
+    {
+      "id": "c007",
+      "kind": "infrastructure",
+      "reading": "transcription_mediated",
+      "quote": "pROPO:             F\nthe undersigned, until the 1\nairing the bridges ovr the North and Sea\n[uncertain: snches of the ?   g> river, and. farniahing]\nas Pollows +     x\nces for each bridge of\nanew bent to the\nuth bridge of oak\nmplete sets of braces for each\ndge, to be of oak timber 6 inches square an\n: oak railing 8 by 4 inches for both\nages; oak standards for railing aby\nart, 4 fect high: ands suffi\ndges of oak plank 2 inches in\npritég—the flooring to be secured at\nthe Pank by oak pins 1 1-2 inches in diame-\n‘and 2 foot'in length; and the railing to be\nsll secured by spikes or pins.\nThe coptractora will please state the terms for\nate    ‘and Isbour separately. The money\nII be pald wholly on the 15 of August next.\n\\By order of ae of the Town of\nicago.—Jan 4, 1834.\ngied      1G. W. DOLE,\nJOHN MILLER,",
+      "normalized": "[P]ROPOS[ALS will be received by] the undersigned, until the 1[st …] [for rep]airing the bridges over the North and S[outh] [bra]nches of the [Chicago] river, and furnishing [materials] as follows: [… bra]ces for each bridge of [oak …] a new bent to the [so]uth bridge of oak [… two co]mplete sets of braces for each [bri]dge, to be of oak timber 6 inches square an[d …] oak railing 8 by 4 inches for both [brid]ges; oak standards for railing [3 by 4 inches, … a]part, 4 feet high; and [flooring] suffi[cient for both bri]dges of oak plank 2 inches in [thickness — the flooring to be secured at] the [pl]ank by oak pins 1 1-2 inches in diame[ter] and 2 feet in length; and the railing to be [we]ll secured by spikes or pins. The co[n]tractors will please state the terms for [materi]als and labour separately. The money [wi]ll be paid wholly on the 15 of August next. [By] order of [the trustees] of the Town of [Ch]icago. — Jan 4, 1834. [Si]g[n]ed G. W. DOLE, JOHN MILLER,",
+      "locator": {
+        "artifact_role": "primary",
+        "issue_page": 3,
+        "column": 3,
+        "lines": [
+          2339,
+          2363
+        ],
+        "lines_of_claim": [
+          2339,
+          2340,
+          2341,
+          2342,
+          2343,
+          2344,
+          2345,
+          2346,
+          2347,
+          2348,
+          2349,
+          2350,
+          2351,
+          2352,
+          2353,
+          2354,
+          2355,
+          2356,
+          2357,
+          2358,
+          2359,
+          2360,
+          2361,
+          2362,
+          2363
+        ]
+      },
+      "entities": [
+        {
+          "as_printed": "G. W. DOLE",
+          "normalized": "G. W. Dole",
+          "role": "town trustee"
+        },
+        {
+          "as_printed": "JOHN MILLER",
+          "normalized": "John Miller",
+          "role": "town trustee"
+        }
+      ],
+      "notes": "THE BRIDGES, SPECIFIED IN TIMBER SIZES — the most useful single reading in this issue for anything that has to be built. The January read has the trustees ordering a contract for the bridges on 4 December 1833 and the December read corrected 'building' to REPAIRING; this is the advertisement that contract produced, and it says what the repair consisted of: braces of oak 6 inches square for each bridge, a NEW BENT to the south bridge, oak railing 8 by 4 inches, oak standards 4 feet high, flooring of oak plank 2 inches thick, secured to the plank by oak pins 1 1/2 inches in diameter and 2 feet long, railing spiked or pinned. Every dimension is the paper's own. THE COLUMN EDGE HAS EATEN THE COUNTS — how many braces, how far apart the standards — and those are left as gaps rather than guessed, because a number is exactly the kind of thing a reconstruction would then build to. The money is payable wholly on 15 August 1834, which dates the work to the season between.",
+      "ad_copy_date": {
+        "verbatim": "icago.—Jan 4, 1834.",
+        "iso": "1834-01-04"
+      }
+    },
+    {
+      "id": "c008",
+      "kind": "business",
+      "reading": "transcription_mediated",
+      "quote": "j. H. COLLINS & J. D. CATON,\nTTORNEYS & COUNSELLOKS AT LAW,\nAnd Solicitors in Chancery,\nORFICS bit      &C\nast of Brewster, Hogan    ,\nD Jd Wate stregt, Chicago, Tiinots.\nJan. 20, 1934                                      3",
+      "normalized": "J. H. COLLINS & J. D. CATON, [A]TTORNEYS & COUNSELLORS AT LAW, And Solicitors in Chancery, OFFICE [one door] east of Brewster, Hogan [& Co.,] [Sout]h Water street, Chicago, [Ill]inois. Jan. 20, 18[3]4",
+      "locator": {
+        "artifact_role": "primary",
+        "issue_page": 3,
+        "column": 3,
+        "lines": [
+          2365,
+          2371
+        ],
+        "lines_of_claim": [
+          2365,
+          2366,
+          2367,
+          2368,
+          2369,
+          2370,
+          2371
+        ]
+      },
+      "entities": [
+        {
+          "as_printed": "J. H. COLLINS",
+          "normalized": "J. H. Collins",
+          "role": "proprietor",
+          "occupations": [
+            "attorney"
+          ]
+        },
+        {
+          "as_printed": "J. D. CATON",
+          "normalized": "J. D. Caton",
+          "role": "proprietor",
+          "occupations": [
+            "attorney"
+          ]
+        }
+      ],
+      "notes": "A LAW OFFICE COUNTED OFF A STORE, and the store is one this corpus already holds on South Water street. J. D. Caton is the same man the January read found appointed attorney of the town on 4 December 1833. The offset word is cut here ('ast of Brewster, Hogan') and is read as ONE DOOR EAST from the 11 and 18 February printings of the same advertisement, which carry 'NE door cast of Brewster, Hogan & Co' whole (1834-02-18, claim c015 there). Placement is `relative`: it fixes the office to a side of a named neighbour on a named street, which is as far as the paper goes.",
+      "ad_copy_date": {
+        "verbatim": "Jan. 20, 1934",
+        "iso": "1834-01-20"
+      },
+      "business": {
+        "name": "J. H. Collins & J. D. Caton",
+        "proprietors": [
+          "J. H. Collins",
+          "J. D. Caton"
+        ],
+        "trade": "attorneys and counsellors at law, solicitors in chancery",
+        "goods": [],
+        "street": "South Water Street",
+        "placement": {
+          "class": "relative",
+          "anchor": "Brewster, Hogan & Co.",
+          "offset_text": "ast of Brewster, Hogan    ,",
+          "offset_normalized": "one door east of Brewster, Hogan & Co., South Water street",
+          "street": "South Water Street"
+        }
+      }
+    },
+    {
+      "id": "c009",
+      "kind": "notice",
+      "reading": "transcription_mediated",
+      "quote": "Strayed or Stolen,\nBoer rane Lot No, 12, in Kinzie's\naddition to Chicago, tee sticks of square\nr. Whoever has taken up said atesrreel\nreturns them to the place from whence\nwere taken, no questions will be asked,\nwise they must look out for trouble,\np             HIRAM PEARSONS.\nicago, Jan, 23, 1834,                     10",
+      "normalized": "Strayed or Stolen, [from] […] Water Lot No. 12, in Kinzie's addition to Chicago, t[hree] sticks of square t[imbe]r. Whoever has taken up said [sticks and] returns them to the place from whence [they] were taken, no questions will be asked, [other]wise they must look out for trouble. HIRAM PEARSONS. [Ch]icago, Jan, 23, 1834.",
+      "locator": {
+        "artifact_role": "primary",
+        "issue_page": 3,
+        "column": 4,
+        "lines": [
+          2400,
+          2408
+        ],
+        "lines_of_claim": [
+          2400,
+          2401,
+          2402,
+          2403,
+          2404,
+          2405,
+          2406,
+          2407,
+          2408
+        ]
+      },
+      "entities": [
+        {
+          "as_printed": "HIRAM PEARSONS",
+          "normalized": "Hiram Pearsons",
+          "role": "advertiser",
+          "associated_places": [
+            "Kinzie's Addition"
+          ]
+        }
+      ],
+      "notes": "SQUARE TIMBER LYING ON A WATER LOT, and it names the lot: Water Lot No. 12 in KINZIE'S ADDITION, which is the north-side subdivision across the river from the platted town. Three sticks of it, worth advertising for. Two things for a reconstruction: building timber was stored in the open on the river lots, and it was stealable — the same Hiram Pearsons advertises 'look out for trouble' in the same words J. B. Beaubien uses of Hardscrabble two columns on. The count is 'tee sticks' here and 'two sticks' in the 18 February printing of the same notice; three is taken from this printing and the disagreement is recorded rather than resolved.",
+      "ad_copy_date": {
+        "verbatim": "icago, Jan, 23, 1834,",
+        "iso": "1834-01-23"
+      }
+    },
+    {
+      "id": "c010",
+      "kind": "business",
+      "reading": "transcription_mediated",
+      "quote": "JOHN BATES, Jr.\n\\WWOTIONEER o\nAVING taken out Licence to iat ay of,\nGoods, Ke. at Publi¢ Auction, of     his\nces to the citizens of Chicago in the above\ncity. Jan. 28.                                 10",
+      "normalized": "JOHN BATES, Jr. [AU]CTIONEER. [H]AVING taken out Licence to [dispose] of [Goods, &]c. at Public Auction, of[fers] his [servi]ces to the citizens of Chicago in the above [capa]city. Jan. 28.",
+      "locator": {
+        "artifact_role": "primary",
+        "issue_page": 3,
+        "column": 4,
+        "lines": [
+          2409,
+          2414
+        ],
+        "lines_of_claim": [
+          2409,
+          2410,
+          2411,
+          2412,
+          2413,
+          2414
+        ]
+      },
+      "entities": [
+        {
+          "as_printed": "JOHN BATES, Jr.",
+          "normalized": "John Bates, Jr.",
+          "role": "proprietor",
+          "occupations": [
+            "auctioneer"
+          ]
+        }
+      ],
+      "notes": "THE TOWN HAS A LICENSED AUCTIONEER from 28 January 1834, and he is the man who sells the old meeting house on 6 February and a whole household on 10 March. He is also, in a separate advertisement in the same column, selling blasting powder and crowbars AT THE POST OFFICE — see claim c014 — which is the only address anything of his carries this month. This notice itself gives none, and is recorded `none`.",
+      "ad_copy_date": {
+        "verbatim": "city. Jan. 28.",
+        "iso": "1834-01-28"
+      },
+      "business": {
+        "name": "John Bates, Jr.",
+        "proprietors": [
+          "John Bates, Jr."
+        ],
+        "trade": "auctioneer",
+        "goods": [],
+        "street": null,
+        "placement": {
+          "class": "none"
+        }
+      }
+    },
+    {
+      "id": "c011",
+      "kind": "notice",
+      "reading": "transcription_mediated",
+      "quote": "ake Particular Notice.\nJHE subscriber having sold out his entire\nStock of Goods, &c. &c. and wishing to\nfor New-York as soon ae he can make set-\nents of his accounts, he therefore requests\nho art indebted to him te make immediate\nnent\ntly    yee shee those indebted, will be\ntual in the payment of debts due him, and\npayment should be made to him alone,\nce has not authorize\nny debts due him.\n[uncertain: d any person trusting any one on hid?ac-]\nt, as he will pay no such debts,\nA. 0. T. BREED.\nicago, Jan. 28, 1834,",
+      "normalized": "[T]ake Particular Notice. [T]HE subscriber having sold out his entire Stock of Goods, &c. &c. and wishing to [leave] for New-York as soon as he can make set[tlem]ents of his accounts, he therefore requests [all w]ho are indebted to him to make immediate [pay]ment [without delay; and he hopes and confiden]tly [belie]ves [that] those indebted, will be [punc]tual in the payment of debts due him, and [that] payment should be made to him alone, [as] he has not authorize[d any person to settle a]ny debts due him. [This notice is also to forbi]d any person trusting any one on his ac[coun]t, as he will pay no such debts. A. O. T. BREED. [Ch]icago, Jan. 28, 1834,",
+      "locator": {
+        "artifact_role": "primary",
+        "issue_page": 3,
+        "column": 4,
+        "lines": [
+          2415,
+          2430
+        ],
+        "lines_of_claim": [
+          2415,
+          2416,
+          2417,
+          2418,
+          2419,
+          2420,
+          2421,
+          2422,
+          2423,
+          2424,
+          2425,
+          2426,
+          2427,
+          2428,
+          2429,
+          2430
+        ]
+      },
+      "entities": [
+        {
+          "as_printed": "A. 0. T. BREED",
+          "normalized": "A. O. T. Breed",
+          "role": "advertiser",
+          "occupations": [
+            "merchant"
+          ]
+        }
+      ],
+      "notes": "A CHICAGO MERCHANT SELLS OUT AND LEAVES FOR NEW YORK, in January 1834. Recorded as a contradicting claim so ruling 3 cannot quietly stand A. O. T. Breed's shop in the 1835 town on a survival liberty: his own notice says the stock is gone and he is going. He does not vanish from the town — his name is in the post office letter list printed in all four February issues — but his business is closed by his own words, and that is the distinction the gazetteer's `contradicted_by` exists to keep.",
+      "ad_copy_date": {
+        "verbatim": "icago, Jan. 28, 1834,",
+        "iso": "1834-01-28"
+      },
+      "contradicts": true
+    },
+    {
+      "id": "c012",
+      "kind": "building",
+      "reading": "transcription_mediated",
+      "quote": "NOTICE\nhereby given, that prosecutions will be en-\nlered against al}      7    person of. per-\n, that may be found trespassing on the west\nof the south west quarter of section num- | Brick\nour, in township thirty-nine, north range  Stone\neen eact, in Cook county, Llinois, and the\n: on which the Steam 5:     Mill stands.\nMARK NOBLE, Sen.\nnuary 8, 1833.                               8",
+      "normalized": "NOTICE [is] hereby given, that prosecutions will be en[te]red against al[l and every] person or per[sons], that may be found trespassing on the west [half] of the south west quarter of section num[ber f]our, in township thirty-nine, north range [fourt]een east, in Cook county, Illinois, and the [same] on which the Steam S[aw] Mill stands. MARK NOBLE, Sen. [Ja]nuary 8, 183[4].",
+      "locator": {
+        "artifact_role": "primary",
+        "issue_page": 3,
+        "column": 4,
+        "lines": [
+          2444,
+          2453
+        ],
+        "lines_of_claim": [
+          2444,
+          2445,
+          2446,
+          2447,
+          2448,
+          2449,
+          2450,
+          2451,
+          2452,
+          2453
+        ]
+      },
+      "entities": [
+        {
+          "as_printed": "MARK NOBLE, Sen.",
+          "normalized": "Mark Noble, Sen.",
+          "role": "landowner",
+          "associated_places": [
+            "Section 4, Township 39 North, Range 14 East"
+          ]
+        }
+      ],
+      "notes": "THE STEAM SAW MILL IS LOCATED, to a quarter-quarter section: the WEST HALF OF THE SOUTH WEST QUARTER OF SECTION 4, TOWNSHIP 39 NORTH, RANGE 14 EAST. That is about a mile and a half north-west of the platted town, on the North Branch, and it is the only industrial building of its size this corpus places at all. It matters for the fabric question the whole project turns on: a steam sawmill within two miles means SAWN boards were available in Chicago in 1834 and not only hewn timber and imported lumber, which is what the price current's 'Lumber, poplar ass'd' at 20 to 23 dollars the thousand feet is priced against. The notice is dated 'January 8, 1833' in the transcription; the year is read as 1833 as printed and NOT corrected, because a standing advertisement carrying last year's dateline is ordinary and a silent correction would invent a date."
+    },
+    {
+      "id": "c013",
+      "kind": "business",
+      "reading": "transcription_mediated",
+      "quote": "‘For Sale,\nKEGS BLASTING POWDER.\n16 heavy Steel Pointed CROBARS,\naireof «J. BATES, Jr. at P. Office. :\n7, 96.",
+      "normalized": "For Sale, [12] KEGS BLASTING POWDER. 16 heavy Steel Pointed C[R]OBARS, [Enqu]ire of J. BATES, Jr. at P. Office. [Nov. 2]6.",
+      "locator": {
+        "artifact_role": "primary",
+        "issue_page": 3,
+        "column": 4,
+        "lines": [
+          2454,
+          2458
+        ],
+        "lines_of_claim": [
+          2454,
+          2455,
+          2456,
+          2457,
+          2458
+        ]
+      },
+      "entities": [
+        {
+          "as_printed": "J. BATES, Jr.",
+          "normalized": "J. Bates, Jr.",
+          "role": "advertiser",
+          "occupations": [
+            "auctioneer"
+          ],
+          "associated_places": [
+            "Chicago post office"
+          ]
+        }
+      ],
+      "notes": "TWELVE KEGS OF BLASTING POWDER AND SIXTEEN CROWBARS, for sale at the post office. The goods are the interesting half: there is no rock to blast inside the town, and the harbour works at the river mouth are the only thing in reach that would want powder and steel-pointed bars in quantity — the same works that got a superintendent on page 2 of this issue. The placement is the post office itself, which is the only fixed point Bates's advertisements give; the office's own address is not stated anywhere in the month, so this is a relative placement onto a building this corpus cannot yet put on the ground.",
+      "business": {
+        "name": "J. Bates, Jr. at the Post Office",
+        "proprietors": [
+          "J. Bates, Jr."
+        ],
+        "trade": "blasting powder and crowbars",
+        "goods": [
+          "blasting powder",
+          "crowbars"
+        ],
+        "street": null,
+        "placement": {
+          "class": "relative",
+          "anchor": "Chicago post office",
+          "offset_text": "aireof «J. BATES, Jr. at P. Office. :",
+          "offset_normalized": "enquire of J. Bates, Jr. at [the] P[ost] Office",
+          "street": null
+        }
+      }
+    },
+    {
+      "id": "c014",
+      "kind": "business",
+      "reading": "transcription_mediated",
+      "quote": "asbestos ons\nNEW BLACKSMITH\nSHOP.\nPIERCE & ABBOTT, —\nOULD respectfully inform the inhabit\nV ants of Chicago and the neighboring se\nnents, that they have commenced the abo\n‘ness in said town, nearly opposite the Chi-\no Hotel, where they are ress? to wait upon\nthose who may have any kind of work to do\nheir line of business, on the most liberal\nms. They will manufacture Prarie Plough,\nder, Gad ee the shortest notice. By strict\nmtion to business, they hope te receive &\nre of patronage.\nee. 10, 1833.",
+      "normalized": "NEW BLACKSMITH SHOP. PIERCE & ABBOTT, [W]OULD respectfully inform the inhabit[ants] of Chicago and the neighboring se[ttlem]ents, that they have commenced the abo[ve busi]ness in said town, nearly opposite the Chi[cag]o Hotel, where they are re[ad]y to wait upon [all] those who may have any kind of work to do [in t]heir line of business, on the most liberal [ter]ms. They will manufacture Prarie Plough[s, to or]der, and [on] the shortest notice. By strict [atte]ntion to business, they hope to receive a [sha]re of patronage. [D]ec. 10, 1833.",
+      "locator": {
+        "artifact_role": "primary",
+        "issue_page": 3,
+        "column": 4,
+        "lines": [
+          2474,
+          2489
+        ],
+        "lines_of_claim": [
+          2474,
+          2475,
+          2476,
+          2477,
+          2478,
+          2479,
+          2480,
+          2481,
+          2482,
+          2483,
+          2484,
+          2485,
+          2486,
+          2487,
+          2488,
+          2489
+        ]
+      },
+      "entities": [
+        {
+          "as_printed": "PIERCE & ABBOTT",
+          "normalized": "Pierce & Abbott",
+          "role": "firm",
+          "occupations": [
+            "blacksmith"
+          ]
+        }
+      ],
+      "notes": "THE EARLY END OF A SUCCESSION THIS PROJECT ALREADY HAD THE LATE END OF. The September 1834 read found Pierce & French keeping the shop 'formerly occupied by Pierce and Abbott, on the corner of Lake [and Canal] streets, opposite the Chicago Hotel'. This is Pierce & Abbott's own notice, nine months earlier, and it corroborates the anchor — nearly opposite the Chicago Hotel — while giving no corner. So the corner in the later notice is not an invention of the later advertiser's, and the shop stands at one place across both. PRAIRIE PLOUGHS made to order is the trade detail worth keeping: a town smith in 1834 making the implement the surrounding country needed.",
+      "ad_copy_date": {
+        "verbatim": "ee. 10, 1833.",
+        "iso": "1833-12-10"
+      },
+      "business": {
+        "name": "Pierce & Abbott",
+        "proprietors": [
+          "Pierce",
+          "Abbott"
+        ],
+        "trade": "blacksmith",
+        "goods": [
+          "prairie ploughs"
+        ],
+        "street": null,
+        "placement": {
+          "class": "relative",
+          "anchor": "Chicago Hotel",
+          "offset_text": "‘ness in said town, nearly opposite the Chi-",
+          "offset_normalized": "nearly opposite the Chicago Hotel",
+          "street": null
+        }
+      }
+    },
+    {
+      "id": "c015",
+      "kind": "business",
+      "reading": "transcription_mediated",
+      "quote": "Chicago--Iilineis.\nPhe subscriber has taken that noted Tavern\nnd in Chicago, lately occupied by My, Hin.\nWatihs, which he will make ayey bonnes\nrtion to render the Traveller    jome.— | rena:\n¢ patronage of the         ill be gratefully\nnowledged. Od. 4,",
+      "normalized": "Chicago--Illinois. [T]he subscriber has taken that noted Tavern [Sta]nd in Chicago, lately occupied by M[r]. H[…] W. Wat[t]les, which he will make [every possible] [exe]rtion to render the Traveller['s H]ome. — [Th]e patronage of the [public w]ill be gratefully [ack]nowledged. O[c]t. 4, [1833].",
+      "locator": {
+        "artifact_role": "primary",
+        "issue_page": 3,
+        "column": 4,
+        "lines": [
+          2490,
+          2496
+        ],
+        "lines_of_claim": [
+          2490,
+          2491,
+          2492,
+          2493,
+          2494,
+          2495,
+          2496
+        ]
+      },
+      "entities": [
+        {
+          "as_printed": "My, Hin. Watihs",
+          "normalized": "[uncertain: H…] W. Wattles",
+          "role": "former occupant",
+          "occupations": [
+            "tavern keeper"
+          ]
+        }
+      ],
+      "notes": "A TAVERN CHANGES HANDS, THE NEW KEEPER DOES NOT SIGN, AND THE OUTGOING MAN'S GIVEN NAME IS NOT SETTLED. The advertisement calls the house a NOTED tavern stand, names the man going out as W. Wattles, and never says where it is or who the subscriber is; it is printed unchanged in all four February issues and in the December ones before them. Recorded because the succession is a fact and the silence is a finding: this is the shape of the corpus's hardest business claims, a real house in the town with no address and no proprietor, and it is entered with placement `none` rather than guessed at.\n\nTHE GIVEN NAME, AND WHY IT IS LEFT OPEN. The January read (1834-01-28, claim c009) normalizes the same standing advertisement to '[Jo]hn W. Wattles', with the first two letters SUPPLIED — that printing had lost them too. All three February printings that carry the line legibly set an initial H: 'Mr, Hin. Watihs' here, 'Mr, Hs W, Wattles' on the 11th, 'Mr. Him. W. Wattles' on the 18th. So the February evidence is for HIRAM and the January evidence is a supply, and neither is a reading of surviving type. It is entered here as '[uncertain: H…] W. Wattles' rather than resolved either way, because this corpus's identity policy refuses to merge one surname across two initials without a stated rule and NO RULE IS AVAILABLE: the question is what the page said, and only the page images can answer it. Both entries stand in the gazetteer until they do.",
+      "ad_copy_date": {
+        "verbatim": "nowledged. Od. 4,",
+        "iso": "1833-10-04"
+      },
+      "business": {
+        "name": "the noted Tavern Stand lately occupied by W. Wattles",
+        "proprietors": [],
+        "trade": "tavern",
+        "goods": [],
+        "street": null,
+        "placement": {
+          "class": "none"
+        }
+      }
+    },
+    {
+      "id": "c016",
+      "kind": "price",
+      "reading": "transcription_mediated",
+      "quote": "HICAGO PRICES CURRENT, |j*.2\nteported for the Democrat by P. F. Pech. | Puter'\nCORRECTED WEERLY.              Charle\nChristi\nbbl g              Arad I\nand Meal—                                   James\nWabash 8. fine = bb! 6 00 2 0 00 | Henry\ndo. fine = Fl & BO         Justice\nOhio 8. fine           bbl                       Rev. \\\nBuekwheat flour —_ bbl                     Jehu L\nIndian meal       bush 95 9 68 | Johnk\nes\nCorn           bush               eee\nOats            2.     S.   M4       Li\nWheat           bbs     Ga 09       Lu\n“Beefy freab                      b\nef, fres!         Ib    2           2\nao allmes’ “wl pours. |e\ndo do prime ”” 8:00         trite\nno do cargo     * 600          cA\n[uncertain: Pork, Maeno.3,  ? 17:00         Tic]\nTeeth ig BE 1800 e400 || saa\ndo prime      34 O0a1L 50\nOne hog        ” 10 00           :\nDried beef         bh 10a 12 | For\ndo venison      b 12\nHams green\ndo smoked\nWhite fish\npee\nCheese\nWhite beans\nPotatoes\nWw,\ns, dry\nwet\nles, box tallow\nSoap\nwax\ncrite\nTea, imperi\ndo young hyson\ndo souchong\nSugar, loaf\ndo lump\ndo brown Hav.\ndo St. Croix, > lb Ma 16\ndo Porto Rico,\nMolasses            gl ea 7%\nRice               b . Te 8\nCoffee, asst’d        mb 170 1\nskey, bbl             gu 400\nsperm               gai 150\nestics—\nBrown sheetings 4-4 yd 13. a 18.\ndo shirtings 3-4 yd    Da 10\nBleach’d do 3-4 yd\ndo, sheetings 4-4 yd 18 a 28\nCalicoes, assorted = yd    lba 38\nPeru easorted         ba ee\n|, east                   Ib 2a\nGerman             Ib 18a 21\n, wro't               b 17a 16\neat             b    9a 10     ALS\nkrat skins            po Wa 18        5\n‘oon do           ps 2a 2    Noe.\nling Materials—\nber, poplar ass’d 1000 f& 20 00.023 00\ngles             do       3500400\nre timber, length       ft      ba 6\n‘,          per 1009 6 00\ncy                 perch 150\n}               bbl 1 25    «\nd,                 cond 203 00\nEXCHANGE.\nafts on Detroit, Buffalo and New-York,\n\\'d at par.                                           Ta\nreign Bank Notes not exceeding 5 per cent] for sa)\nvant at New-York, taken at parin trade,|  ¢4i¢\ndiscounted for specie or United States pa-|\nyt from] to 5 per cent.                           Ju",
+      "normalized": "CHICAGO PRICES CURRENT, [R]eported for the Democrat by P. F. Peck. CORRECTED WEEKLY. […] Flour and Meal — Wabash S. fine bbl 6 00 a 0 00; [Michigan] do. fine bbl [6] 50; Ohio S. fine bbl […]; Buckwheat flour bbl […]; Indian meal bush 95 a 68 […]. Provisions — Beef, fresh lb 2 [a 4]; do salt mess bbl [9 00]; do do prime 8 00; do do cargo 6 00; Pork, mess no. 3 [sic, no. 1] 17 00; [no. 2] 13 00 a 14 00; do prime 11 00 a 11 50; One hog 10 00; Dried beef lb 10 a 12; do venison lb 12 […]. Groceries — Tea, imperial […]; do young hyson […]; do souchong […]; Sugar, loaf; do lump; do brown Hav.; do St. Croix, lb 14 a 16; do Porto Rico; Molasses gal [6]a 75; Rice lb 7 a 8; Coffee, ass'd lb 17 a 1[8]; [Whi]skey, bbl gal 4 00; [Oil,] sperm gal 150. [Do]mestics — Brown sheetings 4-4 yd 13 a 15; do shirtings 3-4 yd [9] a 10; Bleach'd do 3-4 yd; do. sheetings 4-4 yd 18 a 28; Calicoes, assorted yd 1[5] a 38; [Iron,] Peru assorted lb [7 a 9]; [Steel,] cast lb 2[7 a 30]; German lb 18 a 21; [Nails], wro't lb 17 a 18; [do] cut lb 9 a 10; [Musk]rat skins pc 1[6] a 18; [Rac]coon do pc 2[0] a 2[5]. [Buil]ding Materials — [Lum]ber, poplar ass'd 1000 ft 20 00 a 23 00; [Shin]gles do 3 50 a 4 00; [Squa]re timber, length ft 5 a 6; [Brick,] per 1000 6 00; [Stone,] perch 1 50; [Lime,] bbl 1 25; [Woo]d, cord 2 [5]0 a 3 00. EXCHANGE. [Dr]afts on Detroit, Buffalo and New-York, [Cash]'d at par. [Fo]reign Bank Notes not exceeding 5 per cent [disc]ount at New-York, taken at par in trade, [and] discounted for specie or United States pa[per a]t from 1 to 5 per cent.",
+      "locator": {
+        "artifact_role": "primary",
+        "issue_page": 3,
+        "column": 5,
+        "lines": [
+          2529,
+          2609
+        ],
+        "lines_of_claim": [
+          2529,
+          2530,
+          2531,
+          2532,
+          2533,
+          2534,
+          2535,
+          2536,
+          2537,
+          2538,
+          2539,
+          2540,
+          2541,
+          2542,
+          2543,
+          2544,
+          2545,
+          2546,
+          2547,
+          2548,
+          2549,
+          2550,
+          2551,
+          2552,
+          2553,
+          2554,
+          2555,
+          2556,
+          2557,
+          2558,
+          2559,
+          2560,
+          2561,
+          2562,
+          2563,
+          2564,
+          2565,
+          2566,
+          2567,
+          2568,
+          2569,
+          2570,
+          2571,
+          2572,
+          2573,
+          2574,
+          2575,
+          2576,
+          2577,
+          2578,
+          2579,
+          2580,
+          2581,
+          2582,
+          2583,
+          2584,
+          2585,
+          2586,
+          2587,
+          2588,
+          2589,
+          2590,
+          2591,
+          2592,
+          2593,
+          2594,
+          2595,
+          2596,
+          2597,
+          2598,
+          2599,
+          2600,
+          2601,
+          2602,
+          2603,
+          2604,
+          2605,
+          2606,
+          2607,
+          2608,
+          2609
+        ]
+      },
+      "entities": [
+        {
+          "as_printed": "P. F. Pech",
+          "normalized": "P. F. Peck",
+          "role": "price reporter",
+          "occupations": [
+            "merchant"
+          ]
+        }
+      ],
+      "notes": "WHAT IT COST TO BUILD IN CHICAGO IN FEBRUARY 1834, in the paper's own weekly table, reported by the merchant P. F. Peck whose store is at LaSalle and South Water. The BUILDING MATERIALS block is the reason this is extracted whole: poplar lumber 20 to 23 dollars the thousand feet, SHINGLES 3.50 to 4.00, square timber 5 to 6 cents the foot, BRICK SIX DOLLARS THE THOUSAND, stone 1.50 the perch, lime 1.25 the barrel, firewood 2.50 to 3.00 the cord. The September 1834 read has bricks at six dollars and shingles at two fifty, so brick holds its price across the year and shingles rise by a third over the building season — which is the sort of thing only a run of these tables can say. THE PRICES ARE HALF-EATEN BY THE COLUMN EDGE and every missing figure is left as a gap; the ones quoted are the ones the transcription actually carries. The same table is printed on 11, 18 and 25 February with the same figures in the building block, so the month has ONE reading and not four, and the later three are recorded as reprints."
+    },
+    {
+      "id": "c017",
+      "kind": "business",
+      "reading": "transcription_mediated",
+      "quote": "GCAWPUATUBB,      A’\nCHICAGO—ILL,               apt\ne\\ pane Te\nmont of\nDRUGS AND | Cr\nMEDICINES,         Ht\nMen’s\npile, Paints, Dye-Stam@, | co\nke. &e. —ALSO—               Shee!\nDry Groceries, Glase, Naijs, &c,      all of y\nwe, 22, 1833.                                 1} Cash o",
+      "normalized": "[P. CARPENTER,] CHICAGO — ILL. [will] keep constantly on [hand, a general assort]ment of DRUGS AND MEDICINES, [O]ils, Paints, Dye-Stuf[fs], &c. &c. — ALSO — Dry Groceries, Glass, Nails, &c. [No]v. 22, 1833.",
+      "locator": {
+        "artifact_role": "primary",
+        "issue_page": 3,
+        "column": 5,
+        "lines": [
+          2611,
+          2621
+        ],
+        "lines_of_claim": [
+          2611,
+          2612,
+          2613,
+          2614,
+          2615,
+          2616,
+          2617,
+          2618,
+          2619,
+          2620,
+          2621
+        ]
+      },
+      "entities": [
+        {
+          "as_printed": "GCAWPUATUBB",
+          "normalized": "Philo Carpenter",
+          "role": "proprietor",
+          "occupations": [
+            "druggist"
+          ]
+        }
+      ],
+      "notes": "THE TOWN'S DRUGGIST, and the man who is secretary of the temperance society on page 3 of the same issue. The advertiser's name is destroyed in this printing — the heading reads 'GCAWPUATUBB' — and is read as P. CARPENTER from the Temperance Almanac advertisement four inches below it in the same column, which prints 'CARPENTER' whole, and from the same block standing in the 11 and 18 February issues. He gives no address in any February printing, so the placement is `none`: this project has a druggist in the town and cannot yet put him on a lot. That matters because the boot maker in this issue is placed 'next door to Cohen's Store' and the September 1834 read placed a bakery against Newberry & Dole — the anchors are stores, and an unplaced store is an anchor this corpus cannot use.",
+      "ad_copy_date": {
+        "verbatim": "we, 22, 1833.",
+        "iso": "1833-11-22"
+      },
+      "business": {
+        "name": "P. Carpenter, druggist",
+        "proprietors": [
+          "Philo Carpenter"
+        ],
+        "trade": "druggist",
+        "goods": [
+          "drugs",
+          "medicines",
+          "oils",
+          "paints",
+          "dye-stuffs",
+          "dry groceries",
+          "glass",
+          "nails"
+        ],
+        "street": null,
+        "placement": {
+          "class": "none"
+        }
+      }
+    },
+    {
+      "id": "c018",
+      "kind": "business",
+      "reading": "transcription_mediated",
+      "quote": "JOHN WEIGH         Chie\nros BALE ONBAP FOR! Ch\nare qualities and     N\ndo, Circassians,  polars: ety     Me\nbet, Valentia and Prussi              i\nro-de-nap, Palmerine and Crapo Hand’kfa;   B'\nandanna, silk, flag, and black, ttalian do.\nC. P. Ribbon:            Candle\nauze, gurniture and C.                             f\nJackonet and Book M                     to thei\n‘d and plain Bobinett Laces;                hand i\nas\nuillings and Edgings;\nwe,  hone and se aigd Cloth:\neol-mix'd, dark and light bine Sattinotta; | N. J\nhite, scarlet, and red Flann                   alyo fi\nark and fancy colored Prints;                a\nApron Checks and Plaids;            Ske\n[uncertain: er   flee Valontia and Swansdown Vestings;:        ?]\nne Irish Linen; Canton Flannel;\nrown and bleached Shirtings and Sheetings;\npaverteen—-different qualities;\nangup Cord;\nendy made Clothing—different kind\n\"ick and Wadding;                                 aa pe\nother Dry Goods which it is unnecessary £0} 1{4yin\nicularize.                                       impor\n\\LSO—4 PRETTY GESENAL ASORTHENT.UF | blo\nHardware, Creckery,        aes\n[uncertain: roceries, Boots and SRO?8,) ay |]\nStationary, Tin Ware, dc. he.      the ny\n{which he offers to thé pubiie on the most     Chi\nble terms.\nctemand fanpel Shists and Drawers, of MBI\nrent qualities and colors, for gale as above,        7M\nhicagu, Nov. 26, 1833.                  pad)   5",
+      "normalized": "JOHN W[R]IGH[T], [OF]FERS FOR SALE CHEAP FOR [CASH,] [Merino Cloths, di]f[fe]rent qualities and [colors;] do. Circassians, [Thi]bet, Valentia and Prussi[an Shawls;] Gro-de-nap, Palmerine and Crape Hand'k[f]s; [B]andanna, silk, flag, and black, Italian do. [Gauze, garniture and] C. P. Ribbon[s]; [M]ull, Jackonet and Book M[uslins]; [Fig']d and plain Bobinett Laces; [Q]uillings and Edgings; [Blue, brown and steel-mix'd] Cloth[s]; [St]eel-mix'd, dark and light blue Sattinette; [W]hite, scarlet, and red Flann[els]; [D]ark and fancy colored Prints; [Indigo] Apron Checks and Plaids; [Mersailes, Valentia and Swansdown Vestings]; [Fi]ne Irish Linen; Canton Flannel; [B]rown and bleached Shirtings and Sheetings; [Bea]verteen — different qualities; [B]angup Cord; [R]eady made Clothing — different kind[s]; [W]ick and Wadding; [and] other Dry Goods which it is unnecessary to [part]icularize. — ALSO — A PRETTY GENERAL ASSORTMENT OF Hardware, Crockery, [G]roceries, Boots and Sho[e]s, Stationary, Tin Ware, &c. &c. [w]hich he offers to the public on the most [reasona]ble terms. [Cotton and flannel] Shirts and Drawers, of [diffe]rent qualities and colors, for sale as above. [C]hicag[o], Nov. 26, 1833.",
+      "locator": {
+        "artifact_role": "primary",
+        "issue_page": 3,
+        "column": 5,
+        "lines": [
+          2622,
+          2657
+        ],
+        "lines_of_claim": [
+          2622,
+          2623,
+          2624,
+          2625,
+          2626,
+          2627,
+          2628,
+          2629,
+          2630,
+          2631,
+          2632,
+          2633,
+          2634,
+          2635,
+          2636,
+          2637,
+          2638,
+          2639,
+          2640,
+          2641,
+          2642,
+          2643,
+          2644,
+          2645,
+          2646,
+          2647,
+          2648,
+          2649,
+          2650,
+          2651,
+          2652,
+          2653,
+          2654,
+          2655,
+          2656,
+          2657
+        ]
+      },
+      "entities": [
+        {
+          "as_printed": "JOHN WEIGH",
+          "normalized": "John Wright",
+          "role": "proprietor",
+          "occupations": [
+            "merchant"
+          ]
+        }
+      ],
+      "notes": "THE LONGEST GOODS LIST IN THE MONTH, and the best evidence this corpus has for what a Chicago dry goods store actually held in the winter of 1833-34: merino cloths, Circassians, Thibet and Valentia shawls, gro-de-nap and crape handkerchiefs, bandanna and Italian silk, bobinett lace, sattinette, scarlet and white flannel, apron checks, beaverteen, bangup cord, ready made clothing, wick and wadding — and then hardware, crockery, boots, stationery and tin ware behind it. The proprietor's name is 'JOHN WEIGH' in this printing and JOHN WRIGHT in the 11, 18 and 25 February ones, which carry the same block whole; the same man advertises cut nails from 3d to 20d and dried apples elsewhere in the month. NO ADDRESS, in any printing.",
+      "ad_copy_date": {
+        "verbatim": "hicagu, Nov. 26, 1833.",
+        "iso": "1833-11-26"
+      },
+      "business": {
+        "name": "John Wright",
+        "proprietors": [
+          "John Wright"
+        ],
+        "trade": "dry goods, hardware and groceries",
+        "goods": [
+          "dry goods",
+          "shawls",
+          "ribbons",
+          "laces",
+          "flannels",
+          "prints",
+          "ready made clothing",
+          "hardware",
+          "crockery",
+          "groceries",
+          "boots and shoes",
+          "stationery",
+          "tin ware",
+          "cut nails"
+        ],
+        "street": null,
+        "placement": {
+          "class": "none"
+        }
+      }
+    },
+    {
+      "id": "c019",
+      "kind": "notice",
+      "reading": "transcription_mediated",
+      "quote": "List of Letters\nEMAINING in the Post-Office at Benne\npon oil before he fist da,\ni to the Post Office Department a de\nr Braybrook\n[uncertain: i connon]\nCartwright\nHan Holdemen\nes 8. Edwarde\nHall cock\nPalmer\nChes. P. Smith\nWilliam Vernon\n[uncertain: BOLD]\n[uncertain: LeOPaTiOMAS CALAHER, S. P.M.]",
+      "normalized": "List of Letters [R]EMAINING in the Post-Office at Benne[…] […] […] to the Post Office Department a de[ad letter …] [Braybrook …] [uncertain: i connon] […] Cartwright [… Ha]n Holdemen [… Jam]es S. Edwards [… Hall]cock […] Palmer [… Ch]as. P. Smith [… Wi]lliam Vernon [uncertain: BOLD] [uncertain: LeOPaTiOMAS CALAHER, S. P.M.]",
+      "locator": {
+        "artifact_role": "primary",
+        "issue_page": 3,
+        "column": 6,
+        "lines": [
+          2675,
+          2689
+        ],
+        "lines_of_claim": [
+          2675,
+          2676,
+          2677,
+          2678,
+          2679,
+          2680,
+          2681,
+          2682,
+          2683,
+          2684,
+          2685,
+          2686,
+          2687,
+          2688,
+          2689
+        ]
+      },
+      "entities": [],
+      "notes": "A LETTER LIST THAT IS NOT CHICAGO'S, and it is recorded so that the month's letter-list arithmetic cannot be got wrong. The heading reads 'REMAINING in the Post-Office at Benne[…]' and the signature is THOMAS CALAHER, P. M. — neither is Chicago, whose postmaster signs John S. C. Hogan on page 4 of this same issue. So its eight legible names MINT NOBODY, exactly as the August 1834 read refused the Hennepin list and the October 1834 read refused the Du Page and Plainfield ones. The column is cut to about a third of its width and the office's own name is lost after five letters; it is left unsupplied rather than guessed."
+    },
+    {
+      "id": "c020",
+      "kind": "business",
+      "reading": "transcription_mediated",
+      "quote": "[uncertain: P.]\nPECK,\nR OF LASALLE AND SOCT WATER-STREETS\n[uncertain: A coon lied the of head ar]\nDry Goods, Hardecare,\nGroceries, Crockery,\nOTS & SHOES, MATS,\nnd a variety of miscellaneou articles.\n10 bble. of hard Bread.\ncago, Dec. 3, 1355",
+      "normalized": "[P. F.] PECK, [CO]R[NE]R OF LASALLE AND SO[U]T[H] WATER-STREETS [uncertain: A coon lied the of head ar] Dry Goods, Hard[w]are, Groceries, Crockery, [BO]OTS & SHOES, [H]ATS, [a]nd a variety of miscellaneou[s] articles. 10 bbls. of hard Bread. [Chi]cago, Dec. 3, 183[3].",
+      "locator": {
+        "artifact_role": "primary",
+        "issue_page": 3,
+        "column": 6,
+        "lines": [
+          2699,
+          2708
+        ],
+        "lines_of_claim": [
+          2699,
+          2700,
+          2701,
+          2702,
+          2703,
+          2704,
+          2705,
+          2706,
+          2707,
+          2708
+        ]
+      },
+      "entities": [
+        {
+          "as_printed": "PECK",
+          "normalized": "P. F. Peck",
+          "role": "proprietor",
+          "occupations": [
+            "merchant"
+          ],
+          "associated_places": [
+            "La Salle Street",
+            "South Water Street"
+          ]
+        }
+      ],
+      "notes": "ONE OF THE FOUR CORNERS THIS CORPUS CAN NAME, standing again in February. The December 1833 read has Peck's store at La Salle and South Water and this is the same block of type still running, which matters for ruling 3: the business is continuously advertised from November 1833 to at least 25 February 1834, so its survival to the scene date rests on a shorter gap than most. He is also the man reporting the paper's weekly price current.",
+      "ad_copy_date": {
+        "verbatim": "cago, Dec. 3, 1355",
+        "iso": "1833-12-03"
+      },
+      "business": {
+        "name": "P. F. Peck",
+        "proprietors": [
+          "P. F. Peck"
+        ],
+        "trade": "dry goods, hardware and groceries",
+        "goods": [
+          "dry goods",
+          "hardware",
+          "groceries",
+          "crockery",
+          "boots and shoes",
+          "hats",
+          "hard bread"
+        ],
+        "street": "South Water Street",
+        "placement": {
+          "class": "corner",
+          "anchor": "La Salle and South Water streets",
+          "offset_text": "R OF LASALLE AND SOCT WATER-STREETS",
+          "offset_normalized": "corner of La Salle and South Water streets",
+          "street": "South Water Street"
+        }
+      }
+    },
+    {
+      "id": "c021",
+      "kind": "notice",
+      "reading": "transcription_mediated",
+      "quote": "REMOVAL.\nBE ofice of the Clerk of the Cireuit end\n[uncertain: cos bailing he door at or to]",
+      "normalized": "REMOVAL. [T]HE office of the Clerk of the Circuit and [county Courts for Cook county, is removed to] [uncertain: the building one door West of the house of Col. Owen]",
+      "locator": {
+        "artifact_role": "primary",
+        "issue_page": 3,
+        "column": 6,
+        "lines": [
+          2709,
+          2711
+        ],
+        "lines_of_claim": [
+          2709,
+          2710,
+          2711
+        ]
+      },
+      "entities": [],
+      "notes": "THE COUNTY CLERK'S OFFICE MOVES, and in this printing the destination is destroyed — the line survives as 'cos bailing he door at or to'. It is read from the 18 and 25 February printings of the same notice, which carry it whole: 'removed to the building one door West of the house of Col. Owen' (1834-02-18, claim c020 there). Recorded here anyway, unresolved, because the removal is dated by its first appearance and because a claim that says WHERE the anchor text was lost is what stops the next pass reading this printing as if the office had no address."
+    },
+    {
+      "id": "c022",
+      "kind": "business",
+      "reading": "transcription_mediated",
+      "quote": "bicago Soap and Candle\nMANUFACTORY.\ncas. DANIEL ELSTON & CO,\nEG to inform the publi\nthat\nthey have\n[uncertain: He tole alan, inny quantity,]",
+      "normalized": "[C]hicago Soap and Candle MANUFACTORY. [Messrs.] DANIEL ELSTON & CO, [B]EG to inform the publi[c] that they have [commenced the Manufacture of Soap and Candles] [uncertain: He tole alan, inny quantity,]",
+      "locator": {
+        "artifact_role": "primary",
+        "issue_page": 3,
+        "column": 6,
+        "lines": [
+          2739,
+          2745
+        ],
+        "lines_of_claim": [
+          2739,
+          2740,
+          2741,
+          2742,
+          2743,
+          2744,
+          2745
+        ]
+      },
+      "entities": [
+        {
+          "as_printed": "DANIEL ELSTON & CO",
+          "normalized": "Daniel Elston & Co.",
+          "role": "firm",
+          "occupations": [
+            "soap and candle manufacturer"
+          ]
+        }
+      ],
+      "notes": "THE SOAP AND CANDLE WORKS, standing since the paper's first issue. Kept for February because the SAME firm advertises a NEW BUILDING three weeks later — a smoke house fitted up for hams and bacon, 1834-02-18 claim c008 — so the two claims together show one Chicago manufacturer adding a second trade inside the month. Elston's works has no address in any printing this corpus holds.",
+      "business": {
+        "name": "Chicago Soap and Candle Manufactory",
+        "proprietors": [
+          "Daniel Elston & Co."
+        ],
+        "trade": "soap and candle manufactory",
+        "goods": [
+          "hard soap",
+          "soft soap",
+          "wax candles",
+          "tallow candles"
+        ],
+        "street": null,
+        "placement": {
+          "class": "none"
+        }
+      }
+    },
+    {
+      "id": "c023",
+      "kind": "business",
+      "reading": "transcription_mediated",
+      "quote": "lacksmithing Bunimces.\nTATTHIAS NASON & CO.\nRiLESME the abore\nbonds he shortest no.,\n[uncertain: ago, Nol]",
+      "normalized": "[B]lacksmithing Business. [MA]TTHIAS NASON & CO. [CAR]RIES [on] the abo[ve business … at Graves' Tavern, where they intend to keep ready made all] kinds [of Shoes, Chains, &c., work done on t]he shortest no[tice]. [uncertain: ago, Nol]",
+      "locator": {
+        "artifact_role": "primary",
+        "issue_page": 3,
+        "column": 6,
+        "lines": [
+          2755,
+          2759
+        ],
+        "lines_of_claim": [
+          2755,
+          2756,
+          2757,
+          2758,
+          2759
+        ]
+      },
+      "entities": [
+        {
+          "as_printed": "TATTHIAS NASON & CO.",
+          "normalized": "Matthias Mason & Co.",
+          "role": "firm",
+          "occupations": [
+            "blacksmith"
+          ]
+        }
+      ],
+      "notes": "THE SECOND SMITHY IN THE TOWN, and this printing is the worst of the four: the firm is set as 'MATTHIAS NASON & CO.' and the placement line is gone entirely. It is read as MASON from the 11, 18 and 25 February printings, the last of which carries the address whole — 'back on Main-street, nearly opposite Graves' Tavern' (1834-02-25, claim c014 there). Recorded with placement `none` because THIS printing places nothing; the address claim belongs to the printing that makes it.",
+      "business": {
+        "name": "Matthias Mason & Co.",
+        "proprietors": [
+          "Matthias Mason"
+        ],
+        "trade": "blacksmith",
+        "goods": [
+          "horse shoes",
+          "chains"
+        ],
+        "street": null,
+        "placement": {
+          "class": "none"
+        }
+      }
+    },
+    {
+      "id": "c024",
+      "kind": "business",
+      "reading": "transcription_mediated",
+      "quote": "PETER COHEN,\nRAST END OF SOUTH WATER-STREET\nNEER CLOTHING.\nAl.so, a fresh supply of\n[uncertain: Ped prices cor]\n[uncertain: the pitie]\n[uncertain: he inaut]\nset",
+      "normalized": "PETER COHEN, [E]AST END OF SOUTH WATER-STREET [WI]NTER CLOTHING. Also, a fresh supply of [Groceries …] [uncertain: Ped prices cor] [uncertain: the pitie] [uncertain: he inaut]",
+      "locator": {
+        "artifact_role": "primary",
+        "issue_page": 3,
+        "column": 6,
+        "lines": [
+          2760,
+          2767
+        ],
+        "lines_of_claim": [
+          2760,
+          2761,
+          2762,
+          2763,
+          2764,
+          2765,
+          2766,
+          2767
+        ]
+      },
+      "entities": [
+        {
+          "as_printed": "PETER COHEN",
+          "normalized": "Peter Cohen",
+          "role": "proprietor",
+          "occupations": [
+            "clothier",
+            "grocer"
+          ],
+          "associated_places": [
+            "South Water Street"
+          ]
+        }
+      ],
+      "notes": "PETER COHEN AT THE EAST END OF SOUTH WATER STREET, which is the placement this project has carried since the very first issue of the paper (T-0257's worked fixture and the November 1833 read). He is still there in February 1834 and he is selling three hundred pounds of fresh butter a week later over his own name (1834-02-11, claim c005). His store is also an ANCHOR this month: the boot and shoe maker on page 4 places himself 'next door to Cohen's Store', which is the only thing in the issue counted off him.",
+      "business": {
+        "name": "Peter Cohen",
+        "proprietors": [
+          "Peter Cohen"
+        ],
+        "trade": "clothier and grocer",
+        "goods": [
+          "winter clothing",
+          "groceries",
+          "fresh butter"
+        ],
+        "street": "South Water Street",
+        "placement": {
+          "class": "relative",
+          "anchor": "east end of South Water Street",
+          "offset_text": "RAST END OF SOUTH WATER-STREET",
+          "offset_normalized": "east end of South Water street",
+          "street": "South Water Street"
+        }
+      }
+    },
+    {
+      "id": "c025",
+      "kind": "notice",
+      "reading": "transcription_mediated",
+      "quote": "List ef Let\nEMAINING in the Post-\nwaa ea  R go, Ml, January 3, 1934.\n3 BRIDE.         Et halet Atkins 2   eel\nxcited by the roman-| J. W. Anderson         ma\n. . 1H A. Bertrand        Isanc K\nheart of a maiden in} Cyitha Burbee       10s\nF       + [Joseph Babou         3H, K\nsteal afer it #00n.”” HHtiram Bennott        Lewis |\nadieu to her island Anthony Becra      Lewis |\nfexil_ companions of] Thomas Bennett    Lewis |\n40 miles to mect and] J, K. Blodgett       JEW.\nTrue as the magnet) Jos, Britton       3.8.1\nithful worshipper, he| Mary Barrows         Jacob |\nto its ruby casket./ 4. P, Benton          Mirand\nnd the accomplished] Avice Blodget       A. M’L\nof a wigwam in the/ 11, S, Bennett 2     Chas. }\nAarrist Bradford      Mary 3\nat heart cnn doubt, | Russel Baldwin        Fanes\nirones without !'\"      Hirain Bowse          shade o\n** doubles the inter- | Grastus Bowen       Now\nby the young and Ia Aaron Demis        Cheste\nh, Edward Finckney:|/.:0.1. Breed          John 3\nemale here            James Burk            F. T.\nf the deer?         T. R. Covell 2       F. BD\nWm. P. Cleayeland J. V, N\nape. she sccm         Thomas Conger        Laurett\nned,               O. P. Catran         T. ELF\nprage walke         D. P. Cleyinger       Julius |\nind.                E. W. Center         Joshua\nGeo. 1, Clark        8. F.P\nAlfred Clarke             Green |\nis ber lot,              Lamira& Laura Carrier C. H. |\nat he was not,         J, P. Converse          Noah P\nness, thoughts      Daniel B. Clevinger 4 Rob't.\nsada)          Henry B. Clarke 2. Thos. J\n;                        Alfred Churchill ‘Mr. Ro\n‘difference caught | Janes Childress         Salmon\nWilliam Criss           James |\nhand in hand         nj. Chapman      Isaac 8\nlong the land!        Loring Delano         8. Sco!\nhd       i      Samuel Devoe       Axtel «\nnts; he for her         Noel Dagenet            D. Spr:\nstride,           :  E Dimaiick         fe Es\ni           avi    ichson          ite\nflea ao             William Elliot 3H Gas\n3                   G. W. Ewing         WS. §\nSamuel Ebeniden        James |\neps they frame,        Dean Farren           8.C. t\nto the same.         A.W, Flint 2        Palmer\nre and more           David P. Frame        Samue'\nwild,                Jane Forrister         IPS\nhe                 Caleb Foster | ~~~\" Wm. §\nRob’t. Fisher”           John §\ny.               P. Field           Btephe\n“[ Alva Fowler       H.C, |\nor to repent,           Alburn Foster          Ae\nm1         '.    Jacob Fake        Elam\nOrinda Gary!            John 7\nir way of life         William      ing 2 Platt 1\nJos, A. Gooding      Peter ’\nDavid Groover           Lewis\nhave any careet | Eben Griswold          W. Va\nnda with theirs?        Wm. B. Green         John 1\nO. Grant              Adam\nthe stare aro lit         Luther Hatch           Philip\nm, all is gay,          Nathan Hopkins       Jesse |\nful as thoy.e            Reuben Hart           Danie!\nNathan Huchine     Bally\nds receive,               Warren Hanks          Aaron\nlate,                        Philip Howard           Delan\nic                    Wooster Harrison 5 Thom:\nparting thug         Ben}. Harrison        Loiza\nstate.                  J.P. Harkness         Samue\nLit is life                     JOHN 8. C.",
+      "normalized": "List of Let[ters] [R]EMAINING in the Post-[Office at Chica]go, Ill, January 1, 1834. — [Et halet] Atkins 2; J. W. Anderson; H. A. Bertrand; [Cyitha] Burbee; [Joseph Babou]; Hiram Bennett; Anthony Be[e]rs; Thomas Bennett; J. K. Blodgett; Jos. Britton; Mary Barrows; A. P. Benton; Avice Blodget; H. S. Bennett 2; Ha[rr]i[e]t Bradford; Russel[l] Baldwin; Hiram Bow[en]; Erastus Bowen; Aaron B[e]mis; A. O. T. Breed; James Burk; T. R. Covell 2; Wm. P. Cleaveland; Thomas Conger; O. P. Catran; D. P. Clevinger; E. W. Center; Geo. H. Clark; Alfred Clarke; Lamira & Laura Carrier; J. P. Converse; Daniel B. Clevinger; Henry B. Clarke 2; Alfred Churchill; James Childress; William Criss; [Be]nj. Chapman; Loring Delano; Samuel Devoe; Noel Dagenet; E. Dim[m]ick; [D]avi[d D]ickson; William Elliot 3; G. W. Ewing; Samuel Eberiden; Dean Farren; A. W. Flint 2; David P. Frame; Jane Forrister; Caleb Foster; Rob't. Fisher; P. Field; Alva Fowler; Alburn Foster; Jacob Fake; Orinda Gary; William [Good]ing 2; Jos. A. Gooding; David Groover; Eben Griswold; Wm. B. Green; O. Grant; Luther Hatch; Nathan Hopkins; Reuben Hart; Nathan Huch[i]n[s]; Warren Hanks; Philip Howard; Wooster Harrison 5; Benj. Harrison; J. P. Harkness.",
+      "locator": {
+        "artifact_role": "primary",
+        "issue_page": 4,
+        "column": 2,
+        "lines": [
+          2857,
+          2943
+        ],
+        "lines_of_claim": [
+          2857,
+          2858,
+          2859,
+          2860,
+          2861,
+          2866,
+          2867,
+          2868,
+          2869,
+          2870,
+          2871,
+          2872,
+          2873,
+          2874,
+          2875,
+          2876,
+          2877,
+          2878,
+          2879,
+          2880,
+          2881,
+          2882,
+          2883,
+          2884,
+          2885,
+          2886,
+          2887,
+          2888,
+          2889,
+          2890,
+          2891,
+          2892,
+          2893,
+          2894,
+          2895,
+          2896,
+          2897,
+          2898,
+          2899,
+          2901,
+          2902,
+          2903,
+          2904,
+          2905,
+          2906,
+          2907,
+          2908,
+          2909,
+          2910,
+          2911,
+          2915,
+          2916,
+          2917,
+          2918,
+          2919,
+          2920,
+          2921,
+          2922,
+          2924,
+          2926,
+          2927,
+          2928,
+          2929,
+          2930,
+          2931,
+          2934,
+          2935,
+          2936,
+          2937,
+          2938,
+          2939,
+          2940,
+          2941,
+          2942,
+          2943
+        ],
+        "interleaved": true
+      },
+      "entities": [
+        {
+          "as_printed": "Et halet Atkins 2",
+          "normalized": "[uncertain: Et halet] Atkins",
+          "role": "listed correspondent"
+        },
+        {
+          "as_printed": "J. W. Anderson",
+          "normalized": "J. W. Anderson",
+          "role": "listed correspondent"
+        },
+        {
+          "as_printed": "1H A. Bertrand",
+          "normalized": "H. A. Bertrand",
+          "role": "listed correspondent"
+        },
+        {
+          "as_printed": "Cyitha Burbee",
+          "normalized": "[uncertain: Cyitha] Burbee",
+          "role": "listed correspondent"
+        },
+        {
+          "as_printed": "Joseph Babou",
+          "normalized": "[uncertain: Joseph Babou]",
+          "role": "listed correspondent"
+        },
+        {
+          "as_printed": "HHtiram Bennott",
+          "normalized": "Hiram Bennett",
+          "role": "listed correspondent"
+        },
+        {
+          "as_printed": "Anthony Becra",
+          "normalized": "Anthony Beers",
+          "role": "listed correspondent"
+        },
+        {
+          "as_printed": "Thomas Bennett",
+          "normalized": "Thomas Bennett",
+          "role": "listed correspondent"
+        },
+        {
+          "as_printed": "J, K. Blodgett",
+          "normalized": "J. K. Blodgett",
+          "role": "listed correspondent"
+        },
+        {
+          "as_printed": "Jos, Britton",
+          "normalized": "Jos. Britton",
+          "role": "listed correspondent"
+        },
+        {
+          "as_printed": "Mary Barrows",
+          "normalized": "Mary Barrows",
+          "role": "listed correspondent"
+        },
+        {
+          "as_printed": "4. P, Benton",
+          "normalized": "A. P. Benton",
+          "role": "listed correspondent"
+        },
+        {
+          "as_printed": "Avice Blodget",
+          "normalized": "Avice Blodget",
+          "role": "listed correspondent"
+        },
+        {
+          "as_printed": "11, S, Bennett 2",
+          "normalized": "H. S. Bennett",
+          "role": "listed correspondent"
+        },
+        {
+          "as_printed": "Aarrist Bradford",
+          "normalized": "Harriet Bradford",
+          "role": "listed correspondent"
+        },
+        {
+          "as_printed": "Russel Baldwin",
+          "normalized": "Russell Baldwin",
+          "role": "listed correspondent"
+        },
+        {
+          "as_printed": "Hirain Bowse",
+          "normalized": "Hiram Bowen",
+          "role": "listed correspondent"
+        },
+        {
+          "as_printed": "Grastus Bowen",
+          "normalized": "Erastus Bowen",
+          "role": "listed correspondent"
+        },
+        {
+          "as_printed": "Aaron Demis",
+          "normalized": "Aaron Bemis",
+          "role": "listed correspondent"
+        },
+        {
+          "as_printed": "/.:0.1. Breed",
+          "normalized": "A. O. T. Breed",
+          "role": "listed correspondent"
+        },
+        {
+          "as_printed": "James Burk",
+          "normalized": "James Burk",
+          "role": "listed correspondent"
+        },
+        {
+          "as_printed": "T. R. Covell 2",
+          "normalized": "T. R. Covell",
+          "role": "listed correspondent"
+        },
+        {
+          "as_printed": "Wm. P. Cleayeland",
+          "normalized": "Wm. P. Cleaveland",
+          "role": "listed correspondent"
+        },
+        {
+          "as_printed": "Thomas Conger",
+          "normalized": "Thomas Conger",
+          "role": "listed correspondent"
+        },
+        {
+          "as_printed": "O. P. Catran",
+          "normalized": "O. P. Catran",
+          "role": "listed correspondent"
+        },
+        {
+          "as_printed": "D. P. Cleyinger",
+          "normalized": "D. P. Clevinger",
+          "role": "listed correspondent"
+        },
+        {
+          "as_printed": "E. W. Center",
+          "normalized": "E. W. Center",
+          "role": "listed correspondent"
+        },
+        {
+          "as_printed": "Geo. 1, Clark",
+          "normalized": "Geo. H. Clark",
+          "role": "listed correspondent"
+        },
+        {
+          "as_printed": "Alfred Clarke",
+          "normalized": "Alfred Clarke",
+          "role": "listed correspondent"
+        },
+        {
+          "as_printed": "Lamira& Laura Carrier",
+          "normalized": "Lamira & Laura Carrier",
+          "role": "listed correspondent"
+        },
+        {
+          "as_printed": "J, P. Converse",
+          "normalized": "J. P. Converse",
+          "role": "listed correspondent"
+        },
+        {
+          "as_printed": "Daniel B. Clevinger",
+          "normalized": "Daniel B. Clevinger",
+          "role": "listed correspondent"
+        },
+        {
+          "as_printed": "Henry B. Clarke 2",
+          "normalized": "Henry B. Clarke",
+          "role": "listed correspondent"
+        },
+        {
+          "as_printed": "Alfred Churchill",
+          "normalized": "Alfred Churchill",
+          "role": "listed correspondent"
+        },
+        {
+          "as_printed": "Janes Childress",
+          "normalized": "James Childress",
+          "role": "listed correspondent"
+        },
+        {
+          "as_printed": "William Criss",
+          "normalized": "William Criss",
+          "role": "listed correspondent"
+        },
+        {
+          "as_printed": "nj. Chapman",
+          "normalized": "Benj. Chapman",
+          "role": "listed correspondent"
+        },
+        {
+          "as_printed": "Loring Delano",
+          "normalized": "Loring Delano",
+          "role": "listed correspondent"
+        },
+        {
+          "as_printed": "Samuel Devoe",
+          "normalized": "Samuel Devoe",
+          "role": "listed correspondent"
+        },
+        {
+          "as_printed": "Noel Dagenet",
+          "normalized": "Noel Dagenet",
+          "role": "listed correspondent"
+        },
+        {
+          "as_printed": "E Dimaiick",
+          "normalized": "E. Dimmick",
+          "role": "listed correspondent"
+        },
+        {
+          "as_printed": "avi    ichson",
+          "normalized": "David Dickson",
+          "role": "listed correspondent"
+        },
+        {
+          "as_printed": "William Elliot 3",
+          "normalized": "William Elliot",
+          "role": "listed correspondent"
+        },
+        {
+          "as_printed": "G. W. Ewing",
+          "normalized": "G. W. Ewing",
+          "role": "listed correspondent"
+        },
+        {
+          "as_printed": "Samuel Ebeniden",
+          "normalized": "Samuel Eberiden",
+          "role": "listed correspondent"
+        },
+        {
+          "as_printed": "Dean Farren",
+          "normalized": "Dean Farren",
+          "role": "listed correspondent"
+        },
+        {
+          "as_printed": "A.W, Flint 2",
+          "normalized": "A. W. Flint",
+          "role": "listed correspondent"
+        },
+        {
+          "as_printed": "David P. Frame",
+          "normalized": "David P. Frame",
+          "role": "listed correspondent"
+        },
+        {
+          "as_printed": "Jane Forrister",
+          "normalized": "Jane Forrister",
+          "role": "listed correspondent"
+        },
+        {
+          "as_printed": "Caleb Foster",
+          "normalized": "Caleb Foster",
+          "role": "listed correspondent"
+        },
+        {
+          "as_printed": "Rob’t. Fisher”",
+          "normalized": "Rob't. Fisher",
+          "role": "listed correspondent"
+        },
+        {
+          "as_printed": "P. Field",
+          "normalized": "P. Field",
+          "role": "listed correspondent"
+        },
+        {
+          "as_printed": "Alva Fowler",
+          "normalized": "Alva Fowler",
+          "role": "listed correspondent"
+        },
+        {
+          "as_printed": "Alburn Foster",
+          "normalized": "Alburn Foster",
+          "role": "listed correspondent"
+        },
+        {
+          "as_printed": "Jacob Fake",
+          "normalized": "Jacob Fake",
+          "role": "listed correspondent"
+        },
+        {
+          "as_printed": "Orinda Gary",
+          "normalized": "Orinda Gary",
+          "role": "listed correspondent"
+        },
+        {
+          "as_printed": "William      ing 2",
+          "normalized": "William Gooding",
+          "role": "listed correspondent"
+        },
+        {
+          "as_printed": "Jos, A. Gooding",
+          "normalized": "Jos. A. Gooding",
+          "role": "listed correspondent"
+        },
+        {
+          "as_printed": "David Groover",
+          "normalized": "David Groover",
+          "role": "listed correspondent"
+        },
+        {
+          "as_printed": "Eben Griswold",
+          "normalized": "Eben Griswold",
+          "role": "listed correspondent"
+        },
+        {
+          "as_printed": "Wm. B. Green",
+          "normalized": "Wm. B. Green",
+          "role": "listed correspondent"
+        },
+        {
+          "as_printed": "O. Grant",
+          "normalized": "O. Grant",
+          "role": "listed correspondent"
+        },
+        {
+          "as_printed": "Luther Hatch",
+          "normalized": "Luther Hatch",
+          "role": "listed correspondent"
+        },
+        {
+          "as_printed": "Nathan Hopkins",
+          "normalized": "Nathan Hopkins",
+          "role": "listed correspondent"
+        },
+        {
+          "as_printed": "Reuben Hart",
+          "normalized": "Reuben Hart",
+          "role": "listed correspondent"
+        },
+        {
+          "as_printed": "Nathan Huchine",
+          "normalized": "Nathan Hutchins",
+          "role": "listed correspondent"
+        },
+        {
+          "as_printed": "Warren Hanks",
+          "normalized": "Warren Hanks",
+          "role": "listed correspondent"
+        },
+        {
+          "as_printed": "Philip Howard",
+          "normalized": "Philip Howard",
+          "role": "listed correspondent"
+        },
+        {
+          "as_printed": "Wooster Harrison 5",
+          "normalized": "Wooster Harrison",
+          "role": "listed correspondent"
+        },
+        {
+          "as_printed": "Ben}. Harrison",
+          "normalized": "Benj. Harrison",
+          "role": "listed correspondent"
+        },
+        {
+          "as_printed": "J.P. Harkness",
+          "normalized": "J. P. Harkness",
+          "role": "listed correspondent"
+        }
+      ],
+      "notes": "THE FIRST HALF OF THE 1 JANUARY 1834 CHICAGO LETTER LIST, A TO H, AND THIS IS THE PRINTING IT IS MINTED FROM. Ruling 1 applies in full: this is Chicago's own post office, so every listed name mints a resident candidate flagged `letter_list_only`.\n\nWHY MINT FROM A FOURTH PRINTING OF A LIST ALREADY READ. The January read (T-0310) minted 97 names from 1834-01-28 and said in terms that 97 was a FLOOR, not the printed length: the .docx extraction there crushed the printed list's two alphabetical columns into eight paragraph lines and left orphan debris where names stood. That gap is the open ticket T-0318, whose stated route to closing it was the page images. IT DOES NOT NEED THEM. The list is printed AGAIN in all four February issues, from ruled .txt transcriptions that carry ONE NAME PER LINE, and this column is the best surviving witness for its first half — 74 lines of it, initials intact. Seventy-two names are minted here, of which the great majority were unreadable or absent in the January witness.\n\nTHE MINTING RULE, so the same list is not minted six times (the defect T-0299 records): ONE LIST, ONE COHORT. The list is minted ONCE per half, each half from the single printing that carries it best — this column for A-H, and 1834-02-11 page 4 column 3 for H-W. The other four February printings of the same list are recorded as REPRINTS with their names UNMINTED, exactly as the October 1834 read handled its three printings. Names that also stand in the January minting merge on the normalized name and add a mention rather than a person.\n\nWHAT IS STILL LOST. The printed list ran in TWO alphabetical sub-columns and the segmenter kept only the left one whole; the right one survives as line-end debris ('Edwar', 'Isanc K', 'Lewis |') and is quoted with the rest but read as nothing. So this is a floor too, and it is a much higher one. The row for 'Et halet Atkins' and two others are left in uncertainty brackets because no February printing agrees on them.",
+      "letter_list_only": true
+    },
+    {
+      "id": "c026",
+      "kind": "business",
+      "reading": "transcription_mediated",
+      "quote": "ters           Boot & Shoe Ma\nOffice at Chica-  PE ee having recent]\nthe above business, next do\nhen’s Store, will be\naS                                      a good assortment\nNerene          suited to the eall of the country\nrd il        wishing Fine Boots, water proof, \\\nJohnson            modated with the best peainagh\nKilligoss            ble style. Most kinds of work, ke\nd        e to order on sh\nKine         eee L. W. MONT\nKerchevel            Chicago, Dee. 15, 1833.",
+      "normalized": "[Boo]t & Shoe Ma[king]. [The subscriber] having recent[ly commenced] the above business, next do[or to Mr. Co]hen's Store, will be [… ] a good assortment [… ] suited to the call of the country [… ] wishing Fine Boots, water proof, [will be accom]modated with the best [and most fashiona]ble style. Most kinds of work, [made] to order on sh[ort notice]. L. W. MONT[GOMERY]. Chicago, Dec. 15, 1833.",
+      "locator": {
+        "artifact_role": "primary",
+        "issue_page": 4,
+        "column": 3,
+        "lines": [
+          3019,
+          3030
+        ],
+        "lines_of_claim": [
+          3019,
+          3020,
+          3021,
+          3022,
+          3023,
+          3024,
+          3025,
+          3026,
+          3027,
+          3028,
+          3029,
+          3030
+        ],
+        "interleaved": true
+      },
+      "entities": [
+        {
+          "as_printed": "L. W. MONT",
+          "normalized": "L. W. Montgomery",
+          "role": "proprietor",
+          "occupations": [
+            "boot and shoe maker"
+          ],
+          "associated_places": [
+            "South Water Street"
+          ]
+        }
+      ],
+      "notes": "A BOOT MAKER NEXT DOOR TO PETER COHEN, which puts a second storefront at the east end of South Water street. The lines are interleaved with the letter list running down the left of the same column, so every line here carries a name from the list as well as the advertisement; `lines_of_claim` names the range the notice occupies and the normalized reading takes only the advertisement's half. The proprietor's surname is cut at 'L. W. MONT' in every February printing; MONTGOMERY is the reading the December 1833 issues support and it is bracketed as a supply rather than asserted.",
+      "ad_copy_date": {
+        "verbatim": "Chicago, Dee. 15, 1833.",
+        "iso": "1833-12-15"
+      },
+      "business": {
+        "name": "L. W. Montgomery",
+        "proprietors": [
+          "L. W. Montgomery"
+        ],
+        "trade": "boot and shoe maker",
+        "goods": [
+          "fine boots",
+          "water proof boots",
+          "shoes"
+        ],
+        "street": "South Water Street",
+        "placement": {
+          "class": "relative",
+          "anchor": "Cohen's Store",
+          "offset_text": "the above business, next do",
+          "offset_normalized": "next door to [Mr. Co]hen's Store",
+          "street": "South Water Street"
+        }
+      }
+    },
+    {
+      "id": "c027",
+      "kind": "business",
+      "reading": "transcription_mediated",
+      "quote": "Meriams                 Ge SPRI\nMackel          ATTORNEY AND COUNSELL\nMESNRe              And Soliciter in Chan\ncoe             FFICE second door west fro\n-. Merahall 2            of Franklin and South Wat\nWonton       Chicago, Dec, 17, 1333.",
+      "normalized": "G[.] SPRI[NG,] ATTORNEY AND COUNSELL[OR AT LAW] And Solicit[or] in Chan[cery.] [O]FFICE second door west fro[m the corner] of Franklin and South Wat[er streets.] Chicago, Dec, 17, 1[8]33.",
+      "locator": {
+        "artifact_role": "primary",
+        "issue_page": 4,
+        "column": 3,
+        "lines": [
+          3038,
+          3043
+        ],
+        "lines_of_claim": [
+          3038,
+          3039,
+          3040,
+          3041,
+          3042,
+          3043
+        ]
+      },
+      "entities": [
+        {
+          "as_printed": "Ge SPRI",
+          "normalized": "G. Spring",
+          "role": "proprietor",
+          "occupations": [
+            "attorney"
+          ],
+          "associated_places": [
+            "Franklin Street",
+            "South Water Street"
+          ]
+        }
+      ],
+      "notes": "THE ADDRESS THE SEPTEMBER 1834 READ COULD NOT CLOSE, standing whole seven months earlier. That pass found G. Spring's office 'second door west from the corner' of something and South Water and deliberately left the corner open, because the only 'Franklin' near it in that issue was a Franklin stove in an interleaved price list; the August read then found it printed whole. This February printing prints it whole too — 'the corner of Franklin and South Wat[er]' on one line of its own — so the reading is now corroborated in a THIRD place and in the earliest month this corpus has read. Two law offices on South Water street are now placed relative to named corners, Spring's and Collins & Caton's, and they are two doors and one door respectively.",
+      "ad_copy_date": {
+        "verbatim": "Chicago, Dec, 17, 1333.",
+        "iso": "1833-12-17"
+      },
+      "business": {
+        "name": "G. Spring",
+        "proprietors": [
+          "G. Spring"
+        ],
+        "trade": "attorney and counsellor at law, solicitor in chancery",
+        "goods": [],
+        "street": "South Water Street",
+        "placement": {
+          "class": "relative",
+          "anchor": "the corner of Franklin and South Water streets",
+          "offset_text": "FFICE second door west fro",
+          "offset_normalized": "second door west from the corner of Franklin and South Water [streets]",
+          "street": "South Water Street"
+        }
+      }
+    },
+    {
+      "id": "c028",
+      "kind": "business",
+      "reading": "transcription_mediated",
+      "quote": "Northrop              PUBLIC HOU\nNasis        >               E. WENTWORT!\nita Plympton                             »\n‘AS opened a TAVERN on\npone 2       H 18 miles South of Chicago\n: Pruvis                         leading to Ottawa. J\nPlumer                             be furnished with the\nPoel                         try affords, and solicit:\nPeas                              give him a'eall. He i\nPhe              on hand CORN and OATS.\nRobinson           Dee. 17, 1B eee",
+      "normalized": "PUBLIC HOU[SE.] E. WENTWORT[H] [H]AS opened a TAVERN on [the road] 18 miles South of Chicago [… ] leading to Ottawa. [His house will] be furnished with the [best the coun]try affords, and solicit[s travellers to] give him a call. He i[ntends to keep] on hand CORN and OATS. Dec. 17, 18[33].",
+      "locator": {
+        "artifact_role": "primary",
+        "issue_page": 4,
+        "column": 3,
+        "lines": [
+          3045,
+          3055
+        ],
+        "lines_of_claim": [
+          3045,
+          3046,
+          3047,
+          3048,
+          3049,
+          3050,
+          3051,
+          3052,
+          3053,
+          3054,
+          3055
+        ]
+      },
+      "entities": [
+        {
+          "as_printed": "E. WENTWORT!",
+          "normalized": "E. Wentworth",
+          "role": "proprietor",
+          "occupations": [
+            "tavern keeper"
+          ]
+        }
+      ],
+      "notes": "A TAVERN EIGHTEEN MILES OUT ON THE OTTAWA ROAD, and it is recorded precisely because it is NOT in the town. The reconstruction stands inside the plat; this is a stage house on the road the 18 February coach advertisement times at three and a half days from Ottawa. Its value here is that it establishes what the road south-west was carrying in the winter of 1833-34 — travellers wanting corn and oats for their horses — and it is a reminder to the next pass that 'Chicago' in this paper's advertising columns often means the county.",
+      "ad_copy_date": {
+        "verbatim": "Dee. 17, 1B eee",
+        "iso": "1833-12-17"
+      },
+      "business": {
+        "name": "E. Wentworth's Public House",
+        "proprietors": [
+          "E. Wentworth"
+        ],
+        "trade": "tavern",
+        "goods": [
+          "corn",
+          "oats"
+        ],
+        "street": null,
+        "placement": {
+          "class": "relative",
+          "anchor": "the road from Chicago to Ottawa",
+          "offset_text": "H 18 miles South of Chicago",
+          "offset_normalized": "18 miles South of Chicago, [on the road] leading to Ottawa",
+          "street": null
+        }
+      }
+    }
+  ]
+}
