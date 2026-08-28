@@ -1,4 +1,13 @@
 export const CHANGELOG = [ // newest first
+  { v: 336, title: 'A comment was costing this town a full rebuild', kind: 'chore', ts: '2026-08-28T15:53:21.206Z', date: 'Aug 28, 2026, 10:53 AM CT',
+    items: [
+      'Nothing you can see changed today. This is about the check that says whether the 349 buildings standing in this town still match the records they were built from \u2014 and about the check crying wolf.',
+      'Every building carries a fingerprint of everything that went into making it. Change a record, or change the code that turns a record into a shape, and the fingerprint moves, the check goes red, and the building has to be rebuilt. That is the point of it.',
+      'Five days ago a small rule moved into the folder the fingerprint watches. The rule makes no shapes at all \u2014 it only answers whether a building gets a shape in the first place \u2014 but the fingerprint was watching the whole folder rather than the parts that make shapes. So adding a single line of explanation to that file marked all 349 buildings as out of date and demanded twenty minutes of rebuilding. Measured today, before the fix: 349 of 349.',
+      'A check that goes red for reasons that cannot change a single building is a check people stop believing, and a check nobody believes is worse than none. So the fingerprint now names the parts that make shapes instead of listing whatever shares a folder with them. The same comment was added again afterwards: nothing went out of date.',
+      'The rule is not left unwatched. What it actually decides \u2014 whether a building gets a shape \u2014 was never something the fingerprint caught anyway; two other checks catch it, from both directions, and they run every time.',
+      'Fixing the fingerprint changed every building\u2019s fingerprint, which would normally mean rebuilding all 349 to write the new numbers down. Nothing about any building had changed, so a tool was written to write the numbers without touching a single shape \u2014 and it refuses to run at any other moment, so it can never be used to wave through a building that really is out of date. That refusal is now itself a test.',
+    ] },
   { v: 335, title: 'A fixed camera now stands on the public square', kind: 'chore', ts: '2026-08-28T12:44:18.603Z', date: 'Aug 28, 2026, 7:44 AM CT',
     items: [
       'Nothing you can see changed today. The public square \u2014 the block bounded by Randolph, Clark, Washington and LaSalle, the one block this town kept for itself \u2014 now has a fixed camera standing on it.',
