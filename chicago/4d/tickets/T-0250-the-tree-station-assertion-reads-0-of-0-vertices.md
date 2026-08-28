@@ -1,7 +1,7 @@
 ---
 id: T-0250
 title: The tree-station assertion reads 0 of 0 vertices across 0 merged meshes, so it fails by finding nothing to check
-state: open
+state: withdrawn
 epic: META
 requested_by: loop
 seen: false
@@ -9,10 +9,10 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-08-27
-closed: null
+closed: 2026-08-27
 pr: null
 claimed_by: null
-blocked_on: null
+blocked_on: Duplicate of T-0243, which covers both timber-placement gates that stopped matching a mesh when T-0223's lattice landed. Same finding — a check that examines 0 of 0 vertices and calls it a failure — and T-0243 states it for both gates rather than one. Withdrawn on the merge that discovered the collision.
 needs_bake: false
 ---
 

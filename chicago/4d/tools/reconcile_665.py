@@ -66,6 +66,11 @@ sys.path.insert(0, str(ROOT / "tools"))
 # See tools/plat_occupancy.py for why it is a module rather than a copied loop.
 from plat_occupancy import (block_of_structure, exclusive_lots,  # noqa: E402
                             occupied_lots)
+# The business-front term (T-0213). Both halves are measurements the census makes, not
+# constants authored here: `trade_share_by_class` is the DOCUMENTED trade share per class
+# of street, and `street_traffic` is the committed hierarchy those classes come from.
+from measure_frontage_fabric import (TRADE_LETTERS, street_traffic,  # noqa: E402
+                                     trade_share_by_class)
 
 # Groups are the inventory's own ten, and a family belongs to its group by its letter.
 # The letters are checked against the target itself: each group's families must sum to
@@ -264,6 +269,161 @@ def deal(counts: dict[str, int]) -> list[str]:
             tokens.append((((i + 0.5) * total) / n, family))
     tokens.sort(key=lambda t: (t[0], t[1]))
     return [family for _, family in tokens]
+
+
+# ---- the business-front term (T-0213) --------------------------------------------
+#
+# The schedule apportions families by DISTRICT and has no notion of a street. Measured on
+# the committed record, that is wrong in one particular: the DOCUMENTED trade share is
+# monotone in the committed street hierarchy — 0.7778 of the documented buildings standing
+# nearest a `principal` street carry a trade family, 0.4545 on an `ordinary` street and
+# 0.0000 on a `light` one (`tools/measure_frontage_fabric.py --trade`, 68 records). So a
+# block dealt a South Water face should be likelier to be dealt C, F and W than a block two
+# streets back, and until this term it was not: `blk_south_water_franklin` and
+# `blk_south_water_lasalle` between them held twelve of the business front's roofs and not
+# one of them was a store, a warehouse or a workshop.
+#
+# What this is NOT. It does not raise or lower the target, it does not move a roof between
+# districts, and it does not change how many roofs any unit is dealt. It is a PERMUTATION
+# of the principal families a district's platted blocks were already dealt, among those
+# same blocks — so every marginal that closed before it closes after it, by construction
+# rather than by a check. The proof is cheap and it is asserted below.
+#
+# It reads only the RESEARCH layer, which is the part that makes it a measurement rather
+# than a feedback loop: weighting the schedule by what the schedule invented would be the
+# programme grading its own homework, and the share would ratchet with every block built.
+
+
+def is_trade(family: str) -> bool:
+    """C stores, F warehouses, W workshops — the letters the trade share was measured on.
+
+    Imported from the census rather than restated here, so the weight and the measurement
+    it is derived from cannot come to disagree about what a trade building is.
+    """
+    return family[0] in TRADE_LETTERS
+
+
+def frontage_weight(bounded_by: dict, shares: dict, traffic: dict) -> float:
+    """A block's expected trade share, read off the streets that bound it.
+
+    Every face of a platted block is a committed street carrying a committed traffic class,
+    and the documented record gives each class its own trade share. A block's weight is the
+    mean of its own four faces' shares — a South Water block has two principal faces of
+    four, a Randolph block has none — so the schedule tells them apart without anybody
+    typing a number for either. Re-class a street on `data/streets/1835.json` and every
+    block on it re-weights in the same commit.
+
+    A face whose class the documented record says nothing about takes the mean of the
+    classes it does speak for, so an unmeasured street neither promotes nor demotes a block.
+    """
+    if not bounded_by:
+        return 0.0
+    measured = [row["share"] for row in shares.values()]
+    fallback = sum(measured) / len(measured) if measured else 0.0
+    faces = [shares[traffic[street]]["share"]
+             if traffic.get(street) in shares else fallback
+             for street in bounded_by.values()]
+    return sum(faces) / len(faces)
+
+
+def _fit(quota: list[int], slots: list[int], weights: list[float]) -> list[int]:
+    """Hamilton's quota, clipped to the slots each unit actually has.
+
+    A weight says how MUCH of the trade a block should attract; it cannot say the block has
+    room for it. Overflow is re-apportioned over the blocks that still have a principal slot
+    free, at their own weights, until it fits — and it always fits, because the tokens being
+    placed came out of these same slots.
+    """
+    quota = list(quota)
+    while True:
+        excess = sum(max(0, q - s) for q, s in zip(quota, slots))
+        if not excess:
+            return quota
+        free = [i for i, (q, s) in enumerate(zip(quota, slots)) if q < s]
+        quota = [min(q, s) for q, s in zip(quota, slots)]
+        if not free:
+            raise SystemExit("business front: more trade roofs than principal slots")
+        for i, extra in zip(free, apportion(excess, [weights[i] for i in free])):
+            quota[i] += extra
+
+
+def weight_the_business_front(units: list[dict], shares: dict,
+                              traffic: dict) -> list[dict]:
+    """Re-deal each district's PRINCIPAL families across its platted blocks by frontage.
+
+    Only units with a `bounded_by` take part: a district balance and the West recipe
+    remainder stand on no committed street at all, so there is nothing to weight them by
+    and they keep exactly what the district deal gave them.
+
+    Returns one row per district that moved, for the ledger.
+    """
+    moved = []
+    for district in DISTRICTS:
+        blocks = [u for u in units
+                  if u["district"] == district and u.get("bounded_by") and u.get("roofs")]
+        if len(blocks) < 2:
+            continue
+        pool: dict[str, int] = {}
+        slots: list[int] = []
+        before: list[dict[str, int]] = []
+        for unit in blocks:
+            count = 0
+            for family, n in unit["families"].items():
+                if group_of(family) in ANCILLARY_GROUPS:
+                    continue
+                pool[family] = pool.get(family, 0) + n
+                count += n
+            slots.append(count)
+            before.append(dict(unit["families"]))
+        trade_total = sum(n for f, n in pool.items() if is_trade(f))
+        if not trade_total or trade_total == sum(slots):
+            continue
+
+        weights = [n * frontage_weight(u["bounded_by"], shares, traffic)
+                   for n, u in zip(slots, blocks)]
+        quota = _fit(apportion(trade_total, weights), slots, weights)
+
+        trade = deal({f: n for f, n in pool.items() if is_trade(f)})
+        other = deal({f: n for f, n in pool.items() if not is_trade(f)})
+        changed = 0
+        for index, unit in enumerate(blocks):
+            take = trade[:quota[index]] + other[:slots[index] - quota[index]]
+            trade, other = trade[quota[index]:], other[slots[index] - quota[index]:]
+            mix = {f: n for f, n in unit["families"].items()
+                   if group_of(f) in ANCILLARY_GROUPS}
+            for family in take:
+                mix[family] = mix.get(family, 0) + 1
+            unit["families"] = {f: mix[f] for f in sorted(mix)}
+            unit["frontage_weight"] = round(
+                frontage_weight(unit["bounded_by"], shares, traffic), 4)
+            unit["trade_roofs"] = quota[index]
+            changed += unit["families"] != before[index]
+        if trade or other:
+            raise SystemExit(f"{district}: business front left {len(trade) + len(other)} "
+                             "principal roofs unplaced")
+
+        # The permutation is the whole safety argument, so it is asserted rather than
+        # trusted: the same families, the same count in every block, the same trade total.
+        after: dict[str, int] = {}
+        for unit in blocks:
+            for family, n in unit["families"].items():
+                after[family] = after.get(family, 0) + n
+        combined: dict[str, int] = {}
+        for row in before:
+            for family, n in row.items():
+                combined[family] = combined.get(family, 0) + n
+        if after != combined:
+            raise SystemExit(f"{district}: the business-front deal is not a permutation")
+        for unit, count in zip(blocks, slots):
+            got = sum(n for f, n in unit["families"].items()
+                      if group_of(f) not in ANCILLARY_GROUPS)
+            if got != count:
+                raise SystemExit(f"{unit['id']}: dealt {got} principal roofs against "
+                                 f"{count} before the business-front term")
+        moved.append({"district": district, "blocks": len(blocks),
+                      "trade_roofs": trade_total, "blocks_redealt": changed,
+                      "quota": {u["id"]: q for u, q in zip(blocks, quota)}})
+    return moved
 
 
 def inside(point, polygon) -> bool:
@@ -746,6 +906,11 @@ def programme_document():
         if pool:
             raise SystemExit(f"{district}: {len(pool)} roofs were not scheduled")
 
+    # The business front, last: it re-deals what the district deal placed, so it has to run
+    # after every unit's counts are settled and it must not disturb them (T-0213).
+    trade_shares = trade_share_by_class()
+    business_front = weight_the_business_front(units, trade_shares, street_traffic())
+
     schedulable = sum(u["roofs"] for u in units if u["state"] == "open")
     gated = sum(u["roofs"] for u in units if u["state"] == "gated")
 
@@ -795,6 +960,27 @@ def programme_document():
             "family_mix": "An apportionment of the district's remainder across its "
                           "schedule units, not a claim about any block. Hamilton's method "
                           "throughout, so every marginal closes exactly.",
+            "business_front": {
+                "what": "Which of a district's principal roofs land on which platted "
+                        "block is weighted by what the block FRONTS, because the "
+                        "documented trade share is monotone in the committed street "
+                        "hierarchy. It is a permutation of the families the district deal "
+                        "already placed, among the same blocks, so no total moves: not the "
+                        "target, not a district, not a family, not any block's roof count.",
+                "measured": "tools/measure_frontage_fabric.py --trade — the share of "
+                            "DOCUMENTED buildings carrying a trade family (C stores, F "
+                            "warehouses, W workshops), by the traffic class of the street "
+                            "they stand nearest. The research layer only: weighting the "
+                            "schedule by what the schedule invented would ratchet.",
+                "weight": "A block's weight is the mean of its four faces' class shares, "
+                          "read off data/streets/1835.json. Re-class a street there and "
+                          "every block on it re-weights in the same commit.",
+                "trade_share_by_class": {k: {"n": v["n"], "trade": v["trade"],
+                                             "share": round(v["share"], 4)}
+                                         for k, v in sorted(trade_shares.items())},
+                "moved": business_front,
+                "ticket": "T-0213",
+            },
             "naming": "A unit is named for a block only where the plat module reaches it. "
                       "Everything else is a district balance that states what it waits on.",
         },
@@ -868,6 +1054,13 @@ def main() -> int:
           f"{programme['remaining']['roofs']} remaining, "
           f"{programme['coverage']['schedulable_on_committed_ground']} of them on ground "
           "the project has coverage for")
+    front = programme["method"]["business_front"]
+    shares = ", ".join(f"{k} {v['share']:.4f}"
+                       for k, v in front["trade_share_by_class"].items())
+    moved = ", ".join(f"{row['district']} re-deals {row['trade_roofs']} trade roof(s) over "
+                      f"{row['blocks']} platted block(s)" for row in front["moved"])
+    print(f"  business front (T-0213): documented trade share {shares} — "
+          f"{moved or 'no district has a platted block to weight'}")
     return 0
 
 

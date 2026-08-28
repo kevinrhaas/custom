@@ -1,7 +1,7 @@
 ---
 id: T-0249
 title: The light tier's 80-call floor is breached on dev at 83 calls, the day after T-0147 restored it
-state: open
+state: withdrawn
 epic: META
 requested_by: loop
 seen: false
@@ -9,10 +9,10 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-08-27
-closed: null
+closed: 2026-08-27
 pr: null
 claimed_by: null
-blocked_on: null
+blocked_on: Duplicate of T-0247, filed by a sibling slice against the same dev red hours earlier. Same measurement, same 83-of-80 at Lake and Market; T-0247 is the one to work. Withdrawn on the merge that discovered the collision rather than left in the owner's queue twice.
 needs_bake: false
 ---
 

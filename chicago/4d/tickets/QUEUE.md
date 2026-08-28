@@ -28,10 +28,6 @@
 T-0028 — Build out the NEXT anonymous block (one per run)
 T-0241 — Washington gets the street edge
 T-0192 — The cross streets' own frontages get the street edge
-T-0193 — blk_lake_clinton, the West Division block T-0069 refused
-T-0213 — Weight the trade families onto the business front
-T-0182 — The household layer's two Lake-face buildings stand on a hand-authored coordinate, not on the face they front
-T-0195 — Three South Water corner stores lap the cross street's corridor by 0.16-0.21 m, which the plat reconciliation could not reach
 T-0196 — Four documented buildings still stand on Lake Street's plank walk, the same OSM-kerb fault the South Water repair answered
 T-0221 — measure_street_frontage.layer_of reads a record's evidence layer off its filename, and misreads physicians_office
 
@@ -102,6 +98,5 @@ T-0239 — Nothing tests the party-line note's prose against the placement it de
 T-0230 — Two named South Water frontages carry a reconstructed trade, so neither a signboard nor a hitching post will ever stand at them
 T-0243 — The two timber-placement gates match no mesh since the lattice landed, and one of them is now red on dev
 T-0244 — T-0194's twelve hitching posts draw no vertices the gate can find, on dev
+T-0247 — The light tier draws 83 calls against the 80-call floor restored yesterday, on an unmodified dev
 T-0245 — South Water Street can have its first control point, at Franklin, and nothing has claimed it
-T-0249 — The light tier's 80-call floor is breached on dev at 83 calls, the day after T-0147 restored it
-T-0250 — The tree-station assertion reads 0 of 0 vertices across 0 merged meshes, so it fails by finding nothing to check

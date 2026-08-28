@@ -42,6 +42,7 @@ STRUCTURES = DATA / "structures"
 HOUSEHOLDS = DATA / "residents" / "households"
 INDEX = DATA / "residents" / "index.json"
 PROGRAMME = DATA / "reconstruction" / "1835_inferred_household_programme.json"
+LOTS = DATA / "traces" / "vectors" / "thompson_lots.json"
 INVENTORY = DATA / "reconstruction" / "1835_building_inventory.json"
 RESERVED = (DATA / "reconstruction" / "1835_phase2_west_wolf_point_approaches.json",
             DATA / "reconstruction" / "1835_phase2_south_core_and_mixed_recipe.json")
@@ -62,6 +63,10 @@ from measure_adoption_tests import floor_evidence  # noqa: E402
 # frame buildings this parcel regenerates are neighbours here and never subjects — see
 # tools/siding_stock.is_invented.
 from siding_stock import deal_records as deal_siding  # noqa: E402
+# T-0182. Two of this layer's roofs stand on a committed block face, and the face is
+# read rather than retyped — the same module `tools/generate_inferred_infill.py` and
+# `tools/generate_block_infill.py` already import for their own frontage rows.
+from block_faces import face_frame  # noqa: E402
 
 
 def load(path: Path):
@@ -268,6 +273,110 @@ INVENTED_FORM_NOTE = (
 
 
 
+# --------------------------------------------------------------------------
+# placements that stand on a committed block face (T-0182)
+# --------------------------------------------------------------------------
+#
+# Most of this layer's roofs stand on free ground: a frontage-band assignment, tested
+# for clearance and buildable ground, and written into the programme as a centre. Two
+# of them do not. `inf_bakery_lake` and `inf_butcher_market` front the north face of
+# `blk_lake_clark`, and `recon_1835_south_d3_013` declares a shared party wall with the
+# butcher — a claim about one wall, made from the other side.
+#
+# Written as centres they could not honour it. Both were authored at bearing 0 where
+# that face runs at 0.465, so their front walls landed 0.804 m and 0.784 m off the
+# committed boundary against the 0.800 m the seven frontage records on the face stand
+# at: near the line, parallel to nothing, and by arithmetic nobody re-derived. The
+# party wall was 16 mm open and `tools/measure_street_line.py` had to bank it by name.
+#
+# So a building here MAY declare a face instead of a centre, and then it takes its
+# line, its bearing and its outward offset from `data/traces/vectors/thompson_lots.json`
+# — the committed plat, through the one `tools/block_faces.py` module both infill
+# generators already read. What the programme still authors is where along that face
+# the building's west wall stands, which is the same thing a frontage row authors as
+# its corner clearance: an interpretive choice about which part of a street a made-up
+# building occupies, expressed in the face's own frame rather than as a coordinate
+# beside the plat.
+#
+# STANDING ON A DERIVED BLOCK FACE IS NOT STANDING ON A RECOVERED LOT. The buildings
+# are still invented, their positions are still `reconstructed`, and the derivation
+# block still says `not_derivable` — nothing here upgrades a confidence. It removes a
+# hand-typed coordinate, which is the whole of the claim.
+
+FACE_PLACEMENT_NOTE = (
+    "INTERPRETIVE PLACEMENT ON A COMMITTED BLOCK FACE, NOT A RECOVERED LOT (T-0182). "
+    "{role} This building does not stand where a centre in the programme put it: it "
+    "stands on the {face} face of {block}, whose line and bearing are read from the "
+    "block boundary in data/traces/vectors/thompson_lots.json — the same committed "
+    "geometry the lot grid and the corridor gate are derived from. Its front wall is "
+    "set {setback} m back from that lot line, which is the one line every record on "
+    "this face stands on, and its bearing is the face's own rather than the zero a "
+    "hand-authored centre carried. What the programme still chooses is where along the "
+    "face it stands — {along} m from the face's west end, the position it already "
+    "occupied, so this repair moves no building along the street. WHAT IS INVENTED IS "
+    "STILL EVERYTHING THAT MATTERS: that a building stood here at all, and that it was "
+    "this trade's. The dataset's 20 m working georeference uncertainty applies on top "
+    "of an already invented position, and standing on a derived block face is not "
+    "standing on a recovered lot."
+)
+
+FACE_DERIVATION_REASON = (
+    "No source gives this building a lot, and none is claimed. The block face it fronts "
+    "IS derived — line, bearing and outward offset out of the committed plat in "
+    "data/traces/vectors/thompson_lots.json — but which building stands on it, and where "
+    "along it, is a production control of the inferred-household programme."
+)
+
+
+def face_placement(spec: dict, wft: float, dft: float) -> tuple[float, float, float]:
+    """(centre east, centre north, bearing) for a building standing on a block face.
+
+    The face's frame comes out of the committed plat; the programme hands in the
+    setback and how far along the face the west wall lands. Nothing here authors a
+    coordinate, and the arithmetic is the frontage runs' own: walk along the face to
+    the west wall, then in from the line by the setback and half the depth.
+    """
+    grid = load(LOTS)
+    block = next((b for b in grid["blocks"] if b["id"] == spec["block"]), None)
+    if block is None:
+        raise SystemExit(f"{spec['block']} is not a block of the committed plat grid")
+    frame = face_frame(block, spec["face"])
+    w, d = wft * FT, dft * FT
+    along = float(spec["west_wall_along_m"])
+    if not 0.0 <= along <= frame["length"] - w:
+        raise SystemExit(f"a face placement at {along} m does not fit on the "
+                         f"{spec['face']} face of {spec['block']}, which is "
+                         f"{frame['length']:.2f} m long")
+    setback = float(spec["setback_m"])
+    ce = (frame["origin"][0] + frame["along"][0] * (along + w / 2)
+          + frame["outward"][0] * (-setback - d / 2))
+    cn = (frame["origin"][1] + frame["along"][1] * (along + w / 2)
+          + frame["outward"][1] * (-setback - d / 2))
+    return ce, cn, frame["bearing"]
+
+
+def resolve_placements(programme: dict) -> None:
+    """Give every face-placed building the centre and bearing its face implies.
+
+    The rest of the generator reads `center_local_enu_m` and `rotation_deg` off a
+    building, so a face placement resolves into exactly those two before anything
+    else runs — the difference is that for these buildings the programme no longer
+    carries them, and a re-derived plat moves them instead of silently disagreeing
+    with them.
+    """
+    for b in programme["buildings"]:
+        spec = b.get("frontage")
+        if not spec:
+            continue
+        if "center_local_enu_m" in b or "rotation_deg" in b:
+            raise SystemExit(f"{b['id']} declares a block face AND a centre: one of them "
+                             f"is a second opinion about the same ground")
+        wft, dft = b["footprint_ft"]
+        ce, cn, bearing = face_placement(spec, wft, dft)
+        b["center_local_enu_m"] = [round(ce, 6), round(cn, 6)]
+        b["rotation_deg"] = bearing
+
+
 def footprint_origin(ce: float, cn: float, w: float, d: float, bearing: float):
     th = math.radians(bearing)
     cos, sin = math.cos(th), math.sin(th)
@@ -415,6 +524,14 @@ def structure_record(b: dict, datum: dict, prose: dict, hh_by_building: dict) ->
                     "in this district. It consumes one slot of its district's programme target "
                     "rather than adding to it - see the accounting block in "
                     "data/reconstruction/1835_inferred_household_programme.json.")
+        # T-0182: a roof standing on a committed block face says so, and says which
+        # part of that placement is derived and which part is still a choice.
+        if b.get("frontage"):
+            spec = b["frontage"]
+            pos_note = FACE_PLACEMENT_NOTE.format(
+                role=role, face=spec["face"], block=spec["block"],
+                setback=f"{float(spec['setback_m']):.2f}",
+                along=f"{float(spec['west_wall_along_m']):.3f}")
         form_over = {}
         phase_id = "inferred_1835"
         change = ("Raised by the inferred-household programme. A better-evidenced named building "
@@ -450,13 +567,18 @@ def structure_record(b: dict, datum: dict, prose: dict, hh_by_building: dict) ->
             "utm_n": round(float(datum["origin_utm_n"]) + n0, 3),
             "rotation_deg": float(b["rotation_deg"]),
             "symbolic_location": b.get("symbolic_location") or p.get("symbolic_location")
-            or f"{b['district'].capitalize()} Division, local ENU E {ce:g} N {cn:g}",
+            or (f"{b['district'].capitalize()} Division, standing on the "
+                f"{b['frontage']['face']} frontage of {b['frontage']['block']}, "
+                f"{float(b['frontage']['west_wall_along_m']):.1f} m along that face"
+                if b.get("frontage") else
+                f"{b['district'].capitalize()} Division, local ENU E {ce:g} N {cn:g}"),
             "confidence": pos_conf,
             **({"sources": list(pos_src)} if pos_src else {}),
             "note": pos_note,
             "derivation": {
                 "method": "not_derivable",
-                "reason": ("No source gives this building a lot. The placement is a frontage-band "
+                "reason": FACE_DERIVATION_REASON if b.get("frontage") else
+                          ("No source gives this building a lot. The placement is a frontage-band "
                            "assignment tested for clearance and buildable ground, which is a "
                            "production control and not a derivation from any line in the "
                            "dataset."),
@@ -803,6 +925,7 @@ def validate(records: list[dict], households: list[dict], programme: dict, datum
 
 def build_all() -> tuple[dict[Path, str], list[dict], list[dict]]:
     programme = load(PROGRAMME)
+    resolve_placements(programme)
     datum = load(DATA / "datum.json")
     census = {c["occupation"]: c for c in programme["occupation_census"]}
     buildings = {b["id"]: b for b in programme["buildings"]}
