@@ -141,6 +141,38 @@ COLUMN_MARKER = re.compile(
 PAGE_HEADING = re.compile(r"^\s*Newspaper Page\s+(\d+)\b")
 COLUMN_HEADING = re.compile(r"^\s*Column\s+(\d+)\s*$")
 
+# AND A FIFTH SHAPE, WHICH IS THE WHOLE OF 1833 (T-0258). The five issues 1833-11-26 to
+# 1833-12-24 separate page from column instead of ruling them onto one line: a page
+# banner, then `--- Column 1 ---` before each column. Counted on 2026-08-28 across the
+# thirty issues of Vol. I Nos. 1-30, the range T-0258 covers:
+#
+#     1833-11-26 .. 1833-12-24   5 issues   dash-column, 24-25 columns each, 0 ruled
+#     1833-12-31 .. 1834-01-28   5 issues   the prose `Newspaper Page` / `Column` pair
+#     1834-02-04 .. 1834-06-25  20 issues   ruled `===== ISSUE PAGE .. COLUMN .. =====`
+#
+# so a THIRD of this range spoke a dialect the resolver had never been shown, and — the
+# same blind spot T-0289 recorded — `dev` cannot tell, because the deposit is not there
+# to read and the page/column assertion is skipped outright when the text cannot be
+# opened. It is not a rare shape: 121 column markers over five issues.
+#
+# The page banner comes in two shapes of its own, and only one of them states the page
+# of the ISSUE:
+#
+#     ===== SOURCE PDF PAGE 9 / ISSUE PAGE 1 =====     1833-12-10 .. 1833-12-24
+#     SOURCE PDF PAGE 1                                 1833-11-26, 1833-12-03
+#
+# The second names only the scan page, and the scan page is NOT the issue page — the
+# Democrat of 1833-12-03 opens at PDF page 5 because No. 1 occupies 1-4. So the bare
+# banner is resolved BY ORDINAL: the first page banner in a transcription is issue page
+# 1, the second is issue page 2. That is a reading of the transcription's own stated
+# method ("assembled in printed page and column order"), not an inference about the
+# paper, and it is the only rule here that is not lifted verbatim off the line. It is
+# not used when the banner states the issue page itself.
+DASH_COLUMN_HEADING = re.compile(r"^\s*-{2,}\s*Column\s+(\d+)\s*-{2,}\s*$")
+RULED_PAGE_BANNER = re.compile(
+    r"^=====\s*(?:\w+\s+)?PDF PAGE\s+(\d+)\s*/\s*ISSUE PAGE\s+(\d+)\s*=====\s*$")
+BARE_PAGE_BANNER = re.compile(r"^\s*(?:\w+\s+)?PDF PAGE\s+(\d+)\s*$")
+
 
 def sha256(path):
     h = hashlib.sha256()
@@ -209,13 +241,16 @@ def text_lines(recorded_path, deposit, repo):
 
 
 def column_starts(lines):
-    """Every column boundary in a transcription, in both dialects: [(line, page, col)].
+    """Every column boundary in a transcription, in every dialect: [(line, page, col)].
 
-    In the heading dialect the page is carried by the most recent `Newspaper Page n`
-    line, so a `Column k` before any page heading is skipped rather than guessed at.
+    In the two dialects that separate page from column the page is carried by the most
+    recent page line, so a column before any page line is skipped rather than guessed
+    at. A bare `SOURCE PDF PAGE n` banner names the scan page and not the issue page, so
+    it counts ordinally: the nth page banner of a transcription is issue page n.
     """
     starts = []
     page = None
+    banners = 0
     for n, line in enumerate(lines, 1):
         m = COLUMN_MARKER.match(line)
         if m:
@@ -224,8 +259,19 @@ def column_starts(lines):
         m = PAGE_HEADING.match(line)
         if m:
             page = int(m.group(1))
+            banners += 1
             continue
-        m = COLUMN_HEADING.match(line)
+        m = RULED_PAGE_BANNER.match(line)
+        if m:
+            page = int(m.group(2))       # group 1 is the scan page, group 2 the issue's
+            banners += 1
+            continue
+        m = BARE_PAGE_BANNER.match(line)
+        if m:
+            banners += 1
+            page = banners
+            continue
+        m = COLUMN_HEADING.match(line) or DASH_COLUMN_HEADING.match(line)
         if m and page is not None:
             starts.append((n, page, int(m.group(1))))
     return starts
@@ -982,6 +1028,24 @@ def self_test():
     if COLUMN_MARKER.match("===== ISSUE PAGE 3 / COLUMN 5 OF 6 ====="):
         failures.append("the column marker pattern matched a line with no scan page")
 
+    # THE FIFTH SHAPE, WHICH IS THE WHOLE OF 1833 (T-0258): a page banner in one of two
+    # forms, then `--- Column k ---`. The bare banner names the SCAN page and not the
+    # issue's, so it is resolved by ordinal — asserted here on two pages, because an
+    # off-by-one that only shows on the second page is exactly what this would hide.
+    dash = ["SOURCE PDF PAGE 5", "--- Column 1 ---", "a", "--- Column 2 ---", "b",
+            "===== SOURCE PDF PAGE 6 / ISSUE PAGE 2 =====", "--- Column 1 ---", "c"]
+    if column_starts(dash) != [(2, 1, 1), (4, 1, 2), (7, 2, 1)]:
+        failures.append("the 1833 dash-column dialect does not resolve: a bare "
+                        "`SOURCE PDF PAGE 5` banner must count as issue page 1 by ordinal, "
+                        "and a ruled banner must be read for the page it states")
+    if not DASH_COLUMN_HEADING.match("--- Column 4 ---"):
+        failures.append("the dash-column heading `--- Column 4 ---` does not resolve")
+    if BARE_PAGE_BANNER.match("===== SOURCE PDF PAGE 6 / ISSUE PAGE 2 ====="):
+        failures.append("the bare page banner pattern swallowed a ruled banner, which "
+                        "would resolve the issue page by ordinal instead of reading it")
+    if column_starts(["--- Column 1 ---", "orphan"]):
+        failures.append("a column before any page line was guessed at rather than skipped")
+
     # A hand-edit to the generated file, which is the fault nothing downstream can see.
     with tempfile.TemporaryDirectory() as td:
         ex = Path(td) / "extracted"
@@ -1010,8 +1074,8 @@ def self_test():
         for f in failures:
             print("FAIL: " + f, file=sys.stderr)
         return 1
-    print("  ok    every gazetteer assertion fires when broken (36 cases), and the\n"
-          "        three ruled marker dialects all resolve")
+    print("  ok    every gazetteer assertion fires when broken (36 cases), and all\n"
+          "        five marker dialects resolve")
     return 0
 
 
