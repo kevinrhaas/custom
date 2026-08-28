@@ -54,7 +54,6 @@ T-0312 — Reading the Democrat, March 1834: Vol. I Nos. 15-17
 T-0313 — Reading the Democrat, April 1834: Vol. I Nos. 18-22
 T-0314 — Reading the Democrat, May 1834: Vol. I Nos. 23-26
 T-0315 — Reading the Democrat, June 1834: Vol. I Nos. 27-30
-T-0291 — Reading the Democrat, September 1834: Vol I Nos 40-43
 T-0293 — Reading the Democrat, November 1834: Vol I Nos 49-52
 T-0294 — Reading the Democrat, December 1834: Vol II Nos 1-4
 T-0296 — Reading the Democrat, 8 to 29 July 1835: the rest of the scene month
