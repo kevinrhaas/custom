@@ -1,7 +1,7 @@
 ---
 id: T-0257
 title: An extraction schema, and the gazetteer the papers compile into
-state: claimed
+state: done
 epic: PAPERS
 requested_by: owner
 seen: false
@@ -9,8 +9,8 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-08-27
-closed: null
-pr: null
+closed: 2026-08-28
+pr: 462
 claimed_by: run 8/28/2026, 6:46:18 AM CT
 blocked_on: T-0256
 needs_bake: false
