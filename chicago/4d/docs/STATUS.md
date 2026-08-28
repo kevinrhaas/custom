@@ -1,5 +1,62 @@
 # STATUS
 
+## Settled 2026-08-28 — T-0134: the south bank at the Dearborn reach has no ground the plate's warehouses could stand on, and the reason it was refused was wrong
+
+Image 3 of the owner's brief of 2026-08-18 draws low warehouses on **both** banks of the reach
+below the Dearborn draw. T-0133 built the north side — four freight sheds standing back from
+North Water Street — and left the south side empty on one sentence, repeated in all four
+records: *"the platted South Water Street corridor reaches to within about 1.7 m of the traced
+1834 waterline at the Dearborn reach, so there is no ground there."* That was **one spot
+reading taken by hand at one station**, and the whole bank of the reach was refused on it.
+
+`tools/measure_south_bank_ground.py` is that refusal as a command. It walks the south bank from
+the Dearborn crossing (local E 699.2, the bridge's own committed position) east to the United
+States Reservation's west line (E 842.0, the line `measure_no_build_ground.py` already resolves
+from the State & Madison section corner) and asks whether the **smallest footprint family F1
+allows** — 18 × 32 ft, the freight shed of the plate — can be put down at **any bearing** on
+ground that is dry in the committed heightfield, outside every platted corridor and off refused
+ground. Every bound is the permissive one, and the relief clause is reported four ways so the
+answer can be seen not to rest on it.
+
+```
+  124 of 143 stations carry ANY dry ground outside a platted corridor
+  widest such strip   26.50 m at E 813.2 (1.30 m of relief)
+  positions the smallest F1 footprint stands at, at any bearing:
+     relief <= 0.30 m   0        relief <= 1.00 m    6
+     relief <= 0.35 m   0        no relief clause   26
+  BESIDE THE PLATTED STREET (west of South Water's own east end, E 805.0):
+     widest free strip  8.00 m at E 804.2
+     relief <= 0.30 m   0        relief <= 1.00 m    3
+     relief <= 0.35 m   0        no relief clause    3
+```
+
+**The refusal holds, and it holds much harder than 1.7 m did — but "there is no ground" was
+false.** 124 of 143 stations do carry dry ground outside a corridor, and beside the platted
+street the free strip widens eastward to 8.00 m. What defeats a building is the **slope**, not
+the width: that strip is the river bank itself, and the three positions on it that accept a
+footprint at all span 0.96–0.98 m of relief, more than three times the 0.30 m walker step
+tolerance three infill generators hold themselves to. The 26.50 m strip at E 813.2 is **east of
+South Water Street's platted end** — the slough's east bank, under `slough_log_bridge` — and
+answers a different question, which is why the tool reports the two apart.
+
+**What is now open is a decision, not a number.** The platted 80 ft corridor occupies this bank
+down to the water, and L79 records the travelled tracks running 5.8–10.5 m inside an 80 ft
+corridor; South Water's committed track is 10.5 m, so about 7 m of legal corridor stands between
+the wheel line and the corridor's north edge, on ground flat to 0.05 m. So the question is
+whether an invented building may stand on the **river margin of a platted street corridor**,
+where this town's warehouses and landings in fact stood. It would be the first record placed
+knowingly inside a corridor — the 29 that lap one today are documented records the plat was
+fitted around — and `measure_corridor_intrusion.py --gate` refuses a new lap by construction.
+Filed as its own ticket rather than decided here. The live alternative is that what the plate
+draws on the south bank is wharfed out over the water (T-0059), not standing on it.
+
+**What shipped.** `tools/measure_south_bank_ground.py` + its baseline, gated in `check.sh` so
+a fit **appearing** fails — that is the question re-opening, not a number to bank; the finding
+at `docs/RESEARCH/south_bank_dearborn_ground.md`; a `data/exclusions.json` entry, so the
+visitor standing in the empty south bank can read why it is empty in the walkthrough's *What is
+not here*; and the superseded sentence corrected in all four north-bank shed records.
+
+**Nothing in the town moved.** No geometry changed and no bake was needed.
 ## Shipped 2026-08-28 — T-0221: one reading of which evidence layer a record belongs to
 
 **Three tools asked the question and one of them answered it from a filename.**
