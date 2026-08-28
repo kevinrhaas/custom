@@ -112,3 +112,5 @@ T-0271 — The balanced ceiling is breached at the forks by 5,290 triangles on a
 T-0272 — The West Division parcel's form values come from the archetype and cite the family band: 8 families, 11 claims outside it
 T-0273 — The South Division infill parcel's form values come from the archetype and cite the family band: 9 families, 10 claims outside it
 T-0274 — The inferred-household parcel's form values come from the archetype and cite the family band: 8 families, 10 claims outside it
+T-0275 — The 665-roof deal puts a large river warehouse on an inland platted block, and the block generator cannot build one
+T-0277 — Build out the NEXT anonymous block: after blk_lake_franklin the last ungenerated block is owner-blocked, and the roofs left stand on blocks that already stand

@@ -1,5 +1,68 @@
 # STATUS
 
+## Shipped 2026-08-28 — T-0028: `blk_lake_franklin` opens, and the warehouse it was dealt is refused rather than massed
+
+**The first NEW platted block this programme has opened since 2026-08-23**, when T-0028 re-derived
+the schedule with `tools/reconcile_665.py` and found there was nothing left to open: eleven blocks
+`at_capacity`, six `open` but only on lots that already stand (T-0143's core density, a different
+ticket), one `reserved`, and two `gated` on street control. That run filed T-0163, which landed on
+2026-08-24, split the two refusals apart and measured them — and did NOT open a block. It found
+`blk_south_water_clinton` was never a block at all (`never_platted`, 328 m away with 20 of 66
+samples wet — opposite banks) and escalated `blk_south_water_market` to T-0183, where it still sits
+`blocked-owner`.
+
+**What reopened the programme was the DEAL, not control.** `blk_lake_franklin` — Lake, Wells,
+Randolph, Franklin — has stood `open` with two free lots throughout. T-0188 read it on 2026-08-27
+and recorded that it *"cannot carry a three-unit run as dealt"*, because the schedule dealt it
+**I3**, which `generate_block_infill.py` refuses by name, alongside **F3**. T-0213 weighted the
+trade families onto the business front on 2026-08-26; the I3 went with it. Re-derived today the
+deal is A1, D1, D5 and F3 — three of four buildable — so the block opens.
+
+**The arrangement is measured on both rules, and they agree.** `tools/measure_street_frontage.py`
+counts 16 documented records and 8 inferred households within 25 m of Lake Street's committed
+centreline against Randolph's 7 and 7 (the reconstruction column is this programme's own output and
+does not vote), so Lake is the business face. `tools/measure_end_rule.py` puts lot 4 at 441.12 m
+from the foot of the Dearborn Street drawbridge against lot 7's 473.20 m straight, 550.45 m against
+668.96 m walked. So the free Lake lot takes the row, the free Randolph lot is left open, and inside
+the run the better roof stands at the east end nearest the crossing: a deep-plan frame cottage
+anchored 1.5 m off the lot's east margin, an older log dwelling abutting west of it on one party
+wall, and the stable in the same lot's yard at the alley end.
+
+**The street line was not adopted — it agreed, and that is worth recording.** This face carried no
+frontage-declaring record before the run, so there was no built line to adopt under T-0104 and the
+floor is the plat module's own 1.5 m lot margin. `temple_lake_st_building`, a documented record
+placed by an entirely different parcel that declares no frontage, stands 1.492 m off the same face
+at 75.73–82.52 m along. The run stands at 1.499 m and stops 3.90 m short of it. Seven millimetres,
+by coincidence of the data rather than by anything this parcel chose. `tools/measure_street_line.py`
+now reports nine block faces and every one of them is one street line.
+
+**THE FOURTH ROOF IS REFUSED, AND THE REFUSAL IS THE FINDING.** F3 is the "Large river warehouse".
+Its crosswalk entry makes water access a precondition of the FORM — required variant
+`warehouse_river_large`, variants *"multiple cargo doors; landing apron; sparse glazing"*,
+assumption note *"Landing apron and cargo-door arrangement must follow site access and cannot
+extend into water or duplicate a counted pier."* This generator authors no coordinates: every metre
+comes from a committed lot polygon inside a block bounded by four platted STREETS. Sampled against
+the committed heightfield `e1834_harbor_cut`, the nearest water to this block's boundary is
+**134 m**. So F3 joins I1, I2 and I3 in `REFUSED_FAMILIES` — for the opposite reason to theirs, and
+the module comment now says which is which: the institutional families are refused for what an
+anonymous one would CLAIM, F3 for the GROUND. The slot is deferred in the recipe with its reason
+and the roof stays on the books.
+
+**That is a stopgap and it is filed as one.** Treating a fault in the DEAL at the block means every
+future platted block dealt an F3 will defer it, and three warehouse roofs will pile up as deferrals
+nobody is scheduled to build. **T-0275** asks the deal to stop sending them inland, in the same
+shape as T-0213 — and notes that F3 is absent from the generator's `FUNCTIONS` table and from the
+`block` arm of `measure_family_deal.py` too, so the deal was reaching for a family the parcel shape
+has never been able to name.
+
+**Numbers.** 3 roofs (2 principal, 1 ancillary) of the block's 4 of headroom; 341 buildings standing
+of 662; the block goes to 14 standing, 1 of headroom, 1 free lot. No roof is added to the town — the
+three come out of `south_plat_beyond_committed_control`. Baked with `bake.sh --only` per structure;
+`tools/check.sh` and `tools/smoke_renderer.mjs` green. Liberty **L201**. T-0028 closes on this one block
+with its successor **T-0277** filed, which is what its own sizing note asks of every run: one run,
+one demonstration, one successor.
+
+
 ## Shipped 2026-08-28 — T-0024: the face rule ranks dwellings, and the store steps onto the street line
 
 **The question, and it has been open since 2026-08-15.** The face rule orders the DWELLINGS a

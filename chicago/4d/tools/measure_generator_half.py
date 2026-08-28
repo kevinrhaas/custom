@@ -65,11 +65,18 @@ RENDERER_JS = RENDERERS / "web" / "js"
 # @ a638614c (T-0059). `--gate` holds the live measurement to it. Moving a figure
 # here is a claim that the reach changed, and it belongs in the same commit as
 # whatever changed it.
+#
+# 2026-08-28 (T-0028): the three counts that move with the town's asset count moved
+# by exactly three, because `blk_lake_franklin` was opened and carries three roofs.
+# 349 -> 352 assets, 349 -> 352 re-staled by `common/*.py`, 347 -> 350 by `build.py`;
+# the terrain and pier_crib reaches are unchanged at 2 each, which is the point of
+# stating them separately. This is the ordinary movement of the reading, not a change
+# in reach: a structure asset is in `build.py`'s reach by construction.
 STATED = {
-    "assets": 349,
+    "assets": 352,
     "restales": {
-        "generators/common/*.py": 349,
-        "generators/build.py": 347,
+        "generators/common/*.py": 352,
+        "generators/build.py": 350,
         "generators/terrain_gen.py": 2,
         "generators/archetypes/pier_crib.py": 2,
     },

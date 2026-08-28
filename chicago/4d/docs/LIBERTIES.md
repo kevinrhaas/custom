@@ -9066,3 +9066,71 @@ liberties on what a street was for) · **L102** (the face rule as first written)
 rule, the other half of where a roof stands on its face) · tickets **T-0024** (this), **T-0022**,
 **T-0079**.
 **Recorded:** 2026-08-28.
+
+### L201 — Two roofs and a stable on Lake Street at Franklin, and the warehouse slot that was refused rather than massed
+**Decision:** lot 4 of `blk_lake_franklin` — an interior lot on the block's Lake Street face,
+bounded by Lake, Wells, Randolph and Franklin — carries **two anonymous principal roofs standing
+shoulder to shoulder on the Lake frontage** on one line, at one 1.499 m setback, on one shared
+party wall: a deep-plan frame cottage anchored at the east end of the lot's own frontage and an
+older log dwelling abutting west of it. A stable stands in the same lot's yard at the alley end.
+The run occupies 59.60–71.83 m along the block face. Lot 7, on Randolph, is left open. The block's
+fourth dealt roof, a large river warehouse, is **deferred and named rather than built**.
+**Why:** T-0028, the block programme's ticket, and the first platted block this project has opened
+since 2026-08-23, when that ticket re-derived the schedule and found nothing left to open. What
+reopened this one is the DEAL rather than street control: until T-0213 weighted the trade families
+onto the business front on 2026-08-26 this block was dealt I3 alongside F3, and
+`tools/generate_block_infill.py` refuses I3 by name, so T-0188 read the pair on 2026-08-27 and
+recorded that the block *"cannot carry a three-unit run as dealt"*. Re-derived with
+`tools/reconcile_665.py` the deal is A1, D1, D5 and F3 — three of four buildable.
+**THE FACE RULE AND THE END RULE NAME THE SAME LOT,** which is the first thing that makes the
+arrangement an argument rather than a preference. `tools/measure_street_frontage.py` counts 16
+documented records and 8 inferred households within 25 m of Lake Street's committed centreline
+against Randolph's 7 and 7 — the reconstruction column is this programme's own output and does not
+vote — so Lake is the block's business face and its free lot takes the row. `tools/measure_end_rule.py`
+puts lot 4's frontage 441.12 m from the foot of the Dearborn Street drawbridge against lot 7's
+473.20 m straight, and 550.45 m against 668.96 m walked along the committed streets, so lot 7 is the
+farther on both readings and is the one left open. Inside the run the same rule grades the roofs:
+the better of the two stands at the east end, nearest the only crossing of the main stem in July 1835.
+**THE STREET LINE WAS NOT ADOPTED — IT AGREED.** This face carried no frontage-declaring record
+before this run, so there was no built line to adopt under L177/T-0104 and the floor is the plat
+module's own 1.5 m lot margin. `temple_lake_st_building`, a documented record placed by another
+parcel that declares no frontage at all, stands with its front wall 1.492 m off this same face at
+75.73–82.52 m along. The run stands at 1.499 m, 7 mm outside it, and stops 3.90 m short of it along
+the face. The face reads as one street line, and it does so by coincidence of the data rather than
+by anything this parcel chose; it is recorded here so a later run does not mistake the agreement
+for a measurement.
+**THE REFUSED SLOT, AND WHY IT IS AN ADMISSION RATHER THAN A DROP.** The schedule dealt this block
+three principal roofs and one of them is F3, a large river warehouse. This generator authors no
+coordinates: every metre comes from a committed lot polygon inside a block bounded by four platted
+streets. F3's own crosswalk entry makes water access a precondition of the form — the required
+variant is *"multiple cargo doors; landing apron; sparse glazing"* and its assumption note reads
+*"Landing apron and cargo-door arrangement must follow site access and cannot extend into water or
+duplicate a counted pier"*. Sampled against the committed heightfield `e1834_harbor_cut`, the
+nearest water to this block's boundary is 134 m away. So the slot is deferred in the recipe with
+its reason, `generate_block_infill.py` now refuses F3 by name, and the roof is still owed: the
+wharf and landing ground beyond South Water and Market is where it belongs, and that the deal keeps
+sending F3 onto inland platted blocks is filed as **T-0275** against the deal.
+**WHAT IS INVENTED.** That any building stood on this ground at all; that there were two of them;
+that they stood shoulder to shoulder rather than apart; that the westernmost was of logs; that the
+household on the lot kept a stable. Every dimension is sampled inside the family band the
+reconstruction spec authors and every value on all three records grades `reconstructed` with its
+own note saying so. **No coordinate is authored:** the line, its bearing, the lot's stretch of it
+and the end the run packs away from are all read from the committed block boundary in
+`data/traces/vectors/thompson_lots.json`. No lot is numbered — this project has never read
+Thompson's numbering off a sheet — and the side lot line the row crosses between its two units is
+conjectural. **The 662-roof total does not move:** the three roofs come out of
+`south_plat_beyond_committed_control`, the district balance waiting on street control past State
+and Washington.
+**A log dwelling on a business frontage is still an open question** (T-0022), and this parcel does
+not settle it; it is one more recorded instance on the same ground L144 recorded the first.
+**How to resolve:** any period document placing a named occupant on a numbered lot on the Lake
+Street face between Franklin and Wells — an advertisement giving an address, a tax or insurance
+description, an itemised loss list — would replace an invented roof with a named one on the same
+line, which is what the 665-roof programme's substitution clause exists for. The Democrat and the
+American extraction tickets (T-0256 onward) are the corpus most likely to carry one.
+
+Related: **L144** (three roofs on one lot, the core density standard this run spends two of) ·
+**L177** (one street line to a face) · **L182** (the end rule) · **L200** (where a non-dwelling
+stands) · tickets **T-0028** (this), **T-0275**, **T-0022**, **T-0188**, **T-0213**.
+**Covers:** `recon_1835_blk_lake_franklin_d5_01.inferred_1835.position`, `recon_1835_blk_lake_franklin_d5_01.inferred_1835.footprint`, `recon_1835_blk_lake_franklin_d1_02.inferred_1835.position`, `recon_1835_blk_lake_franklin_d1_02.inferred_1835.footprint`, `recon_1835_blk_lake_franklin_a1_03.inferred_1835.position`, `recon_1835_blk_lake_franklin_a1_03.inferred_1835.footprint`.
+**Recorded:** 2026-08-28.

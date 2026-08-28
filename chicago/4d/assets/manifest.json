@@ -156,8 +156,8 @@
     "exchange_coffee_house__frame_1834.glb": {
       "archetype": "frame_tavern",
       "baked_ao": false,
-      "bytes": 24148,
-      "inputs_sha256": "018643aaab69cdd99f996c13aee5d01c0774295599be2e8d75751f39da410ffc",
+      "bytes": 22588,
+      "inputs_sha256": "d0864ec826d8164e301ab67bca126610e1238259eae29b5fe47e414721c3fa71",
       "kind": "generated",
       "phase_id": "frame_1834",
       "structure_id": "exchange_coffee_house"
@@ -908,6 +908,33 @@
       "kind": "generated",
       "phase_id": "inferred_1835",
       "structure_id": "recon_1835_blk_lake_clark_d5_03"
+    },
+    "recon_1835_blk_lake_franklin_a1_03__inferred_1835.glb": {
+      "archetype": "outbuilding",
+      "baked_ao": false,
+      "bytes": 77020,
+      "inputs_sha256": "0de44106ade9811297a88e51ee46348271cd7cd0ac7a3ea32a54d7890578dcd8",
+      "kind": "generated",
+      "phase_id": "inferred_1835",
+      "structure_id": "recon_1835_blk_lake_franklin_a1_03"
+    },
+    "recon_1835_blk_lake_franklin_d1_02__inferred_1835.glb": {
+      "archetype": "log_dwelling",
+      "baked_ao": false,
+      "bytes": 34684,
+      "inputs_sha256": "8642d2377840a8623c6077afc989dc1707b62ae8fa3b1625d91f6f439ae42482",
+      "kind": "generated",
+      "phase_id": "inferred_1835",
+      "structure_id": "recon_1835_blk_lake_franklin_d1_02"
+    },
+    "recon_1835_blk_lake_franklin_d5_01__inferred_1835.glb": {
+      "archetype": "frame_dwelling",
+      "baked_ao": false,
+      "bytes": 33308,
+      "inputs_sha256": "dbdda7d237f1d556d4211b4d368e39abb0324395075f8af7616afa9f091f8d77",
+      "kind": "generated",
+      "phase_id": "inferred_1835",
+      "structure_id": "recon_1835_blk_lake_franklin_d5_01"
     },
     "recon_1835_blk_lake_market_a1_06__inferred_1835.glb": {
       "archetype": "outbuilding",
