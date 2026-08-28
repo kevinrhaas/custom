@@ -56,7 +56,6 @@ T-0263 — The documented storefronts take their places on South Water and Lake
 T-0264 — Documented people replace the invented
 
 # --- MEASUREMENT, GATES AND PROVENANCE — invisible, and nothing below blocks the above
-T-0227 — Is the AO bake actually too dark? Every figure that said so was wrong twice over
 T-0224 — A critic baseline standing on the public square
 T-0210 — The desktop smoke's stage 9 times out clicking the panel close, on an unmodified tree
 T-0190 — A second street tier for the street edge, and the ceiling that refuses it
