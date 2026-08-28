@@ -1,7 +1,7 @@
 ---
 id: T-0185
 title: The plate draws the fort's pickets three times coarser than the model builds them
-state: open
+state: claimed
 epic: TOWN
 requested_by: loop
 seen: false
@@ -11,7 +11,7 @@ parent: null
 opened: 2026-08-24
 closed: null
 pr: null
-claimed_by: null
+claimed_by: run 8/27/2026, 11:33:13 PM CT
 blocked_on: null
 needs_bake: true
 ---
