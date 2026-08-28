@@ -1,7 +1,7 @@
 ---
 id: T-0211
 title: The other nine group rows are cross-checked against nothing
-state: claimed
+state: done
 epic: TOWN
 requested_by: loop
 seen: false
@@ -9,8 +9,8 @@ effort: S
 legacy_id: null
 parent: null
 opened: 2026-08-27
-closed: null
-pr: null
+closed: 2026-08-28
+pr: 459
 claimed_by: run 8/28/2026, 6:48:15 AM CT
 blocked_on: null
 needs_bake: false
