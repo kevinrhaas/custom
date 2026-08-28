@@ -109,6 +109,65 @@ const VERSION = '0.1.0';
 const FURNITURE_REACH_LIGHT_M = 350;
 
 /**
+ * THE MIDDLE RUNG GETS A REACH TOO — T-0241, 2026-08-27, and it is the tier
+ * ladder finally being a ladder.
+ *
+ * `light` has had a reach since T-0150 and `balanced` had NONE, so "turn the
+ * quality down and less is drawn" was true of the bottom rung and false of the
+ * one above it: `balanced` drew every plank walk, fence, barrel, wharf deck and
+ * moored hull in Chicago at any distance, exactly as `full` does. That is what
+ * refused Washington Street. With the street laid, `balanced` read 1,259,442 at
+ * the axial stand against its 1,210,000 — OVER by 49,442 — while `full` passed
+ * with 14,613 clear and `light` with 23,440. One rung, and not the town.
+ *
+ * The three honest routes past that were named in T-0241 and two of them were
+ * already spent: T-0056 measured the enclosure layer and found it ALREADY
+ * thinning at `balanced`, and T-0223's cull had landed and been given back as
+ * T-0229's ceiling restoration. A sixth re-basing is what T-0223, T-0229 and
+ * T-0237 exist to make harder. So: the trim.
+ *
+ * MEASURED BEFORE IT WAS SET, same instrument as `light` above
+ * (`tools/measure_furniture_reach.mjs`, now with `--level` so it can be pointed
+ * at a tier other than the floor), published mirror, WITH Washington laid, at
+ * T-0135's five stands and both release viewports:
+ *
+ *   desktop 1280x800        drawn whole      at 800 m        saved   frame 48^2
+ *   Lake at Canal, east   1,259,442 / 151  1,190,670 / 146   68,772   0.00 / 0
+ *   the forks             1,245,668 / 157  1,195,188 / 152   50,480   0.00 / 0
+ *   Lake and Market         969,677 / 157    969,677 / 157        0   0.00 / 0
+ *   the open aerial         792,819 / 122    792,387 / 121      432   0.00 / 0
+ *   the Sauganash at 26 m   811,265 / 115    810,401 / 113      864   0.00 / 0
+ *
+ *   mobile 390x780
+ *   Lake at Canal, east   1,201,716 / 151  1,133,376 / 147   68,340   0.00 / 0
+ *   the forks             1,101,700 / 142  1,062,216 / 136   39,484   0.00 / 0
+ *   Lake and Market         784,108 / 143    784,108 / 143        0   0.00 / 0
+ *   the open aerial         663,078 / 101    663,078 / 101        0   0.00 / 0
+ *   the Sauganash at 26 m   733,227 / 105    733,227 / 105        0   0.00 / 0
+ *
+ * THE FRAME DOES NOT MOVE. Not "moves a little": the 48² signature reads a worst
+ * cell of ZERO against the same frame drawn whole, at every stand, at both
+ * viewports, with the clock held — where the residual of the baseline against
+ * itself is also 0, so the instrument is known to be reading signal. `light`'s
+ * own 350 m could not say that; it moves the open aerial by a worst cell of 6.
+ * Say the limit of the claim as plainly as the claim: a 48² signature is a
+ * downsample, and at 800 m a 1.2 m fence pale subtends 1.1 CSS pixels of this
+ * frame, which is below what it can resolve. What is being asserted is that
+ * nothing this instrument can see changes, and the pixel arithmetic says why.
+ *
+ * WHY 800 AND NOT 700, WHICH SAVES NEARLY TWICE AS MUCH (126,070 at the axial
+ * stand). Because a cull is a deletion and the rule here is to cut as little as
+ * buys the room. 800 m is the LONGEST reach in the sweep that gets `balanced`
+ * inside its ceiling, and it lands the tier on 1,195,188 of 1,210,000 — 1.2 %
+ * clear, against `full`'s 1.0 % and `light`'s 3.0 %. The ladder keeps its shape,
+ * which is the test this table has been re-taught five times, and 700 m stays on
+ * the table for whatever asks for room next rather than being spent here.
+ *
+ * WHAT THIS IS NOT: a ceiling raise. Nothing in `DETAIL` below moves.
+ */
+const FURNITURE_REACH_BALANCED_M = 800;
+
+/**
  * Scene detail: how much geometry the visitor asks for.
  *
  * 600 000 triangles used to be a single hard ceiling written into the release
@@ -394,8 +453,12 @@ const DETAIL = {
   // read 1,260,000 for a day, on a worst stand of 1,252,802 that measured
   // 1,083,932 once T-0223's cull landed. The reading, both viewports, is in the
   // block above `full` rather than written out twice.
+  // T-0241 GIVES THIS RUNG A FURNITURE REACH, 800 m — the first trim `balanced`
+  // has ever carried, and the whole reading is at `FURNITURE_REACH_BALANCED_M`
+  // above. The ceiling here is UNTOUCHED at 1,210,000; what changed is what the
+  // tier draws, which is the other way round from every entry above it.
   balanced: { triangles: 1210000, shadowReachM: 240, furnitureCastsShadow: true,
-              furnitureReachM: null },
+              furnitureReachM: FURNITURE_REACH_BALANCED_M },
   // -- T-0147, 2026-08-27 -- AND THE FLOOR IS WON BACK: 1,050,000 -> 785,000 --
   //
   // The third and last piece of T-0149, whose whole complaint is the sentence
