@@ -1,4 +1,12 @@
 export const CHANGELOG = [ // newest first
+  { v: 318, title: 'The last outbuilding with the wrong roof gets its family\u2019s single slope', kind: 'fix', ts: '2026-08-28T06:22:17.077Z', date: 'Aug 28, 2026, 1:22 AM CT',
+    items: [
+      'One small outbuilding on the South Division blocks has changed shape. It had a two-slope roof \u2014 a ridge down the middle, falling both ways \u2014 where the other three buildings of its kind in this town all have a single slope falling one way. Now it has the single slope too.',
+      'Nobody had ever chosen the difference, and that is the point of fixing it. Which small building types this town roofs with one slope was written out five separate times, once inside each of the five programs that place anonymous buildings, and two of those five copies had quietly dropped this type off the list. Exactly one roof in the whole town stood on the discrepancy.',
+      'The rule was moved into one place last week so it could only be said once, and every program was pointed at it \u2014 except this one building, which was held back and named in writing as being held back. Changing its roof changes its shape, and a shape change means the 3-D model has to be rebuilt in the same commit or the build refuses to accept it. That rebuild is what this is.',
+      'The hold list is now empty, and the check that watches it is set to empty too: it is allowed to shrink and not to grow, so no future program can quietly opt a building type out of the shared rule while nobody is looking.',
+      'The roof it takes is one the type can actually carry. Its family\u2019s single slope was already measured against every footprint size the family is allowed \u2014 441 of them \u2014 and it clears the height the family claims at all of them. Two other families that were offered the same single slope are refused it for exactly that reason, and their records say so on the card.',
+    ] },
   { v: 317, title: 'The fort plates\u2019 claims are measured, not looked at', kind: 'chore', ts: '2026-08-28T06:09:58.460Z', date: 'Aug 28, 2026, 1:09 AM CT',
     items: [
       'Nothing you can see changed today. This project keeps an eight-row list of what the two old Fort Dearborn pictures show and the town does not, and that list was written by looking at them. Three of its rows had already been proved wrong. Three more had never been checked at all \u2014 and two of the ways you can walk on out there had been laid on them.',

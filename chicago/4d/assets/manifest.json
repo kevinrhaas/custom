@@ -2397,8 +2397,8 @@
     "recon_1835_south_a5_044__inferred_1835.glb": {
       "archetype": "outbuilding",
       "baked_ao": false,
-      "bytes": 55884,
-      "inputs_sha256": "ff5b16ea45443903ca9a46edda49e8f0fdcf23228638c2a3acc22e26ba7c017e",
+      "bytes": 46668,
+      "inputs_sha256": "dd656695efccc9789365d3833822530b0843d493d8ca963b979e5b6a8f253d9a",
       "kind": "generated",
       "phase_id": "inferred_1835",
       "structure_id": "recon_1835_south_a5_044"
