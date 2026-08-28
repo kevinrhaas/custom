@@ -3698,22 +3698,21 @@ for (const [label, viewport, touch] of [
       // Those decks are the ones named `…__footway_<n>`; the ground is what their
       // boards tie into and the ground is what they are measured against.
       //
-      // NEITHER IS A WHARF DECK, and T-0058 is where THAT difference had to be
-      // drawn. Two of the seven docks — Carpenter's and Jones's, both on the
-      // South Water reach — tie their heels back into a bank the riverside plank
-      // walk already runs along, so their decks OVERSAIL about 3,000 of this
-      // layer's vertices by roughly half a metre. A board under a dock is not a
-      // board riding one: it is laid on the ground, it is measured against the
-      // ground, and it was in band against the ground before this deck was ever
-      // registered with the walker. Counting the dock as its base would read a
-      // walk that has not moved as newly sunk by the height of somebody else's
-      // floor. (What a visitor meets there is its own question and its own
-      // ticket; the stair at those two rises off the walk itself.)
+      // AND A WHARF DECK IS NOT ONE EITHER — but since T-0228 it does not have
+      // to be excused, because no board stands under one. Two of the seven docks
+      // — Carpenter's and Jones's, both on the South Water reach — tie their
+      // heels back into the bank the riverside plank walk runs along, and until
+      // T-0228 their decks OVERSAILED about 3,000 of this layer's vertices by
+      // roughly half a metre. That was excluded here so a walk which had not
+      // moved would not read as newly sunk by the height of somebody else's
+      // floor. The walk is now CUT at every landing that comes ashore across it,
+      // so the exclusion is gone and the wharf decks are back in this probe: if
+      // a board ever returns under a dock the band reads it as sunk half a
+      // metre, and `underWharf` below names the dock it is under.
       const deckAt = (e, n) => {
         let y = null;
         for (const d of a.decks ?? []) {
           if (/__footway_\d+$/.test(d.id)) continue;
-          if (/__wharf(_step\d+)?$/.test(d.id)) continue;
           if (y !== null && d.y <= y) continue;
           let hit = false;
           const pts = d.pts;
@@ -3773,10 +3772,35 @@ for (const [label, viewport, touch] of [
         }
         return Number.isFinite(hi - lo) ? hi - lo : 0;
       };
+      // NO BOARD UNDER A LANDING (T-0228). The wharves publish their deck and
+      // every stair tread to the walker as `<id>__wharf` / `<id>__wharf_step<n>`;
+      // those outlines are the timber a plank walk must not run beneath. This
+      // counts the frontage vertices standing inside one, by dock, and the check
+      // below asks for none. It is the loaded-page half of the generator's own
+      // audit: that one cuts the record, this one reads what was drawn from it.
+      const wharfDecks = (a.decks ?? []).filter((d) => /__wharf(_step\d+)?$/.test(d.id));
+      const underWharf = new Map();
+      const inPoly = (e, n, pts) => {
+        let hit = false;
+        for (let i = 0, j = pts.length - 1; i < pts.length; j = i++) {
+          const [xi, yi] = pts[i];
+          const [xj, yj] = pts[j];
+          if ((yi > n) !== (yj > n) && e < ((xj - xi) * (n - yi)) / (yj - yi) + xi) hit = !hit;
+        }
+        return hit;
+      };
       for (const t of timber) {
         const pos = t.geometry?.getAttribute('position');
         if (!pos) continue;
         verts += pos.count;
+        for (let i = 0; i < pos.count; i++) {
+          for (const d of wharfDecks) {
+            if (inPoly(pos.getX(i), -pos.getZ(i), d.pts)) {
+              underWharf.set(d.id, (underWharf.get(d.id) ?? 0) + 1);
+              break;
+            }
+          }
+        }
         for (let i = 0; i < pos.count; i++) {
           // world is (E, up, -N)
           const e = pos.getX(i);
@@ -3854,6 +3878,8 @@ for (const [label, viewport, touch] of [
         postHeight: post?.post_height_m ?? null,
         clearOfTrack: post?.clear_of_track_m ?? null,
         walks: f?.walks ?? [],
+        underWharf: [...underWharf.entries()].sort(),
+        wharfDeckCount: wharfDecks.length,
         sink, deckTop, highest, boardLow, ungraded, notReconstructed,
         bandBreaches, worstBreach,
         problems: (a?.problems ?? []).filter((x) => /frontage/.test(x)),
@@ -3870,10 +3896,16 @@ for (const [label, viewport, touch] of [
       // and retired two refusals: 49 walks to 50, 33 crossings to 37, 83
       // refusals to 81. Fences and posts do not move — a wall 1.50 m back from
       // the frontage line is still inside the 3.0 m a street fence needs.
-      frontage.census?.records === 5 && frontage.census?.walks === 50
+      // T-0024 put the store on Randolph onto the street line, which refused one
+      // more street-edge wall and left this figure a count behind: 81 to 82,
+      // measured on an unmodified dev while T-0228 was taking its own reading.
+      // T-0228 then cut the river walk's wharf reach in two where Carpenter's
+      // and Jones's landings come ashore across it — 50 walks to 51 — and states
+      // each gap where it refuses to lay boards: 82 refusals to 84.
+      frontage.census?.records === 5 && frontage.census?.walks === 51
         && frontage.census?.crossings === 37
         && frontage.census?.posts === 15 && frontage.census?.fences === 35
-        && frontage.census?.refused === 81
+        && frontage.census?.refused === 84
         && frontage.recordIds.join(',')
           === 'green_tree_frontage,sauganash_frontage,river_walk_frontage,'
             + 'lasalle_crossing_frontage,town_street_edge'
@@ -3884,6 +3916,20 @@ for (const [label, viewport, touch] of [
       + `${frontage.verts} vertices, `
       + `${frontage.census?.refused} wall(s) refused, `
       + `problems [${frontage.problems.join(' | ') || 'none'}]`);
+    // NO BOARD UNDER A LANDING (T-0228). Found by T-0058, which made the wharf
+    // decks walk surfaces and so made it matter: Carpenter's and Jones's decks
+    // tie their heels 2.0 m back into the bank the riverside plank walk runs
+    // along, and about 2,700 of this layer's vertices lay inside those two
+    // outlines with a further 270 inside their boarding stairs — the slab half a
+    // metre over the boards, 0.36 m of daylight under it, and a 0.50 m riser
+    // across the walker's path that the 0.35 m step-up rule refuses. The walk is
+    // now cut at every landing and the answer is stated where a visitor can read
+    // it: the gaps are in the record's `refused`, and the landing's own deck is
+    // the walking surface across it.
+    check(`${label}: no frontage board stands under a wharf deck or its stair`,
+      frontage.wharfDeckCount > 0 && frontage.underWharf.length === 0,
+      `${frontage.wharfDeckCount} wharf surface(s) published; under them `
+      + `[${frontage.underWharf.map(([id, k]) => `${id} ${k}`).join(', ') || 'no boards'}]`);
     // NOT MERELY GRADED — graded reconstructed, every vertex. No source record in
     // this repository states that a walk stood on this ground on 1 July 1835
     // (L135), and a single vertex claiming inferred or attested would be this

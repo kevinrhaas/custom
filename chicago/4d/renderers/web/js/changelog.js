@@ -1,4 +1,13 @@
 export const CHANGELOG = [ // newest first
+  { v: 329, title: 'The riverside plank walk stops at the docks', kind: 'fix', ts: '2026-08-28T10:18:30.885Z', date: 'Aug 28, 2026, 5:18 AM CT',
+    items: [
+      'Walk west along the plank sidewalk on the south bank of the river. Where Philo Carpenter\u2019s dock and Jones\u2019s dock come ashore, the boards now stop at the dock and pick up again beyond it. Until today they ran straight underneath \u2014 a dock slab half a metre over the planks with about a third of a metre of daylight between.',
+      'Nothing about the docks moved. What was wrong is the sidewalk, laid along this bank after the docks were already built out from it, and laid as though they were not there. Its timber stood inside the two dock outlines and inside the stairs that board them.',
+      'It only began to matter three weeks ago, when the dock decks became something a visitor can stand on. From that moment the sidewalk ran into a half-metre step at the dock\u2019s edge \u2014 higher than a walker can climb \u2014 so somebody walking the riverfront was stopped dead at it, except across the two and a half metres of boarding stair.',
+      'Three answers were open and this is the one taken: a plank sidewalk stops where a working wharf comes ashore, and the dock\u2019s own deck and stair are what carries you across. The docks were not trimmed back to make room. Their shape is one invented shape used at all seven landings, and cutting two of them to suit a sidewalk laid afterwards would have made the wharves a function of the pavement.',
+      'The two gaps are written into the record as gaps \u2014 which landing closed each one, and how many metres of boards it refused \u2014 the same way this walk already records the one place it cannot cross, the La Salle slough\u2019s mouth.',
+      'Two checks hold it. The record now refuses to regenerate if a single board of it lies under any landing\u2019s deck or boarding stair, and the loaded page is asked the same question about what was actually drawn. A dock that moves, or a new one built on this bank, re-cuts the walk instead of oversailing it.',
+    ] },
   { v: 328, title: 'What the flower grid cannot draw is written down', kind: 'chore', ts: '2026-08-28T10:05:15.605Z', date: 'Aug 28, 2026, 5:05 AM CT',
     items: [
       'Nothing you can see changed today. The flowers in this reconstruction are planted on a grid, and a grid square holds one plant. A square is 2.89 square metres, so the most any place in the town can be given is about a third of a flowering plant per square metre \u2014 however thickly its own records say it grew.',
