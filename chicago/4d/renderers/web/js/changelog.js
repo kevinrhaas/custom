@@ -1,4 +1,13 @@
 export const CHANGELOG = [ // newest first
+  { v: 323, title: 'The prairie\u2019s flowers come out past the near ring', kind: 'feature', ts: '2026-08-28T08:36:52.438Z', date: 'Aug 28, 2026, 3:36 AM CT',
+    items: [
+      'Walk out onto the prairie west of town and look across it. Until today every flower in Chicago stood within about twenty-five metres of you \u2014 past that the grass ran on to a hundred and seventy-five metres and not one bloom stood in it. The flowers now carry to a hundred and twenty.',
+      'What was out there before was grass, and only grass. The far sward is drawn as aggregate clumps, each standing for several metres of ground, and the deal that chose what a clump was could only pick a grass \u2014 so a coneflower prairie read as a hay field however its records were written. Those clumps now deal the whole community, each plant at the share its own record asks for.',
+      'Nothing new is drawn to do it. The same number of clumps stands out there, on the same shapes; what changed is which plant each one stands for, and the flower that a flowering one carries.',
+      'How far a flower reaches is the flower\u2019s own size. A bloom is worth drawing while it still covers a pixel of a phone screen, so a compass plant\u2019s ten-centimetre head carries seventy-two metres and a purple prairie clover\u2019s two-centimetre thimble only twenty. That comes off each record, not off one number for all of them.',
+      'On a phone the distant flowers are left out, and that is a decision rather than an oversight: the phone is where this scene\u2019s budget binds hardest, and a flower shape not already on screen costs more there than it is worth.',
+      'It also settles a question that had been open for a fortnight \u2014 could the distant grass simply be tinted the colour of whatever is flowering on it? Measured against the records: no. The flowers\u2019 share of what you actually see at that distance is five parts in ten thousand, far too little for a screen to carry. A flower a long way off is a speck, not a wash, and specks are what it now draws.',
+    ] },
   { v: 322, title: 'The store on Randolph steps out to the street', kind: 'fix', ts: '2026-08-28T08:30:38.617Z', date: 'Aug 28, 2026, 3:30 AM CT',
     items: [
       'Walk east along Randolph Street from the courthouse square. The store opposite it now meets the street, three metres ahead of the two houses beside it, instead of sitting back in line with them the way a house does.',
