@@ -1,5 +1,51 @@
 # STATUS
 
+## Shipped 2026-08-28 — T-0227: the AO bake is too dark, and now something has actually looked at it
+
+**Nothing in the town moved.** This run answers a question the project has been holding an opinion
+about for months without ever having read a rendered frame that carried the thing it was judging.
+
+**The question, and why it was open.** `bake_ao()` has said since it was written that AO on these
+archetypes is a geometry problem, and quoted "mean 0.265 with 69 % of texels below half" plus "0.38
+at a 0.25 m AO distance". T-0158 voided both — read off an sRGB-tagged buffer, and averaged over a
+512² atlas **68.9 % of which is empty UV space**, so the 69 % was very nearly the empty fraction
+itself. Worse than either fault: **until T-0158 the export shipped a uniformly black texture**, so
+no AO judgement this project holds was ever made on a file that carried occlusion at all.
+
+**What was done.** `sauganash_hotel` rebaked with `--ao` (baked mean 0.1665 → exported 0.1665, 0.0 %
+drift), swapped into the source tree, and shot at both Sauganash anchors and both viewports through
+`tools/critic_shots.mjs --metrics` against the same tree without it. The new
+`tools/measure_ao_frame.mjs` reads the building's **own visible pixels** out of those frames — the
+structures mask (`full` vs the `__bare` capture) intersected with the pixels that moved between the
+two conditions — so the reading is of the walls, not of the frame and not of the atlas.
+
+| station | viewport | pixels read | mean L\* without → with | L\* < 20 | literal black px |
+|---|---|---|---|---|---|
+| `sauganash` | desktop | 87,893 | **33.8 → 11.1** | 31.1 % → **88.9 %** | 0 → **6,532** |
+| `sauganash` | mobile | 20,010 | 33.4 → 11.1 | 31.8 % → 89.5 % | 0 → 1,289 |
+| `sauganash_wing` | desktop | 99,681 | 39.1 → 17.9 | 15.4 % → 64.9 % | 0 → 3,781 |
+| `sauganash_wing` | mobile | 17,511 | 41.9 → 20.6 | 4.9 % → 56.5 % | 0 → 340 |
+
+**The answer is yes, and the atlas statistic understated it.** A documented white-painted wall loses
+two thirds of its lightness and puts thousands of pixels at literal 0,0,0 — a hole in the render,
+not a shaded wall. The whole-frame critic table agrees from the other side (`literal black px`
+0 → 6,841, `shadow darkest decile L` 4.67 → 2.00 at `sauganash` desktop), with triangles unchanged.
+**"Mean 0.5358 over written texels" reads as about-half-occluded and sounds survivable; the frame
+says the building goes out.** The mechanism is that glTF occlusion scales the INDIRECT term only,
+and at the scene's 70.5° sun the street elevations a walker sees are carried by little else (§1
+items 9–11) — occlusion near 1 there removes essentially all their light. So R-W3a keeps its cage
+and loses its target: **acceptance is now a `measure_ao_frame.mjs` reading, not an atlas mean.**
+
+**Two costs the cage parcel inherits, measured on the same asset.** The atlas is **31.1 % occupied**
+(81,458 of 262,144 texels; the master 94,420 → 202,292 bytes, +114 %), so two thirds of a ~107 KB
+occlusion PNG is blank — **T-0286**. And `aoMap` is part of `materialKey` in `buildings.js`, so an
+AO'd asset cannot batch with an un-AO'd one: **+2 draw calls at every station and both viewports for
+one building**, against ceilings already breached — **T-0285**.
+
+**What did NOT ship: the AO itself.** The bake stays off and `assets/manifest.json` keeps saying so.
+Shipping an occlusion map that extinguishes a documented white wall would be a data-integrity bug in
+an aesthetics costume, and the affordability questions above are R-W3a's to answer.
+
 ## Shipped 2026-08-28 — T-0211: the other nine group rows are cross-checked against something now
 
 **The hole T-0032 left behind.** `data/reconstruction/1835_building_inventory.json` carries the same
@@ -12902,7 +12948,10 @@ states one:
    as a real glTF occlusion texture, but the archetype's clapboard courses and window reveals
    sit a centimetre off the wall and occlude each other: a measured bake comes out at mean 0.265
    with 69% of texels below half, and the building renders brown. Shortening the AO distance
-   only reaches 0.38. It needs a low-poly AO cage, not a tuning tweak. `--ao` keeps the path
+   only reaches 0.38. It needs a low-poly AO cage, not a tuning tweak. **[Both figures VOID —
+   T-0158, 2026-08-27; and the export was shipping a black texture when this was written, so
+   "renders brown" was not a reading of AO. The conclusion survives on a rendered frame:
+   T-0227, 2026-08-28, at the top of this file.]** `--ao` keeps the path
    exercised and `assets/manifest.json` records honestly that the shipped asset has none.
 10. **`gltf-transform` did not run**, so `assets/web/` currently holds copies of the
     uncompressed masters rather than meshopt/KTX2 derivatives. Harmless at 44 KB; it must work

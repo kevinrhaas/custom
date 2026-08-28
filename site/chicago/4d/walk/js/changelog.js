@@ -1,4 +1,13 @@
 export const CHANGELOG = [ // newest first
+  { v: 334, title: 'What the shading test showed, and why it stays off', kind: 'chore', ts: '2026-08-28T12:31:02.503Z', date: 'Aug 28, 2026, 7:31 AM CT',
+    items: [
+      'Nothing you can see changed today. This project has said for months that its buildings come out too dark when a shading map is baked onto them \u2014 and nobody had ever looked at a picture of one that carried it. The export was broken until yesterday, so every opinion about it was formed on a building that had none.',
+      'So the Sauganash Hotel was baked with its shading map, put back into the scene, and photographed from the two viewpoints that face it, on a phone and on a desktop, beside the same shot without it.',
+      'The hotel goes out. Its own pixels fall from a mid grey to nearly black \u2014 nine tenths of the wall below the point where a colour stops reading as a colour, and six and a half thousand pixels at pure black on a building the records describe as white-painted.',
+      'That is worse than the old numbers claimed, and the old numbers were being read the wrong way round: they averaged the shading texture, two thirds of which is blank, instead of looking at the wall. The average said \u201chalf shaded\u201d and sounded survivable. The picture says the building disappears.',
+      'It stays switched off, and the plan to fix it properly \u2014 bake the shadowing from a simple block and let the trim inherit it \u2014 now has a test that reads the walls in a photograph rather than the average of a texture.',
+      'Two costs were measured on the way: the shading texture is two thirds empty space, and a building carrying one cannot be drawn in the same batch as its neighbours. Both are written down for whoever takes the fix.',
+    ] },
   { v: 333, title: 'What the newspapers say gets a shape, and a rule against tidying', kind: 'chore', ts: '2026-08-28T12:13:41.405Z', date: 'Aug 28, 2026, 7:13 AM CT',
     items: [
       'Nothing you can see changed today. Yesterday the town\u2019s own newspapers became something this project can point at \u2014 eighty-six issues, every page and column addressable. Today they get somewhere for what is read out of them to go.',
