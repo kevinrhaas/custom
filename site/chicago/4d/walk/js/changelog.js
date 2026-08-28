@@ -1,5 +1,5 @@
 export const CHANGELOG = [ // newest first
-  { v: 342, title: 'The plank walk reaches the corner of the public square', kind: 'fix', ts: '2026-08-28T17:23:50.368Z', date: 'Aug 28, 2026, 12:23 PM CT',
+  { v: 343, title: 'The plank walk reaches the corner of the public square', kind: 'fix', ts: '2026-08-28T17:28:21.346Z', date: 'Aug 28, 2026, 12:28 PM CT',
     items: [
       'Walk west along Randolph Street, on the north side of the public square. The plank sidewalk now runs the whole block, corner to corner, and a board crossing carries you over LaSalle Street at the end of it. Until today the boards began ten metres in and stopped short of that corner.',
       'What stood in the way is the log jail — the first Cook County jail, built in the autumn of 1833 on the north-west corner of the court-house square. It was drawn three and a half metres out in Randolph Street, and a sidewalk cannot be laid through a wall, so the rule refused the two steps of boards it covered.',
@@ -7,6 +7,15 @@ export const CHANGELOG = [ // newest first
       'So it is set back 4.98 metres, square to the street it fronts, which leaves its front wall a metre and a half behind the frontage line — the same margin every other building reconciled onto these streets was given. Nothing about it moved sideways, and the twenty-metre uncertainty in where the jail stood at all is unchanged and far larger than this.',
       'The boards were not the only thing it cost. A walk that stops short of its corner takes the corner crossing with it, because a crossing is only laid where there is a walk on both sides to join. Two crossings come back with the sidewalk: over LaSalle Street, and over Randolph.',
       'The count of buildings drawn standing in one of this town\u2019s own streets goes from twenty to nineteen. Randolph had two of them; the one left is a slaughterhouse eleven metres into the road at the far west end, which is a different problem and not this repair.',
+    ] },
+  { v: 342, title: 'The north bank gets its street back, and a crossing', kind: 'feature', ts: '2026-08-28T17:18:58.484Z', date: 'Aug 28, 2026, 12:18 PM CT',
+    items: [
+      'Stand on the north bank of the river and walk west. Until today the roadway simply ended two hundred metres short of the forks, at a slough running down out of the North Division — and there was nothing beyond it. Now the street goes round the head of the little bay that slough makes, crosses it on a log deck, and carries on to the North Branch.',
+      'That is 250 metres of street that has never been drawn, and a third slough crossing beside the two the town already has.',
+      'The deck is twelve metres of logs, three wide, and it is the smallest of the three because the street it carries is the lightest. It spans six and a half metres of water and lands on dry bank at both ends with about two and a half metres to spare.',
+      'It is laid level with its own banks — 0.68 m over the water — so you step onto it and off it without a riser. Its two elder siblings both needed the road graded to reach them; this one did not, and the reason is the ground under it, which was measured rather than assumed.',
+      'Nothing records this crossing. Wright\u2019s 1834 map draws the slough and the 1830 plat draws the street, those two lines meet, and everything past that \u2014 that anyone bridged it, of what, how wide, how high \u2014 is reconstructed and labelled as such. The Evidence panel has the whole list.',
+      'One number is worth saying plainly: on the new stretch the road stands between 12 and 41 metres from the water, against the half-street it is supposed to keep. The 41 is one short run at the base of Wolf Point where the bank turns a corner faster than the rule that lays the street can follow. It is written down and it has its own ticket.',
     ] },
   { v: 341, title: 'The town\u2019s second newspaper is read, front to back', kind: 'chore', ts: '2026-08-28T17:09:27.922Z', date: 'Aug 28, 2026, 12:09 PM CT',
     items: [

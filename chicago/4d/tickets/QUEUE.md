@@ -95,7 +95,6 @@ T-0244 — T-0194's twelve hitching posts draw no vertices the gate can find, on
 T-0247 — The light tier draws 83 calls against the 80-call floor restored yesterday, on an unmodified dev
 T-0252 — Decide once whether a baked town carries the nine renderer-drawn layers, or none of them
 T-0253 — May an invented building stand on the river margin of a platted street corridor
-T-0254 — North Water Street west of the slough, and the crossing it needs
 T-0255 — The dooryard planting rule reads every street in the town with no bound on reach, so a track across the river can turn a house's yard
 T-0265 — The sward census fails its own gate at a phone: z10_settled_town owes xanthium_strumarium a whole slot and draws it nowhere
 T-0266 — On a phone from across the river the stockade's picket rhythm falls under the pixel grid and beats
@@ -120,3 +119,4 @@ T-0302 — The .lib-body grid resolves toward max-content under all six other Ev
 T-0304 — The gazetteer merges persons by a declared rule and has no equivalent for firms, so 'L. Wilson & Co.' and 'Jno. Wilson & Co.' are two businesses
 T-0305 — Four readings the American contradicts itself on need the page images: the tailor's street, which Water street two forwarding houses stood in, and the corner of Cobb's saddlery
 T-0306 — The American names six Chicago storefronts with usable placements and none of them is standing in the model yet
+T-0307 — The derivation's running maximum costs 42 m of verge where the bank turns a right angle at Wolf Point
