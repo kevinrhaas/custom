@@ -5200,24 +5200,6 @@
       "blocked_on": null,
       "needs_bake": false,
       "queue_rank": 68
-    },
-    {
-      "id": "T-0308",
-      "title": "The 1 October 1834 letter list's first sub-column, A to H, is cut in all three printings",
-      "state": "open",
-      "epic": "PAPERS",
-      "requested_by": "loop",
-      "seen": false,
-      "effort": "S",
-      "legacy_id": null,
-      "parent": null,
-      "opened": "2026-08-28",
-      "closed": null,
-      "pr": null,
-      "claimed_by": null,
-      "blocked_on": null,
-      "needs_bake": false,
-      "queue_rank": 69
     }
   ]
 }
