@@ -159,11 +159,25 @@ gate; only the grain is finer. It is optional and additive: a claim without `spa
 behaves exactly as before, which is why the T-0257 fixture and the Democrat read needed no
 edit. All 130 of the American's claims use it.
 
-**Nor does the Democrat's own first issue, and only four of T-0258's thirty do.** Swept the
-same way: 1834-01-28, 1834-02-04, 1834-04-23 and 1834-04-30 carry a list and the other
-twenty-six do not, so a reading pass over 1833 and the first half of 1834 meets the epic's
+**Nor does the Democrat's own first issue, and at least five of T-0258's thirty do.** Swept the
+same way: 1834-01-28, 1834-02-04, 1834-03-04, 1834-04-23 and 1834-04-30 carry a list and the
+other twenty-five do not, so a reading pass over 1833 and the first half of 1834 meets the epic's
 letter-list clause mostly by demonstrating absence. Where a list IS there it is the census
 proxy and ruling 1 applies in full.
+
+**1834-03-04 WAS NOT IN THAT COUNT UNTIL T-0312 READ THE MONTH, and the reason is a warning about
+the whole method.** The sweep this paragraph records is a keyword sweep — *list of letters*,
+*letters remaining*, *remaining in the post office*, *uncalled for*, a signature ending *P. M.* —
+and it ran straight past a list that is plainly there, because THE HEADING IS CUT ACROSS A
+SEGMENTER COLUMN BOUNDARY. Page 4 column 2 opens `List of L` and page 4 column 3 opens
+`ost-Offiee at Chica-`, so no line in the file contains any of the five forms and a grep for them
+answers no. The list itself, eighty-odd entries signed `HOGAN, P.M.`, is set down both columns
+underneath. A KEYWORD SWEEP CAN ONLY REPORT ABSENCE OF THE KEYWORD, and in a corpus whose
+segmenter halves printed columns and alternates the halves, a heading is exactly the thing likeliest
+to be split. The other twenty-five issues in the range are still recorded as carrying no list,
+and that is now a weaker statement than it looks: it is what a sweep of this kind can say, and the
+cheap check that would strengthen it is a sweep for the fragments — a line ending `List of L`,
+a line beginning `ost-Off`, a bare `P.M.` at a column foot — rather than for the phrases.
 
 **The Chicago American carries no post-office letter list.** Searched across all thirteen
 issues for every form the Democrat uses — *list of letters*, *letters remaining*,

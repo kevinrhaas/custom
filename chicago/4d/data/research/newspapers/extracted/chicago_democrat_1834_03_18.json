@@ -1,0 +1,384 @@
+{
+  "schema": 1,
+  "issue_id": "chicago_democrat_1834_03_18",
+  "extracted": "2026-08-28",
+  "extracted_by": "hand, T-0312 — the Democrat read, March 1834",
+  "note": "Vol. I No. 16 — the number that resumes publication after the suspension announced on 4 March, and says so in its first editorial line: the paper had come from St Louis. Its masthead number is what settles the missing week, No. 16 following No. 15 with no number skipped.",
+  "claims": [
+    {
+      "id": "c001",
+      "kind": "notice",
+      "reading": "transcription_mediated",
+      "quote": "Having received our espected an\ner from St. Lonia, we are enabled\n[uncertain: omeut Depos-]\nte pubication of the Democrat 1a\nwn from the one week to publish.",
+      "normalized": "Having received our expected [supply of pap]er from St. Lo[u]is, we are enabled [to resume] [the s]uspended pub[l]ication of the Democrat […] one week to publish.",
+      "locator": {
+        "artifact_role": "primary",
+        "issue_page": 2,
+        "column": 6,
+        "lines": [
+          1818,
+          1823
+        ],
+        "lines_of_claim": [
+          1818,
+          1819,
+          1820,
+          1821,
+          1823
+        ],
+        "interleaved": true
+      },
+      "entities": [],
+      "notes": "THE OTHER END OF THE SUSPENSION, and between them the two notices close the question T-0312 was written to ask. On 4 March the Democrat announced it would be discontinued for a few weeks for want of paper and named Doct. J. T. Temple's stage line from St Louis as the arrangement that would end it (1834-03-04 c001); here the paper has arrived, the publication resumes, and the paper says it lost one week. ONE WEEK IS EXACTLY THE HOLE: 11 March 1834 carries no issue, and the masthead agrees — this number is Vol. I No. 16, the next after No. 15, so the sequence is unbroken and no printed number is missing from the deposit. The deposit's own manifest and validation notes say the same ('No March 11 issue is supplied; the printed sequence resumes March 18 with No. 16'), and the difference this claim makes is that the paper now says WHY. The Democrat skipped the week; the scan set has no hole. The column is interleaved with the Bank debate beside it."
+    },
+    {
+      "id": "c002",
+      "kind": "building",
+      "reading": "transcription_mediated",
+      "quote": "Ottawa Convention.\nEELING that we have been misrepresen-  ]\nted by the nomination of this ‘‘ Great Con-\nreition” of eight Individuals, and being unwil-\nling that our fellow-citizens in the other coun- | —\nties composing this District, should be deceived\nby the supposition of this nomination being the\nvoice tf the people of Cook county: we there-\nfore take this method to inform them to the con-\ntrary, and would therefore call a mecting of our\nfellow-citizena of Cook county, for an expres-| ~\nsion of their choice of a suitable candidate to\nrepresent the people of this District.\n‘he meeting to be hold on the 12th of April\nnext, at the Eagle Hotel in Chicago, at 2 P. M.\nThe wish of a large proportion of the Citizens. | —",
+      "normalized": "Ottawa Convention. [FE]ELING that we have been misrepresented by the nomination of this 'Great Con[v]ention' of eight Individuals, and being unwilling that our fellow-citizens in the other counties composing this District, should be deceived by the supposition of this nomination being the voice [o]f the people of Cook county: we therefore take this method to inform them to the contrary, and would therefore call a me[e]ting of our fellow-citizen[s] of Cook county, for an expression of their choice of a suitable candidate to represent the people of this District. [T]he meeting to be hel[d] on the 12th of April next, at the Eagle Hotel in Chicago, at 2 P. M. The wish of a large proportion of the Citizens.",
+      "locator": {
+        "artifact_role": "primary",
+        "issue_page": 3,
+        "column": 3,
+        "lines": [
+          2223,
+          2238
+        ]
+      },
+      "entities": [],
+      "notes": "THE EAGLE HOTEL IN CHICAGO, named as the room a county political meeting is called into — the only hotel the March 1834 Democrat names in the town itself, as against the taverns it names (Graves', and E. Wentworth's on Flag Creek eighteen miles out). Unplaced: the notice gives the name and nothing else. The date moves in the next issue, 1834-03-25 reprinting the same call for the 16th of April at the same house (claim c009 there), which is worth holding because it means the meeting was still ahead of the town at the end of the month."
+    },
+    {
+      "id": "c003",
+      "kind": "business",
+      "reading": "transcription_mediated",
+      "quote": "NOTICE.\nTe Co-partnership of Taylor & Handy was  :\nthis day dissolved by mutual consent.—] sa\nTie busihess wilt be continued by Ch:  Tay-| ¢\n0}, who is‘authorized to eecttle all claims, and} __\nI persons indebted to the late firm, are reques-  «\nei to call and settle their accounts immediate-\ny, Without further notice.\nH. 8. MANDY, «\nCHARLES TAYLOR.\nChicago, Feb. 1, 1834.                   16} —",
+      "normalized": "NOTICE. [Th]e Co-partnership of Taylor & Handy was this day dissolved by mutual consent. — T[h]e busi[n]ess wil[l] be continued by Ch[as.] Tay[l]or, who is authorized to [s]ettle all claims, and [al]l persons indebted to the late firm, are reques[t]ed to call and settle their accounts immediately, [w]ithout further notice. H. S. [H]ANDY, CHARLES TAYLOR. Chicago, Feb. 1, 1834.",
+      "locator": {
+        "artifact_role": "primary",
+        "issue_page": 3,
+        "column": 3,
+        "lines": [
+          2212,
+          2222
+        ]
+      },
+      "contradicts": true,
+      "business": {
+        "name": "Taylor & Handy",
+        "proprietors": [
+          "Handy, H. S.",
+          "Taylor, Charles"
+        ],
+        "trade": "unstated",
+        "goods": [],
+        "street": null,
+        "placement": {
+          "class": "none",
+          "anchor": null,
+          "offset_text": null
+        }
+      },
+      "ad_copy_date": {
+        "verbatim": "Chicago, Feb. 1, 1834.",
+        "iso": "1834-02-01"
+      },
+      "entities": [
+        {
+          "as_printed": "H. 8. MANDY",
+          "normalized": "Handy, H. S.",
+          "occupations": [
+            "merchant"
+          ],
+          "associated_places": []
+        },
+        {
+          "as_printed": "CHARLES TAYLOR",
+          "normalized": "Taylor, Charles",
+          "occupations": [
+            "merchant"
+          ],
+          "associated_places": []
+        }
+      ],
+      "notes": "THE SECOND PARTNERSHIP THIS MONTH'S DEMOCRAT DISSOLVES, after Brewster, Hogan & Co. — and like that one it is a succession rather than a closure, Charles Taylor continuing the business alone. The trade is not stated in the notice and is not guessed at. H. S. Handy is the Maj. H. S. Handy who handles tickets for the Infant School benefit a week later (1834-03-25 c001), which is how a name in a dissolution notice becomes a person in the town. The surname is set 'MANDY' by this column's Tesseract fallback and 'HANDY' in the 1834-03-25 reprint of the same notice; the latter is the reading, and the former is left in the quote where it belongs."
+    },
+    {
+      "id": "c004",
+      "kind": "building",
+      "reading": "transcription_mediated",
+      "quote": "| Stave or Inrixois, } Cook Cjreuit Court, to the\n| Cook county, § May term, A. D. 1634.\n}| Watson M. Sacre,   i\nve.                      On Attachment.\nfies\n4 William W. Saunders.\ni      UBLIC notice is hereby given to the said\n|       William W.Saunders, formerly of Cook co.\n| Il. that a writ of attachiment issued out of the\n| Clerk's oflice of the Circuit Court, in and for\n|| the county of Cook, and State of Illinois, dated\n| the seventeenth day of August, A. D, IR33, at\n| the suit ot Watson M. Snow, of the said coun-\n“  ‘ of Cook, and State aforesaid, and against the\n| chtate of the said William W. Saunders, for the\n.| sam of seven hundred and filly nine dollars and\nfifty cents, directed to Stephen Forbes, Sheriff\naf the snid county of Cook, to exccute, whi\n*| said writ has been returned by  the vaid sheriff,\n-| as levied upon tho following described property,\n1 | to wit: all the right, title and interest and es\n| tate of the within named William W. Saunders,\n_| in and to a certain dwelling honse and ie:\nrent, situate and lying on the north, hal:  of the\nIf of the north west quarter of section\n29, town 4), north range 4 east  of the third\nrincipal maridian, Nuw unless you, the said\nWittiam W. Saunders, shall personally be and\nappear before the Judge of the said Circuit Court\non the first day of the nextterm thereof, to be\nholden at the court house in the town of Chica-\ngo, on the fourteenth day of May neat, give\nspecial bail and plead to the said plaintiffs ac-\ntion, judgment will be entered against you, in\nfayor of the said Watson M, Snow, and the said\nate so attached as aforesaid, will be sold to\n| satisfy the ezme with costs.—March 10, 1834.\nRICH'D. . HAMILTON,\n16w4                     Clerk Cook Circuit Court.",
+      "normalized": "St[ate] o[f] I[lli]nois, Cook county. Cook Circuit Court, to the May term, A. D. 1834. Watson M. S[now] vs. William W. Saunders. On Attachment. [P]UBLIC notice is hereby given to the said William W. Saunders, formerly of Cook co. Il[l]. that a writ of attach[m]ent issued out of the Clerk's o[ff]ice of the Circuit Court, in and for the county of Cook, and State of Illinois, dated the seventeenth day of August, A. D. 18[3]3, at the suit o[f] Watson M. Snow, of the said count[y] of Cook, and State aforesaid, and against the [es]tate of the said William W. Saunders, for the s[u]m of seven hundred and fi[ft]y nine dollars and fifty cents, directed to Stephen Forbes, Sheriff [o]f the said county of Cook, to execute, whi[ch] said writ has been returned by the said sheriff, as levied upon the following described property, to wit: all the right, title and interest and estate of the within named William W. Saunders, in and to a certain dwelling house and i[mprove]ment, situate and lying on the north hal[f] of the […] of the north west quarter of section 29, town 4[0] north range 4 east of the third [p]rincipal m[e]ridian. N[o]w unless you, the said Willi[a]m W. Saunders, shall personally be and appear before the Judge of the said Circuit Court on the first day of the next term thereof, to be holden at the court house in the town of Chicago, on the fourteenth day of May ne[x]t, give special bail and plead to the said plaintiff's action, judgment will be entered against you, in favor of the said Watson M[.] Snow, and the said [est]ate so attached as aforesaid, will be sold to satisfy the [sa]me with costs. — March 10, 1834. RICH'D. [J]. HAMILTON, Clerk Cook Circuit Court.",
+      "locator": {
+        "artifact_role": "primary",
+        "issue_page": 3,
+        "column": 3,
+        "lines": [
+          2313,
+          2351
+        ]
+      },
+      "entities": [
+        {
+          "as_printed": "Watson M. Snow",
+          "normalized": "Snow, Watson M.",
+          "occupations": [],
+          "associated_places": []
+        },
+        {
+          "as_printed": "William W. Saunders",
+          "normalized": "Saunders, William W.",
+          "occupations": [],
+          "associated_places": []
+        },
+        {
+          "as_printed": "Stephen Forbes",
+          "normalized": "Forbes, Stephen",
+          "occupations": [
+            "sheriff of Cook county"
+          ],
+          "associated_places": []
+        },
+        {
+          "as_printed": "RICH'D. 1. HAMILTON",
+          "normalized": "Hamilton, Richard J.",
+          "occupations": [
+            "clerk, Cook Circuit Court"
+          ],
+          "associated_places": []
+        }
+      ],
+      "notes": "A COURT HOUSE IN THE TOWN OF CHICAGO, named as the place the May 1834 term will be holden — the kind of building a reconstruction needs a date for, and this is one. It also puts a dwelling house and improvement on a described quarter section outside the town, which is section-and-range and not a town lot, so nothing here places anything on the plat. The two officers named are the county's: Stephen Forbes as sheriff and Richard J. Hamilton as clerk of the circuit court, the same Hamilton who signs the estray notice in this column and presides over the Infant School board a week later (1834-03-25 c001). 'RICH'D. 1. HAMILTON' is the column's misreading of the middle initial and the normalized reading takes J from the 1834-03-25 printing."
+    },
+    {
+      "id": "c005",
+      "kind": "business",
+      "reading": "transcription_mediated",
+      "quote": "wo     ger tt\nor THREE. Journeymen Cabinet Ma-\nhers, to wontons wages will be pad by\nW. REED.\nChicago, Dec. 11, 1839.               E206",
+      "normalized": "[Wanted, TW]O or THREE Journeymen Cabinet Ma[k]ers, to who[m] [good] wages will be paid by W. REED. Chicago, Dec. 11, 183[3].",
+      "locator": {
+        "artifact_role": "primary",
+        "issue_page": 3,
+        "column": 6,
+        "lines": [
+          2660,
+          2664
+        ]
+      },
+      "business": {
+        "name": "W. Reed",
+        "proprietors": [
+          "Reed, W."
+        ],
+        "trade": "cabinet maker",
+        "goods": [],
+        "street": null,
+        "placement": {
+          "class": "none",
+          "anchor": null,
+          "offset_text": null
+        }
+      },
+      "ad_copy_date": {
+        "verbatim": "Chicago, Dec. 11, 1839.",
+        "iso": "1833-12-11"
+      },
+      "entities": [
+        {
+          "as_printed": "W. REED",
+          "normalized": "Reed, W.",
+          "occupations": [
+            "cabinet maker"
+          ],
+          "associated_places": []
+        }
+      ],
+      "notes": "A SECOND CABINET SHOP IN THE TOWN, hiring — two or three journeymen wanted at good wages, which is a demand for skilled labour in a town of a few hundred people and the sharpest thing this month's Democrat says about the building trades. Read against A. Filer & Co.'s new manufactory on South Water street (1834-03-04 c005), the town supports two cabinet makers by March 1834. AND ONE OF THEM IS SELLING UP A WEEK LATER: 1834-03-25 (c008 there) auctions three cabinet benches, a full set of cabinet tools and cherry lumber at the shop of [W.] Reed, without reserve, which is a contradiction recorded on that claim and not on this one. The dateline year prints as 1839, which cannot be right in a Vol. I issue; 1833 is taken, and the misprint is left in the quote."
+    },
+    {
+      "id": "c006",
+      "kind": "infrastructure",
+      "reading": "transcription_mediated",
+      "quote": "Arrivals and Departues of the Mails.\nSTERN Mail arrives every Wednesday :\nparts, Thursdays ats A. M.\nWestern Mail arrives ever: Tuesday ; departs\n‘Thursdays at 6 A. M.\nNorthern Mail arrives ¢\nparts Thursdays at 6 A. M.\nSouther Mate arrives every Tuesday; de-\nparts Saturdays at 6 A. M.\nJ. 8. C. HOGAN, P. M.",
+      "normalized": "Arrivals and Depart[ur]es of the Mails. [EA]STERN Mail arrives every Wednesday; [de]parts, Thursdays at [8] A. M. Western Mail arrives ever[y] Tuesday; departs Thursdays at 6 A. M. Northern Mail arrives [every Tuesday; de]parts Thursdays at 6 A. M. Southe[rn] Ma[il] arrives every Tuesday; departs Saturdays at 6 A. M. J. S. C. HOGAN, P. M.",
+      "locator": {
+        "artifact_role": "primary",
+        "issue_page": 3,
+        "column": 4,
+        "lines": [
+          2437,
+          2446
+        ]
+      },
+      "entities": [
+        {
+          "as_printed": "J. 8. C. HOGAN, P. M.",
+          "normalized": "Hogan, John S. C.",
+          "occupations": [
+            "postmaster",
+            "merchant"
+          ],
+          "associated_places": []
+        }
+      ],
+      "notes": "FOUR MAILS A WEEK INTO THE TOWN AND THREE OUT, over the postmaster's own signature — eastern on Wednesday, western, northern and southern on Tuesday, all departing Thursday but the southern, which goes Saturday. This is the traffic the town's roads carried in March 1834 and it is a small number: the whole outside world reaches Chicago on two days of the week. THIS IS THE HIT A LETTER-LIST SWEEP RETURNS IN THIS ISSUE AND IT IS NOT A LETTER LIST — the signature ends 'P. M.' but the notice is the office's timetable, exactly as the Chicago American's post-office matter was (T-0261). The month's one real list is in 1834-03-04, claims c024 and c025 there. Hogan is the same John S. C. Hogan who took over Brewster, Hogan & Co.'s stand in the same month."
+    },
+    {
+      "id": "c007",
+      "kind": "price",
+      "reading": "transcription_mediated",
+      "quote": "CHICAGO PRICES CURRENT,\nReported for the Democrat by P. F. Peck\nCORRECTED WEEKLY.\nSalt,               bbl @ 3:50\nFlour and Meal-\nWabash S. fine     bbl 6 00 a 0 00",
+      "normalized": "CHICAGO PRICES CURRENT, Reported for the Democrat by P. F. Peck. CORRECTED WEEKLY. Salt, bbl [$] 3[.]50. Flour and Meal — Wabash S. fine bbl 6 00 a 0 00.",
+      "locator": {
+        "artifact_role": "primary",
+        "issue_page": 3,
+        "column": 4,
+        "lines": [
+          2447,
+          2452
+        ]
+      },
+      "entities": [
+        {
+          "as_printed": "P. F. Peck",
+          "normalized": "Peck, P. F.",
+          "occupations": [
+            "merchant"
+          ],
+          "associated_places": []
+        }
+      ],
+      "notes": "THE TOWN'S PRICE CURRENT IS COMPILED BY A SOUTH WATER STREET STOREKEEPER — P. F. Peck, whose own card heads itself with the corner of LaSalle and South Water streets (1834-03-04 c019). Only the head of the table is claimed: the columns below it are a numeric table the segmenter has shuffled through two adjacent columns, and quoting figures out of it would be quoting the shuffle. What the head carries is the fact worth having, that the Democrat printed a weekly corrected price current from March 1834 and named the man who made it. The full table is a page-image job."
+    },
+    {
+      "id": "c008",
+      "kind": "building",
+      "reading": "transcription_mediated",
+      "quote": "KEPT BY\nBB UTQBRSOwL,\nhas taken that noted Tavern\n“lately occupied by Mr. Ii.\nhe will make every possible\n- the Traveller's Home.—| Chicago, Dec. 17, 1",
+      "normalized": "KEPT BY [… ] [Chica]go — Illinois. [… ] has taken that noted Tavern [… ] lately occupied by Mr. [… ] [… ] he will make every possible [exertion to make it] the Traveller's Home.",
+      "locator": {
+        "artifact_role": "primary",
+        "issue_page": 4,
+        "column": 3,
+        "lines": [
+          3119,
+          3127
+        ],
+        "lines_of_claim": [
+          3119,
+          3120,
+          3122,
+          3123,
+          3124,
+          3127
+        ],
+        "interleaved": true
+      },
+      "entities": [],
+      "notes": "A 'BUILDING LATELY OCCUPIED BY' CHAIN, WHICH IS EXACTLY WHAT THE EPIC ASKS FOR, and it arrives with both names destroyed. A noted tavern has changed hands: the new keeper's name is set as 'B UTQBRSOwL' by this Tesseract fallback column and the previous occupant's as 'Mr. Ii.', and NEITHER IS SUPPLIED HERE — a supply would be an invention, and the rule is that '[…]' marks absence. What survives and is worth keeping is the SHAPE: in the winter of 1833-34 a tavern already noted enough to be called so passed to a new keeper who advertised it as the Traveller's Home. The card is dated December 1833 in the adjacent fragment. A page-image read of page 4 column 3 would finish it, and that is a ticket rather than a guess. The column alternates with the boot and shoe card and the Athenian prospectus line by line."
+    },
+    {
+      "id": "c009",
+      "kind": "business",
+      "reading": "transcription_mediated",
+      "quote": "Just Opened and for Sale,\nA\", the New Store on the corner of South\nWater and Clark-strects, C ticago, Hl.\nee and splendid assortment of Fancy and Sta-\nDRY GOODS,\nCrockery & Glass Ware,\nKARDWARE aud CUTTLERY,\nMen’s and Boys Fur and Cloth CAPS,\nCotton Batting, Yarn and Wicking,\nSheeting and Shirting, Blankets, &c. &c.\nill of whicn will be sold at the lowest prices tor\nCash or Country Produce.\nW. KIMBALL.\n1\nChicago, Nor. 1833.",
+      "normalized": "Just Opened and for Sale, A[t] the New Store on the corner of South Water and Clark-str[e]ets, C[h]icago, Il[l]. [A new] and splendid assortment of Fancy and Sta[ple] DRY GOODS, Crockery & Glass Ware, [H]ARDWARE a[n]d CU[T]LERY, Men's and Boys Fur and Cloth CAPS, Cotton Batting, Yarn and Wicking, Sheeting and Shirting, Blankets, &c. &c. [A]ll of whi[c]h will be sold at the lowest prices for Cash or Country Produce. W. KIMBALL. Chicago, No[v]. 1833.",
+      "locator": {
+        "artifact_role": "primary",
+        "issue_page": 3,
+        "column": 4,
+        "lines": [
+          2399,
+          2413
+        ]
+      },
+      "business": {
+        "name": "W. Kimball",
+        "proprietors": [
+          "Kimball, W."
+        ],
+        "trade": "dry goods store",
+        "goods": [
+          "dry goods",
+          "crockery",
+          "glass ware",
+          "hardware",
+          "cutlery",
+          "caps",
+          "cotton batting",
+          "yarn",
+          "wicking",
+          "sheeting",
+          "shirting",
+          "blankets"
+        ],
+        "street": "South Water Street",
+        "placement": {
+          "class": "corner",
+          "anchor": "South Water and Clark streets",
+          "offset_text": null
+        }
+      },
+      "entities": [
+        {
+          "as_printed": "W. KIMBALL",
+          "normalized": "Kimball, W.",
+          "occupations": [
+            "merchant"
+          ],
+          "associated_places": [
+            "Corner of South Water and Clark streets"
+          ]
+        }
+      ],
+      "notes": "A THIRD CORNER STORE ON SOUTH WATER STREET — at Clark — and this is the legible printing of it. The same advertisement stands in 1834-03-04 at page 3 column 5 and in 1834-03-25 at page 4 column 1, both through columns the segmenter broke to fragments, which is why the claim is made here and not there. With Peck at LaSalle (1834-03-04 c019) and Botsford at Dearborn and Lake (c014 there), the March 1834 Democrat gives THREE corner addresses on or off South Water within four blocks, which is the densest placement evidence this month yields."
+    },
+    {
+      "id": "c010",
+      "kind": "business",
+      "reading": "transcription_mediated",
+      "quote": "BST kk     PUBLIC\nE. WED\n‘AS opened a T\n1   nis South\nleading to\nbe furnish\ntry afford:\ngive him 1",
+      "normalized": "PUBLIC [HOUSE]. E. WE[NTWORTH] [H]AS opened a T[AVERN on Flag Creek,] [eightee]n [mile]s South [of Chicago, on the road] leading to [Ottawa. His house will] be furnish[ed with the best the coun]try afford[s, and solicits travellers to] give him [a call.]",
+      "locator": {
+        "artifact_role": "primary",
+        "issue_page": 4,
+        "column": 3,
+        "lines": [
+          3129,
+          3136
+        ],
+        "interleaved": true
+      },
+      "entities": [],
+      "notes": "A TAVERN EIGHTEEN MILES OUT ON THE OTTAWA ROAD, on Flag Creek — the road the town's whole southern traffic used, and a stage stop on it. The claim is made from this column knowing it is broken; the SAME advertisement runs legibly in 1834-03-04 at page 4 column 3, lines 3223-3232, reading 'PUBLIC [HOUSE]. E. WENTWORTH HAS opened a TAVERN 18 miles South of Chicago, on the road leading to Ottawa', and the bracketed supplies here are taken from that printing and from nowhere else. Outside the town, so it places nothing on the plat; what it fixes is that the Ottawa road was carrying enough travel by December 1833 to keep a house on it."
+    },
+    {
+      "id": "c011",
+      "kind": "infrastructure",
+      "reading": "transcription_mediated",
+      "quote": "i WILL receive written proposals: between\nthis and the 20th instant, to furnish Ook:\nnber for the Piers of the Chicago Harbor, in\nantity and description as follows:\n10,000 feet of squared logs, sound, weil hew-\n, and measuring clear of the score, full one\not Kquare of solid timber. One third of the\nhole number of feet, to be in Jogs 50 feet long,\ne third in logs 2% feet long, and one third in\ngs 20 fect long.\n350 Round logs for tics, full 24 feet long and\nsceptible of being equared about 11 inches\nthe smallest ue\n40 Round white oak logs, for piles; 29 feat\nng, erch, very straight and sound, and free\npm injurious knots; to equare, at least 12\nches at the smallest end,\nProposals for the squared timber will state\ne¢ amount per foot: for the round logs, or\nes and piles, the amount per log.\nThe proposals will be left at my office, and,\nany are accepted, contract agreements will\nentered into, and Bond and sccurity for @\nalty of twice the amount of the contract.\nbe required, for its faithful performance.\nGne third of the timber must be delivered at\ne Piers by the 15th of April next, and the\nher two thirds, during that month,\nI will purchase, ata reasonable price, what-\ner Poplar or soft wood may be necessary to\nmat the oak rafts, provided it be in loge go\net long, thet will square 14 inches, through-\nt.                  J, ALLEN, Agent.\nChicage, March 4. 1851.",
+      "normalized": "[TIMBER.] [I] WILL receive written proposals between this and the 20th instant, to furnish O[a]k [tim]ber for the Piers of the Chicago Harbor, in [qu]antity and description as follows: 10,000 feet of squared logs, sound, well hew[ed], and measuring clear of the score, full one [fo]ot square of solid timber. One third of the [w]hole number of feet, to be in [l]ogs 50 feet long, [on]e third in logs 2[5] feet long, and one third in [lo]gs 20 feet long. 350 Round logs for ti[e]s, full 24 feet long and [su]sceptible of being squared about 11 inches [at] the smallest [end]. 40 Round white oak logs, for piles; 29 fe[e]t lo[n]g, e[a]ch, very straight and sound, and free [fro]m injurious knots; to square, at least 12 [in]ches at the smallest end. Proposals for the squared timber will state th[e] amount per foot; for the round logs, or [ti]es and piles, the amount per log. The proposals will be left at my office, and, [if] any are accepted, contract agreements will [be] entered into, and Bond and security for a [pen]alty of twice the amount of the contract [will] be required, for its faithful performance. [O]ne third of the timber must be delivered at [th]e Piers by the 15th of April next, and the [ot]her two thirds, during that month. I will purchase, at a reasonable price, what[ev]er Poplar or soft wood may be necessary to [flo]at the oak rafts, provided it be in log[s] [3]0 [fe]et long, that will square 14 inches, throughou[t]. J. ALLEN, Agent. Chicago, March 4, 1834.",
+      "locator": {
+        "artifact_role": "primary",
+        "issue_page": 3,
+        "column": 6,
+        "lines": [
+          2690,
+          2723
+        ]
+      },
+      "entities": [
+        {
+          "as_printed": "J. ALLEN, Agent",
+          "normalized": "Allen, J.",
+          "occupations": [
+            "agent, Chicago harbour works"
+          ],
+          "associated_places": []
+        }
+      ],
+      "notes": "THE SAME PIER TIMBER ADVERTISEMENT AS 1834-03-04 c004, AND IT DISAGREES WITH ITSELF ON THREE NUMBERS — 50-foot squared logs here against 30 there, 40 piles here against 50, 29 feet here against 25. Both columns are Tesseract fallbacks, so neither reading is senior, and the disagreement is recorded rather than resolved: a reconstruction that wants the pier's scantlings has to read the page images, and until it does the two claims bracket the answer. WHAT BOTH AGREE ON is everything that matters most — 10,000 feet of oak squared a foot, 350 round tie logs of 24 feet squaring 11 inches, white oak piles squaring at least 12 inches, one third at the Piers by 15 April 1834 and the rest within the month, and poplar bought to float the oak rafts. This printing also gives the agent's initial cleanly as J. ALLEN, which 1834-03-04's column mangles. The proposals close on the 20th instant, and this issue is dated the 18th."
+    }
+  ]
+}
