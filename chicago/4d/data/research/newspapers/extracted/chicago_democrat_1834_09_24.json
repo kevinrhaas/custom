@@ -1,0 +1,755 @@
+{
+  "schema": 1,
+  "issue_id": "chicago_democrat_1834_09_24",
+  "extracted": "2026-08-28",
+  "extracted_by": "hand, T-0291 — the Democrat read, September 1834",
+  "note": "Vol. I No. 43. A DIMENSIONED WAREHOUSE AND ITS WHARF: John T. Temple lets a three-storey store house 40 by 60 feet with a wharf attached of 60 feet front, and a small dwelling house of two rooms, on 20 September 1834. That one notice carries more measured building evidence than the rest of the month together. Beside it a marriage, a death with a New Hampshire origin, a dissolution that exercises ruling 3's veto, two priced estrays, and J. K. Botsford's corner of Dearborn and Lake set in capitals.",
+  "claims": [
+    {
+      "id": "c001",
+      "kind": "building",
+      "reading": "transcription_mediated",
+      "quote": "For Rent, .\nce A LARGE three story Store House, 40 by\n60 feet, with a wharf attachec, of 60 feet\n2 front. Also, a handsome small Dwelling House\n\"1 with two rooms. Also, » large and beautifully\n[uncertain: ?* | tinished Store, on South Water-st, by]\ned JOUN T. TEMPLE.\nhis} Chicago, Sept. 20, 1834, 43",
+      "normalized": "For Rent. A LARGE three story Store House, 40 by 60 feet, with a wharf attac[h]ed, of 60 feet front. Also, a handsome small Dwelling House with two rooms. Also, a large and beautifully [f]inished Store, on South Water-st[.], by JO[H]N T. TEMPLE. Chicago, Sept. 20, 1834.",
+      "locator": {
+        "artifact_role": "primary",
+        "issue_page": 3,
+        "column": 2,
+        "lines": [
+          2854,
+          2861
+        ],
+        "lines_of_claim": [
+          2854,
+          2855,
+          2856,
+          2857,
+          2858,
+          2859,
+          2860,
+          2861
+        ],
+        "interleaved": false
+      },
+      "entities": [
+        {
+          "as_printed": "JOUN T. TEMPLE.",
+          "normalized": "Dr. John T. Temple",
+          "occupations": [
+            "physician",
+            "house and store landlord"
+          ],
+          "associated_places": [
+            "South Water Street"
+          ]
+        }
+      ],
+      "business": {
+        "name": "John T. Temple, house and store landlord",
+        "trade": "letting of stores, warehouses and dwellings",
+        "proprietors": [
+          "John T. Temple"
+        ],
+        "street": "South Water Street",
+        "placement": {
+          "class": "street_only",
+          "note": "the notice names South Water Street and gives no lot, corner or neighbour; whether all three properties stand there or only the last is not stated"
+        }
+      },
+      "ad_copy_date": {
+        "verbatim": "Chicago, Sept. 20, 1834,",
+        "iso": "1834-09-20"
+      },
+      "notes": "THE MOST CONSEQUENTIAL CLAIM IN THE SEPTEMBER RUN, AND IT IS DIMENSIONED. A three-storey store house measuring 40 BY 60 FEET, with a WHARF ATTACHED OF 60 FEET FRONT, on or about South Water Street, to let on 20 September 1834. Every part of that is something this project normally has to infer: a storey count, a footprint in feet, and a wharf whose frontage is given as a number rather than as 'a wharf'. Sixty feet of wharf against a sixty-foot building face means the wharf ran the full width of the lot — river frontage and building frontage are the same measurement — which is the pattern the reconstruction's river margin assumes and has never been able to cite. The same notice lets a SMALL DWELLING HOUSE OF TWO ROOMS, which is the other end of the town's building stock and equally undocumented. PLACEMENT IS `street_only` AND DELIBERATELY SO: 'on South Water-st.' sits at the end of a list of three properties and may govern one of them or all three, and a three-storey warehouse with a wharf cannot stand on the street's south side. Nothing is placed from this until that ambiguity is resolved; what is recorded is the dimensions, which do not depend on it. Compare 1834-09-10 claim c007, where the same man lets two new four-room dwelling houses — Temple is the largest builder the September run names."
+    },
+    {
+      "id": "c002",
+      "kind": "shipping",
+      "reading": "transcription_mediated",
+      "quote": "ON MARINE LIST, yi4,\n—| LPG port oF CIGAGO, 4p\nob ces ARRIVED.\n00 Sept, 15, Schr, Elizabeth, Ward, Lake St.\nClair, :\n— 20. * Phillip, Howe, St. Joseph.\n: CLEARED.\n0° | Sept. 18.\"Schr. Hyillips, Howe, St, Joseph.\nia 18. Brig [Mnois, Wagstaff, do.\n[uncertain: ? 19, Schr. Elizabeth, Ward, bound down,]",
+      "normalized": "MARINE LIST. [PORT] OF C[H]I[C]AGO. ARRIVED. Sept. 15, Schr. Elizabeth, Ward, Lake St. Clair. 20[,] Sc[h]r. Phillip[s], Howe, St. Joseph. CLEARED. Sept. 18, Schr. [Ph]illips, Howe, St. Joseph. 18, Brig [Ill]inois, Wagstaff, do. [uncertain: 19, Schr. Elizabeth, Ward, bound down,]",
+      "locator": {
+        "artifact_role": "primary",
+        "issue_page": 3,
+        "column": 2,
+        "lines": [
+          2838,
+          2848
+        ],
+        "lines_of_claim": [
+          2838,
+          2839,
+          2840,
+          2841,
+          2842,
+          2843,
+          2845,
+          2846,
+          2847,
+          2848
+        ],
+        "interleaved": true
+      },
+      "notes": "The month's fourth marine list, and the cleanest of them. Two arrivals and three clearances in a week — set against the editor's claim of 150 vessels since 20 April (1834-09-03, claim c001), the weekly lists of September average nearer four movements, which is the sort of arithmetic a later pass can do now that all four weeks are extracted. The schooner Phillips appears in three of the four lists."
+    },
+    {
+      "id": "c003",
+      "kind": "person",
+      "reading": "transcription_mediated",
+      "quote": "tthe] MARRIED,\n[uncertain: eN? 1\"Tn this town, on the 20th inst. by J. Dea]\n“| Caton Esq. Mr. Avovstvs Boxix, to Miss Josers\nenpy Frascue.",
+      "normalized": "MARRIED, [uncertain: In this town, on the 20th inst. by J. Dea]n Caton Esq., Mr. A[u]g[u]st[u]s Bo[n]i[n], to Miss Jose[phine] Frasc[h]e[r].",
+      "locator": {
+        "artifact_role": "primary",
+        "issue_page": 3,
+        "column": 2,
+        "lines": [
+          2815,
+          2818
+        ],
+        "lines_of_claim": [
+          2815,
+          2816,
+          2817,
+          2818
+        ],
+        "interleaved": false
+      },
+      "entities": [
+        {
+          "as_printed": "Mr. Avovstvs Boxix",
+          "normalized": "Augustus Bonin",
+          "role": "bridegroom"
+        },
+        {
+          "as_printed": "Miss Josers\nenpy Frascue.",
+          "normalized": "Josephine Frascher",
+          "role": "bride"
+        },
+        {
+          "as_printed": "J. Dea\nCaton Esq.",
+          "normalized": "John Dean Caton",
+          "role": "justice of the peace who performed the marriage",
+          "occupations": [
+            "attorney",
+            "justice of the peace"
+          ]
+        }
+      ],
+      "notes": "A marriage in the town on 20 September 1834, performed by John Dean Caton as a justice of the peace — the same Caton whose law firm, Collins & Caton, the corpus already carries on South Water Street. Both surnames are recognition-uncertain and are entered as read with the printed forms kept; neither is merged with anything."
+    },
+    {
+      "id": "c004",
+      "kind": "person",
+      "reading": "transcription_mediated",
+      "quote": "luni- Blev,\nIn this town, on the 16th: inst. Mrs. Sara\n/ | Hait, wife of Mr. Thomas Hoit, formerly ¢\nStafford co. N. H. in the forty third your of he\nn_of}age. 5 A\nying | In the death of this Indy, society has sustain\nth ed a severe loss; but in her own immodiate cis\nthe | cio will the dispensation of Providence be mos\nness | severely felt. All who knew her will bear tes\nof | timony to the faithful discharge of her duties a\nly, ;2 ie, a mother and a friend. She has gon\nOR from ug leaving the “testimony of @ good con\nHET sciencé,” and to her friends she has left th\n28 consolation that she died in the full faith of th\nthe | religion she had so long professed and practiced\nhag|—Cem. (The Eastern papers are Tequevted t&\nhan | SPY the above. ‘",
+      "normalized": "[Di]e[d], In this town, on the 16th inst., Mrs. Sara[h] Ho[i]t, wife of Mr. Thomas Ho[i]t, formerly [of] Stafford co., N. H., in the forty third y[ea]r of her age. In the death of this lady, society has sustained a severe loss; but in her own immediate ci[r]c[le] will the dispensation of Providence be mos[t] severely felt. All who knew her will bear testimony to the faithful discharge of her duties a[s a wife], a mother and a friend. She has gon[e] from us leaving the \"testimony of a good conscience,\" and to her friends she has left th[e] consolation that she died in the full faith of th[e] religion she had so long professed and practiced.—Com. (The Eastern papers are requested t[o] [co]py the above.)",
+      "locator": {
+        "artifact_role": "primary",
+        "issue_page": 3,
+        "column": 2,
+        "lines": [
+          2820,
+          2836
+        ],
+        "lines_of_claim": [
+          2820,
+          2821,
+          2822,
+          2823,
+          2824,
+          2825,
+          2826,
+          2827,
+          2828,
+          2829,
+          2830,
+          2831,
+          2832,
+          2833,
+          2834,
+          2835,
+          2836
+        ],
+        "interleaved": false
+      },
+      "entities": [
+        {
+          "as_printed": "Mrs. Sara\n/ | Hait,",
+          "normalized": "Sarah Hoit",
+          "role": "deceased"
+        },
+        {
+          "as_printed": "Mr. Thomas Hoit,",
+          "normalized": "Thomas Hoit",
+          "role": "husband of the deceased"
+        }
+      ],
+      "notes": "A named household with an origin: Thomas and Sarah Hoit, of Stafford county, New Hampshire, resident in Chicago, she dying at forty-two on 16 September 1834 leaving children. The reconstruction's inferred households take their family bands from aggregate figures (T-0272 to T-0274 carry that complaint); this is a real Chicago family with a name, a former county and a size implied by 'a mother'. The eulogy is unsigned but marked 'Com.' — communicated, i.e. supplied by a friend rather than written by the editor."
+    },
+    {
+      "id": "c005",
+      "kind": "business",
+      "reading": "transcription_mediated",
+      "quote": "he Dissolution. ;\nor LYBPVIE co-partnership heretofore ‘eaisting be-\ntween the subscribers, in this day dissoly-\nhe] eit by mutual consent. All accounts to be set-\nNed by L. Stevens, who is duly authorised to\nseltle the same. I, STEVENS,\nA, MURRAY,\nSrl Chicago, Sept, 22, 1834. T1w43",
+      "normalized": "Dissolution. T[H]E co-partnership heretofore existing between the subscribers, i[s] this day dissolv[ed] by mutual consent. All accounts to be settled by L. Stevens, who is duly authorised to settle the same. L. STEVENS, A. MURRAY. Chicago, Sept. 22, 1834.",
+      "locator": {
+        "artifact_role": "primary",
+        "issue_page": 3,
+        "column": 2,
+        "lines": [
+          2863,
+          2870
+        ],
+        "lines_of_claim": [
+          2863,
+          2864,
+          2865,
+          2866,
+          2867,
+          2868,
+          2869,
+          2870
+        ],
+        "interleaved": false
+      },
+      "entities": [
+        {
+          "as_printed": "I, STEVENS,",
+          "normalized": "L. Stevens",
+          "role": "partner, retiring firm"
+        },
+        {
+          "as_printed": "A, MURRAY,",
+          "normalized": "A. Murray",
+          "role": "partner, retiring firm"
+        }
+      ],
+      "business": {
+        "name": "Stevens & Murray",
+        "trade": "not stated in the notice",
+        "proprietors": [
+          "L. Stevens",
+          "A. Murray"
+        ],
+        "placement": {
+          "class": "none",
+          "note": "a dissolution notice gives no address, and this one does not even name the trade"
+        }
+      },
+      "ad_copy_date": {
+        "verbatim": "Chicago, Sept, 22, 1834.",
+        "iso": "1834-09-22"
+      },
+      "contradicts": true,
+      "notes": "RULING 3'S VETO, EXERCISED. A partnership in the town is dissolved on 22 September 1834, so 'Stevens & Murray' does NOT stand in the 1835 model as a going concern, and the gazetteer computes that for itself from this claim rather than from a hand-set flag. The notice does not say what trade they were in, which is why the record carries no trade rather than a plausible one."
+    },
+    {
+      "id": "c006",
+      "kind": "notice",
+      "reading": "transcription_mediated",
+      "quote": "”n z Caution.\nie owes Hie 4 te public are hereby fore-\nst} ea warned against trading\nte] Ae for & promisory Note, given to\n| see Thomas Byrain, by tie wubscri=\n\"Ther, bearing dite “September I'l, 1834,\"\" paya-\n(| ble in one year without interest, as he is deter-\nMe | ined not to pay said note untjl compelled—\nn.{ the consideration for which said note was given\nhas failed. JNO, H. KINZIE,\nSout. 23, 1634.",
+      "normalized": "Caution. [The] public are hereby fore[warn]ed against trading for a promi[ss]ory Note, given to Thomas By[r]am, by t[h]e subscri[b]er, bearing d[a]te \"September 1[1], 1834,\" payable in one year without interest, as he is determ[in]ed not to pay said note unt[i]l compelled—the consideration for which said note was given has failed. JNO. H. KINZIE. Se[p]t. 23, 18[3]4.",
+      "locator": {
+        "artifact_role": "primary",
+        "issue_page": 3,
+        "column": 2,
+        "lines": [
+          2872,
+          2882
+        ],
+        "lines_of_claim": [
+          2872,
+          2873,
+          2874,
+          2875,
+          2876,
+          2877,
+          2878,
+          2879,
+          2880,
+          2881,
+          2882
+        ],
+        "interleaved": false
+      },
+      "entities": [
+        {
+          "as_printed": "JNO, H. KINZIE,",
+          "normalized": "John H. Kinzie",
+          "occupations": [
+            "merchant"
+          ]
+        },
+        {
+          "as_printed": "Thomas Byrain",
+          "normalized": "Thomas Byram"
+        }
+      ],
+      "notes": "The president of the town's board of trustees publicly repudiating his own note twelve days after signing it. Kept for the person and the date, and because it is the only place in the September run where Kinzie appears as a private party rather than as president or merchant."
+    },
+    {
+      "id": "c007",
+      "kind": "event",
+      "reading": "transcription_mediated",
+      "quote": "At a military election held in this town da\nSaturday Inst, Frederick HI. Contramn *1\nelected a Major.",
+      "normalized": "At a military election held in this town [on] Saturday l[a]st, Frederick H. [uncertain: Contramn] […] [was] elected a Major.",
+      "locator": {
+        "artifact_role": "primary",
+        "issue_page": 2,
+        "column": 6,
+        "lines": [
+          2646,
+          2650
+        ],
+        "lines_of_claim": [
+          2646,
+          2648,
+          2650
+        ],
+        "interleaved": true
+      },
+      "entities": [
+        {
+          "as_printed": "Frederick HI. Contramn",
+          "normalized": "Frederick H. [uncertain: Contramn]",
+          "role": "major elected to command a battalion of the Cook county regiment"
+        }
+      ],
+      "notes": "THE OUTCOME OF THE ELECTION ADVERTISED ON 3 SEPTEMBER (claim c006 of that issue) — held at the Mansion House on the third Saturday in September, and here reported. The chain is complete inside one month: the notice, the place, and the result. The surname is badly recognised and is left inside its marker; the man is entered as the paper prints him."
+    },
+    {
+      "id": "c008",
+      "kind": "notice",
+      "reading": "transcription_mediated",
+      "quote": "A Ag Election 4\ny ILL be held at C. Inger: |\nSg Ww soll’s, in Plainfield, on the |\nal Ath day of October next for one |\n: Major to command oae Battalion\nMs in the newly organized Regiment\nof Cook county. The Battalion\nto consist of all tiat part of the\n4! county #outh of the south side ot |\n. the Oak Woods, and south of a|\nS line running from thence to Laugh |\nie ton’s, aud south and south west of\nin the Dupage river, including Wick. |\ni ory Creek, river Dupage and Na-\n| we \" per's Settlements,\ne By order of Col. Jvo. I. Bravntex.\nof] Sept. 23, 1BS4, ed",
+      "normalized": "An Election [w]ill be held at C. Inger[s]oll's, in Plainfield, on the 4th day of October next, for one Major to command o[n]e Battalion in the newly organized Regiment of Cook county. The Battalion to consist of all t[h]at part of the county south of the south side of the Oak Woods, and south of a line running from thence to Laugh[t]on's, and south and south west of the Dupage river, including [H]ick[]ory Creek, river Dupage and Naper's Settlements. By order of Col. J[n]o. B. B[ea]u[bi]e[n]. Sept. 23, 18[3]4.",
+      "locator": {
+        "artifact_role": "primary",
+        "issue_page": 3,
+        "column": 2,
+        "lines": [
+          2884,
+          2900
+        ],
+        "lines_of_claim": [
+          2884,
+          2885,
+          2886,
+          2887,
+          2888,
+          2889,
+          2890,
+          2891,
+          2892,
+          2893,
+          2894,
+          2895,
+          2896,
+          2897,
+          2898,
+          2899,
+          2900
+        ],
+        "interleaved": false
+      },
+      "entities": [
+        {
+          "as_printed": "Col. Jvo. I. Bravntex.",
+          "normalized": "John B. Beaubien",
+          "role": "colonel of the Cook county regiment"
+        },
+        {
+          "as_printed": "C. Inger: |\nSg soll’s",
+          "normalized": "C. Ingersoll",
+          "role": "householder at whose house the southern battalion polled",
+          "associated_places": [
+            "Plainfield"
+          ]
+        }
+      ],
+      "notes": "THE COUNTY'S SOUTHERN BOUNDARY, DRAWN BY LANDMARKS AND NOT BY SURVEY LINES: south of the south side of the Oak Woods, south of a line from thence to Laughton's, south and south west of the Dupage river. Laughton's is a named trading house on the Des Plaines and the Oak Woods a named grove; the militia geography is the town's own mental map of its hinterland, and it is drawn entirely in features rather than sections. The northern battalion's boundary is at 1834-09-03 claim c006 and the two together describe the whole county as its own officers saw it."
+    },
+    {
+      "id": "c009",
+      "kind": "street",
+      "reading": "transcription_mediated",
+      "quote": "5 Land for Sale. |\nTy subscriber wishes to sell the land on|\nwhich he resides: it is situated on the Du- |\npage, in settlonent known ns. Walker's Grove, |\nland aij ining the town of Plainfield—a- part of!\n* [the Sixteenth Seetion, whiely was purchased at |\no| the sale of School Lands ia October, 1833. The |\nip] oad from Ottawa to Chiengo runs through the |\n[middie of it. A good title will be given to the |\n| purchaser, Likewise, the subsoritor will sell a}\n| [quarter section, situate in the same grove, the\n¢ | On Which a pre-veption right ia expected to be\nif obtained. For terms, enquire of the susseriber |\nNT living on the premises. |\nPAUL KINGSTON, |:\nSpt 23, 1AM. 43",
+      "normalized": "Land for Sale. T[he] subscriber wishes to sell the land on which he resides: it is situated on the Du[p]age, in [a] settlement known as Walker's Grove, [and adjo]ining the town of Plainfield—a part of the Sixteenth Section, which was purchased at the sale of School Lands i[n] October, 1833. The [r]oad from Ottawa to Chicago runs through the middle of it. A good title will be given to the purchaser. Likewise, the subscri[b]er will sell a quarter section, situate in the same grove, [on] which a pre-[e]mption right is expected to be obtained. For terms, enquire of the su[b]scriber living on the premises. PAUL KINGSTON. Sep[t.] 23, 18[34].",
+      "locator": {
+        "artifact_role": "primary",
+        "issue_page": 3,
+        "column": 2,
+        "lines": [
+          2902,
+          2917
+        ],
+        "lines_of_claim": [
+          2902,
+          2903,
+          2904,
+          2905,
+          2906,
+          2907,
+          2908,
+          2909,
+          2910,
+          2911,
+          2912,
+          2913,
+          2914,
+          2915,
+          2916,
+          2917
+        ],
+        "interleaved": false
+      },
+      "entities": [
+        {
+          "as_printed": "PAUL KINGSTON,",
+          "normalized": "Paul Kingston",
+          "associated_places": [
+            "Walker's Grove",
+            "Plainfield"
+          ]
+        }
+      ],
+      "notes": "THE OTTAWA–CHICAGO ROAD IS USED AS A SELLING POINT AND THEREFORE AS A FACT: it runs through the middle of a named quarter at Walker's Grove. This project models the roads leaving town from the plat and from the 1830s surveys, and every independent witness to where one of them actually ran is worth holding. Filed as `street` rather than `notice` because the road is the claim; the land sale is the occasion for it. Out-of-town ground, so nothing is placed in the model from it."
+    },
+    {
+      "id": "c010",
+      "kind": "notice",
+      "reading": "transcription_mediated",
+      "quote": "4 Taken Up\n[uncertain: : ? David Letts, in. Vermillion precinct, in]\nh Lasalle county, Tico Estrays; one a Hight |\n3} bay Horse, about fifteen hands high, eig st years\n> J old, the lef hind foot white, some saddle marks }\nh | asd a sear on his rump: appraised at fifty dol- |,\n_jlara. The other an iron gray Mare, between y\n| fourteen and fifleen hands high, three years old, }\n3 | with a starin her forehead, no marks ‘or brands\nII | perceivahle: appraised at forty-five dollars by\n| Nathaniel Eddy and Jool A. Hall, betore Will- | -\ninns Seeley, J, Ri! Sept. 3, 1 ie 18\nA true copy from my estray book, Sept. 13,\nwo J. CLOUD, Clerk. |?",
+      "normalized": "Taken Up[,] [b]y David Letts, in [the] Vermillion precinct, in [La]Salle county, T[w]o Estrays; one a [l]ight bay Horse, about fifteen hands high, e[i]g[ht] years old, the le[ft] hind foot white, some saddle marks a[n]d a s[c]ar on his rump: appraised at fifty dollars. The other an iron gray Mare, between fourteen and fif[t]een hands high, three years old, with a star in her forehead, no marks or brands perceiva[b]le: appraised at forty-five dollars by Nathaniel Eddy and Jo[e]l A. Hall, before Willi[a]ms Seeley, J. [P.] Sept. 3, 18[34]. […] A true copy from my estray book, Sept. 13, […] J. CLOUD, Clerk.",
+      "locator": {
+        "artifact_role": "primary",
+        "issue_page": 3,
+        "column": 2,
+        "lines": [
+          2918,
+          2931
+        ],
+        "lines_of_claim": [
+          2918,
+          2919,
+          2920,
+          2921,
+          2922,
+          2923,
+          2924,
+          2925,
+          2926,
+          2927,
+          2928,
+          2929,
+          2930,
+          2931
+        ],
+        "interleaved": false
+      },
+      "entities": [
+        {
+          "as_printed": "David Letts",
+          "normalized": "David Letts",
+          "associated_places": [
+            "Vermillion precinct, LaSalle county"
+          ]
+        },
+        {
+          "as_printed": "Nathaniel Eddy",
+          "normalized": "Nathaniel Eddy",
+          "role": "appraiser"
+        },
+        {
+          "as_printed": "Jool A. Hall",
+          "normalized": "Joel A. Hall",
+          "role": "appraiser"
+        },
+        {
+          "as_printed": "Will- | inns Seeley, J, Ri!",
+          "normalized": "Williams Seeley",
+          "role": "justice of the peace"
+        },
+        {
+          "as_printed": "J. CLOUD, Clerk.",
+          "normalized": "J. Cloud",
+          "role": "county clerk, LaSalle county"
+        }
+      ],
+      "notes": "AN ESTRAY NOTICE IS A PRICED DESCRIPTION OF A HORSE, and this project has to draw horses. Fifteen hands, eight years, light bay, left hind foot white, saddle marks, a scar on the rump, appraised at fifty dollars; and an iron gray mare of fourteen to fifteen hands, three years, a star on her forehead, at forty-five. Height, colour, markings and value, sworn before a justice. Whatever else these notices are for, they are the best physical description of ordinary 1834 Illinois stock the corpus carries. LaSalle county and not Cook, so nothing is placed."
+    },
+    {
+      "id": "c011",
+      "kind": "notice",
+      "reading": "transcription_mediated",
+      "quote": "- Taken Up '\ne; Y Hiram Thornton, in Troy inet in| |\niB Lasalle county, a Bay Gdiiog, fifteen |;\nhands high, with a ecar on the left side of the | t\nneck, some saddle spots, @ white xpot in the ||\nS| forehead, and four white feet, no brands percei- |\n* |vable, suppored to be five yonre old: appraised) ,\na| at twenty-seven dollars and fifty cents, by Levi |\n| Kelsey and William Winterton, before Thowwas | :\n| Wack. J.P. A truecopy from rt estray book,\n+ Sept. 13, 1834, J. CLOUD, Clerk, |",
+      "normalized": "Taken Up[,] [b]y Hiram Thornton, in [the] Troy [prec]inct, in [La]Salle county, a Bay G[e]ld[in]g, fifteen hands high, with a s[c]ar on the left side of the neck, some saddle spots, a white [s]pot in the forehead, and four white feet, no brands perceiva[b]le, suppo[s]ed to be five y[ea]rs old: appraised at twenty-seven dollars and fifty cents, by Levi Kelsey and William Winterton, before Tho[m]as [Bl]ack[?], J. P. A true copy from [my] estray book, Sept. 13, 1834. J. CLOUD, Clerk.",
+      "locator": {
+        "artifact_role": "primary",
+        "issue_page": 3,
+        "column": 2,
+        "lines": [
+          2933,
+          2943
+        ],
+        "lines_of_claim": [
+          2933,
+          2934,
+          2935,
+          2936,
+          2937,
+          2938,
+          2939,
+          2940,
+          2941,
+          2942,
+          2943
+        ],
+        "interleaved": false
+      },
+      "entities": [
+        {
+          "as_printed": "Hiram Thornton",
+          "normalized": "Hiram Thornton",
+          "associated_places": [
+            "Troy precinct, LaSalle county"
+          ]
+        },
+        {
+          "as_printed": "Levi | Kelsey",
+          "normalized": "Levi Kelsey",
+          "role": "appraiser"
+        },
+        {
+          "as_printed": "William Winterton",
+          "normalized": "William Winterton",
+          "role": "appraiser"
+        },
+        {
+          "as_printed": "Thowwas\n| Wack. J.P.",
+          "normalized": "Thomas [uncertain: Wack]",
+          "role": "justice of the peace"
+        }
+      ],
+      "notes": "A second estray, and the price is the point: a five-year-old bay gelding of fifteen hands appraised at twenty-seven dollars and fifty cents against the fifty-dollar bay of claim c010. Two horses of the same height, three weeks apart, before neighbouring justices, at nearly double the price — so appraisal was reading condition and training, not size. Anyone costing draught animals into a 1835 street scene now has three sworn valuations to work from."
+    },
+    {
+      "id": "c012",
+      "kind": "business",
+      "reading": "transcription_mediated",
+      "quote": "Tin, Sheet Iron and Storel\n[uncertain: \"?YP?OTOBI.]\nThE beriber would respectfly inform\nCORNER OF DEARBORN ASD LAKE-STREETS\nhe has commenced the abore business ana tan\nhis triends and She public in genersi, that\nAnder from the couniry thank mile recei\nhe will keco an assortment constants on han\ned and punctually attended to.\nApril 22, 1834.\nJ. K. BOTSFORD.",
+      "normalized": "Tin, Sheet Iron and Stove [Ware]house[.] CORNER OF DEARBORN AND LAKE-STREETS. TH[E su]b[s]criber would respect[ful]ly inform his friends and the public in general, that he has commenced the abo[v]e business, and [that all or]ders from the country [will be tha]nkfully receiv[ed] and punctually attended to. April 22, 1834. J. K. BOTSFORD.",
+      "locator": {
+        "artifact_role": "primary",
+        "issue_page": 3,
+        "column": 3,
+        "lines": [
+          3056,
+          3066
+        ],
+        "lines_of_claim": [
+          3056,
+          3057,
+          3058,
+          3059,
+          3060,
+          3061,
+          3062,
+          3063,
+          3064,
+          3065,
+          3066
+        ],
+        "interleaved": false
+      },
+      "business": {
+        "name": "J. K. Botsford",
+        "trade": "tin, sheet iron and copper ware",
+        "proprietors": [
+          "J. K. Botsford"
+        ],
+        "goods": [
+          "tin ware",
+          "sheet iron ware",
+          "stoves"
+        ],
+        "street": "Dearborn Street",
+        "placement": {
+          "class": "corner",
+          "anchor": "the corner of Dearborn and Lake streets"
+        }
+      },
+      "ad_copy_date": {
+        "verbatim": "April 22, 1834.",
+        "iso": "1834-04-22"
+      },
+      "notes": "A CORNER, SET IN CAPITALS AS THE ADVERTISEMENT'S OWN HEADING: Dearborn and Lake. The corpus already carries Botsford at a Dearborn Street corner; this printing states the cross street outright and dates his commencement to 22 April 1834, so the frontage is occupied for the whole fifteen months before the scene date. Corner placements are the only class that can put a building on a specific ground square without further evidence, and this is one of four in the whole September run."
+    },
+    {
+      "id": "c013",
+      "kind": "business",
+      "reading": "transcription_mediated",
+      "quote": "Na w\nGOODS.\nJ. L. WILSON & CO.\nRE now opening an estensive stock\nDry Goods, Grogies, Hardaare Crochin\nBattinette, Beady mad\nflannels, sheetings, Tickirige, dee.\nrought iron hinges, &\n, butta\nscrew\nDearborn st. next door to the \"cit\nROY NAILS, and Windo\nleather store.\nChicago,",
+      "normalized": "N[e]w GOODS. J. L. WILSON & CO. [a]re now opening an ext[e]nsive stock [of] Dry Goods, Gro[cer]ies, Hard[w]are, Croc[ke]r[y], […] [Sat]tinett[s], [R]eady mad[e clothing], flannels, sheetings, Tick[in]gs, &c., […] [w]rought iron hinges, &[c.], […] butt[s], screw[s], […] Dearborn st., next door to the \"cit[y]\" […] [T]ROY NAILS, and Windo[w Glass] […] leather store. Chicago,",
+      "locator": {
+        "artifact_role": "primary",
+        "issue_page": 3,
+        "column": 3,
+        "lines": [
+          2955,
+          2970
+        ],
+        "lines_of_claim": [
+          2955,
+          2956,
+          2958,
+          2959,
+          2960,
+          2961,
+          2962,
+          2964,
+          2965,
+          2966,
+          2967,
+          2968,
+          2969,
+          2970
+        ],
+        "interleaved": true
+      },
+      "business": {
+        "name": "J. L. Wilson & Co.",
+        "trade": "dry goods, groceries, hardware and crockery",
+        "proprietors": [
+          "J. L. Wilson"
+        ],
+        "street": "Dearborn Street",
+        "placement": {
+          "class": "relative",
+          "anchor": "the city boot, shoe and leather store, Dearborn Street",
+          "offset_text": "Dearborn st. next door to the \"cit\nROY NAILS, and Windo\nleather store."
+        }
+      },
+      "notes": "THE PRINTING THAT CARRIES THE STREET NAME. A week earlier the same advertisement lost 'Dearborn s' at the column edge (1834-09-17, claim c004) and here it survives whole — 'Dearborn st. next door to the \"city\" … leather store'. Two witnesses a week apart, one broken and one clean, is how a placement in this batch actually gets made; both are extracted so that the reading can be checked rather than taken."
+    },
+    {
+      "id": "c014",
+      "kind": "building",
+      "reading": "transcription_mediated",
+      "quote": "Sale.\nble for a Store and Dwelling,\nBuilding suite.\nin\n[uncertain: henrly]\nWater-stree\nthe draw-bridge;\nFor particulars enquire of\n• RIDER\nt door to the Post Ofu\nCucago, Sept. 10, 1331.",
+      "normalized": "[For] Sale. [A two story] Building suita[b]le for a Store and Dwelling, [situated] in [uncertain: henrly — read as 'nearly'] […] Water-stree[t, nearly opposite] the draw-bridge; […] For particulars enquire of [E. A.] RIDER, [nex]t door to the Post Of[fice]. C[hi]cago, Sept. 10, 183[4].",
+      "locator": {
+        "artifact_role": "primary",
+        "issue_page": 3,
+        "column": 3,
+        "lines": [
+          3015,
+          3025
+        ],
+        "lines_of_claim": [
+          3015,
+          3016,
+          3017,
+          3018,
+          3019,
+          3020,
+          3021,
+          3022,
+          3023,
+          3024,
+          3025
+        ],
+        "interleaved": false
+      },
+      "notes": "The Rider building's third printing in three weeks, still for sale on 24 September. Filed because the sequence is the evidence: a two-storey store-and-dwelling on the best business stand in the town, opposite the draw-bridge, went unsold through the whole month — which is a fact about the 1834 property market and not just a repeated advertisement. The full reading is at 1834-09-17 claim c002; this locator's own lines are cut and carry the address only in pieces."
+    },
+    {
+      "id": "c015",
+      "kind": "notice",
+      "reading": "transcription_mediated",
+      "quote": "Ws To Justices of the Peace.\nPure in neat form, and for sale at this\n/ office, Summons, Subparna, Warrant, Ex-\nceution and Venire, Sept. 23, 1834.",
+      "normalized": "To Justices of the Peace. [Blanks] [p]r[int]e[d] in neat form, and for sale at this office, Summons, Subp[oe]na, Warrant, Ex[e]cution and Venire. Sept. 23, 1834.",
+      "locator": {
+        "artifact_role": "primary",
+        "issue_page": 3,
+        "column": 2,
+        "lines": [
+          2849,
+          2852
+        ],
+        "lines_of_claim": [
+          2849,
+          2850,
+          2851,
+          2852
+        ],
+        "interleaved": false
+      },
+      "business": {
+        "name": "the Chicago Democrat, newspaper and job printing office",
+        "trade": "newspaper publishing and job printing",
+        "goods": [
+          "legal blanks",
+          "summons",
+          "subpoena",
+          "warrant",
+          "execution",
+          "venire"
+        ],
+        "placement": {
+          "class": "none",
+          "note": "the paper never advertises its own address in these issues"
+        }
+      },
+      "notes": "THE DEMOCRAT'S JOB PRESS, SELLING LEGAL BLANKS TO THE COUNTY'S JUSTICES. The corpus carries the Chicago American's printing office as a business and has not carried the Democrat's; it is entered here from the paper's own advertisement, which is the only kind of evidence a newspaper's job department leaves. It also fixes what the office DID besides print a weekly — the estray notices, attachment writs and probate notices filling these columns all began as blanks bought at this counter."
+    },
+    {
+      "id": "c016",
+      "kind": "business",
+      "reading": "transcription_mediated",
+      "quote": "t 6) SIDES SOLE LEATHER. ‘\n276 190 pairs Men's BOOTS;\n19 oo * “SHOES; he\n> 46 RIFLES; On consignment, for\nlan by JONES & KING. |}\n=| Sept. 10,",
+      "normalized": "[6]0 SIDES SOLE LEATHER[;] 1[3]0 pairs Men's BOOTS; [9]0 [pairs Men's] SHOES; 4[5] RIFLES; On consignment, for [sa]le by JONES & KING. Sept. 10[, 1834].",
+      "locator": {
+        "artifact_role": "primary",
+        "issue_page": 3,
+        "column": 2,
+        "lines": [
+          2945,
+          2950
+        ],
+        "lines_of_claim": [
+          2945,
+          2946,
+          2947,
+          2948,
+          2949,
+          2950
+        ],
+        "interleaved": false
+      },
+      "business": {
+        "name": "Jones & King",
+        "trade": "stove and hollow ware",
+        "proprietors": [
+          "Wm. Jones",
+          "Byram King"
+        ],
+        "goods": [
+          "sole leather",
+          "boots",
+          "shoes",
+          "rifles"
+        ],
+        "placement": {
+          "class": "none",
+          "note": "the consignment notice gives no address; the firm's store is 'in Water-st., near the bridge' by its own advertisement of the same month"
+        }
+      },
+      "ad_copy_date": {
+        "verbatim": "Sept. 10,",
+        "iso": "1834-09-10"
+      },
+      "notes": "THE SAME CONSIGNMENT AS 1834-09-10 CLAIM C006, READ DIFFERENTLY. This printing gives 60 sides of sole leather, 130 pairs of boots, 90 of shoes and 45 rifles; the earlier one gives 190 boots and 46 rifles. Same copy date, same advertisement, two OCR readings that disagree on three numerals — which is exactly the reason a quantity out of this batch is not a measurement until two printings agree, and both are recorded so a later pass can see the disagreement instead of inheriting one side of it."
+    }
+  ]
+}

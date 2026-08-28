@@ -1,0 +1,643 @@
+{
+  "schema": 1,
+  "issue_id": "chicago_democrat_1834_09_10",
+  "extracted": "2026-08-28",
+  "extracted_by": "hand, T-0291 — the Democrat read, September 1834",
+  "note": "Vol. I No. 41. THE DRAW-BRIDGE BECOMES AN ADDRESS. A two-storey store-and-dwelling on South Water Street 'nearly opposite the draw-bridge' and Jones & King's store 'in Water-st., near the bridge' both hang off the same landmark, and Dr. John T. Temple lets two new four-room dwelling houses. David Carver's collection notice times itself against the end of the Indian payment, and a citizens' committee is sitting on the Polish exiles then in the town.",
+  "claims": [
+    {
+      "id": "c001",
+      "kind": "shipping",
+      "reading": "transcription_mediated",
+      "quote": "& MARINE LISD.\nPORT OF CHICAGO.\nARRIVED.\n. See. Jesse Smith,\nWeekend Ho, Banks, Millie.\n-, Green Try.\nSeir. Phipe, Hone, Michigan City.\n[uncertain: • Brig Fine, Wagatel, Pulite T00]\n[uncertain: For TrEes, Bills.]\nCLEARED.\n1 Sele Merengo, Dingley, Buffale\nPitie, Hoxe, St. Joseph.\nMansh Antonette, Seville, do.",
+      "normalized": "[T]he MARINE LIS[T]. PORT OF CHICAGO. ARRIVED. […] Sc[hr]. Jesse Smith, […] [uncertain: Weekend Ho, Banks, Millie.] […] Green [Ba]y. Sc[h]r. Ph[illi]p[s], Ho[w]e, Michigan City. [uncertain: Brig Fine, Wagatel] […] CLEARED. […] Sch[r.] Marengo, Dingley, Buffal[o]. [Schr.] P[hill]i[p]s, Ho[w]e, St. Joseph. Ma[ria]h Antonette, S[co]ville, do.",
+      "locator": {
+        "artifact_role": "primary",
+        "issue_page": 3,
+        "column": 1,
+        "lines": [
+          2406,
+          2418
+        ],
+        "lines_of_claim": [
+          2406,
+          2407,
+          2408,
+          2409,
+          2410,
+          2411,
+          2412,
+          2413,
+          2414,
+          2415,
+          2416,
+          2417,
+          2418
+        ],
+        "interleaved": false
+      },
+      "notes": "A fuller week than the 3 September list: four or five arrivals against two. The schooner Phillips, Howe master, arrives from Michigan City and clears for St. Joseph in the same week, which is the short-haul trade this port lived on; the Mariah Antonette clears for St. Joseph having arrived from Detroit a week earlier (1834-09-03, claim c010). The transcription's vessel names are among the worst-recognised text in the issue and the uncertain ones are left inside their brackets."
+    },
+    {
+      "id": "c002",
+      "kind": "building",
+      "reading": "transcription_mediated",
+      "quote": "For Sale.\nTWO story Building nutta-\n[uncertain: bie lorns]\nSoutk Water-street,\nore sued Dwelline\nhe beatatsde for hasinees in she town.\nsearly oppoete the draw-bridge: i\nE. A. RIDER.\nago, Spt. 10, 103l.",
+      "normalized": "For Sale. [A] TWO story Building [suita]ble for [a] St[ore and] Dwelling, [sit]u[a]ted [in] South Water-street, [one of t]he best stands for business in the town, [n]early opposite the draw-bridge. [For particulars enquire of] E. A. RIDER. [Chic]ago, S[e]pt. 10, 183[4].",
+      "locator": {
+        "artifact_role": "primary",
+        "issue_page": 3,
+        "column": 1,
+        "lines": [
+          2436,
+          2444
+        ],
+        "lines_of_claim": [
+          2436,
+          2437,
+          2438,
+          2439,
+          2440,
+          2441,
+          2442,
+          2443,
+          2444
+        ],
+        "interleaved": false
+      },
+      "entities": [
+        {
+          "as_printed": "E. A. RIDER.",
+          "normalized": "E. A. Rider",
+          "associated_places": [
+            "South Water Street"
+          ]
+        }
+      ],
+      "notes": "THE DRAW-BRIDGE IS USED AS AN ADDRESS, WHICH MEANS IT WAS THERE AND EVERYONE KNEW WHERE. A two-storey building on South Water Street, nearly opposite the draw-bridge, offered as one of the best business stands in the town — so the frontage facing the bridge approach was PRIME ground in September 1834, and it carried a two-storey structure combining store and dwelling. The reconstruction models South Water Street's frontage from Wright's plat and from lot claims; this is a documented storey count and a documented use at a documented distance from a fixed point. The fuller printing a week later (1834-09-17, claim c002) adds that Rider himself was next door to the Post Office."
+    },
+    {
+      "id": "c003",
+      "kind": "business",
+      "reading": "transcription_mediated",
+      "quote": "Thand Blocks for sale on the Schoo\n0-20-193-130 and 12:\nH. PEAR ONS.\nme fir nie s large and genersi assert\ndit store in Water-st\nacar the bridge\nSTOVES.\nFurniture, Apr, Tin Haro, Shoudla and no\n[uncertain: gris slone, polaci]\nset tery decription of Holline Thare.\nand sugar Keilles,",
+      "normalized": "[Lots] and Blocks for sale on the Schoo[l Section] […] H. PEAR[S]ONS. […] [offers for sale a] large and general assort[ment at hi]s store in Water-st[.] [ne]ar the bridge […] STOVES, […] [Stove] Furniture, [Pi]p[e], Tin [Wa]re, Sho[ve]l[s] and [tongs], [uncertain: gris slone, polaci] […] [and almost] every de[s]cription of Hollo[w] [W]are, […] and sugar Ke[tt]les,",
+      "locator": {
+        "artifact_role": "primary",
+        "issue_page": 3,
+        "column": 1,
+        "lines": [
+          2445,
+          2455
+        ],
+        "lines_of_claim": [
+          2445,
+          2446,
+          2447,
+          2448,
+          2449,
+          2450,
+          2451,
+          2452,
+          2453,
+          2454,
+          2455
+        ],
+        "interleaved": false
+      },
+      "business": {
+        "name": "Jones & King",
+        "trade": "stove and hollow ware",
+        "proprietors": [
+          "Wm. Jones",
+          "Byram King"
+        ],
+        "street": "Water Street",
+        "placement": {
+          "class": "relative",
+          "anchor": "the bridge, Water Street",
+          "offset_text": "dit store in Water-st\nacar the bridge"
+        }
+      },
+      "notes": "JONES & KING'S STORE IS PLACED — 'in Water-st., near the bridge' — where their 3 September advertisement gave no address at all (claim c015 of that issue). Two frontages in this month are now hung off the bridge as an anchor: this one and Rider's two-storey building 'nearly opposite the draw-bridge' (claim c002). THE SEGMENTER HAS FUSED TWO ADVERTISEMENTS HERE: H. Pearsons's School Section lots and the Jones & King stove stock share a run of lines, and both are quoted because a locator cannot pick them apart; the Pearsons half is claimed separately at c004 from its own cleaner printing."
+    },
+    {
+      "id": "c004",
+      "kind": "notice",
+      "reading": "transcription_mediated",
+      "quote": "town Lot for Sale.\nTElL Lot No. 12, in Kinse's Addition,\nand Lots 9, 7 and B\nH. PEARSONS.\n[uncertain: in bocks]",
+      "normalized": "[T]own Lot for Sale. [Wa]te[r] Lot No. 12, in Kin[z]ie's Addition, and Lots [2], 7 and 8 [in block] […] H. PEARSONS.",
+      "locator": {
+        "artifact_role": "primary",
+        "issue_page": 3,
+        "column": 1,
+        "lines": [
+          2428,
+          2432
+        ],
+        "lines_of_claim": [
+          2428,
+          2429,
+          2430,
+          2431,
+          2432
+        ],
+        "interleaved": false
+      },
+      "entities": [
+        {
+          "as_printed": "H. PEARSONS.",
+          "normalized": "H. Pearsons"
+        }
+      ],
+      "notes": "A WATER LOT IN KINZIE'S ADDITION, offered by number. Kinzie's Addition is the North Side ground the reconstruction models north of the main channel, and a 'Water Lot' in it is river frontage — the class of parcel that carries wharves and ware houses rather than dwellings. The lot numbers differ between this printing ('Lots 9, 7 and B') and the 17 and 24 September ones ('Lots 2, 7 and 8'); the later two agree with each other and are followed here, with the disagreement recorded rather than resolved silently."
+    },
+    {
+      "id": "c005",
+      "kind": "business",
+      "reading": "transcription_mediated",
+      "quote": "Bacon! Bacon!!\n3e be wildfirs coate per 15. at Mr. Ho-\nLARGE manity of Prine cured Bacon,\nStare. Set. 10, 18.31.",
+      "normalized": "Bacon! Bacon!! [A LARGE quantity of Prime cured Bacon, will] be [sold for six c]ents per l[b]. at Mr. Ho[gan's] [S]t[o]re. Se[p]t. 10, 183[4].",
+      "locator": {
+        "artifact_role": "primary",
+        "issue_page": 3,
+        "column": 1,
+        "lines": [
+          2419,
+          2422
+        ],
+        "lines_of_claim": [
+          2419,
+          2420,
+          2421,
+          2422
+        ],
+        "interleaved": false
+      },
+      "business": {
+        "name": "J. S. C. Hogan",
+        "trade": "dry goods, groceries, hardware, crockery and glass, wholesale and retail",
+        "proprietors": [
+          "J. S. C. Hogan"
+        ],
+        "street": "South Water Street",
+        "placement": {
+          "class": "relative",
+          "anchor": "the Post Office, South Water Street",
+          "offset_text": "at Mr. Ho-\nStare.",
+          "note": "this printing names only 'Mr. Hogan's store'; the placement is carried from the same firm's own advertisement at 1834-09-03, issue page 3 column 6"
+        }
+      },
+      "notes": "A PRICE, ON A DATE, FOR A STAPLE: prime cured bacon at six cents the pound at Hogan's store, 10 September 1834. The 17 September printing of the same notice is legible where this one is cut and supplies 'sold for 6 cents per lb, at Mr. Ho[gan's]'; the figure is therefore read from a second witness and bracketed here."
+    },
+    {
+      "id": "c006",
+      "kind": "business",
+      "reading": "transcription_mediated",
+      "quote": "@ HOES SOLE LEATHER\n130 pair» Men's BOOTS;\n45 RIFLES: Og\nSHOES;\nJONES & KING.",
+      "normalized": "[6?] [SI]DES SOLE LEATHER, 1[9]0 pairs Men's BOOTS; [90 pairs Men's] SHOES; 4[6] RIFLES[;] [o]n [consignment, for sale by] JONES & KING.",
+      "locator": {
+        "artifact_role": "primary",
+        "issue_page": 3,
+        "column": 1,
+        "lines": [
+          2423,
+          2427
+        ],
+        "lines_of_claim": [
+          2423,
+          2424,
+          2425,
+          2426,
+          2427
+        ],
+        "interleaved": false
+      },
+      "business": {
+        "name": "Jones & King",
+        "trade": "stove and hollow ware",
+        "proprietors": [
+          "Wm. Jones",
+          "Byram King"
+        ],
+        "goods": [
+          "sole leather",
+          "boots",
+          "shoes",
+          "rifles"
+        ],
+        "placement": {
+          "class": "none",
+          "note": "the consignment notice gives no address; the firm's store placement is claimed at c003 of this issue"
+        }
+      },
+      "notes": "FORTY-SIX RIFLES ON CONSIGNMENT IN A STOVE DEALER'S STORE. The quantities matter more than the goods: 190 pairs of men's boots, 90 of shoes and 46 rifles is a wholesale lot arriving in a town of a few hundred households, which is the shape of Chicago's 1834 trade — a forwarding point, not a shop. The numerals disagree between this printing and the 24 September one (130/45 against 190/46) and neither is preferred; both are extracted."
+    },
+    {
+      "id": "c007",
+      "kind": "building",
+      "reading": "transcription_mediated",
+      "quote": "DENTISTRY in all its branches attended to]\nby Dr. P. Temple. :\nP, 8. Two new Deasing Houses for rent, four H\nrooma in each, well finished,\n40 Dr. JOMN t. TEMPLE. Wh",
+      "normalized": "DENTISTRY in all its branches attended to by Dr. P. Temple. P.S. Two new D[w]e[ll]ing Houses for rent, four rooms in each, well finished. Dr. JO[H]N T. TEMPLE.",
+      "locator": {
+        "artifact_role": "primary",
+        "issue_page": 3,
+        "column": 2,
+        "lines": [
+          2474,
+          2478
+        ],
+        "lines_of_claim": [
+          2474,
+          2475,
+          2476,
+          2477,
+          2478
+        ],
+        "interleaved": false
+      },
+      "entities": [
+        {
+          "as_printed": "Dr. P. Temple.",
+          "normalized": "Dr. P. Temple",
+          "occupations": [
+            "dentist"
+          ]
+        },
+        {
+          "as_printed": "Dr. JOMN t. TEMPLE.",
+          "normalized": "Dr. John T. Temple",
+          "occupations": [
+            "physician",
+            "house and store landlord"
+          ]
+        }
+      ],
+      "notes": "TWO NEW DWELLING HOUSES, FOUR ROOMS EACH, WELL FINISHED — a documented house TYPE with a documented room count, built new in 1834 and let. This project's ordinary dwelling is inferred from archetypes and this is one of the very few printed descriptions of what a new Chicago house of that year actually contained. Both Temples appear: P. Temple the dentist and John T. Temple, who two weeks later advertises a three-storey store house with a wharf (1834-09-24, claim c001) and is the largest single builder named in the September run."
+    },
+    {
+      "id": "c008",
+      "kind": "business",
+      "reading": "transcription_mediated",
+      "quote": "Notice. ar\nLL persons indebted to D. Carver & Co. | ——\nA for lumber or. otherwise, are requested to J\nmake immediate payment. Our business has\nweeame #0 estranged that vo are obliged to have | I\necouse to this means, to save ourselves. [hope at h\nhis notice will be strictly attended to, as all who by\ningleet it may expect accounts to be leftin the} “4\nands of proper officers tor collection as soon as | —-\nhe .ndian payment is over, without reserve,\nDAY.D CARVER.\nChicazzo, Sept. 10, 1834. EF",
+      "normalized": "Notice. [A]ll persons indebted to D. Carver & Co. for lumber or otherwise, are requested to make immediate payment. Our business has [b]ecome so estranged that w[e] are obliged to have [r]ecourse to this means, to save ourselves. [I hope] this notice will be strictly attended to, as all who [n]eglect it may expect accounts to be left in the hands of proper officers for collection as soon as [t]he [I]ndian payment is over, without reserve. DAV[I]D CARVER. Chica[g]o, Sept. 10, 1834.",
+      "locator": {
+        "artifact_role": "primary",
+        "issue_page": 3,
+        "column": 2,
+        "lines": [
+          2480,
+          2491
+        ],
+        "lines_of_claim": [
+          2480,
+          2481,
+          2482,
+          2483,
+          2484,
+          2485,
+          2486,
+          2487,
+          2488,
+          2489,
+          2490,
+          2491
+        ],
+        "interleaved": false
+      },
+      "entities": [
+        {
+          "as_printed": "DAY.D CARVER.",
+          "normalized": "David Carver",
+          "occupations": [
+            "lumber merchant"
+          ]
+        }
+      ],
+      "business": {
+        "name": "David Carver",
+        "trade": "lumber yard",
+        "proprietors": [
+          "David Carver"
+        ],
+        "goods": [
+          "lumber"
+        ],
+        "placement": {
+          "class": "none",
+          "note": "no address in this notice"
+        }
+      },
+      "ad_copy_date": {
+        "verbatim": "Chicazzo, Sept. 10, 1834.",
+        "iso": "1834-09-10"
+      },
+      "notes": "THE TOWN'S LUMBER DEALER IS BEING PAID IN PROMISES, AND HE IS WAITING FOR THE INDIAN PAYMENT TO END BEFORE HE SUES. Two things for the reconstruction: the September 1834 building trade ran on credit that its principal supplier could not collect, and the annuity payment at Chicago was a fixed point in the town's calendar that even a debt notice was timed against. 'Our business has become so estranged' is quoted as printed; whether the compositor set 'estranged' for 'extended' is not decided here."
+    },
+    {
+      "id": "c009",
+      "kind": "notice",
+      "reading": "transcription_mediated",
+      "quote": "Notice. 10,2\nFINAL settlement of theestate of Willicm\n4 HL, Bradford, dee'd. will be made on the} _ Ju\n1 Monday of November. All persons having\nnadjusted claims, are desired to present them.\nith the necessary proof at or before that tine, Ry\nthe Office of the Judeo of Probate.—Dated | Fe,\nept. 6, 1534, HARRIET BRADFORD, Ht\niw Adininistratriz. a",
+      "normalized": "Notice. [A] FINAL settlement of the estate of Willi[a]m H. Bradford, dec'd. will be made on the [first] Monday of November. All persons having [u]nadjusted claims, are desired to present them [w]ith the necessary proof at or before that time, [at] the Office of the Jud[g]e of Probate.—Dated Sept. 6, 183[4]. HARRIET BRADFORD, [Ad]ministratri[x].",
+      "locator": {
+        "artifact_role": "primary",
+        "issue_page": 3,
+        "column": 2,
+        "lines": [
+          2493,
+          2501
+        ],
+        "lines_of_claim": [
+          2493,
+          2494,
+          2495,
+          2496,
+          2497,
+          2498,
+          2499,
+          2500,
+          2501
+        ],
+        "interleaved": false
+      },
+      "entities": [
+        {
+          "as_printed": "Willicm\n4 HL, Bradford, dee'd.",
+          "normalized": "William H. Bradford",
+          "role": "deceased"
+        },
+        {
+          "as_printed": "HARRIET BRADFORD,",
+          "normalized": "Harriet Bradford",
+          "role": "administratrix of the estate of William H. Bradford"
+        }
+      ],
+      "notes": "A WOMAN ADMINISTERING AN ESTATE IN HER OWN NAME, and the Office of the Judge of Probate named as a place claims are presented AT. Harriet Bradford is one of very few women the September run names outside a marriage or death notice; the project's people are overwhelmingly male because its sources are, and every exception is worth the card."
+    },
+    {
+      "id": "c010",
+      "kind": "business",
+      "reading": "transcription_mediated",
+      "quote": "BBinclismaitiving Rusiness, quire\nMAI ERHIAS MASON & CO. ey\nMARRIES on the above business in all its ‘\n4 various branches, on Main-stroet, oppo- Bt |\ne the Tremont House, where they intend to Au\n\"py Foady made, all kinds of Shoce, Chains, | _ 2\n. ee. Work done en the shortest notice,\n} most liberal terms\nVhicusro, Nv. 26, 133. 1",
+      "normalized": "B[l]acksmithing [Bu]siness. MA[T]HIAS MASON & CO. [c]arries on the above business in all its various branches, on Main-street, opposite the Tremont House, where they intend to [ke]ep ready made, all kinds of Sho[e]s, Chains, [&]c. &c. Work done on the shortest notice, [and on the] most liberal terms. [C]hica[g]o, N[o]v. 26, 183[3].",
+      "locator": {
+        "artifact_role": "primary",
+        "issue_page": 3,
+        "column": 2,
+        "lines": [
+          2520,
+          2528
+        ],
+        "lines_of_claim": [
+          2520,
+          2521,
+          2522,
+          2523,
+          2524,
+          2525,
+          2526,
+          2527,
+          2528
+        ],
+        "interleaved": false
+      },
+      "business": {
+        "name": "Mathias Mason & Co.",
+        "trade": "blacksmithing",
+        "proprietors": [
+          "Mathias Mason"
+        ],
+        "goods": [
+          "horse shoes",
+          "chains"
+        ],
+        "street": "Main Street",
+        "placement": {
+          "class": "relative",
+          "anchor": "the Tremont House, Main Street",
+          "offset_text": "on Main-stroet, oppo-\ne the Tremont House,"
+        }
+      },
+      "ad_copy_date": {
+        "verbatim": "Vhicusro, Nv. 26, 133.",
+        "iso": "1833-11-26"
+      },
+      "notes": "A CHICAGO ADVERTISEMENT THAT NAMES A STREET CHICAGO DOES NOT HAVE. The copy is dated at Chicago, 26 November 1833 — the date of the Democrat's first issue — and places the shop 'on Main-street, opposite the Tremont House'. Wright's plat has no Main Street, and the Tremont stood at Lake and Dearborn. This is NOT resolved here and nothing is built on it: either the compositor set a house name for a street name, or the town used 'Main street' colloquially for one of the platted streets, or the ad is a survivor from another town's paper. It is recorded so that the contradiction is on the board rather than quietly dropped, and the placement is kept `relative` on the Tremont House, which is the part of the address this project can actually resolve."
+    },
+    {
+      "id": "c011",
+      "kind": "business",
+      "reading": "transcription_mediated",
+      "quote": "mst Received-On Commission,\nMM BARRELS Superfine FLOUR\nis Wars: Hotsk, opposite to R\nwhich will be sold se\nJ. I.\n[uncertain: KINZTE.]\nlag. 12. 1831.",
+      "normalized": "[Ju]st Received—On Commission, [100?] BARRELS Superfine FLOUR [at h]is War[e] Ho[u]se, opposite to R[andolph street], which will be sold [low for] […] J. [H]. KIN[Z]IE. [A]ug. 12, 183[4].",
+      "locator": {
+        "artifact_role": "primary",
+        "issue_page": 3,
+        "column": 3,
+        "lines": [
+          2640,
+          2647
+        ],
+        "lines_of_claim": [
+          2640,
+          2641,
+          2642,
+          2643,
+          2645,
+          2646,
+          2647
+        ],
+        "interleaved": true
+      },
+      "business": {
+        "name": "J. H. Kinzie, merchant",
+        "trade": "lumber, nails, salt and flour on commission",
+        "proprietors": [
+          "John H. Kinzie"
+        ],
+        "goods": [
+          "superfine flour"
+        ],
+        "placement": {
+          "class": "relative",
+          "anchor": "a point the OCR renders only as 'R', read here as Randolph street and left uncertain",
+          "offset_text": "is Wars: Hotsk, opposite to R"
+        }
+      },
+      "ad_copy_date": {
+        "verbatim": "lag. 12. 1831.",
+        "iso": "1834-08-12"
+      },
+      "notes": "KINZIE'S WARE HOUSE AGAIN, AND WITH A DIFFERENT ANCHOR: 'opposite to R—'. His 3 September advertisement puts the retail counter at the west end of the ware house 'opposite … [the] HARBOR' (claim c016 of that issue). The anchor here is cut after one letter and 'Randolph' is a SUPPLY AND NOT A READING — it is bracketed and flagged in the placement note, because a ware house opposite Randolph street and a ware house opposite the harbour are not the same statement about the river frontage and this run cannot make them one."
+    },
+    {
+      "id": "c012",
+      "kind": "event",
+      "reading": "transcription_mediated",
+      "quote": "EDwARD W. Caser, Recy.\ninto 7% our Fellow Citisens of the State o\nof the citizens of Chieago, by them a\nundersigned a Committee\nto draft and report a circular to the\nlessed in Exiles, who are now in this town\nof the land recently donated to the Exil\nfortunes of the Inhabitants of Poland",
+      "normalized": "EDWARD W. CASE[Y], [S]ec'y. […] [address] to our Fellow Citizens of the State o[f Illinois] […] [the] [committee] of the citizens of Chicago, by them a[ppointed], [the] undersigned a Committee […] to draft and report a circular to the […] [Poles, addr]essed in Exiles, who are now in this town […] of the land recently donated to the Exil[es] […] [mis]fortunes of the Inhabitants of Poland",
+      "locator": {
+        "artifact_role": "primary",
+        "issue_page": 2,
+        "column": 5,
+        "lines": [
+          2072,
+          2091
+        ],
+        "lines_of_claim": [
+          2072,
+          2074,
+          2078,
+          2079,
+          2081,
+          2084,
+          2087,
+          2091
+        ],
+        "interleaved": true
+      },
+      "entities": [
+        {
+          "as_printed": "EDwARD W. Caser, Recy.",
+          "normalized": "Edward W. Casey",
+          "role": "secretary of the citizens' committee on the Polish exiles"
+        }
+      ],
+      "notes": "POLISH EXILES ARE IN CHICAGO IN SEPTEMBER 1834 and a committee of citizens is sitting on where in Illinois to settle them, on land donated by Congress. The town's population at the scene date is built in this project out of censuses and land records; this is a documented group of residents who appear in neither. The passage is one of the badly interleaved leader columns, so only the lines that carry the committee's own words are claimed and the rest of the circular is left unread — the coverage declaration for September covers the ISSUE, not every column of it."
+    },
+    {
+      "id": "c013",
+      "kind": "notice",
+      "reading": "transcription_mediated",
+      "quote": "IN DAVIS, being about to leavo this\nNotiee.\nrAce for Barope.\nond make payment.",
+      "normalized": "Notice. [JOH]N DAVIS, being about to leave this [p]lace for [E]urope, [requests all those who have accounts against him to present them before the first day of October,] and [those indebted to him to call] and make payment.",
+      "locator": {
+        "artifact_role": "primary",
+        "issue_page": 3,
+        "column": 1,
+        "lines": [
+          2462,
+          2465
+        ],
+        "lines_of_claim": [
+          2462,
+          2463,
+          2464,
+          2465
+        ],
+        "interleaved": false
+      },
+      "entities": [
+        {
+          "as_printed": "IN DAVIS",
+          "normalized": "John Davis"
+        }
+      ],
+      "notes": "THE DESTINATION IS THE NEW PART: the 3 September printing says only that Davis is leaving 'this place' (claim c011 of that issue) and this one says he is leaving it FOR EUROPE. The segmenter has put the heading 'Notice.' after the first line of the notice it heads; the quote keeps that order and the normalized reading restores it, which is the unshuffling this batch requires on almost every advertisement."
+    },
+    {
+      "id": "c014",
+      "kind": "building",
+      "reading": "transcription_mediated",
+      "quote": "HONSE Melanie, will be rented m\nA House to Let.\n-ago. Spi. 2,\nFor garticulars enquire\n40 5",
+      "normalized": "A House to Let. [A] HOUSE [uncertain: Melanie — read from the parallel printings as 'in Wa-ban-sia'], will be rented [on reaso]n[able terms.] For particulars enquire […] [Chic]ago, Sep[t]. 2[, 1834].",
+      "locator": {
+        "artifact_role": "primary",
+        "issue_page": 3,
+        "column": 1,
+        "lines": [
+          2466,
+          2470
+        ],
+        "lines_of_claim": [
+          2466,
+          2467,
+          2468,
+          2469,
+          2470
+        ],
+        "interleaved": false
+      },
+      "notes": "The Wabansia house of 1834-09-03 claim c012, still to let a week later, and still unlet on the 17th and the 24th — four weeks on the market. The place-name is destroyed in this printing ('HONSE Melanie') and is read from the three clean printings in the same month rather than guessed; the damage is kept inside its uncertainty marker instead of being laundered out."
+    },
+    {
+      "id": "c015",
+      "kind": "business",
+      "reading": "transcription_mediated",
+      "quote": "9, Sail-, Englishbister and cast Steel,\nit Rod and saxorted bar Iron, for\nP.P. W. PECK",
+      "normalized": "[…] Nail[s], English b[l]ister and cast Steel, [Na]il Rod[s] and [as]sorted bar Iron, for [sale by] P. [F]. W. PECK",
+      "locator": {
+        "artifact_role": "primary",
+        "issue_page": 3,
+        "column": 1,
+        "lines": [
+          2433,
+          2435
+        ],
+        "lines_of_claim": [
+          2433,
+          2434,
+          2435
+        ],
+        "interleaved": false
+      },
+      "business": {
+        "name": "P. F. W. Peck",
+        "trade": "dry goods, hardware, hollow ware, groceries, boots and shoes, saddlery, drugs, hats and ready made clothing",
+        "proprietors": [
+          "P. F. W. Peck"
+        ],
+        "goods": [
+          "nails",
+          "English blister steel",
+          "cast steel",
+          "nail rods",
+          "bar iron"
+        ],
+        "placement": {
+          "class": "none",
+          "note": "no address in this printing; the corpus carries Peck at a South Water Street corner from other issues"
+        }
+      },
+      "notes": "THE TOWN'S IRON, ITEMISED: nails, nail rods, bar iron, English blister and cast steel. What a builder could buy in Chicago in September 1834 bounds what a Chicago building of 1835 can be made of, and this is the list."
+    },
+    {
+      "id": "c016",
+      "kind": "building",
+      "reading": "transcription_mediated",
+      "quote": "For Sale.\nGOOD comtortable Direling\npossession given\n[uncertain: Ilouse contmtuus to the]\n[uncertain: e nediatriy]\nApply to\nP. PRUYNE",
+      "normalized": "For Sale. [A] GOOD com[f]ortable D[we]lling [uncertain: Ilouse contmtuus to the] […] possession given [uncertain: e nediatriy — read as 'immediately'] […] Apply to P. PRUYNE",
+      "locator": {
+        "artifact_role": "primary",
+        "issue_page": 3,
+        "column": 3,
+        "lines": [
+          2656,
+          2662
+        ],
+        "lines_of_claim": [
+          2656,
+          2657,
+          2658,
+          2659,
+          2660,
+          2661,
+          2662
+        ],
+        "interleaved": false
+      },
+      "entities": [
+        {
+          "as_printed": "P. PRUYNE",
+          "normalized": "P. Pruyne",
+          "occupations": [
+            "lumber and timber merchant",
+            "druggist"
+          ]
+        }
+      ],
+      "notes": "A dwelling house for sale with immediate possession, from the man who supplies the town's pine. The middle of the notice — what the house is contiguous to, which would have been a placement — is exactly what the OCR lost, and it is left inside its uncertainty marker rather than reconstructed: 'Ilouse contmtuus to the' is a phrase this run can see the shape of and cannot read."
+    }
+  ]
+}

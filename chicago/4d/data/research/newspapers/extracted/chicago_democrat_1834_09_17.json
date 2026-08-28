@@ -1,0 +1,446 @@
+{
+  "schema": 1,
+  "issue_id": "chicago_democrat_1834_09_17",
+  "extracted": "2026-08-28",
+  "extracted_by": "hand, T-0291 — the Democrat read, September 1834",
+  "note": "Vol. I No. 42. THE BRIDGE OVER THE NORTH BRANCH IS PUT ON RECORD BY A CORONER'S JURY — Elizabeth Fitzpatrick 'residing above the bridge over the North Branch of the Chicago river in this town' — which is a second, different bridge from the draw-bridge of the week before, and a documented dwelling upstream of it. Also here: a store auctioned off P. S. Carli standing on J. S. C. Hogan's lot, the federal advertisement for the weekly horseback mail from Chicago to Green Bay from 1 January 1835, and a silversmith hiring Indian jewelry manufacturers at top wages a month before the annuity payment.",
+  "claims": [
+    {
+      "id": "c001",
+      "kind": "event",
+      "reading": "transcription_mediated",
+      "quote": "An inquest was held on the body of\nman by the name of Elizabeth Fitspatri\nsiding above the bridge over the North I\nof the Chieago river in this town, wh\nfound dead in her bed on Monday me\nloat, with evident marks upon her pers\nhaving been murdered.\nThe verdict\nJury was, \"that she came to her death b\nlence upon her body by John Fitzpatrick\nit is said was her husband.\"\nFitzpatric\nbeen appreiiended, and is now in jail aw\nhis trin), at the Circuit Court to be held i\ntown on the fist Monday of October\nWe understand that both were adicted to\never its of intemperance.",
+      "normalized": "An inquest was held on the body of [a wo]man by the name of Elizabeth Fit[z]patri[ck, re]siding above the bridge over the North [Branch] of the Chicago river in this town, wh[o was] found dead in her bed on Monday m[orning] l[a]st, with evident marks upon her pers[on of her] having been murdered. The verdict [of the] Jury was, \"that she came to her death b[y vio]lence upon her body by John Fitzpatrick[, who] it is said was her husband.\" Fitzpatric[k has] been appre[h]ended, and is now in jail aw[aiting] his tri[a]l, at the Circuit Court to be held i[n this] town on the fi[r]st Monday of October[.] We understand that both were ad[d]icted to [hab]its of intemperance.",
+      "locator": {
+        "artifact_role": "primary",
+        "issue_page": 2,
+        "column": 5,
+        "lines": [
+          2088,
+          2116
+        ],
+        "lines_of_claim": [
+          2088,
+          2090,
+          2092,
+          2095,
+          2096,
+          2097,
+          2099,
+          2100,
+          2102,
+          2104,
+          2106,
+          2107,
+          2109,
+          2111,
+          2113,
+          2115,
+          2116
+        ],
+        "interleaved": true
+      },
+      "entities": [
+        {
+          "as_printed": "Elizabeth Fitspatri",
+          "normalized": "Elizabeth Fitzpatrick",
+          "role": "deceased",
+          "associated_places": [
+            "above the bridge over the North Branch of the Chicago river"
+          ]
+        },
+        {
+          "as_printed": "John Fitzpatrick",
+          "normalized": "John Fitzpatrick",
+          "role": "accused, held in the county jail",
+          "associated_places": [
+            "above the bridge over the North Branch of the Chicago river"
+          ]
+        }
+      ],
+      "notes": "A HOUSE IS PLACED BY A CORONER'S JURY: 'residing above the bridge over the North Branch of the Chicago river in this town'. This is the strongest evidence in the September run for TWO things the reconstruction has to decide. First, THERE WAS A BRIDGE OVER THE NORTH BRANCH in September 1834 and it was the landmark by which that stretch of river was described — distinct from the draw-bridge over the main channel that two South Water Street advertisements use as their anchor (1834-09-10 claim c002, and claim c002 of this issue). Second, the ground ABOVE that bridge — upstream, west and north — was inhabited by people the paper counted as living IN THIS TOWN, which is further out than the militia notice of 3 September implies when it lists 'Chicago' and 'the North Branch' as separate settlements (1834-09-03, claim c006). Nothing is built from this here; it is filed because a placement made by a jury under oath is a better class of evidence than an advertisement's own address, and the project has almost none of it. The passage is one of the alternated leader columns; the completions are read off issue page 2 column 6 and are bracketed because the locator names column 5."
+    },
+    {
+      "id": "c002",
+      "kind": "building",
+      "reading": "transcription_mediated",
+      "quote": "Kor Sale. Tp eouicre\nTAO story Building eviti- | merica, are ch\nble fora Store and Dwelling, | gineer trom\nniiwited in South Watrer-street [to the Mast 9\nnearly opposite the draw -bridge ; | an, and when\nbeat. stands tr businges in the town, | Mie MMMETOSS\nlarsetiquire of B.A. RIDER, | POtne Cee\n* Diet Office. | rere etree\n«Vert door to the Past Offier. | wii uses his t\nSept. 10, 1634, 41 is subjected to",
+      "normalized": "[F]or Sale. [A T]WO story Building [suita]ble for a Store and Dwelling, [s]itu[a]ted [in] South Wat[e]r-street nearly opposite the draw-bridge; [one of the] best stands [for] business in the town. [For particu]lars enquire of E. A. RIDER, […] next door to the Post Office. Sept. 10, 183[4].",
+      "locator": {
+        "artifact_role": "primary",
+        "issue_page": 3,
+        "column": 3,
+        "lines": [
+          2845,
+          2854
+        ],
+        "lines_of_claim": [
+          2845,
+          2846,
+          2847,
+          2848,
+          2849,
+          2850,
+          2851,
+          2852,
+          2853,
+          2854
+        ],
+        "interleaved": false
+      },
+      "entities": [
+        {
+          "as_printed": "B.A. RIDER,",
+          "normalized": "E. A. Rider",
+          "associated_places": [
+            "South Water Street"
+          ]
+        }
+      ],
+      "business": {
+        "name": "E. A. Rider",
+        "trade": "property agency",
+        "proprietors": [
+          "E. A. Rider"
+        ],
+        "street": "South Water Street",
+        "placement": {
+          "class": "relative",
+          "anchor": "the Post Office, South Water Street",
+          "offset_text": "«Vert door to the Past Offier."
+        }
+      },
+      "notes": "THE SAME BUILDING AS 1834-09-10 CLAIM C002, AND THIS PRINTING ADDS THE AGENT'S OWN DOOR: E. A. Rider is 'next door to the Post Office'. Hogan's store is one door BELOW the post office (1834-09-03, claim c013), so three frontages are now fixed against that one building — Hogan below it, Rider beside it, and the two-storey store-and-dwelling across from the draw-bridge. Whether Rider is next door above or below is not stated and is not inferred. The claim is filed as a `building` and carries a business record too, because the notice does both: it describes a structure and it advertises the man who will show it to you."
+    },
+    {
+      "id": "c003",
+      "kind": "business",
+      "reading": "transcription_mediated",
+      "quote": "NEY @ LTO men aaa\n0 EE hy hox is require\nr store in Water-st., near the bridge, | for an > horse\nfor aale a largo and general assors- | tlo, if any ove\n| gavernor, whi\nSPTovrs, to complete\nSTOVES, — |g\nture, Pipe, Tin Ware, Shore's awd | dramy, ‘The\nnd stoues, potavh and sugar edt bad ang revo\nevery description of Hollae Ware, | misate, and t",
+      "normalized": "[JONES & KING] […] [at thei]r store in Water-st., near the bridge, [offer] for sale a large and general assort[ment of] […] STOVES, [Stove Furni]ture, Pipe, Tin Ware, Shove[l]s a[nd tongs, gri]nd stones, potash and sugar [k]e[ttles, and] every description of Hollo[w] Ware.",
+      "locator": {
+        "artifact_role": "primary",
+        "issue_page": 3,
+        "column": 3,
+        "lines": [
+          2860,
+          2869
+        ],
+        "lines_of_claim": [
+          2860,
+          2861,
+          2862,
+          2863,
+          2864,
+          2865,
+          2866,
+          2867,
+          2868,
+          2869
+        ],
+        "interleaved": false
+      },
+      "business": {
+        "name": "Jones & King",
+        "trade": "stove and hollow ware",
+        "proprietors": [
+          "Wm. Jones",
+          "Byram King"
+        ],
+        "street": "Water Street",
+        "placement": {
+          "class": "relative",
+          "anchor": "the bridge, Water Street",
+          "offset_text": "r store in Water-st., near the bridge,"
+        }
+      },
+      "notes": "A SECOND, CLEANER WITNESS TO THE SAME PLACEMENT as 1834-09-10 claim c003 — 'in Water-st., near the bridge' — printed a week apart and reading identically where the earlier one was cut. The firm's stock reads like a hardware list for a town that is building: grind stones, shovels and tongs, potash and sugar kettles."
+    },
+    {
+      "id": "c004",
+      "kind": "business",
+      "reading": "transcription_mediated",
+      "quote": "WY GiBODS. fie ita)\n|, L. WILSON & CO. Chica\niow pening an extensive stock of dannerie At\nGaods, Groceries Hardware Crockery,\ncoes, wloths, sattinetts, cipcassians, eel\nnectings, ‘Tickings, Kc. Ready male A\nIL Bra\nfen, Sugar, pepper, spice. liquors, Ae, | 2! Monday\nspades, brass kettles, butts, screws, | Unadjusted c\night iron hinges, Ko, with the nec\nNAILS, and Widow Glace. at the offica\nt, next door to the “ci boot shoo knd Pe 5, 153\nre. Chicagy, Sept. Inst, 42 | tlw",
+      "normalized": "[NE]W G[O]ODS. [J]. L. WILSON & CO. [are] now [o]pening an extensive stock of [Dry] G[o]ods, Groceries, Hardware, Crockery, [cali]coes, [c]loths, sattinetts, c[ir]cassians, [flanne]l[s, sh]eetings, Tickings, &c. Ready ma[d]e […] [cof]fee[,] Sugar, pepper, spice, liquors, &c., […] spades, brass kettles, butts, screws, [wro]ught iron hinges, &c., with the ne[cessary] NAILS, and Wi[n]do[w] Gla[ss]. […] [Dearborn s]t., next door to the \"ci[ty]\" boot, shoe [a]nd [leathe]re [i.e. leather] [sto]re. Chicag[o], Sept. 1[7]st, [1834].",
+      "locator": {
+        "artifact_role": "primary",
+        "issue_page": 3,
+        "column": 3,
+        "lines": [
+          2767,
+          2779
+        ],
+        "lines_of_claim": [
+          2767,
+          2768,
+          2769,
+          2770,
+          2771,
+          2772,
+          2773,
+          2774,
+          2775,
+          2776,
+          2777,
+          2778,
+          2779
+        ],
+        "interleaved": false
+      },
+      "entities": [
+        {
+          "as_printed": ", L. WILSON & CO.",
+          "normalized": "J. L. Wilson",
+          "occupations": [
+            "merchant"
+          ],
+          "associated_places": [
+            "Dearborn Street"
+          ]
+        }
+      ],
+      "business": {
+        "name": "J. L. Wilson & Co.",
+        "trade": "dry goods, groceries, hardware and crockery",
+        "proprietors": [
+          "J. L. Wilson"
+        ],
+        "goods": [
+          "dry goods",
+          "groceries",
+          "hardware",
+          "crockery",
+          "calicoes",
+          "cloths",
+          "sattinetts",
+          "flannels",
+          "sheetings",
+          "tickings",
+          "ready made clothing",
+          "coffee",
+          "sugar",
+          "pepper",
+          "spice",
+          "liquors",
+          "spades",
+          "brass kettles",
+          "butts",
+          "screws",
+          "wrought iron hinges",
+          "nails",
+          "window glass"
+        ],
+        "street": "Dearborn Street",
+        "placement": {
+          "class": "relative",
+          "anchor": "the city boot, shoe and leather store, Dearborn Street",
+          "offset_text": "t, next door to the “ci boot shoo knd Pe 5, 153\nre.",
+          "note": "the street name is cut off at the column's left edge in this printing and survives whole in the 24 September one, which reads 'Dearborn st. next door to the \"cit[y]\" … leather store'"
+        }
+      },
+      "ad_copy_date": {
+        "verbatim": "Chicagy, Sept. Inst, 42",
+        "iso": "1834-09-17"
+      },
+      "notes": "A NEW DEARBORN STREET FRONTAGE, ANCHORED TO A BOOT AND SHOE STORE. The corpus already carries a boot-and-shoe-and-leather store on Dearborn Street from the American; this ad puts Wilson next door to it. THE NAME IS NOT MERGED with the gazetteer's existing 'Jno. Wilson & Co.' or 'L. Wilson & Co.' — three Wilson firms with different initials are three firms until something says otherwise, and T-0304 already carries the general question of merging firms by rule. The street name is supplied from the 24 September printing of the same advertisement and is bracketed here because this locator's own lines do not carry it."
+    },
+    {
+      "id": "c005",
+      "kind": "business",
+      "reading": "transcription_mediated",
+      "quote": "Peblic Auction. sal Sapsalt\nwi, i sould on the Dexpl\nen 5th Oct. | pois, and is\non ered ofone year, | the flourishie\n= he atore ocenpicd by ee\nER Pi. Carli, Exq. as a [iets 18 Bai\ncabs faney store, on tre 5\nNOfSGS:C; Hogat'a lot. Togethert ones\npatents ata fiberal credit; buildiag\non bo exa:nined at any time provious| MBEncks\nSept 17,1 34. MATT",
+      "normalized": "P[u]blic Auction. [Will be] sold on the […] [1]5th Oct[ober] […] on [a c]red[it] of one year, […] the store occupied by [P.] [S.] Carli, Esq. as a […] [gro]cery [and] fancy store, on […] [J.] S. C. Hogan's lot. Together [with its] […] [contents] at a liberal credit; buildi[n]g [and stock] […] [ca]n be exa[m]ined at any time previous[.] Sept. 17, 1[8]34. [J. BATES, JR., Auct'r.]",
+      "locator": {
+        "artifact_role": "primary",
+        "issue_page": 3,
+        "column": 3,
+        "lines": [
+          2788,
+          2799
+        ],
+        "lines_of_claim": [
+          2788,
+          2790,
+          2791,
+          2792,
+          2793,
+          2794,
+          2795,
+          2796,
+          2797,
+          2798,
+          2799
+        ],
+        "interleaved": true
+      },
+      "business": {
+        "name": "P. S. Carli, Eagle Tavern",
+        "trade": "tavern keeper, and dealer in chairs, harnesses and saddles",
+        "proprietors": [
+          "P. S. Carli"
+        ],
+        "placement": {
+          "class": "relative",
+          "anchor": "J. S. C. Hogan's lot",
+          "offset_text": "cabs faney store, on tre 5\nNOfSGS:C; Hogat'a lot."
+        }
+      },
+      "contradicts": true,
+      "notes": "A STOREFRONT SOLD OUT FROM UNDER ITS OCCUPIER, AND PLACED BY WHOSE LOT IT STANDS ON. Two things the reconstruction can use. (1) THE PLACEMENT IS BY LOT OWNERSHIP, not by street: 'the store occupied by P. S. Carli, Esq. as a grocery and fancy store, on J. S. C. Hogan's lot'. Hogan's own store is one door below the Post Office on South Water Street (1834-09-03, claim c013), so his lot is fixed and Carli's building stands on it — a TENANT BUILDING on another man's ground, which is a relation this project's parcel model has no way to express yet. (2) THE BUILDING AND THE STOCK ARE SOLD SEPARATELY and both may be examined beforehand, so the structure was a chattel that changed hands apart from the land. Marked `contradicts` under ruling 3: Carli's occupation of this store is ENDED by this notice, and any later reconstruction that stands a Carli grocery on Hogan's lot in 1835 has to answer it. It does NOT contradict Carli's Eagle Tavern, which is a different concern; the veto attaches to the claim, not to the man."
+    },
+    {
+      "id": "c006",
+      "kind": "person",
+      "reading": "transcription_mediated",
+      "quote": "town, on the 11th inst, of billions fe- | ditional ch\ninflamation in the bowel, Mr. James |, QENTIS\ney, aged 22 years anda few months, | bY De, P. '\na merchant of the city of New-York. P.S. Tx\nsung man was returning from Galena, | roomis in ea\naken sick about three weeks ogo. He! 49\ntelligent young man, and sprung from | ——-—--—\nble und wealthy family from Schuyl-\ny, Pa, May his soul rest in peace.— LL per",
+      "normalized": "[Died, in this] town, on the 11th inst., of bilious fe[ver and] inflam[m]ation in the bowel[s], Mr. James […] [uncertain: ey], aged 22 years and a few months, [formerly] a merchant of the city of New-York. [This yo]ung man was returning from Galena, [and was t]aken sick about three weeks ago. He [was an in]telligent young man, and sprung from [a respecta]ble and wealthy family from Schuyl[kill] […] [count]y, Pa. May his soul rest in peace.—",
+      "locator": {
+        "artifact_role": "primary",
+        "issue_page": 3,
+        "column": 3,
+        "lines": [
+          2751,
+          2759
+        ],
+        "lines_of_claim": [
+          2751,
+          2752,
+          2753,
+          2754,
+          2755,
+          2756,
+          2757,
+          2758,
+          2759
+        ],
+        "interleaved": false
+      },
+      "entities": [
+        {
+          "as_printed": "Mr. James",
+          "normalized": "Mr. James [uncertain: surname lost at the column edge]",
+          "role": "deceased",
+          "occupations": [
+            "merchant"
+          ]
+        }
+      ],
+      "notes": "A DEATH IN THE TOWN WITH A CAUSE AND A JOURNEY: bilious fever and inflammation of the bowels, in a New York merchant of twenty-two returning from Galena, taken sick three weeks before. The SURNAME IS DESTROYED — the column edge leaves only '…ey' — so the person entered here is a name this corpus cannot complete, and it is entered that way rather than guessed at. The route matters as much as the man: Galena to Chicago by land in 1834 is the lead-trade road, and the town was a stop on it."
+    },
+    {
+      "id": "c007",
+      "kind": "person",
+      "reading": "transcription_mediated",
+      "quote": "town on the 7th ult), Dropay in his| take iin:\nles Rollins, only son of Mr. John | became so ¢\nJr., aged 2 years and 10 months. | recouse fot\norfing sun went down at noon.” this notice 1",
+      "normalized": "[Died, in this] town on the 7th ult., [of] Dropsy in his [head, Char]les Rollins, only son of Mr. John [Rollins,] Jr., aged 2 years and 10 months. [\"The m]orning sun went down at noon.\"",
+      "locator": {
+        "artifact_role": "primary",
+        "issue_page": 3,
+        "column": 3,
+        "lines": [
+          2761,
+          2764
+        ],
+        "lines_of_claim": [
+          2761,
+          2762,
+          2763,
+          2764
+        ],
+        "interleaved": false
+      },
+      "entities": [
+        {
+          "as_printed": "les Rollins",
+          "normalized": "Charles Rollins",
+          "role": "deceased"
+        },
+        {
+          "as_printed": "Mr. John",
+          "normalized": "John Rollins, Jr.",
+          "role": "father of the deceased"
+        }
+      ],
+      "notes": "A child's death, and with it a household: John Rollins Jr. had an only son aged two years and ten months in Chicago in August 1834. The reconstruction's inferred households are archetypes with family bands taken from aggregate figures; a named child with an exact age is the kind of record that can eventually replace one."
+    },
+    {
+      "id": "c008",
+      "kind": "infrastructure",
+      "reading": "transcription_mediated",
+      "quote": "PROPOSALS, | Fro\nrrving the mail of the United Statea | & hale appl\nChicuga, ML to Green Bay, Mo it, { HL Navigat\nua wook, on horseback, fr throw | introduction «\nLit Jannary, 1925, will be received } deed axtracr\nartmént until the Lat Gay of Decem, | and bariness 9\neigsive, to be derided on tho day [iM Wwratevor ex\noporals must he seated, directed to | proxierily has\n¢ Department,” and endorsed “Pros | — huno count\ne route from Chicago to Greon Bay,”' | Gtably upplied\nvill be careful to rake this endoree- | high, one fuel\nW. T’. BARRY, sive and haxu\nPost Master General, | variety of so",
+      "normalized": "PROPOSALS, [for ca]rrying the mail of the United States [from] Chicago, Ill. to Green Bay, M[ich]. […] on[c]e a week, on horseback, f[or three years f]r[om] [the] 1st January, 183[5], will be received [at this Dep]artment until the 1st [d]ay of Decem[ber next, in]clusive, to be de[c]ided on the day [thereafter] […] [Pr]oposals must be sea[l]ed, directed to [the \"Post Offic]e Department,\" and endorsed \"Pro[posals for th]e route from Chicago to Green Bay,\" [and bidders] will be careful to [m]ake this endorse[ment.] W. T. BARRY, Post Master General,",
+      "locator": {
+        "artifact_role": "primary",
+        "issue_page": 3,
+        "column": 3,
+        "lines": [
+          2807,
+          2820
+        ],
+        "lines_of_claim": [
+          2807,
+          2808,
+          2809,
+          2810,
+          2811,
+          2812,
+          2813,
+          2815,
+          2816,
+          2817,
+          2818,
+          2819,
+          2820
+        ],
+        "interleaved": true
+      },
+      "entities": [
+        {
+          "as_printed": "W. T’. BARRY,",
+          "normalized": "W. T. Barry",
+          "role": "Postmaster General of the United States"
+        }
+      ],
+      "notes": "THE CHICAGO–GREEN BAY MAIL IS A WEEKLY HORSEBACK ROUTE, PUT OUT TO CONTRACT FOR THE THREE YEARS FROM 1 JANUARY 1835 — which is to say, THIS is the mail service the town has at the scene date. One rider a week north. For a reconstruction that has to decide what the post office building was doing and how much traffic its door took, the federal advertisement is a better answer than an inference from the town's size. It also fixes the northern road as a horse route and not a wagon one in 1835."
+    },
+    {
+      "id": "c009",
+      "kind": "business",
+      "reading": "transcription_mediated",
+      "quote": "TED immodeate'y two or three Intian Cc Ritts\nelry Manufacturers, to how Twill} site the Tren\nd, not better wages thanean be got} ho , ready 1\néin te countr free dee OW\nE J. UW, MULPORD. band moet libe",
+      "normalized": "[WAN]TED imm[e]d[i]ate[l]y two or three Indian [Jew]elry Manufacturers, to [w]ho[m] I will [give as goo]d, [i]f not better wages than can be got [any wher]e in t[h]e countr[y]. […] J. [H]. MUL[F]ORD.",
+      "locator": {
+        "artifact_role": "primary",
+        "issue_page": 3,
+        "column": 3,
+        "lines": [
+          2801,
+          2805
+        ],
+        "lines_of_claim": [
+          2801,
+          2802,
+          2803,
+          2804,
+          2805
+        ],
+        "interleaved": false
+      },
+      "business": {
+        "name": "J. H. Mulford",
+        "trade": "watches, clocks, jewelry, silver ware and fancy articles",
+        "proprietors": [
+          "J. H. Mulford"
+        ],
+        "goods": [
+          "Indian silver work"
+        ],
+        "placement": {
+          "class": "none",
+          "note": "the want advertisement gives no address"
+        }
+      },
+      "notes": "A CHICAGO SILVERSMITH HIRING TWO OR THREE MEN TO MAKE INDIAN SILVER WORK, AT TOP WAGES, IN SEPTEMBER 1834 — the month before the last great annuity payment at Chicago. The trade goods the treaties were paid in were being MANUFACTURED IN THE TOWN, not just forwarded through it, and Mulford's own standing advertisement lists 'Indian silver work manufactured' among his stock (1834-09-03, issue page 4). This is a workshop, not a counter, and the reconstruction has no craft interiors of this kind recorded anywhere yet."
+    }
+  ]
+}
