@@ -1,7 +1,7 @@
 ---
 id: T-0225
 title: The sward's drawn reach is measured off plants at two per cent coverage
-state: claimed
+state: done
 epic: META
 requested_by: loop
 seen: false
@@ -9,8 +9,8 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-08-27
-closed: null
-pr: null
+closed: 2026-08-28
+pr: 450
 claimed_by: run 8/28/2026, 4:18:27 AM CT
 blocked_on: null
 needs_bake: false
