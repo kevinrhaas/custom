@@ -1,4 +1,13 @@
 export const CHANGELOG = [ // newest first
+  { v: 303, title: 'Washington Street gets its plank walks, crossings and fences', kind: 'feature', ts: '2026-08-27T23:58:37.611Z', date: 'Aug 27, 2026, 6:58 PM CT',
+    items: [
+      'One more street south of the river is boarded. Washington now carries the same raised plank walk, board crossings at the corners and street-lining fences that South Water, Lake and Randolph have \u2014 seven block faces, and the walk laid town-wide goes from 2,468 m to 3,129 m.',
+      'It was refused yesterday, by a hair, and the hair turned out to be the wrong number. The street was measured against a quality ceiling that was lifted for one day and given back the same evening: the real shortfall was not 174 triangles but 49,442, on the middle of the three quality settings.',
+      'So the street was not bought by lifting that ceiling for a sixth time. It was bought by finding the middle setting doing something nobody had noticed: it drew every plank walk, fence, barrel, wharf deck and moored hull in Chicago at any distance at all, exactly as the full setting does, while the lightest setting had been stopping at 350 metres since August. Turning quality down drew less \u2014 but only on the bottom rung.',
+      'It now stops at 800 metres. At that range a fence pale is one pixel tall, and the check that compares two frames cell by cell cannot find a single count of difference between the town drawn whole and the town drawn with the cull on \u2014 at all five viewpoints the checks visit, on a desktop screen and a phone-sized one. Nothing you can see leaves; 68,772 triangles a frame do.',
+      'Not one ceiling moved. The full setting is untouched at every distance, which is what it is for.',
+      'Nothing here was placed by hand: the walk\u2019s line is the surveyed street centreline stepped out by half the platted street width, and where the ground is too wet, too uneven or already built on, the record says so instead.',
+    ] },
   { v: 302, title: 'Randolph Street gets its plank walks, crossings and fences', kind: 'feature', ts: '2026-08-27T23:11:50.233Z', date: 'Aug 27, 2026, 6:11 PM CT',
     items: [
       'Walk one block south of Lake Street and the ground under your feet changes. Randolph now has the same boarded walk the two river streets have had since August \u2014 a raised plank sidewalk at the lot line, board crossings over the roadway at the corners, and board fences standing behind the walk wherever a lot is improved but its building sits back from the street.',

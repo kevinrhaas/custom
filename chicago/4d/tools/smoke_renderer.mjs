@@ -3860,10 +3860,14 @@ for (const [label, viewport, touch] of [
       };
     });
     check(`${label}: the frontage layer lays all five records' walks and stands their posts`,
-      frontage.census?.records === 5 && frontage.census?.walks === 42
-        && frontage.census?.crossings === 28
-        && frontage.census?.posts === 15 && frontage.census?.fences === 26
-        && frontage.census?.refused === 74
+      // T-0241 laid Washington's seven block faces on top of Randolph's
+      // thirteen: 42 walks to 49, 28 crossings to 33, 26 fence runs to 35 and
+      // 74 refusals to 83. The post count does NOT move — Washington's
+      // frontages carry no named trade the hitching rule accepts.
+      frontage.census?.records === 5 && frontage.census?.walks === 49
+        && frontage.census?.crossings === 33
+        && frontage.census?.posts === 15 && frontage.census?.fences === 35
+        && frontage.census?.refused === 83
         && frontage.recordIds.join(',')
           === 'green_tree_frontage,sauganash_frontage,river_walk_frontage,'
             + 'lasalle_crossing_frontage,town_street_edge'
@@ -3927,7 +3931,10 @@ for (const [label, viewport, touch] of [
         && frontage.lettering === frontage.recordText
         && frontage.recordText === 'GREEN TREE'
         && frontage.textGrade === 'inferred'
-        && frontage.meshes === 53,
+        // 53 -> 61 with T-0241's Washington faces, for the reason stated above:
+        // this number moves with `EDGE_STREETS` because the walk is chunked one
+        // mesh per run and Washington laid eight more of them.
+        && frontage.meshes === 61,
       `"${frontage.lettering}" on ${frontage.letterVerts} vertices across `
       + `${frontage.meshes} mesh(es) (${frontage.names?.join(', ')}), record says `
       + `"${frontage.recordText}" graded ${frontage.textGrade}`);
@@ -4333,14 +4340,16 @@ for (const [label, viewport, touch] of [
     });
     // T-0240 RAISED EVERY FIGURE HERE by laying Randolph Street: 16 block faces
     // to 29, 1,297.3 m of walk to 2,468.3, 11 street fence runs to 26 and 96
-    // walking decks to 190. `faces` is an equality and the other three are
-    // floors, which is the same division as before — the face count is the
-    // scope statement and has to be exact, and a walk that shrank under a floor
-    // would be a march quietly refusing ground it used to lay.
+    // walking decks to 190. T-0241 raised them again with Washington's seven
+    // faces: 29 to 36, 2,468.3 m to 3,129.1, 26 fence runs to 35 and 190 decks
+    // to 239. `faces` is an equality and the other three are floors, which is
+    // the same division as before — the face count is the scope statement and
+    // has to be exact, and a walk that shrank under a floor would be a march
+    // quietly refusing ground it used to lay.
     check(`${label}: the street edge is generated from the plat, not placed on one block`,
       edge.hasRecord && edge.cardId === 'town_street_edge'
-        && edge.faces === 29 && edge.walkM >= 2400 && edge.fences >= 25
-        && edge.decks >= 185,
+        && edge.faces === 36 && edge.walkM >= 3050 && edge.fences >= 34
+        && edge.decks >= 232,
       `record ${edge.hasRecord}, card ${edge.cardId}, ${edge.faces} block face(s), `
       + `${edge.walkM} m of walk, ${edge.fences} fence run(s), `
       + `${edge.decks} walking deck(s) registered`);
