@@ -12,6 +12,68 @@
       "passed": 37,
       "failed": 0,
       "failures": [],
+      "wallSeconds": 97,
+      "takenAt": "2026-08-28T10:04:25.120Z",
+      "ref": "steward/t-0019-lattice-ceiling-declared",
+      "commit": "d2f47f0de3a5",
+      "devCommit": "eae025287691",
+      "treeHash": "sha256:fe3a112b281a9a08",
+      "treeDirty": false,
+      "changelogHash": "sha256:7802695104a8bf65",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          4.5,
+          3.3,
+          2
+        ]
+      },
+      "source": "/tmp/s2.m8.log"
+    },
+    {
+      "viewport": "desktop",
+      "stage": "8",
+      "parts": [
+        8
+      ],
+      "verdict": "pass",
+      "target": "published",
+      "passed": 37,
+      "failed": 0,
+      "failures": [],
+      "wallSeconds": 173,
+      "takenAt": "2026-08-28T10:04:25.036Z",
+      "ref": "steward/t-0019-lattice-ceiling-declared",
+      "commit": "d2f47f0de3a5",
+      "devCommit": "eae025287691",
+      "treeHash": "sha256:fe3a112b281a9a08",
+      "treeDirty": false,
+      "changelogHash": "sha256:7802695104a8bf65",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          4.5,
+          3.3,
+          2
+        ]
+      },
+      "source": "/tmp/s2.d8.log"
+    },
+    {
+      "viewport": "mobile",
+      "stage": "8",
+      "parts": [
+        8
+      ],
+      "verdict": "pass",
+      "target": "published",
+      "passed": 37,
+      "failed": 0,
+      "failures": [],
       "wallSeconds": 98,
       "takenAt": "2026-08-28T09:52:00.763Z",
       "ref": "steward/t-0186-liberties-dupes",
