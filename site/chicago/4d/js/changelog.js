@@ -1,4 +1,13 @@
 export const CHANGELOG = [ // newest first
+  { v: 328, title: 'What the flower grid cannot draw is written down', kind: 'chore', ts: '2026-08-28T10:05:15.605Z', date: 'Aug 28, 2026, 5:05 AM CT',
+    items: [
+      'Nothing you can see changed today. The flowers in this reconstruction are planted on a grid, and a grid square holds one plant. A square is 2.89 square metres, so the most any place in the town can be given is about a third of a flowering plant per square metre \u2014 however thickly its own records say it grew.',
+      'Nine of the ten plant communities ask for more than that. The dense forest west of town is the worst: its records add up to 66 flowering plants a square metre, and it can be given 0.35. It draws half a per cent of what the research says stood there. The marsh draws 1.6 per cent, the settled blocks 2.9, the riverbank timber 9. Only the sand prairie fits inside the grid.',
+      'None of that was visible from outside the code that plants them. A community sitting hard against the ceiling and one tuned comfortably below it printed the same number, so the shortfall could only be found by deriving it. It has quietly grown twice on a green build \u2014 from four communities to six when a unit mistake was corrected, and from six to nine yesterday, when the flowers began to be dealt at the top of each record\u2019s range instead of its middle.',
+      'The project had been carrying the figure of six, taken at the midpoints. It is nine, and here are the numbers.',
+      'The debt is now a file rather than an inference, and the plant census refuses to let it drift: a community joining the ceiling, one leaving it, or a record whose density moves fails the check until the list is re-made. It was shown failing all three ways before it was trusted.',
+      'It is not fixed, and that is a decision. More flowers means more geometry in exactly the places already carrying the most, and this town is over its triangle budget as this is written. The ways out stay open, and they now have a price written against them.',
+    ] },
   { v: 327, title: 'The check on how far the grass reaches was reading invisible plants', kind: 'chore', ts: '2026-08-28T09:57:50.231Z', date: 'Aug 28, 2026, 4:57 AM CT',
     items: [
       'Nothing you can see changed today. The grass and flowers around you are drawn out to a set distance and then stop, and a check measures where they stop by looking in sixteen directions and asking how far the furthest plant you can actually see stands in each. It was asking the wrong question.',
