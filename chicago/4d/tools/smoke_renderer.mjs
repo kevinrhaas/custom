@@ -8649,6 +8649,36 @@ for (const [label, viewport, touch] of [
 
       const BINS = 16;
       const HALF = 30 * Math.PI / 180;
+      // T-0225 — WHAT COUNTS AS DRAWN, and it is the screen door's number
+      // rather than a small one.
+      //
+      // This read `fadeAt(...) > 0.02`. `fadeAt` is COVERAGE since T-0035: the
+      // alpha the fragment program resolves through the ordered 4x4 Bayer
+      // matrix in `plantMaterial` — `fract(chiBayer4(gl_FragCoord.xy) +
+      // vChiDither) >= vChiFade` discards. That matrix has SIXTEEN levels, at
+      // (v + 0.5)/16, and `vChiDither` slides the whole set by a per-instance
+      // phase. So over a 4x4 tile the surviving pixels number floor(16F) or
+      // ceil(16F) and nothing else, and BELOW F = 1/16 that is 0 or 1 — which
+      // of the two being decided by the instance's dither phase, a number this
+      // side of the GPU cannot see at all.
+      //
+      // At F = 0.02 that is one pixel in fifty kept, and only for the 32 % of
+      // phases that keep any: the reading called a plant DRAWN that renders as
+      // nothing whatever in two instances out of three. The boundary it
+      // reported was therefore the radius at which the placer stopped placing,
+      // which `plantableAt` and the lattice inset already guarantee.
+      //
+      // 1/16 is the smallest threshold that fixes it, and it is the screen
+      // door's own quantum rather than a taste: it is exactly where "drawn"
+      // stops being a property of the instance's dither phase and becomes a
+      // property of its coverage. At or above it every instance keeps at least
+      // one pixel in every 4x4 tile it covers, whatever phase it drew.
+      const SEEN = 1 / 16;
+      // The old threshold, still read, because the acceptance asks this check
+      // to print the before and the after side by side rather than leave the
+      // size of the correction to a re-run with an edited gate (T-0187's `show`
+      // flag is here for the same reason).
+      const FAINT = 0.02;
       const out = {};
       for (const [name, layer] of Object.entries(SETS)) {
         const mesh = a.flora.group.getObjectByName(name);
@@ -8656,6 +8686,7 @@ for (const [label, viewport, touch] of [
         const ring = mesh?.geometry.getAttribute('aChiRing')?.array;
         const r = a.flora.rings.layers[layer];
         const bins = new Array(BINS).fill(null);
+        const faint = new Array(BINS).fill(null);
         let ringLo = Infinity;
         let ringHi = -Infinity;
         for (let i = 0; m && ring && i < mesh.count; i++) {
@@ -8677,24 +8708,40 @@ for (const [label, viewport, touch] of [
           // mid ring's inner boundary is spread per slot since T-0093, and the
           // outer radius alone would have `fadeAt` answer off the layer's
           // nominal inner edge.
-          if (a.flora.fadeAt(name, d, [ring[i * 4], ring[i * 4 + 1],
-            ring[i * 4 + 2], ring[i * 4 + 3]]) <= 0.02) continue;
+          const f = a.flora.fadeAt(name, d, [ring[i * 4], ring[i * 4 + 1],
+            ring[i * 4 + 2], ring[i * 4 + 3]]);
+          if (f <= FAINT) continue;
           const b = Math.min(BINS - 1, Math.floor((da + HALF) / (2 * HALF / BINS)));
+          if (!faint[b] || d > faint[b].d) faint[b] = { d, y };
+          if (f < SEEN) continue;
           if (!bins[b] || d > bins[b].d) bins[b] = { d, y };
         }
-        const used = bins.filter(Boolean);
-        const rows = used.map((b) => rowOf(b.d, b.y));
-        const reach = used.map((b) => b.d);
+        const stat = (list) => {
+          const used = list.filter(Boolean);
+          const rows = used.map((b) => rowOf(b.d, b.y));
+          const reach = used.map((b) => b.d);
+          return {
+            bins: used.length,
+            spreadPx: rows.length ? Math.max(...rows) - Math.min(...rows) : 0,
+            minReach: reach.length ? Math.min(...reach) : 0,
+            maxReach: reach.length ? Math.max(...reach) : 0,
+            meanReach: reach.length ? reach.reduce((s, v) => s + v, 0) / reach.length : 0,
+          };
+        };
         out[layer] = {
-          bins: used.length,
-          spreadPx: rows.length ? Math.max(...rows) - Math.min(...rows) : 0,
-          minReach: reach.length ? Math.min(...reach) : 0,
-          maxReach: reach.length ? Math.max(...reach) : 0,
-          meanReach: reach.length ? reach.reduce((s, v) => s + v, 0) / reach.length : 0,
+          ...stat(bins),
+          faint: stat(faint),
           ringLo: Number.isFinite(ringLo) ? ringLo : 0,
           ringHi: Number.isFinite(ringHi) ? ringHi : 0,
           nominal: r.fade[0],
           fringe: r.fringe ?? 0,
+          // The ramp the threshold is read on, so the bars below can carry the
+          // inset it costs as arithmetic instead of as a measured constant.
+          // `HARD` on a boundary handed over by density (T-0093), which is why
+          // this is read rather than taken from TUNE.
+          band: r.fade[1],
+          seen: SEEN,
+          faintAt: FAINT,
         };
       }
       // The placer's own answer, so the gate is not a second copy of the noise:
@@ -8722,23 +8769,48 @@ for (const [label, viewport, touch] of [
       // A boundary the eye reads as a line is one that holds the same row all
       // the way across; four pixels of drawing buffer is a modest floor, and
       // the measured figure is several times it at both viewports.
+      // T-0225. THE INSET THE THRESHOLD COSTS, as arithmetic and not as a
+      // constant somebody measured once.
+      //
+      // The bars below are stated against the PLACED boundary — `nominal` plus
+      // or minus the slot's own `fringe` — and `minReach`/`meanReach` now read
+      // the DRAWN boundary at coverage `seen`. The ramp is linear
+      // (`flora.fadeOf`: `clamp01((outer - d) / band)`), so a slot reaches
+      // coverage F at `outer - F x band` and the two boundaries differ by
+      // exactly `band x seen`: 0.44 m on the 7.0 m desktop band, 0.10 m on the
+      // phone's 1.6 m one. That term is a property of the STATISTIC, so it
+      // belongs in the bar; leaving it out would fail a sward for being read
+      // more honestly. It is not slack for the sward to spend — everything
+      // else about the bars is unchanged, and if a viewport lands under one
+      // even with the inset carried, that is a finding about the sward and
+      // gets its own ticket rather than a wider bar.
+      const inset = s.band * s.seen;
       check(`${label}: the sward's outer boundary is not a constant screen row`,
         s.bins >= 12 && s.spreadPx >= 4,
         `${s.bins}/16 bearing bins from E ${seam.station.e} N ${seam.station.n}, boundary rows `
         + `spread ${s.spreadPx.toFixed(1)} px, reach ${s.minReach.toFixed(2)}`
-        + `-${s.maxReach.toFixed(2)} m`, true);
+        + `-${s.maxReach.toFixed(2)} m at ${(s.seen * 100).toFixed(2)}% coverage `
+        + `(at the old ${(s.faintAt * 100).toFixed(0)}%: ${s.faint.bins}/16 bins, `
+        + `spread ${s.faint.spreadPx.toFixed(1)} px, reach ${s.faint.minReach.toFixed(2)}`
+        + `-${s.faint.maxReach.toFixed(2)} m)`, true);
       // ...and it is the fringe doing it. A hole in the sward would satisfy the
       // check above and would be a worse defect than the seam, so no bearing
       // may fall short of what the fringe alone can take off the ring, and the
       // raggedness may not be bought by shrinking the ring on average.
       check(`${label}: the boundary's variation is the fringe, not a hole in the field`,
         s.bins >= 12
-        && s.minReach >= s.nominal - s.fringe - 1.2
-        && s.meanReach >= s.nominal - 0.5 * s.fringe,
+        && s.minReach >= s.nominal - s.fringe - 1.2 - inset
+        && s.meanReach >= s.nominal - 0.5 * s.fringe - inset,
         `reach ${s.minReach.toFixed(2)}-${s.maxReach.toFixed(2)} m, mean `
-        + `${s.meanReach.toFixed(2)} m against a nominal ${s.nominal.toFixed(2)} `
-        + `+/- ${s.fringe.toFixed(2)} m (bars: min >= ${(s.nominal - s.fringe - 1.2).toFixed(2)}, `
-        + `mean >= ${(s.nominal - 0.5 * s.fringe).toFixed(2)})`, true);
+        + `${s.meanReach.toFixed(2)} m at ${(s.seen * 100).toFixed(2)}% coverage `
+        + `against a nominal ${s.nominal.toFixed(2)} `
+        + `+/- ${s.fringe.toFixed(2)} m (bars: min >= `
+        + `${(s.nominal - s.fringe - 1.2 - inset).toFixed(2)}, `
+        + `mean >= ${(s.nominal - 0.5 * s.fringe - inset).toFixed(2)}, `
+        + `both carrying the ${inset.toFixed(2)} m the ${(s.seen * 100).toFixed(2)}% `
+        + `threshold insets a ${s.band.toFixed(2)} m ramp by); at the old `
+        + `${(s.faintAt * 100).toFixed(0)}%: ${s.faint.minReach.toFixed(2)}-`
+        + `${s.faint.maxReach.toFixed(2)} m, mean ${s.faint.meanReach.toFixed(2)} m`, true);
       // The forb ring ends within a metre of the mid ring, so if only the grass
       // were fringed the flowers would go on drawing the line — and a flower is
       // the brightest thing in the field. It is measured on its RINGS rather
