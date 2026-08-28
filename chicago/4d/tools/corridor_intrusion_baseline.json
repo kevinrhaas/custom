@@ -1,5 +1,5 @@
 {
-  "$note": "ROADMAP K30(a). Every committed structure phase whose footprint laps a platted street corridor, with the depth in metres from the corridor's own edge. DERIVED \u2014 regenerate with tools/measure_corridor_intrusion.py --write-baseline, and only ever to record a repair. This file is a RATCHET: tools/check.sh fails on an intruder that is not here and on a listed one whose depth has grown. It is NOT an allowance \u2014 K30(b) owns the fix, and these are the numbers it takes as its baseline. Never move a documented building to make an entry smaller: a position with a source outranks a corridor this project derived.",
+  "$note": "ROADMAP K30(a). Every committed structure phase whose footprint laps a platted street corridor, with the depth in metres from the corridor's own edge. DERIVED \u2014 regenerate with tools/measure_corridor_intrusion.py --write-baseline, and only ever to record a repair. This file is a RATCHET: tools/check.sh fails on an intruder that is not here and on a listed one whose depth has grown. It is NOT an allowance \u2014 K30(b) owns the fix, and these are the numbers it takes as its baseline. Never move a documented building to make an entry smaller: a position with a source outranks a corridor this project derived. `refused` is the other half of that sentence (T-0195): a lap whose only escape would move a source-argued coordinate is refused IN WRITING, per record, here and in the record's own position.note \u2014 not tolerated by silence. A refusal may not outlive the lap it refuses; the gate says so and --write-baseline drops the stale ones.",
   "corridors": 13,
   "lapping": {
     "bates_auction_room:frame_1834": {
@@ -293,6 +293,38 @@
       "structure": "western_hotel"
     }
   },
-  "measured": "2026-08-16",
-  "placed_phases": 349
+  "measured": "2026-08-27",
+  "placed_phases": 349,
+  "refused": {
+    "harmon_loomis_store:frame_1833": {
+      "depth_m": 0.21,
+      "escape_bearing_deg": 90.36,
+      "escape_m": 0.213,
+      "escape_vs_facade": "along",
+      "on": "2026-08-27",
+      "street": "clark",
+      "ticket": "T-0195",
+      "why": "T-0195. THE ONLY TRANSLATION THAT CLEARS THIS CORRIDOR RUNS SIDEWAYS ACROSS THE RECORD'S OWN FRONT, so it moves where along South Water Street the building stands \u2014 and the corner is the one part of this placement a source argues. The setback was re-derived against this project's committed South Water centreline by T-0127's method (T-0198, T-0199); the cross-street half of the same offset was left on the OpenStreetMap junction centre, and this residual IS that disagreement. It is refused rather than repaired because the repair would spend a source-argued coordinate on a derived number two orders of magnitude below the placement's own working uncertainty (about 20 m, on a datum with 17.5 m RMS). Argued in full in the record's own position.note; reproduce the geometry with tools/measure_corridor_intrusion.py --escape."
+    },
+    "madore_beaubien_house:log_1831": {
+      "depth_m": 0.2,
+      "escape_bearing_deg": 270.36,
+      "escape_m": 0.202,
+      "escape_vs_facade": "along",
+      "on": "2026-08-27",
+      "street": "dearborn",
+      "ticket": "T-0195",
+      "why": "T-0195. THE ONLY TRANSLATION THAT CLEARS THIS CORRIDOR RUNS SIDEWAYS ACROSS THE RECORD'S OWN FRONT, so it moves where along South Water Street the building stands \u2014 and the corner is the one part of this placement a source argues. The setback was re-derived against this project's committed South Water centreline by T-0127's method (T-0198, T-0199); the cross-street half of the same offset was left on the OpenStreetMap junction centre, and this residual IS that disagreement. It is refused rather than repaired because the repair would spend a source-argued coordinate on a derived number two orders of magnitude below the placement's own working uncertainty (about 20 m, on a datum with 17.5 m RMS). Argued in full in the record's own position.note; reproduce the geometry with tools/measure_corridor_intrusion.py --escape."
+    },
+    "peck_store:frame_1833": {
+      "depth_m": 0.16,
+      "escape_bearing_deg": 270.34,
+      "escape_m": 0.16,
+      "escape_vs_facade": "along",
+      "on": "2026-08-27",
+      "street": "lasalle",
+      "ticket": "T-0195",
+      "why": "T-0195. THE ONLY TRANSLATION THAT CLEARS THIS CORRIDOR RUNS SIDEWAYS ACROSS THE RECORD'S OWN FRONT, so it moves where along South Water Street the building stands \u2014 and the corner is the one part of this placement a source argues. The setback was re-derived against this project's committed South Water centreline by T-0127's method (T-0198, T-0199); the cross-street half of the same offset was left on the OpenStreetMap junction centre, and this residual IS that disagreement. It is refused rather than repaired because the repair would spend a source-argued coordinate on a derived number two orders of magnitude below the placement's own working uncertainty (about 20 m, on a datum with 17.5 m RMS). Argued in full in the record's own position.note; reproduce the geometry with tools/measure_corridor_intrusion.py --escape."
+    }
+  }
 }

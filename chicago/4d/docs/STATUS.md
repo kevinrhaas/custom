@@ -101,6 +101,66 @@ Mobile's own ceiling sweep is inside stage `3-4`, which passed 114/0. **No ceili
 this**, and the balanced margin of 5,952 is worth reading beside T-0241: Washington Street still
 does not fit, and 31 m of Lake Street walk did not make it fit.
 
+## Shipped 2026-08-27 — T-0213: the trade families are weighted onto the business front
+
+The surviving half of ROADMAP **K29**. T-0022 refuted the other half — the schedule may deal log
+cabins to commercial frontage, and the fault there was an arrangement rule, not the programme —
+and it left this one standing: the 662-roof schedule apportions families **by district** and has
+no notion of a street, so a block dealt a South Water face was no likelier to be dealt a store, a
+warehouse or a workshop than a block two streets back.
+
+**The measurement, and it is the reason this is a term rather than a preference.** The share of
+DOCUMENTED buildings carrying a trade family (`C` stores, `F` warehouses, `W` workshops) is
+**monotone in the committed street hierarchy** — the `traffic` field on `data/streets/1835.json`,
+sourced there to Andreas by way of `chicagology_prefire233`. 68 records, joined to the committed
+`likely_family` reconciliation and assigned to the street each footprint stands nearest by the
+same census `tools/measure_frontage_fabric.py` already ran for T-0022:
+
+| street class | documented buildings | trade | share |
+|---|---:|---:|---:|
+| `principal` | 27 | 21 | **0.7778** |
+| `ordinary` | 22 | 10 | **0.4545** |
+| `light` | 19 | 0 | **0.0000** |
+
+The ordering survives the obvious sensitivity: add the lodging families and it reads 0.8889 /
+0.6364 / 0.0526. Nobody had ever asked the street list this question; `--trade` prints both
+tables so the choice of letters can be checked rather than taken on trust.
+
+**Research layer ONLY**, which is what makes it a measurement instead of a ratchet. Weighting the
+schedule by what the schedule invented would be the programme grading its own homework, and the
+share would climb with every block built.
+
+**What shipped.** A block's weight is the mean of its own four faces' class shares, so
+`blk_south_water_franklin` reads 0.6162 and `blk_randolph_market` reads 0.4217 without anybody
+typing a number for either — and re-classing a street on `data/streets/1835.json` re-weights every
+block on it in the same commit. `tools/reconcile_665.py` then re-deals each district's principal
+families across its platted blocks at those weights, by Hamilton, clipped to the principal slots
+each block actually has.
+
+**It is a PERMUTATION, and that is asserted rather than trusted.** Three checks run on every
+`--check`: the multiset of families over a district's blocks is identical before and after, every
+block keeps the exact principal roof count the district deal gave it, and no roof is left unplaced.
+So no total moves — not the 662, not a district, not a family, not any block's roof count or its
+ancillary mix. It changes only *which* block gets *which*.
+
+**Seven of the south's platted blocks changed deal.** `blk_south_water_franklin` and
+`blk_south_water_lasalle` held twelve of the business front's roofs between them and not one
+store, warehouse or workshop; each now takes one. `blk_south_water_market` — three principal
+faces of four, the highest weight on the grid at 0.6970 — goes from four trade roofs to five.
+
+**Nothing you can see changed today**, and the visible-progress rule is answered by naming what
+this precedes rather than by dressing it up: every future block build reads this schedule, and a
+block once built is a committed record. T-0028's next anonymous block and the four open South
+Water and Lake units are the parcels it stands in front of.
+
+**Verified in the foreground on the branch.** `./tools/check.sh` PASS — *which is the dev gate*
+(`docs/PIPELINE.md`: "the dev gate is `check.sh` and nothing else"), and it re-runs
+`reconcile_665.py --check`, so the permutation assertions above are gate-carried. Smoke, published
+mirror: **mobile 390×780 stage 7-9** 151 passed / 1 failed, **desktop 1280×800 stage 8** 37 passed
+/ 0 failed (the stage that reads the changelog — the only renderer-facing file this branch
+touches). The one mobile red is **T-0243**, inherited: reproduced identically in a clean
+`origin/dev` worktree in this same run, 151/1 with the same single failure. No structure record,
+no GLB, no renderer module and no scene data moved, so no bake.
 
 ## Shipped 2026-08-27 — T-0147: the `light` ceiling comes back DOWN, 1,050,000 → 785,000
 
