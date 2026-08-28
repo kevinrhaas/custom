@@ -1,7 +1,7 @@
 ---
 id: T-0292
 title: Reading the Democrat, October 1834: Vol I Nos 44-48
-state: claimed
+state: done
 epic: PAPERS
 requested_by: owner
 seen: false
@@ -9,8 +9,8 @@ effort: M
 legacy_id: null
 parent: T-0259
 opened: 2026-08-28
-closed: null
-pr: null
+closed: 2026-08-28
+pr: 476
 claimed_by: run 8/28/2026, 12:49:13 PM CT
 blocked_on: null
 needs_bake: false
