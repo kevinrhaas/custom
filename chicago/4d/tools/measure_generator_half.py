@@ -72,13 +72,18 @@ RENDERER_JS = RENDERERS / "web" / "js"
 # both recipes one comment line in it re-staled 349 of 349. It is out of the hash
 # now, `generators/code_inputs.py` says why, and a zero here is what keeps it out:
 # put it back and this row reads 349.
+#
+# 349 -> 350 and 347 -> 348 on 2026-08-28: T-0254 added one structure to the town,
+# north_water_slough_crossing. One more committed asset, one more mesh that a change to
+# the shared generator modules or to build.py would re-stale; the terrain and pier_crib
+# reaches are untouched because the crossing is neither.
 STATED = {
-    "assets": 349,
+    "assets": 350,
     "restales": {
-        "generators/common/*.py": 349,
+        "generators/common/*.py": 350,
         "generators/common/__init__.py": 0,
         "generators/common/phases.py": 0,
-        "generators/build.py": 347,
+        "generators/build.py": 348,
         "generators/terrain_gen.py": 2,
         "generators/archetypes/pier_crib.py": 2,
     },

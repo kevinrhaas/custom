@@ -1,5 +1,65 @@
 # STATUS
 
+## Shipped 2026-08-28 — T-0254: the North Water Street slough crossing, and the street west of it
+
+**T-0226 left the North Division's river front with no roadway west of E +240 and said so.** It had
+re-derived North Water Street from the committed north bank after finding 477.4 m of the old line
+inside the water mask, and it stopped the derived line on the east shoulder of the attested
+north-side slough because `renderers/web/js/streets.js` may not paint a ford — R-BUG4. The reach
+west of that, to the North Branch, waited on a crossing record. This is it.
+
+**The crossing.** `north_water_slough_crossing`, `bridge_timber`, a 12 m deck 3 m wide laid square
+at local **E +183 .. +195, N +156 .. +159**. Reconstructed throughout; nothing records it. Measured
+by `tools/measure_slough_crossing.py`, which now reads all three of the town's crossings:
+
+| | open water under the deck | dry seats | walk | clearance |
+|---|---|---|---|---|
+| Slough Log Bridge, Water St | 3.30 m of 8.00 | 2.35 / 2.35 m | 0.83 m | 0.50 m |
+| La Salle Slough Crossing | 5.55 m of 12.0 | 3.10 / 3.35 m | 0.84 m | 0.50 m |
+| **North Water St Crossing** | **6.65 m of 12.0 (55 %)** | **2.60 / 2.75 m** | **0.68 m** | **0.35 m** |
+
+**The clearance is read off the abutments, not borrowed.** The committed heightfield stands at
++0.63 m where the deck's west end lands and +0.73 m where its east end does, over a 0.00 m water
+surface, so a walk surface at 0.68 m lies within 0.05 m of both banks. That is why this crossing
+needs neither the graded cut its eldest sibling needed nor the fill the La Salle one did: no
+approach entry was added to `terrain_spec.json` and none is wanted. Its two siblings' 0.50 m came
+from the hydrology dossier's conjectural thalweg; this one's came from ground that can be measured.
+
+**Where the deck goes, and why not on the old street line.** This slough is a **68.5 m funnel**
+where it meets the main stem, narrowing to 32.4 m at N +130 and 16.2 m at N +140, with a **2.5 m
+sill 0.18 m deep** at N +147.5–150 and a steady **5–7 m channel** above it. A crossing on a straight
+river-front line would span 20 m of water 1.54 m deep — a river bridge, and the town built two of
+those and remembered both by name. So the street goes round the head of the bay, as a bank road
+does, and crosses where the stream is six metres wide.
+
+**The street.** `tools/derive_north_water.py` now derives TWO reaches with the structure between
+them — east from the deck at E +195 to E +830, west from E +183 to the North Branch at E −30 — and
+each reach's smoothing window is clamped inside itself, because at E +190 the slough and the funnel
+are one water run reaching N +165 and a window that saw it would push the street 20 m up the slough
+instead of over it. **One bend stands in the water on purpose**, at the deck's midpoint [189, 157.5]:
+R-BUG4 drops a panel whose centreline endpoint is wet, so the two panels the deck replaces are
+dropped and the crossing carries the street. Dry bends at each shoulder would have painted a 6.65 m
+ford in silence — the fault T-0254 was filed to avoid. `--gate` now asserts exactly one wet bend and
+that it is the deck's.
+
+**What the west reach costs, and it is not hidden.** The tool measures it:
+
+    clearance from the waterline, northward:      12.05 m .. 41.95 m
+    clearance from the waterline, perpendicular:  12.00 m .. 41.50 m
+
+against a 12.192 m setback. The 41.5 m is **one 15 m stretch at the base of Wolf Point**, where the
+bank falls 45 m of northing in 35 m of easting and the derivation's running maximum — which holds
+the street north of every bank point within 15 m of it — lags the turn. The rule is doing what it
+says. `SMOOTH_M` is shared with the committed east reach, so tuning it here would re-derive 590 m of
+street nobody asked to move: filed as **T-0307** with three routes and an acceptance clause, not
+tuned in this PR.
+
+**What this is worth in the scene.** 250 m of roadway that has never been drawn, on the one division
+whose whole waterfront street was missing, plus a third crossing beside the two that stand.
+**What a reader should doubt first**, and the record says so in its own words: whether North Water
+Street reached west of the slough in 1835 at all. Nothing places a building on that side of it and
+the North Division's initial parcel puts its roofs north of N +105. If that street did not run, this
+crossing did not stand. Recorded as **L202**.
 ## Shipped 2026-08-28 — T-0156: the flicker instrument stops overstating what it found
 
 **A column called INTERIOR was quoted for six days as *the layer fighting itself*, and it never
