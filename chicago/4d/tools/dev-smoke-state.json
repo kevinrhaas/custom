@@ -3,6 +3,133 @@
   "readings": [
     {
       "viewport": "mobile",
+      "stage": "7",
+      "parts": [
+        7
+      ],
+      "verdict": "fail",
+      "target": "published",
+      "passed": 44,
+      "failed": 1,
+      "failures": [
+        "mobile 390x780: every tree drawn stands at its own station — 0 of 0 vertices further than 24 m from any of 563 stations across 0 merged meshes; worst 0 m"
+      ],
+      "wallSeconds": 355,
+      "takenAt": "2026-08-28T11:36:09.670Z",
+      "ref": "steward/lattice-ceiling-card",
+      "commit": "ddc297170938",
+      "devCommit": "9b27074aee1d",
+      "treeHash": "sha256:d75c711655ecaa12",
+      "treeDirty": false,
+      "changelogHash": "sha256:2ba09b8b92b66bf9",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          3.8,
+          4.6,
+          4.4
+        ]
+      },
+      "source": "/tmp/n_m7.log"
+    },
+    {
+      "viewport": "mobile",
+      "stage": "8-9",
+      "parts": [
+        8,
+        9
+      ],
+      "verdict": "pass",
+      "target": "published",
+      "passed": 119,
+      "failed": 0,
+      "failures": [],
+      "wallSeconds": 238,
+      "takenAt": "2026-08-28T11:36:09.586Z",
+      "ref": "steward/lattice-ceiling-card",
+      "commit": "ddc297170938",
+      "devCommit": "9b27074aee1d",
+      "treeHash": "sha256:d75c711655ecaa12",
+      "treeDirty": false,
+      "changelogHash": "sha256:2ba09b8b92b66bf9",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          3.8,
+          4.6,
+          4.4
+        ]
+      },
+      "source": "/tmp/n_m89.log"
+    },
+    {
+      "viewport": "desktop",
+      "stage": "8",
+      "parts": [
+        8
+      ],
+      "verdict": "pass",
+      "target": "published",
+      "passed": 37,
+      "failed": 0,
+      "failures": [],
+      "wallSeconds": 172,
+      "takenAt": "2026-08-28T11:36:09.503Z",
+      "ref": "steward/lattice-ceiling-card",
+      "commit": "ddc297170938",
+      "devCommit": "9b27074aee1d",
+      "treeHash": "sha256:d75c711655ecaa12",
+      "treeDirty": false,
+      "changelogHash": "sha256:2ba09b8b92b66bf9",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          3.8,
+          4.6,
+          4.4
+        ]
+      },
+      "source": "/tmp/n_d8.log"
+    },
+    {
+      "viewport": "desktop",
+      "stage": "9",
+      "parts": [
+        9
+      ],
+      "verdict": "pass",
+      "target": "published",
+      "passed": 91,
+      "failed": 0,
+      "failures": [],
+      "wallSeconds": 288,
+      "takenAt": "2026-08-28T11:36:09.419Z",
+      "ref": "steward/lattice-ceiling-card",
+      "commit": "ddc297170938",
+      "devCommit": "9b27074aee1d",
+      "treeHash": "sha256:d75c711655ecaa12",
+      "treeDirty": false,
+      "changelogHash": "sha256:2ba09b8b92b66bf9",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          3.8,
+          4.6,
+          4.4
+        ]
+      },
+      "source": "/tmp/n_d9.log"
+    },
+    {
+      "viewport": "mobile",
       "stage": "2",
       "parts": [
         2
