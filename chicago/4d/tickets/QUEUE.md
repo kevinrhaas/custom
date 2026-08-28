@@ -36,7 +36,6 @@ T-0192 — The cross streets' own frontages get the street edge
 T-0219 — Finish the heightfield SOUTH to Madison Street, the plat's last tier
 
 # --- THE FORT — visible, mostly small
-T-0099 — The bank track from the fort's north gate down to the water
 T-0137 — The fort's stacks are still roof-coloured, and its 1816 date fits neither chimney answer
 T-0096 — Did the second Fort Dearborn carry a flagstaff, and can anything but a retrospective plate say so
 T-0185 — The plate draws the fort's pickets three times coarser than the model builds them
@@ -116,3 +115,4 @@ T-0247 — The light tier draws 83 calls against the 80-call floor restored yest
 T-0252 — Decide once whether a baked town carries the nine renderer-drawn layers, or none of them
 T-0253 — May an invented building stand on the river margin of a platted street corridor
 T-0254 — North Water Street west of the slough, and the crossing it needs
+T-0255 — The dooryard planting rule reads every street in the town with no bound on reach, so a track across the river can turn a house's yard

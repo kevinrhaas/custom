@@ -8927,3 +8927,58 @@ than a convention.
 Related: **L141** (the row whose line this face carries) · **L177** (the one-line rule, and the
 bank this removes) · tickets **T-0182** (this), **T-0104**, **T-0077**.
 **Recorded:** 2026-08-27.
+
+### L199 — The bank track below the fort's north gate: two derived ends and an invented line between them
+**Decision:** `fort_bank_track` is drawn — a single straight chord, 23.91 m long and 3.60 m wide,
+from outside Fort Dearborn's NORTH gate obliquely down the graded bank to the water. L140 refused
+this track in as many words: *"The track `p4_0` draws descending the bank from the NORTH gate to the
+water is not drawn, because the bank it descends is the flat plateau T-0004 exists to grade and a
+ramp down an ungraded bank would be two inventions stacked."* T-0004 graded that reach on
+2026-08-20, so the second invention is gone and the first is what this entry admits to.
+
+**What is NOT invented, and it is both ends of the line.** The START is the north gate's own
+centre — 26.5 m along a 53 m wall, the same midpoint `tools/measure_fort_gates.py` reads the
+shipped leaves at — carried out along the wall's outward normal by **6.740 m**, which is the
+standoff the fort road already keeps from the SOUTH gate. Both gates therefore hand their last
+stride to the apron's bare trodden earth (L174), and this record invents no second convention for
+the north one. The END, `[1133.40, 259.61]`, is the committed heightfield's own Z = 0 waterline on
+the easting of the WEST END of the commandant's quarters — the one place on this bank that any
+source puts anything, the 1855 Hesler key locating the ferry landing *"under the west chimney of
+the Commandant's quarters"*, the same caption this project already reads for that building's two
+chimneys and its 25 × 50 ft. The WIDTH is the gate's: 3.60 m, the palisade's committed
+`gate_width_m`, rather than a fourth invented distance on this reservation; the corridor is the
+fort road's 12.0 m for the same reason.
+
+**READ THE DATE ON THE LANDING, because `wentworth_1881_fort_dearborn` says so on its own face.**
+The Hesler key is 1855 and describes the compound after the garrison marched out. It is read here
+as an inference that a landing fixed by the shape of a bank stood where it stood twenty years
+earlier — never as a measurement of 1835 — and it does not lift this record off `reconstructed`.
+
+**WHAT IS INVENTED is the line between those two points, and its obliquity is the whole of it.**
+Nobody traced this track, nobody measured it, and no source names it; the 1830 Harrison plan names
+*the Ferry* among the ground round the fort and draws no route to it. What bounds the invention is
+the ground. Straight north out of the gate the graded bank falls 3.60 m in under 10 m — about
+**1 in 2.7**, a scramble rather than a way to a boat. Swung west onto the landing the same fall
+spreads over 23.91 m: **1 in 6.65 mean, 1 in 3.65 at its steepest metre**, measured on the
+committed heightfield at `[1140.0, 257.99]`. That worst metre is gentler than ground this project
+already draws roadway on — South Water Street reaches 1 in 3.0 at the river bank, Randolph and
+Washington 1 in 4.1 — so the swing is what makes the track walkable and is not a shape chosen for
+its own sake. It is ONE chord and not several, so no joint opens a wedge of prairie at a bend
+(L178, L194), and it is clipped by the water mask like every other track, so it stops at the water
+instead of painting a ford.
+
+**Consequence:** a visitor standing where `p4_0`'s artist stood — the north bank, looking south —
+sees what the plate draws: a pale track leaving the fort's north gate and running down the bank to
+the water's edge, instead of a graded bank with nothing on it. The 1835 name is DESCRIPTIVE and
+not a proper name; the 2026 name is the ground the modern bridge approach covers, not a descent of
+name.
+
+**How to resolve:** the 1830 Harrison sheet re-read for its road and ferry line specifically —
+this project has taken the fort, the garden, the barn and the ferry off that plate and never the
+routes between them; or any survey of the United States Reservation before its 1839 subdivision,
+which would fix both this line and the landing at once.
+
+Related: **L140** (the fort road, and the refusal this discharges) · **L174** (the apron both gates
+hand their last stride to) · **L178** (why one chord and not several) · **L194** (the mitred corner
+a bend would have needed) · tickets **T-0099** (this), **T-0004**, **T-0044**.
+**Recorded:** 2026-08-28.

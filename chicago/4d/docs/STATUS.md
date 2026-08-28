@@ -1,5 +1,57 @@
 # STATUS
 
+## Shipped 2026-08-28 — T-0099: the bank track from the fort's north gate reaches the water
+
+`p4_0` — the fort from the north bank, the stand this project shoots it from — draws a track
+climbing the bank from the water's edge to Fort Dearborn's NORTH gate, the way to the ferry the
+1830 Harrison plan names among the ground round the fort. The town has never drawn it, and the
+refusal was written down rather than forgotten: **L140**, the fort road's own liberty, says *"the
+bank it descends is the flat plateau T-0004 exists to grade and a ramp down an ungraded bank
+would be two inventions stacked."* T-0004 graded that reach on 2026-08-20. One invention is gone;
+this ships the other, labelled.
+
+**`fort_bank_track` — one straight chord, 23.91 m long, 3.60 m wide.**
+
+| | value | where it comes from |
+|---|---|---|
+| start | `[1156.63, 253.92]` | the north gate's own centre (26.5 m along a 53 m wall — the midpoint `measure_fort_gates.py` reads the shipped leaves at), carried out along the wall's outward normal by **6.740 m**, the standoff `fort_road` already keeps from the SOUTH gate |
+| end | `[1133.40, 259.61]` | the committed heightfield's Z = 0 waterline on the easting of the **west end of the commandant's quarters** — the 1855 Hesler key's ferry landing, *"under the west chimney of the Commandant's quarters"* |
+| width | 3.60 m | the palisade's committed `gate_width_m` — the gate it comes out of |
+| corridor | 12.0 m | `fort_road`'s, the only other reconstructed corridor on this reservation |
+| grade | `reconstructed` geometry, `inferred` surface, `reconstructed` wear | L199 |
+
+**Why it slants, and the number is what decides it.** Straight north out of the gate the graded
+bank falls 3.599 m in under 10 m — **1 in 2.7**, a scramble rather than a way to a boat. Swung
+west onto the landing the same fall spreads over 23.91 m: **1 in 6.65 mean, 1 in 3.65 at its
+steepest metre**, at `[1140.0, 257.99]` on the committed heightfield. That worst metre is gentler
+than ground this project already draws roadway on — `south_water` reaches **1 in 3.0** at the
+river bank, `randolph` and `washington` 1 in 4.1. One chord and not several, so no joint opens a
+wedge of prairie at a bend (L178, L194).
+
+**READ THE DATE ON THE LANDING.** `wentworth_1881_fort_dearborn` warns on its own face that the
+Hesler key is 1855 and describes the compound after the garrison marched out. It is read here as
+an inference that a landing fixed by the shape of a bank stood where it stood twenty years
+earlier, never as a measurement of 1835, and it does not lift the record off `reconstructed`.
+
+**What it looks like, measured rather than asserted.** From `p4_0`'s own stand — the nearest dry
+ground on its sightline, local `1145, 308`, yaw 170 — the two frames differ in **37,887 pixels**,
+and the difference is the track and the street readout naming it, and nothing else:
+`docs/evidence/t-0099-before.png`, `t-0099-after.png`, and the bank zoomed in
+`t-0099-bank-crop.png`. The ground it lies on is already the apron's bare trodden earth (L174), so
+the track reads as *wear* on bare ground rather than as a new colour — which is what the plate
+draws too. Standing at the top of it, the street readout says **ON STREET — The bank track**
+(`t-0099-gate-after.png`).
+
+**One consequence nobody would have predicted, and it is committed rather than suppressed.**
+`tools/generate_dooryard_plantings.py` seats a house's stems *away from the nearest street*, and
+it reads every street in the dataset with no limit on reach or on which bank it is. For
+`recon_1835_north_d4_039`, a dwelling on the NORTH bank at `~[1139, 321]`, the new track is
+**61.6 m** away against `michigan_north`'s **68.3 m** — so a track on the south bank, across the
+river, became that house's nearest street and turned its yard. Two cottonwoods move about 6 m.
+The rule was re-derived and the result committed; whether a street should be able to reach a
+house across open water is **T-0255**.
+
+**Filed by this run:** T-0255 (the dooryard rule's unbounded street reach).
 ## Shipped 2026-08-28 — T-0245: South Water Street gets its first control point, at Franklin
 
 `data/traces/street_control.json` held four control points — `lake_canal`, `lake_market`,
