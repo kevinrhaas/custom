@@ -1,0 +1,735 @@
+{
+  "schema": 1,
+  "issue_id": "chicago_democrat_1834_05_07",
+  "extracted": "2026-08-28",
+  "extracted_by": "hand, T-0314 — the Democrat read, May 1834",
+  "note": "Vol. I No. 23. NO POST-OFFICE LETTER LIST. THIS TRANSCRIPTION CARRIES ONE PRINTED PAGE TWICE AND ANOTHER NOT AT ALL: its block marked ISSUE PAGE 4 / SOURCE PDF PAGE 24 is a second reading of the same printed columns its ISSUE PAGE 2 block carries, verified column for column at four independent points — the steamboat explosion at page 2 column 1 lines 1442-1443 against page 4 column 1 lines 3549-3550; the 'CLINTON' canal letter at lines 2380-2381 against 4478-4479; the infant-school letter at 2394-2396 against 4490-4492; and the New York election squib at 2412-2431 against 4650-4654. The two readings are cut at different offsets and are therefore complementary, which is how claim c001 reads its salutation. The consequence is that this issue's printed page 4 is not in the transcription at all, and no claim here cites the page 4 block. Filed as its own ticket. Claims are otherwise from page 3, which carries the advertising.",
+  "claims": [
+    {
+      "id": "c001",
+      "kind": "building",
+      "reading": "transcription_mediated",
+      "quote": "iN, Sin,—On the evening of| Inf\ni$ present at the examination | DUR.\nScnvon belonging to this town, emplo:",
+      "normalized": "[MR. CALHOU]N, Sir,—On the evening of [the … inst. I wa]s present at the examination [of the INFANT] S[CH]O[OL] belonging to this town, emplo[yed …]",
+      "locator": {
+        "artifact_role": "primary",
+        "issue_page": 2,
+        "column": 7,
+        "lines": [
+          2387,
+          2443
+        ],
+        "lines_of_claim": [
+          2394,
+          2395,
+          2396
+        ],
+        "interleaved": true
+      },
+      "entities": [],
+      "notes": "AN INFANT SCHOOL BELONGING TO THIS TOWN, WITH AN EXAMINATION HELD IN IT ONE EVENING IN THE SPRING OF 1834. A correspondent signing 'CANDOR' writes to the Democrat's editor about a public examination of the town's infant school — its 'amiable and accomplished teachers', their pupils' progress, and the objections some townspeople raise against infant schools generally. That is a schooling institution with a building, a staff of more than one, and an audience that turns out at night; and it is the third distinct schooling reference the corpus now holds inside seven months, after the school 'recently established in this village, by Mr. Sproat of Boston' (1833-11-26, claim c003) and School District No. [?]'s school house (1834-05-28, claim c013). NONE OF THE THREE IS PLACED and this pass does not join them to each other. THE EDITOR'S NAME IS SUPPLIED: the salutation reads 'iN, Sin,—' here and 'ALHOUN, Sin—-' in this issue's second reading of the same printed lines (page 4 column 7, line 4490), and John Calhoun is the Democrat's printer and editor, whose office the paper's own imprint puts on the corner of South Water and Clark (1833-11-26, claim c033)."
+    },
+    {
+      "id": "c002",
+      "kind": "business",
+      "reading": "transcription_mediated",
+      "quote": "JOHN H. KINZIE,\narding & Commission\nJERCHANT,\nnt for the Troy & trie Line,\nGRIFFiTE & Co. Troy N. Y\ngents for Troy and Enie Line.\nToN & STAHt., Galenn, II.\nSwOrTH & Brusu. Green Bor MT\nSalt,\nWin-\nCash, at\n14, 1834.\nE, opposite to Port Dearborn",
+      "normalized": "JOHN H. KINZIE, [Forw]arding & Commission [M]ERCHANT, [Age]nt for the Troy & [E]rie Line, […] [G. P.] GRIFF[I]T[H] & Co. Troy N. Y[.] […] [A]gents for Troy and E[r]ie Line[.] [JOHNS]TON & STAH[L], Galen[a], Il[l.] [FARN]SW[O]RTH & BR[U]SH[,] Green B[ay], M[.] T[.] […] Salt, [Iron,] Win[dow Glass, Nails, &c. for] Cash, at [his Ware Hous]e, opposite to [F]ort Dearborn […] [April] 14, 1834.",
+      "locator": {
+        "artifact_role": "primary",
+        "issue_page": 3,
+        "column": 4,
+        "lines": [
+          2962,
+          2974
+        ],
+        "lines_of_claim": [
+          2962,
+          2963,
+          2964,
+          2965,
+          2966,
+          2967,
+          2968,
+          2969,
+          2970,
+          2971,
+          2972,
+          2973,
+          2974
+        ],
+        "interleaved": true
+      },
+      "entities": [
+        {
+          "as_printed": "JOHN H. KINZIE,",
+          "normalized": "John H. Kinzie",
+          "role": "proprietor",
+          "occupations": [
+            "forwarding and commission merchant"
+          ],
+          "associated_places": [
+            "opposite Fort Dearborn"
+          ]
+        }
+      ],
+      "notes": "'OPPOSITE TO FORT DEARBORN' — the phrase in the earliest of the month's two readings, and the one where the anchor is nearly whole. The card is read at length from 1834-05-28 (claim c016 there), whose page 3 column 6 keeps the full reference list and 'his Wane House, opposite to' with the fort's name cut away; here the fort's name survives and the words before it are lost. Between them the sentence is 'his Ware House, opposite to Fort Dearborn', and neither reading could carry it alone. THE TRANSCRIPTION READS 'Port Dearborn' and the reading is Fort: there is no Port Dearborn in this corpus or on this lake, the P/F confusion is a recognition-class error, and the fort is the only structure of that name in the town. The line order in this column is scrambled by the segmenter — the agents' list, the goods and the dateline are interleaved with a neighbouring advertisement — so `lines_of_claim` names the whole block and the reading restores the sense without asserting an order the column does not have.",
+      "business": {
+        "name": "John H. Kinzie",
+        "proprietors": [
+          "John H. Kinzie"
+        ],
+        "trade": "forwarding and commission merchant, agent for the Troy & Erie Line",
+        "goods": [
+          "Salt",
+          "Window glass"
+        ],
+        "street": null,
+        "placement": {
+          "class": "relative",
+          "anchor": "Fort Dearborn",
+          "offset_text": "E, opposite to Port Dearborn",
+          "offset_normalized": "[his Ware Hous]e, opposite to [F]ort Dearborn"
+        }
+      },
+      "ad_copy_date": {
+        "verbatim": "14, 1834.",
+        "iso": "1834-04-14"
+      }
+    },
+    {
+      "id": "c003",
+      "kind": "business",
+      "reading": "transcription_mediated",
+      "quote": "“Tin, Sheet Iron and\nVMANT ACVORY\nCORNER OF DEARBORN AND LAKE-s\nHE sabecriber would respectful\nhis friends and the public in ge\nhe has commenced the above busines:\nge will keep an assortment constantly\nAll orders from the conntry, thankfi\ned and punctus!ly attended to,\nJ. K. BOTS\nApril 22, 1834.",
+      "normalized": "Tin, Sheet Iron and [Stove] MAN[UF]ACTORY. CORNER OF DEARBORN AND LAKE-s[treets.] [T]HE s[u]b[s]criber would respectful[ly inform] his friends and the public in ge[neral, that] he has commenced the above busines[s, and that] [h]e will keep an assortment constantly [on hand.] All orders from the co[u]ntry, thankf[ully receiv]ed and punct[ua]lly attended to, J. K. BOTS[FORD.] April 22, 1834.",
+      "locator": {
+        "artifact_role": "primary",
+        "issue_page": 3,
+        "column": 5,
+        "lines": [
+          3052,
+          3062
+        ],
+        "lines_of_claim": [
+          3052,
+          3053,
+          3054,
+          3055,
+          3056,
+          3057,
+          3058,
+          3059,
+          3060,
+          3061,
+          3062
+        ],
+        "interleaved": true
+      },
+      "entities": [
+        {
+          "as_printed": "J. K. BOTS",
+          "normalized": "J. K. Botsford",
+          "role": "proprietor",
+          "occupations": [
+            "tinsmith",
+            "sheet iron worker",
+            "stove dealer"
+          ],
+          "associated_places": [
+            "Dearborn Street",
+            "Lake Street"
+          ]
+        }
+      ],
+      "notes": "THE CORNER OF DEARBORN AND LAKE, SET AS A DISPLAY LINE, AND FIVE MONTHS EARLIER THAN THE CORPUS HAD IT. The same advertisement was read out of 1834-10-01 (claim c006 there) with the corner mangled to 'CORNER OF DEARBOEY AND LANE-STRENTS' and a dateline the reading had to correct from 'April 22, 1831' to 1834. THIS READING SETTLES BOTH: the display line is legible here as 'CORNER OF DEARBORN AND LAKE-s[treets]', and the dateline reads 'April 22, 1834' with the year intact, which confirms the correction made there on internal grounds alone. Botsford's tin and stove shop therefore stands at that corner from at least 22 April 1834 to 1 October 1834. Fullerton & Botsford sell pork at the same corner in the same run (1834-05-28, claim c007); the shared surname is recorded and NOT resolved.",
+      "business": {
+        "name": "J. K. Botsford",
+        "proprietors": [
+          "J. K. Botsford"
+        ],
+        "trade": "tin, sheet iron and stove manufactory",
+        "goods": [
+          "Tin ware",
+          "Sheet iron ware",
+          "Stoves"
+        ],
+        "street": "Lake Street",
+        "placement": {
+          "class": "corner",
+          "anchor": "corner of Dearborn and Lake streets",
+          "offset_text": "CORNER OF DEARBORN AND LAKE-s",
+          "offset_normalized": "CORNER OF DEARBORN AND LAKE-s[treets]",
+          "street": "Lake Street"
+        }
+      },
+      "ad_copy_date": {
+        "verbatim": "April 22, 1834.",
+        "iso": "1834-04-22"
+      }
+    },
+    {
+      "id": "c004",
+      "kind": "business",
+      "reading": "transcription_mediated",
+      "quote": "2, TIMBER.\n2 subscribers having this da:\n‘4\n. | May be wanted, from 12 to 60 f. in |\n| from 6 to 14 in square.\nTHRills supplied on short notice.\nAp'l. 22. P PRUYNE",
+      "normalized": "[SQUARE] TIMBER. [The] subscribers having this da[y …] […] [Any dimension that] may be wanted, from 12 to 60 f[eet] in [length,] from 6 to 14 in[ches] square. [D]rills supplied on short notice. Ap'l. 22. P[.] PRUYNE [& CO.]",
+      "locator": {
+        "artifact_role": "primary",
+        "issue_page": 3,
+        "column": 5,
+        "lines": [
+          3042,
+          3048
+        ],
+        "lines_of_claim": [
+          3042,
+          3043,
+          3044,
+          3045,
+          3046,
+          3047,
+          3048
+        ],
+        "interleaved": true
+      },
+      "entities": [
+        {
+          "as_printed": "P PRUYNE",
+          "normalized": "P. Pruyne",
+          "role": "advertiser",
+          "occupations": [
+            "merchant",
+            "timber dealer"
+          ]
+        }
+      ],
+      "notes": "THE DIMENSIONS THE TOWN COULD BUY ITS FRAME TIMBER IN, PRINTED. Twelve to sixty feet long and six to fourteen inches square, to order, at a day's notice, from P. Pruyne & Co. in April 1834. For a reconstruction that has to decide how big a stick a Chicago builder could get, that is a direct answer from the market rather than an inference from surviving buildings: sixty feet is a warehouse or a bridge member, not a cabin, and fourteen inches square is heavy scantling. It sits with the same issue's price current, which lists 'Square timber, length' as a priced commodity (claim c010). THE PRICE IS NOT HERE and the notice gives none. 'Drills' is read for 'THRills' as a recognition error; the word is not certain and the reading marks it by bracketing the initial only.",
+      "business": {
+        "name": "P. Pruyne & Co.",
+        "proprietors": [
+          "P. Pruyne"
+        ],
+        "trade": "wholesale and retail store",
+        "goods": [
+          "Square timber"
+        ],
+        "street": null,
+        "placement": {
+          "class": "none"
+        }
+      },
+      "ad_copy_date": {
+        "verbatim": "Ap'l. 22. P PRUYNE",
+        "iso": "1834-04-22"
+      }
+    },
+    {
+      "id": "c005",
+      "kind": "business",
+      "reading": "transcription_mediated",
+      "quote": "EWBERRY & DOLE,\nSTORAGE,\narding & Commission\nMERCHANTS.\ngAGO-ILLINOIS,\nents for the Merchauts Line.\n[uncertain: Newer Minuch St. Josp]\nB. CAMPBELL, Uttaica,\nWholesale and Retail Denters in\n, Goods firoceries and\nPROVISIONS.\n1834.",
+      "normalized": "N[EWBERRY & DOLE,] STORAGE, [Forw]arding & Commission MERCHANTS[,] [CHI]CAGO-ILLINOIS, [Ag]ents for the Merchau[nts' Line.] [uncertain: Newer Minuch St. Josp] [James] B. CAMPBELL, [O]ttawa[.] Wholesale and Retail D[e]alers in [Dry] Goods[,] [G]roceries and PROVISIONS. [ ] 1834.",
+      "locator": {
+        "artifact_role": "primary",
+        "issue_page": 3,
+        "column": 4,
+        "lines": [
+          2975,
+          2986
+        ],
+        "lines_of_claim": [
+          2975,
+          2976,
+          2977,
+          2978,
+          2979,
+          2980,
+          2981,
+          2982,
+          2983,
+          2984,
+          2985,
+          2986
+        ],
+        "interleaved": true
+      },
+      "entities": [
+        {
+          "as_printed": "EWBERRY & DOLE,",
+          "normalized": "Newberry & Dole",
+          "role": "proprietors",
+          "occupations": [
+            "forwarding and commission merchant"
+          ]
+        }
+      ],
+      "notes": "THE FORWARDING HOUSE THE WHOLE OF SOUTH WATER STREET IS MEASURED FROM. Three other advertisements in this month place themselves against Newberry & Dole — Keeney a few doors below, the bakery a few doors north, a small building to let near them — and this card, like every other printing of it in the run, gives no address of its own. It is recorded here for the evidence window and for the trade: storage, forwarding, commission, and wholesale and retail dry goods, groceries and provisions, in one house.",
+      "business": {
+        "name": "Newberry & Dole",
+        "proprietors": [
+          "Newberry & Dole"
+        ],
+        "trade": "storage, forwarding and commission merchants; wholesale and retail dealers",
+        "goods": [
+          "Dry Goods",
+          "Groceries",
+          "Provisions"
+        ],
+        "street": null,
+        "placement": {
+          "class": "none"
+        }
+      }
+    },
+    {
+      "id": "c006",
+      "kind": "business",
+      "reading": "transcription_mediated",
+      "quote": "[uncertain: THO CARPETUB,]\nCHICAGO-ILL.\nnano, & eneral assork-\nDRUGS AND\nIEDICINES,\n, Paints, Dye-stulks,\n[uncertain: -1L.SO_]\nGroceries, Glass, Nails, de\n. 1833.\nperance Almanac for\n1584.\nand for sale whole.\nPHILO CARPENTER.",
+      "normalized": "[uncertain: THO CARPETUB,] CHICAGO-ILL. [Will keep consta]n[tly o]n [hand] a [g]eneral assor[t]­[ment of] DRUGS AND M[E]DICINES, [Oils], Paints, Dye-stu[ff]s, [uncertain: -1L.SO_] [Dry] Groceries, Glass, Nails, &c[.] [Nov. 22,] 1833. [The Tem]perance Almanac for 1[8]34[, just received] and for sale whole[sale and retail by] PHILO CARPENTER.",
+      "locator": {
+        "artifact_role": "primary",
+        "issue_page": 3,
+        "column": 4,
+        "lines": [
+          2996,
+          3008
+        ],
+        "lines_of_claim": [
+          2996,
+          2997,
+          2998,
+          2999,
+          3000,
+          3001,
+          3002,
+          3003,
+          3004,
+          3005,
+          3006,
+          3007,
+          3008
+        ],
+        "interleaved": true
+      },
+      "entities": [
+        {
+          "as_printed": "PHILO CARPENTER.",
+          "normalized": "Philo Carpenter",
+          "role": "proprietor",
+          "occupations": [
+            "druggist"
+          ]
+        }
+      ],
+      "notes": "PHILO CARPENTER SELLS THE TEMPERANCE ALMANAC FOR 1834 — which is the one detail in this card that its other printings lose. A druggist stocking a temperance almanac in a town of four hundred people is a fact about the town's public temper as much as about his shop, and the Democrat's readers were being offered it wholesale and retail in the spring of 1834. The display line of his name is inside the transcription's own uncertainty bracket, '[uncertain: THO CARPETUB,]', and is left there; the signature at the foot of the same advertisement reads 'PHILO CARPENTER.' whole, which is what identifies it. NO ADDRESS, as in every printing of this card.",
+      "business": {
+        "name": "Philo Carpenter",
+        "proprietors": [
+          "Philo Carpenter"
+        ],
+        "trade": "druggist",
+        "goods": [
+          "Drugs",
+          "Medicines",
+          "Oils",
+          "Paints",
+          "Dye-stuffs",
+          "Dry groceries",
+          "Glass",
+          "Nails",
+          "Temperance Almanac for 1834"
+        ],
+        "street": null,
+        "placement": {
+          "class": "none"
+        }
+      },
+      "ad_copy_date": {
+        "verbatim": ". 1833.",
+        "iso": "1833-11-22"
+      }
+    },
+    {
+      "id": "c007",
+      "kind": "notice",
+      "reading": "transcription_mediated",
+      "quote": "For Sale,\nNo 3, in Block 120, in the School Sec\nFor term apPRiYNE: & CO.",
+      "normalized": "For Sale, [LOT] No 3, in Block 120, in the School Sec[tion.] For term[s enquire of] PR[U]YNE & CO.",
+      "locator": {
+        "artifact_role": "primary",
+        "issue_page": 3,
+        "column": 4,
+        "lines": [
+          3009,
+          3011
+        ],
+        "lines_of_claim": [
+          3009,
+          3010,
+          3011
+        ],
+        "interleaved": true
+      },
+      "entities": [
+        {
+          "as_printed": "apPRiYNE: & CO.",
+          "normalized": "P. Pruyne & Co.",
+          "role": "vendor's agent",
+          "occupations": [
+            "merchant",
+            "land dealer"
+          ]
+        }
+      ],
+      "notes": "A LOT AND A BLOCK NUMBER, NAMED, IN THE SCHOOL SECTION. This is one of the very few claims in the whole newspaper corpus that carries a surveyed address rather than a descriptive one: Block 120, Lot 3, School Section — Section 16, the school lands south and west of the original town, subdivided and sold from 1833. It does not say what stood on it, and nothing is built from it; what it establishes is that the School Section subdivision was being traded lot by lot in May 1834 by the same firm that kept a store between Clark and Dearborn (1834-05-21, claim c004). A house and land agent on Lake Street advertises twelve more building lots in the same section in the following week (1834-05-14, claim c002)."
+    },
+    {
+      "id": "c008",
+      "kind": "business",
+      "reading": "transcription_mediated",
+      "quote": "EDWARD W. CA\nATTORNEY 4 COUNSELLOI\nFFICE adjoining that of 1l\narcuit Cou",
+      "normalized": "EDWARD W. CA[SEY,] ATTORNEY [&] COUNSELLO[R AT LAW.] [O]FFICE adjoining that of [the Clerk of the] [Ci]rcuit Cou[rt.]",
+      "locator": {
+        "artifact_role": "primary",
+        "issue_page": 3,
+        "column": 1,
+        "lines": [
+          2630,
+          2633
+        ],
+        "lines_of_claim": [
+          2630,
+          2631,
+          2632,
+          2633
+        ],
+        "interleaved": true
+      },
+      "entities": [
+        {
+          "as_printed": "EDWARD W. CA",
+          "normalized": "Edward W. Casey",
+          "role": "proprietor",
+          "occupations": [
+            "attorney",
+            "counsellor at law"
+          ]
+        }
+      ],
+      "notes": "THE CIRCUIT COURT CLERK'S OFFICE, EXISTING AND FIXED ENOUGH TO BE A NEIGHBOUR. This reading keeps 'arcuit Cou' where the other printing in the run keeps 'the Clark of the' (1834-05-14, claim c008 there); together they give 'adjoining that of the Clerk of the Circuit Court'. Neither gives a street. The card is the only evidence in this month's four issues for where any part of the county's court apparatus sat, and it locates it only relative to itself.",
+      "business": {
+        "name": "Edward W. Casey, attorney and counsellor at law",
+        "proprietors": [
+          "Edward W. Casey"
+        ],
+        "trade": "attorney and counsellor at law",
+        "goods": [],
+        "street": null,
+        "placement": {
+          "class": "relative",
+          "anchor": "the office of the Clerk of the Circuit Court",
+          "offset_text": "FFICE adjoining that of 1l\narcuit Cou",
+          "offset_normalized": "[O]FFICE adjoining that of [the Clerk of the] [Ci]rcuit Cou[rt]"
+        }
+      }
+    },
+    {
+      "id": "c009",
+      "kind": "person",
+      "reading": "transcription_mediated",
+      "quote": "te Notice.\n{n Cook Propate court this\n2d day of May, A.D.1634. :\n¢ State of Illinois, to heirs N assos\nsentatives of David Langh-| /9A double\ny o- | lish makers,\ne will of the said David} Jan. 14,1\njuly proven and recorded in | ———\ntters tentamentary will be JO\nephen Forbes, on Tuesday cor\nAW\nYou, and xh\ny atified to Hes\n+ tobe holden on th day Good\nd, at my office at Chicago, | services to\nyou can, why such letters | capacity.\n(o the said Stephen Forbes, | ———-——\nWD. 1. HAMILTON, | rronve\nW. Ant\nulge of Probate couk cv.",
+      "normalized": "[Proba]te Notice. [I]n Cook Pro[b]ate court this [2]d day of May, A.D.18[3]4[.] [Th]e State of Illinois, to heirs [and repre]sentatives of David Laugh[ton …] [the last] will of the said David [Laughton having been d]uly proven and recorded in [this court, le]tters testamentary will be [granted to St]ephen Forbes, on Tuesday [the …] […] [—] [and, at my office at Chicago, [show cause, if any] you can, why such letters [should not issue] [t]o the said Stephen Forbes[.] [R.] J. HAMILTON, [J]u[d]ge of Probate Cook c[oun]t[y].",
+      "locator": {
+        "artifact_role": "primary",
+        "issue_page": 3,
+        "column": 3,
+        "lines": [
+          2895,
+          2914
+        ],
+        "lines_of_claim": [
+          2895,
+          2896,
+          2897,
+          2898,
+          2899,
+          2900,
+          2901,
+          2902,
+          2903,
+          2904,
+          2905,
+          2906,
+          2907,
+          2908,
+          2909,
+          2910,
+          2911,
+          2912,
+          2913,
+          2914
+        ],
+        "interleaved": true
+      },
+      "entities": [
+        {
+          "as_printed": "David Langh-",
+          "normalized": "David Laughton",
+          "role": "the deceased, testate",
+          "occupations": []
+        },
+        {
+          "as_printed": "ephen Forbes",
+          "normalized": "Stephen Forbes",
+          "role": "executor, to whom letters testamentary are to issue",
+          "occupations": []
+        },
+        {
+          "as_printed": "WD. 1. HAMILTON,",
+          "normalized": "R. J. Hamilton",
+          "role": "Judge of Probate, Cook county",
+          "occupations": [
+            "judge of probate"
+          ],
+          "associated_places": [
+            "his office at Chicago"
+          ]
+        }
+      ],
+      "notes": "THE PROBATE COURT SITS AT THE JUDGE'S OWN OFFICE IN CHICAGO — 'at my office at Chicago' — and the notice is dated 2 May 1834. Three names attach: David Laughton, deceased and testate; Stephen Forbes, to whom letters testamentary are to issue, who is the same Forbes whose house on the west bank of the Des Plaines holds the county militia election a month later (1834-05-28, claim c009); and R. J. Hamilton, Judge of Probate for Cook county, who is the county's whole judicial establishment in these pages. A SECOND LAUGHTON ESTATE runs alongside it in the same column — Barnardus H. Laughton's, administered by Sophia Laughton — and the two are NOT joined: David and Barnardus H. share a surname and nothing here says they were kin."
+    },
+    {
+      "id": "c010",
+      "kind": "price",
+      "reading": "transcription_mediated",
+      "quote": "CHICAGO PRIC\nReported for the Dem:\nhd CORRECTED",
+      "normalized": "CHICAGO PRIC[ES CURRENT,] Reported for the Dem[ocrat by P. F. PECK.] [ ] [Revised] a[n]d CORRECTED [weekly.]",
+      "locator": {
+        "artifact_role": "primary",
+        "issue_page": 3,
+        "column": 6,
+        "lines": [
+          3178,
+          3180
+        ],
+        "lines_of_claim": [
+          3178,
+          3179,
+          3180
+        ],
+        "interleaved": true
+      },
+      "entities": [
+        {
+          "as_printed": "P. F. PECK",
+          "normalized": "P. F. Peck",
+          "role": "reports the Chicago prices current for the Democrat",
+          "occupations": [
+            "merchant"
+          ]
+        }
+      ],
+      "notes": "THE PAPER RAN A WEEKLY CHICAGO PRICE CURRENT, AND A NAMED MERCHANT SUPPLIED IT. P. F. Peck reports it for the Democrat, revised and corrected — which means the figures below the heading are a Chicago quotation and not a reprint from Detroit or Buffalo. The heading is cut here and the reporter's name survives whole in the following issues (1834-05-28, page 3 column 7, line 3146, 'et by P. F. PECK.'), which is what licenses the supply. The table's own building-materials section is claimed separately (claim c011); the figures themselves are in a segmenter column that survives as three unattachable numbers and are NOT read."
+    },
+    {
+      "id": "c011",
+      "kind": "price",
+      "reading": "transcription_mediated",
+      "quote": "Building Materials—\nLumber, poplar ass’d 1000\nShingles do\nSquare timber, length\nBrick, per!\nver Chissols; | Stone, pe\nca; Lime,\nane? Wood, P",
+      "normalized": "Building Materials— Lumber, poplar ass'd [per] 1000 [ft.] Shingles do[.] Square timber, [per] length[.] Brick, per [M.] [ ] Stone, pe[r perch.] [ ] Lime, [per bbl.] [ ] Wood, [per cord.]",
+      "locator": {
+        "artifact_role": "primary",
+        "issue_page": 3,
+        "column": 6,
+        "lines": [
+          3249,
+          3256
+        ],
+        "lines_of_claim": [
+          3249,
+          3250,
+          3251,
+          3252,
+          3253,
+          3254,
+          3255,
+          3256
+        ],
+        "interleaved": true
+      },
+      "entities": [],
+      "notes": "WHAT THE TOWN BUILT WITH, AS ITS OWN NEWSPAPER PRICED IT, IN THE EARLIEST OF THE MONTH'S TWO PRINTINGS. Seven rows under one heading: assorted poplar lumber by the thousand feet, shingles the same way, square timber by the length, brick by the thousand, stone by the perch, lime by the barrel, wood by the cord. Every one of those is a material the reconstruction places, and the units are the ones the trade actually used. The right-hand fragments on two of these lines ('ver Chissols;', 'ca;', 'ane?') belong to Chase & Ballard's hardware list in the neighbouring physical column and are dropped by the reading. THE FIGURES ARE NOT CLAIMED: the price column is set in the next segmenter column and survives as a handful of numbers that cannot be attached to named rows without guessing, and this pass does not guess."
+    },
+    {
+      "id": "c012",
+      "kind": "business",
+      "reading": "transcription_mediated",
+      "quote": "ud Cap Store. c\nfo IBLE, Ww: of\nPaced of Ls\n‘ open in this ‘town on the is 16 by 304\nit of June, a large and ex- the first da:\nortment of\nAp'l.\n‘S & CAPS, Z\non, and of the best quality,",
+      "normalized": "[Hat] a[n]d Cap Store. [ ] [uncertain: fo IBLE, Ww: of] [ ] [will] open in this town on the [f]i[rst] [ ] [day] of June, a large and ex[tensive as]s[ortment of] [HAT]S & CAPS, [of every fashi]on, and of the best quality,",
+      "locator": {
+        "artifact_role": "primary",
+        "issue_page": 3,
+        "column": 3,
+        "lines": [
+          2926,
+          2934
+        ],
+        "lines_of_claim": [
+          2926,
+          2927,
+          2928,
+          2929,
+          2930,
+          2931,
+          2932,
+          2933,
+          2934
+        ],
+        "interleaved": true
+      },
+      "entities": [],
+      "notes": "A SHOP ANNOUNCING ITS OWN OPENING DAY IN THE TOWN — the first of June 1834. Businesses arriving is what a town in its second year mostly consists of, and this is one of the few notices in the corpus that gives the DATE a Chicago storefront began rather than the date its advertisement was written. The proprietor's name is inside the transcription's uncertainty bracket and is left unread; the same card is cut differently in 1834-05-14 (page 3 column 4, lines 2964-2976) and yields no better reading of it. NO STREET, so nothing is placed. The right-hand fragments on these lines ('c', 'Ww: of', 'is 16 by 304', 'the first da:', \"Ap'l.\", 'Z') belong to a neighbouring advertisement and are dropped."
+    },
+    {
+      "id": "c013",
+      "kind": "shipping",
+      "reading": "transcription_mediated",
+      "quote": "MARINE LIS\nARRIVED.\nMay l. Scir. Waite Pureon. Da\n• Scar. Fander to Dasid Ca\n[uncertain: Scar. Oraton]\nante, Cleas\nCLEARED.\nMoy it Bels White Pigeon, Di\n[uncertain: Sir: Wear Dell]",
+      "normalized": "MARINE LIS[T] ARRIVED. May 1. Sc[h]r. W[h]ite P[ig]eon, Da[…] [ ] Sc[h]r. [Fa]nd[er?] to David Ca[rver …] [uncertain: Scar. Oraton] […] CLEARED. M[a]y [ ] [Sch]r. White Pigeon, D[i…]",
+      "locator": {
+        "artifact_role": "primary",
+        "issue_page": 3,
+        "column": 1,
+        "lines": [
+          2621,
+          2629
+        ],
+        "lines_of_claim": [
+          2621,
+          2622,
+          2623,
+          2624,
+          2625,
+          2626,
+          2627,
+          2628,
+          2629
+        ],
+        "interleaved": true
+      },
+      "entities": [
+        {
+          "as_printed": "Dasid Ca",
+          "normalized": "David Carver",
+          "role": "consignee",
+          "occupations": [
+            "lumber dealer",
+            "flour dealer"
+          ]
+        }
+      ],
+      "notes": "A CARGO CONSIGNED TO A NAMED CHICAGO MERCHANT. The list is short and badly cut, but 'to Dasid Ca[rver]' survives on the second arrival — David Carver being the man who advertises pine and whitewood lumber and fresh ground flour in the same issue (page 3 column 3, lines 2916-2919) and oats and superfine flour on the next column. A schooner discharging to a lumber and flour dealer in the first week of May 1834 is the shipping list and the advertising columns agreeing, which is worth more than either alone. THE VESSEL NAMES ARE PART-READ: White Pigeon is legible on both the arrival and the clearance, the rest are cut or bracketed and are not completed."
+    },
+    {
+      "id": "c014",
+      "kind": "business",
+      "reading": "transcription_mediated",
+      "quote": "Pine and White wood Lum-\nantity of fresh ground su-\nby\nDAVID CARVER. |",
+      "normalized": "[Lumber and Flour.] [A quantity of] Pine and White wood Lum[ber, and a qu]antity of fresh ground su[perfine Flour, for sale] by DAVID CARVER.",
+      "locator": {
+        "artifact_role": "primary",
+        "issue_page": 3,
+        "column": 3,
+        "lines": [
+          2916,
+          2919
+        ],
+        "lines_of_claim": [
+          2916,
+          2917,
+          2918,
+          2919
+        ],
+        "interleaved": true
+      },
+      "entities": [
+        {
+          "as_printed": "DAVID CARVER. |",
+          "normalized": "David Carver",
+          "role": "proprietor",
+          "occupations": [
+            "lumber dealer",
+            "flour dealer"
+          ]
+        }
+      ],
+      "notes": "PINE AND WHITEWOOD, THE TWO SOFTWOODS THE TOWN BOUGHT, NAMED TOGETHER BY THE MAN WHO SOLD THEM. The reconstruction's siding, sheathing and shingle decisions rest on what timber was actually on the Chicago market in 1834, and this is the market speaking: pine and whitewood — that is, tulip poplar, the 'poplar ass'd' of the same issue's price current (claim c011) — in one yard, alongside flour from a stone mill. David Carver appears three times in this issue: here, in the marine list as a consignee (claim c013), and in a separate flour and oats notice. NO ADDRESS in any of the three.",
+      "business": {
+        "name": "David Carver",
+        "proprietors": [
+          "David Carver"
+        ],
+        "trade": "lumber and flour dealer",
+        "goods": [
+          "Pine lumber",
+          "Whitewood lumber",
+          "Superfine flour",
+          "Oats"
+        ],
+        "street": null,
+        "placement": {
+          "class": "none"
+        }
+      }
+    },
+    {
+      "id": "c015",
+      "kind": "person",
+      "reading": "transcription_mediated",
+      "quote": "1, that the undorsign-\nt letters of Administration,\ntate of Barnardus H.!— —_\ncounty of Cook, deceased. | Temp\n10, or having claims against\nnotified and required to\n+ or to the court of Pro-\nof Cook, for settlement, |\nrom the date hereof—Da- 7\nJ day of May, 1224, sctbds\nSOPHIA LAUGHTON,\nis non of the estate of Bar-\nt, deceased.",
+      "normalized": "[Notice is hereby given], that the undersign[ed has taken ou]t letters of Administration, [on the es]tate of Barnardus H. [Laughton, late of the] county of Cook, deceased. [All persons indebted] to, or having claims against [it are hereby] notified and required to [present the same to me] or to the court of Pro[bate of the county] of Cook, for settlement, [within nine months] [f]rom the date hereof—Da[ted this] [ ] day of May, 18[3]4[.] SOPHIA LAUGHTON, [Administratrix] of the estate of Bar[nardus H. Laughton], deceased.",
+      "locator": {
+        "artifact_role": "primary",
+        "issue_page": 3,
+        "column": 3,
+        "lines": [
+          2882,
+          2894
+        ],
+        "lines_of_claim": [
+          2882,
+          2883,
+          2884,
+          2885,
+          2886,
+          2887,
+          2888,
+          2889,
+          2890,
+          2891,
+          2892,
+          2893,
+          2894
+        ],
+        "interleaved": true
+      },
+      "entities": [
+        {
+          "as_printed": "SOPHIA LAUGHTON,",
+          "normalized": "Sophia Laughton",
+          "role": "administratrix",
+          "occupations": []
+        },
+        {
+          "as_printed": "Barnardus H.",
+          "normalized": "Barnardus H. Laughton",
+          "role": "the deceased",
+          "occupations": []
+        }
+      ],
+      "notes": "A WOMAN TAKES OUT LETTERS OF ADMINISTRATION IN COOK COUNTY, MAY 1834, AND SIGNS FOR IT. Sophia Laughton administers Barnardus H. Laughton's estate; four weeks later she advertises the vendue of his personal property inside his own former dwelling house (1834-05-14, claim c004, and 1834-05-21, claim c017). The three notices together are the fullest sequence the corpus holds on any single Chicago household — a death, an administration, and a sale in the house. THE YEAR IS CORRECTED: the line reads 'J day of May, 1224', an impossible date on a paper that began in November 1833, and 1834 is the reading. The day of the month is cut away and is NOT supplied."
+    }
+  ]
+}

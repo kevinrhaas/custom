@@ -57,6 +57,13 @@
       "to": "1834-01-31",
       "ticket": "T-0310",
       "note": "Vol. I Nos. 7-10, 1834-01-07 to 1834-01-28. Four issues, read through. Their transcriptions are deposit-held, so the quotes were machine-checked with `--check --deposit <path>` against a read-only copy of the deposit from `main`; on `dev` their claims are counted unresolved and reported, which is green (T-0275). THE LETTER LIST: the post office at Chicago's list of 1 January 1834 is printed twice in the month — cut to a handful of names on 1834-01-14 and nearly whole on 1834-01-28 — and the residents are minted from the second, where 97 names and the postmaster's signature survive. Ninety-seven is a FLOOR and not the printed length: the .docx extraction crushed the list's two alphabetical columns into eight paragraph lines and left orphan debris where names stood. The gap is a ticket, not an estimate."
+    },
+    {
+      "publication": "chicago_democrat",
+      "from": "1834-05-01",
+      "to": "1834-05-31",
+      "ticket": "T-0314",
+      "note": "Vol. I Nos. 23-26, 1834-05-07 to 1834-05-28. Four issues, read through. NO POST-OFFICE LETTER LIST STANDS ANYWHERE IN THE MONTH: swept all four issues for every form the Democrat uses — 'list of letters', 'letters remaining', 'remaining in the post office', 'uncalled for', a signature ending 'P. M.' — and then for the bare words 'letter', 'post office' and 'postmaster' as well, for eight hits, none of them a list: two references to the Postmaster General in reprinted Washington matter (1834-05-07 lines 2456 and 4551; 1834-05-14 line 2100), letters of administration and letters testamentary in the probate notices of all four issues, and book advertisements for Elliott's and Scott's Letters. So ruling 1 is met here by demonstrating absence, as T-0261 met it for the American and T-0290 and T-0291 for August and September 1834. That is consistent with the sweep recorded in this corpus's README, which found only four of T-0258's thirty issues carrying a list, none of them in May. THE 1834-05-07 TRANSCRIPTION CARRIES ONE PRINTED PAGE TWICE AND ANOTHER NOT AT ALL — its ISSUE PAGE 4 block is a second reading of its ISSUE PAGE 2, verified at four independent points; the issue's extraction file records the evidence and no claim cites that block. Their transcriptions are deposit-held, so the quotes were machine-checked with `--check --deposit <path>` against a read-only copy of the deposit from `main`; on `dev` their claims are counted unresolved and reported, which is green (T-0275)."
     }
   ]
 }

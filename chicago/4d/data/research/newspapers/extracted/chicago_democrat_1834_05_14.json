@@ -1,0 +1,596 @@
+{
+  "schema": 1,
+  "issue_id": "chicago_democrat_1834_05_14",
+  "extracted": "2026-08-28",
+  "extracted_by": "hand, T-0314 — the Democrat read, May 1834",
+  "note": "Vol. I No. 24, and the issue that first prints the town's bridge ordinance — no person may ride or drive over any bridge within the limits of the town faster than on a walk, five dollars. NO POST-OFFICE LETTER LIST. Its page 3 column 2 is a right-hand half-column and its page 4 column 2 is the right half of the printed lines whose left halves stand in 1834-05-21; several claims here are the complement of a claim in another issue and say which.",
+  "claims": [
+    {
+      "id": "c001",
+      "kind": "infrastructure",
+      "reading": "transcription_mediated",
+      "quote": "My; t6 Town Ordida\nE it Ordained by the Board «\ntown of Chicago; That ar\nshall ride or drive over any brit\n-| limits of said town, faster than «\nforfeit the sum of five dollars, to |\nfore any Justice of the Peace of s\nhate the somplainent ee 3\nnes | said Corporation. J. V~.\nbrs Altestclsaac Hanwox, Clerk.",
+      "normalized": "[Ma]y[.] [No.] 16[.] Town Ordi[n]a[n]ce. [B]e it Ordained by the Board [of Trustees of the] town of Chicago; That a[ny person who] shall ride or drive over any bri[dge within the] limits of said town, faster than [on a walk, shall] forfeit the sum of five dollars, to [be collected be]fore any Justice of the Peace of s[aid town; one half] [to] the [c]omplainant [and the other half to] said Corporation. [T.] J. V[. Owen, Pres't.] [A]ttest[—]Isaac Ha[r]mo[n], Clerk.",
+      "locator": {
+        "artifact_role": "primary",
+        "issue_page": 3,
+        "column": 2,
+        "lines": [
+          2625,
+          2634
+        ],
+        "lines_of_claim": [
+          2625,
+          2626,
+          2627,
+          2628,
+          2629,
+          2630,
+          2631,
+          2632,
+          2633,
+          2634
+        ],
+        "interleaved": true
+      },
+      "entities": [
+        {
+          "as_printed": "J. V~.",
+          "normalized": "T. J. V. Owen",
+          "role": "President of the Board of Trustees of the town of Chicago",
+          "occupations": [
+            "town trustee"
+          ]
+        },
+        {
+          "as_printed": "lsaac Hanwox",
+          "normalized": "Isaac Harmon",
+          "role": "Clerk of the Board of Trustees",
+          "occupations": [
+            "town clerk"
+          ]
+        }
+      ],
+      "notes": "THE BRIDGE ORDINANCE, IN THE FIRST OF THE THREE ISSUES THAT CARRY IT. It is read in full from 1834-05-21 (claim c016 there), which keeps 'faster than on a walk' whole and both signatures; this reading is kept because it is INDEPENDENT — a different issue, a different segmenter column — and because it is the earliest printing in the month, which is what dates the ordinance's publication rather than its passage. Note that neither this reading nor the fuller one gives the ordinance's date of passage: only its number, 16, which places it in the same series as the fifteen clauses of 4 December 1833 read in 1834-01-07 and therefore AFTER the wharfing clause 15. The clerk's surname reads 'Hanwox' here, 'Hanson' in 1834-05-21 and 'Hammon' in 1834-05-28; Harmon is the reading the three support together."
+    },
+    {
+      "id": "c002",
+      "kind": "business",
+      "reading": "transcription_mediated",
+      "quote": "It ap- Wo  BDSAWIGI\nval aja: Heuseand Lane\nut such mors purchased and Sold,\nsion,\nnm to be .\n12 Building Lots for sale, :\n— School section.\n7 @ Houws to Let.\nUS Lake st. opposite Dr. Temple's.",
+      "normalized": "[uncertain: It ap- Wo  BDSAWIGI] [ ] [H]ouse and Lan[d Agent.] [Lots] purchased and Sold, [or by commission] […] [1]2 Building Lots for sale, [in the] School section. [A] Hou[s]e[s] to Let. [ ] [Enquire on] Lake st. opposite Dr. Temple's.",
+      "locator": {
+        "artifact_role": "primary",
+        "issue_page": 3,
+        "column": 2,
+        "lines": [
+          2604,
+          2612
+        ],
+        "lines_of_claim": [
+          2604,
+          2605,
+          2606,
+          2607,
+          2608,
+          2609,
+          2610,
+          2611,
+          2612
+        ],
+        "interleaved": true
+      },
+      "entities": [
+        {
+          "as_printed": "Dr. Temple's",
+          "normalized": "Dr. Temple",
+          "role": "landmark the address is measured from",
+          "occupations": [
+            "physician"
+          ],
+          "associated_places": [
+            "Lake Street"
+          ]
+        }
+      ],
+      "notes": "'LAKE ST. OPPOSITE DR. TEMPLE'S' — an address given entirely by a doctor's house. Dr. John T. Temple's is doing here what Newberry & Dole's, Graves's Tavern and Fort Dearborn do elsewhere in this run: standing as the fixed point a stranger is expected to find. This is the FIRST of the month's three printings of the card (the others are 1834-05-21 page 3 column 5 line 2758 and 1834-05-28 page 3 column 5, claim c011 there) and the only one that reads 'Lake st.' with the street name attached to the offset rather than cut away. THE AGENT IS NOT NAMED: the display line reads 'Wo  BDSAWIGI' inside the transcription's own uncertainty bracket and the three printings agree on nothing, so the business is recorded by trade and address alone.",
+      "business": {
+        "name": "house and land agent opposite Dr. Temple's, Lake Street",
+        "proprietors": [],
+        "trade": "house and land agent",
+        "goods": [
+          "Building lots",
+          "Houses to let"
+        ],
+        "street": "Lake Street",
+        "placement": {
+          "class": "relative",
+          "anchor": "Dr. Temple's, Lake Street",
+          "offset_text": "US Lake st. opposite Dr. Temple's.",
+          "offset_normalized": "[Enquire on] Lake st. opposite Dr. Temple's",
+          "street": "Lake Street"
+        }
+      }
+    },
+    {
+      "id": "c003",
+      "kind": "infrastructure",
+      "reading": "transcription_mediated",
+      "quote": "Salt, Nails, Wind\nIRON, dc. é\nBARRELS of SAI\nthe Huron, to be\nfrom the wharf.\n“BO kegs Juniata Nails, uve’\n@O boxes Window Glass, 8 by\nRoll'd band Iron, and Horse t\nWood's yatent Plough Jrons,\nid Molasses by the ne\nSugar and Mo! ON\ngusen-| Chicago, May 12, 1834.",
+      "normalized": "Salt, Nails, Wind[ow Glass,] IRON, &c. &c. [100] BARRELS of SA[LT, received per] the Huron, to be [delivered] from the wharf. [8]0 kegs Juniata Nails, ass['d …] [8]0 boxes Window Glass, 8 by [10 …] Roll'd band Iron, and Horse [Shoe plates.] Wood's [p]atent Plough [I]rons, [No. 1 …] [an]d Molasses by the ne[xt arrival …] Sugar and Mo[lasses …] [J]O[H]N [H. KINZIE.] Chicago, May 12, 1834.",
+      "locator": {
+        "artifact_role": "primary",
+        "issue_page": 3,
+        "column": 2,
+        "lines": [
+          2613,
+          2624
+        ],
+        "lines_of_claim": [
+          2613,
+          2614,
+          2615,
+          2616,
+          2617,
+          2618,
+          2619,
+          2620,
+          2621,
+          2622,
+          2623,
+          2624
+        ],
+        "interleaved": true
+      },
+      "entities": [
+        {
+          "as_printed": "ON",
+          "normalized": "John H. Kinzie",
+          "role": "advertiser",
+          "occupations": [
+            "forwarding and commission merchant"
+          ],
+          "associated_places": [
+            "the wharf"
+          ]
+        }
+      ],
+      "notes": "'TO BE DELIVERED FROM THE WHARF' — the phrase whole, in the only reading of the month that keeps it. The same advertisement is cut in 1834-05-21 (page 3 column 3, lines 2772-2778) and in 1834-05-28 (claim c010 there, where it reads 'juron, to i' / 'rn the flare i sold low if'), so this line is what licenses the supply in the others. WHY IT MATTERS: a hundred barrels of salt landed from the schooner Huron are being sold OFF THE WHARF, cheaper than out of a store, five weeks into the 1834 navigation season. That is a wharf in working use, with goods standing on it, and it is John H. Kinzie's — whose warehouse the same run places opposite Fort Dearborn (1834-05-28, claim c016). THE WHARF IS NOT LOCATED and no reading of this card gives it a street, a bank or a neighbour.",
+      "business": {
+        "name": "John H. Kinzie",
+        "proprietors": [
+          "John H. Kinzie"
+        ],
+        "trade": "forwarding and commission merchant",
+        "goods": [
+          "Salt",
+          "Nails",
+          "Window glass",
+          "Iron",
+          "Horse shoe plates",
+          "Plough irons",
+          "Sugar",
+          "Molasses"
+        ],
+        "street": null,
+        "placement": {
+          "class": "relative",
+          "anchor": "the wharf",
+          "offset_text": "the Huron, to be\nfrom the wharf.",
+          "offset_normalized": "the Huron, to be [delivered] from the wharf"
+        }
+      },
+      "ad_copy_date": {
+        "verbatim": "gusen-| Chicago, May 12, 1834.",
+        "iso": "1834-05-12"
+      }
+    },
+    {
+      "id": "c004",
+      "kind": "building",
+      "reading": "transcription_mediated",
+      "quote": "HE persdpal property belon\nT tate of Barnardus i Laugt\nce of | will be sold at public vendue,\nupon | dwelling house of the deceased—,\nmontha will be given on all sums\nlars, the purchasers giving bond\nenate! curity for the payment of the «:\nwith | commence on Thursday the 5th\nt the | Next, at 10 o'clock, A.M. May\nSOPHIA LA",
+      "normalized": "[T]HE pers[o]nal property belon[ging to the es]tate of Barnardus [H.] Laug[hton, deceased,] will be sold at public vendue, [at the former] dwelling house of the deceased—[a credit of nine] months will be given on all sums [over five dol]lars, the purchasers giving bond [with good se]curity for the payment of the [same. Sale to] commence on Thursday the 5th [day of June] next, at 10 o'clock, A.M. May [10, 1834.] SOPHIA LA[UGHTON.]",
+      "locator": {
+        "artifact_role": "primary",
+        "issue_page": 3,
+        "column": 2,
+        "lines": [
+          2635,
+          2644
+        ],
+        "lines_of_claim": [
+          2635,
+          2636,
+          2637,
+          2638,
+          2639,
+          2640,
+          2641,
+          2642,
+          2643,
+          2644
+        ],
+        "interleaved": true
+      },
+      "entities": [
+        {
+          "as_printed": "SOPHIA LA",
+          "normalized": "Sophia Laughton",
+          "role": "administratrix, conducting the sale",
+          "occupations": []
+        },
+        {
+          "as_printed": "Barnardus i Laugt",
+          "normalized": "Barnardus H. Laughton",
+          "role": "the deceased",
+          "occupations": []
+        }
+      ],
+      "notes": "THE SAME VENDUE, SIGNED. 1834-05-21 (claim c017 there) has the fuller body of the notice and no signature; this reading loses the last words of every line and KEEPS 'SOPHIA LA[UGHTON]', which is what attaches the sale to the administratrix named in the letters of administration of 1834-05-07 (page 3 column 3, lines 2892-2894, 'SOPHIA LAUGHTON, [administratrix] of the estate of Bar[nardus H. Laughton]'). A woman administering an estate and conducting a public auction inside the dead man's house is a fact about how the town's business was actually done, and it is worth a card for that alone. NO PLACE: 'the former dwelling house of the deceased' is the whole of the address in both readings."
+    },
+    {
+      "id": "c005",
+      "kind": "event",
+      "reading": "transcription_mediated",
+      "quote": "Militia Order\norder of Josiah Stillman, E\nthe ral 2nd Brigade, and Sth D\nZ tia, Tam required and\ngivo notice to all the free white m\nneas- | Cook county, Ill. over the\nople, | under 45 years, that an election v\nBut | MY house, on the western bank o\nOt river, on the first Saturday in Jur\n-We} o'clock, M. for the purpose of ele\npeo- | nel, to organize and comand the\nBe aay ed etd 10, 1834, sey",
+      "normalized": "Militia Order[s.] [By] order of Josiah Stillman, [Brigadier Gene]ral 2nd Brigade, and 5th D[ivision Illinois Mili]tia, I am required and [commanded to] give notice to all the free white m[ale citizens of] Cook county, Ill. over the [age of 18 years and] under 45 years, that an election [will be held at] MY house, on the western bank o[f the Des Plaines] river, on the first Saturday in Jun[e next, at 12] o'clock, M. for the purpose of ele[cting a Colo]nel, to organize and com[m]and the [militia of said county.] [—May] 10, 1834,",
+      "locator": {
+        "artifact_role": "primary",
+        "issue_page": 3,
+        "column": 2,
+        "lines": [
+          2645,
+          2656
+        ],
+        "lines_of_claim": [
+          2645,
+          2646,
+          2647,
+          2648,
+          2649,
+          2650,
+          2651,
+          2652,
+          2653,
+          2654,
+          2655,
+          2656
+        ],
+        "interleaved": true
+      },
+      "entities": [
+        {
+          "as_printed": "Josiah Stillman",
+          "normalized": "Josiah Stillman",
+          "role": "Brigadier General, 2nd Brigade, 5th Division Illinois Militia",
+          "occupations": [
+            "militia officer"
+          ]
+        }
+      ],
+      "notes": "'MY HOUSE, ON THE WESTERN BANK OF' — the officer speaks in the first person and gives his own dwelling as the county's polling place. The signature is cut away here and is read from 1834-05-28 (claim c009 there), where it survives as 'S. FORB' — Stephen Forbes, who is also the executor named in David Laughton's will in 1834-05-07 (page 3 column 3, lines 2903-2911). The river's name is likewise cut here and whole in the later reading, 'the western bank of Des P[laines]'. WHAT THIS CLAIM ADDS ON ITS OWN is the first-person 'MY house', which the 1834-05-28 reading also carries but which is worth recording twice: a private house on the west bank of the Des Plaines was where every militia-eligible man in Cook county was summoned on the first Saturday in June 1834.",
+      "ad_copy_date": {
+        "verbatim": "Be aay ed etd 10, 1834, sey",
+        "iso": "1834-05-10"
+      }
+    },
+    {
+      "id": "c006",
+      "kind": "event",
+      "reading": "transcription_mediated",
+      "quote": "we be sold at Auction, by\nber, on the 20th uf August\nwenty fee to TOWN LTS\nwhich ‘are water > situate in the\n‘Rees part of the town,\nHIRAM PEA\nMay 1, 1634, I SEA",
+      "normalized": "[Chicago Town Lots.] [WILL] be sold at Auction, by [the subscri]ber, on the 20th [o]f August [next, t]wenty[-]f[iv]e to [fifty] TOWN L[O]TS[; many of] which are water [lots,] situate in the [most busi]ne[s]s part of the town. HIRAM PEA[RSON.] May 1, 18[3]4,",
+      "locator": {
+        "artifact_role": "primary",
+        "issue_page": 3,
+        "column": 2,
+        "lines": [
+          2737,
+          2743
+        ],
+        "lines_of_claim": [
+          2737,
+          2738,
+          2739,
+          2740,
+          2741,
+          2742,
+          2743
+        ],
+        "interleaved": true
+      },
+      "entities": [
+        {
+          "as_printed": "HIRAM PEA",
+          "normalized": "Hiram Pearson",
+          "role": "vendor",
+          "occupations": [
+            "land dealer"
+          ]
+        }
+      ],
+      "notes": "WATER LOTS AGAIN, A WEEK EARLIER, AND CUT WORSE. Read in full from 1834-05-28 (claim c008 there). The reading is kept because the quantity phrase survives differently — 'wenty fee to TOWN LTS' here against '“enty-fire to fy TOWN LOTS' there — and neither is decisive; the two together are why the count is bracketed in both. THE CATEGORY IS THE FIND, not the number: town lots and WATER lots are advertised as distinct kinds of property in the town's business quarter, fifteen months after the wharfing ordinance created the privilege that made the water ground saleable.",
+      "ad_copy_date": {
+        "verbatim": "May 1, 1634, I SEA",
+        "iso": "1834-05-01"
+      }
+    },
+    {
+      "id": "c007",
+      "kind": "shipping",
+      "reading": "transcription_mediated",
+      "quote": "WARINE LIST\ny 8. Schr. Hur\nARRIVED.\n3. E° Lamber\n, Hunt, Huron, Ohio, car\n[uncertain: 1a as Verma it, Mimalber]\n[uncertain: 1 sea. C]\nCLEARED.\n[uncertain: ooke, st. Jomp]",
+      "normalized": "[M]ARINE LIST [Ma]y 8. Schr. Hur[on …] ARRIVED. [1]3. [Schr.] Lamber[t …] [ ], Hunt, Huron, Ohio, car[go …] [uncertain: 1a as Verma it, Mimalber] [uncertain: 1 sea. C] CLEARED. [uncertain: ooke, st. Jomp]",
+      "locator": {
+        "artifact_role": "primary",
+        "issue_page": 3,
+        "column": 1,
+        "lines": [
+          2590,
+          2598
+        ],
+        "lines_of_claim": [
+          2590,
+          2591,
+          2592,
+          2593,
+          2594,
+          2595,
+          2596,
+          2597,
+          2598
+        ],
+        "interleaved": true
+      },
+      "entities": [
+        {
+          "as_printed": "Hunt",
+          "normalized": "Hunt",
+          "role": "master, from Huron, Ohio",
+          "occupations": [
+            "shipmaster"
+          ]
+        }
+      ],
+      "notes": "THE SCHOONER HURON, ON THE DAY SHE LANDED KINZIE'S SALT. The marine list of this issue names the Huron on 8 May, and John H. Kinzie's advertisement four columns away offers a hundred barrels of salt 'received per the Huron, to be delivered from the wharf' over a dateline of 12 May (claim c003). Two independent notices in one issue, agreeing on a vessel and a cargo — which is what turns a shipping line into evidence about the wharf. The rest of the list is badly cut and three entries sit inside the transcription's own uncertainty brackets, which are kept."
+    },
+    {
+      "id": "c008",
+      "kind": "business",
+      "reading": "transcription_mediated",
+      "quote": "RD W. CASEY,\n• COUNSELLOR AT LAI,\nining that of the Clark of the",
+      "normalized": "[EDWA]RD W. CASEY, [ATTORNEY &] COUNSELLOR AT LA[W.] [OFFICE adjo]ining that of the Cl[e]rk of the [Circuit Court.]",
+      "locator": {
+        "artifact_role": "primary",
+        "issue_page": 3,
+        "column": 4,
+        "lines": [
+          2885,
+          2887
+        ],
+        "lines_of_claim": [
+          2885,
+          2886,
+          2887
+        ],
+        "interleaved": true
+      },
+      "entities": [
+        {
+          "as_printed": "RD W. CASEY,",
+          "normalized": "Edward W. Casey",
+          "role": "proprietor",
+          "occupations": [
+            "attorney",
+            "counsellor at law"
+          ]
+        }
+      ],
+      "notes": "AN OFFICE PLACED AGAINST A PUBLIC OFFICE — 'adjoining that of the Clerk of the Circuit Court'. That is the only line in the month that sites any part of Cook county's court apparatus, and it does it sideways, in a lawyer's card. It says the Circuit Court Clerk kept a fixed office in the town in May 1834 and that a private office stood next to it; it does NOT say where either was, and no reading in this run supplies a street. The same card is cut differently in 1834-05-07 (page 3 column 1, lines 2630-2633, claim c012 there), which keeps 'ATTORNEY 4 COUNSELLOI' and 'arcuit Cou' — the two readings together are what license 'Circuit Court' here.",
+      "business": {
+        "name": "Edward W. Casey, attorney and counsellor at law",
+        "proprietors": [
+          "Edward W. Casey"
+        ],
+        "trade": "attorney and counsellor at law",
+        "goods": [],
+        "street": null,
+        "placement": {
+          "class": "relative",
+          "anchor": "the office of the Clerk of the Circuit Court",
+          "offset_text": "ining that of the Clark of the",
+          "offset_normalized": "[adjo]ining that of the Cl[e]rk of the [Circuit Court]"
+        }
+      }
+    },
+    {
+      "id": "c009",
+      "kind": "business",
+      "reading": "transcription_mediated",
+      "quote": "Blackemith\nMATTHIAS\nARRIES on the ,\nvarious branches\nopposite Graves’ Tave\nkeep, ready made, all\nae. 4. Work done\nand most liberal terme\nChicago, Nov: 2%, 1",
+      "normalized": "Blacksmith[ing.] MATTHIAS [MASON & CO.] [C]ARRIES on the [above business in its] various branches[, on Main-street, nearly] opposite Graves' Tave[rn, where he will] keep, ready made, all [kinds of Shoeing, Chains,] [&]c. &c. Work done [on the shortest notice] and most liberal terme[.] Chicago, Nov[.] 2[6], 1[833.]",
+      "locator": {
+        "artifact_role": "primary",
+        "issue_page": 4,
+        "column": 1,
+        "lines": [
+          3540,
+          3548
+        ],
+        "lines_of_claim": [
+          3540,
+          3541,
+          3542,
+          3543,
+          3544,
+          3545,
+          3546,
+          3547,
+          3548
+        ],
+        "interleaved": true
+      },
+      "entities": [
+        {
+          "as_printed": "MATTHIAS",
+          "normalized": "Matthias Mason",
+          "role": "proprietor",
+          "occupations": [
+            "blacksmith"
+          ],
+          "associated_places": [
+            "Main Street",
+            "opposite Graves' Tavern"
+          ]
+        }
+      ],
+      "notes": "THE THIRD INDEPENDENT READING OF THE SAME ADDRESS IN ONE MONTH. Matthias Mason's card runs unchanged from the paper's first issue through May 1834, and 'opposite Graves' Tave[rn]' survives in this issue, in 1834-05-21 (claim c005 there) and in 1834-05-28 (claim c022 there). The dateline 'Nov: 2%, 1' is read as 26 November 1833, the paper's first issue, which is where the card was first read (1833-11-26, claim c020). Recording it in every issue that carries it is what widens the business's evidence window honestly rather than by assertion.",
+      "business": {
+        "name": "Matthias Mason & Co.",
+        "proprietors": [
+          "Matthias Mason"
+        ],
+        "trade": "blacksmithing",
+        "goods": [
+          "Horse shoeing",
+          "Chains"
+        ],
+        "street": "Main Street",
+        "placement": {
+          "class": "relative",
+          "anchor": "Graves' Tavern",
+          "offset_text": "opposite Graves’ Tave",
+          "offset_normalized": "[nearly] opposite Graves' Tave[rn]",
+          "street": "Main Street"
+        }
+      },
+      "ad_copy_date": {
+        "verbatim": "Chicago, Nov: 2%, 1",
+        "iso": "1833-11-26"
+      }
+    },
+    {
+      "id": "c010",
+      "kind": "business",
+      "reading": "transcription_mediated",
+      "quote": "AVES,\ne citizenwof Chicago,\nring settioments thet\ntinge Be siness, in this Chicago, 2 Nor.\nteeot, a few doors nortli | ——\nDole's store; where he wake P\nAyfrosh Bread, Crackers, BE subser\nady. ta mutpply: the citi- “Stock of:\ntamscan bo ‘aflorded.—jeaye for News)\ntended to imuned ee tle;ments of is",
+      "normalized": "[BAKERY … the subscriber informs th]e citizen[s] of Chicago, [and the neighbou]ring settlements that [he has commenced the Ba]king B[u]siness, in this [town, on South Water-s]t[r]eet, a few doors nort[h] [of Messrs. Newberry &] Dole's store; where he [will always keep on hand] [al]ways fr[e]sh Bread, Crackers, [Cakes, &c. and is re]ady to supply the citi[zens as low as they] [ ] can be afforded.— [Orders from a distance at]tended to",
+      "locator": {
+        "artifact_role": "primary",
+        "issue_page": 4,
+        "column": 2,
+        "lines": [
+          3577,
+          3586
+        ],
+        "lines_of_claim": [
+          3577,
+          3578,
+          3579,
+          3580,
+          3581,
+          3582,
+          3583,
+          3584,
+          3585,
+          3586
+        ],
+        "interleaved": true
+      },
+      "entities": [],
+      "notes": "THE BAKERY'S RIGHT-HAND HALF, AND IT IS WHAT PROVES 'A FEW DOORS NORTH'. The advertisement is read as a whole from 1834-05-21 (claim c003 there), whose page 4 column 1 carries the LEFT halves of these same printed lines and gives 'town, on South Water-stree' and '} of Moxirs, Newbury:& “Dol'. This column carries the RIGHT halves — 'ring settioments thet', 'tinge Be siness, in this', 'teeot, a few doors nortli', 'Dole's store; where he wake P' — and 'a few doors north' is legible here and cut there. Neither half alone places the bakery; together they put it on South Water Street a few doors north of Newberry & Dole's, which is the only line in the month that puts THAT store on a named street.",
+      "business": {
+        "name": "Chicago Bakery, South Water Street",
+        "proprietors": [],
+        "trade": "bakery",
+        "goods": [
+          "Bread",
+          "Crackers",
+          "Cakes"
+        ],
+        "street": "South Water Street",
+        "placement": {
+          "class": "relative",
+          "anchor": "Messrs. Newberry & Dole's store, South Water Street",
+          "offset_text": "teeot, a few doors nortli | ——\nDole's store; where he wake P",
+          "offset_normalized": "[s]t[r]eet, a few doors nort[h of Messrs. Newberry &] Dole's store",
+          "street": "South Water Street"
+        }
+      }
+    },
+    {
+      "id": "c011",
+      "kind": "business",
+      "reading": "transcription_mediated",
+      "quote": "UST received\nI00DS, co\nMualins, Ladies\ndou- Glass,\nsic. ake. for sule\nHAR\n[uncertain: ?ce.]\nMay 5, 1834.\n[uncertain: Hold ow in tele]\nreceived b\nC. & 1. HARM\n[uncertain: • sever win]\nI H. KINZIE.\nChicago, Murch 1,\n3w21",
+      "normalized": "[J]UST received [… DRY G]OODS, co[nsisting of …] Muslins, Ladies['…] […] Glass, [&c.] &c. for s[a]le [by] [C. & I.] HAR[MON …] [uncertain: ?ce.] May 5, 1834. [uncertain: Hold ow in tele] [Just] received b[y …] C. & [I.] HARM[ON …] [uncertain: • sever win] [JOHN] H. KINZIE. Chicago, M[a]rch 1, [1834.] 3w21",
+      "locator": {
+        "artifact_role": "primary",
+        "issue_page": 3,
+        "column": 3,
+        "lines": [
+          2765,
+          2779
+        ],
+        "lines_of_claim": [
+          2765,
+          2766,
+          2767,
+          2768,
+          2769,
+          2770,
+          2771,
+          2772,
+          2773,
+          2774,
+          2775,
+          2776,
+          2777,
+          2778,
+          2779
+        ],
+        "interleaved": true
+      },
+      "entities": [
+        {
+          "as_printed": "C. & 1. HARM",
+          "normalized": "C. & I. Harmon",
+          "role": "proprietors",
+          "occupations": [
+            "merchant"
+          ]
+        },
+        {
+          "as_printed": "I H. KINZIE.",
+          "normalized": "John H. Kinzie",
+          "role": "advertiser",
+          "occupations": [
+            "forwarding and commission merchant"
+          ]
+        }
+      ],
+      "notes": "C. & I. HARMON, STILL TRADING IN MAY 1834 — the firm the scan-verified record of the paper's first issue insisted on against a rival transcription's 'C. & L. Harmon'. The initials read 'C. & 1.' twice on this column, which is the same 1-for-I recognition shape the source record warns about, and they are read as C. & I. on the strength of that record (ruling 2 run backwards: where a scan has been read, it outranks the transcription). NO ADDRESS in either notice. The column interleaves two advertisements line by line and John H. Kinzie's dateline of 1 March 1834 belongs to the second of them, not to the Harmon goods, which are dated 5 May 1834; the reading says so rather than letting one dateline stand for both.",
+      "business": {
+        "name": "C. & I. Harmon",
+        "proprietors": [
+          "C. & I. Harmon"
+        ],
+        "trade": "dry goods and groceries",
+        "goods": [
+          "Dry Goods",
+          "Muslins",
+          "Glass"
+        ],
+        "street": null,
+        "placement": {
+          "class": "none"
+        }
+      },
+      "ad_copy_date": {
+        "verbatim": "May 5, 1834.",
+        "iso": "1834-05-05"
+      }
+    }
+  ]
+}
