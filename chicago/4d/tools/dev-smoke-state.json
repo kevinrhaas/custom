@@ -2,6 +2,72 @@
   "note": "T-0216 — dev's standing smoke result, so a branch can answer \"is this red mine, or did I inherit it?\" from the record instead of re-running the stage on a clean worktree (three agents paid that price on one red on 2026-08-27; T-0215). Written by tools/dev-smoke-state.mjs, which parses a smoke log — local or from a chicago-4d-smoke.yml run. Every reading carries the CONDITIONS it was taken under, because a quiet CI runner does not predict a loaded steward box: T-0215 measured a factor of twenty on one tree. loadavg is sampled when the reading is filed, so it includes the smoke's own load. `treeHash` digests exactly what the smoke exercises (renderers, data, assets, smoke_renderer.mjs, the published mirror), so a reading whose hash matches yours is a reading OF YOUR TREE. A RECORD, NOT A BAR: nothing here gates anything.",
   "readings": [
     {
+      "viewport": "mobile",
+      "stage": "3-4",
+      "parts": [
+        3,
+        4
+      ],
+      "verdict": "pass",
+      "target": "source",
+      "passed": 116,
+      "failed": 0,
+      "failures": [],
+      "wallSeconds": 440,
+      "takenAt": "2026-08-28T18:36:13.917Z",
+      "ref": "steward/t-0028-lake-franklin",
+      "commit": "2f0ade1f3d0d",
+      "devCommit": "52e5a9b02af0",
+      "treeHash": "sha256:5753016e622ae203",
+      "treeDirty": false,
+      "changelogHash": "sha256:bb61cddabf1ed95c",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          3.7,
+          4,
+          3.6
+        ]
+      },
+      "source": "/tmp/smoke_m34.log"
+    },
+    {
+      "viewport": "desktop",
+      "stage": "4",
+      "parts": [
+        4
+      ],
+      "verdict": "fail",
+      "target": "source",
+      "passed": 43,
+      "failed": 2,
+      "failures": [
+        "desktop 1280x800: the light tier draws inside its 80-call floor at the worst stand — 85 calls at light, worst stand Lake and Market, the corner itself — floor 80, the count this project chose before the 2026-08 content landed, restored by T-0147 once T-0150, T-0146 and T-0223 had trimmed the axial view",
+        "desktop 1280x800: the suite body ran to completion — Error: page.click: Target page, context or browser has been closed"
+      ],
+      "wallSeconds": null,
+      "takenAt": "2026-08-28T18:36:13.830Z",
+      "ref": "steward/t-0028-lake-franklin",
+      "commit": "2f0ade1f3d0d",
+      "devCommit": "52e5a9b02af0",
+      "treeHash": "sha256:5753016e622ae203",
+      "treeDirty": false,
+      "changelogHash": "sha256:bb61cddabf1ed95c",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          3.7,
+          4,
+          3.6
+        ]
+      },
+      "source": "/tmp/smoke_d4b.log"
+    },
+    {
       "viewport": "desktop",
       "stage": "1",
       "parts": [
@@ -76,40 +142,6 @@
       "passed": 74,
       "failed": 0,
       "failures": [],
-      "wallSeconds": null,
-      "takenAt": "2026-08-28T17:01:08.991Z",
-      "ref": "steward/t-0246-log-jail-randolph",
-      "commit": "acce050b6ff7",
-      "devCommit": "2506c60cbe87",
-      "treeHash": "sha256:f6651c6c121f2a79",
-      "treeDirty": true,
-      "changelogHash": "sha256:4b962cf8f3f2f4cf",
-      "host": {
-        "kind": "steward-runner",
-        "cpus": 4,
-        "memGB": 15.6,
-        "loadavg": [
-          2.4,
-          3.9,
-          4.1
-        ]
-      },
-      "source": "/tmp/smoke_all.log"
-    },
-    {
-      "viewport": "desktop",
-      "stage": "4",
-      "parts": [
-        4
-      ],
-      "verdict": "fail",
-      "target": "published",
-      "passed": 46,
-      "failed": 2,
-      "failures": [
-        "desktop 1280x800: scene detail 'balanced' stays inside its own ceiling at the WORST stand — 1,215,577 tris of 1,210,000 at the forks, from Wolf Point, 155 calls of 215 at Lake and Market, the corner itself — spread: the forks, from Wolf Point 1,215,577/152c · Lake Street at Canal, east down the axis 1,199,449/146c · Lake and Market, the corner itself 981,093/155c · the Sauganash at 26 m 826,711/113c · the open aerial 805,007/121c",
-        "desktop 1280x800: the light tier draws inside its 80-call floor at the worst stand — 85 calls at light, worst stand Lake and Market, the corner itself — floor 80, the count this project chose before the 2026-08 content landed, restored by T-0147 once T-0150, T-0146 and T-0223 had trimmed the axial view"
-      ],
       "wallSeconds": null,
       "takenAt": "2026-08-28T17:01:08.991Z",
       "ref": "steward/t-0246-log-jail-randolph",
@@ -268,6 +300,40 @@
       "passed": 91,
       "failed": 0,
       "failures": [],
+      "wallSeconds": null,
+      "takenAt": "2026-08-28T17:01:08.991Z",
+      "ref": "steward/t-0246-log-jail-randolph",
+      "commit": "acce050b6ff7",
+      "devCommit": "2506c60cbe87",
+      "treeHash": "sha256:f6651c6c121f2a79",
+      "treeDirty": true,
+      "changelogHash": "sha256:4b962cf8f3f2f4cf",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          2.4,
+          3.9,
+          4.1
+        ]
+      },
+      "source": "/tmp/smoke_all.log"
+    },
+    {
+      "viewport": "desktop",
+      "stage": "4",
+      "parts": [
+        4
+      ],
+      "verdict": "fail",
+      "target": "published",
+      "passed": 46,
+      "failed": 2,
+      "failures": [
+        "desktop 1280x800: scene detail 'balanced' stays inside its own ceiling at the WORST stand — 1,215,577 tris of 1,210,000 at the forks, from Wolf Point, 155 calls of 215 at Lake and Market, the corner itself — spread: the forks, from Wolf Point 1,215,577/152c · Lake Street at Canal, east down the axis 1,199,449/146c · Lake and Market, the corner itself 981,093/155c · the Sauganash at 26 m 826,711/113c · the open aerial 805,007/121c",
+        "desktop 1280x800: the light tier draws inside its 80-call floor at the worst stand — 85 calls at light, worst stand Lake and Market, the corner itself — floor 80, the count this project chose before the 2026-08 content landed, restored by T-0147 once T-0150, T-0146 and T-0223 had trimmed the axial view"
+      ],
       "wallSeconds": null,
       "takenAt": "2026-08-28T17:01:08.991Z",
       "ref": "steward/t-0246-log-jail-randolph",
@@ -1787,38 +1853,6 @@
     },
     {
       "viewport": "mobile",
-      "stage": "3-4",
-      "parts": [
-        3,
-        4
-      ],
-      "verdict": "pass",
-      "target": "published",
-      "passed": 112,
-      "failed": 0,
-      "failures": [],
-      "wallSeconds": 413,
-      "takenAt": "2026-08-27T20:16:06.155Z",
-      "ref": "steward/t-0208-anchored-wall",
-      "commit": "b5900d21057d",
-      "devCommit": "e3a9cf993016",
-      "treeHash": "sha256:501fae819c902562",
-      "treeDirty": false,
-      "changelogHash": "sha256:465fddcc04c94711",
-      "host": {
-        "kind": "steward-runner",
-        "cpus": 4,
-        "memGB": 15.6,
-        "loadavg": [
-          0.6,
-          2.4,
-          3.5
-        ]
-      },
-      "source": "/tmp/smoke-m34.log"
-    },
-    {
-      "viewport": "mobile",
       "stage": "7-9",
       "parts": [
         7,
@@ -1849,101 +1883,6 @@
         ]
       },
       "source": "/tmp/smoke-m79.log"
-    },
-    {
-      "viewport": "desktop",
-      "stage": "4",
-      "parts": [
-        4
-      ],
-      "verdict": "fail",
-      "target": "published",
-      "passed": 40,
-      "failed": 1,
-      "failures": [
-        "desktop 1280x800: the suite body ran to completion — Error: page.click: Target page, context or browser has been closed"
-      ],
-      "wallSeconds": null,
-      "takenAt": "2026-08-27T20:16:05.967Z",
-      "ref": "steward/t-0208-anchored-wall",
-      "commit": "b5900d21057d",
-      "devCommit": "e3a9cf993016",
-      "treeHash": "sha256:501fae819c902562",
-      "treeDirty": false,
-      "changelogHash": "sha256:465fddcc04c94711",
-      "host": {
-        "kind": "steward-runner",
-        "cpus": 4,
-        "memGB": 15.6,
-        "loadavg": [
-          0.6,
-          2.4,
-          3.5
-        ]
-      },
-      "source": "/tmp/smoke-d4.log"
-    },
-    {
-      "viewport": "desktop",
-      "stage": "8",
-      "parts": [
-        8
-      ],
-      "verdict": "pass",
-      "target": "published",
-      "passed": 37,
-      "failed": 0,
-      "failures": [],
-      "wallSeconds": 169,
-      "takenAt": "2026-08-27T20:16:05.870Z",
-      "ref": "steward/t-0208-anchored-wall",
-      "commit": "b5900d21057d",
-      "devCommit": "e3a9cf993016",
-      "treeHash": "sha256:501fae819c902562",
-      "treeDirty": false,
-      "changelogHash": "sha256:465fddcc04c94711",
-      "host": {
-        "kind": "steward-runner",
-        "cpus": 4,
-        "memGB": 15.6,
-        "loadavg": [
-          0.6,
-          2.4,
-          3.5
-        ]
-      },
-      "source": "/tmp/smoke-d8.log"
-    },
-    {
-      "viewport": "desktop",
-      "stage": "9",
-      "parts": [
-        9
-      ],
-      "verdict": "pass",
-      "target": "published",
-      "passed": 88,
-      "failed": 0,
-      "failures": [],
-      "wallSeconds": 249,
-      "takenAt": "2026-08-27T20:16:05.771Z",
-      "ref": "steward/t-0208-anchored-wall",
-      "commit": "b5900d21057d",
-      "devCommit": "e3a9cf993016",
-      "treeHash": "sha256:501fae819c902562",
-      "treeDirty": false,
-      "changelogHash": "sha256:465fddcc04c94711",
-      "host": {
-        "kind": "steward-runner",
-        "cpus": 4,
-        "memGB": 15.6,
-        "loadavg": [
-          0.6,
-          2.4,
-          3.5
-        ]
-      },
-      "source": "/tmp/smoke-d9.log"
     },
     {
       "viewport": "mobile",
