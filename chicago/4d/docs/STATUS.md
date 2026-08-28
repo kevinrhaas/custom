@@ -110,6 +110,12 @@ ceiling sweeps re-taken on the merged mirror and unchanged to the triangle: desk
 re-derives identically on the merged tree — walks 43, crossings 32, refusals 72, meshes 54 — so
 `dev`'s geometry did not move this layer.
 
+**And once more after #421 (T-0193) landed on `dev`**, which is the last thing to merge under
+this branch: `./tools/check.sh` PASS, desktop stage `2` 80/**1** (the same inherited T-0244),
+desktop ceilings 1,372,635 / 1,204,048 / 746,028 — identical to the reading above, because that
+ticket refused its block rather than laying it. The frontage census re-derives at walks 43,
+crossings 32, refusals 72, meshes 54 for the third time.
+
 ## Shipped 2026-08-27 — T-0213: the trade families are weighted onto the business front
 
 The surviving half of ROADMAP **K29**. T-0022 refuted the other half — the schedule may deal log
