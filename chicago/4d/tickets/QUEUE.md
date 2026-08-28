@@ -58,7 +58,6 @@ T-0264 — Documented people replace the invented
 
 # --- MEASUREMENT, GATES AND PROVENANCE — invisible, and nothing below blocks the above
 T-0227 — Is the AO bake actually too dark? Every figure that said so was wrong twice over
-T-0211 — The other nine group rows are cross-checked against nothing
 T-0224 — A critic baseline standing on the public square
 T-0210 — The desktop smoke's stage 9 times out clicking the panel close, on an unmodified tree
 T-0190 — A second street tier for the street edge, and the ceiling that refuses it
@@ -113,4 +112,5 @@ T-0277 — The mid and forb rings' outer edges are re-priced for a density hando
 T-0279 — 2,526 of 18,911 drawn flower heads stand over open ground with no plant under their own stalk, on an unmodified dev
 T-0280 — The far band's grass-or-flower split is made on the forb lattice's CLAMPED share
 T-0281 — The ten plant communities reach no card a visitor can open
+T-0283 — The North Division's warehouse row allows one freight roof and six documented ones stand above it
 T-0284 — Two slices of one batch claimed T-0256 and both built it — a claim is written where the next slice cannot see it

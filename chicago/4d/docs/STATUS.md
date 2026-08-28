@@ -1,5 +1,65 @@
 # STATUS
 
+## Shipped 2026-08-28 — T-0211: the other nine group rows are cross-checked against something now
+
+**The hole T-0032 left behind.** `data/reconstruction/1835_building_inventory.json` carries the same
+662-roof aggregate three ways — 35 `family_targets`, a 10-group × 4-division `district_group_matrix`,
+and four `districts` totals — and the ledger asserted that all three sum to `roof_total` and that each
+group's families sum to that group's row. **Nothing asserted anything about a group's split BY
+DIVISION**, and the two views were authored independently. T-0032 (PR #388) found what that permits
+in the `institutional_public` row and corrected that one row; the ticket it filed asks the same
+question of the other nine.
+
+**The answer is not "they are fine".** `tools/measure_group_district_rows.py` prints the full
+ten-row × four-division audit with the signed gap in every cell. Thirty-eight of the forty cells hold
+roofs they have room for. Two do not, and both are in the North Division:
+
+| group | division | row says | stands | over by |
+|---|---|---|---|---|
+| `warehouses_freight` | north | 1 | 7 | **6** |
+| `institutional_public` | north | 3 | 4 | **1** |
+
+Six of the seven North freight roofs are **documented pre-existing records** — Kinzie & Hunter's
+warehouse, the four north-bank sheds at the Dearborn reach, the north-side brickyard — so the breach
+is not an invention that can be removed. It is a row authored without the north bank's river-freight
+fabric in view. The seventh is `recon_1835_north_f1_022`, dealt by a parcel that ran before anything
+measured this. The institutional cell is a narrower thing: T-0032 set that row to the NAMED census and
+`measure_institutional_claims.py` holds it there, while this counts every roof that stands — so the
+two gates disagree by exactly `recon_1835_north_i2_015`, the one anonymous school **L93** records as a
+liberty taken rather than deleted. Both readings are right for their own question.
+
+**What the breach was costing, which nothing anywhere stated.** `reconcile_665.py` clamps the negative
+away with `max(0, matrix[g][district] - built[(district, g)])`, so a row wrong by six roofs read
+exactly like a row that is right. The clamp does not merely hide it — it re-spends it. The division's
+ten clamped heads then sum to **more** than its own remainder, by exactly the overshoot, and an
+unnamed loop sheds the difference from whichever group has the most head. Measured: the North
+Division's **seven** overshooting roofs are paid for, in full, out of its **ordinary dwellings**. The
+programme document now says so, in `remaining.district_group_rows_overshot` and
+`remaining.district_group_slots_shed`.
+
+**What is asserted, and why it is the weaker claim.** The I3 repair does not generalise. An
+institutional row can be held to a census because Chicago's public buildings are enumerable; dwellings,
+stores and barns are not, so "the row equals what stands" is the WRONG assertion for the other nine —
+a row 74 roofs above what stands is the programme working as intended. The gate asserts the two things
+that are true regardless:
+
+1. **the matrix adds up in BOTH directions** — each row's four cells to its own `total`, and each
+   division's ten cells to its own `target`. Neither was asserted anywhere before this, and the second
+   is what makes the shed an identity rather than a coincidence;
+2. **every division over one of its group rows declares it**, at a declared size — a ratchet in the
+   shape `measure_band_claims.py` uses. It may fall, it may not rise, a new breach fails, and a
+   declaration that outlives its breach fails too.
+
+Neither cell is repairable by editing one number: the cells sum to their division's target *and* to
+their group's total, so moving one moves four others and the 662-roof programme with them. That is a
+decision about the authored target and it is filed as its own ticket. This run's job was to stop the
+breach being invisible while it waits.
+
+Verified: `tools/check.sh` (green, with the two new steps), `python3
+tools/measure_group_district_rows.py --self-test` (8 cases, including the north half of the
+apportionment T-0032 corrected, a grown breach, a healed one and a stale declaration). No renderer
+file changed, so the frame is byte-identical.
+
 ## Shipped 2026-08-28 — T-0282: the shrub stratum joins the ceiling declaration, and a visitor can read it
 
 **T-0019 declared the forb lattice's ceiling this morning and the declaration could not see half of
