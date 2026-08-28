@@ -1,7 +1,7 @@
 ---
 id: T-0311
 title: Reading the Democrat, February 1834: Vol. I Nos. 11-14
-state: open
+state: done
 epic: PAPERS
 requested_by: owner
 seen: false
@@ -9,9 +9,9 @@ effort: S
 legacy_id: null
 parent: T-0258
 opened: 2026-08-28
-closed: null
-pr: null
-claimed_by: null
+closed: 2026-08-28
+pr: 485
+claimed_by: run 8/28/2026, 4:56:58 PM CT
 blocked_on: null
 needs_bake: false
 ---

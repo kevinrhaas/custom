@@ -1,4 +1,13 @@
 export const CHANGELOG = [ // newest first
+  { v: 352, title: 'February 1834, read: how the bridges were built', kind: 'chore', ts: '2026-08-28T22:47:17.339Z', date: 'Aug 28, 2026, 5:47 PM CT',
+    items: [
+      'Nothing you can see changed today. The four February 1834 issues of the Chicago Democrat have been read end to end, and 44 things they say about the town are written down with the page, column and line they came from.',
+      'The best of them is a shopping list. On 4 January 1834 the trustees of the town advertised for proposals to repair the bridges over both branches of the river, and specified them timber by timber: braces of oak 6 inches square, two sets to each bridge; oak railing 8 by 4 inches; oak standards 4 feet high; decking of oak plank 2 inches thick, pinned down with oak pins an inch and a half through and two feet long. This project has been drawing both bridges from engravings. This is the specification.',
+      'Two buildings arrive with dates on them. A livery stable opened at the Point \u2014 saddle horses and single-horse carriages, kept day or night \u2014 and on 15 February D. Elston & Co. said they had fitted up a smoke house for hams and bacon, beside the soap and candle manufactory they already ran.',
+      'The Presbyterian church is shown being used. The temperance society held its annual meeting inside it on the evening of 30 January, before what the paper calls a large assembly of the citizens of Chicago, and elected a board \u2014 two doctors, Philo Carpenter as secretary, and two officers of the Fort Dearborn garrison among the seven.',
+      'The town\u2019s week has a shape now. The postmaster printed his own timetable: the Eastern mail in on Wednesday and out Thursday at 8, the Western, Northern and Southern all in on Tuesday. The four-horse coach for Galena left every Thursday to catch the Detroit mail. Thursday morning was when Chicago left.',
+      'And a saw mill got its name back. January\u2019s reading of the trespass notice could not tell whether the mill on section 4 was a steam mill or somebody\u2019s name, and said so. February prints it twice, cleanly, in two issues: it is the Steam Saw Mill, and the man warning trespassers off it is Mark Noble, Sen.',
+    ] },
   { v: 351, title: 'A letter list nobody knew was there, and ten feet of sidewalk', kind: 'chore', ts: '2026-08-28T22:36:36.354Z', date: 'Aug 28, 2026, 5:36 PM CT',
     items: [
       'Nothing you can see changed today. The Chicago Democrat for April 1834 \u2014 five issues, the biggest month in this range by every measure \u2014 has been read end to end, and 71 things it says about the town are written down with the page, column and line they came from.',
