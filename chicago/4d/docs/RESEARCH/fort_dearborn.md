@@ -303,3 +303,93 @@ source lifts one value without a rewrite. The three that would move most:
 | `drloih_fort_dearborn` | the dated commandants table that brackets the scene date |
 | `lighthousefriends_chicago` | the 1832 tower's height, builder, reflectors and lantern |
 | `chicagology_prefire052` | the same text as `wentworth_1881_fort_dearborn`, at a URL; cite that one |
+
+---
+
+## 10. The flagstaff: what settled it, and what is still unsettled (T-0096, 2026-08-28)
+
+T-0096 asked the question this memo's § 6 makes unavoidable: **did the SECOND fort carry a
+flagstaff, and can anything but a retrospective plate say so?** The trap is set out in
+`docs/RESEARCH/fort_dearborn_image_accuracy.md` § "The flagstaff is a documented trap" —
+`p4_0` draws a staff, `data/exclusions.json` already excludes Whistler's 1808 one, and
+raising the second fort's staff on a tier-5 retrospective view would be the commonest error
+in the popular literature committed on purpose. T-0197 sharpened it on 2026-08-28 by
+measuring where the plate's staff stands (0.495 of the drawn wall run — over the GATE, not
+in the parade where the excluded one is), which closed off "the exclusion already covers it"
+as an answer without supplying one.
+
+**It is answered, and the answer is Andreas's own narrative rather than any plate.**
+
+> It did not show a single steeple nor a chimney four feet above any roof. **A flagstaff at
+> the fort, some fifty feet high, flaunted, in pleasant weather and on holidays** — a
+> weather-beaten flag, as an emblem of civilization, patriotic pride, national domain, or
+> anything else that might stir hearts of the denizens of the town. The buildings of the fort
+> were low posted, and none of them exceeding two low stories in height.
+
+— Andreas, *History of Chicago*, vol. 1, **p. 128**, in the section headed **"Chicago from
+1833 to 1837"**, which opens at the close of 1833 with the town legally organized. The same
+paragraph, describing the approach from the south: *"a line of almost indefinable structures,
+and **the flag over the fort, if perchance it was flying**."*
+
+**Why this reaches the 1816 post where nothing else does.** It is not the *"Such was the old
+Fort previous to 1812"* passage; it is not Whistler's 1808 index; it is not a plate. It is
+Andreas narrating the town across the four years the scene date sits inside, and the fort he
+is looking at is the one standing in those years. He is corroborated on the same page by a
+detail that only fits the second fort — *"the buildings of the fort were low posted, and none
+of them exceeding two low stories"*, which is this project's fort, not the two-storey
+galleried barracks of Whistler's draught.
+
+### What was searched, and what it did not say
+
+A negative finding is worth as much as the positive one here, so the search is recorded the
+way `quaife_1913`'s is:
+
+| searched | for | result |
+|---|---|---|
+| `quaife_1913`, full Gutenberg text | every occurrence of `flag` | **NEGATIVE for the second fort.** One flagstaff in the book, and it is the first fort: *"the barracks … occupied the middle of each side of the inclosure facing toward the parade ground, in the center of which stood a lofty flagstaff"*, from Whistler's 1808 draught. Nothing on a staff at the 1816 post; his account of it is Long's 1816 progress report and no plan. |
+| `andreas_1884_v1`, full archive.org text of vol. 1 | every occurrence of `flag` (33) | **POSITIVE, once**: p. 128, above. Every other hit is a flag of truce, a Spanish or British flag, the 1848 fire-department review, or Mexican-War recruiting. The fort's own flagstaff appears in this dataset exactly once. |
+| `kinzie_waubun_1856`, full archive.org text | every occurrence of `flag` (5) | **NEGATIVE.** She lived inside the fort in 1831 and describes the pickets, the bastions, the two gates, the posterns, the gardens, the root-houses and the parade — and no staff. Her five hits are rushes, a grave-flag, a conflagration, the *Little Belt* striking her colours, and an obituary. |
+| `wentworth_1881_fort_dearborn` / `chicagology_prefire052` | every occurrence of `flag` | **NEGATIVE.** The 1855 Hesler key, Fergus's 1850 addendum and the commandants list carry no staff; the page's only fort flag is a caption on an image of a flag *"reportedly used at Fort Dearborn 1803-12"* — the first fort again. |
+
+So **Andreas is the whole of the positive evidence**, and the record leans on nothing else.
+Four independent texts that describe this fort at length do not mention its staff, which is
+worth knowing when weighing how much silence in this literature means.
+
+### What was built, and the two positions that were refused
+
+`data/structures/fort_dearborn_flagstaff.json` — archetype `fort_structure`, new kind
+`flagstaff`, a bare tapering spar **15.24 m** (Andreas's fifty feet) standing at the centre of
+`fort_dearborn_parade`.
+
+**The height is `attested`. The position is `reconstructed` and two candidates were refused
+rather than used:**
+
+1. **Whistler's parade centre.** The 1808 draught puts the FIRST fort's staff *"in the center
+   of"* its parade. That fort is excluded whole in `data/exclusions.json`, whose entry ends
+   *"none of it may be borrowed for the second fort's records"*. It is not the warrant here.
+2. **`p4_0`'s over-the-gate staff.** T-0197 measured it at 0.495 of the drawn wall run, wedged
+   between the two roofed lanterned works T-0095 read as first-fort signature. On that sheet
+   the staff and the towers are ONE composition, so raising the staff on it raises two
+   blockhouses with it — the exact conflation the image-accuracy pass refused.
+
+What is left is a choice constrained by the model rather than by a source, and **L200** owns
+it: the parade is the only open ground inside the stockade a fifty-foot spar can stand on
+without standing on a range or a roof, and the centre of a rectangle is the only point on it
+that does not need a second invention. **That this lands where Whistler's staff stood is a
+coincidence of two rectangles and is not corroboration.**
+
+### And it carries no flag, which is a reading of the source and not an omission
+
+Andreas is precise about when the flag was up: *"in pleasant weather and on holidays"*, and
+from the south *"if perchance it was flying."* The scene date is **Wednesday 1 July 1835** —
+not a holiday, and weather is not modelled in this project. A flag drawn on this spar would be
+a claim about one particular forenoon that the source explicitly declines to make. The refusal
+is the same one § 2 makes about the gates: a shut gate claims a garrison, not an hour.
+
+### What would still move it
+
+A garrison return, a quartermaster's account or a post repair estimate for 1816–1836 would give
+the staff a position and probably a spar — the same documents § 8.1 wants for the stockade. So
+would the 1830 Harrison sheet re-read at page-image level for a staff symbol on the parade: this
+project has taken the fort, the garden, the barn and the ferry off that plate and has never
+looked at it for this.

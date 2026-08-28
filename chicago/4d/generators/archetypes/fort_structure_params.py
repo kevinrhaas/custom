@@ -28,9 +28,10 @@ witnesses walked round the inside of it and wrote down what stood where:
 So the archetype's `kind` is not decoration: quarters, barracks, blockhouse, magazine,
 store, guard, sutler and artillery house are the words the sources use, and each one
 selects a different set of decisions the archetype is allowed to make on its own.
-`parade`, `root_house` and `tower` extend the same machinery to the fort's ground
-furniture and to the 1832 lighthouse, which is a government structure on the same
-reservation and has no other archetype it could belong to.
+`parade`, `root_house`, `tower` and `flagstaff` extend the same machinery to the
+fort's ground furniture, to the garrison staff, and to the 1832 lighthouse, which is
+a government structure on the same reservation and has no other archetype it could
+belong to.
 
 ## What it deliberately does not cover
 
@@ -53,7 +54,7 @@ from dataclasses import dataclass, field
 CONFIDENCE_VALUE = {"attested": 0.0, "inferred": 0.5, "reconstructed": 1.0}
 
 KINDS = ("quarters", "barracks", "blockhouse", "magazine", "store", "guard",
-         "sutler", "artillery", "parade", "root_house", "tower")
+         "sutler", "artillery", "parade", "root_house", "tower", "flagstaff")
 ROOF_TYPES = ("gable", "hip", "pyramid", "shed", "flat", "none")
 CONSTRUCTIONS = ("log", "hewn_log", "braced_frame", "brick", "stone", "earth")
 PAINTS = ("unpainted", "whitewash", "white", "brick", "earth", "stone")
@@ -164,6 +165,23 @@ class FortStructureParams:
         """
         return 0.62
 
+    @property
+    def mast_butt_m(self) -> float:
+        """A flagstaff's diameter at the butt, as a fraction of its footprint.
+
+        Fixed here rather than recorded because NO SOURCE REACHED gives the
+        second fort's staff a thickness — Andreas gives it a height and nothing
+        else. 0.60 of a half-metre square of ground is a 0.30 m butt, which is
+        what a fifty-foot spar has to be to stand; the record carries the
+        admission and docs/LIBERTIES.md owns it.
+        """
+        return self.width_m * 0.60
+
+    @property
+    def mast_truck_m(self) -> float:
+        """And its diameter at the truck: a spar tapers, and this one is ours."""
+        return self.mast_butt_m * 0.45
+
     def validate(self) -> None:
         if self.kind not in KINDS:
             raise ParamError(f"kind '{self.kind}' not in {KINDS}")
@@ -204,6 +222,20 @@ class FortStructureParams:
             if abs(self.width_m - self.depth_m) > 0.51:
                 raise ParamError(f"a round tower's footprint must be square in plan; "
                                  f"{self.width_m} x {self.depth_m} is not")
+            return
+        if self.kind == "flagstaff":
+            # Andreas puts the staff at "some fifty feet high" — 15.24 m. The band is
+            # wide enough to hold any garrison staff anyone might later attest and
+            # narrow enough that a typo cannot stand a mast over the town.
+            if not 6.0 <= self.wall_height_m <= 25.0:
+                raise ParamError(f"wall_height_m {self.wall_height_m} outside 6-25 m for a "
+                                 f"flagstaff")
+            if abs(self.width_m - self.depth_m) > 0.26:
+                raise ParamError(f"a flagstaff's footprint is the square of ground it "
+                                 f"stands on and must be square in plan; "
+                                 f"{self.width_m} x {self.depth_m} is not")
+            if self.chimneys:
+                raise ParamError("a flagstaff has no chimney")
             return
 
         if self.stories not in (1, 2, 3):

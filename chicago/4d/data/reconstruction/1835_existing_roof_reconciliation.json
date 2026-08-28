@@ -347,6 +347,17 @@
       "reasoning": "Open parade and drill ground."
     },
     {
+      "structure_id": "fort_dearborn_flagstaff",
+      "district": "fort",
+      "roof_count": 0,
+      "inventory_eligible": false,
+      "inventory_roof_count": 0,
+      "likely_family": null,
+      "substitutes_anonymous_slots": 0,
+      "confidence": "high",
+      "reasoning": "A bare spar standing on the parade. Not a roofed structure and not a building; it contributes no roof and substitutes for no anonymous slot."
+    },
+    {
       "structure_id": "fort_dearborn_root_house",
       "district": "fort",
       "roof_count": 1,

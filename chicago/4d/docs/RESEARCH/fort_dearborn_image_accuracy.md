@@ -68,7 +68,7 @@ notice it:
 | 3 | ~~Pickets are flat-topped and dark; the plate's are pointed and pale.~~ **This row was wrong in both halves — see below. Refuted and closed 2026-08-24 by T-0094.** The one thing about the pickets the plate DOES say — that it draws them three times coarser — was left open by that pass and is **settled 2026-08-28 by T-0185, see below.** | nothing to bake |
 | 4 | ~~The corner works do not rise above the curtain with roofs and lanterns as the plate draws them.~~ **`p4_0` draws no work at either angle it shows. Refuted and closed 2026-08-24 by T-0095 — see below.** | nothing to bake |
 | 5 | ~~No gate is drawn in either documented wall;~~ **a gate has been drawn in both since the archetype was written — but both stood a QUARTER OPEN, and that is now fixed. Closed 2026-08-24 by T-0095 — see below.** The plate's log-faced work over the gate is not built, and § "Row 4" says why. | **closed — one asset rebaked** |
-| 6 | **A flagstaff and flag over the fort** — the most conspicuous single feature of `p4_0`. **MEASURED 2026-08-28 by T-0197: drawn, and it stands at 0.495 of the wall — over the GATE, between the two works at 0.435 and 0.521, and NOT in the parade where `data/exclusions.json` puts the first fort's.** | **NOT a bake question, and NOT to be built on this plate alone** — see below; carried by **T-0096**, whose question the measurement sharpens rather than answers |
+| 6 | **A flagstaff and flag over the fort** — the most conspicuous single feature of `p4_0`. **MEASURED 2026-08-28 by T-0197: drawn, and it stands at 0.495 of the wall — over the GATE, between the two works at 0.435 and 0.521, and NOT in the parade where `data/exclusions.json` puts the first fort's.** | **CLOSED 2026-08-28 by T-0096 — and NOT on this plate.** A staff IS built, on Andreas vol. 1 p. 128 (*"a flagstaff at the fort, some fifty feet high"*, in his 1833–37 town description); the plate's over-the-gate position was refused with the towers it belongs to. See § "Row 6 is answered, and the plate did not answer it" |
 | 7 | The ground round the walls is full prairie sward; both plates show it bare and trodden. | **closed 2026-08-23 by T-0097** — a 12 m band of trodden earth outside the palisade, derived from the stockade's own committed footprint (`data/enclosures/fort_dearborn_apron.json`, L174); before/after at `docs/evidence/t-0097-{before,after}.png` |
 | 8 | No trees at the fort; `p4_0` puts a tree mass ~~east~~ **WEST** of the walls and `p4_1` trees round the buildings on both banks. **The compass word in this row was wrong — see "Row 8's east is west" below.** | **closed 2026-08-24 by T-0098** — the mass is WEST, measured; and the plate cannot DATE it, so 12 relict black willows stand there `reconstructed` rather than the plate's closed canopy (`data/flora/plantings/fort_dearborn_wood.json`, L188); before/after at `docs/evidence/t-0098-{before,after}.png` |
 
@@ -203,6 +203,12 @@ plate alone would be the commonest error in the popular literature, committed on
 It is a real question with a real answer somewhere: a garrison return, a quartermaster's
 account, Andreas on the 1816 fort, or an identification of this plate against chicagology's
 numbering. Filed as a ticket rather than built or forgotten.
+
+**It was the second of those, and T-0096 found it on 2026-08-28** — Andreas vol. 1 p. 128,
+inside his own *Chicago from 1833 to 1837*. The staff is now built. **This section's refusal
+stands exactly as written**: the plate did not warrant it then and does not warrant it now, and
+the position the plate draws was refused a second time when the staff was placed. See § "Row 6
+is answered, and the plate did not answer it" below.
 
 ## What this pass shipped
 
@@ -440,7 +446,7 @@ that the excluded first-fort staff and the drawn staff are not in the same place
 | ticket | from row | verdict against the measurement |
 |---|---|---|
 | **T-0099** (done, PR #431) | 2 | **CONFIRMED.** The plate draws the track it built, out of the gate it built from, running the direction it swung. The length it chose is its own and is labelled `reconstructed`; the plate neither warrants nor refutes it. |
-| **T-0096** (open) | 6 | **CONFIRMED, and sharpened.** The staff is drawn; where it stands is now measured; the first-fort question is not settled by `exclusions.json` because the excluded staff is in the parade and this one is over the gate. The ticket's acceptance is unchanged — evidence reaching the 1816 post, or a recorded negative finding. |
+| **T-0096** (done) | 6 | **CONFIRMED, sharpened, then CLOSED ON A DIFFERENT SOURCE.** The staff is drawn on the plate and where it stands is measured — and neither fact built anything. What built it is Andreas vol. 1 p. 128. The plate's own position was refused for the second time, because the staff and the two towers there are one composition. |
 | **T-0098** (done) | 8 | **CONFIRMED as measured** by its own run: the compass word struck, the date struck, twelve `reconstructed` relict stems built rather than the plate's closed canopy. No new work. |
 | **T-0094** (refuted), **T-0095** (refuted), **T-0097** (done) | 3, 4, 5, 7 | already closed by measurement; not re-opened here. |
 | `fort_road` (built by this pass, row 1) | 1 | **STANDS, on a different warrant than the row claimed.** The 1830 Harrison plan and L140, not the plates. No record changes; the row's plate sentence is struck. |
@@ -449,3 +455,32 @@ Nothing in this section moves a coordinate, a confidence or a mesh. **That is th
 it**: the table is now eight rows of which seven have been measured, and the eighth — row 7 —
 was closed by construction. There is nothing left in it that a future run can build to on the
 strength of somebody's impression.
+
+
+## Row 6 is answered, and the plate did not answer it (T-0096, 2026-08-28)
+
+The row asked whether the second Fort Dearborn carried a flagstaff. **It did, and the evidence
+is a text and not a view**: Andreas, *History of Chicago* vol. 1 **p. 128**, in the section
+headed *Chicago from 1833 to 1837* — *"It did not show a single steeple nor a chimney four feet
+above any roof. A flagstaff at the fort, some fifty feet high, flaunted, in pleasant weather and
+on holidays — a weather-beaten flag …"*, and, of the approach from the south, *"the flag over the
+fort, if perchance it was flying."* That is the fort standing in the years the scene date sits
+in, described by a writer who in the same breath calls its buildings *"low posted, and none of
+them exceeding two low stories"* — which is this fort and not Whistler's galleried one.
+
+**What this does NOT do is rehabilitate `p4_0`.** The plate's staff was measured at 0.495 of the
+drawn wall run, over the gate, between the two roofed lanterned works T-0095 read as first-fort
+signature; that composition is refused whole, and the built staff takes its position from the
+model (the parade's centre) under **L200**, not from the sheet. Nor is Whistler's parade-centre
+staff the warrant — that fort is excluded, and the coincidence of two rectangles is not
+corroboration.
+
+Three other texts were searched for the same word and none attests a staff at the 1816 post:
+Quaife's only flagstaff is Whistler's, Wau-Bun has none, Wentworth's 1881 address has none. The
+full search table, the record, and the reasoning for building the spar bare — Andreas dates the
+flag to *"pleasant weather and … holidays"*, and 1835-07-01 is a Wednesday — are in
+`docs/RESEARCH/fort_dearborn.md` § 10.
+
+**The table is now eight rows of which seven have been measured and one was closed by
+construction, and row 6 is the only one that a measurement pointed AWAY from and a document
+then settled.**

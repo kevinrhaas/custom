@@ -65,11 +65,15 @@ RENDERER_JS = RENDERERS / "web" / "js"
 # @ a638614c (T-0059). `--gate` holds the live measurement to it. Moving a figure
 # here is a claim that the reach changed, and it belongs in the same commit as
 # whatever changed it.
+#
+# +1 on 2026-08-28 (T-0096): `fort_dearborn_flagstaff__staff_1833_37.glb`, the
+# garrison flagstaff Andreas attests. One new fort_structure record, so one more
+# committed asset and one more mesh the shared generator modules re-stale.
 STATED = {
-    "assets": 349,
+    "assets": 350,
     "restales": {
-        "generators/common/*.py": 349,
-        "generators/build.py": 347,
+        "generators/common/*.py": 350,
+        "generators/build.py": 348,
         "generators/terrain_gen.py": 2,
         "generators/archetypes/pier_crib.py": 2,
     },

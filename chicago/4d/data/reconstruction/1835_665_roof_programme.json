@@ -60,7 +60,7 @@
   "naming": "A unit is named for a block only where the plat module reaches it. Everything else is a district balance that states what it waits on."
  },
  "standing": {
-  "structure_records": 349,
+  "structure_records": 350,
   "physical_roofs": {
    "min": 338,
    "max": 339,
@@ -130,6 +130,7 @@
    "cook_county_courthouse_1835",
    "dearborn_street_drawbridge",
    "estray_pen",
+   "fort_dearborn_flagstaff",
    "fort_dearborn_garrison_garden",
    "fort_dearborn_palisade",
    "fort_dearborn_parade",
