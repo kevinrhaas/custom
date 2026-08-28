@@ -1,7 +1,7 @@
 ---
 id: T-0248
 title: The light tier's 80-call floor was breached the run after it was restored, and dev has been red on it since
-state: open
+state: withdrawn
 epic: META
 requested_by: loop
 seen: false
@@ -15,6 +15,11 @@ claimed_by: null
 blocked_on: null
 needs_bake: false
 ---
+
+**WITHDRAWN THE MOMENT IT WAS FILED — duplicate of T-0247.** A parallel slice filed the
+same defect against the same measurement minutes earlier; T-0247 is the live ticket and this
+one carries no queue line. What is kept below is the one thing this filing adds and T-0247
+does not have: the measurement showing why the obvious lever does not reach `light`.
 
 The light tier's 80-call floor was breached the run after it was restored, and dev has been red on it since.
 

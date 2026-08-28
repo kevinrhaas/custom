@@ -75,8 +75,20 @@ building on the line stands 1.61 m back (`thomas_church_store`) and the next bui
 anywhere is 3.81 m back (`recon_1835_west_008`). This is the midpoint of that gap. Run
 `--setbacks` to print the distribution and see the gap for yourself.
 
+## The trade share, which is the other half of the same census (T-0213)
+
+The fabric assertion above is about what the frontage is MADE OF. `trade_share_by_class`
+answers the neighbouring question — what the frontage is FOR — off the same rows, and
+`tools/reconcile_665.py` reads it to weight the trade families onto the business front.
+
+It reports, per class of the committed street hierarchy, the share of DOCUMENTED buildings
+whose reconciliation credits them a trade family (C stores, F warehouses, W workshops).
+Documented only: the invented layers are what the schedule produced, so weighting the
+schedule by them would be the programme grading its own homework.
+
     tools/measure_frontage_fabric.py             the census
     tools/measure_frontage_fabric.py --setbacks  the distribution the band comes from
+    tools/measure_frontage_fabric.py --trade     the trade share per street class
     tools/measure_frontage_fabric.py --gate      exit 1 on a uniformity the record refuses
     tools/measure_frontage_fabric.py --self-test break it in memory and watch it fire
 """
@@ -253,6 +265,83 @@ def failures(result: dict) -> list[str]:
     return out
 
 
+# The families that make a building a place of trade, by the inventory's own letters:
+# C stores and mixed use, F warehouses and freight, W workshops. T (inns and taverns) is
+# NOT one of them — a tavern is a trade but the schedule's T families are lodging, and the
+# South Water row the owner's plate draws is stores and a warehouse. Both readings are
+# printed by --trade so the choice can be checked rather than taken on trust.
+TRADE_LETTERS = ("C", "F", "W")
+
+
+def street_traffic() -> dict[str, str]:
+    """Every committed street's traffic class, out of `data/streets/1835.json`.
+
+    The same authored, sourced hierarchy `principal_streets` reads — this returns all three
+    tiers rather than only the top one, because the trade share turns out to be monotone in
+    them and a weighting that used only `principal` would throw the middle tier away.
+    """
+    return {s["id"]: s.get("traffic") for s in load(DATA / "streets" / "1835.json")["streets"]}
+
+
+def documented_families() -> dict[str, str]:
+    """structure id -> the family the committed reconciliation credits it.
+
+    `data/reconstruction/1835_existing_roof_reconciliation.json` is the project's own
+    reading of what each documented building WAS; nothing here re-types a record.
+    """
+    doc = load(DATA / "reconstruction" / "1835_existing_roof_reconciliation.json")
+    return {r["structure_id"]: r["likely_family"]
+            for r in doc["records"] if r.get("likely_family")}
+
+
+def trade_share_by_class(result: dict | None = None,
+                         letters: tuple[str, ...] = TRADE_LETTERS) -> dict[str, dict]:
+    """Per traffic class, the share of documented buildings that carry a trade family.
+
+    A building is assigned to the street its footprint stands nearest — the same
+    assignment the fabric census makes — and only the research layer is counted. The
+    return is `{class: {n, trade, share}}`, and a class the record says nothing about is
+    absent rather than zero.
+    """
+    result = census() if result is None else result
+    traffic = street_traffic()
+    families = documented_families()
+    out: dict[str, dict] = {}
+    for row in result["rows"]:
+        if row["layer"] != "research":
+            continue
+        family = families.get(row["id"])
+        klass = traffic.get(row["street"])
+        if not family or not klass:
+            continue
+        bucket = out.setdefault(klass, {"n": 0, "trade": 0, "share": 0.0})
+        bucket["n"] += 1
+        if family[0] in letters:
+            bucket["trade"] += 1
+    for bucket in out.values():
+        bucket["share"] = bucket["trade"] / bucket["n"]
+    return out
+
+
+def _trade(result: dict) -> str:
+    lines = ["   the share of DOCUMENTED buildings carrying a trade family, by the class "
+             "of the street they stand nearest", ""]
+    for label, letters in (("C/F/W  stores, warehouses, workshops", TRADE_LETTERS),
+                           ("C/F/W/T  …and lodging, for comparison",
+                            TRADE_LETTERS + ("T",))):
+        lines += [f"   {label}", f"   {'class':<14}{'n':>5}{'trade':>7}{'share':>9}"]
+        shares = trade_share_by_class(result, letters)
+        for klass in ("principal", "ordinary", "light"):
+            row = shares.get(klass)
+            if not row:
+                continue
+            lines.append(f"   {klass:<14}{row['n']:>5}{row['trade']:>7}"
+                         f"{row['share']:>9.4f}")
+        lines.append("")
+    lines.append("   tools/reconcile_665.py reads the first table (T-0213)")
+    return "\n".join(lines)
+
+
 def _table(result: dict) -> str:
     lines = [f"   the street line is a footprint reaching within {STREET_LINE_M:.2f} m of "
              f"a platted corridor edge",
@@ -367,6 +456,9 @@ def main() -> int:
                              "documented record of the same street")
     parser.add_argument("--setbacks", action="store_true",
                         help="the distribution STREET_LINE_M is the gap in")
+    parser.add_argument("--trade", action="store_true",
+                        help="the documented trade share per class of street, which "
+                             "tools/reconcile_665.py weights the business front by")
     parser.add_argument("--self-test", action="store_true",
                         help="break the assertion in memory and check that it fires")
     parser.add_argument("--quiet", action="store_true")
@@ -378,6 +470,9 @@ def main() -> int:
     result = census()
     if args.setbacks:
         print(_setbacks(result))
+        return 0
+    if args.trade:
+        print(_trade(result))
         return 0
 
     bad = failures(result)

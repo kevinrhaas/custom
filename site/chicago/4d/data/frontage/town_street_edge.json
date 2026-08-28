@@ -8880,7 +8880,7 @@
     {
       "structure_id": "blk_lake_clark_lot4",
       "wall": "blk_lake_clark north face, lot 4",
-      "why": "inf_butcher_market stands 0.78 m from this lot's frontage line, inside the 3.0 m a street fence needs — the building IS the street wall here, and a fence in front of it would be a second one."
+      "why": "inf_butcher_market stands 0.80 m from this lot's frontage line, inside the 3.0 m a street fence needs — the building IS the street wall here, and a fence in front of it would be a second one."
     },
     {
       "structure_id": "blk_lake_clark_lot6",
@@ -8900,7 +8900,7 @@
     {
       "structure_id": "blk_lake_clinton",
       "wall": "Lake Street's West Division frontage, across the South Branch",
-      "why": "this block stands in the WEST DIVISION, across the South Branch from the town the owner's 'south of the river or near the river' names, and it is separated from every other face on this record by a river with one bridge on it. The same rule would lay the same walk there; it belongs with the rest of the town in the follow-up ticket rather than as one stranded block."
+      "why": "REFUSED ON A MEASURED FRAME BUDGET AT ONE STAND, AT ONE TIER, AT ONE VIEWPORT (T-0193) — and it is a number now rather than the promise this clause used to carry. This block stands in the WEST DIVISION, across the South Branch from the town the owner's 'south of the river or near the river' names, separated from every other face on this record by a river with one bridge on it, and it is the last platted block this rule has never looked at. THE SAME RULE DOES LAY THE SAME WALK THERE, and it was run rather than assumed: both faces generate cleanly — the Lake face T-0069 named, and the Randolph face that only became coverable when T-0240 put Randolph in the covered streets the day before — for +2 block faces, +192.2 m of walk in 2 unbroken runs, +1 board crossing over Randolph and +3 street-lining fences, with the march refusing only what it refuses everywhere else (a building standing ON the frontage line is the street wall, an unimproved lot takes no fence, and a blacksmith's yard gate takes no hitching post). Published and read at T-0135's five stands at BOTH viewports: `full` and `light` pass everywhere and mobile passes every tier, clearing `balanced` by 34,712. DESKTOP `balanced` does not — 1,228,110 against a 1,210,000 ceiling, OVER BY 18,110 — and the whole of that cost lands at the single stand `lake_at_canal`, which stands at this block's own east end and looks east down the axis where nothing culls: +27,932 triangles there against a flat +8,460 at the other four. AND HALF OF IT DOES NOT FIT EITHER, which is what makes this a fact about the budget rather than about the block: the Lake face ALONE, exactly what T-0069 refused, still reads 1,223,890 and is over by 13,890. `balanced` stood 1,201,344 of 1,210,000 before this was tried — 8,656 triangles, 0.7 % of headroom — so no street frontage of any size fits under that rung today. The unblock is T-0190's second street tier, not a sixth raising of the ceiling, which T-0237's acceptance refuses in as many words."
     },
     {
       "structure_id": "blk_lake_dearborn_lot0",
