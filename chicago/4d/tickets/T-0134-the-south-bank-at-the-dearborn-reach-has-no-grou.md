@@ -1,7 +1,7 @@
 ---
 id: T-0134
 title: The south bank at the Dearborn reach has no ground outside the platted street corridor
-state: claimed
+state: done
 epic: META
 requested_by: loop
 seen: false
@@ -9,8 +9,8 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-08-21
-closed: null
-pr: null
+closed: 2026-08-27
+pr: 428
 claimed_by: run 8/27/2026, 9:14:52 PM CT
 blocked_on: null
 needs_bake: false

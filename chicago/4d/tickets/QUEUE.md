@@ -29,7 +29,6 @@ T-0028 — Build out the NEXT anonymous block (one per run)
 T-0192 — The cross streets' own frontages get the street edge
 
 # --- THE RIVER, THE WHARVES AND THE GROUND — visible
-T-0134 — The south bank at the Dearborn reach has no ground outside the platted street corridor
 T-0226 — North Water Street runs inside the water mask for 477 m and draws no ribbon at all
 T-0219 — Finish the heightfield SOUTH to Madison Street, the plat's last tier
 
