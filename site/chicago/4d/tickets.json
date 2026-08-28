@@ -1,6 +1,6 @@
 {
   "project": "chicago-4d",
-  "generated_ct": "Aug 28, 2026, 1:56 PM",
+  "generated_ct": "Aug 28, 2026, 2:09 PM",
   "tickets": [
     {
       "id": "T-0001",
@@ -5222,7 +5222,7 @@
     {
       "id": "T-0309",
       "title": "Reading the Democrat, December 1833: Vol. I Nos. 2-6",
-      "state": "open",
+      "state": "claimed",
       "epic": "PAPERS",
       "requested_by": "owner",
       "seen": false,
@@ -5232,7 +5232,7 @@
       "opened": "2026-08-28",
       "closed": null,
       "pr": null,
-      "claimed_by": null,
+      "claimed_by": "run 8/28/2026, 2:09:38 PM CT",
       "blocked_on": null,
       "needs_bake": false,
       "queue_rank": 3
