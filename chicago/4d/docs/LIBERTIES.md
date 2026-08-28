@@ -8862,3 +8862,67 @@ Related: **L132** (the docks themselves, invented in every dimension) · **L9** 
 authored beside a mesh instead of taken from it) · ticket **T-0058**.
 **Recorded:** 2026-08-27.
 
+
+### L198 — The household layer's two Lake-face buildings stand on the committed face, and the 16 mm party wall closes
+
+**Decision:** `inf_bakery_lake` and `inf_butcher_market` — the two inferred-household roofs on
+the Lake Street frontage of `blk_lake_clark` — no longer stand at a centre typed into
+`data/reconstruction/1835_inferred_household_programme.json`. They stand **on the committed
+block face**: their line, their bearing and their outward offset are read from the block boundary
+in `data/traces/vectors/thompson_lots.json` through `tools/block_faces.py`, the module both
+anonymous-infill generators already use for their party-line rows. Both front walls now stand at
+0.800 m, on the one street line the other seven records on that face stand on, at the face's own
+bearing of 0.465. The party wall `recon_1835_south_d3_013` declares with the butcher closes to
+**0 mm**, and the residual banked by name in `tools/measure_street_line.py` is **removed rather
+than relaxed**: that module now carries no allowance list at all.
+
+**Why:** T-0182. Written as centres at bearing 0, the two stood at **0.804 m and 0.784 m** off a
+face that runs at 0.465 — near the line, parallel to nothing, and by an arithmetic nobody
+re-derived. Two things rested on that. The party wall was 16 mm open and could not be repaired
+from the infill side, so T-0104 had to bank it BY NAME while the household layer's own repair
+waited on its own ticket; and L141's 0.80 m setback cites "the alignment the two frontage
+buildings already standing on this face use", which was a reading of two free-ground placements
+rather than of a line. The 0.80 m is still a convention and not a measurement of 1835 — nothing
+here makes it one — but it is now a convention the whole face is built to, instead of a
+coincidence two hand-typed coordinates happened to sit near.
+
+**What is NOT invented here, and it is worth being exact.** No roof is added, removed, renamed,
+re-familied or re-dimensioned. The household programme's totals do not move — 38 structure
+records, 101 reconstructed households, 113 persons, the same ids and the same family bands. The
+two footprints are the ones they were, and **no mesh goes stale**: a position is not one of the
+inputs a GLB is hashed over, so nothing rebakes. The bakery's centre moves 43 mm and the
+butcher's 33 mm; the largest movement any corner of either makes is 84 mm, which is invisible at
+any distance a visitor stands.
+
+**WHAT IS INVENTED, and it is the same thing it always was.** That either building existed; that
+a bakehouse and a meat market stood on this frontage; that they stood where they stand. What the
+programme still authors for each is where ALONG the face its west wall lands — 28.935 m and
+68.936 m from the face's west end, which are the positions they already occupied, chosen so this
+repair moves no building along the street. That is the same interpretive choice a frontage row
+makes as its corner clearance, and it is expressed in the face's own frame rather than as a
+coordinate beside the plat. Their positions still grade `reconstructed` and their derivations
+still read `not_derivable`: **standing on a derived block face is not standing on a recovered
+lot**, and nothing here upgrades a confidence.
+
+**What this supersedes.** L177's paragraph beginning *"What the measurement found that the ticket
+did not know"* describes the two buildings as standing at 0.804 m and 0.784 m at bearing 0, and
+describes the 16 mm residual as banked and awaiting its own ticket. Both were true when written
+and neither is true now; this document is append-only, so the correction is here rather than
+there. L141's *"the line the two frontage buildings already standing on this face use"* now reads
+straight — those two buildings do use it — but the warrant runs the other way round from the
+order the sentence implies, and this entry is where that is written down.
+
+**What now asserts it.** `tools/measure_street_line.py --gate`, in `tools/check.sh`, with no
+allowance list: every front wall on the face is projected onto the committed line and a face
+carrying more than one is refused, absolutely. Its self-test now asserts that the pair the bank
+was written for gets **no** excuse — 16 mm under those exact names is a failure — so the bank
+cannot come back without somebody deleting a test that says why it went.
+
+**How to resolve:** any period document placing a named occupant on a numbered lot on this face —
+an advertisement giving an address, a tax or insurance description, an itemised 1839 fire loss —
+would replace an invented roof with a named one and give the face a line that is a reading rather
+than a convention.
+
+Related: **L141** (the row whose line this face carries) · **L177** (the one-line rule, and the
+bank this removes) · tickets **T-0182** (this), **T-0104**, **T-0077**.
+**Recorded:** 2026-08-27.

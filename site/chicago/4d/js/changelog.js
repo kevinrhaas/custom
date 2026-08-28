@@ -1,4 +1,12 @@
 export const CHANGELOG = [ // newest first
+  { v: 305, title: 'Two shops on Lake Street join the wall they were standing beside', kind: 'chore', ts: '2026-08-28T00:27:25.217Z', date: 'Aug 27, 2026, 7:27 PM CT',
+    items: [
+      'The bakehouse and the meat market on Lake Street, between Clark and Dearborn, have moved about eight centimetres. You will not see it. What it fixes is what those two buildings were STANDING ON.',
+      'Every other building on that block face takes its line straight from the town plat: the surveyed block boundary decides where the front wall goes and which way the building faces, so if the plat is ever re-derived the whole street wall moves with it. These two did not. They were placed by a pair of coordinates typed into a recipe, at a bearing of zero on a street that actually runs at 0.465 degrees — so their fronts landed four and sixteen millimetres off the line, and neither of them was even parallel to it. Near the wall, by an arithmetic nobody could re-check.',
+      'One of them shares a wall with its neighbour, and a shared wall is a claim: it says these two buildings touch. That wall was sixteen millimetres open. Because nothing could close it from the neighbour’s side, the check that measures the street had to carry a written exception naming the pair and the size of the gap it was allowed to be.',
+      'Both buildings now read their line, their bearing and their setback from the same committed plat everything else on that face reads. All nine fronts stand on one line to the millimetre. The shared wall closes to nothing, and the exception is deleted rather than widened — the check now carries no allowance list at all, and its own test asserts that this exact pair gets no excuse if it ever opens again.',
+      'What is still made up is unchanged and still says so: that a bakery and a butcher stood on this frontage at all, and which stretch of it they took. Standing on a line the plat derives is not the same as standing on a lot anybody recorded, and the records say that in as many words.',
+    ] },
   { v: 304, title: 'The stores are dealt to the street the stores were on', kind: 'chore', ts: '2026-08-28T00:07:32.974Z', date: 'Aug 27, 2026, 7:07 PM CT',
     items: [
       'Nothing you can see changed today. This is about what gets built NEXT on the four blocks of South Water Street that are still half empty \u2014 and about a plan that, until now, could not tell that street from a back lane.',

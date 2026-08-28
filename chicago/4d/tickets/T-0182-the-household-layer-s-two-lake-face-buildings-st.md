@@ -1,7 +1,7 @@
 ---
 id: T-0182
 title: The household layer's two Lake-face buildings stand on a hand-authored coordinate, not on the face they front
-state: open
+state: done
 epic: TOWN
 requested_by: loop
 seen: false
@@ -9,9 +9,9 @@ effort: S
 legacy_id: null
 parent: null
 opened: 2026-08-24
-closed: null
-pr: null
-claimed_by: null
+closed: 2026-08-27
+pr: 420
+claimed_by: run 8/27/2026, 6:20:52 PM CT
 blocked_on: null
 needs_bake: false
 ---

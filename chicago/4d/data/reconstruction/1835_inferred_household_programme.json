@@ -60,7 +60,8 @@
   "placement_rule": [
     "Businesses toward the river and the built streets; residences further out, exactly as ROADMAP K1 directs. The new shop roofs sit on the South Water and Lake Street frontages and on the Canal Street approach at Wolf Point; the new dwellings sit in the outer bands and on the fringes.",
     "Every new centre was tested before it was frozen: against the oriented footprint of EVERY structure record in the dataset, against the reserved-but-uninstantiated slots of the West Division and South Division phase-2 recipes so a later parcel does not collide with this one, against the platted street corridors of the K7 block grid so that no invented building stands in the road, and against the committed heightfield for coverage, dry ground and a perimeter that spans less than the walker's step tolerance. tools/generate_inferred_households.py --check re-runs all of it.",
-    "SNAPPED TO THE K7 GRID, 2026-08-13. The rule this replaces said the centres came from the 80 ft frontage bands alone and should be snapped to the plat when ROADMAP K7 landed. It has landed, and it found the recipe reading those bands as lines to sit ON rather than edges to sit BEHIND: 23 of the 38 buildings put some part of a footprint inside a platted corridor and twelve had their CENTRE in one. Every centre here is now clear of every corridor by construction, and tools/plat_corridors.py re-checks it on every run - the same module tools/generate_plat_lots.py --report reads, so the gate and the report cannot disagree. STILL NO LOT LINE IS CLAIMED: a corridor is the plat's legal street, the lot lines inside the blocks are conjectural (K7), and clearing the roadway is not the same as standing on a recovered lot."
+    "SNAPPED TO THE K7 GRID, 2026-08-13. The rule this replaces said the centres came from the 80 ft frontage bands alone and should be snapped to the plat when ROADMAP K7 landed. It has landed, and it found the recipe reading those bands as lines to sit ON rather than edges to sit BEHIND: 23 of the 38 buildings put some part of a footprint inside a platted corridor and twelve had their CENTRE in one. Every centre here is now clear of every corridor by construction, and tools/plat_corridors.py re-checks it on every run - the same module tools/generate_plat_lots.py --report reads, so the gate and the report cannot disagree. STILL NO LOT LINE IS CLAIMED: a corridor is the plat's legal street, the lot lines inside the blocks are conjectural (K7), and clearing the roadway is not the same as standing on a recovered lot.",
+    "STANDING ON A COMMITTED BLOCK FACE, 2026-08-27 (T-0182). A building here may declare a `frontage` instead of a centre, and then its line, its bearing and its outward offset are read from the block boundary in data/traces/vectors/thompson_lots.json through tools/block_faces.py — the one module both anonymous-infill generators already use for their party-line rows. Two do: inf_bakery_lake and inf_butcher_market, which front the north face of blk_lake_clark. Written as centres at bearing 0 they stood 0.804 m and 0.784 m off a face that runs at 0.465 and carries every other record at 0.800 m, and the party wall recon_1835_south_d3_013 declares with the butcher was 16 mm open — banked by name in tools/measure_street_line.py, because no run could repair it from the other side. What the programme still authors for these two is where ALONG the face the west wall stands, which is the same interpretive choice a frontage row makes as its corner clearance. STILL NO LOT LINE IS CLAIMED: a face is the plat's block boundary, and standing on a derived block face is not standing on a recovered lot."
   ],
   "occupation_census": [
     {
@@ -1517,15 +1518,17 @@
       "archetype": "frame_storefront",
       "district": "south",
       "family": "C1",
-      "center_local_enu_m": [
-        619,
-        -132
-      ],
+      "frontage": {
+        "block": "blk_lake_clark",
+        "face": "north",
+        "setback_m": 0.8,
+        "west_wall_along_m": 28.935,
+        "why": "T-0182. This building was authored as a centre at bearing 0 and its front wall landed 0.804 m off the committed face, which runs at 0.465 — near the line the other records on it stand on, parallel to nothing, and by arithmetic nobody re-derived. It now takes its line, bearing and outward offset from the block boundary in data/traces/vectors/thompson_lots.json. The along-face position is the one it already occupied, so no building moves along the street."
+      },
       "footprint_ft": [
         18,
         28
       ],
-      "rotation_deg": 0,
       "anchor_shift_steps": 0,
       "function": "bakery",
       "occupation": "baker",
@@ -1537,15 +1540,17 @@
       "archetype": "frame_storefront",
       "district": "south",
       "family": "C1",
-      "center_local_enu_m": [
-        659,
-        -132
-      ],
+      "frontage": {
+        "block": "blk_lake_clark",
+        "face": "north",
+        "setback_m": 0.8,
+        "west_wall_along_m": 68.936,
+        "why": "T-0182. Authored as a centre at bearing 0, this building's front wall landed 0.784 m off the committed face against the 0.800 m every record on it stands at, and recon_1835_south_d3_013 — which declares a shared party wall with it — could not close that wall: 16 mm open, banked by name in tools/measure_street_line.py because nothing could repair it from the infill side. It now takes its line, bearing and outward offset from the block boundary in data/traces/vectors/thompson_lots.json, the party wall closes, and the banked residual is gone. The along-face position is the one it already occupied, so no building moves along the street."
+      },
       "footprint_ft": [
         18,
         26
       ],
-      "rotation_deg": 0,
       "anchor_shift_steps": 0,
       "function": "butcher_shop",
       "occupation": "butcher",

@@ -29,7 +29,6 @@ T-0028 — Build out the NEXT anonymous block (one per run)
 T-0241 — Washington gets the street edge
 T-0192 — The cross streets' own frontages get the street edge
 T-0193 — blk_lake_clinton, the West Division block T-0069 refused
-T-0182 — The household layer's two Lake-face buildings stand on a hand-authored coordinate, not on the face they front
 T-0183 — The Market and South Water corner needs one control point, and the node rule may not be able to make it
 T-0196 — Four documented buildings still stand on Lake Street's plank walk, the same OSM-kerb fault the South Water repair answered
 T-0221 — measure_street_frontage.layer_of reads a record's evidence layer off its filename, and misreads physicians_office
