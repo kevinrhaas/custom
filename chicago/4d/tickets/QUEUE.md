@@ -122,3 +122,4 @@ T-0307 — The derivation's running maximum costs 42 m of verge where the bank t
 T-0316 — The 665-roof deal puts a large river warehouse on an inland platted block, and the block generator cannot build one
 T-0317 — Build out the NEXT anonymous block: after blk_lake_franklin the last ungenerated block is owner-blocked, and the roofs left stand on blocks that already stand
 T-0318 — The January 1834 letter list is 97 names and the printed list was longer; the page images can close the gap
+T-0321 — The 1 April 1834 Chicago letter list is 179 names and nineteen lines of debris stand where more did

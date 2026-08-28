@@ -1,7 +1,7 @@
 ---
 id: T-0313
 title: Reading the Democrat, April 1834: Vol. I Nos. 18-22
-state: open
+state: claimed
 epic: PAPERS
 requested_by: owner
 seen: false
@@ -11,7 +11,7 @@ parent: T-0258
 opened: 2026-08-28
 closed: null
 pr: null
-claimed_by: null
+claimed_by: run 8/28/2026, 5:36:15 PM CT
 blocked_on: null
 needs_bake: false
 ---
