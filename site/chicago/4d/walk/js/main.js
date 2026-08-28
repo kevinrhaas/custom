@@ -806,6 +806,14 @@ async function boot() {
   api.scene = loaded.scene;
   api.datum = loaded.datum;
   api.registry = loaded.registry;
+  // The survey junctions the Go-to menu offers, from the same list the menu is
+  // built from. Exposed because the smoke asserted the menu's junction count
+  // against a LITERAL 4, so committing a fifth control point failed a gate that
+  // was measuring nothing: the intersections are compiled into the sidecar index
+  // from data/traces/street_control.json on every check, and the count is
+  // therefore data, not a constant. Same shape as `scene.anchors`, which the
+  // next assertion in that block already reads (T-0245).
+  api.intersections = loaded.index?.intersections ?? [];
 
   const world = createWorld({
     renderer, scene: scene3d, sceneJson: loaded.scene, datum: loaded.datum, lowSpec: coarse,

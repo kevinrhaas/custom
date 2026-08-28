@@ -1,5 +1,5 @@
 ---
-id: T-0252
+id: T-0255
 title: The dooryard planting rule reads every street in the town with no bound on reach, so a track across the river can turn a house's yard
 state: open
 epic: META

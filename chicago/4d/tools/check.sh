@@ -183,6 +183,22 @@ step "the fort wood re-derives from the palisade and the apron it stands off" \
 step "the river wharves re-derive from the records that state a dock" \
   python3 tools/generate_river_wharves.py --check
 
+# ROADMAP K5 (e) also asked for "a river-wharf mode of pier_crib", so that a town
+# assembled from GLBs alone would carry its docks; T-0059 was that clause and was
+# WITHDRAWN on 2026-08-27 on the three readings this holds. Not on an opinion about
+# wharves: on the count of renderers that could read such a GLB (one, and it draws
+# the wharves already), on the count of drawn-at-load layers that owe a generator
+# half (nine of nine, so the debt is general and the wharf is not special), and on
+# what each route into the bake re-stales. The last of those cuts BOTH ways and the
+# gate states it either way — a mode inside pier_crib.py costs two meshes, which is
+# cheap, while a new archetype edits build.py's registry and costs the town. The
+# reading is gated rather than remembered because every figure in it is a thing the
+# tree can change underneath the decision: a second renderer, a tenth layer, or the
+# first drawn layer to grow a generator each fail here and send somebody back to the
+# ticket.
+step "the case T-0059 was withdrawn on still holds" \
+  python3 tools/measure_generator_half.py --gate --quiet
+
 # The frontage works are the fifth record of this shape and the first derived from
 # a building AND a street at once: where a plank walk may lie is decided by the
 # travelled track's own half-width out of data/streets/1835.json, not by the wall
@@ -250,6 +266,20 @@ step "nothing unpermitted stands on reserved ground" \
 step "nothing unpermitted stands on refused ground, and the refusal still reaches it" \
   python3 tools/measure_no_build_ground.py --gate
 
+# T-0134. The plate the Dearborn reach was built from draws warehouses on BOTH banks and
+# only the north one stands. The south side was refused on a single spot reading taken by
+# hand — "the corridor reaches to within about 1.7 m of the waterline" — and the whole bank
+# was left empty on it. This is that refusal as a command, at every relief tolerance it
+# could turn on: beside the platted street not one position takes the smallest footprint
+# family F1 allows. It fails if a fit ever APPEARS, because a fit is the question re-opening
+# and not a number to bank — which is the assertion that fires the day the terrain is
+# extended, the plat is re-derived or the waterline is re-traced.
+step "the south bank at the Dearborn reach still carries no ground outside its own street" \
+  python3 tools/measure_south_bank_ground.py --gate --quiet
+
+step "…and its own assertions still fire when broken" \
+  python3 tools/measure_south_bank_ground.py --self-test
+
 # The terrain spec defers four in-town water features — the slough, the public-square
 # pond, the Frog Pond and the Wells Street marsh — under one shared phrase, "existence
 # documented, geometry conjectural". Existence is a claim about a PLACE and the scene is
@@ -297,6 +327,16 @@ step "no water stands on the public square, and its sward is the one the dossier
 step "no building has newly been drawn standing in a platted street" \
   python3 tools/measure_corridor_intrusion.py --gate --quiet
 
+# The absolute half of that gate rests on ONE reading: which evidence layer a record
+# belongs to. It used to be read off the record's ID PREFIX, and `physicians_office`
+# carries no prefix while being a product of the inferred-household programme — so a
+# generated record was scored against the ratchet, which may be re-baselined, instead of
+# against the absolute, which may not (T-0221). The reading moved onto the record itself
+# in plat_occupancy.layer_of_record; this puts a generated roof in a roadway, in memory,
+# under both readings and checks which one the gate catches.
+step "…and its absolute assertion still fires when a generated roof is put in a street" \
+  python3 tools/measure_corridor_intrusion.py --self-test
+
 # Two generators build party-line rows onto the committed block faces and each asserts
 # that ITS OWN run stands on one line; neither could see the other. The Lake face of
 # blk_lake_clark is built by both and carried two lines 0.70 m apart, ten metres apart
@@ -306,6 +346,17 @@ step "no building has newly been drawn standing in a platted street" \
 # after T-0104 the number is zero. It also closes party walls from BOTH sides, which is
 # the case neither run-local gate can reach when the other half belongs to another
 # generator.
+# T-0226. North Water Street's line was a hand-drawn schematic that ran 477.4 m of its
+# 843.3 m inside the water mask, so the renderer drew no roadway at all across that
+# reach — and NOTHING SAW IT, because the panel-accounting gate asks whether every panel
+# with a DRY centreline reached the ribbon and every one of them did. A street whose
+# centreline is wet is invisible to that question by construction. The line is now
+# derived from the committed north bank, and this is the gate that keeps it derived: it
+# re-runs the derivation and refuses a committed line that is not the one it produces,
+# so a bank that moves under the street is a red build rather than a silent hole.
+step "north water street is still the line its own derivation produces, and still dry" \
+  python3 tools/derive_north_water.py --gate
+
 step "a block face carries one street line, across every generator that builds on it" \
   python3 tools/measure_street_line.py --gate --quiet
 

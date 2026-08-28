@@ -27,12 +27,8 @@
 # --- THE TOWN AND ITS STREETS — visible
 T-0028 — Build out the NEXT anonymous block (one per run)
 T-0192 — The cross streets' own frontages get the street edge
-T-0221 — measure_street_frontage.layer_of reads a record's evidence layer off its filename, and misreads physicians_office
 
 # --- THE RIVER, THE WHARVES AND THE GROUND — visible
-T-0059 — The generator half of the wharf layer: a river-wharf mode of pier_crib
-T-0134 — The south bank at the Dearborn reach has no ground outside the platted street corridor
-T-0226 — North Water Street runs inside the water mask for 477 m and draws no ribbon at all
 T-0219 — Finish the heightfield SOUTH to Madison Street, the plat's last tier
 
 # --- THE FORT — visible, mostly small
@@ -97,5 +93,7 @@ T-0243 — The two timber-placement gates match no mesh since the lattice landed
 T-0244 — T-0194's twelve hitching posts draw no vertices the gate can find, on dev
 T-0246 — log_jail stands on two steps of Randolph Street's new plank walk, the same OSM-kerb fault Lake and South Water answered
 T-0247 — The light tier draws 83 calls against the 80-call floor restored yesterday, on an unmodified dev
-T-0245 — South Water Street can have its first control point, at Franklin, and nothing has claimed it
-T-0252 — The dooryard planting rule reads every street in the town with no bound on reach, so a track across the river can turn a house's yard
+T-0252 — Decide once whether a baked town carries the nine renderer-drawn layers, or none of them
+T-0253 — May an invented building stand on the river margin of a platted street corridor
+T-0254 — North Water Street west of the slough, and the crossing it needs
+T-0255 — The dooryard planting rule reads every street in the town with no bound on reach, so a track across the river can turn a house's yard

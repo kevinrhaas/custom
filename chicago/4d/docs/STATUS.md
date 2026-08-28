@@ -49,9 +49,200 @@ it reads every street in the dataset with no limit on reach or on which bank it 
 **61.6 m** away against `michigan_north`'s **68.3 m** — so a track on the south bank, across the
 river, became that house's nearest street and turned its yard. Two cottonwoods move about 6 m.
 The rule was re-derived and the result committed; whether a street should be able to reach a
-house across open water is **T-0252**.
+house across open water is **T-0255**.
 
-**Filed by this run:** T-0252 (the dooryard rule's unbounded street reach).
+**Filed by this run:** T-0255 (the dooryard rule's unbounded street reach).
+## Shipped 2026-08-28 — T-0245: South Water Street gets its first control point, at Franklin
+
+`data/traces/street_control.json` held four control points — `lake_canal`, `lake_market`,
+`randolph_canal`, `kinzie_canal` — and **none of them was anywhere on South Water Street**, the
+riverfront street the whole south bank is measured along. There are five now.
+`control.south_water_franklin` is committed at E 447281.16, N 4637407.21 (41.8868373 N,
+-87.6354394 W; local ENU **208.46, +11.41**), the mean of OSM nodes `28358883` and `28358941` —
+North Franklin Street's two crossings of West Upper Wacker Drive's carriageways, 15.28 m apart on
+the same easting to 0.08 m.
+
+**It is a crossing, and it is shown to be one rather than asserted.** `node_rule`'s third failure
+mode — the one T-0183 found at Market one block west — is that two named surface roadways share
+nodes wherever one CHANGES NAME INTO the other at a bend, which reads identically in the output.
+The discriminator recorded on this entry is that **both named ways continue through the shared
+set on both sides**: North Franklin Street arrives on way `452188414` from local (208.2, -12.3),
+passes `28358941`, runs on to `28358883` on way `253745133` and carries north; West Upper Wacker
+crosses east-west on a different carriageway at each node (`319358165` → `931237159` through the
+first, `319358163` → `1136945346` through the second). At Market neither holds: North Upper
+Wacker *ends* at its node and West Upper Wacker *begins* there.
+
+Reproduced twice on the day, from the committed record, against the live map:
+
+```
+  tools/refetch_control.py --discover south_water_franklin
+      2 shared node(s), mean E 447281.16 N 4637407.21, spread 15.28 m, drift 0.00 m
+  tools/refetch_control.py                    (the default verify pass, all five)
+      south_water_franklin ok  2 node(s), drift 0.00 m (tolerance 1.00)
+      lake_market 0.04 · kinzie_canal 0.01 · lake_canal 0.00 · randolph_canal 0.00
+```
+
+**AND NOTHING MOVED — these are the numbers.** The point's value is that it makes two committed
+lines checkable for the first time, which is a different thing from correcting them.
+
+| measured against `control.south_water_franklin` | |
+|---|---:|
+| committed South Water × Franklin corner (intersection of the two centrelines) | local (208.49, +2.83) |
+| the control | local (208.46, +11.41) |
+| separation | **8.58 m** (ΔE −0.03, ΔN +8.58) |
+| perpendicular standoff from South Water's own line (it runs 15.4° N of E here) | **8.28 m** |
+| that, against the 12.192 m half of the 80 ft platted module | **68 %**, 3.91 m to spare |
+| Franklin's committed easting at the junction's northing | **0.03 m** |
+
+So the whole disagreement is *across* South Water and none of it is *along* it. The 8.28 m south
+is the standoff `data/streets/1835.json` has described since it was written as *"shifted into the
+dry half of the platted riverfront corridor"* — a reconstruction decision about dry ground, not
+an error in an offset — and that sentence now carries the measurement. Re-deriving the street
+onto the modern centreline would *undo* it, so nothing is re-derived and no placement names this
+control. Franklin's 0.03 m is a **reproduction, not an independent confirmation**: `franklin`
+already lists `osm_streets_2026` among its sources, so what it establishes is that the line can be
+re-derived from the source it names, which until today it could not be.
+
+**It does not unlock `blk_south_water_market`.** That block's gap is at its WEST corner and South
+Water already reaches Franklin; the 27 roofs still wait on the owner decision `refused_control.
+market_south_water` states. T-0028 therefore stays where it is — see below.
+
+**The corner has a document.** The first post office stood at the south-west corner of Franklin
+and South Water from 2 Nov 1832 to 3 Mar 1837 (`docs/research/03-structures-north.md`), so it is
+a corner on the scene date and not only a modern junction.
+
+**AND IT IS VISIBLE, in the one place a control point can be.** The Go-to menu's survey
+junctions are compiled into the sidecar index from `street_control.json` on every check, so the
+menu now offers five where it offered four — `South Water Street & Franklin Street`, at local
+(208.46, +11.41). **The gate guarding that menu was measuring a constant:** it asserted
+`jumps.all.intersections === 4`, in as many words, so the first correct fifth control point this
+project ever committed turned a working menu red on mobile PART 8. That is the same fault the
+menu was built to avoid, one level up — changelog v54 states that no intersection coordinate is
+copied into the interface *precisely* so that correcting the control changes the menu on the next
+compile. The assertion now reads the compiled list: `main.js` exposes `api.intersections` beside
+the `scene.anchors` the very next assertion already reads, and the check compares the menu's
+count to it (`> 3` keeps the floor).
+
+Files: `data/traces/street_control.json` (the control point, plus `streets.franklin` named and
+`streets.south_water`'s "no committed control point anywhere on it" retired),
+`data/streets/1835.json` (`south_water` and `franklin` notes), `renderers/web/js/main.js`
+(`api.intersections`), `tools/smoke_renderer.mjs` (the literal `4` retired), recompiled sidecar
+index, published mirror, changelog v310.
+## Settled 2026-08-28 — T-0134: the south bank at the Dearborn reach has no ground the plate's warehouses could stand on, and the reason it was refused was wrong
+
+Image 3 of the owner's brief of 2026-08-18 draws low warehouses on **both** banks of the reach
+below the Dearborn draw. T-0133 built the north side — four freight sheds standing back from
+North Water Street — and left the south side empty on one sentence, repeated in all four
+records: *"the platted South Water Street corridor reaches to within about 1.7 m of the traced
+1834 waterline at the Dearborn reach, so there is no ground there."* That was **one spot
+reading taken by hand at one station**, and the whole bank of the reach was refused on it.
+
+`tools/measure_south_bank_ground.py` is that refusal as a command. It walks the south bank from
+the Dearborn crossing (local E 699.2, the bridge's own committed position) east to the United
+States Reservation's west line (E 842.0, the line `measure_no_build_ground.py` already resolves
+from the State & Madison section corner) and asks whether the **smallest footprint family F1
+allows** — 18 × 32 ft, the freight shed of the plate — can be put down at **any bearing** on
+ground that is dry in the committed heightfield, outside every platted corridor and off refused
+ground. Every bound is the permissive one, and the relief clause is reported four ways so the
+answer can be seen not to rest on it.
+
+```
+  124 of 143 stations carry ANY dry ground outside a platted corridor
+  widest such strip   26.50 m at E 813.2 (1.30 m of relief)
+  positions the smallest F1 footprint stands at, at any bearing:
+     relief <= 0.30 m   0        relief <= 1.00 m    6
+     relief <= 0.35 m   0        no relief clause   26
+  BESIDE THE PLATTED STREET (west of South Water's own east end, E 805.0):
+     widest free strip  8.00 m at E 804.2
+     relief <= 0.30 m   0        relief <= 1.00 m    3
+     relief <= 0.35 m   0        no relief clause    3
+```
+
+**The refusal holds, and it holds much harder than 1.7 m did — but "there is no ground" was
+false.** 124 of 143 stations do carry dry ground outside a corridor, and beside the platted
+street the free strip widens eastward to 8.00 m. What defeats a building is the **slope**, not
+the width: that strip is the river bank itself, and the three positions on it that accept a
+footprint at all span 0.96–0.98 m of relief, more than three times the 0.30 m walker step
+tolerance three infill generators hold themselves to. The 26.50 m strip at E 813.2 is **east of
+South Water Street's platted end** — the slough's east bank, under `slough_log_bridge` — and
+answers a different question, which is why the tool reports the two apart.
+
+**What is now open is a decision, not a number.** The platted 80 ft corridor occupies this bank
+down to the water, and L79 records the travelled tracks running 5.8–10.5 m inside an 80 ft
+corridor; South Water's committed track is 10.5 m, so about 7 m of legal corridor stands between
+the wheel line and the corridor's north edge, on ground flat to 0.05 m. So the question is
+whether an invented building may stand on the **river margin of a platted street corridor**,
+where this town's warehouses and landings in fact stood. It would be the first record placed
+knowingly inside a corridor — the 29 that lap one today are documented records the plat was
+fitted around — and `measure_corridor_intrusion.py --gate` refuses a new lap by construction.
+Filed as its own ticket rather than decided here. The live alternative is that what the plate
+draws on the south bank is wharfed out over the water (T-0059), not standing on it.
+
+**What shipped.** `tools/measure_south_bank_ground.py` + its baseline, gated in `check.sh` so
+a fit **appearing** fails — that is the question re-opening, not a number to bank; the finding
+at `docs/RESEARCH/south_bank_dearborn_ground.md`; a `data/exclusions.json` entry, so the
+visitor standing in the empty south bank can read why it is empty in the walkthrough's *What is
+not here*; and the superseded sentence corrected in all four north-bank shed records.
+
+**Nothing in the town moved.** No geometry changed and no bake was needed.
+## Shipped 2026-08-28 — T-0221: one reading of which evidence layer a record belongs to
+
+**Three tools asked the question and one of them answered it from a filename.**
+`tools/measure_street_frontage.layer_of` decided whether a structure record was
+`research`, `inferred_household` or `reconstruction` **by its id prefix** — `recon_1835_*`,
+`inf_*`, everything else research — and `tools/measure_frontage_fabric.py` and
+`tools/measure_corridor_intrusion.py` both import it. `tools/plat_occupancy.researched_ids`
+already read the RECORD instead, and said in its docstring why. Two readings of one fact is
+this project's recurring defect; there is now one, in
+`plat_occupancy.layer_of_record`, and it reads the record.
+
+**The record already carries the answer, as a rule rather than a convention.**
+`data/structures.schema.json` states it — *"Named/documented structures do not carry this
+block"* — and its `reconstruction.status` enum names which programme wrote the ones that do:
+`inferred_anonymous` is a count-unit of the 665-roof programme, `inferred_household` a roof
+raised because an argued household needed somewhere to be. So the layer is read off that
+block, and `layer_of` is a lookup into it rather than a second opinion. An id carrying no
+committed record is now REFUSED rather than guessed at from its shape; the one caller that
+built a record in memory (`measure_frontage_fabric._synthetic`) builds it with the
+`reconstruction` block its layer follows from, so its fixture is read the same way the tree is.
+
+**Across all 349 committed records the two readings disagree exactly once**, and the run's
+self-test measures that rather than quoting it. `physicians_office` carries neither prefix and
+is a product of the inferred-household programme, which its own
+`reconstruction.status: "inferred_household"` says. Its record was never wrong; the reading of
+it was.
+
+**Why one row of a census was worth a ticket.** `measure_corridor_intrusion.py --gate` holds
+two different kinds of assertion. The 20 documented laps are a RATCHET — a depth may not grow,
+and a repair is banked with `--write-baseline`. The generated layers are an ABSOLUTE — **zero**,
+because every generator already refuses a roof in a roadway through the same module. A generated
+record reading as `research` is scored against the ratchet instead of the absolute, so the
+clause that cannot be crossed could have been crossed by a record whose filename happens not to
+start with `inf_`. Nothing in the tree was ever mis-scored: `physicians_office` laps no corridor,
+and the gate reports the same 20 phases and the same zero before and after.
+
+**The gate now proves that itself.** `tools/measure_corridor_intrusion.py --self-test`, in
+`check.sh`, translates a roof onto the Lake Street centreline in memory — position point and
+world polygon together, with the depth computed by `measure()` rather than typed in — and checks
+which assertion fires. An anonymous `recon_1835_*` roof is caught by the absolute (the control,
+which the old reading also caught). `physicians_office` in the same roadway is caught by the
+absolute now, and under the id-prefix reading — kept in the module, refuted, so it stays refuted —
+is caught only by the ratchet. That is the difference the ticket bought, demonstrated rather than
+argued.
+
+**What moved in the numbers**, re-derived and stated because a census is not a place to be quiet:
+
+```
+  measure_corridor_intrusion --gate   20 of 349 lapping, 0 generated   unchanged
+  measure_frontage_fabric --gate      3 principal streets, no failure  unchanged
+  measure_street_frontage             lake   research 17 -> 16, household 7 -> 8
+                                      clark  research  6 ->  5, household 1 -> 2
+```
+
+`physicians_office` stands within 25 m of both centrelines, so it moves column on both — one
+building leaving the documented count of the street the face rule is usually asked about. Lake is
+still the better face by a wide margin and no parcel's conclusion turns on it; the count is
+simply now the count of what the records say.
 
 ## Shipped 2026-08-27 — T-0196: three Lake Street buildings come onto the plat, and the fourth is refused with the number that refused it
 
@@ -693,13 +884,35 @@ ribbon reaches the full mitre point, so subdividing that side would pull the rib
 recorded width and open a gap on the inside of the turn to close one on the outside. The asymmetry is
 forced by the geometry, not chosen.
 
-### Found and filed rather than fixed: T-0226
+### Found and filed rather than fixed: T-0226 — and CLOSED 2026-08-28
 
-Three of North Water Street's six bends carry no joint question at all, because its committed
-centreline runs **inside the water mask** and no ribbon may be drawn there — the first reading of this
+Three of North Water Street's six bends carried no joint question at all, because its committed
+centreline ran **inside the water mask** and no ribbon may be drawn there — the first reading of this
 instrument reported them as 33.8 m2 of uncovered ground apiece and it was the tool that was wrong, not
 the town. The nominal ribbon is now defined as ground the module is ALLOWED to paint, and those bends
 are counted separately so they cannot hide.
+
+**T-0226 settled it, and the street was the record that was wrong.** 477.4 m of its 843.3 m stood in
+the river. The bank is a Wright 1834 trace with a stated ±20 m; the street line was a hand-drawn
+schematic that said so in its own note, graded `reconstructed`, standing on no control, and missing
+the bank by up to 86 m — 4.3× that uncertainty. The North Division placement recipe had already ruled
+in writing that *"proximity to North Water Street never overrides the authoritative water mask"*, and
+not one building in the town was placed against the old line. So the bank was left alone and the
+street was re-derived FROM it by `tools/derive_north_water.py`, gated in `check.sh`: the platted
+corridor's south line on the bank, the centreline 12.192 m north of it. Six bends,
+`[240, 136.5] [560, 106.2] [780, 110.2] [830, 108.5] [920, 190] [970, 270]`, 807.3 m of centreline
+with none of it wet, and the probe reads **0 bends refused for water** where it read 3. The full
+reasoning is `docs/RESEARCH/north_water_street_and_the_bank.md`. The bend list above is the reading
+taken before that, and north_water's sharp bend is now 44.1 degrees at `[830, 108.5]`.
+
+Two consequences, both carried in the same change. The four `north_bank_shed_dearborn_*` records
+derive their coordinate from this street's north edge, and left where they were they would have had
+the corrected roadway drawn through them — 0.12 to 2.73 m from the new centreline against a 3.0 m
+half-width — so they were re-derived by their own unchanged rule and stand 2.00 m back from the
+track's north edge again. And the street's west terminus is now the east shoulder of the attested
+north-side slough rather than a point 85.8 m out in the river: a ribbon may not paint a watercourse
+and this town's other two slough crossings are modelled structures, so **T-0254** carries the reach
+west of it.
 
 ### The picture
 
@@ -4080,13 +4293,17 @@ building stood there at all, and `docs/LIBERTIES.md` **L164** claims all 44 inve
 **Where they stand, and it is a rule rather than a hand.** A tier-5 pictorial may drive massing,
 form, materials and setting and may never drive a coordinate, so the plate decides only THAT sheds
 stood here. The front wall is set 2.00 m back from the north edge of North Water Street's committed
-track at each station, squared to the street's own bearing there, and every corner has to stand on
+track at each station, squared to the street's own bearing there — re-run on 2026-08-28 against the
+line T-0226 corrected, which moved all four about 13 m north and dropped their bearing from 5.6-8.0
+to 1.04 degrees; the rule did not change, its input did — and every corner has to stand on
 modelled ground above the water with ≤ 0.35 m of relief across the rectangle — the clause the infill
 generators hold themselves to. All four clear the platted corridors, the committed footprints and
 each other.
 
-**Two limits stated in the open.** (1) They stand 4.5–10.5 m back from the traced 1834 waterline
-with the river street between, not on the bank edge where the plate reads them: the modelled bank
+**Two limits stated in the open.** (1) They stand 17.2–17.4 m back from the traced 1834 waterline
+with the river street between (4.5–10.5 m before T-0226 corrected that street's line, which now
+carries a full platted corridor between them and the water), not on the bank edge where the plate
+reads them: the modelled bank
 climbs from water to plateau in three to four metres, and a building on that slope fails the relief
 clause. T-0004 (raise and graduate the banks) is what would change the answer. (2) **The south bank
 is empty for a measured reason.** At the Dearborn reach the platted South Water Street corridor

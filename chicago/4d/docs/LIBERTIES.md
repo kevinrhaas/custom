@@ -8692,7 +8692,8 @@ stays inside the half-width at the corner, and this project would rather admit 2
 street's half-width — the gate that catches a mirrored ribbon, run on every release at both viewports.
 So the overhang is bounded by an instrument that existed before this liberty and was not touched for
 it: the census still reads **0 strays, worst 0.00 m**, and its negative control still fails a mirrored
-build. Five bends in the town are too sharp for one mitre (three at 17-20 deg, north_water's 30.5 and
+build. Five bends in the town are too sharp for one mitre (three at 17-20 deg, north_water's 44.1 —
+30.5 when this was written, until T-0226 re-derived that street from the committed north bank — and
 the fort road's 39.3) and are cut into two or three sub-mitres for 22 triangles town-wide.
 
 **What is NOT invented.** No width, no centreline and no record moved. `track_width_m` is unchanged on
