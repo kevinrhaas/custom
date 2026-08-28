@@ -3896,13 +3896,16 @@ for (const [label, viewport, touch] of [
       // and retired two refusals: 49 walks to 50, 33 crossings to 37, 83
       // refusals to 81. Fences and posts do not move — a wall 1.50 m back from
       // the frontage line is still inside the 3.0 m a street fence needs.
+      // T-0024 put the store on Randolph onto the street line, which refused one
+      // more street-edge wall and left this figure a count behind: 81 to 82,
+      // measured on an unmodified dev while T-0228 was taking its own reading.
       // T-0228 then cut the river walk's wharf reach in two where Carpenter's
-      // and Jones's landings come ashore across it: 50 walks to 51, and the two
-      // gaps are stated rather than laid, 81 refusals to 83.
+      // and Jones's landings come ashore across it — 50 walks to 51 — and states
+      // each gap where it refuses to lay boards: 82 refusals to 84.
       frontage.census?.records === 5 && frontage.census?.walks === 51
         && frontage.census?.crossings === 37
         && frontage.census?.posts === 15 && frontage.census?.fences === 35
-        && frontage.census?.refused === 83
+        && frontage.census?.refused === 84
         && frontage.recordIds.join(',')
           === 'green_tree_frontage,sauganash_frontage,river_walk_frontage,'
             + 'lasalle_crossing_frontage,town_street_edge'
