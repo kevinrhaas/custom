@@ -59,10 +59,23 @@ market_south_water` states. T-0028 therefore stays where it is — see below.
 and South Water from 2 Nov 1832 to 3 Mar 1837 (`docs/research/03-structures-north.md`), so it is
 a corner on the scene date and not only a modern junction.
 
+**AND IT IS VISIBLE, in the one place a control point can be.** The Go-to menu's survey
+junctions are compiled into the sidecar index from `street_control.json` on every check, so the
+menu now offers five where it offered four — `South Water Street & Franklin Street`, at local
+(208.46, +11.41). **The gate guarding that menu was measuring a constant:** it asserted
+`jumps.all.intersections === 4`, in as many words, so the first correct fifth control point this
+project ever committed turned a working menu red on mobile PART 8. That is the same fault the
+menu was built to avoid, one level up — changelog v54 states that no intersection coordinate is
+copied into the interface *precisely* so that correcting the control changes the menu on the next
+compile. The assertion now reads the compiled list: `main.js` exposes `api.intersections` beside
+the `scene.anchors` the very next assertion already reads, and the check compares the menu's
+count to it (`> 3` keeps the floor).
+
 Files: `data/traces/street_control.json` (the control point, plus `streets.franklin` named and
 `streets.south_water`'s "no committed control point anywhere on it" retired),
-`data/streets/1835.json` (`south_water` and `franklin` notes), recompiled sidecar index,
-published mirror, changelog v310.
+`data/streets/1835.json` (`south_water` and `franklin` notes), `renderers/web/js/main.js`
+(`api.intersections`), `tools/smoke_renderer.mjs` (the literal `4` retired), recompiled sidecar
+index, published mirror, changelog v310.
 
 ## Shipped 2026-08-27 — T-0196: three Lake Street buildings come onto the plat, and the fourth is refused with the number that refused it
 
