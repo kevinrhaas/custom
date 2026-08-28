@@ -1,7 +1,7 @@
 ---
 id: T-0308
 title: Reading the Democrat, November 1833: Vol. I No. 1, the scan-verified first issue
-state: claimed
+state: done
 epic: PAPERS
 requested_by: owner
 seen: false
@@ -9,8 +9,8 @@ effort: S
 legacy_id: null
 parent: T-0258
 opened: 2026-08-28
-closed: null
-pr: null
+closed: 2026-08-28
+pr: 477
 claimed_by: run 8/28/2026, 1:02:58 PM CT
 blocked_on: null
 needs_bake: false

@@ -1,7 +1,7 @@
 ---
 id: T-0300
 title: T-0258 is sized M on the measurement that split T-0259 into six
-state: open
+state: done
 epic: META
 requested_by: loop
 seen: false
@@ -9,8 +9,8 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-08-28
-closed: null
-pr: null
+closed: 2026-08-28
+pr: 477
 claimed_by: null
 blocked_on: null
 needs_bake: false
