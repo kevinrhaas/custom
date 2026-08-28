@@ -1,7 +1,7 @@
 ---
 id: T-0282
 title: The ceiling declaration cannot see the shrub stratum, and no card a visitor opens carries it
-state: claimed
+state: done
 epic: META
 requested_by: loop
 seen: false
@@ -9,8 +9,8 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-08-28
-closed: null
-pr: null
+closed: 2026-08-28
+pr: 455
 claimed_by: run 8/28/2026, 6:02:55 AM CT
 blocked_on: null
 needs_bake: false
