@@ -84,7 +84,10 @@ is on `dev` before this branch, each named to an open ticket:
 | desktop 4 | `balanced` over its ceiling at the forks | **T-0271/T-0223** — and **1,160 triangles of it are mine** |
 
 **The one number this branch moves on a red gate, stated rather than buried.** Measured on a clean
-`origin/dev` worktree and on this branch, same stand (the forks, from Wolf Point), same command:
+`origin/dev` worktree and on this branch, same stand (the forks, from Wolf Point), same command
+(`SMOKE_VIEWPORT=desktop SMOKE_STAGE=4 node tools/smoke_renderer.mjs --published`). Re-taken after
+this branch merged `origin/dev` at **`363d920b`**, so the comparison is against the base it lands
+on and not the one it left; both readings were identical before and after those five commits:
 
 | | clean `origin/dev` | this branch | delta |
 |---|---:|---:|---:|
