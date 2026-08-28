@@ -15,7 +15,7 @@
     },
     {
       "label": "The modelled box",
-      "text": "2020 x 800 m, 2.5 m cells (8.2 ft — inside the dossier's 5-10 ft), quantised at 5 mm, which is 1/15 of the 0.25 ft the dossier asks for. 809 x 321 = 259 689 samples, 507 KB. Row 0 is the SOUTH edge and column 0 the WEST edge, matching the renderer's Heightfield sampler. ONE uniform cell across the whole box, argued in docs/RESEARCH/terrain_east_1834.md: a coarser cell east of the built blocks would save about 150 KB against a 25 MB publish budget and would put the only part of the field outside the dossier's own 5-10 ft recommendation exactly where the shoreline — the most-cited line on the sheet — is drawn."
+      "text": "2020 x 930 m, 2.5 m cells (8.2 ft — inside the dossier's 5-10 ft), quantised at 5 mm, which is 1/15 of the 0.25 ft the dossier asks for. 809 x 373 = 301 757 samples, 589 KB. It was 800 m and 321 rows until T-0219 carried the south edge from N -400 to Madison Street. Row 0 is the SOUTH edge and column 0 the WEST edge, matching the renderer's Heightfield sampler. ONE uniform cell across the whole box, argued in docs/RESEARCH/terrain_east_1834.md: a coarser cell east of the built blocks would save about 150 KB against a 25 MB publish budget and would put the only part of the field outside the dossier's own 5-10 ft recommendation exactly where the shoreline — the most-cited line on the sheet — is drawn."
     },
     {
       "label": "Measured relief",
@@ -23,7 +23,7 @@
     },
     {
       "label": "Where the ground stops on the south",
-      "text": "The modelled box ends 400 m south of the forks, and that line falls inside Washington Street's own 80 ft corridor: 0.33 ha of the street's south half, over 899 m of its length, lies off the field. Madison Street — the 1830 town plat's south boundary, fixed here from the section corner at State and Madison — is 125.2 m further south again, so the plat's last tier of blocks, 6.28 ha on 48 lots between Market and State, is not modelled ground at all. Of the 0.08 ha of land the field does hold south of Washington's corridor, none is in the South Division: it is the far bank of the South Branch. Past every edge of the box the ground is a plain skirt carrying the edge heights outward, which claims nothing about 1835. Measured from the committed heightfield and the committed street lines, not asserted."
+      "text": "The modelled box ends 530 m south of the forks, and that line falls inside Washington Street's own 80 ft corridor: 0.00 ha of the street's south half, over 0 m of its length, lies off the field. Madison Street — the 1830 town plat's south boundary, fixed here from the section corner at State and Madison — is -4.8 m further south again, so the plat's last tier of blocks, 6.28 ha on 48 lots between Market and State, is not modelled ground at all. Of the 15.00 ha of land the field does hold south of Washington's corridor, none is in the South Division: it is the far bank of the South Branch. Past every edge of the box the ground is a plain skirt carrying the edge heights outward, which claims nothing about 1835. Measured from the committed heightfield and the committed street lines, not asserted."
     }
   ],
   "claims": [

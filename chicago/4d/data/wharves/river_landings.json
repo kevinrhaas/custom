@@ -50,8 +50,8 @@
           "vertices_appended": 55,
           "joined_at": "tail"
         },
-        "vertices": 80,
-        "length_m": 2416.8,
+        "vertices": 83,
+        "length_m": 2416.4,
         "local_e_range_m": [
           -128.8,
           1463.8
@@ -88,16 +88,16 @@
         "seam": {
           "at_local_enu_m": [
             390.12,
-            42.85
+            43.57
           ],
-          "windows_disagree_m": 0.77,
+          "windows_disagree_m": 0.05,
           "vertices_appended": 91,
           "joined_at": "head"
         },
-        "vertices": 111,
-        "length_m": 2944.5,
+        "vertices": 107,
+        "length_m": 3140.3,
         "local_e_range_m": [
-          35.9,
+          2.9,
           1257.4
         ]
       },
@@ -120,8 +120,8 @@
           }
         ],
         "seam": null,
-        "vertices": 24,
-        "length_m": 889.3,
+        "vertices": 28,
+        "length_m": 1097.5,
         "local_e_range_m": [
           -214.7,
           13.4
@@ -151,7 +151,7 @@
     "face_out_m": {
       "value": 6.0,
       "confidence": "reconstructed",
-      "note": "INVENTED. The deck's face stands 6.0 m beyond the traced 1834 bank line. No source gives the reach of any of these docks. What bounds it is the bed this project has already modelled: at 6 m out the channel gives between 1.06 m and 1.70 m of water across the 7 drawn faces (measured per wharf in depth_at_face_m), so a lighter or a scow lies at the face and a loaded lake schooner does not — the restrained reading, chosen because a longer deck would be a claim about the river trade's tonnage as well as about the dock. THE DEPTH IS REPORTED RATHER THAN ASSUMED so that what the invented reach implies is on the record and not in somebody's head, and the span is recomputed from the committed heightfield every time this record is derived so it cannot go stale behind a new landing."
+      "note": "INVENTED. The deck's face stands 6.0 m beyond the traced 1834 bank line. No source gives the reach of any of these docks. What bounds it is the bed this project has already modelled: at 6 m out the channel gives between 1.06 m and 1.72 m of water across the 7 drawn faces (measured per wharf in depth_at_face_m), so a lighter or a scow lies at the face and a loaded lake schooner does not — the restrained reading, chosen because a longer deck would be a claim about the river trade's tonnage as well as about the dock. THE DEPTH IS REPORTED RATHER THAN ASSUMED so that what the invented reach implies is on the record and not in somebody's head, and the span is recomputed from the committed heightfield every time this record is derived so it cannot go stale behind a new landing."
     },
     "heel_in_m": {
       "value": 2.0,
@@ -221,45 +221,45 @@
       "bank_traced_in": "south_division_shore",
       "bank_foot_local_enu_m": [
         390.12,
-        42.85
+        43.57
       ],
       "bank_tangent": [
-        -0.9889,
-        -0.1486
+        -0.9998,
+        -0.0215
       ],
       "waterward_normal": [
-        -0.1486,
-        0.9889
+        -0.0215,
+        0.9998
       ],
       "deck_quad_local_enu_m": [
         [
-          397.15,
-          41.88
+          396.97,
+          41.72
         ],
         [
-          383.68,
-          39.86
+          383.35,
+          41.42
         ],
         [
-          382.49,
-          47.77
+          383.18,
+          49.42
         ],
         [
-          395.96,
-          49.8
+          396.8,
+          49.71
         ]
       ],
       "deck_length_m": 13.62,
       "deck_width_m": 8.0,
       "frontage_served_m": 7.62,
-      "wall_to_bank_m": 49.08,
-      "clearance_to_wall_m": 46.23,
+      "wall_to_bank_m": 49.8,
+      "clearance_to_wall_m": 47.82,
       "depth_at_face_m": [
-        1.7,
-        1.5,
-        1.3
+        1.68,
+        1.67,
+        1.67
       ],
-      "least_depth_at_face_m": 1.3,
+      "least_depth_at_face_m": 1.67,
       "face_stations": 15,
       "facade_bearing_deg": 0.0
     },
@@ -276,46 +276,46 @@
       ],
       "bank_traced_in": "south_division_shore",
       "bank_foot_local_enu_m": [
-        353.32,
-        42.73
+        352.88,
+        43.13
       ],
       "bank_tangent": [
-        -1.0,
-        -0.0032
+        -0.9999,
+        -0.0119
       ],
       "waterward_normal": [
-        -0.0032,
-        1.0
+        -0.0119,
+        0.9999
       ],
       "deck_quad_local_enu_m": [
         [
-          362.42,
-          40.76
+          362.0,
+          41.24
         ],
         [
-          344.23,
-          40.71
+          343.81,
+          41.02
         ],
         [
-          344.2,
-          48.71
+          343.72,
+          49.02
         ],
         [
-          362.4,
-          48.76
+          361.91,
+          49.23
         ]
       ],
       "deck_length_m": 18.19,
       "deck_width_m": 8.0,
       "frontage_served_m": 12.19,
-      "wall_to_bank_m": 49.29,
-      "clearance_to_wall_m": 47.36,
+      "wall_to_bank_m": 49.68,
+      "clearance_to_wall_m": 47.7,
       "depth_at_face_m": [
-        1.61,
-        1.63,
-        1.65
+        1.71,
+        1.72,
+        1.72
       ],
-      "least_depth_at_face_m": 1.61,
+      "least_depth_at_face_m": 1.71,
       "face_stations": 19,
       "facade_bearing_deg": 0.0
     },
@@ -332,46 +332,46 @@
       ],
       "bank_traced_in": "south_division_shore",
       "bank_foot_local_enu_m": [
-        230.48,
-        24.72
+        229.98,
+        24.42
       ],
       "bank_tangent": [
-        -0.9663,
-        -0.2573
+        -0.9339,
+        -0.3575
       ],
       "waterward_normal": [
-        -0.2573,
-        0.9663
+        -0.3575,
+        0.9339
       ],
       "deck_quad_local_enu_m": [
         [
-          239.79,
-          25.13
+          239.19,
+          25.81
         ],
         [
-          222.21,
-          20.45
+          222.2,
+          19.3
         ],
         [
-          220.15,
-          28.18
+          219.34,
+          26.77
         ],
         [
-          237.73,
-          32.86
+          236.33,
+          33.28
         ]
       ],
       "deck_length_m": 18.19,
       "deck_width_m": 8.0,
       "frontage_served_m": 12.19,
-      "wall_to_bank_m": 33.42,
-      "clearance_to_wall_m": 30.02,
+      "wall_to_bank_m": 33.27,
+      "clearance_to_wall_m": 28.96,
       "depth_at_face_m": [
-        1.43,
+        1.59,
         1.4,
-        1.49
+        1.36
       ],
-      "least_depth_at_face_m": 1.4,
+      "least_depth_at_face_m": 1.36,
       "face_stations": 19,
       "facade_bearing_deg": 0.0
     },
@@ -390,46 +390,46 @@
       ],
       "bank_traced_in": "north_division_shore",
       "bank_foot_local_enu_m": [
-        115.07,
-        47.74
+        115.5,
+        47.89
       ],
       "bank_tangent": [
-        0.8261,
-        0.5635
+        0.8016,
+        0.5978
       ],
       "waterward_normal": [
-        0.5635,
-        -0.8261
+        0.5978,
+        -0.8016
       ],
       "deck_quad_local_enu_m": [
         [
-          106.51,
-          44.32
+          107.09,
+          44.11
         ],
         [
-          121.38,
-          54.46
+          121.52,
+          54.87
         ],
         [
-          125.89,
-          47.85
+          126.3,
+          48.46
         ],
         [
-          111.02,
-          37.71
+          111.87,
+          37.69
         ]
       ],
       "deck_length_m": 18.0,
       "deck_width_m": 8.0,
       "frontage_served_m": 12.0,
-      "wall_to_bank_m": 10.25,
-      "clearance_to_wall_m": 6.33,
+      "wall_to_bank_m": 10.37,
+      "clearance_to_wall_m": 6.36,
       "depth_at_face_m": [
         1.14,
         1.15,
-        1.29
+        1.28
       ],
-      "least_depth_at_face_m": 1.13,
+      "least_depth_at_face_m": 1.14,
       "face_stations": 19,
       "facade_bearing_deg": 180.0
     },
@@ -448,46 +448,46 @@
       ],
       "bank_traced_in": "south_division_shore",
       "bank_foot_local_enu_m": [
-        202.7,
-        14.46
+        202.81,
+        14.02
       ],
       "bank_tangent": [
-        -0.9363,
-        -0.3513
+        -0.9339,
+        -0.3575
       ],
       "waterward_normal": [
-        -0.3513,
-        0.9363
+        -0.3575,
+        0.9339
       ],
       "deck_quad_local_enu_m": [
         [
-          211.36,
-          15.58
+          211.46,
+          15.19
         ],
         [
-          195.44,
-          9.61
+          195.58,
+          9.11
         ],
         [
-          192.63,
-          17.1
+          192.72,
+          16.58
         ],
         [
-          208.55,
-          23.07
+          208.6,
+          22.66
         ]
       ],
       "deck_length_m": 17.0,
       "deck_width_m": 8.0,
       "frontage_served_m": 11.0,
-      "wall_to_bank_m": 8.83,
-      "clearance_to_wall_m": 5.93,
+      "wall_to_bank_m": 8.37,
+      "clearance_to_wall_m": 5.54,
       "depth_at_face_m": [
-        1.32,
+        1.33,
         1.3,
-        1.28
+        1.27
       ],
-      "least_depth_at_face_m": 1.28,
+      "least_depth_at_face_m": 1.27,
       "face_stations": 18,
       "facade_bearing_deg": 0.0
     },

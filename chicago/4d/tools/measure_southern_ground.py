@@ -7,35 +7,48 @@ widen the eligible ground southward and let `tools/reconcile_665.py` re-apportio
 remainder onto it. Its own acceptance names the condition: a roof may stand only where
 the ground is **covered by the heightfield AND historically plausible**.
 
-MEASURED AGAINST THE COMMITTED HEIGHTFIELD, THE PREMISE DOES NOT SURVIVE. The modelled
-box ends at local **N -400 m**, and that line falls INSIDE Washington Street's own 80 ft
-corridor. So there is no southern ground to widen onto: south of the platted corridor
-that carries the town's southernmost committed street, the field holds a sliver of land
-on the far bank of the South Branch and nothing whatever in the South Division.
+MEASURED AGAINST THE COMMITTED HEIGHTFIELD, THE PREMISE DID NOT SURVIVE — AND THEN THE
+TERRAIN MOVED. Written for T-0026, this command found the modelled box ending at local
+**N -400 m**, a line falling INSIDE Washington Street's own 80 ft corridor: south of the
+platted corridor that carried the town's southernmost committed street, the field held
+0.0819 ha of land, all of it on the far bank of the South Branch and **none** of it in
+the South Division. Madison Street, the plat's south boundary, was 125.2 m further south
+again, and the plat's last tier of blocks — 6 blocks, 48 lots, 6.28 ha between Market and
+State — had **0 of 24** block-boundary points on modelled ground.
 
-The three figures that settle it, all re-derived by this command:
+T-0219 answered that, by the only route the reading left open: `tools/trace_river.py`'s
+window was extended 280 px south on the same Wright 1834 sheet, both South Branch banks
+were carried with it to N -607, and `n_min` moved to N -530 — 4.8 m past Madison's line
+at State. The tier now stands 24 of 24 on modelled ground.
 
-1. **Land south of Washington's platted corridor: 0.08 ha, and none of it in the South
-   Division.** Every cell of the committed field above the datum water surface, south of
-   the corridor's south edge, lies west of local E -10 — the West Division bank, across
-   the South Branch from the town.
-2. **Madison Street — the plat's south boundary — is 125 m south of the field's south
-   edge.** Its line is not traced: it is resolved the way T-E2 resolved the reservation's
-   south boundary, from the PLSS section corner at State & Madison (`G1`, the town plat's
-   SE corner) carried on the plat's own east-west bearing, which Lake, Randolph and
-   Washington agree on to the sixth decimal.
-3. **The plat's last tier of blocks is 100 % unmodelled.** Built by the plat module's own
+**Which does not make the command obsolete, and is exactly why it is a gate.** The three
+figures are still re-derived on every run, and the assertions below are unchanged: the
+question "is a platted block standing off the field" has to keep being asked, because
+every north-south column of the south plat still has its committed centreline cut at
+N -400 and carrying one south is now a thing a run can do. What has changed is the
+ANSWER, and the two figures `coverage_figures` added for it — `tier_ring_points_on_field`
+against `tier_ring_points` — are what let `tools/reconcile_665.py` state the South's
+blocker from the measurement rather than from a sentence somebody typed.
+
+1. **Land south of Washington's platted corridor.** Every cell of the committed field
+   above the datum water surface, south of the corridor's south edge, classified by
+   division. It was 0.0819 ha with nothing in the South Division; it is now 17.67 ha,
+   12.98 ha of it South Division.
+2. **Where Madison Street runs.** Its line is not traced: it is resolved the way T-E2
+   resolved the reservation's south boundary, from the PLSS section corner at State &
+   Madison (`G1`, the town plat's SE corner) carried on the plat's own east-west bearing,
+   which Lake, Randolph and Washington agree on to the sixth decimal. The field's south
+   edge is now 4.8 m south of it rather than 125.2 m north.
+3. **How much of the plat's last tier is modelled.** Built by the plat module's own
    `build_block`, the six blocks between Market and State that Washington and Madison
-   bound cover 5.6 ha of block ground, and the field covers none of it.
+   bound. 0 of 24 boundary points before; 24 of 24 now.
 
-**So the blocker the 665-roof programme names for the South was the wrong one.** It said
-street control: *"no block south of Washington has four committed centrelines"*. True, and
-downstream — every north-south street in the south plat has its committed line cut at
-exactly N -400, the field's own south edge, and the modern control that would carry them
-further is already committed (G1 is an OpenStreetMap node with an id). Street control
-stops where the ground does. Widening the eligible ground south is a TERRAIN parcel, not a
-rule the programme can relax, and `tools/generate_block_infill.py` would refuse every
-placement on it today with "falls outside the modelled terrain".
+**So the blocker the 665-roof programme names for the South has changed twice.** It said
+street control: *"no block south of Washington has four committed centrelines"*. T-0026
+showed that was true but downstream — street control stopped where the ground did. With
+the ground carried to Madison, street control is what is left, and it is now a blocker a
+parcel can actually clear: the modern control that would carry the columns south is
+already committed (G1 is an OpenStreetMap node with an id and a 13.9 m residual).
 
     tools/measure_southern_ground.py             the report
     tools/measure_southern_ground.py --gate      the two assertions
@@ -381,6 +394,12 @@ def coverage_figures(m: dict | None = None) -> dict:
         "unmodelled_tier_blocks": m["tier"]["count"],
         "unmodelled_tier_lots": m["tier"]["lots"],
         "unmodelled_tier_area_ha": round(m["tier"]["area_ha"], 2),
+        # T-0219. The two figures that let a reader — and `tools/reconcile_665.py` —
+        # tell WHICH blocker the south has, instead of being told. While these are
+        # unequal the tier is off the ground and terrain is the blocker; the moment
+        # they are equal the ground is there and what is left is street control.
+        "tier_ring_points_on_field": m["tier"]["ring_points_on_field"],
+        "tier_ring_points": sum(b["ring_points"] for b in m["tier"]["blocks"]),
     }
 
 
@@ -412,7 +431,10 @@ def report(m: dict) -> None:
     print(f"  of it, in the South Division: {c['land_in_south_division']} cell(s), "
           f"{c['south_division_land_ha']:.4f} ha")
 
-    print("\nthe tier the plat has and the ground has not — Washington to Madison")
+    on, of = t["ring_points_on_field"], sum(b["ring_points"] for b in t["blocks"])
+    print("\nthe plat's last tier, Washington to Madison — "
+          + ("on modelled ground" if on == of
+             else "the tier the plat has and the ground has not"))
     print(f"  {'block':<26}{'area m2':>10}{'lots':>6}{'ring pts on field':>20}")
     for row in t["blocks"]:
         print(f"  {row['id']:<26}{row['area_m2']:10.0f}{row['lots']:6d}"

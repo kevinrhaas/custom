@@ -7,17 +7,17 @@
  "scale": 0.005,
  "offset": 0.0,
  "cols": 809,
- "rows": 321,
+ "rows": 373,
  "cell_m": 2.5,
  "origin_e": -320.0,
- "origin_n": -400.0,
+ "origin_n": -530.0,
  "box_local_enu_m": {
   "e": [
    -320.0,
    1700.0
   ],
   "n": [
-   -400.0,
+   -530.0,
    400.0
   ]
  },
@@ -25,7 +25,7 @@
  "max_m": 3.7446,
  "quantisation_error_m": 0.0025,
  "water_surface_m": 0.0,
- "water_fraction": 0.2533,
+ "water_fraction": 0.2553,
  "relief_ft": {
   "land_min": -1.978,
   "land_max": 12.285,
@@ -38,12 +38,12 @@
    62.5
   ],
   "marsh_exclusion_m": 48.0,
-  "plain_cells_audited": 118838,
-  "plain_block_max": 0.468,
-  "plain_block_mean": 0.1286,
+  "plain_cells_audited": 141651,
+  "plain_block_max": 0.467,
+  "plain_block_mean": 0.1208,
   "passes": true,
   "plain_cell_roughness_max": 55.913,
-  "shore_and_swale_cell_max": 188.858,
+  "shore_and_swale_cell_max": 404.955,
   "relief_zones_ft_per_300ft": {
    "approach_dearborn_north": {
     "cells": 23,
@@ -63,11 +63,11 @@
    },
    "approach_north_branch_east": {
     "cells": 21,
-    "cell_max": 185.129
+    "cell_max": 132.678
    },
    "approach_north_branch_west": {
-    "cells": 24,
-    "cell_max": 158.047
+    "cells": 25,
+    "cell_max": 151.887
    },
    "approach_slough_east": {
     "cells": 15,
@@ -79,22 +79,22 @@
    },
    "approach_south_branch_east": {
     "cells": 37,
-    "cell_max": 135.898
+    "cell_max": 135.804
    },
    "approach_south_branch_west": {
     "cells": 29,
     "cell_max": 171.698
    },
    "bank_face": {
-    "cells": 27314,
-    "cell_max": 188.858
+    "cells": 30641,
+    "cell_max": 379.726
    },
    "fort_dearborn_mound": {
     "cells": 2251,
     "cell_max": 188.858
    },
    "marsh_strip": {
-    "cells": 5105,
+    "cells": 5663,
     "cell_max": 148.58
    },
    "north_sand_ridge": {
@@ -102,20 +102,20 @@
     "cell_max": 66.005
    },
    "sand_bar_1834": {
-    "cells": 15252,
+    "cells": 15550,
     "cell_max": 51.64
    },
    "south_sand_ridge": {
-    "cells": 21389,
-    "cell_max": 188.858
+    "cells": 22472,
+    "cell_max": 404.955
    },
    "state_street_break": {
-    "cells": 8401,
+    "cells": 10949,
     "cell_max": 116.863
    },
    "swales": {
-    "cells": 21434,
-    "cell_max": 158.047
+    "cells": 21733,
+    "cell_max": 151.887
    }
   },
   "rule": "docs/research/01-terrain-hydrology.md modelling rule 1: outside the zones that earn relief, hold local gradients under 0.5 ft per 300 ft"
@@ -124,5 +124,5 @@
   "ground": "gltf/terrain__e1834_harbor_cut.glb",
   "water": "gltf/water__e1834_harbor_cut.glb"
  },
- "inputs_sha256": "7347a8a42ea3d2edae8e7210f98c69045e08d9c458de23ac6e2620f642c8013b"
+ "inputs_sha256": "822119ed09f8616f2eb65099555bd0563840467801fa60934d9230773fb1985e"
 }

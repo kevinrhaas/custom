@@ -57,7 +57,34 @@ IIIF = "https://iiif.digitalcommonwealth.org/iiif/2/commonwealth:js957744g"
 # is +/- ~390 m on the ground — comfortably outside the 640 m terrain box.
 FORKS_PX = (1428, 1812)
 HALF_PX = 560
-REGION = (FORKS_PX[0] - HALF_PX, FORKS_PX[1] - HALF_PX, 2 * HALF_PX, 2 * HALF_PX)
+
+# ... and then 280 px further SOUTH than that, which is the whole of T-0219.
+#
+# The window used to be square about the forks, and the terrain box's `n_min`
+# was pinned to it: -400 m, because "the South Branch's traced water ends at
+# N -404.5, where the forks tracing window closes, so a box reaching further
+# south would show open prairie where the river actually continues". That is a
+# true statement about a WINDOW, not about the sheet. Wright draws the South
+# Branch on down past the plat's south boundary; the trace simply stopped
+# looking, and the stopping line then became the south edge of the modelled
+# ground — 125 m north of Madison Street, which put the plat's whole last tier
+# of blocks (6 blocks, 48 lots, 6.28 ha) on no ground at all.
+#
+# 280 px is 199 m at this sheet's 0.7115 m/px, carrying the traced channel from
+# local N -405.6 to about N -604. Madison's line at State is N -525.2, so the
+# extended window clears the plat's south boundary by ~79 m and the terrain box
+# that now follows it (n_min -530) by ~74 m — the same "trace past the box, then
+# cut the box inside the trace" discipline the original square window used, and
+# for the same reason: the box must never end where the river is still drawn.
+#
+# It is extended on the SOUTH SIDE ONLY, so the region origin — and with it the
+# alignment of every local-percentile block in PARAMS — is byte-identical to the
+# window that produced the committed trace. That is what makes the extension
+# checkable rather than a re-trace of the whole river: everything north of
+# N -400 has to come out where it already is, and `--check-north` proves it.
+SOUTH_EXTRA_PX = 280
+REGION = (FORKS_PX[0] - HALF_PX, FORKS_PX[1] - HALF_PX,
+          2 * HALF_PX, 2 * HALF_PX + SOUTH_EXTRA_PX)
 
 # Seeds, in resource pixels, one per reach. Read off the scan; each must land in
 # open channel. They pick the channel blob out of everything else the wash
@@ -75,6 +102,45 @@ SEEDS = {
 # hand-placed on the scan, like the river seeds, and is the only thing that says
 # where to look.
 SLOUGH_CORRIDOR = (1590, 1320, 1740, 1625)   # resource px: x0, y0, x1, y1
+
+# Where the sheet's own STAINING has to be read as staining.
+#
+# Wright washes the river bank in grey and leaves the platted blocks bare. On
+# the West Division between Washington and Madison the paper does not stay bare:
+# blocks 44 and 45 carry a broad olive-grey discolouration across their whole
+# interior, dark enough and neutral enough to pass the wash test — darker than
+# the local paper, no hue departure from it — which is exactly the description
+# of bank shading.
+#
+# On its own that patch is harmless: it stands about 48 px (34 m) clear of the
+# South Branch's west bank wash, so it comes out as its own blob and the seeded
+# channel never claims it. What is NOT harmless is the 40 px closing the channel
+# needs to bridge its own unshaded mid-water: a 48 px gap is inside 2 x 40, so
+# whether the stain fuses to the river is decided by a handful of pixels either
+# side of a threshold. It did not fuse in the square window and it did fuse the
+# moment T-0219 extended the window south — same sheet, same parameters, same
+# code; the only thing that changed was the JPEG the IIIF server cut, which
+# flips about 2 % of the wash mask. The result was a 190 m lobe of open water
+# lying across blocks 44, 45, 50 and 51.
+#
+# So the patch is declared, in resource pixels like SEEDS and SLOUGH_CORRIDOR,
+# and the wash test is switched off inside it. THE EVIDENCE THAT IT IS DRY IS ON
+# THE SHEET ITSELF: Wright draws lot lines through it and numbers the blocks —
+# 44 and 45, subdivided into eight lots each. A draughtsman does not subdivide
+# open water into numbered lots. The box asserts nothing about where the river
+# is; it only refuses to read a stain over a platted block as a riverbank.
+#
+# Two assertions keep it honest, both in main():
+#   * every box must BITE — remove wash that was there — or the run dies rather
+#     than carry a correction that has quietly stopped describing the scan;
+#   * no box may come within `STAIN_CLEARANCE_PX` of the traced channel, so a
+#     box can never be what shapes the waterline.
+STAINS = {
+    # x0, y0, x1, y1 — blocks 44 and 45, West Division, Washington to Madison.
+    # Local ENU E -232 .. -19, N -240 .. -382.
+    "west_division_blocks_44_45": (1110, 2140, 1400, 2340),
+}
+STAIN_CLEARANCE_PX = 12
 
 PARAMS = dict(
     bg_block=64, bg_pct=88,           # local paper luminance
@@ -96,6 +162,24 @@ def die(msg: str, code: int = 2):
 # ---------------------------------------------------------------------------
 # raster
 # ---------------------------------------------------------------------------
+
+def region_cache(arg: str | None) -> Path:
+    """Where the fetched JPEG lives, KEYED ON THE REGION.
+
+    It used to be one fixed filename. That is fine for as long as REGION is a
+    constant and a trap the moment it is not: T-0219 widened the window, the run
+    read the old square tile straight out of `/tmp`, and reported a 1120x1400
+    region and 1120x1120 pixels in the same breath — with the OLD tile's sha256
+    written into the output's provenance block as though it were the new window.
+    An input hash that names a raster the trace did not read is worse than no
+    hash. The region is in the name now, and `fetch_region` refuses a tile whose
+    pixel dimensions are not the ones REGION asked for.
+    """
+    if arg:
+        return Path(arg)
+    x, y, w, h = REGION
+    return Path("/tmp") / f"wright_1834_forks_{x}_{y}_{w}_{h}.jpg"
+
 
 def fetch_region(cache: Path):
     x, y, w, h = REGION
@@ -124,11 +208,29 @@ def block_pct(arr, block, q, np):
     return np.nanpercentile(t, q, axis=2).astype(np.float32)
 
 
-def upsample(small, shape, np):
+def upsample(small, shape, block, np):
+    """Bilinearly expand a block grid back to full resolution.
+
+    The block-space coordinate of a pixel is `(y + 0.5) / block - 0.5`: block j
+    covers pixels [j*block, j*block+block-1] and its percentile stands at that
+    span's centre. It is written that way — off the block SIZE — rather than as
+    `linspace(-0.5, bh - 0.5, h)`, which is what it used to be, because the
+    linspace form measures the grid against the IMAGE and so makes the local
+    background at every pixel depend on how tall the window happens to be.
+
+    T-0219 is what found it. Extending the window 280 px south, with the origin
+    and every parameter untouched, moved the background field under the whole
+    sheet — enough that the pink Madison Street ward band on the West Division
+    passed the wash test, the 40 px closing bridged it to the channel, and the
+    trace came out with a 190 m lobe of open water lying across blocks 44, 45,
+    50 and 51. Under this form the background over a row is the same number
+    whatever is below it, the lobe does not appear, and the committed square
+    window still reproduces its committed GeoJSON byte for byte.
+    """
     bh, bw = small.shape
     h, w = shape
-    yi = np.clip(np.linspace(-0.5, bh - 0.5, h), 0, bh - 1)
-    xi = np.clip(np.linspace(-0.5, bw - 0.5, w), 0, bw - 1)
+    yi = np.clip((np.arange(h) + 0.5) / block - 0.5, 0, bh - 1)
+    xi = np.clip((np.arange(w) + 0.5) / block - 0.5, 0, bw - 1)
     y0 = np.floor(yi).astype(int); y1 = np.minimum(y0 + 1, bh - 1); fy = (yi - y0)[:, None]
     x0 = np.floor(xi).astype(int); x1 = np.minimum(x0 + 1, bw - 1); fx = (xi - x0)[None, :]
     return ((small[y0][:, x0] * (1 - fx) + small[y0][:, x1] * fx) * (1 - fy)
@@ -148,13 +250,47 @@ def wash_mask(rgb, np):
     R, G, B = a[..., 0], a[..., 1], a[..., 2]
     L = 0.299 * R + 0.587 * G + 0.114 * B
     shape = L.shape
-    bg = upsample(block_pct(L, PARAMS["bg_block"], PARAMS["bg_pct"], np), shape, np)
+    bg = upsample(block_pct(L, PARAMS["bg_block"], PARAMS["bg_pct"], np), shape,
+                  PARAMS["bg_block"], np)
     dark = bg - L
     rb, gb = R - B, G - B
-    rb0 = upsample(block_pct(rb, PARAMS["hue_block"], PARAMS["hue_pct"], np), shape, np)
-    gb0 = upsample(block_pct(gb, PARAMS["hue_block"], PARAMS["hue_pct"], np), shape, np)
+    rb0 = upsample(block_pct(rb, PARAMS["hue_block"], PARAMS["hue_pct"], np), shape,
+                   PARAMS["hue_block"], np)
+    gb0 = upsample(block_pct(gb, PARAMS["hue_block"], PARAMS["hue_pct"], np), shape,
+                   PARAMS["hue_block"], np)
     tint = np.abs(rb - rb0) + np.maximum(np.abs(gb - gb0) - 4, 0)
     return (dark > PARAMS["dark_lo"]) & (dark < PARAMS["dark_hi"]) & (tint < PARAMS["hue_tol"])
+
+
+def apply_stains(wash, np):
+    """Switch the wash test off inside the declared STAINS, and say so.
+
+    Returns the masked wash and a per-box bite count. Every box must bite: a
+    correction that has stopped removing anything is either aimed at the wrong
+    pixels or describing a scan that has been replaced, and in both cases the
+    right answer is to stop rather than to carry it.
+    """
+    bites = {}
+    for name, (x0, y0, x1, y1) in STAINS.items():
+        sl = (slice(y0 - REGION[1], y1 - REGION[1]), slice(x0 - REGION[0], x1 - REGION[0]))
+        bites[name] = int(wash[sl].sum())
+        wash = wash.copy()
+        wash[sl] = False
+    return wash, bites
+
+
+def stain_clearance(river, np):
+    """Closest approach, in pixels, of each declared stain box to the traced
+    channel. A box that touches the channel is shaping the waterline."""
+    ys, xs = np.nonzero(river)
+    ys = ys + REGION[1]
+    xs = xs + REGION[0]
+    out = {}
+    for name, (x0, y0, x1, y1) in STAINS.items():
+        dx = np.maximum(np.maximum(x0 - xs, xs - (x1 - 1)), 0)
+        dy = np.maximum(np.maximum(y0 - ys, ys - (y1 - 1)), 0)
+        out[name] = float(np.hypot(dx, dy).min())
+    return out
 
 
 def _erode(m, r, np, ndi):
@@ -394,7 +530,8 @@ def main() -> int:
                                  formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("--check", action="store_true", help="diff against the committed GeoJSON")
     ap.add_argument("--debug", action="store_true", help="write a PNG overlay of the trace")
-    ap.add_argument("--cache", default=str(Path("/tmp") / "wright_1834_forks_region.jpg"))
+    ap.add_argument("--cache", default=None,
+                    help="raster cache path; defaults to one keyed on REGION")
     args = ap.parse_args()
 
     try:
@@ -416,16 +553,36 @@ def main() -> int:
     cell_m = 0.5 * (scale_x + scale_y)
     print(f"affine refit from {n_gcp} GCPs, RMS {rms:.1f} m; {cell_m:.4f} m per map pixel")
 
-    raw, sha = fetch_region(Path(args.cache))
+    raw, sha = fetch_region(region_cache(args.cache))
     rgb = np.asarray(Image.open(io.BytesIO(raw)).convert("RGB"))
+    if (rgb.shape[1], rgb.shape[0]) != (REGION[2], REGION[3]):
+        die(f"the raster is {rgb.shape[1]}x{rgb.shape[0]} px but REGION asks for "
+            f"{REGION[2]}x{REGION[3]}. Refusing: every pixel below is turned into a "
+            f"ground coordinate by adding REGION's own origin, so a tile of the wrong "
+            f"size puts the river somewhere it is not.")
     print(f"region {REGION} sha256 {sha[:16]}...  {rgb.shape[1]}x{rgb.shape[0]} px")
 
     wash = wash_mask(rgb, np)
+    wash, bites = apply_stains(wash, np)
+    for name, n in bites.items():
+        print(f"stain {name}: {n:,} wash px suppressed")
+        if n == 0:
+            die(f"the declared stain {name} removed nothing. Either the box has drifted "
+                f"off the patch it names or the scan behind it has changed; either way "
+                f"a correction that describes nothing must not ride along silently.")
     river = channel_from(wash, SEEDS, PARAMS["close_r"], PARAMS["open_r"],
                          PARAMS["fill_r"], np, ndi, speckle=PARAMS["speckle_px"])
     slough_px, slough_w, slough_frags = slough_centreline(wash, river, np, ndi, cell_m)
     print(f"channel {int(river.sum())} px; slough centreline {len(slough_px)} pts from "
           f"{slough_frags} wash fragments, drafted width {slough_w} m")
+
+    for name, gap in stain_clearance(river, np).items():
+        print(f"stain {name}: {gap:.0f} px clear of the traced channel")
+        if gap < STAIN_CLEARANCE_PX:
+            die(f"the declared stain {name} comes within {gap:.0f} px of the traced "
+                f"channel, inside the {STAIN_CLEARANCE_PX} px this trace allows. A box "
+                f"that near the water is drawing the waterline, which is the one thing "
+                f"a correction for the sheet's condition may never do.")
 
     widths = width_stations(river, None, np, ndi, cell_m)
     print("drafted channel width (m / ft):",

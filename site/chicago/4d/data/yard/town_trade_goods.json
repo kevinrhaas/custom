@@ -4663,7 +4663,7 @@
     {
       "stand": "south_water 1",
       "street": "South Water Street",
-      "why": "on the left verge, the ground under it is under 0.60 m over the water surface — a wagon standing in the river or in the slough would be a claim about the bank, not about the wagon. · on the right verge, the ground under it is under 0.60 m over the water surface — a wagon standing in the river or in the slough would be a claim about the bank, not about the wagon."
+      "why": "on the left verge, the ground under it is under 0.60 m over the water surface — a wagon standing in the river or in the slough would be a claim about the bank, not about the wagon. · on the right verge, it stands within 1.00 m of hogan_store's committed footprint — a wagon drawn through a wall."
     },
     {
       "stand": "south_water 2",

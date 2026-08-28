@@ -25,10 +25,10 @@
       "washington"
     ],
     "faces_laid": 36,
-    "walk_m": 3160.3,
+    "walk_m": 3160.4,
     "crossing_m": 811.0,
     "fence_m": 1718.0,
-    "walking_decks": 249,
+    "walking_decks": 248,
     "hitching_posts": 12
   },
   "card": {
@@ -44,7 +44,7 @@
         "note": "Asked for by the owner, 2026-08-18, of the first Cook County jail engraving: 'note the fences lining the street and what appears to be plank sidewalks. all of the streets should be updated like this... at least south of the river or near the river.' No 1835 source names a walk or a fence on any particular stretch of these streets."
       },
       "walk_m": {
-        "value": 3160.3,
+        "value": 3160.4,
         "confidence": "reconstructed",
         "sources": [],
         "note": "41 run(s) of sidewalk on 36 platted block face(s), plus 811.0 m of board crossing at 34 corner(s). Nothing measured: every metre is derived from the committed plat and audited against the committed ground."
@@ -921,10 +921,10 @@
               -122.37
             ]
           ],
-          "ground_roll_m": 0.003
+          "ground_roll_m": 0.0
         },
         {
-          "y": 0.862,
+          "y": 0.865,
           "pts": [
             [
               329.65,
@@ -943,7 +943,7 @@
               -122.47
             ]
           ],
-          "ground_roll_m": 0.002
+          "ground_roll_m": 0.005
         }
       ],
       "note": "A BOARD CROSSING OVER LAKE STREET. Images 6 and 8 give plank sidewalks WITH board crossings at the town's two inns, so the fact is the plates' and every dimension is invented. Its boards run the way a foot travels rather than across it, which is what a crossing is FOR — it spans the ruts instead of lying in them — and it lies lower than the walk because a wheel crosses it. WHERE is derived: the two ends are the two walks it joins, so the run is the corridor those walks stop either side of, 24.4 m of it, and the crossing exists only where both of them were laid. docs/LIBERTIES.md L160."
@@ -1191,7 +1191,7 @@
       "run_m": 22.06,
       "footway_decks": [
         {
-          "y": 0.881,
+          "y": 0.88,
           "pts": [
             [
               222.31,
@@ -1210,7 +1210,7 @@
               -243.17
             ]
           ],
-          "ground_roll_m": 0.004
+          "ground_roll_m": 0.003
         },
         {
           "y": 0.885,
@@ -1232,7 +1232,7 @@
               -254.2
             ]
           ],
-          "ground_roll_m": 0.004
+          "ground_roll_m": 0.005
         }
       ],
       "note": "A BOARD CROSSING OVER RANDOLPH STREET. The Petford watercolour and the Braunhold engraving of the Sauganash (images 8 and 9) both put a board crossing over the road between walks on opposite frontages. Its boards run the way a foot travels rather than across it, which is what a crossing is FOR — it spans the ruts instead of lying in them — and it lies lower than the walk because a wheel crosses it. WHERE is derived: the two ends are the two walks it joins, so the run is the corridor those walks stop either side of, 22.1 m of it, and the crossing exists only where both of them were laid. docs/LIBERTIES.md L160."
@@ -1893,8 +1893,8 @@
       "chunk": "blk_lake_market_north_1",
       "centreline_local_enu_m": [
         [
-          111.77,
-          -121.61
+          106.54,
+          -121.57
         ],
         [
           195.56,
@@ -1915,118 +1915,118 @@
           "y": 0.865,
           "pts": [
             [
-              111.69,
-              -122.52
+              106.45,
+              -122.48
             ],
             [
-              127.56,
-              -122.65
+              122.32,
+              -122.61
             ],
             [
-              127.57,
-              -120.82
+              122.33,
+              -120.78
             ],
             [
-              111.7,
-              -120.69
+              106.46,
+              -120.65
+            ]
+          ],
+          "ground_roll_m": 0.054
+        },
+        {
+          "y": 0.87,
+          "pts": [
+            [
+              122.16,
+              -122.61
+            ],
+            [
+              138.03,
+              -122.74
+            ],
+            [
+              138.04,
+              -120.91
+            ],
+            [
+              122.17,
+              -120.78
             ]
           ],
           "ground_roll_m": 0.005
         },
         {
-          "y": 0.871,
+          "y": 0.879,
           "pts": [
             [
-              127.4,
-              -122.65
+              137.87,
+              -122.74
             ],
             [
-              143.27,
-              -122.78
+              153.74,
+              -122.87
             ],
             [
-              143.28,
-              -120.95
+              153.75,
+              -121.04
             ],
             [
-              127.41,
-              -120.82
+              137.88,
+              -120.91
             ]
           ],
-          "ground_roll_m": 0.006
+          "ground_roll_m": 0.009
         },
         {
-          "y": 0.881,
+          "y": 0.89,
           "pts": [
             [
-              143.11,
-              -122.78
+              153.58,
+              -122.87
             ],
             [
-              158.98,
-              -122.91
+              169.45,
+              -123.0
             ],
             [
-              158.99,
-              -121.08
+              169.46,
+              -121.17
             ],
             [
-              143.12,
-              -120.95
+              153.59,
+              -121.04
+            ]
+          ],
+          "ground_roll_m": 0.013
+        },
+        {
+          "y": 0.9,
+          "pts": [
+            [
+              169.29,
+              -123.0
+            ],
+            [
+              185.16,
+              -123.13
+            ],
+            [
+              185.17,
+              -121.3
+            ],
+            [
+              169.3,
+              -121.17
             ]
           ],
           "ground_roll_m": 0.011
         },
         {
-          "y": 0.894,
-          "pts": [
-            [
-              158.82,
-              -122.91
-            ],
-            [
-              174.69,
-              -123.04
-            ],
-            [
-              174.7,
-              -121.21
-            ],
-            [
-              158.83,
-              -121.08
-            ]
-          ],
-          "ground_roll_m": 0.014
-        },
-        {
-          "y": 0.905,
-          "pts": [
-            [
-              174.53,
-              -123.04
-            ],
-            [
-              190.4,
-              -123.17
-            ],
-            [
-              190.41,
-              -121.34
-            ],
-            [
-              174.54,
-              -121.21
-            ]
-          ],
-          "ground_roll_m": 0.012
-        },
-        {
           "y": 0.908,
           "pts": [
             [
-              190.24,
-              -123.17
+              185.0,
+              -123.12
             ],
             [
               195.63,
@@ -2037,14 +2037,14 @@
               -121.38
             ],
             [
-              190.25,
-              -121.34
+              185.01,
+              -121.29
             ]
           ],
-          "ground_roll_m": 0.004
+          "ground_roll_m": 0.008
         }
       ],
-      "note": "THE PLANK SIDEWALK ON THE LAKE STREET FRONTAGE of blk_lake_market's north face, at the lot line. WHERE is DERIVED and nothing here is placed: the face is a committed street centreline offset by half the committed 80 ft corridor (data/traces/vectors/thompson_lots.json, re-derived by tools/generate_plat_lots.py), and the walk's centre lies 1.165 m outward of it — 0.25 m of daylight off the fence line and half a walk's width — leaving 4.86 m of verge between its outer edge and the Lake Street track. This run is the stretch from 10.5 m to 94.3 m along the face that passed the march: dry committed ground, flat enough for one walking deck, and nothing already standing on it. What is invented is the width, the rise, the plank pitch and that a walk stood on this ground at noon on 1 July 1835: docs/LIBERTIES.md L160."
+      "note": "THE PLANK SIDEWALK ON THE LAKE STREET FRONTAGE of blk_lake_market's north face, at the lot line. WHERE is DERIVED and nothing here is placed: the face is a committed street centreline offset by half the committed 80 ft corridor (data/traces/vectors/thompson_lots.json, re-derived by tools/generate_plat_lots.py), and the walk's centre lies 1.165 m outward of it — 0.25 m of daylight off the fence line and half a walk's width — leaving 4.86 m of verge between its outer edge and the Lake Street track. This run is the stretch from 5.2 m to 94.3 m along the face that passed the march: dry committed ground, flat enough for one walking deck, and nothing already standing on it. What is invented is the width, the rise, the plank pitch and that a walk stood on this ground at noon on 1 July 1835: docs/LIBERTIES.md L160."
     },
     {
       "id": "blk_lake_market_south_crossing_blk_lake_franklin_south",
@@ -2223,7 +2223,7 @@
       "verge_to_track_m": 6.62,
       "footway_decks": [
         {
-          "y": 0.866,
+          "y": 0.865,
           "pts": [
             [
               100.27,
@@ -2242,10 +2242,10 @@
               -243.16
             ]
           ],
-          "ground_roll_m": 0.001
+          "ground_roll_m": 0.0
         },
         {
-          "y": 0.874,
+          "y": 0.871,
           "pts": [
             [
               116.02,
@@ -2264,7 +2264,7 @@
               -243.29
             ]
           ],
-          "ground_roll_m": 0.009
+          "ground_roll_m": 0.006
         },
         {
           "y": 0.882,
@@ -2286,10 +2286,10 @@
               -243.42
             ]
           ],
-          "ground_roll_m": 0.01
+          "ground_roll_m": 0.012
         },
         {
-          "y": 0.892,
+          "y": 0.891,
           "pts": [
             [
               147.51,
@@ -2308,7 +2308,7 @@
               -243.54
             ]
           ],
-          "ground_roll_m": 0.012
+          "ground_roll_m": 0.011
         },
         {
           "y": 0.9,
@@ -3370,10 +3370,10 @@
               -260.58
             ]
           ],
-          "ground_roll_m": 0.015
+          "ground_roll_m": 0.014
         },
         {
-          "y": 1.345,
+          "y": 1.348,
           "pts": [
             [
               -226.39,
@@ -3392,7 +3392,7 @@
               -260.74
             ]
           ],
-          "ground_roll_m": 0.01
+          "ground_roll_m": 0.013
         },
         {
           "y": 1.335,
@@ -3914,7 +3914,7 @@
           "ground_roll_m": 0.012
         },
         {
-          "y": 0.95,
+          "y": 0.951,
           "pts": [
             [
               328.8,
@@ -3933,7 +3933,7 @@
               -265.25
             ]
           ],
-          "ground_roll_m": 0.01
+          "ground_roll_m": 0.011
         }
       ],
       "note": "A BOARD CROSSING OVER RANDOLPH STREET. Images 6 and 8 give plank sidewalks WITH board crossings at the town's two inns, so the fact is the plates' and every dimension is invented. Its boards run the way a foot travels rather than across it, which is what a crossing is FOR — it spans the ruts instead of lying in them — and it lies lower than the walk because a wheel crosses it. WHERE is derived: the two ends are the two walks it joins, so the run is the corridor those walks stop either side of, 24.4 m of it, and the crossing exists only where both of them were laid. docs/LIBERTIES.md L160."
@@ -4030,7 +4030,7 @@
               -264.69
             ]
           ],
-          "ground_roll_m": 0.007
+          "ground_roll_m": 0.009
         },
         {
           "y": 0.96,
@@ -4201,7 +4201,7 @@
               -379.46
             ]
           ],
-          "ground_roll_m": 0.023
+          "ground_roll_m": 0.021
         },
         {
           "y": 0.969,
@@ -4981,7 +4981,7 @@
           "ground_roll_m": 0.007
         },
         {
-          "y": 0.906,
+          "y": 0.905,
           "pts": [
             [
               163.11,
@@ -5000,7 +5000,7 @@
               -263.9
             ]
           ],
-          "ground_roll_m": 0.001
+          "ground_roll_m": 0.0
         },
         {
           "y": 0.914,
@@ -5077,7 +5077,7 @@
           "ground_roll_m": 0.005
         },
         {
-          "y": 0.871,
+          "y": 0.872,
           "pts": [
             [
               206.14,
@@ -5096,7 +5096,7 @@
               -377.53
             ]
           ],
-          "ground_roll_m": 0.006
+          "ground_roll_m": 0.007
         }
       ],
       "note": "A BOARD CROSSING OVER WASHINGTON STREET. Images 6 and 8 give plank sidewalks WITH board crossings at the town's two inns, so the fact is the plates' and every dimension is invented. Its boards run the way a foot travels rather than across it, which is what a crossing is FOR — it spans the ruts instead of lying in them — and it lies lower than the walk because a wheel crosses it. WHERE is derived: the two ends are the two walks it joins, so the run is the corridor those walks stop either side of, 24.4 m of it, and the crossing exists only where both of them were laid. docs/LIBERTIES.md L160."
@@ -6507,8 +6507,8 @@
       "chunk": "blk_south_water_franklin_north_1",
       "centreline_local_enu_m": [
         [
-          221.69,
-          -5.02
+          226.77,
+          -4.97
         ],
         [
           318.23,
@@ -6526,29 +6526,7 @@
       "verge_to_track_m": 4.86,
       "footway_decks": [
         {
-          "y": 0.841,
-          "pts": [
-            [
-              221.62,
-              -5.93
-            ],
-            [
-              226.86,
-              -5.88
-            ],
-            [
-              226.84,
-              -4.05
-            ],
-            [
-              221.6,
-              -4.1
-            ]
-          ],
-          "ground_roll_m": 0.069
-        },
-        {
-          "y": 0.875,
+          "y": 0.874,
           "pts": [
             [
               226.7,
@@ -6567,7 +6545,7 @@
               -4.05
             ]
           ],
-          "ground_roll_m": 0.063
+          "ground_roll_m": 0.069
         },
         {
           "y": 0.88,
@@ -6589,7 +6567,7 @@
               -3.87
             ]
           ],
-          "ground_roll_m": 0.005
+          "ground_roll_m": 0.006
         },
         {
           "y": 0.885,
@@ -6614,7 +6592,7 @@
           "ground_roll_m": 0.005
         },
         {
-          "y": 0.885,
+          "y": 0.88,
           "pts": [
             [
               287.67,
@@ -6633,7 +6611,7 @@
               -3.5
             ]
           ],
-          "ground_roll_m": 0.01
+          "ground_roll_m": 0.005
         },
         {
           "y": 0.875,
@@ -6658,7 +6636,7 @@
           "ground_roll_m": 0.006
         }
       ],
-      "note": "THE PLANK SIDEWALK ON THE SOUTH WATER STREET FRONTAGE of blk_south_water_franklin's north face, at the lot line. WHERE is DERIVED and nothing here is placed: the face is a committed street centreline offset by half the committed 80 ft corridor (data/traces/vectors/thompson_lots.json, re-derived by tools/generate_plat_lots.py), and the walk's centre lies 1.165 m outward of it — 0.25 m of daylight off the fence line and half a walk's width — leaving 4.86 m of verge between its outer edge and the South Water Street track. This run is the stretch from 0.0 m to 96.5 m along the face that passed the march: dry committed ground, flat enough for one walking deck, and nothing already standing on it. What is invented is the width, the rise, the plank pitch and that a walk stood on this ground at noon on 1 July 1835: docs/LIBERTIES.md L160."
+      "note": "THE PLANK SIDEWALK ON THE SOUTH WATER STREET FRONTAGE of blk_south_water_franklin's north face, at the lot line. WHERE is DERIVED and nothing here is placed: the face is a committed street centreline offset by half the committed 80 ft corridor (data/traces/vectors/thompson_lots.json, re-derived by tools/generate_plat_lots.py), and the walk's centre lies 1.165 m outward of it — 0.25 m of daylight off the fence line and half a walk's width — leaving 4.86 m of verge between its outer edge and the South Water Street track. This run is the stretch from 5.1 m to 96.5 m along the face that passed the march: dry committed ground, flat enough for one walking deck, and nothing already standing on it. What is invented is the width, the rise, the plank pitch and that a walk stood on this ground at noon on 1 July 1835: docs/LIBERTIES.md L160."
     },
     {
       "id": "blk_south_water_franklin_south_crossing_blk_south_water_wells_south",
@@ -6837,7 +6815,7 @@
       "verge_to_track_m": 4.86,
       "footway_decks": [
         {
-          "y": 0.918,
+          "y": 0.916,
           "pts": [
             [
               219.99,
@@ -6856,7 +6834,7 @@
               -101.35
             ]
           ],
-          "ground_roll_m": 0.003
+          "ground_roll_m": 0.001
         },
         {
           "y": 0.92,
@@ -6922,10 +6900,10 @@
               -101.85
             ]
           ],
-          "ground_roll_m": 0.008
+          "ground_roll_m": 0.01
         },
         {
-          "y": 0.914,
+          "y": 0.91,
           "pts": [
             [
               302.19,
@@ -6944,7 +6922,7 @@
               -102.02
             ]
           ],
-          "ground_roll_m": 0.004
+          "ground_roll_m": 0.0
         }
       ],
       "note": "THE PLANK SIDEWALK ON THE LAKE STREET FRONTAGE of blk_south_water_franklin's south face, at the lot line. WHERE is DERIVED and nothing here is placed: the face is a committed street centreline offset by half the committed 80 ft corridor (data/traces/vectors/thompson_lots.json, re-derived by tools/generate_plat_lots.py), and the walk's centre lies 1.165 m outward of it — 0.25 m of daylight off the fence line and half a walk's width — leaving 4.86 m of verge between its outer edge and the Lake Street track. This run is the stretch from 0.0 m to 97.6 m along the face that passed the march: dry committed ground, flat enough for one walking deck, and nothing already standing on it. What is invented is the width, the rise, the plank pitch and that a walk stood on this ground at noon on 1 July 1835: docs/LIBERTIES.md L160."
@@ -7653,7 +7631,7 @@
       "run_m": 22.05,
       "footway_decks": [
         {
-          "y": 0.857,
+          "y": 0.86,
           "pts": [
             [
               345.14,
@@ -7672,7 +7650,7 @@
               -101.39
             ]
           ],
-          "ground_roll_m": 0.004
+          "ground_roll_m": 0.007
         },
         {
           "y": 0.861,
@@ -7694,7 +7672,7 @@
               -112.41
             ]
           ],
-          "ground_roll_m": 0.004
+          "ground_roll_m": 0.001
         }
       ],
       "note": "A BOARD CROSSING OVER LAKE STREET. The Petford watercolour and the Braunhold engraving of the Sauganash (images 8 and 9) both put a board crossing over the road between walks on opposite frontages. Its boards run the way a foot travels rather than across it, which is what a crossing is FOR — it spans the ruts instead of lying in them — and it lies lower than the walk because a wheel crosses it. WHERE is derived: the two ends are the two walks it joins, so the run is the corridor those walks stop either side of, 22.1 m of it, and the crossing exists only where both of them were laid. docs/LIBERTIES.md L160."

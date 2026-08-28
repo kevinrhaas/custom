@@ -570,6 +570,36 @@ def southern_ground() -> tuple[dict, str]:
 
     m = measure()
     figures = coverage_figures(m)
+    if figures["tier_ring_points_on_field"] == figures["tier_ring_points"]:
+        # T-0219 carried the heightfield to Madison Street, so the sentence below is
+        # no longer true and this branch is what makes that visible without anybody
+        # editing prose. The blocker the South has LEFT is the one T-0026 found to be
+        # downstream of the terrain: street control. It is composed from the same
+        # measurement so it cannot go stale either — the day a column is carried south
+        # the figures move with it.
+        return figures, (
+            f"STREET CONTROL, and terrain no longer. The modelled heightfield now reaches "
+            f"local N {figures['field_south_edge_n_m']:.1f} m, "
+            f"{-figures['madison_south_of_field_m']:.1f} m past Madison Street's line at "
+            f"State — the plat's south boundary, resolved from the PLSS section corner at "
+            f"State & Madison. Washington Street's platted corridor is wholly on the field, "
+            f"the ground south of it holds "
+            f"{figures['land_south_of_committed_plat_ha']:.4f} ha above the water surface "
+            f"with {figures['south_division_land_south_of_committed_plat_ha']:.4f} ha of "
+            f"that in the South Division, and the plat's last tier — "
+            f"{figures['unmodelled_tier_blocks']} blocks and "
+            f"{figures['unmodelled_tier_lots']} lots between Market and State, "
+            f"{figures['unmodelled_tier_area_ha']:.2f} ha — stands "
+            f"{figures['tier_ring_points_on_field']} of {figures['tier_ring_points']} "
+            f"boundary points on modelled ground. What is missing is the thing ROADMAP S9 "
+            f"records as owed and T-0026 correctly refused to send a parcel after while "
+            f"the ground was absent: every north-south column of the south plat still has "
+            f"its committed centreline cut at local N -400, the OLD south edge of the "
+            f"field, so no block in the tier has four committed centrelines yet. The "
+            f"control that would carry them is already committed. Ground east of State is "
+            f"not coming at any date — it is the United States Reservation (T-E2). "
+            f"Measured by tools/measure_southern_ground.py."
+        )
     return figures, (
         f"TERRAIN, and not the street control ROADMAP S9 records as owed. The modelled "
         f"heightfield ends at local N {figures['field_south_edge_n_m']:.1f} m, which falls "

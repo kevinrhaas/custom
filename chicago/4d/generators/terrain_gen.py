@@ -392,6 +392,37 @@ def build_field(spec, feats, origin):
         guard = float(lake_rule["east_of_m"])
         idx = np.arange(E.shape[1])[None, :]
         east = np.where(in_water & (E > guard), idx, -1).max(axis=1)
+        # T-0219. South of the harbour the traced water no longer reaches the
+        # guard at all — the old southward channel is the last thing drawn in
+        # those rows and it lies about E +1235 — so `east` is -1 and the rule
+        # above does nothing. Land is then what the row gets by default, which
+        # is a 465 m false coast standing out in Lake Michigan: the sheet east of
+        # the channel there is blank paper, the place the draughtsman's brush
+        # lifted, and the box only started asking about it when `n_min` moved to
+        # Madison Street. The fallback says the same thing the main rule says,
+        # off the same trace, with the row's own easternmost traced water
+        # standing in for the guard.
+        fallback = lake_rule.get("south_of_the_traced_reach")
+        if fallback is not None:
+            floor = float(fallback["not_west_of_m"])
+            anywhere = np.where(in_water, idx, -1).max(axis=1)
+            needs = (east < 0) & (anywhere >= 0)
+            reach_e = e0 + cell * anywhere
+            # The refusal that keeps this from ever drowning the town: the
+            # fallback floods east of a line the TRACE puts there, so if the
+            # trace ever stops reaching the lake quadrant in one of these rows
+            # the right answer is to stop, not to flood from wherever the last
+            # water happened to be.
+            too_far_west = needs & (reach_e < floor)
+            if too_far_west.any():
+                bad = int(np.flatnonzero(too_far_west)[0])
+                raise SystemExit(
+                    f"open_lake.south_of_the_traced_reach refuses row N "
+                    f"{n0 + cell * bad:.1f}: its easternmost traced water is at E "
+                    f"{reach_e[bad]:.1f}, west of the declared not_west_of_m "
+                    f"{floor:.1f}. Flooding east of that would put lake over ground "
+                    f"the sheet draws. Re-trace or move the box, do not widen this.")
+            in_water |= (idx > anywhere[:, None]) & needs[:, None]
         in_water |= (idx > east[:, None]) & (east >= 0)[:, None] & (E > guard)
     in_water &= ~islands
 
