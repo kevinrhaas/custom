@@ -62,7 +62,6 @@ T-0263 — The documented storefronts take their places on South Water and Lake
 T-0264 — Documented people replace the invented
 
 # --- MEASUREMENT, GATES AND PROVENANCE — invisible, and nothing below blocks the above
-T-0210 — The desktop smoke's stage 9 times out clicking the panel close, on an unmodified tree
 T-0190 — A second street tier for the street edge, and the ceiling that refuses it
 T-0155 — The changelog stamper has the same after-publish trap the ticket tool just lost
 T-0136 — The eight owner-brief plates T-0075 could not identify: Andreas at page-image level, and two museum objects
@@ -112,7 +111,6 @@ T-0275 — Back-merge main into dev: the newspaper deposit is on main, and 60 Fi
 T-0277 — The mid and forb rings' outer edges are re-priced for a density handover, now the reach statistic is honest
 T-0279 — 2,526 of 18,911 drawn flower heads stand over open ground with no plant under their own stalk, on an unmodified dev
 T-0280 — The far band's grass-or-flower split is made on the forb lattice's CLAMPED share
-T-0281 — The ten plant communities reach no card a visitor can open
 T-0283 — The North Division's warehouse row allows one freight roof and six documented ones stand above it
 T-0284 — Two slices of one batch claimed T-0256 and both built it — a claim is written where the next slice cannot see it
 T-0285 — An asset carrying its own AO map cannot batch with the town: +2 draw calls for one building
