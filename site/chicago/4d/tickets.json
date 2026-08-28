@@ -1,6 +1,6 @@
 {
   "project": "chicago-4d",
-  "generated_ct": "Aug 28, 2026, 6:36 AM",
+  "generated_ct": "Aug 28, 2026, 6:55 AM",
   "tickets": [
     {
       "id": "T-0001",
@@ -3584,7 +3584,7 @@
     {
       "id": "T-0211",
       "title": "The other nine group rows are cross-checked against nothing",
-      "state": "open",
+      "state": "claimed",
       "epic": "TOWN",
       "requested_by": "loop",
       "seen": false,
@@ -3594,7 +3594,7 @@
       "opened": "2026-08-27",
       "closed": null,
       "pr": null,
-      "claimed_by": null,
+      "claimed_by": "run 8/28/2026, 6:46:44 AM CT",
       "blocked_on": null,
       "needs_bake": false,
       "queue_rank": 13
@@ -4804,6 +4804,24 @@
       "blocked_on": null,
       "needs_bake": false,
       "queue_rank": null
+    },
+    {
+      "id": "T-0283",
+      "title": "The North Division's warehouse row allows one freight roof and six documented ones stand above it",
+      "state": "open",
+      "epic": "TOWN",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "M",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-08-28",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "queue_rank": 62
     }
   ]
 }
