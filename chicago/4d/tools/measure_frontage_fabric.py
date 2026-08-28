@@ -110,7 +110,7 @@ sys.path.insert(0, str(ROOT / "tools"))
 
 from generate_plat_lots import point_in_polygon, point_to_ring_m  # noqa: E402
 from measure_corridor_intrusion import is_street_furniture  # noqa: E402
-from measure_street_frontage import layer_of  # noqa: E402
+from measure_street_frontage import layer_of, layer_of_record  # noqa: E402
 from plat_corridors import corridors, sampled  # noqa: E402
 
 # The empty gap in the setback distribution, at its midpoint. See the docstring; run
@@ -397,13 +397,22 @@ def _synthetic(material: str) -> list[dict]:
     along = ((bx - ax) / length, (by - ay) / length)
     normal = (-along[1], along[0])
     out = []
-    for index, (sid, layer_material) in enumerate(
-            (("hogan_store", LOG), ("recon_1835_synthetic_row_unit", material))):
+    # The invented unit has no committed record, so its layer is read off a record built
+    # here in the shape the reconstruction generators write — the same reading
+    # `layer_of` performs on the committed tree, rather than a layer typed in beside it
+    # (T-0221). The documented witness is a real record and is asked about by id.
+    documented = {"id": "hogan_store"}
+    invented = {"id": "recon_1835_synthetic_row_unit",
+                "reconstruction": {"status": "inferred_anonymous"}}
+    for index, (record, layer_material) in enumerate(
+            ((documented, LOG), (invented, material))):
         # step off the centreline by the half-width plus a metre, on the south side
         sign = -1.0 if normal[1] > 0 else 1.0
         cx = ax + along[0] * (10.0 + index * 12.0) + normal[0] * sign * 13.2
         cy = ay + along[1] * (10.0 + index * 12.0) + normal[1] * sign * 13.2
-        out.append({"id": sid, "layer": layer_of(sid), "material": layer_material,
+        layer = (layer_of(record["id"]) if "reconstruction" not in record
+                 else layer_of_record(record))
+        out.append({"id": record["id"], "layer": layer, "material": layer_material,
                     "world": [(cx - 3, cy - 3), (cx + 3, cy - 3),
                               (cx + 3, cy + 3), (cx - 3, cy + 3)]})
     return out

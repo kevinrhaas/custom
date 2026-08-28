@@ -9,15 +9,15 @@
   "counts": {
     "frontages": 26,
     "objects": 148,
-    "wagons": 63,
+    "wagons": 64,
     "wagons_by_kind": {
       "farm_box": 26,
       "covered": 22,
-      "cart": 15
+      "cart": 16
     },
-    "wagons_at_street_verges": 57,
+    "wagons_at_street_verges": 58,
     "wagons_in_yards": 3,
-    "wagon_stands_refused": 40,
+    "wagon_stands_refused": 39,
     "benches": 1,
     "sheds": 1,
     "marked_objects": 148,
@@ -4049,6 +4049,23 @@
       "note": "A two-wheeled cart standing at the verge of Michigan Street, and it is HERE because the rule put it here. The owner asked for the town's wagons, 2026-08-18: 'there can be more wagons! of course there would be more wagons all over the place in a frontier town.' He gave no place, so the place is derived: a stand is offered every 140 m along this street's committed centreline (its traffic class is 'light'), at the verge 1.05 m clear of the travelled track, drawn up along the road and facing the way traffic on this side of it goes. THE TEAM IS NOT DRAWN and never will be: this project models no animal in the scene, so the wagon stands unhitched with its shafts down on the ground. Everything about it is invented — that it stood here at noon on 1 July 1835, whose it was, and what it was carrying, which is why it carries no mark of any kind: docs/LIBERTIES.md L162."
     },
     {
+      "id": "town_wagon_north_water_3",
+      "kind": "cart",
+      "stands_on": "north_water",
+      "belongs_to": null,
+      "tilt": false,
+      "yoke": false,
+      "confidence": "reconstructed",
+      "at_local_enu_m": [
+        588.46,
+        112.29
+      ],
+      "bearing_deg": 359.0,
+      "drawn_up": "square to the road",
+      "clear_of_track_m": 1.05,
+      "note": "A two-wheeled cart standing at the verge of North Water Street, and it is HERE because the rule put it here. The owner asked for the town's wagons, 2026-08-18: 'there can be more wagons! of course there would be more wagons all over the place in a frontier town.' He gave no place, so the place is derived: a stand is offered every 140 m along this street's committed centreline (its traffic class is 'light'), at the verge 1.05 m clear of the travelled track, drawn up square to the road and facing the way traffic on this side of it goes. THE TEAM IS NOT DRAWN and never will be: this project models no animal in the scene, so the wagon stands unhitched with its shafts down on the ground. Everything about it is invented — that it stood here at noon on 1 July 1835, whose it was, and what it was carrying, which is why it carries no mark of any kind: docs/LIBERTIES.md L162."
+    },
+    {
       "id": "town_wagon_north_water_4",
       "kind": "cart",
       "stands_on": "north_water",
@@ -4057,10 +4074,10 @@
       "yoke": false,
       "confidence": "reconstructed",
       "at_local_enu_m": [
-        687.72,
-        101.72
+        728.63,
+        104.47
       ],
-      "bearing_deg": 84.4,
+      "bearing_deg": 269.0,
       "drawn_up": "along the road",
       "clear_of_track_m": 1.05,
       "note": "A two-wheeled cart standing at the verge of North Water Street, and it is HERE because the rule put it here. The owner asked for the town's wagons, 2026-08-18: 'there can be more wagons! of course there would be more wagons all over the place in a frontier town.' He gave no place, so the place is derived: a stand is offered every 140 m along this street's committed centreline (its traffic class is 'light'), at the verge 1.05 m clear of the travelled track, drawn up along the road and facing the way traffic on this side of it goes. THE TEAM IS NOT DRAWN and never will be: this project models no animal in the scene, so the wagon stands unhitched with its shafts down on the ground. Everything about it is invented — that it stood here at noon on 1 July 1835, whose it was, and what it was carrying, which is why it carries no mark of any kind: docs/LIBERTIES.md L162."
@@ -4074,8 +4091,8 @@
       "yoke": false,
       "confidence": "reconstructed",
       "at_local_enu_m": [
-        926.42,
-        210.78
+        945.53,
+        241.36
       ],
       "bearing_deg": 302.0,
       "drawn_up": "square to the road",
@@ -4634,11 +4651,6 @@
       "stand": "market 6",
       "street": "Market Street",
       "why": "on the right verge, the ground under it is under 0.60 m over the water surface — a wagon standing in the river or in the slough would be a claim about the bank, not about the wagon."
-    },
-    {
-      "stand": "north_water 5",
-      "street": "North Water Street",
-      "why": "on the left verge, it reaches into the North Water Street travelled track, which is where a visitor walks. Nothing on this layer is drawn in a roadway. · on the right verge, it reaches into the Wolcott Street travelled track, which is where a visitor walks. Nothing on this layer is drawn in a roadway."
     },
     {
       "stand": "randolph 1",

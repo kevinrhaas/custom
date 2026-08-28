@@ -1,5 +1,11 @@
 {
+<<<<<<< HEAD
   "version": "00ceb91b",
   "built_utc": "2026-08-28T04:13:44Z",
   "built_ct": "Aug 27, 2026, 11:13 PM CT"
+=======
+  "version": "ca9aac64",
+  "built_utc": "2026-08-28T03:13:42Z",
+  "built_ct": "Aug 27, 2026, 10:13 PM CT"
+>>>>>>> origin/dev
 }

@@ -35,6 +35,7 @@ source outranks a corridor this project derived from a module and a traced centr
     tools/measure_corridor_intrusion.py --anchors      K30(d): is the point the kerb or the back
     tools/measure_corridor_intrusion.py --escape       T-0195: which way OUT, and what it costs
     tools/measure_corridor_intrusion.py --gate         the ratchet check.sh runs
+    tools/measure_corridor_intrusion.py --self-test    break the absolute assertion
     tools/measure_corridor_intrusion.py --write-baseline   only to record a repair
 
 This tool exists in the shape it does because of what K30(a) found about T-A7 and T-A14
@@ -46,7 +47,10 @@ come out of here.
 from __future__ import annotations
 
 import argparse
+import contextlib
+import copy
 import datetime as _dt
+import io
 import json
 import math
 import sys
@@ -56,7 +60,9 @@ ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT / "tools"))
 
 from generate_plat_lots import point_in_polygon, point_to_ring_m  # noqa: E402
-from measure_street_frontage import layer_of  # noqa: E402
+from measure_street_frontage import (  # noqa: E402
+    LAYERS, layer_of, layer_of_record)
+from plat_occupancy import layers, researched_ids  # noqa: E402
 from plat_corridors import corridors, intrusion, sampled  # noqa: E402
 from plat_occupancy import world_polygon  # noqa: E402
 
@@ -150,15 +156,21 @@ def centreline_frame(points: list, px: float, py: float) -> tuple[float, tuple, 
     return best
 
 
-def measure() -> dict:
-    """Every committed structure's deepest lap into any platted corridor."""
+def measure(placed: list | None = None) -> dict:
+    """Every committed structure's deepest lap into any platted corridor.
+
+    `placed` defaults to the committed tree's placed phases and is a parameter so
+    `--self-test` can measure a tree broken in memory — a roof actually moved into a
+    roadway, with its depth computed by this same function rather than typed in
+    (T-0221).
+    """
     datum = json.loads((ROOT / "data" / "datum.json").read_text(encoding="utf-8"))
     lanes = corridors()
     origin_e = float(datum["origin_utm_e"])
     origin_n = float(datum["origin_utm_n"])
 
     rows: dict[str, dict] = {}
-    placed = placed_phases()
+    placed = placed_phases() if placed is None else placed
     for structure_id, phase_id, phase, polygon, category in placed:
         street, depth = intrusion(polygon, lanes)
         if street is None:
@@ -730,7 +742,8 @@ def _baseline() -> dict:
     return json.loads(BASELINE.read_text(encoding="utf-8"))
 
 
-def gate(quiet: bool = False) -> int:
+def gate(quiet: bool = False, result: dict | None = None,
+         failures_out: list[str] | None = None) -> int:
     """The ratchet. A new intruder fails; a deeper one fails; a shallower one is a repair.
 
     Plus two ABSOLUTE assertions that are not ratchets. No generated roof may lap a
@@ -739,8 +752,14 @@ def gate(quiet: bool = False) -> int:
     than a debt. And no record may CHANGE CATEGORY: street furniture is the one exemption
     in this table, so the way to abuse it is to make a store into a bridge, and that is
     the check which makes the rule safe to have (ROADMAP K30(b) item 2).
+
+    `result` is the measurement to gate, and defaults to the committed tree's. It is a
+    parameter so `--self-test` can hand this function a tree broken in memory and watch
+    the absolute assertion fire, rather than asserting in prose that it would (T-0221).
+    `failures_out`, when given, is filled with the failure lines so a caller can assert
+    on WHICH one fired instead of only on the exit code.
     """
-    result = measure()
+    result = measure() if result is None else result
     baseline = _baseline()
     committed = baseline["lapping"]
     failures: list[str] = []
@@ -804,7 +823,172 @@ def gate(quiet: bool = False) -> int:
               f"baseline — re-run with --write-baseline to bank the repair")
     for line in failures:
         print(f"   {line}")
+    if failures_out is not None:
+        failures_out[:] = failures
     return 1 if failures else 0
+
+
+def _id_prefix_layer(structure_id: str) -> str:
+    """The reading T-0221 REMOVED, kept here and nowhere else so it stays refuted.
+
+    `layer_of` answered from the id until 2026-08-28. This is that answer, verbatim, and
+    the only thing it is used for is proving that the reading in force is a different one
+    and that the difference is the physician's office. Nothing measures with it.
+    """
+    if structure_id.startswith("recon_1835_"):
+        return "reconstruction"
+    if structure_id.startswith("inf_"):
+        return "inferred_household"
+    return "research"
+
+
+def _moved_into_the_roadway(structure_id: str, street: str) -> list:
+    """The committed placed phases, with one record translated onto a street centreline.
+
+    The centreline is the middle of the roadway, so a footprint whose anchor is put on it
+    is unambiguously inside the corridor whatever its shape — and the DEPTH is still
+    computed by `measure()` from the moved geometry rather than asserted here. Position
+    point and world polygon move by the same vector, because `measure()` reads both and a
+    fixture that moved only one would be testing a record this project cannot author.
+    """
+    lanes = corridors()
+    points = lanes[street]["points"]
+    moved = []
+    for sid, phase_id, phase, polygon, category in placed_phases():
+        if sid != structure_id:
+            moved.append((sid, phase_id, phase, polygon, category))
+            continue
+        cx = sum(pt[0] for pt in polygon) / len(polygon)
+        cy = sum(pt[1] for pt in polygon) / len(polygon)
+        _, _, (fx, fy) = centreline_frame(points, cx, cy)
+        dx, dy = fx - cx, fy - cy
+        shifted = copy.deepcopy(phase)
+        shifted["position"]["utm_e"] = float(shifted["position"]["utm_e"]) + dx
+        shifted["position"]["utm_n"] = float(shifted["position"]["utm_n"]) + dy
+        moved.append((sid, phase_id, shifted,
+                      [(x + dx, y + dy) for x, y in polygon], category))
+    return moved
+
+
+def _gate_failures(result: dict | None = None) -> list[str]:
+    """The failure lines `gate` would print, with its report swallowed.
+
+    The self-test runs the gate several times and is reading WHICH assertion fired; its
+    running commentary would bury the checks it is printing.
+    """
+    out: list[str] = []
+    with contextlib.redirect_stdout(io.StringIO()):
+        gate(quiet=True, result=result, failures_out=out)
+    return out
+
+
+def self_test() -> int:
+    """The absolute assertion, broken in memory, and the reading it now rests on.
+
+    T-0221. This gate's censuses and its uncrossable clause — no GENERATED roof laps a
+    platted corridor — both ask `layer_of` which evidence layer a record belongs to. That
+    question used to be answered from the record's ID PREFIX, so a generated record whose
+    filename happens to carry no prefix was scored against the RATCHET, which a
+    `--write-baseline` may bank, instead of against the absolute, which nothing may. One
+    record was in that position. The last two checks below are that record, put in a
+    roadway under both readings.
+    """
+    checks: list[tuple[str, bool, str]] = []
+    committed = layers()
+
+    # 1. the reading is off the record, and the record says which programme wrote it
+    record = json.loads(
+        (STRUCTURES / "physicians_office.json").read_text(encoding="utf-8"))
+    checks.append(("physicians_office reads as the layer its own record declares",
+                   layer_of("physicians_office") == "inferred_household"
+                   == layer_of_record(record),
+                   f"{layer_of('physicians_office')} / "
+                   f"{record['reconstruction']['status']}"))
+    checks.append(("…and read from its NAME it was research — the fault, reproduced",
+                   _id_prefix_layer("physicians_office") == "research",
+                   _id_prefix_layer("physicians_office")))
+    checks.append(("…so this test distinguishes the fix from the fault",
+                   layer_of("physicians_office")
+                   != _id_prefix_layer("physicians_office"), "the two readings differ"))
+
+    # 2. and it is the ONLY record they differ on, measured rather than remembered
+    disagree = sorted(sid for sid, layer in committed.items()
+                      if layer != _id_prefix_layer(sid))
+    checks.append((f"across all {len(committed)} committed records the name and the "
+                   f"record disagree on exactly one",
+                   disagree == ["physicians_office"],
+                   ", ".join(disagree) or "none"))
+
+    # 3. one reading, both callers. `researched_ids` used to carry its own copy.
+    checks.append(("plat_occupancy.researched_ids is the research layer of the same map",
+                   researched_ids()
+                   == {sid for sid, layer in committed.items() if layer == "research"},
+                   f"{len(researched_ids())} documented"))
+    for layer in LAYERS:
+        checks.append((f"…and every record lands in a named layer — {layer}",
+                       all(v in LAYERS for v in committed.values()),
+                       f"{sum(1 for v in committed.values() if v == layer)}"))
+
+    # 4. an id with no record is refused rather than guessed at from its name
+    try:
+        layer_of("recon_1835_no_such_record")
+        refused = False
+    except KeyError:
+        refused = True
+    checks.append(("an id carrying no committed record is refused, not read off its "
+                   "prefix", refused, "KeyError" if refused else "answered anyway"))
+
+    # 5. the negative control: the tree as committed crosses nothing
+    live = _gate_failures()
+    generated = [m for m in live if "generated roof" in m]
+    checks.append(("the committed tree passes the absolute assertion",
+                   not generated, "; ".join(live) or "clean"))
+    checks.append(("…and physicians_office laps no corridor today, so nothing in the "
+                   "tree moves under the fix",
+                   not any(k.startswith("physicians_office:")
+                           for k in measure()["lapping"]), "clear"))
+
+    # 6. put an ANONYMOUS roof in a roadway: the assertion fires. This is the case the
+    #    id reading also caught, and it is here as the control for the one below it.
+    anonymous = next(sid for sid in sorted(committed)
+                     if committed[sid] == "reconstruction"
+                     and any(p[0] == sid for p in placed_phases()))
+    broken = _gate_failures(measure(_moved_into_the_roadway(anonymous, "lake")))
+    checks.append((f"a reconstruction roof moved onto the Lake Street centreline is "
+                   f"caught by the absolute assertion — {anonymous}",
+                   any("generated roof" in m for m in broken),
+                   next((m for m in broken if "generated roof" in m), "NOT CAUGHT")))
+
+    # 7. and now the ticket's record, in the same roadway, under both readings
+    crossed = measure(_moved_into_the_roadway("physicians_office", "lake"))
+    fixed = _gate_failures(crossed)
+    checks.append(("physicians_office moved onto the same centreline is caught by the "
+                   "absolute assertion",
+                   any("generated roof" in m and "physicians_office" in m
+                       for m in fixed),
+                   next((m for m in fixed if "generated roof" in m), "NOT CAUGHT")))
+
+    as_named = copy.deepcopy(crossed)
+    for row in as_named["lapping"].values():
+        row["layer"] = _id_prefix_layer(row["structure"])
+    named = _gate_failures(as_named)
+    checks.append(("…and read from its NAME the absolute assertion never fires for it — "
+                   "the gate's reach, before the fix",
+                   not any("generated roof" in m for m in named),
+                   next((m for m in named if "generated roof" in m),
+                        "no absolute failure; only the ratchet")))
+    checks.append(("…which left it to the RATCHET, and a ratchet can be re-baselined",
+                   any(m.startswith("physicians_office:") and "newly laps" in m
+                       for m in named),
+                   next((m for m in named if m.startswith("physicians_office:")),
+                        "nothing fired at all")))
+
+    ok = True
+    for label, passed, detail in checks:
+        print(f"  {'ok  ' if passed else 'FAIL'}  {label} — {detail}")
+        ok &= passed
+    print("\nSELF-TEST " + ("PASS" if ok else "FAIL"))
+    return 0 if ok else 1
 
 
 def main() -> int:
@@ -819,6 +1003,9 @@ def main() -> int:
     parser.add_argument("--escape", action="store_true",
                         help="T-0195 — the way out per record, and what the move spends")
     parser.add_argument("--gate", action="store_true", help="the ratchet check.sh runs")
+    parser.add_argument("--self-test", action="store_true",
+                        help="put a generated roof in a roadway in memory and check the "
+                             "absolute assertion fires")
     parser.add_argument("--write-baseline", action="store_true",
                         help="rewrite the committed table — only to record a repair")
     parser.add_argument("--measured", default=None, metavar="YYYY-MM-DD",
@@ -826,6 +1013,9 @@ def main() -> int:
     parser.add_argument("--quiet", action="store_true")
     parser.add_argument("--json", action="store_true")
     args = parser.parse_args()
+
+    if args.self_test:
+        return self_test()
 
     if args.gate:
         return gate(quiet=args.quiet)

@@ -1,6 +1,10 @@
 {
   "project": "chicago-4d",
+<<<<<<< HEAD
   "generated_ct": "Aug 27, 2026, 11:13 PM",
+=======
+  "generated_ct": "Aug 27, 2026, 10:27 PM",
+>>>>>>> origin/dev
   "tickets": [
     {
       "id": "T-0001",
@@ -341,7 +345,11 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
+<<<<<<< HEAD
       "queue_rank": 19
+=======
+      "queue_rank": 16
+>>>>>>> origin/dev
     },
     {
       "id": "T-0020",
@@ -376,7 +384,11 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
+<<<<<<< HEAD
       "queue_rank": 16
+=======
+      "queue_rank": 13
+>>>>>>> origin/dev
     },
     {
       "id": "T-0022",
@@ -429,7 +441,11 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
+<<<<<<< HEAD
       "queue_rank": 14
+=======
+      "queue_rank": 11
+>>>>>>> origin/dev
     },
     {
       "id": "T-0025",
@@ -446,7 +462,11 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
+<<<<<<< HEAD
       "queue_rank": 15
+=======
+      "queue_rank": 12
+>>>>>>> origin/dev
     },
     {
       "id": "T-0026",
@@ -535,7 +555,11 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
+<<<<<<< HEAD
       "queue_rank": 34
+=======
+      "queue_rank": 31
+>>>>>>> origin/dev
     },
     {
       "id": "T-0031",
@@ -659,7 +683,11 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
+<<<<<<< HEAD
       "queue_rank": 33
+=======
+      "queue_rank": 30
+>>>>>>> origin/dev
     },
     {
       "id": "T-0038",
@@ -947,7 +975,11 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
+<<<<<<< HEAD
       "queue_rank": 32
+=======
+      "queue_rank": 29
+>>>>>>> origin/dev
     },
     {
       "id": "T-0054",
@@ -983,7 +1015,11 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
+<<<<<<< HEAD
       "queue_rank": 31
+=======
+      "queue_rank": 28
+>>>>>>> origin/dev
     },
     {
       "id": "T-0056",
@@ -1042,7 +1078,7 @@
     {
       "id": "T-0059",
       "title": "The generator half of the wharf layer: a river-wharf mode of pier_crib",
-      "state": "open",
+      "state": "withdrawn",
       "epic": "TOWN",
       "requested_by": "loop",
       "seen": false,
@@ -1050,12 +1086,12 @@
       "legacy_id": null,
       "parent": null,
       "opened": "2026-08-18",
-      "closed": null,
-      "pr": null,
-      "claimed_by": null,
-      "blocked_on": null,
+      "closed": "2026-08-27",
+      "pr": "426",
+      "claimed_by": "run 8/27/2026, 9:16:10 PM CT",
+      "blocked_on": "The premise has no reader and the debt is not the wharf's: one renderer, which draws the wharves already; nine of nine drawn-at-load layers owe a generator half and none has one; and the wharf is the worst of the nine to bake, because its deck height, crib bents and stair are functions of terrain.surfaceHeight evaluated at load and a GLB freezes them. Measured by tools/measure_generator_half.py, gated in check.sh. Refiled whole as T-0252 for the owner to rank.",
       "needs_bake": true,
-      "queue_rank": 3
+      "queue_rank": null
     },
     {
       "id": "T-0060",
@@ -1703,7 +1739,11 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
+<<<<<<< HEAD
       "queue_rank": 8
+=======
+      "queue_rank": 5
+>>>>>>> origin/dev
     },
     {
       "id": "T-0097",
@@ -1757,7 +1797,11 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
+<<<<<<< HEAD
       "queue_rank": 6
+=======
+      "queue_rank": 3
+>>>>>>> origin/dev
     },
     {
       "id": "T-0100",
@@ -2374,7 +2418,7 @@
     {
       "id": "T-0134",
       "title": "The south bank at the Dearborn reach has no ground outside the platted street corridor",
-      "state": "open",
+      "state": "done",
       "epic": "META",
       "requested_by": "loop",
       "seen": false,
@@ -2382,12 +2426,12 @@
       "legacy_id": null,
       "parent": null,
       "opened": "2026-08-21",
-      "closed": null,
-      "pr": null,
-      "claimed_by": null,
+      "closed": "2026-08-27",
+      "pr": "428",
+      "claimed_by": "run 8/27/2026, 9:14:52 PM CT",
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 4
+      "queue_rank": null
     },
     {
       "id": "T-0135",
@@ -2423,7 +2467,11 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
+<<<<<<< HEAD
       "queue_rank": 30
+=======
+      "queue_rank": 27
+>>>>>>> origin/dev
     },
     {
       "id": "T-0137",
@@ -2441,7 +2489,11 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
+<<<<<<< HEAD
       "queue_rank": 7
+=======
+      "queue_rank": 4
+>>>>>>> origin/dev
     },
     {
       "id": "T-0138",
@@ -2459,7 +2511,11 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
+<<<<<<< HEAD
       "queue_rank": 11
+=======
+      "queue_rank": 8
+>>>>>>> origin/dev
     },
     {
       "id": "T-0139",
@@ -2765,7 +2821,11 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
+<<<<<<< HEAD
       "queue_rank": 29
+=======
+      "queue_rank": 26
+>>>>>>> origin/dev
     },
     {
       "id": "T-0156",
@@ -2783,7 +2843,11 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
+<<<<<<< HEAD
       "queue_rank": 28
+=======
+      "queue_rank": 25
+>>>>>>> origin/dev
     },
     {
       "id": "T-0157",
@@ -2891,7 +2955,11 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
+<<<<<<< HEAD
       "queue_rank": 21
+=======
+      "queue_rank": 18
+>>>>>>> origin/dev
     },
     {
       "id": "T-0163",
@@ -2927,7 +2995,11 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
+<<<<<<< HEAD
       "queue_rank": 27
+=======
+      "queue_rank": 24
+>>>>>>> origin/dev
     },
     {
       "id": "T-0165",
@@ -2999,7 +3071,11 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
+<<<<<<< HEAD
       "queue_rank": 35
+=======
+      "queue_rank": 32
+>>>>>>> origin/dev
     },
     {
       "id": "T-0171",
@@ -3035,7 +3111,11 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
+<<<<<<< HEAD
       "queue_rank": 13
+=======
+      "queue_rank": 10
+>>>>>>> origin/dev
     },
     {
       "id": "T-0173",
@@ -3053,7 +3133,11 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
+<<<<<<< HEAD
       "queue_rank": 36
+=======
+      "queue_rank": 33
+>>>>>>> origin/dev
     },
     {
       "id": "T-0179",
@@ -3089,7 +3173,11 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
+<<<<<<< HEAD
       "queue_rank": 37
+=======
+      "queue_rank": 34
+>>>>>>> origin/dev
     },
     {
       "id": "T-0181",
@@ -3107,7 +3195,11 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
+<<<<<<< HEAD
       "queue_rank": 38
+=======
+      "queue_rank": 35
+>>>>>>> origin/dev
     },
     {
       "id": "T-0182",
@@ -3179,7 +3271,11 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": true,
+<<<<<<< HEAD
       "queue_rank": 9
+=======
+      "queue_rank": 6
+>>>>>>> origin/dev
     },
     {
       "id": "T-0186",
@@ -3269,7 +3365,11 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
+<<<<<<< HEAD
       "queue_rank": 26
+=======
+      "queue_rank": 23
+>>>>>>> origin/dev
     },
     {
       "id": "T-0191",
@@ -3395,7 +3495,11 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
+<<<<<<< HEAD
       "queue_rank": 10
+=======
+      "queue_rank": 7
+>>>>>>> origin/dev
     },
     {
       "id": "T-0198",
@@ -3503,7 +3607,11 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
+<<<<<<< HEAD
       "queue_rank": 39
+=======
+      "queue_rank": 36
+>>>>>>> origin/dev
     },
     {
       "id": "T-0207",
@@ -3557,7 +3665,11 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
+<<<<<<< HEAD
       "queue_rank": 17
+=======
+      "queue_rank": 14
+>>>>>>> origin/dev
     },
     {
       "id": "T-0210",
@@ -3575,7 +3687,11 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
+<<<<<<< HEAD
       "queue_rank": 25
+=======
+      "queue_rank": 22
+>>>>>>> origin/dev
     },
     {
       "id": "T-0211",
@@ -3593,7 +3709,11 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
+<<<<<<< HEAD
       "queue_rank": 23
+=======
+      "queue_rank": 20
+>>>>>>> origin/dev
     },
     {
       "id": "T-0212",
@@ -3611,7 +3731,11 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": true,
+<<<<<<< HEAD
       "queue_rank": 12
+=======
+      "queue_rank": 9
+>>>>>>> origin/dev
     },
     {
       "id": "T-0213",
@@ -3647,7 +3771,11 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
+<<<<<<< HEAD
       "queue_rank": 18
+=======
+      "queue_rank": 15
+>>>>>>> origin/dev
     },
     {
       "id": "T-0215",
@@ -3719,7 +3847,11 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
+<<<<<<< HEAD
       "queue_rank": 40
+=======
+      "queue_rank": 37
+>>>>>>> origin/dev
     },
     {
       "id": "T-0219",
@@ -3737,7 +3869,11 @@
       "claimed_by": "run 8/27/2026, 9:17:32 PM CT",
       "blocked_on": null,
       "needs_bake": true,
+<<<<<<< HEAD
       "queue_rank": null
+=======
+      "queue_rank": 2
+>>>>>>> origin/dev
     },
     {
       "id": "T-0220",
@@ -3760,7 +3896,7 @@
     {
       "id": "T-0221",
       "title": "measure_street_frontage.layer_of reads a record's evidence layer off its filename, and misreads physicians_office",
-      "state": "open",
+      "state": "done",
       "epic": "META",
       "requested_by": "loop",
       "seen": false,
@@ -3768,12 +3904,12 @@
       "legacy_id": null,
       "parent": null,
       "opened": "2026-08-27",
-      "closed": null,
-      "pr": null,
-      "claimed_by": null,
+      "closed": "2026-08-27",
+      "pr": "425",
+      "claimed_by": "run 8/27/2026, 9:14:57 PM CT",
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 2
+      "queue_rank": null
     },
     {
       "id": "T-0223",
@@ -3809,7 +3945,11 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
+<<<<<<< HEAD
       "queue_rank": 24
+=======
+      "queue_rank": 21
+>>>>>>> origin/dev
     },
     {
       "id": "T-0225",
@@ -3827,12 +3967,16 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
+<<<<<<< HEAD
       "queue_rank": 20
+=======
+      "queue_rank": 17
+>>>>>>> origin/dev
     },
     {
       "id": "T-0226",
       "title": "North Water Street runs inside the water mask for 477 m and draws no ribbon at all",
-      "state": "open",
+      "state": "done",
       "epic": "TOWN",
       "requested_by": "loop",
       "seen": false,
@@ -3840,12 +3984,12 @@
       "legacy_id": null,
       "parent": null,
       "opened": "2026-08-27",
-      "closed": null,
-      "pr": null,
-      "claimed_by": null,
+      "closed": "2026-08-27",
+      "pr": "430",
+      "claimed_by": "run 8/27/2026, 10:13:16 PM CT",
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 5
+      "queue_rank": null
     },
     {
       "id": "T-0227",
@@ -3863,7 +4007,11 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
+<<<<<<< HEAD
       "queue_rank": 22
+=======
+      "queue_rank": 19
+>>>>>>> origin/dev
     },
     {
       "id": "T-0228",
@@ -3881,7 +4029,11 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
+<<<<<<< HEAD
       "queue_rank": 41
+=======
+      "queue_rank": 38
+>>>>>>> origin/dev
     },
     {
       "id": "T-0229",
@@ -3917,7 +4069,11 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
+<<<<<<< HEAD
       "queue_rank": 51
+=======
+      "queue_rank": 48
+>>>>>>> origin/dev
     },
     {
       "id": "T-0231",
@@ -3935,7 +4091,11 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
+<<<<<<< HEAD
       "queue_rank": 42
+=======
+      "queue_rank": 39
+>>>>>>> origin/dev
     },
     {
       "id": "T-0232",
@@ -3953,7 +4113,11 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
+<<<<<<< HEAD
       "queue_rank": 43
+=======
+      "queue_rank": 40
+>>>>>>> origin/dev
     },
     {
       "id": "T-0233",
@@ -3971,7 +4135,11 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
+<<<<<<< HEAD
       "queue_rank": 44
+=======
+      "queue_rank": 41
+>>>>>>> origin/dev
     },
     {
       "id": "T-0234",
@@ -3989,7 +4157,11 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
+<<<<<<< HEAD
       "queue_rank": 45
+=======
+      "queue_rank": 42
+>>>>>>> origin/dev
     },
     {
       "id": "T-0235",
@@ -4007,7 +4179,11 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
+<<<<<<< HEAD
       "queue_rank": 46
+=======
+      "queue_rank": 43
+>>>>>>> origin/dev
     },
     {
       "id": "T-0236",
@@ -4025,7 +4201,11 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
+<<<<<<< HEAD
       "queue_rank": 47
+=======
+      "queue_rank": 44
+>>>>>>> origin/dev
     },
     {
       "id": "T-0237",
@@ -4043,7 +4223,11 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
+<<<<<<< HEAD
       "queue_rank": 49
+=======
+      "queue_rank": 46
+>>>>>>> origin/dev
     },
     {
       "id": "T-0238",
@@ -4061,7 +4245,11 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
+<<<<<<< HEAD
       "queue_rank": 48
+=======
+      "queue_rank": 45
+>>>>>>> origin/dev
     },
     {
       "id": "T-0239",
@@ -4079,7 +4267,11 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
+<<<<<<< HEAD
       "queue_rank": 50
+=======
+      "queue_rank": 47
+>>>>>>> origin/dev
     },
     {
       "id": "T-0240",
@@ -4151,7 +4343,11 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
+<<<<<<< HEAD
       "queue_rank": 52
+=======
+      "queue_rank": 49
+>>>>>>> origin/dev
     },
     {
       "id": "T-0244",
@@ -4169,12 +4365,16 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
+<<<<<<< HEAD
       "queue_rank": 53
+=======
+      "queue_rank": 50
+>>>>>>> origin/dev
     },
     {
       "id": "T-0245",
       "title": "South Water Street can have its first control point, at Franklin, and nothing has claimed it",
-      "state": "open",
+      "state": "done",
       "epic": "META",
       "requested_by": "loop",
       "seen": false,
@@ -4182,12 +4382,16 @@
       "legacy_id": null,
       "parent": null,
       "opened": "2026-08-27",
-      "closed": null,
-      "pr": null,
-      "claimed_by": null,
+      "closed": "2026-08-27",
+      "pr": "429",
+      "claimed_by": "run 8/27/2026, 9:15:24 PM CT",
       "blocked_on": null,
       "needs_bake": false,
+<<<<<<< HEAD
       "queue_rank": 56
+=======
+      "queue_rank": null
+>>>>>>> origin/dev
     },
     {
       "id": "T-0246",
@@ -4205,7 +4409,11 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
+<<<<<<< HEAD
       "queue_rank": 54
+=======
+      "queue_rank": 51
+>>>>>>> origin/dev
     },
     {
       "id": "T-0247",
@@ -4223,7 +4431,11 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
+<<<<<<< HEAD
       "queue_rank": 55
+=======
+      "queue_rank": 52
+>>>>>>> origin/dev
     },
     {
       "id": "T-0248",
@@ -4298,8 +4510,13 @@
       "queue_rank": null
     },
     {
+<<<<<<< HEAD
       "id": "T-0253",
       "title": "The west end of South Water's Franklin face lost its walk to a 10 mm ground change",
+=======
+      "id": "T-0252",
+      "title": "Decide once whether a baked town carries the nine renderer-drawn layers, or none of them",
+>>>>>>> origin/dev
       "state": "open",
       "epic": "META",
       "requested_by": "loop",
@@ -4313,7 +4530,47 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
+<<<<<<< HEAD
       "queue_rank": 57
+=======
+      "queue_rank": 53
+    },
+    {
+      "id": "T-0253",
+      "title": "May an invented building stand on the river margin of a platted street corridor",
+      "state": "open",
+      "epic": "META",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "M",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-08-27",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "queue_rank": 54
+    },
+    {
+      "id": "T-0254",
+      "title": "North Water Street west of the slough, and the crossing it needs",
+      "state": "open",
+      "epic": "TOWN",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "M",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-08-27",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "queue_rank": 55
+>>>>>>> origin/dev
     }
   ]
 }

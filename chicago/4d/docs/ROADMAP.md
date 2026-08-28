@@ -10894,6 +10894,22 @@ is untouched and still open. What (e) still owes: a deck a visitor can walk out 
 ticket); anything lying at either wharf, which no source here describes; and the GENERATOR half, so
 a baked town carries its own docks.
 
+**And "the GENERATOR half" is now ONE question for all four clauses, not four — T-0059
+withdrawn, T-0252 opened, 2026-08-27.** This box asks for it in nearly the same words at (b),
+(c) and (e), and T-0059 was (e)'s. Measured by `tools/measure_generator_half.py` and gated in
+`tools/check.sh`: **nine of nine data layers drawn at load from committed JSON owe a generator
+half, and none has one** — boats, enclosures, fauna, flora, frontage, residents, signage,
+wharves, yard. There is **one renderer**, `renderers/web`, and it draws all nine already, so
+the GLB these clauses ask for has no reader today. And the first layer to take the route pays
+for the other eight: a new archetype enters `generators/build.py`'s `ARCHETYPES` registry,
+whose bytes are hashed into **347 of the 349** committed meshes, so it costs a full town rebake
+before it builds a triangle — while a *mode* inside an existing archetype costs two. (e) is
+also the worst of the nine to start with: `wharves.js` takes its deck height, every crib bent
+and its stair tread count from `terrain.surfaceHeight` **at load**, and a GLB freezes all three
+at the heightfield of the bake — T-0001's fault, by construction, in the layer that cites
+T-0001 as the reason it samples at all. So the clause is not refused and not shipped: it is
+**referred**, whole, to T-0252, where the owner decides it once for all nine.
+
 **(e) grew a third shore on 2026-08-24, and the reason the first two were the only two is worth
 recording. T-0062** stated five reconstructed docks on the owner's *"you can add more docks!"* — and
 it stated them on **South Water merchants**, so the town's other shores were never asked. The North

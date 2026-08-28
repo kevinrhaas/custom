@@ -9180,6 +9180,7 @@ for (const [label, viewport, touch] of [
         intersections: document.querySelectorAll('[data-jump-kind="intersection"]').length,
         loaded: registry.size,
         sceneAnchors: window.__chicago4d.scene?.anchors?.length ?? 0,
+        sceneIntersections: window.__chicago4d.intersections?.length ?? 0,
         chippedNonStructures: rows.filter((r) => r.dataset.jumpKind !== 'structure'
           && r.querySelector('.conf')).length,
       };
@@ -9203,8 +9204,17 @@ for (const [label, viewport, touch] of [
     check(`${label}: jump menu includes every loaded structure`,
       jumps.all.structures === jumps.all.loaded && jumps.all.loaded > 70,
       `${jumps.all.structures} listed of ${jumps.all.loaded} loaded`);
+    // Against the compiled list, NOT against a literal. This assertion read
+    // `=== 4` until T-0245 committed a fifth control point on South Water at
+    // Franklin and turned a correct menu into a red gate — the same fault the
+    // menu itself was built to avoid, one level up: the intersections are
+    // compiled into the scene sidecar index from data/traces/street_control.json
+    // on every check, so their number is data and a gate that hard-codes it is
+    // measuring the constant rather than the menu.
     check(`${label}: jump menu includes every verified intersection`,
-      jumps.all.intersections === 4, `${jumps.all.intersections} listed`);
+      jumps.all.intersections === jumps.all.sceneIntersections
+        && jumps.all.intersections > 3,
+      `${jumps.all.intersections} listed of ${jumps.all.sceneIntersections} compiled`);
     check(`${label}: jump menu includes every viewpoint the scene names`,
       jumps.all.anchors === jumps.all.sceneAnchors && jumps.all.anchors > 3,
       `${jumps.all.anchors} listed of ${jumps.all.sceneAnchors} in the scene`);
