@@ -1,7 +1,7 @@
 ---
 id: T-0138
 title: The placeholders' brick chimney is a different brick from the archetypes'
-state: claimed
+state: done
 epic: RENDERING
 requested_by: loop
 seen: false
@@ -9,8 +9,8 @@ effort: S
 legacy_id: null
 parent: null
 opened: 2026-08-22
-closed: null
-pr: null
+closed: 2026-08-28
+pr: 434
 claimed_by: run 8/27/2026, 11:47:16 PM CT
 blocked_on: null
 needs_bake: false

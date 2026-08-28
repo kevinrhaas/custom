@@ -38,7 +38,6 @@ T-0185 — The plate draws the fort's pickets three times coarser than the model
 T-0197 — Three of the fort image-accuracy table's eight rows were refuted in two days; audit the rest before building to them
 
 # --- FABRIC AND WHAT THE BUILDINGS ARE MADE OF — visible
-T-0138 — The placeholders' brick chimney is a different brick from the archetypes'
 T-0212 — The one A5 roof still dealt a gable takes the shed its family gets everywhere else
 T-0172 — The other three anonymous parcels still deal a retyped roof pitch, and none of them bounds an eave band by what the archetype can carry
 T-0024 — May the face rule rank a store
