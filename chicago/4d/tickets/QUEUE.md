@@ -45,7 +45,6 @@ T-0025 — Three records carry the standing constraint and say why nowhere
 T-0021 — Census what the residents' figures reach
 
 # --- WHAT GROWS, AND WHAT A PHONE SEES — visible
-T-0209 — The bloom reaches 1.8 per cent of the ground the sward covers
 T-0214 — Two flower-head archetypes truncate silently at their instance cap
 T-0019 — Six forb layers ask for more plants than the lattice holds
 T-0225 — The sward's drawn reach is measured off plants at two per cent coverage

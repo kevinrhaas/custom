@@ -1,7 +1,7 @@
 ---
 id: T-0209
 title: The bloom reaches 1.8 per cent of the ground the sward covers
-state: claimed
+state: done
 epic: FLORA
 requested_by: loop
 seen: false
@@ -9,8 +9,8 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-08-26
-closed: null
-pr: null
+closed: 2026-08-28
+pr: 445
 claimed_by: run 8/28/2026, 2:53:59 AM CT
 blocked_on: null
 needs_bake: false
