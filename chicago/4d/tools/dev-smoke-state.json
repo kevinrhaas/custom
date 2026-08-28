@@ -12,6 +12,68 @@
       "passed": 37,
       "failed": 0,
       "failures": [],
+      "wallSeconds": 97,
+      "takenAt": "2026-08-28T02:38:19.680Z",
+      "ref": "steward/t-0221-layer-of-record",
+      "commit": "f4525b5bfa22",
+      "devCommit": "a638614c75d3",
+      "treeHash": "sha256:eb35c30b22a8a378",
+      "treeDirty": false,
+      "changelogHash": "sha256:d1f57c659068adae",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          4.2,
+          4.2,
+          2.9
+        ]
+      },
+      "source": "/tmp/smoke_m8.log"
+    },
+    {
+      "viewport": "desktop",
+      "stage": "8",
+      "parts": [
+        8
+      ],
+      "verdict": "pass",
+      "target": "published",
+      "passed": 37,
+      "failed": 0,
+      "failures": [],
+      "wallSeconds": 172,
+      "takenAt": "2026-08-28T02:38:19.597Z",
+      "ref": "steward/t-0221-layer-of-record",
+      "commit": "f4525b5bfa22",
+      "devCommit": "a638614c75d3",
+      "treeHash": "sha256:eb35c30b22a8a378",
+      "treeDirty": false,
+      "changelogHash": "sha256:d1f57c659068adae",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          4.2,
+          4.2,
+          2.9
+        ]
+      },
+      "source": "/tmp/smoke_d8.log"
+    },
+    {
+      "viewport": "mobile",
+      "stage": "8",
+      "parts": [
+        8
+      ],
+      "verdict": "pass",
+      "target": "published",
+      "passed": 37,
+      "failed": 0,
+      "failures": [],
       "wallSeconds": 95,
       "takenAt": "2026-08-28T01:06:43.765Z",
       "ref": "steward/t-0183-market-south-water",
