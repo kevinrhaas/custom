@@ -372,7 +372,7 @@ rather than used:**
    the staff and the towers are ONE composition, so raising the staff on it raises two
    blockhouses with it — the exact conflation the image-accuracy pass refused.
 
-What is left is a choice constrained by the model rather than by a source, and **L200** owns
+What is left is a choice constrained by the model rather than by a source, and **L204** owns
 it: the parade is the only open ground inside the stockade a fifty-foot spar can stand on
 without standing on a range or a roof, and the centre of a rectangle is the only point on it
 that does not need a second invention. **That this lands where Whistler's staff stood is a

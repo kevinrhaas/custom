@@ -3698,22 +3698,21 @@ for (const [label, viewport, touch] of [
       // Those decks are the ones named `…__footway_<n>`; the ground is what their
       // boards tie into and the ground is what they are measured against.
       //
-      // NEITHER IS A WHARF DECK, and T-0058 is where THAT difference had to be
-      // drawn. Two of the seven docks — Carpenter's and Jones's, both on the
-      // South Water reach — tie their heels back into a bank the riverside plank
-      // walk already runs along, so their decks OVERSAIL about 3,000 of this
-      // layer's vertices by roughly half a metre. A board under a dock is not a
-      // board riding one: it is laid on the ground, it is measured against the
-      // ground, and it was in band against the ground before this deck was ever
-      // registered with the walker. Counting the dock as its base would read a
-      // walk that has not moved as newly sunk by the height of somebody else's
-      // floor. (What a visitor meets there is its own question and its own
-      // ticket; the stair at those two rises off the walk itself.)
+      // AND A WHARF DECK IS NOT ONE EITHER — but since T-0228 it does not have
+      // to be excused, because no board stands under one. Two of the seven docks
+      // — Carpenter's and Jones's, both on the South Water reach — tie their
+      // heels back into the bank the riverside plank walk runs along, and until
+      // T-0228 their decks OVERSAILED about 3,000 of this layer's vertices by
+      // roughly half a metre. That was excluded here so a walk which had not
+      // moved would not read as newly sunk by the height of somebody else's
+      // floor. The walk is now CUT at every landing that comes ashore across it,
+      // so the exclusion is gone and the wharf decks are back in this probe: if
+      // a board ever returns under a dock the band reads it as sunk half a
+      // metre, and `underWharf` below names the dock it is under.
       const deckAt = (e, n) => {
         let y = null;
         for (const d of a.decks ?? []) {
           if (/__footway_\d+$/.test(d.id)) continue;
-          if (/__wharf(_step\d+)?$/.test(d.id)) continue;
           if (y !== null && d.y <= y) continue;
           let hit = false;
           const pts = d.pts;
@@ -3773,10 +3772,35 @@ for (const [label, viewport, touch] of [
         }
         return Number.isFinite(hi - lo) ? hi - lo : 0;
       };
+      // NO BOARD UNDER A LANDING (T-0228). The wharves publish their deck and
+      // every stair tread to the walker as `<id>__wharf` / `<id>__wharf_step<n>`;
+      // those outlines are the timber a plank walk must not run beneath. This
+      // counts the frontage vertices standing inside one, by dock, and the check
+      // below asks for none. It is the loaded-page half of the generator's own
+      // audit: that one cuts the record, this one reads what was drawn from it.
+      const wharfDecks = (a.decks ?? []).filter((d) => /__wharf(_step\d+)?$/.test(d.id));
+      const underWharf = new Map();
+      const inPoly = (e, n, pts) => {
+        let hit = false;
+        for (let i = 0, j = pts.length - 1; i < pts.length; j = i++) {
+          const [xi, yi] = pts[i];
+          const [xj, yj] = pts[j];
+          if ((yi > n) !== (yj > n) && e < ((xj - xi) * (n - yi)) / (yj - yi) + xi) hit = !hit;
+        }
+        return hit;
+      };
       for (const t of timber) {
         const pos = t.geometry?.getAttribute('position');
         if (!pos) continue;
         verts += pos.count;
+        for (let i = 0; i < pos.count; i++) {
+          for (const d of wharfDecks) {
+            if (inPoly(pos.getX(i), -pos.getZ(i), d.pts)) {
+              underWharf.set(d.id, (underWharf.get(d.id) ?? 0) + 1);
+              break;
+            }
+          }
+        }
         for (let i = 0; i < pos.count; i++) {
           // world is (E, up, -N)
           const e = pos.getX(i);
@@ -3854,6 +3878,8 @@ for (const [label, viewport, touch] of [
         postHeight: post?.post_height_m ?? null,
         clearOfTrack: post?.clear_of_track_m ?? null,
         walks: f?.walks ?? [],
+        underWharf: [...underWharf.entries()].sort(),
+        wharfDeckCount: wharfDecks.length,
         sink, deckTop, highest, boardLow, ungraded, notReconstructed,
         bandBreaches, worstBreach,
         problems: (a?.problems ?? []).filter((x) => /frontage/.test(x)),
@@ -3870,10 +3896,22 @@ for (const [label, viewport, touch] of [
       // and retired two refusals: 49 walks to 50, 33 crossings to 37, 83
       // refusals to 81. Fences and posts do not move — a wall 1.50 m back from
       // the frontage line is still inside the 3.0 m a street fence needs.
-      frontage.census?.records === 5 && frontage.census?.walks === 50
-        && frontage.census?.crossings === 37
+      // T-0024 put the store on Randolph onto the street line, which refused one
+      // more street-edge wall and left this figure a count behind: 81 to 82,
+      // measured on an unmodified dev while T-0228 was taking its own reading.
+      // T-0228 then cut the river walk's wharf reach in two where Carpenter's
+      // and Jones's landings come ashore across it — 50 walks to 51 — and states
+      // each gap where it refuses to lay boards: 82 refusals to 84.
+      // T-0246 reconciled log_jail onto the committed plat, off the modern kerb
+      // it was placed from. The WALK count does not move — the two steps it
+      // returns extend an existing run to the full face rather than opening a
+      // new one — but a walk that stopped short of its corner had refused the
+      // corner CROSSING with it, and two of those are now laid: 37 crossings to
+      // 39, and the refusal that named them retires, 84 to 83.
+      frontage.census?.records === 5 && frontage.census?.walks === 51
+        && frontage.census?.crossings === 39
         && frontage.census?.posts === 15 && frontage.census?.fences === 35
-        && frontage.census?.refused === 81
+        && frontage.census?.refused === 83
         && frontage.recordIds.join(',')
           === 'green_tree_frontage,sauganash_frontage,river_walk_frontage,'
             + 'lasalle_crossing_frontage,town_street_edge'
@@ -3884,6 +3922,20 @@ for (const [label, viewport, touch] of [
       + `${frontage.verts} vertices, `
       + `${frontage.census?.refused} wall(s) refused, `
       + `problems [${frontage.problems.join(' | ') || 'none'}]`);
+    // NO BOARD UNDER A LANDING (T-0228). Found by T-0058, which made the wharf
+    // decks walk surfaces and so made it matter: Carpenter's and Jones's decks
+    // tie their heels 2.0 m back into the bank the riverside plank walk runs
+    // along, and about 2,700 of this layer's vertices lay inside those two
+    // outlines with a further 270 inside their boarding stairs — the slab half a
+    // metre over the boards, 0.36 m of daylight under it, and a 0.50 m riser
+    // across the walker's path that the 0.35 m step-up rule refuses. The walk is
+    // now cut at every landing and the answer is stated where a visitor can read
+    // it: the gaps are in the record's `refused`, and the landing's own deck is
+    // the walking surface across it.
+    check(`${label}: no frontage board stands under a wharf deck or its stair`,
+      frontage.wharfDeckCount > 0 && frontage.underWharf.length === 0,
+      `${frontage.wharfDeckCount} wharf surface(s) published; under them `
+      + `[${frontage.underWharf.map(([id, k]) => `${id} ${k}`).join(', ') || 'no boards'}]`);
     // NOT MERELY GRADED — graded reconstructed, every vertex. No source record in
     // this repository states that a walk stood on this ground on 1 July 1835
     // (L135), and a single vertex claiming inferred or attested would be this
@@ -8649,6 +8701,36 @@ for (const [label, viewport, touch] of [
 
       const BINS = 16;
       const HALF = 30 * Math.PI / 180;
+      // T-0225 — WHAT COUNTS AS DRAWN, and it is the screen door's number
+      // rather than a small one.
+      //
+      // This read `fadeAt(...) > 0.02`. `fadeAt` is COVERAGE since T-0035: the
+      // alpha the fragment program resolves through the ordered 4x4 Bayer
+      // matrix in `plantMaterial` — `fract(chiBayer4(gl_FragCoord.xy) +
+      // vChiDither) >= vChiFade` discards. That matrix has SIXTEEN levels, at
+      // (v + 0.5)/16, and `vChiDither` slides the whole set by a per-instance
+      // phase. So over a 4x4 tile the surviving pixels number floor(16F) or
+      // ceil(16F) and nothing else, and BELOW F = 1/16 that is 0 or 1 — which
+      // of the two being decided by the instance's dither phase, a number this
+      // side of the GPU cannot see at all.
+      //
+      // At F = 0.02 that is one pixel in fifty kept, and only for the 32 % of
+      // phases that keep any: the reading called a plant DRAWN that renders as
+      // nothing whatever in two instances out of three. The boundary it
+      // reported was therefore the radius at which the placer stopped placing,
+      // which `plantableAt` and the lattice inset already guarantee.
+      //
+      // 1/16 is the smallest threshold that fixes it, and it is the screen
+      // door's own quantum rather than a taste: it is exactly where "drawn"
+      // stops being a property of the instance's dither phase and becomes a
+      // property of its coverage. At or above it every instance keeps at least
+      // one pixel in every 4x4 tile it covers, whatever phase it drew.
+      const SEEN = 1 / 16;
+      // The old threshold, still read, because the acceptance asks this check
+      // to print the before and the after side by side rather than leave the
+      // size of the correction to a re-run with an edited gate (T-0187's `show`
+      // flag is here for the same reason).
+      const FAINT = 0.02;
       const out = {};
       for (const [name, layer] of Object.entries(SETS)) {
         const mesh = a.flora.group.getObjectByName(name);
@@ -8656,6 +8738,7 @@ for (const [label, viewport, touch] of [
         const ring = mesh?.geometry.getAttribute('aChiRing')?.array;
         const r = a.flora.rings.layers[layer];
         const bins = new Array(BINS).fill(null);
+        const faint = new Array(BINS).fill(null);
         let ringLo = Infinity;
         let ringHi = -Infinity;
         for (let i = 0; m && ring && i < mesh.count; i++) {
@@ -8677,24 +8760,40 @@ for (const [label, viewport, touch] of [
           // mid ring's inner boundary is spread per slot since T-0093, and the
           // outer radius alone would have `fadeAt` answer off the layer's
           // nominal inner edge.
-          if (a.flora.fadeAt(name, d, [ring[i * 4], ring[i * 4 + 1],
-            ring[i * 4 + 2], ring[i * 4 + 3]]) <= 0.02) continue;
+          const f = a.flora.fadeAt(name, d, [ring[i * 4], ring[i * 4 + 1],
+            ring[i * 4 + 2], ring[i * 4 + 3]]);
+          if (f <= FAINT) continue;
           const b = Math.min(BINS - 1, Math.floor((da + HALF) / (2 * HALF / BINS)));
+          if (!faint[b] || d > faint[b].d) faint[b] = { d, y };
+          if (f < SEEN) continue;
           if (!bins[b] || d > bins[b].d) bins[b] = { d, y };
         }
-        const used = bins.filter(Boolean);
-        const rows = used.map((b) => rowOf(b.d, b.y));
-        const reach = used.map((b) => b.d);
+        const stat = (list) => {
+          const used = list.filter(Boolean);
+          const rows = used.map((b) => rowOf(b.d, b.y));
+          const reach = used.map((b) => b.d);
+          return {
+            bins: used.length,
+            spreadPx: rows.length ? Math.max(...rows) - Math.min(...rows) : 0,
+            minReach: reach.length ? Math.min(...reach) : 0,
+            maxReach: reach.length ? Math.max(...reach) : 0,
+            meanReach: reach.length ? reach.reduce((s, v) => s + v, 0) / reach.length : 0,
+          };
+        };
         out[layer] = {
-          bins: used.length,
-          spreadPx: rows.length ? Math.max(...rows) - Math.min(...rows) : 0,
-          minReach: reach.length ? Math.min(...reach) : 0,
-          maxReach: reach.length ? Math.max(...reach) : 0,
-          meanReach: reach.length ? reach.reduce((s, v) => s + v, 0) / reach.length : 0,
+          ...stat(bins),
+          faint: stat(faint),
           ringLo: Number.isFinite(ringLo) ? ringLo : 0,
           ringHi: Number.isFinite(ringHi) ? ringHi : 0,
           nominal: r.fade[0],
           fringe: r.fringe ?? 0,
+          // The ramp the threshold is read on, so the bars below can carry the
+          // inset it costs as arithmetic instead of as a measured constant.
+          // `HARD` on a boundary handed over by density (T-0093), which is why
+          // this is read rather than taken from TUNE.
+          band: r.fade[1],
+          seen: SEEN,
+          faintAt: FAINT,
         };
       }
       // The placer's own answer, so the gate is not a second copy of the noise:
@@ -8722,23 +8821,48 @@ for (const [label, viewport, touch] of [
       // A boundary the eye reads as a line is one that holds the same row all
       // the way across; four pixels of drawing buffer is a modest floor, and
       // the measured figure is several times it at both viewports.
+      // T-0225. THE INSET THE THRESHOLD COSTS, as arithmetic and not as a
+      // constant somebody measured once.
+      //
+      // The bars below are stated against the PLACED boundary — `nominal` plus
+      // or minus the slot's own `fringe` — and `minReach`/`meanReach` now read
+      // the DRAWN boundary at coverage `seen`. The ramp is linear
+      // (`flora.fadeOf`: `clamp01((outer - d) / band)`), so a slot reaches
+      // coverage F at `outer - F x band` and the two boundaries differ by
+      // exactly `band x seen`: 0.44 m on the 7.0 m desktop band, 0.10 m on the
+      // phone's 1.6 m one. That term is a property of the STATISTIC, so it
+      // belongs in the bar; leaving it out would fail a sward for being read
+      // more honestly. It is not slack for the sward to spend — everything
+      // else about the bars is unchanged, and if a viewport lands under one
+      // even with the inset carried, that is a finding about the sward and
+      // gets its own ticket rather than a wider bar.
+      const inset = s.band * s.seen;
       check(`${label}: the sward's outer boundary is not a constant screen row`,
         s.bins >= 12 && s.spreadPx >= 4,
         `${s.bins}/16 bearing bins from E ${seam.station.e} N ${seam.station.n}, boundary rows `
         + `spread ${s.spreadPx.toFixed(1)} px, reach ${s.minReach.toFixed(2)}`
-        + `-${s.maxReach.toFixed(2)} m`, true);
+        + `-${s.maxReach.toFixed(2)} m at ${(s.seen * 100).toFixed(2)}% coverage `
+        + `(at the old ${(s.faintAt * 100).toFixed(0)}%: ${s.faint.bins}/16 bins, `
+        + `spread ${s.faint.spreadPx.toFixed(1)} px, reach ${s.faint.minReach.toFixed(2)}`
+        + `-${s.faint.maxReach.toFixed(2)} m)`, true);
       // ...and it is the fringe doing it. A hole in the sward would satisfy the
       // check above and would be a worse defect than the seam, so no bearing
       // may fall short of what the fringe alone can take off the ring, and the
       // raggedness may not be bought by shrinking the ring on average.
       check(`${label}: the boundary's variation is the fringe, not a hole in the field`,
         s.bins >= 12
-        && s.minReach >= s.nominal - s.fringe - 1.2
-        && s.meanReach >= s.nominal - 0.5 * s.fringe,
+        && s.minReach >= s.nominal - s.fringe - 1.2 - inset
+        && s.meanReach >= s.nominal - 0.5 * s.fringe - inset,
         `reach ${s.minReach.toFixed(2)}-${s.maxReach.toFixed(2)} m, mean `
-        + `${s.meanReach.toFixed(2)} m against a nominal ${s.nominal.toFixed(2)} `
-        + `+/- ${s.fringe.toFixed(2)} m (bars: min >= ${(s.nominal - s.fringe - 1.2).toFixed(2)}, `
-        + `mean >= ${(s.nominal - 0.5 * s.fringe).toFixed(2)})`, true);
+        + `${s.meanReach.toFixed(2)} m at ${(s.seen * 100).toFixed(2)}% coverage `
+        + `against a nominal ${s.nominal.toFixed(2)} `
+        + `+/- ${s.fringe.toFixed(2)} m (bars: min >= `
+        + `${(s.nominal - s.fringe - 1.2 - inset).toFixed(2)}, `
+        + `mean >= ${(s.nominal - 0.5 * s.fringe - inset).toFixed(2)}, `
+        + `both carrying the ${inset.toFixed(2)} m the ${(s.seen * 100).toFixed(2)}% `
+        + `threshold insets a ${s.band.toFixed(2)} m ramp by); at the old `
+        + `${(s.faintAt * 100).toFixed(0)}%: ${s.faint.minReach.toFixed(2)}-`
+        + `${s.faint.maxReach.toFixed(2)} m, mean ${s.faint.meanReach.toFixed(2)} m`, true);
       // The forb ring ends within a metre of the mid ring, so if only the grass
       // were fringed the flowers would go on drawing the line — and a flower is
       // the brightest thing in the field. It is measured on its RINGS rather
@@ -9405,13 +9529,23 @@ for (const [label, viewport, touch] of [
       // manifest loaded, so one is opened here and read back.
       const target = rows.find((r) => r.dataset.id === 'hh_beaubien_mark') || rows[0];
       const collapsed = rows.length ? rows.every((r) => !r.open) : false;
-      if (target) {
-        target.open = true;
-        for (let i = 0; i < 100 && target.querySelector('.res-hh-body .legend-note'); i++) {
+      // T-0021. Two more rows, because the three graded claims that were being
+      // printed as objects are not on the Beaubien record: `name_basis` is on
+      // the 113 reconstructed people and `age_on_scene_date`/`birth_year` on the
+      // nine the sources date. A row that carries neither cannot fail for them.
+      const named = rows.find((r) => r.dataset.id === 'hh_inf_baker_south_01');
+      const dated = rows.find((r) => r.dataset.id === 'hh_egan_william_b');
+      for (const el of [target, named, dated]) {
+        if (!el) continue;
+        el.open = true;
+        for (let i = 0; i < 100 && el.querySelector('.res-hh-body .legend-note'); i++) {
           await new Promise((r) => setTimeout(r, 50));
         }
       }
+      const bodyOf = (el) => (el ? el.textContent.replace(/\s+/g, ' ') : '');
       return {
+        namedText: bodyOf(named),
+        datedText: bodyOf(dated),
         households: window.__chicago4d.residents?.households ?? 0,
         persons: window.__chicago4d.residents?.persons ?? 0,
         offCard: window.__chicago4d.residents?.offCard ?? -1,
@@ -9464,6 +9598,32 @@ for (const [label, viewport, touch] of [
     check(`${label}: the households start collapsed, like every other disclosure here`,
       residents.collapsed);
     check(`${label}: the people section does not overflow the panel`, residents.overflow);
+    // T-0021, and the reason this check is a string match on four words. A
+    // person's `name_basis`, `age_on_scene_date` and `birth_year` are graded
+    // claim blocks, and this card handed all three whole to a text renderer:
+    // 113 rows read "How this person is named — [object Object]" and nine said
+    // it twice more. Every assertion above passed throughout, because a card
+    // that renders the WRONG STRING renders a string. The layer-read census
+    // (tools/measure_layer_reads.py) is what found it; this is what would have.
+    check(`${label}: no figure reaches a person's row as [object Object]`,
+      !/\[object Object\]/.test(residents.text),
+      residents.text.slice(Math.max(0, residents.text.indexOf('[object Object]') - 80), 200));
+    // And the row the fault was hiding. It matches the VALUE and not the note:
+    // the note under "What the sources say" carries "THE NAME IS INVENTED" on
+    // these records too and reached the card throughout, so an assertion on that
+    // sentence passes on the broken build — checked, and it did. What was lost
+    // is which pool the name was drawn from, and that is only in `name_basis`.
+    check(`${label}: an invented name says on the card which pool it came from`,
+      /How this person is named/.test(residents.namedText)
+      && /invented from the [A-Za-z ]+ pool/.test(residents.namedText),
+      residents.namedText.slice(0, 200));
+    // The nine the sources actually date, with the reasoning that says which of
+    // the two figures the source states and which is arithmetic off it.
+    check(`${label}: a dated person carries an age and a birth year, both graded`,
+      /Age on 1 July 1835/.test(residents.datedText)
+      && /\bBorn\b/.test(residents.datedText)
+      && /28 September 1808/.test(residents.datedText),
+      residents.datedText.slice(0, 200));
     // The one thing this section must never imply, and the constraint that
     // outranks every other consideration in this project: v1 draws no human
     // figures, and the removal of August 1835 is not staged anywhere.
@@ -9535,6 +9695,109 @@ for (const [label, viewport, touch] of [
       /None of them is drawn in the scene/.test(fauna.prose)
       && /this is the research, not a population/i.test(fauna.prose),
       fauna.prose.slice(0, 200));
+
+    // --- what grows here, in the same panel (T-0281) ------------------------
+    // The third layer this project found researched, graded, cited and reaching
+    // no reader — after the animals (K51) and the households (K52) — and the one
+    // that carries a finding of its own. `data/flora/` is planted by flora.js and
+    // was on no card, so a visitor could see the sward and not judge it; and nine
+    // of the ten communities ask for more small plants than the sward lattice can
+    // hold, a fact declared in tools/forb_clamp_baseline.json and docs/STATUS.md
+    // and, until this section, nowhere a visitor reads.
+    const plants = await page.evaluate(async () => {
+      const mount = document.getElementById('plants');
+      // Open one community and one species inside it: the figures, the reasoning
+      // and the citation join are all in the collapsed half, which is exactly the
+      // half a check on the closed card cannot see.
+      const zone = mount?.querySelector('details.plant-zone');
+      if (zone) zone.open = true;
+      const sp = zone?.querySelector('details.plant-sp');
+      if (sp) sp.open = true;
+      // The dense forest is the sharpest case and the one the note names, so it
+      // is read by id rather than by position.
+      const dense = [...(mount?.querySelectorAll('details.plant-zone') ?? [])]
+        .find((d) => /z06_dense_forest/.test(d.textContent));
+      if (dense) dense.open = true;
+      await new Promise((r) => setTimeout(r, 50));
+      return {
+        zones: window.__chicago4d.plants?.zones ?? 0,
+        species: window.__chicago4d.plants?.species ?? 0,
+        clamped: window.__chicago4d.plants?.clamped ?? 0,
+        clampedZones: window.__chicago4d.plants?.clampedZones ?? 0,
+        ceiling: window.__chicago4d.plants?.ceilingPerM2 ?? 0,
+        error: window.__chicago4d.plants?.error ?? 'no plants on the handle',
+        renderedZones: mount ? mount.querySelectorAll('details.plant-zone').length : 0,
+        renderedSpecies: mount ? mount.querySelectorAll('details.plant-sp').length : 0,
+        clampChips: mount ? mount.querySelectorAll('.plant-clamped').length : 0,
+        clampLists: mount ? mount.querySelectorAll('.plant-clamp').length : 0,
+        busy: mount ? mount.hasAttribute('aria-busy') : true,
+        cites: mount ? mount.querySelectorAll('.cites .cite-text').length : 0,
+        text: mount ? mount.textContent : '',
+        denseText: (dense?.textContent ?? '').replace(/\s+/g, ' '),
+        note: document.getElementById('plants-note')?.textContent ?? '',
+        collapsed: zone ? [...mount.querySelectorAll('details.plant-zone')]
+          .filter((d) => d !== zone && d !== dense).every((d) => !d.open) : false,
+        // The section's own box, measured the way T-0281 found it broken: the
+        // mount widened past the panel and every line of reasoning was clipped
+        // at the right edge, on a grid track that resolves toward max-content.
+        fits: mount ? mount.scrollWidth <= mount.clientWidth : false,
+        overflow: document.documentElement.scrollWidth <= window.innerWidth + 1,
+      };
+    });
+    check(`${label}: the plant list loads every community`,
+      plants.zones === 10 && plants.renderedZones === 10 && !plants.busy,
+      `${plants.zones} loaded / ${plants.renderedZones} rendered (${plants.error})`);
+    check(`${label}: every species in the ten communities is on the card`,
+      plants.species === 155 && plants.renderedSpecies === 155,
+      `${plants.species} counted / ${plants.renderedSpecies} rendered`);
+    // The finding, asserted as numbers so it cannot quietly go away: ten
+    // (community, stratum, side) layers are over the lattice's ceiling, across
+    // eight communities, and each of those communities says so on its own card.
+    check(`${label}: the communities the sward lattice cannot draw say so`,
+      plants.clamped === 10 && plants.clampedZones === 8
+      && plants.clampChips === 8 && plants.clampLists === 8,
+      `${plants.clamped} clamped layer(s) in ${plants.clampedZones} community(ies), `
+      + `${plants.clampChips} chip(s) / ${plants.clampLists} list(s)`);
+    // And the number itself, read off the declaration rather than typed into the
+    // renderer. If `tools/forb_clamp_baseline.json` moves and the sidecar does
+    // not, `compile_scene.py --check` fails first; this is the other end of that
+    // rope — the figure a visitor reads is the figure the gate holds.
+    check(`${label}: the share a visitor is standing in comes off the declaration`,
+      Math.abs(plants.ceiling - 0.34602076124567477) < 1e-9
+      && /0\.5 %/.test(plants.denseText)
+      && /66\.4 plants per m²/.test(plants.denseText)
+      && /0\.346/.test(plants.denseText),
+      `ceiling ${plants.ceiling} · dense forest says `
+      + `"${plants.denseText.slice(Math.max(0, plants.denseText.indexOf('records ask')), 
+        Math.max(240, plants.denseText.indexOf('records ask') + 240))}"`);
+    check(`${label}: the note names the worst case rather than only the total`,
+      /155 plants across 10 communities/.test(plants.note)
+      && /dense forest/.test(plants.note) && /0\.5 %/.test(plants.note),
+      plants.note.slice(0, 220));
+    check(`${label}: the plant records quote their sources, not their source ids`,
+      plants.cites >= 1 && !/chicagology_prefire273/.test(plants.text),
+      `${plants.cites} citation(s) rendered`);
+    // T-0021's fault, and this section shipped it on its first render: `july
+    // .inflorescence` is a record and not a word, and handing it to a text
+    // renderer put "[object Object]" on ninety-seven species. Every assertion
+    // above passed while it did, because a card that renders the WRONG STRING
+    // renders a string. Two more fields of the same shape sit beside it.
+    check(`${label}: no figure reaches a plant's row as [object Object]`,
+      !/\[object Object\]/.test(plants.text),
+      plants.text.slice(Math.max(0, plants.text.indexOf('[object Object]') - 80), 200));
+    check(`${label}: the communities start collapsed, like every other disclosure here`,
+      plants.collapsed);
+    // The layout fault this section found, and it was NOT only this section's:
+    // `.liberties` and `.lib-body` are one-column grids on the default `auto`
+    // track, which resolves toward max-content, so a card holding one long
+    // unbreakable run widens the column and the panel clips its text instead of
+    // wrapping it. Measured at 390 px: the mount reached 419 px against a 338 px
+    // box. A check on `documentElement` alone cannot see it — the document did
+    // not overflow while every line of reasoning was being cut off — so the
+    // mount's own box is measured here.
+    check(`${label}: the plants section wraps inside the panel rather than clipping`,
+      plants.fits, `mount ${plants.fits ? 'fits' : 'is wider than its box'}`);
+    check(`${label}: the plants section does not overflow the panel`, plants.overflow);
 
     // The document's own account of what this list is. It is compiled out of
     // `docs/LIBERTIES.md` and was rendered nowhere, while the panel opened with a
@@ -10113,7 +10376,31 @@ for (const [label, viewport, touch] of [
       marking.unbuilt.slice(0, 140));
     check(`${label}: the Evidence panel still does not overflow with the ground on it`,
       ground.overflow);
-    await page.click('#panel-close');
+    // T-0210, and it was the LAST frame-bound chrome click in the file. This one
+    // close timed out at ninety seconds on an unmodified tree and took the desktop
+    // half of part 9 down with it, which read as a broken control and was not one.
+    // Measured here at the click site itself, on the published mirror at 1280x800,
+    // at three machine loads on one runner:
+    //
+    //   frame cost   2.18 s      3.17 s      7.05 s
+    //   page.click   28.4 s      43.5 s      89.8 s    (13.0 / 13.7 / 12.7 frames)
+    //   clickChrome   3.9 s       6.0 s      13.5 s    ( 1.8 /  1.9 /  1.9 frames)
+    //
+    // and `elementFromPoint` answered THIS BUTTON at its own centre in all three:
+    // 26x26, enabled, uncovered, no pointer lock. So the control is fine and the
+    // cost is a CONSTANT NUMBER OF FRAMES — a `page.click` here is thirteen of
+    // them however fast the box is, which is why 90 s is not a budget but a coin
+    // toss: it is breached the moment a frame costs more than 6.9 s, and this
+    // runner reached 7.05 s with four burners on four cores. The loaded reading
+    // landed at 89.8 s against the 90 s budget with two tenths of a second to
+    // spare, which is the failure the ticket saw, caught mid-air.
+    //
+    // NOTHING IS WEAKENED BY THE SWAP. `clickChrome` asserts everything the real
+    // click asserts implicitly — the element exists, is enabled, has a real box,
+    // and is the topmost thing at its own centre — and fails in one round trip
+    // naming what covered it. T-0215 made that argument and this is the same
+    // control on the same page; the trusted-event clicks it names stay as they are.
+    await clickChrome('#panel-close');
 
     // --- free-fly -----------------------------------------------------------
     // Three properties worth pinning, all of which would rot silently:

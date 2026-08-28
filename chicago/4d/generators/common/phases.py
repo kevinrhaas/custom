@@ -26,15 +26,31 @@ agreeing is not agreement, it is a coincidence that held until someone wrote a
 fourth reader and did not know to copy it. So the copies are replaced by imports
 of this one, and the fourth reader — the builder — is added.
 
-WHY THIS FILE IS IN `common/`, which is not a filing preference. `mesh_inputs.py`
-hashes `generators/build.py` and `generators/common/*.py` into every asset's
-`inputs_sha256`, and deliberately does NOT hash itself ("this file computes the
-hash and makes no geometry"). A rule about WHICH PHASES GET A MESH AT ALL has to
-be inside that hash: change it, and what the town is made of changes, so every
-asset must go stale and be rebuilt. Putting it in `mesh_inputs.py` would have
-been the tidier import and would have left the rule able to move without
-restaling a single asset — a hole exactly the shape of the one this ticket is
-about.
+WHY THIS FILE IS IN `common/`: because that is where a rule four callers share
+belongs, and for no other reason. It is a filing decision and nothing hangs on it.
+
+THIS FILE IS NOT IN THE INPUT HASH, and the paragraph that used to stand here
+argued the opposite — that a rule about WHICH PHASES GET A MESH AT ALL had to be
+inside `inputs_sha256`, so that changing it staled every asset. That reasoning
+was followed and then measured (T-0164). Appending ONE COMMENT LINE to this file
+staled **349 of 349** assets, because what the recipe hashed was this file's
+BYTES and every byte of it is prose. A full-town rebake for a docstring is the
+disbelieved gate `mesh_inputs.py` warns about, in its own words:
+
+    A hash that cries stale for reasons that cannot change the geometry gets
+    disbelieved, and a disbelieved gate is worse than no gate.
+
+The rule is not unwatched for being out of the hash. Both directions of it are
+gated by `tools/validate.py` on every `check.sh` run: a phase that starts being
+`drawn_by` must leave no GLB and no manifest entry behind (`check_drawn_by`
+asserts exactly that), and a phase that stops being `drawn_by` gains an asset the
+manifest does not list, which is a MISSING asset rather than a stale one. The
+staleness hash was the net under this rule, never the instrument for it — and it
+was a net that caught every comment as well.
+
+`generators/code_inputs.py` is where the exclusion is declared, with the reason
+beside it, and it is a blocklist so that the NEXT module filed here is hashed by
+default. Read it before moving anything in or out of this directory.
 """
 from __future__ import annotations
 

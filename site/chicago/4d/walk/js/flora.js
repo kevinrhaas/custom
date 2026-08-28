@@ -165,6 +165,22 @@ const TUNE = {
    *
    * So the outer edges keep their ramp, and what T-0187 fixes is the ramp's
    * WIDTH: it must not begin inside the verge. See `LOW` and `MID`.
+   *
+   * T-0225 — THE HALF OF THAT ARGUMENT THAT WAS THE INSTRUMENT'S, and it is
+   * repaired now rather than restated. Every figure above was read at
+   * `fadeAt > 0.02`, which the 4x4 screen door renders as nothing at all for
+   * two instance phases in three, so the reach a coverage ramp "reports" was
+   * very nearly the radius the placer stopped at: measured with
+   * `tools/measure_sward_reach.mjs`, the placed boundary and the 2 % reading
+   * are 0.54 m apart at `full` and 0.56 m at `light`. The gate now reads the
+   * boundary at 1/16 — the screen door's own quantum, below which "drawn" is a
+   * property of the dither phase and not of the coverage — and carries the
+   * `band x 1/16` that costs, so a density handover is no longer compared
+   * against a statistic only a coverage ramp can produce.
+   *
+   * What that does NOT do is settle whether these edges should be spread. The
+   * bar is off the scale now; the measurement of what a spread costs was taken
+   * against the old statistic and has to be retaken. T-0277 is that work.
    */
   near: { radius: 7.6, cell: 0.74, perCell: 4, tuftsPerM2: 7.30, band: 2.2,
     spreadOuter: true },
@@ -214,8 +230,21 @@ const TUNE = {
       { inner: 16.0, innerRamp: 10.0, radius: 62.0, ramp: 30.0, cell: 3.4, perCell: 1, keep: 0.80, wide: [1.5, 2.6], lift: 1.14 },
       { inner: 44.0, innerRamp: 24.0, radius: 175.0, ramp: 92.0, cell: 9.5, perCell: 1, keep: 0.74, wide: [2.6, 4.6], lift: 1.20 },
     ],
+    // How wide a flower must still be, in pixels of the smaller gate viewport,
+    // for the far band to draw it — see `farHeadReach`. ONE pixel is the honest
+    // bar for the tier that is asked to draw everything; the rungs below it buy
+    // their headroom by asking a mark to be bigger before it is worth a head,
+    // which is the same shape as `light`'s furniture reach and `balanced`'s
+    // (T-0241) and not a different kind of concession. The reach falls linearly
+    // and the heads inside it quadratically, so 2.0 draws a quarter of them.
+    minPx: 1.0,
   },
-  /** Hard caps. The palette's `budget` is advisory; this is the ceiling. */
+  /** Hard caps. The palette's `budget` is advisory; this is the ceiling.
+   *
+   *  `head` is the average of the NINE head archetypes' ceilings and not any one
+   *  of them — T-0214 split it by measured demand, so the nine sum to nine times
+   *  this number and each gets `head x HEAD_SHARE[kind]`. Halving `head` at a
+   *  detail tier still halves every archetype with it. */
   cap: { near: 2400, mid: 4400, forb: 900, head: 820, far: 420 },
   wind: { speedNear: 1.35, sway: 0.085, waveM: 9.0 },
   /**
@@ -529,6 +558,54 @@ function farRank(e, n, band) {
  *  dither branch entirely. */
 const FAR_RING = [1e9, 1e-4, 0, 0];
 
+/**
+ * THE FAR BLOOM — T-0209, and the bar it answers is a PIXEL, not a radius.
+ *
+ * A flower head was drawn nowhere past 23.65 m, because the head ring hangs off
+ * the forb ring and the forb ring ends where the far band begins. So the sward
+ * was carried to 175 m and the bloom to 23.65, and T-0034 measured what that
+ * costs: the bloom covers 1.8 % of the ground the sward covers, and the other
+ * 98 % of a July prairie is grass-coloured whatever its records say is
+ * flowering on it.
+ *
+ * THE CONVERSION T-0209 ASKS FOR, and the reason it is a distance. The flora
+ * records give bloom IN PLAN — `density_per_ha` x `size_m`, 0.027-0.219 % of
+ * the ground on the mesic prairie — and a frame reads bloom IN SCREEN SPACE at
+ * a near-horizontal pose. Tint the far card by the plan figure and nothing
+ * happens: run the records through an opaque-canopy model, where each element's
+ * share of the drawn wall is its share of the community's silhouette-area
+ * density, and the mesic prairie's bloom comes out at **0.05 % of the far
+ * card** (`tools/measure_far_bloom.mjs`). A colour blended at five parts in ten
+ * thousand is not a colour, and one blended at anything larger is invented.
+ *
+ * A HEAD IS NOT AN AREA, THOUGH — it is a saturated MARK, and a mark is
+ * visible while it still covers a pixel. That is the honest conversion, and it
+ * is per-record rather than per-community: the camera is 62 degrees vertical
+ * (`main.js`), so the gate's two viewports carry 780/1.0821 = 721 and
+ * 800/1.0821 = 739 pixels per radian. A head of `size_m` therefore falls under
+ * one pixel at `size_m * 721` metres — the PHONE sets the bar, because mobile
+ * is a release gate. The mesic prairie's median head is 0.07 m, so the bloom
+ * can honestly be carried to about FIFTY metres and no further; a 0.10 m
+ * compass-plant head reaches 72 m and a 0.0275 m purple-prairie-clover thimble
+ * only 20 m, which is why the reach is the record's own and not a constant.
+ *
+ * Past that reach the bloom is genuinely under the pixel grid and the far
+ * card's honest tint is the 0.05 % above. That is the number this parcel
+ * records rather than a licence to paint one.
+ */
+const FAR_HEAD_PX_PER_RAD = 721;
+/** How far a head of this record's own size stays a mark `minPx` wide. */
+function farHeadReach(sp, minPx) {
+  return mid(sp.head.size) * FAR_HEAD_PX_PER_RAD / minPx;
+}
+/** The ring a far head is drawn on: its own reach, faded over the last eighth
+ *  of it so the bloom thins out rather than ending on a circle. */
+function farHeadRing(sp, minPx, out) {
+  const r = farHeadReach(sp, minPx);
+  out[0] = r; out[1] = r * 0.125; out[2] = 0; out[3] = 0;
+  return out;
+}
+
 /** Nearer than this, plants go all the way round whatever the cone says. */
 const CONE_KEEP_M = 3.5;
 /** Cosine of the cone half-angle, and the yaw change that forces a rebuild. */
@@ -575,6 +652,14 @@ const LOW = {
       { inner: 9.5, innerRamp: 6.5, radius: 40.0, ramp: 20.0, cell: 3.9, perCell: 1, keep: 0.74, wide: [1.4, 2.3], lift: 1.14 },
       { inner: 30.0, innerRamp: 16.0, radius: 120.0, ramp: 64.0, cell: 11.0, perCell: 1, keep: 0.70, wide: [2.4, 4.2], lift: 1.20 },
     ],
+    // NULL, and it is a tier decision rather than a big number chosen to make a
+    // reach vanish. `light` is where the DRAW-CALL floor binds — 80 calls,
+    // restored by T-0147 and already breached at 83 on an unmodified `dev`
+    // (T-0248) — and a head archetype the far band lights up where the near
+    // rings had none is a new draw call, not just more triangles. So the phone
+    // tier carries the sward to its far band and the bloom no further, the same
+    // way it culls furniture at 350 m and the rungs above it do not.
+    minPx: null,
   },
   cap: { near: 420, mid: 900, forb: 260, head: 240, far: 190 },
 };
@@ -605,6 +690,7 @@ const MID = {
       { inner: 13.0, innerRamp: 8.5, radius: 52.0, ramp: 26.0, cell: 3.6, perCell: 1, keep: 0.78, wide: [1.5, 2.5], lift: 1.14 },
       { inner: 38.0, innerRamp: 20.0, radius: 150.0, ramp: 80.0, cell: 10.0, perCell: 1, keep: 0.72, wide: [2.5, 4.4], lift: 1.20 },
     ],
+    minPx: 2.0,
   },
   cap: { near: 1500, mid: 2700, forb: 580, head: 520, far: 300 },
 };
@@ -695,6 +781,101 @@ const HEAD_OF_SHAPE = {
   // Umbellets on rays from one point — the Queen-Anne's-lace architecture.
   umbel_compound: { kind: 'compound', count: [4, 14], tilt: [0.10, 0.46], band: 0.32 },
 };
+
+/**
+ * T-0214 — HOW THE ONE HEAD BUDGET IS SPLIT NINE WAYS, and why it is not split
+ * evenly.
+ *
+ * Nine inflorescence archetypes are nine InstancedMeshes, and each carries its
+ * own ceiling. Until this ticket that ceiling was `tune.cap.head` NINE TIMES:
+ * the same number for the umbel that half a forest flowers with and for the
+ * spire two records in the whole town carry. `maybeHead` stops pushing the
+ * moment a set is full — it now says so through `skip`, but it still stops — so
+ * a set at its ceiling loses the rest of that plant's inflorescences, silently
+ * and mid-plant.
+ *
+ * TWO SETS WERE LOSING THEM. Measured by `tools/measure_bloom_headroom.mjs`
+ * standing in every community at four bearings, plus its three named stands —
+ * ASKED FOR against a 820 ceiling, at each set's own worst pose:
+ *
+ *     dome     1,202  z06_dense_forest facing 90    REFUSED 382
+ *     spike      852  z10_settled_town facing 90    REFUSED  32
+ *     pompom     804  z06_dense_forest facing 90
+ *     raydroop   734  z02_mesic_prairie
+ *     corymb     533  z10_settled_town facing 270
+ *     ray        248  z02_mesic_prairie
+ *     compound   160  z10_settled_town facing 270
+ *     panicle     23  z01_wet_prairie facing 90
+ *     spire       21  z10_settled_town facing 270
+ *
+ * **That is 4,577 against a 7,380-instance budget, so the shortfall is an
+ * ALLOCATION and not a budget.** And 4,577 is already a bound no frame draws:
+ * it sums every set's own worst pose, and those poses are in five different
+ * communities. Two sets were full while seven stood a fifth spent.
+ *
+ * RE-MEASURED THE SAME DAY, after T-0209 carried the bloom out past the near
+ * ring to 119.9 m, and the numbers in `HEAD_DEMAND` below are that second
+ * reading. More reach is more heads: the total asked for goes 4,577 to 5,090,
+ * `corymb` alone from 533 to 724, and the shares are sized on the new figures
+ * rather than left standing on the old ones. This is what the last paragraph
+ * means by re-measurable, on the first day it mattered.
+ *
+ * SO THE SHARE IS SIZED ON THE DEMAND, AND THE TOTAL DOES NOT MOVE. Each set
+ * gets `tune.cap.head x HEAD_SHARE[kind]`, and the shares average exactly one —
+ * so nine times `cap.head` is still the head budget at every detail tier, and a
+ * tier that halves `cap.head` halves every share with it. Nothing here raises a
+ * ceiling; it stops nine identical ceilings from being nine wrong ones.
+ *
+ * THE FLOOR is the third column of the arithmetic and it is `compound`'s own
+ * measured demand. A share cut to a set's measured worst pose alone would give
+ * `spire` twenty-one instances, and twenty-one is a ceiling one new flowering
+ * record walks through — the demand figures are a reading of the flora records
+ * as they stand today, not a property of the archetype. So no set is dealt off
+ * less than the smallest genuinely-used set, which is what makes the four small
+ * sets robust to a record being added rather than to a re-measurement.
+ *
+ * WHAT IT COSTS THE FRAME. The refusals are worth 12,640 triangles if every one
+ * of them were drawn in one frame, and no frame draws them: a head is only ever
+ * drawn inside the head ring, so `dome`'s 382 are only in the frame of a visitor
+ * standing IN the dense forest, and `spike`'s 32 (416 triangles) only of one
+ * standing in the settled town. None of T-0135's five gate stands stands in the
+ * dense forest, and measured against `dev` the whole parcel moves four of the
+ * five by nothing at all and the fifth — the open aerial — by 1,638 triangles
+ * against 510,602 of headroom.
+ *
+ * THE DEMAND FIGURES ARE A MEASUREMENT AND ARE RE-MEASURABLE. Re-run
+ * `node tools/measure_bloom_headroom.mjs` — its §2a is this table — and if a set
+ * is at its cap there, the allocation is stale and this is where it is fixed.
+ */
+const HEAD_DEMAND = {
+  dome: 1235,
+  spike: 923,
+  raydroop: 848,
+  pompom: 804,
+  corymb: 724,
+  ray: 308,
+  compound: 190,
+  spire: 35,
+  panicle: 23,
+};
+/** No archetype is dealt off less than the smallest genuinely-used set — see
+ *  THE FLOOR above. It is `compound`'s own measured demand and not a round
+ *  number chosen to look like one. */
+const HEAD_DEMAND_FLOOR = HEAD_DEMAND.compound;
+/**
+ * The share of `cap.head` each archetype is given, normalised so the nine
+ * average exactly 1. That normalisation is the promise: whatever
+ * `tune.cap.head` is at a detail tier, the nine sets still sum to nine times
+ * it, so this file cannot quietly buy instances by re-weighting them.
+ */
+const HEAD_SHARE = (() => {
+  const kinds = Object.keys(HEAD_DEMAND);
+  const weight = Object.fromEntries(kinds.map(
+    (k) => [k, Math.max(HEAD_DEMAND[k], HEAD_DEMAND_FLOOR)]));
+  const total = kinds.reduce((a, k) => a + weight[k], 0);
+  return Object.fromEntries(kinds.map(
+    (k) => [k, (weight[k] / total) * kinds.length]));
+})();
 
 /** How each graminoid form deforms the one canonical tuft: `arch` is how far
  *  the tips fall away (cordgrass fountain vs bulrush culm), `spread` scales the
@@ -922,16 +1103,17 @@ export async function createFlora({
   // shape its record names. The flat horizontal plate is gone; nothing draws
   // one, because at 1.68 m eye height a corymb at 0.7 m is seen 11 degrees off
   // the horizontal and a flat disc is three pixels of nothing.
+  const headCap = (kind) => Math.round(tune.cap.head * HEAD_SHARE[kind]);
   const heads = {
-    spike: instSet('flora-head-spike', spikeGeometry(), headMat, tune.cap.head),
-    spire: instSet('flora-head-spire', spireGeometry(), headMat, tune.cap.head),
-    panicle: instSet('flora-head-panicle', panicleGeometry(), headMat, tune.cap.head),
-    ray: instSet('flora-head-ray', rayGeometry(false), headMat, tune.cap.head),
-    raydroop: instSet('flora-head-raydroop', rayGeometry(true), headMat, tune.cap.head),
-    pompom: instSet('flora-head-pompom', pompomGeometry(), headMat, tune.cap.head),
-    dome: instSet('flora-head-dome', domeGeometry(), headMat, tune.cap.head),
-    corymb: instSet('flora-head-corymb', corymbGeometry(), headMat, tune.cap.head),
-    compound: instSet('flora-head-compound', compoundGeometry(), headMat, tune.cap.head),
+    spike: instSet('flora-head-spike', spikeGeometry(), headMat, headCap('spike')),
+    spire: instSet('flora-head-spire', spireGeometry(), headMat, headCap('spire')),
+    panicle: instSet('flora-head-panicle', panicleGeometry(), headMat, headCap('panicle')),
+    ray: instSet('flora-head-ray', rayGeometry(false), headMat, headCap('ray')),
+    raydroop: instSet('flora-head-raydroop', rayGeometry(true), headMat, headCap('raydroop')),
+    pompom: instSet('flora-head-pompom', pompomGeometry(), headMat, headCap('pompom')),
+    dome: instSet('flora-head-dome', domeGeometry(), headMat, headCap('dome')),
+    corymb: instSet('flora-head-corymb', corymbGeometry(), headMat, headCap('corymb')),
+    compound: instSet('flora-head-compound', compoundGeometry(), headMat, headCap('compound')),
   };
   // T-0086. The far band, on the mid ring's own material and its own archetype:
   // one more instanced set, one more draw call, no new shader program. Nine
@@ -1217,12 +1399,43 @@ export async function createFlora({
           const zone = finder(e, n);
           if (!zone || !zone.graminoids.length) return;
           const wet = water.isWater(e, n);
-          const sp = dealt(wet ? zone.wet.graminoids : zone.dry.graminoids,
-            zone.matrixShare, u);
+          // T-0209. THE FAR BAND DEALS THE WHOLE COMMUNITY, not just its grass.
+          // Until this it dealt `graminoids` alone, so every flowering
+          // community past the mid ring was a hundred per cent matrix however
+          // its record read — and no card the far band drew could carry a
+          // flower because no card the far band drew was a plant that has one.
+          //
+          // The split is made INSIDE the band this slot was already occupied
+          // on, not beside it: the slot is used when `u < matrixShare` exactly
+          // as before, and the forbs take their own recorded share OF that
+          // range. So the card count, the instance count, the triangles and the
+          // draw calls are what they were, and what changes is which plant a
+          // card stands for. Widening the occupied band instead would have
+          // bought the bloom with geometry, which is the budget the whole
+          // ticket was told not to spend.
+          const forbs = wet ? zone.wet.forbs : zone.dry.forbs;
+          const forbShare = wet ? zone.forbShareWet : zone.forbShare;
+          const split = forbs?.items?.length && forbShare > 0
+            ? zone.matrixShare * (1 - forbShare / (zone.matrixShare + forbShare))
+            : zone.matrixShare;
+          const forb = u >= split;
+          const sp = forb
+            ? dealt(forbs, zone.matrixShare - split, u - split)
+            : dealt(wet ? zone.wet.graminoids : zone.dry.graminoids, split, u);
           if (!sp) return;
           const y = station(e, n, zone, sp, wet);
           if (y === null) return;
-          placeFarCard(farSet, sp, zone, e, y, n, rng, band);
+          const h = placeFarCard(farSet, sp, zone, e, y, n, rng, band);
+          // ...and a flowering forb's far card carries the flower, out to the
+          // distance the record's own head size stays one pixel wide — see
+          // `farHeadReach`. The head sets and their material are the ones the
+          // forb ring already uses, so this is instances on a mesh that is
+          // drawn either way, never a new draw call.
+          if (forb && h > 0 && sp.head && tune.far.minPx
+            && r <= farHeadReach(sp, tune.far.minPx)) {
+            maybeHead(heads, sp, e, y, n, rng, h,
+              farHeadRing(sp, tune.far.minPx, _headRing));
+          }
         });
     });
   }
@@ -1243,6 +1456,19 @@ export async function createFlora({
      *  raise a lattice can carry and one an instance budget eats. */
     stats.caps = Object.fromEntries(sets.map((s) => [s.mesh.name, s.max]));
     stats.capped = sets.filter((s) => s.mesh.count >= s.max).map((s) => s.mesh.name);
+    /** T-0214. What each set was ASKED for this pass, and what it had to refuse.
+     *  A set sitting on its cap is not by itself a fault — a set that refused
+     *  four hundred inflorescences the records asked for is, and until this the
+     *  two looked identical from outside. `shortfall` carries only the sets with
+     *  something in them, so an empty object is the assertion worth making. */
+    stats.demand = Object.fromEntries(sets.map((s) => [s.mesh.name, s.demand()]));
+    /** Triangles ONE instance of each set costs, so a shortfall in instances can
+     *  be priced in the unit the frame budget is kept in without re-deriving an
+     *  archetype's geometry outside the module that built it. */
+    stats.trisPer = Object.fromEntries(sets.map((s) => [s.mesh.name, s.tris]));
+    stats.shortfall = Object.fromEntries(sets
+      .map((s) => [s.mesh.name, s.demand() - s.mesh.count])
+      .filter(([, short]) => short > 0));
     stats.triangles = sets.reduce((a, s) => a + s.mesh.count * s.tris, 0);
     stats.drawCalls = sets.filter((s) => s.mesh.count > 0).length;
   }
@@ -1297,6 +1523,10 @@ export async function createFlora({
         forbShare: z.forbShare,
         forbShareWet: z.forbShareWet,
         shrubShare: z.shrubShare,
+        /** T-0282. The shrub stratum's own over-water share, the one of the four
+         *  `shareOf` deals that was never exported. Without it the ceiling
+         *  declaration cannot see a quarter of the lattice it exists to state. */
+        shrubShareWet: z.shrubShareWet,
         /** The sum each is dealt off, so a reader can tell a share that is
          *  clamped from one that is small. `null` for the matrix by
          *  `SLOT_BASIS` — its slot count is `matrixShare` above.
@@ -1308,7 +1538,19 @@ export async function createFlora({
          *  ate the rest of it without re-deriving either. */
         forbDensity: z.dry.forbs.densityHigh,
         forbDensityMid: z.dry.forbs.density,
+        /** T-0019. The same sum on the WET side of the waterline, which nothing
+         *  outside this module could read: `forbShareWet` is clamped exactly as
+         *  `forbShare` is, so a wet layer sitting on the ceiling was
+         *  indistinguishable from one tuned to it. Four of the ten communities
+         *  plant a different list over water, and two of them are among the
+         *  layers the clamp binds. */
+        forbDensityWet: z.wet.forbs.densityHigh,
         shrubDensity: z.dry.shrubs.density,
+        /** T-0282. And the sum behind `shrubShareWet`, for the same reason
+         *  T-0019 exported `forbDensityWet`: a clamped share is one plant per
+         *  slot whatever the slot is, so the density is what says how far a
+         *  layer is from the ceiling and how much of its record it loses. */
+        shrubDensityWet: z.wet.shrubs.density,
       }));
     },
     /** The lattice/fade rings and the rebuild step, for the gate that checks a
@@ -2835,11 +3077,32 @@ function instSet(name, geometry, material, max) {
 
   const tris = (geometry.index ? geometry.index.count : geometry.attributes.position.count) / 3;
   let n = 0;
+  /**
+   * T-0214. How many instances this set was ASKED for over the pass, against
+   * the `n` it drew. A set at its cap refuses silently — `push` returns false
+   * and the caller stops — so before this counter the difference between a set
+   * that had nothing to draw and one that was cut off mid-plant was invisible
+   * from outside the module, and the only way to see it was to notice that
+   * `mesh.count` happened to equal `max`. That reads as a coincidence, and at
+   * two of the nine head sets it was not one.
+   *
+   * It counts DEMAND, not refusals: every push attempt, plus whatever the
+   * caller abandons on a refusal and tells us about through `skip`. So
+   * `want - n` is the shortfall in instances, by name, and an allocation can
+   * be sized against it instead of against a guess.
+   */
+  let want = 0;
   return {
     mesh,
     tris,
     max,
-    reset() { n = 0; },
+    /** Instances asked for since the last `reset` — see `want`. */
+    demand() { return want; },
+    /** Instances the caller gave up on after a refusal, so the demand figure
+     *  is the whole of what the records asked for and not the part that was
+     *  attempted before the set filled. */
+    skip(k) { want += k; },
+    reset() { n = 0; want = 0; },
     /** The ring every following push is drawn on, `[outer, band, inner,
      *  innerBand]`. A head set is pushed to from two different rings in one
      *  rebuild, so this is per-push state rather than per-set. */
@@ -2856,6 +3119,7 @@ function instSet(name, geometry, material, max) {
      * @returns {boolean} false when the cap is reached — the caller stops.
      */
     push(e, y, n2, yaw, height, spread, arch, r, g, b, conf2, tilt = 0, tiltAz = 0, rise = 0) {
+      want++;
       if (n >= max) return false;
       if (tilt !== 0) {
         // The yaw is NOT passed to the Euler, and that is R-BUG7. It is the
@@ -2970,14 +3234,21 @@ function placeCard(set, sp, zone, e, y, n, rng) {
  */
 function placeFarCard(set, sp, zone, e, y, n, rng, band) {
   const u = 0.45 + 0.55 * rng();
-  const h = (sp.height[0] + (sp.height[1] - sp.height[0]) * u) * band.lift;
+  const plantH = sp.height[0] + (sp.height[1] - sp.height[0]) * u;
+  const h = plantH * band.lift;
   const w = band.wide[0] + (band.wide[1] - band.wide[0]) * rng();
   const c = tint(sp, rng(), rng()).map((x) => x * patchOf(e, n));
   const m = zone.matColor;
-  set.push(e, y, n, 0, h, w, 0.5 + rng(),
+  // The PLANT's height is returned, not the card's. `band.lift` widens and
+  // lifts an aggregate so it reads as several metres of matrix rather than one
+  // clump (L137); a flower hung off that lift would stand a hand's breadth over
+  // the plant that is supposed to be carrying it. Zero says the set was capped
+  // and nothing was drawn here, so nothing may be hung off it either — the same
+  // contract `placeGraminoid` and `placeForb` keep with `maybeHead`.
+  return set.push(e, y, n, 0, h, w, 0.5 + rng(),
     c[0] * 0.38 + m[0] * 0.62,
     c[1] * 0.38 + m[1] * 0.62,
-    c[2] * 0.38 + m[2] * 0.62, sp.conf);
+    c[2] * 0.38 + m[2] * 0.62, sp.conf) ? plantH : 0;
 }
 
 function placeForb(set, sp, e, y, n, rng) {
@@ -3100,7 +3371,13 @@ function maybeHead(heads, sp, e, y, n, rng, plantH, ring) {
       // inflorescences ring its stem instead of all leaning one way.
       a,
       foot,
-    )) return;
+    )) {
+      // T-0214. The set is full and this plant loses the rest of its
+      // inflorescences. Say how many, so the shortfall is a number with a name
+      // on it rather than a set that silently happens to sit on its ceiling.
+      set.skip(many - i - 1);
+      return;
+    }
   }
 }
 

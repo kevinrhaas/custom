@@ -1,7 +1,7 @@
 ---
 id: T-0259
 title: Reading the Democrat, part two: July to December 1834
-state: open
+state: split
 epic: PAPERS
 requested_by: owner
 seen: false
@@ -9,9 +9,9 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-08-27
-closed: null
+closed: 2026-08-28
 pr: null
-claimed_by: null
+claimed_by: run 8/28/2026, 10:44:41 AM CT
 blocked_on: T-0257
 needs_bake: false
 ---
@@ -58,3 +58,21 @@ branch, never a silent overwrite; both mentions stand with their dates).
 - The gazetteer recompiles green; new merges all carry `merge_rule`.
 - The PR states counts: claims, persons (letter-list vs corroborated),
   businesses, placements by class.
+
+## Split, 2026-08-28 — measured, not guessed
+
+Claimed as one `M` run. The run read the first issue, 1834-07-02, before committing to
+the whole range and found the shape of the work: six segmenter columns per page with two
+of them alternating line by line through nearly every advertising column, so a single
+advertisement survives as two cut halves in two different columns and has to be
+reassembled from both. One issue carries on the order of forty claims across four dense
+pages. Twenty-six issues of that is not one demonstration.
+
+Split into six monthly pieces — T-0289 (July) through T-0294 (December) — which hold
+this ticket's exact place in QUEUE.md. Months are the seam because the standing
+advertisements and the post-office letter lists run in monthly cohorts: a run that reads
+one month carries the context of every ad in it. The rulings, the OCR-judgment rule and
+the acceptance clause are carried into each child verbatim.
+
+The same measurement applies to T-0258 and T-0260, which were sized the same way and are
+not this ticket's to re-size.

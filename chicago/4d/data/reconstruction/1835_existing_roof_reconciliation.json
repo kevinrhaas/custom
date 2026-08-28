@@ -788,6 +788,17 @@
       "reasoning": "Open timber street crossing, not a roof — the same reading as its sibling slough_log_bridge. T-0129."
     },
     {
+      "structure_id": "north_water_slough_crossing",
+      "district": "north",
+      "roof_count": 0,
+      "inventory_eligible": false,
+      "inventory_roof_count": 0,
+      "likely_family": null,
+      "substitutes_anonymous_slots": 0,
+      "confidence": "high",
+      "reasoning": "Open log street crossing, not a roof — the same reading as both its siblings, and the first of the three on the north side of the river. T-0254."
+    },
+    {
       "structure_id": "south_branch_raft_bridge",
       "district": "west",
       "roof_count": 0,

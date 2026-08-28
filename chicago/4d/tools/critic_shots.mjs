@@ -110,17 +110,23 @@ const ENTRY = PUBLISHED ? '/walk/' : '/renderers/web/index.html';
 /**
  * THE STATIONS.
  *
- * The eight scene anchors come from `data/scenes/1835.json` and are driven by
- * `goTo`, so the harness cannot drift from the viewpoints a visitor is offered.
+ * The scene anchors come from `data/scenes/1835.json` and are driven by `goTo`,
+ * so the harness cannot drift from the viewpoints a visitor is offered. There
+ * were eight when this was written and there are ten now; the list is read, not
+ * counted here.
  *
- * The three prairie-sweep stations are poses, not anchors, and they are
- * RE-ESTABLISHED rather than recovered: the 2026-08-10 sweep's own coordinates
- * were never committed, so these are new stands chosen against the committed
- * heightfield to serve the same three briefs the sweep recorded — an open
- * prairie view, an open-sky control, and the water's edge where zone 1 cordgrass
- * is specified. Numbers taken here are therefore NOT comparable to the sweep's
- * per-station figures; they are this harness's own baseline. Elevations quoted
- * below are read from `data/terrain/epochs/e1834_harbor_cut/heightfield.json`.
+ * The POSE stations below are not anchors. Three of them are the prairie-sweep
+ * stands, RE-ESTABLISHED rather than recovered: the 2026-08-10 sweep's own
+ * coordinates were never committed, so these are new stands chosen against the
+ * committed heightfield to serve the same three briefs the sweep recorded — an
+ * open prairie view, an open-sky control, and the water's edge where zone 1
+ * cordgrass is specified. Numbers taken here are therefore NOT comparable to the
+ * sweep's per-station figures; they are this harness's own baseline. The fourth,
+ * `public_square`, is a pose for the opposite reason — it stands on a block a
+ * visitor is not offered an anchor to, and T-0224 added it because a change to
+ * the whole of that block's sward could not be shown in a picture. Elevations
+ * quoted below are read from
+ * `data/terrain/epochs/e1834_harbor_cut/heightfield.json`.
  */
 const SWEEP_STATIONS = [
   {
@@ -138,6 +144,42 @@ const SWEEP_STATIONS = [
     // from timber". The sweep's control shot existed to separate a tuned view
     // from a fixed one; this one keeps that job and looks away from the town.
     pose: { local_e: -250, local_n: -150, yaw_deg: 90 },
+  },
+  {
+    id: 'public_square',
+    label: 'The public square, from its south-east corner, looking west-north-west',
+    // Ground 0.885 m, standing INSIDE the block bounded by Randolph, Clark,
+    // Washington and LaSalle -- the one block this project holds was never
+    // private building ground (`data/reconstruction/1835_reserved_ground.json`).
+    //
+    // WHY HERE, AND WHY THIS BEARING. The stand looks across the block's long
+    // diagonal, which is the longest run of reserved sward in the town, and the
+    // bearing is the BISECTOR of the two county buildings that stand on 1 July
+    // 1835: the estray pen at the south-west corner, 81.8 m off at 264.9 deg,
+    // and the log jail at the north-west corner, 131.2 m off at 319.9 deg. They
+    // are 55.1 deg apart and the yaw sits midway, so each is 27.5 deg off centre.
+    // Projected through the renderer's own camera, that puts them at x = 246 and
+    // x = 1047 of 1280 on the desktop frame (half-FOV 39.8 deg, comfortable) and
+    // at the extreme left and right edges of the portrait frame (half-FOV
+    // 28.2 deg, 0.7 deg of margin). SO: THE DESKTOP ROW READS THE GROUND AND THE
+    // TWO BUILDINGS, THE MOBILE ROW READS THE GROUND. No stand on this block can
+    // do better -- its corners are 108 m apart and the buildings sit on two of
+    // them.
+    //
+    // THE THIRD COUNTY BUILDING IS NOT HERE, AND MUST NOT BE LOOKED FOR. The
+    // first Cook County court-house was erected on the north-east corner in the
+    // FALL of 1835 (`data/structures/cook_county_courthouse_1835.json`,
+    // documented range from 1835-10-01), so it is dated out of a 1 July scene and
+    // is absent from the registry. A frame that showed it would be the bug.
+    //
+    // WHAT IT IS FOR. T-0027 replanted this whole block from wet prairie to sedge
+    // meadow and nothing in this project could show that in a picture; the county
+    // buildings, the town's only public ones, had no baseline either. Flower load
+    // and the depth-band grain are read here over reserved sward with no street,
+    // wall or roof under the near band, which makes this the third station after
+    // the two prairie stands where the flower denominator is vegetation (harness
+    // note 3 in docs/STATUS.md).
+    pose: { local_e: 550, local_n: -370, yaw_deg: 292 },
   },
   {
     id: 'river_bank',
@@ -169,7 +211,7 @@ if (PICK.length && !ALL_STATIONS.length) {
 /**
  * `--stations a,b,c` — shoot a subset, WHILE ITERATING ONLY.
  *
- * The full rig is eleven stations at two viewports and takes about twelve
+ * The full rig is fourteen stations at two viewports and takes about fifteen
  * minutes, which is the right cost for a baseline and the wrong cost for the
  * tenth trial of a constant. A phase that has to wait twelve minutes to see a
  * number tunes by eye instead, which is the failure G0 exists to end.
@@ -364,7 +406,7 @@ async function round(viewportName, viewport, dir) {
       // Eight frames: the first carries the teleport and the rest let the
       // camera-driven rebuilds settle — the flora rings, the tree horizon and
       // the terrain's own solve all re-run on arrival, and three frames left
-      // four of the eleven stations still moving between rounds. They advance no
+      // four of the then-eleven stations still moving between rounds. They advance no
       // time; the clock is held, so this costs frames and not a second of wind.
       for (let i = 0; i < 8; i++) await api.capture(4);
       const stats = api.stats();

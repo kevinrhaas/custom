@@ -1,7 +1,7 @@
 ---
 id: T-0246
 title: log_jail stands on two steps of Randolph Street's new plank walk, the same OSM-kerb fault Lake and South Water answered
-state: open
+state: done
 epic: META
 requested_by: loop
 seen: false
@@ -9,9 +9,9 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-08-27
-closed: null
-pr: null
-claimed_by: null
+closed: 2026-08-28
+pr: 474
+claimed_by: run 8/28/2026, 10:49:12 AM CT
 blocked_on: null
 needs_bake: false
 ---

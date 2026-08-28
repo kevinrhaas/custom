@@ -1,7 +1,7 @@
 ---
 id: T-0156
 title: The interior/silhouette discriminator counts edges internal to a layer as interior
-state: open
+state: done
 epic: META
 requested_by: loop
 seen: false
@@ -9,9 +9,9 @@ effort: S
 legacy_id: null
 parent: null
 opened: 2026-08-23
-closed: null
-pr: null
-claimed_by: null
+closed: 2026-08-28
+pr: 471
+claimed_by: run 8/28/2026, 10:47:33 AM CT
 blocked_on: null
 needs_bake: false
 ---

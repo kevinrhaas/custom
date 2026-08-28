@@ -336,7 +336,7 @@ rationed.**
 | — | RENDERING | ~~K56~~ | **SEEN** | **DONE 2026-08-17 — 16 sprays → 32, shell fill 17.7 % → 30.9 %, and the lowest band arches down over the stems.** The size did NOT move: a spray is a leaf MASS, not a leaf, so shrinking it would have bought a smaller plate with more sky round it. Follow-up **K57** |
 | — | RENDERING | ~~K57~~ | **SEEN** | **DONE 2026-08-17 — the question cannot be asked at a fixed plate area, because the plates are what carries the RECORDED clump width.** 64 sprays at the shipped total area buy 8.5 points of cover and pay **reach 0.990 → 0.890** of the recorded half-width for them, plate 37 → 26 cm. So the grain trades against TRIANGLES: at the shipped plate size, 32 → 48 → 64 sprays cover **36.9 % → 46.9 % → 51.3 %** of the outline for 72 → 104 → 136 triangles, and **48 is where the return halves**. Stem cover 40.9 % → 51.3 %, 38.8 % of the frame changed. Two findings: **K56's 17.7 %/30.9 % were taken by a script nobody committed** — the instrument is `tools/measure_spray_grain.mjs` now, reproducing K56's plate area to the digit off `renderers/web/js/shrub-grain.js`, which imports nothing; and the wet woods' ring is **167 shrubs, not the 156 K54 and K56 quote**. Opened **K59**, which is now DONE and spent the 4.4 points: read K59's box before timing anything in a browser here. Read this one before shrinking any archetype plate |
 | — | RENDERING | ~~K55~~ | **SEEN, and only just** | **DONE 2026-08-17 — the same fault runs BOTH WAYS, and for the herbs it ran the other one.** A cover fraction read as a count over-planted the 2.25 m dogwood by 8.8× and UNDER-planted the riverbank's 10 cm ground layer by **96×**: `z05` 0.025 → 2.407 plants/m², `z03` 0.123 → 1.254, forb slots **781 → 923** over the eight stations, `z03`'s own layer **31 → 84**, matrix and shrub unchanged to the second decimal. Three findings: the sign of the fault is decided by whether one plant covers more or less than a square metre, so the queue inherited "over-planting" from the case measured first; **three of the parcel's six named rows were never faults** — the `basis` column was printing `subsetOn`'s default argument and the matrix slot count comes off `cover.matrix_fraction`; and the count moved a fifth while the frame moved **0.15 %**, with `z10_settled_town` — the parcel's predicted visible half — not moving at all, because its share was clamped before and after. Opened **K58**. Read its box before quoting a forb count or calling a mixed list a defect |
-| **1** | RENDERING | **K58** | **SEEN** | **six forb layers of ten now ask for more plants than the lattice can carry**, so their drawn cover is bounded by `TUNE.forb` and not by any research figure — `z06_dense_forest` draws 40.1 % of a recorded 94.9 % for that reason and not for want of data. Opened 2026-08-17 by K55, which took the clamped count from four to six |
+| — | RENDERING | ~~K58~~ | **SEEN** | **DONE 2026-08-28 as T-0019 — it is NINE forb layers of ten, not six, and the shortfall is now declared rather than derived.** `tools/forb_clamp_baseline.json` names every (community, side) the 0.346 plants/m² lattice ceiling binds, and `measure_sward_draw.mjs --gate` fails when the set drifts. K58's six were counted at the recorded MIDPOINTS; T-0034 deals the forb stratum off the upper bound, so `z06_dense_forest` asks **66.381 /m² and draws 0.5 %**, the marsh 22.000 and 1.6 %, and the two prairies and the lakeshore joined the clamp. The marsh's WET side is measured for the first time. No ceiling was raised: every route out buys plants with geometry in the two layers already carrying the most, and the detail ceilings are breached on dev. Read its box before quoting a forb density or the count of clamped layers **AMENDED 2026-08-28 by T-0282 — it is TEN, and the tenth is a stratum the declaration could not see.** `flora.js` deals four (stratum, side) lotteries through the same `shareOf` against the same ceiling; T-0019 declared the forb ones. `z06_dense_forest`'s SHRUB layer asks 0.403 clumps/m² against 0.346 and has been over it since K54 named it, and `shrubShareWet`/`shrubDensityWet` were not exported at all. The declared identity is now (community, stratum, side), and `docs/LIBERTIES.md` **L201** is the visitor's copy of the table. |
 | — | TOWN | ~~K30(c)~~ | **SEEN** | **REFUTED 2026-08-22 (T-0009, K30(d)) — DO NOT RUN THIS REPAIR.** The 29 buildings are still drawn standing in the roadway, but not for this reason: `--anchors` finds the record's point at the BACK corner on **all 17** of the deep records and on the kerb face on **none** of them, so the street-facing FACE is what was placed on the frontage and reflection would take twelve documented buildings a full depth behind their own frontage. The cause is the committed `south_water` centreline, deliberately shifted 4.3–8.8 m south of the control the placements were offset from. **What to do about it is the owner's, and T-0009 is blocked on him** |
 | **2** | RENDERING | **R-W2b** | **SEEN** | wire R-W2a's committed material sheet into the params and records — 1,353 materials measured out of the shipped GLBs and currently reaching nothing. **This is what repaints the town**, and R-W2 owns the worst-scored axis on R-G1's whole table (texture, **1.4**) |
 | — | RENDERING | ~~R-W2c~~ | **SEEN** | **DONE 2026-08-22 (T-0008) — the stack is not the roof.** 157 stacks on 143 buildings now carry a masonry material of their own: **brick on 112 framed buildings**, off `frame_tavern`'s committed Petford value moved into the sheet, and a **cat-and-clay daub on 31 log cabins** at the midpoint of the two committed values that bound it. `docs/RESEARCH/chimneys.md` is the fabric argument; L168 records the invention. **Three findings.** It was NOT a one-file fix and it was not palette-only: the two dispositions the archetypes had already argued in prose are two materials, and the fabric had to be researched before either could be chosen. **It cost NO draw call** — `buildings.js::materialKey` batches on maps and flags, never on colour or roughness, both of which ride per vertex, so 113 calls before and 113 after at `south_water`. And R-W2a's *219 stacks on 199 buildings* does not reproduce: the resolved parameters of the committed masters give **157 on 143** across four archetypes. Left standing: the fort (**T-0137**) and the placeholders' second brick (**T-0138**) |
@@ -961,16 +961,44 @@ per-command ceiling (§ THE RUN BUDGET). The mobile half ran on the published mi
 passed, 2 failed**, and both failures are the road-contrast bands `dev` already carries red —
 see `docs/STATUS.md` § *Landed with two bands red*. This parcel changes no 3-D rendering.
 
-### K52(b) — extend the read census to `data/residents/` · **UNCLAIMED · UNSEEN · opened 2026-08-17 by K52 · Effort: S–M**
+### K52(b) — extend the read census to `data/residents/` · **DONE 2026-08-28 (T-0021) — the census found 113 person rows reading `[object Object]`, which is what a figure looks like when it is shipped, fetched, rendered and still not read**
 
-`tools/measure_layer_reads.py` covers `flora` and `fauna` by name — its kinds, its baseline
-and its self-test's negative control are all written around those two — so `residents` gaining
-a reader today fired nothing. K52 answered the question by hand (finding 1 and finding 2
-above, both measured off the join); what it did not do is put the answer under a gate, so the
-next figure this layer adds can go unread exactly as the last 20 did.
+`tools/measure_layer_reads.py` covered `flora` and `fauna` **by name** — its kinds, its
+baseline and its self-test's negative control all written around those two — so `residents`
+gaining a reader on 2026-08-17 fired nothing. The layer list is one table now (`LAYER_KINDS`),
+read by the record walk, the citation census and assertion 3a alike, and the self-test carries
+a new control for the shape of the hole itself: **every layer with a read map is a layer this
+file walks.** A blind gate and a wrong gate are the same outcome from a visitor's side.
 
-**It is UNSEEN and carries no exemption of its own.** Take it the way K52 was taken, or behind
-a parcel that ends in something visible.
+**69 residents figures classified: 64 `shown`, 0 `mesh`, 5 unread.** None is `mesh` and none
+ever will be — L1 stands, v1 draws no human figures, so no figure of a person moves a vertex.
+
+**AND THE CENSUS FOUND WHAT A CENSUS IS FOR.** Three of a person's figures —
+`age_on_scene_date`, `birth_year` and `name_basis` — are graded claim blocks
+(`{value, confidence, note, sources}`) and `personHtml` was handing all three **whole** to a
+text renderer. **113 of the 209 person rows read "How this person is named — [object Object]"**
+and nine said it twice more for the age and the birth year. Every assertion in the stage-9
+suite passed throughout, because a card that renders the wrong string still renders a string;
+what was lost is the pool an invented name was drawn from, on the 113 people whose names this
+project invented. They go through `claimRow` now, with the swatch, the reasoning and the
+citations every other graded claim on the card gets, and three smoke checks hold it — each one
+verified to FAIL against the old render path before it was kept.
+
+**Two smaller holes, wired in the same commit.** `counts.by_grade` reached nothing behind the
+sentence *"every one of them graded"*, which is true and tells a reader nothing; the note now
+gives the tally (76 attested, 20 inferred, 113 reconstructed). And `vocabulary.sexes` was the
+one closed set the panel withheld while showing the value it governs.
+
+**Five figures reach nobody and stay that way, each with a written reason in the bank**
+(`refused_because`, new in `tools/layer_reads_baseline.json`): `counts.households` and
+`households[].present_on_scene_date` and the household's own `division` are denormalised
+copies of things already shown — showing the poorer copy would be showing less — and
+`head`, in both copies, is a foreign key into `persons[].id` whose fact already reaches the
+visitor as that person's `relationship`. A refusal is **not a permission**: the entries stay
+banked, assertion 4 still fails on a new one and assertion 5 still fails if one leaves.
+
+**Files:** `tools/measure_layer_reads.py` · `tools/layer_reads_baseline.json` ·
+`renderers/web/js/residents.js` · `tools/smoke_renderer.mjs` (stage 9).
 
 ### K53 — every shrub in the town is drawn as a giant forb · **DONE 2026-08-17 — the archetype is in, the recorded width is drawn, and the reason only fourteen of them stand is measured**
 
@@ -1422,7 +1450,11 @@ The ratio is the answer, and it argues in the safe direction: a software rasteri
 fill-sensitive renderer available, so it is the harshest witness for the one risk here (overdraw
 1.33 → 1.56). The reading L121, L156 and L174 all still want — a real low-end machine — is not this.
 
-### K58 — six forb layers of ten now ask for more plants than the lattice can carry · **UNCLAIMED · SEEN · opened 2026-08-17 by K55 · Effort: M**
+### K58 — six forb layers of ten now ask for more plants than the lattice can carry · **DONE 2026-08-28 as T-0019 — NINE of ten, and declared rather than fixed**
+
+**Answered.** The count in this box's title is wrong twice over and both errors are worth keeping: it is **nine** populated forb layers of ten, and the densities below are the recorded MIDPOINTS while the renderer has dealt the forb stratum off each record's UPPER BOUND since T-0034. Measured 2026-08-28, `tools/measure_sward_draw.mjs --source`: `z06_dense_forest` asks **66.381** plants/m² against 44.545 here and draws **0.5 %** of it; `z04_marsh` 22.000 against 14.5 (and its WET side the same, measured for the first time); `z10_settled_town` 11.866 against 7.760; and `z08_lakeshore` (0.630), `z02_mesic_prairie` (0.408) and `z01_wet_prairie` (0.407) have joined the clamp since. `z09_sand_prairie` alone fits.
+
+**Route taken: the third one this box names — print the shortfall — and it is now a declaration with a gate on it** rather than a printed line: `tools/forb_clamp_baseline.json`, asserted by `measure_sward_draw.mjs --gate`, which fails on a layer joining the clamp, a layer leaving it, the ceiling moving, or an asked density drifting. Shown reading red three ways. **No ceiling constant was raised**: the other two routes buy plants with geometry, most of it in `z06` and `z10`, and the `full` and `balanced` detail ceilings are breached on dev (T-0223, T-0229). See `docs/STATUS.md` 2026-08-28. The original box follows.
 
 `forbShareOf` is `min(1, density × cell² / perCell)`, and the clamp is a lattice ceiling of one
 plant per slot. K55 took the number of communities sitting ON that clamp from four to six — `z05`
@@ -2760,7 +2792,7 @@ filed together only because RENDERING §4 groups them:**
 
 | | parcel | scope |
 |---|---|---|
-| **R-W3a** | **the AO cage rule** | §1 item 10: the bake works end to end and fails because clapboard courses and window reveals a centimetre off the wall occlude each other. ~~mean 0.265, 69 % of texels below half~~ — **both figures void, T-0158; read the correction below before claiming this, and see T-0227.** It needs a **low-poly cage**, not tuning. **Files:** `docs/RESEARCH/ao-cage.md` (new) · `generators/archetypes/*.py` (cage emission). |
+| **R-W3a** | **the AO cage rule** | §1 item 10: the bake works end to end and fails because clapboard courses and window reveals a centimetre off the wall occlude each other. ~~mean 0.265, 69 % of texels below half~~ — **both figures void, T-0158.** **T-0227 answered the question on the frame, 2026-08-28: yes, far too dark — the Sauganash's own pixels fall from mean L\* 33.8 to 11.1 with 6,532 of them at literal black. Correction 3 below carries the tables, and the acceptance is now a frame reading, not an atlas mean.** It needs a **low-poly cage**, not tuning. **Files:** `docs/RESEARCH/ao-cage.md` (new) · `generators/archetypes/*.py` (cage emission) · `tools/measure_ao_frame.mjs` (the before/after reading). |
 | **R-W3b** | **cascaded shadows** | `renderers/web/js/world.js` only — today one 1024² map on a ±60 m follow ortho, nothing beyond 60 m. **Touches no generator and no record**, so it shares nothing with 3a and can run beside it. **SPLIT 2026-08-17 into R-W3b(a) — the reach of the one map, DONE — and R-W3b(b) — true cascades, which (a)'s measurement says is now the only route past ±120 m that does not start by cutting batches.** |
 | **R-W3c** | **openings** | The silhouette failure R-G1 names: no reveal, no sill, no sash, no muntin anywhere in the set, so the 6-over-6 rhythm the Green Tree plate documents does not exist. Archetype geometry. |
 
@@ -2794,6 +2826,38 @@ changes the parcel's target.**
    black). **T-0227 answers it from a rendered frame before this parcel builds a cage to improve
    a figure nobody has measured correctly**, and carries the unwrap with it: an atlas two-thirds
    empty is two-thirds of every occlusion map's bytes spent on nothing.
+
+3. **AND THE ANSWER, T-0227, 2026-08-28: yes — and the atlas statistic understates it badly.**
+   `sauganash_hotel` baked with `--ao` (the fixed export: baked 0.1665 -> exported 0.1665, 0.0 %
+   drift), swapped into the source tree, and shot at both Sauganash anchors and both viewports
+   against the same tree without it. `tools/measure_ao_frame.mjs` reads the building's own
+   visible pixels — the structures mask intersected with what moved between the two conditions —
+   so the reading is of the walls rather than of the frame or of the atlas:
+
+   | station | viewport | pixels read | mean L* without → with | L* < 20 | literal black px |
+   |---|---|---|---|---|---|
+   | `sauganash` | desktop | 87,893 | **33.8 → 11.1** | 31.1 % → **88.9 %** | 0 → **6,532** |
+   | `sauganash` | mobile | 20,010 | 33.4 → 11.1 | 31.8 % → 89.5 % | 0 → 1,289 |
+   | `sauganash_wing` | desktop | 99,681 | 39.1 → 17.9 | 15.4 % → 64.9 % | 0 → 3,781 |
+   | `sauganash_wing` | mobile | 17,511 | 41.9 → 20.6 | 4.9 % → 56.5 % | 0 → 340 |
+
+   The whole-frame critic table agrees from the other side: `literal black px` 0 → 6,841 and
+   `shadow darkest decile L` 4.67 → 2.00 at `sauganash` desktop, with triangles unchanged.
+   **A documented white wall loses two thirds of its lightness and puts thousands of pixels at
+   0,0,0.** Why so much worse than "0.5358 mean over written texels" suggests: glTF occlusion
+   scales the INDIRECT term only, and at the scene's 70.5° sun the street-facing elevations a
+   walker sees are carried by little else (§1 items 9–11) — so occlusion near 1 there removes
+   essentially all of their light. **The parcel keeps its cage and loses its target: acceptance
+   is `measure_ao_frame.mjs` showing the walls hold their lightness, not an atlas mean moving.**
+
+   **Two costs this parcel now inherits, measured on that one asset.** The atlas is **31.1 %
+   occupied** — 81,458 written texels of 262,144, the master 94,420 → 202,292 bytes (+114 %) —
+   so the ~107 KB occlusion PNG is two-thirds empty space before any decision about resolution.
+   And **`aoMap` is part of `materialKey`** in `renderers/web/js/buildings.js`, so an asset
+   carrying its own map cannot batch with one that does not: **+2 draw calls at every station
+   and both viewports for a single building**, against a draw-call ceiling already breached.
+   A per-asset map is therefore a batching decision as well as a byte-budget one (T-0285), and
+   the empty two thirds of the atlas is its own ticket (T-0286).
 
 **And a cost figure the bake half has to answer first.** With the export working, one asset's
 master goes **94,420 → 202,292 bytes (+114 %)**: a 512×512 occlusion PNG carrying real variation
@@ -3507,7 +3571,11 @@ constraint ⇒ set the flag": three settler buildings that reasoned their way to
 writing are not defects, and a gate that could not tell them from finding 1 would have been
 a gate arguing for its own conclusion. **Three of the nine flagged structures — `beaubien_barn`,
 `clybourn_slaughterhouse`, `robert_kinzie_store` — state no reason at all**, which is the
-open end of this parcel and is left open rather than guessed at: see K35.
+open end of this parcel and is left open rather than guessed at: see K35. — **CORRECTED
+2026-08-28 by K35 / T-0025: it was ONE of the three, not three.** Two of them said it at
+this parcel's own commit, in a field this sentence did not read: the barn in `research_note`,
+the slaughterhouse in `function.note`. Only `robert_kinzie_store` was bare. The K35 box
+below carries the re-measurement and the gate that now holds it.
 
 **WHAT SHIPPED.** `tools/measure_review_constraint.py`, in `check.sh`, with **four absolute
 assertions and no ratchet** — a ratchet is the instrument for a fault being paid down, and
@@ -3534,31 +3602,79 @@ green against the published mirror. The desktop half was not run and is not clai
 needs ~13 minutes against this harness's 10-minute per-command ceiling (see the run-budget
 box at the top of this file). This parcel changes no renderer file and no geometry.
 
-### K35 — three records carry the standing constraint and say why nowhere · **UNCLAIMED · opened 2026-08-16 by K34 · Effort: S — a research question, then possibly a field**
+### K35 — three records carry the standing constraint and say why nowhere · **DONE 2026-08-28 (T-0025) · one of the three was bare, and the census that named three had read one field of a record whose reasoning is spread over four**
 
-`beaubien_barn`, `clybourn_slaughterhouse` and `robert_kinzie_store` carry
-`review_required: true` and no text anywhere in the record says what for. Six of the nine
-flagged structures do explain themselves in prose, and three settler buildings explain in
-prose why they are deliberately NOT flagged (K34 finding 3) — so the reason is *usually*
-written down, by convention rather than by rule.
+**Phase:** lane 2 · **Effort:** S · one data record, one gate, docs — no renderer file, no
+geometry, no coordinate, no bake
 
-**The question is not "why are these three flagged".** It is whether a bare boolean is the
-right carrier for a commitment this project puts above the work. Households have
-`touches_removal` beside `review_required` and structures have nothing equivalent, so on the
-building side there is no field in which a reason could live even if somebody wrote one.
+**THE FIRST THING THIS PARCEL DID WAS RE-MEASURE ITS OWN PREMISE, AND THE PREMISE WAS WRONG.**
+K34 finished by naming `beaubien_barn`, `clybourn_slaughterhouse` and `robert_kinzie_store` as
+carrying the flag with *"no text anywhere in the record"* saying what for. Checked against the
+committed bytes at K34's own commit (`23bb280b`), reading the WHOLE record rather than
+`research_note`:
 
-Three routes, and the choice belongs with the owner rather than with a gate:
+| record | at K34's commit | where |
+|---|---|---|
+| `beaubien_barn` | **said it** | `research_note` — *"REVIEW IS FLAGGED for the reason data/structures/jb_beaubien_homestead.json … give"* |
+| `clybourn_slaughterhouse` | **said it** | `function.note` — *"flagged for review with the rest of this record's Indigenous content rather than paraphrased away"* |
+| `robert_kinzie_store` | bare | — |
+| `council_house` (never named by K34) | **said it** | `function.note` — *"the reason it is flagged review_required: the events the sources attach to this building … are the removal"* |
 
-1. **Prose convention, asserted.** Require every flagged record to say something — K34's
-   assertion 1 already reads prose, so this is a small extension. Cheapest; also the weakest,
-   because "says something" is not "says why".
-2. **A `review_reason` string on the structure schema.** Explicit, greppable, and a schema
-   change across 9 records. Bake-free: a top-level structure field is not in
-   `generators/mesh_inputs.py`'s resolved-params recipe, so it stales no GLB — **but confirm
-   that against the placeholder records, whose `inputs_sha256` is the sha of the whole file.**
-   None of the nine is a `recon_*` placeholder today.
-3. **Leave it.** The flag is conservative in the direction that matters — it blocks — and an
-   unexplained block is not a hazard the way an unexplained claim is.
+So the convention was kept by **eight of nine** structures and not six, the one real gap sat
+behind two records that were not gaps, and a fourth record was credited with a silence it never
+had. The fault is not carelessness — it is the shape of these records. A building's reasoning is
+distributed across `function.note`, `position.note`, the per-attribute notes and `research_note`,
+and the one place a reader looks for a policy statement is the last of them. **`clybourn`'s
+sentence is in the field that names the man: "the Government butcher for the Pottawatomies", a
+treaty-provision post.** That is where the reason belonged.
+
+**THE ONE REAL GAP IS CLOSED, AND IT IS CLOSED WITH THE RECORD'S OWN ATTESTED BUSINESS.**
+`robert_kinzie_store` is not a shop that happened to stand near Native people: Andreas lists its
+keeper among the town's Indian traders (scan p. 235) and among those licensed to sell goods (scan
+p. 249), chicagology has it dealing in *"groceries and Indian goods"*, and the record's own `aka`
+carries the source's phrase — *"R. A. Kinzie, Indian trader"*. The trade that names the building
+is the trade the 1833 Treaty of Chicago ended, and the removal it ended in was under way six
+weeks after the scene date. The flag was already right; what was missing was the argument, and
+the argument was already inside the record in three fields that never said what it implied. The
+row agrees: `robinson_caldwell_cabins`, forty-odd metres along the same west-bank frontage,
+carries the flag for the same subject. **Nothing was regraded, no confidence moved, no source was
+added and the flag was not lifted** — lifting it is the claim that the consultation has happened,
+which assertion 5 already refuses.
+
+**ROUTE 1, ASSERTED — and route 2 is declined with a reason.** K34 left three routes and called
+the choice the owner's. The re-measurement decides it: a `review_reason` field would be a SECOND
+carrier for text that nine of nine records already write, and a second carrier for the same claim
+is the exact shape assertion 1 exists to catch (a record whose prose and whose field disagree).
+What the records needed was not a field, it was a reader that reads the record.
+
+`tools/measure_review_constraint.py` gains **assertion 6**: every record carrying the flag, at
+every layer, must (a) refer to it in one of the phrasings this dataset uses and (b) name the
+subject AGENTS.md places under the constraint — both in the record's own prose, wherever in it
+they fall. Record-level and not sentence-level on purpose: `cobweb_castle` opens *"THE RECORD IS
+FLAGGED review_required BECAUSE OF WHAT THIS BUILDING WAS"* and spends the next two sentences
+saying what that was, which is good writing and would fail a same-sentence rule. **K35's own
+objection to this route — "says something" is not "says why" — stands, and is answered the only
+honest way: the census PRINTS the sentence it matched under every flagged id.** The gate holds
+the shape of the claim; a reader judges the argument, and now has it in front of them without
+opening nine files.
+
+    structures       9 flagged of  349
+                     clybourn_slaughterhouse
+                       why: Andreas elsewhere calls Archibald Clybourne 'the Government
+                            butcher for the Pottawatomies' (scan p. 253), a treaty-provision
+                            post — recorded here because it is what the man was, and flagged
+                            for review with the rest of this record's Indigenous content …
+
+**Both halves were broken before the gate was trusted**, in memory against the real dataset: the
+flag phrasing scrubbed out of `robert_kinzie_store` (fires — *"carries review_required and its own
+text never says so"*), and the subject scrubbed out of `council_house` while its flag sentence
+stands (fires — *"refers to the flag … and names nowhere the subject"*). The restored tree passes.
+
+**WHAT IT DID NOT DO.** It moved no building, household or coordinate, built no geometry, and
+invented nothing — `docs/LIBERTIES.md` records inventions and there is none here. It did not give
+the visitor anything: a building held under the constraint still says so nowhere on the card a
+visitor opens, and the flag reaches the browser only as a console line in `scene-loader.js`. That
+is filed as T-0268 rather than smuggled in here.
 
 ### K36(a) — nothing compared a shipped derivative to the master it came from · **DONE 2026-08-16 · the site has 75 textures and the repository has none**
 
@@ -10142,6 +10258,43 @@ surfaces OF that layer — one crown behind another, a chimney against its own r
 against the house behind it. Those are silhouettes too, and 94–98 % of the "interior" count is
 made of them. What is left of R-BUG6 at `from_above` is: 21 px exactly coplanar (b), 0 px of
 self-fight (here), and the rest is the town's own edges being resampled.
+
+**2026-08-28 — THE INSTRUMENT NOW REPORTS THIS SPLIT ITSELF (T-0156).** Everything above was
+measured with a second tool and the measured tool was deliberately left alone, because closing a
+ticket by rewriting the instrument that measured it is the one move this project does not allow.
+Five days later `measure_tie_class.mjs` was still printing `INTERIOR TOTAL: ... the pixels where a
+layer fights ITSELF`, so anyone reading the instrument rather than this box read the refuted claim
+— and the column's name asserted it too. It now prints the split beside the count, from
+`tools/depth_field.mjs`: T-0013's discriminator, extracted so the two instruments cannot answer
+the same question differently. The column is called `SURROUNDED`, which is what it measures.
+
+**Nothing was re-thresholded and no baseline moved.** The surrounded counts are identical, pixel
+for pixel at all six layers, to the run taken immediately before the change. Read as above — the
+published mirror, `from_above`, 1280×800, 2 mm nudge, shadow map off by R-BUG6(a)'s repaired
+control, control 0 px and return 0 px — with both tools run the same afternoon on the same mirror:
+
+```
+                 measure_tie_class.mjs               diagnose_interior_flicker.mjs
+layer      surrounded  edge  reorder  same  nodepth   interior  edge  reorder  same  nodepth
+structures      421     402      0      0      19        421     402      0      0      19
+trees           231     218      0      0      13        231     218      0      0      13
+ground           66      65      0      0       1         77      74      0      0       3
+streets          10      10      0      0       0          —       —      —      —       —
+water             3       3      0      0       0          —       —      —      —       —
+flora             0       0      0      0       0          —       —      —      —       —
+```
+
+`structures` and `trees` agree pixel for pixel. `ground` does not, and the difference is the two
+tools' LAYER LISTS rather than the discriminator: a pixel is attributed to the FIRST layer whose
+footprint claims it, and `measure_tie_class` carries `streets`, `flora` and `water`, which
+`diagnose_interior_flicker` does not — so eleven pixels those layers own here fall to `ground`
+there. Both readings say the same thing about them.
+
+**The shares hold against 2026-08-23; the counts do not, and that is the town growing.**
+structures 370 → 421, trees 257 → 231, ground 78 → 77 over five days of content. The
+internal-edge share reads 95 / 94 / 98 % against 94 / 98 / 96 %, and the self-fight count is
+**0 in every layer on both dates** — this run's total is **0 of 731 surrounded pixels**. What
+this box claims is the share and the zero, and both survive a town that grew under them.
 
 ### R-BUG6(c3) — the PHONE's half of the same edges · **ANSWERED 2026-08-24 by T-0157 · MSAA now ships on every device**
 

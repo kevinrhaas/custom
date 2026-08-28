@@ -471,7 +471,7 @@ them exceeding two low stories"* — which is this fort and not Whistler's galle
 **What this does NOT do is rehabilitate `p4_0`.** The plate's staff was measured at 0.495 of the
 drawn wall run, over the gate, between the two roofed lanterned works T-0095 read as first-fort
 signature; that composition is refused whole, and the built staff takes its position from the
-model (the parade's centre) under **L200**, not from the sheet. Nor is Whistler's parade-centre
+model (the parade's centre) under **L204**, not from the sheet. Nor is Whistler's parade-centre
 staff the warrant — that fort is excluded, and the coincidence of two rectangles is not
 corroboration.
 

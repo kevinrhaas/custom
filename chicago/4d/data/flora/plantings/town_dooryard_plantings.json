@@ -52,8 +52,8 @@
       "id": "cobweb_castle_tree_1",
       "species": "populus_deltoides",
       "at_local_enu_m": [
-        803.48,
-        132.8
+        803.74,
+        131.83
       ],
       "height_m": 18.6,
       "confidence": "reconstructed",
@@ -129,8 +129,8 @@
       "id": "inf_boatman_cabin_north_tree_1",
       "species": "ulmus_americana",
       "at_local_enu_m": [
-        247.7,
-        121.4
+        245.55,
+        122.29
       ],
       "height_m": 18.5,
       "confidence": "reconstructed",
@@ -162,8 +162,8 @@
       "id": "inf_carpenter_dwelling_north_tree_1",
       "species": "ulmus_americana",
       "at_local_enu_m": [
-        377.52,
-        190.75
+        382.74,
+        189.79
       ],
       "height_m": 16.9,
       "confidence": "reconstructed",
@@ -1449,6 +1449,8 @@
     "recon_1835_blk_lake_clark_d3_02: no allowed ground for bush 1",
     "recon_1835_blk_lake_clark_d5_03: no allowed ground for tree 1",
     "recon_1835_blk_lake_clark_d5_03: no allowed ground for bush 1",
+    "recon_1835_blk_lake_franklin_d1_02: no allowed ground for tree 1",
+    "recon_1835_blk_lake_franklin_d1_02: no allowed ground for bush 1",
     "recon_1835_blk_lake_market_d1_05: no allowed ground for tree 1",
     "recon_1835_blk_lake_market_d1_05: no allowed ground for bush 1",
     "recon_1835_blk_lake_market_d3_03: no allowed ground for tree 1",
@@ -1560,5 +1562,5 @@
     "wright_building_to_let_b: no allowed ground for tree 1",
     "wright_building_to_let_b: no allowed ground for bush 1"
   ],
-  "research_note": "67 DOORYARD TREES AND 61 CURRANT BUSHES ACROSS 62 OF THE TOWN'S 140 DWELLINGS, EVERY ONE OF THEM DEALT BY THE RULE IN tools/generate_dooryard_plantings.py — no source counts any house's trees, so the honest shape is a rule that says why each house got what it got, re-derived on every commit. THE DEAL IS DELIBERATELY THIN: at most two trees and two bushes to a house, under half a town of houses drawing any tree at all, and the dense party-wall blocks refuse themselves (a stem must clear every committed footprint by more than the renderer's own margin, so a rowhouse yard offers no allowed ground — the refusals below name each one). WHAT THE DENSITY IS NOT: ZONE 10's 8-25/ha relict band binds the DEALT wood inside that zone's drawn extent, and only 3 of these 128 stems stand inside it; this record makes a HOUSEHOLD claim (a dooryard's stems), not an ecological one, and the two must not be added together. Whether any given tree was kept from the clearing or planted by the household is unknowable and unclaimed. Heights: trees in the LOW third of their recorded bands (cut-back if kept, young if planted); bushes anywhere in theirs. Every coordinate, count and height is reconstructed and claimed in docs/LIBERTIES.md L151. WHAT IS DELIBERATELY NOT HERE: the Lombardy poplars the ticket names are not dealt, because no committed flora zone record describes the species and the renderer refuses a stem the zone records do not carry — holding the poplar as a species is its own ticket; and the currant clumps are drawn without their July fruit, because the clonal draw path carries no berry (stated in trees.js). WHAT WOULD UPGRADE IT: T-0075's source records for the plates, or any sale notice, diary or view that counts or places a particular house's trees."
+  "research_note": "67 DOORYARD TREES AND 61 CURRANT BUSHES ACROSS 62 OF THE TOWN'S 142 DWELLINGS, EVERY ONE OF THEM DEALT BY THE RULE IN tools/generate_dooryard_plantings.py — no source counts any house's trees, so the honest shape is a rule that says why each house got what it got, re-derived on every commit. THE DEAL IS DELIBERATELY THIN: at most two trees and two bushes to a house, under half a town of houses drawing any tree at all, and the dense party-wall blocks refuse themselves (a stem must clear every committed footprint by more than the renderer's own margin, so a rowhouse yard offers no allowed ground — the refusals below name each one). WHAT THE DENSITY IS NOT: ZONE 10's 8-25/ha relict band binds the DEALT wood inside that zone's drawn extent, and only 3 of these 128 stems stand inside it; this record makes a HOUSEHOLD claim (a dooryard's stems), not an ecological one, and the two must not be added together. Whether any given tree was kept from the clearing or planted by the household is unknowable and unclaimed. Heights: trees in the LOW third of their recorded bands (cut-back if kept, young if planted); bushes anywhere in theirs. Every coordinate, count and height is reconstructed and claimed in docs/LIBERTIES.md L151. WHAT IS DELIBERATELY NOT HERE: the Lombardy poplars the ticket names are not dealt, because no committed flora zone record describes the species and the renderer refuses a stem the zone records do not carry — holding the poplar as a species is its own ticket; and the currant clumps are drawn without their July fruit, because the clonal draw path carries no berry (stated in trees.js). WHAT WOULD UPGRADE IT: T-0075's source records for the plates, or any sale notice, diary or view that counts or places a particular house's trees."
 }
