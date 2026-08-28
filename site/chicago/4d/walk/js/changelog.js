@@ -1,5 +1,5 @@
 export const CHANGELOG = [ // newest first
-  { v: 324, title: 'Three more town-building programs are asked what they would build', kind: 'chore', ts: '2026-08-28T08:58:38.447Z', date: 'Aug 28, 2026, 3:58 AM CT',
+  { v: 325, title: 'Three more town-building programs are asked what they would build', kind: 'chore', ts: '2026-08-28T09:09:50.654Z', date: 'Aug 28, 2026, 4:09 AM CT',
     items: [
       'Nothing you can see changed today. This project has a check that deals four hundred imaginary buildings of every type through the program that places them, and asks the model-builder to build each one \u2014 the point being to find the card that kills a run before the town is ever dealt it. It had only ever been pointed at one of the four programs that place anonymous buildings. It is pointed at all four now.',
       'The good news is the dull one. None of the four is holding a card it cannot play: twelve thousand imaginary buildings, every size every type is allowed to be, and every one of them builds.',
@@ -7,6 +7,15 @@ export const CHANGELOG = [ // newest first
       'Two of the thirty-one have never appeared on a standing building, because the recipes have not dealt those types yet. A medium boarding house on the west side would be given both a wall and a roof pitch outside the range, and a boarding house in the household programme a wall a metre short \u2014 and nothing anywhere said so, because no such building stands to say it on.',
       'All thirty-one are now written down with the line of code behind each one and the reason it still stands, and the check refuses to let that list grow: a new one, or a building the model-builder cannot build, fails the build from here.',
       'Repairing them moves real roofs and walls, so it is filed as three separate jobs, one per program, each with the rebuild it needs. This run took the reading; it did not quietly redefine what a good one looks like.',
+    ] },
+  { v: 324, title: 'Two kinds of flower stopped going missing in the bloom', kind: 'fix', ts: '2026-08-28T08:44:17.745Z', date: 'Aug 28, 2026, 3:44 AM CT',
+    items: [
+      'Stand in the dense forest west of town in July, or on the settled blocks, and there are flowers in front of you that were being quietly dropped. Nothing was raised to get them: the room they needed was already paid for and was being handed to the wrong flowers.',
+      'The reconstruction draws nine different kinds of flower head — spikes, spires, plumes, daisies, drooping daisies, buttons, domed umbels, flat-topped clusters and the branched Queen-Anne’s-lace kind — and each kind has its own ceiling on how many can be on screen at once. Every one of those nine ceilings was the same number, 820, whether the kind was one half the forest flowers with or one that two records in the whole town carry.',
+      'So two of them filled up and seven stood nearly empty. When a kind fills, the plant being drawn simply loses the rest of its flowers, mid-plant, with nothing said. Measured standing in every plant community at four bearings, the worst case was 382 domed umbels asked for and refused in the dense forest, and 32 spikes in the settled town.',
+      'The nine ceilings are now sized on what each kind is actually asked for, and they add up to the same total as before — 7,380 flower heads. Nothing about the frame budget changed; the same room is shared out by what needs it. Every kind now sits at about three-quarters of its ceiling, so a new flowering plant record has somewhere to go.',
+      'It was needed the same day it was measured. Yesterday’s change that carried the prairie bloom out past the near ring asks for more flowers than it can draw at the west prairie — twenty-eight drooping daisies were being turned away there — and this is what makes room for them.',
+      'The check that measures this reports it too. It could say how full each kind was and not how much had been turned away, which is why two of them sat on their ceiling for weeks looking like a coincidence. It now prints what was asked for, what was drawn and what was refused, kind by kind, and the build fails if any kind fills up again or if the nine ceilings stop adding to the same total.',
     ] },
   { v: 323, title: 'The prairie\u2019s flowers come out past the near ring', kind: 'feature', ts: '2026-08-28T08:36:52.438Z', date: 'Aug 28, 2026, 3:36 AM CT',
     items: [

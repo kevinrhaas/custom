@@ -41,7 +41,6 @@ T-0096 — Did the second Fort Dearborn carry a flagstaff, and can anything but 
 # --- FABRIC AND WHAT THE BUILDINGS ARE MADE OF — visible
 
 # --- WHAT GROWS, AND WHAT A PHONE SEES — visible
-T-0214 — Two flower-head archetypes truncate silently at their instance cap
 T-0019 — Six forb layers ask for more plants than the lattice holds
 T-0225 — The sward's drawn reach is measured off plants at two per cent coverage
 
