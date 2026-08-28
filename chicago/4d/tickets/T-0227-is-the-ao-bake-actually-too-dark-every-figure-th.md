@@ -1,7 +1,7 @@
 ---
 id: T-0227
 title: Is the AO bake actually too dark? Every figure that said so was wrong twice over
-state: open
+state: done
 epic: META
 requested_by: loop
 seen: false
@@ -9,9 +9,9 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-08-27
-closed: null
-pr: null
-claimed_by: null
+closed: 2026-08-28
+pr: 463
+claimed_by: run 8/28/2026, 6:47:09 AM CT
 blocked_on: null
 needs_bake: false
 ---

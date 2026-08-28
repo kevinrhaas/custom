@@ -132,16 +132,43 @@ def bake_ao(ob, size: int = 512, samples: int = 48) -> float:
     writes, **mean 0.5358 with 58.7 % below half**. The "0.38 at a 0.25 m AO
     distance" figure carries both faults and has NOT been re-measured.
 
-    The shape of the problem is unchanged — more than half the written surface sits
-    below half occlusion, on a building whose white paint is DOCUMENTED — but no
-    judgement about it should rest on the old numbers, and none of them was ever
-    taken from a file that carried the occlusion at all (T-0227 asks the question
-    properly, now that one can).
+    **ANSWERED FROM THE RENDERED FRAME — T-0227, 2026-08-28. Yes, and by more than
+    any atlas statistic said.** `sauganash_hotel` was baked with `--ao`, swapped
+    into the source tree, and shot at both Sauganash anchors and both viewports
+    through `tools/critic_shots.mjs --metrics`; `tools/measure_ao_frame.mjs` reads
+    the building's OWN visible pixels out of those frames (the structures mask
+    intersected with what moved between the two conditions). Over the 87,893 pixels
+    the hotel paints at `sauganash`, desktop:
 
-    The fix, when someone picks this up, is a low-poly AO cage — bake the massing
-    only, and let the decorative surfaces inherit it — not a stronger denoiser.
-    Until then `--ao` exists so the path stays exercised, and the manifest records
-    honestly whether any given asset actually carries AO.
+    | | mean L* | median L* | L* < 20 | literal black px |
+    |---|---|---|---|---|
+    | without AO | 33.8 | 44 | 31.1 % | 0 |
+    | with AO | **11.1** | **10** | **88.9 %** | **6,532** |
+
+    Mobile agrees (33.4 -> 11.1), and the log wing anchor agrees at both viewports.
+    So the lightness of a DOCUMENTED white-painted wall falls by two thirds and
+    nearly nine tenths of it lands under L* 20, with thousands of pixels at 0,0,0 —
+    a hole in the render, not a shaded wall. An atlas mean of 0.5358 over written
+    texels reads as "about half occluded on average" and sounds survivable; the
+    frame says the building goes out. **That gap is the lesson: an atlas mean is
+    not a statement about the walls.** The mechanism is that glTF occlusion scales
+    the INDIRECT term only, and at this scene's 70.5 deg sun the faces a walker sees
+    from the street are lit by little else (STATUS §1 items 9-11) — so occlusion
+    near 1 on those faces removes essentially all of their light.
+
+    The fix is unchanged and now measured rather than asserted: a low-poly AO cage
+    — bake the massing only, and let the decorative surfaces inherit it — not a
+    stronger denoiser and not a lower `occlusionTexture.strength`, which would dim
+    a correct bake and a wrong one by the same factor. Until then `--ao` exists so
+    the path stays exercised, and the manifest records honestly whether any given
+    asset actually carries AO.
+
+    **Two costs the cage parcel inherits, both measured on that one asset.** The
+    atlas is **31.1 % occupied** (81,458 of 262,144 texels), so two thirds of a
+    ~107 KB occlusion PNG is empty space — the master goes 94,420 -> 202,292 bytes,
+    +114 %. And `aoMap` is part of `materialKey` in `renderers/web/js/buildings.js`,
+    so an asset carrying its own map cannot batch with one that does not: **+2 draw
+    calls at every station and viewport, for one building.**
 
     ## The order of the two lines below is the whole of T-0158
 

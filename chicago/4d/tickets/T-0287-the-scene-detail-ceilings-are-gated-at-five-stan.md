@@ -1,5 +1,5 @@
 ---
-id: T-0285
+id: T-0287
 title: The scene-detail ceilings are gated at five stands, and the public square is dearer than any of them
 state: open
 epic: META

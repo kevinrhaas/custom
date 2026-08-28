@@ -64,13 +64,118 @@ and **1,024,051 triangles** desktop, 158 and 946,928 mobile, at `full` — again
 1,400,000-triangle ceiling and `BUDGET.drawCalls` of 215. Inside both, with 27 % and 23 % of room.
 But it is well past the 2026-08-14 table's worst (`prairie_west`, 97 calls / 618,686 triangles), and
 past the 141 desktop / 137 mobile `full` reaches the smoke's own five-stand ceiling check last
-recorded. **Filed as T-0285**: the scene-detail ceilings are gated at five stands and this is not one
+recorded. **Filed as T-0287**: the scene-detail ceilings are gated at five stands and this is not one
 of them, so the gate may not be standing at the worst place in the town. Not fixed here, and not
 claimed as a breach — it is a reading, taken with a rig that had never been pointed at this block.
 
 **What did NOT change.** No structure record, no footprint, no confidence, no liberty, no terrain and
 no flora. The town is exactly the town it was; what is new is a place to stand in it and a row in the
 baseline.
+## Shipped 2026-08-28 — T-0227: the AO bake is too dark, and now something has actually looked at it
+
+**Nothing in the town moved.** This run answers a question the project has been holding an opinion
+about for months without ever having read a rendered frame that carried the thing it was judging.
+
+**The question, and why it was open.** `bake_ao()` has said since it was written that AO on these
+archetypes is a geometry problem, and quoted "mean 0.265 with 69 % of texels below half" plus "0.38
+at a 0.25 m AO distance". T-0158 voided both — read off an sRGB-tagged buffer, and averaged over a
+512² atlas **68.9 % of which is empty UV space**, so the 69 % was very nearly the empty fraction
+itself. Worse than either fault: **until T-0158 the export shipped a uniformly black texture**, so
+no AO judgement this project holds was ever made on a file that carried occlusion at all.
+
+**What was done.** `sauganash_hotel` rebaked with `--ao` (baked mean 0.1665 → exported 0.1665, 0.0 %
+drift), swapped into the source tree, and shot at both Sauganash anchors and both viewports through
+`tools/critic_shots.mjs --metrics` against the same tree without it. The new
+`tools/measure_ao_frame.mjs` reads the building's **own visible pixels** out of those frames — the
+structures mask (`full` vs the `__bare` capture) intersected with the pixels that moved between the
+two conditions — so the reading is of the walls, not of the frame and not of the atlas.
+
+| station | viewport | pixels read | mean L\* without → with | L\* < 20 | literal black px |
+|---|---|---|---|---|---|
+| `sauganash` | desktop | 87,893 | **33.8 → 11.1** | 31.1 % → **88.9 %** | 0 → **6,532** |
+| `sauganash` | mobile | 20,010 | 33.4 → 11.1 | 31.8 % → 89.5 % | 0 → 1,289 |
+| `sauganash_wing` | desktop | 99,681 | 39.1 → 17.9 | 15.4 % → 64.9 % | 0 → 3,781 |
+| `sauganash_wing` | mobile | 17,511 | 41.9 → 20.6 | 4.9 % → 56.5 % | 0 → 340 |
+
+**The answer is yes, and the atlas statistic understated it.** A documented white-painted wall loses
+two thirds of its lightness and puts thousands of pixels at literal 0,0,0 — a hole in the render,
+not a shaded wall. The whole-frame critic table agrees from the other side (`literal black px`
+0 → 6,841, `shadow darkest decile L` 4.67 → 2.00 at `sauganash` desktop), with triangles unchanged.
+**"Mean 0.5358 over written texels" reads as about-half-occluded and sounds survivable; the frame
+says the building goes out.** The mechanism is that glTF occlusion scales the INDIRECT term only,
+and at the scene's 70.5° sun the street elevations a walker sees are carried by little else (§1
+items 9–11) — occlusion near 1 there removes essentially all their light. So R-W3a keeps its cage
+and loses its target: **acceptance is now a `measure_ao_frame.mjs` reading, not an atlas mean.**
+
+**Two costs the cage parcel inherits, measured on the same asset.** The atlas is **31.1 % occupied**
+(81,458 of 262,144 texels; the master 94,420 → 202,292 bytes, +114 %), so two thirds of a ~107 KB
+occlusion PNG is blank — **T-0286**. And `aoMap` is part of `materialKey` in `buildings.js`, so an
+AO'd asset cannot batch with an un-AO'd one: **+2 draw calls at every station and both viewports for
+one building**, against ceilings already breached — **T-0285**.
+
+**What did NOT ship: the AO itself.** The bake stays off and `assets/manifest.json` keeps saying so.
+Shipping an occlusion map that extinguishes a documented white wall would be a data-integrity bug in
+an aesthetics costume, and the affordability questions above are R-W3a's to answer.
+
+## Shipped 2026-08-28 — T-0211: the other nine group rows are cross-checked against something now
+
+**The hole T-0032 left behind.** `data/reconstruction/1835_building_inventory.json` carries the same
+662-roof aggregate three ways — 35 `family_targets`, a 10-group × 4-division `district_group_matrix`,
+and four `districts` totals — and the ledger asserted that all three sum to `roof_total` and that each
+group's families sum to that group's row. **Nothing asserted anything about a group's split BY
+DIVISION**, and the two views were authored independently. T-0032 (PR #388) found what that permits
+in the `institutional_public` row and corrected that one row; the ticket it filed asks the same
+question of the other nine.
+
+**The answer is not "they are fine".** `tools/measure_group_district_rows.py` prints the full
+ten-row × four-division audit with the signed gap in every cell. Thirty-eight of the forty cells hold
+roofs they have room for. Two do not, and both are in the North Division:
+
+| group | division | row says | stands | over by |
+|---|---|---|---|---|
+| `warehouses_freight` | north | 1 | 7 | **6** |
+| `institutional_public` | north | 3 | 4 | **1** |
+
+Six of the seven North freight roofs are **documented pre-existing records** — Kinzie & Hunter's
+warehouse, the four north-bank sheds at the Dearborn reach, the north-side brickyard — so the breach
+is not an invention that can be removed. It is a row authored without the north bank's river-freight
+fabric in view. The seventh is `recon_1835_north_f1_022`, dealt by a parcel that ran before anything
+measured this. The institutional cell is a narrower thing: T-0032 set that row to the NAMED census and
+`measure_institutional_claims.py` holds it there, while this counts every roof that stands — so the
+two gates disagree by exactly `recon_1835_north_i2_015`, the one anonymous school **L93** records as a
+liberty taken rather than deleted. Both readings are right for their own question.
+
+**What the breach was costing, which nothing anywhere stated.** `reconcile_665.py` clamps the negative
+away with `max(0, matrix[g][district] - built[(district, g)])`, so a row wrong by six roofs read
+exactly like a row that is right. The clamp does not merely hide it — it re-spends it. The division's
+ten clamped heads then sum to **more** than its own remainder, by exactly the overshoot, and an
+unnamed loop sheds the difference from whichever group has the most head. Measured: the North
+Division's **seven** overshooting roofs are paid for, in full, out of its **ordinary dwellings**. The
+programme document now says so, in `remaining.district_group_rows_overshot` and
+`remaining.district_group_slots_shed`.
+
+**What is asserted, and why it is the weaker claim.** The I3 repair does not generalise. An
+institutional row can be held to a census because Chicago's public buildings are enumerable; dwellings,
+stores and barns are not, so "the row equals what stands" is the WRONG assertion for the other nine —
+a row 74 roofs above what stands is the programme working as intended. The gate asserts the two things
+that are true regardless:
+
+1. **the matrix adds up in BOTH directions** — each row's four cells to its own `total`, and each
+   division's ten cells to its own `target`. Neither was asserted anywhere before this, and the second
+   is what makes the shed an identity rather than a coincidence;
+2. **every division over one of its group rows declares it**, at a declared size — a ratchet in the
+   shape `measure_band_claims.py` uses. It may fall, it may not rise, a new breach fails, and a
+   declaration that outlives its breach fails too.
+
+Neither cell is repairable by editing one number: the cells sum to their division's target *and* to
+their group's total, so moving one moves four others and the 662-roof programme with them. That is a
+decision about the authored target and it is filed as its own ticket. This run's job was to stop the
+breach being invisible while it waits.
+
+Verified: `tools/check.sh` (green, with the two new steps), `python3
+tools/measure_group_district_rows.py --self-test` (8 cases, including the north half of the
+apportionment T-0032 corrected, a grown breach, a healed one and a stale declaration). No renderer
+file changed, so the frame is byte-identical.
 
 ## Shipped 2026-08-28 — T-0282: the shrub stratum joins the ceiling declaration, and a visitor can read it
 
@@ -12174,7 +12279,7 @@ Three things in that table are worth reading rather than filing:
   through a July prairie's own bloom.
 - **It is the dearest stand the rig has.** 165 calls / 1,024,051 triangles desktop, inside the
   215-call budget and the 1,400,000-triangle `full` ceiling, and well past the 2026-08-14 worst
-  (`prairie_west`, 97 / 618,686). Filed as **T-0285** — the smoke gates the ceilings at T-0135's
+  (`prairie_west`, 97 / 618,686). Filed as **T-0287** — the smoke gates the ceilings at T-0135's
   five stands, and this is not one of them.
 
 **What the baseline says, against the RENDERING §5 targets.**
@@ -12949,7 +13054,10 @@ states one:
    as a real glTF occlusion texture, but the archetype's clapboard courses and window reveals
    sit a centimetre off the wall and occlude each other: a measured bake comes out at mean 0.265
    with 69% of texels below half, and the building renders brown. Shortening the AO distance
-   only reaches 0.38. It needs a low-poly AO cage, not a tuning tweak. `--ao` keeps the path
+   only reaches 0.38. It needs a low-poly AO cage, not a tuning tweak. **[Both figures VOID —
+   T-0158, 2026-08-27; and the export was shipping a black texture when this was written, so
+   "renders brown" was not a reading of AO. The conclusion survives on a rendered frame:
+   T-0227, 2026-08-28, at the top of this file.]** `--ao` keeps the path
    exercised and `assets/manifest.json` records honestly that the shipped asset has none.
 10. **`gltf-transform` did not run**, so `assets/web/` currently holds copies of the
     uncompressed masters rather than meshopt/KTX2 derivatives. Harmless at 44 KB; it must work

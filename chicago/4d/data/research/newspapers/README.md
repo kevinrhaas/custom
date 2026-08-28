@@ -23,9 +23,21 @@ A claim that cannot name its column cannot be made. Resolve the issue through
 > *Chicago Democrat*, 1835-07-01, Vol. II, No. 11, issue page 3, column 4 —
 > `chicago/reference/newspapers/Transcriptions/Chicago_Democrat_1833-11_to_1835-08/Chicago_Democrat_1835-07-01_Vol2_No11_Transcription.txt`, lines 812-819.
 
-Page and column come from the transcription's own
-`===== ISSUE PAGE n / PDF PAGE m / COLUMN k OF 6 =====` markers, which every issue in
-both runs carries.
+Page and column come from the transcription's own column markers — and there are **two
+dialects of them**, which this file used to claim there was one of (corrected 2026-08-28,
+T-0257). The sixty-six issues the deposit delivered as committed `.txt` carry
+
+    ===== ISSUE PAGE 4 / PDF PAGE 36 / COLUMN 5 OF 6 =====
+
+and the twenty-three extracted here from `.docx` carry the same two facts as prose
+headings, the page once and each column under it:
+
+    Newspaper Page 1 — Source PDF Page 13
+    Column 1
+
+`tools/compile_gazetteer.py` reads both. It matters more than a formatting note: the
+twenty-three are exactly the issues resolvable on `dev`, so a tool that spoke only the
+first dialect could check a locator on no issue this branch can open.
 
 ## Where the text is, and why it is in two places
 
@@ -66,3 +78,47 @@ so the corpus can grow without spending the published tree's size budget.
 Deterministic: the same deposit produces byte-identical `corpus.json` and `text/`.
 `--deposit` exists because the deposit is on another branch; paths are always
 *recorded* at their canonical `chicago/reference/...` home whatever `--deposit` says.
+
+## Reading out of it — claims, and the gazetteer they compile into
+
+`corpus.json` says where a passage IS. These say what was read out of it (T-0257).
+
+| | |
+|---|---|
+| `extracted/<issue_id>.json` | one file per issue, holding `claims[]` — hand-authored |
+| `identity.json` | the only place two differently-spelled names may become one person |
+| `gazetteer.json` | **generated** by `tools/compile_gazetteer.py --build` — never hand-edited |
+
+    tools/compile_gazetteer.py --build       recompile the gazetteer
+    tools/compile_gazetteer.py --check       the gate (in check.sh)
+    tools/compile_gazetteer.py --self-test   its assertions still fire
+
+**A claim quotes verbatim and normalizes beside it, never instead.** `quote` is the
+transcription's own text including its uncertainty brackets; `normalized` is the reading
+after OCR judgment — interleaved columns unshuffled, `rn/m`-class confusions corrected.
+The gate reassembles `quote` out of the transcription line by line and refuses any claim
+whose text differs by a character, so a smoothed quote fails rather than passing quietly.
+
+**Interleaving is the normal case.** The segmenter frequently alternates two physical
+columns line by line, so one advertisement occupies a SUBSET of a line range with another
+woven through it. `locator.lines` is the range cited; `locator.lines_of_claim` names the
+lines the quote is built from, and the gate checks the subset lies inside the range.
+
+**`[…]` marks absence, `[word]` marks a supply.** Text the column edge cut away is a gap,
+not an invitation. The worked fixture leaves *'a few doors below'* unsupplied for exactly
+that reason and says where a fuller witness might be found.
+
+**The owner's three rulings live in fields, not in prose.** `letter_list_only` on a person
+(a listed name mints a resident candidate, and the weaker evidence stays distinguishable);
+`reading` required on every claim (`transcription_mediated`, or `scan_verified` where a
+scan was read and outranks it); and `built_at_scene_date` / `survival_liberty_required`
+computed on a business — documented businesses stand in the 1835 town unless a claim
+contradicts them, and one last seen before 1835 stands on a stated liberty.
+
+**Identity never coalesces by accident.** The gazetteer is keyed on the whole normalized
+name, so `Cohen, P.` and `Cohen, J.` are two people. A merge is declared in
+`identity.json` with a `merge_rule` naming both spellings; same surname with different
+initials never merges, rule or no rule.
+
+The worked fixture is the scene-date Democrat, `extracted/chicago_democrat_1835_07_01.json`
+— Peter Cohen and J. S. C. Hogan on South Water Street, and one letter-list name.

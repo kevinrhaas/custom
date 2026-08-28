@@ -433,6 +433,27 @@ step "no anonymous roof claims to be a public building, and the civic target is 
 step "…and its own assertions still fire when broken" \
   python3 tools/measure_institutional_claims.py --self-test
 
+# THE OTHER NINE ROWS, which T-0032 found were cross-checked against nothing (T-0211).
+# The matrix carries the same aggregate two ways that were authored independently — ten
+# group rows and four division columns — and reconcile_665.py asserted only that the
+# families sum to their group and the districts to the total. Nothing read a group's split
+# BY DIVISION, which is precisely the pair T-0032 found disagreeing.
+#
+# The I3 repair does not generalise and this does not attempt it: a row above what stands
+# is the ordinary, correct case for nine of these ten rows, because an anonymous dwelling
+# is a legitimate count-unit toward a documented aggregate. What is asserted is the weaker
+# pair that still catches the fault — the matrix must add up in BOTH directions, and a
+# division standing OVER one of its group rows must say so. The second is a ratchet on a
+# real residual: the North Division stands seven roofs above its rows (six freight, one
+# the L93 school), reconcile_665.py clamped the negative away, and the seven slots it
+# sheds to pay for them come out of the North's ordinary dwellings where nobody could see
+# the transfer. Both figures are now in the programme document.
+step "the group rows add up by division too, and every division over one declares it" \
+  python3 tools/measure_group_district_rows.py --gate --quiet
+
+step "…and its own assertions still fire when broken" \
+  python3 tools/measure_group_district_rows.py --self-test
+
 # Uniformity is a claim, and no source makes it. 138 of the 218 anonymous records say
 # in their own footprint note that the rectangle was sampled inside the family's
 # authored band; this holds them to it, and prints the census of what still is not —
@@ -973,6 +994,20 @@ step "…and its own assertions still fire when broken" \
 
 step "the .docx extractor is deterministic and keeps its uncertainty brackets" \
   python3 tools/docx_text.py --self-test
+
+# T-0257. The corpus made the papers citable; this is what a READING out of them looks
+# like once it has been made, and the gate that keeps one honest. The assertion worth
+# knowing about: a claim names the exact transcription lines its quote is built from,
+# and this reassembles the quote out of the transcription and refuses any that differs
+# by a character. "Never silently smoothed" is otherwise a hope — a tidied quote is
+# invisible to every other check here, and the smoothed reading has a field of its own
+# (`normalized`) to live in. gazetteer.json is GENERATED, so this also refuses a
+# hand-edit to it, the same way the board and the published mirror are refused stale.
+step "every newspaper claim resolves, quotes verbatim, and the gazetteer is compiled" \
+  python3 tools/compile_gazetteer.py --check
+
+step "…and its own assertions still fire when broken" \
+  python3 tools/compile_gazetteer.py --self-test
 
 printf '\n'
 if [ "$FAILED" -eq 0 ]; then
