@@ -1,4 +1,13 @@
 export const CHANGELOG = [ // newest first
+  { v: 310, title: 'The empty south bank below the draw now says why', kind: 'chore', ts: '2026-08-28T02:27:39.898Z', date: 'Aug 27, 2026, 9:27 PM CT',
+    items: [
+      'Nothing in the town looks different today. What changed is the \u201cWhat is not here\u201d list: the bare south bank below the Dearborn bridge now has an entry on it, and behind that entry is a question this project had been refusing on a single measurement taken by hand.',
+      'The engraving this reach was built from draws low warehouses on BOTH banks. Four of them stand on the north side. The south side is empty, and the note explaining why said there was no ground for them \u2014 the surveyed 80-foot street runs to within a metre and a half of the water there.',
+      'That was one reading, at one spot, and the spot turns out to be the narrowest on the whole reach. Swept properly \u2014 every station from the bridge east to the fort\u2019s land, at every angle a building could be turned to \u2014 124 of 143 stations DO have dry ground outside the street.',
+      'It is the riverbank. Going east it widens to eight metres, and it falls into the water inside its own width. Not one spot on it, at any angle, will take the smallest freight shed the town\u2019s own building plan allows on ground level enough to walk across without a step down.',
+      'So the refusal stands, and stands harder than the number it was made on. The real question is a different one: may a made-up building stand on the river side of a surveyed street, where this town\u2019s warehouses and landings in fact stood? That is a decision about what this dataset claims, and it is written down as one now instead of hiding inside a note about ground.',
+      'The reading is a command that runs on every commit, and it fails if somewhere to build ever appears \u2014 because that would be the question opening again, not a number to quietly update.',
+    ] },
   { v: 309, title: 'Three Lake Street buildings step back off the sidewalk', kind: 'fix', ts: '2026-08-28T01:41:14.347Z', date: 'Aug 27, 2026, 8:41 PM CT',
     items: [
       'Walk the north side of Lake Street and two more of its corners now carry you over the road on boards. Yesterday the walk stopped short of them, because a building was standing where the boards had to go.',

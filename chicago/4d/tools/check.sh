@@ -266,6 +266,20 @@ step "nothing unpermitted stands on reserved ground" \
 step "nothing unpermitted stands on refused ground, and the refusal still reaches it" \
   python3 tools/measure_no_build_ground.py --gate
 
+# T-0134. The plate the Dearborn reach was built from draws warehouses on BOTH banks and
+# only the north one stands. The south side was refused on a single spot reading taken by
+# hand — "the corridor reaches to within about 1.7 m of the waterline" — and the whole bank
+# was left empty on it. This is that refusal as a command, at every relief tolerance it
+# could turn on: beside the platted street not one position takes the smallest footprint
+# family F1 allows. It fails if a fit ever APPEARS, because a fit is the question re-opening
+# and not a number to bank — which is the assertion that fires the day the terrain is
+# extended, the plat is re-derived or the waterline is re-traced.
+step "the south bank at the Dearborn reach still carries no ground outside its own street" \
+  python3 tools/measure_south_bank_ground.py --gate --quiet
+
+step "…and its own assertions still fire when broken" \
+  python3 tools/measure_south_bank_ground.py --self-test
+
 # The terrain spec defers four in-town water features — the slough, the public-square
 # pond, the Frog Pond and the Wells Street marsh — under one shared phrase, "existence
 # documented, geometry conjectural". Existence is a claim about a PLACE and the scene is
