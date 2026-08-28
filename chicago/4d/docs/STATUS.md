@@ -116,6 +116,31 @@ desktop ceilings 1,372,635 / 1,204,048 / 746,028 — identical to the reading ab
 ticket refused its block rather than laying it. The frontage census re-derives at walks 43,
 crossings 32, refusals 72, meshes 54 for the third time.
 
+**AND ONCE MORE AFTER #423 (T-0241, Washington Street) landed on `dev`** — a whole street of
+boards arriving under this branch, so the street edge was **re-derived** on the merged data
+rather than hand-resolved, and every figure re-taken. The deltas are additive and the pins now
+carry both: walks 49→**50**, crossings 33→**37**, refusals 83→**81**, meshes 61→**62**; fences
+(35) and posts (15) do not move, because a wall 1.50 m back from the frontage line is still
+inside the 3.0 m a street fence needs. Town street edge on the merged tree: **3,160.3 m of walk
+in 41 runs, 34 crossings, 35 fence runs, 249 walking decks, 36 block faces.**
+
+`./tools/check.sh` PASS. Desktop stage `2` 80/**1** — the inherited T-0244, every touched
+assertion green. Mobile stage `3-4` **116/0**, which is the ceiling sweep AND the draw-call
+budget at the worst frame. Desktop ceilings with both streets laid:
+
+| tier | ceiling | worst stand | clear by |
+|---|---:|---|---:|
+| `full` | 1,400,000 | 1,388,091 — the forks, from Wolf Point | 11,909 |
+| `balanced` | 1,210,000 | 1,197,398 — the forks, from Wolf Point | 12,602 |
+| `light` | 785,000 | 761,528 — Lake Street at Canal | 23,472 |
+
+**No ceiling was moved, by either ticket.** Worth recording beside T-0247, which is `dev`'s:
+`light` reads **85** draw calls at Lake and Market on the desktop sweep against the 80-call
+floor T-0147 restored. That ticket measured 83 on an unmodified `dev` before Washington; the
+sweep above is the first reading with both streets on it. The mobile gate that actually asserts
+the budget is green (116/0), and this branch adds **one** culling chunk — the forty-first run of
+sidewalk — to a street edge that grew by eight under #423.
+
 ## Shipped 2026-08-27 — T-0213: the trade families are weighted onto the business front
 
 The surviving half of ROADMAP **K29**. T-0022 refuted the other half — the schedule may deal log
