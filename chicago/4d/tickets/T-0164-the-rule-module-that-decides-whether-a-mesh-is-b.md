@@ -1,7 +1,7 @@
 ---
 id: T-0164
 title: The rule module that decides whether a mesh is built at all now sits inside the hash of what a mesh is built from
-state: claimed
+state: done
 epic: PIPELINE
 requested_by: loop
 seen: false
@@ -9,8 +9,8 @@ effort: S
 legacy_id: null
 parent: null
 opened: 2026-08-23
-closed: null
-pr: null
+closed: 2026-08-28
+pr: 467
 claimed_by: run 8/28/2026, 10:46:19 AM CT
 blocked_on: null
 needs_bake: false
