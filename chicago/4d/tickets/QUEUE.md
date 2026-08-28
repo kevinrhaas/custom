@@ -48,7 +48,6 @@ T-0096 — Did the second Fort Dearborn carry a flagstaff, and can anything but 
 # --- Three owner rulings govern the epic; each ticket carries them in full.
 T-0311 — Reading the Democrat, February 1834: Vol. I Nos. 11-14
 T-0312 — Reading the Democrat, March 1834: Vol. I Nos. 15-17
-T-0313 — Reading the Democrat, April 1834: Vol. I Nos. 18-22
 T-0314 — Reading the Democrat, May 1834: Vol. I Nos. 23-26
 T-0315 — Reading the Democrat, June 1834: Vol. I Nos. 27-30
 T-0293 — Reading the Democrat, November 1834: Vol I Nos 49-52
