@@ -29,7 +29,6 @@
 # --- THE TRIANGLE BUDGET — invisible, and it gates EVERY visible ticket that adds geometry
 
 # --- THE TOWN AND ITS STREETS — visible
-T-0028 — Build out the NEXT anonymous block (one per run)
 T-0192 — The cross streets' own frontages get the street edge
 
 # --- THE RIVER, THE WHARVES AND THE GROUND — visible
@@ -122,3 +121,5 @@ T-0304 — The gazetteer merges persons by a declared rule and has no equivalent
 T-0305 — Four readings the American contradicts itself on need the page images: the tailor's street, which Water street two forwarding houses stood in, and the corner of Cobb's saddlery
 T-0306 — The American names six Chicago storefronts with usable placements and none of them is standing in the model yet
 T-0307 — The derivation's running maximum costs 42 m of verge where the bank turns a right angle at Wolf Point
+T-0316 — The 665-roof deal puts a large river warehouse on an inland platted block, and the block generator cannot build one
+T-0317 — Build out the NEXT anonymous block: after blk_lake_franklin the last ungenerated block is owner-blocked, and the roofs left stand on blocks that already stand

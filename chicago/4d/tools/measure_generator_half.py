@@ -77,13 +77,18 @@ RENDERER_JS = RENDERERS / "web" / "js"
 # north_water_slough_crossing. One more committed asset, one more mesh that a change to
 # the shared generator modules or to build.py would re-stale; the terrain and pier_crib
 # reaches are untouched because the crossing is neither.
+#
+# 350 -> 353 and 348 -> 351 on 2026-08-28 (T-0028): `blk_lake_franklin` was opened and
+# carries three roofs. This is the ordinary movement of the reading, not a change in
+# reach — a structure asset is in `build.py`'s reach by construction — and the terrain
+# and pier_crib reaches stay at 2 each, which is the point of stating them separately.
 STATED = {
-    "assets": 350,
+    "assets": 353,
     "restales": {
-        "generators/common/*.py": 350,
+        "generators/common/*.py": 353,
         "generators/common/__init__.py": 0,
         "generators/common/phases.py": 0,
-        "generators/build.py": 348,
+        "generators/build.py": 351,
         "generators/terrain_gen.py": 2,
         "generators/archetypes/pier_crib.py": 2,
     },

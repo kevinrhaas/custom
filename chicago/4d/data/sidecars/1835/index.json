@@ -2705,6 +2705,24 @@
       "asset": "gltf/recon_1835_blk_lake_clark_d5_03__inferred_1835.glb"
     },
     {
+      "id": "recon_1835_blk_lake_franklin_a1_03",
+      "name": "Reconstructed A1 stable #03",
+      "sidecar": "sidecars/1835/recon_1835_blk_lake_franklin_a1_03.json",
+      "asset": "gltf/recon_1835_blk_lake_franklin_a1_03__inferred_1835.glb"
+    },
+    {
+      "id": "recon_1835_blk_lake_franklin_d1_02",
+      "name": "Reconstructed D1 older log dwelling #02",
+      "sidecar": "sidecars/1835/recon_1835_blk_lake_franklin_d1_02.json",
+      "asset": "gltf/recon_1835_blk_lake_franklin_d1_02__inferred_1835.glb"
+    },
+    {
+      "id": "recon_1835_blk_lake_franklin_d5_01",
+      "name": "Reconstructed D5 deep-plan frame cottage #01",
+      "sidecar": "sidecars/1835/recon_1835_blk_lake_franklin_d5_01.json",
+      "asset": "gltf/recon_1835_blk_lake_franklin_d5_01__inferred_1835.glb"
+    },
+    {
       "id": "recon_1835_blk_lake_market_a1_06",
       "name": "Reconstructed A1 stable #06",
       "sidecar": "sidecars/1835/recon_1835_blk_lake_market_a1_06.json",

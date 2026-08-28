@@ -200,18 +200,27 @@ def invented(value, reason: str) -> dict:
 # --------------------------------------------------------------------------
 #
 # A family with no form rule is ordinarily a gap: somebody adds the rule and the
-# next recipe uses it. The three institutional families are NOT that, and the
-# generic message ("add one before a recipe uses it") is the wrong instruction for
-# them, because each carries a precondition the crosswalk already wrote down and
-# adding a form rule would step straight over it. They are refused by name, with
-# the precondition quoted, so a parcel that meets one of these slots has to defer
-# it and say so rather than reach for a shape.
+# next recipe uses it. The families below are NOT that, and the generic message
+# ("add one before a recipe uses it") is the wrong instruction for them, because
+# each carries a precondition the crosswalk already wrote down and adding a form
+# rule would step straight over it. They are refused by name, with the
+# precondition quoted, so a parcel that meets one of these slots has to defer it
+# and say so rather than reach for a shape.
 #
-# The distinction that makes this more than caution: an anonymous DWELLING is the
-# ordinary case in a town of 3,000 whose householders were never enumerated
-# roof by roof. An anonymous PUBLIC building is a different claim — that an
-# institution stood here and left no record at all — and 1835 Chicago's public
-# buildings are few enough to be nameable.
+# There are two kinds of precondition here, and they refuse for different reasons.
+#
+# THE INSTITUTIONAL FAMILIES (I1, I2, I3) are refused because of what an anonymous
+# one would CLAIM. An anonymous DWELLING is the ordinary case in a town of 3,000
+# whose householders were never enumerated roof by roof. An anonymous PUBLIC
+# building is a different claim — that an institution stood here and left no
+# record at all — and 1835 Chicago's public buildings are few enough to be
+# nameable.
+#
+# F3 is refused for the opposite reason: not the claim but the GROUND. An unnamed
+# river warehouse is an ordinary count-unit and nobody doubts there were some; what
+# this generator cannot supply is the water its own crosswalk entry makes a
+# precondition of the form. A refusal of that kind is not permanent and is not
+# about anonymity — it names the parcel that should carry the slot instead.
 REFUSED_FAMILIES = {
     "I1": (
         "worship or meeting buildings. The crosswalk schedules four of them and says "
@@ -244,6 +253,27 @@ REFUSED_FAMILIES = {
         "six-roof aggregate 'spans unlike functions; they must reconcile to named public "
         "records before selecting construction'. Three of those six slots are now known "
         "to be a count of nothing, and correcting the target is T-I3(b)."
+    ),
+    "F3": (
+        "large river warehouses, and this refusal is about SITE ACCESS rather than about "
+        "an anonymous claim \u2014 an unnamed warehouse is an ordinary count-unit, and the "
+        "three the crosswalk schedules are real roofs somebody has to place. What this "
+        "generator cannot give one is the river. It authors no coordinates: every metre "
+        "comes from a committed LOT polygon on the platted grid, and a lot is a rectangle "
+        "inside a block bounded by four platted STREETS. F3's own crosswalk entry makes "
+        "water access a precondition of the form \u2014 the variant is 'multiple cargo doors; "
+        "landing apron; sparse glazing', and the assumption note reads 'Landing apron and "
+        "cargo-door arrangement must follow site access and cannot extend into water or "
+        "duplicate a counted pier'. The landing and wharf ground of the main stem lies "
+        "OUTSIDE this grid, beyond South Water and Market, and is placed by "
+        "tools/generate_river_wharves.py against the committed bank rather than against a "
+        "lot. So an F3 massed here is a river warehouse the river does not reach: its "
+        "cargo-door rhythm opens onto a platted roadway, and its landing apron would have "
+        "to cross a public street onto ground this parcel does not hold. Measured on the "
+        "committed heightfield, the block this refusal was first met on \u2014 "
+        "blk_lake_franklin, bounded by Lake, Randolph, Franklin and Wells \u2014 stands 134 m "
+        "from the nearest water. That the schedule keeps dealing F3 onto platted blocks "
+        "is a fault in the DEAL and not in the block: T-0275."
     ),
 }
 
