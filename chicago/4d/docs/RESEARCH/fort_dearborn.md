@@ -188,6 +188,87 @@ the assignment is wrong the two small buildings swap and nothing else moves.
 
 ---
 
+## 4a. The flagstaff, and the one source that reaches the second fort (T-0096)
+
+**The question was whether anything but a retrospective plate could put a flagstaff at the 1816
+post.** `p4_0` draws one, conspicuously, and T-0197 measured it standing at 0.495 of the drawn
+wall run — over the GATE, wedged between the two roofed lanterned works T-0095 read as first-fort
+signature — so the plate's staff comes as part of a composition this project had already refused.
+`data/exclusions.json` excludes a flagstaff, but the one it excludes is Whistler's, *in the
+parade* of the first fort, so "the exclusion already covers it" was never an answer either. The
+ticket's acceptance allowed two outcomes: evidence that reaches the second fort, or a recorded
+negative finding. **The evidence exists, and this section is it.**
+
+### What was found
+
+**Andreas, *History of Chicago*, vol. 1, p. 128** — Internet Archive leaf `n272`, verified at
+page-image level rather than off the OCR — in the section headed **"Chicago from 1833 to 1837"**,
+describing the town as it organised itself in the autumn of 1833:
+
+> The village was built along the south side of Water Street and westerly toward the settlement at
+> the forks. … It did not show a single steeple nor a chimney four feet above any roof. **A
+> flagstaff at the fort, some fifty feet high, flaunted, in pleasant weather and on holidays — a
+> weather-beaten flag**, as an emblem of civilization, patriotic pride, national domain, or
+> anything else that might stir hearts of the denizens of the town. The buildings of the fort were
+> low posted, and none of them exceeding two low stories in height. Approaching the village by land
+> from the south, one would see … a line of almost indefinable structures, and **the flag over the
+> fort, if perchance it was flying**.
+
+**It reaches the second fort and cannot reach the first.** The passage is a description of the town
+of 1833–37 — the first fort burned on 16 August 1812, twenty-one years earlier — and the running
+head on the facing page is *"CHICAGO IN 1833-37"*. There is no conflation available here, which is
+what the whole ticket turned on.
+
+**What it gives, and what it does not.** A staff, standing, at the fort, of about fifty feet
+(15.24 m, converted with the original figure stated). A flag flown *conditionally*. **No position**
+— not the parade, not the gate, not a wall. It also gives, in passing, a second reading this
+project already holds: *"none of them exceeding two low stories"*.
+
+### What else was looked at, and found nothing
+
+The negative half is recorded the way `quaife_1913`'s is, because "not found" is only worth
+anything when the searching is stated.
+
+| looked at | how | result |
+|---|---|---|
+| **Quaife 1913**, whole text (Gutenberg 69274) | every `flag*` occurrence read in context | **one** flagstaff, and it is the FIRST fort's: *"the parade ground, in the center of which stood a lofty flagstaff"*, in the passage on Whistler's 1808 draught. Nothing for 1816. |
+| **Kinzie, *Wau-Bun*** (whole text, IA `waubunearlydayin00kinzbyu`) | `flag*`, `staff`, `ensign`, `colors`, `mast` | **nothing at the fort.** She lived inside it in 1831 and describes the pickets, the bastions, both gates, the posterns, the gardens and the root-houses, and never mentions a staff. |
+| **Wentworth 1881 / the 1855 photograph key** (`chicagology_prefire052`, whole page) | same terms | **nothing.** The key letters the buildings and the parade and no staff. |
+| **Andreas vol. 1**, whole OCR text | `flagstaff`, `flag-staff`, `flag staff` | **two hits.** The one above, and an 1850s fire-engine contest. Confirmed against the archive.org full-text index, which returned the same paragraph independently. |
+| **The 1830 Harrison plan**, re-read at page-image resolution for a staff | the plate at leaf `n242`, the fort enlarged 4× | **draws no staff** — see below. |
+
+### The 1830 plan draws none, and is silent rather than negative
+
+The ticket listed *"the 1830 Harrison plan re-read for a staff"* as one of four things that could
+settle this. It was re-read. The plate draws the enclosure, the corner works, the four ranges and
+the two small buildings at the south gate, and **nothing whatever standing in the court**.
+
+That is not a negative for the parade, and the reason is on the sheet: **the engraver letters
+`FORT DEARBORN` across the empty court**, over exactly the ground a staff symbol would occupy. A
+plan cannot show a mast in elevation anyway; a plan can show its socket, and this one's centre is
+under type. So the plan neither supports nor refuses a staff on the parade, and this memo records
+it as silence rather than counting it against Andreas.
+
+### What was built, and at what tier
+
+The staff is built — `fort_dearborn_parade.form.flagstaff_height_m`, 15.24 m, `attested` on Andreas
+— standing in the **centre of the modelled parade**, which is **this project's position and not a
+source's**. `docs/LIBERTIES.md` **L202** owns that, and states the thing that has to be said aloud:
+Whistler's first-fort staff also stood in the centre of a parade, the exclusion forbids borrowing
+it, and the two agree here only because a parade is where a post's colours stood. This project
+reached the second fort's staff by a different road.
+
+**The flag is not built** — `form.flag`, `geometry: absent`, **L203**. Andreas makes it conditional
+twice over, and bending an ensign on would be a claim about the weather and the hour of
+1835-07-01, which is the same claim § 2 refuses when it keeps the gates shut. Nothing describes the
+colours either.
+
+**What this changes in the scene:** the tallest object in Chicago. Andreas's own sentence is that
+the town showed no steeple and no chimney four feet above a roof, and the staff is three times the
+height of the pickets it stands behind and four times the ridge of anything in the town.
+
+---
+
 ## 5. The parade ground: two sources on one page, differing by a factor of two
 
 - **1855 photograph key**: "C is the parade-ground (**80 × 200 ft**)."
@@ -270,6 +351,10 @@ carries the `geometry:` declaration and a liberty:
   Field, the Fort Cemetery, the Ferry. Each is a candidate for a later slice and each
   would be almost entirely invention today — the plan gives a symbol and a label and no
   form. The **Fort Cemetery** in particular is left alone deliberately.
+- **The flag.** Andreas has one flown at the fort "in pleasant weather and on holidays" and, from
+  the south road, "if perchance it was flying". The staff it flew from IS built (§ 4a); the flag is
+  not, because a conditional cannot be drawn without asserting the weather and the hour of the
+  scene date. `fort_dearborn_parade.form.flag`, `geometry: absent`, **L203**.
 - **The ordnance.** No gun is drawn. See § 6.
 
 ---
@@ -296,10 +381,10 @@ source lifts one value without a rewrite. The three that would move most:
 | id | what it gave |
 |---|---|
 | `harrison_1830_river_mouth` | **the plan** — arrangement, proportions, rotation, the named ground |
-| `andreas_1884_v1` | the square stockade, the two gates, the corner works, Hubbard's 1827 interior, the garrison chronology, the lighthouse sentence, the 1827 fire |
+| `andreas_1884_v1` | the square stockade, the two gates, the corner works, Hubbard's 1827 interior, the garrison chronology, the lighthouse sentence, the 1827 fire, **and the flagstaff "some fifty feet high" at p. 128 — the only statement reached that puts a staff at the SECOND fort (§ 4a)** |
 | `wentworth_1881_fort_dearborn` | the 1855 photograph key (the only stated dimensions), Fergus's 1850 addendum, the commandants, Beaubien's purchase |
 | `kinzie_waubun_1856` | high pickets, bastions at alternate angles, gates north and south, posterns, the company gardens, the root-houses, the parade south of the pickets |
-| `quaife_1913` | Whistler's 1808 draught and index (used only as a **guard**), Long's 1816 report, and the scholarly negative on the second fort's dimensions |
+| `quaife_1913` | Whistler's 1808 draught and index (used only as a **guard**), Long's 1816 report, the scholarly negative on the second fort's dimensions, **and a second negative: its one flagstaff is the first fort's, "in the center of" that parade (§ 4a)** |
 | `drloih_fort_dearborn` | the dated commandants table that brackets the scene date |
 | `lighthousefriends_chicago` | the 1832 tower's height, builder, reflectors and lantern |
 | `chicagology_prefire052` | the same text as `wentworth_1881_fort_dearborn`, at a URL; cite that one |

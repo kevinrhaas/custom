@@ -413,6 +413,8 @@ def _parade(b: MeshBuilder, p: FortStructureParams) -> None:
     b.add_box(0.0, 0.0, 0.0, w, d, 0.06, conf, M_WALL, skip=("bottom",))
     if p.sun_dial:
         _sun_dial(b, p, p.conf("sun_dial", "reconstructed"))
+    if p.flagstaff_height_m:
+        _flagstaff(b, p, p.conf("flagstaff_height_m", "reconstructed"))
 
 
 def _sun_dial(b: MeshBuilder, p: FortStructureParams, conf: float) -> None:
@@ -426,6 +428,54 @@ def _sun_dial(b: MeshBuilder, p: FortStructureParams, conf: float) -> None:
     b.add_box(x - s, y - s, 0.0, x + s, y + s, h, conf, M_TRIM, skip=("bottom",))
     b.add_box(x - s - 0.02, y - s - 0.02, h, x + s + 0.02, y + s + 0.02, h + 0.02,
               conf, M_DARK, skip=("bottom",))
+
+
+def _flagstaff(b: MeshBuilder, p: FortStructureParams, conf: float) -> None:
+    """The garrison's flagstaff (T-0096).
+
+    Andreas, describing Chicago as it stood when the town organised itself in the
+    autumn of 1833 — the section headed "Chicago from 1833 to 1837", vol. 1 p. 128
+    — writes that the place "did not show a single steeple nor a chimney four feet
+    above any roof. A flagstaff at the fort, some fifty feet high, flaunted, in
+    pleasant weather and on holidays — a weather-beaten flag". That is the only
+    statement any source reached makes about a staff at the SECOND fort, and it is
+    the whole of what this geometry claims: a spar of about that height, standing.
+
+    **The HEIGHT is his and comes off the record.** Everything about the spar's
+    SHAPE is the archetype's — an eight-sided mast is how a mast reads at fifty
+    metres and is not a reading of anything — and so is the heel diameter, chosen
+    at 0.40 m because that is what a fifty-foot single spar needs to stand.
+
+    **The FLAG IS NOT BUILT, and that is a decision rather than an omission.**
+    Andreas makes it conditional in both places he mentions it — "in pleasant
+    weather and on holidays", and, from the south road, "the flag over the fort,
+    if perchance it was flying". Bending an ensign on would be a claim about the
+    weather and the hour of 1 July 1835, which is the same claim this project
+    already refuses when it keeps the fort's gates shut. The record carries it as
+    `flag`, `geometry: absent`, and docs/LIBERTIES.md owns it.
+
+    **Where it stands is ours**, exactly as the sun-dial's position is: the parade
+    is the only ground inside the walls that is not a building, and no source
+    places the staff on it. The first fort's staff DOES have a documented position
+    — Whistler's 1808 draught puts it in the centre of that parade — and it is
+    excluded by name in `data/exclusions.json`, so it is not the warrant here and
+    must not become one by resemblance.
+    """
+    n = 8
+    h = p.flagstaff_height_m
+    r0 = 0.20                     # heel, about sixteen inches through
+    r1 = r0 * 0.42                # truck
+    cx, cy = p.width_m / 2.0, p.depth_m / 2.0
+
+    def ring(r, z):
+        return [(cx + r * math.cos(2 * math.pi * i / n),
+                 cy + r * math.sin(2 * math.pi * i / n), z) for i in range(n)]
+
+    lo, up = ring(r0, 0.0), ring(r1, h)
+    for i in range(n):
+        j = (i + 1) % n
+        b.add_poly([lo[i], lo[j], up[j], up[i]], conf, M_TRIM)
+    b.add_poly(up, conf, M_TRIM)
 
 
 def _root_house(b: MeshBuilder, p: FortStructureParams) -> None:

@@ -65,7 +65,7 @@ PAINTS = ("unpainted", "whitewash", "white", "brick", "earth", "stone")
 CONSUMED = frozenset({
     "kind", "stories", "wall_height_m", "roof_type", "roof_pitch_deg",
     "construction", "paint", "chimneys", "gallery", "loopholes", "sun_dial",
-    "upper_overhang_m", "lantern",
+    "flagstaff_height_m", "upper_overhang_m", "lantern",
 })
 
 # Where this archetype touches the ground: the whole footprint outline, at the
@@ -120,6 +120,14 @@ class FortStructureParams:
 
     # parade furniture
     sun_dial: bool = False
+
+    # The garrison's flagstaff, in metres of standing height. Zero means no staff,
+    # which is every record in this dataset but one: Andreas, describing the town
+    # of 1833-37, is the only source reached that puts a staff at the SECOND fort
+    # ("A flagstaff at the fort, some fifty feet high"), and the first fort's staff
+    # is excluded by name in data/exclusions.json. The number is the record's; the
+    # spar's taper and its heel diameter are this archetype's, and T-0096 says so.
+    flagstaff_height_m: float = 0.0
 
     # a lighthouse lantern on a tower
     lantern: bool = False
@@ -185,6 +193,17 @@ class FortStructureParams:
                              f"states a count, not whether there was one")
         if not 0 <= self.chimneys <= 6:
             raise ParamError(f"chimneys {self.chimneys} outside 0..6")
+
+        # A staff is furniture on a piece of ground, not a feature of a building, and
+        # the one this dataset builds stands on the parade. Refusing it anywhere else
+        # is the same refusal `loopholes` makes: a staff on a barracks record would be
+        # a claim about the post nobody reached here makes.
+        if self.flagstaff_height_m and self.kind != "parade":
+            raise ParamError(f"a flagstaff on a '{self.kind}' record — the only staff any "
+                             f"source reaches for this post stands on open ground, and "
+                             f"where it stands is already this project's reconstruction")
+        if self.flagstaff_height_m and not 6.0 <= self.flagstaff_height_m <= 30.0:
+            raise ParamError(f"flagstaff_height_m {self.flagstaff_height_m} outside 6-30 m")
 
         if self.kind == "parade":
             if self.roof_type != "none":
@@ -283,6 +302,7 @@ def from_phase(phase: dict, record: dict | None = None) -> FortStructureParams:
         loopholes=bool(val("loopholes", False)),
         upper_overhang_m=float(val("upper_overhang_m", 0.45)),
         sun_dial=bool(val("sun_dial", False)),
+        flagstaff_height_m=float(val("flagstaff_height_m", 0.0)),
         lantern=bool(val("lantern", False)),
         confidence=confidences,
     )

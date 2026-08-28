@@ -92,6 +92,23 @@
           ],
           "note": "ATTESTED FOR 1850 AND CARRIED BACK. Fergus: 'an 8-inch piece of square timber, imbedded in the earth, placed upright, about 2 feet high, upon the top of which was a brass plate on which had been a sun-dial'. Both dimensions built here are his. The date is the weakness - 'had been a sun-dial' is a man describing a relic in 1850, and nothing puts it on the parade in 1835 except that a post with a garrison has more use for a sun-dial than an abandoned one. WHERE IT STANDS IS OURS: Fergus puts his on a knoll near the southern end of a parade four hundred feet long, which is ground this record does not model, so the archetype stands it in the southern part of the court instead."
         },
+        "flagstaff_height_m": {
+          "value": 15.24,
+          "confidence": "attested",
+          "sources": [
+            "andreas_1884_v1"
+          ],
+          "note": "FIFTY FEET, AND IT IS THE FIRST THING ANY SOURCE REACHED SAYS ABOUT A STAFF AT THE SECOND FORT (T-0096). Andreas vol. 1 p. 128 - Internet Archive leaf n272, in the section headed 'Chicago from 1833 to 1837', page-image verified - describes the town as it stood when it organised itself in the autumn of 1833: 'It did not show a single steeple nor a chimney four feet above any roof. A flagstaff at the fort, some fifty feet high, flaunted, in pleasant weather and on holidays - a weather-beaten flag'. He says it again from the south road two sentences later: 'a line of almost indefinable structures, and the flag over the fort, if perchance it was flying'. THE FORT HE IS DESCRIBING IS THIS ONE. The first fort burned on 16 August 1812, twenty-one years before the town he is describing, and its own flagstaff is excluded by name in data/exclusions.json - Whistler's 1808 draught puts that one in the centre of the first fort's parade and Quaife prints it, which is the trap this record had to get past rather than fall into. 50 ft is 15.24 m, recorded converted with the original figure stated, per data/datum.json's units rule. 'SOME fifty feet' is an approximation and Andreas is writing in 1884 about 1833, so the number is his order of magnitude rather than a measurement; what is attested is a staff of about that height, and there is no second witness to it. THE HEIGHT IS ALL THIS SOURCE GIVES. The spar's diameter and taper are the archetype's, and WHERE IT STANDS IS OURS - see docs/LIBERTIES.md L202 and docs/RESEARCH/fort_dearborn.md section 4a."
+        },
+        "flag": {
+          "value": "flown in pleasant weather and on holidays",
+          "confidence": "attested",
+          "sources": [
+            "andreas_1884_v1"
+          ],
+          "geometry": "absent",
+          "note": "ATTESTED AND DELIBERATELY NOT BUILT. Andreas states the flag twice and makes it CONDITIONAL both times - the staff 'flaunted, in pleasant weather and on holidays - a weather-beaten flag', and from the south road you would see 'the flag over the fort, IF PERCHANCE IT WAS FLYING'. Bending an ensign onto this spar would therefore be a claim about the weather and the hour of 1 July 1835, which is the same claim this project already refuses when it keeps the fort's gates shut because 'a shut gate is a claim about a garrison being present and an open one is a claim about the hour of the day' (docs/RESEARCH/fort_dearborn.md section 2). Nothing describes the colours either: no source reached says what was bent on, and a 24-star flag drawn from general knowledge of 1835 would be invention wearing a date. The staff is built and the bunting is not. docs/LIBERTIES.md L203."
+        },
         "paint": {
           "value": "earth",
           "confidence": "inferred",

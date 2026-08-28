@@ -1,5 +1,59 @@
 # STATUS
 
+## Shipped 2026-08-28 — T-0096: a flagstaff over Fort Dearborn, on a source and not on the plate
+
+**The question was whether anything but a retrospective plate could put a flagstaff at the SECOND
+fort, and the answer is yes.** `p4_0` draws one conspicuously; T-0197 measured it the day before
+this run at **0.495 of the drawn wall run, over the GATE**, wedged between the two roofed lanterned
+works **T-0095** had already refused as first-fort signature. So the plate's staff arrives as part
+of a composition this project has thrown out, and `data/exclusions.json` was no help either — the
+staff it excludes is Whistler's, *in the parade* of the fort that burned in 1812.
+
+**The source that settles it: Andreas vol. 1 p. 128**, Internet Archive leaf `n272`, in the section
+headed *"Chicago from 1833 to 1837"*, describing the town as it organised itself in the autumn of
+1833:
+
+> It did not show a single steeple nor a chimney four feet above any roof. **A flagstaff at the
+> fort, some fifty feet high, flaunted, in pleasant weather and on holidays — a weather-beaten
+> flag** … Approaching the village by land from the south, one would see … a line of almost
+> indefinable structures, and **the flag over the fort, if perchance it was flying**.
+
+**It reaches the second fort and cannot reach the first**, which is the whole of the ticket: the
+first fort burned twenty-one years before the town Andreas is describing. **Read at page-image
+level, not off the OCR** — the source record's own `access_notes` say to, for anything
+load-bearing, and the archive.org page endpoint indexes leaves differently from the full-text
+index, so the leaf was found by walking the scan rather than by arithmetic.
+
+**What was built.** `fort_dearborn_parade.form.flagstaff_height_m` = **15.24 m** (fifty feet,
+converted with the original figure stated), `attested` on Andreas, built by a new `_flagstaff` in
+the `fort_structure` archetype — an eight-sided spar 0.40 m at the heel, **+22 triangles**, the
+tallest object in the town by a factor of three. Evidence: `docs/evidence/t-0096-{before,after}.png`
+from `p4_0`'s own stand (local 1145, 300, yaw 180); the mast measures **358 differing pixels, 3 px
+wide and 130 px tall**, standing off the picket head.
+
+**What is NOT built, and it is a decision.** The flag. Andreas makes it conditional twice over —
+*"in pleasant weather and on holidays"*, *"if perchance it was flying"* — so bending an ensign on
+would be a claim about the weather and the hour of 1835-07-01, the same claim this project refuses
+when it keeps the fort's gates shut. `form.flag`, `geometry: absent`, **L203**.
+
+**What is invented is the position, and it is stated as such.** Andreas gives none. **The 1830
+Harrison plan draws no staff at all — and is silent rather than negative**: the engraver letters
+`FORT DEARBORN` across the empty court, over exactly the ground a staff symbol would occupy. The
+staff stands at the parade's centre because that is the only ground inside the walls that is not a
+building. **L202** owns that and says the uncomfortable part out loud: Whistler's first-fort staff
+also stood in the centre of a parade, the exclusion forbids borrowing it, and the two agree here
+only because a parade is where a post's colours stood.
+
+**The negative half of the search, recorded the way `quaife_1913`'s is.** Quaife (whole text): one
+flagstaff, and it is the first fort's, *"in the center of"* that parade. **Wau-Bun** (whole text,
+`flag*` / `staff` / `ensign` / `colors` / `mast`): nothing — and Juliette Kinzie lived inside this
+fort in 1831. The **1855 photograph key**: nothing. **Andreas vol. 1** entire: two hits, this one
+and an 1850s fire-engine contest. Full table in `docs/RESEARCH/fort_dearborn.md` § 4a.
+
+**Verification.** `tools/check.sh` PASS · `node tools/smoke_renderer.mjs` (390×780 and 1280×800,
+zero pageerrors) · 12 fort GLBs rebaked because the archetype module's bytes are inside the inputs
+hash, and **eleven of them came back byte-identical** — only the parade's mesh moved.
+
 ## Shipped 2026-08-28 — T-0282: the shrub stratum joins the ceiling declaration, and a visitor can read it
 
 **T-0019 declared the forb lattice's ceiling this morning and the declaration could not see half of

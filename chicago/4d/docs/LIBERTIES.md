@@ -9132,3 +9132,70 @@ reach no renderer) · ROADMAP **K54** (the shrub stratum's own lattice), **K55**
 tickets **T-0019** (the declaration), **T-0282** (this), **T-0281** (the flora section this table
 belongs in next), **T-0034**, **T-0203**, **T-0218**.
 **Recorded:** 2026-08-28.
+
+### L202 — Where Fort Dearborn's flagstaff stands, and the spar it is
+**Decision:** the garrison's flagstaff stands **in the centre of the modelled parade**, an
+eight-sided spar **0.40 m through at the heel** tapering to **0.17 m at the truck**, rising the
+**15.24 m** the record states. The height is the only one of those numbers that comes from a
+source. It is built by `fort_structure`'s `_flagstaff`, off the parade record's
+`flagstaff_height_m`, and it is the tallest object in this town by a factor of three.
+**There is no `Covers:` field, and the reason is worth a line:** the height this staff is built
+to is `attested` and it is built, so there is no invented VALUE in the record to point at. What is
+invented is the staff's position ON the parade and the section of its spar, neither of which the
+data model has a token for — the same shape as the parade's sun-dial, whose two dimensions are
+Robert Fergus's and whose position is ours.
+**Why it is built at all:** because a source that reaches the SECOND fort was found, which is
+what ticket **T-0096** required and what four earlier passes could not produce. **Andreas vol. 1
+p. 128** — Internet Archive leaf `n272`, verified at page-image level, in the section headed
+*"Chicago from 1833 to 1837"* — describes the town as it organised itself in the autumn of 1833:
+*"It did not show a single steeple nor a chimney four feet above any roof. A flagstaff at the
+fort, some fifty feet high, flaunted, in pleasant weather and on holidays — a weather-beaten
+flag."* The fort standing over that town is this one; the first burned in 1812. Fifty feet is
+15.24 m, converted with the original figure stated.
+**What is invented, plainly.** **The position.** Andreas gives none, and neither does anything
+else reached. The 1830 Harrison plan — the only plan of this fort this project has — **draws no
+staff at all**, and cannot be read as a negative for the parade either: the engraved sheet letters
+`FORT DEARBORN` across the empty court, over exactly the ground a staff symbol would occupy. So
+the centre of the parade is **this project's choice**, made because the parade is the only ground
+inside the walls that is not a building. **Invented too:** the heel diameter and the taper, which
+are what a fifty-foot single spar needs to stand rather than a reading of anything; and the eight
+sides, which are how a mast reads at fifty metres.
+**The thing this entry must say out loud.** The FIRST fort's flagstaff *does* have a stated
+position — Whistler's 1808 draught puts it *"in the center of"* the parade ground and Quaife
+prints it — and `data/exclusions.json` excludes that staff by name, closing *"none of it may be
+borrowed for the second fort's records"*. **That is not the warrant here and must not become one
+by resemblance.** The two agree only because a parade is where a post's colours stood, and this
+project reached the second fort's staff by a different road: Andreas describing the town of 1833.
+If the exclusion's reasoning is ever taken to bar the resemblance as well as the borrowing, what
+falls is the *position*, not the staff.
+**What the plate cannot settle.** `p4_0` draws a flagstaff and **T-0197** measured it: 0.495 of
+the drawn wall run, over the GATE, wedged between the two roofed lanterned works **T-0095** read
+as first-fort signature. That composition is refused as a whole, so its position is refused with
+it, and this staff does not stand where the plate puts one. The plate is now corroboration that a
+staff was there and evidence of nothing about where.
+Related: **L47** (the palisade's own reconstructed fabric) · **L174** (the trodden apron off the
+same walls) · **L203** (the flag, attested and not built) · tickets **T-0096** (this),
+**T-0197**, **T-0095**, **T-0044**.
+**Recorded:** 2026-08-28.
+
+### L203 — The flag is attested, and nothing of it is built
+**Covers:** `fort_dearborn_parade.parade_1816.form.flag`
+**Decision:** **no ensign is bent onto Fort Dearborn's flagstaff.** The spar stands bare. The
+record states the flag, grades it `attested` on Andreas, and declares `geometry: absent`.
+**Why:** because **Andreas makes the flag conditional in both places he mentions it**, and a
+conditional cannot be drawn. The staff *"flaunted, **in pleasant weather and on holidays** — a
+weather-beaten flag"*; and, approaching from the south road, what you would see was *"the flag
+over the fort, **if perchance it was flying**"* (vol. 1 p. 128). Flying an ensign here would be a
+claim about the weather and the hour of **1 July 1835** — the same claim this project already
+refuses when it keeps the fort's gates shut, on the reasoning that *"a shut gate is a claim about
+a garrison being present and an open one is a claim about the hour of the day"*
+(`docs/RESEARCH/fort_dearborn.md` § 2).
+**And nothing describes the colours.** No source reached says what was bent on. A 24-star flag
+drawn from general knowledge of 1835 would be invention wearing a date, and this project has a
+name for that.
+**What would resolve this:** anything that fixes the flag to the day rather than to the season — a
+garrison order, a diary entry for the week, a dated view. Failing that, a decision by the owner
+that the scene may state a fine day and fly the colours on it, which is a scene-wide question
+about weather and not a question about this record.
+Related: **L202** (the staff itself) · ticket **T-0096**.
+**Recorded:** 2026-08-28.

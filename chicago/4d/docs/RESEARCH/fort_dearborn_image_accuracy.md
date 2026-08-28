@@ -68,7 +68,7 @@ notice it:
 | 3 | ~~Pickets are flat-topped and dark; the plate's are pointed and pale.~~ **This row was wrong in both halves — see below. Refuted and closed 2026-08-24 by T-0094.** The one thing about the pickets the plate DOES say — that it draws them three times coarser — was left open by that pass and is **settled 2026-08-28 by T-0185, see below.** | nothing to bake |
 | 4 | ~~The corner works do not rise above the curtain with roofs and lanterns as the plate draws them.~~ **`p4_0` draws no work at either angle it shows. Refuted and closed 2026-08-24 by T-0095 — see below.** | nothing to bake |
 | 5 | ~~No gate is drawn in either documented wall;~~ **a gate has been drawn in both since the archetype was written — but both stood a QUARTER OPEN, and that is now fixed. Closed 2026-08-24 by T-0095 — see below.** The plate's log-faced work over the gate is not built, and § "Row 4" says why. | **closed — one asset rebaked** |
-| 6 | **A flagstaff and flag over the fort** — the most conspicuous single feature of `p4_0`. **MEASURED 2026-08-28 by T-0197: drawn, and it stands at 0.495 of the wall — over the GATE, between the two works at 0.435 and 0.521, and NOT in the parade where `data/exclusions.json` puts the first fort's.** | **NOT a bake question, and NOT to be built on this plate alone** — see below; carried by **T-0096**, whose question the measurement sharpens rather than answers |
+| 6 | **A flagstaff and flag over the fort** — the most conspicuous single feature of `p4_0`. **MEASURED 2026-08-28 by T-0197: drawn, and it stands at 0.495 of the wall — over the GATE, between the two works at 0.435 and 0.521, and NOT in the parade where `data/exclusions.json` puts the first fort's.** ~~NOT to be built on this plate alone.~~ **CLOSED 2026-08-28 by T-0096 — on a SOURCE, and not on this plate.** | **a staff IS built, and this plate did not put it there.** Andreas vol. 1 p. 128 attests a flagstaff "some fifty feet high" at the fort of 1833, which is this one. It stands 15.24 m on the parade, at a position that is ours; the flag is not built. `fort_dearborn_parade.form.flagstaff_height_m`, **L202** / **L203**, `docs/RESEARCH/fort_dearborn.md` § 4a |
 | 7 | The ground round the walls is full prairie sward; both plates show it bare and trodden. | **closed 2026-08-23 by T-0097** — a 12 m band of trodden earth outside the palisade, derived from the stockade's own committed footprint (`data/enclosures/fort_dearborn_apron.json`, L174); before/after at `docs/evidence/t-0097-{before,after}.png` |
 | 8 | No trees at the fort; `p4_0` puts a tree mass ~~east~~ **WEST** of the walls and `p4_1` trees round the buildings on both banks. **The compass word in this row was wrong — see "Row 8's east is west" below.** | **closed 2026-08-24 by T-0098** — the mass is WEST, measured; and the plate cannot DATE it, so 12 relict black willows stand there `reconstructed` rather than the plate's closed canopy (`data/flora/plantings/fort_dearborn_wood.json`, L188); before/after at `docs/evidence/t-0098-{before,after}.png` |
 
@@ -435,12 +435,22 @@ unchanged and still needs a source that reaches the 1816 post.** What is now rec
 that the excluded first-fort staff and the drawn staff are not in the same place, so
 "`exclusions.json` already covers it" is not an answer either.
 
+**POSTSCRIPT, 2026-08-28 — the source arrived the next day, and this section's refusal held up
+exactly as written.** T-0096 found it in Andreas vol. 1 p. 128, describing the town of 1833: *"A
+flagstaff at the fort, some fifty feet high, flaunted, in pleasant weather and on holidays — a
+weather-beaten flag."* A staff is now built. **Nothing in this section moved it.** The height is
+Andreas's; the position is the parade's centre and is this project's own; and the plate's
+0.495-over-the-gate reading is still refused, for the reason given above. The measurement's value
+turned out to BE the refusal — it is what stopped a staff being built where the plate puts one, on
+the strength of a composition T-0095 had already thrown out. See
+`docs/RESEARCH/fort_dearborn.md` § 4a.
+
 ### The tickets descending from these rows, re-read
 
 | ticket | from row | verdict against the measurement |
 |---|---|---|
 | **T-0099** (done, PR #431) | 2 | **CONFIRMED.** The plate draws the track it built, out of the gate it built from, running the direction it swung. The length it chose is its own and is labelled `reconstructed`; the plate neither warrants nor refutes it. |
-| **T-0096** (open) | 6 | **CONFIRMED, and sharpened.** The staff is drawn; where it stands is now measured; the first-fort question is not settled by `exclusions.json` because the excluded staff is in the parade and this one is over the gate. The ticket's acceptance is unchanged — evidence reaching the 1816 post, or a recorded negative finding. |
+| **T-0096** (done) | 6 | **CONFIRMED, sharpened — and then ANSWERED the next day, by a source rather than by this plate.** Andreas vol. 1 p. 128, in the section headed "Chicago from 1833 to 1837", puts "A flagstaff at the fort, some fifty feet high" over the town of 1833; the first fort had burned twenty-one years earlier, so it reaches the 1816 post and cannot reach the other one. A staff is built at 15.24 m. **Its position is still NOT the plate's** — the plate's staff comes wedged between the two works T-0095 refused, and this one stands on the parade at a position this project owns (**L202**). The flag stays unbuilt: Andreas makes it conditional twice (**L203**). The finding, and the negative half of the search that went with it, are `docs/RESEARCH/fort_dearborn.md` § 4a. |
 | **T-0098** (done) | 8 | **CONFIRMED as measured** by its own run: the compass word struck, the date struck, twelve `reconstructed` relict stems built rather than the plate's closed canopy. No new work. |
 | **T-0094** (refuted), **T-0095** (refuted), **T-0097** (done) | 3, 4, 5, 7 | already closed by measurement; not re-opened here. |
 | `fort_road` (built by this pass, row 1) | 1 | **STANDS, on a different warrant than the row claimed.** The 1830 Harrison plan and L140, not the plates. No record changes; the row's plate sentence is struck. |
