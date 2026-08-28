@@ -1,0 +1,345 @@
+{
+ "schema": 1,
+ "issue_id": "chicago_democrat_1834_02_25",
+ "extracted": "2026-08-28",
+ "extracted_by": "hand, T-0311 — the Democrat read, February 1834",
+ "note": "Vol. I No. 14. The issue that puts a documented storefront off South Water Street for the first time — J. K. Botsford's tin shop at the corner of Dearborn and Lake — and that says where the town's shingles and lath came from: across the lake from Michigan in the Schooner Post Boy, as soon as the ice cleared. The Chicago Academy's second term, its two departments and its board of trustees close the month.",
+ "claims": [
+  {
+   "id": "c001",
+   "kind": "business",
+   "reading": "transcription_mediated",
+   "quote": "PRESS FROM DETROIT, ~\nNERAL assortment of TIN WARE,\nhich the subscriber offers  for sale, con-\nof Double Patent reflectin, Bukers, 0\nrate artic    Coffee Pots, Mik Pans, of\nBick Candle  Sticke, Covered\n+es, of all sizes; Milk Strains,\nlarge and small: Wash Ba-\nDippers, Tin Cups, Graters,\n“rloer would inform the pub\n\"0g Of navigation, he will «\nMacturing of Tin, in afl its vn\nJ. K. BOTSFORD,\nCorner of Dearborn ani Lake-sts,\nFebruery 4, 1834.            4",
+   "normalized": "[EX]PRESS FROM DETROIT. [A GE]NERAL assortment of TIN WARE, [w]hich the subscriber offers for sale, con[sisting] of Double Patent reflectin[g] B[a]kers, [a first] rate artic[le,] Coffee Pots, Milk Pans, [ ] B[ra]ck[et] Candle Sticks, Covered [dish]es, of all sizes; Milk Strain[er]s, [ ] large and small; Wash Ba[sins,] Dippers, Tin Cups, Graters, [… The subscr]iber would inform the pub[lic that at the openi]ng of navigation, he will [commence the] manufacturing of Tin, in all its [bra]n[ches.] J. K. BOTSFORD, Corner of Dearborn and Lake-st[reet]s, February 4, 1834.",
+   "locator": {
+    "artifact_role": "primary",
+    "issue_page": 3,
+    "column": 3,
+    "lines": [
+     2292,
+     2306
+    ],
+    "lines_of_claim": [
+     2292,
+     2293,
+     2294,
+     2295,
+     2296,
+     2297,
+     2298,
+     2299,
+     2300,
+     2301,
+     2302,
+     2303,
+     2304,
+     2305,
+     2306
+    ]
+   },
+   "entities": [
+    {
+     "as_printed": "J. K. BOTSFORD,",
+     "normalized": "J. K. Botsford",
+     "role": "proprietor",
+     "occupations": [
+      "tinsmith",
+      "merchant"
+     ],
+     "associated_places": [
+      "the corner of Dearborn and Lake streets"
+     ]
+    }
+   ],
+   "business": {
+    "name": "J. K. Botsford's tin ware store",
+    "proprietors": [
+     "J. K. Botsford"
+    ],
+    "trade": "tinsmith and dealer in tin ware",
+    "goods": [
+     "tin ware",
+     "reflecting bakers",
+     "coffee pots",
+     "milk pans",
+     "candle sticks",
+     "covered dishes",
+     "milk strainers",
+     "wash basins",
+     "dippers",
+     "tin cups",
+     "graters"
+    ],
+    "street": "Lake Street",
+    "placement": {
+     "class": "corner",
+     "anchor": "the corner of Dearborn and Lake streets",
+     "offset_text": "Corner of Dearborn ani Lake-sts,",
+     "offset_normalized": "Corner of Dearborn and Lake-st[reet]s",
+     "street": "Lake Street"
+    }
+   },
+   "ad_copy_date": {
+    "verbatim": "Februery 4, 1834.",
+    "iso": "1834-02-04"
+   },
+   "notes": "A SECOND DOCUMENTED CORNER, AND IT IS NOT ON SOUTH WATER STREET. Every placed storefront this month has sat on South Water; J. K. Botsford's tin shop is at the CORNER OF DEARBORN AND LAKE STREETS, which puts a documented business one block north of the river frontage and is the first Lake Street address the epic has. It also resolves the previous week's relative address: Botsford was 'next door to Graves' Tavern' on 17 February (1834-02-18, claim c004), so Graves' Tavern is next door to the Dearborn and Lake corner — an inference stated in both notes and written into neither placement, because the tavern has no claim of its own. THE TRADE IS A MANUFACTURE, NOT ONLY A STOCK: he sells tin ware brought express from Detroit now and will MAKE tin 'in all its branches' when navigation opens, which dates a workshop to the spring of 1834 and is a good example of how completely the lake's ice governed the town's year."
+  },
+  {
+   "id": "c002",
+   "kind": "building",
+   "reading": "transcription_mediated",
+   "quote": "The Chicego Academy.\nT HE secon term of this institution com-\n‘enced on Monday, tho 15th inst. Br\nJacing it under the  public funds for schools,\nhe Trustees are happy to render it air insti}\nition of general benetit for the rising gene\ntion, Its two departments will not onl\nclude all the branches us     tanght in com-\ntnon schools, but also all that is Necersary toa\nefal and finished education, Charta, Mape,\nlobes and other apparatus, will present to the\npupils a facility of acquiring, which is not com-\nmon in most public schools of the day,\ntherefore earnestly solicit of parents, as they\ny\nregard the future welfare of their children, and\nrhe risin\ngeneration, to avail themselves of\nthengivilege granted them by a liberal govern-\nment, xhich renders our Fituation, as an od\ncating cotmunity, traly enviable, and certain-\nly, without a teallel in the West.\nByforder of the bord of ‘Trustees,\n1. SNOW,\nMS.   I,\n|                    D. GRAVES\nG. T. Sproat, Pre.                   ‘\n|  Chicago, Feb, 21, 15                “4",
+   "normalized": "The Chicago Academy. THE secon[d] term of this institution com[m]enced on Monday, the 15th inst. B[y] placing it under the public funds for schools, the Trustees are happy to render it a[n] institution of general benefit for the rising generation. Its two departments will not onl[y in]clude all the branches us[ually] taught in common schools, but also all that is necessary to a [us]eful and finished education. Chart[s], Map[s], [G]lobes and other apparatus, will present to the pupils a facility of acquiring, which is not common in most public schools of the day. [We] therefore earnestly solicit of parents, as they regard the future welfare of their children, and [t]he rising generation, to avail themselves of the privilege granted them by a liberal government, [w]hich renders our [si]tuation, as an [edu]cating co[m]munity, truly enviable, and certainly, without a [par]allel in the West. By order of the bo[a]rd of Trustees, [J.] SNOW, [ ] [J.] D. GRAVES [ ] G. T. Sproat, [Sec.] Chicago, Feb. 21, 18[34]",
+   "locator": {
+    "artifact_role": "primary",
+    "issue_page": 3,
+    "column": 3,
+    "lines": [
+     2307,
+     2334
+    ],
+    "lines_of_claim": [
+     2307,
+     2308,
+     2309,
+     2310,
+     2311,
+     2312,
+     2313,
+     2314,
+     2315,
+     2316,
+     2317,
+     2318,
+     2319,
+     2320,
+     2321,
+     2322,
+     2323,
+     2324,
+     2325,
+     2326,
+     2327,
+     2328,
+     2329,
+     2330,
+     2331,
+     2332,
+     2333,
+     2334
+    ],
+    "interleaved": true
+   },
+   "entities": [
+    {
+     "as_printed": "1. SNOW,",
+     "normalized": "J. Snow",
+     "role": "trustee of the Chicago Academy"
+    },
+    {
+     "as_printed": "D. GRAVES",
+     "normalized": "D. Graves",
+     "role": "trustee of the Chicago Academy"
+    },
+    {
+     "as_printed": "G. T. Sproat, Pre.",
+     "normalized": "G. T. Sproat",
+     "role": "of the board of trustees of the Chicago Academy"
+    }
+   ],
+   "ad_copy_date": {
+    "verbatim": "|  Chicago, Feb, 21, 15",
+    "iso": "1834-02-21"
+   },
+   "notes": "THE TOWN'S SCHOOL, ITS TERM DATES, ITS FUNDING AND ITS BOARD. The Chicago Academy's SECOND term began on Monday 17 February 1834 — the notice says 'the 15th inst.', which was the Saturday, and the discrepancy is recorded rather than corrected — and it has just been placed under the public funds for schools, which is a real change of status and not a puff: a subscription academy becoming a publicly funded one inside its first year. It has TWO DEPARTMENTS and it owns charts, maps and globes, which is the closest thing to an inventory of a Chicago schoolroom's contents the epic has found. The board is named: J. Snow, [J.] D. Graves and G. T. Sproat. GRAVES IS THE NAME TO NOTICE — Botsford's shop is 'next door to Graves' Tavern' (1834-02-18, claim c004), and a D. Graves sitting on the school board is very likely the same man, which is stated and not merged: the gazetteer keys on the whole name and 'D. Graves' and 'Graves' stay two entries until a witness joins them. Sproat is the G. N. Sproat who wrote the Presbyterian dedication hymn in January, or his relative; same refusal applies. NO SCHOOLHOUSE IS NAMED OR PLACED and none is supplied — the institution is documented, the building is not."
+  },
+  {
+   "id": "c003",
+   "kind": "business",
+   "reading": "transcription_mediated",
+   "quote": "|  Storage, Commission and   :\nLUMBER BUSINESS,\nHE subscriber takes this early opportu-\nT  nity of informing the public, that he has | -\nuimenced the above business  extensively,\nand will have on hand as soon as the ice is |,\nclear from the Lake, lath, shingles, red ceder\nposts, end all articles in the Jumber line, which\nhe is determined’to furnish ax cheap ax they\nan possibly be afforded in this market. He  [\nwill dlso heep generally on hand, at his Store,\nFlour, Grain, and other articles from the coun-\ntry, upon as reasonable terms as the place will\n‘mit. Having chartered the Schooner Post\nBoy for the two first trips, he will be able to |\nfurnish the first articles that ean  be procured\nfrom acrors the Lake. He would mention to\nhis friends in Michigan, who would wieh to\nship lumber or other articles to his care, that) i\nhe will receive all articles directed to him, and\npay freight and charges, and make immediate\nreturns upon the sale of the same; and he will\nalso make an advance in cash npon all saleable\narticles, if required. Calvin Britain Oeq. at St, |\nseph, and Col Sumsel Miller, Michigeg|\nty, cre his      ite, who will ip   diate  \\",
+   "normalized": "Storage, Commission and LUMBER BUSINESS. T[H]E subscriber takes this early opportunity of informing the public, that he has [com]menced the above business extensively, and will have on hand as soon as the ice is clear from the Lake, lath, shingles, red ced[a]r posts, [a]nd all articles in the [l]umber line, which he is determined to furnish a[s] cheap a[s] they [c]an possibly be afforded in this market. He will [a]lso [k]eep generally on hand, at his Store, Flour, Grain, and other articles from the country, upon as reasonable terms as the place will [per]mit. Having chartered the Schooner Post Boy for the two first trips, he will be able to furnish the first articles that can be procured from acro[s]s the Lake. He would mention to his friends in Michigan, who would wi[s]h to ship lumber or other articles to his care, that he will receive all articles directed to him, and pay freight and charges, and make immediate returns upon the sale of the same; and he will also make an advance in cash [u]pon all saleable articles, if required. Calvin Britain [Es]q. at St. [Jo]seph, and Col[.] S[a]m[u]el Miller, Michig[an … coun]ty, [a]re his [agen]ts, who will [ship imme]diate[ly]",
+   "locator": {
+    "artifact_role": "primary",
+    "issue_page": 3,
+    "column": 3,
+    "lines": [
+     2336,
+     2361
+    ],
+    "lines_of_claim": [
+     2336,
+     2337,
+     2338,
+     2339,
+     2340,
+     2341,
+     2342,
+     2343,
+     2344,
+     2345,
+     2346,
+     2347,
+     2348,
+     2349,
+     2350,
+     2351,
+     2352,
+     2353,
+     2354,
+     2355,
+     2356,
+     2357,
+     2358,
+     2359,
+     2360,
+     2361
+    ],
+    "interleaved": true
+   },
+   "entities": [
+    {
+     "as_printed": "Calvin Britain Oeq. at St, |",
+     "normalized": "Calvin Britain",
+     "role": "agent at St. Joseph, Michigan"
+    },
+    {
+     "as_printed": "Col Sumsel Miller, Michigeg|",
+     "normalized": "Samuel Miller",
+     "role": "agent in Michigan"
+    }
+   ],
+   "business": {
+    "name": "a storage, commission and lumber business, proprietor unnamed in the cited range",
+    "proprietors": [],
+    "trade": "storage, commission and lumber merchant",
+    "goods": [
+     "lath",
+     "shingles",
+     "red cedar posts",
+     "lumber",
+     "flour",
+     "grain"
+    ],
+    "street": null,
+    "placement": {
+     "class": "none",
+     "anchor": null,
+     "offset_text": null,
+     "offset_normalized": null,
+     "street": null
+    }
+   },
+   "notes": "WHERE THE TOWN'S BUILDING MATERIALS CAME FROM, IN THE MERCHANT'S OWN WORDS. Lath, shingles, red cedar posts and 'all articles in the lumber line' — the finish materials, not the framing — shipped ACROSS THE LAKE from Michigan and unloadable only 'as soon as the ice is clear', with a named vessel chartered for the first two trips: the Schooner Post Boy. This is the supply side of the building-materials prices the Democrat quotes weekly (1834-02-04, claim c011), and together they say something a reconstruction has to honour: a Chicago building of 1834-35 is roofed with shingles that crossed Lake Michigan in a schooner after the ice went out. The man also keeps a STORE — flour, grain and country produce — so this is a lumber yard and a provision store in one hand. HIS NAME IS NOT IN THE CITED RANGE: the notice's signature falls below the column's foot and is not supplied, so the business is recorded without a proprietor rather than being attributed to the Calvin Britain named as his agent at St. Joseph. That refusal is the claim's honesty and not an oversight — a firm named wrongly is worse than a firm unnamed."
+  },
+  {
+   "id": "c004",
+   "kind": "business",
+   "reading": "transcription_mediated",
+   "quote": "For Sale,\nBARRELS WHITE FISH.\n10 Be do Ou\nBest\ntour, b;\nFeb. 17.            RA KINZIE.  :",
+   "normalized": "For Sale, [10] BARRELS WHITE FISH. [50 do.] O[ld Whiskey.] [50 do.] Best [Ohio] [F]lour, b[y] Feb. 17. R[.] A. KINZIE.",
+   "locator": {
+    "artifact_role": "primary",
+    "issue_page": 3,
+    "column": 3,
+    "lines": [
+     2386,
+     2391
+    ],
+    "lines_of_claim": [
+     2386,
+     2387,
+     2388,
+     2389,
+     2390,
+     2391
+    ]
+   },
+   "entities": [],
+   "business": {
+    "name": "R. A. Kinzie's Store",
+    "proprietors": [
+     "R. A. Kinzie"
+    ],
+    "trade": "merchant",
+    "goods": [
+     "white fish",
+     "old whiskey",
+     "Ohio flour"
+    ],
+    "street": null,
+    "placement": {
+     "class": "none",
+     "anchor": null,
+     "offset_text": null,
+     "offset_normalized": null,
+     "street": null
+    }
+   },
+   "ad_copy_date": {
+    "verbatim": "Feb. 17.",
+    "iso": "1834-02-17"
+   },
+   "notes": "THE SAME KINZIE NOTICE AS THE WEEK BEFORE, and it is recorded because a standing advertisement running unchanged is evidence the store was still open — which is the whole basis on which a documented business is carried forward to the scene date under ruling 3. The reading here is worse than the 18 February printing (1834-02-18, claim c007) and the quantities are supplied from it rather than guessed."
+  },
+  {
+   "id": "c005",
+   "kind": "business",
+   "reading": "transcription_mediated",
+   "quote": "“LIVERY STABLE.\nHE citizens Meee are hereby inform-  ‘\ned, thata LIVERY STABLE is opened  |\n‘        at the Point, and that prepara-\nrations are being male to ac-|,\necommodate the public. Z Bad- |,\ndle horses, single horse Carria- | |\nwill be bee yer Ail\ni    be bad day or night (for Cazh on-\n5 Te caeane charges.  All property to be\nfeturned sound as when ssken fromthe stable,\nor the persot biring wi be held respoi       x\n[uncertain: Horses kept by Oe EPEREON & ?...]\nChicago, Feb. M1, 1834.",
+   "normalized": "LIVERY STABLE. [T]HE citizens [of Chicago] are hereby informed, that a LIVERY STABLE is opened at the Point, and that prepara[ ]rations are being ma[d]e to accommodate the public. Saddle horses, single horse Carria[ges] will be [kept on hand. All of which] can be had day or night (for Cash on[ly,] at reasonable charges. All property to be [r]eturned sound as when taken from the stable, or the perso[n] hiring wi[ll] be held respo[nsible.] [Horses kept by the day or week. THOS. EPERSON & Co.] Chicago, Feb. [1]1, 1834.",
+   "locator": {
+    "artifact_role": "primary",
+    "issue_page": 3,
+    "column": 3,
+    "lines": [
+     2392,
+     2405
+    ],
+    "lines_of_claim": [
+     2392,
+     2393,
+     2394,
+     2395,
+     2396,
+     2397,
+     2398,
+     2399,
+     2400,
+     2401,
+     2402,
+     2403,
+     2404,
+     2405
+    ],
+    "interleaved": true
+   },
+   "entities": [],
+   "business": {
+    "name": "Thos. Eperson & Co.'s Livery Stable",
+    "proprietors": [
+     "Thos. Eperson"
+    ],
+    "trade": "livery stable",
+    "goods": [
+     "saddle horses",
+     "single horse carriages"
+    ],
+    "street": null,
+    "placement": {
+     "class": "relative",
+     "anchor": "the Point",
+     "offset_text": "‘        at the Point, and that prepara-",
+     "offset_normalized": "a LIVERY STABLE is opened at the Point",
+     "street": null
+    }
+   },
+   "ad_copy_date": {
+    "verbatim": "Chicago, Feb. M1, 1834.",
+    "iso": "1834-02-11"
+   },
+   "notes": "THE LIVERY STABLE'S SECOND PRINTING, AND IT CARRIES THE DATELINE THE FIRST ONE DID NOT: Chicago, 11 February 1834. So the stable at the Point opened in the second week of February 1834 and was still advertising a fortnight later — a dated start for a building, which is what the reconstruction needs and what a standing advertisement usually withholds. The proprietors' line is cut here and is supplied from the 18 February printing (claim c003 there), where it reads whole."
+  }
+ ]
+}

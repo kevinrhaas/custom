@@ -1,0 +1,395 @@
+{
+ "schema": 1,
+ "issue_id": "chicago_democrat_1834_02_18",
+ "extracted": "2026-08-28",
+ "extracted_by": "hand, T-0311 — the Democrat read, February 1834",
+ "note": "Vol. I No. 13, and the issue that dates the harbour mouth. Rain on Friday 14 February swelled the river and on the Saturday it forced its own channel over the bar, seven to eight feet deep, helped by the pier then building — the middle of the story whose January and August ends the epic already holds. Also a new smoke house, a livery stable opening at the Point, and Graves' Tavern used as a street anchor.",
+ "claims": [
+  {
+   "id": "c001",
+   "kind": "infrastructure",
+   "reading": "transcription_mediated",
+   "quote": "Chiergo Hurtor.-Owing to\nthat tell on Friday last, the Ch\nawollen to an unusunt heiglit.\nSaturday, this\ngreat volume of s\na passave over the bar at the mo\nbor that is constructing, and t\nthe great impediments with wh\nthe large quantities of ice in t\npressed with such astonistor\nperior advantages\nevening a channel was cleared s\nthan this State.-\nin width, and from seven to oig\ne for many milliot\nNearly all the water of the river\nannually fed upon to the lake through this new c\nmaintain them\nfrom the effict of the pier that i\nny bo cat and cur\nhe old channel of the river on t\nInnime and the\nthe herbor 1. is congdently Bon\nnatural meadow».\nopty for the cinema, but for li\nThis is a most fortunite\nent from any we\nThe hands employed at the ba\nbe peculiar to the\nactively engaged during the day,\nk and tall,\nservices they could in aiding\net prairie and river the current.\n[uncertain: adonarents]\nremoved or the force of the strai\nstock not only sub-\nand but for this most fortunate oc\nrow fat sooner than\nmost, probably\nhave required\nhundred hands for some time to\nStock may be shua performed by the water in\nfirst Vessels will now be able to diac!\nI until the first of gocs with more facility than for",
+   "normalized": "Chicago Harbor. — Owing to [the rain] that fell on Friday last, the Ch[icago river was] swollen to an unusual height[, and on] Saturday, this [ ] great volume of [water forced] a passage over the bar at the mo[uth of the har]bor that is constructing, and [notwithstanding] the great impediments with wh[ich it was op]pressed [by] the large quantities of ice in t[he river … by] evening a channel was cleared s[ome … feet] in width, and from seven to eig[ht feet deep. …] Nearly all the water of the river [now passes] to the lake through this new c[hannel, aided] […] from the eff[e]ct of the pier that i[s building …] the old channel of the river on t[he … of] the harbor[,] it is confidently bel[ieved …] This is a most fortunate [occurrence …] The hands employed at the ba[r were … ] actively engaged during the day, [rendering what] services they could in aiding [ ] the current[, …] removed[,] or the force of the strea[m …] and but for this most fortunate oc[currence it would] most probably have required [several] hundred hands for some time to [do what has been] performed by the water in [a day. …] Vessels will now be able to disc[harge …] with more facility than for[merly …]",
+   "locator": {
+    "artifact_role": "primary",
+    "issue_page": 2,
+    "column": 6,
+    "lines": [
+     1823,
+     1866
+    ],
+    "lines_of_claim": [
+     1823,
+     1824,
+     1825,
+     1826,
+     1827,
+     1828,
+     1829,
+     1830,
+     1831,
+     1832,
+     1833,
+     1834,
+     1835,
+     1836,
+     1837,
+     1838,
+     1839,
+     1840,
+     1841,
+     1842,
+     1843,
+     1844,
+     1845,
+     1846,
+     1847,
+     1848,
+     1849,
+     1850,
+     1851,
+     1852,
+     1853,
+     1854,
+     1855,
+     1856,
+     1857,
+     1858,
+     1859,
+     1860,
+     1861,
+     1862,
+     1863,
+     1864,
+     1865,
+     1866
+    ],
+    "interleaved": true
+   },
+   "entities": [],
+   "notes": "THE RIVER CUT ITS OWN HARBOUR MOUTH IN A DAY, AND THE PIER HELPED. This is the dated middle of the story the epic already holds both ends of, and it is the most consequential claim in the month. In January 1834 the Engineer's own report said the works were barely begun — no engineer officer, no materials, 'but little has been done' (1834-01-21, claim c001). By August the North Pier is being run across the sand bar (1834-08-13, claim c001). HERE IS WHAT HAPPENED BETWEEN THEM: rain on Friday 14 February swelled the river, and on the Saturday the flood forced a passage over the bar at the mouth, cutting a channel the paper measures — SOME FEET IN WIDTH AND FROM SEVEN TO EIGHT FEET DEEP — through which nearly all the river's water then ran to the lake. The paper credits the pier that is building with part of the effect, and says plainly that doing it by hand would have taken several hundred men some time. THE WIDTH FIGURE IS CUT BY THE COLUMN EDGE AND IS NOT SUPPLIED; the depth is read off the line uncut. For a reconstruction standing on 1 July 1835 this fixes the river mouth's history: the natural channel is abandoned and a new one, seven to eight feet deep, is open from February 1834 — so vessels can discharge, which the notice says in as many words. Two printed columns are woven line by line through this range and the whole range is cited; the agricultural column's words are left in the quote where they fall, unsmoothed, and the harbour's reading is assembled in `normalized`."
+  },
+  {
+   "id": "c002",
+   "kind": "building",
+   "reading": "transcription_mediated",
+   "quote": "QUANTITY of highly flavoured Hams, | F\nFletches of Bacon, Mess and Prime Pork,\nfo be sold by D, Elston &      who acquaint} —\nthe public they have fitted up,a Smoke Howse,\nfor the smoking of Hams, Bacon, &c. Ke., and\nare prepared to commence the drying thereof.    é\nChicago, Feb. 15, 1834.                  13/¢@",
+   "normalized": "[A] QUANTITY of highly flavoured Hams, [and] Flitches of Bacon, Mess and Prime Pork, to be sold by D[.] Elston & [Co.] who acquaint the public they have fitted up a Smoke House, for the smoking of Hams, Bacon, &c. &c., and are prepared to commence the drying thereof. Chicago, Feb. 15, 1834.",
+   "locator": {
+    "artifact_role": "primary",
+    "issue_page": 3,
+    "column": 3,
+    "lines": [
+     2363,
+     2369
+    ],
+    "lines_of_claim": [
+     2363,
+     2364,
+     2365,
+     2366,
+     2367,
+     2368,
+     2369
+    ],
+    "interleaved": true
+   },
+   "entities": [
+    {
+     "as_printed": "D, Elston &",
+     "normalized": "Daniel Elston",
+     "role": "has fitted up a Smoke House in Chicago",
+     "occupations": [
+      "manufacturer"
+     ],
+     "associated_places": [
+      "the Smoke House, Chicago"
+     ]
+    }
+   ],
+   "ad_copy_date": {
+    "verbatim": "Chicago, Feb. 15, 1834.",
+    "iso": "1834-02-15"
+   },
+   "notes": "A NEW BUILDING, NAMED AND DATED: DANIEL ELSTON & CO. HAVE FITTED UP A SMOKE HOUSE. 'Fitted up' is the paper's own word and it is a building claim before it is a trade claim — a structure that exists in Chicago by 15 February 1834 and did not exist before, put up for one industrial purpose. Elston & Co. are already the town's soap and candle manufactory (advertised in the previous fortnight's issues), so this is a known firm adding a second works, which is what a growing town's fabric actually looks like. WHERE IT STOOD IS NOT STATED and is not supplied — no street, no anchor, no dimensions; a smoke house is a small outbuilding by nature and nothing here says how small. What IS claimed beyond the building is the process: hams, flitches of bacon, mess and prime pork, smoked and dried on the premises."
+  },
+  {
+   "id": "c003",
+   "kind": "business",
+   "reading": "transcription_mediated",
+   "quote": "HE citizens of Chicago are heroby i\ned, thata LIVERY STABLE is opened\nat the Point, and that prepara-\nrations are being male to ac-\ncommodate the public, Sad-\ndle horses, single horse Carria-\nces will bo kept on band. All\nof which can be had day or pga (for Cash on-\n\\y,) st reasonable charges. Al’ property to be\ned sound aa when taken from the stable,\n7 the person hiring will be held responsible. —\nHorses kept by the day or week,\nTHOS. EPERSON & One",
+   "normalized": "[T]HE citizens of Chicago are hereby inform[ ]ed, that a LIVERY STABLE is opened [ ] at the Point, and that prepara[ ]rations are being ma[d]e to accommodate the public. Saddle horses, single horse Carria[g]es will be kept on hand. All of which can be had day or [ni]g[ht] (for Cash only,) at reasonable charges. All property to be [return]ed sound as when taken from the stable, [o]r the person hiring will be held responsible. — Horses kept by the day or week, THOS. EPERSON & C[o.]",
+   "locator": {
+    "artifact_role": "primary",
+    "issue_page": 3,
+    "column": 3,
+    "lines": [
+     2349,
+     2361
+    ],
+    "lines_of_claim": [
+     2349,
+     2350,
+     2351,
+     2352,
+     2353,
+     2354,
+     2355,
+     2356,
+     2357,
+     2358,
+     2359,
+     2360,
+     2361
+    ],
+    "interleaved": true
+   },
+   "entities": [
+    {
+     "as_printed": "THOS. EPERSON & One",
+     "normalized": "Thos. Eperson",
+     "role": "keeper of the livery stable at the Point",
+     "occupations": [
+      "livery stable keeper"
+     ],
+     "associated_places": [
+      "the Point, Chicago"
+     ]
+    }
+   ],
+   "business": {
+    "name": "Thos. Eperson & Co.'s Livery Stable",
+    "proprietors": [
+     "Thos. Eperson"
+    ],
+    "trade": "livery stable",
+    "goods": [
+     "saddle horses",
+     "single horse carriages",
+     "horses kept by the day or week"
+    ],
+    "street": null,
+    "placement": {
+     "class": "relative",
+     "anchor": "the Point",
+     "offset_text": "at the Point, and that prepara-",
+     "offset_normalized": "a LIVERY STABLE is opened at the Point",
+     "street": null
+    }
+   },
+   "notes": "A LIVERY STABLE OPENS AT THE POINT, AND 'THE POINT' IS AN ADDRESS THIS PROJECT CAN USE. Wolf Point is the fork of the river, the one piece of Chicago geography a reader in 1834 could name without a street, and the notice places the stable there without further direction. A livery stable is also a BUILDING of a particular and recognisable kind — stalls, a yard, a door wide enough for a single-horse carriage — and it is opening new in February 1834, so it stands in the 1835 town. WHAT IS NOT CLAIMED is which side of which branch, or how big; 'at the Point' is as fine as the paper goes and nothing is supplied. The terms are the frontier's: cash only, day or night, and the hirer answerable for the horse. Thos. Eperson & Co. are the keepers. The notice runs again the following week (1834-02-25, claim c005 there), where the same words read with the proprietor's name cut."
+  },
+  {
+   "id": "c004",
+   "kind": "business",
+   "reading": "transcription_mediated",
+   "quote": "3!    [LS OHIO WHISKEY.\n20 uo   Seperfas Flour.\nGO qt. boxes Cigars. For sale b\nJ. K. BOTSFORD,\nFab. 17.         next door to Graves’",
+   "normalized": "3[0 BARRE]LS OHIO WHISKEY. 20 [d]o. S[u]perf[ine] Flour. [5]0 qt. boxes Cigars. For sale b[y] J. K. BOTSFORD, Feb. 17. next door to Graves'[ Tavern.]",
+   "locator": {
+    "artifact_role": "primary",
+    "issue_page": 3,
+    "column": 3,
+    "lines": [
+     2339,
+     2343
+    ],
+    "lines_of_claim": [
+     2339,
+     2340,
+     2341,
+     2342,
+     2343
+    ]
+   },
+   "entities": [
+    {
+     "as_printed": "J. K. BOTSFORD,",
+     "normalized": "J. K. Botsford",
+     "role": "proprietor",
+     "occupations": [
+      "merchant"
+     ],
+     "associated_places": [
+      "next door to Graves' Tavern"
+     ]
+    },
+    {
+     "as_printed": "Graves’",
+     "normalized": "Graves",
+     "role": "keeper of a tavern used as the anchor for Botsford's address",
+     "occupations": [
+      "tavern keeper"
+     ]
+    }
+   ],
+   "business": {
+    "name": "J. K. Botsford",
+    "proprietors": [
+     "J. K. Botsford"
+    ],
+    "trade": "merchant",
+    "goods": [
+     "Ohio whiskey",
+     "superfine flour",
+     "cigars"
+    ],
+    "street": null,
+    "placement": {
+     "class": "relative",
+     "anchor": "Graves' Tavern",
+     "offset_text": "Fab. 17.         next door to Graves’",
+     "offset_normalized": "next door to Graves'[ Tavern]",
+     "street": null
+    }
+   },
+   "ad_copy_date": {
+    "verbatim": "Fab. 17.",
+    "iso": "1834-02-17"
+   },
+   "notes": "A STOREFRONT PLACED NEXT DOOR TO A NAMED TAVERN. 'Next door to Graves' [Tavern]' is a one-door offset off a public house, which is the most useful anchor kind after a corner, and Graves is a name the project can chase: a D. Graves sits on the Chicago Academy's board of trustees a week later (1834-02-25, claim c002 there). Botsford himself is placed absolutely in the following issue — corner of Dearborn and Lake streets (1834-02-25, claim c001) — so these two notices together put GRAVES' TAVERN next door to the Dearborn and Lake corner, which is an address for a building that never advertises its own. THAT INFERENCE IS STATED HERE AND NOT WRITTEN INTO THE PLACEMENT FIELDS: the tavern gets no claim of its own until a witness places it directly. The word 'Tavern' is cut at the line end and is supplied from the following week's printing of the same notice."
+  },
+  {
+   "id": "c005",
+   "kind": "event",
+   "reading": "transcription_mediated",
+   "quote": "PART SBCcowvD,\n_ Mr. Bowers will introduce maay véry amus-\ning feats of Vantriloguisin aad Legerdemuin, ma-\nny of which are original, and too numerous to\nmention. Admittance 60 cents, children half\nprice.\nPerformance to commence at early candle\nlight. Seats will be preserved for Ladies, and\nevery attention paid to the comfort and conven-\nience of the spectators. ‘Tickets to be had at\nthe bar.",
+   "normalized": "PART SECOND. Mr. Bowers will introduce ma[n]y very amusing feats of V[e]ntriloqui[s]m a[n]d Legerdemain, many of which are original, and too numerous to mention. Admittance [5]0 cents, children half price. Performance to commence at early candle light. Seats will be preserved for Ladies, and every attention paid to the comfort and convenience of the spectators. Tickets to be had at the bar.",
+   "locator": {
+    "artifact_role": "primary",
+    "issue_page": 3,
+    "column": 3,
+    "lines": [
+     2321,
+     2331
+    ],
+    "lines_of_claim": [
+     2321,
+     2322,
+     2323,
+     2324,
+     2325,
+     2326,
+     2327,
+     2328,
+     2329,
+     2330,
+     2331
+    ]
+   },
+   "entities": [
+    {
+     "as_printed": "Mr. Bowers",
+     "normalized": "Bowers",
+     "role": "ventriloquist and conjuror performing in Chicago",
+     "occupations": [
+      "showman"
+     ]
+    }
+   ],
+   "notes": "A TRAVELLING SHOWMAN PLAYS CHICAGO, AND THE ROOM HE PLAYS IN HAS A BAR. 'Tickets to be had at the bar' is the whole of the venue and it is enough to say what kind of building it was: a tavern's public room, seated, with seats preserved for ladies and a performance timed to 'early candle light' because there was no other light. That last phrase is the reconstruction's interest — it dates the evening by the lamp, and it says the room was used after dark. WHICH HOUSE IT WAS IS NOT NAMED and is not supplied, though the Eagle Hotel and Graves' Tavern are both in this month's paper. Admittance fifty cents, children half price, is a price-of-things detail worth keeping beside the price current."
+  },
+  {
+   "id": "c006",
+   "kind": "business",
+   "reading": "transcription_mediated",
+   "quote": "Fruit! Fruit?!\n3   BUSHELS Dried Apples, just received\nby JOUN’ WRIGHT,\n13\nFLOUR! FLOUR! —\nsO BA RRELS Superfine Flour, for sale by\nFeb. 17.        H. HADDO!",
+   "normalized": "Fruit! Fruit!! [3]0 BUSHELS Dried Apples, just received by JOHN WRIGHT, [1]3 FLOUR! FLOUR! [5]0 BARRELS Superfine Flour, for sale by Feb. 17. H. HADDO[CK.]",
+   "locator": {
+    "artifact_role": "primary",
+    "issue_page": 3,
+    "column": 3,
+    "lines": [
+     2332,
+     2338
+    ],
+    "lines_of_claim": [
+     2332,
+     2333,
+     2334,
+     2335,
+     2336,
+     2337,
+     2338
+    ]
+   },
+   "entities": [
+    {
+     "as_printed": "JOUN’ WRIGHT,",
+     "normalized": "John Wright",
+     "role": "sells dried apples",
+     "occupations": [
+      "merchant"
+     ]
+    },
+    {
+     "as_printed": "H. HADDO!",
+     "normalized": "H. Haddo[ck]",
+     "role": "sells superfine flour",
+     "occupations": [
+      "merchant"
+     ]
+    }
+   ],
+   "ad_copy_date": {
+    "verbatim": "Feb. 17.",
+    "iso": "1834-02-17"
+   },
+   "notes": "TWO SMALL TRADERS, AND ONE OF THEM IS THE LANDLORD. John Wright, who has two dwellings to let from June (1834-02-11, claim c008), is selling dried apples by the bushel in the same month, which is worth recording because it turns a name on a to-let notice into a person with a trade. H. Haddo[ck] is new to the epic and his surname is cut at the line end; it is left cut. Neither notice gives an address and neither is supplied."
+  },
+  {
+   "id": "c007",
+   "kind": "business",
+   "reading": "transcription_mediated",
+   "quote": "Fer Sale,\n10 BARRELS WHITE FISH.\nBO do. Old Whiskey.\nGO do, Best Okio Flour, by +\n7.                    A. KINZIE.",
+   "normalized": "For Sale, 10 BARRELS WHITE FISH. [5]0 do. Old Whiskey. [5]0 do. Best O[h]io Flour, by [Feb. 1]7. [R.] A. KINZIE.",
+   "locator": {
+    "artifact_role": "primary",
+    "issue_page": 3,
+    "column": 3,
+    "lines": [
+     2344,
+     2348
+    ],
+    "lines_of_claim": [
+     2344,
+     2345,
+     2346,
+     2347,
+     2348
+    ]
+   },
+   "entities": [
+    {
+     "as_printed": "A. KINZIE.",
+     "normalized": "R. A. Kinzie",
+     "role": "proprietor",
+     "occupations": [
+      "merchant"
+     ]
+    }
+   ],
+   "business": {
+    "name": "R. A. Kinzie's Store",
+    "proprietors": [
+     "R. A. Kinzie"
+    ],
+    "trade": "merchant",
+    "goods": [
+     "white fish",
+     "old whiskey",
+     "Ohio flour"
+    ],
+    "street": null,
+    "placement": {
+     "class": "none",
+     "anchor": null,
+     "offset_text": null,
+     "offset_normalized": null,
+     "street": null
+    }
+   },
+   "notes": "R. A. KINZIE TRADING IN FEBRUARY 1834, which matters because his STORE is the anchor the Man Trap takes its address from two weeks earlier (1834-02-04, claim c021 — 'one [door …] of Mr. R. A. Kinzie's Store'). An anchor is only as good as the evidence that the anchoring building was open, and this is it: Kinzie is selling white fish, whiskey and flour by the barrel on 17 February, and again on 17 February in the following issue (1834-02-25, claim c004 there). NO ADDRESS OF HIS OWN IS PRINTED in any of the three notices and none is supplied — which is the standing irony of relative placement in this corpus, that the fixed point is the one thing nobody bothers to locate."
+  }
+ ]
+}

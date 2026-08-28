@@ -1,0 +1,444 @@
+{
+ "schema": 1,
+ "issue_id": "chicago_democrat_1834_02_11",
+ "extracted": "2026-08-28",
+ "extracted_by": "hand, T-0311 — the Democrat read, February 1834",
+ "note": "Vol. I No. 12. The issue that prints the town's four weekly mails over the postmaster's name, and that resolves three addresses the previous week's columns had cut: Collins & Caton are a counted DOOR east of Brewster, Hogan & Co., the Franklin-corner attorney gains his given name, and the two buildings to let become dwellings let from June. P. F. Peck's corner of LaSalle and South Water is the month's second documented corner.",
+ "claims": [
+  {
+   "id": "c001",
+   "kind": "infrastructure",
+   "reading": "transcription_mediated",
+   "quote": "1     Eikn.  N Mail arrives every Wednesda\nea     departs, Thursdays at 8 A.-M.\nOnis} Western 3     arrives overy Tuesday ; depa:\n00) ;} Thoradays at 6 A. M.\nNorthern Mail arrives every Tuesday; «\n1      parts Thursdays at 6 A. M.\nour |” Southern Mail arrives every Tuesday; «\n45,-| parts Saturdays at 6A: M.\nJ. 8. C. HOGAN, P. M.",
+   "normalized": "[East]ern Mail arrives every Wednesda[y;] departs, Thursdays at 8 A. M. Western [Mail] arrives every Tuesday; depa[rts] Thursdays at 6 A. M. Northern Mail arrives every Tuesday; d[e]parts Thursdays at 6 A. M. Southern Mail arrives every Tuesday; d[e]parts Saturdays at 6 A. M. J. S. C. HOGAN, P. M.",
+   "locator": {
+    "artifact_role": "primary",
+    "issue_page": 3,
+    "column": 3,
+    "lines": [
+     2197,
+     2205
+    ],
+    "lines_of_claim": [
+     2197,
+     2198,
+     2199,
+     2200,
+     2201,
+     2202,
+     2203,
+     2204,
+     2205
+    ]
+   },
+   "entities": [
+    {
+     "as_printed": "J. 8. C. HOGAN, P. M.",
+     "normalized": "J. S. C. Hogan",
+     "role": "Postmaster at Chicago",
+     "occupations": [
+      "postmaster"
+     ]
+    }
+   ],
+   "notes": "THE WHOLE OF CHICAGO'S CONNECTION TO THE WORLD IN FEBRUARY 1834, ON EIGHT LINES. Four mails — eastern, western, northern, southern — each arriving ONCE A WEEK and departing once a week, over the postmaster's own name. For a reconstruction this is the tempo of the place: the town heard from the east on a Wednesday and answered on a Thursday morning, and nothing moved on the other four days. J. S. C. Hogan signing as P. M. is the same postmaster the T-0257 fixture carries from the scene-date issue of 1835-07-01, so the office is in the same hands seventeen months earlier, and he is also the Hogan of Brewster, Hogan & Co., the forwarding house advertised on page 3 of this issue. WHERE the post office was is not stated here and is not supplied."
+  },
+  {
+   "id": "c002",
+   "kind": "business",
+   "reading": "transcription_mediated",
+   "quote": "\"Butter! Butter !!\nary:         POUNDS of Fresh Butter, just\nNDs             just |\n90D rN and for sale by   4\n) in=                          PETER COHEN.\nChicago, Feb. VW, 1834.",
+   "normalized": "Butter! Butter!! [200?] POUNDS of Fresh Butter, just [recieved?] and for sale by PETER COHEN. Chicago, Feb. [11], 1834.",
+   "locator": {
+    "artifact_role": "primary",
+    "issue_page": 3,
+    "column": 3,
+    "lines": [
+     2191,
+     2196
+    ],
+    "lines_of_claim": [
+     2191,
+     2192,
+     2193,
+     2194,
+     2195,
+     2196
+    ],
+    "interleaved": true
+   },
+   "entities": [
+    {
+     "as_printed": "PETER COHEN.",
+     "normalized": "Peter Cohen",
+     "role": "proprietor",
+     "occupations": [
+      "merchant"
+     ]
+    }
+   ],
+   "business": {
+    "name": "Peter Cohen's store",
+    "proprietors": [
+     "Peter Cohen"
+    ],
+    "trade": "merchant",
+    "goods": [
+     "fresh butter"
+    ],
+    "street": null,
+    "placement": {
+     "class": "none",
+     "anchor": null,
+     "offset_text": null,
+     "offset_normalized": null,
+     "street": null
+    }
+   },
+   "ad_copy_date": {
+    "verbatim": "Chicago, Feb. VW, 1834.",
+    "iso": "1834-02-11"
+   },
+   "notes": "PETER COHEN TRADING IN CHICAGO IN FEBRUARY 1834, dated to the day the paper was printed. Cohen is the T-0257 fixture's own business — his store at the east end of South Water Street is claim c001 of the scene-date issue — so this is a documented sighting seventeen months before the scene date and it does two things: it closes part of the gap that would otherwise need a survival liberty, and it corroborates L. W. Montgomery's address 'next door to P. Cohen's Store' in the previous issue (1834-02-04, claim c018), which is only worth anything if Cohen's store was actually open. NO ADDRESS IS GIVEN HERE and none is supplied; the placement is carried by the fixture, not by this notice. The quantity's leading figures are cut by the column edge and are not supplied."
+  },
+  {
+   "id": "c003",
+   "kind": "notice",
+   "reading": "transcription_mediated",
+   "quote": "rent! ‘The matter is thought to be one of intere\nwill] and therefore a call 1s desired by\nct              Chicago, February 11, 1854, will\nmeet      ight imprisonment for debt to be abolish\nCOB | ir, the State of Milinois.\nJOUN A. CLARK, See’y,",
+   "normalized": "The matter is thought to be one of intere[st] and therefore a call is desired by […] Chicago, February 11, 18[3]4. […] will […] m[e]et [… whether] imprisonment for debt [ought] to be abolish[ed in] the State of Il[l]inois. JOHN A. CLARK, Sec'y,",
+   "locator": {
+    "artifact_role": "primary",
+    "issue_page": 3,
+    "column": 3,
+    "lines": [
+     2185,
+     2190
+    ],
+    "lines_of_claim": [
+     2185,
+     2186,
+     2187,
+     2188,
+     2189,
+     2190
+    ],
+    "interleaved": true
+   },
+   "entities": [
+    {
+     "as_printed": "JOUN A. CLARK, See’y,",
+     "normalized": "John A. Clark",
+     "role": "secretary to a Chicago public meeting, 11 February 1834"
+    }
+   ],
+   "notes": "A PUBLIC MEETING ON IMPRISONMENT FOR DEBT, called in Chicago and dated the day of publication. It is town texture rather than fabric — no building, no street — and it is claimed for the name and the date: John A. Clark acting as secretary to a Chicago meeting on 11 February 1834. The column is a Tesseract fallback and two printed columns are woven through these lines, so the reading is assembled across the weave and the sense of the resolution is given only as far as the surviving words carry it."
+  },
+  {
+   "id": "c004",
+   "kind": "business",
+   "reading": "transcription_mediated",
+   "quote": "P. F• PECK,\nORNER OF LASALLE ARD SOUTH WATER-STARRTe.\n[uncertain: HAs someone to the cof cheap e]\nthe exigencies\n[uncertain: pistol compies, olented.]\nDry Goods, Hardware,\nGroceries, Crockery,\nBOOTS& SHOES, BATS,\nand a variety of miscellaneoue articles.\nTo the\n[uncertain: parter he]\n10 bbls. of hard Bread.\nChicaeo Dee 31333.",
+   "normalized": "P. F. PECK, [C]ORNER OF LASALLE AND SOUTH WATER-ST[REE]TS. [HAS … cheap …] the exigencies […] Dry Goods, Hardware, Groceries, Crockery, BOOTS & SHOES, [H]ATS, and a variety of miscellaneous articles. […] 10 bbls. of hard Bread. Chicago[,] Dec[.] [1]3[,] 1833.",
+   "locator": {
+    "artifact_role": "primary",
+    "issue_page": 3,
+    "column": 6,
+    "lines": [
+     2535,
+     2547
+    ],
+    "lines_of_claim": [
+     2535,
+     2536,
+     2537,
+     2538,
+     2539,
+     2540,
+     2541,
+     2542,
+     2543,
+     2544,
+     2545,
+     2546,
+     2547
+    ]
+   },
+   "entities": [
+    {
+     "as_printed": "P. F• PECK,",
+     "normalized": "P. F. Peck",
+     "role": "proprietor",
+     "occupations": [
+      "merchant"
+     ],
+     "associated_places": [
+      "the corner of LaSalle and South Water streets"
+     ]
+    }
+   ],
+   "business": {
+    "name": "P. F. Peck's store",
+    "proprietors": [
+     "P. F. Peck"
+    ],
+    "trade": "dry goods and general merchant",
+    "goods": [
+     "dry goods",
+     "hardware",
+     "groceries",
+     "crockery",
+     "boots",
+     "shoes",
+     "hats",
+     "hard bread"
+    ],
+    "street": "South Water Street",
+    "placement": {
+     "class": "corner",
+     "anchor": "the corner of LaSalle and South Water streets",
+     "offset_text": "ORNER OF LASALLE ARD SOUTH WATER-STARRTe.",
+     "offset_normalized": "CORNER OF LASALLE AND SOUTH WATER-ST[REE]TS",
+     "street": "South Water Street"
+    }
+   },
+   "notes": "A DOCUMENTED CORNER STOREFRONT ON SOUTH WATER STREET — the placement class that can actually put a building on the ground, because a corner is two streets and not a direction. P. F. Peck keeps a general store at the corner of LaSalle and South Water streets: dry goods, hardware, groceries, crockery, boots and shoes, hats. He is also the merchant who reports the Democrat's weekly price current (1834-02-04, claim c010), so the man quoting the town's produce prices kept the corner store, which is the period's normal arrangement and is worth recording as one person. TOGETHER WITH THE FRANKLIN CORNER (claim c009 here) AND THE CLARK CORNER (the Democrat's own imprint, 1834-01-07), South Water Street now has three documented intersections in the winter of 1833-34. Standing since December 1833, so it stands in 1835 on a survival liberty unless contradicted."
+  },
+  {
+   "id": "c005",
+   "kind": "business",
+   "reading": "transcription_mediated",
+   "quote": "JOHN H. KINZIE,\nSTORAGa,\nForwarding & Commission\nMERCHANT,\nCHICAGO-ILLINOIS.\n[uncertain: JoYsroN & STAl, Galen, IT.]\nBREWSTER, HOGAN & OD.\nForwarding & Commisstes\n[uncertain: SIEROHANTS,]\nChicago-Illinols.",
+   "normalized": "JOHN H. KINZIE, STORAG[E], Forwarding & Commission MERCHANT, CHICAGO—ILLINOIS. [JOHNSTON & STAP?, Galena, Ill.] BREWSTER, HOGAN & [C]O. Forwarding & Commis[sion] [MERCHANTS,] Chicago-Illinois.",
+   "locator": {
+    "artifact_role": "primary",
+    "issue_page": 3,
+    "column": 6,
+    "lines": [
+     2522,
+     2531
+    ],
+    "lines_of_claim": [
+     2522,
+     2523,
+     2524,
+     2525,
+     2526,
+     2527,
+     2528,
+     2529,
+     2530,
+     2531
+    ]
+   },
+   "entities": [
+    {
+     "as_printed": "JOHN H. KINZIE,",
+     "normalized": "John H. Kinzie",
+     "role": "storage, forwarding and commission merchant",
+     "occupations": [
+      "forwarding and commission merchant"
+     ]
+    },
+    {
+     "as_printed": "BREWSTER, HOGAN & OD.",
+     "normalized": "Brewster, Hogan & Co.",
+     "role": "forwarding and commission merchants"
+    }
+   ],
+   "business": {
+    "name": "John H. Kinzie",
+    "proprietors": [
+     "John H. Kinzie"
+    ],
+    "trade": "storage, forwarding and commission merchant",
+    "goods": [],
+    "street": null,
+    "placement": {
+     "class": "none",
+     "anchor": null,
+     "offset_text": null,
+     "offset_normalized": null,
+     "street": null
+    }
+   },
+   "notes": "THE TOWN'S TWO FORWARDING HOUSES, PRINTED ONE ABOVE THE OTHER. John H. Kinzie and Brewster, Hogan & Co. both trade as storage, forwarding and commission merchants — the business of taking goods off a vessel, holding them and sending them on, which is the trade the whole harbour argument in this month's paper is about. A forwarding house needs a WAREHOUSE, and that is the reconstruction's interest here, but NEITHER NOTICE NAMES ONE and no warehouse is supplied: what is claimed is the trade and the two firms, not a building. Brewster, Hogan & Co. is the same firm Collins & Caton take their address from in this issue (claim c006), so it is a fixed point on South Water Street even though its own advertisement gives no address."
+  },
+  {
+   "id": "c006",
+   "kind": "business",
+   "reading": "transcription_mediated",
+   "quote": "J. H. COLLINS & J. D: CATON,\nATTORNEYS & COUNSELLORS AT LAH\nAnd Solicitors in Chancery,\nOFFICE\ndoor east. of Brewster, Hogan & C:\nSouth Water-street, Chicago, Hlinois.\nJan, 20, 1834",
+   "normalized": "[J. H. COLLINS & J. D. CATON,] ATTORNEYS & COUNSELLORS AT LA[W] And Solicitors in Chancery, OFFICE […] door east of Brewster, Hogan & C[o.] South Water-street, Chicago, I[l]linois. Jan. 20, 1834",
+   "locator": {
+    "artifact_role": "primary",
+    "issue_page": 3,
+    "column": 4,
+    "lines": [
+     2332,
+     2338
+    ],
+    "lines_of_claim": [
+     2332,
+     2333,
+     2334,
+     2335,
+     2336,
+     2337,
+     2338
+    ]
+   },
+   "entities": [],
+   "business": {
+    "name": "J. H. Collins & J. D. Caton",
+    "proprietors": [
+     "J. H. Collins",
+     "J. D. Caton"
+    ],
+    "trade": "attorneys and counsellors at law, solicitors in chancery",
+    "goods": [],
+    "street": "South Water Street",
+    "placement": {
+     "class": "relative",
+     "anchor": "Brewster, Hogan & Co.",
+     "offset_text": "door east. of Brewster, Hogan & C:",
+     "offset_normalized": "[…] door east of Brewster, Hogan & C[o.], South Water-street",
+     "street": "South Water Street"
+    }
+   },
+   "ad_copy_date": {
+    "verbatim": "Jan, 20, 1834",
+    "iso": "1834-01-20"
+   },
+   "notes": "THE SAME LAW OFFICE AS THE PREVIOUS WEEK, AND THIS WITNESS ADDS THE WORD THAT MATTERS: 'DOOR'. On 1834-02-04 (claim c004 there) the column edge left only '[e]ast of Brewster, Hogan [& Co.]', which could have been a direction of any length. Here the line reads 'door east of Brewster, Hogan & C[o.]', so the offset is COUNTED IN DOORS — a storefront two or three frontages along, not somewhere east on the street. THE NUMERAL ITSELF IS STILL CUT and is not supplied; what is upgraded is the KIND of placement, from a bearing to a door count, and that is exactly the sort of thing reading the same advertisement in two witnesses is for. The firm's own name is above the cut and is supplied from the previous week's printing of the identical notice."
+  },
+  {
+   "id": "c007",
+   "kind": "business",
+   "reading": "transcription_mediated",
+   "quote": "NEW BLACKSMITH\nSHOP.\nPIERCE & ABBOTT,\n‘OULD respectfully inform the inhabi\nnts of Chicago and the neighboring se\ntlements, that they haye commenced the abor\nbusiness in said town, nearly opposite the Ch\n+] cago Hotel, where thoy are ery to wait upe\nall those who Bey have any kind of work to ¢\nin their line of business, on the most liber\nterms. They will manufacture Prarie Plough\nto order, and on the shortest notice. Ry stri\nattention to busin   they hope to receive\nshare of patronage.",
+   "normalized": "NEW BLACKSMITH SHOP. PIERCE & ABBOTT, [W]OULD respectfully inform the inhabi[ta]nts of Chicago and the neighboring se[t]tlements, that they have commenced the abo[ve] business in said town, nearly opposite the Ch[i]cago Hotel, where they are [read]y to wait up[on] all those who [ma]y have any kind of work to d[o] in their line of business, on the most liber[al] terms. They will manufacture Pra[i]rie Plough[s] to order, and on the shortest notice. [B]y stri[ct …]",
+   "locator": {
+    "artifact_role": "primary",
+    "issue_page": 3,
+    "column": 4,
+    "lines": [
+     2339,
+     2352
+    ],
+    "lines_of_claim": [
+     2339,
+     2340,
+     2341,
+     2342,
+     2343,
+     2344,
+     2345,
+     2346,
+     2347,
+     2348,
+     2349,
+     2350,
+     2351,
+     2352
+    ]
+   },
+   "entities": [],
+   "business": {
+    "name": "Pierce & Abbott",
+    "proprietors": [
+     "Pierce",
+     "Abbott"
+    ],
+    "trade": "blacksmiths",
+    "goods": [
+     "blacksmith work",
+     "prairie ploughs"
+    ],
+    "street": null,
+    "placement": {
+     "class": "relative",
+     "anchor": "the Chicago Hotel",
+     "offset_text": "business in said town, nearly opposite the Ch",
+     "offset_normalized": "nearly opposite the Ch[i]cago Hotel",
+     "street": null
+    }
+   },
+   "notes": "THE BLACKSMITHS AGAIN, IN A CLEANER READING THAN THE PREVIOUS WEEK'S. Same shop, same anchor — 'nearly opposite the Chicago Hotel' — and this witness carries the trade clause whole: prairie ploughs manufactured TO ORDER and on the shortest notice. The value of the second reading is that it confirms the anchor phrase word for word across two independent OCR passes over two different columns, which is the cheapest corroboration this corpus offers and the reason a standing advertisement is worth re-reading rather than skipping as a duplicate. Still no street; still not supplied."
+  },
+  {
+   "id": "c008",
+   "kind": "building",
+   "reading": "transcription_mediated",
+   "quote": "lings to Let,           GREAT LITERAR}\nthe first ay of June 1834,\ni         immediate}       Waldie's Circulating 1]\nf JOIN WRIGHT.” |now elapsed since the «",
+   "normalized": "[Dwel]lings to Let, [from] the first [d]ay of June 1834, [possession given] immediate[ly.] [Enquire o]f JO[H]N WRIGHT.",
+   "locator": {
+    "artifact_role": "primary",
+    "issue_page": 4,
+    "column": 4,
+    "lines": [
+     3050,
+     3053
+    ],
+    "lines_of_claim": [
+     3050,
+     3051,
+     3052,
+     3053
+    ],
+    "interleaved": true
+   },
+   "entities": [
+    {
+     "as_printed": "JOIN WRIGHT.",
+     "normalized": "John Wright",
+     "role": "has dwellings to let from 1 June 1834"
+    }
+   ],
+   "notes": "THE TO-LET NOTICE OF THE PREVIOUS WEEK, RESOLVED. On 1834-02-04 the heading was cut to 'Two Buildings t[o Let]' with the term missing (claim c019 there); here the term is printed — FROM THE FIRST DAY OF JUNE 1834 — and the buildings are called DWELLINGS, which is what they are. So the two witnesses together give a count, a kind, a term and a landlord: two dwelling houses in Chicago, standing empty in February 1834, let from the following June, enquire of John Wright. No street, no size, no material, and none supplied. Wright also sells dried apples in the next issue (1834-02-18), so he is a trading resident and not only a landlord."
+  },
+  {
+   "id": "c009",
+   "kind": "business",
+   "reading": "transcription_mediated",
+   "quote": "\"HEN G.      classes, of this experim\n‘OUNSELLOR AT LAW) mors than  equalled his\nr in Chancery.            will enter ona second y«\nloor west from the corner  ergy and assiduity. Ex\n| South Wator-strvets.    ed improvements. which\n333.                     4  dopted ; and others, as tl",
+   "normalized": "[STEP]HEN G. [SPRING?, ATTORNEY AND C]OUNSELLOR AT LAW[,] [And Solicito]r in Chancery. [OFFICE second d]oor west from the corner [of Franklin and] South Water-str[e]ets. [Chicago, Dec. 17, 1]833.",
+   "locator": {
+    "artifact_role": "primary",
+    "issue_page": 4,
+    "column": 4,
+    "lines": [
+     3057,
+     3062
+    ],
+    "lines_of_claim": [
+     3057,
+     3058,
+     3059,
+     3060,
+     3061,
+     3062
+    ],
+    "interleaved": true
+   },
+   "entities": [],
+   "business": {
+    "name": "[Step]hen G. Spri[ng], attorney and counsellor at law",
+    "proprietors": [
+     "[Step]hen G. Spri[ng]"
+    ],
+    "trade": "attorney and counsellor at law, solicitor in chancery",
+    "goods": [],
+    "street": "South Water Street",
+    "placement": {
+     "class": "relative",
+     "anchor": "the corner of Franklin and South Water streets",
+     "offset_text": "loor west from the corner  ergy and assiduity. Ex",
+     "offset_normalized": "[OFFICE second d]oor west from the corner [of Franklin and] South Water-str[e]ets",
+     "street": "South Water Street"
+    }
+   },
+   "notes": "THE FRANKLIN-CORNER LAW OFFICE AGAIN, AND THIS WITNESS CARRIES THE GIVEN NAME THE OTHER ONE CUT. On 1834-02-04 the advertiser read 'G[.] SPRI[NG]' (claim c020 there); here the surviving fragment is '[Step]hen G.', so the two shaved columns supply opposite halves of one man — a given name here, a surname there — and neither alone would have named him. THE JOIN IS NOT ASSERTED AS A FACT: the readings are recorded as the cut forms they are, and the question mark on 'Spring' stays until a witness prints the name whole. THE STREET NAME IS CUT IN THIS PRINTING AND IS SUPPLIED FROM THE OTHER — this column gives only 'door west from the corner … South Water-streets', and 'Franklin' is bracketed here because it is read off 1834-02-04, where the two words run contiguously in the advertisement's own sentence. That distinction is worth keeping straight, because a previous pass over September 1834 left this corner OPEN on the suspicion that a nearby 'Franklin' was a Franklin stove out of a price list woven through the column, and was right to be careful. It is not a stove in the February witness: 'FFICE second door west fro' and 'of Franklin and South Wat' are consecutive lines of one notice with no price matter between them. February 1834 is therefore the third independent witness to the address, after the August 1834 read found it printed whole."
+  }
+ ]
+}
