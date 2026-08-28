@@ -1,0 +1,700 @@
+{
+  "schema": 1,
+  "issue_id": "chicago_democrat_1834_10_15",
+  "extracted": "2026-08-28",
+  "extracted_by": "hand, T-0292 — the Democrat read, October 1834",
+  "note": "Vol. I No. 46. The month's densest column of standing advertisements, page 3 column 2, and it is where October 1834's placements are: G. Spring's law office 'second door west from the corner of Franklin [and South Water] streets', Edward W. Casey's office adjoining the Clerk of the Court's, Matthias Mason's forge opposite the Tremont House, D. Graves's bakery on South Water Street a few doors north of Newberry & Dole's, and Lot 7 in Block 16 on Lake Street one lot east of Haddock's Tavern with a large dwelling house and a fine well on it. Page 3 column 4 carries the best reading of John T. Temple's three-storey store house with its sixty-foot wharf. Page 3 columns 3 and 4 carry the 1 October post-office list in its second printing, cut into three sub-columns across two crops.",
+  "claims": [
+    {
+      "id": "c001",
+      "kind": "business",
+      "reading": "transcription_mediated",
+      "quote": "Ge SPRING. Crovla\nTTORNEY AND COUNSELLOR AT LAW| C8098\nAnd Soliciter in Chancery.” Garnet\nPEHICE second door vcot from tho corner ee\nof Frankli s ‘ -) . Calvert\nChicago, Des. Vretsae eeMCEM | Cobb,\nmastehithis Lut Brachstselluchd attics Ed BOs Tf",
+      "normalized": "G. SPRING. ATTORNEY AND COUNSELLOR AT LAW And Solicitor in Chancery. [OF]FICE second door west from the corner of Frankli[n and South Water street]s. Chicago, De[c. …]",
+      "locator": {
+        "artifact_role": "primary",
+        "issue_page": 3,
+        "column": 2,
+        "lines": [
+          2045,
+          2051
+        ],
+        "lines_of_claim": [
+          2045,
+          2046,
+          2047,
+          2048,
+          2049,
+          2050,
+          2051
+        ],
+        "interleaved": true
+      },
+      "entities": [
+        {
+          "as_printed": "Ge SPRING.",
+          "normalized": "G. Spring",
+          "role": "proprietor",
+          "occupations": [
+            "attorney",
+            "solicitor in chancery"
+          ]
+        }
+      ],
+      "business": {
+        "name": "G. Spring",
+        "proprietors": [
+          "G. Spring"
+        ],
+        "trade": "attorney and counsellor at law, and solicitor in chancery",
+        "goods": [],
+        "street": "Franklin Street",
+        "placement": {
+          "class": "relative",
+          "anchor": "the corner of Franklin and South Water streets",
+          "offset_text": "PEHICE second door vcot from tho corner",
+          "offset_normalized": "[OF]FICE second door west from the corner [of Franklin and South Water streets]",
+          "street": "Franklin Street"
+        }
+      },
+      "notes": "A LAW OFFICE COUNTED IN DOORS FROM A NAMED CORNER — 'second door west from the corner of Franklin [and South Water] streets.' That is the most precise placement in the whole October run: a corner, a direction and a count. The corner itself is supplied and the supply is not a guess — the identical advertisement in 1834-10-01 page 3 column 6 prints `CE second door west from the corner` on one line and `Franklin and South Water-streeis.` on the next, so the two halves of the same standing notice, a fortnight apart, close each other. G. Spring is also the man to enquire of for the lot beside Haddock's Tavern in the same column (claim c005 below), so October 1834 puts him at two Chicago addresses in two roles, one his office and one his listing."
+    },
+    {
+      "id": "c002",
+      "kind": "business",
+      "reading": "transcription_mediated",
+      "quote": "EDWARD W. CASEY, Cooper\nATTORNEY & COUNSELLOR AT LAW, |cut |\ndi chipaslor is Se AW, | Chip\nprec E adjoining that of the Clerk of the| Dowgis\npetolrenis Cortes os 23] Dougls",
+      "normalized": "EDWARD W. CASEY, ATTORNEY & COUNSELLOR AT LAW, [and So]licitor in [Chanc]er[y]. [OFFIC]E adjoining that of the Clerk of the [… C]o[u]rt[…]",
+      "locator": {
+        "artifact_role": "primary",
+        "issue_page": 3,
+        "column": 2,
+        "lines": [
+          2052,
+          2056
+        ],
+        "lines_of_claim": [
+          2052,
+          2053,
+          2054,
+          2055,
+          2056
+        ],
+        "interleaved": true
+      },
+      "entities": [
+        {
+          "as_printed": "EDWARD W. CASEY,",
+          "normalized": "Edward W. Casey",
+          "role": "proprietor",
+          "occupations": [
+            "attorney",
+            "solicitor in chancery"
+          ]
+        }
+      ],
+      "business": {
+        "name": "Edward W. Casey",
+        "proprietors": [
+          "Edward W. Casey"
+        ],
+        "trade": "attorney and counsellor at law, and solicitor in chancery",
+        "goods": [],
+        "street": null,
+        "placement": {
+          "class": "relative",
+          "anchor": "the office of the Clerk of the Court",
+          "offset_text": "prec E adjoining that of the Clerk of the",
+          "offset_normalized": "[OFFIC]E adjoining that of the Clerk of the [ ] Court",
+          "street": null
+        }
+      },
+      "notes": "A SECOND LAWYER, PLACED AGAINST A PUBLIC OFFICE INSTEAD OF A STREET — 'adjoining that of the Clerk of the [ ] Court.' The court is cut and is NOT supplied: Cook County had both a circuit court and a commissioners' court in 1834 and this month's own tax-list notice is signed by Richard J. Hamilton as `Clerk Com'rs Court Cook co.` (1834-10-29 page 3 column 2), so either reading is available and neither is evidenced. What the claim does carry is that a CLERK'S OFFICE was a building people could be placed next to — a fixed point in the town that is not a tavern, a store or a corner, and the only one this month names."
+    },
+    {
+      "id": "c003",
+      "kind": "business",
+      "reading": "transcription_mediated",
+      "quote": "_ fown Maps, Davia\ngus received and for sale, Lithographic | Dusca\n‘Maps of the Town of Chieago, including | Driggs\n10 School Seetion, 'Kinzie's Addition,\" Wa- | Dinsim\nra-sia, Ac. handsomely exmeuted. Doty,\nKINZIE & FORSYTH. | Davids\nJune 18, 1834. Dally,\nThey ean also be found at the office of the| Dingly\nPe pe si nt ea Dupha",
+      "normalized": "Town Maps. [Just] received and for sale, Lithographic Maps of the Town of Chicago, including [the] School Section, 'Kinzie's Addition,' Wa[bansi]a, &c. handsomely executed. KINZIE & FORSYTH. June 18, 1834. They can also be found at the office of the [Democrat …]",
+      "locator": {
+        "artifact_role": "primary",
+        "issue_page": 3,
+        "column": 2,
+        "lines": [
+          2057,
+          2065
+        ],
+        "lines_of_claim": [
+          2057,
+          2058,
+          2059,
+          2060,
+          2061,
+          2062,
+          2063,
+          2064,
+          2065
+        ],
+        "interleaved": true
+      },
+      "entities": [],
+      "business": {
+        "name": "Kinzie & Forsyth",
+        "proprietors": [
+          "Kinzie",
+          "Forsyth"
+        ],
+        "trade": "lithographic town maps",
+        "goods": [
+          "lithographic maps of the Town of Chicago"
+        ],
+        "street": null,
+        "placement": {
+          "class": "none",
+          "anchor": null,
+          "offset_text": null,
+          "street": null
+        }
+      },
+      "ad_copy_date": {
+        "verbatim": "June 18, 1834.",
+        "iso": "1834-06-18"
+      },
+      "notes": "THE TOWN WAS SELLING PICTURES OF ITSELF IN 1834, and the advertisement names the four things a Chicago map of that year was expected to show: the town, the School Section, Kinzie's Addition and Wabansia. That is the plat plus its three additions, printed as a list a year before the scene date — useful to a reconstruction as a statement of what contemporaries thought the settled ground consisted of, quite apart from any surviving sheet. The maps are sold in two places, Kinzie & Forsyth's and the Democrat's own office, which is the building at Clark and South Water this month's page 1 puts up for sale (1834-10-22, claim c005). The advertisement's own date is 18 June 1834 and it is still running in October."
+    },
+    {
+      "id": "c004",
+      "kind": "business",
+      "reading": "transcription_mediated",
+      "quote": "__ Ansurance by Fire. Dosar\nee enbscribers having been appointed | Dann,\nAgents for the Howard Fire Insurance Daniel:\nasnpany of the city of New-York, for Chi- Daten,\nfeo and the vicinity, will insure property a-| Dougl\nainst loexby Fire, on reasonable terms. Daniel\n‘duly 1, HUBBARD & CO, Pash",
+      "normalized": "Insurance by Fire. [Th]e subscribers having been appointed Agents for the Howard Fire Insurance [Co]mpany of the city of New-York, for Chi[ca]go and the vicinity, will insure property a[g]ainst loss by Fire, on reasonable terms. July 1[, 1834.] HUBBARD & CO.",
+      "locator": {
+        "artifact_role": "primary",
+        "issue_page": 3,
+        "column": 2,
+        "lines": [
+          2066,
+          2072
+        ],
+        "lines_of_claim": [
+          2066,
+          2067,
+          2068,
+          2069,
+          2070,
+          2071,
+          2072
+        ],
+        "interleaved": true
+      },
+      "entities": [],
+      "business": {
+        "name": "Hubbard & Co.",
+        "proprietors": [
+          "Hubbard"
+        ],
+        "trade": "wholesale and retail merchants, and fire insurance agents",
+        "goods": [
+          "dry goods",
+          "groceries",
+          "hardware",
+          "crockery",
+          "cutlery",
+          "nails",
+          "tools",
+          "flour",
+          "fire insurance"
+        ],
+        "street": null,
+        "placement": {
+          "class": "none",
+          "anchor": null,
+          "offset_text": null,
+          "street": null
+        }
+      },
+      "ad_copy_date": {
+        "verbatim": "‘duly 1, HUBBARD & CO, Pash",
+        "iso": "1834-07-01"
+      },
+      "notes": "FIRE INSURANCE IS BEING SOLD IN CHICAGO IN 1834 — by a New York company, through Hubbard & Co., and the notice has been running since 1 July. It sits five inches from the town's own fire ordinance in the same month's issues, and the two together are one picture: a wooden town that had legislated its stove pipes in September and could buy a policy against the thing anyway. For the reconstruction this is texture rather than fabric — nothing here places a building — but it is the kind of claim that decides whether a shopfront card reads as a frontier outpost or as a town wired into eastern capital."
+    },
+    {
+      "id": "c005",
+      "kind": "building",
+      "reading": "transcription_mediated",
+      "quote": "For Sate. Evans\na. No. 7; igeblock No. 16, one lat cast of| Eno, J\nHaddock's Tavern, on Lake strect, in the Elston\nown of Chicago. ‘There is on said lot # large | Eastor\nweglling-House and fine well. For terms en-| Evans\nuire of G, SPRING. | Kikin,\nChicago, Sipt. 3, 1834. 40) Evans",
+      "normalized": "For Sale. [Lot] No. 7, i[n] block No. 16, one lot east of Haddock's Tavern, on Lake street, in the [t]own of Chicago. There is on said lot a large [D]welling-House and fine well. For terms en[q]uire of G. SPRING. Chicago, S[e]pt. 3, 1834. 40",
+      "locator": {
+        "artifact_role": "primary",
+        "issue_page": 3,
+        "column": 2,
+        "lines": [
+          2073,
+          2079
+        ],
+        "lines_of_claim": [
+          2073,
+          2074,
+          2075,
+          2076,
+          2077,
+          2078,
+          2079
+        ],
+        "interleaved": true
+      },
+      "entities": [
+        {
+          "as_printed": "G, SPRING.",
+          "normalized": "G. Spring",
+          "role": "agent for the sale",
+          "occupations": [
+            "attorney",
+            "solicitor in chancery"
+          ]
+        },
+        {
+          "as_printed": "Haddock's Tavern",
+          "normalized": "E. H. Haddock",
+          "role": "keeper of the tavern named as an anchor",
+          "occupations": [
+            "tavern keeper"
+          ]
+        }
+      ],
+      "ad_copy_date": {
+        "verbatim": "Chicago, Sipt. 3, 1834. 40)",
+        "iso": "1834-09-03"
+      },
+      "notes": "A LOT, A BLOCK, A STREET, A NEIGHBOUR AND WHAT STANDS ON IT — the most completely placed building in the October run, and the only one this month that gives a plat reference. LOT 7 IN BLOCK 16, ON LAKE STREET, ONE LOT EAST OF HADDOCK'S TAVERN, carrying a large dwelling house and a FINE WELL. The well matters as much as the house: it is a documented ground-level feature on a named lot, and the July 1834 run has the town ordering South Water Street crowned so water runs off it (1834-07-30, claim c001) without ever saying where the town drew its water. Haddock's Tavern is the same house the election notice of 1834-07-30 calls the Mansion House and gives to E. H. Haddock, so the anchor already has a second name in this corpus and no merge is declared for it. Block 16 can be resolved against the plat by a later pass; nothing here does that resolution."
+    },
+    {
+      "id": "c006",
+      "kind": "business",
+      "reading": "transcription_mediated",
+      "quote": "Blacksmithing Evusiness. | Gore\nMATTHIAS MASON & CO. ‘iu\nt Bieta onthe above bosiness an all ite! pfare\nCO varions branches, ov Matieetsect, oppor! Hen\nite the Tremont House, whore they ute md 80) Phare\nkeep, ready mado, all kinds of Sdcts, Chains, | How\n|e &e. ‘Work done on the shortest notice, | [all\nand moat liberal termy (linn\n| Chicago, Nor. 26, 16% 1) hel",
+      "normalized": "Blacksmithing [B]usiness. MATTHIAS MASON & CO. [have commenced] the above business in all its various branches, o[n] Ma[rket] street, oppo[s]ite the Tremont House, where they [will also] keep, ready made, all kinds of S[hoe]s, Chains, [&c.] &c. Work done on the shortest notice, and [on the] most liberal term[s]. Chicago, N[ov]. 26, 183[3].",
+      "locator": {
+        "artifact_role": "primary",
+        "issue_page": 3,
+        "column": 2,
+        "lines": [
+          2098,
+          2106
+        ],
+        "lines_of_claim": [
+          2098,
+          2099,
+          2100,
+          2101,
+          2102,
+          2103,
+          2104,
+          2105,
+          2106
+        ],
+        "interleaved": true
+      },
+      "entities": [
+        {
+          "as_printed": "MATTHIAS MASON & CO.",
+          "normalized": "Matthias Mason",
+          "role": "proprietor",
+          "occupations": [
+            "blacksmith"
+          ]
+        }
+      ],
+      "business": {
+        "name": "Matthias Mason & Co.",
+        "proprietors": [
+          "Matthias Mason"
+        ],
+        "trade": "blacksmithing",
+        "goods": [
+          "horse shoes",
+          "chains"
+        ],
+        "street": null,
+        "placement": {
+          "class": "relative",
+          "anchor": "the Tremont House",
+          "offset_text": "CO varions branches, ov Matieetsect, oppor!\nite the Tremont House, whore they ute md 80)",
+          "offset_normalized": "o[n] Ma[rket] street, oppo[s]ite the Tremont House",
+          "street": null
+        }
+      },
+      "notes": "A BLACKSMITH'S SHOP FACING THE TREMONT HOUSE. The Tremont is the third fixed point this month's advertising leans on, after the Democrat's corner and the Exchange Coffee House, and it is also where the board of trustees met to pass both October ordinances — so the forge is across the street from the town's government. THE STREET IS THE WEAK READING and it is bracketed: the OCR gives `ov Matieetsect`, which supports 'Market street' better than any alternative but does not settle it, and the advertisement's other printings this month are no cleaner. What is not in doubt is the anchor, the trade and the stock — horseshoes and chains kept ready made, which is a shop working for teams and wagons rather than to order only. Its own dateline is November 1833, so this is a shop that had been standing nearly a year when the wards were drawn."
+    },
+    {
+      "id": "c007",
+      "kind": "business",
+      "reading": "transcription_mediated",
+      "quote": "\\ G@enOLeo BALBEL. \\iha\n| D. GRAVES, lis\nOULD inieria the citizens of Chicago, | Ha\nWw and the neighboring tottlements, hat iat\njhe has commenced the Baking Business, in thie} Ten\n| town, on South Water-street, a few doors north} J.\nof Messra. Newbury & Dole's store, where he| Hu\nwill always keep on hand, frosh Bred, Crackers, | Ia;\n| Chee, Ree. Ke. and is ready to supply. the eiti-| Ho\n, | zene of this town, as low as ean id afforded.— | }ia,\n: | Orders from a distance attended to immediately. | |fo:\n| March 25, 1834, a5 17) Ha",
+      "normalized": "[BREAD! CAKES!] D. GRAVES [W]OULD inform the citizens of Chicago, and the neighboring settlements, that he has commenced the Baking Business, in this town, on South Water-street, a few doors north of Messrs. Newbe[r]ry & Dole's store, where he will always keep on hand, fresh Bre[a]d, Crackers, C[ak]es, &c. &c. and is ready to supply the citizens of this town, as low as ca[n be] afforded.— Orders from a distance attended to immediately. March 25, 1834.",
+      "locator": {
+        "artifact_role": "primary",
+        "issue_page": 3,
+        "column": 2,
+        "lines": [
+          2108,
+          2119
+        ],
+        "lines_of_claim": [
+          2108,
+          2109,
+          2110,
+          2111,
+          2112,
+          2113,
+          2114,
+          2115,
+          2116,
+          2117,
+          2118,
+          2119
+        ],
+        "interleaved": true
+      },
+      "entities": [
+        {
+          "as_printed": "D. GRAVES,",
+          "normalized": "D. Graves",
+          "role": "proprietor",
+          "occupations": [
+            "baker"
+          ]
+        }
+      ],
+      "business": {
+        "name": "D. Graves",
+        "proprietors": [
+          "D. Graves"
+        ],
+        "trade": "baker",
+        "goods": [
+          "fresh bread",
+          "crackers",
+          "cakes"
+        ],
+        "street": "South Water Street",
+        "placement": {
+          "class": "relative",
+          "anchor": "Newberry & Dole's store",
+          "offset_text": "| town, on South Water-street, a few doors north}\nof Messra. Newbury & Dole's store, where he|",
+          "offset_normalized": "on South Water-street, a few doors north of Messrs. Newbe[r]ry & Dole's store",
+          "street": "South Water Street"
+        }
+      },
+      "ad_copy_date": {
+        "verbatim": "| March 25, 1834, a5 17)",
+        "iso": "1834-03-25"
+      },
+      "notes": "A BAKER PLACED BY DOORS AND A DIRECTION ON A NAMED STREET — 'on South Water-street, a few doors north of Messrs. Newberry & Dole's store.' This is the cleanest reading of the advertisement anywhere in the month; 1834-10-01 page 3 column 3 has it cut to `on South Water-street, a few doors north` with the anchor lost entirely, and the run of insertions reaches back to 25 March 1834. Two things fall out of it. The town supports a DEDICATED BAKERY, keeping bread, crackers and cakes in stock rather than baking to order, twelve months before the scene date; and Newberry & Dole's store is a landmark somebody expects strangers to find, which makes it a candidate frontage on South Water in its own right. 'A few doors north' is an offset without a number and the placement is `relative` for exactly that reason — it narrows the block and does not choose the lot."
+    },
+    {
+      "id": "c008",
+      "kind": "business",
+      "reading": "transcription_mediated",
+      "quote": "Notice, Freee\nAlt porscns indebted to D. Carver & Co. | Goose\nfor lumber or otherwise, are requested to) GilTor\nmake itninediate payment. Our business has | Gleen\nbecame #5 ostranged that we are obliged to have | Gey,\nrecouse to thia means, to save ourselves. . I ho Garla\nthis notice will be strictly attended to, as all who | Gilxo\nneglect it may expect accounts to be leftin the | Gallia\nhands of proper officers for collection as soon as) Gask\nthe Indian payment isovor, without reserve. Goul\nDAV.D CABVER. | Grigg\nChicago, Sept. WO, 1834. Glees",
+      "normalized": "Notice. All persons indebted to D. Carver & Co. for lumber or otherwise, are requested to make immediate payment. Our business has become so estranged that we are obliged to have recourse to this means, to save ourselves. [We hope] this notice will be strictly attended to, as all who neglect it may expect accounts to be left in the hands of proper officers for collection as soon as the Indian payment is over, without reserve. DAV[I]D CARVER. Chicago, Sept. [1]0, 1834.",
+      "locator": {
+        "artifact_role": "primary",
+        "issue_page": 3,
+        "column": 2,
+        "lines": [
+          2085,
+          2096
+        ],
+        "lines_of_claim": [
+          2085,
+          2086,
+          2087,
+          2088,
+          2089,
+          2090,
+          2091,
+          2092,
+          2093,
+          2094,
+          2095,
+          2096
+        ],
+        "interleaved": true
+      },
+      "entities": [
+        {
+          "as_printed": "DAV.D CABVER.",
+          "normalized": "David Carver",
+          "role": "proprietor",
+          "occupations": [
+            "lumber merchant"
+          ]
+        }
+      ],
+      "business": {
+        "name": "D. Carver & Co.",
+        "proprietors": [
+          "David Carver"
+        ],
+        "trade": "lumber merchant",
+        "goods": [
+          "lumber"
+        ],
+        "street": null,
+        "placement": {
+          "class": "none",
+          "anchor": null,
+          "offset_text": null,
+          "street": null
+        }
+      },
+      "ad_copy_date": {
+        "verbatim": "Chicago, Sept. WO, 1834.",
+        "iso": "1834-09-10"
+      },
+      "notes": "A LUMBER DEALER, AND THE TOWN'S CALENDAR RUNNING ON THE INDIAN PAYMENT. Two facts a reconstruction can use. First, D. Carver & Co. sell LUMBER in Chicago in 1834 — the same firm whose yard is auctioned off at the end of the month with fifty thousand feet of seasoned pine in it (1834-10-29, claim c002), which is where the boards for a frame building came from. Second, a debt notice measures its own deadline as 'as soon as the Indian payment is over': the annuity payment at Chicago is the event the commercial year turns on, and a creditor expects his debtors to have money the day it happens. That is town texture of the kind a card can carry without any building attached. The reading is clean and the only supplies close two words the type dropped."
+    },
+    {
+      "id": "c009",
+      "kind": "building",
+      "reading": "transcription_mediated",
+      "quote": "To LET. Bird,\nCOMFORTABLE and well finished dwel-| Brovros\n‘ ting house near the point, enquire of Benmee\nOct. &. WM. HESSEY. | Higciex",
+      "normalized": "TO LET. [A] COMFORTABLE and well finished dwel[l]ing house near the point, enquire of Oct. [8]. WM. HESSEY.",
+      "locator": {
+        "artifact_role": "primary",
+        "issue_page": 3,
+        "column": 2,
+        "lines": [
+          2010,
+          2013
+        ],
+        "lines_of_claim": [
+          2010,
+          2011,
+          2012,
+          2013
+        ],
+        "interleaved": true
+      },
+      "entities": [
+        {
+          "as_printed": "WM. HESSEY.",
+          "normalized": "Wm. Hessey",
+          "role": "advertiser of the house"
+        }
+      ],
+      "notes": "'NEAR THE POINT' — a Chicago address given as a piece of geography rather than a street, and the only one like it this month. The point is where the north and south branches meet the main stem, the fork the whole town is arranged around, and a dwelling house advertised against it is a house near the confluence. It narrows a location without choosing a bank, which is why nothing here is turned into a placement: 'the point' is not a business address and this is a house to let, so the claim is a `building` and stops there. The advertiser prints as `WM. HESSEY` here and as `R'M. HERSEF` in the previous week (1834-10-08 page 2 column 6), so the surname is taken from this reading and the earlier one is noted rather than merged."
+    },
+    {
+      "id": "c010",
+      "kind": "business",
+      "reading": "transcription_mediated",
+      "quote": "YOLEN YARN, for sale, by Abrahe\nJNO. 'L. WILBON & Co. | Akers,\n‘Oct. &. Dearborn ot.| Beilly,",
+      "normalized": "[W]OOLEN YARN, for sale, by JNO. L. WILSON & Co. Oct. 8. Dearborn st.",
+      "locator": {
+        "artifact_role": "primary",
+        "issue_page": 3,
+        "column": 2,
+        "lines": [
+          2000,
+          2002
+        ],
+        "lines_of_claim": [
+          2000,
+          2001,
+          2002
+        ],
+        "interleaved": true
+      },
+      "entities": [],
+      "business": {
+        "name": "J. L. Wilson & Co.",
+        "proprietors": [
+          "J. L. Wilson"
+        ],
+        "trade": "dry goods, groceries, hardware and crockery",
+        "goods": [
+          "woolen yarn"
+        ],
+        "street": "Dearborn Street",
+        "placement": {
+          "class": "street_only",
+          "anchor": null,
+          "offset_text": null,
+          "street": "Dearborn Street"
+        }
+      },
+      "ad_copy_date": {
+        "verbatim": "‘Oct. &. Dearborn ot.| Beilly,",
+        "iso": "1834-10-08"
+      },
+      "notes": "FOUR WORDS OF ADDRESS AND NOTHING ELSE — 'Dearborn st.' — set under the firm's name as its whole location. It corroborates the fuller placement in the same firm's New Goods notice a week earlier, 'Dearborn st. next door to the city boot and shoe store' (1834-10-08, claim c006), and it is the shorter form a standing advertiser falls back on once the street is known. Woollen yarn in October is a seasonal stock note and is recorded as a good rather than a trade."
+    },
+    {
+      "id": "c011",
+      "kind": "notice",
+      "reading": "transcription_mediated",
+      "quote": "‘Wanted te Hire. A\nPERSON with a fafhily to reside upon a E\nA im in the country, and to chop wood ?\nhereon. ary person of the above description | Andrey\nill neeet will syed snepeaabenent Sy eee Andres\n1c application at the Eagte Tavern. ‘Abell, $\nOct. 14, 1834. 46 _| Atwate",
+      "normalized": "Wanted to Hire. A PERSON with a family to reside upon a [f]arm in the country, and to chop wood [t]hereon. [An]y person of the above description [w]ill [meet with] […] by [mak]ing application at the Eagle Tavern. Oct. 14, 1834. 46",
+      "locator": {
+        "artifact_role": "primary",
+        "issue_page": 3,
+        "column": 2,
+        "lines": [
+          1993,
+          1999
+        ],
+        "lines_of_claim": [
+          1993,
+          1994,
+          1995,
+          1996,
+          1997,
+          1998,
+          1999
+        ],
+        "interleaved": true
+      },
+      "entities": [],
+      "ad_copy_date": {
+        "verbatim": "Oct. 14, 1834. 46 _|",
+        "iso": "1834-10-14"
+      },
+      "notes": "THE EAGLE IS STILL CALLED THE EAGLE THREE WEEKS AFTER IT CHANGED HANDS. Paul J. Carli gave the house up to J. Shrigley on 22 September (1834-10-22, claim c006) and here on 14 October a hiring notice still sends applicants to 'the Eagle Tavern' — so the SIGN outlasted the landlord, which is precisely what a reconstruction needs to know before it letters a signboard for July 1835. The advertisement also says something about the country the town sat in: a farm outside it wanted a family to live on it and chop its wood, and Chicago's paper is where you advertised for them. The notice's own words are heavily cut in the middle and the inducement offered is left as a gap."
+    },
+    {
+      "id": "c012",
+      "kind": "business",
+      "reading": "transcription_mediated",
+      "quote": "ute Diss ee Clay, |\nCUARPENTERS, Masons, Builders, &c, Crow,\nwill find w large and complete egsort-|Gu\nent of Morieae, Cutlery, Nails, tools &e Crug\n[uncertain: F sale by ? HUBBARD & Co. | Colma]\nJuly 4 VSSACok,",
+      "normalized": "[Hardware.] CARPENTERS, Masons, Builders, &c. will find [a] large and complete [as]sort[m]ent of [Iron w]are, Cutlery, Nails, tools &c. [uncertain: For sale by HUBBARD & Co.] July 4[, 1834.]",
+      "locator": {
+        "artifact_role": "primary",
+        "issue_page": 3,
+        "column": 2,
+        "lines": [
+          2038,
+          2043
+        ],
+        "lines_of_claim": [
+          2038,
+          2039,
+          2040,
+          2041,
+          2042,
+          2043
+        ],
+        "interleaved": true
+      },
+      "entities": [],
+      "business": {
+        "name": "Hubbard & Co.",
+        "proprietors": [
+          "Hubbard"
+        ],
+        "trade": "wholesale and retail merchants, and fire insurance agents",
+        "goods": [
+          "iron ware",
+          "cutlery",
+          "nails",
+          "tools"
+        ],
+        "street": null,
+        "placement": {
+          "class": "none",
+          "anchor": null,
+          "offset_text": null,
+          "street": null
+        }
+      },
+      "ad_copy_date": {
+        "verbatim": "July 4 VSSACok,",
+        "iso": "1834-07-04"
+      },
+      "notes": "THE BUILDING TRADES OF CHICAGO, ADDRESSED BY NAME IN AN ADVERTISEMENT — carpenters, masons and builders — which is a statement that all three existed in the town in numbers worth printing for. What they are being sold is the short list of what a frame town is put together with: nails, tools, cutlery and ironware. Read beside the fire ordinance's tin and sheet-iron plates (1834-10-08, claim c002), P. F. W. Peck's spikes, nail rods and bar iron (1834-10-29, claim c011) and D. Carver's fifty thousand feet of pine (1834-10-29, claim c002), October 1834's advertising columns describe a complete materials supply chain for a wooden town. The firm's own line is inside the transcription's uncertainty brackets and is quoted with them standing."
+    },
+    {
+      "id": "c013",
+      "kind": "building",
+      "reading": "transcription_mediated",
+      "quote": "For Bent, 6 :\nARGE three story Stoyg House, 40 by 27 6 |\nSicet, with a wharf atta@hed, of 60 fect\n‘Abo, 4 handsome anal Dwelling House] 1.1, 5.\na resins. Alea, » large and beautifully | \"SF 19\n| Store, on South Water-st, by ee\n' JOHN T. TEMPLE. | gust I\ngo, Sept. 20, 1834. 43",
+      "normalized": "For Rent. [A L]ARGE three story Sto[re] House, 40 by 27 [feet], with a wharf attached, of 60 feet. [Also,] a handsome small Dwelling House [with five] rooms. Also, a large and beautifully [finished] Store, on South Water-st. [enquire of] JOHN T. TEMPLE. [Chica]go, Sept. 20, 1834. 43",
+      "locator": {
+        "artifact_role": "primary",
+        "issue_page": 3,
+        "column": 4,
+        "lines": [
+          2428,
+          2435
+        ],
+        "lines_of_claim": [
+          2428,
+          2429,
+          2430,
+          2431,
+          2432,
+          2433,
+          2434,
+          2435
+        ],
+        "interleaved": true
+      },
+      "entities": [
+        {
+          "as_printed": "JOHN T. TEMPLE.",
+          "normalized": "John T. Temple",
+          "role": "landlord",
+          "occupations": [
+            "physician"
+          ]
+        }
+      ],
+      "business": {
+        "name": "John T. Temple (buildings to rent)",
+        "proprietors": [
+          "John T. Temple"
+        ],
+        "trade": "store house, dwelling house and store to let",
+        "goods": [],
+        "street": "South Water Street",
+        "placement": {
+          "class": "street_only",
+          "anchor": null,
+          "offset_text": null,
+          "street": "South Water Street"
+        }
+      },
+      "ad_copy_date": {
+        "verbatim": "go, Sept. 20, 1834. 43",
+        "iso": "1834-09-20"
+      },
+      "notes": "THE BEST READING IN THE MONTH OF THE TALLEST BUILDING IN IT. Forty feet by twenty-seven, THREE STOREYS, with a SIXTY-FOOT WHARF attached — a warehouse with a measured river frontage, which is a structure a reconstruction can actually raise. The other two printings give `40 by` and stop (1834-10-08 page 3 column 2) or `49 by` (1834-10-22 page 3 column 4), so the second dimension is taken from this witness alone and is recorded as its reading rather than as a settled fact. The dwelling house of five rooms and the store on South Water Street are the same three-part offer in all three printings. John T. Temple is a physician who is also the month's largest advertiser of buildings, and his own house on Lake Street anchors G. Blanshard's notice (1834-10-22, claim c004)."
+    },
+    {
+      "id": "c014",
+      "kind": "notice",
+      "reading": "transcription_mediated",
+      "quote": "AINING in the Post Ofice at Chi-| Kiogmy>\ncago, #1. Get. 3, tag4, Kiger, Jan",
+      "normalized": "[REM]AINING in the Post Office at Chicago, Ill. Oct. [1], 1834.",
+      "locator": {
+        "artifact_role": "primary",
+        "issue_page": 3,
+        "column": 3,
+        "lines": [
+          2144,
+          2145
+        ],
+        "lines_of_claim": [
+          2144,
+          2145
+        ],
+        "interleaved": true
+      },
+      "entities": [],
+      "notes": "THE SECOND OF THREE PRINTINGS OF THE 1 OCTOBER LETTER LIST, and the one that shows what the segmenter did to it. Here the list is cut into THREE name sub-columns spread across two crops — page 3 column 2's right edge holds the beginnings of the A-to-H names (`Andrey`, `Abell`, `Atwate`, `Akers`, `Beilly`, `Bryant`, `Barlow`, `Brooks`, `Bird`…), page 3 column 3 holds their endings on its left edge (`we, David`, `ze, Williem`, `t, Jesse`, `ums, William-`…) with the L-to-W run clean beside them, and column 4 takes the tail. The list is extracted at name level from 1834-10-22 instead, where it survives in two crops rather than three (claims c001 and c002 there), and no name is minted twice. THE HEADLINE FACT THIS CLAIM CARRIES is the DATE OF THE LIST, printed here in its cleanest state of the three: letters remaining at Chicago on 1 October 1834, which is what makes the three insertions one document and not three."
+    }
+  ]
+}

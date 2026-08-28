@@ -1,0 +1,687 @@
+{
+  "schema": 1,
+  "issue_id": "chicago_democrat_1834_10_08",
+  "extracted": "2026-08-28",
+  "extracted_by": "hand, T-0292 — the Democrat read, October 1834",
+  "note": "Vol. I No. 45. The issue that carries the town's fire ordinance of 20 September 1834 whole and readable on page 4 — the FOUR WARDS with their boundaries, the four Fire Wardens by name, and a stove-pipe and chimney code that describes what Chicago houses were built and heated with. Beside it the earth-from-the-streets ordinance of 29 September. Page 3 carries the first printing of the notice that puts the Democrat's own office at the corner of Clark and South Water, John T. Temple's three-storey store house, and the month's best-placed shops: J. L. Wilson & Co. on Dearborn next door to the boot and shoe store, J. K. Botsford at the corner of Dearborn and Lake, and a stove store in Water-st. near the bridge. Page 3 also prints the 1 October post-office list for the first time, in the worst of its three states.",
+  "claims": [
+    {
+      "id": "c001",
+      "kind": "infrastructure",
+      "reading": "transcription_mediated",
+      "quote": "An Ordinance to Prevent |\nT a mocting of tho Peesident a\nof the ‘Town of Chicago, held\nmont Ifo in said town, on the\nSept. 12: The following Ordin\ndopted, to wit:\n8 Beit Or dainel ty Boar\n‘ge of the Torn of Chicago, That said |\nlaws, &e, the same ix hereby divided into f\nwards, as follows: the first wurd\nall that part within the incorporat\n1d Pouchong } snid town, lying fast of the centr\nis, bro. Hav. | street and within Jacksow and Sout\nsperm and! Tho second Ward shall incl de all thu\nsph. cigars, | inthe incorporated limits of said\nrFriDg, BCs) Hest of the centro of Lasalle street,\n| shot, whale| Jatkson ond East Water strect.’ Th.\nuball include all that part within the\n5 ted limits of said town lying north o\nriver; and the fourth Ward shall\nthat part within the incorporated li:\ntown lying weet of the north and go\nes of the Chics ree\nSrc. 2. i fu Ordained,\nday Shoes That the following named persons b\ninde fe gincg, | 2° hereby appointed Fire Wardens\n; Sins. | pective wards of suid Town, viz.: W\n3 thingham for tho first ward; Edwar.\ned the acend wards Eepael Resig\n, | hird ward, and James Kinzie for the",
+      "normalized": "An Ordinance to Prevent [Fires.] [A]t a meeting of the President a[nd Trustees] of the Town of Chicago, held [at the Tre]mont Ho[use] in said town, on the [twentieth day of] Sept. 18[34]: The following Ordin[ance was a]dopted, to wit: [Sec. 1.] Be it Ordained b[y the] Boar[d of Trust]e[e]s of the Town of Chicago, That said [town be and] the same is hereby divided into f[our] [wards], as follows: the first ward [shall include] all that part within the incorporat[ed limits of] said town, lying [E]ast of the centr[e of Lasalle] street and within Jackso[n] and Sout[h Water streets]. The second Ward shall incl[u]de all th[at part with]in the incorporated limits of said [town lying w]est of the centre of Lasalle street, [and within] Jackson and East Water street. Th[e third ward] shall include all that part within the [incorpora]ted limits of said town lying north o[f the Chicago] river; and the fourth Ward shall [include all] that part within the incorporated li[mits of said] town lying west of the north and [s]o[uth branch]es of the Chic[ago rive]r. Sec. 2. [And be it] fu[rther] Ordained, That the following named persons b[e and they] are hereby appointed Fire Wardens [for the res]pective wards of said Town, viz.: W[illiam Worth]ingham for the first ward; Edwar[d E. Hunter for] the [s]econd ward; E[z]e[k]iel Resig[ue for the t]hird ward, and James Kinzie for the [fourth ward].",
+      "locator": {
+        "artifact_role": "primary",
+        "issue_page": 4,
+        "column": 4,
+        "lines": [
+          3216,
+          3245
+        ],
+        "lines_of_claim": [
+          3216,
+          3217,
+          3218,
+          3219,
+          3220,
+          3221,
+          3222,
+          3223,
+          3224,
+          3225,
+          3226,
+          3227,
+          3228,
+          3229,
+          3230,
+          3231,
+          3232,
+          3233,
+          3234,
+          3235,
+          3236,
+          3237,
+          3238,
+          3239,
+          3240,
+          3241,
+          3242,
+          3243,
+          3244,
+          3245
+        ],
+        "interleaved": true
+      },
+      "entities": [
+        {
+          "as_printed": "3 thingham for tho first ward",
+          "normalized": "William Worthingham",
+          "role": "fire warden of the first ward"
+        },
+        {
+          "as_printed": "Edwar.",
+          "normalized": "Edward Hunter",
+          "role": "fire warden of the second ward"
+        },
+        {
+          "as_printed": "Eepael Resig",
+          "normalized": "Resigue",
+          "role": "fire warden of the third ward"
+        },
+        {
+          "as_printed": "James Kinzie",
+          "normalized": "James Kinzie",
+          "role": "fire warden of the fourth ward"
+        }
+      ],
+      "notes": "THE FOUR WARDS OF CHICAGO, DRAWN IN WORDS, AND THE FOUR MEN PUT IN CHARGE OF THEM. This is the most consequential claim of the October run and probably of the whole 1834 read so far, because it is a DOCUMENTED PARTITION OF THE TOWN with the boundary lines named: the first ward east of the centre of Lasalle street between Jackson and South Water; the second west of the centre of Lasalle between Jackson and East Water; the third everything north of the river; the fourth everything west of the north and south branches. Three of the four boundaries are streets this reconstruction already stands on the ground, and the fourth is the river itself — so a ward number, wherever one turns up later, is a POSITION. The wardens are named: William Worthingham, Edward E. Hunter, Ezekiel Resigue and James Kinzie. THIS IS THE BETTER OF TWO WITNESSES IN THE SAME MONTH: 1834-10-01 page 3 column 1 prints the same ordinance a week earlier with its left edge destroyed, where the first ward reads `Past of the centro of Lasalle` and `1 te dukson and South Water ts.` and the second ward's closing street is lost entirely. Reading them together is what settles that the second ward's limit is EAST Water street and not a repeat of South Water. THE WARDENS' NAMES CARRY THE WEAKEST OCR ON THE PAGE and they are recorded at exactly the strength the two printings support. `William Worthingham` is joined from this issue's `3 thingham` and 1834-10-01's `William Wor.`, which is a clean join. `Edward Hunter` is recorded WITHOUT a middle initial: this printing gives `Edwar.` and 1834-10-01 gives `Edward F. Hanter`, so one witness has no initial and the other reads it `F.`, and asserting either would be a choice rather than a reading. The third warden is recorded by SURNAME ALONE, `Resigue`: this printing gives `Eepael Resig` and 1834-10-01 gives `Sumnel Hhesigue`, forenames that cannot both be right, so neither is taken. `James Kinzie` is clean here and reads `Jere Kiteie` in the earlier printing, and this witness is preferred."
+    },
+    {
+      "id": "c002",
+      "kind": "building",
+      "reading": "transcription_mediated",
+      "quote": "the, Baldie | ssc, 3. “And be it Ordained us afur\nit shall not be lawful for any person\n, &e. to pass or cause to be passed, any st\n1m, Maddier, | tached to any stove within the buildis\nIk, whiti the roof, wooden partition, Isth or\na idirig, | Se ‘ L\nUtion of any house, store or building\nlimits of the corporation of the Tow\na g9, unless said pipe be passed thy; ou\nack 'Iate, at| or earthern cylinder, or be surround\nen and Palm | or be passed parooih atin or shest\ntho inside of which shall not appr\nwithin one quarter of aninch of tle\nshall the pipe of nny stove be nea:\ninches to any wood or other combu:\nand évery stove pipe or chimney pas\niff shall extend\nInches of saic\n' Pive shall be passed\nurge axsort. | side or end of any building within th\nther with a| the corporation. \"|",
+      "normalized": "Sec. 3. And be it Ordained as afor[esaid, That] it shall not be lawful for any person [or persons] to pass or cause to be passed, any st[ove pipe at]tached to any stove within the buildi[ng, through] the roof, wooden partition, la[t]h or [plaster part]ition of any house, store or building [within the] limits of the corporation of the Tow[n of Chica]go, unless said pipe be passed th[r]ou[gh a stone] or earthern cylinder, or be surround[ed by brick,] or be passed [th]ro[ugh] a tin or shee[t iron plate,] the inside of which shall not appr[oach or be] within one quarter of an inch of th[e pipe, nor] shall the pipe of any stove be nea[rer than … ] inches to any wood or other combu[stible matter;] and [e]very stove pipe or chimney pas[sing through the roo]f shall extend […] Inches of said [building… No] Pipe shall be passed [through the] side or end of any building within th[e limits of] the corporation.",
+      "locator": {
+        "artifact_role": "primary",
+        "issue_page": 4,
+        "column": 4,
+        "lines": [
+          3246,
+          3266
+        ],
+        "lines_of_claim": [
+          3246,
+          3247,
+          3248,
+          3249,
+          3250,
+          3251,
+          3252,
+          3253,
+          3254,
+          3255,
+          3256,
+          3257,
+          3258,
+          3259,
+          3260,
+          3261,
+          3262,
+          3263,
+          3264,
+          3265,
+          3266
+        ],
+        "interleaved": true
+      },
+      "entities": [],
+      "notes": "WHAT A CHICAGO HOUSE WAS MADE OF, LEGISLATED. A building code from the autumn before the scene date, and it describes the fabric it is trying to stop burning: houses and stores with WOODEN PARTITIONS and LATH-AND-PLASTER partitions, heated by STOVES rather than fireplaces, with the stove pipe run out through the ROOF. What the ordinance permits is the detail a reconstruction can build: a pipe may pass through a stone or earthenware cylinder, or be surrounded by BRICK, or go through a TIN OR SHEET IRON PLATE held a quarter of an inch clear of the pipe; the pipe or stove must stand clear of woodwork; and a pipe may NOT be taken out through the side or the end of a building — only up through the roof. So the 1834 roofline carries pipes and not chimney stacks, and the plate around them is metal. The clearances themselves are the two numbers this witness loses: the inches to combustible matter and the inches a pipe must stand above the roof are both cut, and 1834-10-01's printing loses them too, so they are `[…]` here and not filled from anywhere."
+    },
+    {
+      "id": "c003",
+      "kind": "infrastructure",
+      "reading": "transcription_mediated",
+      "quote": "Src. 4. Be it further ordained as\n‘That it shall be the duty of the Fire\nome to inspect on tho first Monday of ev\nor oitener (if they deem it\nRE. neys and stove pipes used tw tre 4\nFe their respective wards, and they are |\nthe Store at | ‘iorined and required to report all ,\nJater-street, | Einst the provisions of the foregoin\nbh they hi | and to remove or cause to be removed\nth they have d\naro now re-| #!! nuisances which may tend to enc\nent of safety of any building or buildings by\nin the limits of the corporation, att\nries, of the owner oF Occupant thervof, u\nowner or seeupant abell himsclf or\n: move or cause tu be removed the sam\n& good a8-| or required by the Wardens ae afore\n60, for every day said Wardens shall be\nPES, [inthe sischarge of this duty as re\n» for cash ap prescribed by this ordinance, they sl\ntitled to receive wuch compensation a:\n93} ident and Trustees shall deem reas.\n| sullicient,\n. Binc. 5, And be it further Ordained as\nome .. | That each and every offence uguinat\n“rem Jions of this ordinance shall subject |\ncommitting the same to a fine of five\n3 be resovered on complaint beforo any\ntroit. the Peace in said town, ur other cout\nfor sale, an| petent jurisdiction, in the same mann\nTS, which | er fines are by law recoverable.\neae ret And be it, ined as\naed of for! That the ordinance “to prevent fires\n2 as tm: by, the Frosident and Trustees oF the\nul at , Of the 6th day of Novem!\neW-Vork,—— | 1833, be and the sam f =\nBrogans and\npea!\nnd citisens| This Ordinance to tako t\nainine their fom snl bine the 12th day of Octobe\nceived and pie\n. INO. H. KIN\nPres't. Bd. Trustess of the Town of\nClerk,",
+      "normalized": "Sec. 4. Be it further ordained as [aforesaid,] That it shall be the duty of the Fire [Wardens] to inspect on the first Monday of ev[ery month] or oftener (if they deem it [necessary,) all chim]neys and stove pipes used i[n bu]ildings [within] their respective wards, and they are [hereby auth]orised and required to report all [offences a]gainst the provisions of the foregoin[g section] and to remove or cause to be removed [forthwith] all nuisances which may tend to en[danger the] safety of any building or buildings by [fire, with]in the limits of the corporation, at t[he expense] of the owner or occupant thereof, u[nless said] owner or occupant shall himself or [herself re]move or cause to be removed the sam[e, whenever] or required by the Wardens as afore[said; and] for every day said Wardens shall be [employed] in the [d]ischarge of this duty as re[quired and] prescribed by this ordinance, they sh[all be en]titled to receive such compensation a[s the Pres]ident and Trustees shall deem reas[onable and] sufficient. Sec. 5. And be it further Ordained as [aforesaid,] That each and every offence against [the provis]ions of this ordinance shall subject [the person] committing the same to a fine of five [dollars, to] be recovered on complaint before any [Justice of] the Peace in said town, or other cou[rt of com]petent jurisdiction, in the same mann[er as oth]er fines are by law recoverable. [Sec. 6. And be it further orda]ined as [aforesaid,] That the ordinance 'to prevent fires[,' passed] by the President and Trustees o[f the Town of Chicago,] of the 6th day of Novem[ber, A.D.] 1833, be and the sam[e is hereby re]peal[ed]. This Ordinance to take [effect and be in force] from and [after] the 12th day of Octobe[r, 1834]. JNO. H. KIN[ZIE,] Pres't. Bd. Trustees of the Town of [Chicago. Attest: …] Clerk.",
+      "locator": {
+        "artifact_role": "primary",
+        "issue_page": 4,
+        "column": 4,
+        "lines": [
+          3267,
+          3310
+        ],
+        "lines_of_claim": [
+          3267,
+          3268,
+          3269,
+          3270,
+          3271,
+          3272,
+          3273,
+          3274,
+          3275,
+          3276,
+          3277,
+          3278,
+          3279,
+          3280,
+          3281,
+          3282,
+          3283,
+          3284,
+          3285,
+          3286,
+          3287,
+          3288,
+          3289,
+          3290,
+          3291,
+          3292,
+          3293,
+          3294,
+          3295,
+          3296,
+          3297,
+          3298,
+          3299,
+          3300,
+          3301,
+          3302,
+          3303,
+          3304,
+          3305,
+          3306,
+          3307,
+          3308,
+          3309,
+          3310
+        ],
+        "interleaved": true
+      },
+      "entities": [
+        {
+          "as_printed": "INO. H. KIN",
+          "normalized": "John H. Kinzie",
+          "role": "president of the board of trustees",
+          "occupations": [
+            "merchant"
+          ]
+        }
+      ],
+      "notes": "THE INSPECTION, THE PRICE AND THE DATE. Every chimney and every stove pipe in the town is to be looked at on the FIRST MONDAY OF EVERY MONTH, offences reported, and anything dangerous pulled down at the owner's expense — which is a town whose officers walk into buildings once a month, and a fabric someone thought needed it. Five dollars an offence. The ordinance takes effect on 12 October 1834 and REPEALS an earlier fire ordinance of 6 November 1833, so Chicago had been legislating about fire since within a fortnight of the Democrat's own first issue. The clerk's signature is lost at the foot of the column and is not supplied; the president's is John H. Kinzie, as it is on the second ordinance of 1834-10-01 and on the fire-warden ordinance of 11 October (1834-10-22, claims c008 and c009)."
+    },
+    {
+      "id": "c004",
+      "kind": "street",
+      "reading": "transcription_mediated",
+      "quote": "u the eit; T a regular mee! of :\non hand : A rere Ties sown of Clea\nMOON, | ing ordinance wnesioreat 1834,\nVes] He it Ordained by the President ond 1\nthe Town of Chis\npop. | hraay Pea tieeke, That 1 shall be\nWay any casth -\nBy within the tmige oe Samol on as\norder and permi of the \"\nblishmont, | in said town, and for the of\noon she Posie ema person or bt\nphot irre dollars, to be recorened before ney: foe\nPeace town sforessid for each a:\nith | offence.",
+      "normalized": "[A]t a regular mee[ting] of [the President and Trustees of the] Town of C[hicago, held … Sept. 29,] 1834, [the follow]ing ordinance w[as adopted:] Be it Ordained by the President and [Trustees of] the Town of Chi[cago, … that it shall be unlawful for any person or persons to remove or take a]way any earth [or gravel from off any of the streets] within the [limits of the corporation, unless by] order and permi[ssion] of the [supervisor of roads] in said town, and for the [purpose of repairing the same; and any] person or [persons so offending shall pay a fine not exceeding five] dollars, to be recovered before any [Justice of the] Peace [in the] town aforesaid for each a[nd every] offence.",
+      "locator": {
+        "artifact_role": "primary",
+        "issue_page": 4,
+        "column": 4,
+        "lines": [
+          3311,
+          3324
+        ],
+        "lines_of_claim": [
+          3311,
+          3312,
+          3313,
+          3314,
+          3315,
+          3316,
+          3317,
+          3318,
+          3319,
+          3320,
+          3321,
+          3322,
+          3323,
+          3324
+        ],
+        "interleaved": true
+      },
+      "entities": [],
+      "notes": "PEOPLE WERE DIGGING THE STREETS UP, and the town had to forbid it. An ordinance of 29 September 1834 makes it unlawful to carry earth away from any street inside the corporation except by the supervisor of roads' order and for the purpose of repairing the street. Two things fall out of that for a reconstruction. First, an 1834 Chicago street is made of EARTH — loose enough to be worth a cartload, and mended with earth taken from somewhere else. Second, the town has a SUPERVISOR OF ROADS, an office this corpus had not met before. THIS WITNESS IS THE POORER OF THE TWO and the supplies are correspondingly heavy: 1834-10-01 page 3 column 1 prints the same ordinance with a cleaner middle (`remove or take`, `om off any of the etree`, `f the corporntion, unless`, `PRON of the sun`, `tom, and or te saPOrFINOF of roa`, `thie parpose of repairi`) and the two together are what make the supplies above readable at all. Every one of them is bracketed and none adds a fact neither witness carries."
+    },
+    {
+      "id": "c005",
+      "kind": "building",
+      "reading": "transcription_mediated",
+      "quote": "For Sale or to Rent, Be\nB Btore now oceupied by W. Kimball, | WAY’\nad as the office of the Democrat, on the tt\nof Clark ank-South Water atrcets, is of | Sit:\nr salo, together with tho lot on which it| 7 cp;\nor the building will be rentedantil the Wi\nune post. | Possossion given on the Piad bi\nNove Fs ‘or termes enquire at this\nOct. 8, 4534. \" 45 | Set. Ae",
+      "normalized": "For Sale or to Rent. [The] Store now occupied by W. Kimball, [and us]ed as the office of the Democrat, on the [corner] of Clark an[d] South Water str[ee]ts, is of[fe]r[ed] for [s]ale, together with the lot on which it [stands, o]r the building will be rented until the [first of] June [n]ext. Possession given on the [first of] November. For terms enquire at this [office.] Oct. 8, 1834. 45",
+      "locator": {
+        "artifact_role": "primary",
+        "issue_page": 3,
+        "column": 2,
+        "lines": [
+          2052,
+          2060
+        ],
+        "lines_of_claim": [
+          2052,
+          2053,
+          2054,
+          2055,
+          2056,
+          2057,
+          2058,
+          2059,
+          2060
+        ],
+        "interleaved": true
+      },
+      "entities": [
+        {
+          "as_printed": "W. Kimball,",
+          "normalized": "W. Kimball",
+          "role": "occupant of the store",
+          "occupations": [
+            "storekeeper"
+          ]
+        }
+      ],
+      "ad_copy_date": {
+        "verbatim": "Oct. 8, 4534.",
+        "iso": "1834-10-08"
+      },
+      "notes": "THE FIRST PRINTING OF THE NOTICE THAT NAMES THE DEMOCRAT'S CORNER — Clark and South Water. It is dated the day of this issue and runs on through 1834-10-15, 1834-10-22 and 1834-10-29, so the building was still on the market at the end of the month. The fullest witness is 1834-10-22 page 1 column 2 (claim c005 there), and this is where it starts. Recorded here rather than folded into that one because a run of insertions is evidence of its own: the advertisement's own copy date is 8 October, and the possession date it offers, 1 November 1834, is eight months before the scene."
+    },
+    {
+      "id": "c006",
+      "kind": "business",
+      "reading": "transcription_mediated",
+      "quote": "EW Goons, [377\nJ. L. WILSON & CO. EN,\n; mow apening an extensive stock of | °7 Dr. #\nGeods, Groceries, Hardware Crockery, PB\n. cloths, sattinetts, ciresssians, | Pooms in\nj g*, Tichings, &c. Ready made |\n4 tea, sugar, spice, liquors, &\na opal yale FC\nv Mates, sad Window Glass. A for\nu st. next door ‘city boot shoe and\nore. Chicago, Sept. tee. 42] became »",
+      "normalized": "[N]EW GOODS. J. L. WILSON & CO. [are] now opening an extensive stock of [Dry] Goods, Groceries, Hardware, Crockery, [&c. …] cloths, sattinetts, circassians, [flannels, shirtin]gs, tickings, &c. Ready made [clothing, …] tea, sugar, spice, liquors, &[c. …] [Looking Gl]a[ss]es, and Window Glass. [At their store,] [Dearborn] st. next door [to the] city boot [and] shoe [st]ore. Chicago, Sept. [17, 18]34. 42",
+      "locator": {
+        "artifact_role": "primary",
+        "issue_page": 3,
+        "column": 3,
+        "lines": [
+          2167,
+          2177
+        ],
+        "lines_of_claim": [
+          2167,
+          2168,
+          2169,
+          2170,
+          2171,
+          2172,
+          2173,
+          2174,
+          2175,
+          2176,
+          2177
+        ],
+        "interleaved": true
+      },
+      "entities": [
+        {
+          "as_printed": "J. L. WILSON & CO.",
+          "normalized": "J. L. Wilson",
+          "role": "proprietor",
+          "occupations": [
+            "merchant"
+          ]
+        }
+      ],
+      "business": {
+        "name": "J. L. Wilson & Co.",
+        "proprietors": [
+          "J. L. Wilson"
+        ],
+        "trade": "dry goods, groceries, hardware and crockery",
+        "goods": [
+          "dry goods",
+          "groceries",
+          "hardware",
+          "crockery",
+          "cloths",
+          "sattinetts",
+          "circassians",
+          "tickings",
+          "ready made clothing",
+          "tea",
+          "sugar",
+          "spice",
+          "liquors",
+          "looking glasses",
+          "window glass"
+        ],
+        "street": "Dearborn Street",
+        "placement": {
+          "class": "relative",
+          "anchor": "the city boot and shoe store",
+          "offset_text": "u st. next door ‘city boot shoe and",
+          "offset_normalized": "[Dearborn] st. next door [to the] city boot [and] shoe [store]",
+          "street": "Dearborn Street"
+        }
+      },
+      "ad_copy_date": {
+        "verbatim": "ore. Chicago, Sept. tee. 42",
+        "iso": "1834-09-17"
+      },
+      "notes": "A STORE PLACED BY ITS NEIGHBOUR ON A NAMED STREET — 'Dearborn st. next door to the city boot and shoe store' — which is a `relative` placement with a street attached, the strongest kind short of a corner. J. L. Wilson & Co. are on Dearborn Street all month: the woollen-yarn notice of 1834-10-15 page 3 column 2 signs off `Oct. 8. Dearborn st.` and nothing else. WINDOW GLASS IS IN THE STOCK LIST, which is a fabric fact as much as a trade one: somebody in Chicago in the autumn of 1834 was glazing. The stock list is cut down its left edge and the supplies close words rather than adding goods; the boot-and-shoe store next door is not named anywhere in this month's issues and is left as the paper leaves it."
+    },
+    {
+      "id": "c007",
+      "kind": "business",
+      "reading": "transcription_mediated",
+      "quote": "Sheet Irom and Stove§ air\nBaAyVrOg@osT. |e\n[R OV DEARBORN AXP LAK&-arRERts. where the\nsubscriber would respectfully inform | to order,\n} friends and the public in general, that | other wor\n[uncertain: pmmeneed the above business, and that | ?ors to ph]\nep an assortment constantly on hand. | patronage\n3 from the country, thankfully receiy- | —————\nunctually attended to. Re\nJ. K. BOTSFORD. Ou",
+      "normalized": "Tin, Sheet Iron and Stove [MANUFAC]T[ORY.] [CORNE]R OF DEARBORN AND LAKE-STREETS. [The] subscriber would respectfully inform [his] friends and the public in general, that [he has co]mmenced the above business, and that [he will ke]ep an assortment constantly on hand. [Order]s from the country, thankfully receiv[ed and p]unctually attended to. J. K. BOTSFORD.",
+      "locator": {
+        "artifact_role": "primary",
+        "issue_page": 3,
+        "column": 3,
+        "lines": [
+          2238,
+          2247
+        ],
+        "lines_of_claim": [
+          2238,
+          2239,
+          2240,
+          2241,
+          2242,
+          2243,
+          2244,
+          2245,
+          2246,
+          2247
+        ],
+        "interleaved": true
+      },
+      "entities": [
+        {
+          "as_printed": "J. K. BOTSFORD.",
+          "normalized": "J. K. Botsford",
+          "role": "proprietor",
+          "occupations": [
+            "tinsmith",
+            "stove dealer"
+          ]
+        }
+      ],
+      "business": {
+        "name": "J. K. Botsford",
+        "proprietors": [
+          "J. K. Botsford"
+        ],
+        "trade": "tin, sheet iron and stove manufactory",
+        "goods": [
+          "tin ware",
+          "sheet iron work",
+          "stoves"
+        ],
+        "street": "Dearborn Street",
+        "placement": {
+          "class": "corner",
+          "anchor": "Dearborn and Lake streets",
+          "offset_text": "[R OV DEARBORN AXP LAK&-arRERts.",
+          "offset_normalized": "[CORNE]R OF DEARBORN AND LAKE-STREETS.",
+          "street": "Dearborn Street"
+        }
+      },
+      "notes": "A CORNER PLACEMENT, PRINTED IN CAPITALS AS THE HEADING OF THE ADVERTISEMENT — Dearborn and Lake. That is the strongest placement class this corpus has, and it puts a tinsmith's shop at a crossing this reconstruction already stands on the ground. The trade is worth as much as the address: tin, sheet iron and stoves, made and kept in stock, in the same month the town ordered every stove pipe in Chicago to be run through a tin or sheet-iron plate (claim c002 above). One ordinance and one shop, eight pages apart, describing the same object from two ends. The same advertisement runs in 1834-10-01 page 3 column 3 in worse shape (`CORNER OF DEARBOEY AND LANE-STRENTS.`), which is what confirms the street names here; its own dateline of 22 April 1834 survives only in that printing."
+    },
+    {
+      "id": "c008",
+      "kind": "business",
+      "reading": "transcription_mediated",
+      "quote": "[uncertain: ONDE ? RENG, | thea]\neir store in Water-st., wear tho bridge, | of cheaper\nrs for sale a large and general assort- | in this St\nSTOVES, oni\nirniture, Pipe, Tin Ware, Shovels und\nprind stones, potash and sugur Kettles, w:\nvst every descripticn of Hotlone Ware. he\n0, Les. he has cor",
+      "normalized": "[JONES & KING.] [At th]eir store in Water-st., [n]ear the bridge, [offe]rs for sale a large and general assort[ment of] STOVES, [Stove Fu]rniture, Pipe, Tin Ware, Shovels and [Tongs,] grind stones, potash and sugar Kettles, w[ith al]most every description of Hollow Ware.",
+      "locator": {
+        "artifact_role": "primary",
+        "issue_page": 3,
+        "column": 3,
+        "lines": [
+          2217,
+          2224
+        ],
+        "lines_of_claim": [
+          2217,
+          2218,
+          2219,
+          2220,
+          2221,
+          2222,
+          2223,
+          2224
+        ],
+        "interleaved": true
+      },
+      "entities": [],
+      "business": {
+        "name": "Jones & King",
+        "proprietors": [
+          "Jones",
+          "King"
+        ],
+        "trade": "stoves, tin ware and hollow ware",
+        "goods": [
+          "stoves",
+          "stove furniture",
+          "stove pipe",
+          "tin ware",
+          "shovels",
+          "tongs",
+          "grind stones",
+          "potash kettles",
+          "sugar kettles",
+          "hollow ware",
+          "ploughs"
+        ],
+        "street": "Water Street",
+        "placement": {
+          "class": "relative",
+          "anchor": "the bridge",
+          "offset_text": "eir store in Water-st., wear tho bridge,",
+          "offset_normalized": "[At th]eir store in Water-st., [n]ear the bridge",
+          "street": "Water Street"
+        }
+      },
+      "notes": "A SECOND STOVE AND TIN DEALER, AND A PLACEMENT AGAINST THE BRIDGE — 'their store in Water-st., near the bridge.' The bridge is the drawbridge over the river's main stem, which the same month's `For Sale` of a two-storey building calls out directly ('nearly opposite the draw-bri[dge] … situated [o]n South Water-street', 1834-10-01 page 3 column 3), so this is a Water Street frontage close to the crossing. THE PROPRIETOR IS THE PART THIS CLAIM CANNOT CLOSE: the firm's name sits on the line above the quoted range in a block the OCR turned to `[uncertain: ONDE ? RENG,` and it is bracketed as a supply from 1834-10-15 page 3 column 2, where `PLOUGHS, for eale cheap by … JONES & KING` stands two inches away in the same standing set. That is a supply from ANOTHER ISSUE and is the weakest kind this run makes; the business is therefore recorded under the firm name with the reasoning stated here, and a reader who rejects the join still has the store, the street and the bridge."
+    },
+    {
+      "id": "c009",
+      "kind": "price",
+      "reading": "transcription_mediated",
+      "quote": "Bacon! mir inne\nARGE y of Prime cured Bacon, ¢\n» be wold tr 8: ‘cents per lb. at Mr. Ho- Dx\ntore. Sept. 10, 1854. 41 | practice",
+      "normalized": "Bacon! [A l]arge [quantit]y of Prime cured Bacon, [to] be sold [a]t 8 cents per lb. at Mr. Ho[gan's s]tore. Sept. 10, 1834. 41",
+      "locator": {
+        "artifact_role": "primary",
+        "issue_page": 3,
+        "column": 3,
+        "lines": [
+          2162,
+          2165
+        ],
+        "lines_of_claim": [
+          2162,
+          2163,
+          2164,
+          2165
+        ],
+        "interleaved": true
+      },
+      "entities": [
+        {
+          "as_printed": "Mr. Ho",
+          "normalized": "J. S. C. Hogan",
+          "role": "storekeeper named as the place of sale",
+          "occupations": [
+            "storekeeper",
+            "postmaster"
+          ]
+        }
+      ],
+      "ad_copy_date": {
+        "verbatim": "tore. Sept. 10, 1854. 41",
+        "iso": "1834-09-10"
+      },
+      "notes": "A PRICE AND A STORE IN ONE LINE. Prime cured bacon at EIGHT CENTS THE POUND, sold at Mr. Hogan's store — the postmaster's, the same J. S. C. Hogan who signs the letter list this month (1834-10-22, claim c003) and on whose lot a store was auctioned at the end of it (1834-10-29, claim c003). A man who keeps the post office and a store in the same town is not two men, and the corpus does not merge them: the gazetteer keys on the whole name and `identity.json` declares nothing here, so `Hogan` in this claim stands as printed. The possessive is cut at the column edge and `Ho[gan's]` is a supply, weak on its own and supported by the two other Hogan mentions in the same month."
+    },
+    {
+      "id": "c010",
+      "kind": "building",
+      "reading": "transcription_mediated",
+      "quote": "“Wo Rent, ”~*|FEFER:\nTo nev, Messra\n& LARGE and handsome: | and John\nly finished Store of 20 by] Chicay\n. 45 feet, including enuntiny inset\nay room, ‘Also, thres beautiful  g@gyye\n..itable for offices. ‘The above arc situ- |\nthe handsomest part of Chicago, (in| SB QD\ne's Addition” to this town,) and by tar\n| finished rooms in the face. Por terms\no JOHN H. KINZIE,\n1, 1634, by",
+      "normalized": "To Rent. A LARGE and handsome[ly] finished Store of 20 by 45 feet, including counting […] room. Also, three beautiful [rooms su]itable for offices. The above are situ[ated in] the handsomest part of Chicago, (in [Kinzi]e's Addition to this town,) and by far [the best] finished rooms in the [pla]ce. For terms [apply t]o JOHN H. KINZIE.",
+      "locator": {
+        "artifact_role": "primary",
+        "issue_page": 3,
+        "column": 2,
+        "lines": [
+          2109,
+          2120
+        ],
+        "lines_of_claim": [
+          2109,
+          2110,
+          2111,
+          2112,
+          2113,
+          2114,
+          2115,
+          2116,
+          2117,
+          2118,
+          2119,
+          2120
+        ],
+        "interleaved": true
+      },
+      "entities": [
+        {
+          "as_printed": "JOHN H. KINZIE,",
+          "normalized": "John H. Kinzie",
+          "role": "landlord",
+          "occupations": [
+            "merchant",
+            "president of the board of trustees"
+          ]
+        }
+      ],
+      "ad_copy_date": {
+        "verbatim": "1, 1634,",
+        "iso": "1834-10-01"
+      },
+      "notes": "THE FIRST PRINTING OF THE 20-BY-45-FOOT STORE. Dated 1 October, it runs on through 1834-10-15 and 1834-10-22, where the text is cleanest (claim c007 there). This witness is the one that keeps the word 'handsomest' whole where the later one loses it, and it is the reason the phrase is unbracketed in both. `Kinzie's Addition` puts the building on the north bank; nothing in any of the three printings names a street, so the placement stays unmade rather than being inferred from the landlord's other property."
+    },
+    {
+      "id": "c011",
+      "kind": "building",
+      "reading": "transcription_mediated",
+      "quote": ". For Rent, _eaiong\nARGE thi te Store House, 40 “\net atira whirtatucched of 60 |e &\n‘Also, » handsome email Dwelling House\nvorooma, Also, a large and beautifully | |\n1 Store, on South Water-st. by sale by\nJOHN T. TEMPLE. | Sept 1\n1g, Sept. 20, 1834. 43 ‘dust",
+      "normalized": "For Rent. [A l]arge th[ree] st[or]y Store House, 40 [feet by … feet, with a wharf attached,] of 60 [feet]. Also, a handsome small Dwelling House [with fi]ve rooms. Also, a large and beautifully [finished] Store, on South Water-st. JOHN T. TEMPLE. [Chica]go, Sept. 20, 1834. 43",
+      "locator": {
+        "artifact_role": "primary",
+        "issue_page": 3,
+        "column": 2,
+        "lines": [
+          2121,
+          2128
+        ],
+        "lines_of_claim": [
+          2121,
+          2122,
+          2123,
+          2124,
+          2125,
+          2126,
+          2127,
+          2128
+        ],
+        "interleaved": true
+      },
+      "entities": [
+        {
+          "as_printed": "JOHN T. TEMPLE.",
+          "normalized": "John T. Temple",
+          "role": "landlord",
+          "occupations": [
+            "physician"
+          ]
+        }
+      ],
+      "business": {
+        "name": "John T. Temple (buildings to rent)",
+        "proprietors": [
+          "John T. Temple"
+        ],
+        "trade": "store house, dwelling house and store to let",
+        "goods": [],
+        "street": "South Water Street",
+        "placement": {
+          "class": "street_only",
+          "anchor": null,
+          "offset_text": null,
+          "street": "South Water Street"
+        }
+      },
+      "ad_copy_date": {
+        "verbatim": "1g, Sept. 20, 1834. 43",
+        "iso": "1834-09-20"
+      },
+      "notes": "THREE BUILDINGS IN ONE ADVERTISEMENT, ONE OF THEM WITH A HEIGHT AND A WHARF. A THREE-STOREY store house forty feet on one side with a WHARF ATTACHED OF SIXTY FEET; a small dwelling house of FIVE ROOMS; and a large store on SOUTH WATER STREET. A three-storey warehouse is the tallest structure this corpus has yet named in the town, and a sixty-foot wharf in front of it is a river frontage with a length. It belongs to John T. Temple, whose house on Lake Street is the anchor G. Blanshard advertises against in the same month (1834-10-22, claim c004). THIS WITNESS IS THE POOREST OF THREE and is cut down its left edge (`ARGE thi te Store House, 40`); the storeys and the wharf are supplied from the two later printings, which are unambiguous — 1834-10-15 page 3 column 4 reads `ARGE three story Stoyg House, 40 by 27` with `Sicet, with a wharf atta@hed, of 60 fect` under it, and 1834-10-22 page 3 column 4 reads `GE three stury Store House, 49 by` and `et, with a wharf attached, of G8 feet`. THE SECOND DIMENSION IS THE ONE NO WITNESS SETTLES: `40 by 27` in one and `49 by` in the other, so the width stays a gap and the length is recorded as forty feet with the disagreement written down."
+    },
+    {
+      "id": "c012",
+      "kind": "business",
+      "reading": "transcription_mediated",
+      "quote": "ak & Stationary tere.” hee. be.\n\\ATNERSHIP boon outered in: | ture, of ¢\nMetacon hesow Bassi, of Boston, and | ungs, Co\n. Ci, renkdvapr 7, cooage ar roy pre Lary:\nto abalone c a aed) Ae\np. B. Colponiar’s eeien. | Wiad be\ner-stzect, ond intond heoping on ‘at whole\n| wail aasosted stock of — line pons\nDES @ QVAUTENAR ee\nmantis as cao boatoe\nSecon we Sept ee oe —",
+      "normalized": "Book & Stationary [S]tore. [A P]ARTNERSHIP [having] been entered in[to] between [Ja]son Bass[ett], of Boston, and [… ] C[hicago …] to [carry on the business of Books and Stationery … in] P. B. Carpenter's [building, Wat]er-street, and intend keeping on [hand a well] assorted stock of [BOO]KS & [ST]A[TIO]N[E]R[Y …]",
+      "locator": {
+        "artifact_role": "primary",
+        "issue_page": 3,
+        "column": 3,
+        "lines": [
+          2290,
+          2300
+        ],
+        "lines_of_claim": [
+          2290,
+          2291,
+          2292,
+          2293,
+          2294,
+          2295,
+          2296,
+          2297,
+          2298,
+          2299,
+          2300
+        ],
+        "interleaved": true
+      },
+      "entities": [],
+      "business": {
+        "name": "Book & Stationary Store, in P. B. Carpenter's building",
+        "proprietors": [],
+        "trade": "bookseller and stationer",
+        "goods": [
+          "books",
+          "stationery"
+        ],
+        "street": "Water Street",
+        "placement": {
+          "class": "relative",
+          "anchor": "P. B. Carpenter's building",
+          "offset_text": "p. B. Colponiar’s eeien.\ner-stzect, ond intond heoping on",
+          "offset_normalized": "[in] P. B. Carpenter's [building,] [Wat]er-street",
+          "street": "Water Street"
+        }
+      },
+      "notes": "A BOOKSELLER AND STATIONER OPENS IN A NAMED MAN'S BUILDING ON WATER STREET. This is a third kind of placement — not a corner, not a neighbour, but a LANDLORD'S BUILDING, 'P. B. Carpenter's', which for a reconstruction is a frontage that has to be somebody's before it can be this shop's. THE READING IS THE WORST OF THE MONTH and the claim is kept deliberately thin because of it: the partners' names are half destroyed (`hesow Bassi, of Boston` gives a Boston man whose forename may be Jason and whose surname may be Bassett, and the second partner is lost entirely), so NO PERSON IS MINTED from this claim at all. What survives and is worth keeping is the trade, the building and the street. A later pass with the page images should be able to close the names; nothing here guesses them."
+    },
+    {
+      "id": "c013",
+      "kind": "notice",
+      "reading": "transcription_mediated",
+      "quote": "nore, Thomas fZeny, Reason —\nJOHN 8B. C. HOGAN, P. M. Lewes ;\n$< $$$ $$$ $$ $$ ing.",
+      "normalized": "[…] JOHN S. C. HOGAN, P. M.",
+      "locator": {
+        "artifact_role": "primary",
+        "issue_page": 3,
+        "column": 2,
+        "lines": [
+          2019,
+          2021
+        ],
+        "lines_of_claim": [
+          2019,
+          2020,
+          2021
+        ],
+        "interleaved": true
+      },
+      "entities": [],
+      "notes": "THE SAME 1 OCTOBER LETTER LIST, IN ITS FIRST PRINTING — this is its foot, and the head is at the top of the previous column (`in the Post Office at [Chicago]`, page 3 column 1). It is recorded here as a NOTICE and not as persons, because in this issue the segmenter's crop loses the list's left-hand sub-column almost entirely: nearly every row of the A-to-H names survives as two or three letters. The list is extracted at name level from the printing of 1834-10-22 instead, where both sub-columns of the second half read clean (claims c001 and c002 there), and no name is minted twice. What this claim carries is the fact of the insertion and its date, which is what makes three printings of one list countable."
+    }
+  ]
+}

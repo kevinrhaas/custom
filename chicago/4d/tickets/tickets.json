@@ -1,6 +1,6 @@
 {
   "project": "chicago-4d",
-  "generated_ct": "Aug 28, 2026, 12:28 PM",
+  "generated_ct": "Aug 28, 2026, 1:10 PM",
   "tickets": [
     {
       "id": "T-0001",
@@ -4934,7 +4934,7 @@
     {
       "id": "T-0292",
       "title": "Reading the Democrat, October 1834: Vol I Nos 44-48",
-      "state": "open",
+      "state": "claimed",
       "epic": "PAPERS",
       "requested_by": "owner",
       "seen": false,
@@ -4944,7 +4944,7 @@
       "opened": "2026-08-28",
       "closed": null,
       "pr": null,
-      "claimed_by": null,
+      "claimed_by": "run 8/28/2026, 12:41:51 PM CT",
       "blocked_on": null,
       "needs_bake": false,
       "queue_rank": 7
@@ -5200,6 +5200,24 @@
       "blocked_on": null,
       "needs_bake": false,
       "queue_rank": 68
+    },
+    {
+      "id": "T-0308",
+      "title": "The 1 October 1834 letter list's first sub-column, A to H, is cut in all three printings",
+      "state": "open",
+      "epic": "PAPERS",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "S",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-08-28",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "queue_rank": 69
     }
   ]
 }

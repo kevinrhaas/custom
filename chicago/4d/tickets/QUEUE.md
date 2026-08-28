@@ -120,3 +120,4 @@ T-0304 — The gazetteer merges persons by a declared rule and has no equivalent
 T-0305 — Four readings the American contradicts itself on need the page images: the tailor's street, which Water street two forwarding houses stood in, and the corner of Cobb's saddlery
 T-0306 — The American names six Chicago storefronts with usable placements and none of them is standing in the model yet
 T-0307 — The derivation's running maximum costs 42 m of verge where the bank turns a right angle at Wolf Point
+T-0308 — The 1 October 1834 letter list's first sub-column, A to H, is cut in all three printings

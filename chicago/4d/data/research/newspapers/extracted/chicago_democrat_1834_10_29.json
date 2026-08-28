@@ -1,0 +1,619 @@
+{
+  "schema": 1,
+  "issue_id": "chicago_democrat_1834_10_29",
+  "extracted": "2026-08-28",
+  "extracted_by": "hand, T-0292 — the Democrat read, October 1834",
+  "note": "Vol. I No. 48, the last issue of the month. Its page 3 column 2 is an auctioneer's column and it is the most materially useful column in the whole October run: a bake shop on Lake street sold up with its cooking stove and fifteen feet of pipe, and fifty thousand feet of seasoned pine at D. Carver & Co.'s lumber yard itemised by thickness and species — the timber schedule of a frame town, printed. Beside them a store on the north point of J. S. C. Hogan's lot, P. F. W. Peck's spikes and bar iron, H. Pearsons's numbered School Section lots, a deserter from Fort Dearborn, an Indian paid fifty cents for a found deed, and a watchmaker advertising for Indian jewellery makers at the height of the annuity season. The 1 October letter list has stopped running.",
+  "claims": [
+    {
+      "id": "c001",
+      "kind": "building",
+      "reading": "transcription_mediated",
+      "quote": "jake Shop, with all the Baking utensils. . ica:\nupied by Cook and se on Lake street, a\nir the Exchange Coffe House; alsn, a one\nse Wasgon, und harness; 200 bushels oats, Te\ncorn, 40 potatocs; 6 tons good Beye a lot of A of\nverfine flour: a quality of good Wood split| mont He\n» for vee; 20 galls. molasses; one good cook- | October\nwtove with 15 feet pipe, and other sundry | was adoy\niclea not herein mentioned: all will be sold| — Sectic\nthe highest bidder at the above mentioned | Trusters\nie, for cash dows. Wardens\nJ. BATES, Sr. Auc'r. | the 25th\nMhicayo, Oct. 23, 1834. Iw4ti they her",
+      "normalized": "[… a B]ake Shop, with all the Baking utensils, [… occ]upied by Cook and [Hou]se on Lake street, a[bove(?)] the Exchange Coffee House; also, a one [hor]se Wagon, and harness; 200 bushels oats, [40 bushels] corn, 40 [bushels] potatoes; 6 tons good [hay,] a lot of [su]perfine flour; a quantity of good Wood split [fine,] for [us]e; 20 galls. molasses; one good cook[ing] stove with 15 feet [of] pipe, and other sundry [art]icles not herein mentioned: all will be sold [to] the highest bidder at the above mentioned [plac]e, for cash down. J. BATES, Sr. Auc'r. [C]hicago, Oct. 23, 1834. [Iw]4[8]",
+      "locator": {
+        "artifact_role": "primary",
+        "issue_page": 3,
+        "column": 2,
+        "lines": [
+          1864,
+          1876
+        ],
+        "lines_of_claim": [
+          1864,
+          1865,
+          1866,
+          1867,
+          1868,
+          1869,
+          1870,
+          1871,
+          1872,
+          1873,
+          1874,
+          1875,
+          1876
+        ],
+        "interleaved": true
+      },
+      "entities": [
+        {
+          "as_printed": "J. BATES, Sr. Auc'r.",
+          "normalized": "J. Bates, Sr.",
+          "role": "auctioneer",
+          "occupations": [
+            "auctioneer"
+          ]
+        }
+      ],
+      "business": {
+        "name": "Bake shop on Lake street (Cook and House)",
+        "proprietors": [
+          "Cook",
+          "House"
+        ],
+        "trade": "bake shop",
+        "goods": [
+          "baking utensils",
+          "cooking stove",
+          "superfine flour",
+          "molasses"
+        ],
+        "street": "Lake Street",
+        "placement": {
+          "class": "relative",
+          "anchor": "the Exchange Coffee House",
+          "offset_text": "upied by Cook and se on Lake street, a\nir the Exchange Coffe House; alsn, a one",
+          "offset_normalized": "on Lake street, a[…] the Exchange Coffee House",
+          "street": "Lake Street"
+        }
+      },
+      "ad_copy_date": {
+        "verbatim": "Mhicayo, Oct. 23, 1834. Iw4ti",
+        "iso": "1834-10-23"
+      },
+      "notes": "AN AUCTION THAT INVENTORIES A CHICAGO SHOP FROM THE INSIDE. A BAKE SHOP ON LAKE STREET beside the Exchange Coffee House, sold up with everything in it — and the everything is the value here, because it is a documented list of what a small commercial building in 1834 Chicago actually contained: a COOKING STOVE WITH FIFTEEN FEET OF PIPE, split firewood, flour, molasses, oats, corn, potatoes, six tons of hay, a one-horse wagon and its harness. Fifteen feet of pipe from a cooking stove is a building at least a full storey high with its flue run up and out through the roof, which is exactly what the town's fire ordinance of 20 September required (1834-10-08, claim c002) — the ordinance and this inventory describe the same object from two ends, five weeks apart. It is the SECOND business placed on the Exchange Coffee House this month; the other is a store in a two-storey dwelling house nearly opposite it (1834-10-22, claim c010). The word between 'Lake street' and 'the Exchange Coffee House' is cut to a single letter and is NOT supplied: 'above', 'below' and 'near' all fit the space and the difference between them is a block."
+    },
+    {
+      "id": "c002",
+      "kind": "price",
+      "reading": "transcription_mediated",
+      "quote": "(Eimportant Sale. | oceur wi\nILL be sold at public auction at the lnm | they are\n'@ ber yard of D. Carver & Co. on Sator. | summon\n, Bth of Nov. at 10 a’clock, A. M. a lotof | ve fire\nSeasoned Pine Lumber, formed\n50 M. tt: Consisting of inch boards, 1 1-2 | in prome\n2 inch plank, considerable of which is clear | may seer\nT; a sinall lot of inch ash boards, and a «mall | object of\natity of inch cherry, and tome 3 hy 4 sean: | or cithor\ng. The lumber is to be gold to satisfy aco} such dir\ntnerehip busines lately dissolved: And will | they may\nora sn lole ae ueebramodate purchasers ons, fo vsing\ntit of 3 moutiy, on all munounts above 0) by said \\\njars, by giving bond with approved security. | ott goo!\nDAV.D CARVER, Aur.” | listle to\nNet, 29, 1831, —2w 43 | complain",
+      "normalized": "Important Sale. [W]ILL be sold at public auction at the lum[b]er yard of D. Carver & Co. on Satur[day], 8th of Nov. at 10 o'clock, A. M. a lot of Seasoned Pine Lumber, 50 M. f[ee]t: Consisting of inch boards, 1 1-2 [and] 2 inch plank, considerable of which is clear [stuff]; a small lot of inch ash boards, and a small [qu]antity of inch cherry, and some 3 by 4 scant[lin]g. The lumber is to be sold to satisfy a co[part]nership business lately dissolved: And will [be sold in lots to] accommodate purchasers on [a cred]it of 3 months, on all amounts above [10 dol]lars, by giving bond with approved security. DAV[I]D CARVER, Au[c't]r. [O]ct. 29, 1834.—2w 4[8]",
+      "locator": {
+        "artifact_role": "primary",
+        "issue_page": 3,
+        "column": 2,
+        "lines": [
+          1878,
+          1893
+        ],
+        "lines_of_claim": [
+          1878,
+          1879,
+          1880,
+          1881,
+          1882,
+          1883,
+          1884,
+          1885,
+          1886,
+          1887,
+          1888,
+          1889,
+          1890,
+          1891,
+          1892,
+          1893
+        ],
+        "interleaved": true
+      },
+      "entities": [
+        {
+          "as_printed": "DAV.D CARVER, Aur.”",
+          "normalized": "David Carver",
+          "role": "auctioneer and proprietor",
+          "occupations": [
+            "lumber merchant",
+            "auctioneer"
+          ]
+        }
+      ],
+      "business": {
+        "name": "D. Carver & Co.",
+        "proprietors": [
+          "David Carver"
+        ],
+        "trade": "lumber merchant",
+        "goods": [
+          "seasoned pine lumber",
+          "inch boards",
+          "1 1-2 inch plank",
+          "2 inch plank",
+          "inch ash boards",
+          "inch cherry",
+          "3 by 4 scantling"
+        ],
+        "street": null,
+        "placement": {
+          "class": "none",
+          "anchor": null,
+          "offset_text": null,
+          "street": null
+        }
+      },
+      "ad_copy_date": {
+        "verbatim": "Net, 29, 1831, —2w 43 |",
+        "iso": "1834-10-29"
+      },
+      "contradicts": true,
+      "notes": "WHAT CHICAGO BUILT WITH, ITEMISED AND MEASURED. Fifty thousand feet of SEASONED PINE — inch boards, inch-and-a-half and two-inch plank, much of it clear — with a small lot of inch ASH boards, a little inch CHERRY, and 3-BY-4 SCANTLING. That is the timber schedule of a balloon- or braced-frame town written out by the yard that supplied it, a year before the scene date, and it names the four things a reconstruction of an 1835 frame building has to choose between: board thickness, plank thickness, scantling section and species. The sale is forced — a partnership 'lately dissolved', which is ruling 3's veto shape, and it is recorded here as a contradiction against D. Carver & Co. rather than as a flag set by hand. The firm was already chasing its debtors in September (1834-10-15, claim c008) and is still cautioning the public against its own notes a week before this sale, so the yard's own business is failing while its stock is being counted."
+    },
+    {
+      "id": "c003",
+      "kind": "building",
+      "reading": "transcription_mediated",
+      "quote": "Public Auctions, coy sles\nyi. be ‘would | which a\n[uncertain: toe & ? on 30th Oct. | time bei]\nue Se P onx erodit ofone year, | Chief, ar\nvo on Sia the store occupied by | persone\n—aelie MA Sbncy store, on t s ;\nth point of JS. C. Hogan's lot. Together] y..\na its contents ata liberal credit; building | and rig.\nstock can be ¢xathined at any time previous | shall be ¢\nhe sale, {Mat with\n4 Je BALES, Jr. Auetr. | tinet, the\nthicago, Sept. 17,1 824 1 This",
+      "normalized": "Public Auction[s]. [Will be sold …] on 30th Oct. [… ] on a credit of one year, [… ] the store occupied by [… ] [as a f]ancy store, on t[he nor]th point of J. S. C. Hogan's lot. Together [with] its contents at a liberal credit; building [and] stock can be examined at any time previous [to t]he sale. J. BATES, Jr. Auct'r. [C]hicago, Sept. 17, 18[3]4.",
+      "locator": {
+        "artifact_role": "primary",
+        "issue_page": 3,
+        "column": 2,
+        "lines": [
+          1895,
+          1906
+        ],
+        "lines_of_claim": [
+          1895,
+          1896,
+          1897,
+          1898,
+          1899,
+          1900,
+          1901,
+          1902,
+          1903,
+          1904,
+          1905,
+          1906
+        ],
+        "interleaved": true
+      },
+      "entities": [
+        {
+          "as_printed": "3. BALES, Jr. Auetr.",
+          "normalized": "J. Bates, Jr.",
+          "role": "auctioneer",
+          "occupations": [
+            "auctioneer"
+          ]
+        }
+      ],
+      "business": {
+        "name": "Fancy store on J. S. C. Hogan's lot",
+        "proprietors": [],
+        "trade": "fancy store",
+        "goods": [],
+        "street": null,
+        "placement": {
+          "class": "relative",
+          "anchor": "J. S. C. Hogan's lot",
+          "offset_text": "th point of JS. C. Hogan's lot. Together]",
+          "offset_normalized": "on t[he nor]th point of J. S. C. Hogan's lot",
+          "street": null
+        }
+      },
+      "ad_copy_date": {
+        "verbatim": "thicago, Sept. 17,1 824 1",
+        "iso": "1834-09-17"
+      },
+      "notes": "A BUILDING PLACED ON A NAMED MAN'S LOT AND ON A PART OF IT — 'on the north point of J. S. C. Hogan's lot.' That is finer than any street address in the month: not a frontage but a CORNER OF A PARCEL, which means Hogan's lot was big enough for a store to stand on one end of it. Hogan is the postmaster who signs the 1 October letter list (1834-10-22, claim c003) and whose store sells bacon at eight cents (1834-10-08, claim c009), and the same month's `For Sale` of a two-storey building says the Post Office stands on SOUTH WATER STREET nearly opposite the drawbridge (1834-10-01, claim c004) — so the town's post office, a store, and a lot with a fancy store on its north point all belong to one man in one autumn. The building and its stock could be inspected before the sale, which is a building somebody expected buyers to walk into. The trade is a FANCY STORE and the occupant's name is cut away; nothing supplies it."
+    },
+    {
+      "id": "c004",
+      "kind": "event",
+      "reading": "transcription_mediated",
+      "quote": "S20 Rreoarad.\nNOLEN fromthe aubscribor at the town of| —. Pres\nChicago, on the 28thinst. a black Horse,| Attest:\nbends Ligh, 8 years old, with » star in. the | ~7—7—\neal, with two spots om each side ef the\nIwhere he has been borat fur the big hea, | EM\nfeet shod, and a fresh mark on Ue right BR ;\n7h occasioned by rubbing, with a long tail | 7°,\nen taken he had» saddie and bridie on which} 145°)\njtaken with hia. ‘The above reward will | 1899 1!\naid for the horee vt set or S10 for the | Ment BS:\nwe dottvwers 10 ee Clybourn, at Chicago, or] David R.\nhe sabseribor at Funk’s Grove. John Bak\nABSOLOM FUNK. | Johw?P. |\netoher 29, 1834.—43 Mies Mai",
+      "normalized": "$20 R[ew]ard. [S]TOLEN from the subscriber at the town of Chicago, on the 28th inst. a black Horse, [16(?)] hands high, 8 years old, with a star in the [for]e[h]ead, with two spots on each side of the [… ] where he has been [collared(?)] for the b[i]g [team(?)], [all four] feet shod, and a fresh mark on the right [hip(?)] occasioned by rubbing, with a long tail. [Wh]en taken he had a saddle and bridle on which [were] taken with him. The above reward will [be p]aid for the horse [when deliver]ed [t]o [Archibald] Clybourn, at Chicago, or [to t]he subscriber at Funk's Grove. ABSOLOM FUNK. [O]ctober 29, 1834.—4[8]",
+      "locator": {
+        "artifact_role": "primary",
+        "issue_page": 3,
+        "column": 2,
+        "lines": [
+          1908,
+          1922
+        ],
+        "lines_of_claim": [
+          1908,
+          1909,
+          1910,
+          1911,
+          1912,
+          1913,
+          1914,
+          1915,
+          1916,
+          1917,
+          1918,
+          1919,
+          1920,
+          1921,
+          1922
+        ],
+        "interleaved": true
+      },
+      "entities": [
+        {
+          "as_printed": "ABSOLOM FUNK.",
+          "normalized": "Absolom Funk",
+          "role": "owner of the stolen horse"
+        },
+        {
+          "as_printed": "Clybourn",
+          "normalized": "Clybourn",
+          "role": "named as a place of delivery at Chicago"
+        }
+      ],
+      "ad_copy_date": {
+        "verbatim": "etoher 29, 1834.—43",
+        "iso": "1834-10-29"
+      },
+      "notes": "A HORSE STOLEN INSIDE THE TOWN ON A DATED DAY — the 28th of October 1834, advertised the next morning. What makes it worth a card is the pair of addresses at the foot: return the animal to CLYBOURN AT CHICAGO or to the owner at FUNK'S GROVE. Clybourn is a Chicago receiving point for a man who does not live there, which is what an agent looks like before there were agencies, and Funk's Grove is a day's ride south. The town's horses are shod ('all four feet shod') and worked in teams, which is the kind of small fact a street scene is built out of. The forename `Archibald` is bracketed and is NOT evidenced in this advertisement — the paper prints `Clybourn` alone; it is flagged here as the obvious candidate and left unasserted, and the entity below carries the surname only."
+    },
+    {
+      "id": "c005",
+      "kind": "notice",
+      "reading": "transcription_mediated",
+      "quote": "list of lands Lying in the county of Cook. Joon ne\nle State of Winoiy, on which the tazee were | eee\nand unpaid on the first dey of Sep:. 1631, | Watbart\nRoses “ David K.\nWaton, 16) ) NLW.AA9, 46 N. 12 &. 1831 en Cun, } i\nout oF kates, $440, interetia nod cmte a ennun ” Ceores\ndo hereby cestify, the forcgoing to be a eor-} aie? 4p\ntranscript of the list of lands fur Cook coun-} Gerree i\ninois, upon which the taxes were due and] Rey, Mr\naid on the Ist of Sopt. 1834, from the list] Sunuet\nished by the Auditor of public areounts.. | David Gr\nRICH'D. L MAMILTON, || Vich G\nClerk Cow’ tis ete Cook co. We) vei,\nst 23, 1634.—43. | Pats itt",
+      "normalized": "[A l]ist of lands lying in the county of Cook, [in th]e State of Illinois, on which the taxes were [due] and unpaid on the first day of Sept. 1834. […] [Section] 16(?), [Township] 39, 46 N. 12 E. 1834 [… am]ount of taxes, $4 40, interest and costs [… ] I do hereby certify, the foregoing to be a cor[rect] transcript of the list of lands for Cook coun[ty, Ill]inois, upon which the taxes were due and [unp]aid on the 1st of Sept. 1834, from the list [furn]ished by the Auditor of public accounts. RICH['D]. [J]. HAMILTON, Clerk Com[missioners'] [Cour]t[,] Cook co. [Ill.] [Augu]st 23, 1834.—4[8]",
+      "locator": {
+        "artifact_role": "primary",
+        "issue_page": 3,
+        "column": 2,
+        "lines": [
+          1924,
+          1937
+        ],
+        "lines_of_claim": [
+          1924,
+          1925,
+          1926,
+          1927,
+          1928,
+          1929,
+          1930,
+          1931,
+          1932,
+          1933,
+          1934,
+          1935,
+          1936,
+          1937
+        ],
+        "interleaved": true
+      },
+      "entities": [
+        {
+          "as_printed": "RICH'D. L MAMILTON,",
+          "normalized": "Rich'd J. Hamilton",
+          "role": "clerk of the commissioners' court of Cook county",
+          "occupations": [
+            "clerk of the commissioners' court",
+            "commissioner of school lands"
+          ]
+        }
+      ],
+      "notes": "A TAX DELINQUENT LIST, AND THE OFFICE THAT COMPILED IT. The interest for a reconstruction is not the arrears but the MACHINERY: Cook County's clerk certifies a transcript against a list furnished by the state Auditor of Public Accounts, and the paper prints it. The town's own revenue ordinances of the summer had already put an assessor and a collector on the ground (1834-07-02 and 1834-07-30, claims c017 and c002 there), and this is the county tier above them working the same way. Richard J. Hamilton is the same officer who sells School Section lots in the same month (1834-10-01, claim c009) and signs elsewhere as Commissioner of School Lands. THE TABULATED ENTRY IS BARELY LEGIBLE and every figure in it is bracketed or left as a gap; the amount, `$4 40`, is the one number the OCR carries cleanly, and no parcel is resolved to ground from it."
+    },
+    {
+      "id": "c006",
+      "kind": "event",
+      "reading": "transcription_mediated",
+      "quote": "Pocket Book Lert. BM\nOST about three weeks since either in rt Pa\n§ Chicago, or between that place and the} peter Dad\ndence of the tutiseriber, about foar miles Up! Mroderiek\n‘North Branch. a calf shin Fockot Book, | stoves (s¢\ntaining @ nuober ef notes and accounts, &e. | trand Ma\n; perion finding said Pocket Hook and se-| ponte Ch\ning 1 to the walecriber, or leaving it at the! John Fou\neof tho! Deiocrat,”” shall be paid for their! E Mo\nbie. ANSON W. TAYLOR, (| Sis Lyn\nct. 22, 1204.—A7 7",
+      "normalized": "Pocket Book L[os]t. [L]OST about three weeks since either in [the town of] Chicago, or between that place and the [resi]dence of the subscriber, about four miles up [the] North Branch, a calf skin Pocket Book, [con]taining a number of notes and accounts, &c. [Any] person finding said Pocket Book and re[stor]ing it to the subscriber, or leaving it at the [offic]e of the 'Democrat,' shall be paid for their [trou]ble. ANSON W. TAYLOR. [O]ct. 22, 1834.—47",
+      "locator": {
+        "artifact_role": "primary",
+        "issue_page": 3,
+        "column": 2,
+        "lines": [
+          1947,
+          1957
+        ],
+        "lines_of_claim": [
+          1947,
+          1948,
+          1949,
+          1950,
+          1951,
+          1952,
+          1953,
+          1954,
+          1955,
+          1956,
+          1957
+        ],
+        "interleaved": true
+      },
+      "entities": [
+        {
+          "as_printed": "ANSON W. TAYLOR,",
+          "normalized": "Anson W. Taylor",
+          "role": "advertiser"
+        }
+      ],
+      "ad_copy_date": {
+        "verbatim": "ct. 22, 1204.—A7",
+        "iso": "1834-10-22"
+      },
+      "notes": "A HOUSE FOUR MILES UP THE NORTH BRANCH, AND THE DEMOCRAT'S OFFICE AS THE TOWN'S LOST PROPERTY DESK. Two useful things. The settlement pattern: a subscriber lives four miles up the north branch and counts the ride into Chicago as an ordinary errand, so the river above the forks is inhabited and the branch is the road. And the newspaper office functions as a PUBLIC COUNTER — leave it here and you will be paid — which is a use for the building at Clark and South Water that its own for-sale notice does not mention (1834-10-22, claim c005). The advertiser prints as `ANSON W. TAYLOR` here and as `JOHNSON W. TAYLOR` in the previous week's identical notice (1834-10-22 page 3 column 2), so the forename is taken from this cleaner reading and the disagreement is recorded rather than merged."
+    },
+    {
+      "id": "c007",
+      "kind": "event",
+      "reading": "transcription_mediated",
+      "quote": "Pocket Book Found. |\nN Indian found a Potket Book containivy| @ Tt\n- sundey notes endother papers, anda Deel, 2s\now and) Elizabeth his wife, to Jacob Ey\nalot of Military Lanie in Minos The}\ner Cau have the + saying for this ad-| Store Fu\nisement and SY cous pad tae Indian, | Thugs, g\nly at this office. and aline\net. 20, 1834, Eat M",
+      "normalized": "Pocket Book Found. [A]N Indian found a Pocket Book containing [sun]dry notes and other papers, and a Deed, [… Hiram A. Br]own and Elizabeth his wife, to Jacob E[nor,] [for] a lot of Military Lands in Illinois. The [own]er can have the [same by] paying for this ad[vert]isement and 5[0] c[e]n[t]s pa[i]d th[e] Indian. [App]ly at this office. [O]ct. 22, 1834.",
+      "locator": {
+        "artifact_role": "primary",
+        "issue_page": 3,
+        "column": 2,
+        "lines": [
+          1958,
+          1966
+        ],
+        "lines_of_claim": [
+          1958,
+          1959,
+          1960,
+          1961,
+          1962,
+          1963,
+          1964,
+          1965,
+          1966
+        ],
+        "interleaved": true
+      },
+      "entities": [],
+      "ad_copy_date": {
+        "verbatim": "et. 20, 1834.",
+        "iso": "1834-10-22"
+      },
+      "notes": "AN INDIAN IS PAID FIFTY CENTS FOR RETURNING A LOST DEED, AND THE PAPER SAYS SO IN PRINT. This is the only claim in the October run that puts a Native person in the town doing something, and it does it in the flattest commercial terms: he found it, the office paid him, the owner may reimburse. October 1834 is the season of the annuity payment — a debt notice in the same month measures its own deadline as 'as soon as the Indian payment is over' (1834-10-15, claim c008) and the paper is advertising for Indian jewellery manufacturers in this very column (claim c010 below) — so a reconstruction of the town has to carry Native presence as ordinary rather than as an event. The deed's parties are cut and the surnames are bracketed; nothing here is asserted about who they were."
+    },
+    {
+      "id": "c008",
+      "kind": "business",
+      "reading": "transcription_mediated",
+      "quote": "Fashionable Tailoring. Sed\nie qubseriber Lege leave to tolicus it ote T ae\nzens of Chicago and ite vicinity, that! yo has »\ny have commences the Toiloriog business in| be wil} |:\nite various branches, «1 eth of Tree} Ay order\nnt House, Having iad au cayerimental | og and p\nfalse in oe peek sain inhisenite sathe art,\nter themselves to be inferior to none, and it\npe by & strict attention to their business to eae\nrit a share of public patronage. , or\nANDREWS & EELLS,\nChicago, Oct. 22, 1634. BO",
+      "normalized": "Fashionable Tailoring. [Th]e subscriber[s] beg leave to inform [the citi]zens of Chicago and its vicinity, that [the]y have commenced the Tailoring business in [its] various branches, [at the sou(?)]th of Tre[mo]nt House. Having had a[n] experimental [know]ledge in the [best establishments] in the art, [they flat]ter themselves to be inferior to none, and [ho]pe by a strict attention to their business to [me]rit a share of public patronage. ANDREWS & EELLS. Chicago, Oct. 22, 183[4].",
+      "locator": {
+        "artifact_role": "primary",
+        "issue_page": 3,
+        "column": 2,
+        "lines": [
+          1982,
+          1993
+        ],
+        "lines_of_claim": [
+          1982,
+          1983,
+          1984,
+          1985,
+          1986,
+          1987,
+          1988,
+          1989,
+          1990,
+          1991,
+          1992,
+          1993
+        ],
+        "interleaved": true
+      },
+      "entities": [],
+      "business": {
+        "name": "Andrews & Eells",
+        "proprietors": [
+          "Andrews",
+          "Eells"
+        ],
+        "trade": "tailoring",
+        "goods": [],
+        "street": null,
+        "placement": {
+          "class": "relative",
+          "anchor": "the Tremont House",
+          "offset_text": "ite various branches, «1 eth of Tree}\nnt House, Having iad au cayerimental |",
+          "offset_normalized": "[at the sou(?)]th of Tre[mo]nt House",
+          "street": null
+        }
+      },
+      "ad_copy_date": {
+        "verbatim": "Chicago, Oct. 22, 1634. BO",
+        "iso": "1834-10-22"
+      },
+      "notes": "THE SECOND PRINTING OF THE NEW TAILORING FIRM'S NOTICE, AND THE ONE THAT MAKES ITS ADDRESS UNRESOLVABLE. A week earlier the same advertisement reads `go die Hrvth ‘ot Tro-` (1834-10-22, claim c011) and here it reads `«1 eth of Tree nt House` — 'north' in one and 'south' in the other, on a single-word difference that puts the shop on opposite sides of the Tremont House. IT IS LEFT UNRESOLVED IN BOTH, with the bracket standing, because choosing between two equally damaged witnesses to make a placement look better is exactly what this corpus is built to prevent. What is settled: a tailoring firm called ANDREWS & EELLS commenced business in October 1834 and placed itself against the Tremont House, where the board of trustees met to pass both of that month's ordinances."
+    },
+    {
+      "id": "c009",
+      "kind": "business",
+      "reading": "transcription_mediated",
+      "quote": "pices Nailx, English blister and cast Steel,| Sua\nNail Rods and assorted bar Iron, for sale iti:\nP.F. W. PECK.\nSet. 10, 1834. = at his +\n\"OTS and Blocks for sale on the Sehoot |\"? Aug,\nA Section. —Lote 7—5—9—10-—11—-12, and) =\nater Lots fa and ee 83; and Ww\nOchs 92 — Fie bSimed\nSept. 10. H, PEARSONS. ‘Ont, 8",
+      "normalized": "[S]pikes, Nails, English blister and cast Steel, Nail Rods and assorted bar Iron, for sale [by] P. F. W. PECK. S[ep]t. 10, 1834. — [L]OTS and Blocks for sale on the School Section.— Lots 7—[8]—9—10—11—12, and [W]ater Lots 1[5] and [16, all in block] 83; and [blocks 12]2—126—[135—136 and 125]. Sept. 10. H. PEARSONS.",
+      "locator": {
+        "artifact_role": "primary",
+        "issue_page": 3,
+        "column": 2,
+        "lines": [
+          2004,
+          2012
+        ],
+        "lines_of_claim": [
+          2004,
+          2005,
+          2006,
+          2007,
+          2008,
+          2009,
+          2010,
+          2011,
+          2012
+        ],
+        "interleaved": true
+      },
+      "entities": [
+        {
+          "as_printed": "P.F. W. PECK.",
+          "normalized": "P. F. W. Peck",
+          "role": "proprietor",
+          "occupations": [
+            "merchant"
+          ]
+        },
+        {
+          "as_printed": "H, PEARSONS.",
+          "normalized": "H. Pearsons",
+          "role": "vendor of lots",
+          "occupations": [
+            "landholder"
+          ]
+        }
+      ],
+      "business": {
+        "name": "P. F. W. Peck",
+        "proprietors": [
+          "P. F. W. Peck"
+        ],
+        "trade": "merchant, iron and hardware",
+        "goods": [
+          "spikes",
+          "nails",
+          "English blister steel",
+          "cast steel",
+          "nail rods",
+          "assorted bar iron",
+          "flour",
+          "salt",
+          "live geese feathers"
+        ],
+        "street": null,
+        "placement": {
+          "class": "none",
+          "anchor": null,
+          "offset_text": null,
+          "street": null
+        }
+      },
+      "ad_copy_date": {
+        "verbatim": "Set. 10, 1834. = at his +",
+        "iso": "1834-09-10"
+      },
+      "notes": "THE IRONMONGERY OF A FRAME TOWN, LISTED BY A NAMED MERCHANT. Spikes, nails, nail rods, assorted bar iron and English blister and cast steel — the fasteners and the stock a blacksmith works up, sold in Chicago in the autumn of 1834 by P. F. W. Peck. Read beside Hubbard & Co.'s appeal to carpenters, masons and builders (1834-10-15, claim c012) and D. Carver's fifty thousand feet of pine (claim c002 above), the month's advertising describes a complete supply chain for a wooden town: timber, iron, tools and the men to use them. THE SECOND HALF OF THIS QUOTE IS A DIFFERENT ADVERTISEMENT sharing the same lines — H. Pearsons selling numbered lots and blocks on the School Section — and it is kept in the same claim because the locator names lines and these two notices are set solid against each other. Its lot numbers are the most specific plat reference in the month AND THIS WITNESS IS NOT THE ONE THAT CARRIES THEM: here they read `Lote 7—5—9—10-—11—-12`, `ater Lots fa and ee 83` and `Ochs 92 — Fie bSimed`, and the bracketed figures above are supplied from the same standing notice at 1834-10-08 page 3 column 3, which prints `Lote 7—8—9—10—I1—12`, `ots 15 and 16, all in block @3` and `2—126-—135—-136 and 125.` Every supplied digit is bracketed and the block list's tail is left as a gap in both."
+    },
+    {
+      "id": "c010",
+      "kind": "business",
+      "reading": "transcription_mediated",
+      "quote": "AY ANTED imvedeately two or three Indian\n(Y Jewelry Manufacturers, to whom | will\n2 ae good, if mot better wages thar can bv got »\nany place in the Sey, \" Cicag\n|. H, MUL FORD, |\nSot 37, 1684, el TE",
+      "normalized": "[W]ANTED immediately two or three Indian Jewelry Manufacturers, to whom I will [give as] good, if not better wages than can be got [in] any place in the [countr]y. [J]. H. MULFORD. S[ep]t. 17, 1834.",
+      "locator": {
+        "artifact_role": "primary",
+        "issue_page": 3,
+        "column": 2,
+        "lines": [
+          1994,
+          1999
+        ],
+        "lines_of_claim": [
+          1994,
+          1995,
+          1996,
+          1997,
+          1998,
+          1999
+        ],
+        "interleaved": true
+      },
+      "entities": [
+        {
+          "as_printed": "|. H, MUL FORD,",
+          "normalized": "J. H. Mulford",
+          "role": "proprietor",
+          "occupations": [
+            "watchmaker",
+            "silversmith"
+          ]
+        }
+      ],
+      "business": {
+        "name": "J. H. Mulford",
+        "proprietors": [
+          "J. H. Mulford"
+        ],
+        "trade": "watchmaker, silversmith and manufacturer of Indian jewelry",
+        "goods": [
+          "Indian jewelry"
+        ],
+        "street": null,
+        "placement": {
+          "class": "none",
+          "anchor": null,
+          "offset_text": null,
+          "street": null
+        }
+      },
+      "ad_copy_date": {
+        "verbatim": "Sot 37, 1684, el TE",
+        "iso": "1834-09-17"
+      },
+      "notes": "CHICAGO WAS MANUFACTURING INDIAN JEWELLERY, AND COULD NOT GET ENOUGH HANDS TO DO IT. A watchmaker and silversmith advertising for two or three specialist workmen at better wages than anywhere in the country is a trade with real volume behind it, and the volume has an obvious source: the annuity payment that this month's other columns keep measuring time against. Silver ornaments were a staple of the trade goods sold at payment time, so this advertisement is the manufacturing end of the same season. J. H. Mulford is the same man who wanted a journeyman watchmaker three weeks earlier (1834-10-08 page 3 column 3), and the July 1834 run places his store 'one door West of the Printing [office]' (1834-07-09) — which this month's page 1 finally fixes at the corner of Clark and South Water (1834-10-22, claim c005). So the workshop that wanted these men has an address."
+    },
+    {
+      "id": "c011",
+      "kind": "event",
+      "reading": "transcription_mediated",
+      "quote": "$40 Reward. INA\nTOLEN last Saturday night from the stable) 1 ter\nHof the enbseriber living one mile south ~~) 3:\nago. & bright huy Horse, seventeen bar i\nh, Well made, black niait’ant taitboth hes :\nmit bis lows rorollvcted, @ very. noted Be\nrk on his woathvrs oceasione: bythe Fivtola | per ory\nat 10 ineiies down hiv feit shoulder, mriark- | BQ PE\ny iigh carriged, a first rato racker and) nw, 3\niter, Said horse is supposed to have been stoic. ns\na soldier, a deserter from Fort Dearborn. | Bo f\"\n) reward will be paid for the horso and thief, | MD sa!\n$10 reward for the horse.. Tt\nJAMES HERRINGTON, Jn. a,\nDetaber 22, 1434, a",
+      "normalized": "$40 Reward. [S]TOLEN last Saturday night from the stable [of] the subscriber living one mile south [of Chic]ago, a bright bay Horse, seventeen ha[nds hig]h, well made, black mane and tail both hea[vy, wh]it[e] on his [f]o[re]legs [as] recollected, a very noted [ma]rk on his withers occasioned by the Pistol[s] [about] 10 inches down his [le]ft shoulder, mark[edl]y [h]igh carriage[d], a first rate racker and [pa]cer. Said horse is supposed to have been stole[n by] a soldier, a deserter from Fort Dearborn. [$30] reward will be paid for the horse and thief, [and] $10 reward for the horse. JAMES HERRINGTON, JR. [O]ctober 22, 1834.",
+      "locator": {
+        "artifact_role": "primary",
+        "issue_page": 3,
+        "column": 2,
+        "lines": [
+          1967,
+          1981
+        ],
+        "lines_of_claim": [
+          1967,
+          1968,
+          1969,
+          1970,
+          1971,
+          1972,
+          1973,
+          1974,
+          1975,
+          1976,
+          1977,
+          1978,
+          1979,
+          1980,
+          1981
+        ],
+        "interleaved": true
+      },
+      "entities": [
+        {
+          "as_printed": "JAMES HERRINGTON, Jn.",
+          "normalized": "James Herrington, Jr.",
+          "role": "owner of the stolen horse"
+        }
+      ],
+      "ad_copy_date": {
+        "verbatim": "Detaber 22, 1434,",
+        "iso": "1834-10-22"
+      },
+      "notes": "THE CLEANER OF THE TWO PRINTINGS OF THE DESERTER ADVERTISEMENT, and the one that carries the reward figures whole: thirty dollars for the horse AND the thief, ten for the horse alone — so the town valued catching a deserter at twenty dollars. The other printing is at 1834-10-22 page 3 column 2 (claim c012 there) and is what supplies this one's damaged middle. Two facts survive both readings. A STABLE stands one mile south of Chicago, which is a structure outside the plat at a stated distance. And a SOLDIER DESERTED FROM FORT DEARBORN in October 1834 and is publicly assumed to have taken a horse with him — the garrison behaving like a place people leave, in the same season the town is otherwise busy selling lumber and letting stores."
+    }
+  ]
+}

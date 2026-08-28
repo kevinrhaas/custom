@@ -169,6 +169,21 @@ The scene-date Democrat, `extracted/chicago_democrat_1835_07_01.json`, is both t
 fixture (claims c001-c003, T-0257 — Peter Cohen and J. S. C. Hogan on South Water Street,
 and one letter-list name) and the first issue read through (c004-c021, T-0295).
 
+**A LIST THAT RUNS THREE WEEKS IS ONE DOCUMENT, NOT THREE.** The post-office list of letters
+remaining at Chicago on 1 October 1834 was printed in three consecutive issues — 1834-10-08,
+1834-10-15 and 1834-10-22 (T-0292). It is extracted at name level ONCE, from the printing whose
+crops leave the most of it legible, and the other two carry a `notice` claim recording the
+insertion and its date. That is the rule for any standing list: mint the names from the best
+witness, record the reprints as reprints, and never let one person be minted twice because a
+paper ran an advertisement three times.
+
+**AND WHERE A CROP LOSES PART OF A LIST, THE LOSS IS COUNTED.** That same list has four name
+sub-columns and the segmenter cuts the first one — the alphabet from A to about H, roughly 130
+printed rows — down its left edge in ALL THREE printings. 179 of about 320 printed names were
+read; the rest are recorded as absent, with the row count stated, rather than being quietly
+absent. Its beginnings survive at the right edge of one crop and its endings at the left edge of
+the next, so it is joinable by sense but not inside one locator, and T-0308 carries that work.
+
 **It is read from the deposit `primary`, not from the `-2` rebuild `dev` can open**, and
 the reason is the letter list: the primary sets it legibly at name level and the alternate
 does not. So its quotes are verified with

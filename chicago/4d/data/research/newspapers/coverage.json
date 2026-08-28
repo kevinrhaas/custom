@@ -22,6 +22,13 @@
       "to": "1835-08-29",
       "ticket": "T-0261",
       "note": "The Chicago American complete, Vol. I No. 1 to 1835-08-29, thirteen issues, read through. Their transcriptions are the derived ones committed under text/, so every quote is machine-checked on `dev` itself. THE RUN CARRIES NO POST-OFFICE LETTER LIST: swept all thirteen files for every form the Democrat uses — 'list of letters', 'letters remaining', 'remaining in the post office', 'uncalled for', a signature ending 'P. M.' — for exactly one hit, a list of State Bank of Illinois officers reprinted from the Sangamon Journal (1835-06-27). T-0261's letter-list clause is therefore met by demonstrating absence; the American's post-office notices are its hours and rules, signed by the postmaster J. S. C. Hogan, and are extracted as `infrastructure`."
+    },
+    {
+      "publication": "chicago_democrat",
+      "from": "1834-10-01",
+      "to": "1834-10-31",
+      "ticket": "T-0292",
+      "note": "Vol. I Nos. 44-48, 1834-10-01 to 1834-10-29. Five issues, read through. Their transcriptions are deposit-held, so the quotes were machine-checked with `--check --deposit <path>` against a read-only copy of the deposit from `main`; on `dev` their claims are counted unresolved and reported, which is green (T-0275). THE MONTH'S POST-OFFICE LIST IS THE LIST OF LETTERS REMAINING AT CHICAGO ON 1 OCTOBER 1834, and it ran three times — 1834-10-08 page 3 columns 1-2, 1834-10-15 page 3 columns 3-4, and 1834-10-22 page 1 columns 1-2. It is extracted at name level from the 1834-10-22 printing, which is the only one whose crops keep both sub-columns of the second half of the alphabet legible; the other two are recorded as insertions of the same document so that no name is minted twice. The list's FIRST sub-column, running A to about H, is cut down its left edge in every one of the three printings and is a measured gap rather than a silent one: see T-0308."
     }
   ]
 }
