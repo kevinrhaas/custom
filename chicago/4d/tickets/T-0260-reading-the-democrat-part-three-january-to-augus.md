@@ -1,7 +1,7 @@
 ---
 id: T-0260
 title: Reading the Democrat, part three: January to August 1835
-state: open
+state: split
 epic: PAPERS
 requested_by: owner
 seen: false
@@ -9,7 +9,7 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-08-27
-closed: null
+closed: 2026-08-28
 pr: null
 claimed_by: null
 blocked_on: T-0257

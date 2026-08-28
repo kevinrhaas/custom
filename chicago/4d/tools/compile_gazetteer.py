@@ -80,6 +80,7 @@ CORPUS = RESEARCH / "corpus.json"
 EXTRACTED = RESEARCH / "extracted"
 IDENTITY = RESEARCH / "identity.json"
 GAZETTEER = RESEARCH / "gazetteer.json"
+COVERAGE = RESEARCH / "coverage.json"
 
 SCHEMA_VERSION = 1
 SCENE_DATE = date(1835, 7, 1)
@@ -99,23 +100,32 @@ READINGS = ("transcription_mediated", "scan_verified")
 # later pass can count them.
 PLACEMENT_CLASSES = ("corner", "relative", "street_only", "none")
 
-# THE DEPOSIT SPEAKS TWO MARKER DIALECTS, and only one of them was written down.
+# THE DEPOSIT SPEAKS THREE RULED MARKER DIALECTS AND ONE PROSE ONE, and T-0257 could
+# only see two of them.
 #
 # `data/research/newspapers/README.md` says page and column come from
 # `===== ISSUE PAGE n / PDF PAGE m / COLUMN k OF 6 =====` markers "which every issue in
-# both runs carries". Sixty-six of the eighty-six do — the ones the deposit delivered as
-# committed `.txt`. The twenty-three delivered as `.docx` and extracted here by
-# `tools/docx_text.py` carry the SAME facts as two prose headings instead:
+# both runs carries". Sixty-six of the eighty-six carry a ruled marker of some shape —
+# the ones the deposit delivered as committed `.txt`. The twenty-three delivered as
+# `.docx` and extracted here by `tools/docx_text.py` carry the SAME facts as two prose
+# headings instead:
 #
 #     Newspaper Page 1 — Source PDF Page 13
 #     Column 1
 #
-# Found building this file's fixture, 2026-08-28. It matters more than it looks: the
-# twenty-three are exactly the issues readable on `dev`, where the deposit is absent
-# (T-0275), so a resolver that speaks only the first dialect can check a locator on no
-# issue this branch can open. Both are read here and the README is corrected to say so.
+# THE THIRD RULED DIALECT IS THE MAJORITY ONE. Counted across the deposit on 2026-08-28
+# while reading July 1834 (T-0289): 1,176 of the 1,266 ruled column markers name the scan
+# page as `SOURCE PDF PAGE` and only 90 as the bare `PDF PAGE` this pattern was written
+# against; four more say `ORIGINAL PDF PAGE`. EVERY issue of the second half of 1834 is in
+# the majority dialect, so the pattern matched a column marker in none of them.
+#
+# Nothing caught it because the deposit is absent on `dev` (T-0275): `check` skips the
+# page/column assertion outright when it cannot read the text, so a resolver that speaks
+# no dialect and a resolver that speaks all three are indistinguishable on this branch.
+# The word before `PDF PAGE` is optional here, and the self-test carries a case per ruled
+# dialect plus a negative, so the next one cannot be added silently.
 COLUMN_MARKER = re.compile(
-    r"^=====\s*ISSUE PAGE\s+(\d+)\s*/\s*PDF PAGE\s+(\d+)\s*/\s*COLUMN\s+(\d+)\s+OF\s+(\d+)\s*=====\s*$")
+    r"^=====\s*ISSUE PAGE\s+(\d+)\s*/\s*(?:\w+\s+)?PDF PAGE\s+(\d+)\s*/\s*COLUMN\s+(\d+)\s+OF\s+(\d+)\s*=====\s*$")
 PAGE_HEADING = re.compile(r"^\s*Newspaper Page\s+(\d+)\b")
 COLUMN_HEADING = re.compile(r"^\s*Column\s+(\d+)\s*$")
 
@@ -412,11 +422,58 @@ def initials(name):
 
 
 # --------------------------------------------------------------------------
+# coverage: a range someone said they READ, checked against the register
+
+
+def coverage_problems(coverage_doc, corpus_doc, files):
+    """Every issue inside a DECLARED range must have an extraction file.
+
+    A reading pass covers a range of issues, and the failure it is prone to is not a
+    bad claim — the gate above catches those — but a MISSING issue: fourteen of fifteen
+    read, and nothing anywhere says which one was skipped. Counting files does not
+    answer it either, because the count that should have been is exactly the thing in
+    question. So a pass declares its range here when it closes, and the register says
+    what is inside it.
+
+    Declaring is the act that makes the assertion; an undeclared issue is simply not
+    read yet and is not a fault. What is a fault is declaring a range and leaving a
+    hole in it.
+    """
+    problems = []
+    have = {Path(f).stem for f in files}
+    issues = corpus_doc.get("issues", [])
+    for rng in coverage_doc.get("ranges", []):
+        label = "coverage %r" % (rng.get("ticket") or rng.get("note") or "range")
+        pub, first, last = rng.get("publication"), rng.get("from"), rng.get("to")
+        if not (pub and first and last):
+            problems.append("%s: a range needs publication, from and to" % label)
+            continue
+        try:
+            date.fromisoformat(first), date.fromisoformat(last)
+        except ValueError:
+            problems.append("%s: from/to must be ISO dates" % label)
+            continue
+        inside = [i for i in issues
+                  if i.get("publication") == pub and first <= i.get("date", "") <= last]
+        if not inside:
+            problems.append("%s: names no issue in corpus.json — a range covering "
+                            "nothing is a range that was mistyped" % label)
+            continue
+        missing = sorted(i["id"] for i in inside if i["id"] not in have)
+        if missing:
+            problems.append("%s: declared read %s to %s, and %d of its %d issue(s) have "
+                            "no extraction file: %s"
+                            % (label, first, last, len(missing), len(inside),
+                               ", ".join(missing)))
+    return problems
+
+
+# --------------------------------------------------------------------------
 # check
 
 
 def check(extracted=EXTRACTED, gazetteer=GAZETTEER, identity=IDENTITY, corpus=CORPUS,
-          deposit=DEPOSIT, repo=REPO, quiet=False):
+          deposit=DEPOSIT, repo=REPO, coverage=COVERAGE, quiet=False):
     bad = []
     corpus_doc = load_json(corpus)
     issues = issue_index(corpus_doc)
@@ -544,6 +601,9 @@ def check(extracted=EXTRACTED, gazetteer=GAZETTEER, identity=IDENTITY, corpus=CO
             else:
                 checked_quotes += 1
 
+    coverage_doc = load_json(coverage) if Path(coverage).exists() else {"ranges": []}
+    bad.extend(coverage_problems(coverage_doc, corpus_doc, files))
+
     doc, compile_problems = compile_gazetteer(files, identity_doc, corpus_doc, quiet=True)
     bad.extend(compile_problems)
 
@@ -577,6 +637,12 @@ def check(extracted=EXTRACTED, gazetteer=GAZETTEER, identity=IDENTITY, corpus=CO
               % checked_quotes)
         print("  ok    %d person(s), %d business(es), compile deterministic and committed"
               % (len(doc["persons"]), len(doc["businesses"])))
+        covered = sum(1 for i in corpus_doc.get("issues", [])
+                      for r in coverage_doc.get("ranges", [])
+                      if i.get("publication") == r.get("publication")
+                      and r.get("from", "") <= i.get("date", "") <= r.get("to", ""))
+        print("  ok    %d issue(s) inside %d declared coverage range(s), none missing"
+              % (covered, len(coverage_doc.get("ranges", []))))
         if unresolved:
             print("  note  %d claim(s) cite deposit-held text not readable here — it is on "
                   "`main` (T-0275), so their quotes are checked there" % unresolved)
@@ -665,7 +731,8 @@ def self_test():
             doc, _ = compile_gazetteer(sorted(ex.glob("*.json")), ident, corpus_doc)
             gz.write_text(dumps(doc), encoding="utf-8")
             bad = check(extracted=ex, gazetteer=gz, identity=ip, corpus=CORPUS,
-                        deposit=DEPOSIT, repo=REPO, quiet=True)
+                        deposit=DEPOSIT, repo=REPO, coverage=Path(td) / "none.json",
+                        quiet=True)
         if want is None:
             if bad:
                 failures.append("%s: expected a clean run, got %r" % (label, bad))
@@ -729,7 +796,8 @@ def self_test():
                 gz = Path(td) / "gazetteer.json"
                 gz.write_text(dumps(doc), encoding="utf-8")
                 bad = check(extracted=ex, gazetteer=gz, identity=ip, corpus=CORPUS,
-                            deposit=DEPOSIT, repo=REPO, quiet=True)
+                            deposit=DEPOSIT, repo=REPO,
+                            coverage=Path(td) / "none.json", quiet=True)
             if want is None:
                 if bad:
                     failures.append("%s: expected a clean run, got %r" % (label, bad))
@@ -750,6 +818,64 @@ def self_test():
                        lines=[10 ** 7, 10 ** 7], lines_of_claim=[10 ** 7]),
                    "of a", "a line past the end of the transcription")
 
+    # THE COVERAGE RANGE, which is the only assertion here about an issue that is NOT
+    # in the tree. Every other case breaks something present; these break something by
+    # its absence, which is the shape of the fault a reading pass actually has.
+    def run_coverage(ranges, want, label):
+        with tempfile.TemporaryDirectory() as td:
+            ex = Path(td) / "extracted"
+            ex.mkdir()
+            (ex / ("%s.json" % base["issue_id"])).write_text(
+                json.dumps(base, ensure_ascii=False), encoding="utf-8")
+            ip = Path(td) / "identity.json"
+            ip.write_text(json.dumps({"merges": []}), encoding="utf-8")
+            doc, _ = compile_gazetteer(sorted(ex.glob("*.json")), {"merges": []}, corpus_doc)
+            gz = Path(td) / "gazetteer.json"
+            gz.write_text(dumps(doc), encoding="utf-8")
+            cov = Path(td) / "coverage.json"
+            cov.write_text(json.dumps({"schema": 1, "ranges": ranges}), encoding="utf-8")
+            bad = check(extracted=ex, gazetteer=gz, identity=ip, corpus=CORPUS,
+                        deposit=DEPOSIT, repo=REPO, coverage=cov, quiet=True)
+        if want is None:
+            if bad:
+                failures.append("%s: expected a clean run, got %r" % (label, bad))
+        elif not any(want in b for b in bad):
+            failures.append("%s: expected a failure mentioning %r, got %r"
+                            % (label, want, bad))
+
+    issue = issue_index(corpus_doc)[base["issue_id"]]
+    run_coverage([], None, "no declared range at all")
+    run_coverage([{"publication": issue["publication"], "from": issue["date"],
+                   "to": issue["date"], "ticket": "self-test"}],
+                 None, "a range covering exactly the issue that is present")
+    run_coverage([{"publication": issue["publication"], "from": "1835-07-01",
+                   "to": "1835-08-31", "ticket": "self-test"}],
+                 "no extraction file",
+                 "a range with issues in it that were never read")
+    run_coverage([{"publication": issue["publication"], "from": issue["date"],
+                   "ticket": "self-test"}],
+                 "needs publication, from and to", "a range missing its end")
+    run_coverage([{"publication": issue["publication"], "from": "1899-01-01",
+                   "to": "1899-12-31", "ticket": "self-test"}],
+                 "names no issue in corpus.json", "a range that covers nothing")
+    run_coverage([{"publication": issue["publication"], "from": "the summer",
+                   "to": "1835-08-31", "ticket": "self-test"}],
+                 "must be ISO dates", "a range whose dates do not parse")
+
+    # THE RULED MARKER DIALECTS, one case each plus a negative (T-0289). T-0257's pattern
+    # matched only the bare `PDF PAGE` form, which is 90 of the deposit's 1,266 ruled
+    # markers, and nothing on `dev` could see the gap because the deposit is not there to
+    # read. A dialect added without a case here will be caught by this list failing to grow.
+    for dialect in (
+            "===== ISSUE PAGE 3 / PDF PAGE 19 / COLUMN 5 OF 6 =====",
+            "===== ISSUE PAGE 3 / SOURCE PDF PAGE 19 / COLUMN 5 OF 6 =====",
+            "===== ISSUE PAGE 3 / ORIGINAL PDF PAGE 19 / COLUMN 5 OF 6 ====="):
+        m = COLUMN_MARKER.match(dialect)
+        if not m or (int(m.group(1)), int(m.group(3))) != (3, 5):
+            failures.append("the column marker %r does not resolve to page 3 column 5" % dialect)
+    if COLUMN_MARKER.match("===== ISSUE PAGE 3 / COLUMN 5 OF 6 ====="):
+        failures.append("the column marker pattern matched a line with no scan page")
+
     # A hand-edit to the generated file, which is the fault nothing downstream can see.
     with tempfile.TemporaryDirectory() as td:
         ex = Path(td) / "extracted"
@@ -763,12 +889,14 @@ def self_test():
         gz = Path(td) / "gazetteer.json"
         gz.write_text(dumps(doc), encoding="utf-8")
         bad = check(extracted=ex, gazetteer=gz, identity=ip, corpus=CORPUS,
-                    deposit=DEPOSIT, repo=REPO, quiet=True)
+                    deposit=DEPOSIT, repo=REPO, coverage=Path(td) / "none.json",
+                    quiet=True)
         if not any("hand-edited" in b for b in bad):
             failures.append("a hand-edit to gazetteer.json was not caught")
         gz.unlink()
         bad = check(extracted=ex, gazetteer=gz, identity=ip, corpus=CORPUS,
-                    deposit=DEPOSIT, repo=REPO, quiet=True)
+                    deposit=DEPOSIT, repo=REPO, coverage=Path(td) / "none.json",
+                    quiet=True)
         if not any("is missing" in b for b in bad):
             failures.append("a missing gazetteer.json was not caught")
 
@@ -776,7 +904,8 @@ def self_test():
         for f in failures:
             print("FAIL: " + f, file=sys.stderr)
         return 1
-    print("  ok    every gazetteer assertion fires when broken (23 cases)")
+    print("  ok    every gazetteer assertion fires when broken (29 cases), and the\n"
+          "        three ruled marker dialects all resolve")
     return 0
 
 
