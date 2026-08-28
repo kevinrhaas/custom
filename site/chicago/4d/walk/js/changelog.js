@@ -1,5 +1,5 @@
 export const CHANGELOG = [ // newest first
-  { v: 330, title: 'The one 1833 newspaper that would not say which issue it was', kind: 'chore', ts: '2026-08-28T11:46:38.890Z', date: 'Aug 28, 2026, 6:46 AM CT',
+  { v: 331, title: 'The one 1833 newspaper that would not say which issue it was', kind: 'chore', ts: '2026-08-28T11:59:18.117Z', date: 'Aug 28, 2026, 6:59 AM CT',
     items: [
       'Nothing you can see changed today. When the town’s own newspapers were made citable earlier this week, eighty-five of the eighty-six issues named their own date. One did not — and it is a transcription of the very first newspaper ever printed in Chicago.',
       'The file’s name says November 16, 1833. Its own first page says the date at the top of the scanned sheet reads November 19, 1833. The Chicago Democrat published on neither day: its first issue was November 26, and nothing came before it. Two dates on one file, and neither of them ever existed.',
@@ -7,6 +7,15 @@ export const CHANGELOG = [ // newest first
       'Only the person who owns the scans could settle it, so he was asked the one question that would: does the top of that first page read the 19th or the 26th? His answer closes it from a direction nobody had asked about. The earliest issue he has scanned at all is the 26th — so there is no earlier newspaper for this to be a transcription of, and it does belong to the first issue.',
       'Both wrong dates stay on the file, untouched. The method this project transcribes under forbids quietly repairing a date you can see printed; you record that it disagrees and leave it disagreeing. So the November 19 line is still there, still unexplained, and still not evidence that any such newspaper was ever printed. Nobody re-opened the scans to re-read that masthead, and the note attached to the file says so, rather than letting a later reader assume somebody did.',
       'The ruling was written down as a rule in its own right, because it is worth more than the one file it settled: the scans this reconstruction can draw on begin with the Democrat’s first issue, and no argument may reach behind it.',
+    ] },
+  { v: 330, title: 'How many flowers you see, and the ceiling that decides it', kind: 'chore', ts: '2026-08-28T11:05:25.411Z', date: 'Aug 28, 2026, 6:05 AM CT',
+    items: [
+      'Nothing in the town moved today. Open the Evidence panel, go to the list of the liberties this project takes, and there is a new one \u2014 about how many flowers you are actually standing in.',
+      'The small plants are dealt onto a grid: four places to a three-and-a-half-metre square, one plant to a place. That works out at about a third of a plant per square metre, and it was fitted against photographs of real prairie, where it looks right.',
+      'It stops being right wherever a community\u2019s own records ask for more than that. Ten of the eighteen plant layers in this scene do. The dense timber west of town asks for sixty-six flowering plants a square metre and gets a third of one \u2014 half of one per cent of what the research says. The marsh gets 1.6 per cent, the settled blocks 2.9, the two prairies about 85.',
+      'So the thin flower floor under those trees is a limit of the drawing and not a gap in the research. That was worked out yesterday and written down where a reviewer reads it; the new card is the same table where a visitor can find it, with what each layer asks for beside what it draws.',
+      'It also found one more layer than the count knew about. The bushes are dealt on the same grid as the flowers, and the dense timber\u2019s bushes have been over the limit for a fortnight in a place nobody was counting. Nine became ten.',
+      'Nothing was raised to close the gap, because more plants cost drawing time in exactly the two places that already carry the most, and both are over their budget already. What did land is a check that will not let this list change again without the change being written down.',
     ] },
   { v: 329, title: 'The riverside plank walk stops at the docks', kind: 'fix', ts: '2026-08-28T10:18:30.885Z', date: 'Aug 28, 2026, 5:18 AM CT',
     items: [

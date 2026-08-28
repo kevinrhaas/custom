@@ -1,6 +1,6 @@
 {
   "project": "chicago-4d",
-  "generated_ct": "Aug 28, 2026, 6:48 AM",
+  "generated_ct": "Aug 28, 2026, 6:59 AM",
   "tickets": [
     {
       "id": "T-0001",
@@ -4786,6 +4786,24 @@
       "blocked_on": null,
       "needs_bake": false,
       "queue_rank": 61
+    },
+    {
+      "id": "T-0282",
+      "title": "The ceiling declaration cannot see the shrub stratum, and no card a visitor opens carries it",
+      "state": "done",
+      "epic": "META",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "M",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-08-28",
+      "closed": "2026-08-28",
+      "pr": "455",
+      "claimed_by": "run 8/28/2026, 6:02:55 AM CT",
+      "blocked_on": null,
+      "needs_bake": false,
+      "queue_rank": null
     }
   ]
 }

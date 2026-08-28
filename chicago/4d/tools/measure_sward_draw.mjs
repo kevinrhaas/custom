@@ -339,13 +339,23 @@ const clamp = await page.evaluate(() => {
   const lat = a.flora.forbLattice;
   const rows = [];
   for (const z of a.flora.communities()) {
-    for (const [side, asked, share] of [
-      ['dry', z.forbDensity, z.forbShare],
-      ['wet', z.forbDensityWet, z.forbShareWet],
+    // T-0282 — BOTH STRATA, because both are dealt through the same `shareOf`
+    // against the same ceiling. T-0019 declared the forb layers only, and the
+    // gate it built was therefore blind to half of what it was gating:
+    // `z06_dense_forest`'s SHRUB layer sits on this ceiling too and has since
+    // K54 named it, drawing 85.8 % of its own recorded clump density. A
+    // declaration whose whole purpose is that no layer joins the clamp in
+    // silence cannot be silent about a stratum.
+    for (const [stratum, side, asked, share] of [
+      ['forb', 'dry', z.forbDensity, z.forbShare],
+      ['forb', 'wet', z.forbDensityWet, z.forbShareWet],
+      ['shrub', 'dry', z.shrubDensity, z.shrubShare],
+      ['shrub', 'wet', z.shrubDensityWet, z.shrubShareWet],
     ]) {
       if (!(asked > 0)) continue;
       rows.push({
         community: z.id,
+        stratum,
         side,
         asked,
         share,
@@ -448,10 +458,16 @@ for (const m of ab.mixed) {
 /* -------------------------------------------------------------------------- */
 /**
  * `tools/forb_clamp_baseline.json` is the declaration itself: every (community,
- * side) the ceiling binds, with the density its records ask for and the share of
- * that density the lattice can draw. `--gate` fails when the measured set stops
- * matching it — a layer joining the clamp, one leaving it, the ceiling moving,
- * or a record's asked density moving past the tolerance.
+ * stratum, side) the ceiling binds, with the density its records ask for and the
+ * share of that density the lattice can draw. `--gate` fails when the measured
+ * set stops matching it — a layer joining the clamp, one leaving it, the ceiling
+ * moving, or a record's asked density moving past the tolerance.
+ *
+ * T-0282 added the STRATUM to that identity. As T-0019 wrote it the declaration
+ * covered the forb layers alone, so the one thing it existed to prevent — a
+ * layer joining the clamp with nobody saying so — could still happen in the
+ * shrub stratum, which is dealt through the same `shareOf` against the same
+ * ceiling and which had `z06_dense_forest` sitting on it the whole time.
  *
  * A gate on the SET and not on a total, because the fault this closes is silence
  * rather than size: the four-to-six drift of K55 and T-0034's two prairies both
@@ -461,14 +477,18 @@ const CLAMP_BASELINE = path.join(HERE, 'forb_clamp_baseline.json');
 const REL_TOL = 0.005;         // half a per cent, on the asked density
 const base = JSON.parse(fs.readFileSync(CLAMP_BASELINE, 'utf8'));
 const near = (a, b) => Math.abs(a - b) <= REL_TOL * Math.max(Math.abs(b), 1e-9);
-const key = (r) => `${r.community}.${r.side}`;
+/** T-0282 — the identity of a declared layer is (community, stratum, side).
+ *  A declaration written before the shrub stratum joined carries no `stratum`,
+ *  and it meant `forb`: reading it that way migrates the file on the next
+ *  `--declare` instead of failing every line of it at once. */
+const key = (r) => `${r.community}.${r.stratum ?? 'forb'}.${r.side}`;
 const clampProblems = [];
 if (!near(clamp.lattice.ceilingPerM2, base.ceilingPerM2)) {
   clampProblems.push(`the forb lattice's ceiling is ${clamp.lattice.ceilingPerM2.toFixed(4)} `
     + `plants/m2, declared ${base.ceilingPerM2.toFixed(4)} — every shortfall below is `
     + `measured against it, so re-declare them together`);
 }
-const declared = new Map(base.clamped.map((d) => [`${d.community}.${d.side}`, d]));
+const declared = new Map(base.clamped.map((d) => [key(d), d]));
 const measuredClamped = clamp.rows.filter((r) => r.clamped);
 for (const r of measuredClamped) {
   const d = declared.get(key(r));
@@ -482,8 +502,8 @@ for (const r of measuredClamped) {
   }
 }
 for (const d of base.clamped) {
-  if (!measuredClamped.some((r) => key(r) === `${d.community}.${d.side}`)) {
-    clampProblems.push(`${d.community}.${d.side} is declared clamped and no longer is — `
+  if (!measuredClamped.some((r) => key(r) === key(d))) {
+    clampProblems.push(`${key(d)} is declared clamped and no longer is — `
       + `withdraw its line rather than leaving a debt on record that is paid`);
   }
 }
@@ -495,14 +515,15 @@ console.log(`\nT-0019/K58 — THE FORB LATTICE'S CEILING. One plant per slot, a 
   + `'draws' is the share of its OWN recorded density a layer can put on the ground.`);
 for (const r of clamp.rows.slice().sort((x, y) => y.asked - x.asked)) {
   const frac = r.offered / r.asked;
-  console.log(`  ${r.community.padEnd(22)} ${r.side.padEnd(3)} `
+  console.log(`  ${r.community.padEnd(22)} ${r.stratum.padEnd(5)} ${r.side.padEnd(3)} `
     + `asks ${r.asked.toFixed(3).padStart(8)} /m2  offered `
     + `${r.offered.toFixed(3).padStart(6)}  share ${r.share.toFixed(3)}  `
     + `draws ${`${(frac * 100).toFixed(1)}%`.padStart(6)}`
     + `${r.clamped ? `  CLAMPED — short ${(r.asked - r.offered).toFixed(3)} /m2` : ''}`);
 }
-console.log(`  ${measuredClamped.length} of ${clamp.rows.length} populated forb layer(s) sit on `
-  + `the ceiling; ${base.clamped.length} declared in tools/forb_clamp_baseline.json`);
+console.log(`  ${measuredClamped.length} of ${clamp.rows.length} populated (community, stratum, `
+  + `side) layer(s) sit on the ceiling; ${base.clamped.length} declared in `
+  + `tools/forb_clamp_baseline.json`);
 for (const m of clampProblems) console.log(`  - ${m}`);
 if (wantDeclare) {
   const doc = {
@@ -517,6 +538,7 @@ if (wantDeclare) {
       .slice().sort((x, y) => y.asked - x.asked)
       .map((r) => ({
         community: r.community,
+        stratum: r.stratum,
         side: r.side,
         askedPerM2: r.asked,
         offeredPerM2: r.offered,
@@ -524,7 +546,9 @@ if (wantDeclare) {
       })),
     fits: clamp.rows.filter((r) => !r.clamped)
       .slice().sort((x, y) => y.asked - x.asked)
-      .map((r) => ({ community: r.community, side: r.side, askedPerM2: r.asked })),
+      .map((r) => ({
+        community: r.community, stratum: r.stratum, side: r.side, askedPerM2: r.asked,
+      })),
   };
   fs.writeFileSync(CLAMP_BASELINE, `${JSON.stringify(doc, null, 2)}\n`);
   console.log(`  wrote ${path.relative(process.cwd(), CLAMP_BASELINE)} — `
@@ -679,7 +703,7 @@ if (wantGate) {
   // T-0019. The second assertion, and it is on the DECLARATION rather than on
   // the clamp: a layer is allowed to sit on the lattice ceiling, and it is not
   // allowed to do so without its shortfall written down.
-  console.log(`GATE: ${clampProblems.length ? 'FAIL' : 'PASS'} — the forb lattice's clamped `
+  console.log(`GATE: ${clampProblems.length ? 'FAIL' : 'PASS'} — the sward lattice's clamped `
     + `layers match their declaration in tools/forb_clamp_baseline.json `
     + `(${measuredClamped.length} clamped, ${clampProblems.length} problem(s))`);
 }
