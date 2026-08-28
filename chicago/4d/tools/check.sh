@@ -500,7 +500,14 @@ step "…and its own assertions still fire when broken" \
 # one. It found H2 unbuildable over the top third of its authored eave band, D6 over
 # the bottom of its own, a rounding step that put a pitch outside the band it was drawn
 # from, and W2 fatal to the generator on the day it is first dealt (T-0142).
-step "every family the block schedule may deal builds at every size its band allows" \
+# T-0172 took the sweep off the block generator alone and onto all FOUR anonymous
+# parcels — west, South Division infill and the inferred households deal the same
+# families through the same archetypes and had never been asked. None of them refuses a
+# deal; every one of them authors form values as per-family CONSTANTS whose note cites
+# the family band, and 31 of those constants sit outside the band they cite. The gate is
+# therefore a RATCHET from here: a refusal never passes, and an off-band claim passes
+# only while tools/family_deal_baseline.json names it with the reason it stands.
+step "every family every parcel may deal builds, and every band claim is named" \
   python3 tools/measure_family_deal.py --gate
 
 # AGENTS.md puts one constraint above the work — the final removal of the Potawatomi

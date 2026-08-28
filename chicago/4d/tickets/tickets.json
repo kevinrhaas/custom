@@ -1,6 +1,6 @@
 {
   "project": "chicago-4d",
-  "generated_ct": "Aug 28, 2026, 3:31 AM",
+  "generated_ct": "Aug 28, 2026, 3:36 AM",
   "tickets": [
     {
       "id": "T-0001",
@@ -3025,7 +3025,7 @@
     {
       "id": "T-0172",
       "title": "The other three anonymous parcels still deal a retyped roof pitch, and none of them bounds an eave band by what the archetype can carry",
-      "state": "open",
+      "state": "claimed",
       "epic": "META",
       "requested_by": "loop",
       "seen": false,
@@ -3035,7 +3035,7 @@
       "opened": "2026-08-24",
       "closed": null,
       "pr": null,
-      "claimed_by": null,
+      "claimed_by": "run 8/28/2026, 3:36:01 AM CT",
       "blocked_on": null,
       "needs_bake": false,
       "queue_rank": 4
@@ -4605,6 +4605,60 @@
       "blocked_on": null,
       "needs_bake": false,
       "queue_rank": 59
+    },
+    {
+      "id": "T-0272",
+      "title": "The West Division parcel's form values come from the archetype and cite the family band: 8 families, 11 claims outside it",
+      "state": "open",
+      "epic": "META",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "M",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-08-28",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": true,
+      "queue_rank": 60
+    },
+    {
+      "id": "T-0273",
+      "title": "The South Division infill parcel's form values come from the archetype and cite the family band: 9 families, 10 claims outside it",
+      "state": "open",
+      "epic": "META",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "M",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-08-28",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": true,
+      "queue_rank": 61
+    },
+    {
+      "id": "T-0274",
+      "title": "The inferred-household parcel's form values come from the archetype and cite the family band: 8 families, 10 claims outside it",
+      "state": "open",
+      "epic": "META",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "M",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-08-28",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": true,
+      "queue_rank": 62
     }
   ]
 }

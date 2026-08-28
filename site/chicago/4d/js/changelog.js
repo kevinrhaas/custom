@@ -1,4 +1,13 @@
 export const CHANGELOG = [ // newest first
+  { v: 323, title: 'Three more town-building programs are asked what they would build', kind: 'chore', ts: '2026-08-28T08:36:45.819Z', date: 'Aug 28, 2026, 3:36 AM CT',
+    items: [
+      'Nothing you can see changed today. This project has a check that deals four hundred imaginary buildings of every type through the program that places them, and asks the model-builder to build each one \u2014 the point being to find the card that kills a run before the town is ever dealt it. It had only ever been pointed at one of the four programs that place anonymous buildings. It is pointed at all four now.',
+      'The good news is the dull one. None of the four is holding a card it cannot play: twelve thousand imaginary buildings, every size every type is allowed to be, and every one of them builds.',
+      'What the other three are doing is quieter. Each hands a building its wall height and its roof pitch from a fixed number per type \u2014 one wall for every shop, one pitch for every shed \u2014 and then attaches a note saying the value came from that type\u2019s published range. Thirty-one of those numbers are outside the range their own note cites. The building is not wrong; it is wrong about where its shape came from, which in this project is the worse of the two.',
+      'Two of the thirty-one have never appeared on a standing building, because the recipes have not dealt those types yet. A medium boarding house on the west side would be given both a wall and a roof pitch outside the range, and a boarding house in the household programme a wall a metre short \u2014 and nothing anywhere said so, because no such building stands to say it on.',
+      'All thirty-one are now written down with the line of code behind each one and the reason it still stands, and the check refuses to let that list grow: a new one, or a building the model-builder cannot build, fails the build from here.',
+      'Repairing them moves real roofs and walls, so it is filed as three separate jobs, one per program, each with the rebuild it needs. This run took the reading; it did not quietly redefine what a good one looks like.',
+    ] },
   { v: 322, title: 'The store on Randolph steps out to the street', kind: 'fix', ts: '2026-08-28T08:30:38.617Z', date: 'Aug 28, 2026, 3:30 AM CT',
     items: [
       'Walk east along Randolph Street from the courthouse square. The store opposite it now meets the street, three metres ahead of the two houses beside it, instead of sitting back in line with them the way a house does.',

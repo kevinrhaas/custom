@@ -111,3 +111,6 @@ T-0265 — The sward census fails its own gate at a phone: z10_settled_town owes
 T-0266 — On a phone from across the river the stockade's picket rhythm falls under the pixel grid and beats
 T-0267 — The fort's wall brick is a third brick, 0.47/0.26/0.20 against the sheet's 0.45/0.23/0.17
 T-0268 — A building held under the standing constraint says so nowhere a visitor can see
+T-0272 — The West Division parcel's form values come from the archetype and cite the family band: 8 families, 11 claims outside it
+T-0273 — The South Division infill parcel's form values come from the archetype and cite the family band: 9 families, 10 claims outside it
+T-0274 — The inferred-household parcel's form values come from the archetype and cite the family band: 8 families, 10 claims outside it
