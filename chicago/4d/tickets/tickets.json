@@ -1,6 +1,6 @@
 {
   "project": "chicago-4d",
-  "generated_ct": "Aug 28, 2026, 4:49 AM",
+  "generated_ct": "Aug 28, 2026, 4:57 AM",
   "tickets": [
     {
       "id": "T-0001",
@@ -3817,7 +3817,7 @@
     {
       "id": "T-0225",
       "title": "The sward's drawn reach is measured off plants at two per cent coverage",
-      "state": "open",
+      "state": "claimed",
       "epic": "META",
       "requested_by": "loop",
       "seen": false,
@@ -3827,7 +3827,7 @@
       "opened": "2026-08-27",
       "closed": null,
       "pr": null,
-      "claimed_by": null,
+      "claimed_by": "run 8/28/2026, 4:18:27 AM CT",
       "blocked_on": null,
       "needs_bake": false,
       "queue_rank": 5
@@ -4713,6 +4713,24 @@
       "blocked_on": "Does the top of the first supplied 1833 scan page read NOV. 19 or NOV. 26? The scans are yours; the answer decides whether the deposit holds an issue this project does not know about, or the transcription misread its own masthead.",
       "needs_bake": false,
       "queue_rank": null
+    },
+    {
+      "id": "T-0277",
+      "title": "The mid and forb rings' outer edges are re-priced for a density handover, now the reach statistic is honest",
+      "state": "open",
+      "epic": "FLORA",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "M",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-08-28",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "queue_rank": 61
     }
   ]
 }

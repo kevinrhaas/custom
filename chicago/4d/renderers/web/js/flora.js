@@ -165,6 +165,22 @@ const TUNE = {
    *
    * So the outer edges keep their ramp, and what T-0187 fixes is the ramp's
    * WIDTH: it must not begin inside the verge. See `LOW` and `MID`.
+   *
+   * T-0225 — THE HALF OF THAT ARGUMENT THAT WAS THE INSTRUMENT'S, and it is
+   * repaired now rather than restated. Every figure above was read at
+   * `fadeAt > 0.02`, which the 4x4 screen door renders as nothing at all for
+   * two instance phases in three, so the reach a coverage ramp "reports" was
+   * very nearly the radius the placer stopped at: measured with
+   * `tools/measure_sward_reach.mjs`, the placed boundary and the 2 % reading
+   * are 0.54 m apart at `full` and 0.56 m at `light`. The gate now reads the
+   * boundary at 1/16 — the screen door's own quantum, below which "drawn" is a
+   * property of the dither phase and not of the coverage — and carries the
+   * `band x 1/16` that costs, so a density handover is no longer compared
+   * against a statistic only a coverage ramp can produce.
+   *
+   * What that does NOT do is settle whether these edges should be spread. The
+   * bar is off the scale now; the measurement of what a spread costs was taken
+   * against the old statistic and has to be retaken. T-0277 is that work.
    */
   near: { radius: 7.6, cell: 0.74, perCell: 4, tuftsPerM2: 7.30, band: 2.2,
     spreadOuter: true },

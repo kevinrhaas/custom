@@ -1,5 +1,70 @@
 # STATUS
 
+## Shipped 2026-08-28 — T-0225: the sward's drawn reach is read at a coverage the screen door can hold
+
+**The defect.** `tools/smoke_renderer.mjs` part 7 reports the sward's outer boundary by binning the
+view into 16 bearings and taking, in each, "the furthest plant in this bearing that is actually
+DRAWN". Drawn was `flora.fadeAt(...) > 0.02`. `fadeAt` is COVERAGE since T-0035 — the alpha the
+fragment program resolves through an ordered 4x4 Bayer matrix — so the reading called a plant drawn
+at two per cent of a screen door that has sixteen levels in it.
+
+**What two per cent actually renders as.** `chiBayer4` returns `(v + 0.5)/16` over `v = 0..15` and
+`vChiDither` slides that whole set of sixteen thresholds by a per-instance phase, so the pixels
+surviving in a 4x4 tile number `floor(16F)` or `ceil(16F)` and nothing between. Below `F = 1/16`
+that is 0 or 1, and **which of the two is decided by the instance's dither phase — a number no
+reader this side of the GPU has.** At `F = 0.02` one phase in three keeps a single pixel of the
+tile and the other two keep nothing at all. The boundary the gate reported was therefore very
+nearly the radius at which the placer stopped placing, which the lattice inset already guarantees.
+
+**Measured, with the new `tools/measure_sward_reach.mjs`** — the same station the gate finds, the
+same 16 bins, a sweep of thresholds. The gap between the PLACED boundary and the 2 % reading is
+**0.54 m at `full` (27.35 → 26.81 m mean) and 0.56 m at `light` (12.52 → 11.96 m)**. That is the
+size of the thing the statistic was measuring.
+
+**The threshold, and why it is not a taste.** `1/16` is the smallest value at which "drawn" stops
+being a property of the instance's dither phase and becomes a property of its coverage: at or above
+it every instance keeps at least one pixel in every 4x4 tile it covers, whatever phase it drew. It
+is the screen door's own quantum.
+
+**The bars are re-derived, not slackened.** They are stated against the PLACED boundary (`nominal`
+± the slot's own `fringe`) while the statistic now reads the DRAWN one. The ramp is linear
+(`flora.fadeOf`: `clamp01((outer - d) / band)`), so a slot reaches coverage `F` at `outer - F ×
+band` and the two boundaries differ by exactly `band × seen` — 0.44 m on the desktop's 7.0 m ramp,
+0.10 m on the phone's 1.6 m one. That term is a property of the statistic, so it belongs in the
+bar; leaving it out would fail a sward for being read more honestly. Nothing else about the bars
+moved.
+
+**What each viewport lands at, and both readings are printed by the check itself** (T-0187's `show`
+flag exists for this):
+
+| viewport | tune | nominal ± fringe | reach at 6.25 % | at the old 2 % | bars (min / mean) |
+|---|---|---|---|---|---|
+| desktop 1280×800 | `full` | 26.40 ± 3.00 m | 25.00–28.00, mean **26.61** | 25.00–28.41, mean 26.81 | 21.76 / 24.46 |
+| mobile 390×780 | `light` | 12.40 ± 1.60 m | 10.32–13.22, mean **11.96** | 10.32–13.22, mean 11.96 | 9.50 / 11.50 |
+
+Both viewports clear both bars — the phone by 0.82 m on the minimum and 0.46 m on the mean, the
+desktop by 3.24 m and 2.15 m. **No finding about the sward falls out of this**; had one, it would
+have been its own ticket rather than a wider bar. On the phone the two readings are identical to
+the centimetre, which is what a 1.6 m ramp and a 6.8 cm shell between the thresholds predicts.
+
+**What it unblocks, and that is why an invisible run was taken.** T-0187 priced spreading the mid
+and forb rings' OUTER edges by density — the repair T-0093 made at the near/mid boundary and T-0086
+at the far band's — and took a different route because the boundary check preferred the dither: a
+spread took the mean drawn reach to 9.64 m at `light` against a bar of 11.60 m with 0.29 m unspent.
+Every figure in that argument was read at 0.02. The bar is off the scale now; whether a spread can
+actually clear it is unknown and unmeasured, and **T-0277** is that work. The stale half of the
+`TUNE` comment in `flora.js` says so rather than continuing to assert a price taken with a broken
+instrument.
+
+**Verification.** `tools/check.sh` green. `SMOKE_VIEWPORT=mobile SMOKE_STAGE=7` green on both
+boundary checks, on one inherited red (`every tree drawn stands at its own station`, 0 of 0
+vertices across 0 merged meshes — T-0243, standing on `dev` since 2026-08-28T00:55 by
+`tools/dev-smoke-state.mjs`). Desktop part 7 was **not** taken to completion: it overran the
+ten-minute foreground ceiling on a runner at load 3.6 of 4 CPU, and `dev-smoke-state` records no
+desktop part-7 pass on this runner on any tree. The desktop figures above are from
+`measure_sward_reach.mjs` at the gate's own station with the gate's own arithmetic, which is what
+the tool was written for.
+
 ## Shipped 2026-08-28 — T-0024: the face rule ranks dwellings, and the store steps onto the street line
 
 **The question, and it has been open since 2026-08-15.** The face rule orders the DWELLINGS a

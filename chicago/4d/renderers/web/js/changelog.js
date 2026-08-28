@@ -1,4 +1,12 @@
 export const CHANGELOG = [ // newest first
+  { v: 327, title: 'The check on how far the grass reaches was reading invisible plants', kind: 'chore', ts: '2026-08-28T09:57:50.231Z', date: 'Aug 28, 2026, 4:57 AM CT',
+    items: [
+      'Nothing you can see changed today. The grass and flowers around you are drawn out to a set distance and then stop, and a check measures where they stop by looking in sixteen directions and asking how far the furthest plant you can actually see stands in each. It was asking the wrong question.',
+      'Plants at the very edge are drawn faintly, and a screen can only do faint in one way here: it throws away some of the plant\u2019s pixels in a fixed sixteen-square pattern. So there are sixteen steps between invisible and solid, and nothing in between them. The check counted a plant as visible at a faintness two thirds of which render as no pixels whatever. It was measuring where the plants were PUT, not where they can be SEEN \u2014 the two turn out to be about half a metre apart.',
+      'It now reads the edge at the faintest step the screen can actually hold, and prints both the old number and the new one every time it runs, so the size of the correction is on the record instead of in an argument.',
+      'The bar it holds the grass to moved with it, by exactly the width the new reading costs and not a centimetre more. The grass clears it on a phone and on a desktop, so nothing about the sward itself was found wanting.',
+      'This matters for something you would see. A better way of drawing that far edge \u2014 whole plants thinning out, instead of a dusting of dots \u2014 was measured a week ago and turned down, because this check said it made the grass too short. The measurement was taken with the broken ruler. It is worth taking again.',
+    ] },
   { v: 326, title: 'The town\u2019s own newspapers become something this project can cite', kind: 'chore', ts: '2026-08-28T09:34:58.008Z', date: 'Aug 28, 2026, 4:34 AM CT',
     items: [
       'Nothing you can see changed today, and this is the largest body of new evidence the reconstruction has ever been handed. Eighty-six issues of the two newspapers printed in Chicago while it was being built \u2014 the Chicago Democrat from its first issue in November 1833 through August 1835, and the Chicago American from June to August 1835 \u2014 have been transcribed from the page scans and sat in the project unusable, because nothing could point at a passage in them.',
