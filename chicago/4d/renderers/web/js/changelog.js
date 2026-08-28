@@ -1,4 +1,13 @@
 export const CHANGELOG = [ // newest first
+  { v: 333, title: 'What the newspapers say gets a shape, and a rule against tidying', kind: 'chore', ts: '2026-08-28T12:13:41.405Z', date: 'Aug 28, 2026, 7:13 AM CT',
+    items: [
+      'Nothing you can see changed today. Yesterday the town\u2019s own newspapers became something this project can point at \u2014 eighty-six issues, every page and column addressable. Today they get somewhere for what is read out of them to go.',
+      'A reading is now a claim, and a claim carries three things or it cannot be made: the paper\u2019s words exactly as the transcriber left them, the reader\u2019s tidied version beside them, and the page, column and line numbers it came from. The tidied version never replaces the quote.',
+      'That last rule is enforced rather than requested. The check goes back to the transcription, rebuilds the quote out of the lines the claim names, and refuses it if a single character differs. A quietly smoothed quote is invisible to everything else here.',
+      'The claims compile into a directory of the people and businesses the papers name \u2014 what they sold, and where they said they stood. The directory is generated, so a hand-edit to it fails the build as well. Names never merge by accident: two Cohens with different initials stay two people, and any merge has to be written down and say why.',
+      'One issue is worked through as the example: the Democrat printed on the first of July 1835, the day this reconstruction stands in. Peter Cohen and J. S. C. Hogan advertising on South Water Street, and one name off the post office\u2019s letter list.',
+      'Where the column edge cut the words away, the gap is recorded as a gap. The phrase \u201Ca few doors below\u201D is not in that issue, so it is not written down as though it were.',
+    ] },
   { v: 332, title: 'The one 1833 newspaper that would not say which issue it was', kind: 'chore', ts: '2026-08-28T12:07:13.408Z', date: 'Aug 28, 2026, 7:07 AM CT',
     items: [
       'Nothing you can see changed today. When the town’s own newspapers were made citable earlier this week, eighty-five of the eighty-six issues named their own date. One did not — and it is a transcription of the very first newspaper ever printed in Chicago.',

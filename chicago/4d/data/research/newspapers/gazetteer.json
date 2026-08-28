@@ -1,0 +1,152 @@
+{
+  "schema": 1,
+  "generated_by": "tools/compile_gazetteer.py --build",
+  "scene_date": "1835-07-01",
+  "compiled_from": [
+    {
+      "file": "chicago/4d/data/research/newspapers/extracted/chicago_democrat_1835_07_01.json",
+      "sha256": "6200cbfa1c6c37f6146da30f1b9a0a55c29eb7d8c372aec7765491aa4c714162"
+    }
+  ],
+  "counts": {
+    "claims": 3,
+    "persons": 3,
+    "businesses": 2
+  },
+  "persons": [
+    {
+      "id": "person_j_s_c_hogan",
+      "name": "J. S. C. Hogan",
+      "variants": [
+        {
+          "as_printed": "J. S. C. HOGA",
+          "claim": "chicago_democrat_1835_07_01#c002"
+        }
+      ],
+      "mentions": [
+        "chicago_democrat_1835_07_01#c002"
+      ],
+      "first_seen": "1835-07-01",
+      "last_seen": "1835-07-01",
+      "letter_list_only": false,
+      "occupations": [
+        "merchant"
+      ],
+      "associated_places": [
+        "South Water Street"
+      ]
+    },
+    {
+      "id": "person_peter_cohen",
+      "name": "Peter Cohen",
+      "variants": [
+        {
+          "as_printed": "PETER COHEN",
+          "claim": "chicago_democrat_1835_07_01#c001"
+        }
+      ],
+      "mentions": [
+        "chicago_democrat_1835_07_01#c001"
+      ],
+      "first_seen": "1835-07-01",
+      "last_seen": "1835-07-01",
+      "letter_list_only": false,
+      "occupations": [
+        "merchant"
+      ],
+      "associated_places": [
+        "South Water Street"
+      ]
+    },
+    {
+      "id": "person_work_james_houston",
+      "name": "Work, James Houston",
+      "variants": [
+        {
+          "as_printed": "ork, James Houston",
+          "claim": "chicago_democrat_1835_07_01#c003"
+        }
+      ],
+      "mentions": [
+        "chicago_democrat_1835_07_01#c003"
+      ],
+      "first_seen": "1835-07-01",
+      "last_seen": "1835-07-01",
+      "letter_list_only": true,
+      "occupations": [],
+      "associated_places": []
+    }
+  ],
+  "businesses": [
+    {
+      "id": "business_j_s_c_hogan",
+      "name": "J. S. C. Hogan",
+      "proprietors": [
+        "J. S. C. Hogan"
+      ],
+      "trade": "dry goods, groceries, hardware, crockery and glass, wholesale and retail",
+      "goods": [
+        "Crockery",
+        "Dry Goods",
+        "Glass and Sash",
+        "Groceries",
+        "Hardware",
+        "Sole Leather"
+      ],
+      "street": "South Water Street",
+      "placement": {
+        "class": "relative",
+        "anchor": "the Post Office",
+        "offset_text": "in South Water Street, one\nthe Post Office,",
+        "offset_normalized": "in South Water Street, one […] the Post Office",
+        "street": "South Water Street"
+      },
+      "evidence": {
+        "first_issue": "1835-07-01",
+        "last_issue": "1835-07-01",
+        "copy_dates": []
+      },
+      "contradicted_by": [],
+      "mentions": [
+        "chicago_democrat_1835_07_01#c002"
+      ],
+      "built_at_scene_date": true,
+      "survival_liberty_required": false
+    },
+    {
+      "id": "business_peter_cohen",
+      "name": "Peter Cohen",
+      "proprietors": [
+        "Peter Cohen"
+      ],
+      "trade": "dry goods, groceries, clothing and liquors, wholesale and retail",
+      "goods": [
+        "Clothing",
+        "Dry Goods",
+        "Groceries",
+        "Liquors"
+      ],
+      "street": "South Water Street",
+      "placement": {
+        "class": "relative",
+        "anchor": "Messrs. Newberry and Dole's",
+        "offset_text": "low Mesers. Newberry and Dole's",
+        "offset_normalized": "[…]low Messrs. Newberry and Dole's",
+        "street": "South Water Street"
+      },
+      "evidence": {
+        "first_issue": "1835-07-01",
+        "last_issue": "1835-07-01",
+        "copy_dates": [
+          "1834-11-03"
+        ]
+      },
+      "contradicted_by": [],
+      "mentions": [
+        "chicago_democrat_1835_07_01#c001"
+      ],
+      "built_at_scene_date": true,
+      "survival_liberty_required": false
+    }
+  ]
+}

@@ -47,7 +47,6 @@ T-0096 — Did the second Fort Dearborn carry a flagstaff, and can anything but 
 # --- band BLOCK the visible seeding at its bottom — documented storefronts and real
 # --- people replacing invented ones — which is why they sit above other invisible work.
 # --- Three owner rulings govern the epic; each ticket carries them in full.
-T-0257 — An extraction schema, and the gazetteer the papers compile into
 T-0258 — Reading the Democrat, part one: November 1833 to June 1834
 T-0259 — Reading the Democrat, part two: July to December 1834
 T-0260 — Reading the Democrat, part three: January to August 1835
