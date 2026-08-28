@@ -1,0 +1,14 @@
+{
+  "schema": 1,
+  "note": "What has been READ, as opposed to what is citable. corpus.json registers every issue the deposit holds; this file names the ranges an extraction pass finished, and tools/compile_gazetteer.py --check resolves each range against corpus.json and fails if any issue inside it has no extraction file or an empty one. Ranges are appended by the pass that finishes them and are never widened by hand.",
+  "read": [
+    {
+      "publication": "chicago_american",
+      "from": "1835-06-08",
+      "to": "1835-08-29",
+      "ticket": "T-0261",
+      "read_on": "2026-08-28",
+      "note": "The Chicago American complete, Vol. I No. 1 to 1835-08-29, thirteen issues. The run carries NO post-office letter list in any issue — searched for every form the Democrat uses ('list of letters', 'remaining in the post office', 'uncalled for', a signature ending 'P. M.') across all thirteen files, with no hit. The American's post-office notices are its hours and rules, signed by the postmaster J. S. C. Hogan, and they are extracted as infrastructure claims. So T-0261's letter-list acceptance clause is met by demonstrating absence, not by extracting a list: the census proxy this epic wants is in the Democrat (T-0258 to T-0260), not here."
+    }
+  ]
+}

@@ -87,11 +87,26 @@ Deterministic: the same deposit produces byte-identical `corpus.json` and `text/
 |---|---|
 | `extracted/<issue_id>.json` | one file per issue, holding `claims[]` — hand-authored |
 | `identity.json` | the only place two differently-spelled names may become one person |
+| `coverage.json` | which RANGES have been read, asserted against `corpus.json` by the gate |
 | `gazetteer.json` | **generated** by `tools/compile_gazetteer.py --build` — never hand-edited |
 
     tools/compile_gazetteer.py --build       recompile the gazetteer
     tools/compile_gazetteer.py --check       the gate (in check.sh)
     tools/compile_gazetteer.py --self-test   its assertions still fire
+
+**Coverage is declared and then enforced (T-0261).** `corpus.json` says what is
+citable; `coverage.json` says what has been READ. Each entry names a publication and a
+date range, and `--check` resolves the range against `corpus.json` and fails if any issue
+inside it has no extraction file or an empty one. A range that names no issue at all
+fails too. So "the American is read" is a gate result, not a sentence in a merged PR.
+
+**The Chicago American carries no post-office letter list.** Searched across all thirteen
+issues for every form the Democrat uses — *list of letters*, *letters remaining*,
+*remaining in the post office*, *uncalled for*, a signature ending *P. M.* — with one hit,
+and it is a list of State Bank officers reprinted from the *Sangamon Journal*. The
+American's post-office notices are its hours and rules, signed by the postmaster
+J. S. C. Hogan, and they are extracted as `infrastructure`. The epic's letter-list ruling
+therefore has nothing to bite on in this paper; the census proxy is in the Democrat.
 
 **A claim quotes verbatim and normalizes beside it, never instead.** `quote` is the
 transcription's own text including its uncertainty brackets; `normalized` is the reading
@@ -103,6 +118,18 @@ whose text differs by a character, so a smoothed quote fails rather than passing
 columns line by line, so one advertisement occupies a SUBSET of a line range with another
 woven through it. `locator.lines` is the range cited; `locator.lines_of_claim` names the
 lines the quote is built from, and the gate checks the subset lies inside the range.
+
+**And it happens INSIDE a line too, which is what `locator.spans` is for (T-0261).** The
+Democrat's transcriptions carry one line per printed line, so naming lines names an
+advertisement. The American's do not: its densest advertising columns arrive as ONE line
+of up to 11,361 characters carrying four separate advertisements and the segmenter's own
+coordinate telemetry, so naming that line quotes seven other things. `spans` is the
+character-level sibling of `lines_of_claim` — a list of `{line, from, to}` half-open
+ranges — and when it is present the quote is those ranges joined by a newline instead of
+those whole lines. Every range is still verbatim and still rebuilt from the file by the
+gate; only the grain is finer. It is optional and additive: a claim without `spans`
+behaves exactly as before, which is why the T-0257 fixture needed no edit. All 130 of the
+American's claims use it.
 
 **`[…]` marks absence, `[word]` marks a supply.** Text the column edge cut away is a gap,
 not an invitation. The worked fixture leaves *'a few doors below'* unsupplied for exactly

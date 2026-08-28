@@ -113,3 +113,6 @@ T-0283 — The North Division's warehouse row allows one freight roof and six do
 T-0284 — Two slices of one batch claimed T-0256 and both built it — a claim is written where the next slice cannot see it
 T-0285 — An asset carrying its own AO map cannot batch with the town: +2 draw calls for one building
 T-0286 — The AO unwrap leaves 68.9 per cent of every atlas empty, and the map is priced as if it were full
+T-0301 — The gazetteer merges persons by a declared rule and has no equivalent for firms, so 'L. Wilson & Co.' and 'Jno. Wilson & Co.' are two businesses
+T-0302 — Four readings the American contradicts itself on need the page images: the tailor's street, which Water street two forwarding houses stood in, and the corner of Cobb's saddlery
+T-0303 — The American names six Chicago storefronts with usable placements and none of them is standing in the model yet
