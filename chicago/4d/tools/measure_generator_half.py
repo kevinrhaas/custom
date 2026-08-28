@@ -65,11 +65,15 @@ RENDERER_JS = RENDERERS / "web" / "js"
 # @ a638614c (T-0059). `--gate` holds the live measurement to it. Moving a figure
 # here is a claim that the reach changed, and it belongs in the same commit as
 # whatever changed it.
+# 349 -> 350 and 347 -> 348 on 2026-08-28: T-0254 added one structure to the town,
+# north_water_slough_crossing. One more committed asset, one more mesh that a change to
+# the shared generator modules or to build.py would re-stale; the terrain and pier_crib
+# reaches are untouched because the crossing is neither.
 STATED = {
-    "assets": 349,
+    "assets": 350,
     "restales": {
-        "generators/common/*.py": 349,
-        "generators/build.py": 347,
+        "generators/common/*.py": 350,
+        "generators/build.py": 348,
         "generators/terrain_gen.py": 2,
         "generators/archetypes/pier_crib.py": 2,
     },

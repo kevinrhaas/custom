@@ -9132,3 +9132,51 @@ reach no renderer) · ROADMAP **K54** (the shrub stratum's own lattice), **K55**
 tickets **T-0019** (the declaration), **T-0282** (this), **T-0281** (the flora section this table
 belongs in next), **T-0034**, **T-0203**, **T-0218**.
 **Recorded:** 2026-08-28.
+
+### L202 — A third slough crossing, on North Water Street, where nothing records one at all
+**Decision:** `north_water_slough_crossing` — a 12 m log deck, 3 m wide, laid square across the
+attested north-side slough at local **E +183 .. +195, N +156 .. +159**, carrying North Water
+Street over the stream at the narrow reach above its funnel. Every dimension and the crossing's
+whole existence are `reconstructed`.
+**Why:** Wright 1834 draws the slough running north out of the main stem across Kinzie Street to
+Michigan Street, and the 1830 plat lays North Water Street along the river's north side. Those
+two lines meet, and a platted street that meets a stream either stops at it or gets across it.
+Nothing states which. T-0226 re-derived North Water Street from the committed north bank after
+finding 477 m of its old line inside the water mask, and had to stop the derived line on the
+slough's east shoulder, because a road ribbon may not paint a ford — leaving the North
+Division's whole river front with no roadway west of E +240. This is what carries it over, built
+at the tier AGENTS.md § *reconstructed is a tier* prescribes rather than left as a gap.
+**What is invented, item by item.** That anyone bridged this stream. The date range (opened at
+its two siblings', the start of 1833, when the town began building crossings at all; closed at
+the end of 1835 by convention). The bearing — laid east-west at rotation 0 across a channel
+whose traced centreline bears 010° through this reach. The 12 m span, the 3 m width, the log
+construction, the puncheon deck, the 0.25 m stringers, the 0.08 m planks, the zero piers and
+the 0.35 m clearance.
+**What bounds each of them, because that is the difference between reconstruction and
+invention.** The SPAN is the stream's: 6.65 m of open water at this northing on the committed
+heightfield, leaving 2.60 m and 2.75 m of dry abutment seat — the proportion both siblings hold
+(8 m over 3.30 with 2.35 m seats; 12 m over 5.55 with 3.10 and 3.35). The SITE is the channel's:
+this slough is a 68.5 m funnel where it meets the river and a steady 5–7 m channel above it,
+with a 2.5 m sill between, so the deck sits above the sill where a town could put a log across.
+The WIDTH is the smallest of the three because the street is: North Water Street's own record
+calls its traffic `light` and gives it a 6.0 m track, against South Water Street's 10.5 m. The
+CLEARANCE is the abutments': the ground stands +0.63 m and +0.73 m where the deck's ends land,
+so a walk surface at 0.68 m lies level with the street at both ends and this crossing needs
+neither the cut its eldest sibling needed nor the fill the La Salle one did. The CONSTRUCTION,
+the DECK KIND and the STRINGERS are local practice — every crossing anybody in this town
+described was logs with puncheons on them.
+**Consequence:** the North Division's river-front street runs unbroken from the North Branch to
+Kinzie Street, and a visitor can walk it. If North Water Street did not in fact reach west of
+the slough in 1835 — nothing places a building on that side of it, and the division's own
+initial parcel puts its roofs north of N +105 — then this crossing did not stand and the street
+should stop where T-0226 stopped it.
+**How to resolve:** any period document that puts North Water Street west of the slough, or a
+town order for a bridge or culvert on it — a lot survey, a grading order, a Kinzie-ward
+assessment. The Chicago Democrat's 1834–35 numbers are the first place to look, and the corpus
+this project now holds makes that a readable question rather than an aspiration.
+Related: **L69** (the Slough Log Bridge's invented clearance, and its refusal of the branch
+bridges' documented one) · **L150** (the La Salle slough's inland course) · **L149** (the La
+Salle crossing) · tickets **T-0254** (this), **T-0226** (the street this carries), **T-0129**
+(the second crossing), **T-0109** (the gate all three answer to).
+**Covers:** `north_water_slough_crossing.function`, `north_water_slough_crossing.crossing_1835.footprint`, `north_water_slough_crossing.crossing_1835.position`, `north_water_slough_crossing.crossing_1835.documented_range`, `north_water_slough_crossing.crossing_1835.form.construction`, `north_water_slough_crossing.crossing_1835.form.width_m`, `north_water_slough_crossing.crossing_1835.form.clearance_m`, `north_water_slough_crossing.crossing_1835.form.pier_count`, `north_water_slough_crossing.crossing_1835.form.pier_kind`, `north_water_slough_crossing.crossing_1835.form.deck_kind`, `north_water_slough_crossing.crossing_1835.form.stringer_d_m`, `north_water_slough_crossing.crossing_1835.form.plank_t_m`.
+**Recorded:** 2026-08-28.

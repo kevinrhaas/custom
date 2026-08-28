@@ -819,6 +819,15 @@
       "phase_id": "log_1833",
       "structure_id": "north_side_school_1833"
     },
+    "north_water_slough_crossing__crossing_1835.glb": {
+      "archetype": "bridge_timber",
+      "baked_ao": false,
+      "bytes": 38992,
+      "inputs_sha256": "29f5ba5456c95bb7ea38aa3aedc606386eda314ff557a17e82d24be5b9fb7c70",
+      "kind": "generated",
+      "phase_id": "crossing_1835",
+      "structure_id": "north_water_slough_crossing"
+    },
     "old_bank_building__frame_1834.glb": {
       "archetype": "frame_storefront",
       "baked_ao": false,
