@@ -2792,7 +2792,7 @@ filed together only because RENDERING §4 groups them:**
 
 | | parcel | scope |
 |---|---|---|
-| **R-W3a** | **the AO cage rule** | §1 item 10: the bake works end to end and fails because clapboard courses and window reveals a centimetre off the wall occlude each other. ~~mean 0.265, 69 % of texels below half~~ — **both figures void, T-0158; read the correction below before claiming this, and see T-0227.** It needs a **low-poly cage**, not tuning. **Files:** `docs/RESEARCH/ao-cage.md` (new) · `generators/archetypes/*.py` (cage emission). |
+| **R-W3a** | **the AO cage rule** | §1 item 10: the bake works end to end and fails because clapboard courses and window reveals a centimetre off the wall occlude each other. ~~mean 0.265, 69 % of texels below half~~ — **both figures void, T-0158.** **T-0227 answered the question on the frame, 2026-08-28: yes, far too dark — the Sauganash's own pixels fall from mean L\* 33.8 to 11.1 with 6,532 of them at literal black. Correction 3 below carries the tables, and the acceptance is now a frame reading, not an atlas mean.** It needs a **low-poly cage**, not tuning. **Files:** `docs/RESEARCH/ao-cage.md` (new) · `generators/archetypes/*.py` (cage emission) · `tools/measure_ao_frame.mjs` (the before/after reading). |
 | **R-W3b** | **cascaded shadows** | `renderers/web/js/world.js` only — today one 1024² map on a ±60 m follow ortho, nothing beyond 60 m. **Touches no generator and no record**, so it shares nothing with 3a and can run beside it. **SPLIT 2026-08-17 into R-W3b(a) — the reach of the one map, DONE — and R-W3b(b) — true cascades, which (a)'s measurement says is now the only route past ±120 m that does not start by cutting batches.** |
 | **R-W3c** | **openings** | The silhouette failure R-G1 names: no reveal, no sill, no sash, no muntin anywhere in the set, so the 6-over-6 rhythm the Green Tree plate documents does not exist. Archetype geometry. |
 
@@ -2826,6 +2826,38 @@ changes the parcel's target.**
    black). **T-0227 answers it from a rendered frame before this parcel builds a cage to improve
    a figure nobody has measured correctly**, and carries the unwrap with it: an atlas two-thirds
    empty is two-thirds of every occlusion map's bytes spent on nothing.
+
+3. **AND THE ANSWER, T-0227, 2026-08-28: yes — and the atlas statistic understates it badly.**
+   `sauganash_hotel` baked with `--ao` (the fixed export: baked 0.1665 -> exported 0.1665, 0.0 %
+   drift), swapped into the source tree, and shot at both Sauganash anchors and both viewports
+   against the same tree without it. `tools/measure_ao_frame.mjs` reads the building's own
+   visible pixels — the structures mask intersected with what moved between the two conditions —
+   so the reading is of the walls rather than of the frame or of the atlas:
+
+   | station | viewport | pixels read | mean L* without → with | L* < 20 | literal black px |
+   |---|---|---|---|---|---|
+   | `sauganash` | desktop | 87,893 | **33.8 → 11.1** | 31.1 % → **88.9 %** | 0 → **6,532** |
+   | `sauganash` | mobile | 20,010 | 33.4 → 11.1 | 31.8 % → 89.5 % | 0 → 1,289 |
+   | `sauganash_wing` | desktop | 99,681 | 39.1 → 17.9 | 15.4 % → 64.9 % | 0 → 3,781 |
+   | `sauganash_wing` | mobile | 17,511 | 41.9 → 20.6 | 4.9 % → 56.5 % | 0 → 340 |
+
+   The whole-frame critic table agrees from the other side: `literal black px` 0 → 6,841 and
+   `shadow darkest decile L` 4.67 → 2.00 at `sauganash` desktop, with triangles unchanged.
+   **A documented white wall loses two thirds of its lightness and puts thousands of pixels at
+   0,0,0.** Why so much worse than "0.5358 mean over written texels" suggests: glTF occlusion
+   scales the INDIRECT term only, and at the scene's 70.5° sun the street-facing elevations a
+   walker sees are carried by little else (§1 items 9–11) — so occlusion near 1 there removes
+   essentially all of their light. **The parcel keeps its cage and loses its target: acceptance
+   is `measure_ao_frame.mjs` showing the walls hold their lightness, not an atlas mean moving.**
+
+   **Two costs this parcel now inherits, measured on that one asset.** The atlas is **31.1 %
+   occupied** — 81,458 written texels of 262,144, the master 94,420 → 202,292 bytes (+114 %) —
+   so the ~107 KB occlusion PNG is two-thirds empty space before any decision about resolution.
+   And **`aoMap` is part of `materialKey`** in `renderers/web/js/buildings.js`, so an asset
+   carrying its own map cannot batch with one that does not: **+2 draw calls at every station
+   and both viewports for a single building**, against a draw-call ceiling already breached.
+   A per-asset map is therefore a batching decision as well as a byte-budget one (T-0285), and
+   the empty two thirds of the atlas is its own ticket (T-0286).
 
 **And a cost figure the bake half has to answer first.** With the export working, one asset's
 master goes **94,420 → 202,292 bytes (+114 %)**: a 512×512 occlusion PNG carrying real variation
