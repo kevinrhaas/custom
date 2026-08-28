@@ -1,7 +1,7 @@
 ---
 id: T-0162
 title: SWARD_VIEWPORT=mobile deals the same census as desktop: the viewport does not reach the ring sizes
-state: open
+state: claimed
 epic: META
 requested_by: loop
 seen: false
@@ -11,14 +11,14 @@ parent: null
 opened: 2026-08-23
 closed: null
 pr: null
-claimed_by: null
+claimed_by: run 8/28/2026, 12:04:03 AM CT
 blocked_on: null
 needs_bake: false
 ---
 
 SWARD_VIEWPORT=mobile deals the same census as desktop: the viewport does not reach the ring sizes.
 
-**Acceptance:** (state it before working — the definition of done, never weakened to pass)
+**Acceptance, chosen before working (2026-08-28):** the FIRST limb of the clause below — the tool drives the thing that actually changes the ring sizes, and the two runs are shown to differ. The second limb (delete the flag) was refused because the census IS answerable at both stands once the device guess is driven, and deleting the flag would have thrown away a reading nobody had ever taken. Done means: `SWARD_VIEWPORT=mobile` reaches the `light` tune through `prefersTouch()` rather than through the window alone; the run PRINTS the stand it reached before its first figure and REFUSES to print a census under a stand it did not reach; and the desktop and mobile censuses are published side by side as different numbers.
 
 Found by T-0018 while measuring the sward census at both viewports. `tools/measure_sward_draw.mjs`
 opens the page at 390x780 when `SWARD_VIEWPORT=mobile` is set, and its own header says *"the
