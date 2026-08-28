@@ -1,7 +1,7 @@
 ---
 id: T-0096
 title: Did the second Fort Dearborn carry a flagstaff, and can anything but a retrospective plate say so
-state: claimed
+state: done
 epic: TOWN
 requested_by: loop
 seen: false
@@ -9,8 +9,8 @@ effort: S
 legacy_id: null
 parent: null
 opened: 2026-08-18
-closed: null
-pr: null
+closed: 2026-08-28
+pr: 447
 claimed_by: run 8/28/2026, 2:47:39 AM CT
 blocked_on: null
 needs_bake: false

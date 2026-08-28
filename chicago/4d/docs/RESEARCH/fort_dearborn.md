@@ -393,3 +393,41 @@ the staff a position and probably a spar — the same documents § 8.1 wants for
 would the 1830 Harrison sheet re-read at page-image level for a staff symbol on the parade: this
 project has taken the fort, the garden, the barn and the ferry off that plate and has never
 looked at it for this.
+
+### What the staff costs, measured — the question that held this work for a day
+
+`p4_0`'s staff is the tallest thing on this reservation, and a 15 m vertical standing in the
+open is exactly the shape that lands in the scene-detail ceilings four open tickets are
+defending. **The run that built it could not attribute its own delta** — desktop stage 4 came
+back with the `balanced` tier over and the light tier drawing 85 calls against a floor of 80,
+both already open reds by ticket, but with the light-tier count moved from the 83 on record,
+and `+2 draw calls` is the shape of a mesh that failed to batch. Rather than merge a possible
+regression past a floor this project has spent four tickets defending, the work was parked on
+`hold` unmerged with the command to settle it written on the PR.
+
+**Settled on 2026-08-28, on an idle runner, with `tools/measure_detail_ceilings.mjs --against`
+— twice.** First against this branch's own merge-base, which isolates the branch's own
+contribution from everything else moving on `dev`; then again after `dev` was merged in, which
+is the tree that actually ships. Both readings agree, to the triangle and to the call:
+
+| | the Sauganash | Lake at Canal | the forks | the aerial | Lake and Market |
+|---|---|---|---|---|---|
+| triangles | 0 | **+22** | **+22** | 0 | 0 |
+| draw calls | 0 | 0 | 0 | 0 | 0 |
+
+Twenty-two triangles, at the two stands the fort is visible from, and **nothing at all on the
+draw calls at any stand at any of the three tiers**. So the spar batches with the town like any
+other `fort_structure` mesh, and the two desktop reds are inherited whole:
+
+- the **light tier's 85 calls at Lake and Market** reads 85 on an unmodified `dev` as well. It
+  is over the 80-call floor and that is real, but it is **T-0247**'s and not this staff's —
+  and note that 85 dates T-0247's own figure of 83, which was taken before the content of
+  2026-08-28 landed.
+- the **`balanced` breach at the forks** was 5,290 triangles over on the merge-base and is
+  **gone** on the merged tree: every tier now reads inside its ceiling, `balanced` with 6,107
+  triangles to spare. `dev`'s own trimming closed it while this branch waited.
+
+The general lesson is the one T-0089 and T-0126 already paid for and this makes three: *a red
+ceiling does not say whose triangles they are*, and the two questions — "is the town over?"
+and "did this branch put it over?" — are answered by different numbers. The second one takes
+about nine minutes on a quiet box.

@@ -9295,7 +9295,10 @@ shut claims a garrison, not an hour. So a visitor sees a bare staff over the pic
 the evidence supports and no more.
 
 **Consequence:** the fort acquires the one feature of its silhouette that a town of no steeples and no
-tall chimneys could see from anywhere — Andreas's own point in the sentence that attests it.
+tall chimneys could see from anywhere — Andreas's own point in the sentence that attests it. Measured
+against both `dev` and this branch's own merge-base, it costs **22 triangles at the two stands the fort
+is visible from and zero draw calls anywhere** — the spar batches with the town, and neither of the
+desktop ceiling reds standing on 2026-08-28 belongs to it (`docs/RESEARCH/fort_dearborn.md` § 10).
 
 **How to resolve:** a garrison return, a quartermaster's account or a post repair estimate for
 1816–1836 would give the staff a position and probably a spar; the 1830 Harrison sheet re-read at

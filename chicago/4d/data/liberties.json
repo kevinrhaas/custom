@@ -13140,7 +13140,7 @@
         },
         {
           "label": "Consequence",
-          "text": "the fort acquires the one feature of its silhouette that a town of no steeples and no tall chimneys could see from anywhere — Andreas's own point in the sentence that attests it."
+          "text": "the fort acquires the one feature of its silhouette that a town of no steeples and no tall chimneys could see from anywhere — Andreas's own point in the sentence that attests it. Measured against both `dev` and this branch's own merge-base, it costs **22 triangles at the two stands the fort is visible from and zero draw calls anywhere** — the spar batches with the town, and neither of the desktop ceiling reds standing on 2026-08-28 belongs to it (`docs/RESEARCH/fort_dearborn.md` § 10)."
         },
         {
           "label": "How to resolve",
