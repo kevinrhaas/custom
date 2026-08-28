@@ -1,4 +1,13 @@
 export const CHANGELOG = [ // newest first
+  { v: 332, title: 'The one 1833 newspaper that would not say which issue it was', kind: 'chore', ts: '2026-08-28T12:07:13.408Z', date: 'Aug 28, 2026, 7:07 AM CT',
+    items: [
+      'Nothing you can see changed today. When the town’s own newspapers were made citable earlier this week, eighty-five of the eighty-six issues named their own date. One did not — and it is a transcription of the very first newspaper ever printed in Chicago.',
+      'The file’s name says November 16, 1833. Its own first page says the date at the top of the scanned sheet reads November 19, 1833. The Chicago Democrat published on neither day: its first issue was November 26, and nothing came before it. Two dates on one file, and neither of them ever existed.',
+      'It was filed against the November 26 issue anyway, marked plainly as a guess, on the strength of one thing — it describes itself as a reading of “the three supplied scan pages”, and the November 26 issue is the one this project holds three page scans of. That is thin, and while it stood, nothing was allowed to be quoted from the file at all.',
+      'Only the person who owns the scans could settle it, so he was asked the one question that would: does the top of that first page read the 19th or the 26th? His answer closes it from a direction nobody had asked about. The earliest issue he has scanned at all is the 26th — so there is no earlier newspaper for this to be a transcription of, and it does belong to the first issue.',
+      'Both wrong dates stay on the file, untouched. The method this project transcribes under forbids quietly repairing a date you can see printed; you record that it disagrees and leave it disagreeing. So the November 19 line is still there, still unexplained, and still not evidence that any such newspaper was ever printed. Nobody re-opened the scans to re-read that masthead, and the note attached to the file says so, rather than letting a later reader assume somebody did.',
+      'The ruling was written down as a rule in its own right, because it is worth more than the one file it settled: the scans this reconstruction can draw on begin with the Democrat’s first issue, and no argument may reach behind it.',
+    ] },
   { v: 331, title: 'The North was allowed one warehouse, and seven stand there', kind: 'chore', ts: '2026-08-28T11:55:24.907Z', date: 'Aug 28, 2026, 6:55 AM CT',
     items: [
       'Nothing you can see changed today. This is about the plan behind the town \u2014 the ledger that says how many roofs of each sort belong in each of the town\u2019s three divisions, and how many of them are already built.',
