@@ -1051,7 +1051,7 @@
       "parent": null,
       "opened": "2026-08-18",
       "closed": "2026-08-27",
-      "pr": null,
+      "pr": "426",
       "claimed_by": "run 8/27/2026, 9:16:10 PM CT",
       "blocked_on": "The premise has no reader and the debt is not the wharf's: one renderer, which draws the wharves already; nine of nine drawn-at-load layers owe a generator half and none has one; and the wharf is the worst of the nine to bake, because its deck height, crib bents and stair are functions of terrain.surfaceHeight evaluated at load and a GLB freezes them. Measured by tools/measure_generator_half.py, gated in check.sh. Refiled whole as T-0252 for the owner to rank.",
       "needs_bake": true,
