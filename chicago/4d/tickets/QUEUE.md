@@ -93,7 +93,6 @@ T-0239 — Nothing tests the party-line note's prose against the placement it de
 T-0230 — Two named South Water frontages carry a reconstructed trade, so neither a signboard nor a hitching post will ever stand at them
 T-0243 — The two timber-placement gates match no mesh since the lattice landed, and one of them is now red on dev
 T-0244 — T-0194's twelve hitching posts draw no vertices the gate can find, on dev
-T-0246 — log_jail stands on two steps of Randolph Street's new plank walk, the same OSM-kerb fault Lake and South Water answered
 T-0247 — The light tier draws 83 calls against the 80-call floor restored yesterday, on an unmodified dev
 T-0252 — Decide once whether a baked town carries the nine renderer-drawn layers, or none of them
 T-0253 — May an invented building stand on the river margin of a platted street corridor
