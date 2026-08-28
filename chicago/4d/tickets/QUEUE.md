@@ -49,7 +49,9 @@ T-0096 — Did the second Fort Dearborn carry a flagstaff, and can anything but 
 # --- Three owner rulings govern the epic; each ticket carries them in full.
 T-0258 — Reading the Democrat, part one: November 1833 to June 1834
 T-0259 — Reading the Democrat, part two: July to December 1834
-T-0260 — Reading the Democrat, part three: January to August 1835
+T-0296 — Reading the Democrat, 8 to 29 July 1835: the rest of the scene month
+T-0297 — Reading the Democrat, August 1835: the four issues after the scene date
+T-0298 — Reading the Democrat, January to June 1835: the eight issues only the deposit can open
 T-0261 — Reading the American: June to August 1835
 T-0262 — The July 1, 1835 register: who and what the papers put in the town
 T-0263 — The documented storefronts take their places on South Water and Lake
