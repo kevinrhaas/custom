@@ -32,14 +32,18 @@
       "sha256": "632104ddd0836a68ac5d230a9cf9aa10fbf9ab9c29975beac8ae3deeeaf06d3a"
     },
     {
+      "file": "chicago/4d/data/research/newspapers/extracted/chicago_american_1835_07_25.json",
+      "sha256": "202319cfd3bc14446c4818510bfc4702b0d79193392a957580df2006e5d250e4"
+    },
+    {
       "file": "chicago/4d/data/research/newspapers/extracted/chicago_democrat_1835_07_01.json",
       "sha256": "6200cbfa1c6c37f6146da30f1b9a0a55c29eb7d8c372aec7765491aa4c714162"
     }
   ],
   "counts": {
-    "claims": 98,
-    "persons": 106,
-    "businesses": 36
+    "claims": 103,
+    "persons": 107,
+    "businesses": 37
   },
   "persons": [
     {
@@ -100,6 +104,26 @@
       "occupations": [],
       "associated_places": [
         "Boston, Mass."
+      ]
+    },
+    {
+      "id": "person_a_garrett",
+      "name": "A. Garrett",
+      "variants": [
+        {
+          "as_printed": "A. Gatren",
+          "claim": "chicago_american_1835_07_25#c003"
+        }
+      ],
+      "mentions": [
+        "chicago_american_1835_07_25#c003"
+      ],
+      "first_seen": "1835-07-25",
+      "last_seen": "1835-07-25",
+      "letter_list_only": false,
+      "occupations": [],
+      "associated_places": [
+        "South Water Street"
       ]
     },
     {
@@ -2273,10 +2297,11 @@
       },
       "evidence": {
         "first_issue": "1835-06-27",
-        "last_issue": "1835-07-18",
+        "last_issue": "1835-07-25",
         "copy_dates": [
           "1835-06-24",
           "1835-06-27",
+          "1835-07-17",
           "1835-07-18"
         ]
       },
@@ -2285,7 +2310,8 @@
         "chicago_american_1835_06_27#c007",
         "chicago_american_1835_07_04#c012",
         "chicago_american_1835_07_11#c003",
-        "chicago_american_1835_07_18#c003"
+        "chicago_american_1835_07_18#c003",
+        "chicago_american_1835_07_25#c003"
       ],
       "built_at_scene_date": true,
       "survival_liberty_required": false
@@ -2306,14 +2332,15 @@
       },
       "evidence": {
         "first_issue": "1835-06-27",
-        "last_issue": "1835-06-27",
+        "last_issue": "1835-07-25",
         "copy_dates": [
           "1835-06-27"
         ]
       },
       "contradicted_by": [],
       "mentions": [
-        "chicago_american_1835_06_27#c008"
+        "chicago_american_1835_06_27#c008",
+        "chicago_american_1835_07_25#c002"
       ],
       "built_at_scene_date": true,
       "survival_liberty_required": false
@@ -2472,6 +2499,37 @@
       "contradicted_by": [],
       "mentions": [
         "chicago_american_1835_06_20#c004"
+      ],
+      "built_at_scene_date": true,
+      "survival_liberty_required": false
+    },
+    {
+      "id": "business_dart_co_castings",
+      "name": "Dart & Co., castings",
+      "proprietors": [],
+      "trade": "iron castings",
+      "goods": [
+        "Cast Iron Ploughs",
+        "Castings"
+      ],
+      "street": null,
+      "placement": {
+        "class": "relative",
+        "anchor": "the Fulton Market",
+        "offset_text": "rant of the Falton Markys, opporit",
+        "offset_normalized": "[in f]ront of the F[u]lton Mark[et], opposit[e …]",
+        "street": null
+      },
+      "evidence": {
+        "first_issue": "1835-07-25",
+        "last_issue": "1835-07-25",
+        "copy_dates": [
+          "1835-07-25"
+        ]
+      },
+      "contradicted_by": [],
+      "mentions": [
+        "chicago_american_1835_07_25#c001"
       ],
       "built_at_scene_date": true,
       "survival_liberty_required": false
@@ -2690,6 +2748,7 @@
       "trade": "wholesale and retail dry goods, groceries, hardware and crockery",
       "goods": [
         "Brandy",
+        "Confectionary",
         "Crockery",
         "Cutlery",
         "Dry Goods",
@@ -2716,13 +2775,16 @@
       },
       "evidence": {
         "first_issue": "1835-06-08",
-        "last_issue": "1835-06-20",
-        "copy_dates": []
+        "last_issue": "1835-07-25",
+        "copy_dates": [
+          "1835-06-08"
+        ]
       },
       "contradicted_by": [],
       "mentions": [
         "chicago_american_1835_06_08#c013",
-        "chicago_american_1835_06_20#c006"
+        "chicago_american_1835_06_20#c006",
+        "chicago_american_1835_07_25#c004"
       ],
       "built_at_scene_date": true,
       "survival_liberty_required": false
