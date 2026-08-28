@@ -1446,6 +1446,18 @@ between 1816 and 1836. A picket count or a quantity of timber would settle the h
 spacing together.
 **Covers:** `fort_dearborn_palisade.picket_1816.form.picket_height_m`, `fort_dearborn_palisade.picket_1816.form.picket_width_m`, `fort_dearborn_palisade.picket_1816.form.picket_spacing_m`, `fort_dearborn_palisade.picket_1816.form.gate_width_m`, `fort_dearborn_palisade.picket_1816.form.bastion_length_m`, `fort_dearborn_palisade.picket_1816.form.bastion_projection_m`, `fort_dearborn_palisade.picket_1816.form.posterns`.
 **Recorded:** 2026-08-11.
+**Evidence since, 2026-08-28 (T-0185):** the gap between the posts — the part of this entry
+that "decides whether you can see through the wall" — was challenged by the one picture of the
+fort, and holds. `p4_0` resolves separate posts at a 10 px rhythm on a 42.9 px curtain, 0.23 of
+the wall's height per post against this record's 0.081, and nothing had ever tested whether that
+was a reading of the fort or of the lithograph. It is of the lithograph: at the plate's own scale
+of 11.6 px per metre this wall's rhythm is 2.78 px of post and **0.70 px of gap**, and the
+narrowest gap the plate holds anywhere on that curtain is 2 px. It could not have drawn this wall
+whatever the fort was made of, so its coarser pitch is the floor of the medium — and 0.23 of a
+3.7 m wall is an 0.86 m post, which is not a picket. **Nothing is upgraded and nothing moved.**
+Both figures stay `reconstructed` and this liberty stands exactly as written; what is new is that
+the disagreement is now measured and recorded, so the next run reads it rather than re-opening it.
+`tools/measure_picket_plate.py` prints both sides.
 
 ### L42 — The fort's buildings stand at heights, under roofs and behind stacks nobody recorded
 **Decision:** across the six modelled buildings inside Fort Dearborn, the **storey counts** of

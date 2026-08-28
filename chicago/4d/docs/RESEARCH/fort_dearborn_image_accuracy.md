@@ -42,12 +42,81 @@ notice it:
 |---|---|---|
 | 1 | **No road anywhere on the reservation.** Both plates show a travelled way at the fort; the render has trackless prairie between the town and the gate. | **yes — this pass ships it** |
 | 2 | The track descending the bank from the north gate to the water (`p4_0`). | no while the bank is ungraded — T-0004 owns the bank |
-| 3 | ~~Pickets are flat-topped and dark; the plate's are pointed and pale.~~ **This row was wrong in both halves — see below. Refuted and closed 2026-08-24 by T-0094.** | nothing to bake |
+| 3 | ~~Pickets are flat-topped and dark; the plate's are pointed and pale.~~ **This row was wrong in both halves — see below. Refuted and closed 2026-08-24 by T-0094.** The one thing about the pickets the plate DOES say — that it draws them three times coarser — was left open by that pass and is **settled 2026-08-28 by T-0185, see below.** | nothing to bake |
 | 4 | ~~The corner works do not rise above the curtain with roofs and lanterns as the plate draws them.~~ **`p4_0` draws no work at either angle it shows. Refuted and closed 2026-08-24 by T-0095 — see below.** | nothing to bake |
 | 5 | ~~No gate is drawn in either documented wall;~~ **a gate has been drawn in both since the archetype was written — but both stood a QUARTER OPEN, and that is now fixed. Closed 2026-08-24 by T-0095 — see below.** The plate's log-faced work over the gate is not built, and § "Row 4" says why. | **closed — one asset rebaked** |
 | 6 | **A flagstaff and flag over the fort** — the most conspicuous single feature of `p4_0`. | **NOT a bake question, and NOT to be built on this plate alone** — see below |
 | 7 | The ground round the walls is full prairie sward; both plates show it bare and trodden. | **closed 2026-08-23 by T-0097** — a 12 m band of trodden earth outside the palisade, derived from the stockade's own committed footprint (`data/enclosures/fort_dearborn_apron.json`, L174); before/after at `docs/evidence/t-0097-{before,after}.png` |
 | 8 | No trees at the fort; `p4_0` puts a tree mass ~~east~~ **WEST** of the walls and `p4_1` trees round the buildings on both banks. **The compass word in this row was wrong — see "Row 8's east is west" below.** | **closed 2026-08-24 by T-0098** — the mass is WEST, measured; and the plate cannot DATE it, so 12 relict black willows stand there `reconstructed` rather than the plate's closed canopy (`data/flora/plantings/fort_dearborn_wood.json`, L188); before/after at `docs/evidence/t-0098-{before,after}.png` |
+
+## The pitch: the plate is coarser because it could not be finer (T-0185, 2026-08-28)
+
+T-0094 measured `p4_0` to refute the row above and turned up, on the way, **the one thing about
+the pickets the plate positively asserts**: it resolves separate posts at a **10 px pitch on a
+42.9 px curtain**, autocorrelating +0.70 on the east reach and +0.60 on the west. That is 0.23 of
+the wall's height per post. The record builds `picket_spacing_m` 0.30 on a `picket_height_m` of
+3.7 — **0.081**, nearly three times finer. The finding sat unactioned for four days and this is
+its pass. **Nothing moved, and that is the finding rather than a refusal to act on it.**
+
+**Neither number was ever evidence about 1816.** Both `picket_width_m` and `picket_spacing_m` are
+`reconstructed` and say so; the plate is tier 5 and admissible for form as `inferred` at best. So
+the question was never "adopt the plate's proportion" — 0.23 of a 3.7 m wall is an **0.86 m post**,
+which is not a picket anybody split. The question was whether a rhythm this fine is the right
+reconstruction, and whether the wall reads as posts or as a slab where a visitor actually stands.
+Both halves are now measured.
+
+### The plate could not have drawn this wall
+
+`tools/measure_picket_plate.py` reads the plate's own drawn scale off the curtain it already
+measures: 42.9 px for the record's 3.7 m wall is **11.59 px per metre**. At that scale this
+stockade's rhythm is **3.48 px of pitch — 2.78 px of post and 0.70 px of gap.**
+
+Then it measures what the plate actually holds, by run length along the same column profile the
+rhythm is autocorrelated from:
+
+| reach | posts drawn | dark strokes | pale gaps |
+|---|---|---|---|
+| east | 19 | 3–4 px | 3–6 px |
+| west | 30 | 3–5 px | 2–5 px |
+
+**The narrowest gap the plate carries anywhere on that curtain is 2 px, 2.9 times wider than the
+0.70 px this wall would need.** A draughtsman cannot leave a two-thirds-of-a-pixel gap between
+two-and-three-quarter-pixel posts, and neither can the stone. So the 10 px pitch is the **floor of
+the medium**: he drew the finest picket line his plate could carry, which is what a draughtsman
+does. It is a reading of the lithograph, not of the fort, and it cannot move the record.
+
+### And the model reads as posts everywhere a visitor can stand
+
+The other half is a fact about the model, and it is why the fine rhythm is kept rather than merely
+defended. `tools/measure_picket_reading.mjs` takes the SAME statistic — autocorrelation of the
+curtain's column-mean darkness — off a render of the same wall, from `p4_0`'s own stand (local
+1145, 300, yaw 180) and from outside the north gate, at both release viewports:
+
+| stand | viewport | measured | expected | autocorr | 2× | reads as |
+|---|---|---|---|---|---|---|
+| p4_0, across the river | desktop | 4 px | 4.49 px | +0.93 | +0.85 | **posts** |
+| p4_0, across the river | phone | 4 px | 1.62 px | +0.66 | +0.31 | **aliased** |
+| north gate | desktop | 34 px | — | +0.66 | +0.50 | **posts** |
+| north gate | phone | 16 px | — | +0.76 | +0.56 | **posts** |
+
+`expected` is derived from the drawn extent of the whole 53 m curtain in that shot, so a measured
+peak well above it is a moiré rather than a finer reading. Evidence:
+`docs/evidence/t-0185-{p4_0,north_wall}-{desktop,phone}.png`.
+
+**A drawing has one viewing distance and a walkable reconstruction has all of them.** The plate's
+coarser rhythm is the correct answer to a problem this model does not have: its viewer cannot walk
+up to the wall, and ours can. At the gate the wall resolves at 34 px on a desktop and 16 px on a
+phone, where an 0.86 m post would read as a paddock rail. The one place the model hits the
+draughtsman's own bind is a **phone at the river stand**, where a 1.62 px pitch falls under the
+pixel grid and beats into a 4 px moiré — a fact about a 390 px screen at fifty metres, not about
+the reconstruction. It is filed as its own ticket rather than answered by coarsening the wall.
+
+**What this changes:** nothing standing. `picket_width_m` 0.24 and `picket_spacing_m` 0.30 are
+unmoved and still `reconstructed`, the 768 posts and the palisade's committed master are untouched
+and unrebaked, and no confidence was upgraded. `docs/LIBERTIES.md` **L47** — which already owned
+"the gap between the posts, which decides whether you can see through the wall" — carries the
+disagreement and its resolution, and so do both attribute notes on the record, which is where a
+visitor opening the stockade's card will read it.
 
 ## Row 3 was wrong, and the correction is the interesting part (T-0094, 2026-08-24)
 

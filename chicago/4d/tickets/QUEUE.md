@@ -97,3 +97,4 @@ T-0252 — Decide once whether a baked town carries the nine renderer-drawn laye
 T-0253 — May an invented building stand on the river margin of a platted street corridor
 T-0254 — North Water Street west of the slough, and the crossing it needs
 T-0255 — The dooryard planting rule reads every street in the town with no bound on reach, so a track across the river can turn a house's yard
+T-0265 — On a phone from across the river the stockade's picket rhythm falls under the pixel grid and beats
