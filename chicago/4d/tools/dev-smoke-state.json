@@ -3,6 +3,37 @@
   "readings": [
     {
       "viewport": "desktop",
+      "stage": "5",
+      "parts": [
+        5
+      ],
+      "verdict": "pass",
+      "target": "published",
+      "passed": 29,
+      "failed": 0,
+      "failures": [],
+      "wallSeconds": 576,
+      "takenAt": "2026-08-28T06:37:19.926Z",
+      "ref": "steward/t-0137-fort-stack-fabric",
+      "commit": "cfc40d810876",
+      "devCommit": "ba37f75a1ca9",
+      "treeHash": "sha256:4bf2f2aa2c1c3872",
+      "treeDirty": false,
+      "changelogHash": "sha256:ba26e09ca7fc77ce",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          2,
+          3.7,
+          4.1
+        ]
+      },
+      "source": "/tmp/smoke-d5.log"
+    },
+    {
+      "viewport": "desktop",
       "stage": "8-9",
       "parts": [
         8,
