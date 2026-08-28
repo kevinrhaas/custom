@@ -278,26 +278,38 @@ RIVER_DEARBORN_CROSS_N = 13.92   # the board crossing over Dearborn runs level a
 # clears the original by 8,752. So this street does NOT depend on the temporary
 # raise and does not have to be unwound with it.
 #
-# WASHINGTON IS NOT HERE, AND IT IS A NUMBER RATHER THAN AN OPINION (T-0241).
-# Both streets were added and generated TOGETHER first — 36 faces, 3,129.1 m of
-# walk — and measured together, desktop, worst of the five stands:
+# WASHINGTON IS HERE NOW (T-0241), AND WHAT LET IT IN WAS A TRIM AND NOT A
+# CEILING. It is worth keeping the refusal beside the admission, because the two
+# readings are a day apart and the street did not change between them.
+#
+# WHEN IT WAS REFUSED, one run ago (T-0240): both streets were generated together
+# — 36 faces, 3,129.1 m of walk — and measured against the ceilings as they stood
+# that hour, which were the raised ones T-0229 was about to give back:
 #
 #   full      1,385,207 of 1,425,000   PASS by 39,793
 #   balanced  1,260,174 of 1,260,000   OVER BY 174
 #   light       761,404 of 1,050,000   PASS
 #
-# One hundred and seventy-four triangles on 1.26 million. Washington's seven
-# faces cost +58,926 at `balanced` and only ~15,400 at the tiers either side, so
-# what refuses it is that one rung and not the town. The two honest routes past
-# it are a sixth re-basing of the ceiling or a trim, and the sixth raise is what
-# T-0223, T-0229, T-0237 and the count written into `main.js` beside `DETAIL` all
-# exist to make harder — T-0237's acceptance says it in as many words. So
-# Washington keeps its measured cost in T-0241 rather than being bought with it.
+# THE 174 WAS NEVER THE REAL NUMBER. T-0229 landed before that reading shipped
+# and put `balanced` back to its original 1,210,000, so re-measured on dev with
+# Washington laid the shortfall was **49,442**, not 174 — 1,259,442 of 1,210,000
+# at the axial stand, with `full` clear by 14,613 and `light` by 23,440. A run
+# quoting the earlier figure would have gone looking for a hundred and seventy
+# triangles and found fifty thousand.
+#
+# WHAT PAID FOR IT. `balanced` was the only rung of the scene-detail ladder with
+# NO furniture reach at all: it drew every plank walk, fence, barrel, wharf deck
+# and moored hull in Chicago at any distance, exactly as `full` does, while
+# `light` had been distance-culling since T-0150. Giving it 800 m gives back
+# 68,772 triangles at the worst stand for a 48^2 frame signature that does not
+# move by a single count at any of the five stands at either viewport. The whole
+# reading is at `FURNITURE_REACH_BALANCED_M` in `renderers/web/js/main.js`, and
+# not one ceiling in `DETAIL` moved.
 #
 # The cross streets' own frontages (T-0192) and the West Division across the
 # South Branch (T-0193) likewise stay out, and the record's own `refused` carries
 # every one of these numbers rather than a promise.
-EDGE_STREETS = ("south_water", "lake", "randolph")
+EDGE_STREETS = ("south_water", "lake", "randolph", "washington")
 #
 # THE WEST DIVISION WAS BUILT AND MEASURED RATHER THAN ESTIMATED (T-0193), and it
 # is refused by ONE STAND AT ONE TIER AT ONE VIEWPORT. `blk_lake_clinton` is the

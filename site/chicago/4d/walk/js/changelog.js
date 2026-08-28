@@ -1,11 +1,20 @@
 export const CHANGELOG = [ // newest first
-  { v: 307, title: 'Three Lake Street buildings step back off the sidewalk', kind: 'fix', ts: '2026-08-28T00:54:49.308Z', date: 'Aug 27, 2026, 7:54 PM CT',
+  { v: 308, title: 'Three Lake Street buildings step back off the sidewalk', kind: 'fix', ts: '2026-08-28T01:10:12.500Z', date: 'Aug 27, 2026, 8:10 PM CT',
     items: [
       'Walk the north side of Lake Street and two more of its corners now carry you over the road on boards. Yesterday the walk stopped short of them, because a building was standing where the boards had to go.',
       'Three buildings were in the way: the old bank at La Salle, Dole\u2019s warehouse at Dearborn, and St Mary\u2019s church further east. All three stood between one and three metres out past their own lot line, in the middle of the platted street. They have stepped back onto their lots, and the walk has been laid along the ground they were covering.',
       'They were never meant to be there. Their across-the-street position had been measured off a modern kerb line read from a present-day map of Chicago, rather than off this project\u2019s own surveyed 1835 street. Nothing about what is claimed of these buildings changed — only the line the claim was measured against, which is the same repair eleven South Water Street buildings took in August.',
       'The town gains thirty-one metres of plank sidewalk and four board crossings, and the count of places on Lake Street where a documented building stands on its own footway falls from eleven to two.',
       'Both of the two left are the First Presbyterian Church, and it is not moving today. The same repair would set it down on top of the physician\u2019s house behind it — they are three metres apart now and would overlap — so the church stays where it is and the reason is written on its record for you to read. Whether a researched building may push an inferred one off its ground is a question about the whole town, not about this corner.',
+    ] },
+  { v: 307, title: 'Washington Street gets its plank walks, crossings and fences', kind: 'feature', ts: '2026-08-28T00:56:05.092Z', date: 'Aug 27, 2026, 7:56 PM CT',
+    items: [
+      'One more street south of the river is boarded. Washington now carries the same raised plank walk, board crossings at the corners and street-lining fences that South Water, Lake and Randolph have \u2014 seven block faces, and the walk laid town-wide goes from 2,468 m to 3,129 m.',
+      'It was refused yesterday, by a hair, and the hair turned out to be the wrong number. The street was measured against a quality ceiling that was lifted for one day and given back the same evening: the real shortfall was not 174 triangles but 49,442, on the middle of the three quality settings.',
+      'So the street was not bought by lifting that ceiling for a sixth time. It was bought by finding the middle setting doing something nobody had noticed: it drew every plank walk, fence, barrel, wharf deck and moored hull in Chicago at any distance at all, exactly as the full setting does, while the lightest setting had been stopping at 350 metres since August. Turning quality down drew less \u2014 but only on the bottom rung.',
+      'It now stops at 800 metres. At that range a fence pale is one pixel tall, and the check that compares two frames cell by cell cannot find a single count of difference between the town drawn whole and the town drawn with the cull on \u2014 at all five viewpoints the checks visit, on a desktop screen and a phone-sized one. Nothing you can see leaves; 68,772 triangles a frame do.',
+      'Not one ceiling moved. The full setting is untouched at every distance, which is what it is for.',
+      'Nothing here was placed by hand: the walk\u2019s line is the surveyed street centreline stepped out by half the platted street width, and where the ground is too wet, too uneven or already built on, the record says so instead.',
     ] },
   { v: 306, title: 'The last block across the river was tried, and did not fit', kind: 'chore', ts: '2026-08-28T00:36:30.512Z', date: 'Aug 27, 2026, 7:36 PM CT',
     items: [
