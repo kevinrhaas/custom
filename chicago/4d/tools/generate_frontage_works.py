@@ -198,6 +198,42 @@ RIVER_WHARF_REACH = [[459.5, 14.3], [455.0, 24.0], [448.0, 32.0], [428.0, 37.5],
                      [396.0, 40.2], [357.5, 40.3]]    # La Salle mouth .. Jones's landing
 RIVER_DEARBORN_CROSS_N = 13.92   # the board crossing over Dearborn runs level at this N
 
+# WHERE A LANDING COMES ASHORE, NO BOARD IS LAID (T-0228). The committed wharves
+# tie their decks 2.0 m back into the same bank this walk threads, and their
+# boarding stairs step down landward of that heel onto it. Until it was measured
+# the walk simply ran underneath: 33 boards under Carpenter's deck and 19 under
+# Jones's, the slab half a metre over the planks with 0.36 m of daylight between
+# — less than a visitor is tall — and, since T-0058 registered the deck as a
+# floor, a 0.50 m riser standing across the walk's own path that the walker's
+# 0.35 m step-up rule refuses. Nobody had chosen that. Three answers were open
+# and this is the first of them: a plank sidewalk stops where a working wharf
+# comes ashore, exactly as this same record already stops at the La Salle mouth,
+# and the landing's own deck and boarding stair are the walking surface there.
+#   NOT the second answer (cut the dock's heel back to the walk): L132 states the
+# 2.0 m tie-in is the least that reads as a deck built off a bank rather than a
+# raft moored against one, and it is the same invented form at all seven
+# landings — trimming two of them to clear a walk laid afterwards would make the
+# wharves' shape a function of the sidewalk.
+#   NOT the third (leave it and say so): a board under a dock is not something a
+# visitor can read as a decision, and the walk's own stringers stand in the deck's
+# crib. What the walk had to say about the landings, it now says by stopping.
+LANDING_CLEAR_M = 0.2       # the last board stops this far short of a landing's works
+LANDING_MIN_RUN_M = 3.0     # a surviving stretch shorter than this is a landing, not a walk
+LANDING_CUT_PITCH_M = 0.05  # how finely a reach is marched to find the works it crosses
+# The boarding stair's reach is the RENDERER's number, not this file's: wharves.js
+# plans the treads at load because how many there are is a terrain answer, and
+# on the committed heightfield today it comes to one or two treads at the seven
+# landings. So the band cut here is the CEILING that module will never exceed —
+# `STAIR_MAX_TREADS` goings — and the literal is read back from the module below
+# rather than copied here and left to drift.
+#   It is the treads and NOTHING ELSE. wharves.js also samples the ground a metre
+# landward of the stair's foot to decide how many treads it needs; that metre is
+# a measurement, not timber, and nothing stands on it. Counting it would have cut
+# 2.8 m of good boards out of this walk at Peck's landing, whose stair stops
+# 1.71 m short of the nearest board and clears it by 0.21 m even at the ceiling.
+STAIR_MAX_TREADS = 4
+WHARVES_JS = ROOT / "renderers" / "web" / "js" / "wharves.js"
+
 # THE TOWN'S STREET EDGE (T-0069). The owner, of the first Cook County jail
 # engraving: "note the fences lining the street and what appears to be plank
 # sidewalks. all of the streets should be updated like this... at least south of
@@ -1168,16 +1204,24 @@ def _heightfield():
 
 
 def _polyline_stations(line, pitch=PLANK_PITCH_M):
-    """Every board centre along a polyline, the same march frontage.js makes."""
+    """Every board centre along a polyline, the same march frontage.js makes.
+
+    Each station carries the board's own ACROSS axis with it, because a board is
+    1.83 m of plank laid square to the run and half of it can be somewhere the
+    centre is not — under a wharf deck (T-0228), over the water, in the track.
+    """
     out = []
     for i in range(len(line) - 1):
         (ax, ay), (bx, by) = line[i], line[i + 1]
         seg = math.hypot(bx - ax, by - ay)
+        if seg == 0:
+            continue
         n = max(1, round(seg / pitch))
         step = seg / n
+        de, dn = (bx - ax) / seg, (by - ay) / seg
         for j in range(n):
             t = (j + 0.5) * step / seg
-            out.append((ax + (bx - ax) * t, ay + (by - ay) * t))
+            out.append((ax + (bx - ax) * t, ay + (by - ay) * t, -dn, de))
     return out
 
 
@@ -1200,17 +1244,28 @@ def _e_on_path(path, n):
     return None
 
 
-def _audit_river_reach(name, line, hf, streets, problems):
-    """Every board station on dry committed ground, clear of the travelled way.
+def _audit_river_reach(name, line, hf, streets, problems, works=()):
+    """Every board station on dry committed ground, clear of the travelled way,
+    and clear of every landing that comes ashore on this bank.
 
     This is the walk's own placement gate, run on every regeneration: the knots
     above are authored, and an authored coordinate nobody re-audits is a number
-    somebody typed. A station under water or in the track refuses the RECORD,
-    not just the board — the whole run is one claim.
+    somebody typed. A station under water, in the track or under a wharf deck
+    refuses the RECORD, not just the board — the whole run is one claim.
+
+    The landing clause is run on the CUT runs, after `_cut_reach_at_landings`
+    has taken the crossings out. It is not a second opinion about the cut: it is
+    what catches a landing that moves, or a new one built on this bank, without
+    anyone re-reading this file (T-0228).
     """
     sw = streets.get("south_water")
     hw = WALK_W_M / 2.0
-    for (e, n) in _polyline_stations(line):
+    for (e, n, ue, un) in _polyline_stations(line):
+        hit = _board_in_works(e, n, ue, un, works, hw)
+        if hit is not None:
+            problems.append(f"{name}: board at ({e:.1f}, {n:.1f}) lies under the "
+                            f"{hit[2]} of {hit[1]} — no walk runs under a "
+                            "landing (T-0228)")
         g = hf.height(e, n)
         if g < RIVER_DRY_M:
             problems.append(f"{name}: board at ({e:.1f}, {n:.1f}) stands on ground at "
@@ -1223,6 +1278,214 @@ def _audit_river_reach(name, line, hf, streets, problems):
                     problems.append(f"{name}: board at ({e:.1f}, {n:.1f}) laps the "
                                     f"South Water track (edge N {edge:.2f}) — no walk "
                                     "is written")
+
+
+def _assert_stair_reach() -> None:
+    """The stair's tread ceiling above is the renderer's number; drift would
+    silently shrink the band this generator cuts a walk against. Read it back."""
+    src = WHARVES_JS.read_text(encoding="utf-8")
+    for name, value in (("STAIR_MAX_TREADS", STAIR_MAX_TREADS),):
+        found = None
+        for raw in src.splitlines():
+            head = raw.split("//")[0].strip()
+            if head.startswith(f"const {name} = ") and head.endswith(";"):
+                found = head[len(f"const {name} = "):-1].strip()
+        if found is None or float(found) != float(value):
+            raise SystemExit(
+                "generate_frontage_works: renderers/web/js/wharves.js no longer "
+                f"sets {name} = {value} (found {found}) — the boarding-stair band "
+                "the river walk is cut against comes off it and must be re-read")
+
+
+def _landing_works(wharves, hf) -> list:
+    """Every committed landing's footprint ON THE BANK: the deck outline itself,
+    and the ground its boarding stair's treads stand on landward of the heel.
+
+    Returns `[(structure_id, where, part, polygon)]` in local ENU, two per
+    landing — the deck and its stair, named apart so an audit can say which.
+
+    THE STAIR IS DERIVED, NOT ASSUMED, because the renderer derives it: how far
+    it reaches inland is how many treads the rise takes, and the rise is the
+    terrain's answer at each site. So this walks the same fixed point
+    `renderers/web/js/wharves.js` walks — deck top is the highest of the three
+    heel samples and the freeboard floor, each tread's foot is the lowest ground
+    across the stair's width from there, add goings until the rise divides under
+    the record's ceiling — against the same committed heightfield. On the
+    heightfield as committed that is one or two treads, 0.75 m or 1.50 m of
+    reach; `STAIR_MAX_TREADS` is the renderer's own refusal to build more, and a
+    site the search cannot answer takes the full ceiling band rather than none.
+
+    Cutting against the ground the timber actually stands on is what keeps this
+    from over-cutting: at the tread CEILING, Peck's stair would have closed
+    0.66 m of otherwise sound walk (and 1.06 m once cleared), against boards its
+    real two treads stop 1.71 m short of.
+    """
+    form = wharves.get("form") or {}
+
+    def _formv(key, default):
+        v = (form.get(key) or {}).get("value")
+        return float(v) if isinstance(v, (int, float)) else default
+
+    stair_half = _formv("boarding_stair_width_m", 2.4) / 2.0
+    tread = _formv("boarding_stair_tread_m", 0.75)
+    rise_max = _formv("boarding_stair_rise_m", 0.30)
+    freeboard = _formv("freeboard_m", 0.90)
+    out = []
+    for w in wharves.get("wharves", []):
+        quad = w.get("deck_quad_local_enu_m")
+        if not (isinstance(quad, list) and len(quad) == 4):
+            continue
+        sid = w.get("structure_id")
+        label = w.get("name") or sid
+        heel_l, heel_r, face_r, face_l = quad
+        where = f"the landing at {label}"
+        out.append((sid, where, "deck", [tuple(p) for p in quad]))
+        # The stair, at the middle of the landward edge and stepping away from
+        # the water — the same two axes wharves.js takes off the outline itself.
+        mid = ((heel_l[0] + heel_r[0]) / 2.0, (heel_l[1] + heel_r[1]) / 2.0)
+        fmid = ((face_l[0] + face_r[0]) / 2.0, (face_l[1] + face_r[1]) / 2.0)
+        ue, un = _unit(heel_r[0] - heel_l[0], heel_r[1] - heel_l[1])
+        oe, on = _unit(fmid[0] - mid[0], fmid[1] - mid[1])
+        deck_y = max([hf.height(p[0], p[1]) for p in (heel_l, mid, heel_r)]
+                     + [freeboard])
+        treads = STAIR_MAX_TREADS
+        for n in range(1, STAIR_MAX_TREADS + 2):
+            foot = (n - 1) * tread
+            g = min(hf.height(mid[0] + ue * a - oe * foot, mid[1] + un * a - on * foot)
+                    for a in (-stair_half, 0.0, stair_half))
+            if deck_y - g <= n * rise_max + 1e-9:
+                treads = n - 1
+                break
+        back = max(treads, 0) * tread
+        if back <= 0:
+            continue
+        out.append((sid, where, "boarding stair", [
+            (mid[0] - ue * stair_half, mid[1] - un * stair_half),
+            (mid[0] + ue * stair_half, mid[1] + un * stair_half),
+            (mid[0] + ue * stair_half - oe * back, mid[1] + un * stair_half - on * back),
+            (mid[0] - ue * stair_half - oe * back, mid[1] - un * stair_half - on * back),
+        ]))
+    return out
+
+
+def _in_works(e, n, works):
+    """The landing whose works stand at this point, or None — `(sid, where, part)`."""
+    for sid, where, part, poly in works:
+        if _inside((e, n), poly):
+            return sid, where, part
+    return None
+
+
+def _board_in_works(e, n, ue, un, works, half):
+    """A board is 1.83 m of plank laid ACROSS the run, so it is inside a landing
+    if any part of its width is — the centre clearing the deck is not enough."""
+    if not works:
+        return None
+    for k in range(9):
+        s = -half + 2.0 * half * k / 8.0
+        hit = _in_works(e + ue * s, n + un * s, works)
+        if hit is not None:
+            return hit
+    return None
+
+
+def _gap_phrase(gap) -> str:
+    """What closed a gap, named by the LANDING rather than by the part of it a
+    board happened to touch: a deck and the stair that boards it are one thing
+    standing in the way, and a gap closed by two neighbouring wharves says both."""
+    names = gap["names"]
+    if len(names) == 1:
+        return names[0]
+    return ", ".join(names[:-1]) + f" and {names[-1]}"
+
+
+def _cut_reach_at_landings(line, works, half):
+    """Split a reach wherever a committed landing's works cross it (T-0228).
+
+    Marches the polyline at `LANDING_CUT_PITCH_M`, blocks every station whose
+    BOARD touches a landing, widens each blocked span by `LANDING_CLEAR_M` so the
+    last board stops short of the timber instead of against it, and returns
+    `(runs, gaps)` — the surviving stretches as polylines, east to west, and one
+    description per gap naming what closed it.
+
+    A surviving stretch under `LANDING_MIN_RUN_M` is dropped into its own gap:
+    two metres of boards between two docks is a landing, not a sidewalk, and the
+    same judgement the street edge already makes at `EDGE_MIN_RUN_M`.
+    """
+    segs = []
+    total = 0.0
+    knots = [0.0]
+    for i in range(len(line) - 1):
+        (ax, ay), (bx, by) = line[i], line[i + 1]
+        seg = math.hypot(bx - ax, by - ay)
+        if seg == 0:
+            continue
+        segs.append((total, seg, ax, ay, (bx - ax) / seg, (by - ay) / seg))
+        total += seg
+        knots.append(total)
+    if not segs:
+        return [], []
+
+    def at(s):
+        s = min(max(s, 0.0), total)
+        for s0, seg, ax, ay, de, dn in segs:
+            if s <= s0 + seg + 1e-9:
+                t = s - s0
+                return ax + de * t, ay + dn * t, -dn, de
+        s0, seg, ax, ay, de, dn = segs[-1]
+        return ax + de * seg, ay + dn * seg, -dn, de
+
+    steps = max(1, int(round(total / LANDING_CUT_PITCH_M)))
+    marks = []
+    for i in range(steps + 1):
+        e, n, ue, un = at(total * i / steps)
+        marks.append(_board_in_works(e, n, ue, un, works, half))
+
+    spans = []   # [lo, hi, [(sid, label), ...]] in arc length, already widened
+    i = 0
+    while i <= steps:
+        if marks[i] is None:
+            i += 1
+            continue
+        j = i
+        named = []
+        while j <= steps and marks[j] is not None:
+            if marks[j] not in named:
+                named.append(marks[j])
+            j += 1
+        lo = total * i / steps
+        hi = total * (j - 1) / steps
+        spans.append([lo - LANDING_CLEAR_M, hi + LANDING_CLEAR_M, named, lo, hi])
+        i = j
+
+    # A short survivor between two spans is not a walk; fold it into them.
+    merged = True
+    while merged and len(spans) > 1:
+        merged = False
+        for k in range(len(spans) - 1):
+            if spans[k + 1][0] - spans[k][1] < LANDING_MIN_RUN_M:
+                a, b = spans[k], spans[k + 1]
+                names = a[2] + [x for x in b[2] if x not in a[2]]
+                spans[k:k + 2] = [[a[0], b[1], names, a[3], b[4]]]
+                merged = True
+                break
+
+    runs = []
+    cuts = [0.0] + [x for sp in spans for x in (sp[0], sp[1])] + [total]
+    for a, b in zip(cuts[0::2], cuts[1::2]):
+        a, b = max(a, 0.0), min(b, total)
+        if b - a < LANDING_MIN_RUN_M:
+            continue
+        pts = [at(a)[:2]]
+        pts += [at(k)[:2] for k in knots if a + 1e-6 < k < b - 1e-6]
+        pts.append(at(b)[:2])
+        runs.append([[_round(e), _round(n)] for e, n in pts])
+
+    gaps = [{"names": list(dict.fromkeys(where for _sid, where, _part in sp[2])),
+             "ids": sorted({sid for sid, _where, _part in sp[2]}),
+             "from": at(sp[3])[:2], "to": at(sp[4])[:2],
+             "run_m": _round(sp[4] - sp[3], 1)} for sp in spans]
+    return runs, gaps
 
 
 def build_river_walk() -> tuple[list, list]:
@@ -1260,15 +1523,25 @@ def build_river_walk() -> tuple[list, list]:
         raise SystemExit("generate_frontage_works: h_jones_store no longer states a "
                          "wharf — the river walk's west terminus is gone and the "
                          "authored run must be re-bounded")
-    foot = jones["bank_foot_local_enu_m"]
-    end = RIVER_WHARF_REACH[-1]
-    if math.hypot(end[0] - foot[0], end[1] - foot[1]) > 6.5:
-        raise SystemExit("generate_frontage_works: the river walk's last knot is "
-                         f"{math.hypot(end[0] - foot[0], end[1] - foot[1]):.1f} m from "
-                         "Jones's landing — the wharf moved, re-author the run's end")
-
     streets = _streets()
     hf = _heightfield()
+
+    # WHAT BOUNDS THE RUN ON THE WEST is the landing itself, and since T-0228 the
+    # audit says so in the landing's own terms: the authored end must lie inside
+    # Jones's works, which is the statement "the walk runs INTO the landing and
+    # the cut below is what stops it there". A tolerance in metres was the old
+    # form of this, and it passed happily while the last five metres of boards
+    # lay under the deck.
+    _assert_stair_reach()
+    works = _landing_works(wharves, hf)
+    end, before = RIVER_WHARF_REACH[-1], RIVER_WHARF_REACH[-2]
+    ue, un = _unit(-(end[1] - before[1]), end[0] - before[0])
+    landed = _board_in_works(end[0], end[1], ue, un, works, WALK_W_M / 2.0)
+    if landed is None or landed[0] != "h_jones_store":
+        raise SystemExit("generate_frontage_works: the river walk's last board no "
+                         "longer lies in Jones's landing's works (it lies in "
+                         f"{landed[1] if landed else 'open ground'}) — the wharf "
+                         "moved, re-author the run's end")
 
     # THE DEARBORN CROSSING'S FIXED LINE: the street's own committed centreline,
     # crossed square where the walk meets it, reaching past the travelled track
@@ -1293,6 +1566,12 @@ def build_river_walk() -> tuple[list, list]:
     west_line = ([[cross_e_west, RIVER_DEARBORN_CROSS_N]]
                  + [[_round(e), _round(n)] for e, n in RIVER_WEST_REACH])
     wharf_line = [[_round(e), _round(n)] for e, n in RIVER_WHARF_REACH]
+    # THE AUTHORED LINE RUNS THROUGH TWO LANDINGS, and no board is laid in one.
+    wharf_runs, wharf_gaps = _cut_reach_at_landings(wharf_line, works, WALK_W_M / 2.0)
+    if not wharf_runs:
+        raise SystemExit("generate_frontage_works: the committed landings now close "
+                         "the whole wharf reach — no riverside walk survives, and "
+                         "that is a re-authoring rather than a regeneration")
 
     # The audits. The footway's own boards ride the committed deck, so only its
     # two approach ends are asked of the ground; every other board is.
@@ -1300,15 +1579,19 @@ def build_river_walk() -> tuple[list, list]:
         if hf.height(e, n) < RIVER_DRY_M:
             problems.append(f"{RIVER_WALK_ID}: the crossing footway's approach at "
                             f"({e:.1f}, {n:.1f}) stands on wet ground")
-    _audit_river_reach(f"{RIVER_WALK_ID} east reach", east_line, hf, streets, problems)
-    _audit_river_reach(f"{RIVER_WALK_ID} west reach", west_line, hf, streets, problems)
-    _audit_river_reach(f"{RIVER_WALK_ID} wharf reach", wharf_line, hf, streets, problems)
+    _audit_river_reach(f"{RIVER_WALK_ID} east reach", east_line, hf, streets, problems,
+                       works)
+    _audit_river_reach(f"{RIVER_WALK_ID} west reach", west_line, hf, streets, problems,
+                       works)
+    for i, run in enumerate(wharf_runs):
+        _audit_river_reach(f"{RIVER_WALK_ID} wharf reach {i + 1}", run, hf, streets,
+                           problems, works)
     # And the stated reason for the one break in the run must still be true: the
     # gap between the two reaches crosses the La Salle slough's traced mouth. If
     # this ground ever comes up dry, the refusal below is wrong and the walk
     # should be re-authored continuous.
-    gap_mid_e = (west_line[-1][0] + wharf_line[0][0]) / 2.0
-    gap_mid_n = (west_line[-1][1] + wharf_line[0][1]) / 2.0
+    gap_mid_e = (west_line[-1][0] + wharf_runs[0][0][0]) / 2.0
+    gap_mid_n = (west_line[-1][1] + wharf_runs[0][0][1]) / 2.0
     if hf.height(gap_mid_e, gap_mid_n) >= 0.0:
         problems.append(f"{RIVER_WALK_ID}: the La Salle mouth gap at ({gap_mid_e:.1f}, "
                         f"{gap_mid_n:.1f}) is dry ground — the stated refusal no "
@@ -1417,30 +1700,62 @@ def build_river_walk() -> tuple[list, list]:
                 f"regeneration. The knots are invented: docs/LIBERTIES.md {liberty}."
             ),
         },
-        {
-            "id": f"{RIVER_WALK_ID}_wharf_reach",
+    ]
+    # THE LAST REACH, IN AS MANY RUNS AS THE LANDINGS LEAVE IT (T-0228). The
+    # authored line is one claim about where a riverside walk went; the runs are
+    # what survives the wharves that come ashore across it, and the gaps between
+    # them are in `refused` under the landing that closed each one.
+    for i, run in enumerate(wharf_runs):
+        east_bound = ("the west lip of the La Salle slough's mouth" if i == 0
+                      else _gap_phrase(wharf_gaps[i - 1]))
+        west_bound = (_gap_phrase(wharf_gaps[i]) if i < len(wharf_gaps)
+                      else "the authored run's western end")
+        walks.append({
+            "id": f"{RIVER_WALK_ID}_wharf_reach_{i + 1}",
             "belongs_to": RIVER_WALK_ID,
             "kind": "plank_walk",
             "confidence": "reconstructed",
-            "centreline_local_enu_m": wharf_line,
+            "centreline_local_enu_m": run,
             "width_m": WALK_W_M,
             "rise_m": WALK_RISE_M,
             "plank_run": "across",
             "plank_pitch_m": PLANK_PITCH_M,
             "plank_thickness_m": PLANK_T_M,
             "note": (
-                "THE RIVERSIDE WALK'S LAST REACH, from the west lip of the La Salle "
-                "mouth out along the swinging bank to Jones's landing — the "
-                "easternmost wharf on the South Water bank, whose committed "
-                "`bank_foot` this reach is audited to end within a landing's width "
-                "of. That wharf is where the town's own riverfront walking surface "
-                "begins, which is what bounds this run on the west. The knots are "
-                f"invented: docs/LIBERTIES.md {liberty}."
+                f"THE RIVERSIDE WALK'S LAST REACH, run {i + 1} of "
+                f"{len(wharf_runs)}, from {east_bound} west along the swinging "
+                f"bank to {west_bound}. The reach is authored as one line from "
+                "the La Salle mouth to Jones's landing and then CUT wherever a "
+                "committed landing's deck or boarding stair stands across it: a "
+                "plank sidewalk stops where a working wharf comes ashore, and the "
+                "landing's own deck — a walker's floor since T-0058 — is the "
+                "surface there. Every board of this run is audited clear of every "
+                "landing's works on every regeneration, so a wharf that moves or "
+                "a new one built on this bank re-cuts the walk rather than "
+                f"oversailing it. The knots are invented: docs/LIBERTIES.md {liberty}."
             ),
-        },
-    ]
+        })
     walks.sort(key=lambda w: w["id"])
     refused = [
+        {
+            "structure_id": RIVER_WALK_ID,
+            "wall": (f"{_gap_phrase(g)} (E "
+                     f"{g['to'][0]:+.0f} to {g['from'][0]:+.0f})"),
+            "why": (
+                f"{_gap_phrase(g)} comes ashore across the walk's authored line, "
+                f"and {g['run_m']} m of boards are refused rather than laid under "
+                "it. The deck ties 2.0 m back into this bank (L132) and its "
+                "boarding stair steps down landward of that heel onto the same "
+                "ground; a walk laid through them ran under a slab standing half "
+                "a metre over the planks, with 0.36 m of daylight between, and "
+                "since T-0058 put a floor on that slab it also stood a 0.50 m "
+                "riser across the walker's path — over the 0.35 m step-up rule, "
+                "so refused. What a walker meets here is the landing: its deck is "
+                "the walking surface and its boarding stair is the way up. "
+                "T-0228."
+            ),
+        } for g in wharf_gaps
+    ] + [
         {
             "structure_id": RIVER_WALK_ID,
             "wall": "the La Salle slough mouth (E +489 to +459)",
@@ -1767,9 +2082,12 @@ def river_record(walks: list, refused: list) -> dict:
         "line is the verge between the South Water track's committed edge and the "
         "traced 1834 bank; the run breaks at the La Salle slough's traced mouth, "
         "where no crossing is committed and the street's own fill carries the foot "
-        "passenger; and it ends at Jones's landing, the easternmost committed "
-        "wharf, where the town's riverfront walking surface begins. Everything "
-        "between those pins is invented and audited: docs/LIBERTIES.md L153."
+        "passenger; it breaks again at each committed landing that comes ashore "
+        "across it, because a plank sidewalk stops where a working wharf lands and "
+        "the wharf's own deck is the surface there (T-0228); and it ends at "
+        "Jones's landing, the easternmost committed wharf, where the town's "
+        "riverfront walking surface begins. Everything between those pins is "
+        "invented and audited: docs/LIBERTIES.md L153."
     )
     return {
         "_doc": (
@@ -1782,8 +2100,8 @@ def river_record(walks: list, refused: list) -> dict:
             "already built, drawn at load by renderers/web/js/frontage.js. "
             "Generated by tools/generate_frontage_works.py and re-derived byte "
             "for byte by tools/check.sh; the generator audits every board "
-            "station against the committed heightfield and the committed street "
-            "before it will write this file."
+            "station against the committed heightfield, the committed street "
+            "and the committed landings before it will write this file."
         ),
         "id": "river_walk_frontage",
         "name": ("The river plank walk: the footway over the slough mouth, and "
@@ -1836,7 +2154,8 @@ def river_record(walks: list, refused: list) -> dict:
                 "bridge deck, the Dearborn centreline, Jones's landing — and its "
                 "authored knots are audited on every regeneration: every board "
                 "station must stand on committed ground above the water "
-                f"({RIVER_DRY_M} m over datum) and clear the South Water track's "
+                f"({RIVER_DRY_M} m over datum), clear every committed landing's "
+                "deck and boarding stair, and clear the South Water track's "
                 "own edge, the crossing must span Dearborn's track with "
                 f"{RIVER_CROSS_CLEAR_M} m to spare each side, the run must end "
                 "within a landing's width of Jones's committed bank foot, and "
