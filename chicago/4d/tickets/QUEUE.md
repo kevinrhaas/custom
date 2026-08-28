@@ -42,14 +42,12 @@ T-0096 — Did the second Fort Dearborn carry a flagstaff, and can anything but 
 
 # --- WHAT GROWS, AND WHAT A PHONE SEES — visible
 T-0019 — Six forb layers ask for more plants than the lattice holds
-T-0225 — The sward's drawn reach is measured off plants at two per cent coverage
 
 # --- THE NEWSPAPERS — placed here by the owner, 2026-08-28: "put all that legwork
 # --- after the visible things". The invisible extraction tickets at the top of this
 # --- band BLOCK the visible seeding at its bottom — documented storefronts and real
 # --- people replacing invented ones — which is why they sit above other invisible work.
 # --- Three owner rulings govern the epic; each ticket carries them in full.
-T-0256 — The newspaper corpus becomes a source this project can cite
 T-0257 — An extraction schema, and the gazetteer the papers compile into
 T-0258 — Reading the Democrat, part one: November 1833 to June 1834
 T-0259 — Reading the Democrat, part two: July to December 1834
@@ -111,3 +109,5 @@ T-0271 — The balanced ceiling is breached at the forks by 5,290 triangles on a
 T-0272 — The West Division parcel's form values come from the archetype and cite the family band: 8 families, 11 claims outside it
 T-0273 — The South Division infill parcel's form values come from the archetype and cite the family band: 9 families, 10 claims outside it
 T-0274 — The inferred-household parcel's form values come from the archetype and cite the family band: 8 families, 10 claims outside it
+T-0275 — Back-merge main into dev: the newspaper deposit is on main, and 60 Finder-duplicate files on main turn the dev gate red
+T-0277 — The mid and forb rings' outer edges are re-priced for a density handover, now the reach statistic is honest

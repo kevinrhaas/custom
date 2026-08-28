@@ -957,6 +957,23 @@ step "a street's invented line reaches the picture" \
 step "a spatial filter still cannot bias the sward's rank deal" \
   node tools/measure_rank_bias.mjs --self-test
 
+# The 1833-1835 newspaper corpus is the PAPERS epic's foundation: eighty-six issues
+# that the project could not cite until they had a register to resolve against. The
+# register is only worth something if it is true, so this asserts the count rather
+# than observing it (a silently dropped issue is otherwise invisible), requires dates
+# to increase strictly per publication, and re-hashes every derived text file. The
+# deposit itself is on `main` and not on `dev` (T-0275), which is why the check knows
+# three deposit states and not two: present, absent, and PARTIAL — and partial is
+# always red, because that is the state that means damage.
+step "the newspaper corpus resolves, and nothing under data/research/ is published" \
+  python3 tools/newspaper_corpus.py --check
+
+step "…and its own assertions still fire when broken" \
+  python3 tools/newspaper_corpus.py --self-test
+
+step "the .docx extractor is deterministic and keeps its uncertainty brackets" \
+  python3 tools/docx_text.py --self-test
+
 printf '\n'
 if [ "$FAILED" -eq 0 ]; then
   printf '\033[32mCHECK PASS\033[0m\n'
