@@ -1,7 +1,7 @@
 ---
 id: T-0309
 title: Reading the Democrat, December 1833: Vol. I Nos. 2-6
-state: claimed
+state: done
 epic: PAPERS
 requested_by: owner
 seen: false
@@ -9,8 +9,8 @@ effort: S
 legacy_id: null
 parent: T-0258
 opened: 2026-08-28
-closed: null
-pr: null
+closed: 2026-08-28
+pr: 483
 claimed_by: run 8/28/2026, 2:09:38 PM CT
 blocked_on: null
 needs_bake: false
