@@ -39,7 +39,6 @@ T-0219 — Finish the heightfield SOUTH to Madison Street, the plat's last tier
 T-0096 — Did the second Fort Dearborn carry a flagstaff, and can anything but a retrospective plate say so
 
 # --- FABRIC AND WHAT THE BUILDINGS ARE MADE OF — visible
-T-0172 — The other three anonymous parcels still deal a retyped roof pitch, and none of them bounds an eave band by what the archetype can carry
 
 # --- WHAT GROWS, AND WHAT A PHONE SEES — visible
 T-0209 — The bloom reaches 1.8 per cent of the ground the sward covers

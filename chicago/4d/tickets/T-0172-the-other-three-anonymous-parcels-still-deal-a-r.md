@@ -1,7 +1,7 @@
 ---
 id: T-0172
 title: The other three anonymous parcels still deal a retyped roof pitch, and none of them bounds an eave band by what the archetype can carry
-state: claimed
+state: done
 epic: META
 requested_by: loop
 seen: false
@@ -9,8 +9,8 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-08-24
-closed: null
-pr: null
+closed: 2026-08-28
+pr: 444
 claimed_by: run 8/28/2026, 3:36:01 AM CT
 blocked_on: null
 needs_bake: false
