@@ -974,6 +974,23 @@ step "…and its own assertions still fire when broken" \
 step "the .docx extractor is deterministic and keeps its uncertainty brackets" \
   python3 tools/docx_text.py --self-test
 
+# What the papers are being read INTO. The extraction files are hand-made, one per
+# issue, and the gazetteer is compiled from them and nothing else — so this asks
+# whether the committed gazetteer is byte-identical to a fresh compile, which is
+# the only way a hand edit to a generated research file gets caught before it is
+# cited. It also holds the three lines that stop this epic drifting into fiction:
+# a claim that cannot name its column cannot be made, `reading:
+# transcription_mediated` is carried structurally rather than defaulted, and two
+# spellings under one identity need a stated merge_rule. Where the witness text is
+# on this branch the quote is checked against it byte for byte; the reconciled
+# transcriptions are on `main` (T-0275), so most quotes are pinned by sha256 and
+# will be checked the day the deposit arrives.
+step "the newspaper extractions resolve, and the gazetteer is a clean compile of them" \
+  python3 tools/compile_gazetteer.py --check
+
+step "…and its own assertions still fire when broken" \
+  python3 tools/compile_gazetteer.py --self-test
+
 printf '\n'
 if [ "$FAILED" -eq 0 ]; then
   printf '\033[32mCHECK PASS\033[0m\n'

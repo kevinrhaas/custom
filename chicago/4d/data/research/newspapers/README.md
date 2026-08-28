@@ -66,3 +66,71 @@ so the corpus can grow without spending the published tree's size budget.
 Deterministic: the same deposit produces byte-identical `corpus.json` and `text/`.
 `--deposit` exists because the deposit is on another branch; paths are always
 *recorded* at their canonical `chicago/reference/...` home whatever `--deposit` says.
+
+## What the papers are read INTO
+
+Two files, and only one of them is written by hand.
+
+| | |
+|---|---|
+| `extracted/<issue_id>.json` | **hand-made**, one per issue, holding `claims[]` |
+| `gazetteer.json` | **generated** by `tools/compile_gazetteer.py --build`, never hand-edited |
+
+    tools/compile_gazetteer.py --build       recompile the gazetteer
+    tools/compile_gazetteer.py --check       the gate (runs in tools/check.sh)
+    tools/compile_gazetteer.py --self-test   the gate's assertions still fire
+
+The gate recompiles the gazetteer in memory and compares **bytes** with what is
+committed, so hand-editing the compiled file is not a matter of etiquette — it turns
+the build red. The compile is deterministic: sorted keys, sorted lists, no clock.
+
+### A claim
+
+`quote` is verbatim and includes the transcriber's own square-bracketed uncertainty
+notes; it is never smoothed. `normalized` sits **beside** it and never replaces it —
+interleaved columns unshuffled, `rn`/`m`-class confusions corrected, and any word
+*restored* rather than read written in **angle** brackets, so the two kinds of
+bracket can never be mistaken for each other. Every claim also carries `locator`
+(issue page, column, line range, per the citing convention above), `entities[]` with
+each name as printed **and** a normalization guess, `reading:
+transcription_mediated` — structurally, so no claim can omit it — and, where the
+advertisement has its own dateline, `ad_copy_date`: the date the copy was *placed*,
+which is what evidence windows are built from and is often months older than the
+issue it appears in.
+
+A claim may also carry `corroborations[]`, pointing at a second witness for the same
+issue. Nothing may be *cited* from a witness with no page/column markers; a
+corroboration is how such a witness earns its keep, and the gate enforces the
+difference.
+
+### The identity policy
+
+There is **no fuzzy matching** anywhere in the compiler. Two mentions become one
+person because an extraction gave them the same `id` — which is a merge, and a merge
+must be explained. Two spellings under one id need a `merge_rule` naming both and
+stating the judgement, or the compile fails; if they share a surname and disagree on
+initials the rule must additionally say `cross_initial: true`.
+
+### The worked fixture
+
+`extracted/chicago_democrat_1835_07_01.json` — eight claims from the scene-date
+Democrat, chosen because between them they exercise every field. Two of them are
+worth knowing about:
+
+- **Peter Cohen**, dry goods, groceries, clothing and liquors, South Water Street,
+  advertisement dated *Chicago, Nov. 3, 1834* and still running eight months later.
+  His placement is `relative`, anchored on Newberry & Dole. The reconciled
+  transcription's column cut removes the words that make it precise — it has only
+  `low Mesers. Newberry and Dole's` — and the `-2` alternate witness, worse
+  everywhere else, happens to carry the line whole. Read together they say **next
+  door below**, not the *a few doors below* the ticket that commissioned this work
+  quoted from memory.
+- **J. S. C. Hogan** advertises a store *one door below the Post Office* — the
+  offset word again supplied by the alternate — and signs the post-office letter
+  list in the same issue as `HOGAN, P. M.` The anchor and the man are one person,
+  which is the sort of thing the gazetteer exists to hold onto.
+
+Cohen's entry compiles with `survival_liberty: true`: his existence is documented,
+his survival to 1835-07-01 is assumed, per the owner's third ruling. That becomes an
+entry in `docs/LIBERTIES.md` when a storefront is actually placed in the town, which
+is not this ticket.

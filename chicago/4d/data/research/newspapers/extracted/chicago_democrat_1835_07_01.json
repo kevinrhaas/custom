@@ -1,0 +1,354 @@
+{
+  "claims": [
+    {
+      "ad_copy_date": "1834-11-03",
+      "ad_copy_date_note": "The ad's own dateline, not the issue date: this copy was placed 1834-11-03 and was still running on the scene date, eight months later. '-49' is the printer's insertion count. Evidence windows are built from this, per the schema.",
+      "ad_copy_dateline": "Chicago, Nor. 3, 1634.-49.",
+      "business": {
+        "goods": [
+          "Clothing",
+          "Dry Goods",
+          "Groceries",
+          "Liquors"
+        ],
+        "id": "business:peter_cohen_store",
+        "placement": {
+          "anchor": "Newberry & Dole",
+          "anchor_id": "business:newberry_and_dole",
+          "class": "relative",
+          "offset_reading": "next door below Messrs. Newberry and Dole's store house",
+          "offset_reading_witness": "alt_transcription_2",
+          "offset_text": "low Mesers. Newberry and Dole's",
+          "offset_text_witness": "primary"
+        },
+        "street": "South Water Street",
+        "trade": "dry goods, groceries, clothing and liquors"
+      },
+      "corroborations": [
+        {
+          "locator": {
+            "line_end": 475,
+            "line_start": 470
+          },
+          "note": "The primary's column cut removes the words that make the placement precise. The alternate reads 'at lin store npZt door tn: re-low Messha, Newberry and Dale's store house ml in south water atror' — 'at his store next door below Messrs. Newberry and Dole's store house in south water street'. The two witnesses agree on every word both carry, which is what licenses the restoration. It is 'next door below', not 'a few doors below'.",
+          "quote": "Cash pal for ot Gold anal Slee May oH o NEW GooDs,\nMe PETER COMEN,\nOULD heg leave to inform his old cus tomers, and the pubbe gengrally. th\nwaived by brig Indiana, and allie moxt reasonable terms, a large uplete and splendid assortment of\nDry Goods, Groceries, & CLOTHING,\n| well auited o this section of the country. Al “| kinks of Liquors, at wholesale and rota 1 F8 | rexpertfally requesta the people te call and ea amine for t sctvex, at lin store npZt door tn: re-low Messha, Newberry and Dale's store house ml in south water atror a | Chcago, Idd. 49,",
+          "supplies": "next door be | store house",
+          "witness": "alt_transcription_2"
+        }
+      ],
+      "entities": [
+        {
+          "as_printed": "PETER COHEN",
+          "id": "person:peter_cohen",
+          "kind": "person",
+          "normalized": "Peter Cohen",
+          "role": "proprietor"
+        },
+        {
+          "as_printed": "PETER COHEN",
+          "id": "business:peter_cohen_store",
+          "kind": "business",
+          "normalized": "Peter Cohen",
+          "role": "subject"
+        }
+      ],
+      "id": "chicago_democrat_1835_07_01#c01",
+      "kind": "business",
+      "locator": {
+        "column": 5,
+        "issue_page": 4,
+        "line_end": 5068,
+        "line_start": 5037,
+        "pdf_page": 36
+      },
+      "normalization_notes": "Two advertisements are interleaved line by line in this column and the quote carries both as printed; the normalized reading keeps only Cohen's, which is the untruncated stream. Square brackets in a quote are the transcriber's own; ANGLE brackets in a normalized reading are this extraction's restorations and are never silent. 'Mesers'/'Nor.'/'1634'/'kinka'/'amme' are rn/m- and v/r-class OCR, corrected. The words before 'low Mesers.' are lost to the column cut and are restored from the alternate witness, not guessed — see the corroboration.",
+      "normalized": "NEW GOOD<S>. / PETER COHEN, <w>O<UL>D beg leave to inform <his old cus>tomers, and the public ge<nerally> ... he has just received by brig India<na> ... for sale on the most reasonable ti<erms> ... complete and splendid assortment <of> Dry Goods, Groce<ries,> CLOTHIN<G> ... well suited to this section of the c<ountry> ... kin<d>s of Liquors, at wholesale an<d retail> ... respectfully requests the people to <call and ex>amine for themselves, at his store <next door be>low Me<ss>rs. Newberry and Dole's <store house> ... on south water street. / Chicago, No<v>. 3, 18<3>4.-49.",
+      "quote": "NEW GOOD:\nablishment,\nork.\nWOrD beg leave to inform\nPETER COHEN,\nHouse in this\nsear the Man.\ntomere, and the public ge\nr the perma.\nhe has just received by brig india\nlace and the\nfor sale on the most reasonable ti\ncrior and gen-\ncomplete and splendid assortment\nDry Goods, Groce\n1018.\nCLOTHIN\nslick acquain-\ne in the buni-\nwell suited to this section of the c\nn Customers\nkinka of Liquors, at wholesale an\nat 2 years, as\nrespectfully requests the people to\namme for themselves, at his store\nage they re-\nlow Mesers. Newberry and Dole's\n«faction, and\nanch here, as\non south water street.\nrehants in the\nChicago, Nor. 3, 1634.-49.",
+      "reading": "transcription_mediated",
+      "witness": "primary"
+    },
+    {
+      "business": {
+        "goods": [
+          "Crockery",
+          "Dry Goods",
+          "Glass",
+          "Groceries",
+          "Hardware"
+        ],
+        "id": "business:j_s_c_hogan_store",
+        "placement": {
+          "anchor": "the Post Office",
+          "anchor_id": "place:chicago_post_office",
+          "class": "relative",
+          "offset_reading": "in South Water Street, one door below the Post Office",
+          "offset_reading_witness": "alt_transcription_2",
+          "offset_text": "in South Water Street, one\nthe Post Office,",
+          "offset_text_witness": "primary"
+        },
+        "street": "South Water Street",
+        "trade": "dry goods, groceries, hardware, crockery and glass"
+      },
+      "corroborations": [
+        {
+          "locator": {
+            "line_end": 478,
+            "line_start": 476
+          },
+          "note": "'x FFERS ot Pholesulaand Reuil, at ls Stor 7, in Routh Water Street, one deor beluy (i, | the Post Office' — 'OFFERS at Wholesale and Retail, at his store, in South Water Street, one door below the Post Office'. The primary carries 'one' and 'the Post Office' on separate lines with the offset word missing; the alternate has it.",
+          "quote": "nt J. 8. C.\nx FFERS ot Pholesulaand Reuil, at ls Stor 7, in Routh Water Street, one deor beluy (i, | the Post Office,\nor Dry Goods, Groceries,",
+          "supplies": "door beluy",
+          "witness": "alt_transcription_2"
+        }
+      ],
+      "entities": [
+        {
+          "as_printed": "J. S. C. HOGA",
+          "id": "person:j_s_c_hogan",
+          "kind": "person",
+          "normalized": "J. S. C. Hogan",
+          "role": "proprietor"
+        },
+        {
+          "as_printed": "J. S. C. HOGA",
+          "id": "business:j_s_c_hogan_store",
+          "kind": "business",
+          "normalized": "J. S. C. Hogan",
+          "role": "subject"
+        },
+        {
+          "as_printed": "the Post Office",
+          "id": "place:chicago_post_office",
+          "kind": "place",
+          "normalized": "the Post Office",
+          "role": "anchor"
+        }
+      ],
+      "id": "chicago_democrat_1835_07_01#c02",
+      "kind": "business",
+      "locator": {
+        "column": 5,
+        "issue_page": 4,
+        "line_end": 5079,
+        "line_start": 5070,
+        "pdf_page": 36
+      },
+      "normalization_notes": "Interleaved with a second advertisement, as c01 is. 'lieui' is 'Retail'. The run of the sentence — 'one ... the Post Office' — is broken by the column cut and closed from the alternate witness.",
+      "normalized": "J. S. C. HOGA<N> OFFERS A<t> Wholesale and <Reta>i<l>, <at his store,> in South Water Street, one <door below> the Post Office, ... Dry Goods, Groc<eries,>",
+      "quote": "J. S. C. HOGA\ndoing the a-\nOFFERS AL Wholesale and lieui\nblick, we are\ns of the many.\nin South Water Street, one\nthe Post Office,\nthis place or\nAID, will be\nDry Goods, Groc",
+      "reading": "transcription_mediated",
+      "witness": "primary"
+    },
+    {
+      "business": {
+        "goods": [
+          "Dry Goods",
+          "Groceries",
+          "Provisions"
+        ],
+        "id": "business:newberry_and_dole",
+        "placement": {
+          "anchor": null,
+          "anchor_id": null,
+          "class": "none",
+          "offset_text": null,
+          "offset_text_witness": null
+        },
+        "street": null,
+        "trade": "storage, forwarding and commission merchants"
+      },
+      "entities": [
+        {
+          "as_printed": "NEWBERRY & I",
+          "id": "business:newberry_and_dole",
+          "kind": "business",
+          "normalized": "Newberry & Dole",
+          "role": "subject"
+        },
+        {
+          "as_printed": "OLIVER NKWBERRY",
+          "id": "person:oliver_newberry",
+          "kind": "person",
+          "normalized": "Oliver Newberry",
+          "role": "reference"
+        }
+      ],
+      "id": "chicago_democrat_1835_07_01#c03",
+      "kind": "business",
+      "locator": {
+        "column": 4,
+        "issue_page": 4,
+        "line_end": 4660,
+        "line_start": 4635,
+        "pdf_page": 36
+      },
+      "normalization_notes": "The firm's second name is cut to a single letter ('NEWBERRY & I') and is restored as Dole from the two advertisements at c01, where the name is printed in full twice on the same page. 'ORTAGO-ILL' is 'CHICAGO-ILL'. This column interleaves a law notice; 'reet,' and 'first door' belong to a stream this reading does not claim, so NO street is asserted for this firm — the placement class is `none` even though a reader would expect South Water Street.",
+      "normalized": "NEWBERRY & <DOLE> Storage, Forwarding and <Commission> MERCHAN<TS>, <CHI>CAGO-ILL<.> ... Agents for the Merchan<ts'> ... REFERENCES— ... OLIVER N<E>WBERRY, Detroit. ... Also, Wholesale and Retai<l> Dry Goods Groces<ries> PROVISION<S>",
+      "quote": "NEWBERRY & I\n1 Law, aud\nStorage, Forwarding and (\nMERCHAN'\nCERY,\nORTAGO-ILL\nreet,\nfirst door\nAgents for the Merchun\nira & Co, (up\nREFERENCES-\n8. T. ARmstRoNo, No.9, Contie\n(TH,\nLaw,\nBARKER & HoLT, Buffala.\nOLIVER NKWBERRY,\nDetroit.\nCALVIN BRITAIP, Mouth St. Jos\nJAMES B. CAMPBELL, Ollara, /\nof Lasalie Bac\nrolcasiona\nAlso, Wholesale and Retai\nwill also meet\nDry Goods Groces\nPROVISION\n3mn30",
+      "reading": "transcription_mediated",
+      "witness": "primary"
+    },
+    {
+      "entities": [
+        {
+          "as_printed": "the Post Office at Chi-",
+          "id": "place:chicago_post_office",
+          "kind": "place",
+          "normalized": "the Post Office at Chicago",
+          "role": "subject"
+        }
+      ],
+      "id": "chicago_democrat_1835_07_01#c04",
+      "kind": "infrastructure",
+      "locator": {
+        "column": 4,
+        "issue_page": 3,
+        "line_end": 3133,
+        "line_start": 3130,
+        "pdf_page": 35
+      },
+      "normalization_notes": "The heading of the post-office letter list, interleaved with the list's own M column ('- MeColley mary mis' is a listed name, not part of the heading). '50th' is very probably '30th' — 5/3 is an ordinary confusion in this batch and the list ran in the July 1 paper — but the month is not on these lines, so no date is asserted here and none is compiled.",
+      "normalized": "<LIST> O<F> Letters <REMAININ>G in the Post Office at Chi<cago, Cook> County Illinois, on the 50th",
+      "quote": "o: Letters.\nG in the Post Office at Chi-\n- MeColley mary mis\nCounty Illinois, on the 50th",
+      "reading": "transcription_mediated",
+      "witness": "primary"
+    },
+    {
+      "entities": [
+        {
+          "as_printed": "HOGAN, P. M.",
+          "id": "person:j_s_c_hogan",
+          "kind": "person",
+          "normalized": "J. S. C. Hogan",
+          "role": "signatory"
+        },
+        {
+          "as_printed": "the Post Office at Chi-",
+          "id": "place:chicago_post_office",
+          "kind": "place",
+          "normalized": "the Post Office at Chicago",
+          "role": "associated"
+        }
+      ],
+      "id": "chicago_democrat_1835_07_01#c05",
+      "kind": "person",
+      "locator": {
+        "column": 5,
+        "issue_page": 3,
+        "line_end": 3705,
+        "line_start": 3700,
+        "pdf_page": 35
+      },
+      "normalization_notes": "The signature closing the letter list of c04, interleaved with a salt-and-table-goods advertisement ('250 BBLS. Salt Irom', 'for saie by', 'P. PR', 'June 16.'), which is why the 'June 16.' on line 3704 is NOT this list's date and is not read as one. 'P. M.' is Postmaster. The initials are not on these lines; they are supplied from c02, the same surname advertising a store one door below this same post office in the same issue.",
+      "normalized": "<... for the> above Letters, will <be charged as a>dvertised. <J. S. C.> HOGAN, P. M.",
+      "occupation": "postmaster",
+      "quote": "above Letters, will\nfor saie by\nP. PR\ndertised.\nJune 16.\nHOGAN, P. M.",
+      "reading": "transcription_mediated",
+      "witness": "primary"
+    },
+    {
+      "entities": [
+        {
+          "as_printed": "Morrison Orsemus",
+          "id": "person:orsemus_morrison",
+          "kind": "person",
+          "normalized": "Orsemus Morrison",
+          "role": "listed"
+        }
+      ],
+      "id": "chicago_democrat_1835_07_01#c06",
+      "kind": "person",
+      "letter_list": true,
+      "letter_list_of": "chicago_democrat_1835_07_01#c04",
+      "locator": {
+        "column": 4,
+        "issue_page": 3,
+        "line_end": 3168,
+        "line_start": 3168,
+        "pdf_page": 35
+      },
+      "normalization_notes": "A name in the letter list of c04, printed surname-first in that list's M column. Nothing but the name is documented here: no trade, no address, no confirmation the person was resident rather than expected.",
+      "normalized": "Morrison Orsemus",
+      "quote": "Morrison Orsemus",
+      "reading": "transcription_mediated",
+      "witness": "primary"
+    },
+    {
+      "entities": [
+        {
+          "as_printed": "Gooding, Caroline Miss",
+          "id": "person:caroline_gooding",
+          "kind": "person",
+          "normalized": "Caroline Gooding",
+          "role": "listed"
+        }
+      ],
+      "id": "chicago_democrat_1835_07_01#c07",
+      "kind": "person",
+      "letter_list": true,
+      "letter_list_of": "chicago_democrat_1835_07_01#c04",
+      "locator": {
+        "column": 4,
+        "issue_page": 3,
+        "line_end": 3173,
+        "line_start": 3173,
+        "pdf_page": 35
+      },
+      "normalization_notes": "A name in the letter list of c04, in that list's G column.",
+      "normalized": "Gooding, Caroline Miss",
+      "quote": "Gooding, Caroline Miss",
+      "reading": "transcription_mediated",
+      "witness": "primary"
+    },
+    {
+      "entities": [
+        {
+          "as_printed": "Gooding, Charles 2",
+          "id": "person:charles_gooding",
+          "kind": "person",
+          "normalized": "Charles Gooding",
+          "role": "listed"
+        }
+      ],
+      "id": "chicago_democrat_1835_07_01#c08",
+      "kind": "person",
+      "letter_list": true,
+      "letter_list_of": "chicago_democrat_1835_07_01#c04",
+      "locator": {
+        "column": 4,
+        "issue_page": 3,
+        "line_end": 3175,
+        "line_start": 3175,
+        "pdf_page": 35
+      },
+      "normalization_notes": "The line below c07 in the same list column, and a DIFFERENT person: the identity policy refuses to merge one Gooding into the other on the shared surname, and this pair is in the fixture to hold that refusal. The trailing '2' is the list's count of letters waiting, not part of the name.",
+      "normalized": "Gooding, Charles 2",
+      "quote": "Gooding, Charles 2",
+      "reading": "transcription_mediated",
+      "witness": "primary"
+    }
+  ],
+  "extracted_by": "hand",
+  "extracted_for": "T-0257",
+  "issue_date": "1835-07-01",
+  "issue_id": "chicago_democrat_1835_07_01",
+  "merge_rules": [],
+  "note": "The worked fixture for the extraction schema. Eight claims, chosen because between them they exercise every field: an interleaved advertisement, an ad dateline older than the issue, a relative placement whose offset words the primary witness lost to column segmentation and the alternate witness supplies, a business with no legible street, a post-office letter list, and two listed persons who share a surname and must never merge.",
+  "publication": "chicago_democrat",
+  "reading": "transcription_mediated",
+  "schema": 1,
+  "witnesses": {
+    "alt_transcription_2": {
+      "column_markers": false,
+      "note": "The single-pass `-2` rebuild. Worse everywhere, and it carries no page/column markers, so nothing may be CITED from it — it appears here only to corroborate a claim already located in the primary. Twice in this fixture it holds words the primary's column segmentation cut off.",
+      "path": "chicago/4d/data/research/newspapers/text/chicago_democrat_1835_07_01__alt_transcription_2.txt",
+      "sha256": "a09a31acfa6756597c85bcb4eb68dc9a80900a78c859b93e986fcdb33fe82a63"
+    },
+    "primary": {
+      "column_markers": true,
+      "note": "The reconciled second-reviewer transcription. Held on `main` with the deposit (T-0275), so a `dev` checkout cannot open it; the sha256 is what ties these line numbers to a byte-identical text.",
+      "path": "chicago/reference/newspapers/Transcriptions/Chicago_Democrat_1833-11_to_1835-08/Chicago_Democrat_1835-07-01_Vol2_No11_Transcription.txt",
+      "sha256": "36f6fdf47fb3305bcbbf02338c38881b490fcc999399e98a33845b7e54603e7d"
+    }
+  }
+}

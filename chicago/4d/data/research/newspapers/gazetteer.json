@@ -1,0 +1,277 @@
+{
+  "businesses": [
+    {
+      "built_1835": true,
+      "contradicted_by": [],
+      "first_seen": "1835-07-01",
+      "goods": [
+        "Crockery",
+        "Dry Goods",
+        "Glass",
+        "Groceries",
+        "Hardware"
+      ],
+      "id": "business:j_s_c_hogan_store",
+      "last_seen": "1835-07-01",
+      "mentions": [
+        "chicago_democrat_1835_07_01#c02"
+      ],
+      "names": [
+        {
+          "as_printed": "J. S. C. HOGA",
+          "claim": "chicago_democrat_1835_07_01#c02",
+          "normalized": "J. S. C. Hogan"
+        }
+      ],
+      "placement": {
+        "anchor": "the Post Office",
+        "anchor_id": "place:chicago_post_office",
+        "class": "relative",
+        "offset_reading": "in South Water Street, one door below the Post Office",
+        "offset_reading_witness": "alt_transcription_2",
+        "offset_text": "in South Water Street, one\nthe Post Office,",
+        "offset_text_witness": "primary"
+      },
+      "proprietors": [
+        "person:j_s_c_hogan"
+      ],
+      "street": "South Water Street",
+      "survival_liberty": false,
+      "trade": "dry goods, groceries, hardware, crockery and glass"
+    },
+    {
+      "built_1835": true,
+      "contradicted_by": [],
+      "first_seen": "1835-07-01",
+      "goods": [
+        "Dry Goods",
+        "Groceries",
+        "Provisions"
+      ],
+      "id": "business:newberry_and_dole",
+      "last_seen": "1835-07-01",
+      "mentions": [
+        "chicago_democrat_1835_07_01#c03"
+      ],
+      "names": [
+        {
+          "as_printed": "NEWBERRY & I",
+          "claim": "chicago_democrat_1835_07_01#c03",
+          "normalized": "Newberry & Dole"
+        }
+      ],
+      "placement": {
+        "anchor": null,
+        "anchor_id": null,
+        "class": "none",
+        "offset_text": null,
+        "offset_text_witness": null
+      },
+      "proprietors": [],
+      "street": null,
+      "survival_liberty": false,
+      "trade": "storage, forwarding and commission merchants"
+    },
+    {
+      "built_1835": true,
+      "contradicted_by": [],
+      "first_seen": "1834-11-03",
+      "goods": [
+        "Clothing",
+        "Dry Goods",
+        "Groceries",
+        "Liquors"
+      ],
+      "id": "business:peter_cohen_store",
+      "last_seen": "1834-11-03",
+      "mentions": [
+        "chicago_democrat_1835_07_01#c01"
+      ],
+      "names": [
+        {
+          "as_printed": "PETER COHEN",
+          "claim": "chicago_democrat_1835_07_01#c01",
+          "normalized": "Peter Cohen"
+        }
+      ],
+      "placement": {
+        "anchor": "Newberry & Dole",
+        "anchor_id": "business:newberry_and_dole",
+        "class": "relative",
+        "offset_reading": "next door below Messrs. Newberry and Dole's store house",
+        "offset_reading_witness": "alt_transcription_2",
+        "offset_text": "low Mesers. Newberry and Dole's",
+        "offset_text_witness": "primary"
+      },
+      "proprietors": [
+        "person:peter_cohen"
+      ],
+      "street": "South Water Street",
+      "survival_liberty": true,
+      "trade": "dry goods, groceries, clothing and liquors"
+    }
+  ],
+  "counts": {
+    "businesses": 3,
+    "claims": 8,
+    "persons": 6,
+    "places": 1
+  },
+  "generated_by": "tools/compile_gazetteer.py --build",
+  "generated_from": [
+    "chicago_democrat_1835_07_01.json"
+  ],
+  "input_digest": "6f39d103d6b33cf5336c125a2dd349f4664dd41028cbb20535bfa43f4bf631fa",
+  "persons": [
+    {
+      "first_seen": "1835-07-01",
+      "id": "person:caroline_gooding",
+      "last_seen": "1835-07-01",
+      "letter_list_only": true,
+      "mentions": [
+        "chicago_democrat_1835_07_01#c07"
+      ],
+      "names": [
+        {
+          "as_printed": "Gooding, Caroline Miss",
+          "claim": "chicago_democrat_1835_07_01#c07",
+          "normalized": "Caroline Gooding"
+        }
+      ],
+      "occupations": [],
+      "places": []
+    },
+    {
+      "first_seen": "1835-07-01",
+      "id": "person:charles_gooding",
+      "last_seen": "1835-07-01",
+      "letter_list_only": true,
+      "mentions": [
+        "chicago_democrat_1835_07_01#c08"
+      ],
+      "names": [
+        {
+          "as_printed": "Gooding, Charles 2",
+          "claim": "chicago_democrat_1835_07_01#c08",
+          "normalized": "Charles Gooding"
+        }
+      ],
+      "occupations": [],
+      "places": []
+    },
+    {
+      "first_seen": "1835-07-01",
+      "id": "person:j_s_c_hogan",
+      "last_seen": "1835-07-01",
+      "letter_list_only": false,
+      "mentions": [
+        "chicago_democrat_1835_07_01#c02",
+        "chicago_democrat_1835_07_01#c05"
+      ],
+      "names": [
+        {
+          "as_printed": "J. S. C. HOGA",
+          "claim": "chicago_democrat_1835_07_01#c02",
+          "normalized": "J. S. C. Hogan"
+        },
+        {
+          "as_printed": "HOGAN, P. M.",
+          "claim": "chicago_democrat_1835_07_01#c05",
+          "normalized": "J. S. C. Hogan"
+        }
+      ],
+      "occupations": [
+        "postmaster"
+      ],
+      "places": [
+        "place:chicago_post_office"
+      ]
+    },
+    {
+      "first_seen": "1835-07-01",
+      "id": "person:oliver_newberry",
+      "last_seen": "1835-07-01",
+      "letter_list_only": false,
+      "mentions": [
+        "chicago_democrat_1835_07_01#c03"
+      ],
+      "names": [
+        {
+          "as_printed": "OLIVER NKWBERRY",
+          "claim": "chicago_democrat_1835_07_01#c03",
+          "normalized": "Oliver Newberry"
+        }
+      ],
+      "occupations": [],
+      "places": []
+    },
+    {
+      "first_seen": "1835-07-01",
+      "id": "person:orsemus_morrison",
+      "last_seen": "1835-07-01",
+      "letter_list_only": true,
+      "mentions": [
+        "chicago_democrat_1835_07_01#c06"
+      ],
+      "names": [
+        {
+          "as_printed": "Morrison Orsemus",
+          "claim": "chicago_democrat_1835_07_01#c06",
+          "normalized": "Orsemus Morrison"
+        }
+      ],
+      "occupations": [],
+      "places": []
+    },
+    {
+      "first_seen": "1834-11-03",
+      "id": "person:peter_cohen",
+      "last_seen": "1834-11-03",
+      "letter_list_only": false,
+      "mentions": [
+        "chicago_democrat_1835_07_01#c01"
+      ],
+      "names": [
+        {
+          "as_printed": "PETER COHEN",
+          "claim": "chicago_democrat_1835_07_01#c01",
+          "normalized": "Peter Cohen"
+        }
+      ],
+      "occupations": [],
+      "places": []
+    }
+  ],
+  "places": [
+    {
+      "first_seen": "1835-07-01",
+      "id": "place:chicago_post_office",
+      "last_seen": "1835-07-01",
+      "mentions": [
+        "chicago_democrat_1835_07_01#c02",
+        "chicago_democrat_1835_07_01#c04",
+        "chicago_democrat_1835_07_01#c05"
+      ],
+      "names": [
+        {
+          "as_printed": "the Post Office",
+          "claim": "chicago_democrat_1835_07_01#c02",
+          "normalized": "the Post Office"
+        },
+        {
+          "as_printed": "the Post Office at Chi-",
+          "claim": "chicago_democrat_1835_07_01#c04",
+          "normalized": "the Post Office at Chicago"
+        },
+        {
+          "as_printed": "the Post Office at Chi-",
+          "claim": "chicago_democrat_1835_07_01#c05",
+          "normalized": "the Post Office at Chicago"
+        }
+      ]
+    }
+  ],
+  "reading": "transcription_mediated",
+  "scene_date": "1835-07-01",
+  "schema": 1
+}
