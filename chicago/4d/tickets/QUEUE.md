@@ -27,7 +27,6 @@
 # --- THE TOWN AND ITS STREETS — visible
 T-0028 — Build out the NEXT anonymous block (one per run)
 T-0192 — The cross streets' own frontages get the street edge
-T-0221 — measure_street_frontage.layer_of reads a record's evidence layer off its filename, and misreads physicians_office
 
 # --- THE RIVER, THE WHARVES AND THE GROUND — visible
 T-0059 — The generator half of the wharf layer: a river-wharf mode of pier_crib
