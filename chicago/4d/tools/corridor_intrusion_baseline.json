@@ -135,21 +135,6 @@
       "street": "south_water",
       "structure": "lasalle_slough_crossing"
     },
-    "log_jail:log_1833": {
-      "anchor_in": [],
-      "anchor_offset_m": 13.33,
-      "body_toward_street": true,
-      "category": "building",
-      "centroid_in": [
-        "randolph"
-      ],
-      "depth_m": 3.48,
-      "layer": "research",
-      "phase": "log_1833",
-      "position_confidence": "inferred",
-      "street": "randolph",
-      "structure": "log_jail"
-    },
     "madore_beaubien_house:log_1831": {
       "anchor_in": [],
       "anchor_offset_m": 21.13,
@@ -293,7 +278,7 @@
       "structure": "western_hotel"
     }
   },
-  "measured": "2026-08-27",
+  "measured": "2026-08-28",
   "placed_phases": 349,
   "refused": {
     "harmon_loomis_store:frame_1833": {

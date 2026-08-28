@@ -1,4 +1,13 @@
 export const CHANGELOG = [ // newest first
+  { v: 343, title: 'The plank walk reaches the corner of the public square', kind: 'fix', ts: '2026-08-28T17:28:21.346Z', date: 'Aug 28, 2026, 12:28 PM CT',
+    items: [
+      'Walk west along Randolph Street, on the north side of the public square. The plank sidewalk now runs the whole block, corner to corner, and a board crossing carries you over LaSalle Street at the end of it. Until today the boards began ten metres in and stopped short of that corner.',
+      'What stood in the way is the log jail — the first Cook County jail, built in the autumn of 1833 on the north-west corner of the court-house square. It was drawn three and a half metres out in Randolph Street, and a sidewalk cannot be laid through a wall, so the rule refused the two steps of boards it covered.',
+      'The jail has not moved on the evidence. Andreas puts it on that corner and it still stands there. What moved is the line it was measured against. It was placed in August by reading a modern Chicago street centreline off a map and stepping half a street off it; this project has its own 1835 street lines, and measured against those its front wall stood out in the roadway.',
+      'So it is set back 4.98 metres, square to the street it fronts, which leaves its front wall a metre and a half behind the frontage line — the same margin every other building reconciled onto these streets was given. Nothing about it moved sideways, and the twenty-metre uncertainty in where the jail stood at all is unchanged and far larger than this.',
+      'The boards were not the only thing it cost. A walk that stops short of its corner takes the corner crossing with it, because a crossing is only laid where there is a walk on both sides to join. Two crossings come back with the sidewalk: over LaSalle Street, and over Randolph.',
+      'The count of buildings drawn standing in one of this town\u2019s own streets goes from twenty to nineteen. Randolph had two of them; the one left is a slaughterhouse eleven metres into the road at the far west end, which is a different problem and not this repair.',
+    ] },
   { v: 342, title: 'The north bank gets its street back, and a crossing', kind: 'feature', ts: '2026-08-28T17:18:58.484Z', date: 'Aug 28, 2026, 12:18 PM CT',
     items: [
       'Stand on the north bank of the river and walk west. Until today the roadway simply ended two hundred metres short of the forks, at a slough running down out of the North Division — and there was nothing beyond it. Now the street goes round the head of the little bay that slough makes, crosses it on a log deck, and carries on to the North Branch.',

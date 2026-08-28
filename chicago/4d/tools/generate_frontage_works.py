@@ -538,6 +538,23 @@ EDGE_RECONCILED_LAKE = {
     "st_marys_church": 4.532,
 }
 
+# AND ONCE MORE ON RANDOLPH STREET, on the one block this town kept for itself
+# (T-0246). `log_jail` reached the scene the same way as the eleven: Andreas puts it
+# on "the northwest corner of the court-house square", and the square's four inside
+# corners were computed from modern OpenStreetMap intersection centres stepped 12.2 m
+# into the block. Measured against this project's own committed line its north wall
+# stood 3.48 m OUT PAST blk_randolph_lasalle's Randolph frontage, with its centroid
+# inside the corridor — deeper than any of the four Lake Street records. THE COST WAS
+# NOT ONLY THE BOARDS. It refused the first two steps of the square's own Randolph
+# walk, 0.0 to 10.4 m, and a walk refused short of its corner takes the corner
+# CROSSING with it: the LaSalle Street crossing at Randolph was refused in turn,
+# "the two walks stop 34.8 m apart". Reconciled here by the same derivation, against
+# the same committed line, to the same 1.50 m — the walk now runs the full 99.0 m of
+# the face and both refused crossings are laid.
+EDGE_RECONCILED_RANDOLPH = {
+    "log_jail": 4.981,
+}
+
 # The record's own id, and the liberty that claims every invented metre in it.
 STREET_EDGE_ID = "town_street_edge"
 STREET_EDGE_RECORD_ID = "town_street_edge"

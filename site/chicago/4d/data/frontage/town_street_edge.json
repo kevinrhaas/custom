@@ -25,10 +25,10 @@
       "washington"
     ],
     "faces_laid": 36,
-    "walk_m": 3160.3,
-    "crossing_m": 811.0,
+    "walk_m": 3170.7,
+    "crossing_m": 857.5,
     "fence_m": 1693.4,
-    "walking_decks": 249,
+    "walking_decks": 254,
     "hitching_posts": 12
   },
   "card": {
@@ -44,10 +44,10 @@
         "note": "Asked for by the owner, 2026-08-18, of the first Cook County jail engraving: 'note the fences lining the street and what appears to be plank sidewalks. all of the streets should be updated like this... at least south of the river or near the river.' No 1835 source names a walk or a fence on any particular stretch of these streets."
       },
       "walk_m": {
-        "value": 3160.3,
+        "value": 3170.7,
         "confidence": "reconstructed",
         "sources": [],
-        "note": "41 run(s) of sidewalk on 36 platted block face(s), plus 811.0 m of board crossing at 34 corner(s). Nothing measured: every metre is derived from the committed plat and audited against the committed ground."
+        "note": "41 run(s) of sidewalk on 36 platted block face(s), plus 857.5 m of board crossing at 36 corner(s). Nothing measured: every metre is derived from the committed plat and audited against the committed ground."
       },
       "fence_m": {
         "value": 1693.4,
@@ -1623,6 +1623,80 @@
         }
       ],
       "note": "A BOARD CROSSING OVER RANDOLPH STREET. Images 6 and 8 give plank sidewalks WITH board crossings at the town's two inns, so the fact is the plates' and every dimension is invented. Its boards run the way a foot travels rather than across it, which is what a crossing is FOR — it spans the ruts instead of lying in them — and it lies lower than the walk because a wheel crosses it. WHERE is derived: the two ends are the two walks it joins, so the run is the corridor those walks stop either side of, 24.4 m of it, and the crossing exists only where both of them were laid. docs/LIBERTIES.md L160."
+    },
+    {
+      "id": "blk_lake_lasalle_south_crossing_over_randolph",
+      "belongs_to": "town_street_edge",
+      "kind": "board_crossing",
+      "confidence": "reconstructed",
+      "street": "randolph",
+      "street_name": "Randolph Street",
+      "chunk": "blk_lake_lasalle_south_1",
+      "centreline_local_enu_m": [
+        [
+          467.2,
+          -245.24
+        ],
+        [
+          467.22,
+          -267.3
+        ]
+      ],
+      "width_m": 1.83,
+      "rise_m": 0.06,
+      "plank_run": "along",
+      "plank_count": 6,
+      "plank_thickness_m": 0.055,
+      "plank_underside": false,
+      "plank_step_m": 1.8,
+      "run_m": 22.06,
+      "footway_decks": [
+        {
+          "y": 0.933,
+          "pts": [
+            [
+              466.29,
+              -245.16
+            ],
+            [
+              466.29,
+              -256.35
+            ],
+            [
+              468.12,
+              -256.35
+            ],
+            [
+              468.12,
+              -245.16
+            ]
+          ],
+          "ground_roll_m": 0.008
+        },
+        {
+          "y": 0.936,
+          "pts": [
+            [
+              466.29,
+              -256.19
+            ],
+            [
+              466.3,
+              -267.38
+            ],
+            [
+              468.13,
+              -267.38
+            ],
+            [
+              468.12,
+              -256.19
+            ]
+          ],
+          "ground_roll_m": 0.003
+        }
+      ],
+      "note": "A BOARD CROSSING OVER RANDOLPH STREET. The Petford watercolour and the Braunhold engraving of the Sauganash (images 8 and 9) both put a board crossing over the road between walks on opposite frontages. Its boards run the way a foot travels rather than across it, which is what a crossing is FOR — it spans the ruts instead of lying in them — and it lies lower than the walk because a wheel crosses it. WHERE is derived: the two ends are the two walks it joins, so the run is the corridor those walks stop either side of, 22.1 m of it, and the crossing exists only where both of them were laid. docs/LIBERTIES.md L160."
     },
     {
       "id": "blk_lake_lasalle_south_walk_1",
@@ -4378,8 +4452,8 @@
       "chunk": "blk_randolph_lasalle_north_1",
       "centreline_local_enu_m": [
         [
-          473.5,
-          -267.35
+          463.08,
+          -267.27
         ],
         [
           562.05,
@@ -4397,121 +4471,143 @@
       "verge_to_track_m": 6.61,
       "footway_decks": [
         {
-          "y": 0.984,
+          "y": 0.99,
           "pts": [
             [
-              473.41,
-              -268.26
+              462.99,
+              -268.18
             ],
             [
-              489.2,
-              -268.39
+              478.78,
+              -268.31
             ],
             [
-              489.21,
-              -266.56
+              478.79,
+              -266.48
             ],
             [
-              473.42,
-              -266.43
+              463.01,
+              -266.35
             ]
           ],
-          "ground_roll_m": 0.009
+          "ground_roll_m": 0.01
         },
         {
           "y": 0.98,
           "pts": [
             [
-              489.04,
-              -268.39
+              478.62,
+              -268.31
             ],
             [
-              504.82,
-              -268.52
+              494.41,
+              -268.43
             ],
             [
-              504.84,
-              -266.69
+              494.42,
+              -266.6
             ],
             [
-              489.05,
-              -266.56
+              478.63,
+              -266.48
             ]
           ],
           "ground_roll_m": 0.005
         },
         {
-          "y": 0.993,
+          "y": 0.985,
           "pts": [
             [
-              504.66,
-              -268.52
+              494.25,
+              -268.43
             ],
             [
-              520.45,
-              -268.64
+              510.03,
+              -268.56
             ],
             [
-              520.47,
-              -266.81
+              510.05,
+              -266.73
             ],
             [
-              504.68,
-              -266.69
+              494.26,
+              -266.6
             ]
           ],
-          "ground_roll_m": 0.013
+          "ground_roll_m": 0.01
+        },
+        {
+          "y": 0.996,
+          "pts": [
+            [
+              509.87,
+              -268.56
+            ],
+            [
+              525.66,
+              -268.69
+            ],
+            [
+              525.67,
+              -266.86
+            ],
+            [
+              509.89,
+              -266.73
+            ]
+          ],
+          "ground_roll_m": 0.011
         },
         {
           "y": 1.0,
           "pts": [
             [
-              520.29,
-              -268.64
+              525.5,
+              -268.68
             ],
             [
-              536.08,
-              -268.77
+              541.29,
+              -268.81
             ],
             [
-              536.09,
-              -266.94
+              541.3,
+              -266.98
             ],
             [
-              520.31,
-              -266.81
+              525.51,
+              -266.85
             ]
           ],
-          "ground_roll_m": 0.009
+          "ground_roll_m": 0.005
         },
         {
           "y": 1.0,
           "pts": [
             [
-              535.92,
-              -268.77
+              541.13,
+              -268.81
             ],
             [
-              551.7,
-              -268.9
+              556.91,
+              -268.94
             ],
             [
-              551.72,
-              -267.07
+              556.93,
+              -267.11
             ],
             [
-              535.93,
-              -266.94
+              541.14,
+              -266.98
             ]
           ],
-          "ground_roll_m": 0.0
+          "ground_roll_m": 0.004
         },
         {
-          "y": 1.0,
+          "y": 0.998,
           "pts": [
             [
-              551.54,
-              -268.9
+              556.75,
+              -268.94
             ],
             [
               562.12,
@@ -4522,14 +4618,14 @@
               -267.15
             ],
             [
-              551.56,
-              -267.07
+              556.77,
+              -267.11
             ]
           ],
-          "ground_roll_m": 0.005
+          "ground_roll_m": 0.003
         }
       ],
-      "note": "THE PLANK SIDEWALK ON THE RANDOLPH STREET FRONTAGE of blk_randolph_lasalle's north face, at the lot line. WHERE is DERIVED and nothing here is placed: the face is a committed street centreline offset by half the committed 80 ft corridor (data/traces/vectors/thompson_lots.json, re-derived by tools/generate_plat_lots.py), and the walk's centre lies 1.165 m outward of it — 0.25 m of daylight off the fence line and half a walk's width — leaving 6.61 m of verge between its outer edge and the Randolph Street track. This run is the stretch from 10.4 m to 99.0 m along the face that passed the march: dry committed ground, flat enough for one walking deck, and nothing already standing on it. What is invented is the width, the rise, the plank pitch and that a walk stood on this ground at noon on 1 July 1835: docs/LIBERTIES.md L160."
+      "note": "THE PLANK SIDEWALK ON THE RANDOLPH STREET FRONTAGE of blk_randolph_lasalle's north face, at the lot line. WHERE is DERIVED and nothing here is placed: the face is a committed street centreline offset by half the committed 80 ft corridor (data/traces/vectors/thompson_lots.json, re-derived by tools/generate_plat_lots.py), and the walk's centre lies 1.165 m outward of it — 0.25 m of daylight off the fence line and half a walk's width — leaving 6.61 m of verge between its outer edge and the Randolph Street track. This run is the stretch from 0.0 m to 99.0 m along the face that passed the march: dry committed ground, flat enough for one walking deck, and nothing already standing on it. What is invented is the width, the rise, the plank pitch and that a walk stood on this ground at noon on 1 July 1835: docs/LIBERTIES.md L160."
     },
     {
       "id": "blk_randolph_lasalle_south_crossing_blk_randolph_clark_south",
@@ -5263,6 +5359,80 @@
         }
       ],
       "note": "THE PLANK SIDEWALK ON THE WASHINGTON STREET FRONTAGE of blk_randolph_market's south face, at the lot line. WHERE is DERIVED and nothing here is placed: the face is a committed street centreline offset by half the committed 80 ft corridor (data/traces/vectors/thompson_lots.json, re-derived by tools/generate_plat_lots.py), and the walk's centre lies 1.165 m outward of it — 0.25 m of daylight off the fence line and half a walk's width — leaving 7.21 m of verge between its outer edge and the Washington Street track. This run is the stretch from 0.0 m to 94.8 m along the face that passed the march: dry committed ground, flat enough for one walking deck, and nothing already standing on it. What is invented is the width, the rise, the plank pitch and that a walk stood on this ground at noon on 1 July 1835: docs/LIBERTIES.md L160."
+    },
+    {
+      "id": "blk_randolph_wells_north_crossing_blk_randolph_lasalle_north",
+      "belongs_to": "town_street_edge",
+      "kind": "board_crossing",
+      "confidence": "reconstructed",
+      "street": "randolph",
+      "street_name": "Randolph Street",
+      "chunk": "blk_randolph_wells_north_1",
+      "centreline_local_enu_m": [
+        [
+          438.69,
+          -267.07
+        ],
+        [
+          463.08,
+          -267.27
+        ]
+      ],
+      "width_m": 1.83,
+      "rise_m": 0.06,
+      "plank_run": "along",
+      "plank_count": 6,
+      "plank_thickness_m": 0.055,
+      "plank_underside": false,
+      "plank_step_m": 1.8,
+      "run_m": 24.39,
+      "footway_decks": [
+        {
+          "y": 0.945,
+          "pts": [
+            [
+              438.6,
+              -267.98
+            ],
+            [
+              450.96,
+              -268.08
+            ],
+            [
+              450.97,
+              -266.25
+            ],
+            [
+              438.62,
+              -266.15
+            ]
+          ],
+          "ground_roll_m": 0.0
+        },
+        {
+          "y": 0.945,
+          "pts": [
+            [
+              450.8,
+              -268.08
+            ],
+            [
+              463.15,
+              -268.18
+            ],
+            [
+              463.17,
+              -266.35
+            ],
+            [
+              450.81,
+              -266.25
+            ]
+          ],
+          "ground_roll_m": 0.005
+        }
+      ],
+      "note": "A BOARD CROSSING OVER RANDOLPH STREET. Images 6 and 8 give plank sidewalks WITH board crossings at the town's two inns, so the fact is the plates' and every dimension is invented. Its boards run the way a foot travels rather than across it, which is what a crossing is FOR — it spans the ruts instead of lying in them — and it lies lower than the walk because a wheel crosses it. WHERE is derived: the two ends are the two walks it joins, so the run is the corridor those walks stop either side of, 24.4 m of it, and the crossing exists only where both of them were laid. docs/LIBERTIES.md L160."
     },
     {
       "id": "blk_randolph_wells_north_walk_1",
@@ -9426,11 +9596,6 @@
       "structure_id": "blk_randolph_wells_lot5",
       "wall": "blk_randolph_wells south face, lot 5",
       "why": "no committed building stands on this platted lot — an unimproved lot is open prairie and takes no street fence."
-    },
-    {
-      "structure_id": "blk_randolph_wells_north_crossing_blk_randolph_lasalle_north",
-      "wall": "corner crossing",
-      "why": "the two walks stop 34.8 m apart, wider than the platted corridor between them — the walk on one side was refused short of its corner, so no crossing is laid."
     },
     {
       "structure_id": "blk_south_water_clark_lot0",
