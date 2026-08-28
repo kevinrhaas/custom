@@ -174,6 +174,8 @@ by the postmaster J. S. C. Hogan, and are extracted as `infrastructure`. The epi
 letter-list ruling has nothing to bite on in this paper; the census proxy is the
 Democrat's.
 
+**Nor does the Democrat carry one every month.** July 1834 (T-0289) and September 1834 (T-0291) were both swept for every form of the heading — *list of letters*, *letters remaining*, *remaining in the post office*, *uncalled for*, a signature ending *P. M.*, and the bare words *letter*, *postmaster* and *list* — and September's four issues carry none. The month's post-office matter is a reprinted Senate report, a Cumberland postmaster's letter about mail robbers, the Postmaster General's own Chicago-to-Green-Bay proposals (extracted as `infrastructure`) and a want-advertisement routing replies through the office. So the letter-list ruling has nothing to bite on there either, and `coverage.json` records the sweep rather than the silence — an absence a pass has looked for is evidence, an absence nobody looked for is a hole.
+
 **`[…]` marks absence, `[word]` marks a supply.** Text the column edge cut away is a gap,
 not an invitation. The worked fixture leaves *'a few doors below'* unsupplied for exactly
 that reason and says where a fuller witness might be found.
