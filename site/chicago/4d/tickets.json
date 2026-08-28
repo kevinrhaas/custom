@@ -1,6 +1,6 @@
 {
   "project": "chicago-4d",
-  "generated_ct": "Aug 27, 2026, 8:41 PM",
+  "generated_ct": "Aug 27, 2026, 9:39 PM",
   "tickets": [
     {
       "id": "T-0001",
@@ -1744,7 +1744,7 @@
     {
       "id": "T-0099",
       "title": "The bank track from the fort's north gate down to the water",
-      "state": "open",
+      "state": "claimed",
       "epic": "TOWN",
       "requested_by": "loop",
       "seen": false,
@@ -1754,7 +1754,7 @@
       "opened": "2026-08-18",
       "closed": null,
       "pr": null,
-      "claimed_by": null,
+      "claimed_by": "run 8/27/2026, 9:18:39 PM CT",
       "blocked_on": null,
       "needs_bake": false,
       "queue_rank": 7
@@ -4296,6 +4296,24 @@
       "blocked_on": "Does a documented building displace an inferred-household unit when the plat repair puts them on the same lot? first_presbyterian_church needs 3.395 m to come onto the Lake Street plat and physicians_office stands 3.15 m behind it — the church, the household, or neither moves.",
       "needs_bake": false,
       "queue_rank": null
+    },
+    {
+      "id": "T-0252",
+      "title": "The dooryard planting rule reads every street in the town with no bound on reach, so a track across the river can turn a house's yard",
+      "state": "open",
+      "epic": "META",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "S",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-08-27",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "queue_rank": 58
     }
   ]
 }

@@ -273,6 +273,36 @@
       "wear_confidence": "reconstructed",
       "sources": ["harrison_1830_river_mouth", "andreas_1884_v1", "kinzie_waubun_1856"],
       "note": "THE ROAD THE FORT PLAINLY HAD, DRAWN AT THE RECONSTRUCTED TIER, and which part is which is stated rather than implied. WHAT IS DOCUMENTED: the fort had large gates north and south - Juliette Kinzie inside it in 1831, Andreas independently, and a break in each of those two walls and in neither of the others on the 1830 Harrison plan - and the garrison garden's own record reads off that same plan that the plot lies 'west of the road'. So the plan draws a road on the reservation, and a road that is east of that garden and arrives at that gate has to run about here. WHAT IS NOT DOCUMENTED: nobody traced this line, nobody measured it, and no source names it. The 1835 name is DESCRIPTIVE, not a proper name; the 2026 name is the street that runs over this ground today, not a descent of name. THE WESTERN REACH IS THE INVENTION AND IT IS THE REASON THIS RECORD IS RECONSTRUCTED: South Water Street stops at the United States Reservation, matching the 1833 order, so the connection from the town to the fort gate was never a platted street - it is drawn because a garrisoned post that mustered, traded and drew its stores through the town had a way in, and a visitor who walks east out of South Water Street should find one instead of trackless prairie. The line is routed clear of the garden's east corner and of the Beaubien buildings, and it is clipped by the water mask like every other track, so it makes honest gaps rather than fords where the ground is wet. Recorded in docs/LIBERTIES.md; T-0044."
+    },
+    {
+        "id": "fort_bank_track",
+        "name_1835": "The bank track",
+        "name_2026": "N Michigan Avenue, at the bridge's south approach",
+        "name_changed": true,
+        "path_local_enu_m": [
+              [
+                    1156.63,
+                    253.92
+              ],
+              [
+                    1133.4,
+                    259.61
+              ]
+        ],
+        "corridor_width_m": 12.0,
+        "track_width_m": 3.6,
+        "surface": "light_worn_earth",
+        "traffic": "light",
+        "geometry_confidence": "reconstructed",
+        "surface_confidence": "inferred",
+        "wear_confidence": "reconstructed",
+        "sources": [
+              "harrison_1830_river_mouth",
+              "wentworth_1881_fort_dearborn",
+              "andreas_1884_v1",
+              "kinzie_waubun_1856"
+        ],
+        "note": "THE TRACK p4_0 DRAWS DESCENDING THE BANK FROM THE NORTH GATE, held back by L140 until the bank it descends had been graded (T-0004) and built now that it has (T-0099). WHICH PART IS WHICH. WHAT IS DOCUMENTED: the fort's north gate — 'large gates opened to the north and south' (Juliette Kinzie, inside it in 1831), 'one on the north and the other on the south side' (Andreas), a break in each of those two walls and in neither of the others on the 1830 Harrison plan — and that the plan names a ferry among the ground round the fort. WHAT IS NOT DOCUMENTED: this line. Nobody traced it, nobody measured it, and no source names it; the 1835 name is DESCRIPTIVE, and the 2026 name is the ground the modern bridge approach covers, not a descent of name. BOTH ENDS ARE DERIVED FROM COMMITTED RECORDS AND THE MIDDLE IS ONE STRAIGHT CHORD. It begins at [1156.63, 253.92]: the north gate's own centre — 26.5 m along a 53 m wall, the midpoint tools/measure_fort_gates.py reads the shipped leaves at — carried out along the wall's outward normal by 6.74 m, which is the standoff the fort road already keeps from the SOUTH gate. The apron's bare trodden earth carries the last stride to the pickets at both gates, and this record invents no second convention for the north one. It ends at [1133.40, 259.61]: the Z = 0 waterline of the committed heightfield, on the easting of the WEST END of the commandant's quarters — the one place on this bank any source puts anything, the 1855 Hesler key locating the ferry landing 'under the west chimney of the Commandant's quarters'. READ THE DATE: that key is 1855 and describes the post-military compound, so it is read here as an inference that a landing fixed by the shape of a bank stood where it stood twenty years earlier, and never as a measurement of 1835. WHY ONE OBLIQUE CHORD AND NOT A RAMP STRAIGHT DOWN. Straight north out of the gate the graded bank falls 3.60 m in under 10 m, about 1 in 2.7, which is a scramble rather than a way to a boat. Swung west onto the landing the same fall is spread over 23.91 m: 1 in 6.65 mean and 1 in 3.65 at its steepest metre, measured on the committed heightfield at [1140.0, 257.99]. That worst metre is GENTLER THAN GROUND THIS PROJECT ALREADY DRAWS ROADWAY ON — South Water Street reaches 1 in 3.0 at the river bank, Randolph and Washington 1 in 4.1 — so the obliquity is what makes the track walkable and is not a shape chosen for its own sake. One chord means no joint, so no wedge of prairie opens at a bend (L178). The width is the GATE'S: 3.60 m, the committed gate_width_m of the palisade this track leaves by, rather than a fourth invented figure on this reservation. The corridor is the fort road's 12.0 m for the same reason. Clipped by the water mask like every other track, so the ribbon stops at the water instead of painting a ford. Recorded in docs/LIBERTIES.md L199; T-0099."
     }
   ]
 }

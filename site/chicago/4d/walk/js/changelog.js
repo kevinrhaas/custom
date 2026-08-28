@@ -1,4 +1,12 @@
 export const CHANGELOG = [ // newest first
+  { v: 310, title: 'The bank track from the fort\u2019s north gate reaches the water', kind: 'feature', ts: '2026-08-28T02:28:07.291Z', date: 'Aug 27, 2026, 9:28 PM CT',
+    items: [
+      'Stand on the north bank and look across at Fort Dearborn: a pale track now leaves the fort\u2019s north gate and runs down the bank to the water\u2019s edge, the way to the ferry. The plate this project shoots the fort against has always drawn that track. The town had not, until today.',
+      'It was refused on purpose, and the refusal is on the record. The bank it descends was a flat plateau until the fort reach was graded in August, and a ramp down an ungraded bank would have been two inventions stacked on each other. One of them is gone, so the other is drawn \u2014 and labelled.',
+      'Both ends are read off things already committed rather than picked. It starts at the north gate\u2019s own centre, held off the wall by the same 6.74 m the fort road keeps from the south gate, so both gates hand their last stride to the bare trodden ground the garrison wore. It ends at the water below the west end of the commandant\u2019s quarters, where an 1855 caption puts the ferry landing. It is as wide as the gate it comes out of: 3.6 m.',
+      'What is made up is the line between those two points, and the reason it slants is the ground. Straight down, the graded bank falls three and a half metres in under ten \u2014 a scramble, not a way to a boat. Swung west it spreads the same fall over twenty-four metres, and its steepest metre is gentler than the riverbank stretch of South Water Street the town already draws roadway on.',
+      'The evidence card says all of that, including the weakest part of it: the caption that fixes the landing was written in 1855, twenty years after this scene, describing a fort the army had already left.',
+    ] },
   { v: 309, title: 'Three Lake Street buildings step back off the sidewalk', kind: 'fix', ts: '2026-08-28T01:41:14.347Z', date: 'Aug 27, 2026, 8:41 PM CT',
     items: [
       'Walk the north side of Lake Street and two more of its corners now carry you over the road on boards. Yesterday the walk stopped short of them, because a building was standing where the boards had to go.',
