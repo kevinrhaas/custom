@@ -1,7 +1,7 @@
 ---
 id: T-0295
 title: The scene-date Democrat of 1835-07-01, read in full
-state: claimed
+state: done
 epic: PAPERS
 requested_by: owner
 seen: false
@@ -9,8 +9,8 @@ effort: M
 legacy_id: null
 parent: T-0260
 opened: 2026-08-28
-closed: null
-pr: null
+closed: 2026-08-28
+pr: 468
 claimed_by: run 8/28/2026, 10:54:48 AM CT
 blocked_on: null
 needs_bake: false
