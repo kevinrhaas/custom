@@ -221,7 +221,7 @@
       "name_1835": "North Water Street",
       "name_2026": "N Water Street",
       "name_changed": false,
-      "path_local_enu_m": [[200, 55], [330, 66], [452, 75], [576, 86], [699, 98], [827, 116], [920, 190], [970, 270]],
+      "path_local_enu_m": [[240, 136.5], [560, 106.2], [780, 110.2], [830, 108.5], [920, 190], [970, 270]],
       "track_width_m": 6.0,
       "surface": "light_worn_earth",
       "traffic": "light",
@@ -229,7 +229,7 @@
       "surface_confidence": "inferred",
       "wear_confidence": "reconstructed",
       "sources": ["hathaway_1834", "wright_1834", "osm_streets_2026"],
-      "note": "A schematic bank-following path used for orientation and readout. The 1834 sheets and surviving name establish the corridor, but the committed street module does not yet carry enough control to claim this curve as a trace."
+      "note": "DERIVED FROM THE COMMITTED NORTH BANK by tools/derive_north_water.py, not drawn beside it. The line this replaced was a hand-drawn schematic that ran 477.4 m of its 843.3 m INSIDE the terrain's water mask, so the renderer drew no roadway at all across that reach and three of its six bends stood in the river (T-0226). The bank is a trace of Wright 1834 with a stated +/-20 m; this line was not a trace of anything and said so; the old line missed the bank by 1 to 86 m, up to 4.3x that uncertainty; and the North Division placement recipe had already ruled that proximity to North Water Street never overrides the water mask. So the street was the record that was wrong. North Water Street fronted the main stem, so its platted corridor is laid with its south line on the bank and the centreline falls 12.192 m north of it - half the 80 ft thompson_module_1830, fitted in the fewest straight runs that clear every 5 m station with 0.5 m of give, which is 2.5 % of the bank trace's own uncertainty. The west terminus is the east shoulder of the attested north-side slough, 16.5 m clear of its water: a ribbon may not paint over a watercourse and the town's other two slough crossings are modelled structures, so the reach west of it waits on T-0254. Geometry stays reconstructed - a bank is a proxy for a street, not evidence of one. Track width and wear remain visual interpretation."
     },
     {
       "id": "wolcott",

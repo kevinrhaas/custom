@@ -346,6 +346,17 @@ step "…and its absolute assertion still fires when a generated roof is put in 
 # after T-0104 the number is zero. It also closes party walls from BOTH sides, which is
 # the case neither run-local gate can reach when the other half belongs to another
 # generator.
+# T-0226. North Water Street's line was a hand-drawn schematic that ran 477.4 m of its
+# 843.3 m inside the water mask, so the renderer drew no roadway at all across that
+# reach — and NOTHING SAW IT, because the panel-accounting gate asks whether every panel
+# with a DRY centreline reached the ribbon and every one of them did. A street whose
+# centreline is wet is invisible to that question by construction. The line is now
+# derived from the committed north bank, and this is the gate that keeps it derived: it
+# re-runs the derivation and refuses a committed line that is not the one it produces,
+# so a bank that moves under the street is a red build rather than a silent hole.
+step "north water street is still the line its own derivation produces, and still dry" \
+  python3 tools/derive_north_water.py --gate
+
 step "a block face carries one street line, across every generator that builds on it" \
   python3 tools/measure_street_line.py --gate --quiet
 

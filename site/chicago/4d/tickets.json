@@ -1,6 +1,6 @@
 {
   "project": "chicago-4d",
-  "generated_ct": "Aug 27, 2026, 10:04 PM",
+  "generated_ct": "Aug 27, 2026, 10:13 PM",
   "tickets": [
     {
       "id": "T-0001",
@@ -3832,7 +3832,7 @@
     {
       "id": "T-0226",
       "title": "North Water Street runs inside the water mask for 477 m and draws no ribbon at all",
-      "state": "open",
+      "state": "claimed",
       "epic": "TOWN",
       "requested_by": "loop",
       "seen": false,
@@ -3842,7 +3842,7 @@
       "opened": "2026-08-27",
       "closed": null,
       "pr": null,
-      "claimed_by": null,
+      "claimed_by": "run 8/27/2026, 10:13:16 PM CT",
       "blocked_on": null,
       "needs_bake": false,
       "queue_rank": 2
@@ -4332,6 +4332,24 @@
       "blocked_on": null,
       "needs_bake": false,
       "queue_rank": 55
+    },
+    {
+      "id": "T-0254",
+      "title": "North Water Street west of the slough, and the crossing it needs",
+      "state": "open",
+      "epic": "TOWN",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "M",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-08-27",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "queue_rank": 56
     }
   ]
 }
