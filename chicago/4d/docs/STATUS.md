@@ -71,6 +71,36 @@ Randolph corridor with its centroid inside. **T-0246.**
 refusals 74→72, meshes 53→54 (one culling chunk per run of sidewalk). Shape, not threshold —
 nothing here is a gate being loosened.
 
+**Verified in the foreground on the branch.** `./tools/check.sh` **PASS** — which is the dev gate
+(`docs/PIPELINE.md`: "the dev gate is `check.sh` and nothing else"). Smoke against the published
+mirror, **mobile 390×780, all nine parts**: `1-2` 147/**1**, `3-4` 114/0, `5-6` 43/0, `7-9`
+151/**1**. Smoke **desktop 1280×800**: `1` 76/0, `2` 80/**1** — and every assertion this branch
+touched is green in it, including *Lake Street's walk is continuous and walkable end to end* and
+*a board crossing carries the walker over the road at the corner*. Zero page errors at both
+viewports.
+
+**The three failures are two, and both are `dev`'s with tickets already filed.** The Sauganash
+hitching-post check is **T-0244** (T-0194's twelve street-edge posts resolve to an empty vertex
+set; the two Sauganash posts still measure correctly, and this branch moves no post — the
+census still reads 15 posts, 12 of them hitching). The tree-station check is **T-0243** (T-0223's
+`BatchedMesh` renamed `timber__q0…q3` to `timber`, so the gate's regex matches nothing; no tree
+moved). Neither is touched here.
+
+**The desktop ceiling sweep was taken with `tools/measure_detail_ceilings.mjs`** rather than
+desktop stage 4, which does not fit the ten-minute foreground command ceiling on this runner and
+which `tools/dev-smoke-state.json` records as FAIL on `dev` itself at `2026-08-27T20:16` (the
+T-0210/T-0215 loaded-box failure). Every tier is inside its ceiling with the new boards laid:
+
+| tier | ceiling | worst stand | clear by |
+|---|---:|---|---:|
+| `full` | 1,400,000 | 1,372,635 — the forks, from Wolf Point | 27,365 |
+| `balanced` | 1,210,000 | 1,204,048 — the forks, from Wolf Point | 5,952 |
+| `light` | 785,000 | 746,028 — Lake Street at Canal | 38,972 |
+
+Mobile's own ceiling sweep is inside stage `3-4`, which passed 114/0. **No ceiling was moved for
+this**, and the balanced margin of 5,952 is worth reading beside T-0241: Washington Street still
+does not fit, and 31 m of Lake Street walk did not make it fit.
+
 
 ## Shipped 2026-08-27 — T-0147: the `light` ceiling comes back DOWN, 1,050,000 → 785,000
 
