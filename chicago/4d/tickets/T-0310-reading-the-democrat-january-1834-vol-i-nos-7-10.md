@@ -1,7 +1,7 @@
 ---
 id: T-0310
 title: Reading the Democrat, January 1834: Vol. I Nos. 7-10
-state: claimed
+state: done
 epic: PAPERS
 requested_by: owner
 seen: false
@@ -9,8 +9,8 @@ effort: S
 legacy_id: null
 parent: T-0258
 opened: 2026-08-28
-closed: null
-pr: null
+closed: 2026-08-28
+pr: 482
 claimed_by: run 8/28/2026, 1:38:09 PM CT
 blocked_on: null
 needs_bake: false
