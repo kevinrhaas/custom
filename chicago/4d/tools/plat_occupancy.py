@@ -102,6 +102,7 @@ and it is the one above.
 
 from __future__ import annotations
 
+import functools
 import json
 import math
 from pathlib import Path
@@ -110,6 +111,21 @@ from block_faces import face_frame, project
 
 ROOT = Path(__file__).resolve().parent.parent
 STRUCTURES = ROOT / "data" / "structures"
+
+# THE THREE EVIDENCE LAYERS, read in ONE place (T-0221). `research` is a record somebody
+# recovered from a source; `inferred_household` is a roof the trade-census programme
+# raised because an argued household needed somewhere to be; `reconstruction` is a
+# count-unit of the 665-roof programme. They are never merged: one of them is this
+# project's own output and cannot be read back as evidence about the town.
+LAYERS = ("research", "inferred_household", "reconstruction")
+
+# What each `reconstruction.status` means in layer terms. The statuses are the schema's
+# own enum (`data/structures.schema.json`), whose description carries the rule this
+# module reads: "Named/documented structures do not carry this block."
+_LAYER_BY_STATUS = {
+    "inferred_anonymous": "reconstruction",
+    "inferred_household": "inferred_household",
+}
 
 # Where a block's BUSINESS FRONT is declared: the block-parcel recipes' own `frontage`
 # entry, face and lots and setback, with the reasoning beside it. Read here rather than
@@ -327,27 +343,59 @@ def occupied_lots(grid: dict, datum: dict,
             for block_id, lots in lot_holders(grid, datum, exclude).items()}
 
 
+def layer_of_record(record: dict) -> str:
+    """Which of the three evidence layers a record belongs to, read off THE RECORD.
+
+    A record one of the generating programmes wrote carries the `reconstruction` block
+    that programme writes, and a researched one does not — `data/structures.schema.json`
+    states it as a rule ("Named/documented structures do not carry this block") and its
+    `status` enum names which programme wrote it. So the layer is a fact the record
+    already carries, and this is the only place it is read.
+
+    **It used not to be.** Until T-0221 the layer was read off the ID PREFIX in
+    `tools/measure_street_frontage.layer_of` — `recon_1835_*` reconstruction, `inf_*`
+    inferred household, everything else research — which is a proxy for this, and a
+    proxy that misses `physicians_office`: it carries neither prefix and is nonetheless
+    a product of the inferred-household programme, `reconstruction.status:
+    "inferred_household"`, occupation physician. Measured across the committed dataset
+    the two readings agree on every record but that one. The direction of the
+    disagreement is what made it worth closing rather than noting: an INVENTED record
+    reading as documented is how a clause about documented buildings, and a gate that
+    asserts zero of the generated layers, get crossed by a filename.
+
+    A record built in memory can be asked here; `layer_of` is the same question about a
+    committed id. Two readings of one fact is this project's recurring defect and there
+    is now one.
+    """
+    block = record.get("reconstruction")
+    if block is None:
+        return "research"
+    status = block.get("status")
+    if status not in _LAYER_BY_STATUS:
+        raise ValueError(
+            f"{record.get('id')!r} carries a reconstruction block with status "
+            f"{status!r}, which no evidence layer is defined for; add it to "
+            f"plat_occupancy._LAYER_BY_STATUS beside the schema enum it comes from")
+    return _LAYER_BY_STATUS[status]
+
+
+@functools.lru_cache(maxsize=1)
+def layers() -> dict[str, str]:
+    """{structure id: evidence layer} across every committed record, from the records."""
+    out: dict[str, str] = {}
+    for path in sorted(STRUCTURES.glob("*.json")):
+        record = json.loads(path.read_text(encoding="utf-8"))
+        out[record["id"]] = layer_of_record(record)
+    return out
+
+
 def researched_ids() -> set[str]:
     """Every structure id this project did not itself invent.
 
-    The three evidence layers are named by ID PREFIX in
-    `tools/measure_street_frontage.layer_of` — `recon_1835_*` reconstruction, `inf_*`
-    inferred household, everything else research. That reading is a proxy for the thing
-    it wants, and it misses one record: `physicians_office` carries neither prefix and
-    is nonetheless a product of the inferred-household programme, which says so in its
-    own `reconstruction.status: "inferred_household"`. So the RECORD is asked here
-    instead of its name — a record one of the programmes wrote carries the
-    `reconstruction` block that programme writes, and a researched one does not.
-    Measured across the committed dataset the two readings agree on 347 of 348 records
-    and disagree on that one, in the direction that matters: a clause about DOCUMENTED
-    buildings must not let an invented one through on the strength of its filename.
+    The research layer of `layers()`, which reads each record rather than its name — see
+    `layer_of_record` for why that distinction has a record in it.
     """
-    documented: set[str] = set()
-    for path in sorted(STRUCTURES.glob("*.json")):
-        record = json.loads(path.read_text(encoding="utf-8"))
-        if "reconstruction" not in record:
-            documented.add(record["id"])
-    return documented
+    return {sid for sid, layer in layers().items() if layer == "research"}
 
 
 def business_fronts() -> dict[str, list[dict]]:

@@ -49,24 +49,39 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT / "tools"))
 
-from plat_occupancy import footprints  # noqa: E402
+from plat_occupancy import LAYERS, footprints, layer_of_record, layers  # noqa: E402
 
 DEFAULT_RADIUS_M = 25.0
-LAYERS = ("research", "inferred_household", "reconstruction")
+
+__all__ = ["LAYERS", "layer_of", "layer_of_record"]
 
 
 def layer_of(structure_id: str) -> str:
-    """Which of the three evidence layers a record belongs to, by its id.
+    """Which of the three evidence layers a committed record belongs to.
 
-    The id prefixes are the layer: `recon_1835_*` is written by the reconstruction
-    generators and `inf_*` by the inferred-household programme. Anything else is a
-    record somebody researched.
+    Read off THE RECORD, in `plat_occupancy.layer_of_record` — the one place this
+    project decides it (T-0221). This function is the same question asked about a
+    committed id, and it is kept here because two other measurements import it from
+    here; it is a lookup now rather than a second reading.
+
+    Until T-0221 it answered from the ID PREFIX instead, and that answer was wrong for
+    `physicians_office`: an inferred-household roof whose filename carries no prefix,
+    which therefore read as `research` — the documented layer — everywhere this function
+    is used, including the absolute assertion in
+    `tools/measure_corridor_intrusion.py --gate` that no GENERATED roof may lap a
+    platted street. Nothing in the tree was ever mis-scored by it, and the gate's reach
+    is one record wider for it being closed.
+
+    A record built in memory has no committed id; ask `layer_of_record` about it
+    directly rather than teaching this function to guess from a name again.
     """
-    if structure_id.startswith("recon_1835_"):
-        return "reconstruction"
-    if structure_id.startswith("inf_"):
-        return "inferred_household"
-    return "research"
+    try:
+        return layers()[structure_id]
+    except KeyError:
+        raise KeyError(
+            f"{structure_id!r} is not a committed structure record, so its evidence "
+            f"layer cannot be read from one; pass the record to layer_of_record()"
+        ) from None
 
 
 def _distance_to_segment(point, a, b) -> float:

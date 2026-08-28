@@ -76,6 +76,121 @@ Files: `data/traces/street_control.json` (the control point, plus `streets.frank
 `data/streets/1835.json` (`south_water` and `franklin` notes), `renderers/web/js/main.js`
 (`api.intersections`), `tools/smoke_renderer.mjs` (the literal `4` retired), recompiled sidecar
 index, published mirror, changelog v310.
+## Settled 2026-08-28 — T-0134: the south bank at the Dearborn reach has no ground the plate's warehouses could stand on, and the reason it was refused was wrong
+
+Image 3 of the owner's brief of 2026-08-18 draws low warehouses on **both** banks of the reach
+below the Dearborn draw. T-0133 built the north side — four freight sheds standing back from
+North Water Street — and left the south side empty on one sentence, repeated in all four
+records: *"the platted South Water Street corridor reaches to within about 1.7 m of the traced
+1834 waterline at the Dearborn reach, so there is no ground there."* That was **one spot
+reading taken by hand at one station**, and the whole bank of the reach was refused on it.
+
+`tools/measure_south_bank_ground.py` is that refusal as a command. It walks the south bank from
+the Dearborn crossing (local E 699.2, the bridge's own committed position) east to the United
+States Reservation's west line (E 842.0, the line `measure_no_build_ground.py` already resolves
+from the State & Madison section corner) and asks whether the **smallest footprint family F1
+allows** — 18 × 32 ft, the freight shed of the plate — can be put down at **any bearing** on
+ground that is dry in the committed heightfield, outside every platted corridor and off refused
+ground. Every bound is the permissive one, and the relief clause is reported four ways so the
+answer can be seen not to rest on it.
+
+```
+  124 of 143 stations carry ANY dry ground outside a platted corridor
+  widest such strip   26.50 m at E 813.2 (1.30 m of relief)
+  positions the smallest F1 footprint stands at, at any bearing:
+     relief <= 0.30 m   0        relief <= 1.00 m    6
+     relief <= 0.35 m   0        no relief clause   26
+  BESIDE THE PLATTED STREET (west of South Water's own east end, E 805.0):
+     widest free strip  8.00 m at E 804.2
+     relief <= 0.30 m   0        relief <= 1.00 m    3
+     relief <= 0.35 m   0        no relief clause    3
+```
+
+**The refusal holds, and it holds much harder than 1.7 m did — but "there is no ground" was
+false.** 124 of 143 stations do carry dry ground outside a corridor, and beside the platted
+street the free strip widens eastward to 8.00 m. What defeats a building is the **slope**, not
+the width: that strip is the river bank itself, and the three positions on it that accept a
+footprint at all span 0.96–0.98 m of relief, more than three times the 0.30 m walker step
+tolerance three infill generators hold themselves to. The 26.50 m strip at E 813.2 is **east of
+South Water Street's platted end** — the slough's east bank, under `slough_log_bridge` — and
+answers a different question, which is why the tool reports the two apart.
+
+**What is now open is a decision, not a number.** The platted 80 ft corridor occupies this bank
+down to the water, and L79 records the travelled tracks running 5.8–10.5 m inside an 80 ft
+corridor; South Water's committed track is 10.5 m, so about 7 m of legal corridor stands between
+the wheel line and the corridor's north edge, on ground flat to 0.05 m. So the question is
+whether an invented building may stand on the **river margin of a platted street corridor**,
+where this town's warehouses and landings in fact stood. It would be the first record placed
+knowingly inside a corridor — the 29 that lap one today are documented records the plat was
+fitted around — and `measure_corridor_intrusion.py --gate` refuses a new lap by construction.
+Filed as its own ticket rather than decided here. The live alternative is that what the plate
+draws on the south bank is wharfed out over the water (T-0059), not standing on it.
+
+**What shipped.** `tools/measure_south_bank_ground.py` + its baseline, gated in `check.sh` so
+a fit **appearing** fails — that is the question re-opening, not a number to bank; the finding
+at `docs/RESEARCH/south_bank_dearborn_ground.md`; a `data/exclusions.json` entry, so the
+visitor standing in the empty south bank can read why it is empty in the walkthrough's *What is
+not here*; and the superseded sentence corrected in all four north-bank shed records.
+
+**Nothing in the town moved.** No geometry changed and no bake was needed.
+## Shipped 2026-08-28 — T-0221: one reading of which evidence layer a record belongs to
+
+**Three tools asked the question and one of them answered it from a filename.**
+`tools/measure_street_frontage.layer_of` decided whether a structure record was
+`research`, `inferred_household` or `reconstruction` **by its id prefix** — `recon_1835_*`,
+`inf_*`, everything else research — and `tools/measure_frontage_fabric.py` and
+`tools/measure_corridor_intrusion.py` both import it. `tools/plat_occupancy.researched_ids`
+already read the RECORD instead, and said in its docstring why. Two readings of one fact is
+this project's recurring defect; there is now one, in
+`plat_occupancy.layer_of_record`, and it reads the record.
+
+**The record already carries the answer, as a rule rather than a convention.**
+`data/structures.schema.json` states it — *"Named/documented structures do not carry this
+block"* — and its `reconstruction.status` enum names which programme wrote the ones that do:
+`inferred_anonymous` is a count-unit of the 665-roof programme, `inferred_household` a roof
+raised because an argued household needed somewhere to be. So the layer is read off that
+block, and `layer_of` is a lookup into it rather than a second opinion. An id carrying no
+committed record is now REFUSED rather than guessed at from its shape; the one caller that
+built a record in memory (`measure_frontage_fabric._synthetic`) builds it with the
+`reconstruction` block its layer follows from, so its fixture is read the same way the tree is.
+
+**Across all 349 committed records the two readings disagree exactly once**, and the run's
+self-test measures that rather than quoting it. `physicians_office` carries neither prefix and
+is a product of the inferred-household programme, which its own
+`reconstruction.status: "inferred_household"` says. Its record was never wrong; the reading of
+it was.
+
+**Why one row of a census was worth a ticket.** `measure_corridor_intrusion.py --gate` holds
+two different kinds of assertion. The 20 documented laps are a RATCHET — a depth may not grow,
+and a repair is banked with `--write-baseline`. The generated layers are an ABSOLUTE — **zero**,
+because every generator already refuses a roof in a roadway through the same module. A generated
+record reading as `research` is scored against the ratchet instead of the absolute, so the
+clause that cannot be crossed could have been crossed by a record whose filename happens not to
+start with `inf_`. Nothing in the tree was ever mis-scored: `physicians_office` laps no corridor,
+and the gate reports the same 20 phases and the same zero before and after.
+
+**The gate now proves that itself.** `tools/measure_corridor_intrusion.py --self-test`, in
+`check.sh`, translates a roof onto the Lake Street centreline in memory — position point and
+world polygon together, with the depth computed by `measure()` rather than typed in — and checks
+which assertion fires. An anonymous `recon_1835_*` roof is caught by the absolute (the control,
+which the old reading also caught). `physicians_office` in the same roadway is caught by the
+absolute now, and under the id-prefix reading — kept in the module, refuted, so it stays refuted —
+is caught only by the ratchet. That is the difference the ticket bought, demonstrated rather than
+argued.
+
+**What moved in the numbers**, re-derived and stated because a census is not a place to be quiet:
+
+```
+  measure_corridor_intrusion --gate   20 of 349 lapping, 0 generated   unchanged
+  measure_frontage_fabric --gate      3 principal streets, no failure  unchanged
+  measure_street_frontage             lake   research 17 -> 16, household 7 -> 8
+                                      clark  research  6 ->  5, household 1 -> 2
+```
+
+`physicians_office` stands within 25 m of both centrelines, so it moves column on both — one
+building leaving the documented count of the street the face rule is usually asked about. Lake is
+still the better face by a wide margin and no parcel's conclusion turns on it; the count is
+simply now the count of what the records say.
 
 ## Shipped 2026-08-27 — T-0196: three Lake Street buildings come onto the plat, and the fourth is refused with the number that refused it
 
