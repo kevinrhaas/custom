@@ -1,4 +1,13 @@
 export const CHANGELOG = [ // newest first
+  { v: 336, title: 'The north bank gets its street back, and a crossing', kind: 'feature', ts: '2026-08-28T16:22:44.022Z', date: 'Aug 28, 2026, 11:22 AM CT',
+    items: [
+      'Stand on the north bank of the river and walk west. Until today the roadway simply ended two hundred metres short of the forks, at a slough running down out of the North Division — and there was nothing beyond it. Now the street goes round the head of the little bay that slough makes, crosses it on a log deck, and carries on to the North Branch.',
+      'That is 250 metres of street that has never been drawn, and a third slough crossing beside the two the town already has.',
+      'The deck is twelve metres of logs, three wide, and it is the smallest of the three because the street it carries is the lightest. It spans six and a half metres of water and lands on dry bank at both ends with about two and a half metres to spare.',
+      'It is laid level with its own banks — 0.68 m over the water — so you step onto it and off it without a riser. Its two elder siblings both needed the road graded to reach them; this one did not, and the reason is the ground under it, which was measured rather than assumed.',
+      'Nothing records this crossing. Wright\u2019s 1834 map draws the slough and the 1830 plat draws the street, those two lines meet, and everything past that \u2014 that anyone bridged it, of what, how wide, how high \u2014 is reconstructed and labelled as such. The Evidence panel has the whole list.',
+      'One number is worth saying plainly: on the new stretch the road stands between 12 and 41 metres from the water, against the half-street it is supposed to keep. The 41 is one short run at the base of Wolf Point where the bank turns a corner faster than the rule that lays the street can follow. It is written down and it has its own ticket.',
+    ] },
   { v: 335, title: 'A fixed camera now stands on the public square', kind: 'chore', ts: '2026-08-28T12:44:18.603Z', date: 'Aug 28, 2026, 7:44 AM CT',
     items: [
       'Nothing you can see changed today. The public square \u2014 the block bounded by Randolph, Clark, Washington and LaSalle, the one block this town kept for itself \u2014 now has a fixed camera standing on it.',
