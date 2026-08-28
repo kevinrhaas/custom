@@ -1,7 +1,7 @@
 ---
 id: T-0228
 title: Two wharf decks oversail the riverside plank walk, and the walk now meets a half-metre riser at their edge
-state: open
+state: claimed
 epic: TOWN
 requested_by: loop
 seen: false
@@ -11,7 +11,7 @@ parent: null
 opened: 2026-08-27
 closed: null
 pr: null
-claimed_by: null
+claimed_by: run 8/28/2026, 4:19:38 AM CT
 blocked_on: null
 needs_bake: false
 ---
