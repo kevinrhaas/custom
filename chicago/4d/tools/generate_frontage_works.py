@@ -495,7 +495,7 @@ EDGE_RECONCILED = {
 # inside the three-metre separation gate and moved 3.2 m they overlap. There is no
 # translation along this normal that both clears the walk and leaves the pair
 # standing apart, and choosing between a documented church and an inferred
-# household is a rule rather than a metre, so it went to the owner as T-0245. Two
+# household is a rule rather than a metre, so it went to the owner as T-0251. Two
 # steps of Lake Street's walk stay unlaid and the record below says whose they are.
 EDGE_RECONCILED_LAKE = {
     "old_bank_building": 3.124, "dole_warehouse_south": 2.784,

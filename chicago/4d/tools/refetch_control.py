@@ -49,6 +49,18 @@ mapped as their own paths a few metres off the roadway centreline, so a junction
 "centre" that averages them in is pulled off centre by however many of them a
 modern reconstruction happens to have drawn.
 
+**Refusals are entries too.** A junction the rule has been asked for and cannot make is
+recorded in `refused_control` in the same file, with the `osm_ways` and the search centre
+the reading used, so `--discover` re-runs it and the refusal stays checkable rather than
+becoming an absence somebody re-investigates. Those entries carry no coordinate, and the
+run reports the mean against nothing rather than against a number nobody committed.
+
+**And --discover now refuses a set it recognises.** Two named surface roadways share nodes
+without crossing wherever one changes name into the other at a bend, which is what Wacker
+Drive does at Lake Street; the shared set then looks exactly like a junction and is the
+NEIGHBOURING one. Whenever the discovered set is identical to a control point already in
+the file under another name, the run says so and exits 1. See `node_rule`.
+
 ## What it cannot tell you
 
 That the control is *right*. It compares the dataset to OpenStreetMap, which is a
@@ -169,6 +181,9 @@ def verify(doc: dict, tol: float) -> int:
 
 def discover(doc: dict, cid: str, radius_m: float) -> int:
     control = (doc.get("control") or {}).get(cid)
+    refused = control is None
+    if refused:
+        control = (doc.get("refused_control") or {}).get(cid)
     if not control:
         print(f"no control point '{cid}' in {CONTROL.relative_to(ROOT)}")
         return 1
@@ -180,7 +195,10 @@ def discover(doc: dict, cid: str, radius_m: float) -> int:
     to_utm, to_wgs = _to_utm(), _to_wgs()
     lat, lon = control.get("lat"), control.get("lon")
     if lat is None or lon is None:
+        lat, lon = control.get("search_lat"), control.get("search_lon")
+    if lat is None or lon is None:
         lat, lon = to_wgs(control["utm_e"], control["utm_n"])
+    radius_m = control.get("search_radius_m", radius_m) if refused else radius_m
     d = radius_m / 111_320.0
     raw = _get(f"{API}/map?bbox={lon - d / math.cos(math.radians(lat))},{lat - d},"
                f"{lon + d / math.cos(math.radians(lat))},{lat + d}")
@@ -214,8 +232,28 @@ def discover(doc: dict, cid: str, radius_m: float) -> int:
     mn = sum(p[1] for p in pts) / len(pts)
     spread = max(math.hypot(a[0] - b[0], a[1] - b[1]) for a in pts for b in pts) if pts else 0.0
     ce, cn = control.get("utm_e"), control.get("utm_n")
-    print(f"    mean E {me:.2f} N {mn:.2f}  (spread {spread:.2f} m)  "
-          f"committed E {ce:.2f} N {cn:.2f}  drift {math.hypot(me - ce, mn - cn):.2f} m")
+    if ce is None or cn is None:
+        print(f"    mean E {me:.2f} N {mn:.2f}  (spread {spread:.2f} m)  "
+              f"nothing committed to compare it to")
+    else:
+        print(f"    mean E {me:.2f} N {mn:.2f}  (spread {spread:.2f} m)  "
+              f"committed E {ce:.2f} N {cn:.2f}  drift {math.hypot(me - ce, mn - cn):.2f} m")
+
+    # A shared set is not on its own a junction. Two named roadways also share nodes where
+    # one CHANGES NAME INTO the other at a bend, and that reads identically here — right
+    # count, plausible spread, clean mean. The tell is that the set is a junction this file
+    # has already committed under another name: at market_south_water the rule returns
+    # lake_market's own two nodes, 110 m from the corner it was asked for. See `node_rule`.
+    mine = {str(i) for i in shared}
+    for other, c in sorted((doc.get("control") or {}).items()):
+        if other == cid:
+            continue
+        if mine and mine == {str(i) for i in (c.get("osm_node_ids") or [])}:
+            print(f"    REFUSED — this is exactly the node set already committed as "
+                  f"'{other}', so the two named ways do not cross here: they meet at that "
+                  f"junction and one changes name into the other. A control point made from "
+                  f"it would name '{cid}' and stand at '{other}'.")
+            return 1
     return 0
 
 

@@ -162,6 +162,14 @@ def block_capacity(lots: int) -> int:
 #   blk_south_water_market    south_water  25 m away,   0 of 5 samples wet
 #   blk_south_water_clinton   south_water 328 m away,  20 of 66 samples wet
 #
+# THE FIRST IS STILL DRY AND STILL GATED, AND SINCE 2026-08-27 IT IS GATED ON A DIFFERENT
+# THING. T-0183 went to fetch the one control point it waits on — Market x South Water —
+# and the rule cannot make it: the two modern successors meet at a BEND, not a crossing,
+# and return lake_market's own nodes 110 m away (data/traces/street_control.json,
+# `refused_control.market_south_water`). The block stays here because it is real dry
+# ground with 27 roofs of headroom, but what it waits on is now an owner decision about
+# how to close South Water's west end, not an errand.
+#
 # The second is the South Branch. South Water Street is a SOUTH-BANK street; the block
 # between Clinton and Canal is on the West Side, two blocks back from the west bank. No
 # street control will ever join them, because the row does not run that far and never did:
@@ -743,7 +751,22 @@ def programme_document():
                           "control point at Market and South Water: the committed set holds "
                           "four (Lake-Canal, Lake-Market, Randolph-Canal, Kinzie-Canal) and "
                           "NONE anywhere on South Water, and Market's centreline stops at "
-                          "its single control point where Lake crosses it.",
+                          "its single control point where Lake crosses it. "
+                          "AND THAT POINT CANNOT BE DERIVED, MEASURED 2026-08-27 BY T-0183. "
+                          "Under the node rule in data/traces/street_control.json the two "
+                          "modern successors — North Upper Wacker Drive and West Upper "
+                          "Wacker Drive — share exactly two nodes, and they are lake_market's "
+                          "own committed pair: Wacker changes name through a bend at the "
+                          "Lake Street junction rather than crossing at South Water, so the "
+                          "rule returns a plausible point 110 m south of the corner it names. "
+                          "Re-run it with tools/refetch_control.py --discover "
+                          "market_south_water, which now refuses the set rather than "
+                          "reporting it; the reading is filed under `refused_control` in "
+                          "street_control.json. So this block is NOT waiting on somebody "
+                          "fetching a junction. It is waiting on an owner decision — close "
+                          "South Water's west end onto Market from the 1834 sheets and the "
+                          "committed bank, which is what the rest of that curve already "
+                          "stands on, or return these 27 roofs to the South balance.",
             "lots_note": "eight lots assumed from the emitted blocks' own subdivision; the "
                          "block itself is not generated, so it has no measured geometry",
         })

@@ -52,7 +52,7 @@ There is no translation along this normal that both clears the walk and leaves t
 than assumed: the clause is bounded to a lot named in its block's own `frontage` run, and
 `blk_lake_lasalle` has no frontage run at all — its roofs came from the pre-plat South Division
 parcel. So nothing committed says what happens when a **documented** building's correct position
-is held by an **inferred** one. Filed as **T-0245**, `blocked-owner`, with the three options and
+is held by an **inferred** one. Filed as **T-0251**, `blocked-owner`, with the three options and
 the figures. The record's own `position.note` carries the refusal, so a visitor opening the card
 reads it.
 

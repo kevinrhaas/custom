@@ -1,5 +1,5 @@
 ---
-id: T-0245
+id: T-0251
 title: first_presbyterian_church cannot come onto the Lake Street plat without displacing physicians_office
 state: blocked-owner
 epic: META
@@ -19,7 +19,11 @@ needs_bake: false
 first_presbyterian_church cannot come onto the Lake Street plat without displacing physicians_office.
 
 Found by T-0196, which reconciled the other three Lake Street placements and refused this one
-in writing rather than moving it.
+in writing rather than moving it. **Filed as T-0245 and renumbered to T-0251 on 2026-08-28**: two
+parallel slices took T-0245 and then T-0250 for their own findings in the same minutes, and the collision surfaced at
+the merge. The number in this ticket's own PR body is the old one; every committed reference —
+the record's `position.note`, `docs/STATUS.md`, `tools/generate_frontage_works.py` and T-0246 —
+carries T-0251.
 
 ## The fault is the same one; the repair is not available
 

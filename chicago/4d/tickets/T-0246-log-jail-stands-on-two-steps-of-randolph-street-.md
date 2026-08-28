@@ -30,7 +30,7 @@ wall-refused steps, and the two new ones are Randolph's:
 `tools/measure_corridor_intrusion.py` puts `log_jail` 3.48 m into the Randolph corridor, in
 the DEEP mode, with its centroid inside — deeper than any of the four Lake Street records
 T-0196 looked at. T-0196 cleared three of those four; the two steps left on Lake belong to
-`first_presbyterian_church` (T-0245), and these two belong here.
+`first_presbyterian_church` (T-0251), and these two belong here.
 
 **What is not yet known, and is the first thing to measure:** whether this is the same fault.
 The Lake and South Water records were all placed off a modern OpenStreetMap kerb line; whether
@@ -47,6 +47,6 @@ own inward normal, its along-street coordinate untouched, the metres and the der
 `tools/generate_frontage_works.py` re-derives, and Randolph's walk on `blk_randolph_lasalle`'s
 north face is measured either way.
 
-**Links:** T-0196 (Lake, three reconciled) · T-0245 (Lake, the one that could not move) ·
+**Links:** T-0196 (Lake, three reconciled) · T-0251 (Lake, the one that could not move) ·
 T-0198, T-0199 (South Water, the method) · T-0240 (the street this appeared on) ·
 `tools/generate_frontage_works.py` · `tools/measure_corridor_intrusion.py`.
