@@ -214,6 +214,14 @@ const TUNE = {
       { inner: 16.0, innerRamp: 10.0, radius: 62.0, ramp: 30.0, cell: 3.4, perCell: 1, keep: 0.80, wide: [1.5, 2.6], lift: 1.14 },
       { inner: 44.0, innerRamp: 24.0, radius: 175.0, ramp: 92.0, cell: 9.5, perCell: 1, keep: 0.74, wide: [2.6, 4.6], lift: 1.20 },
     ],
+    // How wide a flower must still be, in pixels of the smaller gate viewport,
+    // for the far band to draw it — see `farHeadReach`. ONE pixel is the honest
+    // bar for the tier that is asked to draw everything; the rungs below it buy
+    // their headroom by asking a mark to be bigger before it is worth a head,
+    // which is the same shape as `light`'s furniture reach and `balanced`'s
+    // (T-0241) and not a different kind of concession. The reach falls linearly
+    // and the heads inside it quadratically, so 2.0 draws a quarter of them.
+    minPx: 1.0,
   },
   /** Hard caps. The palette's `budget` is advisory; this is the ceiling. */
   cap: { near: 2400, mid: 4400, forb: 900, head: 820, far: 420 },
@@ -529,6 +537,54 @@ function farRank(e, n, band) {
  *  dither branch entirely. */
 const FAR_RING = [1e9, 1e-4, 0, 0];
 
+/**
+ * THE FAR BLOOM — T-0209, and the bar it answers is a PIXEL, not a radius.
+ *
+ * A flower head was drawn nowhere past 23.65 m, because the head ring hangs off
+ * the forb ring and the forb ring ends where the far band begins. So the sward
+ * was carried to 175 m and the bloom to 23.65, and T-0034 measured what that
+ * costs: the bloom covers 1.8 % of the ground the sward covers, and the other
+ * 98 % of a July prairie is grass-coloured whatever its records say is
+ * flowering on it.
+ *
+ * THE CONVERSION T-0209 ASKS FOR, and the reason it is a distance. The flora
+ * records give bloom IN PLAN — `density_per_ha` x `size_m`, 0.027-0.219 % of
+ * the ground on the mesic prairie — and a frame reads bloom IN SCREEN SPACE at
+ * a near-horizontal pose. Tint the far card by the plan figure and nothing
+ * happens: run the records through an opaque-canopy model, where each element's
+ * share of the drawn wall is its share of the community's silhouette-area
+ * density, and the mesic prairie's bloom comes out at **0.05 % of the far
+ * card** (`tools/measure_far_bloom.mjs`). A colour blended at five parts in ten
+ * thousand is not a colour, and one blended at anything larger is invented.
+ *
+ * A HEAD IS NOT AN AREA, THOUGH — it is a saturated MARK, and a mark is
+ * visible while it still covers a pixel. That is the honest conversion, and it
+ * is per-record rather than per-community: the camera is 62 degrees vertical
+ * (`main.js`), so the gate's two viewports carry 780/1.0821 = 721 and
+ * 800/1.0821 = 739 pixels per radian. A head of `size_m` therefore falls under
+ * one pixel at `size_m * 721` metres — the PHONE sets the bar, because mobile
+ * is a release gate. The mesic prairie's median head is 0.07 m, so the bloom
+ * can honestly be carried to about FIFTY metres and no further; a 0.10 m
+ * compass-plant head reaches 72 m and a 0.0275 m purple-prairie-clover thimble
+ * only 20 m, which is why the reach is the record's own and not a constant.
+ *
+ * Past that reach the bloom is genuinely under the pixel grid and the far
+ * card's honest tint is the 0.05 % above. That is the number this parcel
+ * records rather than a licence to paint one.
+ */
+const FAR_HEAD_PX_PER_RAD = 721;
+/** How far a head of this record's own size stays a mark `minPx` wide. */
+function farHeadReach(sp, minPx) {
+  return mid(sp.head.size) * FAR_HEAD_PX_PER_RAD / minPx;
+}
+/** The ring a far head is drawn on: its own reach, faded over the last eighth
+ *  of it so the bloom thins out rather than ending on a circle. */
+function farHeadRing(sp, minPx, out) {
+  const r = farHeadReach(sp, minPx);
+  out[0] = r; out[1] = r * 0.125; out[2] = 0; out[3] = 0;
+  return out;
+}
+
 /** Nearer than this, plants go all the way round whatever the cone says. */
 const CONE_KEEP_M = 3.5;
 /** Cosine of the cone half-angle, and the yaw change that forces a rebuild. */
@@ -575,6 +631,14 @@ const LOW = {
       { inner: 9.5, innerRamp: 6.5, radius: 40.0, ramp: 20.0, cell: 3.9, perCell: 1, keep: 0.74, wide: [1.4, 2.3], lift: 1.14 },
       { inner: 30.0, innerRamp: 16.0, radius: 120.0, ramp: 64.0, cell: 11.0, perCell: 1, keep: 0.70, wide: [2.4, 4.2], lift: 1.20 },
     ],
+    // NULL, and it is a tier decision rather than a big number chosen to make a
+    // reach vanish. `light` is where the DRAW-CALL floor binds — 80 calls,
+    // restored by T-0147 and already breached at 83 on an unmodified `dev`
+    // (T-0248) — and a head archetype the far band lights up where the near
+    // rings had none is a new draw call, not just more triangles. So the phone
+    // tier carries the sward to its far band and the bloom no further, the same
+    // way it culls furniture at 350 m and the rungs above it do not.
+    minPx: null,
   },
   cap: { near: 420, mid: 900, forb: 260, head: 240, far: 190 },
 };
@@ -605,6 +669,7 @@ const MID = {
       { inner: 13.0, innerRamp: 8.5, radius: 52.0, ramp: 26.0, cell: 3.6, perCell: 1, keep: 0.78, wide: [1.5, 2.5], lift: 1.14 },
       { inner: 38.0, innerRamp: 20.0, radius: 150.0, ramp: 80.0, cell: 10.0, perCell: 1, keep: 0.72, wide: [2.5, 4.4], lift: 1.20 },
     ],
+    minPx: 2.0,
   },
   cap: { near: 1500, mid: 2700, forb: 580, head: 520, far: 300 },
 };
@@ -1217,12 +1282,43 @@ export async function createFlora({
           const zone = finder(e, n);
           if (!zone || !zone.graminoids.length) return;
           const wet = water.isWater(e, n);
-          const sp = dealt(wet ? zone.wet.graminoids : zone.dry.graminoids,
-            zone.matrixShare, u);
+          // T-0209. THE FAR BAND DEALS THE WHOLE COMMUNITY, not just its grass.
+          // Until this it dealt `graminoids` alone, so every flowering
+          // community past the mid ring was a hundred per cent matrix however
+          // its record read — and no card the far band drew could carry a
+          // flower because no card the far band drew was a plant that has one.
+          //
+          // The split is made INSIDE the band this slot was already occupied
+          // on, not beside it: the slot is used when `u < matrixShare` exactly
+          // as before, and the forbs take their own recorded share OF that
+          // range. So the card count, the instance count, the triangles and the
+          // draw calls are what they were, and what changes is which plant a
+          // card stands for. Widening the occupied band instead would have
+          // bought the bloom with geometry, which is the budget the whole
+          // ticket was told not to spend.
+          const forbs = wet ? zone.wet.forbs : zone.dry.forbs;
+          const forbShare = wet ? zone.forbShareWet : zone.forbShare;
+          const split = forbs?.items?.length && forbShare > 0
+            ? zone.matrixShare * (1 - forbShare / (zone.matrixShare + forbShare))
+            : zone.matrixShare;
+          const forb = u >= split;
+          const sp = forb
+            ? dealt(forbs, zone.matrixShare - split, u - split)
+            : dealt(wet ? zone.wet.graminoids : zone.dry.graminoids, split, u);
           if (!sp) return;
           const y = station(e, n, zone, sp, wet);
           if (y === null) return;
-          placeFarCard(farSet, sp, zone, e, y, n, rng, band);
+          const h = placeFarCard(farSet, sp, zone, e, y, n, rng, band);
+          // ...and a flowering forb's far card carries the flower, out to the
+          // distance the record's own head size stays one pixel wide — see
+          // `farHeadReach`. The head sets and their material are the ones the
+          // forb ring already uses, so this is instances on a mesh that is
+          // drawn either way, never a new draw call.
+          if (forb && h > 0 && sp.head && tune.far.minPx
+            && r <= farHeadReach(sp, tune.far.minPx)) {
+            maybeHead(heads, sp, e, y, n, rng, h,
+              farHeadRing(sp, tune.far.minPx, _headRing));
+          }
         });
     });
   }
@@ -2970,14 +3066,21 @@ function placeCard(set, sp, zone, e, y, n, rng) {
  */
 function placeFarCard(set, sp, zone, e, y, n, rng, band) {
   const u = 0.45 + 0.55 * rng();
-  const h = (sp.height[0] + (sp.height[1] - sp.height[0]) * u) * band.lift;
+  const plantH = sp.height[0] + (sp.height[1] - sp.height[0]) * u;
+  const h = plantH * band.lift;
   const w = band.wide[0] + (band.wide[1] - band.wide[0]) * rng();
   const c = tint(sp, rng(), rng()).map((x) => x * patchOf(e, n));
   const m = zone.matColor;
-  set.push(e, y, n, 0, h, w, 0.5 + rng(),
+  // The PLANT's height is returned, not the card's. `band.lift` widens and
+  // lifts an aggregate so it reads as several metres of matrix rather than one
+  // clump (L137); a flower hung off that lift would stand a hand's breadth over
+  // the plant that is supposed to be carrying it. Zero says the set was capped
+  // and nothing was drawn here, so nothing may be hung off it either — the same
+  // contract `placeGraminoid` and `placeForb` keep with `maybeHead`.
+  return set.push(e, y, n, 0, h, w, 0.5 + rng(),
     c[0] * 0.38 + m[0] * 0.62,
     c[1] * 0.38 + m[1] * 0.62,
-    c[2] * 0.38 + m[2] * 0.62, sp.conf);
+    c[2] * 0.38 + m[2] * 0.62, sp.conf) ? plantH : 0;
 }
 
 function placeForb(set, sp, e, y, n, rng) {

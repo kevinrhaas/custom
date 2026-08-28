@@ -1,5 +1,5 @@
 export const CHANGELOG = [ // newest first
-  { v: 323, title: 'Three more town-building programs are asked what they would build', kind: 'chore', ts: '2026-08-28T08:36:45.819Z', date: 'Aug 28, 2026, 3:36 AM CT',
+  { v: 324, title: 'Three more town-building programs are asked what they would build', kind: 'chore', ts: '2026-08-28T08:58:38.447Z', date: 'Aug 28, 2026, 3:58 AM CT',
     items: [
       'Nothing you can see changed today. This project has a check that deals four hundred imaginary buildings of every type through the program that places them, and asks the model-builder to build each one \u2014 the point being to find the card that kills a run before the town is ever dealt it. It had only ever been pointed at one of the four programs that place anonymous buildings. It is pointed at all four now.',
       'The good news is the dull one. None of the four is holding a card it cannot play: twelve thousand imaginary buildings, every size every type is allowed to be, and every one of them builds.',
@@ -7,6 +7,15 @@ export const CHANGELOG = [ // newest first
       'Two of the thirty-one have never appeared on a standing building, because the recipes have not dealt those types yet. A medium boarding house on the west side would be given both a wall and a roof pitch outside the range, and a boarding house in the household programme a wall a metre short \u2014 and nothing anywhere said so, because no such building stands to say it on.',
       'All thirty-one are now written down with the line of code behind each one and the reason it still stands, and the check refuses to let that list grow: a new one, or a building the model-builder cannot build, fails the build from here.',
       'Repairing them moves real roofs and walls, so it is filed as three separate jobs, one per program, each with the rebuild it needs. This run took the reading; it did not quietly redefine what a good one looks like.',
+    ] },
+  { v: 323, title: 'The prairie\u2019s flowers come out past the near ring', kind: 'feature', ts: '2026-08-28T08:36:52.438Z', date: 'Aug 28, 2026, 3:36 AM CT',
+    items: [
+      'Walk out onto the prairie west of town and look across it. Until today every flower in Chicago stood within about twenty-five metres of you \u2014 past that the grass ran on to a hundred and seventy-five metres and not one bloom stood in it. The flowers now carry to a hundred and twenty.',
+      'What was out there before was grass, and only grass. The far sward is drawn as aggregate clumps, each standing for several metres of ground, and the deal that chose what a clump was could only pick a grass \u2014 so a coneflower prairie read as a hay field however its records were written. Those clumps now deal the whole community, each plant at the share its own record asks for.',
+      'Nothing new is drawn to do it. The same number of clumps stands out there, on the same shapes; what changed is which plant each one stands for, and the flower that a flowering one carries.',
+      'How far a flower reaches is the flower\u2019s own size. A bloom is worth drawing while it still covers a pixel of a phone screen, so a compass plant\u2019s ten-centimetre head carries seventy-two metres and a purple prairie clover\u2019s two-centimetre thimble only twenty. That comes off each record, not off one number for all of them.',
+      'On a phone the distant flowers are left out, and that is a decision rather than an oversight: the phone is where this scene\u2019s budget binds hardest, and a flower shape not already on screen costs more there than it is worth.',
+      'It also settles a question that had been open for a fortnight \u2014 could the distant grass simply be tinted the colour of whatever is flowering on it? Measured against the records: no. The flowers\u2019 share of what you actually see at that distance is five parts in ten thousand, far too little for a screen to carry. A flower a long way off is a speck, not a wash, and specks are what it now draws.',
     ] },
   { v: 322, title: 'The store on Randolph steps out to the street', kind: 'fix', ts: '2026-08-28T08:30:38.617Z', date: 'Aug 28, 2026, 3:30 AM CT',
     items: [
