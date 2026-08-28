@@ -590,6 +590,106 @@ def compile_fauna_sources(scene_id: str, sources: dict, outdir: Path) -> int:
     return len(citations)
 
 
+def compile_flora_sources(scene_id: str, sources: dict, outdir: Path) -> int:
+    """The citations the plant records stand on, joined once for the panel.
+
+    T-0281, and the argument is `compile_fauna_sources`'s exactly. `data/flora/`
+    is authored research and the browser fetches it as committed — the manifest
+    and each zone record — which is what keeps the read map in
+    `tools/measure_layer_reads.py` scannable. What a zone and each of its species
+    carry is a list of `source_id`s, and a bare id on a card is not a citation.
+
+    The plant records are the THIRD layer to need this join and the second to
+    need it twice over: a species cites its own sources and the community it
+    stands in cites others for its extent, so the file is keyed by id and both
+    reads come out of the one fetch. It carries no plant figure of its own — the
+    densities are read from `data/flora/`, and the census that counts which
+    figures reach a visitor must not have two answers to one question.
+    """
+    cited: set[str] = set()
+
+    def walk(node) -> None:
+        if isinstance(node, dict):
+            for key, value in node.items():
+                if key == "sources" and isinstance(value, list):
+                    cited.update(str(v) for v in value)
+                else:
+                    walk(value)
+        elif isinstance(node, list):
+            for value in node:
+                walk(value)
+
+    index_path = DATA / "flora" / "index.json"
+    if not index_path.exists():
+        return 0
+    index = load(index_path)
+    walk(index)
+    for entry in index.get("zones", []):
+        zone_path = DATA / "flora" / entry.get("file", "")
+        if zone_path.exists():
+            walk(load(zone_path))
+
+    citations = cite(sorted(cited), sources)
+    emit(outdir / "flora_sources.json", {
+        "scene": scene_id,
+        "standard": "Every source the plant records cite, joined once so the plants "
+                    "section of the Evidence panel quotes a source exactly the way the "
+                    "building card and the wildlife list do.",
+        "citations": {c["source_id"]: c for c in citations},
+    })
+    return len(citations)
+
+
+def compile_flora_clamp(scene_id: str, outdir: Path) -> int:
+    """The declared cost of the forb lattice's ceiling, carried to the browser.
+
+    T-0281's second half, and the reason it is a COMPILE rather than a copy in
+    `tools/publish.sh`. `tools/forb_clamp_baseline.json` is the declaration
+    T-0019 made and `node tools/measure_sward_draw.mjs --gate` holds: every
+    (community, stratum, side) the ceiling binds, with the density its records
+    ask for and the share of it the lattice can carry. It lives under `tools/`
+    because it is a gate's baseline, and `tools/` is not published — so a card
+    wanting those figures had two dishonest options and one honest one.
+
+    The dishonest ones are typing the table into the renderer, which is what
+    docs/LIBERTIES.md L186 already does and which goes stale the first time a
+    flora record moves, and copying the file into `data/` by hand, which is the
+    same staleness with an extra file to forget. The honest one is this: derive
+    it where every other derived file in this project is derived, so
+    `tools/compile_scene.py --check` — which `tools/check.sh` runs — fails the
+    moment the committed sidecar stops matching the declaration behind it. The
+    figures a visitor reads and the figures the gate holds cannot drift apart
+    without the build going red.
+
+    Nothing is recomputed here and nothing may be: this reads the declaration and
+    carries it. A second calculation of the same share would be a second answer
+    to the question `measure_sward_draw.mjs` already owns.
+    """
+    declared = ROOT / "tools" / "forb_clamp_baseline.json"
+    if not declared.exists():
+        return 0
+    doc = load(declared)
+    emit(outdir / "flora_clamp.json", {
+        "scene": scene_id,
+        "standard": "The forb lattice's ceiling as tools/forb_clamp_baseline.json declares "
+                    "it, carried unchanged so the plants section can state the share of "
+                    "each record the scene is able to draw rather than typing a table. "
+                    "Nothing here is recalculated: tools/measure_sward_draw.mjs --gate "
+                    "owns these numbers and tools/compile_scene.py --check holds this copy "
+                    "to them.",
+        "declared_by": "tools/forb_clamp_baseline.json",
+        "measured": doc.get("measured"),
+        "stand": doc.get("stand"),
+        "cell_m": doc.get("cell"),
+        "per_cell": doc.get("perCell"),
+        "slot_area_m2": doc.get("slotAreaM2"),
+        "ceiling_per_m2": doc.get("ceilingPerM2"),
+        "clamped": doc.get("clamped", []),
+        "fits": doc.get("fits", []),
+    })
+    return len(doc.get("clamped", []))
+
+
 def southern_edge_text() -> str:
     """Where the modelled ground stops on the south, and what the plat has beyond it.
 
@@ -1196,6 +1296,8 @@ def compile_scene(scene_id: str, sources: dict, exclusions: dict) -> int:
                                   in_scene=resolved)
     ground = compile_ground(scene_id, scene, sources, outdir)
     fauna_cites = compile_fauna_sources(scene_id, sources, outdir)
+    flora_cites = compile_flora_sources(scene_id, sources, outdir)
+    flora_clamped = compile_flora_clamp(scene_id, outdir)
     resident_cites = compile_residents_sources(scene_id, sources, outdir)
 
     # A SIDECAR WHOSE STRUCTURE HAS GONE IS NOT INERT, which is why this sweeps
@@ -1206,7 +1308,8 @@ def compile_scene(scene_id: str, sources: dict, exclusions: dict) -> int:
     # green: the layer re-derived exactly, from an input nobody had noticed was a
     # ghost. Found 2026-08-22 in T-0105's own merge, which left three of them.
     keep = {entry["id"] for entry in index} | set(skipped) | {
-        "index", "exclusions", "terrain", "fauna_sources", "residents_sources"}
+        "index", "exclusions", "terrain", "fauna_sources", "flora_sources",
+        "flora_clamp", "residents_sources"}
     for stale in sorted(outdir.glob("*.json")):
         if stale.stem in keep:
             continue
@@ -1218,6 +1321,7 @@ def compile_scene(scene_id: str, sources: dict, exclusions: dict) -> int:
 
     print(f"scene {scene_id}: {written} sidecar(s), {left_out} researched exclusion(s), "
           f"{ground} ground claim(s), {fauna_cites} fauna source(s), "
+          f"{flora_cites} flora source(s), {flora_clamped} clamped plant layer(s), "
           f"{resident_cites} resident source(s)"
           + (f", {len(skipped)} excluded by date ({', '.join(skipped)})" if skipped else ""))
     return written

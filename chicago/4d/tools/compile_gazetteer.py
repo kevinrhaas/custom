@@ -45,6 +45,18 @@ claim whose text does not match, character for character. That is what makes "ne
 silently smoothed" enforceable instead of aspirational: a smoothed quote fails the gate,
 and the smoothed reading has a field of its own to live in (`normalized`).
 
+AND THE INTERLEAVE HAPPENS INSIDE A LINE TOO (T-0261). The Democrat's transcriptions
+carry one line per printed line, so naming lines is enough to name an advertisement.
+The American's do not: its densest advertising columns arrive as ONE line of up to
+11,361 characters in which four separate advertisements and the segmenter's own
+coordinate telemetry are woven together. Naming that line quotes seven other things,
+which is not a citation. `locator.spans` is therefore the character-level sibling of
+`lines_of_claim`: a list of {line, from, to} half-open character ranges, and when it
+is present the quote is those ranges joined by a newline instead of those whole lines.
+Every range is still verbatim and still machine-checked — the honesty is unchanged,
+only the grain is finer. Optional and additive: a claim without `spans` behaves exactly
+as it did before, which is why the fixture and the Democrat read need no edit.
+
 INTERLEAVED COLUMNS ARE THE NORMAL CASE, NOT AN EXCEPTION. The deposit's advertising type
 is segmented into six physical columns per page and the segmenter frequently alternates
 two of them line by line, so a single advertisement occupies a SUBSET of a line range with
@@ -80,6 +92,7 @@ CORPUS = RESEARCH / "corpus.json"
 EXTRACTED = RESEARCH / "extracted"
 IDENTITY = RESEARCH / "identity.json"
 GAZETTEER = RESEARCH / "gazetteer.json"
+COVERAGE = RESEARCH / "coverage.json"
 
 SCHEMA_VERSION = 1
 SCENE_DATE = date(1835, 7, 1)
@@ -99,23 +112,32 @@ READINGS = ("transcription_mediated", "scan_verified")
 # later pass can count them.
 PLACEMENT_CLASSES = ("corner", "relative", "street_only", "none")
 
-# THE DEPOSIT SPEAKS TWO MARKER DIALECTS, and only one of them was written down.
+# THE DEPOSIT SPEAKS THREE RULED MARKER DIALECTS AND ONE PROSE ONE, and T-0257 could
+# only see two of them.
 #
 # `data/research/newspapers/README.md` says page and column come from
 # `===== ISSUE PAGE n / PDF PAGE m / COLUMN k OF 6 =====` markers "which every issue in
-# both runs carries". Sixty-six of the eighty-six do — the ones the deposit delivered as
-# committed `.txt`. The twenty-three delivered as `.docx` and extracted here by
-# `tools/docx_text.py` carry the SAME facts as two prose headings instead:
+# both runs carries". Sixty-six of the eighty-six carry a ruled marker of some shape —
+# the ones the deposit delivered as committed `.txt`. The twenty-three delivered as
+# `.docx` and extracted here by `tools/docx_text.py` carry the SAME facts as two prose
+# headings instead:
 #
 #     Newspaper Page 1 — Source PDF Page 13
 #     Column 1
 #
-# Found building this file's fixture, 2026-08-28. It matters more than it looks: the
-# twenty-three are exactly the issues readable on `dev`, where the deposit is absent
-# (T-0275), so a resolver that speaks only the first dialect can check a locator on no
-# issue this branch can open. Both are read here and the README is corrected to say so.
+# THE THIRD RULED DIALECT IS THE MAJORITY ONE. Counted across the deposit on 2026-08-28
+# while reading July 1834 (T-0289): 1,176 of the 1,266 ruled column markers name the scan
+# page as `SOURCE PDF PAGE` and only 90 as the bare `PDF PAGE` this pattern was written
+# against; four more say `ORIGINAL PDF PAGE`. EVERY issue of the second half of 1834 is in
+# the majority dialect, so the pattern matched a column marker in none of them.
+#
+# Nothing caught it because the deposit is absent on `dev` (T-0275): `check` skips the
+# page/column assertion outright when it cannot read the text, so a resolver that speaks
+# no dialect and a resolver that speaks all three are indistinguishable on this branch.
+# The word before `PDF PAGE` is optional here, and the self-test carries a case per ruled
+# dialect plus a negative, so the next one cannot be added silently.
 COLUMN_MARKER = re.compile(
-    r"^=====\s*ISSUE PAGE\s+(\d+)\s*/\s*PDF PAGE\s+(\d+)\s*/\s*COLUMN\s+(\d+)\s+OF\s+(\d+)\s*=====\s*$")
+    r"^=====\s*ISSUE PAGE\s+(\d+)\s*/\s*(?:\w+\s+)?PDF PAGE\s+(\d+)\s*/\s*COLUMN\s+(\d+)\s+OF\s+(\d+)\s*=====\s*$")
 PAGE_HEADING = re.compile(r"^\s*Newspaper Page\s+(\d+)\b")
 COLUMN_HEADING = re.compile(r"^\s*Column\s+(\d+)\s*$")
 
@@ -220,6 +242,56 @@ def column_span(lines, issue_page, column):
             end = starts[i + 1][0] - 1 if i + 1 < len(starts) else len(lines)
             return (n + 1, end)
     return None
+
+
+def quoted_text(lines, used, spans):
+    """What the transcription says at a locator: whole lines, or named char ranges.
+
+    `spans` is the finer grain (T-0261). Each entry is one verbatim piece and the
+    pieces are joined by a newline, exactly as whole lines are — so the two forms
+    differ in what they name, never in what a quote MEANS.
+    """
+    if spans:
+        return "\n".join(lines[s["line"] - 1][s["from"]:s["to"]] for s in spans)
+    return "\n".join(lines[n - 1] for n in used)
+
+
+def span_problems(spans, used, lines):
+    """Everything a `spans` list can be wrong about. Empty list means it is sound."""
+    out = []
+    if not isinstance(spans, list) or not spans:
+        return ["locator.spans must be a non-empty list of {line, from, to}"]
+    seen = []
+    for sp in spans:
+        if not isinstance(sp, dict) or not all(
+                isinstance(sp.get(k), int) for k in ("line", "from", "to")):
+            out.append("every span needs integer `line`, `from` and `to`")
+            return out
+        n = sp["line"]
+        if n not in used:
+            out.append("span cites line %d, which lines_of_claim does not name — a span "
+                       "narrows a claimed line, it cannot add one" % n)
+            continue
+        if lines is not None:
+            width = len(lines[n - 1])
+            if not (0 <= sp["from"] < sp["to"] <= width):
+                out.append("span %d[%d:%d] is not inside a %d-character line"
+                           % (n, sp["from"], sp["to"], width))
+                continue
+        seen.append((n, sp["from"], sp["to"]))
+    if seen != sorted(seen):
+        out.append("spans must be in reading order, by line then by character")
+    for a, b in zip(seen, seen[1:]):
+        if a[0] == b[0] and b[1] < a[2]:
+            out.append("spans %s and %s overlap — a quote cannot say the same "
+                       "characters twice" % (list(a), list(b)))
+    if lines is not None:
+        named = {n for n, _, _ in seen}
+        for n in used:
+            if n not in named:
+                out.append("line %d is claimed but no span quotes any of it — a claimed "
+                           "line the quote does not use is a line that was not read" % n)
+    return out
 
 
 # --------------------------------------------------------------------------
@@ -412,11 +484,58 @@ def initials(name):
 
 
 # --------------------------------------------------------------------------
+# coverage: a range someone said they READ, checked against the register
+
+
+def coverage_problems(coverage_doc, corpus_doc, files):
+    """Every issue inside a DECLARED range must have an extraction file.
+
+    A reading pass covers a range of issues, and the failure it is prone to is not a
+    bad claim — the gate above catches those — but a MISSING issue: fourteen of fifteen
+    read, and nothing anywhere says which one was skipped. Counting files does not
+    answer it either, because the count that should have been is exactly the thing in
+    question. So a pass declares its range here when it closes, and the register says
+    what is inside it.
+
+    Declaring is the act that makes the assertion; an undeclared issue is simply not
+    read yet and is not a fault. What is a fault is declaring a range and leaving a
+    hole in it.
+    """
+    problems = []
+    have = {Path(f).stem for f in files}
+    issues = corpus_doc.get("issues", [])
+    for rng in coverage_doc.get("ranges", []):
+        label = "coverage %r" % (rng.get("ticket") or rng.get("note") or "range")
+        pub, first, last = rng.get("publication"), rng.get("from"), rng.get("to")
+        if not (pub and first and last):
+            problems.append("%s: a range needs publication, from and to" % label)
+            continue
+        try:
+            date.fromisoformat(first), date.fromisoformat(last)
+        except ValueError:
+            problems.append("%s: from/to must be ISO dates" % label)
+            continue
+        inside = [i for i in issues
+                  if i.get("publication") == pub and first <= i.get("date", "") <= last]
+        if not inside:
+            problems.append("%s: names no issue in corpus.json — a range covering "
+                            "nothing is a range that was mistyped" % label)
+            continue
+        missing = sorted(i["id"] for i in inside if i["id"] not in have)
+        if missing:
+            problems.append("%s: declared read %s to %s, and %d of its %d issue(s) have "
+                            "no extraction file: %s"
+                            % (label, first, last, len(missing), len(inside),
+                               ", ".join(missing)))
+    return problems
+
+
+# --------------------------------------------------------------------------
 # check
 
 
 def check(extracted=EXTRACTED, gazetteer=GAZETTEER, identity=IDENTITY, corpus=CORPUS,
-          deposit=DEPOSIT, repo=REPO, quiet=False):
+          deposit=DEPOSIT, repo=REPO, coverage=COVERAGE, quiet=False):
     bad = []
     corpus_doc = load_json(corpus)
     issues = issue_index(corpus_doc)
@@ -520,6 +639,9 @@ def check(extracted=EXTRACTED, gazetteer=GAZETTEER, identity=IDENTITY, corpus=CO
 
             lines = text_lines(art.get("text_path", ""), deposit, repo)
             if lines is None:
+                if loc.get("spans"):
+                    bad.extend("%s %s: %s" % (at, key, p)
+                               for p in span_problems(loc["spans"], used, None))
                 unresolved += 1
                 continue
             if span[1] > len(lines):
@@ -536,13 +658,22 @@ def check(extracted=EXTRACTED, gazetteer=GAZETTEER, identity=IDENTITY, corpus=CO
                            "transcription's own markers"
                            % (at, key, span, loc.get("issue_page"), loc.get("column"), list(col)))
             # THE QUOTE IS THE TRANSCRIPTION'S, character for character.
-            want = "\n".join(lines[n - 1] for n in used)
+            spans = loc.get("spans")
+            if spans is not None:
+                sp_bad = span_problems(spans, used, lines)
+                bad.extend("%s %s: %s" % (at, key, p) for p in sp_bad)
+                if sp_bad:
+                    continue
+            want = quoted_text(lines, used, spans)
             if claim.get("quote") is not None and claim["quote"] != want:
                 bad.append("%s %s: the quote is not what lines %s of the transcription "
                            "say. A quote is verbatim including its uncertainty brackets; "
                            "the smoothed reading belongs in `normalized`." % (at, key, used))
             else:
                 checked_quotes += 1
+
+    coverage_doc = load_json(coverage) if Path(coverage).exists() else {"ranges": []}
+    bad.extend(coverage_problems(coverage_doc, corpus_doc, files))
 
     doc, compile_problems = compile_gazetteer(files, identity_doc, corpus_doc, quiet=True)
     bad.extend(compile_problems)
@@ -577,6 +708,12 @@ def check(extracted=EXTRACTED, gazetteer=GAZETTEER, identity=IDENTITY, corpus=CO
               % checked_quotes)
         print("  ok    %d person(s), %d business(es), compile deterministic and committed"
               % (len(doc["persons"]), len(doc["businesses"])))
+        covered = sum(1 for i in corpus_doc.get("issues", [])
+                      for r in coverage_doc.get("ranges", [])
+                      if i.get("publication") == r.get("publication")
+                      and r.get("from", "") <= i.get("date", "") <= r.get("to", ""))
+        print("  ok    %d issue(s) inside %d declared coverage range(s), none missing"
+              % (covered, len(coverage_doc.get("ranges", []))))
         if unresolved:
             print("  note  %d claim(s) cite deposit-held text not readable here — it is on "
                   "`main` (T-0275), so their quotes are checked there" % unresolved)
@@ -665,7 +802,8 @@ def self_test():
             doc, _ = compile_gazetteer(sorted(ex.glob("*.json")), ident, corpus_doc)
             gz.write_text(dumps(doc), encoding="utf-8")
             bad = check(extracted=ex, gazetteer=gz, identity=ip, corpus=CORPUS,
-                        deposit=DEPOSIT, repo=REPO, quiet=True)
+                        deposit=DEPOSIT, repo=REPO, coverage=Path(td) / "none.json",
+                        quiet=True)
         if want is None:
             if bad:
                 failures.append("%s: expected a clean run, got %r" % (label, bad))
@@ -729,7 +867,8 @@ def self_test():
                 gz = Path(td) / "gazetteer.json"
                 gz.write_text(dumps(doc), encoding="utf-8")
                 bad = check(extracted=ex, gazetteer=gz, identity=ip, corpus=CORPUS,
-                            deposit=DEPOSIT, repo=REPO, quiet=True)
+                            deposit=DEPOSIT, repo=REPO,
+                            coverage=Path(td) / "none.json", quiet=True)
             if want is None:
                 if bad:
                     failures.append("%s: expected a clean run, got %r" % (label, bad))
@@ -750,6 +889,99 @@ def self_test():
                        lines=[10 ** 7, 10 ** 7], lines_of_claim=[10 ** 7]),
                    "of a", "a line past the end of the transcription")
 
+        # T-0261's finer grain. The control narrows the backed claim to two character
+        # ranges of its own line and quotes exactly those, so every case below is
+        # unambiguously about `spans` and not about the line it sits in.
+        n0 = backed["claims"][0]["locator"]["lines_of_claim"][0]
+        whole = backed["claims"][0]["quote"]
+        half = max(2, len(whole) // 2)
+
+        def with_spans(d, spans, quote=None):
+            d["claims"][0]["locator"]["spans"] = spans
+            if quote is not None:
+                d["claims"][0]["quote"] = quote
+
+        run_backed(lambda d: with_spans(d, [{"line": n0, "from": 0, "to": 2},
+                                            {"line": n0, "from": half, "to": half + 2}],
+                                        whole[0:2] + "\n" + whole[half:half + 2]),
+                   None, "a quote narrowed to two character ranges of its line")
+        run_backed(lambda d: with_spans(d, [{"line": n0, "from": 0, "to": 2}], whole),
+                   "not what lines", "a spans quote that still carries the whole line")
+        run_backed(lambda d: with_spans(d, [{"line": n0 + 500000, "from": 0, "to": 2}]),
+                   "lines_of_claim does not name",
+                   "a span on a line the claim never claimed")
+        run_backed(lambda d: with_spans(d, [{"line": n0, "from": 0, "to": 10 ** 7}]),
+                   "is not inside a", "a span running past the end of its line")
+        run_backed(lambda d: with_spans(d, [{"line": n0, "from": half, "to": half + 2},
+                                            {"line": n0, "from": 0, "to": 2}]),
+                   "reading order", "spans out of reading order")
+        run_backed(lambda d: with_spans(d, [{"line": n0, "from": 0, "to": half + 2},
+                                            {"line": n0, "from": half, "to": half + 4}]),
+                   "overlap", "two spans quoting the same characters twice")
+        run_backed(lambda d: (d["claims"][0]["locator"].update(
+                       lines=[n0, n0 + 1], lines_of_claim=[n0, n0 + 1]),
+                       with_spans(d, [{"line": n0, "from": 0, "to": 2}])),
+                   "no span quotes any of it",
+                   "a claimed line the spans never quote")
+
+    # THE COVERAGE RANGE, which is the only assertion here about an issue that is NOT
+    # in the tree. Every other case breaks something present; these break something by
+    # its absence, which is the shape of the fault a reading pass actually has.
+    def run_coverage(ranges, want, label):
+        with tempfile.TemporaryDirectory() as td:
+            ex = Path(td) / "extracted"
+            ex.mkdir()
+            (ex / ("%s.json" % base["issue_id"])).write_text(
+                json.dumps(base, ensure_ascii=False), encoding="utf-8")
+            ip = Path(td) / "identity.json"
+            ip.write_text(json.dumps({"merges": []}), encoding="utf-8")
+            doc, _ = compile_gazetteer(sorted(ex.glob("*.json")), {"merges": []}, corpus_doc)
+            gz = Path(td) / "gazetteer.json"
+            gz.write_text(dumps(doc), encoding="utf-8")
+            cov = Path(td) / "coverage.json"
+            cov.write_text(json.dumps({"schema": 1, "ranges": ranges}), encoding="utf-8")
+            bad = check(extracted=ex, gazetteer=gz, identity=ip, corpus=CORPUS,
+                        deposit=DEPOSIT, repo=REPO, coverage=cov, quiet=True)
+        if want is None:
+            if bad:
+                failures.append("%s: expected a clean run, got %r" % (label, bad))
+        elif not any(want in b for b in bad):
+            failures.append("%s: expected a failure mentioning %r, got %r"
+                            % (label, want, bad))
+
+    issue = issue_index(corpus_doc)[base["issue_id"]]
+    run_coverage([], None, "no declared range at all")
+    run_coverage([{"publication": issue["publication"], "from": issue["date"],
+                   "to": issue["date"], "ticket": "self-test"}],
+                 None, "a range covering exactly the issue that is present")
+    run_coverage([{"publication": issue["publication"], "from": "1835-07-01",
+                   "to": "1835-08-31", "ticket": "self-test"}],
+                 "no extraction file",
+                 "a range with issues in it that were never read")
+    run_coverage([{"publication": issue["publication"], "from": issue["date"],
+                   "ticket": "self-test"}],
+                 "needs publication, from and to", "a range missing its end")
+    run_coverage([{"publication": issue["publication"], "from": "1899-01-01",
+                   "to": "1899-12-31", "ticket": "self-test"}],
+                 "names no issue in corpus.json", "a range that covers nothing")
+    run_coverage([{"publication": issue["publication"], "from": "the summer",
+                   "to": "1835-08-31", "ticket": "self-test"}],
+                 "must be ISO dates", "a range whose dates do not parse")
+
+    # THE RULED MARKER DIALECTS, one case each plus a negative (T-0289). T-0257's pattern
+    # matched only the bare `PDF PAGE` form, which is 90 of the deposit's 1,266 ruled
+    # markers, and nothing on `dev` could see the gap because the deposit is not there to
+    # read. A dialect added without a case here will be caught by this list failing to grow.
+    for dialect in (
+            "===== ISSUE PAGE 3 / PDF PAGE 19 / COLUMN 5 OF 6 =====",
+            "===== ISSUE PAGE 3 / SOURCE PDF PAGE 19 / COLUMN 5 OF 6 =====",
+            "===== ISSUE PAGE 3 / ORIGINAL PDF PAGE 19 / COLUMN 5 OF 6 ====="):
+        m = COLUMN_MARKER.match(dialect)
+        if not m or (int(m.group(1)), int(m.group(3))) != (3, 5):
+            failures.append("the column marker %r does not resolve to page 3 column 5" % dialect)
+    if COLUMN_MARKER.match("===== ISSUE PAGE 3 / COLUMN 5 OF 6 ====="):
+        failures.append("the column marker pattern matched a line with no scan page")
+
     # A hand-edit to the generated file, which is the fault nothing downstream can see.
     with tempfile.TemporaryDirectory() as td:
         ex = Path(td) / "extracted"
@@ -763,12 +995,14 @@ def self_test():
         gz = Path(td) / "gazetteer.json"
         gz.write_text(dumps(doc), encoding="utf-8")
         bad = check(extracted=ex, gazetteer=gz, identity=ip, corpus=CORPUS,
-                    deposit=DEPOSIT, repo=REPO, quiet=True)
+                    deposit=DEPOSIT, repo=REPO, coverage=Path(td) / "none.json",
+                    quiet=True)
         if not any("hand-edited" in b for b in bad):
             failures.append("a hand-edit to gazetteer.json was not caught")
         gz.unlink()
         bad = check(extracted=ex, gazetteer=gz, identity=ip, corpus=CORPUS,
-                    deposit=DEPOSIT, repo=REPO, quiet=True)
+                    deposit=DEPOSIT, repo=REPO, coverage=Path(td) / "none.json",
+                    quiet=True)
         if not any("is missing" in b for b in bad):
             failures.append("a missing gazetteer.json was not caught")
 
@@ -776,7 +1010,8 @@ def self_test():
         for f in failures:
             print("FAIL: " + f, file=sys.stderr)
         return 1
-    print("  ok    every gazetteer assertion fires when broken (23 cases)")
+    print("  ok    every gazetteer assertion fires when broken (36 cases), and the\n"
+          "        three ruled marker dialects all resolve")
     return 0
 
 

@@ -884,6 +884,15 @@ step "closing a ticket leaves the mirror fresh, and a stale one still fails" \
 step "restamp moves the queue line it was handed, not the other one" \
   node tools/test_ticket_restamp.mjs
 
+# The other restamp, and the more dangerous one: `tools/restamp_inputs.py` rewrites
+# `assets/manifest.json`'s input hashes without a bake, which is the only honest
+# answer to a change in the input-hash RECIPE (T-0164) and would be a silent way to
+# bless a stale mesh at any other moment. Its guard is that a SCHEME constant must
+# have moved, and a committed tree — where the schemes agree by construction — is
+# exactly the negative fixture that proves the guard still holds.
+step "restamping the input hashes is refused when no recipe changed" \
+  python3 tools/test_restamp_inputs.py
+
 # The integration preview's assembler. It lives at the repo root because the
 # deploy workflow does, but nothing else tests it, and it is the only thing that
 # marks the preview as a preview — the noindex, the banner, the build stamp. A

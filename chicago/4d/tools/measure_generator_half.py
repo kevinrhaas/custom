@@ -12,9 +12,10 @@ things wanted a number rather than an opinion:
 
   1. **How many committed meshes does adding it re-stale?** `generators/
      mesh_inputs.py` hashes an archetype's builder, `generators/build.py` and
-     `generators/common/*.py` into every structure asset's `inputs_sha256`, and
-     `generators/terrain_inputs.py` hashes `terrain_gen.py` and the same
-     `common/*.py` into every terrain asset's. `tools/validate.py --stale` fails on
+     the geometry-making half of `generators/common/` into every structure asset's
+     `inputs_sha256`, and `generators/terrain_inputs.py` hashes `terrain_gen.py`
+     and the same modules into every terrain asset's. Which half that is, is
+     declared in `generators/code_inputs.py` (T-0164) rather than globbed. `tools/validate.py --stale` fails on
      any asset whose recomputed hash has moved. So the cost of adding a mode is not
      the mode: it is the rebake of everything the edited file's bytes reach. This
      measures that reach per candidate edit site.
@@ -65,6 +66,13 @@ RENDERER_JS = RENDERERS / "web" / "js"
 # @ a638614c (T-0059). `--gate` holds the live measurement to it. Moving a figure
 # here is a claim that the reach changed, and it belongs in the same commit as
 # whatever changed it.
+#
+# The two zero rows are T-0164's, added 2026-08-28. `common/phases.py` decides
+# whether a mesh is built at all and builds none, and while it was globbed into
+# both recipes one comment line in it re-staled 349 of 349. It is out of the hash
+# now, `generators/code_inputs.py` says why, and a zero here is what keeps it out:
+# put it back and this row reads 349.
+#
 # 349 -> 350 and 347 -> 348 on 2026-08-28: T-0254 added one structure to the town,
 # north_water_slough_crossing. One more committed asset, one more mesh that a change to
 # the shared generator modules or to build.py would re-stale; the terrain and pier_crib
@@ -73,6 +81,8 @@ STATED = {
     "assets": 350,
     "restales": {
         "generators/common/*.py": 350,
+        "generators/common/__init__.py": 0,
+        "generators/common/phases.py": 0,
         "generators/build.py": 348,
         "generators/terrain_gen.py": 2,
         "generators/archetypes/pier_crib.py": 2,
@@ -121,6 +131,7 @@ def restale_reach() -> tuple[dict, int, list]:
         return {}, 0, ["assets/manifest.json is missing, so no reach can be measured"]
     sys.path.insert(0, str(GEN))
     try:
+        import code_inputs                      # noqa: PLC0415
         import mesh_inputs                      # noqa: PLC0415
         import terrain_inputs                   # noqa: PLC0415
     except Exception as e:                      # noqa: BLE001
@@ -148,9 +159,19 @@ def restale_reach() -> tuple[dict, int, list]:
                 else f"generators/{rel}"
             reach[key] = reach.get(key, 0) + 1
     # `common/*.py` is counted once per FILE above; collapse it to once per asset.
-    commons = len(sorted((GEN / "common").glob("*.py"))) or 1
+    # The divisor is the RECIPE's own module list and not the directory listing,
+    # because since T-0164 the two differ: dividing 349 assets x 3 hashed modules
+    # by the 5 files in the folder reads 209, a reach nothing has.
+    commons = len(code_inputs.geometry_modules()) or 1
     if "generators/common/*.py" in reach:
         reach["generators/common/*.py"] //= commons
+    # The modules T-0164 took OUT of the recipe are reported at their reach, which
+    # is zero, rather than omitted. That is the standing gate on the property the
+    # ticket bought: drop an exclusion and this row goes straight back to 349, and
+    # `--gate` says so with the sentence beside it instead of a rebake nobody
+    # ordered turning up in the next bake's diff.
+    for name in code_inputs.excluded():
+        reach[f"generators/common/{name}"] = 0
     return reach, len(assets), problems
 
 
@@ -229,7 +250,8 @@ def main() -> int:
         print(f"COMMITTED, INPUT-TRACKED ASSETS: {total}\n")
         print(f"{'edit site':<42} {'re-stales':>9}   what a rebake would have to reach")
         for site, n in sorted(reach.items(), key=lambda kv: -kv[1]):
-            share = ("every committed mesh" if n >= total
+            share = ("nothing — outside both recipes (T-0164)" if n == 0
+                     else "every committed mesh" if n >= total
                      else "every structure in the town" if n >= total - 2
                      else "the ground" if site.endswith("terrain_gen.py")
                      else "the meshes of that archetype alone")
