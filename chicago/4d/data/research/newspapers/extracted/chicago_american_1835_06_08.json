@@ -252,7 +252,7 @@
           "street": null
         }
       },
-      "notes": "THE PLACEMENT IS ADVERTISED AND UNREADABLE, which is why the class is `none` and not `relative`. Line 394 reads 'jisawell jn the sore behieee ee Ree' — 'himself in the store be[hind/below] …' — and whatever the store stood behind or below is destroyed by the segmenter's interleave with the adjoining column. A `relative` placement with a guessed anchor would place a storefront on nothing. THE NAME. Only the surname is printed in the fragment that survives; 'Brown' is the whole of what the paper gives here, so it is the whole of what the gazetteer keys on."
+      "notes": "THE PLACEMENT IS ADVERTISED AND UNREADABLE, which is why the class is `none` and not `relative`. Line 394 reads 'jisawell jn the sore behieee ee Ree' — 'himself in the store be[hind/below] …' — and whatever the store stood behind or below is destroyed by the segmenter's interleave with the adjoining column. A `relative` placement with a guessed anchor would place a storefront on nothing — and the guess would have been wrong: the next issue sets the same advertisement with the address intact, 'on Randolph [Street] over Briggs & Humphrey's' (1835-06-13 page 3 column 6 line 332), an upper floor and not a store at all. That claim carries the placement; this one carries the name. THE NAME. Only the surname is printed in the fragment that survives; 'Brown' is the whole of what the paper gives here, so it is the whole of what the gazetteer keys on."
     },
     {
       "id": "c006",
@@ -313,7 +313,7 @@
       "kind": "business",
       "reading": "transcription_mediated",
       "quote": ": LB, HA & TRUNK M 2 ne | Conk ee bow Of nae je at his abop, comer of Lake anc Amor. | stvests, where bo intends Keeping 4 g 3Y have | serimont of articles in the abave Ling 5 bold. | By strict attention to business ie hapee ition af] # uberal share of patronages ition of | \" Chicago, Juno Bie IS,",
-      "normalized": "[L. B. …] Ha[t] & Trunk M[anufactory. …] at his shop, corner of Lake an[d] [uncertain: Amor. — a cross street this transcription does not resolve] streets, where he intends keeping a g[ood as]sortment of articles in the above line. By strict attention to business he hope[s to mer]it a liberal share of patronage. Chicago, June [8], 183[5].",
+      "normalized": "[Sadd]le, Ha[rness & Trunk] M[anufactory. S. B. Cobb will continue the above business] at his shop, corner of Lake an[d] [uncertain: Amor. — a cross street this transcription does not resolve] streets, where he intends keeping a g[ood as]sortment of articles in the above line. By strict attention to business he hope[s to mer]it a liberal share of patronage. Chicago, June [8], 183[5].",
       "locator": {
         "artifact_role": "primary",
         "issue_page": 3,
@@ -340,9 +340,9 @@
         "iso": "1835-06-08"
       },
       "business": {
-        "name": "Hat and Trunk Manufactory, corner of Lake Street",
+        "name": "S. B. Cobb, saddle, harness and trunk manufactory",
         "proprietors": [],
-        "trade": "hat and trunk manufactory",
+        "trade": "saddle, harness and trunk manufactory",
         "goods": [],
         "street": "Lake Street",
         "placement": {
@@ -353,7 +353,7 @@
           "street": "Lake Street"
         }
       },
-      "notes": "A CORNER, AND HALF OF IT IS READABLE. 'comer of Lake anc Amor. | stvests' gives Lake Street and a cross street; 'Amor.' is not any Chicago street name this project holds and no second witness in this issue names it, so it stays inside `[uncertain: …]` rather than being resolved to a plausible neighbour. The claim is worth making without it: the corner class records that the paper placed this shop AT a crossing of Lake Street, which is more than `street_only`, and a later pass with the scans can finish it. THE PROPRIETOR. 'LB, HA' carries initials and the first two letters of what is as likely the trade word 'Hat' as a surname; nothing is identified and no entity is minted."
+      "notes": "WHAT THIS SHOP MAKES WAS READ WRONG HERE FIRST. 'LB, HA & TRUNK M' invites 'Hat & Trunk Manufactory'; the next issue sets the same card as 'SAPDLE. HARNESS & ... & TRUNK Macy' over the name S. B. Cobb (1835-06-13 page 3 column 6 line 335), so the heading here is '[Sadd]le, Ha[rness & Trunk] M[anufactory]' and the trade is saddlery. The correction is recorded rather than quietly applied, because the wrong reading was the plausible one and the next reader deserves to know why it is not taken. NO PROPRIETOR IS MINTED FROM THIS PRINTING: the name is not in it: it is in the second witness, and that claim mints S. B. Cobb. A CORNER, AND HALF OF IT IS READABLE: 'comer of Lake anc Amor. | stvests' gives Lake Street and a cross street; 'Amor.' matches no Chicago street name this project holds and the second printing loses the phrase entirely, so it stays inside `[uncertain: …]`. The corner class still earns its keep — the paper places this shop AT a crossing of Lake Street, which is more than `street_only`."
     },
     {
       "id": "c008",
@@ -841,9 +841,9 @@
       },
       "entities": [],
       "business": {
-        "name": "a Chicago druggist, unnamed in this issue",
+        "name": "Frederick Thomas, drugs and paints",
         "proprietors": [],
-        "trade": "drugs, chemicals, perfumery and dye stuffs",
+        "trade": "drugs, paints, chemicals, perfumery and dye stuffs",
         "goods": [],
         "street": null,
         "placement": {
@@ -854,7 +854,7 @@
           "street": null
         }
       },
-      "notes": "A DRUGGIST WITH TWELVE YEARS' EXPERIENCE, ADVERTISING IN THE AMERICAN'S FIRST ISSUE — and the blob does not yield his name. The advertisement's heading and signature fall in stretches of line 409 that the segmenter has shuffled with two other notices, and no span reaches them safely. The business is recorded under an explicitly non-name so that a later pass reading this column off the page images has something to attach the name to, and so that the gazetteer's business count is not quietly one short. The stock list that follows (Epsom Salts, quinine, Lee's Pills, eye waters, Prussian blue) is in the same unattributable condition as the Harmon, Loomis goods list and is left with it."
+      "notes": "A DRUGGIST WITH TWELVE YEARS' EXPERIENCE, ADVERTISING IN THE AMERICAN'S FIRST ISSUE — and this blob does not yield his name. THE NAME COMES FROM THE NEXT ISSUE, NOT FROM A GUESS: 1835-06-13 page 4 column 6 lines 465-467 set the same advertisement clean — 'FREDERICK THOMAS, late of New York, has taken a store at the Drawbridge' — and the two printings share their wording sentence for sentence ('more than twelve years in the business', 'determination of strict personal attention', 'Chemicals, Perfumery and Dye Stuffs'). That is the identification, it is checkable against both quotes, and it is why the business here carries his name while the claim itself quotes only what June 8 prints. NO ADDRESS IS CARRIED ACROSS: the drawbridge anchor is in the second printing and stays on that claim. The stock list that follows in this line (Epsom Salts, quinine, Lee's Pills, eye waters, Prussian blue) is in the same unattributable condition as the Harmon, Loomis goods list and is left with it."
     }
   ]
 }
