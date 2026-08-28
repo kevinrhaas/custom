@@ -1,5 +1,64 @@
 # STATUS
 
+## Shipped 2026-08-28 — T-0221: one reading of which evidence layer a record belongs to
+
+**Three tools asked the question and one of them answered it from a filename.**
+`tools/measure_street_frontage.layer_of` decided whether a structure record was
+`research`, `inferred_household` or `reconstruction` **by its id prefix** — `recon_1835_*`,
+`inf_*`, everything else research — and `tools/measure_frontage_fabric.py` and
+`tools/measure_corridor_intrusion.py` both import it. `tools/plat_occupancy.researched_ids`
+already read the RECORD instead, and said in its docstring why. Two readings of one fact is
+this project's recurring defect; there is now one, in
+`plat_occupancy.layer_of_record`, and it reads the record.
+
+**The record already carries the answer, as a rule rather than a convention.**
+`data/structures.schema.json` states it — *"Named/documented structures do not carry this
+block"* — and its `reconstruction.status` enum names which programme wrote the ones that do:
+`inferred_anonymous` is a count-unit of the 665-roof programme, `inferred_household` a roof
+raised because an argued household needed somewhere to be. So the layer is read off that
+block, and `layer_of` is a lookup into it rather than a second opinion. An id carrying no
+committed record is now REFUSED rather than guessed at from its shape; the one caller that
+built a record in memory (`measure_frontage_fabric._synthetic`) builds it with the
+`reconstruction` block its layer follows from, so its fixture is read the same way the tree is.
+
+**Across all 349 committed records the two readings disagree exactly once**, and the run's
+self-test measures that rather than quoting it. `physicians_office` carries neither prefix and
+is a product of the inferred-household programme, which its own
+`reconstruction.status: "inferred_household"` says. Its record was never wrong; the reading of
+it was.
+
+**Why one row of a census was worth a ticket.** `measure_corridor_intrusion.py --gate` holds
+two different kinds of assertion. The 20 documented laps are a RATCHET — a depth may not grow,
+and a repair is banked with `--write-baseline`. The generated layers are an ABSOLUTE — **zero**,
+because every generator already refuses a roof in a roadway through the same module. A generated
+record reading as `research` is scored against the ratchet instead of the absolute, so the
+clause that cannot be crossed could have been crossed by a record whose filename happens not to
+start with `inf_`. Nothing in the tree was ever mis-scored: `physicians_office` laps no corridor,
+and the gate reports the same 20 phases and the same zero before and after.
+
+**The gate now proves that itself.** `tools/measure_corridor_intrusion.py --self-test`, in
+`check.sh`, translates a roof onto the Lake Street centreline in memory — position point and
+world polygon together, with the depth computed by `measure()` rather than typed in — and checks
+which assertion fires. An anonymous `recon_1835_*` roof is caught by the absolute (the control,
+which the old reading also caught). `physicians_office` in the same roadway is caught by the
+absolute now, and under the id-prefix reading — kept in the module, refuted, so it stays refuted —
+is caught only by the ratchet. That is the difference the ticket bought, demonstrated rather than
+argued.
+
+**What moved in the numbers**, re-derived and stated because a census is not a place to be quiet:
+
+```
+  measure_corridor_intrusion --gate   20 of 349 lapping, 0 generated   unchanged
+  measure_frontage_fabric --gate      3 principal streets, no failure  unchanged
+  measure_street_frontage             lake   research 17 -> 16, household 7 -> 8
+                                      clark  research  6 ->  5, household 1 -> 2
+```
+
+`physicians_office` stands within 25 m of both centrelines, so it moves column on both — one
+building leaving the documented count of the street the face rule is usually asked about. Lake is
+still the better face by a wide margin and no parcel's conclusion turns on it; the count is
+simply now the count of what the records say.
+
 ## Shipped 2026-08-27 — T-0196: three Lake Street buildings come onto the plat, and the fourth is refused with the number that refused it
 
 The Lake Street half of the repair T-0198 and T-0199 made on South Water. Four documented
