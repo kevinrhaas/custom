@@ -92,13 +92,16 @@ what makes this `dev`'s reading rather than a branch's:
 
 | tier | ceiling | worst | stand |
 |---|---:|---:|---|
-| `full` | 1,400,000 | 1,378,215 PASS by 21,785 | the forks, from Wolf Point |
-| `balanced` | 1,210,000 | **1,215,290 — OVER by 5,290** | the forks, from Wolf Point |
-| `light` | 785,000 | 756,144 PASS by 28,856 | Lake at Canal, east |
+| `full` | 1,400,000 | 1,376,419 PASS by 23,581 | the forks, from Wolf Point |
+| `balanced` | 1,210,000 | **1,213,481 — OVER by 3,481** | the forks, from Wolf Point |
+| `light` | 785,000 | 755,194 PASS by 29,806 | Lake at Canal, east |
 
-**Two things have changed since this ticket's own table.** The breach is **5,290**, not
+(Read twice, four hours apart, either side of T-0209: at `a9a3a2f9` the breach was 5,290
+at the same stand, at `c39167b4` it is 3,481. The stand does not move between them.)
+
+**Two things have changed since this ticket's own table.** The breach is **3,481**, not
 43,630 — the town has shrunk under it. And **the worst stand is no longer the axial
-view**: Lake at Canal now reads 1,198,860, inside the ceiling by 11,140, while *the forks,
+view**: Lake at Canal now reads 1,197,353, inside the ceiling by 12,647, while *the forks,
 from Wolf Point* has become the binding frame at both `full` and `balanced`. A run that
 goes looking for these triangles down the Lake Street axis will not find them. Mobile
 390x780 passes all three tiers by 75,190–113,179.

@@ -797,6 +797,13 @@ const HEAD_OF_SHAPE = {
  * it sums every set's own worst pose, and those poses are in five different
  * communities. Two sets were full while seven stood a fifth spent.
  *
+ * RE-MEASURED THE SAME DAY, after T-0209 carried the bloom out past the near
+ * ring to 119.9 m, and the numbers in `HEAD_DEMAND` below are that second
+ * reading. More reach is more heads: the total asked for goes 4,577 to 5,090,
+ * `corymb` alone from 533 to 724, and the shares are sized on the new figures
+ * rather than left standing on the old ones. This is what the last paragraph
+ * means by re-measurable, on the first day it mattered.
+ *
  * SO THE SHARE IS SIZED ON THE DEMAND, AND THE TOTAL DOES NOT MOVE. Each set
  * gets `tune.cap.head x HEAD_SHARE[kind]`, and the shares average exactly one —
  * so nine times `cap.head` is still the head budget at every detail tier, and a
@@ -813,25 +820,27 @@ const HEAD_OF_SHAPE = {
  *
  * WHAT IT COSTS THE FRAME. The refusals are worth 12,640 triangles if every one
  * of them were drawn in one frame, and no frame draws them: a head is only ever
- * drawn inside the 23.65 m head ring, so `dome`'s 382 are only in the frame of
- * a visitor standing IN the dense forest, and `spike`'s 32 (416 triangles) only
- * of one standing in the settled town. None of T-0135's five gate stands stands
- * in the dense forest.
+ * drawn inside the head ring, so `dome`'s 382 are only in the frame of a visitor
+ * standing IN the dense forest, and `spike`'s 32 (416 triangles) only of one
+ * standing in the settled town. None of T-0135's five gate stands stands in the
+ * dense forest, and measured against `dev` the whole parcel moves four of the
+ * five by nothing at all and the fifth — the open aerial — by 1,638 triangles
+ * against 510,602 of headroom.
  *
  * THE DEMAND FIGURES ARE A MEASUREMENT AND ARE RE-MEASURABLE. Re-run
  * `node tools/measure_bloom_headroom.mjs` — its §2a is this table — and if a set
  * is at its cap there, the allocation is stale and this is where it is fixed.
  */
 const HEAD_DEMAND = {
-  dome: 1202,
-  spike: 852,
+  dome: 1235,
+  spike: 923,
+  raydroop: 848,
   pompom: 804,
-  raydroop: 734,
-  corymb: 533,
-  ray: 248,
-  compound: 160,
+  corymb: 724,
+  ray: 308,
+  compound: 190,
+  spire: 35,
   panicle: 23,
-  spire: 21,
 };
 /** No archetype is dealt off less than the smallest genuinely-used set — see
  *  THE FLOOR above. It is `compound`'s own measured demand and not a round

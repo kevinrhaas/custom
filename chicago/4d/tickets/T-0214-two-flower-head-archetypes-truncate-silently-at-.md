@@ -101,26 +101,42 @@ of today's records rather than a property of an archetype. Desktop: dome 1,828 �
 `--assert` passes and now carries two new gates of its own — no head set at a cap anywhere
 in the mosaic, and the nine ceilings summing to 7,380 (+/- 9, rounding).
 
-**WHAT IT COST THE FRAME, A/B against `origin/dev` at T-0135's five stands**
+**IT WAS NEEDED THE SAME DAY IT WAS MEASURED.** T-0209 landed on `dev` while this branch
+was under verification and carried the prairie bloom out past the near ring to 119.9 m.
+More reach is more heads: the demand table moves to 5,090 asked for against the same
+7,380, `corymb` alone from 533 to 724 — and `flora-head-raydroop` now stands AT its cap at
+`prairie_west` on unmodified `dev`, refusing 28 of the 2,469 heads that stand asks for.
+`measure_bloom_headroom.mjs --assert` fails on `origin/dev` at `c39167b4` for exactly
+that, and passes here. So `HEAD_DEMAND` carries the SECOND reading and the shares are
+sized on it: dome 1,684 · spike 1,259 · raydroop 1,156 · pompom 1,096 · corymb 987 · ray
+420 · compound 259 · spire 259 · panicle 259 = **7,379**, one instance under the 7,380
+that was there, from rounding.
+
+The assertion `prairie_west heads drawn` is restated from T-0034's 1,968 to **2,469** for
+the same reason, and the restatement is T-0209's reach and not this allocation: `dev`
+draws 2,441 there and refuses the rest, this branch draws all 2,469 and refuses none. The
+two assertion lines agree again.
+
+**WHAT IT COST THE FRAME, A/B against `origin/dev` at `c39167b4`, T-0135's five stands**
 (`tools/measure_detail_ceilings.mjs`, published mirrors, both trees read the same hour):
 
-| stand | desktop `full` dev → mine | desktop `balanced` dev → mine |
-|---|---|---|
-| the Sauganash at 26 m | 900,885 → 900,885 | 827,545 → 827,545 |
-| Lake at Canal, east | 1,359,751 → 1,359,751 | 1,198,860 → 1,198,860 |
-| the forks, from Wolf Point | 1,378,215 → 1,378,215 | 1,215,290 → 1,215,290 |
-| Lake and Market | 1,065,200 → 1,065,200 | 975,969 → 975,969 |
-| the open aerial | 887,760 → **889,398** | 805,347 → **805,958** |
+| stand | desktop `full` dev → mine | desktop `balanced` dev → mine | desktop `light` dev → mine |
+|---|---|---|---|
+| the Sauganash at 26 m | 899,526 → 899,526 | 825,775 → 825,775 | 544,614 → **545,732** |
+| Lake at Canal, east | 1,362,043 → 1,362,043 | 1,197,353 → 1,197,353 | 755,194 → 755,194 |
+| the forks, from Wolf Point | 1,376,419 → 1,376,419 | 1,213,481 → 1,213,481 | 746,022 → **746,867** |
+| Lake and Market | 1,064,062 → 1,064,062 | 974,173 → 974,173 | 636,914 → 636,914 |
+| the open aerial | 886,392 → **888,277** | 803,447 → **804,071** | 540,462 → **542,126** |
 
-**Identical to the triangle at four of the five stands and at every tier, and +1,638 at
-the open aerial**, which passes by 510,602. Draw calls do not move at any stand: nine sets
-before, nine after. That is what the head ring predicts — a head is drawn only within
-23.65 m of the camera, and no gate stand stands in the dense forest or on the settled
-blocks where the two sets were filling. Mobile 390x780 passes all three tiers by
-75,190–113,179.
+**`full` and `balanced` are identical to the triangle at four of the five stands**, and
+the fifth — the open aerial — moves by 1,885 and 624 against 511,723 of headroom. `light`
+moves at three stands by 845–1,664 and passes by 29,806. **Draw calls do not move at any
+stand at any tier**: nine sets before, nine after. That is what the head ring predicts —
+a head is drawn only near the camera, and no gate stand stands in the dense forest or on
+the settled blocks where the two sets were filling.
 
 **The one tier over its ceiling is `dev`'s and is unchanged by this**: desktop `balanced`
-reads 1,215,290 of 1,210,000 at the forks on BOTH trees, to the triangle. That is
+reads 1,213,481 of 1,210,000 at the forks on BOTH trees, to the triangle. That is
 T-0203/T-0218's parcel, and this run's fresh reading is written onto T-0218.
 
 **Route 2** — one head set with a per-instance shape, removing the nine-way split — is not

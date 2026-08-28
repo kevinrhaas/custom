@@ -447,7 +447,15 @@ if (ASSERT) {
   // these are exact readings and not samples; the tolerance is for a build that
   // moves the ground under the stand, which is a real change and should fail.
   want('prairie_west forbs drawn', west?.forbs, 256, 12);
-  want('prairie_west heads drawn', west?.headTotal, 1968, 60);
+  // T-0214 RESTATED THIS FROM T-0034's 1,968, and the reason is not this ticket:
+  // T-0209 carried the bloom out past the near ring the same day, and more reach
+  // is more heads. On `dev` at c39167b4 the figure reads 2,441 and `--assert`
+  // fails on BOTH this line and the truncation line below — `flora-head-raydroop`
+  // stands at its cap at prairie_west there, which is 2,441 drawn out of 2,469
+  // asked for. With the head budget allocated on measured demand nothing
+  // truncates and the stand draws all 2,469, so this is the figure with no set
+  // refusing anything, and the two lines agree again.
+  want('prairie_west heads drawn', west?.headTotal, 2469, 60);
   // The raise is only a raise if nothing downstream truncates it. The two sets
   // that DO stand at their cap are `spike` in the settled town and `dome` in
   // the wet woods, and both were at it before T-0034 — see the header.
