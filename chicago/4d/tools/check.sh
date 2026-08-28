@@ -297,6 +297,14 @@ step "no water stands on the public square, and its sward is the one the dossier
 step "no building has newly been drawn standing in a platted street" \
   python3 tools/measure_corridor_intrusion.py --gate --quiet
 
+# The absolute is worth exactly what it can catch, and until T-0221 it read a record's
+# evidence layer off its FILENAME: a generated record called neither recon_1835_* nor
+# inf_* was scored against the ratchet instead of against the zero. `physicians_office`
+# is that record and it is committed. This puts the deepest real lap onto it and watches
+# the assertion fire — and shows that under the old id reading it would not have.
+step "…and its absolute still fires on a generated roof, whatever the record is called" \
+  python3 tools/measure_corridor_intrusion.py --self-test
+
 # Two generators build party-line rows onto the committed block faces and each asserts
 # that ITS OWN run stands on one line; neither could see the other. The Lake face of
 # blk_lake_clark is built by both and carried two lines 0.70 m apart, ten metres apart

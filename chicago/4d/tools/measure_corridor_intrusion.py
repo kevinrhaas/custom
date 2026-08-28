@@ -35,6 +35,7 @@ source outranks a corridor this project derived from a module and a traced centr
     tools/measure_corridor_intrusion.py --anchors      K30(d): is the point the kerb or the back
     tools/measure_corridor_intrusion.py --escape       T-0195: which way OUT, and what it costs
     tools/measure_corridor_intrusion.py --gate         the ratchet check.sh runs
+    tools/measure_corridor_intrusion.py --self-test    break the absolute, watch it fire
     tools/measure_corridor_intrusion.py --write-baseline   only to record a repair
 
 This tool exists in the shape it does because of what K30(a) found about T-A7 and T-A14
@@ -46,6 +47,7 @@ come out of here.
 from __future__ import annotations
 
 import argparse
+import copy
 import datetime as _dt
 import json
 import math
@@ -56,9 +58,9 @@ ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT / "tools"))
 
 from generate_plat_lots import point_in_polygon, point_to_ring_m  # noqa: E402
-from measure_street_frontage import layer_of  # noqa: E402
 from plat_corridors import corridors, intrusion, sampled  # noqa: E402
-from plat_occupancy import world_polygon  # noqa: E402
+from plat_occupancy import (_layer_by_id, evidence_layers, layer_of,  # noqa: E402
+                            researched_ids, world_polygon)
 
 BASELINE = ROOT / "tools" / "corridor_intrusion_baseline.json"
 STRUCTURES = ROOT / "data" / "structures"
@@ -730,18 +732,12 @@ def _baseline() -> dict:
     return json.loads(BASELINE.read_text(encoding="utf-8"))
 
 
-def gate(quiet: bool = False) -> int:
-    """The ratchet. A new intruder fails; a deeper one fails; a shallower one is a repair.
+def failures(result: dict, baseline: dict) -> list[str]:
+    """Everything the gate has to say about this table, as lines. See `gate`.
 
-    Plus two ABSOLUTE assertions that are not ratchets. No generated roof may lap a
-    corridor at all — every generator already refuses it through the same module, so the
-    invariant is enforceable at zero today and any future breach is a regression rather
-    than a debt. And no record may CHANGE CATEGORY: street furniture is the one exemption
-    in this table, so the way to abuse it is to make a store into a bridge, and that is
-    the check which makes the rule safe to have (ROADMAP K30(b) item 2).
+    Split out from `gate` so `--self-test` can break each assertion against a table held
+    in memory and read back WHICH one fired, rather than only that something did.
     """
-    result = measure()
-    baseline = _baseline()
     committed = baseline["lapping"]
     failures: list[str] = []
 
@@ -786,12 +782,41 @@ def gate(quiet: bool = False) -> int:
             failures.append(f"{key} laps deeper than the depth it was refused at: "
                             f"{entry.get('depth_m')} -> {row['depth_m']:.2f} m")
 
+    return failures
+
+
+def gate(quiet: bool = False, result: dict | None = None,
+         baseline: dict | None = None) -> int:
+    """The ratchet. A new intruder fails; a deeper one fails; a shallower one is a repair.
+
+    Plus two ABSOLUTE assertions that are not ratchets. No generated roof may lap a
+    corridor at all — every generator already refuses it through the same module, so the
+    invariant is enforceable at zero today and any future breach is a regression rather
+    than a debt. And no record may CHANGE CATEGORY: street furniture is the one exemption
+    in this table, so the way to abuse it is to make a store into a bridge, and that is
+    the check which makes the rule safe to have (ROADMAP K30(b) item 2).
+
+    Which layer a record is in is `plat_occupancy.layer_of`'s answer, and it is read off
+    the RECORD. It used to be read off the id, which meant a generated record whose
+    filename carried neither generator's prefix was scored against the ratchet instead of
+    against the absolute — the gate's reach was the reach of a naming convention
+    (T-0221). `--self-test` puts exactly that record in a corridor and watches this fire.
+
+    `result` and `baseline` are for the self-test, which supplies broken ones on purpose.
+    """
+    result = measure() if result is None else result
+    baseline = _baseline() if baseline is None else baseline
+    committed = baseline["lapping"]
+    failures_found = failures(result, baseline)
+    generated = sorted(k for k, r in result["lapping"].items() if r["layer"] != "research")
+    refused = baseline.get("refused") or {}
+
     repaired = sorted(set(committed) - set(result["lapping"]))
     shallower = sorted(k for k, r in result["lapping"].items()
                        if k in committed and r["depth_m"] < committed[k]["depth_m"] - TOLERANCE_M)
 
     furniture = sum(1 for r in result["lapping"].values() if r["category"] == "furniture")
-    if not quiet or failures:
+    if not quiet or failures_found:
         print(f"   {len(result['lapping'])} of {result['placed_phases']} placed phases lap "
               f"a platted corridor ({len(committed)} committed)")
         print(f"   {len(result['lapping']) - furniture} buildings, {furniture} street "
@@ -802,9 +827,120 @@ def gate(quiet: bool = False) -> int:
     if repaired or shallower:
         print(f"   {len(repaired)} cleared and {len(shallower)} shallower than the "
               f"baseline — re-run with --write-baseline to bank the repair")
-    for line in failures:
+    for line in failures_found:
         print(f"   {line}")
-    return 1 if failures else 0
+    return 1 if failures_found else 0
+
+
+GENERATED_MESSAGE = "generated roof(s) lap a platted corridor"
+
+
+def _relabelled(result: dict, baseline: dict, key: str,
+                structure_id: str, layer: str) -> tuple[dict, dict]:
+    """One committed lapping row, re-keyed onto another record, in memory.
+
+    Depth, street and category are the real row's, and the baseline is moved with it, so
+    the ratchet has nothing to say and the only assertion left that can fire is the
+    absolute. That is the point: a counterfactual that trips three checks at once proves
+    which of them was watching.
+    """
+    broken = copy.deepcopy(result)
+    broken_baseline = copy.deepcopy(baseline)
+    row = broken["lapping"].pop(key)
+    row["structure"], row["layer"] = structure_id, layer
+    new_key = f"{structure_id}:{row['phase']}"
+    broken["lapping"][new_key] = row
+    committed = broken_baseline["lapping"].pop(key)
+    broken_baseline["lapping"][new_key] = committed
+    for refusals in (broken_baseline.get("refused") or {},):
+        if key in refusals:
+            refusals[new_key] = refusals.pop(key)
+    return broken, broken_baseline
+
+
+def self_test() -> int:
+    """The absolute, broken in memory against the committed corridors. T-0221.
+
+    The assertion under test is `gate`'s first: NO generated roof laps a platted corridor,
+    ever, not ratcheted. It reads a record's evidence layer, and until T-0221 it read that
+    layer off the record's FILENAME — so a generated record called neither `recon_1835_*`
+    nor `inf_*` was scored against the ratchet instead. `physicians_office` is that record
+    and it is real: no prefix, `reconstruction.status: "inferred_household"`, and it exists
+    in the committed tree today. It does not lap a corridor, which is why nothing was
+    wrong in the tree and why this has to be shown with a counterfactual rather than with
+    a number.
+
+    So the deepest real lap is re-keyed onto `physicians_office` and the gate is asked
+    again. Under the record reading it fires. Under the id reading — reproduced here from
+    the prefix rule the module used to carry — it does not, and that is the hole.
+    """
+    print("  the absolute assertion, broken in memory against the committed corridors\n")
+    checks: list[tuple[str, bool, str]] = []
+    result = measure()
+    baseline = _baseline()
+
+    clean = failures(result, baseline)
+    checks.append(("the committed tree passes the gate as it stands",
+                   not clean, "; ".join(clean) or "clean"))
+    lapping = sorted(result["lapping"].items(), key=lambda kv: -kv[1]["depth_m"])
+    deepest = lapping[0][0]
+    checks.append(("every lapping record reads research, so the absolute is at zero",
+                   all(r["layer"] == "research" for _, r in lapping),
+                   f"{sum(1 for _, r in lapping if r['layer'] != 'research')} generated"))
+
+    # 1. the assertion fires for each generated layer, on a row the ratchet has nothing
+    #    to say about
+    for structure_id, layer in (("recon_1835_west_018", "reconstruction"),
+                                ("inf_physician_04", "inferred_household")):
+        broken, broken_baseline = _relabelled(result, baseline, deepest, structure_id, layer)
+        out = failures(broken, broken_baseline)
+        checks.append((f"a roof on the {layer} layer in a corridor fails the absolute",
+                       any(GENERATED_MESSAGE in m for m in out),
+                       "; ".join(out) or "nothing fired"))
+        checks.append((f"…and it is the ONLY thing that fires for it ({structure_id})",
+                       len(out) == 1, f"{len(out)} failure(s)"))
+
+    # 2. T-0221 itself: the generated record whose NAME says research
+    prefixless = "physicians_office"
+    record_layer = layer_of(prefixless)
+    checks.append((f"{prefixless} reads {record_layer!r} from its own record",
+                   record_layer == "inferred_household", record_layer))
+    checks.append((f"…while its id alone would read {_layer_by_id(prefixless)!r}",
+                   _layer_by_id(prefixless) == "research", _layer_by_id(prefixless)))
+
+    broken, broken_baseline = _relabelled(result, baseline, deepest, prefixless, record_layer)
+    out = failures(broken, broken_baseline)
+    checks.append(("a generated roof with NO generator prefix fails the absolute",
+                   any(GENERATED_MESSAGE in m for m in out),
+                   "; ".join(out) or "nothing fired"))
+
+    # 3. …and the same roof under the reading this module used to carry does not — the
+    #    hole T-0221 closed, kept here so it stays closed
+    was, was_baseline = _relabelled(result, baseline, deepest, prefixless,
+                                    _layer_by_id(prefixless))
+    checks.append(("…and under the old id reading it would have passed, which is the hole",
+                   not any(GENERATED_MESSAGE in m for m in failures(was, was_baseline)),
+                   "the id reading scores it against the ratchet"))
+
+    # 4. one reading, not two: no committed record answers from its name
+    layers = evidence_layers()
+    by_record = {sid: layers[sid] for sid in layers}
+    misfiled = sorted(sid for sid, layer in by_record.items() if _layer_by_id(sid) != layer)
+    checks.append((f"every one of {len(layers)} committed records answers from the record",
+                   all(layer_of(sid) == by_record[sid] for sid in layers),
+                   f"{len(misfiled)} would be misfiled by the id: "
+                   f"{', '.join(misfiled) or 'none'}"))
+    checks.append(("…and the research layer the documented clauses read is that same set",
+                   researched_ids() == {sid for sid, layer in by_record.items()
+                                        if layer == "research"},
+                   f"{len(researched_ids())} researched"))
+
+    ok = True
+    for label, passed, detail in checks:
+        print(f"  {'ok  ' if passed else 'FAIL'}  {label} — {detail}")
+        ok &= passed
+    print("\nSELF-TEST " + ("PASS" if ok else "FAIL"))
+    return 0 if ok else 1
 
 
 def main() -> int:
@@ -819,6 +955,8 @@ def main() -> int:
     parser.add_argument("--escape", action="store_true",
                         help="T-0195 — the way out per record, and what the move spends")
     parser.add_argument("--gate", action="store_true", help="the ratchet check.sh runs")
+    parser.add_argument("--self-test", action="store_true",
+                        help="break the absolute in memory and check that it fires")
     parser.add_argument("--write-baseline", action="store_true",
                         help="rewrite the committed table — only to record a repair")
     parser.add_argument("--measured", default=None, metavar="YYYY-MM-DD",
@@ -827,6 +965,8 @@ def main() -> int:
     parser.add_argument("--json", action="store_true")
     args = parser.parse_args()
 
+    if args.self_test:
+        return self_test()
     if args.gate:
         return gate(quiet=args.quiet)
 

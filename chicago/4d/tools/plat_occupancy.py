@@ -129,6 +129,84 @@ SLIVER_M2 = 0.01
 # have — which is why the margin exists at all.
 LOT_MARGIN_M = 1.5
 
+# THE EVIDENCE LAYERS — one reading, asked of the record (T-0221)
+#
+# Three layers, and they are not the same kind of evidence: `research` is what somebody
+# recovered from a source, `inferred_household` is the trade-census programme's argued
+# positions, and `reconstruction` is the anonymous count-units the block parcels place.
+# `tools/measure_street_frontage.py` reports them separately, and
+# `tools/measure_corridor_intrusion.py --gate` ratchets the research layer while
+# asserting ZERO for the other two — so which layer a record is in decides which of two
+# very different tests it faces.
+#
+# That question used to be answered TWICE. `layer_of` read the id prefix — `recon_1835_*`
+# and `inf_*` — and `researched_ids` below read the record. Measured across the 348 committed
+# records on 2026-08-27 the two agreed on 347 and disagreed on `physicians_office`, which
+# carries no prefix, reads as `research` by its name, and is a product of the
+# inferred-household programme that says so in its own `reconstruction.status`. Re-derived at
+# 349 records when this landed: still that one, and it is the only one either way.
+# The gate's absolute zero is meant to be uncrossable; a generated record reading as research
+# is scored against the ratchet instead, so the reach of a filename was the reach of the gate.
+# `tools/measure_corridor_intrusion.py --self-test` stands that counterfactual up and keeps it.
+#
+# So THE RECORD IS ASKED, here, once, and both readings are this one. A record either of
+# the programmes wrote carries the `reconstruction` block that programme writes; a
+# researched record does not. An unrecognised `status` is deliberately NOT research —
+# a generated record this module has never heard of is still generated, and the fail-safe
+# direction is the one that faces the absolute rather than the ratchet.
+LAYERS = ("research", "inferred_household", "reconstruction")
+
+# `reconstruction.status` -> layer. Every other status is a programme's output too, and
+# lands on `reconstruction` by the clause above.
+_STATUS_LAYERS = {"inferred_household": "inferred_household",
+                  "inferred_anonymous": "reconstruction"}
+
+_LAYER_CACHE: dict[str, str] | None = None
+
+
+def _layer_of_record(record: dict) -> str:
+    """Which evidence layer this record's own contents put it in."""
+    block = record.get("reconstruction")
+    if not isinstance(block, dict):
+        return "research"
+    return _STATUS_LAYERS.get(block.get("status"), "reconstruction")
+
+
+def _layer_by_id(structure_id: str) -> str:
+    """The id-prefix reading, kept for ids that have no committed record.
+
+    NOT a second reading of a committed record — `layer_of` asks the record whenever
+    there is one. This is the only answer available for an id that does not exist yet:
+    a synthetic building a self-test places in memory (`measure_frontage_fabric` does
+    exactly that), or a record being written. The prefixes are the generators' own
+    naming, so for those cases it is the programme's statement about its own output.
+    """
+    if structure_id.startswith("recon_1835_"):
+        return "reconstruction"
+    if structure_id.startswith("inf_"):
+        return "inferred_household"
+    return "research"
+
+
+def evidence_layers(refresh: bool = False) -> dict[str, str]:
+    """{structure id: evidence layer} across every committed record, read and cached."""
+    global _LAYER_CACHE
+    if _LAYER_CACHE is None or refresh:
+        _LAYER_CACHE = {}
+        for path in sorted(STRUCTURES.glob("*.json")):
+            record = json.loads(path.read_text(encoding="utf-8"))
+            _LAYER_CACHE[record["id"]] = _layer_of_record(record)
+    return _LAYER_CACHE
+
+
+def layer_of(structure_id: str) -> str:
+    """Which of the three evidence layers a record belongs to. See LAYERS above.
+
+    The committed record answers; an id with no committed record falls back to the
+    prefix reading, which is all there is to ask (`_layer_by_id`).
+    """
+    return evidence_layers().get(structure_id) or _layer_by_id(structure_id)
+
 
 def world_polygon(phase: dict, datum: dict) -> list[tuple[float, float]]:
     """A phase's footprint in the scene's local ENU frame, metres from the datum."""
@@ -330,24 +408,13 @@ def occupied_lots(grid: dict, datum: dict,
 def researched_ids() -> set[str]:
     """Every structure id this project did not itself invent.
 
-    The three evidence layers are named by ID PREFIX in
-    `tools/measure_street_frontage.layer_of` — `recon_1835_*` reconstruction, `inf_*`
-    inferred household, everything else research. That reading is a proxy for the thing
-    it wants, and it misses one record: `physicians_office` carries neither prefix and
-    is nonetheless a product of the inferred-household programme, which says so in its
-    own `reconstruction.status: "inferred_household"`. So the RECORD is asked here
-    instead of its name — a record one of the programmes wrote carries the
-    `reconstruction` block that programme writes, and a researched one does not.
-    Measured across the committed dataset the two readings agree on 347 of 348 records
-    and disagree on that one, in the direction that matters: a clause about DOCUMENTED
-    buildings must not let an invented one through on the strength of its filename.
+    The `research` layer of `evidence_layers()`, and nothing else — this used to carry
+    its own copy of the record reading while `layer_of` read the id prefix, which is the
+    two-readings defect T-0221 closed. A clause about DOCUMENTED buildings must not let
+    an invented one through on the strength of its filename, and now it cannot, because
+    there is only the one reading left to let it through.
     """
-    documented: set[str] = set()
-    for path in sorted(STRUCTURES.glob("*.json")):
-        record = json.loads(path.read_text(encoding="utf-8"))
-        if "reconstruction" not in record:
-            documented.add(record["id"])
-    return documented
+    return {sid for sid, layer in evidence_layers().items() if layer == "research"}
 
 
 def business_fronts() -> dict[str, list[dict]]:

@@ -28,6 +28,12 @@ of evidence and one of them cannot vote:
   back as evidence: the row of blocks built along South Water is why South Water looks
   built up in this layer, and nothing else.
 
+Which layer a record is in is decided by `plat_occupancy.layer_of`, which asks the RECORD.
+It used to be decided here, by the record's id prefix, and that reading misfiled
+`physicians_office` — no prefix, and a product of the inferred-household programme all the
+same (T-0221). `layer_of` and `LAYERS` are still importable from this module, because two
+other tools take them from here, but the reading itself lives in one place now.
+
 The centroid is the test rather than the whole footprint, because a footprint that laps a
 25 m band is not thereby "on" that street, and because T-A13 used the centroid and this
 tool exists to make its measurement repeatable rather than to replace it.
@@ -49,24 +55,9 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT / "tools"))
 
-from plat_occupancy import footprints  # noqa: E402
+from plat_occupancy import LAYERS, footprints, layer_of  # noqa: E402,F401
 
 DEFAULT_RADIUS_M = 25.0
-LAYERS = ("research", "inferred_household", "reconstruction")
-
-
-def layer_of(structure_id: str) -> str:
-    """Which of the three evidence layers a record belongs to, by its id.
-
-    The id prefixes are the layer: `recon_1835_*` is written by the reconstruction
-    generators and `inf_*` by the inferred-household programme. Anything else is a
-    record somebody researched.
-    """
-    if structure_id.startswith("recon_1835_"):
-        return "reconstruction"
-    if structure_id.startswith("inf_"):
-        return "inferred_household"
-    return "research"
 
 
 def _distance_to_segment(point, a, b) -> float:
