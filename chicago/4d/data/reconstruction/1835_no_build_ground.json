@@ -58,6 +58,7 @@
           {"structure_id": "fort_dearborn_store_house", "why": "Inside the stockade."},
           {"structure_id": "fort_dearborn_artillery_house", "why": "Inside the stockade."},
           {"structure_id": "fort_dearborn_root_house", "why": "Inside the stockade."},
+          {"structure_id": "fort_dearborn_flagstaff", "why": "Inside the stockade, on the parade. Andreas puts a fifty-foot flagstaff at the fort in the years the scene sits in; see docs/RESEARCH/fort_dearborn.md \u00a7 10."},
           {"structure_id": "fort_dearborn_blockhouse", "why": "Inside the stockade."},
           {"structure_id": "fort_dearborn_sutlers_store", "why": "A garrison building on the garrison's own ground."},
           {"structure_id": "fort_dearborn_garrison_garden", "why": "Andreas and Kinzie both put the garrison's garden and orchard on the reservation, extending south toward Madison Street."},

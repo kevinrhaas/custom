@@ -2231,6 +2231,12 @@
       "asset": "gltf/fort_dearborn_commandants_quarters__brick_1816.glb"
     },
     {
+      "id": "fort_dearborn_flagstaff",
+      "name": "Fort Dearborn's flagstaff",
+      "sidecar": "sidecars/1835/fort_dearborn_flagstaff.json",
+      "asset": "gltf/fort_dearborn_flagstaff__staff_1833_37.glb"
+    },
+    {
       "id": "fort_dearborn_garrison_garden",
       "name": "Fort Dearborn — the garrison garden",
       "sidecar": "sidecars/1835/fort_dearborn_garrison_garden.json",

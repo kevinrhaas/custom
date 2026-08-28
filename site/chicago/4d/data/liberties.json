@@ -3,7 +3,7 @@
   "source": "docs/LIBERTIES.md",
   "standard": "A visitor should be able to tell you which parts we made up.",
   "note": "The confidence model covers attributes. These are the decisions that live above any single attribute: scope, omission, simplification, and the choices a visitor would otherwise have to reverse-engineer.",
-  "count": 203,
+  "count": 204,
   "liberties": [
     {
       "id": "L1",
@@ -13064,6 +13064,87 @@
         {
           "label": "Covers",
           "text": "`recon_1835_blk_lake_franklin_d5_01.inferred_1835.position`, `recon_1835_blk_lake_franklin_d5_01.inferred_1835.footprint`, `recon_1835_blk_lake_franklin_d1_02.inferred_1835.position`, `recon_1835_blk_lake_franklin_d1_02.inferred_1835.footprint`, `recon_1835_blk_lake_franklin_a1_03.inferred_1835.position`, `recon_1835_blk_lake_franklin_a1_03.inferred_1835.footprint`."
+        },
+        {
+          "label": "Recorded",
+          "text": "2026-08-28."
+        }
+      ]
+    },
+    {
+      "id": "L204",
+      "title": "The fort's flagstaff: Andreas gives it a height, and everything else about the spar is ours",
+      "section": "per_subject",
+      "subjects": [
+        "fort_dearborn_flagstaff",
+        "fort_dearborn_parade"
+      ],
+      "covers": [
+        {
+          "domain": "structure",
+          "structure": "fort_dearborn_flagstaff",
+          "phase": "staff_1833_37",
+          "aspect": "footprint"
+        },
+        {
+          "domain": "structure",
+          "structure": "fort_dearborn_flagstaff",
+          "phase": "staff_1833_37",
+          "aspect": "form.construction"
+        },
+        {
+          "domain": "structure",
+          "structure": "fort_dearborn_flagstaff",
+          "phase": "staff_1833_37",
+          "aspect": "form.paint"
+        },
+        {
+          "domain": "structure",
+          "structure": "fort_dearborn_flagstaff",
+          "phase": "staff_1833_37",
+          "aspect": "form.roof_type"
+        },
+        {
+          "domain": "structure",
+          "structure": "fort_dearborn_flagstaff",
+          "phase": "staff_1833_37",
+          "aspect": "position"
+        }
+      ],
+      "recorded": "2026-08-28",
+      "revised": null,
+      "fields": [
+        {
+          "label": "Decision",
+          "text": "`fort_dearborn_flagstaff` is drawn — a bare tapering spar 15.24 m high standing at the centre of the parade ground inside Fort Dearborn, carrying no flag."
+        },
+        {
+          "label": "Covers",
+          "text": "`fort_dearborn_flagstaff.staff_1833_37.position`, `fort_dearborn_flagstaff.staff_1833_37.footprint`, `fort_dearborn_flagstaff.staff_1833_37.form.roof_type`, `fort_dearborn_flagstaff.staff_1833_37.form.construction`, `fort_dearborn_flagstaff.staff_1833_37.form.paint`"
+        },
+        {
+          "label": "What is not invented",
+          "text": "the object and its height. Andreas, vol. 1 p. 128, inside his own narrative section *Chicago from 1833 to 1837*: *\"It did not show a single steeple nor a chimney four feet above any roof. A flagstaff at the fort, some fifty feet high, flaunted, in pleasant weather and on holidays — a weather-beaten flag …\"*, and from the southern approach *\"a line of almost indefinable structures, and the flag over the fort, if perchance it was flying.\"* That is the SECOND fort, in the years the scene date sits in, in a text that is not the *\"Such was the old Fort previous to 1812\"* passage and not a plate. Fifty feet is 15.24 m. T-0096 asked whether anything but a retrospective plate could say the 1816 post carried a staff; this is the thing that says so."
+        },
+        {
+          "label": "What is invented, and two refusals",
+          "text": "where it stands. Andreas says only *at the fort*. (1) Whistler's 1808 draught puts the FIRST fort's staff *\"in the center of\"* its parade — that fort is excluded whole in `data/exclusions.json`, whose entry closes *\"none of it may be borrowed for the second fort's records\"*, and it is not the warrant here. (2) `p4_0`, the retrospective ways plate, draws a staff that T-0197 measured at **0.495 of the drawn wall run** — over the GATE, wedged between the two roofed lanterned works T-0095 read as first-fort signature. On that sheet the staff and the two towers are ONE composition, so raising the staff on it would raise two blockhouses with it, which is the conflation the image-accuracy pass exists to refuse. What is left is a choice constrained by the model and not by a source: the parade is the only open ground inside the stockade a fifty-foot spar can stand on without standing on a range or a roof, and the centre of a rectangle is the only point on it that does not need a second invention to say why it is there rather than a metre away. It is set to `fort_dearborn_parade`'s own centre, so the staff moves when the parade does. **That this lands where the first fort's staff stood is a coincidence of two rectangles and is not corroboration** — if Whistler were admissible here the record would cite him."
+        },
+        {
+          "label": "The spar itself",
+          "text": "no source reached gives it a thickness, a taper, a truck, a step, a stay, a fabric or a colour. The archetype builds a 0.30 m butt tapering to 0.135 m at the head, eight-sided, inside a half-metre square of ground that is the smallest plan the archetype allows; `construction: log` is this vocabulary's nearest true word for a trimmed round spar and picks the town's own hewn timber colour; `paint: unpainted` is a refusal to whitewash it on no evidence — *\"weather-beaten\"* in Andreas describes the flag, not the staff."
+        },
+        {
+          "label": "The flag is not drawn",
+          "text": "and that is a decision this entry owns as much as the spar's profile. Andreas is precise about when it flew — *\"in pleasant weather and on holidays\"*, and *\"if perchance it was flying.\"* The scene date is Wednesday 1 July 1835, which is not a holiday, and weather is not modelled here. A flag on this staff would be a claim about one particular forenoon that the source explicitly declines to make. The refusal is the same one the fort's shut gates make: a gate that is shut claims a garrison, not an hour. So a visitor sees a bare staff over the pickets, which is what the evidence supports and no more."
+        },
+        {
+          "label": "Consequence",
+          "text": "the fort acquires the one feature of its silhouette that a town of no steeples and no tall chimneys could see from anywhere — Andreas's own point in the sentence that attests it. Measured against both `dev` and this branch's own merge-base, it costs **22 triangles at the two stands the fort is visible from and zero draw calls anywhere** — the spar batches with the town, and neither of the desktop ceiling reds standing on 2026-08-28 belongs to it (`docs/RESEARCH/fort_dearborn.md` § 10)."
+        },
+        {
+          "label": "How to resolve",
+          "text": "a garrison return, a quartermaster's account or a post repair estimate for 1816–1836 would give the staff a position and probably a spar; the 1830 Harrison sheet re-read at page-image level for a staff symbol on the parade would settle it directly. Wau-Bun, Quaife and Wentworth's 1881 address were each searched for the word and none of them attests one at the second fort — see `docs/RESEARCH/fort_dearborn.md` § 10. Related: **L199** (the bank track, the last thing taken off this reservation) · **L47** (the pickets the staff stands over) · tickets **T-0096** (this), **T-0197**, **T-0095**, **T-0044**."
         },
         {
           "label": "Recorded",

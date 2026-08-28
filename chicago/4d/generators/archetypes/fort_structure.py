@@ -1,6 +1,6 @@
 """fort_structure — the buildings and the ground furniture of a garrison post.
 
-Eleven kinds, one builder, because they differ in what the archetype is ALLOWED to
+Twelve kinds, one builder, because they differ in what the archetype is ALLOWED to
 decide rather than in how they are drawn: a magazine gets no windows because a powder
 magazine has none, a blockhouse gets a jettied upper storey and loopholes because that
 is what makes it a blockhouse rather than a shed, and a parade ground gets no roof
@@ -77,6 +77,8 @@ def build(params: FortStructureParams, name: str):
         _root_house(b, params)
     elif params.kind == "tower":
         _tower(b, params)
+    elif params.kind == "flagstaff":
+        _flagstaff(b, params)
     else:
         _building(b, params)
 
@@ -453,6 +455,42 @@ def _root_house(b: MeshBuilder, p: FortStructureParams) -> None:
     _panel(b, "y", d - inset * 0.35 + 0.01, xm - 0.34, xm + 0.34, 0.06, h * 0.66, 1,
            conf, M_DARK)
 
+
+
+def _flagstaff(b: MeshBuilder, p: FortStructureParams) -> None:
+    """A bare tapering spar: the garrison flagstaff.
+
+    **Why it is bare.** Andreas is the source and Andreas is precise about when the
+    flag was up — it "flaunted, IN PLEASANT WEATHER AND ON HOLIDAYS", and from the
+    southern approach a traveller saw "the flag over the fort, IF PERCHANCE IT WAS
+    FLYING". 1835-07-01 is a Wednesday, it is not a holiday, and this project does
+    not model weather. A flag drawn on this spar would therefore be a claim about
+    one particular forenoon that the source explicitly declines to make, in the same
+    way a shut gate is a claim about a garrison being present. The staff is what is
+    attested; the bunting is not, so the halyard truck is where this mesh stops.
+
+    **What is the archetype's.** Everything except the height. No source reached
+    gives the second fort's staff a thickness, a taper, a truck or a step, so the
+    spar's whole profile is ours and docs/LIBERTIES.md owns it. Eight sides, not
+    twelve: this is a 0.3 m pole and the four extra facets buy nothing at any
+    distance a visitor can stand at.
+    """
+    c = p.worst_conf("kind", "wall_height_m", "construction")
+    n = 8
+    r0 = p.mast_butt_m / 2.0
+    r1 = p.mast_truck_m / 2.0
+    cx, cy = p.width_m / 2.0, p.depth_m / 2.0
+    h = p.wall_height_m
+
+    def ring(r, z):
+        return [(cx + r * math.cos(2 * math.pi * i / n),
+                 cy + r * math.sin(2 * math.pi * i / n), z) for i in range(n)]
+
+    lo, up = ring(r0, 0.0), ring(r1, h)
+    for i in range(n):
+        j = (i + 1) % n
+        b.add_poly([lo[i], lo[j], up[j], up[i]], c, M_WALL)
+    b.add_poly(list(reversed(up)), c, M_WALL)
 
 def _tower(b: MeshBuilder, p: FortStructureParams) -> None:
     """A tapering round tower with a gallery and a lantern: the 1832 lighthouse.
