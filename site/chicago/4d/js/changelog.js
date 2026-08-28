@@ -1,4 +1,12 @@
 export const CHANGELOG = [ // newest first
+  { v: 320, title: 'One building says why it is held back; eight already did', kind: 'chore', ts: '2026-08-28T07:57:29.030Z', date: 'Aug 28, 2026, 2:57 AM CT',
+    items: [
+      'Nine buildings in this town are marked as held: the Indian agency house, the council house on the north bank, the Beaubien homestead and its old cabin, Robinson and Caldwell\u2019s cabins, the agency blacksmith\u2019s shop, Clybourn\u2019s slaughter-house, and Robert A. Kinzie\u2019s store at Wolf Point. The mark means the same thing on all of them \u2014 the subject runs into the removal of the Potawatomi from Chicago in August 1835, six weeks after the day this town is set on, and this project will not improvise that. It waits for people qualified to speak to it.',
+      'Until today the mark was a yes-or-no switch on the record, and one of the nine said nowhere at all what it was held for. Open Robert A. Kinzie\u2019s store now and its account of itself says so, out of what its own sources already said: the man who kept it is listed among the town\u2019s Indian traders and among those licensed to sell goods, the shop dealt in \u201cgroceries and Indian goods\u201d, and that trade is the one the treaty of 1833 ended.',
+      'Nothing was unlocked and nothing was upgraded. Taking the mark off a building is the claim that the consultation has happened, and it has not; no source was added, no guess promoted, nothing on the building moved.',
+      'A check now runs on every change and asks each of the nine to say, in its own words, that it is held and what for \u2014 and prints the sentence it found, so a person can judge whether it is really a reason. That is the part that lasts: the writing was a habit eight records kept, and habits lapse.',
+      'It also corrected the count that started this. Three records were said to be silent; two of them had said it all along, in a different part of the same record from the one that was read. One was genuinely bare, and it is the one fixed here.',
+    ] },
   { v: 319, title: 'The fort\u2019s chimneys stop being the colour of its roofs', kind: 'fix', ts: '2026-08-28T06:37:44.585Z', date: 'Aug 28, 2026, 1:37 AM CT',
     items: [
       'Look at Fort Dearborn from the north bank, or walk in through its gate: the ten chimneys on the garrison\u2019s six heated buildings are brick now. Until today every one of them was painted exactly the same colour as the roof it came through, so from any distance the stacks simply vanished into the shingles.',

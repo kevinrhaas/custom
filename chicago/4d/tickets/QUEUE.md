@@ -41,7 +41,6 @@ T-0096 — Did the second Fort Dearborn carry a flagstaff, and can anything but 
 # --- FABRIC AND WHAT THE BUILDINGS ARE MADE OF — visible
 T-0172 — The other three anonymous parcels still deal a retyped roof pitch, and none of them bounds an eave band by what the archetype can carry
 T-0024 — May the face rule rank a store
-T-0025 — Three records carry the standing constraint and say why nowhere
 T-0021 — Census what the residents' figures reach
 
 # --- WHAT GROWS, AND WHAT A PHONE SEES — visible
@@ -113,3 +112,4 @@ T-0255 — The dooryard planting rule reads every street in the town with no bou
 T-0265 — The sward census fails its own gate at a phone: z10_settled_town owes xanthium_strumarium a whole slot and draws it nowhere
 T-0266 — On a phone from across the river the stockade's picket rhythm falls under the pixel grid and beats
 T-0267 — The fort's wall brick is a third brick, 0.47/0.26/0.20 against the sheet's 0.45/0.23/0.17
+T-0268 — A building held under the standing constraint says so nowhere a visitor can see
