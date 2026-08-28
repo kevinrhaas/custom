@@ -100,23 +100,32 @@ READINGS = ("transcription_mediated", "scan_verified")
 # later pass can count them.
 PLACEMENT_CLASSES = ("corner", "relative", "street_only", "none")
 
-# THE DEPOSIT SPEAKS TWO MARKER DIALECTS, and only one of them was written down.
+# THE DEPOSIT SPEAKS THREE RULED MARKER DIALECTS AND ONE PROSE ONE, and T-0257 could
+# only see two of them.
 #
 # `data/research/newspapers/README.md` says page and column come from
 # `===== ISSUE PAGE n / PDF PAGE m / COLUMN k OF 6 =====` markers "which every issue in
-# both runs carries". Sixty-six of the eighty-six do — the ones the deposit delivered as
-# committed `.txt`. The twenty-three delivered as `.docx` and extracted here by
-# `tools/docx_text.py` carry the SAME facts as two prose headings instead:
+# both runs carries". Sixty-six of the eighty-six carry a ruled marker of some shape —
+# the ones the deposit delivered as committed `.txt`. The twenty-three delivered as
+# `.docx` and extracted here by `tools/docx_text.py` carry the SAME facts as two prose
+# headings instead:
 #
 #     Newspaper Page 1 — Source PDF Page 13
 #     Column 1
 #
-# Found building this file's fixture, 2026-08-28. It matters more than it looks: the
-# twenty-three are exactly the issues readable on `dev`, where the deposit is absent
-# (T-0275), so a resolver that speaks only the first dialect can check a locator on no
-# issue this branch can open. Both are read here and the README is corrected to say so.
+# THE THIRD RULED DIALECT IS THE MAJORITY ONE. Counted across the deposit on 2026-08-28
+# while reading July 1834 (T-0289): 1,176 of the 1,266 ruled column markers name the scan
+# page as `SOURCE PDF PAGE` and only 90 as the bare `PDF PAGE` this pattern was written
+# against; four more say `ORIGINAL PDF PAGE`. EVERY issue of the second half of 1834 is in
+# the majority dialect, so the pattern matched a column marker in none of them.
+#
+# Nothing caught it because the deposit is absent on `dev` (T-0275): `check` skips the
+# page/column assertion outright when it cannot read the text, so a resolver that speaks
+# no dialect and a resolver that speaks all three are indistinguishable on this branch.
+# The word before `PDF PAGE` is optional here, and the self-test carries a case per ruled
+# dialect plus a negative, so the next one cannot be added silently.
 COLUMN_MARKER = re.compile(
-    r"^=====\s*ISSUE PAGE\s+(\d+)\s*/\s*PDF PAGE\s+(\d+)\s*/\s*COLUMN\s+(\d+)\s+OF\s+(\d+)\s*=====\s*$")
+    r"^=====\s*ISSUE PAGE\s+(\d+)\s*/\s*(?:\w+\s+)?PDF PAGE\s+(\d+)\s*/\s*COLUMN\s+(\d+)\s+OF\s+(\d+)\s*=====\s*$")
 PAGE_HEADING = re.compile(r"^\s*Newspaper Page\s+(\d+)\b")
 COLUMN_HEADING = re.compile(r"^\s*Column\s+(\d+)\s*$")
 
@@ -853,6 +862,20 @@ def self_test():
                    "to": "1835-08-31", "ticket": "self-test"}],
                  "must be ISO dates", "a range whose dates do not parse")
 
+    # THE RULED MARKER DIALECTS, one case each plus a negative (T-0289). T-0257's pattern
+    # matched only the bare `PDF PAGE` form, which is 90 of the deposit's 1,266 ruled
+    # markers, and nothing on `dev` could see the gap because the deposit is not there to
+    # read. A dialect added without a case here will be caught by this list failing to grow.
+    for dialect in (
+            "===== ISSUE PAGE 3 / PDF PAGE 19 / COLUMN 5 OF 6 =====",
+            "===== ISSUE PAGE 3 / SOURCE PDF PAGE 19 / COLUMN 5 OF 6 =====",
+            "===== ISSUE PAGE 3 / ORIGINAL PDF PAGE 19 / COLUMN 5 OF 6 ====="):
+        m = COLUMN_MARKER.match(dialect)
+        if not m or (int(m.group(1)), int(m.group(3))) != (3, 5):
+            failures.append("the column marker %r does not resolve to page 3 column 5" % dialect)
+    if COLUMN_MARKER.match("===== ISSUE PAGE 3 / COLUMN 5 OF 6 ====="):
+        failures.append("the column marker pattern matched a line with no scan page")
+
     # A hand-edit to the generated file, which is the fault nothing downstream can see.
     with tempfile.TemporaryDirectory() as td:
         ex = Path(td) / "extracted"
@@ -881,7 +904,8 @@ def self_test():
         for f in failures:
             print("FAIL: " + f, file=sys.stderr)
         return 1
-    print("  ok    every gazetteer assertion fires when broken (29 cases)")
+    print("  ok    every gazetteer assertion fires when broken (29 cases), and the\n"
+          "        three ruled marker dialects all resolve")
     return 0
 
 
