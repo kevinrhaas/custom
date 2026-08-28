@@ -611,3 +611,68 @@ catches a merge which buys draw calls by throwing the town's finishes away. Conv
 three. **The floor was not touched** — it is a real assertion about a real risk and weakening it
 to make room would be the exact move this project refuses. It is recorded because the next parcel
 that converges two roughnesses should know the margin it is spending.
+
+---
+
+## 8. WIRED IN — T-0138, 2026-08-28: the chimney, and the last local literal
+
+**§§1–5 are R-W2a's document and stay as written; §6 is T-0007's and §7 is T-0126's.** This
+section closes the last row `inferred_placeholder.py` still painted from a number of its own.
+
+### 8.1 THE SPLIT, IN ONE LINE
+
+`placeholder_chimney_brick` shipped at `#89503F` — `0.537, 0.314, 0.247` linear, roughness
+0.88 — written in `generators/inferred_placeholder.py` and read nowhere else. T-0008 gave the
+112 brick stacks on the archetype buildings the sheet's `CHIMNEY_BRICK` at `0.45, 0.23, 0.17`,
+roughness 0.85. **About 20 % apart in linear red, on buildings standing on the same streets.**
+That is finding 5's complaint — a generator with no shared palette — surviving the parcel that
+was supposed to end it, and `docs/RESEARCH/chimneys.md` §4 named it as deliberately left alone.
+
+### 8.2 WHICH VALUE SURVIVES, ARGUED RATHER THAN PICKED
+
+The two are not symmetrical and the convergence is not a midpoint.
+
+| | `#89503F` | `CHIMNEY_BRICK` |
+|---|---|---|
+| linear rgb | `0.537, 0.314, 0.247` | `0.45, 0.23, 0.17` |
+| roughness | 0.88 | 0.85 |
+| tier | none stated | `inferred` |
+| what argues for it | **nothing in this repository** | `frame_tavern`'s committed `BRICK_RGBA`, read off the Petford watercolour of the Sauganash (T-0092, **L154**) — the one coloured witness to any Chicago chimney — generalised to the town's other framed stacks on the town's own warrant, Blodgett's North Side brick-yard, spring 1833 |
+
+**An `inferred` value carrying a source beats an undocumented literal**, so the literal goes and
+nothing about the brick itself is re-argued here. No new number enters the sheet; one leaves the
+generator. `CHIMNEY_BRICK`'s own reasoning is `chimneys.md` §2 and is untouched.
+
+### 8.3 THE SELECTOR, NOT THE ROW
+
+The generator now asks `materials.chimney_finish("interior")` rather than naming
+`CHIMNEY_BRICK`. The sheet owns the CHOICE as well as the colour (§6.2), and `interior` is what
+this generator actually builds: a box inside the footprint depth, rising through the roof — the
+framed house's masonry flue. Asked the question rather than told the answer, a placeholder
+cannot drift from the archetypes again by pointing at a row that has since moved.
+
+**What it does not do.** A log dwelling's placeholder keeps a brick stack. §3's stick-and-clay
+daub belongs to a stack standing OUTSIDE the gable, and the placeholder's massing puts every
+stack inside the roof — so claiming the daub would put the right fabric on the wrong silhouette.
+That is the placeholder's geometry, not its palette, and it is left alone with the reason said.
+
+### 8.4 THE BYTE CHANGE THE TICKET ASKED FOR DOES NOT EXIST ANY MORE
+
+T-0138 was written on 2026-08-22 against "90 committed masters", and asked for them, their
+compressed derivatives and the banked passthrough set to be regenerated in the same commit
+(K38, `--write-baseline`). **Re-measured before anything was edited, there are none:**
+
+| measurement, 2026-08-28, on `dev` | reading |
+|---|---|
+| `python3 generators/inferred_placeholder.py --check` | `0 flagged placeholder GLBs; 230 superseded by a canonical bake` |
+| manifest entries with `kind: placeholder` | **0** of 349 |
+| committed GLBs under `assets/` containing `placeholder_chimney_brick` | **0** |
+
+So no master moved, no derivative moved, the passthrough baseline did not need re-banking, and
+**no building repaints.** This is T-0126's shape exactly (§7): the divergence is closed at the
+source so it cannot walk back in the day a record outruns the bake and a placeholder is emitted
+again. §1.1's table and finding 5's "27 % of the town" are R-W2a's 2026-08-16 census and stay as
+written; the town they measured has since been baked out from under them.
+
+The roughness reading of §3.1 and the batch count §7 closes on are unaffected for the same reason —
+0.88 → 0.85 moves no shipped slot, because no shipped slot is this generator's.

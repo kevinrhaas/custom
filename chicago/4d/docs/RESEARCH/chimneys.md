@@ -98,11 +98,24 @@ because the surface is daub. `docs/LIBERTIES.md` **L168** records the invention.
   clay — on federal ground, with `construction` running log, brick, earth and stone across
   ten records. Neither answer above reaches it without inventing a third, so it is a ticket
   and not a guess: **T-0137**.
-- **The 90 inferred placeholders**, which already ship a `placeholder_chimney_brick` at
-  `#89503F` — a different brick from the archetypes', 20 % apart in linear red. R-W2a
-  finding 4 is right that a town painted by two generators with no shared palette splits
-  visibly in half, and converging that value is a byte change to 90 committed masters and
-  their banked passthrough set (K38). Ticketed as **T-0138**, not smuggled in here.
+- ~~**The 90 inferred placeholders**~~ — **CONVERGED 2026-08-28, T-0138.** They shipped a
+  `placeholder_chimney_brick` at `#89503F`, a different brick from the archetypes' and 20 %
+  apart in linear red; R-W2a finding 4 is right that a town painted by two generators with no
+  shared palette splits visibly in half. `inferred_placeholder.py` now asks
+  `materials.chimney_finish("interior")` for its stack, so the placeholders and the archetypes
+  read the same row — §2's brick, at `0.45 / 0.23 / 0.17`, roughness 0.85. **The literal lost
+  because it had no witness**: nothing in this repository argues for `#89503F`, and §2's value
+  is the Petford watercolour's, so this converges on the evidenced side rather than splitting
+  the difference. **The byte change did not happen, because there is nothing left to change**:
+  `generators/inferred_placeholder.py --check` reports *0 flagged placeholder GLBs; 230
+  superseded by a canonical bake*, and no committed GLB carries the material name at all. K38's
+  passthrough re-bank was not needed and no building repaints. What the parcel buys is that the
+  split cannot walk back in the day a record outruns the bake and a placeholder is emitted again.
+- **A log dwelling's placeholder stack is still brick, and that is the massing's fault, not the
+  palette's.** `chimney_finish` is asked for `interior` unconditionally because the placeholder
+  builds one kind of stack — a box inside the footprint depth, rising through the roof. §3's
+  daub belongs to a stack standing OUTSIDE the gable, and painting it onto a stack drawn inside
+  the roof would put the right fabric on the wrong silhouette. Left alone deliberately.
 - **The covering of any roof**, which R-W2a finding 2 says nobody states and this parcel
   does not pretend to know. A stack that is no longer roof-coloured makes no claim about
   the roof it passes through.
