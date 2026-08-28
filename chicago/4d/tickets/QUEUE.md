@@ -50,7 +50,6 @@ T-0096 — Did the second Fort Dearborn carry a flagstaff, and can anything but 
 T-0258 — Reading the Democrat, part one: November 1833 to June 1834
 T-0259 — Reading the Democrat, part two: July to December 1834
 T-0260 — Reading the Democrat, part three: January to August 1835
-T-0261 — Reading the American: June to August 1835
 T-0262 — The July 1, 1835 register: who and what the papers put in the town
 T-0263 — The documented storefronts take their places on South Water and Lake
 T-0264 — Documented people replace the invented
