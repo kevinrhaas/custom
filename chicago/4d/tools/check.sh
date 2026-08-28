@@ -392,6 +392,23 @@ step "no principal frontage is more uniform than the record it reconstructs" \
 step "…and its own assertion still fires when broken" \
   python3 tools/measure_frontage_fabric.py --self-test
 
+# What a frontage is MADE OF was T-0022; what a non-dwelling standing on it is FOR is
+# T-0024, legacy K32. The face rule ranks dwellings — best to the better street, meanest
+# to the back one — and T-A15, dealt the first store any block parcel had had to place,
+# extended the ranking to cover it rather than leaving the placement unreasoned. That
+# extension was an agent's invention about 1835 commerce and was opened for the next
+# commercial family to follow or refute. It is refused as a RULE and replaced by one that
+# can be read off the committed record instead of argued: not one of the 31 documented
+# stores, warehouses and workshops in this town stands on a light street, and every
+# documented store standing on a platted street stands on its line. Two absolute
+# assertions over the roofs the block parcels place, no ratchet, both green the day they
+# were written — which is the only kind of absolute worth adding.
+step "no block parcel stands a non-dwelling where the documented record puts none" \
+  python3 tools/measure_face_rule.py --gate --quiet
+
+step "…and its own assertions still fire when broken" \
+  python3 tools/measure_face_rule.py --self-test
+
 # A dwelling nobody named is a count-unit toward a documented aggregate; a PUBLIC
 # building nobody named is the claim that an institution stood here and left no record
 # at all. ROADMAP T-I3 enumerated them: on 1835-07-01 the town's public buildings with a

@@ -745,6 +745,7 @@ def build_block(block: dict, table: dict[str, dict], lots_by_id: dict[str, dict]
     grid = lots_by_id.get(block["block_id"])
     if grid is None:
         raise SystemExit(f"{block['block_id']} is not a block of the committed plat grid")
+    streets = street_traffic()
     alley = [tuple(p) for p in grid["alley_local_enu_m"]]
     frames = [lot_frame(lot, alley) for lot in grid["lots"]]
 
@@ -783,6 +784,8 @@ def build_block(block: dict, table: dict[str, dict], lots_by_id: dict[str, dict]
         spec = table.get(family)
         if spec is None:
             raise SystemExit(f"family {family} is not in the crosswalk")
+        if not on_frontage:
+            check_non_dwelling_slot(block, slot, family, streets)
         records.append(make_record(
             block, slot, lot_index, None if on_frontage else frames[lot_index], spec,
             family, datum, seq, face))
@@ -790,6 +793,99 @@ def build_block(block: dict, table: dict[str, dict], lots_by_id: dict[str, dict]
         place_frontage(block, face, strip, records, datum)
     check_block(block, grid, frames, records, datum, face, strip, sibling_lots)
     return records
+
+
+# --------------------------------------------------------------------------
+# where a NON-DWELLING stands (T-0024, ROADMAP K32)
+# --------------------------------------------------------------------------
+#
+# The face rule ranks DWELLINGS: the best take the better street, the meanest take the
+# back one. T-A15 was dealt the first store any block parcel had had to place, found the
+# rule said nothing about it, and EXTENDED the ranking to cover it — commerce above the
+# better dwelling — putting the C2 on Randolph and sending a D6 to the back street. That
+# extension was an invention about 1835 commerce made by an agent and was opened as K32
+# for the next block dealt a commercial family to follow or refute.
+#
+# SETTLED HERE ON READING 2 OF THE THREE THE ROADMAP OFFERED: the face rule ranks
+# dwellings only, and a non-dwelling is placed by its own FUNCTION. What makes this more
+# than a preference is that the function is READ OFF THE DOCUMENTED RECORD of the family's
+# own letter rather than reasoned about — `tools/measure_face_rule.py` takes the reading
+# and `tools/check.sh` runs it. As committed today, on the 48 documented buildings the
+# reconciliation credits a non-dwelling family:
+#
+#   C  stores        15 records — 10 principal, 5 ordinary, 0 light
+#   F  warehouses     9 records —  9 principal, 0 ordinary, 0 light
+#   W  workshops      7 records —  2 principal, 5 ordinary, 0 light
+#   T  lodging        8 records —  3 principal, 4 ordinary, 1 light
+#   I  institutions   9 records —  1 principal, 4 ordinary, 4 light, and refused to a
+#                     block parcel BY NAME above, so no frontage rule ever reaches them
+#
+# NOT ONE documented STORE, WAREHOUSE OR WORKSHOP stands on a LIGHT street — a zero across
+# 31 buildings, on the three letters a block parcel may actually be dealt. T's one is the
+# Steamboat Hotel, which stands 287 m from the State Street centreline and does not front
+# it; State is simply the nearest committed line in a division with almost no street
+# control. The two rules that follow are the whole of the clause:
+#
+#   1. A non-dwelling takes the block's BETTER face, by the traffic class the committed
+#      street hierarchy authors in data/streets/1835.json. It may never take a light one:
+#      the record has no instance of it, and an invented one would be the first.
+#   2. A COMMERCIAL roof stands ON the street line rather than back at a dwelling's
+#      typology setback. Thirteen of the fourteen documented stores do (the fourteenth is
+#      out at Wolf Point, off the platted grid), and a store's claim on frontage is
+#      functional — T-A15's own words, "the only one of the six roofs whose purpose
+#      requires that a stranger can find it". The line is the closest one the plat
+#      module's own margin allows, LOT_MARGIN_M, which is the same line the party-line
+#      runs already stand on across this town.
+#
+# What this REFUSES is reading 1, the ranking T-A15 extended. On `blk_randolph_clark` the
+# two readings agree — the store takes Randolph either way — so nothing that stands moves
+# on account of the ranking, and that agreement is why the question could be settled at
+# all rather than being settled on the block where it first bites.
+NON_DWELLING_LETTERS = "CFTWI"
+
+# The letters the documented record puts a zero on for light streets, re-derivable with
+# `tools/measure_face_rule.py`: stores 0 of 15, warehouses 0 of 9, workshops 0 of 7.
+LIGHT_STREET_ZERO = "CFW"
+
+# The traffic classes data/streets/1835.json authors, worst to best.
+TRAFFIC_RANK = {"light": 0, "ordinary": 1, "principal": 2}
+
+
+def street_traffic() -> dict[str, str]:
+    return {s["id"]: s.get("traffic")
+            for s in load(DATA / "streets" / "1835.json")["streets"]}
+
+
+def check_non_dwelling_slot(block: dict, slot: dict, family: str,
+                            streets: dict[str, str]) -> None:
+    """The two clauses above, on a slot standing on a lot. See NON_DWELLING_LETTERS."""
+    if family[0] not in NON_DWELLING_LETTERS or slot["inventory_class"] == "ancillary":
+        return
+    fronts = slot["fronts"]
+    klass = streets.get(fronts)
+    if klass is None:
+        raise SystemExit(f"{block['block_id']}: slot {family} fronts {fronts!r}, which "
+                         f"the committed street hierarchy does not grade")
+    # The hard refusal is on the three letters the record puts a ZERO on, not on all five:
+    # a rule wider than its own evidence is the thing this clause exists to stop.
+    if klass == "light" and family[0] in LIGHT_STREET_ZERO:
+        raise SystemExit(
+            f"{block['block_id']}: a {family} roof may not front {fronts!r}, a light "
+            f"street. Not one of the 31 documented stores, warehouses and workshops in "
+            f"this town stands on one, so this would be the first — see the clause above "
+            f"and tools/measure_face_rule.py")
+    best = max((TRAFFIC_RANK.get(streets.get(s), -1), s)
+               for s in block["bounded_by"].values())
+    if TRAFFIC_RANK.get(klass, -1) < best[0]:
+        raise SystemExit(
+            f"{block['block_id']}: a {family} roof fronts {fronts!r} ({klass}) while the "
+            f"block is bounded by {best[1]!r} ({streets.get(best[1])}). A non-dwelling "
+            f"takes the block's better face (T-0024)")
+    if family[0] == "C" and float(slot["setback_m"]) > LOT_MARGIN_M + 0.005:
+        raise SystemExit(
+            f"{block['block_id']}: a {family} roof is authored {slot['setback_m']} m back "
+            f"from its lot line. A commercial roof stands ON the street line, at the "
+            f"{LOT_MARGIN_M} m the plat module's margin allows (T-0024)")
 
 
 # --------------------------------------------------------------------------
@@ -1335,7 +1431,16 @@ def check_block(block: dict, grid: dict, frames: list[dict], records: list[dict]
                 raise SystemExit(f"{sid} reaches outside lot "
                                  f"{record['reconstruction']['lot_index']}")
             gap = distance_to_edges(pt, lot)
-            if gap < LOT_MARGIN_M:
+            # 5 mm, the tolerance the party-line frontage gate above already uses and for
+            # a related reason (T-0024). `gap` is the distance from a CORNER of the
+            # footprint to the nearest point of the lot RING, while the setback the recipe
+            # authors is measured along the face normal. On a lot whose side lines are not
+            # exactly square to its face the two differ by a few millimetres of geometry,
+            # so a roof authored to stand exactly ON the margin reads 1.4957 m and fails a
+            # strict comparison. This is the derivation noise the file already tolerates
+            # twice, not a relaxation of the margin: 1.5 m is still the floor and a roof
+            # a centimetre inside it still fails.
+            if gap < LOT_MARGIN_M - 0.005:
                 raise SystemExit(f"{sid} stands {gap:.2f} m from its own lot line, "
                                  f"inside the {LOT_MARGIN_M} m margin")
 
