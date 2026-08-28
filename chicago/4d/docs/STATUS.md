@@ -1,5 +1,66 @@
 # STATUS
 
+## Shipped 2026-08-28 — T-0256: the newspaper corpus becomes a source this project can cite
+
+**What landed.** Eighty-six issues of the town's own two papers are indexed and citable:
+the **Chicago Democrat**, 73 issues from Vol. I No. 1 (1833-11-26) to 1835-08-26, and the
+**Chicago American**, all 13 issues from its first (1835-06-08) to 1835-08-29. The scene
+date sits inside both runs and a Democrat was printed on it. Four pieces:
+
+- `data/sources/chicago_democrat_1833_1835.json` and `data/sources/chicago_american_1835.json`
+  — publication-level records, tier 1, `public_domain`, `asset_use: text_only`. Both restate
+  T-0256 ruling 2 verbatim and carry the corpus-wide traps. The per-issue record for
+  1833-11-26 STAYS and is senior to any transcription-mediated reading of that issue: it was
+  made by reading the scans.
+- `tools/docx_text.py` — .docx to text on `zipfile` + `xml.etree` and nothing else. Its
+  determinism is gated, not asserted: the self-test builds a .docx in a temp directory,
+  extracts it twice, and requires the two runs byte-identical *and* a changed document to
+  come out different.
+- `data/research/newspapers/corpus.json` + 23 derived text files (2.7 MB) — one entry per
+  issue with the text a citation resolves to, its sha256, the source .docx, completeness,
+  manifest and validation-note pointers, and the page/column marker counts.
+- `tools/check_newspaper_corpus.py`, in `check.sh` — asserts the count rather than observing
+  it, checks every text path **by content**, holds each publication's dates to a strictly
+  increasing sequence, and refuses the corpus a route into the published payload (no `site/`
+  path in the index, no `data/research` in `publish.sh`, no such directory in the mirror).
+
+**Three things the ticket got wrong, found by building it.** None weakens the acceptance; all
+three are recorded rather than smoothed over.
+
+1. **The count is 86, not ~103.** 103 is close to the deposit's *file* count. 89 transcription
+   .docx and 66 committed .txt describe 86 distinct issues, three of which are transcribed
+   twice. The gate asserts 86 / 73 / 13.
+2. **The 1835-07-08 Democrat is NOT partial.** The ticket records its fourth page as absent —
+   true of the first transcription, made from a three-page scan, and no longer true of the
+   deposit: a second, later reading of a **complete four-page scan** of the same issue is
+   present. The issue one week after the scene date is whole. It is also the case that made
+   the preference rule necessary: the partial is the one with the .txt and the manifest row,
+   so "prefer the committed .txt" alone would have cited the short reading of the most
+   interesting week in the run. Complete beats partial first; the .txt rule breaks ties.
+3. **There are five page/column marker dialects, not one.** The ticket quotes
+   `===== ISSUE PAGE n / PDF PAGE m / COLUMN k OF 6 =====`; that covers 49 of 86 issues. All
+   five carry a page and a column, every issue now resolves to at least one column marker, and
+   `marker_dialect` records which one each issue speaks.
+
+**The one thing this could not do on `dev`, stated plainly.** The transcriptions are the
+owner's archival deposit at `chicago/reference/newspapers/`, which this project reads and never
+writes — and which was pushed to `main` on 2026-08-27 and has **not** been back-merged to
+`dev`. So on a dev checkout the 66 reference text paths are not in the tree. The gate is built
+to say so rather than to pass quietly or to fail on a tier difference: when the deposit is
+present every reference path is opened and hashed (verified both ways on this branch), and when
+it is absent the count of unresolved paths is reported in full with the reason. The half this
+repository owns — the 23 derived files — resolves and hashes on every branch, unconditionally.
+Recording the sha256 is what makes the deferral safe, and it is a stronger check than path
+resolution either way: a rewritten transcription cannot slip past its own citations.
+**T-0275 asks the owner to back-merge**; a straight `main` → `dev` merge would also drag in 459
+files of duplicate `… 2.glb` / `… 2.json` artefacts that landed with the deposit, which is his
+call and not an agent's.
+
+**Not done here, deliberately.** Nothing is extracted. No storefront, no person, no household
+moved. That is T-0257 onward, and the visible end of the epic is T-0263 (documented storefronts
+on South Water and Lake) and T-0264 (documented people replacing invented ones), which is what
+this shelf exists to hold.
+
 ## Shipped 2026-08-28 — T-0024: the face rule ranks dwellings, and the store steps onto the street line
 
 **The question, and it has been open since 2026-08-15.** The face rule orders the DWELLINGS a

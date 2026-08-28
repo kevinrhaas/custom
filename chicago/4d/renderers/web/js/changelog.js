@@ -1,4 +1,12 @@
 export const CHANGELOG = [ // newest first
+  { v: 326, title: 'The town\u2019s own newspapers become something this project can cite', kind: 'chore', ts: '2026-08-28T09:35:49.131Z', date: 'Aug 28, 2026, 4:35 AM CT',
+    items: [
+      'Nothing you can see changed today. What changed is what this reconstruction is allowed to say next. The town had two newspapers \u2014 the Chicago Democrat, from its first issue in November 1833, and the Chicago American, which started three weeks before the day this town is set on \u2014 and both of them, eighty-six issues, are now a source that can be cited issue by issue, page by page, column by column.',
+      'They were already in the repository, as a folder of documents nobody could point at. Each issue now has a text that a citation resolves to, a fingerprint of that text so a transcription rewritten later cannot slip past the citations resting on it, and its own page and column markings. A claim that cannot name its column cannot be made here.',
+      'Twenty-three issues could not be read at all without new work \u2014 the whole of the American and the last two months of the Democrat are word-processor files. A small reader now turns them into plain text, and the same file read twice comes out identical to the byte, which matters when a citation names a line.',
+      'One correction fell out of the work. The issue printed a week after this town is set on was believed to be short a page. It is not: a second, later reading of a complete four-page scan of it is in the deposit, and that is the one the index cites. The short reading is kept beside it, because two readings of one issue are worth comparing.',
+      'Nothing has been read out of the papers yet, and nobody has been moved. That is deliberate \u2014 this is the shelf the next runs stand on, and the two that matter are the ones that put documented shops on South Water and Lake, and real people in place of invented ones.',
+    ] },
   { v: 325, title: 'Three more town-building programs are asked what they would build', kind: 'chore', ts: '2026-08-28T09:09:50.654Z', date: 'Aug 28, 2026, 4:09 AM CT',
     items: [
       'Nothing you can see changed today. This project has a check that deals four hundred imaginary buildings of every type through the program that places them, and asks the model-builder to build each one \u2014 the point being to find the card that kills a run before the town is ever dealt it. It had only ever been pointed at one of the four programs that place anonymous buildings. It is pointed at all four now.',

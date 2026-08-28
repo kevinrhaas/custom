@@ -3,6 +3,393 @@
   "readings": [
     {
       "viewport": "desktop",
+      "stage": "7",
+      "parts": [
+        7
+      ],
+      "verdict": "fail",
+      "target": "published",
+      "passed": 43,
+      "failed": 2,
+      "failures": [
+        "desktop 1280x800: every tree drawn stands at its own station — 0 of 0 vertices further than 24 m from any of 849 stations across 0 merged meshes; worst 0 m",
+        "desktop 1280x800: every drawn flower head has a plant under its own stalk — 2526 of 18911 drawn heads over 40 poses had nothing under the foot of their own stalk; worst flora-head-corymb at from_above 270deg, foot 1.61 m, 0.61 m over its base over open ground"
+      ],
+      "wallSeconds": 683,
+      "takenAt": "2026-08-28T11:14:16.522Z",
+      "ref": "steward/t-0256-newspaper-corpus",
+      "commit": "38832f684607",
+      "devCommit": "5b69f17cede8",
+      "treeHash": "sha256:15d9afec531d7034",
+      "treeDirty": false,
+      "changelogHash": "sha256:ec2332aa62416fe5",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          4.6,
+          4.9,
+          4.7
+        ]
+      },
+      "source": "/tmp/smoke/d7.log"
+    },
+    {
+      "viewport": "desktop",
+      "stage": "6",
+      "parts": [
+        6
+      ],
+      "verdict": "pass",
+      "target": "published",
+      "passed": 23,
+      "failed": 0,
+      "failures": [],
+      "wallSeconds": 121,
+      "takenAt": "2026-08-28T10:52:26.563Z",
+      "ref": "steward/t-0256-newspaper-corpus",
+      "commit": "38832f684607",
+      "devCommit": "5b69f17cede8",
+      "treeHash": "sha256:15d9afec531d7034",
+      "treeDirty": false,
+      "changelogHash": "sha256:ec2332aa62416fe5",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          4.3,
+          4.3,
+          4.3
+        ]
+      },
+      "source": "/tmp/smoke/d6.log"
+    },
+    {
+      "viewport": "desktop",
+      "stage": "9",
+      "parts": [
+        9
+      ],
+      "verdict": "pass",
+      "target": "published",
+      "passed": 91,
+      "failed": 0,
+      "failures": [],
+      "wallSeconds": 289,
+      "takenAt": "2026-08-28T10:50:21.201Z",
+      "ref": "steward/t-0256-newspaper-corpus",
+      "commit": "38832f684607",
+      "devCommit": "5b69f17cede8",
+      "treeHash": "sha256:15d9afec531d7034",
+      "treeDirty": false,
+      "changelogHash": "sha256:ec2332aa62416fe5",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          4.2,
+          4.2,
+          4.2
+        ]
+      },
+      "source": "/tmp/smoke/d9.log"
+    },
+    {
+      "viewport": "desktop",
+      "stage": "8",
+      "parts": [
+        8
+      ],
+      "verdict": "pass",
+      "target": "published",
+      "passed": 37,
+      "failed": 0,
+      "failures": [],
+      "wallSeconds": 173,
+      "takenAt": "2026-08-28T10:45:28.077Z",
+      "ref": "steward/t-0256-newspaper-corpus",
+      "commit": "38832f684607",
+      "devCommit": "5b69f17cede8",
+      "treeHash": "sha256:15d9afec531d7034",
+      "treeDirty": false,
+      "changelogHash": "sha256:ec2332aa62416fe5",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          3.7,
+          4.1,
+          4.3
+        ]
+      },
+      "source": "/tmp/smoke/d8.log"
+    },
+    {
+      "viewport": "desktop",
+      "stage": "5",
+      "parts": [
+        5
+      ],
+      "verdict": "pass",
+      "target": "published",
+      "passed": 29,
+      "failed": 0,
+      "failures": [],
+      "wallSeconds": 585,
+      "takenAt": "2026-08-28T10:42:26.114Z",
+      "ref": "steward/t-0256-newspaper-corpus",
+      "commit": "38832f684607",
+      "devCommit": "5b69f17cede8",
+      "treeHash": "sha256:15d9afec531d7034",
+      "treeDirty": false,
+      "changelogHash": "sha256:ec2332aa62416fe5",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          3.2,
+          4.1,
+          4.3
+        ]
+      },
+      "source": "/tmp/smoke/d5.log"
+    },
+    {
+      "viewport": "desktop",
+      "stage": "4",
+      "parts": [
+        4
+      ],
+      "verdict": "fail",
+      "target": "published",
+      "passed": 46,
+      "failed": 2,
+      "failures": [
+        "desktop 1280x800: scene detail 'balanced' stays inside its own ceiling at the WORST stand — 1,213,481 tris of 1,210,000 at the forks, from Wolf Point, 156 calls of 215 at Lake and Market, the corner itself — spread: the forks, from Wolf Point 1,213,481/153c · Lake Street at Canal, east down the axis 1,197,353/148c · Lake and Market, the corner itself 974,173/156c · the Sauganash at 26 m 825,775/113c · the open aerial 804,071/121c",
+        "desktop 1280x800: the light tier draws inside its 80-call floor at the worst stand — 85 calls at light, worst stand Lake and Market, the corner itself — floor 80, the count this project chose before the 2026-08 content landed, restored by T-0147 once T-0150, T-0146 and T-0223 had trimmed the axial view"
+      ],
+      "wallSeconds": 657,
+      "takenAt": "2026-08-28T10:32:21.564Z",
+      "ref": "steward/t-0256-newspaper-corpus",
+      "commit": "38832f684607",
+      "devCommit": "5b69f17cede8",
+      "treeHash": "sha256:15d9afec531d7034",
+      "treeDirty": false,
+      "changelogHash": "sha256:ec2332aa62416fe5",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          3.5,
+          4.2,
+          4.3
+        ]
+      },
+      "source": "/tmp/smoke/d4.log"
+    },
+    {
+      "viewport": "desktop",
+      "stage": "3",
+      "parts": [
+        3
+      ],
+      "verdict": "pass",
+      "target": "published",
+      "passed": 74,
+      "failed": 0,
+      "failures": [],
+      "wallSeconds": 131,
+      "takenAt": "2026-08-28T10:32:21.482Z",
+      "ref": "steward/t-0256-newspaper-corpus",
+      "commit": "38832f684607",
+      "devCommit": "5b69f17cede8",
+      "treeHash": "sha256:15d9afec531d7034",
+      "treeDirty": false,
+      "changelogHash": "sha256:ec2332aa62416fe5",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          3.5,
+          4.2,
+          4.3
+        ]
+      },
+      "source": "/tmp/smoke/d3.log"
+    },
+    {
+      "viewport": "desktop",
+      "stage": "2",
+      "parts": [
+        2
+      ],
+      "verdict": "fail",
+      "target": "published",
+      "passed": 79,
+      "failed": 2,
+      "failures": [
+        "desktop 1280x800: the frontage layer lays all five records' walks and stands their posts — 5 record(s) [green_tree_frontage, sauganash_frontage, river_walk_frontage, lasalle_crossing_frontage, town_street_edge], 50 walk(s), 37 crossing(s), 15 post(s), 35 fence run(s), 901980 vertices, 82 wall(s) refused, problems [none]",
+        "desktop 1280x800: the Sauganash's two hitching posts stand on their own ground, carrying nothing — sauganash_hotel_hitching_post_1 1.30/1.3 m, foot -0.000 m, 3.87 m clear | sauganash_hotel_hitching_post_2 1.30/1.3 m, foot 0.000 m, 3.87 m clear | blk_lake_market_north_hitching_philo_carpenter_log_shop -Infinity/1.3 m, foot Infinity m, 3.88 m clear | blk_south_water_clark_north_hitching_madore_beaubien_house -Infinity/1.3 m, foot Infinity m, 3.88 m clear | blk_south_water_clark_north_hitching_pruyne_kimball_drugstore -Infinity/1.3 m, foot Infinity m, 3.88 m clear | blk_south_water_dearborn_north_hitching_chicago_american_office -Infinity/1.3 m, foot Infinity m, 3.88 m clear | blk_south_water_dearborn_south_hitching_mansion_house -Infinity/1.3 m, foot Infinity m, 3.89 m clear | blk_south_water_franklin_north_hitching_jh_kinzie_forwarding_store -Infinity/1.3 m, foot Infinity m, 3.88 m clear | blk_south_water_lasalle_north_hitching_chicago_democrat_office -Infinity/1.3 m, foot Infinity m, 3.88 m clear | blk_south_water_lasalle_south_hitching_thomas_church_store -Infinity/1.3 m, foot Infinity m, 3.88 m clear | blk_south_water_wells_north_hitching_brown_boarding_house -Infinity/1.3 m, foot Infinity m, 3.88 m clear | blk_south_water_wells_north_hitching_carpenter_south_water_store -Infinity/1.3 m, foot Infinity m, 3.88 m clear | blk_south_water_wells_north_hitching_h_jones_store -Infinity/1.3 m, foot Infinity m, 3.88 m clear | blk_south_water_wells_north_hitching_peck_store -Infinity/1.3 m, foot Infinity m, 3.88 m clear — 1 board(s) lettered in the layer, record says a board on a post here: false"
+      ],
+      "wallSeconds": 249,
+      "takenAt": "2026-08-28T10:32:21.399Z",
+      "ref": "steward/t-0256-newspaper-corpus",
+      "commit": "38832f684607",
+      "devCommit": "5b69f17cede8",
+      "treeHash": "sha256:15d9afec531d7034",
+      "treeDirty": false,
+      "changelogHash": "sha256:ec2332aa62416fe5",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          3.5,
+          4.2,
+          4.3
+        ]
+      },
+      "source": "/tmp/smoke/d2.log"
+    },
+    {
+      "viewport": "desktop",
+      "stage": "1",
+      "parts": [
+        1
+      ],
+      "verdict": "pass",
+      "target": "published",
+      "passed": 76,
+      "failed": 0,
+      "failures": [],
+      "wallSeconds": 287,
+      "takenAt": "2026-08-28T10:32:21.316Z",
+      "ref": "steward/t-0256-newspaper-corpus",
+      "commit": "38832f684607",
+      "devCommit": "5b69f17cede8",
+      "treeHash": "sha256:15d9afec531d7034",
+      "treeDirty": false,
+      "changelogHash": "sha256:ec2332aa62416fe5",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          3.5,
+          4.2,
+          4.3
+        ]
+      },
+      "source": "/tmp/smoke/d1.log"
+    },
+    {
+      "viewport": "mobile",
+      "stage": "7-9",
+      "parts": [
+        7,
+        8,
+        9
+      ],
+      "verdict": "fail",
+      "target": "published",
+      "passed": 154,
+      "failed": 1,
+      "failures": [
+        "mobile 390x780: every tree drawn stands at its own station — 0 of 0 vertices further than 24 m from any of 563 stations across 0 merged meshes; worst 0 m"
+      ],
+      "wallSeconds": 577,
+      "takenAt": "2026-08-28T10:08:46.811Z",
+      "ref": "steward/t-0256-newspaper-corpus",
+      "commit": "38832f684607",
+      "devCommit": "5b69f17cede8",
+      "treeHash": "sha256:15d9afec531d7034",
+      "treeDirty": false,
+      "changelogHash": "sha256:ec2332aa62416fe5",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          3.8,
+          4.6,
+          4
+        ]
+      },
+      "source": "/tmp/smoke/m79.log"
+    },
+    {
+      "viewport": "mobile",
+      "stage": "5-6",
+      "parts": [
+        5,
+        6
+      ],
+      "verdict": "pass",
+      "target": "published",
+      "passed": 43,
+      "failed": 0,
+      "failures": [],
+      "wallSeconds": 452,
+      "takenAt": "2026-08-28T10:08:46.727Z",
+      "ref": "steward/t-0256-newspaper-corpus",
+      "commit": "38832f684607",
+      "devCommit": "5b69f17cede8",
+      "treeHash": "sha256:15d9afec531d7034",
+      "treeDirty": false,
+      "changelogHash": "sha256:ec2332aa62416fe5",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          3.8,
+          4.6,
+          4
+        ]
+      },
+      "source": "/tmp/smoke/m56.log"
+    },
+    {
+      "viewport": "mobile",
+      "stage": "3-4",
+      "parts": [
+        3,
+        4
+      ],
+      "verdict": "pass",
+      "target": "published",
+      "passed": 116,
+      "failed": 0,
+      "failures": [],
+      "wallSeconds": 438,
+      "takenAt": "2026-08-28T10:08:46.642Z",
+      "ref": "steward/t-0256-newspaper-corpus",
+      "commit": "38832f684607",
+      "devCommit": "5b69f17cede8",
+      "treeHash": "sha256:15d9afec531d7034",
+      "treeDirty": false,
+      "changelogHash": "sha256:ec2332aa62416fe5",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          3.8,
+          4.6,
+          4
+        ]
+      },
+      "source": "/tmp/smoke/m34.log"
+    },
+    {
+      "viewport": "desktop",
       "stage": "1",
       "parts": [
         1

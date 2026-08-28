@@ -1,6 +1,6 @@
 {
   "project": "chicago-4d",
-  "generated_ct": "Aug 28, 2026, 4:35 AM",
+  "generated_ct": "Aug 28, 2026, 4:36 AM",
   "tickets": [
     {
       "id": "T-0001",
@@ -4677,6 +4677,24 @@
       "blocked_on": null,
       "needs_bake": true,
       "queue_rank": 60
+    },
+    {
+      "id": "T-0275",
+      "title": "The newspaper deposit is on main only, so dev cannot resolve 66 of the corpus's text paths",
+      "state": "open",
+      "epic": "PAPERS",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "S",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-08-28",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "queue_rank": 61
     }
   ]
 }
