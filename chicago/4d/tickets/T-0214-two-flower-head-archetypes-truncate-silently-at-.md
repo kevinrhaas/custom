@@ -1,7 +1,7 @@
 ---
 id: T-0214
 title: Two flower-head archetypes truncate silently at their instance cap
-state: open
+state: claimed
 epic: FLORA
 requested_by: loop
 seen: false
@@ -11,7 +11,7 @@ parent: null
 opened: 2026-08-26
 closed: null
 pr: null
-claimed_by: null
+claimed_by: run 8/28/2026, 2:55:45 AM CT
 blocked_on: null
 needs_bake: false
 ---

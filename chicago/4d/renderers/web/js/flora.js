@@ -223,7 +223,12 @@ const TUNE = {
     // and the heads inside it quadratically, so 2.0 draws a quarter of them.
     minPx: 1.0,
   },
-  /** Hard caps. The palette's `budget` is advisory; this is the ceiling. */
+  /** Hard caps. The palette's `budget` is advisory; this is the ceiling.
+   *
+   *  `head` is the average of the NINE head archetypes' ceilings and not any one
+   *  of them — T-0214 split it by measured demand, so the nine sum to nine times
+   *  this number and each gets `head x HEAD_SHARE[kind]`. Halving `head` at a
+   *  detail tier still halves every archetype with it. */
   cap: { near: 2400, mid: 4400, forb: 900, head: 820, far: 420 },
   wind: { speedNear: 1.35, sway: 0.085, waveM: 9.0 },
   /**
@@ -761,6 +766,92 @@ const HEAD_OF_SHAPE = {
   umbel_compound: { kind: 'compound', count: [4, 14], tilt: [0.10, 0.46], band: 0.32 },
 };
 
+/**
+ * T-0214 — HOW THE ONE HEAD BUDGET IS SPLIT NINE WAYS, and why it is not split
+ * evenly.
+ *
+ * Nine inflorescence archetypes are nine InstancedMeshes, and each carries its
+ * own ceiling. Until this ticket that ceiling was `tune.cap.head` NINE TIMES:
+ * the same number for the umbel that half a forest flowers with and for the
+ * spire two records in the whole town carry. `maybeHead` stops pushing the
+ * moment a set is full — it now says so through `skip`, but it still stops — so
+ * a set at its ceiling loses the rest of that plant's inflorescences, silently
+ * and mid-plant.
+ *
+ * TWO SETS WERE LOSING THEM. Measured by `tools/measure_bloom_headroom.mjs`
+ * standing in every community at four bearings, plus its three named stands —
+ * ASKED FOR against a 820 ceiling, at each set's own worst pose:
+ *
+ *     dome     1,202  z06_dense_forest facing 90    REFUSED 382
+ *     spike      852  z10_settled_town facing 90    REFUSED  32
+ *     pompom     804  z06_dense_forest facing 90
+ *     raydroop   734  z02_mesic_prairie
+ *     corymb     533  z10_settled_town facing 270
+ *     ray        248  z02_mesic_prairie
+ *     compound   160  z10_settled_town facing 270
+ *     panicle     23  z01_wet_prairie facing 90
+ *     spire       21  z10_settled_town facing 270
+ *
+ * **That is 4,577 against a 7,380-instance budget, so the shortfall is an
+ * ALLOCATION and not a budget.** And 4,577 is already a bound no frame draws:
+ * it sums every set's own worst pose, and those poses are in five different
+ * communities. Two sets were full while seven stood a fifth spent.
+ *
+ * SO THE SHARE IS SIZED ON THE DEMAND, AND THE TOTAL DOES NOT MOVE. Each set
+ * gets `tune.cap.head x HEAD_SHARE[kind]`, and the shares average exactly one —
+ * so nine times `cap.head` is still the head budget at every detail tier, and a
+ * tier that halves `cap.head` halves every share with it. Nothing here raises a
+ * ceiling; it stops nine identical ceilings from being nine wrong ones.
+ *
+ * THE FLOOR is the third column of the arithmetic and it is `compound`'s own
+ * measured demand. A share cut to a set's measured worst pose alone would give
+ * `spire` twenty-one instances, and twenty-one is a ceiling one new flowering
+ * record walks through — the demand figures are a reading of the flora records
+ * as they stand today, not a property of the archetype. So no set is dealt off
+ * less than the smallest genuinely-used set, which is what makes the four small
+ * sets robust to a record being added rather than to a re-measurement.
+ *
+ * WHAT IT COSTS THE FRAME. The refusals are worth 12,640 triangles if every one
+ * of them were drawn in one frame, and no frame draws them: a head is only ever
+ * drawn inside the 23.65 m head ring, so `dome`'s 382 are only in the frame of
+ * a visitor standing IN the dense forest, and `spike`'s 32 (416 triangles) only
+ * of one standing in the settled town. None of T-0135's five gate stands stands
+ * in the dense forest.
+ *
+ * THE DEMAND FIGURES ARE A MEASUREMENT AND ARE RE-MEASURABLE. Re-run
+ * `node tools/measure_bloom_headroom.mjs` — its §2a is this table — and if a set
+ * is at its cap there, the allocation is stale and this is where it is fixed.
+ */
+const HEAD_DEMAND = {
+  dome: 1202,
+  spike: 852,
+  pompom: 804,
+  raydroop: 734,
+  corymb: 533,
+  ray: 248,
+  compound: 160,
+  panicle: 23,
+  spire: 21,
+};
+/** No archetype is dealt off less than the smallest genuinely-used set — see
+ *  THE FLOOR above. It is `compound`'s own measured demand and not a round
+ *  number chosen to look like one. */
+const HEAD_DEMAND_FLOOR = HEAD_DEMAND.compound;
+/**
+ * The share of `cap.head` each archetype is given, normalised so the nine
+ * average exactly 1. That normalisation is the promise: whatever
+ * `tune.cap.head` is at a detail tier, the nine sets still sum to nine times
+ * it, so this file cannot quietly buy instances by re-weighting them.
+ */
+const HEAD_SHARE = (() => {
+  const kinds = Object.keys(HEAD_DEMAND);
+  const weight = Object.fromEntries(kinds.map(
+    (k) => [k, Math.max(HEAD_DEMAND[k], HEAD_DEMAND_FLOOR)]));
+  const total = kinds.reduce((a, k) => a + weight[k], 0);
+  return Object.fromEntries(kinds.map(
+    (k) => [k, (weight[k] / total) * kinds.length]));
+})();
+
 /** How each graminoid form deforms the one canonical tuft: `arch` is how far
  *  the tips fall away (cordgrass fountain vs bulrush culm), `spread` scales the
  *  clump's width against its height when no `width_m` is recorded. */
@@ -987,16 +1078,17 @@ export async function createFlora({
   // shape its record names. The flat horizontal plate is gone; nothing draws
   // one, because at 1.68 m eye height a corymb at 0.7 m is seen 11 degrees off
   // the horizontal and a flat disc is three pixels of nothing.
+  const headCap = (kind) => Math.round(tune.cap.head * HEAD_SHARE[kind]);
   const heads = {
-    spike: instSet('flora-head-spike', spikeGeometry(), headMat, tune.cap.head),
-    spire: instSet('flora-head-spire', spireGeometry(), headMat, tune.cap.head),
-    panicle: instSet('flora-head-panicle', panicleGeometry(), headMat, tune.cap.head),
-    ray: instSet('flora-head-ray', rayGeometry(false), headMat, tune.cap.head),
-    raydroop: instSet('flora-head-raydroop', rayGeometry(true), headMat, tune.cap.head),
-    pompom: instSet('flora-head-pompom', pompomGeometry(), headMat, tune.cap.head),
-    dome: instSet('flora-head-dome', domeGeometry(), headMat, tune.cap.head),
-    corymb: instSet('flora-head-corymb', corymbGeometry(), headMat, tune.cap.head),
-    compound: instSet('flora-head-compound', compoundGeometry(), headMat, tune.cap.head),
+    spike: instSet('flora-head-spike', spikeGeometry(), headMat, headCap('spike')),
+    spire: instSet('flora-head-spire', spireGeometry(), headMat, headCap('spire')),
+    panicle: instSet('flora-head-panicle', panicleGeometry(), headMat, headCap('panicle')),
+    ray: instSet('flora-head-ray', rayGeometry(false), headMat, headCap('ray')),
+    raydroop: instSet('flora-head-raydroop', rayGeometry(true), headMat, headCap('raydroop')),
+    pompom: instSet('flora-head-pompom', pompomGeometry(), headMat, headCap('pompom')),
+    dome: instSet('flora-head-dome', domeGeometry(), headMat, headCap('dome')),
+    corymb: instSet('flora-head-corymb', corymbGeometry(), headMat, headCap('corymb')),
+    compound: instSet('flora-head-compound', compoundGeometry(), headMat, headCap('compound')),
   };
   // T-0086. The far band, on the mid ring's own material and its own archetype:
   // one more instanced set, one more draw call, no new shader program. Nine
@@ -1339,6 +1431,19 @@ export async function createFlora({
      *  raise a lattice can carry and one an instance budget eats. */
     stats.caps = Object.fromEntries(sets.map((s) => [s.mesh.name, s.max]));
     stats.capped = sets.filter((s) => s.mesh.count >= s.max).map((s) => s.mesh.name);
+    /** T-0214. What each set was ASKED for this pass, and what it had to refuse.
+     *  A set sitting on its cap is not by itself a fault — a set that refused
+     *  four hundred inflorescences the records asked for is, and until this the
+     *  two looked identical from outside. `shortfall` carries only the sets with
+     *  something in them, so an empty object is the assertion worth making. */
+    stats.demand = Object.fromEntries(sets.map((s) => [s.mesh.name, s.demand()]));
+    /** Triangles ONE instance of each set costs, so a shortfall in instances can
+     *  be priced in the unit the frame budget is kept in without re-deriving an
+     *  archetype's geometry outside the module that built it. */
+    stats.trisPer = Object.fromEntries(sets.map((s) => [s.mesh.name, s.tris]));
+    stats.shortfall = Object.fromEntries(sets
+      .map((s) => [s.mesh.name, s.demand() - s.mesh.count])
+      .filter(([, short]) => short > 0));
     stats.triangles = sets.reduce((a, s) => a + s.mesh.count * s.tris, 0);
     stats.drawCalls = sets.filter((s) => s.mesh.count > 0).length;
   }
@@ -2931,11 +3036,32 @@ function instSet(name, geometry, material, max) {
 
   const tris = (geometry.index ? geometry.index.count : geometry.attributes.position.count) / 3;
   let n = 0;
+  /**
+   * T-0214. How many instances this set was ASKED for over the pass, against
+   * the `n` it drew. A set at its cap refuses silently — `push` returns false
+   * and the caller stops — so before this counter the difference between a set
+   * that had nothing to draw and one that was cut off mid-plant was invisible
+   * from outside the module, and the only way to see it was to notice that
+   * `mesh.count` happened to equal `max`. That reads as a coincidence, and at
+   * two of the nine head sets it was not one.
+   *
+   * It counts DEMAND, not refusals: every push attempt, plus whatever the
+   * caller abandons on a refusal and tells us about through `skip`. So
+   * `want - n` is the shortfall in instances, by name, and an allocation can
+   * be sized against it instead of against a guess.
+   */
+  let want = 0;
   return {
     mesh,
     tris,
     max,
-    reset() { n = 0; },
+    /** Instances asked for since the last `reset` — see `want`. */
+    demand() { return want; },
+    /** Instances the caller gave up on after a refusal, so the demand figure
+     *  is the whole of what the records asked for and not the part that was
+     *  attempted before the set filled. */
+    skip(k) { want += k; },
+    reset() { n = 0; want = 0; },
     /** The ring every following push is drawn on, `[outer, band, inner,
      *  innerBand]`. A head set is pushed to from two different rings in one
      *  rebuild, so this is per-push state rather than per-set. */
@@ -2952,6 +3078,7 @@ function instSet(name, geometry, material, max) {
      * @returns {boolean} false when the cap is reached — the caller stops.
      */
     push(e, y, n2, yaw, height, spread, arch, r, g, b, conf2, tilt = 0, tiltAz = 0, rise = 0) {
+      want++;
       if (n >= max) return false;
       if (tilt !== 0) {
         // The yaw is NOT passed to the Euler, and that is R-BUG7. It is the
@@ -3203,7 +3330,13 @@ function maybeHead(heads, sp, e, y, n, rng, plantH, ring) {
       // inflorescences ring its stem instead of all leaning one way.
       a,
       foot,
-    )) return;
+    )) {
+      // T-0214. The set is full and this plant loses the rest of its
+      // inflorescences. Say how many, so the shortfall is a number with a name
+      // on it rather than a set that silently happens to sit on its ceiling.
+      set.skip(many - i - 1);
+      return;
+    }
   }
 }
 
