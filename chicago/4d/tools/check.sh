@@ -995,6 +995,20 @@ step "…and its own assertions still fire when broken" \
 step "the .docx extractor is deterministic and keeps its uncertainty brackets" \
   python3 tools/docx_text.py --self-test
 
+# T-0257. The corpus made the papers citable; this is what a READING out of them looks
+# like once it has been made, and the gate that keeps one honest. The assertion worth
+# knowing about: a claim names the exact transcription lines its quote is built from,
+# and this reassembles the quote out of the transcription and refuses any that differs
+# by a character. "Never silently smoothed" is otherwise a hope — a tidied quote is
+# invisible to every other check here, and the smoothed reading has a field of its own
+# (`normalized`) to live in. gazetteer.json is GENERATED, so this also refuses a
+# hand-edit to it, the same way the board and the published mirror are refused stale.
+step "every newspaper claim resolves, quotes verbatim, and the gazetteer is compiled" \
+  python3 tools/compile_gazetteer.py --check
+
+step "…and its own assertions still fire when broken" \
+  python3 tools/compile_gazetteer.py --self-test
+
 printf '\n'
 if [ "$FAILED" -eq 0 ]; then
   printf '\033[32mCHECK PASS\033[0m\n'

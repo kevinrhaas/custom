@@ -1,0 +1,181 @@
+{
+  "schema": 1,
+  "issue_id": "chicago_democrat_1835_07_01",
+  "extracted": "2026-08-28",
+  "extracted_by": "hand, T-0257 — the worked fixture the schema was written against",
+  "note": "The scene-date Democrat. Three claims chosen because between them they exercise every field the schema has: two advertisements whose columns the segmenter interleaved line by line, and one post-office letter-list name. Nothing here is a mass extraction — T-0258 onwards read the run.",
+  "claims": [
+    {
+      "id": "c001",
+      "kind": "business",
+      "reading": "transcription_mediated",
+      "quote": "WOrD beg leave to inform\nPETER COHEN,\ntomere, and the public ge\nhe has just received by brig india\nfor sale on the most reasonable ti\ncomplete and splendid assortment\nDry Goods, Groce\nCLOTHIN\nwell suited to this section of the c\nkinka of Liquors, at wholesale an\nrespectfully requests the people to\namme for themselves, at his store\nlow Mesers. Newberry and Dole's\non south water street.\nChicago, Nor. 3, 1634.-49.",
+      "normalized": "PETER COHEN […] [WOULD] beg leave to inform [his cus]tomers, and the public ge[nerally …] he has just received by brig India […] for sale on the most reasonable t[erms …] complete and splendid assortment [of] Dry Goods, Groce[ries …] CLOTHIN[G …] well suited to this section of the c[ountry …] [all] kin[d]s of Liquors, at wholesale an[d retail …] respectfully requests the people to [call and ex]amine for themselves, at his store […]low Messrs. Newberry and Dole's […] on south water street. Chicago, Nov. 3, 1834.-49.",
+      "locator": {
+        "artifact_role": "primary",
+        "issue_page": 4,
+        "column": 5,
+        "lines": [
+          5040,
+          5068
+        ],
+        "lines_of_claim": [
+          5040,
+          5041,
+          5044,
+          5046,
+          5048,
+          5050,
+          5051,
+          5053,
+          5056,
+          5058,
+          5060,
+          5061,
+          5063,
+          5066,
+          5068
+        ],
+        "interleaved": true
+      },
+      "entities": [
+        {
+          "as_printed": "PETER COHEN",
+          "normalized": "Peter Cohen",
+          "role": "proprietor",
+          "occupations": [
+            "merchant"
+          ],
+          "associated_places": [
+            "South Water Street"
+          ]
+        }
+      ],
+      "ad_copy_date": {
+        "verbatim": "Chicago, Nor. 3, 1634.-49.",
+        "iso": "1834-11-03"
+      },
+      "business": {
+        "name": "Peter Cohen",
+        "proprietors": [
+          "Peter Cohen"
+        ],
+        "trade": "dry goods, groceries, clothing and liquors, wholesale and retail",
+        "goods": [
+          "Clothing",
+          "Dry Goods",
+          "Groceries",
+          "Liquors"
+        ],
+        "street": "South Water Street",
+        "placement": {
+          "class": "relative",
+          "anchor": "Messrs. Newberry and Dole's",
+          "offset_text": "low Mesers. Newberry and Dole's",
+          "offset_normalized": "[…]low Messrs. Newberry and Dole's",
+          "street": "South Water Street"
+        }
+      },
+      "notes": "INTERLEAVE. Lines 5040-5068 of the transcription alternate this advertisement with an unrelated bank notice; the quote is the fifteen lines that belong to Cohen and `lines_of_claim` names them. Line 5052 ('1018.') sits in the range and belongs to neither reading, so it is left out rather than assigned. OCR JUDGEMENTS, all rn/m-class or long-s confusions: 'WOrD'→'[WOULD]', 'tomere'→'[cus]tomers', 'india'→'India', 'kinka'→'kin[d]s', 'amme'→'[ex]amine', 'Mesers.'→'Messrs.', 'Nor. 3, 1634'→'Nov. 3, 1834'. THE DATELINE. '1634' cannot stand: the Democrat's run begins in November 1833 and this is Vol. II No. 11 of 1835-07-01, so the ad is a standing one placed 1834-11-03 and '-49' is its insertion count. WHAT IS NOT SUPPLIED. Line 5063 begins mid-word at the column edge: the transcription reads 'low Mesers. Newberry and Dole's' and the words before 'low' are cut away. T-0257's own text quotes them as 'a few doors below', and that phrase is not in this issue, so it is NOT supplied here — '[…]' marks the gap. A fuller witness may exist: Chicago Democrat 1834-06-04 line 2362 reads 'A,fec doors below Messrs. Nacberry & Dol'.' in a column that also names Peter Cohen, and settling whether that is this same standing advertisement is work for the Democrat read, not for this fixture."
+    },
+    {
+      "id": "c002",
+      "kind": "business",
+      "reading": "transcription_mediated",
+      "quote": "J. S. C. HOGA\nOFFERS AL Wholesale and lieui\nin South Water Street, one\nthe Post Office,\nDry Goods, Groc\nHardware, Croekery and Gi\nAlso—-a quantity of 8by 10, and 7\nGlass and Sash,\ndoz. corn BASKETS;\n200 sides Sole Leather;\n60\nUpper do.;\n& doz. Calf and Kip Shins.",
+      "normalized": "J. S. C. HOGA[N] […] OFFERS A[t] Wholesale and [Retail …] in South Water Street, one […] the Post Office, […] Dry Goods, Groc[eries …] Hardware, Cro[c]kery and G[lass …] Also — a quantity of 8 by 10, and 7 [by 9] Glass and Sash, […] doz. corn BASKETS; 200 sides Sole Leather; 60 […] Upper do.; […] doz. Calf and Kip Sk[i]ns.",
+      "locator": {
+        "artifact_role": "primary",
+        "issue_page": 4,
+        "column": 5,
+        "lines": [
+          5070,
+          5091
+        ],
+        "lines_of_claim": [
+          5070,
+          5072,
+          5075,
+          5076,
+          5079,
+          5081,
+          5082,
+          5083,
+          5084,
+          5086,
+          5088,
+          5090,
+          5091
+        ],
+        "interleaved": true
+      },
+      "entities": [
+        {
+          "as_printed": "J. S. C. HOGA",
+          "normalized": "J. S. C. Hogan",
+          "role": "proprietor",
+          "occupations": [
+            "merchant"
+          ],
+          "associated_places": [
+            "South Water Street"
+          ]
+        }
+      ],
+      "ad_copy_date": null,
+      "business": {
+        "name": "J. S. C. Hogan",
+        "proprietors": [
+          "J. S. C. Hogan"
+        ],
+        "trade": "dry goods, groceries, hardware, crockery and glass, wholesale and retail",
+        "goods": [
+          "Crockery",
+          "Dry Goods",
+          "Glass and Sash",
+          "Groceries",
+          "Hardware",
+          "Sole Leather"
+        ],
+        "street": "South Water Street",
+        "placement": {
+          "class": "relative",
+          "anchor": "the Post Office",
+          "offset_text": "in South Water Street, one\nthe Post Office,",
+          "offset_normalized": "in South Water Street, one […] the Post Office",
+          "street": "South Water Street"
+        }
+      },
+      "notes": "INTERLEAVE, same column and the same alternation as c001. THE NAME. Line 5070 is cut after 'HOGA'; the final letter is restored on a second witness in this issue rather than guessed — the post-office notice at line 3705 of page 3 column 5 is signed 'HOGAN, P. M.'. Whether the postmaster and this merchant are one man is an identification this fixture does NOT make: no merge is declared in identity.json and the two would need one. THE PLACEMENT IS THE POINT AND IT IS INCOMPLETE. Lines 5075-5076 read 'in South Water Street, one' / 'the Post Office,' — whatever stood between them is cut by the column edge. T-0257's text quotes it as 'one [door from] the Post Office'; no witness in this issue supports 'door from', so the words are left unsupplied and '[…]' marks the gap. The anchor is documented either way. NO DATELINE. The ad carries the insertion code '2m5' (line 5080) and no 'Chicago, <date>' line, so `ad_copy_date` is null rather than inferred from the code."
+    },
+    {
+      "id": "c003",
+      "kind": "person",
+      "reading": "transcription_mediated",
+      "letter_list_only": true,
+      "quote": "ork, James Houston",
+      "normalized": "[W]ork, James Houston",
+      "locator": {
+        "artifact_role": "primary",
+        "issue_page": 3,
+        "column": 5,
+        "lines": [
+          3645,
+          3645
+        ],
+        "lines_of_claim": [
+          3645
+        ],
+        "interleaved": true
+      },
+      "entities": [
+        {
+          "as_printed": "ork, James Houston",
+          "normalized": "Work, James Houston",
+          "role": "addressee"
+        }
+      ],
+      "notes": "RULING 1 — a listed name alone mints a resident candidate, and this claim is the fixture's worked example of one: `letter_list_only` is true here and the compiler carries it onto the person. THE LIST is the post office's, interleaved with advertising through page 3 column 5 and closed at line 3705 by its own notice, signed 'HOGAN, P. M.'. Every name in it is cut at the left column edge, which is why this one was chosen: the alternate transcription of the same issue (data/research/newspapers/text/chicago_democrat_1835_07_01__alt_transcription_2.txt, line 274) reads 'Work, James Houston' in full, so the initial W is restored on a SECOND WITNESS and not on the shape of the word. Neighbouring names have no such agreement — line 3652 reads 'hitney, Joshus' here and 'Whurney, Julian' there — and are left for the Democrat read to settle."
+    }
+  ]
+}
