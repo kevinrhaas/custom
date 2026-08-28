@@ -1,7 +1,7 @@
 ---
 id: T-0291
 title: Reading the Democrat, September 1834: Vol I Nos 40-43
-state: claimed
+state: done
 epic: PAPERS
 requested_by: owner
 seen: false
@@ -9,8 +9,8 @@ effort: S
 legacy_id: null
 parent: T-0259
 opened: 2026-08-28
-closed: null
-pr: null
+closed: 2026-08-28
+pr: 478
 claimed_by: run 8/28/2026, 12:39:24 PM CT
 blocked_on: null
 needs_bake: false
