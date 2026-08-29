@@ -200,11 +200,29 @@ gate; only the grain is finer. It is optional and additive: a claim without `spa
 behaves exactly as before, which is why the T-0257 fixture and the Democrat read needed no
 edit. All 130 of the American's claims use it.
 
-**Nor does the Democrat's own first issue, and only four of T-0258's thirty do.** Swept the
-same way: 1834-01-28, 1834-02-04, 1834-04-23 and 1834-04-30 carry a list and the other
-twenty-six do not, so a reading pass over 1833 and the first half of 1834 meets the epic's
-letter-list clause mostly by demonstrating absence. Where a list IS there it is the census
-proxy and ruling 1 applies in full.
+**Nor does the Democrat's own first issue, and SIX of T-0258's thirty do.** This count
+has been corrected twice by reading — the two paragraphs below are the corrections, and
+each names the sweep it refuted — and it stands at six issues carrying Chicago's own list:
+**1834-01-14** and **1834-01-28** (the 1 January list, printed cut and then nearly whole,
+T-0310), **1834-02-04**, **1834-03-04** (T-0312), and **1834-04-01** with its
+**1834-04-08** reprint (the 1 April list, T-0313). The other twenty-four carry none of
+Chicago's — the April Hennepin printings are another town's and mint nobody — so a reading
+pass over 1833 and the first half of 1834 meets the epic's letter-list clause mostly by
+demonstrating absence. Where a list IS there it is the census proxy and ruling 1 applies
+in full.
+
+**The fifth was found by READING and not by searching, and that is the lesson (T-0312).**
+This file said four until March 1834 was read through, because a text sweep cannot match a
+heading the segmenter has cut in half. The list of 1834-03-04 sits on page 4, and the crop
+boundary runs down the middle of its printed column: `List of L` stands at the head of
+column 2 and `etters` / `ost-Offiee at Chica-` / `34.` at the head of column 3. No search
+for *list of letters*, *letters remaining* or *remaining in the post office* can hit a
+heading that exists whole in neither column. **So sweep for the FRAGMENTS too** — `ist of L`,
+`etters`, `ost-Off`, `advertis` — and expect a list to be split across two claims, one per
+crop, the way `chicago_democrat_1834_03_04.json` c024 and c025 carry it. Its date line
+survives only as `34.`, so WHICH return it is cannot be read and is not asserted; its
+seventy-eight extracted names are a floor, cut on their left edge where January's were cut
+on their right.
 
 **THAT SWEEP WAS WRONG, AND READING APRIL 1834 IS HOW IT WAS FOUND OUT (T-0313).** It is
 six of the thirty, not four, and the two it names for April are the wrong two. **1834-04-23

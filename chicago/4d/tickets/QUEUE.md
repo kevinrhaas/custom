@@ -45,7 +45,6 @@ T-0219 — Finish the heightfield SOUTH to Madison Street, the plat's last tier
 # --- band BLOCK the visible seeding at its bottom — documented storefronts and real
 # --- people replacing invented ones — which is why they sit above other invisible work.
 # --- Three owner rulings govern the epic; each ticket carries them in full.
-T-0312 — Reading the Democrat, March 1834: Vol. I Nos. 15-17
 T-0314 — Reading the Democrat, May 1834: Vol. I Nos. 23-26
 T-0297 — Reading the Democrat, August 1835: the four issues after the scene date
 T-0326 — Reading the Democrat, January to June 1835: the eight issues, now that their columns resolve
@@ -120,3 +119,4 @@ T-0327 — The December 1834 bookseller's name is 'RUISAL & CLUPR' in the only p
 T-0328 — D. Weaver's building is on Lot 2 in one printing and Lot 9 in the next, and both transcriptions are Vision-set
 T-0329 — School District Number One is bounded in print on 1834-12-10 and the segmenter cut better than half of every line of it away
 T-0330 — A fragment reading 'opposite the Tremont House' sits between two interleaved advertisements and neither can claim it
+T-0331 — The March 1834 letter list lost its date line and both its crops failed Vision; the page images can say which return it is
