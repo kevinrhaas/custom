@@ -48,7 +48,6 @@ T-0219 — Finish the heightfield SOUTH to Madison Street, the plat's last tier
 T-0312 — Reading the Democrat, March 1834: Vol. I Nos. 15-17
 T-0314 — Reading the Democrat, May 1834: Vol. I Nos. 23-26
 T-0315 — Reading the Democrat, June 1834: Vol. I Nos. 27-30
-T-0294 — Reading the Democrat, December 1834: Vol II Nos 1-4
 T-0296 — Reading the Democrat, 8 to 29 July 1835: the rest of the scene month
 T-0297 — Reading the Democrat, August 1835: the four issues after the scene date
 T-0298 — Reading the Democrat, January to June 1835: the eight issues only the deposit can open
