@@ -37,7 +37,6 @@
 # --- (c) the register itself, then the VISIBLE seeding it unblocks — documented
 # ---     storefronts standing in the model, documented people replacing invented.
 T-0297 — Reading the Democrat, August 1835: the four issues after the scene date
-T-0324 — J. K. Botsford advertises two addresses in one issue, and Graves' Tavern cannot be placed until they are reconciled
 T-0329 — School District Number One is bounded in print on 1834-12-10 and the segmenter cut better than half of every line of it away
 T-0263 — The documented storefronts take their places on South Water and Lake
 T-0306 — The American names six Chicago storefronts with usable placements and none of them is standing in the model yet
