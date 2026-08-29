@@ -1,6 +1,6 @@
 {
   "project": "chicago-4d",
-  "generated_ct": "Aug 28, 2026, 11:40 PM",
+  "generated_ct": "Aug 28, 2026, 11:45 PM",
   "tickets": [
     {
       "id": "T-0001",
@@ -5312,7 +5312,7 @@
     {
       "id": "T-0314",
       "title": "Reading the Democrat, May 1834: Vol. I Nos. 23-26",
-      "state": "open",
+      "state": "done",
       "epic": "PAPERS",
       "requested_by": "owner",
       "seen": false,
@@ -5320,12 +5320,12 @@
       "legacy_id": null,
       "parent": "T-0258",
       "opened": "2026-08-28",
-      "closed": null,
-      "pr": null,
-      "claimed_by": null,
+      "closed": "2026-08-28",
+      "pr": "508",
+      "claimed_by": "run 8/28/2026, 11:38:16 PM CT",
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 0
+      "queue_rank": null
     },
     {
       "id": "T-0315",
@@ -5686,6 +5686,24 @@
       "blocked_on": null,
       "needs_bake": false,
       "queue_rank": 66
+    },
+    {
+      "id": "T-0346",
+      "title": "Desktop smoke stage 4 no longer fits the ten-minute foreground ceiling, so no steward run can take the whole desktop gate",
+      "state": "open",
+      "epic": "META",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "M",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-08-28",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "queue_rank": 67
     }
   ]
 }

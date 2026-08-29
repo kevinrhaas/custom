@@ -36,7 +36,7 @@
 # ---     reads surfaced;
 # --- (c) the register itself, then the VISIBLE seeding it unblocks — documented
 # ---     storefronts standing in the model, documented people replacing invented.
-T-0314 — Reading the Democrat, May 1834: Vol. I Nos. 23-26
+T-0326 — Reading the Democrat, January to June 1835: the eight issues, now that their columns resolve
 T-0297 — Reading the Democrat, August 1835: the four issues after the scene date
 T-0323 — The 1 January 1834 letter list has a third printing that T-0318 did not know about, and it repairs the A-H half without page images
 T-0299 — Three printings of one letter list mint 298 people three times, and identity.json is empty
@@ -135,3 +135,4 @@ T-0337 — One man is two proprietors of Russell & Clift, and the gazetteer has 
 T-0338 — Thirty-one groups of firms share a partner surname and only one of them has been judged
 T-0340 — The bookseller's sign-name and its partners' firm-name are three gazetteer entries for one house
 T-0345 — Mason's blacksmith shop is anchored on Graves' Tavern until 16 July 1834 and on the Tremont House from 10 September, and the register holds both as standing placements
+T-0346 — Desktop smoke stage 4 no longer fits the ten-minute foreground ceiling, so no steward run can take the whole desktop gate
