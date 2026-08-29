@@ -1,7 +1,7 @@
 ---
 id: T-0383
 title: S. B. Cobb's saddlery at Lake and Canal still letters the firm the American says dissolved in February 1835
-state: claimed
+state: done
 epic: META
 requested_by: loop
 seen: false
@@ -9,8 +9,8 @@ effort: S
 legacy_id: null
 parent: T-0306
 opened: 2026-08-29
-closed: null
-pr: null
+closed: 2026-08-29
+pr: 533
 claimed_by: run 8/29/2026, 7:18:17 AM CT
 blocked_on: null
 needs_bake: false
