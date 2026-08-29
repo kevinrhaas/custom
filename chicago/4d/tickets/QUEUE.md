@@ -41,7 +41,6 @@ T-0314 — Reading the Democrat, May 1834: Vol. I Nos. 23-26
 T-0297 — Reading the Democrat, August 1835: the four issues after the scene date
 T-0323 — The 1 January 1834 letter list has a third printing that T-0318 did not know about, and it repairs the A-H half without page images
 T-0299 — Three printings of one letter list mint 298 people three times, and identity.json is empty
-T-0304 — The gazetteer merges persons by a declared rule and has no equivalent for firms, so 'L. Wilson & Co.' and 'Jno. Wilson & Co.' are two businesses
 T-0330 — A fragment reading 'opposite the Tremont House' sits between two interleaved advertisements and neither can claim it
 T-0328 — D. Weaver's building is on Lot 2 in one printing and Lot 9 in the next, and both transcriptions are Vision-set
 T-0324 — J. K. Botsford advertises two addresses in one issue, and Graves' Tavern cannot be placed until they are reconciled
