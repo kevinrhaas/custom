@@ -1,7 +1,7 @@
 ---
 id: T-0243
 title: The two timber-placement gates match no mesh since the lattice landed, and one of them is now red on dev
-state: claimed
+state: done
 epic: META
 requested_by: loop
 seen: false
@@ -9,8 +9,8 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-08-27
-closed: null
-pr: null
+closed: 2026-08-29
+pr: 519
 claimed_by: run 8/29/2026, 3:05:27 AM CT
 blocked_on: null
 needs_bake: false
