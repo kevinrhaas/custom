@@ -1,4 +1,13 @@
 export const CHANGELOG = [ // newest first
+  { v: 370, title: 'Weaver\u2019s building has a lot number, and no page image was needed', kind: 'fix', ts: '2026-08-29T05:24:33.446Z', date: 'Aug 29, 2026, 12:24 AM CT',
+    items: [
+      'Nothing you can see changed today. A building advertised for sale or to let in the Chicago Democrat in the winter of 1834 stood on Lot 2, in block 1, on North Water street \u2014 inside this town, on the river frontage of the north bank. Until this morning the reconstruction could not say whether that was Lot 2 or Lot 9.',
+      'Two printings of D. Weaver\u2019s advertisement had been read, a week apart, and they disagreed about that one digit. Both were set by the better of the two machines that read this corpus, so neither was the obviously worse witness, and the disagreement was written down as a question only the page images could answer.',
+      'The advertisement ran five times, not twice. It is standing type \u2014 the same notice week after week, from the last Democrat of one volume into the fourth number of the next \u2014 and each week is a separate impression, separately scanned. Three of those printings had never been read at all. All three of them say Lot 2.',
+      'Four settings against one. The odd one out is damaged in that very line, where it also drops the t out of North; two of the four print the digit in a line with nothing wrong with it. The lot is 2. Nothing was amended to agree with anything: every printing keeps the words it actually carries, and the reading that lost is still on the page for the next reader to weigh.',
+      'The reason it had looked unanswerable was a premise the same column disproves \u2014 that 2 and 9 are not confused in clean type. True, and this type is not clean: the advertisement\u2019s own date is set 12, 12, 13 and 19 across those five weeks. Which day it really was is now its own question, asked rather than guessed at.',
+      'The method is written into the corpus\u2019s manual, because it keeps working: when two printings disagree, count the printings before sending for the scans. In a week it has now answered a blacksmith\u2019s address, twenty dozen axes filed under the wrong shop, and this lot number.',
+    ] },
   { v: 369, title: 'One list, printed three times, stops being three towns', kind: 'chore', ts: '2026-08-29T04:53:58.205Z', date: 'Aug 28, 2026, 11:53 PM CT',
     items: [
       'Nothing you can see changed today. What changed is the count of people this reconstruction thinks lived here \u2014 and it went DOWN, by 175.',

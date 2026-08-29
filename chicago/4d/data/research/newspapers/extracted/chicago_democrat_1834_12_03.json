@@ -3,7 +3,7 @@
   "issue_id": "chicago_democrat_1834_12_03",
   "extracted": "2026-08-29",
   "extracted_by": "hand, T-0294 — the Democrat read, December 1834",
-  "note": "Vol. II No. 1, the first number of Volume II. THE BEST-TRANSCRIBED ISSUE OF THE MONTH for the town's own matter: page 3 column 4 and page 4 columns 1-2 are the Tesseract fallback and, unusually for this corpus, the fallback is the LEGIBLE reading here — one physical column per segmenter column, full sentences — while the Vision-set columns of page 3 alternate two physical columns line by line. Every claim below says which it is. The month's principal town documents stand in this issue: the fire ordinance of 3 November 1834 in its third and clearest printing, the Democrat's own imprint naming the building it is printed in, and John H. Kinzie's 90-by-45-foot floor in Kinzie's Addition. NO POST-OFFICE LETTER LIST OF ANY OFFICE STANDS IN THIS ISSUE.",
+  "note": "Vol. II No. 1, the first number of Volume II. THE BEST-TRANSCRIBED ISSUE OF THE MONTH for the town's own matter: page 3 column 4 and page 4 columns 1-2 are the Tesseract fallback and, unusually for this corpus, the fallback is the LEGIBLE reading here — one physical column per segmenter column, full sentences — while the Vision-set columns of page 3 alternate two physical columns line by line. Every claim below says which it is. The month's principal town documents stand in this issue: the fire ordinance of 3 November 1834 in its third and clearest printing, the Democrat's own imprint naming the building it is printed in, and John H. Kinzie's 90-by-45-foot floor in Kinzie's Addition. NO POST-OFFICE LETTER LIST OF ANY OFFICE STANDS IN THIS ISSUE. AMENDED BY T-0328 on 2026-08-29: D. Weaver's standing advertisement for the building on North Water street stands in this issue and was not claimed. It is c025, and it reads LOT 2 — one of the four printings of five that do.",
   "claims": [
     {
       "id": "c001",
@@ -960,6 +960,37 @@
         }
       },
       "notes": "TWENTY DOZEN CAST STEEL AXES, AND THEY BELONG TO JONES & KING. This advertisement was read into c004 as part of the booksellers' stock, because in THIS printing the signature is crushed to “lozen or singly. Bi ‘i” and nothing separates the two blocks. Two other printings of the same standing pair separate them with a rule and sign this one: 1834-11-12 page 3 column 2 lines 2555-2557 reads “Gg DOZ. of Silaby'e cast stool AXES, by / the dozen or singly. Jones § King. / Now. 5, 1834,”, and 1834-12-24 page 3 column 5 lines 3559-3561 reads “the dozen or singly. donee & King.” The attribution is therefore INFERRED from the neighbouring printings and not read off this one, which is why the firm is bracketed in `normalized` and no proprietor is minted here. Jones & King already stand in the gazetteer for hardware and building materials at this very issue (c007, window glass, sash and blinds, South Water street); axes are a good the corpus had lost to the wrong shop. Silsby's is the maker, not a Chicago house, and is not minted."
+    },
+    {
+      "id": "c025",
+      "kind": "building",
+      "reading": "transcription_mediated",
+      "quote": "For Sale or To Let,\nSuE building on Lot 2, in block 1, on North\nChicago. Nor. 12, 1831. SO WEAVER.\nWater street.\nApply to",
+      "normalized": "For Sale or To Let, [T]HE building on Lot 2, in block 1, on North Water street. Apply to D. WEAVER. Chicago, No[v]. 12, 183[uncertain: 1 / 4]. — [5]0",
+      "locator": {
+        "artifact_role": "primary",
+        "issue_page": 3,
+        "column": 3,
+        "lines": [
+          3167,
+          3171
+        ],
+        "lines_of_claim": [
+          3167,
+          3168,
+          3169,
+          3170,
+          3171
+        ]
+      },
+      "entities": [
+        {
+          "as_printed": "D. WEAVER.",
+          "normalized": "D. Weaver",
+          "role": "advertiser"
+        }
+      ],
+      "notes": "THE SECOND OF FIVE PRINTINGS OF D. WEAVER'S ADVERTISEMENT, AND THE CLEANEST OF THEM AT THE DIGIT T-0328 ASKS ABOUT. The line reads 'SuE building on Lot 2, in block 1, on North' — the display capitals of THE are mangled and nothing else in the line is, the lot number least of all. Four of the five printings read Lot 2 and only 1834-12-17 reads Lot 9; the tally and the reasoning are on that claim. As at 1834-11-26, no `ad_copy_date` is recorded: this setting reads the copy date Nov. 12 and two later ones read it Nov. 19 and Nov. 13, which is a separate question and is ticketed rather than settled here."
     }
   ]
 }

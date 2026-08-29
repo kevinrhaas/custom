@@ -136,3 +136,4 @@ T-0346 — Desktop smoke stage 4 no longer fits the ten-minute foreground ceilin
 T-0341 — A bare surname can never be joined to its forename: the family rule reads 'no initials' as 'different initials'
 T-0348 — The identity policy cannot merge an unread initial with a read one, and the best witness reads seventeen of them
 T-0349 — The signboard gate is red when stage 1 runs before it and green when stage 2 runs alone
+T-0350 — D. Weaver's advertisement is dated Nov. 12 in two printings and Nov. 19 in the one the ledger believed
