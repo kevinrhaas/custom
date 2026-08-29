@@ -40,7 +40,6 @@ T-0297 — Reading the Democrat, August 1835: the four issues after the scene da
 T-0328 — D. Weaver's building is on Lot 2 in one printing and Lot 9 in the next, and both transcriptions are Vision-set
 T-0324 — J. K. Botsford advertises two addresses in one issue, and Graves' Tavern cannot be placed until they are reconciled
 T-0329 — School District Number One is bounded in print on 1834-12-10 and the segmenter cut better than half of every line of it away
-T-0262 — The July 1, 1835 register: who and what the papers put in the town
 T-0263 — The documented storefronts take their places on South Water and Lake
 T-0306 — The American names six Chicago storefronts with usable placements and none of them is standing in the model yet
 T-0264 — Documented people replace the invented
