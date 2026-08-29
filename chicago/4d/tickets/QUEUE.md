@@ -55,7 +55,6 @@ T-0264 — Documented people replace the invented
 
 # --- MEASUREMENT, GATES AND PROVENANCE — invisible, and nothing below blocks the above
 T-0190 — A second street tier for the street edge, and the ceiling that refuses it
-T-0155 — The changelog stamper has the same after-publish trap the ticket tool just lost
 T-0136 — The eight owner-brief plates T-0075 could not identify: Andreas at page-image level, and two museum objects
 T-0055 — Hold the Kinzie-view plate as a source record
 T-0053 — A patched lit material silently inherits another layer's shader program
