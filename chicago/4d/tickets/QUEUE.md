@@ -53,12 +53,9 @@ T-0340 — The bookseller's sign-name and its partners' firm-name are three gaze
 # --- standing in the model. This is the payoff the whole epic was for. T-0358 sits here
 # --- rather than with the streets because the corpus's ONLY lot-and-block address cannot
 # --- be used until the Thompson plat's block numbering is committed.
-T-0384 — John Holbrook's store takes its door on South Water Street, one door from Dearborn
 T-0385 — The New York Clothing Store stands three doors north of the Tremont House in Dearborn Street
-T-0416 — Wm. Sabine, John Dave and the Dearborn wine store: the three storefronts the street-face policy refuses for want of a fronting roof
 T-0358 — The Thompson plat's block NUMBERING is uncommitted, so the corpus's only lot-and-block address cannot be placed
 T-0375 — Every reconstructed roof on South Water Street is a labourer's, so five documented tradesmen the papers put there have nowhere to stand
-T-0379 — The letter-list names the post office printed in a single return, and the change of scale they put to the town
 
 # --- THE NEWSPAPER STREAM (d) WAITING ON THE OWNER'S PAGE IMAGES — each needs scans
 # --- opened that live outside the repository. Workable the day the images are supplied;
@@ -73,7 +70,6 @@ T-0305 — Four readings the American contradicts itself on need the page images
 # --- headroom was gated on T-0009 or T-0183, both blocked-owner. Both are now answered
 # --- (the rulings are written into the tickets), which frees ~20 roofs on four South Water
 # --- blocks and 27 more on blk_south_water_market — the largest visible win available.
-T-0009 — Redraw 29 building bodies out of the roadway
 T-0183 — The Market and South Water corner needs one control point, and the node rule may not be able to make it
 T-0365 — The anonymous-block programme has no unblocked ground left: every block with headroom is on the South Water reach T-0009 holds open
 T-0372 — North Water Street's two tight spots are 5.5 m and 8.5 m from water, and the setback rule cannot see either
@@ -172,4 +168,8 @@ T-0412 — A building offered FOR SALE mints a placement reading on the vendor's
 T-0413 — Six of T-0401's surname traps are one house on the printings, and the merge is unwritten
 T-0414 — The street-face adoption refuses W. Montgomery a roof for being the bootmaker, and identity.json already ruled they are two houses
 T-0415 — John Wright's two buildings to let are named (east) and (west) and stand the other way round
+T-0419 — The re-centred South Water corridor stands 8.58 m off its own block faces, and the strip between belongs to neither
+T-0420 — Open the four South Water blocks T-0009 has unblocked: 20 roofs of headroom on franklin, lasalle, clark and dearborn
+T-0421 — Canal Street's three control points spread 2.33 m, so its corridor cannot be centred on any of them
+T-0422 — The widened counterfactual deals a roof per street, and every roof a widening adds already fronts another street
 T-0418 — The 36 documented tradespeople whose trade the residents vocabulary has no word for

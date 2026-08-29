@@ -68,6 +68,14 @@ that cost is reported rather than avoided: `--report` prints BOTH readings, beca
 reader is owed the disagreement the decision was made about, and a later owner ruling
 that a corner side is a face has one number to change.
 
+**And the cost is DEALT, not estimated (T-0416).** "Twenty-four would become eligible" is
+the count of businesses a widening would let back into the deal, and it is not what a
+widening would seat: those twenty-four then meet refusal 3 and refusal 4, and the supply
+a widening adds is already net of the households' homes and the yard buildings among the
+side-only roofs. So `--report` re-runs the whole allocation under each widened reading and
+prints what it stands up. Measured on `dev`, 2026-08-29: a corner-side ruling seats
+TWELVE more, not twenty-four, and a ruling that also takes the band seats thirteen.
+
 THE REFUSALS, AND WHY EACH ONE IS THERE.
 
   1. `not present at the scene date`  — the register excluded it already; a business
@@ -242,6 +250,39 @@ def dwellings() -> dict[str, list[str]]:
 
 EMPTY_FACE = {FRONT: [], SIDE: [], BAND: [], "free": [], "homes": [], "yards": []}
 
+# The order a pass deals a face's roofs when it is allowed to read more than one of
+# them: the plat first, then the corner sides, then the band. It is the order of
+# decreasing claim, so a widened reading never takes a weaker roof while a stronger one
+# is free, and the lot-front-only allocation this pass actually writes is unchanged by
+# the existence of the others.
+READING_ORDER = (FRONT, SIDE, BAND)
+
+
+def free_under(face: dict, readings: tuple[str, ...], homes: dict,
+               yards: set[str]) -> list[str]:
+    """The roofs a pass adopting `readings` could take, in READING_ORDER then id order.
+
+    Refusals 5 and 6 are applied here rather than by the caller, because they are
+    refusals of a ROOF and hold under any reading of "face": a named household's home is
+    that household's home whichever street the roof shows, and a privy is a privy.
+    `free_under(face, (FRONT,), ...)` is exactly `face["free"]`, which is what keeps the
+    committed allocation byte-identical.
+    """
+    out: list[str] = []
+    for how in READING_ORDER:
+        if how not in readings:
+            continue
+        out += [sid for sid in face[how] if sid not in homes and sid not in yards]
+    return out
+
+
+def reading_of(face: dict, structure_id: str) -> str:
+    """Which of the three readings put this roof on this face."""
+    for how in READING_ORDER:
+        if structure_id in face[how]:
+            return how
+    raise AssertionError("%s is not on this face under any reading" % structure_id)
+
 
 def supply(roofs: dict[str, str], homes: dict[str, list[str]],
            yards: set[str]) -> dict:
@@ -304,17 +345,18 @@ def rank_key(entry: dict, gaz: dict) -> tuple:
     return (-mentions, first, entry["id"])
 
 
-def derive() -> dict:
-    register = load(REGISTER)
-    gaz = {b["id"]: b for b in load(GAZETTEER)["businesses"]}
-    roofs = reconstructed_roofs()
-    homes = dwellings()
-    yards = yard_roofs()
-    faces = supply(roofs, homes, yards)
+def allocate(pool: list, gaz: dict, faces: dict, roofs: dict, homes: dict,
+             yards: set[str], readings: tuple[str, ...]) -> tuple[list, list]:
+    """Deal the ranked pool onto the faces, reading "face" as `readings` says.
 
-    pool = [b for b in register["businesses"] if b["action"] == "street_only"]
-    pool.sort(key=lambda entry: rank_key(entry, gaz))
-
+    The pass this file writes calls it with `(FRONT,)` and nothing else — the owner's
+    ruling of 2026-08-29 is the narrow reading, and `limits()` re-asserts it against the
+    committed document independently of anything here. The parameter exists so the
+    counterfactual a widened ruling would produce can be MEASURED by dealing it, rather
+    than estimated from the count of businesses a widened supply would make eligible;
+    those two numbers are not the same, because a widened supply still meets refusals 3
+    and 4.
+    """
     taken: dict[str, list[str]] = {}
     seated: dict[str, dict[tuple[str, ...], str]] = {}
     adoptions: list[dict] = []
@@ -336,8 +378,9 @@ def derive() -> dict:
             continue
         face = faces.get(street_id) or {key: list(value)
                                         for key, value in EMPTY_FACE.items()}
-        free = [sid for sid in face["free"] if sid not in taken.get(street_id, [])]
-        if not face[FRONT]:
+        free = [sid for sid in free_under(face, readings, homes, yards)
+                if sid not in taken.get(street_id, [])]
+        if not any(face[how] for how in readings):
             refusals.append(dict(
                 common, refusal=REFUSALS[1],
                 detail="%d roof(s) show this street a corner side and %d stand within "
@@ -356,12 +399,13 @@ def derive() -> dict:
                        % (held[house], ", ".join(house))))
             continue
         if not free:
+            shown = sum(len(face[how]) for how in readings)
             refusals.append(dict(
                 common, refusal=REFUSALS[3],
                 detail="%d roof(s) front this street: %d are a named household's "
                        "dwelling, %d are yard buildings the parcels dealt behind a lot, "
                        "and %d are already adopted by a better-evidenced business."
-                       % (len(face[FRONT]), len(face["homes"]), len(face["yards"]),
+                       % (shown, len(face["homes"]), len(face["yards"]),
                           len(taken.get(street_id, [])))))
             continue
 
@@ -383,7 +427,7 @@ def derive() -> dict:
             "last_issue": (entry.get("evidence") or {}).get("last_issue"),
             "mentions": len(printed.get("mentions") or []),
             "structure_id": structure_id,
-            "face": FRONT,
+            "face": reading_of(face, structure_id),
             "roof_confidence": roofs[structure_id],
             "lot": None,
             "claims_lot": False,
@@ -400,6 +444,64 @@ def derive() -> dict:
 
     adoptions.sort(key=lambda row: row["business_id"])
     refusals.sort(key=lambda row: (row["refusal"], row["business_id"]))
+    return adoptions, refusals
+
+
+WIDENED_READINGS = (
+    ("corner side is a face", (FRONT, SIDE)),
+    ("corner side or the band is a face", (FRONT, SIDE, BAND)),
+)
+
+
+def widened(pool: list, gaz: dict, faces: dict, roofs: dict, homes: dict,
+            yards: set[str], adoptions: list) -> dict:
+    """What each widening of "face" would actually SEAT, dealt rather than estimated.
+
+    `widened_reading_would_reach` counts the businesses refused for want of a face —
+    the ones a widened reading would let back into the deal. It is NOT the number a
+    widening would seat, and reading it as one overstates the ruling: those businesses
+    then meet refusal 3 (this face already holds this proprietor) and refusal 4 (every
+    roof on the face is spoken for), and the supply a widening adds is itself net of
+    refusals 5 and 6, because a corner-side roof can be a household's home or a privy
+    exactly as a fronting one can. T-0416 is the ticket that asks the owner for this
+    ruling, and the number it puts in front of him is this one.
+    """
+    today = {row["business_id"] for row in adoptions}
+    out: dict[str, dict] = {}
+    for label, readings in WIDENED_READINGS:
+        would, refused = allocate(pool, gaz, faces, roofs, homes, yards, readings)
+        gained = sorted(row["business_id"] for row in would
+                        if row["business_id"] not in today)
+        by_street: dict[str, int] = {}
+        for row in would:
+            if row["business_id"] not in today:
+                by_street[row["street_id"]] = by_street.get(row["street_id"], 0) + 1
+        out[label] = {
+            "adopted_faces": list(readings),
+            "would_seat": len(would),
+            "seats_more_than_today": len(gained),
+            "newly_seated_by_street": dict(sorted(by_street.items())),
+            "newly_seated": gained,
+            "would_still_refuse": len(refused),
+            "would_still_refuse_by_reason": {reason: sum(1 for row in refused
+                                                         if row["refusal"] == reason)
+                                             for reason in REFUSALS},
+        }
+    return out
+
+
+def derive() -> dict:
+    register = load(REGISTER)
+    gaz = {b["id"]: b for b in load(GAZETTEER)["businesses"]}
+    roofs = reconstructed_roofs()
+    homes = dwellings()
+    yards = yard_roofs()
+    faces = supply(roofs, homes, yards)
+
+    pool = [b for b in register["businesses"] if b["action"] == "street_only"]
+    pool.sort(key=lambda entry: rank_key(entry, gaz))
+
+    adoptions, refusals = allocate(pool, gaz, faces, roofs, homes, yards, (FRONT,))
 
     unplaceable = [b for b in register["businesses"]
                    if b["action"] == "unplaceable" and b.get("present_at_scene_date")]
@@ -423,7 +525,7 @@ def derive() -> dict:
             "roofs_in_centreline_band": len(face[BAND]),
         }
 
-    widened = sum(1 for row in refusals if row["refusal"] == REFUSALS[1])
+    eligible = sum(1 for row in refusals if row["refusal"] == REFUSALS[1])
     return {
         "schema": 1,
         "generated_by": "tools/adopt_street_faces.py",
@@ -443,7 +545,14 @@ def derive() -> dict:
             "why": "An advertisement's street is where the door is. A corner side is the "
                    "cross street's building shown end-on, and a centreline band is a "
                    "distance rather than an orientation.",
-            "widened_reading_would_reach": widened,
+            "widened_reading_would_reach": eligible,
+            "widened_reading_would_reach_note":
+                "The count of businesses REFUSED FOR WANT OF A FACE, which is how many "
+                "a widened reading would let back into the deal — not how many it would "
+                "seat. `widened_readings` below deals each widening out and reports what "
+                "it actually stands up (T-0416).",
+            "widened_readings": widened(pool, gaz, faces, roofs, homes, yards,
+                                        adoptions),
         },
         "counts": {
             "street_only_in_register": len(pool),
@@ -565,6 +674,16 @@ def report() -> int:
           % counts["adopted"])
     print("      widened to a corner side or a band      %d more would become eligible"
           % doc["reading"]["widened_reading_would_reach"])
+    print("\n  ...AND WHAT A WIDENING WOULD ACTUALLY SEAT, dealt rather than estimated —")
+    print("  eligible is not seated: refusals 3 and 4 still hold, and the supply a")
+    print("  widening adds is already net of a household's home and a yard building.")
+    for label, row in doc["reading"]["widened_readings"].items():
+        print("      %-34s %2d seated (+%d on today), %d still refused"
+              % (label, row["would_seat"], row["seats_more_than_today"],
+                 row["would_still_refuse"]))
+        print("          %s" % (", ".join(
+            "%s +%d" % (fronting_street.street_name(street_id), n)
+            for street_id, n in row["newly_seated_by_street"].items()) or "nothing"))
     print("\n  ADOPTIONS")
     for row in doc["adoptions"]:
         print("      %-46s %-20s %s" % (row["business_name"][:46], row["street_name"],

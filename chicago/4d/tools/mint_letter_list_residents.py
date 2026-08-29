@@ -9,21 +9,29 @@ WHAT THIS IS FOR, AND WHY IT IS NOT THE WHOLE LIST.
 
 The owner's ruling of 2026-08-28 is that a name in the post office's list of
 uncalled-for letters is enough to make somebody a resident. `register_1835.json`
-carries 1,530 such people the town does not hold, and `tools/mint_documented_residents.py`
-cannot reach one of them: its pool is a `new_resident` WITH a trade, and a letter-list
-name has none. Put the 1,530 through that pass's eight refusals and 726 survive — a town
-of 225 people gaining 726, four residents in five a name on a post-office list and
-nothing else. That is a question about the SCALE of this reconstruction and it belongs
-to the owner; it is ticket T-0379, with the measurement written into it.
+carries such people the town does not hold in the thousands, and
+`tools/mint_documented_residents.py` cannot reach one of them: its pool is a
+`new_resident` WITH a trade, and a letter-list name has none. Put them through that
+pass's eight refusals and most of a thousand survive — a town of a few hundred people
+where three residents in four would be a name on a post-office list and nothing else.
+That is a question about the SCALE of this reconstruction and it belongs to the owner;
+it is ticket T-0379.
+
+NO FIGURE FOR THAT COHORT IS WRITTEN DOWN HERE, DELIBERATELY. The corpus grows on
+most weeks the loop runs, and a count copied into prose is wrong the next time a
+transcription lands — the ones this docstring used to carry (1,530 in the pool, 726
+surviving, ten in more than one return) were all stale inside a fortnight. Run
+`--scale-report` instead: it prices the cohort through the very refusals below, on
+whatever the tree currently holds, and prints what each of the owner's three answers
+would do to the town.
 
 THIS PASS TAKES THE SLICE THE CORPUS ITSELF RANKS HIGHEST, and the ranking is a rule
 rather than a sample. The Democrat reprinted one return of uncalled-for letters over
 consecutive weekly issues, so a name's MENTIONS are not its RETURNS: grouping a name's
 issues at a gap of more than sixty days separates a reprint from a genuinely later list.
-Ten names in the pool are printed in more than one return, five of them from January 1834
-to May 1835. A name the office held once is a person somebody wrote to. A name it held in
-two returns sixteen months apart is a person somebody kept believing was reachable at
-Chicago, and it is the strongest thing a letter list can say about residence.
+A name the office held once is a person somebody wrote to. A name it held in two returns
+sixteen months apart is a person somebody kept believing was reachable at Chicago, and it
+is the strongest thing a letter list can say about residence.
 
 WHAT THE RECORD CLAIMS, AND WHAT IT REFUSES TO.
 
@@ -237,7 +245,7 @@ def in_town_places() -> set[str]:
     return places
 
 
-def town_family_names(docs: dict, index: dict) -> set[str]:
+def town_family_names(docs: dict, index: dict, skip_prefix: str | None = PREFIX) -> set[str]:
     """The family names the committed dataset already has something to say about.
 
     THIS PASS'S OWN OUTPUT IS EXCLUDED and nothing else is — refusal 7's precedence
@@ -245,10 +253,15 @@ def town_family_names(docs: dict, index: dict) -> set[str]:
     `mint_documented_residents.MINTED_PREFIXES` documents. The two passes above it
     skip these `hh_ll_` records, so neither derivation is changed by anything minted
     here; this one sees both `hh_doc_` and `hh_placed_` and gives way to them.
+
+    `skip_prefix=None` is what --scale-report reads the town through: the cohort it
+    prices is a LATER pass than this one, so the households this one has already
+    minted are committed and standing, and a surname they hold is a surname the town
+    names.
     """
     known: set[str] = set()
     for path, doc in docs.items():
-        if path.name.startswith(PREFIX):
+        if skip_prefix and path.name.startswith(skip_prefix):
             continue
         for person in doc.get("persons") or []:
             fam = surname(person.get("name") or "")
@@ -265,29 +278,32 @@ def town_family_names(docs: dict, index: dict) -> set[str]:
 # the mint
 # ---------------------------------------------------------------------------
 
-def mint(docs: dict, index: dict):
-    """Choose who joins the town. Returns (accepted, refusals)."""
-    register = load(REGISTER)
-    gazetteer = {p["id"]: p for p in load(GAZETTEER)["persons"]}
-    known = town_family_names(docs, index)
-    in_town = in_town_places()
+def norm_place(s: str) -> str:
+    return re.sub(r"[^a-z ]", "", (s or "").lower()).strip()
 
-    def norm(s):
-        return re.sub(r"[^a-z ]", "", (s or "").lower()).strip()
 
-    # The pool: a letter-list name the town does not hold, printed in more than one
-    # return — and this pass's own previous answer, read back (see the docstring).
-    pool = [p for p in register["persons"]
+def letter_list_pool(register: dict) -> list[dict]:
+    """Every letter-list-only name the town does not hold.
+
+    Includes this pass's own previous answer, read back as an `enrich` on one of its
+    own person ids — see the docstring's last paragraph.
+    """
+    return [p for p in register["persons"]
             if p.get("letter_list_only")
             and (p.get("action") == "new_resident"
                  or (p.get("action") == "enrich"
                      and str(p.get("action_target") or "").startswith(PERSON_PREFIX)))]
-    candidates = [p for p in pool
-                  if len(returns_of(gazetteer[p["id"]]["mentions"])) >= RETURNS_REQUIRED]
-    candidates.sort(key=lambda p: (-len(returns_of(gazetteer[p["id"]]["mentions"])),
-                                   -len(gazetteer[p["id"]]["mentions"]),
-                                   p["first_seen"], p["id"]))
 
+
+def apply_refusals(candidates: list[dict], gazetteer: dict, known: set[str],
+                   in_town: set[str]):
+    """The eight refusals, in order, over an already-ranked list of candidates.
+
+    Held apart from `mint` because --scale-report prices a DIFFERENT cohort out of
+    the same pool, and the price is only worth anything if it is paid through these
+    exact rules rather than a second implementation of them that could drift.
+    Refusal 8 depends on the order it is handed, so ranking is the caller's job.
+    """
     taken: set[str] = set()
     accepted, refusals = [], []
     for cand in candidates:
@@ -295,7 +311,7 @@ def mint(docs: dict, index: dict):
         name = cand["name"]
         fam = surname(name)
         outside = [p for p in (gaz.get("associated_places") or [])
-                   if norm(p) not in in_town]
+                   if norm_place(p) not in in_town]
         reason = None
         if UNCERTAIN.search(name):
             reason = "garbled"
@@ -320,6 +336,21 @@ def mint(docs: dict, index: dict):
         taken.add(fam)
         accepted.append((cand, gaz))
     return accepted, refusals
+
+
+def mint(docs: dict, index: dict):
+    """Choose who joins the town. Returns (accepted, refusals)."""
+    register = load(REGISTER)
+    gazetteer = {p["id"]: p for p in load(GAZETTEER)["persons"]}
+    known = town_family_names(docs, index)
+    in_town = in_town_places()
+
+    candidates = [p for p in letter_list_pool(register)
+                  if len(returns_of(gazetteer[p["id"]]["mentions"])) >= RETURNS_REQUIRED]
+    candidates.sort(key=lambda p: (-len(returns_of(gazetteer[p["id"]]["mentions"])),
+                                   -len(gazetteer[p["id"]]["mentions"]),
+                                   p["first_seen"], p["id"]))
+    return apply_refusals(candidates, gazetteer, known, in_town)
 
 
 # ---------------------------------------------------------------------------
@@ -369,9 +400,11 @@ def record(cand: dict, gaz: dict) -> dict:
         f"WHY TWO RETURNS AND NOT ONE: the Democrat reprinted a single return over "
         f"consecutive weekly issues, so a repeated printing is not repeated evidence; a "
         f"name in a LATER return is somebody who was still being written to, months on, "
-        f"by a correspondent who believed them reachable at Chicago. 716 names in the "
-        f"same pool are printed in one return only and this reconstruction does not hold "
-        f"them — ticket T-0379 is that question and it is the owner's. "
+        f"by a correspondent who believed them reachable at Chicago. Far more names in "
+        f"the same pool are printed in one return only and this reconstruction does not "
+        f"hold them — ticket T-0379 is that question and it is the owner's, and "
+        f"`tools/mint_letter_list_residents.py --scale-report` counts them on the corpus "
+        f"as it stands rather than as it stood when this note was written. "
         f"THE LIMIT: the Chicago office served the country around the town, so a letter "
         f"waiting here is not proof of a bed here. A scan read, a land record or a second "
         f"corpus that places this person outside the town retires this record. "
@@ -529,13 +562,125 @@ def report(accepted, refusals) -> None:
         print(f"  {name[:30]:32s} {n} return(s)  {reason}")
 
 
+# ---------------------------------------------------------------------------
+# the cohort this pass does NOT mint, priced for the owner (T-0379)
+# ---------------------------------------------------------------------------
+
+def scale_report() -> None:
+    """What the 1-return cohort would cost the town, through these same refusals.
+
+    This pass mints the names the post office held letters for in more than one
+    return. The names it held ONCE are the rest of the pool, and whether the
+    reconstruction should hold them is a question about the SCALE of the town rather
+    than about evidence — it is T-0379, and it is the owner's. This prints the
+    numbers that question needs, re-derived on whatever the tree currently holds, so
+    the answer is given against today's town and not against a figure measured on a
+    dev that has since moved.
+
+    THE RANKING, and why it is dates and not printings. Every name here is in exactly
+    one return, so `returns` cannot separate them and `printings` counts a reprint run
+    the Democrat carried over consecutive weekly issues — repeated printing is not
+    repeated evidence, which is this pass's founding argument. What does vary is WHEN
+    the office was holding the letter: a return four months before the scene date says
+    more about who was at Chicago on 1 July 1835 than one eighteen months before it.
+    So the head of the list is dated, and the table below is cut by return.
+    """
+    docs = {path: load(path) for path in sorted(HOUSEHOLDS.glob("*.json"))}
+    index = load(INDEX)
+    register = load(REGISTER)
+    gazetteer = {p["id"]: p for p in load(GAZETTEER)["persons"]}
+    in_town = in_town_places()
+    # skip_prefix=None: the 12 households this pass has already minted are committed
+    # and standing, so refusal 7 must see their surnames like any other resident's.
+    known = town_family_names(docs, index, skip_prefix=None)
+
+    pool = letter_list_pool(register)
+    multi = [p for p in pool
+             if len(returns_of(gazetteer[p["id"]]["mentions"])) >= RETURNS_REQUIRED]
+    single = [p for p in pool
+              if len(returns_of(gazetteer[p["id"]]["mentions"])) < RETURNS_REQUIRED]
+
+    def return_date(cand):
+        groups = returns_of(gazetteer[cand["id"]]["mentions"])
+        for cid in groups[0] if groups else []:
+            when = issue_date(cid)
+            if when:
+                return when
+        return datetime.date.min
+
+    single.sort(key=lambda p: (-return_date(p).toordinal(),
+                               -len(gazetteer[p["id"]]["mentions"]),
+                               p["first_seen"], p["id"]))
+    accepted, refusals = apply_refusals(single, gazetteer, known, in_town)
+
+    persons_now = index["counts"]["persons"]
+    households_now = index["counts"]["households"]
+    ll_now = index["counts"].get("letter_list_only", 0)
+
+    print("T-0379 — THE SINGLE-RETURN COHORT, PRICED THROUGH THIS PASS'S OWN REFUSALS")
+    print(f"\nTHE POOL — letter-list-only names the town does not hold: {len(pool)}")
+    print(f"  {len(multi):5d} printed in more than one return   — minted by this pass (T-0378)")
+    print(f"  {len(single):5d} printed in exactly ONE return      — T-0379's question")
+
+    print(f"\nTHE EIGHT REFUSALS over those {len(single)}, in the order they are applied")
+    tally: dict[str, int] = {}
+    for _cid, _name, _n, reason in refusals:
+        key = reason.split(" (")[0]
+        if key.startswith("the town already names"):
+            key = "the town already names that family"
+        tally[key] = tally.get(key, 0) + 1
+    for reason, n in sorted(tally.items(), key=lambda kv: -kv[1]):
+        print(f"  {n:5d}  {reason}")
+    print(f"  {'-' * 5}")
+    print(f"  {len(refusals):5d}  refused, and {len(accepted)} survive")
+
+    print(f"\nOPTION A — HOLD ALL {len(accepted)}")
+    print(f"  persons     {persons_now:5d} -> {persons_now + len(accepted)}")
+    print(f"  households  {households_now:5d} -> {households_now + len(accepted)}")
+    share = (ll_now + len(accepted)) / (persons_now + len(accepted)) * 100
+    print(f"  of the people a visitor could open, {share:.1f}% would be a name on a "
+          f"post-office list and nothing else")
+    print(f"  (today: {ll_now} of {persons_now}, "
+          f"{ll_now / persons_now * 100:.1f}%)")
+
+    print(f"\nOPTION B — HOLD THE DATED HEAD. Survivors by the return that printed")
+    print(f"  them, newest first; the running column is the cost of taking every")
+    print(f"  return down to and including that row.")
+    print(f"  {'return of':>18}  {'survivors':>9}  {'persons':>9}  {'% of town':>9}")
+    running = 0
+    by_return: dict = {}
+    for cand, _gaz in accepted:
+        by_return.setdefault(return_date(cand), []).append(cand)
+    for when in sorted(by_return, reverse=True):
+        running += len(by_return[when])
+        total = persons_now + running
+        pct = (ll_now + running) / total * 100
+        said = (f"{when.day} {MONTHS[when.month - 1]} {when.year}"
+                if when != datetime.date.min else "an undated printing")
+        print(f"  {said:>18}  {len(by_return[when]):9d}  "
+              f"{persons_now:4d} -> {total:<4d}  {pct:8.1f}%")
+
+    print(f"\nOPTION C — HOLD THEM IN A LIGHTER FORM than a household. What a record")
+    print(f"  costs today, so the alternative can be priced against it: each of the 12")
+    print(f"  households this pass minted is one person, one file, and no dwelling,")
+    print(f"  division, family or party — every absence written out in its own block.")
+    print(f"  {len(accepted)} more of those is {len(accepted)} files and "
+          f"{len(accepted)} households whose `lives_at` names nothing.")
+
+
 def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--check", action="store_true",
                     help="re-derive and report any drift without writing")
     ap.add_argument("--report", action="store_true",
                     help="print the mint and every refusal")
+    ap.add_argument("--scale-report", action="store_true",
+                    help="price the single-return cohort this pass refuses (T-0379)")
     args = ap.parse_args()
+
+    if args.scale_report:
+        scale_report()
+        return 0
 
     files, accepted, refusals = build()
     if args.report:

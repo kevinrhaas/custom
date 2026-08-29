@@ -87,6 +87,30 @@ fronts it. `--report` prints both readings side by side, because the reader is o
 disagreement the decision was made about, and because a later owner ruling that a corner
 side is a face has exactly one number to change.
 
+### What a widened reading would actually seat — dealt, not estimated (T-0416)
+
+`widened_reading_would_reach: 24` counts the businesses refused **for want of a face** —
+how many a widening would let back into the deal. **It is not how many it would seat**,
+and quoting it as one overstates the ruling by half. Those twenty-four still meet refusal
+3 and refusal 4 afterwards, and the supply a widening adds is already net of refusals 5
+and 6: a corner-side roof can be a named household's home or a privy exactly as a fronting
+one can, and on Dearborn Street ten of the eighteen are. So the tool now re-runs the whole
+allocation under each widened reading and reports the result, in
+`reading.widened_readings` and under `--report`:
+
+| ruling | seated | on today's 19 | still refused | where the gain lands |
+|---|---|---|---|---|
+| lot front only — **in force** | 19 | — | 40 | — |
+| a corner side is a face | **31** | **+12** | 28 | Dearborn +8, La Salle +3, Canal +1 |
+| a corner side **or the band** is a face | **32** | **+13** | 27 | the same, and North Water +1 |
+
+Dearborn Street's eighteen advertisements would not become eighteen shops: eight roofs are
+free of the eighteen showing it a side (five are households' homes, five are yard
+buildings), so eight are seated and ten are refused on supply. North Water Street has one
+roof in the band and two advertisements, so a band ruling seats the better-evidenced of
+them and refuses the other. **T-0416 is the ticket that puts this question to the owner**,
+and these are the numbers it puts with it.
+
 ## The six refusals
 
 1. **`not present at the scene date`** — the register already excluded it: contradicted
@@ -165,7 +189,8 @@ households' homes (refusal 5) and less the yard buildings (refusal 6).
 
 - **Dearborn Street (18), La Salle Street (3), Canal Street (1), North Water Street (2).**
   No roof's platted lot faces them, which is 24 of the 36 that wait. Two remedies, and
-  neither is this policy's to take: a ruling that a corner side is a face, or a
+  neither is this policy's to take: a ruling that a corner side is a face — which would
+  seat twelve of these twenty-four and not twenty-four, measured above — or a
   reconstruction that raises frontage on those streets. Three of the Dearborn Street
   advertisements — the New York Clothing Store, the Dearborn Street wine store and W. H.
   Taylor's boot and shoe store — have their own tickets (**T-0385**, **T-0387**) that place
