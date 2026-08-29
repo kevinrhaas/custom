@@ -61,7 +61,6 @@ T-0265 — The sward census fails its own gate at a phone: z10_settled_town owes
 # --- so a cross street CAN be laid), and all seven cross streets were then measured
 # --- over all three ceilings. PR #418, which parked Market Street alone, is closed.
 T-0317 — Build out the NEXT anonymous block: after blk_lake_franklin the last ungenerated block is owner-blocked, and the roofs left stand on blocks that already stand
-T-0316 — The 665-roof deal puts a large river warehouse on an inland platted block, and the block generator cannot build one
 T-0233 — Eight of seventeen dealt lots carry none of their run's own roofs, and nothing was measuring it
 T-0307 — The derivation's running maximum costs 42 m of verge where the bank turns a right angle at Wolf Point
 T-0272 — The West Division parcel's form values come from the archetype and cite the family band: 8 families, 11 claims outside it
@@ -139,3 +138,4 @@ T-0356 — The claim vocabulary cannot say an advertisement announces an opening
 T-0357 — 129 documented businesses will stand on a survival liberty and LIBERTIES.md carries none of them
 T-0358 — The Thompson plat's block NUMBERING is uncommitted, so the corpus's only lot-and-block address cannot be placed
 T-0359 — The gazetteer mints tavern names as people, so Maddock's Tavern and Haddock's Tavern cannot be reconciled
+T-0369 — Desktop stage 8's panel walk is red when stage 1 runs before it and green when stage 8 runs alone
