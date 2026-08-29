@@ -59,7 +59,6 @@ T-0265 — The sward census fails its own gate at a phone: z10_settled_town owes
 # --- THE TOWN AND ITS STREETS — visible. T-0192 is parked whole on PR #418 until
 # --- the balanced triangle budget can carry Market Street's walk.
 T-0192 — The cross streets' own frontages get the street edge
-T-0317 — Build out the NEXT anonymous block: after blk_lake_franklin the last ungenerated block is owner-blocked, and the roofs left stand on blocks that already stand
 T-0316 — The 665-roof deal puts a large river warehouse on an inland platted block, and the block generator cannot build one
 T-0233 — Eight of seventeen dealt lots carry none of their run's own roofs, and nothing was measuring it
 T-0307 — The derivation's running maximum costs 42 m of verge where the bank turns a right angle at Wolf Point

@@ -1,7 +1,7 @@
 ---
 id: T-0317
 title: Build out the NEXT anonymous block: after blk_lake_franklin the last ungenerated block is owner-blocked, and the roofs left stand on blocks that already stand
-state: claimed
+state: done
 epic: META
 requested_by: loop
 seen: false
@@ -9,8 +9,8 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-08-28
-closed: null
-pr: null
+closed: 2026-08-29
+pr: 521
 claimed_by: run 8/29/2026, 2:54:41 AM CT
 blocked_on: null
 needs_bake: false
