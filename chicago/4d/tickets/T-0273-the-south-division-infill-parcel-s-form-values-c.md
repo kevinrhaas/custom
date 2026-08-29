@@ -1,7 +1,7 @@
 ---
 id: T-0273
 title: The South Division infill parcel's form values come from the archetype and cite the family band: 9 families, 10 claims outside it
-state: open
+state: done
 epic: META
 requested_by: loop
 seen: false
@@ -9,9 +9,9 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-08-28
-closed: null
-pr: null
-claimed_by: null
+closed: 2026-08-29
+pr: 537
+claimed_by: run 8/29/2026, 7:07:12 AM CT
 blocked_on: null
 needs_bake: true
 ---

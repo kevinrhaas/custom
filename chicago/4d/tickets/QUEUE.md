@@ -93,7 +93,6 @@ T-0009 — Redraw 29 building bodies out of the roadway
 T-0183 — The Market and South Water corner needs one control point, and the node rule may not be able to make it
 T-0365 — The anonymous-block programme has no unblocked ground left: every block with headroom is on the South Water reach T-0009 holds open
 T-0372 — North Water Street's two tight spots are 5.5 m and 8.5 m from water, and the setback rule cannot see either
-T-0273 — The South Division infill parcel's form values come from the archetype and cite the family band: 9 families, 10 claims outside it
 T-0274 — The inferred-household parcel's form values come from the archetype and cite the family band: 8 families, 10 claims outside it
 
 # --- THE RUNS CANNOT PROVE THEMSELVES — invisible, and it blocks the EVIDENCE every

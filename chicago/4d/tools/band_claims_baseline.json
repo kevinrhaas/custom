@@ -1,10 +1,10 @@
 {
   "$note": "ROADMAP K25(a). Every form value in this project's reconstructed buildings that sits outside the family band its own note cites. This file is a RATCHET, not an allowance: tools/check.sh fails on any offender that is not here and on any listed offender whose value has moved. K25(b) empties it and deletes it. Regenerate with tools/measure_band_claims.py --write-baseline, and only ever to record a repair.",
   "counts": {
-    "eave": 32,
+    "eave": 14,
     "footprint": 2,
     "levels": 3,
-    "pitch": 10
+    "pitch": 7
   },
   "measured": "2026-08-15",
   "offenders": {
@@ -182,153 +182,6 @@
       "family": "C2",
       "marginal": true,
       "value": "1.5 storey + loft = 2"
-    },
-    "recon_1835_south_a2_047:pitch": {
-      "band": "33.7-45.0 deg (8:12-12:12)",
-      "detail": "+1.7 deg / +0.50 of a 1:12 step outside",
-      "family": "A2",
-      "marginal": true,
-      "value": "32.0 deg (= 7.50:12)"
-    },
-    "recon_1835_south_a4_042:eave": {
-      "band": "6-8 ft",
-      "detail": "+1.02 ft outside",
-      "family": "A4",
-      "marginal": false,
-      "value": "9.02 ft (2.75 m)"
-    },
-    "recon_1835_south_a4_048:eave": {
-      "band": "6-8 ft",
-      "detail": "+1.02 ft outside",
-      "family": "A4",
-      "marginal": false,
-      "value": "9.02 ft (2.75 m)"
-    },
-    "recon_1835_south_a5_044:eave": {
-      "band": "7-9 ft",
-      "detail": "+0.02 ft outside",
-      "family": "A5",
-      "marginal": true,
-      "value": "9.02 ft (2.75 m)"
-    },
-    "recon_1835_south_c2_007:eave": {
-      "band": "11-13 ft",
-      "detail": "+0.34 ft outside",
-      "family": "C2",
-      "marginal": true,
-      "value": "10.66 ft (3.25 m)"
-    },
-    "recon_1835_south_c2_036:eave": {
-      "band": "11-13 ft",
-      "detail": "+0.34 ft outside",
-      "family": "C2",
-      "marginal": true,
-      "value": "10.66 ft (3.25 m)"
-    },
-    "recon_1835_south_c3_015:eave": {
-      "band": "18-22 ft",
-      "detail": "+0.45 ft outside",
-      "family": "C3",
-      "marginal": true,
-      "value": "17.55 ft (5.35 m)"
-    },
-    "recon_1835_south_c3_037:eave": {
-      "band": "18-22 ft",
-      "detail": "+0.45 ft outside",
-      "family": "C3",
-      "marginal": true,
-      "value": "17.55 ft (5.35 m)"
-    },
-    "recon_1835_south_c3_040:eave": {
-      "band": "18-22 ft",
-      "detail": "+0.45 ft outside",
-      "family": "C3",
-      "marginal": true,
-      "value": "17.55 ft (5.35 m)"
-    },
-    "recon_1835_south_d2_005:eave": {
-      "band": "7-8 ft",
-      "detail": "+1.02 ft outside",
-      "family": "D2",
-      "marginal": false,
-      "value": "9.02 ft (2.75 m)"
-    },
-    "recon_1835_south_d2_005:pitch": {
-      "band": "18.4-33.7 deg (4:12-8:12)",
-      "detail": "+0.4 deg / +0.10 of a 1:12 step outside",
-      "family": "D2",
-      "marginal": true,
-      "value": "18.0 deg (= 3.90:12)"
-    },
-    "recon_1835_south_d2_024:eave": {
-      "band": "7-8 ft",
-      "detail": "+1.02 ft outside",
-      "family": "D2",
-      "marginal": false,
-      "value": "9.02 ft (2.75 m)"
-    },
-    "recon_1835_south_d2_024:pitch": {
-      "band": "18.4-33.7 deg (4:12-8:12)",
-      "detail": "+0.4 deg / +0.10 of a 1:12 step outside",
-      "family": "D2",
-      "marginal": true,
-      "value": "18.0 deg (= 3.90:12)"
-    },
-    "recon_1835_south_d3_001:eave": {
-      "band": "8-9 ft",
-      "detail": "+0.12 ft outside",
-      "family": "D3",
-      "marginal": true,
-      "value": "9.12 ft (2.78 m)"
-    },
-    "recon_1835_south_d3_008:eave": {
-      "band": "8-9 ft",
-      "detail": "+0.12 ft outside",
-      "family": "D3",
-      "marginal": true,
-      "value": "9.12 ft (2.78 m)"
-    },
-    "recon_1835_south_d3_013:eave": {
-      "band": "8-9 ft",
-      "detail": "+0.12 ft outside",
-      "family": "D3",
-      "marginal": true,
-      "value": "9.12 ft (2.78 m)"
-    },
-    "recon_1835_south_d3_017:eave": {
-      "band": "8-9 ft",
-      "detail": "+0.12 ft outside",
-      "family": "D3",
-      "marginal": true,
-      "value": "9.12 ft (2.78 m)"
-    },
-    "recon_1835_south_d3_022:eave": {
-      "band": "8-9 ft",
-      "detail": "+0.12 ft outside",
-      "family": "D3",
-      "marginal": true,
-      "value": "9.12 ft (2.78 m)"
-    },
-    "recon_1835_south_d3_027:eave": {
-      "band": "8-9 ft",
-      "detail": "+0.12 ft outside",
-      "family": "D3",
-      "marginal": true,
-      "value": "9.12 ft (2.78 m)"
-    },
-    "recon_1835_south_d7_035:eave": {
-      "band": "17-19 ft",
-      "detail": "+0.43 ft outside",
-      "family": "D7",
-      "marginal": true,
-      "value": "16.57 ft (5.05 m)"
-    },
-    "recon_1835_south_f2_039:eave": {
-      "band": "19-23 ft",
-      "detail": "+1.45 ft outside",
-      "family": "F2",
-      "marginal": false,
-      "value": "17.55 ft (5.35 m)"
     },
     "recon_1835_west_021:levels": {
       "band": "'1' (=> 1-1)",
