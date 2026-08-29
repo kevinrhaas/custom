@@ -11,7 +11,7 @@
     },
     "structures": 358,
     "streets": 19,
-    "resident_persons": 225
+    "resident_persons": 237
   },
   "counts": {
     "businesses": {
@@ -45,8 +45,8 @@
     "persons": {
       "total": 2634,
       "by_action": {
-        "enrich": 169,
-        "new_resident": 2346,
+        "enrich": 184,
+        "new_resident": 2331,
         "replace_invented": 119
       },
       "letter_list_only": 1934
@@ -11587,9 +11587,9 @@
       "letter_list_only": true,
       "first_seen": "1834-01-28",
       "last_seen": "1835-05-20",
-      "action": "new_resident",
-      "action_target": null,
-      "action_note": "Ruling 1: a named person the town does not hold. Known only from the post-office letter lists."
+      "action": "enrich",
+      "action_target": "ll_caleb_foster",
+      "action_note": "data/residents/ already holds this person as ll_caleb_foster (hh_ll_caleb_foster, attested). The papers add mentions and dates."
     },
     {
       "id": "person_caleb_lamb",
@@ -12324,9 +12324,9 @@
       "letter_list_only": true,
       "first_seen": "1834-04-01",
       "last_seen": "1835-05-20",
-      "action": "new_resident",
-      "action_target": null,
-      "action_note": "Ruling 1: a named person the town does not hold. Known only from the post-office letter lists."
+      "action": "enrich",
+      "action_target": "ll_chester_house",
+      "action_note": "data/residents/ already holds this person as ll_chester_house (hh_ll_chester_house, attested). The papers add mentions and dates."
     },
     {
       "id": "person_chester_ingersoll",
@@ -15932,9 +15932,9 @@
       "letter_list_only": true,
       "first_seen": "1835-08-19",
       "last_seen": "1835-08-19",
-      "action": "new_resident",
-      "action_target": null,
-      "action_note": "Ruling 1: a named person the town does not hold. Known only from the post-office letter lists."
+      "action": "enrich",
+      "action_target": "ll_caleb_foster",
+      "action_note": "data/residents/ already holds this person as ll_caleb_foster (hh_ll_caleb_foster, attested). The papers add mentions and dates."
     },
     {
       "id": "person_foster_j_h",
@@ -19386,9 +19386,9 @@
       "letter_list_only": true,
       "first_seen": "1834-04-01",
       "last_seen": "1834-07-16",
-      "action": "new_resident",
-      "action_target": null,
-      "action_note": "Ruling 1: a named person the town does not hold. Known only from the post-office letter lists."
+      "action": "enrich",
+      "action_target": "ll_ira_herrick",
+      "action_note": "data/residents/ already holds this person as ll_ira_herrick (hh_ll_ira_herrick, attested). The papers add mentions and dates."
     },
     {
       "id": "person_ira_minard",
@@ -24369,9 +24369,9 @@
       "letter_list_only": true,
       "first_seen": "1834-10-22",
       "last_seen": "1835-08-19",
-      "action": "new_resident",
-      "action_target": null,
-      "action_note": "Ruling 1: a named person the town does not hold. Known only from the post-office letter lists."
+      "action": "enrich",
+      "action_target": "ll_lucas_robert",
+      "action_note": "data/residents/ already holds this person as ll_lucas_robert (hh_ll_lucas_robert, attested). The papers add mentions and dates."
     },
     {
       "id": "person_luce_william",
@@ -24380,9 +24380,9 @@
       "letter_list_only": true,
       "first_seen": "1835-08-19",
       "last_seen": "1835-08-19",
-      "action": "new_resident",
-      "action_target": null,
-      "action_note": "Ruling 1: a named person the town does not hold. Known only from the post-office letter lists."
+      "action": "enrich",
+      "action_target": "ll_william_luce",
+      "action_note": "data/residents/ already holds this person as ll_william_luce (hh_ll_william_luce, attested). The papers add mentions and dates."
     },
     {
       "id": "person_lucius_b_albyn",
@@ -24435,9 +24435,9 @@
       "letter_list_only": true,
       "first_seen": "1834-04-01",
       "last_seen": "1835-05-20",
-      "action": "new_resident",
-      "action_target": null,
-      "action_note": "Ruling 1: a named person the town does not hold. Known only from the post-office letter lists."
+      "action": "enrich",
+      "action_target": "ll_lyman_bennet",
+      "action_note": "data/residents/ already holds this person as ll_lyman_bennet (hh_ll_lyman_bennet, attested). The papers add mentions and dates."
     },
     {
       "id": "person_lyman_burnet",
@@ -25128,9 +25128,9 @@
       "letter_list_only": true,
       "first_seen": "1834-01-28",
       "last_seen": "1835-05-20",
-      "action": "new_resident",
-      "action_target": null,
-      "action_note": "Ruling 1: a named person the town does not hold. Known only from the post-office letter lists."
+      "action": "enrich",
+      "action_target": "ll_mary_barrows",
+      "action_note": "data/residents/ already holds this person as ll_mary_barrows (hh_ll_mary_barrows, attested). The papers add mentions and dates."
     },
     {
       "id": "person_mary_baxley",
@@ -26272,9 +26272,9 @@
       "letter_list_only": true,
       "first_seen": "1834-10-22",
       "last_seen": "1835-08-19",
-      "action": "new_resident",
-      "action_target": null,
-      "action_note": "Ruling 1: a named person the town does not hold. Known only from the post-office letter lists."
+      "action": "enrich",
+      "action_target": "ll_myers_frederick",
+      "action_note": "data/residents/ already holds this person as ll_myers_frederick (hh_ll_myers_frederick, attested). The papers add mentions and dates."
     },
     {
       "id": "person_myss_janes",
@@ -26426,9 +26426,9 @@
       "letter_list_only": true,
       "first_seen": "1834-01-28",
       "last_seen": "1835-05-20",
-      "action": "new_resident",
-      "action_target": null,
-      "action_note": "Ruling 1: a named person the town does not hold. Known only from the post-office letter lists."
+      "action": "enrich",
+      "action_target": "ll_nathan_hutchins",
+      "action_note": "data/residents/ already holds this person as ll_nathan_hutchins (hh_ll_nathan_hutchins, attested). The papers add mentions and dates."
     },
     {
       "id": "person_nathan_seymour",
@@ -26723,9 +26723,9 @@
       "letter_list_only": true,
       "first_seen": "1834-04-01",
       "last_seen": "1834-07-16",
-      "action": "new_resident",
-      "action_target": null,
-      "action_note": "Ruling 1: a named person the town does not hold. Known only from the post-office letter lists."
+      "action": "enrich",
+      "action_target": "ll_nicholas_boilvin",
+      "action_note": "data/residents/ already holds this person as ll_nicholas_boilvin (hh_ll_nicholas_boilvin, attested). The papers add mentions and dates."
     },
     {
       "id": "person_nicholson_joshua_f",
@@ -28098,9 +28098,9 @@
       "letter_list_only": true,
       "first_seen": "1834-04-01",
       "last_seen": "1835-05-20",
-      "action": "new_resident",
-      "action_target": null,
-      "action_note": "Ruling 1: a named person the town does not hold. Known only from the post-office letter lists."
+      "action": "enrich",
+      "action_target": "ll_pierce_downer",
+      "action_note": "data/residents/ already holds this person as ll_pierce_downer (hh_ll_pierce_downer, attested). The papers add mentions and dates."
     },
     {
       "id": "person_pierce_french",
@@ -29231,9 +29231,9 @@
       "letter_list_only": true,
       "first_seen": "1835-05-20",
       "last_seen": "1835-05-20",
-      "action": "new_resident",
-      "action_target": null,
-      "action_note": "Ruling 1: a named person the town does not hold. Known only from the post-office letter lists."
+      "action": "enrich",
+      "action_target": "ll_lucas_robert",
+      "action_note": "data/residents/ already holds this person as ll_lucas_robert (hh_ll_lucas_robert, attested). The papers add mentions and dates."
     },
     {
       "id": "person_robert_strong",
@@ -31541,9 +31541,9 @@
       "letter_list_only": true,
       "first_seen": "1834-04-01",
       "last_seen": "1835-05-20",
-      "action": "new_resident",
-      "action_target": null,
-      "action_note": "Ruling 1: a named person the town does not hold. Known only from the post-office letter lists."
+      "action": "enrich",
+      "action_target": "ll_stephen_mack",
+      "action_note": "data/residents/ already holds this person as ll_stephen_mack (hh_ll_stephen_mack, attested). The papers add mentions and dates."
     },
     {
       "id": "person_stephen_may",
@@ -36161,9 +36161,9 @@
       "letter_list_only": true,
       "first_seen": "1834-07-02",
       "last_seen": "1835-05-20",
-      "action": "new_resident",
-      "action_target": null,
-      "action_note": "Ruling 1: a named person the town does not hold. Known only from the post-office letter lists."
+      "action": "enrich",
+      "action_target": "ll_william_luce",
+      "action_note": "data/residents/ already holds this person as ll_william_luce (hh_ll_william_luce, attested). The papers add mentions and dates."
     },
     {
       "id": "person_william_r_dorby",

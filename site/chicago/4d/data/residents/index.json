@@ -131,14 +131,14 @@
   ]
  },
  "counts": {
-  "households": 199,
-  "persons": 235,
+  "households": 201,
+  "persons": 237,
   "by_grade": {
-   "attested": 102,
+   "attested": 104,
    "inferred": 25,
    "reconstructed": 108
   },
-  "letter_list_only": 10
+  "letter_list_only": 12
  },
  "households": [
   {
@@ -2415,6 +2415,20 @@
    "review_required": false
   },
   {
+   "id": "hh_ll_lucas_robert",
+   "file": "households/hh_ll_lucas_robert.json",
+   "head": "ll_lucas_robert",
+   "division": "unplaced",
+   "persons": 1,
+   "grades": {
+    "attested": 1
+   },
+   "lives_at": null,
+   "works_at": null,
+   "present_on_scene_date": "present",
+   "review_required": false
+  },
+  {
    "id": "hh_ll_lyman_bennet",
    "file": "households/hh_ll_lyman_bennet.json",
    "head": "ll_lyman_bennet",
@@ -2440,6 +2454,20 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "uncertain",
+   "review_required": false
+  },
+  {
+   "id": "hh_ll_myers_frederick",
+   "file": "households/hh_ll_myers_frederick.json",
+   "head": "ll_myers_frederick",
+   "division": "unplaced",
+   "persons": 1,
+   "grades": {
+    "attested": 1
+   },
+   "lives_at": null,
+   "works_at": null,
+   "present_on_scene_date": "present",
    "review_required": false
   },
   {

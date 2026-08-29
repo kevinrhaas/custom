@@ -42,8 +42,8 @@ T-0385 — The New York Clothing Store stands three doors north of the Tremont H
 T-0386 — W. Montgomery's new auction and commission room takes David Carver's old stand on South Water Street
 T-0387 — The four storefronts the American puts on a street and nothing narrower: Harmon Loomis, Wm. Sabine, John Dave and the Dearborn Street wine store
 T-0373 — The documented people the papers name with no trade at all, and the town does not hold
-T-0378 — The ten names the post office held letters for in more than one return join the town, and letter_list_only reaches the visitor's card
-T-0379 — The 716 letter-list names the post office printed in a single return, and the change of scale they put to the town
+T-0378 — The names the post office held letters for in more than one return join the town, and letter_list_only reaches the visitor's card
+T-0379 — The letter-list names the post office printed in a single return, and the change of scale they put to the town
 
 # --- NEWSPAPERS, WAITING ON THE PAGE IMAGES — each needs the owner's scans opened,
 # --- which live outside the repository. Workable the day the images are supplied;

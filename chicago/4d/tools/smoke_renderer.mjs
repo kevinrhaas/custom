@@ -9609,9 +9609,9 @@ for (const [label, viewport, touch] of [
       };
     });
     check(`${label}: every household in the layer is on the card`,
-      residents.households === 199 && residents.rendered === 199 && !residents.busy,
+      residents.households === 201 && residents.rendered === 201 && !residents.busy,
       `${residents.households} loaded / ${residents.rendered} rendered (${residents.error})`);
-    check(`${label}: the 235 person entries are counted`, residents.persons === 235,
+    check(`${label}: the 237 person entries are counted`, residents.persons === 237,
       `${residents.persons}`);
     // The finding itself, asserted as a number so it cannot quietly grow back:
     // the households that reach no building sidecar are each marked on their own
@@ -9620,10 +9620,10 @@ for (const [label, viewport, touch] of [
     // tradespeople, who reach no building BY CONSTRUCTION: the papers name them
     // and their trade and say nothing whatever about where they lived, so the
     // chip is the card telling the truth rather than a regression, and T-0378's
-    // ten letter-list names are ten more of the same kind: a list of uncalled-for
+    // twelve letter-list names are twelve more of the same kind: a list of uncalled-for
     // letters gives a name and no address at all.
     check(`${label}: the households no building card can reach are marked`,
-      residents.offCard === 43 && residents.orphanChips === 43,
+      residents.offCard === 45 && residents.orphanChips === 45,
       `${residents.offCard} off-card / ${residents.orphanChips} chip(s)`);
     check(`${label}: the researched non-residents are published too`,
       residents.notResident === 10, `${residents.notResident}`);
@@ -9688,7 +9688,7 @@ for (const [label, viewport, touch] of [
       && /weakest evidence/.test(residents.letterText),
       residents.letterText.slice(0, 200));
     check(`${label}: the count sentence says how many people are known only that way`,
-      /10 of the people here are known ONLY from the post office/.test(residents.prose),
+      /12 of the people here are known ONLY from the post office/.test(residents.prose),
       residents.prose.slice(0, 240));
     // And the other half of the same ruling: none of the ten may carry a trade
     // the papers do not give them. The occupation on a letter-list person reads
