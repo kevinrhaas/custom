@@ -609,6 +609,21 @@ SIGN_WORDING = {
             "The board carries the two and drops the walls. Reconstructed."
         ),
     },
+    "new_york_house": {
+        "name": "NEW YORK HOUSE", "trade": "Public House", "identity": "New York House",
+        "grade": "reconstructed",
+        "why": (
+            "No advertisement for this house is in the pages read, and the two the "
+            "Chicago American does carry are its TENANTS' — a physician and a travelling "
+            "dentist, each giving \"the New York House\" as his address (1835-06-13, p. 3 "
+            "cols. 2 and 3). That is evidence the house was a known landmark a reader "
+            "could find, which is the argument for a board at all; it is not the house's "
+            "own copy, so the trade line is not its own words. \"Public House\" is E. "
+            "Wentworth's own 1833 trade line and the period's word for what this building "
+            "was. Johnson and Stevens kept it and are not lettered, for the same reason "
+            "W. H. Stow is not on the Western Hotel's board. Reconstructed."
+        ),
+    },
     "newberry_dole_slaughterhouse_south_branch": {
         "name": "NEWBERRY & DOLE", "trade": "Slaughtering & Packing",
         "place": "South Branch", "identity": "Newberry", "grade": "reconstructed",

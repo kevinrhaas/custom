@@ -9421,3 +9421,59 @@ Related: **L205** (the documented men who took reconstructed roofs) · **L1** (n
 for any resident) · tickets **T-0376** (this), **T-0368**, **T-0264**, **T-0263**, **T-0373**,
 **T-0374**.
 **Recorded:** 2026-08-29.
+
+### L207 — New York House: everything about the building except its storeys and its eaves is ours
+**Decision:** the New York House is drawn as a **12.192 × 7.62 m** (40 × 25 ft) clapboarded frame
+block, two storeys, unpainted, gable roof at 38°, regular window bays, two stacks, **no gallery**,
+its siding dealt from the stock set. Andreas supplies exactly two of those: *"a two-story
+building, with eaves to the street"*. Every other value above is the type talking.
+**Why:** no source reached gives this building a dimension, a colour, a window, a porch or a
+pitch. The footprint is the dataset's stock period commercial rectangle — 40 ft is the frontage
+attested for the Green Tree Tavern and for the Western Hotel's front, 25 ft the depth derived from
+the Green Tree's attested room module — reused rather than freshly invented, exactly as
+`peck_store`, `carpenter_south_water_store` and their neighbours reuse it. **The repetition is the
+admission, not an accident.** The one thing the rectangle does claim is the PROPORTION, and that
+is documented: `frame_tavern` runs its ridge along the longer axis, so a footprint wider than it
+is deep is what puts the eaves, not the gable, on Lake Street. A 25 × 40 ft rectangle would have
+turned the gable to the street and contradicted the only elevation fact any source states.
+**`gallery: false` is the invention in the negative**, and it is worth naming as one: the front of
+this hotel is rendered plain because nobody found evidence either way, not because anybody
+recorded a plain front. A two-storey gallery is the kind of thing a description mentions, and none
+of the three sources that describe this house mentions one — which is a reason, not evidence.
+**What would discharge it:** any dimensioned description, an insurance or tax entry, or a
+depiction. `cladding` and `fenestration` are `simplified` rather than absent — clapboard courses
+and regular bays stand in the mesh, but neither value drives what is built.
+Related: **L5** and **L8** (footprints invented outright) · **L9** (the Green Tree footprint this
+one borrows its module from) · **L21** (chimneys counted in the record and fixed in the archetype)
+· **L26** · **L148** (the siding stock deal) · ticket **T-0380**.
+
+**Covers:** `new_york_house.frame_1834.footprint`, `new_york_house.frame_1834.form.gallery`, `new_york_house.frame_1834.form.cladding`, `new_york_house.frame_1834.form.fenestration`, `new_york_house.frame_1834.form.siding_exposure_m`
+
+**Recorded:** 2026-08-29.
+
+### L208 — "Near Wells" is two blocks, and the free lot chose between them
+**Decision:** the New York House stands on **lot 7 of `blk_south_water_franklin`** — the south-tier
+lot at the Wells end of the block between Franklin and Wells — centred on that lot's Lake Street
+frontage, front wall 1.50 m back from the committed frontage line. It is therefore on the north
+side of Lake Street immediately **west** of Wells.
+**Why:** Andreas gives the address as *"the north side of Lake Street, near Wells"* and names
+neither a corner nor a lot. The north side of Lake Street exists on **both** sides of Wells, and
+nothing reached decides between them. The western block is adopted because its Wells-end lot on
+Lake is free, while the eastern block's Lake face already carries three dealt roofs — **a reason
+about this dataset, not evidence about 1835**, and that is exactly why it is recorded here rather
+than argued out on the record.
+**The corner is refused, in writing.** Pushing the house east to the Lake and Wells corner would
+read better in the scene and would give the two American offices a smarter address. Andreas says
+*near* Wells, not *at the corner of*, and a placement inference never sharpens its source (T-0196).
+Centring on the Wells-end lot is the least specific placement that still satisfies the words; the
+residual is one lot, about 24 m of frontage, which sits inside the georeference's own working
+uncertainty of 17.5 m RMS and the record's stated ~30 m.
+**What would discharge it:** a source naming the side of Wells, a lot number, or a corner. Any of
+them moves the building at most one block east and costs nothing else on the record — the form,
+the range, the occupants and the trade are all independent of which block it stands on.
+**No `Covers:` token.** The placement is `inferred` and not invented: it is derived from committed
+lot geometry and stated to the metre. What is admitted here is the CHOICE between two readings the
+source leaves open, which is a navigation decision and has nothing in the data to point at.
+Related: **L7** (three buildings placed from bank geometry rather than from a corner) · **L12**
+(placed on one side of a disputed river) · **L207** · ticket **T-0380**.
+**Recorded:** 2026-08-29.

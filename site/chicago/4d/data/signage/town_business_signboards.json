@@ -21,7 +21,7 @@
     "geometry": "canvas texture, drawn at load",
     "tiers": {
       "inferred": 14,
-      "reconstructed": 19
+      "reconstructed": 20
     },
     "note": "DRAWN SINCE 2026-08-21, AND RE-WORDED THE SAME DAY. This block used to read 'NOT DRAWN, AND THAT IS THE WHOLE DISCIPLINE OF THIS LAYER', on L25's reasoning generalised: no source gives the wording of any sign in this town, so every board stayed a blank plank. The owner's instruction of 2026-08-18 overruled it — 'you can and should put the name of the location on the sign board … it is fine if they are reconstructions' — and T-0066 then painted THE RECORD'S OWN `name` on every board. T-0130 CORRECTS THAT, on the owner's word of 2026-08-21: 'philo would not have referred to his own place as log drug store, it would be philo carpenter, drugs and medicines, or druggist or whatever he would have referred to himself as on the sign, that may be different than the name of the building for us, the sign may read differently historically' — and, widening it, 'i guess do a pass on all those signs and make sure they feel right for the era'. A record's `name` is OUR LABEL FOR A BUILDING ('Philo Carpenter's Log Drug Store'); a board carries what a signwriter lettered. The two are now separate fields and are allowed to differ. What they must still agree about is WHO: every sign declares a `sign_identity` that appears in the board AND in the card, the generator refuses to build without it, and tools/smoke_renderer.mjs asserts it at run time over every sign. THE REGISTER is the advertisements' own — proprietor or firm first and largest, the trade beneath, the place last and smallest — carried per line in `sign_lines` and lettered in that hierarchy by renderers/web/js/signage.js. Period spelling is theirs and is kept. THE TIERS: a wording taken off a firm's own advertisement is `inferred`; one built out of the evidenced trade vocabulary for a business that left no advertisement is `reconstructed`. NOT ONE IS `attested` YET, and each note says why and what would change it — the seven 1833-35 newspaper pages behind these wordings were supplied as images in conversation on 2026-08-21 and are not committed to data/sources/assets/, so they are transcriptions and a transcription is not a citation. The owner's ruling of that day is the authority for proceeding anyway: 'I will give you all those data sources later in a more comprehensive form proceed where you can and label reconstruction or inferred with a note as you like.' The LETTERFORM, the colours and the panel remain `style`, a table of the combinations the trade worked in rather than of anything Chicago recorded (docs/LIBERTIES.md L159; L169 for the wording). ONE DEVICE IS NOW PAINTED and it is the one a Chicago tradesman described himself: Carpenter's golden mortar, `sign_device` — see its own note. No other board carries an image, and L25 is untouched: it withholds the Wolf Point wolf because that IMAGE was never described, which is the opposite case to a shop whose own advertisement names its sign."
   },
@@ -32,7 +32,7 @@
       "awning_board": 7,
       "bracket_board": 6,
       "facade_painted": 13,
-      "post_board": 1,
+      "post_board": 2,
       "wall_board": 6
     }
   },
@@ -1631,6 +1631,79 @@
       ]
     },
     {
+      "structure_id": "new_york_house",
+      "name": "New York House",
+      "sign_text": "NEW YORK HOUSE / Public House",
+      "sign_lines": [
+        {
+          "text": "NEW YORK HOUSE",
+          "role": "name"
+        },
+        {
+          "text": "Public House",
+          "role": "trade"
+        }
+      ],
+      "sign_identity": "New York House",
+      "sign_text_from": "No advertisement for this house is in the pages read, and the two the Chicago American does carry are its TENANTS' — a physician and a travelling dentist, each giving \"the New York House\" as his address (1835-06-13, p. 3 cols. 2 and 3). That is evidence the house was a known landmark a reader could find, which is the argument for a board at all; it is not the house's own copy, so the trade line is not its own words. \"Public House\" is E. Wentworth's own 1833 trade line and the period's word for what this building was. Johnson and Stevens kept it and are not lettered, for the same reason W. H. Stow is not on the Western Hotel's board. Reconstructed.",
+      "sign_text_confidence": "reconstructed",
+      "sign_text_sources": [],
+      "trade": "tavern_inn",
+      "trade_confidence": "attested",
+      "trade_class": "house",
+      "why_a_board": "a public house takes its custom from the road",
+      "confidence": "reconstructed",
+      "mounting": "awning_board",
+      "mounting_note": null,
+      "style": {
+        "id": "cream_on_red",
+        "ground": "#7c3020",
+        "letter": "#efe3c8",
+        "face": "fat_face",
+        "panel": "single_rule",
+        "aspect": 1.95,
+        "note": "cream fat face on Venetian red"
+      },
+      "anchor_local_enu_m": [
+        303.79,
+        -98.46
+      ],
+      "facade_bearing_deg": 180.5,
+      "arm_height_m": 2.55,
+      "height_datum": "the base of this building's walls — the lowest of a 5x5 terrain grid over the footprint, as buildings.js sets it",
+      "board_w_m": 1.56,
+      "board_h_m": 0.68,
+      "board_thickness_m": 0.05,
+      "geometry": {
+        "awning_projection_m": 1.45,
+        "awning_drop_m": 0.34,
+        "awning_width_m": 2.46,
+        "hanger_drop_m": 0.2
+      },
+      "reach_m": 2.02,
+      "wall_height_m": 5.5,
+      "wall_height_from": "the record",
+      "frontage_m": 12.19,
+      "ground_quad_local_enu_m": [
+        [
+          311.65,
+          -90.9
+        ],
+        [
+          299.46,
+          -90.8
+        ],
+        [
+          299.4,
+          -98.42
+        ],
+        [
+          311.59,
+          -98.52
+        ]
+      ]
+    },
+    {
       "structure_id": "newberry_dole_slaughterhouse_south_branch",
       "name": "Newberry & Dole's Slaughter-House, South Branch",
       "sign_text": "NEWBERRY & DOLE / Slaughtering & Packing / South Branch",
@@ -2171,7 +2244,7 @@
       "why_a_board": "a public house takes its custom from the road",
       "confidence": "reconstructed",
       "mounting": "awning_board",
-      "mounting_note": null,
+      "mounting_note": "a bracket board is what this frontage's place in the house cycle asks for, and a sign within 40 m already hangs that way — so the cycle advances rather than repeating a neighbour; a post was refused here because the frontage layer already lays a plank walk outside this wall, and a post stands where the walk lies",
       "style": {
         "id": "white_on_blue",
         "ground": "#22344f",
@@ -2235,7 +2308,7 @@
         }
       ],
       "sign_identity": "Steamboat Hotel",
-      "sign_text_from": "THE PAGES AND THE RECORD SAY THE SAME THING INDEPENDENTLY, which is the strongest agreement in the set. The 1835 pages carry \"JOHN DAVIS, Steam-Boat Hotel, North Water Street\"; Andreas, separately, has \"The Steamboat Hotel, on North Water Street, near Kinzie, was kept in 1835 by John Davis\". Man, house, street — the board is the advertisement. The hyphen is the advertisement's own spelling and is kept. TRANSCRIBED FROM OWNER-SUPPLIED PAGE IMAGES, 2026-08-21, WHICH ARE NOT YET COMMITTED to data/sources/assets/, so this is graded `inferred` rather than `attested` on the owner's own ruling of that day: \"I will give you all those data sources later in a more comprehensive form proceed where you can and label reconstruction or inferred with a note as you like\". UPGRADE THIS VALUE TO `attested` when the pages are committed as a source record and this note can cite one. The board is a bracket board, which carries 2 lines, so the place line — \"North Water Street\" — is not lettered here: a signwriter letters what fits.",
+      "sign_text_from": "THE PAGES AND THE RECORD SAY THE SAME THING INDEPENDENTLY, which is the strongest agreement in the set. The 1835 pages carry \"JOHN DAVIS, Steam-Boat Hotel, North Water Street\"; Andreas, separately, has \"The Steamboat Hotel, on North Water Street, near Kinzie, was kept in 1835 by John Davis\". Man, house, street — the board is the advertisement. The hyphen is the advertisement's own spelling and is kept. TRANSCRIBED FROM OWNER-SUPPLIED PAGE IMAGES, 2026-08-21, WHICH ARE NOT YET COMMITTED to data/sources/assets/, so this is graded `inferred` rather than `attested` on the owner's own ruling of that day: \"I will give you all those data sources later in a more comprehensive form proceed where you can and label reconstruction or inferred with a note as you like\". UPGRADE THIS VALUE TO `attested` when the pages are committed as a source record and this note can cite one. The board is a post board, which carries 2 lines, so the place line — \"North Water Street\" — is not lettered here: a signwriter letters what fits.",
       "sign_text_confidence": "inferred",
       "sign_text_sources": [],
       "trade": "hotel",
@@ -2243,7 +2316,7 @@
       "trade_class": "house",
       "why_a_board": "a public house takes its custom from the road",
       "confidence": "reconstructed",
-      "mounting": "bracket_board",
+      "mounting": "post_board",
       "mounting_note": null,
       "style": {
         "id": "gold_on_black",
@@ -2260,15 +2333,18 @@
       ],
       "facade_bearing_deg": 180.0,
       "arm_height_m": 2.55,
-      "height_datum": "the base of this building's walls — the lowest of a 5x5 terrain grid over the footprint, as buildings.js sets it",
-      "board_w_m": 1.46,
-      "board_h_m": 0.79,
+      "height_datum": "the ground under the post itself, sampled where it stands: the post is in the street, not on the building. `post_height_m` is its head over that ground and `arm_height_m` does not apply",
+      "board_w_m": 1.58,
+      "board_h_m": 0.81,
       "board_thickness_m": 0.05,
       "geometry": {
-        "arm_m": 1.15,
-        "hanger_drop_m": 0.2
+        "stand_m": 1.9,
+        "arm_m": 1.3,
+        "hanger_drop_m": 0.2,
+        "post_height_m": 3.3,
+        "post_square_m": 0.16
       },
-      "reach_m": 1.48,
+      "reach_m": 2.67,
       "wall_height_m": 5.2,
       "wall_height_from": "the record",
       "frontage_m": 15.0,
@@ -2385,7 +2461,7 @@
       "why_a_board": "a public house takes its custom from the road",
       "confidence": "reconstructed",
       "mounting": "awning_board",
-      "mounting_note": "a post board is what this frontage's place in the house cycle asks for, and a sign within 40 m already hangs that way — so the cycle advances rather than repeating a neighbour",
+      "mounting_note": null,
       "style": {
         "id": "cream_on_red",
         "ground": "#7c3020",
@@ -2457,7 +2533,7 @@
       "trade_class": "house",
       "why_a_board": "a public house takes its custom from the road",
       "confidence": "reconstructed",
-      "mounting": "awning_board",
+      "mounting": "bracket_board",
       "mounting_note": null,
       "style": {
         "id": "white_on_blue",
@@ -2475,16 +2551,14 @@
       "facade_bearing_deg": 0.0,
       "arm_height_m": 2.55,
       "height_datum": "the base of this building's walls — the lowest of a 5x5 terrain grid over the footprint, as buildings.js sets it",
-      "board_w_m": 1.53,
-      "board_h_m": 0.59,
+      "board_w_m": 1.41,
+      "board_h_m": 0.64,
       "board_thickness_m": 0.05,
       "geometry": {
-        "awning_projection_m": 1.45,
-        "awning_drop_m": 0.34,
-        "awning_width_m": 2.43,
+        "arm_m": 1.15,
         "hanger_drop_m": 0.2
       },
-      "reach_m": 2.01,
+      "reach_m": 1.47,
       "wall_height_m": 5.5,
       "wall_height_from": "the record",
       "frontage_m": 12.19,

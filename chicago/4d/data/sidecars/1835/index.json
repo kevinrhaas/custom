@@ -2611,6 +2611,12 @@
       "asset": "gltf/miller_tannery__log_1831.glb"
     },
     {
+      "id": "new_york_house",
+      "name": "New York House",
+      "sidecar": "sidecars/1835/new_york_house.json",
+      "asset": "gltf/new_york_house__frame_1834.glb"
+    },
+    {
       "id": "newberry_dole_slaughterhouse_south_branch",
       "name": "Newberry & Dole's Slaughter-House, South Branch",
       "sidecar": "sidecars/1835/newberry_dole_slaughterhouse_south_branch.json",
