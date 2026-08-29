@@ -1,5 +1,5 @@
 export const CHANGELOG = [ // newest first
-  { v: 399, title: 'The register stops shutting shops out for advertising late', kind: 'fix', ts: '2026-08-29T17:41:24.729Z', date: 'Aug 29, 2026, 12:41 PM CT',
+  { v: 400, title: 'The register stops shutting shops out for advertising late', kind: 'fix', ts: '2026-08-29T17:56:56.848Z', date: 'Aug 29, 2026, 12:56 PM CT',
     items: [
       'Nothing you can see changed today \u2014 this is the ledger behind the town rather than the town. The reconstruction keeps a register of which businesses the 1833\u20131835 newspapers put in Chicago on 1 July 1835, and it was shutting out every house whose first surviving advertisement falls after that date. Thirty-eight of them.',
       'That test stood in for a question the data could not ask. A firm advertising for the first time on 8 August may well have been trading in July; an advertisement saying it will open on the first of September is evidence that it was not. The register could not tell those apart, so it refused both and said so.',
@@ -7,6 +7,14 @@ export const CHANGELOG = [ // newest first
       'The other thirty-four are back, and five of them were printed standing in the very town the test shut them out of. Wm. H. Taylor\u2019s boot, shoe and leather store on Dearborn Street advertises over a dateline of 8 JULY 1834, a year and a day before the scene date. Wm. H. Kennicott says he has practised dentistry here \u201cfor the past year\u201d. Samuel Lewis\u2019s music-school copy is dated 22 June, S. Abell\u2019s 24 June, John Holbrook\u2019s 10 June.',
       'Sixteen of the restored houses reach a named street, which is what the storefront work coming next stands on. And a house documented only in August still stands in July on an assumption: the register now names that assumption on each of the thirty-three that carry it, instead of leaving it unsaid.',
       'The field had been in the readings all along as a bare yes, on twenty of them, and no tool ever read it. The build refuses the bare yes now, so all twenty were read again with their dates \u2014 which is how the 1834 dateline on Taylor\u2019s store turned up.',
+    ] },
+  { v: 399, title: 'A Flag Creek tavern stops standing in a Wolf Point stable', kind: 'fix', ts: '2026-08-29T17:29:10.796Z', date: 'Aug 29, 2026, 12:29 PM CT',
+    items: [
+      'Nothing you can see changed today. The reconstruction\u2019s newspaper ledger had E. Wentworth\u2019s tavern \u2014 a public house eighteen miles south of Chicago, out on the road to Ottawa \u2014 recorded as ALREADY STANDING inside the Wolf Point Tavern\u2019s stable. Three readings of that one house landed there, and a fourth landed in the tavern itself.',
+      'The stable\u2019s own record is what did it. It says who kept the place: \u201cthe tavern\u2019s keeper of the day \u2014 Elijah Wentworth in 1831, William Walters on the scene date\u201d. That sentence names its 1835 occupant in the same breath as the man who preceded him by four years, and the match read the whole line at once.',
+      'An occupants line is now read clause by clause, and a clause that dates itself to a year the scene date does not fall in describes a FORMER tenant. Four other buildings carry such a clause \u2014 Eliza Chappel\u2019s infant school, the old bank building Hubbard packed in, Philo Carpenter\u2019s log shop and the Watkins school house \u2014 and not one of them loses a match it should keep.',
+      'The deeper error is that a tavern on Flag Creek cannot be in a Wolf Point stable whoever kept it, and that is closed too. A business whose own printing puts it out of town \u2014 a distance in miles, a road leading somewhere else, a named creek this town holds none of \u2014 is matched against nothing inside the town and built nowhere in it. Five of 242 businesses go out that way and all five genuinely stood outside the plat.',
+      'The work list the seeding tickets read goes from 39 houses the papers say the town already carries to 35. Those four rows are the only ones that moved; the other 35 keep the building and the evidence they had.',
     ] },
   { v: 398, title: 'Seventeen refused merges stop citing letters no printing ever read', kind: 'chore', ts: '2026-08-29T15:57:12.438Z', date: 'Aug 29, 2026, 10:57 AM CT',
     items: [

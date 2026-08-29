@@ -22,10 +22,10 @@
         "opening_announced_after_scene_date": 4
       },
       "by_action": {
-        "enrich_existing": 42,
+        "enrich_existing": 38,
         "new_building": 30,
         "street_only": 63,
-        "unplaceable": 107
+        "unplaceable": 111
       },
       "by_placement_class": {
         "corner": 18,
@@ -34,11 +34,12 @@
         "street_only": 19
       },
       "present_by_action": {
-        "enrich_existing": 42,
+        "enrich_existing": 38,
         "new_building": 30,
         "street_only": 63,
-        "unplaceable": 89
+        "unplaceable": 93
       },
+      "outside_the_plat": 5,
       "survival_liberty_required": 126,
       "backdating_liberty_required": 33,
       "dissolved_after_scene_date": 1
@@ -138,6 +139,7 @@
         "via": null,
         "note": "The paper gives no anchor."
       },
+      "outside_plat": null,
       "action": "unplaceable",
       "action_target": null,
       "match_tier": null,
@@ -173,6 +175,7 @@
         "via": null,
         "note": "The anchor 'the market square in Chicago' names nothing the committed town holds."
       },
+      "outside_plat": null,
       "action": "unplaceable",
       "action_target": null,
       "match_tier": null,
@@ -208,6 +211,7 @@
         "via": null,
         "note": "The anchor 'the Baptist meeting house' names nothing the committed town holds."
       },
+      "outside_plat": null,
       "action": "street_only",
       "action_target": "south_water",
       "match_tier": null,
@@ -243,6 +247,7 @@
         "via": null,
         "note": "The anchor 'the bridge' names nothing the committed town holds."
       },
+      "outside_plat": null,
       "action": "street_only",
       "action_target": "south_water",
       "match_tier": null,
@@ -278,6 +283,7 @@
         "via": null,
         "note": "The paper gives no anchor."
       },
+      "outside_plat": null,
       "action": "street_only",
       "action_target": "dearborn",
       "match_tier": null,
@@ -311,6 +317,7 @@
         "via": null,
         "note": "The paper gives no anchor."
       },
+      "outside_plat": null,
       "action": "unplaceable",
       "action_target": null,
       "match_tier": null,
@@ -346,6 +353,7 @@
         "via": null,
         "note": "The anchor \"J. Wright's\" names nothing the committed town holds."
       },
+      "outside_plat": null,
       "action": "street_only",
       "action_target": "south_water",
       "match_tier": null,
@@ -381,6 +389,7 @@
         "via": null,
         "note": "The paper gives no anchor."
       },
+      "outside_plat": null,
       "action": "unplaceable",
       "action_target": null,
       "match_tier": null,
@@ -414,6 +423,7 @@
         "via": null,
         "note": "The paper gives no anchor."
       },
+      "outside_plat": null,
       "action": "unplaceable",
       "action_target": null,
       "match_tier": null,
@@ -449,11 +459,12 @@
         "via": null,
         "note": "The landmark is the committed structure new_york_house."
       },
+      "outside_plat": null,
       "action": "enrich_existing",
       "action_target": "new_york_house",
       "match_tier": "occupants",
-      "match_evidence": "Lathrop Johnson and George Stevens, proprietors; Dr. J. B. Barnard, physician, and J. C. Bradley, dentist, at their offices in the house",
-      "action_note": "new_york_house already stands and its occupants carries bradley — 'Lathrop Johnson and George Stevens, proprietors; Dr. J. B. Barnard, physician, and J. C. Bradley, dentist, at their offices in the house'. The papers add trade, goods and dates to a record that exists."
+      "match_evidence": "Lathrop Johnson and George Stevens; proprietors; Dr. J. B. Barnard; physician; and J. C. Bradley; dentist; at their offices in the house",
+      "action_note": "new_york_house already stands and its occupants carries bradley — 'Lathrop Johnson and George Stevens; proprietors; Dr. J. B. Barnard; physician; and J. C. Bradley; dentist; at their offices in the house'. The papers add trade, goods and dates to a record that exists."
     },
     {
       "id": "business_a_wholesale_wine_and_liquor_store_dearborn_street",
@@ -482,6 +493,7 @@
         "via": null,
         "note": "The anchor 'De[a]rborn Stree[t] Denrdorn Stree' names nothing the committed town holds."
       },
+      "outside_plat": null,
       "action": "street_only",
       "action_target": "dearborn",
       "match_tier": null,
@@ -517,6 +529,7 @@
         "via": null,
         "note": "The anchor 'the \"Eagle Coffee House\"' names nothing the committed town holds."
       },
+      "outside_plat": null,
       "action": "street_only",
       "action_target": "dearborn",
       "match_tier": null,
@@ -550,6 +563,7 @@
         "via": null,
         "note": "The paper gives no anchor."
       },
+      "outside_plat": null,
       "action": "unplaceable",
       "action_target": null,
       "match_tier": null,
@@ -585,6 +599,7 @@
         "via": null,
         "note": "The anchor 'the Tremont House' names nothing the committed town holds."
       },
+      "outside_plat": null,
       "action": "unplaceable",
       "action_target": null,
       "match_tier": null,
@@ -620,11 +635,12 @@
         "via": null,
         "note": "The paper gives no anchor."
       },
+      "outside_plat": null,
       "action": "enrich_existing",
       "action_target": "h_jones_store",
       "match_tier": "occupants",
-      "match_evidence": "Jones, grocer and provision merchant",
-      "action_note": "h_jones_store already stands and its occupants carries jones — 'Jones, grocer and provision merchant'. The papers add trade, goods and dates to a record that exists."
+      "match_evidence": "Jones; grocer and provision merchant",
+      "action_note": "h_jones_store already stands and its occupants carries jones — 'Jones; grocer and provision merchant'. The papers add trade, goods and dates to a record that exists."
     },
     {
       "id": "business_b_jones_storage_and_forwarding",
@@ -655,11 +671,12 @@
         "via": null,
         "note": "The paper gives no anchor."
       },
+      "outside_plat": null,
       "action": "enrich_existing",
       "action_target": "h_jones_store",
       "match_tier": "occupants",
-      "match_evidence": "Jones, grocer and provision merchant",
-      "action_note": "h_jones_store already stands and its occupants carries jones — 'Jones, grocer and provision merchant'. The papers add trade, goods and dates to a record that exists."
+      "match_evidence": "Jones; grocer and provision merchant",
+      "action_note": "h_jones_store already stands and its occupants carries jones — 'Jones; grocer and provision merchant'. The papers add trade, goods and dates to a record that exists."
     },
     {
       "id": "business_boot_shoe_and_leather_store_lake_street_proprietor_not_recovered",
@@ -688,6 +705,7 @@
         "via": null,
         "note": "The paper gives no anchor."
       },
+      "outside_plat": null,
       "action": "street_only",
       "action_target": "lake",
       "match_tier": null,
@@ -727,6 +745,7 @@
         "via": null,
         "note": "The paper gives no anchor."
       },
+      "outside_plat": null,
       "action": "unplaceable",
       "action_target": null,
       "match_tier": null,
@@ -764,6 +783,7 @@
         "via": null,
         "note": "The paper gives no anchor."
       },
+      "outside_plat": null,
       "action": "street_only",
       "action_target": "south_water",
       "match_tier": null,
@@ -799,11 +819,12 @@
         "via": null,
         "note": "The paper gives no anchor."
       },
+      "outside_plat": null,
       "action": "enrich_existing",
       "action_target": "brown_boarding_house",
       "match_tier": "occupants",
-      "match_evidence": "Mrs Rufus Brown, proprietor, and the Brown household",
-      "action_note": "brown_boarding_house already stands and its occupants carries brown — 'Mrs Rufus Brown, proprietor, and the Brown household'. The papers add trade, goods and dates to a record that exists."
+      "match_evidence": "Mrs Rufus Brown; proprietor; and the Brown household",
+      "action_note": "brown_boarding_house already stands and its occupants carries brown — 'Mrs Rufus Brown; proprietor; and the Brown household'. The papers add trade, goods and dates to a record that exists."
     },
     {
       "id": "business_c_h_chapman",
@@ -834,6 +855,7 @@
         "via": null,
         "note": "The paper gives no anchor."
       },
+      "outside_plat": null,
       "action": "unplaceable",
       "action_target": null,
       "match_tier": null,
@@ -869,6 +891,7 @@
         "via": null,
         "note": "The paper gives no anchor."
       },
+      "outside_plat": null,
       "action": "unplaceable",
       "action_target": null,
       "match_tier": null,
@@ -902,6 +925,7 @@
         "via": null,
         "note": "The paper gives no anchor."
       },
+      "outside_plat": null,
       "action": "unplaceable",
       "action_target": null,
       "match_tier": null,
@@ -946,6 +970,7 @@
         "via": null,
         "note": "The anchor 'the office of Henry Moore, Esq.' names nothing the committed town holds."
       },
+      "outside_plat": null,
       "action": "unplaceable",
       "action_target": null,
       "match_tier": null,
@@ -981,6 +1006,7 @@
         "via": null,
         "note": "The paper gives no anchor."
       },
+      "outside_plat": null,
       "action": "unplaceable",
       "action_target": null,
       "match_tier": null,
@@ -1014,6 +1040,7 @@
         "via": null,
         "note": "The paper gives no anchor."
       },
+      "outside_plat": null,
       "action": "unplaceable",
       "action_target": null,
       "match_tier": null,
@@ -1049,6 +1076,7 @@
         "via": null,
         "note": "The anchor \"Messrs. Newbury & Dole's store\" names nothing the committed town holds."
       },
+      "outside_plat": null,
       "action": "street_only",
       "action_target": "south_water",
       "match_tier": null,
@@ -1087,11 +1115,12 @@
         "via": null,
         "note": "A crossing of two platted streets: clark and south_water."
       },
+      "outside_plat": null,
       "action": "enrich_existing",
       "action_target": "chicago_democrat_office",
       "match_tier": "occupants",
-      "match_evidence": "John Calhoun's Chicago Democrat printing office; and, on the reading argued here, W. Kimball's new dry-goods store",
-      "action_note": "chicago_democrat_office already stands and its occupants carries calhoun — \"John Calhoun's Chicago Democrat printing office; and, on the reading argued here, W. Kimball's new dry-goods store\". The papers add trade, goods and dates to a record that exists."
+      "match_evidence": "John Calhoun's Chicago Democrat printing office; and; on the reading argued here; W. Kimball's new dry-goods store",
+      "action_note": "chicago_democrat_office already stands and its occupants carries calhoun — \"John Calhoun's Chicago Democrat printing office; and; on the reading argued here; W. Kimball's new dry-goods store\". The papers add trade, goods and dates to a record that exists."
     },
     {
       "id": "business_chicago_democrat_office",
@@ -1125,11 +1154,12 @@
         "via": null,
         "note": "A crossing of two platted streets: clark and south_water."
       },
+      "outside_plat": null,
       "action": "enrich_existing",
       "action_target": "chicago_democrat_office",
       "match_tier": "occupants",
-      "match_evidence": "John Calhoun's Chicago Democrat printing office; and, on the reading argued here, W. Kimball's new dry-goods store",
-      "action_note": "chicago_democrat_office already stands and its occupants carries calhoun — \"John Calhoun's Chicago Democrat printing office; and, on the reading argued here, W. Kimball's new dry-goods store\". The papers add trade, goods and dates to a record that exists."
+      "match_evidence": "John Calhoun's Chicago Democrat printing office; and; on the reading argued here; W. Kimball's new dry-goods store",
+      "action_note": "chicago_democrat_office already stands and its occupants carries calhoun — \"John Calhoun's Chicago Democrat printing office; and; on the reading argued here; W. Kimball's new dry-goods store\". The papers add trade, goods and dates to a record that exists."
     },
     {
       "id": "business_chicago_democrat_printing_office",
@@ -1160,11 +1190,12 @@
         "via": null,
         "note": "The anchor \"Messrs. Jones & King's hardware store\" names nothing the committed town holds."
       },
+      "outside_plat": null,
       "action": "enrich_existing",
       "action_target": "chicago_democrat_office",
       "match_tier": "occupants",
-      "match_evidence": "John Calhoun's Chicago Democrat printing office; and, on the reading argued here, W. Kimball's new dry-goods store",
-      "action_note": "chicago_democrat_office already stands and its occupants carries calhoun — \"John Calhoun's Chicago Democrat printing office; and, on the reading argued here, W. Kimball's new dry-goods store\". The papers add trade, goods and dates to a record that exists."
+      "match_evidence": "John Calhoun's Chicago Democrat printing office; and; on the reading argued here; W. Kimball's new dry-goods store",
+      "action_note": "chicago_democrat_office already stands and its occupants carries calhoun — \"John Calhoun's Chicago Democrat printing office; and; on the reading argued here; W. Kimball's new dry-goods store\". The papers add trade, goods and dates to a record that exists."
     },
     {
       "id": "business_chicago_soap_and_candle_manufactory",
@@ -1195,6 +1226,7 @@
         "via": null,
         "note": "The paper gives no anchor."
       },
+      "outside_plat": null,
       "action": "enrich_existing",
       "action_target": "elston_soap_candle_manufactory",
       "match_tier": "occupants",
@@ -1230,6 +1262,7 @@
         "via": null,
         "note": "The paper gives no anchor."
       },
+      "outside_plat": null,
       "action": "unplaceable",
       "action_target": null,
       "match_tier": null,
@@ -1263,6 +1296,7 @@
         "via": null,
         "note": "The paper gives no anchor."
       },
+      "outside_plat": null,
       "action": "unplaceable",
       "action_target": null,
       "match_tier": null,
@@ -1298,6 +1332,7 @@
         "via": null,
         "note": "The paper gives no anchor."
       },
+      "outside_plat": null,
       "action": "unplaceable",
       "action_target": null,
       "match_tier": null,
@@ -1336,6 +1371,7 @@
         "via": "business_brewster_hogan_co",
         "note": "The landmark is another documented business (business_brewster_hogan_co), which places this one exactly as well as that one is placed."
       },
+      "outside_plat": null,
       "action": "new_building",
       "action_target": "business_brewster_hogan_co",
       "match_tier": null,
@@ -1372,6 +1408,7 @@
         "via": "business_brewster_hogan_co",
         "note": "The landmark is another documented business (business_brewster_hogan_co), which places this one exactly as well as that one is placed."
       },
+      "outside_plat": null,
       "action": "new_building",
       "action_target": "business_brewster_hogan_co",
       "match_tier": null,
@@ -1408,6 +1445,7 @@
         "via": null,
         "note": "The anchor 'their bake shop' names nothing the committed town holds."
       },
+      "outside_plat": null,
       "action": "unplaceable",
       "action_target": null,
       "match_tier": null,
@@ -1460,6 +1498,7 @@
         "via": null,
         "note": "The anchor 'the Eagle House' names nothing the committed town holds."
       },
+      "outside_plat": null,
       "action": "street_only",
       "action_target": "dearborn",
       "match_tier": null,
@@ -1505,6 +1544,7 @@
         "via": null,
         "note": "The anchor 'the Eagle Coffee House' names nothing the committed town holds."
       },
+      "outside_plat": null,
       "action": "street_only",
       "action_target": "dearborn",
       "match_tier": null,
@@ -1547,6 +1587,7 @@
         "via": null,
         "note": "The paper gives no anchor."
       },
+      "outside_plat": null,
       "action": "unplaceable",
       "action_target": null,
       "match_tier": null,
@@ -1582,6 +1623,7 @@
         "via": null,
         "note": "The paper gives no anchor."
       },
+      "outside_plat": null,
       "action": "unplaceable",
       "action_target": null,
       "match_tier": null,
@@ -1617,6 +1659,7 @@
         "via": null,
         "note": "The paper gives no anchor."
       },
+      "outside_plat": null,
       "action": "enrich_existing",
       "action_target": "elston_soap_candle_manufactory",
       "match_tier": "occupants",
@@ -1652,6 +1695,7 @@
         "via": null,
         "note": "The anchor \"Newberry & Dole's store\" names nothing the committed town holds."
       },
+      "outside_plat": null,
       "action": "street_only",
       "action_target": "south_water",
       "match_tier": null,
@@ -1688,6 +1732,7 @@
         "via": null,
         "note": "The paper gives no anchor."
       },
+      "outside_plat": null,
       "action": "unplaceable",
       "action_target": null,
       "match_tier": null,
@@ -1723,6 +1768,7 @@
         "via": null,
         "note": "The anchor 'the jail' names nothing the committed town holds."
       },
+      "outside_plat": null,
       "action": "unplaceable",
       "action_target": null,
       "match_tier": null,
@@ -1759,6 +1805,7 @@
         "via": null,
         "note": "The paper gives no anchor."
       },
+      "outside_plat": null,
       "action": "enrich_existing",
       "action_target": "elston_soap_candle_manufactory",
       "match_tier": "occupants",
@@ -1792,6 +1839,7 @@
         "via": null,
         "note": "The anchor 'the Fulton Market' names nothing the committed town holds."
       },
+      "outside_plat": null,
       "action": "unplaceable",
       "action_target": null,
       "match_tier": null,
@@ -1827,6 +1875,7 @@
         "via": null,
         "note": "The paper gives no anchor."
       },
+      "outside_plat": null,
       "action": "unplaceable",
       "action_target": null,
       "match_tier": null,
@@ -1862,6 +1911,7 @@
         "via": null,
         "note": "The paper gives no anchor."
       },
+      "outside_plat": null,
       "action": "unplaceable",
       "action_target": null,
       "match_tier": null,
@@ -1898,6 +1948,7 @@
         "via": null,
         "note": "The paper gives no anchor."
       },
+      "outside_plat": null,
       "action": "unplaceable",
       "action_target": null,
       "match_tier": null,
@@ -1933,6 +1984,7 @@
         "via": null,
         "note": "The anchor is a reach of south_water and names nothing narrower."
       },
+      "outside_plat": null,
       "action": "unplaceable",
       "action_target": null,
       "match_tier": null,
@@ -1968,6 +2020,7 @@
         "via": null,
         "note": "The landmark is the committed structure new_york_house."
       },
+      "outside_plat": null,
       "action": "new_building",
       "action_target": "new_york_house",
       "match_tier": null,
@@ -2003,6 +2056,7 @@
         "via": null,
         "note": "The landmark is the committed structure new_york_house."
       },
+      "outside_plat": null,
       "action": "new_building",
       "action_target": "new_york_house",
       "match_tier": null,
@@ -2047,6 +2101,7 @@
         "via": null,
         "note": "The anchor 'the post office' names nothing the committed town holds."
       },
+      "outside_plat": null,
       "action": "street_only",
       "action_target": "lake",
       "match_tier": null,
@@ -2091,6 +2146,7 @@
         "via": null,
         "note": "The anchor 'the Post Office' names nothing the committed town holds."
       },
+      "outside_plat": null,
       "action": "street_only",
       "action_target": "lake",
       "match_tier": null,
@@ -2135,6 +2191,7 @@
         "via": null,
         "note": "The paper gives no anchor."
       },
+      "outside_plat": null,
       "action": "unplaceable",
       "action_target": null,
       "match_tier": null,
@@ -2170,6 +2227,7 @@
         "via": null,
         "note": "The paper gives no anchor."
       },
+      "outside_plat": null,
       "action": "street_only",
       "action_target": "south_water",
       "match_tier": null,
@@ -2205,6 +2263,7 @@
         "via": null,
         "note": "The paper gives no anchor."
       },
+      "outside_plat": null,
       "action": "unplaceable",
       "action_target": null,
       "match_tier": null,
@@ -2240,11 +2299,12 @@
         "via": null,
         "note": "The paper gives no anchor."
       },
+      "outside_plat": null,
       "action": "enrich_existing",
       "action_target": "mansion_house",
       "match_tier": "occupants",
-      "match_evidence": "Edward Haddock or Abram A. Markle, keeper",
-      "action_note": "mansion_house already stands and its occupants carries haddock — 'Edward Haddock or Abram A. Markle, keeper'. The papers add trade, goods and dates to a record that exists."
+      "match_evidence": "Edward Haddock or Abram A. Markle; keeper",
+      "action_note": "mansion_house already stands and its occupants carries haddock — 'Edward Haddock or Abram A. Markle; keeper'. The papers add trade, goods and dates to a record that exists."
     },
     {
       "id": "business_e_wentworth",
@@ -2275,11 +2335,12 @@
         "via": null,
         "note": "The anchor 'the road from Chicago leading to Ottawa' names nothing the committed town holds."
       },
-      "action": "enrich_existing",
-      "action_target": "wolf_point_tavern_stable",
-      "match_tier": "occupants",
-      "match_evidence": "the tavern's keeper of the day — Elijah Wentworth in 1831, William Walters on the scene date",
-      "action_note": "wolf_point_tavern_stable already stands and its occupants carries wentworth — \"the tavern's keeper of the day — Elijah Wentworth in 1831, William Walters on the scene date\". The papers add trade, goods and dates to a record that exists."
+      "outside_plat": "a road leading out of town — 'road from Chicago leading to'",
+      "action": "unplaceable",
+      "action_target": null,
+      "match_tier": null,
+      "match_evidence": null,
+      "action_note": "The paper puts this business outside the committed town — a road leading out of town — 'road from Chicago leading to' — so no structure inside it carries the firm and none is built for it. The anchor 'the road from Chicago leading to Ottawa' names nothing the committed town holds."
     },
     {
       "id": "business_e_wentworth_s_public_house_on_flag_creek",
@@ -2310,11 +2371,12 @@
         "via": null,
         "note": "The anchor 'on Flag Creek, on the road to Ottawa' names nothing the committed town holds."
       },
-      "action": "enrich_existing",
-      "action_target": "wolf_point_tavern_stable",
-      "match_tier": "occupants",
-      "match_evidence": "the tavern's keeper of the day — Elijah Wentworth in 1831, William Walters on the scene date",
-      "action_note": "wolf_point_tavern_stable already stands and its occupants carries wentworth — \"the tavern's keeper of the day — Elijah Wentworth in 1831, William Walters on the scene date\". The papers add trade, goods and dates to a record that exists."
+      "outside_plat": "a distance in miles — 'thirteen miles'",
+      "action": "unplaceable",
+      "action_target": null,
+      "match_tier": null,
+      "match_evidence": null,
+      "action_note": "The paper puts this business outside the committed town — a distance in miles — 'thirteen miles' — so no structure inside it carries the firm and none is built for it. The anchor 'on Flag Creek, on the road to Ottawa' names nothing the committed town holds."
     },
     {
       "id": "business_e_wentworth_s_tavern_flag_creek",
@@ -2345,11 +2407,12 @@
         "via": null,
         "note": "The paper gives no anchor."
       },
-      "action": "enrich_existing",
-      "action_target": "wolf_point_tavern_stable",
-      "match_tier": "occupants",
-      "match_evidence": "the tavern's keeper of the day — Elijah Wentworth in 1831, William Walters on the scene date",
-      "action_note": "wolf_point_tavern_stable already stands and its occupants carries wentworth — \"the tavern's keeper of the day — Elijah Wentworth in 1831, William Walters on the scene date\". The papers add trade, goods and dates to a record that exists."
+      "outside_plat": "a named creek — 'Flag Creek'",
+      "action": "unplaceable",
+      "action_target": null,
+      "match_tier": null,
+      "match_evidence": null,
+      "action_note": "The paper puts this business outside the committed town — a named creek — 'Flag Creek' — so no structure inside it carries the firm and none is built for it. The paper gives no anchor."
     },
     {
       "id": "business_e_wentworth_s_tavern_on_flag_creek",
@@ -2380,11 +2443,12 @@
         "via": null,
         "note": "The anchor 'the road from Chicago leading to Ottawa' names nothing the committed town holds."
       },
-      "action": "enrich_existing",
-      "action_target": "wolf_point_tavern",
-      "match_tier": "aka",
-      "match_evidence": "Wolf Tavern ; Wentworth's tavern ; Old Geese's tavern ; Rat Castle ; Taylor's tavern ; Travelers' Home ; Western Stage House",
-      "action_note": "wolf_point_tavern already stands and its aka carries wentworth — \"Wolf Tavern ; Wentworth's tavern ; Old Geese's tavern ; Rat Castle ; Taylor's tavern ; Travelers' Home ; Western Stage House\". The papers add trade, goods and dates to a record that exists."
+      "outside_plat": "a distance in miles — '18 miles'",
+      "action": "unplaceable",
+      "action_target": null,
+      "match_tier": null,
+      "match_evidence": null,
+      "action_note": "The paper puts this business outside the committed town — a distance in miles — '18 miles' — so no structure inside it carries the firm and none is built for it. The anchor 'the road from Chicago leading to Ottawa' names nothing the committed town holds."
     },
     {
       "id": "business_eagle_hotel",
@@ -2416,6 +2480,7 @@
         "via": null,
         "note": "The paper gives no anchor."
       },
+      "outside_plat": null,
       "action": "unplaceable",
       "action_target": null,
       "match_tier": null,
@@ -2451,6 +2516,7 @@
         "via": null,
         "note": "The paper gives no anchor."
       },
+      "outside_plat": null,
       "action": "unplaceable",
       "action_target": null,
       "match_tier": null,
@@ -2486,6 +2552,7 @@
         "via": null,
         "note": "The anchor 'the Public Square' names nothing the committed town holds."
       },
+      "outside_plat": null,
       "action": "unplaceable",
       "action_target": null,
       "match_tier": null,
@@ -2521,6 +2588,7 @@
         "via": null,
         "note": "The anchor 'the office of the Clerk of the Circuit Court' names nothing the committed town holds."
       },
+      "outside_plat": null,
       "action": "unplaceable",
       "action_target": null,
       "match_tier": null,
@@ -2556,6 +2624,7 @@
         "via": null,
         "note": "The anchor 'the new bridge' names nothing the committed town holds."
       },
+      "outside_plat": null,
       "action": "street_only",
       "action_target": "dearborn",
       "match_tier": null,
@@ -2591,6 +2660,7 @@
         "via": null,
         "note": "The anchor 'the Point' names nothing the committed town holds."
       },
+      "outside_plat": null,
       "action": "unplaceable",
       "action_target": null,
       "match_tier": null,
@@ -2626,6 +2696,7 @@
         "via": null,
         "note": "The anchor \"Dr. Temple's\" names nothing the committed town holds."
       },
+      "outside_plat": null,
       "action": "street_only",
       "action_target": "lake",
       "match_tier": null,
@@ -2661,6 +2732,7 @@
         "via": null,
         "note": "The paper gives no anchor."
       },
+      "outside_plat": null,
       "action": "enrich_existing",
       "action_target": "frederick_thomas_shop",
       "match_tier": "occupants",
@@ -2696,6 +2768,7 @@
         "via": null,
         "note": "A corner of 'Dearborn' and 'Lake-sts. corner of Dearborn and Lake-st', and the plat resolves both sides to ['dearborn', 'lake']."
       },
+      "outside_plat": null,
       "action": "street_only",
       "action_target": "dearborn",
       "match_tier": null,
@@ -2731,6 +2804,7 @@
         "via": null,
         "note": "The paper gives no anchor."
       },
+      "outside_plat": null,
       "action": "unplaceable",
       "action_target": null,
       "match_tier": null,
@@ -2768,6 +2842,7 @@
         "via": null,
         "note": "The anchor is a reach of lake and names nothing narrower."
       },
+      "outside_plat": null,
       "action": "street_only",
       "action_target": "lake",
       "match_tier": null,
@@ -2806,6 +2881,7 @@
         "via": null,
         "note": "A crossing of two platted streets: franklin and south_water."
       },
+      "outside_plat": null,
       "action": "new_building",
       "action_target": "franklin+south_water",
       "match_tier": null,
@@ -2845,6 +2921,7 @@
         "via": null,
         "note": "A crossing of two platted streets: franklin and south_water."
       },
+      "outside_plat": null,
       "action": "new_building",
       "action_target": "franklin+south_water",
       "match_tier": null,
@@ -2878,6 +2955,7 @@
         "via": null,
         "note": "The anchor \"Newberry & Dole's store\" names nothing the committed town holds."
       },
+      "outside_plat": null,
       "action": "unplaceable",
       "action_target": null,
       "match_tier": null,
@@ -2914,6 +2992,7 @@
         "via": null,
         "note": "The paper gives no anchor."
       },
+      "outside_plat": null,
       "action": "unplaceable",
       "action_target": null,
       "match_tier": null,
@@ -2949,6 +3028,7 @@
         "via": null,
         "note": "The paper gives no anchor."
       },
+      "outside_plat": null,
       "action": "unplaceable",
       "action_target": null,
       "match_tier": null,
@@ -2993,6 +3073,7 @@
         "via": null,
         "note": "The anchor 'the Eagle Coffee House' names nothing the committed town holds."
       },
+      "outside_plat": null,
       "action": "street_only",
       "action_target": "dearborn",
       "match_tier": null,
@@ -3031,6 +3112,7 @@
         "via": null,
         "note": "A crossing of two platted streets: franklin and south_water."
       },
+      "outside_plat": null,
       "action": "new_building",
       "action_target": "franklin+south_water",
       "match_tier": null,
@@ -3069,6 +3151,7 @@
         "via": null,
         "note": "The paper gives no anchor."
       },
+      "outside_plat": null,
       "action": "unplaceable",
       "action_target": null,
       "match_tier": null,
@@ -3104,6 +3187,7 @@
         "via": null,
         "note": "The anchor 'the Tremont House' names nothing the committed town holds."
       },
+      "outside_plat": null,
       "action": "street_only",
       "action_target": "dearborn",
       "match_tier": null,
@@ -3141,6 +3225,7 @@
         "via": null,
         "note": "The anchor is a reach of south_water and names nothing narrower."
       },
+      "outside_plat": null,
       "action": "street_only",
       "action_target": "south_water",
       "match_tier": null,
@@ -3179,6 +3264,7 @@
         "via": null,
         "note": "The anchor '[…] So[u]th Water Street, Mme sete Sayth Water Street,' names nothing the committed town holds."
       },
+      "outside_plat": null,
       "action": "street_only",
       "action_target": "south_water",
       "match_tier": null,
@@ -3214,6 +3300,7 @@
         "via": null,
         "note": "The anchor \"John H. Kinzie's new building\" names nothing the committed town holds."
       },
+      "outside_plat": null,
       "action": "unplaceable",
       "action_target": null,
       "match_tier": null,
@@ -3249,6 +3336,7 @@
         "via": null,
         "note": "The anchor \"J. H. Kinzie's New Building\" names nothing the committed town holds."
       },
+      "outside_plat": null,
       "action": "unplaceable",
       "action_target": null,
       "match_tier": null,
@@ -3284,6 +3372,7 @@
         "via": null,
         "note": "The landmark is the committed structure jh_kinzie_forwarding_store."
       },
+      "outside_plat": null,
       "action": "new_building",
       "action_target": "jh_kinzie_forwarding_store",
       "match_tier": null,
@@ -3328,6 +3417,7 @@
         "via": null,
         "note": "The paper gives no anchor."
       },
+      "outside_plat": null,
       "action": "unplaceable",
       "action_target": null,
       "match_tier": null,
@@ -3363,6 +3453,7 @@
         "via": null,
         "note": "The paper gives no anchor."
       },
+      "outside_plat": null,
       "action": "unplaceable",
       "action_target": null,
       "match_tier": null,
@@ -3398,6 +3489,7 @@
         "via": null,
         "note": "The paper gives no anchor."
       },
+      "outside_plat": null,
       "action": "unplaceable",
       "action_target": null,
       "match_tier": null,
@@ -3436,6 +3528,7 @@
         "via": null,
         "note": "The paper gives no anchor."
       },
+      "outside_plat": null,
       "action": "unplaceable",
       "action_target": null,
       "match_tier": null,
@@ -3469,6 +3562,7 @@
         "via": null,
         "note": "The paper gives no anchor."
       },
+      "outside_plat": null,
       "action": "unplaceable",
       "action_target": null,
       "match_tier": null,
@@ -3504,11 +3598,12 @@
         "via": null,
         "note": "The paper gives no anchor."
       },
+      "outside_plat": null,
       "action": "enrich_existing",
       "action_target": "green_tree_tavern",
       "match_tier": "occupants",
-      "match_evidence": "Chester Ingersoll, landlord",
-      "action_note": "green_tree_tavern already stands and its occupants carries ingersoll — 'Chester Ingersoll, landlord'. The papers add trade, goods and dates to a record that exists."
+      "match_evidence": "Chester Ingersoll; landlord",
+      "action_note": "green_tree_tavern already stands and its occupants carries ingersoll — 'Chester Ingersoll; landlord'. The papers add trade, goods and dates to a record that exists."
     },
     {
       "id": "business_j_a_marshall_s_dancing_school",
@@ -3539,6 +3634,7 @@
         "via": null,
         "note": "The landmark is the committed structure exchange_coffee_house."
       },
+      "outside_plat": null,
       "action": "new_building",
       "action_target": "exchange_coffee_house",
       "match_tier": null,
@@ -3575,6 +3671,7 @@
         "via": null,
         "note": "The anchor \"Messrs. Newberry & Dole's store\" names nothing the committed town holds."
       },
+      "outside_plat": null,
       "action": "street_only",
       "action_target": "dearborn",
       "match_tier": null,
@@ -3610,6 +3707,7 @@
         "via": null,
         "note": "The paper gives no anchor."
       },
+      "outside_plat": null,
       "action": "unplaceable",
       "action_target": null,
       "match_tier": null,
@@ -3646,6 +3744,7 @@
         "via": null,
         "note": "The anchor 'the Street leading from the draw-bridge to the oak woods and Blue Island' names nothing the committed town holds."
       },
+      "outside_plat": null,
       "action": "unplaceable",
       "action_target": null,
       "match_tier": null,
@@ -3681,6 +3780,7 @@
         "via": null,
         "note": "The paper gives no anchor."
       },
+      "outside_plat": null,
       "action": "unplaceable",
       "action_target": null,
       "match_tier": null,
@@ -3716,6 +3816,7 @@
         "via": "business_jones_king_co",
         "note": "The landmark is another documented business (business_jones_king_co), which places this one exactly as well as that one is placed."
       },
+      "outside_plat": null,
       "action": "new_building",
       "action_target": "business_jones_king_co",
       "match_tier": null,
@@ -3751,6 +3852,7 @@
         "via": null,
         "note": "The anchor \"Jones, King & Co.'s store\" names nothing the committed town holds."
       },
+      "outside_plat": null,
       "action": "street_only",
       "action_target": "south_water",
       "match_tier": null,
@@ -3786,6 +3888,7 @@
         "via": "business_brewster_hogan_co",
         "note": "The landmark is another documented business (business_brewster_hogan_co), which places this one exactly as well as that one is placed."
       },
+      "outside_plat": null,
       "action": "enrich_existing",
       "action_target": "temple_lake_st_building",
       "match_tier": "occupants",
@@ -3821,6 +3924,7 @@
         "via": null,
         "note": "The anchor is a reach of south_water and names nothing narrower."
       },
+      "outside_plat": null,
       "action": "unplaceable",
       "action_target": null,
       "match_tier": null,
@@ -3856,6 +3960,7 @@
         "via": null,
         "note": "The paper gives no anchor."
       },
+      "outside_plat": null,
       "action": "street_only",
       "action_target": "south_water",
       "match_tier": null,
@@ -3891,11 +3996,12 @@
         "via": null,
         "note": "The paper gives no anchor."
       },
+      "outside_plat": null,
       "action": "enrich_existing",
       "action_target": "jh_kinzie_forwarding_store",
       "match_tier": "occupants",
-      "match_evidence": "J. H. Kinzie, forwarding and commission merchant",
-      "action_note": "jh_kinzie_forwarding_store already stands and its occupants carries kinzie — 'J. H. Kinzie, forwarding and commission merchant'. The papers add trade, goods and dates to a record that exists."
+      "match_evidence": "J. H. Kinzie; forwarding and commission merchant",
+      "action_note": "jh_kinzie_forwarding_store already stands and its occupants carries kinzie — 'J. H. Kinzie; forwarding and commission merchant'. The papers add trade, goods and dates to a record that exists."
     },
     {
       "id": "business_j_h_mulford",
@@ -3927,6 +4033,7 @@
         "via": null,
         "note": "The anchor 'the Printing Office' names nothing the committed town holds."
       },
+      "outside_plat": null,
       "action": "street_only",
       "action_target": "south_water",
       "match_tier": null,
@@ -3962,6 +4069,7 @@
         "via": null,
         "note": "The landmark is the committed structure mansion_house."
       },
+      "outside_plat": null,
       "action": "new_building",
       "action_target": "mansion_house",
       "match_tier": null,
@@ -4000,6 +4108,7 @@
         "via": null,
         "note": "A crossing of two platted streets: dearborn and lake."
       },
+      "outside_plat": null,
       "action": "new_building",
       "action_target": "dearborn+lake",
       "match_tier": null,
@@ -4040,6 +4149,7 @@
         "via": null,
         "note": "The anchor 'the city boot, shoe and leather store' names nothing the committed town holds."
       },
+      "outside_plat": null,
       "action": "street_only",
       "action_target": "dearborn",
       "match_tier": null,
@@ -4076,6 +4186,7 @@
         "via": null,
         "note": "The paper gives no anchor."
       },
+      "outside_plat": null,
       "action": "enrich_existing",
       "action_target": "hogan_store",
       "match_tier": "name",
@@ -4112,6 +4223,7 @@
         "via": null,
         "note": "The paper gives no anchor."
       },
+      "outside_plat": null,
       "action": "unplaceable",
       "action_target": null,
       "match_tier": null,
@@ -4147,6 +4259,7 @@
         "via": null,
         "note": "The paper gives no anchor."
       },
+      "outside_plat": null,
       "action": "enrich_existing",
       "action_target": "wright_building_to_let_a",
       "match_tier": "name",
@@ -4182,6 +4295,7 @@
         "via": null,
         "note": "The anchor 'the Store of Hubbard & Co.' names nothing the committed town holds."
       },
+      "outside_plat": null,
       "action": "street_only",
       "action_target": "lasalle",
       "match_tier": null,
@@ -4217,6 +4331,7 @@
         "via": null,
         "note": "The anchor 'the Post Office' names nothing the committed town holds."
       },
+      "outside_plat": null,
       "action": "unplaceable",
       "action_target": null,
       "match_tier": null,
@@ -4252,6 +4367,7 @@
         "via": null,
         "note": "The anchor 'NORT[H] WATER STREET NORTM WATER STREET,' names nothing the committed town holds."
       },
+      "outside_plat": null,
       "action": "street_only",
       "action_target": "north_water",
       "match_tier": null,
@@ -4287,6 +4403,7 @@
         "via": null,
         "note": "The paper gives no anchor."
       },
+      "outside_plat": null,
       "action": "enrich_existing",
       "action_target": "temple_lake_st_building",
       "match_tier": "occupants",
@@ -4322,6 +4439,7 @@
         "via": null,
         "note": "The anchor '[unreadable — the column cuts the name away]' names nothing the committed town holds."
       },
+      "outside_plat": null,
       "action": "enrich_existing",
       "action_target": "temple_lake_st_building",
       "match_tier": "occupants",
@@ -4357,11 +4475,12 @@
         "via": null,
         "note": "The anchor 'opposite to Fort Dearborn' names nothing the committed town holds."
       },
+      "outside_plat": null,
       "action": "enrich_existing",
       "action_target": "jh_kinzie_forwarding_store",
       "match_tier": "occupants",
-      "match_evidence": "J. H. Kinzie, forwarding and commission merchant",
-      "action_note": "jh_kinzie_forwarding_store already stands and its occupants carries kinzie — 'J. H. Kinzie, forwarding and commission merchant'. The papers add trade, goods and dates to a record that exists."
+      "match_evidence": "J. H. Kinzie; forwarding and commission merchant",
+      "action_note": "jh_kinzie_forwarding_store already stands and its occupants carries kinzie — 'J. H. Kinzie; forwarding and commission merchant'. The papers add trade, goods and dates to a record that exists."
     },
     {
       "id": "business_john_holbrook",
@@ -4404,6 +4523,7 @@
         "via": null,
         "note": "The anchor is a reach of dearborn and names nothing narrower."
       },
+      "outside_plat": null,
       "action": "street_only",
       "action_target": "south_water",
       "match_tier": null,
@@ -4441,6 +4561,7 @@
         "via": null,
         "note": "The anchor is a reach of dearborn and names nothing narrower."
       },
+      "outside_plat": null,
       "action": "street_only",
       "action_target": "south_water",
       "match_tier": null,
@@ -4476,6 +4597,7 @@
         "via": null,
         "note": "The paper gives no anchor."
       },
+      "outside_plat": null,
       "action": "enrich_existing",
       "action_target": "hogan_store",
       "match_tier": "name",
@@ -4511,6 +4633,7 @@
         "via": null,
         "note": "The paper gives no anchor."
       },
+      "outside_plat": null,
       "action": "unplaceable",
       "action_target": null,
       "match_tier": null,
@@ -4546,11 +4669,12 @@
         "via": null,
         "note": "The anchor 'the Printing office' names nothing the committed town holds."
       },
+      "outside_plat": null,
       "action": "enrich_existing",
       "action_target": "watkins_school_house",
       "match_tier": "occupants",
-      "match_evidence": "John Watkins, schoolmaster, teaching here in 1833; occupants on the scene date unattested",
-      "action_note": "watkins_school_house already stands and its occupants carries watkins — 'John Watkins, schoolmaster, teaching here in 1833; occupants on the scene date unattested'. The papers add trade, goods and dates to a record that exists."
+      "match_evidence": "John Watkins; schoolmaster; occupants on the scene date unattested",
+      "action_note": "watkins_school_house already stands and its occupants carries watkins — 'John Watkins; schoolmaster; occupants on the scene date unattested'. The papers add trade, goods and dates to a record that exists."
     },
     {
       "id": "business_john_wellmaker_co",
@@ -4581,6 +4705,7 @@
         "via": null,
         "note": "The paper gives no anchor."
       },
+      "outside_plat": null,
       "action": "unplaceable",
       "action_target": null,
       "match_tier": null,
@@ -4616,6 +4741,7 @@
         "via": null,
         "note": "The paper gives no anchor."
       },
+      "outside_plat": null,
       "action": "enrich_existing",
       "action_target": "wright_building_to_let_a",
       "match_tier": "name",
@@ -4653,6 +4779,7 @@
         "via": null,
         "note": "The paper gives no anchor."
       },
+      "outside_plat": null,
       "action": "unplaceable",
       "action_target": null,
       "match_tier": null,
@@ -4717,6 +4844,7 @@
         "via": null,
         "note": "The paper gives no anchor."
       },
+      "outside_plat": null,
       "action": "street_only",
       "action_target": "south_water",
       "match_tier": null,
@@ -4753,6 +4881,7 @@
         "via": null,
         "note": "The paper gives no anchor."
       },
+      "outside_plat": null,
       "action": "unplaceable",
       "action_target": null,
       "match_tier": null,
@@ -4788,6 +4917,7 @@
         "via": null,
         "note": "The paper gives no anchor."
       },
+      "outside_plat": null,
       "action": "unplaceable",
       "action_target": null,
       "match_tier": null,
@@ -4826,6 +4956,7 @@
         "via": null,
         "note": "A crossing of two platted streets: canal and lake."
       },
+      "outside_plat": null,
       "action": "new_building",
       "action_target": "canal+lake",
       "match_tier": null,
@@ -4861,6 +4992,7 @@
         "via": "business_jones_king_co",
         "note": "The landmark is another documented business (business_jones_king_co), which places this one exactly as well as that one is placed."
       },
+      "outside_plat": null,
       "action": "new_building",
       "action_target": "business_jones_king_co",
       "match_tier": null,
@@ -4896,6 +5028,7 @@
         "via": null,
         "note": "The landmark is the committed structure mansion_house."
       },
+      "outside_plat": null,
       "action": "new_building",
       "action_target": "mansion_house",
       "match_tier": null,
@@ -4931,6 +5064,7 @@
         "via": null,
         "note": "The landmark is the committed structure mansion_house."
       },
+      "outside_plat": null,
       "action": "new_building",
       "action_target": "mansion_house",
       "match_tier": null,
@@ -4966,6 +5100,7 @@
         "via": null,
         "note": "The anchor \"Philo Carpenter's store\" names nothing the committed town holds."
       },
+      "outside_plat": null,
       "action": "unplaceable",
       "action_target": null,
       "match_tier": null,
@@ -5001,6 +5136,7 @@
         "via": null,
         "note": "The anchor \"P. Cohen's Store\" names nothing the committed town holds."
       },
+      "outside_plat": null,
       "action": "street_only",
       "action_target": "south_water",
       "match_tier": null,
@@ -5036,6 +5172,7 @@
         "via": null,
         "note": "The paper gives no anchor."
       },
+      "outside_plat": null,
       "action": "unplaceable",
       "action_target": null,
       "match_tier": null,
@@ -5071,6 +5208,7 @@
         "via": null,
         "note": "The paper gives no anchor."
       },
+      "outside_plat": null,
       "action": "unplaceable",
       "action_target": null,
       "match_tier": null,
@@ -5106,6 +5244,7 @@
         "via": null,
         "note": "The paper gives no anchor."
       },
+      "outside_plat": null,
       "action": "street_only",
       "action_target": "lake",
       "match_tier": null,
@@ -5143,6 +5282,7 @@
         "via": null,
         "note": "The anchor \"Hubbard & Co's. brick store\" names nothing the committed town holds."
       },
+      "outside_plat": null,
       "action": "street_only",
       "action_target": "lasalle",
       "match_tier": null,
@@ -5179,6 +5319,7 @@
         "via": null,
         "note": "The paper gives no anchor."
       },
+      "outside_plat": null,
       "action": "unplaceable",
       "action_target": null,
       "match_tier": null,
@@ -5214,6 +5355,7 @@
         "via": null,
         "note": "The anchor 'the Tremont House' names nothing the committed town holds."
       },
+      "outside_plat": null,
       "action": "unplaceable",
       "action_target": null,
       "match_tier": null,
@@ -5249,11 +5391,12 @@
         "via": null,
         "note": "The anchor 'the Tremont House' names nothing the committed town holds."
       },
+      "outside_plat": null,
       "action": "enrich_existing",
       "action_target": "mason_blacksmith_shop",
       "match_tier": "occupants",
-      "match_evidence": "Matthias Mason & Co., blacksmiths",
-      "action_note": "mason_blacksmith_shop already stands and its occupants carries mason — 'Matthias Mason & Co., blacksmiths'. The papers add trade, goods and dates to a record that exists."
+      "match_evidence": "Matthias Mason & Co.; blacksmiths",
+      "action_note": "mason_blacksmith_shop already stands and its occupants carries mason — 'Matthias Mason & Co.; blacksmiths'. The papers add trade, goods and dates to a record that exists."
     },
     {
       "id": "business_matthias_mason_co",
@@ -5286,11 +5429,12 @@
         "via": null,
         "note": "The anchor \"Graves' Tavern, on Main-street\" names nothing the committed town holds."
       },
+      "outside_plat": null,
       "action": "enrich_existing",
       "action_target": "mason_blacksmith_shop",
       "match_tier": "occupants",
-      "match_evidence": "Matthias Mason & Co., blacksmiths",
-      "action_note": "mason_blacksmith_shop already stands and its occupants carries mason — 'Matthias Mason & Co., blacksmiths'. The papers add trade, goods and dates to a record that exists."
+      "match_evidence": "Matthias Mason & Co.; blacksmiths",
+      "action_note": "mason_blacksmith_shop already stands and its occupants carries mason — 'Matthias Mason & Co.; blacksmiths'. The papers add trade, goods and dates to a record that exists."
     },
     {
       "id": "business_matthias_mason_co_blacksmiths",
@@ -5321,11 +5465,12 @@
         "via": null,
         "note": "The landmark is the committed structure mansion_house."
       },
+      "outside_plat": null,
       "action": "enrich_existing",
       "action_target": "mason_blacksmith_shop",
       "match_tier": "occupants",
-      "match_evidence": "Matthias Mason & Co., blacksmiths",
-      "action_note": "mason_blacksmith_shop already stands and its occupants carries mason — 'Matthias Mason & Co., blacksmiths'. The papers add trade, goods and dates to a record that exists."
+      "match_evidence": "Matthias Mason & Co.; blacksmiths",
+      "action_note": "mason_blacksmith_shop already stands and its occupants carries mason — 'Matthias Mason & Co.; blacksmiths'. The papers add trade, goods and dates to a record that exists."
     },
     {
       "id": "business_matthias_nason_co",
@@ -5354,6 +5499,7 @@
         "via": null,
         "note": "The landmark is the committed structure mansion_house."
       },
+      "outside_plat": null,
       "action": "new_building",
       "action_target": "mansion_house",
       "match_tier": null,
@@ -5391,6 +5537,7 @@
         "via": null,
         "note": "The anchor is a reach of dearborn and names nothing narrower."
       },
+      "outside_plat": null,
       "action": "street_only",
       "action_target": "randolph",
       "match_tier": null,
@@ -5428,6 +5575,7 @@
         "via": null,
         "note": "The anchor is a reach of south_water and names nothing narrower."
       },
+      "outside_plat": null,
       "action": "street_only",
       "action_target": "south_water",
       "match_tier": null,
@@ -5463,6 +5611,7 @@
         "via": null,
         "note": "The landmark is the committed structure mansion_house."
       },
+      "outside_plat": null,
       "action": "new_building",
       "action_target": "mansion_house",
       "match_tier": null,
@@ -5498,6 +5647,7 @@
         "via": null,
         "note": "The landmark is the committed structure mansion_house."
       },
+      "outside_plat": null,
       "action": "new_building",
       "action_target": "mansion_house",
       "match_tier": null,
@@ -5535,6 +5685,7 @@
         "via": null,
         "note": "The anchor is a reach of dearborn and names nothing narrower."
       },
+      "outside_plat": null,
       "action": "street_only",
       "action_target": "dearborn",
       "match_tier": null,
@@ -5573,6 +5724,7 @@
         "via": null,
         "note": "The paper gives no anchor."
       },
+      "outside_plat": null,
       "action": "unplaceable",
       "action_target": null,
       "match_tier": null,
@@ -5606,6 +5758,7 @@
         "via": null,
         "note": "The paper gives no anchor."
       },
+      "outside_plat": null,
       "action": "unplaceable",
       "action_target": null,
       "match_tier": null,
@@ -5641,6 +5794,7 @@
         "via": null,
         "note": "The paper gives no anchor."
       },
+      "outside_plat": null,
       "action": "unplaceable",
       "action_target": null,
       "match_tier": null,
@@ -5676,11 +5830,12 @@
         "via": null,
         "note": "A corner of 'La Salle' and 'South Water streets corner of La Salle a', and the plat resolves both sides to ['lasalle', 'south_water']."
       },
+      "outside_plat": null,
       "action": "enrich_existing",
       "action_target": "peck_store",
       "match_tier": "occupants",
-      "match_evidence": "Philip F. W. Peck, merchant, and his household",
-      "action_note": "peck_store already stands and its occupants carries peck — 'Philip F. W. Peck, merchant, and his household'. The papers add trade, goods and dates to a record that exists."
+      "match_evidence": "Philip F. W. Peck; merchant; and his household",
+      "action_note": "peck_store already stands and its occupants carries peck — 'Philip F. W. Peck; merchant; and his household'. The papers add trade, goods and dates to a record that exists."
     },
     {
       "id": "business_p_f_w_peck",
@@ -5711,11 +5866,12 @@
         "via": null,
         "note": "A corner of 'LaSalle' and 'South Water streets CORNER OF LASALLE AN', and the plat resolves both sides to ['lasalle', 'south_water']."
       },
+      "outside_plat": null,
       "action": "enrich_existing",
       "action_target": "peck_store",
       "match_tier": "occupants",
-      "match_evidence": "Philip F. W. Peck, merchant, and his household",
-      "action_note": "peck_store already stands and its occupants carries peck — 'Philip F. W. Peck, merchant, and his household'. The papers add trade, goods and dates to a record that exists."
+      "match_evidence": "Philip F. W. Peck; merchant; and his household",
+      "action_note": "peck_store already stands and its occupants carries peck — 'Philip F. W. Peck; merchant; and his household'. The papers add trade, goods and dates to a record that exists."
     },
     {
       "id": "business_p_pruyne",
@@ -5744,6 +5900,7 @@
         "via": null,
         "note": "The paper gives no anchor."
       },
+      "outside_plat": null,
       "action": "unplaceable",
       "action_target": null,
       "match_tier": null,
@@ -5783,11 +5940,12 @@
         "via": null,
         "note": "The anchor is a reach of dearborn and names nothing narrower."
       },
+      "outside_plat": null,
       "action": "enrich_existing",
       "action_target": "pruyne_kimball_drugstore",
       "match_tier": "occupants",
-      "match_evidence": "Pruyne and Kimball, druggists",
-      "action_note": "pruyne_kimball_drugstore already stands and its occupants carries pruyne — 'Pruyne and Kimball, druggists'. The papers add trade, goods and dates to a record that exists."
+      "match_evidence": "Pruyne and Kimball; druggists",
+      "action_note": "pruyne_kimball_drugstore already stands and its occupants carries pruyne — 'Pruyne and Kimball; druggists'. The papers add trade, goods and dates to a record that exists."
     },
     {
       "id": "business_p_pruyne_co_timber",
@@ -5818,11 +5976,12 @@
         "via": null,
         "note": "The paper gives no anchor."
       },
+      "outside_plat": null,
       "action": "enrich_existing",
       "action_target": "pruyne_kimball_drugstore",
       "match_tier": "occupants",
-      "match_evidence": "Pruyne and Kimball, druggists",
-      "action_note": "pruyne_kimball_drugstore already stands and its occupants carries pruyne — 'Pruyne and Kimball, druggists'. The papers add trade, goods and dates to a record that exists."
+      "match_evidence": "Pruyne and Kimball; druggists",
+      "action_note": "pruyne_kimball_drugstore already stands and its occupants carries pruyne — 'Pruyne and Kimball; druggists'. The papers add trade, goods and dates to a record that exists."
     },
     {
       "id": "business_p_s_carli_eagle_tavern",
@@ -5853,6 +6012,7 @@
         "via": "business_eagle_tavern",
         "note": "The landmark is another documented business (business_eagle_tavern), which places this one exactly as well as that one is placed."
       },
+      "outside_plat": null,
       "action": "new_building",
       "action_target": "business_eagle_tavern",
       "match_tier": null,
@@ -5890,6 +6050,7 @@
         "via": null,
         "note": "The anchor is a reach of south_water and names nothing narrower."
       },
+      "outside_plat": null,
       "action": "street_only",
       "action_target": "south_water",
       "match_tier": null,
@@ -5925,6 +6086,7 @@
         "via": null,
         "note": "The paper gives no anchor."
       },
+      "outside_plat": null,
       "action": "street_only",
       "action_target": "south_water",
       "match_tier": null,
@@ -5960,11 +6122,12 @@
         "via": null,
         "note": "The paper gives no anchor."
       },
+      "outside_plat": null,
       "action": "enrich_existing",
       "action_target": "carpenter_south_water_store",
       "match_tier": "occupants",
-      "match_evidence": "Philo Carpenter, druggist",
-      "action_note": "carpenter_south_water_store already stands and its occupants carries carpenter — 'Philo Carpenter, druggist'. The papers add trade, goods and dates to a record that exists."
+      "match_evidence": "Philo Carpenter; druggist",
+      "action_note": "carpenter_south_water_store already stands and its occupants carries carpenter — 'Philo Carpenter; druggist'. The papers add trade, goods and dates to a record that exists."
     },
     {
       "id": "business_philo_carpenter_drugs_and_medicines",
@@ -5995,11 +6158,12 @@
         "via": null,
         "note": "The paper gives no anchor."
       },
+      "outside_plat": null,
       "action": "enrich_existing",
       "action_target": "carpenter_south_water_store",
       "match_tier": "occupants",
-      "match_evidence": "Philo Carpenter, druggist",
-      "action_note": "carpenter_south_water_store already stands and its occupants carries carpenter — 'Philo Carpenter, druggist'. The papers add trade, goods and dates to a record that exists."
+      "match_evidence": "Philo Carpenter; druggist",
+      "action_note": "carpenter_south_water_store already stands and its occupants carries carpenter — 'Philo Carpenter; druggist'. The papers add trade, goods and dates to a record that exists."
     },
     {
       "id": "business_pierce_abbott",
@@ -6031,6 +6195,7 @@
         "via": null,
         "note": "The landmark is the committed structure sauganash_hotel."
       },
+      "outside_plat": null,
       "action": "unplaceable",
       "action_target": null,
       "match_tier": null,
@@ -6066,6 +6231,7 @@
         "via": null,
         "note": "The landmark is the committed structure sauganash_hotel."
       },
+      "outside_plat": null,
       "action": "new_building",
       "action_target": "sauganash_hotel",
       "match_tier": null,
@@ -6099,6 +6265,7 @@
         "via": null,
         "note": "The paper gives no anchor."
       },
+      "outside_plat": null,
       "action": "unplaceable",
       "action_target": null,
       "match_tier": null,
@@ -6136,6 +6303,7 @@
         "via": null,
         "note": "A corner of '[—]' and 'Canal streets in the old shop formerly [', and the plat resolves both sides to ['canal']."
       },
+      "outside_plat": null,
       "action": "street_only",
       "action_target": "canal",
       "match_tier": null,
@@ -6171,6 +6339,7 @@
         "via": null,
         "note": "The paper gives no anchor."
       },
+      "outside_plat": null,
       "action": "enrich_existing",
       "action_target": "robert_kinzie_store",
       "match_tier": "name",
@@ -6206,6 +6375,7 @@
         "via": null,
         "note": "The paper gives no anchor."
       },
+      "outside_plat": null,
       "action": "unplaceable",
       "action_target": null,
       "match_tier": null,
@@ -6241,11 +6411,12 @@
         "via": null,
         "note": "The paper gives no anchor."
       },
+      "outside_plat": "a distance in miles — '25 miles'",
       "action": "unplaceable",
       "action_target": null,
       "match_tier": null,
       "match_evidence": null,
-      "action_note": "No street the model holds. The paper gives no anchor."
+      "action_note": "The paper puts this business outside the committed town — a distance in miles — '25 miles' — so no structure inside it carries the firm and none is built for it. The paper gives no anchor."
     },
     {
       "id": "business_riggs_humphrey",
@@ -6276,6 +6447,7 @@
         "via": null,
         "note": "The paper gives no anchor."
       },
+      "outside_plat": null,
       "action": "unplaceable",
       "action_target": null,
       "match_tier": null,
@@ -6311,6 +6483,7 @@
         "via": null,
         "note": "The paper gives no anchor."
       },
+      "outside_plat": null,
       "action": "unplaceable",
       "action_target": null,
       "match_tier": null,
@@ -6347,6 +6520,7 @@
         "via": null,
         "note": "The paper gives no anchor."
       },
+      "outside_plat": null,
       "action": "unplaceable",
       "action_target": null,
       "match_tier": null,
@@ -6383,6 +6557,7 @@
         "via": null,
         "note": "The anchor \"Mr. P. Carpenter's Drug Establishment, in Water-street\" names nothing the committed town holds."
       },
+      "outside_plat": null,
       "action": "unplaceable",
       "action_target": null,
       "match_tier": null,
@@ -6416,6 +6591,7 @@
         "via": null,
         "note": "The paper gives no anchor."
       },
+      "outside_plat": null,
       "action": "unplaceable",
       "action_target": null,
       "match_tier": null,
@@ -6451,6 +6627,7 @@
         "via": null,
         "note": "The paper gives no anchor."
       },
+      "outside_plat": null,
       "action": "unplaceable",
       "action_target": null,
       "match_tier": null,
@@ -6489,6 +6666,7 @@
         "via": null,
         "note": "A crossing of two platted streets: franklin and lake."
       },
+      "outside_plat": null,
       "action": "new_building",
       "action_target": "franklin+lake",
       "match_tier": null,
@@ -6524,6 +6702,7 @@
         "via": null,
         "note": "The paper gives no anchor."
       },
+      "outside_plat": null,
       "action": "unplaceable",
       "action_target": null,
       "match_tier": null,
@@ -6559,6 +6738,7 @@
         "via": null,
         "note": "The anchor 'the Eagle Coffee House' names nothing the committed town holds."
       },
+      "outside_plat": null,
       "action": "street_only",
       "action_target": "dearborn",
       "match_tier": null,
@@ -6594,11 +6774,12 @@
         "via": null,
         "note": "A corner of 'Lake Street' and 'an unread cross street at his shop, corn', and the plat resolves both sides to ['lake']."
       },
+      "outside_plat": null,
       "action": "enrich_existing",
       "action_target": "goss_cobb_saddlery",
       "match_tier": "occupants",
-      "match_evidence": "S. B. Cobb, saddle, harness and trunk manufacturer",
-      "action_note": "goss_cobb_saddlery already stands and its occupants carries cobb — 'S. B. Cobb, saddle, harness and trunk manufacturer'. The papers add trade, goods and dates to a record that exists."
+      "match_evidence": "S. B. Cobb; saddle; harness and trunk manufacturer",
+      "action_note": "goss_cobb_saddlery already stands and its occupants carries cobb — 'S. B. Cobb; saddle; harness and trunk manufacturer'. The papers add trade, goods and dates to a record that exists."
     },
     {
       "id": "business_s_dewey",
@@ -6629,6 +6810,7 @@
         "via": null,
         "note": "The paper gives no anchor."
       },
+      "outside_plat": null,
       "action": "unplaceable",
       "action_target": null,
       "match_tier": null,
@@ -6664,6 +6846,7 @@
         "via": null,
         "note": "The paper gives no anchor."
       },
+      "outside_plat": null,
       "action": "unplaceable",
       "action_target": null,
       "match_tier": null,
@@ -6699,6 +6882,7 @@
         "via": null,
         "note": "The paper gives no anchor."
       },
+      "outside_plat": null,
       "action": "unplaceable",
       "action_target": null,
       "match_tier": null,
@@ -6744,6 +6928,7 @@
         "via": null,
         "note": "The paper gives no anchor."
       },
+      "outside_plat": null,
       "action": "street_only",
       "action_target": "south_water",
       "match_tier": null,
@@ -6788,6 +6973,7 @@
         "via": null,
         "note": "The anchor 'the house occupied by Dr. Austin' names nothing the committed town holds."
       },
+      "outside_plat": null,
       "action": "street_only",
       "action_target": "lake",
       "match_tier": null,
@@ -6832,6 +7018,7 @@
         "via": null,
         "note": "The anchor \"the house occupied by Dr. Austin, opposite Dr. Temple's\" names nothing the committed town holds."
       },
+      "outside_plat": null,
       "action": "unplaceable",
       "action_target": null,
       "match_tier": null,
@@ -6867,6 +7054,7 @@
         "via": null,
         "note": "The paper gives no anchor."
       },
+      "outside_plat": null,
       "action": "unplaceable",
       "action_target": null,
       "match_tier": null,
@@ -6903,6 +7091,7 @@
         "via": null,
         "note": "The paper gives no anchor."
       },
+      "outside_plat": null,
       "action": "unplaceable",
       "action_target": null,
       "match_tier": null,
@@ -6938,6 +7127,7 @@
         "via": null,
         "note": "The paper gives no anchor."
       },
+      "outside_plat": null,
       "action": "unplaceable",
       "action_target": null,
       "match_tier": null,
@@ -6973,6 +7163,7 @@
         "via": null,
         "note": "A corner of 'Water' and 'Franklin streets corner of Water and Fra', and the plat resolves both sides to ['franklin']."
       },
+      "outside_plat": null,
       "action": "enrich_existing",
       "action_target": "temple_building",
       "match_tier": "occupants",
@@ -7006,6 +7197,7 @@
         "via": null,
         "note": "The paper gives no anchor."
       },
+      "outside_plat": null,
       "action": "unplaceable",
       "action_target": null,
       "match_tier": null,
@@ -7039,6 +7231,7 @@
         "via": null,
         "note": "The anchor 'the store of Messrs Newberry & Dole' names nothing the committed town holds."
       },
+      "outside_plat": null,
       "action": "unplaceable",
       "action_target": null,
       "match_tier": null,
@@ -7074,6 +7267,7 @@
         "via": null,
         "note": "The anchor \"Newbury & Dole's store\" names nothing the committed town holds."
       },
+      "outside_plat": null,
       "action": "street_only",
       "action_target": "south_water",
       "match_tier": null,
@@ -7109,6 +7303,7 @@
         "via": null,
         "note": "The paper gives no anchor."
       },
+      "outside_plat": null,
       "action": "unplaceable",
       "action_target": null,
       "match_tier": null,
@@ -7148,6 +7343,7 @@
         "via": null,
         "note": "A crossing of two platted streets: clark and south_water."
       },
+      "outside_plat": null,
       "action": "new_building",
       "action_target": "clark+south_water",
       "match_tier": null,
@@ -7184,6 +7380,7 @@
         "via": null,
         "note": "A crossing of two platted streets: clark and south_water."
       },
+      "outside_plat": null,
       "action": "new_building",
       "action_target": "clark+south_water",
       "match_tier": null,
@@ -7219,6 +7416,7 @@
         "via": null,
         "note": "The paper gives no anchor."
       },
+      "outside_plat": null,
       "action": "enrich_existing",
       "action_target": "elston_soap_candle_manufactory",
       "match_tier": "occupants",
@@ -7261,6 +7459,7 @@
         "via": null,
         "note": "The paper gives no anchor."
       },
+      "outside_plat": null,
       "action": "street_only",
       "action_target": "dearborn",
       "match_tier": null,
@@ -7294,6 +7493,7 @@
         "via": null,
         "note": "The anchor 'at the Point' names nothing the committed town holds."
       },
+      "outside_plat": null,
       "action": "unplaceable",
       "action_target": null,
       "match_tier": null,
@@ -7329,6 +7529,7 @@
         "via": null,
         "note": "The paper gives no anchor."
       },
+      "outside_plat": null,
       "action": "unplaceable",
       "action_target": null,
       "match_tier": null,
@@ -7364,6 +7565,7 @@
         "via": null,
         "note": "The anchor \"Mr. R. A. Kinzie's Store\" names nothing the committed town holds."
       },
+      "outside_plat": null,
       "action": "unplaceable",
       "action_target": null,
       "match_tier": null,
@@ -7400,6 +7602,7 @@
         "via": null,
         "note": "The landmark is the committed structure sauganash_hotel."
       },
+      "outside_plat": null,
       "action": "new_building",
       "action_target": "sauganash_hotel",
       "match_tier": null,
@@ -7433,6 +7636,7 @@
         "via": null,
         "note": "A corner of '[South] Water' and 'Clark-streets the New Store on the co[rn', and the plat resolves both sides to ['clark']."
       },
+      "outside_plat": null,
       "action": "street_only",
       "action_target": "south_water",
       "match_tier": null,
@@ -7466,6 +7670,7 @@
         "via": null,
         "note": "The anchor 'the bridge' names nothing the committed town holds."
       },
+      "outside_plat": null,
       "action": "unplaceable",
       "action_target": null,
       "match_tier": null,
@@ -7499,6 +7704,7 @@
         "via": null,
         "note": "The paper gives no anchor."
       },
+      "outside_plat": null,
       "action": "unplaceable",
       "action_target": null,
       "match_tier": null,
@@ -7532,6 +7738,7 @@
         "via": null,
         "note": "The paper gives no anchor."
       },
+      "outside_plat": null,
       "action": "unplaceable",
       "action_target": null,
       "match_tier": null,
@@ -7567,6 +7774,7 @@
         "via": null,
         "note": "The anchor 'the store of Messrs. Hubbard & Co.' names nothing the committed town holds."
       },
+      "outside_plat": null,
       "action": "unplaceable",
       "action_target": null,
       "match_tier": null,
@@ -7600,6 +7808,7 @@
         "via": null,
         "note": "The anchor 'the Point (Wolf Point, the forks of the Chicago river)' names nothing the committed town holds."
       },
+      "outside_plat": null,
       "action": "unplaceable",
       "action_target": null,
       "match_tier": null,
@@ -7633,6 +7842,7 @@
         "via": null,
         "note": "A corner of 'Dearborn' and 'Lake streets CORNER OF [DEARBORN] AND LA', and the plat resolves both sides to ['dearborn', 'lake']."
       },
+      "outside_plat": null,
       "action": "street_only",
       "action_target": "dearborn",
       "match_tier": null,
@@ -7669,6 +7879,7 @@
         "via": null,
         "note": "The anchor \"Messrs. Newberry & Dole's store\" names nothing the committed town holds."
       },
+      "outside_plat": null,
       "action": "unplaceable",
       "action_target": null,
       "match_tier": null,
@@ -7704,6 +7915,7 @@
         "via": null,
         "note": "The paper gives no anchor."
       },
+      "outside_plat": null,
       "action": "street_only",
       "action_target": "south_water",
       "match_tier": null,
@@ -7739,6 +7951,7 @@
         "via": null,
         "note": "The paper gives no anchor."
       },
+      "outside_plat": null,
       "action": "street_only",
       "action_target": "south_water",
       "match_tier": null,
@@ -7774,6 +7987,7 @@
         "via": null,
         "note": "The paper gives no anchor."
       },
+      "outside_plat": null,
       "action": "unplaceable",
       "action_target": null,
       "match_tier": null,
@@ -7809,6 +8023,7 @@
         "via": "business_newberry_dole",
         "note": "The landmark is another documented business (business_newberry_dole), which places this one exactly as well as that one is placed."
       },
+      "outside_plat": null,
       "action": "new_building",
       "action_target": "business_newberry_dole",
       "match_tier": null,
@@ -7842,6 +8057,7 @@
         "via": null,
         "note": "The anchor \"Dr. J. T. Temple's\" names nothing the committed town holds."
       },
+      "outside_plat": null,
       "action": "street_only",
       "action_target": "lake",
       "match_tier": null,
@@ -7875,6 +8091,7 @@
         "via": null,
         "note": "The landmark is the committed structure mansion_house."
       },
+      "outside_plat": null,
       "action": "new_building",
       "action_target": "mansion_house",
       "match_tier": null,
@@ -7910,6 +8127,7 @@
         "via": null,
         "note": "The paper gives no anchor."
       },
+      "outside_plat": null,
       "action": "street_only",
       "action_target": "dearborn",
       "match_tier": null,
@@ -7943,6 +8161,7 @@
         "via": null,
         "note": "The anchor 'the Eagle Hotel / Eagle Tavern' names nothing the committed town holds."
       },
+      "outside_plat": null,
       "action": "unplaceable",
       "action_target": null,
       "match_tier": null,
@@ -7978,6 +8197,7 @@
         "via": null,
         "note": "The anchor is a reach of lake and names nothing narrower."
       },
+      "outside_plat": null,
       "action": "unplaceable",
       "action_target": null,
       "match_tier": null,
@@ -8011,6 +8231,7 @@
         "via": null,
         "note": "The anchor \"Dr. Temple's\" names nothing the committed town holds."
       },
+      "outside_plat": null,
       "action": "unplaceable",
       "action_target": null,
       "match_tier": null,
@@ -8053,6 +8274,7 @@
         "via": null,
         "note": "The anchor \"Hubbard & Co.'s brick store\" names nothing the committed town holds."
       },
+      "outside_plat": null,
       "action": "street_only",
       "action_target": "lasalle",
       "match_tier": null,
@@ -8097,6 +8319,7 @@
         "via": null,
         "note": "The anchor is a reach of lake and names nothing narrower."
       },
+      "outside_plat": null,
       "action": "unplaceable",
       "action_target": null,
       "match_tier": null,
@@ -8132,6 +8355,7 @@
         "via": null,
         "note": "The anchor \"Dr. Temple's\" names nothing the committed town holds."
       },
+      "outside_plat": null,
       "action": "street_only",
       "action_target": "lake",
       "match_tier": null,
@@ -8165,6 +8389,7 @@
         "via": null,
         "note": "The anchor \"Newberry & Dole's store\" names nothing the committed town holds."
       },
+      "outside_plat": null,
       "action": "unplaceable",
       "action_target": null,
       "match_tier": null,
@@ -8200,6 +8425,7 @@
         "via": "business_newberry_dole",
         "note": "The landmark is another documented business (business_newberry_dole), which places this one exactly as well as that one is placed."
       },
+      "outside_plat": null,
       "action": "new_building",
       "action_target": "business_newberry_dole",
       "match_tier": null,
@@ -8235,6 +8461,7 @@
         "via": "business_newberry_dole",
         "note": "The landmark is another documented business (business_newberry_dole), which places this one exactly as well as that one is placed."
       },
+      "outside_plat": null,
       "action": "new_building",
       "action_target": "business_newberry_dole",
       "match_tier": null,
@@ -8273,11 +8500,12 @@
         "via": null,
         "note": "A crossing of two platted streets: clark and south_water."
       },
+      "outside_plat": null,
       "action": "enrich_existing",
       "action_target": "chicago_democrat_office",
       "match_tier": "occupants",
-      "match_evidence": "John Calhoun's Chicago Democrat printing office; and, on the reading argued here, W. Kimball's new dry-goods store",
-      "action_note": "chicago_democrat_office already stands and its occupants carries kimball — \"John Calhoun's Chicago Democrat printing office; and, on the reading argued here, W. Kimball's new dry-goods store\". The papers add trade, goods and dates to a record that exists."
+      "match_evidence": "John Calhoun's Chicago Democrat printing office; and; on the reading argued here; W. Kimball's new dry-goods store",
+      "action_note": "chicago_democrat_office already stands and its occupants carries kimball — \"John Calhoun's Chicago Democrat printing office; and; on the reading argued here; W. Kimball's new dry-goods store\". The papers add trade, goods and dates to a record that exists."
     },
     {
       "id": "business_w_kimball_s_new_store",
@@ -8311,11 +8539,12 @@
         "via": null,
         "note": "A crossing of two platted streets: clark and south_water."
       },
+      "outside_plat": null,
       "action": "enrich_existing",
       "action_target": "chicago_democrat_office",
       "match_tier": "occupants",
-      "match_evidence": "John Calhoun's Chicago Democrat printing office; and, on the reading argued here, W. Kimball's new dry-goods store",
-      "action_note": "chicago_democrat_office already stands and its occupants carries kimball — \"John Calhoun's Chicago Democrat printing office; and, on the reading argued here, W. Kimball's new dry-goods store\". The papers add trade, goods and dates to a record that exists."
+      "match_evidence": "John Calhoun's Chicago Democrat printing office; and; on the reading argued here; W. Kimball's new dry-goods store",
+      "action_note": "chicago_democrat_office already stands and its occupants carries kimball — \"John Calhoun's Chicago Democrat printing office; and; on the reading argued here; W. Kimball's new dry-goods store\". The papers add trade, goods and dates to a record that exists."
     },
     {
       "id": "business_w_montgomery",
@@ -8355,6 +8584,7 @@
         "via": null,
         "note": "The anchor \"David Carver's Old Stand\" names nothing the committed town holds."
       },
+      "outside_plat": null,
       "action": "street_only",
       "action_target": "south_water",
       "match_tier": null,
@@ -8399,6 +8629,7 @@
         "via": null,
         "note": "The anchor \"David Carver's old stand\" names nothing the committed town holds."
       },
+      "outside_plat": null,
       "action": "street_only",
       "action_target": "south_water",
       "match_tier": null,
@@ -8434,6 +8665,7 @@
         "via": null,
         "note": "The anchor \"P. Cohen's Store\" names nothing the committed town holds."
       },
+      "outside_plat": null,
       "action": "unplaceable",
       "action_target": null,
       "match_tier": null,
@@ -8469,6 +8701,7 @@
         "via": null,
         "note": "The paper gives no anchor."
       },
+      "outside_plat": null,
       "action": "unplaceable",
       "action_target": null,
       "match_tier": null,
@@ -8502,6 +8735,7 @@
         "via": null,
         "note": "The paper gives no anchor."
       },
+      "outside_plat": null,
       "action": "unplaceable",
       "action_target": null,
       "match_tier": null,
@@ -8537,6 +8771,7 @@
         "via": null,
         "note": "A corner of 'Lake' and 'Franklin streets at the corner of [Lake]', and the plat resolves both sides to ['franklin', 'lake']."
       },
+      "outside_plat": null,
       "action": "street_only",
       "action_target": "lake",
       "match_tier": null,
@@ -8581,6 +8816,7 @@
         "via": null,
         "note": "The landmark is the committed structure dearborn_street_drawbridge."
       },
+      "outside_plat": null,
       "action": "unplaceable",
       "action_target": null,
       "match_tier": null,
@@ -8616,6 +8852,7 @@
         "via": null,
         "note": "The anchor \"opposite Dr. Temple's\" names nothing the committed town holds."
       },
+      "outside_plat": null,
       "action": "street_only",
       "action_target": "lake",
       "match_tier": null,
@@ -8651,6 +8888,7 @@
         "via": "business_eagle_tavern",
         "note": "The landmark is another documented business (business_eagle_tavern), which places this one exactly as well as that one is placed."
       },
+      "outside_plat": null,
       "action": "new_building",
       "action_target": "business_eagle_tavern",
       "match_tier": null,
@@ -8686,6 +8924,7 @@
         "via": null,
         "note": "The anchor 'the Exchange' names nothing the committed town holds."
       },
+      "outside_plat": null,
       "action": "street_only",
       "action_target": "lake",
       "match_tier": null,
@@ -8721,6 +8960,7 @@
         "via": null,
         "note": "The anchor \"Messrs. Newberry & Dole's Store\" names nothing the committed town holds."
       },
+      "outside_plat": null,
       "action": "street_only",
       "action_target": "dearborn",
       "match_tier": null,
@@ -8765,6 +9005,7 @@
         "via": null,
         "note": "The anchor \"Newberry & Dole's Store\" names nothing the committed town holds."
       },
+      "outside_plat": null,
       "action": "street_only",
       "action_target": "dearborn",
       "match_tier": null,
@@ -8807,6 +9048,7 @@
         "via": null,
         "note": "The paper gives no anchor."
       },
+      "outside_plat": null,
       "action": "unplaceable",
       "action_target": null,
       "match_tier": null,
@@ -8842,6 +9084,7 @@
         "via": null,
         "note": "The anchor 'Commission Merc[hant]. N[ORT]H WATER [S]TREET Commission Mere NbeEM WATER ITREET,' names nothing the committed town holds."
       },
+      "outside_plat": null,
       "action": "street_only",
       "action_target": "north_water",
       "match_tier": null,
