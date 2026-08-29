@@ -38,7 +38,6 @@
 # ---     storefronts standing in the model, documented people replacing invented.
 T-0326 — Reading the Democrat, January to June 1835: the eight issues, now that their columns resolve
 T-0297 — Reading the Democrat, August 1835: the four issues after the scene date
-T-0323 — The 1 January 1834 letter list has a third printing that T-0318 did not know about, and it repairs the A-H half without page images
 T-0299 — Three printings of one letter list mint 298 people three times, and identity.json is empty
 T-0328 — D. Weaver's building is on Lot 2 in one printing and Lot 9 in the next, and both transcriptions are Vision-set
 T-0324 — J. K. Botsford advertises two addresses in one issue, and Graves' Tavern cannot be placed until they are reconciled
@@ -52,7 +51,7 @@ T-0283 — The North Division's warehouse row allows one freight roof and six do
 # --- NEWSPAPERS, WAITING ON THE PAGE IMAGES — each needs the owner's scans opened,
 # --- which live outside the repository. Workable the day the images are supplied;
 # --- until then a run should take something above instead.
-T-0318 — The January 1834 letter list is 97 names and the printed list was longer; the page images can close the gap
+T-0318 — The January 1834 letter list: the third printing repairs the A-H half, and the images are needed only for the rest
 T-0321 — The 1 April 1834 Chicago letter list is 179 names and nineteen lines of debris stand where more did
 T-0331 — The March 1834 letter list lost its date line and both its crops failed Vision; the page images can say which return it is
 T-0305 — Four readings the American contradicts itself on need the page images: the tailor's street, which Water street two forwarding houses stood in, and the corner of Cobb's saddlery
@@ -136,3 +135,4 @@ T-0338 — Thirty-one groups of firms share a partner surname and only one of th
 T-0340 — The bookseller's sign-name and its partners' firm-name are three gazetteer entries for one house
 T-0345 — Mason's blacksmith shop is anchored on Graves' Tavern until 16 July 1834 and on the Tremont House from 10 September, and the register holds both as standing placements
 T-0346 — Desktop smoke stage 4 no longer fits the ten-minute foreground ceiling, so no steward run can take the whole desktop gate
+T-0341 — A bare surname can never be joined to its forename: the family rule reads 'no initials' as 'different initials'
