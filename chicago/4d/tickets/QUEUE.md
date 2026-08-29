@@ -36,7 +36,6 @@
 # ---     reads surfaced;
 # --- (c) the register itself, then the VISIBLE seeding it unblocks — documented
 # ---     storefronts standing in the model, documented people replacing invented.
-T-0326 — Reading the Democrat, January to June 1835: the eight issues, now that their columns resolve
 T-0297 — Reading the Democrat, August 1835: the four issues after the scene date
 T-0328 — D. Weaver's building is on Lot 2 in one printing and Lot 9 in the next, and both transcriptions are Vision-set
 T-0324 — J. K. Botsford advertises two addresses in one issue, and Graves' Tavern cannot be placed until they are reconciled
