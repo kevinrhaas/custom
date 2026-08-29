@@ -99,7 +99,6 @@ T-0277 — The mid and forb rings' outer edges are re-priced for a density hando
 T-0279 — 2,526 of 18,911 drawn flower heads stand over open ground with no plant under their own stalk, on an unmodified dev
 T-0280 — The far band's grass-or-flower split is made on the forb lattice's CLAMPED share
 T-0283 — The North Division's warehouse row allows one freight roof and six documented ones stand above it
-T-0284 — Two slices of one batch claimed T-0256 and both built it — a claim is written where the next slice cannot see it
 T-0285 — An asset carrying its own AO map cannot batch with the town: +2 draw calls for one building
 T-0286 — The AO unwrap leaves 68.9 per cent of every atlas empty, and the map is priced as if it were full
 T-0301 — Every visible ticket at the top of the queue is parked on hold or in flight, and five straight invisible runs merged under it
