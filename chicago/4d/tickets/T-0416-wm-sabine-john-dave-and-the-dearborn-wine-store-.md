@@ -10,7 +10,7 @@ legacy_id: null
 parent: T-0387
 opened: 2026-08-29
 closed: null
-pr: null
+pr: 566
 claimed_by: run 8/29/2026, 4:23:56 PM CT
 blocked_on: Is a CORNER SIDE a face? May a documented shop take a reconstructed roof whose platted lot fronts a DIFFERENT street, because its gable end reaches the street its advertisement names? Costed with 'python3 tools/adopt_street_faces.py --what-if' and written up in docs/STREET-FACE-ADOPTION.md § The two widenings, COSTED. A yes seats +12 advertisements (19 -> 31) and puts twelve documented doors on a building whose front is on another street; a no leaves 24 waiting. NOTE, because it changes the ask: the widening does NOT seat this ticket's own three. Every roof it adds already fronts another street by its lot, so it adds no supply and only lets two faces deal one roof — Dearborn's 18 advertisements would compete for 8 roofs and the anonymous wine store is not among the 8 the evidence ranking serves; North Water has no corner side at all, so only a further widening to the 25 m centreline band reaches it, and that is one roof for Sabine AND John Dave. Closing these three needs the other remedy instead: a reconstruction that raises frontage on Dearborn and North Water (T-0375's neighbourhood), which costs this policy nothing because the pass re-derives.
 needs_bake: false
