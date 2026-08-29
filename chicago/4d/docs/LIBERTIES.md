@@ -9339,15 +9339,40 @@ which is the one thing this pass must not do. The five persons' `name_basis` blo
 kept, because an invented name is not held beside a documented one; the other 108 keep theirs.
 
 **The refusal that shapes it, and it refuses far more than it takes.** A candidate the papers
-place SOMEWHERE IN PARTICULAR — at a street, at a named house, or outside the town — is refused.
-J. K. Botsford advertised at the corner of Dearborn and Lake, Bernardus Laughton kept a house on
-the Aux Plaines, D. Graves baked on South Water Street: putting any of them on whichever
-reconstructed roof this deal happened to reach would contradict their own records. They belong
-to the placement tickets (T-0263, T-0306), which stand them where the paper stands them. The
-men this pass takes are the ones the papers place NOWHERE, for whom a reconstructed dwelling is
-not a contradiction but the honest answer to a question no source answers. Sixty-six candidates
-were refused and five accepted; `python3 tools/replace_invented_residents.py --report` prints
-every refusal with its reason, so the ratio is auditable rather than asserted.
+place SOMEWHERE IN PARTICULAR — at a street, at a named house, or outside the town — was refused
+outright until 2026-08-29, on the reasoning that putting any of them on whichever reconstructed
+roof this deal happened to reach would contradict their own records. The men this pass takes are
+otherwise the ones the papers place NOWHERE, for whom a reconstructed dwelling is not a
+contradiction but the honest answer to a question no source answers. Sixty-six candidates were
+refused and five accepted; `python3 tools/replace_invented_residents.py --report` prints every
+refusal with its reason, so the ratio is auditable rather than asserted.
+
+**AND THE PLACED MEN ARE NOW ASKED A NARROWER QUESTION (T-0367, 2026-08-29).** A blanket refusal
+was the only answer available while nothing could ask a reconstructed roof which street it stood
+on: the street a roof addressed lived in the prose of a placement note, which is a sentence a
+generator wrote and not a measurement. `tools/fronting_street.py` derives it from the committed
+geometry instead — a roof fronts the street its facade bearing looks into, within 45 m, and the
+corridors are the surveyed centrelines offset by the 80 ft town module. So the deal now offers a
+placed man exactly the roofs of his trade that stand on the street HIS OWN printings name, and
+refuses him where none does, saying which street was wanted and what stands there instead. Three
+rules bound it, and none of them is a courtesy: his own record only — a firm advertising as
+'Pierce and Abbott' at Canal and Lake is not Titus H. Abbott's record, and a doubt that is enough
+to refuse a man is not enough to place him; a man whose SHOP the storefront tickets can already
+place is offered a dwelling and never the trade's invented shop, which would be two shops for one
+man; and `already named in the town` still outranks a match, because a printed street does not
+make a second John T. Temple safe.
+
+**What that bought on the day it landed: nothing, and the nothing is the finding.** Of the
+twenty-six candidates the papers place somewhere in particular, eight are printed at a place that
+is not a street (Fort Dearborn, the Eagle Tavern, a house on the Aux Plaines), three were being
+refused for a reason that had nothing to do with placement and that the old refusal stood in
+front of, and the remaining fifteen are on South Water Street, Dearborn Street or Lake Street —
+where **this reconstruction stood no invented roof of their trades at all**. The invented bakery,
+bootmaker's shop, tailor's shop and butcher's market are all on Lake Street; the joiners' and the
+physician's dwellings front no committed street. So the deal seats none of them, and the report
+says so in those terms rather than reporting a bare count. Whether a roof of an advertised trade
+may be MOVED or ADDED onto South Water or Dearborn so that these men can be seated is a decision
+about the town's arrangement and is the owner's; T-0367 is blocked on it.
 
 **A survival bound, stated:** four of the five are last printed in 1834 and the scene date is
 1 July 1835. Their presence on that day is assumed and not documented, on the same reasoning the
@@ -9368,5 +9393,5 @@ under any of these five with an address, at which point the person's grade rises
 and this liberty's fifth paragraph is what has been discharged.
 
 Related: **L1** (no figure is drawn for any resident) · tickets **T-0264** (this), **T-0262**,
-**T-0263**, **T-0306**.
-**Recorded:** 2026-08-29.
+**T-0263**, **T-0306**, **T-0367** (the street rule), **T-0305** (which Water street).
+**Recorded:** 2026-08-29. **Extended:** 2026-08-29 (T-0367).

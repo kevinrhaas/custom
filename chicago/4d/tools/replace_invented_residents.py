@@ -95,6 +95,10 @@ import re
 import sys
 
 ROOT = pathlib.Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(ROOT / "tools"))
+
+import fronting_street  # noqa: E402  (after the path insert, as plat_corridors does)
+
 DATA = ROOT / "data"
 HOUSEHOLDS = DATA / "residents" / "households"
 INDEX = DATA / "residents" / "index.json"
@@ -112,6 +116,10 @@ PREFIX = "hh_inf_"
 # ruling, 2026-08-28) in its own `repository` and `rights_note`.
 PAPERS = (("chicago_democrat_", "chicago_democrat_1833_1835"),
           ("chicago_american_", "chicago_american_1835"))
+
+# The two roofs a reconstructed household stands on, and the word each one is
+# called by in a refusal or a note. An advertised address is about the second.
+ROLES = {"works_at": "shop", "lives_at": "dwelling"}
 
 TITLES = {"dr", "mr", "mrs", "jr", "sr", "esq", "capt", "col", "maj", "rev", "messrs"}
 FIRM = re.compile(r"&| and |\bco\b|\bcompany\b", re.I)
@@ -239,12 +247,42 @@ def invented_roofs(docs: dict) -> dict:
 # the deal
 # ---------------------------------------------------------------------------
 
+def household_fronts(docs: dict) -> dict:
+    """Which committed street each invented household's two roofs FRONT.
+
+    T-0367. `tools/fronting_street.py` asks the geometry: a roof fronts the street
+    its facade bearing looks into, within the reach that module states. It is read
+    here for one reason — a documented man the papers put on a named street can only
+    take a reconstructed household that stands on THAT street, and until this pass
+    could ask, every one of them was refused.
+
+    BOTH ROOFS, not the dwelling alone. What the papers print is an ADDRESS OF
+    BUSINESS: Montgomery made boots on South Water, Botsford's store was at the
+    corner of Dearborn and Lake. A household carries a `works_at` as well as a
+    `lives_at`, and it is the workplace that such a line is about. Requiring the
+    dwelling to be the match would refuse a man whose shop the reconstruction had
+    already put on his own street, which is the opposite of this ticket.
+
+    The answer is not evidence about either roof. Where they stand is the
+    reconstruction's arrangement and stays conjectural; what the question buys is
+    that the arrangement can now be HONOURED rather than contradicted.
+    """
+    roofs = [r for rs in invented_roofs(docs).values() for r in rs]
+    wanted = sorted({(doc.get(role) or {}).get("value")
+                     for _path, doc, _person in roofs for role in ROLES
+                     if (doc.get(role) or {}).get("value")})
+    return {sid: (front or {}).get("street")
+            for sid, front in fronting_street.table(ids=wanted).items()}
+
+
 def deal(docs: dict):
     """Pair documented candidates with invented roofs. Returns (pairs, refusals)."""
     register = load(REGISTER)
     gazetteer = {p["id"]: p for p in load(GAZETTEER)["persons"]}
     known = town_surnames()
     roofs = invented_roofs(docs)
+    lanes = fronting_street.streets()
+    fronts = household_fronts(docs)
 
     pairs, refusals = [], []
     # One surname, one roof, ACROSS the whole deal and not merely within a trade:
@@ -277,7 +315,8 @@ def deal(docs: dict):
         # the Eagle Tavern; they are one publican, and dealing the first onto a
         # reconstructed roof in the North Division while the second stands in a
         # named house on Lake Street would be two answers to one question. So the
-        # placements are collected per SURNAME first and refuse every form of it.
+        # placements are collected per SURNAME first and every form of the name
+        # is held to them.
         spoken_for: dict[str, str] = {}
         for biz in register["businesses"]:
             if biz.get("action") not in ("enrich_existing", "new_building", "street_only"):
@@ -286,20 +325,35 @@ def deal(docs: dict):
                 spoken_for.setdefault(word.lower(),
                                       f"{biz['name']}, {biz['action']}")
 
-        placed: dict[str, str] = {}
+        placed: dict[str, list[str]] = {}
         for other in candidates:
             where = [p for p in (gazetteer[other["id"]].get("associated_places") or [])
                      if p.strip().lower() not in BARE_TOWN]
             key = surname(other["name"])
-            if key and where and key not in placed:
-                placed[key] = "; ".join(where)
+            if key and where:
+                for place in where:
+                    if place not in placed.setdefault(key, []):
+                        placed[key].append(place)
 
-        accepted = []
+        # THE ROOFS OF THIS TRADE, AND THE STREET EACH OF THEM STANDS ON. The
+        # street is the roof's own geometry (see `dwelling_fronts`); a roof that
+        # fronts no committed street — the north-division clusters are most of
+        # them — can still take a man the papers place nowhere, and can never
+        # take one they place somewhere.
+        free = list(roofs[trade])
+        roof_street = {id(roof): {role: fronts.get((roof[1].get(role) or {}).get("value"))
+                                  for role in ROLES}
+                       for roof in free}
+        stood = sorted({lanes[s]["name"] for r in free
+                        for s in roof_street[id(r)].values() if s})
+
+        settled, hopefuls = [], []
         for cand in candidates:
             name, gaz = cand["name"], gazetteer[cand["id"]]
-            places = [p for p in (gaz.get("associated_places") or [])
-                      if p.strip().lower() not in BARE_TOWN]
             sur = surname(name)
+            own = [pl for pl in (gaz.get("associated_places") or [])
+                   if pl.strip().lower() not in BARE_TOWN]
+            kin = [pl for pl in placed.get(sur, []) if pl not in own]
             reason = None
             if UNCERTAIN.search(name):
                 reason = "garbled"
@@ -307,30 +361,143 @@ def deal(docs: dict):
                 reason = "a firm, not a person"
             elif cand["first_seen"] > SCENE_DATE:
                 reason = "first evidence after the scene date"
-            elif places:
-                reason = f"placed somewhere in particular ({'; '.join(places)})"
             elif not sur:
                 reason = "no surname the corpus prints"
-            elif sur in placed:
-                reason = (f"another printing of this surname is placed somewhere in "
-                          f"particular ({placed[sur]})")
-            elif sur in spoken_for:
-                reason = (f"spoken for by a placeable business "
-                          f"({spoken_for[sur]})")
-            elif sur in known:
-                reason = f"already named in the town ({sur})"
-            elif sur in taken:
-                reason = "surname already dealt"
             if reason:
-                refusals.append((trade, cand["id"], name, reason))
+                refusals.append((trade, cand["id"], name, reason, "person"))
+                continue
+            if own:
+                hopefuls.append((cand, gaz, own))
+            elif kin:
+                # HIS OWN PRINTINGS SAY NOTHING, AND ANOTHER OF HIS SURNAME DOES.
+                # The street rule below is only ever run on a man's OWN record,
+                # which is what the ticket asks and what the evidence supports: a
+                # firm advertising as 'Pierce and Abbott' at Canal and Lake is not
+                # Titus H. Abbott's record, and using it to choose his roof would
+                # place a man on the strength of a shared surname. It is still
+                # enough to REFUSE him — the asymmetry is deliberate, and it is
+                # the same one everywhere in this pass: a doubt costs a roof, it
+                # never buys one.
+                refusals.append((trade, cand["id"], name,
+                                 f"another printing of this surname is placed somewhere "
+                                 f"in particular ({'; '.join(kin)}), and his own "
+                                 f"printings name no street a roof could be matched to",
+                                 "person"))
+            else:
+                settled.append((cand, gaz))
+
+        # THE PLACED MEN GO FIRST, and it is not a courtesy. A man the papers put
+        # on a street can take exactly the roofs of his trade that stand on it —
+        # often one, frequently none — while a man they place nowhere can take
+        # any of them. Dealing the unconstrained half first would let it spend
+        # the one roof the constrained half could have used, and the deal would
+        # refuse a documented address to keep an arbitrary pairing.
+        #
+        # THEY ARE ALSO NOT ASKED WHETHER A BUSINESS SPEAKS FOR THEM. That
+        # refusal (`spoken_for`, below) exists because a man cannot be given a
+        # reconstructed dwelling in one division while the storefront tickets
+        # stand his shop in another — the objection is the CONTRADICTION, not the
+        # shop. Seating him on his own printed street is the thing that removes
+        # it: T-0263 and T-0306 will stand Botsford's store at Dearborn and Lake,
+        # and a Lake Street roof is where a Lake Street grocer belongs. What the
+        # street rule may never do is seat him ANYWHERE ELSE, and it does not.
+        for cand, gaz, own in hopefuls:
+            sur = surname(cand["name"])
+            wanted, unreadable = [], []
+            for place in own:
+                ids, unknown = fronting_street.named_streets(place, lanes)
+                wanted += [s for s in ids if s not in wanted]
+                unreadable += [u for u in unknown if u not in unreadable]
+            printed = "; ".join(own)
+            if not wanted:
+                extra = (f"; '{unreadable[0]} street' is printed here and the town had "
+                         f"two of them, so the phrase does not say which (T-0305)"
+                         if unreadable else "")
+                refusals.append((trade, cand["id"], cand["name"],
+                                 f"placed somewhere in particular ({printed}) and no "
+                                 f"committed street of this town is named in it{extra}",
+                                 "no_street"))
+                continue
+            names = ", ".join(lanes[s]["name"] for s in wanted)
+            # A MAN WHOSE SHOP IS ALREADY SPOKEN FOR DOES NOT ALSO GET THE TRADE'S
+            # INVENTED SHOP. The register carries a business under his surname that
+            # T-0263/T-0306 can place, so standing him behind the reconstruction's
+            # own shop of that trade would give one man two shops on one street. A
+            # DWELLING is different and stays open to him: he has only one of those,
+            # nothing else in this project is standing it, and a roof on the street
+            # he advertised from agrees with his shop instead of duplicating it.
+            usable = [r for r in ROLES
+                      if not (r == "works_at" and sur in spoken_for)]
+            match, role = None, None
+            for roof in free:
+                hit = next((r for r in usable if roof_street[id(roof)][r] in wanted), None)
+                if hit:
+                    match, role = roof, hit
+                    break
+            if match is None:
+                shopless = ("; his own shop is spoken for by a placeable business "
+                            f"({spoken_for[sur]}), so only a dwelling was open to him"
+                            if sur in spoken_for else "")
+                stands = (f"the dwellings and shops of the {len(free)} invented "
+                          f"{trade.replace('_', ' ')} household(s) still free front "
+                          f"{', '.join(stood)}" if stood else
+                          f"neither the dwellings nor the shops of the invented "
+                          f"{trade.replace('_', ' ')} household(s) front a committed "
+                          f"street at all")
+                refusals.append((trade, cand["id"], cand["name"],
+                                 f"his record puts him on {names} ({printed}) and no "
+                                 f"invented roof of this trade stands there — "
+                                 f"{stands}{shopless}", "no_roof"))
+                continue
+            # A ROOF ON HIS STREET IS FREE, AND THESE TWO STILL OUTRANK IT. The
+            # street answers WHERE; neither of these is a question about where.
+            if sur in known:
+                refusals.append((trade, cand["id"], cand["name"],
+                                 f"already named in the town ({sur}) — a roof of his "
+                                 f"trade does front {names}, but this dataset has that "
+                                 f"name open somewhere else and the placement tickets "
+                                 f"own it", "masked"))
+                continue
+            if sur in taken:
+                refusals.append((trade, cand["id"], cand["name"],
+                                 "surname already dealt", "masked"))
+                continue
+            free.remove(match)
+            taken.add(sur)
+            pairs.append((match, cand, gaz, trade,
+                          {"street": lanes[roof_street[id(match)][role]]["name"],
+                           "roof": ROLES[role], "printed": printed,
+                           "wanted": [lanes[s]["name"] for s in wanted]}))
+
+        for cand, gaz in settled:
+            sur = surname(cand["name"])
+            if sur in spoken_for:
+                # The register carries a BUSINESS under this surname that it can
+                # put somewhere, and nothing in this man's own printings says
+                # where he was — so any roof this deal reached for could be in
+                # the wrong division from his own shop. The placed half above is
+                # the case where the papers answer that; this is the case where
+                # they do not.
+                refusals.append((trade, cand["id"], cand["name"],
+                                 f"spoken for by a placeable business "
+                                 f"({spoken_for[sur]}) and placed nowhere this deal "
+                                 f"could match it to", "person"))
+                continue
+            if sur in known:
+                refusals.append((trade, cand["id"], cand["name"],
+                                 f"already named in the town ({sur})", "person"))
+                continue
+            if sur in taken:
+                refusals.append((trade, cand["id"], cand["name"],
+                                 "surname already dealt", "person"))
+                continue
+            if not free:
+                refusals.append((trade, cand["id"], cand["name"],
+                                 "no invented roof of this trade left to take",
+                                 "person"))
                 continue
             taken.add(sur)
-            accepted.append((cand, gaz))
-        for (cand, gaz), roof in zip(accepted, roofs[trade]):
-            pairs.append((roof, cand, gaz, trade))
-        for cand, _gaz in accepted[len(roofs[trade]):]:
-            refusals.append((trade, cand["id"], cand["name"],
-                             "no invented roof of this trade left to take"))
+            pairs.append((free.pop(0), cand, gaz, trade, None))
     return pairs, refusals
 
 
@@ -338,7 +505,8 @@ def deal(docs: dict):
 # the records
 # ---------------------------------------------------------------------------
 
-def rewrite(doc: dict, person: dict, cand: dict, gaz: dict, trade: str) -> None:
+def rewrite(doc: dict, person: dict, cand: dict, gaz: dict, trade: str,
+            placement: dict | None = None) -> None:
     name = display(cand["name"])
     sources = paper_for(gaz["mentions"])
     cited = "; ".join(issue_of(c) for c in gaz["mentions"][:6])
@@ -370,10 +538,27 @@ def rewrite(doc: dict, person: dict, cand: dict, gaz: dict, trade: str) -> None:
         f"The invented name this record used to carry, and its name_basis block, "
         f"are retired: an invented name is not kept beside a documented one. "
         f"No figure is drawn (docs/LIBERTIES.md L1); the placement is L205. "
-        f"He is placed nowhere in particular by his own record, which is the "
-        f"condition of taking a reconstructed roof at all — a man the papers put "
-        f"on a named street belongs to the placement tickets, not to this pass. "
-        f"READ THROUGH A TRANSCRIPTION, not a scan: the owner's ruling of "
+        + (
+            f"HIS OWN RECORD NAMES THE STREET, AND THE ROOF IS ON IT. The corpus "
+            f"places him at {placement['printed']}, so he could take no roof of "
+            f"this trade but one standing on "
+            f"{' or '.join(placement['wanted'])}; the dwelling he now heads "
+            f"fronts {placement['street']}, which is why it and not another of "
+            f"the trade's roofs. WHICH STREET A RECONSTRUCTED ROOF FRONTS IS "
+            f"THIS PROJECT'S ARRANGEMENT AND NOT EVIDENCE ABOUT THE BUILDING: it "
+            f"is derived from the roof's committed facade bearing and footprint "
+            f"by tools/fronting_street.py, not read out of a note, and it is used "
+            f"here only to keep the deal from contradicting the advertisement. "
+            f"Nothing claims this is the house he advertised from, or a house at "
+            f"all; what is claimed is that a man printed on this street is not "
+            f"housed off it. "
+            if placement else
+            f"He is placed nowhere in particular by his own record, which is one "
+            f"way to take a reconstructed roof — the other is to be placed on a "
+            f"street a roof of his trade already fronts (T-0367), and this "
+            f"record is not that case. "
+        )
+        + f"READ THROUGH A TRANSCRIPTION, not a scan: the owner's ruling of "
         f"2026-08-28 grades a transcription-mediated reading as documented, and "
         f"the source record for the run states that standard and its limits. A "
         f"scan read that confirms or corrects the name upgrades this entry."
@@ -420,14 +605,31 @@ def rewrite(doc: dict, person: dict, cand: dict, gaz: dict, trade: str) -> None:
             f"{cand['last_seen']}."),
         "precision": "not_later_than",
     }
+    if placement:
+        lives = doc.get("lives_at") or {}
+        lives["note"] = (lives.get("note", "").rstrip() + " WHY THIS ROOF AND NOT "
+                         f"ANOTHER OF THE TRADE'S (T-0367): the papers place "
+                         f"{name} at {placement['printed']}, and of this trade's "
+                         f"invented roofs this is one that fronts "
+                         f"{placement['street']} — derived from the roof's own "
+                         f"facade bearing and footprint by tools/fronting_street.py. "
+                         f"The choice is between roofs this project had already "
+                         f"placed; it moved nothing and it is not a claim that he "
+                         f"lived here.")
+        doc["lives_at"] = lives
     doc["research_note"] = (
         doc.get("research_note", "").rstrip()
         + f"\n\nRETIRED AN INVENTED NAME (T-0264). This household was raised by "
         f"the occupation census and named from the invented-name pools. The "
         f"newspaper register matched it to {name}, a documented "
         f"{trade.replace('_', ' ')} the corpus names {len(gaz['mentions'])} "
-        f"time(s) and places nowhere in particular, and he now holds the roof. "
-        f"What changed is WHO: the argument for the household, its dwelling and "
+        + (f"time(s) and places at {placement['printed']}; of this trade's "
+           f"invented roofs, this one fronts {placement['street']}, so seating "
+           f"him here honours the printed address instead of contradicting it "
+           f"(T-0367). He now holds the roof. "
+           if placement else
+           f"time(s) and places nowhere in particular, and he now holds the roof. ")
+        + f"What changed is WHO: the argument for the household, its dwelling and "
         f"its position are untouched and still the reconstruction's, and the "
         f"person's grade is `inferred` — a real man with reconstructed details — "
         f"rather than `attested`, which would claim the dwelling too. "
@@ -447,8 +649,8 @@ def build(preload: dict | None = None):
 
     pairs, refusals = deal(house_docs)
     files = {}
-    for (path, doc, person), cand, gaz, trade in pairs:
-        rewrite(doc, person, cand, gaz, trade)
+    for (path, doc, person), cand, gaz, trade, placement in pairs:
+        rewrite(doc, person, cand, gaz, trade, placement)
         files[path] = dumps(doc, 1)
 
     # The manifest's denormalised copies, which validate.py holds equal to the
@@ -456,7 +658,7 @@ def build(preload: dict | None = None):
     # rows are written by the household programme with a hardcoded
     # {"reconstructed": n} that this pass has just made untrue.
     index = json.loads(index_text) if index_text is not None else load(INDEX)
-    changed = {doc["id"]: doc for (_p, doc, _pn), *_ in pairs}
+    changed = {doc["id"]: doc for (_p, doc, _pn), *_rest in pairs}
     for row in index["households"]:
         doc = changed.get(row["id"])
         if not doc:
@@ -488,14 +690,45 @@ def overlay(files: dict) -> dict:
     return out
 
 
-def report(pairs, refusals) -> None:
-    print(f"THE DEAL — {len(pairs)} invented name(s) retired")
-    for (_path, doc, person), cand, gaz, trade in pairs:
+def report(pairs, refusals, invented: int | None = None) -> None:
+    seated = [p for p in pairs if p[4]]
+    print(f"THE DEAL — {len(pairs)} invented name(s) retired, {len(seated)} of them "
+          f"on the street the man's own record names")
+    for (_path, doc, person), cand, gaz, trade, placement in pairs:
+        where = (f"  <- {placement['printed']} -> fronts {placement['street']}"
+                 if placement else "")
         print(f"  {doc['id']:34s} {trade:14s} -> {person['name']:24s} "
               f"({cand['id']}, {len(gaz['mentions'])} mention(s), "
-              f"{cand['first_seen']}..{cand['last_seen']})")
+              f"{cand['first_seen']}..{cand['last_seen']}){where}")
+    if invented is not None:
+        print(f"\n  INVENTED HEAD NAMES — {invented} before this pass, "
+              f"{invented - len(pairs)} after")
+    # THE PLACEMENT REFUSALS, BEFORE AND AFTER (T-0367's fourth acceptance clause).
+    # "Before" is not a remembered number. Every candidate below whose kind is not
+    # `person` is one the papers put somewhere in particular, and before this pass
+    # could read a place, being placed was the WHOLE of the refusal for all of them.
+    # So the two counts are one population read twice, and the fourth kind is the
+    # finding: for some of these men the placement refusal was standing in front of
+    # a refusal that has nothing to do with where they were.
+    kinds = {kind: [r for r in refusals if r[4] == kind]
+             for kind in ("no_roof", "no_street", "masked")}
+    placed = len(seated) + sum(len(v) for v in kinds.values())
+    print(f"\n  THE PLACED MEN — the papers put {placed} candidate(s) somewhere in "
+          f"particular, and before T-0367 the deal could not read a place, so being "
+          f"placed was the whole of the refusal for every one of them. Now:")
+    print(f"      {len(seated):3d}  seated on a roof of their own trade fronting "
+          f"their own street")
+    print(f"      {len(kinds['no_roof']):3d}  refused because no invented roof of "
+          f"their trade stands on the street their record names")
+    print(f"      {len(kinds['no_street']):3d}  refused because the phrase names no "
+          f"committed street of this town")
+    print(f"      {len(kinds['masked']):3d}  refused for a reason that is not about "
+          f"placement at all, which the old refusal was standing in front of")
+    print(f"  The placement refusals therefore fall from {placed} to "
+          f"{len(kinds['no_roof']) + len(kinds['no_street'])}, and the deal seats "
+          f"{len(seated)}.")
     print(f"\nREFUSED — {len(refusals)} candidate(s), with the reason")
-    for trade, cid, name, reason in refusals:
+    for trade, cid, name, reason, _kind in refusals:
         print(f"  {trade:14s} {name[:34]:36s} {reason}")
 
 
@@ -524,6 +757,13 @@ def pipeline_input() -> dict:
             if p.name.startswith("hh_") or p == INDEX}
 
 
+def _invented_count() -> int:
+    """How many household heads carry an invented name BEFORE this pass runs."""
+    files = pipeline_input()
+    docs = {p: json.loads(text) for p, text in files.items() if p.name.startswith("hh_")}
+    return sum(len(rs) for rs in invented_roofs(docs).values())
+
+
 def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--check", action="store_true",
@@ -534,7 +774,7 @@ def main() -> int:
 
     files, pairs, refusals = build(preload=pipeline_input())
     if args.report:
-        report(pairs, refusals)
+        report(pairs, refusals, invented=_invented_count())
         return 0
     if args.check:
         drift = [p for p, text in files.items()

@@ -1,7 +1,7 @@
 ---
 id: T-0367
 title: The documented tradesmen the papers DO place need roofs on their own street, and the deal has no way to ask
-state: open
+state: blocked-owner
 epic: PAPERS
 requested_by: owner
 seen: false
@@ -11,8 +11,8 @@ parent: T-0264
 opened: 2026-08-29
 closed: null
 pr: null
-claimed_by: null
-blocked_on: null
+claimed_by: run 8/29/2026, 4:41:51 AM CT
+blocked_on: The ask is built and merged: tools/fronting_street.py derives which committed street a roof fronts from its facade bearing and footprint, and the deal now offers a placed man only the roofs of his trade on the street his own printings name, refusing him with which street was wanted and what stands there instead. Put to the 26 placed candidates it seats NONE: 8 are printed at a place that is not a street, 3 were being refused for a non-placement reason the old refusal hid, and the remaining 15 are on South Water, Dearborn or Lake, where this reconstruction stood no invented roof of their trades at all (the invented bakery, bootmaker, tailor and butcher are all on Lake). YOUR CALL: may a roof of an advertised trade be MOVED or ADDED onto South Water or Dearborn so these men can be seated, or does the seating simply wait until T-0263/T-0306 stand the documented storefronts there? See tools/replace_invented_residents.py --report and docs/LIBERTIES.md L205.
 needs_bake: false
 ---
 
