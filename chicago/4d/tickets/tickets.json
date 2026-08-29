@@ -1,6 +1,6 @@
 {
   "project": "chicago-4d",
-  "generated_ct": "Aug 29, 2026, 2:12 PM",
+  "generated_ct": "Aug 29, 2026, 2:32 PM",
   "tickets": [
     {
       "id": "T-0001",
@@ -6140,7 +6140,7 @@
     {
       "id": "T-0375",
       "title": "Every reconstructed roof on South Water Street is a labourer's, so five documented tradesmen the papers put there have nowhere to stand",
-      "state": "open",
+      "state": "claimed",
       "epic": "META",
       "requested_by": "loop",
       "seen": false,
@@ -6150,7 +6150,7 @@
       "opened": "2026-08-29",
       "closed": null,
       "pr": null,
-      "claimed_by": null,
+      "claimed_by": "run 8/29/2026, 2:32:19 PM CT",
       "blocked_on": null,
       "needs_bake": false,
       "queue_rank": 9
