@@ -9,11 +9,66 @@
 //
 // Run before merging whenever renderers/web/js/changelog.js changed. Nothing
 // stamps later in the pipeline — tools/publish.sh only copies the file to the
-// public URL the fleet parses, it never edits it.
+// public URLs the fleet parses, it never edits it.
 import { readFile, writeFile } from 'node:fs/promises';
+import { existsSync, readFileSync, writeFileSync } from 'node:fs';
+import path from 'node:path';
 
 const FILE = new URL('../renderers/web/js/changelog.js', import.meta.url);
+const ROOT = path.resolve(path.dirname(new URL(import.meta.url).pathname), '..');
+const SOURCE = path.join(ROOT, 'renderers/web/js/changelog.js');
 const nowIso = new Date().toISOString();
+
+/**
+ * THE PUBLISHED MIRRORS OF changelog.js — T-0155, the latent sibling of T-0154.
+ *
+ * The changelog is authored inside the app and published to TWO paths that
+ * `tools/check_published.mjs` compares byte for byte: `js/changelog.js` (the
+ * fleet-parsed contract URL Manager and the launcher fetch) and
+ * `walk/js/changelog.js` (inside the copied renderer tree, which the What's-new
+ * tab imports). This script REWRITES the source. So a run that stamps AFTER
+ * `tools/publish.sh` — which nothing in AGENTS.md forbids, and which the
+ * documented order for a bake or a late edit actually produces — lands in
+ * exactly the state T-0154 fixed for tickets.json: the gate red, and the only
+ * remedy a remembered second publish.
+ *
+ * So the writer of the file maintains its mirrors, on the same deliberately
+ * narrow terms as T-0154's:
+ *  - it copies ONLY when this tool actually changed the source bytes. A mirror
+ *    somebody else made stale must still fail the gate, and a blanket refresh on
+ *    every invocation would quietly launder exactly that.
+ *  - it never creates a mirror directory. An unpublished checkout stays
+ *    unpublished; `publish.sh` is what decides a mirror exists.
+ *  - `tools/test_changelog_mirror.mjs` pins the two copy lines in publish.sh, so
+ *    this list and that script cannot drift into two disagreeing copies of one
+ *    fact.
+ */
+const MIRRORS = [
+  path.resolve(ROOT, '../../site/chicago/4d/js/changelog.js'),
+  path.resolve(ROOT, '../../site/chicago/4d/walk/js/changelog.js'),
+];
+/** The lines in publish.sh these mirrors are the twins of. The test pins them. */
+export const PUBLISH_PINS = [
+  'cp -f renderers/web/js/changelog.js "$SITE/js/changelog.js"',
+  'cp -a renderers/web "$SITE/walk"',
+];
+
+/**
+ * Carry the changelog to the published paths publish.sh copies it to. Only the
+ * ones that already exist, and only when the caller says the source moved.
+ * Returns the paths it wrote, so the caller can say so.
+ */
+function mirrorChangelog() {
+  const src = readFileSync(SOURCE);
+  const wrote = [];
+  for (const dest of MIRRORS) {
+    if (!existsSync(path.dirname(dest))) continue;   // never published: leave it that way
+    if (existsSync(dest) && readFileSync(dest).equals(src)) continue;
+    writeFileSync(dest, src);
+    wrote.push(path.relative(path.resolve(ROOT, '../..'), dest));
+  }
+  return wrote;
+}
 
 function ctAlias(iso){
   const d = new Date(iso);
@@ -23,6 +78,7 @@ function ctAlias(iso){
 }
 
 let src = await readFile(FILE, 'utf8');
+const before = src;
 
 // 1) Fill the first empty ts (newest entry sits at the top of the array).
 let stamped = false;
@@ -79,3 +135,11 @@ src = src.replace(/ts:\s*'([^']*)'(?!\s*,\s*date:)/g,
 
 await writeFile(FILE, src);
 console.log(stamped ? `Stamped newest changelog entry: ${nowIso}` : 'No empty changelog timestamp to stamp; dates refreshed.');
+
+// T-0155: this tool is the WRITER of changelog.js, so it carries the file to the
+// two published paths publish.sh copies it to. Only on a real rewrite — see
+// MIRRORS' note on why a blanket refresh would weaken check_published.
+if (src !== before) {
+  const wrote = mirrorChangelog();
+  for (const w of wrote) console.log(`   changelog.js mirrored to ${w} (T-0155)`);
+}
