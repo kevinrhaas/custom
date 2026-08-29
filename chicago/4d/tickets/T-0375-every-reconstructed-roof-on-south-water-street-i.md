@@ -1,7 +1,7 @@
 ---
 id: T-0375
 title: Every reconstructed roof on South Water Street is a labourer's, so five documented tradesmen the papers put there have nowhere to stand
-state: claimed
+state: done
 epic: META
 requested_by: loop
 seen: false
@@ -9,8 +9,8 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-08-29
-closed: null
-pr: null
+closed: 2026-08-29
+pr: 560
 claimed_by: run 8/29/2026, 2:32:19 PM CT
 blocked_on: null
 needs_bake: false
