@@ -170,3 +170,4 @@ T-0406 — 'the Tremont House' resolves to nothing, because the committed record
 T-0403 — The Democrat's office keeps its 1834 corner through a merge, and the paper moved along South Water Street before the scene date
 T-0404 — 33 documented businesses will stand on a backdating liberty and LIBERTIES.md carries none of them
 T-0405 — Adding one signboard repaints every board alphabetically after it, and some lose a line
+T-0409 — A change can land on dev with no changelog entry, and one did today

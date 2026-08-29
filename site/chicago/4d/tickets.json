@@ -1,6 +1,6 @@
 {
   "project": "chicago-4d",
-  "generated_ct": "Aug 29, 2026, 1:49 PM",
+  "generated_ct": "Aug 29, 2026, 2:12 PM",
   "tickets": [
     {
       "id": "T-0001",
@@ -6676,6 +6676,24 @@
       "blocked_on": null,
       "needs_bake": false,
       "queue_rank": 70
+    },
+    {
+      "id": "T-0409",
+      "title": "A change can land on dev with no changelog entry, and one did today",
+      "state": "open",
+      "epic": "META",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "M",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-08-29",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "queue_rank": 75
     }
   ]
 }

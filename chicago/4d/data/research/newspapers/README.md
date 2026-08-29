@@ -384,6 +384,40 @@ the union of mentions, proprietors, goods and copy dates, the wider issue window
 more specific placement, and every trade either side printed in `trade_variants` — it can
 widen a record and it cannot narrow one.
 
+**A pair judged NOT one house is a record too** (T-0399). `firm_surnames()` groups the
+register on the partner surname alone, so it puts together houses that are not one house
+— the two Montgomerys, a namesake, an anchor mistaken for a partner. Until this ticket the
+only record of having judged such a group was the ABSENCE of a merge rule, which reads
+exactly like a group nobody has looked at yet: the next sweep finds the group again, does
+the work again, and the argument for keeping the pair apart — the thing that stops a wrong
+merge on the second pass — is the part that was never written down.
+`refused_firm_merges` is that argument, declared as explicitly as a merge and held to the
+same disciplines. `refused_because` names BOTH styles verbatim; `witnesses` names the
+printings the refusal rests on, because a refusal rests on printings exactly as a merge
+does; `kind` is one of three, because *not shown to be one* is a different finding from
+*shown to be two* — `two_houses` (the papers show two houses under one surname),
+`not_joined` (one name, and no printing puts the two styles under one roof), and
+`different_ground` (one house, and the papers put the two styles in different places: a
+removal or a succession, which is a claim and not a merge). And a refusal **cannot outlive
+its pair**: if a later merge collapses the two styles it names, the refusal is a judgement
+nobody can check, and the compile fails rather than leaving it to rot. Each refusal is
+written onto both of the businesses it holds apart, so a reader meeting one of them meets
+the reason the other is not it.
+
+**The first firm pass is T-0399**, the restyled duplicates of T-0338's surname groups —
+where one style is the other with a trade description, a signboard or an extractor's
+parenthesis after it. **25 merge rules over 20 houses, and 3 refusals**; the businesses
+table went from 242 to 221 and `survival_liberty_required` from 126 to 111, because
+records that were each claiming a liberty for a shop last seen before 1835 turned out to
+belong to a house still advertising in 1835 under its other heading. The three refusals
+are A. Garrett (`different_ground` — the auctioneer advertises from South Water street in
+December 1834 and signs from Dearborn street twenty months later, with no removal notice
+between them), B. Jones (`not_joined` — a grocery and a forwarding house set as two
+advertisements in one issue; a business record here is a trade with a place, not a
+proprietor) and W. Montgomery (`two_houses` — the auctioneer at David Carver's old stand
+against L. W. Montgomery the bootmaker next door to P. Cohen's). T-0400, T-0401 and T-0402
+carry the bands the pass did not reach.
+
 **And the proprietors are a third place a name lives** (T-0337). `business.proprietors` is
 neither a gazetteer person nor a firm style — it is a string put on a business record by
 whichever claim read that printing — so neither policy above could reach it, and one man
