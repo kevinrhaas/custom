@@ -35,7 +35,6 @@
 # --- DEV IS RED. TAKE THIS FIRST — measured on an unmodified origin/dev at 9b6e3276,
 # --- 2026-08-29: three check.sh steps fail, all on one cause, left by the most recent
 # --- merge (#536). Every branch cut from dev inherits it.
-T-0389 — The New York House belongs to no programme the 665-roof ledger can read, and dev's gate is red on it
 
 # --- THE NEWSPAPER STREAM (a) IDENTITY HYGIENE — the owner keeps this stream near the
 # --- top until it is done. These come FIRST inside it because the register and the
@@ -171,3 +170,4 @@ T-0388 — Three derived records have drifted from their own generators on an un
 
 # --- NEWLY FILED — `ticket.mjs new` appends to the END of this file, so new tickets
 # --- land under this line. NOT yet placed by the owner.
+T-0395 — The New York House's footprint is graded reconstructed but its note cites a source, and the gate warns
