@@ -1,7 +1,7 @@
 ---
 id: T-0356
 title: The claim vocabulary cannot say an advertisement announces an opening, so 17 businesses are excluded on a proxy
-state: open
+state: claimed
 epic: PAPERS
 requested_by: loop
 seen: false
@@ -11,7 +11,7 @@ parent: null
 opened: 2026-08-29
 closed: null
 pr: null
-claimed_by: null
+claimed_by: run 8/29/2026, 12:26:58 PM CT
 blocked_on: null
 needs_bake: false
 ---
