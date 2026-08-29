@@ -1,7 +1,7 @@
 ---
 id: T-0336
 title: The 31 July 1835 letter list, standing in all four August Democrats
-state: open
+state: done
 epic: PAPERS
 requested_by: owner
 seen: false
@@ -9,9 +9,9 @@ effort: M
 legacy_id: null
 parent: T-0297
 opened: 2026-08-28
-closed: null
-pr: null
-claimed_by: null
+closed: 2026-08-29
+pr: 532
+claimed_by: run 8/29/2026, 7:12:54 AM CT
 blocked_on: null
 needs_bake: false
 ---

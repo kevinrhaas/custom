@@ -36,7 +36,6 @@
 # ---     reads surfaced;
 # --- (c) the register itself, then the VISIBLE seeding it unblocks — documented
 # ---     storefronts standing in the model, documented people replacing invented.
-T-0336 — The 31 July 1835 letter list, standing in all four August Democrats
 T-0263 — The documented storefronts take their places on South Water and Lake
 T-0306 — The American names six Chicago storefronts with usable placements and none of them is standing in the model yet
 T-0373 — The documented people the papers name with no trade at all, and the town does not hold
@@ -142,3 +141,4 @@ T-0334 — The hay-stacking ordinance walks a six-vertex boundary round the buil
 T-0375 — Every reconstructed roof on South Water Street is a labourer's, so five documented tradesmen the papers put there have nowhere to stand
 T-0372 — North Water Street's two tight spots are 5.5 m and 8.5 m from water, and the setback rule cannot see either
 T-0377 — Three street-derived layers drifted when T-0307 moved North Water Street, and dev's gate is red on all three
+T-0388 — Three derived records have drifted from their own generators on an unmodified dev, so every branch's gate is red
