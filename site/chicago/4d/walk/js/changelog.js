@@ -1,4 +1,12 @@
 export const CHANGELOG = [ // newest first
+  { v: 365, title: 'The axes go back to the ironmongers', kind: 'fix', ts: '2026-08-29T04:14:10.576Z', date: 'Aug 28, 2026, 11:14 PM CT',
+    items: [
+      'Nothing you can see changed today. Yesterday the town\u2019s bookshop got its name back \u2014 Russell & Clift, booksellers and stationers, out of Boston and Philadelphia. Along with the name it was carrying something it had no business carrying: twenty dozen cast steel axes.',
+      'They came from the advertisement column. In the printing the reading was made from, the axe notice sits directly under the booksellers\u2019 last line and its signature is crushed to four illegible characters, so the two ran together and the axes were written down as part of a stock of school books, almanacs, silver pencil cases and silk stocks.',
+      'Two other printings of the same pair of advertisements settle it. In both, a printer\u2019s rule stands between them and the lower one is signed \u2014 Jones & King, the hardware house on South Water Street that also sold this town its window glass, its sashes and its blinds. Their name is on the axes; so is the date line underneath. The attribution is marked as read from the neighbouring weeks rather than from the page in hand, because on that page it genuinely cannot be read.',
+      'So the axes are now their own entry in the register of what the newspapers say stood in this town, filed under the ironmongers, and the bookshop sells books again.',
+      'One thing is left open on purpose. This shop appears three times in that register \u2014 once under its shop sign, once under its partners\u2019 names, once under both \u2014 depending only on which half of the type survived the scan. They are one house. A rule for joining two names for one business landed yesterday; applying it here turns out to need a decision about what that rule should do when a printing kept the sign and lost the partners, which is a decision about the rule and not about this shop. It is written down as a ticket rather than settled quietly.',
+    ] },
   { v: 364, title: 'Five Wilson & Co.\u2019s become the one house they always were', kind: 'chore', ts: '2026-08-29T03:47:32.592Z', date: 'Aug 28, 2026, 10:47 PM CT',
     items: [
       'Nothing you can see changed today. Behind the model there is a register of everybody and every business the Chicago papers of 1833 to 1835 name \u2014 960 things read out of 70 issues so far \u2014 and it had been counting one dry goods house on Dearborn Street as five separate businesses.',

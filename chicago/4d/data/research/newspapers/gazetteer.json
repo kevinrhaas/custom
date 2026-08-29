@@ -249,7 +249,7 @@
     },
     {
       "file": "chicago/4d/data/research/newspapers/extracted/chicago_democrat_1834_12_03.json",
-      "sha256": "84758b2b469995cf9bd1977d92590114a50b3ccf8281688434bef8630a82c511"
+      "sha256": "93a956ce13cb940a80a25ccaaa97e77268df3bbbbf8d6e6ec9df8858f50bf62e"
     },
     {
       "file": "chicago/4d/data/research/newspapers/extracted/chicago_democrat_1834_12_10.json",
@@ -285,7 +285,7 @@
     }
   ],
   "counts": {
-    "claims": 960,
+    "claims": 961,
     "persons": 2098,
     "businesses": 196
   },
@@ -48013,6 +48013,7 @@
         "Ten Plate Stoves",
         "Tin Ware",
         "Tongs",
+        "axes",
         "blinds",
         "boots",
         "iron ploughs",
@@ -48033,7 +48034,8 @@
         "last_issue": "1834-12-03",
         "copy_dates": [
           "1834-07-08",
-          "1834-10-02"
+          "1834-10-02",
+          "1834-11-05"
         ]
       },
       "contradicted_by": [],
@@ -48043,7 +48045,8 @@
         "chicago_democrat_1834_09_03#c022",
         "chicago_democrat_1834_09_10#c003",
         "chicago_democrat_1834_09_10#c008",
-        "chicago_democrat_1834_12_03#c007"
+        "chicago_democrat_1834_12_03#c007",
+        "chicago_democrat_1834_12_03#c024"
       ],
       "built_at_scene_date": true,
       "survival_liberty_required": true
@@ -49513,7 +49516,6 @@
         "Books",
         "Morison's Vegetable Pills",
         "Stationary",
-        "axes",
         "books",
         "hats",
         "ink",
