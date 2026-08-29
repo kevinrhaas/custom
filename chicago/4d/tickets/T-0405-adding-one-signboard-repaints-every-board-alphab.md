@@ -1,5 +1,5 @@
 ---
-id: T-0399
+id: T-0405
 title: Adding one signboard repaints every board alphabetically after it, and some lose a line
 state: open
 epic: META

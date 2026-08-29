@@ -52,7 +52,10 @@ keeps the letter lists' own Chester House and Rodney House the people they are.
 IDENTITY IS DECLARED, NEVER INFERRED, AND FIRMS DECLARE IT DIFFERENTLY FROM PEOPLE
 (T-0304). Both are keyed on the whole normalized name, so nothing coalesces by accident,
 and `identity.json` is the only place a merge may be stated: `merges` for people,
-`firm_merges` for houses, each rule naming both spellings verbatim. The guard is where
+`firm_merges` for houses, each rule naming both spellings verbatim — and, since T-0399,
+`refused_firm_merges` for the groups the surname puts together that are NOT one house,
+because the absence of a merge rule reads exactly like a group nobody has judged yet. The
+guard is where
 they part. A person with the same surname and a different forename initial NEVER merges,
 because the letter lists are full of families. A firm cannot be held to that — a '& Co.'
 style routinely elides or misprints the forename it trades under, and one Wilson house is
@@ -819,6 +822,78 @@ def compile_gazetteer(files, identity, corpus, quiet=True):
             dst["trade_variants"] = sorted(trades)
         dst.setdefault("merged", []).append({"from": frm, "merge_rule": why})
 
+    # …AND THE FIRMS' REFUSAL (T-0399), which is the other half of the same judgement
+    # and had nowhere to live until now. `firm_surnames()` groups the register on the
+    # partner surname alone, so it puts together houses that are not one house — the two
+    # Montgomerys, a namesake, an anchor mistaken for a partner — and a sweep that
+    # merged on the name would have merged them. Before this, the only record of such a
+    # judgement was the ABSENCE of a merge rule, which reads exactly like a group nobody
+    # has looked at yet; the next sweep finds the group again and has to do the work
+    # again. So a refusal is declared as explicitly as a merge, and held to the same
+    # three disciplines: it names both spellings verbatim, it names the printings it
+    # rests on, and it cannot outlive its pair — a refusal whose two styles a later
+    # merge has already collapsed is a judgement nobody can check, and is an error.
+    REFUSAL_KINDS = {
+        # the papers show two different houses under one surname
+        "two_houses",
+        # one name, and no printing puts the two styles under one roof — the honest
+        # answer is "not shown to be one", which is not the same as "shown to be two"
+        "not_joined",
+        # one house, and the papers put the two styles on different ground: a removal
+        # or a succession, which is a claim and not a merge
+        "different_ground",
+    }
+    merged_pairs = {frozenset((slug(r.get("into") or ""), slug(r.get("from") or "")))
+                    for r in identity.get("firm_merges", [])}
+    for rule in identity.get("refused_firm_merges", []):
+        into, frm = rule.get("into"), rule.get("from")
+        why = (rule.get("refused_because") or "").strip()
+        kind = rule.get("kind")
+        witnesses = rule.get("witnesses") or []
+        label = "identity.json refused_firm_merge %r <- %r" % (into, frm)
+        if not into or not frm:
+            problems.append("%s: a refusal needs both `into` and `from`" % label)
+            continue
+        if not why:
+            problems.append("%s: no refused_because — an unexplained refusal is worth no "
+                            "more than no refusal at all, because the next sweep cannot "
+                            "tell it from a group nobody has judged" % label)
+            continue
+        if into not in why or frm not in why:
+            problems.append("%s: refused_because must name BOTH spellings verbatim, so "
+                            "the judgement can be read back without the code" % label)
+            continue
+        if kind not in REFUSAL_KINDS:
+            problems.append("%s: `kind` must be one of %s — the shape of a refusal is "
+                            "part of what it says, and 'not shown to be one' is not the "
+                            "same judgement as 'shown to be two'"
+                            % (label, ", ".join(sorted(REFUSAL_KINDS))))
+            continue
+        if not witnesses:
+            problems.append("%s: no `witnesses` — a refusal rests on printings exactly as "
+                            "a merge does, and one that names none cannot be checked"
+                            % label)
+            continue
+        a, b = slug(into), slug(frm)
+        if a == b:
+            problems.append("%s: a firm cannot be refused against itself" % label)
+            continue
+        if frozenset((a, b)) in merged_pairs:
+            problems.append("%s: this pair is also declared in `firm_merges` — the file "
+                            "cannot both join and hold apart the same two styles" % label)
+            continue
+        missing = [n for n, k in ((into, a), (frm, b)) if k not in businesses]
+        if missing:
+            problems.append("%s: %s is not a firm the compiled register carries — a "
+                            "refusal that has outlived its pair is a judgement nobody can "
+                            "check, and it will not be left to rot here"
+                            % (label, ", ".join(repr(m) for m in missing)))
+            continue
+        for key, name in ((a, into), (b, frm)):
+            businesses[key].setdefault("refused_merges", []).append(
+                {"with": frm if key == a else into, "kind": kind,
+                 "witnesses": list(witnesses), "refused_because": why})
+
     # THE PROPRIETORS' HALF (T-0337). Applied after the firm merges, because a firm
     # merge is what unions two houses' proprietor lists in the first place, and a pair
     # that needs adjudicating can be created by one.
@@ -1408,6 +1483,9 @@ def check(extracted=EXTRACTED, gazetteer=GAZETTEER, identity=IDENTITY, corpus=CO
         print("  ok    %d house(s) hold two proprietors of one surname apart, each with "
               "the sentence that tells them apart"
               % len(identity_doc.get("proprietor_distinctions", [])))
+        print("  ok    %d firm group(s) refused rather than merged, each naming the "
+              "printings the refusal rests on"
+              % len(identity_doc.get("refused_firm_merges", [])))
         covered = sum(1 for i in corpus_doc.get("issues", [])
                       for r in coverage_doc.get("ranges", [])
                       if i.get("publication") == r.get("publication")
@@ -1638,6 +1716,39 @@ def self_test():
                       variant(d, "Jno. Wilson & Co.", street="Lake Street"),
                       firm_rule(i, "L. Wilson & Co.", "Jno. Wilson & Co.")),
         "different streets", "a firm merge across a street the papers contradict")
+
+    # …AND THE REFUSAL (T-0399). Same fixture, same shape: the second printing is a
+    # DIFFERENT house that happens to carry the partner surname, which is what
+    # `firm_surnames()` cannot tell apart and what the sweep has to be able to write down.
+    def firm_refusal(i, into, frm, why=None, kind="two_houses", witnesses=("the fixture",)):
+        i.setdefault("refused_firm_merges", []).append({
+            "into": into, "from": frm, "kind": kind, "witnesses": list(witnesses),
+            "refused_because": why if why is not None
+            else "%s and %s are two houses: one surname, two trades, no printing joining them"
+                 % (into, frm)})
+
+    run(lambda d, i: (variant(d, "Jno. Wilson & Co."), firm_refusal(i, "L. Wilson & Co.", "Jno. Wilson & Co.")),
+        None, "two firm styles held apart by a stated refusal")
+    run(lambda d, i: (variant(d, "Jno. Wilson & Co."),
+                      firm_refusal(i, "L. Wilson & Co.", "Jno. Wilson & Co.", "")),
+        "no refused_because", "a firm refusal that does not say why it refuses")
+    run(lambda d, i: (variant(d, "Jno. Wilson & Co."),
+                      firm_refusal(i, "L. Wilson & Co.", "Jno. Wilson & Co.", "they differ")),
+        "name BOTH spellings", "a firm refusal that does not name what it holds apart")
+    run(lambda d, i: (variant(d, "Jno. Wilson & Co."),
+                      firm_refusal(i, "L. Wilson & Co.", "Jno. Wilson & Co.", kind="probably")),
+        "`kind` must be one of", "a firm refusal whose kind is not one of the three")
+    run(lambda d, i: (variant(d, "Jno. Wilson & Co."),
+                      firm_refusal(i, "L. Wilson & Co.", "Jno. Wilson & Co.", witnesses=())),
+        "no `witnesses`", "a firm refusal that rests on no printing")
+    run(lambda d, i: firm_refusal(i, "L. Wilson & Co.", "Nobody & Co."),
+        "outlived its pair", "a firm refusal for a house nobody claimed")
+    run(lambda d, i: firm_refusal(i, "L. Wilson & Co.", "L. Wilson & Co."),
+        "refused against itself", "a firm refused against itself")
+    run(lambda d, i: (variant(d, "Jno. Wilson & Co."),
+                      firm_rule(i, "L. Wilson & Co.", "Jno. Wilson & Co."),
+                      firm_refusal(i, "L. Wilson & Co.", "Jno. Wilson & Co.")),
+        "cannot both join and hold apart", "a pair both merged and refused")
 
     # THE PROPRIETORS' HALF (T-0337). Every case is the shape the Russell & Clift pair
     # actually had: two readings of one house's partner, sitting in one `proprietors`

@@ -42,7 +42,9 @@
 # --- forename, or a tavern minted as a person becomes a wrong building once seeded.
 # --- Cheap (mostly S/XS) and each one makes the seeding below more accurate.
 T-0340 — The bookseller's sign-name and its partners' firm-name are three gazetteer entries for one house
-T-0338 — Thirty-one groups of firms share a partner surname and only one of them has been judged
+T-0400 — The firm styles that differ in the forename's form: whole against abbreviated against initial
+T-0401 — The firm groups that are two houses, written down so no later sweep merges them
+T-0402 — The firm groups an agency, a parent house or a lost signature makes ambiguous
 T-0356 — The claim vocabulary cannot say an advertisement announces an opening, so 17 businesses are excluded on a proxy
 T-0345 — Mason's blacksmith shop is anchored on Graves' Tavern until 16 July 1834 and on the Tremont House from 10 September, and the register holds both as standing placements
 
@@ -167,4 +169,5 @@ T-0388 — Three derived records have drifted from their own generators on an un
 T-0395 — The New York House's footprint is graded reconstructed but its note cites a source, and the gate warns
 T-0396 — Newberry & Dole's partner is read as Oliver Newberry in 1834 and Walter L. Newberry in 1835, and the corpus cannot say which stood in the firm
 T-0391 — Are 'Eagle Hotel' and 'the Eagle Hotel (Steele's)' one house, and no issue prints both
-T-0399 — Adding one signboard repaints every board alphabetically after it, and some lose a line
+T-0403 — The Democrat's office keeps its 1834 corner through a merge, and the paper moved along South Water Street before the scene date
+T-0405 — Adding one signboard repaints every board alphabetically after it, and some lose a line
