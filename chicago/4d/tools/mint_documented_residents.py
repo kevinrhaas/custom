@@ -102,6 +102,7 @@ STRUCTURES = DATA / "structures"
 
 SCENE_DATE = "1835-07-01"
 PREFIX = "hh_doc_"
+LETTER_LIST_PREFIX = "hh_ll_"   # tools/mint_letter_list_residents.py; see town_family_names
 PERSON_PREFIX = "doc_"
 DIVISION = "unplaced"
 
@@ -231,10 +232,18 @@ def town_family_names(docs: dict, index: dict) -> set[str]:
     researched-not-resident findings — NOT from this pass's own output, which
     would refuse on the second run every man it seated on the first and make
     `--check` pass against any tree at all.
+
+    NOR from the letter-list pass's output, and that is a PRECEDENCE rule rather
+    than the same rule twice. `tools/mint_letter_list_residents.py` mints people
+    whose only evidence is a name on a list of uncalled-for letters; a man the
+    papers give a trade is better evidenced, so where the two passes reach for
+    one family name this one keeps it and that one gives way. It reads THIS
+    pass's households and refuses on them; this pass cannot see its households at
+    all, which is what keeps this derivation unchanged by anything it mints.
     """
     known: set[str] = set()
     for path, doc in docs.items():
-        if path.name.startswith(PREFIX):
+        if path.name.startswith(PREFIX) or path.name.startswith(LETTER_LIST_PREFIX):
             continue
         for person in doc.get("persons") or []:
             fam = surname(person.get("name") or "")

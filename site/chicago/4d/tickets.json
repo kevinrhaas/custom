@@ -1,6 +1,6 @@
 {
   "project": "chicago-4d",
-  "generated_ct": "Aug 29, 2026, 8:11 AM",
+  "generated_ct": "Aug 29, 2026, 8:37 AM",
   "tickets": [
     {
       "id": "T-0001",
@@ -6122,7 +6122,7 @@
     {
       "id": "T-0374",
       "title": "letter_list_only reaches the visitor's card, and the 1,536 names known only from the post office",
-      "state": "open",
+      "state": "split",
       "epic": "PAPERS",
       "requested_by": "owner",
       "seen": false,
@@ -6130,12 +6130,12 @@
       "legacy_id": null,
       "parent": "T-0368",
       "opened": "2026-08-29",
-      "closed": null,
+      "closed": "2026-08-29",
       "pr": null,
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 6
+      "queue_rank": null
     },
     {
       "id": "T-0375",
@@ -6190,6 +6190,42 @@
       "blocked_on": null,
       "needs_bake": false,
       "queue_rank": 72
+    },
+    {
+      "id": "T-0378",
+      "title": "The names the post office held letters for in more than one return join the town, and letter_list_only reaches the visitor's card",
+      "state": "done",
+      "epic": "PAPERS",
+      "requested_by": "owner",
+      "seen": false,
+      "effort": "S",
+      "legacy_id": null,
+      "parent": "T-0374",
+      "opened": "2026-08-29",
+      "closed": "2026-08-29",
+      "pr": "535",
+      "claimed_by": "run 8/29/2026, 7:09:47 AM CT",
+      "blocked_on": null,
+      "needs_bake": false,
+      "queue_rank": null
+    },
+    {
+      "id": "T-0379",
+      "title": "The letter-list names the post office printed in a single return, and the change of scale they put to the town",
+      "state": "open",
+      "epic": "PAPERS",
+      "requested_by": "owner",
+      "seen": false,
+      "effort": "S",
+      "legacy_id": null,
+      "parent": "T-0374",
+      "opened": "2026-08-29",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "queue_rank": 6
     },
     {
       "id": "T-0383",

@@ -1,7 +1,7 @@
 /**
  * residents.js — the town's people, in the Evidence panel.
  *
- * ROADMAP K52, from K51. `data/residents/` holds 189 households and 225 person
+ * ROADMAP K52, from K51. `data/residents/` holds 201 households and 237 person
  * entries, every one of them graded and most of them cited, and unlike this
  * morning's fauna the layer already had *a* reader: `tools/compile_scene.py`
  * attaches a household to a building's sidecar and `popup.js` names it on the
@@ -27,16 +27,26 @@
  * and reasoning, nor the ten `researched_not_resident` findings — which are the
  * exclusions-style half of the dataset and as load-bearing as the households.
  *
+ * TWO EVIDENCE STRENGTHS, KEPT APART (T-0378). The newspaper register reads people
+ * out of the Democrat and the American, and the two kinds it reads are not the same
+ * claim: a man who advertised his stock is named, dated, placed and given a trade,
+ * while a name in the post office's list of uncalled-for letters is a name and
+ * nothing else. `mint_letter_list_residents.py` carries `letter_list_only` onto the
+ * person for the second kind, and this file is where the distinction has to survive
+ * — it reached `gazetteer.json` and `register_1835.json` and stopped there, so on the
+ * card the two read identically. It is now a row of its own on the person, and a
+ * clause in the section's own count sentence.
+ *
  * WHAT THIS IS NOT. It is a card, not a crowd. Nothing here is drawn: L1 and
  * AGENTS.md stand, v1 ships no human figures, and the standing constraint on
  * depicting the Potawatomi in the year of the removal is untouched by a section
  * that publishes what the sources say and nothing else.
  *
  * ONE FETCH, THEN ONE PER HOUSEHOLD A VISITOR OPENS. The manifest is a
- * denormalised summary of all 189 records — `tools/validate.py` fails the build
+ * denormalised summary of all 201 records — `tools/validate.py` fails the build
  * when a copy disagrees with its record — so the list renders from a single
  * file, and the full record is fetched the first time its own row is opened.
- * 189 fetches on mount to show 189 collapsed summaries would be a worse card and
+ * 201 fetches on mount to show 201 collapsed summaries would be a worse card and
  * a slower one; the summary is the manifest's job and the manifest says so.
  */
 
@@ -140,6 +150,8 @@ function personHtml(person, citationsById) {
         occ.note ? `<br><span class="res-why">${escapeHtml(occ.note)}</span>` : ''}${
         occCites.length ? `<ol class="cites">${citationItems(occCites)}</ol>` : ''}</dd>` : ''}
       ${claimRow('How this person is named', named && named.value, named, citationsById)}
+      ${person.letter_list_only
+        ? `<dt>How this person is known</dt><dd>${swatch('attested')}Only from the post office's lists of uncalled-for letters. A name on one of those lists is somebody a correspondent believed was reachable at Chicago; it gives no trade, no street and no household, and it is the weakest evidence this project accepts for a resident. A shopkeeper who advertised his stock is a different claim, and this row is here so the two never read as the same one.</dd>` : ''}
       ${person.note ? `<dt>What the sources say</dt><dd>${escapeHtml(person.note)}</dd>` : ''}
       ${cites.length ? `<dt>Sources</dt><dd><ol class="cites">${citationItems(cites)}</ol></dd>` : ''}
     </dl>
@@ -354,8 +366,12 @@ export async function mountResidents({ mount, noteMount = null, sceneId, dataBas
       + `fill a demonstrable need of the town. `
       + `${offCard} of the households are attached to no building in this scene — neither `
       + `where they lived nor where they worked is attested on 1 July 1835 — so ${offCardPersons} `
-      + `people reached no card anywhere until this section existed. Nobody is drawn: this `
-      + `is the research, not a population.`;
+      + `people reached no card anywhere until this section existed. `
+      + (counts.letter_list_only
+        ? `${counts.letter_list_only} of the people here are known ONLY from the post `
+          + `office's lists of uncalled-for letters, which is the weakest evidence this `
+          + `layer carries and is marked as such on each of their cards. ` : '')
+      + `Nobody is drawn: this is the research, not a population.`;
     noteMount.removeAttribute('aria-busy');
   }
 
