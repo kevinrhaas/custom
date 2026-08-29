@@ -1,7 +1,7 @@
 ---
 id: T-0155
 title: The changelog stamper has the same after-publish trap the ticket tool just lost
-state: open
+state: claimed
 epic: PIPELINE
 requested_by: loop
 seen: false
@@ -11,7 +11,7 @@ parent: null
 opened: 2026-08-23
 closed: null
 pr: null
-claimed_by: null
+claimed_by: run 8/28/2026, 8:41:41 PM CT
 blocked_on: null
 needs_bake: false
 ---

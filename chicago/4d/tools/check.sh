@@ -874,6 +874,14 @@ fi
 step "closing a ticket leaves the mirror fresh, and a stale one still fails" \
   node tools/test_ticket_mirror.mjs
 
+# The same trap, one file over (T-0155). changelog.js is published to TWO paths
+# check_published compares byte for byte, and stamp-changelog.mjs rewrites the
+# source — so a run that stamps AFTER publish.sh was red for following the rules.
+# The stamper now carries both mirrors itself. Both halves again: that stamping
+# late ends green, AND that a mirror somebody else made stale still fails.
+step "stamping the changelog leaves both mirrors fresh, and a stale one still fails" \
+  node tools/test_changelog_mirror.mjs
+
 # The duplicate-id remedy, tested in the only state it ever runs in. `restamp`
 # used to find the ticket by FILE (its own comment explains that with two files
 # sharing an id, nothing else can tell them apart) and then edit the queue by ID,
