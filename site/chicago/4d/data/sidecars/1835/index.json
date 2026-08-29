@@ -3017,6 +3017,12 @@
       "asset": "gltf/recon_1835_blk_randolph_market_a1_07__inferred_1835.glb"
     },
     {
+      "id": "recon_1835_blk_randolph_market_a1_12",
+      "name": "Reconstructed A1 stable #12",
+      "sidecar": "sidecars/1835/recon_1835_blk_randolph_market_a1_12.json",
+      "asset": "gltf/recon_1835_blk_randolph_market_a1_12__inferred_1835.glb"
+    },
+    {
       "id": "recon_1835_blk_randolph_market_a2_08",
       "name": "Reconstructed A2 barn or carriage shed #08",
       "sidecar": "sidecars/1835/recon_1835_blk_randolph_market_a2_08.json",
@@ -3035,6 +3041,18 @@
       "asset": "gltf/recon_1835_blk_randolph_market_a4_06__inferred_1835.glb"
     },
     {
+      "id": "recon_1835_blk_randolph_market_d1_10",
+      "name": "Reconstructed D1 older log dwelling #10",
+      "sidecar": "sidecars/1835/recon_1835_blk_randolph_market_d1_10.json",
+      "asset": "gltf/recon_1835_blk_randolph_market_d1_10__inferred_1835.glb"
+    },
+    {
+      "id": "recon_1835_blk_randolph_market_d2_09",
+      "name": "Reconstructed D2 rough plank dwelling or shanty #09",
+      "sidecar": "sidecars/1835/recon_1835_blk_randolph_market_d2_09.json",
+      "asset": "gltf/recon_1835_blk_randolph_market_d2_09__inferred_1835.glb"
+    },
+    {
       "id": "recon_1835_blk_randolph_market_d3_04",
       "name": "Reconstructed D3 one-room frame cottage #04",
       "sidecar": "sidecars/1835/recon_1835_blk_randolph_market_d3_04.json",
@@ -3051,6 +3069,12 @@
       "name": "Reconstructed D5 deep-plan frame cottage #01",
       "sidecar": "sidecars/1835/recon_1835_blk_randolph_market_d5_01.json",
       "asset": "gltf/recon_1835_blk_randolph_market_d5_01__inferred_1835.glb"
+    },
+    {
+      "id": "recon_1835_blk_randolph_market_d5_11",
+      "name": "Reconstructed D5 deep-plan frame cottage #11",
+      "sidecar": "sidecars/1835/recon_1835_blk_randolph_market_d5_11.json",
+      "asset": "gltf/recon_1835_blk_randolph_market_d5_11__inferred_1835.glb"
     },
     {
       "id": "recon_1835_blk_randolph_market_d6_02",

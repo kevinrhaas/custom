@@ -59,7 +59,6 @@ T-0244 — T-0194's twelve hitching posts draw no vertices the gate can find, on
 # --- blocked-tech: its code half shipped (the rule reads all four block faces now,
 # --- so a cross street CAN be laid), and all seven cross streets were then measured
 # --- over all three ceilings. PR #418, which parked Market Street alone, is closed.
-T-0317 — Build out the NEXT anonymous block: after blk_lake_franklin the last ungenerated block is owner-blocked, and the roofs left stand on blocks that already stand
 T-0233 — Eight of seventeen dealt lots carry none of their run's own roofs, and nothing was measuring it
 T-0307 — The derivation's running maximum costs 42 m of verge where the bank turns a right angle at Wolf Point
 T-0272 — The West Division parcel's form values come from the archetype and cite the family band: 8 families, 11 claims outside it
@@ -139,3 +138,5 @@ T-0358 — The Thompson plat's block NUMBERING is uncommitted, so the corpus's o
 T-0359 — The gazetteer mints tavern names as people, so Maddock's Tavern and Haddock's Tavern cannot be reconciled
 T-0369 — Desktop stage 8's panel walk is red when stage 1 runs before it and green when stage 8 runs alone
 T-0371 — The lattice path's block rotation is dead code that measure_rank_bias.mjs's drift guard pins in place
+T-0364 — Two byte-identical copies of changelog.js are 7.2 per cent of the published payload, and they grow on every release
+T-0365 — The anonymous-block programme has no unblocked ground left: every block with headroom is on the South Water reach T-0009 holds open
