@@ -9637,39 +9637,41 @@ Related: **L93** (the block parcel's A3 privy, the same clamp) · **L92** (the p
 **Covers:** `recon_1835_west_008.inferred_1835.form.wall_height_m`, `recon_1835_west_009.inferred_1835.form.wall_height_m`, `recon_1835_west_010.inferred_1835.form.wall_height_m`, `recon_1835_west_011.inferred_1835.form.wall_height_m`, `recon_1835_west_012.inferred_1835.form.wall_height_m`, `recon_1835_west_021.inferred_1835.form.wall_height_m`
 **Recorded:** 2026-08-29.
 
-### L211 — 109 documented businesses stand on 1 July 1835 because nothing says they closed
+### L211 — 103 documented businesses stand on 1 July 1835 because nothing says they closed
 **Decision:** every business the newspaper register flags `survival_liberty_required` is
 treated as standing at the scene date. Its existence is documented — a dated advertisement
 or notice in the *Chicago Democrat* or the *Chicago American* — and its survival to
 1835-07-01 is assumed. The assumption is stated HERE and nowhere else: the register carries
 the flag, this entry carries the liberty, and no business record is graded `documented` for
 a survival nothing witnessed.
-**Why:** the corpus is thinnest in the year it most needs to be thick. 201 documented
-businesses are present at the scene date and only **92** of them are documented *in* 1835;
-the other **109** were last printed between 1833-11-26 and 1834-12-24, a median of 364 days
+**Why:** the corpus is thinnest in the year it most needs to be thick. 192 documented
+businesses are present at the scene date and only **89** of them are documented *in* 1835;
+the other **103** were last printed between 1833-11-26 and 1834-12-24, a median of 364 days
 before the day the town is drawn. Refusing the assumption is the only alternative to making
 it, and refusing it empties more than half the documented trade out of Chicago on the
 strength of a newspaper run nobody has finished reading — the 1835 issues that would
 re-attest most of these houses are still unopened (the `PAPERS` reading tickets). Owner
 ruling 3, 2026-08-28: such a business is BUILT, with the liberty stated. The register
-already refuses everything that CAN be refused — 14 businesses are excluded by a claim that
+already refuses everything that CAN be refused — 13 businesses are excluded by a claim that
 contradicts them before the scene date and 4 by an opening announced after it — so this
 covers what is left after the evidence has spoken, not instead of it.
-**Scope:** `register_1835.businesses[survival_liberty_required]` — 109 businesses, enumerated
+**Scope:** `register_1835.businesses[survival_liberty_required]` — 103 businesses, enumerated
 by `tools/compile_register.py` from the gazetteer and the committed town, and re-counted by
 `tools/compile_liberties.py` on every compile. The number above cannot drift from the
 register without `check.sh` saying so, which is the point of writing it down: a scope that
 has silently stopped matching its population reads as a measurement and is not one.
 **Consequence:** as the register is seeded into the town, half of these reach something a
-visitor can see. Measured on the register as it stands on 2026-08-29, **56** of the 109 do —
-18 enrich a house already standing, 14 ask for a new building, 24 take a street face — and
-**53** reach nothing yet. That split moves whenever an anchor is re-read or two firms are
-judged one house, and it is a dated reading rather than a standing claim; the 109 is the
-number this entry is held to and the number the gate re-derives. It has already moved once
-for exactly the second reason: this entry was written at 111 the same day T-0345 found that
-four of the register's businesses were four readings of Matthias Mason & Co.'s one
-blacksmithing notice. Joining them took two off the count and one off the enrich_existing
-column, and neither number is a business leaving Chicago. Every one
+visitor can see. Measured on the register as it stands on 2026-08-29, **53** of the 103 do —
+16 enrich a house already standing, 14 ask for a new building, 23 take a street face — and
+**50** reach nothing yet. That split moves whenever an anchor is re-read or two firms are
+judged one house, and it is a dated reading rather than a standing claim; the 103 is the
+number this entry is held to and the number the gate re-derives. It has now moved twice for
+exactly the second reason. This entry was written at 111 the same day T-0345 found that four
+of the register's businesses were four readings of Matthias Mason & Co.'s one blacksmithing
+notice; and T-0400 judged the ten surname groups whose two styles differ only in the FORM of
+a forename — whole against abbreviated against bare initial — merging eight of them and
+taking the count from 109 to 103. Neither movement is a business leaving Chicago; both are
+shops the register was holding twice. Every one
 of them puts a trade sign, a
 card or an occupant into July 1835 on an inference, and a visitor reading such a card is
 being told the shop was there when what is known is that it was there the winter before. The
