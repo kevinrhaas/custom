@@ -6,7 +6,7 @@
   "compiled_from": {
     "gazetteer": {
       "claims": 1166,
-      "persons": 2634,
+      "persons": 2633,
       "businesses": 242
     },
     "structures": 359,
@@ -43,10 +43,10 @@
       "dissolved_after_scene_date": 1
     },
     "persons": {
-      "total": 2634,
+      "total": 2633,
       "by_action": {
         "enrich": 184,
-        "new_resident": 2331,
+        "new_resident": 2330,
         "replace_invented": 119
       },
       "letter_list_only": 1934
@@ -2161,8 +2161,7 @@
       "trade": "tavern",
       "occupation": "tavern_keeper",
       "proprietors": [
-        "H. E. Wentworth",
-        "E. Wentworth"
+        "H. E. Wentworth"
       ],
       "street": null,
       "street_id": null,
@@ -2229,8 +2228,7 @@
       "trade": "tavern and hotel",
       "occupation": "hotel_keeper",
       "proprietors": [
-        "P. J. Carli",
-        "P. S. Carli"
+        "P. J. Carli"
       ],
       "street": null,
       "street_id": null,
@@ -3639,9 +3637,7 @@
       "trade": "grocer and tinner",
       "occupation": "grocer",
       "proprietors": [
-        "J. K. Botsford",
-        "[K.] Botsford",
-        "[J.] K. Botsford"
+        "J. K. Botsford"
       ],
       "street": null,
       "street_id": null,
@@ -4283,7 +4279,6 @@
       "trade": "stove and hollow ware",
       "occupation": null,
       "proprietors": [
-        "M. Jones",
         "Byram King",
         "Wm. Jones",
         "Jones & King"
@@ -4323,8 +4318,7 @@
         "Byram King",
         "H. B. Clarke",
         "Jones, William",
-        "King, Byram",
-        "Clarke, W. B."
+        "King, Byram"
       ],
       "street": "South Water Street",
       "street_id": "south_water",
@@ -5896,8 +5890,7 @@
       "occupation": null,
       "proprietors": [
         "Aaron Russell",
-        "Benj. Clift",
-        "[H. H.] Clift"
+        "Benj. H. Clift"
       ],
       "street": "Water Street",
       "street_id": null,
@@ -12692,12 +12685,12 @@
       "action_note": "Ruling 1: a named person the town does not hold. Known only from the post-office letter lists."
     },
     {
-      "id": "person_clift_benj",
-      "name": "Clift, Benj.",
+      "id": "person_clift_benj_h",
+      "name": "Clift, Benj. H.",
       "occupation": null,
       "letter_list_only": false,
       "first_seen": "1834-09-03",
-      "last_seen": "1834-09-03",
+      "last_seen": "1834-11-12",
       "action": "new_resident",
       "action_target": null,
       "action_note": "Ruling 1: a named person the town does not hold. Named in a claim other than a letter list."
@@ -17343,17 +17336,6 @@
       "action": "new_resident",
       "action_target": null,
       "action_note": "Ruling 1: a named person the town does not hold. Known only from the post-office letter lists."
-    },
-    {
-      "id": "person_h_h_clift",
-      "name": "[H. H.] Clift",
-      "occupation": null,
-      "letter_list_only": false,
-      "first_seen": "1834-11-12",
-      "last_seen": "1834-11-12",
-      "action": "new_resident",
-      "action_target": null,
-      "action_note": "Ruling 1: a named person the town does not hold. Named in a claim other than a letter list."
     },
     {
       "id": "person_h_haddock",
