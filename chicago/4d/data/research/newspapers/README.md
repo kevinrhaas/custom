@@ -478,6 +478,20 @@ a landmark that is a committed structure, or ONE hop through another documented 
 is. `street_only` — a platted street face and nothing narrower. `unplaceable` — no street the
 model holds.
 
+**Two guards on a match into the committed town, both T-0355.** A structure's `occupants`
+line is read CLAUSE BY CLAUSE, and a clause that dates itself to a year the scene date does
+not fall in is a former tenant, not evidence of who is there now:
+`wolf_point_tavern_stable` records "the tavern's keeper of the day — Elijah Wentworth in
+1831, William Walters on the scene date", and read whole it matched E. Wentworth's tavern.
+And a business whose OWN record puts it out of town takes no action at all — `outside_plat`
+names the marker and quotes it. Three markers, each a positive statement: a distance in
+miles (the plat is under a mile across), a road LEADING TO somewhere (the town's own ways
+are streets), and a named creek (the committed town holds the river and its branches and no
+creek — `read_town` checks that rather than asserting it). Five of the 242 businesses are
+excluded this way and all five are genuinely out of town: four readings of Wentworth's
+tavern on Flag Creek, eighteen miles out on the Ottawa road, and Richard M. Sweet's barn on
+the Dupage.
+
 **Three person actions.** `enrich` (already in `data/residents/`, matched under the
 gazetteer's own identity policy, imported so the two tools cannot drift), `replace_invented`
 (a documented person of a trade the town invented a household for) and `new_resident`

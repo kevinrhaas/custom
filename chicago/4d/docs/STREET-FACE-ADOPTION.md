@@ -10,14 +10,20 @@ and `tools/check.sh` re-derives both on every commit.
 
 `data/research/newspapers/register_1835.json` reads 242 businesses out of the *Chicago
 Democrat* and the *Chicago American* and finds 190 standing on 1 July 1835. It resolves
-**24** of them to a building — 39 `enrich_existing` and 27 `new_building` actions across
-the whole corpus, of which those are the ones the scene date keeps. The remaining 166
-divide into two piles, and neither is a defect in the register:
+**62** of them to a building — 35 `enrich_existing`, where the advertisement's anchor names
+a roof this project already holds, and 27 `new_building`, where it names a place precise
+enough to raise one. The remaining **128** divide into two piles, and neither is a defect
+in the register:
+
+*(T-0354 was written on 2026-08-29 against a register that read 24 / 49 / 78. The counts
+below are this branch's own re-derivation on the same day, after T-0380, T-0383 and T-0355
+moved businesses between the actions. The shape of the problem is unchanged and the
+`street_only` pile is the same size.)*
 
 | pile | count | what the paper gives |
 |---|---|---|
 | `street_only` | **47** | a platted street and nothing narrower — "the east end of South Water-street" |
-| `unplaceable` | **77** | no street this model holds — Flag Creek, "on the road to Ottawa", or no address printed at all |
+| `unplaceable` | **81** | no street this model holds — Flag Creek, "on the road to Ottawa", or no address printed at all |
 
 Without a policy, the papers yield two dozen buildings. With one, they yield most of a
 town. That is the whole of what is at stake here.
@@ -118,7 +124,7 @@ side is a face has exactly one number to change.
 | — no roof whose lot fronts the named street | 16 |
 | — this face already holds this proprietor | 8 |
 | — every roof on the face is spoken for | 1 |
-| `unplaceable`, outside this policy and still open | **77** |
+| `unplaceable`, outside this policy and still open | **81** |
 
 | street face | ads | took | roofs fronting | free | side only | in band |
 |---|---|---|---|---|---|---|
@@ -145,13 +151,13 @@ side is a face has exactly one number to change.
   all a labourer's, and any roof it adds to that face is a roof this pass will take on its
   next re-derivation, automatically.
 
-## The 77 `unplaceable` are NOT covered, and stay open
+## The 81 `unplaceable` are NOT covered, and stay open
 
 The ruling does not reach them and this policy does not extend it. Some are outside the
 plat entirely — E. Wentworth's public house on Flag Creek, on the road to Ottawa — and
 adopting a roof for them would put a business in a town it never stood in. Some simply
 never printed an address. **T-0354's second half is still open**, and the honest answer for
-these 77 today is that the corpus records them and the model does not hold them.
+these 81 today is that the corpus records them and the model does not hold them.
 
 ## How to spend it
 

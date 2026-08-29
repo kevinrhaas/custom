@@ -2,8 +2,9 @@
 
 ## Shipped 2026-08-29 — T-0354: what a business does when the paper names a street and nothing narrower
 
-**The register could place 24 of 190 documented businesses; 22 more now stand on the street faces
-their advertisements name.** The owner ruled on 2026-08-29, choosing between the three options the
+**The register could place 62 of 190 documented businesses; 22 more now stand on the street faces
+their advertisements name.** (T-0354's title says 24 of 190; it was filed against a register that
+has since moved, and 47 `street_only` — the pile this policy is about — is unchanged.) The owner ruled on 2026-08-29, choosing between the three options the
 ticket set out, that a `street_only` business *adopts a reconstructed roof already standing on that
 street face*. `docs/STREET-FACE-ADOPTION.md` is that ruling written so a later run applies it
 without re-deciding it, `tools/adopt_street_faces.py` derives the allocation,
@@ -37,7 +38,7 @@ Randolph took 1.
   matches exact surnames only — deciding by resemblance is the identity layer's job — so it caught
   one of the four and left three roofs standing. Filed as **T-0403**, with the page images named as
   the remedy.
-- **The 77 `unplaceable` are untouched and T-0354's second half stays open.** The ruling does not
+- **The 81 `unplaceable` are untouched and T-0354's second half stays open.** The ruling does not
   reach them and this policy does not extend it; some are outside the plat entirely.
 - **Nothing is spent yet.** This is the policy and the allocation. No card, signboard or frontage
   reads it — that is T-0263's and the seeding tickets'. No geometry moved and no triangle was added,
