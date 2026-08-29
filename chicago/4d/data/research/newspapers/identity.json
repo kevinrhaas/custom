@@ -14,5 +14,28 @@
       "merge_rule": "The third printing of the 1 January 1834 Chicago letter list — chicago_democrat_1834_02_04 c016, one name per line — carries ONE name at this position: 'Orinda Gary', between Jacob Fake and William [Good]ing 2. The 1834-01-28 impression's extraction produced two adjacent entries across that one printed name, 'Orinds Guryl' and 'ds Gay”', minted as [uncertain: Orinda Guryl] and [?] Gay. The second is the tail of the first and not a second person, so the bare surname [?] Gay is closed by joining it to the entry that kept the forename rather than by supplying an initial it never had. T-0323.",
       "ticket": "T-0323"
     }
+  ],
+  "firm_note": "The firms' half of the same policy (T-0304). A business is keyed on its whole normalized name too, so nothing coalesces by accident; anything that should coalesce is declared in `firm_merges`, with the judgement written out. The rules the compiler enforces are the person ones with ONE deliberate difference. A merge needs a `merge_rule`; the rule must name BOTH spellings verbatim; and the two styles must carry the same set of PARTNER SURNAMES, with or without a rule, because a partnership is its partners and a changed one is a different house. What does NOT carry over from the person policy is the initial: for a person a differing forename initial is fatal, because the letter lists are full of families, but a '& Co.' style routinely elides or misprints the forename it trades under — the Wilson house below is printed 'J. L.', 'Jno. L.', 'Jno. S.', 'Jno.' and bare 'L.' across eleven months — so the same rule applied to firms would refuse every merge a firm actually needs. A second guard replaces it and is about the ground rather than the name: two styles the papers put in different STREETS never merge, because a firm that moved is documented by a removal notice, and a removal notice is a claim.",
+  "firm_merges": [
+    {
+      "into": "J. L. Wilson & Co.",
+      "from": "Jno. L. Wilson & Co.",
+      "merge_rule": "'Jno. L. Wilson & Co.' is 'J. L. Wilson & Co.' with the forename set as the abbreviation this corpus uses for John rather than as an initial. The woolen-yarn notice of 1834-10-15 sets “JNO. 'L. WILBON & Co.” over “Dearborn ot.”, and the standing dry-goods advertisement running either side of it — 1834-09-17 and 1834-11-12 — puts the same house in Dearborn street, next door to the city boot, shoe and leather store. Same surname, same middle initial, same street, overlapping weeks. Merged INTO the 'J. L.' spelling because that record carries the relative placement and the full stock; the direction is which record can be placed, not which spelling is truer."
+    },
+    {
+      "into": "J. L. Wilson & Co.",
+      "from": "Jno. S. Wilson & Co",
+      "merge_rule": "'Jno. S. Wilson & Co' is 'J. L. Wilson & Co.' with the middle initial misread. The claim rests on the transcription contradicting ITSELF: one stone-ware notice is printed twice and the same character reads “JNO. S. WILSON & CO.” on 1834-11-05 and “JNO, 8. WILSON & CO.” — a digit — on 1834-12-03, so that letter is not legible in this advertisement, while the readings that ARE legible in the same weeks and the same Dearborn-street give L. The trade string is the fixture's own, word for word: dry goods, groceries, hardware and crockery. This is an OCR variant of one house, not a second Wilson."
+    },
+    {
+      "into": "J. L. Wilson & Co.",
+      "from": "Jno. Wilson & Co.",
+      "merge_rule": "'Jno. Wilson & Co.' is 'J. L. Wilson & Co.' with the middle initial dropped, which is what the American does with the house all summer: the consignment advertisement of 1835-06-20 and 1835-07-18 carries one copy date, “Chicago, June 12, 1835”, and sells window glass, window sash, dry goods, groceries and hardware — the Democrat house's own stock, which listed window glass and wrought-iron hinges from Dearborn street the autumn before. Chicago's papers of 1834-35 name no second Wilson house anywhere in this corpus, so there is nothing the shortened style could be confused with. The American gives no street, so the merge takes Dearborn street from the record that does and invents nothing."
+    },
+    {
+      "into": "J. L. Wilson & Co.",
+      "from": "L. Wilson & Co.",
+      "merge_rule": "'L. Wilson & Co.' is 'J. L. Wilson & Co.' with the forename lost off the front of the line — the same loss the Democrat's own compositor made on 1834-09-17, where the standing advertisement's first line reads “|, L. WILSON & CO.” with the J struck as a rule. The American of 1835-06-08 announces that they “HAVE received their Spring” supply of dry goods, groceries and hardware; twelve days later the same paper prints the same house as 'Jno. Wilson & Co.' with the same trade. One spring advertisement, one house."
+    }
   ]
 }

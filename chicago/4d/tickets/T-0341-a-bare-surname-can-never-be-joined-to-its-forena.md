@@ -1,5 +1,5 @@
 ---
-id: T-0337
+id: T-0341
 title: A bare surname can never be joined to its forename: the family rule reads 'no initials' as 'different initials'
 state: open
 epic: META
@@ -67,5 +67,6 @@ is in the corpus, which is the family case the rule was written for.
 - The four T-0323 readings above are then declared or explicitly left undeclarable, with the
   reason on T-0318.
 
-**Links:** T-0323 (the reading that hit this) · T-0318 (the names waiting on it) · T-0299
+**Links:** T-0323 (the reading that hit this) · T-0318 (the names waiting on it) · T-0337 and
+T-0338 (the same question asked of FIRMS, where the initial rule was deliberately dropped) · T-0299
 (the same-list-different-OCR duplicates) · `data/research/newspapers/identity.json`

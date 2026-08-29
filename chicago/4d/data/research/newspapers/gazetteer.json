@@ -193,7 +193,7 @@
     },
     {
       "file": "chicago/4d/data/research/newspapers/extracted/chicago_democrat_1834_08_27.json",
-      "sha256": "40355a3f2dcab738273bb57e2ab112956029e9cb76a784022de7660f08a98d54"
+      "sha256": "3a89489d3a90ba64f2c341843fc1dbec6872917275131e00d8da42966d2f59be"
     },
     {
       "file": "chicago/4d/data/research/newspapers/extracted/chicago_democrat_1834_09_03.json",
@@ -249,7 +249,7 @@
     },
     {
       "file": "chicago/4d/data/research/newspapers/extracted/chicago_democrat_1834_12_03.json",
-      "sha256": "3769b2729f4104f1047fb8331963d898e6d432b867e8e5f378cb22e2bc844e28"
+      "sha256": "93a956ce13cb940a80a25ccaaa97e77268df3bbbbf8d6e6ec9df8858f50bf62e"
     },
     {
       "file": "chicago/4d/data/research/newspapers/extracted/chicago_democrat_1834_12_10.json",
@@ -285,9 +285,9 @@
     }
   ],
   "counts": {
-    "claims": 960,
+    "claims": 961,
     "persons": 2096,
-    "businesses": 201
+    "businesses": 196
   },
   "persons": [
     {
@@ -47326,7 +47326,10 @@
       "name": "J. L. Wilson & Co.",
       "proprietors": [
         "J. L. Wilson & Co.",
-        "J. L. Wilson & Co"
+        "J. L. Wilson & Co",
+        "Jno. L. Wilson & Co.",
+        "Jno. S. Wilson & Co",
+        "Jno. S. Wilson & Co."
       ],
       "trade": "dry goods, groceries, hardware and crockery",
       "goods": [
@@ -47354,12 +47357,15 @@
         "Tickings",
         "Troy Nails",
         "Window Glass",
+        "Window Sash",
+        "Woolen yarn",
         "Wrought iron hinges",
         "crockery",
         "dry goods",
         "groceries",
         "hardware",
         "nails",
+        "stone ware",
         "window glass"
       ],
       "street": "Dearborn Street",
@@ -47372,18 +47378,50 @@
       },
       "evidence": {
         "first_issue": "1834-09-17",
-        "last_issue": "1834-11-12",
+        "last_issue": "1835-07-18",
         "copy_dates": [
-          "1834-09-17"
+          "1834-09-17",
+          "1834-10-08",
+          "1835-06-08",
+          "1835-06-12"
         ]
       },
       "contradicted_by": [],
       "mentions": [
+        "chicago_american_1835_06_08#c012",
+        "chicago_american_1835_06_20#c002",
+        "chicago_american_1835_07_18#c005",
         "chicago_democrat_1834_09_17#c003",
-        "chicago_democrat_1834_11_12#c013"
+        "chicago_democrat_1834_10_15#c001",
+        "chicago_democrat_1834_11_05#c008",
+        "chicago_democrat_1834_11_12#c013",
+        "chicago_democrat_1834_12_03#c006"
+      ],
+      "trade_variants": [
+        "dry goods, groceries and hardware",
+        "dry goods, groceries, hardware and crockery",
+        "merchant"
+      ],
+      "merged": [
+        {
+          "from": "Jno. L. Wilson & Co.",
+          "merge_rule": "'Jno. L. Wilson & Co.' is 'J. L. Wilson & Co.' with the forename set as the abbreviation this corpus uses for John rather than as an initial. The woolen-yarn notice of 1834-10-15 sets “JNO. 'L. WILBON & Co.” over “Dearborn ot.”, and the standing dry-goods advertisement running either side of it — 1834-09-17 and 1834-11-12 — puts the same house in Dearborn street, next door to the city boot, shoe and leather store. Same surname, same middle initial, same street, overlapping weeks. Merged INTO the 'J. L.' spelling because that record carries the relative placement and the full stock; the direction is which record can be placed, not which spelling is truer."
+        },
+        {
+          "from": "Jno. S. Wilson & Co",
+          "merge_rule": "'Jno. S. Wilson & Co' is 'J. L. Wilson & Co.' with the middle initial misread. The claim rests on the transcription contradicting ITSELF: one stone-ware notice is printed twice and the same character reads “JNO. S. WILSON & CO.” on 1834-11-05 and “JNO, 8. WILSON & CO.” — a digit — on 1834-12-03, so that letter is not legible in this advertisement, while the readings that ARE legible in the same weeks and the same Dearborn-street give L. The trade string is the fixture's own, word for word: dry goods, groceries, hardware and crockery. This is an OCR variant of one house, not a second Wilson."
+        },
+        {
+          "from": "Jno. Wilson & Co.",
+          "merge_rule": "'Jno. Wilson & Co.' is 'J. L. Wilson & Co.' with the middle initial dropped, which is what the American does with the house all summer: the consignment advertisement of 1835-06-20 and 1835-07-18 carries one copy date, “Chicago, June 12, 1835”, and sells window glass, window sash, dry goods, groceries and hardware — the Democrat house's own stock, which listed window glass and wrought-iron hinges from Dearborn street the autumn before. Chicago's papers of 1834-35 name no second Wilson house anywhere in this corpus, so there is nothing the shortened style could be confused with. The American gives no street, so the merge takes Dearborn street from the record that does and invents nothing."
+        },
+        {
+          "from": "L. Wilson & Co.",
+          "merge_rule": "'L. Wilson & Co.' is 'J. L. Wilson & Co.' with the forename lost off the front of the line — the same loss the Democrat's own compositor made on 1834-09-17, where the standing advertisement's first line reads “|, L. WILSON & CO.” with the J struck as a rule. The American of 1835-06-08 announces that they “HAVE received their Spring” supply of dry goods, groceries and hardware; twelve days later the same paper prints the same house as 'Jno. Wilson & Co.' with the same trade. One spring advertisement, one house."
+        }
       ],
       "built_at_scene_date": true,
-      "survival_liberty_required": true
+      "survival_liberty_required": false
     },
     {
       "id": "business_j_s_c_hogan",
@@ -47529,98 +47567,6 @@
       "contradicted_by": [],
       "mentions": [
         "chicago_american_1835_07_11#c004"
-      ],
-      "built_at_scene_date": true,
-      "survival_liberty_required": false
-    },
-    {
-      "id": "business_jno_l_wilson_co",
-      "name": "Jno. L. Wilson & Co.",
-      "proprietors": [
-        "Jno. L. Wilson & Co."
-      ],
-      "trade": "merchant",
-      "goods": [
-        "Woolen yarn"
-      ],
-      "street": "Dearborn Street",
-      "placement": {
-        "class": "street_only",
-        "street": "Dearborn Street"
-      },
-      "evidence": {
-        "first_issue": "1834-10-15",
-        "last_issue": "1834-10-15",
-        "copy_dates": [
-          "1834-10-08"
-        ]
-      },
-      "contradicted_by": [],
-      "mentions": [
-        "chicago_democrat_1834_10_15#c001"
-      ],
-      "built_at_scene_date": true,
-      "survival_liberty_required": true
-    },
-    {
-      "id": "business_jno_s_wilson_co",
-      "name": "Jno. S. Wilson & Co",
-      "proprietors": [
-        "Jno. S. Wilson & Co",
-        "Jno. S. Wilson & Co."
-      ],
-      "trade": "dry goods, groceries, hardware and crockery",
-      "goods": [
-        "stone ware"
-      ],
-      "street": "Dearborn Street",
-      "placement": {
-        "class": "street_only"
-      },
-      "evidence": {
-        "first_issue": "1834-11-05",
-        "last_issue": "1834-12-03",
-        "copy_dates": []
-      },
-      "contradicted_by": [],
-      "mentions": [
-        "chicago_democrat_1834_11_05#c008",
-        "chicago_democrat_1834_12_03#c006"
-      ],
-      "built_at_scene_date": true,
-      "survival_liberty_required": true
-    },
-    {
-      "id": "business_jno_wilson_co",
-      "name": "Jno. Wilson & Co.",
-      "proprietors": [],
-      "trade": "dry goods, groceries and hardware",
-      "goods": [
-        "Dry Goods",
-        "Groceries",
-        "Hardware",
-        "Window Glass",
-        "Window Sash"
-      ],
-      "street": null,
-      "placement": {
-        "class": "none",
-        "anchor": null,
-        "offset_text": null,
-        "offset_normalized": null,
-        "street": null
-      },
-      "evidence": {
-        "first_issue": "1835-06-20",
-        "last_issue": "1835-07-18",
-        "copy_dates": [
-          "1835-06-12"
-        ]
-      },
-      "contradicted_by": [],
-      "mentions": [
-        "chicago_american_1835_06_20#c002",
-        "chicago_american_1835_07_18#c005"
       ],
       "built_at_scene_date": true,
       "survival_liberty_required": false
@@ -48053,6 +47999,7 @@
         "Ten Plate Stoves",
         "Tin Ware",
         "Tongs",
+        "axes",
         "blinds",
         "boots",
         "iron ploughs",
@@ -48073,7 +48020,8 @@
         "last_issue": "1834-12-03",
         "copy_dates": [
           "1834-07-08",
-          "1834-10-02"
+          "1834-10-02",
+          "1834-11-05"
         ]
       },
       "contradicted_by": [],
@@ -48083,7 +48031,8 @@
         "chicago_democrat_1834_09_03#c022",
         "chicago_democrat_1834_09_10#c003",
         "chicago_democrat_1834_09_10#c008",
-        "chicago_democrat_1834_12_03#c007"
+        "chicago_democrat_1834_12_03#c007",
+        "chicago_democrat_1834_12_03#c024"
       ],
       "built_at_scene_date": true,
       "survival_liberty_required": true
@@ -48343,38 +48292,6 @@
       ],
       "built_at_scene_date": true,
       "survival_liberty_required": true
-    },
-    {
-      "id": "business_l_wilson_co",
-      "name": "L. Wilson & Co.",
-      "proprietors": [],
-      "trade": "dry goods, groceries and hardware",
-      "goods": [
-        "Dry Goods",
-        "Groceries",
-        "Hardware"
-      ],
-      "street": null,
-      "placement": {
-        "class": "none",
-        "anchor": null,
-        "offset_text": null,
-        "offset_normalized": null,
-        "street": null
-      },
-      "evidence": {
-        "first_issue": "1835-06-08",
-        "last_issue": "1835-06-08",
-        "copy_dates": [
-          "1835-06-08"
-        ]
-      },
-      "contradicted_by": [],
-      "mentions": [
-        "chicago_american_1835_06_08#c012"
-      ],
-      "built_at_scene_date": true,
-      "survival_liberty_required": false
     },
     {
       "id": "business_lathrop_johnson_co_livery",
@@ -49583,9 +49500,15 @@
       "trade": "bookseller and stationer",
       "goods": [
         "Books",
+        "Morison's Vegetable Pills",
         "Stationary",
         "books",
-        "stationery"
+        "hats",
+        "ink",
+        "paper",
+        "pens",
+        "stationery",
+        "stocks"
       ],
       "street": "Water Street",
       "placement": {
@@ -49597,7 +49520,7 @@
       },
       "evidence": {
         "first_issue": "1834-09-03",
-        "last_issue": "1834-11-12",
+        "last_issue": "1834-12-03",
         "copy_dates": [
           "1834-08-26"
         ]
@@ -49605,7 +49528,8 @@
       "contradicted_by": [],
       "mentions": [
         "chicago_democrat_1834_09_03#c012",
-        "chicago_democrat_1834_11_12#c011"
+        "chicago_democrat_1834_11_12#c011",
+        "chicago_democrat_1834_12_03#c004"
       ],
       "built_at_scene_date": true,
       "survival_liberty_required": true
@@ -50656,40 +50580,6 @@
       "contradicted_by": [],
       "mentions": [
         "chicago_democrat_1834_07_02#c026"
-      ],
-      "built_at_scene_date": true,
-      "survival_liberty_required": true
-    },
-    {
-      "id": "business_uncertain_ruisal_clupr",
-      "name": "[uncertain: Ruisal & Clupr]",
-      "proprietors": [],
-      "trade": "booksellers and stationers",
-      "goods": [
-        "Morison's Vegetable Pills",
-        "axes",
-        "books",
-        "hats",
-        "ink",
-        "paper",
-        "pens",
-        "stationery",
-        "stocks"
-      ],
-      "street": null,
-      "placement": {
-        "class": "none",
-        "anchor": null,
-        "offset_text": null
-      },
-      "evidence": {
-        "first_issue": "1834-12-03",
-        "last_issue": "1834-12-03",
-        "copy_dates": []
-      },
-      "contradicted_by": [],
-      "mentions": [
-        "chicago_democrat_1834_12_03#c004"
       ],
       "built_at_scene_date": true,
       "survival_liberty_required": true
