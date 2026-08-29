@@ -47,7 +47,14 @@ because the letter lists are full of families. A firm cannot be held to that —
 style routinely elides or misprints the forename it trades under, and one Wilson house is
 printed 'J. L.', 'Jno. L.', 'Jno. S.', 'Jno.' and bare 'L.' across eleven months — so what
 a firm is held to is its PARTNERS: the same set of surnames on both sides, with or without
-a rule, plus no street the papers contradict. Merging widens a record and never narrows
+a rule, plus no street the papers contradict. AND THE PROPRIETORS ARE A THIRD PLACE
+AGAIN (T-0337): a partner's name on a business record is neither a gazetteer person nor a
+firm style, so until that ticket one man read two ways stood as two proprietors of his own
+house and nothing could see it. Two person-styled proprietors of ONE house sharing a
+surname and carrying different read initials are REFUSED until `identity.json` declares
+which they are — `proprietor_merges` to join two readings, `proprietor_distinctions` to
+hold two men apart. The default is neither merge nor silence, because a house really does
+hold brothers and really does hold one man read twice. Merging widens a record and never narrows
 one, and ruling 3 below is recomputed afterwards, which is the point: three of that
 Wilson house's five spellings were last seen in 1834 and were each claiming a survival
 liberty the fourth and fifth disprove.
@@ -665,6 +672,87 @@ def compile_gazetteer(files, identity, corpus, quiet=True):
             dst["trade_variants"] = sorted(trades)
         dst.setdefault("merged", []).append({"from": frm, "merge_rule": why})
 
+    # THE PROPRIETORS' HALF (T-0337). Applied after the firm merges, because a firm
+    # merge is what unions two houses' proprietor lists in the first place, and a pair
+    # that needs adjudicating can be created by one.
+    for rule in identity.get("proprietor_merges", []):
+        bid, into, frm = rule.get("business"), rule.get("into"), rule.get("from")
+        why = (rule.get("merge_rule") or "").strip()
+        label = "identity.json proprietor_merge %r: %r <- %r" % (bid, into, frm)
+        if not bid or not into or not frm:
+            problems.append("%s: a proprietor merge needs `business`, `into` and `from`"
+                            % label)
+            continue
+        if not why:
+            problems.append("%s: no merge_rule — an unexplained merge is a compile error, "
+                            "because a wrong one is invisible afterwards" % label)
+            continue
+        if into not in why or frm not in why:
+            problems.append("%s: merge_rule must name BOTH spellings verbatim, so the "
+                            "judgement can be read back without the code" % label)
+            continue
+        biz = businesses.get(bid[len("business_"):] if bid.startswith("business_") else bid)
+        if biz is None:
+            problems.append("%s: no business of that id is compiled — a proprietor rule "
+                            "for a house that is not in the corpus is a rule nobody can "
+                            "check" % label)
+            continue
+        missing = [n for n in (into, frm) if n not in (biz.get("proprietors") or [])]
+        if missing:
+            problems.append("%s: %s is not a proprietor this house carries — the rule has "
+                            "gone stale, or it names a spelling no claim reads"
+                            % (label, ", ".join(repr(m) for m in missing)))
+            continue
+        if surname(into) != surname(frm):
+            problems.append("%s: the surnames differ (%r against %r) — a proprietor merge "
+                            "may join two readings of one name and never two names"
+                            % (label, surname(into), surname(frm)))
+            continue
+        biz["proprietors"] = [p for p in biz["proprietors"] if p != frm]
+        biz.setdefault("proprietors_merged", []).append({"into": into, "from": frm,
+                                                         "merge_rule": why})
+
+    # …and the refusal. Every same-surname pair left standing in one house's proprietors
+    # is either two people or one read twice, and the gate will not guess which.
+    declared = {}
+    for rule in identity.get("proprietor_distinctions", []):
+        bid = rule.get("business")
+        names = rule.get("names") or []
+        label = "identity.json proprietor_distinction %r %s" % (bid, names)
+        if not bid or len(names) != 2 or not all(names):
+            problems.append("%s: a distinction needs a `business` and exactly two `names`"
+                            % label)
+            continue
+        if not (rule.get("rule") or "").strip():
+            problems.append("%s: no rule — declaring two men without saying how they are "
+                            "told apart is the assertion this gate exists to refuse"
+                            % label)
+            continue
+        key = bid[len("business_"):] if bid.startswith("business_") else bid
+        if key not in businesses:
+            problems.append("%s: no business of that id is compiled" % label)
+            continue
+        declared.setdefault(key, set()).add(frozenset(names))
+
+    for key, biz in businesses.items():
+        want = {frozenset(pair) for pair in proprietor_pairs(biz)}
+        have = declared.get(key, set())
+        for pair in sorted(want - have, key=lambda s: sorted(s)):
+            a, b = sorted(pair)
+            problems.append(
+                "%s: %r and %r are one surname with different forenames, and nothing "
+                "declares which they are. One house's proprietors are read printing by "
+                "printing, so this is either two men or one man read twice — declare it "
+                "in identity.json: `proprietor_merges` to join them, or "
+                "`proprietor_distinctions` to hold them apart, with the reasoning."
+                % (biz["id"], a, b))
+        for pair in sorted(have - want, key=lambda s: sorted(s)):
+            problems.append(
+                "%s: the distinction declared for %s no longer answers anything — those "
+                "two spellings are not both proprietors of this house any more. A "
+                "declaration that has outlived its pair is a judgement nobody can check."
+                % (biz["id"], sorted(pair)))
+
     for b in businesses.values():
         # Ruling 3, computed and never asserted: a documented business stands in the
         # 1835 town unless a claim contradicts it, and one whose last issue predates
@@ -832,6 +920,60 @@ def firm_surnames(name):
         if words:
             out.add(slug(words[-1]))
     return out
+
+
+# --------------------------------------------------------------------------
+# the PROPRIETORS' half of the identity policy (T-0337)
+#
+# A firm's `proprietors` are the third place a name lives here, and until this ticket
+# it was the only one with no rule at all. `identity.json.merges` governs gazetteer
+# PERSONS and `firm_merges` governs business STYLES; a proprietor is neither — it is a
+# string on a business record, put there by whichever claim read that printing. So one
+# man read two ways became two proprietors of his own house and nothing could see it:
+# `business_russell_clift` carried 'Benj. Clift' from the 1834-09-03 impression of the
+# copartnership notice and '[H. H.] Clift' from the 1834-11-12 impression of the SAME
+# notice, and neither the person policy nor the firm policy can reach across to say so.
+#
+# The rule here is the firm-side sibling of the person one, and it points the other way
+# on purpose. For a person, same surname with different initials NEVER merges, silently
+# and by default, because the letter lists are full of families. For two proprietors of
+# ONE house the default cannot be silence either way: brothers really do trade together
+# (William and Franklin Brewster sign one dissolution notice) and so does one man read
+# twice. So the pair is REFUSED until `identity.json` says which it is —
+# `proprietor_merges` to join them, `proprietor_distinctions` to hold them apart — and
+# each declaration carries the reasoning, exactly as a merge rule does.
+
+
+def firm_styled(name):
+    """Is this proprietor string a firm's style rather than a person's name?
+
+    `proprietors` carries both — a claim that reads only the signature 'JONES & KING.'
+    records that as the proprietor, because it is what the paper printed. A style is
+    not a person and the rule below is about people, so these are stepped over.
+    """
+    text = unmarked(name or "")
+    if "&" in text or re.search(r"\band\b", text):
+        return True
+    words = [slug(w) for w in re.findall(r"[A-Za-z][A-Za-z\u2019']*", text)]
+    return bool(words) and words[-1] in FIRM_SUFFIXES
+
+
+def proprietor_pairs(business):
+    """Every pair of this business's proprietors that one surname could be hiding in.
+
+    Two person-styled proprietors, the same surname, and forename initials that are
+    READ on both sides and disagree. Both sides must carry initials: a bare surname
+    beside a full name ('Hubbard' beside 'Gurdon S. Hubbard') is the papers printing
+    less, not a second man, and there is nothing there to adjudicate.
+    """
+    names = [n for n in (business.get("proprietors") or []) if not firm_styled(n)]
+    for i, a in enumerate(names):
+        for b in names[i + 1:]:
+            if not surname(a) or surname(a) != surname(b):
+                continue
+            ia, ib = initials(a), initials(b)
+            if ia and ib and ia != ib:
+                yield a, b
 
 
 def placement_rank(placement):
@@ -1097,11 +1239,17 @@ def check(extracted=EXTRACTED, gazetteer=GAZETTEER, identity=IDENTITY, corpus=CO
               % checked_quotes)
         print("  ok    %d person(s), %d business(es), compile deterministic and committed"
               % (len(doc["persons"]), len(doc["businesses"])))
-        print("  ok    %d declared identity merge(s): %d person, %d firm — each one "
-              "carrying its reason"
-              % (len(identity_doc.get("merges", [])) + len(identity_doc.get("firm_merges", [])),
+        print("  ok    %d declared identity merge(s): %d person, %d firm, %d proprietor "
+              "— each one carrying its reason"
+              % (len(identity_doc.get("merges", []))
+                 + len(identity_doc.get("firm_merges", []))
+                 + len(identity_doc.get("proprietor_merges", [])),
                  len(identity_doc.get("merges", [])),
-                 len(identity_doc.get("firm_merges", []))))
+                 len(identity_doc.get("firm_merges", [])),
+                 len(identity_doc.get("proprietor_merges", []))))
+        print("  ok    %d house(s) hold two proprietors of one surname apart, each with "
+              "the sentence that tells them apart"
+              % len(identity_doc.get("proprietor_distinctions", [])))
         covered = sum(1 for i in corpus_doc.get("issues", [])
                       for r in coverage_doc.get("ranges", [])
                       if i.get("publication") == r.get("publication")
@@ -1176,6 +1324,9 @@ def text_backed_fixture(corpus):
 
 def self_test():
     failures = []
+    cases = []                      # every broken-fixture case run below, counted rather
+                                    # than asserted: the printed number was hand-kept and
+                                    # stopped moving when cases were added (T-0337).
     corpus_doc = load_json(CORPUS)
     fixtures = sorted(EXTRACTED.glob("*.json"))
     base = load_json(fixtures[0]) if fixtures else None
@@ -1184,6 +1335,7 @@ def self_test():
         return 1
 
     def run(mutate, want, label, identity=None):
+        cases.append(label)
         d = copy.deepcopy(base)
         ident = copy.deepcopy(identity) if identity else {"merges": []}
         mutate(d, ident)
@@ -1329,6 +1481,64 @@ def self_test():
                       firm_rule(i, "L. Wilson & Co.", "Jno. Wilson & Co.")),
         "different streets", "a firm merge across a street the papers contradict")
 
+    # THE PROPRIETORS' HALF (T-0337). Every case is the shape the Russell & Clift pair
+    # actually had: two readings of one house's partner, sitting in one `proprietors`
+    # list, which neither the person policy nor the firm policy can reach.
+    def props(d, name, *who):
+        next(c for c in d["claims"]
+             if (c.get("business") or {}).get("name") == name)["business"]["proprietors"] = list(who)
+
+    def prop_merge(i, bid, into, frm, why=None):
+        i.setdefault("proprietor_merges", []).append({
+            "business": bid, "into": into, "from": frm,
+            "merge_rule": why if why is not None
+            else "%s and %s are one man: the same notice, twice printed" % (into, frm)})
+
+    def prop_distinct(i, bid, a, b, why="two partners, both signing one notice"):
+        i.setdefault("proprietor_distinctions", []).append(
+            {"business": bid, "names": [a, b], "rule": why})
+
+    WILSON = "business_l_wilson_co"
+    run(lambda d, i: props(d, "L. Wilson & Co.", "Benj. Clift", "[H. H.] Clift"),
+        "one surname with different forenames",
+        "one house's proprietors read two ways, undeclared")
+    run(lambda d, i: (props(d, "L. Wilson & Co.", "Benj. Clift", "[H. H.] Clift"),
+                      prop_merge(i, WILSON, "Benj. Clift", "[H. H.] Clift")),
+        None, "…and joined by a stated proprietor merge")
+    run(lambda d, i: (props(d, "L. Wilson & Co.", "Benj. Clift", "[H. H.] Clift"),
+                      prop_distinct(i, WILSON, "Benj. Clift", "[H. H.] Clift")),
+        None, "…or held apart by a stated distinction")
+    run(lambda d, i: (props(d, "L. Wilson & Co.", "Benj. Clift", "[H. H.] Clift"),
+                      prop_distinct(i, WILSON, "Benj. Clift", "[H. H.] Clift", "")),
+        "no rule", "a distinction that does not say how the two are told apart")
+    run(lambda d, i: (props(d, "L. Wilson & Co.", "Benj. Clift", "[H. H.] Clift"),
+                      i.setdefault("proprietor_merges", []).append(
+                          {"business": WILSON, "into": "Benj. Clift", "from": "[H. H.] Clift"})),
+        "no merge_rule", "a proprietor merge with no stated reason")
+    run(lambda d, i: (props(d, "L. Wilson & Co.", "Benj. Clift", "[H. H.] Clift"),
+                      prop_merge(i, WILSON, "Benj. Clift", "[H. H.] Clift", "they look alike")),
+        "name BOTH spellings", "a proprietor merge rule that does not name what it merges")
+    run(lambda d, i: (props(d, "L. Wilson & Co.", "Aaron Russell", "Benj. Clift"),
+                      prop_merge(i, WILSON, "Aaron Russell", "Benj. Clift")),
+        "a proprietor merge may join two readings of one name",
+        "a proprietor merge across two different surnames")
+    run(lambda d, i: (props(d, "L. Wilson & Co.", "Benj. Clift"),
+                      prop_merge(i, WILSON, "Benj. Clift", "[H. H.] Clift")),
+        "is not a proprietor this house carries", "a proprietor merge gone stale")
+    run(lambda d, i: (props(d, "L. Wilson & Co.", "Benj. Clift"),
+                      prop_distinct(i, WILSON, "Benj. Clift", "[H. H.] Clift")),
+        "no longer answers anything", "a distinction whose pair has gone")
+    run(lambda d, i: prop_merge(i, "business_nobody_at_all", "A. Nobody", "B. Nobody"),
+        "no business of that id is compiled", "a proprietor rule for a house nobody claimed")
+    # A BARE SURNAME IS NOT A SECOND MAN. 'Hubbard' beside 'Gurdon S. Hubbard' is the
+    # papers printing less, and the gate must not send anyone to adjudicate it.
+    run(lambda d, i: props(d, "L. Wilson & Co.", "Hubbard", "Gurdon S. Hubbard"),
+        None, "a bare surname beside a full name is nothing to declare")
+    # …and neither is a firm's own style, which `proprietors` carries wherever a claim
+    # read only the signature.
+    run(lambda d, i: props(d, "L. Wilson & Co.", "Jones & King", "Byram King"),
+        None, "a firm style in the proprietors is not a person")
+
     # And the merge has to DO something: green is also what a merge that quietly did
     # nothing would look like, so the union is asserted on the compiled record itself.
     merged_fixture = copy.deepcopy(base)
@@ -1366,6 +1576,7 @@ def self_test():
         failures.append("no derived-text issue to build the text-backed cases from")
     else:
         def run_backed(mutate, want, label):
+            cases.append(label)
             d = copy.deepcopy(backed)
             mutate(d)
             with tempfile.TemporaryDirectory() as td:
@@ -1440,6 +1651,7 @@ def self_test():
     # in the tree. Every other case breaks something present; these break something by
     # its absence, which is the shape of the fault a reading pass actually has.
     def run_coverage(ranges, want, label):
+        cases.append(label)
         with tempfile.TemporaryDirectory() as td:
             ex = Path(td) / "extracted"
             ex.mkdir()
@@ -1577,8 +1789,8 @@ def self_test():
         for f in failures:
             print("FAIL: " + f, file=sys.stderr)
         return 1
-    print("  ok    every gazetteer assertion fires when broken (42 cases), and all\n"
-          "        seven marker dialects resolve")
+    print("  ok    every gazetteer assertion fires when broken (%d cases), and all\n"
+          "        seven marker dialects resolve" % len(cases))
     return 0
 
 

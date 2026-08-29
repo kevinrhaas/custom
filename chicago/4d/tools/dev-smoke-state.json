@@ -2,6 +2,68 @@
   "note": "T-0216 — dev's standing smoke result, so a branch can answer \"is this red mine, or did I inherit it?\" from the record instead of re-running the stage on a clean worktree (three agents paid that price on one red on 2026-08-27; T-0215). Written by tools/dev-smoke-state.mjs, which parses a smoke log — local or from a chicago-4d-smoke.yml run. Every reading carries the CONDITIONS it was taken under, because a quiet CI runner does not predict a loaded steward box: T-0215 measured a factor of twenty on one tree. loadavg is sampled when the reading is filed, so it includes the smoke's own load. `treeHash` digests exactly what the smoke exercises (renderers, data, assets, smoke_renderer.mjs, the published mirror), so a reading whose hash matches yours is a reading OF YOUR TREE. A RECORD, NOT A BAR: nothing here gates anything.",
   "readings": [
     {
+      "viewport": "mobile",
+      "stage": "8",
+      "parts": [
+        8
+      ],
+      "verdict": "pass",
+      "target": "published",
+      "passed": 37,
+      "failed": 0,
+      "failures": [],
+      "wallSeconds": 78,
+      "takenAt": "2026-08-29T15:03:04.305Z",
+      "ref": "steward/t-0294-democrat-december-1834",
+      "commit": "44995edc40dc",
+      "devCommit": "44995edc40dc",
+      "treeHash": "sha256:8b61aaea024c9d81",
+      "treeDirty": true,
+      "changelogHash": "sha256:d14de815ad362be1",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          4.1,
+          3,
+          1.6
+        ]
+      },
+      "source": "/tmp/smoke-mobile-8.log"
+    },
+    {
+      "viewport": "desktop",
+      "stage": "8",
+      "parts": [
+        8
+      ],
+      "verdict": "pass",
+      "target": "published",
+      "passed": 37,
+      "failed": 0,
+      "failures": [],
+      "wallSeconds": 137,
+      "takenAt": "2026-08-29T15:03:04.225Z",
+      "ref": "steward/t-0294-democrat-december-1834",
+      "commit": "44995edc40dc",
+      "devCommit": "44995edc40dc",
+      "treeHash": "sha256:8b61aaea024c9d81",
+      "treeDirty": true,
+      "changelogHash": "sha256:d14de815ad362be1",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          4.1,
+          3,
+          1.6
+        ]
+      },
+      "source": "/tmp/smoke-desktop-8.log"
+    },
+    {
       "viewport": "desktop",
       "stage": "1",
       "parts": [
@@ -1839,231 +1901,6 @@
         ]
       },
       "source": "/tmp/smoke_d8.log"
-    },
-    {
-      "viewport": "mobile",
-      "stage": "7",
-      "parts": [
-        7
-      ],
-      "verdict": "fail",
-      "target": "published",
-      "passed": 44,
-      "failed": 1,
-      "failures": [
-        "mobile 390x780: every tree drawn stands at its own station — 0 of 0 vertices further than 24 m from any of 563 stations across 0 merged meshes; worst 0 m"
-      ],
-      "wallSeconds": 355,
-      "takenAt": "2026-08-28T11:36:09.670Z",
-      "ref": "steward/lattice-ceiling-card",
-      "commit": "ddc297170938",
-      "devCommit": "9b27074aee1d",
-      "treeHash": "sha256:d75c711655ecaa12",
-      "treeDirty": false,
-      "changelogHash": "sha256:2ba09b8b92b66bf9",
-      "host": {
-        "kind": "steward-runner",
-        "cpus": 4,
-        "memGB": 15.6,
-        "loadavg": [
-          3.8,
-          4.6,
-          4.4
-        ]
-      },
-      "source": "/tmp/n_m7.log"
-    },
-    {
-      "viewport": "mobile",
-      "stage": "8-9",
-      "parts": [
-        8,
-        9
-      ],
-      "verdict": "pass",
-      "target": "published",
-      "passed": 119,
-      "failed": 0,
-      "failures": [],
-      "wallSeconds": 238,
-      "takenAt": "2026-08-28T11:36:09.586Z",
-      "ref": "steward/lattice-ceiling-card",
-      "commit": "ddc297170938",
-      "devCommit": "9b27074aee1d",
-      "treeHash": "sha256:d75c711655ecaa12",
-      "treeDirty": false,
-      "changelogHash": "sha256:2ba09b8b92b66bf9",
-      "host": {
-        "kind": "steward-runner",
-        "cpus": 4,
-        "memGB": 15.6,
-        "loadavg": [
-          3.8,
-          4.6,
-          4.4
-        ]
-      },
-      "source": "/tmp/n_m89.log"
-    },
-    {
-      "viewport": "desktop",
-      "stage": "8",
-      "parts": [
-        8
-      ],
-      "verdict": "pass",
-      "target": "published",
-      "passed": 37,
-      "failed": 0,
-      "failures": [],
-      "wallSeconds": 172,
-      "takenAt": "2026-08-28T11:36:09.503Z",
-      "ref": "steward/lattice-ceiling-card",
-      "commit": "ddc297170938",
-      "devCommit": "9b27074aee1d",
-      "treeHash": "sha256:d75c711655ecaa12",
-      "treeDirty": false,
-      "changelogHash": "sha256:2ba09b8b92b66bf9",
-      "host": {
-        "kind": "steward-runner",
-        "cpus": 4,
-        "memGB": 15.6,
-        "loadavg": [
-          3.8,
-          4.6,
-          4.4
-        ]
-      },
-      "source": "/tmp/n_d8.log"
-    },
-    {
-      "viewport": "desktop",
-      "stage": "9",
-      "parts": [
-        9
-      ],
-      "verdict": "pass",
-      "target": "published",
-      "passed": 91,
-      "failed": 0,
-      "failures": [],
-      "wallSeconds": 288,
-      "takenAt": "2026-08-28T11:36:09.419Z",
-      "ref": "steward/lattice-ceiling-card",
-      "commit": "ddc297170938",
-      "devCommit": "9b27074aee1d",
-      "treeHash": "sha256:d75c711655ecaa12",
-      "treeDirty": false,
-      "changelogHash": "sha256:2ba09b8b92b66bf9",
-      "host": {
-        "kind": "steward-runner",
-        "cpus": 4,
-        "memGB": 15.6,
-        "loadavg": [
-          3.8,
-          4.6,
-          4.4
-        ]
-      },
-      "source": "/tmp/n_d9.log"
-    },
-    {
-      "viewport": "mobile",
-      "stage": "2",
-      "parts": [
-        2
-      ],
-      "verdict": "fail",
-      "target": "published",
-      "passed": 81,
-      "failed": 1,
-      "failures": [
-        "mobile 390x780: the Sauganash's two hitching posts stand on their own ground, carrying nothing — sauganash_hotel_hitching_post_1 1.30/1.3 m, foot -0.000 m, 3.87 m clear | sauganash_hotel_hitching_post_2 1.30/1.3 m, foot 0.000 m, 3.87 m clear | blk_lake_market_north_hitching_philo_carpenter_log_shop -Infinity/1.3 m, foot Infinity m, 3.88 m clear | blk_south_water_clark_north_hitching_madore_beaubien_house -Infinity/1.3 m, foot Infinity m, 3.88 m clear | blk_south_water_clark_north_hitching_pruyne_kimball_drugstore -Infinity/1.3 m, foot Infinity m, 3.88 m clear | blk_south_water_dearborn_north_hitching_chicago_american_office -Infinity/1.3 m, foot Infinity m, 3.88 m clear | blk_south_water_dearborn_south_hitching_mansion_house -Infinity/1.3 m, foot Infinity m, 3.89 m clear | blk_south_water_franklin_north_hitching_jh_kinzie_forwarding_store -Infinity/1.3 m, foot Infinity m, 3.88 m clear | blk_south_water_lasalle_north_hitching_chicago_democrat_office -Infinity/1.3 m, foot Infinity m, 3.88 m clear | blk_south_water_lasalle_south_hitching_thomas_church_store -Infinity/1.3 m, foot Infinity m, 3.88 m clear | blk_south_water_wells_north_hitching_brown_boarding_house -Infinity/1.3 m, foot Infinity m, 3.88 m clear | blk_south_water_wells_north_hitching_carpenter_south_water_store -Infinity/1.3 m, foot Infinity m, 3.88 m clear | blk_south_water_wells_north_hitching_h_jones_store -Infinity/1.3 m, foot Infinity m, 3.88 m clear | blk_south_water_wells_north_hitching_peck_store -Infinity/1.3 m, foot Infinity m, 3.88 m clear — 1 board(s) lettered in the layer, record says a board on a post here: false"
-      ],
-      "wallSeconds": 132,
-      "takenAt": "2026-08-28T10:27:04.827Z",
-      "ref": "steward/t-0228-wharf-deck-plank-walk",
-      "commit": "2369a1f10b6f",
-      "devCommit": "6224cf068618",
-      "treeHash": "sha256:b3ddfac5fbdfa78b",
-      "treeDirty": false,
-      "changelogHash": "sha256:1bb10676496efe02",
-      "host": {
-        "kind": "steward-runner",
-        "cpus": 4,
-        "memGB": 15.6,
-        "loadavg": [
-          3.3,
-          3.5,
-          3.2
-        ]
-      },
-      "source": "/tmp/f_mobile.log"
-    },
-    {
-      "viewport": "desktop",
-      "stage": "2",
-      "parts": [
-        2
-      ],
-      "verdict": "fail",
-      "target": "published",
-      "passed": 81,
-      "failed": 1,
-      "failures": [
-        "desktop 1280x800: the Sauganash's two hitching posts stand on their own ground, carrying nothing — sauganash_hotel_hitching_post_1 1.30/1.3 m, foot -0.000 m, 3.87 m clear | sauganash_hotel_hitching_post_2 1.30/1.3 m, foot 0.000 m, 3.87 m clear | blk_lake_market_north_hitching_philo_carpenter_log_shop -Infinity/1.3 m, foot Infinity m, 3.88 m clear | blk_south_water_clark_north_hitching_madore_beaubien_house -Infinity/1.3 m, foot Infinity m, 3.88 m clear | blk_south_water_clark_north_hitching_pruyne_kimball_drugstore -Infinity/1.3 m, foot Infinity m, 3.88 m clear | blk_south_water_dearborn_north_hitching_chicago_american_office -Infinity/1.3 m, foot Infinity m, 3.88 m clear | blk_south_water_dearborn_south_hitching_mansion_house -Infinity/1.3 m, foot Infinity m, 3.89 m clear | blk_south_water_franklin_north_hitching_jh_kinzie_forwarding_store -Infinity/1.3 m, foot Infinity m, 3.88 m clear | blk_south_water_lasalle_north_hitching_chicago_democrat_office -Infinity/1.3 m, foot Infinity m, 3.88 m clear | blk_south_water_lasalle_south_hitching_thomas_church_store -Infinity/1.3 m, foot Infinity m, 3.88 m clear | blk_south_water_wells_north_hitching_brown_boarding_house -Infinity/1.3 m, foot Infinity m, 3.88 m clear | blk_south_water_wells_north_hitching_carpenter_south_water_store -Infinity/1.3 m, foot Infinity m, 3.88 m clear | blk_south_water_wells_north_hitching_h_jones_store -Infinity/1.3 m, foot Infinity m, 3.88 m clear | blk_south_water_wells_north_hitching_peck_store -Infinity/1.3 m, foot Infinity m, 3.88 m clear — 1 board(s) lettered in the layer, record says a board on a post here: false"
-      ],
-      "wallSeconds": 239,
-      "takenAt": "2026-08-28T10:27:04.738Z",
-      "ref": "steward/t-0228-wharf-deck-plank-walk",
-      "commit": "2369a1f10b6f",
-      "devCommit": "6224cf068618",
-      "treeHash": "sha256:b3ddfac5fbdfa78b",
-      "treeDirty": false,
-      "changelogHash": "sha256:1bb10676496efe02",
-      "host": {
-        "kind": "steward-runner",
-        "cpus": 4,
-        "memGB": 15.6,
-        "loadavg": [
-          3.3,
-          3.5,
-          3.2
-        ]
-      },
-      "source": "/tmp/f_desktop.log"
-    },
-    {
-      "viewport": "mobile",
-      "stage": "5-6",
-      "parts": [
-        5,
-        6
-      ],
-      "verdict": "pass",
-      "target": "published",
-      "passed": 43,
-      "failed": 0,
-      "failures": [],
-      "wallSeconds": 451,
-      "takenAt": "2026-08-28T00:55:56.828Z",
-      "ref": "steward/t-0183-market-south-water",
-      "commit": "a5de91af4b12",
-      "devCommit": "2ab3065a90dc",
-      "treeHash": "sha256:e04ec4297f9eff10",
-      "treeDirty": false,
-      "changelogHash": "sha256:bcd8e39382a6213a",
-      "host": {
-        "kind": "steward-runner",
-        "cpus": 4,
-        "memGB": 15.6,
-        "loadavg": [
-          2.8,
-          4.1,
-          4.3
-        ]
-      },
-      "source": "/tmp/m56.log"
     }
   ]
 }

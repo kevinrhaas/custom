@@ -2268,5 +2268,78 @@
       "from": "L. Wilson & Co.",
       "merge_rule": "'L. Wilson & Co.' is 'J. L. Wilson & Co.' with the forename lost off the front of the line — the same loss the Democrat's own compositor made on 1834-09-17, where the standing advertisement's first line reads “|, L. WILSON & CO.” with the J struck as a rule. The American of 1835-06-08 announces that they “HAVE received their Spring” supply of dry goods, groceries and hardware; twelve days later the same paper prints the same house as 'Jno. Wilson & Co.' with the same trade. One spring advertisement, one house."
     }
+  ],
+  "proprietor_note": "The PROPRIETORS' half of the same policy (T-0337), and the last of the three places a name lives here. `merges` governs gazetteer PERSONS and `firm_merges` governs business STYLES; a proprietor is neither — it is a string on a business record, put there by whichever claim read that printing, so one man read two ways became two proprietors of his own house and nothing in either policy could reach across to say so. `business_russell_clift` carried 'Benj. Clift' from the 1834-09-03 impression of the copartnership notice and '[H. H.] Clift' from the 1834-11-12 impression of the SAME notice. The rule is the firm-side sibling of the person one and it points the other way on purpose: for a person, same surname with different initials never merges, silently and by default, because the letter lists are full of families; for two proprietors of ONE house the default cannot be silence either way, because brothers really do trade together — William and Franklin Brewster sign one dissolution notice — and so does one man read twice. So the compiler REFUSES any pair of person-styled proprietors of one house that share a surname and carry different, read forename initials, until it is declared: `proprietor_merges` joins two readings of one name, `proprietor_distinctions` holds two men apart, and each carries its reasoning. A bare surname beside a full name is not a pair — that is the papers printing less, not a second man — and a declaration whose pair has gone is refused too, so these cannot rot.",
+  "proprietor_merges": [
+    {
+      "business": "business_j_k_botsford",
+      "into": "J. K. Botsford",
+      "from": "[K.] Botsford",
+      "merge_rule": "'[K.] Botsford' is 'J. K. Botsford' with the first initial cut off the line. Both are readings of the one Chicago merchant this corpus carries under that surname: the house advertises in twenty claims across 1834 and every impression that sets the name whole sets 'J. K. Botsford'. Nothing in the corpus names a second Botsford, so there is no second man the shortened style could belong to."
+    },
+    {
+      "business": "business_j_k_botsford",
+      "into": "J. K. Botsford",
+      "from": "[J.] K. Botsford",
+      "merge_rule": "'[J.] K. Botsford' is 'J. K. Botsford' with the first initial supplied by the transcriber rather than printed — a bracketed letter is a letter read through and restored, which is a correction and not a difference. Same house, same trade, same surname, and no second Botsford anywhere in this corpus."
+    },
+    {
+      "business": "business_e_wentworth_s_tavern_on_flag_creek",
+      "into": "H. E. Wentworth",
+      "from": "E. Wentworth",
+      "merge_rule": "'E. Wentworth' is 'H. E. Wentworth' with the first initial lost off the front of the line. It is one standing advertisement, not two: the tavern-keeper's notice of 1833-12-17 ('PUBLIC HOUSE, H. E. WENTWORTH, has opened a TAVERN on Flag Creek') runs again on 1834-01-07 word for word, down to the corn and oats kept on hand, and the second impression sets the name 'E. WENTWORTH'. One house on Flag Creek, one keeper, one insertion running about eight months."
+    },
+    {
+      "business": "business_eagle_tavern",
+      "into": "P. J. Carli",
+      "from": "P. S. Carli",
+      "merge_rule": "'P. S. Carli' and 'P. J. Carli' are one man, and the middle letter is the only thing between them. It is one advertisement twice printed: 1834-06-18 sets 'A FEW setts of elegant fancy Chairs and Rocking Chairs. Also, some Harnesses and Saddles. Enquire of P. J. CARLI, Eagle Tavern' and 1834-09-10 sets the same chairs, rocking chairs, harnesses and saddles over 'P.5.CARLI, Eagle Tavern' — a printing whose own middle character reads as the DIGIT 5, so that letter is not legible in this advertisement. The Eagle is the same house in both and the corpus names no second Carli."
+    },
+    {
+      "business": "business_jones_king",
+      "into": "Wm. Jones",
+      "from": "M. Jones",
+      "merge_rule": "'M. Jones' is 'Wm. Jones' with the W and the m run together, which is what the 1834-07-09 impression prints: 'M, JONES,' — a comma where the abbreviation's stop belongs. The firm is the same in both readings and so is the other partner: the stove and hollow-ware house of Jones & King, signed 'M, JONES, BYRAM KING' on 1834-07-09 and carried as Wm. Jones and Byram King from 1834-09-10, and the successor firm's own card of 1835-05-27 signs 'WILLIAM JONES, BYRAM KING, H. B. CLARKE'. This corpus names no second Jones in the partnership."
+    },
+    {
+      "business": "business_jones_king_co",
+      "into": "H. B. Clarke",
+      "from": "Clarke, W. B.",
+      "merge_rule": "'Clarke, W. B.' is 'H. B. Clarke' with the first initial misread. It is one advertisement three times printed: the Jones, King & Co. connection notice sets 'WILLIAM JONES, BYRAM KING, H, B, CLARKE' on 1835-05-27 and 'WILLIAM JONES, BYRAM KING, H. B. CLARKE' on 1835-07-08, and the 1835-08-05 impression of the same three signatures in the same order reads 'WB. CLARKE.' — a printing whose first signature it also mangles to 'WILLEAAL JONES,'. Same firm, same partners, same week's standing insertion; the second initial B is common to every reading."
+    }
+  ],
+  "proprietor_distinctions": [
+    {
+      "business": "business_brewster_hogan_co",
+      "names": [
+        "William Brewster",
+        "Franklin Brewster"
+      ],
+      "rule": "Two men, and the paper says so in one sentence: the dissolution notice of Brewster, Hogan & Co. is signed 'WILL[IAM BREWSTER,] FRAN[KLIN BREWSTER,] JOHN [S. C. HOGAN.]' (1834-06-11 c001, the bracketed supplies read off the 1834-06-18 printing of the same notice). Two Brewsters sign as partners of one house, so William Brewster and Franklin Brewster are two partners and not two readings."
+    },
+    {
+      "business": "business_g_w_w_laird",
+      "names": [
+        "G. W. Laird",
+        "William Laird"
+      ],
+      "rule": "Two men, named as two in the firm's own style. The dissolution notice of 1834-07-02 reads 'The copartnership heretofore existing between G. W. & William Laird, under the firm of G. W. & W. Laird' and is signed 'G. W. LAIRD, WM. LAIRD' — the style itself carries both partners, and the books are left in the hands of G. W. Laird alone, which only means something if the other is somebody else."
+    },
+    {
+      "business": "business_hubbard_co",
+      "names": [
+        "Henry G. Hubbard",
+        "Gurdon S. Hubbard"
+      ],
+      "rule": "Two men, printed one under the other over their own firm's card: 'HUBBARD & CO. Commission and Forwarding MERCHANTS, CHICAGO—ILLINOIS. GURDOs S. HUBBARD, HENRY G. HURBARD.' (1835-07-01 c016). Gurdon S. Hubbard and Henry G. Hubbard sign as two partners of one house, and the Newberry & Dole card of 1835-08-05 names them separately again."
+    },
+    {
+      "business": "business_newberry_dole",
+      "names": [
+        "Oliver Newberry",
+        "Newberry, [Walter L.]"
+      ],
+      "rule": "Two men — and WHICH of them was the partner is not settled here. Oliver Newberry of Detroit and Walter L. Newberry are two people the corpus keeps apart on its own evidence: the firm's card of 1835-08-05 (c022) signs a partner read as 'Newberry, [Walter L.]' and, in the SAME card, gives 'Oliver Newb[err]y, Detro[it]' as a commercial REFERENCE, which is not something a house prints about its own partner. Against that, the 1834-03-04 reading (c021) enters 'Oliver Newberry' on the business record as the received identification of the partner, and says in its notes that it is received rather than read. So they are held apart, which is what the evidence supports; the open question of which Newberry stood in the partnership is T-0396 and is not answered by this declaration."
+    }
   ]
 }

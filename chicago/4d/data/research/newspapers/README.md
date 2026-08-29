@@ -160,7 +160,7 @@ Deterministic: the same deposit produces byte-identical `corpus.json` and `text/
 | | |
 |---|---|
 | `extracted/<issue_id>.json` | one file per issue, holding `claims[]` — hand-authored |
-| `identity.json` | the only place two differently-spelled names may become one person, or two firm styles one house |
+| `identity.json` | the only place two differently-spelled names may become one person, two firm styles one house, or two of a house's proprietors one partner |
 | `coverage.json` | the ranges a reading pass has DECLARED it read, and the gate holds it to them |
 | `gazetteer.json` | **generated** by `tools/compile_gazetteer.py --build` — never hand-edited |
 
@@ -204,9 +204,28 @@ declared in the notes with the tally that decided it.
 Two cautions, both learned here. **The tally is over impressions, not over readings** — two
 transcriptions of the SAME impression are one witness, and `corpus.json`'s `-2` rebuilds are
 exactly that. And **a run of concordant settings does not make a scan trustworthy in
-general**: the same five printings that agree on the lot number set the advertisement's copy
-date as Nov. 12, Nov. 12, Nov. 13 and Nov. 19, so the digit that was decidable and the digit
-that was not stood two lines apart in one column.
+general**: the same printings that agree on the lot number set the advertisement's copy date
+four different ways, so the digit that was decidable and the digit that was not stood two
+lines apart in one column.
+
+**AND COUNT THE PRINTINGS BY THE NOTICE'S BODY TEXT, NOT BY ITS ADVERTISER (T-0350).** The
+sentence above used to say "the same FIVE printings", and five was wrong: D. Weaver's notice
+ran SEVEN times, from Vol. I No. 50 of 1834-11-12 to Vol. II No. 4. Two reading passes and
+then T-0328's tally all missed the two earliest, for one reason — a search for the advertiser
+cannot find a column that sets his name `D. WEAVE.R`, or one that loses the name to the
+alternating column entirely. Search a standing notice's own words instead; a notice already
+claimed somewhere gives you them for nothing.
+
+**THE DATELINE'S TRAILING FIGURE IS AN INSERTION KEY, AND IT DATES THE COPY WHEN THE DAY IS
+ILLEGIBLE (T-0350).** `Nov. 5, 1834.—49`, `Nov. 26, 1834-52`, `Dec. 16, 1834.-3` — the number
+after the year is not part of the date, it is the number of the issue the copy is keyed to,
+the first number published on or after the dateline. Vol. I No. 49 was printed 5 November,
+No. 52 on 26 November, Vol. II No. 3 on 17 December. So a key **bounds the dateline to one
+week**, which is a second instrument on any damaged date and a stronger one than a tally:
+D. Weaver's seven settings all key 50, No. 50 was printed 12 November, and that excludes the
+`Nov. 13` and `Nov. 19` two of them read without needing to count anything. Read it as a fact
+about the DATELINE and not about first appearance — J. Bates's `Nov. 5, 1834.—49` notice does
+not stand in No. 49 at all, and first appears in No. 50.
 
 **Interleaving is the normal case.** The segmenter frequently alternates two physical
 columns line by line, so one advertisement occupies a SUBSET of a line range with another
@@ -345,7 +364,7 @@ the *American*. Three keys, one house, and the evidence for it is a shared copy 
 shared body of type — but joining them means DECLARING two names one firm, and that is
 exactly what `identity.json` supplies for people and, as of T-0304, for firms as well:
 `firm_merges`, below. The three keys stand apart until somebody declares them, because a
-declaration cites its printings and nobody has yet written that one down (T-0337) — but the
+declaration cites its printings and nobody has yet written that one down (T-0340) — but the
 place to write it now exists, and the alternative it replaces was a hand-merge, which makes
 a gazetteer nobody can recompile.
 
@@ -364,6 +383,23 @@ moved is documented by a removal notice, and a removal notice is a claim. A merg
 the union of mentions, proprietors, goods and copy dates, the wider issue window, the
 more specific placement, and every trade either side printed in `trade_variants` — it can
 widen a record and it cannot narrow one.
+
+**And the proprietors are a third place a name lives** (T-0337). `business.proprietors` is
+neither a gazetteer person nor a firm style — it is a string put on a business record by
+whichever claim read that printing — so neither policy above could reach it, and one man
+read two ways stood as two proprietors of his own house. `business_russell_clift` carried
+'Benj. Clift' from the 1834-09-03 impression of the copartnership notice and '[H. H.] Clift'
+from the 1834-11-12 impression of the SAME notice; four impressions of it survive in the
+deposit and three set the name whole, so the man is Benj. H. Clift and the second initial
+was the line's debris. The rule that now stops the next one is the firm-side sibling of the
+person rule, pointing the other way on purpose: two person-styled proprietors of one house
+sharing a surname and carrying different READ initials are refused until `identity.json`
+declares which they are — `proprietor_merges` to join two readings, `proprietor_distinctions`
+to hold two men apart, each with its reasoning. Neither merge nor silence can be the default,
+because a house really does hold brothers (William and Franklin Brewster sign one dissolution
+notice) and really does hold one man read twice. A bare surname beside a full name is not a
+pair — that is the papers printing less — and a declaration whose pair has gone is refused
+too, so the file cannot rot.
 
 The scene-date Democrat, `extracted/chicago_democrat_1835_07_01.json`, is both the worked
 fixture (claims c001-c003, T-0257 — Peter Cohen and J. S. C. Hogan on South Water Street,

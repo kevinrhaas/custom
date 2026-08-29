@@ -35,19 +35,16 @@
 # --- DEV IS RED. TAKE THIS FIRST — measured on an unmodified origin/dev at 9b6e3276,
 # --- 2026-08-29: three check.sh steps fail, all on one cause, left by the most recent
 # --- merge (#536). Every branch cut from dev inherits it.
-T-0389 — The New York House belongs to no programme the 665-roof ledger can read, and dev's gate is red on it
 
 # --- THE NEWSPAPER STREAM (a) IDENTITY HYGIENE — the owner keeps this stream near the
 # --- top until it is done. These come FIRST inside it because the register and the
 # --- seeding SPEND the gazetteer: a firm minted twice, a surname that can never join its
 # --- forename, or a tavern minted as a person becomes a wrong building once seeded.
 # --- Cheap (mostly S/XS) and each one makes the seeding below more accurate.
-T-0337 — One man is two proprietors of Russell & Clift, and the gazetteer has no rule that can join them
 T-0340 — The bookseller's sign-name and its partners' firm-name are three gazetteer entries for one house
 T-0341 — A bare surname can never be joined to its forename: the family rule reads 'no initials' as 'different initials'
 T-0359 — The gazetteer mints tavern names as people, so Maddock's Tavern and Haddock's Tavern cannot be reconciled
 T-0338 — Thirty-one groups of firms share a partner surname and only one of them has been judged
-T-0350 — D. Weaver's advertisement is dated Nov. 12 in two printings and Nov. 19 in the one the ledger believed
 T-0355 — A firm matches a building on an occupant the same sentence dates to 1831
 T-0356 — The claim vocabulary cannot say an advertisement announces an opening, so 17 businesses are excluded on a proxy
 T-0345 — Mason's blacksmith shop is anchored on Graves' Tavern until 16 July 1834 and on the Tremont House from 10 September, and the register holds both as standing placements
@@ -171,3 +168,5 @@ T-0388 — Three derived records have drifted from their own generators on an un
 
 # --- NEWLY FILED — `ticket.mjs new` appends to the END of this file, so new tickets
 # --- land under this line. NOT yet placed by the owner.
+T-0395 — The New York House's footprint is graded reconstructed but its note cites a source, and the gate warns
+T-0396 — Newberry & Dole's partner is read as Oliver Newberry in 1834 and Walter L. Newberry in 1835, and the corpus cannot say which stood in the firm

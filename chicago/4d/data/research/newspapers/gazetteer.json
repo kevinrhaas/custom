@@ -213,7 +213,7 @@
     },
     {
       "file": "chicago/4d/data/research/newspapers/extracted/chicago_democrat_1834_09_03.json",
-      "sha256": "052719286df8087c8e561d8890884f20673b5ca96ea70854b2454c472c55f457"
+      "sha256": "b408c5eba6443773cdbd6513a2c74878668cedd67f276a9625f6240ca99341d9"
     },
     {
       "file": "chicago/4d/data/research/newspapers/extracted/chicago_democrat_1834_09_10.json",
@@ -253,31 +253,31 @@
     },
     {
       "file": "chicago/4d/data/research/newspapers/extracted/chicago_democrat_1834_11_12.json",
-      "sha256": "83cb4d7601c26474c45cc06ed265ede61a83a9bf589e08ce2dbac027533a7b0b"
+      "sha256": "813f3dfd2cd681c93828d2411b8cfd0ea57689908f972836cecd78037b950471"
     },
     {
       "file": "chicago/4d/data/research/newspapers/extracted/chicago_democrat_1834_11_19.json",
-      "sha256": "0e779739d76b45a309142ca507d8bfc5ce74e3ae92424cb624adb92a063708b6"
+      "sha256": "94bfc800eb2deef9e8596adabce50410042a9f57ae6aa8a54c45d49045d5ff3f"
     },
     {
       "file": "chicago/4d/data/research/newspapers/extracted/chicago_democrat_1834_11_26.json",
-      "sha256": "926b66fbde9d0fc0f40857918bb9eda9442f17ff441a6c9e70f5b615177df2a6"
+      "sha256": "f92bc7c023f66a60f2b35e463fe7bf5b449ceb34a47130789fb306b2a23d32a0"
     },
     {
       "file": "chicago/4d/data/research/newspapers/extracted/chicago_democrat_1834_12_03.json",
-      "sha256": "c658c054a5526af60d5e64c0c4e522d7d27e7bc0343d4160a9216b48fa937885"
+      "sha256": "e145d7498734956e5f3f10988aa62c332a2f61b49accc4835eb9312dff8ed18b"
     },
     {
       "file": "chicago/4d/data/research/newspapers/extracted/chicago_democrat_1834_12_10.json",
-      "sha256": "05612fed9e26e19485ab42de7f659c75517fff93c1782dd60f4e6e29c99a9d2d"
+      "sha256": "e0ea12fe25fedfba217bb34283684a1b71713bfbcc1158fa2549e24524b5363d"
     },
     {
       "file": "chicago/4d/data/research/newspapers/extracted/chicago_democrat_1834_12_17.json",
-      "sha256": "241c17e4d03c6ebcea56d759aad9f1d1ccfca3984173efd838169ec04c578a78"
+      "sha256": "a5351218fd494e7d663f3dba975d30db6af5a7df7c8d838de751ecc4d68eced3"
     },
     {
       "file": "chicago/4d/data/research/newspapers/extracted/chicago_democrat_1834_12_24.json",
-      "sha256": "84d74f6e9c3ac8bb9f13f0612309eb996fe5080f85b46c3cc8c162e56835d243"
+      "sha256": "e73748435e8b26a9a80e5880bed884efe001dfbb9eb6416689e1d11fb04e2d2b"
     },
     {
       "file": "chicago/4d/data/research/newspapers/extracted/chicago_democrat_1835_01_21.json",
@@ -349,8 +349,8 @@
     }
   ],
   "counts": {
-    "claims": 1164,
-    "persons": 2634,
+    "claims": 1166,
+    "persons": 2633,
     "businesses": 242
   },
   "persons": [
@@ -9202,19 +9202,24 @@
       ]
     },
     {
-      "id": "person_clift_benj",
-      "name": "Clift, Benj.",
+      "id": "person_clift_benj_h",
+      "name": "Clift, Benj. H.",
       "variants": [
         {
           "as_printed": "Hon). 1. Clift",
           "claim": "chicago_democrat_1834_09_03#c012"
+        },
+        {
+          "as_printed": "Clint",
+          "claim": "chicago_democrat_1834_11_12#c011"
         }
       ],
       "mentions": [
-        "chicago_democrat_1834_09_03#c012"
+        "chicago_democrat_1834_09_03#c012",
+        "chicago_democrat_1834_11_12#c011"
       ],
       "first_seen": "1834-09-03",
-      "last_seen": "1834-09-03",
+      "last_seen": "1834-11-12",
       "letter_list_only": false,
       "occupations": [
         "bookseller",
@@ -10588,6 +10593,10 @@
       "name": "D. Weaver",
       "variants": [
         {
+          "as_printed": "D. WEAVE.R",
+          "claim": "chicago_democrat_1834_11_12#c015"
+        },
+        {
           "as_printed": "D. WEAVER.",
           "claim": "chicago_democrat_1834_11_26#c010"
         },
@@ -10609,13 +10618,14 @@
         }
       ],
       "mentions": [
+        "chicago_democrat_1834_11_12#c015",
         "chicago_democrat_1834_11_26#c010",
         "chicago_democrat_1834_12_03#c025",
         "chicago_democrat_1834_12_10#c012",
         "chicago_democrat_1834_12_17#c006",
         "chicago_democrat_1834_12_24#c012"
       ],
-      "first_seen": "1834-11-26",
+      "first_seen": "1834-11-12",
       "last_seen": "1834-12-24",
       "letter_list_only": false,
       "occupations": [],
@@ -18637,27 +18647,6 @@
       "last_seen": "1834-07-16",
       "letter_list_only": true,
       "occupations": [],
-      "associated_places": []
-    },
-    {
-      "id": "person_h_h_clift",
-      "name": "[H. H.] Clift",
-      "variants": [
-        {
-          "as_printed": "Clint",
-          "claim": "chicago_democrat_1834_11_12#c011"
-        }
-      ],
-      "mentions": [
-        "chicago_democrat_1834_11_12#c011"
-      ],
-      "first_seen": "1834-11-12",
-      "last_seen": "1834-11-12",
-      "letter_list_only": false,
-      "occupations": [
-        "bookseller",
-        "stationer"
-      ],
       "associated_places": []
     },
     {
@@ -59674,8 +59663,7 @@
       "id": "business_e_wentworth_s_tavern_on_flag_creek",
       "name": "E. Wentworth's tavern on Flag Creek",
       "proprietors": [
-        "H. E. Wentworth",
-        "E. Wentworth"
+        "H. E. Wentworth"
       ],
       "trade": "tavern",
       "goods": [
@@ -59702,6 +59690,13 @@
       "mentions": [
         "chicago_democrat_1833_12_17#c005",
         "chicago_democrat_1834_01_07#c011"
+      ],
+      "proprietors_merged": [
+        {
+          "into": "H. E. Wentworth",
+          "from": "E. Wentworth",
+          "merge_rule": "'E. Wentworth' is 'H. E. Wentworth' with the first initial lost off the front of the line. It is one standing advertisement, not two: the tavern-keeper's notice of 1833-12-17 ('PUBLIC HOUSE, H. E. WENTWORTH, has opened a TAVERN on Flag Creek') runs again on 1834-01-07 word for word, down to the corn and oats kept on hand, and the second impression sets the name 'E. WENTWORTH'. One house on Flag Creek, one keeper, one insertion running about eight months."
+        }
       ],
       "built_at_scene_date": true,
       "survival_liberty_required": true
@@ -59748,8 +59743,7 @@
       "id": "business_eagle_tavern",
       "name": "Eagle Tavern",
       "proprietors": [
-        "P. J. Carli",
-        "P. S. Carli"
+        "P. J. Carli"
       ],
       "trade": "tavern and hotel",
       "goods": [
@@ -59776,6 +59770,13 @@
       "mentions": [
         "chicago_democrat_1834_06_18#c013",
         "chicago_democrat_1834_09_10#c014"
+      ],
+      "proprietors_merged": [
+        {
+          "into": "P. J. Carli",
+          "from": "P. S. Carli",
+          "merge_rule": "'P. S. Carli' and 'P. J. Carli' are one man, and the middle letter is the only thing between them. It is one advertisement twice printed: 1834-06-18 sets 'A FEW setts of elegant fancy Chairs and Rocking Chairs. Also, some Harnesses and Saddles. Enquire of P. J. CARLI, Eagle Tavern' and 1834-09-10 sets the same chairs, rocking chairs, harnesses and saddles over 'P.5.CARLI, Eagle Tavern' — a printing whose own middle character reads as the DIGIT 5, so that letter is not legible in this advertisement. The Eagle is the same house in both and the corpus names no second Carli."
+        }
       ],
       "built_at_scene_date": true,
       "survival_liberty_required": true
@@ -61218,9 +61219,7 @@
       "id": "business_j_k_botsford",
       "name": "J. K. Botsford",
       "proprietors": [
-        "J. K. Botsford",
-        "[K.] Botsford",
-        "[J.] K. Botsford"
+        "J. K. Botsford"
       ],
       "trade": "grocer and tinner",
       "goods": [
@@ -61312,6 +61311,18 @@
         "chicago_democrat_1834_10_01#c006",
         "chicago_democrat_1834_11_12#c006",
         "chicago_democrat_1834_12_03#c019"
+      ],
+      "proprietors_merged": [
+        {
+          "into": "J. K. Botsford",
+          "from": "[K.] Botsford",
+          "merge_rule": "'[K.] Botsford' is 'J. K. Botsford' with the first initial cut off the line. Both are readings of the one Chicago merchant this corpus carries under that surname: the house advertises in twenty claims across 1834 and every impression that sets the name whole sets 'J. K. Botsford'. Nothing in the corpus names a second Botsford, so there is no second man the shortened style could belong to."
+        },
+        {
+          "into": "J. K. Botsford",
+          "from": "[J.] K. Botsford",
+          "merge_rule": "'[J.] K. Botsford' is 'J. K. Botsford' with the first initial supplied by the transcriber rather than printed — a bracketed letter is a letter read through and restored, which is a correction and not a difference. Same house, same trade, same surname, and no second Botsford anywhere in this corpus."
+        }
       ],
       "built_at_scene_date": true,
       "survival_liberty_required": true
@@ -62121,7 +62132,6 @@
       "id": "business_jones_king",
       "name": "Jones & King",
       "proprietors": [
-        "M. Jones",
         "Byram King",
         "Wm. Jones",
         "Jones & King"
@@ -62190,6 +62200,13 @@
         "chicago_democrat_1834_12_03#c007",
         "chicago_democrat_1834_12_03#c024"
       ],
+      "proprietors_merged": [
+        {
+          "into": "Wm. Jones",
+          "from": "M. Jones",
+          "merge_rule": "'M. Jones' is 'Wm. Jones' with the W and the m run together, which is what the 1834-07-09 impression prints: 'M, JONES,' — a comma where the abbreviation's stop belongs. The firm is the same in both readings and so is the other partner: the stove and hollow-ware house of Jones & King, signed 'M, JONES, BYRAM KING' on 1834-07-09 and carried as Wm. Jones and Byram King from 1834-09-10, and the successor firm's own card of 1835-05-27 signs 'WILLIAM JONES, BYRAM KING, H. B. CLARKE'. This corpus names no second Jones in the partnership."
+        }
+      ],
       "built_at_scene_date": true,
       "survival_liberty_required": true
     },
@@ -62201,8 +62218,7 @@
         "Byram King",
         "H. B. Clarke",
         "Jones, William",
-        "King, Byram",
-        "Clarke, W. B."
+        "King, Byram"
       ],
       "trade": "hardware, cutlery, nails, iron, steel, stoves, stove furniture, iron ware and saw mill gearing, wholesale and retail",
       "goods": [
@@ -62254,6 +62270,13 @@
         "chicago_democrat_1835_07_22#c009",
         "chicago_democrat_1835_07_29#c012",
         "chicago_democrat_1835_08_05#c008"
+      ],
+      "proprietors_merged": [
+        {
+          "into": "H. B. Clarke",
+          "from": "Clarke, W. B.",
+          "merge_rule": "'Clarke, W. B.' is 'H. B. Clarke' with the first initial misread. It is one advertisement three times printed: the Jones, King & Co. connection notice sets 'WILLIAM JONES, BYRAM KING, H, B, CLARKE' on 1835-05-27 and 'WILLIAM JONES, BYRAM KING, H. B. CLARKE' on 1835-07-08, and the 1835-08-05 impression of the same three signatures in the same order reads 'WB. CLARKE.' — a printing whose first signature it also mangles to 'WILLEAAL JONES,'. Same firm, same partners, same week's standing insertion; the second initial B is common to every reading."
+        }
       ],
       "built_at_scene_date": true,
       "survival_liberty_required": false
@@ -64014,8 +64037,7 @@
       "name": "Russell & Clift",
       "proprietors": [
         "Aaron Russell",
-        "Benj. Clift",
-        "[H. H.] Clift"
+        "Benj. H. Clift"
       ],
       "trade": "bookseller and stationer",
       "goods": [
