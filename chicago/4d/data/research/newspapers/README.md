@@ -418,6 +418,29 @@ proprietor) and W. Montgomery (`two_houses` — the auctioneer at David Carver's
 against L. W. Montgomery the bootmaker next door to P. Cohen's). T-0400, T-0401 and T-0402
 carry the bands the pass did not reach.
 
+**The second firm pass is T-0400**, and it is the band where the two styles carry the SAME
+partner surnames and differ only in the FORM of a forename — whole against abbreviated
+against bare initial. T-0304 had already ruled that a forename initial is not decisive for a
+firm the way it is for a person, so this band is judgeable; what it needed was, in each case,
+the printing that ties the two forms to one house. **Eight merges and two refusals over ten
+groups**, taking the businesses table from 217 to 209 and `survival_liberty_required` from
+109 to 103. Not one of the eight rests on the forename. `Collins & Caton` and `J. H. Collins
+& J. D. Caton` share the card copy-dated Jan. 20, 1834 and the anchor next door east of
+Brewster, Hogan & Co.; `G. Spring` and `Giles Spring` share the card of Dec. 3, 1834 and then
+print the same removal to the Tremont House; `J. Bates, Jr.` and `John Bates, Jr.` run the
+same advertisement for the same sixteen steel-pointed crowbars, both times signed with the
+INITIAL, the kegs of blasting powder down from twelve to seven; `J. Wellmaker & Co.`'s own
+dissolution notice sets the firm's name as `John Wellmaker & Co.` inside the record filed
+under the short style; and the timber notice of Ap'l. 22 runs over `P. PRUYNE & CO.` in one
+printing and `P PRUYNE` in the next, with a plural subscriber above a singular signature both
+times. The two refusals are as much the point of the band as the merges: `J. D. Caton,
+attorney and counsellor at law` against `John Dean Caton` is `different_ground` — the same
+man, South Water Street in December 1833 and Dearborn Street in July 1835, with the
+partnership between them and no removal notice anywhere — and `John Wright` against `J.
+Wright, merchant` is `not_joined`, a Democrat dry-goods house of 1833-34 against an American
+seller of leather, salt and oak scantling in July 1835, with nothing printed to join the two
+forms.
+
 **And the proprietors are a third place a name lives** (T-0337). `business.proprietors` is
 neither a gazetteer person nor a firm style — it is a string put on a business record by
 whichever claim read that printing — so neither policy above could reach it, and one man

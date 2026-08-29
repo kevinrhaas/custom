@@ -172,3 +172,4 @@ T-0405 — Adding one signboard repaints every board alphabetically after it, an
 T-0409 — A change can land on dev with no changelog entry, and one did today
 T-0410 — The Howard fire-insurance agency passes between three houses, and the gazetteer has no relation that can hold it
 T-0411 — A newspaper and its own printing office are two businesses, and the partner-surname guard can never join them
+T-0412 — A building offered FOR SALE mints a placement reading on the vendor's own firm, so P. Pruyne & Co.'s store carries a corner it never stood on

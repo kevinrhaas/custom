@@ -1,6 +1,6 @@
 {
   "project": "chicago-4d",
-  "generated_ct": "Aug 29, 2026, 2:52 PM",
+  "generated_ct": "Aug 29, 2026, 2:59 PM",
   "tickets": [
     {
       "id": "T-0001",
@@ -6518,7 +6518,7 @@
     {
       "id": "T-0400",
       "title": "The firm styles that differ in the forename's form: whole against abbreviated against initial",
-      "state": "open",
+      "state": "claimed",
       "epic": "META",
       "requested_by": "loop",
       "seen": false,
@@ -6528,7 +6528,7 @@
       "opened": "2026-08-29",
       "closed": null,
       "pr": null,
-      "claimed_by": null,
+      "claimed_by": "run 8/29/2026, 2:27:06 PM CT",
       "blocked_on": null,
       "needs_bake": false,
       "queue_rank": 1
@@ -6730,6 +6730,24 @@
       "blocked_on": null,
       "needs_bake": false,
       "queue_rank": 76
+    },
+    {
+      "id": "T-0412",
+      "title": "A building offered FOR SALE mints a placement reading on the vendor's own firm, so P. Pruyne & Co.'s store carries a corner it never stood on",
+      "state": "open",
+      "epic": "META",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "M",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-08-29",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "queue_rank": 77
     }
   ]
 }
