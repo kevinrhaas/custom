@@ -1,7 +1,7 @@
 ---
 id: T-0350
 title: D. Weaver's advertisement is dated Nov. 12 in two printings and Nov. 19 in the one the ledger believed
-state: claimed
+state: done
 epic: PAPERS
 requested_by: loop
 seen: false
@@ -9,8 +9,8 @@ effort: XS
 legacy_id: null
 parent: null
 opened: 2026-08-29
-closed: null
-pr: null
+closed: 2026-08-29
+pr: 541
 claimed_by: run 8/29/2026, 9:37:59 AM CT
 blocked_on: null
 needs_bake: false
