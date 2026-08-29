@@ -2372,6 +2372,16 @@
       "into": "the Traveller's Home",
       "from": "the Traveller's Home (the stand lately occupied by W. Wattles)",
       "merge_rule": "'the Traveller's Home (the stand lately occupied by W. Wattles)' is 'the Traveller's Home' annotated by this project's own extractor with the succession its own notice states. Both records rest on one standing advertisement copy-dated 1833-10-04 — 1834-01-28 c009 and 1834-05-21 c002 — in which the subscriber has taken that noted tavern stand in Chicago lately occupied by Wattles and will make it the Traveller's Home."
+    },
+    {
+      "into": "Matthias Mason & Co.",
+      "from": "Mathias Mason & Co.",
+      "merge_rule": "'Mathias Mason & Co.' is 'Matthias Mason & Co.' with one T dropped from the forename by a failing impression. The setting of 1834-09-10 reads 'MA[T]HIAS MASON & CO.' — the transcription brackets the very letter at issue — and the same lines mis-set the street as 'Main-stroet' two words later. It carries the same copy date of 26 November 1833, the same trade, and the same stock of shoes and chains as the printings either side of it. This is one impression's type giving way, not a second house."
+    },
+    {
+      "into": "Matthias Mason & Co.",
+      "from": "Matthias Mason",
+      "merge_rule": "'Matthias Mason' is 'Matthias Mason & Co.' with the '& Co.' inside a bracket. The setting of 1834-12-10 reads 'MATTHIAS MA[SON & CO.]', so the words this style lacks are carried by its own quote as an unread reading rather than as an absence, and the sentence resumes 'oppo]site the Tremont Hous[e'. Same copy date of 26 November 1833, same trade, same street. A style is not a second house because the line it was set on was damaged."
     }
   ],
   "refused_firm_note": "The REFUSALS the firm policy had no place for (T-0399). `firm_surnames()` groups the register on the partner surname alone, so it puts together houses that are not one house — a namesake, a trade word mistaken for a partner, one man's two unconnected trades — and until this section existed the only record of having judged such a group was the ABSENCE of a merge rule, which reads exactly like a group nobody has looked at yet. The next sweep then finds the group again and does the work again. A refusal is therefore declared as explicitly as a merge and held to the same disciplines: it names both spellings verbatim, it names the printings it rests on, and it cannot outlive its pair — a refusal whose two styles a later merge has collapsed is a judgement nobody can check and is a compile error. `kind` is one of three and the distinction is the point: `two_houses` (the papers show two), `not_joined` (one name, and no printing puts the two styles under one roof — which is not the same finding as two), `different_ground` (one house, and the papers put the styles in different streets, which is a removal and a removal is a claim).",
@@ -2413,6 +2423,32 @@
       "refused_because": "'W. Montgomery' and 'W. Montgomery, boot and shoe maker' are two houses and this is the trap the surname grouping was always going to set. The bootmaker is L. W. Montgomery with the L lost in the setting: his advertisement is copy-dated Dec. 15/18, 1833, places him next door to P. Cohen's store (1834-01-28 c008, 1834-03-04 c028, 1834-03-25 c009) and is the same standing notice the L. W. Montgomery records carry. 'W. Montgomery' is the auctioneer who takes David Carver's old stand in South Water street in July 1835 (1835-07-08 c001) and signs 'W. MONTGOMERY, Auc'r' (1835-07-22 c011) — a different trade, a different stand and eighteen months later. Whether the bootmaker's two spellings are one man is a forename question and belongs to T-0400."
     }
   ],
+  "anchor_note": "The DATED ANCHOR CHANGE (T-0345), and it is the third thing two printings of one advertisement can differ about. `firm_merges` above joins two STYLES of one house and `proprietor_merges` joins two readings of one partner's name; neither can say that a house's printed ANCHOR changed on a date. Matthias Mason & Co.'s blacksmithing notice runs under a single copy date of 26 November 1833: to 1834-06-11 it reads 'on Main-street, nearly opposite Graves' Tavern', and from 1834-09-10 the same copy, word for word otherwise, reads 'opposite the Tremont House'. Held as two standing placements — which is what the register did — a placement sweep finds one shop in two places at once. What a declaration here may state is ONLY that two of a house's readings name two different landmarks rather than two spellings of one, and it must account for every reading the house carries. Everything else the compiler computes from the claims: the weeks each anchor was printed between, the order, the gap the change is bracketed by, and which anchor is live at the scene date. `cannot_say` is required and is the point of the whole thing — a change of anchor is not evidence of which side of it moved.",
+  "anchor_changes": [
+    {
+      "business": "business_matthias_mason_co",
+      "anchors": [
+        {
+          "name": "Graves' Tavern",
+          "readings": [
+            "Graves' Tavern, on Main-street",
+            "Graves' Tavern, Main-street",
+            "Graves' Tavern",
+            "Graves Tavern"
+          ],
+          "why": "Four readings of one landmark, 'Graves' Tavern', differing only in how much of the street clause the reading pass carried into the anchor field and, once, in a lost apostrophe: 1833-11-26 keeps 'on Main-street' inside it, 1834-02-25 keeps 'Main-street', 1833-12-24 / 1834-01-07 / 1834-03-04 / 1834-04-01 keep neither, and 1834-06-11 sets 'Gra]ves Tavern' across an interleaved line and loses the apostrophe with the preceding column. Every one of the six is the same sentence of the same advertisement and every one names the same tavern; the street they differ over is carried in `street` and in each reading's own offset text, so no word is lost by grouping them."
+        },
+        {
+          "name": "the Tremont House",
+          "readings": [
+            "the Tremont House"
+          ]
+        }
+      ],
+      "rule": "Between 1834-06-11 and 1834-09-10 the anchor of this standing advertisement changes from \"Graves' Tavern\" to \"the Tremont House\" and the rest of the copy does not change with it — same 26 November 1833 copy date, same 'in all its various branches', same shoes and chains, same 'Work done on the shortest notice'. Two different landmarks, and this project holds both: Graves' Tavern is the log tavern modelled as `mansion_house` on the north side of Lake Street just east of Dearborn, and the first Tremont House stands at the north-west corner of the same crossing, some 36 m west of it. They are not two spellings of one house and they are not the same corner. The corpus carries no printing of this advertisement between those two dates, so the change is bracketed by them and no closer.",
+      "cannot_say": "WHICH SIDE OF THE STREET MOVED. Nothing printed anywhere in this corpus says whether the shop moved along Lake Street, or the house across from it changed hands and name, or a compositor was handed fresh copy for a reason nobody printed. All three would read exactly like this. The scene date is 1835-07-01, ten months after the later reading first ran, so the anchor live at the scene date is the Tremont House — that is a statement about the ADVERTISEMENT and not about the building, and the earlier anchor is kept with its own dates so a later pass can still tell the two cases apart. The reconstruction's own placement of `mason_blacksmith_shop` was set opposite `mansion_house` on the strength of the 1833-11-26 printing alone, and it has not been moved here: moving it would decide the question this note exists to leave open."
+    }
+  ],
   "proprietor_note": "The PROPRIETORS' half of the same policy (T-0337), and the last of the three places a name lives here. `merges` governs gazetteer PERSONS and `firm_merges` governs business STYLES; a proprietor is neither — it is a string on a business record, put there by whichever claim read that printing, so one man read two ways became two proprietors of his own house and nothing in either policy could reach across to say so. `business_russell_clift` carried 'Benj. Clift' from the 1834-09-03 impression of the copartnership notice and '[H. H.] Clift' from the 1834-11-12 impression of the SAME notice. The rule is the firm-side sibling of the person one and it points the other way on purpose: for a person, same surname with different initials never merges, silently and by default, because the letter lists are full of families; for two proprietors of ONE house the default cannot be silence either way, because brothers really do trade together — William and Franklin Brewster sign one dissolution notice — and so does one man read twice. So the compiler REFUSES any pair of person-styled proprietors of one house that share a surname and carry different, read forename initials, until it is declared: `proprietor_merges` joins two readings of one name, `proprietor_distinctions` holds two men apart, and each carries its reasoning. A bare surname beside a full name is not a pair — that is the papers printing less, not a second man — and a declaration whose pair has gone is refused too, so these cannot rot.",
   "proprietor_merges": [
     {
@@ -2450,6 +2486,12 @@
       "into": "H. B. Clarke",
       "from": "Clarke, W. B.",
       "merge_rule": "'Clarke, W. B.' is 'H. B. Clarke' with the first initial misread. It is one advertisement three times printed: the Jones, King & Co. connection notice sets 'WILLIAM JONES, BYRAM KING, H, B, CLARKE' on 1835-05-27 and 'WILLIAM JONES, BYRAM KING, H. B. CLARKE' on 1835-07-08, and the 1835-08-05 impression of the same three signatures in the same order reads 'WB. CLARKE.' — a printing whose first signature it also mangles to 'WILLEAAL JONES,'. Same firm, same partners, same week's standing insertion; the second initial B is common to every reading."
+    },
+    {
+      "business": "business_matthias_mason_co",
+      "into": "Matthias Mason & Co.",
+      "from": "Mathias Mason & Co.",
+      "merge_rule": "'Mathias Mason & Co.' is 'Matthias Mason & Co.' with one T dropped, and the pair exists in this house's proprietors only because the firm merge above unioned the 1834-09-10 impression's list into it. Ten of the eleven printings of this advertisement set MATTHIAS; the eleventh brackets the letter it could not read."
     }
   ],
   "proprietor_distinctions": [
