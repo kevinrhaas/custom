@@ -70,7 +70,7 @@ sitting where the rule would go.
 
 ---
 
-## SPLIT, 2026-08-29 — into T-0391 (shipped) and T-0392 (the owner's)
+## SPLIT, 2026-08-29 — into T-0397 (shipped) and T-0392 (the owner's)
 
 The run that took this found the ticket needed two demonstrations, not one, and that its
 own diagnosis of the mechanism was incomplete. It says here that `[?]` "yields no initial
@@ -83,7 +83,7 @@ texts in `identity.json` were written on those readings, which means a committed
 was asserting letters no printing carried.
 
 So the parser repair is not a step toward the ruling — it is a precondition for EITHER
-answer being implementable, and a provenance defect in its own right. That is **T-0391**,
+answer being implementable, and a provenance defect in its own right. That is **T-0397**,
 and it shipped: the policy did not move (177 merges, 29 refusals, before and after).
 
 The question this ticket was opened for is untouched and whole in **T-0392**, now

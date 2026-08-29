@@ -332,7 +332,7 @@ They did not, so `A[n]drew W. Borland` read as four forenames and `Benjamın Swe
 and whether the policy protected a pair came down to which side of a name a bracket fell on.
 The policy is unchanged; ten self-test cases hold both halves of that.
 
-**AN UNREAD `[?]` IS A POSITION, NOT AN ABSENCE (T-0391).** Taking the markup off is right
+**AN UNREAD `[?]` IS A POSITION, NOT AN ABSENCE (T-0397).** Taking the markup off is right
 for a surname and was wrong for a forename, because DELETING the `[?]` hands the initial to
 whatever letter stood behind it. All seventeen `[?]` refusals above had been stated on such
 a reading: seven named a letter invented from the rest of the forename (`[?]rah Fowler` as
@@ -420,7 +420,7 @@ exactly that shape, both recorded in `refused_places`), and neither may a name a
 gives an occupation to. Five names are declared: Haddock's and Maddock's Tavern, the Eagle
 Hotel, the Eagle Hotel (Steele's) and the Baptist meeting house; the two taverns merge and
 the two Eagle readings deliberately do not, because nothing in the corpus prints both and
-a shared word is the resemblance argument this file exists to refuse (T-0391). The table
+a shared word is the resemblance argument this file exists to refuse (T-0397). The table
 lands in `gazetteer.json` as `places`, beside `persons` and `businesses`, and the register
 compiled from it no longer carries signboards as inhabitants of the town.
 

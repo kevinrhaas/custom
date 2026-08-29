@@ -1003,7 +1003,7 @@ def initials(name):
     never merge, and so do `Lyman R. Lovell` and `Lyman B. Lovell`, `[H]enry Swartwout
     jr.` and `J[n]o. Swartwout jr.` — a bracketed letter is READ, so it counts.
 
-    AN UNREAD `[?]` IS A POSITION, NOT AN ABSENCE (T-0391). `unmarked` DELETES the
+    AN UNREAD `[?]` IS A POSITION, NOT AN ABSENCE (T-0397). `unmarked` DELETES the
     marker, which is right for a surname and wrong here, because deleting it hands the
     initial to whatever letter stood behind it. Every one of the seventeen `[?]`
     refusals on the 1 July 1834 list parsed wrongly, in three shapes:
@@ -1576,7 +1576,7 @@ def self_test():
             failures.append("the identity policy: %r and %r no longer refuse to merge, and "
                             "an initial is what separates them" % (a, b))
 
-    # AND WHAT AN UNREAD INITIAL ACTUALLY READS AS (T-0391). The two loops above assert
+    # AND WHAT AN UNREAD INITIAL ACTUALLY READS AS (T-0397). The two loops above assert
     # only that a pair DIFFERS — and `Ann M. Gooding` / `[?]nn M. Gooding` did differ, for
     # the wrong reason: the parse read `N. M.` off the rest of the forename, and
     # identity.json then STATED that invented letter as the ground of the refusal. So this

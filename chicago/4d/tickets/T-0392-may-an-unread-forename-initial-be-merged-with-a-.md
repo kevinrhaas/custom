@@ -17,7 +17,7 @@ needs_bake: false
 ---
 
 The question T-0348 was opened for, kept whole and separated from the parser repair that
-had to come first (T-0391, merged).
+had to come first (T-0397, merged).
 
 `identity.json` declares 175 merges across the three printings of the 1 July 1834 letter
 list and refuses 29. Eleven of the refusals are the case the rule was written for — two
@@ -34,7 +34,7 @@ Adkins' is J. Adkins (302); '[?]. M. Fish' is E. M. Fish (535); '[?]nn M. Goodin
 M. Gooding (537)"*. And one more is an initial present in one printing and absent in the
 other: `Samuel E. Toby` against `Samuel. Toby`.
 
-Since T-0391 the parse can finally tell the kinds apart: an unread initial is `UNREAD` in
+Since T-0397 the parse can finally tell the kinds apart: an unread initial is `UNREAD` in
 the position it was printed in, it equals no letter, and every refusal now states the
 reading the page carries. So the mechanism is no longer the obstacle. **The policy is.**
 
@@ -55,7 +55,7 @@ reading the page carries. So the mechanism is no longer the obstacle. **The poli
 
 The evidence is already sitting where the rule would go: all 29 are in `refused_merges`,
 each tagged `kind` (`unread_initial`, `read_initials_disagree`, `absent_initial`) with the
-shared surname and — since T-0391 — the parsed `initials_read` of both sides.
+shared surname and — since T-0397 — the parsed `initials_read` of both sides.
 
 **Acceptance:** the owner rules; the ruling is written into `identity.json`'s note and into
 `data/research/newspapers/README.md`, not only into a PR body; and whichever branch it
