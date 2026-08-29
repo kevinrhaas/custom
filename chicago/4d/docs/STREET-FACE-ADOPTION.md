@@ -117,7 +117,7 @@ side is a face has exactly one number to change.
    and was already enforced one layer down: `tools/generate_block_infill.py` refuses to write
    an `occupants` block onto an ancillary roof, because "a yard building serves the lot it
    stands behind, and an adoption is a claim about who lived or worked in a building".
-   **T-0415 found it by trying to SPEND the allocation**, which is the argument for spending a
+   **T-0417 found it by trying to SPEND the allocation**, which is the argument for spending a
    table rather than admiring it: an allocation nothing consumes is an allocation nothing
    checks. Four of the nine took a principal roof instead; five had none left on their street
    and joined refusal 4.
@@ -125,7 +125,7 @@ side is a face has exactly one number to change.
 ## What it moves, measured 2026-08-29
 
 **Every number below is DERIVED, and none of it is authored.** Re-measured 2026-08-29 after
-T-0415 added refusal 6; the previous reading of this table was 24 adopted and 36 waiting, over a
+T-0417 added refusal 6; the previous reading of this table was 24 adopted and 36 waiting, over a
 supply that counted sheds. Re-derived again on the rebase onto `dev` at T-0400, which merged firm
 groups and took `street_only` from 60 to 59.
 
@@ -189,7 +189,7 @@ these 84 today is that the corpus records them and the model does not hold them.
 ## How it is spent
 
 This file and its table are the POLICY and the ALLOCATION. **The CARD is spent by
-`tools/inferred_occupancy.py` (T-0415)** — the ledger the anonymous-infill generators
+`tools/inferred_occupancy.py` (T-0417)** — the ledger the anonymous-infill generators
 already read for the inferred-household programme. It turns each adoption into the
 `occupants` block the owning generator writes onto that roof, so `generate_block_infill.py
 --check` re-derives it byte for byte and no generated record is ever hand-edited. It
@@ -206,7 +206,7 @@ takes `structure_id` and `cites`, and carries limits 2, 3 and 4 into whatever it
 roof stays reconstructed, the along-street position is not evidence, and the order on a face
 is not a claim.
 
-**Related:** T-0354 (this) · T-0415 (spent into the roofs, and refusal 6) · T-0262 (the
+**Related:** T-0354 (this) · T-0417 (spent into the roofs, and refusal 6) · T-0262 (the
 register) · T-0263, T-0384–T-0387, T-0416 (the seeding) ·
 T-0375 (South Water's roofs) · T-0338, T-0340, T-0408 (identity) · L205, L212 ·
 `docs/PROVENANCE.md` · `docs/LIBERTIES.md`

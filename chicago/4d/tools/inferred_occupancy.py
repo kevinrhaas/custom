@@ -27,7 +27,7 @@ THE SECOND PROGRAMME IS STREET-FACE ADOPTION (T-0354, the owner's ruling of
 register can place a DOCUMENTED business no closer than a platted street, the
 business adopts a reconstructed roof already standing on that street face.
 `tools/adopt_street_faces.py` derives the allocation into
-`data/research/newspapers/street_face_adoptions.json`; until T-0415 nothing SPENT
+`data/research/newspapers/street_face_adoptions.json`; until T-0417 nothing SPENT
 it, so the policy's own file said in as many words that the table allocates and
 "nothing here writes a card" while the roofs still carded as anonymous
 count-units. This module is where it is spent, for the same reason the household

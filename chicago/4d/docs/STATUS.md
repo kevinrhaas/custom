@@ -1,6 +1,6 @@
 # STATUS
 
-## Shipped 2026-08-29 — T-0415: the street-face adoptions reach the buildings, and nine come out of the yard
+## Shipped 2026-08-29 — T-0417: the street-face adoptions reach the buildings, and nine come out of the yard
 
 **The allocation is now SPENT.** T-0354 paired 24 documented businesses with reconstructed roofs
 on the streets their advertisements name, and stopped there: the pairing lived in
