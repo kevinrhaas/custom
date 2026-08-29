@@ -55,3 +55,28 @@ failure is told the painted name is wrong when the painted name is fine.
   its own check with its own name, so a failure says which thing failed.
 - No clause is deleted to make the two agree: a count that cannot be asserted across stages
   is re-stated, not dropped.
+
+## A third reading, and it names the five meshes — 2026-08-29, on T-0263's branch
+
+Re-measured on the published mirror on the steward runner, on a branch that adds one
+hitching post and one signboard and touches nothing in the frontage layer's chunking:
+
+| run | verdict | `frontage.meshes` |
+|---|---|---|
+| `SMOKE_VIEWPORT=desktop SMOKE_STAGE=1-2` | **FAIL** | 67 |
+| `SMOKE_VIEWPORT=desktop SMOKE_STAGE=2` | **PASS** | 62 |
+| `SMOKE_VIEWPORT=mobile SMOKE_STAGE=1-2` | **PASS** | 62 |
+
+**The five extra meshes are named in the failure text, and they are all one kind:**
+`frontage-far-merge`. The 62 the clause asserts are `frontage`, sixty `frontage-chunk`
+and `frontage-lettering`; the run that has stage 1 behind it carries five
+`frontage-far-merge` meshes on top of them. So the clause is not counting the layer —
+it is counting the layer PLUS whatever distance-merging the camera's history has
+caused, and stage 1 walks the desktop camera somewhere that causes five merges while
+stage 2 alone and the mobile viewport cause none.
+
+That is the run-order dependence this ticket asks to be identified, and it locates the
+fix: the census clause wants the layer's authored meshes, which is the set that does not
+include a merge artefact, and it wants to be its own check with its own name. **The six
+lettering clauses are green in every one of the three runs above** — the painted name has
+never been what failed.
