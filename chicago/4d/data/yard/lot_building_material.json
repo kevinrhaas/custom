@@ -280,7 +280,7 @@
     {
       "structure_id": "frederick_thomas_shop",
       "name": "Frederick Thomas's Shop",
-      "function": "shop",
+      "function": "drug_store",
       "documented_range_from": "1835-06-08",
       "why": "its documented range opens inside 1835, which is the nearest thing to a start date this dataset carries and is NOT one: it is the date the record is first attested — a first issue, a directory line, a deed — and the record nowhere says the building was going up on the scene date. Clause 2 asks the record to SAY it, and this one does not."
     },

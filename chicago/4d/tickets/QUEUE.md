@@ -139,3 +139,4 @@ T-0357 — 129 documented businesses will stand on a survival liberty and LIBERT
 T-0358 — The Thompson plat's block NUMBERING is uncommitted, so the corpus's only lot-and-block address cannot be placed
 T-0359 — The gazetteer mints tavern names as people, so Maddock's Tavern and Haddock's Tavern cannot be reconciled
 T-0369 — Desktop stage 8's panel walk is red when stage 1 runs before it and green when stage 8 runs alone
+T-0371 — Adding one signboard repaints every board alphabetically after it, and some lose a line

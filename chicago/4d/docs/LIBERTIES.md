@@ -1289,8 +1289,18 @@ then be argued on its own merits.
 `carpenter_south_water_store`, `chicago_american_office`, `frederick_thomas_shop`,
 `old_bank_building` and `pruyne_kimball_drugstore` — are
 invented polygons tagged `conjectural`, citing no source. Several of their **storey counts** are
-invented too, and one of them, Frederick Thomas's shop, has an invented **position** and an
-invented **function** as well.
+invented too, and one of them, Frederick Thomas's shop, has an invented **position** as well.
+**THE FUNCTION CLAUSE OF THIS LIBERTY IS RESOLVED, 2026-08-29 (T-0263), AND IS THE FIRST PIECE
+OF IT TO GO.** Thomas's trade was invented here — 'shop', the weakest word that fits a street of
+stores — precisely because nothing said what he sold. The *Chicago American* now does, in his
+own heading: *"FREDERIC[K] THOMA[S], D[r]ug[gi]st and Apothec[ary], W[at]er Street"*
+(1835-07-04, page 4 column 5, claim `chicago_american_1835_07_04#c005`), with two earlier
+printings of the same advertisement on 8 and 13 June. So `frederick_thomas_shop.function` is
+`drug_store` at `attested` and no longer sits under this entry. **Its position does, unchanged
+and unimproved:** the paper's own anchors are the drawbridge and the American office, which are
+the two this record was already derived from, so the reading corroborates the derivation and
+adds nothing to it, and the street it would settle is cut to `W[ater?]` with the
+transcription's own question mark.
 **Why:** the honest alternative was to leave the business street empty, and that is the worse
 lie. This town's trade was its whole reason to exist — a county seat of some three thousand
 people, 250 vessel arrivals in 1835 — and until now the model held eight buildings of which not
@@ -1310,8 +1320,12 @@ off this street. The distance between two of these buildings is the distance bet
 attested corners, which is real; the buildings spanning it are not.
 **How to resolve:** a dimension for any single one of them upgrades that one and nothing else.
 The most likely source is the *Chicago Democrat* itself — an advertiser describing his own
-premises, or a to-let notice giving a size. The project holds one issue and more is expected.
-**Covers:** `peck_store.footprint`, `chicago_democrat_office.footprint`, `harmon_loomis_store.footprint`, `madore_beaubien_house.footprint`, `bates_auction_room.footprint`, `jb_beaubien_homestead.footprint`, `dole_warehouse_south.footprint`, `carpenter_south_water_store.footprint`, `chicago_american_office.footprint`, `frederick_thomas_shop.footprint`, `old_bank_building.footprint`, `old_bank_building.position`, `pruyne_kimball_drugstore.footprint`, `pruyne_kimball_drugstore.position`, `pruyne_kimball_drugstore.form.stories`, `old_bank_building.form.stories`, `chicago_american_office.form.stories`, `dole_warehouse_south.form.stories`, `frederick_thomas_shop.form.stories`, `frederick_thomas_shop.position`, `frederick_thomas_shop.function`.
+premises, or a to-let notice giving a size. **Seventy-three issues of the *Democrat* and
+thirteen of the *American* are now read (T-0258–T-0261, T-0326), and not one of the advertisers
+on this street states a dimension of his own premises** — they state a trade, a corner and a
+stock list, which is what this entry always said the sources give. The route left is a to-let
+or an insurance notice in an issue still unread, or the page images.
+**Covers:** `peck_store.footprint`, `chicago_democrat_office.footprint`, `harmon_loomis_store.footprint`, `madore_beaubien_house.footprint`, `bates_auction_room.footprint`, `jb_beaubien_homestead.footprint`, `dole_warehouse_south.footprint`, `carpenter_south_water_store.footprint`, `chicago_american_office.footprint`, `frederick_thomas_shop.footprint`, `old_bank_building.footprint`, `old_bank_building.position`, `pruyne_kimball_drugstore.footprint`, `pruyne_kimball_drugstore.position`, `pruyne_kimball_drugstore.form.stories`, `old_bank_building.form.stories`, `chicago_american_office.form.stories`, `dole_warehouse_south.form.stories`, `frederick_thomas_shop.form.stories`, `frederick_thomas_shop.position`.
 **Recorded:** 2026-08-10.
 
 ### L37 — A shop placed by the phrase "two doors from"

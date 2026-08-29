@@ -1,7 +1,7 @@
 ---
 id: T-0263
 title: The documented storefronts take their places on South Water and Lake
-state: open
+state: claimed
 epic: PAPERS
 requested_by: owner
 seen: false
@@ -11,7 +11,7 @@ parent: null
 opened: 2026-08-27
 closed: null
 pr: null
-claimed_by: null
+claimed_by: run 8/29/2026, 4:06:58 AM CT
 blocked_on: T-0262
 needs_bake: false
 ---

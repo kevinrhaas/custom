@@ -453,6 +453,33 @@ SIGN_WORDING = {
             "people, and the record's own note says so. Reconstructed."
         ),
     },
+    "frederick_thomas_shop": {
+        "name": "FREDERICK THOMAS", "trade": "Druggist & Apothecary",
+        "trade_short": "Druggist", "place": "Drugs, Paints & Dye Stuffs",
+        "identity": "Thomas", "grade": "inferred",
+        "sources": ["chicago_american_1835"],
+        "why": (
+            "HIS OWN HEADING, AND IT IS ALREADY SET LIKE A SIGNBOARD: \"FREDERIC[K] "
+            "THOMA[S], D[r]ug[gi]st and Apothec[ary], W[at]er Street\" \u2014 The Chicago "
+            "American, 1835-07-04, page 4 column 5, claim chicago_american_1835_07_04#c005, "
+            "over the dateline \"Chicago, June [2]d, 18[35]\". Man, then trade, which is "
+            "the register T-0130 fixed this table in, and the two words of the trade are "
+            "his own rather than this project's label for it. THE THIRD LINE IS THE GOODS "
+            "AND NOT THE STREET, DELIBERATELY. His June printings head themselves \"[Drugs "
+            "and] PAINTS\" and keep \"Chemicals, Perfumery [and] Dye Stuffs\" "
+            "(1835-06-08 page 3 column 6, claim #c016; 1835-06-13 page 4 column 6, claim "
+            "#c018), so the line is quoted stock. The street is NOT put on this board "
+            "because the transcription cannot read it: 1835-06-13 gives \"a[t the] "
+            "Drawbridge, W[ater?] [s]t[r]eet\" with the question mark the transcription "
+            "itself set, and a store at the drawbridge could front either bank \u2014 the "
+            "extraction refuses to record a street for that reason and a signwriter's "
+            "board is not the place to invent one. THE READING IS TRANSCRIPTION-MEDIATED, "
+            "flagged under the owner's ruling of 2026-08-28, with the brackets left in. "
+            "WHAT KEEPS THIS `inferred` RATHER THAN BETTER is the same thing that keeps "
+            "Goss & Cobb's there: an advertisement heading is still not a description of a "
+            "signboard, and nobody records that this shop announced itself at all."
+        ),
+    },
     "goss_cobb_saddlery": {
         "name": "GOSS & COBB", "trade": "Saddle & Harness Making",
         "place": "Lake & Canal Streets", "identity": "Goss",

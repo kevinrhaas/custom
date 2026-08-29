@@ -7,8 +7,8 @@
   "target_date": "1835-07-01",
   "coordinates": "Local East-North-Up metres from data/datum.json's origin, the same frame data/enclosures/ and data/signage/ and the sidecars' placement.local_e / local_n use.",
   "counts": {
-    "frontages": 26,
-    "objects": 148,
+    "frontages": 27,
+    "objects": 153,
     "wagons": 63,
     "wagons_by_kind": {
       "farm_box": 25,
@@ -20,8 +20,8 @@
     "wagon_stands_refused": 40,
     "benches": 1,
     "sheds": 1,
-    "marked_objects": 148,
-    "distinct_marks": 70
+    "marked_objects": 153,
+    "distinct_marks": 73
   },
   "existence": {
     "value": true,
@@ -465,7 +465,7 @@
       "structure_id": "carpenter_south_water_store",
       "name": "Philo Carpenter's South Water Street Store",
       "trade": "drug_store",
-      "trade_confidence": "inferred",
+      "trade_confidence": "attested",
       "why_goods": "a counter whose stock arrives in boxes and barrels off a lake schooner",
       "confidence": "reconstructed",
       "facade_bearing_deg": 0.0,
@@ -825,6 +825,119 @@
           "mark": {
             "lines": [
               "TEA"
+            ],
+            "letterform": "stencil",
+            "says": "commodity"
+          }
+        }
+      ]
+    },
+    {
+      "structure_id": "frederick_thomas_shop",
+      "name": "Frederick Thomas's Shop",
+      "trade": "drug_store",
+      "trade_confidence": "attested",
+      "why_goods": "a counter whose stock arrives in boxes and barrels off a lake schooner",
+      "confidence": "reconstructed",
+      "facade_bearing_deg": 0.0,
+      "frontage_m": 9.14,
+      "usable_frontage_m": 8.14,
+      "standoff_m": 0.55,
+      "ground_quad_local_enu_m": [
+        [
+          744.58,
+          -14.35
+        ],
+        [
+          753.73,
+          -14.35
+        ],
+        [
+          753.73,
+          -8.25
+        ],
+        [
+          744.58,
+          -8.25
+        ]
+      ],
+      "items": [
+        {
+          "kind": "barrel",
+          "pose": "upright",
+          "at_local_enu_m": [
+            745.39,
+            -7.7
+          ],
+          "bearing_deg": 0.0,
+          "mark": {
+            "lines": [
+              "LINSEED OIL"
+            ],
+            "letterform": "stencil",
+            "says": "commodity"
+          }
+        },
+        {
+          "kind": "barrel",
+          "pose": "upright",
+          "at_local_enu_m": [
+            746.01,
+            -7.7
+          ],
+          "bearing_deg": 0.0,
+          "mark": {
+            "lines": [
+              "TURPENTINE"
+            ],
+            "letterform": "stencil",
+            "says": "commodity"
+          }
+        },
+        {
+          "kind": "barrel",
+          "pose": "upright",
+          "at_local_enu_m": [
+            746.63,
+            -7.7
+          ],
+          "bearing_deg": 0.0,
+          "mark": {
+            "lines": [
+              "FREDERICK THOMAS"
+            ],
+            "letterform": "brand",
+            "says": "house"
+          }
+        },
+        {
+          "kind": "crate",
+          "tier": 0,
+          "at_local_enu_m": [
+            747.93,
+            -7.7
+          ],
+          "bearing_deg": 0.0,
+          "mark": {
+            "lines": [
+              "FREDERICK THOMAS",
+              "CHICAGO"
+            ],
+            "letterform": "shipping",
+            "says": "shipping"
+          }
+        },
+        {
+          "kind": "crate",
+          "tier": 1,
+          "at_local_enu_m": [
+            747.93,
+            -7.7
+          ],
+          "bearing_deg": 0.0,
+          "mark": {
+            "lines": [
+              "GLASS"
             ],
             "letterform": "stencil",
             "says": "commodity"
@@ -1207,7 +1320,7 @@
       "structure_id": "hogan_store",
       "name": "Hogan's Store",
       "trade": "store",
-      "trade_confidence": "inferred",
+      "trade_confidence": "attested",
       "why_goods": "a counter whose stock arrives in boxes and barrels off a lake schooner",
       "confidence": "reconstructed",
       "facade_bearing_deg": 180.0,
