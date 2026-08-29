@@ -1,7 +1,7 @@
 ---
 id: T-0296
 title: Reading the Democrat, 8 to 29 July 1835: the rest of the scene month
-state: open
+state: done
 epic: PAPERS
 requested_by: owner
 seen: false
@@ -9,9 +9,9 @@ effort: M
 legacy_id: null
 parent: T-0260
 opened: 2026-08-28
-closed: null
-pr: null
-claimed_by: null
+closed: 2026-08-28
+pr: 495
+claimed_by: run 8/28/2026, 7:53:13 PM CT
 blocked_on: null
 needs_bake: false
 ---
