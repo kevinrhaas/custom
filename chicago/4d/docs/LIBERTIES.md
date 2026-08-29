@@ -2301,8 +2301,23 @@ the quadrant that is chosen — the doubt is written on the record rather than i
 of which would settle survival and might name a side; and the lot geometry on Wright 1834 or
 Hathaway 1834, which would settle Canal against West Water for this record and for the Green Tree
 at once.
-**Covers:** `goss_cobb_saddlery.shop_1833.documented_range`, `goss_cobb_saddlery.shop_1833.footprint`, `goss_cobb_saddlery.shop_1833.form.stories`.
+**Covers:** `goss_cobb_saddlery.shop_1833.footprint`, `goss_cobb_saddlery.shop_1833.form.stories`.
 **Recorded:** 2026-08-11.
+**Revised:** 2026-08-29 — **one of this entry's three admissions has been discharged and the
+other two have not**, so the entry stays where it is with a narrower `Covers:` line rather than
+moving to Resolved. What the entry above calls for in its own last field — *"further issues of
+the Chicago Democrat and the Chicago American, one line of which would settle survival and might
+name a side"* — arrived. The *Chicago American* sets S. B. Cobb's trading card three times
+across the scene date: 1835-06-08 p3 c5, 1835-06-13 p3 c6 and 1835-07-11 p2 c1, the middle one
+reading *"[S]A[D]DLE, HARNESS & TRUNK M[anufa]c[tor]y. S[. ]B[. ]COB[B] [w]il[l] [c]o[nt]in[ue]
+the [above business] at his shop, corner [o]f [… ][st]re[et]s"*. **Survival is settled**, and
+past the scene date at that, so `documented_range` is graded `inferred` and leaves this entry's
+coverage. **The side is not**: all three printings lose the cross street, so the quadrant choice
+and the Canal-versus-West-Water doubt this entry records stand exactly as written, as do the
+`footprint` and the storey count, which the American says nothing about. The one thing the
+paper added that this entry did not ask for is that the firm it is named for was **dissolved on
+18 February 1835** and Cobb carried the shop on alone; that is a correction to the record's
+`occupants` and its signboard, not a liberty, because it replaces an invention with a document.
 
 ### L79 — The street corridors are measured; the travelled earth inside them is drawn by eye
 **Decision:** every visible street is an earth ribbon draped on the terrain, but the widths of

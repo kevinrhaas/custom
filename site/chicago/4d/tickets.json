@@ -1,6 +1,6 @@
 {
   "project": "chicago-4d",
-  "generated_ct": "Aug 29, 2026, 7:18 AM",
+  "generated_ct": "Aug 29, 2026, 7:25 AM",
   "tickets": [
     {
       "id": "T-0001",
@@ -6216,7 +6216,7 @@
       "epic": "META",
       "requested_by": "loop",
       "seen": false,
-      "effort": "S",
+      "effort": "M",
       "legacy_id": null,
       "parent": "T-0306",
       "opened": "2026-08-29",
@@ -6224,7 +6224,7 @@
       "pr": null,
       "claimed_by": null,
       "blocked_on": null,
-      "needs_bake": false,
+      "needs_bake": true,
       "queue_rank": 3
     },
     {
@@ -6234,7 +6234,7 @@
       "epic": "META",
       "requested_by": "loop",
       "seen": false,
-      "effort": "S",
+      "effort": "M",
       "legacy_id": null,
       "parent": "T-0306",
       "opened": "2026-08-29",
@@ -6242,7 +6242,7 @@
       "pr": null,
       "claimed_by": null,
       "blocked_on": null,
-      "needs_bake": false,
+      "needs_bake": true,
       "queue_rank": 4
     },
     {
@@ -6252,7 +6252,7 @@
       "epic": "META",
       "requested_by": "loop",
       "seen": false,
-      "effort": "S",
+      "effort": "M",
       "legacy_id": null,
       "parent": "T-0306",
       "opened": "2026-08-29",
@@ -6260,7 +6260,7 @@
       "pr": null,
       "claimed_by": null,
       "blocked_on": null,
-      "needs_bake": false,
+      "needs_bake": true,
       "queue_rank": 5
     },
     {
@@ -6270,7 +6270,7 @@
       "epic": "META",
       "requested_by": "loop",
       "seen": false,
-      "effort": "S",
+      "effort": "M",
       "legacy_id": null,
       "parent": "T-0306",
       "opened": "2026-08-29",
@@ -6278,7 +6278,7 @@
       "pr": null,
       "claimed_by": null,
       "blocked_on": null,
-      "needs_bake": false,
+      "needs_bake": true,
       "queue_rank": 6
     }
   ]

@@ -1,5 +1,48 @@
 # STATUS
 
+## Shipped 2026-08-29 — T-0383: the saddlery at Lake and Canal is S. B. Cobb's alone
+
+**The board on that shop lettered a partnership the same corpus says was dissolved four and a half
+months before the scene date.** `goss_cobb_saddlery` was built in August 2026 from one advertisement
+— the *Chicago Democrat* of 26 November 1833, "they have opened a shop in this village, on the
+conner of Lake and Canal-streets" — and its own `documented_range` note closed by naming what would
+move it: *"further issues of the Chicago Democrat or the Chicago American. One line of an 1834 or
+1835 advertisement would settle the survival and might settle the corner."* T-0261 read the
+American's thirteen issues on 2026-08-28. It answers one half of that sentence and refuses the
+other.
+
+| what the American prints | claim |
+|---|---|
+| the dissolution, dated *Chicago, Feb. 18, 1835*, one signature unread | `chicago_american_1835_06_08#c006` |
+| the same notice with **OLIVER GOS[S]** now legible | `chicago_american_1835_06_13#c015` |
+| *"[S]A[D]DLE, HARNESS & TRUNK M[anufa]c[tor]y. S[. ]B[. ]COB[B] [w]il[l] [c]o[nt]in[ue] the [above business] at his shop"* | `chicago_american_1835_06_13#c016` |
+| the same card again, ten days AFTER the scene date | `chicago_american_1835_07_11#c008` |
+
+**Survival is settled and the corner is not.** `documented_range` moves `reconstructed` →
+`inferred`: four printed dates now bridge the nineteen months the old range carried forward on
+nothing, the last of them past 1 July 1835. The cross street is lost in all three 1835 printings —
+*"Lake anc Amor. streets"*, then no street names at all, then *"corner of Lake and THE Balle"* — so
+**the building has not moved a metre**, the quadrant guard and the Canal-versus-West-Water doubt
+stand exactly as written, and that question stays T-0305's, on the page images.
+
+**What a visitor sees.** The board reads `S. B. COBB / Saddle, Harness & Trunk Manufactory / Lake &
+Canal Streets` (2.30 m wide against 2.29, which is the only geometry that moved anywhere in this
+change), and the card behind it is headed for Cobb instead of the firm. `occupants` is `attested`
+over `chicago_american_1835`; the firm survives in `aka` and in the record's own prose, because the
+1833 advertisement is the better-attested of the two facts and deleting it to record the later one
+would be a loss.
+
+**`docs/LIBERTIES.md` L78 is REVISED rather than resolved.** It covered three admissions — the
+range, the footprint and the storey count — and exactly one of them has been discharged, so its
+`Covers:` line drops `documented_range` and keeps the other two. Moving it to Resolved would have
+exempted two live inventions from the gate that checks them.
+
+**Not verified here, and stated.** `dev`'s own gate was red at three steps before this branch
+existed — the dooryard plantings, the planted poplar rows and the yard goods have all drifted from
+their rules since T-0307 moved North Water Street, which is **T-0377**. This diff is red at those
+same three steps and no others; none of the three files names this record, this phase or this trade
+anywhere in them.
+
 ## Shipped 2026-08-29 — T-0244: the gate could not see twelve of the fourteen hitching posts
 
 **The geometry was right the whole time and the instrument was blind.** The frontage layer's post
