@@ -1,5 +1,36 @@
 # STATUS
 
+## Blocked 2026-08-29 — T-0384: Holbrook's blocker was answered by a ruling nobody carried back to the ticket
+
+**Nothing was built and that is the finding.** T-0384 sat at row 2 of the queue, `state: open`
+and `blocked_on: null`, over a body that said in prose it was blocked behind an owner ruling —
+*may a platted business-front lot carry TWO documented storefronts standing at the street?* — the
+question PR #514 asked and is still parked on `hold` carrying. Every run that took row 2 had to
+re-derive the same conclusion before it could put the ticket down. **The question in the ticket is
+now the wrong one, and answering it would not have placed the store.**
+
+- **The register re-read the advertisement.** `business_john_holbrook` today reads `action:
+  street_only`, `anchor.kind: street`, over *"[on South] Water st., one door from Dearborn
+  street"*, noting *"the anchor is a reach of dearborn and names nothing narrower"*. PR #514 read
+  the same printed line as an ordinal off the corner and raised a 30 × 25 ft shop 3.048 m east of
+  the American's office. One line, two readings, and the register's is the committed one.
+- **The owner ruled the same day what a `street_only` business gets** (T-0354, L212): it adopts a
+  standing roof, nothing is built for it, and every adoption declares `lot: null` and
+  `claims_lot: false`. Under that ruling Holbrook never seats on a platted lot, so the lot clause
+  is **moot for him**. `street_face_adoptions.json` refuses him for supply instead — one of seven
+  South Water advertisements against nineteen fronting roofs of which five are homes, five are yard
+  buildings and nine are already taken.
+- **The old clause was measured rather than assumed stale.** Through `tools/plat_occupancy.py`, no
+  figure authored: 19 business-front lots dealt town-wide, 5 carry a documented building, the
+  2026-08-27 clause is live on 2 and already off on 3 — and **0 register businesses anchor on any of
+  those five**. The red PR #514 reported still reproduces (a second documented holder makes
+  `len(holders) != 1` in `shared_business_fronts`, the run loses its lot, the platted-parcels step
+  goes red), but widening the clause today would unblock nothing at all, Holbrook included.
+- **The cheaper exit needs no ruling.** `adopt_street_faces.py` re-derives on every commit, so the
+  first South Water roof **T-0375** frees seats Holbrook automatically. The ticket now carries that,
+  and the one-line question it is actually waiting on, in `blocked_on` where `ticket.mjs board`
+  shows it to the owner.
+
 ## Shipped 2026-08-29 — T-0417: the street-face adoptions reach the buildings, and nine come out of the yard
 
 **The allocation is now SPENT.** T-0354 paired 24 documented businesses with reconstructed roofs
