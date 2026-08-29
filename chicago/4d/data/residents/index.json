@@ -131,9 +131,9 @@
   "households": 173,
   "persons": 209,
   "by_grade": {
-   "attested": 76,
+   "attested": 86,
    "inferred": 20,
-   "reconstructed": 113
+   "reconstructed": 103
   }
  },
  "households": [
@@ -639,7 +639,7 @@
    "division": "south",
    "persons": 1,
    "grades": {
-    "reconstructed": 1
+    "attested": 1
    },
    "lives_at": "recon_1835_south_d5_004",
    "works_at": "inf_bakery_lake",
@@ -807,7 +807,7 @@
    "division": "south",
    "persons": 1,
    "grades": {
-    "reconstructed": 1
+    "attested": 1
    },
    "lives_at": "recon_1835_south_d5_011",
    "works_at": "inf_butcher_market",
@@ -1157,7 +1157,8 @@
    "division": "south",
    "persons": 2,
    "grades": {
-    "reconstructed": 2
+    "attested": 1,
+    "reconstructed": 1
    },
    "lives_at": "recon_1835_south_d4_025",
    "works_at": "recon_1835_south_w3_029",
@@ -1283,7 +1284,7 @@
    "division": "south",
    "persons": 1,
    "grades": {
-    "reconstructed": 1
+    "attested": 1
    },
    "lives_at": "recon_1835_south_c2_007",
    "works_at": "recon_1835_south_c2_007",
@@ -1353,7 +1354,7 @@
    "division": "north",
    "persons": 1,
    "grades": {
-    "reconstructed": 1
+    "attested": 1
    },
    "lives_at": "recon_1835_north_d4_004",
    "works_at": null,
@@ -1367,7 +1368,7 @@
    "division": "south",
    "persons": 1,
    "grades": {
-    "reconstructed": 1
+    "attested": 1
    },
    "lives_at": "recon_1835_south_d3_022",
    "works_at": "recon_1835_south_w4_032",
@@ -1829,7 +1830,7 @@
    "division": "south",
    "persons": 1,
    "grades": {
-    "reconstructed": 1
+    "attested": 1
    },
    "lives_at": "recon_1835_south_d7_035",
    "works_at": "physicians_office",
@@ -1927,7 +1928,7 @@
    "division": "north",
    "persons": 1,
    "grades": {
-    "reconstructed": 1
+    "attested": 1
    },
    "lives_at": "recon_1835_north_d6_044",
    "works_at": null,
@@ -1941,7 +1942,7 @@
    "division": "south",
    "persons": 1,
    "grades": {
-    "reconstructed": 1
+    "attested": 1
    },
    "lives_at": "recon_1835_south_d4_019",
    "works_at": "inf_tailor_shop",
@@ -1955,7 +1956,7 @@
    "division": "north",
    "persons": 1,
    "grades": {
-    "reconstructed": 1
+    "attested": 1
    },
    "lives_at": "recon_1835_north_d7_031",
    "works_at": "recon_1835_north_t1_028",

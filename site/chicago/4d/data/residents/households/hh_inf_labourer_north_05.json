@@ -1,6 +1,6 @@
 {
  "id": "hh_inf_labourer_north_05",
- "name": "The Sawyer household — a reconstructed labourer (north division)",
+ "name": "The Wadsworth household — a reconstructed labourer (north division)",
  "division": "north",
  "head": "inf_labourer_north_05",
  "arrival": {
@@ -45,7 +45,7 @@
  "persons": [
   {
    "id": "inf_labourer_north_05",
-   "name": "Ira Sawyer",
+   "name": "Ira Wadsworth",
    "relationship": "head",
    "grade": "reconstructed",
    "occupation": {

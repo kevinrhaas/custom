@@ -1,6 +1,6 @@
 {
  "id": "hh_inf_sawyer_south_02",
- "name": "The Parmelee household — a reconstructed sawyer (south division)",
+ "name": "The Rice household — a reconstructed sawyer (south division)",
  "division": "south",
  "head": "inf_sawyer_south_02",
  "arrival": {
@@ -48,7 +48,7 @@
  "persons": [
   {
    "id": "inf_sawyer_south_02",
-   "name": "Nathaniel Parmelee",
+   "name": "Nathaniel Rice",
    "relationship": "head",
    "grade": "reconstructed",
    "occupation": {

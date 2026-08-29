@@ -1,6 +1,6 @@
 {
  "id": "hh_inf_carpenter_south_11",
- "name": "The Cobb household — a reconstructed carpenter (south division)",
+ "name": "The Gilbert household — a reconstructed carpenter (south division)",
  "division": "south",
  "head": "inf_carpenter_south_11",
  "arrival": {
@@ -45,7 +45,7 @@
  "persons": [
   {
    "id": "inf_carpenter_south_11",
-   "name": "Jared Cobb",
+   "name": "Jared Gilbert",
    "relationship": "head",
    "grade": "reconstructed",
    "occupation": {

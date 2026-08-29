@@ -9309,3 +9309,59 @@ fort — see `docs/RESEARCH/fort_dearborn.md` § 10.
 Related: **L199** (the bank track, the last thing taken off this reservation) · **L47** (the pickets
 the staff stands over) · tickets **T-0096** (this), **T-0197**, **T-0095**, **T-0044**.
 **Recorded:** 2026-08-28.
+
+### L205 — Ten documented men housed in reconstructed households: the person is real, the address is not
+**Decision:** ten of the 101 households the inferred-household programme raised now carry a
+DOCUMENTED head instead of an invented one — John Wellmaker (baker), A. Clybourn (butcher),
+J. Garland (cooper), S. Foot (grocer), William W. Morin and J. W. Reed (joiners), Josiah C. Goodhue
+(physician), S. Lincoln and Thomas S. Eels (tailors), John W. Wattles (tavern keeper). Each is
+graded `attested` and cited to the issue, page and column of the Chicago Democrat or the Chicago
+American that prints him. **The dwelling, the workplace and the division on those records did not
+move and are still graded `reconstructed`.** Nothing in this dataset says where any of these ten men
+lived.
+
+**Why the roofs were invented in the first place, and why the invention could go:** `data/residents/`
+raised those 101 households because the census of 1835 counts 3,265 people in 398 dwellings and the
+town demonstrably held that many households of those trades — and because, at the time, **no
+documented person was available to put in them** (L83, L111). `tools/generate_inferred_names.py` then
+gave each head a name invented from a pool seeded on the town's real surnames, and said in as many
+words that a name is the easiest way for an invention to be mistaken for a finding. The newspaper
+reading (T-0225 onward) has since named 2,201 people out of the 1833–1835 papers, and
+`tools/compile_register.py` sorts the ones whose trade the town invented a household for. This is the
+pass that spends them: `tools/retire_invented_residents.py`, gated in `check.sh`.
+
+**What is invented, precisely:** that these ten men lived and worked in these ten buildings. That is
+the same liberty the household already carried — a hypothesised household in a real reconstructed
+dwelling — with the person under it changed from nobody to somebody. It is a LARGER liberty than
+before in one respect and a smaller one in another: larger because a real man's name is now attached
+to an address no source gives him, smaller because the town holds ten fewer invented people. Both
+halves are on the record, in the person's own note, in words a visitor reads on the card.
+
+**The six refusals that kept this to ten of twenty-eight.** The register's match is a TRADE match and
+nothing more, so the pass refuses (1) a partnership style — *Dally & Youngs*, *Pierce & Abbott*,
+*Goss & Cobb* are firms the extraction filed as people, and a firm may not be given a bed; (2) a name
+the transcriber could not read whole — *[uncertain: W. H. Taylor]*; (3) a bare surname —
+*Brown*, *Rockwell*, *Mr. Graves* name nobody, because any of several men answer to them; (4) a
+candidate whose surname the town already holds, which is blunter than the gazetteer's identity policy
+on purpose, since that policy cannot yet merge *J. T. Temple* with *John T. Temple* and the
+alternative is a second John T. Temple living elsewhere in the same town; (5) a candidate the papers
+PLACE — if the register can put his business on a street, then he has an address and the seeding
+tickets owe him a roof there, not a reconstructed cottage in whichever division had a slot free; and
+(6) a candidate the corpus first prints after 1 July 1835, under the same date gate the register
+applies to a business. Eighteen invented households of matched trades therefore stand unretired, and
+that is the honest result rather than a shortfall: **the way to retire them is more reading and a
+gazetteer that can tell a firm from a man, not a looser rule here.**
+
+**Consequence for a visitor:** ten household cards that said *"HYPOTHESISED, AND NOT A PERSON"* over
+an invented name now name a real man, quote the sentence the paper printed about him, and say in the
+same breath that where he lived is still ours. The count of invented names in the town falls from
+**113 to 103** (`data/residents/index.json` § counts.by_grade).
+
+**How to resolve:** the address. A deed, a lot-and-block advertisement or a directory entry for any
+of these ten would move his dwelling out of the reconstructed layer entirely. Failing that, T-0337,
+T-0338, T-0340, T-0341, T-0348 and T-0359 are the gazetteer-hygiene tickets that would let refusals
+1 and 4 be replaced by an identity judgement instead of a shape test.
+
+Related: **L83** (the residents programme) · **L111** (the invented names) · tickets **T-0264**
+(this), **T-0262**, **T-0263**, **T-0306**.
+**Recorded:** 2026-08-29.

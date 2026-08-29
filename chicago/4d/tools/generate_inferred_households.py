@@ -1041,20 +1041,32 @@ def main() -> int:
     args = parser.parse_args()
     files, records, households = build_all()
 
-    # The naming pass runs AFTER this programme and edits the same household
-    # files: it gives every reconstructed resident an invented name and a
-    # name_basis (tools/generate_inferred_names.py, roadmap K18). Comparing this
-    # programme's raw output against the tree would therefore report all eighty
-    # households as drift on every run, which would train everyone to ignore a
-    # real drift report. So the pipeline is modelled as it actually is — build,
-    # then name — and the comparison is made against the end of it.
+    # TWO PASSES RUN AFTER THIS PROGRAMME AND EDIT THE SAME HOUSEHOLD FILES.
+    # Comparing this programme's raw output against the tree would report every
+    # household as drift on every run, which would train everyone to ignore a real
+    # drift report. So the pipeline is modelled as it actually is and the comparison
+    # is made against the END of it:
+    #
+    #   build  →  RETIRE  →  name
+    #
+    # `tools/retire_invented_residents.py` (T-0264) puts a documented person on the
+    # roofs the register matched, and `tools/generate_inferred_names.py` (roadmap K18)
+    # gives an invented name to whoever is left. RETIREMENT COMES FIRST, and the order
+    # is not a preference: the name allocator is insertion-local by construction, so a
+    # name spent on a head who is then replaced takes a surname out of the pool that
+    # the next person cannot have, and the committed names stop re-deriving.
     if args.check:
         import importlib.util
-        spec = importlib.util.spec_from_file_location(
-            "gen_names", Path(__file__).with_name("generate_inferred_names.py"))
-        gen_names = importlib.util.module_from_spec(spec)
-        spec.loader.exec_module(gen_names)
-        files = gen_names.overlay(files)
+
+        def _module(name, filename):
+            spec = importlib.util.spec_from_file_location(
+                name, Path(__file__).with_name(filename))
+            mod = importlib.util.module_from_spec(spec)
+            spec.loader.exec_module(mod)
+            return mod
+
+        files = _module("retire_invented", "retire_invented_residents.py").overlay(files)
+        files = _module("gen_names", "generate_inferred_names.py").overlay(files)
 
     drift = []
     for path, text in sorted(files.items()):

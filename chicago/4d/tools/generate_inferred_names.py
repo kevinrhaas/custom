@@ -274,6 +274,13 @@ def build(preload: dict | None = None):
         # particular person, and there is no particular person here.
         head = next((p for p in doc.get("persons", [])
                      if p.get("relationship") == "head"), None)
+        # A HEAD THIS PASS DID NOT NAME KEEPS THE LABEL ITS OWN PASS WROTE (T-0264).
+        # Once tools/retire_invented_residents.py puts a documented person on one of
+        # these roofs, the household is "a documented tailor in a reconstructed
+        # household" and calling it a reconstructed tailor would understate the man
+        # while the journeyman beside him is still invented and still named here.
+        if head is not None and head.get("grade") != "reconstructed":
+            head = None
         if head and head.get("name"):
             trade = ((head.get("occupation") or {}).get("value") or "").replace("_", " ")
             doc["name"] = (f"The {head['name'].split()[-1]} household — a reconstructed "

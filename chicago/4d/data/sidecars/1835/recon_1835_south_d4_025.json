@@ -158,7 +158,7 @@
   "residents": [
     {
       "household": "hh_inf_cooper_south_01",
-      "name": "The Dolan household — a reconstructed cooper (south division)",
+      "name": "The Garland household — a documented cooper in a reconstructed household (south division)",
       "division": "south",
       "relation": "lived here",
       "why": "THE HOUSEHOLD IS HOUSED, WHICH IS THE POINT OF THE LAYER. recon_1835_south_d4_025 is an anonymous reconstructed roof already standing on the plat, adopted rather than duplicated: its existence, position and footprint stay conjectural and the adoption adds only the occupant argument. Which roof of the right family and district a hypothesised household occupies is not evidence about that roof; the household needed a dwelling and the programme assigned it one.",
@@ -168,11 +168,11 @@
       "basis": "An anonymous roof of the reconstruction programme, ADOPTED by this household rather than raised for it. The roof's own existence and position stay conjectural; what the adoption adds is an argued occupant instead of an anonymous count-unit.",
       "persons": [
         {
-          "name": "Patrick Dolan",
+          "name": "J. Garland",
           "relationship": "head",
-          "grade": "reconstructed",
+          "grade": "attested",
           "occupation": "cooper",
-          "note": "HYPOTHESISED, AND NOT A PERSON. No source names this resident and none is claimed to: the record asserts that a town of 3,265 people in 398 dwellings held at least this many households of this trade, and asserts nothing whatever about any individual. THE NAME IS INVENTED TOO, and `name_basis` beside it says so and says which pool it came from: this record used to carry a bare designation instead, on the reasoning that a surname would make it look like the documented layer, but a town of designations does not read as a town and the grade, this note and name_basis all say plainly which layer this is. No figure is drawn (docs/LIBERTIES.md L1). THE FIRST OF 4 COOPER HOUSEHOLDS THIS LAYER RECONSTRUCTS. A TOWN PACKING THOUSANDS OF HOGS A SEASON NEEDS COOPERS, AND THIS DATASET HELD NONE. Andreas records that Clybourne packed some 250 head of cattle and about 2,000 hogs in the season of 1833, that George W. Dole packed a further 250 cattle and 1,000 hogs at the same place, and that the Newberry & Dole house on the South Branch packed 300 cattle and 1,400 hogs in 1834 (scan p. 1151). Packed provisions travel in barrels and barrels are made by coopers. The documented layer holds a packer, two slaughter-houses and not one cooper. Four cooper households are inferred against the schedule's six W3 cooper, wagon or wheelwright shops."
+          "note": "A DOCUMENTED PERSON IN A RECONSTRUCTED HOUSEHOLD, AND THE TWO HALVES OF THAT ARE GRADED SEPARATELY. The person is real and the papers name him: 1834-06-11 c011 (p. 4, col. 1), and 1 mention(s) between 1834-06-11 and 1834-06-11. WHERE HE LIVED AND WORKED IS STILL RECONSTRUCTED — the dwelling, the workplace and the division on this record are the ones the inferred-household programme dealt to the invented resident this replaces, and NOTHING HERE CLAIMS THEY ARE HIS. No source this project holds gives him an address; if one did, the register would have placed him and tools/retire_invented_residents.py would have refused him for that reason (refusal 5). This is what T-0264 retires: the town raised this household because it demonstrably needed the trade and had nobody documented to put in it, and it now has somebody. The invented name and its `name_basis` are gone with the invention. No figure is drawn (docs/LIBERTIES.md L1); the liberty taken is the housing, not the man."
         },
         {
           "name": "Edward Ryan",

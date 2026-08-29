@@ -1,6 +1,6 @@
 {
  "id": "hh_inf_sawyer_south_01",
- "name": "The Carroll household — a reconstructed sawyer (south division)",
+ "name": "The Dolan household — a reconstructed sawyer (south division)",
  "division": "south",
  "head": "inf_sawyer_south_01",
  "arrival": {
@@ -48,7 +48,7 @@
  "persons": [
   {
    "id": "inf_sawyer_south_01",
-   "name": "Edward Carroll",
+   "name": "Edward Dolan",
    "relationship": "head",
    "grade": "reconstructed",
    "occupation": {

@@ -1,6 +1,6 @@
 {
  "id": "hh_inf_carpenter_south_04",
- "name": "The Pratt household — a reconstructed carpenter (south division)",
+ "name": "The Cobb household — a reconstructed carpenter (south division)",
  "division": "south",
  "head": "inf_carpenter_south_04",
  "arrival": {
@@ -45,7 +45,7 @@
  "persons": [
   {
    "id": "inf_carpenter_south_04",
-   "name": "Charles Pratt",
+   "name": "Charles Cobb",
    "relationship": "head",
    "grade": "reconstructed",
    "occupation": {
@@ -70,7 +70,7 @@
   },
   {
    "id": "inf_carpenter_south_04_j1",
-   "name": "Elisha Barnes",
+   "name": "Elisha Hubbard",
    "relationship": "journeyman",
    "grade": "reconstructed",
    "occupation": {

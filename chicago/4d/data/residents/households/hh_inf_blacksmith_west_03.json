@@ -1,6 +1,6 @@
 {
  "id": "hh_inf_blacksmith_west_03",
- "name": "The Fisk household — a reconstructed blacksmith (west division)",
+ "name": "The Hale household — a reconstructed blacksmith (west division)",
  "division": "west",
  "head": "inf_blacksmith_west_03",
  "arrival": {
@@ -48,7 +48,7 @@
  "persons": [
   {
    "id": "inf_blacksmith_west_03",
-   "name": "Rufus Fisk",
+   "name": "Rufus Hale",
    "relationship": "head",
    "grade": "reconstructed",
    "occupation": {

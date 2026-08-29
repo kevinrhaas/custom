@@ -935,6 +935,15 @@ PY
 # and NOTHING on an invented structure may outrank the invention that put it
 # there. That last rule is the one that mattered: without it, 158 buildings that
 # never existed graded their wall heights as evidence and rendered solid.
+# The documented people the newspaper register put on the roofs the town had
+# invented a stand-in for (T-0264), re-derived. The pairing is a derivation from the
+# register, the gazetteer and the household programme and NOTHING IN IT IS AUTHORED:
+# a hand-placed resident would be a way of putting a famous name on a roof without an
+# argument, and this is the step that refuses one. It runs before the naming check
+# because that is the pipeline order — build, retire, then name whoever is left.
+step "the documented residents who retired an invented one re-derive" \
+  python3 tools/retire_invented_residents.py --check
+
 # The invented names, re-derived. Deterministic from each person's id, so a name
 # that changed without the pools or the generator changing is a real finding.
 step "the reconstructed residents' invented names re-derive" \

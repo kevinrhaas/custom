@@ -1,6 +1,6 @@
 {
  "id": "hh_inf_blacksmith_south_01",
- "name": "The Sheldon household — a reconstructed blacksmith (south division)",
+ "name": "The Dickinson household — a reconstructed blacksmith (south division)",
  "division": "south",
  "head": "inf_blacksmith_south_01",
  "arrival": {
@@ -48,7 +48,7 @@
  "persons": [
   {
    "id": "inf_blacksmith_south_01",
-   "name": "Ira Sheldon",
+   "name": "Ira Dickinson",
    "relationship": "head",
    "grade": "reconstructed",
    "occupation": {

@@ -1,6 +1,6 @@
 {
  "id": "hh_inf_physician_south_01",
- "name": "The Rice household — a reconstructed physician (south division)",
+ "name": "The Goodhue household — a documented physician in a reconstructed household (south division)",
  "division": "south",
  "head": "inf_physician_south_01",
  "arrival": {
@@ -48,28 +48,21 @@
  "persons": [
   {
    "id": "inf_physician_south_01",
-   "name": "Reuben Rice",
+   "name": "Josiah C. Goodhue",
    "relationship": "head",
-   "grade": "reconstructed",
+   "grade": "attested",
+   "sources": [
+    "chicago_democrat_1833_1835"
+   ],
    "occupation": {
     "value": "physician",
-    "confidence": "reconstructed",
+    "confidence": "attested",
     "sources": [
-     "andreas_1884_v1",
-     "owner_chicago_1835_reconstruction_spec_2026"
+     "chicago_democrat_1833_1835"
     ],
-    "note": "EIGHT PHYSICIANS ARE DOCUMENTED IN THE 1833 TOWN AND THIS DATASET HELD NOT ONE DOCTOR'S OFFICE. Four are written as households in the documented layer. One further physician household is inferred to occupy the office this parcel builds, because naming that office for a documented doctor would attach a real man to an invented building."
+    "note": "THE PAPERS NAME HIM A PHYSICIAN. 1834-02-04 c001 (p. 3, col. 2): “[Ann]ual Mee[t]ing of the Chicago Temperance Society. [T]his Society held its annual meeting, accor[ding] to appointment, in the Presbyterian Chur[c]h, [T]hursday evening, January 30, for the elec[tion] of officers for the ensuing year, and to lis[ten] to an address prepared for the occasion. [T]he following officer…”. The corpus names him 1 time(s), 1834-02-04 to 1834-02-04. THE HOUSEHOLD'S OWN ARGUMENT IS UNCHANGED and is why this roof is in the dataset at all: EIGHT PHYSICIANS ARE DOCUMENTED IN THE 1833 TOWN AND THIS DATASET HELD NOT ONE DOCTOR'S OFFICE. Four are written as households in the documented layer. One further physician household is inferred to occupy the office this parcel builds, because naming that office for a documented doctor would attach a real man to an invented building."
    },
-   "note": "HYPOTHESISED, AND NOT A PERSON. No source names this resident and none is claimed to: the record asserts that a town of 3,265 people in 398 dwellings held at least this many households of this trade, and asserts nothing whatever about any individual. THE NAME IS INVENTED TOO, and `name_basis` beside it says so and says which pool it came from: this record used to carry a bare designation instead, on the reasoning that a surname would make it look like the documented layer, but a town of designations does not read as a town and the grade, this note and name_basis all say plainly which layer this is. No figure is drawn (docs/LIBERTIES.md L1). THE FIRST OF 1 PHYSICIAN HOUSEHOLDS THIS LAYER RECONSTRUCTS. EIGHT PHYSICIANS ARE DOCUMENTED IN THE 1833 TOWN AND THIS DATASET HELD NOT ONE DOCTOR'S OFFICE. Four are written as households in the documented layer. One further physician household is inferred to occupy the office this parcel builds, because naming that office for a documented doctor would attach a real man to an invented building.",
-   "name_basis": {
-    "value": "invented from the New England and New York pool",
-    "confidence": "reconstructed",
-    "sources": [
-     "andreas_1884_v1",
-     "owner_chicago_1835_reconstruction_spec_2026"
-    ],
-    "note": "THE NAME IS INVENTED. No source names this resident, and this field is not a finding about anybody — it is a label so that a reconstructed household reads as a household rather than as a row in a table. It was drawn from the New England and New York pool in data/reconstruction/1835_invented_name_pools.json, which is seeded from the names of the 76 ATTESTED residents this project holds — real people, named from cited sources — so that an invented resident is named the way this town's documented residents were actually named rather than the way a story would name one. The community was drawn WITHOUT a weighting that any source supports. The proportions of the documented layer, which is overwhelmingly New England and New York with an older French colonial presence and a small Irish one. Applied to every trade for which no source speaks to who did the work. The evidence for the pool itself: The dominant documented group in this dataset by a wide margin. Attested origins among the named residents include Vermont (three households), Washington County Vermont, Burlington, Connecticut by way of Detroit, Sackett's Harbor New York, Guilford Vermont, and 'New England'. Attested surnames of this stock in the town include Harmon, Taylor, Brown, Davis, Porter, Wright, Blodgett, Carpenter, Carver, Caton, Calhoun, Peck, Dole, Newberry and Bates."
-   }
+   "note": "A DOCUMENTED PERSON IN A RECONSTRUCTED HOUSEHOLD, AND THE TWO HALVES OF THAT ARE GRADED SEPARATELY. The person is real and the papers name him: 1834-02-04 c001 (p. 3, col. 2), and 1 mention(s) between 1834-02-04 and 1834-02-04. WHERE HE LIVED AND WORKED IS STILL RECONSTRUCTED — the dwelling, the workplace and the division on this record are the ones the inferred-household programme dealt to the invented resident this replaces, and NOTHING HERE CLAIMS THEY ARE HIS. No source this project holds gives him an address; if one did, the register would have placed him and tools/retire_invented_residents.py would have refused him for that reason (refusal 5). This is what T-0264 retires: the town raised this household because it demonstrably needed the trade and had nobody documented to put in it, and it now has somebody. The invented name and its `name_basis` are gone with the invention. No figure is drawn (docs/LIBERTIES.md L1); the liberty taken is the housing, not the man."
   }
  ],
  "touches_removal": false,

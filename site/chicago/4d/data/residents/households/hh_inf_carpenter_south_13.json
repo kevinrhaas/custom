@@ -1,6 +1,6 @@
 {
  "id": "hh_inf_carpenter_south_13",
- "name": "The Woodruff household — a reconstructed carpenter (south division)",
+ "name": "The Metcalf household — a reconstructed carpenter (south division)",
  "division": "south",
  "head": "inf_carpenter_south_13",
  "arrival": {
@@ -45,7 +45,7 @@
  "persons": [
   {
    "id": "inf_carpenter_south_13",
-   "name": "Abner Woodruff",
+   "name": "Abner Metcalf",
    "relationship": "head",
    "grade": "reconstructed",
    "occupation": {
