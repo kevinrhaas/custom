@@ -117,7 +117,7 @@ side is a face has exactly one number to change.
    and was already enforced one layer down: `tools/generate_block_infill.py` refuses to write
    an `occupants` block onto an ancillary roof, because "a yard building serves the lot it
    stands behind, and an adoption is a claim about who lived or worked in a building".
-   **T-0410 found it by trying to SPEND the allocation**, which is the argument for spending a
+   **T-0415 found it by trying to SPEND the allocation**, which is the argument for spending a
    table rather than admiring it: an allocation nothing consumes is an allocation nothing
    checks. Four of the nine took a principal roof instead; five had none left on their street
    and joined refusal 4.
@@ -125,8 +125,9 @@ side is a face has exactly one number to change.
 ## What it moves, measured 2026-08-29
 
 **Every number below is DERIVED, and none of it is authored.** Re-measured 2026-08-29 after
-T-0410 added refusal 6; the previous reading of this table was 24 adopted and 36 waiting, over a
-supply that counted sheds.
+T-0415 added refusal 6; the previous reading of this table was 24 adopted and 36 waiting, over a
+supply that counted sheds. Re-derived again on the rebase onto `dev` at T-0400, which merged firm
+groups and took `street_only` from 60 to 59.
 
 **Every number below is DERIVED, and none of it is authored.** `python3
 tools/adopt_street_faces.py --report` reprints all of it from the register as committed, so
@@ -139,20 +140,20 @@ point of deriving the allocation instead of listing it.
 
 | | |
 |---|---|
-| `street_only` in the register | **60** |
+| `street_only` in the register | **59** |
 | adopted a street face | **19** |
-| waiting | **41** |
+| waiting | **40** |
 | — no roof whose lot fronts the named street | 24 |
 | — this face already holds this proprietor | 9 |
-| — every roof on the face is spoken for | 8 |
-| `unplaceable`, outside this policy and still open | **84** |
+| — every roof on the face is spoken for | 7 |
+| `unplaceable`, outside this policy and still open | **79** |
 
 `free` below is now the supply this pass may actually take: fronting roofs less the named
 households' homes (refusal 5) and less the yard buildings (refusal 6).
 
 | street face | ads | took | roofs fronting | free | side only | in band |
 |---|---|---|---|---|---|---|
-| South Water Street | 24 | 9 | 19 | 9 | 0 | 0 |
+| South Water Street | 23 | 9 | 19 | 9 | 0 | 0 |
 | Dearborn Street | 18 | 0 | 0 | 0 | 18 | 0 |
 | Lake Street | 11 | 9 | 51 | 19 | 0 | 4 |
 | La Salle Street | 3 | 0 | 0 | 0 | 8 | 0 |
@@ -169,9 +170,9 @@ households' homes (refusal 5) and less the yard buildings (refusal 6).
   advertisements — the New York Clothing Store, the Dearborn Street wine store and W. H.
   Taylor's boot and shoe store — have their own tickets (**T-0385**, **T-0387**) that place
   them from an anchor and do not need this policy at all.
-- **South Water Street (15 refused).** Nineteen roofs front it: five are households' homes,
-  five are yard buildings and nine are adopted, so fifteen advertisements are short of a roof —
-  seven a second heading of a house already seated, eight short purely on supply. **T-0375** is
+- **South Water Street (14 refused).** Nineteen roofs front it: five are households' homes,
+  five are yard buildings and nine are adopted, so fourteen advertisements are short of a roof —
+  seven a second heading of a house already seated, seven short purely on supply. **T-0375** is
   the ticket that notices South Water's reconstructed roofs are all a labourer's, and any
   roof it adds to that face is a roof this pass will take on its next re-derivation,
   automatically.
@@ -188,7 +189,7 @@ these 84 today is that the corpus records them and the model does not hold them.
 ## How it is spent
 
 This file and its table are the POLICY and the ALLOCATION. **The CARD is spent by
-`tools/inferred_occupancy.py` (T-0410)** — the ledger the anonymous-infill generators
+`tools/inferred_occupancy.py` (T-0415)** — the ledger the anonymous-infill generators
 already read for the inferred-household programme. It turns each adoption into the
 `occupants` block the owning generator writes onto that roof, so `generate_block_infill.py
 --check` re-derives it byte for byte and no generated record is ever hand-edited. It
@@ -205,7 +206,7 @@ takes `structure_id` and `cites`, and carries limits 2, 3 and 4 into whatever it
 roof stays reconstructed, the along-street position is not evidence, and the order on a face
 is not a claim.
 
-**Related:** T-0354 (this) · T-0410 (spent into the roofs, and refusal 6) · T-0262 (the
-register) · T-0263, T-0384–T-0387, T-0411 (the seeding) ·
+**Related:** T-0354 (this) · T-0415 (spent into the roofs, and refusal 6) · T-0262 (the
+register) · T-0263, T-0384–T-0387, T-0416 (the seeding) ·
 T-0375 (South Water's roofs) · T-0338, T-0340, T-0408 (identity) · L205, L212 ·
 `docs/PROVENANCE.md` · `docs/LIBERTIES.md`

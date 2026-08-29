@@ -1,6 +1,6 @@
 # STATUS
 
-## Shipped 2026-08-29 — T-0410: the street-face adoptions reach the buildings, and nine come out of the yard
+## Shipped 2026-08-29 — T-0415: the street-face adoptions reach the buildings, and nine come out of the yard
 
 **The allocation is now SPENT.** T-0354 paired 24 documented businesses with reconstructed roofs
 on the streets their advertisements name, and stopped there: the pairing lived in
@@ -27,7 +27,10 @@ allocation nothing checks** — that is the transferable lesson here.
   count now reports fronting roofs less homes less yards. Four of the nine took a principal roof
   instead — Harmon, Loomis & Co. moved from a shed into a narrow two-storey store — and five had
   none left on their street, so `every roof on the face is spoken for` goes 3 → 8 and the waiting
-  pile 36 → 41. All of it re-derived; none of it authored.
+  pile 36 → 41 against the register this branch was cut from. Re-derived once more on the rebase
+  onto T-0400, which merged firm groups and moved `street_only` 60 → 59: **19 adopted, 40 waiting,
+  7 of them short purely of supply.** All of it re-derived; none of it authored, which is the point
+  of deriving the allocation rather than listing it.
 - **Fifteen assertions fire when broken**, up from eight: nine in `adopt_street_faces --self-test`
   (including a business seated in a yard building) and six in `inferred_occupancy --self-test`
   (an adoption that claims a lot, an order that has become a claim, nothing to cite, a roof outside
@@ -42,7 +45,7 @@ allocation nothing checks** — that is the transferable lesson here.
 - Still not written here: a SIGNBOARD. `tools/generate_business_signboards.py` refuses a `recon_*`
   record by name, so a board on one of these roofs is a change to the signage rule and needs its
   own argument rather than a quiet exception.
-- **T-0411** carries the rest of T-0387 — Wm. Sabine, John Dave and the Dearborn Street wine store,
+- **T-0416** carries the rest of T-0387 — Wm. Sabine, John Dave and the Dearborn Street wine store,
   all three refused for want of a roof whose lot fronts North Water or Dearborn. That is an owner
   question (is a corner side a face?) before it is a placement.
 

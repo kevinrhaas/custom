@@ -100,7 +100,7 @@ THE REFUSALS, AND WHY EACH ONE IS THERE.
                                         outbuildings — Peter Cohen, clothier, grocer and
                                         liquor dealer and the best-evidenced house in the
                                         whole pool, in `recon_1835_blk_south_water_clark_
-                                        a3_05`, which is a privy. Found by T-0410 trying
+                                        a3_05`, which is a privy. Found by T-0415 trying
                                         to spend the allocation into the structure
                                         records, where the generator's own gate stopped
                                         it. An ancillary roof is not free supply.

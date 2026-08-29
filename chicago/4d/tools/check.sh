@@ -1116,7 +1116,7 @@ step "…and its own assertions still fire when broken" \
 
 # SPENDING that allocation is a second gate, because the table and the structure records
 # are two files and a policy that only reaches one of them is a policy the visitor never
-# sees (T-0410). tools/inferred_occupancy.py is the ledger both the household programme
+# sees (T-0415). tools/inferred_occupancy.py is the ledger both the household programme
 # and the adoptions hand their `occupants` block to; the generators' own `--check` above
 # already refuses a record that has drifted from it, so what is left to prove here is that
 # the ledger refuses a malformed adoption rather than passing it through — and that the
