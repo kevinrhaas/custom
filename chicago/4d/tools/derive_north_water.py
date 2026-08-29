@@ -39,11 +39,27 @@ falls half a platted street north of it -- 12.192 m, the `thompson_module_1830`
 half-width committed in `data/traces/street_control.json` and applied town-wide. At
 each 5 m station the north bank of the main stem is read off the committed
 heightfield exactly as the renderer reads it (`terrain.isWater` is
-`heightfield.sample(e, n) < -0.10`), and the required centreline is that bank plus the
-half-width. The polyline is then the fewest straight runs that stay north of every
-station's requirement and never wander more than MAX_ABOVE_M beyond it, so the drawn
-6 m track sits between 9.2 m and 15.2 m clear of the water along the whole reach and
-no panel is trimmed.
+`heightfield.sample(e, n) < -0.10`), and the required centreline is the OFFSET CURVE
+of that bank -- the northern boundary of the traced bank dilated by a disc of the
+half-width, which is the locus of points exactly half a street module from the bank
+measured as DISTANCE. The polyline is then the fewest straight runs that stay north of
+every station's requirement and never wander more than MAX_ABOVE_M beyond it, so the
+drawn 6 m track sits clear of the water along the whole reach and no panel is trimmed.
+
+WHY AN OFFSET CURVE AND NOT A RAISED BANK -- T-0307. Until 2026-08-29 the requirement
+was the bank's RUNNING MAXIMUM over +/-15 m of easting, plus the half-width applied
+NORTHWARD. Both halves of that are east-west assumptions, and the reach west of the
+slough is not east-west: coming round Wolf Point into the forks the bank falls 45 m of
+northing in 35 m of easting, a running maximum taken 15 m ahead of a bank that steep
+adds most of that drop to the setback, and a northward offset buys only its cosine
+back. Measured on that reach the road stood 41.5 m from the water where a half module
+is 12.2 -- three and a half street widths, and the rule was doing exactly what it said.
+The offset curve says the intended thing instead, in one clause that holds at any
+bearing: the centreline is half a platted street from the bank, perpendicular. It
+also subsumes the running maximum's job. Dilating by a 12.192 m disc cannot leave a
+feature finer than that radius in its boundary, so the metre-scale notches a 2.5 m
+heightfield cell reads out of a trace with +/-20 m of paper stretch are cleared by
+construction -- at the module's own scale, and without a slope penalty.
 
 THE SLOUGH IS CROSSED, NOT STOPPED AT -- T-0254, and it is why this tool derives TWO
 reaches with a structure between them. The attested "Unnamed slough, north side"
@@ -65,10 +81,10 @@ one, `north_water_slough_crossing`, whose deck runs E +183 .. +195 at N +157.5.
     shoulder would have drawn a 6.65 m ford in silence -- the fault T-0254 was filed to
     avoid, not a shortcut past it.
 
-Each reach's smoothing window is clamped INSIDE its own reach. The running maximum
-exists to clear metre-scale notches in a trace, and looking across the crossing is not
-that: at E +190 the funnel and the slough are one water run reaching N +165, and a
-window that saw it would push the street 20 m up the slough instead of over it.
+Each reach's offset curve is raised on ITS OWN BANK ONLY. The dilation reaches back
+SETBACK_M along the bank, and looking across the crossing with it would be wrong: at
+E +190 the funnel and the slough are one water run reaching N +165, and an offset that
+saw it would push the street up the slough instead of over it.
 
     tools/derive_north_water.py            print the derivation
     tools/derive_north_water.py --write    write it into data/streets/1835.json
@@ -79,6 +95,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import math
 import struct
 import sys
 from pathlib import Path
@@ -94,7 +111,7 @@ SHORE_Y = -0.10
 SETBACK_M = 12.192          # half the 80 ft platted street module, thompson_module_1830
 STATION_M = 5.0             # how finely the bank is read
 MAX_ABOVE_M = 8.0           # how far a straight run may stand north of what it needs
-SMOOTH_M = 15.0             # a bank notch this short is cleared, not followed
+BANK_STEP_M = 0.5           # how finely the traced bank is walked for the offset curve
 BELOW_M = 0.5               # how far a run may fall short of the setback (see fit)
 E_EAST = 830.0              # where the street leaves the bank and climbs to Kinzie
 TAIL = [[920.0, 190.0], [970.0, 270.0]]   # unchanged: dry, drawn, and not in question
@@ -192,19 +209,62 @@ def deck():
     return e0 + min(us), e0 + max(us), n0 + 0.5 * (min(vs) + max(vs))
 
 
+def offset_curve(raw):
+    """The bank polyline dilated by a SETBACK_M disc, read as a northing per easting.
+
+    `raw` is [(easting, bank northing)] for ONE reach. The bank between its stations is
+    walked at BANK_STEP_M, and the requirement at an easting is the highest point any of
+    those bank points holds a disc of radius SETBACK_M up to:
+
+        need(e) = max over bank points p, |p.e - e| < SETBACK_M, of
+                  p.n + sqrt(SETBACK_M^2 - (p.e - e)^2)
+
+    which is exactly the upper boundary of the dilation. On a bank running east-west it
+    is `bank + SETBACK_M`, the old rule; on a bank running at 35 degrees it is
+    `bank + SETBACK_M / cos 35` northward, which is still SETBACK_M perpendicular --
+    and that difference is the whole of T-0307.
+    """
+    dense = []
+    for i in range(len(raw) - 1):
+        e0, n0 = raw[i]
+        e1, n1 = raw[i + 1]
+        span = math.hypot(e1 - e0, n1 - n0)
+        steps = max(1, int(span / BANK_STEP_M))
+        for k in range(steps):
+            t = k / steps
+            dense.append((e0 + (e1 - e0) * t, n0 + (n1 - n0) * t))
+    dense.append(raw[-1])
+
+    def need(e):
+        best = None
+        for pe, pn in dense:
+            dx = pe - e
+            if abs(dx) >= SETBACK_M:
+                continue
+            n = pn + math.sqrt(SETBACK_M * SETBACK_M - dx * dx)
+            if best is None or n > best:
+                best = n
+        if best is None:
+            raise SystemExit("no bank within a half module of E %.1f" % e)
+        return best
+
+    return need
+
+
 def stations(is_water, e_from, e_to, anchor=None):
     """Bank and required centreline at every station of ONE reach.
 
-    The requirement is a running MAXIMUM of the bank over +/-SMOOTH_M rather than the
-    bank at the station itself, because a 2.5 m heightfield cell reading a trace with
-    +/-20 m of paper stretch in it produces metre-scale notches, and a line that
-    followed those would be a street with a bend every 5 m. Clearing them is the
-    honest reading: the bank is where it is, and the street stands north of all of it.
+    The requirement is the bank's OFFSET CURVE at SETBACK_M -- `offset_curve` below --
+    rather than a running maximum of the bank plus a northward setback. T-0307: the
+    running maximum and the northward offset are both east-west assumptions, and they
+    cost 29 m of extra verge where the bank turns into the forks at Wolf Point. The
+    offset curve is the same claim stated as a distance, so it holds at any bearing,
+    and its own radius clears the trace's metre-scale notches for free (see the module
+    docstring, WHY AN OFFSET CURVE AND NOT A RAISED BANK).
 
-    THE WINDOW IS CLAMPED TO THE REACH. It used to reach SMOOTH_M past both ends, which
-    was harmless while the reach ended in open bank; it is not harmless now that a reach
-    ends AT THE CROSSING, because the water on the far side of the deck is the slough
-    and the running maximum would read its far bank as this street's.
+    THE OFFSET IS RAISED ON THE REACH'S OWN BANK. It matters for the same reason the
+    old smoothing window was clamped: a reach ends AT THE CROSSING, and the water on
+    the far side of the deck is the slough, whose far bank is not this street's.
 
     `anchor` is (easting, northing) -- the deck's own abutment, imposed at the reach's
     crossing end: the
@@ -226,10 +286,10 @@ def stations(is_water, e_from, e_to, anchor=None):
         if bank is None:
             raise SystemExit("no north bank at E %.1f" % e_to)
         raw.append((e_to, bank))
+    curve = offset_curve(raw)
     out = []
     for e, bank in raw:
-        window = [b for f, b in raw if abs(f - e) <= SMOOTH_M + 1e-9]
-        out.append((e, bank, max(window) + SETBACK_M))
+        out.append((e, bank, curve(e)))
     if anchor is not None:
         ae, an = anchor
         for i, (e, bank, _) in enumerate(out):
@@ -339,17 +399,24 @@ def report(path, st, is_water):
     print("  length %.1f m, of which wet centreline: %.1f m" % (total, wet))
     print("  clearance from the waterline, northward: %.2f m .. %.2f m"
           % (worst_low, worst_high))
-    # THE NORTHWARD FIGURE IS NOT THE CLEARANCE A WALKER SEES, and on the west reach the
-    # two part company. The setback is applied northward and the running maximum is
-    # taken over +/-SMOOTH_M, both of which were written for the east reach's roughly
-    # east-west bank. West of the slough the bank runs at 30-60 degrees as it comes
-    # round Wolf Point into the forks, so a northward offset buys only its cosine in
-    # perpendicular clearance while the running maximum, lagging a steadily rising
-    # bank, adds it back and more. Neither is wrong -- the street stands north of every
-    # bank point within 15 m of it, which is what the rule says -- but the honest
-    # statement of how far the road is from the water is this one.
+    # THE NORTHWARD FIGURE IS NOT THE CLEARANCE A WALKER SEES: where the bank runs at
+    # 30-60 degrees, as it does west of the slough coming round Wolf Point into the
+    # forks, a road half a module clear of the water stands `SETBACK_M / cos(bearing)`
+    # north of the bank, which is a larger number saying the same thing. The
+    # perpendicular figure is the honest statement of how far the road is from the
+    # water, and since T-0307 it is also the figure the derivation is built on -- the
+    # requirement is the bank's offset curve, so anything above SETBACK_M here is the
+    # fit's own MAX_ABOVE_M slack and nothing else.
     print("  clearance from the waterline, perpendicular: %.2f m .. %.2f m"
           % perpendicular_clearance(path, is_water, w_end, e_end))
+    # PER REACH, because the two reaches are not the same problem (T-0307): the east
+    # reach's bank runs roughly east-west and the west reach's turns Wolf Point.
+    for label, lo_e, hi_e in (("west of the slough ", E_WEST_END, w_end),
+                              ("east of the slough ", e_end, E_EAST),
+                              ("the climb to Kinzie", E_EAST, TAIL[-1][0])):
+        print("    %s: %.2f m .. %.2f m" % (
+            (label,) + perpendicular_clearance(path, is_water, w_end, e_end,
+                                               lo_e, hi_e)))
     _w, _e, n_deck = w_end, e_end, deck()[2]
     dry_edges = [q for q in edge_probes(path)
                  if not (w_end - 4.0 <= q[0] <= e_end + 4.0) and is_water(*q)]
@@ -360,13 +427,21 @@ def report(path, st, is_water):
     print("  the crossing: %s, deck E %g .. %g at N %g" % (CROSSING, w_end, e_end, n_deck))
 
 
-def perpendicular_clearance(path, is_water, w_end, e_end, step=2.0):
-    """Shortest distance from the drawn centreline to water, off the deck's own span.
+def perpendicular_clearance(path, is_water, w_end, e_end, e_from=None, e_to=None,
+                            step=2.0):
+    """Nearest water to the drawn centreline, off the deck's own span.
 
-    Walked rather than solved: at every station along the path a ray is pushed out
-    square to the chord, on both sides, until it finds water or gives up at 80 m. The
-    minimum and maximum of those are the two numbers -- how close the road comes to the
-    river anywhere, and how far it stands off it at its worst.
+    The nearest point of a waterline is always square to it, so this IS the
+    perpendicular clearance -- but it is found by looking in every direction rather
+    than along one ray. Until T-0307 it pushed a ray square to the CHORD, both sides,
+    which reads the true distance only where the bank happens to run parallel to the
+    chord: at the street's west terminus on the North Branch the same vertex measured
+    12.50 m against the old line's chord and 9.50 m against the new one's, with the
+    vertex itself unmoved. A statistic that moves when nothing moved cannot carry a
+    before-and-after, so the ray was replaced by an expanding ring.
+
+    `e_from`/`e_to` bound the reach measured, so each reach can be reported on its own
+    terms -- which is the whole point west of the slough.
     """
     lo, hi = 999.0, 0.0
     for i in range(len(path) - 1):
@@ -375,22 +450,31 @@ def perpendicular_clearance(path, is_water, w_end, e_end, step=2.0):
         length = ((e1 - e0) ** 2 + (n1 - n0) ** 2) ** 0.5
         if length < 1e-9:
             continue
-        ue, un = -(n1 - n0) / length, (e1 - e0) / length
         for k in range(int(length / step) + 1):
             t = k * step / length
             e, n = e0 + (e1 - e0) * t, n0 + (n1 - n0) * t
             if w_end - 4.0 <= e <= e_end + 4.0:
                 continue          # the deck's own reach; the crossing owns that water
-            d = 80.0
-            for side in (1, -1):
-                r = 0.0
-                while r < d:
-                    r += 0.5
-                    if is_water(e + ue * side * r, n + un * side * r):
-                        d = r
-                        break
+            if e_from is not None and e < e_from - 1e-9:
+                continue
+            if e_to is not None and e > e_to + 1e-9:
+                continue
+            d = nearest_water(is_water, e, n)
             lo, hi = min(lo, d), max(hi, d)
     return lo, hi
+
+
+def nearest_water(is_water, e, n, limit=80.0, step=0.5):
+    """Distance from (e, n) to the closest wet cell in ANY direction, or `limit`."""
+    r = step
+    while r <= limit:
+        count = max(8, int(2 * math.pi * r / step))
+        for k in range(count):
+            a = 2 * math.pi * k / count
+            if is_water(e + math.cos(a) * r, n + math.sin(a) * r):
+                return r
+        r += step
+    return limit
 
 
 def at(path, e):
