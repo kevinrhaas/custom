@@ -1,7 +1,7 @@
 {
   "$note": "T-0145. Every reconstructed roof whose MODELLED ridge sits outside the ridge_ft band its family authors. A RATCHET, not an allowance: tools/check.sh fails on any offender not here and on any listed offender whose ridge has moved. Regenerate with tools/measure_ridge_band.py --write-baseline, and only ever to record a repair.",
   "counts": {
-    "outside": 28,
+    "outside": 16,
     "tested": 268
   },
   "offenders": {
@@ -116,90 +116,6 @@
       "family": "W3",
       "outside_ft": 1.53,
       "ridge_ft": 17.47
-    },
-    "recon_1835_west_002": {
-      "band": "15-18",
-      "direction": "high",
-      "family": "D3",
-      "outside_ft": 0.36,
-      "ridge_ft": 18.36
-    },
-    "recon_1835_west_003": {
-      "band": "16-20",
-      "direction": "high",
-      "family": "D4",
-      "outside_ft": 0.7,
-      "ridge_ft": 20.7
-    },
-    "recon_1835_west_005": {
-      "band": "20-25",
-      "direction": "high",
-      "family": "D6",
-      "outside_ft": 1.06,
-      "ridge_ft": 26.06
-    },
-    "recon_1835_west_006": {
-      "band": "22-27",
-      "direction": "high",
-      "family": "H1",
-      "outside_ft": 0.86,
-      "ridge_ft": 27.86
-    },
-    "recon_1835_west_009": {
-      "band": "18-25",
-      "direction": "low",
-      "family": "W2",
-      "outside_ft": 0.53,
-      "ridge_ft": 17.47
-    },
-    "recon_1835_west_010": {
-      "band": "17-24",
-      "direction": "low",
-      "family": "A1",
-      "outside_ft": 2.98,
-      "ridge_ft": 14.02
-    },
-    "recon_1835_west_016": {
-      "band": "15-18",
-      "direction": "high",
-      "family": "D3",
-      "outside_ft": 0.36,
-      "ridge_ft": 18.36
-    },
-    "recon_1835_west_018": {
-      "band": "17-21",
-      "direction": "high",
-      "family": "D5",
-      "outside_ft": 1.26,
-      "ridge_ft": 22.26
-    },
-    "recon_1835_west_021": {
-      "band": "19-23",
-      "direction": "low",
-      "family": "W3",
-      "outside_ft": 0.91,
-      "ridge_ft": 18.09
-    },
-    "recon_1835_west_022": {
-      "band": "16-27",
-      "direction": "low",
-      "family": "W4",
-      "outside_ft": 3.65,
-      "ridge_ft": 12.35
-    },
-    "recon_1835_west_023": {
-      "band": "17-24",
-      "direction": "low",
-      "family": "A1",
-      "outside_ft": 2.35,
-      "ridge_ft": 14.65
-    },
-    "recon_1835_west_024": {
-      "band": "22-31",
-      "direction": "low",
-      "family": "A2",
-      "outside_ft": 3.91,
-      "ridge_ft": 18.09
     }
   }
 }

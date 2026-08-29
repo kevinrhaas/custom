@@ -1,10 +1,10 @@
 {
   "$note": "ROADMAP K25(a). Every form value in this project's reconstructed buildings that sits outside the family band its own note cites. This file is a RATCHET, not an allowance: tools/check.sh fails on any offender that is not here and on any listed offender whose value has moved. K25(b) empties it and deletes it. Regenerate with tools/measure_band_claims.py --write-baseline, and only ever to record a repair.",
   "counts": {
-    "eave": 19,
+    "eave": 14,
     "footprint": 2,
     "levels": 3,
-    "pitch": 9
+    "pitch": 7
   },
   "measured": "2026-08-15",
   "offenders": {
@@ -183,61 +183,12 @@
       "marginal": true,
       "value": "1.5 storey + loft = 2"
     },
-    "recon_1835_west_002:eave": {
-      "band": "8-9 ft",
-      "detail": "+0.12 ft outside",
-      "family": "D3",
-      "marginal": true,
-      "value": "9.12 ft (2.78 m)"
-    },
-    "recon_1835_west_015:eave": {
-      "band": "7-8 ft",
-      "detail": "+0.27 ft outside",
-      "family": "D2",
-      "marginal": true,
-      "value": "6.73 ft (2.05 m)"
-    },
-    "recon_1835_west_015:pitch": {
-      "band": "18.4-33.7 deg (4:12-8:12)",
-      "detail": "+0.4 deg / +0.10 of a 1:12 step outside",
-      "family": "D2",
-      "marginal": true,
-      "value": "18.0 deg (= 3.90:12)"
-    },
-    "recon_1835_west_016:eave": {
-      "band": "8-9 ft",
-      "detail": "+0.12 ft outside",
-      "family": "D3",
-      "marginal": true,
-      "value": "9.12 ft (2.78 m)"
-    },
-    "recon_1835_west_019:eave": {
-      "band": "17-19 ft",
-      "detail": "+0.43 ft outside",
-      "family": "D7",
-      "marginal": true,
-      "value": "16.57 ft (5.05 m)"
-    },
     "recon_1835_west_021:levels": {
       "band": "'1' (=> 1-1)",
       "detail": "the band authors no loft",
       "family": "W3",
       "marginal": false,
       "value": "loft = true"
-    },
-    "recon_1835_west_022:eave": {
-      "band": "9-18 ft",
-      "detail": "+2.27 ft outside",
-      "family": "W4",
-      "marginal": false,
-      "value": "6.73 ft (2.05 m)"
-    },
-    "recon_1835_west_024:pitch": {
-      "band": "33.7-45.0 deg (8:12-12:12)",
-      "detail": "+1.7 deg / +0.50 of a 1:12 step outside",
-      "family": "A2",
-      "marginal": true,
-      "value": "32.0 deg (= 7.50:12)"
     }
   }
 }

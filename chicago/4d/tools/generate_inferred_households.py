@@ -1027,9 +1027,17 @@ def build_all() -> tuple[dict[Path, str], list[dict], list[dict]]:
     for entry in rows:
         for grade, n in entry["grades"].items():
             totals[grade] = totals.get(grade, 0) + n
+    # The three counts this programme OWNS, and then every other count key the
+    # manifest carries, preserved rather than dropped. A later pass may tally
+    # something this one knows nothing about — `letter_list_only` is
+    # tools/mint_letter_list_residents.py's — and rebuilding `counts` from
+    # scratch would delete it here and re-add it there on every run, which reads
+    # as drift in whichever pass ran last.
     index["counts"] = {"households": len(rows),
                        "persons": sum(e["persons"] for e in rows),
-                       "by_grade": totals}
+                       "by_grade": totals,
+                       **{k: v for k, v in (index.get("counts") or {}).items()
+                          if k not in ("households", "persons", "by_grade")}}
     files[INDEX] = dumps(index, 1)
     return files, records, households
 
