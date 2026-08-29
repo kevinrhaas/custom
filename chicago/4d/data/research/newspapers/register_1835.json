@@ -6120,8 +6120,8 @@
       "action": "enrich_existing",
       "action_target": "goss_cobb_saddlery",
       "match_tier": "occupants",
-      "match_evidence": "Goss & Cobb, saddlers and harness makers",
-      "action_note": "goss_cobb_saddlery already stands and its occupants carries cobb — 'Goss & Cobb, saddlers and harness makers'. The papers add trade, goods and dates to a record that exists."
+      "match_evidence": "S. B. Cobb, saddle, harness and trunk manufacturer",
+      "action_note": "goss_cobb_saddlery already stands and its occupants carries cobb — 'S. B. Cobb, saddle, harness and trunk manufacturer'. The papers add trade, goods and dates to a record that exists."
     },
     {
       "id": "business_s_dewey",
