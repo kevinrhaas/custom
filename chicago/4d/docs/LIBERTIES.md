@@ -9370,3 +9370,54 @@ and this liberty's fifth paragraph is what has been discharged.
 Related: **L1** (no figure is drawn for any resident) · tickets **T-0264** (this), **T-0262**,
 **T-0263**, **T-0306**.
 **Recorded:** 2026-08-29.
+
+### L206 — Sixteen documented tradespeople are written as households of one, and the household is the invention
+**Decision:** the newspaper register names people this reconstruction did not hold at all, and
+`data/residents/` has no way to carry a person except inside a household. So on 2026-08-29
+sixteen of them were written as households of ONE — Byram King (hardware merchant), J. H.
+Collins, Henry Moore, R. Stewart, J. Curtiss and H. C. Bennett (attorneys), Samuel Lewis, H.
+Crocker and J. A. Marshall (schoolteachers), A. Garrett (auctioneer), H. B. Clarke (hardware),
+E. L. Thrall (clothier), Elmira Fowler and Mrs H. Sherman (dressmakers), James Grant (attorney)
+and Wm. Sabine (forwarding and commission). `tools/mint_documented_residents.py` derives the set
+and re-derives it on every commit.
+
+**What is not invented: the people and their trades.** Each is named in the Chicago Democrat or
+the Chicago American at the issue and column their record cites, and the corpus reads a trade for
+each. They are graded `attested` on that basis and on nothing else.
+
+**What is invented, and it is only this: that each is a household.** No source reached says any
+of them headed a household, lived alone, or lived at all in the sense this dataset means — a roof
+with people under it. The container is the dataset's shape, not the paper's claim, and every
+record says so: one member, `lives_at` null, `works_at` null, no origin, no party size, no
+family, and `division: unplaced` — a sixth division word added for exactly this, meaning the
+sources put the household IN the town and nowhere in it. Reading a family or a quarter of town
+into these records would be reading something the papers do not say.
+
+**Why `attested` here and `inferred` at L205.** The two passes claim different things. L205 puts
+a documented man under a reconstructed ROOF, so the record makes a claim about a dwelling and the
+middle rung is the honest one. This pass raises no dwelling and places nothing; the only claim
+about the person is that a source names them and gives them a trade, which is what `attested`
+means on this layer. Nothing here moves a building, a footprint or a triangle.
+
+**The refusals shape it, and they refuse more than three times what they take.** Fifty-four
+candidates were refused and sixteen taken: eighteen whose first evidence falls after the scene
+date, nine names the transcription bracketed as uncertain, eight firms that cannot head a
+household, six people the corpus places where this project cannot put them in the town (the
+mouth of the St. Joseph, Cook county, a store the plat does not carry), five whose family name
+the town already uses, four surnames already minted, and four printed as a surname and a trade
+and nothing else — the decision index.json already records under `darwin_of_canada`.
+`python3 tools/mint_documented_residents.py --report` prints every one with its reason.
+
+**A presence bound, stated:** nine of the sixteen are last printed before 1 July 1835, and their
+`present_on_scene_date` is `uncertain` rather than `present` — the same distinction index.json
+already draws for Jeremiah Porter. A documented resident whose whereabouts on one day are unknown
+is a finding, not a gap, and the card says which it is.
+
+**Consequence:** the Evidence panel's people section goes from 173 households and 209 people to
+189 and 225, and sixteen of the new rows carry the orphan chip that says no building card can
+reach them — which is the card telling the truth. No figure is drawn (L1).
+
+Related: **L205** (the documented men who took reconstructed roofs) · **L1** (no figure is drawn
+for any resident) · tickets **T-0376** (this), **T-0368**, **T-0264**, **T-0263**, **T-0373**,
+**T-0374**.
+**Recorded:** 2026-08-29.

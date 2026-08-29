@@ -117,6 +117,20 @@ ANCHOR_STOP = {
 # household on a word that happened to collide. First hit in order wins, so the
 # compound trades sit above the words they contain.
 TRADE_TO_OCCUPATION = (
+    # ORDER IS THE RULE HERE: the first needle that appears anywhere in the printed
+    # trade wins, so a longer trade whose letters contain a shorter one has to be
+    # listed above it. "mill" sits inside "milliner", which is how every milliner in
+    # this corpus was being compiled as a MILLER (T-0376) — Elmira Fowler, who
+    # advertised "Millinery & Dress Making" on Dearborn Street in November 1834, and
+    # Mrs H. Sherman, who took a room two doors from the Mansion House a month later.
+    # A dressmaker recorded as a grain miller is not a near miss; it is a trade the
+    # paper never gives her, and this project may not mint a resident over one.
+    ("millinery", "milliner"),
+    ("milliner", "milliner"),
+    ("dress making", "dressmaker"),
+    ("dressmaking", "dressmaker"),
+    ("dress maker", "dressmaker"),
+    ("dressmaker", "dressmaker"),
     ("forwarding and commission", "forwarding_and_commission"),
     ("boarding house", "boarding_house_keeper"),
     ("soap", "soap_and_candle_maker"),

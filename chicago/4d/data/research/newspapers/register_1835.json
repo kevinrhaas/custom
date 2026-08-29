@@ -11,7 +11,7 @@
     },
     "structures": 358,
     "streets": 19,
-    "resident_persons": 209
+    "resident_persons": 225
   },
   "counts": {
     "businesses": {
@@ -45,8 +45,8 @@
     "persons": {
       "total": 2254,
       "by_action": {
-        "enrich": 135,
-        "new_resident": 2000,
+        "enrich": 166,
+        "new_resident": 1969,
         "replace_invented": 119
       },
       "letter_list_only": 1554
@@ -2327,7 +2327,7 @@
       "id": "business_elmira_fowler",
       "name": "Elmira Fowler",
       "trade": "millinery and dress making",
-      "occupation": "miller",
+      "occupation": "milliner",
       "proprietors": [
         "Elmira Fowler"
       ],
@@ -5026,7 +5026,7 @@
       "id": "business_mrs_h_sherman",
       "name": "Mrs. H. Sherman",
       "trade": "millinery and dress making",
-      "occupation": "miller",
+      "occupation": "milliner",
       "proprietors": [
         "Mrs. H. Sherman"
       ],
@@ -5059,7 +5059,7 @@
       "id": "business_mrs_herman",
       "name": "[Mrs.] Herman",
       "trade": "millinery and dress making",
-      "occupation": "miller",
+      "occupation": "milliner",
       "proprietors": [
         "[Mrs.] Herman"
       ],
@@ -8254,9 +8254,9 @@
       "letter_list_only": false,
       "first_seen": "1834-12-17",
       "last_seen": "1835-08-15",
-      "action": "new_resident",
-      "action_target": null,
-      "action_note": "Ruling 1: a named person the town does not hold. Named in a claim other than a letter list."
+      "action": "enrich",
+      "action_target": "doc_a_garrett",
+      "action_note": "data/residents/ already holds this person as doc_a_garrett (hh_doc_a_garrett, attested). The papers add mentions and dates."
     },
     {
       "id": "person_a_h_friel",
@@ -10806,9 +10806,9 @@
       "letter_list_only": false,
       "first_seen": "1834-07-23",
       "last_seen": "1834-07-23",
-      "action": "new_resident",
-      "action_target": null,
-      "action_note": "Ruling 1: a named person the town does not hold. Named in a claim other than a letter list."
+      "action": "enrich",
+      "action_target": "doc_byram_king",
+      "action_note": "data/residents/ already holds this person as doc_byram_king (hh_doc_byram_king, attested). The papers add mentions and dates."
     },
     {
       "id": "person_byram_king",
@@ -10817,9 +10817,9 @@
       "letter_list_only": false,
       "first_seen": "1834-07-09",
       "last_seen": "1835-07-29",
-      "action": "new_resident",
-      "action_target": null,
-      "action_note": "Ruling 1: a named person the town does not hold. Named in a claim other than a letter list."
+      "action": "enrich",
+      "action_target": "doc_byram_king",
+      "action_note": "data/residents/ already holds this person as doc_byram_king (hh_doc_byram_king, attested). The papers add mentions and dates."
     },
     {
       "id": "person_byram_thomas",
@@ -12005,9 +12005,9 @@
       "letter_list_only": false,
       "first_seen": "1835-08-05",
       "last_seen": "1835-08-05",
-      "action": "new_resident",
-      "action_target": null,
-      "action_note": "Ruling 1: a named person the town does not hold. Named in a claim other than a letter list."
+      "action": "enrich",
+      "action_target": "doc_j_h_collins",
+      "action_note": "data/residents/ already holds this person as doc_j_h_collins (hh_doc_j_h_collins, attested). The papers add mentions and dates."
     },
     {
       "id": "person_compart_coquillard",
@@ -12269,9 +12269,9 @@
       "letter_list_only": false,
       "first_seen": "1835-08-05",
       "last_seen": "1835-08-05",
-      "action": "new_resident",
-      "action_target": null,
-      "action_note": "Ruling 1: a named person the town does not hold. Named in a claim other than a letter list."
+      "action": "enrich",
+      "action_target": "doc_j_curtiss",
+      "action_note": "data/residents/ already holds this person as doc_j_curtiss (hh_doc_j_curtiss, attested). The papers add mentions and dates."
     },
     {
       "id": "person_curtiss_l_g",
@@ -13402,9 +13402,9 @@
       "letter_list_only": false,
       "first_seen": "1834-06-04",
       "last_seen": "1834-06-04",
-      "action": "new_resident",
-      "action_target": null,
-      "action_note": "Ruling 1: a named person the town does not hold. Named in a claim other than a letter list."
+      "action": "enrich",
+      "action_target": "doc_e_l_thrall",
+      "action_note": "data/residents/ already holds this person as doc_e_l_thrall (hh_doc_e_l_thrall, attested). The papers add mentions and dates."
     },
     {
       "id": "person_e_m_fish",
@@ -14058,13 +14058,13 @@
     {
       "id": "person_elmira_fowler",
       "name": "Elmira Fowler",
-      "occupation": "miller",
+      "occupation": "dressmaker",
       "letter_list_only": false,
       "first_seen": "1834-11-05",
       "last_seen": "1834-11-05",
-      "action": "new_resident",
-      "action_target": null,
-      "action_note": "Ruling 1: a named person the town does not hold. Named in a claim other than a letter list."
+      "action": "enrich",
+      "action_target": "doc_elmira_fowler",
+      "action_note": "data/residents/ already holds this person as doc_elmira_fowler (hh_doc_elmira_fowler, attested). The papers add mentions and dates."
     },
     {
       "id": "person_elston_daniel",
@@ -14898,9 +14898,9 @@
       "letter_list_only": false,
       "first_seen": "1835-08-12",
       "last_seen": "1835-08-12",
-      "action": "new_resident",
-      "action_target": null,
-      "action_note": "Ruling 1: a named person the town does not hold. Named in a claim other than a letter list."
+      "action": "enrich",
+      "action_target": "doc_a_garrett",
+      "action_note": "data/residents/ already holds this person as doc_a_garrett (hh_doc_a_garrett, attested). The papers add mentions and dates."
     },
     {
       "id": "person_gaylord_hayes",
@@ -15536,9 +15536,9 @@
       "letter_list_only": false,
       "first_seen": "1834-09-03",
       "last_seen": "1834-09-03",
-      "action": "new_resident",
-      "action_target": null,
-      "action_note": "Ruling 1: a named person the town does not hold. Named in a claim other than a letter list."
+      "action": "enrich",
+      "action_target": "doc_james_grant",
+      "action_note": "data/residents/ already holds this person as doc_james_grant (hh_doc_james_grant, attested). The papers add mentions and dates."
     },
     {
       "id": "person_graves_d",
@@ -15657,9 +15657,9 @@
       "letter_list_only": false,
       "first_seen": "1835-05-27",
       "last_seen": "1835-07-29",
-      "action": "new_resident",
-      "action_target": null,
-      "action_note": "Ruling 1: a named person the town does not hold. Named in a claim other than a letter list."
+      "action": "enrich",
+      "action_target": "doc_h_b_clarke",
+      "action_note": "data/residents/ already holds this person as doc_h_b_clarke (hh_doc_h_b_clarke, attested). The papers add mentions and dates."
     },
     {
       "id": "person_h_b_fowler",
@@ -15701,9 +15701,9 @@
       "letter_list_only": false,
       "first_seen": "1834-12-10",
       "last_seen": "1834-12-10",
-      "action": "new_resident",
-      "action_target": null,
-      "action_note": "Ruling 1: a named person the town does not hold. Named in a claim other than a letter list."
+      "action": "enrich",
+      "action_target": "doc_h_c_bennett",
+      "action_note": "data/residents/ already holds this person as doc_h_c_bennett (hh_doc_h_c_bennett, attested). The papers add mentions and dates."
     },
     {
       "id": "person_h_c_shearman",
@@ -15756,9 +15756,9 @@
       "letter_list_only": false,
       "first_seen": "1835-01-21",
       "last_seen": "1835-07-08",
-      "action": "new_resident",
-      "action_target": null,
-      "action_note": "Ruling 1: a named person the town does not hold. Named in a claim other than a letter list."
+      "action": "enrich",
+      "action_target": "doc_h_crocker",
+      "action_note": "data/residents/ already holds this person as doc_h_crocker (hh_doc_h_crocker, attested). The papers add mentions and dates."
     },
     {
       "id": "person_h_d_risley",
@@ -16196,9 +16196,9 @@
       "letter_list_only": false,
       "first_seen": "1835-06-27",
       "last_seen": "1835-07-04",
-      "action": "new_resident",
-      "action_target": null,
-      "action_note": "Ruling 1: a named person the town does not hold. Named in a claim other than a letter list."
+      "action": "enrich",
+      "action_target": "doc_h_crocker",
+      "action_note": "data/residents/ already holds this person as doc_h_crocker (hh_doc_h_crocker, attested). The papers add mentions and dates."
     },
     {
       "id": "person_hardin_m_ir_v_in",
@@ -16559,9 +16559,9 @@
       "letter_list_only": false,
       "first_seen": "1835-06-04",
       "last_seen": "1835-08-22",
-      "action": "new_resident",
-      "action_target": null,
-      "action_note": "Ruling 1: a named person the town does not hold. Named in a claim other than a letter list."
+      "action": "enrich",
+      "action_target": "doc_henry_moore",
+      "action_note": "data/residents/ already holds this person as doc_henry_moore (hh_doc_henry_moore, attested). The papers add mentions and dates."
     },
     {
       "id": "person_henry_reeder",
@@ -16702,9 +16702,9 @@
       "letter_list_only": true,
       "first_seen": "1834-01-28",
       "last_seen": "1834-01-28",
-      "action": "new_resident",
-      "action_target": null,
-      "action_note": "Ruling 1: a named person the town does not hold. Known only from the post-office letter lists."
+      "action": "enrich",
+      "action_target": "doc_h_c_bennett",
+      "action_note": "data/residents/ already holds this person as doc_h_c_bennett (hh_doc_h_c_bennett, attested). The papers add mentions and dates."
     },
     {
       "id": "person_hiram_bowen",
@@ -17039,7 +17039,7 @@
     {
       "id": "person_howe_sarah_d",
       "name": "Howe, Sarah D.",
-      "occupation": null,
+      "occupation": "dressmaker",
       "letter_list_only": false,
       "first_seen": "1835-08-19",
       "last_seen": "1835-08-19",
@@ -17604,9 +17604,9 @@
       "letter_list_only": false,
       "first_seen": "1834-11-19",
       "last_seen": "1834-11-19",
-      "action": "new_resident",
-      "action_target": null,
-      "action_note": "Ruling 1: a named person the town does not hold. Named in a claim other than a letter list."
+      "action": "enrich",
+      "action_target": "doc_j_a_marshall",
+      "action_note": "data/residents/ already holds this person as doc_j_a_marshall (hh_doc_j_a_marshall, attested). The papers add mentions and dates."
     },
     {
       "id": "person_j_acob_gur",
@@ -17791,9 +17791,9 @@
       "letter_list_only": false,
       "first_seen": "1835-05-20",
       "last_seen": "1835-07-01",
-      "action": "new_resident",
-      "action_target": null,
-      "action_note": "Ruling 1: a named person the town does not hold. Named in a claim other than a letter list."
+      "action": "enrich",
+      "action_target": "doc_j_curtiss",
+      "action_note": "data/residents/ already holds this person as doc_j_curtiss (hh_doc_j_curtiss, attested). The papers add mentions and dates."
     },
     {
       "id": "person_j_d_caton",
@@ -17912,9 +17912,9 @@
       "letter_list_only": false,
       "first_seen": "1834-01-28",
       "last_seen": "1834-11-19",
-      "action": "new_resident",
-      "action_target": null,
-      "action_note": "Ruling 1: a named person the town does not hold. Named in a claim other than a letter list."
+      "action": "enrich",
+      "action_target": "doc_j_h_collins",
+      "action_note": "data/residents/ already holds this person as doc_j_h_collins (hh_doc_j_h_collins, attested). The papers add mentions and dates."
     },
     {
       "id": "person_j_h_collins_j_d_c_aton",
@@ -18605,9 +18605,9 @@
       "letter_list_only": false,
       "first_seen": "1835-06-10",
       "last_seen": "1835-06-10",
-      "action": "new_resident",
-      "action_target": null,
-      "action_note": "Ruling 1: a named person the town does not hold. Named in a claim other than a letter list."
+      "action": "enrich",
+      "action_target": "doc_james_grant",
+      "action_note": "data/residents/ already holds this person as doc_james_grant (hh_doc_james_grant, attested). The papers add mentions and dates."
     },
     {
       "id": "person_james_h_collins",
@@ -18616,9 +18616,9 @@
       "letter_list_only": false,
       "first_seen": "1834-06-04",
       "last_seen": "1835-05-20",
-      "action": "new_resident",
-      "action_target": null,
-      "action_note": "Ruling 1: a named person the town does not hold. Named in a claim other than a letter list."
+      "action": "enrich",
+      "action_target": "doc_j_h_collins",
+      "action_note": "data/residents/ already holds this person as doc_j_h_collins (hh_doc_j_h_collins, attested). The papers add mentions and dates."
     },
     {
       "id": "person_james_h_gibbs",
@@ -21036,9 +21036,9 @@
       "letter_list_only": true,
       "first_seen": "1834-10-22",
       "last_seen": "1834-10-22",
-      "action": "new_resident",
-      "action_target": null,
-      "action_note": "Ruling 1: a named person the town does not hold. Known only from the post-office letter lists."
+      "action": "enrich",
+      "action_target": "doc_byram_king",
+      "action_note": "data/residents/ already holds this person as doc_byram_king (hh_doc_byram_king, attested). The papers add mentions and dates."
     },
     {
       "id": "person_king_byram",
@@ -21047,9 +21047,9 @@
       "letter_list_only": false,
       "first_seen": "1834-09-03",
       "last_seen": "1835-08-05",
-      "action": "new_resident",
-      "action_target": null,
-      "action_note": "Ruling 1: a named person the town does not hold. Named in a claim other than a letter list."
+      "action": "enrich",
+      "action_target": "doc_byram_king",
+      "action_note": "data/residents/ already holds this person as doc_byram_king (hh_doc_byram_king, attested). The papers add mentions and dates."
     },
     {
       "id": "person_king_charles_f",
@@ -21740,9 +21740,9 @@
       "letter_list_only": false,
       "first_seen": "1835-08-12",
       "last_seen": "1835-08-12",
-      "action": "new_resident",
-      "action_target": null,
-      "action_note": "Ruling 1: a named person the town does not hold. Named in a claim other than a letter list."
+      "action": "enrich",
+      "action_target": "doc_samuel_lewis",
+      "action_note": "data/residents/ already holds this person as doc_samuel_lewis (hh_doc_samuel_lewis, attested). The papers add mentions and dates."
     },
     {
       "id": "person_lewis_sperry",
@@ -23181,9 +23181,9 @@
       "letter_list_only": false,
       "first_seen": "1835-08-05",
       "last_seen": "1835-08-12",
-      "action": "new_resident",
-      "action_target": null,
-      "action_note": "Ruling 1: a named person the town does not hold. Named in a claim other than a letter list."
+      "action": "enrich",
+      "action_target": "doc_henry_moore",
+      "action_note": "data/residents/ already holds this person as doc_henry_moore (hh_doc_henry_moore, attested). The papers add mentions and dates."
     },
     {
       "id": "person_moritz_bomgarten",
@@ -23408,18 +23408,18 @@
     {
       "id": "person_mrs_h_sherman",
       "name": "Mrs. H. Sherman",
-      "occupation": "miller",
+      "occupation": "dressmaker",
       "letter_list_only": false,
       "first_seen": "1834-12-03",
       "last_seen": "1834-12-03",
-      "action": "new_resident",
-      "action_target": null,
-      "action_note": "Ruling 1: a named person the town does not hold. Named in a claim other than a letter list."
+      "action": "enrich",
+      "action_target": "doc_h_sherman",
+      "action_note": "data/residents/ already holds this person as doc_h_sherman (hh_doc_h_sherman, attested). The papers add mentions and dates."
     },
     {
       "id": "person_mrs_herman",
       "name": "[Mrs.] Herman",
-      "occupation": "miller",
+      "occupation": "dressmaker",
       "letter_list_only": false,
       "first_seen": "1834-11-26",
       "last_seen": "1834-11-26",
@@ -25579,9 +25579,9 @@
       "letter_list_only": false,
       "first_seen": "1834-07-02",
       "last_seen": "1835-06-13",
-      "action": "new_resident",
-      "action_target": null,
-      "action_note": "Ruling 1: a named person the town does not hold. Named in a claim other than a letter list."
+      "action": "enrich",
+      "action_target": "doc_r_stewart",
+      "action_note": "data/residents/ already holds this person as doc_r_stewart (hh_doc_r_stewart, attested). The papers add mentions and dates."
     },
     {
       "id": "person_rah_fowler",
@@ -26679,9 +26679,9 @@
       "letter_list_only": true,
       "first_seen": "1835-07-01",
       "last_seen": "1835-07-01",
-      "action": "new_resident",
-      "action_target": null,
-      "action_note": "Ruling 1: a named person the town does not hold. Known only from the post-office letter lists."
+      "action": "enrich",
+      "action_target": "doc_wm_sabine",
+      "action_note": "data/residents/ already holds this person as doc_wm_sabine (hh_doc_wm_sabine, attested). The papers add mentions and dates."
     },
     {
       "id": "person_sacket_alexander",
@@ -26899,9 +26899,9 @@
       "letter_list_only": false,
       "first_seen": "1834-07-02",
       "last_seen": "1835-08-05",
-      "action": "new_resident",
-      "action_target": null,
-      "action_note": "Ruling 1: a named person the town does not hold. Named in a claim other than a letter list."
+      "action": "enrich",
+      "action_target": "doc_samuel_lewis",
+      "action_note": "data/residents/ already holds this person as doc_samuel_lewis (hh_doc_samuel_lewis, attested). The papers add mentions and dates."
     },
     {
       "id": "person_samuel_miller",
@@ -27082,7 +27082,7 @@
     {
       "id": "person_sarah_d_howe",
       "name": "Sarah D. Howe",
-      "occupation": null,
+      "occupation": "dressmaker",
       "letter_list_only": false,
       "first_seen": "1835-08-22",
       "last_seen": "1835-08-22",
@@ -28208,9 +28208,9 @@
       "letter_list_only": false,
       "first_seen": "1834-10-22",
       "last_seen": "1835-08-05",
-      "action": "new_resident",
-      "action_target": null,
-      "action_note": "Ruling 1: a named person the town does not hold. Named in a claim other than a letter list."
+      "action": "enrich",
+      "action_target": "doc_r_stewart",
+      "action_note": "data/residents/ already holds this person as doc_r_stewart (hh_doc_r_stewart, attested). The papers add mentions and dates."
     },
     {
       "id": "person_stewart_royal",
@@ -28219,9 +28219,9 @@
       "letter_list_only": true,
       "first_seen": "1834-10-22",
       "last_seen": "1834-10-22",
-      "action": "new_resident",
-      "action_target": null,
-      "action_note": "Ruling 1: a named person the town does not hold. Known only from the post-office letter lists."
+      "action": "enrich",
+      "action_target": "doc_r_stewart",
+      "action_note": "data/residents/ already holds this person as doc_r_stewart (hh_doc_r_stewart, attested). The papers add mentions and dates."
     },
     {
       "id": "person_stewart_sa_m_uel",
@@ -32608,9 +32608,9 @@
       "letter_list_only": false,
       "first_seen": "1835-06-13",
       "last_seen": "1835-06-13",
-      "action": "new_resident",
-      "action_target": null,
-      "action_note": "Ruling 1: a named person the town does not hold. Named in a claim other than a letter list."
+      "action": "enrich",
+      "action_target": "doc_wm_sabine",
+      "action_note": "data/residents/ already holds this person as doc_wm_sabine (hh_doc_wm_sabine, attested). The papers add mentions and dates."
     },
     {
       "id": "person_wm_shier",

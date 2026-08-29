@@ -1,7 +1,7 @@
 ---
 id: T-0368
 title: The letter lists mint new residents: 1,967 documented people the register would ADD to the town
-state: open
+state: split
 epic: PAPERS
 requested_by: owner
 seen: false
@@ -9,7 +9,7 @@ effort: S
 legacy_id: null
 parent: T-0264
 opened: 2026-08-29
-closed: null
+closed: 2026-08-29
 pr: null
 claimed_by: null
 blocked_on: null
