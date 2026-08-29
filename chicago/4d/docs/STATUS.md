@@ -321,14 +321,30 @@ whatever the contradiction is dated, which struck a firm out of a July town on t
 August dissolution notice. Here the veto is a contradiction dated ON OR BEFORE 1835-07-01. A later
 one is recorded — `dissolved_after_scene_date`, one business — and disobeyed.
 
-**The ticket's second exclusion had to be rebuilt out of what the data carries.** T-0262 asks to
-exclude entries whose only 1835 evidence `announces_opening` after 1 July. There is no
-`announces_opening` in the claim vocabulary; the ticket describes a field the extraction schema
-never grew. The derivable test that answers the same question without inventing one is
-`first_evidence_after_scene_date`: a business whose FIRST issue postdates the scene date evidences
-nothing about 1 July. Seventeen businesses. It is conservative in the direction provenance wants,
-it is not a claim that they were absent, and every one of them is kept in the register with the
-exclusion named so a later pass that can read an opening notice properly may overturn it.
+**The ticket's second exclusion was a proxy, and T-0356 replaced it with the field.** T-0262 asked
+to exclude entries whose only 1835 evidence `announces_opening` after 1 July. There was no
+`announces_opening` in the claim vocabulary — except as a bare `true` on twenty claims that no tool
+read — so the register used the derivable proxy `first_evidence_after_scene_date`: a business whose
+FIRST issue postdates the scene date evidences nothing about 1 July. Thirty-eight businesses by the
+time the corpus was fully read.
+
+**The re-read settled it, and the proxy was excluding houses the papers put in the town.** The
+claim now carries `{verbatim, dating, iso, note}` and the DATING decides: a `stated` future opening
+after the scene date excludes; an `effected` one is dated by the advertisement's own dateline and
+bounds the opening from ABOVE, so it never excludes; an `undated` one decides nothing. Four of the
+thirty-eight genuinely announce a later opening and stay out — Cromelien's wine branch (14 Aug),
+Everts' high school for young gentlemen (10 Aug), Hunt's for young ladies (17 Aug), Lyon's
+wholesale grocery (1 Sep). **Thirty-four are restored**, and five of those are printed standing in
+the July town: Wm. H. Taylor's boot store over a dateline of 8 JULY 1834, Wm. H. Kennicott saying he
+had practised dentistry here "for the past year", Samuel Lewis's music-school copy dated 22 June,
+S. Abell's 24 June and John Holbrook's 10 June. The register's placeable count moves from 66 to 78
+and its street-only count from 47 to 63.
+
+**What replaced the proxy is not nothing.** A business first printed in August that announces no
+opening now stands under ruling 3, and that is a liberty: `backdating_liberty_required`, the
+forward twin of `survival_liberty_required` — documented only after the scene date, present on it
+by assumption. Thirty-three businesses carry it, computed and never asserted. `docs/LIBERTIES.md`
+carries neither class yet (T-0357 is the survival half, T-0404 the backdating half).
 
 ### The counts, which are the epic's yield measured
 
@@ -336,7 +352,7 @@ exclusion named so a later pass that can read an opening notice properly may ove
 |---|---|
 | present at the scene date | 190 |
 | excluded — contradicted before 1835-07-01 | 14 |
-| excluded — first evidence after 1835-07-01 | 17 |
+| excluded — first evidence after 1835-07-01 (the proxy T-0356 retired) | 17 |
 | `enrich_existing` (a committed building already carries it) | 39 |
 | `new_building` (placeable against the committed town) | 24 |
 | `street_only` (a street face and no closer) | 49 |
@@ -350,6 +366,29 @@ exclusion named so a later pass that can read an opening notice properly may ove
 | `new_resident` — ruling 1 | 1,971 |
 | …of those, known only from the letter lists | 1,555 |
 | **invented households the register can retire** | **28 of 117** |
+
+Those are the figures the epic landed on, and they are kept as landed. **Re-measured on
+2026-08-29, after the whole corpus was read and after T-0356 replaced the proxy exclusion
+with the field**, the same register reads:
+
+| businesses | 242 |
+|---|---|
+| present at the scene date | 224 |
+| excluded — contradicted before 1835-07-01 | 14 |
+| excluded — opening announced after 1835-07-01 | 4 |
+| `enrich_existing` | 38 |
+| `new_building` | 30 |
+| `street_only` | 63 |
+| `unplaceable` | 111 |
+| standing on a survival liberty (last evidence pre-1835) | 126 |
+| standing on a backdating liberty (first evidence post-scene-date) | 33 |
+
+| persons | 2,628 |
+|---|---|
+| `enrich` | 184 |
+| `replace_invented` | 119 |
+| `new_resident` | 2,325 |
+| **invented households the register can retire** | **27** |
 
 The retirement figure is a count of HOUSEHOLDS and it is capped per trade by construction: three
 documented tailors retire at most the tailors the town invented. Reporting the matched persons

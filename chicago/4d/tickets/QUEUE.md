@@ -45,7 +45,6 @@ T-0340 — The bookseller's sign-name and its partners' firm-name are three gaze
 T-0400 — The firm styles that differ in the forename's form: whole against abbreviated against initial
 T-0401 — The firm groups that are two houses, written down so no later sweep merges them
 T-0402 — The firm groups an agency, a parent house or a lost signature makes ambiguous
-T-0356 — The claim vocabulary cannot say an advertisement announces an opening, so 17 businesses are excluded on a proxy
 
 # --- THE NEWSPAPER STREAM (b) THE POLICY THAT DECIDES HOW MUCH TOWN THE PAPERS REACH.
 # --- T-0354 is the single highest-leverage ticket in the queue: the register places 24 of
@@ -172,3 +171,4 @@ T-0391 — Are 'Eagle Hotel' and 'the Eagle Hotel (Steele's)' one house, and no 
 T-0405 — The same blacksmith notice is read as 'Matthias Nason & Co.' in one impression, and the partner-surname guard can never merge it
 T-0406 — 'the Tremont House' resolves to nothing, because the committed record is named 'Tremont House (the first)'
 T-0403 — The Democrat's office keeps its 1834 corner through a merge, and the paper moved along South Water Street before the scene date
+T-0404 — 33 documented businesses will stand on a backdating liberty and LIBERTIES.md carries none of them
