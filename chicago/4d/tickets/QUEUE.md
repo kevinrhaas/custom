@@ -50,7 +50,8 @@ T-0314 — Reading the Democrat, May 1834: Vol. I Nos. 23-26
 T-0315 — Reading the Democrat, June 1834: Vol. I Nos. 27-30
 T-0294 — Reading the Democrat, December 1834: Vol II Nos 1-4
 T-0296 — Reading the Democrat, 8 to 29 July 1835: the rest of the scene month
-T-0297 — Reading the Democrat, August 1835: the four issues after the scene date
+T-0325 — Reading the Democrat, August 1835: the town matter of the four issues
+T-0326 — The 31 July 1835 letter list, standing in all four August Democrats
 T-0298 — Reading the Democrat, January to June 1835: the eight issues only the deposit can open
 T-0262 — The July 1, 1835 register: who and what the papers put in the town
 T-0263 — The documented storefronts take their places on South Water and Lake
