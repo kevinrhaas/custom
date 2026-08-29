@@ -1,7 +1,7 @@
 ---
 id: T-0327
 title: The December 1834 bookseller's name is 'RUISAL & CLUPR' in the only printing that carries it, and the gazetteer may already hold the firm
-state: open
+state: claimed
 epic: PAPERS
 requested_by: loop
 seen: false
@@ -11,7 +11,7 @@ parent: null
 opened: 2026-08-29
 closed: null
 pr: null
-claimed_by: null
+claimed_by: run 8/28/2026, 10:17:05 PM CT
 blocked_on: null
 needs_bake: false
 ---
