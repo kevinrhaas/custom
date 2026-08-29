@@ -1,4 +1,10 @@
 export const CHANGELOG = [ // newest first
+  { v: 359, title: 'The release notes can no longer go stale on the way out', kind: 'chore', ts: '2026-08-29T02:06:03.741Z', date: 'Aug 28, 2026, 9:06 PM CT',
+    items: [
+      'Nothing you can see changed today, and that is the point: this is a repair to how the What\u2019s-new list you are reading gets published.',
+      'The list lives in one file inside the app and is copied to two public addresses \u2014 one this tab reads, one the wider Polecat site reads. A separate step writes the date and version onto a new entry. Run those two in the wrong order and the copies were left behind, showing yesterday\u2019s notes at one address and today\u2019s at another. A gate caught it, but the only fix was remembering to publish a second time, which is the kind of step that gets forgotten at three in the morning.',
+      'Now the tool that writes the date carries both copies with it, and only when it actually changed something. That last part matters: a copy that went stale for some other reason still fails the gate loudly, which is what the gate is for. Thirteen checks hold both halves of that in place, and the same trap on the ticket board was closed the same way last week.',
+    ] },
   { v: 358, title: 'The rest of July 1835, read: a tailor opposite the Eagle', kind: 'chore', ts: '2026-08-29T01:56:24.707Z', date: 'Aug 28, 2026, 8:56 PM CT',
     items: [
       'Nothing you can see changed today. The four Chicago Democrats printed after the scene date \u2014 8, 15, 22 and 29 July 1835 \u2014 have been read end to end, and 60 things they say about the town are written down with the page, column and line they came from. These are the weeks immediately after the Wednesday this reconstruction stands on, so an advertisement in them is a business that existed on the 1st, unless its own copy says it is new.',
