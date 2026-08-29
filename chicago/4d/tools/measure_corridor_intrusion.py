@@ -18,6 +18,13 @@ This is the distribution, as a command.
   that decides whether the lot schedule can see the building at all, and it is a strict
   subset of the lap set.
 
+**A corridor is not the DRAWN LINE either, since T-0009.** The owner ruled on 2026-08-29
+that the platted corridor is derived from the street CONTROL rather than from the committed
+centreline, because a centreline is a decision about where a street can be DRAWN — South
+Water's is offset 8.58 m into the dry half of its own corridor, and measuring bodies against
+it reported an intrusion into a corridor the plat does not put there. `--control` prints the
+derivation, one line per street; `--drawn` re-runs every mode against the old corridor.
+
 **A corridor is not the travelled way.** `plat_corridors` says so at length and it governs
 here too: L79 records the visible tracks running 5.8-10.5 m inside an 80 ft legal corridor,
 so a building 1 m inside a corridor edge is a measurement about the plat and the
@@ -34,6 +41,8 @@ source outranks a corridor this project derived from a module and a traced centr
     tools/measure_corridor_intrusion.py --reflect      K30(b)'s cause, REFUTED by --anchors
     tools/measure_corridor_intrusion.py --anchors      K30(d): is the point the kerb or the back
     tools/measure_corridor_intrusion.py --escape       T-0195: which way OUT, and what it costs
+    tools/measure_corridor_intrusion.py --control      T-0009: where each corridor is centred
+    tools/measure_corridor_intrusion.py --drawn        T-0009: against the pre-ruling line
     tools/measure_corridor_intrusion.py --gate         the ratchet check.sh runs
     tools/measure_corridor_intrusion.py --self-test    break the absolute assertion
     tools/measure_corridor_intrusion.py --write-baseline   only to record a repair
@@ -63,8 +72,26 @@ from generate_plat_lots import point_in_polygon, point_to_ring_m  # noqa: E402
 from measure_street_frontage import (  # noqa: E402
     LAYERS, layer_of, layer_of_record)
 from plat_occupancy import layers, researched_ids  # noqa: E402
-from plat_corridors import corridors, intrusion, sampled  # noqa: E402
+from plat_corridors import (  # noqa: E402
+    control_offsets, corridors, intrusion, sampled)
 from plat_occupancy import world_polygon  # noqa: E402
+
+# WHICH CORRIDOR THIS WHOLE TOOL MEASURES AGAINST — T-0009, and the owner's ruling of
+# 2026-08-29 that the platted corridor is derived from the street CONTROL and not from the
+# drawn line. `--drawn` puts every mode back on the drawn line, so the before-and-after
+# this ticket owes is a command anyone can re-run rather than a checkout of an old commit.
+FROM_CONTROL = True
+
+
+def active_corridors() -> dict:
+    """The corridors every mode below measures against, control-derived unless --drawn.
+
+    This tool is the one caller that asks `plat_corridors.corridors()` for the
+    control-derived rings; every generator keeps asking the drawn ones, which is the scope
+    the ruling itself set. `plat_corridors.corridors` states why at length.
+    """
+    return corridors(from_control=FROM_CONTROL)
+
 
 BASELINE = ROOT / "tools" / "corridor_intrusion_baseline.json"
 STRUCTURES = ROOT / "data" / "structures"
@@ -165,7 +192,7 @@ def measure(placed: list | None = None) -> dict:
     (T-0221).
     """
     datum = json.loads((ROOT / "data" / "datum.json").read_text(encoding="utf-8"))
-    lanes = corridors()
+    lanes = active_corridors()
     origin_e = float(datum["origin_utm_e"])
     origin_n = float(datum["origin_utm_n"])
 
@@ -192,7 +219,7 @@ def measure(placed: list | None = None) -> dict:
         # that offset should be the platted half-width, and the body should be on the far
         # side of the point from the street. Where it is not, the drawing crosses the
         # frontage the derivation established, and that is the deep cluster's cause.
-        _, axis, foot = centreline_frame(lanes[street]["points"], *anchor)
+        _, axis, foot = centreline_frame(lanes[street]["centre"], *anchor)
         normal = (-axis[1], axis[0])
         anchor_side = ((anchor[0] - foot[0]) * normal[0]
                        + (anchor[1] - foot[1]) * normal[1])
@@ -299,7 +326,7 @@ def recentre() -> str:
     backwards: it is here so the next parcel does not have to re-derive the refutation.
     """
     datum = json.loads((ROOT / "data" / "datum.json").read_text(encoding="utf-8"))
-    lanes = corridors()
+    lanes = active_corridors()
     origin_e = float(datum["origin_utm_e"])
     origin_n = float(datum["origin_utm_n"])
 
@@ -378,7 +405,7 @@ def reflect() -> str:
     datum = json.loads((ROOT / "data" / "datum.json").read_text(encoding="utf-8"))
     origin_e = float(datum["origin_utm_e"])
     origin_n = float(datum["origin_utm_n"])
-    lanes = corridors()
+    lanes = active_corridors()
 
     rows = []
     for structure_id, _phase_id, phase, polygon, category in placed_phases():
@@ -387,7 +414,7 @@ def reflect() -> str:
             continue
         position = phase["position"]
         anchor = (float(position["utm_e"]) - origin_e, float(position["utm_n"]) - origin_n)
-        _, axis, _foot = centreline_frame(lanes[street]["points"], *anchor)
+        _, axis, _foot = centreline_frame(lanes[street]["centre"], *anchor)
         normal = (-axis[1], axis[0])
         mirrored = []
         for x, y in polygon:
@@ -397,7 +424,7 @@ def reflect() -> str:
             mirrored.append((anchor[0] + along * axis[0] - across * normal[0],
                              anchor[1] + along * axis[1] - across * normal[1]))
         _, moved = intrusion(mirrored, lanes)
-        _, _axis_d, foot = centreline_frame(lanes[street]["points"], *anchor)
+        _, _axis_d, foot = centreline_frame(lanes[street]["centre"], *anchor)
         inside = max(0.0, HALF_WIDTH_M - math.dist(anchor, foot))
         # Is the body drawn toward the street from its own point? Reflection is the
         # correction for one that is, and the wrong operation for one that is not — which
@@ -499,7 +526,7 @@ def anchors() -> str:
     datum = json.loads((ROOT / "data" / "datum.json").read_text(encoding="utf-8"))
     origin_e = float(datum["origin_utm_e"])
     origin_n = float(datum["origin_utm_n"])
-    lanes = corridors()
+    lanes = active_corridors()
 
     rows = []
     for structure_id, _phase_id, phase, polygon, category in placed_phases():
@@ -508,7 +535,7 @@ def anchors() -> str:
             continue
         position = phase["position"]
         anchor = (float(position["utm_e"]) - origin_e, float(position["utm_n"]) - origin_n)
-        _, axis, foot = centreline_frame(lanes[street]["points"], *anchor)
+        _, axis, foot = centreline_frame(lanes[street]["centre"], *anchor)
         normal = (-axis[1], axis[0])
 
         def across(point: tuple) -> float:
@@ -629,7 +656,7 @@ def escape(json_out: bool = False) -> str:
     placements a source actually argues — to make a derived number smaller, which is the
     thing this file's own note forbids in as many words.
     """
-    lanes = corridors()
+    lanes = active_corridors()
     rows = []
     for structure_id, phase_id, _phase, polygon, category in placed_phases():
         street, depth = intrusion(polygon, lanes)
@@ -637,7 +664,7 @@ def escape(json_out: bool = False) -> str:
             continue
         cx = sum(p[0] for p in polygon) / len(polygon)
         cy = sum(p[1] for p in polygon) / len(polygon)
-        _, axis, foot = centreline_frame(lanes[street]["points"], cx, cy)
+        _, axis, foot = centreline_frame(lanes[street]["centre"], cx, cy)
         normal = (-axis[1], axis[0])
         side = math.copysign(1.0, (cx - foot[0]) * normal[0] + (cy - foot[1]) * normal[1])
         out = (side * normal[0], side * normal[1])
@@ -677,7 +704,7 @@ def escape(json_out: bool = False) -> str:
         # axis is square to the facade normal. Named, never listed.
         fronts, fronts_m = None, None
         for other_id, lane in lanes.items():
-            distance, other_axis, _foot = centreline_frame(lane["points"], cx, cy)
+            distance, other_axis, _foot = centreline_frame(lane["centre"], cx, cy)
             if distance > NEIGHBOUR_M:
                 continue
             if abs(_angle_between_lines(facade, _bearing(other_axis)) - 90.0) > ALONG_TOLERANCE_DEG:
@@ -851,8 +878,8 @@ def _moved_into_the_roadway(structure_id: str, street: str) -> list:
     point and world polygon move by the same vector, because `measure()` reads both and a
     fixture that moved only one would be testing a record this project cannot author.
     """
-    lanes = corridors()
-    points = lanes[street]["points"]
+    lanes = active_corridors()
+    points = lanes[street]["centre"]
     moved = []
     for sid, phase_id, phase, polygon, category in placed_phases():
         if sid != structure_id:
@@ -991,6 +1018,57 @@ def self_test() -> int:
     return 0 if ok else 1
 
 
+CONTROL_VERDICTS = {
+    "recentred": "the corridor is CENTRED ON THE CONTROL — the drawn line is offset "
+                 "inside it and does not move",
+    "centred": "the drawn line reproduces its control to under a centimetre; nothing "
+               "moves",
+    "disagree": "two or more control points that do not agree on one offset, so no rigid "
+                "translation satisfies them and the corridor stays on the drawn line",
+    "off_line": "the control point lies beyond this street's own drawn span",
+    "no_control": "no committed control point names this street",
+}
+
+
+def _control_point_label(point: dict) -> str:
+    """One control point, as `id +8.58 m` — or as the reason it says nothing."""
+    if point["offset_m"] is None:
+        return f"{point['control']} (off the drawn span)"
+    return f"{point['control']} {point['offset_m']:+.2f} m"
+
+
+def control_report(json_out: bool = False) -> str:
+    """Where every street's platted corridor is centred, and on what.
+
+    T-0009. The owner's ruling of 2026-08-29 — *derive the platted corridor from the street
+    CONTROL rather than from the drawn line* — is a rule and not a number, so this is the
+    rule's output rather than a paragraph restating it. Nothing here reads a list of street
+    ids: a street appears in one verdict or another because of what
+    `data/traces/street_control.json` and its own committed centreline say.
+    """
+    offsets = control_offsets()
+    if json_out:
+        return json.dumps(offsets, indent=2, sort_keys=True)
+
+    lines = ["street          axis  verdict     offset m  control points",
+             "-" * 96]
+    order = {"recentred": 0, "disagree": 1, "centred": 2, "off_line": 3, "no_control": 4}
+    for sid, row in sorted(offsets.items(), key=lambda kv: (order[kv[1]["verdict"]], kv[0])):
+        named = ", ".join(_control_point_label(p) for p in row["points"]) or "—"
+        lines.append(f"{sid:15s} {row['axis'] or '--':4s}  {row['verdict']:10s} "
+                     f"{row['offset_m']:+8.2f}  {named}")
+    lines.append("")
+    for verdict in ("recentred", "disagree", "centred", "off_line", "no_control"):
+        count = sum(1 for r in offsets.values() if r["verdict"] == verdict)
+        if count:
+            lines.append(f"{count:3d} {verdict:10s} {CONTROL_VERDICTS[verdict]}")
+    lines.append("")
+    lines.append("A corridor that is re-centred does NOT move its street: "
+                 "data/streets/1835.json is not touched by this derivation, and "
+                 "`--drawn` re-runs every mode against the drawn line for comparison.")
+    return "\n".join(lines)
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--by-street", action="store_true", help="the distribution only")
@@ -1010,9 +1088,21 @@ def main() -> int:
                         help="rewrite the committed table — only to record a repair")
     parser.add_argument("--measured", default=None, metavar="YYYY-MM-DD",
                         help="the date to stamp the baseline with; defaults to today")
+    parser.add_argument("--control", action="store_true",
+                        help="T-0009 — where each street's corridor is centred, and why")
+    parser.add_argument("--drawn", action="store_true",
+                        help="T-0009 — measure against the DRAWN line, the pre-ruling "
+                             "corridor, so a before-and-after is one command")
     parser.add_argument("--quiet", action="store_true")
     parser.add_argument("--json", action="store_true")
     args = parser.parse_args()
+
+    global FROM_CONTROL
+    FROM_CONTROL = not args.drawn
+
+    if args.control:
+        print(control_report(json_out=args.json))
+        return 0
 
     if args.self_test:
         return self_test()
@@ -1053,7 +1143,15 @@ def main() -> int:
             "sentence (T-0195): a lap whose only escape would move a source-argued "
             "coordinate is refused IN WRITING, per record, here and in the record's own "
             "position.note — not tolerated by silence. A refusal may not outlive the lap "
-            "it refuses; the gate says so and --write-baseline drops the stale ones.")
+            "it refuses; the gate says so and --write-baseline drops the stale ones. "
+            "T-0009, 2026-08-29, ON THE OWNER'S RULING: the corridor these depths are "
+            "measured against is DERIVED FROM THE STREET CONTROL and no longer from the "
+            "drawn line — `--control` prints where every street's corridor is centred and "
+            "why. One street moves, south_water, whose committed line is drawn 8.58 m "
+            "inside its own corridor for the dry-ground reason its record states; "
+            "`--drawn` re-runs every mode against the pre-ruling corridor. No building "
+            "moved and data/streets/1835.json did not move: this table changed because "
+            "the question did.")
         # NOT a constant. This read "2026-08-16" for as long as the file existed, and no
         # --measured option was ever defined to override it, so every repair banked since
         # August has been stamped with the date of the first measurement rather than its

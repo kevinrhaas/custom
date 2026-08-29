@@ -1,6 +1,6 @@
 {
   "project": "chicago-4d",
-  "generated_ct": "Aug 29, 2026, 4:46 PM",
+  "generated_ct": "Aug 29, 2026, 4:55 PM",
   "tickets": [
     {
       "id": "T-0001",
@@ -149,7 +149,7 @@
     {
       "id": "T-0009",
       "title": "Redraw 29 building bodies out of the roadway",
-      "state": "open",
+      "state": "claimed",
       "epic": "TOWN",
       "requested_by": "loop",
       "seen": true,
@@ -159,7 +159,7 @@
       "opened": "2026-08-17",
       "closed": null,
       "pr": null,
-      "claimed_by": "run 8/22/2026, 5:26:36 AM CT",
+      "claimed_by": "run 8/29/2026, 4:27:24 PM CT",
       "blocked_on": null,
       "needs_bake": true,
       "queue_rank": 10
@@ -6838,6 +6838,60 @@
       "blocked_on": null,
       "needs_bake": false,
       "queue_rank": null
+    },
+    {
+      "id": "T-0419",
+      "title": "The re-centred South Water corridor stands 8.58 m off its own block faces, and the strip between belongs to neither",
+      "state": "open",
+      "epic": "META",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "M",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-08-29",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "queue_rank": 76
+    },
+    {
+      "id": "T-0420",
+      "title": "Open the four South Water blocks T-0009 has unblocked: 20 roofs of headroom on franklin, lasalle, clark and dearborn",
+      "state": "open",
+      "epic": "META",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "M",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-08-29",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "queue_rank": 77
+    },
+    {
+      "id": "T-0421",
+      "title": "Canal Street's three control points spread 2.33 m, so its corridor cannot be centred on any of them",
+      "state": "open",
+      "epic": "META",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "M",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-08-29",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "queue_rank": 78
     }
   ]
 }
