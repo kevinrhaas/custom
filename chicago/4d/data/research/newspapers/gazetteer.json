@@ -253,7 +253,7 @@
     },
     {
       "file": "chicago/4d/data/research/newspapers/extracted/chicago_democrat_1834_12_10.json",
-      "sha256": "6b094bf2ee31d91fd69253e25572a3dbf829cec90b2ab316bdfe00d535a3d1b7"
+      "sha256": "e73aa52d43107c6701259e0542e57670a7b5cccc5c4cfc7d23cb439d0cafe24c"
     },
     {
       "file": "chicago/4d/data/research/newspapers/extracted/chicago_democrat_1834_12_17.json",
@@ -317,7 +317,7 @@
     }
   ],
   "counts": {
-    "claims": 1060,
+    "claims": 1061,
     "persons": 2366,
     "businesses": 212
   },
@@ -54349,17 +54349,25 @@
         "Matthias Mason"
       ],
       "trade": "blacksmith",
-      "goods": [],
-      "street": null,
+      "goods": [
+        "Chains",
+        "Shoes"
+      ],
+      "street": "Main Street",
       "placement": {
-        "class": "none",
-        "anchor": null,
-        "offset_text": null
+        "class": "relative",
+        "anchor": "the Tremont House",
+        "offset_text": "site the Tremont Hous\nvarious",
+        "offset_normalized": "on Main-street, opposite the Tremont House",
+        "street": "Main Street",
+        "note": "THE STREET NAME IS PRINTED AND IS NOT CORRECTED HERE. Chicago's plat carries no Main Street and this reconstruction holds none, so the placement rests on the ANCHOR — the Tremont House, which this model does hold — and not on the street word. 1834-11-19 c008 left the same two readings open and this claim leaves them open too: the paper using “Main street” loosely for the town's principal street, or a compositor's mis-set name. The verbatim offset text above is the December setting's own; the un-woven 1834-11-19 setting is what shows the two fragments to be one sentence."
       },
       "evidence": {
         "first_issue": "1834-12-10",
         "last_issue": "1834-12-10",
-        "copy_dates": []
+        "copy_dates": [
+          "1833-11-26"
+        ]
       },
       "contradicted_by": [],
       "mentions": [
@@ -54807,6 +54815,7 @@
         "Crockery",
         "Drugs",
         "Dry Goods",
+        "English Flannels",
         "English blister Steel",
         "Groceries",
         "Hardware",
@@ -54815,10 +54824,15 @@
         "Nail Rods",
         "Nails",
         "Saddlery",
+        "Sattinetts",
         "Shoes",
         "Window Sash",
         "bar Iron",
-        "cast Steel"
+        "calicos",
+        "cast Steel",
+        "ginghams",
+        "merino cloths",
+        "muslins"
       ],
       "street": "South Water Street",
       "placement": {
@@ -54830,7 +54844,7 @@
       },
       "evidence": {
         "first_issue": "1834-07-02",
-        "last_issue": "1834-09-10",
+        "last_issue": "1834-12-10",
         "copy_dates": [
           "1834-06-18"
         ]
@@ -54838,7 +54852,8 @@
       "contradicted_by": [],
       "mentions": [
         "chicago_democrat_1834_07_02#c023",
-        "chicago_democrat_1834_09_10#c005"
+        "chicago_democrat_1834_09_10#c005",
+        "chicago_democrat_1834_12_10#c011"
       ],
       "built_at_scene_date": true,
       "survival_liberty_required": true
