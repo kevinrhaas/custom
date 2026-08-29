@@ -53,7 +53,7 @@
   },
   "attributes": {
     "wall_height_m": {
-      "value": 2.05,
+      "value": 4.669,
       "confidence": "reconstructed",
       "sources": [
         "owner_chicago_1835_reconstruction_spec_2026"
