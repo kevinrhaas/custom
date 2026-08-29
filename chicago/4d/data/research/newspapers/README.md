@@ -204,9 +204,28 @@ declared in the notes with the tally that decided it.
 Two cautions, both learned here. **The tally is over impressions, not over readings** — two
 transcriptions of the SAME impression are one witness, and `corpus.json`'s `-2` rebuilds are
 exactly that. And **a run of concordant settings does not make a scan trustworthy in
-general**: the same five printings that agree on the lot number set the advertisement's copy
-date as Nov. 12, Nov. 12, Nov. 13 and Nov. 19, so the digit that was decidable and the digit
-that was not stood two lines apart in one column.
+general**: the same printings that agree on the lot number set the advertisement's copy date
+four different ways, so the digit that was decidable and the digit that was not stood two
+lines apart in one column.
+
+**AND COUNT THE PRINTINGS BY THE NOTICE'S BODY TEXT, NOT BY ITS ADVERTISER (T-0350).** The
+sentence above used to say "the same FIVE printings", and five was wrong: D. Weaver's notice
+ran SEVEN times, from Vol. I No. 50 of 1834-11-12 to Vol. II No. 4. Two reading passes and
+then T-0328's tally all missed the two earliest, for one reason — a search for the advertiser
+cannot find a column that sets his name `D. WEAVE.R`, or one that loses the name to the
+alternating column entirely. Search a standing notice's own words instead; a notice already
+claimed somewhere gives you them for nothing.
+
+**THE DATELINE'S TRAILING FIGURE IS AN INSERTION KEY, AND IT DATES THE COPY WHEN THE DAY IS
+ILLEGIBLE (T-0350).** `Nov. 5, 1834.—49`, `Nov. 26, 1834-52`, `Dec. 16, 1834.-3` — the number
+after the year is not part of the date, it is the number of the issue the copy is keyed to,
+the first number published on or after the dateline. Vol. I No. 49 was printed 5 November,
+No. 52 on 26 November, Vol. II No. 3 on 17 December. So a key **bounds the dateline to one
+week**, which is a second instrument on any damaged date and a stronger one than a tally:
+D. Weaver's seven settings all key 50, No. 50 was printed 12 November, and that excludes the
+`Nov. 13` and `Nov. 19` two of them read without needing to count anything. Read it as a fact
+about the DATELINE and not about first appearance — J. Bates's `Nov. 5, 1834.—49` notice does
+not stand in No. 49 at all, and first appears in No. 50.
 
 **Interleaving is the normal case.** The segmenter frequently alternates two physical
 columns line by line, so one advertisement occupies a SUBSET of a line range with another

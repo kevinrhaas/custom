@@ -5,7 +5,7 @@
   "_doc": "DERIVED, NEVER AUTHORED. Rebuilt from gazetteer.json and the committed town by tools/compile_register.py; tools/check.sh refuses a committed copy a rebuild would not produce. Edit the gazetteer or the dataset, not this file.",
   "compiled_from": {
     "gazetteer": {
-      "claims": 1164,
+      "claims": 1166,
       "persons": 2634,
       "businesses": 242
     },
@@ -13411,7 +13411,7 @@
       "name": "D. Weaver",
       "occupation": null,
       "letter_list_only": false,
-      "first_seen": "1834-11-26",
+      "first_seen": "1834-11-12",
       "last_seen": "1834-12-24",
       "action": "new_resident",
       "action_target": null,
