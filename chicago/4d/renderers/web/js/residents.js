@@ -1,7 +1,7 @@
 /**
  * residents.js — the town's people, in the Evidence panel.
  *
- * ROADMAP K52, from K51. `data/residents/` holds 189 households and 225 person
+ * ROADMAP K52, from K51. `data/residents/` holds 199 households and 235 person
  * entries, every one of them graded and most of them cited, and unlike this
  * morning's fauna the layer already had *a* reader: `tools/compile_scene.py`
  * attaches a household to a building's sidecar and `popup.js` names it on the
@@ -43,10 +43,10 @@
  * that publishes what the sources say and nothing else.
  *
  * ONE FETCH, THEN ONE PER HOUSEHOLD A VISITOR OPENS. The manifest is a
- * denormalised summary of all 189 records — `tools/validate.py` fails the build
+ * denormalised summary of all 199 records — `tools/validate.py` fails the build
  * when a copy disagrees with its record — so the list renders from a single
  * file, and the full record is fetched the first time its own row is opened.
- * 189 fetches on mount to show 189 collapsed summaries would be a worse card and
+ * 199 fetches on mount to show 199 collapsed summaries would be a worse card and
  * a slower one; the summary is the manifest's job and the manifest says so.
  */
 

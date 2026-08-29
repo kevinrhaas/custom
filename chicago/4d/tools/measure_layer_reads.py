@@ -22,7 +22,7 @@ figure in them is shipped to a browser, and until this ran nothing here could sa
 which ones a visitor is looking at.
 
 AND NEITHER DID `data/residents/`, which is ROADMAP K52 and ticket T-0021. That
-layer is 189 households and 225 person entries, and its box says plainly why it
+layer is 199 households and 235 person entries, and its box says plainly why it
 was the harder of the two rather than the easier: it already had *a* reader —
 `tools/compile_scene.py` attaches a household to a building's sidecar and
 `popup.js` names it on the card — and **"a layer with one reader is exactly where
