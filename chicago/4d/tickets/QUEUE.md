@@ -53,7 +53,6 @@ T-0340 — The bookseller's sign-name and its partners' firm-name are three gaze
 # --- standing in the model. This is the payoff the whole epic was for. T-0358 sits here
 # --- rather than with the streets because the corpus's ONLY lot-and-block address cannot
 # --- be used until the Thompson plat's block numbering is committed.
-T-0384 — John Holbrook's store takes its door on South Water Street, one door from Dearborn
 T-0385 — The New York Clothing Store stands three doors north of the Tremont House in Dearborn Street
 T-0358 — The Thompson plat's block NUMBERING is uncommitted, so the corpus's only lot-and-block address cannot be placed
 T-0375 — Every reconstructed roof on South Water Street is a labourer's, so five documented tradesmen the papers put there have nowhere to stand
