@@ -1,6 +1,6 @@
 {
   "project": "chicago-4d",
-  "generated_ct": "Aug 29, 2026, 12:49 PM",
+  "generated_ct": "Aug 29, 2026, 12:56 PM",
   "tickets": [
     {
       "id": "T-0001",
@@ -4502,7 +4502,7 @@
     {
       "id": "T-0263",
       "title": "The documented storefronts take their places on South Water and Lake",
-      "state": "open",
+      "state": "claimed",
       "epic": "PAPERS",
       "requested_by": "owner",
       "seen": false,
@@ -4512,7 +4512,7 @@
       "opened": "2026-08-27",
       "closed": null,
       "pr": null,
-      "claimed_by": null,
+      "claimed_by": "run 8/29/2026, 12:21:53 PM CT",
       "blocked_on": "T-0262",
       "needs_bake": false,
       "queue_rank": 6
@@ -6496,6 +6496,24 @@
       "blocked_on": null,
       "needs_bake": false,
       "queue_rank": null
+    },
+    {
+      "id": "T-0399",
+      "title": "Adding one signboard repaints every board alphabetically after it, and some lose a line",
+      "state": "open",
+      "epic": "META",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "M",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-08-29",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "queue_rank": 72
     }
   ]
 }

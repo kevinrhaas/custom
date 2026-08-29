@@ -1,11 +1,12 @@
 export const CHANGELOG = [ // newest first
-  { v: null, title: 'The druggist by the drawbridge gets his name back', kind: 'feature', ts: '', date: '',
+  { v: 400, title: 'The druggist by the drawbridge gets his name back', kind: 'feature', ts: '2026-08-29T17:56:18.714Z', date: 'Aug 29, 2026, 12:56 PM CT',
     items: [
       'A new signboard hangs on South Water Street, east of Dearborn, and a hitching post stands at the road edge below it. The board reads FREDERICK THOMAS \u2014 Druggist & Apothecary \u2014 Drugs, Paints & Dye Stuffs.',
       'That shop had stood there as the most invented building on the street: a name, a guessed trade, and the word \u201Cshop\u201D because nothing said what the man sold. Its own record named the fix \u2014 one number of the Chicago American or the Democrat would settle it. Six numbers of the American have now been read, and they settle it in his own heading: \u201CFREDERIC[K] THOMA[S], D[r]ug[gi]st and Apothec[ary]\u201D, restocking by lake schooner four weeks before the scene date.',
       'A guessed trade earns no sign here \u2014 a sign for an invented business is an invention squared, and this frontage had been refused in writing. A documented one qualifies under the rules already standing, so the board and the post are the existing generators doing their job, not new ones.',
       'Four more cards on South Water Street answer differently when you open them. Peck names his own corner \u2014 \u201CCORNER OF LA SALLE AND SOUTH WATER-STREETS\u201D \u2014 in seven printings, where the corner had rested on a history written fifty years later. Philo Carpenter advertises his drugs signed and dated three weeks before the scene date. P. Pruyne & Co. are still trading seven days after it. And Hogan sells \u201Cat Wholesale and Retail, at his Store in South Water Street\u201D.',
       'Hogan also says his store stood one door below the post office \u2014 in the very months this reconstruction has the office moved four blocks west. Both cannot be true. Nothing was moved on the strength of it; the conflict is written on the card for the next reading to settle, which is what this project does with a contradiction.',
+    ] },
   { v: 399, title: 'A Flag Creek tavern stops standing in a Wolf Point stable', kind: 'fix', ts: '2026-08-29T17:29:10.796Z', date: 'Aug 29, 2026, 12:29 PM CT',
     items: [
       'Nothing you can see changed today. The reconstruction\u2019s newspaper ledger had E. Wentworth\u2019s tavern \u2014 a public house eighteen miles south of Chicago, out on the road to Ottawa \u2014 recorded as ALREADY STANDING inside the Wolf Point Tavern\u2019s stable. Three readings of that one house landed there, and a fourth landed in the tavern itself.',
