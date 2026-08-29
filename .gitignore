@@ -3,8 +3,15 @@
 __pycache__/
 *.pyc
 
-# Large reference PDF (exceeds GitHub 100MB limit) - keep local only
+# Large reference PDFs/scans (exceed GitHub 100MB limit) - keep local only.
+# The small newspaper transcriptions in newspapers/Transcriptions/ ARE committed.
 chicago/reference/Andreas-History_of_Chicago.pdf
+chicago/reference/planning/Andreas-History_of_Chicago.pdf
+chicago/reference/newspapers/**/*.pdf
+chicago/reference/newspapers/*.pdf
+
+# Large video captures - keep local only
+chicago/reference/movies/
 
 # Wau-Bun text sources: the author's .docx dump and the 500 KB public-domain
 # epub. The generated per-scene passages ARE committed (site/wau-bun/js/).

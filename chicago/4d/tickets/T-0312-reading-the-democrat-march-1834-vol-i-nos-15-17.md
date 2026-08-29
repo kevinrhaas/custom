@@ -1,7 +1,7 @@
 ---
 id: T-0312
 title: Reading the Democrat, March 1834: Vol. I Nos. 15-17
-state: claimed
+state: done
 epic: PAPERS
 requested_by: owner
 seen: false
@@ -9,8 +9,8 @@ effort: S
 legacy_id: null
 parent: T-0258
 opened: 2026-08-28
-closed: null
-pr: null
+closed: 2026-08-28
+pr: 489
 claimed_by: run 8/28/2026, 4:59:27 PM CT
 blocked_on: null
 needs_bake: false
