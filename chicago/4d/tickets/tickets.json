@@ -1,6 +1,6 @@
 {
   "project": "chicago-4d",
-  "generated_ct": "Aug 29, 2026, 2:12 PM",
+  "generated_ct": "Aug 29, 2026, 2:33 PM",
   "tickets": [
     {
       "id": "T-0001",
@@ -6554,7 +6554,7 @@
     {
       "id": "T-0402",
       "title": "The firm groups an agency, a parent house or a lost signature makes ambiguous",
-      "state": "open",
+      "state": "claimed",
       "epic": "META",
       "requested_by": "loop",
       "seen": false,
@@ -6564,7 +6564,7 @@
       "opened": "2026-08-29",
       "closed": null,
       "pr": null,
-      "claimed_by": null,
+      "claimed_by": "run 8/29/2026, 2:27:08 PM CT",
       "blocked_on": null,
       "needs_bake": false,
       "queue_rank": 3
@@ -6694,6 +6694,42 @@
       "blocked_on": null,
       "needs_bake": false,
       "queue_rank": 75
+    },
+    {
+      "id": "T-0410",
+      "title": "The Howard fire-insurance agency passes between three houses, and the gazetteer has no relation that can hold it",
+      "state": "open",
+      "epic": "META",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "M",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-08-29",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "queue_rank": 76
+    },
+    {
+      "id": "T-0411",
+      "title": "A newspaper and its own printing office are two businesses, and the partner-surname guard can never join them",
+      "state": "open",
+      "epic": "META",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "M",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-08-29",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "queue_rank": 77
     }
   ]
 }

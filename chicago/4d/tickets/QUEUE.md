@@ -171,3 +171,5 @@ T-0403 — The Democrat's office keeps its 1834 corner through a merge, and the 
 T-0404 — 33 documented businesses will stand on a backdating liberty and LIBERTIES.md carries none of them
 T-0405 — Adding one signboard repaints every board alphabetically after it, and some lose a line
 T-0409 — A change can land on dev with no changelog entry, and one did today
+T-0410 — The Howard fire-insurance agency passes between three houses, and the gazetteer has no relation that can hold it
+T-0411 — A newspaper and its own printing office are two businesses, and the partner-surname guard can never join them

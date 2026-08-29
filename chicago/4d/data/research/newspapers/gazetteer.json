@@ -352,7 +352,7 @@
     "claims": 1166,
     "persons": 2628,
     "places": 4,
-    "businesses": 219
+    "businesses": 217
   },
   "persons": [
     {
@@ -58217,53 +58217,6 @@
       "survival_liberty_required": false
     },
     {
-      "id": "business_abell",
-      "name": "Abell",
-      "proprietors": [
-        "Abell"
-      ],
-      "trade": "attorney and counsellor at law, and law conveyancing",
-      "goods": [],
-      "street": "Dearborn Street",
-      "placement": {
-        "class": "relative",
-        "anchor": "the \"Eagle Coffee House\"",
-        "offset_text": "aq Harmon. in Dearborn street,\nof the \"Eaglo Coffee House.\"",
-        "offset_normalized": "[…] Harmon, in Dearborn street, […] of the \"Eagle Coffee House\"",
-        "street": "Dearborn Street"
-      },
-      "evidence": {
-        "first_issue": "1835-06-24",
-        "last_issue": "1835-06-24",
-        "copy_dates": []
-      },
-      "contradicted_by": [],
-      "opening_announced": [],
-      "mentions": [
-        "chicago_democrat_1835_06_24#c006"
-      ],
-      "placement_readings": [
-        {
-          "anchor": "the \"Eagle Coffee House\"",
-          "class": "relative",
-          "first_issue": "1835-06-24",
-          "last_issue": "1835-06-24",
-          "claims": [
-            "chicago_democrat_1835_06_24#c006"
-          ],
-          "placement": {
-            "class": "relative",
-            "anchor": "the \"Eagle Coffee House\"",
-            "offset_text": "aq Harmon. in Dearborn street,\nof the \"Eaglo Coffee House.\"",
-            "offset_normalized": "[…] Harmon, in Dearborn street, […] of the \"Eagle Coffee House\"",
-            "street": "Dearborn Street"
-          }
-        }
-      ],
-      "built_at_scene_date": true,
-      "survival_liberty_required": false
-    },
-    {
       "id": "business_an_iron_and_hardware_stock_chicago_june_1835",
       "name": "an iron and hardware stock, Chicago, June 1835",
       "proprietors": [],
@@ -60654,7 +60607,7 @@
       },
       "evidence": {
         "first_issue": "1835-06-20",
-        "last_issue": "1835-07-01",
+        "last_issue": "1835-07-29",
         "copy_dates": [
           "1835-06-20",
           "1835-07-01"
@@ -60673,17 +60626,21 @@
       ],
       "mentions": [
         "chicago_american_1835_06_20#c015",
-        "chicago_democrat_1835_07_01#c017"
+        "chicago_democrat_1835_07_01#c017",
+        "chicago_democrat_1835_07_08#c005",
+        "chicago_democrat_1835_07_29#c011"
       ],
       "placement_readings": [
         {
           "anchor": null,
           "class": "none",
           "first_issue": "1835-06-20",
-          "last_issue": "1835-07-01",
+          "last_issue": "1835-07-29",
           "claims": [
             "chicago_american_1835_06_20#c015",
-            "chicago_democrat_1835_07_01#c017"
+            "chicago_democrat_1835_07_01#c017",
+            "chicago_democrat_1835_07_08#c005",
+            "chicago_democrat_1835_07_29#c011"
           ],
           "placement": {
             "class": "none",
@@ -60692,6 +60649,26 @@
             "offset_normalized": null,
             "street": null
           }
+        }
+      ],
+      "merged": [
+        {
+          "from": "Howard Fire Insurance Company — E. K. Hubbard, agent at Chicago",
+          "merge_rule": "'E. K. Hubbard, agent for the Howard Fire Insurance Company' and 'Howard Fire Insurance Company — E. K. Hubbard, agent at Chicago' are ONE standing advertisement styled two ways by this project's own transcribers, and the four printings are the same setting word for word. The American of 1835-06-20 c015 carries it over the copy date 'June 20, 1835' — 'THE subscriber having been appointed agent for the Howard Fire Insurance Company of the city of New-York, for Chicago and vicinity, will insure property against loss by fire on reasonable terms. E. K. HUBBARD.' — and the Democrat reprints it at 1835-07-01 c017, 1835-07-08 c005 and 1835-07-29 c011 with the line breaks in different places and not one word changed. One company, one agent, one signature, six weeks. The em-dashed style is a disambiguator a transcriber built to put the company first; no printing sets it. Merged INTO the signature's own order, which is also the record carrying the copy dates and the appointment notice. Neither record states a street, so nothing is placed by this merge."
+        }
+      ],
+      "refused_merges": [
+        {
+          "with": "Hubbard & Co.",
+          "kind": "two_houses",
+          "witnesses": [
+            "chicago_democrat_1834_07_02#c048",
+            "chicago_democrat_1834_10_15#c005",
+            "chicago_democrat_1835_05_20#c023",
+            "chicago_american_1835_06_20#c015",
+            "chicago_american_1835_08_29#c004"
+          ],
+          "refused_because": "'Hubbard & Co.' and 'E. K. Hubbard, agent for the Howard Fire Insurance Company' are two houses, and what puts them together is not a spelling — it is an AGENCY that passed from one to the other, which this gazetteer has no relation for. Hubbard & Co. held the Howard agency first and advertised it in the plural over the firm's signature: 'THE subscribers having been appointed AGENTS for the Howard Fire Insurance Company of the city of New-York … HUBBARD & CO.', copy-dated July 1 and standing from 1834-07-02 c048 through 1834-10-15 c005 to 1835-05-20 c023. From 1835-06-20 c015 the identical copy runs in the SINGULAR over one man — 'THE subscriber having been appointed agent … E. K. HUBBARD.' — and the forwarding house goes on trading under its own name to 1835-08-29 c004. So the two records are live at once, in two trades, over two signatures: a commission and forwarding house whose named partners are Gurdon S. Hubbard and Henry G. Hubbard, and a one-man fire-insurance agency signed E. K. Hubbard, initials neither partner carries. This project never reads a shared surname with different initials as one man, so nothing here makes E. K. a partner in the firm and no merge may assert it. The succession of the agency is real and is the part that cannot be written down at all: T-0410 is filed for the relation."
         }
       ],
       "built_at_scene_date": true,
@@ -62756,47 +62733,6 @@
       "survival_liberty_required": true
     },
     {
-      "id": "business_howard_fire_insurance_company_e_k_hubbard_agent_at_chicago",
-      "name": "Howard Fire Insurance Company — E. K. Hubbard, agent at Chicago",
-      "proprietors": [
-        "E. K. Hubbard"
-      ],
-      "trade": "fire insurance agency",
-      "goods": [],
-      "street": null,
-      "placement": {
-        "class": "none"
-      },
-      "evidence": {
-        "first_issue": "1835-07-08",
-        "last_issue": "1835-07-29",
-        "copy_dates": []
-      },
-      "contradicted_by": [],
-      "opening_announced": [],
-      "mentions": [
-        "chicago_democrat_1835_07_08#c005",
-        "chicago_democrat_1835_07_29#c011"
-      ],
-      "placement_readings": [
-        {
-          "anchor": null,
-          "class": "none",
-          "first_issue": "1835-07-08",
-          "last_issue": "1835-07-29",
-          "claims": [
-            "chicago_democrat_1835_07_08#c005",
-            "chicago_democrat_1835_07_29#c011"
-          ],
-          "placement": {
-            "class": "none"
-          }
-        }
-      ],
-      "built_at_scene_date": true,
-      "survival_liberty_required": false
-    },
-    {
       "id": "business_hubbard_co",
       "name": "Hubbard & Co.",
       "proprietors": [
@@ -62926,6 +62862,20 @@
         {
           "from": "Hubbard & Co., forwarding and commission merchants",
           "merge_rule": "'Hubbard & Co.' and 'Hubbard & Co., forwarding and commission merchants' are one house's trade card in the two papers, and the two styles are the same words in the two orders the compositors set them: the Democrat of 1834-07-02 c045 and 1835-07-01 c016 read 'Commission and Forwarding MERCHANTS, CHICAGO-ILLINOIS' over Gurdon S. and Henry G. Hubbard, and the American of 1835-06-20 c013 reads 'Forwarding and Commission MERCHANTS' with the lake and canal line agencies. Neither carries a street. The Howard Fire Insurance agency this house held is NOT touched by this merge — an agency is not the house that holds it, and T-0402 owns that question."
+        }
+      ],
+      "refused_merges": [
+        {
+          "with": "E. K. Hubbard, agent for the Howard Fire Insurance Company",
+          "kind": "two_houses",
+          "witnesses": [
+            "chicago_democrat_1834_07_02#c048",
+            "chicago_democrat_1834_10_15#c005",
+            "chicago_democrat_1835_05_20#c023",
+            "chicago_american_1835_06_20#c015",
+            "chicago_american_1835_08_29#c004"
+          ],
+          "refused_because": "'Hubbard & Co.' and 'E. K. Hubbard, agent for the Howard Fire Insurance Company' are two houses, and what puts them together is not a spelling — it is an AGENCY that passed from one to the other, which this gazetteer has no relation for. Hubbard & Co. held the Howard agency first and advertised it in the plural over the firm's signature: 'THE subscribers having been appointed AGENTS for the Howard Fire Insurance Company of the city of New-York … HUBBARD & CO.', copy-dated July 1 and standing from 1834-07-02 c048 through 1834-10-15 c005 to 1835-05-20 c023. From 1835-06-20 c015 the identical copy runs in the SINGULAR over one man — 'THE subscriber having been appointed agent … E. K. HUBBARD.' — and the forwarding house goes on trading under its own name to 1835-08-29 c004. So the two records are live at once, in two trades, over two signatures: a commission and forwarding house whose named partners are Gurdon S. Hubbard and Henry G. Hubbard, and a one-man fire-insurance agency signed E. K. Hubbard, initials neither partner carries. This project never reads a shared surname with different initials as one man, so nothing here makes E. K. a partner in the firm and no merge may assert it. The succession of the agency is real and is the part that cannot be written down at all: T-0410 is filed for the relation."
         }
       ],
       "built_at_scene_date": true,
@@ -65231,6 +65181,20 @@
           }
         }
       ],
+      "refused_merges": [
+        {
+          "with": "Jones, King & Co.",
+          "kind": "two_houses",
+          "witnesses": [
+            "chicago_democrat_1834_09_10#c008",
+            "chicago_democrat_1834_12_03#c007",
+            "chicago_democrat_1835_05_27#c005",
+            "chicago_democrat_1835_07_08#c009",
+            "chicago_democrat_1835_07_29#c012"
+          ],
+          "refused_because": "'Jones & King' and 'Jones, King & Co.' are two firms, and the '& Co.' is the whole difference: it is a THIRD PARTNER, and the partner-surname guard cannot see him because it strips 'Co.' as a style suffix before it compares. Jones & King is Wm. Jones and Byram King, two partners, selling stoves and hollow ware from their store in Water-street near the bridge (1834-09-10 c008) and glass, sash and blinds priced at four cents (1834-12-03 c007, copy-dated Oct. 2, 1834). Jones, King & Co. is a firm announcing its own formation — 'The undersigned have formed a connection in the mercantile business, under the firm of Jones, King & Co.' — over THREE names, WILLIAM JONES, BYRAM KING and H. B. CLARKE, copy-dated May 26, 1835 (1835-05-27 c005) and standing again at 1835-07-08 c009 and 1835-07-29 c012. This project's own rule for firms is that a partnership IS its partners and a changed one is a different house; a copartnership notice is the strongest possible statement that they changed, and it is a claim about a new firm rather than a spelling of the old one. The succession from the one to the other is real — same two men, same hardware and stove trade, eighteen months apart — and it is read off the two notices, not asserted by a merge."
+        }
+      ],
       "proprietors_merged": [
         {
           "into": "Wm. Jones",
@@ -65356,6 +65320,20 @@
             "class": "street_only",
             "anchor": null
           }
+        }
+      ],
+      "refused_merges": [
+        {
+          "with": "Jones & King",
+          "kind": "two_houses",
+          "witnesses": [
+            "chicago_democrat_1834_09_10#c008",
+            "chicago_democrat_1834_12_03#c007",
+            "chicago_democrat_1835_05_27#c005",
+            "chicago_democrat_1835_07_08#c009",
+            "chicago_democrat_1835_07_29#c012"
+          ],
+          "refused_because": "'Jones & King' and 'Jones, King & Co.' are two firms, and the '& Co.' is the whole difference: it is a THIRD PARTNER, and the partner-surname guard cannot see him because it strips 'Co.' as a style suffix before it compares. Jones & King is Wm. Jones and Byram King, two partners, selling stoves and hollow ware from their store in Water-street near the bridge (1834-09-10 c008) and glass, sash and blinds priced at four cents (1834-12-03 c007, copy-dated Oct. 2, 1834). Jones, King & Co. is a firm announcing its own formation — 'The undersigned have formed a connection in the mercantile business, under the firm of Jones, King & Co.' — over THREE names, WILLIAM JONES, BYRAM KING and H. B. CLARKE, copy-dated May 26, 1835 (1835-05-27 c005) and standing again at 1835-07-08 c009 and 1835-07-29 c012. This project's own rule for firms is that a partnership IS its partners and a changed one is a different house; a copartnership notice is the strongest possible statement that they changed, and it is a claim about a new firm rather than a spelling of the old one. The succession from the one to the other is real — same two men, same hardware and stove trade, eighteen months apart — and it is read off the two notices, not asserted by a merge."
         }
       ],
       "proprietors_merged": [
@@ -68576,29 +68554,47 @@
       "id": "business_s_abell_attorney_and_counsellor",
       "name": "S. Abell, attorney and counsellor",
       "proprietors": [
-        "S. Abell"
+        "S. Abell",
+        "Abell"
       ],
       "trade": "attorney, counsellor and land conveyancer",
       "goods": [],
-      "street": null,
+      "street": "Dearborn Street",
       "placement": {
-        "class": "none",
-        "anchor": null,
-        "offset_text": null,
-        "offset_normalized": null,
-        "street": null
+        "class": "relative",
+        "anchor": "the \"Eagle Coffee House\"",
+        "offset_text": "aq Harmon. in Dearborn street,\nof the \"Eaglo Coffee House.\"",
+        "offset_normalized": "[…] Harmon, in Dearborn street, […] of the \"Eagle Coffee House\"",
+        "street": "Dearborn Street"
       },
       "evidence": {
-        "first_issue": "1835-08-01",
+        "first_issue": "1835-06-24",
         "last_issue": "1835-08-01",
         "copy_dates": []
       },
       "contradicted_by": [],
       "opening_announced": [],
       "mentions": [
-        "chicago_american_1835_08_01#c003"
+        "chicago_american_1835_08_01#c003",
+        "chicago_democrat_1835_06_24#c006"
       ],
       "placement_readings": [
+        {
+          "anchor": "the \"Eagle Coffee House\"",
+          "class": "relative",
+          "first_issue": "1835-06-24",
+          "last_issue": "1835-06-24",
+          "claims": [
+            "chicago_democrat_1835_06_24#c006"
+          ],
+          "placement": {
+            "class": "relative",
+            "anchor": "the \"Eagle Coffee House\"",
+            "offset_text": "aq Harmon. in Dearborn street,\nof the \"Eaglo Coffee House.\"",
+            "offset_normalized": "[…] Harmon, in Dearborn street, […] of the \"Eagle Coffee House\"",
+            "street": "Dearborn Street"
+          }
+        },
         {
           "anchor": null,
           "class": "none",
@@ -68614,6 +68610,16 @@
             "offset_normalized": null,
             "street": null
           }
+        }
+      ],
+      "trade_variants": [
+        "attorney and counsellor at law, and law conveyancing",
+        "attorney, counsellor and land conveyancer"
+      ],
+      "merged": [
+        {
+          "from": "Abell",
+          "merge_rule": "'S. Abell, attorney and counsellor' and 'Abell' are one law office's standing card in the two papers, and the bare surname is only the forename lost off a damaged line. The Democrat of 1835-06-24 c006 survives as every OTHER line of itself — '[…] ABELL, [ATTORNEY &] COUNSELLOR AT LA[W,] [CHIC]AGO, ILLINOIS, [attending] strictly to his profession[, he] hopes [for a share of public pa]tronage. Law Conveyancing [done with ac]curacy and despatch.' — and the American of 1835-08-01 c003 sets the same six clauses in the same order with the name whole: 'S. ABELL, [AT]TORNEY AND COUNSELLOR AT [LAW]. [CH]ICAGO, ILLINO[IS]. [B]y [devoting himself e]ntir[e]ly to his profession [he solicits a share of public] patronage. Land Conveyanc[ing done w]ith [ne]a[t]n[e]s[s] and de[s]patch.' Conveyancing named as a line of business is what makes the pair unmistakable: the American's own claim note records it as the FIRST of the town's law cards to advertise it, so the Democrat's card six weeks earlier is not a second lawyer doing the same rare thing. This corpus names no other Abell. Merged INTO the styled record because it is the one printing that sets the forename initial at all, and the Dearborn Street reading the Democrat holds survives the merge under `placement_rank` — nothing is placed here that the damaged line did not already say, and its missing preposition stays missing."
         }
       ],
       "built_at_scene_date": true,

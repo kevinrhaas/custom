@@ -24,7 +24,7 @@
    "this face already holds this proprietor": 9,
    "every roof on the face is spoken for": 3
   },
-  "unplaceable_present_at_scene_date": 84,
+  "unplaceable_present_at_scene_date": 82,
   "by_street": {
    "canal": {
     "street_name": "Canal Street",
@@ -791,14 +791,6 @@
    "detail": "18 roof(s) show this street a corner side and 0 stand within the centreline band; none has its platted lot on it."
   },
   {
-   "business_id": "business_abell",
-   "business_name": "Abell",
-   "street_id": "dearborn",
-   "street_name": "Dearborn Street",
-   "refusal": "the face holds no roof whose lot fronts it",
-   "detail": "18 roof(s) show this street a corner side and 0 stand within the centreline band; none has its platted lot on it."
-  },
-  {
    "business_id": "business_cooley_and_halsman",
    "business_name": "Cooley and Halsman",
    "street_id": "dearborn",
@@ -901,6 +893,14 @@
    "street_name": "Canal Street",
    "refusal": "the face holds no roof whose lot fronts it",
    "detail": "3 roof(s) show this street a corner side and 0 stand within the centreline band; none has its platted lot on it."
+  },
+  {
+   "business_id": "business_s_abell_attorney_and_counsellor",
+   "business_name": "S. Abell, attorney and counsellor",
+   "street_id": "dearborn",
+   "street_name": "Dearborn Street",
+   "refusal": "the face holds no roof whose lot fronts it",
+   "detail": "18 roof(s) show this street a corner side and 0 stand within the centreline band; none has its platted lot on it."
   },
   {
    "business_id": "business_s_abell_attorney_counsellor_at_law",
