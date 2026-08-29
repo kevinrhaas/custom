@@ -1,7 +1,7 @@
 ---
 id: T-0374
 title: letter_list_only reaches the visitor's card, and the 1,536 names known only from the post office
-state: open
+state: split
 epic: PAPERS
 requested_by: owner
 seen: false
@@ -9,7 +9,7 @@ effort: S
 legacy_id: null
 parent: T-0368
 opened: 2026-08-29
-closed: null
+closed: 2026-08-29
 pr: null
 claimed_by: null
 blocked_on: null
