@@ -135,3 +135,5 @@ T-0271 — The balanced ceiling is breached at the forks by 5,290 triangles on a
 T-0332 — The sheet's one brick is called chimney_brick, and a wall now reads it
 T-0337 — One man is two proprietors of Russell & Clift, and the gazetteer has no rule that can join them
 T-0338 — Thirty-one groups of firms share a partner surname and only one of them has been judged
+T-0339 — Twenty dozen cast steel axes are recorded as the booksellers' stock and Jones & King signed the advertisement
+T-0340 — The bookseller's sign-name and its partners' firm-name are three gazetteer entries for one house
