@@ -142,7 +142,7 @@
   "residents": [
     {
       "household": "hh_inf_tavern_keeper_north_01",
-      "name": "The Shrigley household — a documented tavern keeper on a reconstructed roof (north division)",
+      "name": "The Shrigley household — a documented tavern keeper, inferred at this roof (north division)",
       "division": "north",
       "relation": "worked here",
       "why": "recon_1835_north_t1_028 is an anonymous reconstructed roof already standing on the plat, adopted rather than duplicated: its existence, position and footprint stay conjectural and the adoption adds only the occupant argument. The workplace is assigned from the reconstruction schedule's workshop and store families for this trade.",

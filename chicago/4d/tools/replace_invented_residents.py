@@ -392,8 +392,14 @@ def rewrite(doc: dict, person: dict, cand: dict, gaz: dict, trade: str) -> None:
     )
     person["occupation"] = occ
 
+    # BOTH TRUTHS IN ONE LINE, and the second one is not decoration: the card
+    # prints the head's own grade chip directly under this label, so a label
+    # naming a tier the chip contradicts is the K23a fault in the other
+    # direction. "a documented cooper" is what changed and "inferred at this
+    # roof" is what did not — he is documented as a man and inferred as this
+    # household's head. tools/smoke_renderer.mjs PART 3 asserts the two agree.
     doc["name"] = (f"The {family} household — a documented "
-                   f"{trade.replace('_', ' ')} on a reconstructed roof "
+                   f"{trade.replace('_', ' ')}, inferred at this roof "
                    f"({doc.get('division', '')} division)")
 
     # The arrival bound is now the paper's rather than the scene date's. The
