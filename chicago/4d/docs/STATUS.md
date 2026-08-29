@@ -1,5 +1,52 @@
 # STATUS
 
+## Settled 2026-08-29 — T-0328: D. Weaver's building stands on Lot 2, on four printings against one
+
+**The question.** `D. WEAVER` advertised a building for sale or to let on `block 1, North
+Water street` — inside the modelled town, on the north-bank frontage — and the two printings
+the December read had claimed disagreed about the lot: `Lot 9` on 1834-12-17, `Lot 2` on
+1834-12-24. Both columns are Vision-set, so neither is the obviously worse witness, and 2 and
+9 are not a confusable pair in clean type, which means one transcription is simply wrong. A
+lot number is as close to a map reference as this corpus gets.
+
+**The answer: Lot 2.** The notice is a standing advertisement and it runs in FIVE consecutive
+numbers, not two. Three of them had never been claimed — 1834-11-26 c010, 1834-12-03 c025 and
+1834-12-10 c012, all page 3 column 3 — and all three set `Lot 2`. Four settings of the type to
+one.
+
+**No transcription was edited to get there**, which is the rule T-0294 was keeping when it
+claimed both printings and amended neither: an agreement manufactured between two
+transcriptions is not evidence. Four independent witnesses are a different thing. The notice
+is reset weekly — its line breaks, capitals, dateline and even its column move between numbers
+— so the four are four compositors' settings and four passes of the transcriber, not one
+reading counted four times.
+
+**The losing column convicts itself on its own three lines.** 1834-12-17 page 3 column 3 sets
+`Norh` for North, loses the word `Water` to the column alternating through it, and mangles the
+ad's dateline to `3, Nor. 13, 131` — misreading the 9 of `Nov. 19` as a 3, in the very lines
+it is supposed to be reading a 9 in.
+
+**What is honestly weaker than the ticket asked for.** T-0328's acceptance wanted the digit
+read off a page image. **The page images are not in the repository** — the deposit at
+`chicago/reference/newspapers/` holds transcriptions only — so both claims stay
+`transcription_mediated` and a scan read would still outrank this. That is stated in the
+claims, in `docs/RESEARCH/weaver_building_north_water_block_1.md` and here rather than passed
+over.
+
+**What is left open, and filed rather than swallowed.** The five printings do not agree on the
+notice's own dateline either: two read `Nov. 12`, one reads `Nov. 19`, one reads `Nor. 13` and
+one is unreadable — while the two pre-existing claims both assert `ad_copy_date.iso:
+1834-11-19`. The three claims added here assert no `ad_copy_date` at all rather than pick a
+side inside a ticket opened for the lot number. **T-0350.**
+
+**Nothing you can see changed.** No geometry, no record placed. The reading is what T-0263 and
+T-0306 will need when this building is placed, and the gazetteer now has D. Weaver first seen
+on 1834-11-26 rather than 1834-12-17, on five mentions rather than two.
+
+**Verification.** `tools/check.sh` green — 1,097 claims, every quote reassembled from the
+transcription and identical, gazetteer compile deterministic and committed.
+`tools/smoke_renderer.mjs` green at 390×780 and 1280×800.
+
 ## Shipped 2026-08-28 — T-0028: `blk_lake_franklin` opens, and the warehouse it was dealt is refused rather than massed
 
 **The first NEW platted block this programme has opened since 2026-08-23**, when T-0028 re-derived

@@ -960,6 +960,30 @@
         }
       },
       "notes": "TWENTY DOZEN CAST STEEL AXES, AND THEY BELONG TO JONES & KING. This advertisement was read into c004 as part of the booksellers' stock, because in THIS printing the signature is crushed to “lozen or singly. Bi ‘i” and nothing separates the two blocks. Two other printings of the same standing pair separate them with a rule and sign this one: 1834-11-12 page 3 column 2 lines 2555-2557 reads “Gg DOZ. of Silaby'e cast stool AXES, by / the dozen or singly. Jones § King. / Now. 5, 1834,”, and 1834-12-24 page 3 column 5 lines 3559-3561 reads “the dozen or singly. donee & King.” The attribution is therefore INFERRED from the neighbouring printings and not read off this one, which is why the firm is bracketed in `normalized` and no proprietor is minted here. Jones & King already stand in the gazetteer for hardware and building materials at this very issue (c007, window glass, sash and blinds, South Water street); axes are a good the corpus had lost to the wrong shop. Silsby's is the maker, not a Chicago house, and is not minted."
+    },
+    {
+      "id": "c025",
+      "kind": "building",
+      "reading": "transcription_mediated",
+      "quote": "For Sale or To Let,\nSuE building on Lot 2, in block 1, on North\nChicago. Nor. 12, 1831. SO WEAVER.\nWater street.\nApply to",
+      "normalized": "For Sale or To Let, [TH]E building on Lot 2, in block 1, on North Water street. Apply to [D.] WEAVER. Chicago, No[v]. 12, 183[4]. [—5]0",
+      "locator": {
+        "artifact_role": "primary",
+        "issue_page": 3,
+        "column": 3,
+        "lines": [
+          3167,
+          3171
+        ]
+      },
+      "entities": [
+        {
+          "as_printed": "SO WEAVER.",
+          "normalized": "D. Weaver",
+          "role": "advertiser"
+        }
+      ],
+      "notes": "THE SECOND PRINTING OF THE WEAVER BUILDING NOTICE, AND IT SETS LOT 2. Added by T-0328. The segmenter has this column's lines out of their printed order — the dateline stands above `Water street.` and `Apply to` — exactly as it does in the 1834-12-24 printing claimed at c012 there, and the quote keeps the order the transcription gives. THE SIGNATURE READS `SO WEAVER.` and is normalized `[D.] WEAVER`: the `—5` run-marker that closes the dateline in every other printing has fused with the initial here, which is the same collision that produced `1834-SD. WEAVER.` on 1834-12-24 and `131-D WEAVER.` on 1834-12-17. The initial is not read off this line; it is carried by the four printings that set it clear. THE DATELINE DAY IS NOT THE SAME IN EVERY PRINTING — this one and 1834-11-26 read 12, 1834-12-24 reads 19 and 1834-12-17 reads 13 — so no `ad_copy_date` is asserted on the claims T-0328 adds, and the divergence is filed as its own ticket rather than settled inside this one. THE SAME STANDING ADVERTISEMENT, AND IT SETTLES THE LOT NUMBER T-0328 WAS OPENED FOR. D. Weaver's building is advertised in FIVE consecutive numbers of the Democrat — 1834-11-26, 12-03, 12-10, 12-17 and 12-24 — and only the reading of 1834-12-17 had been claimed against the earlier three, because the November and early-December reads passed over the notice. Four of the five printings set `Lot 2`; one, 1834-12-17 page 3 column 3, sets `Lot 9`. That is four independent settings of type against one, and the four are not one witness repeated: the notice is reset weekly (its line breaks, its capitals and its dateline all move between numbers), so each printing is its own compositor's reading of Weaver's copy. The losing column is independently the worst of the five — it sets `Norh` for North, breaks the word `Water` across a foreign column, and mangles the ad's own dateline to `3, Nor. 13, 131`, misreading a 9 as a 3 in the very line that is supposed to carry a 9. So the reading is LOT 2, block 1, North Water street, and no transcription was amended to reach it."
     }
   ]
 }

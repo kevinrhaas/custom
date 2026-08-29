@@ -1,4 +1,13 @@
 export const CHANGELOG = [ // newest first
+  { v: 370, title: 'Lot 2, not Lot 9: three more printings settle a river address', kind: 'chore', ts: '2026-08-29T05:25:30.605Z', date: 'Aug 29, 2026, 12:25 AM CT',
+    items: [
+      'Nothing you can see changed today. What changed is where a documented building will stand when it is built \u2014 the reconstruction had two readings of its address and no way to choose.',
+      'A man signing himself D. Weaver advertised a building for sale or to let on North Water street, on the north bank of the river, inside the town this project models. The advertisement gives a lot and a block, which is as close to a map reference as an 1834 newspaper ever gets. Two printings of it had been read, and they disagreed: one says the building is on Lot 9, the next week\u2019s says Lot 2.',
+      'Neither reading could win, because both were made from the same kind of evidence \u2014 a transcription of the page, not the page itself \u2014 and 2 and 9 do not look alike in type. Making them agree by picking one would have been a decision dressed up as a fact.',
+      'The notice turns out to have run five weeks running, not two. The three earlier printings had never been read, because in two of them the advertisement survives as every other line, woven through the column beside it. All three say Lot 2. Four settings of the type against one.',
+      'The odd one out convicts itself: in the same three lines it prints \u201cNorh\u201d for North and turns the advertisement\u2019s own date, November 19, into \u201cNor. 13\u201d \u2014 misreading a 9 as a 3 one line below where it is said to read a 9.',
+      'Not a single transcription was altered to reach this. Nobody has yet looked at the page scans, which is what would settle it beyond argument, and both records say so.',
+    ] },
   { v: 369, title: 'One list, printed three times, stops being three towns', kind: 'chore', ts: '2026-08-29T04:53:58.205Z', date: 'Aug 28, 2026, 11:53 PM CT',
     items: [
       'Nothing you can see changed today. What changed is the count of people this reconstruction thinks lived here \u2014 and it went DOWN, by 175.',

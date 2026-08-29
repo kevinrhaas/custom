@@ -555,6 +555,30 @@
           "note": "The address line is cut to its tail in this setting and the head is supplied from the complete 1834-07-23 setting of the same advertisement. What THIS printing carries on its own is “SOUTH-WATER” under a “New Goods!!” headline; the LaSalle corner is the 07-23 reading, and both are named above rather than merged into one quotation."
         }
       }
+    },
+    {
+      "id": "c012",
+      "kind": "building",
+      "reading": "transcription_mediated",
+      "quote": "cie 2° To Let.\non Lot 2, in block 1, on North\n[uncertain: Wunns]\n[uncertain: Appiy to]\ne, 1631.—00\nD. WEAVER.",
+      "normalized": "[For Sal]e [o]r To Let. [THE building] on Lot 2, in block 1, on North [Water street., set as `[uncertain: Wunns]`]. [A]pp[l]y to D. WEAVER. [Chicago, Nov. ..., 183]4.—[5]0 — the dateline sets as `e, 1631.—00` and its day is not read here.",
+      "locator": {
+        "artifact_role": "primary",
+        "issue_page": 3,
+        "column": 3,
+        "lines": [
+          3139,
+          3144
+        ]
+      },
+      "entities": [
+        {
+          "as_printed": "D. WEAVER.",
+          "normalized": "D. Weaver",
+          "role": "advertiser"
+        }
+      ],
+      "notes": "THE THIRD PRINTING OF THE WEAVER BUILDING NOTICE, AND IT SETS LOT 2. Added by T-0328. This is the poorest-set of the five columns after 1834-12-17's — `Water street.` survives only as `[uncertain: Wunns]` and the dateline as `e, 1631.—00` — and it is worth saying that the line carrying the lot number is nevertheless clean: `on Lot 2, in block 1, on North`. A column that fails elsewhere is not thereby wrong here, and a column that reads well elsewhere is not thereby right; what carries the reading is that four settings of type agree on the digit. NO `ad_copy_date` IS ASSERTED, for the reason given at 1834-12-03 c025: the printings do not agree on the dateline's day, and that is a separate question. THE SAME STANDING ADVERTISEMENT, AND IT SETTLES THE LOT NUMBER T-0328 WAS OPENED FOR. D. Weaver's building is advertised in FIVE consecutive numbers of the Democrat — 1834-11-26, 12-03, 12-10, 12-17 and 12-24 — and only the reading of 1834-12-17 had been claimed against the earlier three, because the November and early-December reads passed over the notice. Four of the five printings set `Lot 2`; one, 1834-12-17 page 3 column 3, sets `Lot 9`. That is four independent settings of type against one, and the four are not one witness repeated: the notice is reset weekly (its line breaks, its capitals and its dateline all move between numbers), so each printing is its own compositor's reading of Weaver's copy. The losing column is independently the worst of the five — it sets `Norh` for North, breaks the word `Water` across a foreign column, and mangles the ad's own dateline to `3, Nor. 13, 131`, misreading a 9 as a 3 in the very line that is supposed to carry a 9. So the reading is LOT 2, block 1, North Water street, and no transcription was amended to reach it."
     }
   ]
 }

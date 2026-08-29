@@ -305,6 +305,37 @@
           "offset_text": "FICE second door west from the corne"
         }
       }
+    },
+    {
+      "id": "c010",
+      "kind": "building",
+      "reading": "transcription_mediated",
+      "quote": "Sale or To Let,\nling on Lot 2, in block 1, on North\nstreet.\nApply to\nD. WEAVER.",
+      "normalized": "[For] Sale [or] To Let, [the bui]lding on Lot 2, in block 1, on North [Water] street. Apply to D. WEAVER.",
+      "locator": {
+        "artifact_role": "primary",
+        "issue_page": 3,
+        "column": 3,
+        "lines": [
+          2500,
+          2506
+        ],
+        "lines_of_claim": [
+          2500,
+          2502,
+          2503,
+          2504,
+          2506
+        ]
+      },
+      "entities": [
+        {
+          "as_printed": "D. WEAVER.",
+          "normalized": "D. Weaver",
+          "role": "advertiser"
+        }
+      ],
+      "notes": "THE EARLIEST PRINTING OF THE WEAVER BUILDING NOTICE, AND IT SETS LOT 2. Added by T-0328, which was opened on a disagreement between the only two printings then claimed. This column is one of the alternating pair the November coverage note describes — two physical columns woven line by line — so the ad survives as every other line: 2501, 2505 and 2507 belong to the neighbouring column and are excluded from the claim, and the word `Water` is lost with them, which is why `on North` runs straight into `street.` THE DATELINE IS NOT CLAIMED. Line 2508, `ine. 12, 1881-50`, sits in this ad's half of the alternation and carries the `—50` run-marker the other printings' datelines carry, but `ine.` is not a reading of `Chicago, Nov.` and the line is not claimed on a pattern alone. THE SAME STANDING ADVERTISEMENT, AND IT SETTLES THE LOT NUMBER T-0328 WAS OPENED FOR. D. Weaver's building is advertised in FIVE consecutive numbers of the Democrat — 1834-11-26, 12-03, 12-10, 12-17 and 12-24 — and only the reading of 1834-12-17 had been claimed against the earlier three, because the November and early-December reads passed over the notice. Four of the five printings set `Lot 2`; one, 1834-12-17 page 3 column 3, sets `Lot 9`. That is four independent settings of type against one, and the four are not one witness repeated: the notice is reset weekly (its line breaks, its capitals and its dateline all move between numbers), so each printing is its own compositor's reading of Weaver's copy. The losing column is independently the worst of the five — it sets `Norh` for North, breaks the word `Water` across a foreign column, and mangles the ad's own dateline to `3, Nor. 13, 131`, misreading a 9 as a 3 in the very line that is supposed to carry a 9. So the reading is LOT 2, block 1, North Water street, and no transcription was amended to reach it."
     }
   ]
 }
