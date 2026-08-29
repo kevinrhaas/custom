@@ -1,4 +1,12 @@
 export const CHANGELOG = [ // newest first
+  { v: 412, title: 'Street corridors are measured off their control, not their drawing', kind: 'fix', ts: '2026-08-29T21:55:43.114Z', date: 'Aug 29, 2026, 4:55 PM CT',
+    items: [
+      'Nothing you can see changed today, and no building moved a centimetre. What changed is the line this reconstruction measures against when it asks whether a building stands in the road.',
+      'South Water Street is the one street here drawn somewhere other than where it was platted. The riverfront was wet, so the street was drawn 8.6 m south of the junction its buildings were surveyed off, onto dry ground — a decision about where a street can be drawn, not a claim about where the plat put it. Measuring the buildings against that drawn line reported them standing in a road the plat does not put there. Newberry & Dole’s warehouse read as twelve metres into it; Hogan’s store, ten.',
+      'The corridor is now taken from the surveyed control instead, wherever this project holds one. Every street is asked the same question and answers it out of its own committed points: three reproduce their control to within a centimetre and do not move, one has three points that disagree by 2.3 m and is left alone and written down, and one — South Water — is re-centred. Hogan’s store falls to four metres and steps out of the road; the deepest thing left standing in South Water Street is a drawbridge, which is a bridge doing its job.',
+      'What survives the new measurement is listed rather than absorbed. Newberry & Dole’s warehouse still laps Franklin Street by 9.8 m and still owes an answer; the three intrusions this project has refused to repair in writing are unchanged. The town can be re-measured against the old line with one flag, so the before and after are both reproducible.',
+      'It also unlocks the next twenty roofs. Four South Water blocks with room in them had been held back because nobody could tighten a row of buildings against a street line that might yet move. The line is not moving — so they are buildable.',
+    ] },
   { v: 411, title: 'The post office\u2019s 705 names, and the question they put here', kind: 'fix', ts: '2026-08-29T21:30:08.007Z', date: 'Aug 29, 2026, 4:30 PM CT',
     items: [
       'Nothing you can see changed today, and the town gained nobody. What was settled is what to ask.',
