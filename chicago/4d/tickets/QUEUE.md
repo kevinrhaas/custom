@@ -42,9 +42,6 @@
 # --- forename, or a tavern minted as a person becomes a wrong building once seeded.
 # --- Cheap (mostly S/XS) and each one makes the seeding below more accurate.
 T-0340 — The bookseller's sign-name and its partners' firm-name are three gazetteer entries for one house
-T-0400 — The firm styles that differ in the forename's form: whole against abbreviated against initial
-T-0401 — The firm groups that are two houses, written down so no later sweep merges them
-T-0402 — The firm groups an agency, a parent house or a lost signature makes ambiguous
 
 # --- THE NEWSPAPER STREAM (b) THE POLICY THAT DECIDES HOW MUCH TOWN THE PAPERS REACH.
 # --- T-0354 shipped in #551 on 2026-08-29: the owner's ruling — a street-only
@@ -56,14 +53,8 @@ T-0402 — The firm groups an agency, a parent house or a lost signature makes a
 # --- standing in the model. This is the payoff the whole epic was for. T-0358 sits here
 # --- rather than with the streets because the corpus's ONLY lot-and-block address cannot
 # --- be used until the Thompson plat's block numbering is committed.
-T-0384 — John Holbrook's store takes its door on South Water Street, one door from Dearborn
 T-0385 — The New York Clothing Store stands three doors north of the Tremont House in Dearborn Street
-T-0386 — W. Montgomery's new auction and commission room takes David Carver's old stand on South Water Street
-T-0387 — The four storefronts the American puts on a street and nothing narrower: Harmon Loomis, Wm. Sabine, John Dave and the Dearborn Street wine store
-T-0358 — The Thompson plat's block NUMBERING is uncommitted, so the corpus's only lot-and-block address cannot be placed
 T-0375 — Every reconstructed roof on South Water Street is a labourer's, so five documented tradesmen the papers put there have nowhere to stand
-T-0373 — The documented people the papers name with no trade at all, and the town does not hold
-T-0379 — The letter-list names the post office printed in a single return, and the change of scale they put to the town
 
 # --- THE NEWSPAPER STREAM (d) WAITING ON THE OWNER'S PAGE IMAGES — each needs scans
 # --- opened that live outside the repository. Workable the day the images are supplied;
@@ -78,7 +69,6 @@ T-0305 — Four readings the American contradicts itself on need the page images
 # --- headroom was gated on T-0009 or T-0183, both blocked-owner. Both are now answered
 # --- (the rulings are written into the tickets), which frees ~20 roofs on four South Water
 # --- blocks and 27 more on blk_south_water_market — the largest visible win available.
-T-0009 — Redraw 29 building bodies out of the roadway
 T-0183 — The Market and South Water corner needs one control point, and the node rule may not be able to make it
 T-0365 — The anonymous-block programme has no unblocked ground left: every block with headroom is on the South Water reach T-0009 holds open
 T-0372 — North Water Street's two tight spots are 5.5 m and 8.5 m from water, and the setback rule cannot see either
@@ -171,5 +161,17 @@ T-0403 — The Democrat's office keeps its 1834 corner through a merge, and the 
 T-0404 — 33 documented businesses will stand on a backdating liberty and LIBERTIES.md carries none of them
 T-0405 — Adding one signboard repaints every board alphabetically after it, and some lose a line
 T-0409 — A change can land on dev with no changelog entry, and one did today
-T-0413 — Andrews & Eells stand north of the Tremont House, and the register can now say so
-T-0414 — H. C. Bennett's shop is one door north of the Tremont House
+T-0410 — The Howard fire-insurance agency passes between three houses, and the gazetteer has no relation that can hold it
+T-0411 — A newspaper and its own printing office are two businesses, and the partner-surname guard can never join them
+T-0412 — A building offered FOR SALE mints a placement reading on the vendor's own firm, so P. Pruyne & Co.'s store carries a corner it never stood on
+T-0413 — Six of T-0401's surname traps are one house on the printings, and the merge is unwritten
+T-0414 — The street-face adoption refuses W. Montgomery a roof for being the bootmaker, and identity.json already ruled they are two houses
+T-0415 — John Wright's two buildings to let are named (east) and (west) and stand the other way round
+T-0419 — The re-centred South Water corridor stands 8.58 m off its own block faces, and the strip between belongs to neither
+T-0420 — Open the four South Water blocks T-0009 has unblocked: 20 roofs of headroom on franklin, lasalle, clark and dearborn
+T-0421 — Canal Street's three control points spread 2.33 m, so its corridor cannot be centred on any of them
+T-0422 — The widened counterfactual deals a roof per street, and every roof a widening adds already fronts another street
+T-0418 — The 36 documented tradespeople whose trade the residents vocabulary has no word for
+T-0423 — G. Spring's large dwelling-house and fine well stands on lot 7 of block 16, where an anonymous roof stands now
+T-0424 — Andrews & Eells stand north of the Tremont House, and the register can now say so
+T-0425 — H. C. Bennett's shop is one door north of the Tremont House

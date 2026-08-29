@@ -7,48 +7,49 @@
     "gazetteer": {
       "claims": 1166,
       "persons": 2628,
-      "businesses": 219
+      "businesses": 209
     },
-    "structures": 360,
+    "structures": 359,
+    "structures_sharing_a_name": 35,
     "streets": 19,
-    "resident_persons": 237
+    "resident_persons": 241
   },
   "counts": {
     "businesses": {
-      "total": 219,
-      "present_at_scene_date": 201,
+      "total": 209,
+      "present_at_scene_date": 192,
       "excluded": {
-        "contradicted_before_scene_date": 14,
+        "contradicted_before_scene_date": 13,
         "opening_announced_after_scene_date": 4
       },
       "by_action": {
-        "enrich_existing": 32,
-        "new_building": 28,
-        "street_only": 58,
-        "unplaceable": 101
+        "enrich_existing": 29,
+        "new_building": 25,
+        "street_only": 59,
+        "unplaceable": 96
       },
       "by_placement_class": {
         "corner": 16,
-        "none": 84,
-        "relative": 101,
+        "none": 77,
+        "relative": 98,
         "street_only": 18
       },
       "present_by_action": {
-        "enrich_existing": 32,
-        "new_building": 28,
-        "street_only": 58,
-        "unplaceable": 83
+        "enrich_existing": 29,
+        "new_building": 25,
+        "street_only": 59,
+        "unplaceable": 79
       },
       "outside_the_plat": 5,
-      "survival_liberty_required": 109,
-      "backdating_liberty_required": 30,
+      "survival_liberty_required": 103,
+      "backdating_liberty_required": 28,
       "dissolved_after_scene_date": 1
     },
     "persons": {
       "total": 2628,
       "by_action": {
-        "enrich": 184,
-        "new_resident": 2325,
+        "enrich": 188,
+        "new_resident": 2321,
         "replace_invented": 119
       },
       "letter_list_only": 1934
@@ -512,43 +513,6 @@
       "action_note": "The paper names Dearborn Street and nothing narrower; the anchor 'De[a]rborn Stree[t] Denrdorn Stree' names nothing the committed town holds."
     },
     {
-      "id": "business_abell",
-      "name": "Abell",
-      "trade": "attorney and counsellor at law, and law conveyancing",
-      "occupation": "attorney",
-      "proprietors": [
-        "Abell"
-      ],
-      "street": "Dearborn Street",
-      "street_id": "dearborn",
-      "placement_class": "relative",
-      "evidence": {
-        "first_issue": "1835-06-24",
-        "last_issue": "1835-06-24"
-      },
-      "present_at_scene_date": true,
-      "exclusion": null,
-      "exclusion_note": null,
-      "dissolved_after_scene_date": [],
-      "opening_announced": [],
-      "survival_liberty_required": false,
-      "backdating_liberty_required": false,
-      "anchor": {
-        "kind": "unresolved",
-        "target": null,
-        "streets": null,
-        "via": null,
-        "note": "The anchor 'the \"Eagle Coffee House\"' names nothing the committed town holds."
-      },
-      "anchor_change": null,
-      "outside_plat": null,
-      "action": "street_only",
-      "action_target": "dearborn",
-      "match_tier": null,
-      "match_evidence": null,
-      "action_note": "The paper names Dearborn Street and nothing narrower; the anchor 'the \"Eagle Coffee House\"' names nothing the committed town holds."
-    },
-    {
       "id": "business_an_iron_and_hardware_stock_chicago_june_1835",
       "name": "an iron and hardware stock, Chicago, June 1835",
       "trade": "iron and hardware",
@@ -606,19 +570,19 @@
       "survival_liberty_required": true,
       "backdating_liberty_required": false,
       "anchor": {
-        "kind": "structure",
-        "target": "tremont_house_1",
+        "kind": "unresolved",
+        "target": null,
         "streets": null,
         "via": null,
-        "note": "The landmark is the committed structure tremont_house_1."
+        "note": "The anchor 'the Tremont House' names nothing the committed town holds."
       },
       "anchor_change": null,
       "outside_plat": null,
-      "action": "new_building",
-      "action_target": "tremont_house_1",
+      "action": "unplaceable",
+      "action_target": null,
       "match_tier": null,
       "match_evidence": null,
-      "action_note": "Placeable against the committed town. The landmark is the committed structure tremont_house_1."
+      "action_note": "No street the model holds. The anchor 'the Tremont House' names nothing the committed town holds."
     },
     {
       "id": "business_b_jones_grocery_and_provision_store",
@@ -1305,7 +1269,8 @@
         "J. H. Collins",
         "J. D. Caton",
         "James H. Collins",
-        "J. Dean Caton"
+        "J. Dean Caton",
+        "J. H. Collins & J. D. C[aton]"
       ],
       "street": "South Water Street",
       "street_id": "south_water",
@@ -1557,43 +1522,6 @@
       "action_note": "No street the model holds. The paper gives no anchor."
     },
     {
-      "id": "business_d_elston_co",
-      "name": "D. Elston & Co.",
-      "trade": "provision curers and soap and candle makers",
-      "occupation": "soap_and_candle_maker",
-      "proprietors": [
-        "D. Elston & Co."
-      ],
-      "street": null,
-      "street_id": null,
-      "placement_class": "none",
-      "evidence": {
-        "first_issue": "1834-02-18",
-        "last_issue": "1834-04-01"
-      },
-      "present_at_scene_date": true,
-      "exclusion": null,
-      "exclusion_note": null,
-      "dissolved_after_scene_date": [],
-      "opening_announced": [],
-      "survival_liberty_required": true,
-      "backdating_liberty_required": false,
-      "anchor": {
-        "kind": "unresolved",
-        "target": null,
-        "streets": null,
-        "via": null,
-        "note": "The paper gives no anchor."
-      },
-      "anchor_change": null,
-      "outside_plat": null,
-      "action": "enrich_existing",
-      "action_target": "elston_soap_candle_manufactory",
-      "match_tier": "occupants",
-      "match_evidence": "Daniel Elston & Co.",
-      "action_note": "elston_soap_candle_manufactory already stands and its occupants carries elston — 'Daniel Elston & Co.'. The papers add trade, goods and dates to a record that exists."
-    },
-    {
       "id": "business_d_graves",
       "name": "D. Graves",
       "trade": "bakery",
@@ -1712,7 +1640,8 @@
       "occupation": "soap_and_candle_maker",
       "proprietors": [
         "Daniel Elston",
-        "Daniel Elston & Co."
+        "Daniel Elston & Co.",
+        "D. Elston & Co."
       ],
       "street": null,
       "street_id": null,
@@ -1852,43 +1781,6 @@
       "match_tier": null,
       "match_evidence": null,
       "action_note": "Excluded from the scene-date town: Contradicted on or before the scene date by chicago_democrat_1834_07_23#c005 (notice, 1834-07-23). No action; the record is kept so the exclusion can be argued with."
-    },
-    {
-      "id": "business_doty_co",
-      "name": "Doty & Co.",
-      "trade": "dry goods, groceries, crockery, clothing, boots and shoes",
-      "occupation": "dry_goods_merchant",
-      "proprietors": [],
-      "street": null,
-      "street_id": null,
-      "placement_class": "relative",
-      "evidence": {
-        "first_issue": "1834-05-28",
-        "last_issue": "1834-05-28"
-      },
-      "present_at_scene_date": true,
-      "exclusion": null,
-      "exclusion_note": null,
-      "dissolved_after_scene_date": [],
-      "opening_announced": [],
-      "survival_liberty_required": true,
-      "backdating_liberty_required": false,
-      "anchor": {
-        "kind": "street",
-        "target": null,
-        "streets": [
-          "south_water"
-        ],
-        "via": null,
-        "note": "The anchor is a reach of south_water and names nothing narrower."
-      },
-      "anchor_change": null,
-      "outside_plat": null,
-      "action": "unplaceable",
-      "action_target": null,
-      "match_tier": null,
-      "match_evidence": null,
-      "action_note": "No street the model holds. The anchor is a reach of south_water and names nothing narrower."
     },
     {
       "id": "business_dr_j_b_barnard",
@@ -2032,7 +1924,7 @@
       "placement_class": "none",
       "evidence": {
         "first_issue": "1835-06-20",
-        "last_issue": "1835-07-01"
+        "last_issue": "1835-07-29"
       },
       "present_at_scene_date": true,
       "exclusion": null,
@@ -2741,7 +2633,8 @@
       "occupation": "attorney",
       "proprietors": [
         "G. Spring",
-        "Spring, G."
+        "Spring, G.",
+        "Giles Spring"
       ],
       "street": "South Water Street",
       "street_id": "south_water",
@@ -2932,46 +2825,6 @@
       "action_note": "The paper names Dearborn Street and nothing narrower; the anchor 'the Eagle Coffee House' names nothing the committed town holds."
     },
     {
-      "id": "business_giles_spring",
-      "name": "Giles Spring",
-      "trade": "attorney and counsellor at law, solicitor in chancery",
-      "occupation": "attorney",
-      "proprietors": [
-        "Giles Spring"
-      ],
-      "street": "South Water Street",
-      "street_id": "south_water",
-      "placement_class": "relative",
-      "evidence": {
-        "first_issue": "1834-11-12",
-        "last_issue": "1835-05-20"
-      },
-      "present_at_scene_date": true,
-      "exclusion": null,
-      "exclusion_note": null,
-      "dissolved_after_scene_date": [],
-      "opening_announced": [],
-      "survival_liberty_required": false,
-      "backdating_liberty_required": false,
-      "anchor": {
-        "kind": "corner",
-        "target": null,
-        "streets": [
-          "franklin",
-          "south_water"
-        ],
-        "via": null,
-        "note": "A crossing of two platted streets: franklin and south_water."
-      },
-      "anchor_change": null,
-      "outside_plat": null,
-      "action": "new_building",
-      "action_target": "franklin+south_water",
-      "match_tier": null,
-      "match_evidence": null,
-      "action_note": "Placeable against the committed town. A crossing of two platted streets: franklin and south_water."
-    },
-    {
       "id": "business_goss_cobb",
       "name": "Goss & Cobb",
       "trade": null,
@@ -3034,19 +2887,19 @@
       "survival_liberty_required": true,
       "backdating_liberty_required": false,
       "anchor": {
-        "kind": "structure",
-        "target": "tremont_house_1",
+        "kind": "unresolved",
+        "target": null,
         "streets": null,
         "via": null,
-        "note": "The landmark is the committed structure tremont_house_1."
+        "note": "The anchor 'the Tremont House' names nothing the committed town holds."
       },
       "anchor_change": null,
       "outside_plat": null,
-      "action": "new_building",
-      "action_target": "tremont_house_1",
+      "action": "street_only",
+      "action_target": "dearborn",
       "match_tier": null,
       "match_evidence": null,
-      "action_note": "Placeable against the committed town. The landmark is the committed structure tremont_house_1."
+      "action_note": "The paper names Dearborn street and nothing narrower; the anchor 'the Tremont House' names nothing the committed town holds."
     },
     {
       "id": "business_h_doty_co",
@@ -3060,7 +2913,7 @@
       "street_id": "south_water",
       "placement_class": "relative",
       "evidence": {
-        "first_issue": "1834-06-04",
+        "first_issue": "1834-05-28",
         "last_issue": "1834-07-02"
       },
       "present_at_scene_date": true,
@@ -3285,43 +3138,6 @@
       "action_note": "No street the model holds. The paper gives no anchor."
     },
     {
-      "id": "business_howard_fire_insurance_company_e_k_hubbard_agent_at_chicago",
-      "name": "Howard Fire Insurance Company — E. K. Hubbard, agent at Chicago",
-      "trade": "fire insurance agency",
-      "occupation": null,
-      "proprietors": [
-        "E. K. Hubbard"
-      ],
-      "street": null,
-      "street_id": null,
-      "placement_class": "none",
-      "evidence": {
-        "first_issue": "1835-07-08",
-        "last_issue": "1835-07-29"
-      },
-      "present_at_scene_date": true,
-      "exclusion": null,
-      "exclusion_note": null,
-      "dissolved_after_scene_date": [],
-      "opening_announced": [],
-      "survival_liberty_required": false,
-      "backdating_liberty_required": true,
-      "anchor": {
-        "kind": "unresolved",
-        "target": null,
-        "streets": null,
-        "via": null,
-        "note": "The paper gives no anchor."
-      },
-      "anchor_change": null,
-      "outside_plat": null,
-      "action": "unplaceable",
-      "action_target": null,
-      "match_tier": null,
-      "match_evidence": null,
-      "action_note": "No street the model holds. The paper gives no anchor."
-    },
-    {
       "id": "business_hubbard_co",
       "name": "Hubbard & Co.",
       "trade": "commission and forwarding merchants",
@@ -3472,43 +3288,6 @@
       "match_tier": null,
       "match_evidence": null,
       "action_note": "The paper names Dearborn Street and nothing narrower; the anchor \"Messrs. Newberry & Dole's store\" names nothing the committed town holds."
-    },
-    {
-      "id": "business_j_bates_jr",
-      "name": "J. Bates, Jr.",
-      "trade": "merchant",
-      "occupation": "merchant",
-      "proprietors": [
-        "J. Bates, Jr."
-      ],
-      "street": null,
-      "street_id": null,
-      "placement_class": "none",
-      "evidence": {
-        "first_issue": "1833-11-26",
-        "last_issue": "1833-11-26"
-      },
-      "present_at_scene_date": true,
-      "exclusion": null,
-      "exclusion_note": null,
-      "dissolved_after_scene_date": [],
-      "opening_announced": [],
-      "survival_liberty_required": true,
-      "backdating_liberty_required": false,
-      "anchor": {
-        "kind": "unresolved",
-        "target": null,
-        "streets": null,
-        "via": null,
-        "note": "The paper gives no anchor."
-      },
-      "anchor_change": null,
-      "outside_plat": null,
-      "action": "unplaceable",
-      "action_target": null,
-      "match_tier": null,
-      "match_evidence": null,
-      "action_note": "No street the model holds. The paper gives no anchor."
     },
     {
       "id": "business_j_bates_jr_auction_store",
@@ -3695,45 +3474,6 @@
       "match_tier": "occupants",
       "match_evidence": "John Dean Caton's law office and lodging; the building is Dr John T. Temple's",
       "action_note": "temple_lake_st_building already stands and its occupants carries caton — \"John Dean Caton's law office and lodging; the building is Dr John T. Temple's\". The papers add trade, goods and dates to a record that exists."
-    },
-    {
-      "id": "business_j_h_collins_j_d_caton",
-      "name": "J. H. Collins & J. D. Caton",
-      "trade": "attorneys and counsellors at law, solicitors in chancery",
-      "occupation": "attorney",
-      "proprietors": [
-        "J. H. Collins & J. D. C[aton]"
-      ],
-      "street": "South Water Street",
-      "street_id": "south_water",
-      "placement_class": "relative",
-      "evidence": {
-        "first_issue": "1834-02-04",
-        "last_issue": "1834-04-01"
-      },
-      "present_at_scene_date": true,
-      "exclusion": null,
-      "exclusion_note": null,
-      "dissolved_after_scene_date": [],
-      "opening_announced": [],
-      "survival_liberty_required": true,
-      "backdating_liberty_required": false,
-      "anchor": {
-        "kind": "street",
-        "target": null,
-        "streets": [
-          "south_water"
-        ],
-        "via": null,
-        "note": "The anchor is a reach of south_water and names nothing narrower."
-      },
-      "anchor_change": null,
-      "outside_plat": null,
-      "action": "street_only",
-      "action_target": "south_water",
-      "match_tier": null,
-      "match_evidence": null,
-      "action_note": "The paper names South Water Street and nothing narrower; the anchor is a reach of south_water and names nothing narrower."
     },
     {
       "id": "business_j_h_kinzie_merchant",
@@ -3981,11 +3721,11 @@
       "placement_class": "none",
       "evidence": {
         "first_issue": "1834-03-04",
-        "last_issue": "1834-03-25"
+        "last_issue": "1834-04-08"
       },
       "present_at_scene_date": false,
       "exclusion": "contradicted_before_scene_date",
-      "exclusion_note": "Contradicted on or before the scene date by chicago_democrat_1834_03_04#c011 (notice, 1834-03-04), chicago_democrat_1834_03_25#c004 (notice, 1834-03-25).",
+      "exclusion_note": "Contradicted on or before the scene date by chicago_democrat_1834_03_04#c011 (notice, 1834-03-04), chicago_democrat_1834_03_25#c004 (notice, 1834-03-25), chicago_democrat_1834_04_08#c013 (notice, 1834-04-08).",
       "dissolved_after_scene_date": [],
       "opening_announced": [],
       "survival_liberty_required": false,
@@ -4003,7 +3743,7 @@
       "action_target": null,
       "match_tier": null,
       "match_evidence": null,
-      "action_note": "Excluded from the scene-date town: Contradicted on or before the scene date by chicago_democrat_1834_03_04#c011 (notice, 1834-03-04), chicago_democrat_1834_03_25#c004 (notice, 1834-03-25). No action; the record is kept so the exclusion can be argued with."
+      "action_note": "Excluded from the scene-date town: Contradicted on or before the scene date by chicago_democrat_1834_03_04#c011 (notice, 1834-03-04), chicago_democrat_1834_03_25#c004 (notice, 1834-03-25), chicago_democrat_1834_04_08#c013 (notice, 1834-04-08). No action; the record is kept so the exclusion can be argued with."
     },
     {
       "id": "business_j_wright_merchant",
@@ -4085,13 +3825,14 @@
       "trade": "auctioneer",
       "occupation": "auctioneer",
       "proprietors": [
-        "John Bates, Jr."
+        "John Bates, Jr.",
+        "J. Bates, Jr."
       ],
       "street": null,
       "street_id": null,
       "placement_class": "relative",
       "evidence": {
-        "first_issue": "1834-03-04",
+        "first_issue": "1833-11-26",
         "last_issue": "1834-06-11"
       },
       "present_at_scene_date": true,
@@ -4314,43 +4055,6 @@
       "action_note": "The paper names South Water Street and nothing narrower; the anchor is a reach of dearborn and names nothing narrower."
     },
     {
-      "id": "business_john_s_c_hogan",
-      "name": "John S. C. Hogan",
-      "trade": "general store",
-      "occupation": "merchant",
-      "proprietors": [
-        "John S. C. Hogan"
-      ],
-      "street": null,
-      "street_id": null,
-      "placement_class": "none",
-      "evidence": {
-        "first_issue": "1834-06-11",
-        "last_issue": "1834-06-11"
-      },
-      "present_at_scene_date": true,
-      "exclusion": null,
-      "exclusion_note": null,
-      "dissolved_after_scene_date": [],
-      "opening_announced": [],
-      "survival_liberty_required": true,
-      "backdating_liberty_required": false,
-      "anchor": {
-        "kind": "unresolved",
-        "target": null,
-        "streets": null,
-        "via": null,
-        "note": "The paper gives no anchor."
-      },
-      "anchor_change": null,
-      "outside_plat": null,
-      "action": "enrich_existing",
-      "action_target": "hogan_store",
-      "match_tier": "name",
-      "match_evidence": "Hogan's Store",
-      "action_note": "hogan_store already stands and its name carries hogan — \"Hogan's Store\". The papers add trade, goods and dates to a record that exists."
-    },
-    {
       "id": "business_john_s_kinzie_forwarding_and_commission_merchant",
       "name": "John S. Kinzie, forwarding and commission merchant",
       "trade": "forwarding and commission merchant",
@@ -4423,43 +4127,6 @@
       "match_tier": "occupants",
       "match_evidence": "John Watkins; schoolmaster; occupants on the scene date unattested",
       "action_note": "watkins_school_house already stands and its occupants carries watkins — 'John Watkins; schoolmaster; occupants on the scene date unattested'. The papers add trade, goods and dates to a record that exists."
-    },
-    {
-      "id": "business_john_wellmaker_co",
-      "name": "John Wellmaker & Co.",
-      "trade": "co-partnership, trade not stated",
-      "occupation": null,
-      "proprietors": [
-        "John Wellmaker"
-      ],
-      "street": null,
-      "street_id": null,
-      "placement_class": "none",
-      "evidence": {
-        "first_issue": "1834-04-08",
-        "last_issue": "1834-04-08"
-      },
-      "present_at_scene_date": false,
-      "exclusion": "contradicted_before_scene_date",
-      "exclusion_note": "Contradicted on or before the scene date by chicago_democrat_1834_04_08#c013 (notice, 1834-04-08).",
-      "dissolved_after_scene_date": [],
-      "opening_announced": [],
-      "survival_liberty_required": false,
-      "backdating_liberty_required": false,
-      "anchor": {
-        "kind": "unresolved",
-        "target": null,
-        "streets": null,
-        "via": null,
-        "note": "The paper gives no anchor."
-      },
-      "anchor_change": null,
-      "outside_plat": null,
-      "action": "unplaceable",
-      "action_target": null,
-      "match_tier": null,
-      "match_evidence": null,
-      "action_note": "Excluded from the scene-date town: Contradicted on or before the scene date by chicago_democrat_1834_04_08#c013 (notice, 1834-04-08). No action; the record is kept so the exclusion can be argued with."
     },
     {
       "id": "business_john_wright",
@@ -5079,11 +4746,11 @@
       "survival_liberty_required": true,
       "backdating_liberty_required": false,
       "anchor": {
-        "kind": "structure",
-        "target": "tremont_house_1",
+        "kind": "unresolved",
+        "target": null,
         "streets": null,
         "via": null,
-        "note": "The landmark is the committed structure tremont_house_1."
+        "note": "The anchor 'the Tremont House' names nothing the committed town holds."
       },
       "anchor_change": {
         "live_anchor": "the Tremont House",
@@ -5199,11 +4866,11 @@
             ],
             "live_at_scene_date": true,
             "resolved": {
-              "kind": "structure",
-              "target": "tremont_house_1",
+              "kind": "unresolved",
+              "target": null,
               "streets": null,
               "via": null,
-              "note": "The landmark is the committed structure tremont_house_1."
+              "note": "The anchor 'the Tremont House' names nothing the committed town holds."
             },
             "resolved_on_reading": "the Tremont House",
             "readings": [
@@ -5218,11 +4885,11 @@
                   "chicago_democrat_1834_12_10#c007"
                 ],
                 "resolved": {
-                  "kind": "structure",
-                  "target": "tremont_house_1",
+                  "kind": "unresolved",
+                  "target": null,
                   "streets": null,
                   "via": null,
-                  "note": "The landmark is the committed structure tremont_house_1."
+                  "note": "The anchor 'the Tremont House' names nothing the committed town holds."
                 }
               }
             ]
@@ -5446,97 +5113,21 @@
       "survival_liberty_required": false,
       "backdating_liberty_required": false,
       "anchor": {
-        "kind": "structure",
-        "target": "tremont_house_1",
-        "streets": null,
+        "kind": "street",
+        "target": null,
+        "streets": [
+          "dearborn"
+        ],
         "via": null,
-        "note": "The landmark is the committed structure tremont_house_1."
+        "note": "The anchor is a reach of dearborn and names nothing narrower."
       },
-      "anchor_change": {
-        "live_anchor": "the Tremont House",
-        "live_reason": "This house has one declared anchor, read 3 ways between 1835-06-08 and 1835-07-04, so it is the anchor live at the scene date 1835-07-01 and no change is asserted.",
-        "changes": [],
-        "rule": "One anchor, the Tremont House, read three ways and never changing. This is not a dated change and no change is asserted: it is the same standing advertisement over one copy date, and the difference between its printings is the segmenter's, not the advertiser's. The house is therefore placed on the reading that names the anchor — 1835-07-04's — rather than on the 8 June printing that lost it, which is the only printing order would otherwise have offered.",
-        "cannot_say": "WHICH SIDE OF DEARBORN STREET, AND HOW WIDE A DOOR IS. “Three doors north of the Tremont House, in Dearborn street” fixes the street, the direction and the count and states neither the side of the street nor the frontage of a door, and nothing else in this corpus supplies either. Nor does any printing say the Tremont's own door on Dearborn is the one being counted from; the hotel is documented at the north-west corner of Lake and Dearborn and fronts Lake, so the count starts at a flank. The placement this supports is recorded on the structure record and its residual is stated there.",
-        "history": [
-          {
-            "anchor": "the Tremont House",
-            "first_issue": "1835-06-08",
-            "last_issue": "1835-07-04",
-            "claims": [
-              "chicago_american_1835_06_08#c014",
-              "chicago_american_1835_06_20#c007",
-              "chicago_american_1835_07_04#c003"
-            ],
-            "live_at_scene_date": true,
-            "resolved": {
-              "kind": "structure",
-              "target": "tremont_house_1",
-              "streets": null,
-              "via": null,
-              "note": "The landmark is the committed structure tremont_house_1."
-            },
-            "resolved_on_reading": "the Tremont House",
-            "readings": [
-              {
-                "anchor": "three doors north of an unread anchor, in Dearborn Street",
-                "first_issue": "1835-06-08",
-                "last_issue": "1835-06-08",
-                "claims": [
-                  "chicago_american_1835_06_08#c014"
-                ],
-                "resolved": {
-                  "kind": "street",
-                  "target": null,
-                  "streets": [
-                    "dearborn"
-                  ],
-                  "via": null,
-                  "note": "The anchor is a reach of dearborn and names nothing narrower."
-                }
-              },
-              {
-                "anchor": "an unnamed House, three doors south, in Dearborn Street",
-                "first_issue": "1835-06-20",
-                "last_issue": "1835-06-20",
-                "claims": [
-                  "chicago_american_1835_06_20#c007"
-                ],
-                "resolved": {
-                  "kind": "street",
-                  "target": null,
-                  "streets": [
-                    "dearborn"
-                  ],
-                  "via": null,
-                  "note": "The anchor is a reach of dearborn and names nothing narrower."
-                }
-              },
-              {
-                "anchor": "the Tremont House",
-                "first_issue": "1835-07-04",
-                "last_issue": "1835-07-04",
-                "claims": [
-                  "chicago_american_1835_07_04#c003"
-                ],
-                "resolved": {
-                  "kind": "structure",
-                  "target": "tremont_house_1",
-                  "streets": null,
-                  "via": null,
-                  "note": "The landmark is the committed structure tremont_house_1."
-                }
-              }
-            ]
-          }
-        ]
-      },
+      "anchor_change": null,
       "outside_plat": null,
-      "action": "enrich_existing",
-      "action_target": "new_york_clothing_store",
-      "match_tier": "occupants",
-      "match_evidence": "Tuthill King; clothier",
-      "action_note": "new_york_clothing_store already stands and its occupants carries king — 'Tuthill King; clothier'. The papers add trade, goods and dates to a record that exists."
+      "action": "street_only",
+      "action_target": "dearborn",
+      "match_tier": null,
+      "match_evidence": null,
+      "action_note": "The paper names Dearborn Street and nothing narrower; the anchor is a reach of dearborn and names nothing narrower."
     },
     {
       "id": "business_newberry_dole",
@@ -5723,41 +5314,6 @@
       "match_tier": "occupants",
       "match_evidence": "Philip F. W. Peck; merchant; and his household",
       "action_note": "peck_store already stands and its occupants carries peck — 'Philip F. W. Peck; merchant; and his household'. The papers add trade, goods and dates to a record that exists."
-    },
-    {
-      "id": "business_p_pruyne",
-      "name": "P. Pruyne",
-      "trade": "timber merchant; squared timber and thills",
-      "occupation": "merchant",
-      "proprietors": [],
-      "street": null,
-      "street_id": null,
-      "placement_class": "none",
-      "evidence": {
-        "first_issue": "1834-05-07",
-        "last_issue": "1834-05-21"
-      },
-      "present_at_scene_date": true,
-      "exclusion": null,
-      "exclusion_note": null,
-      "dissolved_after_scene_date": [],
-      "opening_announced": [],
-      "survival_liberty_required": true,
-      "backdating_liberty_required": false,
-      "anchor": {
-        "kind": "unresolved",
-        "target": null,
-        "streets": null,
-        "via": null,
-        "note": "The paper gives no anchor."
-      },
-      "anchor_change": null,
-      "outside_plat": null,
-      "action": "unplaceable",
-      "action_target": null,
-      "match_tier": null,
-      "match_evidence": null,
-      "action_note": "No street the model holds. The paper gives no anchor."
     },
     {
       "id": "business_p_pruyne_co",
@@ -6407,13 +5963,14 @@
       "trade": "attorney, counsellor and land conveyancer",
       "occupation": "attorney",
       "proprietors": [
-        "S. Abell"
+        "S. Abell",
+        "Abell"
       ],
-      "street": null,
-      "street_id": null,
-      "placement_class": "none",
+      "street": "Dearborn Street",
+      "street_id": "dearborn",
+      "placement_class": "relative",
       "evidence": {
-        "first_issue": "1835-08-01",
+        "first_issue": "1835-06-24",
         "last_issue": "1835-08-01"
       },
       "present_at_scene_date": true,
@@ -6422,21 +5979,21 @@
       "dissolved_after_scene_date": [],
       "opening_announced": [],
       "survival_liberty_required": false,
-      "backdating_liberty_required": true,
+      "backdating_liberty_required": false,
       "anchor": {
         "kind": "unresolved",
         "target": null,
         "streets": null,
         "via": null,
-        "note": "The paper gives no anchor."
+        "note": "The anchor 'the \"Eagle Coffee House\"' names nothing the committed town holds."
       },
       "anchor_change": null,
       "outside_plat": null,
-      "action": "unplaceable",
-      "action_target": null,
+      "action": "street_only",
+      "action_target": "dearborn",
       "match_tier": null,
       "match_evidence": null,
-      "action_note": "No street the model holds. The paper gives no anchor."
+      "action_note": "The paper names Dearborn Street and nothing narrower; the anchor 'the \"Eagle Coffee House\"' names nothing the committed town holds."
     },
     {
       "id": "business_s_abell_attorney_counsellor_at_law",
@@ -10227,9 +9784,9 @@
       "letter_list_only": false,
       "first_seen": "1835-06-17",
       "last_seen": "1835-06-17",
-      "action": "new_resident",
-      "action_target": null,
-      "action_note": "Ruling 1: a named person the town does not hold. Named in a claim other than a letter list."
+      "action": "enrich",
+      "action_target": "placed_b_s_morris",
+      "action_note": "data/residents/ already holds this person as placed_b_s_morris (hh_placed_b_s_morris, attested). The papers add mentions and dates."
     },
     {
       "id": "person_b_winn_co",
@@ -19170,9 +18727,9 @@
       "letter_list_only": false,
       "first_seen": "1834-09-24",
       "last_seen": "1835-08-19",
-      "action": "new_resident",
-      "action_target": null,
-      "action_note": "Ruling 1: a named person the town does not hold. Named in a claim other than a letter list."
+      "action": "enrich",
+      "action_target": "placed_hoit_thomas",
+      "action_note": "data/residents/ already holds this person as placed_hoit_thomas (hh_placed_hoit_thomas, attested). The papers add mentions and dates."
     },
     {
       "id": "person_hol_b_man",
@@ -20457,9 +20014,9 @@
       "letter_list_only": false,
       "first_seen": "1834-08-13",
       "last_seen": "1835-07-01",
-      "action": "new_resident",
-      "action_target": null,
-      "action_note": "Ruling 1: a named person the town does not hold. Named in a claim other than a letter list."
+      "action": "enrich",
+      "action_target": "placed_j_k_boyer",
+      "action_note": "data/residents/ already holds this person as placed_j_k_boyer (hh_placed_j_k_boyer, attested). The papers add mentions and dates."
     },
     {
       "id": "person_j_l_sackett",
@@ -20677,9 +20234,9 @@
       "letter_list_only": false,
       "first_seen": "1835-06-17",
       "last_seen": "1835-06-17",
-      "action": "new_resident",
-      "action_target": null,
-      "action_note": "Ruling 1: a named person the town does not hold. Named in a claim other than a letter list."
+      "action": "enrich",
+      "action_target": "placed_j_w_fell",
+      "action_note": "data/residents/ already holds this person as placed_j_w_fell (hh_placed_j_w_fell, attested). The papers add mentions and dates."
     },
     {
       "id": "person_j_w_lewis",

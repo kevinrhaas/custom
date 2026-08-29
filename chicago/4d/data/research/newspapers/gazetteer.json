@@ -352,7 +352,7 @@
     "claims": 1166,
     "persons": 2628,
     "places": 4,
-    "businesses": 219
+    "businesses": 209
   },
   "persons": [
     {
@@ -58217,53 +58217,6 @@
       "survival_liberty_required": false
     },
     {
-      "id": "business_abell",
-      "name": "Abell",
-      "proprietors": [
-        "Abell"
-      ],
-      "trade": "attorney and counsellor at law, and law conveyancing",
-      "goods": [],
-      "street": "Dearborn Street",
-      "placement": {
-        "class": "relative",
-        "anchor": "the \"Eagle Coffee House\"",
-        "offset_text": "aq Harmon. in Dearborn street,\nof the \"Eaglo Coffee House.\"",
-        "offset_normalized": "[…] Harmon, in Dearborn street, […] of the \"Eagle Coffee House\"",
-        "street": "Dearborn Street"
-      },
-      "evidence": {
-        "first_issue": "1835-06-24",
-        "last_issue": "1835-06-24",
-        "copy_dates": []
-      },
-      "contradicted_by": [],
-      "opening_announced": [],
-      "mentions": [
-        "chicago_democrat_1835_06_24#c006"
-      ],
-      "placement_readings": [
-        {
-          "anchor": "the \"Eagle Coffee House\"",
-          "class": "relative",
-          "first_issue": "1835-06-24",
-          "last_issue": "1835-06-24",
-          "claims": [
-            "chicago_democrat_1835_06_24#c006"
-          ],
-          "placement": {
-            "class": "relative",
-            "anchor": "the \"Eagle Coffee House\"",
-            "offset_text": "aq Harmon. in Dearborn street,\nof the \"Eaglo Coffee House.\"",
-            "offset_normalized": "[…] Harmon, in Dearborn street, […] of the \"Eagle Coffee House\"",
-            "street": "Dearborn Street"
-          }
-        }
-      ],
-      "built_at_scene_date": true,
-      "survival_liberty_required": false
-    },
-    {
       "id": "business_an_iron_and_hardware_stock_chicago_june_1835",
       "name": "an iron and hardware stock, Chicago, June 1835",
       "proprietors": [],
@@ -58755,6 +58708,19 @@
           }
         }
       ],
+      "refused_merges": [
+        {
+          "with": "W. H. Brown",
+          "kind": "two_houses",
+          "witnesses": [
+            "chicago_democrat_1834_05_28#c004",
+            "chicago_american_1835_06_08#c005",
+            "chicago_american_1835_06_13#c014",
+            "chicago_american_1835_08_15#c004"
+          ],
+          "refused_because": "'W. H. Brown' and 'Brown, painter' are two houses, and the painter's record carries no forename at all — which is exactly how a bare surname walks into a group it does not belong in. W. H. Brown keeps a store of groceries and general goods in Dearborn street one door from Newberry & Dole's, Democrat 1834-05-28 c004. 'Brown, painter' does carriage, sign, ornamental and figure painting and gilding, and the American prints him three times in the summer of 1835 (1835-06-08 c005, 1835-06-13 c014, 1835-08-15 c004) with no address recovered. A year apart, two trades, and no printing gives the painter an initial that could be compared with the other's."
+        }
+      ],
       "built_at_scene_date": true,
       "survival_liberty_required": false
     },
@@ -59002,6 +58968,17 @@
             "offset_normalized": null,
             "street": "South Water Street"
           }
+        }
+      ],
+      "refused_merges": [
+        {
+          "with": "Wm. H. Taylor",
+          "kind": "two_houses",
+          "witnesses": [
+            "chicago_democrat_1834_06_04#c008",
+            "chicago_democrat_1835_05_20#c020"
+          ],
+          "refused_because": "'Wm. H. Taylor' and 'Charles Taylor' are two men, and both forenames are set on the page, so nothing here rests on a reading. Charles Taylor keeps a clothing and tailoring business in South Water street, Democrat 1834-06-04 c008. Wm. H. Taylor keeps a boot, shoe and leather store, wholesale and retail, in Dearborn street a few rods north of Messrs. Newberry & Dole's store, Democrat 1835-05-20 c020, copy-dated 1834-07-08. Two trades, two streets, and two forenames no compositor turns into one another."
         }
       ],
       "built_at_scene_date": false,
@@ -59312,6 +59289,17 @@
           }
         }
       ],
+      "refused_merges": [
+        {
+          "with": "The Chicago and St. Joseph packet, schooner Phillips",
+          "kind": "two_houses",
+          "witnesses": [
+            "chicago_democrat_1835_05_27#c013",
+            "chicago_democrat_1834_08_06#c007"
+          ],
+          "refused_because": "'Chicago & St. Joseph Packet (schooner Llewellyn)' and 'The Chicago and St. Joseph packet, schooner Phillips' are two vessels on one route, not one house under two styles — and they are the clearest case in this file of a group made entirely of words. `firm_surnames()` splits on '&' and on 'and', so the route's own name yields 'Chicago' and 'packet' as its partners and every style naming the route joins the group. The Llewellyn is Clark's, master, advertised in the Democrat of 1835-05-27 c013 and copy-dated 1835-05-25, carrying freight and passengers between Chicago and the mouth of the St. Joseph. The Phillips is advertised nine months earlier, Democrat 1834-08-06 c007, with application on board or at the store of Messrs Newberry & Dole. A packet line names its schooner because the schooner is the thing that sails, and two names are two hulls."
+        }
+      ],
       "built_at_scene_date": true,
       "survival_liberty_required": false
     },
@@ -59467,7 +59455,8 @@
         "J. H. Collins",
         "J. D. Caton",
         "James H. Collins",
-        "J. Dean Caton"
+        "J. Dean Caton",
+        "J. H. Collins & J. D. C[aton]"
       ],
       "trade": "attorneys and counsellors at law, and solicitors in chancery",
       "goods": [],
@@ -59490,7 +59479,10 @@
       "opening_announced": [],
       "mentions": [
         "chicago_democrat_1834_01_28#c007",
+        "chicago_democrat_1834_02_04#c009",
+        "chicago_democrat_1834_02_11#c005",
         "chicago_democrat_1834_03_04#c009",
+        "chicago_democrat_1834_04_01#c011",
         "chicago_democrat_1834_06_04#c003",
         "chicago_democrat_1834_06_18#c017",
         "chicago_democrat_1834_07_02#c016",
@@ -59513,6 +59505,47 @@
             "offset_text": "OFFICE nt E door east of Brewster, Hogan & Co,",
             "offset_normalized": "OFFICE [n]ext door east of Brewster, Hogan & Co.",
             "street": null
+          }
+        },
+        {
+          "anchor": "Brewster, Hogan & Co., South Water street",
+          "class": "relative",
+          "first_issue": "1834-02-04",
+          "last_issue": "1834-02-04",
+          "claims": [
+            "chicago_democrat_1834_02_04#c009"
+          ],
+          "placement": {
+            "class": "relative",
+            "anchor": "Brewster, Hogan & Co., South Water street",
+            "offset_text": "ast of Brewster, Hogan"
+          }
+        },
+        {
+          "anchor": "Brewster, Hogan & Co., South Water-street",
+          "class": "relative",
+          "first_issue": "1834-02-11",
+          "last_issue": "1834-02-11",
+          "claims": [
+            "chicago_democrat_1834_02_11#c005"
+          ],
+          "placement": {
+            "class": "relative",
+            "anchor": "Brewster, Hogan & Co., South Water-street",
+            "offset_text": "door east. of Brewster, Hogan & C:"
+          }
+        },
+        {
+          "anchor": null,
+          "class": "street_only",
+          "first_issue": "1834-04-01",
+          "last_issue": "1834-04-01",
+          "claims": [
+            "chicago_democrat_1834_04_01#c011"
+          ],
+          "placement": {
+            "class": "street_only",
+            "street": "South Water Street"
           }
         },
         {
@@ -59552,12 +59585,17 @@
       ],
       "trade_variants": [
         "attorneys and counsellors at law, and solicitors in chancery",
+        "attorneys and counsellors at law, solicitors in chancery",
         "attorneys and solicitors in chancery"
       ],
       "merged": [
         {
           "from": "Collins & Caton, attorneys and counsellors at law",
           "merge_rule": "'Collins & Caton' and 'Collins & Caton, attorneys and counsellors at law' are one office: the second is the first with its trade line read into the style. Both rest on the card dated Jan. 20, 1834 that places the office one door east of Brewster, Hogan & Co. in South Water street — 1834-01-28 c007 for the styled record, 1834-03-04 c009 for the other, the same copy date on both. Merged INTO the shorter style because that record carries the street and the June 1834 removal notice."
+        },
+        {
+          "from": "J. H. Collins & J. D. Caton",
+          "merge_rule": "'J. H. Collins & J. D. Caton' is 'Collins & Caton' with both partners' forenames set as initials instead of dropped, and the two are one office under ONE card. The card is copy-dated Jan. 20, 1834 in both records — 1834-01-28 c007 in the surviving one, 1834-02-04 c009 in the other — and both printings put the office next door east of Brewster, Hogan & Co. in South Water street (1834-02-11 c005 sets it 'door east. of Brewster, Hogan & C:'). Same two partner surnames, same street, same anchor, same copy date, and the two runs interleave week by week through the spring of 1834. Merged INTO 'Collins & Caton' because that record is the one that can be placed for the whole period: it carries the later card that moves the office two doors east of the Baptist Church, up stairs, South Water-street (1834-06-04 c003 through 1835-05-20 c014), which the initialled record never prints."
         }
       ],
       "built_at_scene_date": true,
@@ -59848,58 +59886,6 @@
       "survival_liberty_required": true
     },
     {
-      "id": "business_d_elston_co",
-      "name": "D. Elston & Co.",
-      "proprietors": [
-        "D. Elston & Co."
-      ],
-      "trade": "provision curers and soap and candle makers",
-      "goods": [
-        "Bacon",
-        "Hams",
-        "Mess and Prime Pork",
-        "flitches of bacon",
-        "hams",
-        "mess pork",
-        "prime pork",
-        "smoking and drying"
-      ],
-      "street": null,
-      "placement": {
-        "class": "none"
-      },
-      "evidence": {
-        "first_issue": "1834-02-18",
-        "last_issue": "1834-04-01",
-        "copy_dates": [
-          "1834-02-15"
-        ]
-      },
-      "contradicted_by": [],
-      "opening_announced": [],
-      "mentions": [
-        "chicago_democrat_1834_02_18#c002",
-        "chicago_democrat_1834_04_01#c007"
-      ],
-      "placement_readings": [
-        {
-          "anchor": null,
-          "class": "none",
-          "first_issue": "1834-02-18",
-          "last_issue": "1834-04-01",
-          "claims": [
-            "chicago_democrat_1834_02_18#c002",
-            "chicago_democrat_1834_04_01#c007"
-          ],
-          "placement": {
-            "class": "none"
-          }
-        }
-      ],
-      "built_at_scene_date": true,
-      "survival_liberty_required": true
-    },
-    {
       "id": "business_d_graves",
       "name": "D. Graves",
       "proprietors": [
@@ -60116,7 +60102,8 @@
       "name": "Daniel Elston & [Co.]",
       "proprietors": [
         "Daniel Elston",
-        "Daniel Elston & Co."
+        "Daniel Elston & Co.",
+        "D. Elston & Co."
       ],
       "trade": "soap and candle manufactory",
       "goods": [
@@ -60124,16 +60111,20 @@
         "Candles",
         "Hams",
         "Hard Soap",
+        "Mess and Prime Pork",
         "Pork",
         "Soap",
         "Soft Soap",
         "Wax Candles",
         "bacon",
         "candles",
+        "flitches of bacon",
         "hams",
         "hard soap",
+        "mess pork",
         "other candles",
         "prime pork",
+        "smoking and drying",
         "soft soap",
         "wax candles"
       ],
@@ -60153,8 +60144,10 @@
       "opening_announced": [],
       "mentions": [
         "chicago_democrat_1833_11_26#c030",
+        "chicago_democrat_1834_02_18#c002",
         "chicago_democrat_1834_02_18#c009",
         "chicago_democrat_1834_03_04#c013",
+        "chicago_democrat_1834_04_01#c007",
         "chicago_democrat_1834_06_04#c026",
         "chicago_democrat_1834_07_02#c007",
         "chicago_democrat_1834_07_02#c027"
@@ -60167,8 +60160,10 @@
           "last_issue": "1834-07-02",
           "claims": [
             "chicago_democrat_1833_11_26#c030",
+            "chicago_democrat_1834_02_18#c002",
             "chicago_democrat_1834_02_18#c009",
             "chicago_democrat_1834_03_04#c013",
+            "chicago_democrat_1834_04_01#c007",
             "chicago_democrat_1834_06_04#c026",
             "chicago_democrat_1834_07_02#c007",
             "chicago_democrat_1834_07_02#c027"
@@ -60177,6 +60172,16 @@
             "class": "none",
             "note": "No street in the advertisement. The word after the ampersand is destroyed by an ink blot and 'Co.' is an expansion, not a reading."
           }
+        }
+      ],
+      "trade_variants": [
+        "provision curers and soap and candle makers",
+        "soap and candle manufactory"
+      ],
+      "merged": [
+        {
+          "from": "D. Elston & Co.",
+          "merge_rule": "'D. Elston & Co.' is 'Daniel Elston & [Co.]' with the forename abbreviated, and the two are one works. They are printed in the SAME issue on 18 February 1834 — the smoke-house notice at c002 signed 'D. Elston & [Co.]' and the Chicago Soap and Candle Manufactory at c009 begging leave to inform the public as 'Messrs. DANIEL ELSTON & CO.' — and the smoke-house notice's copy date, Chicago, Feb. 15, 1834, stands on both records. The goods are the two ends of one raw-material stream and the corpus already reads them that way: cash paid for tallow and house ashes against hams, flitches of bacon and mess pork, from the same hogs. Merged INTO 'Daniel Elston & [Co.]' — neither style can be placed, so the direction is which record holds more of the house: six printings against two, November 1833 to July 1834 against February to April, and both trades. The brackets in the surviving name are the ink blot over the word after the ampersand in 1833-11-26 c030 and are kept as printed rather than tidied away."
         }
       ],
       "built_at_scene_date": true,
@@ -60404,51 +60409,6 @@
       "survival_liberty_required": false
     },
     {
-      "id": "business_doty_co",
-      "name": "Doty & Co.",
-      "proprietors": [],
-      "trade": "dry goods, groceries, crockery, clothing, boots and shoes",
-      "goods": [],
-      "street": null,
-      "placement": {
-        "class": "relative",
-        "anchor": "the east end of South Water-street",
-        "offset_text": "the east end of South Water-s\n'occupied by Peter Cohen, which they",
-        "street": "South Water Street"
-      },
-      "evidence": {
-        "first_issue": "1834-05-28",
-        "last_issue": "1834-05-28",
-        "copy_dates": [
-          "1834-04-29"
-        ]
-      },
-      "contradicted_by": [],
-      "opening_announced": [],
-      "mentions": [
-        "chicago_democrat_1834_05_28#c008"
-      ],
-      "placement_readings": [
-        {
-          "anchor": "the east end of South Water-street",
-          "class": "relative",
-          "first_issue": "1834-05-28",
-          "last_issue": "1834-05-28",
-          "claims": [
-            "chicago_democrat_1834_05_28#c008"
-          ],
-          "placement": {
-            "class": "relative",
-            "anchor": "the east end of South Water-street",
-            "offset_text": "the east end of South Water-s\n'occupied by Peter Cohen, which they",
-            "street": "South Water Street"
-          }
-        }
-      ],
-      "built_at_scene_date": true,
-      "survival_liberty_required": true
-    },
-    {
       "id": "business_dr_j_b_barnard",
       "name": "Dr. J. B. Barnard",
       "proprietors": [
@@ -60654,7 +60614,7 @@
       },
       "evidence": {
         "first_issue": "1835-06-20",
-        "last_issue": "1835-07-01",
+        "last_issue": "1835-07-29",
         "copy_dates": [
           "1835-06-20",
           "1835-07-01"
@@ -60673,17 +60633,21 @@
       ],
       "mentions": [
         "chicago_american_1835_06_20#c015",
-        "chicago_democrat_1835_07_01#c017"
+        "chicago_democrat_1835_07_01#c017",
+        "chicago_democrat_1835_07_08#c005",
+        "chicago_democrat_1835_07_29#c011"
       ],
       "placement_readings": [
         {
           "anchor": null,
           "class": "none",
           "first_issue": "1835-06-20",
-          "last_issue": "1835-07-01",
+          "last_issue": "1835-07-29",
           "claims": [
             "chicago_american_1835_06_20#c015",
-            "chicago_democrat_1835_07_01#c017"
+            "chicago_democrat_1835_07_01#c017",
+            "chicago_democrat_1835_07_08#c005",
+            "chicago_democrat_1835_07_29#c011"
           ],
           "placement": {
             "class": "none",
@@ -60692,6 +60656,26 @@
             "offset_normalized": null,
             "street": null
           }
+        }
+      ],
+      "merged": [
+        {
+          "from": "Howard Fire Insurance Company — E. K. Hubbard, agent at Chicago",
+          "merge_rule": "'E. K. Hubbard, agent for the Howard Fire Insurance Company' and 'Howard Fire Insurance Company — E. K. Hubbard, agent at Chicago' are ONE standing advertisement styled two ways by this project's own transcribers, and the four printings are the same setting word for word. The American of 1835-06-20 c015 carries it over the copy date 'June 20, 1835' — 'THE subscriber having been appointed agent for the Howard Fire Insurance Company of the city of New-York, for Chicago and vicinity, will insure property against loss by fire on reasonable terms. E. K. HUBBARD.' — and the Democrat reprints it at 1835-07-01 c017, 1835-07-08 c005 and 1835-07-29 c011 with the line breaks in different places and not one word changed. One company, one agent, one signature, six weeks. The em-dashed style is a disambiguator a transcriber built to put the company first; no printing sets it. Merged INTO the signature's own order, which is also the record carrying the copy dates and the appointment notice. Neither record states a street, so nothing is placed by this merge."
+        }
+      ],
+      "refused_merges": [
+        {
+          "with": "Hubbard & Co.",
+          "kind": "two_houses",
+          "witnesses": [
+            "chicago_democrat_1834_07_02#c048",
+            "chicago_democrat_1834_10_15#c005",
+            "chicago_democrat_1835_05_20#c023",
+            "chicago_american_1835_06_20#c015",
+            "chicago_american_1835_08_29#c004"
+          ],
+          "refused_because": "'Hubbard & Co.' and 'E. K. Hubbard, agent for the Howard Fire Insurance Company' are two houses, and what puts them together is not a spelling — it is an AGENCY that passed from one to the other, which this gazetteer has no relation for. Hubbard & Co. held the Howard agency first and advertised it in the plural over the firm's signature: 'THE subscribers having been appointed AGENTS for the Howard Fire Insurance Company of the city of New-York … HUBBARD & CO.', copy-dated July 1 and standing from 1834-07-02 c048 through 1834-10-15 c005 to 1835-05-20 c023. From 1835-06-20 c015 the identical copy runs in the SINGULAR over one man — 'THE subscriber having been appointed agent … E. K. HUBBARD.' — and the forwarding house goes on trading under its own name to 1835-08-29 c004. So the two records are live at once, in two trades, over two signatures: a commission and forwarding house whose named partners are Gurdon S. Hubbard and Henry G. Hubbard, and a one-man fire-insurance agency signed E. K. Hubbard, initials neither partner carries. This project never reads a shared surname with different initials as one man, so nothing here makes E. K. a partner in the firm and no merge may assert it. The succession of the agency is real and is the part that cannot be written down at all: T-0410 is filed for the relation."
         }
       ],
       "built_at_scene_date": true,
@@ -61110,6 +61094,19 @@
             "class": "none",
             "street": null
           }
+        }
+      ],
+      "refused_merges": [
+        {
+          "with": "the new blacksmith shop opposite the Chicago Hotel",
+          "kind": "two_houses",
+          "witnesses": [
+            "chicago_democrat_1834_04_16#c002",
+            "chicago_democrat_1834_10_08#c006",
+            "chicago_democrat_1833_12_10#c011",
+            "chicago_democrat_1834_01_07#c007"
+          ],
+          "refused_because": "'Eagle Hotel' and 'the new blacksmith shop opposite the Chicago Hotel' are not one house and they are not the same kind of thing. `firm_surnames()` grouped them on the word 'Hotel' — the last word of the first style, and the last word of the ANCHOR carried inside the second. An anchor mistaken for a partner is worth recording apart from the trade-word groups, because a style that names the building it stands opposite will always look like a partnership to a function that reads the last word, and the register holds more such styles than this one. The Eagle Hotel is P. B. F. Cable's and J. Shrigley's, four printings from 1834-04-16 c002 to 1834-10-08 c006. The blacksmith shop is Pierce and Abbott's, nearly opposite the Chicago Hotel, Democrat 1833-12-10 c011 and 1834-01-07 c007 — and the Chicago Hotel it names is a third house again, which is the point: the word in that style belongs to somebody else's signboard."
         }
       ],
       "built_at_scene_date": false,
@@ -61736,7 +61733,8 @@
       "name": "G. Spring",
       "proprietors": [
         "G. Spring",
-        "Spring, G."
+        "Spring, G.",
+        "Giles Spring"
       ],
       "trade": "attorney and counsellor at law, and solicitor in chancery",
       "goods": [],
@@ -61766,6 +61764,9 @@
         "chicago_democrat_1834_08_20#c003",
         "chicago_democrat_1834_09_03#c015",
         "chicago_democrat_1834_10_15#c002",
+        "chicago_democrat_1834_11_12#c008",
+        "chicago_democrat_1834_11_26#c009",
+        "chicago_democrat_1835_05_20#c022",
         "chicago_democrat_1835_08_05#c019"
       ],
       "placement_readings": [
@@ -61773,13 +61774,15 @@
           "anchor": "the corner of Franklin and South Water streets",
           "class": "relative",
           "first_issue": "1833-12-17",
-          "last_issue": "1834-08-20",
+          "last_issue": "1834-11-26",
           "claims": [
             "chicago_democrat_1833_12_17#c004",
             "chicago_democrat_1834_01_28#c006",
             "chicago_democrat_1834_03_04#c030",
             "chicago_democrat_1834_06_11#c004",
-            "chicago_democrat_1834_08_20#c003"
+            "chicago_democrat_1834_08_20#c003",
+            "chicago_democrat_1834_11_12#c008",
+            "chicago_democrat_1834_11_26#c009"
           ],
           "placement": {
             "class": "relative",
@@ -61855,26 +61858,34 @@
         {
           "anchor": "the Tremont House",
           "class": "relative",
-          "first_issue": "1835-08-05",
+          "first_issue": "1835-05-20",
           "last_issue": "1835-08-05",
           "claims": [
+            "chicago_democrat_1835_05_20#c022",
             "chicago_democrat_1835_08_05#c019"
           ],
           "placement": {
             "class": "relative",
             "anchor": "the Tremont House",
-            "offset_text": "FRICE firat dor north from tbe Trem"
+            "offset_text": "FFICE. frat door north from the Trea\nHouse, on Dearburn-strest.",
+            "offset_normalized": "OFFICE, first door north from the Tre[mont] House, on Dearborn-street",
+            "street": "Dearborn Street"
           }
         }
       ],
       "trade_variants": [
         "attorney and counsellor at law, and solicitor in chancery",
+        "attorney and counsellor at law, solicitor in chancery",
         "attorney and solicitor in chancery"
       ],
       "merged": [
         {
           "from": "G. Spring, attorney and counsellor at law",
           "merge_rule": "'G. Spring' and 'G. Spring, attorney and counsellor at law' are one office under one card, copy-dated Dec. 17, 1833 in both — 1833-12-17 c004 and 1834-01-28 c006 in the styled record, 1834-03-04 c030 and six further printings in the other — every one of them placing the office second door west from the corner of Franklin and South Water streets. The second record also carries the later card of Dec. 3, 1834 (1835-08-05 c019) moving him first door north of the Tremont House, which the merge keeps as a mention."
+        },
+        {
+          "from": "Giles Spring",
+          "merge_rule": "'Giles Spring' is 'G. Spring' with the forename printed whole, and one card ties the two forms together: BOTH records carry the copy date Dec. 3, 1834 — 'G. Spring' at 1834-12-03 among its copy dates, 'Giles Spring' at 1834-11-12 c008 and 1834-11-26 c009 — and both set the office 'second door west from the corner of Franklin and South Water streets'. The removal is printed on both sides too: 'Giles Spring' takes the office first door north from the Tremont House on Dearborn-street at 1835-05-20 c022, and 'G. Spring' prints the same removal at 1835-08-05 c019. One attorney, one office, one move. Merged INTO 'G. Spring' because that record holds ten printings against three and both anchors across the whole run."
         }
       ],
       "built_at_scene_date": true,
@@ -62064,70 +62075,6 @@
             "class": "relative",
             "anchor": "the Eagle Coffee House",
             "offset_text": "on Deas. Lorn atreet, nearly opposite the Eagle Cof- fre House"
-          }
-        }
-      ],
-      "built_at_scene_date": true,
-      "survival_liberty_required": false
-    },
-    {
-      "id": "business_giles_spring",
-      "name": "Giles Spring",
-      "proprietors": [
-        "Giles Spring"
-      ],
-      "trade": "attorney and counsellor at law, solicitor in chancery",
-      "goods": [],
-      "street": "South Water Street",
-      "placement": {
-        "class": "relative",
-        "anchor": "the corner of Franklin and South Water streets",
-        "offset_text": "FFICE second door west from the corner"
-      },
-      "evidence": {
-        "first_issue": "1834-11-12",
-        "last_issue": "1835-05-20",
-        "copy_dates": [
-          "1834-12-03"
-        ]
-      },
-      "contradicted_by": [],
-      "opening_announced": [],
-      "mentions": [
-        "chicago_democrat_1834_11_12#c008",
-        "chicago_democrat_1834_11_26#c009",
-        "chicago_democrat_1835_05_20#c022"
-      ],
-      "placement_readings": [
-        {
-          "anchor": "the corner of Franklin and South Water streets",
-          "class": "relative",
-          "first_issue": "1834-11-12",
-          "last_issue": "1834-11-26",
-          "claims": [
-            "chicago_democrat_1834_11_12#c008",
-            "chicago_democrat_1834_11_26#c009"
-          ],
-          "placement": {
-            "class": "relative",
-            "anchor": "the corner of Franklin and South Water streets",
-            "offset_text": "FFICE second door west from the corner"
-          }
-        },
-        {
-          "anchor": "the Tremont House",
-          "class": "relative",
-          "first_issue": "1835-05-20",
-          "last_issue": "1835-05-20",
-          "claims": [
-            "chicago_democrat_1835_05_20#c022"
-          ],
-          "placement": {
-            "class": "relative",
-            "anchor": "the Tremont House",
-            "offset_text": "FFICE. frat door north from the Trea\nHouse, on Dearburn-strest.",
-            "offset_normalized": "OFFICE, first door north from the Tre[mont] House, on Dearborn-street",
-            "street": "Dearborn Street"
           }
         }
       ],
@@ -62337,7 +62284,7 @@
         "street": "South Water Street"
       },
       "evidence": {
-        "first_issue": "1834-06-04",
+        "first_issue": "1834-05-28",
         "last_issue": "1834-07-02",
         "copy_dates": [
           "1834-04-29",
@@ -62347,6 +62294,7 @@
       "contradicted_by": [],
       "opening_announced": [],
       "mentions": [
+        "chicago_democrat_1834_05_28#c008",
         "chicago_democrat_1834_06_04#c021",
         "chicago_democrat_1834_07_02#c010",
         "chicago_democrat_1834_07_02#c057"
@@ -62355,16 +62303,16 @@
         {
           "anchor": "the east end of South Water-street",
           "class": "relative",
-          "first_issue": "1834-06-04",
+          "first_issue": "1834-05-28",
           "last_issue": "1834-06-04",
           "claims": [
+            "chicago_democrat_1834_05_28#c008",
             "chicago_democrat_1834_06_04#c021"
           ],
           "placement": {
             "class": "relative",
             "anchor": "the east end of South Water-street",
-            "offset_text": "3 the east end of South Water-stree!\nlatel eccapied by Peter Cohen, wick they rede",
-            "offset_normalized": "the [store at the] east end of South Water-street lately occupied by Peter Cohen",
+            "offset_text": "the east end of South Water-s\n'occupied by Peter Cohen, which they",
             "street": "South Water Street"
           }
         },
@@ -62396,6 +62344,16 @@
             "offset_normalized": "the east end of h[is store] […] lately occupied by Peter Cohen",
             "street": null
           }
+        }
+      ],
+      "trade_variants": [
+        "dry goods and groceries",
+        "dry goods, groceries, crockery, clothing, boots and shoes"
+      ],
+      "merged": [
+        {
+          "from": "Doty & Co.",
+          "merge_rule": "'Doty & Co.' is 'H. Doty & Co.' with the forename initial lost, and one advertisement carries both. Both records are copy-dated April 29 1834 and both take the same store: 'Doty & Co.' at 1834-05-28 c008 reads 'the east end of South Water-s[treet] occupied by Peter Cohen, which they', and 'H. Doty & Co.' at 1834-06-04 c021 reads 'the [store at the] east end of South Water-street lately occupied by Peter Cohen' — the same sentence, the same taking-over of Cohen's store, a week apart, and the same trade in dry goods, groceries, crockery, clothing, boots and shoes. Merged INTO 'H. Doty & Co.' because that record is the one that can be placed: it carries the street on the business as well as in the offset and it prints the Cohen anchor twice more (1834-07-02 c010 and c057)."
         }
       ],
       "built_at_scene_date": true,
@@ -62756,47 +62714,6 @@
       "survival_liberty_required": true
     },
     {
-      "id": "business_howard_fire_insurance_company_e_k_hubbard_agent_at_chicago",
-      "name": "Howard Fire Insurance Company — E. K. Hubbard, agent at Chicago",
-      "proprietors": [
-        "E. K. Hubbard"
-      ],
-      "trade": "fire insurance agency",
-      "goods": [],
-      "street": null,
-      "placement": {
-        "class": "none"
-      },
-      "evidence": {
-        "first_issue": "1835-07-08",
-        "last_issue": "1835-07-29",
-        "copy_dates": []
-      },
-      "contradicted_by": [],
-      "opening_announced": [],
-      "mentions": [
-        "chicago_democrat_1835_07_08#c005",
-        "chicago_democrat_1835_07_29#c011"
-      ],
-      "placement_readings": [
-        {
-          "anchor": null,
-          "class": "none",
-          "first_issue": "1835-07-08",
-          "last_issue": "1835-07-29",
-          "claims": [
-            "chicago_democrat_1835_07_08#c005",
-            "chicago_democrat_1835_07_29#c011"
-          ],
-          "placement": {
-            "class": "none"
-          }
-        }
-      ],
-      "built_at_scene_date": true,
-      "survival_liberty_required": false
-    },
-    {
       "id": "business_hubbard_co",
       "name": "Hubbard & Co.",
       "proprietors": [
@@ -62926,6 +62843,20 @@
         {
           "from": "Hubbard & Co., forwarding and commission merchants",
           "merge_rule": "'Hubbard & Co.' and 'Hubbard & Co., forwarding and commission merchants' are one house's trade card in the two papers, and the two styles are the same words in the two orders the compositors set them: the Democrat of 1834-07-02 c045 and 1835-07-01 c016 read 'Commission and Forwarding MERCHANTS, CHICAGO-ILLINOIS' over Gurdon S. and Henry G. Hubbard, and the American of 1835-06-20 c013 reads 'Forwarding and Commission MERCHANTS' with the lake and canal line agencies. Neither carries a street. The Howard Fire Insurance agency this house held is NOT touched by this merge — an agency is not the house that holds it, and T-0402 owns that question."
+        }
+      ],
+      "refused_merges": [
+        {
+          "with": "E. K. Hubbard, agent for the Howard Fire Insurance Company",
+          "kind": "two_houses",
+          "witnesses": [
+            "chicago_democrat_1834_07_02#c048",
+            "chicago_democrat_1834_10_15#c005",
+            "chicago_democrat_1835_05_20#c023",
+            "chicago_american_1835_06_20#c015",
+            "chicago_american_1835_08_29#c004"
+          ],
+          "refused_because": "'Hubbard & Co.' and 'E. K. Hubbard, agent for the Howard Fire Insurance Company' are two houses, and what puts them together is not a spelling — it is an AGENCY that passed from one to the other, which this gazetteer has no relation for. Hubbard & Co. held the Howard agency first and advertised it in the plural over the firm's signature: 'THE subscribers having been appointed AGENTS for the Howard Fire Insurance Company of the city of New-York … HUBBARD & CO.', copy-dated July 1 and standing from 1834-07-02 c048 through 1834-10-15 c005 to 1835-05-20 c023. From 1835-06-20 c015 the identical copy runs in the SINGULAR over one man — 'THE subscriber having been appointed agent … E. K. HUBBARD.' — and the forwarding house goes on trading under its own name to 1835-08-29 c004. So the two records are live at once, in two trades, over two signatures: a commission and forwarding house whose named partners are Gurdon S. Hubbard and Henry G. Hubbard, and a one-man fire-insurance agency signed E. K. Hubbard, initials neither partner carries. This project never reads a shared surname with different initials as one man, so nothing here makes E. K. a partner in the firm and no merge may assert it. The succession of the agency is real and is the part that cannot be written down at all: T-0410 is filed for the relation."
         }
       ],
       "built_at_scene_date": true,
@@ -63070,70 +63001,6 @@
             "offset_text": "Hi’ opening on Dearborn street, one door | |\nsouth of Meesrs. Newberry & Dole'a store |",
             "offset_normalized": "opening on Dearborn street, one door south of Messrs. Newberry & Dole's store",
             "street": "Dearborn Street"
-          }
-        }
-      ],
-      "built_at_scene_date": true,
-      "survival_liberty_required": true
-    },
-    {
-      "id": "business_j_bates_jr",
-      "name": "J. Bates, Jr.",
-      "proprietors": [
-        "J. Bates, Jr."
-      ],
-      "trade": "merchant",
-      "goods": [
-        "Bell",
-        "Blasting Powder",
-        "Crowbars"
-      ],
-      "street": null,
-      "placement": {
-        "class": "none",
-        "note": "No street in this advertisement. c015 puts the same advertiser 'at the P. O[ffice]', which is a different notice."
-      },
-      "evidence": {
-        "first_issue": "1833-11-26",
-        "last_issue": "1833-11-26",
-        "copy_dates": [
-          "1833-11-26"
-        ]
-      },
-      "contradicted_by": [],
-      "opening_announced": [],
-      "mentions": [
-        "chicago_democrat_1833_11_26#c007",
-        "chicago_democrat_1833_11_26#c021"
-      ],
-      "placement_readings": [
-        {
-          "anchor": null,
-          "class": "none",
-          "first_issue": "1833-11-26",
-          "last_issue": "1833-11-26",
-          "claims": [
-            "chicago_democrat_1833_11_26#c007"
-          ],
-          "placement": {
-            "class": "none",
-            "note": "No street in this advertisement. c015 puts the same advertiser 'at the P. O[ffice]', which is a different notice."
-          }
-        },
-        {
-          "anchor": "the Post Office",
-          "class": "relative",
-          "first_issue": "1833-11-26",
-          "last_issue": "1833-11-26",
-          "claims": [
-            "chicago_democrat_1833_11_26#c021"
-          ],
-          "placement": {
-            "class": "relative",
-            "anchor": "the Post Office",
-            "offset_text": "[uncertain: y Engoite of J, BATES, Jr, at P, OB]",
-            "offset_normalized": "Enquire of J. Bates, Jr., at the P[ost] O[ffice]",
-            "note": "The anchor is the Post Office, whose own position is not in this issue. It places the ADVERTISER, not the business."
           }
         }
       ],
@@ -63298,6 +63165,18 @@
           }
         }
       ],
+      "refused_merges": [
+        {
+          "with": "L. G. Curtiss",
+          "kind": "two_houses",
+          "witnesses": [
+            "chicago_democrat_1835_05_20#c009",
+            "chicago_democrat_1835_07_22#c012",
+            "chicago_democrat_1835_07_29#c015"
+          ],
+          "refused_because": "'J. Curtiss' and 'L. G. Curtiss' are two men, and the surname is dangerous here because a third style, 'L. Curtiss, attorney and counsellor at law', sits between them and shares an initial with each. J. Curtiss is an attorney and counsellor at law and solicitor in chancery whose office is in South Water street, first door west of Messrs. Jones, King & Co., Democrat 1835-05-20 c009, copy-dated 1835-05-18. L. G. Curtiss is deputy surveyor of Cook County and takes his orders at the Mansion House, Democrat 1835-07-22 c012 and 1835-07-29 c015. A law office and a county surveyor's practice are two houses and no printing joins them."
+        }
+      ],
       "built_at_scene_date": true,
       "survival_liberty_required": false
     },
@@ -63339,6 +63218,17 @@
             "anchor": "Jones, King & Co.'s store",
             "offset_text": "in A Bre Ore Meters, Joms, Kina & Co,"
           }
+        }
+      ],
+      "refused_merges": [
+        {
+          "with": "L. G. Curtiss, Deputy Surveyor of Cook County",
+          "kind": "two_houses",
+          "witnesses": [
+            "chicago_democrat_1835_08_05#c017",
+            "chicago_democrat_1835_08_05#c011"
+          ],
+          "refused_because": "'J. Curtiss, Attorney and Counsellor at Law' and 'L. G. Curtiss, Deputy Surveyor of Cook County' are the signboard styles of the two houses held apart above, and the refusal is repeated on them because a refusal cannot reach a style it does not name. The Democrat of 1835-08-05 prints both in one issue: the attorney at c017, in South Water street at Jones, King & Co.'s store, and the surveyor at c011, with orders left at the Mansion House. One issue, one surname, two trades, two places."
         }
       ],
       "built_at_scene_date": true,
@@ -63390,88 +63280,18 @@
           }
         }
       ],
-      "built_at_scene_date": true,
-      "survival_liberty_required": true
-    },
-    {
-      "id": "business_j_h_collins_j_d_caton",
-      "name": "J. H. Collins & J. D. Caton",
-      "proprietors": [
-        "J. H. Collins & J. D. C[aton]"
-      ],
-      "trade": "attorneys and counsellors at law, solicitors in chancery",
-      "goods": [],
-      "street": "South Water Street",
-      "placement": {
-        "class": "relative",
-        "anchor": "Brewster, Hogan & Co., South Water street",
-        "offset_text": "ast of Brewster, Hogan"
-      },
-      "evidence": {
-        "first_issue": "1834-02-04",
-        "last_issue": "1834-04-01",
-        "copy_dates": [
-          "1834-01-20"
-        ]
-      },
-      "contradicted_by": [],
-      "opening_announced": [],
-      "mentions": [
-        "chicago_democrat_1834_02_04#c009",
-        "chicago_democrat_1834_02_11#c005",
-        "chicago_democrat_1834_04_01#c011"
-      ],
-      "placement_readings": [
+      "refused_merges": [
         {
-          "anchor": "Brewster, Hogan & Co., South Water street",
-          "class": "relative",
-          "first_issue": "1834-02-04",
-          "last_issue": "1834-02-04",
-          "claims": [
-            "chicago_democrat_1834_02_04#c009"
+          "with": "John Dean Caton",
+          "kind": "different_ground",
+          "witnesses": [
+            "chicago_democrat_1833_12_17#c006",
+            "chicago_democrat_1834_01_28#c007",
+            "chicago_democrat_1835_05_20#c014",
+            "chicago_democrat_1835_07_22#c003",
+            "chicago_democrat_1835_07_29#c006"
           ],
-          "placement": {
-            "class": "relative",
-            "anchor": "Brewster, Hogan & Co., South Water street",
-            "offset_text": "ast of Brewster, Hogan"
-          }
-        },
-        {
-          "anchor": "Brewster, Hogan & Co., South Water-street",
-          "class": "relative",
-          "first_issue": "1834-02-11",
-          "last_issue": "1834-02-11",
-          "claims": [
-            "chicago_democrat_1834_02_11#c005"
-          ],
-          "placement": {
-            "class": "relative",
-            "anchor": "Brewster, Hogan & Co., South Water-street",
-            "offset_text": "door east. of Brewster, Hogan & C:"
-          }
-        },
-        {
-          "anchor": null,
-          "class": "street_only",
-          "first_issue": "1834-04-01",
-          "last_issue": "1834-04-01",
-          "claims": [
-            "chicago_democrat_1834_04_01#c011"
-          ],
-          "placement": {
-            "class": "street_only",
-            "street": "South Water Street"
-          }
-        }
-      ],
-      "trade_variants": [
-        "attorneys and counsellors at law, and solicitors in chancery",
-        "attorneys and counsellors at law, solicitors in chancery"
-      ],
-      "merged": [
-        {
-          "from": "J. H. Collins & J. D. Caton, attorneys",
-          "merge_rule": "'J. H. Collins & J. D. Caton' and 'J. H. Collins & J. D. Caton, attorneys' are one card, dated Jan. 20, 1834 on the page in all three printings — 1834-02-04 c009, 1834-02-11 c005 and 1834-04-01 c011 — placing the office east of Brewster, Hogan & Co. in South Water street. The April setting lost the ordinal and was recorded `street_only`; the merge brings the street to the record that kept the offset. Whether this house and 'Collins & Caton' are one is a FORENAME question and belongs to T-0400, not here."
+          "refused_because": "'J. D. Caton, attorney and counsellor at law' and 'John Dean Caton' are one man read twice and they are NOT one standing office, because the papers put the two styles in different streets and nineteen months apart. The initialled style is the solo practice of December 1833, one door east of Brewster, Hogan & Co. in South Water Street (1833-12-17 c006) — the only printing in this corpus that puts Brewster, Hogan & Co. on a street at all. Between the two stands the partnership: Collins & Caton takes that same South Water frontage from January 1834 (1834-01-28 c007) and is still advertising in May 1835 (1835-05-20 c014). Only then does 'John Dean Caton' appear, in Dearborn Street, in July 1835 (1835-07-22 c003, 1835-07-29 c006). A practice that moved is documented by a removal notice and this corpus holds none for Caton, so the two frontages stay two records and the succession is read off the claims rather than asserted by a merge. The forename form is not what refuses this one — the ground is."
         }
       ],
       "built_at_scene_date": true,
@@ -63525,6 +63345,28 @@
             "offset_normalized": null,
             "street": null
           }
+        }
+      ],
+      "refused_merges": [
+        {
+          "with": "R. A. Kinzie",
+          "kind": "two_houses",
+          "witnesses": [
+            "chicago_american_1835_06_20#c005",
+            "chicago_democrat_1833_12_10#c008",
+            "chicago_democrat_1834_02_18#c004",
+            "chicago_democrat_1834_03_18#c010"
+          ],
+          "refused_because": "'J. H. Kinzie, merchant' and 'R. A. Kinzie' are two men of one family. The J. H. card is the American's, 1835-06-20 c005, copy-dated 1835-06-08, offering lumber, nails and salt; R. A. Kinzie's is the Democrat's, 1834-02-18 c004 and 1834-03-18 c010, copy-dated 1834-02-17, and names no trade but 'merchant'. The Democrat of 1833-12-10 shows the family plural in a single issue (c008 names R. A. Kinzie), so the initials are the only thing telling these two apart and they differ. The register also carries 'John H. Kinzie' as a second style of the J. H. house; joining those two is a merge and it is not this section's to assert."
+        },
+        {
+          "with": "John S. Kinzie, forwarding and commission merchant",
+          "kind": "not_joined",
+          "witnesses": [
+            "chicago_american_1835_06_20#c005",
+            "chicago_democrat_1833_12_10#c012"
+          ],
+          "refused_because": "'J. H. Kinzie, merchant' and 'John S. Kinzie, forwarding and commission merchant' are not shown to be one house. They share a surname and nothing else that is legible: the J. H. card sells lumber, nails and salt in the American of 1835-06-20 c005, and the John S. card is a forwarding and commission card in the Democrat of 1833-12-10 c012 whose middle initial is printed '8' on a page wrecked by the column rule. Eighteen months and two trades stand between them and no printing puts them under one roof."
         }
       ],
       "built_at_scene_date": true,
@@ -63630,6 +63472,19 @@
             "offset_normalized": "cheap Store, one door West of the Printin[g office]",
             "street": null
           }
+        }
+      ],
+      "refused_merges": [
+        {
+          "with": "[uncertain: J. I. Mulford], carriage and sleigh maker",
+          "kind": "two_houses",
+          "witnesses": [
+            "chicago_democrat_1834_06_04#c004",
+            "chicago_democrat_1834_07_02#c022",
+            "chicago_democrat_1834_07_02#c059",
+            "chicago_democrat_1835_08_12#c013"
+          ],
+          "refused_because": "'J. H. Mulford' and '[uncertain: J. I. Mulford], carriage and sleigh maker' are two houses, and the contested middle initial is not what says so — the trades are. J. H. Mulford keeps a watch, jewelry, engraving and fancy goods store one door west of the Printing Office in South Water street, five printings from 1834-06-04 c004 to 1835-08-12 c013 with copy dates of 1834-06-04, 1834-09-17 and 1835-05-01. The carriage and sleigh maker's notice is copy-dated 1834-05-27, printed once at 1834-07-02 c059, and it is a manufactory: carriages and sleighs made and repaired. The two even share an issue — 1834-07-02 carries the jeweller at c022 and the carriage maker at c059 — and a jeweller's counter is not a wheelwright's yard. The surname group is the only thing that proposed they might be."
         }
       ],
       "built_at_scene_date": true,
@@ -64191,6 +64046,7 @@
       "opening_announced": [],
       "mentions": [
         "chicago_democrat_1834_03_25#c010",
+        "chicago_democrat_1834_06_11#c002",
         "chicago_democrat_1834_08_13#c017",
         "chicago_democrat_1834_08_20#c007",
         "chicago_democrat_1834_09_03#c023",
@@ -64212,6 +64068,22 @@
           "placement": {
             "class": "street_only",
             "anchor": null
+          }
+        },
+        {
+          "anchor": null,
+          "class": "none",
+          "first_issue": "1834-06-11",
+          "last_issue": "1834-06-11",
+          "claims": [
+            "chicago_democrat_1834_06_11#c002"
+          ],
+          "placement": {
+            "class": "none",
+            "anchor": null,
+            "offset_text": null,
+            "offset_normalized": null,
+            "street": null
           }
         },
         {
@@ -64238,6 +64110,16 @@
           }
         }
       ],
+      "trade_variants": [
+        "general store",
+        "general store and post office"
+      ],
+      "merged": [
+        {
+          "from": "John S. C. Hogan",
+          "merge_rule": "'John S. C. Hogan' is 'J. S. C. Hogan' with the forename printed whole, and the printing that ties the two forms is the Brewster, Hogan & Co. dissolution — set at 1834-03-04 c010 and again at 1834-06-11 c002, where the record 'John S. C. Hogan' comes from. Its tail reads 'The business will be continued at the old stand, by Jno. S. C. Hogan, where he intends keeping on hand a general assortment as heretofore', the March printing puts the dissolved firm's stand in South Water Street, and from 25 March 1834 (c010) 'J. S. C. HOGAN' advertises on his own account in that street, with 'general assortment' among the goods, one door from the Post Office he kept (1834-08-13 c017). Same man, same trade, same street, three weeks apart. Merged INTO 'J. S. C. Hogan': that is the record that can be placed — the succession notice states no address at all, and the merge does not give it one, since the Post Office anchor it inherits is the store's own printing and not the notice's."
+        }
+      ],
       "built_at_scene_date": true,
       "survival_liberty_required": false
     },
@@ -64257,7 +64139,7 @@
       },
       "evidence": {
         "first_issue": "1834-03-04",
-        "last_issue": "1834-03-25",
+        "last_issue": "1834-04-08",
         "copy_dates": [
           "1834-03-04",
           "1834-03-25"
@@ -64273,27 +64155,44 @@
           "claim": "chicago_democrat_1834_03_25#c004",
           "kind": "notice",
           "issue": "1834-03-25"
+        },
+        {
+          "claim": "chicago_democrat_1834_04_08#c013",
+          "kind": "notice",
+          "issue": "1834-04-08"
         }
       ],
       "opening_announced": [],
       "mentions": [
         "chicago_democrat_1834_03_04#c011",
-        "chicago_democrat_1834_03_25#c004"
+        "chicago_democrat_1834_03_25#c004",
+        "chicago_democrat_1834_04_08#c013"
       ],
       "placement_readings": [
         {
           "anchor": null,
           "class": "none",
           "first_issue": "1834-03-04",
-          "last_issue": "1834-03-25",
+          "last_issue": "1834-04-08",
           "claims": [
             "chicago_democrat_1834_03_04#c011",
-            "chicago_democrat_1834_03_25#c004"
+            "chicago_democrat_1834_03_25#c004",
+            "chicago_democrat_1834_04_08#c013"
           ],
           "placement": {
             "class": "none",
             "anchor": null
           }
+        }
+      ],
+      "trade_variants": [
+        "co-partnership, trade not stated",
+        "unstated — the notice announces only its closing"
+      ],
+      "merged": [
+        {
+          "from": "John Wellmaker & Co.",
+          "merge_rule": "One printing names both styles, which is as direct as this evidence gets: the dissolution notice filed under 'J. Wellmaker & Co.' at 1834-03-25 c004 reads 'the co-partnership existing between the subscriber and William Adams, under the firm of John Wellmaker [& Co.]', and 1834-04-08 c013 is that same notice reprinted, copy-dated March 4, 1834, 'under the firm of John Wellmaker & Co.' and signed JOHN WELLMAKER. So 'John Wellmaker & Co.' is the firm style the notice sets out and 'J. Wellmaker & Co.' is how the same man signed the closing notice of 4 March (1834-03-04 c011, 'J. WELLMAKER & Co.'). Same surname, same dissolution, one week's remove. Merged INTO 'J. Wellmaker & Co.' because neither style can be placed — no printing gives this house a street — and that record holds both March notices and both partners, John Wellmaker and William Adams, where the other names only the subscriber. Both sides are contradicted notices and the merge keeps both contradictions, so the house stays out of the 1835 town."
         }
       ],
       "built_at_scene_date": false,
@@ -64346,6 +64245,18 @@
             "offset_normalized": null,
             "street": null
           }
+        }
+      ],
+      "refused_merges": [
+        {
+          "with": "John Wright",
+          "kind": "not_joined",
+          "witnesses": [
+            "chicago_democrat_1833_11_26#c009",
+            "chicago_democrat_1834_07_02#c020",
+            "chicago_american_1835_07_11#c004"
+          ],
+          "refused_because": "'John Wright' and 'J. Wright, merchant' are one surname with the forename whole against the forename initialled, and no printing puts them under one roof — which is not the same finding as two men. 'John Wright' is a Democrat advertiser from November 1833 to July 1834, cut nails from 3d to 20d (1833-11-26 c009) and then a New-York invoice of broadcloths, calicoes, crockery and groceries offered wholesale and retail (1834-07-02 c020, copy-dated May 28, 1834); his claims record the absence of an address as a fact — four advertisements in one issue and not one street. 'J. Wright, merchant' is an American advertiser twelve months later, in July 1835, selling sole and upper leather, salt and oak scantling (1835-07-11 c004), and he is on South Water Street because the auction room places itself east of him. Same town, same surname, different paper, a year's gap, and a different line of goods; nothing printed joins the two forms. Refused until a printing does."
         }
       ],
       "built_at_scene_date": true,
@@ -64402,10 +64313,14 @@
       "id": "business_john_bates_jr",
       "name": "John Bates, Jr.",
       "proprietors": [
-        "John Bates, Jr."
+        "John Bates, Jr.",
+        "J. Bates, Jr."
       ],
       "trade": "auctioneer",
       "goods": [
+        "Bell",
+        "Blasting Powder",
+        "Crowbars",
         "blasting powder",
         "steel pointed crowbars"
       ],
@@ -64416,46 +64331,61 @@
         "offset_text": "4, BATES, Jr, at P, Offen,"
       },
       "evidence": {
-        "first_issue": "1834-03-04",
+        "first_issue": "1833-11-26",
         "last_issue": "1834-06-11",
-        "copy_dates": []
+        "copy_dates": [
+          "1833-11-26"
+        ]
       },
       "contradicted_by": [],
       "opening_announced": [],
       "mentions": [
+        "chicago_democrat_1833_11_26#c007",
+        "chicago_democrat_1833_11_26#c021",
         "chicago_democrat_1834_03_04#c024",
         "chicago_democrat_1834_06_11#c015"
       ],
       "placement_readings": [
         {
+          "anchor": null,
+          "class": "none",
+          "first_issue": "1833-11-26",
+          "last_issue": "1834-06-11",
+          "claims": [
+            "chicago_democrat_1833_11_26#c007",
+            "chicago_democrat_1834_06_11#c015"
+          ],
+          "placement": {
+            "class": "none",
+            "note": "No street in this advertisement. c015 puts the same advertiser 'at the P. O[ffice]', which is a different notice."
+          }
+        },
+        {
           "anchor": "the Post Office",
           "class": "relative",
-          "first_issue": "1834-03-04",
+          "first_issue": "1833-11-26",
           "last_issue": "1834-03-04",
           "claims": [
+            "chicago_democrat_1833_11_26#c021",
             "chicago_democrat_1834_03_04#c024"
           ],
           "placement": {
             "class": "relative",
             "anchor": "the Post Office",
-            "offset_text": "4, BATES, Jr, at P, Offen,"
+            "offset_text": "[uncertain: y Engoite of J, BATES, Jr, at P, OB]",
+            "offset_normalized": "Enquire of J. Bates, Jr., at the P[ost] O[ffice]",
+            "note": "The anchor is the Post Office, whose own position is not in this issue. It places the ADVERTISER, not the business."
           }
-        },
+        }
+      ],
+      "trade_variants": [
+        "auctioneer",
+        "merchant"
+      ],
+      "merged": [
         {
-          "anchor": null,
-          "class": "none",
-          "first_issue": "1834-06-11",
-          "last_issue": "1834-06-11",
-          "claims": [
-            "chicago_democrat_1834_06_11#c015"
-          ],
-          "placement": {
-            "class": "none",
-            "anchor": null,
-            "offset_text": null,
-            "offset_normalized": null,
-            "street": null
-          }
+          "from": "J. Bates, Jr.",
+          "merge_rule": "'J. Bates, Jr.' and 'John Bates, Jr.' are one advertiser, and the register holds them apart only because a third notice prints the forename whole. The same advertisement runs on both sides of the split: 'For Sale, 12 KEGS BLASTING POWDER … 16 heavy Steel Pointed CROWBARS … Enquire of J. BATES, Jr.' at 1833-11-26 c007, and 'For Sale, [7] KEGS BLASTING POWDER, and 16 heavy Steel Pointed CROWBARS. Enquire of J. BATES, Jr., at P. Office' at 1834-03-04 c024 — the same sixteen crowbars, the kegs down from twelve to seven, and BOTH signed with the initial. The Post Office anchor is on both records as well (1833-11-26 c021 'Enquire of J. Bates, Jr., at the P[ost] O[ffice]'). Merged INTO 'John Bates, Jr.' because that record can be placed — its live reading is the Post Office relative — and because its trade is the one the papers actually name, the auctioneer's licence of Jan. 25 (1834-06-11 c015); the 'merchant' of the other record is the extractor's and its own claim says no trade is stated."
         }
       ],
       "built_at_scene_date": true,
@@ -64546,6 +64476,20 @@
             "class": "street_only",
             "street": "Dearborn Street"
           }
+        }
+      ],
+      "refused_merges": [
+        {
+          "with": "J. D. Caton, attorney and counsellor at law",
+          "kind": "different_ground",
+          "witnesses": [
+            "chicago_democrat_1833_12_17#c006",
+            "chicago_democrat_1834_01_28#c007",
+            "chicago_democrat_1835_05_20#c014",
+            "chicago_democrat_1835_07_22#c003",
+            "chicago_democrat_1835_07_29#c006"
+          ],
+          "refused_because": "'J. D. Caton, attorney and counsellor at law' and 'John Dean Caton' are one man read twice and they are NOT one standing office, because the papers put the two styles in different streets and nineteen months apart. The initialled style is the solo practice of December 1833, one door east of Brewster, Hogan & Co. in South Water Street (1833-12-17 c006) — the only printing in this corpus that puts Brewster, Hogan & Co. on a street at all. Between the two stands the partnership: Collins & Caton takes that same South Water frontage from January 1834 (1834-01-28 c007) and is still advertising in May 1835 (1835-05-20 c014). Only then does 'John Dean Caton' appear, in Dearborn Street, in July 1835 (1835-07-22 c003, 1835-07-29 c006). A practice that moved is documented by a removal notice and this corpus holds none for Caton, so the two frontages stay two records and the succession is read off the claims rather than asserted by a merge. The forename form is not what refuses this one — the ground is."
         }
       ],
       "built_at_scene_date": true,
@@ -64725,6 +64669,33 @@
           }
         }
       ],
+      "refused_merges": [
+        {
+          "with": "R. A. Kinzie",
+          "kind": "two_houses",
+          "witnesses": [
+            "chicago_democrat_1833_12_10#c008",
+            "chicago_democrat_1833_12_10#c009",
+            "chicago_democrat_1834_02_18#c004",
+            "chicago_democrat_1834_03_18#c010",
+            "chicago_democrat_1834_04_16#c003",
+            "chicago_democrat_1834_05_07#c008",
+            "chicago_democrat_1835_07_29#c007"
+          ],
+          "refused_because": "'John H. Kinzie' and 'R. A. Kinzie' are two men of one family and the surname is the whole of what they share. The Kinzies are the largest family in the corpus and the Democrat of 1833-12-10 prints two of them on one page: 'Mr. R. A. Kinzie' stands in John Wellmaker's Man Trap notice (c008) and 'JAS. KINZIE' in a building notice beside it (c009). R. A. Kinzie's own card runs at 1834-02-18 c004 and 1834-03-18 c010, copy-dated 1834-02-17, and gives no trade beyond 'merchant'. John H. Kinzie is the forwarding and commission merchant of the ware house opposite Fort Dearborn, nine printings from 1834-04-16 c003 to 1835-07-29 c007, signing 'JOHN H. KINZIE' whole at 1834-05-07 c008. Two cards, two trades, two standing notices, and no printing joins them. One paper naming two men of a surname on one day is the plainest thing a surname group can be shown, and it is why nothing in this family merges on the name."
+        },
+        {
+          "with": "John S. Kinzie, forwarding and commission merchant",
+          "kind": "not_joined",
+          "witnesses": [
+            "chicago_democrat_1833_12_10#c012",
+            "chicago_democrat_1834_04_16#c003",
+            "chicago_democrat_1834_05_07#c008",
+            "chicago_democrat_1835_07_22#c004"
+          ],
+          "refused_because": "'John H. Kinzie' and 'John S. Kinzie, forwarding and commission merchant' carry one surname and one trade, and this file will not say they are one man on that. The John S. card (1833-12-10 c012) is a name, a trade and a town with no address at all, set under a 'TO LOAN' heading whose own body is lost to the column rule, and its middle initial is printed '8' — a damaged glyph the transcription records as read and does not repair. John H. Kinzie's house is a ware house opposite Fort Dearborn, advertised from 1834-04-16 c003 through 1835-07-22 c004, with the forename set whole at 1834-05-07 c008. To merge here is to assert that the '8' is an H, which is a repair to the page and not a reading of it; and the trade cannot do the joining either, because the note on the John S. card counts FOUR forwarding houses in the town that winter. The honest finding is that nothing joins them, and the page image is what would settle it."
+        }
+      ],
       "built_at_scene_date": true,
       "survival_liberty_required": false
     },
@@ -64824,53 +64795,6 @@
       "survival_liberty_required": false
     },
     {
-      "id": "business_john_s_c_hogan",
-      "name": "John S. C. Hogan",
-      "proprietors": [
-        "John S. C. Hogan"
-      ],
-      "trade": "general store",
-      "goods": [],
-      "street": null,
-      "placement": {
-        "class": "none",
-        "anchor": null,
-        "offset_text": null,
-        "offset_normalized": null,
-        "street": null
-      },
-      "evidence": {
-        "first_issue": "1834-06-11",
-        "last_issue": "1834-06-11",
-        "copy_dates": []
-      },
-      "contradicted_by": [],
-      "opening_announced": [],
-      "mentions": [
-        "chicago_democrat_1834_06_11#c002"
-      ],
-      "placement_readings": [
-        {
-          "anchor": null,
-          "class": "none",
-          "first_issue": "1834-06-11",
-          "last_issue": "1834-06-11",
-          "claims": [
-            "chicago_democrat_1834_06_11#c002"
-          ],
-          "placement": {
-            "class": "none",
-            "anchor": null,
-            "offset_text": null,
-            "offset_normalized": null,
-            "street": null
-          }
-        }
-      ],
-      "built_at_scene_date": true,
-      "survival_liberty_required": true
-    },
-    {
       "id": "business_john_s_kinzie_forwarding_and_commission_merchant",
       "name": "John S. Kinzie, forwarding and commission merchant",
       "proprietors": [
@@ -64910,6 +64834,39 @@
             "offset_text": null,
             "note": "The card gives a name, a trade and a town, and no address at all."
           }
+        }
+      ],
+      "refused_merges": [
+        {
+          "with": "John H. Kinzie",
+          "kind": "not_joined",
+          "witnesses": [
+            "chicago_democrat_1833_12_10#c012",
+            "chicago_democrat_1834_04_16#c003",
+            "chicago_democrat_1834_05_07#c008",
+            "chicago_democrat_1835_07_22#c004"
+          ],
+          "refused_because": "'John H. Kinzie' and 'John S. Kinzie, forwarding and commission merchant' carry one surname and one trade, and this file will not say they are one man on that. The John S. card (1833-12-10 c012) is a name, a trade and a town with no address at all, set under a 'TO LOAN' heading whose own body is lost to the column rule, and its middle initial is printed '8' — a damaged glyph the transcription records as read and does not repair. John H. Kinzie's house is a ware house opposite Fort Dearborn, advertised from 1834-04-16 c003 through 1835-07-22 c004, with the forename set whole at 1834-05-07 c008. To merge here is to assert that the '8' is an H, which is a repair to the page and not a reading of it; and the trade cannot do the joining either, because the note on the John S. card counts FOUR forwarding houses in the town that winter. The honest finding is that nothing joins them, and the page image is what would settle it."
+        },
+        {
+          "with": "R. A. Kinzie",
+          "kind": "two_houses",
+          "witnesses": [
+            "chicago_democrat_1833_12_10#c008",
+            "chicago_democrat_1833_12_10#c012",
+            "chicago_democrat_1834_02_18#c004",
+            "chicago_democrat_1834_03_18#c010"
+          ],
+          "refused_because": "'John S. Kinzie, forwarding and commission merchant' and 'R. A. Kinzie' are two houses, and one issue prints both: the Democrat of 1833-12-10 carries the John S. card at c012 and names 'Mr. R. A. Kinzie' in John Wellmaker's Man Trap notice at c008. R. A. Kinzie then advertises as a merchant in his own right two months later (1834-02-18 c004, 1834-03-18 c010). A forwarding and commission card and a merchant's card, printed side by side under two sets of initials, are not one house."
+        },
+        {
+          "with": "J. H. Kinzie, merchant",
+          "kind": "not_joined",
+          "witnesses": [
+            "chicago_american_1835_06_20#c005",
+            "chicago_democrat_1833_12_10#c012"
+          ],
+          "refused_because": "'J. H. Kinzie, merchant' and 'John S. Kinzie, forwarding and commission merchant' are not shown to be one house. They share a surname and nothing else that is legible: the J. H. card sells lumber, nails and salt in the American of 1835-06-20 c005, and the John S. card is a forwarding and commission card in the Democrat of 1833-12-10 c012 whose middle initial is printed '8' on a page wrecked by the column rule. Eighteen months and two trades stand between them and no printing puts them under one roof."
         }
       ],
       "built_at_scene_date": true,
@@ -64963,55 +64920,6 @@
       ],
       "built_at_scene_date": true,
       "survival_liberty_required": true
-    },
-    {
-      "id": "business_john_wellmaker_co",
-      "name": "John Wellmaker & Co.",
-      "proprietors": [
-        "John Wellmaker"
-      ],
-      "trade": "co-partnership, trade not stated",
-      "goods": [],
-      "street": null,
-      "placement": {
-        "class": "none",
-        "street": null
-      },
-      "evidence": {
-        "first_issue": "1834-04-08",
-        "last_issue": "1834-04-08",
-        "copy_dates": [
-          "1834-03-04"
-        ]
-      },
-      "contradicted_by": [
-        {
-          "claim": "chicago_democrat_1834_04_08#c013",
-          "kind": "notice",
-          "issue": "1834-04-08"
-        }
-      ],
-      "opening_announced": [],
-      "mentions": [
-        "chicago_democrat_1834_04_08#c013"
-      ],
-      "placement_readings": [
-        {
-          "anchor": null,
-          "class": "none",
-          "first_issue": "1834-04-08",
-          "last_issue": "1834-04-08",
-          "claims": [
-            "chicago_democrat_1834_04_08#c013"
-          ],
-          "placement": {
-            "class": "none",
-            "street": null
-          }
-        }
-      ],
-      "built_at_scene_date": false,
-      "survival_liberty_required": false
     },
     {
       "id": "business_john_wright",
@@ -65117,6 +65025,18 @@
             "class": "none",
             "note": "No street in the advertisement."
           }
+        }
+      ],
+      "refused_merges": [
+        {
+          "with": "J. Wright, merchant",
+          "kind": "not_joined",
+          "witnesses": [
+            "chicago_democrat_1833_11_26#c009",
+            "chicago_democrat_1834_07_02#c020",
+            "chicago_american_1835_07_11#c004"
+          ],
+          "refused_because": "'John Wright' and 'J. Wright, merchant' are one surname with the forename whole against the forename initialled, and no printing puts them under one roof — which is not the same finding as two men. 'John Wright' is a Democrat advertiser from November 1833 to July 1834, cut nails from 3d to 20d (1833-11-26 c009) and then a New-York invoice of broadcloths, calicoes, crockery and groceries offered wholesale and retail (1834-07-02 c020, copy-dated May 28, 1834); his claims record the absence of an address as a fact — four advertisements in one issue and not one street. 'J. Wright, merchant' is an American advertiser twelve months later, in July 1835, selling sole and upper leather, salt and oak scantling (1835-07-11 c004), and he is on South Water Street because the auction room places itself east of him. Same town, same surname, different paper, a year's gap, and a different line of goods; nothing printed joins the two forms. Refused until a printing does."
         }
       ],
       "built_at_scene_date": true,
@@ -65229,6 +65149,20 @@
             "offset_normalized": "their store in Water-street, near the bridge",
             "street": "Water Street"
           }
+        }
+      ],
+      "refused_merges": [
+        {
+          "with": "Jones, King & Co.",
+          "kind": "two_houses",
+          "witnesses": [
+            "chicago_democrat_1834_09_10#c008",
+            "chicago_democrat_1834_12_03#c007",
+            "chicago_democrat_1835_05_27#c005",
+            "chicago_democrat_1835_07_08#c009",
+            "chicago_democrat_1835_07_29#c012"
+          ],
+          "refused_because": "'Jones & King' and 'Jones, King & Co.' are two firms, and the '& Co.' is the whole difference: it is a THIRD PARTNER, and the partner-surname guard cannot see him because it strips 'Co.' as a style suffix before it compares. Jones & King is Wm. Jones and Byram King, two partners, selling stoves and hollow ware from their store in Water-street near the bridge (1834-09-10 c008) and glass, sash and blinds priced at four cents (1834-12-03 c007, copy-dated Oct. 2, 1834). Jones, King & Co. is a firm announcing its own formation — 'The undersigned have formed a connection in the mercantile business, under the firm of Jones, King & Co.' — over THREE names, WILLIAM JONES, BYRAM KING and H. B. CLARKE, copy-dated May 26, 1835 (1835-05-27 c005) and standing again at 1835-07-08 c009 and 1835-07-29 c012. This project's own rule for firms is that a partnership IS its partners and a changed one is a different house; a copartnership notice is the strongest possible statement that they changed, and it is a claim about a new firm rather than a spelling of the old one. The succession from the one to the other is real — same two men, same hardware and stove trade, eighteen months apart — and it is read off the two notices, not asserted by a merge."
         }
       ],
       "proprietors_merged": [
@@ -65356,6 +65290,20 @@
             "class": "street_only",
             "anchor": null
           }
+        }
+      ],
+      "refused_merges": [
+        {
+          "with": "Jones & King",
+          "kind": "two_houses",
+          "witnesses": [
+            "chicago_democrat_1834_09_10#c008",
+            "chicago_democrat_1834_12_03#c007",
+            "chicago_democrat_1835_05_27#c005",
+            "chicago_democrat_1835_07_08#c009",
+            "chicago_democrat_1835_07_29#c012"
+          ],
+          "refused_because": "'Jones & King' and 'Jones, King & Co.' are two firms, and the '& Co.' is the whole difference: it is a THIRD PARTNER, and the partner-surname guard cannot see him because it strips 'Co.' as a style suffix before it compares. Jones & King is Wm. Jones and Byram King, two partners, selling stoves and hollow ware from their store in Water-street near the bridge (1834-09-10 c008) and glass, sash and blinds priced at four cents (1834-12-03 c007, copy-dated Oct. 2, 1834). Jones, King & Co. is a firm announcing its own formation — 'The undersigned have formed a connection in the mercantile business, under the firm of Jones, King & Co.' — over THREE names, WILLIAM JONES, BYRAM KING and H. B. CLARKE, copy-dated May 26, 1835 (1835-05-27 c005) and standing again at 1835-07-08 c009 and 1835-07-29 c012. This project's own rule for firms is that a partnership IS its partners and a changed one is a different house; a copartnership notice is the strongest possible statement that they changed, and it is a claim about a new firm rather than a spelling of the old one. The succession from the one to the other is real — same two men, same hardware and stove trade, eighteen months apart — and it is read off the two notices, not asserted by a merge."
         }
       ],
       "proprietors_merged": [
@@ -65570,6 +65518,19 @@
           }
         }
       ],
+      "refused_merges": [
+        {
+          "with": "L. G. Curtiss",
+          "kind": "two_houses",
+          "witnesses": [
+            "chicago_democrat_1835_07_01#c013",
+            "chicago_democrat_1835_05_20#c009",
+            "chicago_democrat_1835_07_22#c012",
+            "chicago_democrat_1835_07_29#c015"
+          ],
+          "refused_because": "'L. Curtiss, attorney and counsellor at law' and 'L. G. Curtiss' are the pair this group exists to trap: one initial apart, both read L, and they are two houses. The attorney's notice at 1835-07-01 c013 is copy-dated 1835-05-18 and stands first door west of Messrs. Jones, King & Co. in South Water street — the same copy date and the same anchor as 'J. Curtiss' at 1835-05-20 c009, which is what makes the L and the J one man's standing advertisement read twice rather than two lawyers. L. G. Curtiss is the deputy surveyor of Cook County, orders left at the Mansion House, 1835-07-22 c012 and 1835-07-29 c015: a different trade in a different place, and the G is printed. Joining the attorney's own two styles is a merge, and this section does not assert it."
+        }
+      ],
       "built_at_scene_date": true,
       "survival_liberty_required": false
     },
@@ -65619,6 +65580,29 @@
           }
         }
       ],
+      "refused_merges": [
+        {
+          "with": "J. Curtiss",
+          "kind": "two_houses",
+          "witnesses": [
+            "chicago_democrat_1835_05_20#c009",
+            "chicago_democrat_1835_07_22#c012",
+            "chicago_democrat_1835_07_29#c015"
+          ],
+          "refused_because": "'J. Curtiss' and 'L. G. Curtiss' are two men, and the surname is dangerous here because a third style, 'L. Curtiss, attorney and counsellor at law', sits between them and shares an initial with each. J. Curtiss is an attorney and counsellor at law and solicitor in chancery whose office is in South Water street, first door west of Messrs. Jones, King & Co., Democrat 1835-05-20 c009, copy-dated 1835-05-18. L. G. Curtiss is deputy surveyor of Cook County and takes his orders at the Mansion House, Democrat 1835-07-22 c012 and 1835-07-29 c015. A law office and a county surveyor's practice are two houses and no printing joins them."
+        },
+        {
+          "with": "L. Curtiss, attorney and counsellor at law",
+          "kind": "two_houses",
+          "witnesses": [
+            "chicago_democrat_1835_07_01#c013",
+            "chicago_democrat_1835_05_20#c009",
+            "chicago_democrat_1835_07_22#c012",
+            "chicago_democrat_1835_07_29#c015"
+          ],
+          "refused_because": "'L. Curtiss, attorney and counsellor at law' and 'L. G. Curtiss' are the pair this group exists to trap: one initial apart, both read L, and they are two houses. The attorney's notice at 1835-07-01 c013 is copy-dated 1835-05-18 and stands first door west of Messrs. Jones, King & Co. in South Water street — the same copy date and the same anchor as 'J. Curtiss' at 1835-05-20 c009, which is what makes the L and the J one man's standing advertisement read twice rather than two lawyers. L. G. Curtiss is the deputy surveyor of Cook County, orders left at the Mansion House, 1835-07-22 c012 and 1835-07-29 c015: a different trade in a different place, and the G is printed. Joining the attorney's own two styles is a merge, and this section does not assert it."
+        }
+      ],
       "built_at_scene_date": true,
       "survival_liberty_required": false
     },
@@ -65660,6 +65644,17 @@
             "anchor": "the Mansion House",
             "offset_text": "On lef at the Mansion House will, be | panetually attended 'to."
           }
+        }
+      ],
+      "refused_merges": [
+        {
+          "with": "J. Curtiss, Attorney and Counsellor at Law",
+          "kind": "two_houses",
+          "witnesses": [
+            "chicago_democrat_1835_08_05#c017",
+            "chicago_democrat_1835_08_05#c011"
+          ],
+          "refused_because": "'J. Curtiss, Attorney and Counsellor at Law' and 'L. G. Curtiss, Deputy Surveyor of Cook County' are the signboard styles of the two houses held apart above, and the refusal is repeated on them because a refusal cannot reach a style it does not name. The Democrat of 1835-08-05 prints both in one issue: the attorney at c017, in South Water street at Jones, King & Co.'s store, and the surveyor at c011, with orders left at the Mansion House. One issue, one surname, two trades, two places."
         }
       ],
       "built_at_scene_date": true,
@@ -66380,11 +66375,11 @@
             "live_at_scene_date": false,
             "placement": {
               "class": "relative",
-              "anchor": "Graves' Tavern",
-              "offset_text": "on Main-street, nearly opposite Graves' Tavern",
+              "anchor": "Graves' Tavern, on Main-street",
+              "offset_text": "n opposite Graves' Tavern, where they Intend",
               "offset_normalized": "on Main-street, nearly opposite Graves' Tavern",
               "street": "Main Street",
-              "note": "A named street AND a named building opposite, which is the strongest form of relative placement this corpus carries."
+              "note": "UNRESOLVED ANCHOR. Neither 'Main-street' nor 'Graves' Tavern' is a feature this reconstruction holds, and neither is mapped onto one that it does."
             }
           },
           {
@@ -66688,9 +66683,9 @@
       "street": "Dearborn Street",
       "placement": {
         "class": "relative",
-        "anchor": "the Tremont House",
-        "offset_text": "the abova business threw doors north of of] ‘fremont House, in Dearborn atteal,",
-        "offset_normalized": "the above business thre[e] doors north of [the T]remont House, in Dearborn [s]t[r]e[et]",
+        "anchor": "three doors north of an unread anchor, in Dearborn Street",
+        "offset_text": "a tue abuve business three doors worth of i,",
+        "offset_normalized": "the above business three doors [n]orth of [uncertain: …]",
         "street": "Dearborn Street"
       },
       "evidence": {
@@ -66757,84 +66752,29 @@
           }
         }
       ],
-      "anchor_change": {
-        "rule": "One anchor, the Tremont House, read three ways and never changing. This is not a dated change and no change is asserted: it is the same standing advertisement over one copy date, and the difference between its printings is the segmenter's, not the advertiser's. The house is therefore placed on the reading that names the anchor — 1835-07-04's — rather than on the 8 June printing that lost it, which is the only printing order would otherwise have offered.",
-        "cannot_say": "WHICH SIDE OF DEARBORN STREET, AND HOW WIDE A DOOR IS. “Three doors north of the Tremont House, in Dearborn street” fixes the street, the direction and the count and states neither the side of the street nor the frontage of a door, and nothing else in this corpus supplies either. Nor does any printing say the Tremont's own door on Dearborn is the one being counted from; the hotel is documented at the north-west corner of Lake and Dearborn and fronts Lake, so the count starts at a flank. The placement this supports is recorded on the structure record and its residual is stated there.",
-        "live_anchor": "the Tremont House",
-        "live_reason": "This house has one declared anchor, read 3 ways between 1835-06-08 and 1835-07-04, so it is the anchor live at the scene date 1835-07-01 and no change is asserted.",
-        "changes": [],
-        "history": [
-          {
-            "anchor": "the Tremont House",
-            "why": "Three printings of ONE advertisement, and the anchor of all three is the Tremont House. The copy is the same in each and carries one dateline, “Chicago, June 8, 1835”: “the above business three doors north of [the T]remont House, in Dearborn [s]t[r]e[et]”. What differs is how much of the hotel's name the segmenter left standing — 1835-06-08 sets “three doors worth of i,” and the anchor is gone, 1835-06-20 sets “thrve doors north o at House” and keeps only the word House, 1835-07-04 sets “threw doors north of of] ‘fremont House” and loses only the initial. The first two readings are records of a FAILURE to read, not names of other landmarks, which is why they are worded as failures; grouping them under the Tremont House asserts nothing about 8 and 20 June beyond that they print the same sentence as 4 July, and each reading keeps its own offset text so no printing's words are lost.",
-            "first_issue": "1835-06-08",
-            "last_issue": "1835-07-04",
-            "readings": [
-              {
-                "anchor": "three doors north of an unread anchor, in Dearborn Street",
-                "class": "relative",
-                "first_issue": "1835-06-08",
-                "last_issue": "1835-06-08",
-                "claims": [
-                  "chicago_american_1835_06_08#c014"
-                ],
-                "placement": {
-                  "class": "relative",
-                  "anchor": "three doors north of an unread anchor, in Dearborn Street",
-                  "offset_text": "a tue abuve business three doors worth of i,",
-                  "offset_normalized": "the above business three doors [n]orth of [uncertain: …]",
-                  "street": "Dearborn Street"
-                }
-              },
-              {
-                "anchor": "an unnamed House, three doors south, in Dearborn Street",
-                "class": "relative",
-                "first_issue": "1835-06-20",
-                "last_issue": "1835-06-20",
-                "claims": [
-                  "chicago_american_1835_06_20#c007"
-                ],
-                "placement": {
-                  "class": "relative",
-                  "anchor": "an unnamed House, three doors south, in Dearborn Street",
-                  "offset_text": "1 above business thrve doors north o at House, in Dearborn street,",
-                  "offset_normalized": "the above business three doors north o[f the … ] House, in Dearborn street",
-                  "street": "Dearborn Street"
-                }
-              },
-              {
-                "anchor": "the Tremont House",
-                "class": "relative",
-                "first_issue": "1835-07-04",
-                "last_issue": "1835-07-04",
-                "claims": [
-                  "chicago_american_1835_07_04#c003"
-                ],
-                "placement": {
-                  "class": "relative",
-                  "anchor": "the Tremont House",
-                  "offset_text": "the abova business threw doors north of of] ‘fremont House, in Dearborn atteal,",
-                  "offset_normalized": "the above business thre[e] doors north of [the T]remont House, in Dearborn [s]t[r]e[et]",
-                  "street": "Dearborn Street"
-                }
-              }
-            ],
-            "claims": [
-              "chicago_american_1835_06_08#c014",
-              "chicago_american_1835_06_20#c007",
-              "chicago_american_1835_07_04#c003"
-            ],
-            "live_at_scene_date": true,
-            "placement": {
-              "class": "relative",
-              "anchor": "the Tremont House",
-              "offset_text": "the abova business threw doors north of of] ‘fremont House, in Dearborn atteal,",
-              "offset_normalized": "the above business thre[e] doors north of [the T]remont House, in Dearborn [s]t[r]e[et]",
-              "street": "Dearborn Street"
-            }
-          }
-        ]
-      },
+      "refused_merges": [
+        {
+          "with": "Peter Cohen's store",
+          "kind": "two_houses",
+          "witnesses": [
+            "chicago_american_1835_06_08#c014",
+            "chicago_american_1835_07_04#c003",
+            "chicago_democrat_1834_01_07#c009"
+          ],
+          "refused_because": "'New York Clothing Store' and \"Peter Cohen's store\" share no partner at all. Both styles END in the word 'store', and `firm_surnames()` takes the last word of a partnership segment as the surname — so the group is made by a trade word and not by a partner. That is the failure being recorded, and it is not a near miss: the 'store' group holds thirteen of the register's businesses, everything whose style happens to end in the word, and it will re-form on the next sweep unless the function changes. On the printings the two are plainly separate. The New York Clothing Store is Tuthill King's clothing house, wholesale and retail, three doors north of an unread anchor in Dearborn Street, American 1835-06-08 c014 through 1835-07-04 c003. Peter Cohen's store is a South Water Street merchant's, Democrat 1834-01-07 c009, and it is the anchor L. W. Montgomery's bootmaking notice stands next door to. Eighteen months, two streets, two proprietors."
+        },
+        {
+          "with": "W. Kimball's New Store",
+          "kind": "two_houses",
+          "witnesses": [
+            "chicago_american_1835_06_08#c014",
+            "chicago_american_1835_06_20#c007",
+            "chicago_democrat_1833_12_10#c002",
+            "chicago_democrat_1834_01_21#c003"
+          ],
+          "refused_because": "'New York Clothing Store' and \"W. Kimball's New Store\" share no partner at all. Both styles END in the word 'store', and `firm_surnames()` takes the last word of a partnership segment as the surname — so the group is made by a trade word and not by a partner. That is the failure being recorded, and it is not a near miss: the 'store' group holds thirteen of the register's businesses, everything whose style happens to end in the word, and it will re-form on the next sweep unless the function changes. The New York Clothing Store is Tuthill King's, clothing wholesale and retail, in Dearborn Street, American 1835-06-08 c014 and 1835-06-20 c007, copy-dated 1835-06-08. W. Kimball's New Store sells dry goods, crockery, hardware and cutlery at the corner of South Water and Clark streets, Democrat 1833-12-10 c002 and 1834-01-21 c003, copy-dated 1833-11-01. Eighteen months apart, two streets, two trades and two proprietors; the word 'New' in one style and the word 'Store' in both are the whole of the resemblance."
+        }
+      ],
       "built_at_scene_date": true,
       "survival_liberty_required": false
     },
@@ -67241,60 +67181,6 @@
       "survival_liberty_required": true
     },
     {
-      "id": "business_p_pruyne",
-      "name": "P. Pruyne",
-      "proprietors": [],
-      "trade": "timber merchant; squared timber and thills",
-      "goods": [],
-      "street": null,
-      "placement": {
-        "class": "none"
-      },
-      "evidence": {
-        "first_issue": "1834-05-07",
-        "last_issue": "1834-05-21",
-        "copy_dates": [
-          "1834-04-22"
-        ]
-      },
-      "contradicted_by": [],
-      "opening_announced": [],
-      "mentions": [
-        "chicago_democrat_1834_05_07#c012",
-        "chicago_democrat_1834_05_21#c001"
-      ],
-      "placement_readings": [
-        {
-          "anchor": null,
-          "class": "none",
-          "first_issue": "1834-05-07",
-          "last_issue": "1834-05-07",
-          "claims": [
-            "chicago_democrat_1834_05_07#c012"
-          ],
-          "placement": {
-            "class": "none"
-          }
-        },
-        {
-          "anchor": "Lasalle and Lake streets",
-          "class": "corner",
-          "first_issue": "1834-05-21",
-          "last_issue": "1834-05-21",
-          "claims": [
-            "chicago_democrat_1834_05_21#c001"
-          ],
-          "placement": {
-            "class": "corner",
-            "anchor": "Lasalle and Lake streets",
-            "street": "Lasalle Street and Lake Street"
-          }
-        }
-      ],
-      "built_at_scene_date": true,
-      "survival_liberty_required": true
-    },
-    {
       "id": "business_p_pruyne_co",
       "name": "P. Pruyne & Co.",
       "proprietors": [
@@ -67405,6 +67291,8 @@
         "chicago_democrat_1834_04_08#c008",
         "chicago_democrat_1834_04_23#c005",
         "chicago_democrat_1834_04_30#c012",
+        "chicago_democrat_1834_05_07#c012",
+        "chicago_democrat_1834_05_21#c001",
         "chicago_democrat_1834_06_04#c019",
         "chicago_democrat_1834_06_11#c012",
         "chicago_democrat_1834_07_02#c009",
@@ -67435,6 +67323,7 @@
           "last_issue": "1835-07-08",
           "claims": [
             "chicago_democrat_1834_02_11#c004",
+            "chicago_democrat_1834_05_07#c012",
             "chicago_democrat_1834_06_11#c012",
             "chicago_democrat_1834_07_02#c009",
             "chicago_democrat_1835_06_10#c011",
@@ -67463,6 +67352,20 @@
           }
         },
         {
+          "anchor": "Lasalle and Lake streets",
+          "class": "corner",
+          "first_issue": "1834-05-21",
+          "last_issue": "1834-05-21",
+          "claims": [
+            "chicago_democrat_1834_05_21#c001"
+          ],
+          "placement": {
+            "class": "corner",
+            "anchor": "Lasalle and Lake streets",
+            "street": "Lasalle Street and Lake Street"
+          }
+        },
+        {
           "anchor": "between Clark and Dearborn streets",
           "class": "relative",
           "first_issue": "1834-06-04",
@@ -67481,12 +67384,17 @@
       ],
       "trade_variants": [
         "pine timber dealing",
+        "timber merchant; squared timber and thills",
         "wholesale and retail store — groceries, hardware, crockery and drugs"
       ],
       "merged": [
         {
           "from": "P. Pruyne & Co. (timber)",
           "merge_rule": "'P. Pruyne & Co. (timber)' is 'P. Pruyne & Co.' with a disambiguator this project's own extractor added, and its single claim — 1834-06-11 c012 — is one more printing of the timber notice the surviving record already carries three times over at 1834-04-23 c005, 1834-04-30 c012 and 1834-07-02 c009, all four announcing the arrangement with Mr. A. M'Gregor for pine timber from 12 to 60 feet. One house, one notice, no second stand."
+        },
+        {
+          "from": "P. Pruyne",
+          "merge_rule": "'P. Pruyne' is 'P. Pruyne & Co.' with the '& Co.' not set, and ONE advertisement is printed under both signatures. The timber notice copy-dated Ap'l. 22 runs on the '& Co.' side at 1834-04-23 c005 and 1834-04-30 c012 — 'THE subscribers having this day made an arrangement with Mr. A. McGregor … Pine Timber from 12 to 60 feet in length', signed '[P.] PRUYNE & CO.' — and on the other side at 1834-05-07 c012 as '[The] subscribers having this da[y] … from 12 to 60 f[eet] in [length,] from 6 to 14 in square. Thills supplied on short notice. Ap'l. 22. P PRUYNE'. Same opening words, same length range, same copy date, and a PLURAL subscriber over a singular signature. The house-for-sale notice at 1834-05-21 c001 carries the same copy date and the same plural — 'WE offer for sale the House on the corner of Lasalle and Lake streets' over 'Ap'l. 22. P. PRUYNE'. The surviving record already carries 'pine timber dealing' among its trades from the (timber) merge, so this is the third printing of a house the register had split three ways. Merged INTO 'P. Pruyne & Co.' because that is the record that can be placed: its store stands between Clark and Dearborn streets across four printings, while the other's live placement is `none`. ONE CAUTION THE MERGE CANNOT FIX HERE: the Lasalle-and-Lake corner it brings across is a house Pruyne OFFERS FOR SALE, not his own stand — 1834-05-21 c001 is a `building` claim and he signs it as vendor — so that reading must not be read as a second frontage for this firm. It does not become the live placement (its class outranks nothing, the source record's live placement being `none`), but it does stand in `placement_readings`, and T-0412 carries the machinery question."
         }
       ],
       "built_at_scene_date": true,
@@ -67730,6 +67638,28 @@
             "offset_normalized": null,
             "street": "South Water Street"
           }
+        }
+      ],
+      "refused_merges": [
+        {
+          "with": "New York Clothing Store",
+          "kind": "two_houses",
+          "witnesses": [
+            "chicago_american_1835_06_08#c014",
+            "chicago_american_1835_07_04#c003",
+            "chicago_democrat_1834_01_07#c009"
+          ],
+          "refused_because": "'New York Clothing Store' and \"Peter Cohen's store\" share no partner at all. Both styles END in the word 'store', and `firm_surnames()` takes the last word of a partnership segment as the surname — so the group is made by a trade word and not by a partner. That is the failure being recorded, and it is not a near miss: the 'store' group holds thirteen of the register's businesses, everything whose style happens to end in the word, and it will re-form on the next sweep unless the function changes. On the printings the two are plainly separate. The New York Clothing Store is Tuthill King's clothing house, wholesale and retail, three doors north of an unread anchor in Dearborn Street, American 1835-06-08 c014 through 1835-07-04 c003. Peter Cohen's store is a South Water Street merchant's, Democrat 1834-01-07 c009, and it is the anchor L. W. Montgomery's bootmaking notice stands next door to. Eighteen months, two streets, two proprietors."
+        },
+        {
+          "with": "W. Kimball's New Store",
+          "kind": "two_houses",
+          "witnesses": [
+            "chicago_democrat_1834_01_07#c009",
+            "chicago_democrat_1833_12_10#c002",
+            "chicago_democrat_1834_01_21#c003"
+          ],
+          "refused_because": "\"Peter Cohen's store\" and \"W. Kimball's New Store\" share no partner at all. Both styles END in the word 'store', and `firm_surnames()` takes the last word of a partnership segment as the surname — so the group is made by a trade word and not by a partner. That is the failure being recorded, and it is not a near miss: the 'store' group holds thirteen of the register's businesses, everything whose style happens to end in the word, and it will re-form on the next sweep unless the function changes. Both stand in South Water Street and that is the one thing that makes this pair worth writing down rather than dismissing: the street cannot separate them, so the printings have to. Peter Cohen's store is a merchant's, Democrat 1834-01-07 c009, with the street and no closer address. W. Kimball's New Store is at the CORNER of South Water and Clark streets, Democrat 1833-12-10 c002 and 1834-01-21 c003, copy-dated 1833-11-01, and sells dry goods, crockery, hardware and cutlery. Two proprietors are named, neither is the other, and no printing puts them under one roof."
         }
       ],
       "built_at_scene_date": true,
@@ -68096,6 +68026,44 @@
           "placement": {
             "class": "none"
           }
+        }
+      ],
+      "refused_merges": [
+        {
+          "with": "John H. Kinzie",
+          "kind": "two_houses",
+          "witnesses": [
+            "chicago_democrat_1833_12_10#c008",
+            "chicago_democrat_1833_12_10#c009",
+            "chicago_democrat_1834_02_18#c004",
+            "chicago_democrat_1834_03_18#c010",
+            "chicago_democrat_1834_04_16#c003",
+            "chicago_democrat_1834_05_07#c008",
+            "chicago_democrat_1835_07_29#c007"
+          ],
+          "refused_because": "'John H. Kinzie' and 'R. A. Kinzie' are two men of one family and the surname is the whole of what they share. The Kinzies are the largest family in the corpus and the Democrat of 1833-12-10 prints two of them on one page: 'Mr. R. A. Kinzie' stands in John Wellmaker's Man Trap notice (c008) and 'JAS. KINZIE' in a building notice beside it (c009). R. A. Kinzie's own card runs at 1834-02-18 c004 and 1834-03-18 c010, copy-dated 1834-02-17, and gives no trade beyond 'merchant'. John H. Kinzie is the forwarding and commission merchant of the ware house opposite Fort Dearborn, nine printings from 1834-04-16 c003 to 1835-07-29 c007, signing 'JOHN H. KINZIE' whole at 1834-05-07 c008. Two cards, two trades, two standing notices, and no printing joins them. One paper naming two men of a surname on one day is the plainest thing a surname group can be shown, and it is why nothing in this family merges on the name."
+        },
+        {
+          "with": "John S. Kinzie, forwarding and commission merchant",
+          "kind": "two_houses",
+          "witnesses": [
+            "chicago_democrat_1833_12_10#c008",
+            "chicago_democrat_1833_12_10#c012",
+            "chicago_democrat_1834_02_18#c004",
+            "chicago_democrat_1834_03_18#c010"
+          ],
+          "refused_because": "'John S. Kinzie, forwarding and commission merchant' and 'R. A. Kinzie' are two houses, and one issue prints both: the Democrat of 1833-12-10 carries the John S. card at c012 and names 'Mr. R. A. Kinzie' in John Wellmaker's Man Trap notice at c008. R. A. Kinzie then advertises as a merchant in his own right two months later (1834-02-18 c004, 1834-03-18 c010). A forwarding and commission card and a merchant's card, printed side by side under two sets of initials, are not one house."
+        },
+        {
+          "with": "J. H. Kinzie, merchant",
+          "kind": "two_houses",
+          "witnesses": [
+            "chicago_american_1835_06_20#c005",
+            "chicago_democrat_1833_12_10#c008",
+            "chicago_democrat_1834_02_18#c004",
+            "chicago_democrat_1834_03_18#c010"
+          ],
+          "refused_because": "'J. H. Kinzie, merchant' and 'R. A. Kinzie' are two men of one family. The J. H. card is the American's, 1835-06-20 c005, copy-dated 1835-06-08, offering lumber, nails and salt; R. A. Kinzie's is the Democrat's, 1834-02-18 c004 and 1834-03-18 c010, copy-dated 1834-02-17, and names no trade but 'merchant'. The Democrat of 1833-12-10 shows the family plural in a single issue (c008 names R. A. Kinzie), so the initials are the only thing telling these two apart and they differ. The register also carries 'John H. Kinzie' as a second style of the J. H. house; joining those two is a merge and it is not this section's to assert."
         }
       ],
       "built_at_scene_date": true,
@@ -68654,29 +68622,47 @@
       "id": "business_s_abell_attorney_and_counsellor",
       "name": "S. Abell, attorney and counsellor",
       "proprietors": [
-        "S. Abell"
+        "S. Abell",
+        "Abell"
       ],
       "trade": "attorney, counsellor and land conveyancer",
       "goods": [],
-      "street": null,
+      "street": "Dearborn Street",
       "placement": {
-        "class": "none",
-        "anchor": null,
-        "offset_text": null,
-        "offset_normalized": null,
-        "street": null
+        "class": "relative",
+        "anchor": "the \"Eagle Coffee House\"",
+        "offset_text": "aq Harmon. in Dearborn street,\nof the \"Eaglo Coffee House.\"",
+        "offset_normalized": "[…] Harmon, in Dearborn street, […] of the \"Eagle Coffee House\"",
+        "street": "Dearborn Street"
       },
       "evidence": {
-        "first_issue": "1835-08-01",
+        "first_issue": "1835-06-24",
         "last_issue": "1835-08-01",
         "copy_dates": []
       },
       "contradicted_by": [],
       "opening_announced": [],
       "mentions": [
-        "chicago_american_1835_08_01#c003"
+        "chicago_american_1835_08_01#c003",
+        "chicago_democrat_1835_06_24#c006"
       ],
       "placement_readings": [
+        {
+          "anchor": "the \"Eagle Coffee House\"",
+          "class": "relative",
+          "first_issue": "1835-06-24",
+          "last_issue": "1835-06-24",
+          "claims": [
+            "chicago_democrat_1835_06_24#c006"
+          ],
+          "placement": {
+            "class": "relative",
+            "anchor": "the \"Eagle Coffee House\"",
+            "offset_text": "aq Harmon. in Dearborn street,\nof the \"Eaglo Coffee House.\"",
+            "offset_normalized": "[…] Harmon, in Dearborn street, […] of the \"Eagle Coffee House\"",
+            "street": "Dearborn Street"
+          }
+        },
         {
           "anchor": null,
           "class": "none",
@@ -68692,6 +68678,16 @@
             "offset_normalized": null,
             "street": null
           }
+        }
+      ],
+      "trade_variants": [
+        "attorney and counsellor at law, and law conveyancing",
+        "attorney, counsellor and land conveyancer"
+      ],
+      "merged": [
+        {
+          "from": "Abell",
+          "merge_rule": "'S. Abell, attorney and counsellor' and 'Abell' are one law office's standing card in the two papers, and the bare surname is only the forename lost off a damaged line. The Democrat of 1835-06-24 c006 survives as every OTHER line of itself — '[…] ABELL, [ATTORNEY &] COUNSELLOR AT LA[W,] [CHIC]AGO, ILLINOIS, [attending] strictly to his profession[, he] hopes [for a share of public pa]tronage. Law Conveyancing [done with ac]curacy and despatch.' — and the American of 1835-08-01 c003 sets the same six clauses in the same order with the name whole: 'S. ABELL, [AT]TORNEY AND COUNSELLOR AT [LAW]. [CH]ICAGO, ILLINO[IS]. [B]y [devoting himself e]ntir[e]ly to his profession [he solicits a share of public] patronage. Land Conveyanc[ing done w]ith [ne]a[t]n[e]s[s] and de[s]patch.' Conveyancing named as a line of business is what makes the pair unmistakable: the American's own claim note records it as the FIRST of the town's law cards to advertise it, so the Democrat's card six weeks earlier is not a second lawyer doing the same rare thing. This corpus names no other Abell. Merged INTO the styled record because it is the one printing that sets the forename initial at all, and the Dearborn Street reading the Democrat holds survives the merge under `placement_rank` — nothing is placed here that the damaged line did not already say, and its missing preposition stays missing."
         }
       ],
       "built_at_scene_date": true,
@@ -69409,6 +69405,17 @@
           }
         }
       ],
+      "refused_merges": [
+        {
+          "with": "Chicago & St. Joseph Packet (schooner Llewellyn)",
+          "kind": "two_houses",
+          "witnesses": [
+            "chicago_democrat_1835_05_27#c013",
+            "chicago_democrat_1834_08_06#c007"
+          ],
+          "refused_because": "'Chicago & St. Joseph Packet (schooner Llewellyn)' and 'The Chicago and St. Joseph packet, schooner Phillips' are two vessels on one route, not one house under two styles — and they are the clearest case in this file of a group made entirely of words. `firm_surnames()` splits on '&' and on 'and', so the route's own name yields 'Chicago' and 'packet' as its partners and every style naming the route joins the group. The Llewellyn is Clark's, master, advertised in the Democrat of 1835-05-27 c013 and copy-dated 1835-05-25, carrying freight and passengers between Chicago and the mouth of the St. Joseph. The Phillips is advertised nine months earlier, Democrat 1834-08-06 c007, with application on board or at the store of Messrs Newberry & Dole. A packet line names its schooner because the schooner is the thing that sails, and two names are two hulls."
+        }
+      ],
       "built_at_scene_date": true,
       "survival_liberty_required": true
     },
@@ -69844,6 +69851,19 @@
             "offset_normalized": "nearly opposite the Chicago Hotel",
             "note": "'Nearly opposite' is across a street from a named hotel, so it fixes a frontage and a side and not a lot."
           }
+        }
+      ],
+      "refused_merges": [
+        {
+          "with": "Eagle Hotel",
+          "kind": "two_houses",
+          "witnesses": [
+            "chicago_democrat_1834_04_16#c002",
+            "chicago_democrat_1834_10_08#c006",
+            "chicago_democrat_1833_12_10#c011",
+            "chicago_democrat_1834_01_07#c007"
+          ],
+          "refused_because": "'Eagle Hotel' and 'the new blacksmith shop opposite the Chicago Hotel' are not one house and they are not the same kind of thing. `firm_surnames()` grouped them on the word 'Hotel' — the last word of the first style, and the last word of the ANCHOR carried inside the second. An anchor mistaken for a partner is worth recording apart from the trade-word groups, because a style that names the building it stands opposite will always look like a partnership to a function that reads the last word, and the register holds more such styles than this one. The Eagle Hotel is P. B. F. Cable's and J. Shrigley's, four printings from 1834-04-16 c002 to 1834-10-08 c006. The blacksmith shop is Pierce and Abbott's, nearly opposite the Chicago Hotel, Democrat 1833-12-10 c011 and 1834-01-07 c007 — and the Chicago Hotel it names is a third house again, which is the point: the word in that style belongs to somebody else's signboard."
         }
       ],
       "built_at_scene_date": true,
@@ -70332,6 +70352,19 @@
             "class": "street_only",
             "street": "South Water Street"
           }
+        }
+      ],
+      "refused_merges": [
+        {
+          "with": "J. H. Mulford",
+          "kind": "two_houses",
+          "witnesses": [
+            "chicago_democrat_1834_06_04#c004",
+            "chicago_democrat_1834_07_02#c022",
+            "chicago_democrat_1834_07_02#c059",
+            "chicago_democrat_1835_08_12#c013"
+          ],
+          "refused_because": "'J. H. Mulford' and '[uncertain: J. I. Mulford], carriage and sleigh maker' are two houses, and the contested middle initial is not what says so — the trades are. J. H. Mulford keeps a watch, jewelry, engraving and fancy goods store one door west of the Printing Office in South Water street, five printings from 1834-06-04 c004 to 1835-08-12 c013 with copy dates of 1834-06-04, 1834-09-17 and 1835-05-01. The carriage and sleigh maker's notice is copy-dated 1834-05-27, printed once at 1834-07-02 c059, and it is a manufactory: carriages and sleighs made and repaired. The two even share an issue — 1834-07-02 carries the jeweller at c022 and the carriage maker at c059 — and a jeweller's counter is not a wheelwright's yard. The surname group is the only thing that proposed they might be."
         }
       ],
       "built_at_scene_date": true,
@@ -70903,6 +70936,19 @@
           }
         }
       ],
+      "refused_merges": [
+        {
+          "with": "Brown, painter",
+          "kind": "two_houses",
+          "witnesses": [
+            "chicago_democrat_1834_05_28#c004",
+            "chicago_american_1835_06_08#c005",
+            "chicago_american_1835_06_13#c014",
+            "chicago_american_1835_08_15#c004"
+          ],
+          "refused_because": "'W. H. Brown' and 'Brown, painter' are two houses, and the painter's record carries no forename at all — which is exactly how a bare surname walks into a group it does not belong in. W. H. Brown keeps a store of groceries and general goods in Dearborn street one door from Newberry & Dole's, Democrat 1834-05-28 c004. 'Brown, painter' does carriage, sign, ornamental and figure painting and gilding, and the American prints him three times in the summer of 1835 (1835-06-08 c005, 1835-06-13 c014, 1835-08-15 c004) with no address recovered. A year apart, two trades, and no printing gives the painter an initial that could be compared with the other's."
+        }
+      ],
       "built_at_scene_date": true,
       "survival_liberty_required": true
     },
@@ -71198,6 +71244,29 @@
             "offset_normalized": "at the New Store on the corner of South Water and Clark streets",
             "street": "South Water Street"
           }
+        }
+      ],
+      "refused_merges": [
+        {
+          "with": "New York Clothing Store",
+          "kind": "two_houses",
+          "witnesses": [
+            "chicago_american_1835_06_08#c014",
+            "chicago_american_1835_06_20#c007",
+            "chicago_democrat_1833_12_10#c002",
+            "chicago_democrat_1834_01_21#c003"
+          ],
+          "refused_because": "'New York Clothing Store' and \"W. Kimball's New Store\" share no partner at all. Both styles END in the word 'store', and `firm_surnames()` takes the last word of a partnership segment as the surname — so the group is made by a trade word and not by a partner. That is the failure being recorded, and it is not a near miss: the 'store' group holds thirteen of the register's businesses, everything whose style happens to end in the word, and it will re-form on the next sweep unless the function changes. The New York Clothing Store is Tuthill King's, clothing wholesale and retail, in Dearborn Street, American 1835-06-08 c014 and 1835-06-20 c007, copy-dated 1835-06-08. W. Kimball's New Store sells dry goods, crockery, hardware and cutlery at the corner of South Water and Clark streets, Democrat 1833-12-10 c002 and 1834-01-21 c003, copy-dated 1833-11-01. Eighteen months apart, two streets, two trades and two proprietors; the word 'New' in one style and the word 'Store' in both are the whole of the resemblance."
+        },
+        {
+          "with": "Peter Cohen's store",
+          "kind": "two_houses",
+          "witnesses": [
+            "chicago_democrat_1834_01_07#c009",
+            "chicago_democrat_1833_12_10#c002",
+            "chicago_democrat_1834_01_21#c003"
+          ],
+          "refused_because": "\"Peter Cohen's store\" and \"W. Kimball's New Store\" share no partner at all. Both styles END in the word 'store', and `firm_surnames()` takes the last word of a partnership segment as the surname — so the group is made by a trade word and not by a partner. That is the failure being recorded, and it is not a near miss: the 'store' group holds thirteen of the register's businesses, everything whose style happens to end in the word, and it will re-form on the next sweep unless the function changes. Both stand in South Water Street and that is the one thing that makes this pair worth writing down rather than dismissing: the street cannot separate them, so the printings have to. Peter Cohen's store is a merchant's, Democrat 1834-01-07 c009, with the street and no closer address. W. Kimball's New Store is at the CORNER of South Water and Clark streets, Democrat 1833-12-10 c002 and 1834-01-21 c003, copy-dated 1833-11-01, and sells dry goods, crockery, hardware and cutlery. Two proprietors are named, neither is the other, and no printing puts them under one roof."
         }
       ],
       "built_at_scene_date": true,
@@ -71848,6 +71917,17 @@
             "offset_normalized": "on Dearborn street, a few rods north of Messrs. Newberry & Dole's Store",
             "street": "Dearborn Street"
           }
+        }
+      ],
+      "refused_merges": [
+        {
+          "with": "Charles Taylor",
+          "kind": "two_houses",
+          "witnesses": [
+            "chicago_democrat_1834_06_04#c008",
+            "chicago_democrat_1835_05_20#c020"
+          ],
+          "refused_because": "'Wm. H. Taylor' and 'Charles Taylor' are two men, and both forenames are set on the page, so nothing here rests on a reading. Charles Taylor keeps a clothing and tailoring business in South Water street, Democrat 1834-06-04 c008. Wm. H. Taylor keeps a boot, shoe and leather store, wholesale and retail, in Dearborn street a few rods north of Messrs. Newberry & Dole's store, Democrat 1835-05-20 c020, copy-dated 1834-07-08. Two trades, two streets, and two forenames no compositor turns into one another."
         }
       ],
       "built_at_scene_date": true,

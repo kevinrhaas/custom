@@ -1,7 +1,7 @@
 ---
 id: T-0387
 title: The four storefronts the American puts on a street and nothing narrower: Harmon Loomis, Wm. Sabine, John Dave and the Dearborn Street wine store
-state: open
+state: split
 epic: META
 requested_by: loop
 seen: false
@@ -9,7 +9,7 @@ effort: M
 legacy_id: null
 parent: T-0306
 opened: 2026-08-29
-closed: null
+closed: 2026-08-29
 pr: null
 claimed_by: null
 blocked_on: null

@@ -1,5 +1,5 @@
 ---
-id: T-0414
+id: T-0425
 title: H. C. Bennett's shop is one door north of the Tremont House
 state: open
 epic: META
@@ -35,7 +35,7 @@ or a cut number is the first question to settle, from the printing itself.
   segmenter has eaten it and records what that costs the placement.
 - Bennett's shop stands on the west side of Dearborn Street at the offset the reading
   supports, its residual stated on the record by axis, with a liberty in the shape of
-  L214 — the side of the street, the width of a door, and anything that had to move
+  L215 — the side of the street, the width of a door, and anything that had to move
   for the mid-block alley.
 - It shares the block face with `tremont_house_1`, `new_york_clothing_store` and
   `bates_auction_room`: check none of the four overlaps and that the run still reads as

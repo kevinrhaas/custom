@@ -6845,6 +6845,85 @@ recorded; anything invented in the resolution goes to `docs/LIBERTIES.md`; a gat
 figure so it cannot silently grow. **Do not move a documented building to make a number look
 better** — a position with a source outranks a corridor this project derived.
 
+### K30(e) — the corridor is derived from the CONTROL, and the table is re-run · **DONE 2026-08-29 (T-0009)**
+
+**The owner took K30(d)'s resolution 2 on 2026-08-29**, in T-0009, in his own words: *"derive the
+platted corridor from the street CONTROL rather than from the drawn line."* This is the run that
+carried it out. **Nothing in the scene moved**: no structure record, no coordinate, no confidence,
+no footprint, and `data/streets/1835.json` is not touched. What moved is what the intrusion table
+measures against.
+
+**The derivation, and it is a rule rather than a number.**
+`plat_corridors.control_offsets()` reads every committed control point in
+`data/traces/street_control.json`, finds the streets it names, and measures the cross-axis offset
+from that street's own drawn centreline to the point — a northing for an east-west street, an
+easting for a north-south one, taken where the line passes the control's along-axis value. Each
+street then falls into one verdict, and there is no list of street ids anywhere in it:
+
+| verdict | streets | what it means |
+|---|---|---|
+| `recentred` | `south_water` **+8.58 m** | one agreed offset larger than the centimetre this project quotes a depth to. The corridor is translated onto the control; the drawn line stays where it is |
+| `centred` | `lake`, `market`, `randolph` | the drawn line reproduces its control to under a centimetre (0.00–0.01 m). Nothing moves |
+| `disagree` | `canal` | three control points spread **2.33 m** — `kinzie_canal` −2.24, `lake_canal` 0.00, `randolph_canal` +0.09. No rigid translation satisfies them and re-drawing the line is what the ruling forbids, so the corridor stays on the drawn line and the spread is recorded |
+| `off_line` | `franklin` | `south_water_franklin` lies beyond franklin's own drawn span, so it says nothing about the part of it that exists |
+| `no_control` | the other 13 | no committed control point names them |
+
+`tools/measure_corridor_intrusion.py --control` prints that table; `--drawn` re-runs every mode
+against the pre-ruling corridor, so the before-and-after below is two commands and not a checkout.
+
+**Before → after, on the same tree.**
+
+| | drawn corridor | control-derived |
+|---|---|---|
+| placed phases lapping | 19 of 359 | **19 of 359** |
+| buildings (furniture set aside) | 17 | **17** |
+| in the DEEP mode (≥ 3.48 m) | 5 | **5** |
+| centroid inside a corridor | 5 | **4** |
+| deepest lap on `south_water` | 12.10 m | **7.13 m**, and it is a drawbridge |
+| generated roofs lapping | 0 | **0** |
+
+Four records moved and they are the whole of the change:
+
+* `newberry_dole_warehouse` — 12.10 m into `south_water` → its deepest lap is now `franklin` at
+  **9.81 m**. It still laps `south_water`, less deeply. **The franklin lap SURVIVES and is left
+  open.**
+* `hogan_store` — 10.06 m → **3.98 m**, and its centroid leaves the corridor. Still in the deep
+  mode. **Survives, left open.**
+* `lasalle_slough_crossing` — 11.39 m on `south_water` → **3.17 m** on `lasalle`. Street furniture.
+* `dearborn_street_drawbridge` — **newly laps `south_water` by 7.13 m**, because a corridor centred
+  on the control reaches the crossing. Street furniture: a drawbridge in a street corridor is the
+  bridge doing its job, and it is categorised by its own archetype and function, not by an id list.
+* `slough_log_bridge` — 0.03 m, clears entirely.
+
+**The ratchet was re-baselined to bank the repair**, which is the only reason that file is ever
+rewritten, and the three T-0195 refusals are on `clark`, `dearborn` and `lasalle` and all outlive
+their laps unchanged.
+
+**THE SCOPE, AND IT IS THE RULING'S OWN.** The ruling says what it changes — *"what changes is
+what the intrusion table measures against"* — so `plat_corridors.corridors()` still answers the
+DRAWN corridor by default and every generator keeps asking it that. A generator is asking a
+different question: where a roof may stand relative to the street a visitor walks. Swapping the
+default was tried first and MEASURED: the re-centred `south_water` corridor sits 8.58 m off its
+own block faces, which `generate_plat_lots.block_edges` offsets from the drawn line and which do
+not move, and five gates that read a corridor edge against a block face or a frontage line went
+red — the cross-street face census, the southern-ground stations, the block-parcel street-line
+assertions and the far-timber census. **That 8.58 m strip, which now belongs to neither the
+corridor nor the block, is a real question about the plat and it is filed rather than settled
+here.**
+
+**What it unblocks, named as the visible-progress rule requires.** T-0365 measured that every
+platted block still carrying headroom was gated on this ticket or on T-0183. T-0143 and T-0188
+each refused to tighten a party-line row *against a line that may move*; the ruling settles that
+the line does not move, so the refusal is discharged and `blk_south_water_franklin` (4),
+`blk_south_water_lasalle` (8), `blk_south_water_clark` (4) and `blk_south_water_dearborn` (4) are
+workable — **20 roofs of headroom.** `blk_south_water_market` stays gated on T-0183.
+
+**Files:** `tools/plat_corridors.py` (`control_offsets`, `corridors(from_control=…)`) ·
+`tools/measure_corridor_intrusion.py` (`--control`, `--drawn`) ·
+`tools/corridor_intrusion_baseline.json` (re-baselined) · `docs/ROADMAP.md` ·
+`chicago/4d/tickets/T-0009-*.md`. **No structure record, footprint, coordinate, confidence or
+street line was touched, and `docs/LIBERTIES.md` gains no entry — nothing was invented.**
+
 ### T-A3 — the second refreshed block · **DONE 2026-08-14 (`blk_randolph_dearborn`)**
 
 **The parcel shape did repeat, and that is the finding.** Appending a block to

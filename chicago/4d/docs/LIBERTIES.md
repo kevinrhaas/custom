@@ -9637,39 +9637,41 @@ Related: **L93** (the block parcel's A3 privy, the same clamp) · **L92** (the p
 **Covers:** `recon_1835_west_008.inferred_1835.form.wall_height_m`, `recon_1835_west_009.inferred_1835.form.wall_height_m`, `recon_1835_west_010.inferred_1835.form.wall_height_m`, `recon_1835_west_011.inferred_1835.form.wall_height_m`, `recon_1835_west_012.inferred_1835.form.wall_height_m`, `recon_1835_west_021.inferred_1835.form.wall_height_m`
 **Recorded:** 2026-08-29.
 
-### L211 — 109 documented businesses stand on 1 July 1835 because nothing says they closed
+### L211 — 103 documented businesses stand on 1 July 1835 because nothing says they closed
 **Decision:** every business the newspaper register flags `survival_liberty_required` is
 treated as standing at the scene date. Its existence is documented — a dated advertisement
 or notice in the *Chicago Democrat* or the *Chicago American* — and its survival to
 1835-07-01 is assumed. The assumption is stated HERE and nowhere else: the register carries
 the flag, this entry carries the liberty, and no business record is graded `documented` for
 a survival nothing witnessed.
-**Why:** the corpus is thinnest in the year it most needs to be thick. 201 documented
-businesses are present at the scene date and only **92** of them are documented *in* 1835;
-the other **109** were last printed between 1833-11-26 and 1834-12-24, a median of 364 days
+**Why:** the corpus is thinnest in the year it most needs to be thick. 192 documented
+businesses are present at the scene date and only **89** of them are documented *in* 1835;
+the other **103** were last printed between 1833-11-26 and 1834-12-24, a median of 364 days
 before the day the town is drawn. Refusing the assumption is the only alternative to making
 it, and refusing it empties more than half the documented trade out of Chicago on the
 strength of a newspaper run nobody has finished reading — the 1835 issues that would
 re-attest most of these houses are still unopened (the `PAPERS` reading tickets). Owner
 ruling 3, 2026-08-28: such a business is BUILT, with the liberty stated. The register
-already refuses everything that CAN be refused — 14 businesses are excluded by a claim that
+already refuses everything that CAN be refused — 13 businesses are excluded by a claim that
 contradicts them before the scene date and 4 by an opening announced after it — so this
 covers what is left after the evidence has spoken, not instead of it.
-**Scope:** `register_1835.businesses[survival_liberty_required]` — 109 businesses, enumerated
+**Scope:** `register_1835.businesses[survival_liberty_required]` — 103 businesses, enumerated
 by `tools/compile_register.py` from the gazetteer and the committed town, and re-counted by
 `tools/compile_liberties.py` on every compile. The number above cannot drift from the
 register without `check.sh` saying so, which is the point of writing it down: a scope that
 has silently stopped matching its population reads as a measurement and is not one.
 **Consequence:** as the register is seeded into the town, half of these reach something a
-visitor can see. Measured on the register as it stands on 2026-08-29, **56** of the 109 do —
-18 enrich a house already standing, 14 ask for a new building, 24 take a street face — and
-**53** reach nothing yet. That split moves whenever an anchor is re-read or two firms are
-judged one house, and it is a dated reading rather than a standing claim; the 109 is the
-number this entry is held to and the number the gate re-derives. It has already moved once
-for exactly the second reason: this entry was written at 111 the same day T-0345 found that
-four of the register's businesses were four readings of Matthias Mason & Co.'s one
-blacksmithing notice. Joining them took two off the count and one off the enrich_existing
-column, and neither number is a business leaving Chicago. Every one
+visitor can see. Measured on the register as it stands on 2026-08-29, **53** of the 103 do —
+16 enrich a house already standing, 14 ask for a new building, 23 take a street face — and
+**50** reach nothing yet. That split moves whenever an anchor is re-read or two firms are
+judged one house, and it is a dated reading rather than a standing claim; the 103 is the
+number this entry is held to and the number the gate re-derives. It has now moved twice for
+exactly the second reason. This entry was written at 111 the same day T-0345 found that four
+of the register's businesses were four readings of Matthias Mason & Co.'s one blacksmithing
+notice; and T-0400 judged the ten surname groups whose two styles differ only in the FORM of
+a forename — whole against abbreviated against bare initial — merging eight of them and
+taking the count from 109 to 103. Neither movement is a business leaving Chicago; both are
+shops the register was holding twice. Every one
 of them puts a trade sign, a
 card or an occupant into July 1835 on an inference, and a visitor reading such a card is
 being told the shop was there when what is known is that it was there the winter before. The
@@ -9689,16 +9691,20 @@ it stops at whatever number the surviving issues cannot reach.
 in at all), T-0263 (the seeding that raises the first of them).
 **Recorded:** 2026-08-29.
 
-### L212 — Twenty-four documented businesses are seated on reconstructed roofs, and no source puts them there
+### L212 — Nineteen documented businesses are seated on reconstructed roofs, and no source puts them there
 **Decision:** where the newspaper register can place a business no closer than a platted street,
 the business adopts an anonymous reconstructed roof already standing on that street face. The
 owner ruled it on 2026-08-29 (T-0354), choosing adoption over a new frontage record with a
-conjectural along-street position and over waiting for a corner. Twenty-four of the register's 60
-`street_only` businesses were seated on 2026-08-29; `docs/STREET-FACE-ADOPTION.md` is the policy,
+conjectural along-street position and over waiting for a corner. Nineteen of the register's 59
+`street_only` businesses are seated; `docs/STREET-FACE-ADOPTION.md` is the policy,
 `data/research/newspapers/street_face_adoptions.json` the derived table, and
-`tools/adopt_street_faces.py --check` re-derives both on every commit.
+`tools/adopt_street_faces.py --check` re-derives both on every commit. **The seating REACHES THE
+BUILDINGS as of T-0417:** `tools/inferred_occupancy.py` hands each adopted roof its `occupants`
+block, so the card a visitor opens on that roof names the business rather than showing an
+anonymous count-unit. It was 24 for one day; carrying the allocation into the records is what
+found that nine of those roofs were yard buildings, which is the refusal below.
 
-**What is not invented:** the businesses, their trades and their streets. Every one of the 24 is
+**What is not invented:** the businesses, their trades and their streets. Every one of the 19 is
 printed in the *Chicago Democrat* or the *Chicago American* at the issue and column its record
 cites, and every one names a platted street this model holds — Peter Cohen at the east end of
 South Water-street, Miss Bayne's school in Randolph Street, the Chicago Bakery on South Water. The
@@ -9719,14 +9725,26 @@ structure's own phase and fails if it has stopped saying so, because the busines
 and the building under it is not. An along-street position: `order_is_a_claim: false` on every
 record. And a neighbour: two businesses on one face stand in no order any source supports.
 
-**The refusals are what keep it honest, and they refuse more than they take.** Thirty-six of the
-60 are not seated. Twenty-four name a street — Dearborn, La Salle, Canal, North Water — with no roof
+**The refusals are what keep it honest, and they refuse more than they take.** Forty of the
+59 are not seated. Twenty-four name a street — Dearborn, La Salle, Canal, North Water — with no roof
 whose platted lot faces it, and adopting a roof that shows the street only a corner side would
 have put a door where the plat puts a gable end. Nine are a second heading of a house already
 seated on that face, because the corpus prints "Peter Cohen" and "Peter Cohen's store" as two
-entries and one man did not keep two storefronts on one street on any evidence here. Three are short
+entries and one man did not keep two storefronts on one street on any evidence here. Seven are short
 purely of supply. `python3 tools/adopt_street_faces.py --report` prints every refusal with its
 reason and its count, so the ratio is auditable rather than asserted.
+
+**AND A ROOF CAN BE REFUSED AS WELL AS A BUSINESS, WHICH IS WHERE THIS ENTRY LOST FIVE OF ITS
+TWENTY-FOUR.** The anonymous parcels deal ANCILLARY roofs as well as principal ones — privies,
+stables and woodsheds standing behind a lot — and for its first day this pass counted them as free
+supply. Nine documented businesses were seated in outbuildings, Peter Cohen among them, in
+`recon_1835_blk_south_water_clark_a3_05`, which is a privy. The rule against it was older than the
+pass and enforced elsewhere: `tools/generate_block_infill.py` has refused an occupant on an
+ancillary roof since the inferred-household programme, because "a yard building serves the lot it
+stands behind, and an adoption is a claim about who lived or worked in a building". Trying to spend
+the allocation into the structure records is what ran into it (T-0417). Four of the nine took a
+principal roof instead — Harmon, Loomis & Co. moved into a narrow two-storey store — and five had
+no unspoken-for roof left on their street, so they join the refusals with that reason counted.
 
 **A known residue, stated rather than absorbed.** Four Lake Street entries — Wm. G. Branchaud,
 W. G. Blanchard, G. Blanshard and F. G. Blanshard — advertise one trade within five months and
@@ -9742,17 +9760,77 @@ Street in front of Peter Cohen's store is looking at a building we raised and a 
 printed, and that nothing joins the two but this rule.
 
 **How to resolve:** a directory, a tax list, or a lot-and-block address in the corpus would put
-any of these 24 on a lot, at which point that business leaves this entry for a placement of its
+any of these 19 on a lot, at which point that business leaves this entry for a placement of its
 own — the shape **T-0384** through **T-0387** already take for the businesses whose advertisements
 name an anchor. A ruling that a corner side is a street face would move up to twenty-four more into
 this entry rather than out of it, and the count above is what would change.
 
 Related: **L205** (documented men on reconstructed roofs, the pattern this follows) · **L92** (the
 reconstructed roofs' own presence and placement) · **L1** · tickets **T-0354** (this), **T-0262**,
-**T-0263**, **T-0375**, **T-0338**, **T-0408**.
+**T-0263**, **T-0375**, **T-0338**, **T-0408**, **T-0417** (spent into the roofs, and the yard
+refusal).
+**Recorded:** 2026-08-29. **Revised:** 2026-08-29 (T-0417).
+
+### L213 — Four people the papers name with no trade are written as households of one, on a residency test
+**Decision:** L206 seated the register's `new_resident` people whose TRADE the papers print, and
+L207 the names known only from the post office's letter lists. What is left of that half — 386
+people named in a proceedings column, a public card, a shipping notice or an advertisement, with
+no trade the register can read — have no anchor at all, and a name printed in a Chicago paper is
+not a Chicago resident. So on 2026-08-29 they were put to a residency test derived from the corpus
+rather than judged one by one, and four passed it: J. K. Boyer, Thomas Hoit, B. S. Morris and
+J. W. Fell. `tools/mint_placed_residents.py` derives the set and re-derives it on every commit;
+`--report` prints all 382 refusals with their reasons and `--self-test` fires every rule against
+the case it exists for.
+
+**What is not invented: the people, and where the papers put them.** Each is named in the Chicago
+Democrat or the Chicago American at the issue and column their record cites, and the corpus gives
+each a place inside the town and none outside it. They are graded `attested` on that basis and on
+nothing else.
+
+**What is invented, and it is only this: that each is a household.** As L206 and L207, and for the
+same reason — `data/residents/` has no way to carry a person except inside one. Each record
+carries a single member, `lives_at` null, `works_at` null, no origin, no party size, no family,
+and `division: unplaced`. Their occupation reads `none_recorded` — the residents vocabulary's own
+word for an absent record, already carried by committed people — because the papers give none; the
+absence is the finding and not a hole, and it is written as an absence rather than reasoned from
+the company they keep.
+
+**The test, stated so it can be argued with.** (a) The corpus must place the person inside the
+town — the bare town, a committed 1835 street, a committed structure — and NOWHERE outside it;
+fifteen are refused on a place elsewhere (Ottawa, Detroit, Cook county) and thirty-six on no place
+at all. (b) A bare "Chicago" is where the papers say somebody did something at Chicago, which is
+not the claim that they lived there, so it needs a second witness and only three count: an address
+at street level, print in two or more separate issues, or print in the same claim as two or more
+people this reconstruction already holds (the register's own `enrich` finding). Fell came in on
+the first, Boyer and Hoit the second, Morris the third; twelve reached that question with none of
+the three. (c) The name must be found whole in the transcription, outside every uncertainty
+bracket and not cut off by one — 176 are refused there, and the rule exists because the first run
+of this pass minted "The Blanshard household" out of the letters `fG. BL NSHARD` and "The Dave
+household" out of `JOHN DAVE[S?]`. Thirty-six more carry a trade the residents vocabulary has no
+word for and are held for a ticket of their own rather than minted trade-less.
+
+**A limit, stated rather than papered over:** the duplicate guards compare surnames exactly, so
+'Blanshard' and 'Blanchard', or 'Eldredge' and 'Eldridge', pass each other untouched and may be
+one man under two printed spellings. A fuzzy match was rejected for the reason
+`compile_register.py` gives for refusing a fuzzy trade match.
+
+**Where this pass stands in the order, because it changes what it can see.** Three passes now mint
+residents out of the register and they run in a fixed precedence, best-evidenced first: documented
+(a trade the papers print) ▸ placed (this entry) ▸ letter-list-only. Each skips its own output and
+every pass below it, so no derivation is changed by anything any of the three mints. Where two
+reach for one family name the higher one keeps it; this pass gave way to L206 three times.
+
+**Consequence:** the Evidence panel's people section goes from 201 households and 237 people to
+205 and 241, `households_without_a_dwelling` in the town census moves from 80 to 84, and the four
+new rows carry the orphan chip that says no building card can reach them. No geometry moves, no
+triangle is added and no figure is drawn (L1).
+
+Related: **L207** (the letter-list names) · **L206** (the sixteen with a trade) · **L205** (the
+documented men who took reconstructed roofs) · **L1** (no figure is drawn for any resident) ·
+tickets **T-0373** (this), **T-0368**, **T-0376**, **T-0378**, **T-0374**, **T-0418** (the trades the vocabulary cannot say).
 **Recorded:** 2026-08-29.
 
-### L213 — New York Clothing Store: the address is the paper's, the building is entirely ours
+### L214 — New York Clothing Store: the address is the paper's, the building is entirely ours
 **Decision:** Tuthill King's New York Clothing Store is drawn as a **12.192 × 7.62 m** (40 × 25 ft)
 clapboarded frame shop, one storey, gable roof at 33°, one stack, a composed shopfront to Dearborn
 Street, its siding dealt from the stock set. The Chicago American supplies **none** of that. It
@@ -9777,7 +9855,7 @@ builds is the archetype's.
 to country merchants could as easily have had a floor over it, and nothing reached says either way.
 **What would discharge it:** any dimensioned description, an insurance or tax entry, a lot-and-block
 address, or a depiction. None of them would move the building — the placement is independent of
-the fabric and is recorded at **L214**.
+the fabric and is recorded at **L215**.
 Related: **L5** and **L8** (footprints invented outright) · **L9** (the Green Tree footprint this
 one borrows its module from) · **L21** · **L26** · **L148** (the siding stock deal) · **L208** (the
 same admission for the New York House) · ticket **T-0385**.
@@ -9786,7 +9864,7 @@ same admission for the New York House) · ticket **T-0385**.
 
 **Recorded:** 2026-08-29.
 
-### L214 — Three doors north: the count is printed, the door and the side of the street are not
+### L215 — Three doors north: the count is printed, the door and the side of the street are not
 **Decision:** the New York Clothing Store stands on the **west** side of Dearborn Street, its east
 face on the Dearborn kerb and its **north wall on the south edge of the block's mid-block alley**,
 which puts its front 22.46 m north of the Tremont House's north wall.
