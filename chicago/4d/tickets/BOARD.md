@@ -123,7 +123,7 @@
 - **T-0324** J. K. Botsford advertises two addresses in one issue, and Graves' Tavern cannot be placed until they are reconciled · 2026-08-29 · PR #516
 - **T-0328** D. Weaver's building is on Lot 2 in one printing and Lot 9 in the next, and both transcriptions are Vision-set · 2026-08-29 · PR #510
 - **T-0329** School District Number One is bounded in print on 1834-12-10 and the segmenter cut better than half of every line of it away · 2026-08-29 · PR #515
-- **T-0366** The register's matches take the reconstructed roofs, where the papers place the man nowhere · **OWNER** · 2026-08-29 · PR #0
+- **T-0366** The register's matches take the reconstructed roofs, where the papers place the man nowhere · **OWNER** · 2026-08-29 · PR #518
 - **T-0019** Six forb layers ask for more plants than the lattice holds · SEEN · was K58 · 2026-08-28 · PR #449
 - **T-0021** Census what the residents' figures reach · was K52 · 2026-08-28 · PR #442
 - **T-0024** May the face rule rank a store · was K32 · 2026-08-28 · PR #443
