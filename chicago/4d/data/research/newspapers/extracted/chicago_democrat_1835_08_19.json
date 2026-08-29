@@ -1,0 +1,788 @@
+{
+  "schema": 1,
+  "issue_id": "chicago_democrat_1835_08_19",
+  "extracted": "2026-08-29",
+  "extracted_by": "hand, T-0325 — the Democrat read, August 1835",
+  "note": "Vol. II No. 18. THE RICHEST OF THE FOUR, and the issue this ticket takes the TOWN ORDINANCES from: page 1 columns 1 and 2 carry the Trustees' by-laws, passed 5 August 1835 over Hugunin's and Alex. N. Fullerton's names, and this printing sets them line by line where 12 August weaves them into two 5,000-character segmenter columns and 26 August carries only the tail. Six claims (c001-c006) hold them, and three passages in them are directly modellable: the half-sidewalk-and-two-months rule for a building site, the five-dollar penalty for riding across a bridge walk, and section 18's eighteen inches of stove pipe above every roof. Section 22's hay-stacking limit walks a six-vertex boundary through named streets and is the only documented statement in this corpus of where the built town was held to end in the scene year. Page 3 carries the month's best-placed shop (Sarah D. Howe's room in the house Dr. Austin occupies), the only numbered street address in the month (No. 1 South Water Street, near the Draw Bridge) and twenty-one named lots offered to lease. STANDING ADVERTISEMENTS unchanged from 5 August are not re-claimed here. THE LETTER LIST is the same 31 July list, printed a third time; signature claimed, names deferred to T-0326. NOT CLAIMED, AND DELIBERATELY: the 'DESTRUCTIVE FIRE' on page 3 column 1, which consumes a book store, Strickland & Gaylord's store, law offices, a looking-glass and comb factory and a coffee house for $55,000. It stands immediately under a 'Cleveland Whig, July 30' credit, the words 'of Cleveland' survive inside it, its named sufferers are not Chicago names, and no source records a fire of that size in Chicago in 1835 — it is read as an out-of-town reprint and is NOT claimed as this town's, on the same principle that quarantined the out-of-county estray notices in Vol. I No. 1. Also not claimed: pages 1-2 national politics and the Ottawa probate notices.",
+  "claims": [
+    {
+      "id": "c001",
+      "kind": "infrastructure",
+      "reading": "transcription_mediated",
+      "quote": "[tose ay follies (Otte qcvera eeeions follosing Bre ‘ ed Laws any Ordinances of said town: seated La vio shall be guilty of any of ted woh rem reianfer saetzoned, shall be\njuerematler prescribed.\neraou sha place or canbe to wk, stonaeh, timber, luinber, T akhor swateriats for stdeet, mide walk, al-\n4 bling. oF We ur on any vacant ground, mi Meee ape rf sasha fram the Prom: * We oe bt ¢ ‘Tristees; oniter the penalty\nte bllshe or every offpner:, and the fur~\nfoe paiyof five dollars for each and every 2B the ei Hours during which the articles or | Ef ny EO vet, shall reinan/ an apy auch\niar ot other vacant\nay erect, plat. public\ntice fri Any trustee, atreet |\n| bt forthe poked constable, te 1e- pen gsont?, :\n‘ ihe eapie, proxided, at at hall be law\neee pereon engagnd sn the ermetion of\n: tings, pom ang bot to d@~\n‘ os bin so tokig 0 natenale, nor upon the street,\ny | it Perr rand dy ding unre, pro ‘aged, pot mre Chan Oke ial fc tho sule walk, i, OA of tie carmote wy of the street eee fe to bail erecting, saa be ybateucted,\nfor fa ledger time diag two months, with.\naye reuiseign BS hloge sth i ear TN persons shiatl place, Geyposite or mg anrleask, bores ox crates, guoils OF aoe ee meh for sate br other purpuse, iireo vie de welk tw front pf any store or sean, farther than faar feet inte the th: narpeall ang peteod Ucposite or leave cee be pbore articies, «ft aay other bulky’ | fusters’s of mubtance whatever, in any of | Reaeets Waal tows, forisay Yonger period | ane of the trustecs, vissofdably necessary renions ta removal\ne firga or awits from the aljochng premisen, (one\nfe enfien perimieston from one of the\nAunstets] unfer the penalty, of two dollars lor\n| yeh ard) ead lik» peaslty for every twen\n; Lay ferloen, such olstrachon slisil remain\nT% | after aouer te of the Irvetens or etrect at gwcraaesoneg, fo) rn] b ethe a",
+      "normalized": "[The Trustees of the Town of Chicago do] [en]act [the] […] following [Laws] and Ordinances of said town: [any person] who shall be guilty of any of [the acts here]inafter [mentioned] shall be [punished as herea]fter prescribed. […] [No p]erson shal[l] place or cause to [be placed any bric]k, ston[e], timber, lumber [or ot]her m[a]terials for [building on any] street, side walk, al[ley … or on any vacant ground …] without permission from the Pre[sident or the] Trustees, under the penalty [of … dollars] for every off[e]nce, and the fur[ther penalt]y of five dollars for each and every [twenty-four] hours during which the articles or [lumber] shall re[m]ain [in] any such [street, alley, square] or other vacant [ground …] [and it shall be the duty of the] [cons]table to re[move] the same, provided that it shall be law[ful for any] person engaged in the erection of [any build]ings upon any lot to d[eposit] […] his so t[a]k[in]g o[f m]aterials […] upon the street […] [ad]joining, pro[vided not m]ore than one ha[l]f [o]f the side walk […] of the ca[rri]ag[e] wa[y] of the street [next to the building] erecting shall be obstructed, [and] for [no] longer time [than] two months, with[out] […] permission […] No person shall place, deposit or [leave] any [c]ask, bo[x]es or crates, goods or [other articles] for sale or other purpose, [upon the] side walk in front of any store or [other building] farther than four feet into the [same …] [without] express permission from one of the [T]rustees, under the penalty of two dollars for [ea]ch, and [a] like penalty for every twen[ty-four hours af]ter [n]o[tice] such obstruction shall remain […]",
+      "locator": {
+        "artifact_role": "primary",
+        "issue_page": 1,
+        "column": 1,
+        "lines": [
+          26,
+          48
+        ],
+        "interleaved": true
+      },
+      "entities": [],
+      "notes": "THE TOWN GOVERNS ITS OWN STREET WIDTH, AND THE NUMBERS ARE MODELLABLE. Three of them: building materials may not be left in a street at all without leave; a builder MAY occupy the street beside his own lot, but not more than one half of the sidewalk nor of the carriage way, and for no longer than two months; and goods may stand on the sidewalk in front of a store no farther than four feet into it. That is a rule for what a Chicago street looked like in August 1835 — timber and brick piled against half a footway, boxes standing four feet out from a shop front, and both of them ordinary enough to be legislated for. The column is the worst-cut matter this ticket claims, two physical columns woven line by line, so almost every clause carries a supply; the sections are numbered in the printed ordinance and the numbers are among the things the column lost. The 12 August issue prints the same forme in a shape a quote cannot be built from at all."
+    },
+    {
+      "id": "c002",
+      "kind": "infrastructure",
+      "reading": "transcription_mediated",
+      "quote": "ay See, $2. Ks petsort shall kad, rige, drive,\ni] pak irbackisny lores or other anual, wag:\nfee. car or gchior unfucle, over sny‘side walk, | ‘eeu mie gr drive auy horse np other animal | ‘there, except in crossing the same to gd ange x yan! pr lot, under die penalty of one |\nof facia toe cupry offence. Gs Sey 5, No femon shs'l ride or drive on us oe acttesanf of the bridges 2 said tawn, f awplk uiter the peaotty of five dole | iE : i (is fe ererf obec. Sy Hi Ser & Rov gran abo shel nyore or\nfap) anys pave, Aide oF cross walk,\nchar sower, er any. part thereof, .oF whe daa dy auy dole, dich ar drain i any tees paiva or ike walk, without peraus-\nua va fea oagul the trustees, or who shall\na \\iska 2 ofekuct th» inaking or repairing of |\nJs {am pnieon, side or cross wath, tanking oF\ns nptkisg brider of the tees, or who shail\nsa | bade unr iebsin employe by the trustees, |\na Ib sbretduinissinnes person un: |\net i, r repairing ay pubhe ins-\noreaant shall Jur every offence |\nLa pun) fot ‘ess thian Sx, pe nore thas |\nHic discretion yf Uie magistrate |",
+      "normalized": "Sec. [12]. [No] person shall lead, ride, drive [or] pa[c]k [a] horse or other animal, wag[on], ca[r]t or ot[h]er vehicle over any side walk, [n]or […] drive any horse [o]r other animal [t]here, except in crossing the same to g[o into] a yard or lot, under the penalty of one [dollar] for [ea]ch [oc]cu[rr]ence[?]. Sec. […]. No person shall ride or drive on [the side walk] of the bridges [in] said town, [but shall] walk, under the penalty of five doll[ars] […] for every off[ence]. Sec. […]. No p[e]rson shall injure or [remove] any pave[ment], side or cross walk, [sewer,] or any part thereof, or wh[o shall make] any hole, ditch or drain in any [street,] pave[ment] or side walk without permis[sion] […] of the trustees, or who shall […] obstruct the making or repairing of [any] pavement, side or cross walk, […] [without] […] order of the [trust]ees, or who shall […] [hinder any pers]on employed by the trustees […] [in making or] repairing any public im[provement] […] shall for every offence [be fined] not less than six [nor] more than […] at the discretion of the magistrate.",
+      "locator": {
+        "artifact_role": "primary",
+        "issue_page": 1,
+        "column": 1,
+        "lines": [
+          49,
+          64
+        ],
+        "interleaved": true
+      },
+      "entities": [],
+      "notes": "THE BRIDGES GET AN ORDINANCE OF THEIR OWN, AND IT IS A SENTENCE THIS RECONSTRUCTION CAN BUILD FROM: nobody may RIDE or DRIVE across the walk of a Chicago bridge — he dismounts and walks, on pain of five dollars, five times the penalty for riding along an ordinary sidewalk. A bridge with a walk on it that a horse is kept off is a bridge with a distinguishable footway, and it is the only statement in the corpus so far about how the town's bridges were used rather than where they stood. The section numbers are cut away and are not supplied; the penalty figures survive. Cross walks, pavements and sewers are all named as things the town maintained and could be fined for damaging."
+    },
+    {
+      "id": "c003",
+      "kind": "infrastructure",
+      "reading": "transcription_mediated",
+      "quote": "nee Pans person dial! hoops a Bullwrid ae Py Ban\\, or uny other inetriment, or\nSm iA Bagi here, 7 | baal whare, dr anor wath which «Mater he\neuch pure | offence, forte, | ty of tweuty five dollars, oF trey five at\n—\n5 hours dunng whic RD pepe, + dasa\n€: brad 4 ra Pislicontnne th keep the sate\ncoh Bere Cobcnen or any volatien of\n167 Se 10, Any\n‘Se 9, far DUrsoRs Whe\nee, A Retiat int inn\n11) the bow {abi persons who unlawto dor distzrbunce of\nvia fur ICY 3! got lose than Wwe dollars, in\nme\n2\nptad meat, nr fish en, io seeniles, of amy other uf woe Be. urante tae Chiengo River or : Ste ha ish Manchies ther: and\nss a hte the Promsions of this ection 4 aren apres oriet and pay the pen-\nNe owes\ntach ta t pr occupant of any diet od Sadar be oF retntim in or upon te tie ant Metween the same and De street ge sllvy’, adjoining the Bele tein eae sun iat five\n¥ teen ho ne ssl! be, or ‘eroain (after ne Stense of the sate, and gn oF s0¢ lot or unement, 0\n1g! op ; Ths the President and each o Dace ey eh ate authorized an t knowlege often ay it abe! the pees SA any. nbisane",
+      "normalized": "[No] person shall keep a Billiard [Table, Faro] Bank or any other instrument or [device for gaming …] where or [with which] […] [under a penal]ty of twenty five dollars […] for [ea]ch […] offence […] [twenty-four] hours during which […] [he] shall continue to keep the same […] [No person shall throw or deposit any dead animal,] p[u]tr[i]d meat or fish [or …] veg[e]t[a]bles or any other of[fensive substance … in]to the Chicago River or [upon the banks thereof]; and any person [who shall vi]ol[a]te the provisions of this section [shall remove the same] and pay the pen[alty …] [The owner] or occupant of any [lot in said town shall not suffer any dead animal] […] to be or remain in or upon [the same, or in the alley or street between the same and] the street or alley adjoining, [under a penalty of not more than five dollars] […] [and if such animal] shall be or remain (after n[otice]) […] of the same, [up]on [any] lot or [ten]ement, […] the President and each of [the Trustees of said town are] authorized […] [as] often as it shall [come to their] knowledge that any nuisance [exists] […]",
+      "locator": {
+        "artifact_role": "primary",
+        "issue_page": 1,
+        "column": 1,
+        "lines": [
+          74,
+          93
+        ],
+        "interleaved": true
+      },
+      "entities": [],
+      "notes": "THE RIVER IS PROTECTED BY NAME, AND SO ARE THE ALLEYS BEHIND THE LOTS. Nothing dead may be thrown into the Chicago River; nothing dead may be left lying on a lot or in the alley between a lot and its street; the President and each Trustee may abate a nuisance the moment they hear of one. Read together with the fire wardens' house-by-house inspection (claim c006), it is a picture of a town of some three thousand that had already worked out it must police what its own back lots held. A billiard table or faro bank carries the heaviest penalty in the whole ordinance, twenty-five dollars — five times a fire offence. The column is shredded and the section numbers are gone; every supply is bracketed and the offensive-substance list is read against the 26 August printing of the same passage."
+    },
+    {
+      "id": "c004",
+      "kind": "infrastructure",
+      "reading": "transcription_mediated",
+      "quote": "*{sea'the samo shall be, (or if in one ‘of the stroete or alleys person causing ork\niting the same He they are required th re\nmoye the same within sach time, Lara\ntee shal! think reasonable, or. that it or , | may bo so remaved ar abated by the order of the\nPresident or trasten, and jen oon |Jinquent; and that every perron so < iB *| and neglecting, shall be liatle to may pe- t wt et fea jollars, at the guit al ftheuse , [of the trustées of said town,\nSec. 14, | That it shallinot be lawfu) for\n‘any person to keep open aby grocery pr tip ‘| ling house, on or during the Babbuth, brit ‘|day of the week, for the jurposo of gelling _| spirituous or fermented hquors, nor hal jany\nperson keeping such grocery or tipling bquee, | sell or suffer to be sold therdin, any spirituous ‘Jor fermented liquors on-said days, or Guking } the night following, under the penalty offfive | dollars for every offenco, nér shall any: jflace | of pablic arnusement be kept open duriigsaid |day, under 8 like penalty. !",
+      "normalized": "[…] the same shall be, (or if in one of the streets or alleys[)] [the] person causing [the obstruction …] they are required to re[m]ove the same within such time [as the trus]tee[s] shall think reasonable, or that it […] may be so removed or abated by the order of the President or trustee[s], and [charged to the de]linquent; and that every person so [offending] and neglecting shall be liable to [pay a] pe[nalty of five d]ollars, at the suit […] of the trustees of said town. Sec. 14. That it shall not be lawful for any person to keep open any grocery or tip[p]ling house on or during the Sabbath [or first] day of the week for the [p]urpose of [s]elling spirituous or fermented liquors, nor [shall] any person keeping such grocery or tipling ho[us]e sell or suffer to be sold there[i]n any spirituous or fermented liquors on said days, or [du]ring the night following, under the penalty of five dol[lars …]",
+      "locator": {
+        "artifact_role": "primary",
+        "issue_page": 1,
+        "column": 2,
+        "lines": [
+          98,
+          105
+        ]
+      },
+      "entities": [],
+      "notes": "GROCERIES AND TIPPLING HOUSES SHUT ON SUNDAY, AND THE TOWN SAYS SO IN THE SAME BREATH AS IT SAYS THE TRUSTEES MAY PULL AN OBSTRUCTION DOWN AND SEND THE BILL. Section 14 is the first numbered section legible in this printing. A 'tippling house' is named as a distinct kind of premises from a grocery — the corpus's only statement that the two were different things in 1835 Chicago, which matters for what sign a modelled storefront may carry. No place of public amusement may be kept open on the Sabbath either, under a like penalty, in the clause the column cut."
+    },
+    {
+      "id": "c005",
+      "kind": "infrastructure",
+      "reading": "transcription_mediated",
+      "quote": ". 15. |No hay, straw, chips or shavings, or any otber combustible materials, shal |veton fire or burnt in any street, or dnjany\nJot in said town, without permission of jane\nof the trustees, under a pedalty of five Hol-\nare, ¢\nBee, 10. vor parson heeping ot ocripy-\ning a shop or other building, “sherain shavings | or other combustible inatenals may bé ¢on- tusned, shall under the penalty two dpllare, remove the same at least ence a week, | |\n‘See. 17. | No person in removing any chips, shavings, or other combustible matenals, shall scatter or throw them into the streets oF al- leys, or permit the same to be done under the yenalty of two dollars.\nSec, 18, That it shall sot be lawful) for any person or persons to pags any stove pipe allached to any store, within any bude, through the oak wood or lathe, and plastered | partition af any house, store or other build-\ning, within the limits of the’ Corporation, un-\nlees seid pipe be passed thtough a ‘rtonb or earthern cylender, or be surrounded by brick, or be passed through a tin of sheet iron phte, the inside of which shall not approach within one quarter of an inch of the pipe, nor sball the pipe of any stove be oearer thanthree inches te any wood, ot other combustible mat- ter, and every stove pipe. or chimne: og through the roof of any buililing, pec pe and be carried at least eighteen inches above the roof,and no stove pipe chall be patsed\nUhrough the wide or end of eny building, under\nthe penally of five dollass for each and/esery\nofferree. 4\nSee, 19, No person siall carry fire ia, /into Vor through any street or lot, exeent the gaine\nbe placed or cared in ayme elose and of Nes-\nsel, under the penalty of five dollary tor every joBence. t\nSec. No person shall fire any squib Jemeker, grun-powder or firework, or fire-any pp oF pistol in said town, ‘unless by permis- { sion of one of the trustees, under a penpity of\ntwo dollars,",
+      "normalized": "[Sec.] 15. No hay, straw, chips or shavings or any other combustible materials shall [be s]et on fire or burnt in any street or [in] any lot in said town without permission of [o]ne of the trustees, under a pe[n]alty of five [d]ol[l]ar[s]. [S]e[c]. 16. [E]very person keeping or occupying a shop or other building [w]herein shavings or other combustible materials may be con[ta]ined shall, under the penalty [of] two d[o]llars, remove the same at least once a week. Sec. 17. No person in removing any chips, shavings or other combustible materials shall scatter or throw them into the streets or alleys, or permit the same to be done, under the [p]enalty of two [dollars]. Sec. 18. That it shall not be lawful for any person or persons to pass any stove pipe attached to any sto[v]e within any bu[il]d[ing] through the [ro]o[f], wood or lathe and plastered partition of any house, s[tore or other build]ing within the limits of the Corporation, un[l]e[s]s said pipe be passed through a [s]ton[e] or earthern cylender, or be surrounded by brick, or be passed through a tin o[r] sheet iron p[la]te, the inside of which shall not approach within one quarter of [an inch of the pipe, nor shall the pipe of any stove be nearer than three inches to any wood or other combustible matter, and every stove pipe or chimney passing through the roof of any building shall extend and be carried at least eighteen inches above the roof, and no stove pipe shall be passed] through the side or end of any building, under the penalty of five dollars for each and [e]very offe[n]ce. Sec. 19. No person shall carry fire in, into or through any street or lot, except the same be placed or car[ri]ed in [so]me close and [safe] ves[s]el, under the penalty of five dollars for every [o]ffence. Sec. [20]. No person shall fire any squib, [cr]acker, gun-powder or firework, or fire any [gun] or pistol in said town unless by permission of one of the trustees, under a pen[al]ty of two dollars.",
+      "locator": {
+        "artifact_role": "primary",
+        "issue_page": 1,
+        "column": 2,
+        "lines": [
+          106,
+          123
+        ]
+      },
+      "entities": [],
+      "notes": "THE STOVE-PIPE ORDINANCE, AND IT IS THE ONE PASSAGE IN THIS MONTH THAT DICTATES ROOF GEOMETRY. Section 18 says, in August 1835 and under a five-dollar penalty, that every stove pipe or chimney passing through a roof SHALL BE CARRIED AT LEAST EIGHTEEN INCHES ABOVE IT; that no stove pipe may go out through a side or end wall at all; and that where a pipe passes a wooden or lath-and-plaster partition it must be sleeved in a stone or earthen cylinder, surrounded by brick, or run through a tin or sheet-iron plate held a quarter inch clear, with three inches clear of any woodwork. A roof line in this reconstruction that carries stub pipes, or pipes out through a gable end, is contradicted by the town's own by-law. Sections 15 to 17 are the same fear from the other side: shavings swept out of a shop once a week, no bonfires in a street or on a lot without leave. The long clause from 'an inch of the pipe' to 'shall be passed' is read whole from the 12 August printing of the identical forme, where this printing's column runs the two halves of the sentence into one line; it is bracketed as a supply here because THIS column does not carry it."
+    },
+    {
+      "id": "c006",
+      "kind": "infrastructure",
+      "reading": "transcription_mediated",
+      "quote": "Sec. 21, There shall be appointed m pach district of said town, ove Gre warden whose duty it shall be to visit and exemine oncayith- in the first -week in each of the oaths of September, October, November, Deceniber,\njJenuary, February, Merch, Apni and May, an teach year, every house. stare or shop, ih his\ndigtriet, am) ascertain and report to tha board “Jof trostees, all violations of the precoding\n[Pxtenn, aeventeun and eizhteenth sections, and lalso to remove or abath (on negiect or refusal\nof the nccupant) any gauge from whicharme\nthate danger of tire might be apprehended, and’ HW builidings, chikineys, ovens, Haves, pipes, heartiis, boilers, nash houses and anparatus, in any buililing, or manufactory, which shall be deemed unsafe, to he without delay at the expense of the owner of accu- pant, pug i a eecure condition. |\" Sec. 82. ‘Phat it ehall not be lavtfal for I} any person to stack hay, within the following limite in the town of Chicago, to ‘wit com. fueneig on Washington street, at the United i States Sreevrvation, and runmng thence West to the intereection of Canal Street, xhenee\nNorth to the intersection of Kinzie Breet,\nthence Fast to the intersection of Wodlcott TH street, thence to linus Street, and thertce to ‘Tl take Michigan, under the penalty of twenty five dollnrs for each and every oflence, an the costy of removing: the sume,\nSec.28. Allactionsr brought to recover any +] penalty or forfeiture incurred under. the ferzo- ng ordinances, ot under any by-law, police | regulation, or ordivance that may be h¢rewNer made, shail be bought in the corporate) name; “| and in any such ation, 1 shall be iaasfol to £1 declare generally in on action of debt forsuch | penalty, stating the sectiun or sections of ny \"| ordinance or by-law, under which the peelly\niwelaimed, and to give the special matter in cyidence. \"Phe first. process in any! qction * 1} inay be cither by suinmons or warrant wehout *] oath und execution rany be issued immediately °| on rendition of judgment, and al! penalties and i forfeitures wiren collected, shall be paitl to the\ntown Treasury for the nse of said town, \"| Passed the sth doy ‘of August, 1835, | i He\na HUGUNIN, Pret P) Aunx. N.-Fouuxwton, Sec'y. |= ir From the Albasy Argos. | ys DIED.",
+      "normalized": "Sec. 21. There shall be appointed in each district of said town one fire warden whose duty it shall be to visit and examine once with[]in the first week in each of the [m]onths of September, October, Nov[ember, December,] January, February, March, Apr[i]l and May, in each year, every house, store or shop in his district, an[d] ascertain and report to the board of trustees all violations of the preceding [six]teen[th], seventeenth and eighteenth sections, and also to remove or abat[e] (on neglect or refusal of the occupant) any [cause] from which imme[di]ate danger of fire might be apprehended, and [all] buildings, chi[m]neys, ovens, [sto]ves, pipes, hearths, boilers, [w]ash houses and a[p]paratus in any building or manufactory which shall be deemed un[safe, to be without delay at the expense of the owner or occupant put in a secure condition. Sec. 22. That it shall not be lawful for any person to stack hay within the following limits in the town of Chicago, to wit: commencing on Washington street at the United States Reservation, and running thence West to the intersection of Canal Street, thence] North to the intersection of Kinzie [St]reet, thence East to the intersection of W[o]lcott street, thence to [Illino]is Street, and thence to [L]ake Michigan, under the penalty of twenty five dollars for each and every offence, an[d] the costs of r[emoving the same]. Sec. [23]. All actions brought to recover any penalty or forfeiture incurred under the fore[go]ing ordinances, or under any by-law, police regulation or ordinance that may be h[e]re[a]fter made, shall be brought in the corporate name; […] [the penalty being] claimed, and to give the special matter in evidence. The first process in any action may be either by summons or warrant w[i]thout oath, and execution may be issued immediately on rend[ition of judgment, and all penalties and forfeitures when collected shall be paid to the] town Treasury for the use of said town. Passed the 5th day of August, 1835. [S.] HUGUNIN, Pres'[t]. ALE[X]. N. FULLERTON, Sec'y.",
+      "locator": {
+        "artifact_role": "primary",
+        "issue_page": 1,
+        "column": 2,
+        "lines": [
+          124,
+          135
+        ]
+      },
+      "entities": [
+        {
+          "as_printed": "a HUGUNIN, Pret",
+          "normalized": "Hugunin, [S.]",
+          "role": "President of the Trustees of the Town of Chicago",
+          "occupations": [
+            "president of the town trustees"
+          ]
+        },
+        {
+          "as_printed": "Aunx. N.-Fouuxwton, Sec'y.",
+          "normalized": "Fullerton, Alex. N.",
+          "role": "Secretary to the Trustees of the Town of Chicago",
+          "occupations": [
+            "secretary to the town trustees"
+          ]
+        }
+      ],
+      "notes": "A HAY-STACKING BOUNDARY WALKED STREET BY STREET, AND IT IS A POLYGON. Washington street at the United States Reservation, west to Canal Street, north to Kinzie Street, east to Wolcott street, thence to Illinois Street, and thence to Lake Michigan — six vertices, all of them named streets this reconstruction already carries, describing the ground the Trustees thought dense enough that a hay stack in it was a fire risk. It is the only documented statement in the corpus of where the BUILT town was held to end in the scene year, and it is drawn from the fort's reservation round the forks and back to the lake. Section 21 is its companion: a fire warden per district walking into every house, store and shop nine months of the year, checking the chimneys, ovens, stoves, pipes, hearths, boilers and wash houses that section 18 regulates. Passed 5 August 1835 over the names of the President, Hugunin, and the Secretary, Alexander N. Fullerton. The section 22 preamble is read from the 12 and 26 August printings, which set it whole where this column jumps from 'unsafe' to 'North to the intersection'."
+    },
+    {
+      "id": "c007",
+      "kind": "event",
+      "reading": "transcription_mediated",
+      "quote": "“the Ladies and Genfiemen of tha town af Chicago, ae reapec ful ineited to attend s sale of the '*#f Juvtnile’ Society's\" 'work, 3 o'clock P. 7 next Saturday, the 22d inst. al | 4, the hourc of Mre. ©, Taylor, Wator-st. It in » |sincerely hoped that thie institution may meet with patronage, and the children's industry | _ with a liberal reward. Chicago, Aug. 10, 185,",
+      "normalized": "The Ladies and Gen[t]lemen of the town of Chicago are respec[t]fully in[v]ited to attend a sale of the \"Juvenile Society's\" work, [at] 3 o'clock P.[M.] next Saturday, the 22d inst., at the hous[e] of Mrs. C. Taylor, Water-st. It is sincerely hoped that this institution may meet with patronage, and the children's industry with a liberal reward. Chicago, Aug. 10, 18[35].",
+      "locator": {
+        "artifact_role": "primary",
+        "issue_page": 3,
+        "column": 2,
+        "lines": [
+          293,
+          293
+        ],
+        "spans": [
+          {
+            "line": 293,
+            "from": 322,
+            "to": 691
+          }
+        ]
+      },
+      "entities": [
+        {
+          "as_printed": "Mre. ©, Taylor,",
+          "normalized": "Taylor, Mrs. C.",
+          "role": "hostess",
+          "associated_places": [
+            "Water Street"
+          ]
+        }
+      ],
+      "notes": "A CHARITY SALE HELD IN A PRIVATE HOUSE ON WATER STREET, AND THE HOUSE IS NAMED FOR THE WOMAN WHO KEEPS IT. That is rare in this corpus: nearly every anchor the papers give is a store, an office or a public house, and this one is a dwelling. The date is Saturday 22 August 1835, three days after the paper. A 'Juvenile Society' selling children's work by subscription is the town's second charitable institution to appear in the corpus. The placement is street-only on Water street — the house is named but nothing sets it against a neighbour.",
+      "ad_copy_date": {
+        "verbatim": "Chicago, Aug. 10, 185,",
+        "iso": "1835-08-10"
+      }
+    },
+    {
+      "id": "c008",
+      "kind": "event",
+      "reading": "transcription_mediated",
+      "quote": "To the Ministers and Members of the Baptist de- | nomination in the Northern part of Minow, ie if in| North-Western parts of Indiana, and the Terrt- | (m pa tory af Hiseensin: ‘ ite 1 | PRs propered to sonrono a meeting ef Mini |p a- | ters and Delegates from Baptist charahea, at Dy | ps .} Page, Cook oo. TIL on Tuesday the JBth day of 1g September, at 10 o'clock, for the purposs of jtorming an association within the limits above | — FA. mlentioned, that We argy become mutually a¢- of| quainted with, each other's welfare—and adopt | — | Bek méasires as may tend more effectually to promote the emtablishment of the kingdom ef ve | Christ. Beveral ‘churches have already, elected to | delegates for that purpors: ut ve there may be ue| churches formed, or where that is nol the case, | ~ 1d | individual mombers who may not have received dt any intimation of the proposed meeting, the ua- FY | doreigned have edopted this mode of addressing | » their brothrpn scattered through thu extensi¥e 4 a xy take the liberty to suggest that mems-| fo ok | bers, residing in Beighborboods bere no cbt 8 h, | ee hare yet been formed, would Ho. sal (p ve » | nelect af least og nf thelr numnbsr te attend a¥] & ne jadelonate, Ifthe distance, or ang other eig-| n- | clitmstance sliould render it impracticable for a-| ™ | ny brethren to le present, a letter icontuning | ?! 8° infurmation respecting the number of memberk, | #1 rt: | &e. in such nelghborhioode, would ba both in-{ 8! m: | teresting and havo a beneficial influonce. hal In proposing atioh extensive limits to thin ax-|| | sociation, itis designed to afford churches, wide | ly distant, the opportunity of mmtudl acquaint-] _ anco and coneerted action, only till the county | ahiall become moro settled, and the churches. hc more :nunteroud, ‘when such other dasociations| aa | May bo constituted in the same limite as may i] | best tead.to promote the object in yaew, ] “1 | Communications on thin subject are request.|| © =} ed, for the present to be addresacd Yo either off) ¢, ur| tio undersigned, wlio are pastors) of Baptist)! y py | Shurehes, at the rover places of thel residence. 5 : ISAAC T. HINTON, Chicago, | I, od J. E. AMBROSE, Plainfield, | 4 ls A. B. HUBBARD, Du Page.” Bs in| Anguat 18. 1335,",
+      "normalized": "To the Ministers and Members of the Baptist denomination in the Northern part of [Illinois], [the] North-Western parts of Indiana and the Territory of [W]isconsin: [it is] proposed to conv[e]ne a meeting of Mini[s]ters and Delegates from Baptist chur[c]hes at D[u] Page, Cook co., Ill., on Tuesday the [15]th day of September at 10 o'clock, for the purpose of forming an association within the limits above mentioned […] Communications on this subject are requested, for the present, to be addressed to either of the undersigned, who are pastors of Baptist churches, at the r[espective] places of the[ir] residence. ISAAC T. HINTON, Chicago; J. E. AMBROSE, Plainfield; A. B. HUBBARD, Du Page. August 18, 1835.",
+      "locator": {
+        "artifact_role": "primary",
+        "issue_page": 3,
+        "column": 2,
+        "lines": [
+          293,
+          293
+        ],
+        "spans": [
+          {
+            "line": 293,
+            "from": 692,
+            "to": 2959
+          }
+        ]
+      },
+      "entities": [
+        {
+          "as_printed": "ISAAC T. HINTON, Chicago,",
+          "normalized": "Hinton, Isaac T.",
+          "role": "signatory",
+          "occupations": [
+            "Baptist pastor"
+          ],
+          "associated_places": [
+            "Chicago"
+          ]
+        },
+        {
+          "as_printed": "J. E. AMBROSE, Plainfield,",
+          "normalized": "Ambrose, J. E.",
+          "role": "signatory",
+          "occupations": [
+            "Baptist pastor"
+          ]
+        },
+        {
+          "as_printed": "A. B. HUBBARD, Du Page.",
+          "normalized": "Hubbard, A. B.",
+          "role": "signatory",
+          "occupations": [
+            "Baptist pastor"
+          ]
+        }
+      ],
+      "notes": "THE BAPTIST PASTOR OF CHICAGO IS NAMED, AND HE IS ONE OF THREE IN A REGION THE SIZE OF A STATE. Isaac T. Hinton signs for Chicago, Ambrose for Plainfield, Hubbard for Du Page — three settled Baptist churches between Lake Michigan and the Territory of Wisconsin, meeting at Du Page in September to make an association. For a reconstruction that must decide which denominations had a building in Chicago in 1835 this is direct evidence that the Baptists had a pastor here; it says nothing about what he preached in. The Methodist chapel and the Presbyterian church are both named elsewhere in this corpus as meeting places; no Baptist meeting house is.",
+      "ad_copy_date": {
+        "verbatim": "Anguat 18. 1335,",
+        "iso": "1835-08-18"
+      }
+    },
+    {
+      "id": "c009",
+      "kind": "shipping",
+      "reading": "transcription_mediated",
+      "quote": "ABRIVARS - Vie ne OF VESSELS t if AT GHICAGO, 1835. 43 ° is | ee e ARRIVED. u Ang. 19, Schr. Indiana, M’Queen, Grand, Rr. | - 12,4 Llowellyn, Howe, St. Joreph.| 8 13,0.\" Utica, ene, Millysikee, | th 13, Indiana, M'Qneen, Grand ite! i ay 1G, Detroy, ———, Oswego. | de 318, Naucy Douseman, Shooks, Di fi a io’ Sutiett Shooke, Buffalo, te a 17, Slonp, Westward Ho, Banks, Mile\") ~ 12, Schr. Bridgert, Ludlow, St. Jozeph,/f \" ls ta, Matenzo, Dingiey, Buflain,",
+      "normalized": "ARRIVA[LS] OF VESSELS AT CHICAGO, 1835. ARRIVED. Aug. 1[0], Schr. Indiana, M'Queen, Grand R[iver]; 12, [Schr.] Llewellyn, Howe, St. Joseph; 13, [Schr.] Utica, [—], Milw[a]ukee; 13, [Schr.] Indiana, M'Queen, Grand [River]; 1[5], [Schr.] Detro[it], ———, Oswego; 1[6], [Schr.] Nancy Douseman, Shooks, D[etroit]; 1[6], [Schr.] Sutlett[?], Shooks, Buffalo; 17, Sloop Westward Ho, Banks, Mil[waukee]; 1[8], Schr. Bridget, Ludlow, St. Joseph; 1[8], [Schr.] Matanzo[?], Dingley, Buffalo.",
+      "locator": {
+        "artifact_role": "primary",
+        "issue_page": 3,
+        "column": 2,
+        "lines": [
+          293,
+          293
+        ],
+        "spans": [
+          {
+            "line": 293,
+            "from": 2971,
+            "to": 3426
+          }
+        ]
+      },
+      "entities": [],
+      "notes": "TEN ARRIVALS IN NINE DAYS, AND THE HARBOUR THEY CAME INTO IS DESCRIBED IN THE SAME MONTH'S SOUNDINGS. Grand River, St. Joseph, Milwaukee, Oswego, Detroit and Buffalo — the lake trade Chicago lived on, at a rate of better than one vessel a day, each with its master named. Two of them, the Indiana and the Llewellyn, are back inside a week, which is what a St. Joseph or Grand River run looked like. The 5 August issue carries Lieut. Brown's soundings of the same harbour: thirteen feet between the piers where the channel is six hundred feet wide, twenty where it is four hundred, and nowhere in the channel less than ten. A vessel list is therefore not decoration here — it is the traffic those piers were built to take."
+    },
+    {
+      "id": "c010",
+      "kind": "business",
+      "reading": "transcription_mediated",
+      "quote": "HE. nabscriber will) ease\n40 feet of Lot 7 in block 18, TotSin : 9 Yon Lake-stroet Lots 2, 3,4, 8, 6,7, in\" 8, Vand8in \"! 4)onNorth Wator BendGin ' & (and Kintic.nt Sin | 6, Rand4in 8, 6, and8in ‘ 13; (on Canal and N2andGin ' 23, (Clinton-sta. Band4in | 98, and all of Block 15, on North Water-at. The abore lots are all well situated for resi- dences or business, and will be lesred very low. J, Ci GOODHUE, Agent",
+      "normalized": "TH[E] subscriber will [l]ease the following [lots of land in Chicago for a term of years on advantageous terms, viz:] 40 feet of Lot 7 in block 18, [and] Lot 8 in [block] 9, on Lake-street; Lots 2, 3, 4, 5, 6, 7 in [block] 8, [and] 7 and 8 in [block] 4, on North Water [street]; [Lots] 5 and 6 in [block] 5, [on North Water] and Kinzie-st[reet]; [Lot] 5 in [block] 6; [Lots] 3 and 4 in [block] 8; [Lots] 6 and 8 in [block] 13, on Canal and [Clinton streets]; [Lots] 2 and 6 in [block] 23, [on] Clinton-st[reet]; [Lots] 3 and 4 in [block] 28; and all of Block 15, on North Water-st. The above lots are all well situated for residences or business and will be leased very low. J. C. GOODHUE, Agent.",
+      "locator": {
+        "artifact_role": "primary",
+        "issue_page": 3,
+        "column": 3,
+        "lines": [
+          296,
+          297
+        ],
+        "spans": [
+          {
+            "line": 296,
+            "from": 0,
+            "to": 25
+          },
+          {
+            "line": 297,
+            "from": 0,
+            "to": 388
+          }
+        ]
+      },
+      "entities": [
+        {
+          "as_printed": "J, Ci GOODHUE, Agent.",
+          "normalized": "Goodhue, J. C.",
+          "role": "agent",
+          "occupations": [
+            "land agent"
+          ]
+        }
+      ],
+      "notes": "TWENTY-ONE NAMED LOTS AND A WHOLE BLOCK, OFFERED TO LEASE ON STREETS THIS RECONSTRUCTION ALREADY CARRIES. Block and lot numbers on Lake street, North Water street, Kinzie street, Canal and Clinton streets, and Block 15 entire on North Water — a document that says which ground in the platted town was still UNBUILT and available in August 1835, which is exactly the kind of negative evidence a reconstruction of a half-empty town needs and rarely gets. An agent leasing rather than selling is worth noticing in the middle of the speculative summer. The lots pair with their streets down a two-column bracket in the original setting and the pairing is read off the printed brackets; each supplied 'block' and street attribution is bracketed. The 12 August printing of the same advertisement, dated 8 August, sets the first line without the '40 feet of Lot 7 in block 18' and is the reason the reading is taken from here.",
+      "business": {
+        "name": "J. C. Goodhue, land agent",
+        "proprietors": [
+          "Goodhue, J. C."
+        ],
+        "trade": "leasing town lots",
+        "goods": [],
+        "street": null,
+        "placement": {
+          "class": "none",
+          "anchor": null
+        }
+      },
+      "ad_copy_date": {
+        "verbatim": "_Chicago, Avgust B, \\BS.—\\7W17G",
+        "iso": "1835-08-08"
+      }
+    },
+    {
+      "id": "c011",
+      "kind": "business",
+      "reading": "transcription_mediated",
+      "quote": "_Im the most Pashfonable Style.\nPN E subscriber having takon a shop\nLorn atreet, nearly opposite the Eagle Cof- fre House, where he intends to carry on ihe business in all ite yarions and moat complicsted |’ branches, and hopes by strict attention and | promptness of exccution, to merit a shere of public patronge.\nGEORGE NOLSMAN. August 10, 1835.—14",
+      "normalized": "[TAILORING] in the most Fashionable Style. TH[E] subscriber having taken a shop on Dea[r]born street nearly opposite the Eagle Coffee House, where he intends to carry on the business in all its various and most complicated branches, and hopes by strict attention and promptness of execution to merit a share of public patronage. GEORGE [H]OLSMAN. August 10, 1835.",
+      "locator": {
+        "artifact_role": "primary",
+        "issue_page": 3,
+        "column": 3,
+        "lines": [
+          298,
+          301
+        ],
+        "spans": [
+          {
+            "line": 298,
+            "from": 0,
+            "to": 31
+          },
+          {
+            "line": 299,
+            "from": 0,
+            "to": 35
+          },
+          {
+            "line": 300,
+            "from": 0,
+            "to": 247
+          },
+          {
+            "line": 301,
+            "from": 0,
+            "to": 35
+          }
+        ]
+      },
+      "entities": [
+        {
+          "as_printed": "GEORGE NOLSMAN.",
+          "normalized": "Holsman, George",
+          "role": "proprietor",
+          "occupations": [
+            "tailor"
+          ],
+          "associated_places": [
+            "Dearborn Street"
+          ]
+        }
+      ],
+      "notes": "THE SAME SHOP, IN THE SAME ELEVEN WORDS, TAKEN BY A DIFFERENT TAILOR THREE WEEKS LATER. Cooley and Hol[b]man announced on 22 July that they had taken 'a shop, on Dearborn Street, nearly opposite the Eagle Coffee House' (chicago_democrat_1835_08_05.json c005); George Holsman announces on 10 August that he has taken a shop on Dearborn street nearly opposite the Eagle Coffee House. Either a two-man partnership became one man inside three weeks, or two tailors' shops stood within a few doors of each other opposite the same coffee house. The papers of August do not decide it and neither does this claim; the two names are NOT merged, because same surname with a different spelling is exactly the judgement identity.json exists to make explicitly. What the pair does establish beyond doubt is a tailoring frontage on Dearborn street opposite the Eagle Coffee House, continuously advertised through the month.",
+      "business": {
+        "name": "George Holsman",
+        "proprietors": [
+          "Holsman, George"
+        ],
+        "trade": "tailoring",
+        "goods": [],
+        "street": "Dearborn Street",
+        "placement": {
+          "class": "relative",
+          "anchor": "the Eagle Coffee House",
+          "offset_text": "on Deas. Lorn atreet, nearly opposite the Eagle Cof- fre House"
+        }
+      },
+      "ad_copy_date": {
+        "verbatim": "August 10, 1835.—14",
+        "iso": "1835-08-10"
+      },
+      "announces_opening": true
+    },
+    {
+      "id": "c012",
+      "kind": "business",
+      "reading": "transcription_mediated",
+      "quote": "MORISON’S AYGEIN MEDICINE. rs troly valuable and popular, medicine,\nfor wale oly hy Russell & Chin, (Agents for the State of Iinais) at the Chicigo Book | Store, The pills, cepecially, being vo celebra- ted, fem the numéraux cures effected by the! ure of them, are extensively counterfeited and imjtated, ‘Tho public are therefore cautioned ndlanat purchasing them without the signature of Kursell & Cli’ afixed’ to each packet; and all will perticulacly observe that Mumuon is le- Bibly wrarhed un each aba, ues A large assortinent af auparior § 1 and now and Popular Works just received & RUSSELL & CLIFT. Chicago, August 12 \\H85.",
+      "normalized": "MORISON'S HYGEI[A]N MEDICINE. Th[i]s truly valuable and popular medicine [is] for sale only by Russell & Cl[if]t (Agents for the State of I[ll]inois) at the Chicago Book Store. The pills especially, being so celebrated from the numer[ous] cures effected by the use of them, are extensively counterfeited and imitated. The public are therefore cautioned [a]g[ai]nst purchasing them without the signature of R[u]ssell & Cli[ft] affixed to each packet; and all will particularly observe that M[orison] is legibly [ma]rked on each [label]. A large assortment of superior S[tationery] and new and Popular Works just received [by] RUSSELL & CLIFT. Chicago, August 12, 1[8]35.",
+      "locator": {
+        "artifact_role": "primary",
+        "issue_page": 3,
+        "column": 3,
+        "lines": [
+          302,
+          303
+        ],
+        "spans": [
+          {
+            "line": 302,
+            "from": 29,
+            "to": 96
+          },
+          {
+            "line": 303,
+            "from": 0,
+            "to": 564
+          }
+        ]
+      },
+      "entities": [
+        {
+          "as_printed": "Russell & Chin,",
+          "normalized": "Russell & Clift",
+          "role": "proprietor",
+          "occupations": [
+            "booksellers",
+            "stationers",
+            "patent medicine agents"
+          ],
+          "associated_places": [
+            "the Chicago Book Store"
+          ]
+        }
+      ],
+      "notes": "THE CHICAGO BOOK STORE IS NAMED, AND IT SELLS PATENT PILLS BESIDE STATIONERY AND NEW WORKS. A book store is one of the shops a reconstruction wants most and this corpus had not carried before: a named premises, a named firm holding a state agency in it, and a stock of books, stationery and proprietary medicine. Russell & Clift are the Illinois agents for Morison's Hygeian pills — a shop that is also a distributor. No street is given in any printing; the store is named as if the town knew where it was, which is the same habit that leaves 'the New Store on Dearborn st.' unnumbered a week earlier.",
+      "business": {
+        "name": "Russell & Clift, the Chicago Book Store",
+        "proprietors": [
+          "Russell & Clift"
+        ],
+        "trade": "book store, stationery and patent medicines",
+        "goods": [
+          "books",
+          "stationery",
+          "Morison's Hygeian medicine"
+        ],
+        "street": null,
+        "placement": {
+          "class": "none",
+          "anchor": null
+        }
+      },
+      "ad_copy_date": {
+        "verbatim": "Chicago, August 12 \\H85.",
+        "iso": "1835-08-12"
+      }
+    },
+    {
+      "id": "c013",
+      "kind": "business",
+      "reading": "transcription_mediated",
+      "quote": "SARAH D. HOWE, iV a? ‘OULAD inform the Ladies of Chicage that ee, ‘she fina taken 2 room in Lake-atreet; in || ‘lty | tue house occupied by Dr. Austin, and oppoaito | Dr, Tomplo's, where she intends tp carry, on BY'| Dress, Cloak and Hichit Making. | Thiee perspne | tle- | wishing to have their work dons in fhe neatest go- vile and at the shortest notice, will dp well *| al 5 to \"NB. WANTED, four active young ladiep 4 ANY | apprenuicey to the above business. x] el Chicago, Aug. 18, 1835.—4w18",
+      "normalized": "SARAH D. HOWE [W]OUL[D] inform the Ladies of Chicago that she has taken a room in Lake-street, in t[h]e house occupied by Dr. Austin and opposite Dr. Temple's, where she intends to carry on Dress, Cloak and H[ab]it Making. Th[o]se persons wishing to have their work done in the neatest [st]yle and at the shortest notice will do well to [call]. N.B. WANTED, four active young ladi[e]s [as] apprentices to the above business. Chicago, Aug. 18, 1835.",
+      "locator": {
+        "artifact_role": "primary",
+        "issue_page": 3,
+        "column": 2,
+        "lines": [
+          293,
+          293
+        ],
+        "spans": [
+          {
+            "line": 293,
+            "from": 4657,
+            "to": 5154
+          }
+        ]
+      },
+      "entities": [
+        {
+          "as_printed": "SARAH D. HOWE,",
+          "normalized": "Howe, Sarah D.",
+          "role": "proprietor",
+          "occupations": [
+            "dress maker",
+            "cloak maker",
+            "habit maker"
+          ],
+          "associated_places": [
+            "Lake Street"
+          ]
+        }
+      ],
+      "notes": "THE MONTH'S BEST-PLACED SHOP, AND IT IS A WOMAN'S. A room in Lake-street, in the house occupied by Dr. Austin, opposite Dr. Temple's — two anchors on one line, both of them men who advertise in the same paper, and Austin's own advertisement in the 12 August issue puts his office 'on Lake street, near the post office' (chicago_democrat_1835_08_12.json c004). So one Lake Street house holds a physician's office and a dressmaker's room, faces a second physician's, and stands near the post office: four uses within a few doors, from three independent notices. She is also hiring four apprentices, which makes it a workroom and not a parlour. A 'Sarah D. Howe' stands on the post-office letter list printed in this same issue, the strongest corroboration a listed name can get, and T-0326 will meet her there.",
+      "business": {
+        "name": "Sarah D. Howe",
+        "proprietors": [
+          "Howe, Sarah D."
+        ],
+        "trade": "dress, cloak and habit making",
+        "goods": [],
+        "street": "Lake Street",
+        "placement": {
+          "class": "relative",
+          "anchor": "the house occupied by Dr. Austin",
+          "offset_text": "she fina taken 2 room in Lake-atreet; in tue house occupied by Dr. Austin, and oppoaito Dr, Tomplo's"
+        }
+      },
+      "ad_copy_date": {
+        "verbatim": "Chicago, Aug. 18, 1835.—4w18",
+        "iso": "1835-08-18"
+      },
+      "announces_opening": true
+    },
+    {
+      "id": "c014",
+      "kind": "business",
+      "reading": "transcription_mediated",
+      "quote": "Ur) Orrick OrvosrtR THK EXCMAROK, LAKE-STRAET. ruby Dect, WM, H. KENNICOTT, ery FFERS his professional aarvices to the!cit- ‘ oO izons of Clicago, both in the pastes pf 1}, Medicine and Dentistry. Aug. 19, 1635,—14",
+      "normalized": "[Practice of Medicine and DENTISTRY.] OFFICE OPPOSITE THE EXCHANGE, LAKE-STR[E]ET. Doct. WM. H. KENNICOTT [O]FFERS his professional services to the cit[i]zens of Chicago both in the pract[ice] of Medicine and Dentistry. Aug. 19, 1835.",
+      "locator": {
+        "artifact_role": "primary",
+        "issue_page": 3,
+        "column": 2,
+        "lines": [
+          293,
+          293
+        ],
+        "spans": [
+          {
+            "line": 293,
+            "from": 5200,
+            "to": 5414
+          }
+        ]
+      },
+      "entities": [
+        {
+          "as_printed": "Dect, WM, H. KENNICOTT,",
+          "normalized": "Kennicott, Wm. H.",
+          "role": "proprietor",
+          "occupations": [
+            "surgeon dentist",
+            "physician"
+          ],
+          "associated_places": [
+            "Lake Street",
+            "opposite the Exchange"
+          ]
+        }
+      ],
+      "notes": "THE DENTIST BECOMES A DOCTOR TOO, IN THE SAME ROOM. On 5 August Kennicott advertised as SURGEON DENTIST only, from an office opposite the Exchange on Lake-street, with a year's practice behind him; on 19 August the same office offers 'both … Medicine and Dentistry' over a copy date of that very day. A practice widening inside three weeks is the kind of change that dates a fitting-out, and the address does not move. That makes four separate medical men advertising in Chicago in one month — Kennicott, Austin, the Dr. Temple whose house Sarah Howe faces, and the Dr. A. H. Howland of the letter list — three of them on Lake Street.",
+      "business": {
+        "name": "Wm. H. Kennicott, Surgeon Dentist",
+        "proprietors": [
+          "Kennicott, Wm. H."
+        ],
+        "trade": "practice of medicine and dentistry",
+        "goods": [],
+        "street": "Lake Street",
+        "placement": {
+          "class": "relative",
+          "anchor": "the Exchange",
+          "offset_text": "Ur) Orrick OrvosrtR THK EXCMAROK, LAKE-STRAET."
+        }
+      },
+      "ad_copy_date": {
+        "verbatim": "Aug. 19, 1635,—14",
+        "iso": "1835-08-19"
+      }
+    },
+    {
+      "id": "c015",
+      "kind": "business",
+      "reading": "transcription_mediated",
+      "quote": "Wholesale Grocery Store, one |, Js South Water. Sted, neer ihe Drew Bridge, HE. subscriber will receive and offer forsslo hem | T on the first of September, at very whde- suds; rai piees 8 ree and well selected cael ut to| of CERLES:; com . ool variety ot Wines, Tons, Suphrsy Coie, ec Merchants, Tascrn Keepers and Manufachards, el id iy epithets sirens te) ‘umilics eu pplis TI a aiid PRWILCLAM Fe Lyon, Chicago, Avg. 1835.—-18.0",
+      "normalized": "Wholesale Grocery Store, [No.] 1 South Water Str[ee]t, near the Dr[a]w Bridge. TH[E] subscriber will receive and offer for sale on the first of September, at very [w]hole[sale] […] prices, a [la]rge and well selected [assortment] of GRO[C]ER[I]ES, com[prising a general] variety of Wines, Te[a]s, Sug[a]rs, Co[ffee], &c. Merchants, Tavern Keepers and Manufact[u]r[e]rs [will find it to their advantage to call. Fa]milies supplie[d]. WILLIAM F. LYON. Chicago, Aug. 1835.",
+      "locator": {
+        "artifact_role": "primary",
+        "issue_page": 3,
+        "column": 2,
+        "lines": [
+          293,
+          293
+        ],
+        "spans": [
+          {
+            "line": 293,
+            "from": 5418,
+            "to": 5849
+          }
+        ]
+      },
+      "entities": [
+        {
+          "as_printed": "PRWILCLAM Fe Lyon,",
+          "normalized": "Lyon, William F.",
+          "role": "proprietor",
+          "occupations": [
+            "wholesale grocer"
+          ],
+          "associated_places": [
+            "South Water Street",
+            "the Draw Bridge"
+          ]
+        }
+      ],
+      "notes": "A NUMBERED ADDRESS AND A BRIDGE IN ONE LINE — the only street NUMBER any Chicago advertisement in this month carries, and the only building the corpus places against the draw bridge. No. 1 South Water Street, near the Draw Bridge, opening on the first of September 1835: a stock not yet landed, on premises already taken, five days before the Democrat's run ends. The draw bridge is the Dearborn Street bridge over the main river, and the town's own ordinance of 5 August forbids riding or driving on a bridge walk (claim c002), so this is a grocery placed at the busiest crossing the town had. Merchants, tavern keepers and manufacturers are addressed as distinct trades, and families are supplied separately — a wholesale house that also served the street it stood on.",
+      "business": {
+        "name": "William F. Lyon, Wholesale Grocery Store",
+        "proprietors": [
+          "Lyon, William F."
+        ],
+        "trade": "wholesale grocery",
+        "goods": [
+          "wines",
+          "teas",
+          "sugars",
+          "coffee"
+        ],
+        "street": "South Water Street",
+        "placement": {
+          "class": "relative",
+          "anchor": "the Draw Bridge",
+          "offset_text": "Js South Water. Sted, neer ihe Drew Bridge"
+        }
+      },
+      "ad_copy_date": {
+        "verbatim": "Chicago, Avg. 1835.—-18.0",
+        "iso": "1835-08-01"
+      },
+      "announces_opening": true
+    },
+    {
+      "id": "c016",
+      "kind": "business",
+      "reading": "transcription_mediated",
+      "quote": "Keyy of Fresh Butter. Also, a lot of QO Nic tia ie priwe order | | YOHN H. KINZIE. | | July 21, 1835",
+      "normalized": "[…] Kegs of Fresh Butter. Also, a lot of [cheese? …] in prime order. JOHN H. KINZIE. July 21, 1835.",
+      "locator": {
+        "artifact_role": "primary",
+        "issue_page": 3,
+        "column": 3,
+        "lines": [
+          305,
+          305
+        ],
+        "spans": [
+          {
+            "line": 305,
+            "from": 22,
+            "to": 122
+          }
+        ]
+      },
+      "entities": [
+        {
+          "as_printed": "YOHN H. KINZIE.",
+          "normalized": "Kinzie, John H.",
+          "role": "advertiser",
+          "occupations": [
+            "merchant"
+          ]
+        }
+      ],
+      "notes": "JOHN H. KINZIE SELLING BUTTER ON HIS OWN ACCOUNT, and the same man's 'new store' houses Henry Moore's law office (chicago_democrat_1835_08_05.json c018). Two independent notices in one month therefore put Kinzie in trade and put a tenant in his building. The quantity and the second article are cut away and are not supplied.",
+      "ad_copy_date": {
+        "verbatim": "July 21, 1835",
+        "iso": "1835-07-21"
+      }
+    },
+    {
+      "id": "c017",
+      "kind": "business",
+      "reading": "transcription_mediated",
+      "quote": "JOUN DEAN CATON, |] | ATTORNEY AND COUNSELLOR |< | A® LAW,\nCHICAGO FLLINOrR, \\- | QFFICE in bake Street, one door wost of",
+      "normalized": "JOHN DEAN CATON, ATTORNEY AND COUNSELLOR AT LAW and Solicitor in Chancery, CHICAGO, [I]LL[I]NO[IS]. OFFICE in [L]ake Street, one door w[e]st of […]",
+      "locator": {
+        "artifact_role": "primary",
+        "issue_page": 3,
+        "column": 5,
+        "lines": [
+          321,
+          322
+        ],
+        "spans": [
+          {
+            "line": 321,
+            "from": 38,
+            "to": 96
+          },
+          {
+            "line": 322,
+            "from": 0,
+            "to": 62
+          }
+        ]
+      },
+      "entities": [
+        {
+          "as_printed": "JOUN DEAN CATON,",
+          "normalized": "Caton, John Dean",
+          "role": "proprietor",
+          "occupations": [
+            "attorney",
+            "counsellor at law",
+            "solicitor in chancery"
+          ],
+          "associated_places": [
+            "Lake Street"
+          ]
+        }
+      ],
+      "notes": "A SEVENTH ATTORNEY, AND THE ONLY ONE ON LAKE STREET. The 5 August cards put Curtiss on South Water, Collins and Abell on Dearborn, Moore in Kinzie's new store and Spring beside the Tremont; Caton's is new in this issue and it is 'one door west of' a building whose name the column cut away with the next line. The offset text is kept verbatim precisely because the anchor is missing: a placement that names a direction and a distance but not the thing it measures from cannot place anything, and the class is therefore relative with the anchor recorded as unreadable rather than guessed at. John Dean Caton later sat on the Illinois Supreme Court; in August 1835 he is a young man advertising a room.",
+      "business": {
+        "name": "John Dean Caton, Attorney and Counsellor at Law",
+        "proprietors": [
+          "Caton, John Dean"
+        ],
+        "trade": "law",
+        "goods": [],
+        "street": "Lake Street",
+        "placement": {
+          "class": "relative",
+          "anchor": "[unreadable — the column cuts the name away]",
+          "offset_text": "QFFICE in bake Street, one door wost of"
+        }
+      }
+    },
+    {
+      "id": "c018",
+      "kind": "building",
+      "reading": "transcription_mediated",
+      "quote": "T (WU good Stores to Labonte to j JOUN PT. TEMALE, July 28, 1385",
+      "normalized": "T[W]O good Stores to L[et]. [Apply] to JOHN T. TEMPLE. July 2[0], 1835.",
+      "locator": {
+        "artifact_role": "primary",
+        "issue_page": 3,
+        "column": 6,
+        "lines": [
+          332,
+          332
+        ],
+        "spans": [
+          {
+            "line": 332,
+            "from": 1376,
+            "to": 1440
+          }
+        ]
+      },
+      "entities": [
+        {
+          "as_printed": "JOUN PT. TEMALE,",
+          "normalized": "Temple, John T.",
+          "role": "lessor"
+        }
+      ],
+      "notes": "THE SAME TWO EMPTY STORES, AND THIS PRINTING SETS THE NAME AS TEMPLE. The 12 August column reads 'SEMPLE' (chicago_democrat_1835_08_12.json c010); John T. Temple is a documented Chicago name and this printing supports it, but the two spellings are recorded as they stand and are not merged here. Still no address in either printing.",
+      "ad_copy_date": {
+        "verbatim": "July 28, 1385",
+        "iso": "1835-07-20"
+      }
+    },
+    {
+      "id": "c019",
+      "kind": "infrastructure",
+      "reading": "transcription_mediated",
+      "quote": "| JOHN S.C. HOGAN, P. 3.",
+      "normalized": "JOHN S. C. HOGAN, P. M.",
+      "locator": {
+        "artifact_role": "primary",
+        "issue_page": 4,
+        "column": 3,
+        "lines": [
+          352,
+          352
+        ]
+      },
+      "entities": [
+        {
+          "as_printed": "JOHN S.C. HOGAN, P. 3.",
+          "normalized": "Hogan, John S. C.",
+          "role": "postmaster",
+          "occupations": [
+            "postmaster"
+          ],
+          "associated_places": [
+            "the Chicago post office"
+          ]
+        }
+      ],
+      "notes": "THE POSTMASTER'S SIGNATURE UNDER THE THIRD PRINTING of the one standing letter list — letters remaining in the Post Office at Chicago on 31 July 1835 — whose six hundred names are NOT minted here and belong to T-0326. See chicago_democrat_1835_08_12.json c014 for the reasoning: T-0299 measured that minting one standing list from every printing of it turned 298 names into 638 persons. The post office itself is placed by Dr. Austin's advertisement in the 12 August issue: on Lake street.",
+      "letter_list_only": true
+    }
+  ]
+}

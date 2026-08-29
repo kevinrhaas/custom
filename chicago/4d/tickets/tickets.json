@@ -1,6 +1,6 @@
 {
   "project": "chicago-4d",
-  "generated_ct": "Aug 28, 2026, 8:09 PM",
+  "generated_ct": "Aug 28, 2026, 9:45 PM",
   "tickets": [
     {
       "id": "T-0001",
@@ -5488,6 +5488,42 @@
       "blocked_on": null,
       "needs_bake": false,
       "queue_rank": 8
+    },
+    {
+      "id": "T-0333",
+      "title": "Every stove pipe in the town owes eighteen inches above its roof, and the ordinance of 5 August 1835 says so",
+      "state": "open",
+      "epic": "META",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "M",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-08-28",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "queue_rank": 71
+    },
+    {
+      "id": "T-0334",
+      "title": "The hay-stacking ordinance walks a six-vertex boundary round the built town, and nothing draws or tests it",
+      "state": "open",
+      "epic": "META",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "M",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-08-28",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "queue_rank": 72
     }
   ]
 }

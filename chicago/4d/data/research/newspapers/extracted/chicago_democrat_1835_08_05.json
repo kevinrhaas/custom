@@ -1347,6 +1347,32 @@
           "offset_text": "vet Hlessrs Jonos ke King Hordware"
         }
       }
+    },
+    {
+      "id": "c027",
+      "kind": "infrastructure",
+      "reading": "transcription_mediated",
+      "quote": "Let of Letters. i is EMAINING in the Pet (en at fe is R! age, Closk County, Blinuis, on ys list uay of Duby 1a,",
+      "normalized": "L[ist] of Letters [R]EMAINING in the P[ost Offic]e at [Chic]ago, C[oo]k County, [I]llinois, on [the 3]1st [d]ay of [Jul]y 18[35].",
+      "locator": {
+        "artifact_role": "primary",
+        "issue_page": 3,
+        "column": 2,
+        "lines": [
+          332,
+          332
+        ],
+        "spans": [
+          {
+            "line": 332,
+            "from": 18,
+            "to": 129
+          }
+        ]
+      },
+      "entities": [],
+      "notes": "THE FIRST OF FOUR PRINTINGS OF ONE STANDING LIST, and the heading is claimed rather than the six hundred names beneath it. This column sets the date as 'ys list uay of Duby 1a', which a hurried reading takes for the FIRST day of July; the 26 August printing sets the same heading legibly as the THIRTY-FIRST day of July 1835 (chicago_democrat_1835_08_26.json c008), and the name lists of all four printings are identical name for name and in the same order. So the four August Democrats carry one list, the postmaster's return for the end of July, standing in the forme for a month. The names are NOT minted from this printing or from any other in this ticket: T-0299 measured that minting a standing list once per printing turned 298 names into 638 persons in the 1834 read, because the identity policy correctly keys on the whole normalized name and the segmenter cuts each printing differently. T-0326 owns the name-level extraction and will make it from ONE printing. J. S. C. Hogan's signature closes the list in the next column.",
+      "letter_list_only": true
     }
   ]
 }
