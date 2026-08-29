@@ -478,6 +478,47 @@ distinct ways. Each is now a guard with a self-test on the case that forced it.
 Every surviving `enrich_existing` carries the tier it matched on and the exact text it matched
 against, so T-0263 can argue with a proposal without re-running anything.
 
+### A name is not always one building, and the anchor path used to pretend it was
+
+`resolve_anchor` reads the landmark a paper prints — "David Carver's Old Stand", "west of J.
+Wright's" — against the committed town, and until 2026-08-29 `match_landmark` ended
+`return sorted(hits)[0] if hits else None`. Where two committed records answered to one name it
+took whichever id sorted first and the register wrote *"The landmark is the committed structure
+X"* over it. Nothing in the file said a second record had answered to the same name; an
+alphabetical tie-break came out looking like a reading.
+
+**Thirty-five identity-word sets in the committed town are held by more than one record**, and the
+figure is derived on every build — `compiled_from.structures_sharing_a_name` in the register, and
+`tools/check.sh` prints it. Twenty-eight are anonymous count-units, where the collision is a
+consequence of naming a roof "Reconstructed 2-room frame cottage 02" and no advertisement will
+ever print it. **Seven are named landmarks a paper could name, and would:**
+
+| the name | the records it answers to |
+|---|---|
+| `pier`, `harbour pier works` | `north_pier`, `south_pier` |
+| `branch bridge`, `branch bridge first over` | `north_branch_bridge`, `south_branch_raft_bridge` |
+| `house school watkins` | `north_side_school_1833`, `watkins_school_house` |
+| `crossing slough water` | `north_water_slough_crossing`, `slough_log_bridge` |
+| `building john let wright` | `wright_building_to_let_a`, `wright_building_to_let_b` |
+
+The Wright pair is the case T-0386 is blocked behind and the clearest of the seven: one
+advertisement, two buildings to let, one proprietor's name, and the only thing separating the two
+records is the *(east)* / *(west)* this project added — which `words()` drops as a stop word, so
+the two are one name to every reading pass that will ever run. `north` and `south` are stop words
+for the same reason, which is why the piers and the branch bridges collide too.
+
+So the anchor now has a **sixth kind, `ambiguous`**: the name was recognised, the town holds it
+more than once, and the register refuses rather than picks — naming every rival in the note. It
+never places; a business whose anchor is ambiguous falls to `street_only` or `unplaceable` on the
+street the paper printed, exactly as an unresolved one does. The same refusal guards the one-hop
+business match below it, because the corpus prints one house under more than one heading.
+
+**No placement in the register moves today**, and that is the honest measure of this change: zero
+of the 209 businesses print an anchor that lands on one of the thirty-five. It is a guard against a
+fabrication rather than the repair of one — and the thing it guards is live, because the moment a
+reading pass widens enough to see past a project-added disambiguator, "J. Wright's" resolves onto
+two records and the old code would have picked the east one.
+
 ### The T-0257 fixtures, as the acceptance requires
 
 `business_j_s_c_hogan` → `enrich_existing`, target `hogan_store`, matched on the record's own name.
