@@ -47,10 +47,8 @@ T-0219 — Finish the heightfield SOUTH to Madison Street, the plat's last tier
 # --- Three owner rulings govern the epic; each ticket carries them in full.
 T-0312 — Reading the Democrat, March 1834: Vol. I Nos. 15-17
 T-0314 — Reading the Democrat, May 1834: Vol. I Nos. 23-26
-T-0315 — Reading the Democrat, June 1834: Vol. I Nos. 27-30
-T-0294 — Reading the Democrat, December 1834: Vol II Nos 1-4
 T-0297 — Reading the Democrat, August 1835: the four issues after the scene date
-T-0298 — Reading the Democrat, January to June 1835: the eight issues only the deposit can open
+T-0326 — Reading the Democrat, January to June 1835: the eight issues, now that their columns resolve
 T-0262 — The July 1, 1835 register: who and what the papers put in the town
 T-0263 — The documented storefronts take their places on South Water and Lake
 T-0264 — Documented people replace the invented
@@ -120,3 +118,7 @@ T-0318 — The January 1834 letter list is 97 names and the printed list was lon
 T-0321 — The 1 April 1834 Chicago letter list is 179 names and nineteen lines of debris stand where more did
 T-0323 — The 1 January 1834 letter list has a third printing that T-0318 did not know about, and it repairs the A-H half without page images
 T-0324 — J. K. Botsford advertises two addresses in one issue, and Graves' Tavern cannot be placed until they are reconciled
+T-0327 — The December 1834 bookseller's name is 'RUISAL & CLUPR' in the only printing that carries it, and the gazetteer may already hold the firm
+T-0328 — D. Weaver's building is on Lot 2 in one printing and Lot 9 in the next, and both transcriptions are Vision-set
+T-0329 — School District Number One is bounded in print on 1834-12-10 and the segmenter cut better than half of every line of it away
+T-0330 — A fragment reading 'opposite the Tremont House' sits between two interleaved advertisements and neither can claim it
