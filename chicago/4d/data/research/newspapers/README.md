@@ -348,7 +348,7 @@ and `register_1835.json` are byte-identical across the change. Nine self-test ca
 the VALUE and not merely that a pair differs, which is what let `[?]nn M. Gooding` pass while
 reading `N. M.`
 
-**AND THE RULE HAS NO SIBLING FOR FIRMS, WHICH IS WHY ONE BOOKSHOP STANDS IN THREE PLACES.**
+**AND THE BOOKSHOP THAT STOOD IN FOUR PLACES IS NOW ONE HOUSE** (T-0340; it stood in three when the ticket was written, and reading it found the fourth).
 The Chicago Democrat's bookseller is `RUISAL & CLUPR,` in the December 1834 advertisement's
 only legible heading, and T-0327 read the name off the firm's OTHER advertisement rather
 than off that line: the copartnership notice dated `Chicago, Aug. 26, 1834` — Aaron
@@ -363,10 +363,19 @@ that same notice, whose signature went with the woven half of the column, and
 the *American*. Three keys, one house, and the evidence for it is a shared copy date and a
 shared body of type — but joining them means DECLARING two names one firm, and that is
 exactly what `identity.json` supplies for people and, as of T-0304, for firms as well:
-`firm_merges`, below. The three keys stand apart until somebody declares them, because a
-declaration cites its printings and nobody has yet written that one down (T-0340) — but the
-place to write it now exists, and the alternative it replaces was a hand-merge, which makes
-a gazetteer nobody can recompile.
+`firm_merges`, below. A fourth key, `business_russell_clift_the_chicago_book_store`, is the Democrat's
+1835-08-19 notice naming their premises while it sells Morison's pills under the state agency
+the *American* defends for the same firm ten days later. **Four keys, one house, and
+`firm_merges` now declares it** — three rules, each citing its printings, the copy date they
+share and the body of type they share, all merging INTO `business_russell_clift` because that
+is the record with the partners and the only placement any printing gives. The record that
+results carries nine mentions from 1834-08-27 to 1835-08-29, which retires the survival
+liberty three of the four keys were separately claiming. One thing the merge carries across
+and does not hide: the August 1835 claim reads `Russell & Chin,` as a PROPRIETOR, so the
+firm's own name now stands in the merged proprietor list beside Aaron Russell and Benj. H.
+Clift — the gazetteer minting a house as a person. T-0359 has since given `places` a home of
+their own for buildings named by their signboards; a partnership STYLE read where a
+proprietor should be is the remaining case, filed as T-0398 rather than tidied.
 
 **Firms have the same policy and a different discriminator** (T-0304). A business is keyed
 on its whole name too, so five printings of one house are five businesses until something
@@ -379,7 +388,20 @@ carry the same set of partner surnames, with or without a rule, because a partne
 its partners and a changed one is a different house — which is what keeps `Clark, Filer &
 Co.` and `A. Filer & Co.` apart. The second guard is about the ground rather than the
 name: two styles the papers put in different STREETS never merge, because a firm that
-moved is documented by a removal notice, and a removal notice is a claim. A merge takes
+moved is documented by a removal notice, and a removal notice is a claim. **The guard has had one
+loosening and T-0340 is it**: a style that names NO partner cannot contradict one that does,
+because an empty set is not a different partnership — it is a printing that did not say, which
+is the commonest thing a segmenter does to an advertisement. So two styles that each NAME
+partners must name the same ones, and where one names none the guard has nothing to compare
+and the merge rests entirely on its stated rule. The escape is not free: a style counts as
+naming none only where `firm_sign_names` declares it a SIGN-NAME — the shop's own name over
+its door — and the compiler refuses that declaration for any house a claim ever signed with a
+proprietor, for one whose two halves do not put the style back together verbatim, and for one
+naming a business no claim carries. `firm_sign_names` is also what lets a style say both
+things at once: undeclared, `Russell & Clift, Chicago Book and Stationary Store` reads as FOUR
+partners — Book, Clift, Russell, Store — because `firm_style` recognises a trade tail by its
+lower case, and a sign-name is a capitalised trade. Seven negative cases in the self-test hold
+it, the first of them being that an undeclared headline-only style is still refused. A merge takes
 the union of mentions, proprietors, goods and copy dates, the wider issue window, the
 more specific placement, and every trade either side printed in `trade_variants` — it can
 widen a record and it cannot narrow one.

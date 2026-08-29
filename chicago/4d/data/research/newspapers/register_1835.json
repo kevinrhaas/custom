@@ -7,7 +7,7 @@
     "gazetteer": {
       "claims": 1166,
       "persons": 2628,
-      "businesses": 242
+      "businesses": 239
     },
     "structures": 359,
     "streets": 19,
@@ -15,21 +15,21 @@
   },
   "counts": {
     "businesses": {
-      "total": 242,
-      "present_at_scene_date": 190,
+      "total": 239,
+      "present_at_scene_date": 188,
       "excluded": {
         "contradicted_before_scene_date": 14,
-        "first_evidence_after_scene_date": 38
+        "first_evidence_after_scene_date": 37
       },
       "by_action": {
         "enrich_existing": 39,
         "new_building": 27,
         "street_only": 47,
-        "unplaceable": 129
+        "unplaceable": 126
       },
       "by_placement_class": {
         "corner": 18,
-        "none": 91,
+        "none": 88,
         "relative": 114,
         "street_only": 19
       },
@@ -37,17 +37,17 @@
         "enrich_existing": 39,
         "new_building": 27,
         "street_only": 47,
-        "unplaceable": 77
+        "unplaceable": 75
       },
-      "survival_liberty_required": 126,
+      "survival_liberty_required": 124,
       "dissolved_after_scene_date": 1
     },
     "persons": {
       "total": 2628,
       "by_action": {
         "enrich": 184,
-        "new_resident": 2325,
-        "replace_invented": 119
+        "new_resident": 2326,
+        "replace_invented": 118
       },
       "letter_list_only": 1934
     },
@@ -1149,37 +1149,6 @@
       "exclusion_note": null,
       "dissolved_after_scene_date": [],
       "survival_liberty_required": false,
-      "anchor": {
-        "kind": "unresolved",
-        "target": null,
-        "streets": null,
-        "via": null,
-        "note": "The paper gives no anchor."
-      },
-      "action": "unplaceable",
-      "action_target": null,
-      "match_tier": null,
-      "match_evidence": null,
-      "action_note": "No street the model holds. The paper gives no anchor."
-    },
-    {
-      "id": "business_chicago_wholesale_and_retail_book_stationary_store",
-      "name": "Chicago Wholesale and Retail Book & Stationary Store",
-      "trade": "bookseller and stationer",
-      "occupation": null,
-      "proprietors": [],
-      "street": null,
-      "street_id": null,
-      "placement_class": "none",
-      "evidence": {
-        "first_issue": "1834-08-27",
-        "last_issue": "1834-08-27"
-      },
-      "present_at_scene_date": true,
-      "exclusion": null,
-      "exclusion_note": null,
-      "dissolved_after_scene_date": [],
-      "survival_liberty_required": true,
       "anchor": {
         "kind": "unresolved",
         "target": null,
@@ -5890,44 +5859,14 @@
       "occupation": null,
       "proprietors": [
         "Aaron Russell",
-        "Benj. H. Clift"
+        "Benj. H. Clift",
+        "Russell & Clift"
       ],
       "street": "Water Street",
       "street_id": null,
       "placement_class": "relative",
       "evidence": {
-        "first_issue": "1834-09-03",
-        "last_issue": "1834-12-03"
-      },
-      "present_at_scene_date": true,
-      "exclusion": null,
-      "exclusion_note": null,
-      "dissolved_after_scene_date": [],
-      "survival_liberty_required": true,
-      "anchor": {
-        "kind": "unresolved",
-        "target": null,
-        "streets": null,
-        "via": null,
-        "note": "The anchor \"Mr. P. Carpenter's Drug Establishment, in Water-street\" names nothing the committed town holds."
-      },
-      "action": "unplaceable",
-      "action_target": null,
-      "match_tier": null,
-      "match_evidence": null,
-      "action_note": "No street the model holds. The anchor \"Mr. P. Carpenter's Drug Establishment, in Water-street\" names nothing the committed town holds."
-    },
-    {
-      "id": "business_russell_clift_chicago_book_and_stationary_store",
-      "name": "Russell & Clift, Chicago Book and Stationary Store",
-      "trade": "books, stationery and patent medicines",
-      "occupation": null,
-      "proprietors": [],
-      "street": null,
-      "street_id": null,
-      "placement_class": "none",
-      "evidence": {
-        "first_issue": "1835-06-08",
+        "first_issue": "1834-08-27",
         "last_issue": "1835-08-29"
       },
       "present_at_scene_date": true,
@@ -5940,46 +5879,13 @@
         "target": null,
         "streets": null,
         "via": null,
-        "note": "The paper gives no anchor."
+        "note": "The anchor \"Mr. P. Carpenter's Drug Establishment, in Water-street\" names nothing the committed town holds."
       },
       "action": "unplaceable",
       "action_target": null,
       "match_tier": null,
       "match_evidence": null,
-      "action_note": "No street the model holds. The paper gives no anchor."
-    },
-    {
-      "id": "business_russell_clift_the_chicago_book_store",
-      "name": "Russell & Clift, the Chicago Book Store",
-      "trade": "book store, stationery and patent medicines",
-      "occupation": "merchant",
-      "proprietors": [
-        "Russell & Clift"
-      ],
-      "street": null,
-      "street_id": null,
-      "placement_class": "none",
-      "evidence": {
-        "first_issue": "1835-08-19",
-        "last_issue": "1835-08-19"
-      },
-      "present_at_scene_date": false,
-      "exclusion": "first_evidence_after_scene_date",
-      "exclusion_note": "The earliest issue carrying this business is 1835-08-19, after the scene date, so nothing evidences it standing on 1835-07-01.",
-      "dissolved_after_scene_date": [],
-      "survival_liberty_required": false,
-      "anchor": {
-        "kind": "unresolved",
-        "target": null,
-        "streets": null,
-        "via": null,
-        "note": "The paper gives no anchor."
-      },
-      "action": "unplaceable",
-      "action_target": null,
-      "match_tier": null,
-      "match_evidence": null,
-      "action_note": "Excluded from the scene-date town: The earliest issue carrying this business is 1835-08-19, after the scene date, so nothing evidences it standing on 1835-07-01. No action; the record is kept so the exclusion can be argued with."
+      "action_note": "No street the model holds. The anchor \"Mr. P. Carpenter's Drug Establishment, in Water-street\" names nothing the committed town holds."
     },
     {
       "id": "business_russell_e_heacock",
@@ -29517,13 +29423,13 @@
     {
       "id": "person_russell_clift",
       "name": "Russell & Clift",
-      "occupation": "merchant",
+      "occupation": null,
       "letter_list_only": false,
       "first_seen": "1835-08-19",
       "last_seen": "1835-08-19",
-      "action": "replace_invented",
-      "action_target": "merchant",
-      "action_note": "A documented merchant. The town invented 1 household(s) of this trade because no documented person was available; this is a candidate to retire one."
+      "action": "new_resident",
+      "action_target": null,
+      "action_note": "Ruling 1: a named person the town does not hold. Named in a claim other than a letter list."
     },
     {
       "id": "person_russell_e_heacock",

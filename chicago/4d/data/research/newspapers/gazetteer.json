@@ -352,7 +352,7 @@
     "claims": 1166,
     "persons": 2628,
     "places": 4,
-    "businesses": 242
+    "businesses": 239
   },
   "persons": [
     {
@@ -58640,36 +58640,6 @@
       "survival_liberty_required": false
     },
     {
-      "id": "business_chicago_wholesale_and_retail_book_stationary_store",
-      "name": "Chicago Wholesale and Retail Book & Stationary Store",
-      "proprietors": [],
-      "trade": "bookseller and stationer",
-      "goods": [
-        "books",
-        "stationery"
-      ],
-      "street": null,
-      "placement": {
-        "class": "none",
-        "anchor": null,
-        "offset_text": null,
-        "street": null
-      },
-      "evidence": {
-        "first_issue": "1834-08-27",
-        "last_issue": "1834-08-27",
-        "copy_dates": [
-          "1834-08-26"
-        ]
-      },
-      "contradicted_by": [],
-      "mentions": [
-        "chicago_democrat_1834_08_27#c002"
-      ],
-      "built_at_scene_date": true,
-      "survival_liberty_required": true
-    },
-    {
       "id": "business_clark_filer_co",
       "name": "Clark, Filer & Co.",
       "proprietors": [
@@ -64033,13 +64003,19 @@
       "name": "Russell & Clift",
       "proprietors": [
         "Aaron Russell",
-        "Benj. H. Clift"
+        "Benj. H. Clift",
+        "Russell & Clift"
       ],
       "trade": "bookseller and stationer",
       "goods": [
         "Books",
+        "Hats",
+        "Morison's Hygeian medicine",
         "Morison's Vegetable Pills",
+        "Patent Medicines",
+        "Shoes",
         "Stationary",
+        "Stationery",
         "books",
         "hats",
         "ink",
@@ -64057,83 +64033,43 @@
         "street": "Water Street"
       },
       "evidence": {
-        "first_issue": "1834-09-03",
-        "last_issue": "1834-12-03",
-        "copy_dates": [
-          "1834-08-26"
-        ]
-      },
-      "contradicted_by": [],
-      "mentions": [
-        "chicago_democrat_1834_09_03#c012",
-        "chicago_democrat_1834_11_12#c011",
-        "chicago_democrat_1834_12_03#c004"
-      ],
-      "built_at_scene_date": true,
-      "survival_liberty_required": true
-    },
-    {
-      "id": "business_russell_clift_chicago_book_and_stationary_store",
-      "name": "Russell & Clift, Chicago Book and Stationary Store",
-      "proprietors": [],
-      "trade": "books, stationery and patent medicines",
-      "goods": [
-        "Books",
-        "Hats",
-        "Patent Medicines",
-        "Shoes",
-        "Stationery"
-      ],
-      "street": null,
-      "placement": {
-        "class": "none",
-        "anchor": null,
-        "offset_text": null,
-        "offset_normalized": null,
-        "street": null
-      },
-      "evidence": {
-        "first_issue": "1835-06-08",
+        "first_issue": "1834-08-27",
         "last_issue": "1835-08-29",
-        "copy_dates": []
+        "copy_dates": [
+          "1834-08-26",
+          "1835-08-12"
+        ]
       },
       "contradicted_by": [],
       "mentions": [
         "chicago_american_1835_06_08#c015",
         "chicago_american_1835_06_13#c019",
         "chicago_american_1835_07_04#c006",
-        "chicago_american_1835_08_29#c005"
-      ],
-      "built_at_scene_date": true,
-      "survival_liberty_required": false
-    },
-    {
-      "id": "business_russell_clift_the_chicago_book_store",
-      "name": "Russell & Clift, the Chicago Book Store",
-      "proprietors": [
-        "Russell & Clift"
-      ],
-      "trade": "book store, stationery and patent medicines",
-      "goods": [
-        "Morison's Hygeian medicine",
-        "books",
-        "stationery"
-      ],
-      "street": null,
-      "placement": {
-        "class": "none",
-        "anchor": null
-      },
-      "evidence": {
-        "first_issue": "1835-08-19",
-        "last_issue": "1835-08-19",
-        "copy_dates": [
-          "1835-08-12"
-        ]
-      },
-      "contradicted_by": [],
-      "mentions": [
+        "chicago_american_1835_08_29#c005",
+        "chicago_democrat_1834_08_27#c002",
+        "chicago_democrat_1834_09_03#c012",
+        "chicago_democrat_1834_11_12#c011",
+        "chicago_democrat_1834_12_03#c004",
         "chicago_democrat_1835_08_19#c012"
+      ],
+      "merged": [
+        {
+          "from": "Chicago Wholesale and Retail Book & Stationary Store",
+          "merge_rule": "'Chicago Wholesale and Retail Book & Stationary Store' is the first printing of the advertisement 'Russell & Clift' sign a week later, and the two are joined on the type rather than on the name. Chicago Democrat 1834-08-27 c002 and 1834-09-03 c012 carry the SAME copy date, “Chicago, Aug. 26, 1834”, the same heading, and the same body down to the stock “received from Philadelphia, and others from New York”; the later printing keeps the signature the earlier one lost with the woven half of its column, and signs it RUSSELL & CLIFT four times over the following months. The August printing therefore names no partner at all — it is declared a sign-name in `firm_sign_names` above and no claim signs it with a proprietor — which is the case T-0340 ruled on: an empty partner set does not contradict {Russell, Clift}. Merged INTO 'Russell & Clift' because that record carries the partners, the copartnership terms and the only placement either printing gives, adjoining Mr. P. Carpenter's drug establishment in Water-street; the direction is which record can be put on the ground."
+        },
+        {
+          "from": "Russell & Clift, Chicago Book and Stationary Store",
+          "merge_rule": "'Russell & Clift, Chicago Book and Stationary Store' is 'Russell & Clift' with the shop's sign run on after the partners, and the American prints the house that way through 1835: 1835-06-08 c015, 1835-06-13 c019, 1835-07-04 c006 and 1835-08-29 c005. Same two partners, same trade — books, stationery and the patent medicine agency the Democrat's own 1835-08-19 notice puts in the same hands — and no street on either side to contradict. The American gives no address in any of the four, so the merge takes Water-street from the record that has one and invents nothing. This is the same house continuing, not a second bookseller: the corpus names no other in Chicago in these years."
+        },
+        {
+          "from": "Russell & Clift, the Chicago Book Store",
+          "merge_rule": "'Russell & Clift, the Chicago Book Store' is 'Russell & Clift' under the premises the Democrat names for them on 1835-08-19 (c012): Morison's Hygeian medicine “for sale only by Russell & Cl[if]t (Agents for the State of I[ll]inois) at the Chicago Book Store”, signed RUSSELL & CLIFT and copy-dated Chicago, August 12, 1835 — the same agency the American's 1835-08-29 notice defends for the same firm ten days later. The partners agree without any declaration needed, because 'the Chicago Book Store' follows a comma in lower case and `firm_style` cuts it as a trade. NOTE what this merge carries across: that claim reads “Russell & Chin,” as a PROPRIETOR, so the firm's own name stands in the merged record's proprietor list beside Aaron Russell and Benj. H. Clift (T-0337 having joined the two readings of him). That is the gazetteer reading a partnership STYLE where a person was wanted — the case T-0359's `places` does not cover, filed as T-0398; nothing here edits a claim to hide it."
+        }
+      ],
+      "trade_variants": [
+        "book store, stationery and patent medicines",
+        "books, stationery and patent medicines",
+        "bookseller and stationer"
       ],
       "built_at_scene_date": true,
       "survival_liberty_required": false

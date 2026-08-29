@@ -1,7 +1,7 @@
 ---
 id: T-0340
 title: The bookseller's sign-name and its partners' firm-name are three gazetteer entries for one house
-state: open
+state: claimed
 epic: PAPERS
 requested_by: loop
 seen: false
@@ -11,7 +11,7 @@ parent: null
 opened: 2026-08-28
 closed: null
 pr: null
-claimed_by: null
+claimed_by: run 8/29/2026, 9:42:37 AM CT
 blocked_on: null
 needs_bake: false
 ---

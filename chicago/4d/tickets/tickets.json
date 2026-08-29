@@ -1,6 +1,6 @@
 {
   "project": "chicago-4d",
-  "generated_ct": "Aug 29, 2026, 11:18 AM",
+  "generated_ct": "Aug 29, 2026, 11:54 AM",
   "tickets": [
     {
       "id": "T-0001",
@@ -5726,7 +5726,7 @@
     {
       "id": "T-0340",
       "title": "The bookseller's sign-name and its partners' firm-name are three gazetteer entries for one house",
-      "state": "open",
+      "state": "claimed",
       "epic": "PAPERS",
       "requested_by": "loop",
       "seen": false,
@@ -5736,7 +5736,7 @@
       "opened": "2026-08-28",
       "closed": null,
       "pr": null,
-      "claimed_by": null,
+      "claimed_by": "run 8/29/2026, 9:42:37 AM CT",
       "blocked_on": null,
       "needs_bake": false,
       "queue_rank": 0
@@ -6496,6 +6496,24 @@
       "blocked_on": null,
       "needs_bake": false,
       "queue_rank": null
+    },
+    {
+      "id": "T-0398",
+      "title": "A firm's own style stands in its proprietor list, because a claim read the signature where a person was wanted",
+      "state": "open",
+      "epic": "META",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "M",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-08-29",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "queue_rank": 74
     }
   ]
 }
