@@ -15,16 +15,16 @@
   "widened_reading_would_reach": 16
  },
  "counts": {
-  "street_only_in_register": 47,
+  "street_only_in_register": 45,
   "adopted": 22,
-  "refused": 25,
+  "refused": 23,
   "refused_by_reason": {
    "not present at the scene date": 0,
    "the face holds no roof whose lot fronts it": 16,
-   "this face already holds this proprietor": 8,
+   "this face already holds this proprietor": 6,
    "every roof on the face is spoken for": 1
   },
-  "unplaceable_present_at_scene_date": 81,
+  "unplaceable_present_at_scene_date": 75,
   "by_street": {
    "canal": {
     "street_name": "Canal Street",
@@ -82,7 +82,7 @@
    },
    "south_water": {
     "street_name": "South Water Street",
-    "businesses_naming_it": 22,
+    "businesses_naming_it": 20,
     "adopted": 14,
     "roofs_fronting": 19,
     "roofs_fronting_free": 14,
@@ -110,7 +110,7 @@
    "first_issue": "1834-03-04",
    "last_issue": "1834-05-21",
    "mentions": 2,
-   "structure_id": "recon_1835_blk_south_water_lasalle_a3_07",
+   "structure_id": "recon_1835_blk_south_water_lasalle_d5_01",
    "face": "lot front",
    "roof_confidence": "reconstructed",
    "lot": null,
@@ -136,36 +136,7 @@
    "first_issue": "1834-12-17",
    "last_issue": "1834-12-24",
    "mentions": 2,
-   "structure_id": "recon_1835_blk_south_water_lasalle_d4_02",
-   "face": "lot front",
-   "roof_confidence": "reconstructed",
-   "lot": null,
-   "claims_lot": false,
-   "order_is_a_claim": false,
-   "note": "The advertisement names South Water Street and nothing narrower, so this business takes the street face and not a lot. The roof it is attached to is an anonymous reconstructed count-unit whose platted lot faces that street; it stays reconstructed, and WHICH roof on the face is an allocation by tools/adopt_street_faces.py rather than a reading of any source. Nothing here says this business stood nearer the corner than any other on the same face."
-  },
-  {
-   "business_id": "business_a_new_auction_and_commission_room_south_water_street",
-   "business_name": "a new auction and commission room, South Water Street",
-   "trade": "auction and commission",
-   "proprietors": [
-    "W. Montgomery"
-   ],
-   "street_id": "south_water",
-   "street_name": "South Water Street",
-   "street_text": "South Water Street",
-   "placement_class": "relative",
-   "cites": [
-    "chicago_american_1835_06_27#c008",
-    "chicago_american_1835_07_04#c012",
-    "chicago_american_1835_07_11#c003",
-    "chicago_american_1835_07_18#c003",
-    "chicago_american_1835_07_25#c003"
-   ],
-   "first_issue": "1835-06-27",
-   "last_issue": "1835-07-25",
-   "mentions": 5,
-   "structure_id": "recon_1835_blk_south_water_franklin_d4_02",
+   "structure_id": "recon_1835_blk_south_water_wells_a3_08",
    "face": "lot front",
    "roof_confidence": "reconstructed",
    "lot": null,
@@ -219,7 +190,7 @@
    "first_issue": "1834-06-04",
    "last_issue": "1835-05-20",
    "mentions": 5,
-   "structure_id": "recon_1835_blk_south_water_dearborn_c3_01",
+   "structure_id": "recon_1835_blk_south_water_dearborn_c3_02",
    "face": "lot front",
    "roof_confidence": "reconstructed",
    "lot": null,
@@ -248,7 +219,7 @@
    "first_issue": "1834-03-25",
    "last_issue": "1834-12-10",
    "mentions": 5,
-   "structure_id": "recon_1835_blk_south_water_dearborn_a3_06",
+   "structure_id": "recon_1835_blk_south_water_dearborn_c3_01",
    "face": "lot front",
    "roof_confidence": "reconstructed",
    "lot": null,
@@ -325,7 +296,7 @@
    "first_issue": "1834-06-04",
    "last_issue": "1834-07-02",
    "mentions": 3,
-   "structure_id": "recon_1835_blk_south_water_franklin_d5_01",
+   "structure_id": "recon_1835_blk_south_water_lasalle_a3_07",
    "face": "lot front",
    "roof_confidence": "reconstructed",
    "lot": null,
@@ -368,23 +339,25 @@
    "note": "The advertisement names South Water Street and nothing narrower, so this business takes the street face and not a lot. The roof it is attached to is an anonymous reconstructed count-unit whose platted lot faces that street; it stays reconstructed, and WHICH roof on the face is an allocation by tools/adopt_street_faces.py rather than a reading of any source. Nothing here says this business stood nearer the corner than any other on the same face."
   },
   {
-   "business_id": "business_j_h_collins_j_d_caton_attorneys",
-   "business_name": "J. H. Collins & J. D. Caton, attorneys",
-   "trade": "attorneys and counsellors at law, and solicitors in chancery",
+   "business_id": "business_j_h_collins_j_d_caton",
+   "business_name": "J. H. Collins & J. D. Caton",
+   "trade": "attorneys and counsellors at law, solicitors in chancery",
    "proprietors": [
     "J. H. Collins & J. D. C[aton]"
    ],
    "street_id": "south_water",
    "street_name": "South Water Street",
    "street_text": "South Water Street",
-   "placement_class": "street_only",
+   "placement_class": "relative",
    "cites": [
+    "chicago_democrat_1834_02_04#c009",
+    "chicago_democrat_1834_02_11#c005",
     "chicago_democrat_1834_04_01#c011"
    ],
-   "first_issue": "1834-04-01",
+   "first_issue": "1834-02-04",
    "last_issue": "1834-04-01",
-   "mentions": 1,
-   "structure_id": "recon_1835_blk_south_water_wells_a3_08",
+   "mentions": 3,
+   "structure_id": "recon_1835_blk_south_water_franklin_d5_01",
    "face": "lot front",
    "roof_confidence": "reconstructed",
    "lot": null,
@@ -414,7 +387,7 @@
    "first_issue": "1834-06-04",
    "last_issue": "1835-08-12",
    "mentions": 5,
-   "structure_id": "recon_1835_blk_south_water_dearborn_c3_02",
+   "structure_id": "recon_1835_blk_south_water_franklin_a3_07",
    "face": "lot front",
    "roof_confidence": "reconstructed",
    "lot": null,
@@ -435,13 +408,14 @@
    "street_text": "South Water Street",
    "placement_class": "relative",
    "cites": [
+    "chicago_american_1835_06_13#c012",
     "chicago_democrat_1835_06_10#c010",
     "chicago_democrat_1835_08_12#c012"
    ],
    "first_issue": "1835-06-10",
    "last_issue": "1835-08-12",
-   "mentions": 2,
-   "structure_id": "recon_1835_blk_south_water_lasalle_d5_01",
+   "mentions": 3,
+   "structure_id": "recon_1835_blk_south_water_lasalle_d4_02",
    "face": "lot front",
    "roof_confidence": "reconstructed",
    "lot": null,
@@ -474,7 +448,37 @@
    "first_issue": "1835-05-27",
    "last_issue": "1835-08-05",
    "mentions": 5,
-   "structure_id": "recon_1835_blk_south_water_franklin_a3_07",
+   "structure_id": "recon_1835_blk_south_water_franklin_d4_02",
+   "face": "lot front",
+   "roof_confidence": "reconstructed",
+   "lot": null,
+   "claims_lot": false,
+   "order_is_a_claim": false,
+   "note": "The advertisement names South Water Street and nothing narrower, so this business takes the street face and not a lot. The roof it is attached to is an anonymous reconstructed count-unit whose platted lot faces that street; it stays reconstructed, and WHICH roof on the face is an allocation by tools/adopt_street_faces.py rather than a reading of any source. Nothing here says this business stood nearer the corner than any other on the same face."
+  },
+  {
+   "business_id": "business_l_w_montgomery_boot_and_shoe_maker",
+   "business_name": "L. W. Montgomery, boot and shoe maker",
+   "trade": "boot and shoe making",
+   "proprietors": [
+    "L. W. Montgomery"
+   ],
+   "street_id": "south_water",
+   "street_name": "South Water Street",
+   "street_text": "South Water Street",
+   "placement_class": "relative",
+   "cites": [
+    "chicago_democrat_1833_12_17#c003",
+    "chicago_democrat_1834_04_08#c007",
+    "chicago_democrat_1834_05_21#c004",
+    "chicago_democrat_1834_07_02#c013",
+    "chicago_democrat_1834_12_10#c009",
+    "chicago_democrat_1835_05_20#c017"
+   ],
+   "first_issue": "1833-12-17",
+   "last_issue": "1835-05-20",
+   "mentions": 6,
+   "structure_id": "recon_1835_blk_south_water_dearborn_a3_06",
    "face": "lot front",
    "roof_confidence": "reconstructed",
    "lot": null,
@@ -824,6 +828,14 @@
    "detail": "0 roof(s) show this street a corner side and 1 stand within the centreline band; none has its platted lot on it."
   },
   {
+   "business_id": "business_a_new_auction_and_commission_room_south_water_street",
+   "business_name": "a new auction and commission room, South Water Street",
+   "street_id": "south_water",
+   "street_name": "South Water Street",
+   "refusal": "this face already holds this proprietor",
+   "detail": "'L. W. Montgomery, boot and shoe maker' already stands on this face under the same proprietor surname(s) montgomery, on better evidence. One house, one roof per face; whether these are two headings of one business is the gazetteer's to judge (T-0338, T-0340), not this pass's."
+  },
+  {
    "business_id": "business_chicago_bakery",
    "business_name": "Chicago Bakery",
    "street_id": "south_water",
@@ -840,28 +852,12 @@
    "detail": "'G. Blanshard' already stands on this face under the same proprietor surname(s) blanshard, on better evidence. One house, one roof per face; whether these are two headings of one business is the gazetteer's to judge (T-0338, T-0340), not this pass's."
   },
   {
-   "business_id": "business_john_holbrook_hats_clothing_boots_and_shoes",
-   "business_name": "John Holbrook, hats, clothing, boots and shoes",
-   "street_id": "south_water",
-   "street_name": "South Water Street",
-   "refusal": "this face already holds this proprietor",
-   "detail": "'John Holbrook' already stands on this face under the same proprietor surname(s) holbrook, on better evidence. One house, one roof per face; whether these are two headings of one business is the gazetteer's to judge (T-0338, T-0340), not this pass's."
-  },
-  {
-   "business_id": "business_l_w_montgomery_boot_and_shoe_maker",
-   "business_name": "L. W. Montgomery, boot and shoe maker",
-   "street_id": "south_water",
-   "street_name": "South Water Street",
-   "refusal": "this face already holds this proprietor",
-   "detail": "'a new auction and commission room, South Water Street' already stands on this face under the same proprietor surname(s) montgomery, on better evidence. One house, one roof per face; whether these are two headings of one business is the gazetteer's to judge (T-0338, T-0340), not this pass's."
-  },
-  {
    "business_id": "business_montgomery_auction_and_commission_house",
    "business_name": "Montgomery, auction and commission house",
    "street_id": "south_water",
    "street_name": "South Water Street",
    "refusal": "this face already holds this proprietor",
-   "detail": "'a new auction and commission room, South Water Street' already stands on this face under the same proprietor surname(s) montgomery, on better evidence. One house, one roof per face; whether these are two headings of one business is the gazetteer's to judge (T-0338, T-0340), not this pass's."
+   "detail": "'L. W. Montgomery, boot and shoe maker' already stands on this face under the same proprietor surname(s) montgomery, on better evidence. One house, one roof per face; whether these are two headings of one business is the gazetteer's to judge (T-0338, T-0340), not this pass's."
   },
   {
    "business_id": "business_peter_cohen_s_store",
@@ -870,14 +866,6 @@
    "street_name": "South Water Street",
    "refusal": "this face already holds this proprietor",
    "detail": "'Peter Cohen' already stands on this face under the same proprietor surname(s) cohen, on better evidence. One house, one roof per face; whether these are two headings of one business is the gazetteer's to judge (T-0338, T-0340), not this pass's."
-  },
-  {
-   "business_id": "business_the_chicago_bakery",
-   "business_name": "the Chicago Bakery",
-   "street_id": "south_water",
-   "street_name": "South Water Street",
-   "refusal": "this face already holds this proprietor",
-   "detail": "'D. Graves' already stands on this face under the same proprietor surname(s) graves, on better evidence. One house, one roof per face; whether these are two headings of one business is the gazetteer's to judge (T-0338, T-0340), not this pass's."
   },
   {
    "business_id": "business_uncertain_j_i_mulford_carriage_and_sleigh_maker",

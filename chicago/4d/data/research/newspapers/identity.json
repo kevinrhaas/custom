@@ -2267,6 +2267,150 @@
       "into": "J. L. Wilson & Co.",
       "from": "L. Wilson & Co.",
       "merge_rule": "'L. Wilson & Co.' is 'J. L. Wilson & Co.' with the forename lost off the front of the line — the same loss the Democrat's own compositor made on 1834-09-17, where the standing advertisement's first line reads “|, L. WILSON & CO.” with the J struck as a rule. The American of 1835-06-08 announces that they “HAVE received their Spring” supply of dry goods, groceries and hardware; twelve days later the same paper prints the same house as 'Jno. Wilson & Co.' with the same trade. One spring advertisement, one house."
+    },
+    {
+      "into": "Chicago Bakery",
+      "from": "the Chicago Bakery",
+      "merge_rule": "'Chicago Bakery' and 'the Chicago Bakery' are one house under one advertisement, and the difference is a leading article the compositor set twice. D. Graves's own notice — 1834-04-01 c008 and 1834-09-10 c016 — announces in both printings that he has commenced the baking business in South Water street by Newberry & Dole's store, with bread and crackers kept on hand. Same proprietor, same street, same anchor, seven months apart. Merged INTO the article-less spelling because that record carries the readable offset ('a few doors north of Messrs. Newbury & Dole's store'); the April printing's word is 'posterior' and is kept in its own claim."
+    },
+    {
+      "into": "The Chicago Democrat",
+      "from": "Chicago Democrat",
+      "merge_rule": "'The Chicago Democrat' and 'Chicago Democrat' are the paper naming itself, and the witness is the imprint it reprinted every week: 1833-11-26 c033 and 1834-08-27 c009 under the longer style, 1834-09-17 c010 and 1834-12-03 c023 under the shorter, all four placing it in the building at the corner of South Water and Clark streets over John Calhoun's name. A newspaper cannot be wrong about its own address and the definite article is not a second business."
+    },
+    {
+      "into": "The Chicago Democrat",
+      "from": "Chicago Democrat (office)",
+      "merge_rule": "'Chicago Democrat (office)' is 'The Chicago Democrat' with a disambiguator this project's own extractor added, not a style any printing carries. Its single claim, 1834-10-08 c005, offers for sale 'the store now occupied by W. Kimball, and as the office of the Democrat, on the corner of Clark and South Water streets' — the same corner the imprint gives at 1833-11-26 c033 and 1834-12-03 c023, and the same proprietor, John Calhoun."
+    },
+    {
+      "into": "Chicago Democrat printing office",
+      "from": "the Chicago Democrat's printing office",
+      "merge_rule": "'Chicago Democrat printing office' and 'the Chicago Democrat's printing office' are one shop read out of the paper's own colophon twice: 1834-01-07 c006 sets it in the building on the corner of South Water and Clark streets, and 1835-05-20 c007 reads the colophon of that issue over Jones & King's hardware store in the same street. The possessive is the compositor's. NOTE WHAT THE MERGE DOES TO THE PLACEMENT: `placement_rank` prefers a corner to a relative offset, so the surviving record keeps the 1834 corner although the 1835 colophon is the later reading — the office moved along South Water Street before the scene date and this machinery cannot say so. T-0403 carries that."
+    },
+    {
+      "into": "Chicago Soap and Candle Manufactory",
+      "from": "the Chicago Soap and Candle Manufactory",
+      "merge_rule": "'Chicago Soap and Candle Manufactory' and 'the Chicago Soap and Candle Manufactory' are one works under one standing advertisement, printed 1834-01-07 c012, 1834-03-04 c014 and 1834-04-08 c005, all three signed Messrs. Daniel Elston & Co. and all three announcing that they have commenced the manufacture of soap and candles. Neither printing gives an address, so nothing is being joined across ground."
+    },
+    {
+      "into": "Collins & Caton",
+      "from": "Collins & Caton, attorneys and counsellors at law",
+      "merge_rule": "'Collins & Caton' and 'Collins & Caton, attorneys and counsellors at law' are one office: the second is the first with its trade line read into the style. Both rest on the card dated Jan. 20, 1834 that places the office one door east of Brewster, Hogan & Co. in South Water street — 1834-01-28 c007 for the styled record, 1834-03-04 c009 for the other, the same copy date on both. Merged INTO the shorter style because that record carries the street and the June 1834 removal notice."
+    },
+    {
+      "into": "David Carver",
+      "from": "David Carver, storage, commission and lumber",
+      "merge_rule": "'David Carver' and 'David Carver, storage, commission and lumber' are one house, and the witness is a single standing advertisement: 'Storage, Commission and Lumber Business', copy-dated 1834-02-25, printed at 1834-02-25 c003 and 1834-03-04 c006 in the first record and at 1834-04-01 c006 in the second. Same copy date, same trade, same man, and neither printing gives an address."
+    },
+    {
+      "into": "Dr. W. G. Austin",
+      "from": "Dr. W. G. Austin, botanic physician",
+      "merge_rule": "'Dr. W. G. Austin' and 'Dr. W. G. Austin, botanic physician' are one advertisement placed in both papers: copy date 1835-08-07 on each, the American of 1835-08-08 c001 and the Democrat of 1835-08-12 c004, both reading that he has commenced the practice of medicine and opened an office on Lake street near the post office. Same street, same anchor, same week."
+    },
+    {
+      "into": "G. Spring",
+      "from": "G. Spring, attorney and counsellor at law",
+      "merge_rule": "'G. Spring' and 'G. Spring, attorney and counsellor at law' are one office under one card, copy-dated Dec. 17, 1833 in both — 1833-12-17 c004 and 1834-01-28 c006 in the styled record, 1834-03-04 c030 and six further printings in the other — every one of them placing the office second door west from the corner of Franklin and South Water streets. The second record also carries the later card of Dec. 3, 1834 (1835-08-05 c019) moving him first door north of the Tremont House, which the merge keeps as a mention."
+    },
+    {
+      "into": "Henry Moore",
+      "from": "Henry Moore, attorney and counsellor",
+      "merge_rule": "'Henry Moore' and 'Henry Moore, attorney and counsellor' are one office in two papers: the Democrat of 1835-06-04 c005 (copy date 1835-06-02) and 1835-06-24 c010, and the American of 1835-07-04 c001, all three putting his office in J. H. Kinzie's new building. Same man, same anchor, four weeks either side of the scene date."
+    },
+    {
+      "into": "Hubbard & Co.",
+      "from": "Hubbard & Co., forwarding and commission merchants",
+      "merge_rule": "'Hubbard & Co.' and 'Hubbard & Co., forwarding and commission merchants' are one house's trade card in the two papers, and the two styles are the same words in the two orders the compositors set them: the Democrat of 1834-07-02 c045 and 1835-07-01 c016 read 'Commission and Forwarding MERCHANTS, CHICAGO-ILLINOIS' over Gurdon S. and Henry G. Hubbard, and the American of 1835-06-20 c013 reads 'Forwarding and Commission MERCHANTS' with the lake and canal line agencies. Neither carries a street. The Howard Fire Insurance agency this house held is NOT touched by this merge — an agency is not the house that holds it, and T-0402 owns that question."
+    },
+    {
+      "into": "J. H. Collins & J. D. Caton",
+      "from": "J. H. Collins & J. D. Caton, attorneys",
+      "merge_rule": "'J. H. Collins & J. D. Caton' and 'J. H. Collins & J. D. Caton, attorneys' are one card, dated Jan. 20, 1834 on the page in all three printings — 1834-02-04 c009, 1834-02-11 c005 and 1834-04-01 c011 — placing the office east of Brewster, Hogan & Co. in South Water street. The April setting lost the ordinal and was recorded `street_only`; the merge brings the street to the record that kept the offset. Whether this house and 'Collins & Caton' are one is a FORENAME question and belongs to T-0400, not here."
+    },
+    {
+      "into": "John Holbrook",
+      "from": "John Holbrook, hats, clothing, boots and shoes",
+      "merge_rule": "'John Holbrook' and 'John Holbrook, hats, clothing, boots and shoes' are one store in the two papers, a week apart: the Democrat of 1835-06-10 c010 (copy date 1835-06-10, reprinted 1835-08-12 c012) and the American of 1835-06-13 c012 (copy date 1835-06-13), both reading that the subscriber is now opening a heavy assortment of the above named articles on South Water street, one door from Dearborn. Same street, same offset, same corner."
+    },
+    {
+      "into": "L. W. Montgomery, boot and shoe maker",
+      "from": "L. W. Montgomery",
+      "merge_rule": "'L. W. Montgomery, boot and shoe maker' and 'L. W. Montgomery' are one shop under one standing advertisement, copy-dated Dec. 15, 1833 and running for eighteen months: 1833-12-17 c003, 1834-04-08 c007, 1834-05-21 c004, 1834-07-02 c013, 1834-12-10 c009 and 1835-05-20 c017. Merged INTO the styled record on purpose, because the two disagree about the anchor and that record holds the reading three printings support: 'next door to P. Cohen's Store' (1834-04-08 c007, 1834-12-10 c009, 1835-05-20 c017) against the single damaged December line read 'next door to P. Ca[rpenter's]' (1833-12-17 c003), whose own claim says the anchor is unreadable and is kept as a mention."
+    },
+    {
+      "into": "Matthias Mason & Co.",
+      "from": "Matthias Mason & Co., blacksmiths",
+      "merge_rule": "'Matthias Mason & Co.' and 'Matthias Mason & Co., blacksmiths' are one forge under one advertisement, copy-dated 1833-11-26 in both records and printed at least eight times — 1833-11-26 c020, 1833-12-24 c003, 1834-01-07 c008, 1834-02-25 c006, 1834-03-04 c015, 1834-04-01 c012, 1834-06-11 c013 — every printing reading 'on Main-street, nearly opposite Graves' Tavern'. 'Main-street' is recorded as printed and is not reconciled here; the anchors' disagreement from October 1834 (the Tremont House) is T-0345's."
+    },
+    {
+      "into": "P. Pruyne & Co.",
+      "from": "P. Pruyne & Co. (timber)",
+      "merge_rule": "'P. Pruyne & Co. (timber)' is 'P. Pruyne & Co.' with a disambiguator this project's own extractor added, and its single claim — 1834-06-11 c012 — is one more printing of the timber notice the surviving record already carries three times over at 1834-04-23 c005, 1834-04-30 c012 and 1834-07-02 c009, all four announcing the arrangement with Mr. A. M'Gregor for pine timber from 12 to 60 feet. One house, one notice, no second stand."
+    },
+    {
+      "into": "Philo Carpenter",
+      "from": "Philo Carpenter, drugs and medicines",
+      "merge_rule": "'Philo Carpenter' and 'Philo Carpenter, drugs and medicines' are the town's druggist in the two papers: the Democrat from 1833-11-26 c011 to 1835-07-22 c015 in the first record, the American of 1835-06-27 c013 and 1835-07-18 c004 plus the Democrat's almanac notice of 1833-12-17 c002 in the second, all of them signed Philo Carpenter and selling drugs, medicines, dye woods and dye stuffs wholesale and retail. Neither record carries a street on its placement, so the Sign of the Golden Mortar stays where its own claim puts it."
+    },
+    {
+      "into": "Pierce & Abbott",
+      "from": "Pierce & Abbott, blacksmiths",
+      "merge_rule": "'Pierce & Abbott' and 'Pierce & Abbott, blacksmiths' are one shop under one advertisement: 'NEW BLACKSMITH SHOP … nearly opposite the Chicago Hotel', copy-dated 1833-12-10 and printed at 1834-02-04 c012 and 1834-04-08 c011. Same partners, Asahel Pierce and Titus H. Abbott, same anchor."
+    },
+    {
+      "into": "Pierce & Abbott",
+      "from": "Pierce & Abbott (dissolved; continued by Asahel Pierce)",
+      "merge_rule": "'Pierce & Abbott (dissolved; continued by Asahel Pierce)' is 'Pierce & Abbott' annotated by this project's own extractor with what the notice says, not a second firm. Its claim 1834-05-07 c004 and the surviving record's contradiction 1834-06-11 c003 are two printings of ONE dissolution notice, copy-dated 5 May 1834 on both. The merge does not soften the dissolution: the contradiction stays on the record it was already recorded against."
+    },
+    {
+      "into": "Sarah D. Howe",
+      "from": "Sarah D. Howe, dress, cloak and habit making",
+      "merge_rule": "'Sarah D. Howe' and 'Sarah D. Howe, dress, cloak and habit making' are one notice in both papers, copy-dated 1835-08-18 on each — the Democrat of 1835-08-19 c013 and the American of 1835-08-22 c001 — both reading that she has taken a room in Lake street, in the house occupied by Dr. Austin and opposite Dr. Temple's. Two anchors, identical in both settings."
+    },
+    {
+      "into": "the Traveller's Home",
+      "from": "the Traveller's Home (the stand lately occupied by W. Wattles)",
+      "merge_rule": "'the Traveller's Home (the stand lately occupied by W. Wattles)' is 'the Traveller's Home' annotated by this project's own extractor with the succession its own notice states. Both records rest on one standing advertisement copy-dated 1833-10-04 — 1834-01-28 c009 and 1834-05-21 c002 — in which the subscriber has taken that noted tavern stand in Chicago lately occupied by Wattles and will make it the Traveller's Home."
+    }
+  ],
+  "refused_firm_note": "The REFUSALS the firm policy had no place for (T-0399). `firm_surnames()` groups the register on the partner surname alone, so it puts together houses that are not one house — a namesake, a trade word mistaken for a partner, one man's two unconnected trades — and until this section existed the only record of having judged such a group was the ABSENCE of a merge rule, which reads exactly like a group nobody has looked at yet. The next sweep then finds the group again and does the work again. A refusal is therefore declared as explicitly as a merge and held to the same disciplines: it names both spellings verbatim, it names the printings it rests on, and it cannot outlive its pair — a refusal whose two styles a later merge has collapsed is a judgement nobody can check and is a compile error. `kind` is one of three and the distinction is the point: `two_houses` (the papers show two), `not_joined` (one name, and no printing puts the two styles under one roof — which is not the same finding as two), `different_ground` (one house, and the papers put the styles in different streets, which is a removal and a removal is a claim).",
+  "refused_firm_merges": [
+    {
+      "into": "A. Garrett",
+      "from": "A. Garrett, auctioneer",
+      "kind": "different_ground",
+      "witnesses": [
+        "chicago_democrat_1834_12_17#c001",
+        "chicago_democrat_1834_12_24#c001",
+        "chicago_democrat_1835_07_08#c001",
+        "chicago_american_1835_08_22#c004"
+      ],
+      "refused_because": "'A. Garrett' and 'A. Garrett, auctioneer' are almost certainly one auctioneer and they are NOT one standing house, because the papers put the two styles on different ground and the move between them is a claim rather than a spelling. 'A. Garrett' takes a store in South-Water street near the bridge in December 1834 (1834-12-17 c001, 1834-12-24 c001); that stand is David Carver's old stand and W. Montgomery announces he has taken it in July 1835 (1835-07-08 c001); 'A. Garrett, auctioneer' is then selling Kankakee lots from Dearborn street in August 1835 (1835-08-22 c004). A firm that moved is documented by a removal notice, and this corpus does not yet hold one for Garrett — so the two frontages stay two records and the succession is read off the claims, not asserted by a merge."
+    },
+    {
+      "into": "B. Jones, grocery and provision store",
+      "from": "B. Jones, storage and forwarding",
+      "kind": "not_joined",
+      "witnesses": [
+        "chicago_democrat_1833_11_26#c014",
+        "chicago_democrat_1833_11_26#c018",
+        "chicago_democrat_1834_03_04#c022"
+      ],
+      "refused_because": "'B. Jones, grocery and provision store' and 'B. Jones, storage and forwarding' are one man's two trades and no printing puts them under one roof — which is not the same finding as two men. The Democrat of 1833-11-26 sets them as two advertisements in two columns (c018 the grocery, c014 the forwarding notice soliciting for the opening of navigation in the spring), and neither gives an address; the grocery runs again at 1834-03-04 c022 with 'CHICAGO—ILLINOIS' for its whole direction. A merge here would assert a shared door the papers never state. Refused until a printing joins them."
+    },
+    {
+      "into": "W. Montgomery",
+      "from": "W. Montgomery, boot and shoe maker",
+      "kind": "two_houses",
+      "witnesses": [
+        "chicago_democrat_1834_01_28#c008",
+        "chicago_democrat_1834_03_04#c028",
+        "chicago_democrat_1834_03_25#c009",
+        "chicago_democrat_1835_07_08#c001",
+        "chicago_democrat_1835_07_22#c011"
+      ],
+      "refused_because": "'W. Montgomery' and 'W. Montgomery, boot and shoe maker' are two houses and this is the trap the surname grouping was always going to set. The bootmaker is L. W. Montgomery with the L lost in the setting: his advertisement is copy-dated Dec. 15/18, 1833, places him next door to P. Cohen's store (1834-01-28 c008, 1834-03-04 c028, 1834-03-25 c009) and is the same standing notice the L. W. Montgomery records carry. 'W. Montgomery' is the auctioneer who takes David Carver's old stand in South Water street in July 1835 (1835-07-08 c001) and signs 'W. MONTGOMERY, Auc'r' (1835-07-22 c011) — a different trade, a different stand and eighteen months later. Whether the bootmaker's two spellings are one man is a forename question and belongs to T-0400."
     }
   ],
   "proprietor_note": "The PROPRIETORS' half of the same policy (T-0337), and the last of the three places a name lives here. `merges` governs gazetteer PERSONS and `firm_merges` governs business STYLES; a proprietor is neither — it is a string on a business record, put there by whichever claim read that printing, so one man read two ways became two proprietors of his own house and nothing in either policy could reach across to say so. `business_russell_clift` carried 'Benj. Clift' from the 1834-09-03 impression of the copartnership notice and '[H. H.] Clift' from the 1834-11-12 impression of the SAME notice. The rule is the firm-side sibling of the person one and it points the other way on purpose: for a person, same surname with different initials never merges, silently and by default, because the letter lists are full of families; for two proprietors of ONE house the default cannot be silence either way, because brothers really do trade together — William and Franklin Brewster sign one dissolution notice — and so does one man read twice. So the compiler REFUSES any pair of person-styled proprietors of one house that share a surname and carry different, read forename initials, until it is declared: `proprietor_merges` joins two readings of one name, `proprietor_distinctions` holds two men apart, and each carries its reasoning. A bare surname beside a full name is not a pair — that is the papers printing less, not a second man — and a declaration whose pair has gone is refused too, so these cannot rot.",

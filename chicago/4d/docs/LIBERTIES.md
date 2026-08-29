@@ -9593,7 +9593,7 @@ Related: **L93** (the block parcel's A3 privy, the same clamp) · **L92** (the p
 **Decision:** where the newspaper register can place a business no closer than a platted street,
 the business adopts an anonymous reconstructed roof already standing on that street face. The
 owner ruled it on 2026-08-29 (T-0354), choosing adoption over a new frontage record with a
-conjectural along-street position and over waiting for a corner. Twenty-two of the register's 47
+conjectural along-street position and over waiting for a corner. Twenty-two of the register's 45
 `street_only` businesses were seated on 2026-08-29; `docs/STREET-FACE-ADOPTION.md` is the policy,
 `data/research/newspapers/street_face_adoptions.json` the derived table, and
 `tools/adopt_street_faces.py --check` re-derives both on every commit.
@@ -9619,10 +9619,10 @@ structure's own phase and fails if it has stopped saying so, because the busines
 and the building under it is not. An along-street position: `order_is_a_claim: false` on every
 record. And a neighbour: two businesses on one face stand in no order any source supports.
 
-**The refusals are what keep it honest, and they refuse more than they take.** Twenty-five of the
-47 are not seated. Sixteen name a street — Dearborn, La Salle, Canal, North Water — with no roof
+**The refusals are what keep it honest, and they refuse more than they take.** Twenty-three of the
+45 are not seated. Sixteen name a street — Dearborn, La Salle, Canal, North Water — with no roof
 whose platted lot faces it, and adopting a roof that shows the street only a corner side would
-have put a door where the plat puts a gable end. Eight are a second heading of a house already
+have put a door where the plat puts a gable end. Six are a second heading of a house already
 seated on that face, because the corpus prints "Peter Cohen" and "Peter Cohen's store" as two
 entries and one man did not keep two storefronts on one street on any evidence here. One is short
 purely of supply. `python3 tools/adopt_street_faces.py --report` prints every refusal with its
@@ -9633,7 +9633,7 @@ W. G. Blanchard, G. Blanshard and F. G. Blanshard — advertise one trade within
 read as one man under four transcribed spellings. The refusal above matches exact surnames and
 caught one of the four; the other three take three roofs for what is probably one house. This
 pass will not decide by resemblance what the gazetteer's identity layer has not judged, and
-**T-0403** is the ticket that judges it from the page images.
+**T-0405** is the ticket that judges it from the page images.
 
 **Consequence:** twenty-two businesses the papers name move from a research file into the town's
 own street faces, on roofs that were already standing. **No geometry moves, no triangle is added,
@@ -9649,5 +9649,5 @@ this entry rather than out of it, and the count above is what would change.
 
 Related: **L205** (documented men on reconstructed roofs, the pattern this follows) · **L92** (the
 reconstructed roofs' own presence and placement) · **L1** · tickets **T-0354** (this), **T-0262**,
-**T-0263**, **T-0375**, **T-0338**, **T-0403**.
+**T-0263**, **T-0375**, **T-0338**, **T-0405**.
 **Recorded:** 2026-08-29.

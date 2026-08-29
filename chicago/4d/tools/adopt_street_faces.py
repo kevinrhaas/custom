@@ -7,16 +7,16 @@
 
 WHAT THIS IS FOR.
 
-`data/research/newspapers/register_1835.json` reads 242 businesses out of the Chicago
-Democrat and the Chicago American, 190 of them standing on the scene date, and says for
-each what the committed town would have to do about it. Sixty-two resolve to a
+`data/research/newspapers/register_1835.json` reads 221 businesses out of the Chicago
+Democrat and the Chicago American, 172 of them standing on the scene date, and says for
+each what the committed town would have to do about it. Fifty-two resolve to a
 building: `enrich_existing` where the advertisement's anchor names a roof this project
-holds, `new_building` where it names a place precise enough to raise one. Forty-seven do
+holds, `new_building` where it names a place precise enough to raise one. Forty-five do
 not. The paper names a PLATTED STREET AND NOTHING NARROWER — Peter Cohen at "the east end
 of South Water-street", J. S. C. Hogan on South Water — and the register calls them
-`street_only`. Eighty-one more reach no street the model holds at all.
+`street_only`. Seventy-five more reach no street the model holds at all.
 
-**The owner ruled on the 47 on 2026-08-29**, choosing between the three options T-0354
+**The owner ruled on these on 2026-08-29**, choosing between the three options T-0354
 set out:
 
 > Adopt a reconstructed roof already standing on that street face and attach the
@@ -111,7 +111,7 @@ THE REFUSALS, AND WHY EACH ONE IS THERE.
                                         (the two exact 'Blanshard's collide and one is
                                         refused), because the gazetteer's identity layer
                                         has not judged them one man and this file will not
-                                        judge it either. T-0403 measures that group and is
+                                        judge it either. T-0405 measures that group and is
                                         where it is settled.
 
 WHAT THIS FILE WILL NOT DO. It will not raise a structure, move one, promote one, or
