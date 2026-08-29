@@ -1,7 +1,7 @@
 ---
 id: T-0283
 title: The North Division's warehouse row allows one freight roof and six documented ones stand above it
-state: claimed
+state: done
 epic: TOWN
 requested_by: loop
 seen: false
@@ -9,8 +9,8 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-08-28
-closed: null
-pr: null
+closed: 2026-08-29
+pr: 511
 claimed_by: run 8/29/2026, 12:21:17 AM CT
 blocked_on: null
 needs_bake: false
