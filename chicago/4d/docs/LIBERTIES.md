@@ -9588,3 +9588,66 @@ Related: **L93** (the block parcel's A3 privy, the same clamp) · **L92** (the p
 
 **Covers:** `recon_1835_west_008.inferred_1835.form.wall_height_m`, `recon_1835_west_009.inferred_1835.form.wall_height_m`, `recon_1835_west_010.inferred_1835.form.wall_height_m`, `recon_1835_west_011.inferred_1835.form.wall_height_m`, `recon_1835_west_012.inferred_1835.form.wall_height_m`, `recon_1835_west_021.inferred_1835.form.wall_height_m`
 **Recorded:** 2026-08-29.
+
+### L211 — Twenty-two documented businesses are seated on reconstructed roofs, and no source puts them there
+**Decision:** where the newspaper register can place a business no closer than a platted street,
+the business adopts an anonymous reconstructed roof already standing on that street face. The
+owner ruled it on 2026-08-29 (T-0354), choosing adoption over a new frontage record with a
+conjectural along-street position and over waiting for a corner. Twenty-two of the register's 47
+`street_only` businesses were seated on 2026-08-29; `docs/STREET-FACE-ADOPTION.md` is the policy,
+`data/research/newspapers/street_face_adoptions.json` the derived table, and
+`tools/adopt_street_faces.py --check` re-derives both on every commit.
+
+**What is not invented:** the businesses, their trades and their streets. Every one of the 22 is
+printed in the *Chicago Democrat* or the *Chicago American* at the issue and column its record
+cites, and every one names a platted street this model holds — Peter Cohen at the east end of
+South Water-street, Miss Bayne's school in Randolph Street, the Chicago Bakery on South Water. The
+street is a real constraint and it survives this entry untouched.
+
+**What is invented, and it is the whole of the placement:** WHICH roof on that face. Nothing
+reached says where on South Water Street Peter Cohen stood, and the roof he now sits on is an
+anonymous count-unit raised by the reconstruction to meet an aggregate roof target. Its existence,
+its position and its footprint are exactly what they were before this pass ran and are still
+conjectural under **L92**. The pairing is an allocation by a deterministic rule — businesses
+ranked by printings, roofs taken in id order — and a rule is not a reading.
+
+**Four things this deliberately does not claim, and each is a field or a gate rather than a
+promise.** A lot: every record carries `lot: null` and `claims_lot: false`, and the gate refuses a
+record that grows a lot field of any name — the paper's constraint is the face and the lot is the
+reconstruction's. A promotion: the adopted roof stays `reconstructed`, and the gate re-reads the
+structure's own phase and fails if it has stopped saying so, because the business is documented
+and the building under it is not. An along-street position: `order_is_a_claim: false` on every
+record. And a neighbour: two businesses on one face stand in no order any source supports.
+
+**The refusals are what keep it honest, and they refuse more than they take.** Twenty-five of the
+47 are not seated. Sixteen name a street — Dearborn, La Salle, Canal, North Water — with no roof
+whose platted lot faces it, and adopting a roof that shows the street only a corner side would
+have put a door where the plat puts a gable end. Eight are a second heading of a house already
+seated on that face, because the corpus prints "Peter Cohen" and "Peter Cohen's store" as two
+entries and one man did not keep two storefronts on one street on any evidence here. One is short
+purely of supply. `python3 tools/adopt_street_faces.py --report` prints every refusal with its
+reason and its count, so the ratio is auditable rather than asserted.
+
+**A known residue, stated rather than absorbed.** Four Lake Street entries — Wm. G. Branchaud,
+W. G. Blanchard, G. Blanshard and F. G. Blanshard — advertise one trade within five months and
+read as one man under four transcribed spellings. The refusal above matches exact surnames and
+caught one of the four; the other three take three roofs for what is probably one house. This
+pass will not decide by resemblance what the gazetteer's identity layer has not judged, and
+**T-0403** is the ticket that judges it from the page images.
+
+**Consequence:** twenty-two businesses the papers name move from a research file into the town's
+own street faces, on roofs that were already standing. **No geometry moves, no triangle is added,
+and no building changes grade.** What this entry admits is that a visitor standing on South Water
+Street in front of Peter Cohen's store is looking at a building we raised and a name the paper
+printed, and that nothing joins the two but this rule.
+
+**How to resolve:** a directory, a tax list, or a lot-and-block address in the corpus would put
+any of these 22 on a lot, at which point that business leaves this entry for a placement of its
+own — the shape **T-0384** through **T-0387** already take for the businesses whose advertisements
+name an anchor. A ruling that a corner side is a street face would move up to sixteen more into
+this entry rather than out of it, and the count above is what would change.
+
+Related: **L205** (documented men on reconstructed roofs, the pattern this follows) · **L92** (the
+reconstructed roofs' own presence and placement) · **L1** · tickets **T-0354** (this), **T-0262**,
+**T-0263**, **T-0375**, **T-0338**, **T-0403**.
+**Recorded:** 2026-08-29.
