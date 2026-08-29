@@ -958,6 +958,13 @@ def surname(name):
 
 UNCERTAIN_PART = re.compile(r"\[uncertain:\s*(.*?)\]")
 
+# An initial the printing does not read. It is a VALUE in the initials tuple, never a
+# letter, so it is equal to itself and to nothing else — which is exactly the policy:
+# an unread initial is not the same as a read one. `UNREAD_MARK` is its in-string form,
+# carried through the bracket strip so the marker survives to the tokenizer.
+UNREAD_MARK = "\x00"
+UNREAD = "?"
+
 
 def unmarked(name):
     """A normalized reading with the transcriber's markup taken off.
@@ -995,10 +1002,35 @@ def initials(name):
     loosening: `Cohen, P.` and `Cohen, J.` still carry different initials and still
     never merge, and so do `Lyman R. Lovell` and `Lyman B. Lovell`, `[H]enry Swartwout
     jr.` and `J[n]o. Swartwout jr.` — a bracketed letter is READ, so it counts.
+
+    AN UNREAD `[?]` IS A POSITION, NOT AN ABSENCE (T-0397). `unmarked` DELETES the
+    marker, which is right for a surname and wrong here, because deleting it hands the
+    initial to whatever letter stood behind it. Every one of the seventeen `[?]`
+    refusals on the 1 July 1834 list parsed wrongly, in three shapes:
+
+      - a letter INVENTED from the rest of the forename — `[?]rah Fowler` read as `R.`,
+        `[?]nn M. Gooding` as `N. M.`, `[?]saac Scarrett` as `S.`;
+      - a POSITION collapsed — `[?]. M. Fish` read as `M.` in FIRST position, against
+        `E. M. Fish`'s `E. M.`, so a middle initial was compared with a forename one;
+      - an absence — `[?]. Beegle` read as no initial at all, which is the shape the
+        ticket's own diagnosis assumed all seventeen had.
+
+    Those readings then went into `identity.json` as the STATED reason for a refusal —
+    "A. against R." — so a committed record asserted a letter no printing ever read.
+    That is a provenance defect and it is what this repairs. `UNREAD` occupies the slot
+    the marker stood in and equals no read letter, so the refusals all stand (the policy
+    does not move: 177 merges and 29 refusals before and after) and both answers to the
+    OPEN policy question are now expressible, because the parse can finally SAY which
+    side is unread instead of guessing a letter for it.
     """
-    name = unmarked(name).strip()
+    name = UNCERTAIN_PART.sub(r"\1", name or "")
+    # The marker becomes a sentinel BEFORE the generic bracket strip, so `[?]` is not
+    # mistaken for a supplied letter, and it stays welded to the word it opens: the
+    # first character of `[?]rah` is unread, and `[?]rah` is still ONE forename.
+    name = re.sub(r"\[([^\]]*)\]", r"\1", name.replace("[?]", UNREAD_MARK)).strip()
     fore = name.split(",", 1)[1] if "," in name else " ".join(name.split()[:-1])
-    return tuple(w[0].lower() for w in re.findall(r"[^\W\d_]+", fore, re.UNICODE))
+    words = re.findall(r"(?:%s|[^\W\d_])+" % re.escape(UNREAD_MARK), fore, re.UNICODE)
+    return tuple(UNREAD if w[0] == UNREAD_MARK else w[0].lower() for w in words)
 
 
 # --------------------------------------------------------------------------
@@ -1543,6 +1575,25 @@ def self_test():
         if not (surname(a) == surname(b) and initials(a) != initials(b)):
             failures.append("the identity policy: %r and %r no longer refuse to merge, and "
                             "an initial is what separates them" % (a, b))
+
+    # AND WHAT AN UNREAD INITIAL ACTUALLY READS AS (T-0397). The two loops above assert
+    # only that a pair DIFFERS — and `Ann M. Gooding` / `[?]nn M. Gooding` did differ, for
+    # the wrong reason: the parse read `N. M.` off the rest of the forename, and
+    # identity.json then STATED that invented letter as the ground of the refusal. So this
+    # asserts the VALUE and not the difference. All three shapes the 1 July 1834 list
+    # produced are here, because each failed differently.
+    for name, want in (("[?]rah Fowler", (UNREAD,)),           # a letter invented from the word
+                       ("[?]saac Scarrett", (UNREAD,)),
+                       ("[?]nn M. Gooding", (UNREAD, "m")),    # invented, and a position kept
+                       ("[?]. M. Fish", (UNREAD, "m")),        # a position that used to collapse
+                       ("[?]. [H]. Scott", (UNREAD, "h")),
+                       ("[?]. Beegle", (UNREAD,)),             # the absence the ticket assumed
+                       ("[?] Adkins", (UNREAD,)),
+                       ("Ann M. Gooding", ("a", "m")),         # a read name is untouched
+                       ("[uncertain: Abey Blankinship]", ("a",))):
+        if initials(name) != want:
+            failures.append("the name parse: %r reads as %r, and the printing gives %r"
+                            % (name, initials(name), want))
 
 
     # THE FIRM'S HALF OF THE SAME POLICY (T-0304). Every case below is built by giving

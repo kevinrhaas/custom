@@ -322,12 +322,31 @@ de-duplication. The gazetteer went from 2,108 persons to 1,933. The file's `pass
 states the method, the canonical-reading rule, and the two returns printed in the same
 issues that are deliberately NOT part of this list (Plainfield and Juliet). Seventeen of
 the twenty-nine refusals are an initial one printing could not read against the same
-initial another prints whole; that is T-0348, and it is the owner's to rule on.
+initial another prints whole. **Whether such a pair may merge is NOT settled here**: it is a
+change to the identity policy and it is the owner's, and T-0392 carries the question with
+both answers and their costs — no keeps eighteen duplicate persons the project's own best
+witness resolves, yes needs a bound (same list, same entry, no competing letter).
 
 `surname()` and `initials()` take the transcription's markup off before they parse (T-0299).
 They did not, so `A[n]drew W. Borland` read as four forenames and `Benjamın Swena` as two,
 and whether the policy protected a pair came down to which side of a name a bracket fell on.
 The policy is unchanged; ten self-test cases hold both halves of that.
+
+**AN UNREAD `[?]` IS A POSITION, NOT AN ABSENCE (T-0397).** Taking the markup off is right
+for a surname and was wrong for a forename, because DELETING the `[?]` hands the initial to
+whatever letter stood behind it. All seventeen `[?]` refusals above had been stated on such
+a reading: seven named a letter invented from the rest of the forename (`[?]rah Fowler` as
+`R.`, `[?]nn M. Gooding` as `N. M.`, `[?]saac Scarrett` as `S.`), six collapsed a middle
+initial into first position (`[?]. M. Fish` as `M.` against `E. M. Fish`'s `E. M.`), and
+four read no initial at all — which is the shape all seventeen were assumed to have. So a
+committed record was asserting letters no printing carried. `initials()` now records the
+marker as UNREAD, in the slot it was printed in, welded to the word it opens, and UNREAD is
+equal to no letter; every `refused_because` states the reading the page carries and each
+refusal carries its parsed `initials_read`. **Nothing merged or unmerged** — 177 declared
+person merges and 29 refusals before and after, 2,634 persons either way, and `gazetteer.json`
+and `register_1835.json` are byte-identical across the change. Nine self-test cases assert
+the VALUE and not merely that a pair differs, which is what let `[?]nn M. Gooding` pass while
+reading `N. M.`
 
 **AND THE RULE HAS NO SIBLING FOR FIRMS, WHICH IS WHY ONE BOOKSHOP STANDS IN THREE PLACES.**
 The Chicago Democrat's bookseller is `RUISAL & CLUPR,` in the December 1834 advertisement's
@@ -401,7 +420,7 @@ exactly that shape, both recorded in `refused_places`), and neither may a name a
 gives an occupation to. Five names are declared: Haddock's and Maddock's Tavern, the Eagle
 Hotel, the Eagle Hotel (Steele's) and the Baptist meeting house; the two taverns merge and
 the two Eagle readings deliberately do not, because nothing in the corpus prints both and
-a shared word is the resemblance argument this file exists to refuse (T-0391). The table
+a shared word is the resemblance argument this file exists to refuse (T-0397). The table
 lands in `gazetteer.json` as `places`, beside `persons` and `businesses`, and the register
 compiled from it no longer carries signboards as inhabitants of the town.
 
