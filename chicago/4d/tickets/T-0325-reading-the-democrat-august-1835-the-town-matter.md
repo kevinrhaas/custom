@@ -1,7 +1,7 @@
 ---
 id: T-0325
 title: Reading the Democrat, August 1835: the town matter of the four issues
-state: claimed
+state: done
 epic: PAPERS
 requested_by: owner
 seen: false
@@ -9,8 +9,8 @@ effort: M
 legacy_id: null
 parent: T-0297
 opened: 2026-08-28
-closed: null
-pr: null
+closed: 2026-08-28
+pr: 500
 claimed_by: run 8/28/2026, 8:09:16 PM CT
 blocked_on: null
 needs_bake: false
