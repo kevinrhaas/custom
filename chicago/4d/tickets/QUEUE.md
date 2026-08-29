@@ -39,7 +39,6 @@
 T-0297 — Reading the Democrat, August 1835: the four issues after the scene date
 T-0324 — J. K. Botsford advertises two addresses in one issue, and Graves' Tavern cannot be placed until they are reconciled
 T-0329 — School District Number One is bounded in print on 1834-12-10 and the segmenter cut better than half of every line of it away
-T-0262 — The July 1, 1835 register: who and what the papers put in the town
 T-0263 — The documented storefronts take their places on South Water and Lake
 T-0306 — The American names six Chicago storefronts with usable placements and none of them is standing in the model yet
 T-0264 — Documented people replace the invented
@@ -135,3 +134,7 @@ T-0341 — A bare surname can never be joined to its forename: the family rule r
 T-0348 — The identity policy cannot merge an unread initial with a read one, and the best witness reads seventeen of them
 T-0349 — The signboard gate is red when stage 1 runs before it and green when stage 2 runs alone
 T-0350 — D. Weaver's advertisement is dated Nov. 12 in two printings and Nov. 19 in the one the ledger believed
+T-0354 — The register can only place 24 of 190 documented businesses; 49 more reach a street face and 78 reach nothing
+T-0355 — A firm matches a building on an occupant the same sentence dates to 1831
+T-0356 — The claim vocabulary cannot say an advertisement announces an opening, so 17 businesses are excluded on a proxy
+T-0357 — 129 documented businesses will stand on a survival liberty and LIBERTIES.md carries none of them

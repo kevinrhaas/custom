@@ -1,5 +1,108 @@
 # STATUS
 
+## Shipped 2026-08-29 — T-0262: the scene-date register, and what the papers can actually do to the town
+
+**`tools/compile_register.py` turns the gazetteer into a work list.** The gazetteer is an index of
+what was PRINTED — 1,094 claims out of 82 issues, 221 businesses, 2,201 people. It says nothing
+about what the model should build. The register does: for every business an ACTION against the
+committed town, for every person whether the town already holds them. It is derived, wholly, and
+`check.sh` re-derives it and refuses a committed copy a rebuild would not produce — the same
+contract `gazetteer.json` is under, for the same reason.
+
+**Ruling 3 gains the word BEFORE.** `built_at_scene_date` in the gazetteer is `not contradicted_by`,
+whatever the contradiction is dated, which struck a firm out of a July town on the strength of an
+August dissolution notice. Here the veto is a contradiction dated ON OR BEFORE 1835-07-01. A later
+one is recorded — `dissolved_after_scene_date`, one business — and disobeyed.
+
+**The ticket's second exclusion had to be rebuilt out of what the data carries.** T-0262 asks to
+exclude entries whose only 1835 evidence `announces_opening` after 1 July. There is no
+`announces_opening` in the claim vocabulary; the ticket describes a field the extraction schema
+never grew. The derivable test that answers the same question without inventing one is
+`first_evidence_after_scene_date`: a business whose FIRST issue postdates the scene date evidences
+nothing about 1 July. Seventeen businesses. It is conservative in the direction provenance wants,
+it is not a claim that they were absent, and every one of them is kept in the register with the
+exclusion named so a later pass that can read an opening notice properly may overturn it.
+
+### The counts, which are the epic's yield measured
+
+| businesses | 221 |
+|---|---|
+| present at the scene date | 190 |
+| excluded — contradicted before 1835-07-01 | 14 |
+| excluded — first evidence after 1835-07-01 | 17 |
+| `enrich_existing` (a committed building already carries it) | 39 |
+| `new_building` (placeable against the committed town) | 24 |
+| `street_only` (a street face and no closer) | 49 |
+| `unplaceable` (no street the model holds) | 109 |
+| standing on a survival liberty (last evidence pre-1835) | 129 |
+
+| persons | 2,201 |
+|---|---|
+| `enrich` — already in `data/residents/` | 117 |
+| `replace_invented` — a documented person of an invented household's trade | 113 |
+| `new_resident` — ruling 1 | 1,971 |
+| …of those, known only from the letter lists | 1,555 |
+| **invented households the register can retire** | **28 of 117** |
+
+The retirement figure is a count of HOUSEHOLDS and it is capped per trade by construction: three
+documented tailors retire at most the tailors the town invented. Reporting the matched persons
+instead would report 113 people retiring 117 households, which is a number about nothing. The 28
+are 4 blacksmiths, 4 grocers, 4 tavern keepers, 3 shoemakers, 2 joiners, 2 tailors and one each of
+baker, butcher, cooper, dentist, harness maker, hotel keeper, merchant, painter and physician.
+
+### Matching a firm to a building is a different question from matching a firm to a firm
+
+The first cut of `enrich_existing` claimed 58 buildings and a good many of them were wrong, in four
+distinct ways. Each is now a guard with a self-test on the case that forced it.
+
+1. **A `proprietors` entry is routinely a whole firm style** — `Clark, Filer & Co.`, `H. Doty & Co.`,
+   `Kinzie & Hall` — and taking its last word for a surname reads those three firms as `co`, `co`
+   and `hall`. Two of them then matched Daniel Elston's soap works, whose occupants line ends
+   `& Co.`. The partners now come from the gazetteer's own firm policy (`firm_surnames`, T-0304).
+2. **A surname is not a person.** The Kinzie brothers are one surname and three businesses; matching
+   on `kinzie` put R. A. Kinzie's store inside J. H. Kinzie's. Where the RECORD prints a forename
+   and the PAPER prints one, they must now agree — and two spelled-out forenames must agree whole,
+   not by initial, because `John S. Kinzie` and the James Kinzie House share a `j`. The test is
+   asked of the whole record, not of the field the surname was found in, or a disagreement simply
+   routes round the guard by dropping to the next tier.
+3. **An `aka` is where a record keeps its loosest descriptions.** `Taylor's tavern` is a real second
+   name of the Wolf Point Tavern and W. H. Taylor's boot and shoe store is a different Taylor, so
+   an aka match now also requires the trades to agree. And an aka that locates a building by
+   ANOTHER building — `the cabins near Wentworth's tavern` — is cut at its locative word, which is
+   what stopped Elijah Wentworth's tavern on Flag Creek matching a row of log cabins at Wolf Point.
+4. **An anonymous reconstructed roof cannot ALREADY carry a documented business.** `recon_*` and
+   `inf_*` are excluded outright. Putting a documented firm into an invented roof is a decision
+   T-0263 makes deliberately, with the adoption written down; making it by string match is how an
+   invention gets laundered into the documented layer. `Kinzie Hall` had matched
+   `recon_1835_north_i2_015` on the word "hall".
+
+Every surviving `enrich_existing` carries the tier it matched on and the exact text it matched
+against, so T-0263 can argue with a proposal without re-running anything.
+
+### The T-0257 fixtures, as the acceptance requires
+
+`business_j_s_c_hogan` → `enrich_existing`, target `hogan_store`, matched on the record's own name.
+`business_peter_cohen` → `street_only`, target `south_water`: the paper's anchor is "the east end of
+South Water-street", which the register resolves as a REACH of a platted street — a real resolution
+and not a placement, so it reads as its own anchor kind rather than as a failure.
+
+### What is honestly not settled
+
+- **One reading pass is still open.** T-0297 (August 1835, the four issues AFTER the scene date) was
+  in flight in a sibling run when this was built. The register is deterministic and re-derived by
+  the gate, so `--build` after that merges refreshes it; the counts above are as of the gazetteer on
+  `dev` at 2026-08-29.
+- **`wolf_point_tavern_stable` still takes Elijah Wentworth's Flag Creek tavern**, on an occupants
+  line that reads "Elijah Wentworth in 1831, William Walters on the scene date". The match is on a
+  HISTORICAL occupant of a building whose scene-date occupant the same sentence names. T-0355.
+- **78 businesses stand at the scene date and are placeable nowhere.** That is the size of the
+  problem the seeding tickets do not solve, and it is a fact about the papers, not about the tool.
+
+Filed with the register in hand: **T-0354** (the `street_only` and `unplaceable` policy — 49 and
+78), **T-0355** (the historical-occupant match), **T-0356** (`announces_opening` as a real claim
+field rather than a proxy) and **T-0357** (the 129 survival liberties `docs/LIBERTIES.md` does not
+yet carry). All PAPERS, all appended to the bottom of QUEUE.md — the owner orders it.
+
 ## Shipped 2026-08-29 — T-0283: the North's freight row is repaired, and the fault was a split fault
 
 **The row allowed the North Division ONE freight roof and seven stand there.** T-0211 found the
@@ -468,10 +571,10 @@ question of the other nine.
 ten-row × four-division audit with the signed gap in every cell. Thirty-eight of the forty cells hold
 roofs they have room for. Two do not, and both are in the North Division:
 
-| group | division | row says | stands | over by | since |
-|---|---|---|---|---|---|
-| `warehouses_freight` | north | 1 | 7 | **6** | *(repaired 2026-08-29 by T-0283 — see the top of this file)* |
-| `institutional_public` | north | 3 | 4 | **1** | |
+| group | division | row says | stands | over by |
+|---|---|---|---|---|
+| `warehouses_freight` | north | 1 | 7 | **6** |
+| `institutional_public` | north | 3 | 4 | **1** |
 
 Six of the seven North freight roofs are **documented pre-existing records** — Kinzie & Hunter's
 warehouse, the four north-bank sheds at the Dearborn reach, the north-side brickyard — so the breach
