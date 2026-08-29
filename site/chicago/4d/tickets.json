@@ -1,6 +1,6 @@
 {
   "project": "chicago-4d",
-  "generated_ct": "Aug 28, 2026, 7:06 PM",
+  "generated_ct": "Aug 28, 2026, 8:10 PM",
   "tickets": [
     {
       "id": "T-0001",
@@ -5042,7 +5042,7 @@
     {
       "id": "T-0298",
       "title": "Reading the Democrat, January to June 1835: the eight issues only the deposit can open",
-      "state": "open",
+      "state": "split",
       "epic": "PAPERS",
       "requested_by": "owner",
       "seen": false,
@@ -5050,12 +5050,12 @@
       "legacy_id": null,
       "parent": "T-0260",
       "opened": "2026-08-28",
-      "closed": null,
+      "closed": "2026-08-28",
       "pr": null,
-      "claimed_by": null,
+      "claimed_by": "run 8/28/2026, 7:53:55 PM CT",
       "blocked_on": "T-0275",
       "needs_bake": false,
-      "queue_rank": 8
+      "queue_rank": null
     },
     {
       "id": "T-0299",
@@ -5452,6 +5452,42 @@
       "blocked_on": null,
       "needs_bake": false,
       "queue_rank": 69
+    },
+    {
+      "id": "T-0325",
+      "title": "The resolver reads the two marker dialects the Democrats of early 1835 speak",
+      "state": "done",
+      "epic": "PAPERS",
+      "requested_by": "owner",
+      "seen": false,
+      "effort": "S",
+      "legacy_id": null,
+      "parent": "T-0298",
+      "opened": "2026-08-28",
+      "closed": "2026-08-28",
+      "pr": "491",
+      "claimed_by": "run 8/28/2026, 7:59:00 PM CT",
+      "blocked_on": null,
+      "needs_bake": false,
+      "queue_rank": null
+    },
+    {
+      "id": "T-0326",
+      "title": "Reading the Democrat, January to June 1835: the eight issues, now that their columns resolve",
+      "state": "open",
+      "epic": "PAPERS",
+      "requested_by": "owner",
+      "seen": false,
+      "effort": "M",
+      "legacy_id": null,
+      "parent": "T-0298",
+      "opened": "2026-08-28",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "queue_rank": 8
     }
   ]
 }
