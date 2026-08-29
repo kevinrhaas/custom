@@ -60,7 +60,6 @@ T-0357 — 129 documented businesses will stand on a survival liberty and LIBERT
 # --- standing in the model. This is the payoff the whole epic was for. T-0358 sits here
 # --- rather than with the streets because the corpus's ONLY lot-and-block address cannot
 # --- be used until the Thompson plat's block numbering is committed.
-T-0263 — The documented storefronts take their places on South Water and Lake
 T-0384 — John Holbrook's store takes its door on South Water Street, one door from Dearborn
 T-0385 — The New York Clothing Store stands three doors north of the Tremont House in Dearborn Street
 T-0386 — W. Montgomery's new auction and commission room takes David Carver's old stand on South Water Street
@@ -171,3 +170,4 @@ T-0396 — Newberry & Dole's partner is read as Oliver Newberry in 1834 and Walt
 T-0391 — Are 'Eagle Hotel' and 'the Eagle Hotel (Steele's)' one house, and no issue prints both
 T-0403 — The Democrat's office keeps its 1834 corner through a merge, and the paper moved along South Water Street before the scene date
 T-0404 — 33 documented businesses will stand on a backdating liberty and LIBERTIES.md carries none of them
+T-0405 — Adding one signboard repaints every board alphabetically after it, and some lose a line

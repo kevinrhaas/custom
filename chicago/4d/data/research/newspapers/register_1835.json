@@ -2552,8 +2552,8 @@
       "action": "enrich_existing",
       "action_target": "frederick_thomas_shop",
       "match_tier": "occupants",
-      "match_evidence": "Frederick Thomas",
-      "action_note": "frederick_thomas_shop already stands and its occupants carries thomas — 'Frederick Thomas'. The papers add trade, goods and dates to a record that exists."
+      "match_evidence": "Frederick Thomas; druggist and apothecary; late of New York",
+      "action_note": "frederick_thomas_shop already stands and its occupants carries thomas — 'Frederick Thomas; druggist and apothecary; late of New York'. The papers add trade, goods and dates to a record that exists."
     },
     {
       "id": "business_fullerton_botsford",
