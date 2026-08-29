@@ -1,5 +1,54 @@
 # STATUS
 
+## Shipped 2026-08-29 — T-0283: the North's freight row is repaired, and the fault was a split fault
+
+**The row allowed the North Division ONE freight roof and seven stand there.** T-0211 found the
+breach on 2026-08-28, declared it as a ratchet so it could not grow, and deliberately did not repair
+it: repairing it is a decision about the authored target, and the cells sum to their division's
+target AND to their group's total, so no cell moves alone.
+
+**The decision, and it is narrower than the ticket feared.** The town-wide freight total is
+contradicted by nothing — twenty are authored, twelve stand. What is wrong is WHERE the programme
+put them. So the repair is a split repair, four cells wide:
+
+| group | division | was | now |
+|---|---|---|---|
+| `warehouses_freight` | north | 1 | **7** |
+| `warehouses_freight` | south | 17 | **11** |
+| `ordinary_dwellings` | north | 90 | **84** |
+| `ordinary_dwellings` | south | 170 | **176** |
+
+Both row totals stand (335 and 20), all four district targets stand (365 / 135 / 152 / 10),
+`family_targets` is untouched and `roof_total` is untouched. Nothing that stands moves; no mesh
+changes; the 662 roofs are the same 662 roofs, re-typed.
+
+**Why the South pays and no one else.** Six of the North's seven freight roofs are documented
+pre-existing records — Kinzie & Hunter's warehouse, the four north-bank sheds at the Dearborn reach,
+the north-side brickyard — and the seventh, `recon_1835_north_f1_022`, was dealt by a parcel that ran
+before anything measured this. Against them the South's freight cell holds seventeen authored slots
+of which five stand: twelve are unbuilt and unnamed. **An authored slot yields to a documented
+record** — the principle T-0032 established when it held the institutional row to the named census —
+and the South's cell is the only one that can pay without moving a group total or a division target.
+The compensating `ordinary_dwellings` swap is what keeps each division's own column on its target.
+
+**What it costs, stated rather than clamped.** The South is scheduled six fewer warehouses (freight
+remainder 12 → 6) and six more ordinary dwellings (72 → 78), and its business-front re-deal now moves
+7 trade roofs where it moved 9. The North's remainder does not move by a single roof — but it stops
+being scheduled seven houses short for a reason nothing anywhere stated:
+`reconcile_665.py`'s clamp shed **7** slots from north `ordinary_dwellings` before this and sheds
+**1** after. That last one is L93's anonymous school, which is not an authoring fault at all — it is
+`measure_group_district_rows.py` and `measure_institutional_claims.py` reading one liberty
+differently — and it moves when the liberty is retired, not before.
+
+**The gate lost its declaration and gained a case.** `("north", "warehouses_freight")` is RETIRED
+from `DECLARED_OVERSHOOT`, not lowered, and a new self-test case asserts both halves of that — the
+row is not over AND it carries no declaration — because either half alone passes vacuously. The
+three ratchet cases used to drive the freight declaration; a declaration of size 1 cannot fall
+without disappearing, so `overshoot_findings` now takes the table it reads and the self-test hands it
+a synthetic one. `--self-test` is nine cases green. The argument lives at
+`district_group_matrix_note` in `data/reconstruction/1835_building_inventory.json`, beside the
+`roof_total_note` that records the only other time a count in that file moved.
+
 ## Shipped 2026-08-28 — T-0028: `blk_lake_franklin` opens, and the warehouse it was dealt is refused rather than massed
 
 **The first NEW platted block this programme has opened since 2026-08-23**, when T-0028 re-derived
@@ -419,10 +468,10 @@ question of the other nine.
 ten-row × four-division audit with the signed gap in every cell. Thirty-eight of the forty cells hold
 roofs they have room for. Two do not, and both are in the North Division:
 
-| group | division | row says | stands | over by |
-|---|---|---|---|---|
-| `warehouses_freight` | north | 1 | 7 | **6** |
-| `institutional_public` | north | 3 | 4 | **1** |
+| group | division | row says | stands | over by | since |
+|---|---|---|---|---|---|
+| `warehouses_freight` | north | 1 | 7 | **6** | *(repaired 2026-08-29 by T-0283 — see the top of this file)* |
+| `institutional_public` | north | 3 | 4 | **1** | |
 
 Six of the seven North freight roofs are **documented pre-existing records** — Kinzie & Hunter's
 warehouse, the four north-bank sheds at the Dearborn reach, the north-side brickyard — so the breach

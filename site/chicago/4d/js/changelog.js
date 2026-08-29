@@ -1,4 +1,12 @@
 export const CHANGELOG = [ // newest first
+  { v: 370, title: 'The north bank\u2019s six warehouses, and the ledger that allowed one', kind: 'chore', ts: '2026-08-29T05:24:46.909Z', date: 'Aug 29, 2026, 12:24 AM CT',
+    items: [
+      'Nothing you can see changed today. What changed is what this reconstruction believes about the north bank of the river \u2014 and it has been wrong about it from the beginning.',
+      'The building programme keeps a table of how many roofs of each kind belong in each quarter of the town. It allowed the North Division exactly ONE warehouse. Seven stand there, and six of the seven are documented: Kinzie & Hunter\u2019s warehouse, the four sheds on the north bank at the Dearborn Street reach, and the brickyard on the north side. The table was written without the north bank\u2019s freight fabric in view.',
+      'The interesting part is what that mistake was quietly costing. Where more buildings stand than a row allows, the schedule does not complain \u2014 it takes the difference out of whatever else that quarter was owed. So the North Division has been scheduled SEVEN HOUSES SHORT to pay for warehouses it already had, and nothing anywhere said so.',
+      'The repair moves four numbers and nothing else. The North\u2019s warehouse row goes from 1 to 7; the South\u2019s from 17 to 11, because seventeen were written there and only five stand, so twelve of its warehouse slots are unbuilt and nameless \u2014 and a slot nobody can name gives way to a building somebody documented. Ordinary houses swap the other way to keep each quarter\u2019s own total exactly where it was. The town is still 662 roofs; the same 662 roofs, correctly labelled.',
+      'The measurement that found this in the first place had to declare the breach and leave it, because repairing it was a judgement about the town rather than a bug fix. That declaration is now retired \u2014 deleted, not lowered \u2014 and the test that guards it asserts both that the row is clean and that nothing is still declaring it, since either half alone would pass for the wrong reason.',
+    ] },
   { v: 369, title: 'One list, printed three times, stops being three towns', kind: 'chore', ts: '2026-08-29T04:53:58.205Z', date: 'Aug 28, 2026, 11:53 PM CT',
     items: [
       'Nothing you can see changed today. What changed is the count of people this reconstruction thinks lived here \u2014 and it went DOWN, by 175.',
