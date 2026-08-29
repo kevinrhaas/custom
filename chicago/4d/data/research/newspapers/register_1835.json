@@ -9,7 +9,7 @@
       "persons": 2634,
       "businesses": 242
     },
-    "structures": 358,
+    "structures": 359,
     "streets": 19,
     "resident_persons": 237
   },
@@ -22,10 +22,10 @@
         "first_evidence_after_scene_date": 38
       },
       "by_action": {
-        "enrich_existing": 38,
-        "new_building": 25,
-        "street_only": 49,
-        "unplaceable": 130
+        "enrich_existing": 39,
+        "new_building": 27,
+        "street_only": 47,
+        "unplaceable": 129
       },
       "by_placement_class": {
         "corner": 18,
@@ -34,10 +34,10 @@
         "street_only": 19
       },
       "present_by_action": {
-        "enrich_existing": 38,
-        "new_building": 25,
-        "street_only": 49,
-        "unplaceable": 78
+        "enrich_existing": 39,
+        "new_building": 27,
+        "street_only": 47,
+        "unplaceable": 77
       },
       "survival_liberty_required": 126,
       "dissolved_after_scene_date": 1
@@ -422,17 +422,17 @@
       "dissolved_after_scene_date": [],
       "survival_liberty_required": false,
       "anchor": {
-        "kind": "unresolved",
-        "target": null,
+        "kind": "structure",
+        "target": "new_york_house",
         "streets": null,
         "via": null,
-        "note": "The anchor 'the New York House' names nothing the committed town holds."
+        "note": "The landmark is the committed structure new_york_house."
       },
-      "action": "unplaceable",
-      "action_target": null,
-      "match_tier": null,
-      "match_evidence": null,
-      "action_note": "No street the model holds. The anchor 'the New York House' names nothing the committed town holds."
+      "action": "enrich_existing",
+      "action_target": "new_york_house",
+      "match_tier": "occupants",
+      "match_evidence": "Lathrop Johnson and George Stevens, proprietors; Dr. J. B. Barnard, physician, and J. C. Bradley, dentist, at their offices in the house",
+      "action_note": "new_york_house already stands and its occupants carries bradley — 'Lathrop Johnson and George Stevens, proprietors; Dr. J. B. Barnard, physician, and J. C. Bradley, dentist, at their offices in the house'. The papers add trade, goods and dates to a record that exists."
     },
     {
       "id": "business_a_wholesale_wine_and_liquor_store_dearborn_street",
@@ -1813,17 +1813,17 @@
       "dissolved_after_scene_date": [],
       "survival_liberty_required": false,
       "anchor": {
-        "kind": "unresolved",
-        "target": null,
+        "kind": "structure",
+        "target": "new_york_house",
         "streets": null,
         "via": null,
-        "note": "The anchor 'the New York House' names nothing the committed town holds."
+        "note": "The landmark is the committed structure new_york_house."
       },
-      "action": "street_only",
-      "action_target": "lake",
+      "action": "new_building",
+      "action_target": "new_york_house",
       "match_tier": null,
       "match_evidence": null,
-      "action_note": "The paper names Lake Street and nothing narrower; the anchor 'the New York House' names nothing the committed town holds."
+      "action_note": "Placeable against the committed town. The landmark is the committed structure new_york_house."
     },
     {
       "id": "business_dr_j_h_barnard",
@@ -1846,17 +1846,17 @@
       "dissolved_after_scene_date": [],
       "survival_liberty_required": false,
       "anchor": {
-        "kind": "unresolved",
-        "target": null,
+        "kind": "structure",
+        "target": "new_york_house",
         "streets": null,
         "via": null,
-        "note": "The anchor 'the New-York House' names nothing the committed town holds."
+        "note": "The landmark is the committed structure new_york_house."
       },
-      "action": "street_only",
-      "action_target": "lake",
+      "action": "new_building",
+      "action_target": "new_york_house",
       "match_tier": null,
       "match_evidence": null,
-      "action_note": "The paper names Lake Street and nothing narrower; the anchor 'the New-York House' names nothing the committed town holds."
+      "action_note": "Placeable against the committed town. The landmark is the committed structure new_york_house."
     },
     {
       "id": "business_dr_w_g_austin",

@@ -123,31 +123,6 @@
       ]
     },
     {
-      "id": "new_york_house",
-      "name": "New York House",
-      "reason": "EXCLUSION FALSIFIED 2026-08-11 — kept visible rather than deleted, because a wrong exclusion is a claim this project made and should be seen retracting. The reason recorded here was 'dated 1836; build date unattested in Andreas'. Andreas p. 635 states it plainly: 'The New York House was built in 1834 and opened to the public the following year by Lathrop Johnson and George Stevens, who conducted it until the fall of 1839.' So the BUILDING stood on 1835-07-01 and this entry is wrong. It stays here only until a structure record replaces it: frame, north side of Lake near Wells, two storeys with eaves to the street, with the OPENING MONTH in 1835 as the open question rather than the build date.",
-      "detail": "Frame building on the north side of Lake Street near Wells, two stories with eaves to the street. High uncertainty — excluded on the balance of evidence rather than a firm date.",
-      "earliest_scene": null,
-      "citations": [
-        {
-          "source_id": "andreas_1884_v1",
-          "citation": "Andreas, A. T. History of Chicago: From the Earliest Period to the Present Time. Vol. 1. Chicago: A. T. Andreas, 1884.",
-          "url": "https://archive.org/details/historyofchicago01andr",
-          "archived_url": "",
-          "tier": 3,
-          "tier_label": "compiled secondary (Andreas)"
-        },
-        {
-          "source_id": "drloih_hotels",
-          "citation": "\"A Chronology of Early Chicago Area Hotels.\" Digital Research Library of Illinois History Journal.",
-          "url": "https://drloihjournal.blogspot.com/2022/07/chronology-of-early-chicago-area-hotels.html",
-          "archived_url": "",
-          "tier": 4,
-          "tier_label": "later scholarship"
-        }
-      ]
-    },
-    {
       "id": "peck_brick_house",
       "name": "P. F. W. Peck brick house",
       "reason": "Built 1837 — the first brick house erected in Chicago.",
@@ -843,6 +818,61 @@
         }
       ],
       "carried_by": "frame_1834.documented_range",
+      "carried_confidence": "inferred"
+    },
+    {
+      "id": "new_york_house",
+      "name": "New York House",
+      "question": "Which side of Wells Street? Andreas gives the address as 'the north side of Lake Street, near Wells' and never names a corner or a lot, so the Lake frontage of either the block west of Wells or the block east of it satisfies the words. The record stands the house on the western block because that block's Wells-end lot on Lake is free, which is a fact about this dataset and not evidence about 1835.",
+      "consequence": "The house STANDS in the scene, so the uncertainty is not about whether to build it but about what a visitor is told when they open its card. It reaches the card through the placement's own confidence, which is `inferred`, and the position note argues the two-block ambiguity out rather than hiding it. A source naming the side of Wells, or a lot, moves the building one block east and costs nothing else on the record. The date question this entry was born as is now the weaker half: Andreas gives 1834 for the building and 'the following year' for the opening, and the Chicago American of 13 June 1835 carries two professional men advertising offices AT the house, seventeen days before the scene date.",
+      "standing": true,
+      "no_source_record": "",
+      "dossier": {
+        "file": "docs/RESEARCH/new_york_house.md",
+        "anchor": "Which side of Wells?"
+      },
+      "citations": [
+        {
+          "source_id": "andreas_1884_v1",
+          "citation": "Andreas, A. T. History of Chicago: From the Earliest Period to the Present Time. Vol. 1. Chicago: A. T. Andreas, 1884.",
+          "url": "https://archive.org/details/historyofchicago01andr",
+          "archived_url": "",
+          "tier": 3,
+          "tier_label": "compiled secondary (Andreas)"
+        },
+        {
+          "source_id": "chicago_american_1835",
+          "citation": "The Chicago American. Vol. I, No. 1 (June 8, 1835) through Vol. I, No. 12 (August 29, 1835). Chicago, Ill.: T. O. Davis. Thirteen issues, OCR-assisted research transcriptions from page scans.",
+          "url": "",
+          "archived_url": "",
+          "tier": 1,
+          "tier_label": "period/eyewitness",
+          "what_it_supplies": [
+            "a second, independent contemporary witness to the town in the twelve weeks around the scene date",
+            "advertisements and self-reported addresses from a different advertiser base than the Democrat's",
+            "attestation that needs no survival liberty: the whole run is within twelve weeks of 1835-07-01",
+            "corroboration or contradiction of a Democrat address, which is worth more than either paper alone",
+            "the paper's own correction of its first masthead date"
+          ],
+          "what_it_does_not_supply": [
+            "any building's form, material, storey count, fenestration or dimensions",
+            "a reliable reading of a dense body column — this run had no reconciled second pass",
+            "a word count or uncertainty-marker count: none was delivered, and corpus.json records null rather than zero",
+            "identification by volume and number: No. 12 is printed on two different issues",
+            "anything at all from an engraving — the cuts are the printer's stock",
+            "a citation without an issue page and column"
+          ]
+        },
+        {
+          "source_id": "drloih_hotels",
+          "citation": "\"A Chronology of Early Chicago Area Hotels.\" Digital Research Library of Illinois History Journal.",
+          "url": "https://drloihjournal.blogspot.com/2022/07/chronology-of-early-chicago-area-hotels.html",
+          "archived_url": "",
+          "tier": 4,
+          "tier_label": "later scholarship"
+        }
+      ],
+      "carried_by": "frame_1834.position",
       "carried_confidence": "inferred"
     }
   ]

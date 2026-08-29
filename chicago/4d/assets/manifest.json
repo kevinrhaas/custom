@@ -747,6 +747,15 @@
       "phase_id": "log_1831",
       "structure_id": "miller_tannery"
     },
+    "new_york_house__frame_1834.glb": {
+      "archetype": "frame_tavern",
+      "baked_ao": false,
+      "bytes": 23504,
+      "inputs_sha256": "a733a548e87f2c576f29e2bd97a299a706ed71339f736510e4e5b23f792aaf49",
+      "kind": "generated",
+      "phase_id": "frame_1834",
+      "structure_id": "new_york_house"
+    },
     "newberry_dole_slaughterhouse_south_branch__works_1834.glb": {
       "archetype": "outbuilding",
       "baked_ao": false,

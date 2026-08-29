@@ -52,8 +52,8 @@
       "id": "cobweb_castle_tree_1",
       "species": "populus_deltoides",
       "at_local_enu_m": [
-        803.74,
-        131.83
+        804.26,
+        129.9
       ],
       "height_m": 18.6,
       "confidence": "reconstructed",
@@ -129,8 +129,8 @@
       "id": "inf_boatman_cabin_north_tree_1",
       "species": "ulmus_americana",
       "at_local_enu_m": [
-        245.55,
-        122.29
+        257.95,
+        143.77
       ],
       "height_m": 18.5,
       "confidence": "reconstructed",
@@ -141,7 +141,7 @@
       "species": "ribes_spp",
       "at_local_enu_m": [
         256.3,
-        123.7
+        136.3
       ],
       "height_m": 1.37,
       "confidence": "reconstructed",
@@ -162,8 +162,8 @@
       "id": "inf_carpenter_dwelling_north_tree_1",
       "species": "ulmus_americana",
       "at_local_enu_m": [
-        382.74,
-        189.79
+        380.0,
+        189.43
       ],
       "height_m": 16.9,
       "confidence": "reconstructed",
@@ -536,8 +536,8 @@
       "id": "recon_1835_north_d1_001_tree_1",
       "species": "populus_deltoides",
       "at_local_enu_m": [
-        484.24,
-        165.83
+        480.0,
+        166.39
       ],
       "height_m": 19.1,
       "confidence": "reconstructed",
@@ -701,8 +701,8 @@
       "id": "recon_1835_north_d3_002_tree_1",
       "species": "ulmus_americana",
       "at_local_enu_m": [
-        519.22,
-        180.75
+        515.0,
+        181.31
       ],
       "height_m": 16.1,
       "confidence": "reconstructed",
@@ -1120,7 +1120,7 @@
       "species": "ulmus_americana",
       "at_local_enu_m": [
         450.0,
-        186.98
+        183.98
       ],
       "height_m": 16.8,
       "confidence": "reconstructed",
