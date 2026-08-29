@@ -219,6 +219,20 @@ step "the case T-0059 was withdrawn on still holds" \
 step "the frontage works re-derive from the rule that chose their walls" \
   python3 tools/generate_frontage_works.py --check
 
+# AND THE HALF OF THAT RULE NO RECORD EXERCISES. A cross street bounds a block on
+# its EAST and WEST faces; every street this record carries today bounds one on the
+# north and south. T-0192 enumerated all four and made every ordering in that
+# generator axis-aware, then measured the seven cross streets over all three
+# scene-detail ceilings and left them out — so the east/west path ships with an
+# empty covered tuple and the re-derivation above cannot touch it. This drives it
+# over all seven, in hundredths of a second, so it is code somebody is keeping
+# rather than code waiting to rot until the frame budget is won back.
+step "the street edge's cross-street faces enumerate as the plat says" \
+  python3 tools/test_frontage_faces.py
+
+step "…and those assertions still fire when the enumeration is broken" \
+  python3 tools/test_frontage_faces.py --self-test
+
 # The 665-roof programme's remainder is a function of what has been built, and the town
 # grows most nights. Left as an authored number it goes stale silently — the crosswalk
 # called 617 roofs remaining while 232 were standing — and the next block parcel schedules

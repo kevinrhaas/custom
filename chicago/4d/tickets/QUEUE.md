@@ -56,9 +56,10 @@ T-0305 — Four readings the American contradicts itself on need the page images
 T-0244 — T-0194's twelve hitching posts draw no vertices the gate can find, on dev
 T-0265 — The sward census fails its own gate at a phone: z10_settled_town owes xanthium_strumarium a whole slot and draws it nowhere
 
-# --- THE TOWN AND ITS STREETS — visible. T-0192 is parked whole on PR #418 until
-# --- the balanced triangle budget can carry Market Street's walk.
-T-0192 — The cross streets' own frontages get the street edge
+# --- THE TOWN AND ITS STREETS — visible. T-0192 left this band on 2026-08-29,
+# --- blocked-tech: its code half shipped (the rule reads all four block faces now,
+# --- so a cross street CAN be laid), and all seven cross streets were then measured
+# --- over all three ceilings. PR #418, which parked Market Street alone, is closed.
 T-0316 — The 665-roof deal puts a large river warehouse on an inland platted block, and the block generator cannot build one
 T-0233 — Eight of seventeen dealt lots carry none of their run's own roofs, and nothing was measuring it
 T-0307 — The derivation's running maximum costs 42 m of verge where the bank turns a right angle at Wolf Point
