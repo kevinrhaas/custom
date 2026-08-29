@@ -36,7 +36,6 @@
 # ---     reads surfaced;
 # --- (c) the register itself, then the VISIBLE seeding it unblocks — documented
 # ---     storefronts standing in the model, documented people replacing invented.
-T-0336 — The 31 July 1835 letter list, standing in all four August Democrats
 T-0263 — The documented storefronts take their places on South Water and Lake
 T-0384 — John Holbrook's store takes its door on South Water Street, one door from Dearborn
 T-0385 — The New York Clothing Store stands three doors north of the Tremont House in Dearborn Street
@@ -145,3 +144,4 @@ T-0334 — The hay-stacking ordinance walks a six-vertex boundary round the buil
 T-0375 — Every reconstructed roof on South Water Street is a labourer's, so five documented tradesmen the papers put there have nowhere to stand
 T-0372 — North Water Street's two tight spots are 5.5 m and 8.5 m from water, and the setback rule cannot see either
 T-0377 — Three street-derived layers drifted when T-0307 moved North Water Street, and dev's gate is red on all three
+T-0388 — Three derived records have drifted from their own generators on an unmodified dev, so every branch's gate is red
