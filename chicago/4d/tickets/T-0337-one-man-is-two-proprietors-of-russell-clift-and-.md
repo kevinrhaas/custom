@@ -1,7 +1,7 @@
 ---
 id: T-0337
 title: One man is two proprietors of Russell & Clift, and the gazetteer has no rule that can join them
-state: claimed
+state: done
 epic: PAPERS
 requested_by: loop
 seen: false
@@ -9,8 +9,8 @@ effort: S
 legacy_id: null
 parent: null
 opened: 2026-08-28
-closed: null
-pr: null
+closed: 2026-08-29
+pr: 543
 claimed_by: run 8/29/2026, 9:51:31 AM CT
 blocked_on: null
 needs_bake: false

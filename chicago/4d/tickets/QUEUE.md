@@ -41,7 +41,6 @@
 # --- seeding SPEND the gazetteer: a firm minted twice, a surname that can never join its
 # --- forename, or a tavern minted as a person becomes a wrong building once seeded.
 # --- Cheap (mostly S/XS) and each one makes the seeding below more accurate.
-T-0337 — One man is two proprietors of Russell & Clift, and the gazetteer has no rule that can join them
 T-0340 — The bookseller's sign-name and its partners' firm-name are three gazetteer entries for one house
 T-0341 — A bare surname can never be joined to its forename: the family rule reads 'no initials' as 'different initials'
 T-0348 — The identity policy cannot merge an unread initial with a read one, and the best witness reads seventeen of them
