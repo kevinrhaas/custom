@@ -1,7 +1,7 @@
 ---
 id: T-0183
 title: The Market and South Water corner needs one control point, and the node rule may not be able to make it
-state: blocked-owner
+state: open
 epic: META
 requested_by: steward
 seen: false
@@ -12,7 +12,7 @@ opened: 2026-08-24
 closed: null
 pr: null
 claimed_by: run 8/27/2026, 6:17:17 PM CT
-blocked_on: blk_south_water_market has 27 roofs of headroom on measured dry ground and NO derivable control at its west corner — Market x South Water is a bend in Wacker Drive, not a crossing, and the node rule returns lake_market's own two nodes 110 m away (measured 2026-08-27; tools/refetch_control.py --discover market_south_water now refuses it). So the question is no longer 'may a bend node be control' — that is answered, and it is no. It is: should South Water Street's committed west end be CLOSED onto Market's corridor from the 1834 sheets and the committed bank, the same basis the rest of that curve already stands on and graded for what it is, or should the block's 27 roofs stop being scheduled as gated on street control and go back to the South balance, the way blk_south_water_clinton's did when T-0163 measured them?
+blocked_on: null
 needs_bake: false
 ---
 
@@ -167,3 +167,37 @@ precedent for every block after this one:
 
 `tools/measure_block_gating.py` still passes: nothing here moved a street line, so the block
 is still classified `awaiting_control` and still measures dry.
+
+---
+
+## THE OWNER'S RULING, 2026-08-29
+
+Asked whether to close South Water's west end on Market's corridor or to un-gate the
+block's roofs to the South balance, the owner chose:
+
+> **Close the west end on Market's corridor, from the 1834 sheets and the committed bank
+> — the same basis the rest of that curve already stands on — and grade it for what it is.**
+
+So `blk_south_water_market`'s **27 roofs of headroom on measured dry ground** become
+schedulable: the single largest block of headroom left in the programme, and T-0365
+measured that it and T-0009's four blocks were the whole of it.
+
+**"Graded for what it is" is the load-bearing half of the ruling.** This end is NOT
+derived control and must not be recorded as though it were. The node rule's refusal
+stands — `tools/refetch_control.py --discover market_south_water` refuses it, correctly,
+and that refusal is not to be softened to make this pass. What the ruling authorises is a
+DIFFERENT basis, stated as such: the 1834 sheets plus the committed bank, which is what
+the rest of this curve already rests on. The grade must make a reader able to tell this
+corner from a corner that has a control point, and the position note must say the node
+rule refused it and why.
+
+**Acceptance for the run that takes this:**
+
+- South Water's committed west end is closed on Market's corridor, derived from the 1834
+  sheets and the committed bank, with the derivation written where the position is.
+- The record grades it for its actual basis and NAMES the refusal: no derivable control
+  at that corner, bend not crossing, nearest nodes 110 m away (measured 2026-08-27).
+- `tools/refetch_control.py --discover market_south_water` still refuses. If a run finds
+  itself editing that refusal to make this pass, it has taken the wrong path and stops.
+- The block's 27 roofs are confirmed schedulable, or the reason they are not is recorded.
+- A liberty entry, because a closed end on a non-control basis is a stated liberty.
