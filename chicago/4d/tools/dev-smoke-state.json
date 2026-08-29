@@ -13,6 +13,38 @@
       "passed": 116,
       "failed": 0,
       "failures": [],
+      "wallSeconds": 400,
+      "takenAt": "2026-08-29T09:09:48.415Z",
+      "ref": "steward/t-0317-randolph-market-second-deal",
+      "commit": "e9608e4fc777",
+      "devCommit": "05cf916dab39",
+      "treeHash": "sha256:b1c3e853ee258e0c",
+      "treeDirty": false,
+      "changelogHash": "sha256:2459b0b21acaa167",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          4.7,
+          4,
+          3.4
+        ]
+      },
+      "source": "/tmp/smoke_m34c.log"
+    },
+    {
+      "viewport": "mobile",
+      "stage": "3-4",
+      "parts": [
+        3,
+        4
+      ],
+      "verdict": "pass",
+      "target": "published",
+      "passed": 116,
+      "failed": 0,
+      "failures": [],
       "wallSeconds": 404,
       "takenAt": "2026-08-29T08:59:59.828Z",
       "ref": "steward/t-0317-randolph-market-second-deal",
@@ -1817,37 +1849,6 @@
         ]
       },
       "source": "/tmp/smoke.m8.log"
-    },
-    {
-      "viewport": "desktop",
-      "stage": "8",
-      "parts": [
-        8
-      ],
-      "verdict": "pass",
-      "target": "published",
-      "passed": 37,
-      "failed": 0,
-      "failures": [],
-      "wallSeconds": 170,
-      "takenAt": "2026-08-28T09:50:14.431Z",
-      "ref": "steward/t-0186-liberties-dupes",
-      "commit": "5b69f17cede8",
-      "devCommit": "5b69f17cede8",
-      "treeHash": "sha256:d577e1404d154d68",
-      "treeDirty": true,
-      "changelogHash": "sha256:ec2332aa62416fe5",
-      "host": {
-        "kind": "steward-runner",
-        "cpus": 4,
-        "memGB": 15.6,
-        "loadavg": [
-          0.1,
-          0.4,
-          0.7
-        ]
-      },
-      "source": "/tmp/smoke.d8.log"
     },
     {
       "viewport": "mobile",
