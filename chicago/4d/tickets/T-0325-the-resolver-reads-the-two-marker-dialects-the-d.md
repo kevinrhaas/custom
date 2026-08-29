@@ -1,7 +1,7 @@
 ---
 id: T-0325
 title: The resolver reads the two marker dialects the Democrats of early 1835 speak
-state: claimed
+state: done
 epic: PAPERS
 requested_by: owner
 seen: false
@@ -9,8 +9,8 @@ effort: S
 legacy_id: null
 parent: T-0298
 opened: 2026-08-28
-closed: null
-pr: null
+closed: 2026-08-28
+pr: 491
 claimed_by: run 8/28/2026, 7:59:00 PM CT
 blocked_on: null
 needs_bake: false

@@ -51,7 +51,6 @@ T-0315 — Reading the Democrat, June 1834: Vol. I Nos. 27-30
 T-0294 — Reading the Democrat, December 1834: Vol II Nos 1-4
 T-0296 — Reading the Democrat, 8 to 29 July 1835: the rest of the scene month
 T-0297 — Reading the Democrat, August 1835: the four issues after the scene date
-T-0325 — The resolver reads the two marker dialects the Democrats of early 1835 speak
 T-0326 — Reading the Democrat, January to June 1835: the eight issues, now that their columns resolve
 T-0262 — The July 1, 1835 register: who and what the papers put in the town
 T-0263 — The documented storefronts take their places on South Water and Lake
