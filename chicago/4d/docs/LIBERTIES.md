@@ -9551,3 +9551,40 @@ source leaves open, which is a navigation decision and has nothing in the data t
 Related: **L7** (three buildings placed from bank geometry rather than from a corner) · **L12**
 (placed on one side of a disputed river) · **L208** · ticket **T-0380**.
 **Recorded:** 2026-08-29.
+
+### L210 — Six West Division eaves were moved to fit an archetype's door, not a source
+
+**Decision:** T-0272 put the twenty anonymous West Division roofs' eave and roof pitch onto the
+family bands the reconstruction specification authors, sampled deterministically per slot,
+instead of on one figure per family typed into `tools/generate_west_infill.py`. On six of the
+twenty the sampled eave was then MOVED off the value the band alone would have given, by a rule
+that is a model's and not a source's, and this entry is that admission.
+
+**Five were raised to a door.** The floor is the height the implemented archetype needs to carry
+the door that family's building has, plus its header — asked of the outbuilding archetype's own
+door table through `family_bands.eave_floor`, never retyped. `recon_1835_west_011` (A3 privy)
+1.952 → 2.084 m; `recon_1835_west_012` (A4 woodshed) 2.047 → 2.189 m; `recon_1835_west_021` (W3
+wheelwright shop) 3.247 → 3.269 m; `recon_1835_west_009` (W2 joiner's shop) 3.317 → 3.495 m;
+`recon_1835_west_008` (W1 blacksmith shop) 3.564 → 3.598 m. The privy is the same decision the
+platted-block parcel already records at **L93**; the three wagon-doored workshops are its twin, a
+metre higher because a wagon door is.
+
+**One was redrawn to reach a ridge.** `recon_1835_west_010`, an A1 stable, drew 3.141 m and
+stands at 3.371 m, because from 3.141 m no pitch inside the family's own 7:12-10:12 band lands
+the ridge inside the family's own 17-24 ft band. Two authored bands disagreed for this plan and
+the eave moved rather than the pitch leaving its band (T-0148). The residual, where no eave in a
+band can reach its ridge band at all, is reported by `tools/measure_ridge_band.py` and not hidden.
+
+**Every one of the six is still inside its own authored eave band**, so the note printed beside it
+— "type-level choice within the {family} band" — is true of the number it sits on, which is the
+whole reason T-0272 was worth doing. A family whose entire band sat under its archetype's floor
+fails loudly instead of being quietly raised out of its typology.
+
+**What this does NOT license.** It is not evidence that any of these buildings stood, or stood at
+this height. Presence, position and footprint remain conjectural under **L92**, every value still
+grades `reconstructed`, and nothing here was moved to make a check pass.
+
+Related: **L93** (the block parcel's A3 privy, the same clamp) · **L92** (the parcel's own presence and placement) · tickets **T-0272**, **T-0142**, **T-0148**, **T-0172**.
+
+**Covers:** `recon_1835_west_008.inferred_1835.form.wall_height_m`, `recon_1835_west_009.inferred_1835.form.wall_height_m`, `recon_1835_west_010.inferred_1835.form.wall_height_m`, `recon_1835_west_011.inferred_1835.form.wall_height_m`, `recon_1835_west_012.inferred_1835.form.wall_height_m`, `recon_1835_west_021.inferred_1835.form.wall_height_m`
+**Recorded:** 2026-08-29.
