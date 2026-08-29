@@ -1,7 +1,7 @@
 ---
 id: T-0307
 title: The derivation's running maximum costs 42 m of verge where the bank turns a right angle at Wolf Point
-state: open
+state: claimed
 epic: TOWN
 requested_by: loop
 seen: false
@@ -11,7 +11,7 @@ parent: null
 opened: 2026-08-28
 closed: null
 pr: null
-claimed_by: null
+claimed_by: run 8/29/2026, 4:42:09 AM CT
 blocked_on: null
 needs_bake: false
 ---
