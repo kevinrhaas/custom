@@ -27,9 +27,9 @@
     "faces_laid": 36,
     "walk_m": 3170.7,
     "crossing_m": 857.5,
-    "fence_m": 1669.0,
+    "fence_m": 1693.7,
     "walking_decks": 254,
-    "hitching_posts": 14
+    "hitching_posts": 15
   },
   "card": {
     "id": "town_street_edge",
@@ -50,16 +50,16 @@
         "note": "41 run(s) of sidewalk on 36 platted block face(s), plus 857.5 m of board crossing at 36 corner(s). Nothing measured: every metre is derived from the committed plat and audited against the committed ground."
       },
       "fence_m": {
-        "value": 1669.0,
+        "value": 1693.7,
         "confidence": "reconstructed",
         "sources": [],
         "note": "35 street-lining fence run(s), on the lots the rule found improved and standing back from their own frontage line."
       },
       "hitching_posts": {
-        "value": 14,
+        "value": 15,
         "confidence": "reconstructed",
         "sources": [],
-        "note": "14 post(s) at the road edge, one at each trading frontage the rule accepts — a trade this project holds on evidence and rules takes its custom from a stranger off the street, with a walk laid in front of it and dry ground clear of the track to stand on. Every frontage it refused is named in `refused` with the clause that refused it. No source states that a post stood at any of them; what the plates give is that the town's frontages had them at all (T-0090)."
+        "note": "15 post(s) at the road edge, one at each trading frontage the rule accepts — a trade this project holds on evidence and rules takes its custom from a stranger off the street, with a walk laid in front of it and dry ground clear of the track to stand on. Every frontage it refused is named in `refused` with the clause that refused it. No source states that a post stood at any of them; what the plates give is that the town's frontages had them at all (T-0090)."
       },
       "width_m": {
         "value": 1.83,
@@ -8896,8 +8896,8 @@
           -102.46
         ],
         [
-          661.41,
-          -102.87
+          686.05,
+          -103.07
         ]
       ],
       "height_m": 1.37,
@@ -8908,10 +8908,11 @@
       "rail_courses": 2,
       "lots": [
         3,
-        5
+        5,
+        7
       ],
       "least_setback_m": 5.49,
-      "note": "A FENCE LINING THE STREET, on the lot line with the plank walk at its foot — which is the first Cook County jail engraving read literally (data/sources/assets/owner_brief_2026_08_18/README.md, image 1: board fences at the frontage line, a plank walk beside them). WHERE is derived: it stands on blk_south_water_clark's own platted frontage line from 24.6 m to 73.9 m along the south face, covering lot(s) 3, 5 — every one of them improved by a committed building whose nearest wall stands 5.49 m back from that line, which is the clause that decides a fence is what lines the street here rather than a wall. The board width, the gap, the bay, the post and the height are the treatment the plate shows and no source gives: docs/LIBERTIES.md L160."
+      "note": "A FENCE LINING THE STREET, on the lot line with the plank walk at its foot — which is the first Cook County jail engraving read literally (data/sources/assets/owner_brief_2026_08_18/README.md, image 1: board fences at the frontage line, a plank walk beside them). WHERE is derived: it stands on blk_south_water_clark's own platted frontage line from 24.6 m to 98.6 m along the south face, covering lot(s) 3, 5, 7 — every one of them improved by a committed building whose nearest wall stands 5.49 m back from that line, which is the clause that decides a fence is what lines the street here rather than a wall. The board width, the gap, the bay, the post and the height are the treatment the plate shows and no source gives: docs/LIBERTIES.md L160."
     },
     {
       "id": "blk_south_water_dearborn_south_fence_6",
@@ -9173,6 +9174,31 @@
       "clear_of_track_m": 3.88,
       "stands_on_m": 0.58,
       "note": "A POST AT THE ROAD EDGE OUTSIDE Pruyne & Kimball's Drug Store, for a rider to tie to. WHY HERE is a rule and not a placement: this frontage's trade is `drug_store` — one of the trades this project already rules take their custom from a stranger off the street (tools/generate_business_signboards.py, PUBLIC_TRADES, the same clause that decides which frontage hangs a board) — and that trade is held `attested` rather than dealt by a schedule. WHERE is derived: the footprint is projected onto its own platted face, the post stands at 0.28 of that frontage and 2.98 m out from the lot line — 0.90 m clear of the walk's outer edge, the same verge the Sauganash's own posts stand in — on committed ground at +0.58 m with 3.88 m still between it and the South Water Street track. WHAT IS INVENTED: that a post stood on this ground at noon on 1 July 1835, and its height, its section and its capped head, which are the Sauganash's numbers carried across (docs/LIBERTIES.md L136). docs/LIBERTIES.md L160."
+    },
+    {
+      "id": "blk_south_water_clark_south_hitching_new_york_clothing_store",
+      "belongs_to": "town_street_edge",
+      "kind": "hitching_post",
+      "confidence": "reconstructed",
+      "street": "lake",
+      "street_name": "Lake Street",
+      "chunk": "blk_south_water_clark_south_1",
+      "stands_at": "new_york_clothing_store",
+      "trade": "store",
+      "trade_confidence": "attested",
+      "at_local_enu_m": [
+        678.9,
+        -105.99
+      ],
+      "facade_bearing_deg": 180.5,
+      "post_height_m": 1.3,
+      "post_square_m": 0.16,
+      "cap_square_m": 0.22,
+      "cap_thickness_m": 0.07,
+      "along_frontage_frac": 0.28,
+      "clear_of_track_m": 3.88,
+      "stands_on_m": 0.79,
+      "note": "A POST AT THE ROAD EDGE OUTSIDE New York Clothing Store, for a rider to tie to. WHY HERE is a rule and not a placement: this frontage's trade is `store` — one of the trades this project already rules take their custom from a stranger off the street (tools/generate_business_signboards.py, PUBLIC_TRADES, the same clause that decides which frontage hangs a board) — and that trade is held `attested` rather than dealt by a schedule. WHERE is derived: the footprint is projected onto its own platted face, the post stands at 0.28 of that frontage and 2.98 m out from the lot line — 0.90 m clear of the walk's outer edge, the same verge the Sauganash's own posts stand in — on committed ground at +0.79 m with 3.88 m still between it and the Lake Street track. WHAT IS INVENTED: that a post stood on this ground at noon on 1 July 1835, and its height, its section and its capped head, which are the Sauganash's numbers carried across (docs/LIBERTIES.md L136). docs/LIBERTIES.md L160."
     },
     {
       "id": "blk_south_water_dearborn_north_hitching_chicago_american_office",
@@ -9675,11 +9701,6 @@
       "structure_id": "blk_south_water_clark_lot6",
       "wall": "blk_south_water_clark north face, lot 6",
       "why": "bates_auction_room stands 1.50 m from this lot's frontage line, inside the 3.0 m a street fence needs — the building IS the street wall here, and a fence in front of it would be a second one."
-    },
-    {
-      "structure_id": "blk_south_water_clark_lot7",
-      "wall": "blk_south_water_clark south face, lot 7",
-      "why": "no committed building stands on this platted lot — an unimproved lot is open prairie and takes no street fence."
     },
     {
       "structure_id": "blk_south_water_dearborn_lot0",

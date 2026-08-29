@@ -1,5 +1,102 @@
 # STATUS
 
+## Shipped 2026-08-29 — T-0385: the New York Clothing Store takes its door in Dearborn Street
+
+**Tuthill King's shop stands on the west side of Dearborn Street, three doors north of the Tremont
+House.** It is the third of T-0306's six American storefronts to be built, and the strongest
+placement any of them has: *"thre[e] doors north of [the] [T]remont House, in Dearborn
+[s]t[r]e[et]"* — an offset, a direction, a street and a named anchor, the only one of the six
+with all four (Chicago American 1835-07-04 p. 3, claim `chicago_american_1835_07_04#c003`).
+
+### The two things that were stopping it, and only one of them was the ticket's
+
+The ticket named `match_landmark`, and it was right: `tools/compile_register.py` compared an
+anchor against a record's names as whole word-sets, and every name this project gives the first
+Tremont House carries a disambiguator this project added — *(the first)*, *I*, *old* — so
+`{tremont, house}` matched none of the three. **The relaxation is by SHAPE and not by word list**,
+which is the part worth reading: `first` and `old` are ordinary words a source prints, and striking
+them wherever they fall turned *"the First Baptist meeting house"* into an anchor for the Temple
+Building and *"Chicago's first post office"* into one for Hogan's store on the first cut of this
+rule. Only a trailing parenthetical, a trailing roman numeral and a leading `old` are stripped, only
+after exact matching has failed, and only when what is left resolves to exactly ONE building — so a
+second Tremont in the dataset makes this anchor unresolved again instead of resolving it by sort
+order. Nine self-test cases, three of them the false positives above.
+
+**The second blocker was not in the ticket and is the more general one.** The gazetteer keeps every
+printing's placement (T-0345) and made the EARLIEST one live. King's notice ran three times over one
+copy date of 8 June 1835 and the segmenter ate the anchor out of the first two printings — 8 June
+sets *"three doors worth of i,"* and 20 June *"o at House"*, and only 4 July sets *"'fremont
+House"*. So the house was placed on the loss, for as long as it ran, with the anchor sitting in the
+corpus where nothing could reach it. **A declared anchor history may now hold a single anchor**: not
+a change, one landmark read several ways, `changes` empty, and the grouping still argued for in that
+anchor's own `why`. A group's placement is now the reading whose anchor IS the declared name, and
+the earliest printing's only when the declaration names none. What a declaration may still not be is
+a single reading — that orders nothing.
+
+**And one register guard was narrowed rather than satisfied.** *"The readings grouped under one
+anchor may not resolve to two different things"* fired here, because `"three doors north of an unread
+anchor, in Dearborn Street"` resolves to the reach of Dearborn and `"the Tremont House"` to the hotel
+on it. A `street` resolution names a reach and places nothing — this file says so three times over —
+so it cannot disagree with a placement about where a house is; it can only be less specific. The
+comparison is now between the readings that PLACE a building, which is the assertion that was meant.
+Refusing that pair would have refused a group for being partly legible.
+
+### What the repair reaches, beyond this shop
+
+| business | before | after |
+|---|---|---|
+| `business_new_york_clothing_store` | `street_only` on `dearborn` | built, and now `enrich_existing` on its own roof |
+| `business_andrews_eells` | `unplaceable` | `new_building` on `tremont_house_1` — **T-0413** |
+| `business_h_c_bennett` | `street_only` on `dearborn` | `new_building` on `tremont_house_1` — **T-0414** |
+
+The other two are filed and not built. Andrews & Eells is the harder one and may not be placeable at
+all: its printed anchor is a direction with no count of doors, which is thinner than anything this
+project has placed from.
+
+### The placement, and its residual by axis
+
+The Tremont is documented at the north-west corner of Lake and Dearborn and fronts Lake, so the count
+starts at its north flank. Three things the paper does not say are admitted separately at **L214**:
+
+1. **the side of Dearborn** — doors are counted along a row, so the row begins on the Tremont's
+   own side. Residual: one street width, 24.38 m;
+2. **the width of a door** — no source in this corpus gives a Chicago storefront a frontage. The
+   40 ft this dataset holds for a commercial building is the module, the same one
+   `bates_auction_room` stands on 13 m north of here;
+3. **1.93 m spent on an alley.** Three 40 ft doors reach N 4637340.96, which is inside the mouth of
+   the mid-block alley the committed plat draws across `blk_south_water_clark`. A building may not
+   stand in a way out, so the north wall is set on the alley's south edge instead. That is derived
+   geometry moving a printed offset, which is the direction this project does not normally move in;
+   the alley is itself graded `reconstructed`, and the metre is recorded rather than absorbed.
+
+**The easting is the plat's line and not the modern kerb**, which is a deliberate departure from the
+neighbour. `bates_auction_room` set its east face on Dearborn's west kerb as read off OpenStreetMap
+and laps the platted corridor by 0.97 m for it. This record takes the committed frontage line and a
+1.50 m setback — the margin `generate_block_infill.py` gives every unit on a block face — so it laps
+nothing and adds no entry to the corridor ratchet. Nothing sourced was spent: the American gives no
+easting at all. The 1.03 m jog it opens against Bates's front is two derivations of one street edge
+disagreeing, and it is left visible.
+
+### What is ours
+
+The address is documented and **the building is not**, which is the opposite balance from most of
+this town. Size, single storey, wall height, roof, pitch, chimney, shopfront and siding are all the
+`frame_storefront` archetype and the dataset's borrowed 40 × 25 ft rectangle; all nine are named at
+**L213**. `shopfront: true` is the only form value with an argument behind it, and the argument is
+about the trade — an itemised retail notice inviting a reader to *"call and examine the above
+stock"* — not about the building. The board reads NEW YORK CLOTHING STORE / Wholesale & Retail
+Clothing / Dearborn Street, worded from the shop's own heading; King's signature is deliberately not
+on it, because the heading is the sign-name and the signature is the bottom of the copy.
+
+### Verification
+
+`./tools/check.sh` green in the foreground (the dev gate, per `docs/PIPELINE.md`), after
+`./tools/bake.sh --only new_york_clothing_store`, `tools/web_derivatives.sh`,
+`tools/compile_scene.py --all` and `./tools/publish.sh`. The derived layers a new roof moves were
+re-derived and re-checked: the 665 programme, the town census, the siding stock, the lot-line
+fences, the signboards, the yard goods, the building material, the frontage works, the register and
+the street-face adoptions. `tools/measure_generator_half.py`'s stated asset count goes 359 → 360.
+
 ## Shipped 2026-08-29 — T-0354: what a business does when the paper names a street and nothing narrower
 
 **The register could place 58 of 203 documented businesses; 24 more now stand on the street faces

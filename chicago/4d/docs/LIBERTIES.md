@@ -9751,3 +9751,71 @@ Related: **L205** (documented men on reconstructed roofs, the pattern this follo
 reconstructed roofs' own presence and placement) · **L1** · tickets **T-0354** (this), **T-0262**,
 **T-0263**, **T-0375**, **T-0338**, **T-0408**.
 **Recorded:** 2026-08-29.
+
+### L213 — New York Clothing Store: the address is the paper's, the building is entirely ours
+**Decision:** Tuthill King's New York Clothing Store is drawn as a **12.192 × 7.62 m** (40 × 25 ft)
+clapboarded frame shop, one storey, gable roof at 33°, one stack, a composed shopfront to Dearborn
+Street, its siding dealt from the stock set. The Chicago American supplies **none** of that. It
+supplies the trade, the proprietor, the street, a direction and a count of doors, and it describes
+no building at all.
+**Why:** the notice is an advertisement for coats — *"THE subscriber having established [h]im[self
+in] the above business thre[e] doors north of [the] [T]remont House, in Dearborn [s]t[r]e[et]"* —
+and it never says what the shop was made of, how big it was, how many floors it had or what its
+face looked like. The footprint is this dataset's stock period commercial rectangle: 40 ft is the
+frontage attested for the Green Tree Tavern and for the Western Hotel's front, 25 ft the depth
+derived from the Green Tree's attested room module, and the pair is reused here exactly as
+`bates_auction_room`, `peck_store`, `new_york_house` and their neighbours reuse it. **The
+repetition across records is the admission, not an accident.** The one thing the rectangle claims
+is the PROPORTION — `frame_storefront` runs its ridge along the longer axis, so a footprint wider
+than it is deep puts the eaves on Dearborn, which is the street the shop is addressed from.
+**`shopfront: true` is the one form value with an argument behind it**, and the argument is about
+the trade and not the building: the notice is retail, itemised, and invites the reader to *"call
+and examine the above stock"*, which describes goods shown to somebody who walked in off the
+street. That argues a shop face; it does not describe one, and the composed opening the archetype
+builds is the archetype's.
+**One storey is the weakest value here** and is graded so. A clothing store advertising wholesale
+to country merchants could as easily have had a floor over it, and nothing reached says either way.
+**What would discharge it:** any dimensioned description, an insurance or tax entry, a lot-and-block
+address, or a depiction. None of them would move the building — the placement is independent of
+the fabric and is recorded at **L214**.
+Related: **L5** and **L8** (footprints invented outright) · **L9** (the Green Tree footprint this
+one borrows its module from) · **L21** · **L26** · **L148** (the siding stock deal) · **L208** (the
+same admission for the New York House) · ticket **T-0385**.
+
+**Covers:** `new_york_clothing_store.frame_1835.footprint`, `new_york_clothing_store.frame_1835.form.stories`, `new_york_clothing_store.frame_1835.form.construction`, `new_york_clothing_store.frame_1835.form.wall_height_m`, `new_york_clothing_store.frame_1835.form.roof_type`, `new_york_clothing_store.frame_1835.form.roof_pitch_deg`, `new_york_clothing_store.frame_1835.form.chimneys`, `new_york_clothing_store.frame_1835.form.shopfront`, `new_york_clothing_store.frame_1835.form.siding_exposure_m`
+
+**Recorded:** 2026-08-29.
+
+### L214 — Three doors north: the count is printed, the door and the side of the street are not
+**Decision:** the New York Clothing Store stands on the **west** side of Dearborn Street, its east
+face on the Dearborn kerb and its **north wall on the south edge of the block's mid-block alley**,
+which puts its front 22.46 m north of the Tremont House's north wall.
+**Why:** the American prints *"three doors north of the Tremont House, in Dearborn street"* — an
+offset, a direction, a street and a named anchor, and the strongest placement this corpus gives any
+storefront. Three things it does not print, and each is admitted separately here so that a source
+settling one can be applied without disturbing the other two.
+**1. The side of the street is a reading.** Doors are counted along a continuous row of them, so
+the row a shop *three doors north of the Tremont House* stands in is the Tremont's own side — the
+west. Nothing printed rules out the east side, and the residual is one street width, 24.38 m.
+**2. The width of a door is borrowed.** No source in this corpus gives a storefront frontage for
+Chicago in 1835. The 40 ft this dataset holds for a commercial building is used as the module, the
+same one `bates_auction_room` stands on 48 m further up this block face. The count of doors is
+exact; the distance it converts to is not.
+**3. One door-width of the offset was spent on an alley.** Three 40 ft doors north of the Tremont's
+north wall reach N 4637340.96, which is **1.93 m inside the mouth of the mid-block alley** the
+committed plat draws across `blk_south_water_clark`. A building may not stand in a way out, so the
+third door is set with its north wall on the alley's south edge instead — making the three doors
+11.55 m each. The two constructions differ by 1.93 m, against a georeference residual of 17.5 m
+RMS, and **the alley itself is a conjecture** (`data/traces/vectors/thompson_lots.json` grades it
+`reconstructed` and says nothing in `data/sources/` records which blocks were alleyed). So this is
+a metre spent on derived geometry over a printed offset, which is the direction this project does
+not normally move in; it is recorded rather than absorbed, and it is the only thing about this
+placement that was moved to fit anything.
+**What would discharge it:** a lot-and-block address, a directory entry, a second printing naming
+the side of Dearborn, or a source giving any Chicago storefront a frontage in feet. Any of them
+supersedes the corresponding line above at no cost to the other two.
+**No `Covers:` token.** The placement is `inferred` and derived from committed geometry stated to
+the centimetre; what is admitted here is the CHOICE between readings the source leaves open.
+Related: **L209** (the same shape of choice for the New York House) · **L7** · **L92** · tickets
+**T-0385** (this), **T-0306**, **T-0384**, **T-0386**, **T-0387**.
+**Recorded:** 2026-08-29.

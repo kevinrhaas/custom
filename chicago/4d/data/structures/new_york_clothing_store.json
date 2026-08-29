@@ -1,0 +1,122 @@
+{
+  "id": "new_york_clothing_store",
+  "name": "New York Clothing Store",
+  "aka": [
+    "Tuthill King's clothing store"
+  ],
+  "archetype": "frame_storefront",
+  "phases": [
+    {
+      "id": "frame_1835",
+      "documented_range": {
+        "from": "1835-06-08",
+        "to": "1835-07-04",
+        "confidence": "attested",
+        "sources": [
+          "chicago_american_1835"
+        ],
+        "note": "THE RANGE IS THE ADVERTISEMENT'S OWN, AND IT IS NARROW ON PURPOSE. Tuthill King's notice runs in the Chicago American of 1835-06-08, 1835-06-20 and 1835-07-04 over a single copy date, “Chicago, [June] 8, 183[5]”: “THE subscriber having established [h]im[self in] the above business thre[e] doors north of [the] [T]remont House, in Dearborn [s]t[r]e[et]” (claims chicago_american_1835_06_08#c014, chicago_american_1835_06_20#c007 and chicago_american_1835_07_04#c003; the three printings are declared one anchor at data/research/newspapers/identity.json). The scene date, 1835-07-01, sits INSIDE those four weeks, so this record needs neither the survival liberty nor the backdating one that most of the register's houses stand on: the paper puts the store in business three weeks before the scene date and three days after it. WHAT THE RANGE IS NOT is a statement about when the building went up or came down. “having established himself” says the business was already trading on 8 June and says nothing about the shell it traded in, which the American never describes; the range is bounded by the printings and by nothing else, and the register computes its scene-date presence from exactly these dates."
+      },
+      "position": {
+        "utm_e": 447749.84,
+        "utm_n": 4637339.03,
+        "rotation_deg": 90.0,
+        "symbolic_location": "West side of Dearborn Street between Lake Street and South Water Street, fronting east onto Dearborn, three doors north of the Tremont House and against the south side of the block's mid-block alley (today the west side of North Dearborn Street north of West Lake Street).",
+        "confidence": "inferred",
+        "sources": [
+          "chicago_american_1835",
+          "osm_streets_2026",
+          "thompson_plat_1830"
+        ],
+        "derivation": {
+          "method": "not_derivable",
+          "reason": "The Lake x Dearborn and South Water x Dearborn junctions have no control point in data/traces/street_control.json and neither can be made on this runner: node_rule reads a junction off OpenStreetMap and that reading needs the network. The easting is taken instead from the committed Dearborn frontage line of blk_south_water_clark in data/traces/vectors/thompson_lots.json — checkable committed geometry, but not the control-and-kerb construction check_position_derivations recomputes. The day a dearborn control exists this placement can declare platted_corner on its east face, and this reason should be discharged rather than left standing."
+        },
+        "note": "PLACED 2026-08-29 (T-0385). THE STREET AND THE DIRECTION ARE PRINTED; THE POINT ALONG THE STREET IS A CONSTRUCTION, and the construction is set out here so it can be argued with. WHAT THE PAPER SAYS: “thre[e] doors north of [the] [T]remont House, in Dearborn [s]t[r]e[et]”, Chicago American 1835-07-04 page 3, claim chicago_american_1835_07_04#c003. That is an offset, a direction, a street and a named anchor — the strongest placement the American gives any storefront and the only one of the six with all four. THE ANCHOR. tremont_house_1 is documented at the north-west corner of Lake and Dearborn and fronts south onto Lake; its committed footprint runs to N 4637304.38 on the north and its east flank stands on the Dearborn frontage. The count therefore starts at that north wall. THE SIDE OF THE STREET IS THE READING, NOT A MEASUREMENT: doors are counted along a continuous row of them, and the row “three doors north of the Tremont House” begins in is the Tremont's own side. Nothing printed rules out the east side of Dearborn and this record does not pretend otherwise; the residual is one street width, 24.38 m, and it is recorded at docs/LIBERTIES.md. WHAT A DOOR IS WORTH. No source in this corpus gives a storefront frontage for Chicago in 1835. This dataset holds one figure for a commercial building — 40 ft, the frontage attested for the Green Tree Tavern and for the Western Hotel's front — and it is the module bates_auction_room already stands on, 48 m further up this same block face. Three 40 ft doors north of the Tremont's north wall reach N 4637340.96. THE ONE THING THAT MOVED, AND WHY. That north wall would stand 1.93 m inside the mouth of the block's mid-block alley, whose south edge the committed plat puts at N 4637339.03 (data/traces/vectors/thompson_lots.json, blk_south_water_clark). A building may not stand in a way out, so the third door is set WITH its north wall on the alley's south edge instead of 1.93 m past it, which makes the three doors 11.55 m each rather than 12.19 m. The two constructions differ by 1.93 m; the georeference's own residual is 17.5 m RMS (data/datum.json), so the difference is well inside the noise and the alley is the only reason to prefer one. Nothing was moved to make an intrusion number smaller and the alley itself is a conjecture, graded reconstructed by the file that draws it — which is why the metre is spent stating this rather than hidden. THE GROUND IS FREE: the Dearborn face of this block carries tremont_house_1 at its south end and bates_auction_room 13.07 m north of this record's north wall, and the block's four anonymous reconstructed roofs all stand 25 m or more to the west. UNCERTAINTY, STATED SEPARATELY BY AXIS: across the street about 20 m, the georeference's residual; along the street about 12 m, one door either way, because the count is exact and the module it is counted in is not. THE EASTING IS THE PLAT'S LINE AND NOT THE MODERN KERB, and the two disagree by about a metre. bates_auction_room, 13 m north of this record, set its east face on Dearborn's west kerb as read off OpenStreetMap in 2026 (E 447760.00) and laps the platted corridor by 0.97 m for it — a banked intrusion, not a repaired one. This record takes the committed frontage line instead: the Dearborn edge of blk_south_water_clark runs at E 447758.96 at this northing, and the front wall is set 1.50 m back from it at E 447757.46, which is the margin tools/generate_block_infill.py gives every unit standing on a block face. Nothing sourced is spent doing so — the American gives no easting at all, only a street — and the result laps no corridor, so this building adds nothing to the intrusion ratchet. The 1.03 m gap it opens against bates_auction_room's front is the disagreement between two derivations of one street edge, and it is left visible rather than split. FACADE BEARING 90 DEGREES, due east onto Dearborn: the street the advertisement names is the one the shop is addressed from, which is the only bearing argument this record has and is the same one bates_auction_room makes."
+      },
+      "footprint": {
+        "polygon": [
+          [
+            0,
+            0
+          ],
+          [
+            12.192,
+            0
+          ],
+          [
+            12.192,
+            7.62
+          ],
+          [
+            0,
+            7.62
+          ]
+        ],
+        "confidence": "reconstructed",
+        "sources": [],
+        "note": "INVENTED. THE AMERICAN GIVES THIS BUILDING NO DIMENSION AT ALL — it advertises coats and describes no shell. 12.192 x 7.62 m is 40 x 25 ft, and both figures are BORROWED FROM THIS DATASET rather than freshly invented, the same admission bates_auction_room, peck_store, new_york_house and their neighbours make in the same words: 40 ft is the frontage attested for the Green Tree Tavern and for the Western Hotel's front, 25 ft is the depth derived from the Green Tree's attested room module, and they are the only period figures for a frame commercial building this project holds. The rectangle is a claim about the TYPE and not about this building. THE PROPORTION IS TURNED END-ON, and that much the placement does argue: the frame_storefront archetype runs its ridge along the longer axis, so 12.192 m of frontage along Dearborn with 7.62 m of depth back from it puts the eaves on the street the advertisement names. A shop counted as one of a row of doors is a shop with its front on that row."
+      },
+      "form": {
+        "stories": {
+          "value": 1,
+          "confidence": "reconstructed",
+          "note": "NOT STATED ANYWHERE. The American describes the trade and the address and never the building. One storey is the archetype's own default for a frame storefront and it is taken here because nothing argues past it: a wholesale-and-retail clothing store advertising for country merchants needs floor and shelf, and neither the notice nor anything else reached says whether King lived or stored stock over the shop. Two storeys is entirely possible and this record does not exclude it."
+        },
+        "construction": {
+          "value": "braced_frame",
+          "confidence": "reconstructed",
+          "note": "No source says what this building was made of. Frame rather than log or brick because the dossier records the town's 1834-35 commercial work going up in frame and because this is a shop on the town's second business street, not a dwelling; braced rather than balloon frame for the reason the Sauganash record gives — the sources never use a word that separates them. Both steps are inference from the type and the period, and neither is evidence about this shop."
+        },
+        "wall_height_m": {
+          "value": 3.2,
+          "confidence": "reconstructed",
+          "note": "No figure is attested. 3.2 m is about 10.5 ft, the archetype's single-storey shop wall: taller than the 2.5 m this project gives a single-storey log dwelling because a shop hangs stock on its walls, and lower than the 3.6 m bates_auction_room takes for a room full of standing bidders. The reasoning is from the use and there is no measurement behind it."
+        },
+        "roof_type": {
+          "value": "gable",
+          "confidence": "reconstructed",
+          "note": "Not attested. Gable is the near-universal roof form for frame buildings of this type, period and region and is the archetype's default; nothing about this shop is known that would argue for anything else."
+        },
+        "roof_pitch_deg": {
+          "value": 33.0,
+          "confidence": "reconstructed",
+          "note": "No pitch is attested for this building. 33 degrees is the frame_storefront archetype's own figure for a store, adopted for the reason the archetype argues from the dataset's one attested store footprint: a store's frontage is long and its plan shallow, so a tavern's 38 degrees puts more roof above the eave than there is wall below it and the building stops reading as a shop."
+        },
+        "chimneys": {
+          "value": 1,
+          "confidence": "reconstructed",
+          "note": "Not attested. One stove flue is the minimum for a room worked through Chicago winters. The COUNT is the inference; the stack's position, size and material are the archetype's, per docs/LIBERTIES.md L26."
+        },
+        "shopfront": {
+          "value": true,
+          "confidence": "reconstructed",
+          "note": "The archetype's default, and the one form decision this record has an argument for. The notice is a RETAIL advertisement — “WHOLESALE AND [RE]TAIL”, an itemised list of coats, vests and pantaloons, and an invitation to “call and examine the above stock” — which describes goods shown to somebody who has walked in off Dearborn Street. That argues a shopfront on the street rather than a warehouse door; it does not describe one, and the composed opening the archetype builds is the archetype's invention and not the paper's."
+        },
+        "siding_exposure_m": {
+          "value": 0.127,
+          "confidence": "reconstructed",
+          "note": "INVENTED WITHIN A STOCK SET, NOT DERIVED. No source states the exposed face of any Chicago building's siding. The value is one of four period mill sidings — 4.5, 5, 5.5 or 6 in to the weather; this record wears 5 in — dealt by tools/deal_siding_stock.py: keyed to the phase's construction season, because buildings sided from the same season's shipments of St Joseph sawn lumber tend toward one stock, then advanced so no frame building within 60 m shares this one's. The separation is the surface variety T-0049 reconstructs, not a claim about 1835. docs/LIBERTIES.md L148 owns the invention."
+        }
+      },
+      "change_note": "One state, and the evidence supports no other. The American's three printings run four weeks over one copy date and describe no alteration; nothing reached says when the shell was built or what became of it. The phase is bounded by the printings so that the record claims the weeks it can cite and not a year either side of them."
+    }
+  ],
+  "function": {
+    "value": "store",
+    "confidence": "attested",
+    "sources": [
+      "chicago_american_1835"
+    ],
+    "note": "The advertisement names the trade in its own heading — “New York Clothing Store”, “WHOLESALE AND [RE]TAIL” — and lists the stock: superfine black bombazine frock coats, cassimere and London drill pantaloons, bombazine and Valencia vests, moleskin hunting coats, bangup cords, summer coats, round jackets and brogans. A clothing store is what the paper calls it and what the goods are."
+  },
+  "occupants": {
+    "value": "Tuthill King, clothier",
+    "confidence": "attested",
+    "sources": [
+      "chicago_american_1835"
+    ],
+    "note": "The notice is signed “TUT[H]ILL KIN[G]” and its subscriber is the man who “having established [h]im[self in] the above business” took the shop. The gazetteer compiles him as the sole proprietor of business_new_york_clothing_store from all three printings. The signature's two cut letters are the transcription's, not a doubt about the name: 1835-06-08 and 1835-06-20 carry the same signature and Tuthill King is the only reading of it."
+  },
+  "research_note": "A BUILDING WHOSE ADDRESS IS DOCUMENTED AND WHOSE EVERY DIMENSION IS INVENTED, which is the opposite way round from most of this town and is worth saying first. The Chicago American gives the trade, the proprietor, the street, a direction, a count of doors and a named anchor, and gives no material, no size, no storey count and no roof. So the placement here is as strong as this corpus gets and the fabric is entirely the frame_storefront archetype's; a visitor who wants to know what was made up should read this record's footprint and form notes and docs/LIBERTIES.md, not its position. WHY IT IS HERE AT ALL. T-0306 counted six storefronts the American places usably and found none of them standing; this is the third of them to be built. It could not be built before because the register could not resolve its anchor twice over: tools/compile_register.py's match_landmark compared whole word-sets and every name this project gives the first Tremont House carries a disambiguator it added — “(the first)”, “I”, “old” — so the two words the American prints matched none of them; and the gazetteer placed the house on its EARLIEST printing, which is the one printing of the three the segmenter had eaten the anchor out of. Both are fixed in the same commit as this record and both are general: two other houses, Andrews & Eells and H. C. Bennett, are anchored on the Tremont by the same repair and are filed as their own tickets rather than built here. THE PROJECT MAY NOT MOVE THIS BUILDING TO SUIT A LATER READING WITHOUT SAYING SO: the count of doors is exact, the width of a door is borrowed, and the side of Dearborn Street is a reading of how doors are counted. Each of the three is recorded separately in position.note so a source that settles any one of them can be applied without disturbing the other two."
+}

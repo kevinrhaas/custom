@@ -645,6 +645,27 @@ SIGN_WORDING = {
             "The board carries the two and drops the walls. Reconstructed."
         ),
     },
+    "new_york_clothing_store": {
+        "name": "NEW YORK CLOTHING STORE", "trade": "Wholesale & Retail Clothing",
+        "trade_short": "Clothing", "place": "Dearborn Street",
+        "identity": "New York Clothing Store", "grade": "inferred",
+        "sources": ["chicago_american_1835"],
+        "why": (
+            "THE SHOP'S OWN 1835 COPY, in a committed source and a committed reading of "
+            "it. The Chicago American heads Tuthill King's advertisement \"New York "
+            "Clothing Store\" over \"WHOLESALE AND [RE]TAIL\" and closes it \"in "
+            "Dearborn [s]t[r]e[et]\" (1835-07-04 p. 3, claim "
+            "chicago_american_1835_07_04#c003, and twice more on 1835-06-08 and "
+            "1835-06-20). Sign-name, trade, street — in that order, which is the "
+            "order the board letters. THE MAN IS DELIBERATELY NOT ON THE BOARD. King "
+            "signs the copy \"TUT[H]ILL KIN[G]\" and the heading is not his name but "
+            "the shop's, which is what a sign-name IS; lettering the proprietor here "
+            "would put on the plank the one line the advertisement itself keeps for the "
+            "bottom. Inferred rather than attested for the reason every board in this "
+            "table is: the paper says what the shop CALLED itself and never says it "
+            "painted a board at all."
+        ),
+    },
     "new_york_house": {
         "name": "NEW YORK HOUSE", "trade": "Public House", "identity": "New York House",
         "grade": "reconstructed",

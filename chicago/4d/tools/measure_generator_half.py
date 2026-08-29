@@ -97,13 +97,18 @@ RENDERER_JS = RENDERERS / "web" / "js"
 # frame_tavern record, so one more committed asset and one more mesh a change to the shared
 # generator modules or to build.py would re-stale; terrain and pier_crib stay at 2 each.
 #
+# 359 -> 360 and 357 -> 358 on 2026-08-29 (T-0385): `new_york_clothing_store__frame_1835.glb`,
+# Tuthill King's shop three doors north of the Tremont House in Dearborn Street. One new
+# frame_storefront record, so one more committed asset and one more mesh a change to the shared
+# generator modules or to build.py would re-stale; terrain and pier_crib stay at 2 each.
+#
 STATED = {
-    "assets": 359,
+    "assets": 360,
     "restales": {
-        "generators/common/*.py": 359,
+        "generators/common/*.py": 360,
         "generators/common/__init__.py": 0,
         "generators/common/phases.py": 0,
-        "generators/build.py": 357,
+        "generators/build.py": 358,
         "generators/terrain_gen.py": 2,
         "generators/archetypes/pier_crib.py": 2,
     },

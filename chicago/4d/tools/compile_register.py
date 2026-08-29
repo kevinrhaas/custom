@@ -273,6 +273,10 @@ def read_town(structures_dir=STRUCTURES, streets_file=STREETS, residents_dir=RES
             "id": d["id"],
             "name": d.get("name"),
             "name_words": [set(words(n)) for n in names if words(n)],
+            # T-0385: the same names with a disambiguator this project added taken off,
+            # kept as their own pool so the relaxed match can never overreach the exact one.
+            "undisambiguated_words": [set(words(u)) for u in
+                                      (undisambiguated(n) for n in names) if u and words(u)],
             "aka_head_words": [set(words(head_of(n))) for n in names[1:] if words(head_of(n))],
             "occupant_words": set(words(occ)),
             "occupant_text": occ,
@@ -316,16 +320,70 @@ def read_town(structures_dir=STRUCTURES, streets_file=STREETS, residents_dir=RES
     return town
 
 
+# A DISAMBIGUATOR THIS PROJECT ADDS, IN THE THREE SHAPES IT WRITES THEM (T-0385). A
+# record's name is written for a catalogue that has to hold two buildings of one name
+# apart, so `tremont_house_1` is called "Tremont House (the first)" with aka "Tremont
+# House I" and "the old Tremont House" — three names, every one of them carrying an
+# ordinal or an age this project supplied, and none of them the two words the American
+# sets: "the Tremont House". Whole-set equality then matched nothing, and four
+# businesses lost the only anchor they have on one editorial habit.
+#
+# THE SHAPE IS THE WHOLE GUARD, and a word list would not have been one. `first` and
+# `old` are ordinary words that sources also print — "the First Baptist meeting house",
+# "Chicago's first post office" — and striking them wherever they fall turns a
+# congregation's name and a historical superlative into anchors they are not. So only
+# the three positions this project writes a disambiguator in are stripped: a TRAILING
+# parenthetical, a TRAILING roman numeral, and a LEADING `old`. Every one of them is an
+# editorial suffix or prefix on a name that is complete without it. The leading form
+# is `old` alone and not the ordinals: this project writes "the old Tremont House" and
+# "Tremont House (the first)", never "the first Tremont House", so a leading ordinal is
+# always somebody else's word — "the First Baptist meeting house" is a congregation.
+TRAILING_PAREN = re.compile(r"\s*\((?:the\s+)?(?:first|second|third|fourth|older|"
+                            r"earlier|old|new|later|i|ii|iii|iv)\)\s*$", re.I)
+TRAILING_NUMERAL = re.compile(r"\s+(?:i{1,3}|iv)\s*$", re.I)
+LEADING_OLD = re.compile(r"^\s*(the\s+)?(?:old|older)\s+", re.I)
+
+
+def undisambiguated(name):
+    """`name` with a disambiguator this project appended or prefixed taken off, or None.
+
+    None when the name carries none — a name nobody disambiguated is already the name
+    a source would print, and it is matched exactly by the rule above.
+    """
+    out = TRAILING_PAREN.sub("", name or "")
+    out = TRAILING_NUMERAL.sub("", out)
+    out = LEADING_OLD.sub(lambda m: m.group(1) or "", out)
+    out = out.strip()
+    return out if out and out != (name or "").strip() else None
+
+
 def match_landmark(town, anchor_words):
     """The committed structure an anchor NAMES, or None.
 
     Whole-set equality, not containment: an anchor is only a landmark when it is the
     same set of identity-bearing words as a record's name or aka. Containment would put
     'the store' on the first store in the town.
+
+    THE ONE RELAXATION, AND ITS GUARD (T-0385). Exact equality is tried first and always
+    wins. Only when it finds nothing is each record retried on its names with the
+    disambiguator this project added stripped off — so the American's "the Tremont House"
+    reaches `tremont_house_1`, whose every name carries an ordinal or an age no printing
+    of 1835 has. The guard is that the relaxed pass must land on exactly ONE building:
+    the disambiguator is precisely what tells two houses of one name apart, so an anchor
+    that omits it cannot choose between them, and a second Tremont in the dataset must
+    make this anchor unresolved again rather than resolve it by sort order. Nothing is
+    stripped from the ANCHOR — the paper's words are the evidence and are read as printed.
     """
+    if not anchor_words:
+        return None
     hits = [s["id"] for s in town["structures"]
-            if anchor_words and any(anchor_words == pool for pool in s["name_words"])]
-    return sorted(hits)[0] if hits else None
+            if any(anchor_words == pool for pool in s["name_words"])]
+    if hits:
+        return sorted(hits)[0]
+    relaxed = sorted({s["id"] for s in town["structures"]
+                      if any(anchor_words == pool
+                             for pool in s.get("undisambiguated_words") or [])})
+    return relaxed[0] if len(relaxed) == 1 else None
 
 
 # A phrase that locates a building by ANOTHER building is not that building's name.
@@ -876,10 +934,23 @@ def compile_register(gazetteer, town, quiet=True):
                                 "would be placing this house against a superseded "
                                 "printing" % (b["id"], entry["anchor"]["note"]))
             for w in ac["history"]:
+                # ONLY THE READINGS THAT PLACE SOMETHING (T-0385). A `street`
+                # resolution names a reach and puts no building on the ground — this
+                # file says so three times over — so it cannot disagree with a
+                # placement about WHERE the house is; it can only be less specific
+                # than one. That is the ordinary shape of a group: the readings
+                # differ in how much of the sentence the reading pass swept into the
+                # anchor field, and one of them swept a street clause in with it.
+                # Tuthill King's advertisement is the case — "three doors north of an
+                # unread anchor, in Dearborn Street" resolves to the reach of Dearborn
+                # and "the Tremont House" to the hotel on it, and refusing that pair
+                # would have refused a group for being partly legible. The assertion
+                # that matters is untouched: two readings that each PLACE a building
+                # must place it in the same spot.
                 placed = {(r["resolved"]["kind"], r["resolved"]["target"],
                            r["resolved"]["via"], tuple(r["resolved"]["streets"] or []))
                           for r in w["readings"]
-                          if r["resolved"]["kind"] != "unresolved"}
+                          if r["resolved"]["kind"] in ("corner", "structure", "business")}
                 if len(placed) > 1:
                     problems.append(
                         "%s: the readings grouped under the anchor %r resolve to %d "
@@ -1404,6 +1475,21 @@ def self_test():
                                 ["Wolf Point Tavern", "Dole's Warehouse"]),
                          window("the hotel", True, ["the hotel"])))]),
             "one landmark is one place")
+    # …but a reading that places NOTHING cannot disagree with one that does (T-0385).
+    # A street clause swept into the anchor field resolves to a reach, and a group is
+    # allowed to be partly legible.
+    case("a street reach in a group does not contradict the placement in it",
+         gaz([biz("b1", street="Lake Street",
+                  placement={"class": "relative", "anchor": "Wolf Point Tavern"},
+                  anchor_change=history(
+                      window("Wolf Point Tavern", True,
+                             ["Wolf Point Tavern", "an unread anchor in Lake Street"],
+                             "1834-01-01", "1835-06-01"),
+                      live_anchor="Wolf Point Tavern"))]),
+         lambda d: True if (d["businesses"][0]["anchor"]["target"] == "wolf_point_tavern"
+                            and d["businesses"][0]["action"] == "new_building")
+         else "anchor=%r action=%r" % (d["businesses"][0]["anchor"],
+                                       d["businesses"][0]["action"]))
     # 4c. T-0355 — the two readings that put a Flag Creek tavern in a Wolf Point stable.
     # First the occupants line that caused it, read directly, because the town fixture
     # above supplies `occupant_words` ready-made and cannot exercise the clause filter.
@@ -1420,6 +1506,49 @@ def self_test():
          "Eliza Chappel and her infant school")
     unit("a year range is one span, not two loose years",
          year_spans("1833-34 and 1836"), [(1833, 1834), (1836, 1836)])
+
+    # 4d. T-0385 — the disambiguator this project adds to a name, and the anchor no
+    # printing carries it in. Four cases, and the third and fourth are the guard: the
+    # relaxation may not reach past an exact match, and it may not choose between two
+    # houses the disambiguator is the only thing separating.
+    def named(*records):
+        """A fixture town of `(id, *names)` records, indexed the way read_town does."""
+        return {"structures": [
+            {"id": r[0], "name": r[1],
+             "name_words": [set(words(n)) for n in r[1:] if words(n)],
+             "undisambiguated_words": [set(words(u)) for u in
+                                       (undisambiguated(n) for n in r[1:])
+                                       if u and words(u)]}
+            for r in records]}
+
+    tremont = named(("tremont_house_1", "Tremont House (the first)", "Tremont House I",
+                     "the old Tremont House"))
+    unit("an anchor the record disambiguates still reaches it",
+         match_landmark(tremont, set(words("the Tremont House"))), "tremont_house_1")
+    unit("and the record's own disambiguated name reaches it exactly as before",
+         match_landmark(tremont, set(words("the old Tremont House"))), "tremont_house_1")
+    unit("an exact match is never given up for a relaxed one",
+         match_landmark(named(("a", "Tremont House"), ("b", "Tremont House (the second)")),
+                        set(words("the Tremont House"))), "a")
+    unit("two houses one ordinal apart leave the anchor unresolved",
+         match_landmark(named(("a", "Tremont House (the first)"), ("b", "Tremont House II")),
+                        set(words("the Tremont House"))), None)
+    unit("the relaxation reaches nothing on an unrelated name",
+         match_landmark(tremont, set(words("the Mansion House"))), None)
+    # AND THE THREE IT MUST NOT REACH: `first` and `old` inside a name are the source's
+    # own words, not this project's editorial suffix, and striking them would invent an
+    # anchor. Each of these was a live false positive on the first cut of this rule.
+    unit("a congregation's own name is not a disambiguator",
+         match_landmark(named(("temple_building", "the First Baptist meeting house")),
+                        set(words("the Baptist meeting house"))), None)
+    unit("a historical superlative is not a disambiguator",
+         match_landmark(named(("hogan_store", "Chicago's first post office")),
+                        set(words("the post office"))), None)
+    unit("nor is an age the source itself prints in the middle of a name",
+         match_landmark(named(("x", "the log store at Lake and South Water")),
+                        set(words("the store at Lake and South Water"))), None)
+    unit("undisambiguated() leaves a name nobody disambiguated alone",
+         undisambiguated("the First Baptist meeting house"), None)
 
     # Then the guard the fault generalises to: the firm's own record says where it is.
     case("a distance in miles refuses every match into the committed town",

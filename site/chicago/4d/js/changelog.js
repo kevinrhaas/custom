@@ -1,4 +1,12 @@
 export const CHANGELOG = [ // newest first
+  { v: 406, title: 'A clothing store opens in Dearborn Street', kind: 'feature', ts: '2026-08-29T20:26:39.772Z', date: 'Aug 29, 2026, 3:26 PM CT',
+    items: [
+      'A new shop stands on the west side of Dearborn Street, three doors north of the Tremont House. Its board reads NEW YORK CLOTHING STORE \u2014 Wholesale & Retail Clothing \u2014 Dearborn Street, and Tuthill King\u2019s own advertisement in the Chicago American is where every word of that comes from.',
+      'The paper puts him there in six words: \u201Cthree doors north of the Tremont House, in Dearborn street\u201D. That is a direction, a count, a street and a named building \u2014 the strongest address any storefront in these papers gives, and the only one with all four.',
+      'It could not be built until now for two reasons, both fixed today. This project calls the hotel \u201CTremont House (the first)\u201D, to tell it from the one that replaced it, and the ledger matched names whole \u2014 so the two words the American prints matched nothing. And the shop\u2019s notice ran three times, with the hotel\u2019s name legible in only the last printing; the ledger placed the shop on the first, which had lost it.',
+      'What is the paper\u2019s and what is ours is worth separating here, because the balance is unusual. The address is documented. The building is not: its size, its single storey, its roof and its shopfront are all the type talking, and every one of them is listed in the Evidence panel under L213. Where along the street it stands is L214 \u2014 the count of doors is printed, the width of a door is borrowed from the only frontage this town has a figure for.',
+      'Two more shops, Andrews & Eells and H. C. Bennett, are anchored on the Tremont by the same repair and are filed to be built next.',
+    ] },
   { v: 405, title: 'Twenty-one shops stop being forty-six', kind: 'fix', ts: '2026-08-29T19:12:52.844Z', date: 'Aug 29, 2026, 2:12 PM CT',
     items: [
       'Nothing you can see changed today. The index built from Chicago\u2019s two newspapers keys a business on the exact words the paper set over it, so a shop advertised twice under a slightly different heading arrived as two shops. Where the only difference was the trade written into the name \u2014 \u201cCollins & Caton\u201d one week, \u201cCollins & Caton, attorneys and counsellors at law\u201d the next \u2014 the ledger held both, and the town it feeds would have built two.',

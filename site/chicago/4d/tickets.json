@@ -1,6 +1,6 @@
 {
   "project": "chicago-4d",
-  "generated_ct": "Aug 29, 2026, 2:12 PM",
+  "generated_ct": "Aug 29, 2026, 3:29 PM",
   "tickets": [
     {
       "id": "T-0001",
@@ -6320,7 +6320,7 @@
     {
       "id": "T-0385",
       "title": "The New York Clothing Store stands three doors north of the Tremont House in Dearborn Street",
-      "state": "open",
+      "state": "claimed",
       "epic": "META",
       "requested_by": "loop",
       "seen": false,
@@ -6330,7 +6330,7 @@
       "opened": "2026-08-29",
       "closed": null,
       "pr": null,
-      "claimed_by": null,
+      "claimed_by": "run 8/29/2026, 2:27:59 PM CT",
       "blocked_on": null,
       "needs_bake": true,
       "queue_rank": 5
@@ -6694,6 +6694,42 @@
       "blocked_on": null,
       "needs_bake": false,
       "queue_rank": 75
+    },
+    {
+      "id": "T-0413",
+      "title": "Andrews & Eells stand north of the Tremont House, and the register can now say so",
+      "state": "open",
+      "epic": "META",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "M",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-08-29",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "queue_rank": 76
+    },
+    {
+      "id": "T-0414",
+      "title": "H. C. Bennett's shop is one door north of the Tremont House",
+      "state": "open",
+      "epic": "META",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "S",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-08-29",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "queue_rank": 77
     }
   ]
 }

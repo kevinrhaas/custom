@@ -7,8 +7,8 @@
   "target_date": "1835-07-01",
   "coordinates": "Local East-North-Up metres from data/datum.json's origin, the same frame data/enclosures/ and data/signage/ and the sidecars' placement.local_e / local_n use.",
   "counts": {
-    "frontages": 27,
-    "objects": 153,
+    "frontages": 28,
+    "objects": 159,
     "wagons": 64,
     "wagons_by_kind": {
       "farm_box": 26,
@@ -20,8 +20,8 @@
     "wagon_stands_refused": 40,
     "benches": 1,
     "sheds": 1,
-    "marked_objects": 153,
-    "distinct_marks": 73
+    "marked_objects": 159,
+    "distinct_marks": 75
   },
   "existence": {
     "value": true,
@@ -2195,6 +2195,135 @@
             49.45
           ],
           "bearing_deg": 180.0,
+          "mark": {
+            "lines": [
+              "DRY GOODS"
+            ],
+            "letterform": "stencil",
+            "says": "commodity"
+          }
+        }
+      ]
+    },
+    {
+      "structure_id": "new_york_clothing_store",
+      "name": "New York Clothing Store",
+      "trade": "store",
+      "trade_confidence": "attested",
+      "why_goods": "a counter whose stock arrives in boxes and barrels off a lake schooner",
+      "confidence": "reconstructed",
+      "facade_bearing_deg": 90.0,
+      "frontage_m": 12.19,
+      "usable_frontage_m": 11.19,
+      "standoff_m": 0.55,
+      "ground_quad_local_enu_m": [
+        [
+          677.14,
+          -56.77
+        ],
+        [
+          677.14,
+          -68.96
+        ],
+        [
+          684.76,
+          -68.96
+        ],
+        [
+          684.76,
+          -56.77
+        ]
+      ],
+      "items": [
+        {
+          "kind": "barrel",
+          "pose": "upright",
+          "at_local_enu_m": [
+            685.31,
+            -57.58
+          ],
+          "bearing_deg": 90.0,
+          "mark": {
+            "lines": [
+              "COFFEE"
+            ],
+            "letterform": "stencil",
+            "says": "commodity"
+          }
+        },
+        {
+          "kind": "barrel",
+          "pose": "upright",
+          "at_local_enu_m": [
+            685.31,
+            -58.2
+          ],
+          "bearing_deg": 90.0,
+          "mark": {
+            "lines": [
+              "NAILS"
+            ],
+            "letterform": "stencil",
+            "says": "commodity"
+          }
+        },
+        {
+          "kind": "barrel",
+          "pose": "upright",
+          "at_local_enu_m": [
+            685.31,
+            -58.82
+          ],
+          "bearing_deg": 90.0,
+          "mark": {
+            "lines": [
+              "NEW YORK CLOTHING STORE"
+            ],
+            "letterform": "brand",
+            "says": "house"
+          }
+        },
+        {
+          "kind": "barrel",
+          "pose": "upright",
+          "at_local_enu_m": [
+            685.31,
+            -59.44
+          ],
+          "bearing_deg": 90.0,
+          "mark": {
+            "lines": [
+              "FLOUR"
+            ],
+            "letterform": "stencil",
+            "says": "commodity"
+          }
+        },
+        {
+          "kind": "crate",
+          "tier": 0,
+          "at_local_enu_m": [
+            685.31,
+            -60.74
+          ],
+          "bearing_deg": 90.0,
+          "mark": {
+            "lines": [
+              "NEW YORK CLOTHING STORE",
+              "CHICAGO"
+            ],
+            "letterform": "shipping",
+            "says": "shipping"
+          }
+        },
+        {
+          "kind": "crate",
+          "tier": 1,
+          "at_local_enu_m": [
+            685.31,
+            -60.74
+          ],
+          "bearing_deg": 90.0,
           "mark": {
             "lines": [
               "DRY GOODS"

@@ -897,10 +897,34 @@ def compile_gazetteer(files, identity, corpus, quiet=True):
     # landmarks rather than two spellings of one. Everything else is COMPUTED from the
     # readings the claims carry: the weeks each anchor was printed between, the order
     # they were printed in, the gap the change is bracketed by, and which anchor is live
-    # at the scene date. Seven guards, and each one is a way this could quietly assert
+    # at the scene date.
+    #
+    # AND A HISTORY NEED NOT CONTAIN A CHANGE (T-0385). The other thing three printings
+    # of one advertisement differ about is how much of the anchor the segmenter left
+    # legible. Tuthill King's New York Clothing Store stands "three doors north of the
+    # Tremont House, in Dearborn street" under one copy date of 8 June 1835, and only
+    # the third printing, 1835-07-04, sets the hotel's name where a reader can see it —
+    # 8 June cut it to nothing and 20 June to "o at House". Those are not three
+    # landmarks and they are not a change; they are ONE landmark read three ways, which
+    # is exactly what a group of readings under one anchor already says here. So a
+    # declaration may carry a SINGLE anchor holding several readings: `changes` comes
+    # out empty, the history is one window, and the grouping still has to be argued for
+    # in that anchor's own `why`. What a declaration may not be is a single reading —
+    # that orders nothing and asserts nothing.
+    #
+    # WHICH READING THE HOUSE IS THEN PLACED ON is the second half of it, and the rule
+    # is the same one T-0345 wrote for the register's history: a group's placement is
+    # the reading whose anchor IS the declared name, when the group has one, and the
+    # earliest printing's otherwise. Before this the earliest always won, so a
+    # standing advertisement whose first printing lost its anchor to the segmenter was
+    # placed on the loss for as long as it ran — the anchor was in the corpus and the
+    # register could not see it. Nothing is inferred: the reading used is a printing
+    # the declaration names verbatim and guard 3 has already checked exists.
+    #
+    # Seven guards, and each one is a way this could quietly assert
     # something the corpus does not say:
     #   1. the house has to be one the corpus compiles, or nobody can check the rule;
-    #   2. two anchors at least — one anchor is not a change;
+    #   2. two readings at least — one printing orders nothing;
     #   3. every reading the declaration names has to be a string some printing of THIS
     #      house actually carries, matched verbatim against its own readings;
     #   4. EVERY reading of the house has to be claimed by exactly one anchor. A
@@ -926,9 +950,10 @@ def compile_gazetteer(files, identity, corpus, quiet=True):
                             "a house that is not in the corpus is a rule nobody can check"
                             % label)
             continue
-        if len(groups) < 2:
-            problems.append("%s: a change needs at least two anchors — one anchor is not "
-                            "a change" % label)
+        if sum(len(g.get("readings") or []) for g in groups) < 2:
+            problems.append("%s: a history needs at least two readings to order — one "
+                            "printing is not a history, whether it is declared as one "
+                            "anchor or as two" % label)
             continue
         if not why:
             problems.append("%s: no rule — an unexplained anchor change is a compile "
@@ -991,8 +1016,12 @@ def compile_gazetteer(files, identity, corpus, quiet=True):
                      for r in rs),
                     key=lambda r: (r["first_issue"], r["anchor"] or "")),
                 "claims": sorted({c for r in rs for c in r["claims"]}),
-                "placement": min(rs, key=lambda r: (r["first_issue"],
-                                                    min(r["claims"])))["placement"],
+                "placement": next(
+                    (r["placement"] for r in sorted(rs, key=lambda r: (r["first_issue"],
+                                                                      min(r["claims"])))
+                     if r["anchor"] == g.get("name")),
+                    min(rs, key=lambda r: (r["first_issue"],
+                                           min(r["claims"])))["placement"]),
             })
         if bad:
             continue
@@ -1028,9 +1057,15 @@ def compile_gazetteer(files, identity, corpus, quiet=True):
             "rule": why,
             "cannot_say": cannot,
             "live_anchor": live["name"],
-            "live_reason": "The last of these anchors first printed on or before the "
-                           "scene date %s; this one was first printed %s."
-                           % (scene_iso, live["first_issue"]),
+            "live_reason": ("This house has one declared anchor, read %d ways between "
+                            "%s and %s, so it is the anchor live at the scene date %s "
+                            "and no change is asserted."
+                            % (len(live["readings"]), live["first_issue"],
+                               live["last_issue"], scene_iso)
+                            if len(windows) == 1 else
+                            "The last of these anchors first printed on or before the "
+                            "scene date %s; this one was first printed %s."
+                            % (scene_iso, live["first_issue"])),
             "changes": [{"from": a["name"], "to": b2["name"],
                          "after": a["last_issue"], "before": b2["first_issue"]}
                         for a, b2 in zip(windows, windows[1:])],
@@ -1803,11 +1838,13 @@ def check(extracted=EXTRACTED, gazetteer=GAZETTEER, identity=IDENTITY, corpus=CO
         readings = sum(len(b.get("placement_readings") or []) for b in doc["businesses"])
         many = sum(1 for b in doc["businesses"]
                    if len(b.get("placement_readings") or []) > 1)
+        histories = [b["anchor_change"] for b in doc["businesses"] if b.get("anchor_change")]
         print("  ok    %d placement reading(s) kept with their own dates, %d house(s) "
-              "printed with more than one, %d whose anchor CHANGES on a date — every "
-              "reading of those accounted for, the live one computed from the scene date"
-              % (readings, many,
-                 sum(1 for b in doc["businesses"] if b.get("anchor_change"))))
+              "printed with more than one, %d declared anchor histor(y/ies) of which %d "
+              "carry a dated CHANGE — every reading of those accounted for, the live "
+              "one computed from the scene date"
+              % (readings, many, len(histories),
+                 sum(1 for h in histories if h["changes"])))
         print("  ok    %d firm group(s) refused rather than merged, each naming the "
               "printings the refusal rests on"
               % len(identity_doc.get("refused_firm_merges", [])))
@@ -2317,7 +2354,37 @@ def self_test():
                "an anchor rule for a house nobody claimed")
     run_anchor(anchor_docs(["the tavern"], ["the hotel"]),
                anchor_rule([{"name": "the tavern", "readings": ["the tavern"]}]),
-               "one anchor is not a change", "an anchor change with a single anchor")
+               "at least two readings", "an anchor history ordering a single printing")
+
+    # T-0385. ONE anchor read two ways is a history without a change, and the house is
+    # placed on the reading the declaration NAMES — not on whichever printing came
+    # first, which is the printing the segmenter had already eaten the anchor out of.
+    ONE = [{"name": "the hotel",
+            "readings": ["a house the printing does not name", "the hotel"],
+            "why": "two printings of one sentence, and only the later one sets the "
+                   "hotel where it can be read: the hotel is the anchor of both"}]
+    out = run_anchor(anchor_docs(["a house the printing does not name"], ["the hotel"]),
+                     anchor_rule(ONE, rule="one anchor, the hotel, read two ways"),
+                     None, "one anchor read two ways is a history with no change in it")
+    got = next((b for b in out["businesses"] if b["id"] == "business_a_smith_co"), None)
+    if got is None or not got.get("anchor_change"):
+        failures.append("a one-anchor history left no record on the house")
+    elif got["anchor_change"]["changes"]:
+        failures.append("a one-anchor history asserted a change: %r"
+                        % got["anchor_change"]["changes"])
+    elif got["placement"]["anchor"] != "the hotel":
+        failures.append("a one-anchor history placed the house on %r rather than on the "
+                        "reading it declares" % got["placement"]["anchor"])
+    elif len(got["anchor_change"]["history"]) != 1:
+        failures.append("a one-anchor history has %d windows"
+                        % len(got["anchor_change"]["history"]))
+    run_anchor(anchor_docs(["a house the printing does not name"], ["the hotel"]),
+               anchor_rule([{"name": "the hotel",
+                             "readings": ["a house the printing does not name",
+                                          "the hotel"]}],
+                           rule="one anchor, the hotel, read two ways"),
+               "groups 2 readings and its `why` does not name it",
+               "one anchor grouping two readings with no reason given")
     run_anchor(anchor_docs(["the tavern"], ["the hotel"]),
                anchor_rule([{"name": "the tavern", "readings": ["the tavern"]},
                             {"name": "the hotel", "readings": ["the hotel", "the barn"]},

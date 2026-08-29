@@ -2611,6 +2611,12 @@
       "asset": "gltf/miller_tannery__log_1831.glb"
     },
     {
+      "id": "new_york_clothing_store",
+      "name": "New York Clothing Store",
+      "sidecar": "sidecars/1835/new_york_clothing_store.json",
+      "asset": "gltf/new_york_clothing_store__frame_1835.glb"
+    },
+    {
       "id": "new_york_house",
       "name": "New York House",
       "sidecar": "sidecars/1835/new_york_house.json",

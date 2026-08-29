@@ -122,18 +122,24 @@ point of deriving the allocation instead of listing it.
 
 | | |
 |---|---|
-| `street_only` in the register | **60** |
+| `street_only` in the register | **58** |
 | adopted a street face | **24** |
-| waiting | **36** |
-| — no roof whose lot fronts the named street | 24 |
+| waiting | **34** |
+| — no roof whose lot fronts the named street | 22 |
 | — this face already holds this proprietor | 9 |
 | — every roof on the face is spoken for | 3 |
-| `unplaceable`, outside this policy and still open | **84** |
+| `unplaceable`, outside this policy and still open | **83** |
+
+Down two from 60 on 2026-08-29 (T-0385): the New York Clothing Store left this pile for a
+placement of its own, and H. C. Bennett left it for an anchor the register can now resolve.
+Andrews & Eells left the `unplaceable` pile the same way. That is the movement this table is
+supposed to record — a business waiting here is a business whose paper gave a street and
+nothing narrower, and reading its anchor is what takes it out.
 
 | street face | ads | took | roofs fronting | free | side only | in band |
 |---|---|---|---|---|---|---|
 | South Water Street | 24 | 14 | 19 | 14 | 0 | 0 |
-| Dearborn Street | 18 | 0 | 0 | 0 | 18 | 0 |
+| Dearborn Street | 16 | 0 | 0 | 0 | 18 | 0 |
 | Lake Street | 11 | 9 | 51 | 29 | 0 | 4 |
 | La Salle Street | 3 | 0 | 0 | 0 | 8 | 0 |
 | North Water Street | 2 | 0 | 0 | 0 | 0 | 1 |
@@ -142,13 +148,14 @@ point of deriving the allocation instead of listing it.
 
 **Where the rest wait, named rather than implied:**
 
-- **Dearborn Street (18), La Salle Street (3), Canal Street (1), North Water Street (2).**
-  No roof's platted lot faces them, which is 24 of the 36 that wait. Two remedies, and
+- **Dearborn Street (16), La Salle Street (3), Canal Street (1), North Water Street (2).**
+  No roof's platted lot faces them, which is 22 of the 34 that wait. Two remedies, and
   neither is this policy's to take: a ruling that a corner side is a face, or a
-  reconstruction that raises frontage on those streets. Three of the Dearborn Street
-  advertisements — the New York Clothing Store, the Dearborn Street wine store and W. H.
-  Taylor's boot and shoe store — have their own tickets (**T-0385**, **T-0387**) that place
-  them from an anchor and do not need this policy at all.
+  reconstruction that raises frontage on those streets. The Dearborn Street advertisements
+  that name an anchor have their own tickets and do not need this policy at all: the New York
+  Clothing Store took its place three doors north of the Tremont House on 2026-08-29
+  (**T-0385**) and left this table, and the Dearborn Street wine store and W. H. Taylor's boot
+  and shoe store are **T-0387**.
 - **South Water Street (10 refused).** Nineteen roofs front it, five are households' homes
   and fourteen are adopted, so ten advertisements are short of a roof: seven are a second
   heading of a house already seated, and three are short purely on supply. **T-0375** is
