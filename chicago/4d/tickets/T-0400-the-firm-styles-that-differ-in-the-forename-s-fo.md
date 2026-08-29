@@ -1,7 +1,7 @@
 ---
 id: T-0400
 title: The firm styles that differ in the forename's form: whole against abbreviated against initial
-state: claimed
+state: done
 epic: META
 requested_by: loop
 seen: false
@@ -9,8 +9,8 @@ effort: S
 legacy_id: null
 parent: T-0338
 opened: 2026-08-29
-closed: null
-pr: null
+closed: 2026-08-29
+pr: 559
 claimed_by: run 8/29/2026, 2:27:06 PM CT
 blocked_on: null
 needs_bake: false

@@ -42,7 +42,6 @@
 # --- forename, or a tavern minted as a person becomes a wrong building once seeded.
 # --- Cheap (mostly S/XS) and each one makes the seeding below more accurate.
 T-0340 — The bookseller's sign-name and its partners' firm-name are three gazetteer entries for one house
-T-0400 — The firm styles that differ in the forename's form: whole against abbreviated against initial
 T-0401 — The firm groups that are two houses, written down so no later sweep merges them
 
 # --- THE NEWSPAPER STREAM (b) THE POLICY THAT DECIDES HOW MUCH TOWN THE PAPERS REACH.
