@@ -1,7 +1,7 @@
 ---
 id: T-0267
 title: The fort's wall brick is a third brick, 0.47/0.26/0.20 against the sheet's 0.45/0.23/0.17
-state: open
+state: claimed
 epic: RENDERING
 requested_by: loop
 seen: false
@@ -11,7 +11,7 @@ parent: null
 opened: 2026-08-28
 closed: null
 pr: null
-claimed_by: null
+claimed_by: run 8/28/2026, 7:59:21 PM CT
 blocked_on: null
 needs_bake: true
 ---
