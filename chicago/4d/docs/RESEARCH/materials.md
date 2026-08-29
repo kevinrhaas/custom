@@ -676,3 +676,80 @@ written; the town they measured has since been baked out from under them.
 
 The roughness reading of §3.1 and the batch count §7 closes on are unaffected for the same reason —
 0.88 → 0.85 moves no shipped slot, because no shipped slot is this generator's.
+
+---
+
+## 9. WIRED IN — T-0267, 2026-08-29: the fort's wall brick, and the last split brick in the town
+
+**§8 closed the last brick a *generator* painted from a number of its own. This closes the last
+one an *archetype* did** — and it is the one a visitor could actually see, because unlike §8's
+placeholder it painted three committed masters.
+
+### 9.1 THE SPLIT, IN ONE LINE
+
+`generators/archetypes/fort_structure.py::WALL_RGBA["brick"]` shipped at **0.47 / 0.26 / 0.20**
+linear. The sheet's one brick — `common/materials.py::CHIMNEY_BRICK`, read off the Petford
+watercolour and moved into the sheet by T-0008 so that there would be exactly one — is
+**0.45 / 0.23 / 0.17**. **About 13 % apart in linear green and 18 % in blue.** That is §1's
+finding 5 again, one archetype further in: a town painted by generators sharing no palette.
+
+Nothing in this repository argued the 0.47/0.26/0.20. It has no tier, no source and no note; it
+is the shape of constant §8.2 refused, and it is refused here for the same reason.
+
+### 9.2 WHAT WAS ACTUALLY IN QUESTION, AND IT IS NOT THE NUMBER
+
+T-0267 asked the real question rather than the arithmetic one: **should the fort's 1816 brick be
+the town's 1833 brick at all?** There is a case that it should not — different clay, a different
+decade, a wall rather than a flue — and §4 of `chimneys.md` had once excluded the garrison on
+exactly that ground, because 1816 is seventeen years before Blodgett's brick-yard.
+
+**`chimneys.md` §6 answered it for the stacks and the answer carries here unchanged.** Brick is
+attested *inside* the fort, twice and independently — Hubbard in 1827 on "the brick building,
+just within the north stockade" and "the magazine, of brick", and the 1855 key on the same
+quarters — so the fort needed no yard in town and nothing about its masonry has to be invented.
+What the fort has never had is a **colour**: nothing in this repository shows the tone of any
+fort surface. The only coloured witness to any Chicago brick is the Petford watercolour, and the
+sheet already holds it.
+
+So the choice was between one brick with a witness and two bricks where the second one's colour
+would be invented to express a difference no source states. **The town takes one brick.**
+
+The sheet's §2.1 row had already said so: it names its selectors as `construction: brick` **and
+every chimney**. A wall reading that row is the row doing the job it was written for.
+
+### 9.3 WHAT IS NOT CLAIMED
+
+- **Not that the two bricks matched.** This is convergence onto the one witnessed value, not a
+  finding about 1816 clay. If a coloured witness to the fort's own brick is ever read, the sheet
+  grows a second row and this section is what it argues against.
+- **Not a new number.** Nothing enters the sheet; one leaves an archetype. `CHIMNEY_BRICK`'s own
+  reasoning is `chimneys.md` §2 and is untouched.
+- **Not a roughness change.** A bare brick wall already took the **`brick` substrate's 0.90**
+  through `materials.resolve`, and still does. `CHIMNEY_BRICK`'s 0.85 is a coating's stated gloss
+  and reaches no wall — the colour is shared, the gloss is not.
+- **Not a claim about the Lake House's finish.** `lake_house_construction` is a 1835 shell under
+  construction and repaints with the other two because its record says `construction: brick`.
+
+### 9.4 THE BYTE CHANGE, MEASURED
+
+`fort_structure.py` is in every one of its archetype's input hashes, so all **14** masters restaled
+and all 14 were rebuilt. **Three moved:**
+
+| master | bytes | what changed |
+|---|---|---|
+| `fort_dearborn_commandants_quarters__brick_1816.glb` | 14,680 → 14,684 | `brick` baseColorFactor |
+| `fort_dearborn_magazine__brick_1816.glb` | 6,236 → 6,236 | `brick` baseColorFactor |
+| `lake_house_construction__shell_1835.glb` | 5,620 → 5,620 | `brick` baseColorFactor |
+
+The other eleven rebuilt **byte for byte identical** — a comment and a constant lookup moved, and
+nothing that reaches a vertex did. That is the staleness rule working as designed rather than a
+wave of churn: the hash restaled 14 because it hashes the module, and the bytes proved only three
+of them had anything to change.
+
+### 9.5 WHAT IS LEFT, AND IT IS FILED
+
+The sheet's one brick is still called **`chimney_brick`**, and a wall now reads it. That name is
+now wrong by one surface, and renaming it — or growing the sheet a `wall_finish`-style selector
+that answers *"what colour is a bare brick wall"* the way §8.3 made the placeholder ask rather
+than name — is a `common/materials.py` change, which is in **every** asset's input hash and
+therefore costs a town-wide bake. It is not worth one on its own and it is filed as **T-0325**.

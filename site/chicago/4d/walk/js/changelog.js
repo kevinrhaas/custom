@@ -1,4 +1,11 @@
 export const CHANGELOG = [ // newest first
+  { v: 355, title: 'The fort\u2019s brick stops being its own brick', kind: 'fix', ts: '2026-08-29T01:08:01.566Z', date: 'Aug 28, 2026, 8:08 PM CT',
+    items: [
+      'Three brick buildings change colour today. Inside Fort Dearborn, the commandant\u2019s quarters and the powder magazine \u2014 the only two buildings in the whole reconstruction a source calls brick in so many words \u2014 and, across the river on the North Side, the shell of the Lake House going up through the summer of 1835. All three now stand in a slightly deeper, browner brick than they did yesterday.',
+      'They are not a new colour. They are the colour every other piece of brick in this town has been for a fortnight: the brick of the chimneys, taken off the one painting anybody made of Chicago brick \u2014 Petford\u2019s watercolour of the Sauganash hotel, with its brick stacks on a white clapboard front. Until today the fort was painted from a different number, about a seventh off in green and a fifth off in blue, that nobody had ever written a reason for. Stand at the fort and look back at the town and the two bricks did not match.',
+      'This is not a claim that they really matched. Nothing anywhere shows the colour of anything inside Fort Dearborn. The fort was rebuilt in 1816, seventeen years before the town had a brick yard of its own, so its bricks may well have been a different clay from a different decade \u2014 but no source says so, and inventing a second colour to express a difference nobody recorded would be worse than using the one colour somebody actually painted. If a coloured view of the fort ever turns up, the second brick can be argued then.',
+      'The card for each building is unchanged: what is attested is still that these were brick, and the tone is still ours.',
+    ] },
   { v: 354, title: 'November 1834, read: a fire ordinance and a committee of twenty', kind: 'chore', ts: '2026-08-29T00:06:41.492Z', date: 'Aug 28, 2026, 7:06 PM CT',
     items: [
       'Nothing you can see changed today. The Chicago Democrat for November 1834 \u2014 four issues, Vol. I Nos. 49 to 52 \u2014 has been read end to end, and 49 things it says about the town are written down with the page, column and line they came from.',

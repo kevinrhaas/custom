@@ -1,6 +1,6 @@
 {
   "project": "chicago-4d",
-  "generated_ct": "Aug 28, 2026, 7:59 PM",
+  "generated_ct": "Aug 28, 2026, 8:07 PM",
   "tickets": [
     {
       "id": "T-0001",
@@ -5452,6 +5452,24 @@
       "blocked_on": null,
       "needs_bake": false,
       "queue_rank": 69
+    },
+    {
+      "id": "T-0325",
+      "title": "The sheet's one brick is called chimney_brick, and a wall now reads it",
+      "state": "open",
+      "epic": "META",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "M",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-08-28",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": true,
+      "queue_rank": 70
     }
   ]
 }
