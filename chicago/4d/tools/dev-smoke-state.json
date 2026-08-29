@@ -3,6 +3,72 @@
   "readings": [
     {
       "viewport": "desktop",
+      "stage": "7",
+      "parts": [
+        7
+      ],
+      "verdict": "fail",
+      "target": "published",
+      "passed": 39,
+      "failed": 2,
+      "failures": [
+        "desktop 1280x800: every drawn flower head has a plant under its own stalk — 2526 of 18911 drawn heads over 40 poses had nothing under the foot of their own stalk; worst flora-head-corymb at from_above 270deg, foot 1.61 m, 0.61 m over its base over open ground",
+        "desktop 1280x800: the suite body ran to completion — Error: page.click: Target page, context or browser has been closed"
+      ],
+      "wallSeconds": null,
+      "takenAt": "2026-08-29T08:30:02.328Z",
+      "ref": "steward/t-0243-batched-timber-gate",
+      "commit": "83a4e221536c",
+      "devCommit": "83a4e221536c",
+      "treeHash": "sha256:43b5b2b8d5475710",
+      "treeDirty": true,
+      "changelogHash": "sha256:42065338b89819a3",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          2.3,
+          3.7,
+          3.2
+        ]
+      },
+      "source": "/tmp/s7_d.log",
+      "note": "T-0243's branch. TRUNCATED, not a clean fail: the steward runner's ten-minute foreground ceiling SIGTERMed the browser during the last two Settings checks of the part (8 slices were on this box), which is what 'the suite body ran to completion' is reporting and why wallSeconds is null. Everything before it ran. The remaining red is T-0279's flower heads, 2526 of 18911 — the identical figure this record already holds for desktop stage 7 on dev at 2026-08-28T17:01, so it is inherited. The two timber checks T-0243 repaired both PASS here, and 'every tree drawn stands at its own station' is red in that same dev reading."
+    },
+    {
+      "viewport": "mobile",
+      "stage": "7",
+      "parts": [
+        7
+      ],
+      "verdict": "pass",
+      "target": "published",
+      "passed": 45,
+      "failed": 0,
+      "failures": [],
+      "wallSeconds": 360,
+      "takenAt": "2026-08-29T08:29:20.400Z",
+      "ref": "steward/t-0243-batched-timber-gate",
+      "commit": "83a4e221536c",
+      "devCommit": "83a4e221536c",
+      "treeHash": "sha256:43b5b2b8d5475710",
+      "treeDirty": true,
+      "changelogHash": "sha256:42065338b89819a3",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          2.5,
+          3.9,
+          3.3
+        ]
+      },
+      "source": "/tmp/s7_m.log"
+    },
+    {
+      "viewport": "desktop",
       "stage": "1",
       "parts": [
         1
@@ -1787,37 +1853,6 @@
       "source": "/tmp/smoke_mobile_9.log"
     },
     {
-      "viewport": "desktop",
-      "stage": "8",
-      "parts": [
-        8
-      ],
-      "verdict": "pass",
-      "target": "published",
-      "passed": 37,
-      "failed": 0,
-      "failures": [],
-      "wallSeconds": 128,
-      "takenAt": "2026-08-28T02:46:47.006Z",
-      "ref": "steward/t-0134-south-bank-dearborn",
-      "commit": "78fe789279db",
-      "devCommit": "a638614c75d3",
-      "treeHash": "sha256:42a7d5f82d10f06b",
-      "treeDirty": false,
-      "changelogHash": "sha256:197bb1e811da8df3",
-      "host": {
-        "kind": "steward-runner",
-        "cpus": 4,
-        "memGB": 15.6,
-        "loadavg": [
-          4.2,
-          4,
-          2.6
-        ]
-      },
-      "source": "/tmp/smoke_desktop_8.log"
-    },
-    {
       "viewport": "mobile",
       "stage": "5-6",
       "parts": [
@@ -1848,39 +1883,6 @@
         ]
       },
       "source": "/tmp/m56.log"
-    },
-    {
-      "viewport": "mobile",
-      "stage": "7-9",
-      "parts": [
-        7,
-        8,
-        9
-      ],
-      "verdict": "pass",
-      "target": "published",
-      "passed": 152,
-      "failed": 0,
-      "failures": [],
-      "wallSeconds": 540,
-      "takenAt": "2026-08-27T20:16:06.063Z",
-      "ref": "steward/t-0208-anchored-wall",
-      "commit": "b5900d21057d",
-      "devCommit": "e3a9cf993016",
-      "treeHash": "sha256:501fae819c902562",
-      "treeDirty": false,
-      "changelogHash": "sha256:465fddcc04c94711",
-      "host": {
-        "kind": "steward-runner",
-        "cpus": 4,
-        "memGB": 15.6,
-        "loadavg": [
-          0.6,
-          2.4,
-          3.5
-        ]
-      },
-      "source": "/tmp/smoke-m79.log"
     },
     {
       "viewport": "mobile",

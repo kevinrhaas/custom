@@ -1,5 +1,58 @@
 # STATUS
 
+## Shipped 2026-08-29 — T-0243: the two timber gates read a batched mesh, and one of them could never fail
+
+**T-0243.** `tools/smoke_renderer.mjs` stage 7 held two checks on the near-field wood, and
+both traversed for `/^timber__/` — the four merged quadrant meshes `timber__q0…q3`. T-0223
+replaced them on 2026-08-27 with a single `THREE.BatchedMesh` named **`timber`**, and from
+that merge the regex matched nothing:
+
+- **`every tree drawn stands at its own station`** went red on its own liveness clause
+  (`meshes > 0`), on an **unmodified `dev`**. Every branch cut from dev inherited it and had
+  to argue "not mine" — measured three times in two days.
+- **`no timber is drawn out in the channel`** asserts `offshore === 0`, and an empty
+  traversal yields zero offshore vertices. **It passed, green, for a fortnight, having
+  asserted nothing at all about the timber.** That is the worse half, and it is the reason
+  this ticket was sized as a repair rather than a rename.
+
+**Why a rename would have been the wrong fix.** A `BatchedMesh` holds every chunk in one pair
+of buffers with a per-instance transform the batch owns, so
+`geometry.getAttribute('position')` read through `matrixWorld` is not a chunk's world
+position. `tools/drawn_timber_census.mjs` (new) walks each instance's own geometry range
+under its own matrix, through `_instanceInfo` / `_geometryInfo` / `_matricesTexture` — the two
+structures `getBoundingBoxAt()` and `getMatrixAt()` read, walked in the page so the census
+needs no THREE there. It is the same arrangement `drawn_placement_census.mjs` uses for the
+building batches, deliberately: the gate and the instrument run ONE census, not two readings
+of the same idea.
+
+**It still reads a plain `timber__*` mesh.** Unwinding the batching cannot silently empty the
+gate the way landing it did.
+
+**The bars did not move, and the liveness clauses grew.** 24 m is the widest crown's reach
+plus its lean; 12 m is a bank willow leaning over the channel; both were argued in T-0110's
+box and neither was touched. Both now come back FROM the census (`strayBarM`, `offshoreBarM`)
+rather than being written a second time in the gate. And `chunks > 0 && verts > 1000 &&
+unreadable === 0` guards **both** checks now — the offshore half had no liveness clause at
+all, which is precisely how it passed on nothing.
+
+**And it is demonstrated to fail.** `tools/measure_drawn_timber.mjs --refute` displaces two
+chunks of the live scene — one mirrored across the datum's east-west line (R-BUG5b's own
+fault, applied to the chunk standing furthest from that line, because a chunk on the line is
+its own mirror), one translated to a point the terrain mask calls water more than 16 m from
+any bank — and requires the census to report each. Clean run, source tree, 1280×800:
+**152,792 vertices across 70 chunks in 1 batch against 881 stations, 0 stray (worst
+measurable 15.4 m), 242 over water at all and 0 offshore.** Broken: **3,140 stray** (3,118
+beyond the station hash) and **1,099 offshore**, worst 24 m. A gate this shape is believed
+because it can be made to fail, not because it is green.
+
+**What this does not do.** It repairs neither T-0244 (the twelve hitching posts draw no
+vertices the gate can find) nor T-0265 (the sward census at a phone). Those are the other two
+standing reds and they are their own tickets.
+
+**Nothing you can see changed.** No renderer, no data record and no geometry was touched —
+only the harness that reads the geometry back.
+
+
 ## Recorded 2026-08-29 — T-0328's tail: the reading gets its dossier, and coverage.json stops saying 56
 
 **T-0328 shipped in PR #510** — D. Weaver's building is on **Lot 2**, block 1, North Water
