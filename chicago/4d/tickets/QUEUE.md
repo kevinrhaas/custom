@@ -41,8 +41,6 @@ T-0314 — Reading the Democrat, May 1834: Vol. I Nos. 23-26
 T-0297 — Reading the Democrat, August 1835: the four issues after the scene date
 T-0323 — The 1 January 1834 letter list has a third printing that T-0318 did not know about, and it repairs the A-H half without page images
 T-0299 — Three printings of one letter list mint 298 people three times, and identity.json is empty
-T-0304 — The gazetteer merges persons by a declared rule and has no equivalent for firms, so 'L. Wilson & Co.' and 'Jno. Wilson & Co.' are two businesses
-T-0327 — The December 1834 bookseller's name is 'RUISAL & CLUPR' in the only printing that carries it, and the gazetteer may already hold the firm
 T-0328 — D. Weaver's building is on Lot 2 in one printing and Lot 9 in the next, and both transcriptions are Vision-set
 T-0324 — J. K. Botsford advertises two addresses in one issue, and Graves' Tavern cannot be placed until they are reconciled
 T-0329 — School District Number One is bounded in print on 1834-12-10 and the segmenter cut better than half of every line of it away
@@ -134,4 +132,6 @@ T-0271 — The balanced ceiling is breached at the forks by 5,290 triangles on a
 # --- NEWLY FILED — `ticket.mjs new` appends to the END of this file, so new tickets
 # --- land under this line. NOT yet placed by the owner.
 T-0332 — The sheet's one brick is called chimney_brick, and a wall now reads it
-T-0337 — Mason's blacksmith shop is anchored on Graves' Tavern until 16 July 1834 and on the Tremont House from 10 September, and the register holds both as standing placements
+T-0337 — One man is two proprietors of Russell & Clift, and the gazetteer has no rule that can join them
+T-0338 — Thirty-one groups of firms share a partner surname and only one of them has been judged
+T-0339 — Mason's blacksmith shop is anchored on Graves' Tavern until 16 July 1834 and on the Tremont House from 10 September, and the register holds both as standing placements
