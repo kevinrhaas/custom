@@ -314,7 +314,14 @@ straight to production.* The fleet pilot is `kevinrhaas/jobtracker.polecat.live`
     merging covers it.
   - Nothing stamps after merge. The file is authored inside the app because the What's-new
     tab imports it; `publish.sh` mirrors it to `site/chicago/4d/js/changelog.js`, the URL
-    Manager and the polecat.live launcher parse live, which must not move.
+    Manager and the polecat.live launcher parse live, which must not move — and to
+    `site/chicago/4d/walk/js/changelog.js` inside the copied renderer tree.
+  - **Stamping after `publish.sh` is safe (T-0155).** Both mirrors are compared byte for
+    byte by `tools/check_published.mjs`, and the stamper rewrites the source, so that order
+    used to leave the gate red with no documented remedy but a remembered second publish.
+    `stamp-changelog.mjs` now carries both mirrors itself, on a real rewrite only — a mirror
+    somebody else made stale still fails, which `tools/test_changelog_mirror.mjs` asserts in
+    `check.sh`. You may still publish last; you no longer have to.
 - **No Blender on the improve runner, and do not install one.** Geometry comes from the
   nightly `chicago-4d-bake.yml`, which branches off `dev` and **opens its PR into `dev`**.
   A unit that needs new geometry ships the data/archetype half and says so.

@@ -82,13 +82,18 @@ RENDERER_JS = RENDERERS / "web" / "js"
 # carries three roofs. This is the ordinary movement of the reading, not a change in
 # reach — a structure asset is in `build.py`'s reach by construction — and the terrain
 # and pier_crib reaches stay at 2 each, which is the point of stating them separately.
+#
+# 353 -> 354 and 351 -> 352 on 2026-08-28 (T-0096): `fort_dearborn_flagstaff__staff_1833_37.glb`,
+# the garrison flagstaff Andreas attests. One new fort_structure record, so one more committed
+# asset and one more mesh a change to the shared generator modules or to build.py would re-stale.
+#
 STATED = {
-    "assets": 353,
+    "assets": 354,
     "restales": {
-        "generators/common/*.py": 353,
+        "generators/common/*.py": 354,
         "generators/common/__init__.py": 0,
         "generators/common/phases.py": 0,
-        "generators/build.py": 351,
+        "generators/build.py": 352,
         "generators/terrain_gen.py": 2,
         "generators/archetypes/pier_crib.py": 2,
     },
