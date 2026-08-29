@@ -1,6 +1,6 @@
 {
   "project": "chicago-4d",
-  "generated_ct": "Aug 29, 2026, 3:59 PM",
+  "generated_ct": "Aug 29, 2026, 4:08 PM",
   "tickets": [
     {
       "id": "T-0001",
@@ -6356,7 +6356,7 @@
     {
       "id": "T-0387",
       "title": "The four storefronts the American puts on a street and nothing narrower: Harmon Loomis, Wm. Sabine, John Dave and the Dearborn Street wine store",
-      "state": "open",
+      "state": "split",
       "epic": "META",
       "requested_by": "loop",
       "seen": false,
@@ -6364,12 +6364,12 @@
       "legacy_id": null,
       "parent": "T-0306",
       "opened": "2026-08-29",
-      "closed": null,
+      "closed": "2026-08-29",
       "pr": null,
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": true,
-      "queue_rank": 3
+      "queue_rank": null
     },
     {
       "id": "T-0388",
@@ -6802,6 +6802,42 @@
       "blocked_on": null,
       "needs_bake": false,
       "queue_rank": 77
+    },
+    {
+      "id": "T-0416",
+      "title": "Wm. Sabine, John Dave and the Dearborn wine store: the three storefronts the street-face policy refuses for want of a fronting roof",
+      "state": "open",
+      "epic": "META",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "S",
+      "legacy_id": null,
+      "parent": "T-0387",
+      "opened": "2026-08-29",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "queue_rank": 3
+    },
+    {
+      "id": "T-0417",
+      "title": "Harmon, Loomis & Co. spends its South Water street face, and the 24 street-face adoptions reach the structure records",
+      "state": "done",
+      "epic": "META",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "S",
+      "legacy_id": null,
+      "parent": "T-0387",
+      "opened": "2026-08-29",
+      "closed": "2026-08-29",
+      "pr": "561",
+      "claimed_by": "run 8/29/2026, 2:31:32 PM CT",
+      "blocked_on": null,
+      "needs_bake": false,
+      "queue_rank": null
     }
   ]
 }

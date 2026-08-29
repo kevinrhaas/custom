@@ -1,5 +1,54 @@
 # STATUS
 
+## Shipped 2026-08-29 — T-0417: the street-face adoptions reach the buildings, and nine come out of the yard
+
+**The allocation is now SPENT.** T-0354 paired 24 documented businesses with reconstructed roofs
+on the streets their advertisements name, and stopped there: the pairing lived in
+`data/research/newspapers/street_face_adoptions.json`, the buildings still opened as anonymous
+count-units, and the policy's own file said so — *"Nothing here writes a card"*. Nineteen roofs on
+South Water Street, Lake Street and Randolph Street now carry an `occupants` block naming the
+business, its trade, the street the paper puts it on and every claim the reading rests on. It is
+derived, not authored: `tools/inferred_occupancy.py` — the ledger the inferred-household programme
+already used for exactly this — hands the block to whichever generator owns the roof, so
+`generate_block_infill.py --check` re-derives all nineteen byte for byte.
+
+**Twenty-four became nineteen, and that is the finding.** Nine of T-0354's adoptions had been
+seated in ANCILLARY roofs — the privies, stables and woodsheds the anonymous parcels deal behind a
+lot. **Peter Cohen, clothier, grocer and liquor dealer and the best-attested shopkeeper in the
+whole corpus at eight printings, was in `recon_1835_blk_south_water_clark_a3_05`, a privy.** The
+rule against it was not new and was not weakly held: `tools/generate_block_infill.py` has refused
+to hang an occupant on an ancillary roof since the inferred-household programme, on the ground that
+*"a yard building serves the lot it stands behind, and an adoption is a claim about who lived or
+worked in a building"*. The allocation simply could not see which roofs were sheds, and nothing
+noticed for a day because nothing consumed the table. **An allocation nothing spends is an
+allocation nothing checks** — that is the transferable lesson here.
+
+- `tools/adopt_street_faces.py` gained refusal 6, *the roof is a yard building*, and its supply
+  count now reports fronting roofs less homes less yards. Four of the nine took a principal roof
+  instead — Harmon, Loomis & Co. moved from a shed into a narrow two-storey store — and five had
+  none left on their street, so `every roof on the face is spoken for` goes 3 → 8 and the waiting
+  pile 36 → 41 against the register this branch was cut from. Re-derived once more on the rebase
+  onto T-0400, which merged firm groups and moved `street_only` 60 → 59: **19 adopted, 40 waiting,
+  7 of them short purely of supply.** All of it re-derived; none of it authored, which is the point
+  of deriving the allocation rather than listing it.
+- **Fifteen assertions fire when broken**, up from eight: nine in `adopt_street_faces --self-test`
+  (including a business seated in a yard building) and six in `inferred_occupancy --self-test`
+  (an adoption that claims a lot, an order that has become a claim, nothing to cite, a roof outside
+  the anonymous layer, two businesses on one roof, a claim id naming no corpus source). The ledger
+  also raises if the household programme and an adoption claim one roof, which nothing upstream
+  prevents.
+- **No geometry moved and no mesh went stale.** `generators/mesh_inputs.py` hashes archetype,
+  phase and resolved params; an `occupants` block moves no vertex, so this cost no bake.
+- **L212 is revised** with the new counts and the yard refusal; `docs/STREET-FACE-ADOPTION.md`
+  carries refusal 6 and a re-measured table. The derived table's `_doc` had been citing L207 for
+  its own liberty and now cites L212.
+- Still not written here: a SIGNBOARD. `tools/generate_business_signboards.py` refuses a `recon_*`
+  record by name, so a board on one of these roofs is a change to the signage rule and needs its
+  own argument rather than a quiet exception.
+- **T-0416** carries the rest of T-0387 — Wm. Sabine, John Dave and the Dearborn Street wine store,
+  all three refused for want of a roof whose lot fronts North Water or Dearborn. That is an owner
+  question (is a corner side a face?) before it is a placement.
+
 ## Shipped 2026-08-29 — T-0354: what a business does when the paper names a street and nothing narrower
 
 **The register could place 58 of 203 documented businesses; 24 more now stand on the street faces
