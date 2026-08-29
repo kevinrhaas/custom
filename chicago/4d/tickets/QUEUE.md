@@ -57,7 +57,6 @@ T-0385 — The New York Clothing Store stands three doors north of the Tremont H
 T-0358 — The Thompson plat's block NUMBERING is uncommitted, so the corpus's only lot-and-block address cannot be placed
 T-0375 — Every reconstructed roof on South Water Street is a labourer's, so five documented tradesmen the papers put there have nowhere to stand
 T-0373 — The documented people the papers name with no trade at all, and the town does not hold
-T-0379 — The letter-list names the post office printed in a single return, and the change of scale they put to the town
 
 # --- THE NEWSPAPER STREAM (d) WAITING ON THE OWNER'S PAGE IMAGES — each needs scans
 # --- opened that live outside the repository. Workable the day the images are supplied;
