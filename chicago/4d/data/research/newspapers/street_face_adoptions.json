@@ -12,7 +12,45 @@
    "centreline band"
   ],
   "why": "An advertisement's street is where the door is. A corner side is the cross street's building shown end-on, and a centreline band is a distance rather than an orientation.",
-  "widened_reading_would_reach": 24
+  "widened_reading_would_reach": 24,
+  "widened_reading_would_reach_means": "businesses refused for want of a roof whose lot fronts their street. It is how many the question is ASKED about, and not how many an answer would seat — for that, read `widened_reading_measured`, which re-runs the real allocation.",
+  "widened_reading_measured": {
+   "corner_side": {
+    "reading": "corner side",
+    "question": "the owner rules that a corner side is a face",
+    "would_seat": 12,
+    "by_street": {
+     "canal": 1,
+     "dearborn": 8,
+     "lasalle": 3
+    },
+    "businesses": [
+     "business_cooley_and_halsman",
+     "business_elmira_fowler",
+     "business_fullerton_botsford",
+     "business_j_b_brown_dearborn_street_grocery",
+     "business_j_l_wilson_co",
+     "business_james_grant",
+     "business_magie_wilkinson",
+     "business_new_york_clothing_store",
+     "business_pierce_french",
+     "business_s_abell_attorney_and_counsellor",
+     "business_uncertain_w_h_taylor_dearborn_street_boot_and_shoe_store",
+     "business_unnamed_new_store_la_salle_street"
+    ]
+   },
+   "centreline_band": {
+    "reading": "centreline band",
+    "question": "the owner rules that a roof within the centreline band is on the face",
+    "would_seat": 1,
+    "by_street": {
+     "north_water": 1
+    },
+    "businesses": [
+     "business_wm_sabine_storage_forwarding_and_commission_merchant"
+    ]
+   }
+  }
  },
  "counts": {
   "street_only_in_register": 59,

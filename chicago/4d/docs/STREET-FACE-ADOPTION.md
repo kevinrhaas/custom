@@ -87,6 +87,35 @@ fronts it. `--report` prints both readings side by side, because the reader is o
 disagreement the decision was made about, and because a later owner ruling that a corner
 side is a face has exactly one number to change.
 
+### What each widening is worth, measured (T-0416, 2026-08-29)
+
+The cost above was reported as a count of businesses REFUSED — 24, the ones that ask the
+question. That is not what an answer would be worth, and reading it as though it were is
+the mistake T-0416 was filed on top of. A widened reading only seats a business if it
+reaches a roof that is FREE: refusals 5 and 6 are about the ROOF, so a corner-side roof
+that is a household's home or a yard building stays refused however the face is read, and
+the supply that remains is still spent in evidence order.
+
+So both candidate rulings are now **re-run through the same allocation** —
+`tools/adopt_street_faces.py`'s `allocate()` called with the widened reading admitted, one
+implementation rather than an estimate — and the result is written into
+`street_face_adoptions.json` at `reading.widened_reading_measured`:
+
+| the ruling | roofs it reaches | of those, free | businesses it would seat |
+|---|---|---|---|
+| a corner side is a face | 29 (Dearborn 18, La Salle 8, Canal 3) | 13 (9 are homes, 7 are yard buildings) | **12** — Dearborn 8, La Salle 3, Canal 1 |
+| a centreline band is on the face | 1 (North Water) | 1 | **1** — North Water |
+
+**Twelve and one, against the twenty-four that ask.** Dearborn's eighteen advertisements
+are the sharpest case: eight of its eighteen side roofs are free, so ten of those
+eighteen businesses would still wait even after the ruling that was supposed to be their
+remedy. And **North Water Street has no corner-side roof at all**, so the corner-side
+ruling — the one both this document and T-0387 named as the remedy — is worth exactly
+nothing to Wm. Sabine or John Dave; only the band reading reaches them, and it reaches one
+roof for the two of them.
+
+The numbers re-derive with everything else, so they cannot go stale against the town.
+
 ## The six refusals
 
 1. **`not present at the scene date`** — the register already excluded it: contradicted
@@ -166,7 +195,11 @@ households' homes (refusal 5) and less the yard buildings (refusal 6).
 - **Dearborn Street (18), La Salle Street (3), Canal Street (1), North Water Street (2).**
   No roof's platted lot faces them, which is 24 of the 36 that wait. Two remedies, and
   neither is this policy's to take: a ruling that a corner side is a face, or a
-  reconstruction that raises frontage on those streets. Three of the Dearborn Street
+  reconstruction that raises frontage on those streets. **Neither remedy is worth 24, and
+  the table below is what each is actually worth** — measured by T-0416 rather than
+  inferred from the side and band counts, because a raw side roof may be a household's
+  home or a yard building, and those two refusals are about the ROOF and survive any
+  widening. Three of the Dearborn Street
   advertisements — the New York Clothing Store, the Dearborn Street wine store and W. H.
   Taylor's boot and shoe store — have their own tickets (**T-0385**, **T-0387**) that place
   them from an anchor and do not need this policy at all.
