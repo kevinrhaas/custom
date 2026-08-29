@@ -1,7 +1,7 @@
 ---
 id: T-0339
 title: Twenty dozen cast steel axes are recorded as the booksellers' stock and Jones & King signed the advertisement
-state: claimed
+state: done
 epic: PAPERS
 requested_by: loop
 seen: false
@@ -9,8 +9,8 @@ effort: XS
 legacy_id: null
 parent: null
 opened: 2026-08-28
-closed: null
-pr: null
+closed: 2026-08-28
+pr: 505
 claimed_by: run 8/28/2026, 11:13:27 PM CT
 blocked_on: null
 needs_bake: false

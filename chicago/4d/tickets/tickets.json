@@ -1,6 +1,6 @@
 {
   "project": "chicago-4d",
-  "generated_ct": "Aug 28, 2026, 11:15 PM",
+  "generated_ct": "Aug 28, 2026, 11:21 PM",
   "tickets": [
     {
       "id": "T-0001",
@@ -5636,7 +5636,7 @@
     {
       "id": "T-0339",
       "title": "Twenty dozen cast steel axes are recorded as the booksellers' stock and Jones & King signed the advertisement",
-      "state": "claimed",
+      "state": "done",
       "epic": "PAPERS",
       "requested_by": "loop",
       "seen": false,
@@ -5644,12 +5644,12 @@
       "legacy_id": null,
       "parent": null,
       "opened": "2026-08-28",
-      "closed": null,
-      "pr": null,
+      "closed": "2026-08-28",
+      "pr": "505",
       "claimed_by": "run 8/28/2026, 11:13:27 PM CT",
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 67
+      "queue_rank": null
     },
     {
       "id": "T-0340",
@@ -5667,7 +5667,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 68
+      "queue_rank": 67
     }
   ]
 }
