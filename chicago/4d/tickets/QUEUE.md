@@ -55,8 +55,7 @@ T-0340 — The bookseller's sign-name and its partners' firm-name are three gaze
 # --- be used until the Thompson plat's block numbering is committed.
 T-0384 — John Holbrook's store takes its door on South Water Street, one door from Dearborn
 T-0385 — The New York Clothing Store stands three doors north of the Tremont House in Dearborn Street
-T-0386 — W. Montgomery's new auction and commission room takes David Carver's old stand on South Water Street
-T-0387 — The four storefronts the American puts on a street and nothing narrower: Harmon Loomis, Wm. Sabine, John Dave and the Dearborn Street wine store
+T-0416 — Wm. Sabine, John Dave and the Dearborn wine store: the three storefronts the street-face policy refuses for want of a fronting roof
 T-0358 — The Thompson plat's block NUMBERING is uncommitted, so the corpus's only lot-and-block address cannot be placed
 T-0373 — The documented people the papers name with no trade at all, and the town does not hold
 T-0379 — The letter-list names the post office printed in a single return, and the change of scale they put to the town
@@ -171,3 +170,5 @@ T-0410 — The Howard fire-insurance agency passes between three houses, and the
 T-0411 — A newspaper and its own printing office are two businesses, and the partner-surname guard can never join them
 T-0412 — A building offered FOR SALE mints a placement reading on the vendor's own firm, so P. Pruyne & Co.'s store carries a corner it never stood on
 T-0413 — Six of T-0401's surname traps are one house on the printings, and the merge is unwritten
+T-0414 — The street-face adoption refuses W. Montgomery a roof for being the bootmaker, and identity.json already ruled they are two houses
+T-0415 — John Wright's two buildings to let are named (east) and (west) and stand the other way round

@@ -134,3 +134,44 @@ is absent from the town. The module docstring, which asserted in prose that thes
 
 **The six refusals stand, and three of the five that reach refusal 8 now say where the man
 actually is** (D. Graves is refused earlier, under rule 5, and never reaches it).
+
+
+---
+
+## PARKED ON `hold`, 2026-08-29 — the measurement above is STALE and must be re-taken
+
+**Read this before spending the section above.** The finding was measured three times
+during one run, against `dev` at three different commits, because five slices were merging
+into `dev` while it was being written. The THIRD merge — a sibling's storefront seeding —
+moved the numbers the argument rests on, and this branch is parked rather than merged so
+that a stale claim does not land in a repository whose one invariant is provenance.
+
+| measured on `dev` at | South Water free roofs | adopted on the face | Holbrook adopted? | A. Filer adopted? |
+|---|---:|---:|---|---|
+| first pass (before the identity merges) | 14 | 14 | yes, `..._lasalle_d5_01` | yes, `..._wells_a3_08` |
+| after the identity merges | 14 | 14 | yes, `..._lasalle_d4_02` | yes, `..._lasalle_d5_01` |
+| **after the seeding merge (now)** | **9** | **9** | **no** | **no** |
+
+So on today's tree only TWO of the six — D. Graves and L. W. Montgomery — are standing on
+South Water Street through the adoption pass; Holbrook and Filer are back to `street_only`
+and unadopted, because the seeding consumed five of the face's roofs. **The shape of the
+answer is unchanged and if anything is stronger** — the face is more exhausted than it was,
+so the one-for-one eviction cost of reseating a household onto it is higher, not lower —
+but the ROOF IDS and the COUNTS in the section above are no longer the ones on the tree,
+and a refutation whose numbers are wrong is not a refutation.
+
+**What is safe to keep, and what must be re-derived.** The change to
+`tools/replace_invented_residents.py` is safe and needs no re-measurement: it READS
+`street_face_adoptions.json` rather than quoting it, so it re-derives with the tree and
+already prints the truth on this commit (L. W. Montgomery has dropped off refusal 8
+entirely; Filer and Holbrook are named without an adoption, correctly). Everything
+NUMERIC — the table in § 1, the before/after in § 2, the matching paragraph in
+`docs/STREET-FACE-ADOPTION.md` and the third bullet of the changelog entry — must be
+re-run against whatever `dev` is when this is picked up:
+
+    python3 tools/adopt_street_faces.py --report
+    python3 tools/replace_invented_residents.py --report
+
+The gate was green at every step (`check.sh` PASS; mobile 390x780 stages 1-2/3-4/5-6/7-9
+and desktop 1280x800 stage 8 all SMOKE PASS, `--published`) — this is parked for accuracy,
+not for a failure.
