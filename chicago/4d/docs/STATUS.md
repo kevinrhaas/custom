@@ -1,6 +1,6 @@
 # STATUS
 
-## Held 2026-08-29 — T-0350: John Holbrook's store is built, baked and refused by a lot rule
+## Held 2026-08-29 — T-0358: John Holbrook's store is built, baked and refused by a lot rule
 
 **A documented storefront that the Chicago American places, that this project can build, and that
 one accounting clause will not let stand.** The American of 13 June 1835 carries John Holbrook's
@@ -29,13 +29,13 @@ standing at the street on it. Its fourth condition requires the store to be the 
 on the lot. Holbrook and the American office both seat on lot 0 of `blk_south_water_dearborn`, so
 the clause switches off and `generate_block_infill.py` refuses the block. Nothing overlaps —
 Holbrook clears the office by 3.05 m and the lot line by 1.53 m — and the block's own frontage run
-does not stand on lot 0 at all. **T-0355 records what was found looking:** the recipe deals that run
+does not stand on lot 0 at all. **T-0363 records what was found looking:** the recipe deals that run
 lots 0, 2 and 4 and all three of its roofs stand on lot 4, which no gate can see because the
 generator asks the occupancy question with its own records excluded.
 
 So the question went back to the owner rather than the clause being widened to fit: may a
 business-front lot carry two documented storefronts at the street, as it already carries one plus
-the anonymous run? T-0350 is `blocked-owner` with that question; the PR is open on `hold` and
+the anonymous run? T-0358 is `blocked-owner` with that question; the PR is open on `hold` and
 merges on a one-word answer.
 
 ## Shipped 2026-08-28 — T-0028: `blk_lake_franklin` opens, and the warehouse it was dealt is refused rather than massed

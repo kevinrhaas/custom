@@ -9349,7 +9349,7 @@ a side of the street. A Chicago Democrat notice of the same house, a canal-commi
 an assessment naming Holbrook would replace the count of doors with a lot, and any measured
 description of the premises would replace the whole of this entry.
 Related: **L148** (the clapboard rule this record's siding is dealt by) · **L130** (the fact of a
-sign on a named trade) · tickets **T-0350** (this), **T-0306** (its parent, the American's
+sign on a named trade) · tickets **T-0358** (this), **T-0306** (its parent, the American's
 storefronts), **T-0261** (the read that found the advertisement).
 **Covers:** `john_holbrook_store.frame_1835.footprint`, `john_holbrook_store.frame_1835.form.stories`, `john_holbrook_store.frame_1835.form.siding_exposure_m`.
 **Recorded:** 2026-08-29.

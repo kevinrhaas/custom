@@ -1,5 +1,5 @@
 ---
-id: T-0353
+id: T-0361
 title: Dr. W. G. Austin's office on Lake Street near the Post Office, and Sarah D. Howe's room in his house
 state: open
 epic: META

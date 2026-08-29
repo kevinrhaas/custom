@@ -1,5 +1,5 @@
 ---
-id: T-0354
+id: T-0362
 title: Henry Moore at J. H. Kinzie's New Building, and Ebenezer S. More's office at his dwelling by the Public Square
 state: open
 epic: META

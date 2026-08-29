@@ -1,5 +1,5 @@
 ---
-id: T-0355
+id: T-0363
 title: The South Water frontage run is dealt lots 0, 2 and 4 and all three of its roofs stand on lot 4
 state: open
 epic: META
@@ -20,7 +20,7 @@ The South Water frontage run is dealt lots 0, 2 and 4 and all three of its roofs
 
 **Acceptance:** (state it before working — the definition of done, never weakened to pass)
 
-Measured on `dev` on 2026-08-29 while placing John Holbrook's store (T-0350).
+Measured on `dev` on 2026-08-29 while placing John Holbrook's store (T-0358).
 `data/reconstruction/1835_platted_block_parcels.json` deals `blk_south_water_dearborn`'s
 South Water frontage run the lots **0, 2 and 4**, and its own `runs` note says the three
 units are "packed west from their east end". On the committed geometry they are packed so
@@ -39,7 +39,7 @@ and **no gate can see it**, because `tools/generate_block_infill.py` asks
 one principal roof to a lot is enforced against everybody except the run it exists to
 place.
 
-That matters beyond bookkeeping: the same accounting refused T-0350's documented store on
+That matters beyond bookkeeping: the same accounting refused T-0358's documented store on
 lot 0, on the ground that the lot was already held, while three anonymous roofs stand
 unremarked on one lot two doors east.
 
