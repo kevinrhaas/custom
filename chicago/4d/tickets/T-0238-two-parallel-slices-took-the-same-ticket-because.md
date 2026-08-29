@@ -80,3 +80,59 @@ not enough.
 collision, the same shape a day earlier, before slices were parallel) · PR #408 and its
 duplicate-slice comment, which has both implementations' measurements · `.github/steward/improve.md`
 § PARALLEL SLICES in `kevinrhaas/polecat-platform`.
+
+---
+
+## THE RATE, MEASURED — 2026-08-28, appended when T-0284 was found to be this ticket's duplicate
+
+T-0284 was filed on 2026-08-28 for the T-0256 double-claim **without searching
+the ledger first**, and this ticket already owned the defect — with the better
+mechanism, since what T-0284 wrote down as an untested hypothesis (the ranking
+shift) this ticket had already established from the two runs' own lists.
+T-0284 is withdrawn; its one contribution that outlives it is the measurement
+its acceptance demanded, which is this section.
+
+**Counted across the merged PR ledger, #386–#497 (2026-08-27 05:36Z to
+2026-08-29 02:37Z — the whole parallel-batch era on this app): 13 tickets
+received two PRs each, out of roughly 90 tickets attempted. About one slice in
+seven duplicates another's work.**
+
+| ticket | PRs (merged first) |
+|---|---|
+| T-0096 | #447 → #466 |
+| T-0137 | #438 → #440 |
+| T-0211 | #458 → #459 |
+| T-0221 | #425 → #427 |
+| T-0224 | #464 → #465 |
+| T-0225 | #450 → #452 |
+| T-0229 | #397 → #414 — *possibly a legitimate two-stage ticket, not a collision* |
+| T-0256 | #448 → #454 (T-0284's case) |
+| T-0257 | #460 → #462 |
+| T-0290 | #475 → #480 |
+| T-0291 | #478 → #479 |
+| T-0292 | #476 → #481 |
+| T-0294 | #493 → #492 |
+
+So 12–13 of ~90, call it **14 %**. All twelve unambiguous duplicates were
+closed unmerged (eight of them by hand on the owner's instruction, 2026-08-28)
+— so the *damage* rate to dev is zero so far, and the cost is pure wasted run
+time: roughly one run-hour per collision, an hour in seven of the loop's whole
+throughput.
+
+**Two more findings from the same sweep, both this ticket's mechanism wearing
+other clothes:**
+
+1. **A slice can be cut from a sibling's tree, not from dev.** #492 (T-0294,
+   slice 8) carried stowaway commits touching `fort_structure.py` and
+   `measure_generator_half.py` — no December-1834 read touches those. Merging
+   it would have landed a sibling's work twice.
+2. **Ticket IDS collide by the same blindness.** #489's run filed its
+   letter-list ticket as T-0321 while dev assigned T-0321 to a different
+   ticket; `restamp` (T-0331) was the remedy. `new` allocates ids from the
+   tree the run can see, which is the same stale view `claim` reads.
+
+The batch width went 3 → 5 → 8 across the window, and the duplicates cluster
+in the 8-slice era — consistent with exposure growing with N, still not
+proof. The options in this ticket's body stand unchanged; option 2 gained raw
+material on 2026-08-28 when polecat-platform's `claim-notice.sh` (#145) began
+writing the claimed ticket to the journal at claim time.

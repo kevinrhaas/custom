@@ -1,7 +1,7 @@
 ---
 id: T-0247
 title: The light tier draws 83 calls against the 80-call floor restored yesterday, on an unmodified dev
-state: open
+state: withdrawn
 epic: META
 requested_by: loop
 seen: false
@@ -9,10 +9,10 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-08-27
-closed: null
+closed: 2026-08-28
 pr: null
 claimed_by: null
-blocked_on: null
+blocked_on: Owner ruling 2026-08-28: 'Raise floor to 90' — the re-budget was chosen over the trim this ticket demanded; ruling recorded in the ticket body and at LIGHT_CALL_FLOOR's definition site
 needs_bake: false
 ---
 
@@ -60,3 +60,27 @@ number rather than a fitted one.
 
 **Links:** T-0300 (restored the floor) · T-0135 (the five stands) · T-0146 · T-0150 ·
 T-0149 · T-0193 (found it) · T-0240 · T-0194.
+
+---
+
+## WITHDRAWN — THE OWNER RULED FOR THE RE-BUDGET, 2026-08-28
+
+This ticket's own instruction was **"Do not fix it by moving the floor."** The
+owner, put the choice directly — *raise the floor to 90, or leave the red
+standing and trim* — chose:
+
+> **"Raise floor to 90."**
+
+That supersedes the instruction, and the ticket is withdrawn rather than closed
+as done, because the work it asked for — finding which layer stopped batching at
+Lake & Market and trimming it — was **declined, not performed**. The reading had
+moved 83 → **85** by the time of the ruling (dev's standing smoke,
+2026-08-28T18:36Z, the T-0028 tree), so the floor moved by a measured ten
+against a measured 85, five calls of slack at today's worst stand.
+
+What survives of this ticket's argument is written at the floor's definition
+site in `tools/smoke_renderer.mjs`: the bar has now moved twice, what 90
+surrenders is stated there, and the rule for the next red — a trim or an argued
+re-budget, never a quiet weakening — stands unchanged. If the batching question
+(which layer stopped batching at that corner) ever earns its own ticket, T-0146
+and T-0150 remain the places to start.
