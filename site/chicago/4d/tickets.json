@@ -1,6 +1,6 @@
 {
   "project": "chicago-4d",
-  "generated_ct": "Aug 29, 2026, 12:08 AM",
+  "generated_ct": "Aug 29, 2026, 12:19 AM",
   "tickets": [
     {
       "id": "T-0001",
@@ -5510,7 +5510,7 @@
     {
       "id": "T-0328",
       "title": "D. Weaver's building is on Lot 2 in one printing and Lot 9 in the next, and both transcriptions are Vision-set",
-      "state": "open",
+      "state": "claimed",
       "epic": "PAPERS",
       "requested_by": "loop",
       "seen": false,
@@ -5520,7 +5520,7 @@
       "opened": "2026-08-29",
       "closed": null,
       "pr": null,
-      "claimed_by": null,
+      "claimed_by": "run 8/29/2026, 12:19:56 AM CT",
       "blocked_on": null,
       "needs_bake": false,
       "queue_rank": 1
