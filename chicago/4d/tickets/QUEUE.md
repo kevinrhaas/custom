@@ -71,7 +71,6 @@ T-0305 — Four readings the American contradicts itself on need the page images
 # --- headroom was gated on T-0009 or T-0183, both blocked-owner. Both are now answered
 # --- (the rulings are written into the tickets), which frees ~20 roofs on four South Water
 # --- blocks and 27 more on blk_south_water_market — the largest visible win available.
-T-0009 — Redraw 29 building bodies out of the roadway
 T-0183 — The Market and South Water corner needs one control point, and the node rule may not be able to make it
 T-0365 — The anonymous-block programme has no unblocked ground left: every block with headroom is on the South Water reach T-0009 holds open
 T-0372 — North Water Street's two tight spots are 5.5 m and 8.5 m from water, and the setback rule cannot see either
@@ -170,3 +169,6 @@ T-0412 — A building offered FOR SALE mints a placement reading on the vendor's
 T-0413 — Six of T-0401's surname traps are one house on the printings, and the merge is unwritten
 T-0414 — The street-face adoption refuses W. Montgomery a roof for being the bootmaker, and identity.json already ruled they are two houses
 T-0415 — John Wright's two buildings to let are named (east) and (west) and stand the other way round
+T-0419 — The re-centred South Water corridor stands 8.58 m off its own block faces, and the strip between belongs to neither
+T-0420 — Open the four South Water blocks T-0009 has unblocked: 20 roofs of headroom on franklin, lasalle, clark and dearborn
+T-0421 — Canal Street's three control points spread 2.33 m, so its corridor cannot be centred on any of them
