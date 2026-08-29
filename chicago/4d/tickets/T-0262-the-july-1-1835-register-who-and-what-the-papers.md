@@ -1,7 +1,7 @@
 ---
 id: T-0262
 title: The July 1, 1835 register: who and what the papers put in the town
-state: open
+state: claimed
 epic: PAPERS
 requested_by: owner
 seen: false
@@ -11,7 +11,7 @@ parent: null
 opened: 2026-08-27
 closed: null
 pr: null
-claimed_by: null
+claimed_by: run 8/29/2026, 12:17:07 AM CT
 blocked_on: T-0261
 needs_bake: false
 ---
