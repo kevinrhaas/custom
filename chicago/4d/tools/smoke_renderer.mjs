@@ -3949,9 +3949,16 @@ for (const [label, viewport, touch] of [
       // refused: 83 to 84, and nothing else in this line moves. Left a count
       // behind for two days, the same way T-0024's did, and for the same reason
       // as T-0244 below: this suite is not the dev gate.
+      // T-0380 stood the New York House on the Lake Street face of
+      // blk_south_water_franklin — a documented public house, which is a trade
+      // the hitching rule accepts — so ONE more post stands at that frontage:
+      // 15 to 16. Nothing else moves. The walk along that face was already laid
+      // for its whole length, so no run opens and no crossing is added, and the
+      // house stands 1.50 m back from the frontage line, which is inside the
+      // 3.0 m a street fence needs and was already refused there.
       frontage.census?.records === 5 && frontage.census?.walks === 51
         && frontage.census?.crossings === 39
-        && frontage.census?.posts === 15 && frontage.census?.fences === 35
+        && frontage.census?.posts === 16 && frontage.census?.fences === 35
         && frontage.census?.refused === 84
         && frontage.recordIds.join(',')
           === 'green_tree_frontage,sauganash_frontage,river_walk_frontage,'
@@ -4094,10 +4101,14 @@ for (const [label, viewport, touch] of [
     // against each post's own terrain sample, because a pole whose height came
     // from a number beside the mesh floats.
     //
-    // TWO ON THE SAUGANASH'S OWN RECORD AND TWELVE AT THE STREET EDGE. This
+    // TWO ON THE SAUGANASH'S OWN RECORD AND THIRTEEN AT THE STREET EDGE. This
     // asserted two, and T-0194 made it fourteen without touching the line, so it
     // was red on `dev` from that merge until T-0244 (the dev gate is `check.sh`
-    // and this suite is dispatch-plus-one-path, so nothing stopped it). The two
+    // and this suite is dispatch-plus-one-path, so nothing stopped it).
+    // T-0380 made it fifteen AND UPDATED THE LINE IN THE SAME COMMIT, which is
+    // what the paragraph below asks of a run that adds a post: the New York
+    // House is a documented public house on Lake Street, so the rule stands a
+    // post at its frontage. The street-edge population is thirteen. The two
     // populations are told apart by `street`, which is exactly the field that
     // decides the mesh: a post naming a street is standing timber in that
     // street's chunk, and a post naming none falls back to the shared mesh. The
@@ -4109,15 +4120,15 @@ for (const [label, viewport, touch] of [
     // non-zero SEPARATELY from the heights: an empty set makes `top` -Infinity
     // and `low` Infinity, which fail the height tests too but read as a post of
     // the wrong height rather than as a post the gate cannot see. That was
-    // twelve of these fourteen for two days.
+    // twelve of these fifteen for two days.
     const postsBad = frontage.hitching.filter((h) => !(h.found > 0
       && Math.abs(h.top - h.recorded) <= 0.05
       && Math.abs(h.low) <= 0.02 && h.clear > 0 && !h.text));
-    check(`${label}: the fourteen hitching posts stand on their own ground, carrying nothing`,
-      frontage.hitching.length === 14
-        && frontage.census?.hitching === 14
+    check(`${label}: the fifteen hitching posts stand on their own ground, carrying nothing`,
+      frontage.hitching.length === 15
+        && frontage.census?.hitching === 15
         && frontage.hitching.filter((h) => !h.street).length === 2
-        && frontage.hitching.filter((h) => h.street).length === 12
+        && frontage.hitching.filter((h) => h.street).length === 13
         && postsBad.length === 0
         && frontage.census?.lettered === 1
         && frontage.noBoardHere === false,
@@ -10147,8 +10158,14 @@ for (const [label, viewport, touch] of [
         overflow: document.documentElement.scrollWidth <= window.innerWidth + 1,
       };
     });
+    // T-0380 made it FOUR. The New York House joined the watch list on 2026-08-29
+    // when its record was written: it had been an EXCLUSION whose own text said it
+    // would stay one "only until a structure record replaces it", and the entry it
+    // leaves behind still carries a live question — Andreas says "near Wells" and
+    // Wells has two sides. The count is exact on purpose, the same bookkeeping the
+    // frontage censuses above carry: an open question appearing is worth failing over.
     check(`${label}: the open questions load`,
-      open.counted === 3 && !open.busy && open.rendered === open.counted,
+      open.counted === 4 && !open.busy && open.rendered === open.counted,
       `${open.rendered} rendered of ${open.counted}`);
     // The discriminating pair, and it is the whole argument for the section: two
     // of these three are buildings the visitor can walk up to and one is empty
@@ -10252,11 +10269,15 @@ for (const [label, viewport, touch] of [
     check(`${label}: it starts collapsed like every other disclosure on the card`,
       openCard.western.collapsed === true, `collapsed ${openCard.western.collapsed}`);
     // The discriminating case, and it is a deliberate silence rather than a
-    // missing empty state. The current watch list has exactly two structures in
-    // the scene: the Western Hotel and Cobweb Castle. Every other building must
-    // stay silent; a card dumping the whole list would fail this exact set.
+    // missing empty state. The watch list has exactly THREE structures in the
+    // scene: the Western Hotel, Cobweb Castle and — since T-0380 on 2026-08-29 —
+    // the New York House, whose open question is which side of Wells Street it
+    // stood on. Every other building must stay silent; a card dumping the whole
+    // list would fail this exact set. Membership rather than order: the panel's
+    // ordering is the file's, and this assertion is about which buildings speak.
     check(`${label}: only tracked in-scene buildings carry open questions`,
-      openCard.others.length === 1 && openCard.others[0] === 'cobweb_castle',
+      openCard.others.length === 2
+      && ['cobweb_castle', 'new_york_house'].every((id) => openCard.others.includes(id)),
       `beside western_hotel: ${openCard.others.join(', ') || 'none'}`);
     // Reading every card leaves one open over the panel, which the panel's own
     // close button then cannot be clicked through.
