@@ -2382,6 +2382,16 @@
       "into": "Matthias Mason & Co.",
       "from": "Matthias Mason",
       "merge_rule": "'Matthias Mason' is 'Matthias Mason & Co.' with the '& Co.' inside a bracket. The setting of 1834-12-10 reads 'MATTHIAS MA[SON & CO.]', so the words this style lacks are carried by its own quote as an unread reading rather than as an absence, and the sentence resumes 'oppo]site the Tremont Hous[e'. Same copy date of 26 November 1833, same trade, same street. A style is not a second house because the line it was set on was damaged."
+    },
+    {
+      "into": "E. K. Hubbard, agent for the Howard Fire Insurance Company",
+      "from": "Howard Fire Insurance Company — E. K. Hubbard, agent at Chicago",
+      "merge_rule": "'E. K. Hubbard, agent for the Howard Fire Insurance Company' and 'Howard Fire Insurance Company — E. K. Hubbard, agent at Chicago' are ONE standing advertisement styled two ways by this project's own transcribers, and the four printings are the same setting word for word. The American of 1835-06-20 c015 carries it over the copy date 'June 20, 1835' — 'THE subscriber having been appointed agent for the Howard Fire Insurance Company of the city of New-York, for Chicago and vicinity, will insure property against loss by fire on reasonable terms. E. K. HUBBARD.' — and the Democrat reprints it at 1835-07-01 c017, 1835-07-08 c005 and 1835-07-29 c011 with the line breaks in different places and not one word changed. One company, one agent, one signature, six weeks. The em-dashed style is a disambiguator a transcriber built to put the company first; no printing sets it. Merged INTO the signature's own order, which is also the record carrying the copy dates and the appointment notice. Neither record states a street, so nothing is placed by this merge."
+    },
+    {
+      "into": "S. Abell, attorney and counsellor",
+      "from": "Abell",
+      "merge_rule": "'S. Abell, attorney and counsellor' and 'Abell' are one law office's standing card in the two papers, and the bare surname is only the forename lost off a damaged line. The Democrat of 1835-06-24 c006 survives as every OTHER line of itself — '[…] ABELL, [ATTORNEY &] COUNSELLOR AT LA[W,] [CHIC]AGO, ILLINOIS, [attending] strictly to his profession[, he] hopes [for a share of public pa]tronage. Law Conveyancing [done with ac]curacy and despatch.' — and the American of 1835-08-01 c003 sets the same six clauses in the same order with the name whole: 'S. ABELL, [AT]TORNEY AND COUNSELLOR AT [LAW]. [CH]ICAGO, ILLINO[IS]. [B]y [devoting himself e]ntir[e]ly to his profession [he solicits a share of public] patronage. Land Conveyanc[ing done w]ith [ne]a[t]n[e]s[s] and de[s]patch.' Conveyancing named as a line of business is what makes the pair unmistakable: the American's own claim note records it as the FIRST of the town's law cards to advertise it, so the Democrat's card six weeks earlier is not a second lawyer doing the same rare thing. This corpus names no other Abell. Merged INTO the styled record because it is the one printing that sets the forename initial at all, and the Dearborn Street reading the Democrat holds survives the merge under `placement_rank` — nothing is placed here that the damaged line did not already say, and its missing preposition stays missing."
     }
   ],
   "refused_firm_note": "The REFUSALS the firm policy had no place for (T-0399). `firm_surnames()` groups the register on the partner surname alone, so it puts together houses that are not one house — a namesake, a trade word mistaken for a partner, one man's two unconnected trades — and until this section existed the only record of having judged such a group was the ABSENCE of a merge rule, which reads exactly like a group nobody has looked at yet. The next sweep then finds the group again and does the work again. A refusal is therefore declared as explicitly as a merge and held to the same disciplines: it names both spellings verbatim, it names the printings it rests on, and it cannot outlive its pair — a refusal whose two styles a later merge has collapsed is a judgement nobody can check and is a compile error. `kind` is one of three and the distinction is the point: `two_houses` (the papers show two), `not_joined` (one name, and no printing puts the two styles under one roof — which is not the same finding as two), `different_ground` (one house, and the papers put the styles in different streets, which is a removal and a removal is a claim).",
@@ -2421,6 +2431,32 @@
         "chicago_democrat_1835_07_22#c011"
       ],
       "refused_because": "'W. Montgomery' and 'W. Montgomery, boot and shoe maker' are two houses and this is the trap the surname grouping was always going to set. The bootmaker is L. W. Montgomery with the L lost in the setting: his advertisement is copy-dated Dec. 15/18, 1833, places him next door to P. Cohen's store (1834-01-28 c008, 1834-03-04 c028, 1834-03-25 c009) and is the same standing notice the L. W. Montgomery records carry. 'W. Montgomery' is the auctioneer who takes David Carver's old stand in South Water street in July 1835 (1835-07-08 c001) and signs 'W. MONTGOMERY, Auc'r' (1835-07-22 c011) — a different trade, a different stand and eighteen months later. Whether the bootmaker's two spellings are one man is a forename question and belongs to T-0400."
+    },
+    {
+      "into": "Hubbard & Co.",
+      "from": "E. K. Hubbard, agent for the Howard Fire Insurance Company",
+      "kind": "two_houses",
+      "witnesses": [
+        "chicago_democrat_1834_07_02#c048",
+        "chicago_democrat_1834_10_15#c005",
+        "chicago_democrat_1835_05_20#c023",
+        "chicago_american_1835_06_20#c015",
+        "chicago_american_1835_08_29#c004"
+      ],
+      "refused_because": "'Hubbard & Co.' and 'E. K. Hubbard, agent for the Howard Fire Insurance Company' are two houses, and what puts them together is not a spelling — it is an AGENCY that passed from one to the other, which this gazetteer has no relation for. Hubbard & Co. held the Howard agency first and advertised it in the plural over the firm's signature: 'THE subscribers having been appointed AGENTS for the Howard Fire Insurance Company of the city of New-York … HUBBARD & CO.', copy-dated July 1 and standing from 1834-07-02 c048 through 1834-10-15 c005 to 1835-05-20 c023. From 1835-06-20 c015 the identical copy runs in the SINGULAR over one man — 'THE subscriber having been appointed agent … E. K. HUBBARD.' — and the forwarding house goes on trading under its own name to 1835-08-29 c004. So the two records are live at once, in two trades, over two signatures: a commission and forwarding house whose named partners are Gurdon S. Hubbard and Henry G. Hubbard, and a one-man fire-insurance agency signed E. K. Hubbard, initials neither partner carries. This project never reads a shared surname with different initials as one man, so nothing here makes E. K. a partner in the firm and no merge may assert it. The succession of the agency is real and is the part that cannot be written down at all: T-0410 is filed for the relation."
+    },
+    {
+      "into": "Jones & King",
+      "from": "Jones, King & Co.",
+      "kind": "two_houses",
+      "witnesses": [
+        "chicago_democrat_1834_09_10#c008",
+        "chicago_democrat_1834_12_03#c007",
+        "chicago_democrat_1835_05_27#c005",
+        "chicago_democrat_1835_07_08#c009",
+        "chicago_democrat_1835_07_29#c012"
+      ],
+      "refused_because": "'Jones & King' and 'Jones, King & Co.' are two firms, and the '& Co.' is the whole difference: it is a THIRD PARTNER, and the partner-surname guard cannot see him because it strips 'Co.' as a style suffix before it compares. Jones & King is Wm. Jones and Byram King, two partners, selling stoves and hollow ware from their store in Water-street near the bridge (1834-09-10 c008) and glass, sash and blinds priced at four cents (1834-12-03 c007, copy-dated Oct. 2, 1834). Jones, King & Co. is a firm announcing its own formation — 'The undersigned have formed a connection in the mercantile business, under the firm of Jones, King & Co.' — over THREE names, WILLIAM JONES, BYRAM KING and H. B. CLARKE, copy-dated May 26, 1835 (1835-05-27 c005) and standing again at 1835-07-08 c009 and 1835-07-29 c012. This project's own rule for firms is that a partnership IS its partners and a changed one is a different house; a copartnership notice is the strongest possible statement that they changed, and it is a claim about a new firm rather than a spelling of the old one. The succession from the one to the other is real — same two men, same hardware and stove trade, eighteen months apart — and it is read off the two notices, not asserted by a merge."
     }
   ],
   "anchor_note": "The DATED ANCHOR CHANGE (T-0345), and it is the third thing two printings of one advertisement can differ about. `firm_merges` above joins two STYLES of one house and `proprietor_merges` joins two readings of one partner's name; neither can say that a house's printed ANCHOR changed on a date. Matthias Mason & Co.'s blacksmithing notice runs under a single copy date of 26 November 1833: to 1834-06-11 it reads 'on Main-street, nearly opposite Graves' Tavern', and from 1834-09-10 the same copy, word for word otherwise, reads 'opposite the Tremont House'. Held as two standing placements — which is what the register did — a placement sweep finds one shop in two places at once. What a declaration here may state is ONLY that two of a house's readings name two different landmarks rather than two spellings of one, and it must account for every reading the house carries. Everything else the compiler computes from the claims: the weeks each anchor was printed between, the order, the gap the change is bracketed by, and which anchor is live at the scene date. `cannot_say` is required and is the point of the whole thing — a change of anchor is not evidence of which side of it moved.",

@@ -7,7 +7,7 @@
     "gazetteer": {
       "claims": 1166,
       "persons": 2628,
-      "businesses": 219
+      "businesses": 217
     },
     "structures": 359,
     "streets": 19,
@@ -15,8 +15,8 @@
   },
   "counts": {
     "businesses": {
-      "total": 219,
-      "present_at_scene_date": 201,
+      "total": 217,
+      "present_at_scene_date": 199,
       "excluded": {
         "contradicted_before_scene_date": 14,
         "opening_announced_after_scene_date": 4
@@ -25,11 +25,11 @@
         "enrich_existing": 31,
         "new_building": 26,
         "street_only": 60,
-        "unplaceable": 102
+        "unplaceable": 100
       },
       "by_placement_class": {
         "corner": 16,
-        "none": 84,
+        "none": 82,
         "relative": 101,
         "street_only": 18
       },
@@ -37,11 +37,11 @@
         "enrich_existing": 31,
         "new_building": 26,
         "street_only": 60,
-        "unplaceable": 84
+        "unplaceable": 82
       },
       "outside_the_plat": 5,
       "survival_liberty_required": 109,
-      "backdating_liberty_required": 30,
+      "backdating_liberty_required": 28,
       "dissolved_after_scene_date": 1
     },
     "persons": {
@@ -510,43 +510,6 @@
       "match_tier": null,
       "match_evidence": null,
       "action_note": "The paper names Dearborn Street and nothing narrower; the anchor 'De[a]rborn Stree[t] Denrdorn Stree' names nothing the committed town holds."
-    },
-    {
-      "id": "business_abell",
-      "name": "Abell",
-      "trade": "attorney and counsellor at law, and law conveyancing",
-      "occupation": "attorney",
-      "proprietors": [
-        "Abell"
-      ],
-      "street": "Dearborn Street",
-      "street_id": "dearborn",
-      "placement_class": "relative",
-      "evidence": {
-        "first_issue": "1835-06-24",
-        "last_issue": "1835-06-24"
-      },
-      "present_at_scene_date": true,
-      "exclusion": null,
-      "exclusion_note": null,
-      "dissolved_after_scene_date": [],
-      "opening_announced": [],
-      "survival_liberty_required": false,
-      "backdating_liberty_required": false,
-      "anchor": {
-        "kind": "unresolved",
-        "target": null,
-        "streets": null,
-        "via": null,
-        "note": "The anchor 'the \"Eagle Coffee House\"' names nothing the committed town holds."
-      },
-      "anchor_change": null,
-      "outside_plat": null,
-      "action": "street_only",
-      "action_target": "dearborn",
-      "match_tier": null,
-      "match_evidence": null,
-      "action_note": "The paper names Dearborn Street and nothing narrower; the anchor 'the \"Eagle Coffee House\"' names nothing the committed town holds."
     },
     {
       "id": "business_an_iron_and_hardware_stock_chicago_june_1835",
@@ -2032,7 +1995,7 @@
       "placement_class": "none",
       "evidence": {
         "first_issue": "1835-06-20",
-        "last_issue": "1835-07-01"
+        "last_issue": "1835-07-29"
       },
       "present_at_scene_date": true,
       "exclusion": null,
@@ -3269,43 +3232,6 @@
       "opening_announced": [],
       "survival_liberty_required": true,
       "backdating_liberty_required": false,
-      "anchor": {
-        "kind": "unresolved",
-        "target": null,
-        "streets": null,
-        "via": null,
-        "note": "The paper gives no anchor."
-      },
-      "anchor_change": null,
-      "outside_plat": null,
-      "action": "unplaceable",
-      "action_target": null,
-      "match_tier": null,
-      "match_evidence": null,
-      "action_note": "No street the model holds. The paper gives no anchor."
-    },
-    {
-      "id": "business_howard_fire_insurance_company_e_k_hubbard_agent_at_chicago",
-      "name": "Howard Fire Insurance Company — E. K. Hubbard, agent at Chicago",
-      "trade": "fire insurance agency",
-      "occupation": null,
-      "proprietors": [
-        "E. K. Hubbard"
-      ],
-      "street": null,
-      "street_id": null,
-      "placement_class": "none",
-      "evidence": {
-        "first_issue": "1835-07-08",
-        "last_issue": "1835-07-29"
-      },
-      "present_at_scene_date": true,
-      "exclusion": null,
-      "exclusion_note": null,
-      "dissolved_after_scene_date": [],
-      "opening_announced": [],
-      "survival_liberty_required": false,
-      "backdating_liberty_required": true,
       "anchor": {
         "kind": "unresolved",
         "target": null,
@@ -6331,13 +6257,14 @@
       "trade": "attorney, counsellor and land conveyancer",
       "occupation": "attorney",
       "proprietors": [
-        "S. Abell"
+        "S. Abell",
+        "Abell"
       ],
-      "street": null,
-      "street_id": null,
-      "placement_class": "none",
+      "street": "Dearborn Street",
+      "street_id": "dearborn",
+      "placement_class": "relative",
       "evidence": {
-        "first_issue": "1835-08-01",
+        "first_issue": "1835-06-24",
         "last_issue": "1835-08-01"
       },
       "present_at_scene_date": true,
@@ -6346,21 +6273,21 @@
       "dissolved_after_scene_date": [],
       "opening_announced": [],
       "survival_liberty_required": false,
-      "backdating_liberty_required": true,
+      "backdating_liberty_required": false,
       "anchor": {
         "kind": "unresolved",
         "target": null,
         "streets": null,
         "via": null,
-        "note": "The paper gives no anchor."
+        "note": "The anchor 'the \"Eagle Coffee House\"' names nothing the committed town holds."
       },
       "anchor_change": null,
       "outside_plat": null,
-      "action": "unplaceable",
-      "action_target": null,
+      "action": "street_only",
+      "action_target": "dearborn",
       "match_tier": null,
       "match_evidence": null,
-      "action_note": "No street the model holds. The paper gives no anchor."
+      "action_note": "The paper names Dearborn Street and nothing narrower; the anchor 'the \"Eagle Coffee House\"' names nothing the committed town holds."
     },
     {
       "id": "business_s_abell_attorney_counsellor_at_law",
