@@ -265,6 +265,26 @@ name, so `Cohen, P.` and `Cohen, J.` are two people. A merge is declared in
 `identity.json` with a `merge_rule` naming both spellings; same surname with different
 initials never merges, rule or no rule.
 
+**The first bulk merge pass is T-0299**: the list of letters remaining in the Post Office at
+Chicago on 1 July 1834, which the Democrat printed three times — 1834-07-02, 1834-07-09 and
+1834-07-16 — and which the segmenter cut differently each time, so 298 names had been
+minting up to three people apiece. The three readings are aligned BY POSITION, because the
+list is one ordered sequence that every printing carries in the same order; a pair is a
+candidate only where the alignment puts the two readings at the same entry, never on
+resemblance alone. **175 merges declared and 29 REFUSED**, the refusals recorded in
+`refused_merges` beside them with the surname the two share and the initials that separate
+them — the refusals are the evidence that the pass was a judgement and not a
+de-duplication. The gazetteer went from 2,108 persons to 1,933. The file's `passes` block
+states the method, the canonical-reading rule, and the two returns printed in the same
+issues that are deliberately NOT part of this list (Plainfield and Juliet). Seventeen of
+the twenty-nine refusals are an initial one printing could not read against the same
+initial another prints whole; that is T-0348, and it is the owner's to rule on.
+
+`surname()` and `initials()` take the transcription's markup off before they parse (T-0299).
+They did not, so `A[n]drew W. Borland` read as four forenames and `Benjamın Swena` as two,
+and whether the policy protected a pair came down to which side of a name a bracket fell on.
+The policy is unchanged; ten self-test cases hold both halves of that.
+
 **AND THE RULE HAS NO SIBLING FOR FIRMS, WHICH IS WHY ONE BOOKSHOP STANDS IN THREE PLACES.**
 The Chicago Democrat's bookseller is `RUISAL & CLUPR,` in the December 1834 advertisement's
 only legible heading, and T-0327 read the name off the firm's OTHER advertisement rather
