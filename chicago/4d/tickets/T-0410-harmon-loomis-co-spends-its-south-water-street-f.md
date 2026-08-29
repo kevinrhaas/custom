@@ -1,7 +1,7 @@
 ---
 id: T-0410
 title: Harmon, Loomis & Co. spends its South Water street face, and the 24 street-face adoptions reach the structure records
-state: claimed
+state: done
 epic: META
 requested_by: loop
 seen: false
@@ -9,8 +9,8 @@ effort: S
 legacy_id: null
 parent: T-0387
 opened: 2026-08-29
-closed: null
-pr: null
+closed: 2026-08-29
+pr: 561
 claimed_by: run 8/29/2026, 2:31:32 PM CT
 blocked_on: null
 needs_bake: false
