@@ -3,7 +3,7 @@
   "source": "docs/LIBERTIES.md",
   "standard": "A visitor should be able to tell you which parts we made up.",
   "note": "The confidence model covers attributes. These are the decisions that live above any single attribute: scope, omission, simplification, and the choices a visitor would otherwise have to reverse-engineer.",
-  "count": 208,
+  "count": 209,
   "liberties": [
     {
       "id": "L1",
@@ -3984,12 +3984,6 @@
           "domain": "structure",
           "structure": "goss_cobb_saddlery",
           "phase": "shop_1833",
-          "aspect": "documented_range"
-        },
-        {
-          "domain": "structure",
-          "structure": "goss_cobb_saddlery",
-          "phase": "shop_1833",
           "aspect": "footprint"
         },
         {
@@ -4000,7 +3994,7 @@
         }
       ],
       "recorded": "2026-08-11",
-      "revised": null,
+      "revised": "2026-08-29",
       "fields": [
         {
           "label": "Decision",
@@ -4020,11 +4014,15 @@
         },
         {
           "label": "Covers",
-          "text": "`goss_cobb_saddlery.shop_1833.documented_range`, `goss_cobb_saddlery.shop_1833.footprint`, `goss_cobb_saddlery.shop_1833.form.stories`."
+          "text": "`goss_cobb_saddlery.shop_1833.footprint`, `goss_cobb_saddlery.shop_1833.form.stories`."
         },
         {
           "label": "Recorded",
           "text": "2026-08-11."
+        },
+        {
+          "label": "Revised",
+          "text": "2026-08-29 — **one of this entry's three admissions has been discharged and the other two have not**, so the entry stays where it is with a narrower `Covers:` line rather than moving to Resolved. What the entry above calls for in its own last field — *\"further issues of the Chicago Democrat and the Chicago American, one line of which would settle survival and might name a side\"* — arrived. The *Chicago American* sets S. B. Cobb's trading card three times across the scene date: 1835-06-08 p3 c5, 1835-06-13 p3 c6 and 1835-07-11 p2 c1, the middle one reading *\"[S]A[D]DLE, HARNESS & TRUNK M[anufa]c[tor]y. S[. ]B[. ]COB[B] [w]il[l] [c]o[nt]in[ue] the [above business] at his shop, corner [o]f [… ][st]re[et]s\"*. **Survival is settled**, and past the scene date at that, so `documented_range` is graded `inferred` and leaves this entry's coverage. **The side is not**: all three printings lose the cross street, so the quadrant choice and the Canal-versus-West-Water doubt this entry records stand exactly as written, as do the `footprint` and the storey count, which the American says nothing about. The one thing the paper added that this entry did not ask for is that the firm it is named for was **dissolved on 18 February 1835** and Cobb carried the shop on alone; that is a correction to the record's `occupants` and its signboard, not a liberty, because it replaces an invention with a document."
         }
       ]
     },
@@ -13220,6 +13218,29 @@
     },
     {
       "id": "L207",
+      "title": "Twelve names from the post office's letter lists are written as households of one, on the thinnest evidence this project accepts for a resident",
+      "section": "per_subject",
+      "subjects": [],
+      "covers": [],
+      "recorded": "2026-08-29",
+      "revised": null,
+      "fields": [
+        {
+          "label": "Decision",
+          "text": "the owner ruled on 2026-08-28 that a name in the post office's list of uncalled-for letters is enough to make somebody a resident. On 2026-08-29 twelve of those names — William Luce, Caleb Foster, Ira Herrick, Nicholas Boilvin, Mary Barrows, Nathan Hutchins, Chester House, Lyman Bennet, Pierce Downer, Stephen Mack, Robert Lucas and Frederick Myers — were written as households of ONE, `division: unplaced`, no trade, no dwelling, no family. `tools/mint_letter_list_residents.py` derives the set and re-derives it on every commit. **What is not invented: the names and the letters.** Each is printed in the Chicago Democrat at the issue and column its record cites, in a list headed as letters remaining in the Post Office at Chicago and uncalled-for. **What is invented, and it is the same invention as L206: that each is a household.** No source says any of them headed one, or lived at all in the sense this dataset means. The container is the dataset's shape and every record says so. **WHY TWELVE AND NOT 1,907, which is the number of such names the register carries.** Through the eight refusals `mint_documented_residents.py` derives, 726 of the 1,907 survive — 476 refused as garbled, 310 whose first evidence falls after the scene date, 250 for a surname already minted, 101 because the town already names that family, 22 placed outside the town, 12 as firms, 10 as a surname and nothing else. Minting all 726 would take this town from 225 people to 951 and make three residents in four a name on a post-office list. That is a question about the SCALE of the reconstruction, it is the owner's, and it is ticket **T-0379** with those numbers in it. This pass takes the slice the CORPUS ranks highest instead: the Democrat reprinted one return over consecutive weekly issues, so a name's printings are not its returns, and grouping its issues at a gap of more than sixty days separates a reprint from a genuinely later list. Eighteen names in the pool appear in more than one return and twelve survive the refusals, five of them from January 1834 to May 1835. A name held once is somebody who was written to. A name held in two returns sixteen months apart is somebody a correspondent still believed was reachable at Chicago. **The limit, stated rather than hidden.** The Chicago post office served the country around the town as well as the town, so an uncalled-for letter is evidence that its writer believed the addressee reachable at Chicago and NOT proof that he slept there. Refusal 6 catches the names the corpus places elsewhere; it cannot catch a settler the corpus never places at all. Every one of the ten records says this in its own person note, and a scan read, a land record or a second corpus that places one of them outside the town retires that record. Two of the twelve — Pierce Downer and Nicholas Boilvin — carry names this project can put no source against inside the town, and they are held on the ruling and the returns alone, which is what that limit means in practice. **Precedence between the two minting passes.** Six candidates in more than one return were refused: five the transcription bracketed as uncertain, and Albert Fowler, because `mint_documented_residents.py` had already minted Elmira Fowler. A man the papers give a trade is better evidenced than a name on a letter list, so where the two passes reach for one family name the documented pass keeps it and this one gives way."
+        },
+        {
+          "label": "Consequence",
+          "text": "the people section goes from 189 households and 225 people to 201 and 237; `households_without_a_dwelling` in the town census moves from 68 to 80 and `housed` does not move, because none of these twelve is placed anywhere. `letter_list_only` now reaches the visitor's card — a row of its own on the person and a clause in the section's count sentence — so a letter-list name and a shopkeeper who advertised his stock can never again read as the same claim. No figure is drawn (L1). Related: **L206** (the documented tradespeople minted as households of one) · **L205** · **L1** (no figure is drawn for any resident) · tickets **T-0378** (this), **T-0379**, **T-0374**, **T-0368**, **T-0264**."
+        },
+        {
+          "label": "Recorded",
+          "text": "2026-08-29."
+        }
+      ]
+    },
+    {
+      "id": "L208",
       "title": "New York House: everything about the building except its storeys and its eaves is ours",
       "section": "per_subject",
       "subjects": [
@@ -13287,7 +13308,7 @@
       ]
     },
     {
-      "id": "L208",
+      "id": "L209",
       "title": "\"Near Wells\" is two blocks, and the free lot chose between them",
       "section": "per_subject",
       "subjects": [
@@ -13307,7 +13328,7 @@
         },
         {
           "label": "What would discharge it",
-          "text": "a source naming the side of Wells, a lot number, or a corner. Any of them moves the building at most one block east and costs nothing else on the record — the form, the range, the occupants and the trade are all independent of which block it stands on. **No `Covers:` token.** The placement is `inferred` and not invented: it is derived from committed lot geometry and stated to the metre. What is admitted here is the CHOICE between two readings the source leaves open, which is a navigation decision and has nothing in the data to point at. Related: **L7** (three buildings placed from bank geometry rather than from a corner) · **L12** (placed on one side of a disputed river) · **L207** · ticket **T-0380**."
+          "text": "a source naming the side of Wells, a lot number, or a corner. Any of them moves the building at most one block east and costs nothing else on the record — the form, the range, the occupants and the trade are all independent of which block it stands on. **No `Covers:` token.** The placement is `inferred` and not invented: it is derived from committed lot geometry and stated to the metre. What is admitted here is the CHOICE between two readings the source leaves open, which is a navigation decision and has nothing in the data to point at. Related: **L7** (three buildings placed from bank geometry rather than from a corner) · **L12** (placed on one side of a disputed river) · **L208** · ticket **T-0380**."
         },
         {
           "label": "Recorded",

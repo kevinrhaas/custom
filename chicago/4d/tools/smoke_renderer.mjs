@@ -9583,7 +9583,11 @@ for (const [label, viewport, touch] of [
       // nine the sources date. A row that carries neither cannot fail for them.
       const named = rows.find((r) => r.dataset.id === 'hh_inf_baker_south_01');
       const dated = rows.find((r) => r.dataset.id === 'hh_egan_william_b');
-      for (const el of [target, named, dated]) {
+      // T-0378. A fourth row, for the same reason: `letter_list_only` is on the
+      // ten people the post office's letter lists minted and on nobody else, so
+      // no row above can fail for it.
+      const letter = rows.find((r) => r.dataset.id === 'hh_ll_william_luce');
+      for (const el of [target, named, dated, letter]) {
         if (!el) continue;
         el.open = true;
         for (let i = 0; i < 100 && el.querySelector('.res-hh-body .legend-note'); i++) {
@@ -9594,6 +9598,7 @@ for (const [label, viewport, touch] of [
       return {
         namedText: bodyOf(named),
         datedText: bodyOf(dated),
+        letterText: bodyOf(letter),
         households: window.__chicago4d.residents?.households ?? 0,
         persons: window.__chicago4d.residents?.persons ?? 0,
         offCard: window.__chicago4d.residents?.offCard ?? -1,
@@ -9615,9 +9620,9 @@ for (const [label, viewport, touch] of [
       };
     });
     check(`${label}: every household in the layer is on the card`,
-      residents.households === 189 && residents.rendered === 189 && !residents.busy,
+      residents.households === 201 && residents.rendered === 201 && !residents.busy,
       `${residents.households} loaded / ${residents.rendered} rendered (${residents.error})`);
-    check(`${label}: the 225 person entries are counted`, residents.persons === 225,
+    check(`${label}: the 237 person entries are counted`, residents.persons === 237,
       `${residents.persons}`);
     // The finding itself, asserted as a number so it cannot quietly grow back:
     // the households that reach no building sidecar are each marked on their own
@@ -9625,9 +9630,11 @@ for (const [label, viewport, touch] of [
     // workplace are both unattested. The other 16 are T-0376's minted
     // tradespeople, who reach no building BY CONSTRUCTION: the papers name them
     // and their trade and say nothing whatever about where they lived, so the
-    // chip is the card telling the truth rather than a regression.
+    // chip is the card telling the truth rather than a regression, and T-0378's
+    // twelve letter-list names are twelve more of the same kind: a list of uncalled-for
+    // letters gives a name and no address at all.
     check(`${label}: the households no building card can reach are marked`,
-      residents.offCard === 33 && residents.orphanChips === 33,
+      residents.offCard === 45 && residents.orphanChips === 45,
       `${residents.offCard} off-card / ${residents.orphanChips} chip(s)`);
     check(`${label}: the researched non-residents are published too`,
       residents.notResident === 10, `${residents.notResident}`);
@@ -9677,6 +9684,31 @@ for (const [label, viewport, touch] of [
       && /\bBorn\b/.test(residents.datedText)
       && /28 September 1808/.test(residents.datedText),
       residents.datedText.slice(0, 200));
+    // T-0378, and the whole point of that ticket: the register reads two kinds of
+    // person out of the papers and they are NOT the same claim. A man who
+    // advertised his stock is named, dated, placed and given a trade; a name in
+    // the post office's list of uncalled-for letters is a name. `letter_list_only`
+    // reached `gazetteer.json` and `register_1835.json` and stopped there, so on
+    // the card the two read identically — which is exactly what the owner's ruling
+    // of 2026-08-28 says must never happen. Asserted in BOTH places it is said:
+    // the person's own row, and the section's count sentence, because a visitor
+    // who never opens a household still reads the second one.
+    check(`${label}: a letter-list name says on its own row how thin that evidence is`,
+      /How this person is known/.test(residents.letterText)
+      && /uncalled-for letters/.test(residents.letterText)
+      && /weakest evidence/.test(residents.letterText),
+      residents.letterText.slice(0, 200));
+    check(`${label}: the count sentence says how many people are known only that way`,
+      /12 of the people here are known ONLY from the post office/.test(residents.prose),
+      residents.prose.slice(0, 240));
+    // And the other half of the same ruling: none of the ten may carry a trade
+    // the papers do not give them. The occupation on a letter-list person reads
+    // that none is recorded, and a plausible-sounding job appearing there would
+    // be an invention this section exists to make impossible.
+    check(`${label}: a letter-list name carries no invented trade`,
+      /none recorded/i.test(residents.letterText)
+      && /No source records an occupation/.test(residents.letterText),
+      residents.letterText.slice(0, 200));
     // The one thing this section must never imply, and the constraint that
     // outranks every other consideration in this project: v1 draws no human
     // figures, and the removal of August 1835 is not staged anywhere.

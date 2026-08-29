@@ -1,6 +1,6 @@
 {
   "project": "chicago-4d",
-  "generated_ct": "Aug 29, 2026, 8:48 AM",
+  "generated_ct": "Aug 29, 2026, 8:53 AM",
   "tickets": [
     {
       "id": "T-0001",
@@ -4515,7 +4515,7 @@
       "claimed_by": null,
       "blocked_on": "T-0262",
       "needs_bake": false,
-      "queue_rank": 1
+      "queue_rank": 0
     },
     {
       "id": "T-0264",
@@ -4628,7 +4628,7 @@
     {
       "id": "T-0272",
       "title": "The West Division parcel's form values come from the archetype and cite the family band: 8 families, 11 claims outside it",
-      "state": "open",
+      "state": "done",
       "epic": "META",
       "requested_by": "loop",
       "seen": false,
@@ -4636,12 +4636,12 @@
       "legacy_id": null,
       "parent": null,
       "opened": "2026-08-28",
-      "closed": null,
-      "pr": null,
-      "claimed_by": null,
+      "closed": "2026-08-29",
+      "pr": "534",
+      "claimed_by": "run 8/29/2026, 7:05:57 AM CT",
       "blocked_on": null,
       "needs_bake": true,
-      "queue_rank": 10
+      "queue_rank": null
     },
     {
       "id": "T-0273",
@@ -5163,7 +5163,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 9
+      "queue_rank": 10
     },
     {
       "id": "T-0306",
@@ -5397,7 +5397,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 6
+      "queue_rank": 7
     },
     {
       "id": "T-0321",
@@ -5415,7 +5415,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 7
+      "queue_rank": 8
     },
     {
       "id": "T-0323",
@@ -5577,7 +5577,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 8
+      "queue_rank": 9
     },
     {
       "id": "T-0332",
@@ -5654,7 +5654,7 @@
     {
       "id": "T-0336",
       "title": "The 31 July 1835 letter list, standing in all four August Democrats",
-      "state": "open",
+      "state": "done",
       "epic": "PAPERS",
       "requested_by": "owner",
       "seen": false,
@@ -5662,12 +5662,12 @@
       "legacy_id": null,
       "parent": "T-0297",
       "opened": "2026-08-28",
-      "closed": null,
-      "pr": null,
-      "claimed_by": null,
+      "closed": "2026-08-29",
+      "pr": "532",
+      "claimed_by": "run 8/29/2026, 7:12:54 AM CT",
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 0
+      "queue_rank": null
     },
     {
       "id": "T-0337",
@@ -6117,12 +6117,12 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 4
+      "queue_rank": 5
     },
     {
       "id": "T-0374",
       "title": "letter_list_only reaches the visitor's card, and the 1,536 names known only from the post office",
-      "state": "open",
+      "state": "split",
       "epic": "PAPERS",
       "requested_by": "owner",
       "seen": false,
@@ -6130,12 +6130,12 @@
       "legacy_id": null,
       "parent": "T-0368",
       "opened": "2026-08-29",
-      "closed": null,
+      "closed": "2026-08-29",
       "pr": null,
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 5
+      "queue_rank": null
     },
     {
       "id": "T-0375",
@@ -6192,6 +6192,42 @@
       "queue_rank": 72
     },
     {
+      "id": "T-0378",
+      "title": "The names the post office held letters for in more than one return join the town, and letter_list_only reaches the visitor's card",
+      "state": "done",
+      "epic": "PAPERS",
+      "requested_by": "owner",
+      "seen": false,
+      "effort": "S",
+      "legacy_id": null,
+      "parent": "T-0374",
+      "opened": "2026-08-29",
+      "closed": "2026-08-29",
+      "pr": "535",
+      "claimed_by": "run 8/29/2026, 7:09:47 AM CT",
+      "blocked_on": null,
+      "needs_bake": false,
+      "queue_rank": null
+    },
+    {
+      "id": "T-0379",
+      "title": "The letter-list names the post office printed in a single return, and the change of scale they put to the town",
+      "state": "open",
+      "epic": "PAPERS",
+      "requested_by": "owner",
+      "seen": false,
+      "effort": "S",
+      "legacy_id": null,
+      "parent": "T-0374",
+      "opened": "2026-08-29",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "queue_rank": 6
+    },
+    {
       "id": "T-0380",
       "title": "The New York House stands on Lake Street near Wells, and the American dates its opening",
       "state": "done",
@@ -6212,7 +6248,7 @@
     {
       "id": "T-0381",
       "title": "John Holbrook's store stands on South Water Street, one door from Dearborn",
-      "state": "open",
+      "state": "withdrawn",
       "epic": "META",
       "requested_by": "loop",
       "seen": false,
@@ -6220,17 +6256,17 @@
       "legacy_id": null,
       "parent": "T-0306",
       "opened": "2026-08-29",
-      "closed": null,
+      "closed": "2026-08-29",
       "pr": null,
       "claimed_by": null,
-      "blocked_on": null,
+      "blocked_on": "Superseded: a sibling slice split T-0306 on dev in the same hour (T-0384..T-0387, merged in #533/#535's train) and T-0384 is this ticket's work. Two runs split one parent concurrently; dev's split is the one that landed and is kept whole. Withdrawn rather than worked.",
       "needs_bake": false,
-      "queue_rank": 2
+      "queue_rank": null
     },
     {
       "id": "T-0382",
       "title": "The three American storefronts the town cannot anchor: J. Wright's, the unread Dearborn anchor, and Cobb's corner",
-      "state": "open",
+      "state": "withdrawn",
       "epic": "META",
       "requested_by": "loop",
       "seen": false,
@@ -6238,12 +6274,120 @@
       "legacy_id": null,
       "parent": "T-0306",
       "opened": "2026-08-29",
+      "closed": "2026-08-29",
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": "Superseded: a sibling slice split T-0306 on dev in the same hour and T-0385, T-0386 and T-0387 cover this ticket's three storefronts between them. Two runs split one parent concurrently; dev's split is the one that landed. Withdrawn rather than worked.",
+      "needs_bake": false,
+      "queue_rank": null
+    },
+    {
+      "id": "T-0383",
+      "title": "S. B. Cobb's saddlery at Lake and Canal still letters the firm the American says dissolved in February 1835",
+      "state": "done",
+      "epic": "META",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "S",
+      "legacy_id": null,
+      "parent": "T-0306",
+      "opened": "2026-08-29",
+      "closed": "2026-08-29",
+      "pr": "533",
+      "claimed_by": "run 8/29/2026, 7:18:17 AM CT",
+      "blocked_on": null,
+      "needs_bake": false,
+      "queue_rank": null
+    },
+    {
+      "id": "T-0384",
+      "title": "John Holbrook's store takes its door on South Water Street, one door from Dearborn",
+      "state": "open",
+      "epic": "META",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "M",
+      "legacy_id": null,
+      "parent": "T-0306",
+      "opened": "2026-08-29",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": true,
+      "queue_rank": 1
+    },
+    {
+      "id": "T-0385",
+      "title": "The New York Clothing Store stands three doors north of the Tremont House in Dearborn Street",
+      "state": "open",
+      "epic": "META",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "M",
+      "legacy_id": null,
+      "parent": "T-0306",
+      "opened": "2026-08-29",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": true,
+      "queue_rank": 2
+    },
+    {
+      "id": "T-0386",
+      "title": "W. Montgomery's new auction and commission room takes David Carver's old stand on South Water Street",
+      "state": "open",
+      "epic": "META",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "M",
+      "legacy_id": null,
+      "parent": "T-0306",
+      "opened": "2026-08-29",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": true,
+      "queue_rank": 3
+    },
+    {
+      "id": "T-0387",
+      "title": "The four storefronts the American puts on a street and nothing narrower: Harmon Loomis, Wm. Sabine, John Dave and the Dearborn Street wine store",
+      "state": "open",
+      "epic": "META",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "M",
+      "legacy_id": null,
+      "parent": "T-0306",
+      "opened": "2026-08-29",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": true,
+      "queue_rank": 4
+    },
+    {
+      "id": "T-0388",
+      "title": "Three derived records have drifted from their own generators on an unmodified dev, so every branch's gate is red",
+      "state": "open",
+      "epic": "META",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "S",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-08-29",
       "closed": null,
       "pr": null,
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 3
+      "queue_rank": 73
     }
   ]
 }
