@@ -1,6 +1,6 @@
 {
   "project": "chicago-4d",
-  "generated_ct": "Aug 29, 2026, 5:05 PM",
+  "generated_ct": "Aug 29, 2026, 5:14 PM",
   "tickets": [
     {
       "id": "T-0001",
@@ -6892,6 +6892,24 @@
       "blocked_on": null,
       "needs_bake": false,
       "queue_rank": 76
+    },
+    {
+      "id": "T-0422",
+      "title": "The widened counterfactual deals a roof per street, and every roof a widening adds already fronts another street",
+      "state": "open",
+      "epic": "META",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "S",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-08-29",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "queue_rank": 77
     }
   ]
 }

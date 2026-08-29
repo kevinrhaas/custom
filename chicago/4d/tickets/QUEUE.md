@@ -172,3 +172,4 @@ T-0415 — John Wright's two buildings to let are named (east) and (west) and st
 T-0419 — The re-centred South Water corridor stands 8.58 m off its own block faces, and the strip between belongs to neither
 T-0420 — Open the four South Water blocks T-0009 has unblocked: 20 roofs of headroom on franklin, lasalle, clark and dearborn
 T-0421 — Canal Street's three control points spread 2.33 m, so its corridor cannot be centred on any of them
+T-0422 — The widened counterfactual deals a roof per street, and every roof a widening adds already fronts another street
