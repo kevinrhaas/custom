@@ -3848,22 +3848,51 @@ for (const [label, viewport, touch] of [
       // Each hitching post against its OWN stand: the tallest and the lowest
       // vertex within 0.4 m of it, which is its own timber and nothing else —
       // the front walk's near edge is 0.9 m off and the crossing is metres away.
+      // Measured over the record on 2026-08-29: the nearest fence line to any of
+      // the fourteen is 2.98 m, and thirteen boxes hold exactly the 72 vertices
+      // of one post's own shaft and cap and nothing else. The fourteenth is the
+      // Mansion House's, where the board crossing over Lake Street brings its
+      // near edge 0.13 m from the post and lays 15 more vertices in the box.
+      // They move neither reading — a crossing deck stands 0.06 m over its
+      // ground, so it is under the foot the min is looking for and a metre and a
+      // quarter under the head the max is — and the box is left at 0.4 m rather
+      // than tightened onto the 0.22 m cap, which would leave 0.02 m of margin
+      // against that same crossing and fail on a plank laid a hand further in.
+      //
+      // IT WALKS EVERY MESH IN THE LAYER, and T-0244 is why. This read the
+      // shared `frontage` mesh alone — `const g = mesh?.geometry`, with a
+      // comment saying the posts live in it — which was true of the two the
+      // Sauganash's own record stands and stopped being true the day T-0194
+      // added twelve at the street edge. A post that names a street is STANDING
+      // timber and lands in that street's `<record>__<street>__standing` chunk,
+      // published as a `frontage-chunk` mesh beside the fences it culls and
+      // casts with; the shared mesh never sees it. So all twelve reported a max
+      // over an empty vertex set — `-Infinity` for a height and `Infinity` for a
+      // foot — and the geometry was right the whole time. The lesson is the
+      // resolution rule, not the count: a post is found by WHERE IT STANDS,
+      // across every mesh the layer draws, because which mesh it is folded into
+      // is a draw-call decision that may change again without the post moving.
       const hitching = (f?.posts ?? []).filter((q) => q.kind === 'hitching_post').map((q) => {
         const [e0, n0] = q.at_local_enu_m;
         const stand = terrain.surfaceHeight(e0, n0);
         let top = -Infinity;
         let low = Infinity;
-        const g = mesh?.geometry;         // the posts live in the shared mesh
-        if (g && Number.isFinite(stand)) {
-          const pos = g.getAttribute('position');
-          for (let i = 0; i < pos.count; i++) {
-            if (Math.abs(pos.getX(i) - e0) > 0.4) continue;
-            if (Math.abs(-pos.getZ(i) - n0) > 0.4) continue;
-            top = Math.max(top, pos.getY(i) - stand);
-            low = Math.min(low, pos.getY(i) - stand);
+        let found = 0;
+        if (Number.isFinite(stand)) {
+          for (const t of timber) {
+            const pos = t.geometry?.getAttribute('position');
+            if (!pos) continue;
+            for (let i = 0; i < pos.count; i++) {
+              if (Math.abs(pos.getX(i) - e0) > 0.4) continue;
+              if (Math.abs(-pos.getZ(i) - n0) > 0.4) continue;
+              found += 1;
+              top = Math.max(top, pos.getY(i) - stand);
+              low = Math.min(low, pos.getY(i) - stand);
+            }
           }
         }
-        return { id: q.id, top, low, recorded: q.post_height_m ?? null,
+        return { id: q.id, top, low, found, street: q.street ?? null,
+                 recorded: q.post_height_m ?? null,
                  clear: q.clear_of_track_m ?? null, text: q.text ?? null };
       });
       return {
@@ -3914,10 +3943,16 @@ for (const [label, viewport, touch] of [
       // new one — but a walk that stopped short of its corner had refused the
       // corner CROSSING with it, and two of those are now laid: 37 crossings to
       // 39, and the refusal that named them retires, 84 to 83.
+      // T-0028 opened blk_lake_franklin and the warehouse it was dealt stands
+      // 1.50 m off that lot's frontage line — inside the 3.0 m a street fence
+      // needs, so the building IS the street wall there and the fence is
+      // refused: 83 to 84, and nothing else in this line moves. Left a count
+      // behind for two days, the same way T-0024's did, and for the same reason
+      // as T-0244 below: this suite is not the dev gate.
       frontage.census?.records === 5 && frontage.census?.walks === 51
         && frontage.census?.crossings === 39
         && frontage.census?.posts === 15 && frontage.census?.fences === 35
-        && frontage.census?.refused === 83
+        && frontage.census?.refused === 84
         && frontage.recordIds.join(',')
           === 'green_tree_frontage,sauganash_frontage,river_walk_frontage,'
             + 'lasalle_crossing_frontage,town_street_edge'
@@ -4050,7 +4085,7 @@ for (const [label, viewport, touch] of [
       frontagePick.includes('green_tree_tavern'),
       `25 aims returned [${[...new Set(frontagePick)].join(', ') || 'nothing'}]`);
 
-    // --- and the same layer at the Sauganash (T-0090) ---------------------
+    // --- and the same layer at the Sauganash (T-0090) and the street edge --
     //
     // THE POSTS ARE POSTS AND NOTHING ELSE. A hitching post that fell through to
     // the sign post's branch would stand 3.6 m tall with a cross-arm and a blank
@@ -4058,15 +4093,41 @@ for (const [label, viewport, touch] of [
     // record says 1.30 m and it is the renderer that would be wrong. Measured
     // against each post's own terrain sample, because a pole whose height came
     // from a number beside the mesh floats.
-    check(`${label}: the Sauganash's two hitching posts stand on their own ground, carrying nothing`,
-      frontage.hitching.length === 2
-        && frontage.census?.hitching === 2
-        && frontage.hitching.every((h) => Math.abs(h.top - h.recorded) <= 0.05
-          && Math.abs(h.low) <= 0.02 && h.clear > 0 && !h.text)
+    //
+    // TWO ON THE SAUGANASH'S OWN RECORD AND TWELVE AT THE STREET EDGE. This
+    // asserted two, and T-0194 made it fourteen without touching the line, so it
+    // was red on `dev` from that merge until T-0244 (the dev gate is `check.sh`
+    // and this suite is dispatch-plus-one-path, so nothing stopped it). The two
+    // populations are told apart by `street`, which is exactly the field that
+    // decides the mesh: a post naming a street is standing timber in that
+    // street's chunk, and a post naming none falls back to the shared mesh. The
+    // counts are exact on purpose — a post appearing or vanishing is a change
+    // worth failing over — so a run that adds posts updates them here and says
+    // so, the same bookkeeping the walk and crossing counts above carry.
+    //
+    // `found` is the vertex tally inside each post's box, and it is asserted
+    // non-zero SEPARATELY from the heights: an empty set makes `top` -Infinity
+    // and `low` Infinity, which fail the height tests too but read as a post of
+    // the wrong height rather than as a post the gate cannot see. That was
+    // twelve of these fourteen for two days.
+    const postsBad = frontage.hitching.filter((h) => !(h.found > 0
+      && Math.abs(h.top - h.recorded) <= 0.05
+      && Math.abs(h.low) <= 0.02 && h.clear > 0 && !h.text));
+    check(`${label}: the fourteen hitching posts stand on their own ground, carrying nothing`,
+      frontage.hitching.length === 14
+        && frontage.census?.hitching === 14
+        && frontage.hitching.filter((h) => !h.street).length === 2
+        && frontage.hitching.filter((h) => h.street).length === 12
+        && postsBad.length === 0
         && frontage.census?.lettered === 1
         && frontage.noBoardHere === false,
-      frontage.hitching.map((h) => `${h.id} ${h.top?.toFixed(2)}/${h.recorded} m, `
-        + `foot ${h.low?.toFixed(3)} m, ${h.clear} m clear`).join(' | ')
+      `${frontage.hitching.length} post(s) read, census says ${frontage.census?.hitching}`
+      + ` — ${frontage.hitching.filter((h) => !h.street).length} on a record's own`
+      + ` ground, ${frontage.hitching.filter((h) => h.street).length} at the street edge`
+      + `; ${postsBad.length} bad: `
+      + (postsBad.map((h) => `${h.id} ${h.top?.toFixed(2)}/${h.recorded} m, `
+        + `foot ${h.low?.toFixed(3)} m, ${h.found} vert, ${h.clear} m clear`).join(' | ')
+        || 'none')
       + ` — ${frontage.census?.lettered} board(s) lettered in the layer, `
       + `record says a board on a post here: ${frontage.noBoardHere}`);
 

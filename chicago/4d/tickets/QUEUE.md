@@ -53,7 +53,6 @@ T-0305 — Four readings the American contradicts itself on need the page images
 # --- STANDING REDS — invisible, but each one is red on an UNMODIFIED dev today, so
 # --- every branch's smoke inherits it and every PR has to argue "not mine". Fixing
 # --- these buys every ticket below a clean verdict.
-T-0244 — T-0194's twelve hitching posts draw no vertices the gate can find, on dev
 
 # --- THE TOWN AND ITS STREETS — visible. T-0192 left this band on 2026-08-29,
 # --- blocked-tech: its code half shipped (the rule reads all four block faces now,
