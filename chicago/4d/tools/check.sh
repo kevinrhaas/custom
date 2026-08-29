@@ -989,6 +989,17 @@ step "one new household renames only the people it collides with" \
 step "the documented residents on reconstructed roofs re-derive from the register" \
   python3 tools/replace_invented_residents.py --check
 
+# And the pass that ADDS one (T-0372). The register's `new_resident` people are
+# the ones this reconstruction does not hold at all; where it can also read a
+# trade, that trade is by construction one the occupation census never invented a
+# roof for, so the only thing the town can do with the man is mint him. Gated for
+# the same reason as the deal above: eight refusals shape the set, and one of
+# them quietly ceasing to fire would put a firm, a man at the mouth of the
+# St. Joseph, or a second copy of a real resident into the town's people.
+# `--report` prints the mint and every refusal with its reason.
+step "the minted documented residents re-derive from the register" \
+  python3 tools/mint_documented_residents.py --check
+
 step "the three levels mean what they say" \
   python3 tools/audit_confidence.py --strict
 

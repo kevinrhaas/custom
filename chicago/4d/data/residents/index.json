@@ -1,5 +1,5 @@
 {
- "_doc": "The manifest for data/residents/, the inferred-residents programme's documented layer (docs/ROADMAP.md K1). ONE FILE PER HOUSEHOLD under households/; a static host cannot be globbed, which is why this manifest exists, and every field here that repeats a household record is a DENORMALISED COPY that tools/validate.py fails the build over if it disagrees with the record. The record is authoritative.\n\nTWO ORTHOGONAL AXES, AND THEY MUST NOT BE CONFLATED. `confidence` is the project's existing per-attribute evidence grade (documented / inferred / conjectural, docs/PROVENANCE.md) and it is applied here to every attested block exactly as it is to a structure's roof pitch. `grade` is NEW and belongs to persons and to nothing else: it says how much of a PERSON is reconstructed. documented = a source names this person. derived = a real, named person whose details are partly reconstructed. inferred = a hypothesised resident filling a demonstrable need of the town. The word 'recommended' is not in this vocabulary and never will be; the programme was renamed away from it on 2026-08-13 and tools/validate.py rejects it by name.\n\nPHASE ONE IS DOCUMENTED AND DERIVED ONLY. There are no inferred persons in this dataset yet, by design: the vocabulary exists and validates so that a later parcel can add them without touching the schema.\n\nNOTHING HERE CAUSES A PERSON TO BE DRAWN. docs/LIBERTIES.md L1 and AGENTS.md stand: v1 ships no human figures. This layer exists to justify BUILDINGS and to populate the evidence panel.\n\nCOUNTING CAVEAT: five person entries are named as unnamed placeholders for people a source counts but does not name (an unnamed wife, 'four children', 'and family'). They carry the count in their `name` and say in their `note` that they must not be counted as individuals. counts.persons below is the length of the person arrays, not a population estimate.",
+ "_doc": "The manifest for data/residents/, the inferred-residents programme's documented layer (docs/ROADMAP.md K1). ONE FILE PER HOUSEHOLD under households/; a static host cannot be globbed, which is why this manifest exists, and every field here that repeats a household record is a DENORMALISED COPY that tools/validate.py fails the build over if it disagrees with the record. The record is authoritative.\n\nTWO ORTHOGONAL AXES, AND THEY MUST NOT BE CONFLATED. `confidence` is the project's existing per-attribute evidence grade (documented / inferred / conjectural, docs/PROVENANCE.md) and it is applied here to every attested block exactly as it is to a structure's roof pitch. `grade` is NEW and belongs to persons and to nothing else: it says how much of a PERSON is reconstructed. documented = a source names this person. derived = a real, named person whose details are partly reconstructed. inferred = a hypothesised resident filling a demonstrable need of the town. The word 'recommended' is not in this vocabulary and never will be; the programme was renamed away from it on 2026-08-13 and tools/validate.py rejects it by name.\n\nPHASE ONE IS DOCUMENTED AND DERIVED ONLY. There are no inferred persons in this dataset yet, by design: the vocabulary exists and validates so that a later parcel can add them without touching the schema.\n\nNOTHING HERE CAUSES A PERSON TO BE DRAWN. docs/LIBERTIES.md L1 and AGENTS.md stand: v1 ships no human figures. This layer exists to justify BUILDINGS and to populate the evidence panel.\n\nDIVISION `unplaced`, AND THE MINTED LAYER (T-0372). The `hh_doc_` households hold people the newspaper register names as documented tradespeople of this town and this reconstruction did not hold at all. Nothing reached says where any of them lived, so the record around each one claims nothing: one person, no dwelling, no family, and division `unplaced` rather than the quarter of town most households happen to sit in. `unplaced` means the sources put this household IN the town and nowhere in it, which is a different statement from `outside_town`. tools/mint_documented_residents.py derives the whole set and prints every candidate it refused.\n\nCOUNTING CAVEAT: five person entries are named as unnamed placeholders for people a source counts but does not name (an unnamed wife, 'four children', 'and family'). They carry the count in their `name` and say in their `note` that they must not be counted as individuals. counts.persons below is the length of the person arrays, not a population estimate.",
  "version": 1,
  "scene_date": "1835-07-01",
  "dossier": "docs/RESEARCH/residents_1835.md",
@@ -50,6 +50,7 @@
    "county_clerk",
    "dentist",
    "domestic",
+   "dressmaker",
    "drover",
    "druggist",
    "dry_goods_merchant",
@@ -74,6 +75,7 @@
    "mason",
    "merchant",
    "miller",
+   "milliner",
    "minister",
    "none_recorded",
    "packer",
@@ -117,7 +119,8 @@
    "north",
    "west",
    "fort",
-   "outside_town"
+   "outside_town",
+   "unplaced"
   ],
   "arrival_precision": [
    "day",
@@ -128,10 +131,10 @@
   ]
  },
  "counts": {
-  "households": 173,
-  "persons": 209,
+  "households": 189,
+  "persons": 225,
   "by_grade": {
-   "attested": 76,
+   "attested": 92,
    "inferred": 25,
    "reconstructed": 108
   }
@@ -418,6 +421,230 @@
    },
    "lives_at": null,
    "works_at": "chicago_democrat_office",
+   "present_on_scene_date": "uncertain",
+   "review_required": false
+  },
+  {
+   "id": "hh_doc_a_garrett",
+   "file": "households/hh_doc_a_garrett.json",
+   "head": "doc_a_garrett",
+   "division": "unplaced",
+   "persons": 1,
+   "grades": {
+    "attested": 1
+   },
+   "lives_at": null,
+   "works_at": null,
+   "present_on_scene_date": "present",
+   "review_required": false
+  },
+  {
+   "id": "hh_doc_byram_king",
+   "file": "households/hh_doc_byram_king.json",
+   "head": "doc_byram_king",
+   "division": "unplaced",
+   "persons": 1,
+   "grades": {
+    "attested": 1
+   },
+   "lives_at": null,
+   "works_at": null,
+   "present_on_scene_date": "present",
+   "review_required": false
+  },
+  {
+   "id": "hh_doc_e_l_thrall",
+   "file": "households/hh_doc_e_l_thrall.json",
+   "head": "doc_e_l_thrall",
+   "division": "unplaced",
+   "persons": 1,
+   "grades": {
+    "attested": 1
+   },
+   "lives_at": null,
+   "works_at": null,
+   "present_on_scene_date": "uncertain",
+   "review_required": false
+  },
+  {
+   "id": "hh_doc_elmira_fowler",
+   "file": "households/hh_doc_elmira_fowler.json",
+   "head": "doc_elmira_fowler",
+   "division": "unplaced",
+   "persons": 1,
+   "grades": {
+    "attested": 1
+   },
+   "lives_at": null,
+   "works_at": null,
+   "present_on_scene_date": "uncertain",
+   "review_required": false
+  },
+  {
+   "id": "hh_doc_h_b_clarke",
+   "file": "households/hh_doc_h_b_clarke.json",
+   "head": "doc_h_b_clarke",
+   "division": "unplaced",
+   "persons": 1,
+   "grades": {
+    "attested": 1
+   },
+   "lives_at": null,
+   "works_at": null,
+   "present_on_scene_date": "present",
+   "review_required": false
+  },
+  {
+   "id": "hh_doc_h_c_bennett",
+   "file": "households/hh_doc_h_c_bennett.json",
+   "head": "doc_h_c_bennett",
+   "division": "unplaced",
+   "persons": 1,
+   "grades": {
+    "attested": 1
+   },
+   "lives_at": null,
+   "works_at": null,
+   "present_on_scene_date": "uncertain",
+   "review_required": false
+  },
+  {
+   "id": "hh_doc_h_crocker",
+   "file": "households/hh_doc_h_crocker.json",
+   "head": "doc_h_crocker",
+   "division": "unplaced",
+   "persons": 1,
+   "grades": {
+    "attested": 1
+   },
+   "lives_at": null,
+   "works_at": null,
+   "present_on_scene_date": "present",
+   "review_required": false
+  },
+  {
+   "id": "hh_doc_h_sherman",
+   "file": "households/hh_doc_h_sherman.json",
+   "head": "doc_h_sherman",
+   "division": "unplaced",
+   "persons": 1,
+   "grades": {
+    "attested": 1
+   },
+   "lives_at": null,
+   "works_at": null,
+   "present_on_scene_date": "uncertain",
+   "review_required": false
+  },
+  {
+   "id": "hh_doc_henry_moore",
+   "file": "households/hh_doc_henry_moore.json",
+   "head": "doc_henry_moore",
+   "division": "unplaced",
+   "persons": 1,
+   "grades": {
+    "attested": 1
+   },
+   "lives_at": null,
+   "works_at": null,
+   "present_on_scene_date": "present",
+   "review_required": false
+  },
+  {
+   "id": "hh_doc_j_a_marshall",
+   "file": "households/hh_doc_j_a_marshall.json",
+   "head": "doc_j_a_marshall",
+   "division": "unplaced",
+   "persons": 1,
+   "grades": {
+    "attested": 1
+   },
+   "lives_at": null,
+   "works_at": null,
+   "present_on_scene_date": "uncertain",
+   "review_required": false
+  },
+  {
+   "id": "hh_doc_j_curtiss",
+   "file": "households/hh_doc_j_curtiss.json",
+   "head": "doc_j_curtiss",
+   "division": "unplaced",
+   "persons": 1,
+   "grades": {
+    "attested": 1
+   },
+   "lives_at": null,
+   "works_at": null,
+   "present_on_scene_date": "present",
+   "review_required": false
+  },
+  {
+   "id": "hh_doc_j_h_collins",
+   "file": "households/hh_doc_j_h_collins.json",
+   "head": "doc_j_h_collins",
+   "division": "unplaced",
+   "persons": 1,
+   "grades": {
+    "attested": 1
+   },
+   "lives_at": null,
+   "works_at": null,
+   "present_on_scene_date": "uncertain",
+   "review_required": false
+  },
+  {
+   "id": "hh_doc_james_grant",
+   "file": "households/hh_doc_james_grant.json",
+   "head": "doc_james_grant",
+   "division": "unplaced",
+   "persons": 1,
+   "grades": {
+    "attested": 1
+   },
+   "lives_at": null,
+   "works_at": null,
+   "present_on_scene_date": "uncertain",
+   "review_required": false
+  },
+  {
+   "id": "hh_doc_r_stewart",
+   "file": "households/hh_doc_r_stewart.json",
+   "head": "doc_r_stewart",
+   "division": "unplaced",
+   "persons": 1,
+   "grades": {
+    "attested": 1
+   },
+   "lives_at": null,
+   "works_at": null,
+   "present_on_scene_date": "uncertain",
+   "review_required": false
+  },
+  {
+   "id": "hh_doc_samuel_lewis",
+   "file": "households/hh_doc_samuel_lewis.json",
+   "head": "doc_samuel_lewis",
+   "division": "unplaced",
+   "persons": 1,
+   "grades": {
+    "attested": 1
+   },
+   "lives_at": null,
+   "works_at": null,
+   "present_on_scene_date": "present",
+   "review_required": false
+  },
+  {
+   "id": "hh_doc_wm_sabine",
+   "file": "households/hh_doc_wm_sabine.json",
+   "head": "doc_wm_sabine",
+   "division": "unplaced",
+   "persons": 1,
+   "grades": {
+    "attested": 1
+   },
+   "lives_at": null,
+   "works_at": null,
    "present_on_scene_date": "uncertain",
    "review_required": false
   },
