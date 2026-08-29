@@ -1,7 +1,7 @@
 ---
 id: T-0402
 title: The firm groups an agency, a parent house or a lost signature makes ambiguous
-state: claimed
+state: done
 epic: META
 requested_by: loop
 seen: false
@@ -9,8 +9,8 @@ effort: S
 legacy_id: null
 parent: T-0338
 opened: 2026-08-29
-closed: null
-pr: null
+closed: 2026-08-29
+pr: 556
 claimed_by: run 8/29/2026, 2:27:08 PM CT
 blocked_on: null
 needs_bake: false

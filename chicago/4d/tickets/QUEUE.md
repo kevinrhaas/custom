@@ -44,7 +44,6 @@
 T-0340 — The bookseller's sign-name and its partners' firm-name are three gazetteer entries for one house
 T-0400 — The firm styles that differ in the forename's form: whole against abbreviated against initial
 T-0401 — The firm groups that are two houses, written down so no later sweep merges them
-T-0402 — The firm groups an agency, a parent house or a lost signature makes ambiguous
 
 # --- THE NEWSPAPER STREAM (b) THE POLICY THAT DECIDES HOW MUCH TOWN THE PAPERS REACH.
 # --- T-0354 shipped in #551 on 2026-08-29: the owner's ruling — a street-only
