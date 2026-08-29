@@ -1,5 +1,5 @@
 ---
-id: T-0325
+id: T-0332
 title: The sheet's one brick is called chimney_brick, and a wall now reads it
 state: open
 epic: META

@@ -752,4 +752,4 @@ The sheet's one brick is still called **`chimney_brick`**, and a wall now reads 
 now wrong by one surface, and renaming it — or growing the sheet a `wall_finish`-style selector
 that answers *"what colour is a bare brick wall"* the way §8.3 made the placeholder ask rather
 than name — is a `common/materials.py` change, which is in **every** asset's input hash and
-therefore costs a town-wide bake. It is not worth one on its own and it is filed as **T-0325**.
+therefore costs a town-wide bake. It is not worth one on its own and it is filed as **T-0332**.

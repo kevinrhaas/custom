@@ -24,7 +24,9 @@ A claim that cannot name its column cannot be made. Resolve the issue through
 > `chicago/reference/newspapers/Transcriptions/Chicago_Democrat_1833-11_to_1835-08/Chicago_Democrat_1835-07-01_Vol2_No11_Transcription.txt`, lines 812-819.
 
 Page and column come from the transcription's own column markers — and this file has now
-been wrong about how many dialects there are **twice**. The sixty-six issues the deposit
+been wrong about how many dialects there are **three times**. There are SEVEN, the last
+two found by T-0325, and the count is now measured against every artifact in the corpus
+rather than asserted. The sixty-six issues the deposit
 delivered as committed `.txt` carry a RULED marker in one of three shapes:
 
     ===== ISSUE PAGE 4 / PDF PAGE 36 / COLUMN 5 OF 6 =====
@@ -56,6 +58,36 @@ rule here not lifted verbatim off the line, it is a reading of the transcription
 method — "assembled in printed page and column order" — and it is not used when the banner
 states the issue page itself. The self-test carries a case per dialect plus three negatives.
 
+**AND A SIXTH AND A SEVENTH SHAPE, WHICH ARE THE FIRST HALF OF 1835 — the last two, and
+this is now measured rather than asserted (T-0325).** Six of the eight Democrats between
+1835-01-21 and 1835-06-24 resolved to ZERO columns, so every claim citing them would have
+failed the gate with *"the transcription carries no ISSUE PAGE / COLUMN marker"* and the
+read of that range could not have landed at all. T-0298 had recorded three of them as
+*"bare `=====` rules carrying no page or column at all"* and left open whether that was a
+transcription defect. **It was not.** The rules are decoration around a page banner, and
+every column carries its own rule naming the scan page:
+
+    [Source PDF page 9; newspaper page 1; column 1]      1835-01-21, the 03-25 Extra, 05-20
+    PRINTED PAGE 1 — SOURCE PDF PAGE 13                  1835-05-27, 06-04, 06-10
+    --- SOURCE PDF PAGE 13, COLUMN 1 ---
+
+46 bracket markers and 72 dash rules under 12 banners: **118 column markers invisible to a
+resolver already corrected twice for exactly this.** The seventh dialect's column rule
+states its own scan page, so it is resolved through the banner naming that page rather than
+through the banner last passed — no ordinal, nothing counted. One bracket marker carries no
+column number, `[Source PDF page 8; Extra page 4; single-column subscription prospectus]`,
+and is read as that page's column 1 on the warrant of its own word and its file's header
+line ("Extra pages 1–3 have 3 columns; page 4 is a single-column subscription prospectus").
+That page is Calhoun's subscription list and it names people.
+
+**Where the census now stands.** Every artifact in `corpus.json` was resolved before and
+after the change on 2026-08-29: the six move, the other 83 do not. **One artifact of the
+89 still resolves no column and it is not a resolver gap** — the `alternate` of 1833-11-26,
+a prose reading transcription made from the page images, which segments nothing and names
+its pages "SUPPLIED SCAN PAGE 1". There is no column marker in it to find, so it is not
+citable at column level and a claim needing it must cite the `primary`, which is what
+T-0308 read. That is a fact about the artifact, recorded here rather than left silent.
+
 **The middle ruled shape is the majority and it was the one nobody had.** Counted across
 the deposit on 2026-08-28 while reading July 1834 (T-0289): 1,176 of the 1,266 ruled column
 markers say `SOURCE PDF PAGE`, 90 say the bare `PDF PAGE`, and four say `ORIGINAL PDF
@@ -80,14 +112,23 @@ reports them, which is green.
 | delivered as `.docx` only | 20 primaries + 3 alternates | extracted here to `text/`, and **committed** |
 
 The deposit is the owner's archival deposit and this project reads it only. It was
-committed to `main` on 2026-08-28 and **is not on `dev`**, where this subtree is
-developed — so on `dev` the sixty-six reference paths do not resolve and the
-twenty-three derived ones do. `tools/newspaper_corpus.py --check` treats that as one
-of three states: deposit **present** (every path resolved file by file), **absent**
-(reported, and green), **partial** (always red — that state means damage). T-0275
-carries the back-merge, which is not free: `main` also carries sixty Finder-duplicate
-`... 2.json` / `... 2.glb` files under `site/chicago/4d/data/` that turn this repo's
-gate red in twenty-three places.
+committed to `main` on 2026-08-28, and for a week after that it was NOT on `dev`, where
+this subtree is developed — so ten reading passes materialised a read-only copy from
+`main` and machine-checked their quotes with `--check --deposit <path>`, which is why so
+many `coverage.json` notes say so.
+
+**IT IS ON `dev` NOW, and a reading pass no longer needs `--deposit` (found 2026-08-29,
+T-0325).** The promotion back-merge carried `chicago/reference/` across, and every one of
+the 178 recorded paths and sha256s in `corpus.json` resolves and matches on this branch —
+checked file by file, not assumed. `tools/newspaper_corpus.py --check` says `deposit
+present`, and the gate reassembles all 713 committed quotes here rather than counting them
+unresolved. `--deposit` stays for the case it was built for: a branch or a checkout that
+does not carry it. T-0275, which asks for exactly this back-merge, has not been closed and
+should be looked at by whoever next reads its queue row rather than being done again.
+
+The three states `tools/newspaper_corpus.py --check` reports are unchanged: deposit
+**present** (every path resolved file by file), **absent** (reported, and green),
+**partial** (always red — that state means damage).
 
 ## Quality is not uniform
 
@@ -159,11 +200,29 @@ gate; only the grain is finer. It is optional and additive: a claim without `spa
 behaves exactly as before, which is why the T-0257 fixture and the Democrat read needed no
 edit. All 130 of the American's claims use it.
 
-**Nor does the Democrat's own first issue, and only four of T-0258's thirty do.** Swept the
-same way: 1834-01-28, 1834-02-04, 1834-04-23 and 1834-04-30 carry a list and the other
-twenty-six do not, so a reading pass over 1833 and the first half of 1834 meets the epic's
-letter-list clause mostly by demonstrating absence. Where a list IS there it is the census
-proxy and ruling 1 applies in full.
+**Nor does the Democrat's own first issue, and SIX of T-0258's thirty do.** This count
+has been corrected twice by reading — the two paragraphs below are the corrections, and
+each names the sweep it refuted — and it stands at six issues carrying Chicago's own list:
+**1834-01-14** and **1834-01-28** (the 1 January list, printed cut and then nearly whole,
+T-0310), **1834-02-04**, **1834-03-04** (T-0312), and **1834-04-01** with its
+**1834-04-08** reprint (the 1 April list, T-0313). The other twenty-four carry none of
+Chicago's — the April Hennepin printings are another town's and mint nobody — so a reading
+pass over 1833 and the first half of 1834 meets the epic's letter-list clause mostly by
+demonstrating absence. Where a list IS there it is the census proxy and ruling 1 applies
+in full.
+
+**The fifth was found by READING and not by searching, and that is the lesson (T-0312).**
+This file said four until March 1834 was read through, because a text sweep cannot match a
+heading the segmenter has cut in half. The list of 1834-03-04 sits on page 4, and the crop
+boundary runs down the middle of its printed column: `List of L` stands at the head of
+column 2 and `etters` / `ost-Offiee at Chica-` / `34.` at the head of column 3. No search
+for *list of letters*, *letters remaining* or *remaining in the post office* can hit a
+heading that exists whole in neither column. **So sweep for the FRAGMENTS too** — `ist of L`,
+`etters`, `ost-Off`, `advertis` — and expect a list to be split across two claims, one per
+crop, the way `chicago_democrat_1834_03_04.json` c024 and c025 carry it. Its date line
+survives only as `34.`, so WHICH return it is cannot be read and is not asserted; its
+seventy-eight extracted names are a floor, cut on their left edge where January's were cut
+on their right.
 
 **THAT SWEEP WAS WRONG, AND READING APRIL 1834 IS HOW IT WAS FOUND OUT (T-0313).** It is
 six of the thirty, not four, and the two it names for April are the wrong two. **1834-04-23
