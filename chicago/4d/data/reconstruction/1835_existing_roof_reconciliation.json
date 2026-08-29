@@ -482,6 +482,17 @@
       "reasoning": "Principal trading-house/homestead roof; barn is separately recorded."
     },
     {
+      "structure_id": "john_holbrook_store",
+      "district": "south",
+      "roof_count": 1,
+      "inventory_eligible": true,
+      "inventory_roof_count": 1,
+      "likely_family": "C3",
+      "substitutes_anonymous_slots": 1,
+      "confidence": "moderate",
+      "reasoning": "One two-story frame store roof on the South Water Street frontage. The trade, the proprietor, the street and the offset in doors are documented in the Chicago American of 1835-06-13; the massing is this project's. C3 because it stands in line with the two C3 party-line store units already on this frontage. This is the substitution clause doing what L203 said the newspaper corpus would let it do \u2014 a named roof replaces an anonymous slot on the same line rather than being added above 665."
+    },
+    {
       "structure_id": "jh_kinzie_forwarding_store",
       "district": "south",
       "roof_count": 1,

@@ -1,0 +1,174 @@
+{
+  "id": "john_holbrook_store",
+  "phase": "store_1835",
+  "name": "John Holbrook's Store",
+  "aka": [
+    "John Holbrook, hats, clothing, boots and shoes"
+  ],
+  "archetype": "frame_storefront",
+  "asset": "gltf/john_holbrook_store__store_1835.glb",
+  "scene": "1835",
+  "target_date": "1835-07-01",
+  "documented_range": {
+    "from": "1835-06-13",
+    "to": "1835-12-31",
+    "confidence": "inferred",
+    "sources": [
+      "chicago_american_1835"
+    ],
+    "note": "A STORE OPENING EIGHTEEN DAYS BEFORE THE SCENE DATE, WHICH IS THE SHORTEST GAP ANY DOCUMENTED BUSINESS IN THIS DATASET HAS TO CROSS. The Chicago American of 13 June 1835 carries, over the proprietor's own name, that 'the subscriber is now opening' an assortment of hats, clothing, boots and shoes in South Water street, one door from Dearborn. The Chicago American, 1835-06-13, Vol. I No. 2, page 3 column 6, lines 319-323 of data/research/newspapers/text/chicago_american_1835_06_13.txt; claim chicago_american_1835_06_13#c012. The from date is the issue date, which is the day the town could read the card. The to date is the end of the scene year and is a housekeeping bound, not a closure: nothing reached follows the store past its own advertisement. THE SURVIVAL QUESTION THAT SITS ON EVERY 1833 AND 1834 ATTESTATION IN THIS DATASET DOES NOT SIT ON THIS ONE. The owner's third ruling of 2026-08-28 — 'a documented business is BUILT at the scene date unless contradicted' — costs the American almost nothing, because its whole run sits within twelve weeks of 1835-07-01. No dissolution, removal or replacement notice for this store appears anywhere in the corpus's 86 issues, and the search was made: the four dissolutions the American prints are Goss & Cobb, the Johnson-Story livery, and two others, none of them this. So the store is built with NO survival liberty, and the range is `inferred` only because a card is evidence of a trade being carried on and not of a building's dates."
+  },
+  "change_note": "The store as its own advertisement describes it opening, eighteen days before the scene date, and as this record carries it to 1835-07-01. Nothing dates a change and nothing dates an end.",
+  "placement": {
+    "local_e": 726.254,
+    "local_n": -19.668,
+    "rotation_deg": 1.62,
+    "position_confidence": "inferred",
+    "position_sources": [
+      "chicago_american_1835",
+      "hathaway_1834",
+      "osm_streets_2026"
+    ],
+    "position_note": "PLACED FROM THE ADVERTISEMENT'S OWN WORDS, AGAINST A COMMITTED BUILDING, AND THE ARITHMETIC IS HERE SO IT CAN BE CHECKED OR REFUSED. The card reads, verbatim and with the transcription's brackets kept: \"[H]at[s], Clothing, Boo[ts and Shoes …] WHOLESALE & [RETAIL … the] subscriber [is] now [o]p[en]ing […] a[s]sort[m]ent of th[e] above named [… South] Water [st]reet, one door from De[arborn]. Where he [in]tend[s] to keep on hand a l[ar]g[e] [s]t[ock] of the [na]med articles, and will be recei[ving] [a]d[d]itions to his assortment every fifteen [or t]w[enty] days [th]rough the season. Traders are resp[ect]fully requested to call and examine for th[e]m[selv]e[s]. JOHN HOLBROOK […] Chicago, June [13], 183[5].\" The Chicago American, 1835-06-13, Vol. I No. 2, page 3 column 6, lines 319-323 of data/research/newspapers/text/chicago_american_1835_06_13.txt; claim chicago_american_1835_06_13#c012. THE READING IS TRANSCRIPTION-MEDIATED AND SAYS SO. Under the owner's ruling of 2026-08-28 a claim read through this project's OCR-assisted transcriptions rather than off the page scan grades `documented` while carrying its own flag: reading = transcription_mediated, with the transcription's uncertainty brackets preserved inside the quotation rather than tidied away. Where a scan is later read, the scan is the authority and this claim upgrades under it — the standard data/sources/chicago_democrat_1833_11_26.json set when a scan caught 'C. & I. HARMON' where the transcription had 'C. & L. Harmon'. THE ANCHOR IS THE PAPER THAT PRINTED THE CARD. `chicago_american_office` — the Chicago American's own office — is a committed record standing on the south side of South Water Street immediately east of Dearborn, placed there in 2026-08-11 from Andreas's 'on Water Street, near the draw-bridge' and holding 12.192 m (40 ft) of that frontage from the Dearborn line east. So THE CORNER PREMISES AT DEARBORN IS ALREADY OCCUPIED, by a documented building, and 'one door from De[arborn]' is the premises NEXT to it. That is what this record stands on, and it is a better anchor than any module: the door module here is not a mean of anything, it is the committed frontage width of the actual corner building. METHOD. The block boundary is read from data/traces/vectors/thompson_lots.json, the same committed geometry the lot grid and the corridor gate derive from: the north-west (Dearborn x South Water) lot corner is local ENU (711.05, -5.54), EPSG:26916 E 447783.75 N 4637390.26, and the frontage runs from there on a bearing of 1.62 degrees clockwise from grid north — the bearing this record carries and the bearing every committed unit of this block's party-line row carries. Stepping 15.597 m east along that line puts this building's west wall 3.000 m clear of the American office's east wall (E 447795.954), which is the separation gate's own three metres and NOT a measurement of the break between two shops: the recipe's `clear_m` on this very street was moved 2.4 -> 3.0 m for the same reason (tools/generate_block_infill.py, place_frontage). The front wall is set 1.50 m back from the lot line, the same margin the committed row and the American office both stand on, and the stored coordinate is the polygon origin, which under the renderer's convention (tools/validate.py world_footprint, renderers/web/js/walker.js) is the building's SOUTH-WEST corner at this bearing. The result: west face E 447798.954, east face E 447805.392, north face N 4637388.319 — level with the American office's own north face to within 0.10 m, and 4.3 m clear of the lot 0 / lot 1 line. THREE GUARDS, AND THEY ARE THE REASON THIS IS `inferred` AND NOT BETTER. (1) WHICH WATER STREET. The transcription cuts the street word to 'ack Water wirert' and it is read as SOUTH Water because Dearborn crosses both Water streets and the same column places two other cards on South Water. The corpus's extraction note asks for a page-image pass to confirm it before anything is built; this record is built anyway, on the project owner's standing instruction that an absent building is invisible while a conjectural one is legible and correctable — the same reasoning docs/LIBERTIES.md L67 gives for Elston's soap works and goss_cobb_saddlery's record gives for its own shop — and the doubt is carried here rather than hidden. If the page images say North Water, this building belongs about 130 m north across the river and the record moves whole. (2) WHICH SIDE OF DEARBORN, AND WHICH DIRECTION FROM IT. 'One door from Dearborn' names no quadrant and no direction. The east side is adopted for the reason chicago_american_office's own record adopts it: west of the crossing the corner lot is Lot 1 and Andreas puts Madore Beaubien's log house on it, so that corner is spoken for by a documented building too, and the block east is the frontage this project has committed and built a row along. EAST OF THE OFFICE rather than west of it, because west of the office is Dearborn Street itself. It is still a one-in-two choice about the side of the crossing, worth about 100 m if it is wrong. The NORTH side of South Water is not in question — the river is there. (3) THE GEOREFERENCE. About 17.5 m RMS from data/datum.json, which sits under every coordinate in this dataset and under this one too; and the American office's own placement carries about 30 m of 'near the draw-bridge' along the street, which this record inherits whole because it is measured from that building.",
+    "symbolic_location": "South Division, on the South Water Street frontage of the block bounded by South Water, State, Lake and Dearborn; the next premises east of the Chicago American's own office, which holds the corner premises at Dearborn — one door from Dearborn Street, fronting north onto South Water Street and the river beyond it.",
+    "uncertainty_m": 20,
+    "placement_provisional": false,
+    "vertical_anchor": "terrain",
+    "walk_surface_m": null
+  },
+  "footprint": {
+    "polygon": [
+      [
+        0,
+        0
+      ],
+      [
+        6.096,
+        0
+      ],
+      [
+        6.096,
+        12.192
+      ],
+      [
+        0,
+        12.192
+      ]
+    ],
+    "confidence": "reconstructed",
+    "sources": [],
+    "note": "INVENTED WITHIN THE ARCHETYPE'S BAND. The advertisement gives a trade, a stock and an address and no dimension. 6.096 x 12.192 m is 20 x 40 ft, recorded converted with the original figures stated per data/datum.json's units rule; it sits inside the range of the three committed party-line units on this same frontage (5.635-6.244 m wide, 7.040-13.306 m deep) and is deliberately not a fresh guess outside them — a new number would look like a finding and would not be one, which is the reasoning docs/LIBERTIES.md L29 states about the bridge's pier spacing. WHAT THE ADVERTISEMENT DOES IMPLY, without measuring anything: hats, clothing, boots and shoes held 'on hand' in a 'large stock', restocked every fifteen or twenty days through the season, and wholesale buyers invited to call and examine. That is a counter with real storage behind it rather than a stall, and it argues for a deep plan on a narrow frontage — which is an argument, not a measurement."
+  },
+  "attributes": {
+    "stories": {
+      "value": 2,
+      "confidence": "reconstructed",
+      "note": "NOT ATTESTED. Two storeys is the type for a South Water Street store in this dataset — Peck's is 'two-story frame' on Andreas and Church's Lake Street store is the same — and a wholesale and retail stock restocked fortnightly needs the floor. Chosen from the type, not derived from anything about this building."
+    },
+    "loft": {
+      "value": false,
+      "confidence": "reconstructed",
+      "note": "NOT ATTESTED EITHER WAY, AND THE ABSENCE IS THE CONSERVATIVE READING. Peck's store carries a loft because Andreas describes a man sleeping in it; nothing describes this building at all, so the archetype's loft gable is left shut rather than opened on a guess."
+    },
+    "construction": {
+      "value": "balloon_frame",
+      "confidence": "inferred",
+      "note": "Not attested for this building. Balloon framing was developed in Chicago in 1832-33 and was the dominant local method within a few years; a store opening new in June 1835, two and a half years later, in the middle of the boom the same paper reports, is the case where this project reads balloon rather than braced. That is the opposite call from Goss & Cobb's 1833 shop and from Peck's store, whose dates may precede the method, and the difference is the DATE and nothing else. The distinction changes stud rhythm behind the sheathing and is not visible at this level of detail."
+    },
+    "wall_height_m": {
+      "value": 5.5,
+      "confidence": "inferred",
+      "note": "No figure is attested. 5.5 m is about 18 ft: two 8 ft storeys plus floor structure and a low sill course — the same reading and the same number this project gives Peck's store and the Sauganash, which are the other two-storey frame buildings it models. What is inferred is that the height falls in this range, not that it is exactly 5.5 m."
+    },
+    "roof_type": {
+      "value": "gable",
+      "confidence": "inferred",
+      "note": "Not attested for this building. Gable is the near-universal roof form for a frame building of this type, period and region."
+    },
+    "roof_pitch_deg": {
+      "value": 33.0,
+      "confidence": "inferred",
+      "note": "No pitch is attested. 33 degrees is this archetype's mid-range for a frame store, inferred from construction practice rather than measured — the same value this project uses for the other newspaper-advertised shops."
+    },
+    "chimneys": {
+      "value": 1,
+      "confidence": "inferred",
+      "note": "Not attested. One stack is the minimum a store kept open through a Chicago winter needed. The COUNT is the inference; position, size and material are the archetype's — docs/LIBERTIES.md L26."
+    },
+    "siding_exposure_m": {
+      "value": 0.152,
+      "confidence": "reconstructed",
+      "note": "INVENTED WITHIN A STOCK SET, NOT DERIVED. No source states the exposed face of any Chicago building's siding. The value is one of four period mill sidings — 4.5, 5, 5.5 or 6 in to the weather; this record wears 6 in — dealt by tools/deal_siding_stock.py: keyed to the phase's construction season, because buildings sided from the same season's shipments of St Joseph sawn lumber tend toward one stock, then advanced so no frame building within 60 m shares this one's. The separation is the surface variety T-0049 reconstructs, not a claim about 1835. docs/LIBERTIES.md L148 owns the invention."
+    },
+    "function": {
+      "value": "store",
+      "confidence": "attested",
+      "sources": [
+        "chicago_american_1835"
+      ],
+      "note": "THE TRADE IS THE BEST-EVIDENCED THING ABOUT THIS BUILDING and it is quoted rather than summarised: \"[H]at[s], Clothing, Boo[ts and Shoes …] WHOLESALE & [RETAIL … the] subscriber [is] now [o]p[en]ing […] a[s]sort[m]ent of th[e] above named [… South] Water [st]reet, one door from De[arborn]. Where he [in]tend[s] to keep on hand a l[ar]g[e] [s]t[ock] of the [na]med articles, and will be recei[ving] [a]d[d]itions to his assortment every fifteen [or t]w[enty] days [th]rough the season. Traders are resp[ect]fully requested to call and examine for th[e]m[selv]e[s]. JOHN HOLBROOK […] Chicago, June [13], 183[5].\" The Chicago American, 1835-06-13, Vol. I No. 2, page 3 column 6, lines 319-323 of data/research/newspapers/text/chicago_american_1835_06_13.txt; claim chicago_american_1835_06_13#c012. Hats, clothing, boots and shoes, wholesale and retail, over a counter open to the street, with traders invited to call and examine — which is a store in this project's vocabulary and is what makes the frontage announce itself under tools/generate_business_signboards.py's PUBLIC_TRADES rule. THE READING IS TRANSCRIPTION-MEDIATED AND SAYS SO. Under the owner's ruling of 2026-08-28 a claim read through this project's OCR-assisted transcriptions rather than off the page scan grades `attested` in this schema's vocabulary while carrying its own flag: reading = transcription_mediated, with the transcription's uncertainty brackets preserved inside the quotation rather than tidied away. Where a scan is later read, the scan is the authority and this claim upgrades under it — the standard data/sources/chicago_democrat_1833_11_26.json set when a scan caught 'C. & I. HARMON' where the transcription had 'C. & L. Harmon'. NO ENGRAVING IS READ. The corpus-wide rule recorded on data/sources/chicago_american_1835.json holds here as everywhere: a printer's stock cut is not a picture of a Chicago building, and no elevation, storey count, roof form or window arrangement is taken from anything but the words."
+    },
+    "occupants": {
+      "value": "John Holbrook, merchant",
+      "confidence": "attested",
+      "sources": [
+        "chicago_american_1835"
+      ],
+      "note": "The proprietor signs his own card, in capitals: 'JOHN HOLBROOK'. The Chicago American, 1835-06-13, Vol. I No. 2, page 3 column 6, lines 319-323 of data/research/newspapers/text/chicago_american_1835_06_13.txt; claim chicago_american_1835_06_13#c012. He is minted as a person by the gazetteer from this claim, with the occupation 'merchant' and South Water Street as his associated place, and he is not a letter-list name: this is a man advertising a business over his own signature, which is the stronger of the two evidence classes the owner's first ruling of 2026-08-28 asks this project to keep distinguishable. WHO HE WAS BEYOND THAT IS NOT ESTABLISHED HERE. Nothing reached connects this John Holbrook to any other Chicago record, and no household, family or residence is claimed for him."
+    }
+  },
+  "residents": [],
+  "citations": [
+    {
+      "source_id": "chicago_american_1835",
+      "citation": "The Chicago American. Vol. I, No. 1 (June 8, 1835) through Vol. I, No. 12 (August 29, 1835). Chicago, Ill.: T. O. Davis. Thirteen issues, OCR-assisted research transcriptions from page scans.",
+      "url": "",
+      "archived_url": "",
+      "tier": 1,
+      "tier_label": "period/eyewitness",
+      "what_it_supplies": [
+        "a second, independent contemporary witness to the town in the twelve weeks around the scene date",
+        "advertisements and self-reported addresses from a different advertiser base than the Democrat's",
+        "attestation that needs no survival liberty: the whole run is within twelve weeks of 1835-07-01",
+        "corroboration or contradiction of a Democrat address, which is worth more than either paper alone",
+        "the paper's own correction of its first masthead date"
+      ],
+      "what_it_does_not_supply": [
+        "any building's form, material, storey count, fenestration or dimensions",
+        "a reliable reading of a dense body column — this run had no reconciled second pass",
+        "a word count or uncertainty-marker count: none was delivered, and corpus.json records null rather than zero",
+        "identification by volume and number: No. 12 is printed on two different issues",
+        "anything at all from an engraving — the cuts are the printer's stock",
+        "a citation without an issue page and column"
+      ]
+    },
+    {
+      "source_id": "hathaway_1834",
+      "citation": "Hathaway, Joshua. Chicago with the School Section, Wabansia, and Kinzie's Addition. 1834.",
+      "url": "https://www.loc.gov/item/2008621683/",
+      "archived_url": "",
+      "tier": 1,
+      "tier_label": "period/eyewitness",
+      "what_it_supplies": [
+        "street geometry",
+        "block and lot subdivision",
+        "platted extent"
+      ],
+      "what_it_does_not_supply": [
+        "building footprints",
+        "building locations"
+      ]
+    },
+    {
+      "source_id": "osm_streets_2026",
+      "citation": "OpenStreetMap contributors. Street centerline intersection nodes for downtown Chicago, retrieved via the Overpass API, 2026-08-09.",
+      "url": "https://www.openstreetmap.org/",
+      "archived_url": "https://overpass-api.de/",
+      "tier": 4,
+      "tier_label": "later scholarship"
+    }
+  ],
+  "research_note": "THE FIRST BUILDING IN THIS TOWN PLACED BY A DISTANCE COUNTED IN DOORS. Every other newspaper-placed record this project holds stands at a JUNCTION — Goss & Cobb at 'the conner of Lake and Canal-streets', the Democrat's own office at 'the corner of South Water and Clark-streets' — and a junction fixes a crossing and leaves the quadrant to be guessed. Holbrook's card does something different: it COUNTS. 'South Water street, ONE DOOR from Dearborn' is an offset, and an offset needs a line and a module to be worth anything. Both exist here, and the second one is the part worth reading twice: the corner premises east of Dearborn on South Water is the CHICAGO AMERICAN'S OWN OFFICE, a committed record placed from Andreas eighteen days before this card was set in its columns. So the door this advertisement counts from is a building this project already stands, and the module is that building's own committed 12.192 m of frontage rather than a mean of anything. The man advertised his shop in the paper next door. WHAT IS STILL GUESSED, and it is not small: which Water street the cut-off word names, which side of Dearborn the door stands on, the three-metre break between the two shops, and every dimension of the building. The first two are settleable from the page images and T-0351 asks for them; the break is the separation gate's number and says so; the dimensions are not settleable from anything and are owned by docs/LIBERTIES.md L205. WHAT IS NOT GUESSED: that a store of this trade, under this man's name, was opening in a Water street one door from Dearborn eighteen days before the scene date. That is on the page, over a signature, in a paper printed in the town it describes — and printed, on this reading, next door.",
+  "research_doc": "",
+  "review_required": false
+}

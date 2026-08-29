@@ -1,6 +1,6 @@
 {
   "project": "chicago-4d",
-  "generated_ct": "Aug 29, 2026, 12:17 AM",
+  "generated_ct": "Aug 29, 2026, 12:59 AM",
   "tickets": [
     {
       "id": "T-0001",
@@ -5758,6 +5758,60 @@
       "blocked_on": null,
       "needs_bake": false,
       "queue_rank": 67
+    },
+    {
+      "id": "T-0351",
+      "title": "The page images of the Chicago American for 13 June 1835 settle which Water street John Holbrook's store stood in, and it is built on the reading",
+      "state": "open",
+      "epic": "META",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "M",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-08-29",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "queue_rank": 68
+    },
+    {
+      "id": "T-0352",
+      "title": "May a platted business-front lot carry TWO documented storefronts, or only one — the clause was widened for South Water and Dearborn and the owner has not ruled on the plural",
+      "state": "open",
+      "epic": "META",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "S",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-08-29",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "queue_rank": 69
+    },
+    {
+      "id": "T-0353",
+      "title": "The Chicago American dissolves Goss & Cobb in February 1835 and the firm is still standing in the town on 1 July, board and all",
+      "state": "open",
+      "epic": "META",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "S",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-08-29",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "queue_rank": 70
     }
   ]
 }

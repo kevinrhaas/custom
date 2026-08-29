@@ -29,7 +29,7 @@
     "crossing_m": 857.5,
     "fence_m": 1669.0,
     "walking_decks": 254,
-    "hitching_posts": 12
+    "hitching_posts": 13
   },
   "card": {
     "id": "town_street_edge",
@@ -56,10 +56,10 @@
         "note": "35 street-lining fence run(s), on the lots the rule found improved and standing back from their own frontage line."
       },
       "hitching_posts": {
-        "value": 12,
+        "value": 13,
         "confidence": "reconstructed",
         "sources": [],
-        "note": "12 post(s) at the road edge, one at each trading frontage the rule accepts — a trade this project holds on evidence and rules takes its custom from a stranger off the street, with a walk laid in front of it and dry ground clear of the track to stand on. Every frontage it refused is named in `refused` with the clause that refused it. No source states that a post stood at any of them; what the plates give is that the town's frontages had them at all (T-0090)."
+        "note": "13 post(s) at the road edge, one at each trading frontage the rule accepts — a trade this project holds on evidence and rules takes its custom from a stranger off the street, with a walk laid in front of it and dry ground clear of the track to stand on. Every frontage it refused is named in `refused` with the clause that refused it. No source states that a post stood at any of them; what the plates give is that the town's frontages had them at all (T-0090)."
       },
       "width_m": {
         "value": 1.83,
@@ -9198,6 +9198,31 @@
       "clear_of_track_m": 3.88,
       "stands_on_m": 0.6,
       "note": "A POST AT THE ROAD EDGE OUTSIDE The Chicago American Office, for a rider to tie to. WHY HERE is a rule and not a placement: this frontage's trade is `printing_office` — one of the trades this project already rules take their custom from a stranger off the street (tools/generate_business_signboards.py, PUBLIC_TRADES, the same clause that decides which frontage hangs a board) — and that trade is held `attested` rather than dealt by a schedule. WHERE is derived: the footprint is projected onto its own platted face, the post stands at 0.28 of that frontage and 2.98 m out from the lot line — 0.90 m clear of the walk's outer edge, the same verge the Sauganash's own posts stand in — on committed ground at +0.60 m with 3.88 m still between it and the South Water Street track. WHAT IS INVENTED: that a post stood on this ground at noon on 1 July 1835, and its height, its section and its capped head, which are the Sauganash's numbers carried across (docs/LIBERTIES.md L136). docs/LIBERTIES.md L160."
+    },
+    {
+      "id": "blk_south_water_dearborn_north_hitching_john_holbrook_store",
+      "belongs_to": "town_street_edge",
+      "kind": "hitching_post",
+      "confidence": "reconstructed",
+      "street": "south_water",
+      "street_name": "South Water Street",
+      "chunk": "blk_south_water_dearborn_north_1",
+      "stands_at": "john_holbrook_store",
+      "trade": "store",
+      "trade_confidence": "attested",
+      "at_local_enu_m": [
+        728.43,
+        -3.05
+      ],
+      "facade_bearing_deg": 1.6,
+      "post_height_m": 1.3,
+      "post_square_m": 0.16,
+      "cap_square_m": 0.22,
+      "cap_thickness_m": 0.07,
+      "along_frontage_frac": 0.28,
+      "clear_of_track_m": 3.88,
+      "stands_on_m": 0.61,
+      "note": "A POST AT THE ROAD EDGE OUTSIDE John Holbrook's Store, for a rider to tie to. WHY HERE is a rule and not a placement: this frontage's trade is `store` — one of the trades this project already rules take their custom from a stranger off the street (tools/generate_business_signboards.py, PUBLIC_TRADES, the same clause that decides which frontage hangs a board) — and that trade is held `attested` rather than dealt by a schedule. WHERE is derived: the footprint is projected onto its own platted face, the post stands at 0.28 of that frontage and 2.98 m out from the lot line — 0.90 m clear of the walk's outer edge, the same verge the Sauganash's own posts stand in — on committed ground at +0.61 m with 3.88 m still between it and the South Water Street track. WHAT IS INVENTED: that a post stood on this ground at noon on 1 July 1835, and its height, its section and its capped head, which are the Sauganash's numbers carried across (docs/LIBERTIES.md L136). docs/LIBERTIES.md L160."
     },
     {
       "id": "blk_south_water_dearborn_south_hitching_mansion_house",

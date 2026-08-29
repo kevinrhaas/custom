@@ -136,3 +136,6 @@ T-0346 — Desktop smoke stage 4 no longer fits the ten-minute foreground ceilin
 T-0341 — A bare surname can never be joined to its forename: the family rule reads 'no initials' as 'different initials'
 T-0348 — The identity policy cannot merge an unread initial with a read one, and the best witness reads seventeen of them
 T-0349 — The signboard gate is red when stage 1 runs before it and green when stage 2 runs alone
+T-0351 — The page images of the Chicago American for 13 June 1835 settle which Water street John Holbrook's store stood in, and it is built on the reading
+T-0352 — May a platted business-front lot carry TWO documented storefronts, or only one — the clause was widened for South Water and Dearborn and the owner has not ruled on the plural
+T-0353 — The Chicago American dissolves Goss & Cobb in February 1835 and the firm is still standing in the town on 1 July, board and all

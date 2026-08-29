@@ -414,6 +414,23 @@ def business_fronts() -> dict[str, list[dict]]:
     return fronts
 
 
+def _wall_out(walls: dict, block_id: str, frontage: dict, frame, datum: dict,
+              exclude, holder: str) -> float:
+    """How far `holder`'s street wall stands out toward the frontage line, cached.
+
+    Outward is INTO the street, so a wall behind the line reads negative. Lifted out
+    of `shared_business_fronts` by T-0306 when the clause had to ask it of every
+    holder on a lot rather than of the only one.
+    """
+    key = (f"{block_id}:{frontage['face']}", holder)
+    if key not in walls:
+        walls[key] = max(
+            project(frame, point)[1]
+            for sid, world in footprints(datum, exclude) if sid == holder
+            for point in world)
+    return walls[key]
+
+
 def shared_business_fronts(grid: dict, datum: dict,
                            exclude: set[str] | frozenset[str] = frozenset(),
                            held: dict[str, dict[int, list[str]]] | None = None
@@ -449,20 +466,35 @@ def shared_business_fronts(grid: dict, datum: dict,
             reach = float(frontage["setback_m"]) + LOT_MARGIN_M
             dealt = {int(index) for index in frontage["lots"]}
             for index, holders in lots.items():
-                if index not in dealt or len(holders) != 1:
+                if index not in dealt or not holders:
                     continue
-                holder = holders[0]
-                if holder not in documented:
+                # EVERY holder has to be a researched building, not just the first
+                # (T-0306). This read `len(holders) != 1` and took the single one,
+                # which is the fourth condition below and was written to catch the
+                # anonymous RUN standing on the lot — the case the schedule sees and
+                # the generator, excluding its own records, does not. It also caught,
+                # silently, a case the clause plainly covers and nobody had produced
+                # yet: TWO documented storefronts on one business-front lot. South
+                # Water and Dearborn is the first of them — the Chicago American's own
+                # office holds the corner premises and John Holbrook's store is the
+                # next door east, which is what his advertisement says. Under the old
+                # test the lot read as exhausted and the block's dealt frontage roof
+                # died with `lot 0 already carries chicago_american_office`. The
+                # owner's three conditions say a business-front lot is not exhausted
+                # by a researched building standing at the street on it; they do not
+                # say one and only one. An anonymous holder still takes the lot,
+                # which is condition 2 and is exactly what this keeps.
+                if any(holder not in documented for holder in holders):
                     continue
-                key = (f"{block_id}:{frontage['face']}", holder)
-                if key not in walls:
-                    walls[key] = max(
-                        project(frame, point)[1]
-                        for sid, world in footprints(datum, exclude) if sid == holder
-                        for point in world)
-                # outward is INTO the street, so a wall behind the line reads negative
-                if walls[key] >= -reach:
-                    shared.setdefault(block_id, {})[index] = holder
+                at_street = [h for h in holders
+                             if _wall_out(walls, block_id, frontage, frame,
+                                          datum, exclude, h) >= -reach]
+                if len(at_street) != len(holders):
+                    continue
+                # The map carries ONE name per lot and the callers only ask whether
+                # the lot is exempt, so the westernmost-by-id holder is recorded and
+                # the choice is stable rather than dict-ordered.
+                shared.setdefault(block_id, {})[index] = sorted(at_street)[0]
     return shared
 
 

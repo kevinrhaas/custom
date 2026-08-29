@@ -5200,7 +5200,7 @@ documented. The Evidence panel's `reconstructed` grade and the note on every val
 **How to resolve:** any survivor's account, bill of lading, mill advertisement or measured
 photograph stating a board width for a named building replaces that building's dealt value one
 for one; a document on the town's lumber stock would replace the whole set's bounds.
-**Covers:** `bates_auction_room.form.siding_exposure_m`, `carpenter_south_water_store.form.siding_exposure_m`, `chicago_american_office.form.siding_exposure_m`, `chicago_democrat_office.form.siding_exposure_m`, `dole_warehouse_south.form.siding_exposure_m`, `exchange_coffee_house.form.siding_exposure_m`, `first_presbyterian_church.form.siding_exposure_m`, `frederick_thomas_shop.form.siding_exposure_m`, `goss_cobb_saddlery.form.siding_exposure_m`, `green_tree_tavern.form.siding_exposure_m`, `h_jones_store.form.siding_exposure_m`, `harmon_loomis_store.form.siding_exposure_m`, `jh_kinzie_forwarding_store.form.siding_exposure_m`, `old_bank_building.form.siding_exposure_m`, `peck_store.form.siding_exposure_m`, `pruyne_kimball_drugstore.form.siding_exposure_m`, `sauganash_hotel.form.siding_exposure_m`, `st_marys_church.form.siding_exposure_m`, `steamboat_hotel.form.siding_exposure_m`, `temple_building.form.siding_exposure_m`, `thomas_church_store.form.siding_exposure_m`, `tremont_house_1.form.siding_exposure_m`, `watkins_school_house.form.siding_exposure_m`, `western_hotel.form.siding_exposure_m`.
+**Covers:** `bates_auction_room.form.siding_exposure_m`, `carpenter_south_water_store.form.siding_exposure_m`, `chicago_american_office.form.siding_exposure_m`, `chicago_democrat_office.form.siding_exposure_m`, `dole_warehouse_south.form.siding_exposure_m`, `exchange_coffee_house.form.siding_exposure_m`, `first_presbyterian_church.form.siding_exposure_m`, `frederick_thomas_shop.form.siding_exposure_m`, `goss_cobb_saddlery.form.siding_exposure_m`, `green_tree_tavern.form.siding_exposure_m`, `h_jones_store.form.siding_exposure_m`, `harmon_loomis_store.form.siding_exposure_m`, `jh_kinzie_forwarding_store.form.siding_exposure_m`, `john_holbrook_store.form.siding_exposure_m`, `old_bank_building.form.siding_exposure_m`, `peck_store.form.siding_exposure_m`, `pruyne_kimball_drugstore.form.siding_exposure_m`, `sauganash_hotel.form.siding_exposure_m`, `st_marys_church.form.siding_exposure_m`, `steamboat_hotel.form.siding_exposure_m`, `temple_building.form.siding_exposure_m`, `thomas_church_store.form.siding_exposure_m`, `tremont_house_1.form.siding_exposure_m`, `watkins_school_house.form.siding_exposure_m`, `western_hotel.form.siding_exposure_m`.
 **Recorded:** 2026-08-20.
 
 ### L152 — The Green Tree's fabric from the plates: bays, end stacks, and the rear ell
@@ -9309,3 +9309,63 @@ fort — see `docs/RESEARCH/fort_dearborn.md` § 10.
 Related: **L199** (the bank track, the last thing taken off this reservation) · **L47** (the pickets
 the staff stands over) · tickets **T-0096** (this), **T-0197**, **T-0095**, **T-0044**.
 **Recorded:** 2026-08-28.
+
+### L205 — John Holbrook's store: the American counts the doors, and every dimension of the building is ours
+**Decision:** `john_holbrook_store` is drawn — a two-storey balloon-framed store, 6.096 × 12.192 m
+(20 × 40 ft) on plan, standing on the South Water Street frontage of `blk_south_water_dearborn` one
+door-module east of the Dearborn lot line, fronting north onto South Water Street.
+
+**Covers:** `john_holbrook_store.store_1835.footprint`, `john_holbrook_store.store_1835.form.stories`, `john_holbrook_store.store_1835.form.loft`
+
+**What is not invented:** the trade, the proprietor, the street, the offset and the date. The Chicago
+American of 13 June 1835, Vol. I No. 2, page 3 column 6, carries over the man's own signature:
+*"[H]at[s], Clothing, Boo[ts and Shoes …] WHOLESALE & [RETAIL … the] subscriber [is] now [o]p[en]ing
+[…] a[s]sort[m]ent of th[e] above named [… South] Water [st]reet, one door from De[arborn]. Where he
+[in]tend[s] to keep on hand a l[ar]g[e] [s]t[ock] of the [na]med articles … JOHN HOLBROOK […]
+Chicago, June [13], 183[5]."* Eighteen days before the scene date, in a paper printed in the town it
+describes. Nothing in the corpus's eighty-six issues contradicts it — no dissolution, no removal, no
+replacement — so under the owner's ruling of 2026-08-28 it is built at the scene date and carries no
+survival liberty. The reading is transcription-mediated and the record says so; the transcription's
+uncertainty brackets are preserved wherever it is quoted.
+
+**What is invented, and what it rests on:** every dimension, both storeys, the absence of a loft, and
+the choice of quadrant. 20 × 40 ft sits inside the range of the three committed party-line units this
+building stands in line with (5.635–6.244 m wide, 7.040–13.306 m deep) and is deliberately not a
+fresh number outside them — L29's reasoning about the bridge's pier spacing, that a new figure would
+look like a finding and would not be one. Two storeys is the type for a South Water store in this
+dataset (Peck's on Andreas, Church's on Lake Street) and a stock restocked *"every fifteen [or
+t]w[enty] days"* needs the floor; it is chosen from the type, not derived. The loft is left out
+because Peck's is in only on the strength of a man being described sleeping in it, and nothing
+describes this building at all.
+
+**The offset is the interesting part, and it is arithmetic rather than judgement.** *"One door from
+De[arborn]"* is the only distance-in-doors any newspaper in this corpus gives, and a door needs a
+module and a line. The line is the committed block boundary in
+`data/traces/vectors/thompson_lots.json`; the module is 5.872 m, the MEAN of the three party-line
+units already standing on this frontage (`recon_1835_blk_south_water_dearborn_c3_01`, `_c3_02`,
+`_d1_05`), so it is this frontage's own figure and not one imported from elsewhere. The west wall is
+set one module east of the Dearborn lot line, measured along the frontage rather than in easting, so
+that the store's own door is the second from the corner. The 1.50 m setback is the same margin the
+committed row stands on.
+
+**Two guards, and they are why the position is `inferred`:** (1) the street word is cut to *"ack
+Water"* and is read as SOUTH Water because Dearborn crosses both Water streets and the same column
+places two other cards on South Water — if the page images say North Water the building moves about
+130 m north across the river, whole. (2) *"One door from Dearborn"* names no quadrant; the east side
+is adopted because `blk_south_water_dearborn` is the frontage this project has committed and built a
+row along, while `blk_south_water_clark` opposite carries no roofs at all. That is a production
+reason, not an evidential one, and it is stated as one: a one-in-two choice worth about 100 m.
+
+**Consequence:** the first documented storefront in this town placed by a distance counted in doors
+rather than by a junction, and the first building the Chicago American puts on the ground. It
+substitutes for one anonymous slot of the 665-roof programme rather than being added above it, which
+is what L203 said this corpus was the one most likely to make possible.
+
+**How to resolve:** the page images of the Chicago American for 13 June 1835 settle the street word
+and may settle more of the address; T-0351 asks for them.
+
+Related: **L203** (the substitution clause this is the first use of) · **L29** (a new number that
+would look like a finding) · **L67** (a conjectural building is legible where an absent one is
+invisible) · tickets **T-0306** (this), **T-0305**, **T-0351** (the page images), **T-0352** (the
+business-front clause this run widened, and the owner's ruling it is waiting on).
+**Recorded:** 2026-08-29.

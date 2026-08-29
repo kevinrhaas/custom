@@ -519,6 +519,27 @@ SIGN_WORDING = {
             "raised, not silently answered. " + PENDING
         ),
     },
+    "john_holbrook_store": {
+        "name": "JOHN HOLBROOK", "trade": "Hats, Clothing, Boots & Shoes",
+        "trade_short": "Clothing, Boots & Shoes", "place": "Wholesale & Retail",
+        "identity": "Holbrook", "grade": "inferred",
+        "why": (
+            "HIS OWN WORDS, TWENTY-EIGHT DAYS BEFORE THE SCENE DATE, and the heading is "
+            "already a signboard: \"[H]at[s], Clothing, Boo[ts and Shoes \u2026] WHOLESALE & "
+            "[RETAIL\", over the signature \"JOHN HOLBROOK\" \u2014 Chicago American, "
+            "1835-06-13, Vol. I No. 2, page 3 column 6. Trade first in the paper because "
+            "the goods are the news; man first on the board because a stranger asking for "
+            "the shop asks for the man, which is the register T-0130 fixed this table in. "
+            "The third line carries \"Wholesale & Retail\" rather than the street, because "
+            "the card puts that phrase in its own display line and a board on South Water "
+            "Street does not need to say South Water Street. THE READING IS "
+            "TRANSCRIPTION-MEDIATED and the brackets above are the transcription's own; "
+            "under the owner's ruling of 2026-08-28 that grades the claim documented and "
+            "flags it, and it is exactly why this wording is `inferred` rather than "
+            "better \u2014 an advertisement heading is still not a description of a "
+            "signboard. " + PENDING
+        ),
+    },
     "jh_kinzie_forwarding_store": {
         "name": "JOHN H. KINZIE", "trade": "Forwarding & Commission Merchant",
         "trade_short": "Forwarding & Commission", "place": "Agent, Troy & Erie Line",
