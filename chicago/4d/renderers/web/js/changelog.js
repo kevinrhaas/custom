@@ -1,5 +1,5 @@
 export const CHANGELOG = [ // newest first
-  { v: 356, title: 'June 1834, read: seventy-five buildings and three days\u2019 labour', kind: 'chore', ts: '2026-08-29T01:39:11.976Z', date: 'Aug 28, 2026, 8:39 PM CT',
+  { v: 357, title: 'June 1834, read: seventy-five buildings and three days\u2019 labour', kind: 'chore', ts: '2026-08-29T01:47:05.373Z', date: 'Aug 28, 2026, 8:47 PM CT',
     items: [
       'Nothing you can see changed today. The Chicago Democrat for June 1834 \u2014 four issues, Vol. I Nos. 27 to 30, the last of the paper\u2019s first volume \u2014 has been read end to end, and 73 things it says about the town are written down with the page, column and line they came from.',
       'The paper counted the boom while it was happening. On 18 June it printed that upwards of seventy-five buildings had gone up since spring commenced, some three storeys high, with two or three more three-storey stores begun; that the settled population was at least 1500; and that lots on the principal street rented at $300 a foot front. The same issue\u2019s price current put brick at six dollars the thousand, poplar lumber at twenty to twenty-three, shingles at three, lime at a dollar and a quarter the barrel. That is the boom and what it was bought with, in one issue.',
