@@ -9589,16 +9589,16 @@ Related: **L93** (the block parcel's A3 privy, the same clamp) · **L92** (the p
 **Covers:** `recon_1835_west_008.inferred_1835.form.wall_height_m`, `recon_1835_west_009.inferred_1835.form.wall_height_m`, `recon_1835_west_010.inferred_1835.form.wall_height_m`, `recon_1835_west_011.inferred_1835.form.wall_height_m`, `recon_1835_west_012.inferred_1835.form.wall_height_m`, `recon_1835_west_021.inferred_1835.form.wall_height_m`
 **Recorded:** 2026-08-29.
 
-### L211 — Twenty-two documented businesses are seated on reconstructed roofs, and no source puts them there
+### L211 — Twenty-four documented businesses are seated on reconstructed roofs, and no source puts them there
 **Decision:** where the newspaper register can place a business no closer than a platted street,
 the business adopts an anonymous reconstructed roof already standing on that street face. The
 owner ruled it on 2026-08-29 (T-0354), choosing adoption over a new frontage record with a
-conjectural along-street position and over waiting for a corner. Twenty-two of the register's 45
+conjectural along-street position and over waiting for a corner. Twenty-four of the register's 60
 `street_only` businesses were seated on 2026-08-29; `docs/STREET-FACE-ADOPTION.md` is the policy,
 `data/research/newspapers/street_face_adoptions.json` the derived table, and
 `tools/adopt_street_faces.py --check` re-derives both on every commit.
 
-**What is not invented:** the businesses, their trades and their streets. Every one of the 22 is
+**What is not invented:** the businesses, their trades and their streets. Every one of the 24 is
 printed in the *Chicago Democrat* or the *Chicago American* at the issue and column its record
 cites, and every one names a platted street this model holds — Peter Cohen at the east end of
 South Water-street, Miss Bayne's school in Randolph Street, the Chicago Bakery on South Water. The
@@ -9619,12 +9619,12 @@ structure's own phase and fails if it has stopped saying so, because the busines
 and the building under it is not. An along-street position: `order_is_a_claim: false` on every
 record. And a neighbour: two businesses on one face stand in no order any source supports.
 
-**The refusals are what keep it honest, and they refuse more than they take.** Twenty-three of the
-45 are not seated. Sixteen name a street — Dearborn, La Salle, Canal, North Water — with no roof
+**The refusals are what keep it honest, and they refuse more than they take.** Thirty-six of the
+60 are not seated. Twenty-four name a street — Dearborn, La Salle, Canal, North Water — with no roof
 whose platted lot faces it, and adopting a roof that shows the street only a corner side would
-have put a door where the plat puts a gable end. Six are a second heading of a house already
+have put a door where the plat puts a gable end. Nine are a second heading of a house already
 seated on that face, because the corpus prints "Peter Cohen" and "Peter Cohen's store" as two
-entries and one man did not keep two storefronts on one street on any evidence here. One is short
+entries and one man did not keep two storefronts on one street on any evidence here. Three are short
 purely of supply. `python3 tools/adopt_street_faces.py --report` prints every refusal with its
 reason and its count, so the ratio is auditable rather than asserted.
 
@@ -9635,16 +9635,16 @@ caught one of the four; the other three take three roofs for what is probably on
 pass will not decide by resemblance what the gazetteer's identity layer has not judged, and
 **T-0405** is the ticket that judges it from the page images.
 
-**Consequence:** twenty-two businesses the papers name move from a research file into the town's
+**Consequence:** twenty-four businesses the papers name move from a research file into the town's
 own street faces, on roofs that were already standing. **No geometry moves, no triangle is added,
 and no building changes grade.** What this entry admits is that a visitor standing on South Water
 Street in front of Peter Cohen's store is looking at a building we raised and a name the paper
 printed, and that nothing joins the two but this rule.
 
 **How to resolve:** a directory, a tax list, or a lot-and-block address in the corpus would put
-any of these 22 on a lot, at which point that business leaves this entry for a placement of its
+any of these 24 on a lot, at which point that business leaves this entry for a placement of its
 own — the shape **T-0384** through **T-0387** already take for the businesses whose advertisements
-name an anchor. A ruling that a corner side is a street face would move up to sixteen more into
+name an anchor. A ruling that a corner side is a street face would move up to twenty-four more into
 this entry rather than out of it, and the count above is what would change.
 
 Related: **L205** (documented men on reconstructed roofs, the pattern this follows) · **L92** (the

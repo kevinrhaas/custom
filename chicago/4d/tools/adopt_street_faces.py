@@ -8,13 +8,14 @@
 WHAT THIS IS FOR.
 
 `data/research/newspapers/register_1835.json` reads 221 businesses out of the Chicago
-Democrat and the Chicago American, 172 of them standing on the scene date, and says for
-each what the committed town would have to do about it. Fifty-two resolve to a
+Democrat and the Chicago American, 203 of them standing on the scene date, and says for
+each what the committed town would have to do about it. Fifty-eight resolve to a
 building: `enrich_existing` where the advertisement's anchor names a roof this project
-holds, `new_building` where it names a place precise enough to raise one. Forty-five do
+holds, `new_building` where it names a place precise enough to raise one. Sixty do
 not. The paper names a PLATTED STREET AND NOTHING NARROWER — Peter Cohen at "the east end
 of South Water-street", J. S. C. Hogan on South Water — and the register calls them
-`street_only`. Seventy-five more reach no street the model holds at all.
+`street_only`. Eighty-five more reach no street the model holds at all.
+Those figures move with every newspaper merge and are a snapshot; the tool is the source.
 
 **The owner ruled on these on 2026-08-29**, choosing between the three options T-0354
 set out:

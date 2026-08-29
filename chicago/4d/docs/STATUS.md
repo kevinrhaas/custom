@@ -2,11 +2,13 @@
 
 ## Shipped 2026-08-29 — T-0354: what a business does when the paper names a street and nothing narrower
 
-**The register could place 52 of 172 documented businesses; 22 more now stand on the street faces
-their advertisements name.** (T-0354's title says 24 of 190. It was filed that morning; T-0380,
-T-0383, T-0355 and T-0399 all landed on `dev` before this branch merged, and every figure here is
-this branch's own re-derivation against the register as merged. Nothing in this PR is an authored
-count — `tools/adopt_street_faces.py --report` reprints all of them.) The owner ruled on 2026-08-29, choosing between the three options the
+**The register could place 58 of 203 documented businesses; 24 more now stand on the street faces
+their advertisements name.** (T-0354's title says 24 of 190 with 49 `street_only`. It was filed that
+morning; T-0380, T-0383, T-0355, T-0399 and T-0356 all landed on `dev` before this branch merged and
+the `street_only` pile went 47 → 45 → 60 while it was being written. Every figure here is this
+branch's own re-derivation against the register as merged, and none of it is authored —
+`tools/adopt_street_faces.py --report` reprints all of it. **The policy did not move with the
+counts**, which is the argument for deriving the allocation instead of listing it.) The owner ruled on 2026-08-29, choosing between the three options the
 ticket set out, that a `street_only` business *adopts a reconstructed roof already standing on that
 street face*. `docs/STREET-FACE-ADOPTION.md` is that ruling written so a later run applies it
 without re-deciding it, `tools/adopt_street_faces.py` derives the allocation,
@@ -20,11 +22,11 @@ face is an allocation by deterministic rule and says so in every record; and ord
 not a claim. Each of those four is a way the ruling could be breached silently by a later run, which
 is why each is a check rather than a paragraph.
 
-**What it moves, and where the rest wait.** 45 `street_only` in the register: **22 adopted, 23
-waiting.** Sixteen name Dearborn, La Salle, Canal or North Water, where no reconstructed roof's
+**What it moves, and where the rest wait.** 60 `street_only` in the register: **24 adopted, 36
+waiting.** Twenty-four name Dearborn, La Salle, Canal or North Water, where no reconstructed roof's
 platted lot faces the street — Dearborn has eighteen roofs showing it a corner side and none showing
-it a front. Six are a second heading of a house already seated on that face. One is short purely
-of supply. South Water took 14 of its 19 fronting roofs (5 are households' dwellings); Lake took 7;
+it a front. Nine are a second heading of a house already seated on that face. Three are short purely
+of supply. South Water took 14 of its 19 fronting roofs (5 are households' dwellings); Lake took 9;
 Randolph took 1.
 
 **What is unverified or deliberately left, stated plainly.**
@@ -32,7 +34,7 @@ Randolph took 1.
 - **Only `lot front` is adopted, and that is a decision with a cost.** `tools/fronting_street.py`
   also answers `corner side` and `centreline band`; both are refused here, because an
   advertisement's street is where the door is and a gable end reaching a street is not a doorway.
-  **Widening the reading would reach 16 more**, and `--report` prints both readings side by side so
+  **Widening the reading would reach 24 more**, and `--report` prints both readings side by side so
   the number an owner ruling would change is one number, not a rewrite.
 - **Three Lake Street roofs are probably one house.** Wm. G. Branchaud, W. G. Blanchard, G.
   Blanshard and F. G. Blanshard advertise one trade within five months under four transcribed
@@ -40,7 +42,7 @@ Randolph took 1.
   matches exact surnames only — deciding by resemblance is the identity layer's job — so it caught
   one of the four and left three roofs standing. Filed as **T-0405**, with the page images named as
   the remedy.
-- **The 75 `unplaceable` are untouched and T-0354's second half stays open.** The ruling does not
+- **The 85 `unplaceable` are untouched and T-0354's second half stays open.** The ruling does not
   reach them and this policy does not extend it; some are outside the plat entirely.
 - **Nothing is spent yet.** This is the policy and the allocation. No card, signboard or frontage
   reads it — that is T-0263's and the seeding tickets'. No geometry moved and no triangle was added,
@@ -372,14 +374,30 @@ whatever the contradiction is dated, which struck a firm out of a July town on t
 August dissolution notice. Here the veto is a contradiction dated ON OR BEFORE 1835-07-01. A later
 one is recorded — `dissolved_after_scene_date`, one business — and disobeyed.
 
-**The ticket's second exclusion had to be rebuilt out of what the data carries.** T-0262 asks to
-exclude entries whose only 1835 evidence `announces_opening` after 1 July. There is no
-`announces_opening` in the claim vocabulary; the ticket describes a field the extraction schema
-never grew. The derivable test that answers the same question without inventing one is
-`first_evidence_after_scene_date`: a business whose FIRST issue postdates the scene date evidences
-nothing about 1 July. Seventeen businesses. It is conservative in the direction provenance wants,
-it is not a claim that they were absent, and every one of them is kept in the register with the
-exclusion named so a later pass that can read an opening notice properly may overturn it.
+**The ticket's second exclusion was a proxy, and T-0356 replaced it with the field.** T-0262 asked
+to exclude entries whose only 1835 evidence `announces_opening` after 1 July. There was no
+`announces_opening` in the claim vocabulary — except as a bare `true` on twenty claims that no tool
+read — so the register used the derivable proxy `first_evidence_after_scene_date`: a business whose
+FIRST issue postdates the scene date evidences nothing about 1 July. Thirty-eight businesses by the
+time the corpus was fully read.
+
+**The re-read settled it, and the proxy was excluding houses the papers put in the town.** The
+claim now carries `{verbatim, dating, iso, note}` and the DATING decides: a `stated` future opening
+after the scene date excludes; an `effected` one is dated by the advertisement's own dateline and
+bounds the opening from ABOVE, so it never excludes; an `undated` one decides nothing. Four of the
+thirty-eight genuinely announce a later opening and stay out — Cromelien's wine branch (14 Aug),
+Everts' high school for young gentlemen (10 Aug), Hunt's for young ladies (17 Aug), Lyon's
+wholesale grocery (1 Sep). **Thirty-four are restored**, and five of those are printed standing in
+the July town: Wm. H. Taylor's boot store over a dateline of 8 JULY 1834, Wm. H. Kennicott saying he
+had practised dentistry here "for the past year", Samuel Lewis's music-school copy dated 22 June,
+S. Abell's 24 June and John Holbrook's 10 June. The register's placeable count moves from 66 to 78
+and its street-only count from 47 to 63.
+
+**What replaced the proxy is not nothing.** A business first printed in August that announces no
+opening now stands under ruling 3, and that is a liberty: `backdating_liberty_required`, the
+forward twin of `survival_liberty_required` — documented only after the scene date, present on it
+by assumption. Thirty-three businesses carry it, computed and never asserted. `docs/LIBERTIES.md`
+carries neither class yet (T-0357 is the survival half, T-0404 the backdating half).
 
 ### The counts, which are the epic's yield measured
 
@@ -387,7 +405,7 @@ exclusion named so a later pass that can read an opening notice properly may ove
 |---|---|
 | present at the scene date | 190 |
 | excluded — contradicted before 1835-07-01 | 14 |
-| excluded — first evidence after 1835-07-01 | 17 |
+| excluded — first evidence after 1835-07-01 (the proxy T-0356 retired) | 17 |
 | `enrich_existing` (a committed building already carries it) | 39 |
 | `new_building` (placeable against the committed town) | 24 |
 | `street_only` (a street face and no closer) | 49 |
@@ -401,6 +419,29 @@ exclusion named so a later pass that can read an opening notice properly may ove
 | `new_resident` — ruling 1 | 1,971 |
 | …of those, known only from the letter lists | 1,555 |
 | **invented households the register can retire** | **28 of 117** |
+
+Those are the figures the epic landed on, and they are kept as landed. **Re-measured on
+2026-08-29, after the whole corpus was read and after T-0356 replaced the proxy exclusion
+with the field**, the same register reads:
+
+| businesses | 242 |
+|---|---|
+| present at the scene date | 224 |
+| excluded — contradicted before 1835-07-01 | 14 |
+| excluded — opening announced after 1835-07-01 | 4 |
+| `enrich_existing` | 38 |
+| `new_building` | 30 |
+| `street_only` | 63 |
+| `unplaceable` | 111 |
+| standing on a survival liberty (last evidence pre-1835) | 126 |
+| standing on a backdating liberty (first evidence post-scene-date) | 33 |
+
+| persons | 2,628 |
+|---|---|
+| `enrich` | 184 |
+| `replace_invented` | 119 |
+| `new_resident` | 2,325 |
+| **invented households the register can retire** | **27** |
 
 The retirement figure is a count of HOUSEHOLDS and it is capped per trade by construction: three
 documented tailors retire at most the tailors the town invented. Reporting the matched persons

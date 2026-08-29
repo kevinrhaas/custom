@@ -246,7 +246,12 @@
           "street": "Dearborn Street"
         }
       },
-      "announces_opening": true,
+      "announces_opening": {
+        "verbatim": "they have taken a shop, on [Dearbo]rn Street",
+        "dating": "undated",
+        "iso": null,
+        "note": "The first printing of the tailors' notice carries no dateline; the 29 July printing of the same copy is dated 22 July 1835."
+      },
       "notes": "THE BEST PLACEMENT IN THE FOUR ISSUES: a shop on Dearborn Street, nearly opposite the Eagle House — a street, a side implied by an anchor, and an anchor the town already carries, since the Democratic citizens of Chicago Precinct meet at the Eagle Coffee House two days after this issue (chicago_democrat_1835_07_15 c002). `class: relative`, anchor the Eagle House. ANNOUNCES AN OPENING: 'they have taken a shop' is the taking, not the standing, and the 1835-07-29 printing (line 368) still carries the same copy, so the shop is new in July 1835 and under the parent's rule this is NOT evidence of a tailor's shop standing there on 1 July. THE FIRM'S NAME IS TWO SURNAMES AND NO FORENAMES, so one entity is minted for the partnership and no partner is minted separately — the project never splits a firm into people it cannot name. 'HALSMAN' is as printed in both witnesses."
     },
     {
@@ -438,7 +443,12 @@
           "class": "none"
         }
       },
-      "announces_opening": true,
+      "announces_opening": {
+        "verbatim": "[The] undersigned have formed a connection [in] the mercantile business",
+        "dating": "undated",
+        "iso": null,
+        "note": "The second printing of the Jones, King & Co. formation notice, again with no dateline."
+      },
       "notes": "THE SAME FORMATION NOTICE AS chicago_democrat_1835_07_08 c009, standing a fortnight later and still carrying no address. Recorded rather than skipped because it fixes the window the firm advertised in — 8 July to 29 July at least, all three witnesses in this range — and because the three signatures are legible here where the 07-08 printing sheared the first ('WILLIAM JONES' survives whole in both)."
     },
     {

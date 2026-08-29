@@ -9,23 +9,16 @@ and `tools/check.sh` re-derives both on every commit.
 ## The problem this answers
 
 `data/research/newspapers/register_1835.json` reads 221 businesses out of the *Chicago
-Democrat* and the *Chicago American* and finds 172 standing on 1 July 1835. It resolves
-**52** of them to a building — 29 `enrich_existing`, where the advertisement's anchor names
-a roof this project already holds, and 23 `new_building`, where it names a place precise
-enough to raise one. The remaining **120** divide into two piles, and neither is a defect
+Democrat* and the *Chicago American* and finds 203 standing on 1 July 1835. It resolves
+**58** of them to a building — 32 `enrich_existing`, where the advertisement's anchor names
+a roof this project already holds, and 26 `new_building`, where it names a place precise
+enough to raise one. The remaining **145** divide into two piles, and neither is a defect
 in the register:
-
-*(T-0354 was written on 2026-08-29 against a register that read 24 placed / 49 `street_only`
-/ 78 `unplaceable`. Every count in this file is this branch's own re-derivation later the
-same day, after T-0380, T-0383, T-0355 and T-0399 moved businesses between the actions and
-merged firms the identity layer had been holding apart. The shape of the problem is
-unchanged. **None of these numbers is authored** — `python3 tools/adopt_street_faces.py
---report` reprints all of them, so drift shows rather than rots.)*
 
 | pile | count | what the paper gives |
 |---|---|---|
-| `street_only` | **45** | a platted street and nothing narrower — "the east end of South Water-street" |
-| `unplaceable` | **75** | no street this model holds — Flag Creek, "on the road to Ottawa", or no address printed at all |
+| `street_only` | **60** | a platted street and nothing narrower — "the east end of South Water-street" |
+| `unplaceable` | **85** | no street this model holds — Flag Creek, "on the road to Ottawa", or no address printed at all |
 
 Without a policy, the papers yield fifty-odd buildings. With one, they yield most of a
 town. That is the whole of what is at stake here.
@@ -40,7 +33,7 @@ adoption, 2026-08-29:**
 > Adopt a reconstructed roof already standing on that street face and attach the business
 > to it.
 
-So the 45 join the town on the streets their advertisements name, using roofs the
+So they join the town on the streets their advertisements name, using roofs the
 reconstruction programme has already raised there. Nothing new is built and nothing is
 promoted.
 
@@ -118,48 +111,59 @@ side is a face has exactly one number to change.
 
 ## What it moves, measured 2026-08-29
 
+**Every number below is DERIVED, and none of it is authored.** `python3
+tools/adopt_street_faces.py --report` reprints all of it from the register as committed, so
+a figure that has gone stale shows as a disagreement rather than rotting quietly in prose.
+This is a snapshot of `dev` at the merge of #552, and the register moves: it was read four
+times while this policy was being written, and the `street_only` pile went 47 → 45 → 60 as
+T-0355, T-0399 and T-0356 landed. The POLICY does not move with it — the four limits, the
+narrow reading of "face" and the five refusals are unchanged by any of that, which is the
+point of deriving the allocation instead of listing it.
+
 | | |
 |---|---|
-| `street_only` in the register | **45** |
-| adopted a street face | **22** |
-| waiting | **23** |
-| — no roof whose lot fronts the named street | 16 |
-| — this face already holds this proprietor | 6 |
-| — every roof on the face is spoken for | 1 |
-| `unplaceable`, outside this policy and still open | **75** |
+| `street_only` in the register | **60** |
+| adopted a street face | **24** |
+| waiting | **36** |
+| — no roof whose lot fronts the named street | 24 |
+| — this face already holds this proprietor | 9 |
+| — every roof on the face is spoken for | 3 |
+| `unplaceable`, outside this policy and still open | **85** |
 
 | street face | ads | took | roofs fronting | free | side only | in band |
 |---|---|---|---|---|---|---|
-| South Water Street | 20 | 14 | 19 | 14 | 0 | 0 |
-| Dearborn Street | 11 | 0 | 0 | 0 | 18 | 0 |
-| Lake Street | 8 | 7 | 51 | 29 | 0 | 4 |
-| La Salle Street | 2 | 0 | 0 | 0 | 8 | 0 |
+| South Water Street | 24 | 14 | 19 | 14 | 0 | 0 |
+| Dearborn Street | 18 | 0 | 0 | 0 | 18 | 0 |
+| Lake Street | 11 | 9 | 51 | 29 | 0 | 4 |
+| La Salle Street | 3 | 0 | 0 | 0 | 8 | 0 |
 | North Water Street | 2 | 0 | 0 | 0 | 0 | 1 |
 | Canal Street | 1 | 0 | 0 | 0 | 3 | 0 |
 | Randolph Street | 1 | 1 | 64 | 50 | 0 | 0 |
 
 **Where the rest wait, named rather than implied:**
 
-- **Dearborn Street (11), La Salle Street (2), Canal Street (1), North Water Street (2).**
-  No roof's platted lot faces them. Two remedies, and neither is this policy's to take: a
-  ruling that a corner side is a face, or a reconstruction that raises frontage on those
-  streets. Two of the eleven — the New York Clothing Store and the Dearborn Street wine
-  store — have their own tickets (**T-0385**, **T-0387**) that place them from an anchor
-  and do not need this policy at all.
-- **South Water Street (6 refused).** Nineteen roofs front it, five are households' homes
-  and fourteen are adopted, so six advertisements are short of a roof. Five of those six
-  are refused as a second heading of a house already seated; only one is short purely on
-  supply. **T-0375** is the ticket that notices South Water's reconstructed roofs are
-  all a labourer's, and any roof it adds to that face is a roof this pass will take on its
-  next re-derivation, automatically.
+- **Dearborn Street (18), La Salle Street (3), Canal Street (1), North Water Street (2).**
+  No roof's platted lot faces them, which is 24 of the 36 that wait. Two remedies, and
+  neither is this policy's to take: a ruling that a corner side is a face, or a
+  reconstruction that raises frontage on those streets. Three of the Dearborn Street
+  advertisements — the New York Clothing Store, the Dearborn Street wine store and W. H.
+  Taylor's boot and shoe store — have their own tickets (**T-0385**, **T-0387**) that place
+  them from an anchor and do not need this policy at all.
+- **South Water Street (10 refused).** Nineteen roofs front it, five are households' homes
+  and fourteen are adopted, so ten advertisements are short of a roof: seven are a second
+  heading of a house already seated, and three are short purely on supply. **T-0375** is
+  the ticket that notices South Water's reconstructed roofs are all a labourer's, and any
+  roof it adds to that face is a roof this pass will take on its next re-derivation,
+  automatically.
+- **Lake Street (2 refused)** — both a second heading of a proprietor already seated.
 
-## The 75 `unplaceable` are NOT covered, and stay open
+## The 85 `unplaceable` are NOT covered, and stay open
 
 The ruling does not reach them and this policy does not extend it. Some are outside the
 plat entirely — E. Wentworth's public house on Flag Creek, on the road to Ottawa — and
 adopting a roof for them would put a business in a town it never stood in. Some simply
 never printed an address. **T-0354's second half is still open**, and the honest answer for
-these 75 today is that the corpus records them and the model does not hold them.
+these 85 today is that the corpus records them and the model does not hold them.
 
 ## How to spend it
 

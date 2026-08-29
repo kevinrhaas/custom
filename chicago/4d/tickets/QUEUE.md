@@ -45,15 +45,14 @@ T-0340 — The bookseller's sign-name and its partners' firm-name are three gaze
 T-0400 — The firm styles that differ in the forename's form: whole against abbreviated against initial
 T-0401 — The firm groups that are two houses, written down so no later sweep merges them
 T-0402 — The firm groups an agency, a parent house or a lost signature makes ambiguous
-T-0356 — The claim vocabulary cannot say an advertisement announces an opening, so 17 businesses are excluded on a proxy
 T-0345 — Mason's blacksmith shop is anchored on Graves' Tavern until 16 July 1834 and on the Tremont House from 10 September, and the register holds both as standing placements
 
 # --- THE NEWSPAPER STREAM (b) THE POLICY THAT DECIDES HOW MUCH TOWN THE PAPERS REACH.
 # --- T-0354 shipped in #551 on 2026-08-29 and is removed from this band: the owner's
 # --- ruling — a street-only business adopts a reconstructed roof already standing on that
 # --- street face, never claiming a lot — is now docs/STREET-FACE-ADOPTION.md, derived by
-# --- tools/adopt_street_faces.py and gated in check.sh. It seats 22 of the 47; 25 wait
-# --- with their reasons counted, and the 81 unplaceable are its untouched second half.
+# --- tools/adopt_street_faces.py and gated in check.sh. It seats 22 of the street-only
+# --- pile; the rest wait with their reasons counted, and the unplaceable half is untouched.
 # --- T-0357 is its companion — 129 businesses stand on a survival liberty nothing has
 # --- written down yet — and remains the band.
 T-0357 — 129 documented businesses will stand on a survival liberty and LIBERTIES.md carries none of them
@@ -172,4 +171,5 @@ T-0395 — The New York House's footprint is graded reconstructed but its note c
 T-0396 — Newberry & Dole's partner is read as Oliver Newberry in 1834 and Walter L. Newberry in 1835, and the corpus cannot say which stood in the firm
 T-0391 — Are 'Eagle Hotel' and 'the Eagle Hotel (Steele's)' one house, and no issue prints both
 T-0403 — The Democrat's office keeps its 1834 corner through a merge, and the paper moved along South Water Street before the scene date
+T-0404 — 33 documented businesses will stand on a backdating liberty and LIBERTIES.md carries none of them
 T-0405 — Four spellings of one Lake Street trade take four separate roofs, and the identity layer has judged none of them

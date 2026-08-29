@@ -36,16 +36,38 @@ THE OWNER'S THREE RULINGS, 2026-08-28, and where each one lands here:
      BEFORE the scene date. A LATER one is recorded, not obeyed —
      `dissolved_after_scene_date` — and the business stands.
 
-TWO EXCLUSIONS, AND THE SECOND ONE IS THE TICKET'S CLAUSE REBUILT OUT OF WHAT THE
-DATA ACTUALLY CARRIES. T-0262 asks to exclude "entries whose only 1835 evidence
-`announces_opening` after Jul 1". There is no `announces_opening` in the claim
-vocabulary — the ticket describes a field the extraction schema never grew — so the
-derivable test is the one that answers the same question without inventing one: a
-business whose FIRST issue is after the scene date has no evidence whatever that it
-stood on 1 July, and is excluded as `first_evidence_after_scene_date`. That is
-conservative in the direction provenance wants. It is also not a claim that the
-business was absent, so the register keeps every one of them, with the exclusion
-named, for a later pass that can read an opening notice properly.
+TWO EXCLUSIONS, AND THE SECOND ONE NOW READS THE PAPER RATHER THAN A PROXY (T-0356).
+T-0262 asked to exclude "entries whose only 1835 evidence `announces_opening` after
+Jul 1", and there was no such field to read, so this tool used the derivable proxy
+instead: a business whose FIRST issue postdated the scene date was excluded as
+`first_evidence_after_scene_date`. Conservative in the direction provenance wants,
+and NOT the same question — and the re-read of the thirty-eight it caught is what
+settles that. Wm. H. Taylor's boot store advertised over a dateline of 8 JULY 1834,
+Wm. H. Kennicott said he had practised dentistry in the town "for the past year",
+Samuel Lewis's music-school copy is dated 22 June, S. Abell's 24 June and John
+Holbrook's 10 June. Five houses excluded from a town they were printed standing in,
+because the first SURVIVING issue that carried them falls in August.
+
+So `announces_opening` is a field now (tools/compile_gazetteer.py § OPENING_DATINGS)
+and the exclusion reads it. The DATING is what decides:
+
+  stated    the paper names a date the house WILL open. After the scene date, that is
+            the paper saying it was not open then — `opening_announced_after_scene_date`.
+            Four houses: Cromelien's wine branch (14 Aug), Everts' high school for young
+            gentlemen (10 Aug), Hunt's for young ladies (17 Aug) and Lyon's wholesale
+            grocery (1 Sep).
+  effected  an opening already made, dated by the advertisement's own dateline. It bounds
+            the opening from ABOVE and can never exclude — "has opened", printed on 7
+            August, is silent about 1 July. On or before the scene date it is the
+            opposite: positive evidence the house stood.
+  undated   an opening the printing dates nowhere. It decides nothing either way.
+
+WHAT REPLACED THE PROXY IS NOT NOTHING. A business first printed in August and never
+announcing an opening now stands in the July town under ruling 3 — documented, not
+contradicted — and that is a LIBERTY, the forward twin of `survival_liberty_required`.
+`backdating_liberty_required` names it: existence documented only after the scene date,
+presence on the scene date assumed, and no opening notice dated on or before it to
+carry the assumption. It is computed here and never asserted, exactly as its twin is.
 
 WHAT AN ACTION MEANS, for the seeding tickets that consume this:
 
@@ -99,7 +121,7 @@ SCHEMA_VERSION = 1
 
 BUSINESS_ACTIONS = ("enrich_existing", "new_building", "street_only", "unplaceable")
 PERSON_ACTIONS = ("enrich", "replace_invented", "new_resident")
-EXCLUSIONS = ("contradicted_before_scene_date", "first_evidence_after_scene_date")
+EXCLUSIONS = ("contradicted_before_scene_date", "opening_announced_after_scene_date")
 
 # Words that carry no identity in a name or an anchor: articles, the honorifics the
 # papers set before a name, and the four nouns that appear in half the storefronts in
@@ -668,11 +690,22 @@ def compile_register(gazetteer, town, quiet=True):
             exclusion_note = ("Contradicted on or before the scene date by %s."
                               % ", ".join("%s (%s, %s)" % (c["claim"], c["kind"], c["issue"])
                                           for c in before))
-        elif first > scene:
-            exclusion = "first_evidence_after_scene_date"
-            exclusion_note = ("The earliest issue carrying this business is %s, after the "
-                              "scene date, so nothing evidences it standing on %s."
-                              % (first, scene))
+        # T-0356. Only a STATED future opening can exclude, and it excludes on its own
+        # date. An `effected` or `undated` announcement is recorded and obeyed by nothing.
+        announced = b.get("opening_announced") or []
+        stated_after = sorted(o for o in announced
+                              if o.get("dating") == "stated" and (o.get("iso") or "") > scene)
+        if not before and stated_after:
+            o = stated_after[0]
+            exclusion = "opening_announced_after_scene_date"
+            exclusion_note = ("%s announces this house opening on %s, after the scene date "
+                              "— \u201c%s\u201d. %s"
+                              % (o["claim"], o["iso"], o["verbatim"], o["note"]))
+
+        # The forward twin of the survival liberty: documented only after the scene date,
+        # and standing in the July town on the assumption that it was already there.
+        opened_by_scene = any((o.get("iso") or "") <= scene for o in announced if o.get("iso"))
+        backdating = (exclusion is None and first > scene and not opened_by_scene)
 
         entry = {
             "id": b["id"],
@@ -688,7 +721,9 @@ def compile_register(gazetteer, town, quiet=True):
             "exclusion": exclusion,
             "exclusion_note": exclusion_note,
             "dissolved_after_scene_date": [c["claim"] for c in after] if after else [],
+            "opening_announced": announced,
             "survival_liberty_required": bool(b.get("survival_liberty_required")) and exclusion is None,
+            "backdating_liberty_required": backdating,
             "anchor": resolve_anchor(town, b, by_firm),
             "outside_plat": outside_the_plat(b, town),
             "action": None,
@@ -865,6 +900,8 @@ def compile_register(gazetteer, town, quiet=True):
             "present_by_action": tally(present, "action"),
             "outside_the_plat": sum(1 for b in businesses if b["outside_plat"]),
             "survival_liberty_required": sum(1 for b in present if b["survival_liberty_required"]),
+            "backdating_liberty_required": sum(1 for b in present
+                                               if b["backdating_liberty_required"]),
             "dissolved_after_scene_date": sum(1 for b in businesses if b["dissolved_after_scene_date"]),
         },
         "persons": {
@@ -1032,6 +1069,7 @@ def self_test():
              "evidence": {"first_issue": kw.get("first", "1834-01-01"),
                           "last_issue": kw.get("last", "1835-06-01"), "copy_dates": []},
              "contradicted_by": kw.get("contradicted", []),
+             "opening_announced": kw.get("announced", []),
              "mentions": [], "built_at_scene_date": True,
              "survival_liberty_required": kw.get("survival", False)}
         return b
@@ -1055,12 +1093,67 @@ def self_test():
          else "present=%r after=%r" % (d["businesses"][0]["present_at_scene_date"],
                                        d["businesses"][0]["dissolved_after_scene_date"]))
 
-    # 2. First evidence after the scene date excludes, and says so.
-    case("first evidence after the scene date excludes",
-         gaz([biz("b1", first="1835-08-08", last="1835-08-08")]),
-         lambda d: True if (d["businesses"][0]["exclusion"] == "first_evidence_after_scene_date"
-                            and "1835-08-08" in d["businesses"][0]["exclusion_note"])
+    # 2. T-0356. The exclusion reads the paper's own opening notice, and the DATING is
+    #    what decides. Every case below was a live reading in the 1835 corpus.
+    def opening(dating, iso, claim="c#1", verbatim="will open", note="a reading"):
+        return {"claim": claim, "issue": "1835-08-05", "dating": dating, "iso": iso,
+                "verbatim": verbatim, "note": note}
+
+    case("a STATED opening after the scene date excludes, and quotes the paper",
+         gaz([biz("b1", first="1835-08-05", last="1835-08-05",
+                  announced=[opening("stated", "1835-08-14",
+                                     verbatim="open a Branch of their House")])]),
+         lambda d: True if (d["businesses"][0]["exclusion"] == "opening_announced_after_scene_date"
+                            and "1835-08-14" in d["businesses"][0]["exclusion_note"]
+                            and "open a Branch of their House" in d["businesses"][0]["exclusion_note"])
+         else "excluded as %r, %r" % (d["businesses"][0]["exclusion"],
+                                      d["businesses"][0]["exclusion_note"]))
+    case("a STATED opening on or before the scene date does not exclude",
+         gaz([biz("b1", street="Lake Street", first="1835-08-05", last="1835-08-05",
+                  announced=[opening("stated", "1835-06-20")])]),
+         lambda d: True if d["businesses"][0]["present_at_scene_date"]
          else "excluded as %r" % d["businesses"][0]["exclusion"])
+    case("an EFFECTED opening after the scene date never excludes — it bounds from above",
+         gaz([biz("b1", street="Lake Street", first="1835-08-19", last="1835-08-19",
+                  announced=[opening("effected", "1835-08-18", verbatim="she has taken a room")])]),
+         lambda d: True if (d["businesses"][0]["present_at_scene_date"]
+                            and d["businesses"][0]["action"] == "street_only")
+         else "excluded as %r" % d["businesses"][0]["exclusion"])
+    case("an UNDATED opening decides nothing",
+         gaz([biz("b1", street="Lake Street", first="1835-08-05", last="1835-08-05",
+                  announced=[opening("undated", None, verbatim="has just opened")])]),
+         lambda d: True if d["businesses"][0]["present_at_scene_date"]
+         else "excluded as %r" % d["businesses"][0]["exclusion"])
+    case("a contradiction before the scene date outranks a stated opening",
+         gaz([biz("b1", first="1835-08-05", last="1835-08-05",
+                  announced=[opening("stated", "1835-08-14")],
+                  contradicted=[{"claim": "c#9", "kind": "notice", "issue": "1834-06-11"}])]),
+         lambda d: True if d["businesses"][0]["exclusion"] == "contradicted_before_scene_date"
+         else "excluded as %r" % d["businesses"][0]["exclusion"])
+
+    # 2b. THE PROXY IS GONE, and this is the case that proves it: a house whose first
+    #     surviving issue is August and whose copy is dated a year earlier stands in the
+    #     July town, on no liberty at all. Wm. H. Taylor's boot store, 8 July 1834.
+    case("first evidence after the scene date no longer excludes by itself",
+         gaz([biz("b1", street="Lake Street", first="1835-08-08", last="1835-08-08")]),
+         lambda d: True if (d["businesses"][0]["present_at_scene_date"]
+                            and d["businesses"][0]["exclusion"] is None)
+         else "excluded as %r" % d["businesses"][0]["exclusion"])
+    case("standing on August evidence alone is a backdating liberty",
+         gaz([biz("b1", street="Lake Street", first="1835-08-08", last="1835-08-08")]),
+         lambda d: True if d["businesses"][0]["backdating_liberty_required"]
+         else "backdating_liberty_required=%r" % d["businesses"][0]["backdating_liberty_required"])
+    case("an opening dated before the scene date clears the backdating liberty",
+         gaz([biz("b1", street="Lake Street", first="1835-08-05", last="1835-08-05",
+                  announced=[opening("effected", "1834-07-08",
+                                     verbatim="HAS opened an extensive Boot, Shoe and Leather Store")])]),
+         lambda d: True if (d["businesses"][0]["present_at_scene_date"]
+                            and not d["businesses"][0]["backdating_liberty_required"])
+         else "backdating_liberty_required=%r" % d["businesses"][0]["backdating_liberty_required"])
+    case("a house documented before the scene date owes no backdating liberty",
+         gaz([biz("b1", street="Lake Street", first="1834-05-01", last="1835-06-01")]),
+         lambda d: True if not d["businesses"][0]["backdating_liberty_required"]
+         else "backdating_liberty_required=%r" % d["businesses"][0]["backdating_liberty_required"])
 
     # 3. The four actions, each on its own ground.
     case("a committed structure carrying the proprietor takes enrich_existing",
