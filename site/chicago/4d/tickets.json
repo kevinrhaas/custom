@@ -1,6 +1,6 @@
 {
   "project": "chicago-4d",
-  "generated_ct": "Aug 29, 2026, 11:18 AM",
+  "generated_ct": "Aug 29, 2026, 12:20 PM",
   "tickets": [
     {
       "id": "T-0001",
@@ -5870,7 +5870,7 @@
     {
       "id": "T-0355",
       "title": "A firm matches a building on an occupant the same sentence dates to 1831",
-      "state": "open",
+      "state": "claimed",
       "epic": "PAPERS",
       "requested_by": "loop",
       "seen": false,
@@ -5880,7 +5880,7 @@
       "opened": "2026-08-29",
       "closed": null,
       "pr": null,
-      "claimed_by": null,
+      "claimed_by": "run 8/29/2026, 12:20:37 PM CT",
       "blocked_on": null,
       "needs_bake": false,
       "queue_rank": 2

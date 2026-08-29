@@ -57,7 +57,8 @@ WHAT AN ACTION MEANS, for the seeding tickets that consume this:
                    documented business that is. Placeable; T-0263's queue.
   street_only      documented and placeable no further than a street face. The paper
                    named a street this town has, and nothing narrower.
-  unplaceable      no street the model holds. Recorded, not buildable.
+  unplaceable      no street the model holds, OR the firm's own record puts it out of
+                   town (T-0355, `outside_plat`). Recorded, not buildable.
 
 AND WHAT A PERSON ACTION MEANS:
 
@@ -237,12 +238,14 @@ def read_town(structures_dir=STRUCTURES, streets_file=STREETS, residents_dir=RES
     Read in sorted filename order and reduced to sets, so the register does not depend
     on the order a filesystem hands back.
     """
-    town = {"structures": [], "streets": {}, "residents": [], "invented": {}}
+    town = {"structures": [], "streets": {}, "residents": [], "invented": {},
+            "has_creek": False}
 
     for path in sorted(Path(structures_dir).glob("*.json")):
         d = load_json(path)
         names = [d.get("name") or ""] + list(d.get("aka") or [])
-        occ = (d.get("occupants") or {}).get("value") or ""
+        occ_prose = (d.get("occupants") or {}).get("value") or ""
+        occ = scene_date_occupants(occ_prose)
         function = (d.get("function") or {}).get("value")
         town["structures"].append({
             "id": d["id"],
@@ -252,7 +255,7 @@ def read_town(structures_dir=STRUCTURES, streets_file=STREETS, residents_dir=RES
             "occupant_words": set(words(occ)),
             "occupant_text": occ,
             "aka_texts": [head_of(n) for n in names[1:]],
-            "identity_text": " ; ".join([d.get("name") or "", occ]
+            "identity_text": " ; ".join([d.get("name") or "", occ_prose]
                                         + [head_of(n) for n in names[1:]]),
             "function": function,
             "occupation": occupation_of((function or "").replace("_", " ")),
@@ -262,6 +265,11 @@ def read_town(structures_dir=STRUCTURES, streets_file=STREETS, residents_dir=RES
     for s in load_json(streets_file).get("streets", []):
         town["streets"][street_key(s["name_1835"])] = s["id"]
         town["streets"][s["id"]] = s["id"]
+
+    # The creek marker in OUTSIDE_MARKERS is only sound while this stays False.
+    town["has_creek"] = any(
+        "creek" in n.lower()
+        for st in town["structures"] for n in [st["name"] or ""] + st["aka_texts"])
 
     for path in sorted(Path(residents_dir, "households").glob("*.json")):
         d = load_json(path)
@@ -311,6 +319,63 @@ LOCATIVE = re.compile(
 def head_of(name):
     """A name with any locative tail cut away. 'Log cabins at Wolf Point' → 'Log cabins'."""
     return LOCATIVE.split(name or "", maxsplit=1)[0]
+
+
+# A DATE QUALIFICATION ON AN OCCUPANT IS A STATEMENT THAT HE IS NOT THERE NOW (T-0355).
+# `wolf_point_tavern_stable` records "the tavern's keeper of the day — Elijah Wentworth
+# in 1831, William Walters on the scene date", and the sentence names its scene-date
+# occupant in the same breath as the man who preceded him. Read whole, the line put
+# E. Wentworth's tavern — which is on Flag Creek, eighteen miles out on the Ottawa road
+# — inside a Wolf Point stable, three times over.
+#
+# The clause is the unit, because that is how these lines are written: a comma, a
+# semicolon or a spaced dash separates one tenancy from the next. A clause that dates
+# ITSELF to a year the scene date does not fall in describes a FORMER occupant and is
+# no evidence of who is in the building on 1 July 1835. A clause carrying no year at
+# all says nothing about date and is kept — the great majority of these lines.
+#
+# Only the WORDS are filtered. `occupant_text` reports the scene-date reading so the
+# register's evidence quotes what actually matched, and `identity_text` keeps the whole
+# prose, because a forename printed anywhere in the record can still contradict a
+# paper's (initials_compatible is a veto, and a veto wants every word it can get).
+OCCUPANT_CLAUSE = re.compile(r"\s*[;,]\s*|\s+[\u2014\u2013-]\s+")
+YEAR_SPAN = re.compile(r"\b(1[78]\d\d)(?:\s*[-\u2013]\s*(\d{2,4}))?\b")
+
+
+def year_spans(text):
+    """Every year or year range a clause states, as inclusive (from, to) pairs.
+
+    '1833-34' is 1833 to 1834 and '1834-1836' is 1834 to 1836; a two-digit tail takes
+    its century from the year it hangs off, which is how the committed records write it.
+    """
+    out = []
+    for start, tail in YEAR_SPAN.findall(text or ""):
+        start = int(start)
+        end = start
+        if tail:
+            end = int(tail)
+            if end < 100:
+                end += start - start % 100
+        out.append((start, max(start, end)))
+    return out
+
+
+def scene_date_occupants(text, scene_year=SCENE_DATE.year):
+    """An occupants line with the clauses it dates away from the scene date struck out.
+
+    Returns the surviving clauses rejoined. A clause survives when it states no year, or
+    when a year it states — or a range it states — covers the scene year.
+    """
+    kept = []
+    for clause in OCCUPANT_CLAUSE.split(text or ""):
+        clause = clause.strip()
+        if not clause:
+            continue
+        spans = year_spans(clause)
+        if spans and not any(a <= scene_year <= b for a, b in spans):
+            continue
+        kept.append(clause)
+    return "; ".join(kept)
 
 
 FORENAME_RUN = r"((?:[A-Z][A-Za-z]*\.?\s+){0,3})"
@@ -432,6 +497,57 @@ def match_occupant(town, require, business_occupation, proprietors):
             _, sid, text = sorted(hits)[0]
             return sid, tier, text
     return None, None, None
+
+
+# OUTSIDE THE PLAT IS A THING THE PAPERS SAY, AND SAYING IT ENDS THE MATTER (T-0355).
+# A tavern eighteen miles out on the Ottawa road cannot be in a Wolf Point stable
+# whoever kept it, and no reading of a committed record's prose should be able to put
+# it there. This is the general form of that fault: the firm's OWN record states where
+# it stands, and when what it states is outside the committed town, no match against
+# the committed town is admissible — not on an occupants line, not on a name, not on
+# an aka, and the town does not build it either.
+#
+# THREE MARKERS, AND EACH IS A POSITIVE STATEMENT, never an absence. A business the
+# papers place nowhere is `unplaceable` already and is not this; a business this rule
+# excludes is one whose own printed placement puts it out of town.
+#
+#   miles   a distance in miles. The plat is under a mile across, so nothing inside it
+#           is ever described in miles.
+#   road    a ROAD LEADING TO somewhere. The town's own ways are streets and are named
+#           as streets; 'the road from Chicago leading to Ottawa' is a road out of it.
+#   creek   a named creek. The committed town holds the river and its two branches and
+#           no creek of any name — checked in read_town, not asserted here — so a named
+#           creek is ground this reconstruction does not cover.
+#
+# Counted over the 242 gazetteer businesses on 2026-08-29: five hits, and all five are
+# genuinely out of town (the four Flag Creek readings of Wentworth's tavern, and Richard
+# M. Sweet's barn on the Dupage, which the gazetteer's own note already calls outside).
+OUTSIDE_MARKERS = (
+    ("a distance in miles", re.compile(r"\b(?:[A-Za-z0-9-]+\s+)?miles?\b", re.I)),
+    ("a road leading out of town", re.compile(r"\broad\b[^.;]{0,40}?\bto\b", re.I)),
+    ("a named creek", re.compile(r"\b[A-Z][a-z]+\s+Creek\b")),
+)
+
+
+def outside_the_plat(business, town):
+    """Why the firm's own record puts it outside the committed town, or None.
+
+    Reads everything the gazetteer prints about WHERE the business is — its name, which
+    is the paper's own wording, and every field of its placement. A marker that names a
+    creek is only believed while the committed town holds no creek; if one is ever
+    committed the marker retires itself rather than mis-excluding a business on it.
+    """
+    placement = business.get("placement") or {}
+    text = " | ".join(str(placement.get(k) or "")
+                      for k in ("anchor", "offset_normalized", "offset_text", "note"))
+    text = (business.get("name") or "") + " | " + text
+    for why, pattern in OUTSIDE_MARKERS:
+        if why == "a named creek" and town["has_creek"]:
+            continue
+        m = pattern.search(text)
+        if m:
+            return "%s — %r" % (why, m.group(0).strip())
+    return None
 
 
 CORNER = re.compile(r"corner of\s+(.{0,40}?)\s+and\s+(.{0,40})", re.I)
@@ -574,6 +690,7 @@ def compile_register(gazetteer, town, quiet=True):
             "dissolved_after_scene_date": [c["claim"] for c in after] if after else [],
             "survival_liberty_required": bool(b.get("survival_liberty_required")) and exclusion is None,
             "anchor": resolve_anchor(town, b, by_firm),
+            "outside_plat": outside_the_plat(b, town),
             "action": None,
             "action_target": None,
             "match_tier": None,
@@ -591,14 +708,22 @@ def compile_register(gazetteer, town, quiet=True):
         for p in entry["proprietors"]:
             require |= firm_surnames(p)
         require.discard("")
-        committed, tier, evidence = match_occupant(
-            town, require, entry["occupation"], entry["proprietors"])
+        committed, tier, evidence = (None, None, None)
+        if not entry["outside_plat"]:
+            committed, tier, evidence = match_occupant(
+                town, require, entry["occupation"], entry["proprietors"])
 
         if exclusion is not None:
             entry["action"] = "unplaceable"
             entry["action_note"] = ("Excluded from the scene-date town: %s "
                                     "No action; the record is kept so the exclusion can "
                                     "be argued with." % exclusion_note)
+        elif entry["outside_plat"]:
+            entry["action"] = "unplaceable"
+            entry["action_note"] = (
+                "The paper puts this business outside the committed town — %s — so no "
+                "structure inside it carries the firm and none is built for it. %s"
+                % (entry["outside_plat"], entry["anchor"]["note"]))
         elif committed:
             entry["action"] = "enrich_existing"
             entry["action_target"] = committed
@@ -738,6 +863,7 @@ def compile_register(gazetteer, town, quiet=True):
             "by_action": tally(businesses, "action"),
             "by_placement_class": tally(businesses, "placement_class"),
             "present_by_action": tally(present, "action"),
+            "outside_the_plat": sum(1 for b in businesses if b["outside_plat"]),
             "survival_liberty_required": sum(1 for b in present if b["survival_liberty_required"]),
             "dissolved_after_scene_date": sum(1 for b in businesses if b["dissolved_after_scene_date"]),
         },
@@ -874,9 +1000,15 @@ def self_test():
                       {"household": "hh_inf_baker", "person": "inf_baker_01",
                        "name": "Silas Stiles", "grade": "reconstructed", "occupation": "baker"}],
         "invented": {"baker": ["hh_inf_baker"]},
+        "has_creek": False,
     }
     failures = []
     CASES = [0]
+
+    def unit(label, got, want):
+        CASES[0] += 1
+        if got != want:
+            failures.append("%s: got %r, wanted %r" % (label, got, want))
 
     def case(label, gaz, want):
         CASES[0] += 1
@@ -998,6 +1130,51 @@ def self_test():
                             and d["businesses"][0]["action"] == "street_only")
          else "anchor=%r action=%r" % (d["businesses"][0]["anchor"]["kind"],
                                        d["businesses"][0]["action"]))
+
+    # 4c. T-0355 — the two readings that put a Flag Creek tavern in a Wolf Point stable.
+    # First the occupants line that caused it, read directly, because the town fixture
+    # above supplies `occupant_words` ready-made and cannot exercise the clause filter.
+    unit("a clause dated to another year is not a scene-date occupant",
+         scene_date_occupants("the tavern's keeper of the day \u2014 Elijah Wentworth in "
+                              "1831, William Walters on the scene date"),
+         "the tavern's keeper of the day; William Walters on the scene date")
+    unit("a clause stating no year is kept whole",
+         scene_date_occupants("William Walters, landlord"), "William Walters; landlord")
+    unit("a range that covers the scene date is kept",
+         scene_date_occupants("William Walters 1833-1836"), "William Walters 1833-1836")
+    unit("a two-digit range takes its century from its own head",
+         scene_date_occupants("Eliza Chappel and her infant school, 1833-34"),
+         "Eliza Chappel and her infant school")
+    unit("a year range is one span, not two loose years",
+         year_spans("1833-34 and 1836"), [(1833, 1834), (1836, 1836)])
+
+    # Then the guard the fault generalises to: the firm's own record says where it is.
+    case("a distance in miles refuses every match into the committed town",
+         gaz([biz("b1", proprietors=["George W. Dole"], street="Lake Street", placement={
+             "class": "relative", "anchor": "thirteen miles south of Chicago"})]),
+         lambda d: True if (d["businesses"][0]["action"] == "unplaceable"
+                            and d["businesses"][0]["outside_plat"])
+         else "action=%r outside=%r" % (d["businesses"][0]["action"],
+                                        d["businesses"][0]["outside_plat"]))
+    case("a road leading out of town refuses it too",
+         gaz([biz("b1", proprietors=["George W. Dole"], placement={
+             "class": "relative", "anchor": "the road from Chicago leading to Ottawa"})]),
+         lambda d: True if d["businesses"][0]["action"] == "unplaceable"
+         else "action=%r target=%r" % (d["businesses"][0]["action"],
+                                       d["businesses"][0]["action_target"]))
+    case("a named creek in the firm's own name refuses it, placement or no placement",
+         gaz([biz("b1", name="E. Wentworth's tavern, Flag Creek",
+                  proprietors=["George W. Dole"])]),
+         lambda d: True if (d["businesses"][0]["action"] == "unplaceable"
+                            and "Flag Creek" in d["businesses"][0]["outside_plat"])
+         else "action=%r outside=%r" % (d["businesses"][0]["action"],
+                                        d["businesses"][0]["outside_plat"]))
+    case("a firm the papers do NOT put out of town still enriches",
+         gaz([biz("b1", proprietors=["George W. Dole"], street="Lake Street")]),
+         lambda d: True if (d["businesses"][0]["action"] == "enrich_existing"
+                            and d["businesses"][0]["outside_plat"] is None)
+         else "action=%r outside=%r" % (d["businesses"][0]["action"],
+                                        d["businesses"][0]["outside_plat"]))
 
     # 5. The identity policy is the gazetteer's, imported and not re-invented.
     case("a resident already held takes enrich",
