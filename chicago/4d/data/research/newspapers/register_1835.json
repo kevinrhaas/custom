@@ -7,7 +7,7 @@
     "gazetteer": {
       "claims": 1166,
       "persons": 2628,
-      "businesses": 219
+      "businesses": 210
     },
     "structures": 359,
     "streets": 19,
@@ -15,32 +15,32 @@
   },
   "counts": {
     "businesses": {
-      "total": 219,
-      "present_at_scene_date": 201,
+      "total": 210,
+      "present_at_scene_date": 193,
       "excluded": {
-        "contradicted_before_scene_date": 14,
+        "contradicted_before_scene_date": 13,
         "opening_announced_after_scene_date": 4
       },
       "by_action": {
-        "enrich_existing": 31,
-        "new_building": 26,
-        "street_only": 60,
-        "unplaceable": 102
+        "enrich_existing": 29,
+        "new_building": 25,
+        "street_only": 59,
+        "unplaceable": 97
       },
       "by_placement_class": {
         "corner": 16,
-        "none": 84,
-        "relative": 101,
+        "none": 79,
+        "relative": 97,
         "street_only": 18
       },
       "present_by_action": {
-        "enrich_existing": 31,
-        "new_building": 26,
-        "street_only": 60,
-        "unplaceable": 84
+        "enrich_existing": 29,
+        "new_building": 25,
+        "street_only": 59,
+        "unplaceable": 80
       },
       "outside_the_plat": 5,
-      "survival_liberty_required": 109,
+      "survival_liberty_required": 102,
       "backdating_liberty_required": 30,
       "dissolved_after_scene_date": 1
     },
@@ -1305,7 +1305,8 @@
         "J. H. Collins",
         "J. D. Caton",
         "James H. Collins",
-        "J. Dean Caton"
+        "J. Dean Caton",
+        "J. H. Collins & J. D. C[aton]"
       ],
       "street": "South Water Street",
       "street_id": "south_water",
@@ -1562,14 +1563,16 @@
       "trade": "provision curers and soap and candle makers",
       "occupation": "soap_and_candle_maker",
       "proprietors": [
-        "D. Elston & Co."
+        "D. Elston & Co.",
+        "Daniel Elston",
+        "Daniel Elston & Co."
       ],
       "street": null,
       "street_id": null,
       "placement_class": "none",
       "evidence": {
-        "first_issue": "1834-02-18",
-        "last_issue": "1834-04-01"
+        "first_issue": "1833-11-26",
+        "last_issue": "1834-07-02"
       },
       "present_at_scene_date": true,
       "exclusion": null,
@@ -1706,44 +1709,6 @@
       "action_note": "No street the model holds. The anchor 'the jail' names nothing the committed town holds."
     },
     {
-      "id": "business_daniel_elston_co",
-      "name": "Daniel Elston & [Co.]",
-      "trade": "soap and candle manufactory",
-      "occupation": "soap_and_candle_maker",
-      "proprietors": [
-        "Daniel Elston",
-        "Daniel Elston & Co."
-      ],
-      "street": null,
-      "street_id": null,
-      "placement_class": "none",
-      "evidence": {
-        "first_issue": "1833-11-26",
-        "last_issue": "1834-07-02"
-      },
-      "present_at_scene_date": true,
-      "exclusion": null,
-      "exclusion_note": null,
-      "dissolved_after_scene_date": [],
-      "opening_announced": [],
-      "survival_liberty_required": true,
-      "backdating_liberty_required": false,
-      "anchor": {
-        "kind": "unresolved",
-        "target": null,
-        "streets": null,
-        "via": null,
-        "note": "The paper gives no anchor."
-      },
-      "anchor_change": null,
-      "outside_plat": null,
-      "action": "enrich_existing",
-      "action_target": "elston_soap_candle_manufactory",
-      "match_tier": "occupants",
-      "match_evidence": "Daniel Elston & Co.",
-      "action_note": "elston_soap_candle_manufactory already stands and its occupants carries elston — 'Daniel Elston & Co.'. The papers add trade, goods and dates to a record that exists."
-    },
-    {
       "id": "business_dart_co_castings",
       "name": "Dart & Co., castings",
       "trade": "iron castings",
@@ -1852,43 +1817,6 @@
       "match_tier": null,
       "match_evidence": null,
       "action_note": "Excluded from the scene-date town: Contradicted on or before the scene date by chicago_democrat_1834_07_23#c005 (notice, 1834-07-23). No action; the record is kept so the exclusion can be argued with."
-    },
-    {
-      "id": "business_doty_co",
-      "name": "Doty & Co.",
-      "trade": "dry goods, groceries, crockery, clothing, boots and shoes",
-      "occupation": "dry_goods_merchant",
-      "proprietors": [],
-      "street": null,
-      "street_id": null,
-      "placement_class": "relative",
-      "evidence": {
-        "first_issue": "1834-05-28",
-        "last_issue": "1834-05-28"
-      },
-      "present_at_scene_date": true,
-      "exclusion": null,
-      "exclusion_note": null,
-      "dissolved_after_scene_date": [],
-      "opening_announced": [],
-      "survival_liberty_required": true,
-      "backdating_liberty_required": false,
-      "anchor": {
-        "kind": "street",
-        "target": null,
-        "streets": [
-          "south_water"
-        ],
-        "via": null,
-        "note": "The anchor is a reach of south_water and names nothing narrower."
-      },
-      "anchor_change": null,
-      "outside_plat": null,
-      "action": "unplaceable",
-      "action_target": null,
-      "match_tier": null,
-      "match_evidence": null,
-      "action_note": "No street the model holds. The anchor is a reach of south_water and names nothing narrower."
     },
     {
       "id": "business_dr_j_b_barnard",
@@ -2741,7 +2669,8 @@
       "occupation": "attorney",
       "proprietors": [
         "G. Spring",
-        "Spring, G."
+        "Spring, G.",
+        "Giles Spring"
       ],
       "street": "South Water Street",
       "street_id": "south_water",
@@ -2932,46 +2861,6 @@
       "action_note": "The paper names Dearborn Street and nothing narrower; the anchor 'the Eagle Coffee House' names nothing the committed town holds."
     },
     {
-      "id": "business_giles_spring",
-      "name": "Giles Spring",
-      "trade": "attorney and counsellor at law, solicitor in chancery",
-      "occupation": "attorney",
-      "proprietors": [
-        "Giles Spring"
-      ],
-      "street": "South Water Street",
-      "street_id": "south_water",
-      "placement_class": "relative",
-      "evidence": {
-        "first_issue": "1834-11-12",
-        "last_issue": "1835-05-20"
-      },
-      "present_at_scene_date": true,
-      "exclusion": null,
-      "exclusion_note": null,
-      "dissolved_after_scene_date": [],
-      "opening_announced": [],
-      "survival_liberty_required": false,
-      "backdating_liberty_required": false,
-      "anchor": {
-        "kind": "corner",
-        "target": null,
-        "streets": [
-          "franklin",
-          "south_water"
-        ],
-        "via": null,
-        "note": "A crossing of two platted streets: franklin and south_water."
-      },
-      "anchor_change": null,
-      "outside_plat": null,
-      "action": "new_building",
-      "action_target": "franklin+south_water",
-      "match_tier": null,
-      "match_evidence": null,
-      "action_note": "Placeable against the committed town. A crossing of two platted streets: franklin and south_water."
-    },
-    {
       "id": "business_goss_cobb",
       "name": "Goss & Cobb",
       "trade": null,
@@ -3060,7 +2949,7 @@
       "street_id": "south_water",
       "placement_class": "relative",
       "evidence": {
-        "first_issue": "1834-06-04",
+        "first_issue": "1834-05-28",
         "last_issue": "1834-07-02"
       },
       "present_at_scene_date": true,
@@ -3474,43 +3363,6 @@
       "action_note": "The paper names Dearborn Street and nothing narrower; the anchor \"Messrs. Newberry & Dole's store\" names nothing the committed town holds."
     },
     {
-      "id": "business_j_bates_jr",
-      "name": "J. Bates, Jr.",
-      "trade": "merchant",
-      "occupation": "merchant",
-      "proprietors": [
-        "J. Bates, Jr."
-      ],
-      "street": null,
-      "street_id": null,
-      "placement_class": "none",
-      "evidence": {
-        "first_issue": "1833-11-26",
-        "last_issue": "1833-11-26"
-      },
-      "present_at_scene_date": true,
-      "exclusion": null,
-      "exclusion_note": null,
-      "dissolved_after_scene_date": [],
-      "opening_announced": [],
-      "survival_liberty_required": true,
-      "backdating_liberty_required": false,
-      "anchor": {
-        "kind": "unresolved",
-        "target": null,
-        "streets": null,
-        "via": null,
-        "note": "The paper gives no anchor."
-      },
-      "anchor_change": null,
-      "outside_plat": null,
-      "action": "unplaceable",
-      "action_target": null,
-      "match_tier": null,
-      "match_evidence": null,
-      "action_note": "No street the model holds. The paper gives no anchor."
-    },
-    {
       "id": "business_j_bates_jr_auction_store",
       "name": "J. Bates jr., Auction Store",
       "trade": "auction store",
@@ -3695,45 +3547,6 @@
       "match_tier": "occupants",
       "match_evidence": "John Dean Caton's law office and lodging; the building is Dr John T. Temple's",
       "action_note": "temple_lake_st_building already stands and its occupants carries caton — \"John Dean Caton's law office and lodging; the building is Dr John T. Temple's\". The papers add trade, goods and dates to a record that exists."
-    },
-    {
-      "id": "business_j_h_collins_j_d_caton",
-      "name": "J. H. Collins & J. D. Caton",
-      "trade": "attorneys and counsellors at law, solicitors in chancery",
-      "occupation": "attorney",
-      "proprietors": [
-        "J. H. Collins & J. D. C[aton]"
-      ],
-      "street": "South Water Street",
-      "street_id": "south_water",
-      "placement_class": "relative",
-      "evidence": {
-        "first_issue": "1834-02-04",
-        "last_issue": "1834-04-01"
-      },
-      "present_at_scene_date": true,
-      "exclusion": null,
-      "exclusion_note": null,
-      "dissolved_after_scene_date": [],
-      "opening_announced": [],
-      "survival_liberty_required": true,
-      "backdating_liberty_required": false,
-      "anchor": {
-        "kind": "street",
-        "target": null,
-        "streets": [
-          "south_water"
-        ],
-        "via": null,
-        "note": "The anchor is a reach of south_water and names nothing narrower."
-      },
-      "anchor_change": null,
-      "outside_plat": null,
-      "action": "street_only",
-      "action_target": "south_water",
-      "match_tier": null,
-      "match_evidence": null,
-      "action_note": "The paper names South Water Street and nothing narrower; the anchor is a reach of south_water and names nothing narrower."
     },
     {
       "id": "business_j_h_kinzie_merchant",
@@ -3981,11 +3794,11 @@
       "placement_class": "none",
       "evidence": {
         "first_issue": "1834-03-04",
-        "last_issue": "1834-03-25"
+        "last_issue": "1834-04-08"
       },
       "present_at_scene_date": false,
       "exclusion": "contradicted_before_scene_date",
-      "exclusion_note": "Contradicted on or before the scene date by chicago_democrat_1834_03_04#c011 (notice, 1834-03-04), chicago_democrat_1834_03_25#c004 (notice, 1834-03-25).",
+      "exclusion_note": "Contradicted on or before the scene date by chicago_democrat_1834_03_04#c011 (notice, 1834-03-04), chicago_democrat_1834_03_25#c004 (notice, 1834-03-25), chicago_democrat_1834_04_08#c013 (notice, 1834-04-08).",
       "dissolved_after_scene_date": [],
       "opening_announced": [],
       "survival_liberty_required": false,
@@ -4003,7 +3816,7 @@
       "action_target": null,
       "match_tier": null,
       "match_evidence": null,
-      "action_note": "Excluded from the scene-date town: Contradicted on or before the scene date by chicago_democrat_1834_03_04#c011 (notice, 1834-03-04), chicago_democrat_1834_03_25#c004 (notice, 1834-03-25). No action; the record is kept so the exclusion can be argued with."
+      "action_note": "Excluded from the scene-date town: Contradicted on or before the scene date by chicago_democrat_1834_03_04#c011 (notice, 1834-03-04), chicago_democrat_1834_03_25#c004 (notice, 1834-03-25), chicago_democrat_1834_04_08#c013 (notice, 1834-04-08). No action; the record is kept so the exclusion can be argued with."
     },
     {
       "id": "business_j_wright_merchant",
@@ -4085,13 +3898,14 @@
       "trade": "auctioneer",
       "occupation": "auctioneer",
       "proprietors": [
-        "John Bates, Jr."
+        "John Bates, Jr.",
+        "J. Bates, Jr."
       ],
       "street": null,
       "street_id": null,
       "placement_class": "relative",
       "evidence": {
-        "first_issue": "1834-03-04",
+        "first_issue": "1833-11-26",
         "last_issue": "1834-06-11"
       },
       "present_at_scene_date": true,
@@ -4314,43 +4128,6 @@
       "action_note": "The paper names South Water Street and nothing narrower; the anchor is a reach of dearborn and names nothing narrower."
     },
     {
-      "id": "business_john_s_c_hogan",
-      "name": "John S. C. Hogan",
-      "trade": "general store",
-      "occupation": "merchant",
-      "proprietors": [
-        "John S. C. Hogan"
-      ],
-      "street": null,
-      "street_id": null,
-      "placement_class": "none",
-      "evidence": {
-        "first_issue": "1834-06-11",
-        "last_issue": "1834-06-11"
-      },
-      "present_at_scene_date": true,
-      "exclusion": null,
-      "exclusion_note": null,
-      "dissolved_after_scene_date": [],
-      "opening_announced": [],
-      "survival_liberty_required": true,
-      "backdating_liberty_required": false,
-      "anchor": {
-        "kind": "unresolved",
-        "target": null,
-        "streets": null,
-        "via": null,
-        "note": "The paper gives no anchor."
-      },
-      "anchor_change": null,
-      "outside_plat": null,
-      "action": "enrich_existing",
-      "action_target": "hogan_store",
-      "match_tier": "name",
-      "match_evidence": "Hogan's Store",
-      "action_note": "hogan_store already stands and its name carries hogan — \"Hogan's Store\". The papers add trade, goods and dates to a record that exists."
-    },
-    {
       "id": "business_john_s_kinzie_forwarding_and_commission_merchant",
       "name": "John S. Kinzie, forwarding and commission merchant",
       "trade": "forwarding and commission merchant",
@@ -4423,43 +4200,6 @@
       "match_tier": "occupants",
       "match_evidence": "John Watkins; schoolmaster; occupants on the scene date unattested",
       "action_note": "watkins_school_house already stands and its occupants carries watkins — 'John Watkins; schoolmaster; occupants on the scene date unattested'. The papers add trade, goods and dates to a record that exists."
-    },
-    {
-      "id": "business_john_wellmaker_co",
-      "name": "John Wellmaker & Co.",
-      "trade": "co-partnership, trade not stated",
-      "occupation": null,
-      "proprietors": [
-        "John Wellmaker"
-      ],
-      "street": null,
-      "street_id": null,
-      "placement_class": "none",
-      "evidence": {
-        "first_issue": "1834-04-08",
-        "last_issue": "1834-04-08"
-      },
-      "present_at_scene_date": false,
-      "exclusion": "contradicted_before_scene_date",
-      "exclusion_note": "Contradicted on or before the scene date by chicago_democrat_1834_04_08#c013 (notice, 1834-04-08).",
-      "dissolved_after_scene_date": [],
-      "opening_announced": [],
-      "survival_liberty_required": false,
-      "backdating_liberty_required": false,
-      "anchor": {
-        "kind": "unresolved",
-        "target": null,
-        "streets": null,
-        "via": null,
-        "note": "The paper gives no anchor."
-      },
-      "anchor_change": null,
-      "outside_plat": null,
-      "action": "unplaceable",
-      "action_target": null,
-      "match_tier": null,
-      "match_evidence": null,
-      "action_note": "Excluded from the scene-date town: Contradicted on or before the scene date by chicago_democrat_1834_04_08#c013 (notice, 1834-04-08). No action; the record is kept so the exclusion can be argued with."
     },
     {
       "id": "business_john_wright",
@@ -5647,41 +5387,6 @@
       "match_tier": "occupants",
       "match_evidence": "Philip F. W. Peck; merchant; and his household",
       "action_note": "peck_store already stands and its occupants carries peck — 'Philip F. W. Peck; merchant; and his household'. The papers add trade, goods and dates to a record that exists."
-    },
-    {
-      "id": "business_p_pruyne",
-      "name": "P. Pruyne",
-      "trade": "timber merchant; squared timber and thills",
-      "occupation": "merchant",
-      "proprietors": [],
-      "street": null,
-      "street_id": null,
-      "placement_class": "none",
-      "evidence": {
-        "first_issue": "1834-05-07",
-        "last_issue": "1834-05-21"
-      },
-      "present_at_scene_date": true,
-      "exclusion": null,
-      "exclusion_note": null,
-      "dissolved_after_scene_date": [],
-      "opening_announced": [],
-      "survival_liberty_required": true,
-      "backdating_liberty_required": false,
-      "anchor": {
-        "kind": "unresolved",
-        "target": null,
-        "streets": null,
-        "via": null,
-        "note": "The paper gives no anchor."
-      },
-      "anchor_change": null,
-      "outside_plat": null,
-      "action": "unplaceable",
-      "action_target": null,
-      "match_tier": null,
-      "match_evidence": null,
-      "action_note": "No street the model holds. The paper gives no anchor."
     },
     {
       "id": "business_p_pruyne_co",
@@ -8156,43 +7861,6 @@
       "match_tier": null,
       "match_evidence": null,
       "action_note": "The paper names South Water Street and nothing narrower; the anchor \"David Carver's old stand\" names nothing the committed town holds."
-    },
-    {
-      "id": "business_w_montgomery_boot_and_shoe_maker",
-      "name": "W. Montgomery, boot and shoe maker",
-      "trade": "boot and shoe making",
-      "occupation": "shoemaker",
-      "proprietors": [
-        "W. Montgomery"
-      ],
-      "street": null,
-      "street_id": null,
-      "placement_class": "relative",
-      "evidence": {
-        "first_issue": "1834-01-28",
-        "last_issue": "1834-03-25"
-      },
-      "present_at_scene_date": true,
-      "exclusion": null,
-      "exclusion_note": null,
-      "dissolved_after_scene_date": [],
-      "opening_announced": [],
-      "survival_liberty_required": true,
-      "backdating_liberty_required": false,
-      "anchor": {
-        "kind": "unresolved",
-        "target": null,
-        "streets": null,
-        "via": null,
-        "note": "The anchor \"P. Cohen's Store\" names nothing the committed town holds."
-      },
-      "anchor_change": null,
-      "outside_plat": null,
-      "action": "unplaceable",
-      "action_target": null,
-      "match_tier": null,
-      "match_evidence": null,
-      "action_note": "No street the model holds. The anchor \"P. Cohen's Store\" names nothing the committed town holds."
     },
     {
       "id": "business_w_reed",

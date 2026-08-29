@@ -15,16 +15,16 @@
   "widened_reading_would_reach": 24
  },
  "counts": {
-  "street_only_in_register": 60,
+  "street_only_in_register": 59,
   "adopted": 24,
-  "refused": 36,
+  "refused": 35,
   "refused_by_reason": {
    "not present at the scene date": 0,
    "the face holds no roof whose lot fronts it": 24,
    "this face already holds this proprietor": 9,
-   "every roof on the face is spoken for": 3
+   "every roof on the face is spoken for": 2
   },
-  "unplaceable_present_at_scene_date": 84,
+  "unplaceable_present_at_scene_date": 80,
   "by_street": {
    "canal": {
     "street_name": "Canal Street",
@@ -82,7 +82,7 @@
    },
    "south_water": {
     "street_name": "South Water Street",
-    "businesses_naming_it": 24,
+    "businesses_naming_it": 23,
     "adopted": 14,
     "roofs_fronting": 19,
     "roofs_fronting_free": 14,
@@ -110,7 +110,7 @@
    "first_issue": "1834-03-04",
    "last_issue": "1834-05-21",
    "mentions": 2,
-   "structure_id": "recon_1835_blk_south_water_wells_a3_08",
+   "structure_id": "recon_1835_blk_south_water_lasalle_d5_01",
    "face": "lot front",
    "roof_confidence": "reconstructed",
    "lot": null,
@@ -136,7 +136,7 @@
    "first_issue": "1834-12-17",
    "last_issue": "1834-12-24",
    "mentions": 2,
-   "structure_id": "recon_1835_blk_south_water_wells_d5_02",
+   "structure_id": "recon_1835_blk_south_water_wells_a3_08",
    "face": "lot front",
    "roof_confidence": "reconstructed",
    "lot": null,
@@ -255,6 +255,31 @@
    "note": "The advertisement names Lake Street and nothing narrower, so this business takes the street face and not a lot. The roof it is attached to is an anonymous reconstructed count-unit whose platted lot faces that street; it stays reconstructed, and WHICH roof on the face is an allocation by tools/adopt_street_faces.py rather than a reading of any source. Nothing here says this business stood nearer the corner than any other on the same face."
   },
   {
+   "business_id": "business_e_l_thrall",
+   "business_name": "E. L. Thrall",
+   "trade": "tailoring and ready made clothing",
+   "proprietors": [
+    "E. L. Thrall"
+   ],
+   "street_id": "south_water",
+   "street_name": "South Water Street",
+   "street_text": "South Water Street",
+   "placement_class": "street_only",
+   "cites": [
+    "chicago_democrat_1834_06_04#c009"
+   ],
+   "first_issue": "1834-06-04",
+   "last_issue": "1834-06-04",
+   "mentions": 1,
+   "structure_id": "recon_1835_blk_south_water_wells_d6_01",
+   "face": "lot front",
+   "roof_confidence": "reconstructed",
+   "lot": null,
+   "claims_lot": false,
+   "order_is_a_claim": false,
+   "note": "The advertisement names South Water Street and nothing narrower, so this business takes the street face and not a lot. The roof it is attached to is an anonymous reconstructed count-unit whose platted lot faces that street; it stays reconstructed, and WHICH roof on the face is an allocation by tools/adopt_street_faces.py rather than a reading of any source. Nothing here says this business stood nearer the corner than any other on the same face."
+  },
+  {
    "business_id": "business_g_blanshard",
    "business_name": "G. Blanshard",
    "trade": "houses and lots for sale or to let",
@@ -291,14 +316,15 @@
    "street_text": "South Water Street",
    "placement_class": "relative",
    "cites": [
+    "chicago_democrat_1834_05_28#c008",
     "chicago_democrat_1834_06_04#c021",
     "chicago_democrat_1834_07_02#c010",
     "chicago_democrat_1834_07_02#c057"
    ],
-   "first_issue": "1834-06-04",
+   "first_issue": "1834-05-28",
    "last_issue": "1834-07-02",
-   "mentions": 3,
-   "structure_id": "recon_1835_blk_south_water_lasalle_d4_02",
+   "mentions": 4,
+   "structure_id": "recon_1835_blk_south_water_franklin_d5_01",
    "face": "lot front",
    "roof_confidence": "reconstructed",
    "lot": null,
@@ -332,34 +358,7 @@
    "first_issue": "1834-07-02",
    "last_issue": "1835-07-25",
    "mentions": 7,
-   "structure_id": "recon_1835_blk_south_water_clark_d5_01",
-   "face": "lot front",
-   "roof_confidence": "reconstructed",
-   "lot": null,
-   "claims_lot": false,
-   "order_is_a_claim": false,
-   "note": "The advertisement names South Water Street and nothing narrower, so this business takes the street face and not a lot. The roof it is attached to is an anonymous reconstructed count-unit whose platted lot faces that street; it stays reconstructed, and WHICH roof on the face is an allocation by tools/adopt_street_faces.py rather than a reading of any source. Nothing here says this business stood nearer the corner than any other on the same face."
-  },
-  {
-   "business_id": "business_j_h_collins_j_d_caton",
-   "business_name": "J. H. Collins & J. D. Caton",
-   "trade": "attorneys and counsellors at law, solicitors in chancery",
-   "proprietors": [
-    "J. H. Collins & J. D. C[aton]"
-   ],
-   "street_id": "south_water",
-   "street_name": "South Water Street",
-   "street_text": "South Water Street",
-   "placement_class": "relative",
-   "cites": [
-    "chicago_democrat_1834_02_04#c009",
-    "chicago_democrat_1834_02_11#c005",
-    "chicago_democrat_1834_04_01#c011"
-   ],
-   "first_issue": "1834-02-04",
-   "last_issue": "1834-04-01",
-   "mentions": 3,
-   "structure_id": "recon_1835_blk_south_water_lasalle_a3_07",
+   "structure_id": "recon_1835_blk_south_water_dearborn_a3_06",
    "face": "lot front",
    "roof_confidence": "reconstructed",
    "lot": null,
@@ -417,7 +416,7 @@
    "first_issue": "1835-06-10",
    "last_issue": "1835-08-12",
    "mentions": 3,
-   "structure_id": "recon_1835_blk_south_water_lasalle_d5_01",
+   "structure_id": "recon_1835_blk_south_water_lasalle_d4_02",
    "face": "lot front",
    "roof_confidence": "reconstructed",
    "lot": null,
@@ -471,6 +470,9 @@
    "placement_class": "relative",
    "cites": [
     "chicago_democrat_1833_12_17#c003",
+    "chicago_democrat_1834_01_28#c008",
+    "chicago_democrat_1834_03_04#c028",
+    "chicago_democrat_1834_03_25#c009",
     "chicago_democrat_1834_04_08#c007",
     "chicago_democrat_1834_05_21#c004",
     "chicago_democrat_1834_07_02#c013",
@@ -479,8 +481,8 @@
    ],
    "first_issue": "1833-12-17",
    "last_issue": "1835-05-20",
-   "mentions": 6,
-   "structure_id": "recon_1835_blk_south_water_dearborn_a3_06",
+   "mentions": 9,
+   "structure_id": "recon_1835_blk_south_water_clark_a3_05",
    "face": "lot front",
    "roof_confidence": "reconstructed",
    "lot": null,
@@ -537,7 +539,7 @@
    "first_issue": "1833-11-26",
    "last_issue": "1835-07-08",
    "mentions": 8,
-   "structure_id": "recon_1835_blk_south_water_clark_a3_05",
+   "structure_id": "recon_1835_blk_south_water_clark_d5_01",
    "face": "lot front",
    "roof_confidence": "reconstructed",
    "lot": null,
@@ -566,7 +568,7 @@
    "first_issue": "1835-07-22",
    "last_issue": "1835-08-12",
    "mentions": 4,
-   "structure_id": "recon_1835_blk_south_water_franklin_d5_01",
+   "structure_id": "recon_1835_blk_south_water_lasalle_a3_07",
    "face": "lot front",
    "roof_confidence": "reconstructed",
    "lot": null,
@@ -616,7 +618,7 @@
    "first_issue": "1834-04-01",
    "last_issue": "1834-04-01",
    "mentions": 1,
-   "structure_id": "recon_1835_blk_south_water_wells_d6_01",
+   "structure_id": "recon_1835_blk_south_water_wells_d5_02",
    "face": "lot front",
    "roof_confidence": "reconstructed",
    "lot": null,
@@ -750,14 +752,6 @@
   }
  ],
  "refusals": [
-  {
-   "business_id": "business_e_l_thrall",
-   "business_name": "E. L. Thrall",
-   "street_id": "south_water",
-   "street_name": "South Water Street",
-   "refusal": "every roof on the face is spoken for",
-   "detail": "19 roof(s) front this street: 5 are a named household's dwelling and 14 are already adopted by a better-evidenced business."
-  },
   {
    "business_id": "business_j_curtiss_attorney_and_counsellor_at_law",
    "business_name": "J. Curtiss, Attorney and Counsellor at Law",
