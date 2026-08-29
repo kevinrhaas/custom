@@ -1,4 +1,13 @@
 export const CHANGELOG = [ // newest first
+  { v: 373, title: 'Graves\u2019 Tavern and Haddock\u2019s Tavern are one house', kind: 'fix', ts: '2026-08-29T06:03:44.700Z', date: 'Aug 29, 2026, 1:03 AM CT',
+    items: [
+      'Open the Mansion House on Lake Street and its card reads differently today. It answers to two more names \u2014 Haddock\u2019s Tavern and Haddock\u2019s Mansion House \u2014 because the Chicago Democrat calls it all three, and because the three names have now been shown to be one building.',
+      'The question that started it was a grocer\u2019s. J. K. Botsford advertised two addresses in one issue of February 1834: \u201Ccorner of Dearborn and Lake\u201D, and \u201Cnext door to Graves\u2019 Tavern\u201D. Three readings were open and the February page could not choose between them.',
+      'The rest of 1834 chose. Both addresses run side by side in the same issue six weeks later, so he had not moved. And the tin manufactory that might have wanted a second shop did not exist yet \u2014 it opened in April, at the corner, and his groceries moved to the corner with it. One shop, described two ways.',
+      'Which then places him. A for-sale notice printed six times that summer puts a large dwelling-house and a well on the lot immediately EAST of the tavern. So the neighbour who was a shop stood on the WEST side, at the Dearborn corner \u2014 and the tavern is not on that corner but the next lot along.',
+      'Graves\u2019 Tavern was also never renamed the Tremont House, which had been left open as a real possibility. A blacksmith\u2019s standing advertisement, its date line unchanged from November 1833, points at Graves\u2019 Tavern until June 1834 and at the Tremont House from September. Neither building moved. The landlord did: Dexter Graves sold the house to his son-in-law and went into baking, and the paper\u2019s own pages date the sale to between 1 April and 25 June 1834 \u2014 where the standard history says only \u201Cabout this time\u201D.',
+      'The house itself is not moved a metre on any of this. One lot is about 24 m, and this building\u2019s position already says it is good to no better than that. Two things it found are written down as work instead: the plat\u2019s block numbers, which nothing here holds, and a register that files tavern signboards as people.',
+    ] },
   { v: 372, title: 'The north bank\u2019s six warehouses, and the ledger that allowed one', kind: 'chore', ts: '2026-08-29T05:56:24.789Z', date: 'Aug 29, 2026, 12:56 AM CT',
     items: [
       'Nothing you can see changed today. What changed is what this reconstruction believes about the north bank of the river \u2014 and it has been wrong about it from the beginning.',

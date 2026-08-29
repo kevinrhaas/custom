@@ -37,7 +37,6 @@
 # --- (c) the register itself, then the VISIBLE seeding it unblocks — documented
 # ---     storefronts standing in the model, documented people replacing invented.
 T-0297 — Reading the Democrat, August 1835: the four issues after the scene date
-T-0324 — J. K. Botsford advertises two addresses in one issue, and Graves' Tavern cannot be placed until they are reconciled
 T-0329 — School District Number One is bounded in print on 1834-12-10 and the segmenter cut better than half of every line of it away
 T-0263 — The documented storefronts take their places on South Water and Lake
 T-0306 — The American names six Chicago storefronts with usable placements and none of them is standing in the model yet
@@ -138,3 +137,5 @@ T-0354 — The register can only place 24 of 190 documented businesses; 49 more 
 T-0355 — A firm matches a building on an occupant the same sentence dates to 1831
 T-0356 — The claim vocabulary cannot say an advertisement announces an opening, so 17 businesses are excluded on a proxy
 T-0357 — 129 documented businesses will stand on a survival liberty and LIBERTIES.md carries none of them
+T-0358 — The Thompson plat's block NUMBERING is uncommitted, so the corpus's only lot-and-block address cannot be placed
+T-0359 — The gazetteer mints tavern names as people, so Maddock's Tavern and Haddock's Tavern cannot be reconciled
