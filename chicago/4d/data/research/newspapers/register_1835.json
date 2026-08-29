@@ -6,7 +6,7 @@
   "compiled_from": {
     "gazetteer": {
       "claims": 1166,
-      "persons": 2633,
+      "persons": 2628,
       "businesses": 242
     },
     "structures": 359,
@@ -43,10 +43,10 @@
       "dissolved_after_scene_date": 1
     },
     "persons": {
-      "total": 2633,
+      "total": 2628,
       "by_action": {
         "enrich": 184,
-        "new_resident": 2330,
+        "new_resident": 2325,
         "replace_invented": 119
       },
       "letter_list_only": 1934
@@ -14775,17 +14775,6 @@
       "action_note": "Ruling 1: a named person the town does not hold. Named in a claim other than a letter list."
     },
     {
-      "id": "person_eagle_hotel",
-      "name": "Eagle Hotel",
-      "occupation": null,
-      "letter_list_only": false,
-      "first_seen": "1834-05-14",
-      "last_seen": "1834-05-14",
-      "action": "new_resident",
-      "action_target": null,
-      "action_note": "Ruling 1: a named person the town does not hold. Named in a claim other than a letter list."
-    },
-    {
       "id": "person_eben_e_zer_allen",
       "name": "Eben[e]zer Allen",
       "occupation": null,
@@ -17534,17 +17523,6 @@
       "action": "replace_invented",
       "action_target": "tavern_keeper",
       "action_note": "A documented tavern_keeper. The town invented 4 household(s) of this trade because no documented person was available; this is a candidate to retire one."
-    },
-    {
-      "id": "person_haddock_s_tavern",
-      "name": "Haddock's Tavern",
-      "occupation": null,
-      "letter_list_only": false,
-      "first_seen": "1834-11-19",
-      "last_seen": "1834-11-19",
-      "action": "new_resident",
-      "action_target": null,
-      "action_note": "Ruling 1: a named person the town does not hold. Named in a claim other than a letter list."
     },
     {
       "id": "person_hady_john",
@@ -24805,17 +24783,6 @@
       "action": "new_resident",
       "action_target": null,
       "action_note": "Ruling 1: a named person the town does not hold. Known only from the post-office letter lists."
-    },
-    {
-      "id": "person_maddock_s_tavern",
-      "name": "Maddock's Tavern",
-      "occupation": null,
-      "letter_list_only": false,
-      "first_seen": "1834-07-09",
-      "last_seen": "1834-07-09",
-      "action": "new_resident",
-      "action_target": null,
-      "action_note": "Ruling 1: a named person the town does not hold. Named in a claim other than a letter list."
     },
     {
       "id": "person_magie_wilkinson",
@@ -32395,28 +32362,6 @@
       "action": "new_resident",
       "action_target": null,
       "action_note": "Ruling 1: a named person the town does not hold. Known only from the post-office letter lists."
-    },
-    {
-      "id": "person_the_baptist_meeting_house",
-      "name": "the Baptist meeting house",
-      "occupation": null,
-      "letter_list_only": false,
-      "first_seen": "1834-05-21",
-      "last_seen": "1834-05-21",
-      "action": "new_resident",
-      "action_target": null,
-      "action_note": "Ruling 1: a named person the town does not hold. Named in a claim other than a letter list."
-    },
-    {
-      "id": "person_the_eagle_hotel_steele_s",
-      "name": "the Eagle Hotel (Steele's)",
-      "occupation": null,
-      "letter_list_only": false,
-      "first_seen": "1834-02-04",
-      "last_seen": "1834-02-04",
-      "action": "new_resident",
-      "action_target": null,
-      "action_note": "Ruling 1: a named person the town does not hold. Named in a claim other than a letter list."
     },
     {
       "id": "person_themnpaon_cs",

@@ -43,7 +43,11 @@
 # --- Cheap (mostly S/XS) and each one makes the seeding below more accurate.
 T-0340 — The bookseller's sign-name and its partners' firm-name are three gazetteer entries for one house
 T-0341 — A bare surname can never be joined to its forename: the family rule reads 'no initials' as 'different initials'
+<<<<<<< HEAD
 T-0359 — The gazetteer mints tavern names as people, so Maddock's Tavern and Haddock's Tavern cannot be reconciled
+=======
+T-0348 — The identity policy cannot merge an unread initial with a read one, and the best witness reads seventeen of them
+>>>>>>> origin/dev
 T-0338 — Thirty-one groups of firms share a partner surname and only one of them has been judged
 T-0355 — A firm matches a building on an occupant the same sentence dates to 1831
 T-0356 — The claim vocabulary cannot say an advertisement announces an opening, so 17 businesses are excluded on a proxy
@@ -170,3 +174,4 @@ T-0388 — Three derived records have drifted from their own generators on an un
 # --- land under this line. NOT yet placed by the owner.
 T-0395 — The New York House's footprint is graded reconstructed but its note cites a source, and the gate warns
 T-0396 — Newberry & Dole's partner is read as Oliver Newberry in 1834 and Walter L. Newberry in 1835, and the corpus cannot say which stood in the firm
+T-0391 — Are 'Eagle Hotel' and 'the Eagle Hotel (Steele's)' one house, and no issue prints both

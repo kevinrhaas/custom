@@ -2341,5 +2341,58 @@
       ],
       "rule": "Two men — and WHICH of them was the partner is not settled here. Oliver Newberry of Detroit and Walter L. Newberry are two people the corpus keeps apart on its own evidence: the firm's card of 1835-08-05 (c022) signs a partner read as 'Newberry, [Walter L.]' and, in the SAME card, gives 'Oliver Newb[err]y, Detro[it]' as a commercial REFERENCE, which is not something a house prints about its own partner. Against that, the 1834-03-04 reading (c021) enters 'Oliver Newberry' on the business record as the received identification of the partner, and says in its notes that it is received rather than read. So they are held apart, which is what the evidence supports; the open question of which Newberry stood in the partnership is T-0396 and is not answered by this declaration."
     }
+  ],
+  "place_note": "The third case, and it is not a third kind of merge (T-0359). A claim's entities are keyed on a name and carry no notion of WHAT a name is, so a building the papers name by its signboard — \"Haddock's Tavern\", \"the Eagle Hotel\", \"the Baptist meeting house\" — is minted into the persons table and then held to a policy written for people. The compiler reads \"Tavern\" as the surname and \"Haddock's\" against \"Maddock's\" as forename initials, and the families rule refuses a reconciliation the evidence closes. The families rule is right; the subject is wrong. `places` is therefore where a name is declared NOT to be a person, one entry per name and each with the argument written out, and `place_merges` joins two spellings of one building afterwards. Nothing here loosens the families rule: a place merge may only join two names `places` has already argued are not people, and a name whose every mention is a post-office letter list may not be declared a place at all — a letter list is a list of people somebody wrote to, and \"Chester House\" and \"Rodney House\" in `refused_places` are exactly that shape. A name carrying an occupation is refused too, because a claim is reading it as a person. Both refusals are compile errors, not conventions.",
+  "places": [
+    {
+      "name": "Haddock's Tavern",
+      "kind": "tavern",
+      "ticket": "T-0359",
+      "why": "\"Haddock's Tavern\" is a building, not a man. It is minted out of G. Spring's standing For-Sale notice, which sells a lot BY it — \"Lot No. 7, in block No. 16, one lot east of Haddock's Tavern, on Lake street\" (chicago_democrat_1834_11_19 c010, and the same copy at 1834-06-18, 1834-09-03 and 1834-10-15). The name is doing placement work: it is the landmark the lot is measured from. The man behind the signboard is in this corpus separately and under his own name — E. Haddock, at whose house the Board of Trustees met on 6 June 1834 (1834-06-18 c002), H. Haddock of the Fourth of July notice (1834-06-25 c002), E. H. Haddock of the election notice (1834-07-30 c003) — so declaring the signboard a place removes a duplicate of the building, not the person."
+    },
+    {
+      "name": "Maddock's Tavern",
+      "kind": "tavern",
+      "ticket": "T-0359",
+      "why": "\"Maddock's Tavern\" is the same signboard as Haddock's Tavern, set once with an M, and it is a building either way. It is minted out of the 1834-07-09 setting of G. Spring's For-Sale notice (c024), which is the same advertisement, dated the same June 18, selling the same Lot No. 7 in block No. 16 one lot east of it on Lake street. It is declared a place for the reason its four sibling settings are: the name is the landmark the lot is measured from, not a person the paper is writing about. Which of the two spellings the printer set is settled in `place_merges`, and could not be while the compiler read the word Tavern as a surname."
+    },
+    {
+      "name": "Eagle Hotel",
+      "kind": "hotel",
+      "ticket": "T-0359",
+      "why": "\"Eagle Hotel\" is a house of entertainment, and the claim that mints it (chicago_democrat_1834_05_14 c008) sets it as a display heading over its own advertisement — the building advertising itself. No forename or initial is printed with it in any issue of this corpus, because there is none: it is a sign."
+    },
+    {
+      "name": "the Eagle Hotel (Steele's)",
+      "kind": "hotel",
+      "ticket": "T-0359",
+      "why": "\"the Eagle Hotel (Steele's)\" is a building named with its keeper in a parenthesis — the 1834-02-04 notice (c003) locates something at \"the Eagle Hotel, (Steele's)\", which is an address and not a person's name. It is declared a place on that reading alone. Whether it and \"Eagle Hotel\" are one house is a separate question and is NOT answered here: no issue in this corpus prints both settings in a way that decides it, and a merge on the strength of the shared word Eagle is the resemblance argument this file exists to refuse. T-0391 holds it."
+    },
+    {
+      "name": "the Baptist meeting house",
+      "kind": "meeting_house",
+      "ticket": "T-0359",
+      "why": "\"the Baptist meeting house\" is a building and reads as one in plain words — the 1834-05-21 claim (c003) puts it in South Water Street, which is already recorded on the entry as an associated place. It is a congregation's house, not a person, and no printing gives it a forename because none exists."
+    }
+  ],
+  "place_merges": [
+    {
+      "into": "Haddock's Tavern",
+      "from": "Maddock's Tavern",
+      "ticket": "T-0359",
+      "merge_rule": "\"Haddock's Tavern\" and \"Maddock's Tavern\" are one building, and G. Spring's own advertisement is the witness that says so. One notice, dated June 18 1834 and standing over five settings, sells Lot No. 7 in block No. 16, one lot east of the tavern, on Lake street, with a large dwelling-house and fine well on it. Four of the five settings read Haddock's (1834-06-18 c006, 1834-09-03 c005, 1834-10-15 c006, 1834-11-19 c010) and exactly one reads Maddock's (1834-07-09 c024). That is the condition the 1834-07-30 reading pass set for closing this: an issue printing both spellings in a way that decides it. Four settings of one advertisement against one is that. The direction is into the reading four settings carry, and the corpus corroborates it outside the notice — E. Haddock kept the Mansion House and the Board of Trustees met there (1834-06-18 c002), while no Maddock appears anywhere in these papers. This merge is possible only because both names are declared places: as persons the families rule refused it, reading Tavern as a surname and H against M as forename initials, which is a rule for a family of people applied to a signboard. T-0324 found it, T-0359 could record it."
+    }
+  ],
+  "refused_places": [
+    {
+      "name": "Chester House",
+      "ticket": "T-0359",
+      "refused_because": "\"Chester House\" is a person, not a building, and the shape of the evidence says which. Both its mentions are post-office lists of letters remaining uncalled-for (1834-04-01 c001, 1835-05-20 c013) and one of them prints it inverted — \"House, Chester\" — which is the surname-first setting those columns use. The surname is House and the forename is Chester. He is one of the twelve names the letter lists put into the town's households on 2026-08-29, and declaring him a place would delete a resident. The compiler refuses it independently of this note: every mention is a letter list."
+    },
+    {
+      "name": "Rodney House",
+      "ticket": "T-0359",
+      "refused_because": "\"Rodney House\" is a person for the same reason \"Chester House\" is. Its one mention is the 1834-04-01 letter list (c001), it stands in a column of people the post office was holding letters for, and House is the surname. No claim in this corpus puts a Rodney House on a street or over a door. The compiler refuses the declaration independently of this note."
+    }
   ]
 }

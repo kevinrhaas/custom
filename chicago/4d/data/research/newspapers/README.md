@@ -160,7 +160,7 @@ Deterministic: the same deposit produces byte-identical `corpus.json` and `text/
 | | |
 |---|---|
 | `extracted/<issue_id>.json` | one file per issue, holding `claims[]` — hand-authored |
-| `identity.json` | the only place two differently-spelled names may become one person, two firm styles one house, or two of a house's proprietors one partner |
+| `identity.json` | the only place two differently-spelled names may become one person, two firm styles one house, or two of a house's proprietors one partner — and the only place a name is declared a PLACE rather than a person |
 | `coverage.json` | the ranges a reading pass has DECLARED it read, and the gate holds it to them |
 | `gazetteer.json` | **generated** by `tools/compile_gazetteer.py --build` — never hand-edited |
 
@@ -400,6 +400,29 @@ because a house really does hold brothers (William and Franklin Brewster sign on
 notice) and really does hold one man read twice. A bare surname beside a full name is not a
 pair — that is the papers printing less — and a declaration whose pair has gone is refused
 too, so the file cannot rot.
+
+**And a name is not always a person** (T-0359). A claim's entities are keyed on a name and
+carry no notion of what KIND of thing a name is, so a building the papers name by its
+signboard arrives in the persons table and is then held to a policy written for people.
+The compiler read `Tavern` as the surname and `Haddock's` against `Maddock's` as forename
+initials, and the families rule refused a reconciliation the evidence closes: one For-Sale
+notice of G. Spring's stands over five settings, four read Haddock's and one reads
+Maddock's. The rule is right and the subject was wrong. `identity.json` therefore has a
+third section — `places`, where a name is declared NOT to be a person with the argument
+written out, and `place_merges`, which joins two spellings of one building afterwards. A
+place has no forename initial to be a family by and no partners to be a house by, so the
+discriminator is the declaration itself: **a place merge may only join two names `places`
+has already argued are not people**, which is what keeps this from becoming a hole in the
+families rule. Two more guards protect the same thing from the other side — a name whose
+every mention is a post-office letter list may not be declared a place at all (a letter
+list is a list of people somebody wrote to, and `Chester House` and `Rodney House` are
+exactly that shape, both recorded in `refused_places`), and neither may a name a claim
+gives an occupation to. Five names are declared: Haddock's and Maddock's Tavern, the Eagle
+Hotel, the Eagle Hotel (Steele's) and the Baptist meeting house; the two taverns merge and
+the two Eagle readings deliberately do not, because nothing in the corpus prints both and
+a shared word is the resemblance argument this file exists to refuse (T-0391). The table
+lands in `gazetteer.json` as `places`, beside `persons` and `businesses`, and the register
+compiled from it no longer carries signboards as inhabitants of the town.
 
 The scene-date Democrat, `extracted/chicago_democrat_1835_07_01.json`, is both the worked
 fixture (claims c001-c003, T-0257 — Peter Cohen and J. S. C. Hogan on South Water Street,

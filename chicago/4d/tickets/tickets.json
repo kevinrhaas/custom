@@ -1,6 +1,10 @@
 {
   "project": "chicago-4d",
+<<<<<<< HEAD
   "generated_ct": "Aug 29, 2026, 10:43 AM",
+=======
+  "generated_ct": "Aug 29, 2026, 10:49 AM",
+>>>>>>> origin/dev
   "tickets": [
     {
       "id": "T-0001",
@@ -5942,7 +5946,7 @@
     {
       "id": "T-0359",
       "title": "The gazetteer mints tavern names as people, so Maddock's Tavern and Haddock's Tavern cannot be reconciled",
-      "state": "open",
+      "state": "done",
       "epic": "META",
       "requested_by": "loop",
       "seen": false,
@@ -5950,12 +5954,16 @@
       "legacy_id": null,
       "parent": null,
       "opened": "2026-08-29",
-      "closed": null,
-      "pr": null,
-      "claimed_by": null,
+      "closed": "2026-08-29",
+      "pr": "546",
+      "claimed_by": "run 8/29/2026, 9:36:20 AM CT",
       "blocked_on": null,
       "needs_bake": false,
+<<<<<<< HEAD
       "queue_rank": 2
+=======
+      "queue_rank": null
+>>>>>>> origin/dev
     },
     {
       "id": "T-0364",
@@ -6409,13 +6417,20 @@
     },
     {
       "id": "T-0391",
+<<<<<<< HEAD
       "title": "The name parse deletes an unread [?] initial, so seventeen refusals are stated on a letter no printing read",
       "state": "done",
       "epic": "PAPERS",
+=======
+      "title": "Are 'Eagle Hotel' and 'the Eagle Hotel (Steele's)' one house, and no issue prints both",
+      "state": "open",
+      "epic": "META",
+>>>>>>> origin/dev
       "requested_by": "loop",
       "seen": false,
       "effort": "S",
       "legacy_id": null,
+<<<<<<< HEAD
       "parent": "T-0348",
       "opened": "2026-08-29",
       "closed": "2026-08-29",
@@ -6435,13 +6450,22 @@
       "effort": "XS",
       "legacy_id": null,
       "parent": "T-0348",
+=======
+      "parent": null,
+>>>>>>> origin/dev
       "opened": "2026-08-29",
       "closed": null,
       "pr": null,
       "claimed_by": null,
+<<<<<<< HEAD
       "blocked_on": "May a merge be declared where one side's forename initial is [?] (unread) and the other's is read, at the same entry of the same list? No = eighteen known duplicates are an accepted cost; Yes = a bounded exception, same list, same entry, no competing letter.",
       "needs_bake": false,
       "queue_rank": null
+=======
+      "blocked_on": null,
+      "needs_bake": false,
+      "queue_rank": 74
+>>>>>>> origin/dev
     },
     {
       "id": "T-0395",
