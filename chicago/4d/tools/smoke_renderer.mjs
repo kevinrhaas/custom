@@ -9599,9 +9599,23 @@ for (const [label, viewport, touch] of [
       // printed as objects are not on the Beaubien record: `name_basis` is on
       // the 113 reconstructed people and `age_on_scene_date`/`birth_year` on the
       // nine the sources date. A row that carries neither cannot fail for them.
-      const named = rows.find((r) => r.dataset.id === 'hh_inf_baker_south_01');
+      //
+      // THE ROW IS CHOSEN FROM THE MANIFEST, NOT NAMED (T-0264). It used to be the
+      // literal `hh_inf_baker_south_01`, and that household stopped being invented the
+      // day a documented baker was found for it — so the assertion below failed on a
+      // card that was correct, which is the worst kind of red. The manifest's own grade
+      // tally says which half of the layer a row is in, so the probe asks it: `named`
+      // is a household still wholly invented, `retired` one where a documented man now
+      // holds the roof, and the suite reads a card of each.
+      const manifest = await (await fetch(
+        new URL('residents/index.json', window.__chicago4d.dataBase))).json();
+      const infRows = manifest.households.filter((h) => h.id.startsWith('hh_inf_'));
+      const namedId = (infRows.find((h) => h.grades.reconstructed && !h.grades.attested) || {}).id;
+      const retiredId = (infRows.find((h) => h.grades.attested) || {}).id;
+      const named = rows.find((r) => r.dataset.id === namedId);
+      const retired = rows.find((r) => r.dataset.id === retiredId);
       const dated = rows.find((r) => r.dataset.id === 'hh_egan_william_b');
-      for (const el of [target, named, dated]) {
+      for (const el of [target, named, retired, dated]) {
         if (!el) continue;
         el.open = true;
         for (let i = 0; i < 100 && el.querySelector('.res-hh-body .legend-note'); i++) {
@@ -9611,6 +9625,7 @@ for (const [label, viewport, touch] of [
       const bodyOf = (el) => (el ? el.textContent.replace(/\s+/g, ' ') : '');
       return {
         namedText: bodyOf(named),
+        retiredText: bodyOf(retired),
         datedText: bodyOf(dated),
         households: window.__chicago4d.residents?.households ?? 0,
         persons: window.__chicago4d.residents?.persons ?? 0,
@@ -9683,6 +9698,16 @@ for (const [label, viewport, touch] of [
       /How this person is named/.test(residents.namedText)
       && /invented from the [A-Za-z ]+ pool/.test(residents.namedText),
       residents.namedText.slice(0, 200));
+    // And the other half of the same layer (T-0264): where a documented man took the
+    // roof, the card has to carry the paper that names him and to keep saying that the
+    // roof is still ours. A card that printed only the name would be the invention this
+    // whole section exists to make visible, wearing a real man's face.
+    check(`${label}: a documented resident on a reconstructed roof cites his paper`,
+      /Chicago Democrat|Chicago American/.test(residents.retiredText)
+      && /attested/i.test(residents.retiredText)
+      && /WHERE HE LIVED AND WORKED IS STILL RECONSTRUCTED/.test(residents.retiredText)
+      && !/How this person is named/.test(residents.retiredText),
+      residents.retiredText.slice(0, 200));
     // The nine the sources actually date, with the reasoning that says which of
     // the two figures the source states and which is arithmetic off it.
     check(`${label}: a dated person carries an age and a birth year, both graded`,
