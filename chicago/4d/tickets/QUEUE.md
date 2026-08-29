@@ -88,7 +88,6 @@ T-0253 — May an invented building stand on the river margin of a platted stree
 T-0255 — The dooryard planting rule reads every street in the town with no bound on reach, so a track across the river can turn a house's yard
 T-0265 — The sward census fails its own gate at a phone: z10_settled_town owes xanthium_strumarium a whole slot and draws it nowhere
 T-0266 — On a phone from across the river the stockade's picket rhythm falls under the pixel grid and beats
-T-0267 — The fort's wall brick is a third brick, 0.47/0.26/0.20 against the sheet's 0.45/0.23/0.17
 T-0268 — A building held under the standing constraint says so nowhere a visitor can see
 T-0271 — The balanced ceiling is breached at the forks by 5,290 triangles on an unmodified dev, and both open tickets name a different stand
 T-0272 — The West Division parcel's form values come from the archetype and cite the family band: 8 families, 11 claims outside it
@@ -119,3 +118,4 @@ T-0328 — D. Weaver's building is on Lot 2 in one printing and Lot 9 in the nex
 T-0329 — School District Number One is bounded in print on 1834-12-10 and the segmenter cut better than half of every line of it away
 T-0330 — A fragment reading 'opposite the Tremont House' sits between two interleaved advertisements and neither can claim it
 T-0331 — The March 1834 letter list lost its date line and both its crops failed Vision; the page images can say which return it is
+T-0332 — The sheet's one brick is called chimney_brick, and a wall now reads it
