@@ -84,8 +84,9 @@ its gable end reaches it, and a 25 m band is a distance rather than an orientati
 This is a real cost and it is reported rather than avoided: it refuses **the whole of
 Dearborn Street**, which has eighteen roofs showing it a corner side and not one whose lot
 fronts it. `--report` prints both readings side by side, because the reader is owed the
-disagreement the decision was made about, and because a later owner ruling that a corner
-side is a face has exactly one number to change.
+disagreement the decision was made about. A later owner ruling that a corner side is a
+face changes one number in the reading — and rather more than that in the allocation, as
+**The two widenings, COSTED** below measures.
 
 ## The six refusals
 
@@ -177,6 +178,67 @@ households' homes (refusal 5) and less the yard buildings (refusal 6).
   roof it adds to that face is a roof this pass will take on its next re-derivation,
   automatically.
 - **Lake Street (2 refused)** — both a second heading of a proprietor already seated.
+
+## The two widenings, COSTED — T-0416, and the ruling is the owner's
+
+The section above says a later ruling that a corner side is a face "has exactly one number
+to change". That was true of the *reading*, and it turned out to be the small half of the
+question. **T-0416 costed both widenings rather than describing them**: `python3
+tools/adopt_street_faces.py --what-if` re-runs the whole allocation under each and writes
+nothing. Everything below re-derives.
+
+**THE WIDENED SUPPLY IS NOT NEW SUPPLY, AND THAT IS THE FINDING.** Not one reconstructed
+roof in this town has its platted lot on two streets, so under the policy a face's supply
+is exclusive by construction and no bookkeeping is needed to keep it so. Every roof a
+corner-side reading would add to a face **already fronts another street by its lot** — of
+Dearborn Street's eighteen, seven front Randolph, five Washington, five Lake and one South
+Water; of Wells Street's fourteen, six front Randolph and four South Water. So widening
+does not raise the town's stock of roofs by one. It lets two faces deal the same roof, and
+the allocation then has to spend each roof once town-wide or seat two documented shops in
+one building. It spends it once — `adopt_street_faces.py` now keeps that ledger town-wide
+rather than per face — which is why a widening seats far fewer advertisements than the
+roofs it appears to add.
+
+| | policy (`lot front`) | + `corner side` | + `centreline band` |
+|---|---:|---:|---:|
+| adopted | **19** | **31** | **32** |
+| waiting | 40 | 28 | 27 |
+| — no roof whose lot fronts the street | 24 | 2 | 0 |
+| — this face already holds this proprietor | 9 | 12 | 12 |
+| — every roof on the face is spoken for | 7 | 14 | 15 |
+| seated on a roof that fronts another street | 0 | 12 | 13 |
+
+The corner-side widening is worth **+12** advertisements and the band a further **+1**.
+Twelve of the thirty-one adoptions would then stand in a building whose front door, by the
+plat this project committed, is on a different street — which is the substance of what is
+being ruled on, not the count.
+
+**AND IT DOES NOT SEAT T-0416's OWN THREE.** The ticket reads all three as waiting on one
+ruling. They are not:
+
+| business | street | `+ corner side` | `+ centreline band` |
+|---|---|---|---|
+| the Dearborn Street wine store | Dearborn | **still waits** — every roof on the face is spoken for | still waits |
+| Wm. Sabine | North Water | **still waits** — no corner side reaches North Water at all | seated on `recon_1835_north_c1_020`, a roof with no lot front of its own |
+| John Dave | North Water | **still waits** | **still waits** — Sabine takes the face's one roof |
+
+Dearborn's eighteen ads would compete for the eight roofs the widening leaves free after
+Lake, South Water and Randolph have spent theirs, and the wine store — anonymous, one
+printing — is not among the eight the evidence ranking serves. North Water has **no corner
+side at all**: its single candidate roof stands in the 25 m band and fronts nothing, so
+only the *second* widening reaches it, and it is one roof for two advertisements.
+
+**So the remedy T-0416 names does not close T-0416.** What would: the second remedy the
+section above already records — a reconstruction that raises frontage on Dearborn and North
+Water, which is `T-0375`'s and the anonymous-block programme's neighbourhood, and which
+costs this policy nothing because the pass re-derives.
+
+**What is being asked, and only the owner can answer it.** Is a corner side a face — may a
+documented shop take a building whose platted lot fronts another street, on the strength of
+its gable end reaching the street the paper names? A yes seats twelve more advertisements
+and puts twelve documented doors on the wrong side of a building. A no leaves twenty-four
+advertisements waiting for the town to raise frontage on the streets the papers name. This
+file records the arithmetic; the decision is not the policy's to take.
 
 ## The 84 `unplaceable` are NOT covered, and stay open
 

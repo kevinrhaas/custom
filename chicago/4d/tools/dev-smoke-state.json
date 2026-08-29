@@ -2,6 +2,68 @@
   "note": "T-0216 — dev's standing smoke result, so a branch can answer \"is this red mine, or did I inherit it?\" from the record instead of re-running the stage on a clean worktree (three agents paid that price on one red on 2026-08-27; T-0215). Written by tools/dev-smoke-state.mjs, which parses a smoke log — local or from a chicago-4d-smoke.yml run. Every reading carries the CONDITIONS it was taken under, because a quiet CI runner does not predict a loaded steward box: T-0215 measured a factor of twenty on one tree. loadavg is sampled when the reading is filed, so it includes the smoke's own load. `treeHash` digests exactly what the smoke exercises (renderers, data, assets, smoke_renderer.mjs, the published mirror), so a reading whose hash matches yours is a reading OF YOUR TREE. A RECORD, NOT A BAR: nothing here gates anything.",
   "readings": [
     {
+      "viewport": "mobile",
+      "stage": "8",
+      "parts": [
+        8
+      ],
+      "verdict": "pass",
+      "target": "published",
+      "passed": 37,
+      "failed": 0,
+      "failures": [],
+      "wallSeconds": 98,
+      "takenAt": "2026-08-29T21:45:10.868Z",
+      "ref": "steward/t-0416-street-face-ruling",
+      "commit": "ddeb1c87bb5f",
+      "devCommit": "c658a7b6fc5f",
+      "treeHash": "sha256:da449934ca1a8714",
+      "treeDirty": false,
+      "changelogHash": "sha256:8e1309996dffab4c",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          4,
+          4.1,
+          2.5
+        ]
+      },
+      "source": "/tmp/smoke-mobile-8.log"
+    },
+    {
+      "viewport": "desktop",
+      "stage": "8",
+      "parts": [
+        8
+      ],
+      "verdict": "pass",
+      "target": "published",
+      "passed": 37,
+      "failed": 0,
+      "failures": [],
+      "wallSeconds": 174,
+      "takenAt": "2026-08-29T21:45:10.783Z",
+      "ref": "steward/t-0416-street-face-ruling",
+      "commit": "ddeb1c87bb5f",
+      "devCommit": "c658a7b6fc5f",
+      "treeHash": "sha256:da449934ca1a8714",
+      "treeDirty": false,
+      "changelogHash": "sha256:8e1309996dffab4c",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          4,
+          4.1,
+          2.5
+        ]
+      },
+      "source": "/tmp/smoke-desktop-8.log"
+    },
+    {
       "viewport": "desktop",
       "stage": "8",
       "parts": [
@@ -1726,68 +1788,6 @@
         ]
       },
       "source": "/tmp/smoke_m3.txt"
-    },
-    {
-      "viewport": "desktop",
-      "stage": "1",
-      "parts": [
-        1
-      ],
-      "verdict": "pass",
-      "target": "published",
-      "passed": 76,
-      "failed": 0,
-      "failures": [],
-      "wallSeconds": 277,
-      "takenAt": "2026-08-29T06:43:52.341Z",
-      "ref": "steward/t-0328-coverage-record",
-      "commit": "3f6e611fb057",
-      "devCommit": "0477e81149a7",
-      "treeHash": "sha256:66ff64b301c9cfb6",
-      "treeDirty": false,
-      "changelogHash": "sha256:2c9f6f5f1efabdeb",
-      "host": {
-        "kind": "steward-runner",
-        "cpus": 4,
-        "memGB": 15.6,
-        "loadavg": [
-          4.8,
-          4,
-          3.2
-        ]
-      },
-      "source": "/tmp/s3_d1.log"
-    },
-    {
-      "viewport": "mobile",
-      "stage": "1",
-      "parts": [
-        1
-      ],
-      "verdict": "pass",
-      "target": "published",
-      "passed": 76,
-      "failed": 0,
-      "failures": [],
-      "wallSeconds": 156,
-      "takenAt": "2026-08-29T06:43:52.255Z",
-      "ref": "steward/t-0328-coverage-record",
-      "commit": "3f6e611fb057",
-      "devCommit": "0477e81149a7",
-      "treeHash": "sha256:66ff64b301c9cfb6",
-      "treeDirty": false,
-      "changelogHash": "sha256:2c9f6f5f1efabdeb",
-      "host": {
-        "kind": "steward-runner",
-        "cpus": 4,
-        "memGB": 15.6,
-        "loadavg": [
-          4.8,
-          4,
-          3.2
-        ]
-      },
-      "source": "/tmp/s3_m1.log"
     },
     {
       "viewport": "desktop",

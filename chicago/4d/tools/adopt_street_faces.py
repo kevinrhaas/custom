@@ -4,6 +4,7 @@
     python3 tools/adopt_street_faces.py           write
     python3 tools/adopt_street_faces.py --check   re-derive, diff, and re-assert the limits
     python3 tools/adopt_street_faces.py --report  the adoption and every refusal, with counts
+    python3 tools/adopt_street_faces.py --what-if what a widened reading would cost (T-0416)
 
 WHAT THIS IS FOR.
 
@@ -244,12 +245,18 @@ EMPTY_FACE = {FRONT: [], SIDE: [], BAND: [], "free": [], "homes": [], "yards": [
 
 
 def supply(roofs: dict[str, str], homes: dict[str, list[str]],
-           yards: set[str]) -> dict:
+           yards: set[str], readings: tuple[str, ...] = (FRONT,)) -> dict:
     """Per street: the roofs that front it, and the free ones, under each reading.
 
     A fronting roof lands in exactly one of three buckets, and only `free` is supply: a
     named household's home (refusal 4), a yard building (refusal 5), or a roof a business
     may take.
+
+    `readings` is which of the three frontage readings COUNTS AS SUPPLY, and the policy's
+    answer is `(FRONT,)` and only that. It is a parameter rather than a constant so the
+    widenings T-0416 asks the owner to rule on can be COSTED without being adopted:
+    `--what-if` re-runs the whole allocation under each of them and reports, and nothing
+    but the default is ever written. See docs/STREET-FACE-ADOPTION.md.
     """
     out: dict[str, dict] = {}
     for structure_id in sorted(roofs):
@@ -257,7 +264,7 @@ def supply(roofs: dict[str, str], homes: dict[str, list[str]],
             face = out.setdefault(street_id, {key: list(value)
                                               for key, value in EMPTY_FACE.items()})
             face.setdefault(how, []).append(structure_id)
-            if how == FRONT:
+            if how in readings:
                 if structure_id in homes:
                     face["homes"].append(structure_id)
                 elif structure_id in yards:
@@ -304,18 +311,28 @@ def rank_key(entry: dict, gaz: dict) -> tuple:
     return (-mentions, first, entry["id"])
 
 
-def derive() -> dict:
+def derive(readings: tuple[str, ...] = (FRONT,)) -> dict:
+    """The allocation. `readings` is which frontage readings count as supply, and the
+    POLICY is the default and only the default — see `supply()`; a widening is costed by
+    `--what-if` and never written."""
     register = load(REGISTER)
     gaz = {b["id"]: b for b in load(GAZETTEER)["businesses"]}
     roofs = reconstructed_roofs()
     homes = dwellings()
     yards = yard_roofs()
-    faces = supply(roofs, homes, yards)
+    faces = supply(roofs, homes, yards, readings)
+    widened = tuple(r for r in readings if r != FRONT)
 
     pool = [b for b in register["businesses"] if b["action"] == "street_only"]
     pool.sort(key=lambda entry: rank_key(entry, gaz))
 
     taken: dict[str, list[str]] = {}
+    # ONE ROOF, ONE BUSINESS, TOWN-WIDE. Under the policy's own reading this costs
+    # nothing — no roof in this town has its platted lot on two streets, so a per-face
+    # ledger was already exclusive — but under a widening it is the whole difference:
+    # every roof a corner-side reading would add to a face already fronts ANOTHER street
+    # by its lot, so the same roof would otherwise be dealt twice.
+    taken_any: set[str] = set()
     seated: dict[str, dict[tuple[str, ...], str]] = {}
     adoptions: list[dict] = []
     refusals: list[dict] = []
@@ -336,8 +353,8 @@ def derive() -> dict:
             continue
         face = faces.get(street_id) or {key: list(value)
                                         for key, value in EMPTY_FACE.items()}
-        free = [sid for sid in face["free"] if sid not in taken.get(street_id, [])]
-        if not face[FRONT]:
+        free = [sid for sid in face["free"] if sid not in taken_any]
+        if not any(face[reading] for reading in readings):
             refusals.append(dict(
                 common, refusal=REFUSALS[1],
                 detail="%d roof(s) show this street a corner side and %d stand within "
@@ -367,6 +384,7 @@ def derive() -> dict:
 
         structure_id = free[0]
         taken.setdefault(street_id, []).append(structure_id)
+        taken_any.add(structure_id)
         if house:
             held[house] = entry["name"]
         adoptions.append({
@@ -383,19 +401,23 @@ def derive() -> dict:
             "last_issue": (entry.get("evidence") or {}).get("last_issue"),
             "mentions": len(printed.get("mentions") or []),
             "structure_id": structure_id,
-            "face": FRONT,
+            "face": fronting_street.fronts(structure_id, street_id),
             "roof_confidence": roofs[structure_id],
             "lot": None,
             "claims_lot": False,
             "order_is_a_claim": False,
             "note": "The advertisement names %s and nothing narrower, so this business "
                     "takes the street face and not a lot. The roof it is attached to is "
-                    "an anonymous reconstructed count-unit whose platted lot faces that "
+                    "an anonymous reconstructed count-unit %s that "
                     "street; it stays reconstructed, and WHICH roof on the face is an "
                     "allocation by tools/adopt_street_faces.py rather than a reading of "
                     "any source. Nothing here says this business stood nearer the corner "
                     "than any other on the same face."
-                    % fronting_street.street_name(street_id),
+                    % (fronting_street.street_name(street_id),
+                       "whose platted lot faces"
+                       if fronting_street.fronts(structure_id, street_id) == FRONT
+                       else "that shows a %s to"
+                            % fronting_street.fronts(structure_id, street_id)),
         })
 
     adoptions.sort(key=lambda row: row["business_id"])
@@ -438,8 +460,8 @@ def derive() -> dict:
                   "already standing on that street face.",
         "scene_date": SCENE_DATE,
         "reading": {
-            "adopted_face": FRONT,
-            "refused_faces": [SIDE, BAND],
+            "adopted_face": FRONT if readings == (FRONT,) else list(readings),
+            "refused_faces": [face for face in (SIDE, BAND) if face not in readings],
             "why": "An advertisement's street is where the door is. A corner side is the "
                    "cross street's building shown end-on, and a centreline band is a "
                    "distance rather than an orientation.",
@@ -577,6 +599,112 @@ def report() -> int:
     return 0
 
 
+# ---------------------------------------------------------------------------
+# what a widening would cost — T-0416, and it is a REPORT and never a write
+# ---------------------------------------------------------------------------
+
+# The three businesses T-0416 holds, and the reason they are named here rather than
+# counted with the rest: the ticket reads all three as waiting on ONE ruling, and they do
+# not. `--what-if` prints what happens to each under each widening, which is the whole of
+# what the owner is being asked to decide about them.
+T_0416 = (
+    "business_wm_sabine_storage_forwarding_and_commission_merchant",
+    "business_john_dave_north_water_street",
+    "business_a_wholesale_wine_and_liquor_store_dearborn_street",
+)
+
+WIDENINGS = (
+    ((FRONT,), "the policy: a lot front, and nothing else"),
+    ((FRONT, SIDE), "widened: a corner side is a face too"),
+    ((FRONT, SIDE, BAND), "widened again: a 25 m centreline band as well"),
+)
+
+
+def what_if() -> int:
+    """Re-run the whole allocation under each widening and report the difference.
+
+    NOTHING IS WRITTEN. The policy is `(FRONT,)` and `build()` takes no argument; this is
+    the arithmetic T-0416 needs the owner to rule against, derived rather than argued, so
+    the ruling can be made against numbers that re-derive on demand.
+    """
+    homes = dwellings()
+    yards = yard_roofs()
+    roofs = reconstructed_roofs()
+
+    print("WHAT A WIDER READING OF 'ON THAT STREET' WOULD COST — T-0416\n")
+    print("  Derived by tools/adopt_street_faces.py --what-if. Nothing below is written,")
+    print("  and the policy is unchanged: docs/STREET-FACE-ADOPTION.md.\n")
+
+    # WHERE THE WIDENED SUPPLY COMES FROM, and it is the finding. Every roof a corner
+    # side or a band would add to a face already has its own lot on ANOTHER street, so
+    # widening does not add supply to the town — it lets two faces deal the same roof.
+    print("  THE WIDENED SUPPLY IS NOT NEW SUPPLY")
+    print("  %-20s %6s   %s" % ("street", "adds", "and those roofs' own lot fronts"))
+    for street_id in sorted(supply(roofs, homes, yards)):
+        face = supply(roofs, homes, yards)[street_id]
+        added = [sid for sid in face[SIDE] + face[BAND]]
+        if not added:
+            continue
+        owners: dict[str, int] = {}
+        for sid in added:
+            for other, how in fronting_street.fronting(sid):
+                if how == FRONT:
+                    owners[fronting_street.street_name(other)] = \
+                        owners.get(fronting_street.street_name(other), 0) + 1
+        loose = len(added) - sum(owners.values())
+        parts = ["%s %d" % (name, n) for name, n in sorted(owners.items())]
+        if loose:
+            parts.append("no lot front at all %d" % loose)
+        print("  %-20s %6d   %s" % (fronting_street.street_name(street_id),
+                                    len(added), ", ".join(parts) or "-"))
+    print("\n  Not one roof in this town has its platted lot on two streets, so under the")
+    print("  policy a face's supply is exclusive by construction. Under a widening it is")
+    print("  not, and the allocation has to spend a roof once town-wide or seat two shops")
+    print("  in one building. It spends it once, which is why a widening seats fewer")
+    print("  advertisements than the roofs it adds.\n")
+
+    rows = []
+    for readings, label in WIDENINGS:
+        doc = derive(readings)
+        counts = doc["counts"]
+        rows.append((label, counts, doc))
+        print("  %s" % label.upper())
+        print("      %-46s %d" % ("adopted", counts["adopted"]))
+        print("      %-46s %d" % ("waiting", counts["refused"]))
+        for reason, n in counts["refused_by_reason"].items():
+            print("          %-42s %d" % (reason, n))
+        seated_off_front = [row for row in doc["adoptions"] if row["face"] != FRONT]
+        print("      %-46s %d" % ("seated on a roof that fronts another street",
+                                  len(seated_off_front)))
+        print()
+
+    base = rows[0][1]["adopted"]
+    print("  THE DIFFERENCE, against the policy's %d" % base)
+    for label, counts, _ in rows[1:]:
+        print("      %-46s %+d" % (label, counts["adopted"] - base))
+
+    print("\n  T-0416'S OWN THREE, under each reading")
+    for business_id in T_0416:
+        print("      %s" % business_id)
+        for readings, label in WIDENINGS:
+            doc = derive(readings)
+            seat = next((row for row in doc["adoptions"]
+                         if row["business_id"] == business_id), None)
+            if seat:
+                verdict = "SEATED on %s (%s, whose lot fronts %s)" % (
+                    seat["structure_id"], seat["face"],
+                    ", ".join(fronting_street.street_name(other)
+                              for other, how in
+                              fronting_street.fronting(seat["structure_id"])
+                              if how == FRONT) or "nothing")
+            else:
+                refused = next((row for row in doc["refusals"]
+                                if row["business_id"] == business_id), None)
+                verdict = "waits — %s" % (refused["refusal"] if refused else "not in the pool")
+            print("          %-44s %s" % (label, verdict))
+    return 0
+
+
 def self_test() -> int:
     """Break each limit in turn against the committed table; every one must fire.
 
@@ -657,11 +785,27 @@ def self_test() -> int:
         print("  ok:    the phase reader distinguishes %s, so a promoted roof is visible "
               "to limit 2" % ", ".join(sorted(grades)))
 
+    # THE WIDENED PATH IS EXERCISED HERE so it cannot rot while the policy refuses it.
+    # `--what-if` is what T-0416 asks the owner to rule against, and a costing nothing
+    # runs is a costing nobody can trust. Two things are asserted: the widened
+    # allocations derive at all, and the town-wide one-roof-one-business rule holds under
+    # them — which under the policy's own reading is free and under a widening is not,
+    # because every roof a widening adds to a face already fronts another street.
+    for readings, label in WIDENINGS[1:]:
+        widened_doc = derive(readings)
+        roof_of = [row["structure_id"] for row in widened_doc["adoptions"]]
+        if len(roof_of) != len(set(roof_of)):
+            print("  FAIL  %s deals a roof twice" % label)
+            failed = 1
+        else:
+            print("  ok:    %s derives, %d adopted, no roof dealt twice"
+                  % (label, len(roof_of)))
+
     if failed:
         print("SELF-TEST FAIL")
         return 1
     print("SELF-TEST PASS — all four limits and both roof refusals fire when broken "
-          "(9 cases)")
+          "(9 cases), and both widened readings derive without dealing a roof twice")
     return 0
 
 
@@ -671,6 +815,9 @@ def main(argv=None) -> int:
                     help="re-derive, diff the committed copy, and re-assert the limits")
     ap.add_argument("--report", action="store_true",
                     help="the adoption and every refusal, with counts")
+    ap.add_argument("--what-if", action="store_true",
+                    help="cost the widened readings T-0416 asks the owner to rule on; "
+                         "reports only, and never writes")
     ap.add_argument("--self-test", action="store_true",
                     help="break each of the four limits in turn; every one must fire")
     args = ap.parse_args(argv)
@@ -680,6 +827,8 @@ def main(argv=None) -> int:
         return check()
     if args.report:
         return report()
+    if args.what_if:
+        return what_if()
     return build()
 
 
