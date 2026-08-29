@@ -25,7 +25,7 @@ anchor onto one of several records that answer to the same name. Where two or mo
 committed structures — or two or more documented businesses — carry the anchor's exact
 identity-word set, the anchor resolves to a new kind, `ambiguous`, naming every rival,
 instead of `structure`/`business` on the alphabetically first. Demonstrated on this
-ticket's own blocker, `J. Wright's`. **Delivered in PR #__PR__.** That was this
+ticket's own blocker, `J. Wright's`. **Delivered in PR #563.** That was this
 ticket's stated prerequisite and it is the part of it that could be finished; the
 placement itself cannot be, and the rest of this note says why rather than leaving it
 to the next run to rediscover.
