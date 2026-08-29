@@ -55,7 +55,7 @@
           "note": "INVENTED, NOT DERIVED. This value comes from a typology in the reconstruction spec — what a building of this kind was ordinarily like — and NOT from evidence about this particular building, because there is no particular building: the structure itself is an invention filling a demonstrable need of the town. The spec is cited because the invention is bounded by it, which is what makes it defensible rather than arbitrary; the GRADE is the bottom tier because nothing here is a reading of a source about this thing. Type-level choice within the C1 band in the supplied reconstruction specification; it is not evidence for this anonymous West Division instance."
         },
         "wall_height_m": {
-          "value": 3.25,
+          "value": 3.015,
           "confidence": "reconstructed",
           "sources": [
             "owner_chicago_1835_reconstruction_spec_2026"
@@ -71,7 +71,7 @@
           "note": "INVENTED, NOT DERIVED. This value comes from a typology in the reconstruction spec — what a building of this kind was ordinarily like — and NOT from evidence about this particular building, because there is no particular building: the structure itself is an invention filling a demonstrable need of the town. The spec is cited because the invention is bounded by it, which is what makes it defensible rather than arbitrary; the GRADE is the bottom tier because nothing here is a reading of a source about this thing. Type-level choice within the C1 band in the supplied reconstruction specification; it is not evidence for this anonymous West Division instance. THE OTHER FORM ON OFFER IS REFUSED, AND HERE IS THE NUMBER. The C1 roof line offers \"front gable or shed, 5:12-9:12\", and this town builds only the gable. A shed is one plane over the whole 8.4 m of this plan where a gable climbs half of it, so across the 441 plans C1's own footprint band allows, 231 of them cannot reach the 15-20 ft ridge band the same family authors — at any eave in its 9-11 ft band and at any pitch between 22.6 and 36.9 degrees. This building's own plan is one of them."
         },
         "roof_pitch_deg": {
-          "value": 33.0,
+          "value": 34.0,
           "confidence": "reconstructed",
           "sources": [
             "owner_chicago_1835_reconstruction_spec_2026"
