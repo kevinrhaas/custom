@@ -1,7 +1,7 @@
 ---
 id: T-0378
 title: The names the post office held letters for in more than one return join the town, and letter_list_only reaches the visitor's card
-state: claimed
+state: done
 epic: PAPERS
 requested_by: owner
 seen: false
@@ -9,8 +9,8 @@ effort: S
 legacy_id: null
 parent: T-0374
 opened: 2026-08-29
-closed: null
-pr: null
+closed: 2026-08-29
+pr: 535
 claimed_by: run 8/29/2026, 7:09:47 AM CT
 blocked_on: null
 needs_bake: false
