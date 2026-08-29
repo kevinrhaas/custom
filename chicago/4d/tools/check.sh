@@ -1026,6 +1026,19 @@ step "every newspaper claim resolves, quotes verbatim, and the gazetteer is comp
 step "…and its own assertions still fire when broken" \
   python3 tools/compile_gazetteer.py --self-test
 
+# T-0262. The gazetteer says what was PRINTED; the register says what the town has to
+# do about it — for every business an action and, where the action needs one, a
+# committed target; for every person whether the town already holds them, invented a
+# stand-in for them, or has never heard of them. It is DERIVED from the gazetteer and
+# the committed dataset, so this refuses a hand-edit for the same reason the gazetteer
+# gate does: a hand-edited register is a place to promote a business into the town
+# without an argument, and the seeding tickets read it as if it were derived.
+step "the scene-date register re-derives, and every action names its target" \
+  python3 tools/compile_register.py --check
+
+step "…and its own assertions still fire when broken" \
+  python3 tools/compile_register.py --self-test
+
 printf '\n'
 if [ "$FAILED" -eq 0 ]; then
   printf '\033[32mCHECK PASS\033[0m\n'

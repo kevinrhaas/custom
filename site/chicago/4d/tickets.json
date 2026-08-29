@@ -1,6 +1,6 @@
 {
   "project": "chicago-4d",
-  "generated_ct": "Aug 29, 2026, 12:17 AM",
+  "generated_ct": "Aug 29, 2026, 12:32 AM",
   "tickets": [
     {
       "id": "T-0001",
@@ -5758,6 +5758,78 @@
       "blocked_on": null,
       "needs_bake": false,
       "queue_rank": 67
+    },
+    {
+      "id": "T-0350",
+      "title": "The register can only place 24 of 190 documented businesses; 49 more reach a street face and 78 reach nothing",
+      "state": "open",
+      "epic": "PAPERS",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "M",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-08-29",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "queue_rank": 68
+    },
+    {
+      "id": "T-0351",
+      "title": "A firm matches a building on an occupant the same sentence dates to 1831",
+      "state": "open",
+      "epic": "PAPERS",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "S",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-08-29",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "queue_rank": 69
+    },
+    {
+      "id": "T-0352",
+      "title": "The claim vocabulary cannot say an advertisement announces an opening, so 17 businesses are excluded on a proxy",
+      "state": "open",
+      "epic": "PAPERS",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "S",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-08-29",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "queue_rank": 70
+    },
+    {
+      "id": "T-0353",
+      "title": "129 documented businesses will stand on a survival liberty and LIBERTIES.md carries none of them",
+      "state": "open",
+      "epic": "PAPERS",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "M",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-08-29",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "queue_rank": 71
     }
   ]
 }

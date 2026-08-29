@@ -136,3 +136,7 @@ T-0346 — Desktop smoke stage 4 no longer fits the ten-minute foreground ceilin
 T-0341 — A bare surname can never be joined to its forename: the family rule reads 'no initials' as 'different initials'
 T-0348 — The identity policy cannot merge an unread initial with a read one, and the best witness reads seventeen of them
 T-0349 — The signboard gate is red when stage 1 runs before it and green when stage 2 runs alone
+T-0350 — The register can only place 24 of 190 documented businesses; 49 more reach a street face and 78 reach nothing
+T-0351 — A firm matches a building on an occupant the same sentence dates to 1831
+T-0352 — The claim vocabulary cannot say an advertisement announces an opening, so 17 businesses are excluded on a proxy
+T-0353 — 129 documented businesses will stand on a survival liberty and LIBERTIES.md carries none of them

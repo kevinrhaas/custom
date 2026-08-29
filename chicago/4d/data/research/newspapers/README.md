@@ -350,3 +350,39 @@ and the committed gate on `dev` reports them unresolved-but-green until T-0275 l
 segmenter cut each printed column in half and alternates the halves line by line, so nearly
 every claim there is `interleaved`, and most bracketed supplies are read off the OTHER half
 of the same printed lines — each claim's note names the lines they came from.
+
+## `register_1835.json` — the work list (T-0262)
+
+`gazetteer.json` is an index of what was PRINTED. It says nothing about what the model
+should build. `tools/compile_register.py --build` turns it into the register the seeding
+tickets read: for every business, whether it stood on 1 July 1835 and what the town has to
+do about it; for every person, whether the town already holds them.
+
+    tools/compile_register.py --build       recompile register_1835.json
+    tools/compile_register.py --check       the gate (check.sh runs it)
+    tools/compile_register.py --self-test   the gate's assertions still fire
+
+**It is DERIVED, and the gate refuses a hand-edit** — the same contract `gazetteer.json` is
+under, for the same reason: a hand-edited register is a place to promote a business into the
+town without an argument, and T-0263 and T-0264 read it as if it were derived. Its inputs are
+the gazetteer, `data/structures/`, `data/streets/1835.json` and `data/residents/`; change
+those, not this.
+
+**Four business actions.** `enrich_existing` — a committed building already carries this
+house, and the row names the field it matched on and the exact text. `new_building` — nothing
+committed carries it and the paper's own placement resolves: a corner of two platted streets,
+a landmark that is a committed structure, or ONE hop through another documented business that
+is. `street_only` — a platted street face and nothing narrower. `unplaceable` — no street the
+model holds.
+
+**Three person actions.** `enrich` (already in `data/residents/`, matched under the
+gazetteer's own identity policy, imported so the two tools cannot drift), `replace_invented`
+(a documented person of a trade the town invented a household for) and `new_resident`
+(everybody else — owner ruling 1, a letter-list name is enough).
+
+**Two exclusions, and the second is a proxy that says so.** A contradiction dated ON OR
+BEFORE the scene date excludes; a LATER one is recorded (`dissolved_after_scene_date`) and
+disobeyed, because a firm dissolved in August 1835 was demonstrably open in July. The second
+is `first_evidence_after_scene_date`: T-0262 asked to exclude on an `announces_opening` field
+the claim vocabulary does not have, and this is the derivable question that comes closest.
+T-0352 is the field.
