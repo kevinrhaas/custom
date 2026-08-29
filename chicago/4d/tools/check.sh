@@ -951,6 +951,15 @@ step "the reconstructed residents' invented names re-derive" \
 step "one new household renames only the people it collides with" \
   python3 tools/measure_name_churn.py --gate --probes 8 --quiet
 
+# And the pass that RETIRES an invented name (T-0264): where the newspaper
+# register found a documented person for a trade the town had invented a
+# household for, the documented man takes the roof. Re-derived here because the
+# deal is a derivation and not a list — six refusals shape it, and a candidate
+# that quietly stopped being refused would otherwise plant a real man on a roof
+# his own record contradicts. `--report` prints the deal and every refusal.
+step "the documented residents on reconstructed roofs re-derive from the register" \
+  python3 tools/replace_invented_residents.py --check
+
 step "the three levels mean what they say" \
   python3 tools/audit_confidence.py --strict
 
