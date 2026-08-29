@@ -58,7 +58,6 @@ T-0305 — Four readings the American contradicts itself on need the page images
 # --- blocked-tech: its code half shipped (the rule reads all four block faces now,
 # --- so a cross street CAN be laid), and all seven cross streets were then measured
 # --- over all three ceilings. PR #418, which parked Market Street alone, is closed.
-T-0233 — Eight of seventeen dealt lots carry none of their run's own roofs, and nothing was measuring it
 T-0307 — The derivation's running maximum costs 42 m of verge where the bank turns a right angle at Wolf Point
 T-0272 — The West Division parcel's form values come from the archetype and cite the family band: 8 families, 11 claims outside it
 T-0273 — The South Division infill parcel's form values come from the archetype and cite the family band: 9 families, 10 claims outside it
