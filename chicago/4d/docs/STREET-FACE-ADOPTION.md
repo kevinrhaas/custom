@@ -87,7 +87,7 @@ fronts it. `--report` prints both readings side by side, because the reader is o
 disagreement the decision was made about, and because a later owner ruling that a corner
 side is a face has exactly one number to change.
 
-## The five refusals
+## The six refusals
 
 1. **`not present at the scene date`** — the register already excluded it: contradicted
    before 1 July 1835, or first printed after it.
@@ -108,8 +108,25 @@ side is a face has exactly one number to change.
    hanging a documented store on it asserts a relation between two claims nothing supports.
    The documented tradesmen this leaves standing on South Water are **T-0375's**, and this
    policy must not quietly answer that ticket.
+6. **the roof is a yard building** — the other refusal of a ROOF, and the one this policy
+   shipped without. The anonymous parcels deal ANCILLARY roofs as well as principal ones —
+   privies, stables, woodsheds standing behind a lot, `reconstruction.inventory_class:
+   "ancillary"` on the record — and for one day this pass counted them as free supply. **Nine
+   documented businesses were seated in outbuildings, and Peter Cohen, the best-attested
+   shopkeeper in the corpus, was in a privy.** The rule against it is older than this policy
+   and was already enforced one layer down: `tools/generate_block_infill.py` refuses to write
+   an `occupants` block onto an ancillary roof, because "a yard building serves the lot it
+   stands behind, and an adoption is a claim about who lived or worked in a building".
+   **T-0410 found it by trying to SPEND the allocation**, which is the argument for spending a
+   table rather than admiring it: an allocation nothing consumes is an allocation nothing
+   checks. Four of the nine took a principal roof instead; five had none left on their street
+   and joined refusal 4.
 
 ## What it moves, measured 2026-08-29
+
+**Every number below is DERIVED, and none of it is authored.** Re-measured 2026-08-29 after
+T-0410 added refusal 6; the previous reading of this table was 24 adopted and 36 waiting, over a
+supply that counted sheds.
 
 **Every number below is DERIVED, and none of it is authored.** `python3
 tools/adopt_street_faces.py --report` reprints all of it from the register as committed, so
@@ -123,22 +140,25 @@ point of deriving the allocation instead of listing it.
 | | |
 |---|---|
 | `street_only` in the register | **60** |
-| adopted a street face | **24** |
-| waiting | **36** |
+| adopted a street face | **19** |
+| waiting | **41** |
 | — no roof whose lot fronts the named street | 24 |
 | — this face already holds this proprietor | 9 |
-| — every roof on the face is spoken for | 3 |
+| — every roof on the face is spoken for | 8 |
 | `unplaceable`, outside this policy and still open | **84** |
+
+`free` below is now the supply this pass may actually take: fronting roofs less the named
+households' homes (refusal 5) and less the yard buildings (refusal 6).
 
 | street face | ads | took | roofs fronting | free | side only | in band |
 |---|---|---|---|---|---|---|
-| South Water Street | 24 | 14 | 19 | 14 | 0 | 0 |
+| South Water Street | 24 | 9 | 19 | 9 | 0 | 0 |
 | Dearborn Street | 18 | 0 | 0 | 0 | 18 | 0 |
-| Lake Street | 11 | 9 | 51 | 29 | 0 | 4 |
+| Lake Street | 11 | 9 | 51 | 19 | 0 | 4 |
 | La Salle Street | 3 | 0 | 0 | 0 | 8 | 0 |
 | North Water Street | 2 | 0 | 0 | 0 | 0 | 1 |
 | Canal Street | 1 | 0 | 0 | 0 | 3 | 0 |
-| Randolph Street | 1 | 1 | 64 | 50 | 0 | 0 |
+| Randolph Street | 1 | 1 | 64 | 33 | 0 | 0 |
 
 **Where the rest wait, named rather than implied:**
 
@@ -149,9 +169,9 @@ point of deriving the allocation instead of listing it.
   advertisements — the New York Clothing Store, the Dearborn Street wine store and W. H.
   Taylor's boot and shoe store — have their own tickets (**T-0385**, **T-0387**) that place
   them from an anchor and do not need this policy at all.
-- **South Water Street (10 refused).** Nineteen roofs front it, five are households' homes
-  and fourteen are adopted, so ten advertisements are short of a roof: seven are a second
-  heading of a house already seated, and three are short purely on supply. **T-0375** is
+- **South Water Street (15 refused).** Nineteen roofs front it: five are households' homes,
+  five are yard buildings and nine are adopted, so fifteen advertisements are short of a roof —
+  seven a second heading of a house already seated, eight short purely on supply. **T-0375** is
   the ticket that notices South Water's reconstructed roofs are all a labourer's, and any
   roof it adds to that face is a roof this pass will take on its next re-derivation,
   automatically.
@@ -165,14 +185,27 @@ adopting a roof for them would put a business in a town it never stood in. Some 
 never printed an address. **T-0354's second half is still open**, and the honest answer for
 these 84 today is that the corpus records them and the model does not hold them.
 
-## How to spend it
+## How it is spent
 
-This file and its table are the POLICY and the ALLOCATION. Nothing here writes a card, a
-signboard or a frontage — that is **T-0263's** and the seeding tickets'. A pass that spends
-an adoption reads `street_face_adoptions.json`, takes `structure_id` and `cites`, and
-carries limits 2, 3 and 4 into whatever it writes: the roof stays reconstructed, the
-along-street position is not evidence, and the order on a face is not a claim.
+This file and its table are the POLICY and the ALLOCATION. **The CARD is spent by
+`tools/inferred_occupancy.py` (T-0410)** — the ledger the anonymous-infill generators
+already read for the inferred-household programme. It turns each adoption into the
+`occupants` block the owning generator writes onto that roof, so `generate_block_infill.py
+--check` re-derives it byte for byte and no generated record is ever hand-edited. It
+re-asserts limits 1, 3 and 4 at the point of spending rather than trusting the table, and it
+raises if a roof is claimed by both programmes at once; `tools/check.sh` runs its self-test.
 
-**Related:** T-0354 (this) · T-0262 (the register) · T-0263, T-0384–T-0387 (the seeding) ·
+Nothing here writes a SIGNBOARD or a frontage, and that is not an oversight:
+`tools/generate_business_signboards.py` refuses a `recon_*` record by name, so a board on
+one of these roofs would be a change to the signage rule and needs its own argument. The
+frontages are **T-0263's** and the seeding tickets'.
+
+A future pass that spends an adoption some other way reads `street_face_adoptions.json`,
+takes `structure_id` and `cites`, and carries limits 2, 3 and 4 into whatever it writes: the
+roof stays reconstructed, the along-street position is not evidence, and the order on a face
+is not a claim.
+
+**Related:** T-0354 (this) · T-0410 (spent into the roofs, and refusal 6) · T-0262 (the
+register) · T-0263, T-0384–T-0387, T-0411 (the seeding) ·
 T-0375 (South Water's roofs) · T-0338, T-0340, T-0408 (identity) · L205, L212 ·
 `docs/PROVENANCE.md` · `docs/LIBERTIES.md`

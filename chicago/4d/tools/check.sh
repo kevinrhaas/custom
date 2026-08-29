@@ -1114,6 +1114,16 @@ step "the street-face adoptions re-derive, and no adopted business claims a lot"
 step "…and its own assertions still fire when broken" \
   python3 tools/adopt_street_faces.py --self-test
 
+# SPENDING that allocation is a second gate, because the table and the structure records
+# are two files and a policy that only reaches one of them is a policy the visitor never
+# sees (T-0410). tools/inferred_occupancy.py is the ledger both the household programme
+# and the adoptions hand their `occupants` block to; the generators' own `--check` above
+# already refuses a record that has drifted from it, so what is left to prove here is that
+# the ledger refuses a malformed adoption rather than passing it through — and that the
+# two programmes never both claim one roof.
+step "…and the ledger that spends them into the roofs refuses every way one could lie" \
+  python3 tools/inferred_occupancy.py --self-test
+
 printf '\n'
 if [ "$FAILED" -eq 0 ]; then
   printf '\033[32mCHECK PASS\033[0m\n'

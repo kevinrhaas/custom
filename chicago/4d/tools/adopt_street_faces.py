@@ -87,7 +87,24 @@ THE REFUSALS, AND WHY EACH ONE IS THERE.
                                         nothing supports. The tradesmen this leaves
                                         without a roof on South Water are T-0375's, and
                                         this pass must not quietly answer that ticket.
-  5. `this face already holds this proprietor` — the corpus prints one house under more
+  5. `the roof is a yard building` — the other refusal of a ROOF. The anonymous parcels
+                                        deal ANCILLARY roofs as well as principal ones —
+                                        privies, stables, woodsheds standing behind a lot
+                                        — and `tools/generate_block_infill.py` has refused
+                                        to hang an occupant on one since the inferred-
+                                        household programme: "a yard building serves the
+                                        lot it stands behind, and an adoption is a claim
+                                        about who lived or worked in a building". This
+                                        pass did not know that rule until 2026-08-29, and
+                                        it had seated NINE documented businesses in
+                                        outbuildings — Peter Cohen, clothier, grocer and
+                                        liquor dealer and the best-evidenced house in the
+                                        whole pool, in `recon_1835_blk_south_water_clark_
+                                        a3_05`, which is a privy. Found by T-0410 trying
+                                        to spend the allocation into the structure
+                                        records, where the generator's own gate stopped
+                                        it. An ancillary roof is not free supply.
+  6. `this face already holds this proprietor` — the corpus prints one house under more
                                         than one heading. 'Peter Cohen' and 'Peter
                                         Cohen's store', 'the Chicago Bakery' and 'Chicago
                                         Bakery' and 'D. Graves' who kept it, 'John
@@ -194,6 +211,24 @@ def reconstructed_roofs() -> dict[str, str]:
     return out
 
 
+def yard_roofs() -> set[str]:
+    """The `recon_*` roofs the anonymous parcels dealt as YARD BUILDINGS.
+
+    `reconstruction.inventory_class` is the parcels' own word for it: a
+    `principal_functional` roof is a building on the lot, an `ancillary` one is a privy, a
+    stable or a woodshed standing behind it. `tools/generate_block_infill.py` refuses to
+    write an `occupants` block onto an ancillary roof — "a yard building serves the lot it
+    stands behind, and an adoption is a claim about who lived or worked in a building" —
+    and that rule is older than this pass and outranks it.
+    """
+    out: set[str] = set()
+    for path in sorted(STRUCTURES.glob("recon_*.json")):
+        doc = load(path)
+        if ((doc.get("reconstruction") or {}).get("inventory_class")) == "ancillary":
+            out.add(doc["id"])
+    return out
+
+
 def dwellings() -> dict[str, list[str]]:
     """structure id -> the household ids `data/residents/` seats in it."""
     out: dict[str, list[str]] = {}
@@ -205,17 +240,30 @@ def dwellings() -> dict[str, list[str]]:
     return out
 
 
-def supply(roofs: dict[str, str], homes: dict[str, list[str]]) -> dict:
-    """Per street: the roofs that front it, and the free ones, under each reading."""
+EMPTY_FACE = {FRONT: [], SIDE: [], BAND: [], "free": [], "homes": [], "yards": []}
+
+
+def supply(roofs: dict[str, str], homes: dict[str, list[str]],
+           yards: set[str]) -> dict:
+    """Per street: the roofs that front it, and the free ones, under each reading.
+
+    A fronting roof lands in exactly one of three buckets, and only `free` is supply: a
+    named household's home (refusal 4), a yard building (refusal 5), or a roof a business
+    may take.
+    """
     out: dict[str, dict] = {}
     for structure_id in sorted(roofs):
         for street_id, how in fronting_street.fronting(structure_id):
-            face = out.setdefault(street_id, {FRONT: [], SIDE: [], BAND: [],
-                                              "free": [], "homes": []})
+            face = out.setdefault(street_id, {key: list(value)
+                                              for key, value in EMPTY_FACE.items()})
             face.setdefault(how, []).append(structure_id)
             if how == FRONT:
-                (face["homes"] if structure_id in homes else face["free"]).append(
-                    structure_id)
+                if structure_id in homes:
+                    face["homes"].append(structure_id)
+                elif structure_id in yards:
+                    face["yards"].append(structure_id)
+                else:
+                    face["free"].append(structure_id)
     return out
 
 
@@ -261,7 +309,8 @@ def derive() -> dict:
     gaz = {b["id"]: b for b in load(GAZETTEER)["businesses"]}
     roofs = reconstructed_roofs()
     homes = dwellings()
-    faces = supply(roofs, homes)
+    yards = yard_roofs()
+    faces = supply(roofs, homes, yards)
 
     pool = [b for b in register["businesses"] if b["action"] == "street_only"]
     pool.sort(key=lambda entry: rank_key(entry, gaz))
@@ -285,8 +334,8 @@ def derive() -> dict:
                                  detail=entry.get("exclusion_note")
                                  or entry.get("exclusion") or ""))
             continue
-        face = faces.get(street_id) or {FRONT: [], SIDE: [], BAND: [],
-                                        "free": [], "homes": []}
+        face = faces.get(street_id) or {key: list(value)
+                                        for key, value in EMPTY_FACE.items()}
         free = [sid for sid in face["free"] if sid not in taken.get(street_id, [])]
         if not face[FRONT]:
             refusals.append(dict(
@@ -310,9 +359,10 @@ def derive() -> dict:
             refusals.append(dict(
                 common, refusal=REFUSALS[3],
                 detail="%d roof(s) front this street: %d are a named household's "
-                       "dwelling and %d are already adopted by a better-evidenced "
-                       "business." % (len(face[FRONT]), len(face["homes"]),
-                                      len(taken.get(street_id, [])))))
+                       "dwelling, %d are yard buildings the parcels dealt behind a lot, "
+                       "and %d are already adopted by a better-evidenced business."
+                       % (len(face[FRONT]), len(face["homes"]), len(face["yards"]),
+                          len(taken.get(street_id, [])))))
             continue
 
         structure_id = free[0]
@@ -359,13 +409,16 @@ def derive() -> dict:
         named = [b for b in pool if b["action_target"] == street_id]
         if not named:
             continue
-        face = faces.get(street_id) or {FRONT: [], SIDE: [], BAND: [], "homes": []}
+        face = faces.get(street_id) or {key: list(value)
+                                        for key, value in EMPTY_FACE.items()}
         by_street[street_id] = {
             "street_name": fronting_street.street_name(street_id),
             "businesses_naming_it": len(named),
             "adopted": sum(1 for row in adoptions if row["street_id"] == street_id),
             "roofs_fronting": len(face[FRONT]),
-            "roofs_fronting_free": len(face[FRONT]) - len(face["homes"]),
+            "roofs_fronting_free": len(face["free"]),
+            "roofs_fronting_home": len(face["homes"]),
+            "roofs_fronting_yard": len(face["yards"]),
             "roofs_side_only": len(face[SIDE]),
             "roofs_in_centreline_band": len(face[BAND]),
         }
@@ -377,7 +430,7 @@ def derive() -> dict:
         "_doc": "DERIVED, NEVER AUTHORED. Rebuilt from register_1835.json, the committed "
                 "structures and data/residents/ by tools/adopt_street_faces.py; "
                 "tools/check.sh refuses a committed copy a rebuild would not produce. "
-                "The policy is docs/STREET-FACE-ADOPTION.md and the liberty is L207. "
+                "The policy is docs/STREET-FACE-ADOPTION.md and the liberty is L212. "
                 "An adoption claims a STREET FACE and never a lot.",
         "policy": "docs/STREET-FACE-ADOPTION.md",
         "ruling": "The owner, 2026-08-29 (T-0354): a business the paper places on a "
@@ -455,6 +508,9 @@ def limits(doc: dict) -> list[str]:
     for structure_id in sorted(seen & set(homes)):
         bad.append("%s is a named household's dwelling and cannot also be adopted"
                    % structure_id)
+    for structure_id in sorted(seen & yard_roofs()):
+        bad.append("%s is a yard building — a privy, a stable or a woodshed standing "
+                   "behind a lot — and a business cannot be seated in one" % structure_id)
     return bad
 
 
@@ -575,6 +631,20 @@ def self_test() -> int:
          lambda b: first(b).update(cites=[]),
          "cites no printing")
 
+    # Refusal 5's live half. Nine adoptions stood in outbuildings until 2026-08-29, so
+    # this case is the one that would have caught it: seat the first business on a roof
+    # the parcels dealt as ancillary and the limits must say so.
+    yards = sorted(yard_roofs())
+    if not yards:
+        print("  FAIL  the town holds no ancillary roof, so refusal 5 cannot be tested")
+        failed = 1
+    else:
+        case("a business seated in a yard building",
+             lambda b: first(b).update(structure_id=yards[0], street_id=next(
+                 street for street, how in fronting_street.fronting(yards[0])
+                 if how == FRONT)),
+             "is a yard building")
+
     # Limit 2's live half: a roof promoted out of `reconstructed` must fail. It cannot be
     # faked by mutating the table — the confidence is read from the structure — so this
     # asserts the reader that limit 2 depends on actually distinguishes the grades.
@@ -590,7 +660,8 @@ def self_test() -> int:
     if failed:
         print("SELF-TEST FAIL")
         return 1
-    print("SELF-TEST PASS — all four limits fire when broken (8 cases)")
+    print("SELF-TEST PASS — all four limits and both roof refusals fire when broken "
+          "(9 cases)")
     return 0
 
 

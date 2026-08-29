@@ -9691,16 +9691,20 @@ it stops at whatever number the surviving issues cannot reach.
 in at all), T-0263 (the seeding that raises the first of them).
 **Recorded:** 2026-08-29.
 
-### L212 — Twenty-four documented businesses are seated on reconstructed roofs, and no source puts them there
+### L212 — Nineteen documented businesses are seated on reconstructed roofs, and no source puts them there
 **Decision:** where the newspaper register can place a business no closer than a platted street,
 the business adopts an anonymous reconstructed roof already standing on that street face. The
 owner ruled it on 2026-08-29 (T-0354), choosing adoption over a new frontage record with a
-conjectural along-street position and over waiting for a corner. Twenty-four of the register's 60
-`street_only` businesses were seated on 2026-08-29; `docs/STREET-FACE-ADOPTION.md` is the policy,
+conjectural along-street position and over waiting for a corner. Nineteen of the register's 60
+`street_only` businesses are seated; `docs/STREET-FACE-ADOPTION.md` is the policy,
 `data/research/newspapers/street_face_adoptions.json` the derived table, and
-`tools/adopt_street_faces.py --check` re-derives both on every commit.
+`tools/adopt_street_faces.py --check` re-derives both on every commit. **The seating REACHES THE
+BUILDINGS as of T-0410:** `tools/inferred_occupancy.py` hands each adopted roof its `occupants`
+block, so the card a visitor opens on that roof names the business rather than showing an
+anonymous count-unit. It was 24 for one day; carrying the allocation into the records is what
+found that nine of those roofs were yard buildings, which is the refusal below.
 
-**What is not invented:** the businesses, their trades and their streets. Every one of the 24 is
+**What is not invented:** the businesses, their trades and their streets. Every one of the 19 is
 printed in the *Chicago Democrat* or the *Chicago American* at the issue and column its record
 cites, and every one names a platted street this model holds — Peter Cohen at the east end of
 South Water-street, Miss Bayne's school in Randolph Street, the Chicago Bakery on South Water. The
@@ -9721,14 +9725,26 @@ structure's own phase and fails if it has stopped saying so, because the busines
 and the building under it is not. An along-street position: `order_is_a_claim: false` on every
 record. And a neighbour: two businesses on one face stand in no order any source supports.
 
-**The refusals are what keep it honest, and they refuse more than they take.** Thirty-six of the
+**The refusals are what keep it honest, and they refuse more than they take.** Forty-one of the
 60 are not seated. Twenty-four name a street — Dearborn, La Salle, Canal, North Water — with no roof
 whose platted lot faces it, and adopting a roof that shows the street only a corner side would
 have put a door where the plat puts a gable end. Nine are a second heading of a house already
 seated on that face, because the corpus prints "Peter Cohen" and "Peter Cohen's store" as two
-entries and one man did not keep two storefronts on one street on any evidence here. Three are short
+entries and one man did not keep two storefronts on one street on any evidence here. Eight are short
 purely of supply. `python3 tools/adopt_street_faces.py --report` prints every refusal with its
 reason and its count, so the ratio is auditable rather than asserted.
+
+**AND A ROOF CAN BE REFUSED AS WELL AS A BUSINESS, WHICH IS WHERE THIS ENTRY LOST FIVE OF ITS
+TWENTY-FOUR.** The anonymous parcels deal ANCILLARY roofs as well as principal ones — privies,
+stables and woodsheds standing behind a lot — and for its first day this pass counted them as free
+supply. Nine documented businesses were seated in outbuildings, Peter Cohen among them, in
+`recon_1835_blk_south_water_clark_a3_05`, which is a privy. The rule against it was older than the
+pass and enforced elsewhere: `tools/generate_block_infill.py` has refused an occupant on an
+ancillary roof since the inferred-household programme, because "a yard building serves the lot it
+stands behind, and an adoption is a claim about who lived or worked in a building". Trying to spend
+the allocation into the structure records is what ran into it (T-0410). Four of the nine took a
+principal roof instead — Harmon, Loomis & Co. moved into a narrow two-storey store — and five had
+no unspoken-for roof left on their street, so they join the refusals with that reason counted.
 
 **A known residue, stated rather than absorbed.** Four Lake Street entries — Wm. G. Branchaud,
 W. G. Blanchard, G. Blanshard and F. G. Blanshard — advertise one trade within five months and
@@ -9744,12 +9760,13 @@ Street in front of Peter Cohen's store is looking at a building we raised and a 
 printed, and that nothing joins the two but this rule.
 
 **How to resolve:** a directory, a tax list, or a lot-and-block address in the corpus would put
-any of these 24 on a lot, at which point that business leaves this entry for a placement of its
+any of these 19 on a lot, at which point that business leaves this entry for a placement of its
 own — the shape **T-0384** through **T-0387** already take for the businesses whose advertisements
 name an anchor. A ruling that a corner side is a street face would move up to twenty-four more into
 this entry rather than out of it, and the count above is what would change.
 
 Related: **L205** (documented men on reconstructed roofs, the pattern this follows) · **L92** (the
 reconstructed roofs' own presence and placement) · **L1** · tickets **T-0354** (this), **T-0262**,
-**T-0263**, **T-0375**, **T-0338**, **T-0408**.
-**Recorded:** 2026-08-29.
+**T-0263**, **T-0375**, **T-0338**, **T-0408**, **T-0410** (spent into the roofs, and the yard
+refusal).
+**Recorded:** 2026-08-29. **Revised:** 2026-08-29 (T-0410).
