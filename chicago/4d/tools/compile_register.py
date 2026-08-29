@@ -316,16 +316,29 @@ def read_town(structures_dir=STRUCTURES, streets_file=STREETS, residents_dir=RES
     return town
 
 
-def match_landmark(town, anchor_words):
-    """The committed structure an anchor NAMES, or None.
+def match_landmarks(town, anchor_words):
+    """EVERY committed structure an anchor NAMES, in id order. A list, never a pick.
 
     Whole-set equality, not containment: an anchor is only a landmark when it is the
     same set of identity-bearing words as a record's name or aka. Containment would put
     'the store' on the first store in the town.
+
+    AND IT RETURNS ALL OF THEM, BECAUSE A NAME IS NOT ALWAYS ONE BUILDING. This used to
+    end `return sorted(hits)[0] if hits else None`, which is an alphabetical tie-break
+    wearing a resolution's clothes: where two committed records answer to one name, the
+    register seated the business in whichever id sorted first and wrote "the landmark is
+    the committed structure X" over a coin toss, with nothing in the file to say a
+    second record had answered to the same name. `structures_sharing_a_name` in the
+    register's `compiled_from` block counts the town's exposure (T-0386); the named case
+    is John Wright's two buildings to let, `wright_building_to_let_a` and `_b`, which
+    are one advertisement's two buildings under one proprietor's name, and the piers,
+    the two branch bridges and the school houses are the same shape. `resolve_anchor`
+    refuses the ambiguity rather than taking the first.
     """
-    hits = [s["id"] for s in town["structures"]
-            if anchor_words and any(anchor_words == pool for pool in s["name_words"])]
-    return sorted(hits)[0] if hits else None
+    if not anchor_words:
+        return []
+    return sorted({s["id"] for s in town["structures"]
+                   if any(anchor_words == pool for pool in s["name_words"])})
 
 
 # A phrase that locates a building by ANOTHER building is not that building's name.
@@ -551,6 +564,21 @@ OUTSIDE_MARKERS = (
 )
 
 
+def structures_sharing_a_name(town):
+    """How many identity-word sets the committed town holds under MORE THAN ONE record.
+
+    The exposure `match_landmarks` refuses: every one of these is a name an anchor could
+    print and no record could claim alone. Derived on every build so the figure cannot
+    go stale in prose, and reported by `--check` (T-0386).
+    """
+    seen = {}
+    for s in town["structures"]:
+        for pool in s["name_words"]:
+            if pool:
+                seen.setdefault(frozenset(pool), set()).add(s["id"])
+    return sum(1 for ids in seen.values() if len(ids) > 1)
+
+
 def outside_the_plat(business, town):
     """Why the firm's own record puts it outside the committed town, or None.
 
@@ -604,7 +632,7 @@ def streets_in(town, text, require_suffix):
 def resolve_anchor(town, business, by_firm):
     """Where the paper's own placement lands in the committed town.
 
-    Four outcomes, and the note on each says which one and why, because the seeding
+    Six outcomes, and the note on each says which one and why, because the seeding
     tickets have to be able to argue with it:
 
       corner     both streets named are on the committed plat
@@ -616,6 +644,11 @@ def resolve_anchor(town, business, by_firm):
       street     the anchor is a REACH of a platted street and nothing narrower — 'the
                  east end of South Water-street'. It is a real resolution and it is not
                  a placement, so it reads as its own kind rather than as a failure.
+      ambiguous  the anchor NAMES something the town holds, and the town holds it more
+                 than once. 'J. Wright's' is `wright_building_to_let_a` and `_b`. This
+                 is a finding and not a failure: the name was recognised and the choice
+                 between the records is not the paper's to make, so it is refused and
+                 both are named. It never places (T-0386).
       unresolved everything else, stated
 
     Only the first three put a building on the ground; `street` and `unresolved` do not,
@@ -643,20 +676,36 @@ def resolve_anchor(town, business, by_firm):
 
     anchor_words = set(words(placement.get("anchor")))
     if anchor_words:
-        sid = match_landmark(town, anchor_words)
-        if sid:
-            return {"kind": "structure", "target": sid, "streets": None, "via": None,
-                    "note": "The landmark is the committed structure %s." % sid}
-        # One hop: the landmark is another documented business.
-        for other_id, other in by_firm:
-            if other_id == business["id"]:
-                continue
-            if other and anchor_words and set(words(other)) == anchor_words:
-                return {"kind": "business", "target": None, "streets": None,
-                        "via": other_id,
-                        "note": "The landmark is another documented business (%s), which "
-                                "places this one exactly as well as that one is placed."
-                                % other_id}
+        sids = match_landmarks(town, anchor_words)
+        if len(sids) > 1:
+            return {"kind": "ambiguous", "target": None, "streets": None, "via": None,
+                    "note": "The landmark %r is the name of %d committed structures — "
+                            "%s — and the anchor does not say which. Refused: the paper "
+                            "names one building and this project holds more than one "
+                            "under that name, so any pick between them would be this "
+                            "file's and not the paper's."
+                            % (placement.get("anchor"), len(sids), ", ".join(sids))}
+        if sids:
+            return {"kind": "structure", "target": sids[0], "streets": None, "via": None,
+                    "note": "The landmark is the committed structure %s." % sids[0]}
+        # One hop: the landmark is another documented business. Same refusal — the
+        # corpus prints one house under more than one heading, so a firm name can
+        # answer for two records here exactly as a building name can above.
+        others = sorted({other_id for other_id, other in by_firm
+                         if other_id != business["id"] and other
+                         and set(words(other)) == anchor_words})
+        if len(others) > 1:
+            return {"kind": "ambiguous", "target": None, "streets": None, "via": None,
+                    "note": "The landmark %r is the name of %d documented businesses — "
+                            "%s — and the anchor does not say which. Refused: one hop "
+                            "off a house this corpus holds twice is not a placement."
+                            % (placement.get("anchor"), len(others), ", ".join(others))}
+        if others:
+            return {"kind": "business", "target": None, "streets": None,
+                    "via": others[0],
+                    "note": "The landmark is another documented business (%s), which "
+                            "places this one exactly as well as that one is placed."
+                            % others[0]}
     named = streets_in(town, placement.get("anchor"), True)
     if named:
         return {"kind": "street", "target": None, "streets": named, "via": None,
@@ -705,8 +754,11 @@ def anchor_change(town, business, by_firm):
 # anchor printed four ways is resolved on its BEST reading, because the four are declared
 # to be one landmark and "Graves' Tavern" resolving where "Graves' Tavern, on Main-street"
 # does not is a fact about how much of the sentence one reading pass swept into the field.
-ANCHOR_KIND_RANK = {"unresolved": 0, "street": 1, "business": 2, "corner": 3,
-                    "structure": 3}
+# `ambiguous` outranks `unresolved` because it RECOGNISED the name and outranks nothing
+# else, because it places nothing: a reading that resolves to a street beats a reading
+# that resolves to two buildings and cannot choose.
+ANCHOR_KIND_RANK = {"unresolved": 0, "ambiguous": 1, "street": 2, "business": 3,
+                    "corner": 4, "structure": 4}
 
 
 def dated_anchor(town, business, by_firm, window):
@@ -1022,6 +1074,7 @@ def compile_register(gazetteer, town, quiet=True):
                           "persons": gazetteer["counts"]["persons"],
                           "businesses": gazetteer["counts"]["businesses"]},
             "structures": len(town["structures"]),
+            "structures_sharing_a_name": structures_sharing_a_name(town),
             "streets": len({v for v in town["streets"].values()}),
             "resident_persons": len(town["residents"]),
         },
@@ -1096,6 +1149,11 @@ def check():
         print("  ok    register: %d business(es), %d person(s), %d invented household(s) retirable"
               % (len(on_disk["businesses"]), len(on_disk["persons"]),
                  on_disk["counts"]["invented_residents"]["retirable_total"]))
+        ambiguous = [b["id"] for b in on_disk["businesses"]
+                     if b["anchor"]["kind"] == "ambiguous"]
+        print("  ok    %d committed name(s) are held by more than one structure; an "
+              "anchor naming one is refused, not placed (%d today)"
+              % (on_disk["compiled_from"]["structures_sharing_a_name"], len(ambiguous)))
     return bad
 
 
@@ -1116,6 +1174,22 @@ def self_test():
              "occupant_text": "William Walters, landlord", "function": "tavern_inn",
              "identity_text": "Wolf Point Tavern ; William Walters, landlord ; Taylor's tavern",
              "occupation": "tavern_keeper", "anonymous": False},
+            # T-0386's own case, and it is a real one: ONE advertisement of two
+            # buildings to let under one proprietor's name. Nothing distinguishes them
+            # but the (east)/(west) disambiguators this project added, so an anchor
+            # reading 'John Wright's Building to Let' answers to both.
+            {"id": "wright_building_to_let_a", "name": "John Wright's Building to Let",
+             "name_words": [{"john", "wright", "building", "let"}],
+             "aka_head_words": [], "aka_texts": [], "occupant_words": set(),
+             "occupant_text": "", "function": "dwelling_to_let",
+             "identity_text": "John Wright's Building to Let",
+             "occupation": None, "anonymous": False},
+            {"id": "wright_building_to_let_b", "name": "John Wright's Building to Let",
+             "name_words": [{"john", "wright", "building", "let"}],
+             "aka_head_words": [], "aka_texts": [], "occupant_words": set(),
+             "occupant_text": "", "function": "dwelling_to_let",
+             "identity_text": "John Wright's Building to Let",
+             "occupation": None, "anonymous": False},
             {"id": "recon_1835_north_i2_015", "name": "Reconstructed meeting hall #015",
              "name_words": [{"reconstructed", "meeting", "hall", "015"}],
              "aka_head_words": [], "aka_texts": [], "occupant_words": set(),
@@ -1289,6 +1363,40 @@ def self_test():
          lambda d: True if (d["businesses"][1]["anchor"]["kind"] == "business"
                             and d["businesses"][1]["anchor"]["via"] == "b1")
          else "anchor=%r" % d["businesses"][1]["anchor"])
+
+    # 4a. T-0386. A NAME THE TOWN HOLDS TWICE IS REFUSED, NEVER TIE-BROKEN. The pick
+    #     this replaces was `sorted(hits)[0]` — an alphabetical coin toss that the
+    #     register then reported as "the landmark is the committed structure X".
+    case("an anchor naming TWO committed structures is refused, not placed",
+         gaz([biz("b1", street="South Water Street", placement={
+             "class": "relative", "anchor": "John Wright's Building to Let"})]),
+         lambda d: True if (d["businesses"][0]["anchor"]["kind"] == "ambiguous"
+                            and d["businesses"][0]["anchor"]["target"] is None
+                            and "wright_building_to_let_a" in d["businesses"][0]["anchor"]["note"]
+                            and "wright_building_to_let_b" in d["businesses"][0]["anchor"]["note"]
+                            and d["businesses"][0]["action"] == "street_only")
+         else "anchor=%r action=%r" % (d["businesses"][0]["anchor"],
+                                       d["businesses"][0]["action"]))
+    case("…and an anchor naming exactly ONE still places on it",
+         gaz([biz("b1", street="Lake Street", placement={
+             "class": "relative", "anchor": "Dole's Warehouse"})]),
+         lambda d: True if (d["businesses"][0]["anchor"]["kind"] == "structure"
+                            and d["businesses"][0]["anchor"]["target"] == "dole_warehouse_south"
+                            and d["businesses"][0]["action"] == "new_building")
+         else "anchor=%r action=%r" % (d["businesses"][0]["anchor"],
+                                       d["businesses"][0]["action"]))
+    case("an anchor naming TWO documented businesses is refused on the hop too",
+         gaz([biz("b1", name="Newberry & Dole", street="South Water Street"),
+              biz("b2", name="Newberry & Dole", street="South Water Street"),
+              biz("b3", street="South Water Street", placement={
+                  "class": "relative", "anchor": "Messrs. Newberry & Dole"})]),
+         lambda d: True if (d["businesses"][2]["anchor"]["kind"] == "ambiguous"
+                            and d["businesses"][2]["anchor"]["via"] is None
+                            and d["businesses"][2]["action"] == "street_only")
+         else "anchor=%r action=%r" % (d["businesses"][2]["anchor"],
+                                       d["businesses"][2]["action"]))
+    unit("the town's exposure is counted, not asserted",
+         structures_sharing_a_name(town), 1)
 
     # 4b. The guards on enrich_existing, each on the case that forced it.
     case("a firm style in `proprietors` yields its PARTNERS, not its '& Co.'",
