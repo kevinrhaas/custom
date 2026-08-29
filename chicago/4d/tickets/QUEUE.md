@@ -38,7 +38,11 @@
 # ---     storefronts standing in the model, documented people replacing invented.
 T-0336 — The 31 July 1835 letter list, standing in all four August Democrats
 T-0263 — The documented storefronts take their places on South Water and Lake
-T-0306 — The American names six Chicago storefronts with usable placements and none of them is standing in the model yet
+T-0383 — S. B. Cobb's saddlery at Lake and Canal still letters the firm the American says dissolved in February 1835
+T-0384 — John Holbrook's store takes its door on South Water Street, one door from Dearborn
+T-0385 — The New York Clothing Store stands three doors north of the Tremont House in Dearborn Street
+T-0386 — W. Montgomery's new auction and commission room takes David Carver's old stand on South Water Street
+T-0387 — The four storefronts the American puts on a street and nothing narrower: Harmon Loomis, Wm. Sabine, John Dave and the Dearborn Street wine store
 T-0373 — The documented people the papers name with no trade at all, and the town does not hold
 T-0374 — letter_list_only reaches the visitor's card, and the 1,536 names known only from the post office
 
