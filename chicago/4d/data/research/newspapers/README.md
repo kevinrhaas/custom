@@ -265,6 +265,25 @@ name, so `Cohen, P.` and `Cohen, J.` are two people. A merge is declared in
 `identity.json` with a `merge_rule` naming both spellings; same surname with different
 initials never merges, rule or no rule.
 
+**AND THE RULE HAS NO SIBLING FOR FIRMS, WHICH IS WHY ONE BOOKSHOP STANDS IN THREE PLACES.**
+The Chicago Democrat's bookseller is `RUISAL & CLUPR,` in the December 1834 advertisement's
+only legible heading, and T-0327 read the name off the firm's OTHER advertisement rather
+than off that line: the copartnership notice dated `Chicago, Aug. 26, 1834` — Aaron
+Russell of Boston and [—] Clift of Philadelphia, opening a store adjoining P. Carpenter's
+drug establishment in Water-street — runs from 1834-08-27 to 1834-11-12 and is signed
+legibly four times, `RUSSELL & CLIFT`. So the December claim's business name is now a
+supply, `[RUSSELL & CLIFT]`, and the compiler folds it into `business_russell_clift` by
+key, which is a corrected READING and not a merge. What the key cannot fold is the rest:
+`business_chicago_wholesale_and_retail_book_stationary_store` is the 1834-08-27 printing of
+that same notice, whose signature went with the woven half of the column, and
+`business_russell_clift_chicago_book_and_stationary_store` is the firm's own 1835 card in
+the *American*. Three keys, one house, and the evidence for it is a shared copy date and a
+shared body of type — but joining them means DECLARING two names one firm, and that is
+exactly the rule `identity.json` supplies for people and nothing supplies for firms
+(T-0304). Until it exists the entries stand apart and each carries the relation in its
+notes; the alternative is a hand-merge, and a gazetteer nobody can recompile is worse than
+one that says three where it means one.
+
 The scene-date Democrat, `extracted/chicago_democrat_1835_07_01.json`, is both the worked
 fixture (claims c001-c003, T-0257 — Peter Cohen and J. S. C. Hogan on South Water Street,
 and one letter-list name) and the first issue read through (c004-c021, T-0295).
