@@ -1,5 +1,60 @@
 # STATUS
 
+## Shipped 2026-08-29 — T-0316: the large river warehouse leaves the plat
+
+`tools/reconcile_665.py` dealt **F3, the large river warehouse**, to platted blocks. T-0028 found
+it on 2026-08-28 by opening `blk_lake_franklin` and being unable to build the F3 it had been dealt:
+sampled against the committed heightfield the nearest water to that block's boundary is **134 m**,
+its cargo doors would open onto a residential street and its landing apron would cross a public
+one. The stopgap put F3 in `tools/generate_block_infill.py`'s `REFUSED_FAMILIES`, so the recipe
+DEFERS the slot with a stated reason (L203) instead of reaching for a shape — which keeps the roof
+on the books and treats a fault in the DEAL as a fault at the block. Every future platted block
+dealt an F3 would have deferred it too.
+
+**The repair is upstream, in T-0213's shape.** A family whose own crosswalk record makes water
+access a precondition of the FORM is never dealt to a platted block — **at any distance**, because
+the constraint is the generator's and not the ground's: `generate_block_infill.py` authors no metre
+outside a committed lot polygon inside four platted STREETS, and the wharf and landing ground of
+the main stem is placed by `generate_river_wharves.py` against the committed bank, outside that
+grid entirely.
+
+**Which families, read off the records rather than asserted.** Two readings of the crosswalk have
+to agree or the derive refuses: a keyword scan of `required_variant` and the `variants` line says
+which families are even in question (**F1, F3, W5**), and `WATERSIDE_JUDGEMENT` says which of those
+the record REQUIRES water for, **quoting that record's own `assumption_note` verbatim**.
+
+| family | requires water | the record's own sentence |
+|---|---|---|
+| **F3** Large river warehouse | yes | "Landing apron and cargo-door arrangement must follow site access and cannot extend into water or duplicate a counted pier." |
+| **W5** Sawmill, boat-repair or riverside shop | yes | "river access requires validated dry-bank terrain contact." |
+| F1 Freight or storage shed | no | "Stored goods and dock relationship are not known for anonymous slots; skids belong only where terrain and route access support them." |
+
+T-0316 asked for F1, F2 and F4 to be checked while the run was here. **F2** ("Hoist beam presence
+varies; cargo type and operator are not inferred") and **F4** ("Board-stack quantity and open-side
+pattern are visual variation, not inventory facts") name no water at all and are not candidates —
+so the ticket's own guess that F4 "carries the same site logic" is **refuted by F4's record**.
+Edit any of those notes, or add a family that names a wharf, and the re-derive fails by name rather
+than silently re-classifying it.
+
+**It is a permutation, and that is asserted rather than trusted.** One waterside roof on a platted
+block is exchanged for a dry PRINCIPAL roof of the same trade-ness on that district's own unbounded
+balance. The re-derive moves exactly one roof today:
+
+```
+waterside (T-0316): F3, W5 require water — F3 blk_south_water_market -> south_plat_beyond_committed_control for C2
+```
+
+No total moves: not the 662, not a district, not a family, not any unit's roof count, and not its
+principal/ancillary split — each of those is checked in the tool. `blk_lake_franklin`'s own
+deferral stands as the record of what happened; the block generator's refusal stays where T-0028
+put it, now as a belt rather than the only brace.
+
+**Gates.** `tools/check.sh` green (the full dev gate, including the `reconcile_665.py --check`
+re-derive and the changelog contract). `python3 tools/measure_family_deal.py` green — 0 refusals,
+31 off-band claims, every one already named in `tools/family_deal_baseline.json`, nothing new and
+nothing grown. No renderer file, no geometry, no coordinate, no mesh, no bake: the programme
+document is not loaded by the walkthrough and is not published.
+
 ## Shipped 2026-08-29 — T-0243: the two timber gates read a batched mesh, and one of them could never fail
 
 **T-0243.** `tools/smoke_renderer.mjs` stage 7 held two checks on the near-field wood, and
