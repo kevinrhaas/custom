@@ -1,4 +1,12 @@
 export const CHANGELOG = [ // newest first
+  { v: 381, title: 'The check that counts the town\u2019s hitching posts was counting two', kind: 'fix', ts: '2026-08-29T10:11:48.300Z', date: 'Aug 29, 2026, 5:11 AM CT',
+    items: [
+      'Nothing you can see changed today. Twelve hitching posts stand along South Water and Lake Streets, exactly where they stood yesterday. What changed is that the release check meant to prove it can now see them.',
+      'It had been reporting all twelve as drawing no timber whatever \u2014 a height of minus infinity standing on a foot at infinity, which is what a measurement taken over nothing looks like. Read plainly, that said a visitor was missing twelve posts.',
+      'They were never missing. A post that names a street is standing timber, and it is folded into that street face\u2019s own culling piece \u2014 one of thirty-seven. The check only ever opened the shared piece, which is where the two inn posts live because their records name no street. It was looking in the wrong place, and had been since the twelve were built.',
+      'Opened across every piece, all fourteen posts measure 1.30 m over their own ground on a foot at 0.000 m: the recorded height, to the centimetre. The check now asks for all fourteen rather than two, so the next post that is recorded and not drawn is caught rather than counted out of the question.',
+      'An older red in the same section goes with it. The number of street walls the frontage rule refuses moved from 83 to 84 the day the block at Lake and Franklin set aside the warehouse it had been dealt, and the check was never told.',
+    ] },
   { v: 380, title: 'Three more roofs stand at the Washington and Market corner', kind: 'feature', ts: '2026-08-29T09:10:31.797Z', date: 'Aug 29, 2026, 4:10 AM CT',
     items: [
       'Walk south to where Washington Street meets Market and the corner is no longer empty ground. Three houses now stand shoulder to shoulder along the Washington frontage, with a stable behind them in the yard. It is the second time this block has been built on, and the first time anything has stood at that corner.',

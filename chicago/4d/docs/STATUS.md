@@ -1,5 +1,43 @@
 # STATUS
 
+## Shipped 2026-08-29 — T-0244: the twelve street-edge hitching posts were always drawn
+
+**The geometry was right and the instrument was blind**, which is one of the two answers T-0244
+said it had to choose between before anything was changed.
+
+`smoke_renderer.mjs`'s frontage probe measured each hitching post by walking `mesh` — the layer's
+single shared timber mesh — for vertices within 0.4 m of the post's own position. The two
+Sauganash posts live there, because `sauganash_frontage` names no street for them. T-0194's twelve
+street-edge posts name one, and `frontage.js` § the posts puts a post that names a street into that
+street face's own STANDING chunk so it culls and casts with the fences beside it. Those are
+`frontage-chunk` meshes — thirty-seven of them in this layer — and the probe never opened one. The
+max and min then ran over an empty set, which is why the gate printed `-Infinity/1.3 m, foot
+Infinity` twelve times and read as twelve posts nobody had built.
+
+**Measured after the fix, at both viewports:** all fourteen posts report **1.30 m over their own
+terrain sample on a foot at 0.000 m** against a recorded 1.30 m — the two inn posts unchanged, the
+twelve street-edge posts to the centimetre. Nothing in the dataset, the generator or the renderer
+was touched. No fence or walk vertex contaminates a post's 0.4 m window: the numbers are the same
+0.000 m foot the two known-good posts have always reported.
+
+**The check now asks for fourteen instead of two.** Asserting `hitching.length === 2` is what let
+twelve posts arrive unmeasured in the first place — the probe found nothing for them and the
+assertion never asked. The probe resolves a post by its own recorded position across every mesh in
+the layer, so a future re-chunking cannot empty it again by renaming a mesh.
+
+**A second red in desktop part 2, and it is not this ticket's.** `census.refused` was asserted at
+83 and reads 84. Bisected across the merges: **T-0028 (#456)** opened `blk_lake_franklin` and
+refused the warehouse it was dealt, which put a refusal back on lot 4's north face —
+`recon_1835_blk_lake_franklin_a1_03` stands 1.50 m off the frontage line, inside the 3.0 m a street
+fence needs. Legitimate, and the constant went unrevised in that PR. It is corrected here with its
+cause named, because T-0244's acceptance is *desktop part 2 green* and it cannot be demonstrated
+while a second red stands in the same section.
+
+**Why it reached `dev` and stayed:** `docs/PIPELINE.md` — the dev gate is `check.sh` and nothing
+else, and `check.sh` asks whether a record re-derives from its own rule, never whether the renderer
+draws it. Both reds are Playwright-only, so both merged clean. Same gap T-0242 records for the
+dooryard planter and T-0243 for the timber-placement gates.
+
 ## Shipped 2026-08-29 — T-0316: the large river warehouse leaves the plat
 
 `tools/reconcile_665.py` dealt **F3, the large river warehouse**, to platted blocks. T-0028 found

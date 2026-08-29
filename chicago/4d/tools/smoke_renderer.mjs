@@ -3848,19 +3848,36 @@ for (const [label, viewport, touch] of [
       // Each hitching post against its OWN stand: the tallest and the lowest
       // vertex within 0.4 m of it, which is its own timber and nothing else —
       // the front walk's near edge is 0.9 m off and the crossing is metres away.
+      //
+      // T-0244 — A POST IS RESOLVED BY WHERE IT STANDS, NOT BY WHICH MESH HOLDS
+      // IT. This walked `mesh` alone, the layer's shared timber, which is where
+      // the two inns' posts land because their records name no street. T-0194's
+      // twelve street-edge posts name one, so they are standing timber folded
+      // into that street face's own culling chunk (`frontage.js` § the posts) —
+      // a `frontage-chunk` mesh this probe never opened. The max and min then
+      // ran over an EMPTY vertex set and every one of the twelve reported
+      // `-Infinity` high on an `Infinity` foot, which reads exactly like twelve
+      // posts that were never built. They were built, and correctly: the
+      // instrument was looking in one of thirty-seven meshes. Walking `timber`
+      // — the shared mesh AND every chunk, the same set every other vertex
+      // assertion in this probe already walks — survives being folded into a
+      // shared chunk, and survives the next re-chunking too, because it resolves
+      // on the post's own position rather than on a mesh name.
       const hitching = (f?.posts ?? []).filter((q) => q.kind === 'hitching_post').map((q) => {
         const [e0, n0] = q.at_local_enu_m;
         const stand = terrain.surfaceHeight(e0, n0);
         let top = -Infinity;
         let low = Infinity;
-        const g = mesh?.geometry;         // the posts live in the shared mesh
-        if (g && Number.isFinite(stand)) {
-          const pos = g.getAttribute('position');
-          for (let i = 0; i < pos.count; i++) {
-            if (Math.abs(pos.getX(i) - e0) > 0.4) continue;
-            if (Math.abs(-pos.getZ(i) - n0) > 0.4) continue;
-            top = Math.max(top, pos.getY(i) - stand);
-            low = Math.min(low, pos.getY(i) - stand);
+        if (Number.isFinite(stand)) {
+          for (const t of timber) {
+            const pos = t.geometry?.getAttribute('position');
+            if (!pos) continue;
+            for (let i = 0; i < pos.count; i++) {
+              if (Math.abs(pos.getX(i) - e0) > 0.4) continue;
+              if (Math.abs(-pos.getZ(i) - n0) > 0.4) continue;
+              top = Math.max(top, pos.getY(i) - stand);
+              low = Math.min(low, pos.getY(i) - stand);
+            }
           }
         }
         return { id: q.id, top, low, recorded: q.post_height_m ?? null,
@@ -3914,10 +3931,17 @@ for (const [label, viewport, touch] of [
       // new one — but a walk that stopped short of its corner had refused the
       // corner CROSSING with it, and two of those are now laid: 37 crossings to
       // 39, and the refusal that named them retires, 84 to 83.
+      // T-0028 then opened blk_lake_franklin and REFUSED the warehouse it was
+      // dealt rather than massing it, which put a refusal back on lot 4's north
+      // face — `recon_1835_blk_lake_franklin_a1_03` stands 1.50 m off the
+      // frontage line, inside the 3.0 m a street fence needs. 83 refusals to
+      // 84, and nothing else moves. This number went unrevised in that PR, so
+      // desktop part 2 has been red on it since; found by T-0244, which was
+      // reading the same part for the hitching posts.
       frontage.census?.records === 5 && frontage.census?.walks === 51
         && frontage.census?.crossings === 39
         && frontage.census?.posts === 15 && frontage.census?.fences === 35
-        && frontage.census?.refused === 83
+        && frontage.census?.refused === 84
         && frontage.recordIds.join(',')
           === 'green_tree_frontage,sauganash_frontage,river_walk_frontage,'
             + 'lasalle_crossing_frontage,town_street_edge'
@@ -4058,9 +4082,18 @@ for (const [label, viewport, touch] of [
     // record says 1.30 m and it is the renderer that would be wrong. Measured
     // against each post's own terrain sample, because a pole whose height came
     // from a number beside the mesh floats.
-    check(`${label}: the Sauganash's two hitching posts stand on their own ground, carrying nothing`,
-      frontage.hitching.length === 2
-        && frontage.census?.hitching === 2
+    //
+    // T-0244 — AND ALL FOURTEEN OF THEM, not the two this asked for. T-0194 put
+    // twelve more on the street edge and this check kept counting two, so the
+    // twelve were never held to the bar at all; when the probe above was taught
+    // to find them they came in at 1.30 m over their own stand on a foot at
+    // 0.000 m, every one — the geometry was right the whole time and only the
+    // instrument was blind. Two inn posts (the Sauganash's, from its own
+    // record) plus twelve street-edge posts is the count, and a count is what
+    // catches the next post that is recorded and not drawn.
+    check(`${label}: all fourteen hitching posts stand on their own ground, carrying nothing`,
+      frontage.hitching.length === 14
+        && frontage.census?.hitching === 14
         && frontage.hitching.every((h) => Math.abs(h.top - h.recorded) <= 0.05
           && Math.abs(h.low) <= 0.02 && h.clear > 0 && !h.text)
         && frontage.census?.lettered === 1
