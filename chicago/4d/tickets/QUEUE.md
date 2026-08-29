@@ -54,13 +54,11 @@ T-0305 — Four readings the American contradicts itself on need the page images
 # --- every branch's smoke inherits it and every PR has to argue "not mine". Fixing
 # --- these buys every ticket below a clean verdict.
 T-0244 — T-0194's twelve hitching posts draw no vertices the gate can find, on dev
-T-0265 — The sward census fails its own gate at a phone: z10_settled_town owes xanthium_strumarium a whole slot and draws it nowhere
 
 # --- THE TOWN AND ITS STREETS — visible. T-0192 left this band on 2026-08-29,
 # --- blocked-tech: its code half shipped (the rule reads all four block faces now,
 # --- so a cross street CAN be laid), and all seven cross streets were then measured
 # --- over all three ceilings. PR #418, which parked Market Street alone, is closed.
-T-0316 — The 665-roof deal puts a large river warehouse on an inland platted block, and the block generator cannot build one
 T-0233 — Eight of seventeen dealt lots carry none of their run's own roofs, and nothing was measuring it
 T-0307 — The derivation's running maximum costs 42 m of verge where the bank turns a right angle at Wolf Point
 T-0272 — The West Division parcel's form values come from the archetype and cite the family band: 8 families, 11 claims outside it
@@ -138,5 +136,7 @@ T-0356 — The claim vocabulary cannot say an advertisement announces an opening
 T-0357 — 129 documented businesses will stand on a survival liberty and LIBERTIES.md carries none of them
 T-0358 — The Thompson plat's block NUMBERING is uncommitted, so the corpus's only lot-and-block address cannot be placed
 T-0359 — The gazetteer mints tavern names as people, so Maddock's Tavern and Haddock's Tavern cannot be reconciled
+T-0369 — Desktop stage 8's panel walk is red when stage 1 runs before it and green when stage 8 runs alone
+T-0371 — The lattice path's block rotation is dead code that measure_rank_bias.mjs's drift guard pins in place
 T-0364 — Two byte-identical copies of changelog.js are 7.2 per cent of the published payload, and they grow on every release
 T-0365 — The anonymous-block programme has no unblocked ground left: every block with headroom is on the South Water reach T-0009 holds open
