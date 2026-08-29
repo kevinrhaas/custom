@@ -1,5 +1,5 @@
 ---
-id: T-0403
+id: T-0405
 title: The same blacksmith notice is read as 'Matthias Nason & Co.' in one impression, and the partner-surname guard can never merge it
 state: open
 epic: PAPERS

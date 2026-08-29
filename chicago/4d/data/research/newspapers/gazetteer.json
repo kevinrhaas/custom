@@ -352,7 +352,7 @@
     "claims": 1166,
     "persons": 2628,
     "places": 4,
-    "businesses": 239
+    "businesses": 219
   },
   "persons": [
     {
@@ -57794,6 +57794,19 @@
           }
         }
       ],
+      "refused_merges": [
+        {
+          "with": "A. Garrett, auctioneer",
+          "kind": "different_ground",
+          "witnesses": [
+            "chicago_democrat_1834_12_17#c001",
+            "chicago_democrat_1834_12_24#c001",
+            "chicago_democrat_1835_07_08#c001",
+            "chicago_american_1835_08_22#c004"
+          ],
+          "refused_because": "'A. Garrett' and 'A. Garrett, auctioneer' are almost certainly one auctioneer and they are NOT one standing house, because the papers put the two styles on different ground and the move between them is a claim rather than a spelling. 'A. Garrett' takes a store in South-Water street near the bridge in December 1834 (1834-12-17 c001, 1834-12-24 c001); that stand is David Carver's old stand and W. Montgomery announces he has taken it in July 1835 (1835-07-08 c001); 'A. Garrett, auctioneer' is then selling Kankakee lots from Dearborn street in August 1835 (1835-08-22 c004). A firm that moved is documented by a removal notice, and this corpus does not yet hold one for Garrett — so the two frontages stay two records and the succession is read off the claims, not asserted by a merge."
+        }
+      ],
       "built_at_scene_date": true,
       "survival_liberty_required": true
     },
@@ -57838,6 +57851,19 @@
             "offset_normalized": null,
             "street": null
           }
+        }
+      ],
+      "refused_merges": [
+        {
+          "with": "A. Garrett",
+          "kind": "different_ground",
+          "witnesses": [
+            "chicago_democrat_1834_12_17#c001",
+            "chicago_democrat_1834_12_24#c001",
+            "chicago_democrat_1835_07_08#c001",
+            "chicago_american_1835_08_22#c004"
+          ],
+          "refused_because": "'A. Garrett' and 'A. Garrett, auctioneer' are almost certainly one auctioneer and they are NOT one standing house, because the papers put the two styles on different ground and the move between them is a claim rather than a spelling. 'A. Garrett' takes a store in South-Water street near the bridge in December 1834 (1834-12-17 c001, 1834-12-24 c001); that stand is David Carver's old stand and W. Montgomery announces he has taken it in July 1835 (1835-07-08 c001); 'A. Garrett, auctioneer' is then selling Kankakee lots from Dearborn street in August 1835 (1835-08-22 c004). A firm that moved is documented by a removal notice, and this corpus does not yet hold one for Garrett — so the two frontages stay two records and the succession is read off the claims, not asserted by a merge."
         }
       ],
       "built_at_scene_date": true,
@@ -58377,6 +58403,18 @@
           }
         }
       ],
+      "refused_merges": [
+        {
+          "with": "B. Jones, storage and forwarding",
+          "kind": "not_joined",
+          "witnesses": [
+            "chicago_democrat_1833_11_26#c014",
+            "chicago_democrat_1833_11_26#c018",
+            "chicago_democrat_1834_03_04#c022"
+          ],
+          "refused_because": "'B. Jones, grocery and provision store' and 'B. Jones, storage and forwarding' are one man's two trades and no printing puts them under one roof — which is not the same finding as two men. The Democrat of 1833-11-26 sets them as two advertisements in two columns (c018 the grocery, c014 the forwarding notice soliciting for the opening of navigation in the spring), and neither gives an address; the grocery runs again at 1834-03-04 c022 with 'CHICAGO—ILLINOIS' for its whole direction. A merge here would assert a shared door the papers never state. Refused until a printing joins them."
+        }
+      ],
       "built_at_scene_date": true,
       "survival_liberty_required": true
     },
@@ -58417,6 +58455,18 @@
             "class": "none",
             "note": "No street in the advertisement."
           }
+        }
+      ],
+      "refused_merges": [
+        {
+          "with": "B. Jones, grocery and provision store",
+          "kind": "not_joined",
+          "witnesses": [
+            "chicago_democrat_1833_11_26#c014",
+            "chicago_democrat_1833_11_26#c018",
+            "chicago_democrat_1834_03_04#c022"
+          ],
+          "refused_because": "'B. Jones, grocery and provision store' and 'B. Jones, storage and forwarding' are one man's two trades and no printing puts them under one roof — which is not the same finding as two men. The Democrat of 1833-11-26 sets them as two advertisements in two columns (c018 the grocery, c014 the forwarding notice soliciting for the opening of navigation in the spring), and neither gives an address; the grocery runs again at 1834-03-04 c022 with 'CHICAGO—ILLINOIS' for its whole direction. A merge here would assert a shared door the papers never state. Refused until a printing joins them."
         }
       ],
       "built_at_scene_date": true,
@@ -58975,6 +59025,7 @@
       "trade": "baker",
       "goods": [
         "Bread",
+        "Cakes",
         "Crackers"
       ],
       "street": "South Water Street",
@@ -58986,15 +59037,32 @@
         "street": "South Water Street"
       },
       "evidence": {
-        "first_issue": "1834-09-10",
+        "first_issue": "1834-04-01",
         "last_issue": "1834-09-10",
         "copy_dates": []
       },
       "contradicted_by": [],
       "mentions": [
+        "chicago_democrat_1834_04_01#c008",
         "chicago_democrat_1834_09_10#c016"
       ],
       "placement_readings": [
+        {
+          "anchor": "Newbury & Dole's store",
+          "class": "relative",
+          "first_issue": "1834-04-01",
+          "last_issue": "1834-04-01",
+          "claims": [
+            "chicago_democrat_1834_04_01#c008"
+          ],
+          "placement": {
+            "class": "relative",
+            "anchor": "Newbury & Dole's store",
+            "offset_text": "South AeA Se bli? postenor\nNewbury & Dole’s store,",
+            "offset_normalized": "South [Water Street, …] posterior [to] Newbury & Dole's store",
+            "street": "South Water Street"
+          }
+        },
         {
           "anchor": "Messrs. Newbury & Dole's store",
           "class": "relative",
@@ -59012,105 +59080,10 @@
           }
         }
       ],
-      "built_at_scene_date": true,
-      "survival_liberty_required": true
-    },
-    {
-      "id": "business_chicago_democrat",
-      "name": "Chicago Democrat",
-      "proprietors": [
-        "John Calhoun"
-      ],
-      "trade": "newspaper printing office",
-      "goods": [
-        "Newspaper",
-        "blank forms",
-        "job printing",
-        "newspaper"
-      ],
-      "street": "South Water Street",
-      "placement": {
-        "class": "corner",
-        "anchor": "the corner of South Water and Clark streets",
-        "offset_text": "corner of Seath Weter and Clerk week",
-        "offset_normalized": "in the building at the corner of South Water and Clark streets",
-        "street": "South Water Street"
-      },
-      "evidence": {
-        "first_issue": "1834-09-17",
-        "last_issue": "1834-12-03",
-        "copy_dates": []
-      },
-      "contradicted_by": [],
-      "mentions": [
-        "chicago_democrat_1834_09_17#c010",
-        "chicago_democrat_1834_12_03#c023"
-      ],
-      "placement_readings": [
+      "merged": [
         {
-          "anchor": "the corner of South Water and Clark streets",
-          "class": "corner",
-          "first_issue": "1834-09-17",
-          "last_issue": "1834-12-03",
-          "claims": [
-            "chicago_democrat_1834_09_17#c010",
-            "chicago_democrat_1834_12_03#c023"
-          ],
-          "placement": {
-            "class": "corner",
-            "anchor": "the corner of South Water and Clark streets",
-            "offset_text": "corner of Seath Weter and Clerk week",
-            "offset_normalized": "in the building at the corner of South Water and Clark streets",
-            "street": "South Water Street"
-          }
-        }
-      ],
-      "built_at_scene_date": true,
-      "survival_liberty_required": true
-    },
-    {
-      "id": "business_chicago_democrat_office",
-      "name": "Chicago Democrat (office)",
-      "proprietors": [
-        "John Calhoun"
-      ],
-      "trade": "newspaper printing office",
-      "goods": [],
-      "street": "South Water Street",
-      "placement": {
-        "class": "corner",
-        "anchor": "corner of Clark and South Water streets",
-        "offset_text": "ad as the office of the Democrat, on the\nof Clark ank-South Water atrcets, is of",
-        "offset_normalized": "[and as] the office of the Democrat, on the [corner] of Clark an[d] South Water [s]tr[e]ets",
-        "street": "South Water Street"
-      },
-      "evidence": {
-        "first_issue": "1834-10-08",
-        "last_issue": "1834-10-08",
-        "copy_dates": [
-          "1834-10-08"
-        ]
-      },
-      "contradicted_by": [],
-      "mentions": [
-        "chicago_democrat_1834_10_08#c005"
-      ],
-      "placement_readings": [
-        {
-          "anchor": "corner of Clark and South Water streets",
-          "class": "corner",
-          "first_issue": "1834-10-08",
-          "last_issue": "1834-10-08",
-          "claims": [
-            "chicago_democrat_1834_10_08#c005"
-          ],
-          "placement": {
-            "class": "corner",
-            "anchor": "corner of Clark and South Water streets",
-            "offset_text": "ad as the office of the Democrat, on the\nof Clark ank-South Water atrcets, is of",
-            "offset_normalized": "[and as] the office of the Democrat, on the [corner] of Clark an[d] South Water [s]tr[e]ets",
-            "street": "South Water Street"
-          }
+          "from": "the Chicago Bakery",
+          "merge_rule": "'Chicago Bakery' and 'the Chicago Bakery' are one house under one advertisement, and the difference is a leading article the compositor set twice. D. Graves's own notice — 1834-04-01 c008 and 1834-09-10 c016 — announces in both printings that he has commenced the baking business in South Water street by Newberry & Dole's store, with bread and crackers kept on hand. Same proprietor, same street, same anchor, seven months apart. Merged INTO the article-less spelling because that record carries the readable offset ('a few doors north of Messrs. Newbury & Dole's store'); the April printing's word is 'posterior' and is kept in its own claim."
         }
       ],
       "built_at_scene_date": true,
@@ -59127,19 +59100,20 @@
         "blanks",
         "books",
         "cards",
+        "job printing",
         "newspapers",
         "pamphlets"
       ],
       "street": "South Water Street",
       "placement": {
-        "class": "relative",
-        "anchor": "Messrs. Jones & King's hardware store",
-        "offset_text": "over Meserg Jones & King Hard",
-        "offset_normalized": "over Messrs. Jones & King['s] Hard[ware store]",
+        "class": "corner",
+        "anchor": "the corner of South Water and Clark streets",
+        "offset_text": "in the building on the corner of South Water and Clark: streets.",
+        "offset_normalized": "in the building on the corner of South Water and Clark streets",
         "street": "South Water Street"
       },
       "evidence": {
-        "first_issue": "1835-05-20",
+        "first_issue": "1834-01-07",
         "last_issue": "1835-05-20",
         "copy_dates": [
           "1835-05-20"
@@ -59147,9 +59121,26 @@
       },
       "contradicted_by": [],
       "mentions": [
+        "chicago_democrat_1834_01_07#c006",
         "chicago_democrat_1835_05_20#c007"
       ],
       "placement_readings": [
+        {
+          "anchor": "the corner of South Water and Clark streets",
+          "class": "corner",
+          "first_issue": "1834-01-07",
+          "last_issue": "1834-01-07",
+          "claims": [
+            "chicago_democrat_1834_01_07#c006"
+          ],
+          "placement": {
+            "class": "corner",
+            "anchor": "the corner of South Water and Clark streets",
+            "offset_text": "in the building on the corner of South Water and Clark: streets.",
+            "offset_normalized": "in the building on the corner of South Water and Clark streets",
+            "street": "South Water Street"
+          }
+        },
         {
           "anchor": "Messrs. Jones & King's hardware store",
           "class": "relative",
@@ -59167,6 +59158,16 @@
           }
         }
       ],
+      "trade_variants": [
+        "newspaper and job printing",
+        "newspaper printing office"
+      ],
+      "merged": [
+        {
+          "from": "the Chicago Democrat's printing office",
+          "merge_rule": "'Chicago Democrat printing office' and 'the Chicago Democrat's printing office' are one shop read out of the paper's own colophon twice: 1834-01-07 c006 sets it in the building on the corner of South Water and Clark streets, and 1835-05-20 c007 reads the colophon of that issue over Jones & King's hardware store in the same street. The possessive is the compositor's. NOTE WHAT THE MERGE DOES TO THE PLACEMENT: `placement_rank` prefers a corner to a relative offset, so the surviving record keeps the 1834 corner although the 1835 colophon is the later reading — the office moved along South Water Street before the scene date and this machinery cannot say so. T-0403 carries that."
+        }
+      ],
       "built_at_scene_date": true,
       "survival_liberty_required": false
     },
@@ -59178,7 +59179,9 @@
       ],
       "trade": "soap and candle manufactory",
       "goods": [
+        "candles",
         "hard soap",
+        "soap",
         "soft soap",
         "tallow candles",
         "wax candles"
@@ -59189,27 +59192,42 @@
         "anchor": null
       },
       "evidence": {
-        "first_issue": "1834-03-04",
-        "last_issue": "1834-03-04",
-        "copy_dates": []
+        "first_issue": "1834-01-07",
+        "last_issue": "1834-04-08",
+        "copy_dates": [
+          "1834-04-01"
+        ]
       },
       "contradicted_by": [],
       "mentions": [
-        "chicago_democrat_1834_03_04#c014"
+        "chicago_democrat_1834_01_07#c012",
+        "chicago_democrat_1834_03_04#c014",
+        "chicago_democrat_1834_04_08#c005"
       ],
       "placement_readings": [
         {
           "anchor": null,
           "class": "none",
-          "first_issue": "1834-03-04",
-          "last_issue": "1834-03-04",
+          "first_issue": "1834-01-07",
+          "last_issue": "1834-04-08",
           "claims": [
-            "chicago_democrat_1834_03_04#c014"
+            "chicago_democrat_1834_01_07#c012",
+            "chicago_democrat_1834_03_04#c014",
+            "chicago_democrat_1834_04_08#c005"
           ],
           "placement": {
             "class": "none",
-            "anchor": null
+            "anchor": null,
+            "offset_text": null,
+            "offset_normalized": null,
+            "street": null
           }
+        }
+      ],
+      "merged": [
+        {
+          "from": "the Chicago Soap and Candle Manufactory",
+          "merge_rule": "'Chicago Soap and Candle Manufactory' and 'the Chicago Soap and Candle Manufactory' are one works under one standing advertisement, printed 1834-01-07 c012, 1834-03-04 c014 and 1834-04-08 c005, all three signed Messrs. Daniel Elston & Co. and all three announcing that they have commenced the manufacture of soap and candles. Neither printing gives an address, so nothing is being joined across ground."
         }
       ],
       "built_at_scene_date": true,
@@ -59419,7 +59437,7 @@
         "offset_text": "NE door east of Brewster, Hogan & Co,\nSouth Water-atreet, Chieago, fllinois,"
       },
       "evidence": {
-        "first_issue": "1834-03-04",
+        "first_issue": "1834-01-28",
         "last_issue": "1835-05-20",
         "copy_dates": [
           "1834-01-20",
@@ -59429,6 +59447,7 @@
       },
       "contradicted_by": [],
       "mentions": [
+        "chicago_democrat_1834_01_28#c007",
         "chicago_democrat_1834_03_04#c009",
         "chicago_democrat_1834_06_04#c003",
         "chicago_democrat_1834_06_18#c017",
@@ -59440,15 +59459,18 @@
         {
           "anchor": "Brewster, Hogan & Co.",
           "class": "relative",
-          "first_issue": "1834-03-04",
+          "first_issue": "1834-01-28",
           "last_issue": "1834-03-04",
           "claims": [
+            "chicago_democrat_1834_01_28#c007",
             "chicago_democrat_1834_03_04#c009"
           ],
           "placement": {
             "class": "relative",
             "anchor": "Brewster, Hogan & Co.",
-            "offset_text": "NE door east of Brewster, Hogan & Co,\nSouth Water-atreet, Chieago, fllinois,"
+            "offset_text": "OFFICE nt E door east of Brewster, Hogan & Co,",
+            "offset_normalized": "OFFICE [n]ext door east of Brewster, Hogan & Co.",
+            "street": null
           }
         },
         {
@@ -59486,55 +59508,18 @@
           }
         }
       ],
-      "built_at_scene_date": true,
-      "survival_liberty_required": false
-    },
-    {
-      "id": "business_collins_caton_attorneys_and_counsellors_at_law",
-      "name": "Collins & Caton, attorneys and counsellors at law",
-      "proprietors": [
-        "J. H. Collins",
-        "J. Dean Caton"
+      "trade_variants": [
+        "attorneys and counsellors at law, and solicitors in chancery",
+        "attorneys and solicitors in chancery"
       ],
-      "trade": "attorneys and solicitors in chancery",
-      "goods": [],
-      "street": null,
-      "placement": {
-        "class": "relative",
-        "anchor": "Brewster, Hogan & Co.",
-        "offset_text": "OFFICE nt E door east of Brewster, Hogan & Co,",
-        "offset_normalized": "OFFICE [n]ext door east of Brewster, Hogan & Co.",
-        "street": null
-      },
-      "evidence": {
-        "first_issue": "1834-01-28",
-        "last_issue": "1834-01-28",
-        "copy_dates": []
-      },
-      "contradicted_by": [],
-      "mentions": [
-        "chicago_democrat_1834_01_28#c007"
-      ],
-      "placement_readings": [
+      "merged": [
         {
-          "anchor": "Brewster, Hogan & Co.",
-          "class": "relative",
-          "first_issue": "1834-01-28",
-          "last_issue": "1834-01-28",
-          "claims": [
-            "chicago_democrat_1834_01_28#c007"
-          ],
-          "placement": {
-            "class": "relative",
-            "anchor": "Brewster, Hogan & Co.",
-            "offset_text": "OFFICE nt E door east of Brewster, Hogan & Co,",
-            "offset_normalized": "OFFICE [n]ext door east of Brewster, Hogan & Co.",
-            "street": null
-          }
+          "from": "Collins & Caton, attorneys and counsellors at law",
+          "merge_rule": "'Collins & Caton' and 'Collins & Caton, attorneys and counsellors at law' are one office: the second is the first with its trade line read into the style. Both rest on the card dated Jan. 20, 1834 that places the office one door east of Brewster, Hogan & Co. in South Water street — 1834-01-28 c007 for the styled record, 1834-03-04 c009 for the other, the same copy date on both. Merged INTO the shorter style because that record carries the street and the June 1834 removal notice."
         }
       ],
       "built_at_scene_date": true,
-      "survival_liberty_required": true
+      "survival_liberty_required": false
     },
     {
       "id": "business_cook_george",
@@ -60166,12 +60151,18 @@
       "trade": "lumber yard",
       "goods": [
         "Bacon",
+        "Crockery Ware",
         "Flour",
+        "Grain",
+        "Hard Bread",
+        "Oil",
         "Pine Lumber",
         "Poplar Lumber",
         "Pork",
         "Produce",
         "Provisions",
+        "Shoes",
+        "Tin Ware",
         "Whiskey",
         "flour",
         "forwarding",
@@ -60205,6 +60196,9 @@
         "chicago_democrat_1833_12_03#c009",
         "chicago_democrat_1834_02_25#c003",
         "chicago_democrat_1834_03_04#c006",
+        "chicago_democrat_1834_04_01#c006",
+        "chicago_democrat_1834_04_16#c008",
+        "chicago_democrat_1834_04_30#c013",
         "chicago_democrat_1834_06_04#c010",
         "chicago_democrat_1834_06_11#c009",
         "chicago_democrat_1834_06_18#c010",
@@ -60222,6 +60216,9 @@
           "claims": [
             "chicago_democrat_1833_12_03#c009",
             "chicago_democrat_1834_03_04#c006",
+            "chicago_democrat_1834_04_01#c006",
+            "chicago_democrat_1834_04_16#c008",
+            "chicago_democrat_1834_04_30#c013",
             "chicago_democrat_1834_07_02#c006",
             "chicago_democrat_1835_06_04#c004",
             "chicago_democrat_1835_07_22#c013",
@@ -60250,66 +60247,18 @@
           }
         }
       ],
-      "built_at_scene_date": true,
-      "survival_liberty_required": false
-    },
-    {
-      "id": "business_david_carver_storage_commission_and_lumber",
-      "name": "David Carver, storage, commission and lumber",
-      "proprietors": [
-        "David Carver"
+      "trade_variants": [
+        "lumber yard",
+        "storage, commission and lumber"
       ],
-      "trade": "storage, commission and lumber",
-      "goods": [
-        "Crockery Ware",
-        "Flour",
-        "Grain",
-        "Hard Bread",
-        "Oil",
-        "Pork",
-        "Shoes",
-        "Tin Ware",
-        "lath",
-        "red cedar posts",
-        "shingles"
-      ],
-      "street": null,
-      "placement": {
-        "class": "none",
-        "street": null
-      },
-      "evidence": {
-        "first_issue": "1834-04-01",
-        "last_issue": "1834-04-30",
-        "copy_dates": [
-          "1834-02-25"
-        ]
-      },
-      "contradicted_by": [],
-      "mentions": [
-        "chicago_democrat_1834_04_01#c006",
-        "chicago_democrat_1834_04_16#c008",
-        "chicago_democrat_1834_04_30#c013"
-      ],
-      "placement_readings": [
+      "merged": [
         {
-          "anchor": null,
-          "class": "none",
-          "first_issue": "1834-04-01",
-          "last_issue": "1834-04-30",
-          "claims": [
-            "chicago_democrat_1834_04_01#c006",
-            "chicago_democrat_1834_04_16#c008",
-            "chicago_democrat_1834_04_30#c013"
-          ],
-          "placement": {
-            "class": "none",
-            "street": null
-          }
+          "from": "David Carver, storage, commission and lumber",
+          "merge_rule": "'David Carver' and 'David Carver, storage, commission and lumber' are one house, and the witness is a single standing advertisement: 'Storage, Commission and Lumber Business', copy-dated 1834-02-25, printed at 1834-02-25 c003 and 1834-03-04 c006 in the first record and at 1834-04-01 c006 in the second. Same copy date, same trade, same man, and neither printing gives an address."
         }
       ],
       "built_at_scene_date": true,
-      "survival_liberty_required": true
+      "survival_liberty_required": false
     },
     {
       "id": "business_deacon_mccaleb",
@@ -60504,7 +60453,8 @@
       "id": "business_dr_w_g_austin",
       "name": "Dr. W. G. Austin",
       "proprietors": [
-        "Austin, W. G."
+        "Austin, W. G.",
+        "W. G. Austin"
       ],
       "trade": "practice of medicine, botanic system",
       "goods": [
@@ -60517,7 +60467,7 @@
         "offset_text": "fice on Lake street, near tho post office."
       },
       "evidence": {
-        "first_issue": "1835-08-12",
+        "first_issue": "1835-08-08",
         "last_issue": "1835-08-12",
         "copy_dates": [
           "1835-08-07"
@@ -60525,53 +60475,8 @@
       },
       "contradicted_by": [],
       "mentions": [
+        "chicago_american_1835_08_08#c001",
         "chicago_democrat_1835_08_12#c004"
-      ],
-      "placement_readings": [
-        {
-          "anchor": "the post office",
-          "class": "relative",
-          "first_issue": "1835-08-12",
-          "last_issue": "1835-08-12",
-          "claims": [
-            "chicago_democrat_1835_08_12#c004"
-          ],
-          "placement": {
-            "class": "relative",
-            "anchor": "the post office",
-            "offset_text": "fice on Lake street, near tho post office."
-          }
-        }
-      ],
-      "built_at_scene_date": true,
-      "survival_liberty_required": false
-    },
-    {
-      "id": "business_dr_w_g_austin_botanic_physician",
-      "name": "Dr. W. G. Austin, botanic physician",
-      "proprietors": [
-        "W. G. Austin"
-      ],
-      "trade": "botanic medicine",
-      "goods": [],
-      "street": "Lake Street",
-      "placement": {
-        "class": "relative",
-        "anchor": "the Post Office",
-        "offset_text": "ced the practice of medicine and openec on Lake esrevt, near the Pom Office.",
-        "offset_normalized": "opene[d an office] on Lake s[t]re[et], near the Po[st] Office",
-        "street": "Lake Street"
-      },
-      "evidence": {
-        "first_issue": "1835-08-08",
-        "last_issue": "1835-08-08",
-        "copy_dates": [
-          "1835-08-07"
-        ]
-      },
-      "contradicted_by": [],
-      "mentions": [
-        "chicago_american_1835_08_08#c001"
       ],
       "placement_readings": [
         {
@@ -60589,6 +60494,30 @@
             "offset_normalized": "opene[d an office] on Lake s[t]re[et], near the Po[st] Office",
             "street": "Lake Street"
           }
+        },
+        {
+          "anchor": "the post office",
+          "class": "relative",
+          "first_issue": "1835-08-12",
+          "last_issue": "1835-08-12",
+          "claims": [
+            "chicago_democrat_1835_08_12#c004"
+          ],
+          "placement": {
+            "class": "relative",
+            "anchor": "the post office",
+            "offset_text": "fice on Lake street, near tho post office."
+          }
+        }
+      ],
+      "trade_variants": [
+        "botanic medicine",
+        "practice of medicine, botanic system"
+      ],
+      "merged": [
+        {
+          "from": "Dr. W. G. Austin, botanic physician",
+          "merge_rule": "'Dr. W. G. Austin' and 'Dr. W. G. Austin, botanic physician' are one advertisement placed in both papers: copy date 1835-08-07 on each, the American of 1835-08-08 c001 and the Democrat of 1835-08-12 c004, both reading that he has commenced the practice of medicine and opened an office on Lake street near the post office. Same street, same anchor, same week."
         }
       ],
       "built_at_scene_date": true,
@@ -61665,7 +61594,8 @@
       "id": "business_g_spring",
       "name": "G. Spring",
       "proprietors": [
-        "G. Spring"
+        "G. Spring",
+        "Spring, G."
       ],
       "trade": "attorney and counsellor at law, and solicitor in chancery",
       "goods": [],
@@ -61676,29 +61606,35 @@
         "offset_text": "FFICE second door west\nof Franklin and South W"
       },
       "evidence": {
-        "first_issue": "1834-03-04",
-        "last_issue": "1834-10-15",
+        "first_issue": "1833-12-17",
+        "last_issue": "1835-08-05",
         "copy_dates": [
-          "1833-12-17"
+          "1833-12-17",
+          "1834-12-03"
         ]
       },
       "contradicted_by": [],
       "mentions": [
+        "chicago_democrat_1833_12_17#c004",
+        "chicago_democrat_1834_01_28#c006",
         "chicago_democrat_1834_03_04#c030",
         "chicago_democrat_1834_05_28#c009",
         "chicago_democrat_1834_06_11#c004",
         "chicago_democrat_1834_07_09#c021",
         "chicago_democrat_1834_08_20#c003",
         "chicago_democrat_1834_09_03#c015",
-        "chicago_democrat_1834_10_15#c002"
+        "chicago_democrat_1834_10_15#c002",
+        "chicago_democrat_1835_08_05#c019"
       ],
       "placement_readings": [
         {
           "anchor": "the corner of Franklin and South Water streets",
           "class": "relative",
-          "first_issue": "1834-03-04",
+          "first_issue": "1833-12-17",
           "last_issue": "1834-08-20",
           "claims": [
+            "chicago_democrat_1833_12_17#c004",
+            "chicago_democrat_1834_01_28#c006",
             "chicago_democrat_1834_03_04#c030",
             "chicago_democrat_1834_06_11#c004",
             "chicago_democrat_1834_08_20#c003"
@@ -61706,7 +61642,10 @@
           "placement": {
             "class": "relative",
             "anchor": "the corner of Franklin and South Water streets",
-            "offset_text": "FFICE second door west\nof Franklin and South W"
+            "offset_text": "FFICE second door west from",
+            "offset_normalized": "office second door west from the corner of Franklin and South Water streets",
+            "street": "South Water Street",
+            "note": "Counted in doors WEST from a named corner, which fixes a side of the street and an order along it but not a lot width."
           }
         },
         {
@@ -61770,61 +61709,6 @@
             "offset_normalized": "[OF]FICE second door [w]e[s]t from the corner of Frankli[n street]",
             "street": "Franklin Street"
           }
-        }
-      ],
-      "built_at_scene_date": true,
-      "survival_liberty_required": true
-    },
-    {
-      "id": "business_g_spring_attorney_and_counsellor_at_law",
-      "name": "G. Spring, attorney and counsellor at law",
-      "proprietors": [
-        "G. Spring",
-        "Spring, G."
-      ],
-      "trade": "attorney and solicitor in chancery",
-      "goods": [],
-      "street": "South Water Street",
-      "placement": {
-        "class": "relative",
-        "anchor": "the corner of Franklin and South Water streets",
-        "offset_text": "FFICE second door west from",
-        "offset_normalized": "office second door west from the corner of Franklin and South Water streets",
-        "street": "South Water Street",
-        "note": "Counted in doors WEST from a named corner, which fixes a side of the street and an order along it but not a lot width."
-      },
-      "evidence": {
-        "first_issue": "1833-12-17",
-        "last_issue": "1835-08-05",
-        "copy_dates": [
-          "1833-12-17",
-          "1834-12-03"
-        ]
-      },
-      "contradicted_by": [],
-      "mentions": [
-        "chicago_democrat_1833_12_17#c004",
-        "chicago_democrat_1834_01_28#c006",
-        "chicago_democrat_1835_08_05#c019"
-      ],
-      "placement_readings": [
-        {
-          "anchor": "the corner of Franklin and South Water streets",
-          "class": "relative",
-          "first_issue": "1833-12-17",
-          "last_issue": "1834-01-28",
-          "claims": [
-            "chicago_democrat_1833_12_17#c004",
-            "chicago_democrat_1834_01_28#c006"
-          ],
-          "placement": {
-            "class": "relative",
-            "anchor": "the corner of Franklin and South Water streets",
-            "offset_text": "FFICE second door west from",
-            "offset_normalized": "office second door west from the corner of Franklin and South Water streets",
-            "street": "South Water Street",
-            "note": "Counted in doors WEST from a named corner, which fixes a side of the street and an order along it but not a lot width."
-          }
         },
         {
           "anchor": "the Tremont House",
@@ -61839,6 +61723,16 @@
             "anchor": "the Tremont House",
             "offset_text": "FRICE firat dor north from tbe Trem"
           }
+        }
+      ],
+      "trade_variants": [
+        "attorney and counsellor at law, and solicitor in chancery",
+        "attorney and solicitor in chancery"
+      ],
+      "merged": [
+        {
+          "from": "G. Spring, attorney and counsellor at law",
+          "merge_rule": "'G. Spring' and 'G. Spring, attorney and counsellor at law' are one office under one card, copy-dated Dec. 17, 1833 in both — 1833-12-17 c004 and 1834-01-28 c006 in the styled record, 1834-03-04 c030 and six further printings in the other — every one of them placing the office second door west from the corner of Franklin and South Water streets. The second record also carries the later card of Dec. 3, 1834 (1835-08-05 c019) moving him first door north of the Tremont House, which the merge keeps as a mention."
         }
       ],
       "built_at_scene_date": true,
@@ -62483,13 +62377,14 @@
       },
       "evidence": {
         "first_issue": "1835-06-04",
-        "last_issue": "1835-06-24",
+        "last_issue": "1835-07-04",
         "copy_dates": [
           "1835-06-02"
         ]
       },
       "contradicted_by": [],
       "mentions": [
+        "chicago_american_1835_07_04#c001",
         "chicago_democrat_1835_06_04#c005",
         "chicago_democrat_1835_06_24#c010"
       ],
@@ -62525,37 +62420,7 @@
             "offset_normalized": "[Office in] J. H. Kinzie's new store",
             "street": null
           }
-        }
-      ],
-      "built_at_scene_date": true,
-      "survival_liberty_required": false
-    },
-    {
-      "id": "business_henry_moore_attorney_and_counsellor",
-      "name": "Henry Moore, attorney and counsellor",
-      "proprietors": [
-        "Henry Moore"
-      ],
-      "trade": "attorney, counsellor and solicitor in chancery",
-      "goods": [],
-      "street": null,
-      "placement": {
-        "class": "relative",
-        "anchor": "J. H. Kinzie's New Building",
-        "offset_text": "Office a J. H. Kenzic’s New",
-        "offset_normalized": "Office a[t] J. H. K[i]nzie's New [Building]",
-        "street": null
-      },
-      "evidence": {
-        "first_issue": "1835-07-04",
-        "last_issue": "1835-07-04",
-        "copy_dates": []
-      },
-      "contradicted_by": [],
-      "mentions": [
-        "chicago_american_1835_07_04#c001"
-      ],
-      "placement_readings": [
+        },
         {
           "anchor": "J. H. Kinzie's New Building",
           "class": "relative",
@@ -62571,6 +62436,16 @@
             "offset_normalized": "Office a[t] J. H. K[i]nzie's New [Building]",
             "street": null
           }
+        }
+      ],
+      "trade_variants": [
+        "attorney and counsellor at law, and solicitor in chancery",
+        "attorney, counsellor and solicitor in chancery"
+      ],
+      "merged": [
+        {
+          "from": "Henry Moore, attorney and counsellor",
+          "merge_rule": "'Henry Moore' and 'Henry Moore, attorney and counsellor' are one office in two papers: the Democrat of 1835-06-04 c005 (copy date 1835-06-02) and 1835-06-24 c010, and the American of 1835-07-04 c001, all three putting his office in J. H. Kinzie's new building. Same man, same anchor, four weeks either side of the scene date."
         }
       ],
       "built_at_scene_date": true,
@@ -62760,16 +62635,27 @@
       "goods": [
         "Champaigne",
         "Cigars",
+        "Claret",
+        "Copal Varnish",
         "Crockery",
         "Dry Goods",
         "Groceries",
         "Hardware",
+        "Lard",
+        "Linseed Oil",
         "Malaga",
         "Nails",
+        "Pork Shoulders",
         "Port",
+        "Pot-Ash",
         "Salt",
+        "Sauterne",
         "Sherry",
         "Sicily Madeira",
+        "Sperm Oil",
+        "White Lead",
+        "Wines",
+        "Yellow Ochre",
         "fire insurance",
         "hams",
         "hewn timber",
@@ -62788,14 +62674,21 @@
       },
       "evidence": {
         "first_issue": "1834-07-02",
-        "last_issue": "1835-07-01",
+        "last_issue": "1835-08-29",
         "copy_dates": [
           "1834-07-01",
-          "1835-06-16"
+          "1835-06-16",
+          "1835-06-20",
+          "1835-06-27",
+          "1835-08-29"
         ]
       },
       "contradicted_by": [],
       "mentions": [
+        "chicago_american_1835_06_20#c013",
+        "chicago_american_1835_06_27#c012",
+        "chicago_american_1835_07_11#c006",
+        "chicago_american_1835_08_29#c004",
         "chicago_democrat_1834_07_02#c045",
         "chicago_democrat_1834_07_02#c048",
         "chicago_democrat_1834_08_06#c008",
@@ -62812,8 +62705,12 @@
           "anchor": null,
           "class": "none",
           "first_issue": "1834-07-02",
-          "last_issue": "1835-07-01",
+          "last_issue": "1835-08-29",
           "claims": [
+            "chicago_american_1835_06_20#c013",
+            "chicago_american_1835_06_27#c012",
+            "chicago_american_1835_07_11#c006",
+            "chicago_american_1835_08_29#c004",
             "chicago_democrat_1834_07_02#c045",
             "chicago_democrat_1834_07_02#c048",
             "chicago_democrat_1834_08_06#c008",
@@ -62846,70 +62743,14 @@
           }
         }
       ],
-      "built_at_scene_date": true,
-      "survival_liberty_required": false
-    },
-    {
-      "id": "business_hubbard_co_forwarding_and_commission_merchants",
-      "name": "Hubbard & Co., forwarding and commission merchants",
-      "proprietors": [],
-      "trade": "forwarding and commission merchants",
-      "goods": [
-        "Claret",
-        "Copal Varnish",
-        "Lard",
-        "Linseed Oil",
-        "Pork Shoulders",
-        "Pot-Ash",
-        "Sauterne",
-        "Sperm Oil",
-        "White Lead",
-        "Wines",
-        "Yellow Ochre"
+      "trade_variants": [
+        "commission and forwarding merchants",
+        "forwarding and commission merchants"
       ],
-      "street": null,
-      "placement": {
-        "class": "none",
-        "anchor": null,
-        "offset_text": null,
-        "offset_normalized": null,
-        "street": null
-      },
-      "evidence": {
-        "first_issue": "1835-06-20",
-        "last_issue": "1835-08-29",
-        "copy_dates": [
-          "1835-06-20",
-          "1835-06-27",
-          "1835-08-29"
-        ]
-      },
-      "contradicted_by": [],
-      "mentions": [
-        "chicago_american_1835_06_20#c013",
-        "chicago_american_1835_06_27#c012",
-        "chicago_american_1835_07_11#c006",
-        "chicago_american_1835_08_29#c004"
-      ],
-      "placement_readings": [
+      "merged": [
         {
-          "anchor": null,
-          "class": "none",
-          "first_issue": "1835-06-20",
-          "last_issue": "1835-08-29",
-          "claims": [
-            "chicago_american_1835_06_20#c013",
-            "chicago_american_1835_06_27#c012",
-            "chicago_american_1835_07_11#c006",
-            "chicago_american_1835_08_29#c004"
-          ],
-          "placement": {
-            "class": "none",
-            "anchor": null,
-            "offset_text": null,
-            "offset_normalized": null,
-            "street": null
-          }
+          "from": "Hubbard & Co., forwarding and commission merchants",
+          "merge_rule": "'Hubbard & Co.' and 'Hubbard & Co., forwarding and commission merchants' are one house's trade card in the two papers, and the two styles are the same words in the two orders the compositors set them: the Democrat of 1834-07-02 c045 and 1835-07-01 c016 read 'Commission and Forwarding MERCHANTS, CHICAGO-ILLINOIS' over Gurdon S. and Henry G. Hubbard, and the American of 1835-06-20 c013 reads 'Forwarding and Commission MERCHANTS' with the lake and canal line agencies. Neither carries a street. The Howard Fire Insurance agency this house held is NOT touched by this merge — an agency is not the house that holds it, and T-0402 owns that question."
         }
       ],
       "built_at_scene_date": true,
@@ -63371,10 +63212,12 @@
     {
       "id": "business_j_h_collins_j_d_caton",
       "name": "J. H. Collins & J. D. Caton",
-      "proprietors": [],
+      "proprietors": [
+        "J. H. Collins & J. D. C[aton]"
+      ],
       "trade": "attorneys and counsellors at law, solicitors in chancery",
       "goods": [],
-      "street": null,
+      "street": "South Water Street",
       "placement": {
         "class": "relative",
         "anchor": "Brewster, Hogan & Co., South Water street",
@@ -63382,7 +63225,7 @@
       },
       "evidence": {
         "first_issue": "1834-02-04",
-        "last_issue": "1834-02-11",
+        "last_issue": "1834-04-01",
         "copy_dates": [
           "1834-01-20"
         ]
@@ -63390,7 +63233,8 @@
       "contradicted_by": [],
       "mentions": [
         "chicago_democrat_1834_02_04#c009",
-        "chicago_democrat_1834_02_11#c005"
+        "chicago_democrat_1834_02_11#c005",
+        "chicago_democrat_1834_04_01#c011"
       ],
       "placement_readings": [
         {
@@ -63420,34 +63264,7 @@
             "anchor": "Brewster, Hogan & Co., South Water-street",
             "offset_text": "door east. of Brewster, Hogan & C:"
           }
-        }
-      ],
-      "built_at_scene_date": true,
-      "survival_liberty_required": true
-    },
-    {
-      "id": "business_j_h_collins_j_d_caton_attorneys",
-      "name": "J. H. Collins & J. D. Caton, attorneys",
-      "proprietors": [
-        "J. H. Collins & J. D. C[aton]"
-      ],
-      "trade": "attorneys and counsellors at law, and solicitors in chancery",
-      "goods": [],
-      "street": "South Water Street",
-      "placement": {
-        "class": "street_only",
-        "street": "South Water Street"
-      },
-      "evidence": {
-        "first_issue": "1834-04-01",
-        "last_issue": "1834-04-01",
-        "copy_dates": []
-      },
-      "contradicted_by": [],
-      "mentions": [
-        "chicago_democrat_1834_04_01#c011"
-      ],
-      "placement_readings": [
+        },
         {
           "anchor": null,
           "class": "street_only",
@@ -63460,6 +63277,16 @@
             "class": "street_only",
             "street": "South Water Street"
           }
+        }
+      ],
+      "trade_variants": [
+        "attorneys and counsellors at law, and solicitors in chancery",
+        "attorneys and counsellors at law, solicitors in chancery"
+      ],
+      "merged": [
+        {
+          "from": "J. H. Collins & J. D. Caton, attorneys",
+          "merge_rule": "'J. H. Collins & J. D. Caton' and 'J. H. Collins & J. D. Caton, attorneys' are one card, dated Jan. 20, 1834 on the page in all three printings — 1834-02-04 c009, 1834-02-11 c005 and 1834-04-01 c011 — placing the office east of Brewster, Hogan & Co. in South Water street. The April setting lost the ordinal and was recorded `street_only`; the merge brings the street to the record that kept the offset. Whether this house and 'Collins & Caton' are one is a FORENAME question and belongs to T-0400, not here."
         }
       ],
       "built_at_scene_date": true,
@@ -64711,6 +64538,9 @@
       ],
       "trade": "clothing, boots and shoes, wholesale and retail, as agent for the manufacturers",
       "goods": [
+        "Boots and Shoes",
+        "Clothing",
+        "Hats",
         "boots",
         "clothing",
         "hats",
@@ -64728,11 +64558,13 @@
         "first_issue": "1835-06-10",
         "last_issue": "1835-08-12",
         "copy_dates": [
-          "1835-06-10"
+          "1835-06-10",
+          "1835-06-13"
         ]
       },
       "contradicted_by": [],
       "mentions": [
+        "chicago_american_1835_06_13#c012",
         "chicago_democrat_1835_06_10#c010",
         "chicago_democrat_1835_08_12#c012"
       ],
@@ -64741,8 +64573,9 @@
           "anchor": "Dearborn Street",
           "class": "relative",
           "first_issue": "1835-06-10",
-          "last_issue": "1835-06-10",
+          "last_issue": "1835-06-13",
           "claims": [
+            "chicago_american_1835_06_13#c012",
             "chicago_democrat_1835_06_10#c010"
           ],
           "placement": {
@@ -64768,56 +64601,14 @@
           }
         }
       ],
-      "built_at_scene_date": true,
-      "survival_liberty_required": false
-    },
-    {
-      "id": "business_john_holbrook_hats_clothing_boots_and_shoes",
-      "name": "John Holbrook, hats, clothing, boots and shoes",
-      "proprietors": [
-        "John Holbrook"
+      "trade_variants": [
+        "clothing, boots and shoes, wholesale and retail, as agent for the manufacturers",
+        "hats, clothing, boots and shoes, wholesale and retail"
       ],
-      "trade": "hats, clothing, boots and shoes, wholesale and retail",
-      "goods": [
-        "Boots and Shoes",
-        "Clothing",
-        "Hats"
-      ],
-      "street": "South Water Street",
-      "placement": {
-        "class": "relative",
-        "anchor": "Dearborn Street",
-        "offset_text": "ack Water wirert, one door from Dee",
-        "offset_normalized": "[South] Water [st]reet, one door from De[arborn]",
-        "street": "South Water Street"
-      },
-      "evidence": {
-        "first_issue": "1835-06-13",
-        "last_issue": "1835-06-13",
-        "copy_dates": [
-          "1835-06-13"
-        ]
-      },
-      "contradicted_by": [],
-      "mentions": [
-        "chicago_american_1835_06_13#c012"
-      ],
-      "placement_readings": [
+      "merged": [
         {
-          "anchor": "Dearborn Street",
-          "class": "relative",
-          "first_issue": "1835-06-13",
-          "last_issue": "1835-06-13",
-          "claims": [
-            "chicago_american_1835_06_13#c012"
-          ],
-          "placement": {
-            "class": "relative",
-            "anchor": "Dearborn Street",
-            "offset_text": "ack Water wirert, one door from Dee",
-            "offset_normalized": "[South] Water [st]reet, one door from De[arborn]",
-            "street": "South Water Street"
-          }
+          "from": "John Holbrook, hats, clothing, boots and shoes",
+          "merge_rule": "'John Holbrook' and 'John Holbrook, hats, clothing, boots and shoes' are one store in the two papers, a week apart: the Democrat of 1835-06-10 c010 (copy date 1835-06-10, reprinted 1835-08-12 c012) and the American of 1835-06-13 c012 (copy date 1835-06-13), both reading that the subscriber is now opening a heavy assortment of the above named articles on South Water street, one door from Dearborn. Same street, same offset, same corner."
         }
       ],
       "built_at_scene_date": true,
@@ -65628,8 +65419,8 @@
       "survival_liberty_required": false
     },
     {
-      "id": "business_l_w_montgomery",
-      "name": "L. W. Montgomery",
+      "id": "business_l_w_montgomery_boot_and_shoe_maker",
+      "name": "L. W. Montgomery, boot and shoe maker",
       "proprietors": [
         "L. W. Montgomery"
       ],
@@ -65639,15 +65430,16 @@
         "Shoes",
         "boots",
         "fine water-proof boots",
-        "shoes"
+        "shoes",
+        "water proof Boots"
       ],
-      "street": null,
+      "street": "South Water Street",
       "placement": {
         "class": "relative",
-        "anchor": "Philo Carpenter's store",
-        "offset_text": "Haig sessile, fe door to. Py Ca",
-        "offset_normalized": "next door to P[hilo] Ca[rpenter's] Store",
-        "note": "The offset text is badly broken; 'next door to' and the anchor's first syllables are read and the rest is bracketed. Read with the following line, which ends '…howe Store', the anchor is Carpenter's store."
+        "anchor": "P. Cohen's Store",
+        "offset_text": "above busi , next door to P. Co-\nhon’s Store, will be kept on hand",
+        "offset_normalized": "next door to P. Co[h]en's Store",
+        "street": "South Water Street"
       },
       "evidence": {
         "first_issue": "1833-12-17",
@@ -65660,6 +65452,7 @@
       "contradicted_by": [],
       "mentions": [
         "chicago_democrat_1833_12_17#c003",
+        "chicago_democrat_1834_04_08#c007",
         "chicago_democrat_1834_05_21#c004",
         "chicago_democrat_1834_07_02#c013",
         "chicago_democrat_1834_12_10#c009",
@@ -65680,6 +65473,23 @@
             "offset_text": "Haig sessile, fe door to. Py Ca",
             "offset_normalized": "next door to P[hilo] Ca[rpenter's] Store",
             "note": "The offset text is badly broken; 'next door to' and the anchor's first syllables are read and the rest is bracketed. Read with the following line, which ends '…howe Store', the anchor is Carpenter's store."
+          }
+        },
+        {
+          "anchor": "P. Cohen's Store",
+          "class": "relative",
+          "first_issue": "1834-04-08",
+          "last_issue": "1835-05-20",
+          "claims": [
+            "chicago_democrat_1834_04_08#c007",
+            "chicago_democrat_1835_05_20#c017"
+          ],
+          "placement": {
+            "class": "relative",
+            "anchor": "P. Cohen's Store",
+            "offset_text": "above busi , next door to P. Co-\nhon’s Store, will be kept on hand",
+            "offset_normalized": "next door to P. Co[h]en's Store",
+            "street": "South Water Street"
           }
         },
         {
@@ -65708,76 +65518,16 @@
             "anchor": "Cohen's Store",
             "offset_text": "hen's!"
           }
-        },
+        }
+      ],
+      "merged": [
         {
-          "anchor": "P. Cohen's Store",
-          "class": "relative",
-          "first_issue": "1835-05-20",
-          "last_issue": "1835-05-20",
-          "claims": [
-            "chicago_democrat_1835_05_20#c017"
-          ],
-          "placement": {
-            "class": "relative",
-            "anchor": "P. Cohen's Store",
-            "offset_text": "the above businees, next door to P. Co-\nben's Store,",
-            "offset_normalized": "next door to P. Co[h]en's Store",
-            "street": "South Water Street"
-          }
+          "from": "L. W. Montgomery",
+          "merge_rule": "'L. W. Montgomery, boot and shoe maker' and 'L. W. Montgomery' are one shop under one standing advertisement, copy-dated Dec. 15, 1833 and running for eighteen months: 1833-12-17 c003, 1834-04-08 c007, 1834-05-21 c004, 1834-07-02 c013, 1834-12-10 c009 and 1835-05-20 c017. Merged INTO the styled record on purpose, because the two disagree about the anchor and that record holds the reading three printings support: 'next door to P. Cohen's Store' (1834-04-08 c007, 1834-12-10 c009, 1835-05-20 c017) against the single damaged December line read 'next door to P. Ca[rpenter's]' (1833-12-17 c003), whose own claim says the anchor is unreadable and is kept as a mention."
         }
       ],
       "built_at_scene_date": true,
       "survival_liberty_required": false
-    },
-    {
-      "id": "business_l_w_montgomery_boot_and_shoe_maker",
-      "name": "L. W. Montgomery, boot and shoe maker",
-      "proprietors": [
-        "L. W. Montgomery"
-      ],
-      "trade": "boot and shoe making",
-      "goods": [
-        "Boots",
-        "Shoes",
-        "water proof Boots"
-      ],
-      "street": "South Water Street",
-      "placement": {
-        "class": "relative",
-        "anchor": "P. Cohen's Store",
-        "offset_text": "above busi , next door to P. Co-\nhon’s Store, will be kept on hand",
-        "offset_normalized": "next door to P. Co[h]en's Store",
-        "street": "South Water Street"
-      },
-      "evidence": {
-        "first_issue": "1834-04-08",
-        "last_issue": "1834-04-08",
-        "copy_dates": []
-      },
-      "contradicted_by": [],
-      "mentions": [
-        "chicago_democrat_1834_04_08#c007"
-      ],
-      "placement_readings": [
-        {
-          "anchor": "P. Cohen's Store",
-          "class": "relative",
-          "first_issue": "1834-04-08",
-          "last_issue": "1834-04-08",
-          "claims": [
-            "chicago_democrat_1834_04_08#c007"
-          ],
-          "placement": {
-            "class": "relative",
-            "anchor": "P. Cohen's Store",
-            "offset_text": "above busi , next door to P. Co-\nhon’s Store, will be kept on hand",
-            "offset_normalized": "next door to P. Co[h]en's Store",
-            "street": "South Water Street"
-          }
-        }
-      ],
-      "built_at_scene_date": true,
-      "survival_liberty_required": true
     },
     {
       "id": "business_lathrop_johnson_co_livery",
@@ -66265,7 +66015,7 @@
       "merged": [
         {
           "from": "Matthias Mason & Co., blacksmiths",
-          "merge_rule": "'Matthias Mason & Co., blacksmiths' is 'Matthias Mason & Co.' with the trade read into the style by one reading pass and not by the other. The advertisement's own heading is 'Blacksmithing Business.' and the firm's name under it is set MATTHIAS MASON & CO. in every impression; three printings (1833-12-24, 1834-01-07, 1834-04-01) were entered under the longer style and six under the shorter, and all nine are ONE standing advertisement — the same copy date of 26 November 1833, the same trade, and the same sentence, 'on Main-street, nearly opposite Graves' Tavern, where they intend to keep, ready made, all kinds of Shoes, Chains, &c. &c.' Same partner surname, same street, and the two styles' weeks interleave rather than following one another. Merged INTO the shorter style, because that is the name the heading prints and the trade belongs in `trade`."
+          "merge_rule": "'Matthias Mason & Co.' and 'Matthias Mason & Co., blacksmiths' are one forge under one advertisement, copy-dated 1833-11-26 in both records and printed at least eight times — 1833-11-26 c020, 1833-12-24 c003, 1834-01-07 c008, 1834-02-25 c006, 1834-03-04 c015, 1834-04-01 c012, 1834-06-11 c013 — every printing reading 'on Main-street, nearly opposite Graves' Tavern'. 'Main-street' is recorded as printed and is not reconciled here; the anchors' disagreement from October 1834 (the Tremont House) is T-0345's."
         },
         {
           "from": "Mathias Mason & Co.",
@@ -67311,6 +67061,7 @@
         "chicago_democrat_1834_04_23#c005",
         "chicago_democrat_1834_04_30#c012",
         "chicago_democrat_1834_06_04#c019",
+        "chicago_democrat_1834_06_11#c012",
         "chicago_democrat_1834_07_02#c009",
         "chicago_democrat_1835_06_10#c011",
         "chicago_democrat_1835_07_08#c010"
@@ -67339,6 +67090,7 @@
           "last_issue": "1835-07-08",
           "claims": [
             "chicago_democrat_1834_02_11#c004",
+            "chicago_democrat_1834_06_11#c012",
             "chicago_democrat_1834_07_02#c009",
             "chicago_democrat_1835_06_10#c011",
             "chicago_democrat_1835_07_08#c010"
@@ -67382,56 +67134,18 @@
           }
         }
       ],
-      "built_at_scene_date": true,
-      "survival_liberty_required": false
-    },
-    {
-      "id": "business_p_pruyne_co_timber",
-      "name": "P. Pruyne & Co. (timber)",
-      "proprietors": [
-        "P. Pruyne & Co."
+      "trade_variants": [
+        "pine timber dealing",
+        "wholesale and retail store — groceries, hardware, crockery and drugs"
       ],
-      "trade": "pine timber dealing",
-      "goods": [
-        "Pine Timber"
-      ],
-      "street": null,
-      "placement": {
-        "class": "none",
-        "anchor": null,
-        "offset_text": null,
-        "offset_normalized": null,
-        "street": null
-      },
-      "evidence": {
-        "first_issue": "1834-06-11",
-        "last_issue": "1834-06-11",
-        "copy_dates": []
-      },
-      "contradicted_by": [],
-      "mentions": [
-        "chicago_democrat_1834_06_11#c012"
-      ],
-      "placement_readings": [
+      "merged": [
         {
-          "anchor": null,
-          "class": "none",
-          "first_issue": "1834-06-11",
-          "last_issue": "1834-06-11",
-          "claims": [
-            "chicago_democrat_1834_06_11#c012"
-          ],
-          "placement": {
-            "class": "none",
-            "anchor": null,
-            "offset_text": null,
-            "offset_normalized": null,
-            "street": null
-          }
+          "from": "P. Pruyne & Co. (timber)",
+          "merge_rule": "'P. Pruyne & Co. (timber)' is 'P. Pruyne & Co.' with a disambiguator this project's own extractor added, and its single claim — 1834-06-11 c012 — is one more printing of the timber notice the surviving record already carries three times over at 1834-04-23 c005, 1834-04-30 c012 and 1834-07-02 c009, all four announcing the arrangement with Mr. A. M'Gregor for pine timber from 12 to 60 feet. One house, one notice, no second stand."
         }
       ],
       "built_at_scene_date": true,
-      "survival_liberty_required": true
+      "survival_liberty_required": false
     },
     {
       "id": "business_p_s_carli_eagle_tavern",
@@ -67686,12 +67400,17 @@
         "Cough lozenges",
         "Drugs",
         "Dry Groceries",
+        "Dye Stuffs",
+        "Dye Woods",
         "Dye stuffs",
         "Dye woods",
         "Dye-Stuffs",
         "Glass",
         "Glassware",
+        "Grass Scythes",
+        "Hay Forks",
         "Liniment",
+        "Manure Forks",
         "Medicines",
         "Nails",
         "Oils",
@@ -67699,11 +67418,17 @@
         "Panacea",
         "Patent medicines",
         "Perfumery",
+        "Rifles",
         "School Books",
+        "Scythe Stones",
+        "Shovels",
+        "Surgical Instruments",
+        "Trusses",
         "Vermifuge",
         "White lead",
         "quinine",
         "ready made clothing",
+        "temperance almanacs",
         "window glass"
       ],
       "street": null,
@@ -67716,13 +67441,17 @@
         "last_issue": "1835-07-22",
         "copy_dates": [
           "1833-11-22",
+          "1833-12-16",
           "1834-06-25",
           "1835-06-03"
         ]
       },
       "contradicted_by": [],
       "mentions": [
+        "chicago_american_1835_06_27#c013",
+        "chicago_american_1835_07_18#c004",
         "chicago_democrat_1833_11_26#c011",
+        "chicago_democrat_1833_12_17#c002",
         "chicago_democrat_1834_04_08#c009",
         "chicago_democrat_1834_05_07#c010",
         "chicago_democrat_1834_06_25#c003",
@@ -67738,7 +67467,10 @@
           "first_issue": "1833-11-26",
           "last_issue": "1835-07-22",
           "claims": [
+            "chicago_american_1835_06_27#c013",
+            "chicago_american_1835_07_18#c004",
             "chicago_democrat_1833_11_26#c011",
+            "chicago_democrat_1833_12_17#c002",
             "chicago_democrat_1834_04_08#c009",
             "chicago_democrat_1835_06_04#c011",
             "chicago_democrat_1835_07_08#c011",
@@ -67765,68 +67497,14 @@
           }
         }
       ],
-      "built_at_scene_date": true,
-      "survival_liberty_required": false
-    },
-    {
-      "id": "business_philo_carpenter_drugs_and_medicines",
-      "name": "Philo Carpenter, drugs and medicines",
-      "proprietors": [
-        "Philo Carpenter"
+      "trade_variants": [
+        "drugs and medicines",
+        "drugs, medicines, dye woods and dye stuffs"
       ],
-      "trade": "drugs, medicines, dye woods and dye stuffs",
-      "goods": [
-        "Dye Stuffs",
-        "Dye Woods",
-        "Grass Scythes",
-        "Hay Forks",
-        "Manure Forks",
-        "Perfumery",
-        "Rifles",
-        "Scythe Stones",
-        "Shovels",
-        "Surgical Instruments",
-        "Trusses",
-        "temperance almanacs"
-      ],
-      "street": null,
-      "placement": {
-        "class": "none",
-        "anchor": null,
-        "offset_text": null,
-        "offset_normalized": null,
-        "street": null
-      },
-      "evidence": {
-        "first_issue": "1833-12-17",
-        "last_issue": "1835-07-18",
-        "copy_dates": [
-          "1833-12-16"
-        ]
-      },
-      "contradicted_by": [],
-      "mentions": [
-        "chicago_american_1835_06_27#c013",
-        "chicago_american_1835_07_18#c004",
-        "chicago_democrat_1833_12_17#c002"
-      ],
-      "placement_readings": [
+      "merged": [
         {
-          "anchor": null,
-          "class": "none",
-          "first_issue": "1833-12-17",
-          "last_issue": "1835-07-18",
-          "claims": [
-            "chicago_american_1835_06_27#c013",
-            "chicago_american_1835_07_18#c004",
-            "chicago_democrat_1833_12_17#c002"
-          ],
-          "placement": {
-            "class": "none",
-            "anchor": null,
-            "offset_text": null,
-            "note": "Carpenter never advertises his own address in these papers; his STORE is placed only by the boot and shoe maker who takes the shop next door to it (c004)."
-          }
+          "from": "Philo Carpenter, drugs and medicines",
+          "merge_rule": "'Philo Carpenter' and 'Philo Carpenter, drugs and medicines' are the town's druggist in the two papers: the Democrat from 1833-11-26 c011 to 1835-07-22 c015 in the first record, the American of 1835-06-27 c013 and 1835-07-18 c004 plus the Democrat's almanac notice of 1833-12-17 c002 in the second, all of them signed Philo Carpenter and selling drugs, medicines, dye woods and dye stuffs wholesale and retail. Neither record carries a street on its placement, so the Sign of the Golden Mortar stays where its own claim puts it."
         }
       ],
       "built_at_scene_date": true,
@@ -67837,10 +67515,12 @@
       "name": "Pierce & Abbott",
       "proprietors": [
         "Asahel Pierce",
-        "Titus H. Abbott"
+        "Titus H. Abbott",
+        "Pierce & Abb[ott]"
       ],
       "trade": "blacksmiths",
       "goods": [
+        "Prairie Ploughs",
         "blacksmith work of all kinds",
         "prairie ploughs"
       ],
@@ -67867,6 +67547,8 @@
       ],
       "mentions": [
         "chicago_democrat_1834_02_04#c012",
+        "chicago_democrat_1834_04_08#c011",
+        "chicago_democrat_1834_05_07#c004",
         "chicago_democrat_1834_06_11#c003"
       ],
       "placement_readings": [
@@ -67874,9 +67556,10 @@
           "anchor": "the Chicago Hotel",
           "class": "relative",
           "first_issue": "1834-02-04",
-          "last_issue": "1834-02-04",
+          "last_issue": "1834-04-08",
           "claims": [
-            "chicago_democrat_1834_02_04#c012"
+            "chicago_democrat_1834_02_04#c012",
+            "chicago_democrat_1834_04_08#c011"
           ],
           "placement": {
             "class": "relative",
@@ -67887,108 +67570,34 @@
         {
           "anchor": null,
           "class": "none",
-          "first_issue": "1834-06-11",
+          "first_issue": "1834-05-07",
           "last_issue": "1834-06-11",
           "claims": [
+            "chicago_democrat_1834_05_07#c004",
             "chicago_democrat_1834_06_11#c003"
-          ],
-          "placement": {
-            "class": "none",
-            "anchor": null,
-            "offset_text": null,
-            "offset_normalized": null,
-            "street": null
-          }
-        }
-      ],
-      "built_at_scene_date": false,
-      "survival_liberty_required": false
-    },
-    {
-      "id": "business_pierce_abbott_blacksmiths",
-      "name": "Pierce & Abbott, blacksmiths",
-      "proprietors": [
-        "Pierce & Abb[ott]"
-      ],
-      "trade": "blacksmith",
-      "goods": [
-        "Prairie Ploughs"
-      ],
-      "street": null,
-      "placement": {
-        "class": "relative",
-        "anchor": "the Chicago Hotel",
-        "offset_text": "business in said town, nearly: ¢\ncago Hotel, where they are rey",
-        "offset_normalized": "nearly [opposite the Chi]cago Hotel",
-        "street": null
-      },
-      "evidence": {
-        "first_issue": "1834-04-08",
-        "last_issue": "1834-04-08",
-        "copy_dates": []
-      },
-      "contradicted_by": [],
-      "mentions": [
-        "chicago_democrat_1834_04_08#c011"
-      ],
-      "placement_readings": [
-        {
-          "anchor": "the Chicago Hotel",
-          "class": "relative",
-          "first_issue": "1834-04-08",
-          "last_issue": "1834-04-08",
-          "claims": [
-            "chicago_democrat_1834_04_08#c011"
-          ],
-          "placement": {
-            "class": "relative",
-            "anchor": "the Chicago Hotel",
-            "offset_text": "business in said town, nearly: ¢\ncago Hotel, where they are rey",
-            "offset_normalized": "nearly [opposite the Chi]cago Hotel",
-            "street": null
-          }
-        }
-      ],
-      "built_at_scene_date": true,
-      "survival_liberty_required": true
-    },
-    {
-      "id": "business_pierce_abbott_dissolved_continued_by_asahel_pierce",
-      "name": "Pierce & Abbott (dissolved; continued by Asahel Pierce)",
-      "proprietors": [],
-      "trade": "unstated — the notice names no trade",
-      "goods": [],
-      "street": null,
-      "placement": {
-        "class": "none"
-      },
-      "evidence": {
-        "first_issue": "1834-05-07",
-        "last_issue": "1834-05-07",
-        "copy_dates": [
-          "1834-05-05"
-        ]
-      },
-      "contradicted_by": [],
-      "mentions": [
-        "chicago_democrat_1834_05_07#c004"
-      ],
-      "placement_readings": [
-        {
-          "anchor": null,
-          "class": "none",
-          "first_issue": "1834-05-07",
-          "last_issue": "1834-05-07",
-          "claims": [
-            "chicago_democrat_1834_05_07#c004"
           ],
           "placement": {
             "class": "none"
           }
         }
       ],
-      "built_at_scene_date": true,
-      "survival_liberty_required": true
+      "trade_variants": [
+        "blacksmith",
+        "blacksmiths",
+        "unstated — the notice names no trade"
+      ],
+      "merged": [
+        {
+          "from": "Pierce & Abbott, blacksmiths",
+          "merge_rule": "'Pierce & Abbott' and 'Pierce & Abbott, blacksmiths' are one shop under one advertisement: 'NEW BLACKSMITH SHOP … nearly opposite the Chicago Hotel', copy-dated 1833-12-10 and printed at 1834-02-04 c012 and 1834-04-08 c011. Same partners, Asahel Pierce and Titus H. Abbott, same anchor."
+        },
+        {
+          "from": "Pierce & Abbott (dissolved; continued by Asahel Pierce)",
+          "merge_rule": "'Pierce & Abbott (dissolved; continued by Asahel Pierce)' is 'Pierce & Abbott' annotated by this project's own extractor with what the notice says, not a second firm. Its claim 1834-05-07 c004 and the surviving record's contradiction 1834-06-11 c003 are two printings of ONE dissolution notice, copy-dated 5 May 1834 on both. The merge does not soften the dissolution: the contradiction stays on the record it was already recorded against."
+        }
+      ],
+      "built_at_scene_date": false,
+      "survival_liberty_required": false
     },
     {
       "id": "business_pierce_french",
@@ -69043,7 +68652,8 @@
       "id": "business_sarah_d_howe",
       "name": "Sarah D. Howe",
       "proprietors": [
-        "Howe, Sarah D."
+        "Howe, Sarah D.",
+        "Sarah D. Howe"
       ],
       "trade": "dress, cloak and habit making",
       "goods": [],
@@ -69055,13 +68665,14 @@
       },
       "evidence": {
         "first_issue": "1835-08-19",
-        "last_issue": "1835-08-19",
+        "last_issue": "1835-08-22",
         "copy_dates": [
           "1835-08-18"
         ]
       },
       "contradicted_by": [],
       "mentions": [
+        "chicago_american_1835_08_22#c001",
         "chicago_democrat_1835_08_19#c013"
       ],
       "placement_readings": [
@@ -69078,39 +68689,7 @@
             "anchor": "the house occupied by Dr. Austin",
             "offset_text": "she fina taken 2 room in Lake-atreet; in tue house occupied by Dr. Austin, and oppoaito Dr, Tomplo's"
           }
-        }
-      ],
-      "built_at_scene_date": true,
-      "survival_liberty_required": false
-    },
-    {
-      "id": "business_sarah_d_howe_dress_cloak_and_habit_making",
-      "name": "Sarah D. Howe, dress, cloak and habit making",
-      "proprietors": [
-        "Sarah D. Howe"
-      ],
-      "trade": "dress, cloak and habit making",
-      "goods": [],
-      "street": null,
-      "placement": {
-        "class": "relative",
-        "anchor": "the house occupied by Dr. Austin, opposite Dr. Temple's",
-        "offset_text": "taken n room a street in the house eceapied by Dr. Aus",
-        "offset_normalized": "taken a room [in …] street, in the house [o]c[c]upied by Dr. Aus[tin], opposite Dr. Temple's",
-        "street": null
-      },
-      "evidence": {
-        "first_issue": "1835-08-22",
-        "last_issue": "1835-08-22",
-        "copy_dates": [
-          "1835-08-18"
-        ]
-      },
-      "contradicted_by": [],
-      "mentions": [
-        "chicago_american_1835_08_22#c001"
-      ],
-      "placement_readings": [
+        },
         {
           "anchor": "the house occupied by Dr. Austin, opposite Dr. Temple's",
           "class": "relative",
@@ -69126,6 +68705,12 @@
             "offset_normalized": "taken a room [in …] street, in the house [o]c[c]upied by Dr. Aus[tin], opposite Dr. Temple's",
             "street": null
           }
+        }
+      ],
+      "merged": [
+        {
+          "from": "Sarah D. Howe, dress, cloak and habit making",
+          "merge_rule": "'Sarah D. Howe' and 'Sarah D. Howe, dress, cloak and habit making' are one notice in both papers, copy-dated 1835-08-18 on each — the Democrat of 1835-08-19 c013 and the American of 1835-08-22 c001 — both reading that she has taken a room in Lake street, in the house occupied by Dr. Austin and opposite Dr. Temple's. Two anchors, identical in both settings."
         }
       ],
       "built_at_scene_date": true,
@@ -69427,55 +69012,6 @@
       "survival_liberty_required": true
     },
     {
-      "id": "business_the_chicago_bakery",
-      "name": "the Chicago Bakery",
-      "proprietors": [
-        "D. Graves"
-      ],
-      "trade": "baker",
-      "goods": [
-        "Bread",
-        "Cakes"
-      ],
-      "street": "South Water Street",
-      "placement": {
-        "class": "relative",
-        "anchor": "Newbury & Dole's store",
-        "offset_text": "South AeA Se bli? postenor\nNewbury & Dole’s store,",
-        "offset_normalized": "South [Water Street, …] posterior [to] Newbury & Dole's store",
-        "street": "South Water Street"
-      },
-      "evidence": {
-        "first_issue": "1834-04-01",
-        "last_issue": "1834-04-01",
-        "copy_dates": []
-      },
-      "contradicted_by": [],
-      "mentions": [
-        "chicago_democrat_1834_04_01#c008"
-      ],
-      "placement_readings": [
-        {
-          "anchor": "Newbury & Dole's store",
-          "class": "relative",
-          "first_issue": "1834-04-01",
-          "last_issue": "1834-04-01",
-          "claims": [
-            "chicago_democrat_1834_04_01#c008"
-          ],
-          "placement": {
-            "class": "relative",
-            "anchor": "Newbury & Dole's store",
-            "offset_text": "South AeA Se bli? postenor\nNewbury & Dole’s store,",
-            "offset_normalized": "South [Water Street, …] posterior [to] Newbury & Dole's store",
-            "street": "South Water Street"
-          }
-        }
-      ],
-      "built_at_scene_date": true,
-      "survival_liberty_required": true
-    },
-    {
       "id": "business_the_chicago_brewery",
       "name": "the Chicago Brewery",
       "proprietors": [
@@ -69534,7 +69070,11 @@
       "goods": [
         "Advertisements",
         "Job Printing",
-        "Subscriptions"
+        "Newspaper",
+        "Subscriptions",
+        "blank forms",
+        "job printing",
+        "newspaper"
       ],
       "street": "South Water Street",
       "placement": {
@@ -69548,12 +69088,17 @@
       "evidence": {
         "first_issue": "1833-11-26",
         "last_issue": "1835-08-05",
-        "copy_dates": []
+        "copy_dates": [
+          "1834-10-08"
+        ]
       },
       "contradicted_by": [],
       "mentions": [
         "chicago_democrat_1833_11_26#c033",
         "chicago_democrat_1834_08_27#c009",
+        "chicago_democrat_1834_09_17#c010",
+        "chicago_democrat_1834_10_08#c005",
+        "chicago_democrat_1834_12_03#c023",
         "chicago_democrat_1835_08_05#c026"
       ],
       "placement_readings": [
@@ -69561,10 +69106,12 @@
           "anchor": "the corner of South Water and Clark streets",
           "class": "corner",
           "first_issue": "1833-11-26",
-          "last_issue": "1834-08-27",
+          "last_issue": "1834-12-03",
           "claims": [
             "chicago_democrat_1833_11_26#c033",
-            "chicago_democrat_1834_08_27#c009"
+            "chicago_democrat_1834_08_27#c009",
+            "chicago_democrat_1834_09_17#c010",
+            "chicago_democrat_1834_12_03#c023"
           ],
           "placement": {
             "class": "corner",
@@ -69573,6 +69120,22 @@
             "offset_normalized": "in the building on the corner of South Water and Clark-streets",
             "street": "South Water Street",
             "note": "The JUNCTION only. 'on the corner of' does not say which of the four, and the pencilled 'S. W.' in the page margin is a later reader's gloss, quarantined."
+          }
+        },
+        {
+          "anchor": "corner of Clark and South Water streets",
+          "class": "corner",
+          "first_issue": "1834-10-08",
+          "last_issue": "1834-10-08",
+          "claims": [
+            "chicago_democrat_1834_10_08#c005"
+          ],
+          "placement": {
+            "class": "corner",
+            "anchor": "corner of Clark and South Water streets",
+            "offset_text": "ad as the office of the Democrat, on the\nof Clark ank-South Water atrcets, is of",
+            "offset_normalized": "[and as] the office of the Democrat, on the [corner] of Clark an[d] South Water [s]tr[e]ets",
+            "street": "South Water Street"
           }
         },
         {
@@ -69590,110 +69153,22 @@
           }
         }
       ],
+      "trade_variants": [
+        "newspaper printing and job printing",
+        "newspaper printing office"
+      ],
+      "merged": [
+        {
+          "from": "Chicago Democrat",
+          "merge_rule": "'The Chicago Democrat' and 'Chicago Democrat' are the paper naming itself, and the witness is the imprint it reprinted every week: 1833-11-26 c033 and 1834-08-27 c009 under the longer style, 1834-09-17 c010 and 1834-12-03 c023 under the shorter, all four placing it in the building at the corner of South Water and Clark streets over John Calhoun's name. A newspaper cannot be wrong about its own address and the definite article is not a second business."
+        },
+        {
+          "from": "Chicago Democrat (office)",
+          "merge_rule": "'Chicago Democrat (office)' is 'The Chicago Democrat' with a disambiguator this project's own extractor added, not a style any printing carries. Its single claim, 1834-10-08 c005, offers for sale 'the store now occupied by W. Kimball, and as the office of the Democrat, on the corner of Clark and South Water streets' — the same corner the imprint gives at 1833-11-26 c033 and 1834-12-03 c023, and the same proprietor, John Calhoun."
+        }
+      ],
       "built_at_scene_date": true,
       "survival_liberty_required": false
-    },
-    {
-      "id": "business_the_chicago_democrat_s_printing_office",
-      "name": "the Chicago Democrat's printing office",
-      "proprietors": [],
-      "trade": "newspaper printing office",
-      "goods": [
-        "job printing"
-      ],
-      "street": "South Water Street",
-      "placement": {
-        "class": "corner",
-        "anchor": "the corner of South Water and Clark streets",
-        "offset_text": "in the building on the corner of South Water and Clark: streets.",
-        "offset_normalized": "in the building on the corner of South Water and Clark streets",
-        "street": "South Water Street"
-      },
-      "evidence": {
-        "first_issue": "1834-01-07",
-        "last_issue": "1834-01-07",
-        "copy_dates": []
-      },
-      "contradicted_by": [],
-      "mentions": [
-        "chicago_democrat_1834_01_07#c006"
-      ],
-      "placement_readings": [
-        {
-          "anchor": "the corner of South Water and Clark streets",
-          "class": "corner",
-          "first_issue": "1834-01-07",
-          "last_issue": "1834-01-07",
-          "claims": [
-            "chicago_democrat_1834_01_07#c006"
-          ],
-          "placement": {
-            "class": "corner",
-            "anchor": "the corner of South Water and Clark streets",
-            "offset_text": "in the building on the corner of South Water and Clark: streets.",
-            "offset_normalized": "in the building on the corner of South Water and Clark streets",
-            "street": "South Water Street"
-          }
-        }
-      ],
-      "built_at_scene_date": true,
-      "survival_liberty_required": true
-    },
-    {
-      "id": "business_the_chicago_soap_and_candle_manufactory",
-      "name": "the Chicago Soap and Candle Manufactory",
-      "proprietors": [
-        "Daniel Elston"
-      ],
-      "trade": "soap and candle manufactory",
-      "goods": [
-        "candles",
-        "hard soap",
-        "soap",
-        "soft soap",
-        "wax candles"
-      ],
-      "street": null,
-      "placement": {
-        "class": "none",
-        "anchor": null,
-        "offset_text": null,
-        "offset_normalized": null,
-        "street": null
-      },
-      "evidence": {
-        "first_issue": "1834-01-07",
-        "last_issue": "1834-04-08",
-        "copy_dates": [
-          "1834-04-01"
-        ]
-      },
-      "contradicted_by": [],
-      "mentions": [
-        "chicago_democrat_1834_01_07#c012",
-        "chicago_democrat_1834_04_08#c005"
-      ],
-      "placement_readings": [
-        {
-          "anchor": null,
-          "class": "none",
-          "first_issue": "1834-01-07",
-          "last_issue": "1834-04-08",
-          "claims": [
-            "chicago_democrat_1834_01_07#c012",
-            "chicago_democrat_1834_04_08#c005"
-          ],
-          "placement": {
-            "class": "none",
-            "anchor": null,
-            "offset_text": null,
-            "offset_normalized": null,
-            "street": null
-          }
-        }
-      ],
-      "built_at_scene_date": true,
-      "survival_liberty_required": true
     },
     {
       "id": "business_the_dearborn_street_auction_and_commission_rooms",
@@ -70078,23 +69553,25 @@
       },
       "evidence": {
         "first_issue": "1834-01-28",
-        "last_issue": "1834-01-28",
+        "last_issue": "1834-05-21",
         "copy_dates": [
           "1833-10-04"
         ]
       },
       "contradicted_by": [],
       "mentions": [
-        "chicago_democrat_1834_01_28#c009"
+        "chicago_democrat_1834_01_28#c009",
+        "chicago_democrat_1834_05_21#c002"
       ],
       "placement_readings": [
         {
           "anchor": null,
           "class": "none",
           "first_issue": "1834-01-28",
-          "last_issue": "1834-01-28",
+          "last_issue": "1834-05-21",
           "claims": [
-            "chicago_democrat_1834_01_28#c009"
+            "chicago_democrat_1834_01_28#c009",
+            "chicago_democrat_1834_05_21#c002"
           ],
           "placement": {
             "class": "none",
@@ -70105,42 +69582,14 @@
           }
         }
       ],
-      "built_at_scene_date": true,
-      "survival_liberty_required": true
-    },
-    {
-      "id": "business_the_traveller_s_home_the_stand_lately_occupied_by_w_wattles",
-      "name": "the Traveller's Home (the stand lately occupied by W. Wattles)",
-      "proprietors": [],
-      "trade": "tavern / house of entertainment",
-      "goods": [],
-      "street": null,
-      "placement": {
-        "class": "none"
-      },
-      "evidence": {
-        "first_issue": "1834-05-21",
-        "last_issue": "1834-05-21",
-        "copy_dates": [
-          "1833-10-04"
-        ]
-      },
-      "contradicted_by": [],
-      "mentions": [
-        "chicago_democrat_1834_05_21#c002"
+      "trade_variants": [
+        "tavern",
+        "tavern / house of entertainment"
       ],
-      "placement_readings": [
+      "merged": [
         {
-          "anchor": null,
-          "class": "none",
-          "first_issue": "1834-05-21",
-          "last_issue": "1834-05-21",
-          "claims": [
-            "chicago_democrat_1834_05_21#c002"
-          ],
-          "placement": {
-            "class": "none"
-          }
+          "from": "the Traveller's Home (the stand lately occupied by W. Wattles)",
+          "merge_rule": "'the Traveller's Home (the stand lately occupied by W. Wattles)' is 'the Traveller's Home' annotated by this project's own extractor with the succession its own notice states. Both records rest on one standing advertisement copy-dated 1833-10-04 — 1834-01-28 c009 and 1834-05-21 c002 — in which the subscriber has taken that noted tavern stand in Chicago lately occupied by Wattles and will make it the Traveller's Home."
         }
       ],
       "built_at_scene_date": true,
@@ -71355,6 +70804,20 @@
           }
         }
       ],
+      "refused_merges": [
+        {
+          "with": "W. Montgomery, boot and shoe maker",
+          "kind": "two_houses",
+          "witnesses": [
+            "chicago_democrat_1834_01_28#c008",
+            "chicago_democrat_1834_03_04#c028",
+            "chicago_democrat_1834_03_25#c009",
+            "chicago_democrat_1835_07_08#c001",
+            "chicago_democrat_1835_07_22#c011"
+          ],
+          "refused_because": "'W. Montgomery' and 'W. Montgomery, boot and shoe maker' are two houses and this is the trap the surname grouping was always going to set. The bootmaker is L. W. Montgomery with the L lost in the setting: his advertisement is copy-dated Dec. 15/18, 1833, places him next door to P. Cohen's store (1834-01-28 c008, 1834-03-04 c028, 1834-03-25 c009) and is the same standing notice the L. W. Montgomery records carry. 'W. Montgomery' is the auctioneer who takes David Carver's old stand in South Water street in July 1835 (1835-07-08 c001) and signs 'W. MONTGOMERY, Auc'r' (1835-07-22 c011) — a different trade, a different stand and eighteen months later. Whether the bootmaker's two spellings are one man is a forename question and belongs to T-0400."
+        }
+      ],
       "built_at_scene_date": true,
       "survival_liberty_required": false
     },
@@ -71468,6 +70931,20 @@
             "offset_normalized": "next door to P. Coh[e]n's Store",
             "street": null
           }
+        }
+      ],
+      "refused_merges": [
+        {
+          "with": "W. Montgomery",
+          "kind": "two_houses",
+          "witnesses": [
+            "chicago_democrat_1834_01_28#c008",
+            "chicago_democrat_1834_03_04#c028",
+            "chicago_democrat_1834_03_25#c009",
+            "chicago_democrat_1835_07_08#c001",
+            "chicago_democrat_1835_07_22#c011"
+          ],
+          "refused_because": "'W. Montgomery' and 'W. Montgomery, boot and shoe maker' are two houses and this is the trap the surname grouping was always going to set. The bootmaker is L. W. Montgomery with the L lost in the setting: his advertisement is copy-dated Dec. 15/18, 1833, places him next door to P. Cohen's store (1834-01-28 c008, 1834-03-04 c028, 1834-03-25 c009) and is the same standing notice the L. W. Montgomery records carry. 'W. Montgomery' is the auctioneer who takes David Carver's old stand in South Water street in July 1835 (1835-07-08 c001) and signs 'W. MONTGOMERY, Auc'r' (1835-07-22 c011) — a different trade, a different stand and eighteen months later. Whether the bootmaker's two spellings are one man is a forename question and belongs to T-0400."
         }
       ],
       "built_at_scene_date": true,
