@@ -155,7 +155,12 @@
         "verbatim": "Chicago, Aogust 7, 1835—17",
         "iso": "1835-08-07"
       },
-      "announces_opening": true
+      "announces_opening": {
+        "verbatim": "he has commenced the practice of Medicine and opened an office on Lake street near the post office",
+        "dating": "effected",
+        "iso": "1835-08-07",
+        "note": "'Has commenced ... and opened' over a dateline of 7 August 1835. The opening is on or before that day and the copy is silent about 1 July."
+      }
     },
     {
       "id": "c005",
@@ -224,7 +229,12 @@
         "verbatim": "Aegust 12, 1835.14",
         "iso": "1835-08-12"
       },
-      "announces_opening": true
+      "announces_opening": {
+        "verbatim": "[H]AS commenced his profession of [teaching music in Chi]cago",
+        "dating": "effected",
+        "iso": "1835-08-12",
+        "note": "The second notice: in July Lewis 'intends commencing' a school when scholars offer, and by 12 August 1835 he 'has commenced'. The July copy is itself dated 22 June 1835, before the scene date."
+      }
     },
     {
       "id": "c006",
@@ -269,7 +279,12 @@
         "verbatim": "M Chicogo, Aunt §, 1856. ae",
         "iso": "1835-08-05"
       },
-      "announces_opening": true
+      "announces_opening": {
+        "verbatim": "he will [open a] HIGH SCHOOL for Young Gentlemen [on] the 10th of the present month",
+        "dating": "stated",
+        "iso": "1835-08-10",
+        "note": "The advertisement is dated 5 August 1835, so 'the present month' is August and the school opens on 10 August 1835 — and only 'should sufficient encouragement be offered'. It was not open on 1 July."
+      }
     },
     {
       "id": "c007",
@@ -316,7 +331,12 @@
           "offset_text": "at the office of Henry Moore, Faq, whe salivfactory credentials may ba seen."
         }
       },
-      "announces_opening": true
+      "announces_opening": {
+        "verbatim": "The first te[rm] will co[m]mence Monday August 17",
+        "dating": "stated",
+        "iso": "1835-08-17",
+        "note": "The paper names the date in full. Hunt 'proposes to establish' the school and asks for names to be left beforehand, so nothing was teaching on 1 July 1835."
+      }
     },
     {
       "id": "c008",
@@ -390,7 +410,12 @@
         "verbatim": "Chicago, ‘Joly 27, thee ; For Sale,",
         "iso": "1835-07-27"
       },
-      "announces_opening": true
+      "announces_opening": {
+        "verbatim": "he has rented the New Store [on] Dearborn st. for the purpose of transacting the Auction and Commission business",
+        "dating": "effected",
+        "iso": "1835-07-27",
+        "note": "The reprint of the 29 July notice, over the same 27 July 1835 dateline. This claim is graded `building` because the printing is unsigned."
+      }
     },
     {
       "id": "c010",
@@ -470,6 +495,12 @@
           "anchor": "Hubbard & Co.'s brick store",
           "offset_text": "a daving’ ore, its La Malle etree, | wF thubbard 2 Cole.” brick atore,"
         }
+      },
+      "announces_opening": {
+        "verbatim": "[The subscribers h]aving [taken the New St]ore in La Salle stree[t]",
+        "dating": "undated",
+        "iso": null,
+        "note": "The subscribers are unnamed and the notice is undated; the New Store is next door to Hubbard & Co.'s brick store and nothing dates the taking."
       }
     },
     {
@@ -526,7 +557,12 @@
         "verbatim": "Caitagn, Jane 10.",
         "iso": "1835-06-10"
       },
-      "announces_opening": true
+      "announces_opening": {
+        "verbatim": "is now opening a heavy [asso]rtment of the above named articles [on South] Water st., one door from Dearborn street",
+        "dating": "effected",
+        "iso": "1835-06-10",
+        "note": "Dated 10 June 1835, three weeks BEFORE the scene date: Holbrook's store was opening its stock in June and stood on South Water Street on 1 July."
+      }
     },
     {
       "id": "c013",

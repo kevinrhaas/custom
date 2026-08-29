@@ -127,8 +127,17 @@
           "street": "Dearborn Street"
         }
       },
-      "announces_opening": true,
-      "notes": "A SECOND AUCTION HOUSE OPENS IN THE TOWN, IN A NEW STORE ON DEARBORN STREET, and its proprietor cannot be named. 'AL GARRES 7 GQt}' is the whole of the signature this transcription carries and no second witness exists — the issue is the last in the range and the advertisement is new in it — so the business is recorded under what it IS rather than under a name invented for it, `entities` is empty, and the reading of the signature stays inside `[uncertain: …]`. THE PLACEMENT IS THE VALUABLE PART AND IT IS SOUND: 'rented the New Store on Dearborn Street', dated 27 July 1835, two days before the issue. `class: street_only` — a street and a building described as new, but no side, number or neighbour. ANNOUNCES AN OPENING, so under the parent's rule this house was NOT standing on the scene date: W. Montgomery's rooms on South Water Street were the town's auction house on 1 July 1835, and this is a competitor arriving four weeks later."
+      "announces_opening": {
+        "verbatim": "[that he has] [r]ented the New Stor[e] o[n] Dearborn [Street, for] the p[u]r[p]o[s]e of [t]ransacting [th]e A[uction] and Com[mi]ss[i]on busine[ss]",
+        "dating": "effected",
+        "iso": "1835-07-27",
+        "note": "'Has rented' over the printing's own dateline of 27 July 1835. The same copy is reprinted on 12 August (c009 there), where the dateline reads the same day."
+      },
+      "notes": "A SECOND AUCTION HOUSE OPENS IN THE TOWN, IN A NEW STORE ON DEARBORN STREET, and its proprietor cannot be named. 'AL GARRES 7 GQt}' is the whole of the signature this transcription carries and no second witness exists — the issue is the last in the range and the advertisement is new in it — so the business is recorded under what it IS rather than under a name invented for it, `entities` is empty, and the reading of the signature stays inside `[uncertain: …]`. THE PLACEMENT IS THE VALUABLE PART AND IT IS SOUND: 'rented the New Store on Dearborn Street', dated 27 July 1835, two days before the issue. `class: street_only` — a street and a building described as new, but no side, number or neighbour. ANNOUNCES AN OPENING, so under the parent's rule this house was NOT standing on the scene date: W. Montgomery's rooms on South Water Street were the town's auction house on 1 July 1835, and this is a competitor arriving four weeks later.",
+      "ad_copy_date": {
+        "verbatim": "Chicago, July 27, In",
+        "iso": "1835-07-27"
+      }
     },
     {
       "id": "c005",
@@ -379,8 +388,17 @@
           "street": "Dearborn Street"
         }
       },
-      "announces_opening": true,
-      "notes": "THE SECOND WITNESS, AND IT NAMES THE ANCHOR MORE FULLY THAN THE FIRST. The 1835-07-22 printing reads 'nearly opposite the Pagle House'; this one reads 'yeurly mppesite. ihe haghy .{Cutfir Monae', which is 'nearly opposite the Eagle Coffee House' — and the Eagle COFFEE House is the house the Democratic citizens of Chicago Precinct meet in (chicago_democrat_1835_07_15 c002). Two witnesses, three claims, one building: the anchor is the Eagle Coffee House and the shop is nearly opposite it on Dearborn Street. THE DATE the second witness adds: 'daly 22' is 22 July 1835, the date of the previous issue, so the shop was taken in the last week of July and `announces_opening` stands."
+      "announces_opening": {
+        "verbatim": "they hav[e] taken a shop. on [D]earbo[r]n S[t]reet",
+        "dating": "effected",
+        "iso": "1835-07-22",
+        "note": "'Have taken' over the dateline 'July 22, 1835' this printing carries and the 22 July printing does not. The date bounds the taking from ABOVE: the shop was theirs on or before 22 July, and the copy says nothing about 1 July."
+      },
+      "notes": "THE SECOND WITNESS, AND IT NAMES THE ANCHOR MORE FULLY THAN THE FIRST. The 1835-07-22 printing reads 'nearly opposite the Pagle House'; this one reads 'yeurly mppesite. ihe haghy .{Cutfir Monae', which is 'nearly opposite the Eagle Coffee House' — and the Eagle COFFEE House is the house the Democratic citizens of Chicago Precinct meet in (chicago_democrat_1835_07_15 c002). Two witnesses, three claims, one building: the anchor is the Eagle Coffee House and the shop is nearly opposite it on Dearborn Street. THE DATE the second witness adds: 'daly 22' is 22 July 1835, the date of the previous issue, so the shop was taken in the last week of July and `announces_opening` stands.",
+      "ad_copy_date": {
+        "verbatim": "daly 22 sa,",
+        "iso": "1835-07-22"
+      }
     },
     {
       "id": "c010",

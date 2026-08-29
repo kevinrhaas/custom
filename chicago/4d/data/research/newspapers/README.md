@@ -497,9 +497,39 @@ gazetteer's own identity policy, imported so the two tools cannot drift), `repla
 (a documented person of a trade the town invented a household for) and `new_resident`
 (everybody else — owner ruling 1, a letter-list name is enough).
 
-**Two exclusions, and the second is a proxy that says so.** A contradiction dated ON OR
+**Two exclusions, and the second one reads the paper (T-0356).** A contradiction dated ON OR
 BEFORE the scene date excludes; a LATER one is recorded (`dissolved_after_scene_date`) and
 disobeyed, because a firm dissolved in August 1835 was demonstrably open in July. The second
-is `first_evidence_after_scene_date`: T-0262 asked to exclude on an `announces_opening` field
-the claim vocabulary does not have, and this is the derivable question that comes closest.
-T-0356 is the field.
+used to be the proxy `first_evidence_after_scene_date` — T-0262 asked to exclude on an
+`announces_opening` field the claim vocabulary did not have, so the register excluded every
+business whose first surviving issue postdated 1 July. It is now
+`opening_announced_after_scene_date`, and it reads the field itself.
+
+**`announces_opening` is a reading, and its `dating` is the whole of it.** A claim of kind
+`business` or `building` may carry `{verbatim, dating, iso, note}`. `verbatim` must appear
+character for character in the claim's `normalized` reading; `note` says how the date was
+read; and `dating` is one of:
+
+| dating | what the printing says | what the register does |
+|---|---|---|
+| `stated` | names a date the house WILL open | excludes if that date is after the scene date |
+| `effected` | announces an opening already made; `iso` is the advertisement's own dateline and the gate refuses any other number | never excludes — the dateline bounds the opening from ABOVE. On or before the scene date it is positive evidence |
+| `undated` | announces an opening and dates it nowhere; `iso` must be absent | decides nothing |
+
+It had been a bare `true` on twenty claims that nothing read. The gate now refuses the
+boolean, so those twenty were re-read into dated readings, which is where Wm. H. Taylor's
+8 July 1834 dateline came from.
+
+**What the proxy cost, measured on the re-read.** Thirty-eight businesses carried it; four
+of them genuinely announce an opening after the scene date and stay out (Cromelien's wine
+branch, 14 Aug; Everts' high school, 10 Aug; Hunt's, 17 Aug; Lyon's wholesale grocery,
+1 Sep). The other thirty-four are back in the July town — among them five printed standing
+in it: Taylor's boot store over an 8 July 1834 dateline, Kennicott saying he had practised
+dentistry here "for the past year", Samuel Lewis's copy dated 22 June, S. Abell's 24 June
+and John Holbrook's 10 June.
+
+**And standing on August evidence alone is a liberty, which the register names.**
+`backdating_liberty_required` is the forward twin of `survival_liberty_required`: documented
+only after the scene date, present on it by assumption, and no opening notice dated on or
+before it to carry the assumption. Thirty-three businesses. `docs/LIBERTIES.md` carries
+neither class yet — T-0357 is the survival half and T-0404 the backdating half.
