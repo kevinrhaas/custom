@@ -14,7 +14,7 @@ building: `enrich_existing` where the advertisement's anchor names a roof this p
 holds, `new_building` where it names a place precise enough to raise one. Sixty do
 not. The paper names a PLATTED STREET AND NOTHING NARROWER — Peter Cohen at "the east end
 of South Water-street", J. S. C. Hogan on South Water — and the register calls them
-`street_only`. Eighty-five more reach no street the model holds at all.
+`street_only`. Eighty-four more reach no street the model holds at all.
 Those figures move with every newspaper merge and are a snapshot; the tool is the source.
 
 **The owner ruled on these on 2026-08-29**, choosing between the three options T-0354
@@ -112,7 +112,7 @@ THE REFUSALS, AND WHY EACH ONE IS THERE.
                                         (the two exact 'Blanshard's collide and one is
                                         refused), because the gazetteer's identity layer
                                         has not judged them one man and this file will not
-                                        judge it either. T-0407 measures that group and is
+                                        judge it either. T-0408 measures that group and is
                                         where it is settled.
 
 WHAT THIS FILE WILL NOT DO. It will not raise a structure, move one, promote one, or

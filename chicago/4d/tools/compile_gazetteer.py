@@ -581,8 +581,19 @@ def compile_gazetteer(files, identity, corpus, quiet=True):
                     "evidence": {"first_issue": issue_date, "last_issue": issue_date,
                                  "copy_dates": []},
                     "contradicted_by": [], "opening_announced": [], "mentions": [],
+                    "placement_readings": [],
                 })
                 b["mentions"].append(key)
+                # EVERY PRINTING'S OWN PLACEMENT, KEPT (T-0345). The dict above takes
+                # the placement of whichever claim mints the key, and until now every
+                # later printing's was thrown away — which is why a house whose printed
+                # anchor CHANGES could not be represented at all. Mason & Co.'s standing
+                # advertisement is set "nearly opposite Graves' Tavern" to 1834-07-16 and
+                # "opposite the Tremont House" from 1834-09-10 under the same copy date,
+                # and the gazetteer held only the first. Readings collapse on (class,
+                # anchor) and carry their own dates: this is what each printing SAID and
+                # when, not a judgement about it. The judgement is `anchor_changes`.
+                record_reading(b, biz.get("placement") or {}, issue_date, key)
                 b["evidence"]["first_issue"] = min(b["evidence"]["first_issue"], issue_date)
                 b["evidence"]["last_issue"] = max(b["evidence"]["last_issue"], issue_date)
                 for who in biz.get("proprietors", []):
@@ -850,6 +861,8 @@ def compile_gazetteer(files, identity, corpus, quiet=True):
                 dst["goods"].append(good)
         dst["contradicted_by"].extend(src["contradicted_by"])
         dst["opening_announced"].extend(src["opening_announced"])
+        for reading in src["placement_readings"]:
+            absorb_reading(dst, reading)
         for cd in src["evidence"]["copy_dates"]:
             if cd not in dst["evidence"]["copy_dates"]:
                 dst["evidence"]["copy_dates"].append(cd)
@@ -871,6 +884,163 @@ def compile_gazetteer(files, identity, corpus, quiet=True):
             dst["trade_variants"] = sorted(trades)
         dst.setdefault("merged", []).append({"from": frm, "merge_rule": why})
 
+    # THE DATED ANCHOR CHANGE (T-0345). A firm merge unions two STYLES of one house.
+    # This is the other thing two printings of one advertisement can differ about, and
+    # it is not a spelling: Mason & Co.'s blacksmith notice runs under one copy date of
+    # 26 November 1833, reads "on Main-street, nearly opposite Graves' Tavern" to
+    # 1834-07-16, and from 1834-09-10 reads "on Main-street, opposite the Tremont House"
+    # with the rest of the copy word for word unchanged. Nothing printed says WHICH
+    # changed — the shop, or the name of the house across the street — and no
+    # declaration here may decide it.
+    #
+    # What is DECLARED is only that two of a house's readings name two different
+    # landmarks rather than two spellings of one. Everything else is COMPUTED from the
+    # readings the claims carry: the weeks each anchor was printed between, the order
+    # they were printed in, the gap the change is bracketed by, and which anchor is live
+    # at the scene date. Seven guards, and each one is a way this could quietly assert
+    # something the corpus does not say:
+    #   1. the house has to be one the corpus compiles, or nobody can check the rule;
+    #   2. two anchors at least — one anchor is not a change;
+    #   3. every reading the declaration names has to be a string some printing of THIS
+    #      house actually carries, matched verbatim against its own readings;
+    #   4. EVERY reading of the house has to be claimed by exactly one anchor. A
+    #      printing left out of the history is a printing silently dropped, which is the
+    #      defect this whole mechanism exists to end;
+    #   5. an anchor holding more than one reading is a GROUPING, which is a judgement,
+    #      so it needs its own `why` naming the anchor verbatim;
+    #   6. the windows may not OVERLAP. Two anchors printed in the same weeks are two
+    #      standing placements and this ticket's actual complaint; a change is a change
+    #      only where one anchor stops before the next starts;
+    #   7. `cannot_say` has to be written down. A dated anchor change that says nothing
+    #      about what the corpus leaves open has decided it in silence.
+    scene_iso = SCENE_DATE.isoformat()
+    for rule in identity.get("anchor_changes", []):
+        bid = rule.get("business")
+        groups = rule.get("anchors") or []
+        why = (rule.get("rule") or "").strip()
+        cannot = (rule.get("cannot_say") or "").strip()
+        label = "identity.json anchor_change %r" % bid
+        bkey = bid[len("business_"):] if (bid or "").startswith("business_") else bid
+        if not bkey or bkey not in businesses:
+            problems.append("%s: no business of that id is compiled — an anchor rule for "
+                            "a house that is not in the corpus is a rule nobody can check"
+                            % label)
+            continue
+        if len(groups) < 2:
+            problems.append("%s: a change needs at least two anchors — one anchor is not "
+                            "a change" % label)
+            continue
+        if not why:
+            problems.append("%s: no rule — an unexplained anchor change is a compile "
+                            "error, because a wrong reading of two printings is "
+                            "invisible afterwards" % label)
+            continue
+        if not cannot:
+            problems.append("%s: no `cannot_say` — a dated anchor change that does not "
+                            "state what the corpus leaves open has decided it in silence"
+                            % label)
+            continue
+        names = [g.get("name") for g in groups]
+        if not all(names):
+            problems.append("%s: every anchor needs a `name`" % label)
+            continue
+        unnamed = [n for n in names if n not in why]
+        if unnamed:
+            problems.append("%s: the rule must name %s verbatim, so the judgement can be "
+                            "read back without the code"
+                            % (label, ", ".join(repr(n) for n in unnamed)))
+            continue
+        biz = businesses[bkey]
+        held = {r["anchor"]: r for r in biz["placement_readings"]}
+        claimed, windows, bad = [], [], False
+        for g in groups:
+            readings = g.get("readings") or []
+            if not readings:
+                problems.append("%s: anchor %r claims no reading — an anchor nothing was "
+                                "printed under places nothing" % (label, g.get("name")))
+                bad = True
+                break
+            unknown = [r for r in readings if r not in held]
+            if unknown:
+                problems.append(
+                    "%s: %s is not an anchor any printing of this house carries (it "
+                    "reads %s) — an anchor rule may only order readings the corpus "
+                    "already made"
+                    % (label, ", ".join(repr(u) for u in unknown),
+                       ", ".join(repr(a) for a in sorted(held, key=lambda x: x or ""))))
+                bad = True
+                break
+            if len(readings) > 1 and g.get("name") not in (g.get("why") or ""):
+                problems.append("%s: anchor %r groups %d readings and its `why` does not "
+                                "name it verbatim — calling two printed anchors one "
+                                "landmark is a judgement and it has to be written down"
+                                % (label, g.get("name"), len(readings)))
+                bad = True
+                break
+            claimed.extend(readings)
+            rs = [held[r] for r in readings]
+            windows.append({
+                "name": g.get("name"),
+                "why": (g.get("why") or "").strip() or None,
+                "first_issue": min(r["first_issue"] for r in rs),
+                "last_issue": max(r["last_issue"] for r in rs),
+                "readings": sorted(
+                    ({"anchor": r["anchor"], "class": r["class"],
+                      "first_issue": r["first_issue"], "last_issue": r["last_issue"],
+                      "claims": sorted(r["claims"]), "placement": r["placement"]}
+                     for r in rs),
+                    key=lambda r: (r["first_issue"], r["anchor"] or "")),
+                "claims": sorted({c for r in rs for c in r["claims"]}),
+                "placement": min(rs, key=lambda r: (r["first_issue"],
+                                                    min(r["claims"])))["placement"],
+            })
+        if bad:
+            continue
+        if len(set(claimed)) != len(claimed):
+            problems.append("%s: a reading is claimed by two anchors — one printing "
+                            "names one landmark" % label)
+            continue
+        left = [a for a in held if a not in set(claimed)]
+        if left:
+            problems.append("%s: %s is printed for this house and no anchor claims it — "
+                            "a reading left out of the history is a printing silently "
+                            "dropped, which is what this mechanism exists to end"
+                            % (label, ", ".join(repr(a) for a in sorted(left,
+                                                                       key=lambda x: x or ""))))
+            continue
+        windows.sort(key=lambda w: (w["first_issue"], w["last_issue"], w["name"]))
+        overlap = ["%r runs to %s and %r starts %s"
+                   % (a["name"], a["last_issue"], b2["name"], b2["first_issue"])
+                   for a, b2 in zip(windows, windows[1:])
+                   if b2["first_issue"] <= a["last_issue"]]
+        if overlap:
+            problems.append("%s: %s — these anchors were printed in overlapping weeks, "
+                            "which is two standing placements and not a change. A change "
+                            "is a change only where one anchor stops before the next "
+                            "starts." % (label, "; ".join(overlap)))
+            continue
+        live = windows[0]
+        for w in windows:
+            if w["first_issue"] <= scene_iso:
+                live = w
+        biz["placement"] = live["placement"]
+        biz["anchor_change"] = {
+            "rule": why,
+            "cannot_say": cannot,
+            "live_anchor": live["name"],
+            "live_reason": "The last of these anchors first printed on or before the "
+                           "scene date %s; this one was first printed %s."
+                           % (scene_iso, live["first_issue"]),
+            "changes": [{"from": a["name"], "to": b2["name"],
+                         "after": a["last_issue"], "before": b2["first_issue"]}
+                        for a, b2 in zip(windows, windows[1:])],
+            "history": [{"anchor": w["name"], "why": w["why"],
+                         "first_issue": w["first_issue"], "last_issue": w["last_issue"],
+                         "readings": w["readings"], "claims": w["claims"],
+                         "live_at_scene_date": w is live,
+                         "placement": w["placement"]}
+                        for w in windows],
+        }
     # …AND THE FIRMS' REFUSAL (T-0399), which is the other half of the same judgement
     # and had nowhere to live until now. `firm_surnames()` groups the register on the
     # partner surname alone, so it puts together houses that are not one house — the two
@@ -1035,6 +1205,10 @@ def compile_gazetteer(files, identity, corpus, quiet=True):
         b["mentions"].sort()
         b["opening_announced"].sort(key=lambda o: (o["iso"] or "", o["claim"]))
         b["evidence"]["copy_dates"].sort()
+        for r in b["placement_readings"]:
+            r["claims"].sort()
+        b["placement_readings"].sort(
+            key=lambda r: (r["first_issue"], r["anchor"] or "", r["class"] or ""))
     for p in persons.values():
         p["mentions"].sort()
         p["variants"].sort(key=lambda v: (v["claim"], v["as_printed"] or ""))
@@ -1251,6 +1425,48 @@ def proprietor_pairs(business):
             ia, ib = initials(a), initials(b)
             if ia and ib and ia != ib:
                 yield a, b
+
+
+# --------------------------------------------------------------------------
+# the placements a house was printed with, and their dates
+
+
+def reading_key(placement):
+    """Two printings carry ONE reading when they set the same class and anchor."""
+    p = placement or {}
+    return ((p.get("class") or ""), (p.get("anchor") or ""))
+
+
+def absorb_reading(business, reading):
+    """Fold a printing's placement into a house's readings, widening the window.
+
+    The placement KEPT for a reading is the earliest printing's, so the offset text
+    quoted beside it is the one the anchor was first set with. Ties break on the claim
+    key, because this compile is re-derived and byte-compared by the gate.
+    """
+    for r in business["placement_readings"]:
+        if reading_key(r["placement"]) != reading_key(reading["placement"]):
+            continue
+        if (reading["first_issue"], min(reading["claims"])) < (r["first_issue"],
+                                                              min(r["claims"])):
+            r["placement"] = reading["placement"]
+        r["first_issue"] = min(r["first_issue"], reading["first_issue"])
+        r["last_issue"] = max(r["last_issue"], reading["last_issue"])
+        for c in reading["claims"]:
+            if c not in r["claims"]:
+                r["claims"].append(c)
+        return
+    business["placement_readings"].append({
+        "anchor": (reading["placement"] or {}).get("anchor"),
+        "class": (reading["placement"] or {}).get("class"),
+        "first_issue": reading["first_issue"], "last_issue": reading["last_issue"],
+        "claims": list(reading["claims"]), "placement": reading["placement"],
+    })
+
+
+def record_reading(business, placement, issue_date, key):
+    absorb_reading(business, {"placement": placement or {}, "first_issue": issue_date,
+                              "last_issue": issue_date, "claims": [key]})
 
 
 def placement_rank(placement):
@@ -1584,6 +1800,14 @@ def check(extracted=EXTRACTED, gazetteer=GAZETTEER, identity=IDENTITY, corpus=CO
         print("  ok    %d house(s) hold two proprietors of one surname apart, each with "
               "the sentence that tells them apart"
               % len(identity_doc.get("proprietor_distinctions", [])))
+        readings = sum(len(b.get("placement_readings") or []) for b in doc["businesses"])
+        many = sum(1 for b in doc["businesses"]
+                   if len(b.get("placement_readings") or []) > 1)
+        print("  ok    %d placement reading(s) kept with their own dates, %d house(s) "
+              "printed with more than one, %d whose anchor CHANGES on a date — every "
+              "reading of those accounted for, the live one computed from the scene date"
+              % (readings, many,
+                 sum(1 for b in doc["businesses"] if b.get("anchor_change"))))
         print("  ok    %d firm group(s) refused rather than merged, each naming the "
               "printings the refusal rests on"
               % len(identity_doc.get("refused_firm_merges", [])))
@@ -1977,6 +2201,144 @@ def self_test():
         failures.append("a firm merge did not carry the goods across: %r" % got["goods"])
     elif not got.get("merged"):
         failures.append("a firm merge left no record of itself on the firm")
+
+
+    # THE DATED ANCHOR CHANGE (T-0345). These run against compile_gazetteer directly
+    # rather than through `run`, because a CHANGE needs two issues printed on different
+    # days and `run` writes one extraction file. Two issues are taken from corpus.json
+    # itself, earliest and latest, so the cases cannot rot into asserting a date the
+    # corpus stopped carrying.
+    dates = sorted((i.get("date"), i.get("id")) for i in corpus_doc.get("issues", [])
+                   if i.get("date") and i.get("id"))
+    scene_iso = SCENE_DATE.isoformat()
+    early_id = dates[0][1]
+    late_id = [i for d, i in dates if d <= scene_iso][-1]
+    after_id = dates[-1][1]                     # the corpus runs past the scene date
+
+    def anchor_docs(early_anchors, late_anchors):
+        def doc_for(issue_id, anchors):
+            return {"issue_id": issue_id, "claims": [
+                {"id": "za%d" % n, "kind": "business", "reading": "transcription_mediated",
+                 "business": {"name": "A. Smith & Co.", "trade": "blacksmith",
+                              "street": "Lake Street",
+                              "placement": {"class": "relative", "anchor": a,
+                                            "offset_text": "opposite %s" % a}}}
+                for n, a in enumerate(anchors)]}
+        return [doc_for(early_id, early_anchors), doc_for(late_id, late_anchors)]
+
+    def anchor_rule(groups, rule=None, cannot="the corpus does not say which moved",
+                    business="business_a_smith_co"):
+        names = [g["name"] for g in groups]
+        return {"merges": [], "anchor_changes": [{
+            "business": business, "anchors": groups,
+            "rule": rule if rule is not None
+            else "the anchor changes from %s" % " to ".join('"%s"' % n for n in names),
+            "cannot_say": cannot}]}
+
+    def run_anchor(docs, ident, want, label):
+        cases.append(label)
+        with tempfile.TemporaryDirectory() as td:
+            ex = Path(td) / "extracted"
+            ex.mkdir()
+            for doc in docs:
+                (ex / ("%s.json" % doc["issue_id"])).write_text(
+                    json.dumps(doc, ensure_ascii=False), encoding="utf-8")
+            out, probs = compile_gazetteer(sorted(ex.glob("*.json")), ident, corpus_doc)
+        if want is None:
+            if probs:
+                failures.append("%s: expected a clean compile, got %r" % (label, probs))
+            return out
+        if not any(want in b for b in probs):
+            failures.append("%s: expected a failure mentioning %r, got %r"
+                            % (label, want, probs))
+        return out
+
+    GRAVES = {"name": "the tavern", "readings": ["the tavern", "the tavern, on Main-st"],
+              "why": "two readings of the tavern, one sweeping the street in after it"}
+    TREMONT = {"name": "the hotel", "readings": ["the hotel"]}
+
+    out = run_anchor(anchor_docs(["the tavern", "the tavern, on Main-st"], ["the hotel"]),
+                     anchor_rule([GRAVES, TREMONT]), None,
+                     "an anchor that changes on a date, declared and dated")
+    got = next((b for b in out["businesses"] if b["id"] == "business_a_smith_co"), None)
+    if got is None:
+        failures.append("the dated anchor case lost the house it was declared on")
+    elif not got.get("anchor_change"):
+        failures.append("a declared anchor change left no history on the house")
+    elif got["anchor_change"]["live_anchor"] != "the hotel":
+        failures.append("the anchor live at the scene date is computed as %r, and the "
+                        "later printing is 'the hotel'" % got["anchor_change"]["live_anchor"])
+    elif got["placement"]["anchor"] != "the hotel":
+        failures.append("a dated anchor change left the house placed on the SUPERSEDED "
+                        "reading %r" % got["placement"]["anchor"])
+    elif [c["after"] for c in got["anchor_change"]["changes"]] != [dates[0][0]]:
+        failures.append("the change is bracketed by %r and the earlier printing is %s"
+                        % (got["anchor_change"]["changes"], dates[0][0]))
+    elif len(got["placement_readings"]) != 3:
+        failures.append("three printings, three readings kept, got %d"
+                        % len(got["placement_readings"]))
+
+    # …and the scene date is what decides which is live, not the order they were
+    # printed in: an anchor first set AFTER 1 July 1835 was not up on 1 July 1835.
+    out = run_anchor(
+        [{"issue_id": early_id, "claims": [
+            {"id": "za0", "business": {"name": "A. Smith & Co.", "trade": "blacksmith",
+                                       "street": "Lake Street",
+                                       "placement": {"class": "relative",
+                                                     "anchor": "the tavern"}}}]},
+         {"issue_id": after_id, "claims": [
+             {"id": "za1", "business": {"name": "A. Smith & Co.", "trade": "blacksmith",
+                                        "street": "Lake Street",
+                                        "placement": {"class": "relative",
+                                                      "anchor": "the hotel"}}}]}],
+        anchor_rule([{"name": "the tavern", "readings": ["the tavern"]}, TREMONT]),
+        None, "an anchor first printed after the scene date")
+    got = next((b for b in out["businesses"] if b["id"] == "business_a_smith_co"), None)
+    if got and got["anchor_change"]["live_anchor"] != "the tavern":
+        failures.append("an anchor first printed %s was made live at the scene date %s"
+                        % (dates[-1][0], scene_iso))
+
+    run_anchor(anchor_docs(["the tavern"], ["the hotel"]),
+               anchor_rule([{"name": "the tavern", "readings": ["the tavern"]}, TREMONT],
+                           rule=""),
+               "no rule", "an anchor change with no stated reason")
+    run_anchor(anchor_docs(["the tavern"], ["the hotel"]),
+               anchor_rule([{"name": "the tavern", "readings": ["the tavern"]}, TREMONT],
+                           rule="the anchor changed at some point"),
+               "must name", "an anchor rule that does not name the anchors it orders")
+    run_anchor(anchor_docs(["the tavern"], ["the hotel"]),
+               anchor_rule([{"name": "the tavern", "readings": ["the tavern"]}, TREMONT],
+                           cannot=""),
+               "cannot_say", "a dated change that says nothing about what stays open")
+    run_anchor(anchor_docs(["the tavern"], ["the hotel"]),
+               anchor_rule([{"name": "the tavern", "readings": ["the tavern"]}, TREMONT],
+                           business="business_nobody_at_all"),
+               "no business of that id is compiled",
+               "an anchor rule for a house nobody claimed")
+    run_anchor(anchor_docs(["the tavern"], ["the hotel"]),
+               anchor_rule([{"name": "the tavern", "readings": ["the tavern"]}]),
+               "one anchor is not a change", "an anchor change with a single anchor")
+    run_anchor(anchor_docs(["the tavern"], ["the hotel"]),
+               anchor_rule([{"name": "the tavern", "readings": ["the tavern"]},
+                            {"name": "the hotel", "readings": ["the hotel", "the barn"]},
+                            ]),
+               "not an anchor any printing of this house carries",
+               "an anchor rule naming a reading nobody printed")
+    run_anchor(anchor_docs(["the tavern", "the tavern, on Main-st"], ["the hotel"]),
+               anchor_rule([{"name": "the tavern", "readings": ["the tavern"]}, TREMONT]),
+               "silently dropped", "a printing left out of the history")
+    run_anchor(anchor_docs(["the tavern", "the tavern, on Main-st"], ["the hotel"]),
+               anchor_rule([GRAVES, {"name": "the hotel",
+                                     "readings": ["the hotel", "the tavern"],
+                                     "why": "the hotel, twice"}]),
+               "claimed by two anchors", "one printing naming two landmarks")
+    run_anchor(anchor_docs(["the tavern", "the tavern, on Main-st"], ["the hotel"]),
+               anchor_rule([dict(GRAVES, why="two readings, grouped"), TREMONT]),
+               "is a judgement and it has to be written down",
+               "two readings called one landmark on nobody's argument")
+    run_anchor(anchor_docs(["the tavern", "the hotel"], ["the hotel"]),
+               anchor_rule([{"name": "the tavern", "readings": ["the tavern"]}, TREMONT]),
+               "overlapping weeks", "two anchors printed in the same weeks")
 
     # A NAME IS NOT ALWAYS A PERSON (T-0359), and the cases below are the ones the
     # Haddock's/Maddock's pair actually produced. Every guard here exists to stop the

@@ -3,7 +3,7 @@
 **Status: policy, in force.** Recorded 2026-08-29 for T-0354, on the owner's ruling of the
 same day. A later run applies this without re-deciding it; a run that wants to change it
 opens a ticket and asks. The implementation is `tools/adopt_street_faces.py`, the derived
-table is `data/research/newspapers/street_face_adoptions.json`, the liberty is **L211**,
+table is `data/research/newspapers/street_face_adoptions.json`, the liberty is **L212**,
 and `tools/check.sh` re-derives both on every commit.
 
 ## The problem this answers
@@ -18,7 +18,7 @@ in the register:
 | pile | count | what the paper gives |
 |---|---|---|
 | `street_only` | **60** | a platted street and nothing narrower — "the east end of South Water-street" |
-| `unplaceable` | **85** | no street this model holds — Flag Creek, "on the road to Ottawa", or no address printed at all |
+| `unplaceable` | **84** | no street this model holds — Flag Creek, "on the road to Ottawa", or no address printed at all |
 
 Without a policy, the papers yield fifty-odd buildings. With one, they yield most of a
 town. That is the whole of what is at stake here.
@@ -100,7 +100,7 @@ side is a face has exactly one number to change.
    proprietor surname set and never on resemblance: whether a firm sharing one partner
    surname with a sole trader is the same house is **T-0338's** open question over
    thirty-one such groups, and a placement pass must not answer it by seating or refusing.
-   Variant spellings escape it too, which **T-0407** measures.
+   Variant spellings escape it too, which **T-0408** measures.
 4. **`every roof on the face is spoken for`** — the supply ran out. This is a count, not a
    failure, and it is the number this policy exists to produce.
 5. **the roof is a named household's dwelling** — a refusal of a ROOF rather than a
@@ -114,7 +114,7 @@ side is a face has exactly one number to change.
 **Every number below is DERIVED, and none of it is authored.** `python3
 tools/adopt_street_faces.py --report` reprints all of it from the register as committed, so
 a figure that has gone stale shows as a disagreement rather than rotting quietly in prose.
-This is a snapshot of `dev` at the merge of #554, and the register moves: it was read five
+This is a snapshot of `dev` at the merge of #553, and the register moves: it was read six
 times while this policy was being written, and the `street_only` pile went 47 → 45 → 60 as
 T-0355, T-0399 and T-0356 landed. The POLICY does not move with it — the four limits, the
 narrow reading of "face" and the five refusals are unchanged by any of that, which is the
@@ -128,7 +128,7 @@ point of deriving the allocation instead of listing it.
 | — no roof whose lot fronts the named street | 24 |
 | — this face already holds this proprietor | 9 |
 | — every roof on the face is spoken for | 3 |
-| `unplaceable`, outside this policy and still open | **85** |
+| `unplaceable`, outside this policy and still open | **84** |
 
 | street face | ads | took | roofs fronting | free | side only | in band |
 |---|---|---|---|---|---|---|
@@ -157,13 +157,13 @@ point of deriving the allocation instead of listing it.
   automatically.
 - **Lake Street (2 refused)** — both a second heading of a proprietor already seated.
 
-## The 85 `unplaceable` are NOT covered, and stay open
+## The 84 `unplaceable` are NOT covered, and stay open
 
 The ruling does not reach them and this policy does not extend it. Some are outside the
 plat entirely — E. Wentworth's public house on Flag Creek, on the road to Ottawa — and
 adopting a roof for them would put a business in a town it never stood in. Some simply
 never printed an address. **T-0354's second half is still open**, and the honest answer for
-these 85 today is that the corpus records them and the model does not hold them.
+these 84 today is that the corpus records them and the model does not hold them.
 
 ## How to spend it
 
@@ -174,5 +174,5 @@ carries limits 2, 3 and 4 into whatever it writes: the roof stays reconstructed,
 along-street position is not evidence, and the order on a face is not a claim.
 
 **Related:** T-0354 (this) · T-0262 (the register) · T-0263, T-0384–T-0387 (the seeding) ·
-T-0375 (South Water's roofs) · T-0338, T-0340, T-0407 (identity) · L205, L211 ·
+T-0375 (South Water's roofs) · T-0338, T-0340, T-0408 (identity) · L205, L212 ·
 `docs/PROVENANCE.md` · `docs/LIBERTIES.md`

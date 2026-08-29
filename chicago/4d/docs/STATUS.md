@@ -12,7 +12,7 @@ counts**, which is the argument for deriving the allocation instead of listing i
 ticket set out, that a `street_only` business *adopts a reconstructed roof already standing on that
 street face*. `docs/STREET-FACE-ADOPTION.md` is that ruling written so a later run applies it
 without re-deciding it, `tools/adopt_street_faces.py` derives the allocation,
-`data/research/newspapers/street_face_adoptions.json` is the derived table, **L211** is the liberty,
+`data/research/newspapers/street_face_adoptions.json` is the derived table, **L212** is the liberty,
 and `tools/check.sh` re-derives all of it on every commit.
 
 **The four limits are assertions, not promises.** No adoption claims a lot (`lot: null`,
@@ -40,9 +40,9 @@ Randolph took 1.
   Blanshard and F. G. Blanshard advertise one trade within five months under four transcribed
   spellings, and the gazetteer's identity layer has judged none of them. The duplicate refusal here
   matches exact surnames only — deciding by resemblance is the identity layer's job — so it caught
-  one of the four and left three roofs standing. Filed as **T-0407**, with the page images named as
+  one of the four and left three roofs standing. Filed as **T-0408**, with the page images named as
   the remedy.
-- **The 85 `unplaceable` are untouched and T-0354's second half stays open.** The ruling does not
+- **The 84 `unplaceable` are untouched and T-0354's second half stays open.** The ruling does not
   reach them and this policy does not extend it; some are outside the plat entirely.
 - **Nothing is spent yet.** This is the policy and the allocation. No card, signboard or frontage
   reads it — that is T-0263's and the seeding tickets'. No geometry moved and no triangle was added,
