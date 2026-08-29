@@ -1,7 +1,7 @@
 ---
 id: T-0367
 title: The documented tradesmen the papers DO place need roofs on their own street, and the deal has no way to ask
-state: claimed
+state: done
 epic: PAPERS
 requested_by: owner
 seen: false
@@ -9,8 +9,8 @@ effort: S
 legacy_id: null
 parent: T-0264
 opened: 2026-08-29
-closed: null
-pr: null
+closed: 2026-08-29
+pr: 529
 claimed_by: run 8/29/2026, 4:42:09 AM CT
 blocked_on: null
 needs_bake: false

@@ -39,7 +39,6 @@
 T-0336 — The 31 July 1835 letter list, standing in all four August Democrats
 T-0263 — The documented storefronts take their places on South Water and Lake
 T-0306 — The American names six Chicago storefronts with usable placements and none of them is standing in the model yet
-T-0367 — The documented tradesmen the papers DO place need roofs on their own street, and the deal has no way to ask
 T-0368 — The letter lists mint new residents: 1,967 documented people the register would ADD to the town
 
 # --- NEWSPAPERS, WAITING ON THE PAGE IMAGES — each needs the owner's scans opened,
