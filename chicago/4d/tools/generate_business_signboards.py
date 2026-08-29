@@ -454,20 +454,29 @@ SIGN_WORDING = {
         ),
     },
     "goss_cobb_saddlery": {
-        "name": "GOSS & COBB", "trade": "Saddle & Harness Making",
-        "place": "Lake & Canal Streets", "identity": "Goss",
-        "grade": "inferred", "sources": ["chicago_democrat_1833_11_26"],
+        "name": "S. B. COBB", "trade": "Saddle, Harness & Trunk Manufactory",
+        "place": "Lake & Canal Streets", "identity": "Cobb",
+        "grade": "inferred",
+        "sources": ["chicago_american_1835", "chicago_democrat_1833_11_26"],
         "why": (
-            "THE FIRM'S OWN WORDS, OFF A COMMITTED PAGE IMAGE, read from the scan on "
-            "2026-08-11 and quoted verbatim in this building's own record: \"[Saddle & "
-            "H]arness Making. GOSS & COBB, respectfully inform the inhabitants of Chicago "
-            "and the neighboring settlements, that they have opened a shop in this "
-            "village, on the conner of Lake and Canal-streets\". Heading, firm, address — "
-            "which is the whole of the board. THIS IS THE FIRST WORDING IN THE SET THAT "
-            "COULD BE UPGRADED: its page is already committed at "
-            "data/sources/assets/chicago_democrat_1833_11_26/, and what keeps it "
-            "`inferred` is that an advertisement heading is still not a description of a "
-            "signboard."
+            "THIS BOARD USED TO LETTER A FIRM THAT NO LONGER EXISTED ON THE SCENE DATE, "
+            "AND THE CHICAGO AMERICAN IS WHAT SAYS SO. Its first two issues carry the "
+            "dissolution — \"NOTICE. [Th]e co-partnership heretofore [existing under] the "
+            "firm of Go[ss] & Cob[b] [is] this day [dis]solved by m[ut]ual consent. "
+            "OL[IVE]R GOS[S]. S. B. [C]O[BB]. Chicago, Feb. 18, 183[5].\" — four and a "
+            "half months before 1 July 1835. Beside it on the same page is Cobb's own "
+            "card, and the board is now lettered from ITS heading rather than the 1833 "
+            "one: \"[S]A[D]DLE, HARNESS & TRUNK M[anufa]c[tor]y. S[. ]B[. ]COB[B] "
+            "[w]il[l] [c]o[nt]in[ue] the [above business] at his shop\" "
+            "(`chicago_american_1835_06_13#c016`, page 3 column 6; the same card is set "
+            "on 1835-06-08 and again on 1835-07-11, ten days after the scene date). "
+            "THE PLACE LINE IS STILL THE DEMOCRAT'S, and deliberately: the American loses "
+            "the cross street in all three printings, so \"Lake & Canal Streets\" comes "
+            "from the 1833 advertisement that this record's position is derived from and "
+            "not from the 1835 ones. T-0305 holds that cross street open on the page "
+            "images. WHAT KEEPS THE WORDING `inferred` is unchanged and is not about "
+            "which paper it came from: an advertisement heading is still not a "
+            "description of a signboard."
         ),
     },
     "h_jones_store": {
