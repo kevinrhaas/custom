@@ -39,7 +39,8 @@
 T-0297 — Reading the Democrat, August 1835: the four issues after the scene date
 T-0263 — The documented storefronts take their places on South Water and Lake
 T-0306 — The American names six Chicago storefronts with usable placements and none of them is standing in the model yet
-T-0264 — Documented people replace the invented
+T-0367 — The documented tradesmen the papers DO place need roofs on their own street, and the deal has no way to ask
+T-0368 — The letter lists mint new residents: 1,967 documented people the register would ADD to the town
 
 # --- NEWSPAPERS, WAITING ON THE PAGE IMAGES — each needs the owner's scans opened,
 # --- which live outside the repository. Workable the day the images are supplied;
@@ -53,7 +54,6 @@ T-0305 — Four readings the American contradicts itself on need the page images
 # --- every branch's smoke inherits it and every PR has to argue "not mine". Fixing
 # --- these buys every ticket below a clean verdict.
 T-0244 — T-0194's twelve hitching posts draw no vertices the gate can find, on dev
-T-0243 — The two timber-placement gates match no mesh since the lattice landed, and one of them is now red on dev
 T-0265 — The sward census fails its own gate at a phone: z10_settled_town owes xanthium_strumarium a whole slot and draws it nowhere
 
 # --- THE TOWN AND ITS STREETS — visible. T-0192 is parked whole on PR #418 until

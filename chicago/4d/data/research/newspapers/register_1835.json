@@ -45,9 +45,9 @@
     "persons": {
       "total": 2201,
       "by_action": {
-        "enrich": 117,
-        "new_resident": 1971,
-        "replace_invented": 113
+        "enrich": 127,
+        "new_resident": 1967,
+        "replace_invented": 107
       },
       "letter_list_only": 1555
     },
@@ -94,7 +94,6 @@
         "baker": 1,
         "blacksmith": 4,
         "butcher": 1,
-        "cooper": 1,
         "dentist": 1,
         "grocer": 4,
         "harness_maker": 1,
@@ -107,7 +106,7 @@
         "tailor": 2,
         "tavern_keeper": 4
       },
-      "retirable_total": 28
+      "retirable_total": 27
     }
   },
   "businesses": [
@@ -12341,9 +12340,9 @@
       "letter_list_only": false,
       "first_seen": "1834-02-04",
       "last_seen": "1834-02-04",
-      "action": "replace_invented",
-      "action_target": "physician",
-      "action_note": "A documented physician. The town invented 1 household(s) of this trade because no documented person was available; this is a candidate to retire one."
+      "action": "enrich",
+      "action_target": "inf_physician_south_01",
+      "action_note": "data/residents/ already holds this person as inf_physician_south_01 (hh_inf_physician_south_01, inferred). The papers add mentions and dates."
     },
     {
       "id": "person_dr_temple",
@@ -12957,9 +12956,9 @@
       "letter_list_only": false,
       "first_seen": "1834-09-03",
       "last_seen": "1834-09-24",
-      "action": "replace_invented",
-      "action_target": "tailor",
-      "action_note": "A documented tailor. The town invented 2 household(s) of this trade because no documented person was available; this is a candidate to retire one."
+      "action": "enrich",
+      "action_target": "inf_tailor_north_02",
+      "action_note": "data/residents/ already holds this person as inf_tailor_north_02 (hh_inf_tailor_north_02, inferred). The papers add mentions and dates."
     },
     {
       "id": "person_ehjah_doolittle",
@@ -16763,9 +16762,9 @@
       "letter_list_only": false,
       "first_seen": "1834-06-11",
       "last_seen": "1834-06-11",
-      "action": "replace_invented",
-      "action_target": "cooper",
-      "action_note": "A documented cooper. The town invented 4 household(s) of this trade because no documented person was available; this is a candidate to retire one."
+      "action": "enrich",
+      "action_target": "inf_cooper_north_04",
+      "action_note": "data/residents/ already holds this person as inf_cooper_north_04 (hh_inf_cooper_north_04, inferred). The papers add mentions and dates."
     },
     {
       "id": "person_j_green",
@@ -16851,9 +16850,9 @@
       "letter_list_only": true,
       "first_seen": "1835-05-20",
       "last_seen": "1835-05-20",
-      "action": "new_resident",
-      "action_target": null,
-      "action_note": "Ruling 1: a named person the town does not hold. Known only from the post-office letter lists."
+      "action": "enrich",
+      "action_target": "inf_cooper_north_04",
+      "action_note": "data/residents/ already holds this person as inf_cooper_north_04 (hh_inf_cooper_north_04, inferred). The papers add mentions and dates."
     },
     {
       "id": "person_j_k_botsford",
@@ -17027,9 +17026,9 @@
       "letter_list_only": false,
       "first_seen": "1834-10-08",
       "last_seen": "1834-10-08",
-      "action": "replace_invented",
-      "action_target": "tavern_keeper",
-      "action_note": "A documented tavern_keeper. The town invented 4 household(s) of this trade because no documented person was available; this is a candidate to retire one."
+      "action": "enrich",
+      "action_target": "inf_tavern_keeper_north_01",
+      "action_note": "data/residents/ already holds this person as inf_tavern_keeper_north_01 (hh_inf_tavern_keeper_north_01, inferred). The papers add mentions and dates."
     },
     {
       "id": "person_j_snow",
@@ -17115,9 +17114,9 @@
       "letter_list_only": false,
       "first_seen": "1833-12-31",
       "last_seen": "1833-12-31",
-      "action": "replace_invented",
-      "action_target": "joiner",
-      "action_note": "A documented joiner. The town invented 2 household(s) of this trade because no documented person was available; this is a candidate to retire one."
+      "action": "enrich",
+      "action_target": "inf_joiner_north_02",
+      "action_note": "data/residents/ already holds this person as inf_joiner_north_02 (hh_inf_joiner_north_02, inferred). The papers add mentions and dates."
     },
     {
       "id": "person_j_w_smith",
@@ -17808,9 +17807,9 @@
       "letter_list_only": false,
       "first_seen": "1834-08-13",
       "last_seen": "1834-08-13",
-      "action": "new_resident",
-      "action_target": null,
-      "action_note": "Ruling 1: a named person the town does not hold. Named in a claim other than a letter list."
+      "action": "enrich",
+      "action_target": "inf_joiner_north_02",
+      "action_note": "data/residents/ already holds this person as inf_joiner_north_02 (hh_inf_joiner_north_02, inferred). The papers add mentions and dates."
     },
     {
       "id": "person_james_w_stephenson",
@@ -18193,9 +18192,9 @@
       "letter_list_only": true,
       "first_seen": "1834-07-30",
       "last_seen": "1834-07-30",
-      "action": "new_resident",
-      "action_target": null,
-      "action_note": "Ruling 1: a named person the town does not hold. Known only from the post-office letter lists."
+      "action": "enrich",
+      "action_target": "inf_joiner_north_02",
+      "action_note": "data/residents/ already holds this person as inf_joiner_north_02 (hh_inf_joiner_north_02, inferred). The papers add mentions and dates."
     },
     {
       "id": "person_jo_h_n_wal_t_er",
@@ -18776,9 +18775,9 @@
       "letter_list_only": false,
       "first_seen": "1834-08-13",
       "last_seen": "1834-08-13",
-      "action": "new_resident",
-      "action_target": null,
-      "action_note": "Ruling 1: a named person the town does not hold. Named in a claim other than a letter list."
+      "action": "enrich",
+      "action_target": "inf_tavern_keeper_north_01",
+      "action_note": "data/residents/ already holds this person as inf_tavern_keeper_north_01 (hh_inf_tavern_keeper_north_01, inferred). The papers add mentions and dates."
     },
     {
       "id": "person_john_stringer",
@@ -25234,8 +25233,8 @@
       "first_seen": "1835-06-13",
       "last_seen": "1835-06-13",
       "action": "enrich",
-      "action_target": "inf_tailor_north_02",
-      "action_note": "data/residents/ already holds this person as inf_tailor_north_02 (hh_inf_tailor_north_02, reconstructed). The papers add mentions and dates."
+      "action_target": "cobb_silas_b",
+      "action_note": "data/residents/ already holds this person as cobb_silas_b (hh_goss_cobb, inferred). The papers add mentions and dates."
     },
     {
       "id": "person_s_c_stimson",
@@ -26246,8 +26245,8 @@
       "first_seen": "1834-04-01",
       "last_seen": "1834-04-01",
       "action": "enrich",
-      "action_target": "inf_tailor_north_02",
-      "action_note": "data/residents/ already holds this person as inf_tailor_north_02 (hh_inf_tailor_north_02, reconstructed). The papers add mentions and dates."
+      "action_target": "cobb_silas_b",
+      "action_note": "data/residents/ already holds this person as cobb_silas_b (hh_goss_cobb, inferred). The papers add mentions and dates."
     },
     {
       "id": "person_silas_w_sherman",
@@ -27862,9 +27861,9 @@
       "letter_list_only": false,
       "first_seen": "1834-07-23",
       "last_seen": "1834-10-01",
-      "action": "replace_invented",
-      "action_target": "tailor",
-      "action_note": "A documented tailor. The town invented 2 household(s) of this trade because no documented person was available; this is a candidate to retire one."
+      "action": "enrich",
+      "action_target": "inf_tailor_north_02",
+      "action_note": "data/residents/ already holds this person as inf_tailor_north_02 (hh_inf_tailor_north_02, inferred). The papers add mentions and dates."
     },
     {
       "id": "person_thomas_smith",

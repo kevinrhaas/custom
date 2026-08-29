@@ -132,8 +132,8 @@
   "persons": 209,
   "by_grade": {
    "attested": 76,
-   "inferred": 20,
-   "reconstructed": 113
+   "inferred": 25,
+   "reconstructed": 108
   }
  },
  "households": [
@@ -1143,7 +1143,7 @@
    "division": "north",
    "persons": 1,
    "grades": {
-    "reconstructed": 1
+    "inferred": 1
    },
    "lives_at": "recon_1835_north_d5_026",
    "works_at": "recon_1835_north_c1_020",
@@ -1353,7 +1353,7 @@
    "division": "north",
    "persons": 1,
    "grades": {
-    "reconstructed": 1
+    "inferred": 1
    },
    "lives_at": "recon_1835_north_d4_004",
    "works_at": null,
@@ -1829,7 +1829,7 @@
    "division": "south",
    "persons": 1,
    "grades": {
-    "reconstructed": 1
+    "inferred": 1
    },
    "lives_at": "recon_1835_south_d7_035",
    "works_at": "physicians_office",
@@ -1927,7 +1927,7 @@
    "division": "north",
    "persons": 1,
    "grades": {
-    "reconstructed": 1
+    "inferred": 1
    },
    "lives_at": "recon_1835_north_d6_044",
    "works_at": null,
@@ -1955,7 +1955,7 @@
    "division": "north",
    "persons": 1,
    "grades": {
-    "reconstructed": 1
+    "inferred": 1
    },
    "lives_at": "recon_1835_north_d7_031",
    "works_at": "recon_1835_north_t1_028",
