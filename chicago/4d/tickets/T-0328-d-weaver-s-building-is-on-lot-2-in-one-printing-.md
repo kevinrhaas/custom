@@ -1,7 +1,7 @@
 ---
 id: T-0328
 title: D. Weaver's building is on Lot 2 in one printing and Lot 9 in the next, and both transcriptions are Vision-set
-state: claimed
+state: done
 epic: PAPERS
 requested_by: loop
 seen: false
@@ -9,8 +9,8 @@ effort: XS
 legacy_id: null
 parent: null
 opened: 2026-08-29
-closed: null
-pr: null
+closed: 2026-08-29
+pr: 510
 claimed_by: run 8/29/2026, 12:19:56 AM CT
 blocked_on: null
 needs_bake: false
