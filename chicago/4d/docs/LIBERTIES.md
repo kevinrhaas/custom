@@ -9436,3 +9436,57 @@ Related: **L205** (the documented men who took reconstructed roofs) · **L1** (n
 for any resident) · tickets **T-0376** (this), **T-0368**, **T-0264**, **T-0263**, **T-0373**,
 **T-0374**.
 **Recorded:** 2026-08-29.
+
+### L207 — Ten names from the post office's letter lists are written as households of one, on the thinnest evidence this project accepts for a resident
+**Decision:** the owner ruled on 2026-08-28 that a name in the post office's list of
+uncalled-for letters is enough to make somebody a resident. On 2026-08-29 ten of those names —
+William Luce, Caleb Foster, Ira Herrick, Nicholas Boilvin, Mary Barrows, Nathan Hutchins,
+Chester House, Lyman Bennet, Pierce Downer and Stephen Mack — were written as households of ONE,
+`division: unplaced`, no trade, no dwelling, no family.
+`tools/mint_letter_list_residents.py` derives the set and re-derives it on every commit.
+
+**What is not invented: the names and the letters.** Each is printed in the Chicago Democrat at
+the issue and column its record cites, in a list headed as letters remaining in the Post Office
+at Chicago and uncalled-for.
+
+**What is invented, and it is the same invention as L206: that each is a household.** No source
+says any of them headed one, or lived at all in the sense this dataset means. The container is
+the dataset's shape and every record says so.
+
+**WHY TEN AND NOT 1,530, which is the number of such names the register carries.** Through the
+eight refusals `mint_documented_residents.py` derives, 726 of the 1,530 survive — 415 refused as
+garbled, 250 for a surname already minted, 101 because the town already names that family, 22
+placed outside the town, 10 as a surname and nothing else, 6 as firms. Minting all 726 would take
+this town from 225 people to 941 and make four residents in five a name on a post-office list.
+That is a question about the SCALE of the reconstruction, it is the owner's, and it is ticket
+**T-0379** with those numbers in it. This pass takes the slice the CORPUS ranks highest instead:
+the Democrat reprinted one return over consecutive weekly issues, so a name's printings are not
+its returns, and grouping its issues at a gap of more than sixty days separates a reprint from a
+genuinely later list. Ten names in the pool appear in more than one return, five of them from
+January 1834 to May 1835. A name held once is somebody who was written to. A name held in two
+returns sixteen months apart is somebody a correspondent still believed was reachable at Chicago.
+
+**The limit, stated rather than hidden.** The Chicago post office served the country around the
+town as well as the town, so an uncalled-for letter is evidence that its writer believed the
+addressee reachable at Chicago and NOT proof that he slept there. Refusal 6 catches the names the
+corpus places elsewhere; it cannot catch a settler the corpus never places at all. Every one of
+the ten records says this in its own person note, and a scan read, a land record or a second
+corpus that places one of them outside the town retires that record.
+
+**Precedence between the two minting passes.** Six candidates in more than one return were
+refused: five the transcription bracketed as uncertain, and Albert Fowler, because
+`mint_documented_residents.py` had already minted Elmira Fowler. A man the papers give a trade is
+better evidenced than a name on a letter list, so where the two passes reach for one family name
+the documented pass keeps it and this one gives way.
+
+**Consequence:** the people section goes from 189 households and 225 people to 199 and 235;
+`households_without_a_dwelling` in the town census moves from 68 to 78 and `housed` does not move,
+because none of these ten is placed anywhere. `letter_list_only` now reaches the visitor's card —
+a row of its own on the person and a clause in the section's count sentence — so a letter-list
+name and a shopkeeper who advertised his stock can never again read as the same claim. No figure
+is drawn (L1).
+
+Related: **L206** (the documented tradespeople minted as households of one) · **L205** · **L1**
+(no figure is drawn for any resident) · tickets **T-0378** (this), **T-0379**, **T-0374**,
+**T-0368**, **T-0264**.
+**Recorded:** 2026-08-29.

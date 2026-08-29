@@ -379,6 +379,14 @@ RESIDENTS_MANIFEST_READS: dict[str, tuple[str, str]] = {
     "counts.by_grade.attested": ("shown", "${byGrade.attested} named by a source"),
     "counts.by_grade.inferred": ("shown", "${byGrade.inferred} real people whose"),
     "counts.by_grade.reconstructed": ("shown", "${byGrade.reconstructed} hypothesised to"),
+    # The evidence-strength tally beside the grade tally, and it is a different
+    # axis from both of the others: `grade` says how much of a PERSON is
+    # reconstructed, and this says how thin the source is that names them at all.
+    # A name on the post office's list of uncalled-for letters and a shopkeeper
+    # who advertised his stock are both `attested` and are not the same claim
+    # (T-0378), so the count sentence says how many of the people listed are the
+    # first kind.
+    "counts.letter_list_only": ("shown", "counts.letter_list_only"),
     # One row per household: which division it stands in, how many people it
     # holds, and its grade tally as chips.
     "households[].division": ("shown", "words(entry.division)"),
@@ -458,6 +466,12 @@ RESIDENTS_HOUSEHOLD_READS: dict[str, tuple[str, str]] = {
     "persons[].relationship": ("shown", "words(person.relationship)"),
     "persons[].sex": ("shown", "words(person.sex)"),
     "persons[].note": ("shown", "escapeHtml(person.note)"),
+    # The evidence strength, on the person the register minted from a letter list.
+    # It reached `gazetteer.json` and `register_1835.json` and stopped there, so
+    # for as long as it was unread a letter-list name and a documented tradesman
+    # read identically on the card — which is the one thing T-0368's owner ruling
+    # said must never happen. It is a row of its own now.
+    "persons[].letter_list_only": ("shown", "person.letter_list_only"),
     "persons[].occupation.value": ("shown", "words(occ.value)"),
     "persons[].occupation.confidence": ("shown", "swatch(occ.confidence)"),
     "persons[].occupation.note": ("shown", "escapeHtml(occ.note)"),

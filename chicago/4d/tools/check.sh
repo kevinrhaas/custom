@@ -1000,6 +1000,17 @@ step "the documented residents on reconstructed roofs re-derive from the registe
 step "the minted documented residents re-derive from the register" \
   python3 tools/mint_documented_residents.py --check
 
+# And the pass beside it, on the other half of `new_resident` (T-0378). A person the
+# register reads ONLY from the post office's lists of uncalled-for letters has no trade,
+# so the pass above cannot reach him; 726 of them clear its eight refusals, which is a
+# change of scale that belongs to the owner (T-0379). This pass takes the ten the corpus
+# itself ranks highest — printed in more than ONE return of uncalled-for letters, months
+# apart — and gates them for the same reason: the return rule and the eight refusals are
+# what stop it becoming a list somebody chose. `--report` prints the mint and every
+# refusal with its reason.
+step "the minted letter-list residents re-derive from the register" \
+  python3 tools/mint_letter_list_residents.py --check
+
 step "the three levels mean what they say" \
   python3 tools/audit_confidence.py --strict
 

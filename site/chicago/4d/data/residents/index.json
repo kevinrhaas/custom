@@ -131,13 +131,14 @@
   ]
  },
  "counts": {
-  "households": 189,
-  "persons": 225,
+  "households": 199,
+  "persons": 235,
   "by_grade": {
-   "attested": 92,
+   "attested": 102,
    "inferred": 25,
    "reconstructed": 108
-  }
+  },
+  "letter_list_only": 10
  },
  "households": [
   {
@@ -2369,6 +2370,146 @@
    "lives_at": null,
    "works_at": "robert_kinzie_store",
    "present_on_scene_date": "present",
+   "review_required": false
+  },
+  {
+   "id": "hh_ll_caleb_foster",
+   "file": "households/hh_ll_caleb_foster.json",
+   "head": "ll_caleb_foster",
+   "division": "unplaced",
+   "persons": 1,
+   "grades": {
+    "attested": 1
+   },
+   "lives_at": null,
+   "works_at": null,
+   "present_on_scene_date": "uncertain",
+   "review_required": false
+  },
+  {
+   "id": "hh_ll_chester_house",
+   "file": "households/hh_ll_chester_house.json",
+   "head": "ll_chester_house",
+   "division": "unplaced",
+   "persons": 1,
+   "grades": {
+    "attested": 1
+   },
+   "lives_at": null,
+   "works_at": null,
+   "present_on_scene_date": "uncertain",
+   "review_required": false
+  },
+  {
+   "id": "hh_ll_ira_herrick",
+   "file": "households/hh_ll_ira_herrick.json",
+   "head": "ll_ira_herrick",
+   "division": "unplaced",
+   "persons": 1,
+   "grades": {
+    "attested": 1
+   },
+   "lives_at": null,
+   "works_at": null,
+   "present_on_scene_date": "uncertain",
+   "review_required": false
+  },
+  {
+   "id": "hh_ll_lyman_bennet",
+   "file": "households/hh_ll_lyman_bennet.json",
+   "head": "ll_lyman_bennet",
+   "division": "unplaced",
+   "persons": 1,
+   "grades": {
+    "attested": 1
+   },
+   "lives_at": null,
+   "works_at": null,
+   "present_on_scene_date": "uncertain",
+   "review_required": false
+  },
+  {
+   "id": "hh_ll_mary_barrows",
+   "file": "households/hh_ll_mary_barrows.json",
+   "head": "ll_mary_barrows",
+   "division": "unplaced",
+   "persons": 1,
+   "grades": {
+    "attested": 1
+   },
+   "lives_at": null,
+   "works_at": null,
+   "present_on_scene_date": "uncertain",
+   "review_required": false
+  },
+  {
+   "id": "hh_ll_nathan_hutchins",
+   "file": "households/hh_ll_nathan_hutchins.json",
+   "head": "ll_nathan_hutchins",
+   "division": "unplaced",
+   "persons": 1,
+   "grades": {
+    "attested": 1
+   },
+   "lives_at": null,
+   "works_at": null,
+   "present_on_scene_date": "uncertain",
+   "review_required": false
+  },
+  {
+   "id": "hh_ll_nicholas_boilvin",
+   "file": "households/hh_ll_nicholas_boilvin.json",
+   "head": "ll_nicholas_boilvin",
+   "division": "unplaced",
+   "persons": 1,
+   "grades": {
+    "attested": 1
+   },
+   "lives_at": null,
+   "works_at": null,
+   "present_on_scene_date": "uncertain",
+   "review_required": false
+  },
+  {
+   "id": "hh_ll_pierce_downer",
+   "file": "households/hh_ll_pierce_downer.json",
+   "head": "ll_pierce_downer",
+   "division": "unplaced",
+   "persons": 1,
+   "grades": {
+    "attested": 1
+   },
+   "lives_at": null,
+   "works_at": null,
+   "present_on_scene_date": "uncertain",
+   "review_required": false
+  },
+  {
+   "id": "hh_ll_stephen_mack",
+   "file": "households/hh_ll_stephen_mack.json",
+   "head": "ll_stephen_mack",
+   "division": "unplaced",
+   "persons": 1,
+   "grades": {
+    "attested": 1
+   },
+   "lives_at": null,
+   "works_at": null,
+   "present_on_scene_date": "uncertain",
+   "review_required": false
+  },
+  {
+   "id": "hh_ll_william_luce",
+   "file": "households/hh_ll_william_luce.json",
+   "head": "ll_william_luce",
+   "division": "unplaced",
+   "persons": 1,
+   "grades": {
+    "attested": 1
+   },
+   "lives_at": null,
+   "works_at": null,
+   "present_on_scene_date": "uncertain",
    "review_required": false
   },
   {
