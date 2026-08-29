@@ -1,5 +1,67 @@
 # STATUS
 
+## Shipped 2026-08-29 — T-0244: the gate could not see twelve of the fourteen hitching posts
+
+**The geometry was right the whole time and the instrument was blind.** The frontage layer's post
+probe in `tools/smoke_renderer.mjs` read `mesh?.geometry` — the layer's single shared `frontage`
+mesh — with a comment saying "the posts live in the shared mesh". That was true on 2026-08-19 and
+stopped being true on 2026-08-21, when T-0194 put twelve hitching posts at the town's trading
+frontages. A post that names a street is STANDING timber and lands in that street's
+`<record>__<street>__standing` chunk, published as a `frontage-chunk` mesh so it culls and casts
+with the fences beside it and costs no draw call of its own (T-0069, T-0194). The shared mesh never
+holds one. So all twelve reported a max and a min over an EMPTY vertex set — `-Infinity` for a
+height, `Infinity` for a foot — and the Sauganash's two, which its own record stands and which do
+fall back to the shared mesh, went on measuring correctly.
+
+**The repair is the resolution rule, not the count.** A post is now found by WHERE IT STANDS,
+across every mesh the layer draws, because which mesh a post is folded into is a draw-call decision
+that may change again without the post moving — the same lesson T-0243's batched wood taught the
+tree census two days earlier. Read at both viewports on the published mirror:
+
+| | posts | reading |
+|---|---:|---|
+| the Sauganash's own record (no `street`) | 2 | 1.300 m against a recorded 1.30, foot 0.000 |
+| the street edge (`street` named) | 12 | 1.300 m against a recorded 1.30, foot 0.000 |
+
+Each box holds exactly the 72 vertices of one post's shaft and cap, with one exception stated in
+the code: at the Mansion House the board crossing over Lake Street brings its near edge 0.13 m from
+the post and lays 15 more vertices in the box. They move neither reading — a crossing deck stands
+0.06 m over its ground, under the foot the min is looking for and a metre and a quarter under the
+head the max is — and the 0.4 m box is left alone rather than tightened onto the 0.22 m cap, which
+would leave 0.02 m of margin against that same crossing.
+
+**`found` is asserted separately from the heights**, because an empty vertex set fails the height
+test too and reads as a post of the wrong height rather than as a post the gate cannot see. That
+distinction is what cost this defect two days.
+
+**A second stale number in the same part, and it is the ledger rather than an assertion weakened.**
+"the frontage layer lays all five records' walks" expected **83** refusals and `dev` has **84**:
+T-0028 opened `blk_lake_franklin`, whose dealt warehouse stands 1.50 m off that lot's frontage line
+— inside the 3.0 m a street fence needs, so the building IS the street wall and the fence is
+refused with a written reason. Nothing else in that line moves: 5 records, 51 walks, 39 crossings,
+15 posts, 35 fence runs, 899,148 vertices, no problems. The count carries its reason beside T-0241's,
+T-0196's, T-0024's, T-0228's and T-0246's, as each of those did.
+
+**Why both reached `dev`.** `docs/PIPELINE.md`: the dev gate is `check.sh` and nothing else, and
+`check.sh` asks whether a record re-derives from its own rule, never whether the renderer draws it.
+The renderer smoke is dispatch-plus-one-path on purpose, so a check that only Playwright runs can go
+red on `dev` without blocking a merge — the same gap T-0242 and T-0243 record for two other layers.
+
+**The visible parcel this unblocks (AGENTS.md § VISIBLE-PROGRESS exemption 3): T-0192**, at the top
+of QUEUE.md — the cross streets' own frontages get the street edge. It lands in this exact layer and
+its demonstration is desktop part 2, which could not be read while two of that part's frontage
+assertions were standing red for reasons of their own.
+
+**Gates.** `./tools/check.sh` **PASS**. `node tools/smoke_renderer.mjs --published` stage **2** at
+**both** viewports — desktop 1280×800 and mobile 390×780 — **82/0 each, zero page errors**. The
+other standing reds on `dev` are untouched and are their own tickets: T-0243 (the tree stations),
+T-0279 (flower heads over open ground), T-0247/T-0249 (the light tier's draw calls), T-0271/T-0223
+(`balanced` at the forks).
+
+**Nothing you can see changed.** No renderer, no data record and no geometry was touched — only the
+harness that reads the geometry back.
+
+
 ## Shipped 2026-08-29 — T-0316: the large river warehouse leaves the plat
 
 `tools/reconcile_665.py` dealt **F3, the large river warehouse**, to platted blocks. T-0028 found
@@ -102,7 +164,8 @@ because it can be made to fail, not because it is green.
 
 **What this does not do.** It repairs neither T-0244 (the twelve hitching posts draw no
 vertices the gate can find) nor T-0265 (the sward census at a phone). Those are the other two
-standing reds and they are their own tickets.
+standing reds and they are their own tickets. *(T-0244 closed 2026-08-29 — the top section of
+this file; the posts were drawn all along and the probe read one mesh of the layer's several.)*
 
 **Nothing you can see changed.** No renderer, no data record and no geometry was touched —
 only the harness that reads the geometry back.
