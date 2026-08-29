@@ -1,7 +1,7 @@
 ---
 id: T-0345
 title: Mason's blacksmith shop is anchored on Graves' Tavern until 16 July 1834 and on the Tremont House from 10 September, and the register holds both as standing placements
-state: open
+state: done
 epic: PAPERS
 requested_by: loop
 seen: false
@@ -9,9 +9,9 @@ effort: S
 legacy_id: null
 parent: null
 opened: 2026-08-28
-closed: null
-pr: null
-claimed_by: null
+closed: 2026-08-29
+pr: 553
+claimed_by: run 8/29/2026, 12:19:29 PM CT
 blocked_on: null
 needs_bake: false
 ---

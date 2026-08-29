@@ -3949,10 +3949,29 @@ for (const [label, viewport, touch] of [
       // refused: 83 to 84, and nothing else in this line moves. Left a count
       // behind for two days, the same way T-0024's did, and for the same reason
       // as T-0244 below: this suite is not the dev gate.
+      // T-0380 stood the New York House on the Lake Street face of
+      // blk_south_water_franklin — a documented public house, which is a trade
+      // the hitching rule accepts — so ONE more post stands at that frontage:
+      // 15 to 16. Nothing else moves. The walk along that face was already laid
+      // for its whole length, so no run opens and no crossing is added, and the
+      // house stands 1.50 m back from the frontage line, which is inside the
+      // 3.0 m a street fence needs and was already refused there.
+      // T-0263 settled the TRADE at frederick_thomas_shop — `drug_store`,
+      // attested, out of Frederick Thomas's own advertisement heading in the
+      // Chicago American — where it had read `shop` at the reconstructed grade.
+      // The hitching rule takes its frontages from the trade, so the frontage
+      // this record REFUSED IN WRITING now qualifies: 16 posts to 17, and the
+      // refusal that named it retires with it, 84 to 83. Those two numbers move
+      // together and only together, which is the check that this is the trade
+      // and not a new placement — the refusal text is quoted on the retiring
+      // entry ("the trade at frederick_thomas_shop is reconstructed ... a
+      // hitching post there would be furniture standing on an invention").
+      // Nothing else moves: no run opens, no crossing is added, and the shop's
+      // own wall was never a street-fence refusal.
       frontage.census?.records === 5 && frontage.census?.walks === 51
         && frontage.census?.crossings === 39
-        && frontage.census?.posts === 15 && frontage.census?.fences === 35
-        && frontage.census?.refused === 84
+        && frontage.census?.posts === 17 && frontage.census?.fences === 35
+        && frontage.census?.refused === 83
         && frontage.recordIds.join(',')
           === 'green_tree_frontage,sauganash_frontage,river_walk_frontage,'
             + 'lasalle_crossing_frontage,town_street_edge'
@@ -4094,10 +4113,19 @@ for (const [label, viewport, touch] of [
     // against each post's own terrain sample, because a pole whose height came
     // from a number beside the mesh floats.
     //
-    // TWO ON THE SAUGANASH'S OWN RECORD AND TWELVE AT THE STREET EDGE. This
+    // TWO ON THE SAUGANASH'S OWN RECORD AND THIRTEEN AT THE STREET EDGE. This
     // asserted two, and T-0194 made it fourteen without touching the line, so it
     // was red on `dev` from that merge until T-0244 (the dev gate is `check.sh`
-    // and this suite is dispatch-plus-one-path, so nothing stopped it). The two
+    // and this suite is dispatch-plus-one-path, so nothing stopped it).
+    // T-0380 made it fifteen AND UPDATED THE LINE IN THE SAME COMMIT, which is
+    // what the paragraph below asks of a run that adds a post: the New York
+    // House is a documented public house on Lake Street, so the rule stands a
+    // post at its frontage. T-0263 makes it sixteen the same way and by the
+    // same bookkeeping, and this one is a TRADE moving rather than a building
+    // arriving: frederick_thomas_shop already stood on South Water Street and
+    // its frontage was refused a post in writing because its trade was
+    // reconstructed, so settling that trade on the Chicago American's own
+    // heading is what qualifies it. The street-edge population is fourteen. The two
     // populations are told apart by `street`, which is exactly the field that
     // decides the mesh: a post naming a street is standing timber in that
     // street's chunk, and a post naming none falls back to the shared mesh. The
@@ -4109,15 +4137,15 @@ for (const [label, viewport, touch] of [
     // non-zero SEPARATELY from the heights: an empty set makes `top` -Infinity
     // and `low` Infinity, which fail the height tests too but read as a post of
     // the wrong height rather than as a post the gate cannot see. That was
-    // twelve of these fourteen for two days.
+    // twelve of these fifteen for two days.
     const postsBad = frontage.hitching.filter((h) => !(h.found > 0
       && Math.abs(h.top - h.recorded) <= 0.05
       && Math.abs(h.low) <= 0.02 && h.clear > 0 && !h.text));
-    check(`${label}: the fourteen hitching posts stand on their own ground, carrying nothing`,
-      frontage.hitching.length === 14
-        && frontage.census?.hitching === 14
+    check(`${label}: the sixteen hitching posts stand on their own ground, carrying nothing`,
+      frontage.hitching.length === 16
+        && frontage.census?.hitching === 16
         && frontage.hitching.filter((h) => !h.street).length === 2
-        && frontage.hitching.filter((h) => h.street).length === 12
+        && frontage.hitching.filter((h) => h.street).length === 14
         && postsBad.length === 0
         && frontage.census?.lettered === 1
         && frontage.noBoardHere === false,
@@ -9572,7 +9600,11 @@ for (const [label, viewport, touch] of [
       // nine the sources date. A row that carries neither cannot fail for them.
       const named = rows.find((r) => r.dataset.id === 'hh_inf_baker_south_01');
       const dated = rows.find((r) => r.dataset.id === 'hh_egan_william_b');
-      for (const el of [target, named, dated]) {
+      // T-0378. A fourth row, for the same reason: `letter_list_only` is on the
+      // ten people the post office's letter lists minted and on nobody else, so
+      // no row above can fail for it.
+      const letter = rows.find((r) => r.dataset.id === 'hh_ll_william_luce');
+      for (const el of [target, named, dated, letter]) {
         if (!el) continue;
         el.open = true;
         for (let i = 0; i < 100 && el.querySelector('.res-hh-body .legend-note'); i++) {
@@ -9583,6 +9615,7 @@ for (const [label, viewport, touch] of [
       return {
         namedText: bodyOf(named),
         datedText: bodyOf(dated),
+        letterText: bodyOf(letter),
         households: window.__chicago4d.residents?.households ?? 0,
         persons: window.__chicago4d.residents?.persons ?? 0,
         offCard: window.__chicago4d.residents?.offCard ?? -1,
@@ -9604,19 +9637,22 @@ for (const [label, viewport, touch] of [
       };
     });
     check(`${label}: every household in the layer is on the card`,
-      residents.households === 192 && residents.rendered === 192 && !residents.busy,
+      residents.households === 205 && residents.rendered === 205 && !residents.busy,
       `${residents.households} loaded / ${residents.rendered} rendered (${residents.error})`);
-    check(`${label}: the 228 person entries are counted`, residents.persons === 228,
+    check(`${label}: the 241 person entries are counted`, residents.persons === 241,
       `${residents.persons}`);
     // The finding itself, asserted as a number so it cannot quietly grow back:
     // the households that reach no building sidecar are each marked on their own
-    // row. 17 of the 36 are the original fault — records whose residence and
-    // workplace are both unattested. Sixteen are T-0376's minted tradespeople and
-    // three are T-0373's residency-tested people, all of whom reach no building BY
-    // CONSTRUCTION: the papers name them and say nothing whatever about where they
-    // lived, so the chip is the card telling the truth rather than a regression.
+    // row. 17 of the 49 are the original fault — records whose residence and
+    // workplace are both unattested. The other 32 reach no building BY
+    // CONSTRUCTION, and they are three passes of the same kind: T-0376's 16
+    // minted tradespeople, whose trade the papers print and whose address they
+    // do not; T-0378's 12 letter-list names, where a list of uncalled-for letters
+    // gives a name and no address at all; and T-0373's 4 residency-tested people,
+    // whom the papers name with no trade either. In every case the chip is the
+    // card telling the truth rather than a regression.
     check(`${label}: the households no building card can reach are marked`,
-      residents.offCard === 36 && residents.orphanChips === 36,
+      residents.offCard === 49 && residents.orphanChips === 49,
       `${residents.offCard} off-card / ${residents.orphanChips} chip(s)`);
     check(`${label}: the researched non-residents are published too`,
       residents.notResident === 10, `${residents.notResident}`);
@@ -9666,6 +9702,31 @@ for (const [label, viewport, touch] of [
       && /\bBorn\b/.test(residents.datedText)
       && /28 September 1808/.test(residents.datedText),
       residents.datedText.slice(0, 200));
+    // T-0378, and the whole point of that ticket: the register reads two kinds of
+    // person out of the papers and they are NOT the same claim. A man who
+    // advertised his stock is named, dated, placed and given a trade; a name in
+    // the post office's list of uncalled-for letters is a name. `letter_list_only`
+    // reached `gazetteer.json` and `register_1835.json` and stopped there, so on
+    // the card the two read identically — which is exactly what the owner's ruling
+    // of 2026-08-28 says must never happen. Asserted in BOTH places it is said:
+    // the person's own row, and the section's count sentence, because a visitor
+    // who never opens a household still reads the second one.
+    check(`${label}: a letter-list name says on its own row how thin that evidence is`,
+      /How this person is known/.test(residents.letterText)
+      && /uncalled-for letters/.test(residents.letterText)
+      && /weakest evidence/.test(residents.letterText),
+      residents.letterText.slice(0, 200));
+    check(`${label}: the count sentence says how many people are known only that way`,
+      /12 of the people here are known ONLY from the post office/.test(residents.prose),
+      residents.prose.slice(0, 240));
+    // And the other half of the same ruling: none of the ten may carry a trade
+    // the papers do not give them. The occupation on a letter-list person reads
+    // that none is recorded, and a plausible-sounding job appearing there would
+    // be an invention this section exists to make impossible.
+    check(`${label}: a letter-list name carries no invented trade`,
+      /none recorded/i.test(residents.letterText)
+      && /No source records an occupation/.test(residents.letterText),
+      residents.letterText.slice(0, 200));
     // The one thing this section must never imply, and the constraint that
     // outranks every other consideration in this project: v1 draws no human
     // figures, and the removal of August 1835 is not staged anywhere.
@@ -10115,8 +10176,14 @@ for (const [label, viewport, touch] of [
         overflow: document.documentElement.scrollWidth <= window.innerWidth + 1,
       };
     });
+    // T-0380 made it FOUR. The New York House joined the watch list on 2026-08-29
+    // when its record was written: it had been an EXCLUSION whose own text said it
+    // would stay one "only until a structure record replaces it", and the entry it
+    // leaves behind still carries a live question — Andreas says "near Wells" and
+    // Wells has two sides. The count is exact on purpose, the same bookkeeping the
+    // frontage censuses above carry: an open question appearing is worth failing over.
     check(`${label}: the open questions load`,
-      open.counted === 3 && !open.busy && open.rendered === open.counted,
+      open.counted === 4 && !open.busy && open.rendered === open.counted,
       `${open.rendered} rendered of ${open.counted}`);
     // The discriminating pair, and it is the whole argument for the section: two
     // of these three are buildings the visitor can walk up to and one is empty
@@ -10220,11 +10287,15 @@ for (const [label, viewport, touch] of [
     check(`${label}: it starts collapsed like every other disclosure on the card`,
       openCard.western.collapsed === true, `collapsed ${openCard.western.collapsed}`);
     // The discriminating case, and it is a deliberate silence rather than a
-    // missing empty state. The current watch list has exactly two structures in
-    // the scene: the Western Hotel and Cobweb Castle. Every other building must
-    // stay silent; a card dumping the whole list would fail this exact set.
+    // missing empty state. The watch list has exactly THREE structures in the
+    // scene: the Western Hotel, Cobweb Castle and — since T-0380 on 2026-08-29 —
+    // the New York House, whose open question is which side of Wells Street it
+    // stood on. Every other building must stay silent; a card dumping the whole
+    // list would fail this exact set. Membership rather than order: the panel's
+    // ordering is the file's, and this assertion is about which buildings speak.
     check(`${label}: only tracked in-scene buildings carry open questions`,
-      openCard.others.length === 1 && openCard.others[0] === 'cobweb_castle',
+      openCard.others.length === 2
+      && ['cobweb_castle', 'new_york_house'].every((id) => openCard.others.includes(id)),
       `beside western_hotel: ${openCard.others.join(', ') || 'none'}`);
     // Reading every card leaves one open over the panel, which the panel's own
     // close button then cannot be clicked through.

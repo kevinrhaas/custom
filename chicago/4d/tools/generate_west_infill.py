@@ -52,6 +52,13 @@ sys.path.insert(0, str(ROOT / "tools"))
 # dwelling or workplace of an inferred household (ROADMAP K1). The link is data, not a
 # hand edit, so this generator still re-derives every record byte for byte.
 from band_notes import split_notes  # noqa: E402
+# The one sampling rule, shared with the platted blocks and the North parcel. This
+# generator used to retype one eave and one pitch per family into Python, and eleven of
+# those constants sat outside the band the note under them cited (T-0172, T-0272). The
+# band is now used as the range it was authored as.
+from family_bands import (eave_floor, eave_for_ridge, eave_limits,  # noqa: E402
+                          families, pitch_deg, wall_height_m)
+from ridge_model import ridge_run_m  # noqa: E402
 from roof_form import note_refusal, roof_kind  # noqa: E402
 from inferred_occupancy import occupancy  # noqa: E402
 # T-0112. The clapboard stock is dealt at the end of the parcel, because it is the one
@@ -60,6 +67,16 @@ from inferred_occupancy import occupancy  # noqa: E402
 from siding_stock import deal_records as deal_siding  # noqa: E402
 
 OCCUPANCY = occupancy()
+FAMILIES = families()
+
+
+def spec_for(family: str) -> dict:
+    """The crosswalk's entry for a family, which is where its bands are authored."""
+    spec = FAMILIES.get(family)
+    if spec is None or not spec.get("eave_ft"):
+        raise SystemExit(f"the crosswalk authors no eave band for family {family}; "
+                         f"the West recipe cannot sample it")
+    return spec
 
 
 def load(path: Path):
@@ -149,34 +166,108 @@ def form_for(family: str, seq: int, paint: str, width: float, depth: float) -> d
     Python tuple is a refusal no visitor can read.
     """
     return note_refusal(
-        split_notes(_form_body(family, seq, paint), family, band_note(family)),
+        split_notes(_form_body(family, seq, paint, width, depth), family,
+                    band_note(family)),
         family, width, depth)
 
 
-def _form_body(family: str, seq: int, paint: str) -> dict:
+def door_kind(family: str) -> str:
+    """WHICH DOOR a family carries. Asked for rather than read off the form dict,
+    because the eave FLOOR depends on it — a wagon door needs a metre more wall than a
+    man door — and the floor has to be known before the eave is drawn."""
+    if family in ("W1", "W2", "W3", "W5", "F1", "A2"):
+        return "wagon"
+    return "stable" if family == "A1" else "man"
+
+
+def _storeys(family: str):
+    """The storey count this parcel authors, which is what bounds the eave.
+
+    `None` for the families that fall to the outbuilding tail, which author no storey
+    count at all — and `eave_limits` reads that as "no storey-dependent limit", which is
+    the truth for `outbuilding`. The values are the ones this file has always written;
+    they are named here because `eave_limits` has to be asked the question before the
+    branch that answers it is reached.
+    """
+    if family == "D1" or family.startswith("C"):
+        return 1
+    if family.startswith("D") and family != "D2" or family == "H1":
+        return 1.5 if family in ("D6", "H1") else (2 if family in ("D7", "H2") else 1)
+    if family == "H2":
+        return 2
+    return None
+
+
+def _pitch_default(family: str) -> float:
+    """The generator's own type value, which is what a family authoring no band gets."""
+    if family == "D1":
+        return 35.0
+    if family.startswith("D") and family != "D2" or family == "H1":
+        return 42.0 if family in ("D6", "H1") else 38.0
+    if family.startswith("C"):
+        return 33.0
+    if family == "H2":
+        return 38.0
+    return 18.0 if roof_kind(family)[0] == "shed" else 32.0
+
+
+def _form_body(family: str, seq: int, paint: str, width: float, depth: float) -> dict:
     why = band_note(family)
     frame = "balloon_frame" if seq % 2 else "braced_frame"
+    spec = spec_for(family)
+    # The stable key every sampled value in this parcel is drawn on. It is the SEQUENCE
+    # number because that is what identifies a West slot: the recipe hands this file a
+    # layout row and the structure id is derived from it further down, so the sequence
+    # is the one identifier `tools/measure_family_deal.py` can also deal a synthetic
+    # instance under.
+    key = f"{PREFIX}form_{seq:04d}"
+
+    # THE EAVE AND THE PITCH COME FROM THE FAMILY'S OWN BAND (T-0272). They were
+    # per-family CONSTANTS, and the note printed under each one told a visitor it was a
+    # type-level choice "within the {family} band" — which for eleven of them was not
+    # true: A5 and W4 stood at a man door's 2.05 m under bands starting at 7 and 9 ft,
+    # C2 at 3.25 m and 33.0 deg, D3 at 2.78, D7 at 5.05, H2 at 5.2 m and 38.0 deg, A2 at
+    # 32.0 deg, and D2 fell past the D branch to the outbuilding tail and took the
+    # tail's 2.05 m and 18.0 deg with it. A constant is also a claim of uniformity no
+    # source makes: twenty roofs dealt from one figure per family are not twenty roofs.
+    #
+    # This is the repair T-0144 and T-0145 made on the platted blocks, which T-0172's
+    # sweep then measured here. Two of the eleven — H2's pair — stood on a branch no
+    # West slot has ever been dealt, so nothing in the repo said the card was bad until
+    # a sweep dealt the family anyway.
+    #
+    # The archetype bounds the band at BOTH ends and the limits are ASKED of it, never
+    # retyped; the ridge band the same crosswalk entry authors bounds it once more,
+    # which needs the run the roof climbs, and that is the archetype's too.
+    roof_type, gable_front = roof_kind(family)
+    stories = _storeys(family)
+    archetype = archetype_for(family)
+    run = ridge_run_m(archetype, roof_type, width, depth, gable_front)
+    arch_lo, arch_hi = eave_limits(archetype, stories)
+    floor, ceiling = max(eave_floor(family, door_kind(family)), arch_lo), arch_hi
+    wall = eave_for_ridge(wall_height_m(family, spec["eave_ft"], key, floor, ceiling),
+                          family, spec["eave_ft"], spec.get("roof"),
+                          spec.get("ridge_ft"), run, _pitch_default(family), key,
+                          floor, ceiling)
+
+    def pitch() -> float:
+        return pitch_deg(family, spec.get("roof"), key, _pitch_default(family),
+                         eave_m=wall, run_m=run, ridge_ft=spec.get("ridge_ft"))
 
     if family == "D1":
         return {
-            "stories": inferred(1, why), "wall_height_m": inferred(2.5, why),
-            "roof_type": inferred("gable", why), "roof_pitch_deg": inferred(35.0, why),
+            "stories": inferred(1, why), "wall_height_m": inferred(wall, why),
+            "roof_type": inferred("gable", why), "roof_pitch_deg": inferred(pitch(), why),
             "construction": inferred("log", why), "loft": inferred(True, why),
             "chimneys": inferred(1, why),
         }
 
     if family.startswith("D") and family != "D2" or family == "H1":
-        if family in ("D6", "H1"):
-            stories, wall, pitch = 1.5, 3.6, 42.0
-        elif family in ("D7", "H2"):
-            stories, wall, pitch = 2, 5.05, 38.0
-        else:
-            stories, wall, pitch = 1, 2.78, 38.0
         plan = "centre_passage" if family in ("D7", "H2") else (
             "single_pen" if family == "D3" else "hall_parlour")
         return {
             "stories": inferred(stories, why), "wall_height_m": inferred(wall, why),
-            "roof_type": inferred("gable", why), "roof_pitch_deg": inferred(pitch, why),
+            "roof_type": inferred("gable", why), "roof_pitch_deg": inferred(pitch(), why),
             "construction": inferred(frame, why), "plan": inferred(plan, why),
             "bays": inferred(5 if family in ("D7", "H2") else 3, why),
             "chimneys": inferred(2 if family.startswith("H") else 1, why),
@@ -185,8 +276,8 @@ def _form_body(family: str, seq: int, paint: str) -> dict:
 
     if family.startswith("C"):
         return {
-            "stories": inferred(1, why), "wall_height_m": inferred(3.25, why),
-            "roof_type": inferred("gable", why), "roof_pitch_deg": inferred(33.0, why),
+            "stories": inferred(1, why), "wall_height_m": inferred(wall, why),
+            "roof_type": inferred("gable", why), "roof_pitch_deg": inferred(pitch(), why),
             "gable_front": inferred(True, why), "construction": inferred(frame, why),
             "cladding": inferred("clapboard", why), "paint": inferred(paint, why),
             "loft": inferred(family == "C2", why), "chimneys": inferred(1, why),
@@ -196,23 +287,20 @@ def _form_body(family: str, seq: int, paint: str) -> dict:
 
     if family in ("H2",):
         return {
-            "stories": inferred(2, why), "wall_height_m": inferred(5.2, why),
-            "roof_type": inferred("gable", why), "roof_pitch_deg": inferred(38.0, why),
+            "stories": inferred(2, why), "wall_height_m": inferred(wall, why),
+            "roof_type": inferred("gable", why), "roof_pitch_deg": inferred(pitch(), why),
             "construction": inferred("braced_frame", why), "paint": inferred(paint, why),
             "gallery": inferred(False, why), "chimneys": inferred(2, why),
         }
 
-    door = "wagon" if family in ("W1", "W2", "W3", "W5", "F1", "A2") else (
-        "stable" if family == "A1" else "man")
+    door = door_kind(family)
     # WHICH ROOF A FAMILY GETS is `tools/roof_form.py`'s answer and no longer this
     # file's (T-0179): the same literal used to sit in five parcels and the five had
     # already drifted over A5.
-    roof = roof_kind(family)[0]
-    wall = 3.42 if door == "wagon" else (2.75 if door == "stable" else 2.05)
     construction = "light_frame" if family in ("W2", "W4", "A1", "A2") else "plank"
     return {
-        "wall_height_m": inferred(wall, why), "roof_type": inferred(roof, why),
-        "roof_pitch_deg": inferred(18.0 if roof == "shed" else 32.0, why),
+        "wall_height_m": inferred(wall, why), "roof_type": inferred(roof_type, why),
+        "roof_pitch_deg": inferred(pitch(), why),
         "construction": inferred(construction, why), "door": inferred(door, why),
         "door_side": inferred("front", why),
         "loft": inferred(family in ("W2", "W3", "W5", "A1", "A2"), why),

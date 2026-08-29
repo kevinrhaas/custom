@@ -363,7 +363,12 @@ def main() -> int:
             for family in list(fams):
                 if family not in rows or not rows[family].get("claims"):
                     del fams[family]
-        BASELINE_PATH.write_text(json.dumps(baseline, indent=2) + "\n", encoding="utf-8")
+        # `ensure_ascii=False`, because every `why` in this file is prose a person
+        # reads and it is written with em dashes. Escaping them to \\u2014 rewrote
+        # all eleven surviving reasons as noise the first time a repair shrank the
+        # ratchet (T-0273), which is a diff nobody can review.
+        BASELINE_PATH.write_text(json.dumps(baseline, indent=2, ensure_ascii=False)
+                                 + "\n", encoding="utf-8")
         print(f"\n   baseline written to {BASELINE_PATH.relative_to(ROOT)}")
         return 0
 

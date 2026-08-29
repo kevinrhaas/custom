@@ -2853,6 +2853,15 @@ DERIVED_DOCUMENTS = [
             "_doc": "the do-not-hand-edit banner, addressed to whoever opens the file",
             "source": "docs/LIBERTIES.md, the path the list was derived from",
             "count": "the length of the list the visitor is already scrolling",
+            "liberties.scope.enumeration": "which derived population a `Scope:` "
+                "entry admits to, as the key tools/compile_liberties.py re-counts "
+                "it by; the visitor reads the field's own prose, which names the "
+                "same file in words",
+            "liberties.scope.count": "the count exactly as the markdown declares "
+                "it, carried so a drift from the register it enumerates is a gate "
+                "failure rather than a number the next compile silently absorbs. "
+                "The figure a visitor reads is the one inside the `Scope:` field "
+                "text, which is already shipped",
         },
     },
 ]

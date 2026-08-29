@@ -1,7 +1,7 @@
 ---
 id: T-0341
 title: A bare surname can never be joined to its forename: the family rule reads 'no initials' as 'different initials'
-state: open
+state: withdrawn
 epic: META
 requested_by: loop
 seen: false
@@ -9,10 +9,10 @@ effort: S
 legacy_id: null
 parent: null
 opened: 2026-08-28
-closed: null
+closed: 2026-08-29
 pr: null
-claimed_by: null
-blocked_on: null
+claimed_by: run 8/29/2026, 11:18:31 AM CT
+blocked_on: Superseded by T-0397 (#544) and T-0392. T-0397 made an unread [?] a position rather than an absence, so the three T-0323 readings this ticket wanted to free are [?] cases and belong to T-0392, already blocked-owner on exactly that question. Re-measured after T-0397, the widening this ticket proposed reaches 2 names — Stuart and Patterson — and the same evidence says both must be refused: the page set no forename at all, and Stuart is already a confectioner and a schooner master. No widening left to rule on. The measurement and the un-automatable 'not contradicted' clause are written into the ticket for T-0392.
 needs_bake: false
 ---
 
@@ -66,6 +66,72 @@ is in the corpus, which is the family case the rule was written for.
   and `identity.json`'s note states the widened rule in the same words the code enforces.
 - The four T-0323 readings above are then declared or explicitly left undeclarable, with the
   reason on T-0318.
+
+---
+
+## WITHDRAWN, 2026-08-29 — T-0397 moved the ground, and what is left is two names that must both be refused
+
+This ticket was measured across the whole corpus rather than the four examples it was
+filed on, and the measurement withdraws it. `tools/probe_bare_surname_merges.py` (added by
+the same run; a probe, not a gate — nothing in `check.sh` runs it) borrows
+`compile_gazetteer.py`'s own `surname()` and `initials()` so it cannot drift from the guard
+it reasons about.
+
+**Measured first at `44995edc`, before T-0397 landed.** 2,634 persons, **126** carrying no
+forename at all; of those, 18 had exactly one forenamed bearer of the surname and would
+have been admitted by the widening this ticket proposed, 51 kept the family refusal, 57 had
+nothing to join. Bounded, and it still refused `[?] Temple`, which has twelve forenamed
+Temples standing.
+
+**Then T-0397 (#544) landed, and the premise changed.** This ticket's diagnosis was that
+`initials()` returns an EMPTY tuple for `[?] Blodget`, so the family guard fires on a case
+it was never aimed at. T-0397 fixed the parse: an unread `[?]` is now a POSITION, not an
+absence, so `initials('[?] Blodget')` is `('?',)` and not `()`. The merge is still refused —
+`('?',)` against `('a',)` — but it is refused for a **different reason**, and that reason
+already has its own ticket and its own question in front of the owner: **T-0392**, "may an
+unread forename initial be merged with a read one at the same entry of the same list",
+`blocked-owner`, under T-0348. All three of the T-0323 readings this ticket wanted to free —
+`[?] Blodget`, `[?] Breed`, `[?] Devoe` — are `[?]` cases and are therefore T-0392's, not
+this ticket's. (The fourth, `[uncertain: Dagenet]`, is the only Dagenet in the corpus, so it
+was never a merge case at all; T-0318's table already says "nothing minted to merge into".)
+
+**Re-measured at `109ef385`, the ticket has two names left and both must be refused.**
+
+| | at 44995edc | at 109ef385, after T-0397 |
+|---|---|---|
+| persons compiled | 2,634 | 2,628 |
+| **carrying no forename at all** | **126** | **71** |
+| — exactly one bearer → the widening would ADMIT | 18 | **2** |
+| — two or more bearers → the family refusal stands | 51 | 27 |
+| — no forenamed bearer at all → nothing to join | 57 | 42 |
+
+The two survivors are exactly the pair the first measurement had already singled out as the
+dangerous ones, because in both the page set **no forename at all** — as against the `[?]`
+names, where it set one and the reader could not make it out:
+
+- `Stuart` → `Samuel Stuart`. `Stuart` is a **confectioner** AND a **schooner master**, seen
+  Oct 1834 – Jun 1835 and not letter-list-only; `Samuel Stuart` is three letter-list mentions
+  in Jul 1834. `Stuart` is probably two men before any merge is even considered.
+- `Patterson` (Jul 1834) → `Patterson, Daniel W,` (Aug 1835 letter list). Nothing but the
+  surname connects them.
+
+**So there is no widening left to rule on.** Every case with evidence behind it is a `[?]`
+case and belongs to T-0392; the only cases this ticket's own test would still reach are two
+the same evidence says to refuse. Asking the owner a second question here would put a
+duplicate of T-0392 on his board.
+
+**One finding worth keeping, and it is recorded here because T-0392 will need it.** The
+"not contradicted by the printing" clause cannot be automated. `[?] Conger` is set
+`Ca Conger` — two forename letters WERE read and then discarded to `[?]` — while
+`n Whitcomb` and `_ Winson` are OCR debris in exactly the same shape. Only a reader can say
+which is which, so that clause belongs in `identity.json`'s `merge_rule` prose, where it is
+stated and can be read back, and not in a new code guard. T-0392's bounded exception
+("no competing letter") is the same clause, and it has the same problem.
+
+Reproduce any of this with:
+
+    tools/probe_bare_surname_merges.py           the counts and the admissible set
+    tools/probe_bare_surname_merges.py --all     the 27 refused and the 42 unjoinable too
 
 **Links:** T-0323 (the reading that hit this) · T-0318 (the names waiting on it) · T-0337 and
 T-0338 (the same question asked of FIRMS, where the initial rule was deliberately dropped) · T-0299

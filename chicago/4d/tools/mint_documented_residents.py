@@ -102,6 +102,7 @@ STRUCTURES = DATA / "structures"
 
 SCENE_DATE = "1835-07-01"
 PREFIX = "hh_doc_"
+LETTER_LIST_PREFIX = "hh_ll_"   # tools/mint_letter_list_residents.py; see town_family_names
 PERSON_PREFIX = "doc_"
 DIVISION = "unplaced"
 
@@ -228,11 +229,21 @@ def in_town_places() -> set[str]:
 # Each pass must not read its OWN output back as "the town already names a
 # <Surname>" — it would refuse on the second run every man it seated on the first
 # and make `--check` pass against any tree at all. But it must not read a LATER
-# pass's output either, for the same reason: T-0373's mint lands after this one,
-# so its households have to be invisible here while this one's are visible to it.
-# T-0373 therefore calls this with skip=("hh_placed_",) and sees `hh_doc_`; this
-# pass skips both and sees neither.
-MINTED_PREFIXES = ("hh_doc_", "hh_placed_")
+# pass's output either, and THAT is a precedence rule rather than the same rule
+# twice: where two passes reach for one family name, the better-evidenced pass
+# keeps it and the later one gives way.
+#
+# The order is documented (a trade the papers print) ▸ placed (a residency test
+# over the corpus, T-0373) ▸ letter-list-only (a name on a list of uncalled-for
+# letters, T-0378), best-evidenced first:
+#
+#   mint_documented_residents   skips hh_doc_, hh_placed_, hh_ll_ — sees none
+#   mint_placed_residents       skips hh_placed_, hh_ll_         — sees hh_doc_
+#   mint_letter_list_residents  skips hh_ll_                     — sees both
+#
+# So this derivation is unchanged by anything any of the three mints, which is
+# what keeps all three re-derivable beside each other in any order.
+MINTED_PREFIXES = ("hh_doc_", "hh_placed_", "hh_ll_")
 
 
 def town_family_names(docs: dict, index: dict, skip=MINTED_PREFIXES) -> set[str]:

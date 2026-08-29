@@ -1,13 +1,13 @@
 ---
-id: T-0388
+id: T-0418
 title: The 36 documented tradespeople whose trade the residents vocabulary has no word for
 state: open
 epic: META
 requested_by: loop
 seen: false
-effort: M
+effort: S
 legacy_id: null
-parent: null
+parent: T-0373
 opened: 2026-08-29
 closed: null
 pr: null

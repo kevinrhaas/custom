@@ -131,6 +131,8 @@ from mint_documented_residents import (  # noqa: E402  (shared, deliberately)
 )
 
 PREFIX = "hh_placed_"
+LETTER_LIST_PREFIX = "hh_ll_"   # tools/mint_letter_list_residents.py; see the mint
+_ORDER_SKIP = (PREFIX, LETTER_LIST_PREFIX)
 PERSON_PREFIX = "placed_"
 DIVISION = "unplaced"
 ARTICLE = re.compile(r"^the\b", re.I)
@@ -265,7 +267,10 @@ def mint(docs: dict, index: dict):
     held = already_held(register)
     company = claim_company(gazetteer)
     texts = claim_text()
-    known = town_family_names(docs, index, skip=(PREFIX,))
+    # The three-way precedence documented in mint_documented_residents.MINTED_PREFIXES:
+    # this pass SEES `hh_doc_` and gives way to it, and does not see its own output
+    # or the letter-list pass below it, which gives way to this one in turn.
+    known = town_family_names(docs, index, skip=_ORDER_SKIP)
     in_town = in_town_places()
 
     candidates = [p for p in register["persons"]
@@ -475,7 +480,7 @@ def record(cand: dict, gaz: dict, inside, addressed, issues, neighbours) -> dict
             f"family, no recorded trade, and every one of those absences written as "
             f"unattested rather than filled in from the shape of the rest of the town. "
             f"That the person is a HOUSEHOLD is the one invention here and it is "
-            f"recorded as docs/LIBERTIES.md L207. "
+            f"recorded as docs/LIBERTIES.md L213. "
             f"tools/mint_placed_residents.py derives the whole minted set and prints "
             f"every candidate it refused, with the reason."
         ),
@@ -611,11 +616,13 @@ def self_test() -> int:
     want("the bare town resolves inside", "chicago" in in_town, True)
     want("Green Bay does not", norm_place("Green Bay") in in_town, False)
 
-    # the ordering between the two minting passes: this one must SEE T-0376's
-    # households, and T-0376's must not see this one's.
+    # the ordering between the three minting passes: this one must SEE T-0376's
+    # households and NOT T-0378's; T-0376's must see neither.
     from mint_documented_residents import MINTED_PREFIXES
-    want("T-0376 skips both minted prefixes",
-         set(MINTED_PREFIXES) == {"hh_doc_", PREFIX}, True)
+    want("T-0376 skips all three minted prefixes",
+         set(MINTED_PREFIXES) == {"hh_doc_", PREFIX, LETTER_LIST_PREFIX}, True)
+    want("this pass skips its own and the letter-list pass's, and not T-0376's",
+         set(_ORDER_SKIP) == {PREFIX, LETTER_LIST_PREFIX}, True)
 
     for line in fails:
         print(f"   FAIL {line}")

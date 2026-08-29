@@ -82,7 +82,13 @@
           "street": "Lake Street"
         }
       },
-      "notes": "A PHYSICIAN'S OFFICE WITH A REAL ADDRESS — 'on Lake street, near the Post Office' — and it puts a useful constraint on the post office at the same time. T-0257's Democrat fixture places J. S. C. Hogan's store 'one [door from] the Post Office' in SOUTH WATER STREET, and 1835-07-04 of this run shows Hogan is the postmaster; this card says the post office is near enough to Lake Street to be a Lake Street anchor. Both can be true where the two streets are close or at a corner between them, and the two together are worth more than either alone. THE MEDICINE IS THE OTHER HALF OF THE CLAIM: a botanic practitioner, Old School trained but practising the reformed New York and Ohio system, advertising vegetable remedies AGAINST mercury by name. Chicago in August 1835 has an allopath (Barnard, at the New York House in Lake Street), a botanic (Austin, in Lake Street), two druggists and a travelling dentist — a medical street, which is a thing a reconstruction can say about a frontage."
+      "notes": "A PHYSICIAN'S OFFICE WITH A REAL ADDRESS — 'on Lake street, near the Post Office' — and it puts a useful constraint on the post office at the same time. T-0257's Democrat fixture places J. S. C. Hogan's store 'one [door from] the Post Office' in SOUTH WATER STREET, and 1835-07-04 of this run shows Hogan is the postmaster; this card says the post office is near enough to Lake Street to be a Lake Street anchor. Both can be true where the two streets are close or at a corner between them, and the two together are worth more than either alone. THE MEDICINE IS THE OTHER HALF OF THE CLAIM: a botanic practitioner, Old School trained but practising the reformed New York and Ohio system, advertising vegetable remedies AGAINST mercury by name. Chicago in August 1835 has an allopath (Barnard, at the New York House in Lake Street), a botanic (Austin, in Lake Street), two druggists and a travelling dentist — a medical street, which is a thing a reconstruction can say about a frontage.",
+      "announces_opening": {
+        "verbatim": "h[e] has [commen]ced the practice of medicine and opene[d an office] on Lake s[t]re[et], near the Po[st] Office",
+        "dating": "effected",
+        "iso": "1835-08-07",
+        "note": "The American's printing of the same notice the Democrat carries on 12 August, over the same 7 August 1835 dateline."
+      }
     },
     {
       "id": "c002",

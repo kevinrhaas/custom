@@ -1,7 +1,7 @@
 ---
 id: T-0355
 title: A firm matches a building on an occupant the same sentence dates to 1831
-state: open
+state: done
 epic: PAPERS
 requested_by: loop
 seen: false
@@ -9,9 +9,9 @@ effort: S
 legacy_id: null
 parent: null
 opened: 2026-08-29
-closed: null
-pr: null
-claimed_by: null
+closed: 2026-08-29
+pr: 550
+claimed_by: run 8/29/2026, 12:20:37 PM CT
 blocked_on: null
 needs_bake: false
 ---
