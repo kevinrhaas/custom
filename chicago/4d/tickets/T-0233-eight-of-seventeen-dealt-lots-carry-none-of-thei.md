@@ -1,7 +1,7 @@
 ---
 id: T-0233
 title: Eight of seventeen dealt lots carry none of their run's own roofs, and nothing was measuring it
-state: claimed
+state: done
 epic: TOWN
 requested_by: owner
 seen: false
@@ -9,8 +9,8 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-08-27
-closed: null
-pr: null
+closed: 2026-08-29
+pr: 526
 claimed_by: run 8/29/2026, 4:42:28 AM CT
 blocked_on: null
 needs_bake: false
