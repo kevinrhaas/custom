@@ -19,10 +19,10 @@ Piece 2 of 3 of **T-0368 — The letter lists mint new residents**.
 
 378 of the register's `new_resident` people are known from something other than a
 letter list and carry NO trade the register could read — a name in a proceedings
-column, a signature on a public card, a consignee in a shipping notice. T-0372 takes
+column, a signature on a public card, a consignee in a shipping notice. T-0376 takes
 the ones with a trade; these are the rest of the non-letter-list half.
 
-**The hard part is not minting them, it is the residency test.** T-0372's refusals
+**The hard part is not minting them, it is the residency test.** T-0376's refusals
 already show what this pool is full of: 'A. A. Barber' is one of sixty-three
 signatures on a card thanking a steamboat captain on a trip from Buffalo, and his only
 associated place is Green Bay. A name printed in a Chicago paper is not a Chicago

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""The documented tradespeople the town never invented a roof for become residents (T-0372).
+"""The documented tradespeople the town never invented a roof for become residents (T-0376).
 
     python3 tools/mint_documented_residents.py           write
     python3 tools/mint_documented_residents.py --check   re-derive and diff
@@ -425,7 +425,7 @@ def record(cand: dict, gaz: dict) -> dict:
         "touches_removal": False,
         "review_required": False,
         "research_note": (
-            f"MINTED FROM THE NEWSPAPER REGISTER (T-0372), AND THE HOUSEHOLD IS A "
+            f"MINTED FROM THE NEWSPAPER REGISTER (T-0376), AND THE HOUSEHOLD IS A "
             f"CONTAINER RATHER THAN AN ARGUMENT. Every other record in this dataset "
             f"argues for a household — a family the sources count, or a trade the "
             f"town demonstrably needed. This one argues for a PERSON: the Democrat "

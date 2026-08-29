@@ -989,7 +989,7 @@ step "one new household renames only the people it collides with" \
 step "the documented residents on reconstructed roofs re-derive from the register" \
   python3 tools/replace_invented_residents.py --check
 
-# And the pass that ADDS one (T-0372). The register's `new_resident` people are
+# And the pass that ADDS one (T-0376). The register's `new_resident` people are
 # the ones this reconstruction does not hold at all; where it can also read a
 # trade, that trade is by construction one the occupation census never invented a
 # roof for, so the only thing the town can do with the man is mint him. Gated for

@@ -9418,6 +9418,6 @@ is a finding, not a gap, and the card says which it is.
 reach them — which is the card telling the truth. No figure is drawn (L1).
 
 Related: **L205** (the documented men who took reconstructed roofs) · **L1** (no figure is drawn
-for any resident) · tickets **T-0372** (this), **T-0368**, **T-0264**, **T-0263**, **T-0373**,
+for any resident) · tickets **T-0376** (this), **T-0368**, **T-0264**, **T-0263**, **T-0373**,
 **T-0374**.
 **Recorded:** 2026-08-29.

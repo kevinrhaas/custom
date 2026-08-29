@@ -9611,7 +9611,7 @@ for (const [label, viewport, touch] of [
     // The finding itself, asserted as a number so it cannot quietly grow back:
     // the households that reach no building sidecar are each marked on their own
     // row. 17 of the 33 are the original fault — records whose residence and
-    // workplace are both unattested. The other 16 are T-0372's minted
+    // workplace are both unattested. The other 16 are T-0376's minted
     // tradespeople, who reach no building BY CONSTRUCTION: the papers name them
     // and their trade and say nothing whatever about where they lived, so the
     // chip is the card telling the truth rather than a regression.

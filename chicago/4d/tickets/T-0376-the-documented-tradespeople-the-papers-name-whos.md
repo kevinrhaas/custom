@@ -1,5 +1,5 @@
 ---
-id: T-0372
+id: T-0376
 title: The documented tradespeople the papers name, whose trade the town never invented, join it as residents
 state: done
 epic: PAPERS
