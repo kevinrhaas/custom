@@ -1,7 +1,7 @@
 ---
 id: T-0264
 title: Documented people replace the invented
-state: claimed
+state: done
 epic: PAPERS
 requested_by: owner
 seen: false
@@ -9,8 +9,8 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-08-27
-closed: null
-pr: null
+closed: 2026-08-29
+pr: 524
 claimed_by: run 8/29/2026, 2:54:09 AM CT
 blocked_on: T-0262
 needs_bake: false

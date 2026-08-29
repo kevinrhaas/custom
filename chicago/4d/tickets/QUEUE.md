@@ -39,7 +39,6 @@
 T-0297 — Reading the Democrat, August 1835: the four issues after the scene date
 T-0263 — The documented storefronts take their places on South Water and Lake
 T-0306 — The American names six Chicago storefronts with usable placements and none of them is standing in the model yet
-T-0264 — Documented people replace the invented
 
 # --- NEWSPAPERS, WAITING ON THE PAGE IMAGES — each needs the owner's scans opened,
 # --- which live outside the repository. Workable the day the images are supplied;
