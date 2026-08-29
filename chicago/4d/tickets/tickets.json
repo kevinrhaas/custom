@@ -1,6 +1,6 @@
 {
   "project": "chicago-4d",
-  "generated_ct": "Aug 29, 2026, 5:47 AM",
+  "generated_ct": "Aug 29, 2026, 5:56 AM",
   "tickets": [
     {
       "id": "T-0001",
@@ -5186,7 +5186,7 @@
     {
       "id": "T-0307",
       "title": "The derivation's running maximum costs 42 m of verge where the bank turns a right angle at Wolf Point",
-      "state": "open",
+      "state": "claimed",
       "epic": "TOWN",
       "requested_by": "loop",
       "seen": false,
@@ -5196,7 +5196,7 @@
       "opened": "2026-08-28",
       "closed": null,
       "pr": null,
-      "claimed_by": null,
+      "claimed_by": "run 8/29/2026, 4:42:09 AM CT",
       "blocked_on": null,
       "needs_bake": false,
       "queue_rank": 8
@@ -6082,6 +6082,24 @@
       "blocked_on": null,
       "needs_bake": false,
       "queue_rank": 64
+    },
+    {
+      "id": "T-0372",
+      "title": "North Water Street's two tight spots are 5.5 m and 8.5 m from water, and the setback rule cannot see either",
+      "state": "open",
+      "epic": "TOWN",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "S",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-08-29",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "queue_rank": 70
     },
     {
       "id": "T-0375",
