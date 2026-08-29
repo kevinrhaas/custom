@@ -171,3 +171,4 @@ T-0388 — Three derived records have drifted from their own generators on an un
 
 # --- NEWLY FILED — `ticket.mjs new` appends to the END of this file, so new tickets
 # --- land under this line. NOT yet placed by the owner.
+T-0395 — The New York House's footprint is graded reconstructed but its note cites a source, and the gate warns

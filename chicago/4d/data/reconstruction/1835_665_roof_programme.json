@@ -33,9 +33,9 @@
      "share": 0.4545
     },
     "principal": {
-     "n": 27,
+     "n": 28,
      "trade": 21,
-     "share": 0.7778
+     "share": 0.75
     }
    },
    "moved": [
@@ -77,19 +77,19 @@
   "naming": "A unit is named for a block only where the plat module reaches it. Everything else is a district balance that states what it waits on."
  },
  "standing": {
-  "structure_records": 358,
+  "structure_records": 359,
   "physical_roofs": {
-   "min": 345,
-   "max": 346,
+   "min": 346,
+   "max": 347,
    "range_note": "one record — the Robinson/Caldwell cabins — is two or three cabins in its source; the ledger counts the low reading."
   },
   "by_source": {
    "generated": 237,
    "inferred_household_programme": 38,
-   "pre_existing": 70
+   "pre_existing": 71
   },
   "by_district": {
-   "south": 202,
+   "south": 203,
    "west": 48,
    "north": 85,
    "fort": 10
@@ -98,7 +98,7 @@
    "ordinary_dwellings": 163,
    "larger_boarding_houses": 11,
    "stores_mixed_use": 35,
-   "inns_taverns": 9,
+   "inns_taverns": 10,
    "workshops": 29,
    "warehouses_freight": 12,
    "institutional_public": 10,
@@ -135,7 +135,7 @@
    "I3": 3,
    "M1": 10,
    "T1": 3,
-   "T2": 5,
+   "T2": 6,
    "T3": 1,
    "W1": 7,
    "W2": 3,
@@ -162,10 +162,10 @@
   ]
  },
  "remaining": {
-  "roofs": 317,
+  "roofs": 316,
   "of_target": 662,
   "by_district": {
-   "south": 163,
+   "south": 162,
    "west": 87,
    "north": 67,
    "fort": 0
@@ -173,7 +173,6 @@
   "by_district_group": {
    "south": {
     "barns_stables": 19,
-    "inns_taverns": 1,
     "larger_boarding_houses": 22,
     "ordinary_dwellings": 75,
     "small_outbuildings": 25,
@@ -210,7 +209,7 @@
    "D1": 16,
    "D2": 16,
    "D3": 31,
-   "D4": 35,
+   "D4": 34,
    "D5": 33,
    "D6": 17,
    "D7": 15,
@@ -238,7 +237,6 @@
    "south": {
     "A1": 10,
     "A2": 9,
-    "T1": 1,
     "H1": 8,
     "H2": 8,
     "H3": 6,
@@ -268,8 +266,8 @@
     "H3": 1,
     "D1": 5,
     "D2": 5,
-    "D3": 10,
-    "D4": 12,
+    "D3": 11,
+    "D4": 11,
     "D5": 11,
     "D6": 6,
     "D7": 5,
@@ -304,13 +302,13 @@
   "family_targets_already_exceeded": {
    "C1": 1,
    "I2": 1,
-   "T2": 2,
+   "T2": 3,
    "W1": 1,
    "W4": 2,
    "W5": 2
   },
   "absorbed_from": {
-   "D4": 9
+   "D4": 10
   },
   "district_group_rows_overshot": {
    "north": {
@@ -325,8 +323,8 @@
  },
  "coverage": {
   "schedulable_on_committed_ground": 20,
-  "gated_on_coverage": 297,
-  "statement": "20 of the 317 remaining roofs stand on ground this project has already surveyed, platted and modelled. The other 297 have nowhere to go until street control, terrain and hydrology reach them. The binding constraint on the 662-roof programme is coverage, not recipes.",
+  "gated_on_coverage": 296,
+  "statement": "20 of the 316 remaining roofs stand on ground this project has already surveyed, platted and modelled. The other 296 have nowhere to go until street control, terrain and hydrology reach them. The binding constraint on the 662-roof programme is coverage, not recipes.",
   "platted_lots": 144,
   "blocks_named": 21,
   "southern_ground": {
@@ -353,7 +351,7 @@
    },
    "lots": 8,
    "capacity_roofs": 31,
-   "standing_roofs": 10,
+   "standing_roofs": 11,
    "free_lots": 2,
    "principal_room": 3,
    "ancillary_room": 1,
@@ -368,7 +366,7 @@
    },
    "principal": 3,
    "ancillary": 1,
-   "frontage_weight": 0.6162,
+   "frontage_weight": 0.6023,
    "trade_roofs": 1
   },
   {
@@ -425,7 +423,7 @@
    },
    "principal": 6,
    "ancillary": 2,
-   "frontage_weight": 0.6162,
+   "frontage_weight": 0.6023,
    "trade_roofs": 1
   },
   {
@@ -455,7 +453,7 @@
    },
    "principal": 3,
    "ancillary": 1,
-   "frontage_weight": 0.6162,
+   "frontage_weight": 0.6023,
    "trade_roofs": 1
   },
   {
@@ -485,7 +483,7 @@
    },
    "principal": 3,
    "ancillary": 1,
-   "frontage_weight": 0.5025,
+   "frontage_weight": 0.4886,
    "trade_roofs": 0
   },
   {
@@ -864,7 +862,7 @@
    },
    "principal": 21,
    "ancillary": 6,
-   "frontage_weight": 0.697,
+   "frontage_weight": 0.6761,
    "trade_roofs": 4
   },
   {
@@ -904,13 +902,13 @@
    "roofs": 35,
    "families": {
     "A1": 3,
-    "A2": 3,
+    "A2": 2,
     "A3": 2,
     "A4": 2,
     "A5": 1,
     "D1": 2,
     "D2": 2,
-    "D3": 4,
+    "D3": 5,
     "D4": 5,
     "D5": 5,
     "D6": 2,
@@ -918,19 +916,19 @@
     "H1": 1,
     "H2": 1
    },
-   "principal": 24,
-   "ancillary": 11
+   "principal": 25,
+   "ancillary": 10
   },
   {
    "id": "south_plat_beyond_committed_control",
    "kind": "district_balance",
    "district": "south",
-   "capacity_roofs": 116,
+   "capacity_roofs": 115,
    "standing_roofs": 0,
-   "headroom": 116,
+   "headroom": 115,
    "state": "gated",
    "waiting_on": "TERRAIN, and not the street control ROADMAP S9 records as owed. The modelled heightfield ends at local N -400.0 m, which falls inside Washington Street's own platted corridor — 0.33 ha of that street's south half lies off the field. South of the corridor the field holds 0.0819 ha of land above the water surface and 0.0000 ha of it is in the South Division: the rest is the West Division bank, across the South Branch. Madison Street, the plat's south boundary, is 125.2 m further south again, so the plat's last tier — 6 blocks and 48 lots between Market and State, 6.28 ha — is not modelled ground at all. Every north-south column of the south plat has its committed centreline cut at the field's own south edge, so carrying street control further south would emit blocks whose every placement tools/generate_block_infill.py refuses for standing outside the modelled terrain. Ground east of State is not coming at any date — it is the United States Reservation (T-E2). Measured by tools/measure_southern_ground.py.",
-   "roofs": 116,
+   "roofs": 115,
    "families": {
     "A1": 7,
     "A2": 7,
@@ -953,10 +951,9 @@
     "H1": 6,
     "H2": 6,
     "H3": 4,
-    "T1": 1,
     "W2": 1
    },
-   "principal": 83,
+   "principal": 82,
    "ancillary": 33
   },
   {
@@ -971,7 +968,7 @@
    "roofs": 52,
    "families": {
     "A1": 3,
-    "A2": 3,
+    "A2": 4,
     "A3": 3,
     "A4": 2,
     "A5": 1,
@@ -981,7 +978,7 @@
     "D1": 3,
     "D2": 3,
     "D3": 6,
-    "D4": 7,
+    "D4": 6,
     "D5": 6,
     "D6": 4,
     "D7": 3,
@@ -991,8 +988,8 @@
     "H2": 1,
     "H3": 1
    },
-   "principal": 40,
-   "ancillary": 12
+   "principal": 39,
+   "ancillary": 13
   },
   {
    "id": "north_division_beyond_modelled_ground",

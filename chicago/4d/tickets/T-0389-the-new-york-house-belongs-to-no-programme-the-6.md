@@ -1,7 +1,7 @@
 ---
 id: T-0389
 title: The New York House belongs to no programme the 665-roof ledger can read, and dev's gate is red on it
-state: open
+state: claimed
 epic: TOWN
 requested_by: loop
 seen: false
@@ -11,7 +11,7 @@ parent: null
 opened: 2026-08-29
 closed: null
 pr: null
-claimed_by: null
+claimed_by: run 8/29/2026, 9:43:39 AM CT
 blocked_on: null
 needs_bake: false
 ---
