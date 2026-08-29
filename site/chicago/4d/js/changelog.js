@@ -1,4 +1,12 @@
 export const CHANGELOG = [ // newest first
+  { v: 375, title: 'Three more roofs stand at the Washington and Market corner', kind: 'feature', ts: '2026-08-29T08:13:24.028Z', date: 'Aug 29, 2026, 3:13 AM CT',
+    items: [
+      'Walk south to where Washington Street meets Market and the corner is no longer empty ground. Three houses now stand shoulder to shoulder along the Washington frontage, with a stable behind them in the yard. It is the second time this block has been built on, and the first time anything has stood at that corner.',
+      'The row is built HARD to the corner rather than set back from it. A row that starts in the middle of a block and runs outward can never reach the corner, so a corner lot is built the other way about: the first house stands a metre and a half clear of the side line and the other two chain east from it on shared walls.',
+      'Which house stands where is settled by the walk to the Dearborn Street drawbridge, the only crossing of the river in July 1835. The best of the three, a deep-plan frame cottage, closes the run at the Franklin end nearest the bridge; the roughest of them, a plank dwelling, takes the corner itself.',
+      'That is the first time those two rules have pulled in opposite directions. Everywhere they have been applied before, the corner happened to be the end nearest the bridge as well, so no building in this town has had to choose between them until now.',
+      'None of it is evidence. No source says a building stood on this ground, or that there were three of them, or that they stood in a row. The block face they front is surveyed; the side lines the row crosses are not. And the block still keeps a lot open on purpose \u2014 the schedule\u2019s capacity is a ceiling and not a target.',
+    ] },
   { v: 374, title: 'The town’s first school district, read twice off the same broken column', kind: 'chore', ts: '2026-08-29T06:34:40.965Z', date: 'Aug 29, 2026, 1:34 AM CT',
     items: [
       'Nothing you can see changed today. On 10 December 1834 the Chicago Democrat printed the metes and bounds of School District Number One — the first time this town’s ground was described in print as a closed circuit — together with a notice calling the district’s citizens to the Mansion House on the 16th. It is the worst-cut passage in the corpus: page 3 was scanned with two columns of type woven together line by line, fifteen lines of the notice survived out of fifty-four, and the reading made from them was a skeleton with a bracket at every joint.',

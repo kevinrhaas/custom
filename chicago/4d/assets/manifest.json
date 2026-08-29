@@ -1386,6 +1386,15 @@
       "phase_id": "inferred_1835",
       "structure_id": "recon_1835_blk_randolph_market_a1_07"
     },
+    "recon_1835_blk_randolph_market_a1_12__inferred_1835.glb": {
+      "archetype": "outbuilding",
+      "baked_ao": false,
+      "bytes": 100744,
+      "inputs_sha256": "4d7fbb23c4937a9cd34c08b35c220e825535a2a3aedcd64e59e539a223feb667",
+      "kind": "generated",
+      "phase_id": "inferred_1835",
+      "structure_id": "recon_1835_blk_randolph_market_a1_12"
+    },
     "recon_1835_blk_randolph_market_a2_08__inferred_1835.glb": {
       "archetype": "outbuilding",
       "baked_ao": false,
@@ -1413,6 +1422,24 @@
       "phase_id": "inferred_1835",
       "structure_id": "recon_1835_blk_randolph_market_a4_06"
     },
+    "recon_1835_blk_randolph_market_d1_10__inferred_1835.glb": {
+      "archetype": "log_dwelling",
+      "baked_ao": false,
+      "bytes": 32820,
+      "inputs_sha256": "4eb531414ff9587302831a1fc5df07f18704d47646d049478e9edfd14a5f013e",
+      "kind": "generated",
+      "phase_id": "inferred_1835",
+      "structure_id": "recon_1835_blk_randolph_market_d1_10"
+    },
+    "recon_1835_blk_randolph_market_d2_09__inferred_1835.glb": {
+      "archetype": "outbuilding",
+      "baked_ao": false,
+      "bytes": 69488,
+      "inputs_sha256": "b76710eaca0c2a176bd4a56d3797d087f2e5ea9592a52df94f19f327d378b69d",
+      "kind": "generated",
+      "phase_id": "inferred_1835",
+      "structure_id": "recon_1835_blk_randolph_market_d2_09"
+    },
     "recon_1835_blk_randolph_market_d3_04__inferred_1835.glb": {
       "archetype": "frame_dwelling",
       "baked_ao": false,
@@ -1439,6 +1466,15 @@
       "kind": "generated",
       "phase_id": "inferred_1835",
       "structure_id": "recon_1835_blk_randolph_market_d5_01"
+    },
+    "recon_1835_blk_randolph_market_d5_11__inferred_1835.glb": {
+      "archetype": "frame_dwelling",
+      "baked_ao": false,
+      "bytes": 30452,
+      "inputs_sha256": "22b1a54f4b4b8f007d62659786aa4b1385fac533b768938586128c441c450576",
+      "kind": "generated",
+      "phase_id": "inferred_1835",
+      "structure_id": "recon_1835_blk_randolph_market_d5_11"
     },
     "recon_1835_blk_randolph_market_d6_02__inferred_1835.glb": {
       "archetype": "frame_dwelling",

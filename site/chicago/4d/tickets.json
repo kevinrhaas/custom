@@ -1,6 +1,6 @@
 {
   "project": "chicago-4d",
-  "generated_ct": "Aug 29, 2026, 2:54 AM",
+  "generated_ct": "Aug 29, 2026, 3:17 AM",
   "tickets": [
     {
       "id": "T-0001",
@@ -5884,6 +5884,42 @@
       "blocked_on": null,
       "needs_bake": false,
       "queue_rank": 69
+    },
+    {
+      "id": "T-0364",
+      "title": "Two byte-identical copies of changelog.js are 7.2 per cent of the published payload, and they grow on every release",
+      "state": "open",
+      "epic": "META",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "M",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-08-29",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "queue_rank": 70
+    },
+    {
+      "id": "T-0365",
+      "title": "The anonymous-block programme has no unblocked ground left: every block with headroom is on the South Water reach T-0009 holds open",
+      "state": "open",
+      "epic": "META",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "M",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-08-29",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "queue_rank": 71
     }
   ]
 }

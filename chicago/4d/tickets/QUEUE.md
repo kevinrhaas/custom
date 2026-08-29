@@ -138,3 +138,5 @@ T-0356 — The claim vocabulary cannot say an advertisement announces an opening
 T-0357 — 129 documented businesses will stand on a survival liberty and LIBERTIES.md carries none of them
 T-0358 — The Thompson plat's block NUMBERING is uncommitted, so the corpus's only lot-and-block address cannot be placed
 T-0359 — The gazetteer mints tavern names as people, so Maddock's Tavern and Haddock's Tavern cannot be reconciled
+T-0364 — Two byte-identical copies of changelog.js are 7.2 per cent of the published payload, and they grow on every release
+T-0365 — The anonymous-block programme has no unblocked ground left: every block with headroom is on the South Water reach T-0009 holds open
