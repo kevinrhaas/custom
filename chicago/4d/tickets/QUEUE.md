@@ -57,7 +57,6 @@ T-0305 — Four readings the American contradicts itself on need the page images
 # --- blocked-tech: its code half shipped (the rule reads all four block faces now,
 # --- so a cross street CAN be laid), and all seven cross streets were then measured
 # --- over all three ceilings. PR #418, which parked Market Street alone, is closed.
-T-0307 — The derivation's running maximum costs 42 m of verge where the bank turns a right angle at Wolf Point
 T-0272 — The West Division parcel's form values come from the archetype and cite the family band: 8 families, 11 claims outside it
 T-0273 — The South Division infill parcel's form values come from the archetype and cite the family band: 9 families, 10 claims outside it
 T-0274 — The inferred-household parcel's form values come from the archetype and cite the family band: 8 families, 10 claims outside it
@@ -140,3 +139,4 @@ T-0365 — The anonymous-block programme has no unblocked ground left: every blo
 T-0333 — Every stove pipe in the town owes eighteen inches above its roof, and the ordinance of 5 August 1835 says so
 T-0334 — The hay-stacking ordinance walks a six-vertex boundary round the built town, and nothing draws or tests it
 T-0375 — Every reconstructed roof on South Water Street is a labourer's, so five documented tradesmen the papers put there have nowhere to stand
+T-0372 — North Water Street's two tight spots are 5.5 m and 8.5 m from water, and the setback rule cannot see either
