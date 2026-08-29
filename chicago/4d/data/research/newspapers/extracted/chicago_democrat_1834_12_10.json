@@ -3,7 +3,7 @@
   "issue_id": "chicago_democrat_1834_12_10",
   "extracted": "2026-08-29",
   "extracted_by": "hand, T-0294 — the Democrat read, December 1834",
-  "note": "Vol. II No. 2. Every column of this issue but three is Vision-set, and page 3 is nevertheless the hardest reading of the month: its columns alternate two physical columns line by line for their whole length, so the town's own notices survive as half-lines woven through the legislature's proceedings and a column of reprinted miscellany. The issue's own contribution is a public one — the metes and bounds of School District Number One and the meeting called to act on them at the Mansion House on 16 December. NO POST-OFFICE LETTER LIST OF ANY OFFICE STANDS IN THIS ISSUE.",
+  "note": "Vol. II No. 2. Every column of this issue but three is Vision-set, and page 3 is nevertheless the hardest reading of the month: its columns alternate two physical columns line by line for their whole length, so the town's own notices survive as half-lines woven through the legislature's proceedings and a column of reprinted miscellany. The issue's own contribution is a public one — the metes and bounds of School District Number One and the meeting called to act on them at the Mansion House on 16 December. NO POST-OFFICE LETTER LIST OF ANY OFFICE STANDS IN THIS ISSUE. AMENDED BY T-0330 on 2026-08-29: the interleaved advertisement pair in issue page 4 column 4 is resolved. “[oppo]site the Tremont Hous[e]” is Mason's (c007, placement now `relative`), the dry-goods column woven through him is P. F. W. Peck's standing “New Goods!!” and is recorded as c011, and one line T-0294 quoted as Mason's is moved to it. Neither reading needed the page images; the un-woven settings of the same two advertisements in the weeks before this issue carry both sentences whole.",
   "claims": [
     {
       "id": "c001",
@@ -288,8 +288,8 @@
       "id": "c007",
       "kind": "business",
       "reading": "transcription_mediated",
-      "quote": "Blacksmithin\nMATTHIAS MA\nCARAIES on tha abo\nvarious\nrieens, merino clotin",
-      "normalized": "Blacksmithin[g Business.] MATTHIAS MA[SON] CAR[R]IES on tha[t business in its] various branches, on [… where … all kinds of Work is done on the] … [most liberal terms.]",
+      "quote": "Blacksmithin\nMATTHIAS MA\nCARAIES on tha abo\nsite the Tremont Hous\nvarious",
+      "normalized": "Blacksmithin[g Business.] MATTHIAS MA[SON & CO.] CAR[R]IES on tha[t business in all its] various [branches, on Main-street, oppo]site the Tremont Hous[e, where they intend to keep, ready made, all kinds of Shoes, Chains, &c. &c. Work done on the shortest notice, and most liberal terms.]",
       "locator": {
         "artifact_role": "primary",
         "issue_page": 4,
@@ -302,8 +302,8 @@
           4419,
           4420,
           4422,
-          4427,
-          4429
+          4426,
+          4427
         ],
         "interleaved": true
       },
@@ -317,20 +317,30 @@
           ]
         }
       ],
-      "notes": "THE STREET IS CUT AWAY IN ALL FOUR PRINTINGS, AND A FRAGMENT THAT WOULD PLACE HIM BELONGS TO SOMEBODY ELSE. Every December setting of this advertisement ends the sentence at “various branches, on ” and loses the word after it. In the same segmenter column, four to six lines away, stands the fragment “[oppo]site the Tremont Hous[e]” — and it is NOT taken as Mason's, because the lines it sits among are a dry-goods list (English flannels, sattinets, muslins, ginghams, calicoes, merinos) belonging to the OTHER physical column woven into this one, and because assigning a placement across an interleave is precisely the mistake this schema's `interleaved` flag exists to stop. So Mason is minted with placement `none` and the question — whose “opposite the Tremont House” is it — is filed as a ticket by this run. The copy date printed under the advertisement, Nov. 26, 1833, is shared with the dry-goods column and is for that reason not recorded as his.",
+      "notes": "T-0330: THE FRAGMENT IS MASON'S, AND IT IS SETTLED WITHOUT THE PAGE IMAGES. T-0294 read this column, found “[oppo]site the Tremont Hous[e]” four lines from Mason's headline, and refused to give it to him because the lines around it are a dry-goods list belonging to the other physical column woven into this one — a placement assigned across an interleave is what this schema's `interleaved` flag exists to stop. The refusal was right on the evidence T-0294 had. It is answered by evidence it did not consult: THE SAME STANDING ADVERTISEMENT IS SET IN AN UN-WOVEN COLUMN THREE TIMES IN THE THIRTEEN WEEKS BEFORE THIS ONE, and there the line reads whole. 1834-11-19, issue page 4 column 4, lines 3661-3669, is the fullest: “various branches, on Main-street, [oppos]ite the Tremont House, where they inte[nd to] [k]eep, ready made, all kinds of Shoes, Ch[ains]” — read and recorded at the time as that issue's c008. 1834-10-15 lines 2101-2103 and 1834-09-10 lines 2523-2525 set the same sentence the same way. Street, anchor and the clause that follows are one continuous run of Mason's own copy, so the December fragment is his and nothing is assigned across the interleave: the interleave is only what SPLIT it.\n\nTHE COPY WAS RE-SET DURING 1834 AND THAT IS WHY THE ANCHOR LOOKS NEW. From 1833-12-17 to 1834-07-16 the same advertisement, under the same 26 November 1833 copy date, reads “on Main-street, nearly opposite Graves' Tavern” — 1833-12-24 line 131 carries it unbroken in one line. From 1834-09-10 it reads “on Main-street, oppo[s]ite the Tremont House”. Same street, same shop, a changed landmark; the dateline was never re-set. Nothing here decides whether the shop moved or the neighbour's name did, and nothing is inferred from it.\n\nTHE OTHER ADVERTISEMENT IS IDENTIFIED AND IT IS PLACED — see c011. It is P. F. W. Peck's standing “New Goods!!”, and its own heading in THIS column gives its address, so it needed no part of Mason's. Its goods list never names the Tremont House in the one complete setting of it the corpus holds (1834-07-23, issue page 4 column 4, lines 4408-4475).\n\nTWO CORRECTIONS TO T-0294'S READING OF THIS CLAIM. Line 4429, “rieens, merino clotin”, was quoted as Mason's and is not: it is “[beave]rteens, merino cloths” from Peck's dry-goods list, matching 1834-07-23 line 4421 word for word, and it is moved to c011. And the copy date at line 4430 IS Mason's, not a shared line: 1834-11-19 prints “Chicago, Nov. 26, 1833” directly under his advertisement in an un-woven column, and Peck's own dateline is 18 June 1834. It is recorded here as `ad_copy_date`.\n\nThe quote below stands in the segmenter's line order, which is not the reading order: line 4426 is printed after 4427 in Mason's own copy and the weave inverted them.",
       "business": {
         "name": "Matthias Mason",
         "proprietors": [
           "Matthias Mason"
         ],
         "trade": "blacksmith",
-        "goods": [],
-        "street": null,
+        "goods": [
+          "Shoes",
+          "Chains"
+        ],
+        "street": "Main Street",
         "placement": {
-          "class": "none",
-          "anchor": null,
-          "offset_text": null
+          "class": "relative",
+          "anchor": "the Tremont House",
+          "offset_text": "site the Tremont Hous\nvarious",
+          "offset_normalized": "on Main-street, opposite the Tremont House",
+          "street": "Main Street",
+          "note": "THE STREET NAME IS PRINTED AND IS NOT CORRECTED HERE. Chicago's plat carries no Main Street and this reconstruction holds none, so the placement rests on the ANCHOR — the Tremont House, which this model does hold — and not on the street word. 1834-11-19 c008 left the same two readings open and this claim leaves them open too: the paper using “Main street” loosely for the town's principal street, or a compositor's mis-set name. The verbatim offset text above is the December setting's own; the un-woven 1834-11-19 setting is what shows the two fragments to be one sentence."
         }
+      },
+      "ad_copy_date": {
+        "verbatim": "Chacngo, Nor. 26, 1833.",
+        "iso": "1833-11-26"
       }
     },
     {
@@ -486,6 +496,63 @@
           "class": "relative",
           "anchor": "Messrs. Newbury & Dole's store",
           "offset_text": "‘pee st veel Newbury fats"
+        }
+      }
+    },
+    {
+      "id": "c011",
+      "kind": "business",
+      "reading": "transcription_mediated",
+      "quote": "lew Geods!!\nD SOUTH-WATER\nODS.\nhich he offers for sale\ni or country\nstock,\nwhich\nind English\nSatti-\nuslina, ginghatns, cal-\nrieens, merino clotin",
+      "normalized": "[N]ew Goods!! [P. F. W. PECK, CORNER OF LASALLE AN]D SOUTH-WATER [STS. HAS just received from New-York, a full stock of fresh GOODS, adapted to the spring and fall demand,] [w]hich he offers for sale [at very low prices for cash] [o]r country [produce. The following is a brief summary of the many articles comprising his] stock, which [is too numerous to detail at length. Dry Go]ODS. [Super fine Broad Cloths, Cassimeres,] Satti-[netts, Baize, home made a]nd English [Flannels, fustians, corderoys, beave]rteens, merino clot[hs and circassians, French m]uslins, ginghams, cal-[icos …]",
+      "locator": {
+        "artifact_role": "primary",
+        "issue_page": 4,
+        "column": 4,
+        "lines": [
+          4402,
+          4429
+        ],
+        "lines_of_claim": [
+          4402,
+          4405,
+          4408,
+          4411,
+          4414,
+          4416,
+          4417,
+          4423,
+          4425,
+          4428,
+          4429
+        ],
+        "interleaved": true
+      },
+      "entities": [],
+      "notes": "THE OTHER HALF OF T-0330'S INTERLEAVE, NAMED. This is the advertisement whose dry-goods list is woven line by line through Mason's blacksmithing notice in issue page 4 column 4, and for which T-0330 asks that a placement be stated or recorded as absent. It is stated: the heading survives in THIS column at lines 4402 and 4405, “[N]ew Goods!!” over “[CORNER OF LASALLE AN]D SOUTH-WATER [STS.]”, so the advertiser gives his own corner and never needed the Tremont House.\n\nTHE PROPRIETOR'S NAME DOES NOT SURVIVE IN THIS SETTING and is not read off the heading, which carries only the address line. He is identified from the corpus's one complete setting of the same standing advertisement — 1834-07-23, issue page 4 column 4, lines 4408-4475: “New Goods! New Goods! P. F. W. PECK, CORNER OF LASALLE AND SOUTH-WATER STS.” — on a verbatim, IN-ORDER match of the surviving goods list to it: Sattinetts (4425 ↔ 4419), and English Flannels (4423 ↔ 4420), beaverteens then merino cloths (4429 ↔ 4421), muslins, ginghams, calicos (4428 ↔ 4422). The address line and the goods sequence agree, and no other advertiser in the corpus sets that list under that corner. Identification `inferred` on that match, not attested in this issue.\n\nNO ENTITY IS RECORDED FOR THIS CLAIM. The only name it could carry is one this printing does not print, and a person minted from another issue's setting would be a person this column never named. The business is recorded because the trade, the goods and the corner are all on this page; the man is not. Line 4429 was quoted as Mason's by T-0294 and belongs here. Its own dateline does not survive in this column either, so no `ad_copy_date` is recorded — the corpus holds 18 June 1834 for this advertisement from its other settings.",
+      "business": {
+        "name": "P. F. W. Peck",
+        "proprietors": [
+          "P. F. W. Peck"
+        ],
+        "trade": "dry goods, hardware, hollow ware, groceries, boots and shoes, saddlery, drugs, hats and ready made clothing",
+        "goods": [
+          "Dry Goods",
+          "English Flannels",
+          "Sattinetts",
+          "merino cloths",
+          "muslins",
+          "ginghams",
+          "calicos"
+        ],
+        "street": "South Water Street",
+        "placement": {
+          "class": "corner",
+          "anchor": "corner of LaSalle and South Water streets",
+          "offset_text": "D SOUTH-WATER",
+          "offset_normalized": "[CORNER OF LASALLE AN]D SOUTH-WATER [STS.]",
+          "street": "South Water Street",
+          "note": "The address line is cut to its tail in this setting and the head is supplied from the complete 1834-07-23 setting of the same advertisement. What THIS printing carries on its own is “SOUTH-WATER” under a “New Goods!!” headline; the LaSalle corner is the 07-23 reading, and both are named above rather than merged into one quotation."
         }
       }
     }
