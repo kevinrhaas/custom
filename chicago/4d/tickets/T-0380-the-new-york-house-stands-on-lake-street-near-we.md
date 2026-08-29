@@ -1,7 +1,7 @@
 ---
 id: T-0380
 title: The New York House stands on Lake Street near Wells, and the American dates its opening
-state: claimed
+state: done
 epic: META
 requested_by: loop
 seen: false
@@ -9,8 +9,8 @@ effort: S
 legacy_id: null
 parent: T-0306
 opened: 2026-08-29
-closed: null
-pr: null
+closed: 2026-08-29
+pr: 536
 claimed_by: run 8/29/2026, 7:12:42 AM CT
 blocked_on: null
 needs_bake: false
