@@ -54,7 +54,6 @@ T-0305 — Four readings the American contradicts itself on need the page images
 # --- every branch's smoke inherits it and every PR has to argue "not mine". Fixing
 # --- these buys every ticket below a clean verdict.
 T-0244 — T-0194's twelve hitching posts draw no vertices the gate can find, on dev
-T-0243 — The two timber-placement gates match no mesh since the lattice landed, and one of them is now red on dev
 T-0265 — The sward census fails its own gate at a phone: z10_settled_town owes xanthium_strumarium a whole slot and draws it nowhere
 
 # --- THE TOWN AND ITS STREETS — visible. T-0192 is parked whole on PR #418 until
