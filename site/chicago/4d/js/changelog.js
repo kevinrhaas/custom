@@ -1,5 +1,5 @@
 export const CHANGELOG = [ // newest first
-  { v: 401, title: 'Twenty-two advertised shops take their places on the streets that name them', kind: 'feature', ts: '2026-08-29T18:20:39.931Z', date: 'Aug 29, 2026, 1:20 PM CT',
+  { v: 402, title: 'Twenty-two advertised shops take their places on the streets that name them', kind: 'feature', ts: '2026-08-29T18:28:11.370Z', date: 'Aug 29, 2026, 1:28 PM CT',
     items: [
       'The newspapers name 203 businesses standing in Chicago on 1 July 1835, and until today the town could find a building for only 58 of them. Sixty more give a street and nothing narrower \u2014 Peter Cohen at \u201cthe east end of South Water-street\u201d, Miss Bayne\u2019s school in Randolph Street. A street is a real constraint and it is not an address, so those advertisements had nowhere to go.',
       'They now adopt a roof already standing on the street they name. Twenty-four did today. Nothing was built and nothing moved: each one takes an anonymous reconstructed building whose platted lot faces that street, and the building stays exactly as reconstructed as it was. What is documented is the shop and the street; what is ours is which roof on that street it sits on.',
@@ -7,6 +7,14 @@ export const CHANGELOG = [ // newest first
       'Thirty-six of the sixty are still waiting, and the reasons are counted rather than glossed. Twenty-four name Dearborn, La Salle, Canal or North Water, where no reconstructed building\u2019s lot faces the street \u2014 eighteen roofs show Dearborn a side wall and not one a front, and a side wall is not a doorway. Nine are a second heading for a shop already seated, because the papers print \u201cPeter Cohen\u201d and \u201cPeter Cohen\u2019s store\u201d as two entries. Three are simply short of a roof.',
       'The 85 advertisements that name no street this town holds are untouched. One is a public house on Flag Creek, on the road to Ottawa; giving it a roof here would put it in a town it never stood in.',
       'The whole liberty is written down as L211, and the policy behind it can be read and re-run rather than remembered.',
+    ] },
+  { v: 401, title: 'The druggist by the drawbridge gets his name back', kind: 'feature', ts: '2026-08-29T18:22:35.878Z', date: 'Aug 29, 2026, 1:22 PM CT',
+    items: [
+      'A new signboard hangs on South Water Street, east of Dearborn, and a hitching post stands at the road edge below it. The board reads FREDERICK THOMAS \u2014 Druggist & Apothecary \u2014 Drugs, Paints & Dye Stuffs.',
+      'That shop had stood there as the most invented building on the street: a name, a guessed trade, and the word \u201Cshop\u201D because nothing said what the man sold. Its own record named the fix \u2014 one number of the Chicago American or the Democrat would settle it. Six numbers of the American have now been read, and they settle it in his own heading: \u201CFREDERIC[K] THOMA[S], D[r]ug[gi]st and Apothec[ary]\u201D, restocking by lake schooner four weeks before the scene date.',
+      'A guessed trade earns no sign here \u2014 a sign for an invented business is an invention squared, and this frontage had been refused in writing. A documented one qualifies under the rules already standing, so the board and the post are the existing generators doing their job, not new ones.',
+      'Four more cards on South Water Street answer differently when you open them. Peck names his own corner \u2014 \u201CCORNER OF LA SALLE AND SOUTH WATER-STREETS\u201D \u2014 in seven printings, where the corner had rested on a history written fifty years later. Philo Carpenter advertises his drugs signed and dated three weeks before the scene date. P. Pruyne & Co. are still trading seven days after it. And Hogan sells \u201Cat Wholesale and Retail, at his Store in South Water Street\u201D.',
+      'Hogan also says his store stood one door below the post office \u2014 in the very months this reconstruction has the office moved four blocks west. Both cannot be true. Nothing was moved on the strength of it; the conflict is written on the card for the next reading to settle, which is what this project does with a contradiction.',
     ] },
   { v: 400, title: 'The register stops shutting shops out for advertising late', kind: 'fix', ts: '2026-08-29T17:56:56.848Z', date: 'Aug 29, 2026, 12:56 PM CT',
     items: [

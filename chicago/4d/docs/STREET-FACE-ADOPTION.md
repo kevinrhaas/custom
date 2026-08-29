@@ -100,7 +100,7 @@ side is a face has exactly one number to change.
    proprietor surname set and never on resemblance: whether a firm sharing one partner
    surname with a sole trader is the same house is **T-0338's** open question over
    thirty-one such groups, and a placement pass must not answer it by seating or refusing.
-   Variant spellings escape it too, which **T-0405** measures.
+   Variant spellings escape it too, which **T-0407** measures.
 4. **`every roof on the face is spoken for`** — the supply ran out. This is a count, not a
    failure, and it is the number this policy exists to produce.
 5. **the roof is a named household's dwelling** — a refusal of a ROOF rather than a
@@ -114,7 +114,7 @@ side is a face has exactly one number to change.
 **Every number below is DERIVED, and none of it is authored.** `python3
 tools/adopt_street_faces.py --report` reprints all of it from the register as committed, so
 a figure that has gone stale shows as a disagreement rather than rotting quietly in prose.
-This is a snapshot of `dev` at the merge of #552, and the register moves: it was read four
+This is a snapshot of `dev` at the merge of #554, and the register moves: it was read five
 times while this policy was being written, and the `street_only` pile went 47 → 45 → 60 as
 T-0355, T-0399 and T-0356 landed. The POLICY does not move with it — the four limits, the
 narrow reading of "face" and the five refusals are unchanged by any of that, which is the
@@ -174,5 +174,5 @@ carries limits 2, 3 and 4 into whatever it writes: the roof stays reconstructed,
 along-street position is not evidence, and the order on a face is not a claim.
 
 **Related:** T-0354 (this) · T-0262 (the register) · T-0263, T-0384–T-0387 (the seeding) ·
-T-0375 (South Water's roofs) · T-0338, T-0340, T-0405 (identity) · L205, L211 ·
+T-0375 (South Water's roofs) · T-0338, T-0340, T-0407 (identity) · L205, L211 ·
 `docs/PROVENANCE.md` · `docs/LIBERTIES.md`

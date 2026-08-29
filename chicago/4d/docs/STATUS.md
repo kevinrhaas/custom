@@ -40,7 +40,7 @@ Randolph took 1.
   Blanshard and F. G. Blanshard advertise one trade within five months under four transcribed
   spellings, and the gazetteer's identity layer has judged none of them. The duplicate refusal here
   matches exact surnames only — deciding by resemblance is the identity layer's job — so it caught
-  one of the four and left three roofs standing. Filed as **T-0405**, with the page images named as
+  one of the four and left three roofs standing. Filed as **T-0407**, with the page images named as
   the remedy.
 - **The 85 `unplaceable` are untouched and T-0354's second half stays open.** The ruling does not
   reach them and this policy does not extend it; some are outside the plat entirely.

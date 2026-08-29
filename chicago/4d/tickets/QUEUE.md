@@ -48,20 +48,17 @@ T-0402 — The firm groups an agency, a parent house or a lost signature makes a
 T-0345 — Mason's blacksmith shop is anchored on Graves' Tavern until 16 July 1834 and on the Tremont House from 10 September, and the register holds both as standing placements
 
 # --- THE NEWSPAPER STREAM (b) THE POLICY THAT DECIDES HOW MUCH TOWN THE PAPERS REACH.
-# --- T-0354 shipped in #551 on 2026-08-29 and is removed from this band: the owner's
-# --- ruling — a street-only business adopts a reconstructed roof already standing on that
-# --- street face, never claiming a lot — is now docs/STREET-FACE-ADOPTION.md, derived by
-# --- tools/adopt_street_faces.py and gated in check.sh. It seats 22 of the street-only
-# --- pile; the rest wait with their reasons counted, and the unplaceable half is untouched.
-# --- T-0357 is its companion — 129 businesses stand on a survival liberty nothing has
-# --- written down yet — and remains the band.
+# --- T-0354 shipped in #551 on 2026-08-29: the owner's ruling — a street-only
+# --- business adopts a reconstructed roof already standing on that street face, never
+# --- claiming a lot — is now docs/STREET-FACE-ADOPTION.md, derived by
+# --- tools/adopt_street_faces.py and gated in check.sh. T-0357 is its companion —
+# --- 129 businesses stand on a survival liberty nothing has written down yet.
 T-0357 — 129 documented businesses will stand on a survival liberty and LIBERTIES.md carries none of them
 
 # --- THE NEWSPAPER STREAM (c) THE VISIBLE SEEDING — documented storefronts and people
 # --- standing in the model. This is the payoff the whole epic was for. T-0358 sits here
 # --- rather than with the streets because the corpus's ONLY lot-and-block address cannot
 # --- be used until the Thompson plat's block numbering is committed.
-T-0263 — The documented storefronts take their places on South Water and Lake
 T-0384 — John Holbrook's store takes its door on South Water Street, one door from Dearborn
 T-0385 — The New York Clothing Store stands three doors north of the Tremont House in Dearborn Street
 T-0386 — W. Montgomery's new auction and commission room takes David Carver's old stand on South Water Street
@@ -172,4 +169,5 @@ T-0396 — Newberry & Dole's partner is read as Oliver Newberry in 1834 and Walt
 T-0391 — Are 'Eagle Hotel' and 'the Eagle Hotel (Steele's)' one house, and no issue prints both
 T-0403 — The Democrat's office keeps its 1834 corner through a merge, and the paper moved along South Water Street before the scene date
 T-0404 — 33 documented businesses will stand on a backdating liberty and LIBERTIES.md carries none of them
-T-0405 — Four spellings of one Lake Street trade take four separate roofs, and the identity layer has judged none of them
+T-0405 — Adding one signboard repaints every board alphabetically after it, and some lose a line
+T-0407 — Four spellings of one Lake Street trade take four separate roofs, and the identity layer has judged none of them

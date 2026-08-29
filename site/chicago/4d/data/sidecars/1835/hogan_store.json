@@ -101,11 +101,12 @@
     },
     "function": {
       "value": "store",
-      "confidence": "inferred",
+      "confidence": "attested",
       "sources": [
-        "andreas_1884_v1"
+        "andreas_1884_v1",
+        "chicago_democrat_1833_1835"
       ],
-      "note": "NOT THE POST OFFICE AT THE SCENE DATE, which is the fact this record exists to get right. It held Chicago's first post office from 31 March 1831 until about July 1834, when Andreas has the office removed to near the corner of Franklin and South Water, where it stayed through Hogan's term. What the building was doing on 1835-07-01 is NOT ATTESTED: it is recorded as a store because that is what it was before the post office arrived ('a log house occupied as a store') and alongside it for three years, and because nothing describes it changing to anything else. Brewster, Hogan & Co. advertised as forwarding and commission merchants in the early numbers of the Chicago Democrat, but no source reached puts the firm in THIS building in 1835, so the record carries no occupants block rather than guessing at one."
+      "note": "NOT THE POST OFFICE AT THE SCENE DATE, which is the fact this record exists to get right. It held Chicago's first post office from 31 March 1831 until about July 1834, when Andreas has the office removed to near the corner of Franklin and South Water, where it stayed through Hogan's term. What the building was doing on 1835-07-01 is NOT ATTESTED: it is recorded as a store because that is what it was before the post office arrived ('a log house occupied as a store') and alongside it for three years, and because nothing describes it changing to anything else. Brewster, Hogan & Co. advertised as forwarding and commission merchants in the early numbers of the Chicago Democrat, but no source reached puts the firm in THIS building in 1835, so the record carries no occupants block rather than guessing at one. THE STORE IS NOW ATTESTED IN HOGAN'S OWN WORDS, AND SO IS THE READING THIS ATTRIBUTE EXISTS TO GET RIGHT. Three printings of the Chicago Democrat in August and September 1834 — after Andreas has the post office removed — carry his standing card: \"J. S. C. HOGAN, [O]FFERS at Wholesale and Retail, at his Store in South Water Street, one door belo[w th]e Post O[ff]ice, Dry Good[s], Grocer[i]es, [H]ardware, Cr[oc]kery and Gl[ass] W[a]re\" (1834-09-03, page 3 column 6, claim chicago_democrat_1834_09_03#c023, dateline '[J]uly 30, 1834'; the same advertisement runs 1834-08-13 page 3 column 5 claim #c017 and 1834-08-20 page 3 column 5 claim #c007, both cut at the direction word). A fourth card, 1834-03-25 page 3 column 3 claim #c010, has him selling 300 cedar posts. So a wholesale and retail store on South Water Street is documented in the year before the scene date, which is what this attribute claims, and the value stays 'store'. THE POST OFFICE IS A FINDING AND IT IS RECORDED RATHER THAN ACTED ON. Hogan places his store 'one door below the Post Office' from August 1834, which is exactly the period this record has the office already removed 'to near the corner of Franklin and South Water' — and one door is not four blocks. Both cannot be true as written. NOTHING IS MOVED ON THE STRENGTH OF IT: the register's own bound is that a placement inference never displaces a committed documented building and a conflict is a finding, not a nudge (T-0196). The candidates are that Andreas's removal is later or nearer than he says, that Hogan's card is standing copy carried over from before the removal (its dateline of 30 July 1834 is within weeks of it), or that this record's reading of Andreas is too precise. Filed for the register to adjudicate against the 1835 file, which is where a scene-date fixture for Hogan already exists. THE READING IS TRANSCRIPTION-MEDIATED AND SAYS SO. Under the owner's ruling of 2026-08-28 a claim read through this project's OCR-assisted transcriptions rather than off the page scan grades `attested` in this schema's vocabulary while carrying its own flag: reading = transcription_mediated, with the transcription's own uncertainty brackets preserved inside the quotation rather than tidied away. Where a scan is later read, the scan is the authority and this claim upgrades under it — the standard data/sources/chicago_democrat_1833_11_26.json set when a scan caught 'C. & I. HARMON' where the transcription had 'C. & L. Harmon'."
     }
   },
   "residents": [
@@ -140,6 +141,34 @@
       "archived_url": "",
       "tier": 3,
       "tier_label": "compiled secondary (Andreas)"
+    },
+    {
+      "source_id": "chicago_democrat_1833_1835",
+      "citation": "The Chicago Democrat. Vol. I, No. 1 (November 26, 1833) through Vol. II, No. 18 (August 26, 1835). Chicago, Ill.: John Calhoun, editor and publisher. Seventy-three issues, OCR-assisted research transcriptions from page scans.",
+      "url": "",
+      "archived_url": "",
+      "tier": 1,
+      "tier_label": "period/eyewitness",
+      "what_it_supplies": [
+        "that a named trade was being carried on in Chicago in a named week, and often where",
+        "self-reported addresses, which are the strongest address evidence this project has: the advertiser was paying, and his customers had to find him",
+        "dissolution, removal and replacement notices — the only thing that keeps a documented business out of the 1835 town under the owner's ruling 3",
+        "post-office letter lists, naming residents by the hundred (ruling 1: a listed name mints a resident candidate, flagged letter_list_only)",
+        "the village and later town ordinances, printed complete — the 7 November 1833 code is the richest single item in the run",
+        "arrivals and clearances, which date the piers and the harbour as working structures",
+        "public notices that fix a building as a polling place, an auction site or a meeting place on a given day",
+        "the paper's own imprint, self-reported: the corner of South Water and Clark streets",
+        "twenty-one months of continuous weekly attestation ending three weeks before the scene date, including the issue printed on 1835-07-01"
+      ],
+      "what_it_does_not_supply": [
+        "any building's form, material, storey count, fenestration or dimensions — an advertisement describes a trade, not a building",
+        "the specific corner of any junction it names: 'on the corner of' does not say which of the four",
+        "anything at all from an engraving — see trap 1; the cuts are the printer's stock",
+        "proof that a business named in 1833 or 1834 still stood on 1835-07-01; that is ruling 3's survival liberty, and it is a liberty",
+        "an argument from silence, unless corpus.json shows the issues either side of the silence are both in the deposit",
+        "a reading that outranks a scan read of the same passage — see ruling 2 and the C. & I. HARMON case",
+        "a citation without an issue page and column"
+      ]
     },
     {
       "source_id": "chicagology_first_post_office",

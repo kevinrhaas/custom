@@ -112,7 +112,7 @@ THE REFUSALS, AND WHY EACH ONE IS THERE.
                                         (the two exact 'Blanshard's collide and one is
                                         refused), because the gazetteer's identity layer
                                         has not judged them one man and this file will not
-                                        judge it either. T-0405 measures that group and is
+                                        judge it either. T-0407 measures that group and is
                                         where it is settled.
 
 WHAT THIS FILE WILL NOT DO. It will not raise a structure, move one, promote one, or
