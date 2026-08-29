@@ -53,7 +53,6 @@ T-0345 — Mason's blacksmith shop is anchored on Graves' Tavern until 16 July 1
 # --- business adopts a reconstructed roof already standing on that face (never claiming a
 # --- lot). That ruling turns 49 more businesses into visible trades. T-0357 is its
 # --- companion — 129 of them stand on a survival liberty nothing has written down yet.
-T-0354 — The register can only place 24 of 190 documented businesses; 49 more reach a street face and 78 reach nothing
 T-0357 — 129 documented businesses will stand on a survival liberty and LIBERTIES.md carries none of them
 
 # --- THE NEWSPAPER STREAM (c) THE VISIBLE SEEDING — documented storefronts and people
