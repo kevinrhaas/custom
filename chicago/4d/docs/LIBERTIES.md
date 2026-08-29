@@ -9770,3 +9770,62 @@ reconstructed roofs' own presence and placement) · **L1** · tickets **T-0354**
 **T-0263**, **T-0375**, **T-0338**, **T-0408**, **T-0417** (spent into the roofs, and the yard
 refusal).
 **Recorded:** 2026-08-29. **Revised:** 2026-08-29 (T-0417).
+
+### L213 — Four people the papers name with no trade are written as households of one, on a residency test
+**Decision:** L206 seated the register's `new_resident` people whose TRADE the papers print, and
+L207 the names known only from the post office's letter lists. What is left of that half — 386
+people named in a proceedings column, a public card, a shipping notice or an advertisement, with
+no trade the register can read — have no anchor at all, and a name printed in a Chicago paper is
+not a Chicago resident. So on 2026-08-29 they were put to a residency test derived from the corpus
+rather than judged one by one, and four passed it: J. K. Boyer, Thomas Hoit, B. S. Morris and
+J. W. Fell. `tools/mint_placed_residents.py` derives the set and re-derives it on every commit;
+`--report` prints all 382 refusals with their reasons and `--self-test` fires every rule against
+the case it exists for.
+
+**What is not invented: the people, and where the papers put them.** Each is named in the Chicago
+Democrat or the Chicago American at the issue and column their record cites, and the corpus gives
+each a place inside the town and none outside it. They are graded `attested` on that basis and on
+nothing else.
+
+**What is invented, and it is only this: that each is a household.** As L206 and L207, and for the
+same reason — `data/residents/` has no way to carry a person except inside one. Each record
+carries a single member, `lives_at` null, `works_at` null, no origin, no party size, no family,
+and `division: unplaced`. Their occupation reads `none_recorded` — the residents vocabulary's own
+word for an absent record, already carried by committed people — because the papers give none; the
+absence is the finding and not a hole, and it is written as an absence rather than reasoned from
+the company they keep.
+
+**The test, stated so it can be argued with.** (a) The corpus must place the person inside the
+town — the bare town, a committed 1835 street, a committed structure — and NOWHERE outside it;
+fifteen are refused on a place elsewhere (Ottawa, Detroit, Cook county) and thirty-six on no place
+at all. (b) A bare "Chicago" is where the papers say somebody did something at Chicago, which is
+not the claim that they lived there, so it needs a second witness and only three count: an address
+at street level, print in two or more separate issues, or print in the same claim as two or more
+people this reconstruction already holds (the register's own `enrich` finding). Fell came in on
+the first, Boyer and Hoit the second, Morris the third; twelve reached that question with none of
+the three. (c) The name must be found whole in the transcription, outside every uncertainty
+bracket and not cut off by one — 176 are refused there, and the rule exists because the first run
+of this pass minted "The Blanshard household" out of the letters `fG. BL NSHARD` and "The Dave
+household" out of `JOHN DAVE[S?]`. Thirty-six more carry a trade the residents vocabulary has no
+word for and are held for a ticket of their own rather than minted trade-less.
+
+**A limit, stated rather than papered over:** the duplicate guards compare surnames exactly, so
+'Blanshard' and 'Blanchard', or 'Eldredge' and 'Eldridge', pass each other untouched and may be
+one man under two printed spellings. A fuzzy match was rejected for the reason
+`compile_register.py` gives for refusing a fuzzy trade match.
+
+**Where this pass stands in the order, because it changes what it can see.** Three passes now mint
+residents out of the register and they run in a fixed precedence, best-evidenced first: documented
+(a trade the papers print) ▸ placed (this entry) ▸ letter-list-only. Each skips its own output and
+every pass below it, so no derivation is changed by anything any of the three mints. Where two
+reach for one family name the higher one keeps it; this pass gave way to L206 three times.
+
+**Consequence:** the Evidence panel's people section goes from 201 households and 237 people to
+205 and 241, `households_without_a_dwelling` in the town census moves from 80 to 84, and the four
+new rows carry the orphan chip that says no building card can reach them. No geometry moves, no
+triangle is added and no figure is drawn (L1).
+
+Related: **L207** (the letter-list names) · **L206** (the sixteen with a trade) · **L205** (the
+documented men who took reconstructed roofs) · **L1** (no figure is drawn for any resident) ·
+tickets **T-0373** (this), **T-0368**, **T-0376**, **T-0378**, **T-0374**, **T-0418** (the trades the vocabulary cannot say).
+**Recorded:** 2026-08-29.

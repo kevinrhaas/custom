@@ -56,7 +56,6 @@ T-0340 — The bookseller's sign-name and its partners' firm-name are three gaze
 T-0385 — The New York Clothing Store stands three doors north of the Tremont House in Dearborn Street
 T-0358 — The Thompson plat's block NUMBERING is uncommitted, so the corpus's only lot-and-block address cannot be placed
 T-0375 — Every reconstructed roof on South Water Street is a labourer's, so five documented tradesmen the papers put there have nowhere to stand
-T-0373 — The documented people the papers name with no trade at all, and the town does not hold
 
 # --- THE NEWSPAPER STREAM (d) WAITING ON THE OWNER'S PAGE IMAGES — each needs scans
 # --- opened that live outside the repository. Workable the day the images are supplied;
@@ -173,3 +172,4 @@ T-0419 — The re-centred South Water corridor stands 8.58 m off its own block f
 T-0420 — Open the four South Water blocks T-0009 has unblocked: 20 roofs of headroom on franklin, lasalle, clark and dearborn
 T-0421 — Canal Street's three control points spread 2.33 m, so its corridor cannot be centred on any of them
 T-0422 — The widened counterfactual deals a roof per street, and every roof a widening adds already fronts another street
+T-0418 — The 36 documented tradespeople whose trade the residents vocabulary has no word for

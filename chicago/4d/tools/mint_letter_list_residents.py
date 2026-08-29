@@ -249,9 +249,10 @@ def town_family_names(docs: dict, index: dict, skip_prefix: str | None = PREFIX)
     """The family names the committed dataset already has something to say about.
 
     THIS PASS'S OWN OUTPUT IS EXCLUDED and nothing else is — refusal 7's precedence
-    rule. `mint_documented_residents.py` skips only its own `hh_doc_` records, so the
-    documented pass never sees these households and its derivation is unchanged by
-    them; this pass sees the documented ones and gives way to them.
+    rule, and this pass sits LAST in the three-way order that
+    `mint_documented_residents.MINTED_PREFIXES` documents. The two passes above it
+    skip these `hh_ll_` records, so neither derivation is changed by anything minted
+    here; this one sees both `hh_doc_` and `hh_placed_` and gives way to them.
 
     `skip_prefix=None` is what --scale-report reads the town through: the cohort it
     prices is a LATER pass than this one, so the households this one has already

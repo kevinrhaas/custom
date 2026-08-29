@@ -1000,6 +1000,21 @@ step "the documented residents on reconstructed roofs re-derive from the registe
 step "the minted documented residents re-derive from the register" \
   python3 tools/mint_documented_residents.py --check
 
+# And the pass that adds the rest of that half (T-0373): the `new_resident` people
+# the papers name with NO trade at all. There is no trade to anchor them, so the
+# whole pass is a residency test — the corpus must place them inside the town and
+# nowhere outside it, a bare "Chicago" must be corroborated by an address, a second
+# issue or the committed company they are printed beside, and the name itself must be
+# printed clear of the transcription's uncertainty marks. Gated because a refusal
+# that quietly stopped firing would mint 'The Blanshard household' out of the letters
+# `fG. BL NSHARD`, or seat a steamboat passenger from Green Bay in the town.
+# `--report` prints the 4 minted and all 382 refusals with their reasons.
+step "the residency-tested residents re-derive from the register" \
+  python3 tools/mint_placed_residents.py --check
+
+step "…and its own assertions still fire when broken" \
+  python3 tools/mint_placed_residents.py --self-test
+
 # And the pass beside it, on the other half of `new_resident` (T-0378). A person the
 # register reads ONLY from the post office's lists of uncalled-for letters has no trade,
 # so the pass above cannot reach him; 726 of them clear its eight refusals, which is a
