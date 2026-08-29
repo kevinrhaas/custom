@@ -1,4 +1,12 @@
 export const CHANGELOG = [ // newest first
+  { v: 384, title: 'The town can be asked which street a house stands on', kind: 'chore', ts: '2026-08-29T10:36:50.936Z', date: 'Aug 29, 2026, 5:36 AM CT',
+    items: [
+      'Nothing you can see changed today. Twenty-seven documented tradesmen were refused a roof last week for one reason: the papers say where they were. D. Graves baked on South Water Street, L. W. Montgomery made boots there, J. K. Botsford kept a store at the corner of Dearborn and Lake. Seating any of them on whichever reconstructed house came to hand would have contradicted the very advertisement that names him.',
+      'The pass had no way to ASK where a house stands. A street was something written in a paragraph on a record, in no field, readable by nothing. It is derived now, from the plat: the block a house stands on names the four streets around it, and the lot names which of them it faces \u2014 with the cross street counted too where the lot is at a block\u2019s end, which is what a corner address means.',
+      'So a placed man may now take a house on HIS OWN street, and only on that one. Today none of them can. Six get as far as the test and every one is turned back by the same fact: not a single reconstructed roof on South Water Street belongs to a tradesman. All five of them are labourers\u2019, so a baker, two joiners and two shoemakers the papers put on that street have nowhere on it to stand.',
+      'The other twenty-one were never really about placement. Thirteen had a second refusal underneath \u2014 the town already says something about that surname, or their shop is one the storefront work will stand \u2014 which the placement refusal had been hiding. Eight name somewhere this scene cannot resolve to a street at all: a tavern, a farm two miles out, Fort Dearborn.',
+      'The count of invented residents is unchanged at 113, and the refusal list now says which street each man wanted and what his trade\u2019s houses front instead.',
+    ] },
   { v: 383, title: 'The gate could not see twelve of the fourteen hitching posts', kind: 'fix', ts: '2026-08-29T10:21:29.258Z', date: 'Aug 29, 2026, 5:21 AM CT',
     items: [
       'Nothing you can see changed today. Twelve hitching posts stand at the trading frontages on South Water and Lake Streets. They have stood there, on their own ground, since the day they were added \u2014 and the release check that measures them had been reporting that it could find no timber whatever at any of the twelve.',
