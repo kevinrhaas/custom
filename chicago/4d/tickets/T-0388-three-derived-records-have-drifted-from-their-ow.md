@@ -53,3 +53,27 @@ silently.
 
 **Acceptance:** the three records re-derive, `check.sh` is green on an unmodified
 `dev`, and the PR names every stem and every trade good that moved and why.
+
+---
+
+## THE RED IS GONE — measured 2026-08-29, verify and withdraw
+
+`tools/check.sh` was run on an unmodified `origin/dev` at `9b6e3276`, clean worktree.
+All three steps this ticket names now PASS:
+
+```
+the dooryard plantings re-derive …    verified 128 dooryard stems across 62 of 144 dwellings
+the planted poplar rows re-derive …   verified 2 planted row(s), 8 stems, across 144 dwellings
+the yard goods re-derive …            verified 148 object(s) on 26 trading frontage(s)
+```
+
+A later merge re-ran the three generators and committed their outputs. **Which merge did
+it, and whether the visible consequence this ticket predicted actually happened — a poplar
+row leaving the town — is NOT established here**, and that is what the withdrawing run
+owes: name the commit, say whether a row left, and confirm a changelog entry was made if
+one did. Withdraw with that evidence; do not withdraw on the green alone.
+
+**AND THIS TICKET HAS A TWIN.** T-0377 and T-0388 describe the SAME three failures from
+the same cause, filed hours apart by two different runs (T-0376's and T-0336's) that could
+not see each other — the collision T-0238 records, this time in `new`, not `claim`. One
+withdrawal should close both, and the pair is a second data point for T-0238's rate.
