@@ -1,6 +1,6 @@
 {
   "project": "chicago-4d",
-  "generated_ct": "Aug 29, 2026, 4:08 PM",
+  "generated_ct": "Aug 29, 2026, 4:23 PM",
   "tickets": [
     {
       "id": "T-0001",
@@ -6806,7 +6806,7 @@
     {
       "id": "T-0416",
       "title": "Wm. Sabine, John Dave and the Dearborn wine store: the three storefronts the street-face policy refuses for want of a fronting roof",
-      "state": "open",
+      "state": "claimed",
       "epic": "META",
       "requested_by": "loop",
       "seen": false,
@@ -6816,7 +6816,7 @@
       "opened": "2026-08-29",
       "closed": null,
       "pr": null,
-      "claimed_by": null,
+      "claimed_by": "run 8/29/2026, 4:23:56 PM CT",
       "blocked_on": null,
       "needs_bake": false,
       "queue_rank": 3
