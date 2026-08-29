@@ -59,6 +59,40 @@ scope decisions have nothing in the data to point at. When evidence settles a cl
 or the model catches up with an omission, move the entry to **Resolved** — the gate exempts that
 section, which is what lets an append-only document survive its data being corrected.
 
+## The `Scope:` field — a liberty owed by a population rather than a record
+
+A few liberties are not about a building at all. The newspaper register mints one of them:
+every business the papers document before 1835 is taken to be still standing on the scene
+date unless something contradicts it. There is no `Covers:` token to write, because not one
+of those businesses has been raised as a structure yet — and writing one near-identical
+entry per business the day they are would bury this register under its own bookkeeping,
+which is the fault the `recon_*` class wildcard was added to avoid.
+
+Such an entry names its POPULATION instead, in the second field read as data:
+
+```
+**Scope:** `register_1835.businesses[survival_liberty_required]` — 111 businesses
+```
+
+The token is `<derived file>.<collection>[<predicate>]`, and it may only name an
+enumeration `tools/compile_liberties.py` knows how to count — `SCOPE_SOURCES` there is the
+list, and it is a closed one on purpose. An entry free to spell its own predicate would be
+marking its own homework: whatever the prose selected is exactly what the prose counted,
+for ever.
+
+The count after the dash is the load-bearing half, and it is written by hand deliberately.
+The compiler re-derives it on every run and a disagreement is a gate failure, so the number
+a reader trusts and the data it describes are two statements that have to agree — the same
+discipline the `Resolved:` line runs on. A count read silently out of the data would agree
+with itself for ever and tell a reader nothing; a hand-typed one with nothing behind it
+reads as a measurement and is not one. Only both together say anything.
+
+A scope does not replace a `Covers:` token, and the two coexist. The day one of these
+businesses is raised as a building, whatever that record invents is claimed the ordinary
+way; the scope stays the admission about the population, and it shrinks on its own as the
+corpus grows — which is the moment the count has to be restated, and the moment the gate
+asks for it.
+
 ## Where a new entry goes, and why Resolved is not the last section
 
 **A new liberty is appended at the END OF THIS FILE**, which is the end of the per-subject
@@ -1289,8 +1323,18 @@ then be argued on its own merits.
 `carpenter_south_water_store`, `chicago_american_office`, `frederick_thomas_shop`,
 `old_bank_building` and `pruyne_kimball_drugstore` — are
 invented polygons tagged `conjectural`, citing no source. Several of their **storey counts** are
-invented too, and one of them, Frederick Thomas's shop, has an invented **position** and an
-invented **function** as well.
+invented too, and one of them, Frederick Thomas's shop, has an invented **position** as well.
+**THE FUNCTION CLAUSE OF THIS LIBERTY IS RESOLVED, 2026-08-29 (T-0263), AND IS THE FIRST PIECE
+OF IT TO GO.** Thomas's trade was invented here — 'shop', the weakest word that fits a street of
+stores — precisely because nothing said what he sold. The *Chicago American* now does, in his
+own heading: *"FREDERIC[K] THOMA[S], D[r]ug[gi]st and Apothec[ary], W[at]er Street"*
+(1835-07-04, page 4 column 5, claim `chicago_american_1835_07_04#c005`), with two earlier
+printings of the same advertisement on 8 and 13 June. So `frederick_thomas_shop.function` is
+`drug_store` at `attested` and no longer sits under this entry. **Its position does, unchanged
+and unimproved:** the paper's own anchors are the drawbridge and the American office, which are
+the two this record was already derived from, so the reading corroborates the derivation and
+adds nothing to it, and the street it would settle is cut to `W[ater?]` with the
+transcription's own question mark.
 **Why:** the honest alternative was to leave the business street empty, and that is the worse
 lie. This town's trade was its whole reason to exist — a county seat of some three thousand
 people, 250 vessel arrivals in 1835 — and until now the model held eight buildings of which not
@@ -1310,8 +1354,12 @@ off this street. The distance between two of these buildings is the distance bet
 attested corners, which is real; the buildings spanning it are not.
 **How to resolve:** a dimension for any single one of them upgrades that one and nothing else.
 The most likely source is the *Chicago Democrat* itself — an advertiser describing his own
-premises, or a to-let notice giving a size. The project holds one issue and more is expected.
-**Covers:** `peck_store.footprint`, `chicago_democrat_office.footprint`, `harmon_loomis_store.footprint`, `madore_beaubien_house.footprint`, `bates_auction_room.footprint`, `jb_beaubien_homestead.footprint`, `dole_warehouse_south.footprint`, `carpenter_south_water_store.footprint`, `chicago_american_office.footprint`, `frederick_thomas_shop.footprint`, `old_bank_building.footprint`, `old_bank_building.position`, `pruyne_kimball_drugstore.footprint`, `pruyne_kimball_drugstore.position`, `pruyne_kimball_drugstore.form.stories`, `old_bank_building.form.stories`, `chicago_american_office.form.stories`, `dole_warehouse_south.form.stories`, `frederick_thomas_shop.form.stories`, `frederick_thomas_shop.position`, `frederick_thomas_shop.function`.
+premises, or a to-let notice giving a size. **Seventy-three issues of the *Democrat* and
+thirteen of the *American* are now read (T-0258–T-0261, T-0326), and not one of the advertisers
+on this street states a dimension of his own premises** — they state a trade, a corner and a
+stock list, which is what this entry always said the sources give. The route left is a to-let
+or an insurance notice in an issue still unread, or the page images.
+**Covers:** `peck_store.footprint`, `chicago_democrat_office.footprint`, `harmon_loomis_store.footprint`, `madore_beaubien_house.footprint`, `bates_auction_room.footprint`, `jb_beaubien_homestead.footprint`, `dole_warehouse_south.footprint`, `carpenter_south_water_store.footprint`, `chicago_american_office.footprint`, `frederick_thomas_shop.footprint`, `old_bank_building.footprint`, `old_bank_building.position`, `pruyne_kimball_drugstore.footprint`, `pruyne_kimball_drugstore.position`, `pruyne_kimball_drugstore.form.stories`, `old_bank_building.form.stories`, `chicago_american_office.form.stories`, `dole_warehouse_south.form.stories`, `frederick_thomas_shop.form.stories`, `frederick_thomas_shop.position`.
 **Recorded:** 2026-08-10.
 
 ### L37 — A shop placed by the phrase "two doors from"
@@ -9587,4 +9635,56 @@ grades `reconstructed`, and nothing here was moved to make a check pass.
 Related: **L93** (the block parcel's A3 privy, the same clamp) · **L92** (the parcel's own presence and placement) · tickets **T-0272**, **T-0142**, **T-0148**, **T-0172**.
 
 **Covers:** `recon_1835_west_008.inferred_1835.form.wall_height_m`, `recon_1835_west_009.inferred_1835.form.wall_height_m`, `recon_1835_west_010.inferred_1835.form.wall_height_m`, `recon_1835_west_011.inferred_1835.form.wall_height_m`, `recon_1835_west_012.inferred_1835.form.wall_height_m`, `recon_1835_west_021.inferred_1835.form.wall_height_m`
+**Recorded:** 2026-08-29.
+
+### L211 — 109 documented businesses stand on 1 July 1835 because nothing says they closed
+**Decision:** every business the newspaper register flags `survival_liberty_required` is
+treated as standing at the scene date. Its existence is documented — a dated advertisement
+or notice in the *Chicago Democrat* or the *Chicago American* — and its survival to
+1835-07-01 is assumed. The assumption is stated HERE and nowhere else: the register carries
+the flag, this entry carries the liberty, and no business record is graded `documented` for
+a survival nothing witnessed.
+**Why:** the corpus is thinnest in the year it most needs to be thick. 201 documented
+businesses are present at the scene date and only **92** of them are documented *in* 1835;
+the other **109** were last printed between 1833-11-26 and 1834-12-24, a median of 364 days
+before the day the town is drawn. Refusing the assumption is the only alternative to making
+it, and refusing it empties more than half the documented trade out of Chicago on the
+strength of a newspaper run nobody has finished reading — the 1835 issues that would
+re-attest most of these houses are still unopened (the `PAPERS` reading tickets). Owner
+ruling 3, 2026-08-28: such a business is BUILT, with the liberty stated. The register
+already refuses everything that CAN be refused — 14 businesses are excluded by a claim that
+contradicts them before the scene date and 4 by an opening announced after it — so this
+covers what is left after the evidence has spoken, not instead of it.
+**Scope:** `register_1835.businesses[survival_liberty_required]` — 109 businesses, enumerated
+by `tools/compile_register.py` from the gazetteer and the committed town, and re-counted by
+`tools/compile_liberties.py` on every compile. The number above cannot drift from the
+register without `check.sh` saying so, which is the point of writing it down: a scope that
+has silently stopped matching its population reads as a measurement and is not one.
+**Consequence:** as the register is seeded into the town, half of these reach something a
+visitor can see. Measured on the register as it stands on 2026-08-29, **56** of the 109 do —
+18 enrich a house already standing, 14 ask for a new building, 24 take a street face — and
+**53** reach nothing yet. That split moves whenever an anchor is re-read or two firms are
+judged one house, and it is a dated reading rather than a standing claim; the 109 is the
+number this entry is held to and the number the gate re-derives. It has already moved once
+for exactly the second reason: this entry was written at 111 the same day T-0345 found that
+four of the register's businesses were four readings of Matthias Mason & Co.'s one
+blacksmithing notice. Joining them took two off the count and one off the enrich_existing
+column, and neither number is a business leaving Chicago. Every one
+of them puts a trade sign, a
+card or an occupant into July 1835 on an inference, and a visitor reading such a card is
+being told the shop was there when what is known is that it was there the winter before. The
+Evidence panel carries this entry so that sentence is available to them; the per-attribute
+chips cannot say it, because the thing assumed is not an attribute but a continued existence.
+**What is NOT invented:** the business, its trade, its proprietors, its street and its
+advertisement are all documented and cited. Only the survival of the concern from its last
+printed notice to 1835-07-01 is assumed. Where a claim after the scene date says a firm
+dissolved, the register records it (`dissolved_after_scene_date`) and this liberty does not
+reach it.
+**How to resolve:** read the rest of the 1835 run. A business re-printed in 1835 loses the
+flag when `tools/compile_register.py` re-derives, with no edit to this file and none to its
+record — so this liberty shrinks by itself as the corpus grows, and the count above is
+restated each time it does. It reaches zero when the 1835 papers have been read in full, or
+it stops at whatever number the surviving issues cannot reach.
+**Ticket:** T-0357. **Related:** T-0354 (how much of the town these businesses may be placed
+in at all), T-0263 (the seeding that raises the first of them).
 **Recorded:** 2026-08-29.

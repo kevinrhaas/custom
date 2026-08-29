@@ -50,16 +50,16 @@ T-0402 — The firm groups an agency, a parent house or a lost signature makes a
 # --- T-0354 is the single highest-leverage ticket in the queue: the register places 24 of
 # --- 190 documented businesses, and the owner RULED on 2026-08-29 that a street-only
 # --- business adopts a reconstructed roof already standing on that face (never claiming a
-# --- lot). That ruling turns 49 more businesses into visible trades. T-0357 is its
-# --- companion — 129 of them stand on a survival liberty nothing has written down yet.
+# --- lot). That ruling turns 49 more businesses into visible trades. Its companion
+# --- T-0357 is DONE (PR #548, 2026-08-29): the survival assumption 111 of those
+# --- businesses stand on is now written down as L211, with its scope counted against
+# --- the register on every build, so the seeding below has a liberty to stand on.
 T-0354 — The register can only place 24 of 190 documented businesses; 49 more reach a street face and 78 reach nothing
-T-0357 — 129 documented businesses will stand on a survival liberty and LIBERTIES.md carries none of them
 
 # --- THE NEWSPAPER STREAM (c) THE VISIBLE SEEDING — documented storefronts and people
 # --- standing in the model. This is the payoff the whole epic was for. T-0358 sits here
 # --- rather than with the streets because the corpus's ONLY lot-and-block address cannot
 # --- be used until the Thompson plat's block numbering is committed.
-T-0263 — The documented storefronts take their places on South Water and Lake
 T-0384 — John Holbrook's store takes its door on South Water Street, one door from Dearborn
 T-0385 — The New York Clothing Store stands three doors north of the Tremont House in Dearborn Street
 T-0386 — W. Montgomery's new auction and commission room takes David Carver's old stand on South Water Street
@@ -168,7 +168,8 @@ T-0388 — Three derived records have drifted from their own generators on an un
 T-0395 — The New York House's footprint is graded reconstructed but its note cites a source, and the gate warns
 T-0396 — Newberry & Dole's partner is read as Oliver Newberry in 1834 and Walter L. Newberry in 1835, and the corpus cannot say which stood in the firm
 T-0391 — Are 'Eagle Hotel' and 'the Eagle Hotel (Steele's)' one house, and no issue prints both
-T-0405 — The same blacksmith notice is read as 'Matthias Nason & Co.' in one impression, and the partner-surname guard can never merge it
+T-0407 — The same blacksmith notice is read as 'Matthias Nason & Co.' in one impression, and the partner-surname guard can never merge it
 T-0406 — 'the Tremont House' resolves to nothing, because the committed record is named 'Tremont House (the first)'
 T-0403 — The Democrat's office keeps its 1834 corner through a merge, and the paper moved along South Water Street before the scene date
 T-0404 — 33 documented businesses will stand on a backdating liberty and LIBERTIES.md carries none of them
+T-0405 — Adding one signboard repaints every board alphabetically after it, and some lose a line
