@@ -344,7 +344,7 @@ and its street-only count from 47 to 63.
 opening now stands under ruling 3, and that is a liberty: `backdating_liberty_required`, the
 forward twin of `survival_liberty_required` — documented only after the scene date, present on it
 by assumption. Thirty-three businesses carry it, computed and never asserted. `docs/LIBERTIES.md`
-carries neither class yet (T-0357 is the survival half, T-0403 the backdating half).
+carries neither class yet (T-0357 is the survival half, T-0404 the backdating half).
 
 ### The counts, which are the epic's yield measured
 

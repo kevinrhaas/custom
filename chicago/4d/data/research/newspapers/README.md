@@ -532,4 +532,4 @@ and John Holbrook's 10 June.
 `backdating_liberty_required` is the forward twin of `survival_liberty_required`: documented
 only after the scene date, present on it by assumption, and no opening notice dated on or
 before it to carry the assumption. Thirty-three businesses. `docs/LIBERTIES.md` carries
-neither class yet — T-0357 is the survival half and T-0403 the backdating half.
+neither class yet — T-0357 is the survival half and T-0404 the backdating half.
