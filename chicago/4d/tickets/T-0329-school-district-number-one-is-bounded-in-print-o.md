@@ -1,7 +1,7 @@
 ---
 id: T-0329
 title: School District Number One is bounded in print on 1834-12-10 and the segmenter cut better than half of every line of it away
-state: open
+state: done
 epic: PAPERS
 requested_by: loop
 seen: false
@@ -9,9 +9,9 @@ effort: S
 legacy_id: null
 parent: null
 opened: 2026-08-29
-closed: null
-pr: null
-claimed_by: null
+closed: 2026-08-29
+pr: 515
+claimed_by: run 8/29/2026, 1:34:19 AM CT
 blocked_on: null
 needs_bake: false
 ---
