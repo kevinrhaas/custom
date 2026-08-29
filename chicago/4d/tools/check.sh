@@ -240,6 +240,21 @@ step "…and those assertions still fire when the enumeration is broken" \
 step "the 665-roof programme reconciles with the town that stands" \
   python3 tools/reconcile_665.py --check
 
+# T-0233, and the question the recipes cannot answer by being read: does a party-line
+# run stand on the lots it was dealt? It does not — 8 of the 19 dealt lots carry none of
+# their own run's roofs — and the ticket ruled that a RESERVATION rather than a defect,
+# because `reconcile_665`'s free-lot arithmetic is derived from committed footprints and
+# has never read a recipe's deal, so nothing is withheld from the programme by it. What
+# was wrong was only that nobody could see it, which is why the measurement is wired in
+# here instead of left as a command somebody remembers. The gate itself is the ceiling
+# T-0079 established — `ROW_UNITS_PER_LOT` units per dealt lot, every roof already
+# standing on those lots counted against it — and it passes today, so it is cheap.
+step "no party-line run carries more roofs than the frontage it was dealt" \
+  python3 tools/measure_frontage_entitlement.py --gate --quiet
+
+step "…and its own assertions still fire when broken" \
+  python3 tools/measure_frontage_entitlement.py --self-test
+
 # T-0163. The plat grid is the cartesian product of its east-west rows and north-south
 # columns, so it proposes blocks that never existed, and it reports every refusal the same
 # way — as a distance. A distance cannot tell "the centreline has not been carried there

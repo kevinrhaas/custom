@@ -36,7 +36,7 @@
 # ---     reads surfaced;
 # --- (c) the register itself, then the VISIBLE seeding it unblocks — documented
 # ---     storefronts standing in the model, documented people replacing invented.
-T-0297 — Reading the Democrat, August 1835: the four issues after the scene date
+T-0336 — The 31 July 1835 letter list, standing in all four August Democrats
 T-0263 — The documented storefronts take their places on South Water and Lake
 T-0306 — The American names six Chicago storefronts with usable placements and none of them is standing in the model yet
 T-0367 — The documented tradesmen the papers DO place need roofs on their own street, and the deal has no way to ask
@@ -58,7 +58,6 @@ T-0305 — Four readings the American contradicts itself on need the page images
 # --- blocked-tech: its code half shipped (the rule reads all four block faces now,
 # --- so a cross street CAN be laid), and all seven cross streets were then measured
 # --- over all three ceilings. PR #418, which parked Market Street alone, is closed.
-T-0233 — Eight of seventeen dealt lots carry none of their run's own roofs, and nothing was measuring it
 T-0307 — The derivation's running maximum costs 42 m of verge where the bank turns a right angle at Wolf Point
 T-0272 — The West Division parcel's form values come from the archetype and cite the family band: 8 families, 11 claims outside it
 T-0273 — The South Division infill parcel's form values come from the archetype and cite the family band: 9 families, 10 claims outside it
@@ -139,3 +138,5 @@ T-0369 — Desktop stage 8's panel walk is red when stage 1 runs before it and g
 T-0371 — The lattice path's block rotation is dead code that measure_rank_bias.mjs's drift guard pins in place
 T-0364 — Two byte-identical copies of changelog.js are 7.2 per cent of the published payload, and they grow on every release
 T-0365 — The anonymous-block programme has no unblocked ground left: every block with headroom is on the South Water reach T-0009 holds open
+T-0333 — Every stove pipe in the town owes eighteen inches above its roof, and the ordinance of 5 August 1835 says so
+T-0334 — The hay-stacking ordinance walks a six-vertex boundary round the built town, and nothing draws or tests it
