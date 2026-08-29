@@ -514,7 +514,7 @@ street the paper printed, exactly as an unresolved one does. The same refusal gu
 business match below it, because the corpus prints one house under more than one heading.
 
 **No placement in the register moves today**, and that is the honest measure of this change: zero
-of the 219 businesses print an anchor that lands on one of the thirty-five. It is a guard against a
+of the 209 businesses print an anchor that lands on one of the thirty-five. It is a guard against a
 fabrication rather than the repair of one — and the thing it guards is live, because the moment a
 reading pass widens enough to see past a project-added disambiguator, "J. Wright's" resolves onto
 two records and the old code would have picked the east one.
