@@ -3,7 +3,7 @@
   "issue_id": "chicago_democrat_1834_11_26",
   "extracted": "2026-08-28",
   "extracted_by": "hand, T-0293 — the Democrat read, November 1834",
-  "note": "Vol. I No. 52, the last number of Volume I. The town is on page 2 columns 5-6 — a common-schools meeting with its resolutions and delegates, and the memoir of Mrs. Baxley read at her funeral — and on page 3 column 1. THE SEGMENTER HANDLED THIS ISSUE WORST OF THE FOUR: page 3's columns arrive shredded, with lines of two physical columns alternating and many lines reduced to three or four words, so several advertisements standing whole in 1834-11-12 survive here only as fragments and are not re-claimed from them. No letter list of any post office stands in this issue.",
+  "note": "Vol. I No. 52, the last number of Volume I. The town is on page 2 columns 5-6 — a common-schools meeting with its resolutions and delegates, and the memoir of Mrs. Baxley read at her funeral — and on page 3 column 1. THE SEGMENTER HANDLED THIS ISSUE WORST OF THE FOUR: page 3's columns arrive shredded, with lines of two physical columns alternating and many lines reduced to three or four words, so several advertisements standing whole in 1834-11-12 survive here only as fragments and are not re-claimed from them. No letter list of any post office stands in this issue. AMENDED BY T-0328 on 2026-08-29: D. Weaver's standing advertisement for the building on North Water street stands in this issue and was not claimed. It is c010, and it reads LOT 2 — one of the four printings of five that do.",
   "claims": [
     {
       "id": "c001",
@@ -305,6 +305,38 @@
           "offset_text": "FICE second door west from the corne"
         }
       }
+    },
+    {
+      "id": "c010",
+      "kind": "building",
+      "reading": "transcription_mediated",
+      "quote": "Sale or To Let,\nling on Lot 2, in block 1, on North\nstreet.\nApply to\nD. WEAVER.\nine. 12, 1881-50",
+      "normalized": "[…] Sale or To Let, [THE bui]l[d]ing on Lot 2, in block 1, on North [Water] street. Apply to D. WEAVER. […] 12, 18[uncertain: 81 / 34]. — 50",
+      "locator": {
+        "artifact_role": "primary",
+        "issue_page": 3,
+        "column": 3,
+        "lines": [
+          2496,
+          2510
+        ],
+        "lines_of_claim": [
+          2500,
+          2502,
+          2503,
+          2504,
+          2506,
+          2508
+        ]
+      },
+      "entities": [
+        {
+          "as_printed": "D. WEAVER.",
+          "normalized": "D. Weaver",
+          "role": "advertiser"
+        }
+      ],
+      "notes": "THE FIRST OF FIVE PRINTINGS OF D. WEAVER'S ADVERTISEMENT, AND T-0328 FOUND IT BY LOOKING. The ticket knew of two printings, 1834-12-17 and 1834-12-24, and they disagree about the lot number. There are five: this one, 1834-12-03, 1834-12-10, 1834-12-17 and 1834-12-24, the advertisement standing week after week from the last number of Vol. I into the fourth of Vol. II. THIS SETTING READS LOT 2, and the digit stands in an otherwise clean line — 'ling on Lot 2, in block 1, on North'. Four of the five printings read 2 and only 1834-12-17 reads 9; see that claim's own note for the tally and the reasoning. The dateline is NOT recorded as an `ad_copy_date` here, deliberately: this setting and 1834-12-03 both read the copy date as Nov. 12 where 1834-12-24 reads Nov. 19 and 1834-12-17 reads Nov. 13, so the last digit of the date is exactly as unreliable in this column as the lot number was, and it is not this run's question. It is filed as its own ticket rather than decided in passing. What is not in doubt: block 1, North Water street, a building standing on it in the autumn of 1834, offered for sale or to let by D. Weaver."
     }
   ]
 }

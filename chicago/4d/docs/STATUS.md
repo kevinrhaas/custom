@@ -94,9 +94,14 @@ and not a placement, so it reads as its own anchor kind rather than as a failure
   `dev` at 2026-08-29.
 - **`wolf_point_tavern_stable` still takes Elijah Wentworth's Flag Creek tavern**, on an occupants
   line that reads "Elijah Wentworth in 1831, William Walters on the scene date". The match is on a
-  HISTORICAL occupant of a building whose scene-date occupant the same sentence names. Filed.
+  HISTORICAL occupant of a building whose scene-date occupant the same sentence names. T-0355.
 - **78 businesses stand at the scene date and are placeable nowhere.** That is the size of the
   problem the seeding tickets do not solve, and it is a fact about the papers, not about the tool.
+
+Filed with the register in hand: **T-0354** (the `street_only` and `unplaceable` policy — 49 and
+78), **T-0355** (the historical-occupant match), **T-0356** (`announces_opening` as a real claim
+field rather than a proxy) and **T-0357** (the 129 survival liberties `docs/LIBERTIES.md` does not
+yet carry). All PAPERS, all appended to the bottom of QUEUE.md — the owner orders it.
 
 ## Shipped 2026-08-28 — T-0028: `blk_lake_franklin` opens, and the warehouse it was dealt is refused rather than massed
 

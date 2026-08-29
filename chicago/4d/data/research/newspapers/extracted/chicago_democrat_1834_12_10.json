@@ -3,7 +3,7 @@
   "issue_id": "chicago_democrat_1834_12_10",
   "extracted": "2026-08-29",
   "extracted_by": "hand, T-0294 — the Democrat read, December 1834",
-  "note": "Vol. II No. 2. Every column of this issue but three is Vision-set, and page 3 is nevertheless the hardest reading of the month: its columns alternate two physical columns line by line for their whole length, so the town's own notices survive as half-lines woven through the legislature's proceedings and a column of reprinted miscellany. The issue's own contribution is a public one — the metes and bounds of School District Number One and the meeting called to act on them at the Mansion House on 16 December. NO POST-OFFICE LETTER LIST OF ANY OFFICE STANDS IN THIS ISSUE. AMENDED BY T-0330 on 2026-08-29: the interleaved advertisement pair in issue page 4 column 4 is resolved. “[oppo]site the Tremont Hous[e]” is Mason's (c007, placement now `relative`), the dry-goods column woven through him is P. F. W. Peck's standing “New Goods!!” and is recorded as c011, and one line T-0294 quoted as Mason's is moved to it. Neither reading needed the page images; the un-woven settings of the same two advertisements in the weeks before this issue carry both sentences whole.",
+  "note": "Vol. II No. 2. Every column of this issue but three is Vision-set, and page 3 is nevertheless the hardest reading of the month: its columns alternate two physical columns line by line for their whole length, so the town's own notices survive as half-lines woven through the legislature's proceedings and a column of reprinted miscellany. The issue's own contribution is a public one — the metes and bounds of School District Number One and the meeting called to act on them at the Mansion House on 16 December. NO POST-OFFICE LETTER LIST OF ANY OFFICE STANDS IN THIS ISSUE. AMENDED BY T-0330 on 2026-08-29: the interleaved advertisement pair in issue page 4 column 4 is resolved. “[oppo]site the Tremont Hous[e]” is Mason's (c007, placement now `relative`), the dry-goods column woven through him is P. F. W. Peck's standing “New Goods!!” and is recorded as c011, and one line T-0294 quoted as Mason's is moved to it. Neither reading needed the page images; the un-woven settings of the same two advertisements in the weeks before this issue carry both sentences whole. AMENDED BY T-0328 on 2026-08-29: D. Weaver's standing advertisement for the building on North Water street stands in this issue and was not claimed. It is c012, and it reads LOT 2 — one of the four printings of five that do.",
   "claims": [
     {
       "id": "c001",
@@ -555,6 +555,38 @@
           "note": "The address line is cut to its tail in this setting and the head is supplied from the complete 1834-07-23 setting of the same advertisement. What THIS printing carries on its own is “SOUTH-WATER” under a “New Goods!!” headline; the LaSalle corner is the 07-23 reading, and both are named above rather than merged into one quotation."
         }
       }
+    },
+    {
+      "id": "c012",
+      "kind": "building",
+      "reading": "transcription_mediated",
+      "quote": "cie 2° To Let.\non Lot 2, in block 1, on North\n[uncertain: Wunns]\n[uncertain: Appiy to]\ne, 1631.—00\nD. WEAVER.",
+      "normalized": "[For Sale or] To Let, [THE building] on Lot 2, in block 1, on North […] [Apply to] D. WEAVER. […] — the dateline is set '[e], 1631.—00' and carries no legible day or month.",
+      "locator": {
+        "artifact_role": "primary",
+        "issue_page": 3,
+        "column": 3,
+        "lines": [
+          3139,
+          3144
+        ],
+        "lines_of_claim": [
+          3139,
+          3140,
+          3141,
+          3142,
+          3143,
+          3144
+        ]
+      },
+      "entities": [
+        {
+          "as_printed": "D. WEAVER.",
+          "normalized": "D. Weaver",
+          "role": "advertiser"
+        }
+      ],
+      "notes": "THE THIRD OF FIVE PRINTINGS OF D. WEAVER'S ADVERTISEMENT. The worst-set of the five everywhere except at the one place T-0328 asks about: the heading is 'cie 2° To Let.', two whole lines survive only as '[uncertain: Wunns]' and '[uncertain: Appiy to]', the dateline is 'e, 1631.—00' — and the lot line is 'on Lot 2, in block 1, on North', clean at the digit. That is worth stating plainly, because it is the shape of the evidence: this column's scan is bad at display type and at figures in a dateline, and good at body type in a running line. Four of the five printings read Lot 2; only 1834-12-17 reads Lot 9. No `ad_copy_date`: the dateline here carries no legible day or month at all."
     }
   ]
 }

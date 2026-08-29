@@ -183,6 +183,31 @@ after OCR judgment — interleaved columns unshuffled, `rn/m`-class confusions c
 The gate reassembles `quote` out of the transcription line by line and refuses any claim
 whose text differs by a character, so a smoothed quote fails rather than passing quietly.
 
+**WHEN TWO PRINTINGS DISAGREE, COUNT THE PRINTINGS BEFORE YOU SEND FOR THE IMAGES
+(T-0328).** A weekly's advertising is STANDING type: the same notice runs week after week,
+and every week is a separate impression, separately scanned. So a disagreement between two
+settings of one advertisement is rarely a two-witness problem — it is an n-witness problem
+in which n has not been counted. D. Weaver's building on North Water street was read as
+Lot 9 in one issue and Lot 2 in the next, and the reading pass filed a ticket for the page
+images because "one of the two transcriptions is simply wrong". It ran FIVE times, from
+1834-11-26 to 1834-12-24. Four of the five read Lot 2; the outlier's own line drops the t
+out of `Norh`. No image was needed.
+
+The method, and it is three greps: search the whole run for the advertiser's name, resolve
+each hit's page and column, and read the settings side by side. It has now answered three
+questions the ticket queue had assigned to the page images — the blacksmith's "opposite the
+Tremont House" (T-0330), the axes that belonged to the ironmongers and not the booksellers,
+and this lot number. **Nothing is amended to agree with anything**: every printing keeps its
+own verbatim quote, the losing reading stays visible in `normalized`, and the winner is
+declared in the notes with the tally that decided it.
+
+Two cautions, both learned here. **The tally is over impressions, not over readings** — two
+transcriptions of the SAME impression are one witness, and `corpus.json`'s `-2` rebuilds are
+exactly that. And **a run of concordant settings does not make a scan trustworthy in
+general**: the same five printings that agree on the lot number set the advertisement's copy
+date as Nov. 12, Nov. 12, Nov. 13 and Nov. 19, so the digit that was decidable and the digit
+that was not stood two lines apart in one column.
+
 **Interleaving is the normal case.** The segmenter frequently alternates two physical
 columns line by line, so one advertisement occupies a SUBSET of a line range with another
 woven through it. `locator.lines` is the range cited; `locator.lines_of_claim` names the
@@ -385,4 +410,4 @@ BEFORE the scene date excludes; a LATER one is recorded (`dissolved_after_scene_
 disobeyed, because a firm dissolved in August 1835 was demonstrably open in July. The second
 is `first_evidence_after_scene_date`: T-0262 asked to exclude on an `announces_opening` field
 the claim vocabulary does not have, and this is the derivable question that comes closest.
-T-0352 is the field.
+T-0356 is the field.
