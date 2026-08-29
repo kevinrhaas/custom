@@ -42,7 +42,10 @@ T-0324 — J. K. Botsford advertises two addresses in one issue, and Graves' Tav
 T-0329 — School District Number One is bounded in print on 1834-12-10 and the segmenter cut better than half of every line of it away
 T-0262 — The July 1, 1835 register: who and what the papers put in the town
 T-0263 — The documented storefronts take their places on South Water and Lake
-T-0306 — The American names six Chicago storefronts with usable placements and none of them is standing in the model yet
+T-0351 — W. Montgomery's auction and commission room, in David Carver's old stand west of J. Wright's on South Water
+T-0352 — The New York House on Lake Street, and Dr. J. B. Barnard and the travelling dentist who kept office in it
+T-0353 — Dr. W. G. Austin's office on Lake Street near the Post Office, and Sarah D. Howe's room in his house
+T-0354 — Henry Moore at J. H. Kinzie's New Building, and Ebenezer S. More's office at his dwelling by the Public Square
 T-0264 — Documented people replace the invented
 T-0283 — The North Division's warehouse row allows one freight roof and six documented ones stand above it
 
@@ -136,3 +139,4 @@ T-0346 — Desktop smoke stage 4 no longer fits the ten-minute foreground ceilin
 T-0341 — A bare surname can never be joined to its forename: the family rule reads 'no initials' as 'different initials'
 T-0348 — The identity policy cannot merge an unread initial with a read one, and the best witness reads seventeen of them
 T-0349 — The signboard gate is red when stage 1 runs before it and green when stage 2 runs alone
+T-0355 — The South Water frontage run is dealt lots 0, 2 and 4 and all three of its roofs stand on lot 4

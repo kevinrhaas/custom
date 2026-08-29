@@ -9309,3 +9309,47 @@ fort — see `docs/RESEARCH/fort_dearborn.md` § 10.
 Related: **L199** (the bank track, the last thing taken off this reservation) · **L47** (the pickets
 the staff stands over) · tickets **T-0096** (this), **T-0197**, **T-0095**, **T-0044**.
 **Recorded:** 2026-08-28.
+
+### L205 — John Holbrook's store: a documented address, an invented building
+
+**Decision:** the Chicago American of 13 June 1835 gives John Holbrook, his trade and his
+address — hats, clothing, boots and shoes, wholesale and retail, "South Water street, one door
+from Dearborn" — and gives nothing whatever about the premises. So the ADDRESS is read and the
+BUILDING is invented: a 30 by 25 ft one-storey frame shop, seated one door east of the Chicago
+American's own office on the block face all three of these addresses share. Its footprint, its
+storey count and its clapboard stock are declared here. Its position is not: the street, the
+cross street and the count of doors are printed, so the placement is graded `inferred` and its
+reasoning — including which side of Dearborn, which is the one real fork — is written on the
+record.
+**Why:** every dimension of the building is borrowed from its own neighbours rather than found.
+The 30 ft front is the parcel's small-shop figure and is what fits between the American office's
+east wall and the lot line with both margins kept; the 25 ft depth is `chicago_american_office`'s
+own committed depth on this same face, taken because Holbrook advertises a large stock replenished
+every fifteen or twenty days and a shop taking fortnightly shipments needs a storeroom behind its
+counter. One storey is the smaller claim for premises the advertisement describes only as a counter
+and a stock. The alternative to inventing them was to leave a documented trade standing nowhere,
+and a door the paper itself says was occupied reading as empty ground.
+**Consequence:** a visitor walking South Water Street east of Dearborn sees three shop fronts in a
+row where the committed data previously had two and a gap. The row is the point: read eastward, the
+American's office at the corner, Holbrook one door from Dearborn, and Frederick Thomas two doors
+from the American office describe a continuous frontage with no contradiction between them, which
+is evidence about the STREET even where it is weak evidence about any one shop. The Evidence panel
+grades the footprint and the storey count `reconstructed` and says on each value that it is
+borrowed.
+**On the clapboard, and on L148, which this does not edit:** the exposed face of this building's
+siding is L148's rule applied to a record written after that entry was — `tools/deal_siding_stock.py`
+dealt it, keyed to the construction season and advanced so no frame building within 60 m shares it,
+and the tool's own note names L148 as the owner of the invention. L148's Decision counts the named
+frame buildings it covers, and with this record standing that count is one higher than the number
+written there. It is recorded here rather than by correcting that entry, because this document is
+append-only and a later count belongs in a later entry.
+**How to resolve:** the page images for the American of 1835-06-13 would settle whether the
+transcription's "one door from De[arborn]" is cut or complete and whether the advertisement carries
+a side of the street. A Chicago Democrat notice of the same house, a canal-commission lot record or
+an assessment naming Holbrook would replace the count of doors with a lot, and any measured
+description of the premises would replace the whole of this entry.
+Related: **L148** (the clapboard rule this record's siding is dealt by) · **L130** (the fact of a
+sign on a named trade) · tickets **T-0350** (this), **T-0306** (its parent, the American's
+storefronts), **T-0261** (the read that found the advertisement).
+**Covers:** `john_holbrook_store.frame_1835.footprint`, `john_holbrook_store.frame_1835.form.stories`, `john_holbrook_store.frame_1835.form.siding_exposure_m`.
+**Recorded:** 2026-08-29.

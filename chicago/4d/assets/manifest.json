@@ -666,6 +666,15 @@
       "phase_id": "frame_1830s",
       "structure_id": "jh_kinzie_forwarding_store"
     },
+    "john_holbrook_store__frame_1835.glb": {
+      "archetype": "frame_storefront",
+      "baked_ao": false,
+      "bytes": 42540,
+      "inputs_sha256": "27bb21021b28e05aebd5a155f17a62a42bbde48b0968198ae0e5c40da3d96bfe",
+      "kind": "generated",
+      "phase_id": "frame_1835",
+      "structure_id": "john_holbrook_store"
+    },
     "kinzie_hunter_warehouse__warehouse_1834.glb": {
       "archetype": "outbuilding",
       "baked_ao": false,

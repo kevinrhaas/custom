@@ -402,6 +402,17 @@
       "reasoning": "A named shop in a single inferred frame building."
     },
     {
+      "structure_id": "john_holbrook_store",
+      "district": "south",
+      "roof_count": 1,
+      "inventory_eligible": true,
+      "inventory_roof_count": 1,
+      "likely_family": "C1",
+      "substitutes_anonymous_slots": 1,
+      "confidence": "low",
+      "reasoning": "A named clothing store in a single inferred frame building, one door east of the Chicago American's office on South Water Street. C1 rather than C3 for the same reason frederick_thomas_shop is C1: the advertisement describes a counter trade and a stock room and never a room above, so the record stands one storey. Substitutes one anonymous slot and adds nothing above 665."
+    },
+    {
       "structure_id": "goss_cobb_saddlery",
       "district": "west",
       "roof_count": 1,

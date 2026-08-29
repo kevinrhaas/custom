@@ -87,13 +87,18 @@ RENDERER_JS = RENDERERS / "web" / "js"
 # the garrison flagstaff Andreas attests. One new fort_structure record, so one more committed
 # asset and one more mesh a change to the shared generator modules or to build.py would re-stale.
 #
+# 354 -> 355 and 352 -> 353 on 2026-08-29 (T-0350): `john_holbrook_store__frame_1835.glb`, the
+# clothing store the Chicago American places one door from Dearborn on South Water. One new
+# frame_storefront record, so one more committed asset and one more mesh a change to the shared
+# generator modules or to build.py would re-stale.
+#
 STATED = {
-    "assets": 354,
+    "assets": 355,
     "restales": {
-        "generators/common/*.py": 354,
+        "generators/common/*.py": 355,
         "generators/common/__init__.py": 0,
         "generators/common/phases.py": 0,
-        "generators/build.py": 352,
+        "generators/build.py": 353,
         "generators/terrain_gen.py": 2,
         "generators/archetypes/pier_crib.py": 2,
     },

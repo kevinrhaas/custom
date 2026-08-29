@@ -1,4 +1,12 @@
 export const CHANGELOG = [ // newest first
+  { v: 370, title: 'A clothing store takes the empty door on South Water', kind: 'feature', ts: '2026-08-29T05:56:23.826Z', date: 'Aug 29, 2026, 12:56 AM CT',
+    items: [
+      'There is a new shop on South Water Street, a little east of the Dearborn Street bridge. It is a small frame store with a board over the footway lettered JOHN HOLBROOK, and it stands in a gap that has been empty in this reconstruction until today \u2014 between the Chicago American\u2019s printing office on the corner and Frederick Thomas\u2019s shop two doors along.',
+      'It is there because the American printed his advertisement on 13 June 1835: hats, clothing, boots and shoes, wholesale and retail, a large stock kept on hand with fresh additions every fifteen or twenty days through the season \u2014 \u201CSouth Water street, one door from Dearborn\u201D, signed John Holbrook. The sign carries his own words, in his own order.',
+      'The reason it can be placed at all is that the two buildings on either side were placed the same way, by relation rather than by lot: the American\u2019s office \u201Cimmediately east of Dearborn\u201D, Frederick Thomas \u201Ctwo doors from the American office\u201D. Read eastward, the three addresses describe one unbroken row and contradict each other nowhere. That agreement is the evidence \u2014 for the street, more than for any one shop.',
+      'The building is invented and the panel says so on every value. Thirty feet by twenty-five, one storey, a gable roof: not one of those numbers is Holbrook\u2019s. The frontage is what fits between his neighbour\u2019s wall and the lot line, and the depth is the newspaper office\u2019s own, borrowed because a shop taking a shipment every fortnight needs a storeroom behind the counter.',
+      'What is not known is which side of Dearborn he was on. The advertisement does not say. East is taken because west of the crossing the first door is a documented dwelling, not a store, and because east is the only reading that makes all three of the paper\u2019s addresses fit together. If a fuller page ever says otherwise, the shop moves.',
+    ] },
   { v: 369, title: 'One list, printed three times, stops being three towns', kind: 'chore', ts: '2026-08-29T04:53:58.205Z', date: 'Aug 28, 2026, 11:53 PM CT',
     items: [
       'Nothing you can see changed today. What changed is the count of people this reconstruction thinks lived here \u2014 and it went DOWN, by 175.',

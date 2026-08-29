@@ -1,5 +1,43 @@
 # STATUS
 
+## Held 2026-08-29 — T-0350: John Holbrook's store is built, baked and refused by a lot rule
+
+**A documented storefront that the Chicago American places, that this project can build, and that
+one accounting clause will not let stand.** The American of 13 June 1835 carries John Holbrook's
+advertisement — hats, clothing, boots and shoes, wholesale and retail, over his own signature,
+addressed *"South Water street, one door from Dearborn"*. That is a street, a cross street and a
+count of doors, and it lands in a gap this reconstruction already had: `chicago_american_office`
+stands on the corner *"immediately east of Dearborn"* and `frederick_thomas_shop` *"two doors from
+the American office"*, with twenty-one metres of empty frontage between them.
+
+**Read eastward the three addresses agree and nothing else does.** West of Dearborn the first door
+is `madore_beaubien_house`, a documented dwelling and not a store. So the record stands one door
+east of the American's office, graded `inferred` on the printed street and ordinal, with the
+side-of-Dearborn fork written on the record rather than smoothed away.
+
+**What is built and green.** The structure record, its bake
+(`john_holbrook_store__frame_1835.glb`, 42.5 KB master / 13.6 KB derivative), its sidecar, its
+clapboard stock, a signboard lettered from the advertisement's own head — the first board in this
+town whose wording comes off a COMMITTED transcription rather than an image transcribed in
+conversation — the liberty at L205, the roof-reconciliation entry that substitutes it for an
+anonymous slot rather than adding to the 665, and the re-derived fence, yard-goods, building
+material, census and group-row layers. Every gate in `tools/check.sh` passes except one.
+
+**The one that does not, and why it is not ours to move.** `tools/plat_occupancy.py` carries the
+owner's ruling of 2026-08-27: a platted business-front lot is not exhausted by a documented store
+standing at the street on it. Its fourth condition requires the store to be the ONLY thing seated
+on the lot. Holbrook and the American office both seat on lot 0 of `blk_south_water_dearborn`, so
+the clause switches off and `generate_block_infill.py` refuses the block. Nothing overlaps —
+Holbrook clears the office by 3.05 m and the lot line by 1.53 m — and the block's own frontage run
+does not stand on lot 0 at all. **T-0355 records what was found looking:** the recipe deals that run
+lots 0, 2 and 4 and all three of its roofs stand on lot 4, which no gate can see because the
+generator asks the occupancy question with its own records excluded.
+
+So the question went back to the owner rather than the clause being widened to fit: may a
+business-front lot carry two documented storefronts at the street, as it already carries one plus
+the anonymous run? T-0350 is `blocked-owner` with that question; the PR is open on `hold` and
+merges on a one-word answer.
+
 ## Shipped 2026-08-28 — T-0028: `blk_lake_franklin` opens, and the warehouse it was dealt is refused rather than massed
 
 **The first NEW platted block this programme has opened since 2026-08-23**, when T-0028 re-derived

@@ -519,6 +519,28 @@ SIGN_WORDING = {
             "raised, not silently answered. " + PENDING
         ),
     },
+    "john_holbrook_store": {
+        "name": "JOHN HOLBROOK", "trade": "Hats, Clothing, Boots & Shoes",
+        "trade_short": "Clothing & Boots", "place": "South Water Street",
+        "identity": "Holbrook", "grade": "inferred",
+        "sources": ["chicago_american_1835"],
+        "why": (
+            "THE WORDING IS THE ADVERTISEMENT'S OWN HEAD, AND FOR ONCE IT IS OFF A "
+            "COMMITTED TRANSCRIPTION rather than an image nobody can open. The Chicago "
+            "American of 13 June 1835 heads this column \"Hats, Clothing, Boots and Shoes\" "
+            "over \"WHOLESALE & RETAIL\" and signs it \"JOHN HOLBROOK\", giving the address "
+            "as \"South Water street, one door from Dearborn\" — proprietor, trade and place "
+            "in the advertisement's own register and its own order, which is the register "
+            "this layer letters in. The place line drops the count of doors: a board names "
+            "the street it stands on and a customer standing in front of it does not need "
+            "telling which door. Graded `inferred` and not `attested` because a "
+            "transcription is not a page image; the deposit's own text is committed and "
+            "resolvable, which is more than the boards transcribed in conversation on "
+            "2026-08-21 have, and it is still one remove from the printed page. UPGRADE "
+            "THIS VALUE TO `attested` when the American's page scans are committed as a "
+            "source record and this note can cite the plate."
+        ),
+    },
     "jh_kinzie_forwarding_store": {
         "name": "JOHN H. KINZIE", "trade": "Forwarding & Commission Merchant",
         "trade_short": "Forwarding & Commission", "place": "Agent, Troy & Erie Line",
