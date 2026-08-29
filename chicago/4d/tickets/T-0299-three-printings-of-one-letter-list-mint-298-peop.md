@@ -1,7 +1,7 @@
 ---
 id: T-0299
 title: Three printings of one letter list mint 298 people three times, and identity.json is empty
-state: open
+state: done
 epic: META
 requested_by: loop
 seen: false
@@ -9,9 +9,9 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-08-28
-closed: null
-pr: null
-claimed_by: null
+closed: 2026-08-28
+pr: 509
+claimed_by: run 8/28/2026, 11:52:03 PM CT
 blocked_on: null
 needs_bake: false
 ---

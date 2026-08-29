@@ -701,18 +701,64 @@ def compile_gazetteer(files, identity, corpus, quiet=True):
 
 
 def surname(name):
-    """'Work, James Houston' → 'work'; 'Peter Cohen' → 'cohen'."""
-    name = (name or "").strip()
+    """'Work, James Houston' → 'work'; 'Peter Cohen' → 'cohen'.
+
+    Markup off first, for the same reason `initials` takes it off (T-0299) and for one
+    more: the two halves of the refusal rule have to answer about the SAME name. While
+    this slugged the markup and `initials` parsed it, `Charles Work[s]` and `Charles
+    Works` were two surnames — so the rule did not fire — and `A. Beegle` and `[?]. Beegle`
+    were one, so it did. Whether the policy protected a pair came down to which side of
+    the name a bracket happened to fall on.
+    """
+    name = unmarked(name).strip()
     if "," in name:
         return slug(name.split(",", 1)[0])
     return slug(name.split()[-1]) if name.split() else ""
 
 
+UNCERTAIN_PART = re.compile(r"\[uncertain:\s*(.*?)\]")
+
+
+def unmarked(name):
+    """A normalized reading with the transcriber's markup taken off.
+
+    `normalized` carries three marks and they are all ABOUT the reading, not part of
+    the name: `[x]` around a letter the transcriber supplied for a recognition-class
+    error, `[?]` where no letter could be supplied, and an `[uncertain: …]` wrapper
+    where the printed form supports no reading at all. They belong in the stored
+    reading — that is the honesty — and they do not belong in the name parse below,
+    which is why this exists rather than being folded into `slug`.
+
+    The `[uncertain: …]` wrapper is stripped wherever it stands, not only around the
+    whole name: `Dani[e]l O. [uncertain: Robian]` wraps the surname alone, and leaving
+    the word `uncertain` in the string made it a third forename.
+    """
+    name = UNCERTAIN_PART.sub(r"\1", name or "")
+    name = name.replace("[?]", "")
+    return re.sub(r"\[([^\]]*)\]", r"\1", name)
+
+
 def initials(name):
-    """The forename initials, in order — the half of a name the letter lists turn on."""
-    name = (name or "").strip()
+    """The forename initials, in order — the half of a name the letter lists turn on.
+
+    THE MARKUP IS NOT A WORD BOUNDARY, AND NEITHER IS A LETTER PYTHON HAS NOT HEARD OF
+    (T-0299). This split on `[A-Za-z]+`, so `A[n]drew W. Borland` parsed as the four
+    forenames A / n / drew / W and `[uncertain: Abey Blankinship]` parsed as `uncertain`
+    and `Abey`; against the plain `Andrew W. Borland` of another printing that reads as
+    two different people under one surname, and the identity policy then refuses the
+    merge that would join them. Measured on the three printings of the 1 July 1834
+    letter list: 120 of 206 correct merges were refused this way, none of them for a
+    reason the policy is about. The same defect ate `Benjamın Swena`, whose OCR left a
+    dotless ı that `[A-Za-z]` treats as a space.
+
+    The policy itself is untouched and is the reason this is a parser fix rather than a
+    loosening: `Cohen, P.` and `Cohen, J.` still carry different initials and still
+    never merge, and so do `Lyman R. Lovell` and `Lyman B. Lovell`, `[H]enry Swartwout
+    jr.` and `J[n]o. Swartwout jr.` — a bracketed letter is READ, so it counts.
+    """
+    name = unmarked(name).strip()
     fore = name.split(",", 1)[1] if "," in name else " ".join(name.split()[:-1])
-    return tuple(w[0].lower() for w in re.findall(r"[A-Za-z]+", fore))
+    return tuple(w[0].lower() for w in re.findall(r"[^\W\d_]+", fore, re.UNICODE))
 
 
 # --------------------------------------------------------------------------
@@ -1162,6 +1208,32 @@ def self_test():
             {"into": "Peter Cohen", "from": "Nobody At All",
              "merge_rule": "Peter Cohen and Nobody At All, on a whim"}),
         "not a name any claim carries", "a merge rule for a person nobody claimed")
+
+    # AND THE NAME PARSE THE POLICY RUNS ON (T-0299). The cases are the ones the three
+    # printings of the 1 July 1834 letter list actually produced: markup inside a name and
+    # an `[uncertain: …]` wrapper must not invent forenames, an OCR'd dotless ı must not
+    # split one, and every genuine disagreement of initials — two read letters, a read
+    # letter against an unread `[?]`, a present initial against an absent one — must still
+    # refuse. A loosening here shows up as a failure in the SECOND list, which is why both
+    # are asserted and not just the first.
+    for a, b in (("A[n]drew W. Borland", "Andrew W. Borland"),
+                 ("[uncertain: Abey Blankinship]", "Abey Blankinship"),
+                 ("Benjam\u0131n Swena", "Benjamin Swena"),
+                 ("Ch[a]s. L. Barry", "[C]h[a]s. L. Barry"),
+                 ("Dani[e]l O. [uncertain: Robian]", "Daniel O. Robian"),
+                 ("W[m]. C. Whittely", "Wm. C Whittely")):
+        if surname(a) == surname(b) and initials(a) != initials(b):
+            failures.append("the name parse: %r and %r read as different initials, and the "
+                            "difference is the transcriber's markup" % (a, b))
+    for a, b in (("Cohen, P.", "Cohen, J."),
+                 ("Lyman R. Lovell", "Lyman B. Lovell"),
+                 ("[H]enry Swartwout jr.", "J[n]o. Swartwout jr."),
+                 ("Ann M. Gooding", "[?]nn M. Gooding"),
+                 ("Samuel E. Toby", "Samuel. Toby")):
+        if not (surname(a) == surname(b) and initials(a) != initials(b)):
+            failures.append("the identity policy: %r and %r no longer refuse to merge, and "
+                            "an initial is what separates them" % (a, b))
+
 
     # THE FIRM'S HALF OF THE SAME POLICY (T-0304). Every case below is built by giving
     # the fixture's own Wilson advertisement a SECOND printing under another spelling,

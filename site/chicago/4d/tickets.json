@@ -1,6 +1,6 @@
 {
   "project": "chicago-4d",
-  "generated_ct": "Aug 28, 2026, 11:42 PM",
+  "generated_ct": "Aug 28, 2026, 11:59 PM",
   "tickets": [
     {
       "id": "T-0001",
@@ -539,7 +539,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 45
+      "queue_rank": 44
     },
     {
       "id": "T-0031",
@@ -663,7 +663,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 44
+      "queue_rank": 43
     },
     {
       "id": "T-0038",
@@ -951,7 +951,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 43
+      "queue_rank": 42
     },
     {
       "id": "T-0054",
@@ -987,7 +987,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 42
+      "queue_rank": 41
     },
     {
       "id": "T-0056",
@@ -2427,7 +2427,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 41
+      "queue_rank": 40
     },
     {
       "id": "T-0137",
@@ -3003,7 +3003,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 54
+      "queue_rank": 53
     },
     {
       "id": "T-0171",
@@ -3057,7 +3057,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 52
+      "queue_rank": 51
     },
     {
       "id": "T-0179",
@@ -3093,7 +3093,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 55
+      "queue_rank": 54
     },
     {
       "id": "T-0181",
@@ -3111,7 +3111,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 53
+      "queue_rank": 52
     },
     {
       "id": "T-0182",
@@ -3273,7 +3273,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 36
+      "queue_rank": 35
     },
     {
       "id": "T-0191",
@@ -3309,7 +3309,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 18
+      "queue_rank": 17
     },
     {
       "id": "T-0193",
@@ -3507,7 +3507,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 58
+      "queue_rank": 57
     },
     {
       "id": "T-0207",
@@ -3723,7 +3723,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 59
+      "queue_rank": 58
     },
     {
       "id": "T-0219",
@@ -3741,7 +3741,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": true,
-      "queue_rank": 26
+      "queue_rank": 25
     },
     {
       "id": "T-0220",
@@ -3921,7 +3921,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 40
+      "queue_rank": 39
     },
     {
       "id": "T-0231",
@@ -3939,7 +3939,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 57
+      "queue_rank": 56
     },
     {
       "id": "T-0232",
@@ -3957,7 +3957,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 49
+      "queue_rank": 48
     },
     {
       "id": "T-0233",
@@ -3975,7 +3975,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 21
+      "queue_rank": 20
     },
     {
       "id": "T-0234",
@@ -3993,7 +3993,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 50
+      "queue_rank": 49
     },
     {
       "id": "T-0235",
@@ -4011,7 +4011,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 51
+      "queue_rank": 50
     },
     {
       "id": "T-0236",
@@ -4029,7 +4029,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 47
+      "queue_rank": 46
     },
     {
       "id": "T-0237",
@@ -4047,7 +4047,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 33
+      "queue_rank": 32
     },
     {
       "id": "T-0238",
@@ -4065,7 +4065,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 48
+      "queue_rank": 47
     },
     {
       "id": "T-0239",
@@ -4083,7 +4083,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 39
+      "queue_rank": 38
     },
     {
       "id": "T-0240",
@@ -4155,7 +4155,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 16
+      "queue_rank": 15
     },
     {
       "id": "T-0244",
@@ -4173,7 +4173,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 15
+      "queue_rank": 14
     },
     {
       "id": "T-0245",
@@ -4317,7 +4317,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 37
+      "queue_rank": 36
     },
     {
       "id": "T-0253",
@@ -4335,7 +4335,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 38
+      "queue_rank": 37
     },
     {
       "id": "T-0254",
@@ -4371,7 +4371,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 46
+      "queue_rank": 45
     },
     {
       "id": "T-0256",
@@ -4497,7 +4497,7 @@
       "claimed_by": null,
       "blocked_on": "T-0261",
       "needs_bake": false,
-      "queue_rank": 6
+      "queue_rank": 5
     },
     {
       "id": "T-0263",
@@ -4515,7 +4515,7 @@
       "claimed_by": null,
       "blocked_on": "T-0262",
       "needs_bake": false,
-      "queue_rank": 7
+      "queue_rank": 6
     },
     {
       "id": "T-0264",
@@ -4533,7 +4533,7 @@
       "claimed_by": null,
       "blocked_on": "T-0262",
       "needs_bake": false,
-      "queue_rank": 9
+      "queue_rank": 8
     },
     {
       "id": "T-0265",
@@ -4551,7 +4551,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 17
+      "queue_rank": 16
     },
     {
       "id": "T-0266",
@@ -4569,7 +4569,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 27
+      "queue_rank": 26
     },
     {
       "id": "T-0267",
@@ -4605,7 +4605,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 32
+      "queue_rank": 31
     },
     {
       "id": "T-0271",
@@ -4623,7 +4623,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 60
+      "queue_rank": 59
     },
     {
       "id": "T-0272",
@@ -4641,7 +4641,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": true,
-      "queue_rank": 23
+      "queue_rank": 22
     },
     {
       "id": "T-0273",
@@ -4659,7 +4659,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": true,
-      "queue_rank": 24
+      "queue_rank": 23
     },
     {
       "id": "T-0274",
@@ -4677,7 +4677,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": true,
-      "queue_rank": 25
+      "queue_rank": 24
     },
     {
       "id": "T-0275",
@@ -4731,7 +4731,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 28
+      "queue_rank": 27
     },
     {
       "id": "T-0279",
@@ -4749,7 +4749,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 29
+      "queue_rank": 28
     },
     {
       "id": "T-0280",
@@ -4767,7 +4767,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 30
+      "queue_rank": 29
     },
     {
       "id": "T-0281",
@@ -4821,7 +4821,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 10
+      "queue_rank": 9
     },
     {
       "id": "T-0284",
@@ -4857,7 +4857,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 34
+      "queue_rank": 33
     },
     {
       "id": "T-0286",
@@ -4875,7 +4875,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 35
+      "queue_rank": 34
     },
     {
       "id": "T-0289",
@@ -5060,7 +5060,7 @@
     {
       "id": "T-0299",
       "title": "Three printings of one letter list mint 298 people three times, and identity.json is empty",
-      "state": "open",
+      "state": "done",
       "epic": "META",
       "requested_by": "loop",
       "seen": false,
@@ -5068,12 +5068,12 @@
       "legacy_id": null,
       "parent": null,
       "opened": "2026-08-28",
-      "closed": null,
-      "pr": null,
-      "claimed_by": null,
+      "closed": "2026-08-28",
+      "pr": "509",
+      "claimed_by": "run 8/28/2026, 11:52:03 PM CT",
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 2
+      "queue_rank": null
     },
     {
       "id": "T-0300",
@@ -5109,7 +5109,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 56
+      "queue_rank": 55
     },
     {
       "id": "T-0302",
@@ -5127,7 +5127,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 31
+      "queue_rank": 30
     },
     {
       "id": "T-0304",
@@ -5163,7 +5163,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 14
+      "queue_rank": 13
     },
     {
       "id": "T-0306",
@@ -5181,7 +5181,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 8
+      "queue_rank": 7
     },
     {
       "id": "T-0307",
@@ -5199,7 +5199,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 22
+      "queue_rank": 21
     },
     {
       "id": "T-0308",
@@ -5361,7 +5361,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 20
+      "queue_rank": 19
     },
     {
       "id": "T-0317",
@@ -5379,7 +5379,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 19
+      "queue_rank": 18
     },
     {
       "id": "T-0318",
@@ -5397,7 +5397,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 11
+      "queue_rank": 10
     },
     {
       "id": "T-0321",
@@ -5415,7 +5415,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 12
+      "queue_rank": 11
     },
     {
       "id": "T-0323",
@@ -5451,7 +5451,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 4
+      "queue_rank": 3
     },
     {
       "id": "T-0325",
@@ -5523,7 +5523,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 3
+      "queue_rank": 2
     },
     {
       "id": "T-0329",
@@ -5541,7 +5541,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 5
+      "queue_rank": 4
     },
     {
       "id": "T-0330",
@@ -5577,7 +5577,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 13
+      "queue_rank": 12
     },
     {
       "id": "T-0332",
@@ -5595,7 +5595,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": true,
-      "queue_rank": 61
+      "queue_rank": 60
     },
     {
       "id": "T-0337",
@@ -5613,7 +5613,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 62
+      "queue_rank": 61
     },
     {
       "id": "T-0338",
@@ -5631,7 +5631,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 63
+      "queue_rank": 62
     },
     {
       "id": "T-0339",
@@ -5667,7 +5667,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 64
+      "queue_rank": 63
     },
     {
       "id": "T-0341",
@@ -5685,7 +5685,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 67
+      "queue_rank": 66
     },
     {
       "id": "T-0345",
@@ -5703,7 +5703,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 65
+      "queue_rank": 64
     },
     {
       "id": "T-0346",
@@ -5721,7 +5721,43 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 66
+      "queue_rank": 65
+    },
+    {
+      "id": "T-0348",
+      "title": "The identity policy cannot merge an unread initial with a read one, and the best witness reads seventeen of them",
+      "state": "open",
+      "epic": "PAPERS",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "S",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-08-28",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "queue_rank": 67
+    },
+    {
+      "id": "T-0349",
+      "title": "The signboard gate is red when stage 1 runs before it and green when stage 2 runs alone",
+      "state": "open",
+      "epic": "META",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "S",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-08-28",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "queue_rank": 68
     }
   ]
 }
