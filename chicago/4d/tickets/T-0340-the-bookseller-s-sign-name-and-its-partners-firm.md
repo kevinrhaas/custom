@@ -1,7 +1,7 @@
 ---
 id: T-0340
 title: The bookseller's sign-name and its partners' firm-name are three gazetteer entries for one house
-state: claimed
+state: done
 epic: PAPERS
 requested_by: loop
 seen: false
@@ -9,8 +9,8 @@ effort: S
 legacy_id: null
 parent: null
 opened: 2026-08-28
-closed: null
-pr: null
+closed: 2026-08-29
+pr: 547
 claimed_by: run 8/29/2026, 9:42:37 AM CT
 blocked_on: null
 needs_bake: false
@@ -49,3 +49,24 @@ not about this shop, so it will govern every headline-only firm in the corpus.
 - No claim's `business.name` is edited to force the join.
 
 Links: T-0304 (the rule), T-0327 (which found the pair), T-0339.
+
+**RESOLVED (PR #547) — and the premise above was wrong, which is the useful part.** The
+guard never saw an empty set: `firm_surnames` runs on the NAME, so it read the sign-name as
+three partners, `{book, store, wholesale}`, and reported that they differed from
+`{clift, russell}` — surnames no printing ever carried. The compound style read as four.
+So the decision is two-part. THE RULING: a style that names no partner cannot contradict one
+that does, because an empty set is not a different partnership but a printing that did not
+say; the guard now compares only where both styles NAME partners. THE FENCE: since
+`firm_style` recognises a trade tail by its lower case and a sign-name is a capitalised
+trade, a style counts as naming none only where `identity.json`'s new `firm_sign_names`
+declares it one — refused for any house a claim signs with a proprietor, refused when
+`partners` + `sign` do not reconstruct the style verbatim, refused for a business no claim
+carries, refused with no reason stated. Seven negative cases in `--self-test`; the first is
+that an undeclared headline-only style is still refused.
+
+A FOURTH key was found while joining the three: `business_russell_clift_the_chicago_book_store`,
+the Democrat's 1835-08-19 notice naming their premises under the Morison's state agency. All
+four are now `business_russell_clift`, nine mentions, 1834-08-27 to 1835-08-29, retiring the
+survival liberty three of them separately claimed. Carried across and NOT tidied: that claim
+reads the firm's own name as a proprietor, so 'Russell & Clift' stands in the merged
+proprietor list beside Aaron Russell and Benj. H. Clift — filed as T-0398.

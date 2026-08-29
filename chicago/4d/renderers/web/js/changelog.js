@@ -1,5 +1,5 @@
 export const CHANGELOG = [ // newest first
-  { v: null, title: 'One Chicago bookshop stops being four bookshops', kind: 'chore', ts: '', date: '',
+  { v: 399, title: 'One Chicago bookshop stops being four bookshops', kind: 'chore', ts: '2026-08-29T16:54:32.035Z', date: 'Aug 29, 2026, 11:54 AM CT',
     items: [
       'Nothing you can see changed today. Behind the model there is a register of everybody and every business the Chicago papers of 1833 to 1835 name, and it was carrying the town\u2019s only bookshop four times over. It is now one house with nine printings behind it, running from August 1834 to the end of August 1835.',
       'Three of the four were the same advertisement, cut differently. The partnership notice of Aaron Russell of Boston and Benjamin Clift of Philadelphia \u2014 opening a store next to Philo Carpenter\u2019s drug establishment in Water Street, copy-dated 26 August 1834 \u2014 ran on 27 August under the heading CHICAGO WHOLESALE AND RETAIL BOOK & STATIONARY STORE with its signature lost in a column the scanner wove into its neighbour, and again a week later with the signature intact. The firm\u2019s own 1835 card in the other paper runs partners and shop sign together. Which of the three a printing landed in depended only on which half of the type survived.',
