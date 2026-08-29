@@ -47,14 +47,10 @@ T-0401 — The firm groups that are two houses, written down so no later sweep m
 T-0402 — The firm groups an agency, a parent house or a lost signature makes ambiguous
 
 # --- THE NEWSPAPER STREAM (b) THE POLICY THAT DECIDES HOW MUCH TOWN THE PAPERS REACH.
-# --- T-0354 is the single highest-leverage ticket in the queue: the register places 24 of
-# --- 190 documented businesses, and the owner RULED on 2026-08-29 that a street-only
-# --- business adopts a reconstructed roof already standing on that face (never claiming a
-# --- lot). That ruling turns 49 more businesses into visible trades. Its companion
-# --- T-0357 is DONE (PR #548, 2026-08-29): the survival assumption 111 of those
-# --- businesses stand on is now written down as L211, with its scope counted against
-# --- the register on every build, so the seeding below has a liberty to stand on.
-T-0354 — The register can only place 24 of 190 documented businesses; 49 more reach a street face and 78 reach nothing
+# --- T-0354 shipped in #551 on 2026-08-29: the owner's ruling — a street-only
+# --- business adopts a reconstructed roof already standing on that street face, never
+# --- claiming a lot — is now docs/STREET-FACE-ADOPTION.md, derived by
+# --- tools/adopt_street_faces.py and gated in check.sh. T-0357 is its companion.
 
 # --- THE NEWSPAPER STREAM (c) THE VISIBLE SEEDING — documented storefronts and people
 # --- standing in the model. This is the payoff the whole epic was for. T-0358 sits here
@@ -169,6 +165,7 @@ T-0395 — The New York House's footprint is graded reconstructed but its note c
 T-0396 — Newberry & Dole's partner is read as Oliver Newberry in 1834 and Walter L. Newberry in 1835, and the corpus cannot say which stood in the firm
 T-0391 — Are 'Eagle Hotel' and 'the Eagle Hotel (Steele's)' one house, and no issue prints both
 T-0407 — The same blacksmith notice is read as 'Matthias Nason & Co.' in one impression, and the partner-surname guard can never merge it
+T-0408 — Four spellings of one Lake Street trade take four separate roofs, and the identity layer has judged none of them
 T-0406 — 'the Tremont House' resolves to nothing, because the committed record is named 'Tremont House (the first)'
 T-0403 — The Democrat's office keeps its 1834 corner through a merge, and the paper moved along South Water Street before the scene date
 T-0404 — 33 documented businesses will stand on a backdating liberty and LIBERTIES.md carries none of them

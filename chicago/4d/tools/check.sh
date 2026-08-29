@@ -1099,6 +1099,21 @@ step "the scene-date register re-derives, and every action names its target" \
 step "…and its own assertions still fire when broken" \
   python3 tools/compile_register.py --self-test
 
+# And what the town DOES with the register's `street_only` businesses (T-0354). The owner
+# ruled on 2026-08-29 that a business the paper places on a platted street and nothing
+# narrower adopts a reconstructed roof already standing on that street face;
+# docs/STREET-FACE-ADOPTION.md is the policy and this re-derives the allocation. Gated
+# rather than committed once because all four of the ruling's limits are assertions about
+# a moving town: a roof that gets promoted, a roof that becomes a household's dwelling, a
+# second business landing on one roof, or a record that quietly grows a lot field are each
+# a silent breach of the ruling, and each one fails here. `--report` prints the deal, every
+# refusal with its reason, and both readings of what "standing on that face" means.
+step "the street-face adoptions re-derive, and no adopted business claims a lot" \
+  python3 tools/adopt_street_faces.py --check
+
+step "…and its own assertions still fire when broken" \
+  python3 tools/adopt_street_faces.py --self-test
+
 printf '\n'
 if [ "$FAILED" -eq 0 ]; then
   printf '\033[32mCHECK PASS\033[0m\n'

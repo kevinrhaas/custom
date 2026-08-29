@@ -1,5 +1,58 @@
 # STATUS
 
+## Shipped 2026-08-29 — T-0354: what a business does when the paper names a street and nothing narrower
+
+**The register could place 58 of 203 documented businesses; 24 more now stand on the street faces
+their advertisements name.** (T-0354's title says 24 of 190 with 49 `street_only`. It was filed that
+morning; T-0380, T-0383, T-0355, T-0399 and T-0356 all landed on `dev` before this branch merged and
+the `street_only` pile went 47 → 45 → 60 while it was being written. Every figure here is this
+branch's own re-derivation against the register as merged, and none of it is authored —
+`tools/adopt_street_faces.py --report` reprints all of it. **The policy did not move with the
+counts**, which is the argument for deriving the allocation instead of listing it.) The owner ruled on 2026-08-29, choosing between the three options the
+ticket set out, that a `street_only` business *adopts a reconstructed roof already standing on that
+street face*. `docs/STREET-FACE-ADOPTION.md` is that ruling written so a later run applies it
+without re-deciding it, `tools/adopt_street_faces.py` derives the allocation,
+`data/research/newspapers/street_face_adoptions.json` is the derived table, **L212** is the liberty,
+and `tools/check.sh` re-derives all of it on every commit.
+
+**The four limits are assertions, not promises.** No adoption claims a lot (`lot: null`,
+`claims_lot: false`, and the gate refuses a record that grows a lot field of any name); the adopted
+roof stays `reconstructed`, re-read from the structure's own phase on every commit; which roof on a
+face is an allocation by deterministic rule and says so in every record; and order within a face is
+not a claim. Each of those four is a way the ruling could be breached silently by a later run, which
+is why each is a check rather than a paragraph.
+
+**What it moves, and where the rest wait.** 60 `street_only` in the register: **24 adopted, 36
+waiting.** Twenty-four name Dearborn, La Salle, Canal or North Water, where no reconstructed roof's
+platted lot faces the street — Dearborn has eighteen roofs showing it a corner side and none showing
+it a front. Nine are a second heading of a house already seated on that face. Three are short purely
+of supply. South Water took 14 of its 19 fronting roofs (5 are households' dwellings); Lake took 9;
+Randolph took 1.
+
+**What is unverified or deliberately left, stated plainly.**
+
+- **Only `lot front` is adopted, and that is a decision with a cost.** `tools/fronting_street.py`
+  also answers `corner side` and `centreline band`; both are refused here, because an
+  advertisement's street is where the door is and a gable end reaching a street is not a doorway.
+  **Widening the reading would reach 24 more**, and `--report` prints both readings side by side so
+  the number an owner ruling would change is one number, not a rewrite.
+- **Three Lake Street roofs are probably one house.** Wm. G. Branchaud, W. G. Blanchard, G.
+  Blanshard and F. G. Blanshard advertise one trade within five months under four transcribed
+  spellings, and the gazetteer's identity layer has judged none of them. The duplicate refusal here
+  matches exact surnames only — deciding by resemblance is the identity layer's job — so it caught
+  one of the four and left three roofs standing. Filed as **T-0408**, with the page images named as
+  the remedy.
+- **The 84 `unplaceable` are untouched and T-0354's second half stays open.** The ruling does not
+  reach them and this policy does not extend it; some are outside the plat entirely.
+- **Nothing is spent yet.** This is the policy and the allocation. No card, signboard or frontage
+  reads it — that is T-0263's and the seeding tickets'. No geometry moved and no triangle was added,
+  so no bake was required.
+- **The renderer smoke was not run and did not need to be.** This branch touches
+  `data/research/`, `docs/`, `tools/` and the changelog only; no scene, structure, terrain or
+  renderer file changes, and `data/research/` is not published. `tools/check.sh` — the dev gate —
+  is green in full, including its own new step.
+
+---
 ## Shipped 2026-08-29 — T-0380: the New York House stands on Lake Street near Wells
 
 **A building this project had wrongly ruled out now stands in the town.** The New York House sat
