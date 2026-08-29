@@ -1,7 +1,7 @@
 ---
 id: T-0416
 title: Wm. Sabine, John Dave and the Dearborn wine store: the three storefronts the street-face policy refuses for want of a fronting roof
-state: claimed
+state: blocked-owner
 epic: META
 requested_by: loop
 seen: false
@@ -12,7 +12,7 @@ opened: 2026-08-29
 closed: null
 pr: null
 claimed_by: run 8/29/2026, 4:31:19 PM CT
-blocked_on: null
+blocked_on: Is a corner side a face? MEASURED, not estimated: the ruling seats 12 of the 24 businesses that ask (Dearborn 8 of 18, La Salle 3, Canal 1) — 16 of the 29 side-on roofs are homes or yard buildings and stay refused however the face is read. It seats NONE of this ticket's three storefronts: North Water has no corner-side roof at all, so Wm. Sabine and John Dave are untouched by it, and the Dearborn wine store falls outside the 8 free roofs its 18 rivals compete for. The second candidate — a centreline band is on the face — seats exactly 1: Sabine takes North Water's single off-grid roof and Dave is then short of supply. So the three want three different things, and only new frontage on North Water and Dearborn (T-0375's neighbourhood) seats all three. Which, if either, do you rule?
 needs_bake: false
 ---
 
