@@ -51,10 +51,11 @@ T-0345 — Mason's blacksmith shop is anchored on Graves' Tavern until 16 July 1
 # --- T-0354 is the single highest-leverage ticket in the queue: the register places 24 of
 # --- 190 documented businesses, and the owner RULED on 2026-08-29 that a street-only
 # --- business adopts a reconstructed roof already standing on that face (never claiming a
-# --- lot). That ruling turns 49 more businesses into visible trades. T-0357 is its
-# --- companion — 129 of them stand on a survival liberty nothing has written down yet.
+# --- lot). That ruling turns 49 more businesses into visible trades. Its companion
+# --- T-0357 is DONE (PR #548, 2026-08-29): the survival assumption 111 of those
+# --- businesses stand on is now written down as L211, with its scope counted against
+# --- the register on every build, so the seeding below has a liberty to stand on.
 T-0354 — The register can only place 24 of 190 documented businesses; 49 more reach a street face and 78 reach nothing
-T-0357 — 129 documented businesses will stand on a survival liberty and LIBERTIES.md carries none of them
 
 # --- THE NEWSPAPER STREAM (c) THE VISIBLE SEEDING — documented storefronts and people
 # --- standing in the model. This is the payoff the whole epic was for. T-0358 sits here
