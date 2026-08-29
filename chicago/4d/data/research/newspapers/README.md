@@ -160,7 +160,7 @@ Deterministic: the same deposit produces byte-identical `corpus.json` and `text/
 | | |
 |---|---|
 | `extracted/<issue_id>.json` | one file per issue, holding `claims[]` — hand-authored |
-| `identity.json` | the only place two differently-spelled names may become one person |
+| `identity.json` | the only place two differently-spelled names may become one person, or two firm styles one house |
 | `coverage.json` | the ranges a reading pass has DECLARED it read, and the gate holds it to them |
 | `gazetteer.json` | **generated** by `tools/compile_gazetteer.py --build` — never hand-edited |
 
@@ -279,10 +279,27 @@ that same notice, whose signature went with the woven half of the column, and
 `business_russell_clift_chicago_book_and_stationary_store` is the firm's own 1835 card in
 the *American*. Three keys, one house, and the evidence for it is a shared copy date and a
 shared body of type — but joining them means DECLARING two names one firm, and that is
-exactly the rule `identity.json` supplies for people and nothing supplies for firms
-(T-0304). Until it exists the entries stand apart and each carries the relation in its
-notes; the alternative is a hand-merge, and a gazetteer nobody can recompile is worse than
-one that says three where it means one.
+exactly what `identity.json` supplies for people and, as of T-0304, for firms as well:
+`firm_merges`, below. The three keys stand apart until somebody declares them, because a
+declaration cites its printings and nobody has yet written that one down (T-0337) — but the
+place to write it now exists, and the alternative it replaces was a hand-merge, which makes
+a gazetteer nobody can recompile.
+
+**Firms have the same policy and a different discriminator** (T-0304). A business is keyed
+on its whole name too, so five printings of one house are five businesses until something
+says otherwise, and `firm_merges` is where that is said — same two rules, a `merge_rule`
+naming both spellings verbatim. What changes is the guard. For a person a differing
+forename initial is fatal, because the letter lists are full of families; a `& Co.` style
+routinely elides or misprints the forename it trades under, so applying that rule to firms
+would refuse every merge a firm needs. What survives is the SURNAME: the two styles must
+carry the same set of partner surnames, with or without a rule, because a partnership is
+its partners and a changed one is a different house — which is what keeps `Clark, Filer &
+Co.` and `A. Filer & Co.` apart. The second guard is about the ground rather than the
+name: two styles the papers put in different STREETS never merge, because a firm that
+moved is documented by a removal notice, and a removal notice is a claim. A merge takes
+the union of mentions, proprietors, goods and copy dates, the wider issue window, the
+more specific placement, and every trade either side printed in `trade_variants` — it can
+widen a record and it cannot narrow one.
 
 The scene-date Democrat, `extracted/chicago_democrat_1835_07_01.json`, is both the worked
 fixture (claims c001-c003, T-0257 — Peter Cohen and J. S. C. Hogan on South Water Street,

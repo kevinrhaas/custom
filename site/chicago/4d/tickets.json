@@ -1,6 +1,6 @@
 {
   "project": "chicago-4d",
-  "generated_ct": "Aug 28, 2026, 10:35 PM",
+  "generated_ct": "Aug 28, 2026, 10:47 PM",
   "tickets": [
     {
       "id": "T-0001",
@@ -5132,7 +5132,7 @@
     {
       "id": "T-0304",
       "title": "The gazetteer merges persons by a declared rule and has no equivalent for firms, so 'L. Wilson & Co.' and 'Jno. Wilson & Co.' are two businesses",
-      "state": "open",
+      "state": "claimed",
       "epic": "META",
       "requested_by": "loop",
       "seen": false,
@@ -5142,7 +5142,7 @@
       "opened": "2026-08-28",
       "closed": null,
       "pr": null,
-      "claimed_by": null,
+      "claimed_by": "run 8/28/2026, 10:16:57 PM CT",
       "blocked_on": null,
       "needs_bake": false,
       "queue_rank": 5
@@ -5614,6 +5614,24 @@
       "blocked_on": null,
       "needs_bake": false,
       "queue_rank": 66
+    },
+    {
+      "id": "T-0338",
+      "title": "Thirty-one groups of firms share a partner surname and only one of them has been judged",
+      "state": "open",
+      "epic": "META",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "M",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-08-28",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "queue_rank": 67
     }
   ]
 }
