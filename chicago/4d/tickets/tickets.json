@@ -1,6 +1,6 @@
 {
   "project": "chicago-4d",
-  "generated_ct": "Aug 29, 2026, 9:18 AM",
+  "generated_ct": "Aug 29, 2026, 9:46 AM",
   "tickets": [
     {
       "id": "T-0001",
@@ -5798,7 +5798,7 @@
     {
       "id": "T-0348",
       "title": "The identity policy cannot merge an unread initial with a read one, and the best witness reads seventeen of them",
-      "state": "open",
+      "state": "split",
       "epic": "PAPERS",
       "requested_by": "loop",
       "seen": false,
@@ -5806,12 +5806,12 @@
       "legacy_id": null,
       "parent": null,
       "opened": "2026-08-28",
-      "closed": null,
+      "closed": "2026-08-29",
       "pr": null,
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 4
+      "queue_rank": null
     },
     {
       "id": "T-0349",
@@ -6406,6 +6406,42 @@
       "blocked_on": null,
       "needs_bake": false,
       "queue_rank": 0
+    },
+    {
+      "id": "T-0391",
+      "title": "The name parse deletes an unread [?] initial, so seventeen refusals are stated on a letter no printing read",
+      "state": "claimed",
+      "epic": "PAPERS",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "S",
+      "legacy_id": null,
+      "parent": "T-0348",
+      "opened": "2026-08-29",
+      "closed": null,
+      "pr": null,
+      "claimed_by": "run 8/29/2026, 9:46:32 AM CT",
+      "blocked_on": null,
+      "needs_bake": false,
+      "queue_rank": 4
+    },
+    {
+      "id": "T-0392",
+      "title": "May an unread forename initial be merged with a read one at the same entry of the same list — the owner's ruling",
+      "state": "blocked-owner",
+      "epic": "PAPERS",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "XS",
+      "legacy_id": null,
+      "parent": "T-0348",
+      "opened": "2026-08-29",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": "May a merge be declared where one side's forename initial is [?] (unread) and the other's is read, at the same entry of the same list? No = eighteen known duplicates are an accepted cost; Yes = a bounded exception, same list, same entry, no competing letter.",
+      "needs_bake": false,
+      "queue_rank": null
     }
   ]
 }

@@ -1,7 +1,7 @@
 ---
 id: T-0348
 title: The identity policy cannot merge an unread initial with a read one, and the best witness reads seventeen of them
-state: open
+state: split
 epic: PAPERS
 requested_by: loop
 seen: false
@@ -9,7 +9,7 @@ effort: S
 legacy_id: null
 parent: null
 opened: 2026-08-28
-closed: null
+closed: 2026-08-29
 pr: null
 claimed_by: null
 blocked_on: null
@@ -67,3 +67,24 @@ sitting where the rule would go.
   before and after.
 - If the answer is no: the ticket is withdrawn with the ruling recorded on it, and the
   eighteen duplicates are documented in the README as a known and accepted cost.
+
+---
+
+## SPLIT, 2026-08-29 — into T-0391 (shipped) and T-0392 (the owner's)
+
+The run that took this found the ticket needed two demonstrations, not one, and that its
+own diagnosis of the mechanism was incomplete. It says here that `[?]` "yields no initial
+and 'no initial' reads as 'a different initial'". That is true of only four of the
+seventeen. `unmarked()` DELETES the marker, so for seven of them the initial was taken
+from the next letter of the same word — `[?]rah Fowler` read as `R.`, `[?]nn M. Gooding`
+as `N. M.` — and for six more a middle initial collapsed into first position, so
+`[?]. M. Fish` read as `M.` against `E. M. Fish`'s `E. M.` All seventeen `refused_because`
+texts in `identity.json` were written on those readings, which means a committed record
+was asserting letters no printing carried.
+
+So the parser repair is not a step toward the ruling — it is a precondition for EITHER
+answer being implementable, and a provenance defect in its own right. That is **T-0391**,
+and it shipped: the policy did not move (177 merges, 29 refusals, before and after).
+
+The question this ticket was opened for is untouched and whole in **T-0392**, now
+`blocked-owner` with both options and their costs written out.

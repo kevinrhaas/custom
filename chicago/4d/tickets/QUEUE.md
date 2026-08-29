@@ -45,7 +45,7 @@ T-0389 — The New York House belongs to no programme the 665-roof ledger can re
 T-0337 — One man is two proprietors of Russell & Clift, and the gazetteer has no rule that can join them
 T-0340 — The bookseller's sign-name and its partners' firm-name are three gazetteer entries for one house
 T-0341 — A bare surname can never be joined to its forename: the family rule reads 'no initials' as 'different initials'
-T-0348 — The identity policy cannot merge an unread initial with a read one, and the best witness reads seventeen of them
+T-0391 — The name parse deletes an unread [?] initial, so seventeen refusals are stated on a letter no printing read
 T-0359 — The gazetteer mints tavern names as people, so Maddock's Tavern and Haddock's Tavern cannot be reconciled
 T-0338 — Thirty-one groups of firms share a partner surname and only one of them has been judged
 T-0350 — D. Weaver's advertisement is dated Nov. 12 in two printings and Nov. 19 in the one the ledger believed
