@@ -42,7 +42,6 @@
 # --- forename, or a tavern minted as a person becomes a wrong building once seeded.
 # --- Cheap (mostly S/XS) and each one makes the seeding below more accurate.
 T-0340 — The bookseller's sign-name and its partners' firm-name are three gazetteer entries for one house
-T-0401 — The firm groups that are two houses, written down so no later sweep merges them
 
 # --- THE NEWSPAPER STREAM (b) THE POLICY THAT DECIDES HOW MUCH TOWN THE PAPERS REACH.
 # --- T-0354 shipped in #551 on 2026-08-29: the owner's ruling — a street-only
@@ -171,3 +170,4 @@ T-0409 — A change can land on dev with no changelog entry, and one did today
 T-0410 — The Howard fire-insurance agency passes between three houses, and the gazetteer has no relation that can hold it
 T-0411 — A newspaper and its own printing office are two businesses, and the partner-surname guard can never join them
 T-0412 — A building offered FOR SALE mints a placement reading on the vendor's own firm, so P. Pruyne & Co.'s store carries a corner it never stood on
+T-0413 — Six of T-0401's surname traps are one house on the printings, and the merge is unwritten

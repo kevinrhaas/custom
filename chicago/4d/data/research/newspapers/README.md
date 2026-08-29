@@ -418,6 +418,40 @@ proprietor) and W. Montgomery (`two_houses` — the auctioneer at David Carver's
 against L. W. Montgomery the bootmaker next door to P. Cohen's). T-0400, T-0401 and T-0402
 carry the bands the pass did not reach.
 
+**The second firm pass is T-0401**, the surname groups that are NOT one house — and it
+merges nothing at all. **16 refusals, and the businesses table does not move**, which is the
+shape of the ticket: the whole output is the written argument. Five hold the Kinzies apart
+(J. H., John S. and R. A. — the Democrat of 1833-12-10 prints two of the family on one
+page, and 'JOHN 8. KINZIE' in that same issue is a damaged glyph the file refuses to repair
+into an H, so that pair is `not_joined` rather than `two_houses`); one each for J. H.
+Mulford the jeweller against the carriage and sleigh maker who shares his surname and an
+issue, W. H. Brown the grocer against 'Brown, painter' who has no forename to compare, and
+Wm. H. Taylor the boot store against Charles Taylor the tailor; three for the Curtisses,
+where an attorney read once as J and once as L stands against L. G. Curtiss the deputy
+surveyor of Cook County, and the Democrat of 1835-08-05 prints the attorney and the
+surveyor in one issue.
+
+The last five are the ones worth the section existing. `firm_surnames()` takes the LAST
+word of a partnership segment as the surname, so a style ending in a trade word is grouped
+on the word: 'store' alone holds thirteen businesses, and the New York Clothing Store,
+Peter Cohen's store and W. Kimball's New Store are refused against each other with that
+said in each, so the failure stays legible if the function changes. 'Eagle Hotel' against
+'the new blacksmith shop opposite the Chicago Hotel' is the same failure one step worse —
+the word belongs to the ANCHOR inside the second style, so a house is grouped with the
+building it stands opposite. And the two Chicago & St. Joseph packets are a group made
+entirely of words: the split on '&' and 'and' turns the route's own name into the partners
+'Chicago' and 'packet', and the schooners Llewellyn and Phillips are two hulls on one run.
+
+**Six of T-0401's candidates turned out to be one house** and are recorded in T-0413 rather
+than refused, with the printings that show it: P. F. Peck and P. F. W. Peck on one La Salle
+corner in abutting windows, F. G. and G. Blanshard opposite Dr. Temple's, G. W. and W.
+Keeney a few doors below Newberry & Dole's, Dr. J. B. and Dr. J. H. Barnard at the New-York
+House nine days apart, M. H. and Wm. H. Kennicott on one copy date, and J. and L. Curtiss
+on one copy date at one anchor. A refusal asserted against the evidence is worth less than
+no refusal at all, so none was written for them; a merge would have moved the business
+count this ticket holds fixed, so none was written either, and the reading is in the ticket
+so it is not done a third time.
+
 **The second firm pass is T-0400**, and it is the band where the two styles carry the SAME
 partner surnames and differ only in the FORM of a forename — whole against abbreviated
 against bare initial. T-0304 had already ruled that a forename initial is not decisive for a
