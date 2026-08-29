@@ -1,7 +1,7 @@
 ---
 id: T-0321
 title: The 1 April 1834 Chicago letter list is 179 names and nineteen lines of debris stand where more did
-state: open
+state: claimed
 epic: META
 requested_by: loop
 seen: false
@@ -11,7 +11,7 @@ parent: null
 opened: 2026-08-28
 closed: null
 pr: null
-claimed_by: null
+claimed_by: run 8/29/2026, 6:39:03 PM CT
 blocked_on: null
 needs_bake: false
 ---
