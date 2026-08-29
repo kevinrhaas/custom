@@ -37,10 +37,8 @@
 # --- (c) the register itself, then the VISIBLE seeding it unblocks — documented
 # ---     storefronts standing in the model, documented people replacing invented.
 T-0326 — Reading the Democrat, January to June 1835: the eight issues, now that their columns resolve
-T-0314 — Reading the Democrat, May 1834: Vol. I Nos. 23-26
 T-0297 — Reading the Democrat, August 1835: the four issues after the scene date
 T-0299 — Three printings of one letter list mint 298 people three times, and identity.json is empty
-T-0330 — A fragment reading 'opposite the Tremont House' sits between two interleaved advertisements and neither can claim it
 T-0328 — D. Weaver's building is on Lot 2 in one printing and Lot 9 in the next, and both transcriptions are Vision-set
 T-0324 — J. K. Botsford advertises two addresses in one issue, and Graves' Tavern cannot be placed until they are reconciled
 T-0329 — School District Number One is bounded in print on 1834-12-10 and the segmenter cut better than half of every line of it away
@@ -135,4 +133,6 @@ T-0332 — The sheet's one brick is called chimney_brick, and a wall now reads i
 T-0337 — One man is two proprietors of Russell & Clift, and the gazetteer has no rule that can join them
 T-0338 — Thirty-one groups of firms share a partner surname and only one of them has been judged
 T-0340 — The bookseller's sign-name and its partners' firm-name are three gazetteer entries for one house
+T-0345 — Mason's blacksmith shop is anchored on Graves' Tavern until 16 July 1834 and on the Tremont House from 10 September, and the register holds both as standing placements
+T-0346 — Desktop smoke stage 4 no longer fits the ten-minute foreground ceiling, so no steward run can take the whole desktop gate
 T-0341 — A bare surname can never be joined to its forename: the family rule reads 'no initials' as 'different initials'

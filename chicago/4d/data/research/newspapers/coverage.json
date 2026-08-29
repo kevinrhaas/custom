@@ -46,6 +46,13 @@
     },
     {
       "publication": "chicago_democrat",
+      "from": "1834-05-01",
+      "to": "1834-05-31",
+      "ticket": "T-0314",
+      "note": "Vol. I Nos. 23-26, 1834-05-07 to 1834-05-28. Four issues, read through. Their transcriptions are deposit-held, so the quotes were machine-checked with `--check --deposit <path>` against a read-only copy of the deposit from `main`; on `dev` their claims are counted unresolved and reported, which is green (T-0275). THE MONTH CARRIES NO POST-OFFICE LETTER LIST, which is what T-0314's own measurement table predicted (letter lists: 0) and this pass confirms by reading rather than by trusting it: all four issues were swept for every form the Democrat uses — 'list of letters', 'letters remaining', 'remaining in the post office', 'uncalled for', a signature ending 'P. M.' — for exactly two hits, and neither is a list. They are a reprinted debate mentioning the Post Master General (1834-05-07 page 4 column 8) and a Washington report naming the Postmaster-General (1834-05-14 page 2 column 6). The broader sweep for the bare words 'letter', 'list' and 'post office' returns forty-odd hits across the month and every one is a private letter quoted in news matter, a MARINE LIST, a probate 'letters of administration', or the standing 'letter press' line of a printing advertisement. So the hand count the ticket asks for is a count of ZERO printed lists against zero extracted, and the epic's letter-list ruling has nothing to bite on in May 1834. AGREES WITH ITS NEIGHBOURS in the way the corpus now expects: the Chicago office's 1 January return was printed twice in January (T-0310) and the next Chicago list this corpus holds is the 1 October one (T-0292), with September (T-0291) and August (T-0290) carrying none either."
+    },
+    {
+      "publication": "chicago_democrat",
       "from": "1834-06-01",
       "to": "1834-06-30",
       "ticket": "T-0315",
