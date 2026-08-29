@@ -1,5 +1,61 @@
 # STATUS
 
+## Shipped 2026-08-29 — T-0380: the New York House stands on Lake Street near Wells
+
+**A building this project had wrongly ruled out now stands in the town.** The New York House sat
+on the EXCLUDE list of the first structures dossier on the grounds that "build date not attested in
+Andreas". Andreas I p. 635 attests it plainly — *"built in 1834 and opened to the public the
+following year by Lathrop Johnson and George Stevens, who conducted it until the fall of 1839"* —
+and that was found on 2026-08-11, when `data/exclusions.json`'s entry was rewritten to say the
+exclusion was FALSIFIED and would stay "only until a structure record replaces it". It waited
+eighteen days. `data/structures/new_york_house.json` is that record, and the entry has moved from
+`excluded` to the watch list, which is the category it has actually belonged to since.
+
+**The opening month is answered from the other side.** Andreas gives no month, so on Andreas alone
+whether the house was open on the scene date was an argument. The Chicago American of 13 June 1835
+carries two men advertising offices AT the house — Dr J. B. Barnard, physician, "at the New York
+House, Lake street" (p. 3 col. 3), and J. C. Bradley, a travelling dentist, "his office at the New
+York House, where he will remain until after the Land Sale" (p. 3 col. 2, repeated 1835-06-20).
+Both are carried on the record's `occupants` with their claims, and both readings are
+transcription-mediated under the owner's ruling of 2026-08-28.
+
+**What this unblocks.** "The New York House" is an anchor in the American's advertising, and
+`tools/compile_register.py` refused two placeable businesses with the same sentence — *"The anchor
+'the New York House' names nothing the committed town holds."* Rebuilt against the committed town
+it resolves both: Bradley matches the house's occupants, and Barnard's placement now names
+`new_york_house` as its landmark. That is why T-0306 was split; the remaining pieces are T-0381
+and T-0382.
+
+**What is unverified, stated plainly.**
+
+- **The side of Wells is not evidence.** Andreas says "near Wells" and Wells has two sides. The
+  house stands on the free Wells-end lot of `blk_south_water_franklin`, west of Wells, because
+  that lot is empty while the eastern block's Lake face already carries three dealt roofs — a
+  reason about this dataset, recorded at **L208** and carried as the watch-list entry's own
+  question. The corner is refused in writing: the source says *near*, not *at the corner of*.
+- **The form beyond two storeys and eaves-to-the-street is the type talking**, claimed at **L207**:
+  the 40 × 25 ft plan is the dataset's stock period rectangle, and the paint, pitch, bays, gallery
+  and two stacks are the archetype's.
+- **The desktop viewport of the renderer smoke was NOT run.** `docs/PIPELINE.md`'s dev gate is
+  `tools/check.sh` and this suite is dispatch-plus-one-path; desktop part 4 alone exceeded the
+  ten-minute ceiling on a single foreground command on a loaded runner, and the run had no room
+  for the ~25-minute crawl. **Mobile was run in full, all nine parts, against the published
+  mirror, and is green** — mobile is the release gate. Desktop part 4 also carries a standing red
+  on `dev` from before this branch (`tools/dev-smoke-state.json`, 2026-08-28: the light tier's
+  80-call floor at Lake and Market).
+- **`tools/check.sh` is green except for the seven failures `origin/dev` already carries** — the
+  cross-street faces, `blk_washington_clark` standing off the modelled ground, the southern
+  coverage reading and three far-timber census lines. Measured on an unmodified `origin/dev`
+  worktree in this run: the same seven, and no others on either side.
+
+**Three census lines in the suite moved with the data and were updated in the same commit**, which
+is what each of their own comments asks of a run that moves them: the frontage layer's post count
+(15 → 16), the hitching posts (14 → 15, twelve at the street edge → thirteen — a documented public
+house qualifies for a post under T-0194's rule), and the Evidence panel's open questions (3 → 4,
+with the card's in-scene set going from one beside the Western Hotel to two).
+
+---
+
 ## Shipped 2026-08-29 — T-0244: the gate could not see twelve of the fourteen hitching posts
 
 **The geometry was right the whole time and the instrument was blind.** The frontage layer's post
