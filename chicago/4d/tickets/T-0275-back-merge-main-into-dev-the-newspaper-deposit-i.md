@@ -1,7 +1,7 @@
 ---
 id: T-0275
 title: Back-merge main into dev: the newspaper deposit is on main, and 60 Finder-duplicate files on main turn the dev gate red
-state: open
+state: withdrawn
 epic: PAPERS
 requested_by: loop
 seen: false
@@ -9,10 +9,10 @@ effort: S
 legacy_id: null
 parent: null
 opened: 2026-08-28
-closed: null
+closed: 2026-08-28
 pr: null
 claimed_by: null
-blocked_on: null
+blocked_on: Done by the 2026-08-28 promotion: duplicates removed from main (#487/#488), back-merge landed on dev (8240a752), corpus gate reads 'deposit present' green, #489's quote check runs against the deposit on dev. Evidence in the ticket body.
 needs_bake: false
 ---
 
@@ -62,3 +62,27 @@ byte-duplicates of files that already exist without the ` 2` suffix.
   `python3 tools/newspaper_corpus.py --check` reports the deposit **present** with
   every one of the 66 reference text paths resolved file by file — which is the
   strict half of that gate, and it has never yet run.
+
+---
+
+## VERIFIED DONE BY THE 2026-08-28 PROMOTION, AND WITHDRAWN WITH THE EVIDENCE
+
+The work this ticket asked for happened as a side effect of the promotion to
+`release-v352`, and each half is verified rather than assumed:
+
+1. **The blocking duplicates are gone from main** — not ~60 but **265**: #487
+   removed the 263 with file extensions (nothing referenced them; 175 of 177
+   `.json` carried the retired `recommended_1835`/`conjectural` vocabulary and
+   zero the current one; all 84 `.glb` were named `__recommended_1835`), and
+   #488 the two extensionless stragglers found by trial-merging with
+   `git merge-tree` before the switch was thrown.
+2. **The back-merge landed on dev** (`8240a752`, the promotion's own first
+   step) after the full gate was run on a trial commit of that exact merge:
+   CHECK PASS, and the corpus gate flipped from "deposit absent" to
+   **"deposit present"** with every reference path resolved file by file.
+3. **The payoff is in use**: #489's gazetteer check ran against the deposit ON
+   dev — 960 quotes reassembled from the transcriptions and identical, 70
+   issues inside 16 coverage ranges — which is exactly what this ticket said
+   dev could not do.
+
+Withdrawn per the verify-then-withdraw rule, not silently dropped.
