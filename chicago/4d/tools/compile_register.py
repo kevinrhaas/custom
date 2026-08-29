@@ -533,6 +533,66 @@ def resolve_anchor(town, business, by_firm):
 # the register
 
 
+def anchor_change(town, business, by_firm):
+    """The dated anchor change a house's own printings carry, resolved (T-0345).
+
+    `anchor` above resolves the ONE placement the gazetteer holds live at the scene
+    date. This is the rest of the history, and it exists because holding a superseded
+    anchor as a second standing placement is how a placement sweep puts one shop in two
+    places: Matthias Mason & Co.'s notice reads "nearly opposite Graves' Tavern" to
+    1834-06-11 and "opposite the Tremont House" from 1834-09-10, and the register
+    carried both as if they were live at once.
+
+    Every superseded anchor is resolved against the committed town the same way the
+    live one is, so a later pass can see what each reading WOULD have placed — which is
+    the whole difference between a shop that moved and a landmark that was renamed, and
+    this file decides neither.
+    """
+    change = business.get("anchor_change")
+    if not change:
+        return None
+    return {
+        "live_anchor": change["live_anchor"],
+        "live_reason": change["live_reason"],
+        "changes": change["changes"],
+        "rule": change["rule"],
+        "cannot_say": change["cannot_say"],
+        "history": [dated_anchor(town, business, by_firm, w)
+                    for w in change["history"]],
+    }
+
+
+# structure / corner / business put a building on the ground, `street` names a reach and
+# nothing narrower, `unresolved` is a statement that the town holds no such thing. An
+# anchor printed four ways is resolved on its BEST reading, because the four are declared
+# to be one landmark and "Graves' Tavern" resolving where "Graves' Tavern, on Main-street"
+# does not is a fact about how much of the sentence one reading pass swept into the field.
+ANCHOR_KIND_RANK = {"unresolved": 0, "street": 1, "business": 2, "corner": 3,
+                    "structure": 3}
+
+
+def dated_anchor(town, business, by_firm, window):
+    """One anchor of a dated history, with every reading of it resolved."""
+    readings = [dict(r, resolved=resolve_anchor(
+        town, {"id": business["id"], "placement": r["placement"]}, by_firm))
+        for r in window["readings"]]
+    best = max(readings,
+               key=lambda r: (ANCHOR_KIND_RANK.get(r["resolved"]["kind"], 0),
+                              -readings.index(r)))
+    return {
+        "anchor": window["anchor"],
+        "first_issue": window["first_issue"],
+        "last_issue": window["last_issue"],
+        "claims": window["claims"],
+        "live_at_scene_date": window["live_at_scene_date"],
+        "resolved": best["resolved"],
+        "resolved_on_reading": best["anchor"],
+        "readings": [{"anchor": r["anchor"], "first_issue": r["first_issue"],
+                      "last_issue": r["last_issue"], "claims": r["claims"],
+                      "resolved": r["resolved"]} for r in readings],
+    }
+
+
 def compile_register(gazetteer, town, quiet=True):
     """Derive the register. Returns (doc, problems). Nothing here reads the clock."""
     problems = []
@@ -574,6 +634,7 @@ def compile_register(gazetteer, town, quiet=True):
             "dissolved_after_scene_date": [c["claim"] for c in after] if after else [],
             "survival_liberty_required": bool(b.get("survival_liberty_required")) and exclusion is None,
             "anchor": resolve_anchor(town, b, by_firm),
+            "anchor_change": anchor_change(town, b, by_firm),
             "action": None,
             "action_target": None,
             "match_tier": None,
@@ -635,6 +696,37 @@ def compile_register(gazetteer, town, quiet=True):
             problems.append("%s: an exclusion must name its contradiction" % b["id"])
         if entry["placement_class"] is None:
             problems.append("%s: no placement class" % b["id"])
+        # The three ways a dated anchor history could quietly go back to being two
+        # standing placements, which is the defect T-0345 is about.
+        ac = entry["anchor_change"]
+        if ac:
+            live = [w for w in ac["history"] if w["live_at_scene_date"]]
+            if len(live) != 1:
+                problems.append("%s: %d of this house's anchors are live at the scene "
+                                "date — exactly one printed anchor stands on %s, which "
+                                "is the whole point of dating the change"
+                                % (b["id"], len(live), scene))
+            elif live[0]["anchor"] != ac["live_anchor"]:
+                problems.append("%s: the live anchor is named %r and the dated history "
+                                "makes it %r" % (b["id"], ac["live_anchor"],
+                                                 live[0]["anchor"]))
+            elif entry["anchor"] not in [r["resolved"] for r in live[0]["readings"]]:
+                problems.append("%s: the row resolves its anchor to something no reading "
+                                "of the LIVE printing resolves to (%s) — the register "
+                                "would be placing this house against a superseded "
+                                "printing" % (b["id"], entry["anchor"]["note"]))
+            for w in ac["history"]:
+                placed = {(r["resolved"]["kind"], r["resolved"]["target"],
+                           r["resolved"]["via"], tuple(r["resolved"]["streets"] or []))
+                          for r in w["readings"]
+                          if r["resolved"]["kind"] != "unresolved"}
+                if len(placed) > 1:
+                    problems.append(
+                        "%s: the readings grouped under the anchor %r resolve to %d "
+                        "different things in the committed town (%s) — they were "
+                        "declared one landmark, and one landmark is one place"
+                        % (b["id"], w["anchor"], len(placed),
+                           ", ".join(sorted(str(x) for x in placed))))
         businesses.append(entry)
 
     # ---- persons -----------------------------------------------------------
@@ -902,7 +994,17 @@ def self_test():
              "contradicted_by": kw.get("contradicted", []),
              "mentions": [], "built_at_scene_date": True,
              "survival_liberty_required": kw.get("survival", False)}
+        if kw.get("anchor_change"):
+            b["anchor_change"] = kw["anchor_change"]
         return b
+
+    def refuses(label, gaz, want):
+        """A case that must be REFUSED, and on the sentence it is refused with."""
+        CASES[0] += 1
+        _, problems = compile_register(gaz, town)
+        if not any(want in p for p in problems):
+            failures.append("%s: expected a refusal mentioning %r, got %r"
+                            % (label, want, problems))
 
     def person(pid, name, **kw):
         return {"id": pid, "name": name, "variants": [], "mentions": [],
@@ -998,6 +1100,85 @@ def self_test():
                             and d["businesses"][0]["action"] == "street_only")
          else "anchor=%r action=%r" % (d["businesses"][0]["anchor"]["kind"],
                                        d["businesses"][0]["action"]))
+
+    # 4c. THE DATED ANCHOR CHANGE (T-0345). A house whose printed anchor changed on a
+    # date carries ONE live placement and the superseded ones as dated history; the
+    # guards below are the three ways that could go back to being two standing
+    # placements, which is the defect the ticket is about.
+    def reading(a, first, last):
+        return {"anchor": a, "class": "relative", "first_issue": first,
+                "last_issue": last, "claims": ["c#%s" % a],
+                "placement": {"class": "relative", "anchor": a}}
+
+    def window(name, live, readings, first="1834-01-01", last="1834-06-01"):
+        return {"anchor": name, "why": None, "first_issue": first, "last_issue": last,
+                "readings": [reading(a, first, last) for a in readings],
+                "claims": ["c#%s" % a for a in readings], "live_at_scene_date": live,
+                "placement": {"class": "relative", "anchor": readings[0]}}
+
+    def history(*windows, **kw):
+        return {"rule": "the anchor changed", "cannot_say": "which side of it moved",
+                "live_anchor": kw.get("live_anchor", "the hotel"),
+                "live_reason": "the later of the two, printed before the scene date",
+                "changes": [], "history": list(windows)}
+
+    case("a superseded anchor is resolved and kept, and does not place the house",
+         gaz([biz("b1", street="Lake Street",
+                  placement={"class": "relative", "anchor": "the hotel"},
+                  anchor_change=history(
+                      window("Wolf Point Tavern", False, ["Wolf Point Tavern"]),
+                      window("the hotel", True, ["the hotel"],
+                             "1834-09-10", "1834-12-10")))]),
+         lambda d: True if (
+             d["businesses"][0]["anchor_change"]["history"][0]["resolved"]["target"]
+             == "wolf_point_tavern"
+             and d["businesses"][0]["anchor"]["kind"] == "unresolved"
+             and d["businesses"][0]["action"] == "street_only")
+         else "superseded=%r live=%r action=%r"
+              % (d["businesses"][0]["anchor_change"]["history"][0]["resolved"],
+                 d["businesses"][0]["anchor"], d["businesses"][0]["action"]))
+    case("an anchor printed four ways resolves on the reading that resolves best",
+         gaz([biz("b1", street="Lake Street",
+                  placement={"class": "relative", "anchor": "the hotel"},
+                  anchor_change=history(
+                      window("Wolf Point Tavern", False,
+                             ["Wolf Point Tavern, on Main-street", "Wolf Point Tavern"]),
+                      window("the hotel", True, ["the hotel"],
+                             "1834-09-10", "1834-12-10")))]),
+         lambda d: True if (
+             d["businesses"][0]["anchor_change"]["history"][0]["resolved_on_reading"]
+             == "Wolf Point Tavern")
+         else "resolved on %r"
+              % d["businesses"][0]["anchor_change"]["history"][0]["resolved_on_reading"])
+    refuses("two anchors live at the scene date is two standing placements",
+            gaz([biz("b1", street="Lake Street",
+                     placement={"class": "relative", "anchor": "the hotel"},
+                     anchor_change=history(
+                         window("Wolf Point Tavern", True, ["Wolf Point Tavern"]),
+                         window("the hotel", True, ["the hotel"])))]),
+            "are live at the scene date")
+    refuses("the named live anchor must be the one the dates make live",
+            gaz([biz("b1", street="Lake Street",
+                     placement={"class": "relative", "anchor": "the hotel"},
+                     anchor_change=history(
+                         window("Wolf Point Tavern", True, ["Wolf Point Tavern"]),
+                         window("the hotel", False, ["the hotel"])))]),
+            "the dated history makes it")
+    refuses("the row may not place the house on a superseded printing",
+            gaz([biz("b1", street="Lake Street",
+                     placement={"class": "relative", "anchor": "Wolf Point Tavern"},
+                     anchor_change=history(
+                         window("Dole's Warehouse", False, ["Dole's Warehouse"]),
+                         window("the hotel", True, ["the hotel"])))]),
+            "no reading of the LIVE printing resolves to")
+    refuses("readings called one landmark may not resolve to two",
+            gaz([biz("b1", street="Lake Street",
+                     placement={"class": "relative", "anchor": "the hotel"},
+                     anchor_change=history(
+                         window("the tavern", False,
+                                ["Wolf Point Tavern", "Dole's Warehouse"]),
+                         window("the hotel", True, ["the hotel"])))]),
+            "one landmark is one place")
 
     # 5. The identity policy is the gazetteer's, imported and not re-invented.
     case("a resident already held takes enrich",
