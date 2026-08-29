@@ -38,6 +38,17 @@ THE OWNER'S THREE RULINGS, 2026-08-28, and where each one lives in the data:
      the last ISSUE that carried the business is earlier than 1835 — existence documented,
      survival to the scene date assumed, and docs/LIBERTIES.md carries the liberty.
 
+AND A NAME IS NOT ALWAYS A PERSON (T-0359). The entities a claim carries are keyed on a
+name and nothing else, so a signboard the papers name — "Haddock's Tavern", "the Eagle
+Hotel" — arrives in the persons table and is then held to a policy written for people:
+"Tavern" reads as the surname, "Haddock's" against "Maddock's" as forename initials, and
+the families rule refuses a reconciliation the evidence closes. The rule is right and the
+subject is wrong. `identity.json`'s `places` is where a name is declared NOT a person,
+with the argument written out; `place_merges` then joins two spellings of one building
+under a discriminator of its own. Neither touches the families rule, and a declaration
+cannot reach a name whose every mention is a post-office letter list — which is what
+keeps the letter lists' own Chester House and Rodney House the people they are.
+
 IDENTITY IS DECLARED, NEVER INFERRED, AND FIRMS DECLARE IT DIFFERENTLY FROM PEOPLE
 (T-0304). Both are keyed on the whole normalized name, so nothing coalesces by accident,
 and `identity.json` is the only place a merge may be stated: `merges` for people,
@@ -548,6 +559,142 @@ def compile_gazetteer(files, identity, corpus, quiet=True):
                     b["contradicted_by"].append(
                         {"claim": key, "kind": claim.get("kind"), "issue": issue_date})
 
+    # THE PLACES, and they are DECLARED, exactly the way a merge is (T-0359). The table
+    # above is keyed on a name and knows nothing about what kind of thing a name is, so a
+    # signboard the papers name — "Haddock's Tavern", "the Eagle Hotel" — is minted as a
+    # person and then held to the identity policy for PEOPLE. That policy reads "Tavern"
+    # as the surname and "Haddock's" against "Maddock's" as forename initials, and
+    # refuses the merge under the families rule. The rule is not wrong; it is being
+    # applied to something that is not a person. So a name leaves the persons table only
+    # where `identity.json` declares it a place and says why, and the families rule for
+    # actual people is untouched by every line below.
+    #
+    # Four guards, and each one is a way this declaration could quietly delete a person:
+    #   1. a place needs a written reason that names it VERBATIM, so the judgement can be
+    #      read back without the code — the merges' rule, for the same reason;
+    #   2. the name has to be one some claim actually carries, or nobody can check it;
+    #   3. a name known ONLY from the post office's lists of uncalled-for letters is
+    #      somebody a correspondent wrote to. "Chester House" and "Rodney House" are
+    #      exactly that shape — a surname House with a forename before it — and this
+    #      guard is what stops a word-shaped rule turning two of the town's people into
+    #      buildings. A genuine place will have a mention outside the lists;
+    #   4. a name carrying an OCCUPATION is being read as a person by the very claim that
+    #      mints it, and the two readings cannot both stand.
+    places = {}
+    for rule in identity.get("places", []):
+        name = rule.get("name")
+        why = (rule.get("why") or "").strip()
+        label = "identity.json place %r" % name
+        if not name:
+            problems.append("identity.json place: a declaration needs a `name`")
+            continue
+        if not why:
+            problems.append("%s: no `why` — an undeclared reason is a compile error, "
+                            "because a name moved out of the persons table on nobody's "
+                            "argument is a person silently deleted" % label)
+            continue
+        if name not in why:
+            problems.append("%s: `why` must name the place VERBATIM, so the judgement "
+                            "can be read back without the code" % label)
+            continue
+        pk = person_key(name)
+        if pk not in persons:
+            problems.append("%s: not a name any claim carries — a place declaration for "
+                            "a name that is not in the corpus is a rule nobody can check"
+                            % label)
+            continue
+        rec = persons[pk]
+        if rec.get("letter_list_only"):
+            problems.append("%s: every mention of this name is a post-office letter "
+                            "list, and a letter list is a list of PEOPLE somebody wrote "
+                            "to — declaring it a place deletes a resident. Bring a "
+                            "mention from outside the lists first" % label)
+            continue
+        if rec.get("occupations"):
+            problems.append("%s: this name carries an occupation (%s), so a claim is "
+                            "reading it as a person — the two readings cannot both stand"
+                            % (label, ", ".join(rec["occupations"])))
+            continue
+        rec = persons.pop(pk)
+        rec["id"] = "place_" + pk
+        rec["kind"] = rule.get("kind")
+        rec["why"] = why
+        rec.pop("letter_list_only", None)
+        rec.pop("occupations", None)
+        places[pk] = rec
+
+    # AND THE REFUSALS, which are the same record kept the other way up. A name that
+    # LOOKS like a building and is a person is the dangerous case here — the refusal is
+    # what stops the next reader declaring it — so it is written down beside the
+    # declarations and held to the same three shapes: the reason names the name verbatim,
+    # the name is one some claim carries, and the file cannot both refuse and declare it.
+    for rule in identity.get("refused_places", []):
+        name = rule.get("name")
+        why = (rule.get("refused_because") or "").strip()
+        label = "identity.json refused_place %r" % name
+        if not name:
+            problems.append("identity.json refused_place: a refusal needs a `name`")
+            continue
+        if not why:
+            problems.append("%s: no `refused_because` — a refusal nobody argued is a "
+                            "refusal the next reader will overturn by accident" % label)
+            continue
+        if name not in why:
+            problems.append("%s: `refused_because` must name the name VERBATIM, so the "
+                            "judgement can be read back without the code" % label)
+            continue
+        pk = person_key(name)
+        if pk in places:
+            problems.append("%s: this name is DECLARED a place and refused as one in the "
+                            "same file" % label)
+            continue
+        if pk not in persons:
+            problems.append("%s: not a name any claim carries as a person — a refusal "
+                            "about a name that is not in the persons table is a rule "
+                            "nobody can check" % label)
+            continue
+
+    # THE PLACE MERGES. Two spellings of one signboard, and the discriminator is neither
+    # the person one nor the firm one: a building has no forename initial to be a family
+    # by and no partners to be a house by. What holds instead is that BOTH sides must
+    # already be declared places above — so the loosening reaches exactly the names an
+    # author has argued in writing are not people, and can never reach a person.
+    for rule in identity.get("place_merges", []):
+        into, frm = rule.get("into"), rule.get("from")
+        why = (rule.get("merge_rule") or "").strip()
+        label = "identity.json place_merge %r <- %r" % (into, frm)
+        if not into or not frm:
+            problems.append("%s: a merge needs both `into` and `from`" % label)
+            continue
+        if not why:
+            problems.append("%s: no merge_rule — an unexplained merge is a compile error, "
+                            "because a wrong one is invisible afterwards" % label)
+            continue
+        if into not in why or frm not in why:
+            problems.append("%s: merge_rule must name BOTH spellings verbatim, so the "
+                            "judgement can be read back without the code" % label)
+            continue
+        a, b = person_key(into), person_key(frm)
+        if a == b:
+            problems.append("%s: a place cannot be merged into itself" % label)
+            continue
+        if a not in places or b not in places:
+            missing = [n for n, k in ((into, a), (frm, b)) if k not in places]
+            problems.append("%s: %s is not a DECLARED place — a place merge is not held "
+                            "to the families rule, so it may only join two names "
+                            "`places` has already argued are not people"
+                            % (label, ", ".join(repr(m) for m in missing)))
+            continue
+        src = places.pop(b)
+        dst = places[a]
+        dst["variants"].extend(src["variants"])
+        dst["mentions"].extend(src["mentions"])
+        dst["first_seen"] = min(dst["first_seen"], src["first_seen"])
+        dst["last_seen"] = max(dst["last_seen"], src["last_seen"])
+        dst["associated_places"] = sorted(
+            set(dst["associated_places"]) | set(src["associated_places"]))
+        dst.setdefault("merged", []).append({"from": frm, "merge_rule": why})
+
     # THE MERGES, and every one of them has to say why. `identity.json` is the only
     # place two differently-spelled names may become one person, and the rules below
     # are the whole of the identity policy the ticket names.
@@ -768,6 +915,10 @@ def compile_gazetteer(files, identity, corpus, quiet=True):
         p["variants"].sort(key=lambda v: (v["claim"], v["as_printed"] or ""))
         p["occupations"].sort()
         p["associated_places"].sort()
+    for pl in places.values():
+        pl["mentions"].sort()
+        pl["variants"].sort(key=lambda v: (v["claim"], v["as_printed"] or ""))
+        pl["associated_places"].sort()
 
     doc = {
         "schema": SCHEMA_VERSION,
@@ -778,13 +929,14 @@ def compile_gazetteer(files, identity, corpus, quiet=True):
             for p in sorted(files, key=lambda p: Path(p).name)
         ],
         "counts": {"claims": claim_count, "persons": len(persons),
-                   "businesses": len(businesses)},
+                   "places": len(places), "businesses": len(businesses)},
         "persons": sorted(persons.values(), key=lambda p: p["id"]),
+        "places": sorted(places.values(), key=lambda p: p["id"]),
         "businesses": sorted(businesses.values(), key=lambda b: b["id"]),
     }
     if not quiet:
-        print("  ok    %d claim(s) → %d person(s), %d business(es)"
-              % (claim_count, len(persons), len(businesses)))
+        print("  ok    %d claim(s) → %d person(s), %d place(s), %d business(es)"
+              % (claim_count, len(persons), len(places), len(businesses)))
     return doc, problems
 
 
@@ -1194,7 +1346,7 @@ def check(extracted=EXTRACTED, gazetteer=GAZETTEER, identity=IDENTITY, corpus=CO
                    "it is GENERATED and was hand-edited or left stale. Fix the claims and "
                    "run `tools/compile_gazetteer.py --build`.")
 
-    for entry in doc["persons"] + doc["businesses"]:
+    for entry in doc["persons"] + doc.get("places", []) + doc["businesses"]:
         if not entry.get("mentions"):
             bad.append("%s has no mention — every entry is compiled FROM a claim, so an "
                        "entry with none cannot have come from one" % entry["id"])
@@ -1205,16 +1357,22 @@ def check(extracted=EXTRACTED, gazetteer=GAZETTEER, identity=IDENTITY, corpus=CO
               % (len(files), len(seen_claims), state))
         print("  ok    %d quote(s) reassembled from the transcription and identical"
               % checked_quotes)
-        print("  ok    %d person(s), %d business(es), compile deterministic and committed"
-              % (len(doc["persons"]), len(doc["businesses"])))
-        print("  ok    %d declared identity merge(s): %d person, %d firm, %d proprietor "
-              "— each one carrying its reason"
+        print("  ok    %d person(s), %d place(s), %d business(es), compile deterministic "
+              "and committed"
+              % (len(doc["persons"]), len(doc.get("places", [])), len(doc["businesses"])))
+        print("  ok    %d declared identity merge(s): %d person, %d firm, %d place, "
+              "%d proprietor — each one carrying its reason"
               % (len(identity_doc.get("merges", []))
                  + len(identity_doc.get("firm_merges", []))
+                 + len(identity_doc.get("place_merges", []))
                  + len(identity_doc.get("proprietor_merges", [])),
                  len(identity_doc.get("merges", [])),
                  len(identity_doc.get("firm_merges", [])),
+                 len(identity_doc.get("place_merges", [])),
                  len(identity_doc.get("proprietor_merges", []))))
+        print("  ok    %d name(s) declared a place rather than a person, each with its "
+              "reason and none of them letter-list-only"
+              % len(identity_doc.get("places", [])))
         print("  ok    %d house(s) hold two proprietors of one surname apart, each with "
               "the sentence that tells them apart"
               % len(identity_doc.get("proprietor_distinctions", [])))
@@ -1515,6 +1673,117 @@ def self_test():
         failures.append("a firm merge did not carry the goods across: %r" % got["goods"])
     elif not got.get("merged"):
         failures.append("a firm merge left no record of itself on the firm")
+
+    # A NAME IS NOT ALWAYS A PERSON (T-0359), and the cases below are the ones the
+    # Haddock's/Maddock's pair actually produced. Every guard here exists to stop the
+    # place table becoming a hole in the families rule, so each is asserted from the
+    # direction that would open one.
+    def entity(d, name, claim_id="zp1", letter_list=False, occupations=None):
+        c = copy.deepcopy(d["claims"][0])
+        c["id"] = claim_id
+        c["entities"] = [{"as_printed": name, "normalized": name,
+                          "occupations": list(occupations or [])}]
+        if letter_list:
+            c["letter_list_only"] = True
+        d["claims"].append(c)
+
+    def place_rule(i, name, why=None, kind="tavern"):
+        i.setdefault("places", []).append({
+            "name": name, "kind": kind,
+            "why": why if why is not None
+            else "%s is a signboard the papers measure a lot from, not a man" % name})
+
+    def place_merge(i, into, frm, why=None):
+        i.setdefault("place_merges", []).append({
+            "into": into, "from": frm,
+            "merge_rule": why if why is not None
+            else "%s and %s are one building, printed twice" % (into, frm)})
+
+    run(lambda d, i: (entity(d, "Haddock's Tavern"),
+                      entity(d, "Maddock's Tavern", claim_id="zp2"),
+                      place_rule(i, "Haddock's Tavern"), place_rule(i, "Maddock's Tavern"),
+                      place_merge(i, "Haddock's Tavern", "Maddock's Tavern")),
+        None, "two spellings of one signboard, declared places and merged")
+    run(lambda d, i: (entity(d, "Haddock's Tavern"),
+                      i.setdefault("places", []).append({"name": "Haddock's Tavern"})),
+        "no `why`", "a place declared with no reason")
+    run(lambda d, i: (entity(d, "Haddock's Tavern"),
+                      place_rule(i, "Haddock's Tavern", "it sounds like a building")),
+        "name the place VERBATIM", "a place reason that does not name what it declares")
+    run(lambda d, i: place_rule(i, "Nowhere Tavern"),
+        "not a name any claim carries", "a place nobody claimed")
+    run(lambda d, i: (entity(d, "Chester House", letter_list=True),
+                      place_rule(i, "Chester House", kind="hotel")),
+        "post-office letter list", "a letter-list name declared a building")
+    run(lambda d, i: (entity(d, "Haddock's Tavern", occupations=["innkeeper"]),
+                      place_rule(i, "Haddock's Tavern")),
+        "carries an occupation", "a name a claim reads as a person, declared a place")
+
+    # The families rule is not loosened, and these two say so from both sides: a place
+    # merge cannot reach a name that was not declared, and once a name IS declared the
+    # PERSON merge path cannot see it at all.
+    run(lambda d, i: (entity(d, "Haddock's Tavern"),
+                      entity(d, "Maddock's Tavern", claim_id="zp2"),
+                      place_rule(i, "Haddock's Tavern"),
+                      place_merge(i, "Haddock's Tavern", "Maddock's Tavern")),
+        "not a DECLARED place", "a place merge reaching a name nobody declared a place")
+    run(lambda d, i: (entity(d, "Haddock's Tavern"), place_rule(i, "Haddock's Tavern"),
+                      i["merges"].append(
+                          {"into": "W. L. Newberry", "from": "Haddock's Tavern",
+                           "merge_rule": "W. L. Newberry and Haddock's Tavern, as people"})),
+        "not a name any claim carries", "a declared place merged as if it were a person")
+    run(lambda d, i: (entity(d, "Haddock's Tavern"), place_rule(i, "Haddock's Tavern"),
+                      place_merge(i, "Haddock's Tavern", "Haddock's Tavern")),
+        "cannot be merged into itself", "a place merged into itself")
+    run(lambda d, i: (entity(d, "Haddock's Tavern"),
+                      entity(d, "Maddock's Tavern", claim_id="zp2"),
+                      place_rule(i, "Haddock's Tavern"), place_rule(i, "Maddock's Tavern"),
+                      i.setdefault("place_merges", []).append(
+                          {"into": "Haddock's Tavern", "from": "Maddock's Tavern"})),
+        "no merge_rule", "a place merge with no stated reason")
+    run(lambda d, i: i.setdefault("refused_places", []).append(
+            {"name": "Chester House",
+             "refused_because": "Chester House is a person: the surname is House"}),
+        "not a name any claim carries as a person", "a refusal about a name nobody claimed")
+    run(lambda d, i: (entity(d, "Haddock's Tavern"), place_rule(i, "Haddock's Tavern"),
+                      i.setdefault("refused_places", []).append(
+                          {"name": "Haddock's Tavern",
+                           "refused_because": "Haddock's Tavern is a person after all"})),
+        "DECLARED a place and refused", "a name both declared and refused in one file")
+
+    # And the declaration has to DO something: green is also what a place table that
+    # quietly changed nothing would look like, so the move and the union are asserted on
+    # the compiled record itself.
+    placed = copy.deepcopy(base)
+    entity(placed, "Haddock's Tavern")
+    entity(placed, "Maddock's Tavern", claim_id="zp2")
+    placed_ident = {"merges": []}
+    place_rule(placed_ident, "Haddock's Tavern")
+    place_rule(placed_ident, "Maddock's Tavern")
+    place_merge(placed_ident, "Haddock's Tavern", "Maddock's Tavern")
+    with tempfile.TemporaryDirectory() as td:
+        ex = Path(td) / "extracted"
+        ex.mkdir()
+        (ex / ("%s.json" % placed["issue_id"])).write_text(
+            json.dumps(placed, ensure_ascii=False), encoding="utf-8")
+        doc, probs = compile_gazetteer(sorted(ex.glob("*.json")), placed_ident, corpus_doc)
+    person_names = [p["name"] for p in doc["persons"]]
+    got = next((p for p in doc.get("places", []) if p["name"] == "Haddock's Tavern"), None)
+    if probs:
+        failures.append("the place case did not compile clean: %r" % probs)
+    elif "Haddock's Tavern" in person_names or "Maddock's Tavern" in person_names:
+        failures.append("a declared place is still standing in the persons table")
+    elif got is None:
+        failures.append("a declared place reached neither table")
+    elif len(got["mentions"]) != 2:
+        failures.append("a place merge did not carry the mentions across: %r" % got["mentions"])
+    elif "letter_list_only" in got or "occupations" in got:
+        failures.append("a place kept a field that only means something about a person: %r"
+                        % sorted(got))
+    elif not got.get("merged"):
+        failures.append("a place merge left no record of itself on the place")
+    elif doc["counts"].get("places") != 1:
+        failures.append("the places count does not match the table: %r" % doc["counts"])
 
     # THE ASSERTIONS THAT NEED A TRANSCRIPTION TO READ, and they must fire on `dev`,
     # where the deposit is absent. So they are run against an issue whose text is
