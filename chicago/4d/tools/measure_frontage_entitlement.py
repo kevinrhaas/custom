@@ -42,6 +42,75 @@ Nothing here authors a coordinate or a count. `ROW_UNITS_PER_LOT` is imported fr
 `tools/reconcile_665.py`, where the schedule deals against it; occupancy is
 `tools/plat_occupancy.py`, the same module the gate and the schedule already share; and
 the run's own units are read out of the committed records' `reconstruction.frontage`.
+
+T-0233 ASKED WHETHER THE GAP IS A DEFECT OR A RESERVATION. IT IS A RESERVATION
+--------------------------------------------------------------------------------
+The reading above left one question open, and it had to be answered before anything
+moved: a run dealt three lots and standing on one — **is the unbuilt remainder the
+schedule HOARDING ground, or is it frontage the run is entitled to and has not filled
+yet?** Both readings are defensible from the table alone. They are not defensible from
+the code, and this is the argument from the code.
+
+**It is a reservation, and the defect reading's promised payoff does not exist.** The
+case for "defect" rested on one claim — that the schedule is charged for every lot it
+deals, so shrinking the deals would recover headroom. Measured, the schedule is charged
+for none of them:
+
+    tools/reconcile_665.py:915    free = lots - len(available.get(block["id"], ()))
+    tools/reconcile_665.py:813    available = exclusive_lots(grid, datum)
+
+`free_lots` — the only thing `block_rooms()` turns into `principal_room`, and so the
+only route from a lot to `schedulable_on_committed_ground` — is derived from committed
+FOOTPRINTS through `plat_occupancy.exclusive_lots`. It has never read
+`frontage["lots"]`. A lot a recipe dealt and nobody built on carries no footprint, so it
+arrives at the schedule as FREE and the schedule deals principal room against it
+already. There is no headroom to recover, because none was ever spent.
+
+The table's own eight lots say the same thing from the other end. "Carries none of its
+run's own roofs" is not "carries nothing", and the three cases are worth separating,
+which is why `survey()` now classifies them (`idle_class` below):
+
+    lot                                   what actually stands on it
+    blk_south_water_franklin   lot 2      nothing
+    blk_south_water_franklin   lot 4      the parcel's own yard building (a3_07)
+    blk_south_water_wells      lot 0      H. Jones's store, and the parcel's a3_08
+    blk_south_water_lasalle    lot 0      nothing
+    blk_south_water_lasalle    lot 2      nothing
+    blk_south_water_clark      lot 2      Pruyne & Kimball's drugstore
+    blk_south_water_dearborn   lot 0      the Chicago American office, and a3_06
+    blk_south_water_dearborn   lot 2      Frederick Thomas's shop
+
+Five of the eight are built on — three by a documented store the owner's 2026-08-27
+business-front clause seats there, three by the run's own parcel's yard buildings (two
+lots carry both). **Three lots in the whole town carry nothing at all**, and every one
+of those three reads free to the schedule: `blk_south_water_franklin` is `open` with 3
+principal rooms and `blk_south_water_lasalle` with 6, dealt against exactly this ground.
+
+So the headline figure was measuring the distance between two lists that T-0079 made
+different ON PURPOSE, and reading it as waste. A run's deal is its STRIP —
+`frontage_strip()` projects the dealt lots onto the face, requires them to adjoin, and
+returns one continuous stretch that `check_frontage()` then holds every unit inside. To
+re-deal a run only the lots it stands on would not free ground; it would make a new and
+unsourced claim, that the rest of that face is not this run's frontage, and would owe
+each surrendered lot a twelve-word `open_lots` reason nobody has the evidence to write.
+
+The reservation is not free, and the one price it does pay is the right one: a dealt lot
+is `built on by this parcel` in `generate_block_infill.py`'s four-class lot accounting,
+so it cannot also be `named open in the recipe` or take a second principal roof. That IS
+the reservation being registered. The single case where it cost something real — a
+documented store refused the ground under it — the owner settled by rule in #371, and
+`exclusive_lots` is why three of the eight lots above carry a store today.
+
+What the ticket found, then, is its second half exactly: **the count was correct and
+nobody could see it.** So this file is wired into `tools/check.sh` rather than left as a
+command somebody remembers to run, and `--self-test` demonstrates the gate FAILING —
+`blk_lake_clark` and both `blk_randolph_dearborn` deals sit at exactly 3 of 3, so one
+synthetic roof on one of their lots is the fixture, and a gate nobody has watched fail
+has not been tested.
+
+    tools/measure_frontage_entitlement.py               the table
+    tools/measure_frontage_entitlement.py --gate        no run over its own frontage
+    tools/measure_frontage_entitlement.py --self-test   break it, in memory
 """
 
 from __future__ import annotations
@@ -59,8 +128,20 @@ LOTS_PATH = DATA / "traces" / "vectors" / "thompson_lots.json"
 
 sys.path.insert(0, str(ROOT / "tools"))
 
-from plat_occupancy import lot_holders  # noqa: E402
+from plat_occupancy import exclusive_lots, lot_holders  # noqa: E402
 from reconcile_665 import ROW_UNITS_PER_LOT  # noqa: E402
+
+
+def distinct(ids) -> list[str]:
+    """One lot's holder list, with each roof counted once, in the order it arrived.
+
+    The whole of the behaviour `seated_lots` exists for (see below), and a named
+    function rather than a comprehension because `survey()`'s injection path has to run
+    THIS dedupe and not a second copy of it — otherwise `--self-test`'s "a roof listed
+    twice is counted once" would be watching the fixture dedupe itself and would stay
+    green with the real one deleted.
+    """
+    return list(dict.fromkeys(ids))
 
 
 def seated_lots(grid: dict, datum: dict,
@@ -92,7 +173,7 @@ def seated_lots(grid: dict, datum: dict,
     narrowing a module eight callers rely on to suit one new reader is how a fix
     becomes a regression. The counting caller does the counting caller's work.
     """
-    return {block: {index: list(dict.fromkeys(ids)) for index, ids in lots.items()}
+    return {block: {index: distinct(ids) for index, ids in lots.items()}
             for block, lots in lot_holders(grid, datum, exclude).items()}
 
 
@@ -148,13 +229,45 @@ def parcel_records() -> tuple[dict[str, list[str]], dict[str, list[str]]]:
     return built, units
 
 
-def survey() -> list[dict]:
-    """One row per block face carrying a party-line run."""
+def idle_class(holders: list[str], mine: set[str]) -> str:
+    """What is actually standing on a lot the run was dealt and does not stand on.
+
+    T-0233. "Carries none of its run's own roofs" is not "carries nothing", and reading
+    the first as the second is what made eight lots look like hoarded ground. Three
+    cases, and only one of them is empty frontage:
+
+      `empty`     nothing stands there at all.
+      `parcel`    the run's OWN parcel built there — a yard building serving the row,
+                  which `generate_block_infill.py` permits precisely because the lot is
+                  in `used`. The deal was spent, just not on a frontage unit.
+      `documented` a researched roof stands at the street, seated by the owner's
+                  2026-08-27 business-front clause. The run did not lose the ground; it
+                  is sharing it, which is what the clause ruled it may do.
+
+    The row carries the schedule's own reading of the same lot alongside this one —
+    `exclusive_lots`, the map `reconcile_665.block_rooms()` counts its free lots out of
+    — so the table can show that an idle lot is not withheld from the programme.
+    """
+    if not holders:
+        return "empty"
+    return "parcel" if set(holders) <= mine else "documented"
+
+
+def survey(inject: dict[str, dict[int, list[str]]] | None = None) -> list[dict]:
+    """One row per block face carrying a party-line run.
+
+    `inject` adds roofs to a block's lots that are not on disk — `{block: {lot: [id]}}`,
+    merged into the seated map after it is read. It is how `--self-test` puts a
+    synthetic roof on a run that is at its ceiling and requires the gate to fail; the
+    committed tree passes `inject=None` and reads exactly what it always read.
+    """
     datum = load(DATA / "datum.json")
     grid = load(LOTS_PATH)
     blocks = {block["id"]: block for block in grid["blocks"]}
     recipe = load(RECIPE_PATH)
     built, units = parcel_records()
+    available = exclusive_lots(grid, datum)
+    inject = inject or {}
 
     rows: list[dict] = []
     for entry in recipe["blocks"]:
@@ -169,17 +282,31 @@ def survey() -> list[dict]:
         seated = seated_lots({"blocks": [block]}, datum, exclude=mine).get(block_id, {})
         # every lot this run's own units seat on, by the same two tests
         theirs = seated_lots({"blocks": [block]}, datum).get(block_id, {})
+        for index, ids in (inject.get(block_id) or {}).items():
+            seated[index] = distinct(list(seated.get(index, ())) + list(ids))
+            theirs[index] = distinct(list(theirs.get(index, ())) + list(ids))
         run = units.get(entry["programme_phase"], [])
         stands_on = sorted({index for index, ids in theirs.items()
                             if set(ids) & set(run)})
         dealt = list(frontage["lots"])
         load_n, ceiling, standing = frontage_load(dealt, len(run), seated)
+        taken = set(available.get(block_id, ()))
+        idle = {index: {"holders": list(theirs.get(index, ())),
+                        "free_to_the_schedule": index not in taken}
+                for index in dealt if index not in stands_on}
+        for index, state in idle.items():
+            state["state"] = idle_class(state["holders"], mine)
         rows.append({
             "block": block_id, "face": frontage["face"], "dealt": dealt,
             "stands_on": stands_on, "units": len(run), "load": load_n,
-            "ceiling": ceiling, "standing": standing,
+            "ceiling": ceiling, "standing": standing, "idle": idle,
         })
     return rows
+
+
+def over_ceiling(rows: list[dict]) -> list[dict]:
+    """Every run carrying more roofs than the lots it was dealt can hold."""
+    return [r for r in rows if r["load"] > r["ceiling"]]
 
 
 def report(rows: list[dict]) -> None:
@@ -193,24 +320,130 @@ def report(rows: list[dict]) -> None:
         print(f"{row['block']:<30} {row['face']:<6} "
               f"{str(row['dealt']):<12} {str(row['stands_on']):<12} "
               f"{row['units']:>5} {row['load']:>5} {row['ceiling']:>5}  {standing}")
-    unused = sum(len(set(r["dealt"]) - set(r["stands_on"])) for r in rows)
+    unused = sum(len(r["idle"]) for r in rows)
     print(f"\n{len(rows)} runs · {sum(r['units'] for r in rows)} units · "
           f"{unused} dealt lot(s) carry none of their run's own roofs")
+
+    # T-0233. The line above is the one that read as a finding of waste, so the line
+    # below is printed with it: what stands on those lots, and whether the schedule is
+    # withholding them. It is not — `free to the schedule` is `exclusive_lots`, the map
+    # `reconcile_665` counts its free lots out of, and it has never read a recipe's deal.
+    idle = [(row["block"], index, state)
+            for row in rows for index, state in sorted(row["idle"].items())]
+    if not idle:
+        return
+    print(f"\nthose {len(idle)} lot(s), and what is standing on them")
+    print(f"{'block':<30} {'lot':>4}  {'reads':<11} {'free to the schedule':<21} on it")
+    for block, index, state in idle:
+        who = ", ".join(state["holders"]) or "—"
+        free = "yes" if state["free_to_the_schedule"] else "no"
+        print(f"{block:<30} {index:>4}  {state['state']:<11} {free:<21} {who}")
+    empty = [row for row in idle if row[2]["state"] == "empty"]
+    print(f"\n{len(empty)} of them carry no roof at all"
+          f"{': ' if empty else ''}"
+          + ", ".join(f"{b} lot {i}" for b, i, _ in empty))
+    withheld = [row for row in empty if not row[2]["free_to_the_schedule"]]
+    print(f"{len(withheld) or 'none'} of those withheld from the 665-roof programme "
+          f"— a dealt lot carries no footprint, so it reads free to `exclusive_lots` "
+          f"and the schedule deals principal room against it (T-0233)")
+
+
+def self_test() -> int:
+    """Break the gate in memory and require it to fire.
+
+    A check nobody has watched fail has not been tested, and this one passes on every
+    tree it has ever been run on. The fixture the ticket named is the tightest run in
+    the town: `blk_lake_clark` and both `blk_randolph_dearborn` deals stand at exactly
+    `ROW_UNITS_PER_LOT` of `ROW_UNITS_PER_LOT`, so ONE more roof on one of their dealt
+    lots is over the ceiling and nothing smaller is.
+    """
+    failures: list[str] = []
+
+    def require(label: str, ok: bool, saw: object = "") -> None:
+        if ok:
+            print(f"  fires: {label}")
+            return
+        failures.append(label)
+        print(f"  SELF-TEST FAIL: {label} — saw {saw!r}")
+
+    clean = survey()
+    require("the committed town is inside every run's own frontage",
+            not over_ceiling(clean), [r["block"] for r in over_ceiling(clean)])
+
+    # 1. the fixture: one synthetic roof on a lot a run at its ceiling was dealt.
+    tight = [r for r in clean if r["load"] == r["ceiling"] and len(r["dealt"]) == 1]
+    require("a run stands at exactly its own ceiling, so one roof is over it",
+            bool(tight), [(r["block"], r["load"], r["ceiling"]) for r in clean])
+    if not tight:
+        return 1
+    fixture = min(tight, key=lambda r: (r["block"], r["face"]))
+    lot = fixture["dealt"][0]
+    broken = survey(inject={fixture["block"]: {lot: ["synthetic_t0233_roof"]}})
+    over = over_ceiling(broken)
+    hit = [r for r in over if r["block"] == fixture["block"] and r["face"] == fixture["face"]]
+    require(f"a roof on {fixture['block']} lot {lot} puts its run over the ceiling",
+            bool(hit), [(r["block"], r["load"], r["ceiling"]) for r in over])
+    if hit:
+        require(f"…and it is over by exactly one roof: "
+                f"{hit[0]['load']} against {hit[0]['ceiling']}",
+                hit[0]["load"] == fixture["ceiling"] + 1,
+                (hit[0]["load"], hit[0]["ceiling"]))
+    require("…and it is the only run the fixture breaks", len(over) == 1,
+            [r["block"] for r in over])
+
+    # 2. the control. A gate that fires on an untouched tree is not measuring the roof.
+    untouched = survey(inject={fixture["block"]: {lot: []}})
+    require("an empty injection leaves every run where it was",
+            not over_ceiling(untouched) and
+            [r["load"] for r in untouched] == [r["load"] for r in clean],
+            [r["load"] for r in untouched])
+
+    # 3. the dedupe `seated_lots` exists for. A structure rebuilt on a footprint that
+    #    seats twice on one lot must spend that lot's frontage ONCE — this module is the
+    #    only caller that reads the holder list as a count, and a repeat would report a
+    #    run over a ceiling it is inside.
+    doubled = survey(inject={fixture["block"]: {lot: ["synthetic_t0233_roof",
+                                                     "synthetic_t0233_roof"]}})
+    twice = [r for r in doubled
+             if r["block"] == fixture["block"] and r["face"] == fixture["face"]]
+    require("a roof listed twice on one lot is counted once",
+            bool(twice) and twice[0]["load"] == fixture["ceiling"] + 1,
+            [r["load"] for r in twice])
+
+    # 4. the classification, on the fixture's own ground: an injected roof this parcel
+    #    did not build reads `documented`, not `parcel` and not `empty`.
+    elsewhere = [r for r in clean if r["idle"]]
+    require("the town's idle dealt lots are classified", bool(elsewhere),
+            len(elsewhere))
+    states = {state["state"] for row in clean for state in row["idle"].values()}
+    require("every idle lot reads empty, parcel or documented",
+            states <= {"empty", "parcel", "documented"}, sorted(states))
+
+    if failures:
+        print(f"\nSELF-TEST FAILED: {len(failures)} assertion(s) did not fire")
+        return 1
+    print("\n  self-test: every assertion fires when broken")
+    return 0
 
 
 def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--gate", action="store_true",
                     help="fail if a run's frontage carries more roofs than it can")
+    ap.add_argument("--self-test", action="store_true",
+                    help="break the gate in memory and require it to fire")
     ap.add_argument("--quiet", action="store_true")
     args = ap.parse_args()
+
+    if args.self_test:
+        return self_test()
 
     rows = survey()
     if not args.quiet:
         report(rows)
 
     if args.gate:
-        over = [r for r in rows if r["load"] > r["ceiling"]]
+        over = over_ceiling(rows)
         for row in over:
             print(f"FAIL {row['block']} {row['face']} face: {row['units']} run unit(s) "
                   f"and {row['load'] - row['units']} roof(s) already standing on the "
