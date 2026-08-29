@@ -2,6 +2,130 @@
   "note": "T-0216 — dev's standing smoke result, so a branch can answer \"is this red mine, or did I inherit it?\" from the record instead of re-running the stage on a clean worktree (three agents paid that price on one red on 2026-08-27; T-0215). Written by tools/dev-smoke-state.mjs, which parses a smoke log — local or from a chicago-4d-smoke.yml run. Every reading carries the CONDITIONS it was taken under, because a quiet CI runner does not predict a loaded steward box: T-0215 measured a factor of twenty on one tree. loadavg is sampled when the reading is filed, so it includes the smoke's own load. `treeHash` digests exactly what the smoke exercises (renderers, data, assets, smoke_renderer.mjs, the published mirror), so a reading whose hash matches yours is a reading OF YOUR TREE. A RECORD, NOT A BAR: nothing here gates anything.",
   "readings": [
     {
+      "viewport": "mobile",
+      "stage": "8",
+      "parts": [
+        8
+      ],
+      "verdict": "pass",
+      "target": "source",
+      "passed": 35,
+      "failed": 0,
+      "failures": [],
+      "wallSeconds": null,
+      "takenAt": "2026-08-29T05:38:09.064Z",
+      "ref": "steward/t-0328-weaver-lot",
+      "commit": "6b71205fa68a",
+      "devCommit": "a58b76de9de6",
+      "treeHash": "sha256:68e6f25424dd617b",
+      "treeDirty": true,
+      "changelogHash": "sha256:3c228ff9186145af",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          4.8,
+          3.6,
+          1.9
+        ]
+      },
+      "source": "/tmp/smoke8src.log"
+    },
+    {
+      "viewport": "desktop",
+      "stage": "8",
+      "parts": [
+        8
+      ],
+      "verdict": "pass",
+      "target": "source",
+      "passed": 37,
+      "failed": 0,
+      "failures": [],
+      "wallSeconds": null,
+      "takenAt": "2026-08-29T05:38:09.064Z",
+      "ref": "steward/t-0328-weaver-lot",
+      "commit": "6b71205fa68a",
+      "devCommit": "a58b76de9de6",
+      "treeHash": "sha256:68e6f25424dd617b",
+      "treeDirty": true,
+      "changelogHash": "sha256:3c228ff9186145af",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          4.8,
+          3.6,
+          1.9
+        ]
+      },
+      "source": "/tmp/smoke8src.log"
+    },
+    {
+      "viewport": "mobile",
+      "stage": "8",
+      "parts": [
+        8
+      ],
+      "verdict": "pass",
+      "target": "published",
+      "passed": 35,
+      "failed": 0,
+      "failures": [],
+      "wallSeconds": null,
+      "takenAt": "2026-08-29T05:38:09.003Z",
+      "ref": "steward/t-0328-weaver-lot",
+      "commit": "6b71205fa68a",
+      "devCommit": "a58b76de9de6",
+      "treeHash": "sha256:68e6f25424dd617b",
+      "treeDirty": true,
+      "changelogHash": "sha256:3c228ff9186145af",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          4.8,
+          3.6,
+          1.9
+        ]
+      },
+      "source": "/tmp/smoke8pub.log"
+    },
+    {
+      "viewport": "desktop",
+      "stage": "8",
+      "parts": [
+        8
+      ],
+      "verdict": "pass",
+      "target": "published",
+      "passed": 37,
+      "failed": 0,
+      "failures": [],
+      "wallSeconds": null,
+      "takenAt": "2026-08-29T05:38:09.003Z",
+      "ref": "steward/t-0328-weaver-lot",
+      "commit": "6b71205fa68a",
+      "devCommit": "a58b76de9de6",
+      "treeHash": "sha256:68e6f25424dd617b",
+      "treeDirty": true,
+      "changelogHash": "sha256:3c228ff9186145af",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          4.8,
+          3.6,
+          1.9
+        ]
+      },
+      "source": "/tmp/smoke8pub.log"
+    },
+    {
       "viewport": "desktop",
       "stage": "8",
       "parts": [
@@ -1697,133 +1821,6 @@
         ]
       },
       "source": "/tmp/d7.log"
-    },
-    {
-      "viewport": "desktop",
-      "stage": "6",
-      "parts": [
-        6
-      ],
-      "verdict": "pass",
-      "target": "published",
-      "passed": 23,
-      "failed": 0,
-      "failures": [],
-      "wallSeconds": 118,
-      "takenAt": "2026-08-28T00:55:57.400Z",
-      "ref": "steward/t-0183-market-south-water",
-      "commit": "a5de91af4b12",
-      "devCommit": "2ab3065a90dc",
-      "treeHash": "sha256:e04ec4297f9eff10",
-      "treeDirty": false,
-      "changelogHash": "sha256:bcd8e39382a6213a",
-      "host": {
-        "kind": "steward-runner",
-        "cpus": 4,
-        "memGB": 15.6,
-        "loadavg": [
-          2.8,
-          4.1,
-          4.3
-        ]
-      },
-      "source": "/tmp/d6.log"
-    },
-    {
-      "viewport": "desktop",
-      "stage": "5",
-      "parts": [
-        5
-      ],
-      "verdict": "pass",
-      "target": "published",
-      "passed": 29,
-      "failed": 0,
-      "failures": [],
-      "wallSeconds": 580,
-      "takenAt": "2026-08-28T00:55:57.318Z",
-      "ref": "steward/t-0183-market-south-water",
-      "commit": "a5de91af4b12",
-      "devCommit": "2ab3065a90dc",
-      "treeHash": "sha256:e04ec4297f9eff10",
-      "treeDirty": false,
-      "changelogHash": "sha256:bcd8e39382a6213a",
-      "host": {
-        "kind": "steward-runner",
-        "cpus": 4,
-        "memGB": 15.6,
-        "loadavg": [
-          2.8,
-          4.1,
-          4.3
-        ]
-      },
-      "source": "/tmp/d5.log"
-    },
-    {
-      "viewport": "desktop",
-      "stage": "4",
-      "parts": [
-        4
-      ],
-      "verdict": "fail",
-      "target": "published",
-      "passed": 41,
-      "failed": 2,
-      "failures": [
-        "desktop 1280x800: the light tier draws inside its 80-call floor at the worst stand — 83 calls at light, worst stand Lake and Market, the corner itself — floor 80, the count this project chose before the 2026-08 content landed, restored by T-0147 once T-0150, T-0146 and T-0223 had trimmed the axial view",
-        "desktop 1280x800: the suite body ran to completion — Error: page.click: Target page, context or browser has been closed"
-      ],
-      "wallSeconds": null,
-      "takenAt": "2026-08-28T00:55:57.238Z",
-      "ref": "steward/t-0183-market-south-water",
-      "commit": "a5de91af4b12",
-      "devCommit": "2ab3065a90dc",
-      "treeHash": "sha256:e04ec4297f9eff10",
-      "treeDirty": false,
-      "changelogHash": "sha256:bcd8e39382a6213a",
-      "host": {
-        "kind": "steward-runner",
-        "cpus": 4,
-        "memGB": 15.6,
-        "loadavg": [
-          2.8,
-          4.1,
-          4.3
-        ]
-      },
-      "source": "/tmp/d4.log"
-    },
-    {
-      "viewport": "desktop",
-      "stage": "3",
-      "parts": [
-        3
-      ],
-      "verdict": "pass",
-      "target": "published",
-      "passed": 74,
-      "failed": 0,
-      "failures": [],
-      "wallSeconds": 134,
-      "takenAt": "2026-08-28T00:55:57.156Z",
-      "ref": "steward/t-0183-market-south-water",
-      "commit": "a5de91af4b12",
-      "devCommit": "2ab3065a90dc",
-      "treeHash": "sha256:e04ec4297f9eff10",
-      "treeDirty": false,
-      "changelogHash": "sha256:bcd8e39382a6213a",
-      "host": {
-        "kind": "steward-runner",
-        "cpus": 4,
-        "memGB": 15.6,
-        "loadavg": [
-          2.8,
-          4.1,
-          4.3
-        ]
-      },
-      "source": "/tmp/d3.log"
     },
     {
       "viewport": "mobile",
