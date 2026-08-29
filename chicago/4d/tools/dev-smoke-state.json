@@ -2,6 +2,37 @@
   "note": "T-0216 — dev's standing smoke result, so a branch can answer \"is this red mine, or did I inherit it?\" from the record instead of re-running the stage on a clean worktree (three agents paid that price on one red on 2026-08-27; T-0215). Written by tools/dev-smoke-state.mjs, which parses a smoke log — local or from a chicago-4d-smoke.yml run. Every reading carries the CONDITIONS it was taken under, because a quiet CI runner does not predict a loaded steward box: T-0215 measured a factor of twenty on one tree. loadavg is sampled when the reading is filed, so it includes the smoke's own load. `treeHash` digests exactly what the smoke exercises (renderers, data, assets, smoke_renderer.mjs, the published mirror), so a reading whose hash matches yours is a reading OF YOUR TREE. A RECORD, NOT A BAR: nothing here gates anything.",
   "readings": [
     {
+      "viewport": "desktop",
+      "stage": "2",
+      "parts": [
+        2
+      ],
+      "verdict": "pass",
+      "target": "source",
+      "passed": 82,
+      "failed": 0,
+      "failures": [],
+      "wallSeconds": 255,
+      "takenAt": "2026-08-29T10:29:11.240Z",
+      "ref": "steward/t-0244-hitching-post-gate",
+      "commit": "cd798de3ba6f",
+      "devCommit": "d77e2a3417e1",
+      "treeHash": "sha256:00ef2275d82ff4b3",
+      "treeDirty": false,
+      "changelogHash": "sha256:2993ad6ba9e8f6c0",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          4.2,
+          3.3,
+          2.8
+        ]
+      },
+      "source": "/tmp/desktop2b.log"
+    },
+    {
       "viewport": "mobile",
       "stage": "2",
       "parts": [
@@ -1849,37 +1880,6 @@
         ]
       },
       "source": "/tmp/s2.m8.log"
-    },
-    {
-      "viewport": "desktop",
-      "stage": "8",
-      "parts": [
-        8
-      ],
-      "verdict": "pass",
-      "target": "published",
-      "passed": 37,
-      "failed": 0,
-      "failures": [],
-      "wallSeconds": 173,
-      "takenAt": "2026-08-28T10:04:25.036Z",
-      "ref": "steward/t-0019-lattice-ceiling-declared",
-      "commit": "d2f47f0de3a5",
-      "devCommit": "eae025287691",
-      "treeHash": "sha256:fe3a112b281a9a08",
-      "treeDirty": false,
-      "changelogHash": "sha256:7802695104a8bf65",
-      "host": {
-        "kind": "steward-runner",
-        "cpus": 4,
-        "memGB": 15.6,
-        "loadavg": [
-          4.5,
-          3.3,
-          2
-        ]
-      },
-      "source": "/tmp/s2.d8.log"
     },
     {
       "viewport": "mobile",
