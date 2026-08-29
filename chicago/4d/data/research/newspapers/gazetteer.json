@@ -41,7 +41,7 @@
     },
     {
       "file": "chicago/4d/data/research/newspapers/extracted/chicago_american_1835_08_08.json",
-      "sha256": "e67d57d220e81087a87ee9627a634c802e17e952b2273f722a065529b891a7c6"
+      "sha256": "fa5d33f6d854c86458e74a309fd2193e9265ecdfd1e3cc97a14204f84793eed5"
     },
     {
       "file": "chicago/4d/data/research/newspapers/extracted/chicago_american_1835_08_15.json",
@@ -49,7 +49,7 @@
     },
     {
       "file": "chicago/4d/data/research/newspapers/extracted/chicago_american_1835_08_22.json",
-      "sha256": "507f2ccd292a9a73a1d31a1f02be3d5c130432a9fac3f3517da34c72b784b741"
+      "sha256": "8f8ab4bcf872a99113c2f51654923bdb7ed6c0e2b244b556f187010c97fe5d2c"
     },
     {
       "file": "chicago/4d/data/research/newspapers/extracted/chicago_american_1835_08_29.json",
@@ -313,11 +313,11 @@
     },
     {
       "file": "chicago/4d/data/research/newspapers/extracted/chicago_democrat_1835_07_01.json",
-      "sha256": "9981a7f1da1e90906650844b64122ae615487e47aab559e5ab73cbbbb1da5bb4"
+      "sha256": "5b6e67a310754526008c0ec72cfd224208057e23bdc6979324e763ade793d4bf"
     },
     {
       "file": "chicago/4d/data/research/newspapers/extracted/chicago_democrat_1835_07_08.json",
-      "sha256": "59c8bc7fde63b5f8873f4fe434f4e8a1042005aae42ba80906c8f1f8e0956fba"
+      "sha256": "068a811fa66ae9f2060f19044404144e190c0ac57b2e69c73162b36197fcad5e"
     },
     {
       "file": "chicago/4d/data/research/newspapers/extracted/chicago_democrat_1835_07_15.json",
@@ -325,23 +325,23 @@
     },
     {
       "file": "chicago/4d/data/research/newspapers/extracted/chicago_democrat_1835_07_22.json",
-      "sha256": "8be46ca89cb486d79a70c880480630bd91189ed2918da5e4eeed307b45295472"
+      "sha256": "bbf6d0945aff94887e5b5a5e839b2f2af3bef0099e733b66bd239b1e1302ac3c"
     },
     {
       "file": "chicago/4d/data/research/newspapers/extracted/chicago_democrat_1835_07_29.json",
-      "sha256": "63400b47a9e03be0e8df86d3b9f61bc4f442c73903779f796893d0781292052c"
+      "sha256": "97316aa315a8d57521a77f58e8a82d93c5bc1c99f744c49137bc609cdf28358b"
     },
     {
       "file": "chicago/4d/data/research/newspapers/extracted/chicago_democrat_1835_08_05.json",
-      "sha256": "969ad7bf0665279e3d59dc63f1e03cc5d240bedc2925597473c6c713f3563b96"
+      "sha256": "f8ce78f168d5f5fd91d3fb3543c699a6aeb2b047598eadfef5ee6202070e88aa"
     },
     {
       "file": "chicago/4d/data/research/newspapers/extracted/chicago_democrat_1835_08_12.json",
-      "sha256": "e7e98dc3f4ae2f585de3b6a9a14c480f2b38907a8c018ee6075503904d9ab4e8"
+      "sha256": "43cb2586187428a8f2956e510340fc696a56a2247eeb981532e0d34fdd2a1935"
     },
     {
       "file": "chicago/4d/data/research/newspapers/extracted/chicago_democrat_1835_08_19.json",
-      "sha256": "024b803fcc90e1c7be08328b75510f2c3b3bbbcd3e2b0cbde22267e2a51c1c8c"
+      "sha256": "36013cb486d006b332fc753bd0128e27ca7ce9085dcca488af191ee7eb8e98b6"
     },
     {
       "file": "chicago/4d/data/research/newspapers/extracted/chicago_democrat_1835_08_26.json",
@@ -57615,6 +57615,7 @@
         "copy_dates": []
       },
       "contradicted_by": [],
+      "opening_announced": [],
       "mentions": [
         "chicago_american_1835_08_08#c002"
       ],
@@ -57652,6 +57653,7 @@
         ]
       },
       "contradicted_by": [],
+      "opening_announced": [],
       "mentions": [
         "chicago_democrat_1833_12_10#c003"
       ],
@@ -57683,6 +57685,7 @@
         ]
       },
       "contradicted_by": [],
+      "opening_announced": [],
       "mentions": [
         "chicago_democrat_1834_03_04#c003",
         "chicago_democrat_1834_05_21#c003"
@@ -57719,6 +57722,7 @@
         ]
       },
       "contradicted_by": [],
+      "opening_announced": [],
       "mentions": [
         "chicago_democrat_1834_12_17#c001",
         "chicago_democrat_1834_12_24#c001"
@@ -57761,6 +57765,7 @@
         "copy_dates": []
       },
       "contradicted_by": [],
+      "opening_announced": [],
       "mentions": [
         "chicago_american_1835_08_22#c004"
       ],
@@ -57807,6 +57812,7 @@
         ]
       },
       "contradicted_by": [],
+      "opening_announced": [],
       "mentions": [
         "chicago_american_1835_06_13#c011"
       ],
@@ -57845,6 +57851,7 @@
         ]
       },
       "contradicted_by": [],
+      "opening_announced": [],
       "mentions": [
         "chicago_american_1835_06_27#c008",
         "chicago_american_1835_07_04#c012",
@@ -57879,6 +57886,7 @@
         ]
       },
       "contradicted_by": [],
+      "opening_announced": [],
       "mentions": [
         "chicago_american_1835_06_27#c009",
         "chicago_american_1835_07_25#c002",
@@ -57906,6 +57914,7 @@
         ]
       },
       "contradicted_by": [],
+      "opening_announced": [],
       "mentions": [
         "chicago_democrat_1834_02_04#c013"
       ],
@@ -57936,6 +57945,7 @@
         ]
       },
       "contradicted_by": [],
+      "opening_announced": [],
       "mentions": [
         "chicago_american_1835_06_13#c008",
         "chicago_american_1835_06_20#c001"
@@ -57968,6 +57978,7 @@
         ]
       },
       "contradicted_by": [],
+      "opening_announced": [],
       "mentions": [
         "chicago_american_1835_06_27#c010"
       ],
@@ -57996,6 +58007,7 @@
         "copy_dates": []
       },
       "contradicted_by": [],
+      "opening_announced": [],
       "mentions": [
         "chicago_democrat_1835_06_24#c006"
       ],
@@ -58032,6 +58044,7 @@
         ]
       },
       "contradicted_by": [],
+      "opening_announced": [],
       "mentions": [
         "chicago_american_1835_06_13#c010"
       ],
@@ -58064,6 +58077,7 @@
         ]
       },
       "contradicted_by": [],
+      "opening_announced": [],
       "mentions": [
         "chicago_democrat_1834_10_29#c003",
         "chicago_democrat_1834_12_03#c017"
@@ -58097,6 +58111,7 @@
         "copy_dates": []
       },
       "contradicted_by": [],
+      "opening_announced": [],
       "mentions": [
         "chicago_democrat_1833_11_26#c018",
         "chicago_democrat_1834_03_04#c022"
@@ -58137,6 +58152,7 @@
         ]
       },
       "contradicted_by": [],
+      "opening_announced": [],
       "mentions": [
         "chicago_democrat_1833_11_26#c014"
       ],
@@ -58185,6 +58201,7 @@
         ]
       },
       "contradicted_by": [],
+      "opening_announced": [],
       "mentions": [
         "chicago_democrat_1835_06_24#c009"
       ],
@@ -58238,6 +58255,7 @@
           "issue": "1834-06-11"
         }
       ],
+      "opening_announced": [],
       "mentions": [
         "chicago_democrat_1833_12_03#c008",
         "chicago_democrat_1834_03_04#c010",
@@ -58278,6 +58296,7 @@
         ]
       },
       "contradicted_by": [],
+      "opening_announced": [],
       "mentions": [
         "chicago_democrat_1834_06_04#c007",
         "chicago_democrat_1834_08_13#c014",
@@ -58310,6 +58329,7 @@
         "copy_dates": []
       },
       "contradicted_by": [],
+      "opening_announced": [],
       "mentions": [
         "chicago_american_1835_06_08#c005",
         "chicago_american_1835_06_13#c014",
@@ -58341,6 +58361,7 @@
         ]
       },
       "contradicted_by": [],
+      "opening_announced": [],
       "mentions": [
         "chicago_democrat_1833_11_26#c008"
       ],
@@ -58374,6 +58395,7 @@
         ]
       },
       "contradicted_by": [],
+      "opening_announced": [],
       "mentions": [
         "chicago_democrat_1833_11_26#c022"
       ],
@@ -58405,6 +58427,7 @@
         ]
       },
       "contradicted_by": [],
+      "opening_announced": [],
       "mentions": [
         "chicago_american_1835_06_20#c004"
       ],
@@ -58431,6 +58454,16 @@
         "copy_dates": []
       },
       "contradicted_by": [],
+      "opening_announced": [
+        {
+          "claim": "chicago_democrat_1835_08_12#c007",
+          "issue": "1835-08-12",
+          "dating": "stated",
+          "iso": "1835-08-17",
+          "verbatim": "The first te[rm] will co[m]mence Monday August 17",
+          "note": "The paper names the date in full. Hunt 'proposes to establish' the school and asks for names to be left beforehand, so nothing was teaching on 1 July 1835."
+        }
+      ],
       "mentions": [
         "chicago_democrat_1835_08_12#c007"
       ],
@@ -58465,6 +58498,7 @@
           "issue": "1834-06-04"
         }
       ],
+      "opening_announced": [],
       "mentions": [
         "chicago_democrat_1834_06_04#c008"
       ],
@@ -58493,6 +58527,7 @@
         "copy_dates": []
       },
       "contradicted_by": [],
+      "opening_announced": [],
       "mentions": [
         "chicago_democrat_1834_04_23#c004"
       ],
@@ -58525,6 +58560,7 @@
         "copy_dates": []
       },
       "contradicted_by": [],
+      "opening_announced": [],
       "mentions": [
         "chicago_democrat_1834_04_01#c008",
         "chicago_democrat_1834_09_10#c016"
@@ -58569,6 +58605,7 @@
         ]
       },
       "contradicted_by": [],
+      "opening_announced": [],
       "mentions": [
         "chicago_democrat_1834_01_07#c006",
         "chicago_democrat_1835_05_20#c007"
@@ -58614,6 +58651,7 @@
         ]
       },
       "contradicted_by": [],
+      "opening_announced": [],
       "mentions": [
         "chicago_democrat_1834_01_07#c012",
         "chicago_democrat_1834_03_04#c014",
@@ -58651,6 +58689,7 @@
         ]
       },
       "contradicted_by": [],
+      "opening_announced": [],
       "mentions": [
         "chicago_democrat_1835_05_27#c013"
       ],
@@ -58681,6 +58720,7 @@
         ]
       },
       "contradicted_by": [],
+      "opening_announced": [],
       "mentions": [
         "chicago_democrat_1834_08_27#c002"
       ],
@@ -58727,6 +58767,7 @@
         ]
       },
       "contradicted_by": [],
+      "opening_announced": [],
       "mentions": [
         "chicago_democrat_1834_05_28#c007",
         "chicago_democrat_1834_06_11#c005",
@@ -58764,6 +58805,7 @@
         ]
       },
       "contradicted_by": [],
+      "opening_announced": [],
       "mentions": [
         "chicago_democrat_1834_01_28#c007",
         "chicago_democrat_1834_03_04#c009",
@@ -58815,6 +58857,7 @@
           "issue": "1834-11-05"
         }
       ],
+      "opening_announced": [],
       "mentions": [
         "chicago_democrat_1834_11_05#c009"
       ],
@@ -58840,9 +58883,29 @@
       "evidence": {
         "first_issue": "1835-07-22",
         "last_issue": "1835-07-29",
-        "copy_dates": []
+        "copy_dates": [
+          "1835-07-22"
+        ]
       },
       "contradicted_by": [],
+      "opening_announced": [
+        {
+          "claim": "chicago_democrat_1835_07_22#c006",
+          "issue": "1835-07-22",
+          "dating": "undated",
+          "iso": null,
+          "verbatim": "they have taken a shop, on [Dearbo]rn Street",
+          "note": "The first printing of the tailors' notice carries no dateline; the 29 July printing of the same copy is dated 22 July 1835."
+        },
+        {
+          "claim": "chicago_democrat_1835_07_29#c009",
+          "issue": "1835-07-29",
+          "dating": "effected",
+          "iso": "1835-07-22",
+          "verbatim": "they hav[e] taken a shop. on [D]earbo[r]n S[t]reet",
+          "note": "'Have taken' over the dateline 'July 22, 1835' this printing carries and the 22 July printing does not. The date bounds the taking from ABOVE: the shop was theirs on or before 22 July, and the copy says nothing about 1 July."
+        }
+      ],
       "mentions": [
         "chicago_democrat_1835_07_22#c006",
         "chicago_democrat_1835_07_29#c009"
@@ -58873,6 +58936,16 @@
         ]
       },
       "contradicted_by": [],
+      "opening_announced": [
+        {
+          "claim": "chicago_democrat_1835_08_05#c005",
+          "issue": "1835-08-05",
+          "dating": "effected",
+          "iso": "1835-07-22",
+          "verbatim": "the[y] have taken a shop on Dearborn Street",
+          "note": "The third printing of the tailors' notice, over the same 22 July 1835 dateline. An opening already made, bounded from above."
+        }
+      ],
       "mentions": [
         "chicago_democrat_1835_08_05#c005"
       ],
@@ -58899,6 +58972,16 @@
         "copy_dates": []
       },
       "contradicted_by": [],
+      "opening_announced": [
+        {
+          "claim": "chicago_democrat_1835_08_05#c013",
+          "issue": "1835-08-05",
+          "dating": "stated",
+          "iso": "1835-08-14",
+          "verbatim": "open a [Branch] of their House in this [place …] from the [Manhattan?] Ho[u]se[…] on the [1]4th inst.",
+          "note": "'the 14th inst.' in the Democrat of 5 August 1835 is the fourteenth of the current month, 14 August 1835. The New York house is announcing a branch it has not opened yet, six weeks after the scene date."
+        }
+      ],
       "mentions": [
         "chicago_democrat_1835_08_05#c013"
       ],
@@ -58927,6 +59010,7 @@
         ]
       },
       "contradicted_by": [],
+      "opening_announced": [],
       "mentions": [
         "chicago_democrat_1834_09_10#c010"
       ],
@@ -58962,6 +59046,7 @@
         ]
       },
       "contradicted_by": [],
+      "opening_announced": [],
       "mentions": [
         "chicago_democrat_1834_02_18#c002",
         "chicago_democrat_1834_04_01#c007"
@@ -59000,6 +59085,7 @@
         ]
       },
       "contradicted_by": [],
+      "opening_announced": [],
       "mentions": [
         "chicago_democrat_1834_03_25#c003",
         "chicago_democrat_1834_07_09#c022",
@@ -59031,6 +59117,7 @@
         ]
       },
       "contradicted_by": [],
+      "opening_announced": [],
       "mentions": [
         "chicago_democrat_1835_05_20#c008"
       ],
@@ -59071,6 +59158,7 @@
         ]
       },
       "contradicted_by": [],
+      "opening_announced": [],
       "mentions": [
         "chicago_democrat_1834_06_18#c005",
         "chicago_democrat_1834_07_02#c019",
@@ -59119,6 +59207,7 @@
         ]
       },
       "contradicted_by": [],
+      "opening_announced": [],
       "mentions": [
         "chicago_democrat_1833_11_26#c030",
         "chicago_democrat_1834_02_18#c009",
@@ -59155,6 +59244,7 @@
         ]
       },
       "contradicted_by": [],
+      "opening_announced": [],
       "mentions": [
         "chicago_american_1835_07_25#c001"
       ],
@@ -59211,6 +59301,7 @@
         ]
       },
       "contradicted_by": [],
+      "opening_announced": [],
       "mentions": [
         "chicago_democrat_1833_12_03#c009",
         "chicago_democrat_1834_02_25#c003",
@@ -59269,6 +59360,7 @@
           "issue": "1834-07-23"
         }
       ],
+      "opening_announced": [],
       "mentions": [
         "chicago_democrat_1834_07_23#c005"
       ],
@@ -59296,6 +59388,7 @@
         ]
       },
       "contradicted_by": [],
+      "opening_announced": [],
       "mentions": [
         "chicago_democrat_1834_05_28#c008"
       ],
@@ -59324,6 +59417,7 @@
         "copy_dates": []
       },
       "contradicted_by": [],
+      "opening_announced": [],
       "mentions": [
         "chicago_american_1835_06_13#c009"
       ],
@@ -59354,6 +59448,7 @@
         ]
       },
       "contradicted_by": [],
+      "opening_announced": [],
       "mentions": [
         "chicago_democrat_1835_06_04#c006"
       ],
@@ -59385,6 +59480,24 @@
         ]
       },
       "contradicted_by": [],
+      "opening_announced": [
+        {
+          "claim": "chicago_american_1835_08_08#c001",
+          "issue": "1835-08-08",
+          "dating": "effected",
+          "iso": "1835-08-07",
+          "verbatim": "h[e] has [commen]ced the practice of medicine and opene[d an office] on Lake s[t]re[et], near the Po[st] Office",
+          "note": "The American's printing of the same notice the Democrat carries on 12 August, over the same 7 August 1835 dateline."
+        },
+        {
+          "claim": "chicago_democrat_1835_08_12#c004",
+          "issue": "1835-08-12",
+          "dating": "effected",
+          "iso": "1835-08-07",
+          "verbatim": "he has commenced the practice of Medicine and opened an office on Lake street near the post office",
+          "note": "'Has commenced ... and opened' over a dateline of 7 August 1835. The opening is on or before that day and the copy is silent about 1 July."
+        }
+      ],
       "mentions": [
         "chicago_american_1835_08_08#c001",
         "chicago_democrat_1835_08_12#c004"
@@ -59427,6 +59540,16 @@
         ]
       },
       "contradicted_by": [],
+      "opening_announced": [
+        {
+          "claim": "chicago_democrat_1835_07_01#c017",
+          "issue": "1835-07-01",
+          "dating": "effected",
+          "iso": "1835-07-01",
+          "verbatim": "having b[een appointed] Fire Insuran[ce] Agent for the Howard [Fire Insurance] Company",
+          "note": "The agency is announced as already conferred, over the dateline of 1 July 1835 — the scene date itself."
+        }
+      ],
       "mentions": [
         "chicago_american_1835_06_20#c015",
         "chicago_democrat_1835_07_01#c017"
@@ -59462,6 +59585,7 @@
         ]
       },
       "contradicted_by": [],
+      "opening_announced": [],
       "mentions": [
         "chicago_democrat_1834_06_04#c009"
       ],
@@ -59489,6 +59613,7 @@
         "copy_dates": []
       },
       "contradicted_by": [],
+      "opening_announced": [],
       "mentions": [
         "chicago_democrat_1834_07_23#c006"
       ],
@@ -59518,6 +59643,7 @@
         ]
       },
       "contradicted_by": [],
+      "opening_announced": [],
       "mentions": [
         "chicago_democrat_1834_03_18#c011"
       ],
@@ -59548,6 +59674,7 @@
         "copy_dates": []
       },
       "contradicted_by": [],
+      "opening_announced": [],
       "mentions": [
         "chicago_democrat_1834_12_10#c006"
       ],
@@ -59579,6 +59706,7 @@
         "copy_dates": []
       },
       "contradicted_by": [],
+      "opening_announced": [],
       "mentions": [
         "chicago_democrat_1834_04_08#c012"
       ],
@@ -59609,6 +59737,7 @@
         ]
       },
       "contradicted_by": [],
+      "opening_announced": [],
       "mentions": [
         "chicago_democrat_1834_07_02#c003"
       ],
@@ -59643,6 +59772,7 @@
         ]
       },
       "contradicted_by": [],
+      "opening_announced": [],
       "mentions": [
         "chicago_democrat_1833_12_17#c005",
         "chicago_democrat_1834_01_07#c011"
@@ -59686,6 +59816,7 @@
           "issue": "1834-10-08"
         }
       ],
+      "opening_announced": [],
       "mentions": [
         "chicago_democrat_1834_04_16#c002",
         "chicago_democrat_1834_05_14#c008",
@@ -59723,6 +59854,7 @@
         ]
       },
       "contradicted_by": [],
+      "opening_announced": [],
       "mentions": [
         "chicago_democrat_1834_06_18#c013",
         "chicago_democrat_1834_09_10#c014"
@@ -59761,6 +59893,7 @@
         ]
       },
       "contradicted_by": [],
+      "opening_announced": [],
       "mentions": [
         "chicago_american_1835_07_04#c009"
       ],
@@ -59789,6 +59922,7 @@
         "copy_dates": []
       },
       "contradicted_by": [],
+      "opening_announced": [],
       "mentions": [
         "chicago_democrat_1834_06_04#c014",
         "chicago_democrat_1834_07_02#c055",
@@ -59833,6 +59967,7 @@
         ]
       },
       "contradicted_by": [],
+      "opening_announced": [],
       "mentions": [
         "chicago_democrat_1834_11_05#c004"
       ],
@@ -59862,6 +59997,7 @@
         "copy_dates": []
       },
       "contradicted_by": [],
+      "opening_announced": [],
       "mentions": [
         "chicago_democrat_1834_03_04#c007"
       ],
@@ -59888,6 +60024,7 @@
         "copy_dates": []
       },
       "contradicted_by": [],
+      "opening_announced": [],
       "mentions": [
         "chicago_democrat_1834_11_12#c012"
       ],
@@ -59935,6 +60072,7 @@
         ]
       },
       "contradicted_by": [],
+      "opening_announced": [],
       "mentions": [
         "chicago_american_1835_06_08#c016",
         "chicago_american_1835_06_13#c018",
@@ -59975,6 +60113,7 @@
         ]
       },
       "contradicted_by": [],
+      "opening_announced": [],
       "mentions": [
         "chicago_democrat_1834_06_04#c024",
         "chicago_democrat_1834_07_09#c027"
@@ -60006,6 +60145,7 @@
         ]
       },
       "contradicted_by": [],
+      "opening_announced": [],
       "mentions": [
         "chicago_american_1835_06_13#c004"
       ],
@@ -60034,6 +60174,7 @@
         "copy_dates": []
       },
       "contradicted_by": [],
+      "opening_announced": [],
       "mentions": [
         "chicago_democrat_1834_10_08#c004"
       ],
@@ -60064,6 +60205,7 @@
         ]
       },
       "contradicted_by": [],
+      "opening_announced": [],
       "mentions": [
         "chicago_democrat_1833_12_17#c004",
         "chicago_democrat_1834_01_28#c006",
@@ -60107,6 +60249,7 @@
         "copy_dates": []
       },
       "contradicted_by": [],
+      "opening_announced": [],
       "mentions": [
         "chicago_democrat_1834_05_07#c003"
       ],
@@ -60143,6 +60286,7 @@
           "issue": "1834-07-02"
         }
       ],
+      "opening_announced": [],
       "mentions": [
         "chicago_democrat_1834_07_02#c049"
       ],
@@ -60170,6 +60314,7 @@
         "copy_dates": []
       },
       "contradicted_by": [],
+      "opening_announced": [],
       "mentions": [
         "chicago_democrat_1834_07_02#c050"
       ],
@@ -60198,6 +60343,16 @@
         ]
       },
       "contradicted_by": [],
+      "opening_announced": [
+        {
+          "claim": "chicago_democrat_1835_08_19#c011",
+          "issue": "1835-08-19",
+          "dating": "effected",
+          "iso": "1835-08-10",
+          "verbatim": "having taken a shop on Dea[r]born street nearly opposite the Eagle Coffee House",
+          "note": "'Having taken' over a dateline of 10 August 1835 — on or before that day, and silent about 1 July."
+        }
+      ],
       "mentions": [
         "chicago_democrat_1835_08_19#c011"
       ],
@@ -60226,6 +60381,7 @@
         ]
       },
       "contradicted_by": [],
+      "opening_announced": [],
       "mentions": [
         "chicago_democrat_1834_11_12#c008",
         "chicago_democrat_1834_11_26#c009",
@@ -60295,6 +60451,7 @@
           "issue": "1835-06-13"
         }
       ],
+      "opening_announced": [],
       "mentions": [
         "chicago_american_1835_06_08#c006",
         "chicago_american_1835_06_13#c015",
@@ -60326,6 +60483,7 @@
         "copy_dates": []
       },
       "contradicted_by": [],
+      "opening_announced": [],
       "mentions": [
         "chicago_democrat_1834_12_10#c002"
       ],
@@ -60373,6 +60531,7 @@
         ]
       },
       "contradicted_by": [],
+      "opening_announced": [],
       "mentions": [
         "chicago_democrat_1834_06_04#c021",
         "chicago_democrat_1834_07_02#c010",
@@ -60453,6 +60612,7 @@
         ]
       },
       "contradicted_by": [],
+      "opening_announced": [],
       "mentions": [
         "chicago_american_1835_06_08#c013",
         "chicago_american_1835_06_20#c006",
@@ -60489,6 +60649,7 @@
         ]
       },
       "contradicted_by": [],
+      "opening_announced": [],
       "mentions": [
         "chicago_american_1835_07_04#c001",
         "chicago_democrat_1835_06_04#c005",
@@ -60527,6 +60688,7 @@
         "copy_dates": []
       },
       "contradicted_by": [],
+      "opening_announced": [],
       "mentions": [
         "chicago_democrat_1835_08_05#c018"
       ],
@@ -60554,6 +60716,16 @@
         ]
       },
       "contradicted_by": [],
+      "opening_announced": [
+        {
+          "claim": "chicago_democrat_1835_08_12#c006",
+          "issue": "1835-08-12",
+          "dating": "stated",
+          "iso": "1835-08-10",
+          "verbatim": "he will [open a] HIGH SCHOOL for Young Gentlemen [on] the 10th of the present month",
+          "note": "The advertisement is dated 5 August 1835, so 'the present month' is August and the school opens on 10 August 1835 — and only 'should sufficient encouragement be offered'. It was not open on 1 July."
+        }
+      ],
       "mentions": [
         "chicago_democrat_1835_08_12#c006"
       ],
@@ -60582,6 +60754,7 @@
         ]
       },
       "contradicted_by": [],
+      "opening_announced": [],
       "mentions": [
         "chicago_democrat_1834_02_25#c005",
         "chicago_democrat_1834_03_04#c004",
@@ -60608,6 +60781,7 @@
         "copy_dates": []
       },
       "contradicted_by": [],
+      "opening_announced": [],
       "mentions": [
         "chicago_democrat_1835_07_08#c005",
         "chicago_democrat_1835_07_29#c011"
@@ -60677,6 +60851,7 @@
         ]
       },
       "contradicted_by": [],
+      "opening_announced": [],
       "mentions": [
         "chicago_american_1835_06_20#c013",
         "chicago_american_1835_06_27#c012",
@@ -60727,6 +60902,7 @@
         ]
       },
       "contradicted_by": [],
+      "opening_announced": [],
       "mentions": [
         "chicago_democrat_1833_11_26#c006"
       ],
@@ -60753,6 +60929,7 @@
         "copy_dates": []
       },
       "contradicted_by": [],
+      "opening_announced": [],
       "mentions": [
         "chicago_democrat_1834_11_19#c004"
       ],
@@ -60793,6 +60970,7 @@
         ]
       },
       "contradicted_by": [],
+      "opening_announced": [],
       "mentions": [
         "chicago_democrat_1834_07_02#c021"
       ],
@@ -60824,6 +61002,7 @@
         ]
       },
       "contradicted_by": [],
+      "opening_announced": [],
       "mentions": [
         "chicago_democrat_1833_11_26#c007",
         "chicago_democrat_1833_11_26#c021"
@@ -60856,6 +61035,7 @@
         ]
       },
       "contradicted_by": [],
+      "opening_announced": [],
       "mentions": [
         "chicago_democrat_1834_07_16#c014",
         "chicago_democrat_1834_07_30#c009",
@@ -60885,6 +61065,7 @@
         ]
       },
       "contradicted_by": [],
+      "opening_announced": [],
       "mentions": [
         "chicago_democrat_1835_08_19#c010"
       ],
@@ -60915,6 +61096,7 @@
         ]
       },
       "contradicted_by": [],
+      "opening_announced": [],
       "mentions": [
         "chicago_democrat_1835_05_20#c009"
       ],
@@ -60941,6 +61123,7 @@
         "copy_dates": []
       },
       "contradicted_by": [],
+      "opening_announced": [],
       "mentions": [
         "chicago_democrat_1835_08_05#c017"
       ],
@@ -60970,6 +61153,7 @@
         "copy_dates": []
       },
       "contradicted_by": [],
+      "opening_announced": [],
       "mentions": [
         "chicago_democrat_1833_12_17#c006"
       ],
@@ -60998,6 +61182,7 @@
         ]
       },
       "contradicted_by": [],
+      "opening_announced": [],
       "mentions": [
         "chicago_democrat_1834_02_04#c009",
         "chicago_democrat_1834_02_11#c005",
@@ -61044,6 +61229,7 @@
         ]
       },
       "contradicted_by": [],
+      "opening_announced": [],
       "mentions": [
         "chicago_american_1835_06_20#c005"
       ],
@@ -61095,6 +61281,7 @@
         ]
       },
       "contradicted_by": [],
+      "opening_announced": [],
       "mentions": [
         "chicago_democrat_1834_06_04#c004",
         "chicago_democrat_1834_07_02#c022",
@@ -61180,6 +61367,7 @@
         ]
       },
       "contradicted_by": [],
+      "opening_announced": [],
       "mentions": [
         "chicago_democrat_1834_02_18#c003",
         "chicago_democrat_1834_02_25#c001",
@@ -61246,6 +61434,7 @@
         "copy_dates": []
       },
       "contradicted_by": [],
+      "opening_announced": [],
       "mentions": [
         "chicago_democrat_1834_08_13#c015"
       ],
@@ -61341,6 +61530,7 @@
         ]
       },
       "contradicted_by": [],
+      "opening_announced": [],
       "mentions": [
         "chicago_american_1835_06_08#c012",
         "chicago_american_1835_06_20#c002",
@@ -61447,6 +61637,7 @@
         ]
       },
       "contradicted_by": [],
+      "opening_announced": [],
       "mentions": [
         "chicago_democrat_1834_03_25#c010",
         "chicago_democrat_1834_08_13#c017",
@@ -61495,6 +61686,7 @@
           "issue": "1834-03-25"
         }
       ],
+      "opening_announced": [],
       "mentions": [
         "chicago_democrat_1834_03_04#c011",
         "chicago_democrat_1834_03_25#c004"
@@ -61529,6 +61721,7 @@
         "copy_dates": []
       },
       "contradicted_by": [],
+      "opening_announced": [],
       "mentions": [
         "chicago_american_1835_07_11#c004"
       ],
@@ -61557,6 +61750,7 @@
         "copy_dates": []
       },
       "contradicted_by": [],
+      "opening_announced": [],
       "mentions": [
         "chicago_democrat_1835_06_10#c008"
       ],
@@ -61586,6 +61780,7 @@
         "copy_dates": []
       },
       "contradicted_by": [],
+      "opening_announced": [],
       "mentions": [
         "chicago_democrat_1834_03_04#c024",
         "chicago_democrat_1834_06_11#c015"
@@ -61615,6 +61810,7 @@
         "copy_dates": []
       },
       "contradicted_by": [],
+      "opening_announced": [],
       "mentions": [
         "chicago_american_1835_06_13#c006"
       ],
@@ -61640,6 +61836,7 @@
         "copy_dates": []
       },
       "contradicted_by": [],
+      "opening_announced": [],
       "mentions": [
         "chicago_democrat_1835_07_22#c003",
         "chicago_democrat_1835_07_29#c006"
@@ -61667,6 +61864,7 @@
         "copy_dates": []
       },
       "contradicted_by": [],
+      "opening_announced": [],
       "mentions": [
         "chicago_democrat_1835_08_19#c017"
       ],
@@ -61727,6 +61925,7 @@
         ]
       },
       "contradicted_by": [],
+      "opening_announced": [],
       "mentions": [
         "chicago_democrat_1834_04_16#c003",
         "chicago_democrat_1834_04_30#c006",
@@ -61775,6 +61974,16 @@
         ]
       },
       "contradicted_by": [],
+      "opening_announced": [
+        {
+          "claim": "chicago_democrat_1835_08_12#c012",
+          "issue": "1835-08-12",
+          "dating": "effected",
+          "iso": "1835-06-10",
+          "verbatim": "is now opening a heavy [asso]rtment of the above named articles [on South] Water st., one door from Dearborn street",
+          "note": "Dated 10 June 1835, three weeks BEFORE the scene date: Holbrook's store was opening its stock in June and stood on South Water Street on 1 July."
+        }
+      ],
       "mentions": [
         "chicago_american_1835_06_13#c012",
         "chicago_democrat_1835_06_10#c010",
@@ -61815,6 +62024,7 @@
         "copy_dates": []
       },
       "contradicted_by": [],
+      "opening_announced": [],
       "mentions": [
         "chicago_democrat_1834_06_11#c002"
       ],
@@ -61842,6 +62052,7 @@
         "copy_dates": []
       },
       "contradicted_by": [],
+      "opening_announced": [],
       "mentions": [
         "chicago_democrat_1833_12_10#c012"
       ],
@@ -61872,6 +62083,7 @@
         "copy_dates": []
       },
       "contradicted_by": [],
+      "opening_announced": [],
       "mentions": [
         "chicago_democrat_1834_07_09#c017"
       ],
@@ -61905,6 +62117,7 @@
           "issue": "1834-04-08"
         }
       ],
+      "opening_announced": [],
       "mentions": [
         "chicago_democrat_1834_04_08#c013"
       ],
@@ -61988,6 +62201,7 @@
         ]
       },
       "contradicted_by": [],
+      "opening_announced": [],
       "mentions": [
         "chicago_democrat_1833_11_26#c009",
         "chicago_democrat_1833_11_26#c023",
@@ -62062,6 +62276,7 @@
         ]
       },
       "contradicted_by": [],
+      "opening_announced": [],
       "mentions": [
         "chicago_democrat_1834_07_09#c020",
         "chicago_democrat_1834_07_23#c007",
@@ -62135,6 +62350,32 @@
         ]
       },
       "contradicted_by": [],
+      "opening_announced": [
+        {
+          "claim": "chicago_democrat_1835_07_08#c009",
+          "issue": "1835-07-08",
+          "dating": "undated",
+          "iso": null,
+          "verbatim": "[The un]dersigned have formed a connection [in the] mercantile business, under the firm [of Jones, Ki]ng & Co.",
+          "note": "A firm announcing its own formation, and this printing carries no dateline. The 5 August printing of the same copy does, and it is dated 1 July 1835."
+        },
+        {
+          "claim": "chicago_democrat_1835_07_22#c009",
+          "issue": "1835-07-22",
+          "dating": "undated",
+          "iso": null,
+          "verbatim": "[The] undersigned have formed a connection [in] the mercantile business",
+          "note": "The second printing of the Jones, King & Co. formation notice, again with no dateline."
+        },
+        {
+          "claim": "chicago_democrat_1835_08_05#c008",
+          "issue": "1835-08-05",
+          "dating": "effected",
+          "iso": "1835-07-01",
+          "verbatim": "having been appointed Agent for the Howard Fire Insurance Company",
+          "note": "The agency is already held, over a dateline of 1 July 1835 — on the scene date, not after it."
+        }
+      ],
       "mentions": [
         "chicago_democrat_1835_05_27#c005",
         "chicago_democrat_1835_07_08#c009",
@@ -62174,6 +62415,7 @@
         ]
       },
       "contradicted_by": [],
+      "opening_announced": [],
       "mentions": [
         "chicago_democrat_1834_07_09#c029"
       ],
@@ -62202,6 +62444,7 @@
         "copy_dates": []
       },
       "contradicted_by": [],
+      "opening_announced": [],
       "mentions": [
         "chicago_democrat_1834_07_02#c052",
         "chicago_democrat_1834_11_19#c011"
@@ -62237,6 +62480,7 @@
         ]
       },
       "contradicted_by": [],
+      "opening_announced": [],
       "mentions": [
         "chicago_democrat_1834_06_25#c004"
       ],
@@ -62267,6 +62511,7 @@
         ]
       },
       "contradicted_by": [],
+      "opening_announced": [],
       "mentions": [
         "chicago_democrat_1835_07_01#c013"
       ],
@@ -62295,6 +62540,7 @@
         "copy_dates": []
       },
       "contradicted_by": [],
+      "opening_announced": [],
       "mentions": [
         "chicago_democrat_1835_07_22#c012",
         "chicago_democrat_1835_07_29#c015"
@@ -62322,6 +62568,7 @@
         "copy_dates": []
       },
       "contradicted_by": [],
+      "opening_announced": [],
       "mentions": [
         "chicago_democrat_1835_08_05#c011"
       ],
@@ -62360,6 +62607,7 @@
         ]
       },
       "contradicted_by": [],
+      "opening_announced": [],
       "mentions": [
         "chicago_democrat_1833_12_17#c003",
         "chicago_democrat_1834_04_08#c007",
@@ -62407,6 +62655,7 @@
           "issue": "1835-06-27"
         }
       ],
+      "opening_announced": [],
       "mentions": [
         "chicago_american_1835_06_27#c006"
       ],
@@ -62437,6 +62686,7 @@
         ]
       },
       "contradicted_by": [],
+      "opening_announced": [],
       "mentions": [
         "chicago_democrat_1834_07_02#c018"
       ],
@@ -62464,6 +62714,7 @@
         "copy_dates": []
       },
       "contradicted_by": [],
+      "opening_announced": [],
       "mentions": [
         "chicago_democrat_1835_06_24#c007"
       ],
@@ -62565,6 +62816,7 @@
         ]
       },
       "contradicted_by": [],
+      "opening_announced": [],
       "mentions": [
         "chicago_democrat_1835_06_10#c009",
         "chicago_democrat_1835_06_17#c007",
@@ -62603,6 +62855,7 @@
           "issue": "1834-08-13"
         }
       ],
+      "opening_announced": [],
       "mentions": [
         "chicago_democrat_1834_08_13#c008"
       ],
@@ -62636,6 +62889,7 @@
         ]
       },
       "contradicted_by": [],
+      "opening_announced": [],
       "mentions": [
         "chicago_democrat_1834_09_10#c013"
       ],
@@ -62670,6 +62924,7 @@
         ]
       },
       "contradicted_by": [],
+      "opening_announced": [],
       "mentions": [
         "chicago_democrat_1834_12_10#c007"
       ],
@@ -62711,6 +62966,7 @@
         ]
       },
       "contradicted_by": [],
+      "opening_announced": [],
       "mentions": [
         "chicago_democrat_1833_11_26#c020",
         "chicago_democrat_1833_12_24#c003",
@@ -62752,6 +63008,7 @@
         "copy_dates": []
       },
       "contradicted_by": [],
+      "opening_announced": [],
       "mentions": [
         "chicago_democrat_1834_02_18#c010"
       ],
@@ -62780,6 +63037,7 @@
         "copy_dates": []
       },
       "contradicted_by": [],
+      "opening_announced": [],
       "mentions": [
         "chicago_democrat_1834_07_23#c002"
       ],
@@ -62812,6 +63070,7 @@
         "copy_dates": []
       },
       "contradicted_by": [],
+      "opening_announced": [],
       "mentions": [
         "chicago_democrat_1835_06_24#c008"
       ],
@@ -62840,6 +63099,7 @@
         ]
       },
       "contradicted_by": [],
+      "opening_announced": [],
       "mentions": [
         "chicago_democrat_1834_12_03#c021"
       ],
@@ -62866,6 +63126,7 @@
         "copy_dates": []
       },
       "contradicted_by": [],
+      "opening_announced": [],
       "mentions": [
         "chicago_democrat_1834_11_26#c002"
       ],
@@ -62903,6 +63164,7 @@
         ]
       },
       "contradicted_by": [],
+      "opening_announced": [],
       "mentions": [
         "chicago_american_1835_06_08#c014",
         "chicago_american_1835_06_20#c007",
@@ -62953,6 +63215,7 @@
         ]
       },
       "contradicted_by": [],
+      "opening_announced": [],
       "mentions": [
         "chicago_american_1835_06_08#c011",
         "chicago_american_1835_06_20#c014",
@@ -62992,6 +63255,7 @@
         ]
       },
       "contradicted_by": [],
+      "opening_announced": [],
       "mentions": [
         "chicago_democrat_1834_08_13#c011"
       ],
@@ -63021,6 +63285,7 @@
         ]
       },
       "contradicted_by": [],
+      "opening_announced": [],
       "mentions": [
         "chicago_democrat_1835_06_17#c011"
       ],
@@ -63071,6 +63336,7 @@
         ]
       },
       "contradicted_by": [],
+      "opening_announced": [],
       "mentions": [
         "chicago_democrat_1833_12_03#c010",
         "chicago_democrat_1834_02_18#c008",
@@ -63128,6 +63394,7 @@
         ]
       },
       "contradicted_by": [],
+      "opening_announced": [],
       "mentions": [
         "chicago_democrat_1834_07_02#c023",
         "chicago_democrat_1834_09_10#c005",
@@ -63154,6 +63421,7 @@
         ]
       },
       "contradicted_by": [],
+      "opening_announced": [],
       "mentions": [
         "chicago_democrat_1834_05_07#c012",
         "chicago_democrat_1834_05_21#c001"
@@ -63265,6 +63533,7 @@
         ]
       },
       "contradicted_by": [],
+      "opening_announced": [],
       "mentions": [
         "chicago_democrat_1833_12_03#c011",
         "chicago_democrat_1834_02_11#c004",
@@ -63316,6 +63585,7 @@
         "copy_dates": []
       },
       "contradicted_by": [],
+      "opening_announced": [],
       "mentions": [
         "chicago_democrat_1834_07_09#c028"
       ],
@@ -63363,6 +63633,7 @@
         ]
       },
       "contradicted_by": [],
+      "opening_announced": [],
       "mentions": [
         "chicago_democrat_1833_11_26#c015",
         "chicago_democrat_1834_02_11#c003",
@@ -63398,6 +63669,7 @@
         "copy_dates": []
       },
       "contradicted_by": [],
+      "opening_announced": [],
       "mentions": [
         "chicago_democrat_1834_01_07#c009"
       ],
@@ -63464,6 +63736,7 @@
         ]
       },
       "contradicted_by": [],
+      "opening_announced": [],
       "mentions": [
         "chicago_american_1835_06_27#c013",
         "chicago_american_1835_07_18#c004",
@@ -63525,6 +63798,7 @@
           "issue": "1834-06-11"
         }
       ],
+      "opening_announced": [],
       "mentions": [
         "chicago_democrat_1834_02_04#c012",
         "chicago_democrat_1834_04_08#c011",
@@ -63581,6 +63855,7 @@
         ]
       },
       "contradicted_by": [],
+      "opening_announced": [],
       "mentions": [
         "chicago_democrat_1834_06_25#c005",
         "chicago_democrat_1834_07_02#c051",
@@ -63615,6 +63890,7 @@
         ]
       },
       "contradicted_by": [],
+      "opening_announced": [],
       "mentions": [
         "chicago_democrat_1834_02_18#c004",
         "chicago_democrat_1834_03_18#c010"
@@ -63644,6 +63920,7 @@
         "copy_dates": []
       },
       "contradicted_by": [],
+      "opening_announced": [],
       "mentions": [
         "chicago_american_1835_06_13#c003"
       ],
@@ -63675,6 +63952,7 @@
         ]
       },
       "contradicted_by": [],
+      "opening_announced": [],
       "mentions": [
         "chicago_democrat_1833_12_03#c013"
       ],
@@ -63701,6 +63979,7 @@
         ]
       },
       "contradicted_by": [],
+      "opening_announced": [],
       "mentions": [
         "chicago_democrat_1834_09_03#c017"
       ],
@@ -63742,6 +64021,7 @@
         ]
       },
       "contradicted_by": [],
+      "opening_announced": [],
       "mentions": [
         "chicago_american_1835_06_13#c017",
         "chicago_american_1835_06_20#c008",
@@ -63772,6 +64052,7 @@
         ]
       },
       "contradicted_by": [],
+      "opening_announced": [],
       "mentions": [
         "chicago_democrat_1835_05_20#c011"
       ],
@@ -63814,6 +64095,7 @@
         ]
       },
       "contradicted_by": [],
+      "opening_announced": [],
       "mentions": [
         "chicago_democrat_1834_09_03#c012",
         "chicago_democrat_1834_11_12#c011",
@@ -63848,6 +64130,7 @@
         "copy_dates": []
       },
       "contradicted_by": [],
+      "opening_announced": [],
       "mentions": [
         "chicago_american_1835_06_08#c015",
         "chicago_american_1835_06_13#c019",
@@ -63882,6 +64165,7 @@
         ]
       },
       "contradicted_by": [],
+      "opening_announced": [],
       "mentions": [
         "chicago_democrat_1835_08_19#c012"
       ],
@@ -63912,6 +64196,7 @@
         ]
       },
       "contradicted_by": [],
+      "opening_announced": [],
       "mentions": [
         "chicago_democrat_1835_05_27#c007",
         "chicago_democrat_1835_07_08#c012",
@@ -63942,6 +64227,7 @@
         "copy_dates": []
       },
       "contradicted_by": [],
+      "opening_announced": [],
       "mentions": [
         "chicago_american_1835_08_01#c003"
       ],
@@ -63970,6 +64256,7 @@
         ]
       },
       "contradicted_by": [],
+      "opening_announced": [],
       "mentions": [
         "chicago_democrat_1835_08_05#c020"
       ],
@@ -64000,6 +64287,7 @@
         ]
       },
       "contradicted_by": [],
+      "opening_announced": [],
       "mentions": [
         "chicago_american_1835_06_08#c007",
         "chicago_american_1835_06_13#c016",
@@ -64029,6 +64317,7 @@
         ]
       },
       "contradicted_by": [],
+      "opening_announced": [],
       "mentions": [
         "chicago_democrat_1835_08_05#c012"
       ],
@@ -64080,6 +64369,7 @@
         ]
       },
       "contradicted_by": [],
+      "opening_announced": [],
       "mentions": [
         "chicago_democrat_1833_11_26#c016",
         "chicago_democrat_1834_03_04#c025"
@@ -64109,6 +64399,7 @@
         ]
       },
       "contradicted_by": [],
+      "opening_announced": [],
       "mentions": [
         "chicago_democrat_1834_12_03#c005"
       ],
@@ -64138,6 +64429,16 @@
         ]
       },
       "contradicted_by": [],
+      "opening_announced": [
+        {
+          "claim": "chicago_democrat_1835_08_12#c005",
+          "issue": "1835-08-12",
+          "dating": "effected",
+          "iso": "1835-08-12",
+          "verbatim": "[H]AS commenced his profession of [teaching music in Chi]cago",
+          "note": "The second notice: in July Lewis 'intends commencing' a school when scholars offer, and by 12 August 1835 he 'has commenced'. The July copy is itself dated 22 June 1835, before the scene date."
+        }
+      ],
       "mentions": [
         "chicago_democrat_1835_07_22#c005",
         "chicago_democrat_1835_07_29#c008",
@@ -64170,6 +64471,24 @@
         ]
       },
       "contradicted_by": [],
+      "opening_announced": [
+        {
+          "claim": "chicago_american_1835_08_22#c001",
+          "issue": "1835-08-22",
+          "dating": "effected",
+          "iso": "1835-08-18",
+          "verbatim": "[s]he ha[s] taken a room [in …] street, in the house [o]c[c]upied by Dr. Aus[tin]",
+          "note": "The American's printing of Sarah Howe's notice, over the same 18 August 1835 dateline as the Democrat's."
+        },
+        {
+          "claim": "chicago_democrat_1835_08_19#c013",
+          "issue": "1835-08-19",
+          "dating": "effected",
+          "iso": "1835-08-18",
+          "verbatim": "she has taken a room in Lake-street, in t[h]e house occupied by Dr. Austin",
+          "note": "'Has taken' over a dateline of 18 August 1835. The room is in Dr. Austin's house, whose own opening notice is dated 7 August."
+        }
+      ],
       "mentions": [
         "chicago_american_1835_08_22#c001",
         "chicago_democrat_1835_08_19#c013"
@@ -64207,6 +64526,7 @@
         ]
       },
       "contradicted_by": [],
+      "opening_announced": [],
       "mentions": [
         "chicago_american_1835_06_08#c008"
       ],
@@ -64241,6 +64561,7 @@
           "issue": "1834-03-18"
         }
       ],
+      "opening_announced": [],
       "mentions": [
         "chicago_democrat_1834_03_18#c008"
       ],
@@ -64268,6 +64589,7 @@
         "copy_dates": []
       },
       "contradicted_by": [],
+      "opening_announced": [],
       "mentions": [
         "chicago_democrat_1834_08_13#c009"
       ],
@@ -64296,6 +64618,7 @@
         "copy_dates": []
       },
       "contradicted_by": [],
+      "opening_announced": [],
       "mentions": [
         "chicago_democrat_1833_12_03#c015",
         "chicago_democrat_1834_01_07#c010"
@@ -64326,6 +64649,7 @@
         "copy_dates": []
       },
       "contradicted_by": [],
+      "opening_announced": [],
       "mentions": [
         "chicago_american_1835_08_22#c007"
       ],
@@ -64352,6 +64676,7 @@
         "copy_dates": []
       },
       "contradicted_by": [],
+      "opening_announced": [],
       "mentions": [
         "chicago_democrat_1834_08_06#c007"
       ],
@@ -64382,6 +64707,7 @@
         ]
       },
       "contradicted_by": [],
+      "opening_announced": [],
       "mentions": [
         "chicago_american_1835_06_20#c003"
       ],
@@ -64422,6 +64748,7 @@
         ]
       },
       "contradicted_by": [],
+      "opening_announced": [],
       "mentions": [
         "chicago_democrat_1833_11_26#c033",
         "chicago_democrat_1834_08_27#c009",
@@ -64461,9 +64788,21 @@
       "evidence": {
         "first_issue": "1835-07-29",
         "last_issue": "1835-07-29",
-        "copy_dates": []
+        "copy_dates": [
+          "1835-07-27"
+        ]
       },
       "contradicted_by": [],
+      "opening_announced": [
+        {
+          "claim": "chicago_democrat_1835_07_29#c004",
+          "issue": "1835-07-29",
+          "dating": "effected",
+          "iso": "1835-07-27",
+          "verbatim": "[that he has] [r]ented the New Stor[e] o[n] Dearborn [Street, for] the p[u]r[p]o[s]e of [t]ransacting [th]e A[uction] and Com[mi]ss[i]on busine[ss]",
+          "note": "'Has rented' over the printing's own dateline of 27 July 1835. The same copy is reprinted on 12 August (c009 there), where the dateline reads the same day."
+        }
+      ],
       "mentions": [
         "chicago_democrat_1835_07_29#c004"
       ],
@@ -64493,6 +64832,7 @@
         "copy_dates": []
       },
       "contradicted_by": [],
+      "opening_announced": [],
       "mentions": [
         "chicago_democrat_1834_04_01#c005"
       ],
@@ -64527,6 +64867,7 @@
         ]
       },
       "contradicted_by": [],
+      "opening_announced": [],
       "mentions": [
         "chicago_democrat_1833_12_31#c001",
         "chicago_democrat_1834_01_28#c005"
@@ -64563,6 +64904,7 @@
         ]
       },
       "contradicted_by": [],
+      "opening_announced": [],
       "mentions": [
         "chicago_democrat_1833_12_10#c008",
         "chicago_democrat_1834_03_04#c031"
@@ -64598,6 +64940,7 @@
         ]
       },
       "contradicted_by": [],
+      "opening_announced": [],
       "mentions": [
         "chicago_democrat_1833_12_10#c011",
         "chicago_democrat_1834_01_07#c007"
@@ -64638,6 +64981,7 @@
         ]
       },
       "contradicted_by": [],
+      "opening_announced": [],
       "mentions": [
         "chicago_democrat_1834_04_01#c004"
       ],
@@ -64672,6 +65016,7 @@
         "copy_dates": []
       },
       "contradicted_by": [],
+      "opening_announced": [],
       "mentions": [
         "chicago_democrat_1834_11_12#c014"
       ],
@@ -64700,6 +65045,7 @@
         ]
       },
       "contradicted_by": [],
+      "opening_announced": [],
       "mentions": [
         "chicago_democrat_1834_01_28#c009",
         "chicago_democrat_1834_05_21#c002"
@@ -64743,6 +65089,7 @@
         ]
       },
       "contradicted_by": [],
+      "opening_announced": [],
       "mentions": [
         "chicago_democrat_1834_07_23#c004",
         "chicago_democrat_1834_09_03#c019",
@@ -64774,6 +65121,7 @@
         "copy_dates": []
       },
       "contradicted_by": [],
+      "opening_announced": [],
       "mentions": [
         "chicago_democrat_1834_02_18#c001"
       ],
@@ -64804,6 +65152,7 @@
         "copy_dates": []
       },
       "contradicted_by": [],
+      "opening_announced": [],
       "mentions": [
         "chicago_democrat_1835_05_20#c019"
       ],
@@ -64851,6 +65200,7 @@
           "issue": "1834-06-25"
         }
       ],
+      "opening_announced": [],
       "mentions": [
         "chicago_democrat_1834_06_04#c011",
         "chicago_democrat_1834_06_25#c006"
@@ -64880,6 +65230,7 @@
         "copy_dates": []
       },
       "contradicted_by": [],
+      "opening_announced": [],
       "mentions": [
         "chicago_democrat_1834_07_02#c015"
       ],
@@ -64910,6 +65261,7 @@
         ]
       },
       "contradicted_by": [],
+      "opening_announced": [],
       "mentions": [
         "chicago_democrat_1834_07_02#c059"
       ],
@@ -64937,6 +65289,7 @@
         ]
       },
       "contradicted_by": [],
+      "opening_announced": [],
       "mentions": [
         "chicago_democrat_1834_07_02#c026"
       ],
@@ -64969,6 +65322,7 @@
         "copy_dates": []
       },
       "contradicted_by": [],
+      "opening_announced": [],
       "mentions": [
         "chicago_democrat_1834_07_09#c019"
       ],
@@ -64995,6 +65349,7 @@
         "copy_dates": []
       },
       "contradicted_by": [],
+      "opening_announced": [],
       "mentions": [
         "chicago_democrat_1834_07_09#c018"
       ],
@@ -65023,6 +65378,7 @@
         ]
       },
       "contradicted_by": [],
+      "opening_announced": [],
       "mentions": [
         "chicago_democrat_1834_07_02#c046"
       ],
@@ -65054,6 +65410,7 @@
         ]
       },
       "contradicted_by": [],
+      "opening_announced": [],
       "mentions": [
         "chicago_democrat_1834_07_16#c020"
       ],
@@ -65080,6 +65437,7 @@
         ]
       },
       "contradicted_by": [],
+      "opening_announced": [],
       "mentions": [
         "chicago_democrat_1834_05_28#c003"
       ],
@@ -65106,6 +65464,7 @@
         ]
       },
       "contradicted_by": [],
+      "opening_announced": [],
       "mentions": [
         "chicago_democrat_1834_05_28#c005"
       ],
@@ -65131,6 +65490,7 @@
         "copy_dates": []
       },
       "contradicted_by": [],
+      "opening_announced": [],
       "mentions": [
         "chicago_democrat_1834_05_14#c002"
       ],
@@ -65163,6 +65523,16 @@
         "copy_dates": []
       },
       "contradicted_by": [],
+      "opening_announced": [
+        {
+          "claim": "chicago_democrat_1835_08_12#c011",
+          "issue": "1835-08-12",
+          "dating": "undated",
+          "iso": null,
+          "verbatim": "[The subscribers h]aving [taken the New St]ore in La Salle stree[t]",
+          "note": "The subscribers are unnamed and the notice is undated; the New Store is next door to Hubbard & Co.'s brick store and nothing dates the taking."
+        }
+      ],
       "mentions": [
         "chicago_democrat_1835_08_12#c011"
       ],
@@ -65196,6 +65566,16 @@
         "copy_dates": []
       },
       "contradicted_by": [],
+      "opening_announced": [
+        {
+          "claim": "chicago_democrat_1835_08_05#c025",
+          "issue": "1835-08-05",
+          "dating": "undated",
+          "iso": null,
+          "verbatim": "he ha[s] ju[st] ope[ned a] Boot, Sho[e] an[d] Leather store on [Clark?] street, two doors north of Lak[e] street",
+          "note": "'Just opened', and the printing is unsigned and undated. There is no date to carry, so none is supplied — the store is not excluded on a number nobody printed."
+        }
+      ],
       "mentions": [
         "chicago_democrat_1835_08_05#c025"
       ],
@@ -65224,6 +65604,7 @@
         "copy_dates": []
       },
       "contradicted_by": [],
+      "opening_announced": [],
       "mentions": [
         "chicago_democrat_1834_07_09#c025"
       ],
@@ -65249,6 +65630,7 @@
         "copy_dates": []
       },
       "contradicted_by": [],
+      "opening_announced": [],
       "mentions": [
         "chicago_democrat_1834_05_28#c004"
       ],
@@ -65280,6 +65662,7 @@
         "copy_dates": []
       },
       "contradicted_by": [],
+      "opening_announced": [],
       "mentions": [
         "chicago_democrat_1834_11_05#c013"
       ],
@@ -65317,6 +65700,7 @@
         "copy_dates": []
       },
       "contradicted_by": [],
+      "opening_announced": [],
       "mentions": [
         "chicago_democrat_1834_06_04#c022"
       ],
@@ -65380,6 +65764,7 @@
         ]
       },
       "contradicted_by": [],
+      "opening_announced": [],
       "mentions": [
         "chicago_democrat_1833_11_26#c012",
         "chicago_democrat_1834_02_18#c007",
@@ -65427,6 +65812,7 @@
         ]
       },
       "contradicted_by": [],
+      "opening_announced": [],
       "mentions": [
         "chicago_democrat_1833_12_10#c002",
         "chicago_democrat_1834_01_21#c003"
@@ -65458,6 +65844,16 @@
         ]
       },
       "contradicted_by": [],
+      "opening_announced": [
+        {
+          "claim": "chicago_democrat_1835_07_08#c001",
+          "issue": "1835-07-08",
+          "dating": "effected",
+          "iso": "1835-07-06",
+          "verbatim": "has taken David Carver's Old Stand, South Water-Street, for the purpose of transacting the above business",
+          "note": "'Has taken' over a dateline of 6 July 1835: the stand was taken on or before that day, never after it. The fuller printing of the same copy in this issue ('New Establishment', page 3 columns 5-6) says his first public sale falls on 'the 1st day of July', which is the scene date."
+        }
+      ],
       "mentions": [
         "chicago_democrat_1835_07_08#c001",
         "chicago_democrat_1835_07_15#c005",
@@ -65503,6 +65899,16 @@
         ]
       },
       "contradicted_by": [],
+      "opening_announced": [
+        {
+          "claim": "chicago_democrat_1835_08_05#c009",
+          "issue": "1835-08-05",
+          "dating": "effected",
+          "iso": "1835-07-06",
+          "verbatim": "ha[s] taken David Car[ver]'s O[l]d Stand, [S]out[h] Water Street",
+          "note": "The reprint of the 8 July notice under the fuller firm style, carrying the same 6 July 1835 dateline."
+        }
+      ],
       "mentions": [
         "chicago_democrat_1835_08_05#c009",
         "chicago_democrat_1835_08_05#c016"
@@ -65539,6 +65945,7 @@
         ]
       },
       "contradicted_by": [],
+      "opening_announced": [],
       "mentions": [
         "chicago_democrat_1834_01_28#c008",
         "chicago_democrat_1834_03_04#c028",
@@ -65582,6 +65989,7 @@
         ]
       },
       "contradicted_by": [],
+      "opening_announced": [],
       "mentions": [
         "chicago_democrat_1834_03_18#c009"
       ],
@@ -65609,6 +66017,7 @@
         ]
       },
       "contradicted_by": [],
+      "opening_announced": [],
       "mentions": [
         "chicago_democrat_1834_08_13#c018"
       ],
@@ -65641,6 +66050,7 @@
         ]
       },
       "contradicted_by": [],
+      "opening_announced": [],
       "mentions": [
         "chicago_democrat_1834_06_04#c012"
       ],
@@ -65674,6 +66084,16 @@
         ]
       },
       "contradicted_by": [],
+      "opening_announced": [
+        {
+          "claim": "chicago_democrat_1835_08_19#c015",
+          "issue": "1835-08-19",
+          "dating": "stated",
+          "iso": "1835-09-01",
+          "verbatim": "will receive and offer for sale on the first of September",
+          "note": "Dated August 1835, so 'the first of September' is 1 September 1835 — two months after the scene date, and the stock is not in the store yet."
+        }
+      ],
       "mentions": [
         "chicago_democrat_1835_08_19#c015"
       ],
@@ -65702,6 +66122,7 @@
         "copy_dates": []
       },
       "contradicted_by": [],
+      "opening_announced": [],
       "mentions": [
         "chicago_democrat_1834_06_11#c008"
       ],
@@ -65733,6 +66154,7 @@
         ]
       },
       "contradicted_by": [],
+      "opening_announced": [],
       "mentions": [
         "chicago_democrat_1834_06_18#c012",
         "chicago_democrat_1834_07_02#c024",
@@ -65764,6 +66186,7 @@
         ]
       },
       "contradicted_by": [],
+      "opening_announced": [],
       "mentions": [
         "chicago_democrat_1835_08_05#c021",
         "chicago_democrat_1835_08_19#c014"
@@ -65807,6 +66230,7 @@
         ]
       },
       "contradicted_by": [],
+      "opening_announced": [],
       "mentions": [
         "chicago_democrat_1835_05_20#c020"
       ],
@@ -65843,6 +66267,16 @@
         ]
       },
       "contradicted_by": [],
+      "opening_announced": [
+        {
+          "claim": "chicago_democrat_1835_08_05#c024",
+          "issue": "1835-08-05",
+          "dating": "effected",
+          "iso": "1834-07-08",
+          "verbatim": "HAS opened an extensive Boot, Shoe and [Leather] Store on Dearborn street",
+          "note": "THE DATELINE IS 8 JULY 1834 — a year and a day before the scene date. Taylor's store was opened, and advertised as opened, in the summer of 1834; the August 1835 printing is a standing advertisement and not a new one. This is the reading the proxy could not make, and it excluded him from a town he demonstrably stood in."
+        }
+      ],
       "mentions": [
         "chicago_democrat_1835_08_05#c024"
       ],
@@ -65893,6 +66327,7 @@
           "issue": "1835-07-29"
         }
       ],
+      "opening_announced": [],
       "mentions": [
         "chicago_democrat_1834_09_03#c009",
         "chicago_democrat_1834_11_05#c002",
@@ -65928,6 +66363,7 @@
         "copy_dates": []
       },
       "contradicted_by": [],
+      "opening_announced": [],
       "mentions": [
         "chicago_american_1835_06_13#c005",
         "chicago_american_1835_07_11#c005"
