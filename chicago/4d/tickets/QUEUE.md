@@ -39,7 +39,6 @@
 T-0336 — The 31 July 1835 letter list, standing in all four August Democrats
 T-0263 — The documented storefronts take their places on South Water and Lake
 T-0306 — The American names six Chicago storefronts with usable placements and none of them is standing in the model yet
-T-0367 — The documented tradesmen the papers DO place need roofs on their own street, and the deal has no way to ask
 T-0368 — The letter lists mint new residents: 1,967 documented people the register would ADD to the town
 
 # --- NEWSPAPERS, WAITING ON THE PAGE IMAGES — each needs the owner's scans opened,
@@ -140,3 +139,4 @@ T-0364 — Two byte-identical copies of changelog.js are 7.2 per cent of the pub
 T-0365 — The anonymous-block programme has no unblocked ground left: every block with headroom is on the South Water reach T-0009 holds open
 T-0333 — Every stove pipe in the town owes eighteen inches above its roof, and the ordinance of 5 August 1835 says so
 T-0334 — The hay-stacking ordinance walks a six-vertex boundary round the built town, and nothing draws or tests it
+T-0375 — Every reconstructed roof on South Water Street is a labourer's, so five documented tradesmen the papers put there have nowhere to stand
