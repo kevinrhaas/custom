@@ -3,7 +3,7 @@
   "issue_id": "chicago_democrat_1834_12_03",
   "extracted": "2026-08-29",
   "extracted_by": "hand, T-0294 — the Democrat read, December 1834",
-  "note": "Vol. II No. 1, the first number of Volume II. THE BEST-TRANSCRIBED ISSUE OF THE MONTH for the town's own matter: page 3 column 4 and page 4 columns 1-2 are the Tesseract fallback and, unusually for this corpus, the fallback is the LEGIBLE reading here — one physical column per segmenter column, full sentences — while the Vision-set columns of page 3 alternate two physical columns line by line. Every claim below says which it is. The month's principal town documents stand in this issue: the fire ordinance of 3 November 1834 in its third and clearest printing, the Democrat's own imprint naming the building it is printed in, and John H. Kinzie's 90-by-45-foot floor in Kinzie's Addition. NO POST-OFFICE LETTER LIST OF ANY OFFICE STANDS IN THIS ISSUE.",
+  "note": "Vol. II No. 1, the first number of Volume II. THE BEST-TRANSCRIBED ISSUE OF THE MONTH for the town's own matter: page 3 column 4 and page 4 columns 1-2 are the Tesseract fallback and, unusually for this corpus, the fallback is the LEGIBLE reading here — one physical column per segmenter column, full sentences — while the Vision-set columns of page 3 alternate two physical columns line by line. Every claim below says which it is. The month's principal town documents stand in this issue: the fire ordinance of 3 November 1834 in its third and clearest printing, the Democrat's own imprint naming the building it is printed in, and John H. Kinzie's 90-by-45-foot floor in Kinzie's Addition. NO POST-OFFICE LETTER LIST OF ANY OFFICE STANDS IN THIS ISSUE. AMENDED BY T-0328 on 2026-08-29: D. Weaver's standing advertisement for the building on North Water street stands in this issue and was not claimed. It is c025, and it reads LOT 2 — one of the four printings of five that do.",
   "claims": [
     {
       "id": "c001",
@@ -122,22 +122,22 @@
       "id": "c004",
       "kind": "business",
       "reading": "transcription_mediated",
-      "quote": "RUISAL & CLUPR,\n[uncertain: ? to inform the citizens of Ch jicago]\nB neighboring villages, that their stock or\n_ Books & Stationary\nis received, which compri 4\nshape tra eo\nlogical and Medical Books, from Boston, New-\nYork and Philadelphia, many of them just pub-\nished and in elegant binding: Almanachs for\n1835; various descriptions of wriling, lester, | op,\nand other Paper, from the best manufactures; a| jy\"\nvarity of new Tracts; also, receipt, note, let- Hi\nter and day books; Maynard & Noyes’ superior\nbiack and red’ Ink and ink Powders: together! &\nwith steal pensand.ensea, quills, poncila; silver, |\nplain and embossed Pencil Cases; pen and pac| Ui\nsapere ‘Tooth and other Brushes, and fan-|\nAlso, a gord assortment of fashionable b\nand nap 1A TS; gentlemen's buck perigee\neuperfine silk and bombazine Stocks, &c.\n_figents for Morison's Vegetable Pills.\nG5 20%, of Silsry's gat steal “AXES, by\nlozen or singly. Bi ‘i\n[uncertain: Nor. 5 183k ee ? hee:]",
-      "normalized": "[uncertain: RUISAL & CLUPR] beg leave to inform the citizens of Chicago [and the] neighboring villages, that their stock of Books & Stationary is received, which compri[ses ... Miscellaneous, School, Classical,] Theological and Medical Books, from Boston, New-York and Philadelphia, many of them just published and in elegant binding: Almanachs for 1835; various descriptions of writing, letter, and other Paper, from the best manufactures; a var[ie]ty of new Tracts; also, receipt, note, letter and day books; Maynard & Noyes' superior black and red Ink and ink Powders: together with steel pens and [cas]es, quills, pencils; silver, plain and embossed Pencil Cases; pen and pa[per ... ] Tooth and other Brushes, and fan[cy … ] Also, a good assortment of fashionable b[eaver] and nap HATS; gentlemen's buck [skin Gloves;] superfine silk and bombazine Stocks, &c. Agents for Morison's Vegetable Pills. [Also, 20 doz.] of Silsby's ca[s]t steel AXES, by [the] dozen or singly. [Nov. 5, 1834.]",
+      "quote": "RUISAL & CLUPR,\n[uncertain: ? to inform the citizens of Ch jicago]\nB neighboring villages, that their stock or\n_ Books & Stationary\nis received, which compri 4\nshape tra eo\nlogical and Medical Books, from Boston, New-\nYork and Philadelphia, many of them just pub-\nished and in elegant binding: Almanachs for\n1835; various descriptions of wriling, lester, | op,\nand other Paper, from the best manufactures; a| jy\"\nvarity of new Tracts; also, receipt, note, let- Hi\nter and day books; Maynard & Noyes’ superior\nbiack and red’ Ink and ink Powders: together! &\nwith steal pensand.ensea, quills, poncila; silver, |\nplain and embossed Pencil Cases; pen and pac| Ui\nsapere ‘Tooth and other Brushes, and fan-|\nAlso, a gord assortment of fashionable b\nand nap 1A TS; gentlemen's buck perigee\neuperfine silk and bombazine Stocks, &c.\n_figents for Morison's Vegetable Pills.",
+      "normalized": "[RUSSELL & CLIFT], […] to inform the citizens of Chicago [and the] neighboring villages, that their stock of Books & Stationary is received, which compri[ses ... Miscellaneous, School, Classical,] Theological and Medical Books, from Boston, New-York and Philadelphia, many of them just published and in elegant binding: Almanachs for 1835; various descriptions of writing, letter, and other Paper, from the best manufactures; a var[ie]ty of new Tracts; also, receipt, note, letter and day books; Maynard & Noyes' superior black and red Ink and ink Powders: together with steel pens and [cas]es, quills, pencils; silver, plain and embossed Pencil Cases; pen and pa[per ... ] Tooth and other Brushes, and fan[cy … ] Also, a good assortment of fashionable b[eaver] and nap HATS; gentlemen's buck [skin Gloves;] superfine silk and bombazine Stocks, &c. Agents for Morison's Vegetable Pills.",
       "locator": {
         "artifact_role": "primary",
         "issue_page": 3,
         "column": 4,
         "lines": [
           3287,
-          3310
+          3307
         ],
         "interleaved": true
       },
       "entities": [],
-      "notes": "THE FIRM'S NAME IS THE ONE THING THIS ADVERTISEMENT WILL NOT GIVE UP, AND IT IS NOT GUESSED AT HERE. The heading reads “RUISAL & CLUPR,” in the only printing of the four that carries it at all — 1834-12-17 page 3 column 3 and 1834-12-24 page 3 column 4 both open at “[B]ooks & Stationary” with the name lost above the cut — so the reading stays inside [uncertain:] and the gazetteer key carries the marker rather than launder it out. It is very likely the firm already standing in the gazetteer as business_chicago_wholesale_and_retail_book_stationary_store, and the page images would settle both at once; that is filed as a ticket by this run rather than asserted here. WHAT IS DOCUMENTED regardless: a Chicago bookshop stocked out of Boston, New-York and Philadelphia, selling almanacs for 1835 beside hats, stocks and cast-steel axes.",
+      "notes": "THE FIRM IS RUSSELL & CLIFT, READ OFF ITS OWN OTHER ADVERTISEMENTS RATHER THAN OFF THIS HEADING (T-0327). No printing of THIS advertisement recovers the display line: it sets as “RUISAL & CLUPR,” here (page 3 column 4), as “WVISMA S GLIBR,” on 1834-11-12 (page 3 column 2) and as “D s g By A ueitis and.” on 1834-11-19 (page 3 column 4); on 1834-11-26 (page 3 column 4) and 1834-12-10 (page 3 column 4) the heading is gone above “…inform the citizens of Chicago and”, and 1834-12-17 (page 3 column 3) and 1834-12-24 (page 3 column 4) both open at “[B]ooks & Stationary”. The name comes instead from a DIFFERENT advertisement of the same house standing in the same paper — the copartnership notice dated “Chicago, Aug. 26, 1834”, “A COPARTNERSHIP having been entered into between Aaron Russell, of Boston, and [—] Clift, from Philadelphia”, opening a store adjoining P. Carpenter's drug establishment in Water-street. It runs from 1834-08-27 to 1834-11-12 and is signed legibly in four printings: 1834-09-17 page 3 column 5 “RUSSELL & CLIFT.”, 1834-10-29 page 3 column 4 “WUSSELL & CLIFT.”, 1834-11-05 page 3 column 5 “RUSSELL & CLIFT,” and 1834-11-12 page 3 column 4 “RUSBELL & CLIFT,”. The firm's own 1835 card in the Chicago American reads “Chicago Book and Stationary STORE. [R]USSELL & CLIFT” (1835-06-08) and carries this advertisement's own unusual mix — books, stationery, hats and a patent-medicine agency. No second bookseller-and-stationer appears in the Democrat between 1834-08-27 and 1834-12-24; the other November–December occurrences of “Stationary” (1834-11-19 page 4 column 3, 1834-12-24 page 3 column 3) are general merchants listing it among dry goods. The reading is therefore a SUPPLY, marked “[RUSSELL & CLIFT]” in `normalized`, and `quote` keeps the type as it stands. The partner's forename is not settled and is not asserted here: the copartnership notice reads “Hon). 1. Clift” on 1834-09-03, “nj. H. Clif” on 1834-09-24 and “HE Clint” on 1834-11-12, which is why the gazetteer carries both “Benj. Clift” and “[H. H.] Clift” against one man (filed as T-0337). This advertisement names no proprietor at all, so it mints none. “beg leave”, supplied unbracketed by the earlier reading over the transcriber's own “?”, is returned to “[…]” in the same pass: a gap is not an invitation. WHAT IS DOCUMENTED regardless: a Chicago bookshop stocked out of Boston, New-York and Philadelphia, selling almanacs for 1835 beside hats, stocks and cast-steel axes. THE AXES ARE NOT THIS FIRM'S (T-0339). Lines 3308-3310 used to sit inside this claim; they are a separate advertisement, signed “Jones § King” under a rule at 1834-11-12 lines 2555-2557 and “donee & King” at 1834-12-24 line 3560, and the dateline Nov. 5, 1834 is theirs too. They are extracted as c024.",
       "business": {
-        "name": "[uncertain: Ruisal & Clupr]",
+        "name": "Russell & Clift",
         "proprietors": [],
         "trade": "booksellers and stationers",
         "goods": [
@@ -148,7 +148,6 @@
           "pens",
           "hats",
           "stocks",
-          "axes",
           "Morison's Vegetable Pills"
         ],
         "street": null,
@@ -924,6 +923,74 @@
           "offset_text": "corner of South Water and Clark stavi"
         }
       }
+    },
+    {
+      "id": "c024",
+      "kind": "business",
+      "reading": "transcription_mediated",
+      "quote": "G5 20%, of Silsry's gat steal “AXES, by\nlozen or singly. Bi ‘i\n[uncertain: Nor. 5 183k ee ? hee:]",
+      "normalized": "[20 doz.] of Silsby's ca[s]t ste[e]l AXES, by [the] dozen or singly. [Jones & King.] [Nov. 5, 1834.]",
+      "locator": {
+        "artifact_role": "primary",
+        "issue_page": 3,
+        "column": 4,
+        "lines": [
+          3308,
+          3310
+        ],
+        "interleaved": true
+      },
+      "entities": [],
+      "ad_copy_date": {
+        "verbatim": "[uncertain: Nor. 5 183k ee ? hee:]",
+        "iso": "1834-11-05"
+      },
+      "business": {
+        "name": "Jones & King",
+        "proprietors": [],
+        "trade": "hardware and building materials",
+        "goods": [
+          "axes"
+        ],
+        "street": null,
+        "placement": {
+          "class": "none",
+          "anchor": null,
+          "offset_text": null
+        }
+      },
+      "notes": "TWENTY DOZEN CAST STEEL AXES, AND THEY BELONG TO JONES & KING. This advertisement was read into c004 as part of the booksellers' stock, because in THIS printing the signature is crushed to “lozen or singly. Bi ‘i” and nothing separates the two blocks. Two other printings of the same standing pair separate them with a rule and sign this one: 1834-11-12 page 3 column 2 lines 2555-2557 reads “Gg DOZ. of Silaby'e cast stool AXES, by / the dozen or singly. Jones § King. / Now. 5, 1834,”, and 1834-12-24 page 3 column 5 lines 3559-3561 reads “the dozen or singly. donee & King.” The attribution is therefore INFERRED from the neighbouring printings and not read off this one, which is why the firm is bracketed in `normalized` and no proprietor is minted here. Jones & King already stand in the gazetteer for hardware and building materials at this very issue (c007, window glass, sash and blinds, South Water street); axes are a good the corpus had lost to the wrong shop. Silsby's is the maker, not a Chicago house, and is not minted."
+    },
+    {
+      "id": "c025",
+      "kind": "building",
+      "reading": "transcription_mediated",
+      "quote": "For Sale or To Let,\nSuE building on Lot 2, in block 1, on North\nChicago. Nor. 12, 1831. SO WEAVER.\nWater street.\nApply to",
+      "normalized": "For Sale or To Let, [T]HE building on Lot 2, in block 1, on North Water street. Apply to D. WEAVER. Chicago, No[v]. 12, 183[uncertain: 1 / 4]. — [5]0",
+      "locator": {
+        "artifact_role": "primary",
+        "issue_page": 3,
+        "column": 3,
+        "lines": [
+          3167,
+          3171
+        ],
+        "lines_of_claim": [
+          3167,
+          3168,
+          3169,
+          3170,
+          3171
+        ]
+      },
+      "entities": [
+        {
+          "as_printed": "D. WEAVER.",
+          "normalized": "D. Weaver",
+          "role": "advertiser"
+        }
+      ],
+      "notes": "THE SECOND OF FIVE PRINTINGS OF D. WEAVER'S ADVERTISEMENT, AND THE CLEANEST OF THEM AT THE DIGIT T-0328 ASKS ABOUT. The line reads 'SuE building on Lot 2, in block 1, on North' — the display capitals of THE are mangled and nothing else in the line is, the lot number least of all. Four of the five printings read Lot 2 and only 1834-12-17 reads Lot 9; the tally and the reasoning are on that claim. As at 1834-11-26, no `ad_copy_date` is recorded: this setting reads the copy date Nov. 12 and two later ones read it Nov. 19 and Nov. 13, which is a separate question and is ticketed rather than settled here."
     }
   ]
 }

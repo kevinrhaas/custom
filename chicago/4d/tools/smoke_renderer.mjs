@@ -103,6 +103,12 @@ import { decodePng, labL, relativeLuminance, weberContrast } from './critic_metr
 // ROADMAP K50. The gate and `tools/measure_drawn_placement.mjs` run ONE census
 // rather than two readings of it — see that module's header for why.
 import { CENSUS } from './drawn_placement_census.mjs';
+// T-0243. Same arrangement for the near-field timber, and for the same reason
+// twice over: the gate below and `tools/measure_drawn_timber.mjs` run ONE
+// census, and that census reads a `BatchedMesh` back through its own instance
+// ranges — which is what the inline traversal that used to live here stopped
+// being able to do the day T-0223 merged.
+import { TIMBER_CENSUS } from './drawn_timber_census.mjs';
 
 // Playwright is installed globally here, and ESM does not honour NODE_PATH, so
 // resolve the global root and import by absolute path.
@@ -7829,105 +7835,59 @@ for (const [label, viewport, touch] of [
      * reported it. Neither may be relaxed into a test of the placement — that
      * is the test that was already green.
      */
-    const drawnWood = await page.evaluate(() => {
-      const a = window.__chicago4d;
-      const terrain = a.terrain;
-      const stations = a.trees.group.userData.stations ?? [];
-      // Nearest station, on a 24 m hash — wider than any crown, so the nine
-      // cells around a vertex always contain its own stem if it has one.
-      const CELL = 24;
-      const key = (e, n) => `${Math.round(e / CELL)},${Math.round(n / CELL)}`;
-      const grid = new Map();
-      for (const s of stations) {
-        const k = key(s.e, s.n);
-        if (!grid.has(k)) grid.set(k, []);
-        grid.get(k).push(s);
-      }
-      const nearestStation = (e, n) => {
-        let best = Infinity;
-        for (let de = -1; de <= 1; de++) {
-          for (let dn = -1; dn <= 1; dn++) {
-            for (const s of grid.get(key(e + de * CELL, n + dn * CELL)) ?? []) {
-              const d = Math.hypot(s.e - e, s.n - n);
-              if (d < best) best = d;
-            }
-          }
-        }
-        return best;
-      };
-      // How far a wet point stands from the nearest dry ground, by expanding
-      // rings. Bounded: past the last radius the answer is "further than this
-      // gate cares about", which is already a failure.
-      const RADII = [2, 4, 8, 12, 16, 24, 32, 48];
-      const shoreDist = (e, n) => {
-        for (const r of RADII) {
-          for (let k = 0; k < 16; k++) {
-            const t = (k / 16) * Math.PI * 2;
-            if (!terrain.isWater(e + Math.cos(t) * r, n + Math.sin(t) * r)) return r;
-          }
-        }
-        return 99;
-      };
-      let verts = 0;
-      let stray = 0;
-      let worstStray = 0;
-      let wet = 0;
-      let offshore = 0;
-      let worstOffshore = 0;
-      let worstOffshoreAt = null;
-      let meshes = 0;
-      a.scene3d.traverse((o) => {
-        if (!o.isMesh || !/^timber__/.test(o.name)) return;
-        meshes++;
-        o.updateWorldMatrix(true, false);
-        const pos = o.geometry.getAttribute('position');
-        const m = o.matrixWorld.elements;
-        for (let i = 0; i < pos.count; i++) {
-          const vx = pos.getX(i);
-          const vy = pos.getY(i);
-          const vz = pos.getZ(i);
-          const x = m[0] * vx + m[4] * vy + m[8] * vz + m[12];
-          const z = m[2] * vx + m[6] * vy + m[10] * vz + m[14];
-          // terrain.js worldToEnu: e = x, n = -z. The convention this whole
-          // check exists because something else did not follow.
-          const e = x;
-          const n = -z;
-          verts++;
-          const d = nearestStation(e, n);
-          if (d > worstStray) worstStray = d;
-          if (d > 24) stray++;
-          if (!terrain.isWater(e, n)) continue;
-          wet++;
-          const s = shoreDist(e, n);
-          if (s > 12) {
-            offshore++;
-            if (s > worstOffshore) {
-              worstOffshore = s;
-              worstOffshoreAt = { e: +e.toFixed(1), n: +n.toFixed(1) };
-            }
-          }
-        }
-      });
-      return { meshes, stations: stations.length, verts, stray,
-        worstStray: Number.isFinite(worstStray) ? +worstStray.toFixed(1) : null,
-        wet, offshore, worstOffshore, worstOffshoreAt };
-    });
-    // 24 m is the reach of the widest crown this file draws plus its lean, and
-    // is deliberately generous: the fault being hunted is off by twice a
-    // northing — hundreds of metres — not by a branch.
+    const drawnWood = await page.evaluate(`(${TIMBER_CENSUS.toString()})()`);
+    // T-0243 — WHY THIS IS A MODULE AND NOT THE TRAVERSAL THAT USED TO BE HERE.
+    //
+    // The traversal matched `/^timber__/`, the four merged quadrant meshes
+    // `timber__q0…q3`. T-0223 replaced them with a single `THREE.BatchedMesh`
+    // named `timber`, and from that merge the regex matched NOTHING. The first
+    // check below went red on its own `meshes > 0` liveness clause, on an
+    // unmodified `dev`, so every branch cut from dev inherited a failure it had
+    // to argue was not its own. The second one asserts `offshore === 0`, and an
+    // empty traversal has zero offshore vertices — so it stayed GREEN, for a
+    // fortnight, having asserted nothing whatever about the timber. The green
+    // one was the worse half.
+    //
+    // Pointing the regex at `timber` would not have been the repair. A batch
+    // holds every chunk in one pair of buffers with a per-instance transform the
+    // batch owns, so the position attribute read through `matrixWorld` is not a
+    // chunk's world position: `drawn_timber_census.mjs` walks each instance's
+    // own geometry range under its own matrix, the two structures
+    // `getBoundingBoxAt()` and `getMatrixAt()` read. It still reads a plain
+    // `timber__*` mesh if one appears, so unwinding the batch cannot empty this
+    // gate the way landing it did.
+    //
+    // Both bars come back FROM the census (`strayBarM`, `offshoreBarM`) rather
+    // than being written again here. Neither moved: 24 m is the widest crown
+    // plus its lean and 12 m is a bank willow leaning over the channel, both
+    // argued in T-0110's box, and T-0243 repaired the traversal under them.
+    //
+    // The liveness clauses are now on BOTH checks, and that is the whole lesson:
+    // `chunks`, `verts` and `unreadable` are what make each count an assertion
+    // about timber that was walked rather than an assertion about an empty
+    // traversal. `tools/measure_drawn_timber.mjs --refute` displaces two chunks
+    // of the live scene — one mirrored across the datum, one shoved into open
+    // water — and requires this census to report each; a gate of this shape is
+    // believed because it can be made to fail, not because it is green.
     check(`${label}: every tree drawn stands at its own station`,
-      drawnWood.meshes > 0 && drawnWood.verts > 1000 && drawnWood.stations > 10
-      && drawnWood.stray === 0,
-      `${drawnWood.stray} of ${drawnWood.verts} vertices further than 24 m from any of `
-      + `${drawnWood.stations} stations across ${drawnWood.meshes} merged meshes; `
-      + `worst ${drawnWood.worstStray} m`);
-    // 12 m is a bank willow leaning out over the channel, which the sources put
-    // there on purpose (`lean` in SPECIES, and TREE_DRY_MARGIN_M's box). Timber
-    // standing further out than that is timber in the river.
+      drawnWood.chunks > 0 && drawnWood.verts > 1000 && drawnWood.stations > 10
+      && drawnWood.unreadable === 0 && drawnWood.stray === 0,
+      `${drawnWood.stray} of ${drawnWood.verts} vertices further than `
+      + `${drawnWood.strayBarM} m from any of ${drawnWood.stations} stations across `
+      + `${drawnWood.chunks} chunk(s) in ${drawnWood.batches} batch(es) and `
+      + `${drawnWood.plainMeshes} plain mesh(es); worst measurable ${drawnWood.worstStray} m`
+      + (drawnWood.worstStrayAt
+        ? ` at E ${drawnWood.worstStrayAt.e} N ${drawnWood.worstStrayAt.n}` : '')
+      + `, ${drawnWood.outOfHash} beyond the station hash altogether`
+      + `; ${drawnWood.unreadable} chunk(s) the census could not read back`);
+    // The same liveness clauses guard this one, because THIS is the check that
+    // spent a fortnight passing on nothing at all.
     check(`${label}: no timber is drawn out in the channel`,
-      drawnWood.offshore === 0,
-      `${drawnWood.offshore} vertices over water more than 12 m from dry ground `
-      + `(${drawnWood.wet} over water at all); worst ${drawnWood.worstOffshore} m`
+      drawnWood.chunks > 0 && drawnWood.verts > 1000 && drawnWood.unreadable === 0
+      && drawnWood.offshore === 0,
+      `${drawnWood.offshore} vertices over water more than ${drawnWood.offshoreBarM} m from `
+      + `dry ground (${drawnWood.wet} over water at all, of ${drawnWood.verts} walked in `
+      + `${drawnWood.chunks} chunk(s)); worst ${drawnWood.worstOffshore} m`
       + (drawnWood.worstOffshoreAt
         ? ` at E ${drawnWood.worstOffshoreAt.e} N ${drawnWood.worstOffshoreAt.n}` : ''));
 

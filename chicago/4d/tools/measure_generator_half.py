@@ -87,13 +87,18 @@ RENDERER_JS = RENDERERS / "web" / "js"
 # the garrison flagstaff Andreas attests. One new fort_structure record, so one more committed
 # asset and one more mesh a change to the shared generator modules or to build.py would re-stale.
 #
+# 354 -> 358 and 352 -> 356 on 2026-08-29 (T-0317): `blk_randolph_market` took its second
+# deal — a party-line run of three on the block's free corner lot and the stable in its yard.
+# Four new structure assets, so four more meshes a change to the shared generator modules or
+# to build.py would re-stale; the terrain and pier_crib reaches stay at 2 each.
+#
 STATED = {
-    "assets": 354,
+    "assets": 358,
     "restales": {
-        "generators/common/*.py": 354,
+        "generators/common/*.py": 358,
         "generators/common/__init__.py": 0,
         "generators/common/phases.py": 0,
-        "generators/build.py": 352,
+        "generators/build.py": 356,
         "generators/terrain_gen.py": 2,
         "generators/archetypes/pier_crib.py": 2,
     },

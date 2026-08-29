@@ -219,6 +219,20 @@ step "the case T-0059 was withdrawn on still holds" \
 step "the frontage works re-derive from the rule that chose their walls" \
   python3 tools/generate_frontage_works.py --check
 
+# AND THE HALF OF THAT RULE NO RECORD EXERCISES. A cross street bounds a block on
+# its EAST and WEST faces; every street this record carries today bounds one on the
+# north and south. T-0192 enumerated all four and made every ordering in that
+# generator axis-aware, then measured the seven cross streets over all three
+# scene-detail ceilings and left them out — so the east/west path ships with an
+# empty covered tuple and the re-derivation above cannot touch it. This drives it
+# over all seven, in hundredths of a second, so it is code somebody is keeping
+# rather than code waiting to rot until the frame budget is won back.
+step "the street edge's cross-street faces enumerate as the plat says" \
+  python3 tools/test_frontage_faces.py
+
+step "…and those assertions still fire when the enumeration is broken" \
+  python3 tools/test_frontage_faces.py --self-test
+
 # The 665-roof programme's remainder is a function of what has been built, and the town
 # grows most nights. Left as an authored number it goes stale silently — the crosswalk
 # called 617 roofs remaining while 232 were standing — and the next block parcel schedules
@@ -951,6 +965,15 @@ step "the reconstructed residents' invented names re-derive" \
 step "one new household renames only the people it collides with" \
   python3 tools/measure_name_churn.py --gate --probes 8 --quiet
 
+# And the pass that RETIRES an invented name (T-0264): where the newspaper
+# register found a documented person for a trade the town had invented a
+# household for, the documented man takes the roof. Re-derived here because the
+# deal is a derivation and not a list — six refusals shape it, and a candidate
+# that quietly stopped being refused would otherwise plant a real man on a roof
+# his own record contradicts. `--report` prints the deal and every refusal.
+step "the documented residents on reconstructed roofs re-derive from the register" \
+  python3 tools/replace_invented_residents.py --check
+
 step "the three levels mean what they say" \
   python3 tools/audit_confidence.py --strict
 
@@ -1025,6 +1048,19 @@ step "every newspaper claim resolves, quotes verbatim, and the gazetteer is comp
 
 step "…and its own assertions still fire when broken" \
   python3 tools/compile_gazetteer.py --self-test
+
+# T-0262. The gazetteer says what was PRINTED; the register says what the town has to
+# do about it — for every business an action and, where the action needs one, a
+# committed target; for every person whether the town already holds them, invented a
+# stand-in for them, or has never heard of them. It is DERIVED from the gazetteer and
+# the committed dataset, so this refuses a hand-edit for the same reason the gazetteer
+# gate does: a hand-edited register is a place to promote a business into the town
+# without an argument, and the seeding tickets read it as if it were derived.
+step "the scene-date register re-derives, and every action names its target" \
+  python3 tools/compile_register.py --check
+
+step "…and its own assertions still fire when broken" \
+  python3 tools/compile_register.py --self-test
 
 printf '\n'
 if [ "$FAILED" -eq 0 ]; then

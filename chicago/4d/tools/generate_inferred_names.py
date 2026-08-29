@@ -290,13 +290,41 @@ def main():
 
     files, named = build()
     if args.check:
+        # THE TREE IS NO LONGER THIS PASS'S INPUT (T-0264). Since the newspaper
+        # register began retiring an invented name where it found a documented
+        # person for that trade, five of the roofs this script deals a name to
+        # no longer carry a `reconstructed` person by the time the tree is
+        # written. Re-deriving from the tree would therefore deal 108 names where
+        # the pipeline deals 113, and every one of the other households would
+        # read as drifted — and, worse, retiring a roof would CHURN the invented
+        # names of the people around it, which is the exact property K20's
+        # allocator and tools/measure_name_churn.py exist to protect.
+        #
+        # So the comparison is made where the household programme makes its own:
+        # against the END of the pipeline. Build, name, replace.
+        import importlib.util
+
+        def _stage(name):
+            spec = importlib.util.spec_from_file_location(
+                name, pathlib.Path(__file__).with_name(f"{name}.py"))
+            mod = importlib.util.module_from_spec(spec)
+            spec.loader.exec_module(mod)
+            return mod
+
+        raw, _records, _households = _stage("generate_inferred_households").build_all()
+        files = overlay({q: t for q, t in raw.items() if q.name.startswith("hh_")})
+        named = len(files)
+        files = {q: t for q, t in
+                 _stage("replace_invented_residents").overlay(files).items()
+                 if q.name.startswith("hh_")}
         drift = [p for p, text in files.items() if p.read_text(encoding="utf-8") != text]
         for p in drift:
             print(f"   DRIFT: {p.relative_to(ROOT)}")
         if drift:
             print(f"   {len(drift)} household(s) differ from what this script derives")
             return 1
-        print(f"   OK: {named} invented name(s) match what tools/generate_inferred_names.py derives")
+        print(f"   OK: {named} household(s) at the end of the build-name-replace "
+              f"pipeline match what tools/generate_inferred_names.py derives")
         return 0
 
     for p, text in files.items():

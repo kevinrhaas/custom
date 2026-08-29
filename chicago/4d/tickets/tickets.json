@@ -1,6 +1,6 @@
 {
   "project": "chicago-4d",
-  "generated_ct": "Aug 28, 2026, 10:01 PM",
+  "generated_ct": "Aug 29, 2026, 4:44 AM",
   "tickets": [
     {
       "id": "T-0001",
@@ -539,7 +539,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 13
+      "queue_rank": 34
     },
     {
       "id": "T-0031",
@@ -663,7 +663,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 12
+      "queue_rank": 33
     },
     {
       "id": "T-0038",
@@ -951,7 +951,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 11
+      "queue_rank": 32
     },
     {
       "id": "T-0054",
@@ -987,7 +987,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 10
+      "queue_rank": 31
     },
     {
       "id": "T-0056",
@@ -2427,7 +2427,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 9
+      "queue_rank": 30
     },
     {
       "id": "T-0137",
@@ -3003,7 +3003,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 14
+      "queue_rank": 43
     },
     {
       "id": "T-0171",
@@ -3057,7 +3057,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 15
+      "queue_rank": 41
     },
     {
       "id": "T-0179",
@@ -3093,7 +3093,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 16
+      "queue_rank": 44
     },
     {
       "id": "T-0181",
@@ -3111,7 +3111,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 17
+      "queue_rank": 42
     },
     {
       "id": "T-0182",
@@ -3273,7 +3273,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 8
+      "queue_rank": 25
     },
     {
       "id": "T-0191",
@@ -3296,7 +3296,7 @@
     {
       "id": "T-0192",
       "title": "The cross streets' own frontages get the street edge",
-      "state": "open",
+      "state": "blocked-tech",
       "epic": "TOWN",
       "requested_by": "owner",
       "seen": true,
@@ -3306,10 +3306,10 @@
       "opened": "2026-08-24",
       "closed": null,
       "pr": null,
-      "claimed_by": null,
-      "blocked_on": null,
+      "claimed_by": "run 8/29/2026, 3:20:54 AM CT",
+      "blocked_on": "the frame budget: all three scene-detail ceilings go over with the seven cross streets in (full +145,639, balanced +122,299, light +15,372 at T-0135's worst stand), and dev itself stands 6,927 and 6,107 triangles inside full and balanced before a board is laid, so not even the smallest cross street fits. The code half is done and shipped; this is one tuple when the headroom is won back.",
       "needs_bake": false,
-      "queue_rank": 0
+      "queue_rank": null
     },
     {
       "id": "T-0193",
@@ -3507,7 +3507,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 18
+      "queue_rank": 47
     },
     {
       "id": "T-0207",
@@ -3723,7 +3723,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 19
+      "queue_rank": 48
     },
     {
       "id": "T-0219",
@@ -3741,7 +3741,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": true,
-      "queue_rank": 1
+      "queue_rank": 15
     },
     {
       "id": "T-0220",
@@ -3939,7 +3939,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 20
+      "queue_rank": 46
     },
     {
       "id": "T-0232",
@@ -3957,7 +3957,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 21
+      "queue_rank": 38
     },
     {
       "id": "T-0233",
@@ -3975,7 +3975,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 22
+      "queue_rank": 10
     },
     {
       "id": "T-0234",
@@ -3993,7 +3993,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 23
+      "queue_rank": 39
     },
     {
       "id": "T-0235",
@@ -4011,7 +4011,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 24
+      "queue_rank": 40
     },
     {
       "id": "T-0236",
@@ -4029,7 +4029,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 25
+      "queue_rank": 36
     },
     {
       "id": "T-0237",
@@ -4047,7 +4047,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 27
+      "queue_rank": 22
     },
     {
       "id": "T-0238",
@@ -4065,7 +4065,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 26
+      "queue_rank": 37
     },
     {
       "id": "T-0239",
@@ -4142,7 +4142,7 @@
     {
       "id": "T-0243",
       "title": "The two timber-placement gates match no mesh since the lattice landed, and one of them is now red on dev",
-      "state": "open",
+      "state": "done",
       "epic": "META",
       "requested_by": "loop",
       "seen": false,
@@ -4150,12 +4150,12 @@
       "legacy_id": null,
       "parent": null,
       "opened": "2026-08-27",
-      "closed": null,
-      "pr": null,
-      "claimed_by": null,
+      "closed": "2026-08-29",
+      "pr": "519",
+      "claimed_by": "run 8/29/2026, 3:05:27 AM CT",
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 30
+      "queue_rank": null
     },
     {
       "id": "T-0244",
@@ -4173,7 +4173,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 31
+      "queue_rank": 9
     },
     {
       "id": "T-0245",
@@ -4317,7 +4317,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 32
+      "queue_rank": 26
     },
     {
       "id": "T-0253",
@@ -4335,7 +4335,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 33
+      "queue_rank": 27
     },
     {
       "id": "T-0254",
@@ -4371,7 +4371,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 34
+      "queue_rank": 35
     },
     {
       "id": "T-0256",
@@ -4484,7 +4484,7 @@
     {
       "id": "T-0262",
       "title": "The July 1, 1835 register: who and what the papers put in the town",
-      "state": "open",
+      "state": "done",
       "epic": "PAPERS",
       "requested_by": "owner",
       "seen": false,
@@ -4492,12 +4492,12 @@
       "legacy_id": null,
       "parent": null,
       "opened": "2026-08-27",
-      "closed": null,
-      "pr": null,
-      "claimed_by": null,
+      "closed": "2026-08-29",
+      "pr": "512",
+      "claimed_by": "run 8/29/2026, 12:49:10 AM CT",
       "blocked_on": "T-0261",
       "needs_bake": false,
-      "queue_rank": 5
+      "queue_rank": null
     },
     {
       "id": "T-0263",
@@ -4515,12 +4515,12 @@
       "claimed_by": null,
       "blocked_on": "T-0262",
       "needs_bake": false,
-      "queue_rank": 6
+      "queue_rank": 1
     },
     {
       "id": "T-0264",
       "title": "Documented people replace the invented",
-      "state": "open",
+      "state": "split",
       "epic": "PAPERS",
       "requested_by": "owner",
       "seen": false,
@@ -4528,17 +4528,17 @@
       "legacy_id": null,
       "parent": null,
       "opened": "2026-08-27",
-      "closed": null,
+      "closed": "2026-08-29",
       "pr": null,
-      "claimed_by": null,
+      "claimed_by": "run 8/29/2026, 2:53:48 AM CT",
       "blocked_on": "T-0262",
       "needs_bake": false,
-      "queue_rank": 7
+      "queue_rank": null
     },
     {
       "id": "T-0265",
       "title": "The sward census fails its own gate at a phone: z10_settled_town owes xanthium_strumarium a whole slot and draws it nowhere",
-      "state": "open",
+      "state": "done",
       "epic": "META",
       "requested_by": "loop",
       "seen": false,
@@ -4546,12 +4546,12 @@
       "legacy_id": null,
       "parent": null,
       "opened": "2026-08-28",
-      "closed": null,
-      "pr": null,
-      "claimed_by": null,
+      "closed": "2026-08-29",
+      "pr": "523",
+      "claimed_by": "run 8/29/2026, 4:05:27 AM CT",
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 35
+      "queue_rank": null
     },
     {
       "id": "T-0266",
@@ -4569,7 +4569,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 36
+      "queue_rank": 16
     },
     {
       "id": "T-0267",
@@ -4605,7 +4605,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 37
+      "queue_rank": 21
     },
     {
       "id": "T-0271",
@@ -4623,7 +4623,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 38
+      "queue_rank": 49
     },
     {
       "id": "T-0272",
@@ -4641,7 +4641,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": true,
-      "queue_rank": 39
+      "queue_rank": 12
     },
     {
       "id": "T-0273",
@@ -4659,7 +4659,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": true,
-      "queue_rank": 40
+      "queue_rank": 13
     },
     {
       "id": "T-0274",
@@ -4677,12 +4677,12 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": true,
-      "queue_rank": 41
+      "queue_rank": 14
     },
     {
       "id": "T-0275",
       "title": "Back-merge main into dev: the newspaper deposit is on main, and 60 Finder-duplicate files on main turn the dev gate red",
-      "state": "open",
+      "state": "withdrawn",
       "epic": "PAPERS",
       "requested_by": "loop",
       "seen": false,
@@ -4690,12 +4690,12 @@
       "legacy_id": null,
       "parent": null,
       "opened": "2026-08-28",
-      "closed": null,
+      "closed": "2026-08-28",
       "pr": null,
       "claimed_by": null,
-      "blocked_on": null,
+      "blocked_on": "Done by the 2026-08-28 promotion: duplicates removed from main (#487/#488), back-merge landed on dev (8240a752), corpus gate reads 'deposit present' green, #489's quote check runs against the deposit on dev. Evidence in the ticket body.",
       "needs_bake": false,
-      "queue_rank": 42
+      "queue_rank": null
     },
     {
       "id": "T-0276",
@@ -4731,7 +4731,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 43
+      "queue_rank": 17
     },
     {
       "id": "T-0279",
@@ -4749,7 +4749,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 44
+      "queue_rank": 18
     },
     {
       "id": "T-0280",
@@ -4767,7 +4767,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 45
+      "queue_rank": 19
     },
     {
       "id": "T-0281",
@@ -4808,7 +4808,7 @@
     {
       "id": "T-0283",
       "title": "The North Division's warehouse row allows one freight roof and six documented ones stand above it",
-      "state": "open",
+      "state": "done",
       "epic": "TOWN",
       "requested_by": "loop",
       "seen": false,
@@ -4816,12 +4816,12 @@
       "legacy_id": null,
       "parent": null,
       "opened": "2026-08-28",
-      "closed": null,
-      "pr": null,
-      "claimed_by": null,
+      "closed": "2026-08-29",
+      "pr": "511",
+      "claimed_by": "run 8/29/2026, 12:21:17 AM CT",
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 46
+      "queue_rank": null
     },
     {
       "id": "T-0284",
@@ -4857,7 +4857,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 47
+      "queue_rank": 23
     },
     {
       "id": "T-0286",
@@ -4875,7 +4875,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 48
+      "queue_rank": 24
     },
     {
       "id": "T-0289",
@@ -5060,7 +5060,7 @@
     {
       "id": "T-0299",
       "title": "Three printings of one letter list mint 298 people three times, and identity.json is empty",
-      "state": "open",
+      "state": "done",
       "epic": "META",
       "requested_by": "loop",
       "seen": false,
@@ -5068,12 +5068,12 @@
       "legacy_id": null,
       "parent": null,
       "opened": "2026-08-28",
-      "closed": null,
-      "pr": null,
-      "claimed_by": null,
+      "closed": "2026-08-28",
+      "pr": "509",
+      "claimed_by": "run 8/28/2026, 11:52:03 PM CT",
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 50
+      "queue_rank": null
     },
     {
       "id": "T-0300",
@@ -5109,7 +5109,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 49
+      "queue_rank": 45
     },
     {
       "id": "T-0302",
@@ -5127,12 +5127,12 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 51
+      "queue_rank": 20
     },
     {
       "id": "T-0304",
       "title": "The gazetteer merges persons by a declared rule and has no equivalent for firms, so 'L. Wilson & Co.' and 'Jno. Wilson & Co.' are two businesses",
-      "state": "open",
+      "state": "done",
       "epic": "META",
       "requested_by": "loop",
       "seen": false,
@@ -5140,12 +5140,12 @@
       "legacy_id": null,
       "parent": null,
       "opened": "2026-08-28",
-      "closed": null,
-      "pr": null,
-      "claimed_by": null,
+      "closed": "2026-08-28",
+      "pr": "503",
+      "claimed_by": "run 8/28/2026, 10:16:57 PM CT",
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 52
+      "queue_rank": null
     },
     {
       "id": "T-0305",
@@ -5163,7 +5163,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 53
+      "queue_rank": 8
     },
     {
       "id": "T-0306",
@@ -5181,7 +5181,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 54
+      "queue_rank": 2
     },
     {
       "id": "T-0307",
@@ -5199,7 +5199,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 55
+      "queue_rank": 11
     },
     {
       "id": "T-0308",
@@ -5312,7 +5312,7 @@
     {
       "id": "T-0314",
       "title": "Reading the Democrat, May 1834: Vol. I Nos. 23-26",
-      "state": "open",
+      "state": "done",
       "epic": "PAPERS",
       "requested_by": "owner",
       "seen": false,
@@ -5320,12 +5320,12 @@
       "legacy_id": null,
       "parent": "T-0258",
       "opened": "2026-08-28",
-      "closed": null,
-      "pr": null,
-      "claimed_by": null,
+      "closed": "2026-08-28",
+      "pr": "508",
+      "claimed_by": "run 8/28/2026, 11:38:16 PM CT",
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 2
+      "queue_rank": null
     },
     {
       "id": "T-0315",
@@ -5348,7 +5348,7 @@
     {
       "id": "T-0316",
       "title": "The 665-roof deal puts a large river warehouse on an inland platted block, and the block generator cannot build one",
-      "state": "open",
+      "state": "done",
       "epic": "META",
       "requested_by": "loop",
       "seen": false,
@@ -5356,17 +5356,17 @@
       "legacy_id": null,
       "parent": null,
       "opened": "2026-08-28",
-      "closed": null,
-      "pr": null,
-      "claimed_by": null,
+      "closed": "2026-08-29",
+      "pr": "520",
+      "claimed_by": "run 8/29/2026, 3:10:03 AM CT",
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 56
+      "queue_rank": null
     },
     {
       "id": "T-0317",
       "title": "Build out the NEXT anonymous block: after blk_lake_franklin the last ungenerated block is owner-blocked, and the roofs left stand on blocks that already stand",
-      "state": "open",
+      "state": "done",
       "epic": "META",
       "requested_by": "loop",
       "seen": false,
@@ -5374,16 +5374,16 @@
       "legacy_id": null,
       "parent": null,
       "opened": "2026-08-28",
-      "closed": null,
-      "pr": null,
-      "claimed_by": null,
+      "closed": "2026-08-29",
+      "pr": "521",
+      "claimed_by": "run 8/29/2026, 2:54:41 AM CT",
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 57
+      "queue_rank": null
     },
     {
       "id": "T-0318",
-      "title": "The January 1834 letter list is 97 names and the printed list was longer; the page images can close the gap",
+      "title": "The January 1834 letter list: the third printing repairs the A-H half, and the images are needed only for the rest",
       "state": "open",
       "epic": "META",
       "requested_by": "loop",
@@ -5397,7 +5397,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 58
+      "queue_rank": 5
     },
     {
       "id": "T-0321",
@@ -5415,12 +5415,12 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 59
+      "queue_rank": 6
     },
     {
       "id": "T-0323",
       "title": "The 1 January 1834 letter list has a third printing that T-0318 did not know about, and it repairs the A-H half without page images",
-      "state": "open",
+      "state": "done",
       "epic": "META",
       "requested_by": "loop",
       "seen": false,
@@ -5428,17 +5428,17 @@
       "legacy_id": null,
       "parent": null,
       "opened": "2026-08-28",
-      "closed": null,
-      "pr": null,
-      "claimed_by": null,
+      "closed": "2026-08-28",
+      "pr": "507",
+      "claimed_by": "run 8/28/2026, 10:15:43 PM CT",
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 60
+      "queue_rank": null
     },
     {
       "id": "T-0324",
       "title": "J. K. Botsford advertises two addresses in one issue, and Graves' Tavern cannot be placed until they are reconciled",
-      "state": "open",
+      "state": "done",
       "epic": "META",
       "requested_by": "loop",
       "seen": false,
@@ -5446,12 +5446,12 @@
       "legacy_id": null,
       "parent": null,
       "opened": "2026-08-28",
-      "closed": null,
-      "pr": null,
-      "claimed_by": null,
+      "closed": "2026-08-29",
+      "pr": "516",
+      "claimed_by": "run 8/29/2026, 12:17:46 AM CT",
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 61
+      "queue_rank": null
     },
     {
       "id": "T-0325",
@@ -5474,7 +5474,7 @@
     {
       "id": "T-0326",
       "title": "Reading the Democrat, January to June 1835: the eight issues, now that their columns resolve",
-      "state": "open",
+      "state": "done",
       "epic": "PAPERS",
       "requested_by": "owner",
       "seen": false,
@@ -5482,17 +5482,17 @@
       "legacy_id": null,
       "parent": "T-0298",
       "opened": "2026-08-28",
-      "closed": null,
-      "pr": null,
-      "claimed_by": null,
+      "closed": "2026-08-28",
+      "pr": "504",
+      "claimed_by": "run 8/28/2026, 10:16:04 PM CT",
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 4
+      "queue_rank": null
     },
     {
       "id": "T-0327",
       "title": "The December 1834 bookseller's name is 'RUISAL & CLUPR' in the only printing that carries it, and the gazetteer may already hold the firm",
-      "state": "open",
+      "state": "done",
       "epic": "PAPERS",
       "requested_by": "loop",
       "seen": false,
@@ -5500,17 +5500,17 @@
       "legacy_id": null,
       "parent": null,
       "opened": "2026-08-29",
-      "closed": null,
-      "pr": null,
-      "claimed_by": null,
+      "closed": "2026-08-28",
+      "pr": "502",
+      "claimed_by": "run 8/28/2026, 10:17:05 PM CT",
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 62
+      "queue_rank": null
     },
     {
       "id": "T-0328",
       "title": "D. Weaver's building is on Lot 2 in one printing and Lot 9 in the next, and both transcriptions are Vision-set",
-      "state": "open",
+      "state": "done",
       "epic": "PAPERS",
       "requested_by": "loop",
       "seen": false,
@@ -5518,17 +5518,17 @@
       "legacy_id": null,
       "parent": null,
       "opened": "2026-08-29",
-      "closed": null,
-      "pr": null,
-      "claimed_by": null,
+      "closed": "2026-08-29",
+      "pr": "510",
+      "claimed_by": "run 8/29/2026, 12:19:56 AM CT",
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 63
+      "queue_rank": null
     },
     {
       "id": "T-0329",
       "title": "School District Number One is bounded in print on 1834-12-10 and the segmenter cut better than half of every line of it away",
-      "state": "open",
+      "state": "done",
       "epic": "PAPERS",
       "requested_by": "loop",
       "seen": false,
@@ -5536,17 +5536,17 @@
       "legacy_id": null,
       "parent": null,
       "opened": "2026-08-29",
-      "closed": null,
-      "pr": null,
-      "claimed_by": null,
+      "closed": "2026-08-29",
+      "pr": "515",
+      "claimed_by": "run 8/29/2026, 1:34:19 AM CT",
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 64
+      "queue_rank": null
     },
     {
       "id": "T-0330",
       "title": "A fragment reading 'opposite the Tremont House' sits between two interleaved advertisements and neither can claim it",
-      "state": "open",
+      "state": "done",
       "epic": "PAPERS",
       "requested_by": "loop",
       "seen": false,
@@ -5554,12 +5554,12 @@
       "legacy_id": null,
       "parent": null,
       "opened": "2026-08-29",
-      "closed": null,
-      "pr": null,
-      "claimed_by": null,
+      "closed": "2026-08-28",
+      "pr": "506",
+      "claimed_by": "run 8/28/2026, 10:23:18 PM CT",
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 65
+      "queue_rank": null
     },
     {
       "id": "T-0331",
@@ -5577,7 +5577,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 66
+      "queue_rank": 7
     },
     {
       "id": "T-0332",
@@ -5595,7 +5595,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": true,
-      "queue_rank": 67
+      "queue_rank": 50
     },
     {
       "id": "T-0333",
@@ -5613,7 +5613,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 68
+      "queue_rank": 70
     },
     {
       "id": "T-0334",
@@ -5631,7 +5631,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 69
+      "queue_rank": 71
     },
     {
       "id": "T-0335",
@@ -5667,7 +5667,421 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
+      "queue_rank": 0
+    },
+    {
+      "id": "T-0337",
+      "title": "One man is two proprietors of Russell & Clift, and the gazetteer has no rule that can join them",
+      "state": "open",
+      "epic": "PAPERS",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "S",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-08-28",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "queue_rank": 51
+    },
+    {
+      "id": "T-0338",
+      "title": "Thirty-one groups of firms share a partner surname and only one of them has been judged",
+      "state": "open",
+      "epic": "META",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "M",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-08-28",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "queue_rank": 52
+    },
+    {
+      "id": "T-0339",
+      "title": "Twenty dozen cast steel axes are recorded as the booksellers' stock and Jones & King signed the advertisement",
+      "state": "done",
+      "epic": "PAPERS",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "XS",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-08-28",
+      "closed": "2026-08-28",
+      "pr": "505",
+      "claimed_by": "run 8/28/2026, 11:13:27 PM CT",
+      "blocked_on": null,
+      "needs_bake": false,
+      "queue_rank": null
+    },
+    {
+      "id": "T-0340",
+      "title": "The bookseller's sign-name and its partners' firm-name are three gazetteer entries for one house",
+      "state": "open",
+      "epic": "PAPERS",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "S",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-08-28",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "queue_rank": 53
+    },
+    {
+      "id": "T-0341",
+      "title": "A bare surname can never be joined to its forename: the family rule reads 'no initials' as 'different initials'",
+      "state": "open",
+      "epic": "META",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "S",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-08-28",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "queue_rank": 56
+    },
+    {
+      "id": "T-0345",
+      "title": "Mason's blacksmith shop is anchored on Graves' Tavern until 16 July 1834 and on the Tremont House from 10 September, and the register holds both as standing placements",
+      "state": "open",
+      "epic": "PAPERS",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "S",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-08-28",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "queue_rank": 54
+    },
+    {
+      "id": "T-0346",
+      "title": "Desktop smoke stage 4 no longer fits the ten-minute foreground ceiling, so no steward run can take the whole desktop gate",
+      "state": "open",
+      "epic": "META",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "M",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-08-28",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "queue_rank": 55
+    },
+    {
+      "id": "T-0348",
+      "title": "The identity policy cannot merge an unread initial with a read one, and the best witness reads seventeen of them",
+      "state": "open",
+      "epic": "PAPERS",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "S",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-08-28",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "queue_rank": 57
+    },
+    {
+      "id": "T-0349",
+      "title": "The signboard gate is red when stage 1 runs before it and green when stage 2 runs alone",
+      "state": "open",
+      "epic": "META",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "S",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-08-28",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "queue_rank": 58
+    },
+    {
+      "id": "T-0350",
+      "title": "D. Weaver's advertisement is dated Nov. 12 in two printings and Nov. 19 in the one the ledger believed",
+      "state": "open",
+      "epic": "PAPERS",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "XS",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-08-29",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "queue_rank": 59
+    },
+    {
+      "id": "T-0354",
+      "title": "The register can only place 24 of 190 documented businesses; 49 more reach a street face and 78 reach nothing",
+      "state": "open",
+      "epic": "PAPERS",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "M",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-08-29",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "queue_rank": 60
+    },
+    {
+      "id": "T-0355",
+      "title": "A firm matches a building on an occupant the same sentence dates to 1831",
+      "state": "open",
+      "epic": "PAPERS",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "S",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-08-29",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "queue_rank": 61
+    },
+    {
+      "id": "T-0356",
+      "title": "The claim vocabulary cannot say an advertisement announces an opening, so 17 businesses are excluded on a proxy",
+      "state": "open",
+      "epic": "PAPERS",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "S",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-08-29",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "queue_rank": 62
+    },
+    {
+      "id": "T-0357",
+      "title": "129 documented businesses will stand on a survival liberty and LIBERTIES.md carries none of them",
+      "state": "open",
+      "epic": "PAPERS",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "M",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-08-29",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "queue_rank": 63
+    },
+    {
+      "id": "T-0358",
+      "title": "The Thompson plat's block NUMBERING is uncommitted, so the corpus's only lot-and-block address cannot be placed",
+      "state": "open",
+      "epic": "META",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "M",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-08-29",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "queue_rank": 64
+    },
+    {
+      "id": "T-0359",
+      "title": "The gazetteer mints tavern names as people, so Maddock's Tavern and Haddock's Tavern cannot be reconciled",
+      "state": "open",
+      "epic": "META",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "M",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-08-29",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "queue_rank": 65
+    },
+    {
+      "id": "T-0364",
+      "title": "Two byte-identical copies of changelog.js are 7.2 per cent of the published payload, and they grow on every release",
+      "state": "open",
+      "epic": "META",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "M",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-08-29",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "queue_rank": 68
+    },
+    {
+      "id": "T-0365",
+      "title": "The anonymous-block programme has no unblocked ground left: every block with headroom is on the South Water reach T-0009 holds open",
+      "state": "open",
+      "epic": "META",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "M",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-08-29",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "queue_rank": 69
+    },
+    {
+      "id": "T-0366",
+      "title": "The register's matches take the reconstructed roofs, where the papers place the man nowhere",
+      "state": "done",
+      "epic": "PAPERS",
+      "requested_by": "owner",
+      "seen": false,
+      "effort": "S",
+      "legacy_id": null,
+      "parent": "T-0264",
+      "opened": "2026-08-29",
+      "closed": "2026-08-29",
+      "pr": "518",
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "queue_rank": null
+    },
+    {
+      "id": "T-0367",
+      "title": "The documented tradesmen the papers DO place need roofs on their own street, and the deal has no way to ask",
+      "state": "open",
+      "epic": "PAPERS",
+      "requested_by": "owner",
+      "seen": false,
+      "effort": "S",
+      "legacy_id": null,
+      "parent": "T-0264",
+      "opened": "2026-08-29",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
       "queue_rank": 3
+    },
+    {
+      "id": "T-0368",
+      "title": "The letter lists mint new residents: 1,967 documented people the register would ADD to the town",
+      "state": "open",
+      "epic": "PAPERS",
+      "requested_by": "owner",
+      "seen": false,
+      "effort": "S",
+      "legacy_id": null,
+      "parent": "T-0264",
+      "opened": "2026-08-29",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "queue_rank": 4
+    },
+    {
+      "id": "T-0369",
+      "title": "Desktop stage 8's panel walk is red when stage 1 runs before it and green when stage 8 runs alone",
+      "state": "open",
+      "epic": "META",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "M",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-08-29",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "queue_rank": 66
+    },
+    {
+      "id": "T-0371",
+      "title": "The lattice path's block rotation is dead code that measure_rank_bias.mjs's drift guard pins in place",
+      "state": "open",
+      "epic": "META",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "M",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-08-29",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "queue_rank": 67
     }
   ]
 }

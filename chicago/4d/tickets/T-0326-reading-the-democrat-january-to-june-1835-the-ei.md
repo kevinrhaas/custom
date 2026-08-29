@@ -1,7 +1,7 @@
 ---
 id: T-0326
 title: Reading the Democrat, January to June 1835: the eight issues, now that their columns resolve
-state: open
+state: done
 epic: PAPERS
 requested_by: owner
 seen: false
@@ -9,9 +9,9 @@ effort: M
 legacy_id: null
 parent: T-0298
 opened: 2026-08-28
-closed: null
-pr: null
-claimed_by: null
+closed: 2026-08-28
+pr: 504
+claimed_by: run 8/28/2026, 10:16:04 PM CT
 blocked_on: null
 needs_bake: false
 ---

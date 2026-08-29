@@ -38,10 +38,17 @@ The clamp does not just hide the breach — it silently RE-SPENDS it. A division
 group heads then sum to MORE than that division's remainder (by exactly the overshoot, since
 the cells sum to the target), and `reconcile_665.py` sheds the difference one slot at a time
 from whichever group has the most head at that moment. So the North Division's seven
-overshooting roofs are paid for out of its ordinary dwellings and small outbuildings, and
-until this ticket nothing anywhere said so. Both figures are now written into the programme
-document — `remaining.district_group_rows_overshot` and `remaining.district_group_slots_shed`
-— so the ledger reports the transfer it makes.
+overshooting roofs were paid for out of its ordinary dwellings, and until this ticket nothing
+anywhere said so. Both figures are now written into the programme document —
+`remaining.district_group_rows_overshot` and `remaining.district_group_slots_shed` — so the
+ledger reports the transfer it makes.
+
+**Six of those seven are repaired.** T-0283 moved the freight row's split — north 1 → 7 out of
+south 17 → 11, with ordinary_dwellings swapping the other way so that both row totals and all
+four district targets stand — and the North's shed fell from 7 slots to 1. The one that is left
+is the L93 institutional liberty, which is not an authoring fault: it is this gate and
+`measure_institutional_claims.py` reading one liberty differently, and it moves when the liberty
+is retired. The argument is `district_group_matrix_note` in the inventory.
 
     tools/measure_group_district_rows.py              print the 10 x 4 audit
     tools/measure_group_district_rows.py --gate       fail on drift or a new overshoot
@@ -69,21 +76,14 @@ DISTRICTS = ("south", "west", "north", "fort")
 # may not rise, an undeclared pair fails, and a pair repaired to zero must be retired from
 # this table rather than left standing as a stale allowance.
 #
-# Neither of these is repairable by editing a cell on its own: the cells sum to their
-# division's target and to their group's total, so moving one moves four other numbers and
-# the 662-roof programme with them. That is a decision about the authored target, and it is
-# a separate ticket; what this table does is stop the breach being invisible while it waits.
+# A breach is not repairable by editing a cell on its own: the cells sum to their division's
+# target and to their group's total, so moving one moves four other numbers and the 662-roof
+# programme with them. That is a decision about the authored target, so a declaration here is
+# a holding position while the ticket that has to make it is open. T-0283 made that decision
+# for the freight row on 2026-08-29 — see `district_group_matrix_note` in the inventory — and
+# the declaration went with it. The one left is not a fault at all: it is two gates reading
+# one liberty differently, and it moves when the liberty does.
 DECLARED_OVERSHOOT = {
-    ("north", "warehouses_freight"): {
-        "over": 6,
-        "why": "The row allows the North Division ONE freight roof and seven stand there. "
-               "Six are documented pre-existing records — Kinzie & Hunter's warehouse, the "
-               "four north-bank sheds at the Dearborn reach and the north-side brickyard — "
-               "so the breach is not an invention that can be removed; it is a row that was "
-               "authored without the north bank's river-freight fabric in view. The seventh, "
-               "recon_1835_north_f1_022, is a generated F1 roof dealt by a parcel that ran "
-               "before anything measured this.",
-    },
     ("north", "institutional_public"): {
         "over": 1,
         "why": "T-0032 set this row to the NAMED institutional census — south 5 / west 1 / "
@@ -183,14 +183,22 @@ def addable_findings(inventory: dict) -> list[str]:
     return findings
 
 
-def overshoot_findings(rows: list[dict]) -> list[str]:
+def overshoot_findings(rows: list[dict], table: dict | None = None) -> list[str]:
     """Assertion 2: every division over its group row is declared, at no more than its
-    declared size, and no declaration outlives the breach it describes."""
+    declared size, and no declaration outlives the breach it describes.
+
+    `table` defaults to the committed DECLARED_OVERSHOOT. The self-test passes a synthetic
+    one, so the three ratchet cases below keep testing the ratchet whatever the live table
+    happens to hold — T-0283 retired the one declaration big enough to fall without
+    vanishing, and the cases that read it went stale in the same commit.
+    """
+    if table is None:
+        table = DECLARED_OVERSHOOT
     findings = []
     over = {(r["district"], r["group"]): -r["gap"] for r in rows if r["gap"] < 0}
     for key, size in sorted(over.items()):
         district, group = key
-        declared = DECLARED_OVERSHOOT.get(key)
+        declared = table.get(key)
         if declared is None:
             findings.append(
                 f"the {district} division stands {size} roof(s) OVER its {group} row and "
@@ -203,7 +211,7 @@ def overshoot_findings(rows: list[dict]) -> list[str]:
                 f"the {district} division's {group} overshoot has GROWN from "
                 f"{declared['over']} to {size}. This is a ratchet: the residual may fall "
                 f"and may not rise.")
-    for key, declared in sorted(DECLARED_OVERSHOOT.items()):
+    for key, declared in sorted(table.items()):
         district, group = key
         size = over.get(key, 0)
         if size == 0:
@@ -284,23 +292,46 @@ def self_test() -> int:
          overshoot_findings(audit(tight, built)),
          "the west division stands 1 roof(s) OVER its ordinary_dwellings row")
 
+    # The three ratchet cases run against a SYNTHETIC declaration, not the live table.
+    # They used to drive the freight row, and T-0283 repaired that row out from under
+    # them; a declaration of size 1 — which is all the live table now holds — cannot fall
+    # without disappearing, so "fallen from" would have had no case at all. The synthetic
+    # table declares the North's freight row at 6 as it stood before the repair, which is
+    # the shape the ratchet exists for.
+    was = {("north", "warehouses_freight"): {"over": 6, "why": "synthetic, self-test only"}}
+    before = copy(inventory)
+    before["district_group_matrix"]["warehouses_freight"].update(south=17, north=1)
+    before["district_group_matrix"]["ordinary_dwellings"].update(south=170, north=90)
+
     grown = {(d, g): n + (3 if (d, g) == ("north", "warehouses_freight") else 0)
              for (d, g), n in built.items()}
     case("a declared breach that GROWS fails — the ratchet only falls",
-         overshoot_findings(audit(inventory, grown)),
+         overshoot_findings(audit(before, grown), was),
          "warehouses_freight overshoot has GROWN from 6 to 9")
 
     healed = {(d, g): (1 if (d, g) == ("north", "warehouses_freight") else n)
               for (d, g), n in built.items()}
     case("a declaration that outlives its breach fails",
-         overshoot_findings(audit(inventory, healed)),
+         overshoot_findings(audit(before, healed), was),
          "no longer over its warehouses_freight row and the declaration is still here")
 
     shrunk = {(d, g): (4 if (d, g) == ("north", "warehouses_freight") else n)
               for (d, g), n in built.items()}
     case("...and so does one left at a figure the breach has fallen below",
-         overshoot_findings(audit(inventory, shrunk)),
+         overshoot_findings(audit(before, shrunk), was),
          "warehouses_freight overshoot has fallen from 6 to 3")
+
+    # And the repair itself: the row T-0283 moved is no longer over, and the committed
+    # table no longer declares it. Both halves, because either alone passes vacuously.
+    live_rows = audit(inventory, built)
+    freight_north = next(r for r in live_rows
+                         if (r["district"], r["group"]) == ("north", "warehouses_freight"))
+    repaired = (freight_north["gap"] >= 0
+                and ("north", "warehouses_freight") not in DECLARED_OVERSHOOT)
+    print(f"   {'ok  ' if repaired else 'FAIL'}  T-0283's repair holds: the North's freight "
+          f"row is not over and carries no declaration")
+    if not repaired:
+        ok = False
 
     print("SELF-TEST PASS" if ok else "SELF-TEST FAIL")
     return 0 if ok else 1
@@ -352,10 +383,12 @@ def main() -> int:
 
     total_over = sum(-r["gap"] for r in rows if r["gap"] < 0)
     clear = sum(1 for r in rows if r["gap"] >= 0)
+    n = len(DECLARED_OVERSHOOT)
     print(f"\n   the matrix adds up by group and by division; {clear} of the "
           f"{len(rows)} (group, division) cells hold roofs they have room for, and the "
-          f"{len(DECLARED_OVERSHOOT)} that do not are declared, at {total_over} roof(s) "
-          f"between them.")
+          f"{n} that {'does' if n == 1 else 'do'} not "
+          f"{'is' if n == 1 else 'are'} declared, at {total_over} roof(s)"
+          f"{'.' if n == 1 else ' between them.'}")
     return 0
 
 

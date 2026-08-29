@@ -38,6 +38,20 @@ THE OWNER'S THREE RULINGS, 2026-08-28, and where each one lives in the data:
      the last ISSUE that carried the business is earlier than 1835 — existence documented,
      survival to the scene date assumed, and docs/LIBERTIES.md carries the liberty.
 
+IDENTITY IS DECLARED, NEVER INFERRED, AND FIRMS DECLARE IT DIFFERENTLY FROM PEOPLE
+(T-0304). Both are keyed on the whole normalized name, so nothing coalesces by accident,
+and `identity.json` is the only place a merge may be stated: `merges` for people,
+`firm_merges` for houses, each rule naming both spellings verbatim. The guard is where
+they part. A person with the same surname and a different forename initial NEVER merges,
+because the letter lists are full of families. A firm cannot be held to that — a '& Co.'
+style routinely elides or misprints the forename it trades under, and one Wilson house is
+printed 'J. L.', 'Jno. L.', 'Jno. S.', 'Jno.' and bare 'L.' across eleven months — so what
+a firm is held to is its PARTNERS: the same set of surnames on both sides, with or without
+a rule, plus no street the papers contradict. Merging widens a record and never narrows
+one, and ruling 3 below is recomputed afterwards, which is the point: three of that
+Wilson house's five spellings were last seen in 1834 and were each claiming a survival
+liberty the fourth and fifth disprove.
+
 THE QUOTE IS MACHINE-CHECKED AGAINST THE TRANSCRIPTION, which is the one gate here that
 is about provenance rather than shape. A claim names the exact line numbers its quote is
 built from, and `--check` reassembles the quote out of the transcription and refuses any
@@ -569,6 +583,88 @@ def compile_gazetteer(files, identity, corpus, quiet=True):
             set(dst["associated_places"]) | set(src["associated_places"]))
         dst.setdefault("merged", []).append({"from": frm, "merge_rule": why})
 
+    # THE FIRM MERGES (T-0304), and they are the person merges' equivalent rather than
+    # their copy. A firm is not a person and the discriminator differs: the letter lists
+    # made a forename INITIAL decisive for people, but a '& Co.' style routinely elides
+    # or misprints the forename it is trading under — 'Jno. L. Wilson & Co.' is printed
+    # 'L. Wilson & Co.' in one paper and 'Jno. S. Wilson & Co' in another — so the same
+    # rule applied to firms would refuse every merge a firm actually needs. What survives
+    # unchanged is the SURNAME: a partnership's identity is who its partners are, so the
+    # guard here is that the two styles must carry the same set of partner surnames, and
+    # that guard has no escape, exactly as the person one has none. The second guard is
+    # not about the name at all — two styles the papers put in different STREETS are not
+    # one firm without a removal notice, and a removal notice is a claim, not a merge.
+    for rule in identity.get("firm_merges", []):
+        into, frm = rule.get("into"), rule.get("from")
+        why = (rule.get("merge_rule") or "").strip()
+        label = "identity.json firm_merge %r <- %r" % (into, frm)
+        if not into or not frm:
+            problems.append("%s: a merge needs both `into` and `from`" % label)
+            continue
+        if not why:
+            problems.append("%s: no merge_rule — an unexplained merge is a compile error, "
+                            "because a wrong one is invisible afterwards" % label)
+            continue
+        if into not in why or frm not in why:
+            problems.append("%s: merge_rule must name BOTH spellings verbatim, so the "
+                            "judgement can be read back without the code" % label)
+            continue
+        a, b = slug(into), slug(frm)
+        if a == b:
+            problems.append("%s: a firm cannot be merged into itself" % label)
+            continue
+        if a not in businesses or b not in businesses:
+            missing = [n for n, k in ((into, a), (frm, b)) if k not in businesses]
+            problems.append("%s: %s is not a firm any claim carries — a merge rule for a "
+                            "business that is not in the corpus is a rule nobody can check"
+                            % (label, ", ".join(repr(m) for m in missing)))
+            continue
+        if firm_surnames(into) != firm_surnames(frm):
+            problems.append("%s: the partner surnames differ (%s against %s) — this "
+                            "project never merges those, with or without a rule, because "
+                            "a partnership IS its partners and a changed one is a "
+                            "different house"
+                            % (label, sorted(firm_surnames(into)) or "none",
+                               sorted(firm_surnames(frm)) or "none"))
+            continue
+        dst, src = businesses[a], businesses[b]
+        if dst.get("street") and src.get("street") and \
+                slug(dst["street"]) != slug(src["street"]):
+            problems.append("%s: the papers put these in different streets (%r against "
+                            "%r) — a firm that moved is documented by a removal notice, "
+                            "which is a claim, not a merge"
+                            % (label, dst["street"], src["street"]))
+            continue
+        businesses.pop(b)
+        dst["mentions"].extend(src["mentions"])
+        for who in src["proprietors"]:
+            if who not in dst["proprietors"]:
+                dst["proprietors"].append(who)
+        for good in src["goods"]:
+            if good not in dst["goods"]:
+                dst["goods"].append(good)
+        dst["contradicted_by"].extend(src["contradicted_by"])
+        for cd in src["evidence"]["copy_dates"]:
+            if cd not in dst["evidence"]["copy_dates"]:
+                dst["evidence"]["copy_dates"].append(cd)
+        dst["evidence"]["first_issue"] = min(dst["evidence"]["first_issue"],
+                                             src["evidence"]["first_issue"])
+        dst["evidence"]["last_issue"] = max(dst["evidence"]["last_issue"],
+                                            src["evidence"]["last_issue"])
+        # NOTHING IS INVENTED AND NOTHING IS THROWN AWAY. Where one side is silent the
+        # other's reading stands; where both speak, the merge keeps the one that can put
+        # more of the firm on the ground, and every trade either side printed is kept in
+        # `trade_variants` so the merge cannot quietly narrow what the papers said.
+        dst["street"] = dst.get("street") or src.get("street")
+        if placement_rank(src.get("placement")) > placement_rank(dst.get("placement")):
+            dst["placement"] = src.get("placement")
+        trades = {t for t in (dst.get("trade"), src.get("trade")) if t}
+        trades |= set(dst.get("trade_variants") or []) | set(src.get("trade_variants") or [])
+        dst["trade"] = dst.get("trade") or src.get("trade")
+        if len(trades) > 1:
+            dst["trade_variants"] = sorted(trades)
+        dst.setdefault("merged", []).append({"from": frm, "merge_rule": why})
+
     for b in businesses.values():
         # Ruling 3, computed and never asserted: a documented business stands in the
         # 1835 town unless a claim contradicts it, and one whose last issue predates
@@ -605,18 +701,112 @@ def compile_gazetteer(files, identity, corpus, quiet=True):
 
 
 def surname(name):
-    """'Work, James Houston' → 'work'; 'Peter Cohen' → 'cohen'."""
-    name = (name or "").strip()
+    """'Work, James Houston' → 'work'; 'Peter Cohen' → 'cohen'.
+
+    Markup off first, for the same reason `initials` takes it off (T-0299) and for one
+    more: the two halves of the refusal rule have to answer about the SAME name. While
+    this slugged the markup and `initials` parsed it, `Charles Work[s]` and `Charles
+    Works` were two surnames — so the rule did not fire — and `A. Beegle` and `[?]. Beegle`
+    were one, so it did. Whether the policy protected a pair came down to which side of
+    the name a bracket happened to fall on.
+    """
+    name = unmarked(name).strip()
     if "," in name:
         return slug(name.split(",", 1)[0])
     return slug(name.split()[-1]) if name.split() else ""
 
 
+UNCERTAIN_PART = re.compile(r"\[uncertain:\s*(.*?)\]")
+
+
+def unmarked(name):
+    """A normalized reading with the transcriber's markup taken off.
+
+    `normalized` carries three marks and they are all ABOUT the reading, not part of
+    the name: `[x]` around a letter the transcriber supplied for a recognition-class
+    error, `[?]` where no letter could be supplied, and an `[uncertain: …]` wrapper
+    where the printed form supports no reading at all. They belong in the stored
+    reading — that is the honesty — and they do not belong in the name parse below,
+    which is why this exists rather than being folded into `slug`.
+
+    The `[uncertain: …]` wrapper is stripped wherever it stands, not only around the
+    whole name: `Dani[e]l O. [uncertain: Robian]` wraps the surname alone, and leaving
+    the word `uncertain` in the string made it a third forename.
+    """
+    name = UNCERTAIN_PART.sub(r"\1", name or "")
+    name = name.replace("[?]", "")
+    return re.sub(r"\[([^\]]*)\]", r"\1", name)
+
+
 def initials(name):
-    """The forename initials, in order — the half of a name the letter lists turn on."""
-    name = (name or "").strip()
+    """The forename initials, in order — the half of a name the letter lists turn on.
+
+    THE MARKUP IS NOT A WORD BOUNDARY, AND NEITHER IS A LETTER PYTHON HAS NOT HEARD OF
+    (T-0299). This split on `[A-Za-z]+`, so `A[n]drew W. Borland` parsed as the four
+    forenames A / n / drew / W and `[uncertain: Abey Blankinship]` parsed as `uncertain`
+    and `Abey`; against the plain `Andrew W. Borland` of another printing that reads as
+    two different people under one surname, and the identity policy then refuses the
+    merge that would join them. Measured on the three printings of the 1 July 1834
+    letter list: 120 of 206 correct merges were refused this way, none of them for a
+    reason the policy is about. The same defect ate `Benjamın Swena`, whose OCR left a
+    dotless ı that `[A-Za-z]` treats as a space.
+
+    The policy itself is untouched and is the reason this is a parser fix rather than a
+    loosening: `Cohen, P.` and `Cohen, J.` still carry different initials and still
+    never merge, and so do `Lyman R. Lovell` and `Lyman B. Lovell`, `[H]enry Swartwout
+    jr.` and `J[n]o. Swartwout jr.` — a bracketed letter is READ, so it counts.
+    """
+    name = unmarked(name).strip()
     fore = name.split(",", 1)[1] if "," in name else " ".join(name.split()[:-1])
-    return tuple(w[0].lower() for w in re.findall(r"[A-Za-z]+", fore))
+    return tuple(w[0].lower() for w in re.findall(r"[^\W\d_]+", fore, re.UNICODE))
+
+
+# --------------------------------------------------------------------------
+# the firm's half of the identity policy (T-0304)
+
+# What a partnership style says AFTER the partners: '& Co.', '& Son', 'Brothers'.
+# These are not surnames and a firm's identity does not turn on them.
+FIRM_SUFFIXES = {"co", "company", "son", "sons", "bro", "bros", "brother", "brothers"}
+
+
+def firm_style(name):
+    """A firm name with any trailing trade description cut away.
+
+    'Collins & Caton, attorneys and counsellors at law' → 'Collins & Caton'.
+
+    The tail is recognisable without a dictionary because of how the papers set type:
+    names are capitalised and trades are not, so a comma followed by a LOWER-CASE word
+    begins the trade and everything before it is the style. That is why 'Clark, Filer
+    & Co.' keeps both its partners — 'Filer' is capitalised, so the comma is a partner
+    separator and not the start of a trade.
+    """
+    name = re.sub(r"\s*\([^)]*\)", "", (name or "")).strip()
+    return re.split(r",\s+(?=[a-z])", name, maxsplit=1)[0].strip().rstrip(",")
+
+
+def firm_surnames(name):
+    """The set of partner surnames a firm style carries.
+
+    'J. L. Wilson & Co.' → {'wilson'} · 'Clark, Filer & Co.' → {'clark', 'filer'}.
+
+    Split the style on the separators a partnership uses — '&', ',' and 'and' — and take
+    the LAST word of each partner, which is the surname whether the forename was printed
+    whole ('Giles Spring'), abbreviated ('Jno. L. Wilson') or dropped ('L. Wilson').
+    """
+    out = set()
+    for seg in re.split(r"\s*(?:&|,|\band\b)\s*", firm_style(name)):
+        words = [w for w in re.findall(r"[A-Za-z][A-Za-z\u2019']*", seg)
+                 if slug(w) not in FIRM_SUFFIXES]
+        if words:
+            out.add(slug(words[-1]))
+    return out
+
+
+def placement_rank(placement):
+    """How much of the ground a placement can actually put a storefront on."""
+    order = list(reversed(PLACEMENT_CLASSES))          # none < street_only < relative < corner
+    cls = (placement or {}).get("class")
+    return order.index(cls) if cls in order else -1
 
 
 # --------------------------------------------------------------------------
@@ -875,6 +1065,11 @@ def check(extracted=EXTRACTED, gazetteer=GAZETTEER, identity=IDENTITY, corpus=CO
               % checked_quotes)
         print("  ok    %d person(s), %d business(es), compile deterministic and committed"
               % (len(doc["persons"]), len(doc["businesses"])))
+        print("  ok    %d declared identity merge(s): %d person, %d firm — each one "
+              "carrying its reason"
+              % (len(identity_doc.get("merges", [])) + len(identity_doc.get("firm_merges", [])),
+                 len(identity_doc.get("merges", [])),
+                 len(identity_doc.get("firm_merges", []))))
         covered = sum(1 for i in corpus_doc.get("issues", [])
                       for r in coverage_doc.get("ranges", [])
                       if i.get("publication") == r.get("publication")
@@ -1013,6 +1208,103 @@ def self_test():
             {"into": "Peter Cohen", "from": "Nobody At All",
              "merge_rule": "Peter Cohen and Nobody At All, on a whim"}),
         "not a name any claim carries", "a merge rule for a person nobody claimed")
+
+    # AND THE NAME PARSE THE POLICY RUNS ON (T-0299). The cases are the ones the three
+    # printings of the 1 July 1834 letter list actually produced: markup inside a name and
+    # an `[uncertain: …]` wrapper must not invent forenames, an OCR'd dotless ı must not
+    # split one, and every genuine disagreement of initials — two read letters, a read
+    # letter against an unread `[?]`, a present initial against an absent one — must still
+    # refuse. A loosening here shows up as a failure in the SECOND list, which is why both
+    # are asserted and not just the first.
+    for a, b in (("A[n]drew W. Borland", "Andrew W. Borland"),
+                 ("[uncertain: Abey Blankinship]", "Abey Blankinship"),
+                 ("Benjam\u0131n Swena", "Benjamin Swena"),
+                 ("Ch[a]s. L. Barry", "[C]h[a]s. L. Barry"),
+                 ("Dani[e]l O. [uncertain: Robian]", "Daniel O. Robian"),
+                 ("W[m]. C. Whittely", "Wm. C Whittely")):
+        if surname(a) == surname(b) and initials(a) != initials(b):
+            failures.append("the name parse: %r and %r read as different initials, and the "
+                            "difference is the transcriber's markup" % (a, b))
+    for a, b in (("Cohen, P.", "Cohen, J."),
+                 ("Lyman R. Lovell", "Lyman B. Lovell"),
+                 ("[H]enry Swartwout jr.", "J[n]o. Swartwout jr."),
+                 ("Ann M. Gooding", "[?]nn M. Gooding"),
+                 ("Samuel E. Toby", "Samuel. Toby")):
+        if not (surname(a) == surname(b) and initials(a) != initials(b)):
+            failures.append("the identity policy: %r and %r no longer refuse to merge, and "
+                            "an initial is what separates them" % (a, b))
+
+
+    # THE FIRM'S HALF OF THE SAME POLICY (T-0304). Every case below is built by giving
+    # the fixture's own Wilson advertisement a SECOND printing under another spelling,
+    # which is the shape every firm merge in identity.json actually has.
+    def variant(d, name, **biz):
+        src = next(c for c in d["claims"]
+                   if (c.get("business") or {}).get("name") == "L. Wilson & Co.")
+        c = copy.deepcopy(src)
+        c["id"] = "zz1"
+        c["business"]["name"] = name
+        c["business"].update(biz)
+        d["claims"].append(c)
+
+    def firm_rule(i, into, frm, why=None):
+        i.setdefault("firm_merges", []).append({
+            "into": into, "from": frm,
+            "merge_rule": why if why is not None
+            else "%s and %s are one house: the same advertisement, twice printed" % (into, frm)})
+
+    run(lambda d, i: (variant(d, "Jno. Wilson & Co."), firm_rule(i, "L. Wilson & Co.", "Jno. Wilson & Co.")),
+        None, "two printings of one firm, merged by a stated rule")
+    run(lambda d, i: (variant(d, "Jno. Wilson & Co."),
+                      i.setdefault("firm_merges", []).append(
+                          {"into": "L. Wilson & Co.", "from": "Jno. Wilson & Co."})),
+        "no merge_rule", "a firm merge with no stated reason")
+    run(lambda d, i: (variant(d, "Jno. Wilson & Co."),
+                      firm_rule(i, "L. Wilson & Co.", "Jno. Wilson & Co.", "they look alike")),
+        "name BOTH spellings", "a firm merge rule that does not name what it merges")
+    run(lambda d, i: firm_rule(i, "Goss & Cobb",
+                               "S. B. Cobb, saddle, harness and trunk manufactory"),
+        "the partner surnames differ", "a merge that would change who the partners are")
+    run(lambda d, i: firm_rule(i, "L. Wilson & Co.", "Nobody & Co."),
+        "not a firm any claim carries", "a firm merge rule for a house nobody claimed")
+    run(lambda d, i: firm_rule(i, "L. Wilson & Co.", "L. Wilson & Co."),
+        "cannot be merged into itself", "a firm merged into itself")
+    def street_of(d, name, street):
+        next(c for c in d["claims"]
+             if (c.get("business") or {}).get("name") == name)["business"]["street"] = street
+
+    run(lambda d, i: (street_of(d, "L. Wilson & Co.", "Dearborn Street"),
+                      variant(d, "Jno. Wilson & Co.", street="Lake Street"),
+                      firm_rule(i, "L. Wilson & Co.", "Jno. Wilson & Co.")),
+        "different streets", "a firm merge across a street the papers contradict")
+
+    # And the merge has to DO something: green is also what a merge that quietly did
+    # nothing would look like, so the union is asserted on the compiled record itself.
+    merged_fixture = copy.deepcopy(base)
+    variant(merged_fixture, "Jno. Wilson & Co.")
+    merged_fixture["claims"][-1]["business"]["goods"] = ["Window Sash"]
+    merged_ident = {"merges": []}
+    firm_rule(merged_ident, "L. Wilson & Co.", "Jno. Wilson & Co.")
+    with tempfile.TemporaryDirectory() as td:
+        ex = Path(td) / "extracted"
+        ex.mkdir()
+        (ex / ("%s.json" % merged_fixture["issue_id"])).write_text(
+            json.dumps(merged_fixture, ensure_ascii=False), encoding="utf-8")
+        doc, probs = compile_gazetteer(sorted(ex.glob("*.json")), merged_ident, corpus_doc)
+    names = [b["name"] for b in doc["businesses"]]
+    got = next((b for b in doc["businesses"] if b["name"] == "L. Wilson & Co."), None)
+    if probs:
+        failures.append("the union case did not compile clean: %r" % probs)
+    elif "Jno. Wilson & Co." in names:
+        failures.append("a declared firm merge left both spellings standing")
+    elif got is None:
+        failures.append("a declared firm merge lost the firm it merged into")
+    elif len(got["mentions"]) != 2:
+        failures.append("a firm merge did not carry the mentions across: %r" % got["mentions"])
+    elif "Window Sash" not in got["goods"]:
+        failures.append("a firm merge did not carry the goods across: %r" % got["goods"])
+    elif not got.get("merged"):
+        failures.append("a firm merge left no record of itself on the firm")
 
     # THE ASSERTIONS THAT NEED A TRANSCRIPTION TO READ, and they must fire on `dev`,
     # where the deposit is absent. So they are run against an issue whose text is

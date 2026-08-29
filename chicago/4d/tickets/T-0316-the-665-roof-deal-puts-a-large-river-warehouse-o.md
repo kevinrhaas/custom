@@ -1,7 +1,7 @@
 ---
 id: T-0316
 title: The 665-roof deal puts a large river warehouse on an inland platted block, and the block generator cannot build one
-state: open
+state: done
 epic: META
 requested_by: loop
 seen: false
@@ -9,9 +9,9 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-08-28
-closed: null
-pr: null
-claimed_by: null
+closed: 2026-08-29
+pr: 520
+claimed_by: run 8/29/2026, 3:10:03 AM CT
 blocked_on: null
 needs_bake: false
 ---
