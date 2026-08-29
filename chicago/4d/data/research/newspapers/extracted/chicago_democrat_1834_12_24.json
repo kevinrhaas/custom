@@ -1,0 +1,318 @@
+{
+ "schema": 1,
+ "issue_id": "chicago_democrat_1834_12_24",
+ "extracted": "2026-08-29",
+ "extracted_by": "hand, T-0294 — the Democrat read, December 1834",
+ "note": "Vol. II No. 4, the last number of the year. One Tesseract-fallback column, page 3 column 5, and it is the richest single column in the month: a certified chancery order naming a Court House at Chicago, both of the month's estate auctions, the newspaper agency kept in the county clerk's office, and the note advertisement that documents the rescinded Chicago to Green Bay mail route. All seven claims come from it, which is why none of them is marked interleaved. The rest of the issue is given over to the Illinois and Michigan canal — a ship canal survey with a length, a cost and lock dimensions on page 3 column 2 — and it is NOT claimed: the figures there ('9030,020', '74 chains or 23 rode short miles', 'locks 25 feet 1[…] in the cham[ber]') are cut across an interleave and cannot be read with the confidence a number needs. No post-office letter list of any office stands in this issue.",
+ "claims": [
+  {
+   "id": "c001",
+   "kind": "building",
+   "reading": "transcription_mediated",
+   "quote": "sonally, be and appear before tho Judgo- o:\nCireut Court in and for the county peed 2\n| state of Illinois, on or before the first day ;\nhe next terin therdof, to be holden in tho F\nurt House at Chicago, on the fourteenth day| — jul\nMay next, to answer tha, charge and alloga- |\n1s, in the said complainants bill, which fas\nn exhibited against him in the said court, on !\nChancery side thereof, the samo will be A\nenas confessed by him, and the matters/lish r\nrein decreed, and accordingly: and it ia fur-} Jap\nr ordered, that a copy of this order, be pub-|-=~\nied, in the Chicago Democrat, a public nows- ry\ner printed in the town of Chicago and atate\nIllinois, for tour weeks successively, the first Ianta\nertion thereof to be made, within sixty days,|__ ul\nm_ the date hereof; and that this cause be)”\nstinued until the next term of this court.\nWitness the Hon. Richard M. Young, Judge AT\nthe fifth Judicial Circuit, and the Clerks pri-\n¢ seal, noseal of office being provided, at Chie oO\nro this Sth day of December, A. D. 1834. eet\nA truc copy. A\nRICHARD I, HAMILTON, [t. He\nClerk of Cook Cirewit Court, 5th Jud. Cir,| Oe",
+   "normalized": "[per]sonally, be and appear before the Judge o[f the] Circuit Court in and for the county [and] state of Illinois, on or before the first day [of] the next term thereof, to be holden in the [Co]urt House at Chicago, on the fourteenth day [of] May next, to answer the charge and allega[tion]s, in the said complainants bill, which ha[s bee]n exhibited against him in the said court, on [the] Chancery side thereof, the same will be [tak]en as confessed by him, and the matters [the]rein decreed, and accordingly: and it is fur[the]r ordered, that a copy of this order, be publ[ish]ed, in the Chicago Democrat, a public news[pap]er printed in the town of Chicago and state [of] Illinois, for four weeks successively, the first [ins]ertion thereof to be made, within sixty days, [fro]m the date hereof; and that this cause be [con]tinued until the next term of this court. Witness the Hon. Richard M. Young, Judge [of] the fifth Judicial Circuit, and the Clerks pri[vat]e seal, no seal of office being provided, at Chi[ca]go this 8th day of December, A. D. 1834. A true copy. RICHARD [J.] HAMILTON, Clerk of Cook Cir[c]uit Court, 5th Jud. Cir.",
+   "locator": {
+    "artifact_role": "primary",
+    "issue_page": 3,
+    "column": 5,
+    "lines": [
+     3417,
+     3441
+    ],
+    "interleaved": false
+   },
+   "entities": [
+    {
+     "as_printed": "Hon. Richard M. Young, Judge",
+     "normalized": "Richard M. Young",
+     "role": "official",
+     "occupations": [
+      "judge of the fifth judicial circuit"
+     ]
+    },
+    {
+     "as_printed": "RICHARD I, HAMILTON,",
+     "normalized": "Richard J. Hamilton",
+     "role": "official",
+     "occupations": [
+      "clerk of the Cook Circuit Court"
+     ]
+    },
+    {
+     "as_printed": "Michael P. Welch, is|",
+     "normalized": "Michael P. Welch",
+     "role": "defendant"
+    }
+   ],
+   "notes": "THERE IS A COURT HOUSE AT CHICAGO IN DECEMBER 1834, AND THE COUNTY COURT SAYS SO IN ITS OWN ORDER. 'to be holden in the Court House at Chicago, on the fourteenth day of May next' is the first naming of that building anywhere in this corpus, and it comes from the strongest kind of witness a newspaper can carry — not an advertiser's description of his own premises but a certified copy of a circuit court order, attested by the clerk. Read it for exactly what it says: the court expects to sit in a building called the Court House in May 1835, seven weeks before the scene date. It does NOT say where the building stands, what it is built of, or that it stood finished in December — all three are absent and none is inferred. The clerk's aside is the second fact and it cuts the other way: 'the Clerks private seal, no seal of office being provided' means Cook county in its sixth year still had no seal for its circuit court, which is a measure of how lightly furnished the institution was. The column is this issue's one Tesseract-fallback column and runs unbroken, which is why the order can be quoted at length; the right-hand margin of every line carries a few characters bled in from the neighbouring column and they are left in the quote exactly as transcribed.",
+   "ad_copy_date": {
+    "verbatim": "ro this Sth day of December, A. D. 1834.",
+    "iso": "1834-12-08"
+   }
+  },
+  {
+   "id": "c002",
+   "kind": "business",
+   "reading": "transcription_mediated",
+   "quote": "Administrator’s Notice. |g;\nY he be old at Public Auction, at Bates’ 2\nAuction Room in Chicago, on Wednes-\nxy the 31st of December inst. at 10 o’cleck A.\n|; all the personal properity of Dimicl Outhet, | sale\nveased, consisting ot Stock, Furniture, &e.| | &\nec, 3, 1834, G. W. SNOW, |ar5\nUblie ‘Adm'r of Cook co. and: Adm'r of the eatate| J\nof D, Outhet, doc'd.—lwa. —_—\nN. B. A credit of six months willbe givenon|\nams over fivo dollars, by giving approved secu-\nty,",
+   "normalized": "Administrator's Notice. [Will] be sold at Public Auction, at Bates' Auction Room in Chicago, on Wednes[da]y the 31st of December inst. at 10 o'cl[o]ck A. M.; all the personal propert[y] of D[an]iel Outhet, [de]ceased, consisting of Stock, Furniture, &c. Dec. 3, 1834. G. W. SNOW, P[u]blic Adm'r of Cook co. and Adm'r of the estate of D. Outhet, dec'd. — 1w4. N. B. A credit of six months will be given on [s]ums over five dollars, by giving approved secu[ri]ty.",
+   "locator": {
+    "artifact_role": "primary",
+    "issue_page": 3,
+    "column": 5,
+    "lines": [
+     3456,
+     3467
+    ],
+    "interleaved": false
+   },
+   "entities": [
+    {
+     "as_printed": "G, W, SNOW,",
+     "normalized": "G. W. Snow",
+     "role": "official",
+     "occupations": [
+      "public administrator of Cook county"
+     ]
+    },
+    {
+     "as_printed": "Dimicl Outhet,",
+     "normalized": "Daniel Outhet",
+     "role": "decedent"
+    }
+   ],
+   "notes": "BATES' AUCTION ROOM IS A NAMED, INDOOR, PUBLIC PLACE IN THIS TOWN. Two separate estate sales in this issue are appointed there for the same morning — Daniel Outhet's and David Laughton's, both at 10 o'clock on Wednesday 31 December — which makes it a room the town used rather than a phrase in one notice. It is the auctioneer John Bates Jr's own premises (c004 below), and it is the third auction business this month's reading has documented, after David Carver's on South Water Street (1834-12-03 c010) and Garrett's near the bridge (1834-12-17 c001). Nothing here places the room and no street is asserted for it. The six months' credit on sums over five dollars is worth keeping as a fact about how a frontier auction was actually settled.",
+   "ad_copy_date": {
+    "verbatim": "ec, 3, 1834,",
+    "iso": "1834-12-03"
+   },
+   "business": {
+    "name": "Bates' Auction Room",
+    "proprietors": [
+     "John Bates, Jr."
+    ],
+    "trade": "auction room",
+    "goods": [],
+    "street": null,
+    "placement": {
+     "class": "none",
+     "anchor": null,
+     "offset_text": null
+    }
+   }
+  },
+  {
+   "id": "c003",
+   "kind": "notice",
+   "reading": "transcription_mediated",
+   "quote": "Administrators Notice. |th\nwii be sold at Public Auction, at Bates’ | ron\nAuction Room, in Chicage, on Wednes- | mi\nIny tho Slut of December inst. at 10 o'clock A-| pu\nM. the spersopal property of David Laughton, | qu:\ndeceased, consiating of Stock, Furniture, &¢-—| pri\nDec. 3, 1834. G. W. SNOW, Jon\nPublic Adm'r of Cook co. and Adm'r of the estate| ob’\nof D. Laughton, dec'd.—lw4. liv\nN. B. A credit of six months will be given on]\nsums over five dol}ary, by giving approvod seca: }_\nrity.",
+   "normalized": "Administrators Notice. [Will] be sold at Public Auction, at Bates' Auction Room, in Chicag[o], on Wednes[d]ay the [31]st of December inst. at 10 o'clock A. M. the [ ]personal property of David Laughton, deceased, consisting of Stock, Furniture, &c. — Dec. 3, 1834. G. W. SNOW, Public Adm'r of Cook co. and Adm'r of the estate of D. Laughton, dec'd. — 1w4. N. B. A credit of six months will be given on sums over five dol[l]ars, by giving approved secu[ri]ty.",
+   "locator": {
+    "artifact_role": "primary",
+    "issue_page": 3,
+    "column": 5,
+    "lines": [
+     3482,
+     3493
+    ],
+    "interleaved": false
+   },
+   "entities": [
+    {
+     "as_printed": "David Laughton,",
+     "normalized": "David Laughton",
+     "role": "decedent"
+    },
+    {
+     "as_printed": "G, W, SNOW,",
+     "normalized": "G. W. Snow",
+     "role": "official",
+     "occupations": [
+      "public administrator of Cook county"
+     ]
+    }
+   ],
+   "notes": "THE SECOND ESTATE SOLD IN THE SAME ROOM ON THE SAME MORNING. Laughton's sale and Outhet's are advertised side by side, in identical words, by the same public administrator, for ten o'clock on 31 December. Two households' entire stock and furniture going under the hammer in one morning is the kind of event that fills a room, and it corroborates Bates' Auction Room as a place with capacity rather than a shopfront. Both men died in or before November 1834; the estates are handled by the county's public administrator rather than by family, which the notices say plainly by naming no next of kin.",
+   "ad_copy_date": {
+    "verbatim": "Dec. 3, 1834.",
+    "iso": "1834-12-03"
+   }
+  },
+  {
+   "id": "c004",
+   "kind": "business",
+   "reading": "transcription_mediated",
+   "quote": "For Sale,\nNOTE for 8147 42-000, dated Sept. 10th, | -\n3 A 1833, and singed by John T. Temple, lato\na letter writer in the Post Office Department,\n| and for a short time only, sole contractor of @\n| mail route from Chicago to Green Bay, suring\nwhich flourishing days said note was receiv\nfor cash lent; since tho recinding of said mail\nrouto, divers ways and means to poy accounts\n| and raise the wind have been resorted to; and to,\nliquidate the above, lately an offset has been\ns}tho plea, Toany purchaser of the same, am-\np| ple xeeurity will be given thot no offset exists,\npjanda got | shave allowed for cash; and if not\n, | disposed of privately, another attempt to well it\n~| at public auction, ‘will be mado on the first day\n| of January, ree without Tilia For fares\nticulars of the note or t! er, apply\nalas INO. BATES, Jr.\nAn oll resident and Aue’ r, for town of Chicago.\n| Nov. 26, 1834, —62 che",
+   "normalized": "For Sale, [A] NOTE for $147 42-[1]00, dated Sept. 1[9]th, 1833, and si[g]ned by John T. Temple, late a letter writer in the Post Office Department, and for a short time only, sole contractor of a mail route from Chicago to Green Bay, during which flourishing days said note was receiv[ed] for cash lent; since the [res]cinding of said mail route, divers ways and means to pay accounts and raise the wind have been resorted to; and to liquidate the above, lately an offset has been the plea. To any purchaser of the same, ample security will be given that no offset exists, and a good shave allowed for cash; and if not disposed of privately, another attempt to sell it at public auction, will be made on the first day of January, [next] without [fail]. For [fur]ther [par]ticulars of the note or t[he mak]er, apply [to] JNO. BATES, Jr. An old resident and Auc[tionee]r for town of Chicago. Nov. 26, 1834 — [5]2",
+   "locator": {
+    "artifact_role": "primary",
+    "issue_page": 3,
+    "column": 5,
+    "lines": [
+     3520,
+     3540
+    ],
+    "interleaved": false
+   },
+   "entities": [
+    {
+     "as_printed": "John T. Temple,",
+     "normalized": "John T. Temple",
+     "role": "note maker",
+     "occupations": [
+      "mail contractor",
+      "letter writer in the Post Office Department"
+     ]
+    },
+    {
+     "as_printed": "INO. BATES, Jr.",
+     "normalized": "John Bates, Jr.",
+     "role": "advertiser",
+     "occupations": [
+      "auctioneer"
+     ]
+    }
+   ],
+   "notes": "THE CHICAGO TO GREEN BAY MAIL ROUTE EXISTED, AND WAS RESCINDED — STATED IN PUBLIC BY A CREDITOR WITH EVERY REASON TO GET IT RIGHT. This spiteful little advertisement has run since November (1834-11-05 c005) and this is the first printing legible enough to read whole. Three facts come out of it that the reconstruction can use. First, the route: Chicago to Green Bay, carried under contract, and cancelled by the department before the end of 1834 — the same route whose note is the subject here and which the 1834-12-17 issue mentions again. Second, John T. Temple in a role the corpus had not held for him: a Post Office Department letter writer turned mail contractor, beside the three-storey store house with a wharf attached that he lets on the river (1834-11-12 c010). Third, John Bates Jr describes himself as 'an old resident and Auctioneer for town of Chicago', which is the proprietor of Bates' Auction Room (c002) naming his own trade and his own standing. Temple's counter-notice, 'Avoid Imposition!', stands eight lines below in the same column and denies the debt — both stand, with their dates, and neither is preferred. No business record is minted from Bates's signature here: the gazetteer already carries 'J. Bates jr., Auction Store' and 'Bates' Auction Room' (c002 above), and a third spelling of one auctioneer's premises is the firm-identity problem T-0304 records, not a new storefront.",
+   "ad_copy_date": {
+    "verbatim": "| Nov. 26, 1834, —62 che",
+    "iso": "1834-11-26"
+   }
+  },
+  {
+   "id": "c005",
+   "kind": "business",
+   "reading": "transcription_mediated",
+   "quote": "Ageeny.\n1 Seabees American, Daily, Tri-weekly\n‘and Semi-weckly; American Plough Boy, A\nNew-York Farmer, Ruil-Road Journal and Re-\n‘ater of Internal Improvements, Mechanics] *\nFiegazine and Register of Inventions, Subserip: hi\ntions for the above poblications received by Rt. bay\nSrxwant, at Col, Hamilton's office, |\nChicago, Nor. 26, 1034, —52",
+   "normalized": "Ag[e]ncy. [The New York] American, Daily, Tri-weekly and Semi-week[l]y; American Plough Boy, New-York Farmer, R[ai]l-Road Journal and Re[gis]ter of Internal Improvements, Mechanics' [Ma]gazine and Register of Inventions. Subscrip[t]ions for the above p[u]blications received by R[.] S[TE]WART, at Col. Hamilton's office. Chicago, No[v]. 26, 18[3]4 — 52",
+   "locator": {
+    "artifact_role": "primary",
+    "issue_page": 3,
+    "column": 5,
+    "lines": [
+     3494,
+     3502
+    ],
+    "interleaved": false
+   },
+   "entities": [
+    {
+     "as_printed": "Srxwant,",
+     "normalized": "R. Stewart",
+     "role": "proprietor",
+     "occupations": [
+      "newspaper agent"
+     ]
+    },
+    {
+     "as_printed": "Col, Hamilton's office,",
+     "normalized": "Richard J. Hamilton",
+     "role": "anchor"
+    }
+   ],
+   "notes": "A NEWSPAPER AGENCY KEPT INSIDE ANOTHER MAN'S OFFICE. R. Stewart is already in this corpus as the secretary who signs the Lyceum notice (1834-12-03, page 3 column 1, line 2938); here he takes eastern subscriptions at 'Col. Hamilton's office'. Colonel Richard J. Hamilton is the clerk of the Cook Circuit Court and of the county court, who attests the estray appraisal of 1834-12-17 (c005 there) and certifies the chancery order in this issue (c001) — so his office is a room that holds the county's records, receives subscriptions to the New York American, and is used as a public address by a man who does not work there. That is a real and unusual placement: a business whose whole premises are a corner of a public office. No street is given for it and none is supplied.",
+   "ad_copy_date": {
+    "verbatim": "Chicago, Nor. 26, 1034, —52",
+    "iso": "1834-11-26"
+   },
+   "business": {
+    "name": "R. Stewart",
+    "proprietors": [
+     "R. Stewart"
+    ],
+    "trade": "newspaper and periodical agency",
+    "goods": [],
+    "street": null,
+    "placement": {
+     "class": "relative",
+     "anchor": "Col. Hamilton's office",
+     "offset_text": "Srxwant, at Col, Hamilton's office, |"
+    }
+   }
+  },
+  {
+   "id": "c006",
+   "kind": "business",
+   "reading": "transcription_mediated",
+   "quote": "LOUR, Oats, Corn, Corn Meal, Vinegar,\n‘Cranberries, Mackerel and White Fiah, for | a\nanleby> iL, WILSON & CO. [o\nNor. 19. Dearborn-stred. | [",
+   "normalized": "[F]LOUR, Oats, Corn, Corn Meal, Vinegar, Cranberries, Mackerel and White Fi[s]h, for s[a]le by [J.] L. WILSON & CO. No[v]. 19. Dearborn-stre[et].",
+   "locator": {
+    "artifact_role": "primary",
+    "issue_page": 3,
+    "column": 5,
+    "lines": [
+     3515,
+     3518
+    ],
+    "interleaved": false
+   },
+   "entities": [
+    {
+     "as_printed": "iL, WILSON & CO.",
+     "normalized": "J. L. Wilson & Co.",
+     "role": "proprietor",
+     "occupations": [
+      "merchant"
+     ]
+    }
+   ],
+   "notes": "WHAT A DEARBORN STREET GROCER HAD IN STOCK THE WEEK BEFORE CHRISTMAS. Wilson & Co's dry-goods advertisement is elsewhere (1834-12-03 c009); this is the provisions list and it is a different kind of fact — the actual food on sale in the town in December 1834. Cranberries, mackerel and white fish beside flour, oats, corn and vinegar is a lake-and-marsh diet with imported staples, which is what a port on a wet prairie would eat. The street repeats and corroborates the December 3 reading.",
+   "ad_copy_date": {
+    "verbatim": "Nor. 19. Dearborn-stred. | [",
+    "iso": "1834-11-19"
+   },
+   "business": {
+    "name": "J. L. Wilson & Co.",
+    "proprietors": [
+     "J. L. Wilson"
+    ],
+    "trade": "groceries and provisions",
+    "goods": [
+     "flour",
+     "oats",
+     "corn",
+     "corn meal",
+     "vinegar",
+     "cranberries",
+     "mackerel",
+     "white fish"
+    ],
+    "street": "Dearborn Street",
+    "placement": {
+     "class": "street_only",
+     "anchor": null,
+     "offset_text": null
+    }
+   }
+  },
+  {
+   "id": "c007",
+   "kind": "notice",
+   "reading": "transcription_mediated",
+   "quote": "Caution. mo\n1. Ne persons are forbid cutting or ie les\nway any Timber or wood from E. H. of 8.|~\nW. quarler section No. ‘Two, in Towsahip 5 2\nnbishy Eight, North of rango No. Fourteen Eant. r\nAlso E. if of the 8. W. quarter of ection No.\ntwo, in Township No. Forty, North of Range].\nNo. Thirteen East, under penalty of the Law.\n8. C. GEORGE,\nChicago, Nov. 21st, 1834,",
+   "normalized": "Caution. [A]ll persons are forbid cutting or [drawing a]way any Timber or wood from E. H. of S. W. quarter section No. Two, in Town[s]hip [No. Thirty] Eight, North of range No. Fourteen East. Also E. [h]alf of the S. W. quarter of [s]ection No. two, in Township No. Forty, North of Range No. Thirteen East, under penalty of the Law. S. C. GEORGE, Chicago, Nov. 21st, 1834.",
+   "locator": {
+    "artifact_role": "primary",
+    "issue_page": 3,
+    "column": 5,
+    "lines": [
+     3504,
+     3513
+    ],
+    "interleaved": false
+   },
+   "entities": [
+    {
+     "as_printed": "8. C. GEORGE,",
+     "normalized": "S. C. George",
+     "role": "advertiser"
+    }
+   ],
+   "notes": "TIMBER IS BEING CUT OFF OTHER MEN'S LAND FAST ENOUGH THAT THE OWNERS ADVERTISE AGAINST IT. This is the fourth such caution this corpus has taken in two months — after H. Pearsons's, S. C. George's November printing, and the Fox River one — and the repetition is the claim: standing timber near Chicago in 1834 is a scarce, guarded resource, and the town's building material was being taken from quarter-sections whose owners lived elsewhere. Both parcels here are described by township and range rather than by any local name, so neither is placed on the model's ground; what is usable is the pressure, not the location. The trailing characters bled in from the neighbouring column at the line ends are left in the quote as transcribed.",
+   "ad_copy_date": {
+    "verbatim": "Chicago, Nov. 21st, 1834,",
+    "iso": "1834-11-21"
+   }
+  }
+ ]
+}

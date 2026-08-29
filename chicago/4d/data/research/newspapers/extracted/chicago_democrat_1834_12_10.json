@@ -1,0 +1,268 @@
+{
+ "schema": 1,
+ "issue_id": "chicago_democrat_1834_12_10",
+ "extracted": "2026-08-29",
+ "extracted_by": "hand, T-0294 — the Democrat read, December 1834",
+ "note": "Vol. II No. 2. Only two of this issue's columns carry the Tesseract fallback (page 2 column 1 and page 4 column 1) and the rest are shredded worse than 1834-12-03's: page 3 in particular alternates two physical columns line by line through the whole of its advertising, so most of the standing advertisements that stand whole in the first issue of the month survive here only as fragments and are not re-claimed from them. What this issue carries that no other does is the SCHOOL DISTRICT, in a meeting notice and a boundary description cut into halves across two columns, and the count of doors that fixes Clark, Filer & Co's placement. No post-office letter list of any office stands in this issue.",
+ "claims": [
+  {
+   "id": "c001",
+   "kind": "event",
+   "reading": "transcription_mediated",
+   "quote": "i of the citizens of School Dis\nwill be held et the\ntay the 16th day\nMansion",
+   "normalized": "[A meeting] of the citizens of School Dis[trict No. 1 …] will be held at the […] [Tues]day the 16th day [of December …] Mansion [House …]",
+   "locator": {
+    "artifact_role": "primary",
+    "issue_page": 3,
+    "column": 2,
+    "lines": [
+     2734,
+     2743
+    ],
+    "interleaved": true,
+    "lines_of_claim": [
+     2737,
+     2738,
+     2741,
+     2743
+    ]
+   },
+   "entities": [],
+   "notes": "THE SCHOOL DISTRICT MEETS AT THE MANSION HOUSE. A civic meeting with a named building and a named date — Tuesday 16 December 1834 — and it is the fourth building this corpus has caught the town assembling in, after the Exchange (the fire ordinance, and the common-schools meeting of 1834-11-26), the Presbyterian church (the temperance society, the library meeting, and the funeral sermon of 1834-12-17) and the Exchange Coffee House (1834-11-19 c001). A tavern's public room is where a school district transacts its business in this town. The notice is cut in half by the segmenter: these are its right-hand halves, and the left-hand halves stand in page 3 column 1 at lines 2535-2546, where 'A MEETIN[G]', '[dis]trict No', 'said School Dis[trict]', 'Chicago, Dec.' and 'Ordered by th[e]' can be read. Neither half alone carries the district number and it is not supplied; the boundary claim beside this one (c002) names it."
+  },
+  {
+   "id": "c002",
+   "kind": "infrastructure",
+   "reading": "transcription_mediated",
+   "quote": "aca south along Willis\ncosrer of Block No. 101. in\ner. thenee south along ssid riv-\n• of saiti soetion 16,\not asid section to Lake Mich\nthence\nth aiong the Lake sitore 10\nho place of boginning,\nnorkn to the caicago river\nisorlaiced. constituted, known.\nibel, as Suhoul Distric Nimber",
+   "normalized": "[… then]ce south along Willis […] co[r]ner of Block No. 101, in […] [riv]er, thence south along said riv[er …] […] of said section 16, […] o[f] said section to Lake Mich[igan] thence [nor]th along the Lake s[h]ore to […] [t]he place of beginning, […] north to the C[h]icago river […] is [hereby] laid [off], constituted, known [and design]ated as Sch[oo]l District N[u]mber […]",
+   "locator": {
+    "artifact_role": "primary",
+    "issue_page": 3,
+    "column": 2,
+    "lines": [
+     2759,
+     2784
+    ],
+    "interleaved": true,
+    "lines_of_claim": [
+     2759,
+     2762,
+     2764,
+     2767,
+     2768,
+     2769,
+     2771,
+     2780,
+     2781,
+     2782,
+     2784
+    ]
+   },
+   "entities": [],
+   "notes": "THE TOWN'S SCHOOL DISTRICT IS BOUNDED BY A BLOCK NUMBER, A RIVER, A SECTION LINE AND THE LAKE. Every one of those four is a thing the reconstruction already holds: block 101 is on the plat, section 16 is the school section, the Chicago river is the model's central feature and the lake shore is its eastern edge. So this is an administrative boundary drawn entirely in terms of the town's own geography, and it is the first one in this corpus. The order of the clauses is NOT the printed order: the segmenter has woven this notice line by line through John T. Temple's note advertisement, whose lines (2770, 2772, 2773, 2774-2779) are excluded, and the surviving school-district lines arrive shuffled. The reading unshuffles them by sense and says so; the quote is the lines exactly as they stand, in file order. What is NOT recovered is as important as what is: the district number is cut away at the end of line 2784, the street named at line 2759 survives only as 'Willis', and the direction and distance clauses that would close the traverse are gone. No boundary is drawn from this on the strength of what is here — the claim records that the district was defined and which features defined it, not where its corners are."
+  },
+  {
+   "id": "c003",
+   "kind": "business",
+   "reading": "transcription_mediated",
+   "quote": "H. C. BENNETT.\nAND COUNSELLOR AT LAI\nbliciter in Chancers.\nsi door north from the Tremont\nn Dearborn-street.",
+   "normalized": "H. C. BENNETT. [ATTORNEY] AND COUNSELLOR AT LA[W and So]licit[o]r in Chancer[y]. […] [uncertain: si] door north from the Tremont [House, o]n Dearborn-street.",
+   "locator": {
+    "artifact_role": "primary",
+    "issue_page": 3,
+    "column": 2,
+    "lines": [
+     2886,
+     2893
+    ],
+    "interleaved": true,
+    "lines_of_claim": [
+     2886,
+     2890,
+     2891,
+     2892,
+     2893
+    ]
+   },
+   "entities": [
+    {
+     "as_printed": "H. C. BENNETT.",
+     "normalized": "H. C. Bennett",
+     "role": "proprietor",
+     "occupations": [
+      "attorney",
+      "counsellor at law",
+      "solicitor in chancery"
+     ]
+    }
+   ],
+   "notes": "A SECOND TENANT MEASURED NORTH FROM THE TREMONT HOUSE, AND THIS ONE NAMES THE STREET. Andrews & Eells's tailoring shop is one door north of the Tremont (1834-12-03 c007); Bennett's law office is some number of doors north from it 'on Dearborn-street'. Together they put the Tremont House on Dearborn with a run of frontages north of it, which is more than either notice says alone. The number of doors is the one thing this reading will not give: line 2892 opens 'si door north', which is not 'six' with any confidence — the same word in the 1834-12-03 printing (page 3 column 1, line 2974) reads 'O PICE fres dont noth from the fre', which is worse. So the count stays inside an uncertainty marker and no door is counted. Bennett's own name and his July dateline are on the far side of the interleave, at lines 2886-2887.",
+   "business": {
+    "name": "H. C. Bennett",
+    "proprietors": [
+     "H. C. Bennett"
+    ],
+    "trade": "attorney and counsellor at law, and solicitor in chancery",
+    "goods": [],
+    "street": "Dearborn Street",
+    "placement": {
+     "class": "relative",
+     "anchor": "the Tremont House",
+     "offset_text": "si door north from the Tremont\nn Dearborn-street."
+    }
+   }
+  },
+  {
+   "id": "c004",
+   "kind": "business",
+   "reading": "transcription_mediated",
+   "quote": "the Cabinet\ni Ware\nri HE\na T ving\nbot their war\nato South ws\n“bre doors east\ni of Randoi",
+   "normalized": "[The] Cabinet [and] [Chair] Ware [House]. T[HE subscribers] [ha]ving [on hand at] their war[e house] […] South w[ater st.,] [th]ree doors east […] of Randol[ph st. …]",
+   "locator": {
+    "artifact_role": "primary",
+    "issue_page": 4,
+    "column": 1,
+    "lines": [
+     3830,
+     3837
+    ],
+    "interleaved": true
+   },
+   "entities": [
+    {
+     "as_printed": "the Cabinet",
+     "normalized": "Clark, Filer & Co.",
+     "role": "proprietor",
+     "occupations": [
+      "cabinet maker",
+      "chair maker"
+     ]
+    }
+   ],
+   "notes": "THIS IS THE WITNESS THAT SUPPLIES THE NUMBER OF DOORS. The 1834-12-03 printing of the same advertisement (c012 there) breaks at exactly the place where the count should be and gives '4 soars, past Bt the e'. Line 3836 here reads 'bre doors east', which is 'three doors east', and 1834-12-17 page 4 column 1 line 3609 gives 'doors east of th[e]' in the same position. Three readings of one line, one of which carries the word: Clark, Filer & Co's cabinet and chair ware house stands three doors east of Randolph street, on South Water. It is extracted as its own claim rather than folded into the December 3 one because both mentions stand with their dates and because the December 3 claim's bracketed supply has to be able to name a citation, not a memory.",
+   "business": {
+    "name": "Clark, Filer & Co.",
+    "proprietors": [
+     "Clark",
+     "Filer"
+    ],
+    "trade": "cabinet and chair ware house",
+    "goods": [],
+    "street": "South Water Street",
+    "placement": {
+     "class": "relative",
+     "anchor": "Randolph street",
+     "offset_text": "“bre doors east\ni of Randoi"
+    }
+   }
+  },
+  {
+   "id": "c005",
+   "kind": "notice",
+   "reading": "transcription_mediated",
+   "quote": "tray Oxer.\nay enclosure the 30th of Novem-\na brindle Ox, about five years\nappesr to be mates: bath\nabout 8 yeare old.\nThe own.\nto come, prove property, pay\n[uncertain: FE WESTWORTH, Jr.]\n[uncertain: 5 mies south wes. Of Calcage]\nc. 9, 1831.",
+   "normalized": "[S]tray Ox[en]. [Came into m]y enclosure the 30th of Novem[ber …] a brindle Ox, about five years [old …] appear to be mates: both […] about 8 years old. […] The own[er is requested] to come, prove property, pay [charges and take them away.] [uncertain: E.] WENTWORTH, Jr., [living] 5 miles south wes[t] of C[hi]cago. [De]c. 9, 18[3]4.",
+   "locator": {
+    "artifact_role": "primary",
+    "issue_page": 3,
+    "column": 2,
+    "lines": [
+     2713,
+     2732
+    ],
+    "interleaved": true,
+    "lines_of_claim": [
+     2713,
+     2714,
+     2718,
+     2720,
+     2722,
+     2725,
+     2727,
+     2728,
+     2729,
+     2732
+    ]
+   },
+   "entities": [
+    {
+     "as_printed": "FE WESTWORTH, Jr.",
+     "normalized": "[uncertain: E.] Wentworth, Jr.",
+     "role": "advertiser"
+    }
+   ],
+   "notes": "FIVE MILES SOUTH-WEST OF CHICAGO, AND STOCK STILL RUNNING LOOSE IN DECEMBER. Wentworth's is the fourth estray notice this corpus has taken in five weeks — after Funk's, Clybourn's two and the December 3 repeat — and the pattern is the claim: the country immediately around the town is unfenced and the animals in it are branded rather than penned, so a stray is advertised by description and reclaimed at a farmhouse. The distance and bearing are the usable part, and they put the taker-up outside the plat entirely. The oxen are described as mates, which is a yoke, so the animals are working stock and not cattle at large. The advertiser's initial is inside an uncertainty marker in the transcription and is left there.",
+   "ad_copy_date": {
+    "verbatim": "c. 9, 1831.",
+    "iso": "1834-12-09"
+   }
+  },
+  {
+   "id": "c006",
+   "kind": "notice",
+   "reading": "transcription_mediated",
+   "quote": "on the first day of August last :\n1, I gave Jom A.\nars wa not given up on an ex\ni: his boarding hoaee, but wonld\nthe next day, but did not\nALANSON SWEET.\nDee. 3, 1834.",
+   "normalized": "[…] on the first day of August last: […] I gave Jo[h]n A. […] [ye]ars was not given up on an ex[change …] [at] his boarding hou[s]e, but would […] the next day, but did not […] ALANSON SWEET. De[c]. 3, 1834.",
+   "locator": {
+    "artifact_role": "primary",
+    "issue_page": 3,
+    "column": 2,
+    "lines": [
+     2692,
+     2708
+    ],
+    "interleaved": true,
+    "lines_of_claim": [
+     2694,
+     2695,
+     2699,
+     2702,
+     2705,
+     2707,
+     2708
+    ]
+   },
+   "entities": [
+    {
+     "as_printed": "ALANSON SWEET.",
+     "normalized": "Alanson Sweet",
+     "role": "advertiser"
+    }
+   ],
+   "notes": "A BOARDING HOUSE, NAMED AS THE PLACE A DEBT WAS TRANSACTED. The notice itself is a caution about a note and is of no interest; the phrase 'at his boarding house' is, because it records boarding houses as ordinary premises in this town in 1834 and this corpus has almost nothing else on them. Nothing places it, and no building is claimed from it — only that the institution existed and that business was done at it. The notice is woven line by line through the Outhet administrator's notice, whose lines are excluded; more than half of Sweet's own text is inside uncertainty markers and is not read.",
+   "ad_copy_date": {
+    "verbatim": "Dee. 3, 1834.",
+    "iso": "1834-12-03"
+   }
+  },
+  {
+   "id": "c007",
+   "kind": "event",
+   "reading": "transcription_mediated",
+   "quote": "[uncertain: RIED,]\n[uncertain: Chicaso. 100]\nothe 4.h inst, by the Ren.\norly daughter of Mr. J. K.\nasure of being present at th\ncao testify that the cake ana\ndest sures cs that the cake",
+   "normalized": "[MAR]RIED, [in] Chicago, [on] the 4th inst, by the Rev[.] […] [… the eld]est daughter of Mr. J. K. […] [We had the ple]asure of being present at th[e wedding …] [we] can testify that the cake [was …] […] the [e]ditor assures us that the cake […]",
+   "locator": {
+    "artifact_role": "primary",
+    "issue_page": 3,
+    "column": 1,
+    "lines": [
+     2654,
+     2669
+    ],
+    "interleaved": true,
+    "lines_of_claim": [
+     2655,
+     2656,
+     2658,
+     2660,
+     2661,
+     2665,
+     2668
+    ]
+   },
+   "entities": [],
+   "notes": "A WEDDING THE EDITOR ATTENDED, WHICH IS AS CLOSE AS THIS PAPER COMES TO A SOCIAL PAGE. The names are the loss: the officiating minister is cut away after 'the Rev.', the bride is 'the eldest daughter of Mr. J. K.' with the surname gone, and the groom's name stands in an uncertainty marker at line 2657 that will not resolve. J. K. Botsford is the only 'J. K.' this corpus knows in Chicago (1834-12-03 c008) and it is NOT asserted here — an initial pair is not an identification and no person is minted from it. What the claim does record is the date, 4 December 1834, that the marriage was in Chicago, and that the Democrat's editor was in the room. Nothing about the cake survives the segmenter twice over, and it is left absent."
+  }
+ ]
+}

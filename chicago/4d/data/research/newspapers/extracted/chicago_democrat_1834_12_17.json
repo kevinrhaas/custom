@@ -1,0 +1,254 @@
+{
+ "schema": 1,
+ "issue_id": "chicago_democrat_1834_12_17",
+ "extracted": "2026-08-29",
+ "extracted_by": "hand, T-0294 — the Democrat read, December 1834",
+ "note": "Vol. II No. 3. One Tesseract-fallback column only (page 4 column 1), carrying the standing back-page advertisements already read from 1834-12-03. The month's NEW matter is all on page 3: a new auction house on South Water Street near the bridge, the library moving from a meeting to a purchasing committee with an office and a librarian, a funeral sermon at the Presbyterian church, and an estray taken before a justice and attested by the county clerk. Page 3 column 2 alternates two physical columns line by line and every claim from it names its own lines. No post-office letter list of any office stands in this issue.",
+ "claims": [
+  {
+   "id": "c001",
+   "kind": "business",
+   "reading": "transcription_mediated",
+   "quote": "Ametima Votice.\nGARRETT,\nSPECTPULLY inforins\nthe citiznns of\nSouth- Water street,\nlridge, for the parp\nof carrvine on the Auc.\nss in genera!, in all its racions branchca,\np constastly on hand a general as-\nGood. Groceries, Hardeare, Crockerg,\nn's asc! Sices, reuy male Gotiäng;\nHond ont deor siles of land, houses, lots\nLet al natos ahall be peranstorile.\nnocs nere, as they will not only save their\nHo will have pubiie sales as ofiea as tw\nwing cast, but expences in travelling\npublic, and pledges himgelf\nwill be given on all sinde or merenan\nPaMie notice will be given in timie pri-\n16, 1831.—3",
+   "normalized": "A[uc]tion Notice. GARRETT, [RE]SPECTFULLY informs the citizens of […] South-Water street, [near the b]ridge, for the p[u]rp[ose] of carrying on the Auc[tion and Commission busine]ss in general, in all its various branches, [and will kee]p constantly on hand a general as[sortment of Dry] Goods, Groceries, Hard[w]are, Crockery, [Boot]s and S[ho]es, read[y] made [C]lo[th]ing; […] [He will also] sell at [public] and [private] sales of land, houses, lots [and w]hatever else may […] […] All sales shall be peremptor[il]y […] […] here, as they will not only save their […] He will have public sales as often as t[wice a week …] [buy]ing cost, but expences in travelling […] [… the] public, and pledges himself […] will be given on all kinds of merchan[dise …] […] P[u]blic notice will be given in time pri[or …] [Chicago, Dec.] 16, 18[34] — 3",
+   "locator": {
+    "artifact_role": "primary",
+    "issue_page": 3,
+    "column": 2,
+    "lines": [
+     2689,
+     2730
+    ],
+    "interleaved": true,
+    "lines_of_claim": [
+     2689,
+     2690,
+     2691,
+     2692,
+     2697,
+     2698,
+     2700,
+     2702,
+     2703,
+     2704,
+     2705,
+     2707,
+     2711,
+     2715,
+     2716,
+     2717,
+     2724,
+     2726,
+     2729,
+     2730
+    ]
+   },
+   "entities": [
+    {
+     "as_printed": "GARRETT,",
+     "normalized": "[…] Garrett",
+     "role": "proprietor",
+     "occupations": [
+      "auction and commission merchant"
+     ]
+    }
+   ],
+   "notes": "A NEW AUCTION HOUSE OPENS ON SOUTH WATER STREET, NEAR THE BRIDGE — AND ITS PLACEMENT IS THE MOST SPECIFIC IN THE MONTH. 'Near the bridge' on South Water Street is an anchor the reconstruction holds precisely: there is one bridge across the main branch in 1834 and its South Water end is a fixed point on the model's ground. That makes Garrett's store one of a small number of documented storefronts that could be stood in front of rather than merely put on a street. The surname is all the segmenter left of the signature — the given name is cut away and is NOT supplied, though Augustine Garrett is the auctioneer of that surname the later Chicago record knows; an identification made from a surname and a trade is exactly the kind this corpus refuses. The business is a second auction and commission house on the same street as David Carver's (1834-12-03 c010), opening in the same month, and the promise of public sales twice a week means a recurring crowd at a fixed place. The dateline is 16 December 1834 and the advertisement is in its first week, so the house is new: it did not stand in the town in November. One more reason not to supply the given name: an 'A. Garrett, auctioneer' is already in this gazetteer from the Chicago American of 1835-07-25 and 1835-08-15, seven months later and in the same trade. That is a strong candidate for the same man and it is left UNMERGED — the surname and the trade are not an identification, and identity.json is where a merge would have to be argued.",
+   "ad_copy_date": {
+    "verbatim": "16, 1831.—3",
+    "iso": "1834-12-16"
+   },
+   "business": {
+    "name": "[…] Garrett",
+    "proprietors": [
+     "[…] Garrett"
+    ],
+    "trade": "auction and commission",
+    "goods": [
+     "dry goods",
+     "groceries",
+     "hardware",
+     "crockery",
+     "boots and shoes",
+     "ready made clothing",
+     "land",
+     "houses",
+     "lots"
+    ],
+    "street": "South Water Street",
+    "placement": {
+     "class": "relative",
+     "anchor": "the bridge",
+     "offset_text": "South- Water street,\nlridge, for the parp"
+    }
+   }
+  },
+  {
+   "id": "c002",
+   "kind": "event",
+   "reading": "transcription_mediated",
+   "quote": "to the Li\n[uncertain: een, are requested]\nto leave them at the ofiice of\nmarian.\nsouth water street.\n; convenient, that the commitiee on toe\nmay act understandingly in the pur-\nit uew works.\n17.—8,",
+   "normalized": "to the Li[brary …] [… subscriptions or the names of those intending to subscribe] [… are requested] […] to leave them at the office of […] [the Libra]rian. […] south water street. […] [… as soon as is] convenient, that the committee on the [library] may act understandingly in the pur[chase of] […] [… the] new works. [Dec.] 17. — 3",
+   "locator": {
+    "artifact_role": "primary",
+    "issue_page": 3,
+    "column": 2,
+    "lines": [
+     2643,
+     2661
+    ],
+    "interleaved": true,
+    "lines_of_claim": [
+     2646,
+     2647,
+     2650,
+     2651,
+     2654,
+     2656,
+     2657,
+     2660,
+     2661
+    ]
+   },
+   "entities": [],
+   "notes": "THE LIBRARY IS PAST THE MEETING STAGE AND IS BUYING BOOKS. Three weeks after the citizens of Chicago were called to the Presbyterian church to found a library and reading room (chicago_democrat_1834_11_26 c001), the project has a committee, a librarian, an office on South Water Street where subscriptions are left, and a purchase to make. That is an institution acquiring a place in the town between one issue and another, and it is the strongest continuity in the month's reading. What the segmenter has taken is precisely the office holder's name at line 2650 — 'to leave them at the office of' and then the next words are gone — so the address is a street with no door on it, and no anchor is invented for it. 'Librarian' at line 2651 stands immediately after and is the office, not the name."
+  },
+  {
+   "id": "c003",
+   "kind": "event",
+   "reading": "transcription_mediated",
+   "quote": "Chicag\nnesday, Dec. 15, 1954.\nCommunicaled.\nfuneral sermon will be delisered nt the\nterian Charch, on Sabbath af-ernoon",
+   "normalized": "Chicag[o …] [Wed]nesday, Dec. 1[7], 18[3]4. Communicated. [… The] funeral sermon will be deli[v]ered a[t] the [Presby]terian Chu[r]ch, on Sabbath af[t]ernoon […]",
+   "locator": {
+    "artifact_role": "primary",
+    "issue_page": 3,
+    "column": 2,
+    "lines": [
+     2609,
+     2631
+    ],
+    "interleaved": true,
+    "lines_of_claim": [
+     2611,
+     2625,
+     2627,
+     2628,
+     2629
+    ]
+   },
+   "entities": [],
+   "notes": "THE PRESBYTERIAN CHURCH, USED AGAIN, AND THIS TIME FOR A FUNERAL. The obituary that this notice belongs to is in the column beside it and is a young man dead at twenty-six after an illness of eight days; his name is cut away with the head of the notice. The building is the claim. This is the fourth use of the Presbyterian church this corpus has recorded in seven weeks — the temperance society (1834-11-05 c015), the library meeting (1834-11-26 c001), the common-schools meeting, and now a Sabbath-afternoon funeral sermon — which makes it, on the paper's own evidence, the town's principal assembly room as well as its church. The dateline reads '1954' for 1834 in the transcription; that is a recognition-class error the surrounding issue fixes and it is corrected in the reading only."
+  },
+  {
+   "id": "c004",
+   "kind": "event",
+   "reading": "transcription_mediated",
+   "quote": "MARRIED,\n* the Ilth inst\nHADDOCK, to Mis\n[uncertain: by Ine sland]",
+   "normalized": "MARRIED, [on] the [1]1th inst[.] […] HADDOCK, to Mis[s …] [uncertain: by the …]",
+   "locator": {
+    "artifact_role": "primary",
+    "issue_page": 3,
+    "column": 1,
+    "lines": [
+     2590,
+     2593
+    ],
+    "interleaved": true
+   },
+   "entities": [
+    {
+     "as_printed": "HADDOCK, to Mis",
+     "normalized": "[…] Haddock",
+     "role": "groom"
+    }
+   ],
+   "notes": "A HADDOCK MARRIES IN CHICAGO ON 11 DECEMBER 1834. The surname is the whole of what survives on the groom's side and the bride's is gone entirely. It is extracted because Haddock is a name this corpus already carries as a PLACE: 'Haddock's Tavern' on Lake street is the landmark two separate lot advertisements measure themselves from (1834-10-15 c006, 1834-11-19 c010). A tavern keeper's household is a thing the reconstruction can use. No identification is made — the notice gives a surname and a date and nothing else, and the person minted from it is a Haddock married on that day, not the tavern keeper."
+  },
+  {
+   "id": "c005",
+   "kind": "notice",
+   "reading": "transcription_mediated",
+   "quote": "Estray Stcer.\nof November lart a red\nbout the Ist/\nS'TEER;\nequested to prove property, pay charge\n* larre tio vear old. The own.\n15, 1631.-3\nJERENIAR SMITH.\nliving in Cook coanty, Ill.\nefore lease Harmon, a Justicn of\nAttoa-RICH'D. 1. HAMILTON\nClak conir, ct. Cool, co. lil.",
+   "normalized": "Estray St[e]er. […] [… about the 1st] of November la[s]t a red […] [a]bout the 1st […] S[]TEER; […] [The owner is r]equested to prove property, pay charge[s …] [… a] lar[g]e two year old. The own[er …] [Dec.] 15, 18[34].—3 JERE[M]IA[H] SMITH, […] living in Cook county, Ill. […] [b]efore [I]sa[a]c Harmon, a Justic[e] of [the Peace …] Attest — RICH'D. [J.] HAMILTON, Cl[er]k co[unty c]o[ur]t, Cook co. Ill.",
+   "locator": {
+    "artifact_role": "primary",
+    "issue_page": 3,
+    "column": 2,
+    "lines": [
+     2740,
+     2761
+    ],
+    "interleaved": true,
+    "lines_of_claim": [
+     2740,
+     2743,
+     2744,
+     2745,
+     2746,
+     2747,
+     2750,
+     2751,
+     2754,
+     2757,
+     2758,
+     2761
+    ]
+   },
+   "entities": [
+    {
+     "as_printed": "JERENIAR SMITH.",
+     "normalized": "Jeremiah Smith",
+     "role": "advertiser"
+    },
+    {
+     "as_printed": "efore lease Harmon, a Justicn of",
+     "normalized": "Isaac Harmon",
+     "role": "official",
+     "occupations": [
+      "justice of the peace"
+     ]
+    },
+    {
+     "as_printed": "Attoa-RICH'D. 1. HAMILTON",
+     "normalized": "Richard J. Hamilton",
+     "role": "official",
+     "occupations": [
+      "clerk of the county court, Cook county"
+     ]
+    }
+   ],
+   "notes": "AN ESTRAY IS A COURT RECORD, NOT JUST AN ADVERTISEMENT, AND THIS ONE SHOWS THE MACHINERY. The steer is taken up, appraised before Isaac Harmon as a justice of the peace, and the appraisal is attested by Richard J. Hamilton as clerk of the county court before it is printed. Hamilton is the same clerk who signs the chancery order of the following week (1834-12-24 c001) as clerk of the Cook Circuit Court and whose office is the anchor for R. Stewart's newspaper agency there too — three offices in one man, which is what a county seat of this size looks like. Isaac Harmon is the justice who married George Cappy in November (1834-11-19 c002). The notice is woven through the tavern-keeper's card and the two are separated by sense; Smith's residence is given as Cook county with no nearer place and none is supplied.",
+   "ad_copy_date": {
+    "verbatim": "15, 1631.-3",
+    "iso": "1834-12-15"
+   }
+  },
+  {
+   "id": "c006",
+   "kind": "notice",
+   "reading": "transcription_mediated",
+   "quote": "Panted Immediately.\napprentice at this office to\nusiness.\nthe\nprinting\nrood opportunity is oflered.",
+   "normalized": "[W]anted Immediately. [An] apprentice at this office to the printing [b]usiness. […] [A g]ood opportunity is offered.",
+   "locator": {
+    "artifact_role": "primary",
+    "issue_page": 3,
+    "column": 2,
+    "lines": [
+     2632,
+     2640
+    ],
+    "interleaved": true,
+    "lines_of_claim": [
+     2632,
+     2634,
+     2635,
+     2636,
+     2637,
+     2640
+    ]
+   },
+   "entities": [],
+   "notes": "THE DEMOCRAT IS SHORT-HANDED FOR THE THIRD WEEK RUNNING. The same advertisement stands in 1834-12-03 (page 3 column 1, lines 2947-2950) and in 1834-12-24 (page 3 column 2, lines 3064-3068), which means the paper ran it through the whole month without filling the place. That is a small fact about the town's labour rather than about the paper: there was no boy to be had for a printing office in Chicago in December 1834. 'This office' is the Democrat's own, and the Democrat's premises are the ones advertised for sale on the corner of South Water and Clark (1834-12-03 c003)."
+  }
+ ]
+}
