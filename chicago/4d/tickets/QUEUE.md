@@ -56,7 +56,7 @@ T-0283 — The North Division's warehouse row allows one freight roof and six do
 # --- NEWSPAPERS, WAITING ON THE PAGE IMAGES — each needs the owner's scans opened,
 # --- which live outside the repository. Workable the day the images are supplied;
 # --- until then a run should take something above instead.
-T-0318 — The January 1834 letter list is 97 names and the printed list was longer; the page images can close the gap
+T-0318 — The January 1834 letter list: the third printing repairs the A-H half, and the images are needed only for the rest
 T-0321 — The 1 April 1834 Chicago letter list is 179 names and nineteen lines of debris stand where more did
 T-0331 — The March 1834 letter list lost its date line and both its crops failed Vision; the page images can say which return it is
 T-0305 — Four readings the American contradicts itself on need the page images: the tailor's street, which Water street two forwarding houses stood in, and the corner of Cobb's saddlery
@@ -135,3 +135,4 @@ T-0271 — The balanced ceiling is breached at the forks by 5,290 triangles on a
 # --- NEWLY FILED — `ticket.mjs new` appends to the END of this file, so new tickets
 # --- land under this line. NOT yet placed by the owner.
 T-0332 — The sheet's one brick is called chimney_brick, and a wall now reads it
+T-0337 — A bare surname can never be joined to its forename: the family rule reads 'no initials' as 'different initials'

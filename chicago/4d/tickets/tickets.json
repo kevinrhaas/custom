@@ -1,6 +1,6 @@
 {
   "project": "chicago-4d",
-  "generated_ct": "Aug 28, 2026, 10:15 PM",
+  "generated_ct": "Aug 28, 2026, 10:25 PM",
   "tickets": [
     {
       "id": "T-0001",
@@ -5383,7 +5383,7 @@
     },
     {
       "id": "T-0318",
-      "title": "The January 1834 letter list is 97 names and the printed list was longer; the page images can close the gap",
+      "title": "The January 1834 letter list: the third printing repairs the A-H half, and the images are needed only for the rest",
       "state": "open",
       "epic": "META",
       "requested_by": "loop",
@@ -5596,6 +5596,24 @@
       "blocked_on": null,
       "needs_bake": true,
       "queue_rank": 66
+    },
+    {
+      "id": "T-0337",
+      "title": "A bare surname can never be joined to its forename: the family rule reads 'no initials' as 'different initials'",
+      "state": "open",
+      "epic": "META",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "S",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-08-28",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "queue_rank": 67
     }
   ]
 }
