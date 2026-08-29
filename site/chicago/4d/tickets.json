@@ -1,6 +1,6 @@
 {
   "project": "chicago-4d",
-  "generated_ct": "Aug 29, 2026, 12:56 AM",
+  "generated_ct": "Aug 29, 2026, 1:03 AM",
   "tickets": [
     {
       "id": "T-0001",
@@ -5438,7 +5438,7 @@
     {
       "id": "T-0324",
       "title": "J. K. Botsford advertises two addresses in one issue, and Graves' Tavern cannot be placed until they are reconciled",
-      "state": "open",
+      "state": "claimed",
       "epic": "META",
       "requested_by": "loop",
       "seen": false,
@@ -5448,7 +5448,7 @@
       "opened": "2026-08-28",
       "closed": null,
       "pr": null,
-      "claimed_by": null,
+      "claimed_by": "run 8/29/2026, 12:17:46 AM CT",
       "blocked_on": null,
       "needs_bake": false,
       "queue_rank": 1
@@ -5848,6 +5848,42 @@
       "blocked_on": null,
       "needs_bake": false,
       "queue_rank": 69
+    },
+    {
+      "id": "T-0358",
+      "title": "The Thompson plat's block NUMBERING is uncommitted, so the corpus's only lot-and-block address cannot be placed",
+      "state": "open",
+      "epic": "META",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "M",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-08-29",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "queue_rank": 70
+    },
+    {
+      "id": "T-0359",
+      "title": "The gazetteer mints tavern names as people, so Maddock's Tavern and Haddock's Tavern cannot be reconciled",
+      "state": "open",
+      "epic": "META",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "M",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-08-29",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "queue_rank": 71
     }
   ]
 }

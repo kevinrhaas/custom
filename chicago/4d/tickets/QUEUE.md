@@ -138,3 +138,5 @@ T-0354 — The register can only place 24 of 190 documented businesses; 49 more 
 T-0355 — A firm matches a building on an occupant the same sentence dates to 1831
 T-0356 — The claim vocabulary cannot say an advertisement announces an opening, so 17 businesses are excluded on a proxy
 T-0357 — 129 documented businesses will stand on a survival liberty and LIBERTIES.md carries none of them
+T-0358 — The Thompson plat's block NUMBERING is uncommitted, so the corpus's only lot-and-block address cannot be placed
+T-0359 — The gazetteer mints tavern names as people, so Maddock's Tavern and Haddock's Tavern cannot be reconciled

@@ -1,7 +1,7 @@
 ---
 id: T-0324
 title: J. K. Botsford advertises two addresses in one issue, and Graves' Tavern cannot be placed until they are reconciled
-state: open
+state: claimed
 epic: META
 requested_by: loop
 seen: false
@@ -11,7 +11,7 @@ parent: null
 opened: 2026-08-28
 closed: null
 pr: null
-claimed_by: null
+claimed_by: run 8/29/2026, 12:17:46 AM CT
 blocked_on: null
 needs_bake: false
 ---

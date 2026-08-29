@@ -103,8 +103,61 @@ width — South Water lots were 55 ft — on top of the georeference's ±20 m.
 
 - **Chicago Democrat and Chicago American advertisements** of the house under Haddock or Markle,
   which would carry a room count and might settle the "Cook's Coffee House" name and the 1835
-  handover month.
+  handover month. *Partly answered — see §7. The Democrat under Haddock is now read, and it dates
+  the 1834 handover rather than the 1835 one; the room count and the coffee-house name are still
+  wanted.*
 - **Cook County deeds** on the lots that became Nos. 84 and 86 Lake Street — the frontage, and
   therefore the footprint's width, from a document rather than from a street-number inference.
 - Andreas at page-image level around the fall-1833 inventory, for the sentence about "some
   authorities" and what it is citing.
+
+---
+
+## 7. What the newspaper corpus added, 2026-08-29 (T-0324)
+
+§6 asked for *Chicago Democrat* advertisements of the house under Haddock. There are several, and
+they close three things this dossier had left open. The full argument, with every printing, is in
+`docs/RESEARCH/botsford_graves_1834.md`.
+
+**(a) The house is named as Haddock's, by both names, in the summer of 1834.** "H. Haddock's
+Mansio[n House]" (1834-06-25 c002); "at the Mansion House, **E. H. Haddock's**" (1834-07-30
+c003); "Haddock's Man[s]ion-House" (1834-08-13 c007). Andreas's Graves → Haddock succession is
+confirmed by the town's own paper.
+
+**(b) The Graves → Haddock handover is bracketed, where Andreas gives only "about this time".**
+The Board of Trustees adopts ordinances "at the house of Dexter Graves" on 1833-12-04 and
+1834-03-05; an employment notice of **1834-04-01** (c017) reads "enquire of Mr. Graves, at his
+tavern"; the ordinances of **1834-06-06** are adopted "at the house of E. Haddock" (1834-06-18
+c002). **Graves's on 1 April 1834, Haddock's by 25 June 1834.** Dexter Graves commences the
+Baking Business on South Water Street over a copy date of 1834-03-25 — the same spring. The
+trustees' venue is not by itself a tenancy (the board also sat at Starr Foot's house, the
+Presbyterian church, the Tremont House and "the Exchange" later that year), so the bracket rests
+on Graves's own advertisement and on the naming, with the venue agreeing rather than proving.
+
+**(c) §5.1's "some authorities had no name" is answered.** The *Democrat* calls this building the
+Mansion House **by that name** from 1834-09-03 (c010, a militia election "held at the
+Mansion-House in Chicago"), ten months before the scene date. Whatever the 1833 house was called,
+the 1834-35 one had this name contemporaneously.
+
+**(d) A lot and block number — the only one in the corpus for any building here, and unusable.**
+G. Spring's For-Sale notice, six printings from 1834-06-18 to 1834-11-19: "LOT No. 7, in block No.
+16, **one lot east of Haddock's Tavern, on Lake street** … a large Dwelling-House and fine well."
+Nothing committed carries the Thompson plat's block numbering, so "block No. 16" resolves to
+nothing on the plat this model is built on (`T-0358`). What *is* usable is the neighbour: the lot
+east of this house held a **dwelling**, not a shop — which is what makes J. K. Botsford's "next
+door to Graves' Tavern" and "corner of Dearborn and Lake-sts." readable as one frontage on this
+house's **west** side, and puts this house on the second lot from Dearborn rather than the corner
+lot. **The stored coordinate is not moved on it**: one lot is about 24 m, inside the along-street
+allowance §4 already carries.
+
+**(e) Not renamed the Tremont House.** Matthias Mason & Co.'s standing advertisement — one
+unchanged dateline of 26 November 1833 — is anchored on Graves' Tavern to 1834-06-11 and on the
+Tremont House from 1834-09-10. The forge did not move and neither did this house; the landlord's
+name went stale, in exactly the weeks the paper stopped being able to call the house Graves's.
+The two houses stood diagonally across Dearborn throughout, which is Andreas's "almost opposite"
+(§4).
+
+**(f) And a warning about §5's Main-street.** The same standing advertisement sets the street word
+as "Main-street" in four settings and "on Mar[k]et street" in the setting of 1834-10-15 (c007).
+The word is unstable across settings of one advertisement, so it is a weaker witness than this
+dossier had treated it as. Main Street is still not identified with any platted street.
