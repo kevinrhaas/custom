@@ -50,7 +50,19 @@ WALL_RGBA = {
     "log": HEWN_RGBA,
     "hewn_log": HEWN_RGBA,
     "braced_frame": (0.60, 0.55, 0.46, 1.0),
-    "brick": (0.47, 0.26, 0.20, 1.0),
+    # OFF THE SHEET since T-0267, and it was the last brick in the town that was not.
+    # This entry carried an archetype-local 0.47/0.26/0.20 that nothing in the
+    # repository argued — about 13 % from the sheet in linear green and 18 % in blue,
+    # on the same three buildings a visitor sees from the same streets. The sheet's
+    # row already declares itself the surface for `construction: brick` AND for every
+    # chimney (materials.md §2.1), so a wall reading it is the row doing its job.
+    #
+    # It is NOT a claim that the fort's 1816 brick and the town's 1833 brick matched.
+    # Nothing here shows the colour of any fort surface; the one coloured witness to
+    # any Chicago brick is the Petford watercolour of the Sauganash. chimneys.md §6
+    # made exactly this argument for the fort's stacks and named this convergence as
+    # the parcel that follows it. materials.md §9 is the whole of it.
+    "brick": materials.CHIMNEY_BRICK.rgba,
     "stone": (0.58, 0.56, 0.51, 1.0),
     "earth": (0.34, 0.30, 0.22, 1.0),
 }
