@@ -160,7 +160,7 @@ Deterministic: the same deposit produces byte-identical `corpus.json` and `text/
 | | |
 |---|---|
 | `extracted/<issue_id>.json` | one file per issue, holding `claims[]` — hand-authored |
-| `identity.json` | the only place two differently-spelled names may become one person, or two firm styles one house |
+| `identity.json` | the only place two differently-spelled names may become one person, two firm styles one house, or two of a house's proprietors one partner |
 | `coverage.json` | the ranges a reading pass has DECLARED it read, and the gate holds it to them |
 | `gazetteer.json` | **generated** by `tools/compile_gazetteer.py --build` — never hand-edited |
 
@@ -345,7 +345,7 @@ the *American*. Three keys, one house, and the evidence for it is a shared copy 
 shared body of type — but joining them means DECLARING two names one firm, and that is
 exactly what `identity.json` supplies for people and, as of T-0304, for firms as well:
 `firm_merges`, below. The three keys stand apart until somebody declares them, because a
-declaration cites its printings and nobody has yet written that one down (T-0337) — but the
+declaration cites its printings and nobody has yet written that one down (T-0340) — but the
 place to write it now exists, and the alternative it replaces was a hand-merge, which makes
 a gazetteer nobody can recompile.
 
@@ -364,6 +364,23 @@ moved is documented by a removal notice, and a removal notice is a claim. A merg
 the union of mentions, proprietors, goods and copy dates, the wider issue window, the
 more specific placement, and every trade either side printed in `trade_variants` — it can
 widen a record and it cannot narrow one.
+
+**And the proprietors are a third place a name lives** (T-0337). `business.proprietors` is
+neither a gazetteer person nor a firm style — it is a string put on a business record by
+whichever claim read that printing — so neither policy above could reach it, and one man
+read two ways stood as two proprietors of his own house. `business_russell_clift` carried
+'Benj. Clift' from the 1834-09-03 impression of the copartnership notice and '[H. H.] Clift'
+from the 1834-11-12 impression of the SAME notice; four impressions of it survive in the
+deposit and three set the name whole, so the man is Benj. H. Clift and the second initial
+was the line's debris. The rule that now stops the next one is the firm-side sibling of the
+person rule, pointing the other way on purpose: two person-styled proprietors of one house
+sharing a surname and carrying different READ initials are refused until `identity.json`
+declares which they are — `proprietor_merges` to join two readings, `proprietor_distinctions`
+to hold two men apart, each with its reasoning. Neither merge nor silence can be the default,
+because a house really does hold brothers (William and Franklin Brewster sign one dissolution
+notice) and really does hold one man read twice. A bare surname beside a full name is not a
+pair — that is the papers printing less — and a declaration whose pair has gone is refused
+too, so the file cannot rot.
 
 The scene-date Democrat, `extracted/chicago_democrat_1835_07_01.json`, is both the worked
 fixture (claims c001-c003, T-0257 — Peter Cohen and J. S. C. Hogan on South Water Street,

@@ -377,7 +377,7 @@
       "kind": "business",
       "reading": "transcription_mediated",
       "quote": "cago Wholesale and Retail isa\nwk & Stalionary Store. PW\nPARTNERSHIP having been cutered in- | 44 ai an\nto botween Aaron Russell, of Boston, and for a tok\nHE Clint, from Pbilaelptia, they desire to) fF @ Tot\nint the inhabitants of Chicago, and its vie vertisemell\n. that they purpose opening #* Store ad- Apply at t\nMr. P. Carpenter's Brug Entablishment eg 20,\nater-street, and intend keeping an exten-|_ Oct. 20,\nnd well assorted atock of\nOS8 S SVALTOUMAL We | rope\nore is in progress, and invoices have been ‘of the\nod froin Philatelphia, and others from New Chicago\nd Boston are expected shortly. high, well.\nee RUSBELL & CLIFT, | hi8hs sell\nago, Aug, 20, 1634. 30} mark on hi",
-      "normalized": "[Chi]cago Wholesale and Retail [Boo]k & Stationary Store. [A CO]PARTNERSHIP having been entered into between Aaron Russell, of Boston, and [H. H.?] Clift, from P[hi]la[d]elp[hi]a, they desire to [acqua]int the inhabitants of Chicago, and its vic[inity] that they purpose opening [a] Store ad[joining] Mr. P. Carpenter's Drug Establishment [on South W]ater-street, and intend keeping an exten[sive a]nd well assorted stock of [BOOK]S & STATIONARY. [The st]ore is in progress, and invoices have been [forward]ed from Philadelphia, and others from New[-York an]d Boston are expected shortly. RUSSELL & CLIFT, [Chic]ago, Aug. 20, 1834. 3[9]",
+      "normalized": "[Chi]cago Wholesale and Retail [Boo]k & Stationary Store. [A CO]PARTNERSHIP having been entered into between Aaron Russell, of Boston, and [Benj.] H. Clif[t], from P[hi]la[d]elp[hi]a, they desire to [acqua]int the inhabitants of Chicago, and its vic[inity] that they purpose opening [a] Store ad[joining] Mr. P. Carpenter's Drug Establishment [on South W]ater-street, and intend keeping an exten[sive a]nd well assorted stock of [BOOK]S & STATIONARY. [The st]ore is in progress, and invoices have been [forward]ed from Philadelphia, and others from New[-York an]d Boston are expected shortly. RUSSELL & CLIFT, [Chic]ago, Aug. 20, 1834. 3[9]",
       "locator": {
         "artifact_role": "primary",
         "issue_page": 3,
@@ -399,7 +399,7 @@
         },
         {
           "as_printed": "Clint",
-          "normalized": "[H. H.] Clift",
+          "normalized": "Clift, Benj. H.",
           "role": "proprietor",
           "occupations": [
             "bookseller",
@@ -415,12 +415,12 @@
           ]
         }
       ],
-      "notes": "A STORE STILL BEING BUILT WHEN THE NOTICE WAS WRITTEN — 'The store is in progress' — adjoining P. Carpenter's drug establishment on South Water Street, with its stock still on the road from Philadelphia, New York and Boston. That makes it a dated building event as well as a placement: the structure goes up between August and November 1834. Philo Carpenter's drug establishment is the anchor, and he is the same man who calls the temperance meeting at the Presbyterian church in 1834-11-05. The offset text quoted is the paper's own line carrying the word 'adjoining'; the partner's initials are cut and are left bracketed.",
+      "notes": "A STORE STILL BEING BUILT WHEN THE NOTICE WAS WRITTEN — 'The store is in progress' — adjoining P. Carpenter's drug establishment on South Water Street, with its stock still on the road from Philadelphia, New York and Boston. That makes it a dated building event as well as a placement: the structure goes up between August and November 1834. Philo Carpenter's drug establishment is the anchor, and he is the same man who calls the temperance meeting at the Presbyterian church in 1834-11-05. The offset text quoted is the paper's own line carrying the word 'adjoining'. THE PARTNER'S NAME IS BENJ. H. CLIFT, AND THIS CLAIM READ IT AS TWO INITIALS (T-0337). What survives of it here is 'HE Clint', and the earlier reading made that '[H. H.?]' — two forename initials, which minted a second Clift beside the 'Benj.' of 1834-09-03 and left one man standing as two proprietors of his own firm. The notice is a standing insertion under one copy date, 'Chicago, Aug. 26, 1834', and three other impressions of it in the deposit print the name whole: 1834-10-01 page 3 column 3 line 2760 'Beni. HI. Clif, from Philadelphia', 1834-09-24 page 3 column 4 line 3293 'nj. H. Clif, from Philadelphia', 1834-09-17 page 3 column 3 line 3042 'pen}. dh Clift,'. The 'HE' of this impression is that single H with the line's debris after it; the forename is supplied from those witnesses and bracketed here, because this printing does not carry it.",
       "business": {
         "name": "Russell & Clift",
         "proprietors": [
           "Aaron Russell",
-          "[H. H.] Clift"
+          "Benj. H. Clift"
         ],
         "trade": "wholesale and retail book and stationery store",
         "goods": [

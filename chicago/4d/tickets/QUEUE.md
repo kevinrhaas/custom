@@ -41,7 +41,6 @@
 # --- seeding SPEND the gazetteer: a firm minted twice, a surname that can never join its
 # --- forename, or a tavern minted as a person becomes a wrong building once seeded.
 # --- Cheap (mostly S/XS) and each one makes the seeding below more accurate.
-T-0337 — One man is two proprietors of Russell & Clift, and the gazetteer has no rule that can join them
 T-0340 — The bookseller's sign-name and its partners' firm-name are three gazetteer entries for one house
 T-0341 — A bare surname can never be joined to its forename: the family rule reads 'no initials' as 'different initials'
 T-0348 — The identity policy cannot merge an unread initial with a read one, and the best witness reads seventeen of them
@@ -171,3 +170,4 @@ T-0388 — Three derived records have drifted from their own generators on an un
 # --- NEWLY FILED — `ticket.mjs new` appends to the END of this file, so new tickets
 # --- land under this line. NOT yet placed by the owner.
 T-0395 — The New York House's footprint is graded reconstructed but its note cites a source, and the gate warns
+T-0396 — Newberry & Dole's partner is read as Oliver Newberry in 1834 and Walter L. Newberry in 1835, and the corpus cannot say which stood in the firm
