@@ -69,14 +69,16 @@ here is asserted.
 `docs/STREET-FACE-ADOPTION.md` is the owner's ruling of 2026-08-29 (T-0354, #551/#553):
 a business the paper puts on a street and nothing narrower adopts a reconstructed roof
 whose platted lot fronts that street. `python3 tools/adopt_street_faces.py --report`
-prints the result, and four of this ticket's six tradesmen are in it:
+prints the result, and four of this ticket's six tradesmen are in it (the roofs below are
+the allocation as it stands after the identity merges of 2026-08-29; WHICH roof on the face
+is the pass's allocation and re-derives, which is limit 3 of that policy):
 
 | the man | stands on South Water Street as | roof |
 |---|---|---|
 | D. Graves, baker | `D. Graves` | `recon_1835_blk_south_water_dearborn_c3_01` |
-| A. Filer, joiner | `A. Filer & Co.` | `recon_1835_blk_south_water_wells_a3_08` |
+| A. Filer, joiner | `A. Filer & Co.` | `recon_1835_blk_south_water_lasalle_d5_01` |
 | L. W. Montgomery, shoemaker | `L. W. Montgomery, boot and shoe maker` | `recon_1835_blk_south_water_dearborn_a3_06` |
-| John Holbrook, shoemaker | `John Holbrook` | `recon_1835_blk_south_water_lasalle_d5_01` |
+| John Holbrook, shoemaker | `John Holbrook` | `recon_1835_blk_south_water_lasalle_d4_02` |
 
 So "have nowhere to stand" was never quite what refusal 8 meant, and after 2026-08-29 it
 is plainly false. What these men are short of in `tools/replace_invented_residents.py` is
@@ -88,27 +90,29 @@ STREET-FACE-ADOPTION.md's own reported cost).
 
 ### 2. And the household route is now barred rather than merely empty
 
-Seven reconstructed dwellings front South Water Street with no household in them, and two
-are of the shoemakers' own family band (`recon_1835_blk_south_water_franklin_d4_02` and
-`recon_1835_blk_south_water_lasalle_d4_02`, both D4, both south division — so all three of
-the adoption tests in the inferred-household programme's method rule 6 pass, and the
-per-division counts would not move). That is the change this ticket asked about, and it
-was simulated rather than argued: `adopt_street_faces.derive()` re-run with those two roofs
-marked as households' homes.
+**There is not one free roof left on the face.** Nineteen reconstructed roofs front South
+Water Street: five are households' homes and the adoption pass has taken all fourteen of
+the rest. Two of those fourteen are of the shoemakers' own family band
+(`recon_1835_blk_south_water_franklin_d4_02` and `recon_1835_blk_south_water_lasalle_d4_02`,
+both D4, both south division — so all three of the adoption tests in the inferred-household
+programme's method rule 6 would pass, and the per-division counts would not move). Taking
+them is the change this ticket asked about, and it was simulated rather than argued:
+`adopt_street_faces.derive()` re-run with those two roofs marked as households' homes.
 
 | | before | after |
 |---|---:|---:|
 | street-face adoptions, whole town | 24 | **22** |
 | adopted on South Water Street | 14 | **12** |
 | free roofs fronting South Water | 14 | **12** |
-| refused `every roof on the face is spoken for` | 3 | **5** |
+| refused `every roof on the face is spoken for` | 2 | **4** |
 
-The cost is exactly one-for-one, because the face is already exhausted — 19 roofs front
-South Water, five are households' homes and the pass has taken all fourteen it was
-allowed. The two documented businesses evicted are **`A. Garrett`** and **`the New Store at
-the corner of Water and Clark streets`**. Worse than the arithmetic: the men the seats
-would go to are L. W. Montgomery and John Holbrook, who would then stand on South Water
-Street TWICE — once as a storefront and once as a household head. Trading two documented
+The cost is exactly one-for-one, because the face is exhausted. The two documented
+businesses evicted are **`E. L. Thrall`** and **`the New Store at the corner of Water and
+Clark streets`**. And the arithmetic is the mild part: `recon_1835_blk_south_water_lasalle_d4_02`
+is **John Holbrook's own storefront** on today's derivation, so seating a shoemaker
+household there to make room for John Holbrook would evict John Holbrook. The two men the
+seats would go to — L. W. Montgomery and John Holbrook — would in any case then stand on
+South Water Street TWICE, once as a storefront and once as a household head. Trading two documented
 businesses for two duplicate seatings is not a demonstration; it is a regression.
 
 ### 3. The remaining trade is a claim about means, and no source carries it
