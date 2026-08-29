@@ -1056,6 +1056,18 @@ def main() -> int:
         spec.loader.exec_module(gen_names)
         files = gen_names.overlay(files)
 
+        # And the THIRD stage, for the same reason: since T-0264 the newspaper
+        # register retires an invented name where it found a documented person
+        # for that trade, rewriting the head's name, grade, sources, occupation
+        # and the household's own arrival bound. Comparing this programme's
+        # output against the tree without it would report every retired roof as
+        # drift on every run.
+        spec = importlib.util.spec_from_file_location(
+            "replace_invented", Path(__file__).with_name("replace_invented_residents.py"))
+        replace_invented = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(replace_invented)
+        files = replace_invented.overlay(files)
+
     drift = []
     for path, text in sorted(files.items()):
         if args.check:

@@ -9309,3 +9309,64 @@ fort — see `docs/RESEARCH/fort_dearborn.md` § 10.
 Related: **L199** (the bank track, the last thing taken off this reservation) · **L47** (the pickets
 the staff stands over) · tickets **T-0096** (this), **T-0197**, **T-0095**, **T-0044**.
 **Recorded:** 2026-08-28.
+
+### L205 — Five documented men are given reconstructed roofs, and the roofs are still ours
+**Decision:** where the newspaper register found a documented practitioner of a trade the town
+had INVENTED a household for, the documented man takes that household and the invented name is
+retired. Five did on 2026-08-29 — J. Garland (cooper), J. W. Reed (joiner), Dr Josiah C.
+Goodhue (physician), Thomas S. Eels (tailor) and J. Shrigley (tavern keeper). Each is graded
+`inferred` on his own record and each household says, in its own words, that the dwelling under
+him is unchanged.
+
+**What is not invented:** the men and their trades. All five are named in the Chicago Democrat
+between December 1833 and October 1834, at the issue and column each record cites, and the
+corpus reads a trade for each of them. `data/research/newspapers/register_1835.json` is the
+compilation that matched them; `tools/replace_invented_residents.py` is the pass that spent the
+match and re-derives it on every commit.
+
+**What is invented, and it is the whole of the placement:** where they lived. Nothing reached
+says where any of these five slept, and the dwelling each now heads was raised by the occupation
+census — a count of 3,265 people in 398 dwellings against the trades Andreas's 1833 roster
+names — and placed by the reconstruction. **Its existence, its position and its footprint are
+exactly what they were before this pass ran and are still conjectural.** What changed is WHO is
+argued to be under the roof: a man the papers name rather than a name drawn from a pool.
+
+**Why `inferred` and not `attested`.** This vocabulary's middle rung is a real person carrying
+reconstructed details, and that is precisely the claim: the person is documented, the household
+is not. Grading them `attested` would have quietly promoted the dwelling along with the man,
+which is the one thing this pass must not do. The five persons' `name_basis` blocks — the
+"THE NAME IS INVENTED" declaration the reconstructed layer carries — are removed rather than
+kept, because an invented name is not held beside a documented one; the other 108 keep theirs.
+
+**The refusal that shapes it, and it refuses far more than it takes.** A candidate the papers
+place SOMEWHERE IN PARTICULAR — at a street, at a named house, or outside the town — is refused.
+J. K. Botsford advertised at the corner of Dearborn and Lake, Bernardus Laughton kept a house on
+the Aux Plaines, D. Graves baked on South Water Street: putting any of them on whichever
+reconstructed roof this deal happened to reach would contradict their own records. They belong
+to the placement tickets (T-0263, T-0306), which stand them where the paper stands them. The
+men this pass takes are the ones the papers place NOWHERE, for whom a reconstructed dwelling is
+not a contradiction but the honest answer to a question no source answers. Sixty-six candidates
+were refused and five accepted; `python3 tools/replace_invented_residents.py --report` prints
+every refusal with its reason, so the ratio is auditable rather than asserted.
+
+**A survival bound, stated:** four of the five are last printed in 1834 and the scene date is
+1 July 1835. Their presence on that day is assumed and not documented, on the same reasoning the
+owner's third ruling of 2026-08-28 applies to businesses — the absence of a removal notice is
+what carries them forward. Each household's `arrival` block now carries the paper's own first
+sighting as a `not_later_than` bound, which is strictly more than the scene date it used to
+carry, and its note says what the bound is and is not.
+
+**Consequence:** five cards a visitor can open stop reading "The Gilbert household — a
+reconstructed joiner" over an invented name and a paragraph explaining that the name is invented,
+and start reading a man the Chicago Democrat printed, with the issue and column, the trade as the
+paper sets it, and a dated bound on when he was here. No geometry moves and no triangle is added.
+
+**How to resolve:** the placement half is T-0263 and T-0306; the minting half — the 1,967 people
+the register would add to the town rather than substitute — is T-0264's sibling and is not this
+entry. A directory, a tax list or a census for 1835 would replace the reconstructed dwelling
+under any of these five with an address, at which point the person's grade rises to `attested`
+and this liberty's fifth paragraph is what has been discharged.
+
+Related: **L1** (no figure is drawn for any resident) · tickets **T-0264** (this), **T-0262**,
+**T-0263**, **T-0306**.
+**Recorded:** 2026-08-29.
