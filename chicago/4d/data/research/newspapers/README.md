@@ -183,6 +183,31 @@ after OCR judgment — interleaved columns unshuffled, `rn/m`-class confusions c
 The gate reassembles `quote` out of the transcription line by line and refuses any claim
 whose text differs by a character, so a smoothed quote fails rather than passing quietly.
 
+**WHEN TWO PRINTINGS DISAGREE, COUNT THE PRINTINGS BEFORE YOU SEND FOR THE IMAGES
+(T-0328).** A weekly's advertising is STANDING type: the same notice runs week after week,
+and every week is a separate impression, separately scanned. So a disagreement between two
+settings of one advertisement is rarely a two-witness problem — it is an n-witness problem
+in which n has not been counted. D. Weaver's building on North Water street was read as
+Lot 9 in one issue and Lot 2 in the next, and the reading pass filed a ticket for the page
+images because "one of the two transcriptions is simply wrong". It ran FIVE times, from
+1834-11-26 to 1834-12-24. Four of the five read Lot 2; the outlier's own line drops the t
+out of `Norh`. No image was needed.
+
+The method, and it is three greps: search the whole run for the advertiser's name, resolve
+each hit's page and column, and read the settings side by side. It has now answered three
+questions the ticket queue had assigned to the page images — the blacksmith's "opposite the
+Tremont House" (T-0330), the axes that belonged to the ironmongers and not the booksellers,
+and this lot number. **Nothing is amended to agree with anything**: every printing keeps its
+own verbatim quote, the losing reading stays visible in `normalized`, and the winner is
+declared in the notes with the tally that decided it.
+
+Two cautions, both learned here. **The tally is over impressions, not over readings** — two
+transcriptions of the SAME impression are one witness, and `corpus.json`'s `-2` rebuilds are
+exactly that. And **a run of concordant settings does not make a scan trustworthy in
+general**: the same five printings that agree on the lot number set the advertisement's copy
+date as Nov. 12, Nov. 12, Nov. 13 and Nov. 19, so the digit that was decidable and the digit
+that was not stood two lines apart in one column.
+
 **Interleaving is the normal case.** The segmenter frequently alternates two physical
 columns line by line, so one advertisement occupies a SUBSET of a line range with another
 woven through it. `locator.lines` is the range cited; `locator.lines_of_claim` names the
@@ -350,3 +375,39 @@ and the committed gate on `dev` reports them unresolved-but-green until T-0275 l
 segmenter cut each printed column in half and alternates the halves line by line, so nearly
 every claim there is `interleaved`, and most bracketed supplies are read off the OTHER half
 of the same printed lines — each claim's note names the lines they came from.
+
+## `register_1835.json` — the work list (T-0262)
+
+`gazetteer.json` is an index of what was PRINTED. It says nothing about what the model
+should build. `tools/compile_register.py --build` turns it into the register the seeding
+tickets read: for every business, whether it stood on 1 July 1835 and what the town has to
+do about it; for every person, whether the town already holds them.
+
+    tools/compile_register.py --build       recompile register_1835.json
+    tools/compile_register.py --check       the gate (check.sh runs it)
+    tools/compile_register.py --self-test   the gate's assertions still fire
+
+**It is DERIVED, and the gate refuses a hand-edit** — the same contract `gazetteer.json` is
+under, for the same reason: a hand-edited register is a place to promote a business into the
+town without an argument, and T-0263 and T-0264 read it as if it were derived. Its inputs are
+the gazetteer, `data/structures/`, `data/streets/1835.json` and `data/residents/`; change
+those, not this.
+
+**Four business actions.** `enrich_existing` — a committed building already carries this
+house, and the row names the field it matched on and the exact text. `new_building` — nothing
+committed carries it and the paper's own placement resolves: a corner of two platted streets,
+a landmark that is a committed structure, or ONE hop through another documented business that
+is. `street_only` — a platted street face and nothing narrower. `unplaceable` — no street the
+model holds.
+
+**Three person actions.** `enrich` (already in `data/residents/`, matched under the
+gazetteer's own identity policy, imported so the two tools cannot drift), `replace_invented`
+(a documented person of a trade the town invented a household for) and `new_resident`
+(everybody else — owner ruling 1, a letter-list name is enough).
+
+**Two exclusions, and the second is a proxy that says so.** A contradiction dated ON OR
+BEFORE the scene date excludes; a LATER one is recorded (`dissolved_after_scene_date`) and
+disobeyed, because a firm dissolved in August 1835 was demonstrably open in July. The second
+is `first_evidence_after_scene_date`: T-0262 asked to exclude on an `announces_opening` field
+the claim vocabulary does not have, and this is the derivable question that comes closest.
+T-0356 is the field.

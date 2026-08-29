@@ -261,23 +261,23 @@
     },
     {
       "file": "chicago/4d/data/research/newspapers/extracted/chicago_democrat_1834_11_26.json",
-      "sha256": "ec98850a56048bcad66e5105596859fa56eeb6b8a9711a18ae26960271c474d2"
+      "sha256": "926b66fbde9d0fc0f40857918bb9eda9442f17ff441a6c9e70f5b615177df2a6"
     },
     {
       "file": "chicago/4d/data/research/newspapers/extracted/chicago_democrat_1834_12_03.json",
-      "sha256": "93a956ce13cb940a80a25ccaaa97e77268df3bbbbf8d6e6ec9df8858f50bf62e"
+      "sha256": "c658c054a5526af60d5e64c0c4e522d7d27e7bc0343d4160a9216b48fa937885"
     },
     {
       "file": "chicago/4d/data/research/newspapers/extracted/chicago_democrat_1834_12_10.json",
-      "sha256": "e73aa52d43107c6701259e0542e57670a7b5cccc5c4cfc7d23cb439d0cafe24c"
+      "sha256": "d300b360dc66f2e983f499b2197835a3be6fd945b257f530ae30c254cc923f9b"
     },
     {
       "file": "chicago/4d/data/research/newspapers/extracted/chicago_democrat_1834_12_17.json",
-      "sha256": "6e35c67c221b33f07ad6cc13acee1d964fb8691029099424e4f7377345313220"
+      "sha256": "241c17e4d03c6ebcea56d759aad9f1d1ccfca3984173efd838169ec04c578a78"
     },
     {
       "file": "chicago/4d/data/research/newspapers/extracted/chicago_democrat_1834_12_24.json",
-      "sha256": "ff14033d4de86194ba029779f5cc21f4d1a5618dd78663653b2974d4fa87a765"
+      "sha256": "84d74f6e9c3ac8bb9f13f0612309eb996fe5080f85b46c3cc8c162e56835d243"
     },
     {
       "file": "chicago/4d/data/research/newspapers/extracted/chicago_democrat_1835_01_21.json",
@@ -333,7 +333,7 @@
     }
   ],
   "counts": {
-    "claims": 1094,
+    "claims": 1097,
     "persons": 2201,
     "businesses": 221
   },
@@ -8487,6 +8487,18 @@
       "name": "D. Weaver",
       "variants": [
         {
+          "as_printed": "D. WEAVER.",
+          "claim": "chicago_democrat_1834_11_26#c010"
+        },
+        {
+          "as_printed": "D. WEAVER.",
+          "claim": "chicago_democrat_1834_12_03#c025"
+        },
+        {
+          "as_printed": "D. WEAVER.",
+          "claim": "chicago_democrat_1834_12_10#c012"
+        },
+        {
           "as_printed": "D WEAVER.",
           "claim": "chicago_democrat_1834_12_17#c006"
         },
@@ -8496,10 +8508,13 @@
         }
       ],
       "mentions": [
+        "chicago_democrat_1834_11_26#c010",
+        "chicago_democrat_1834_12_03#c025",
+        "chicago_democrat_1834_12_10#c012",
         "chicago_democrat_1834_12_17#c006",
         "chicago_democrat_1834_12_24#c012"
       ],
-      "first_seen": "1834-12-17",
+      "first_seen": "1834-11-26",
       "last_seen": "1834-12-24",
       "letter_list_only": false,
       "occupations": [],

@@ -37,6 +37,157 @@ So the question went back to the owner rather than the clause being widened to f
 business-front lot carry two documented storefronts at the street, as it already carries one plus
 the anonymous run? T-0358 is `blocked-owner` with that question; the PR is open on `hold` and
 merges on a one-word answer.
+## Shipped 2026-08-29 — T-0262: the scene-date register, and what the papers can actually do to the town
+
+**`tools/compile_register.py` turns the gazetteer into a work list.** The gazetteer is an index of
+what was PRINTED — 1,094 claims out of 82 issues, 221 businesses, 2,201 people. It says nothing
+about what the model should build. The register does: for every business an ACTION against the
+committed town, for every person whether the town already holds them. It is derived, wholly, and
+`check.sh` re-derives it and refuses a committed copy a rebuild would not produce — the same
+contract `gazetteer.json` is under, for the same reason.
+
+**Ruling 3 gains the word BEFORE.** `built_at_scene_date` in the gazetteer is `not contradicted_by`,
+whatever the contradiction is dated, which struck a firm out of a July town on the strength of an
+August dissolution notice. Here the veto is a contradiction dated ON OR BEFORE 1835-07-01. A later
+one is recorded — `dissolved_after_scene_date`, one business — and disobeyed.
+
+**The ticket's second exclusion had to be rebuilt out of what the data carries.** T-0262 asks to
+exclude entries whose only 1835 evidence `announces_opening` after 1 July. There is no
+`announces_opening` in the claim vocabulary; the ticket describes a field the extraction schema
+never grew. The derivable test that answers the same question without inventing one is
+`first_evidence_after_scene_date`: a business whose FIRST issue postdates the scene date evidences
+nothing about 1 July. Seventeen businesses. It is conservative in the direction provenance wants,
+it is not a claim that they were absent, and every one of them is kept in the register with the
+exclusion named so a later pass that can read an opening notice properly may overturn it.
+
+### The counts, which are the epic's yield measured
+
+| businesses | 221 |
+|---|---|
+| present at the scene date | 190 |
+| excluded — contradicted before 1835-07-01 | 14 |
+| excluded — first evidence after 1835-07-01 | 17 |
+| `enrich_existing` (a committed building already carries it) | 39 |
+| `new_building` (placeable against the committed town) | 24 |
+| `street_only` (a street face and no closer) | 49 |
+| `unplaceable` (no street the model holds) | 109 |
+| standing on a survival liberty (last evidence pre-1835) | 129 |
+
+| persons | 2,201 |
+|---|---|
+| `enrich` — already in `data/residents/` | 117 |
+| `replace_invented` — a documented person of an invented household's trade | 113 |
+| `new_resident` — ruling 1 | 1,971 |
+| …of those, known only from the letter lists | 1,555 |
+| **invented households the register can retire** | **28 of 117** |
+
+The retirement figure is a count of HOUSEHOLDS and it is capped per trade by construction: three
+documented tailors retire at most the tailors the town invented. Reporting the matched persons
+instead would report 113 people retiring 117 households, which is a number about nothing. The 28
+are 4 blacksmiths, 4 grocers, 4 tavern keepers, 3 shoemakers, 2 joiners, 2 tailors and one each of
+baker, butcher, cooper, dentist, harness maker, hotel keeper, merchant, painter and physician.
+
+### Matching a firm to a building is a different question from matching a firm to a firm
+
+The first cut of `enrich_existing` claimed 58 buildings and a good many of them were wrong, in four
+distinct ways. Each is now a guard with a self-test on the case that forced it.
+
+1. **A `proprietors` entry is routinely a whole firm style** — `Clark, Filer & Co.`, `H. Doty & Co.`,
+   `Kinzie & Hall` — and taking its last word for a surname reads those three firms as `co`, `co`
+   and `hall`. Two of them then matched Daniel Elston's soap works, whose occupants line ends
+   `& Co.`. The partners now come from the gazetteer's own firm policy (`firm_surnames`, T-0304).
+2. **A surname is not a person.** The Kinzie brothers are one surname and three businesses; matching
+   on `kinzie` put R. A. Kinzie's store inside J. H. Kinzie's. Where the RECORD prints a forename
+   and the PAPER prints one, they must now agree — and two spelled-out forenames must agree whole,
+   not by initial, because `John S. Kinzie` and the James Kinzie House share a `j`. The test is
+   asked of the whole record, not of the field the surname was found in, or a disagreement simply
+   routes round the guard by dropping to the next tier.
+3. **An `aka` is where a record keeps its loosest descriptions.** `Taylor's tavern` is a real second
+   name of the Wolf Point Tavern and W. H. Taylor's boot and shoe store is a different Taylor, so
+   an aka match now also requires the trades to agree. And an aka that locates a building by
+   ANOTHER building — `the cabins near Wentworth's tavern` — is cut at its locative word, which is
+   what stopped Elijah Wentworth's tavern on Flag Creek matching a row of log cabins at Wolf Point.
+4. **An anonymous reconstructed roof cannot ALREADY carry a documented business.** `recon_*` and
+   `inf_*` are excluded outright. Putting a documented firm into an invented roof is a decision
+   T-0263 makes deliberately, with the adoption written down; making it by string match is how an
+   invention gets laundered into the documented layer. `Kinzie Hall` had matched
+   `recon_1835_north_i2_015` on the word "hall".
+
+Every surviving `enrich_existing` carries the tier it matched on and the exact text it matched
+against, so T-0263 can argue with a proposal without re-running anything.
+
+### The T-0257 fixtures, as the acceptance requires
+
+`business_j_s_c_hogan` → `enrich_existing`, target `hogan_store`, matched on the record's own name.
+`business_peter_cohen` → `street_only`, target `south_water`: the paper's anchor is "the east end of
+South Water-street", which the register resolves as a REACH of a platted street — a real resolution
+and not a placement, so it reads as its own anchor kind rather than as a failure.
+
+### What is honestly not settled
+
+- **One reading pass is still open.** T-0297 (August 1835, the four issues AFTER the scene date) was
+  in flight in a sibling run when this was built. The register is deterministic and re-derived by
+  the gate, so `--build` after that merges refreshes it; the counts above are as of the gazetteer on
+  `dev` at 2026-08-29.
+- **`wolf_point_tavern_stable` still takes Elijah Wentworth's Flag Creek tavern**, on an occupants
+  line that reads "Elijah Wentworth in 1831, William Walters on the scene date". The match is on a
+  HISTORICAL occupant of a building whose scene-date occupant the same sentence names. T-0355.
+- **78 businesses stand at the scene date and are placeable nowhere.** That is the size of the
+  problem the seeding tickets do not solve, and it is a fact about the papers, not about the tool.
+
+Filed with the register in hand: **T-0354** (the `street_only` and `unplaceable` policy — 49 and
+78), **T-0355** (the historical-occupant match), **T-0356** (`announces_opening` as a real claim
+field rather than a proxy) and **T-0357** (the 129 survival liberties `docs/LIBERTIES.md` does not
+yet carry). All PAPERS, all appended to the bottom of QUEUE.md — the owner orders it.
+
+## Shipped 2026-08-29 — T-0283: the North's freight row is repaired, and the fault was a split fault
+
+**The row allowed the North Division ONE freight roof and seven stand there.** T-0211 found the
+breach on 2026-08-28, declared it as a ratchet so it could not grow, and deliberately did not repair
+it: repairing it is a decision about the authored target, and the cells sum to their division's
+target AND to their group's total, so no cell moves alone.
+
+**The decision, and it is narrower than the ticket feared.** The town-wide freight total is
+contradicted by nothing — twenty are authored, twelve stand. What is wrong is WHERE the programme
+put them. So the repair is a split repair, four cells wide:
+
+| group | division | was | now |
+|---|---|---|---|
+| `warehouses_freight` | north | 1 | **7** |
+| `warehouses_freight` | south | 17 | **11** |
+| `ordinary_dwellings` | north | 90 | **84** |
+| `ordinary_dwellings` | south | 170 | **176** |
+
+Both row totals stand (335 and 20), all four district targets stand (365 / 135 / 152 / 10),
+`family_targets` is untouched and `roof_total` is untouched. Nothing that stands moves; no mesh
+changes; the 662 roofs are the same 662 roofs, re-typed.
+
+**Why the South pays and no one else.** Six of the North's seven freight roofs are documented
+pre-existing records — Kinzie & Hunter's warehouse, the four north-bank sheds at the Dearborn reach,
+the north-side brickyard — and the seventh, `recon_1835_north_f1_022`, was dealt by a parcel that ran
+before anything measured this. Against them the South's freight cell holds seventeen authored slots
+of which five stand: twelve are unbuilt and unnamed. **An authored slot yields to a documented
+record** — the principle T-0032 established when it held the institutional row to the named census —
+and the South's cell is the only one that can pay without moving a group total or a division target.
+The compensating `ordinary_dwellings` swap is what keeps each division's own column on its target.
+
+**What it costs, stated rather than clamped.** The South is scheduled six fewer warehouses (freight
+remainder 12 → 6) and six more ordinary dwellings (72 → 78), and its business-front re-deal now moves
+7 trade roofs where it moved 9. The North's remainder does not move by a single roof — but it stops
+being scheduled seven houses short for a reason nothing anywhere stated:
+`reconcile_665.py`'s clamp shed **7** slots from north `ordinary_dwellings` before this and sheds
+**1** after. That last one is L93's anonymous school, which is not an authoring fault at all — it is
+`measure_group_district_rows.py` and `measure_institutional_claims.py` reading one liberty
+differently — and it moves when the liberty is retired, not before.
+
+**The gate lost its declaration and gained a case.** `("north", "warehouses_freight")` is RETIRED
+from `DECLARED_OVERSHOOT`, not lowered, and a new self-test case asserts both halves of that — the
+row is not over AND it carries no declaration — because either half alone passes vacuously. The
+three ratchet cases used to drive the freight declaration; a declaration of size 1 cannot fall
+without disappearing, so `overshoot_findings` now takes the table it reads and the self-test hands it
+a synthetic one. `--self-test` is nine cases green. The argument lives at
+`district_group_matrix_note` in `data/reconstruction/1835_building_inventory.json`, beside the
+`roof_total_note` that records the only other time a count in that file moved.
 
 ## Shipped 2026-08-28 — T-0028: `blk_lake_franklin` opens, and the warehouse it was dealt is refused rather than massed
 

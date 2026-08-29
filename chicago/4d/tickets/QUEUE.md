@@ -37,17 +37,14 @@
 # --- (c) the register itself, then the VISIBLE seeding it unblocks — documented
 # ---     storefronts standing in the model, documented people replacing invented.
 T-0297 — Reading the Democrat, August 1835: the four issues after the scene date
-T-0328 — D. Weaver's building is on Lot 2 in one printing and Lot 9 in the next, and both transcriptions are Vision-set
 T-0324 — J. K. Botsford advertises two addresses in one issue, and Graves' Tavern cannot be placed until they are reconciled
 T-0329 — School District Number One is bounded in print on 1834-12-10 and the segmenter cut better than half of every line of it away
-T-0262 — The July 1, 1835 register: who and what the papers put in the town
 T-0263 — The documented storefronts take their places on South Water and Lake
 T-0359 — W. Montgomery's auction and commission room, in David Carver's old stand west of J. Wright's on South Water
 T-0360 — The New York House on Lake Street, and Dr. J. B. Barnard and the travelling dentist who kept office in it
 T-0361 — Dr. W. G. Austin's office on Lake Street near the Post Office, and Sarah D. Howe's room in his house
 T-0362 — Henry Moore at J. H. Kinzie's New Building, and Ebenezer S. More's office at his dwelling by the Public Square
 T-0264 — Documented people replace the invented
-T-0283 — The North Division's warehouse row allows one freight roof and six documented ones stand above it
 
 # --- NEWSPAPERS, WAITING ON THE PAGE IMAGES — each needs the owner's scans opened,
 # --- which live outside the repository. Workable the day the images are supplied;
@@ -139,4 +136,9 @@ T-0346 — Desktop smoke stage 4 no longer fits the ten-minute foreground ceilin
 T-0341 — A bare surname can never be joined to its forename: the family rule reads 'no initials' as 'different initials'
 T-0348 — The identity policy cannot merge an unread initial with a read one, and the best witness reads seventeen of them
 T-0349 — The signboard gate is red when stage 1 runs before it and green when stage 2 runs alone
+T-0350 — D. Weaver's advertisement is dated Nov. 12 in two printings and Nov. 19 in the one the ledger believed
+T-0354 — The register can only place 24 of 190 documented businesses; 49 more reach a street face and 78 reach nothing
+T-0355 — A firm matches a building on an occupant the same sentence dates to 1831
+T-0356 — The claim vocabulary cannot say an advertisement announces an opening, so 17 businesses are excluded on a proxy
+T-0357 — 129 documented businesses will stand on a survival liberty and LIBERTIES.md carries none of them
 T-0363 — The South Water frontage run is dealt lots 0, 2 and 4 and all three of its roofs stand on lot 4
