@@ -5220,20 +5220,45 @@ for (const [label, viewport, touch] of [
     // not, so the record has to declare it. What is pinned here is that the
     // walkthrough SHOWS the declaration: a visitor who reads a name must be able
     // to see, in the same card, that we made it up.
+    // T-0264 SPLIT THE `hh_inf_` LAYER IN TWO and the probe had to learn the
+    // difference. Ten of these households now carry a DOCUMENTED head — a man the
+    // newspapers name, taking the roof the town invented a stand-in for — while the
+    // other ninety-one are still wholly invented. The old probe took the first
+    // `hh_inf_` row in the manifest, which is alphabetical, and that row is the baker:
+    // retired on the day this comment was written, so `persons.find(grade ===
+    // 'reconstructed')` returned nothing and three assertions failed on a name that
+    // was undefined rather than on anything about the town. The selector says what it
+    // means now — a household whose HEAD is still invented — and the retired half gets
+    // its own reading below rather than being excluded from the suite.
     const invented = await page.evaluate(async () => {
       const api = window.__chicago4d;
       const res = await fetch(new URL('residents/index.json', api.dataBase));
       const index = await res.json();
-      const row = index.households.find((h) => h.id.startsWith('hh_inf_'));
-      const hh = await (await fetch(new URL(`residents/${row.file}`, api.dataBase))).json();
-      const person = hh.persons.find((p) => p.grade === 'reconstructed');
+      const pick = async (wanted) => {
+        for (const row of index.households.filter((h) => h.id.startsWith('hh_inf_'))) {
+          const hh = await (await fetch(new URL(`residents/${row.file}`, api.dataBase))).json();
+          const head = hh.persons.find((p) => p.relationship === 'head');
+          if (head && head.grade === wanted) return { hh, head };
+        }
+        return null;
+      };
+      const still = await pick('reconstructed');
+      const retired = await pick('attested');
+      const person = still?.hh.persons.find((p) => p.grade === 'reconstructed');
       return {
-        household: hh.name,
+        household: still?.hh.name,
         name: person?.name,
-        headGrade: (hh.persons.find((p) => p.relationship === 'head') || person)?.grade,
+        headGrade: still?.head?.grade,
         basisGrade: person?.name_basis?.confidence,
         basisNote: (person?.name_basis?.note || '').slice(0, 60),
         grades: index.vocabulary.grades,
+        retiredHousehold: retired?.hh.name,
+        retiredName: retired?.head?.name,
+        retiredGrade: retired?.head?.grade,
+        retiredSources: retired?.head?.sources || [],
+        retiredBasis: Object.prototype.hasOwnProperty.call(retired?.head || {}, 'name_basis'),
+        retiredNote: (retired?.head?.note || '').slice(0, 600),
+        retiredLivesAt: retired?.hh.lives_at?.confidence,
       };
     });
     check(`${label}: a reconstructed resident has an invented period name`,
@@ -5253,6 +5278,31 @@ for (const [label, viewport, touch] of [
       /household/.test(invented.household ?? '')
       && new RegExp(invented.headGrade ?? 'x').test(invented.household ?? ''),
       `household "${invented.household}" against head grade ${invented.headGrade}`);
+
+    // --- and the half of that layer that is no longer invented (T-0264) -----
+    //
+    // A documented man standing in a reconstructed household is the one shape in this
+    // dataset where two grades sit on one card, and it is the shape most likely to be
+    // read as more than it is. So the reading is pinned in BOTH directions: the person
+    // is real and cites the paper that names him, and the roof under him is still ours.
+    // The `name_basis` check is an absence check on purpose — validate.py forbids that
+    // block above `reconstructed`, because marking a real man's name as invented
+    // understates what is known about him.
+    check(`${label}: a retired household names a documented man, cited`,
+      invented.retiredGrade === 'attested'
+      && /^[A-Z]/.test(invented.retiredName ?? '')
+      && !/unnamed|reconstructed resident/i.test(invented.retiredName ?? '')
+      && invented.retiredSources.length > 0
+      && invented.retiredBasis === false,
+      `"${invented.retiredName}" ${invented.retiredGrade}, `
+      + `sources [${invented.retiredSources.join(', ')}], `
+      + `name_basis present ${invented.retiredBasis}`);
+    check(`${label}: and says the roof under him is still reconstructed`,
+      /reconstructed household/.test(invented.retiredHousehold ?? '')
+      && invented.retiredLivesAt === 'reconstructed'
+      && /WHERE HE LIVED AND WORKED IS STILL RECONSTRUCTED/.test(invented.retiredNote ?? ''),
+      `household "${invented.retiredHousehold}", `
+      + `lives_at ${invented.retiredLivesAt}`);
 
     // --- the prose may not name a level the record is not (K23a) ------------
     //
