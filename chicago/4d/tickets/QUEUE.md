@@ -168,3 +168,4 @@ T-0388 — Three derived records have drifted from their own generators on an un
 T-0395 — The New York House's footprint is graded reconstructed but its note cites a source, and the gate warns
 T-0396 — Newberry & Dole's partner is read as Oliver Newberry in 1834 and Walter L. Newberry in 1835, and the corpus cannot say which stood in the firm
 T-0391 — Are 'Eagle Hotel' and 'the Eagle Hotel (Steele's)' one house, and no issue prints both
+T-0399 — Adding one signboard repaints every board alphabetically after it, and some lose a line
