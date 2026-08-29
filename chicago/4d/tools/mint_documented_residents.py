@@ -224,17 +224,27 @@ def in_town_places() -> set[str]:
     return places
 
 
-def town_family_names(docs: dict, index: dict) -> set[str]:
+# The minting passes run in a fixed ORDER, and `skip` below is what encodes it.
+# Each pass must not read its OWN output back as "the town already names a
+# <Surname>" — it would refuse on the second run every man it seated on the first
+# and make `--check` pass against any tree at all. But it must not read a LATER
+# pass's output either, for the same reason: T-0373's mint lands after this one,
+# so its households have to be invisible here while this one's are visible to it.
+# T-0373 therefore calls this with skip=("hh_placed_",) and sees `hh_doc_`; this
+# pass skips both and sees neither.
+MINTED_PREFIXES = ("hh_doc_", "hh_placed_")
+
+
+def town_family_names(docs: dict, index: dict, skip=MINTED_PREFIXES) -> set[str]:
     """The family names the committed dataset already has something to say about.
 
     Read from the household records' own person names and from the index's
-    researched-not-resident findings — NOT from this pass's own output, which
-    would refuse on the second run every man it seated on the first and make
-    `--check` pass against any tree at all.
+    researched-not-resident findings — minus the minted households named by
+    `skip`; see MINTED_PREFIXES above for why that is an order and not a set.
     """
     known: set[str] = set()
     for path, doc in docs.items():
-        if path.name.startswith(PREFIX):
+        if path.name.startswith(tuple(skip)):
             continue
         for person in doc.get("persons") or []:
             fam = surname(person.get("name") or "")

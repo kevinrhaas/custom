@@ -131,10 +131,10 @@
   ]
  },
  "counts": {
-  "households": 189,
-  "persons": 225,
+  "households": 192,
+  "persons": 228,
   "by_grade": {
-   "attested": 92,
+   "attested": 95,
    "inferred": 25,
    "reconstructed": 108
   }
@@ -2539,6 +2539,48 @@
    "lives_at": null,
    "works_at": "pierce_blacksmith_shop",
    "present_on_scene_date": "present",
+   "review_required": false
+  },
+  {
+   "id": "hh_placed_b_s_morris",
+   "file": "households/hh_placed_b_s_morris.json",
+   "head": "placed_b_s_morris",
+   "division": "unplaced",
+   "persons": 1,
+   "grades": {
+    "attested": 1
+   },
+   "lives_at": null,
+   "works_at": null,
+   "present_on_scene_date": "uncertain",
+   "review_required": false
+  },
+  {
+   "id": "hh_placed_j_k_boyer",
+   "file": "households/hh_placed_j_k_boyer.json",
+   "head": "placed_j_k_boyer",
+   "division": "unplaced",
+   "persons": 1,
+   "grades": {
+    "attested": 1
+   },
+   "lives_at": null,
+   "works_at": null,
+   "present_on_scene_date": "present",
+   "review_required": false
+  },
+  {
+   "id": "hh_placed_j_w_fell",
+   "file": "households/hh_placed_j_w_fell.json",
+   "head": "placed_j_w_fell",
+   "division": "unplaced",
+   "persons": 1,
+   "grades": {
+    "attested": 1
+   },
+   "lives_at": null,
+   "works_at": null,
+   "present_on_scene_date": "uncertain",
    "review_required": false
   },
   {

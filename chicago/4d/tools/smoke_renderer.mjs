@@ -9604,19 +9604,19 @@ for (const [label, viewport, touch] of [
       };
     });
     check(`${label}: every household in the layer is on the card`,
-      residents.households === 189 && residents.rendered === 189 && !residents.busy,
+      residents.households === 192 && residents.rendered === 192 && !residents.busy,
       `${residents.households} loaded / ${residents.rendered} rendered (${residents.error})`);
-    check(`${label}: the 225 person entries are counted`, residents.persons === 225,
+    check(`${label}: the 228 person entries are counted`, residents.persons === 228,
       `${residents.persons}`);
     // The finding itself, asserted as a number so it cannot quietly grow back:
     // the households that reach no building sidecar are each marked on their own
-    // row. 17 of the 33 are the original fault — records whose residence and
-    // workplace are both unattested. The other 16 are T-0376's minted
-    // tradespeople, who reach no building BY CONSTRUCTION: the papers name them
-    // and their trade and say nothing whatever about where they lived, so the
-    // chip is the card telling the truth rather than a regression.
+    // row. 17 of the 36 are the original fault — records whose residence and
+    // workplace are both unattested. Sixteen are T-0376's minted tradespeople and
+    // three are T-0373's residency-tested people, all of whom reach no building BY
+    // CONSTRUCTION: the papers name them and say nothing whatever about where they
+    // lived, so the chip is the card telling the truth rather than a regression.
     check(`${label}: the households no building card can reach are marked`,
-      residents.offCard === 33 && residents.orphanChips === 33,
+      residents.offCard === 36 && residents.orphanChips === 36,
       `${residents.offCard} off-card / ${residents.orphanChips} chip(s)`);
     check(`${label}: the researched non-residents are published too`,
       residents.notResident === 10, `${residents.notResident}`);

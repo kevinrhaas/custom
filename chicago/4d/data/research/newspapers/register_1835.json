@@ -11,7 +11,7 @@
     },
     "structures": 358,
     "streets": 19,
-    "resident_persons": 225
+    "resident_persons": 228
   },
   "counts": {
     "businesses": {
@@ -45,8 +45,8 @@
     "persons": {
       "total": 2254,
       "by_action": {
-        "enrich": 166,
-        "new_resident": 1969,
+        "enrich": 169,
+        "new_resident": 1966,
         "replace_invented": 119
       },
       "letter_list_only": 1554
@@ -9563,9 +9563,9 @@
       "letter_list_only": false,
       "first_seen": "1835-06-17",
       "last_seen": "1835-06-17",
-      "action": "new_resident",
-      "action_target": null,
-      "action_note": "Ruling 1: a named person the town does not hold. Named in a claim other than a letter list."
+      "action": "enrich",
+      "action_target": "placed_b_s_morris",
+      "action_note": "data/residents/ already holds this person as placed_b_s_morris (hh_placed_b_s_morris, attested). The papers add mentions and dates."
     },
     {
       "id": "person_b_winn_co",
@@ -17978,9 +17978,9 @@
       "letter_list_only": false,
       "first_seen": "1834-08-13",
       "last_seen": "1835-07-01",
-      "action": "new_resident",
-      "action_target": null,
-      "action_note": "Ruling 1: a named person the town does not hold. Named in a claim other than a letter list."
+      "action": "enrich",
+      "action_target": "placed_j_k_boyer",
+      "action_note": "data/residents/ already holds this person as placed_j_k_boyer (hh_placed_j_k_boyer, attested). The papers add mentions and dates."
     },
     {
       "id": "person_j_l_sackett",
@@ -18198,9 +18198,9 @@
       "letter_list_only": false,
       "first_seen": "1835-06-17",
       "last_seen": "1835-06-17",
-      "action": "new_resident",
-      "action_target": null,
-      "action_note": "Ruling 1: a named person the town does not hold. Named in a claim other than a letter list."
+      "action": "enrich",
+      "action_target": "placed_j_w_fell",
+      "action_note": "data/residents/ already holds this person as placed_j_w_fell (hh_placed_j_w_fell, attested). The papers add mentions and dates."
     },
     {
       "id": "person_j_w_lewis",

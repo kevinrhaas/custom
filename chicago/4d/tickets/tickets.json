@@ -1,6 +1,6 @@
 {
   "project": "chicago-4d",
-  "generated_ct": "Aug 29, 2026, 7:14 AM",
+  "generated_ct": "Aug 29, 2026, 9:27 AM",
   "tickets": [
     {
       "id": "T-0001",
@@ -6190,6 +6190,42 @@
       "blocked_on": null,
       "needs_bake": false,
       "queue_rank": 71
+    },
+    {
+      "id": "T-0388",
+      "title": "The 36 documented tradespeople whose trade the residents vocabulary has no word for",
+      "state": "open",
+      "epic": "META",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "M",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-08-29",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "queue_rank": 72
+    },
+    {
+      "id": "T-0390",
+      "title": "Three of the nine desktop smoke stages no longer fit the ten-minute run ceiling",
+      "state": "open",
+      "epic": "META",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "M",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-08-29",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "queue_rank": 73
     }
   ]
 }
