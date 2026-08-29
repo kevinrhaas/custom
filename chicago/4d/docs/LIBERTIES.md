@@ -9399,13 +9399,13 @@ middle rung is the honest one. This pass raises no dwelling and places nothing; 
 about the person is that a source names them and gives them a trade, which is what `attested`
 means on this layer. Nothing here moves a building, a footprint or a triangle.
 
-**The refusals shape it, and they refuse more than twice what they take.** Thirty-eight
-candidates were refused and sixteen taken: seven firms that cannot head a household, seven names
-the transcription bracketed as uncertain, six people the corpus places where this project cannot
-put them in the town (the mouth of the St. Joseph, Cook county, a store the plat does not carry),
-six whose family name the town already uses, three surnames already minted, three printed as a
-surname and a trade and nothing else — the decision index.json already records under
-`darwin_of_canada` — and six whose first evidence falls after the scene date.
+**The refusals shape it, and they refuse more than three times what they take.** Fifty-four
+candidates were refused and sixteen taken: eighteen whose first evidence falls after the scene
+date, nine names the transcription bracketed as uncertain, eight firms that cannot head a
+household, six people the corpus places where this project cannot put them in the town (the
+mouth of the St. Joseph, Cook county, a store the plat does not carry), five whose family name
+the town already uses, four surnames already minted, and four printed as a surname and a trade
+and nothing else — the decision index.json already records under `darwin_of_canada`.
 `python3 tools/mint_documented_residents.py --report` prints every one with its reason.
 
 **A presence bound, stated:** nine of the sixteen are last printed before 1 July 1835, and their

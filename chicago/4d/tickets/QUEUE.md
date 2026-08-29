@@ -39,7 +39,6 @@
 T-0336 — The 31 July 1835 letter list, standing in all four August Democrats
 T-0263 — The documented storefronts take their places on South Water and Lake
 T-0306 — The American names six Chicago storefronts with usable placements and none of them is standing in the model yet
-T-0372 — The documented tradespeople the papers name, whose trade the town never invented, join it as residents
 T-0373 — The documented people the papers name with no trade at all, and the town does not hold
 T-0374 — letter_list_only reaches the visitor's card, and the 1,536 names known only from the post office
 
