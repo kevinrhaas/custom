@@ -378,7 +378,12 @@
     "verbatim": "August 10, 1835.—14",
     "iso": "1835-08-10"
    },
-   "announces_opening": true
+   "announces_opening": {
+    "verbatim": "having taken a shop on Dea[r]born street nearly opposite the Eagle Coffee House",
+    "dating": "effected",
+    "iso": "1835-08-10",
+    "note": "'Having taken' over a dateline of 10 August 1835 — on or before that day, and silent about 1 July."
+   }
   },
   {
    "id": "c012",
@@ -501,7 +506,12 @@
     "verbatim": "Chicago, Aug. 18, 1835.—4w18",
     "iso": "1835-08-18"
    },
-   "announces_opening": true
+   "announces_opening": {
+    "verbatim": "she has taken a room in Lake-street, in t[h]e house occupied by Dr. Austin",
+    "dating": "effected",
+    "iso": "1835-08-18",
+    "note": "'Has taken' over a dateline of 18 August 1835. The room is in Dr. Austin's house, whose own opening notice is dated 7 August."
+   }
   },
   {
    "id": "c014",
@@ -620,7 +630,12 @@
     "verbatim": "Chicago, Avg. 1835.—-18.0",
     "iso": "1835-08-01"
    },
-   "announces_opening": true
+   "announces_opening": {
+    "verbatim": "will receive and offer for sale on the first of September",
+    "dating": "stated",
+    "iso": "1835-09-01",
+    "note": "Dated August 1835, so 'the first of September' is 1 September 1835 — two months after the scene date, and the stock is not in the store yet."
+   }
   },
   {
    "id": "c016",

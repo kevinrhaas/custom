@@ -146,6 +146,45 @@ READINGS = ("transcription_mediated", "scan_verified")
 # later pass can count them.
 PLACEMENT_CLASSES = ("corner", "relative", "street_only", "none")
 
+# AND A PAPER CAN SAY WHEN A HOUSE OPENED (T-0356). The register had no way to ask the
+# question, so it answered a different one: a business whose FIRST issue postdated the
+# scene date was excluded as `first_evidence_after_scene_date`, which is the absence of
+# earlier evidence and not a statement about the business. Thirty-eight of them, and the
+# re-read found Wm. H. Taylor's boot store advertising over a dateline of 8 July 1834 and
+# Wm. H. Kennicott saying he had practised dentistry in the town "for the past year".
+# Both were excluded from a town they demonstrably stood in.
+#
+# `announces_opening` is the field the ticket named, and the DATING is the whole of it,
+# because the two shapes an opening notice comes in point in opposite directions:
+#
+#   stated    the notice names a date the business WILL open — "will open a Branch of
+#             their House ... on the 14th inst.", "the first term will commence Monday
+#             August 17". If that date falls after the scene date, the paper is saying
+#             the house was not open on the scene date. THIS is what excludes.
+#   effected  the notice announces an opening already made — "has opened", "has taken a
+#             shop on Dearborn street". Its date is the LATEST the opening can have been,
+#             never the earliest, so it can never exclude: an advertisement dated 7 August
+#             is silent about 1 July. When the date falls on or before the scene date it is
+#             positive evidence the house was standing, which is what clears the
+#             backdating liberty in tools/compile_register.py.
+#   undated   the notice announces an opening and dates it nowhere. It carries NO `iso`,
+#             and the gate refuses one: a reading with no date behind it must not be given
+#             a number to make the arithmetic tidy.
+#
+# THE FIELD WAS ALREADY THERE AS A BARE `true`, on twenty claims, and nothing read it.
+# That is worse than absent: an author who sets it believes the register is listening. The
+# gate below now refuses the boolean outright, so the twenty had to be re-read into dated
+# readings before this could land — which is where the 8 July 1834 dateline came from.
+#
+# An `effected` announcement therefore carries the advertisement's OWN dateline and the
+# gate refuses any other number, so the reading cannot become a free-hand date. Every
+# announcement carries a `note` saying how its date was read ("the 14th inst." in an issue
+# of 5 August 1835 is 14 August 1835), and its `verbatim` must appear character for
+# character in the claim's `normalized` reading, which is itself tied to the
+# machine-checked quote. A dateless opening notice records no field: the paper announced
+# an opening and did not date it, and inventing a date is the one thing forbidden here.
+OPENING_DATINGS = ("stated", "effected", "undated")
+
 # THE DEPOSIT SPEAKS THREE RULED MARKER DIALECTS AND ONE PROSE ONE, and T-0257 could
 # only see two of them.
 #
@@ -538,7 +577,7 @@ def compile_gazetteer(files, identity, corpus, quiet=True):
                     "placement": biz.get("placement"),
                     "evidence": {"first_issue": issue_date, "last_issue": issue_date,
                                  "copy_dates": []},
-                    "contradicted_by": [], "mentions": [],
+                    "contradicted_by": [], "opening_announced": [], "mentions": [],
                 })
                 b["mentions"].append(key)
                 b["evidence"]["first_issue"] = min(b["evidence"]["first_issue"], issue_date)
@@ -558,6 +597,15 @@ def compile_gazetteer(files, identity, corpus, quiet=True):
                 if claim.get("contradicts"):
                     b["contradicted_by"].append(
                         {"claim": key, "kind": claim.get("kind"), "issue": issue_date})
+                # T-0356. The gazetteer says what was PRINTED, so every announcement a
+                # printing carries is kept; which of them the scene date obeys is the
+                # register's judgement and is made there.
+                op = claim.get("announces_opening")
+                if isinstance(op, dict):
+                    b["opening_announced"].append(
+                        {"claim": key, "issue": issue_date, "dating": op.get("dating"),
+                         "iso": op.get("iso"), "verbatim": op.get("verbatim"),
+                         "note": op.get("note")})
 
     # THE PLACES, and they are DECLARED, exactly the way a merge is (T-0359). The table
     # above is keyed on a name and knows nothing about what kind of thing a name is, so a
@@ -798,6 +846,7 @@ def compile_gazetteer(files, identity, corpus, quiet=True):
             if good not in dst["goods"]:
                 dst["goods"].append(good)
         dst["contradicted_by"].extend(src["contradicted_by"])
+        dst["opening_announced"].extend(src["opening_announced"])
         for cd in src["evidence"]["copy_dates"]:
             if cd not in dst["evidence"]["copy_dates"]:
                 dst["evidence"]["copy_dates"].append(cd)
@@ -909,6 +958,7 @@ def compile_gazetteer(files, identity, corpus, quiet=True):
         b["survival_liberty_required"] = b["built_at_scene_date"] and last.year < SCENE_DATE.year
         b["goods"].sort()
         b["mentions"].sort()
+        b["opening_announced"].sort(key=lambda o: (o["iso"] or "", o["claim"]))
         b["evidence"]["copy_dates"].sort()
     for p in persons.values():
         p["mentions"].sort()
@@ -1267,6 +1317,57 @@ def check(extracted=EXTRACTED, gazetteer=GAZETTEER, identity=IDENTITY, corpus=CO
                     bad.append("%s %s: ad_copy_date.iso %r does not parse"
                                % (at, key, ad.get("iso")))
 
+            # T-0356's field, and every guard on it is a way a date could be invented.
+            op = claim.get("announces_opening")
+            if op is not None and not isinstance(op, dict):
+                bad.append("%s %s: announces_opening is %r. It was a bare boolean on twenty "
+                           "claims and no tool read it; it is now a reading — "
+                           "{verbatim, dating, iso, note} — and the register excludes on "
+                           "its date" % (at, key, op))
+                op = None
+            if op is not None:
+                if claim.get("kind") not in ("business", "building"):
+                    bad.append("%s %s: announces_opening on a %s claim — an opening is "
+                               "something a HOUSE does, and only a business or building "
+                               "claim has one to announce"
+                               % (at, key, claim.get("kind")))
+                phrase = op.get("verbatim")
+                if not phrase:
+                    bad.append("%s %s: announces_opening with no verbatim — the paper's own "
+                               "words are the evidence" % (at, key))
+                elif phrase not in (claim.get("normalized") or ""):
+                    bad.append("%s %s: announces_opening.verbatim is not in the claim's "
+                               "normalized reading, character for character" % (at, key))
+                if not (op.get("note") or "").strip():
+                    bad.append("%s %s: announces_opening with no note — the note says how "
+                               "the date was READ, and a date with no reading behind it is "
+                               "the invention this field exists to prevent" % (at, key))
+                if op.get("dating") not in OPENING_DATINGS:
+                    bad.append("%s %s: announces_opening.dating %r is not one of %s"
+                               % (at, key, op.get("dating"), "/".join(OPENING_DATINGS)))
+                if op.get("dating") == "undated":
+                    if op.get("iso") is not None:
+                        bad.append("%s %s: an `undated` opening carries a date (%r). The "
+                                   "paper dated nothing; supplying a number here is the "
+                                   "invention this field exists to prevent"
+                                   % (at, key, op.get("iso")))
+                else:
+                    try:
+                        date.fromisoformat(op.get("iso") or "")
+                    except ValueError:
+                        bad.append("%s %s: announces_opening.iso %r does not parse"
+                                   % (at, key, op.get("iso")))
+                if op.get("dating") == "effected":
+                    if ad is None:
+                        bad.append("%s %s: an `effected` opening is dated by the "
+                                   "advertisement's own dateline, and this claim carries no "
+                                   "ad_copy_date to take it from" % (at, key))
+                    elif op.get("iso") != ad.get("iso"):
+                        bad.append("%s %s: an `effected` opening is dated %r and the "
+                                   "advertisement's dateline is %r — the dateline is the "
+                                   "only date this reading may carry"
+                                   % (at, key, op.get("iso"), ad.get("iso")))
+
             loc = claim.get("locator") or {}
             if not loc:
                 continue
@@ -1535,6 +1636,47 @@ def self_test():
         "does not resolve against corpus.json", "an issue that is not in the corpus")
     run(lambda d, i: d.update(claims=[]), "no claims", "an extraction file with no claims")
     run(lambda d, i: d.update(schema=99), "schema is", "a schema bump")
+
+    # T-0356'S FIELD, and every guard on it is a way a date could be invented. Claim 7
+    # of this fixture is S. B. Cobb's saddlery, a business claim carrying a dateline of
+    # 8 June 1835, which is the shape every `effected` reading in the corpus has.
+    COBB = 6
+
+    def opening(d, **kw):
+        c = d["claims"][COBB]
+        rec = {"verbatim": c["normalized"][:40], "dating": "effected",
+               "iso": (c.get("ad_copy_date") or {}).get("iso"),
+               "note": "the reading, written down"}
+        rec.update(kw)
+        c["announces_opening"] = rec
+
+    run(lambda d, i: opening(d), None, "an effected opening over the ad's own dateline")
+    run(lambda d, i: opening(d, dating="stated", iso="1835-09-01"),
+        None, "a stated opening naming its own date")
+    run(lambda d, i: opening(d, dating="undated", iso=None),
+        None, "an opening the printing dates nowhere")
+    run(lambda d, i: d["claims"][COBB].update(announces_opening=True),
+        "it is now a reading", "the bare boolean the field used to be")
+    run(lambda d, i: opening(d, verbatim="he will open on the glorious Fourth"),
+        "not in the claim's normalized reading",
+        "an opening quoting words the paper does not carry")
+    run(lambda d, i: opening(d, note="   "),
+        "no note", "an opening with no reading behind its date")
+    run(lambda d, i: opening(d, dating="rumoured"),
+        "is not one of", "a dating outside the vocabulary")
+    run(lambda d, i: opening(d, dating="stated", iso="the fourteenth"),
+        "does not parse", "an opening date that is not a date")
+    run(lambda d, i: opening(d, iso="1835-08-14"),
+        "the dateline is the only date", "an effected opening dated off its own dateline")
+    run(lambda d, i: (d["claims"][COBB].pop("ad_copy_date"), opening(d, iso="1835-06-08")),
+        "carries no ad_copy_date", "an effected opening with no dateline to take")
+    run(lambda d, i: opening(d, dating="undated", iso="1835-08-14"),
+        "carries a date", "an undated opening given a number anyway")
+    run(lambda d, i: (d["claims"][0].update(
+            announces_opening={"verbatim": d["claims"][0]["normalized"][:20],
+                               "dating": "undated", "iso": None, "note": "n"})),
+        "an opening is something a HOUSE does",
+        "an opening announced by a claim that is not about a house")
 
     # The identity policy, both halves.
     run(lambda d, i: i["merges"].append({"into": "Peter Cohen", "from": "J. S. C. Hogan"}),

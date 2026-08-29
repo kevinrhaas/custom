@@ -5307,7 +5307,12 @@
           "street": null
         }
       },
-      "announces_opening": true,
+      "announces_opening": {
+        "verbatim": "having b[een appointed] Fire Insuran[ce] Agent for the Howard [Fire Insurance] Company",
+        "dating": "effected",
+        "iso": "1835-07-01",
+        "note": "The agency is announced as already conferred, over the dateline of 1 July 1835 — the scene date itself."
+      },
       "notes": "DATED THE DAY OF THE ISSUE — 'July 1.' — and announcing an appointment just made, so this agency begins ON the scene date rather than standing before it. `announces_opening` is set for T-0262. The surname is cut to 'E. K. I' here and is set whole as 'E. K. HUBBARD' in the 1835-07-08 issue, where the same notice runs."
     },
     {

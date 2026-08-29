@@ -16,16 +16,16 @@
   "counts": {
     "businesses": {
       "total": 242,
-      "present_at_scene_date": 190,
+      "present_at_scene_date": 224,
       "excluded": {
         "contradicted_before_scene_date": 14,
-        "first_evidence_after_scene_date": 38
+        "opening_announced_after_scene_date": 4
       },
       "by_action": {
-        "enrich_existing": 39,
-        "new_building": 27,
-        "street_only": 47,
-        "unplaceable": 129
+        "enrich_existing": 42,
+        "new_building": 30,
+        "street_only": 63,
+        "unplaceable": 107
       },
       "by_placement_class": {
         "corner": 18,
@@ -34,12 +34,13 @@
         "street_only": 19
       },
       "present_by_action": {
-        "enrich_existing": 39,
-        "new_building": 27,
-        "street_only": 47,
-        "unplaceable": 77
+        "enrich_existing": 42,
+        "new_building": 30,
+        "street_only": 63,
+        "unplaceable": 89
       },
       "survival_liberty_required": 126,
+      "backdating_liberty_required": 33,
       "dissolved_after_scene_date": 1
     },
     "persons": {
@@ -123,11 +124,13 @@
         "first_issue": "1835-08-08",
         "last_issue": "1835-08-08"
       },
-      "present_at_scene_date": false,
-      "exclusion": "first_evidence_after_scene_date",
-      "exclusion_note": "The earliest issue carrying this business is 1835-08-08, after the scene date, so nothing evidences it standing on 1835-07-01.",
+      "present_at_scene_date": true,
+      "exclusion": null,
+      "exclusion_note": null,
       "dissolved_after_scene_date": [],
+      "opening_announced": [],
       "survival_liberty_required": false,
+      "backdating_liberty_required": true,
       "anchor": {
         "kind": "unresolved",
         "target": null,
@@ -139,7 +142,7 @@
       "action_target": null,
       "match_tier": null,
       "match_evidence": null,
-      "action_note": "Excluded from the scene-date town: The earliest issue carrying this business is 1835-08-08, after the scene date, so nothing evidences it standing on 1835-07-01. No action; the record is kept so the exclusion can be argued with."
+      "action_note": "No street the model holds. The paper gives no anchor."
     },
     {
       "id": "business_a_clybourn_s_market_on_the_market_square",
@@ -160,7 +163,9 @@
       "exclusion": null,
       "exclusion_note": null,
       "dissolved_after_scene_date": [],
+      "opening_announced": [],
       "survival_liberty_required": true,
+      "backdating_liberty_required": false,
       "anchor": {
         "kind": "unresolved",
         "target": null,
@@ -193,7 +198,9 @@
       "exclusion": null,
       "exclusion_note": null,
       "dissolved_after_scene_date": [],
+      "opening_announced": [],
       "survival_liberty_required": true,
+      "backdating_liberty_required": false,
       "anchor": {
         "kind": "unresolved",
         "target": null,
@@ -226,7 +233,9 @@
       "exclusion": null,
       "exclusion_note": null,
       "dissolved_after_scene_date": [],
+      "opening_announced": [],
       "survival_liberty_required": true,
+      "backdating_liberty_required": false,
       "anchor": {
         "kind": "unresolved",
         "target": null,
@@ -255,11 +264,13 @@
         "first_issue": "1835-08-22",
         "last_issue": "1835-08-22"
       },
-      "present_at_scene_date": false,
-      "exclusion": "first_evidence_after_scene_date",
-      "exclusion_note": "The earliest issue carrying this business is 1835-08-22, after the scene date, so nothing evidences it standing on 1835-07-01.",
+      "present_at_scene_date": true,
+      "exclusion": null,
+      "exclusion_note": null,
       "dissolved_after_scene_date": [],
+      "opening_announced": [],
       "survival_liberty_required": false,
+      "backdating_liberty_required": true,
       "anchor": {
         "kind": "unresolved",
         "target": null,
@@ -267,11 +278,11 @@
         "via": null,
         "note": "The paper gives no anchor."
       },
-      "action": "unplaceable",
-      "action_target": null,
+      "action": "street_only",
+      "action_target": "dearborn",
       "match_tier": null,
       "match_evidence": null,
-      "action_note": "Excluded from the scene-date town: The earliest issue carrying this business is 1835-08-22, after the scene date, so nothing evidences it standing on 1835-07-01. No action; the record is kept so the exclusion can be argued with."
+      "action_note": "The paper names Dearborn Street and nothing narrower; the paper gives no anchor."
     },
     {
       "id": "business_a_leather_stock_chicago_june_1835",
@@ -290,7 +301,9 @@
       "exclusion": null,
       "exclusion_note": null,
       "dissolved_after_scene_date": [],
+      "opening_announced": [],
       "survival_liberty_required": false,
+      "backdating_liberty_required": false,
       "anchor": {
         "kind": "unresolved",
         "target": null,
@@ -323,7 +336,9 @@
       "exclusion": null,
       "exclusion_note": null,
       "dissolved_after_scene_date": [],
+      "opening_announced": [],
       "survival_liberty_required": false,
+      "backdating_liberty_required": false,
       "anchor": {
         "kind": "unresolved",
         "target": null,
@@ -356,7 +371,9 @@
       "exclusion": null,
       "exclusion_note": null,
       "dissolved_after_scene_date": [],
+      "opening_announced": [],
       "survival_liberty_required": false,
+      "backdating_liberty_required": false,
       "anchor": {
         "kind": "unresolved",
         "target": null,
@@ -387,7 +404,9 @@
       "exclusion": null,
       "exclusion_note": null,
       "dissolved_after_scene_date": [],
+      "opening_announced": [],
       "survival_liberty_required": true,
+      "backdating_liberty_required": false,
       "anchor": {
         "kind": "unresolved",
         "target": null,
@@ -420,7 +439,9 @@
       "exclusion": null,
       "exclusion_note": null,
       "dissolved_after_scene_date": [],
+      "opening_announced": [],
       "survival_liberty_required": false,
+      "backdating_liberty_required": false,
       "anchor": {
         "kind": "structure",
         "target": "new_york_house",
@@ -451,7 +472,9 @@
       "exclusion": null,
       "exclusion_note": null,
       "dissolved_after_scene_date": [],
+      "opening_announced": [],
       "survival_liberty_required": false,
+      "backdating_liberty_required": false,
       "anchor": {
         "kind": "unresolved",
         "target": null,
@@ -484,7 +507,9 @@
       "exclusion": null,
       "exclusion_note": null,
       "dissolved_after_scene_date": [],
+      "opening_announced": [],
       "survival_liberty_required": false,
+      "backdating_liberty_required": false,
       "anchor": {
         "kind": "unresolved",
         "target": null,
@@ -515,7 +540,9 @@
       "exclusion": null,
       "exclusion_note": null,
       "dissolved_after_scene_date": [],
+      "opening_announced": [],
       "survival_liberty_required": false,
+      "backdating_liberty_required": false,
       "anchor": {
         "kind": "unresolved",
         "target": null,
@@ -548,7 +575,9 @@
       "exclusion": null,
       "exclusion_note": null,
       "dissolved_after_scene_date": [],
+      "opening_announced": [],
       "survival_liberty_required": true,
+      "backdating_liberty_required": false,
       "anchor": {
         "kind": "unresolved",
         "target": null,
@@ -581,7 +610,9 @@
       "exclusion": null,
       "exclusion_note": null,
       "dissolved_after_scene_date": [],
+      "opening_announced": [],
       "survival_liberty_required": true,
+      "backdating_liberty_required": false,
       "anchor": {
         "kind": "unresolved",
         "target": null,
@@ -614,7 +645,9 @@
       "exclusion": null,
       "exclusion_note": null,
       "dissolved_after_scene_date": [],
+      "opening_announced": [],
       "survival_liberty_required": true,
+      "backdating_liberty_required": false,
       "anchor": {
         "kind": "unresolved",
         "target": null,
@@ -645,7 +678,9 @@
       "exclusion": null,
       "exclusion_note": null,
       "dissolved_after_scene_date": [],
+      "opening_announced": [],
       "survival_liberty_required": false,
+      "backdating_liberty_required": false,
       "anchor": {
         "kind": "unresolved",
         "target": null,
@@ -682,7 +717,9 @@
       "exclusion": "contradicted_before_scene_date",
       "exclusion_note": "Contradicted on or before the scene date by chicago_democrat_1834_03_04#c010 (notice, 1834-03-04), chicago_democrat_1834_06_11#c001 (business, 1834-06-11).",
       "dissolved_after_scene_date": [],
+      "opening_announced": [],
       "survival_liberty_required": false,
+      "backdating_liberty_required": false,
       "anchor": {
         "kind": "unresolved",
         "target": null,
@@ -717,7 +754,9 @@
       "exclusion": null,
       "exclusion_note": null,
       "dissolved_after_scene_date": [],
+      "opening_announced": [],
       "survival_liberty_required": false,
+      "backdating_liberty_required": false,
       "anchor": {
         "kind": "unresolved",
         "target": null,
@@ -750,7 +789,9 @@
       "exclusion": null,
       "exclusion_note": null,
       "dissolved_after_scene_date": [],
+      "opening_announced": [],
       "survival_liberty_required": false,
+      "backdating_liberty_required": false,
       "anchor": {
         "kind": "unresolved",
         "target": null,
@@ -783,7 +824,9 @@
       "exclusion": null,
       "exclusion_note": null,
       "dissolved_after_scene_date": [],
+      "opening_announced": [],
       "survival_liberty_required": true,
+      "backdating_liberty_required": false,
       "anchor": {
         "kind": "unresolved",
         "target": null,
@@ -816,7 +859,9 @@
       "exclusion": null,
       "exclusion_note": null,
       "dissolved_after_scene_date": [],
+      "opening_announced": [],
       "survival_liberty_required": true,
+      "backdating_liberty_required": false,
       "anchor": {
         "kind": "unresolved",
         "target": null,
@@ -847,7 +892,9 @@
       "exclusion": null,
       "exclusion_note": null,
       "dissolved_after_scene_date": [],
+      "opening_announced": [],
       "survival_liberty_required": false,
+      "backdating_liberty_required": false,
       "anchor": {
         "kind": "unresolved",
         "target": null,
@@ -877,10 +924,21 @@
         "last_issue": "1835-08-12"
       },
       "present_at_scene_date": false,
-      "exclusion": "first_evidence_after_scene_date",
-      "exclusion_note": "The earliest issue carrying this business is 1835-08-12, after the scene date, so nothing evidences it standing on 1835-07-01.",
+      "exclusion": "opening_announced_after_scene_date",
+      "exclusion_note": "chicago_democrat_1835_08_12#c007 announces this house opening on 1835-08-17, after the scene date — “The first te[rm] will co[m]mence Monday August 17”. The paper names the date in full. Hunt 'proposes to establish' the school and asks for names to be left beforehand, so nothing was teaching on 1 July 1835.",
       "dissolved_after_scene_date": [],
+      "opening_announced": [
+        {
+          "claim": "chicago_democrat_1835_08_12#c007",
+          "issue": "1835-08-12",
+          "dating": "stated",
+          "iso": "1835-08-17",
+          "verbatim": "The first te[rm] will co[m]mence Monday August 17",
+          "note": "The paper names the date in full. Hunt 'proposes to establish' the school and asks for names to be left beforehand, so nothing was teaching on 1 July 1835."
+        }
+      ],
       "survival_liberty_required": false,
+      "backdating_liberty_required": false,
       "anchor": {
         "kind": "unresolved",
         "target": null,
@@ -892,7 +950,7 @@
       "action_target": null,
       "match_tier": null,
       "match_evidence": null,
-      "action_note": "Excluded from the scene-date town: The earliest issue carrying this business is 1835-08-12, after the scene date, so nothing evidences it standing on 1835-07-01. No action; the record is kept so the exclusion can be argued with."
+      "action_note": "Excluded from the scene-date town: chicago_democrat_1835_08_12#c007 announces this house opening on 1835-08-17, after the scene date — “The first te[rm] will co[m]mence Monday August 17”. The paper names the date in full. Hunt 'proposes to establish' the school and asks for names to be left beforehand, so nothing was teaching on 1 July 1835. No action; the record is kept so the exclusion can be argued with."
     },
     {
       "id": "business_charles_taylor",
@@ -913,7 +971,9 @@
       "exclusion": "contradicted_before_scene_date",
       "exclusion_note": "Contradicted on or before the scene date by chicago_democrat_1834_06_04#c008 (business, 1834-06-04).",
       "dissolved_after_scene_date": [],
+      "opening_announced": [],
       "survival_liberty_required": false,
+      "backdating_liberty_required": false,
       "anchor": {
         "kind": "unresolved",
         "target": null,
@@ -944,7 +1004,9 @@
       "exclusion": null,
       "exclusion_note": null,
       "dissolved_after_scene_date": [],
+      "opening_announced": [],
       "survival_liberty_required": true,
+      "backdating_liberty_required": false,
       "anchor": {
         "kind": "unresolved",
         "target": null,
@@ -977,7 +1039,9 @@
       "exclusion": null,
       "exclusion_note": null,
       "dissolved_after_scene_date": [],
+      "opening_announced": [],
       "survival_liberty_required": true,
+      "backdating_liberty_required": false,
       "anchor": {
         "kind": "unresolved",
         "target": null,
@@ -1010,7 +1074,9 @@
       "exclusion": null,
       "exclusion_note": null,
       "dissolved_after_scene_date": [],
+      "opening_announced": [],
       "survival_liberty_required": true,
+      "backdating_liberty_required": false,
       "anchor": {
         "kind": "corner",
         "target": null,
@@ -1046,7 +1112,9 @@
       "exclusion": null,
       "exclusion_note": null,
       "dissolved_after_scene_date": [],
+      "opening_announced": [],
       "survival_liberty_required": true,
+      "backdating_liberty_required": false,
       "anchor": {
         "kind": "corner",
         "target": null,
@@ -1082,7 +1150,9 @@
       "exclusion": null,
       "exclusion_note": null,
       "dissolved_after_scene_date": [],
+      "opening_announced": [],
       "survival_liberty_required": false,
+      "backdating_liberty_required": false,
       "anchor": {
         "kind": "unresolved",
         "target": null,
@@ -1115,7 +1185,9 @@
       "exclusion": null,
       "exclusion_note": null,
       "dissolved_after_scene_date": [],
+      "opening_announced": [],
       "survival_liberty_required": true,
+      "backdating_liberty_required": false,
       "anchor": {
         "kind": "unresolved",
         "target": null,
@@ -1148,7 +1220,9 @@
       "exclusion": null,
       "exclusion_note": null,
       "dissolved_after_scene_date": [],
+      "opening_announced": [],
       "survival_liberty_required": false,
+      "backdating_liberty_required": false,
       "anchor": {
         "kind": "unresolved",
         "target": null,
@@ -1179,7 +1253,9 @@
       "exclusion": null,
       "exclusion_note": null,
       "dissolved_after_scene_date": [],
+      "opening_announced": [],
       "survival_liberty_required": true,
+      "backdating_liberty_required": false,
       "anchor": {
         "kind": "unresolved",
         "target": null,
@@ -1212,7 +1288,9 @@
       "exclusion": null,
       "exclusion_note": null,
       "dissolved_after_scene_date": [],
+      "opening_announced": [],
       "survival_liberty_required": true,
+      "backdating_liberty_required": false,
       "anchor": {
         "kind": "unresolved",
         "target": null,
@@ -1248,7 +1326,9 @@
       "exclusion": null,
       "exclusion_note": null,
       "dissolved_after_scene_date": [],
+      "opening_announced": [],
       "survival_liberty_required": false,
+      "backdating_liberty_required": false,
       "anchor": {
         "kind": "business",
         "target": null,
@@ -1282,7 +1362,9 @@
       "exclusion": null,
       "exclusion_note": null,
       "dissolved_after_scene_date": [],
+      "opening_announced": [],
       "survival_liberty_required": true,
+      "backdating_liberty_required": false,
       "anchor": {
         "kind": "business",
         "target": null,
@@ -1316,7 +1398,9 @@
       "exclusion": "contradicted_before_scene_date",
       "exclusion_note": "Contradicted on or before the scene date by chicago_democrat_1834_11_05#c009 (business, 1834-11-05).",
       "dissolved_after_scene_date": [],
+      "opening_announced": [],
       "survival_liberty_required": false,
+      "backdating_liberty_required": false,
       "anchor": {
         "kind": "unresolved",
         "target": null,
@@ -1345,11 +1429,30 @@
         "first_issue": "1835-07-22",
         "last_issue": "1835-07-29"
       },
-      "present_at_scene_date": false,
-      "exclusion": "first_evidence_after_scene_date",
-      "exclusion_note": "The earliest issue carrying this business is 1835-07-22, after the scene date, so nothing evidences it standing on 1835-07-01.",
+      "present_at_scene_date": true,
+      "exclusion": null,
+      "exclusion_note": null,
       "dissolved_after_scene_date": [],
+      "opening_announced": [
+        {
+          "claim": "chicago_democrat_1835_07_22#c006",
+          "issue": "1835-07-22",
+          "dating": "undated",
+          "iso": null,
+          "verbatim": "they have taken a shop, on [Dearbo]rn Street",
+          "note": "The first printing of the tailors' notice carries no dateline; the 29 July printing of the same copy is dated 22 July 1835."
+        },
+        {
+          "claim": "chicago_democrat_1835_07_29#c009",
+          "issue": "1835-07-29",
+          "dating": "effected",
+          "iso": "1835-07-22",
+          "verbatim": "they hav[e] taken a shop. on [D]earbo[r]n S[t]reet",
+          "note": "'Have taken' over the dateline 'July 22, 1835' this printing carries and the 22 July printing does not. The date bounds the taking from ABOVE: the shop was theirs on or before 22 July, and the copy says nothing about 1 July."
+        }
+      ],
       "survival_liberty_required": false,
+      "backdating_liberty_required": true,
       "anchor": {
         "kind": "unresolved",
         "target": null,
@@ -1357,11 +1460,11 @@
         "via": null,
         "note": "The anchor 'the Eagle House' names nothing the committed town holds."
       },
-      "action": "unplaceable",
-      "action_target": null,
+      "action": "street_only",
+      "action_target": "dearborn",
       "match_tier": null,
       "match_evidence": null,
-      "action_note": "Excluded from the scene-date town: The earliest issue carrying this business is 1835-07-22, after the scene date, so nothing evidences it standing on 1835-07-01. No action; the record is kept so the exclusion can be argued with."
+      "action_note": "The paper names Dearborn Street and nothing narrower; the anchor 'the Eagle House' names nothing the committed town holds."
     },
     {
       "id": "business_cooley_and_hol_b_man",
@@ -1379,11 +1482,22 @@
         "first_issue": "1835-08-05",
         "last_issue": "1835-08-05"
       },
-      "present_at_scene_date": false,
-      "exclusion": "first_evidence_after_scene_date",
-      "exclusion_note": "The earliest issue carrying this business is 1835-08-05, after the scene date, so nothing evidences it standing on 1835-07-01.",
+      "present_at_scene_date": true,
+      "exclusion": null,
+      "exclusion_note": null,
       "dissolved_after_scene_date": [],
+      "opening_announced": [
+        {
+          "claim": "chicago_democrat_1835_08_05#c005",
+          "issue": "1835-08-05",
+          "dating": "effected",
+          "iso": "1835-07-22",
+          "verbatim": "the[y] have taken a shop on Dearborn Street",
+          "note": "The third printing of the tailors' notice, over the same 22 July 1835 dateline. An opening already made, bounded from above."
+        }
+      ],
       "survival_liberty_required": false,
+      "backdating_liberty_required": true,
       "anchor": {
         "kind": "unresolved",
         "target": null,
@@ -1391,11 +1505,11 @@
         "via": null,
         "note": "The anchor 'the Eagle Coffee House' names nothing the committed town holds."
       },
-      "action": "unplaceable",
-      "action_target": null,
+      "action": "street_only",
+      "action_target": "dearborn",
       "match_tier": null,
       "match_evidence": null,
-      "action_note": "Excluded from the scene-date town: The earliest issue carrying this business is 1835-08-05, after the scene date, so nothing evidences it standing on 1835-07-01. No action; the record is kept so the exclusion can be argued with."
+      "action_note": "The paper names Dearborn Street and nothing narrower; the anchor 'the Eagle Coffee House' names nothing the committed town holds."
     },
     {
       "id": "business_cromelien_brothers_co",
@@ -1411,10 +1525,21 @@
         "last_issue": "1835-08-05"
       },
       "present_at_scene_date": false,
-      "exclusion": "first_evidence_after_scene_date",
-      "exclusion_note": "The earliest issue carrying this business is 1835-08-05, after the scene date, so nothing evidences it standing on 1835-07-01.",
+      "exclusion": "opening_announced_after_scene_date",
+      "exclusion_note": "chicago_democrat_1835_08_05#c013 announces this house opening on 1835-08-14, after the scene date — “open a [Branch] of their House in this [place …] from the [Manhattan?] Ho[u]se[…] on the [1]4th inst.”. 'the 14th inst.' in the Democrat of 5 August 1835 is the fourteenth of the current month, 14 August 1835. The New York house is announcing a branch it has not opened yet, six weeks after the scene date.",
       "dissolved_after_scene_date": [],
+      "opening_announced": [
+        {
+          "claim": "chicago_democrat_1835_08_05#c013",
+          "issue": "1835-08-05",
+          "dating": "stated",
+          "iso": "1835-08-14",
+          "verbatim": "open a [Branch] of their House in this [place …] from the [Manhattan?] Ho[u]se[…] on the [1]4th inst.",
+          "note": "'the 14th inst.' in the Democrat of 5 August 1835 is the fourteenth of the current month, 14 August 1835. The New York house is announcing a branch it has not opened yet, six weeks after the scene date."
+        }
+      ],
       "survival_liberty_required": false,
+      "backdating_liberty_required": false,
       "anchor": {
         "kind": "unresolved",
         "target": null,
@@ -1426,7 +1551,7 @@
       "action_target": null,
       "match_tier": null,
       "match_evidence": null,
-      "action_note": "Excluded from the scene-date town: The earliest issue carrying this business is 1835-08-05, after the scene date, so nothing evidences it standing on 1835-07-01. No action; the record is kept so the exclusion can be argued with."
+      "action_note": "Excluded from the scene-date town: chicago_democrat_1835_08_05#c013 announces this house opening on 1835-08-14, after the scene date — “open a [Branch] of their House in this [place …] from the [Manhattan?] Ho[u]se[…] on the [1]4th inst.”. 'the 14th inst.' in the Democrat of 5 August 1835 is the fourteenth of the current month, 14 August 1835. The New York house is announcing a branch it has not opened yet, six weeks after the scene date. No action; the record is kept so the exclusion can be argued with."
     },
     {
       "id": "business_d_carver_co",
@@ -1447,7 +1572,9 @@
       "exclusion": null,
       "exclusion_note": null,
       "dissolved_after_scene_date": [],
+      "opening_announced": [],
       "survival_liberty_required": true,
+      "backdating_liberty_required": false,
       "anchor": {
         "kind": "unresolved",
         "target": null,
@@ -1480,7 +1607,9 @@
       "exclusion": null,
       "exclusion_note": null,
       "dissolved_after_scene_date": [],
+      "opening_announced": [],
       "survival_liberty_required": true,
+      "backdating_liberty_required": false,
       "anchor": {
         "kind": "unresolved",
         "target": null,
@@ -1513,7 +1642,9 @@
       "exclusion": null,
       "exclusion_note": null,
       "dissolved_after_scene_date": [],
+      "opening_announced": [],
       "survival_liberty_required": true,
+      "backdating_liberty_required": false,
       "anchor": {
         "kind": "unresolved",
         "target": null,
@@ -1547,7 +1678,9 @@
       "exclusion": null,
       "exclusion_note": null,
       "dissolved_after_scene_date": [],
+      "opening_announced": [],
       "survival_liberty_required": false,
+      "backdating_liberty_required": false,
       "anchor": {
         "kind": "unresolved",
         "target": null,
@@ -1580,7 +1713,9 @@
       "exclusion": null,
       "exclusion_note": null,
       "dissolved_after_scene_date": [],
+      "opening_announced": [],
       "survival_liberty_required": true,
+      "backdating_liberty_required": false,
       "anchor": {
         "kind": "unresolved",
         "target": null,
@@ -1614,7 +1749,9 @@
       "exclusion": null,
       "exclusion_note": null,
       "dissolved_after_scene_date": [],
+      "opening_announced": [],
       "survival_liberty_required": true,
+      "backdating_liberty_required": false,
       "anchor": {
         "kind": "unresolved",
         "target": null,
@@ -1641,11 +1778,13 @@
         "first_issue": "1835-07-25",
         "last_issue": "1835-07-25"
       },
-      "present_at_scene_date": false,
-      "exclusion": "first_evidence_after_scene_date",
-      "exclusion_note": "The earliest issue carrying this business is 1835-07-25, after the scene date, so nothing evidences it standing on 1835-07-01.",
+      "present_at_scene_date": true,
+      "exclusion": null,
+      "exclusion_note": null,
       "dissolved_after_scene_date": [],
+      "opening_announced": [],
       "survival_liberty_required": false,
+      "backdating_liberty_required": true,
       "anchor": {
         "kind": "unresolved",
         "target": null,
@@ -1657,7 +1796,7 @@
       "action_target": null,
       "match_tier": null,
       "match_evidence": null,
-      "action_note": "Excluded from the scene-date town: The earliest issue carrying this business is 1835-07-25, after the scene date, so nothing evidences it standing on 1835-07-01. No action; the record is kept so the exclusion can be argued with."
+      "action_note": "No street the model holds. The anchor 'the Fulton Market' names nothing the committed town holds."
     },
     {
       "id": "business_david_carver",
@@ -1678,7 +1817,9 @@
       "exclusion": null,
       "exclusion_note": null,
       "dissolved_after_scene_date": [],
+      "opening_announced": [],
       "survival_liberty_required": false,
+      "backdating_liberty_required": false,
       "anchor": {
         "kind": "unresolved",
         "target": null,
@@ -1711,7 +1852,9 @@
       "exclusion": null,
       "exclusion_note": null,
       "dissolved_after_scene_date": [],
+      "opening_announced": [],
       "survival_liberty_required": true,
+      "backdating_liberty_required": false,
       "anchor": {
         "kind": "unresolved",
         "target": null,
@@ -1745,7 +1888,9 @@
       "exclusion": "contradicted_before_scene_date",
       "exclusion_note": "Contradicted on or before the scene date by chicago_democrat_1834_07_23#c005 (notice, 1834-07-23).",
       "dissolved_after_scene_date": [],
+      "opening_announced": [],
       "survival_liberty_required": false,
+      "backdating_liberty_required": false,
       "anchor": {
         "kind": "unresolved",
         "target": null,
@@ -1776,7 +1921,9 @@
       "exclusion": null,
       "exclusion_note": null,
       "dissolved_after_scene_date": [],
+      "opening_announced": [],
       "survival_liberty_required": true,
+      "backdating_liberty_required": false,
       "anchor": {
         "kind": "street",
         "target": null,
@@ -1811,7 +1958,9 @@
       "exclusion": null,
       "exclusion_note": null,
       "dissolved_after_scene_date": [],
+      "opening_announced": [],
       "survival_liberty_required": false,
+      "backdating_liberty_required": false,
       "anchor": {
         "kind": "structure",
         "target": "new_york_house",
@@ -1844,7 +1993,9 @@
       "exclusion": null,
       "exclusion_note": null,
       "dissolved_after_scene_date": [],
+      "opening_announced": [],
       "survival_liberty_required": false,
+      "backdating_liberty_required": false,
       "anchor": {
         "kind": "structure",
         "target": "new_york_house",
@@ -1873,11 +2024,22 @@
         "first_issue": "1835-08-12",
         "last_issue": "1835-08-12"
       },
-      "present_at_scene_date": false,
-      "exclusion": "first_evidence_after_scene_date",
-      "exclusion_note": "The earliest issue carrying this business is 1835-08-12, after the scene date, so nothing evidences it standing on 1835-07-01.",
+      "present_at_scene_date": true,
+      "exclusion": null,
+      "exclusion_note": null,
       "dissolved_after_scene_date": [],
+      "opening_announced": [
+        {
+          "claim": "chicago_democrat_1835_08_12#c004",
+          "issue": "1835-08-12",
+          "dating": "effected",
+          "iso": "1835-08-07",
+          "verbatim": "he has commenced the practice of Medicine and opened an office on Lake street near the post office",
+          "note": "'Has commenced ... and opened' over a dateline of 7 August 1835. The opening is on or before that day and the copy is silent about 1 July."
+        }
+      ],
       "survival_liberty_required": false,
+      "backdating_liberty_required": true,
       "anchor": {
         "kind": "unresolved",
         "target": null,
@@ -1885,11 +2047,11 @@
         "via": null,
         "note": "The anchor 'the post office' names nothing the committed town holds."
       },
-      "action": "unplaceable",
-      "action_target": null,
+      "action": "street_only",
+      "action_target": "lake",
       "match_tier": null,
       "match_evidence": null,
-      "action_note": "Excluded from the scene-date town: The earliest issue carrying this business is 1835-08-12, after the scene date, so nothing evidences it standing on 1835-07-01. No action; the record is kept so the exclusion can be argued with."
+      "action_note": "The paper names Lake Street and nothing narrower; the anchor 'the post office' names nothing the committed town holds."
     },
     {
       "id": "business_dr_w_g_austin_botanic_physician",
@@ -1906,11 +2068,22 @@
         "first_issue": "1835-08-08",
         "last_issue": "1835-08-08"
       },
-      "present_at_scene_date": false,
-      "exclusion": "first_evidence_after_scene_date",
-      "exclusion_note": "The earliest issue carrying this business is 1835-08-08, after the scene date, so nothing evidences it standing on 1835-07-01.",
+      "present_at_scene_date": true,
+      "exclusion": null,
+      "exclusion_note": null,
       "dissolved_after_scene_date": [],
+      "opening_announced": [
+        {
+          "claim": "chicago_american_1835_08_08#c001",
+          "issue": "1835-08-08",
+          "dating": "effected",
+          "iso": "1835-08-07",
+          "verbatim": "h[e] has [commen]ced the practice of medicine and opene[d an office] on Lake s[t]re[et], near the Po[st] Office",
+          "note": "The American's printing of the same notice the Democrat carries on 12 August, over the same 7 August 1835 dateline."
+        }
+      ],
       "survival_liberty_required": false,
+      "backdating_liberty_required": true,
       "anchor": {
         "kind": "unresolved",
         "target": null,
@@ -1918,11 +2091,11 @@
         "via": null,
         "note": "The anchor 'the Post Office' names nothing the committed town holds."
       },
-      "action": "unplaceable",
-      "action_target": null,
+      "action": "street_only",
+      "action_target": "lake",
       "match_tier": null,
       "match_evidence": null,
-      "action_note": "Excluded from the scene-date town: The earliest issue carrying this business is 1835-08-08, after the scene date, so nothing evidences it standing on 1835-07-01. No action; the record is kept so the exclusion can be argued with."
+      "action_note": "The paper names Lake Street and nothing narrower; the anchor 'the Post Office' names nothing the committed town holds."
     },
     {
       "id": "business_e_k_hubbard_agent_for_the_howard_fire_insurance_company",
@@ -1943,7 +2116,18 @@
       "exclusion": null,
       "exclusion_note": null,
       "dissolved_after_scene_date": [],
+      "opening_announced": [
+        {
+          "claim": "chicago_democrat_1835_07_01#c017",
+          "issue": "1835-07-01",
+          "dating": "effected",
+          "iso": "1835-07-01",
+          "verbatim": "having b[een appointed] Fire Insuran[ce] Agent for the Howard [Fire Insurance] Company",
+          "note": "The agency is announced as already conferred, over the dateline of 1 July 1835 — the scene date itself."
+        }
+      ],
       "survival_liberty_required": false,
+      "backdating_liberty_required": false,
       "anchor": {
         "kind": "unresolved",
         "target": null,
@@ -1976,7 +2160,9 @@
       "exclusion": null,
       "exclusion_note": null,
       "dissolved_after_scene_date": [],
+      "opening_announced": [],
       "survival_liberty_required": true,
+      "backdating_liberty_required": false,
       "anchor": {
         "kind": "unresolved",
         "target": null,
@@ -2009,7 +2195,9 @@
       "exclusion": null,
       "exclusion_note": null,
       "dissolved_after_scene_date": [],
+      "opening_announced": [],
       "survival_liberty_required": true,
+      "backdating_liberty_required": false,
       "anchor": {
         "kind": "unresolved",
         "target": null,
@@ -2042,7 +2230,9 @@
       "exclusion": null,
       "exclusion_note": null,
       "dissolved_after_scene_date": [],
+      "opening_announced": [],
       "survival_liberty_required": true,
+      "backdating_liberty_required": false,
       "anchor": {
         "kind": "unresolved",
         "target": null,
@@ -2075,7 +2265,9 @@
       "exclusion": null,
       "exclusion_note": null,
       "dissolved_after_scene_date": [],
+      "opening_announced": [],
       "survival_liberty_required": true,
+      "backdating_liberty_required": false,
       "anchor": {
         "kind": "unresolved",
         "target": null,
@@ -2108,7 +2300,9 @@
       "exclusion": null,
       "exclusion_note": null,
       "dissolved_after_scene_date": [],
+      "opening_announced": [],
       "survival_liberty_required": true,
+      "backdating_liberty_required": false,
       "anchor": {
         "kind": "unresolved",
         "target": null,
@@ -2141,7 +2335,9 @@
       "exclusion": null,
       "exclusion_note": null,
       "dissolved_after_scene_date": [],
+      "opening_announced": [],
       "survival_liberty_required": true,
+      "backdating_liberty_required": false,
       "anchor": {
         "kind": "unresolved",
         "target": null,
@@ -2174,7 +2370,9 @@
       "exclusion": null,
       "exclusion_note": null,
       "dissolved_after_scene_date": [],
+      "opening_announced": [],
       "survival_liberty_required": true,
+      "backdating_liberty_required": false,
       "anchor": {
         "kind": "unresolved",
         "target": null,
@@ -2208,7 +2406,9 @@
       "exclusion": "contradicted_before_scene_date",
       "exclusion_note": "Contradicted on or before the scene date by chicago_democrat_1834_10_08#c006 (business, 1834-10-08).",
       "dissolved_after_scene_date": [],
+      "opening_announced": [],
       "survival_liberty_required": false,
+      "backdating_liberty_required": false,
       "anchor": {
         "kind": "unresolved",
         "target": null,
@@ -2241,7 +2441,9 @@
       "exclusion": null,
       "exclusion_note": null,
       "dissolved_after_scene_date": [],
+      "opening_announced": [],
       "survival_liberty_required": true,
+      "backdating_liberty_required": false,
       "anchor": {
         "kind": "unresolved",
         "target": null,
@@ -2270,11 +2472,13 @@
         "first_issue": "1835-07-04",
         "last_issue": "1835-07-04"
       },
-      "present_at_scene_date": false,
-      "exclusion": "first_evidence_after_scene_date",
-      "exclusion_note": "The earliest issue carrying this business is 1835-07-04, after the scene date, so nothing evidences it standing on 1835-07-01.",
+      "present_at_scene_date": true,
+      "exclusion": null,
+      "exclusion_note": null,
       "dissolved_after_scene_date": [],
+      "opening_announced": [],
       "survival_liberty_required": false,
+      "backdating_liberty_required": true,
       "anchor": {
         "kind": "unresolved",
         "target": null,
@@ -2286,7 +2490,7 @@
       "action_target": null,
       "match_tier": null,
       "match_evidence": null,
-      "action_note": "Excluded from the scene-date town: The earliest issue carrying this business is 1835-07-04, after the scene date, so nothing evidences it standing on 1835-07-01. No action; the record is kept so the exclusion can be argued with."
+      "action_note": "No street the model holds. The anchor 'the Public Square' names nothing the committed town holds."
     },
     {
       "id": "business_edward_w_casey",
@@ -2307,7 +2511,9 @@
       "exclusion": null,
       "exclusion_note": null,
       "dissolved_after_scene_date": [],
+      "opening_announced": [],
       "survival_liberty_required": false,
+      "backdating_liberty_required": false,
       "anchor": {
         "kind": "unresolved",
         "target": null,
@@ -2340,7 +2546,9 @@
       "exclusion": null,
       "exclusion_note": null,
       "dissolved_after_scene_date": [],
+      "opening_announced": [],
       "survival_liberty_required": true,
+      "backdating_liberty_required": false,
       "anchor": {
         "kind": "unresolved",
         "target": null,
@@ -2373,7 +2581,9 @@
       "exclusion": null,
       "exclusion_note": null,
       "dissolved_after_scene_date": [],
+      "opening_announced": [],
       "survival_liberty_required": true,
+      "backdating_liberty_required": false,
       "anchor": {
         "kind": "unresolved",
         "target": null,
@@ -2406,7 +2616,9 @@
       "exclusion": null,
       "exclusion_note": null,
       "dissolved_after_scene_date": [],
+      "opening_announced": [],
       "survival_liberty_required": true,
+      "backdating_liberty_required": false,
       "anchor": {
         "kind": "unresolved",
         "target": null,
@@ -2439,7 +2651,9 @@
       "exclusion": null,
       "exclusion_note": null,
       "dissolved_after_scene_date": [],
+      "opening_announced": [],
       "survival_liberty_required": false,
+      "backdating_liberty_required": false,
       "anchor": {
         "kind": "unresolved",
         "target": null,
@@ -2472,7 +2686,9 @@
       "exclusion": null,
       "exclusion_note": null,
       "dissolved_after_scene_date": [],
+      "opening_announced": [],
       "survival_liberty_required": true,
+      "backdating_liberty_required": false,
       "anchor": {
         "kind": "unresolved",
         "target": null,
@@ -2505,7 +2721,9 @@
       "exclusion": null,
       "exclusion_note": null,
       "dissolved_after_scene_date": [],
+      "opening_announced": [],
       "survival_liberty_required": false,
+      "backdating_liberty_required": false,
       "anchor": {
         "kind": "unresolved",
         "target": null,
@@ -2538,7 +2756,9 @@
       "exclusion": null,
       "exclusion_note": null,
       "dissolved_after_scene_date": [],
+      "opening_announced": [],
       "survival_liberty_required": true,
+      "backdating_liberty_required": false,
       "anchor": {
         "kind": "street",
         "target": null,
@@ -2573,7 +2793,9 @@
       "exclusion": null,
       "exclusion_note": null,
       "dissolved_after_scene_date": [],
+      "opening_announced": [],
       "survival_liberty_required": true,
+      "backdating_liberty_required": false,
       "anchor": {
         "kind": "corner",
         "target": null,
@@ -2610,7 +2832,9 @@
       "exclusion": null,
       "exclusion_note": null,
       "dissolved_after_scene_date": [],
+      "opening_announced": [],
       "survival_liberty_required": false,
+      "backdating_liberty_required": false,
       "anchor": {
         "kind": "corner",
         "target": null,
@@ -2644,7 +2868,9 @@
       "exclusion": null,
       "exclusion_note": null,
       "dissolved_after_scene_date": [],
+      "opening_announced": [],
       "survival_liberty_required": true,
+      "backdating_liberty_required": false,
       "anchor": {
         "kind": "unresolved",
         "target": null,
@@ -2678,7 +2904,9 @@
       "exclusion": "contradicted_before_scene_date",
       "exclusion_note": "Contradicted on or before the scene date by chicago_democrat_1834_07_02#c049 (notice, 1834-07-02).",
       "dissolved_after_scene_date": [],
+      "opening_announced": [],
       "survival_liberty_required": false,
+      "backdating_liberty_required": false,
       "anchor": {
         "kind": "unresolved",
         "target": null,
@@ -2711,7 +2939,9 @@
       "exclusion": null,
       "exclusion_note": null,
       "dissolved_after_scene_date": [],
+      "opening_announced": [],
       "survival_liberty_required": true,
+      "backdating_liberty_required": false,
       "anchor": {
         "kind": "unresolved",
         "target": null,
@@ -2740,11 +2970,22 @@
         "first_issue": "1835-08-19",
         "last_issue": "1835-08-19"
       },
-      "present_at_scene_date": false,
-      "exclusion": "first_evidence_after_scene_date",
-      "exclusion_note": "The earliest issue carrying this business is 1835-08-19, after the scene date, so nothing evidences it standing on 1835-07-01.",
+      "present_at_scene_date": true,
+      "exclusion": null,
+      "exclusion_note": null,
       "dissolved_after_scene_date": [],
+      "opening_announced": [
+        {
+          "claim": "chicago_democrat_1835_08_19#c011",
+          "issue": "1835-08-19",
+          "dating": "effected",
+          "iso": "1835-08-10",
+          "verbatim": "having taken a shop on Dea[r]born street nearly opposite the Eagle Coffee House",
+          "note": "'Having taken' over a dateline of 10 August 1835 — on or before that day, and silent about 1 July."
+        }
+      ],
       "survival_liberty_required": false,
+      "backdating_liberty_required": true,
       "anchor": {
         "kind": "unresolved",
         "target": null,
@@ -2752,11 +2993,11 @@
         "via": null,
         "note": "The anchor 'the Eagle Coffee House' names nothing the committed town holds."
       },
-      "action": "unplaceable",
-      "action_target": null,
+      "action": "street_only",
+      "action_target": "dearborn",
       "match_tier": null,
       "match_evidence": null,
-      "action_note": "Excluded from the scene-date town: The earliest issue carrying this business is 1835-08-19, after the scene date, so nothing evidences it standing on 1835-07-01. No action; the record is kept so the exclusion can be argued with."
+      "action_note": "The paper names Dearborn Street and nothing narrower; the anchor 'the Eagle Coffee House' names nothing the committed town holds."
     },
     {
       "id": "business_giles_spring",
@@ -2777,7 +3018,9 @@
       "exclusion": null,
       "exclusion_note": null,
       "dissolved_after_scene_date": [],
+      "opening_announced": [],
       "survival_liberty_required": false,
+      "backdating_liberty_required": false,
       "anchor": {
         "kind": "corner",
         "target": null,
@@ -2816,7 +3059,9 @@
       "exclusion": "contradicted_before_scene_date",
       "exclusion_note": "Contradicted on or before the scene date by chicago_american_1835_06_08#c006 (notice, 1835-06-08), chicago_american_1835_06_13#c015 (notice, 1835-06-13).",
       "dissolved_after_scene_date": [],
+      "opening_announced": [],
       "survival_liberty_required": false,
+      "backdating_liberty_required": false,
       "anchor": {
         "kind": "unresolved",
         "target": null,
@@ -2849,7 +3094,9 @@
       "exclusion": null,
       "exclusion_note": null,
       "dissolved_after_scene_date": [],
+      "opening_announced": [],
       "survival_liberty_required": true,
+      "backdating_liberty_required": false,
       "anchor": {
         "kind": "unresolved",
         "target": null,
@@ -2882,7 +3129,9 @@
       "exclusion": null,
       "exclusion_note": null,
       "dissolved_after_scene_date": [],
+      "opening_announced": [],
       "survival_liberty_required": true,
+      "backdating_liberty_required": false,
       "anchor": {
         "kind": "street",
         "target": null,
@@ -2920,7 +3169,9 @@
       "exclusion": null,
       "exclusion_note": null,
       "dissolved_after_scene_date": [],
+      "opening_announced": [],
       "survival_liberty_required": false,
+      "backdating_liberty_required": false,
       "anchor": {
         "kind": "unresolved",
         "target": null,
@@ -2953,7 +3204,9 @@
       "exclusion": null,
       "exclusion_note": null,
       "dissolved_after_scene_date": [],
+      "opening_announced": [],
       "survival_liberty_required": false,
+      "backdating_liberty_required": false,
       "anchor": {
         "kind": "unresolved",
         "target": null,
@@ -2982,11 +3235,13 @@
         "first_issue": "1835-07-04",
         "last_issue": "1835-07-04"
       },
-      "present_at_scene_date": false,
-      "exclusion": "first_evidence_after_scene_date",
-      "exclusion_note": "The earliest issue carrying this business is 1835-07-04, after the scene date, so nothing evidences it standing on 1835-07-01.",
+      "present_at_scene_date": true,
+      "exclusion": null,
+      "exclusion_note": null,
       "dissolved_after_scene_date": [],
+      "opening_announced": [],
       "survival_liberty_required": false,
+      "backdating_liberty_required": true,
       "anchor": {
         "kind": "unresolved",
         "target": null,
@@ -2998,7 +3253,7 @@
       "action_target": null,
       "match_tier": null,
       "match_evidence": null,
-      "action_note": "Excluded from the scene-date town: The earliest issue carrying this business is 1835-07-04, after the scene date, so nothing evidences it standing on 1835-07-01. No action; the record is kept so the exclusion can be argued with."
+      "action_note": "No street the model holds. The anchor \"J. H. Kinzie's New Building\" names nothing the committed town holds."
     },
     {
       "id": "business_henry_moore_attorney_counsellor_at_law",
@@ -3015,11 +3270,13 @@
         "first_issue": "1835-08-05",
         "last_issue": "1835-08-05"
       },
-      "present_at_scene_date": false,
-      "exclusion": "first_evidence_after_scene_date",
-      "exclusion_note": "The earliest issue carrying this business is 1835-08-05, after the scene date, so nothing evidences it standing on 1835-07-01.",
+      "present_at_scene_date": true,
+      "exclusion": null,
+      "exclusion_note": null,
       "dissolved_after_scene_date": [],
+      "opening_announced": [],
       "survival_liberty_required": false,
+      "backdating_liberty_required": true,
       "anchor": {
         "kind": "structure",
         "target": "jh_kinzie_forwarding_store",
@@ -3027,11 +3284,11 @@
         "via": null,
         "note": "The landmark is the committed structure jh_kinzie_forwarding_store."
       },
-      "action": "unplaceable",
-      "action_target": null,
+      "action": "new_building",
+      "action_target": "jh_kinzie_forwarding_store",
       "match_tier": null,
       "match_evidence": null,
-      "action_note": "Excluded from the scene-date town: The earliest issue carrying this business is 1835-08-05, after the scene date, so nothing evidences it standing on 1835-07-01. No action; the record is kept so the exclusion can be argued with."
+      "action_note": "Placeable against the committed town. The landmark is the committed structure jh_kinzie_forwarding_store."
     },
     {
       "id": "business_hiram_everts_high_school_for_young_gentlemen",
@@ -3049,10 +3306,21 @@
         "last_issue": "1835-08-12"
       },
       "present_at_scene_date": false,
-      "exclusion": "first_evidence_after_scene_date",
-      "exclusion_note": "The earliest issue carrying this business is 1835-08-12, after the scene date, so nothing evidences it standing on 1835-07-01.",
+      "exclusion": "opening_announced_after_scene_date",
+      "exclusion_note": "chicago_democrat_1835_08_12#c006 announces this house opening on 1835-08-10, after the scene date — “he will [open a] HIGH SCHOOL for Young Gentlemen [on] the 10th of the present month”. The advertisement is dated 5 August 1835, so 'the present month' is August and the school opens on 10 August 1835 — and only 'should sufficient encouragement be offered'. It was not open on 1 July.",
       "dissolved_after_scene_date": [],
+      "opening_announced": [
+        {
+          "claim": "chicago_democrat_1835_08_12#c006",
+          "issue": "1835-08-12",
+          "dating": "stated",
+          "iso": "1835-08-10",
+          "verbatim": "he will [open a] HIGH SCHOOL for Young Gentlemen [on] the 10th of the present month",
+          "note": "The advertisement is dated 5 August 1835, so 'the present month' is August and the school opens on 10 August 1835 — and only 'should sufficient encouragement be offered'. It was not open on 1 July."
+        }
+      ],
       "survival_liberty_required": false,
+      "backdating_liberty_required": false,
       "anchor": {
         "kind": "unresolved",
         "target": null,
@@ -3064,7 +3332,7 @@
       "action_target": null,
       "match_tier": null,
       "match_evidence": null,
-      "action_note": "Excluded from the scene-date town: The earliest issue carrying this business is 1835-08-12, after the scene date, so nothing evidences it standing on 1835-07-01. No action; the record is kept so the exclusion can be argued with."
+      "action_note": "Excluded from the scene-date town: chicago_democrat_1835_08_12#c006 announces this house opening on 1835-08-10, after the scene date — “he will [open a] HIGH SCHOOL for Young Gentlemen [on] the 10th of the present month”. The advertisement is dated 5 August 1835, so 'the present month' is August and the school opens on 10 August 1835 — and only 'should sufficient encouragement be offered'. It was not open on 1 July. No action; the record is kept so the exclusion can be argued with."
     },
     {
       "id": "business_hiram_pearsons",
@@ -3085,7 +3353,9 @@
       "exclusion": null,
       "exclusion_note": null,
       "dissolved_after_scene_date": [],
+      "opening_announced": [],
       "survival_liberty_required": true,
+      "backdating_liberty_required": false,
       "anchor": {
         "kind": "unresolved",
         "target": null,
@@ -3114,11 +3384,13 @@
         "first_issue": "1835-07-08",
         "last_issue": "1835-07-29"
       },
-      "present_at_scene_date": false,
-      "exclusion": "first_evidence_after_scene_date",
-      "exclusion_note": "The earliest issue carrying this business is 1835-07-08, after the scene date, so nothing evidences it standing on 1835-07-01.",
+      "present_at_scene_date": true,
+      "exclusion": null,
+      "exclusion_note": null,
       "dissolved_after_scene_date": [],
+      "opening_announced": [],
       "survival_liberty_required": false,
+      "backdating_liberty_required": true,
       "anchor": {
         "kind": "unresolved",
         "target": null,
@@ -3130,7 +3402,7 @@
       "action_target": null,
       "match_tier": null,
       "match_evidence": null,
-      "action_note": "Excluded from the scene-date town: The earliest issue carrying this business is 1835-07-08, after the scene date, so nothing evidences it standing on 1835-07-01. No action; the record is kept so the exclusion can be argued with."
+      "action_note": "No street the model holds. The paper gives no anchor."
     },
     {
       "id": "business_hubbard_co",
@@ -3154,7 +3426,9 @@
       "exclusion": null,
       "exclusion_note": null,
       "dissolved_after_scene_date": [],
+      "opening_announced": [],
       "survival_liberty_required": false,
+      "backdating_liberty_required": false,
       "anchor": {
         "kind": "unresolved",
         "target": null,
@@ -3185,7 +3459,9 @@
       "exclusion": null,
       "exclusion_note": null,
       "dissolved_after_scene_date": [],
+      "opening_announced": [],
       "survival_liberty_required": false,
+      "backdating_liberty_required": false,
       "anchor": {
         "kind": "unresolved",
         "target": null,
@@ -3218,7 +3494,9 @@
       "exclusion": null,
       "exclusion_note": null,
       "dissolved_after_scene_date": [],
+      "opening_announced": [],
       "survival_liberty_required": true,
+      "backdating_liberty_required": false,
       "anchor": {
         "kind": "unresolved",
         "target": null,
@@ -3251,7 +3529,9 @@
       "exclusion": null,
       "exclusion_note": null,
       "dissolved_after_scene_date": [],
+      "opening_announced": [],
       "survival_liberty_required": true,
+      "backdating_liberty_required": false,
       "anchor": {
         "kind": "structure",
         "target": "exchange_coffee_house",
@@ -3285,7 +3565,9 @@
       "exclusion": null,
       "exclusion_note": null,
       "dissolved_after_scene_date": [],
+      "opening_announced": [],
       "survival_liberty_required": true,
+      "backdating_liberty_required": false,
       "anchor": {
         "kind": "unresolved",
         "target": null,
@@ -3318,7 +3600,9 @@
       "exclusion": null,
       "exclusion_note": null,
       "dissolved_after_scene_date": [],
+      "opening_announced": [],
       "survival_liberty_required": true,
+      "backdating_liberty_required": false,
       "anchor": {
         "kind": "unresolved",
         "target": null,
@@ -3352,7 +3636,9 @@
       "exclusion": null,
       "exclusion_note": null,
       "dissolved_after_scene_date": [],
+      "opening_announced": [],
       "survival_liberty_required": true,
+      "backdating_liberty_required": false,
       "anchor": {
         "kind": "unresolved",
         "target": null,
@@ -3381,11 +3667,13 @@
         "first_issue": "1835-08-19",
         "last_issue": "1835-08-19"
       },
-      "present_at_scene_date": false,
-      "exclusion": "first_evidence_after_scene_date",
-      "exclusion_note": "The earliest issue carrying this business is 1835-08-19, after the scene date, so nothing evidences it standing on 1835-07-01.",
+      "present_at_scene_date": true,
+      "exclusion": null,
+      "exclusion_note": null,
       "dissolved_after_scene_date": [],
+      "opening_announced": [],
       "survival_liberty_required": false,
+      "backdating_liberty_required": true,
       "anchor": {
         "kind": "unresolved",
         "target": null,
@@ -3397,7 +3685,7 @@
       "action_target": null,
       "match_tier": null,
       "match_evidence": null,
-      "action_note": "Excluded from the scene-date town: The earliest issue carrying this business is 1835-08-19, after the scene date, so nothing evidences it standing on 1835-07-01. No action; the record is kept so the exclusion can be argued with."
+      "action_note": "No street the model holds. The paper gives no anchor."
     },
     {
       "id": "business_j_curtiss",
@@ -3418,7 +3706,9 @@
       "exclusion": null,
       "exclusion_note": null,
       "dissolved_after_scene_date": [],
+      "opening_announced": [],
       "survival_liberty_required": false,
+      "backdating_liberty_required": false,
       "anchor": {
         "kind": "business",
         "target": null,
@@ -3447,11 +3737,13 @@
         "first_issue": "1835-08-05",
         "last_issue": "1835-08-05"
       },
-      "present_at_scene_date": false,
-      "exclusion": "first_evidence_after_scene_date",
-      "exclusion_note": "The earliest issue carrying this business is 1835-08-05, after the scene date, so nothing evidences it standing on 1835-07-01.",
+      "present_at_scene_date": true,
+      "exclusion": null,
+      "exclusion_note": null,
       "dissolved_after_scene_date": [],
+      "opening_announced": [],
       "survival_liberty_required": false,
+      "backdating_liberty_required": true,
       "anchor": {
         "kind": "unresolved",
         "target": null,
@@ -3459,11 +3751,11 @@
         "via": null,
         "note": "The anchor \"Jones, King & Co.'s store\" names nothing the committed town holds."
       },
-      "action": "unplaceable",
-      "action_target": null,
+      "action": "street_only",
+      "action_target": "south_water",
       "match_tier": null,
       "match_evidence": null,
-      "action_note": "Excluded from the scene-date town: The earliest issue carrying this business is 1835-08-05, after the scene date, so nothing evidences it standing on 1835-07-01. No action; the record is kept so the exclusion can be argued with."
+      "action_note": "The paper names South Water Street and nothing narrower; the anchor \"Jones, King & Co.'s store\" names nothing the committed town holds."
     },
     {
       "id": "business_j_d_caton_attorney_and_counsellor_at_law",
@@ -3484,7 +3776,9 @@
       "exclusion": null,
       "exclusion_note": null,
       "dissolved_after_scene_date": [],
+      "opening_announced": [],
       "survival_liberty_required": true,
+      "backdating_liberty_required": false,
       "anchor": {
         "kind": "business",
         "target": null,
@@ -3515,7 +3809,9 @@
       "exclusion": null,
       "exclusion_note": null,
       "dissolved_after_scene_date": [],
+      "opening_announced": [],
       "survival_liberty_required": true,
+      "backdating_liberty_required": false,
       "anchor": {
         "kind": "street",
         "target": null,
@@ -3550,7 +3846,9 @@
       "exclusion": null,
       "exclusion_note": null,
       "dissolved_after_scene_date": [],
+      "opening_announced": [],
       "survival_liberty_required": true,
+      "backdating_liberty_required": false,
       "anchor": {
         "kind": "unresolved",
         "target": null,
@@ -3583,7 +3881,9 @@
       "exclusion": null,
       "exclusion_note": null,
       "dissolved_after_scene_date": [],
+      "opening_announced": [],
       "survival_liberty_required": false,
+      "backdating_liberty_required": false,
       "anchor": {
         "kind": "unresolved",
         "target": null,
@@ -3617,7 +3917,9 @@
       "exclusion": null,
       "exclusion_note": null,
       "dissolved_after_scene_date": [],
+      "opening_announced": [],
       "survival_liberty_required": false,
+      "backdating_liberty_required": false,
       "anchor": {
         "kind": "unresolved",
         "target": null,
@@ -3650,7 +3952,9 @@
       "exclusion": null,
       "exclusion_note": null,
       "dissolved_after_scene_date": [],
+      "opening_announced": [],
       "survival_liberty_required": true,
+      "backdating_liberty_required": false,
       "anchor": {
         "kind": "structure",
         "target": "mansion_house",
@@ -3683,7 +3987,9 @@
       "exclusion": null,
       "exclusion_note": null,
       "dissolved_after_scene_date": [],
+      "opening_announced": [],
       "survival_liberty_required": true,
+      "backdating_liberty_required": false,
       "anchor": {
         "kind": "corner",
         "target": null,
@@ -3724,7 +4030,9 @@
       "exclusion": null,
       "exclusion_note": null,
       "dissolved_after_scene_date": [],
+      "opening_announced": [],
       "survival_liberty_required": false,
+      "backdating_liberty_required": false,
       "anchor": {
         "kind": "unresolved",
         "target": null,
@@ -3758,7 +4066,9 @@
       "exclusion": null,
       "exclusion_note": null,
       "dissolved_after_scene_date": [],
+      "opening_announced": [],
       "survival_liberty_required": false,
+      "backdating_liberty_required": false,
       "anchor": {
         "kind": "unresolved",
         "target": null,
@@ -3792,7 +4102,9 @@
       "exclusion": "contradicted_before_scene_date",
       "exclusion_note": "Contradicted on or before the scene date by chicago_democrat_1834_03_04#c011 (notice, 1834-03-04), chicago_democrat_1834_03_25#c004 (notice, 1834-03-25).",
       "dissolved_after_scene_date": [],
+      "opening_announced": [],
       "survival_liberty_required": false,
+      "backdating_liberty_required": false,
       "anchor": {
         "kind": "unresolved",
         "target": null,
@@ -3821,11 +4133,13 @@
         "first_issue": "1835-07-11",
         "last_issue": "1835-07-11"
       },
-      "present_at_scene_date": false,
-      "exclusion": "first_evidence_after_scene_date",
-      "exclusion_note": "The earliest issue carrying this business is 1835-07-11, after the scene date, so nothing evidences it standing on 1835-07-01.",
+      "present_at_scene_date": true,
+      "exclusion": null,
+      "exclusion_note": null,
       "dissolved_after_scene_date": [],
+      "opening_announced": [],
       "survival_liberty_required": false,
+      "backdating_liberty_required": true,
       "anchor": {
         "kind": "unresolved",
         "target": null,
@@ -3833,11 +4147,11 @@
         "via": null,
         "note": "The paper gives no anchor."
       },
-      "action": "unplaceable",
-      "action_target": null,
-      "match_tier": null,
-      "match_evidence": null,
-      "action_note": "Excluded from the scene-date town: The earliest issue carrying this business is 1835-07-11, after the scene date, so nothing evidences it standing on 1835-07-01. No action; the record is kept so the exclusion can be argued with."
+      "action": "enrich_existing",
+      "action_target": "wright_building_to_let_a",
+      "match_tier": "name",
+      "match_evidence": "John Wright's Building to Let (east)",
+      "action_note": "wright_building_to_let_a already stands and its name carries wright — \"John Wright's Building to Let (east)\". The papers add trade, goods and dates to a record that exists."
     },
     {
       "id": "business_james_grant",
@@ -3858,7 +4172,9 @@
       "exclusion": null,
       "exclusion_note": null,
       "dissolved_after_scene_date": [],
+      "opening_announced": [],
       "survival_liberty_required": false,
+      "backdating_liberty_required": false,
       "anchor": {
         "kind": "unresolved",
         "target": null,
@@ -3891,7 +4207,9 @@
       "exclusion": null,
       "exclusion_note": null,
       "dissolved_after_scene_date": [],
+      "opening_announced": [],
       "survival_liberty_required": true,
+      "backdating_liberty_required": false,
       "anchor": {
         "kind": "unresolved",
         "target": null,
@@ -3924,7 +4242,9 @@
       "exclusion": null,
       "exclusion_note": null,
       "dissolved_after_scene_date": [],
+      "opening_announced": [],
       "survival_liberty_required": false,
+      "backdating_liberty_required": false,
       "anchor": {
         "kind": "unresolved",
         "target": null,
@@ -3953,11 +4273,13 @@
         "first_issue": "1835-07-22",
         "last_issue": "1835-07-29"
       },
-      "present_at_scene_date": false,
-      "exclusion": "first_evidence_after_scene_date",
-      "exclusion_note": "The earliest issue carrying this business is 1835-07-22, after the scene date, so nothing evidences it standing on 1835-07-01.",
+      "present_at_scene_date": true,
+      "exclusion": null,
+      "exclusion_note": null,
       "dissolved_after_scene_date": [],
+      "opening_announced": [],
       "survival_liberty_required": false,
+      "backdating_liberty_required": true,
       "anchor": {
         "kind": "unresolved",
         "target": null,
@@ -3965,11 +4287,11 @@
         "via": null,
         "note": "The paper gives no anchor."
       },
-      "action": "unplaceable",
-      "action_target": null,
-      "match_tier": null,
-      "match_evidence": null,
-      "action_note": "Excluded from the scene-date town: The earliest issue carrying this business is 1835-07-22, after the scene date, so nothing evidences it standing on 1835-07-01. No action; the record is kept so the exclusion can be argued with."
+      "action": "enrich_existing",
+      "action_target": "temple_lake_st_building",
+      "match_tier": "occupants",
+      "match_evidence": "John Dean Caton's law office and lodging; the building is Dr John T. Temple's",
+      "action_note": "temple_lake_st_building already stands and its occupants carries caton — \"John Dean Caton's law office and lodging; the building is Dr John T. Temple's\". The papers add trade, goods and dates to a record that exists."
     },
     {
       "id": "business_john_dean_caton_attorney_and_counsellor_at_law",
@@ -3986,11 +4308,13 @@
         "first_issue": "1835-08-19",
         "last_issue": "1835-08-19"
       },
-      "present_at_scene_date": false,
-      "exclusion": "first_evidence_after_scene_date",
-      "exclusion_note": "The earliest issue carrying this business is 1835-08-19, after the scene date, so nothing evidences it standing on 1835-07-01.",
+      "present_at_scene_date": true,
+      "exclusion": null,
+      "exclusion_note": null,
       "dissolved_after_scene_date": [],
+      "opening_announced": [],
       "survival_liberty_required": false,
+      "backdating_liberty_required": true,
       "anchor": {
         "kind": "unresolved",
         "target": null,
@@ -3998,11 +4322,11 @@
         "via": null,
         "note": "The anchor '[unreadable — the column cuts the name away]' names nothing the committed town holds."
       },
-      "action": "unplaceable",
-      "action_target": null,
-      "match_tier": null,
-      "match_evidence": null,
-      "action_note": "Excluded from the scene-date town: The earliest issue carrying this business is 1835-08-19, after the scene date, so nothing evidences it standing on 1835-07-01. No action; the record is kept so the exclusion can be argued with."
+      "action": "enrich_existing",
+      "action_target": "temple_lake_st_building",
+      "match_tier": "occupants",
+      "match_evidence": "John Dean Caton's law office and lodging; the building is Dr John T. Temple's",
+      "action_note": "temple_lake_st_building already stands and its occupants carries caton, dean — \"John Dean Caton's law office and lodging; the building is Dr John T. Temple's\". The papers add trade, goods and dates to a record that exists."
     },
     {
       "id": "business_john_h_kinzie",
@@ -4023,7 +4347,9 @@
       "exclusion": null,
       "exclusion_note": null,
       "dissolved_after_scene_date": [],
+      "opening_announced": [],
       "survival_liberty_required": false,
+      "backdating_liberty_required": false,
       "anchor": {
         "kind": "unresolved",
         "target": null,
@@ -4057,7 +4383,18 @@
       "exclusion": null,
       "exclusion_note": null,
       "dissolved_after_scene_date": [],
+      "opening_announced": [
+        {
+          "claim": "chicago_democrat_1835_08_12#c012",
+          "issue": "1835-08-12",
+          "dating": "effected",
+          "iso": "1835-06-10",
+          "verbatim": "is now opening a heavy [asso]rtment of the above named articles [on South] Water st., one door from Dearborn street",
+          "note": "Dated 10 June 1835, three weeks BEFORE the scene date: Holbrook's store was opening its stock in June and stood on South Water Street on 1 July."
+        }
+      ],
       "survival_liberty_required": false,
+      "backdating_liberty_required": false,
       "anchor": {
         "kind": "street",
         "target": null,
@@ -4092,7 +4429,9 @@
       "exclusion": null,
       "exclusion_note": null,
       "dissolved_after_scene_date": [],
+      "opening_announced": [],
       "survival_liberty_required": false,
+      "backdating_liberty_required": false,
       "anchor": {
         "kind": "street",
         "target": null,
@@ -4127,7 +4466,9 @@
       "exclusion": null,
       "exclusion_note": null,
       "dissolved_after_scene_date": [],
+      "opening_announced": [],
       "survival_liberty_required": true,
+      "backdating_liberty_required": false,
       "anchor": {
         "kind": "unresolved",
         "target": null,
@@ -4160,7 +4501,9 @@
       "exclusion": null,
       "exclusion_note": null,
       "dissolved_after_scene_date": [],
+      "opening_announced": [],
       "survival_liberty_required": true,
+      "backdating_liberty_required": false,
       "anchor": {
         "kind": "unresolved",
         "target": null,
@@ -4193,7 +4536,9 @@
       "exclusion": null,
       "exclusion_note": null,
       "dissolved_after_scene_date": [],
+      "opening_announced": [],
       "survival_liberty_required": true,
+      "backdating_liberty_required": false,
       "anchor": {
         "kind": "unresolved",
         "target": null,
@@ -4226,7 +4571,9 @@
       "exclusion": "contradicted_before_scene_date",
       "exclusion_note": "Contradicted on or before the scene date by chicago_democrat_1834_04_08#c013 (notice, 1834-04-08).",
       "dissolved_after_scene_date": [],
+      "opening_announced": [],
       "survival_liberty_required": false,
+      "backdating_liberty_required": false,
       "anchor": {
         "kind": "unresolved",
         "target": null,
@@ -4259,7 +4606,9 @@
       "exclusion": null,
       "exclusion_note": null,
       "dissolved_after_scene_date": [],
+      "opening_announced": [],
       "survival_liberty_required": true,
+      "backdating_liberty_required": false,
       "anchor": {
         "kind": "unresolved",
         "target": null,
@@ -4294,7 +4643,9 @@
       "exclusion": null,
       "exclusion_note": null,
       "dissolved_after_scene_date": [],
+      "opening_announced": [],
       "survival_liberty_required": true,
+      "backdating_liberty_required": false,
       "anchor": {
         "kind": "unresolved",
         "target": null,
@@ -4331,7 +4682,34 @@
       "exclusion": null,
       "exclusion_note": null,
       "dissolved_after_scene_date": [],
+      "opening_announced": [
+        {
+          "claim": "chicago_democrat_1835_07_08#c009",
+          "issue": "1835-07-08",
+          "dating": "undated",
+          "iso": null,
+          "verbatim": "[The un]dersigned have formed a connection [in the] mercantile business, under the firm [of Jones, Ki]ng & Co.",
+          "note": "A firm announcing its own formation, and this printing carries no dateline. The 5 August printing of the same copy does, and it is dated 1 July 1835."
+        },
+        {
+          "claim": "chicago_democrat_1835_07_22#c009",
+          "issue": "1835-07-22",
+          "dating": "undated",
+          "iso": null,
+          "verbatim": "[The] undersigned have formed a connection [in] the mercantile business",
+          "note": "The second printing of the Jones, King & Co. formation notice, again with no dateline."
+        },
+        {
+          "claim": "chicago_democrat_1835_08_05#c008",
+          "issue": "1835-08-05",
+          "dating": "effected",
+          "iso": "1835-07-01",
+          "verbatim": "having been appointed Agent for the Howard Fire Insurance Company",
+          "note": "The agency is already held, over a dateline of 1 July 1835 — on the scene date, not after it."
+        }
+      ],
       "survival_liberty_required": false,
+      "backdating_liberty_required": false,
       "anchor": {
         "kind": "unresolved",
         "target": null,
@@ -4365,7 +4743,9 @@
       "exclusion": null,
       "exclusion_note": null,
       "dissolved_after_scene_date": [],
+      "opening_announced": [],
       "survival_liberty_required": true,
+      "backdating_liberty_required": false,
       "anchor": {
         "kind": "unresolved",
         "target": null,
@@ -4398,7 +4778,9 @@
       "exclusion": null,
       "exclusion_note": null,
       "dissolved_after_scene_date": [],
+      "opening_announced": [],
       "survival_liberty_required": true,
+      "backdating_liberty_required": false,
       "anchor": {
         "kind": "unresolved",
         "target": null,
@@ -4431,7 +4813,9 @@
       "exclusion": null,
       "exclusion_note": null,
       "dissolved_after_scene_date": [],
+      "opening_announced": [],
       "survival_liberty_required": true,
+      "backdating_liberty_required": false,
       "anchor": {
         "kind": "corner",
         "target": null,
@@ -4467,7 +4851,9 @@
       "exclusion": null,
       "exclusion_note": null,
       "dissolved_after_scene_date": [],
+      "opening_announced": [],
       "survival_liberty_required": false,
+      "backdating_liberty_required": false,
       "anchor": {
         "kind": "business",
         "target": null,
@@ -4496,11 +4882,13 @@
         "first_issue": "1835-07-22",
         "last_issue": "1835-07-29"
       },
-      "present_at_scene_date": false,
-      "exclusion": "first_evidence_after_scene_date",
-      "exclusion_note": "The earliest issue carrying this business is 1835-07-22, after the scene date, so nothing evidences it standing on 1835-07-01.",
+      "present_at_scene_date": true,
+      "exclusion": null,
+      "exclusion_note": null,
       "dissolved_after_scene_date": [],
+      "opening_announced": [],
       "survival_liberty_required": false,
+      "backdating_liberty_required": true,
       "anchor": {
         "kind": "structure",
         "target": "mansion_house",
@@ -4508,11 +4896,11 @@
         "via": null,
         "note": "The landmark is the committed structure mansion_house."
       },
-      "action": "unplaceable",
-      "action_target": null,
+      "action": "new_building",
+      "action_target": "mansion_house",
       "match_tier": null,
       "match_evidence": null,
-      "action_note": "Excluded from the scene-date town: The earliest issue carrying this business is 1835-07-22, after the scene date, so nothing evidences it standing on 1835-07-01. No action; the record is kept so the exclusion can be argued with."
+      "action_note": "Placeable against the committed town. The landmark is the committed structure mansion_house."
     },
     {
       "id": "business_l_g_curtiss_deputy_surveyor_of_cook_county",
@@ -4529,11 +4917,13 @@
         "first_issue": "1835-08-05",
         "last_issue": "1835-08-05"
       },
-      "present_at_scene_date": false,
-      "exclusion": "first_evidence_after_scene_date",
-      "exclusion_note": "The earliest issue carrying this business is 1835-08-05, after the scene date, so nothing evidences it standing on 1835-07-01.",
+      "present_at_scene_date": true,
+      "exclusion": null,
+      "exclusion_note": null,
       "dissolved_after_scene_date": [],
+      "opening_announced": [],
       "survival_liberty_required": false,
+      "backdating_liberty_required": true,
       "anchor": {
         "kind": "structure",
         "target": "mansion_house",
@@ -4541,11 +4931,11 @@
         "via": null,
         "note": "The landmark is the committed structure mansion_house."
       },
-      "action": "unplaceable",
-      "action_target": null,
+      "action": "new_building",
+      "action_target": "mansion_house",
       "match_tier": null,
       "match_evidence": null,
-      "action_note": "Excluded from the scene-date town: The earliest issue carrying this business is 1835-08-05, after the scene date, so nothing evidences it standing on 1835-07-01. No action; the record is kept so the exclusion can be argued with."
+      "action_note": "Placeable against the committed town. The landmark is the committed structure mansion_house."
     },
     {
       "id": "business_l_w_montgomery",
@@ -4566,7 +4956,9 @@
       "exclusion": null,
       "exclusion_note": null,
       "dissolved_after_scene_date": [],
+      "opening_announced": [],
       "survival_liberty_required": false,
+      "backdating_liberty_required": false,
       "anchor": {
         "kind": "unresolved",
         "target": null,
@@ -4599,7 +4991,9 @@
       "exclusion": null,
       "exclusion_note": null,
       "dissolved_after_scene_date": [],
+      "opening_announced": [],
       "survival_liberty_required": true,
+      "backdating_liberty_required": false,
       "anchor": {
         "kind": "unresolved",
         "target": null,
@@ -4632,7 +5026,9 @@
       "exclusion": "contradicted_before_scene_date",
       "exclusion_note": "Contradicted on or before the scene date by chicago_american_1835_06_27#c006 (notice, 1835-06-27).",
       "dissolved_after_scene_date": [],
+      "opening_announced": [],
       "survival_liberty_required": false,
+      "backdating_liberty_required": false,
       "anchor": {
         "kind": "unresolved",
         "target": null,
@@ -4665,7 +5061,9 @@
       "exclusion": null,
       "exclusion_note": null,
       "dissolved_after_scene_date": [],
+      "opening_announced": [],
       "survival_liberty_required": true,
+      "backdating_liberty_required": false,
       "anchor": {
         "kind": "unresolved",
         "target": null,
@@ -4698,7 +5096,9 @@
       "exclusion": null,
       "exclusion_note": null,
       "dissolved_after_scene_date": [],
+      "opening_announced": [],
       "survival_liberty_required": false,
+      "backdating_liberty_required": false,
       "anchor": {
         "kind": "unresolved",
         "target": null,
@@ -4733,7 +5133,9 @@
       "exclusion": null,
       "exclusion_note": null,
       "dissolved_after_scene_date": [],
+      "opening_announced": [],
       "survival_liberty_required": false,
+      "backdating_liberty_required": false,
       "anchor": {
         "kind": "unresolved",
         "target": null,
@@ -4767,7 +5169,9 @@
       "exclusion": "contradicted_before_scene_date",
       "exclusion_note": "Contradicted on or before the scene date by chicago_democrat_1834_08_13#c008 (notice, 1834-08-13).",
       "dissolved_after_scene_date": [],
+      "opening_announced": [],
       "survival_liberty_required": false,
+      "backdating_liberty_required": false,
       "anchor": {
         "kind": "unresolved",
         "target": null,
@@ -4800,7 +5204,9 @@
       "exclusion": null,
       "exclusion_note": null,
       "dissolved_after_scene_date": [],
+      "opening_announced": [],
       "survival_liberty_required": true,
+      "backdating_liberty_required": false,
       "anchor": {
         "kind": "unresolved",
         "target": null,
@@ -4833,7 +5239,9 @@
       "exclusion": null,
       "exclusion_note": null,
       "dissolved_after_scene_date": [],
+      "opening_announced": [],
       "survival_liberty_required": true,
+      "backdating_liberty_required": false,
       "anchor": {
         "kind": "unresolved",
         "target": null,
@@ -4868,7 +5276,9 @@
       "exclusion": null,
       "exclusion_note": null,
       "dissolved_after_scene_date": [],
+      "opening_announced": [],
       "survival_liberty_required": true,
+      "backdating_liberty_required": false,
       "anchor": {
         "kind": "unresolved",
         "target": null,
@@ -4901,7 +5311,9 @@
       "exclusion": null,
       "exclusion_note": null,
       "dissolved_after_scene_date": [],
+      "opening_announced": [],
       "survival_liberty_required": true,
+      "backdating_liberty_required": false,
       "anchor": {
         "kind": "structure",
         "target": "mansion_house",
@@ -4932,7 +5344,9 @@
       "exclusion": null,
       "exclusion_note": null,
       "dissolved_after_scene_date": [],
+      "opening_announced": [],
       "survival_liberty_required": true,
+      "backdating_liberty_required": false,
       "anchor": {
         "kind": "structure",
         "target": "mansion_house",
@@ -4965,7 +5379,9 @@
       "exclusion": null,
       "exclusion_note": null,
       "dissolved_after_scene_date": [],
+      "opening_announced": [],
       "survival_liberty_required": true,
+      "backdating_liberty_required": false,
       "anchor": {
         "kind": "street",
         "target": null,
@@ -5000,7 +5416,9 @@
       "exclusion": null,
       "exclusion_note": null,
       "dissolved_after_scene_date": [],
+      "opening_announced": [],
       "survival_liberty_required": false,
+      "backdating_liberty_required": false,
       "anchor": {
         "kind": "street",
         "target": null,
@@ -5035,7 +5453,9 @@
       "exclusion": null,
       "exclusion_note": null,
       "dissolved_after_scene_date": [],
+      "opening_announced": [],
       "survival_liberty_required": true,
+      "backdating_liberty_required": false,
       "anchor": {
         "kind": "structure",
         "target": "mansion_house",
@@ -5068,7 +5488,9 @@
       "exclusion": null,
       "exclusion_note": null,
       "dissolved_after_scene_date": [],
+      "opening_announced": [],
       "survival_liberty_required": true,
+      "backdating_liberty_required": false,
       "anchor": {
         "kind": "structure",
         "target": "mansion_house",
@@ -5101,7 +5523,9 @@
       "exclusion": null,
       "exclusion_note": null,
       "dissolved_after_scene_date": [],
+      "opening_announced": [],
       "survival_liberty_required": false,
+      "backdating_liberty_required": false,
       "anchor": {
         "kind": "street",
         "target": null,
@@ -5139,7 +5563,9 @@
       "exclusion": null,
       "exclusion_note": null,
       "dissolved_after_scene_date": [],
+      "opening_announced": [],
       "survival_liberty_required": false,
+      "backdating_liberty_required": false,
       "anchor": {
         "kind": "unresolved",
         "target": null,
@@ -5170,7 +5596,9 @@
       "exclusion": null,
       "exclusion_note": null,
       "dissolved_after_scene_date": [],
+      "opening_announced": [],
       "survival_liberty_required": true,
+      "backdating_liberty_required": false,
       "anchor": {
         "kind": "unresolved",
         "target": null,
@@ -5203,7 +5631,9 @@
       "exclusion": null,
       "exclusion_note": null,
       "dissolved_after_scene_date": [],
+      "opening_announced": [],
       "survival_liberty_required": false,
+      "backdating_liberty_required": false,
       "anchor": {
         "kind": "unresolved",
         "target": null,
@@ -5236,7 +5666,9 @@
       "exclusion": null,
       "exclusion_note": null,
       "dissolved_after_scene_date": [],
+      "opening_announced": [],
       "survival_liberty_required": true,
+      "backdating_liberty_required": false,
       "anchor": {
         "kind": "unresolved",
         "target": null,
@@ -5269,7 +5701,9 @@
       "exclusion": null,
       "exclusion_note": null,
       "dissolved_after_scene_date": [],
+      "opening_announced": [],
       "survival_liberty_required": true,
+      "backdating_liberty_required": false,
       "anchor": {
         "kind": "unresolved",
         "target": null,
@@ -5300,7 +5734,9 @@
       "exclusion": null,
       "exclusion_note": null,
       "dissolved_after_scene_date": [],
+      "opening_announced": [],
       "survival_liberty_required": true,
+      "backdating_liberty_required": false,
       "anchor": {
         "kind": "unresolved",
         "target": null,
@@ -5335,7 +5771,9 @@
       "exclusion": null,
       "exclusion_note": null,
       "dissolved_after_scene_date": [],
+      "opening_announced": [],
       "survival_liberty_required": false,
+      "backdating_liberty_required": false,
       "anchor": {
         "kind": "street",
         "target": null,
@@ -5370,7 +5808,9 @@
       "exclusion": null,
       "exclusion_note": null,
       "dissolved_after_scene_date": [],
+      "opening_announced": [],
       "survival_liberty_required": true,
+      "backdating_liberty_required": false,
       "anchor": {
         "kind": "unresolved",
         "target": null,
@@ -5403,7 +5843,9 @@
       "exclusion": null,
       "exclusion_note": null,
       "dissolved_after_scene_date": [],
+      "opening_announced": [],
       "survival_liberty_required": true,
+      "backdating_liberty_required": false,
       "anchor": {
         "kind": "business",
         "target": null,
@@ -5436,7 +5878,9 @@
       "exclusion": null,
       "exclusion_note": null,
       "dissolved_after_scene_date": [],
+      "opening_announced": [],
       "survival_liberty_required": false,
+      "backdating_liberty_required": false,
       "anchor": {
         "kind": "street",
         "target": null,
@@ -5471,7 +5915,9 @@
       "exclusion": null,
       "exclusion_note": null,
       "dissolved_after_scene_date": [],
+      "opening_announced": [],
       "survival_liberty_required": true,
+      "backdating_liberty_required": false,
       "anchor": {
         "kind": "unresolved",
         "target": null,
@@ -5504,7 +5950,9 @@
       "exclusion": null,
       "exclusion_note": null,
       "dissolved_after_scene_date": [],
+      "opening_announced": [],
       "survival_liberty_required": false,
+      "backdating_liberty_required": false,
       "anchor": {
         "kind": "unresolved",
         "target": null,
@@ -5537,7 +5985,9 @@
       "exclusion": null,
       "exclusion_note": null,
       "dissolved_after_scene_date": [],
+      "opening_announced": [],
       "survival_liberty_required": false,
+      "backdating_liberty_required": false,
       "anchor": {
         "kind": "unresolved",
         "target": null,
@@ -5571,7 +6021,9 @@
       "exclusion": "contradicted_before_scene_date",
       "exclusion_note": "Contradicted on or before the scene date by chicago_democrat_1834_06_11#c003 (business, 1834-06-11).",
       "dissolved_after_scene_date": [],
+      "opening_announced": [],
       "survival_liberty_required": false,
+      "backdating_liberty_required": false,
       "anchor": {
         "kind": "structure",
         "target": "sauganash_hotel",
@@ -5604,7 +6056,9 @@
       "exclusion": null,
       "exclusion_note": null,
       "dissolved_after_scene_date": [],
+      "opening_announced": [],
       "survival_liberty_required": true,
+      "backdating_liberty_required": false,
       "anchor": {
         "kind": "structure",
         "target": "sauganash_hotel",
@@ -5635,7 +6089,9 @@
       "exclusion": null,
       "exclusion_note": null,
       "dissolved_after_scene_date": [],
+      "opening_announced": [],
       "survival_liberty_required": true,
+      "backdating_liberty_required": false,
       "anchor": {
         "kind": "unresolved",
         "target": null,
@@ -5670,7 +6126,9 @@
       "exclusion": null,
       "exclusion_note": null,
       "dissolved_after_scene_date": [],
+      "opening_announced": [],
       "survival_liberty_required": true,
+      "backdating_liberty_required": false,
       "anchor": {
         "kind": "unresolved",
         "target": null,
@@ -5703,7 +6161,9 @@
       "exclusion": null,
       "exclusion_note": null,
       "dissolved_after_scene_date": [],
+      "opening_announced": [],
       "survival_liberty_required": true,
+      "backdating_liberty_required": false,
       "anchor": {
         "kind": "unresolved",
         "target": null,
@@ -5736,7 +6196,9 @@
       "exclusion": null,
       "exclusion_note": null,
       "dissolved_after_scene_date": [],
+      "opening_announced": [],
       "survival_liberty_required": false,
+      "backdating_liberty_required": false,
       "anchor": {
         "kind": "unresolved",
         "target": null,
@@ -5769,7 +6231,9 @@
       "exclusion": null,
       "exclusion_note": null,
       "dissolved_after_scene_date": [],
+      "opening_announced": [],
       "survival_liberty_required": true,
+      "backdating_liberty_required": false,
       "anchor": {
         "kind": "unresolved",
         "target": null,
@@ -5802,7 +6266,9 @@
       "exclusion": null,
       "exclusion_note": null,
       "dissolved_after_scene_date": [],
+      "opening_announced": [],
       "survival_liberty_required": true,
+      "backdating_liberty_required": false,
       "anchor": {
         "kind": "unresolved",
         "target": null,
@@ -5835,7 +6301,9 @@
       "exclusion": null,
       "exclusion_note": null,
       "dissolved_after_scene_date": [],
+      "opening_announced": [],
       "survival_liberty_required": false,
+      "backdating_liberty_required": false,
       "anchor": {
         "kind": "unresolved",
         "target": null,
@@ -5869,7 +6337,9 @@
       "exclusion": null,
       "exclusion_note": null,
       "dissolved_after_scene_date": [],
+      "opening_announced": [],
       "survival_liberty_required": false,
+      "backdating_liberty_required": false,
       "anchor": {
         "kind": "unresolved",
         "target": null,
@@ -5903,7 +6373,9 @@
       "exclusion": null,
       "exclusion_note": null,
       "dissolved_after_scene_date": [],
+      "opening_announced": [],
       "survival_liberty_required": true,
+      "backdating_liberty_required": false,
       "anchor": {
         "kind": "unresolved",
         "target": null,
@@ -5934,7 +6406,9 @@
       "exclusion": null,
       "exclusion_note": null,
       "dissolved_after_scene_date": [],
+      "opening_announced": [],
       "survival_liberty_required": false,
+      "backdating_liberty_required": false,
       "anchor": {
         "kind": "unresolved",
         "target": null,
@@ -5963,11 +6437,13 @@
         "first_issue": "1835-08-19",
         "last_issue": "1835-08-19"
       },
-      "present_at_scene_date": false,
-      "exclusion": "first_evidence_after_scene_date",
-      "exclusion_note": "The earliest issue carrying this business is 1835-08-19, after the scene date, so nothing evidences it standing on 1835-07-01.",
+      "present_at_scene_date": true,
+      "exclusion": null,
+      "exclusion_note": null,
       "dissolved_after_scene_date": [],
+      "opening_announced": [],
       "survival_liberty_required": false,
+      "backdating_liberty_required": true,
       "anchor": {
         "kind": "unresolved",
         "target": null,
@@ -5979,7 +6455,7 @@
       "action_target": null,
       "match_tier": null,
       "match_evidence": null,
-      "action_note": "Excluded from the scene-date town: The earliest issue carrying this business is 1835-08-19, after the scene date, so nothing evidences it standing on 1835-07-01. No action; the record is kept so the exclusion can be argued with."
+      "action_note": "No street the model holds. The paper gives no anchor."
     },
     {
       "id": "business_russell_e_heacock",
@@ -6000,7 +6476,9 @@
       "exclusion": null,
       "exclusion_note": null,
       "dissolved_after_scene_date": [],
+      "opening_announced": [],
       "survival_liberty_required": false,
+      "backdating_liberty_required": false,
       "anchor": {
         "kind": "corner",
         "target": null,
@@ -6032,11 +6510,13 @@
         "first_issue": "1835-08-01",
         "last_issue": "1835-08-01"
       },
-      "present_at_scene_date": false,
-      "exclusion": "first_evidence_after_scene_date",
-      "exclusion_note": "The earliest issue carrying this business is 1835-08-01, after the scene date, so nothing evidences it standing on 1835-07-01.",
+      "present_at_scene_date": true,
+      "exclusion": null,
+      "exclusion_note": null,
       "dissolved_after_scene_date": [],
+      "opening_announced": [],
       "survival_liberty_required": false,
+      "backdating_liberty_required": true,
       "anchor": {
         "kind": "unresolved",
         "target": null,
@@ -6048,7 +6528,7 @@
       "action_target": null,
       "match_tier": null,
       "match_evidence": null,
-      "action_note": "Excluded from the scene-date town: The earliest issue carrying this business is 1835-08-01, after the scene date, so nothing evidences it standing on 1835-07-01. No action; the record is kept so the exclusion can be argued with."
+      "action_note": "No street the model holds. The paper gives no anchor."
     },
     {
       "id": "business_s_abell_attorney_counsellor_at_law",
@@ -6065,11 +6545,13 @@
         "first_issue": "1835-08-05",
         "last_issue": "1835-08-05"
       },
-      "present_at_scene_date": false,
-      "exclusion": "first_evidence_after_scene_date",
-      "exclusion_note": "The earliest issue carrying this business is 1835-08-05, after the scene date, so nothing evidences it standing on 1835-07-01.",
+      "present_at_scene_date": true,
+      "exclusion": null,
+      "exclusion_note": null,
       "dissolved_after_scene_date": [],
+      "opening_announced": [],
       "survival_liberty_required": false,
+      "backdating_liberty_required": true,
       "anchor": {
         "kind": "unresolved",
         "target": null,
@@ -6077,11 +6559,11 @@
         "via": null,
         "note": "The anchor 'the Eagle Coffee House' names nothing the committed town holds."
       },
-      "action": "unplaceable",
-      "action_target": null,
+      "action": "street_only",
+      "action_target": "dearborn",
       "match_tier": null,
       "match_evidence": null,
-      "action_note": "Excluded from the scene-date town: The earliest issue carrying this business is 1835-08-05, after the scene date, so nothing evidences it standing on 1835-07-01. No action; the record is kept so the exclusion can be argued with."
+      "action_note": "The paper names Dearborn Street and nothing narrower; the anchor 'the Eagle Coffee House' names nothing the committed town holds."
     },
     {
       "id": "business_s_b_cobb_saddle_harness_and_trunk_manufactory",
@@ -6102,7 +6584,9 @@
       "exclusion": null,
       "exclusion_note": null,
       "dissolved_after_scene_date": [],
+      "opening_announced": [],
       "survival_liberty_required": false,
+      "backdating_liberty_required": false,
       "anchor": {
         "kind": "unresolved",
         "target": null,
@@ -6131,11 +6615,13 @@
         "first_issue": "1835-08-05",
         "last_issue": "1835-08-05"
       },
-      "present_at_scene_date": false,
-      "exclusion": "first_evidence_after_scene_date",
-      "exclusion_note": "The earliest issue carrying this business is 1835-08-05, after the scene date, so nothing evidences it standing on 1835-07-01.",
+      "present_at_scene_date": true,
+      "exclusion": null,
+      "exclusion_note": null,
       "dissolved_after_scene_date": [],
+      "opening_announced": [],
       "survival_liberty_required": false,
+      "backdating_liberty_required": true,
       "anchor": {
         "kind": "unresolved",
         "target": null,
@@ -6147,7 +6633,7 @@
       "action_target": null,
       "match_tier": null,
       "match_evidence": null,
-      "action_note": "Excluded from the scene-date town: The earliest issue carrying this business is 1835-08-05, after the scene date, so nothing evidences it standing on 1835-07-01. No action; the record is kept so the exclusion can be argued with."
+      "action_note": "No street the model holds. The paper gives no anchor."
     },
     {
       "id": "business_s_foot",
@@ -6168,7 +6654,9 @@
       "exclusion": null,
       "exclusion_note": null,
       "dissolved_after_scene_date": [],
+      "opening_announced": [],
       "survival_liberty_required": true,
+      "backdating_liberty_required": false,
       "anchor": {
         "kind": "unresolved",
         "target": null,
@@ -6201,7 +6689,9 @@
       "exclusion": null,
       "exclusion_note": null,
       "dissolved_after_scene_date": [],
+      "opening_announced": [],
       "survival_liberty_required": true,
+      "backdating_liberty_required": false,
       "anchor": {
         "kind": "unresolved",
         "target": null,
@@ -6231,11 +6721,22 @@
         "first_issue": "1835-07-22",
         "last_issue": "1835-08-12"
       },
-      "present_at_scene_date": false,
-      "exclusion": "first_evidence_after_scene_date",
-      "exclusion_note": "The earliest issue carrying this business is 1835-07-22, after the scene date, so nothing evidences it standing on 1835-07-01.",
+      "present_at_scene_date": true,
+      "exclusion": null,
+      "exclusion_note": null,
       "dissolved_after_scene_date": [],
+      "opening_announced": [
+        {
+          "claim": "chicago_democrat_1835_08_12#c005",
+          "issue": "1835-08-12",
+          "dating": "effected",
+          "iso": "1835-08-12",
+          "verbatim": "[H]AS commenced his profession of [teaching music in Chi]cago",
+          "note": "The second notice: in July Lewis 'intends commencing' a school when scholars offer, and by 12 August 1835 he 'has commenced'. The July copy is itself dated 22 June 1835, before the scene date."
+        }
+      ],
       "survival_liberty_required": false,
+      "backdating_liberty_required": true,
       "anchor": {
         "kind": "unresolved",
         "target": null,
@@ -6243,11 +6744,11 @@
         "via": null,
         "note": "The paper gives no anchor."
       },
-      "action": "unplaceable",
-      "action_target": null,
+      "action": "street_only",
+      "action_target": "south_water",
       "match_tier": null,
       "match_evidence": null,
-      "action_note": "Excluded from the scene-date town: The earliest issue carrying this business is 1835-07-22, after the scene date, so nothing evidences it standing on 1835-07-01. No action; the record is kept so the exclusion can be argued with."
+      "action_note": "The paper names South Water Street and nothing narrower; the paper gives no anchor."
     },
     {
       "id": "business_sarah_d_howe",
@@ -6264,11 +6765,22 @@
         "first_issue": "1835-08-19",
         "last_issue": "1835-08-19"
       },
-      "present_at_scene_date": false,
-      "exclusion": "first_evidence_after_scene_date",
-      "exclusion_note": "The earliest issue carrying this business is 1835-08-19, after the scene date, so nothing evidences it standing on 1835-07-01.",
+      "present_at_scene_date": true,
+      "exclusion": null,
+      "exclusion_note": null,
       "dissolved_after_scene_date": [],
+      "opening_announced": [
+        {
+          "claim": "chicago_democrat_1835_08_19#c013",
+          "issue": "1835-08-19",
+          "dating": "effected",
+          "iso": "1835-08-18",
+          "verbatim": "she has taken a room in Lake-street, in t[h]e house occupied by Dr. Austin",
+          "note": "'Has taken' over a dateline of 18 August 1835. The room is in Dr. Austin's house, whose own opening notice is dated 7 August."
+        }
+      ],
       "survival_liberty_required": false,
+      "backdating_liberty_required": true,
       "anchor": {
         "kind": "unresolved",
         "target": null,
@@ -6276,11 +6788,11 @@
         "via": null,
         "note": "The anchor 'the house occupied by Dr. Austin' names nothing the committed town holds."
       },
-      "action": "unplaceable",
-      "action_target": null,
+      "action": "street_only",
+      "action_target": "lake",
       "match_tier": null,
       "match_evidence": null,
-      "action_note": "Excluded from the scene-date town: The earliest issue carrying this business is 1835-08-19, after the scene date, so nothing evidences it standing on 1835-07-01. No action; the record is kept so the exclusion can be argued with."
+      "action_note": "The paper names Lake Street and nothing narrower; the anchor 'the house occupied by Dr. Austin' names nothing the committed town holds."
     },
     {
       "id": "business_sarah_d_howe_dress_cloak_and_habit_making",
@@ -6297,11 +6809,22 @@
         "first_issue": "1835-08-22",
         "last_issue": "1835-08-22"
       },
-      "present_at_scene_date": false,
-      "exclusion": "first_evidence_after_scene_date",
-      "exclusion_note": "The earliest issue carrying this business is 1835-08-22, after the scene date, so nothing evidences it standing on 1835-07-01.",
+      "present_at_scene_date": true,
+      "exclusion": null,
+      "exclusion_note": null,
       "dissolved_after_scene_date": [],
+      "opening_announced": [
+        {
+          "claim": "chicago_american_1835_08_22#c001",
+          "issue": "1835-08-22",
+          "dating": "effected",
+          "iso": "1835-08-18",
+          "verbatim": "[s]he ha[s] taken a room [in …] street, in the house [o]c[c]upied by Dr. Aus[tin]",
+          "note": "The American's printing of Sarah Howe's notice, over the same 18 August 1835 dateline as the Democrat's."
+        }
+      ],
       "survival_liberty_required": false,
+      "backdating_liberty_required": true,
       "anchor": {
         "kind": "unresolved",
         "target": null,
@@ -6313,7 +6836,7 @@
       "action_target": null,
       "match_tier": null,
       "match_evidence": null,
-      "action_note": "Excluded from the scene-date town: The earliest issue carrying this business is 1835-08-22, after the scene date, so nothing evidences it standing on 1835-07-01. No action; the record is kept so the exclusion can be argued with."
+      "action_note": "No street the model holds. The anchor \"the house occupied by Dr. Austin, opposite Dr. Temple's\" names nothing the committed town holds."
     },
     {
       "id": "business_stuart_s_confectionary_and_perfumery",
@@ -6334,7 +6857,9 @@
       "exclusion": null,
       "exclusion_note": null,
       "dissolved_after_scene_date": [],
+      "opening_announced": [],
       "survival_liberty_required": false,
+      "backdating_liberty_required": false,
       "anchor": {
         "kind": "unresolved",
         "target": null,
@@ -6368,7 +6893,9 @@
       "exclusion": "contradicted_before_scene_date",
       "exclusion_note": "Contradicted on or before the scene date by chicago_democrat_1834_03_18#c008 (notice, 1834-03-18).",
       "dissolved_after_scene_date": [],
+      "opening_announced": [],
       "survival_liberty_required": false,
+      "backdating_liberty_required": false,
       "anchor": {
         "kind": "unresolved",
         "target": null,
@@ -6401,7 +6928,9 @@
       "exclusion": null,
       "exclusion_note": null,
       "dissolved_after_scene_date": [],
+      "opening_announced": [],
       "survival_liberty_required": true,
+      "backdating_liberty_required": false,
       "anchor": {
         "kind": "unresolved",
         "target": null,
@@ -6434,7 +6963,9 @@
       "exclusion": null,
       "exclusion_note": null,
       "dissolved_after_scene_date": [],
+      "opening_announced": [],
       "survival_liberty_required": true,
+      "backdating_liberty_required": false,
       "anchor": {
         "kind": "unresolved",
         "target": null,
@@ -6461,11 +6992,13 @@
         "first_issue": "1835-08-22",
         "last_issue": "1835-08-22"
       },
-      "present_at_scene_date": false,
-      "exclusion": "first_evidence_after_scene_date",
-      "exclusion_note": "The earliest issue carrying this business is 1835-08-22, after the scene date, so nothing evidences it standing on 1835-07-01.",
+      "present_at_scene_date": true,
+      "exclusion": null,
+      "exclusion_note": null,
       "dissolved_after_scene_date": [],
+      "opening_announced": [],
       "survival_liberty_required": false,
+      "backdating_liberty_required": true,
       "anchor": {
         "kind": "unresolved",
         "target": null,
@@ -6477,7 +7010,7 @@
       "action_target": null,
       "match_tier": null,
       "match_evidence": null,
-      "action_note": "Excluded from the scene-date town: The earliest issue carrying this business is 1835-08-22, after the scene date, so nothing evidences it standing on 1835-07-01. No action; the record is kept so the exclusion can be argued with."
+      "action_note": "No street the model holds. The paper gives no anchor."
     },
     {
       "id": "business_the_chicago_and_st_joseph_packet_schooner_phillips",
@@ -6496,7 +7029,9 @@
       "exclusion": null,
       "exclusion_note": null,
       "dissolved_after_scene_date": [],
+      "opening_announced": [],
       "survival_liberty_required": true,
+      "backdating_liberty_required": false,
       "anchor": {
         "kind": "unresolved",
         "target": null,
@@ -6529,7 +7064,9 @@
       "exclusion": null,
       "exclusion_note": null,
       "dissolved_after_scene_date": [],
+      "opening_announced": [],
       "survival_liberty_required": true,
+      "backdating_liberty_required": false,
       "anchor": {
         "kind": "unresolved",
         "target": null,
@@ -6562,7 +7099,9 @@
       "exclusion": null,
       "exclusion_note": null,
       "dissolved_after_scene_date": [],
+      "opening_announced": [],
       "survival_liberty_required": false,
+      "backdating_liberty_required": false,
       "anchor": {
         "kind": "unresolved",
         "target": null,
@@ -6596,7 +7135,9 @@
       "exclusion": null,
       "exclusion_note": null,
       "dissolved_after_scene_date": [],
+      "opening_announced": [],
       "survival_liberty_required": false,
+      "backdating_liberty_required": false,
       "anchor": {
         "kind": "corner",
         "target": null,
@@ -6630,7 +7171,9 @@
       "exclusion": null,
       "exclusion_note": null,
       "dissolved_after_scene_date": [],
+      "opening_announced": [],
       "survival_liberty_required": true,
+      "backdating_liberty_required": false,
       "anchor": {
         "kind": "corner",
         "target": null,
@@ -6666,7 +7209,9 @@
       "exclusion": null,
       "exclusion_note": null,
       "dissolved_after_scene_date": [],
+      "opening_announced": [],
       "survival_liberty_required": true,
+      "backdating_liberty_required": false,
       "anchor": {
         "kind": "unresolved",
         "target": null,
@@ -6693,11 +7238,22 @@
         "first_issue": "1835-07-29",
         "last_issue": "1835-07-29"
       },
-      "present_at_scene_date": false,
-      "exclusion": "first_evidence_after_scene_date",
-      "exclusion_note": "The earliest issue carrying this business is 1835-07-29, after the scene date, so nothing evidences it standing on 1835-07-01.",
+      "present_at_scene_date": true,
+      "exclusion": null,
+      "exclusion_note": null,
       "dissolved_after_scene_date": [],
+      "opening_announced": [
+        {
+          "claim": "chicago_democrat_1835_07_29#c004",
+          "issue": "1835-07-29",
+          "dating": "effected",
+          "iso": "1835-07-27",
+          "verbatim": "[that he has] [r]ented the New Stor[e] o[n] Dearborn [Street, for] the p[u]r[p]o[s]e of [t]ransacting [th]e A[uction] and Com[mi]ss[i]on busine[ss]",
+          "note": "'Has rented' over the printing's own dateline of 27 July 1835. The same copy is reprinted on 12 August (c009 there), where the dateline reads the same day."
+        }
+      ],
       "survival_liberty_required": false,
+      "backdating_liberty_required": true,
       "anchor": {
         "kind": "unresolved",
         "target": null,
@@ -6705,11 +7261,11 @@
         "via": null,
         "note": "The paper gives no anchor."
       },
-      "action": "unplaceable",
-      "action_target": null,
+      "action": "street_only",
+      "action_target": "dearborn",
       "match_tier": null,
       "match_evidence": null,
-      "action_note": "Excluded from the scene-date town: The earliest issue carrying this business is 1835-07-29, after the scene date, so nothing evidences it standing on 1835-07-01. No action; the record is kept so the exclusion can be argued with."
+      "action_note": "The paper names Dearborn Street and nothing narrower; the paper gives no anchor."
     },
     {
       "id": "business_the_livery_stable_at_the_point",
@@ -6728,7 +7284,9 @@
       "exclusion": null,
       "exclusion_note": null,
       "dissolved_after_scene_date": [],
+      "opening_announced": [],
       "survival_liberty_required": true,
+      "backdating_liberty_required": false,
       "anchor": {
         "kind": "unresolved",
         "target": null,
@@ -6761,7 +7319,9 @@
       "exclusion": null,
       "exclusion_note": null,
       "dissolved_after_scene_date": [],
+      "opening_announced": [],
       "survival_liberty_required": true,
+      "backdating_liberty_required": false,
       "anchor": {
         "kind": "unresolved",
         "target": null,
@@ -6794,7 +7354,9 @@
       "exclusion": null,
       "exclusion_note": null,
       "dissolved_after_scene_date": [],
+      "opening_announced": [],
       "survival_liberty_required": true,
+      "backdating_liberty_required": false,
       "anchor": {
         "kind": "unresolved",
         "target": null,
@@ -6828,7 +7390,9 @@
       "exclusion": null,
       "exclusion_note": null,
       "dissolved_after_scene_date": [],
+      "opening_announced": [],
       "survival_liberty_required": true,
+      "backdating_liberty_required": false,
       "anchor": {
         "kind": "structure",
         "target": "sauganash_hotel",
@@ -6859,7 +7423,9 @@
       "exclusion": null,
       "exclusion_note": null,
       "dissolved_after_scene_date": [],
+      "opening_announced": [],
       "survival_liberty_required": true,
+      "backdating_liberty_required": false,
       "anchor": {
         "kind": "unresolved",
         "target": null,
@@ -6890,7 +7456,9 @@
       "exclusion": null,
       "exclusion_note": null,
       "dissolved_after_scene_date": [],
+      "opening_announced": [],
       "survival_liberty_required": true,
+      "backdating_liberty_required": false,
       "anchor": {
         "kind": "unresolved",
         "target": null,
@@ -6921,7 +7489,9 @@
       "exclusion": null,
       "exclusion_note": null,
       "dissolved_after_scene_date": [],
+      "opening_announced": [],
       "survival_liberty_required": true,
+      "backdating_liberty_required": false,
       "anchor": {
         "kind": "unresolved",
         "target": null,
@@ -6952,7 +7522,9 @@
       "exclusion": null,
       "exclusion_note": null,
       "dissolved_after_scene_date": [],
+      "opening_announced": [],
       "survival_liberty_required": true,
+      "backdating_liberty_required": false,
       "anchor": {
         "kind": "unresolved",
         "target": null,
@@ -6985,7 +7557,9 @@
       "exclusion": null,
       "exclusion_note": null,
       "dissolved_after_scene_date": [],
+      "opening_announced": [],
       "survival_liberty_required": true,
+      "backdating_liberty_required": false,
       "anchor": {
         "kind": "unresolved",
         "target": null,
@@ -7016,7 +7590,9 @@
       "exclusion": null,
       "exclusion_note": null,
       "dissolved_after_scene_date": [],
+      "opening_announced": [],
       "survival_liberty_required": true,
+      "backdating_liberty_required": false,
       "anchor": {
         "kind": "unresolved",
         "target": null,
@@ -7047,7 +7623,9 @@
       "exclusion": null,
       "exclusion_note": null,
       "dissolved_after_scene_date": [],
+      "opening_announced": [],
       "survival_liberty_required": false,
+      "backdating_liberty_required": false,
       "anchor": {
         "kind": "unresolved",
         "target": null,
@@ -7081,7 +7659,9 @@
       "exclusion": "contradicted_before_scene_date",
       "exclusion_note": "Contradicted on or before the scene date by chicago_democrat_1834_06_25#c006 (business, 1834-06-25).",
       "dissolved_after_scene_date": [],
+      "opening_announced": [],
       "survival_liberty_required": false,
+      "backdating_liberty_required": false,
       "anchor": {
         "kind": "unresolved",
         "target": null,
@@ -7114,7 +7694,9 @@
       "exclusion": null,
       "exclusion_note": null,
       "dissolved_after_scene_date": [],
+      "opening_announced": [],
       "survival_liberty_required": true,
+      "backdating_liberty_required": false,
       "anchor": {
         "kind": "unresolved",
         "target": null,
@@ -7147,7 +7729,9 @@
       "exclusion": null,
       "exclusion_note": null,
       "dissolved_after_scene_date": [],
+      "opening_announced": [],
       "survival_liberty_required": true,
+      "backdating_liberty_required": false,
       "anchor": {
         "kind": "unresolved",
         "target": null,
@@ -7180,7 +7764,9 @@
       "exclusion": null,
       "exclusion_note": null,
       "dissolved_after_scene_date": [],
+      "opening_announced": [],
       "survival_liberty_required": true,
+      "backdating_liberty_required": false,
       "anchor": {
         "kind": "unresolved",
         "target": null,
@@ -7213,7 +7799,9 @@
       "exclusion": null,
       "exclusion_note": null,
       "dissolved_after_scene_date": [],
+      "opening_announced": [],
       "survival_liberty_required": true,
+      "backdating_liberty_required": false,
       "anchor": {
         "kind": "business",
         "target": null,
@@ -7244,7 +7832,9 @@
       "exclusion": null,
       "exclusion_note": null,
       "dissolved_after_scene_date": [],
+      "opening_announced": [],
       "survival_liberty_required": true,
+      "backdating_liberty_required": false,
       "anchor": {
         "kind": "unresolved",
         "target": null,
@@ -7275,7 +7865,9 @@
       "exclusion": null,
       "exclusion_note": null,
       "dissolved_after_scene_date": [],
+      "opening_announced": [],
       "survival_liberty_required": true,
+      "backdating_liberty_required": false,
       "anchor": {
         "kind": "structure",
         "target": "mansion_house",
@@ -7308,7 +7900,9 @@
       "exclusion": null,
       "exclusion_note": null,
       "dissolved_after_scene_date": [],
+      "opening_announced": [],
       "survival_liberty_required": true,
+      "backdating_liberty_required": false,
       "anchor": {
         "kind": "unresolved",
         "target": null,
@@ -7339,7 +7933,9 @@
       "exclusion": null,
       "exclusion_note": null,
       "dissolved_after_scene_date": [],
+      "opening_announced": [],
       "survival_liberty_required": true,
+      "backdating_liberty_required": false,
       "anchor": {
         "kind": "unresolved",
         "target": null,
@@ -7370,7 +7966,9 @@
       "exclusion": null,
       "exclusion_note": null,
       "dissolved_after_scene_date": [],
+      "opening_announced": [],
       "survival_liberty_required": true,
+      "backdating_liberty_required": false,
       "anchor": {
         "kind": "street",
         "target": null,
@@ -7403,7 +8001,9 @@
       "exclusion": null,
       "exclusion_note": null,
       "dissolved_after_scene_date": [],
+      "opening_announced": [],
       "survival_liberty_required": true,
+      "backdating_liberty_required": false,
       "anchor": {
         "kind": "unresolved",
         "target": null,
@@ -7430,11 +8030,22 @@
         "first_issue": "1835-08-12",
         "last_issue": "1835-08-12"
       },
-      "present_at_scene_date": false,
-      "exclusion": "first_evidence_after_scene_date",
-      "exclusion_note": "The earliest issue carrying this business is 1835-08-12, after the scene date, so nothing evidences it standing on 1835-07-01.",
+      "present_at_scene_date": true,
+      "exclusion": null,
+      "exclusion_note": null,
       "dissolved_after_scene_date": [],
+      "opening_announced": [
+        {
+          "claim": "chicago_democrat_1835_08_12#c011",
+          "issue": "1835-08-12",
+          "dating": "undated",
+          "iso": null,
+          "verbatim": "[The subscribers h]aving [taken the New St]ore in La Salle stree[t]",
+          "note": "The subscribers are unnamed and the notice is undated; the New Store is next door to Hubbard & Co.'s brick store and nothing dates the taking."
+        }
+      ],
       "survival_liberty_required": false,
+      "backdating_liberty_required": true,
       "anchor": {
         "kind": "unresolved",
         "target": null,
@@ -7442,11 +8053,11 @@
         "via": null,
         "note": "The anchor \"Hubbard & Co.'s brick store\" names nothing the committed town holds."
       },
-      "action": "unplaceable",
-      "action_target": null,
+      "action": "street_only",
+      "action_target": "lasalle",
       "match_tier": null,
       "match_evidence": null,
-      "action_note": "Excluded from the scene-date town: The earliest issue carrying this business is 1835-08-12, after the scene date, so nothing evidences it standing on 1835-07-01. No action; the record is kept so the exclusion can be argued with."
+      "action_note": "The paper names La Salle Street and nothing narrower; the anchor \"Hubbard & Co.'s brick store\" names nothing the committed town holds."
     },
     {
       "id": "business_unsigned_boot_shoe_leather_store_two_doors_north_of_lake_street",
@@ -7461,11 +8072,22 @@
         "first_issue": "1835-08-05",
         "last_issue": "1835-08-05"
       },
-      "present_at_scene_date": false,
-      "exclusion": "first_evidence_after_scene_date",
-      "exclusion_note": "The earliest issue carrying this business is 1835-08-05, after the scene date, so nothing evidences it standing on 1835-07-01.",
+      "present_at_scene_date": true,
+      "exclusion": null,
+      "exclusion_note": null,
       "dissolved_after_scene_date": [],
+      "opening_announced": [
+        {
+          "claim": "chicago_democrat_1835_08_05#c025",
+          "issue": "1835-08-05",
+          "dating": "undated",
+          "iso": null,
+          "verbatim": "he ha[s] ju[st] ope[ned a] Boot, Sho[e] an[d] Leather store on [Clark?] street, two doors north of Lak[e] street",
+          "note": "'Just opened', and the printing is unsigned and undated. There is no date to carry, so none is supplied — the store is not excluded on a number nobody printed."
+        }
+      ],
       "survival_liberty_required": false,
+      "backdating_liberty_required": true,
       "anchor": {
         "kind": "street",
         "target": null,
@@ -7479,7 +8101,7 @@
       "action_target": null,
       "match_tier": null,
       "match_evidence": null,
-      "action_note": "Excluded from the scene-date town: The earliest issue carrying this business is 1835-08-05, after the scene date, so nothing evidences it standing on 1835-07-01. No action; the record is kept so the exclusion can be argued with."
+      "action_note": "No street the model holds. The anchor is a reach of lake and names nothing narrower."
     },
     {
       "id": "business_w_g_blanchard",
@@ -7500,7 +8122,9 @@
       "exclusion": null,
       "exclusion_note": null,
       "dissolved_after_scene_date": [],
+      "opening_announced": [],
       "survival_liberty_required": true,
+      "backdating_liberty_required": false,
       "anchor": {
         "kind": "unresolved",
         "target": null,
@@ -7531,7 +8155,9 @@
       "exclusion": null,
       "exclusion_note": null,
       "dissolved_after_scene_date": [],
+      "opening_announced": [],
       "survival_liberty_required": true,
+      "backdating_liberty_required": false,
       "anchor": {
         "kind": "unresolved",
         "target": null,
@@ -7564,7 +8190,9 @@
       "exclusion": null,
       "exclusion_note": null,
       "dissolved_after_scene_date": [],
+      "opening_announced": [],
       "survival_liberty_required": true,
+      "backdating_liberty_required": false,
       "anchor": {
         "kind": "business",
         "target": null,
@@ -7597,7 +8225,9 @@
       "exclusion": null,
       "exclusion_note": null,
       "dissolved_after_scene_date": [],
+      "opening_announced": [],
       "survival_liberty_required": true,
+      "backdating_liberty_required": false,
       "anchor": {
         "kind": "business",
         "target": null,
@@ -7630,7 +8260,9 @@
       "exclusion": null,
       "exclusion_note": null,
       "dissolved_after_scene_date": [],
+      "opening_announced": [],
       "survival_liberty_required": true,
+      "backdating_liberty_required": false,
       "anchor": {
         "kind": "corner",
         "target": null,
@@ -7666,7 +8298,9 @@
       "exclusion": null,
       "exclusion_note": null,
       "dissolved_after_scene_date": [],
+      "opening_announced": [],
       "survival_liberty_required": true,
+      "backdating_liberty_required": false,
       "anchor": {
         "kind": "corner",
         "target": null,
@@ -7698,11 +8332,22 @@
         "first_issue": "1835-07-08",
         "last_issue": "1835-07-29"
       },
-      "present_at_scene_date": false,
-      "exclusion": "first_evidence_after_scene_date",
-      "exclusion_note": "The earliest issue carrying this business is 1835-07-08, after the scene date, so nothing evidences it standing on 1835-07-01.",
+      "present_at_scene_date": true,
+      "exclusion": null,
+      "exclusion_note": null,
       "dissolved_after_scene_date": [],
+      "opening_announced": [
+        {
+          "claim": "chicago_democrat_1835_07_08#c001",
+          "issue": "1835-07-08",
+          "dating": "effected",
+          "iso": "1835-07-06",
+          "verbatim": "has taken David Carver's Old Stand, South Water-Street, for the purpose of transacting the above business",
+          "note": "'Has taken' over a dateline of 6 July 1835: the stand was taken on or before that day, never after it. The fuller printing of the same copy in this issue ('New Establishment', page 3 columns 5-6) says his first public sale falls on 'the 1st day of July', which is the scene date."
+        }
+      ],
       "survival_liberty_required": false,
+      "backdating_liberty_required": true,
       "anchor": {
         "kind": "unresolved",
         "target": null,
@@ -7710,11 +8355,11 @@
         "via": null,
         "note": "The anchor \"David Carver's Old Stand\" names nothing the committed town holds."
       },
-      "action": "unplaceable",
-      "action_target": null,
+      "action": "street_only",
+      "action_target": "south_water",
       "match_tier": null,
       "match_evidence": null,
-      "action_note": "Excluded from the scene-date town: The earliest issue carrying this business is 1835-07-08, after the scene date, so nothing evidences it standing on 1835-07-01. No action; the record is kept so the exclusion can be argued with."
+      "action_note": "The paper names South Water Street and nothing narrower; the anchor \"David Carver's Old Stand\" names nothing the committed town holds."
     },
     {
       "id": "business_w_montgomery_auction_and_commission_house",
@@ -7731,11 +8376,22 @@
         "first_issue": "1835-08-05",
         "last_issue": "1835-08-05"
       },
-      "present_at_scene_date": false,
-      "exclusion": "first_evidence_after_scene_date",
-      "exclusion_note": "The earliest issue carrying this business is 1835-08-05, after the scene date, so nothing evidences it standing on 1835-07-01.",
+      "present_at_scene_date": true,
+      "exclusion": null,
+      "exclusion_note": null,
       "dissolved_after_scene_date": [],
+      "opening_announced": [
+        {
+          "claim": "chicago_democrat_1835_08_05#c009",
+          "issue": "1835-08-05",
+          "dating": "effected",
+          "iso": "1835-07-06",
+          "verbatim": "ha[s] taken David Car[ver]'s O[l]d Stand, [S]out[h] Water Street",
+          "note": "The reprint of the 8 July notice under the fuller firm style, carrying the same 6 July 1835 dateline."
+        }
+      ],
       "survival_liberty_required": false,
+      "backdating_liberty_required": true,
       "anchor": {
         "kind": "unresolved",
         "target": null,
@@ -7743,11 +8399,11 @@
         "via": null,
         "note": "The anchor \"David Carver's old stand\" names nothing the committed town holds."
       },
-      "action": "unplaceable",
-      "action_target": null,
+      "action": "street_only",
+      "action_target": "south_water",
       "match_tier": null,
       "match_evidence": null,
-      "action_note": "Excluded from the scene-date town: The earliest issue carrying this business is 1835-08-05, after the scene date, so nothing evidences it standing on 1835-07-01. No action; the record is kept so the exclusion can be argued with."
+      "action_note": "The paper names South Water Street and nothing narrower; the anchor \"David Carver's old stand\" names nothing the committed town holds."
     },
     {
       "id": "business_w_montgomery_boot_and_shoe_maker",
@@ -7768,7 +8424,9 @@
       "exclusion": null,
       "exclusion_note": null,
       "dissolved_after_scene_date": [],
+      "opening_announced": [],
       "survival_liberty_required": true,
+      "backdating_liberty_required": false,
       "anchor": {
         "kind": "unresolved",
         "target": null,
@@ -7801,7 +8459,9 @@
       "exclusion": null,
       "exclusion_note": null,
       "dissolved_after_scene_date": [],
+      "opening_announced": [],
       "survival_liberty_required": true,
+      "backdating_liberty_required": false,
       "anchor": {
         "kind": "unresolved",
         "target": null,
@@ -7832,7 +8492,9 @@
       "exclusion": null,
       "exclusion_note": null,
       "dissolved_after_scene_date": [],
+      "opening_announced": [],
       "survival_liberty_required": true,
+      "backdating_liberty_required": false,
       "anchor": {
         "kind": "unresolved",
         "target": null,
@@ -7865,7 +8527,9 @@
       "exclusion": null,
       "exclusion_note": null,
       "dissolved_after_scene_date": [],
+      "opening_announced": [],
       "survival_liberty_required": true,
+      "backdating_liberty_required": false,
       "anchor": {
         "kind": "unresolved",
         "target": null,
@@ -7895,10 +8559,21 @@
         "last_issue": "1835-08-19"
       },
       "present_at_scene_date": false,
-      "exclusion": "first_evidence_after_scene_date",
-      "exclusion_note": "The earliest issue carrying this business is 1835-08-19, after the scene date, so nothing evidences it standing on 1835-07-01.",
+      "exclusion": "opening_announced_after_scene_date",
+      "exclusion_note": "chicago_democrat_1835_08_19#c015 announces this house opening on 1835-09-01, after the scene date — “will receive and offer for sale on the first of September”. Dated August 1835, so 'the first of September' is 1 September 1835 — two months after the scene date, and the stock is not in the store yet.",
       "dissolved_after_scene_date": [],
+      "opening_announced": [
+        {
+          "claim": "chicago_democrat_1835_08_19#c015",
+          "issue": "1835-08-19",
+          "dating": "stated",
+          "iso": "1835-09-01",
+          "verbatim": "will receive and offer for sale on the first of September",
+          "note": "Dated August 1835, so 'the first of September' is 1 September 1835 — two months after the scene date, and the stock is not in the store yet."
+        }
+      ],
       "survival_liberty_required": false,
+      "backdating_liberty_required": false,
       "anchor": {
         "kind": "structure",
         "target": "dearborn_street_drawbridge",
@@ -7910,7 +8585,7 @@
       "action_target": null,
       "match_tier": null,
       "match_evidence": null,
-      "action_note": "Excluded from the scene-date town: The earliest issue carrying this business is 1835-08-19, after the scene date, so nothing evidences it standing on 1835-07-01. No action; the record is kept so the exclusion can be argued with."
+      "action_note": "Excluded from the scene-date town: chicago_democrat_1835_08_19#c015 announces this house opening on 1835-09-01, after the scene date — “will receive and offer for sale on the first of September”. Dated August 1835, so 'the first of September' is 1 September 1835 — two months after the scene date, and the stock is not in the store yet. No action; the record is kept so the exclusion can be argued with."
     },
     {
       "id": "business_wm_g_branchaud",
@@ -7931,7 +8606,9 @@
       "exclusion": null,
       "exclusion_note": null,
       "dissolved_after_scene_date": [],
+      "opening_announced": [],
       "survival_liberty_required": true,
+      "backdating_liberty_required": false,
       "anchor": {
         "kind": "unresolved",
         "target": null,
@@ -7964,7 +8641,9 @@
       "exclusion": null,
       "exclusion_note": null,
       "dissolved_after_scene_date": [],
+      "opening_announced": [],
       "survival_liberty_required": true,
+      "backdating_liberty_required": false,
       "anchor": {
         "kind": "business",
         "target": null,
@@ -7993,11 +8672,13 @@
         "first_issue": "1835-08-05",
         "last_issue": "1835-08-19"
       },
-      "present_at_scene_date": false,
-      "exclusion": "first_evidence_after_scene_date",
-      "exclusion_note": "The earliest issue carrying this business is 1835-08-05, after the scene date, so nothing evidences it standing on 1835-07-01.",
+      "present_at_scene_date": true,
+      "exclusion": null,
+      "exclusion_note": null,
       "dissolved_after_scene_date": [],
+      "opening_announced": [],
       "survival_liberty_required": false,
+      "backdating_liberty_required": true,
       "anchor": {
         "kind": "unresolved",
         "target": null,
@@ -8005,11 +8686,11 @@
         "via": null,
         "note": "The anchor 'the Exchange' names nothing the committed town holds."
       },
-      "action": "unplaceable",
-      "action_target": null,
+      "action": "street_only",
+      "action_target": "lake",
       "match_tier": null,
       "match_evidence": null,
-      "action_note": "Excluded from the scene-date town: The earliest issue carrying this business is 1835-08-05, after the scene date, so nothing evidences it standing on 1835-07-01. No action; the record is kept so the exclusion can be argued with."
+      "action_note": "The paper names Lake Street and nothing narrower; the anchor 'the Exchange' names nothing the committed town holds."
     },
     {
       "id": "business_wm_h_taylor",
@@ -8030,7 +8711,9 @@
       "exclusion": null,
       "exclusion_note": null,
       "dissolved_after_scene_date": [],
+      "opening_announced": [],
       "survival_liberty_required": false,
+      "backdating_liberty_required": false,
       "anchor": {
         "kind": "unresolved",
         "target": null,
@@ -8059,11 +8742,22 @@
         "first_issue": "1835-08-05",
         "last_issue": "1835-08-05"
       },
-      "present_at_scene_date": false,
-      "exclusion": "first_evidence_after_scene_date",
-      "exclusion_note": "The earliest issue carrying this business is 1835-08-05, after the scene date, so nothing evidences it standing on 1835-07-01.",
+      "present_at_scene_date": true,
+      "exclusion": null,
+      "exclusion_note": null,
       "dissolved_after_scene_date": [],
+      "opening_announced": [
+        {
+          "claim": "chicago_democrat_1835_08_05#c024",
+          "issue": "1835-08-05",
+          "dating": "effected",
+          "iso": "1834-07-08",
+          "verbatim": "HAS opened an extensive Boot, Shoe and [Leather] Store on Dearborn street",
+          "note": "THE DATELINE IS 8 JULY 1834 — a year and a day before the scene date. Taylor's store was opened, and advertised as opened, in the summer of 1834; the August 1835 printing is a standing advertisement and not a new one. This is the reading the proxy could not make, and it excluded him from a town he demonstrably stood in."
+        }
+      ],
       "survival_liberty_required": false,
+      "backdating_liberty_required": false,
       "anchor": {
         "kind": "unresolved",
         "target": null,
@@ -8071,11 +8765,11 @@
         "via": null,
         "note": "The anchor \"Newberry & Dole's Store\" names nothing the committed town holds."
       },
-      "action": "unplaceable",
-      "action_target": null,
+      "action": "street_only",
+      "action_target": "dearborn",
       "match_tier": null,
       "match_evidence": null,
-      "action_note": "Excluded from the scene-date town: The earliest issue carrying this business is 1835-08-05, after the scene date, so nothing evidences it standing on 1835-07-01. No action; the record is kept so the exclusion can be argued with."
+      "action_note": "The paper names Dearborn Street and nothing narrower; the anchor \"Newberry & Dole's Store\" names nothing the committed town holds."
     },
     {
       "id": "business_wm_hogue_co",
@@ -8103,7 +8797,9 @@
         "chicago_democrat_1835_07_22#c007",
         "chicago_democrat_1835_07_29#c010"
       ],
+      "opening_announced": [],
       "survival_liberty_required": false,
+      "backdating_liberty_required": false,
       "anchor": {
         "kind": "unresolved",
         "target": null,
@@ -8136,7 +8832,9 @@
       "exclusion": null,
       "exclusion_note": null,
       "dissolved_after_scene_date": [],
+      "opening_announced": [],
       "survival_liberty_required": false,
+      "backdating_liberty_required": false,
       "anchor": {
         "kind": "unresolved",
         "target": null,

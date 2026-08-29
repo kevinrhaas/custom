@@ -1,6 +1,6 @@
 {
   "project": "chicago-4d",
-  "generated_ct": "Aug 29, 2026, 12:26 PM",
+  "generated_ct": "Aug 29, 2026, 12:40 PM",
   "tickets": [
     {
       "id": "T-0001",
@@ -6496,6 +6496,24 @@
       "blocked_on": null,
       "needs_bake": false,
       "queue_rank": null
+    },
+    {
+      "id": "T-0403",
+      "title": "33 documented businesses will stand on a backdating liberty and LIBERTIES.md carries none of them",
+      "state": "open",
+      "epic": "META",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "M",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-08-29",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "queue_rank": 73
     }
   ]
 }
