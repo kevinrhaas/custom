@@ -12,7 +12,81 @@
    "centreline band"
   ],
   "why": "An advertisement's street is where the door is. A corner side is the cross street's building shown end-on, and a centreline band is a distance rather than an orientation.",
-  "widened_reading_would_reach": 24
+  "widened_reading_would_reach": 24,
+  "widened_reading_would_reach_note": "The count of businesses REFUSED FOR WANT OF A FACE, which is how many a widened reading would let back into the deal — not how many it would seat. `widened_readings` below deals each widening out and reports what it actually stands up (T-0416).",
+  "widened_readings": {
+   "corner side is a face": {
+    "adopted_faces": [
+     "lot front",
+     "corner side"
+    ],
+    "would_seat": 31,
+    "seats_more_than_today": 12,
+    "newly_seated_by_street": {
+     "canal": 1,
+     "dearborn": 8,
+     "lasalle": 3
+    },
+    "newly_seated": [
+     "business_cooley_and_halsman",
+     "business_elmira_fowler",
+     "business_fullerton_botsford",
+     "business_j_b_brown_dearborn_street_grocery",
+     "business_j_l_wilson_co",
+     "business_james_grant",
+     "business_magie_wilkinson",
+     "business_new_york_clothing_store",
+     "business_pierce_french",
+     "business_s_abell_attorney_and_counsellor",
+     "business_uncertain_w_h_taylor_dearborn_street_boot_and_shoe_store",
+     "business_unnamed_new_store_la_salle_street"
+    ],
+    "would_still_refuse": 28,
+    "would_still_refuse_by_reason": {
+     "not present at the scene date": 0,
+     "the face holds no roof whose lot fronts it": 2,
+     "this face already holds this proprietor": 12,
+     "every roof on the face is spoken for": 14
+    }
+   },
+   "corner side or the band is a face": {
+    "adopted_faces": [
+     "lot front",
+     "corner side",
+     "centreline band"
+    ],
+    "would_seat": 32,
+    "seats_more_than_today": 13,
+    "newly_seated_by_street": {
+     "canal": 1,
+     "dearborn": 8,
+     "lasalle": 3,
+     "north_water": 1
+    },
+    "newly_seated": [
+     "business_cooley_and_halsman",
+     "business_elmira_fowler",
+     "business_fullerton_botsford",
+     "business_j_b_brown_dearborn_street_grocery",
+     "business_j_l_wilson_co",
+     "business_james_grant",
+     "business_magie_wilkinson",
+     "business_new_york_clothing_store",
+     "business_pierce_french",
+     "business_s_abell_attorney_and_counsellor",
+     "business_uncertain_w_h_taylor_dearborn_street_boot_and_shoe_store",
+     "business_unnamed_new_store_la_salle_street",
+     "business_wm_sabine_storage_forwarding_and_commission_merchant"
+    ],
+    "would_still_refuse": 27,
+    "would_still_refuse_by_reason": {
+     "not present at the scene date": 0,
+     "the face holds no roof whose lot fronts it": 0,
+     "this face already holds this proprietor": 12,
+     "every roof on the face is spoken for": 15
+    }
+   }
+  }
  },
  "counts": {
   "street_only_in_register": 59,
