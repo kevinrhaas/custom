@@ -1,5 +1,43 @@
 # STATUS
 
+## Recorded 2026-08-29 — T-0328's tail: the reading gets its dossier, and coverage.json stops saying 56
+
+**T-0328 shipped in PR #510** — D. Weaver's building is on **Lot 2**, block 1, North Water
+street, on four printings against one. The notice turned out to be a standing advertisement
+running in five consecutive numbers; three of them (1834-11-26 c010, 1834-12-03 c025,
+1834-12-10 c012) had never been claimed by any reading pass, and all three set Lot 2. No
+transcription was amended to reach it, which is the rule T-0294 was keeping when it claimed
+both disagreeing printings and edited neither.
+
+**This entry is what that merge left behind**, and both halves are record hygiene rather than
+new reading:
+
+- **`coverage.json` was asserting a count that had stopped being true.** The December 1834
+  range said *"Four issues, read through, 56 claims"* and *"none of the 56 claims is counted
+  unresolved"*. The month holds **60**. Counted per commit rather than re-asserted: 56 at
+  `103168a0` (T-0294), 57 at `26f03456` (T-0339), 58 at `c49d8fa5` (T-0330), 60 at `5c638546`
+  (T-0328). The range now says so, and says the later four are machine-checked on `dev` like
+  the original 56. The November range records its own addition and — the part worth keeping —
+  **why the read missed it**: the notice stands in the alternating pair of physical columns,
+  surviving as every other line, which is the shape that month's reads found hardest. That is
+  a fact about the instrument and it belongs where the next reader of the month will see it.
+- **`docs/RESEARCH/weaver_building_north_water_block_1.md` is new.** AGENTS.md § Honesty
+  rules requires a dossier where sources disagree; the reading was made and defended in the
+  claim notes, which is where a reader of that claim finds it and nowhere else.
+
+**The dossier also states what the ticket's own premise got wrong.** T-0328 rested on "2 and
+9 are not a confusable pair in clean type". True, and the conclusion followed — but this type
+is not clean: the same advertisement's copy dateline is set **12, 12, 13 and 19** across the
+five weeks. The reading stands on the count of independent settings, not on any one column
+being trustworthy. **T-0350** carries the dateline.
+
+**Still `transcription_mediated`.** The acceptance asked for the digit off a page image; the
+deposit holds transcriptions only, and no scan has been read. Written down rather than
+passed over.
+
+**Nothing you can see changed**, and no claim, quote, gazetteer entry or geometry was
+touched — only the two records that describe what was read.
+
 ## Shipped 2026-08-29 — T-0262: the scene-date register, and what the papers can actually do to the town
 
 **`tools/compile_register.py` turns the gazetteer into a work list.** The gazetteer is an index of
