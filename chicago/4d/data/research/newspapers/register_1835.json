@@ -5,9 +5,9 @@
   "_doc": "DERIVED, NEVER AUTHORED. Rebuilt from gazetteer.json and the committed town by tools/compile_register.py; tools/check.sh refuses a committed copy a rebuild would not produce. Edit the gazetteer or the dataset, not this file.",
   "compiled_from": {
     "gazetteer": {
-      "claims": 1097,
-      "persons": 2201,
-      "businesses": 221
+      "claims": 1162,
+      "persons": 2254,
+      "businesses": 242
     },
     "structures": 358,
     "streets": 19,
@@ -15,41 +15,41 @@
   },
   "counts": {
     "businesses": {
-      "total": 221,
+      "total": 242,
       "present_at_scene_date": 190,
       "excluded": {
         "contradicted_before_scene_date": 14,
-        "first_evidence_after_scene_date": 17
+        "first_evidence_after_scene_date": 38
       },
       "by_action": {
-        "enrich_existing": 39,
-        "new_building": 24,
+        "enrich_existing": 38,
+        "new_building": 25,
         "street_only": 49,
-        "unplaceable": 109
+        "unplaceable": 130
       },
       "by_placement_class": {
         "corner": 18,
-        "none": 86,
-        "relative": 98,
+        "none": 91,
+        "relative": 114,
         "street_only": 19
       },
       "present_by_action": {
-        "enrich_existing": 39,
-        "new_building": 24,
+        "enrich_existing": 38,
+        "new_building": 25,
         "street_only": 49,
         "unplaceable": 78
       },
-      "survival_liberty_required": 129,
+      "survival_liberty_required": 126,
       "dissolved_after_scene_date": 1
     },
     "persons": {
-      "total": 2201,
+      "total": 2254,
       "by_action": {
-        "enrich": 127,
-        "new_resident": 1967,
-        "replace_invented": 107
+        "enrich": 135,
+        "new_resident": 2000,
+        "replace_invented": 119
       },
-      "letter_list_only": 1555
+      "letter_list_only": 1554
     },
     "invented_residents": {
       "households_by_trade": {
@@ -862,6 +862,39 @@
       "action_note": "No street the model holds. The paper gives no anchor."
     },
     {
+      "id": "business_charles_hunt_high_school_for_young_ladies",
+      "name": "Charles Hunt, High School for Young Ladies",
+      "trade": "school",
+      "occupation": "schoolteacher",
+      "proprietors": [
+        "Hunt, C[harle]s"
+      ],
+      "street": null,
+      "street_id": null,
+      "placement_class": "relative",
+      "evidence": {
+        "first_issue": "1835-08-12",
+        "last_issue": "1835-08-12"
+      },
+      "present_at_scene_date": false,
+      "exclusion": "first_evidence_after_scene_date",
+      "exclusion_note": "The earliest issue carrying this business is 1835-08-12, after the scene date, so nothing evidences it standing on 1835-07-01.",
+      "dissolved_after_scene_date": [],
+      "survival_liberty_required": false,
+      "anchor": {
+        "kind": "unresolved",
+        "target": null,
+        "streets": null,
+        "via": null,
+        "note": "The anchor 'the office of Henry Moore, Esq.' names nothing the committed town holds."
+      },
+      "action": "unplaceable",
+      "action_target": null,
+      "match_tier": null,
+      "match_evidence": null,
+      "action_note": "Excluded from the scene-date town: The earliest issue carrying this business is 1835-08-12, after the scene date, so nothing evidences it standing on 1835-07-01. No action; the record is kept so the exclusion can be argued with."
+    },
+    {
       "id": "business_charles_taylor",
       "name": "Charles Taylor",
       "trade": "clothing and tailoring",
@@ -1331,6 +1364,71 @@
       "action_note": "Excluded from the scene-date town: The earliest issue carrying this business is 1835-07-22, after the scene date, so nothing evidences it standing on 1835-07-01. No action; the record is kept so the exclusion can be argued with."
     },
     {
+      "id": "business_cooley_and_hol_b_man",
+      "name": "Cooley and Hol[b]man",
+      "trade": "tailoring",
+      "occupation": "tailor",
+      "proprietors": [
+        "Cooley",
+        "Hol[b]man"
+      ],
+      "street": "Dearborn Street",
+      "street_id": "dearborn",
+      "placement_class": "relative",
+      "evidence": {
+        "first_issue": "1835-08-05",
+        "last_issue": "1835-08-05"
+      },
+      "present_at_scene_date": false,
+      "exclusion": "first_evidence_after_scene_date",
+      "exclusion_note": "The earliest issue carrying this business is 1835-08-05, after the scene date, so nothing evidences it standing on 1835-07-01.",
+      "dissolved_after_scene_date": [],
+      "survival_liberty_required": false,
+      "anchor": {
+        "kind": "unresolved",
+        "target": null,
+        "streets": null,
+        "via": null,
+        "note": "The anchor 'the Eagle Coffee House' names nothing the committed town holds."
+      },
+      "action": "unplaceable",
+      "action_target": null,
+      "match_tier": null,
+      "match_evidence": null,
+      "action_note": "Excluded from the scene-date town: The earliest issue carrying this business is 1835-08-05, after the scene date, so nothing evidences it standing on 1835-07-01. No action; the record is kept so the exclusion can be argued with."
+    },
+    {
+      "id": "business_cromelien_brothers_co",
+      "name": "Cromelien, Brothers & Co.",
+      "trade": "foreign wine and liquor establishment",
+      "occupation": null,
+      "proprietors": [],
+      "street": null,
+      "street_id": null,
+      "placement_class": "none",
+      "evidence": {
+        "first_issue": "1835-08-05",
+        "last_issue": "1835-08-05"
+      },
+      "present_at_scene_date": false,
+      "exclusion": "first_evidence_after_scene_date",
+      "exclusion_note": "The earliest issue carrying this business is 1835-08-05, after the scene date, so nothing evidences it standing on 1835-07-01.",
+      "dissolved_after_scene_date": [],
+      "survival_liberty_required": false,
+      "anchor": {
+        "kind": "unresolved",
+        "target": null,
+        "streets": null,
+        "via": null,
+        "note": "The paper gives no anchor."
+      },
+      "action": "unplaceable",
+      "action_target": null,
+      "match_tier": null,
+      "match_evidence": null,
+      "action_note": "Excluded from the scene-date town: The earliest issue carrying this business is 1835-08-05, after the scene date, so nothing evidences it standing on 1835-07-01. No action; the record is kept so the exclusion can be argued with."
+    },
+    {
       "id": "business_d_carver_co",
       "name": "D. Carver & Co.",
       "trade": "lumber merchant",
@@ -1759,6 +1857,39 @@
       "match_tier": null,
       "match_evidence": null,
       "action_note": "The paper names Lake Street and nothing narrower; the anchor 'the New-York House' names nothing the committed town holds."
+    },
+    {
+      "id": "business_dr_w_g_austin",
+      "name": "Dr. W. G. Austin",
+      "trade": "practice of medicine, botanic system",
+      "occupation": null,
+      "proprietors": [
+        "Austin, W. G."
+      ],
+      "street": "Lake Street",
+      "street_id": "lake",
+      "placement_class": "relative",
+      "evidence": {
+        "first_issue": "1835-08-12",
+        "last_issue": "1835-08-12"
+      },
+      "present_at_scene_date": false,
+      "exclusion": "first_evidence_after_scene_date",
+      "exclusion_note": "The earliest issue carrying this business is 1835-08-12, after the scene date, so nothing evidences it standing on 1835-07-01.",
+      "dissolved_after_scene_date": [],
+      "survival_liberty_required": false,
+      "anchor": {
+        "kind": "unresolved",
+        "target": null,
+        "streets": null,
+        "via": null,
+        "note": "The anchor 'the post office' names nothing the committed town holds."
+      },
+      "action": "unplaceable",
+      "action_target": null,
+      "match_tier": null,
+      "match_evidence": null,
+      "action_note": "Excluded from the scene-date town: The earliest issue carrying this business is 1835-08-12, after the scene date, so nothing evidences it standing on 1835-07-01. No action; the record is kept so the exclusion can be argued with."
     },
     {
       "id": "business_dr_w_g_austin_botanic_physician",
@@ -2467,20 +2598,21 @@
       "trade": "attorney and solicitor in chancery",
       "occupation": "attorney",
       "proprietors": [
-        "G. Spring"
+        "G. Spring",
+        "Spring, G."
       ],
       "street": "South Water Street",
       "street_id": "south_water",
       "placement_class": "relative",
       "evidence": {
         "first_issue": "1833-12-17",
-        "last_issue": "1834-01-28"
+        "last_issue": "1835-08-05"
       },
       "present_at_scene_date": true,
       "exclusion": null,
       "exclusion_note": null,
       "dissolved_after_scene_date": [],
-      "survival_liberty_required": true,
+      "survival_liberty_required": false,
       "anchor": {
         "kind": "corner",
         "target": null,
@@ -2594,6 +2726,39 @@
       "match_tier": null,
       "match_evidence": null,
       "action_note": "No street the model holds. The paper gives no anchor."
+    },
+    {
+      "id": "business_george_holsman",
+      "name": "George Holsman",
+      "trade": "tailoring",
+      "occupation": "tailor",
+      "proprietors": [
+        "Holsman, George"
+      ],
+      "street": "Dearborn Street",
+      "street_id": "dearborn",
+      "placement_class": "relative",
+      "evidence": {
+        "first_issue": "1835-08-19",
+        "last_issue": "1835-08-19"
+      },
+      "present_at_scene_date": false,
+      "exclusion": "first_evidence_after_scene_date",
+      "exclusion_note": "The earliest issue carrying this business is 1835-08-19, after the scene date, so nothing evidences it standing on 1835-07-01.",
+      "dissolved_after_scene_date": [],
+      "survival_liberty_required": false,
+      "anchor": {
+        "kind": "unresolved",
+        "target": null,
+        "streets": null,
+        "via": null,
+        "note": "The anchor 'the Eagle Coffee House' names nothing the committed town holds."
+      },
+      "action": "unplaceable",
+      "action_target": null,
+      "match_tier": null,
+      "match_evidence": null,
+      "action_note": "Excluded from the scene-date town: The earliest issue carrying this business is 1835-08-19, after the scene date, so nothing evidences it standing on 1835-07-01. No action; the record is kept so the exclusion can be argued with."
     },
     {
       "id": "business_giles_spring",
@@ -2836,6 +3001,72 @@
       "match_tier": null,
       "match_evidence": null,
       "action_note": "Excluded from the scene-date town: The earliest issue carrying this business is 1835-07-04, after the scene date, so nothing evidences it standing on 1835-07-01. No action; the record is kept so the exclusion can be argued with."
+    },
+    {
+      "id": "business_henry_moore_attorney_counsellor_at_law",
+      "name": "Henry Moore, Attorney & Counsellor at Law",
+      "trade": "law",
+      "occupation": null,
+      "proprietors": [
+        "Moore, Henry"
+      ],
+      "street": null,
+      "street_id": null,
+      "placement_class": "relative",
+      "evidence": {
+        "first_issue": "1835-08-05",
+        "last_issue": "1835-08-05"
+      },
+      "present_at_scene_date": false,
+      "exclusion": "first_evidence_after_scene_date",
+      "exclusion_note": "The earliest issue carrying this business is 1835-08-05, after the scene date, so nothing evidences it standing on 1835-07-01.",
+      "dissolved_after_scene_date": [],
+      "survival_liberty_required": false,
+      "anchor": {
+        "kind": "structure",
+        "target": "jh_kinzie_forwarding_store",
+        "streets": null,
+        "via": null,
+        "note": "The landmark is the committed structure jh_kinzie_forwarding_store."
+      },
+      "action": "unplaceable",
+      "action_target": null,
+      "match_tier": null,
+      "match_evidence": null,
+      "action_note": "Excluded from the scene-date town: The earliest issue carrying this business is 1835-08-05, after the scene date, so nothing evidences it standing on 1835-07-01. No action; the record is kept so the exclusion can be argued with."
+    },
+    {
+      "id": "business_hiram_everts_high_school_for_young_gentlemen",
+      "name": "Hiram Everts, High School for Young Gentlemen",
+      "trade": "school",
+      "occupation": "schoolteacher",
+      "proprietors": [
+        "Everts, Hiram"
+      ],
+      "street": null,
+      "street_id": null,
+      "placement_class": "none",
+      "evidence": {
+        "first_issue": "1835-08-12",
+        "last_issue": "1835-08-12"
+      },
+      "present_at_scene_date": false,
+      "exclusion": "first_evidence_after_scene_date",
+      "exclusion_note": "The earliest issue carrying this business is 1835-08-12, after the scene date, so nothing evidences it standing on 1835-07-01.",
+      "dissolved_after_scene_date": [],
+      "survival_liberty_required": false,
+      "anchor": {
+        "kind": "unresolved",
+        "target": null,
+        "streets": null,
+        "via": null,
+        "note": "The paper gives no anchor."
+      },
+      "action": "unplaceable",
+      "action_target": null,
+      "match_tier": null,
+      "match_evidence": null,
+      "action_note": "Excluded from the scene-date town: The earliest issue carrying this business is 1835-08-12, after the scene date, so nothing evidences it standing on 1835-07-01. No action; the record is kept so the exclusion can be argued with."
     },
     {
       "id": "business_hiram_pearsons",
@@ -3138,6 +3369,39 @@
       "action_note": "No street the model holds. The anchor 'the Street leading from the draw-bridge to the oak woods and Blue Island' names nothing the committed town holds."
     },
     {
+      "id": "business_j_c_goodhue_land_agent",
+      "name": "J. C. Goodhue, land agent",
+      "trade": "leasing town lots",
+      "occupation": null,
+      "proprietors": [
+        "Goodhue, J. C."
+      ],
+      "street": null,
+      "street_id": null,
+      "placement_class": "none",
+      "evidence": {
+        "first_issue": "1835-08-19",
+        "last_issue": "1835-08-19"
+      },
+      "present_at_scene_date": false,
+      "exclusion": "first_evidence_after_scene_date",
+      "exclusion_note": "The earliest issue carrying this business is 1835-08-19, after the scene date, so nothing evidences it standing on 1835-07-01.",
+      "dissolved_after_scene_date": [],
+      "survival_liberty_required": false,
+      "anchor": {
+        "kind": "unresolved",
+        "target": null,
+        "streets": null,
+        "via": null,
+        "note": "The paper gives no anchor."
+      },
+      "action": "unplaceable",
+      "action_target": null,
+      "match_tier": null,
+      "match_evidence": null,
+      "action_note": "Excluded from the scene-date town: The earliest issue carrying this business is 1835-08-19, after the scene date, so nothing evidences it standing on 1835-07-01. No action; the record is kept so the exclusion can be argued with."
+    },
+    {
       "id": "business_j_curtiss",
       "name": "J. Curtiss",
       "trade": "attorney and counsellor at law, and solicitor in chancery",
@@ -3169,6 +3433,39 @@
       "match_tier": null,
       "match_evidence": null,
       "action_note": "Placeable against the committed town. The landmark is another documented business (business_jones_king_co), which places this one exactly as well as that one is placed."
+    },
+    {
+      "id": "business_j_curtiss_attorney_and_counsellor_at_law",
+      "name": "J. Curtiss, Attorney and Counsellor at Law",
+      "trade": "law",
+      "occupation": null,
+      "proprietors": [
+        "Curtiss, J."
+      ],
+      "street": "South Water Street",
+      "street_id": "south_water",
+      "placement_class": "relative",
+      "evidence": {
+        "first_issue": "1835-08-05",
+        "last_issue": "1835-08-05"
+      },
+      "present_at_scene_date": false,
+      "exclusion": "first_evidence_after_scene_date",
+      "exclusion_note": "The earliest issue carrying this business is 1835-08-05, after the scene date, so nothing evidences it standing on 1835-07-01.",
+      "dissolved_after_scene_date": [],
+      "survival_liberty_required": false,
+      "anchor": {
+        "kind": "unresolved",
+        "target": null,
+        "streets": null,
+        "via": null,
+        "note": "The anchor \"Jones, King & Co.'s store\" names nothing the committed town holds."
+      },
+      "action": "unplaceable",
+      "action_target": null,
+      "match_tier": null,
+      "match_evidence": null,
+      "action_note": "Excluded from the scene-date town: The earliest issue carrying this business is 1835-08-05, after the scene date, so nothing evidences it standing on 1835-07-01. No action; the record is kept so the exclusion can be argued with."
     },
     {
       "id": "business_j_d_caton_attorney_and_counsellor_at_law",
@@ -3308,20 +3605,21 @@
       "trade": "watches, jewelry, engravings and fancy goods",
       "occupation": null,
       "proprietors": [
-        "J. H. Mulford"
+        "J. H. Mulford",
+        "Mulford, J. H."
       ],
       "street": "South Water Street",
       "street_id": "south_water",
       "placement_class": "relative",
       "evidence": {
         "first_issue": "1834-06-04",
-        "last_issue": "1834-12-03"
+        "last_issue": "1835-08-12"
       },
       "present_at_scene_date": true,
       "exclusion": null,
       "exclusion_note": null,
       "dissolved_after_scene_date": [],
-      "survival_liberty_required": true,
+      "survival_liberty_required": false,
       "anchor": {
         "kind": "unresolved",
         "target": null,
@@ -3678,6 +3976,39 @@
       "action_note": "Excluded from the scene-date town: The earliest issue carrying this business is 1835-07-22, after the scene date, so nothing evidences it standing on 1835-07-01. No action; the record is kept so the exclusion can be argued with."
     },
     {
+      "id": "business_john_dean_caton_attorney_and_counsellor_at_law",
+      "name": "John Dean Caton, Attorney and Counsellor at Law",
+      "trade": "law",
+      "occupation": null,
+      "proprietors": [
+        "Caton, John Dean"
+      ],
+      "street": "Lake Street",
+      "street_id": "lake",
+      "placement_class": "relative",
+      "evidence": {
+        "first_issue": "1835-08-19",
+        "last_issue": "1835-08-19"
+      },
+      "present_at_scene_date": false,
+      "exclusion": "first_evidence_after_scene_date",
+      "exclusion_note": "The earliest issue carrying this business is 1835-08-19, after the scene date, so nothing evidences it standing on 1835-07-01.",
+      "dissolved_after_scene_date": [],
+      "survival_liberty_required": false,
+      "anchor": {
+        "kind": "unresolved",
+        "target": null,
+        "streets": null,
+        "via": null,
+        "note": "The anchor '[unreadable — the column cuts the name away]' names nothing the committed town holds."
+      },
+      "action": "unplaceable",
+      "action_target": null,
+      "match_tier": null,
+      "match_evidence": null,
+      "action_note": "Excluded from the scene-date town: The earliest issue carrying this business is 1835-08-19, after the scene date, so nothing evidences it standing on 1835-07-01. No action; the record is kept so the exclusion can be argued with."
+    },
+    {
       "id": "business_john_h_kinzie",
       "name": "John H. Kinzie",
       "trade": "forwarding and commission merchant",
@@ -3716,14 +4047,15 @@
       "trade": "clothing, boots and shoes, wholesale and retail, as agent for the manufacturers",
       "occupation": "clothier",
       "proprietors": [
-        "John Holbrook"
+        "John Holbrook",
+        "Holbrook, John"
       ],
       "street": "South Water Street",
       "street_id": "south_water",
       "placement_class": "relative",
       "evidence": {
         "first_issue": "1835-06-10",
-        "last_issue": "1835-06-10"
+        "last_issue": "1835-08-12"
       },
       "present_at_scene_date": true,
       "exclusion": null,
@@ -3989,14 +4321,17 @@
       "proprietors": [
         "William Jones",
         "Byram King",
-        "H. B. Clarke"
+        "H. B. Clarke",
+        "Jones, William",
+        "King, Byram",
+        "Clarke, W. B."
       ],
       "street": "South Water Street",
       "street_id": "south_water",
       "placement_class": "none",
       "evidence": {
         "first_issue": "1835-05-27",
-        "last_issue": "1835-07-29"
+        "last_issue": "1835-08-05"
       },
       "present_at_scene_date": true,
       "exclusion": null,
@@ -4184,6 +4519,39 @@
       "match_tier": null,
       "match_evidence": null,
       "action_note": "Excluded from the scene-date town: The earliest issue carrying this business is 1835-07-22, after the scene date, so nothing evidences it standing on 1835-07-01. No action; the record is kept so the exclusion can be argued with."
+    },
+    {
+      "id": "business_l_g_curtiss_deputy_surveyor_of_cook_county",
+      "name": "L. G. Curtiss, Deputy Surveyor of Cook County",
+      "trade": "land surveying",
+      "occupation": null,
+      "proprietors": [
+        "Curtiss, L. G."
+      ],
+      "street": null,
+      "street_id": null,
+      "placement_class": "relative",
+      "evidence": {
+        "first_issue": "1835-08-05",
+        "last_issue": "1835-08-05"
+      },
+      "present_at_scene_date": false,
+      "exclusion": "first_evidence_after_scene_date",
+      "exclusion_note": "The earliest issue carrying this business is 1835-08-05, after the scene date, so nothing evidences it standing on 1835-07-01.",
+      "dissolved_after_scene_date": [],
+      "survival_liberty_required": false,
+      "anchor": {
+        "kind": "structure",
+        "target": "mansion_house",
+        "streets": null,
+        "via": null,
+        "note": "The landmark is the committed structure mansion_house."
+      },
+      "action": "unplaceable",
+      "action_target": null,
+      "match_tier": null,
+      "match_evidence": null,
+      "action_note": "Excluded from the scene-date town: The earliest issue carrying this business is 1835-08-05, after the scene date, so nothing evidences it standing on 1835-07-01. No action; the record is kept so the exclusion can be argued with."
     },
     {
       "id": "business_l_w_montgomery",
@@ -4763,14 +5131,15 @@
       "proprietors": [
         "Newberry & Dole",
         "Oliver Newberry",
-        "George W. Dole"
+        "George W. Dole",
+        "Newberry, [Walter L.]"
       ],
       "street": null,
       "street_id": null,
       "placement_class": "none",
       "evidence": {
         "first_issue": "1833-11-26",
-        "last_issue": "1835-07-04"
+        "last_issue": "1835-08-05"
       },
       "present_at_scene_date": true,
       "exclusion": null,
@@ -5587,6 +5956,39 @@
       "action_note": "No street the model holds. The paper gives no anchor."
     },
     {
+      "id": "business_russell_clift_the_chicago_book_store",
+      "name": "Russell & Clift, the Chicago Book Store",
+      "trade": "book store, stationery and patent medicines",
+      "occupation": "merchant",
+      "proprietors": [
+        "Russell & Clift"
+      ],
+      "street": null,
+      "street_id": null,
+      "placement_class": "none",
+      "evidence": {
+        "first_issue": "1835-08-19",
+        "last_issue": "1835-08-19"
+      },
+      "present_at_scene_date": false,
+      "exclusion": "first_evidence_after_scene_date",
+      "exclusion_note": "The earliest issue carrying this business is 1835-08-19, after the scene date, so nothing evidences it standing on 1835-07-01.",
+      "dissolved_after_scene_date": [],
+      "survival_liberty_required": false,
+      "anchor": {
+        "kind": "unresolved",
+        "target": null,
+        "streets": null,
+        "via": null,
+        "note": "The paper gives no anchor."
+      },
+      "action": "unplaceable",
+      "action_target": null,
+      "match_tier": null,
+      "match_evidence": null,
+      "action_note": "Excluded from the scene-date town: The earliest issue carrying this business is 1835-08-19, after the scene date, so nothing evidences it standing on 1835-07-01. No action; the record is kept so the exclusion can be argued with."
+    },
+    {
       "id": "business_russell_e_heacock",
       "name": "Russell E. Heacock",
       "trade": "counsellor and attorney at law, land conveyancing, justice of the peace business, and a land agency office",
@@ -5656,6 +6058,39 @@
       "action_note": "Excluded from the scene-date town: The earliest issue carrying this business is 1835-08-01, after the scene date, so nothing evidences it standing on 1835-07-01. No action; the record is kept so the exclusion can be argued with."
     },
     {
+      "id": "business_s_abell_attorney_counsellor_at_law",
+      "name": "S. Abell, Attorney & Counsellor at Law",
+      "trade": "law",
+      "occupation": null,
+      "proprietors": [
+        "Abell, S."
+      ],
+      "street": "Dearborn Street",
+      "street_id": "dearborn",
+      "placement_class": "relative",
+      "evidence": {
+        "first_issue": "1835-08-05",
+        "last_issue": "1835-08-05"
+      },
+      "present_at_scene_date": false,
+      "exclusion": "first_evidence_after_scene_date",
+      "exclusion_note": "The earliest issue carrying this business is 1835-08-05, after the scene date, so nothing evidences it standing on 1835-07-01.",
+      "dissolved_after_scene_date": [],
+      "survival_liberty_required": false,
+      "anchor": {
+        "kind": "unresolved",
+        "target": null,
+        "streets": null,
+        "via": null,
+        "note": "The anchor 'the Eagle Coffee House' names nothing the committed town holds."
+      },
+      "action": "unplaceable",
+      "action_target": null,
+      "match_tier": null,
+      "match_evidence": null,
+      "action_note": "Excluded from the scene-date town: The earliest issue carrying this business is 1835-08-05, after the scene date, so nothing evidences it standing on 1835-07-01. No action; the record is kept so the exclusion can be argued with."
+    },
+    {
       "id": "business_s_b_cobb_saddle_harness_and_trunk_manufactory",
       "name": "S. B. Cobb, saddle, harness and trunk manufactory",
       "trade": "saddle, harness and trunk manufactory",
@@ -5687,6 +6122,39 @@
       "match_tier": "occupants",
       "match_evidence": "Goss & Cobb, saddlers and harness makers",
       "action_note": "goss_cobb_saddlery already stands and its occupants carries cobb — 'Goss & Cobb, saddlers and harness makers'. The papers add trade, goods and dates to a record that exists."
+    },
+    {
+      "id": "business_s_dewey",
+      "name": "S. Dewey",
+      "trade": "cabinet making",
+      "occupation": "joiner",
+      "proprietors": [
+        "Dewey, S."
+      ],
+      "street": null,
+      "street_id": null,
+      "placement_class": "none",
+      "evidence": {
+        "first_issue": "1835-08-05",
+        "last_issue": "1835-08-05"
+      },
+      "present_at_scene_date": false,
+      "exclusion": "first_evidence_after_scene_date",
+      "exclusion_note": "The earliest issue carrying this business is 1835-08-05, after the scene date, so nothing evidences it standing on 1835-07-01.",
+      "dissolved_after_scene_date": [],
+      "survival_liberty_required": false,
+      "anchor": {
+        "kind": "unresolved",
+        "target": null,
+        "streets": null,
+        "via": null,
+        "note": "The paper gives no anchor."
+      },
+      "action": "unplaceable",
+      "action_target": null,
+      "match_tier": null,
+      "match_evidence": null,
+      "action_note": "Excluded from the scene-date town: The earliest issue carrying this business is 1835-08-05, after the scene date, so nothing evidences it standing on 1835-07-01. No action; the record is kept so the exclusion can be argued with."
     },
     {
       "id": "business_s_foot",
@@ -5760,14 +6228,15 @@
       "trade": "vocal and instrumental music school, and the repair and tuning of piano fortes",
       "occupation": "schoolteacher",
       "proprietors": [
-        "Samuel Lewis"
+        "Samuel Lewis",
+        "Lewis, Samuel"
       ],
       "street": "South Water Street",
       "street_id": "south_water",
       "placement_class": "street_only",
       "evidence": {
         "first_issue": "1835-07-22",
-        "last_issue": "1835-07-29"
+        "last_issue": "1835-08-12"
       },
       "present_at_scene_date": false,
       "exclusion": "first_evidence_after_scene_date",
@@ -5786,6 +6255,39 @@
       "match_tier": null,
       "match_evidence": null,
       "action_note": "Excluded from the scene-date town: The earliest issue carrying this business is 1835-07-22, after the scene date, so nothing evidences it standing on 1835-07-01. No action; the record is kept so the exclusion can be argued with."
+    },
+    {
+      "id": "business_sarah_d_howe",
+      "name": "Sarah D. Howe",
+      "trade": "dress, cloak and habit making",
+      "occupation": null,
+      "proprietors": [
+        "Howe, Sarah D."
+      ],
+      "street": "Lake Street",
+      "street_id": "lake",
+      "placement_class": "relative",
+      "evidence": {
+        "first_issue": "1835-08-19",
+        "last_issue": "1835-08-19"
+      },
+      "present_at_scene_date": false,
+      "exclusion": "first_evidence_after_scene_date",
+      "exclusion_note": "The earliest issue carrying this business is 1835-08-19, after the scene date, so nothing evidences it standing on 1835-07-01.",
+      "dissolved_after_scene_date": [],
+      "survival_liberty_required": false,
+      "anchor": {
+        "kind": "unresolved",
+        "target": null,
+        "streets": null,
+        "via": null,
+        "note": "The anchor 'the house occupied by Dr. Austin' names nothing the committed town holds."
+      },
+      "action": "unplaceable",
+      "action_target": null,
+      "match_tier": null,
+      "match_evidence": null,
+      "action_note": "Excluded from the scene-date town: The earliest issue carrying this business is 1835-08-19, after the scene date, so nothing evidences it standing on 1835-07-01. No action; the record is kept so the exclusion can be argued with."
     },
     {
       "id": "business_sarah_d_howe_dress_cloak_and_habit_making",
@@ -6087,20 +6589,21 @@
       "trade": "newspaper printing and job printing",
       "occupation": "printer",
       "proprietors": [
-        "John Calhoun"
+        "John Calhoun",
+        "Calhoun, J."
       ],
       "street": "South Water Street",
       "street_id": "south_water",
       "placement_class": "corner",
       "evidence": {
         "first_issue": "1833-11-26",
-        "last_issue": "1834-08-27"
+        "last_issue": "1835-08-05"
       },
       "present_at_scene_date": true,
       "exclusion": null,
       "exclusion_note": null,
       "dissolved_after_scene_date": [],
-      "survival_liberty_required": true,
+      "survival_liberty_required": false,
       "anchor": {
         "kind": "corner",
         "target": null,
@@ -6111,11 +6614,11 @@
         "via": null,
         "note": "A crossing of two platted streets: clark and south_water."
       },
-      "action": "enrich_existing",
-      "action_target": "chicago_democrat_office",
-      "match_tier": "occupants",
-      "match_evidence": "John Calhoun's Chicago Democrat printing office; and, on the reading argued here, W. Kimball's new dry-goods store",
-      "action_note": "chicago_democrat_office already stands and its occupants carries calhoun — \"John Calhoun's Chicago Democrat printing office; and, on the reading argued here, W. Kimball's new dry-goods store\". The papers add trade, goods and dates to a record that exists."
+      "action": "new_building",
+      "action_target": "clark+south_water",
+      "match_tier": null,
+      "match_evidence": null,
+      "action_note": "Placeable against the committed town. A crossing of two platted streets: clark and south_water."
     },
     {
       "id": "business_the_chicago_democrat_s_printing_office",
@@ -6922,6 +7425,70 @@
       "action_note": "No street the model holds. The anchor \"Dr. Temple's\" names nothing the committed town holds."
     },
     {
+      "id": "business_unnamed_new_store_la_salle_street",
+      "name": "[unnamed] New Store, La Salle street",
+      "trade": "dry goods, groceries, hardware, crockery, boots, shoes and hats, wholesale and retail",
+      "occupation": "dry_goods_merchant",
+      "proprietors": [],
+      "street": "La Salle Street",
+      "street_id": "lasalle",
+      "placement_class": "relative",
+      "evidence": {
+        "first_issue": "1835-08-12",
+        "last_issue": "1835-08-12"
+      },
+      "present_at_scene_date": false,
+      "exclusion": "first_evidence_after_scene_date",
+      "exclusion_note": "The earliest issue carrying this business is 1835-08-12, after the scene date, so nothing evidences it standing on 1835-07-01.",
+      "dissolved_after_scene_date": [],
+      "survival_liberty_required": false,
+      "anchor": {
+        "kind": "unresolved",
+        "target": null,
+        "streets": null,
+        "via": null,
+        "note": "The anchor \"Hubbard & Co.'s brick store\" names nothing the committed town holds."
+      },
+      "action": "unplaceable",
+      "action_target": null,
+      "match_tier": null,
+      "match_evidence": null,
+      "action_note": "Excluded from the scene-date town: The earliest issue carrying this business is 1835-08-12, after the scene date, so nothing evidences it standing on 1835-07-01. No action; the record is kept so the exclusion can be argued with."
+    },
+    {
+      "id": "business_unsigned_boot_shoe_leather_store_two_doors_north_of_lake_street",
+      "name": "[unsigned] Boot, Shoe & Leather Store, two doors north of Lake street",
+      "trade": "boot, shoe and leather store",
+      "occupation": "shoemaker",
+      "proprietors": [],
+      "street": null,
+      "street_id": null,
+      "placement_class": "relative",
+      "evidence": {
+        "first_issue": "1835-08-05",
+        "last_issue": "1835-08-05"
+      },
+      "present_at_scene_date": false,
+      "exclusion": "first_evidence_after_scene_date",
+      "exclusion_note": "The earliest issue carrying this business is 1835-08-05, after the scene date, so nothing evidences it standing on 1835-07-01.",
+      "dissolved_after_scene_date": [],
+      "survival_liberty_required": false,
+      "anchor": {
+        "kind": "street",
+        "target": null,
+        "streets": [
+          "lake"
+        ],
+        "via": null,
+        "note": "The anchor is a reach of lake and names nothing narrower."
+      },
+      "action": "unplaceable",
+      "action_target": null,
+      "match_tier": null,
+      "match_evidence": null,
+      "action_note": "Excluded from the scene-date town: The earliest issue carrying this business is 1835-08-05, after the scene date, so nothing evidences it standing on 1835-07-01. No action; the record is kept so the exclusion can be argued with."
+    },
+    {
       "id": "business_w_g_blanchard",
       "name": "W. G. Blanchard",
       "trade": "house and land agent",
@@ -7157,6 +7724,39 @@
       "action_note": "Excluded from the scene-date town: The earliest issue carrying this business is 1835-07-08, after the scene date, so nothing evidences it standing on 1835-07-01. No action; the record is kept so the exclusion can be argued with."
     },
     {
+      "id": "business_w_montgomery_auction_and_commission_house",
+      "name": "W. Montgomery, Auction and Commission House",
+      "trade": "auction and commission",
+      "occupation": "auctioneer",
+      "proprietors": [
+        "Montgomery, W."
+      ],
+      "street": "South Water Street",
+      "street_id": "south_water",
+      "placement_class": "relative",
+      "evidence": {
+        "first_issue": "1835-08-05",
+        "last_issue": "1835-08-05"
+      },
+      "present_at_scene_date": false,
+      "exclusion": "first_evidence_after_scene_date",
+      "exclusion_note": "The earliest issue carrying this business is 1835-08-05, after the scene date, so nothing evidences it standing on 1835-07-01.",
+      "dissolved_after_scene_date": [],
+      "survival_liberty_required": false,
+      "anchor": {
+        "kind": "unresolved",
+        "target": null,
+        "streets": null,
+        "via": null,
+        "note": "The anchor \"David Carver's old stand\" names nothing the committed town holds."
+      },
+      "action": "unplaceable",
+      "action_target": null,
+      "match_tier": null,
+      "match_evidence": null,
+      "action_note": "Excluded from the scene-date town: The earliest issue carrying this business is 1835-08-05, after the scene date, so nothing evidences it standing on 1835-07-01. No action; the record is kept so the exclusion can be argued with."
+    },
+    {
       "id": "business_w_montgomery_boot_and_shoe_maker",
       "name": "W. Montgomery, boot and shoe maker",
       "trade": "boot and shoe making",
@@ -7287,6 +7887,39 @@
       "action_note": "The paper names Lake Street and nothing narrower; a corner of 'Lake' and 'Franklin streets at the corner of [Lake]', and the plat resolves both sides to ['franklin', 'lake']."
     },
     {
+      "id": "business_william_f_lyon_wholesale_grocery_store",
+      "name": "William F. Lyon, Wholesale Grocery Store",
+      "trade": "wholesale grocery",
+      "occupation": "grocer",
+      "proprietors": [
+        "Lyon, William F."
+      ],
+      "street": "South Water Street",
+      "street_id": "south_water",
+      "placement_class": "relative",
+      "evidence": {
+        "first_issue": "1835-08-19",
+        "last_issue": "1835-08-19"
+      },
+      "present_at_scene_date": false,
+      "exclusion": "first_evidence_after_scene_date",
+      "exclusion_note": "The earliest issue carrying this business is 1835-08-19, after the scene date, so nothing evidences it standing on 1835-07-01.",
+      "dissolved_after_scene_date": [],
+      "survival_liberty_required": false,
+      "anchor": {
+        "kind": "structure",
+        "target": "dearborn_street_drawbridge",
+        "streets": null,
+        "via": null,
+        "note": "The landmark is the committed structure dearborn_street_drawbridge."
+      },
+      "action": "unplaceable",
+      "action_target": null,
+      "match_tier": null,
+      "match_evidence": null,
+      "action_note": "Excluded from the scene-date town: The earliest issue carrying this business is 1835-08-19, after the scene date, so nothing evidences it standing on 1835-07-01. No action; the record is kept so the exclusion can be argued with."
+    },
+    {
       "id": "business_wm_g_branchaud",
       "name": "Wm. G. Branchaud",
       "trade": "house and land agent",
@@ -7353,6 +7986,39 @@
       "action_note": "Placeable against the committed town. The landmark is another documented business (business_eagle_tavern), which places this one exactly as well as that one is placed."
     },
     {
+      "id": "business_wm_h_kennicott_surgeon_dentist",
+      "name": "Wm. H. Kennicott, Surgeon Dentist",
+      "trade": "dentistry",
+      "occupation": "dentist",
+      "proprietors": [
+        "Kennicott, Wm. H."
+      ],
+      "street": "Lake Street",
+      "street_id": "lake",
+      "placement_class": "relative",
+      "evidence": {
+        "first_issue": "1835-08-05",
+        "last_issue": "1835-08-19"
+      },
+      "present_at_scene_date": false,
+      "exclusion": "first_evidence_after_scene_date",
+      "exclusion_note": "The earliest issue carrying this business is 1835-08-05, after the scene date, so nothing evidences it standing on 1835-07-01.",
+      "dissolved_after_scene_date": [],
+      "survival_liberty_required": false,
+      "anchor": {
+        "kind": "unresolved",
+        "target": null,
+        "streets": null,
+        "via": null,
+        "note": "The anchor 'the Exchange' names nothing the committed town holds."
+      },
+      "action": "unplaceable",
+      "action_target": null,
+      "match_tier": null,
+      "match_evidence": null,
+      "action_note": "Excluded from the scene-date town: The earliest issue carrying this business is 1835-08-05, after the scene date, so nothing evidences it standing on 1835-07-01. No action; the record is kept so the exclusion can be argued with."
+    },
+    {
       "id": "business_wm_h_taylor",
       "name": "Wm. H. Taylor",
       "trade": "boot, shoe and leather store, wholesale and retail, and boots and shoes made to order",
@@ -7384,6 +8050,39 @@
       "match_tier": null,
       "match_evidence": null,
       "action_note": "The paper names Dearborn Street and nothing narrower; the anchor \"Messrs. Newberry & Dole's Store\" names nothing the committed town holds."
+    },
+    {
+      "id": "business_wm_h_taylor_boot_shoe_leather_store",
+      "name": "Wm. H. Taylor, Boot, Shoe & Leather Store",
+      "trade": "boot, shoe and leather store",
+      "occupation": "shoemaker",
+      "proprietors": [
+        "Taylor, Wm. H."
+      ],
+      "street": "Dearborn Street",
+      "street_id": "dearborn",
+      "placement_class": "relative",
+      "evidence": {
+        "first_issue": "1835-08-05",
+        "last_issue": "1835-08-05"
+      },
+      "present_at_scene_date": false,
+      "exclusion": "first_evidence_after_scene_date",
+      "exclusion_note": "The earliest issue carrying this business is 1835-08-05, after the scene date, so nothing evidences it standing on 1835-07-01.",
+      "dissolved_after_scene_date": [],
+      "survival_liberty_required": false,
+      "anchor": {
+        "kind": "unresolved",
+        "target": null,
+        "streets": null,
+        "via": null,
+        "note": "The anchor \"Newberry & Dole's Store\" names nothing the committed town holds."
+      },
+      "action": "unplaceable",
+      "action_target": null,
+      "match_tier": null,
+      "match_evidence": null,
+      "action_note": "Excluded from the scene-date town: The earliest issue carrying this business is 1835-08-05, after the scene date, so nothing evidences it standing on 1835-07-01. No action; the record is kept so the exclusion can be argued with."
     },
     {
       "id": "business_wm_hogue_co",
@@ -7808,6 +8507,17 @@
       "letter_list_only": false,
       "first_seen": "1835-06-24",
       "last_seen": "1835-06-24",
+      "action": "new_resident",
+      "action_target": null,
+      "action_note": "Ruling 1: a named person the town does not hold. Named in a claim other than a letter list."
+    },
+    {
+      "id": "person_abell_s",
+      "name": "Abell, S.",
+      "occupation": "attorney",
+      "letter_list_only": false,
+      "first_seen": "1835-08-05",
+      "last_seen": "1835-08-05",
       "action": "new_resident",
       "action_target": null,
       "action_note": "Ruling 1: a named person the town does not hold. Named in a claim other than a letter list."
@@ -8330,6 +9040,17 @@
       "action_note": "Ruling 1: a named person the town does not hold. Named in a claim other than a letter list."
     },
     {
+      "id": "person_ambrose_j_e",
+      "name": "Ambrose, J. E.",
+      "occupation": null,
+      "letter_list_only": false,
+      "first_seen": "1835-08-19",
+      "last_seen": "1835-08-19",
+      "action": "new_resident",
+      "action_target": null,
+      "action_note": "Ruling 1: a named person the town does not hold. Named in a claim other than a letter list."
+    },
+    {
       "id": "person_amnee_ball",
       "name": "[?]amnee Ball",
       "occupation": null,
@@ -8713,6 +9434,17 @@
       "action": "new_resident",
       "action_target": null,
       "action_note": "Ruling 1: a named person the town does not hold. Known only from the post-office letter lists."
+    },
+    {
+      "id": "person_austin_w_g",
+      "name": "Austin, W. G.",
+      "occupation": "physician",
+      "letter_list_only": false,
+      "first_seen": "1835-08-12",
+      "last_seen": "1835-08-12",
+      "action": "replace_invented",
+      "action_target": "physician",
+      "action_note": "A documented physician. The town invented 1 household(s) of this trade because no documented person was available; this is a candidate to retire one."
     },
     {
       "id": "person_avery_charles",
@@ -9100,6 +9832,28 @@
       "action_note": "Ruling 1: a named person the town does not hold. Named in a claim other than a letter list."
     },
     {
+      "id": "person_bates_harriet_e",
+      "name": "Bates, Harriet E.",
+      "occupation": null,
+      "letter_list_only": false,
+      "first_seen": "1835-08-26",
+      "last_seen": "1835-08-26",
+      "action": "new_resident",
+      "action_target": null,
+      "action_note": "Ruling 1: a named person the town does not hold. Named in a claim other than a letter list."
+    },
+    {
+      "id": "person_bates_harriet_ellen",
+      "name": "Bates, Harriet Ellen",
+      "occupation": null,
+      "letter_list_only": false,
+      "first_seen": "1835-08-26",
+      "last_seen": "1835-08-26",
+      "action": "new_resident",
+      "action_target": null,
+      "action_note": "Ruling 1: a named person the town does not hold. Named in a claim other than a letter list."
+    },
+    {
       "id": "person_bates_j_jr",
       "name": "Bates, J., Jr.",
       "occupation": "merchant",
@@ -9109,6 +9863,17 @@
       "action": "replace_invented",
       "action_target": "merchant",
       "action_note": "A documented merchant. The town invented 1 household(s) of this trade because no documented person was available; this is a candidate to retire one."
+    },
+    {
+      "id": "person_bates_john",
+      "name": "Bates, John",
+      "occupation": null,
+      "letter_list_only": false,
+      "first_seen": "1835-08-26",
+      "last_seen": "1835-08-26",
+      "action": "new_resident",
+      "action_target": null,
+      "action_note": "Ruling 1: a named person the town does not hold. Named in a claim other than a letter list."
     },
     {
       "id": "person_bates_john_jr",
@@ -9683,6 +10448,17 @@
       "action_note": "Ruling 1: a named person the town does not hold. Known only from the post-office letter lists."
     },
     {
+      "id": "person_braxton_lewis",
+      "name": "Braxton, Lewis",
+      "occupation": null,
+      "letter_list_only": false,
+      "first_seen": "1835-08-05",
+      "last_seen": "1835-08-05",
+      "action": "new_resident",
+      "action_target": null,
+      "action_note": "Ruling 1: a named person the town does not hold. Named in a claim other than a letter list."
+    },
+    {
       "id": "person_breed",
       "name": "[?] Breed",
       "occupation": null,
@@ -9733,6 +10509,17 @@
       "letter_list_only": false,
       "first_seen": "1834-05-28",
       "last_seen": "1834-08-20",
+      "action": "new_resident",
+      "action_target": null,
+      "action_note": "Ruling 1: a named person the town does not hold. Named in a claim other than a letter list."
+    },
+    {
+      "id": "person_bristol_chas_l",
+      "name": "Bristol, Chas. L.",
+      "occupation": null,
+      "letter_list_only": false,
+      "first_seen": "1835-08-05",
+      "last_seen": "1835-08-05",
       "action": "new_resident",
       "action_target": null,
       "action_note": "Ruling 1: a named person the town does not hold. Named in a claim other than a letter list."
@@ -10326,7 +11113,7 @@
       "occupation": "lumber_merchant",
       "letter_list_only": false,
       "first_seen": "1834-09-10",
-      "last_seen": "1834-09-10",
+      "last_seen": "1835-08-05",
       "action": "enrich",
       "action_target": "carver_david",
       "action_note": "data/residents/ already holds this person as carver_david (hh_carver_david, attested). The papers add mentions and dates."
@@ -10348,7 +11135,7 @@
       "occupation": "attorney",
       "letter_list_only": false,
       "first_seen": "1834-09-03",
-      "last_seen": "1834-09-03",
+      "last_seen": "1835-08-05",
       "action": "enrich",
       "action_target": "casey_edward_w",
       "action_note": "data/residents/ already holds this person as casey_edward_w (hh_casey_edward_w, attested). The papers add mentions and dates."
@@ -10363,6 +11150,17 @@
       "action": "new_resident",
       "action_target": null,
       "action_note": "Ruling 1: a named person the town does not hold. Known only from the post-office letter lists."
+    },
+    {
+      "id": "person_casey_morris",
+      "name": "Casey & Morris",
+      "occupation": "attorney",
+      "letter_list_only": false,
+      "first_seen": "1835-08-26",
+      "last_seen": "1835-08-26",
+      "action": "new_resident",
+      "action_target": null,
+      "action_note": "Ruling 1: a named person the town does not hold. Named in a claim other than a letter list."
     },
     {
       "id": "person_caskey",
@@ -10382,6 +11180,17 @@
       "letter_list_only": false,
       "first_seen": "1834-09-24",
       "last_seen": "1834-09-24",
+      "action": "enrich",
+      "action_target": "caton_john_dean",
+      "action_note": "data/residents/ already holds this person as caton_john_dean (hh_caton_john_dean, attested). The papers add mentions and dates."
+    },
+    {
+      "id": "person_caton_john_dean",
+      "name": "Caton, John Dean",
+      "occupation": "attorney",
+      "letter_list_only": false,
+      "first_seen": "1835-08-19",
+      "last_seen": "1835-08-19",
       "action": "enrich",
       "action_target": "caton_john_dean",
       "action_note": "data/residents/ already holds this person as caton_john_dean (hh_caton_john_dean, attested). The papers add mentions and dates."
@@ -11036,6 +11845,17 @@
       "action_note": "Ruling 1: a named person the town does not hold. Named in a claim other than a letter list."
     },
     {
+      "id": "person_clarke_w_b",
+      "name": "Clarke, W. B.",
+      "occupation": "hardware_merchant",
+      "letter_list_only": false,
+      "first_seen": "1835-08-05",
+      "last_seen": "1835-08-05",
+      "action": "new_resident",
+      "action_target": null,
+      "action_note": "Ruling 1: a named person the town does not hold. Named in a claim other than a letter list."
+    },
+    {
       "id": "person_clarrisa_brown",
       "name": "Clarrisa Brown",
       "occupation": null,
@@ -11179,6 +11999,17 @@
       "action_note": "Ruling 1: a named person the town does not hold. Named in a claim other than a letter list."
     },
     {
+      "id": "person_collins_james_h",
+      "name": "Collins, James H.",
+      "occupation": "attorney",
+      "letter_list_only": false,
+      "first_seen": "1835-08-05",
+      "last_seen": "1835-08-05",
+      "action": "new_resident",
+      "action_target": null,
+      "action_note": "Ruling 1: a named person the town does not hold. Named in a claim other than a letter list."
+    },
+    {
       "id": "person_compart_coquillard",
       "name": "Compart & Coquillard",
       "occupation": null,
@@ -11254,6 +12085,17 @@
       "action": "new_resident",
       "action_target": null,
       "action_note": "Ruling 1: a named person the town does not hold. Known only from the post-office letter lists."
+    },
+    {
+      "id": "person_cooley",
+      "name": "Cooley",
+      "occupation": "tailor",
+      "letter_list_only": false,
+      "first_seen": "1835-08-05",
+      "last_seen": "1835-08-05",
+      "action": "replace_invented",
+      "action_target": "tailor",
+      "action_note": "A documented tailor. The town invented 2 household(s) of this trade because no documented person was available; this is a candidate to retire one."
     },
     {
       "id": "person_cooley_and_halsman",
@@ -11419,6 +12261,28 @@
       "action": "new_resident",
       "action_target": null,
       "action_note": "Ruling 1: a named person the town does not hold. Known only from the post-office letter lists."
+    },
+    {
+      "id": "person_curtiss_j",
+      "name": "Curtiss, J.",
+      "occupation": "attorney",
+      "letter_list_only": false,
+      "first_seen": "1835-08-05",
+      "last_seen": "1835-08-05",
+      "action": "new_resident",
+      "action_target": null,
+      "action_note": "Ruling 1: a named person the town does not hold. Named in a claim other than a letter list."
+    },
+    {
+      "id": "person_curtiss_l_g",
+      "name": "Curtiss, L. G.",
+      "occupation": "surveyor",
+      "letter_list_only": false,
+      "first_seen": "1835-08-05",
+      "last_seen": "1835-08-05",
+      "action": "new_resident",
+      "action_target": null,
+      "action_note": "Ruling 1: a named person the town does not hold. Named in a claim other than a letter list."
     },
     {
       "id": "person_cushwa",
@@ -12202,6 +13066,17 @@
       "action_note": "Ruling 1: a named person the town does not hold. Known only from the post-office letter lists."
     },
     {
+      "id": "person_dewey_s",
+      "name": "Dewey, S.",
+      "occupation": "joiner",
+      "letter_list_only": false,
+      "first_seen": "1835-08-05",
+      "last_seen": "1835-08-05",
+      "action": "replace_invented",
+      "action_target": "joiner",
+      "action_note": "A documented joiner. The town invented 2 household(s) of this trade because no documented person was available; this is a candidate to retire one."
+    },
+    {
       "id": "person_dexter_graves",
       "name": "Dexter Graves",
       "occupation": "tavern_keeper",
@@ -12255,6 +13130,17 @@
       "action": "new_resident",
       "action_target": null,
       "action_note": "Ruling 1: a named person the town does not hold. Known only from the post-office letter lists."
+    },
+    {
+      "id": "person_dole_geo_w",
+      "name": "Dole, Geo. W.",
+      "occupation": null,
+      "letter_list_only": false,
+      "first_seen": "1835-08-05",
+      "last_seen": "1835-08-05",
+      "action": "enrich",
+      "action_target": "dole_george_w",
+      "action_note": "data/residents/ already holds this person as dole_george_w (hh_dole_george_w, attested). The papers add mentions and dates."
     },
     {
       "id": "person_doty_co",
@@ -13302,6 +14188,17 @@
       "action_note": "Ruling 1: a named person the town does not hold. Named in a claim other than a letter list."
     },
     {
+      "id": "person_everts_hiram",
+      "name": "Everts, Hiram",
+      "occupation": "schoolteacher",
+      "letter_list_only": false,
+      "first_seen": "1835-08-12",
+      "last_seen": "1835-08-12",
+      "action": "new_resident",
+      "action_target": null,
+      "action_note": "Ruling 1: a named person the town does not hold. Named in a claim other than a letter list."
+    },
+    {
       "id": "person_ezekiel_turner",
       "name": "Ezekiel Turner",
       "occupation": null,
@@ -13742,6 +14639,17 @@
       "action_note": "Ruling 1: a named person the town does not hold. Known only from the post-office letter lists."
     },
     {
+      "id": "person_fullerton_alex_n",
+      "name": "Fullerton, Alex. N.",
+      "occupation": null,
+      "letter_list_only": false,
+      "first_seen": "1835-08-19",
+      "last_seen": "1835-08-19",
+      "action": "enrich",
+      "action_target": "fullerton_alexander",
+      "action_note": "data/residents/ already holds this person as fullerton_alexander (hh_fullerton_alexander, attested). The papers add mentions and dates."
+    },
+    {
       "id": "person_fullerton_botsford",
       "name": "Fullerton & Botsford",
       "occupation": null,
@@ -13982,6 +14890,17 @@
       "action": "new_resident",
       "action_target": null,
       "action_note": "Ruling 1: a named person the town does not hold. Known only from the post-office letter lists."
+    },
+    {
+      "id": "person_garrett_a",
+      "name": "Garrett, A.",
+      "occupation": "auctioneer",
+      "letter_list_only": false,
+      "first_seen": "1835-08-12",
+      "last_seen": "1835-08-12",
+      "action": "new_resident",
+      "action_target": null,
+      "action_note": "Ruling 1: a named person the town does not hold. Named in a claim other than a letter list."
     },
     {
       "id": "person_gaylord_hayes",
@@ -14441,6 +15360,17 @@
       "letter_list_only": false,
       "first_seen": "1834-11-19",
       "last_seen": "1834-11-19",
+      "action": "new_resident",
+      "action_target": null,
+      "action_note": "Ruling 1: a named person the town does not hold. Named in a claim other than a letter list."
+    },
+    {
+      "id": "person_goodhue_j_c",
+      "name": "Goodhue, J. C.",
+      "occupation": null,
+      "letter_list_only": false,
+      "first_seen": "1835-08-19",
+      "last_seen": "1835-08-19",
       "action": "new_resident",
       "action_target": null,
       "action_note": "Ruling 1: a named person the town does not hold. Named in a claim other than a letter list."
@@ -15139,6 +16069,17 @@
       "action_note": "Ruling 1: a named person the town does not hold. Known only from the post-office letter lists."
     },
     {
+      "id": "person_hallam_rev_mr",
+      "name": "Hallam, Rev. Mr.",
+      "occupation": null,
+      "letter_list_only": false,
+      "first_seen": "1835-08-26",
+      "last_seen": "1835-08-26",
+      "action": "new_resident",
+      "action_target": null,
+      "action_note": "Ruling 1: a named person the town does not hold. Named in a claim other than a letter list."
+    },
+    {
       "id": "person_hamilton_j_w",
       "name": "Hamilton, J. W.",
       "occupation": null,
@@ -15302,6 +16243,17 @@
       "action": "new_resident",
       "action_target": null,
       "action_note": "Ruling 1: a named person the town does not hold. Named in a claim other than a letter list."
+    },
+    {
+      "id": "person_harmon_isaac",
+      "name": "Harmon, Isaac",
+      "occupation": null,
+      "letter_list_only": false,
+      "first_seen": "1835-08-05",
+      "last_seen": "1835-08-05",
+      "action": "enrich",
+      "action_target": "harmon_isaac_d",
+      "action_note": "data/residents/ already holds this person as harmon_isaac_d (hh_harmon_brothers, attested). The papers add mentions and dates."
     },
     {
       "id": "person_harmon_loomis_co",
@@ -15722,6 +16674,17 @@
       "action_note": "Ruling 1: a named person the town does not hold. Known only from the post-office letter lists."
     },
     {
+      "id": "person_hinton_isaac_t",
+      "name": "Hinton, Isaac T.",
+      "occupation": null,
+      "letter_list_only": false,
+      "first_seen": "1835-08-19",
+      "last_seen": "1835-08-19",
+      "action": "new_resident",
+      "action_target": null,
+      "action_note": "Ruling 1: a named person the town does not hold. Named in a claim other than a letter list."
+    },
+    {
       "id": "person_hiram_a_adams",
       "name": "Hiram A. Adams",
       "occupation": null,
@@ -15832,6 +16795,28 @@
       "action_note": "data/residents/ already holds this person as hogan_john_s_c (hh_hogan_john_s_c, attested). The papers add mentions and dates."
     },
     {
+      "id": "person_hogan_john_s_c",
+      "name": "Hogan, John S. C.",
+      "occupation": null,
+      "letter_list_only": true,
+      "first_seen": "1835-08-12",
+      "last_seen": "1835-08-19",
+      "action": "enrich",
+      "action_target": "hogan_john_s_c",
+      "action_note": "data/residents/ already holds this person as hogan_john_s_c (hh_hogan_john_s_c, attested). The papers add mentions and dates."
+    },
+    {
+      "id": "person_hogue_w_m",
+      "name": "Hogue, W[m].",
+      "occupation": null,
+      "letter_list_only": false,
+      "first_seen": "1835-08-05",
+      "last_seen": "1835-08-05",
+      "action": "new_resident",
+      "action_target": null,
+      "action_note": "Ruling 1: a named person the town does not hold. Named in a claim other than a letter list."
+    },
+    {
       "id": "person_hogue_wm_co",
       "name": "Hogue, Wm. & Co.",
       "occupation": "merchant",
@@ -15860,6 +16845,39 @@
       "letter_list_only": false,
       "first_seen": "1834-09-24",
       "last_seen": "1834-09-24",
+      "action": "new_resident",
+      "action_target": null,
+      "action_note": "Ruling 1: a named person the town does not hold. Named in a claim other than a letter list."
+    },
+    {
+      "id": "person_hol_b_man",
+      "name": "Hol[b]man",
+      "occupation": "tailor",
+      "letter_list_only": false,
+      "first_seen": "1835-08-05",
+      "last_seen": "1835-08-05",
+      "action": "replace_invented",
+      "action_target": "tailor",
+      "action_note": "A documented tailor. The town invented 2 household(s) of this trade because no documented person was available; this is a candidate to retire one."
+    },
+    {
+      "id": "person_holbrook_john",
+      "name": "Holbrook, John",
+      "occupation": "shoemaker",
+      "letter_list_only": false,
+      "first_seen": "1835-08-12",
+      "last_seen": "1835-08-12",
+      "action": "replace_invented",
+      "action_target": "shoemaker",
+      "action_note": "A documented shoemaker. The town invented 3 household(s) of this trade because no documented person was available; this is a candidate to retire one."
+    },
+    {
+      "id": "person_holbrook_mr",
+      "name": "Holbrook, Mr.",
+      "occupation": null,
+      "letter_list_only": false,
+      "first_seen": "1835-08-12",
+      "last_seen": "1835-08-12",
       "action": "new_resident",
       "action_target": null,
       "action_note": "Ruling 1: a named person the town does not hold. Named in a claim other than a letter list."
@@ -15907,6 +16925,17 @@
       "action": "new_resident",
       "action_target": null,
       "action_note": "Ruling 1: a named person the town does not hold. Known only from the post-office letter lists."
+    },
+    {
+      "id": "person_holsman_george",
+      "name": "Holsman, George",
+      "occupation": "tailor",
+      "letter_list_only": false,
+      "first_seen": "1835-08-19",
+      "last_seen": "1835-08-19",
+      "action": "replace_invented",
+      "action_target": "tailor",
+      "action_note": "A documented tailor. The town invented 2 household(s) of this trade because no documented person was available; this is a candidate to retire one."
     },
     {
       "id": "person_hon_r_j_hamilton",
@@ -16008,6 +17037,17 @@
       "action_note": "Ruling 1: a named person the town does not hold. Named in a claim other than a letter list."
     },
     {
+      "id": "person_howe_sarah_d",
+      "name": "Howe, Sarah D.",
+      "occupation": null,
+      "letter_list_only": false,
+      "first_seen": "1835-08-19",
+      "last_seen": "1835-08-19",
+      "action": "new_resident",
+      "action_target": null,
+      "action_note": "Ruling 1: a named person the town does not hold. Named in a claim other than a letter list."
+    },
+    {
       "id": "person_howell_thomas_m",
       "name": "Howell, Thomas M.",
       "occupation": null,
@@ -16019,12 +17059,56 @@
       "action_note": "Ruling 1: a named person the town does not hold. Known only from the post-office letter lists."
     },
     {
+      "id": "person_hubbard_a_b",
+      "name": "Hubbard, A. B.",
+      "occupation": null,
+      "letter_list_only": false,
+      "first_seen": "1835-08-19",
+      "last_seen": "1835-08-19",
+      "action": "enrich",
+      "action_target": "inf_shoemaker_south_02",
+      "action_note": "data/residents/ already holds this person as inf_shoemaker_south_02 (hh_inf_shoemaker_south_02, reconstructed). The papers add mentions and dates."
+    },
+    {
       "id": "person_hubbard_co",
       "name": "Hubbard & Co.",
       "occupation": "merchant",
       "letter_list_only": false,
       "first_seen": "1834-09-03",
       "last_seen": "1835-05-20",
+      "action": "replace_invented",
+      "action_target": "merchant",
+      "action_note": "A documented merchant. The town invented 1 household(s) of this trade because no documented person was available; this is a candidate to retire one."
+    },
+    {
+      "id": "person_hubbard_e_k",
+      "name": "Hubbard, E. K.",
+      "occupation": "merchant",
+      "letter_list_only": false,
+      "first_seen": "1835-08-05",
+      "last_seen": "1835-08-05",
+      "action": "replace_invented",
+      "action_target": "merchant",
+      "action_note": "A documented merchant. The town invented 1 household(s) of this trade because no documented person was available; this is a candidate to retire one."
+    },
+    {
+      "id": "person_hubbard_gurdon_s",
+      "name": "Hubbard, Gurdon S.",
+      "occupation": "merchant",
+      "letter_list_only": false,
+      "first_seen": "1835-08-05",
+      "last_seen": "1835-08-05",
+      "action": "enrich",
+      "action_target": "hubbard_gurdon",
+      "action_note": "data/residents/ already holds this person as hubbard_gurdon (hh_hubbard_gurdon, attested). The papers add mentions and dates."
+    },
+    {
+      "id": "person_hubbard_henry_g",
+      "name": "Hubbard, [Henry] G.",
+      "occupation": "merchant",
+      "letter_list_only": false,
+      "first_seen": "1835-08-05",
+      "last_seen": "1835-08-05",
       "action": "replace_invented",
       "action_target": "merchant",
       "action_note": "A documented merchant. The town invented 1 household(s) of this trade because no documented person was available; this is a candidate to retire one."
@@ -16074,12 +17158,34 @@
       "action_note": "Ruling 1: a named person the town does not hold. Known only from the post-office letter lists."
     },
     {
+      "id": "person_hugunin_s",
+      "name": "Hugunin, [S.]",
+      "occupation": null,
+      "letter_list_only": false,
+      "first_seen": "1835-08-19",
+      "last_seen": "1835-08-19",
+      "action": "new_resident",
+      "action_target": null,
+      "action_note": "Ruling 1: a named person the town does not hold. Named in a claim other than a letter list."
+    },
+    {
       "id": "person_hunt",
       "name": "Hunt",
       "occupation": "schoolteacher",
       "letter_list_only": false,
       "first_seen": "1835-08-15",
       "last_seen": "1835-08-15",
+      "action": "new_resident",
+      "action_target": null,
+      "action_note": "Ruling 1: a named person the town does not hold. Named in a claim other than a letter list."
+    },
+    {
+      "id": "person_hunt_c_harle_s",
+      "name": "Hunt, C[harle]s",
+      "occupation": "schoolteacher",
+      "letter_list_only": false,
+      "first_seen": "1835-08-12",
+      "last_seen": "1835-08-12",
       "action": "new_resident",
       "action_target": null,
       "action_note": "Ruling 1: a named person the town does not hold. Named in a claim other than a letter list."
@@ -18109,6 +19215,17 @@
       "action_note": "Ruling 1: a named person the town does not hold. Known only from the post-office letter lists."
     },
     {
+      "id": "person_jeste_or_ya_ple_bernard",
+      "name": "Jeste or [Ya]ple, Bernard",
+      "occupation": null,
+      "letter_list_only": false,
+      "first_seen": "1835-08-05",
+      "last_seen": "1835-08-05",
+      "action": "new_resident",
+      "action_target": null,
+      "action_note": "Ruling 1: a named person the town does not hold. Named in a claim other than a letter list."
+    },
+    {
       "id": "person_jno_bates_jr",
       "name": "Jno. Bates, Jr.",
       "occupation": "auctioneer",
@@ -19231,6 +20348,17 @@
       "action_note": "Ruling 1: a named person the town does not hold. Known only from the post-office letter lists."
     },
     {
+      "id": "person_jones_william",
+      "name": "Jones, William",
+      "occupation": "hardware_merchant",
+      "letter_list_only": false,
+      "first_seen": "1835-08-05",
+      "last_seen": "1835-08-05",
+      "action": "new_resident",
+      "action_target": null,
+      "action_note": "Ruling 1: a named person the town does not hold. Named in a claim other than a letter list."
+    },
+    {
       "id": "person_jones_wm",
       "name": "Jones, Wm.",
       "occupation": null,
@@ -19726,6 +20854,17 @@
       "action_note": "Ruling 1: a named person the town does not hold. Named in a claim other than a letter list."
     },
     {
+      "id": "person_kennicott_wm_h",
+      "name": "Kennicott, Wm. H.",
+      "occupation": "physician",
+      "letter_list_only": false,
+      "first_seen": "1835-08-05",
+      "last_seen": "1835-08-19",
+      "action": "replace_invented",
+      "action_target": "physician",
+      "action_note": "A documented physician. The town invented 1 household(s) of this trade because no documented person was available; this is a candidate to retire one."
+    },
+    {
       "id": "person_kent_alex_m",
       "name": "Kent, Alex. M.",
       "occupation": null,
@@ -19904,10 +21043,10 @@
     {
       "id": "person_king_byram",
       "name": "King, Byram",
-      "occupation": null,
+      "occupation": "hardware_merchant",
       "letter_list_only": false,
       "first_seen": "1834-09-03",
-      "last_seen": "1834-09-03",
+      "last_seen": "1835-08-05",
       "action": "new_resident",
       "action_target": null,
       "action_note": "Ruling 1: a named person the town does not hold. Named in a claim other than a letter list."
@@ -20006,7 +21145,7 @@
       "occupation": "forwarding_and_commission",
       "letter_list_only": false,
       "first_seen": "1834-09-03",
-      "last_seen": "1834-09-24",
+      "last_seen": "1835-08-19",
       "action": "enrich",
       "action_target": "kinzie_james",
       "action_note": "data/residents/ already holds this person as kinzie_james (hh_kinzie_james, attested). The papers add mentions and dates."
@@ -20595,6 +21734,17 @@
       "action_note": "Ruling 1: a named person the town does not hold. Known only from the post-office letter lists."
     },
     {
+      "id": "person_lewis_samuel",
+      "name": "Lewis, Samuel",
+      "occupation": "schoolteacher",
+      "letter_list_only": false,
+      "first_seen": "1835-08-12",
+      "last_seen": "1835-08-12",
+      "action": "new_resident",
+      "action_target": null,
+      "action_note": "Ruling 1: a named person the town does not hold. Named in a claim other than a letter list."
+    },
+    {
       "id": "person_lewis_sperry",
       "name": "Lewis Sperry",
       "occupation": null,
@@ -20978,6 +22128,17 @@
       "action": "new_resident",
       "action_target": null,
       "action_note": "Ruling 1: a named person the town does not hold. Known only from the post-office letter lists."
+    },
+    {
+      "id": "person_lyon_william_f",
+      "name": "Lyon, William F.",
+      "occupation": "grocer",
+      "letter_list_only": false,
+      "first_seen": "1835-08-19",
+      "last_seen": "1835-08-19",
+      "action": "replace_invented",
+      "action_target": "grocer",
+      "action_note": "A documented grocer. The town invented 4 household(s) of this trade because no documented person was available; this is a candidate to retire one."
     },
     {
       "id": "person_m_b_beaubien",
@@ -21992,6 +23153,17 @@
       "action_note": "Ruling 1: a named person the town does not hold. Named in a claim other than a letter list."
     },
     {
+      "id": "person_montgomery_w",
+      "name": "Montgomery, W.",
+      "occupation": "auctioneer",
+      "letter_list_only": false,
+      "first_seen": "1835-08-05",
+      "last_seen": "1835-08-12",
+      "action": "new_resident",
+      "action_target": null,
+      "action_note": "Ruling 1: a named person the town does not hold. Named in a claim other than a letter list."
+    },
+    {
       "id": "person_moody_robert",
       "name": "Moody, Robert",
       "occupation": null,
@@ -22001,6 +23173,17 @@
       "action": "new_resident",
       "action_target": null,
       "action_note": "Ruling 1: a named person the town does not hold. Known only from the post-office letter lists."
+    },
+    {
+      "id": "person_moore_henry",
+      "name": "Moore, Henry",
+      "occupation": "attorney",
+      "letter_list_only": false,
+      "first_seen": "1835-08-05",
+      "last_seen": "1835-08-12",
+      "action": "new_resident",
+      "action_target": null,
+      "action_note": "Ruling 1: a named person the town does not hold. Named in a claim other than a letter list."
     },
     {
       "id": "person_moritz_bomgarten",
@@ -22294,7 +23477,7 @@
       "occupation": "watchmaker",
       "letter_list_only": false,
       "first_seen": "1834-09-17",
-      "last_seen": "1834-09-17",
+      "last_seen": "1835-08-12",
       "action": "new_resident",
       "action_target": null,
       "action_note": "Ruling 1: a named person the town does not hold. Named in a claim other than a letter list."
@@ -22683,6 +23866,17 @@
       "action": "replace_invented",
       "action_target": "merchant",
       "action_note": "A documented merchant. The town invented 1 household(s) of this trade because no documented person was available; this is a candidate to retire one."
+    },
+    {
+      "id": "person_newberry_walter_l",
+      "name": "Newberry, [Walter L.]",
+      "occupation": "forwarding_and_commission",
+      "letter_list_only": false,
+      "first_seen": "1835-08-05",
+      "last_seen": "1835-08-05",
+      "action": "new_resident",
+      "action_target": null,
+      "action_note": "Ruling 1: a named person the town does not hold. Named in a claim other than a letter list."
     },
     {
       "id": "person_newell_david",
@@ -23515,7 +24709,7 @@
       "occupation": null,
       "letter_list_only": false,
       "first_seen": "1834-09-10",
-      "last_seen": "1834-09-10",
+      "last_seen": "1835-08-26",
       "action": "enrich",
       "action_target": "pearsons_hiram",
       "action_note": "data/residents/ already holds this person as pearsons_hiram (hh_pearsons_hiram, attested). The papers add mentions and dates."
@@ -24190,6 +25384,17 @@
       "action": "new_resident",
       "action_target": null,
       "action_note": "Ruling 1: a named person the town does not hold. Known only from the post-office letter lists."
+    },
+    {
+      "id": "person_pruyne_peter",
+      "name": "Pruyne, Peter",
+      "occupation": "merchant",
+      "letter_list_only": false,
+      "first_seen": "1835-08-26",
+      "last_seen": "1835-08-26",
+      "action": "enrich",
+      "action_target": "pruyne_peter",
+      "action_note": "data/residents/ already holds this person as pruyne_peter (hh_pruyne_kimberly, attested). The papers add mentions and dates."
     },
     {
       "id": "person_pugsley_john_k",
@@ -25160,6 +26365,17 @@
       "action_note": "Ruling 1: a named person the town does not hold. Known only from the post-office letter lists."
     },
     {
+      "id": "person_russell_clift",
+      "name": "Russell & Clift",
+      "occupation": "merchant",
+      "letter_list_only": false,
+      "first_seen": "1835-08-19",
+      "last_seen": "1835-08-19",
+      "action": "replace_invented",
+      "action_target": "merchant",
+      "action_note": "A documented merchant. The town invented 1 household(s) of this trade because no documented person was available; this is a candidate to retire one."
+    },
+    {
       "id": "person_russell_e_heacock",
       "name": "Russell E. Heacock",
       "occupation": "attorney",
@@ -25682,7 +26898,7 @@
       "occupation": "schoolteacher",
       "letter_list_only": false,
       "first_seen": "1834-07-02",
-      "last_seen": "1835-07-29",
+      "last_seen": "1835-08-05",
       "action": "new_resident",
       "action_target": null,
       "action_note": "Ruling 1: a named person the town does not hold. Named in a claim other than a letter list."
@@ -26183,6 +27399,17 @@
       "action_note": "Ruling 1: a named person the town does not hold. Known only from the post-office letter lists."
     },
     {
+      "id": "person_sherman_rebecca",
+      "name": "Sherman, Rebecca",
+      "occupation": null,
+      "letter_list_only": false,
+      "first_seen": "1835-08-26",
+      "last_seen": "1835-08-26",
+      "action": "new_resident",
+      "action_target": null,
+      "action_note": "Ruling 1: a named person the town does not hold. Named in a claim other than a letter list."
+    },
+    {
       "id": "person_sherman_silas",
       "name": "Sherman, Silas",
       "occupation": null,
@@ -26192,6 +27419,17 @@
       "action": "new_resident",
       "action_target": null,
       "action_note": "Ruling 1: a named person the town does not hold. Known only from the post-office letter lists."
+    },
+    {
+      "id": "person_sherman_silas_w",
+      "name": "Sherman, Silas W.",
+      "occupation": null,
+      "letter_list_only": false,
+      "first_seen": "1835-08-26",
+      "last_seen": "1835-08-26",
+      "action": "new_resident",
+      "action_target": null,
+      "action_note": "Ruling 1: a named person the town does not hold. Named in a claim other than a letter list."
     },
     {
       "id": "person_shielde_willam",
@@ -26458,6 +27696,17 @@
       "action_note": "Ruling 1: a named person the town does not hold. Known only from the post-office letter lists."
     },
     {
+      "id": "person_smith_mr",
+      "name": "Smith, Mr.",
+      "occupation": null,
+      "letter_list_only": false,
+      "first_seen": "1835-08-12",
+      "last_seen": "1835-08-12",
+      "action": "new_resident",
+      "action_target": null,
+      "action_note": "Ruling 1: a named person the town does not hold. Named in a claim other than a letter list."
+    },
+    {
       "id": "person_smith_solomon",
       "name": "Smith, Solomon",
       "occupation": null,
@@ -26628,7 +27877,7 @@
       "occupation": "attorney",
       "letter_list_only": false,
       "first_seen": "1834-09-03",
-      "last_seen": "1834-09-03",
+      "last_seen": "1835-08-26",
       "action": "enrich",
       "action_target": "spring_giles",
       "action_note": "data/residents/ already holds this person as spring_giles (hh_spring_giles, attested). The papers add mentions and dates."
@@ -26956,12 +28205,12 @@
       "id": "person_stewart_r",
       "name": "Stewart, R.",
       "occupation": null,
-      "letter_list_only": true,
+      "letter_list_only": false,
       "first_seen": "1834-10-22",
-      "last_seen": "1834-10-22",
+      "last_seen": "1835-08-05",
       "action": "new_resident",
       "action_target": null,
-      "action_note": "Ruling 1: a named person the town does not hold. Known only from the post-office letter lists."
+      "action_note": "Ruling 1: a named person the town does not hold. Named in a claim other than a letter list."
     },
     {
       "id": "person_stewart_royal",
@@ -27261,6 +28510,17 @@
       "action_note": "Ruling 1: a named person the town does not hold. Known only from the post-office letter lists."
     },
     {
+      "id": "person_t_e_mple_john_t",
+      "name": "T[e]mple, John T.",
+      "occupation": null,
+      "letter_list_only": false,
+      "first_seen": "1835-08-12",
+      "last_seen": "1835-08-12",
+      "action": "new_resident",
+      "action_target": null,
+      "action_note": "Ruling 1: a named person the town does not hold. Named in a claim other than a letter list."
+    },
+    {
       "id": "person_t_godfrey",
       "name": "T. Godfrey",
       "occupation": null,
@@ -27415,6 +28675,17 @@
       "action_note": "data/residents/ already holds this person as taylor_charles (hh_taylor_anson, attested). The papers add mentions and dates."
     },
     {
+      "id": "person_taylor_mrs_c",
+      "name": "Taylor, Mrs. C.",
+      "occupation": null,
+      "letter_list_only": false,
+      "first_seen": "1835-08-19",
+      "last_seen": "1835-08-19",
+      "action": "new_resident",
+      "action_target": null,
+      "action_note": "Ruling 1: a named person the town does not hold. Named in a claim other than a letter list."
+    },
+    {
       "id": "person_taylor_t_or_anderson_samuel",
       "name": "Taylor, T. or Anderson, Samuel",
       "occupation": null,
@@ -27428,13 +28699,13 @@
     {
       "id": "person_taylor_wm_h",
       "name": "Taylor, Wm. H.",
-      "occupation": null,
-      "letter_list_only": true,
+      "occupation": "shoemaker",
+      "letter_list_only": false,
       "first_seen": "1834-10-22",
-      "last_seen": "1834-10-22",
-      "action": "new_resident",
-      "action_target": null,
-      "action_note": "Ruling 1: a named person the town does not hold. Known only from the post-office letter lists."
+      "last_seen": "1835-08-05",
+      "action": "replace_invented",
+      "action_target": "shoemaker",
+      "action_note": "A documented shoemaker. The town invented 3 household(s) of this trade because no documented person was available; this is a candidate to retire one."
     },
     {
       "id": "person_temple",
@@ -27453,7 +28724,7 @@
       "occupation": "physician",
       "letter_list_only": false,
       "first_seen": "1834-09-10",
-      "last_seen": "1834-09-24",
+      "last_seen": "1835-08-19",
       "action": "replace_invented",
       "action_target": "physician",
       "action_note": "A documented physician. The town invented 1 household(s) of this trade because no documented person was available; this is a candidate to retire one."
@@ -29500,6 +30771,17 @@
       "letter_list_only": false,
       "first_seen": "1834-04-30",
       "last_seen": "1834-04-30",
+      "action": "new_resident",
+      "action_target": null,
+      "action_note": "Ruling 1: a named person the town does not hold. Named in a claim other than a letter list."
+    },
+    {
+      "id": "person_vale_john",
+      "name": "Vale, John",
+      "occupation": null,
+      "letter_list_only": false,
+      "first_seen": "1835-08-05",
+      "last_seen": "1835-08-05",
       "action": "new_resident",
       "action_target": null,
       "action_note": "Ruling 1: a named person the town does not hold. Named in a claim other than a letter list."
