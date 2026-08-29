@@ -68,11 +68,13 @@ a judgement and it lives in `normalized`, beside the quote and never replacing i
 this file's fixture leaves 'a few doors below' unsupplied for exactly that reason, and
 says where a fuller witness might be found.
 
-WHERE THE DEPOSIT IS. The transcriptions are on `main` and not on `dev` (T-0275), so the
-quote check runs against whatever text this branch can actually read: the 23 derived
-files under `text/` always, the 66 deposit-held ones when the deposit is present. Same
-three-state discipline as `tools/newspaper_corpus.py` — present, absent, partial — and
-absent is green and reported, never silently skipped.
+WHERE THE DEPOSIT IS. The quote check runs against whatever text the branch can actually
+read: the 23 derived files under `text/` always, the 66 deposit-held ones when the deposit
+is present. Same three-state discipline as `tools/newspaper_corpus.py` — present, absent,
+partial — and absent is green and reported, never silently skipped. It WAS absent on `dev`
+for a week (T-0275) and ten reading passes ran `--check --deposit <a copy from main>`
+because of it; the promotion back-merge has since carried it across, so on `dev` today
+every path resolves and `--deposit` is only needed by a checkout that lacks it.
 """
 import argparse
 import copy
@@ -173,6 +175,59 @@ RULED_PAGE_BANNER = re.compile(
     r"^=====\s*(?:\w+\s+)?PDF PAGE\s+(\d+)\s*/\s*ISSUE PAGE\s+(\d+)\s*=====\s*$")
 BARE_PAGE_BANNER = re.compile(r"^\s*(?:\w+\s+)?PDF PAGE\s+(\d+)\s*$")
 
+# AND A SIXTH SHAPE AND A SEVENTH, WHICH ARE THE FIRST HALF OF 1835 (T-0298). Six of the
+# eight Democrats between 1835-01-21 and 1835-06-24 resolved to ZERO columns before this,
+# so every claim citing them would have failed the gate with "the transcription carries no
+# ISSUE PAGE / COLUMN marker" and the reading pass could not have landed at all. Counted
+# on 2026-08-29 over the whole deposit, they are the LAST two: after these, every one of
+# the 89 artifacts in corpus.json resolves its columns except the 1833-11-26 alternate,
+# which is a prose reading transcription with no column segmentation to find.
+#
+# T-0298 recorded three of the six as "bare `=====` rules carrying no page or column at
+# all" and left open whether that was a transcription defect. IT IS NOT. The rules are
+# decoration around a banner, and each column carries its own rule naming the scan page:
+#
+#   1835-01-21, the 03-25 Extra, 05-20   [Source PDF page 9; newspaper page 1; column 1]
+#   1835-05-27, 06-04, 06-10             PRINTED PAGE 1 — SOURCE PDF PAGE 13
+#                                        --- SOURCE PDF PAGE 13, COLUMN 1 ---
+#
+# 46 bracket markers over the first three issues, and 72 dash rules under 12 banners over
+# the second three: 118 column markers that were invisible to a resolver already twice
+# corrected for exactly this. Nothing else in the corpus moves — the other 83 artifacts
+# resolve to the same columns before and after, asserted by re-running the census.
+#
+# The dash rule of the seventh dialect names its OWN scan page, so it is resolved through
+# the banner that states that page rather than through the banner most recently passed.
+# There is no ordering assumption here to be wrong about, which is the difference between
+# this dialect and the bare 1833 banner that has to be counted ordinally.
+#
+# ONE MARKER IN THE SIXTH DIALECT CARRIES NO COLUMN NUMBER, and it is read as column 1:
+# `[Source PDF page 8; Extra page 4; single-column subscription prospectus]`, the last
+# page of the 1835-03-25 Extra. The warrant is the marker's own word and the same file's
+# header line — "Extra pages 1–3 have 3 columns; page 4 is a single-column subscription
+# prospectus" — so the page has one column and it is the first. That page is Calhoun's
+# subscription list and naming people, so leaving it uncitable would have cost the read a
+# page rather than saved it a guess.
+BRACKET_COLUMN = re.compile(
+    r"^\s*\[\s*(?:\w+\s+)?PDF page\s+(\d+)\s*;\s*\w+ page\s+(\d+)\s*;\s*"
+    r"(?:column\s+(\d+)|single-column\b[^\]]*)\]\s*$", re.IGNORECASE)
+PRINTED_PAGE_BANNER = re.compile(
+    r"^\s*PRINTED PAGE\s+(\d+)\s*[\u2014\u2013-]\s*(?:\w+\s+)?PDF PAGE\s+(\d+)\s*$")
+SCAN_DASH_COLUMN = re.compile(
+    r"^\s*-{2,}\s*(?:\w+\s+)?PDF PAGE\s+(\d+)\s*,\s*COLUMN\s+(\d+)\s*-{2,}\s*$")
+
+
+# THE ONE ARTIFACT IN THE CORPUS THAT RESOLVES NO COLUMN AND IS NOT A RESOLVER GAP.
+# Measured over all 89 artifacts on 2026-08-29 (T-0325): every one of them resolves its
+# columns except this, and this one has no column structure to resolve. A reading pass
+# that needs 1833-11-26 cites the `primary`, which is what T-0308 did.
+UNSEGMENTED = {
+    ("chicago_democrat_1833_11_26", "alternate"):
+        "a prose reading transcription made from the page images, which segments nothing: "
+        "its pages are headed `SUPPLIED SCAN PAGE 1` and its columns described in words "
+        "('Left-side news columns'). There is no marker in it to read.",
+}
+
 
 def sha256(path):
     h = hashlib.sha256()
@@ -240,25 +295,60 @@ def text_lines(recorded_path, deposit, repo):
     return target.read_text(encoding="utf-8").splitlines()
 
 
+def printed_page_index(lines):
+    """scan page -> issue page, from `PRINTED PAGE n — SOURCE PDF PAGE m` banners.
+
+    The seventh dialect's column rules name their own SCAN page, so a column is resolved
+    through the banner that states that page rather than through the banner most recently
+    passed. Both facts are lifted off their own lines and nothing is counted.
+    """
+    index = {}
+    for line in lines:
+        m = PRINTED_PAGE_BANNER.match(line)
+        if m:
+            index.setdefault(int(m.group(2)), int(m.group(1)))
+    return index
+
+
 def column_starts(lines):
     """Every column boundary in a transcription, in every dialect: [(line, page, col)].
 
-    In the two dialects that separate page from column the page is carried by the most
+    In the dialects that separate page from column the page is carried by the most
     recent page line, so a column before any page line is skipped rather than guessed
     at. A bare `SOURCE PDF PAGE n` banner names the scan page and not the issue page, so
-    it counts ordinally: the nth page banner of a transcription is issue page n.
+    it counts ordinally: the nth page banner of a transcription is issue page n. The
+    seventh dialect is the exception and needs no ordinal at all: its column rules state
+    the scan page themselves, so they are looked up in `printed_page_index`.
     """
     starts = []
     page = None
     banners = 0
+    printed = printed_page_index(lines)
     for n, line in enumerate(lines, 1):
         m = COLUMN_MARKER.match(line)
         if m:
             starts.append((n, int(m.group(1)), int(m.group(3))))
             continue
+        m = BRACKET_COLUMN.match(line)
+        if m:
+            # group 3 is absent on the Extra's single-column prospectus page, which the
+            # marker and its file's own header agree has one column: it is column 1.
+            starts.append((n, int(m.group(2)), int(m.group(3) or 1)))
+            continue
+        m = SCAN_DASH_COLUMN.match(line)
+        if m:
+            issue_page = printed.get(int(m.group(1)))
+            if issue_page is not None:
+                starts.append((n, issue_page, int(m.group(2))))
+            continue
         m = PAGE_HEADING.match(line)
         if m:
             page = int(m.group(1))
+            banners += 1
+            continue
+        m = PRINTED_PAGE_BANNER.match(line)
+        if m:
+            page = int(m.group(1))       # group 1 is the issue's page, group 2 the scan's
             banners += 1
             continue
         m = RULED_PAGE_BANNER.match(line)
@@ -718,6 +808,37 @@ def check(extracted=EXTRACTED, gazetteer=GAZETTEER, identity=IDENTITY, corpus=CO
             else:
                 checked_quotes += 1
 
+    # THE RESOLVER CENSUS (T-0325). Three times now a marker dialect has been found only
+    # because somebody sat down to READ the issues that speak it — T-0289's majority ruled
+    # shape, T-0258's 1833 dash-column one, and the two here. Each time the reason nothing
+    # caught it earlier was the same: `check` only opens the transcriptions its CLAIMS cite,
+    # so an unread issue's dialect is not exercised by anything. This walks every artifact
+    # in the corpus instead of every cited one, and refuses any readable transcription that
+    # resolves no column at all. It costs one pass over the deposit and it turns "found when
+    # read" into "found when the deposit lands".
+    #
+    # Unreadable is silent, not a failure: on `dev` the deposit is absent and that is the
+    # green state (T-0275), exactly as it is for the quotes above.
+    resolved = unreadable = 0
+    for issue in corpus_doc.get("issues", []):
+        for art in issue.get("artifacts", []):
+            recorded = art.get("text_path")
+            if not recorded:
+                continue
+            lines = text_lines(recorded, deposit, repo)
+            if lines is None:
+                unreadable += 1
+                continue
+            if column_starts(lines):
+                resolved += 1
+                continue
+            why = UNSEGMENTED.get((issue["id"], art.get("role")))
+            if why is None:
+                bad.append("%s %s resolves NO column marker, so no claim can ever cite it "
+                           "— either its transcription speaks an eighth dialect nothing "
+                           "here has been shown, or it carries no column structure and "
+                           "belongs in UNSEGMENTED with the reason" % (issue["id"], art.get("role")))
+
     coverage_doc = load_json(coverage) if Path(coverage).exists() else {"ranges": []}
     bad.extend(coverage_problems(coverage_doc, corpus_doc, files))
 
@@ -760,6 +881,8 @@ def check(extracted=EXTRACTED, gazetteer=GAZETTEER, identity=IDENTITY, corpus=CO
                       and r.get("from", "") <= i.get("date", "") <= r.get("to", ""))
         print("  ok    %d issue(s) inside %d declared coverage range(s), none missing"
               % (covered, len(coverage_doc.get("ranges", []))))
+        print("  ok    %d transcription(s) resolve their columns, %d unreadable here, "
+              "%d unsegmented by nature" % (resolved, unreadable, len(UNSEGMENTED)))
         if unresolved:
             print("  note  %d claim(s) cite deposit-held text not readable here — it is on "
                   "`main` (T-0275), so their quotes are checked there" % unresolved)
@@ -1046,6 +1169,43 @@ def self_test():
     if column_starts(["--- Column 1 ---", "orphan"]):
         failures.append("a column before any page line was guessed at rather than skipped")
 
+    # THE SIXTH SHAPE, WHICH IS THREE OF THE EIGHT DEMOCRATS OF EARLY 1835 (T-0298): page
+    # and column on one bracketed line. Asserted on two pages for the same reason the
+    # 1833 case is, and with the Extra's column-less prospectus line beside them, because
+    # reading that one as column 1 is the only judgement in this dialect.
+    bracket = ["[Source PDF page 9; newspaper page 1; column 1]", "a",
+               "[Source PDF page 9; newspaper page 1; column 3]", "b",
+               "[Source PDF page 10; newspaper page 2; column 1]", "c",
+               "[Source PDF page 8; Extra page 4; single-column subscription prospectus]"]
+    if column_starts(bracket) != [(1, 1, 1), (3, 1, 3), (5, 2, 1), (7, 4, 1)]:
+        failures.append("the 1835 bracket dialect does not resolve: page and column are "
+                        "both on the line, and a column-less `single-column` marker is "
+                        "that page's column 1")
+    if BRACKET_COLUMN.match("[uncertain: page 3; column 1]"):
+        failures.append("the bracket column pattern matched a bracketed uncertainty note, "
+                        "which would invent a column boundary inside an advertisement")
+
+    # THE SEVENTH SHAPE, WHICH IS THE OTHER THREE (T-0298). The column rule names the SCAN
+    # page, so it is resolved through the banner stating that page — asserted here with
+    # the banners OUT of scan order, which is what tells the lookup apart from a
+    # most-recent-banner rule that would pass on a tidy file and be wrong on a real one.
+    printed = ["PRINTED PAGE 1 \u2014 SOURCE PDF PAGE 13", "--- SOURCE PDF PAGE 13, COLUMN 1 ---", "a",
+               "PRINTED PAGE 2 \u2014 SOURCE PDF PAGE 14", "--- SOURCE PDF PAGE 13, COLUMN 2 ---", "b",
+               "--- SOURCE PDF PAGE 14, COLUMN 1 ---", "c"]
+    if column_starts(printed) != [(2, 1, 1), (5, 1, 2), (7, 2, 1)]:
+        failures.append("the 1835 printed-page dialect does not resolve: a `--- SOURCE PDF "
+                        "PAGE m, COLUMN k ---` rule takes its issue page from the banner "
+                        "that states scan page m, not from the banner last passed")
+    if column_starts(["--- SOURCE PDF PAGE 13, COLUMN 1 ---", "orphan"]):
+        failures.append("a scan-page column rule with no banner naming its page was "
+                        "guessed at rather than skipped")
+    if BARE_PAGE_BANNER.match("PRINTED PAGE 1 \u2014 SOURCE PDF PAGE 13"):
+        failures.append("the bare page banner pattern swallowed a printed-page banner, "
+                        "which would resolve the issue page by ordinal instead of reading it")
+    if DASH_COLUMN_HEADING.match("--- SOURCE PDF PAGE 13, COLUMN 1 ---"):
+        failures.append("the 1833 dash-column heading swallowed a 1835 scan-page column "
+                        "rule, which carries a page the 1833 shape does not")
+
     # A hand-edit to the generated file, which is the fault nothing downstream can see.
     with tempfile.TemporaryDirectory() as td:
         ex = Path(td) / "extracted"
@@ -1074,8 +1234,8 @@ def self_test():
         for f in failures:
             print("FAIL: " + f, file=sys.stderr)
         return 1
-    print("  ok    every gazetteer assertion fires when broken (36 cases), and all\n"
-          "        five marker dialects resolve")
+    print("  ok    every gazetteer assertion fires when broken (42 cases), and all\n"
+          "        seven marker dialects resolve")
     return 0
 
 

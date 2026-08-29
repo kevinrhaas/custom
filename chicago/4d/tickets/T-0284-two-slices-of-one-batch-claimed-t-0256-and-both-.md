@@ -1,7 +1,7 @@
 ---
 id: T-0284
 title: Two slices of one batch claimed T-0256 and both built it — a claim is written where the next slice cannot see it
-state: open
+state: withdrawn
 epic: PIPELINE
 requested_by: loop
 seen: false
@@ -9,10 +9,10 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-08-28
-closed: null
+closed: 2026-08-28
 pr: null
 claimed_by: null
-blocked_on: null
+blocked_on: Duplicate of T-0238, which owned this defect a day earlier with the mechanism established rather than hypothesized. Filed without searching the ledger — the identical fault T-0236 records. Its measurement (the 14% collision rate) is preserved on T-0238.
 needs_bake: false
 ---
 

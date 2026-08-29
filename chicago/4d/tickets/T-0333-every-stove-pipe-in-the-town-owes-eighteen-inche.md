@@ -17,7 +17,7 @@ needs_bake: false
 ---
 
 The Trustees of the Town of Chicago passed an ordinance on **5 August 1835**, printed in
-three of the four August Democrats and read under [[T-0325]]
+three of the four August Democrats and read under [[T-0335]]
 (`chicago_democrat_1835_08_19.json` c005, section 18). It regulates roof geometry directly:
 
 > every stove pipe or chimney passing through the roof of any building shall extend and be

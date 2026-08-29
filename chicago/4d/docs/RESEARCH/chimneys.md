@@ -180,6 +180,10 @@ reasoned from attested evidence rather than invented, so it is **inferred** and 
   The fort's own WALL brick is a third value — `fort_structure.WALL_RGBA["brick"]`,
   0.47/0.26/0.20 — and converging it is **T-0267**, not this parcel: it moves two committed
   masters and is a separate argument.
+  **CLOSED 2026-08-29 (T-0267).** It converged onto this same row, on this same argument, and
+  the walls make no more of a claim about 1816 clay than the stacks did. Three masters moved,
+  not two — `lake_house_construction` carries `construction: brick` as well.
+  `docs/RESEARCH/materials.md` §9 is the whole of it.
 - **Not that every fort building had a chimney.** The COUNT is the record's, as everywhere
   else. Six of the thirteen `fort_structure` masters count one; the magazine's record says
   in terms that a magazine has none, and the tool below reads the records, not the geometry.

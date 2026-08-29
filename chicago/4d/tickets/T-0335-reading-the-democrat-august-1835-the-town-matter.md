@@ -1,5 +1,5 @@
 ---
-id: T-0325
+id: T-0335
 title: Reading the Democrat, August 1835: the town matter of the four issues
 state: done
 epic: PAPERS
@@ -29,7 +29,7 @@ came from.
 ## What this piece owns
 
 Everything the parent asks for EXCEPT the name-level extraction of the post-office
-letter list, which is [[T-0326]]: persons, businesses, buildings, street and
+letter list, which is [[T-0336]]: persons, businesses, buildings, street and
 infrastructure details, events, shipping and prices, into
 `data/research/newspapers/extracted/<issue_id>.json`.
 
@@ -59,7 +59,7 @@ current — is a run's work beside it.
   claim in this piece may be left unresolved.
 - The post office is carried: the letter list's heading and the postmaster's signature
   are claimed in every issue that prints them, and the coverage note says in plain words
-  that the names themselves are [[T-0326]]'s and are not minted here.
+  that the names themselves are [[T-0336]]'s and are not minted here.
 - An August advertisement that announces a NEW opening carries `announces_opening: true`,
   so T-0262 can keep it out of the July 1 town.
 - The gazetteer recompiles green; new merges, if any, carry `merge_rule`.

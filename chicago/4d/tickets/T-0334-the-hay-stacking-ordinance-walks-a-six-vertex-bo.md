@@ -17,7 +17,7 @@ needs_bake: false
 ---
 
 Section 22 of the ordinance passed **5 August 1835** makes it unlawful to stack hay inside a
-boundary the town walks street by street, read under [[T-0325]]
+boundary the town walks street by street, read under [[T-0335]]
 (`chicago_democrat_1835_08_19.json` c006):
 
 > commencing on Washington street at the United States Reservation, and running thence West

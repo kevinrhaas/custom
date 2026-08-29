@@ -1,6 +1,6 @@
 {
   "project": "chicago-4d",
-  "generated_ct": "Aug 28, 2026, 9:47 PM",
+  "generated_ct": "Aug 28, 2026, 10:01 PM",
   "tickets": [
     {
       "id": "T-0001",
@@ -539,7 +539,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 18
+      "queue_rank": 13
     },
     {
       "id": "T-0031",
@@ -663,7 +663,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 17
+      "queue_rank": 12
     },
     {
       "id": "T-0038",
@@ -951,7 +951,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 16
+      "queue_rank": 11
     },
     {
       "id": "T-0054",
@@ -987,7 +987,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 15
+      "queue_rank": 10
     },
     {
       "id": "T-0056",
@@ -2427,7 +2427,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 14
+      "queue_rank": 9
     },
     {
       "id": "T-0137",
@@ -2756,7 +2756,7 @@
     {
       "id": "T-0155",
       "title": "The changelog stamper has the same after-publish trap the ticket tool just lost",
-      "state": "open",
+      "state": "done",
       "epic": "PIPELINE",
       "requested_by": "loop",
       "seen": false,
@@ -2764,12 +2764,12 @@
       "legacy_id": null,
       "parent": null,
       "opened": "2026-08-23",
-      "closed": null,
-      "pr": null,
-      "claimed_by": null,
+      "closed": "2026-08-28",
+      "pr": "496",
+      "claimed_by": "run 8/28/2026, 8:41:41 PM CT",
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 13
+      "queue_rank": null
     },
     {
       "id": "T-0156",
@@ -3003,7 +3003,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 19
+      "queue_rank": 14
     },
     {
       "id": "T-0171",
@@ -3057,7 +3057,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 20
+      "queue_rank": 15
     },
     {
       "id": "T-0179",
@@ -3093,7 +3093,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 21
+      "queue_rank": 16
     },
     {
       "id": "T-0181",
@@ -3111,7 +3111,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 22
+      "queue_rank": 17
     },
     {
       "id": "T-0182",
@@ -3273,7 +3273,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 12
+      "queue_rank": 8
     },
     {
       "id": "T-0191",
@@ -3507,7 +3507,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 23
+      "queue_rank": 18
     },
     {
       "id": "T-0207",
@@ -3723,7 +3723,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 24
+      "queue_rank": 19
     },
     {
       "id": "T-0219",
@@ -3921,7 +3921,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 34
+      "queue_rank": 29
     },
     {
       "id": "T-0231",
@@ -3939,7 +3939,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 25
+      "queue_rank": 20
     },
     {
       "id": "T-0232",
@@ -3957,7 +3957,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 26
+      "queue_rank": 21
     },
     {
       "id": "T-0233",
@@ -3975,7 +3975,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 27
+      "queue_rank": 22
     },
     {
       "id": "T-0234",
@@ -3993,7 +3993,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 28
+      "queue_rank": 23
     },
     {
       "id": "T-0235",
@@ -4011,7 +4011,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 29
+      "queue_rank": 24
     },
     {
       "id": "T-0236",
@@ -4029,7 +4029,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 30
+      "queue_rank": 25
     },
     {
       "id": "T-0237",
@@ -4047,7 +4047,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 32
+      "queue_rank": 27
     },
     {
       "id": "T-0238",
@@ -4065,7 +4065,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 31
+      "queue_rank": 26
     },
     {
       "id": "T-0239",
@@ -4083,7 +4083,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 33
+      "queue_rank": 28
     },
     {
       "id": "T-0240",
@@ -4155,7 +4155,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 35
+      "queue_rank": 30
     },
     {
       "id": "T-0244",
@@ -4173,7 +4173,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 36
+      "queue_rank": 31
     },
     {
       "id": "T-0245",
@@ -4214,7 +4214,7 @@
     {
       "id": "T-0247",
       "title": "The light tier draws 83 calls against the 80-call floor restored yesterday, on an unmodified dev",
-      "state": "open",
+      "state": "withdrawn",
       "epic": "META",
       "requested_by": "loop",
       "seen": false,
@@ -4222,12 +4222,12 @@
       "legacy_id": null,
       "parent": null,
       "opened": "2026-08-27",
-      "closed": null,
+      "closed": "2026-08-28",
       "pr": null,
       "claimed_by": null,
-      "blocked_on": null,
+      "blocked_on": "Owner ruling 2026-08-28: 'Raise floor to 90' — the re-budget was chosen over the trim this ticket demanded; ruling recorded in the ticket body and at LIGHT_CALL_FLOOR's definition site",
       "needs_bake": false,
-      "queue_rank": 37
+      "queue_rank": null
     },
     {
       "id": "T-0248",
@@ -4317,7 +4317,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 38
+      "queue_rank": 32
     },
     {
       "id": "T-0253",
@@ -4335,7 +4335,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 39
+      "queue_rank": 33
     },
     {
       "id": "T-0254",
@@ -4371,7 +4371,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 40
+      "queue_rank": 34
     },
     {
       "id": "T-0256",
@@ -4497,7 +4497,7 @@
       "claimed_by": null,
       "blocked_on": "T-0261",
       "needs_bake": false,
-      "queue_rank": 9
+      "queue_rank": 5
     },
     {
       "id": "T-0263",
@@ -4515,7 +4515,7 @@
       "claimed_by": null,
       "blocked_on": "T-0262",
       "needs_bake": false,
-      "queue_rank": 10
+      "queue_rank": 6
     },
     {
       "id": "T-0264",
@@ -4533,7 +4533,7 @@
       "claimed_by": null,
       "blocked_on": "T-0262",
       "needs_bake": false,
-      "queue_rank": 11
+      "queue_rank": 7
     },
     {
       "id": "T-0265",
@@ -4551,7 +4551,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 41
+      "queue_rank": 35
     },
     {
       "id": "T-0266",
@@ -4569,12 +4569,12 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 42
+      "queue_rank": 36
     },
     {
       "id": "T-0267",
       "title": "The fort's wall brick is a third brick, 0.47/0.26/0.20 against the sheet's 0.45/0.23/0.17",
-      "state": "open",
+      "state": "done",
       "epic": "RENDERING",
       "requested_by": "loop",
       "seen": false,
@@ -4582,12 +4582,12 @@
       "legacy_id": null,
       "parent": null,
       "opened": "2026-08-28",
-      "closed": null,
-      "pr": null,
-      "claimed_by": null,
+      "closed": "2026-08-28",
+      "pr": "498",
+      "claimed_by": "run 8/28/2026, 7:59:21 PM CT",
       "blocked_on": null,
       "needs_bake": true,
-      "queue_rank": 43
+      "queue_rank": null
     },
     {
       "id": "T-0268",
@@ -4605,7 +4605,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 44
+      "queue_rank": 37
     },
     {
       "id": "T-0271",
@@ -4623,7 +4623,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 45
+      "queue_rank": 38
     },
     {
       "id": "T-0272",
@@ -4641,7 +4641,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": true,
-      "queue_rank": 46
+      "queue_rank": 39
     },
     {
       "id": "T-0273",
@@ -4659,7 +4659,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": true,
-      "queue_rank": 47
+      "queue_rank": 40
     },
     {
       "id": "T-0274",
@@ -4677,7 +4677,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": true,
-      "queue_rank": 48
+      "queue_rank": 41
     },
     {
       "id": "T-0275",
@@ -4695,7 +4695,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 49
+      "queue_rank": 42
     },
     {
       "id": "T-0276",
@@ -4731,7 +4731,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 50
+      "queue_rank": 43
     },
     {
       "id": "T-0279",
@@ -4749,7 +4749,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 51
+      "queue_rank": 44
     },
     {
       "id": "T-0280",
@@ -4767,7 +4767,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 52
+      "queue_rank": 45
     },
     {
       "id": "T-0281",
@@ -4821,12 +4821,12 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 53
+      "queue_rank": 46
     },
     {
       "id": "T-0284",
       "title": "Two slices of one batch claimed T-0256 and both built it — a claim is written where the next slice cannot see it",
-      "state": "open",
+      "state": "withdrawn",
       "epic": "PIPELINE",
       "requested_by": "loop",
       "seen": false,
@@ -4834,12 +4834,12 @@
       "legacy_id": null,
       "parent": null,
       "opened": "2026-08-28",
-      "closed": null,
+      "closed": "2026-08-28",
       "pr": null,
       "claimed_by": null,
-      "blocked_on": null,
+      "blocked_on": "Duplicate of T-0238, which owned this defect a day earlier with the mechanism established rather than hypothesized. Filed without searching the ledger — the identical fault T-0236 records. Its measurement (the 14% collision rate) is preserved on T-0238.",
       "needs_bake": false,
-      "queue_rank": 54
+      "queue_rank": null
     },
     {
       "id": "T-0285",
@@ -4857,7 +4857,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 55
+      "queue_rank": 47
     },
     {
       "id": "T-0286",
@@ -4875,7 +4875,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 56
+      "queue_rank": 48
     },
     {
       "id": "T-0289",
@@ -4970,7 +4970,7 @@
     {
       "id": "T-0294",
       "title": "Reading the Democrat, December 1834: Vol II Nos 1-4",
-      "state": "open",
+      "state": "done",
       "epic": "PAPERS",
       "requested_by": "owner",
       "seen": false,
@@ -4978,12 +4978,12 @@
       "legacy_id": null,
       "parent": "T-0259",
       "opened": "2026-08-28",
-      "closed": null,
-      "pr": null,
-      "claimed_by": null,
+      "closed": "2026-08-28",
+      "pr": "493",
+      "claimed_by": "run 8/28/2026, 7:52:48 PM CT",
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 5
+      "queue_rank": null
     },
     {
       "id": "T-0295",
@@ -5006,7 +5006,7 @@
     {
       "id": "T-0296",
       "title": "Reading the Democrat, 8 to 29 July 1835: the rest of the scene month",
-      "state": "open",
+      "state": "done",
       "epic": "PAPERS",
       "requested_by": "owner",
       "seen": false,
@@ -5014,12 +5014,12 @@
       "legacy_id": null,
       "parent": "T-0260",
       "opened": "2026-08-28",
-      "closed": null,
-      "pr": null,
-      "claimed_by": null,
+      "closed": "2026-08-28",
+      "pr": "495",
+      "claimed_by": "run 8/28/2026, 7:53:13 PM CT",
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 6
+      "queue_rank": null
     },
     {
       "id": "T-0297",
@@ -5042,7 +5042,7 @@
     {
       "id": "T-0298",
       "title": "Reading the Democrat, January to June 1835: the eight issues only the deposit can open",
-      "state": "open",
+      "state": "split",
       "epic": "PAPERS",
       "requested_by": "owner",
       "seen": false,
@@ -5050,12 +5050,12 @@
       "legacy_id": null,
       "parent": "T-0260",
       "opened": "2026-08-28",
-      "closed": null,
+      "closed": "2026-08-28",
       "pr": null,
-      "claimed_by": null,
+      "claimed_by": "run 8/28/2026, 7:53:55 PM CT",
       "blocked_on": "T-0275",
       "needs_bake": false,
-      "queue_rank": 8
+      "queue_rank": null
     },
     {
       "id": "T-0299",
@@ -5073,7 +5073,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 58
+      "queue_rank": 50
     },
     {
       "id": "T-0300",
@@ -5109,7 +5109,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 57
+      "queue_rank": 49
     },
     {
       "id": "T-0302",
@@ -5127,7 +5127,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 59
+      "queue_rank": 51
     },
     {
       "id": "T-0304",
@@ -5145,7 +5145,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 60
+      "queue_rank": 52
     },
     {
       "id": "T-0305",
@@ -5163,7 +5163,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 61
+      "queue_rank": 53
     },
     {
       "id": "T-0306",
@@ -5181,7 +5181,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 62
+      "queue_rank": 54
     },
     {
       "id": "T-0307",
@@ -5199,7 +5199,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 63
+      "queue_rank": 55
     },
     {
       "id": "T-0308",
@@ -5276,7 +5276,7 @@
     {
       "id": "T-0312",
       "title": "Reading the Democrat, March 1834: Vol. I Nos. 15-17",
-      "state": "open",
+      "state": "done",
       "epic": "PAPERS",
       "requested_by": "owner",
       "seen": false,
@@ -5284,12 +5284,12 @@
       "legacy_id": null,
       "parent": "T-0258",
       "opened": "2026-08-28",
-      "closed": null,
-      "pr": null,
-      "claimed_by": null,
+      "closed": "2026-08-28",
+      "pr": "489",
+      "claimed_by": "run 8/28/2026, 4:59:27 PM CT",
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 2
+      "queue_rank": null
     },
     {
       "id": "T-0313",
@@ -5325,12 +5325,12 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 3
+      "queue_rank": 2
     },
     {
       "id": "T-0315",
       "title": "Reading the Democrat, June 1834: Vol. I Nos. 27-30",
-      "state": "open",
+      "state": "done",
       "epic": "PAPERS",
       "requested_by": "owner",
       "seen": false,
@@ -5338,12 +5338,12 @@
       "legacy_id": null,
       "parent": "T-0258",
       "opened": "2026-08-28",
-      "closed": null,
-      "pr": null,
-      "claimed_by": null,
+      "closed": "2026-08-28",
+      "pr": "494",
+      "claimed_by": "run 8/28/2026, 7:51:44 PM CT",
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 4
+      "queue_rank": null
     },
     {
       "id": "T-0316",
@@ -5361,7 +5361,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 64
+      "queue_rank": 56
     },
     {
       "id": "T-0317",
@@ -5379,7 +5379,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 65
+      "queue_rank": 57
     },
     {
       "id": "T-0318",
@@ -5397,7 +5397,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 66
+      "queue_rank": 58
     },
     {
       "id": "T-0321",
@@ -5415,7 +5415,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 67
+      "queue_rank": 59
     },
     {
       "id": "T-0323",
@@ -5433,7 +5433,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 68
+      "queue_rank": 60
     },
     {
       "id": "T-0324",
@@ -5451,43 +5451,151 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 69
+      "queue_rank": 61
     },
     {
       "id": "T-0325",
-      "title": "Reading the Democrat, August 1835: the town matter of the four issues",
+      "title": "The resolver reads the two marker dialects the Democrats of early 1835 speak",
       "state": "done",
       "epic": "PAPERS",
       "requested_by": "owner",
       "seen": false,
-      "effort": "M",
+      "effort": "S",
       "legacy_id": null,
-      "parent": "T-0297",
+      "parent": "T-0298",
       "opened": "2026-08-28",
       "closed": "2026-08-28",
-      "pr": "500",
-      "claimed_by": "run 8/28/2026, 8:09:16 PM CT",
+      "pr": "491",
+      "claimed_by": "run 8/28/2026, 7:59:00 PM CT",
       "blocked_on": null,
       "needs_bake": false,
       "queue_rank": null
     },
     {
       "id": "T-0326",
-      "title": "The 31 July 1835 letter list, standing in all four August Democrats",
+      "title": "Reading the Democrat, January to June 1835: the eight issues, now that their columns resolve",
       "state": "open",
       "epic": "PAPERS",
       "requested_by": "owner",
       "seen": false,
       "effort": "M",
       "legacy_id": null,
-      "parent": "T-0297",
+      "parent": "T-0298",
       "opened": "2026-08-28",
       "closed": null,
       "pr": null,
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 7
+      "queue_rank": 4
+    },
+    {
+      "id": "T-0327",
+      "title": "The December 1834 bookseller's name is 'RUISAL & CLUPR' in the only printing that carries it, and the gazetteer may already hold the firm",
+      "state": "open",
+      "epic": "PAPERS",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "S",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-08-29",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "queue_rank": 62
+    },
+    {
+      "id": "T-0328",
+      "title": "D. Weaver's building is on Lot 2 in one printing and Lot 9 in the next, and both transcriptions are Vision-set",
+      "state": "open",
+      "epic": "PAPERS",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "XS",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-08-29",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "queue_rank": 63
+    },
+    {
+      "id": "T-0329",
+      "title": "School District Number One is bounded in print on 1834-12-10 and the segmenter cut better than half of every line of it away",
+      "state": "open",
+      "epic": "PAPERS",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "S",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-08-29",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "queue_rank": 64
+    },
+    {
+      "id": "T-0330",
+      "title": "A fragment reading 'opposite the Tremont House' sits between two interleaved advertisements and neither can claim it",
+      "state": "open",
+      "epic": "PAPERS",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "XS",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-08-29",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "queue_rank": 65
+    },
+    {
+      "id": "T-0331",
+      "title": "The March 1834 letter list lost its date line and both its crops failed Vision; the page images can say which return it is",
+      "state": "open",
+      "epic": "PAPERS",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "M",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-08-28",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "queue_rank": 66
+    },
+    {
+      "id": "T-0332",
+      "title": "The sheet's one brick is called chimney_brick, and a wall now reads it",
+      "state": "open",
+      "epic": "META",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "M",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-08-28",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": true,
+      "queue_rank": 67
     },
     {
       "id": "T-0333",
@@ -5505,7 +5613,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 70
+      "queue_rank": 68
     },
     {
       "id": "T-0334",
@@ -5523,7 +5631,43 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 71
+      "queue_rank": 69
+    },
+    {
+      "id": "T-0335",
+      "title": "Reading the Democrat, August 1835: the town matter of the four issues",
+      "state": "done",
+      "epic": "PAPERS",
+      "requested_by": "owner",
+      "seen": false,
+      "effort": "M",
+      "legacy_id": null,
+      "parent": "T-0297",
+      "opened": "2026-08-28",
+      "closed": "2026-08-28",
+      "pr": "500",
+      "claimed_by": "run 8/28/2026, 8:09:16 PM CT",
+      "blocked_on": null,
+      "needs_bake": false,
+      "queue_rank": null
+    },
+    {
+      "id": "T-0336",
+      "title": "The 31 July 1835 letter list, standing in all four August Democrats",
+      "state": "open",
+      "epic": "PAPERS",
+      "requested_by": "owner",
+      "seen": false,
+      "effort": "M",
+      "legacy_id": null,
+      "parent": "T-0297",
+      "opened": "2026-08-28",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "queue_rank": 3
     }
   ]
 }

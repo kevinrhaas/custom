@@ -45,20 +45,15 @@ T-0219 — Finish the heightfield SOUTH to Madison Street, the plat's last tier
 # --- band BLOCK the visible seeding at its bottom — documented storefronts and real
 # --- people replacing invented ones — which is why they sit above other invisible work.
 # --- Three owner rulings govern the epic; each ticket carries them in full.
-T-0312 — Reading the Democrat, March 1834: Vol. I Nos. 15-17
 T-0314 — Reading the Democrat, May 1834: Vol. I Nos. 23-26
-T-0315 — Reading the Democrat, June 1834: Vol. I Nos. 27-30
-T-0294 — Reading the Democrat, December 1834: Vol II Nos 1-4
-T-0296 — Reading the Democrat, 8 to 29 July 1835: the rest of the scene month
-T-0326 — The 31 July 1835 letter list, standing in all four August Democrats
-T-0298 — Reading the Democrat, January to June 1835: the eight issues only the deposit can open
+T-0336 — The 31 July 1835 letter list, standing in all four August Democrats
+T-0326 — Reading the Democrat, January to June 1835: the eight issues, now that their columns resolve
 T-0262 — The July 1, 1835 register: who and what the papers put in the town
 T-0263 — The documented storefronts take their places on South Water and Lake
 T-0264 — Documented people replace the invented
 
 # --- MEASUREMENT, GATES AND PROVENANCE — invisible, and nothing below blocks the above
 T-0190 — A second street tier for the street edge, and the ceiling that refuses it
-T-0155 — The changelog stamper has the same after-publish trap the ticket tool just lost
 T-0136 — The eight owner-brief plates T-0075 could not identify: Andreas at page-image level, and two museum objects
 T-0055 — Hold the Kinzie-view plate as a source record
 T-0053 — A patched lit material silently inherits another layer's shader program
@@ -88,13 +83,11 @@ T-0239 — Nothing tests the party-line note's prose against the placement it de
 T-0230 — Two named South Water frontages carry a reconstructed trade, so neither a signboard nor a hitching post will ever stand at them
 T-0243 — The two timber-placement gates match no mesh since the lattice landed, and one of them is now red on dev
 T-0244 — T-0194's twelve hitching posts draw no vertices the gate can find, on dev
-T-0247 — The light tier draws 83 calls against the 80-call floor restored yesterday, on an unmodified dev
 T-0252 — Decide once whether a baked town carries the nine renderer-drawn layers, or none of them
 T-0253 — May an invented building stand on the river margin of a platted street corridor
 T-0255 — The dooryard planting rule reads every street in the town with no bound on reach, so a track across the river can turn a house's yard
 T-0265 — The sward census fails its own gate at a phone: z10_settled_town owes xanthium_strumarium a whole slot and draws it nowhere
 T-0266 — On a phone from across the river the stockade's picket rhythm falls under the pixel grid and beats
-T-0267 — The fort's wall brick is a third brick, 0.47/0.26/0.20 against the sheet's 0.45/0.23/0.17
 T-0268 — A building held under the standing constraint says so nowhere a visitor can see
 T-0271 — The balanced ceiling is breached at the forks by 5,290 triangles on an unmodified dev, and both open tickets name a different stand
 T-0272 — The West Division parcel's form values come from the archetype and cite the family band: 8 families, 11 claims outside it
@@ -105,7 +98,6 @@ T-0277 — The mid and forb rings' outer edges are re-priced for a density hando
 T-0279 — 2,526 of 18,911 drawn flower heads stand over open ground with no plant under their own stalk, on an unmodified dev
 T-0280 — The far band's grass-or-flower split is made on the forb lattice's CLAMPED share
 T-0283 — The North Division's warehouse row allows one freight roof and six documented ones stand above it
-T-0284 — Two slices of one batch claimed T-0256 and both built it — a claim is written where the next slice cannot see it
 T-0285 — An asset carrying its own AO map cannot batch with the town: +2 draw calls for one building
 T-0286 — The AO unwrap leaves 68.9 per cent of every atlas empty, and the map is priced as if it were full
 T-0301 — Every visible ticket at the top of the queue is parked on hold or in flight, and five straight invisible runs merged under it
@@ -121,5 +113,11 @@ T-0318 — The January 1834 letter list is 97 names and the printed list was lon
 T-0321 — The 1 April 1834 Chicago letter list is 179 names and nineteen lines of debris stand where more did
 T-0323 — The 1 January 1834 letter list has a third printing that T-0318 did not know about, and it repairs the A-H half without page images
 T-0324 — J. K. Botsford advertises two addresses in one issue, and Graves' Tavern cannot be placed until they are reconciled
+T-0327 — The December 1834 bookseller's name is 'RUISAL & CLUPR' in the only printing that carries it, and the gazetteer may already hold the firm
+T-0328 — D. Weaver's building is on Lot 2 in one printing and Lot 9 in the next, and both transcriptions are Vision-set
+T-0329 — School District Number One is bounded in print on 1834-12-10 and the segmenter cut better than half of every line of it away
+T-0330 — A fragment reading 'opposite the Tremont House' sits between two interleaved advertisements and neither can claim it
+T-0331 — The March 1834 letter list lost its date line and both its crops failed Vision; the page images can say which return it is
+T-0332 — The sheet's one brick is called chimney_brick, and a wall now reads it
 T-0333 — Every stove pipe in the town owes eighteen inches above its roof, and the ordinance of 5 August 1835 says so
 T-0334 — The hay-stacking ordinance walks a six-vertex boundary round the built town, and nothing draws or tests it
