@@ -1,4 +1,12 @@
 export const CHANGELOG = [ // newest first
+  { v: 355, title: 'Six issues of 1835 nobody could have quoted', kind: 'chore', ts: '2026-08-29T01:03:03.306Z', date: 'Aug 28, 2026, 8:03 PM CT',
+    items: [
+      'Nothing you can see changed today. Six issues of the Chicago Democrat from the first half of 1835 could not have been quoted by this project at all, and now they can.',
+      'Every quotation here has to name the page and column it came from, and a check rebuilds the quote out of the transcription to prove it. That check reads column markers, and the transcriptions do not all mark their columns the same way. Six issues \u2014 21 January, the 25 March Extra, 20 May, 27 May, 4 June and 10 June \u2014 spoke two shapes it had never been shown, so it found no columns in them whatever, and any reading of those issues would have been rejected line by line.',
+      'One of the two was written off as damage. The project had recorded three of these issues as carrying \u201Cbare rules with no page or column at all\u201D and suspected the transcription was at fault. It is not: the rules are decoration around a heading, each column is ruled off beneath it, and 118 markers were sitting there unread.',
+      'And the thing that let it happen three times is now shut. The check only ever opened the transcriptions its own quotations pointed at, so an issue nobody had read yet was tested by nothing \u2014 which is why each new shape has been discovered by someone sitting down to read the issues that speak it. It now walks all 89 transcriptions in the collection and refuses any one it cannot find a single column in. Eighty-eight resolve; the one that does not is a hand-made reading of the page images with no columns to find, and it says so by name.',
+      'The deposit of transcriptions is also on this branch now, which nobody had noticed \u2014 all 178 files match their recorded fingerprints here. Ten reading passes have been copying it across from elsewhere to check their work, and the next one will not have to.',
+    ] },
   { v: 354, title: 'November 1834, read: a fire ordinance and a committee of twenty', kind: 'chore', ts: '2026-08-29T00:06:41.492Z', date: 'Aug 28, 2026, 7:06 PM CT',
     items: [
       'Nothing you can see changed today. The Chicago Democrat for November 1834 \u2014 four issues, Vol. I Nos. 49 to 52 \u2014 has been read end to end, and 49 things it says about the town are written down with the page, column and line they came from.',

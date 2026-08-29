@@ -1,7 +1,7 @@
 ---
 id: T-0298
 title: Reading the Democrat, January to June 1835: the eight issues only the deposit can open
-state: claimed
+state: split
 epic: PAPERS
 requested_by: owner
 seen: false
@@ -9,7 +9,7 @@ effort: M
 legacy_id: null
 parent: T-0260
 opened: 2026-08-28
-closed: null
+closed: 2026-08-28
 pr: null
 claimed_by: run 8/28/2026, 7:53:55 PM CT
 blocked_on: T-0275
