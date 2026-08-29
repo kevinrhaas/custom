@@ -1,5 +1,53 @@
 # STATUS
 
+## Shipped 2026-08-29 — T-0358: the plat gets its block numbers, and the corpus's only address resolves
+
+**Nothing you can see changed.** This is a dependency: the corpus's one lot-and-block address —
+G. Spring's *"LOT No. 7, in block No. 16, one lot east of Haddock's Tavern, on Lake street"*,
+printed six times in the *Chicago Democrat* — resolved to nothing, because
+`data/traces/vectors/thompson_lots.json` keys its nineteen blocks on their bounding streets and no
+committed source numbered one. Three separate readings had recorded that this was the most
+placeable statement the corpus makes and that placing it was somebody else's job.
+
+**The evidence turned out to be two numerals, not three.** `clark_reach_bulge_1834.md` § 8 and
+`thompson_plat_grid.md` § 4 both said the owner's crop of Wright's 1834 sheet reads *"block numbers
+19, 18 and 17"*. Re-read at full resolution — the file is 639 × 719 px — it carries **19 and 18**,
+and the map region ends at block 18's east edge; the asset's own README, written when it was
+supplied, describes two. The third arrived in the retelling. Both memos are corrected, and nothing
+built on them moves: two consecutive numerals fix the step and the direction as well as three would.
+What changes is that a later reader can now see how far the base can be pushed, which matters
+because this ticket pushes it three blocks.
+
+- **Six blocks are numbered and everything else is refused in writing.** 19 west of 18 fixes the
+  step at one, falling eastward, and fixes it *along the tier* — two blocks side by side differing
+  by one cannot be column-major. The watercourse drawn in the street between them is the one
+  already traced at local E +462…+469, the east half of the La Salle corridor (centreline E +451.3;
+  Wells 122 m west, Clark 123 m east), so they are Wells–La Salle and La Salle–Clark. Counting:
+  **21 Market–Franklin, 20 Franklin–Wells, 19, 18, 17 Clark–Dearborn, 16 Dearborn–State.** The other
+  two tiers, the West Division, the North Division and where the run begins and ends are all refused,
+  each with its reason: two numerals in one row say nothing about how the run passes to the next.
+- **Block 16 is the one counted number an independent source agrees with.** Dearborn–State is
+  bounded south by Lake Street, and the lot scheme the same crop shows runs 5 6 7 8 west to east
+  along a south row — so lot 7 is the third lot east of Dearborn and Haddock's Tavern, one lot west,
+  is the second. That is where T-0324 had already argued the Mansion House stood, from Andreas's
+  "on Lake near Dearborn" and Botsford's corner advertisements, before any of this existed. Three
+  statements, three sources, one block face. **The count stays `inferred`** — agreement is not a
+  survey — and 17, 20 and 21 have no such check and say so on each record.
+- **Nothing was promoted and no confidence moved.** `data/traces/thompson_block_numbering.json` is
+  authored and carries the reading, the identification and the refusals;
+  `tools/generate_plat_lots.py` only stamps it, and re-derives the grid byte for byte as before.
+  Every `plat_lot_number` is `conjectural` *including block 18's own*: a number put on a line the
+  module drew is conjectural whatever the number's provenance. No modern plat reprint was consulted
+  and the record says so in terms.
+- **Two consequences are now measurable and neither is acted on here.** The Mansion House stands on
+  lot 5, the corner lot, and the corpus puts it on lot 6 — a gap of **24.2 m, one lot east**, which
+  is inside the along-street allowance that record already declares, so the coordinate is unchanged
+  and the note now carries the number instead of the sentence. And lot 7, which carried "a large
+  Dwelling-House and fine well", holds an anonymous reconstructed count-unit roof. Standing Spring's
+  documented house there is the visible follow-up, filed as **T-0423**.
+- **No mesh went stale and this cost no bake.** `generators/mesh_inputs.py` hashes archetype, phase
+  and resolved params; a block number moves no vertex.
+
 ## Blocked 2026-08-29 — T-0384: Holbrook's blocker was answered by a ruling nobody carried back to the ticket
 
 **Nothing was built and that is the finding.** T-0384 sat at row 2 of the queue, `state: open`

@@ -42,3 +42,13 @@ also holds one half of the `streetLayer` reading taken above the stage split und
 and if they end up split across both halves the guard becomes `anyStage(5, 7, 8)` with the
 renumbering that implies. Part 7 is NOT the tail, so unlike T-0167's cut this one renumbers
 every part after it, including the mobile recipe and the pairing rule.
+
+**A third reading, and it is the third that decides it — 2026-08-29, from T-0358's gate.**
+Desktop part 7 was **killed twice on one runner** on the published tree, at `timeout 590` and
+again at `timeout 592`, so it cost **more than 9 m 50 s on both attempts**. That is not the
+2 m 17 s margin; it is a breach, and it reproduces. The rest of the same gate fitted on the same
+runner in the same hour — desktop 4 at 9 m 49 s (11 s of margin, T-0173's ticket), 5 at 8 m 51 s,
+9 at 4 m 21 s, and every mobile leg — so the machine was not simply slow. Two readings could be
+called a disagreement; three, with two of them kills, are a part that does not fit. The T-0358 PR
+had to report the desktop repeat of part 7 as unrun and lean on the mobile leg, which covers the
+same assertions, to say the change was gated.
