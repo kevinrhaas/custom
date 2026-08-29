@@ -376,10 +376,10 @@ with the field**, the same register reads:
 | present at the scene date | 224 |
 | excluded — contradicted before 1835-07-01 | 14 |
 | excluded — opening announced after 1835-07-01 | 4 |
-| `enrich_existing` | 42 |
+| `enrich_existing` | 38 |
 | `new_building` | 30 |
 | `street_only` | 63 |
-| `unplaceable` | 107 |
+| `unplaceable` | 111 |
 | standing on a survival liberty (last evidence pre-1835) | 126 |
 | standing on a backdating liberty (first evidence post-scene-date) | 33 |
 

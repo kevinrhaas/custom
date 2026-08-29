@@ -13,6 +13,68 @@
       "failed": 0,
       "failures": [],
       "wallSeconds": 99,
+      "takenAt": "2026-08-29T18:04:31.062Z",
+      "ref": "steward/t-0356-announced-opening",
+      "commit": "431d0c17e0f0",
+      "devCommit": "37908856906e",
+      "treeHash": "sha256:67d81cdb4e12db7d",
+      "treeDirty": false,
+      "changelogHash": "sha256:d8a641e35a3d8d43",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          4.3,
+          3.6,
+          2.8
+        ]
+      },
+      "source": "/tmp/smoke_m8b.log"
+    },
+    {
+      "viewport": "desktop",
+      "stage": "8",
+      "parts": [
+        8
+      ],
+      "verdict": "pass",
+      "target": "published",
+      "passed": 37,
+      "failed": 0,
+      "failures": [],
+      "wallSeconds": 174,
+      "takenAt": "2026-08-29T18:04:30.975Z",
+      "ref": "steward/t-0356-announced-opening",
+      "commit": "431d0c17e0f0",
+      "devCommit": "37908856906e",
+      "treeHash": "sha256:67d81cdb4e12db7d",
+      "treeDirty": false,
+      "changelogHash": "sha256:d8a641e35a3d8d43",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          4.3,
+          3.6,
+          2.8
+        ]
+      },
+      "source": "/tmp/smoke_d8b.log"
+    },
+    {
+      "viewport": "mobile",
+      "stage": "8",
+      "parts": [
+        8
+      ],
+      "verdict": "pass",
+      "target": "published",
+      "passed": 37,
+      "failed": 0,
+      "failures": [],
+      "wallSeconds": 99,
       "takenAt": "2026-08-29T17:55:26.197Z",
       "ref": "steward/t-0356-announced-opening",
       "commit": "b8d1064e2d49",
@@ -1815,73 +1877,6 @@
       "passed": 37,
       "failed": 0,
       "failures": [],
-      "wallSeconds": null,
-      "takenAt": "2026-08-28T17:01:08.991Z",
-      "ref": "steward/t-0246-log-jail-randolph",
-      "commit": "acce050b6ff7",
-      "devCommit": "2506c60cbe87",
-      "treeHash": "sha256:f6651c6c121f2a79",
-      "treeDirty": true,
-      "changelogHash": "sha256:4b962cf8f3f2f4cf",
-      "host": {
-        "kind": "steward-runner",
-        "cpus": 4,
-        "memGB": 15.6,
-        "loadavg": [
-          2.4,
-          3.9,
-          4.1
-        ]
-      },
-      "source": "/tmp/smoke_all.log"
-    },
-    {
-      "viewport": "desktop",
-      "stage": "2",
-      "parts": [
-        2
-      ],
-      "verdict": "fail",
-      "target": "published",
-      "passed": 81,
-      "failed": 1,
-      "failures": [
-        "desktop 1280x800: the Sauganash's two hitching posts stand on their own ground, carrying nothing — sauganash_hotel_hitching_post_1 1.30/1.3 m, foot -0.000 m, 3.87 m clear | sauganash_hotel_hitching_post_2 1.30/1.3 m, foot 0.000 m, 3.87 m clear | blk_lake_market_north_hitching_philo_carpenter_log_shop -Infinity/1.3 m, foot Infinity m, 3.88 m clear | blk_south_water_clark_north_hitching_madore_beaubien_house -Infinity/1.3 m, foot Infinity m, 3.88 m clear | blk_south_water_clark_north_hitching_pruyne_kimball_drugstore -Infinity/1.3 m, foot Infinity m, 3.88 m clear | blk_south_water_dearborn_north_hitching_chicago_american_office -Infinity/1.3 m, foot Infinity m, 3.88 m clear | blk_south_water_dearborn_south_hitching_mansion_house -Infinity/1.3 m, foot Infinity m, 3.89 m clear | blk_south_water_franklin_north_hitching_jh_kinzie_forwarding_store -Infinity/1.3 m, foot Infinity m, 3.88 m clear | blk_south_water_lasalle_north_hitching_chicago_democrat_office -Infinity/1.3 m, foot Infinity m, 3.88 m clear | blk_south_water_lasalle_south_hitching_thomas_church_store -Infinity/1.3 m, foot Infinity m, 3.88 m clear | blk_south_water_wells_north_hitching_brown_boarding_house -Infinity/1.3 m, foot Infinity m, 3.88 m clear | blk_south_water_wells_north_hitching_carpenter_south_water_store -Infinity/1.3 m, foot Infinity m, 3.88 m clear | blk_south_water_wells_north_hitching_h_jones_store -Infinity/1.3 m, foot Infinity m, 3.88 m clear | blk_south_water_wells_north_hitching_peck_store -Infinity/1.3 m, foot Infinity m, 3.88 m clear — 1 board(s) lettered in the layer, record says a board on a post here: false"
-      ],
-      "wallSeconds": null,
-      "takenAt": "2026-08-28T17:01:08.991Z",
-      "ref": "steward/t-0246-log-jail-randolph",
-      "commit": "acce050b6ff7",
-      "devCommit": "2506c60cbe87",
-      "treeHash": "sha256:f6651c6c121f2a79",
-      "treeDirty": true,
-      "changelogHash": "sha256:4b962cf8f3f2f4cf",
-      "host": {
-        "kind": "steward-runner",
-        "cpus": 4,
-        "memGB": 15.6,
-        "loadavg": [
-          2.4,
-          3.9,
-          4.1
-        ]
-      },
-      "source": "/tmp/smoke_all.log"
-    },
-    {
-      "viewport": "desktop",
-      "stage": "4",
-      "parts": [
-        4
-      ],
-      "verdict": "fail",
-      "target": "published",
-      "passed": 46,
-      "failed": 2,
-      "failures": [
-        "desktop 1280x800: scene detail 'balanced' stays inside its own ceiling at the WORST stand — 1,215,577 tris of 1,210,000 at the forks, from Wolf Point, 155 calls of 215 at Lake and Market, the corner itself — spread: the forks, from Wolf Point 1,215,577/152c · Lake Street at Canal, east down the axis 1,199,449/146c · Lake and Market, the corner itself 981,093/155c · the Sauganash at 26 m 826,711/113c · the open aerial 805,007/121c",
-        "desktop 1280x800: the light tier draws inside its 80-call floor at the worst stand — 85 calls at light, worst stand Lake and Market, the corner itself — floor 80, the count this project chose before the 2026-08 content landed, restored by T-0147 once T-0150, T-0146 and T-0223 had trimmed the axial view"
-      ],
       "wallSeconds": null,
       "takenAt": "2026-08-28T17:01:08.991Z",
       "ref": "steward/t-0246-log-jail-randolph",
