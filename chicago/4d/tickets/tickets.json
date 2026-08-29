@@ -1,6 +1,6 @@
 {
   "project": "chicago-4d",
-  "generated_ct": "Aug 28, 2026, 7:52 PM",
+  "generated_ct": "Aug 28, 2026, 8:12 PM",
   "tickets": [
     {
       "id": "T-0001",
@@ -5452,6 +5452,78 @@
       "blocked_on": null,
       "needs_bake": false,
       "queue_rank": 69
+    },
+    {
+      "id": "T-0327",
+      "title": "The December 1834 bookseller's name is 'RUISAL & CLUPR' in the only printing that carries it, and the gazetteer may already hold the firm",
+      "state": "open",
+      "epic": "PAPERS",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "S",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-08-29",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "queue_rank": 70
+    },
+    {
+      "id": "T-0328",
+      "title": "D. Weaver's building is on Lot 2 in one printing and Lot 9 in the next, and both transcriptions are Vision-set",
+      "state": "open",
+      "epic": "PAPERS",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "XS",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-08-29",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "queue_rank": 71
+    },
+    {
+      "id": "T-0329",
+      "title": "School District Number One is bounded in print on 1834-12-10 and the segmenter cut better than half of every line of it away",
+      "state": "open",
+      "epic": "PAPERS",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "S",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-08-29",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "queue_rank": 72
+    },
+    {
+      "id": "T-0330",
+      "title": "A fragment reading 'opposite the Tremont House' sits between two interleaved advertisements and neither can claim it",
+      "state": "open",
+      "epic": "PAPERS",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "XS",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-08-29",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "queue_rank": 73
     }
   ]
 }

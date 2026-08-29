@@ -121,3 +121,7 @@ T-0318 — The January 1834 letter list is 97 names and the printed list was lon
 T-0321 — The 1 April 1834 Chicago letter list is 179 names and nineteen lines of debris stand where more did
 T-0323 — The 1 January 1834 letter list has a third printing that T-0318 did not know about, and it repairs the A-H half without page images
 T-0324 — J. K. Botsford advertises two addresses in one issue, and Graves' Tavern cannot be placed until they are reconciled
+T-0327 — The December 1834 bookseller's name is 'RUISAL & CLUPR' in the only printing that carries it, and the gazetteer may already hold the firm
+T-0328 — D. Weaver's building is on Lot 2 in one printing and Lot 9 in the next, and both transcriptions are Vision-set
+T-0329 — School District Number One is bounded in print on 1834-12-10 and the segmenter cut better than half of every line of it away
+T-0330 — A fragment reading 'opposite the Tremont House' sits between two interleaved advertisements and neither can claim it
