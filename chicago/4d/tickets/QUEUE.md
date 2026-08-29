@@ -59,7 +59,6 @@ T-0357 — 129 documented businesses will stand on a survival liberty and LIBERT
 # --- standing in the model. This is the payoff the whole epic was for. T-0358 sits here
 # --- rather than with the streets because the corpus's ONLY lot-and-block address cannot
 # --- be used until the Thompson plat's block numbering is committed.
-T-0263 — The documented storefronts take their places on South Water and Lake
 T-0384 — John Holbrook's store takes its door on South Water Street, one door from Dearborn
 T-0385 — The New York Clothing Store stands three doors north of the Tremont House in Dearborn Street
 T-0386 — W. Montgomery's new auction and commission room takes David Carver's old stand on South Water Street
