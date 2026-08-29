@@ -42,7 +42,10 @@
 # --- forename, or a tavern minted as a person becomes a wrong building once seeded.
 # --- Cheap (mostly S/XS) and each one makes the seeding below more accurate.
 T-0340 — The bookseller's sign-name and its partners' firm-name are three gazetteer entries for one house
-T-0338 — Thirty-one groups of firms share a partner surname and only one of them has been judged
+T-0399 — One style printed with and without its trade: the groups where the trade tail is the whole difference
+T-0400 — The surname groups of four or more readings: Montgomery, Kinzie, Hubbard, Mason, Collins & Caton
+T-0401 — The surname groups of three readings, once the identical styles are joined
+T-0402 — The two-reading surname groups whose two styles genuinely differ
 T-0355 — A firm matches a building on an occupant the same sentence dates to 1831
 T-0356 — The claim vocabulary cannot say an advertisement announces an opening, so 17 businesses are excluded on a proxy
 T-0345 — Mason's blacksmith shop is anchored on Graves' Tavern until 16 July 1834 and on the Tremont House from 10 September, and the register holds both as standing placements
