@@ -47,7 +47,10 @@ T-0340 — The bookseller's sign-name and its partners' firm-name are three gaze
 T-0341 — A bare surname can never be joined to its forename: the family rule reads 'no initials' as 'different initials'
 T-0348 — The identity policy cannot merge an unread initial with a read one, and the best witness reads seventeen of them
 T-0359 — The gazetteer mints tavern names as people, so Maddock's Tavern and Haddock's Tavern cannot be reconciled
-T-0338 — Thirty-one groups of firms share a partner surname and only one of them has been judged
+T-0391 — The restyled firm duplicates: one style is the other plus a trade tail or a leading article
+T-0392 — The firm styles that differ in the forename's form: whole against abbreviated against initial
+T-0393 — The firm groups that are two houses, written down so no later sweep merges them
+T-0394 — The firm groups an agency, a parent house or a lost signature makes ambiguous
 T-0350 — D. Weaver's advertisement is dated Nov. 12 in two printings and Nov. 19 in the one the ledger believed
 T-0355 — A firm matches a building on an occupant the same sentence dates to 1831
 T-0356 — The claim vocabulary cannot say an advertisement announces an opening, so 17 businesses are excluded on a proxy
