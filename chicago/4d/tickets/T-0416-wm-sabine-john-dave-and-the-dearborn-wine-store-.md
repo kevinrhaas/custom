@@ -89,3 +89,8 @@ Both widenings are available and measured if he wants the twelve.
 
 **What is NOT waiting on him:** the +12 measurement itself is committed and re-derives on
 every `check.sh`, so whenever the ruling comes it is applied rather than re-argued.
+
+*The measurement above is PR #568, which committed the counterfactual into
+`tools/adopt_street_faces.py` and `data/research/newspapers/street_face_adoptions.json`;
+it re-derives on every `check.sh`, so the ruling can be applied whenever it comes without
+re-arguing the numbers.*
