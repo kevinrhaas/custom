@@ -1,7 +1,7 @@
 ---
 id: T-0183
 title: The Market and South Water corner needs one control point, and the node rule may not be able to make it
-state: open
+state: claimed
 epic: META
 requested_by: steward
 seen: false
@@ -11,7 +11,7 @@ parent: null
 opened: 2026-08-24
 closed: null
 pr: null
-claimed_by: run 8/27/2026, 6:17:17 PM CT
+claimed_by: run 8/29/2026, 6:37:28 PM CT
 blocked_on: null
 needs_bake: false
 ---
