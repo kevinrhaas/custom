@@ -43,7 +43,6 @@ T-0323 — The 1 January 1834 letter list has a third printing that T-0318 did n
 T-0299 — Three printings of one letter list mint 298 people three times, and identity.json is empty
 T-0304 — The gazetteer merges persons by a declared rule and has no equivalent for firms, so 'L. Wilson & Co.' and 'Jno. Wilson & Co.' are two businesses
 T-0327 — The December 1834 bookseller's name is 'RUISAL & CLUPR' in the only printing that carries it, and the gazetteer may already hold the firm
-T-0330 — A fragment reading 'opposite the Tremont House' sits between two interleaved advertisements and neither can claim it
 T-0328 — D. Weaver's building is on Lot 2 in one printing and Lot 9 in the next, and both transcriptions are Vision-set
 T-0324 — J. K. Botsford advertises two addresses in one issue, and Graves' Tavern cannot be placed until they are reconciled
 T-0329 — School District Number One is bounded in print on 1834-12-10 and the segmenter cut better than half of every line of it away
