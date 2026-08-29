@@ -1,7 +1,7 @@
 ---
 id: T-0330
 title: A fragment reading 'opposite the Tremont House' sits between two interleaved advertisements and neither can claim it
-state: open
+state: claimed
 epic: PAPERS
 requested_by: loop
 seen: false
@@ -11,7 +11,7 @@ parent: null
 opened: 2026-08-29
 closed: null
 pr: null
-claimed_by: null
+claimed_by: run 8/28/2026, 10:23:18 PM CT
 blocked_on: null
 needs_bake: false
 ---

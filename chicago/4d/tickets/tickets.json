@@ -1,6 +1,6 @@
 {
   "project": "chicago-4d",
-  "generated_ct": "Aug 28, 2026, 9:58 PM",
+  "generated_ct": "Aug 28, 2026, 10:28 PM",
   "tickets": [
     {
       "id": "T-0001",
@@ -5546,7 +5546,7 @@
     {
       "id": "T-0330",
       "title": "A fragment reading 'opposite the Tremont House' sits between two interleaved advertisements and neither can claim it",
-      "state": "open",
+      "state": "claimed",
       "epic": "PAPERS",
       "requested_by": "loop",
       "seen": false,
@@ -5556,7 +5556,7 @@
       "opened": "2026-08-29",
       "closed": null,
       "pr": null,
-      "claimed_by": null,
+      "claimed_by": "run 8/28/2026, 10:23:18 PM CT",
       "blocked_on": null,
       "needs_bake": false,
       "queue_rank": 7
@@ -5596,6 +5596,24 @@
       "blocked_on": null,
       "needs_bake": true,
       "queue_rank": 66
+    },
+    {
+      "id": "T-0337",
+      "title": "Mason's blacksmith shop is anchored on Graves' Tavern until 16 July 1834 and on the Tremont House from 10 September, and the register holds both as standing placements",
+      "state": "open",
+      "epic": "PAPERS",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "S",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-08-28",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "queue_rank": 67
     }
   ]
 }

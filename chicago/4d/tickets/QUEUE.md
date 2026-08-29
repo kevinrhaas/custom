@@ -135,3 +135,4 @@ T-0271 — The balanced ceiling is breached at the forks by 5,290 triangles on a
 # --- NEWLY FILED — `ticket.mjs new` appends to the END of this file, so new tickets
 # --- land under this line. NOT yet placed by the owner.
 T-0332 — The sheet's one brick is called chimney_brick, and a wall now reads it
+T-0337 — Mason's blacksmith shop is anchored on Graves' Tavern until 16 July 1834 and on the Tremont House from 10 September, and the register holds both as standing placements
