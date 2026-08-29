@@ -350,7 +350,8 @@
   ],
   "counts": {
     "claims": 1166,
-    "persons": 2633,
+    "persons": 2628,
+    "places": 4,
     "businesses": 242
   },
   "persons": [
@@ -13545,26 +13546,6 @@
       "associated_places": []
     },
     {
-      "id": "person_eagle_hotel",
-      "name": "Eagle Hotel",
-      "variants": [
-        {
-          "as_printed": "EAGLE HOTEL",
-          "claim": "chicago_democrat_1834_05_14#c008"
-        }
-      ],
-      "mentions": [
-        "chicago_democrat_1834_05_14#c008"
-      ],
-      "first_seen": "1834-05-14",
-      "last_seen": "1834-05-14",
-      "letter_list_only": false,
-      "occupations": [],
-      "associated_places": [
-        "Chicago"
-      ]
-    },
-    {
       "id": "person_eben_e_zer_allen",
       "name": "Eben[e]zer Allen",
       "variants": [
@@ -19025,24 +19006,6 @@
       "associated_places": [
         "Lake Street"
       ]
-    },
-    {
-      "id": "person_haddock_s_tavern",
-      "name": "Haddock's Tavern",
-      "variants": [
-        {
-          "as_printed": "L Haddock's Tavern",
-          "claim": "chicago_democrat_1834_11_19#c010"
-        }
-      ],
-      "mentions": [
-        "chicago_democrat_1834_11_19#c010"
-      ],
-      "first_seen": "1834-11-19",
-      "last_seen": "1834-11-19",
-      "letter_list_only": false,
-      "occupations": [],
-      "associated_places": []
     },
     {
       "id": "person_hady_john",
@@ -34061,24 +34024,6 @@
       "associated_places": []
     },
     {
-      "id": "person_maddock_s_tavern",
-      "name": "Maddock's Tavern",
-      "variants": [
-        {
-          "as_printed": "Maddock's Tavern",
-          "claim": "chicago_democrat_1834_07_09#c024"
-        }
-      ],
-      "mentions": [
-        "chicago_democrat_1834_07_09#c024"
-      ],
-      "first_seen": "1834-07-09",
-      "last_seen": "1834-07-09",
-      "letter_list_only": false,
-      "occupations": [],
-      "associated_places": []
-    },
-    {
       "id": "person_magie_wilkinson",
       "name": "Magie & Wilkinson",
       "variants": [
@@ -48870,44 +48815,6 @@
       ]
     },
     {
-      "id": "person_the_baptist_meeting_house",
-      "name": "the Baptist meeting house",
-      "variants": [
-        {
-          "as_printed": "Baptist mecting house",
-          "claim": "chicago_democrat_1834_05_21#c003"
-        }
-      ],
-      "mentions": [
-        "chicago_democrat_1834_05_21#c003"
-      ],
-      "first_seen": "1834-05-21",
-      "last_seen": "1834-05-21",
-      "letter_list_only": false,
-      "occupations": [],
-      "associated_places": [
-        "South Water Street"
-      ]
-    },
-    {
-      "id": "person_the_eagle_hotel_steele_s",
-      "name": "the Eagle Hotel (Steele's)",
-      "variants": [
-        {
-          "as_printed": "the Eayle Hotel, (Steele’s)",
-          "claim": "chicago_democrat_1834_02_04#c003"
-        }
-      ],
-      "mentions": [
-        "chicago_democrat_1834_02_04#c003"
-      ],
-      "first_seen": "1834-02-04",
-      "last_seen": "1834-02-04",
-      "letter_list_only": false,
-      "occupations": [],
-      "associated_places": []
-    },
-    {
       "id": "person_themnpaon_cs",
       "name": "Themnpaon,. Cs",
       "variants": [
@@ -57591,6 +57498,95 @@
       "letter_list_only": true,
       "occupations": [],
       "associated_places": []
+    }
+  ],
+  "places": [
+    {
+      "id": "place_eagle_hotel",
+      "name": "Eagle Hotel",
+      "variants": [
+        {
+          "as_printed": "EAGLE HOTEL",
+          "claim": "chicago_democrat_1834_05_14#c008"
+        }
+      ],
+      "mentions": [
+        "chicago_democrat_1834_05_14#c008"
+      ],
+      "first_seen": "1834-05-14",
+      "last_seen": "1834-05-14",
+      "associated_places": [
+        "Chicago"
+      ],
+      "kind": "hotel",
+      "why": "\"Eagle Hotel\" is a house of entertainment, and the claim that mints it (chicago_democrat_1834_05_14 c008) sets it as a display heading over its own advertisement — the building advertising itself. No forename or initial is printed with it in any issue of this corpus, because there is none: it is a sign."
+    },
+    {
+      "id": "place_haddock_s_tavern",
+      "name": "Haddock's Tavern",
+      "variants": [
+        {
+          "as_printed": "Maddock's Tavern",
+          "claim": "chicago_democrat_1834_07_09#c024"
+        },
+        {
+          "as_printed": "L Haddock's Tavern",
+          "claim": "chicago_democrat_1834_11_19#c010"
+        }
+      ],
+      "mentions": [
+        "chicago_democrat_1834_07_09#c024",
+        "chicago_democrat_1834_11_19#c010"
+      ],
+      "first_seen": "1834-07-09",
+      "last_seen": "1834-11-19",
+      "associated_places": [],
+      "kind": "tavern",
+      "why": "\"Haddock's Tavern\" is a building, not a man. It is minted out of G. Spring's standing For-Sale notice, which sells a lot BY it — \"Lot No. 7, in block No. 16, one lot east of Haddock's Tavern, on Lake street\" (chicago_democrat_1834_11_19 c010, and the same copy at 1834-06-18, 1834-09-03 and 1834-10-15). The name is doing placement work: it is the landmark the lot is measured from. The man behind the signboard is in this corpus separately and under his own name — E. Haddock, at whose house the Board of Trustees met on 6 June 1834 (1834-06-18 c002), H. Haddock of the Fourth of July notice (1834-06-25 c002), E. H. Haddock of the election notice (1834-07-30 c003) — so declaring the signboard a place removes a duplicate of the building, not the person.",
+      "merged": [
+        {
+          "from": "Maddock's Tavern",
+          "merge_rule": "\"Haddock's Tavern\" and \"Maddock's Tavern\" are one building, and G. Spring's own advertisement is the witness that says so. One notice, dated June 18 1834 and standing over five settings, sells Lot No. 7 in block No. 16, one lot east of the tavern, on Lake street, with a large dwelling-house and fine well on it. Four of the five settings read Haddock's (1834-06-18 c006, 1834-09-03 c005, 1834-10-15 c006, 1834-11-19 c010) and exactly one reads Maddock's (1834-07-09 c024). That is the condition the 1834-07-30 reading pass set for closing this: an issue printing both spellings in a way that decides it. Four settings of one advertisement against one is that. The direction is into the reading four settings carry, and the corpus corroborates it outside the notice — E. Haddock kept the Mansion House and the Board of Trustees met there (1834-06-18 c002), while no Maddock appears anywhere in these papers. This merge is possible only because both names are declared places: as persons the families rule refused it, reading Tavern as a surname and H against M as forename initials, which is a rule for a family of people applied to a signboard. T-0324 found it, T-0359 could record it."
+        }
+      ]
+    },
+    {
+      "id": "place_the_baptist_meeting_house",
+      "name": "the Baptist meeting house",
+      "variants": [
+        {
+          "as_printed": "Baptist mecting house",
+          "claim": "chicago_democrat_1834_05_21#c003"
+        }
+      ],
+      "mentions": [
+        "chicago_democrat_1834_05_21#c003"
+      ],
+      "first_seen": "1834-05-21",
+      "last_seen": "1834-05-21",
+      "associated_places": [
+        "South Water Street"
+      ],
+      "kind": "meeting_house",
+      "why": "\"the Baptist meeting house\" is a building and reads as one in plain words — the 1834-05-21 claim (c003) puts it in South Water Street, which is already recorded on the entry as an associated place. It is a congregation's house, not a person, and no printing gives it a forename because none exists."
+    },
+    {
+      "id": "place_the_eagle_hotel_steele_s",
+      "name": "the Eagle Hotel (Steele's)",
+      "variants": [
+        {
+          "as_printed": "the Eayle Hotel, (Steele’s)",
+          "claim": "chicago_democrat_1834_02_04#c003"
+        }
+      ],
+      "mentions": [
+        "chicago_democrat_1834_02_04#c003"
+      ],
+      "first_seen": "1834-02-04",
+      "last_seen": "1834-02-04",
+      "associated_places": [],
+      "kind": "hotel",
+      "why": "\"the Eagle Hotel (Steele's)\" is a building named with its keeper in a parenthesis — the 1834-02-04 notice (c003) locates something at \"the Eagle Hotel, (Steele's)\", which is an address and not a person's name. It is declared a place on that reading alone. Whether it and \"Eagle Hotel\" are one house is a separate question and is NOT answered here: no issue in this corpus prints both settings in a way that decides it, and a merge on the strength of the shared word Eagle is the resemblance argument this file exists to refuse. T-0391 holds it."
     }
   ],
   "businesses": [
