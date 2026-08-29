@@ -6859,7 +6859,7 @@ for (const [label, viewport, touch] of [
     // draws) and T-0223's timber cull. Read on the published mirror at T-0135's
     // five stands, dev @ f7aca445: `light`'s worst frame is 76 calls on desktop
     // and 69 on mobile, against the 141 and 137 `full` reaches at its own worst.
-    // 80 is the ORIGINAL number and not one tuned to sit just over 76 — four
+    // 80 was the ORIGINAL number and not one tuned to sit just over 76 — four
     // calls of room, and the next chunked layer to reach it reaches a bar that
     // means something. Thin on purpose and thin in fact: the reading was 75
     // before T-0194's hitching posts merged and 76 after, so one ordinary
@@ -6867,17 +6867,33 @@ for (const [label, viewport, touch] of [
     // trim or an argued re-budget at `DETAIL`, never a weakening of this line. `light`'s triangle ceiling came down in the same commit,
     // 1,050,000 -> 785,000, and `DETAIL` in `main.js` carries that reading.
     //
+    // AND IT WENT RED, AND THE ANSWER WAS THE RE-BUDGET. 80 -> 90 on the
+    // owner's ruling, 2026-08-28, taken against the current reading and not a
+    // week-old one: 85 calls at Lake and Market, the corner itself (dev's
+    // standing smoke, 2026-08-28T18:36Z, the T-0028 tree). The four calls of
+    // room T-0147 restored were spent in a day — hitching posts, Randolph's
+    // street edge, the jail — and the owner chose the re-budget over the trim
+    // (T-0247 carried the trim and is withdrawn with the ruling on it). Say
+    // what 90 surrenders: the pre-2026-08 count is gone for the second time,
+    // this bar has now moved twice (surrendered 2026-08-22, restored
+    // 2026-08-27, moved 2026-08-28), and a weak machine's promise is five
+    // calls of slack over today's worst frame instead of a chosen constant.
+    // 90 is still a bar: it moved BY a measured ten against a measured 85,
+    // not to wherever the reading was, and the next parcel to spend the five
+    // spare calls reaches it honestly. When THIS one goes red, same rule:
+    // a trim or an argued re-budget, never a quiet weakening.
+    //
     // The ratio is KEPT underneath rather than replaced: the count is the
     // promise to a weak machine, the ratio is the claim that the scene-detail
     // control is not decoration, and a reading can break either without the
     // other.
-    const LIGHT_CALL_FLOOR = 80;
+    const LIGHT_CALL_FLOOR = 90;
     check(`${label}: the light tier draws inside its ${LIGHT_CALL_FLOOR}-call floor at the worst stand`,
       light.worstCalls.calls <= LIGHT_CALL_FLOOR,
       `${light.worstCalls.calls} calls at light, worst stand ${light.worstCalls.label} `
-      + `— floor ${LIGHT_CALL_FLOOR}, the count this project chose before the 2026-08 `
-      + `content landed, restored by T-0147 once T-0150, T-0146 and T-0223 had trimmed `
-      + `the axial view`);
+      + `— floor ${LIGHT_CALL_FLOOR}, set by the owner 2026-08-28 against a measured 85 `
+      + `at Lake and Market (was 80, the pre-2026-08 count restored by T-0147; `
+      + `the ruling is recorded at the definition site and on T-0247)`);
     check(`${label}: the light tier stays materially cheaper than full at the worst stand`,
       light.worstCalls.calls <= full.worstCalls.calls * 0.9,
       `${light.worstCalls.calls} calls at light against ${full.worstCalls.calls} at full, `

@@ -1,4 +1,13 @@
 export const CHANGELOG = [ // newest first
+  { v: 361, title: 'The lightest setting is allowed ninety draws a frame, up from eighty', kind: 'chore', ts: '2026-08-29T02:30:45.488Z', date: 'Aug 28, 2026, 9:30 PM CT',
+    items: [
+      'Nothing you can see changed today unless you run this town on a weak machine at its lightest quality setting — and even then, what changed is a promise, not a picture. Every frame you see is handed to the graphics card in separate batches, and this project keeps a hard count of how many batches the lightest setting is allowed: it was eighty, and it is now ninety.',
+      'Eighty was not an arbitrary number. It was the count chosen before any of this summer’s building, surrendered once in August when the town outgrew it, and deliberately restored two days ago after three renderer trims won the room back — restored with four batches to spare.',
+      'Those four were spent in a day. Hitching posts at the trading frontages, the street edge turning its first corner, the log jail coming onto its block — each ordinary parcel of building added a batch or two, and the worst corner of the town, Lake and Market, reached eighty-five. The choice was put to the owner plainly: trim the renderer again, or move the bar. The owner ruled: raise it to ninety.',
+      'So the bar moved by a measured ten against a measured eighty-five — not to wherever the reading happened to be — and the count is still a count: five batches of slack stand between today’s worst frame and the new bar, and the next building work to spend them will be stopped and argued with, not waved past.',
+      'What this costs is stated rather than hidden: the pre-summer count is gone for the second time, and this bar has now moved twice in a week. The full history — every move, every reading, and the rule that a red here is answered with a trim or an argued re-budget, never a quiet weakening — is written where the number is defined.',
+      'The ticket that demanded the trim instead is withdrawn with the ruling recorded on it, not closed as done: the work it asked for was declined, not performed.',
+    ] },
   { v: 360, title: 'March 1834, read: ten feet of sidewalk and the piers\u2019 timber', kind: 'chore', ts: '2026-08-29T02:22:27.894Z', date: 'Aug 28, 2026, 9:22 PM CT',
     items: [
       'Nothing you can see changed today. The Chicago Democrat for March 1834 has been read end to end \u2014 three issues, not four, because no paper was printed or supplied for the 11th \u2014 and 58 things it says about the town are written down with the page, column and line they came from.',
