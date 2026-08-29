@@ -54,7 +54,6 @@ T-0305 — Four readings the American contradicts itself on need the page images
 # --- every branch's smoke inherits it and every PR has to argue "not mine". Fixing
 # --- these buys every ticket below a clean verdict.
 T-0244 — T-0194's twelve hitching posts draw no vertices the gate can find, on dev
-T-0265 — The sward census fails its own gate at a phone: z10_settled_town owes xanthium_strumarium a whole slot and draws it nowhere
 
 # --- THE TOWN AND ITS STREETS — visible. T-0192 left this band on 2026-08-29,
 # --- blocked-tech: its code half shipped (the rule reads all four block faces now,
@@ -139,3 +138,4 @@ T-0357 — 129 documented businesses will stand on a survival liberty and LIBERT
 T-0358 — The Thompson plat's block NUMBERING is uncommitted, so the corpus's only lot-and-block address cannot be placed
 T-0359 — The gazetteer mints tavern names as people, so Maddock's Tavern and Haddock's Tavern cannot be reconciled
 T-0369 — Desktop stage 8's panel walk is red when stage 1 runs before it and green when stage 8 runs alone
+T-0371 — The lattice path's block rotation is dead code that measure_rank_bias.mjs's drift guard pins in place

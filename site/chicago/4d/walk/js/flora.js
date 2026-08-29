@@ -2592,17 +2592,19 @@ function hash3(a, b, c) {
  * them in the wet prairie and standing none. **All six were forb lists**, which
  * is why this is the forb layer's draw and not the sward's.
  *
- * The repair is a low-discrepancy assignment: a rank-1 lattice
+ * The repair WAS a low-discrepancy assignment (and read T-0265 below before
+ * this paragraph is quoted for anything): a rank-1 lattice
  * `frac(c·α + r·β + k·γ)` on the slot's OWN world lattice coordinates, walked
- * against the same CDF `pick()` already walks. It is equidistributed over any
- * window, so a band of the CDF the width of prairie dock's share gets its count
- * to within one slot instead of to within a Poisson tail — and it is a pure
+ * against the same CDF `pick()` already walks. It was taken to be
+ * equidistributed over any window, so a band of the CDF the width of prairie
+ * dock's share gets its count to within one slot instead of to within a Poisson
+ * tail — and it is a pure
  * function of the slot, so re-centring the lattice puts the same species back in
  * the same place, which is the promise `hash3` makes and K48's owed-draw picker
  * cannot keep (its running state would change the plant at your feet as you
  * walked up to it).
  *
- * α, β, γ are 1/g, 1/g², 1/g³ for the root of g⁴ = g + 1 — the R3 quasirandom
+ * α, β, γ were 1/g, 1/g², 1/g³ for the root of g⁴ = g + 1 — the R3 quasirandom
  * generators, chosen for equidistribution rather than for looking irrational.
  *
  * THE MATRIX LAYERS DO NOT TAKE THIS LATTICE, AND A SCREENSHOT IS WHY. Run
@@ -2612,25 +2614,77 @@ function hash3(a, b, c) {
  * unmissable where sixty are. The matrix lists lost no species to the tail — the
  * cost was all visible and the benefit all in a column that already read zero.
  * They are stratified a different way instead — see `stratum`, K49(d).
- */
-const LD_A = 0.8191725133961644;
-const LD_B = 0.6710436067037893;
-const LD_C = 0.5497004779019702;
-/**
- * ...and the rotation that keeps the lattice from repeating the same diagonal
- * across the whole field. A rank-1 lattice puts a thin CDF band on a family of
- * parallel lines through the index grid; a Cranley–Patterson rotation — one
- * offset added to a whole block — breaks that family at the block edge while
- * preserving the equidistribution inside it, and it is keyed on the WORLD block
- * index, so it re-centres with the lattice rather than with the camera.
  *
- * SIXTEEN cells square, not four, and the census set the number. The block has
- * to hold enough PLANTED slots for a species' band to be resolved inside it, and
- * the forb layer plants a few per cent of what it deals: at four cells (64
- * slots, one or two flowers) the rotation was all that survived — an independent
- * draw in a costume — and the census still found three species owed a whole
- * plant and standing nowhere. At sixteen (1,024 slots, ~54 m, about the width of
- * the ring itself) it found none.
+ * T-0265 — AND "EQUIDISTRIBUTED OVER ANY WINDOW" IS NOT TRUE OF A PHONE'S
+ * WINDOW. The sentence above is the claim the rank-1 lattice was taken on, and
+ * on the mobile stand it fails: `tools/measure_sward_draw.mjs --gate` with
+ * `SWARD_VIEWPORT=mobile` was RED on an unmodified `dev`, cocklebur owed 1.49
+ * slots in the settled town and drawn nowhere in the scene. The measurement, off
+ * the deal itself at the settled-town station: the forb ring reaches 12.4 m at
+ * the `light` tune against a rotation block 54 m square, so the WHOLE frame sits
+ * inside ONE Cranley–Patterson block and the 46 slots it deals are one
+ * contiguous window of one rotation. Their `u` sorted leaves a gap of 0.0399
+ * between 0.8247 and 0.8646, and cocklebur's band — 0.0324 wide, seventh of
+ * seven in that list's CDF — lies wholly inside it. The species is not rare in
+ * that frame; it is absent from it, and the desktop stand passed only because
+ * its ring deals 7,153 slots instead of 2,763.
+ *
+ * FOUR REPAIRS WERE MEASURED AND THREE ARE REFUTED, so they are not tried again:
+ *
+ * - the sub-cell term made exact (`k/perCell` in place of `k·γ`, which fixes the
+ *   pairing 2γ ≡ 0.099 leaves in a cell's four slots) — mobile still RED, the
+ *   hole merely moved to two mesic-prairie forbs, and the forb deviation rose
+ *   from 16.23 to 19.53 per 100 slots. A re-roll, not a repair;
+ * - the forb and shrub passes moved onto `stratum` (K49(d)) — mobile still RED
+ *   and the forb deviation 28.70 per 100, which is `stratum`'s own stated
+ *   weakness read back at us: exactness over the block is not equidistribution
+ *   over the sub-window, and the census reads zone ∩ ring, which is one;
+ * - the rotation block cut to four cells so a phone's ring holds several of
+ *   them, with the phases swept rather than hashed — mobile still RED, the hole
+ *   at a wet-prairie forb instead;
+ * - **the construction below — mobile GREEN, and the desktop stays green.**
+ *
+ * WHAT REPLACED THE LATTICE: the same hierarchical stratification K49(c2) built
+ * for the dense layers, applied at the CELL rather than at the block.
+ *
+ *   u = frac(k / perCell + blockPhase(c, r, perCell, globalShift))
+ *
+ * Two properties, and the window needs both. Inside one cell the `perCell` slots
+ * take values exactly `1/perCell` apart, so every cell that is dealt whole
+ * offers all four quarters of the CDF. Across cells the offset is
+ * `blockPhase`'s van der Corput sweep of that same step, indexed by the CELL's
+ * Morton code, so the four cells of any aligned 2×2 group hold offsets exactly a
+ * quarter of the step apart and sixteen of a 4×4 group a sixteenth. A window of
+ * C contiguous cells therefore deals `C · perCell` values spread over [0, 1) at
+ * about `1 / (C · perCell)`, BY CONSTRUCTION rather than by luck — 1/48 at the
+ * settled-town stand against cocklebur's 0.0324 — where the rank-1 lattice gave
+ * the same window gaps of two and a half times its mean spacing.
+ *
+ * It keeps everything K49(b) was taken for. It is still a pure function of the
+ * slot's world coordinates, so re-centring puts the same species back in the
+ * same place; `globalShift` is still one random start per layer, so it is still
+ * unbiased; and it is still the SPARSE layers' draw only — the matrix lists
+ * stay on `stratum`, for the screenshot reason above.
+ *
+ * WHAT IT COST, stated rather than left to be found: the forb body deviates
+ * slightly more from its own recorded shares — 16.23 → 17.46 per 100 slots at
+ * the phone, 8.44 → 9.47 at the desktop — while the shrub body deviates
+ * markedly less (34.52 → 26.52 and 10.41 → 7.69). That is the trade this makes:
+ * a per-cent of the shortfall column for the tail column, which is the one the
+ * gate is on and the one a visitor can see, because a species standing nowhere
+ * is a species the town does not have.
+ */
+/**
+ * The block rotation, kept for `stratum` and no longer read by the sparse draw.
+ *
+ * It was the Cranley–Patterson offset that kept the rank-1 lattice from
+ * repeating one diagonal across the field, sixteen cells square because at four
+ * (64 slots) the rotation was all that survived — an independent draw in a
+ * costume. T-0265 replaced the lattice, so nothing reads `shift` on that path
+ * any more; the two constants stay because `scatter`'s block arithmetic is one
+ * expression for both draws and `tools/measure_rank_bias.mjs` mirrors those
+ * lines verbatim as its drift guard. Removing the dead branch is T-0371's, not
+ * this ticket's — it is a change to the tool's contract, not to the deal.
  */
 const LD_BLOCK_SHIFT = 4;
 const LD_BLOCK_SALT = 0x2b1f3d7d;
@@ -2835,6 +2889,11 @@ function stratum(idx, n, half, key, phase) {
  * - **It stays unbiased.** `globalShift` is one random start for the layer, so
  *   a band of width `w` still lands in `w · n` of the blocks on average; what
  *   changes is the variance, which is the whole complaint.
+ *
+ * T-0265 — AND IT IS NOW BOTH DRAWS' SWEEP, at two scales. `stratum` calls it
+ * per BLOCK with `n` the block's slot count; the sparse draw calls it per CELL
+ * with `n = perCell`, because the frame that failed was smaller than a block.
+ * The argument is the same one either way and the code is the same line.
  */
 function blockPhase(c, r, n, globalShift) {
   return frac(globalShift + vdc(morton(c, r)) / n);
@@ -2891,10 +2950,11 @@ function rngFrom(seed) {
  *
  *  `draw` picks how the slot's `u` — the one number that decides both whether it
  *  carries a plant and which species (see `dealt`) — is constructed. `'lattice'`
- *  is the rank-1 low-discrepancy sequence of K49(b), which the SPARSE forb layer
- *  takes; `'strata'` is the block permutation of K49(d), which the DENSE matrix
- *  layers take because the lattice stripes them. Both are pure functions of the
- *  slot's world coordinates. */
+ *  is the SPARSE draw the forb, shrub and far passes take: the rank-1 sequence
+ *  of K49(b) until T-0265 measured it empty-handed in a phone's window, and the
+ *  cell-resolution stratification of K49(c2) since. `'strata'` is the block
+ *  permutation of K49(d), which the DENSE matrix layers take because a lattice
+ *  stripes them. Both are pure functions of the slot's world coordinates. */
 function scatter(camE, camN, cell, perCell, radius, inner, salt, draw, cone, emit) {
   const c0 = Math.floor((camE - radius) / cell);
   const c1 = Math.ceil((camE + radius) / cell);
@@ -2933,20 +2993,23 @@ function scatter(camE, camN, cell, perCell, radius, inner, salt, draw, cone, emi
       // or south of the origin indexes the same way as one east or north of it.
       const base = ((c - ((c >> shiftBits) << shiftBits)) * span
         + (r - ((r >> shiftBits) << shiftBits))) * perCell;
+      const cellPhase = strata ? 0 : blockPhase(c, r, perCell, globalShift);
       for (let k = 0; k < perCell; k++) {
         const rng = rngFrom(hash3(cellSeed, k, 0x68bc21eb));
         // ROADMAP K49(b). The slot's own place in the deal: it decides BOTH
         // whether this slot carries a plant at all and which species it is, so
         // that the thinning cannot resample the species draw back into an
         // independent one. See `dealt`.
-        // ROADMAP K49(f). `shift` is the block's offset and BOTH draws take it:
-        // the lattice adds it to a rank-1 sequence, the stratification wraps its
-        // grid of ranks by it. Without it the strata deal the same n values of
+        // ROADMAP K49(f). The stratification wraps its grid of ranks by the
+        // block's own `shift`; without it the strata deal the same n values of
         // `u` in every block of the world and a CDF band narrower than `1/n` is
-        // drawn nowhere at all.
+        // drawn nowhere at all. T-0265: the sparse draw takes the same medicine
+        // one scale down — `cellPhase` above, swept per CELL — because at a
+        // phone the whole ring fits inside one block and one rotation, so a
+        // block offset is a coin tossed once for the frame.
         const u = strata
           ? stratum(base + k, nSlots, half, blockHash, shift)
-          : frac(c * LD_A + r * LD_B + k * LD_C + shift);
+          : frac(k / perCell + cellPhase);
         // A jittered sub-grid, not free scatter: free scatter leaves holes
         // the eye reads as bare soil and clusters it reads as one plant.
         const sx = k % sub;
