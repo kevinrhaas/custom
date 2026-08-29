@@ -17,7 +17,7 @@ What each part of the output is entitled to claim, and why:
   what the block edges carry.
 * A **lot line** is `conjectural` and stays that way. Four lots to a block face is read
   off the owner's crop of Wright's sheet at the Clark reach — block 18's north row runs
-  4 3 2 1 and its south row 5 6 7 (`docs/RESEARCH/clark_reach_bulge_1834.md` § 8) — and a
+  4 3 2 and its south row 5 6 7 (`docs/RESEARCH/clark_reach_bulge_1834.md` § 8) — and a
   reading of ONE block does not document the subdivision of the other seventeen. The
   alley is worse off: 18 ft is the module, but nothing in `data/sources/` says which
   blocks were alleyed or where the alley ran inside them.
@@ -27,8 +27,17 @@ What each part of the output is entitled to claim, and why:
   the street that falls short — which is the same list as the street control still owed
   under ROADMAP § S9.
 
-The grid is not a claim about Thompson's block NUMBERS. This project has never read them
-off a sheet, so blocks here are named for the streets that bound them.
+Thompson's block NUMBERS reach six blocks of this grid and no more. The owner's crop
+carries two numerals side by side in the South Water tier — 19 west of 18, the stream in
+the La Salle corridor between them — and that fixes the step (one per block) and the
+direction (falling eastward) along a row. Counting along that row numbers the tier's six
+blocks, and block 16 lands on Dearborn-State, where G. Spring's 'LOT No. 7, in block No.
+16 ... on Lake street' and the Mansion House's own Andreas-and-Botsford placement already
+agree it should. Nothing outside the tier is numbered: how the run passes from one row to
+the next is not readable from two numerals in one row. The judgement, the identification
+and the refusals live in `data/traces/thompson_block_numbering.json`; this module only
+stamps them. Block ids stay named for the streets that bound them, which is a description
+that never goes wrong.
 
     tools/generate_plat_lots.py            regenerate data/traces/vectors/thompson_lots.json
     tools/generate_plat_lots.py --check    fail if the committed file is not what the
@@ -69,6 +78,26 @@ NS_STREETS = ["clinton", "canal", "market", "franklin", "wells", "lasalle", "cla
 SOURCE_IDS = ["thompson_plat_1830", "hathaway_1834", "wright_1834", "osm_streets_2026"]
 
 RESERVED_PATH = DATA / "reconstruction" / "1835_reserved_ground.json"
+NUMBERING_PATH = DATA / "traces" / "thompson_block_numbering.json"
+
+
+def block_numbering() -> dict:
+    """Thompson's own block numbers, for the blocks this project can reach them.
+
+    Authored in `data/traces/thompson_block_numbering.json` and read here, the same
+    shape as `reserved_blocks()`: the file carries a reading and a judgement, this
+    module carries none, and the numbers land on blocks whose geometry is derived
+    exactly as it was before. T-0358.
+
+    Two numerals are read off the owner's crop of Wright's 1834 sheet — 19 and 18,
+    side by side in the South Water tier — and every other number in that file is
+    counted one block per step along the same tier. Nothing outside the tier is
+    numbered: the crop fixes the direction of the run inside a row and says nothing
+    about how it passes from one row to the next, and a number counted across that
+    gap would look exactly like a number that was read.
+    """
+    doc = load(NUMBERING_PATH)
+    return {b["block_id"]: b for b in doc["blocks"]}, doc
 
 
 def reserved_blocks() -> dict[str, dict]:
@@ -331,6 +360,40 @@ def subdivide(block: dict, alley_m: float, frontage_m: float) -> dict:
     return {"lots": lots, "alley": alley, "frontage_m": frontage, "count": count}
 
 
+def stamp_number(entry: dict, record: dict, scheme: dict) -> None:
+    """Put the plat's number on a block, and the scheme's numbers on its lots.
+
+    The lots are numbered by where they LIE, not by the order the subdivision
+    emitted them: the scheme runs 1-4 east to west along the north row and 5-8 west
+    to east along the south row, and reading that off a list index would make the
+    numbering depend on which way `data/streets/1835.json` happens to draw a street.
+    """
+    entry["plat_block_number"] = {
+        "number": record["number"],
+        "confidence": record["confidence"],
+        "numeral_on_sheet": record["numeral_on_sheet"],
+        "sources": record["sources"],
+        "authored_in": "data/traces/thompson_block_numbering.json",
+        "note": record["note"],
+    }
+    lots = entry.get("lots") or []
+    per_face = len(lots) // 2
+    if per_face != 4 or len(lots) != 2 * per_face:
+        # The scheme is 1-4 and 5-8. A block the module divided some other way is
+        # left unnumbered rather than renumbered to fit, and says so.
+        entry["plat_block_number"]["lots_not_numbered"] = (
+            f"the module divided this block into {len(lots)} lot(s), and the scheme read "
+            "off block 18 numbers four to a face; a scheme stretched to fit is an invention")
+        return
+    north = sorted((l for l in lots if l["tier"] == "north"),
+                   key=lambda l: -sum(pt[0] for pt in l["polygon"]) / len(l["polygon"]))
+    south = sorted((l for l in lots if l["tier"] == "south"),
+                   key=lambda l: sum(pt[0] for pt in l["polygon"]) / len(l["polygon"]))
+    for index, lot in enumerate(north + south):
+        lot["plat_lot_number"] = index + 1
+        lot["plat_lot_confidence"] = scheme["confidence"]
+
+
 def grid_from_inputs() -> dict:
     control = load(DATA / "traces" / "street_control.json")
     streets = load(DATA / "streets" / "1835.json")
@@ -363,6 +426,7 @@ def grid_from_inputs() -> dict:
         raise SystemExit("cannot build the grid: the committed heightfield is missing")
 
     reserved = reserved_blocks()
+    numbers, numbering_doc = block_numbering()
     blocks, omitted = [], []
     for north_id, south_id in zip(rows, rows[1:]):
         pitch_n = abs(lines[north_id]["mean_n"] - lines[south_id]["mean_n"])
@@ -424,10 +488,36 @@ def grid_from_inputs() -> dict:
                 entry["lots"] = []
             blocks.append(entry)
 
-    return assemble(blocks, omitted, module, alley_m, frontage_m, reach_m, lines)
+    scheme = numbering_doc["lot_numbering"]
+    for entry in blocks:
+        record = numbers.get(entry["id"])
+        if record:
+            stamp_number(entry, record, scheme)
+    for entry in omitted:
+        record = numbers.get(entry["id"])
+        if record:
+            # A block the grid cannot draw still had a number on the plat. Carrying it
+            # here keeps the two facts — the plat numbered it, this project cannot
+            # place it — in one place instead of one contradicting the other's absence.
+            entry["plat_block_number"] = {
+                "number": record["number"],
+                "confidence": record["confidence"],
+                "numeral_on_sheet": record["numeral_on_sheet"],
+                "sources": record["sources"],
+                "authored_in": "data/traces/thompson_block_numbering.json",
+                "note": record["note"],
+            }
+    unplaced = sorted(set(numbers) - {b["id"] for b in blocks} - {o["id"] for o in omitted})
+    if unplaced:
+        raise SystemExit("data/traces/thompson_block_numbering.json numbers "
+                         f"{', '.join(unplaced)}, which the grid neither builds nor omits")
+
+    return assemble(blocks, omitted, module, alley_m, frontage_m, reach_m, lines,
+                    numbering_doc)
 
 
-def assemble(blocks, omitted, module, alley_m, frontage_m, reach_m, lines) -> dict:
+def assemble(blocks, omitted, module, alley_m, frontage_m, reach_m, lines,
+             numbering_doc) -> dict:
     faces = [lot["frontage_m"] for b in blocks for lot in b["lots"]]
     return {
         "_doc": (
@@ -438,8 +528,12 @@ def assemble(blocks, omitted, module, alley_m, frontage_m, reach_m, lines) -> di
             "offset by half the platted corridor; a lot line is the module divided into it. "
             "Written by tools/generate_plat_lots.py, which re-derives this file byte for byte "
             "offline on every commit (tools/check.sh). Block ids name the streets that bound "
-            "a block, NOT Thompson's block numbers: this project has never read those off a "
-            "sheet and does not have them to give."),
+            "a block, which is a description and not a claim. Thompson's own block NUMBERS "
+            "are carried separately, in `plat_block_number`, and only for the six blocks of "
+            "the South Water tier that two numerals on Wright's 1834 sheet can be counted "
+            "along — see `block_numbering` below and "
+            "data/traces/thompson_block_numbering.json. Every other block in this file is "
+            "unnumbered on purpose."),
         "tool": "tools/generate_plat_lots.py",
         "generated_from": [
             "data/traces/street_control.json",
@@ -470,12 +564,15 @@ def assemble(blocks, omitted, module, alley_m, frontage_m, reach_m, lines) -> di
             "lot_note": (
                 "Four lots to a block face, 80 ft each, is a reading of ONE block: the owner's "
                 "crop of Wright's sheet at the Clark reach carries block 18's north row "
-                "numbered 4 3 2 1 and its south row 5 6 7 "
+                "numbered 4 3 2 and its south row 5 6 7 "
                 "(docs/RESEARCH/clark_reach_bulge_1834.md § 8), which is four lots across a "
                 "block of about 320 ft. Applying it to the other blocks is inference from a "
-                "single instance and it is graded as the conjecture it is. Lots are NOT "
-                "numbered here — the crop reads block 18's numbering and nothing fixes the "
-                "other blocks', and a numbering invented to look complete is exactly what "
+                "single instance and it is graded as the conjecture it is. Lots carry a "
+                "`plat_lot_number` ONLY inside a numbered block, under the scheme the same "
+                "crop shows on block 18 — 1-4 east to west along the north row, 5-8 west to "
+                "east along the south row — and that number is `conjectural` wherever it "
+                "appears, because it is put on a line no sheet drew. Nothing else in this "
+                "file is numbered: a numbering invented to look complete is exactly what "
                 "this project does not do."),
         },
         "method": {
@@ -495,6 +592,20 @@ def assemble(blocks, omitted, module, alley_m, frontage_m, reach_m, lines) -> di
                                 "proportion, joined station to station, with a centred "
                                 "alley taken out of the middle"),
         },
+        "block_numbering": {
+            "authored_in": "data/traces/thompson_block_numbering.json",
+            "read": numbering_doc["reading"]["what_it_carries"],
+            "source": numbering_doc["reading"]["source"],
+            "step": numbering_doc["reading"]["step"],
+            "direction": numbering_doc["reading"]["direction"],
+            "lot_scheme": numbering_doc["lot_numbering"]["scheme"],
+            "lot_confidence": numbering_doc["lot_numbering"]["confidence"],
+            "refused": [r["scope"] for r in numbering_doc["refused"]],
+            "note": ("Two numerals were read and the rest were counted along one tier. "
+                     "`numeral_on_sheet` on each block says which is which, and the "
+                     "authored file carries the reading, the identification and the "
+                     "refusals in full."),
+        },
         "confidence": "inferred",
         "confidence_note": (
             "The blocks are arithmetic on inferred inputs — street lines whose own geometry "
@@ -507,7 +618,11 @@ def assemble(blocks, omitted, module, alley_m, frontage_m, reach_m, lines) -> di
             "blocks": len(blocks),
             "omitted": len(omitted),
             "reserved": sum(1 for b in blocks if b.get("reserved")),
+            "numbered": sum(1 for b in blocks if b.get("plat_block_number")),
+            "numbered_omitted": sum(1 for o in omitted if o.get("plat_block_number")),
             "lots": sum(len(b["lots"]) for b in blocks),
+            "numbered_lots": sum(1 for b in blocks for l in b["lots"]
+                                 if l.get("plat_lot_number")),
             "block_frontage_ft": {
                 "min": round(min((b["frontage_ft"] for b in blocks), default=0.0), 1),
                 "median": round(sorted(b["frontage_ft"] for b in blocks)[len(blocks) // 2], 1)

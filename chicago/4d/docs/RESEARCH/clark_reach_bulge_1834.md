@@ -153,9 +153,19 @@ in the channel.
 
 ## 8. Bearing on K7 (Thompson plat lot lines)
 
-The owner's crop reads cleanly at 3×: **block numbers 19, 18 and 17**, the lot numbers **4 3 2
-1** along the north row of block 18 and **5 6 7** along its south row, and the platted **80**
+The owner's crop reads cleanly at 3×: **block numbers 19 and 18**, the lot numbers **4 3 2**
+along the north row of block 18 and **5 6 7** along its south row, and the platted **80**
 written in each street. That is a georeferenced check on the plat module — block width, lot
 width and street width, at a known place on a sheet already fitted through the committed
 affine — and it is worth reading off systematically when K7 is picked up rather than
 generating the module blind.
+
+**Corrected 2026-08-29, T-0358.** This paragraph said "block numbers 19, 18 and 17" and the
+fourth lot of each row as though both were on the sheet. The file is 639 × 719 px, its map
+region ends at block 18's east edge, and it carries **two** numbered blocks; lots 1 and 8
+fall outside it too. The asset's own README describes two. Nothing built on this paragraph
+moves — two consecutive numerals fix the step and the direction as well as three would — but
+the evidence base is two blocks, and how far it can be pushed depends on knowing that. The
+stream measured in § 4 is what identifies them: it runs in the La Salle corridor, so 19 is
+the Wells–La Salle block and 18 the La Salle–Clark block. See
+`docs/RESEARCH/thompson_block_numbering.md`.

@@ -1,7 +1,7 @@
 ---
 id: T-0358
 title: The Thompson plat's block NUMBERING is uncommitted, so the corpus's only lot-and-block address cannot be placed
-state: open
+state: claimed
 epic: META
 requested_by: loop
 seen: false
@@ -11,7 +11,7 @@ parent: null
 opened: 2026-08-29
 closed: null
 pr: null
-claimed_by: null
+claimed_by: run 8/29/2026, 4:28:55 PM CT
 blocked_on: null
 needs_bake: false
 ---

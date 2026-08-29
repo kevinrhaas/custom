@@ -173,3 +173,4 @@ T-0420 — Open the four South Water blocks T-0009 has unblocked: 20 roofs of he
 T-0421 — Canal Street's three control points spread 2.33 m, so its corridor cannot be centred on any of them
 T-0422 — The widened counterfactual deals a roof per street, and every roof a widening adds already fronts another street
 T-0418 — The 36 documented tradespeople whose trade the residents vocabulary has no word for
+T-0423 — G. Spring's large dwelling-house and fine well stands on lot 7 of block 16, where an anonymous roof stands now

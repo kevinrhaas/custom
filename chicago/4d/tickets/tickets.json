@@ -1,6 +1,6 @@
 {
   "project": "chicago-4d",
-  "generated_ct": "Aug 29, 2026, 5:39 PM",
+  "generated_ct": "Aug 29, 2026, 6:24 PM",
   "tickets": [
     {
       "id": "T-0001",
@@ -5924,7 +5924,7 @@
     {
       "id": "T-0358",
       "title": "The Thompson plat's block NUMBERING is uncommitted, so the corpus's only lot-and-block address cannot be placed",
-      "state": "open",
+      "state": "claimed",
       "epic": "META",
       "requested_by": "loop",
       "seen": false,
@@ -5934,7 +5934,7 @@
       "opened": "2026-08-29",
       "closed": null,
       "pr": null,
-      "claimed_by": null,
+      "claimed_by": "run 8/29/2026, 4:28:55 PM CT",
       "blocked_on": null,
       "needs_bake": false,
       "queue_rank": 2
@@ -6928,6 +6928,24 @@
       "blocked_on": null,
       "needs_bake": false,
       "queue_rank": 76
+    },
+    {
+      "id": "T-0423",
+      "title": "G. Spring's large dwelling-house and fine well stands on lot 7 of block 16, where an anonymous roof stands now",
+      "state": "open",
+      "epic": "META",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "M",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-08-29",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "queue_rank": 78
     }
   ]
 }
