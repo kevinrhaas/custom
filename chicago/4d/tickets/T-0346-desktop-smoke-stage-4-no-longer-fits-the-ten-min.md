@@ -87,3 +87,27 @@ other three. Stage 5 at 8 m 48 s is the next one over.
 
 `.github/workflows/chicago-4d-smoke.yml` has no ceiling and takes the unfiltered pass,
 so the gate itself is intact — it is the AGENT-side gate that has gone partial.
+
+**A THIRD measurement, later on 2026-08-29 (T-0373's re-derive run), and it does not
+agree with the one above.** Every one of the nine desktop stages fit the ten-minute
+ceiling on that runner, taken one invocation per stage against `--published`:
+
+    desktop stage 1   3 m 08 s   PASS
+    desktop stage 2   2 m 53 s   PASS
+    desktop stage 3   1 m 36 s   PASS
+    desktop stage 4   7 m 37 s   PASS   (killed by the ceiling nine hours earlier)
+    desktop stage 5   6 m 41 s   PASS
+    desktop stage 6   1 m 24 s   PASS
+    desktop stage 7   7 m 55 s   1 FAIL (T-0279's flower heads; the clock is fine)
+    desktop stage 8   2 m 02 s   PASS   (killed by the ceiling nine hours earlier)
+    desktop stage 9   3 m 17 s   PASS
+    mobile 1-2 3 m 18 s · 3-4 5 m 03 s · 5-6 5 m 06 s · 7-9 6 m 34 s — all PASS
+
+So the failure this ticket describes is NOT monotonic erosion of the suite, or not only
+that: the same tree, the same recipe and the same runner image gave >10 m on stages 4,
+7 and 8 in the morning and 7 m 37 s, 7 m 55 s and 2 m 02 s in the evening. Stage 8 moved
+by a factor of five. That points at contention on the hosted runner — five slices of
+this lane run at once — rather than at the suite's own cost, and it changes what the
+acceptance above should measure: a single reading is not evidence about the ceiling
+either way, and the worst-case margin has to be taken under load or not claimed.
+
