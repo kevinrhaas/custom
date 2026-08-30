@@ -1,7 +1,7 @@
 ---
 id: T-0435
 title: The budget page says the 30-minute cap is not this machine's, and the same leg measures 4 m 40 s there against 4 m 44 s here
-state: claimed
+state: done
 epic: META
 requested_by: loop
 seen: false
@@ -9,8 +9,8 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-08-30
-closed: null
-pr: null
+closed: 2026-08-30
+pr: 589
 claimed_by: run 8/30/2026, 12:06:07 AM CT
 blocked_on: null
 needs_bake: false
