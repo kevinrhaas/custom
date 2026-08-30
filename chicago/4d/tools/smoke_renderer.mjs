@@ -10,8 +10,9 @@
  * `SMOKE_VIEWPORT=mobile` (or `desktop`) runs one of the two while iterating.
  * That is not the gate and the run says so on its first line.
  *
- * `SMOKE_STAGE=1` … `9` runs one part of each viewport's body (T-0060, re-cut
- * by T-0121 and T-0167), and `SMOKE_STAGE=1-2` runs a contiguous run of them.
+ * `SMOKE_STAGE=1` … `11` runs one part of each viewport's body (T-0060, re-cut
+ * by T-0121, T-0167 and T-0346), and `SMOKE_STAGE=1-2` runs a contiguous run of
+ * them.
  * The cuts sit at section boundaries measured for zero crossing bindings. It
  * exists because a steward run's single foreground command is capped at ten
  * minutes and by 2026-08-18 neither viewport's full pass fit inside it, so the
@@ -19,13 +20,15 @@
  * viewport — was never taken. T-0060 cut four; by 2026-08-23 the town had grown
  * until three of the four DESKTOP quarters ran past the ceiling too, so each
  * quarter was halved; T-0167 measured the desktop profile that eight-way cut
- * had never been sized from and halved part 8, the thinnest margin on it.
+ * had never been sized from and halved part 8, the thinnest margin on it; and by
+ * 2026-08-29 part 4 was going over the ceiling outright, so T-0346 cut it into
+ * three around the scene-detail sweep, which renumbered old parts 5-9 to 7-11.
  *
  * A staged run is not the gate either, and says so; the gate is both viewports,
  * every part, e.g.:
  *
- *   for s in 1-2 3-4 5-6 7-9;   do SMOKE_VIEWPORT=mobile SMOKE_STAGE=$s node tools/smoke_renderer.mjs --published; done
- *   for s in 1 2 3 4 5 6 7 8 9; do SMOKE_VIEWPORT=desktop SMOKE_STAGE=$s node tools/smoke_renderer.mjs --published; done
+ *   for s in 1-2 3-6 7-8 9-11;        do SMOKE_VIEWPORT=mobile  SMOKE_STAGE=$s node tools/smoke_renderer.mjs --published; done
+ *   for s in 1 2 3 4 5 6 7 8 9 10 11;  do SMOKE_VIEWPORT=desktop SMOKE_STAGE=$s node tools/smoke_renderer.mjs --published; done
  *
  * `SMOKE_TIMING=1` stamps each check line with the elapsed clock. Off by
  * default; turn it on to profile a part, because a part that BREACHES the
@@ -40,7 +43,7 @@
  * Boot, the page-error check and the vendor checks run in EVERY invocation,
  * whichever stage is asked for: the summary separates "staged-section checks"
  * from those always-on checks so the parts can be audited to add up to an
- * unfiltered pass — the nine parts' section counts SUM to an unfiltered run's
+ * unfiltered pass — the eleven parts' section counts SUM to an unfiltered run's
  * section count, and the always-on count is identical in every one of them.
  *
  * What it asserts, and why each one is here:
@@ -422,10 +425,12 @@ const shadowRigFor = (level, touch) => {
  * stage split has outgrown its sections — and the answer to it is to re-cut the
  * stages, NOT to measure fewer stands: measuring one friendly stand is the
  * defect this set exists to close. T-0166 re-cut the four stages into eight, so
- * this sweep is now inside PART 4 rather than a whole quarter, and T-0167 then
- * measured that part at DESKTOP: **7 m 07 s**, inside the ceiling with 2 m 53 s
- * to spare, so the instruction that used to stand here — run part 4 outside the
- * ceiling, or read the mobile pass instead — is withdrawn. It is a reading and
+ * this sweep is now a PART OF ITS OWN — part 5, T-0346 — and T-0167 had
+ * measured the part it then sat in at DESKTOP: **7 m 07 s**, inside the ceiling
+ * with 2 m 53 s to spare, so the instruction that used to stand here — run part 4
+ * outside the ceiling, or read the mobile pass instead — is withdrawn. The sweep
+ * itself was measured at **5 m 46 s** on 2026-08-29 under eight-way load, which
+ * is what put its host part over the ceiling. It is a reading and
  * not a constant: these desktop numbers move by minutes between runs on a
  * software renderer, which is why the margin is what this sweep is judged on
  * and why `SMOKE_TIMING=1` exists to re-take it.
@@ -1015,9 +1020,21 @@ if (ONLY) console.log(`NOT THE FULL GATE — viewports filtered to "${ONLY}"\n`)
 // from — see ROADMAP § THE RUN BUDGET for the eight readings — and halved the
 // one part the profile put inside a minute and a quarter of the ceiling. Part 8
 // was the tail, so the ninth part is APPENDED and parts 1-7 keep their numbers:
-// the pairing rule survives as 1+2, 3+4, 5+6, 7+8+9, and the mobile recipe's
-// last command widens from `7-8` to `7-9`.
-const PARTS = 9;
+// the pairing rule survived as 1+2, 3+4, 5+6, 7+8+9, and the mobile recipe's
+// last command widened from `7-8` to `7-9`. (Those numbers are T-0167's own;
+// T-0346 has since renumbered the parts after 4 — see the next paragraph.)
+// T-0346 cut PART 4 into THREE — 4, 5 and 6 — because it had gone over the
+// ceiling outright rather than merely close to it. Measured on the steward
+// runner with eight lanes of the loop running at once, the old part 4 spent
+// 1 m 03 s on its head, 5 m 46 s on its scene-detail sweep and 2 m 31 s on its
+// DOM tail, and the invocation was killed before it printed a clock. The sweep
+// is ONE `page.evaluate` walking three detail tiers across every stand in
+// `STANDS`, so it cannot be cut at all: it becomes a part of its own and is the
+// floor under this whole recipe. The head and the tail are cheap and are cut off
+// either side of it rather than carried by it. Part 4 is NOT the tail, so unlike
+// T-0167's cut this one RENUMBERS: old parts 5-9 are now 7-11. The pairing rule
+// becomes 1+2, 3+4+5+6, 7+8, 9+10+11, and mobile is still four commands.
+const PARTS = 11;
 const STAGE = process.env.SMOKE_STAGE || '';
 // `3` is one part; `3-4` is a contiguous run of them; `1,5-6` is any set. The
 // range form exists so the cheap viewport does not pay eight boots to run a
@@ -1042,7 +1059,7 @@ if (typeof wantedParts === 'string') {
 }
 if (STAGE) console.log(`NOT THE FULL GATE — stages filtered to "${STAGE}" of ${PARTS}\n`);
 const stageOn = (n) => !wantedParts || wantedParts.has(n);
-// Readability at the guard on a reading shared by several parts: `anyStage(5, 7)`
+// Readability at the guard on a reading shared by several parts: `anyStage(7, 9)`
 // says which parts need it, and adding a part to that list is the whole edit.
 const anyStage = (...ns) => ns.some(stageOn);
 const startedAt = Date.now();
@@ -1093,7 +1110,7 @@ for (const [label, viewport, touch] of [
   page.setDefaultTimeout(90_000);
 
   // A fresh boot stands at the GATE SCREEN, and the part that enters the town
-  // is part 4's "the gate and the chrome" section. Every part after it that
+  // is part 6's "the gate and the chrome" section. Every part after it that
   // measures a page.screenshot frame (those include DOM overlays; the
   // GL-capture checks do not) or clicks the panel chrome (which has no layout
   // at all while the gate stands, so a click waits ninety seconds for a
@@ -1125,7 +1142,7 @@ for (const [label, viewport, touch] of [
   // will return as the town grows, and the next symptom will again look like a UI
   // bug rather than a budget."* It returned on 2026-08-27 (T-0215), and it
   // returned looking precisely like that: `SMOKE_VIEWPORT=desktop SMOKE_STAGE=8`
-  // died on its FIRST click, on the Settings tab, before a single one of part 8's
+  // died on its FIRST click, on the Settings tab, before a single one of part 10's
   // assertions had run — and three agents in one day read that as the What's-new
   // panel being broken. It was not. Driven by hand at the same moment the gate was
   // dying, the panel opened and painted all 272 releases and cleared its unread
@@ -1150,7 +1167,7 @@ for (const [label, viewport, touch] of [
   // it now fails in one round trip with a sentence naming what covered it,
   // instead of in ninety seconds with a call log that reads like a broken
   // control. A real `page.click` stays the instrument wherever the trusted event
-  // ITSELF is the subject: the confidence menu in part 4 is the case, and it says
+  // ITSELF is the subject: the confidence menu in part 6 is the case, and it says
   // so where it stands.
   const clickChrome = async (sel) => {
     const why = await page.evaluate((s) => {
@@ -1301,7 +1318,7 @@ for (const [label, viewport, touch] of [
                terrainProblems: api.problems.filter((t) => /^\s*(terrain|water)\b/i.test(t)) };
     });
 
-    // Read once, shared by parts 5 and 7 (T-0060, re-cut by T-0121): the street
+    // Read once, shared by parts 7 and 9 (T-0060, re-cut by T-0121 and T-0346): the street
     // layer, the flora rooted around it, the building anchors and the two
     // readouts. Its checks span both of those parts, so the reading is taken
     // before the split — and skipped when neither runs, because it is the most
@@ -1309,12 +1326,12 @@ for (const [label, viewport, touch] of [
     // viewpoints, so it does not care what ran before it.
     //
     // T-0121 narrowed the guard from "stage 3 or stage 4" to the two PARTS that
-    // actually read it: parts 6 and 8 hold no reference to `streetLayer`, and
+    // actually read it: parts 8 and 10 hold no reference to `streetLayer`, and
     // under the old guard each of them would have paid for it anyway — four
     // times over the desktop pass instead of twice, on the very reading this
     // gate can least afford.
     let streetLayer = null;
-    if (anyStage(5, 7)) {
+    if (anyStage(7, 9)) {
       streetLayer = await page.evaluate(() => {
         const a = window.__chicago4d;
         // Sample the dynamic flora from a known dry South Division viewpoint.
@@ -6350,9 +6367,9 @@ for (const [label, viewport, touch] of [
 
     inStageWork = false;
     } // end PART 3 (T-0060 stage 2a, cut by T-0121)
-    // PART 4 — the raycast pick through the confidence menu's own clicks:
-    // walking, the bridge deck, the budgets, life size, scene detail and the
-    // chrome. The rest of T-0060's stage 2.
+    // PART 4 — the raycast pick through the documented wall heights: walking,
+    // the bridge deck, the touch backend, the budgets and life size. The head of
+    // T-0060's stage 2b, which T-0346 cut into parts 4, 5 and 6.
     //
     // The one thing this cut inherits is a POSE. Everything above it framed the
     // Sauganash to open its card, and the first check below picks whatever is
@@ -6869,6 +6886,28 @@ for (const [label, viewport, touch] of [
             + `against a documented ${s.wallHeight} m wall`).join('; ')
           : `${claimed.length} structures agree with their documented wall height`);
 
+    inStageWork = false;
+    } // end PART 4 (T-0060 stage 2b, cut by T-0121, cut in three by T-0346)
+    // PART 5 — the scene-detail sweep, and nothing else. T-0346 cut it out on
+    // its own because it is 5 m 46 s of the old part 4's 9 m 20 s and it CANNOT
+    // be cut further: the whole sweep is one `page.evaluate` that walks three
+    // detail tiers across every stand in `STANDS`, so it is the atom that sets
+    // the floor under this recipe. Head (1 m 03 s) and DOM tail (2 m 31 s) are
+    // parts 4 and 6.
+    //
+    // It takes no pose — the sweep frames or teleports to each stand itself
+    // before it reads anything — and it restores the tier the visitor started
+    // on, so an unfiltered run reaches part 6 in the state it always did.
+    if (stageOn(5)) {
+    inStageWork = true;
+    // T-0346 — the ONE binding that crossed this cut. `stats` is read at the
+    // reference stand up in part 4, and only its CALL ceiling was wanted down
+    // here. That ceiling is pose- and tier-independent (only `budget.triangles`
+    // follows the detail tier), so this part reads it for itself rather than
+    // inheriting part 4's reading: an unfiltered run gets the same number twice
+    // and a part-5-alone run gets it at all.
+    const callBudget = await page.evaluate(
+      () => window.__chicago4d.stats().budget.drawCalls);
     // --- scene detail -------------------------------------------------------
     //
     // The triangle ceiling used to be one hard number for everyone. It is now the
@@ -6992,10 +7031,10 @@ for (const [label, viewport, touch] of [
     }, STANDS);
     for (const s of detail.seen) {
       check(`${label}: scene detail '${s.level}' stays inside its own ceiling at the WORST stand`,
-        s.worstTris.tris <= s.ceiling && s.worstCalls.calls <= stats.budget.drawCalls,
+        s.worstTris.tris <= s.ceiling && s.worstCalls.calls <= callBudget,
         `${s.worstTris.tris.toLocaleString('en-US')} tris of `
         + `${s.ceiling.toLocaleString('en-US')} at ${s.worstTris.label}, `
-        + `${s.worstCalls.calls} calls of ${stats.budget.drawCalls} at ${s.worstCalls.label} `
+        + `${s.worstCalls.calls} calls of ${callBudget} at ${s.worstCalls.label} `
         + `— spread: ${s.atStands.slice().sort((a, b) => b.tris - a.tris)
           .map((x) => `${x.label} ${x.tris.toLocaleString('en-US')}/${x.calls}c`).join(' · ')}`);
     }
@@ -7009,9 +7048,9 @@ for (const [label, viewport, touch] of [
       .flatMap((lv) => lv.atStands.map((x) => ({ ...x, level: lv.level })))
       .reduce((a, b) => (b.calls > a.calls ? b : a));
     check(`${label}: draw calls under budget at the town's WORST frame`,
-      townWorstCalls.calls <= stats.budget.drawCalls,
+      townWorstCalls.calls <= callBudget,
       `${townWorstCalls.calls} calls at ${townWorstCalls.label}, '${townWorstCalls.level}' `
-      + `(budget ${stats.budget.drawCalls}) — spread by level: `
+      + `(budget ${callBudget}) — spread by level: `
       + detail.seen.map((lv) => `${lv.level} ${lv.worstCalls.calls} at ${lv.worstCalls.label}`)
         .join(' · '));
     // Asserted PER STAND rather than on one reading, because "turning it down
@@ -7234,6 +7273,17 @@ for (const [label, viewport, touch] of [
         + `worst ${String(s.worstCalls.calls).padStart(4)} calls at ${s.worstCalls.label}`);
     }
 
+    inStageWork = false;
+    } // end PART 5 (T-0346)
+    // PART 6 — the gate, the chrome and the confidence menu's own clicks: the
+    // DOM tail of T-0060's stage 2b, and the section that ENTERS THE TOWN for
+    // every part after it. T-0346 cut it off the scene-detail sweep above.
+    //
+    // It takes no pose and inherits no binding: it starts by clicking `#gate-btn`,
+    // which is what a fresh boot is already standing in front of, so this part
+    // run alone lands in exactly the state an unfiltered run reaches here.
+    if (stageOn(6)) {
+    inStageWork = true;
     // --- the gate and the chrome -------------------------------------------
     await page.click('#gate-btn');
     await page.waitForTimeout(150);
@@ -7279,7 +7329,7 @@ for (const [label, viewport, touch] of [
     // runs here because the HUD only exists past the gate, and the guide that
     // covers this corner of it was dismissed by the check above.
     //
-    // SO THESE FOUR STAY `page.click` (T-0215). Part 8's chrome clicks moved to
+    // SO THESE FOUR STAY `page.click` (T-0215). Part 10's chrome clicks moved to
     // `clickChrome`, which hit-tests at the element's own centre and would catch
     // this same regression — but here the trusted event is not the means, it is
     // the SUBJECT, and the instrument should be the visitor's own mouse.
@@ -7309,13 +7359,13 @@ for (const [label, viewport, touch] of [
       JSON.stringify(cmRestored));
 
     inStageWork = false;
-    } // end PART 4 (T-0060 stage 2b, cut by T-0121)
-    // PART 5 — navigation through the batch merge: the readouts, the
+    } // end PART 6 (T-0060 stage 2b, cut by T-0121, cut in three by T-0346)
+    // PART 7 — navigation through the batch merge: the readouts, the
     // road-legibility aid and the merge the reach below stands on.
-    if (stageOn(5)) {
+    if (stageOn(7)) {
     inStageWork = true;
 
-    // A fresh boot is still standing at the GATE SCREEN: stage 2's "the gate
+    // A fresh boot is still standing at the GATE SCREEN: part 6's "the gate
     // and the chrome" section is what enters the town, releases the pointer
     // and dismisses the first-entry navigation guide, and this point of an
     // unfiltered pass runs long after it did. The road-legibility bands
@@ -7608,13 +7658,13 @@ for (const [label, viewport, touch] of [
       + `${dRoughBack.worst}`);
 
     inStageWork = false;
-    } // end PART 5 (T-0060 stage 3a, cut by T-0121)
-    // PART 6 — the facade tones, the shadow reach, the shadow box and the K24
+    } // end PART 7 (T-0060 stage 3a, cut by T-0121; renumbered from 5 by T-0346)
+    // PART 8 — the facade tones, the shadow reach, the shadow box and the K24
     // brightness aid: the camera-heavy tail of T-0060's stage 3, and every
     // check in it measures a page.screenshot frame. So it enters the town on
     // its own account, and it holds no reference to the shared street reading —
-    // which is why that reading is now gated on parts 5 and 7 alone.
-    if (stageOn(6)) {
+    // which is why that reading is now gated on parts 7 and 9 alone.
+    if (stageOn(8)) {
     inStageWork = true;
     await enterTown();
 
@@ -7934,13 +7984,13 @@ for (const [label, viewport, touch] of [
       + `${dBrightBack.mean?.toFixed(2)} / worst ${dBrightBack.worst}`);
 
     inStageWork = false;
-    } // end PART 6 (T-0060 stage 3b, cut by T-0121)
-    // PART 7 — the flora census through the streets a visitor reads: the drawn
+    } // end PART 8 (T-0060 stage 3b, cut by T-0121; renumbered from 6 by T-0346)
+    // PART 9 — the flora census through the streets a visitor reads: the drawn
     // population, the sward, the horizon timber and the street names. Every
     // binding it shares with earlier parts (`streetLayer`) is read above the
     // split; the teleport below re-establishes the camera pose it expects on
     // its own.
-    if (stageOn(7)) {
+    if (stageOn(9)) {
     inStageWork = true;
 
     // Same fresh-boot accommodation as stage 3: this stage drives the panel
@@ -9233,10 +9283,10 @@ for (const [label, viewport, touch] of [
       JSON.stringify(unitChoice));
 
     inStageWork = false;
-    } // end PART 7 (T-0060 stage 4a, cut by T-0121)
-    // PART 8 — eye height through What's-new: the settings, the Go-to tab and
+    } // end PART 9 (T-0060 stage 4a, cut by T-0121; renumbered from 7 by T-0346)
+    // PART 10 — eye height through What's-new: the settings, the Go-to tab and
     // the release notes. The head of T-0060's stage 4b; T-0167 cut the Evidence
-    // panel and free-fly off its tail into part 9.
+    // panel and free-fly off its tail into part 11.
     //
     // It drives the panel chrome from its first line, so it enters the town on
     // its own account. It takes no pose of its own on purpose: the checks below
@@ -9252,10 +9302,10 @@ for (const [label, viewport, touch] of [
     // part down before one assertion had run. Not one assertion is dropped or
     // softened by the change: `clickChrome` hit-tests the control at its own
     // centre the way a real click does, and says what covered it when it fails.
-    if (stageOn(8)) {
+    if (stageOn(10)) {
     inStageWork = true;
     await enterTown();
-    // …and the PANEL, which part 7 leaves open at its last line and this part
+    // …and the PANEL, which part 9 leaves open at its last line and this part
     // reaches straight into: its first statement clicks a tab inside it, and a
     // click on a tab that has no layout waits ninety seconds and dies. Guarded
     // on the panel's own hidden state rather than toggling, for the same reason
@@ -9629,26 +9679,26 @@ for (const [label, viewport, touch] of [
       `${ret.flagged.length} of ${ret.total} flagged: ${ret.flagged.join(' | ')}`);
 
     inStageWork = false;
-    } // end PART 8 (T-0060 stage 4b-i, cut by T-0121, halved again by T-0167)
-    // PART 9 — the Evidence panel through inspecting from the air: the
+    } // end PART 10 (T-0060 stage 4b-i, cut by T-0121, halved again by T-0167; renumbered from 8 by T-0346)
+    // PART 11 — the Evidence panel through inspecting from the air: the
     // liberties, the people, the wildlife, what is not here, what the ground
     // claims, free-fly and the two inspect keys. The tail of T-0060's stage 4.
     //
-    // T-0167 cut it off part 8 because part 8 was the thinnest margin on the
+    // T-0167 cut it off part 10 because part 10 was the thinnest margin on the
     // measured DESKTOP profile — 8 m 46 s against a ten-minute ceiling, with
     // 107 staged checks, more than any other part — and the desktop readings
     // move by minutes between runs on a software renderer, so a 74-second
     // margin is not one. The boundary is this one because the desktop profile
-    // put 6 m 05 s of part 8's cost above it and 2 m 41 s below, and because
+    // put 6 m 05 s of part 10's cost above it and 2 m 41 s below, and because
     // nothing declared above it is read below it: the scope-aware scan found
     // `eye`, `toggles` and `typed` reaching across and all three are prose or a
     // different local (`typedE.typed`).
     //
     // Its prologue is `enterTown()` alone: the liberties reading below already
     // carries its own guarded panel-open and clicks the Evidence tab itself, so
-    // unlike part 8 this part needs no panel guard bolted on. It takes no pose
+    // unlike part 10 this part needs no panel guard bolted on. It takes no pose
     // — free-fly is entered from wherever the visitor stands.
-    if (stageOn(9)) {
+    if (stageOn(11)) {
     inStageWork = true;
     await enterTown();
     // --- the liberties, in the Evidence panel ------------------------------
@@ -10605,7 +10655,7 @@ for (const [label, viewport, touch] of [
       ground.overflow);
     // T-0210, and it was the LAST frame-bound chrome click in the file. This one
     // close timed out at ninety seconds on an unmodified tree and took the desktop
-    // half of part 9 down with it, which read as a broken control and was not one.
+    // half of part 11 down with it, which read as a broken control and was not one.
     // Measured here at the click site itself, on the published mirror at 1280x800,
     // at three machine loads on one runner:
     //
@@ -10868,7 +10918,7 @@ for (const [label, viewport, touch] of [
     await page.evaluate(() => window.__chicago4d.frame('sauganash_hotel', 26));
 
     inStageWork = false;
-    } // end PART 9 (T-0060 stage 4b-ii, cut by T-0167)
+    } // end PART 11 (T-0060 stage 4b-ii, cut by T-0167; renumbered from 9 by T-0346)
     } catch (e) {
       inStageWork = false;
       thrown = e;
@@ -10983,7 +11033,7 @@ if (UPDATE_ROAD_BANDS) {
 
 console.log(`\n${passes.length} passed, ${failures.length} failed`);
 // T-0060: the audit line. In an unfiltered run the staged-section count is the
-// sum of what SMOKE_STAGE=1 … 8 each report, and the always-on count is
+// sum of what SMOKE_STAGE=1 … 11 each report, and the always-on count is
 // identical in every one of them — that arithmetic is how the parts are
 // demonstrated to add up to the whole.
 console.log(`${stageWorkChecks} staged-section check(s)`

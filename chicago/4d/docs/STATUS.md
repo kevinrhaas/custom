@@ -1,5 +1,56 @@
 # STATUS
 
+## Shipped 2026-08-30 — T-0346: the desktop smoke's part 4 is cut in three, and there are eleven parts
+
+**Nothing you can see changed.** This is the third exemption in AGENTS.md § THE VISIBLE-PROGRESS
+RULE — a gate that is blocking visible parcels. Since 2026-08-29 no steward run could take the
+desktop half of its own gate: `SMOKE_VIEWPORT=desktop SMOKE_STAGE=4` was killed at the ten-minute
+foreground ceiling on a data-only branch AND on an unmodified `origin/dev` worktree, so every
+visible parcel in the queue — T-0192's street frontages, T-0219's southern heightfield, T-0375's
+tradesmen's roofs — merges on a mobile pass plus an argument about the desktop parts that did not
+run. The reasoning, the profile and the audit are in `docs/ROADMAP.md` § THE RUN BUDGET, which is
+where the three earlier re-cuts recorded themselves.
+
+- **The cut is three ways, not two, because the middle piece cannot be cut at all.** Profiled with
+  `SMOKE_TIMING=1` on the steward runner under eight-way lane load: head **1 m 03 s**, scene-detail
+  sweep **5 m 46 s**, DOM tail **2 m 31 s**. The sweep is one `page.evaluate` walking three detail
+  tiers across every stand in `STANDS` — no section boundary inside it, and making it smaller means
+  measuring fewer stands, which is the defect the set exists to close. So it becomes part 5 on its
+  own and sets the floor under the recipe; halving instead would have left 6 m 49 s in one part and
+  been back at the ceiling within a fortnight on this section's own evidence.
+- **It renumbers, and everything holding a part number moved in the same commit.** Old parts 5-9
+  are now 7-11; the pairing rule is 1+2, 3+4+5+6, 7+8, 9+10+11 and mobile is still four commands
+  with unmoved leg boundaries. `anyStage(5, 7)` → `anyStage(7, 9)`, `chicago-4d-bake.yml`'s smoke
+  matrix tiles `1-2 3-6 7-8 9-11`, `chicago-4d-smoke.yml`'s dispatch input reads 1..11, and
+  `dev-smoke-state.mjs`'s `PARTS` and `CHANGELOG_PARTS` (8 → 10) follow.
+- **One binding crossed a boundary and was found by scanning, not by the run.** The old part 4 read
+  `stats` at the reference stand and used `stats.budget.drawCalls` inside the sweep. The call
+  ceiling is pose- and tier-independent, so part 5 reads it for itself. Neither new part inherits a
+  pose: the sweep frames each stand itself and restores the tier the visitor started on, and the
+  DOM tail opens by clicking `#gate-btn`, which is what a fresh boot already stands in front of.
+- **`dev`'s standing smoke record is told about renumbering now.** `tools/dev-smoke-state.json`
+  files readings against part numbers, so after a renumber *"was dev already red at part 9"* would
+  have been answered out of a record about a different section — a wrong answer, not a stale one,
+  which is the misattributed red T-0215 exists to stop. Readings carry the generation they were
+  taken under, `ask` reads only its own and says how many it set aside, and the 60 older ones are
+  kept as the history of the parts they were actually about.
+
+**Verification.** `tools/check.sh` PASS. Smoke against the published mirror, all foreground,
+all on the loaded runner: **desktop part 4** PASS 1 m 03 s (17 staged / 9 always-on / 26 passed) ·
+**desktop part 5** PASS 6 m 12 s (16 / 9 / 25) · **desktop part 6** PASS 2 m 58 s (6 / 9 / 15) ·
+**desktop part 7** PASS 8 m 48 s (20 / 9 / 29), run to prove the renumbered guards and the shared
+`anyStage(7, 9)` street-layer reading still bind. Zero page errors in every one. **The audit**, at
+mobile where the old part still fit: `origin/dev`'s own `smoke_renderer.mjs` at `SMOKE_STAGE=4`
+gives **42 staged / 9 always-on / 51 passed** in 5 m 41 s, and this branch at `SMOKE_STAGE=4-6`
+gives **42 / 9 / 51** in 5 m 41 s — not a check dropped, and a crossing binding would have thrown
+rather than balanced.
+
+**What this does not fix, said plainly.** Part 7 — the old part 5 — measured **8 m 48 s** here, a
+margin of 1 m 12 s, and T-0167's rule is that a 74-second margin is not a margin. It is the next
+one over and it is T-0173's; cutting it in this PR would renumber the body twice in one commit and
+its own profile has not been taken. The 60 pre-renumbering readings in the state file are set aside
+rather than re-derived, so `ask` will answer "no reading" for every part until this recipe has been
+run on `dev` — which is correct, and is the point.
 ## Shipped 2026-08-30 — T-0369: desktop stage 8's verdict stops depending on which stages ran in front of it
 
 **Nothing you can see changed.** This is a gate repair, taken under AGENTS.md's third

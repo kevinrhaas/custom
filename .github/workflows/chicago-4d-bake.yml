@@ -98,7 +98,7 @@ permissions:
 # own rule. Each matrix leg prints "NOT THE FULL GATE" because on its own it is
 # not one; all eight legs together are, and `needs: smoke` fails if ANY fails.
 # The workflow reconstitutes the gate the suite refuses to let one run claim —
-# which holds only while the stage ranges tile 1..9 with no gap and no overlap.
+# which holds only while the stage ranges tile 1..11 with no gap and no overlap.
 #
 # WHY THE BRANCH IS PUSHED BEFORE THE SMOKE RUNS, and the PR only after. The push
 # is in `bake` so a red smoke never destroys twenty minutes of Blender output —
@@ -285,7 +285,8 @@ jobs:
   # T-0171 — WHY THE STAGE DIMENSION IS HERE AND NOT JUST A BIGGER TIMEOUT.
   # This job used to run each viewport UNSPLIT: one command, `SMOKE_VIEWPORT`
   # only, under `timeout-minutes: 30`. T-0167's measured desktop profile
-  # (ROADMAP § THE RUN BUDGET) totals 39 m 58 s across the nine parts, so the
+  # (ROADMAP § THE RUN BUDGET) totals 39 m 58 s across what were then nine parts,
+  # so the
   # desktop leg could not fit that cap and never could. Run #269 on dev is the
   # observation: mobile passed unfiltered (420 passed / 0 failed, 15 m 50 s) and
   # desktop was CANCELLED at 29 m 05 s having reached 285 passed / 0 failed — a
@@ -300,20 +301,23 @@ jobs:
   # margin legible PER LEG, and it is what T-0170's further cut of part 7
   # improves rather than invalidates.
   #
-  # THE CUT IS T-0167's PAIRING RULE, `1+2, 3+4, 5+6, 7+8+9`. Against the
-  # measured desktop profile those legs cost 6 m 08 s, 8 m 47 s, 8 m 04 s and
-  # 17 m 02 s — less in practice, because a pair boots ONCE where the profile
-  # paid a boot per part. Worst leg keeps better than ten minutes of margin
-  # under the 30-minute cap, and the smoke phase's wall clock drops from over
-  # 40 minutes (fatal) to under 20.
+  # THE CUT IS THE PAIRING RULE, `1+2, 3+4+5+6, 7+8, 9+10+11` since T-0346 cut
+  # the old part 4 into three (it was `1+2, 3+4, 5+6, 7+8+9` under T-0167, and
+  # the leg boundaries are unmoved — only the part numbers inside them changed).
+  # Against the measured desktop profile those legs cost 6 m 08 s, about
+  # 11 m 00 s, 8 m 04 s and 17 m 02 s — less in practice, because a leg boots
+  # ONCE where the profile paid a boot per part. Worst leg keeps better than ten
+  # minutes of margin under the 30-minute cap, and the smoke phase's wall clock
+  # drops from over 40 minutes (fatal) to under 20.
   #
-  # THE RANGES MUST COVER 1..9 EXACTLY ONCE. Each leg prints "NOT THE FULL GATE"
+  # THE RANGES MUST COVER 1..11 EXACTLY ONCE. Each leg prints "NOT THE FULL GATE"
   # because on its own it is not one; the UNION of the eight legs is, and that
   # holds only while these four ranges tile the parts with no gap and no overlap.
   # smoke_renderer.mjs's own arithmetic — the parts' staged counts sum to an
   # unfiltered run's — is what makes the union checkable rather than asserted.
-  # If a part is ever added or renumbered (T-0170 renumbers everything after 7),
-  # THIS LIST IS PART OF THAT EDIT.
+  # If a part is ever added or renumbered (T-0346 renumbered everything after 4;
+  # T-0170 would renumber everything after what is now part 9), THIS LIST IS PART
+  # OF THAT EDIT.
   smoke:
     needs: bake
     runs-on: ubuntu-latest
@@ -322,7 +326,7 @@ jobs:
       fail-fast: false
       matrix:
         viewport: [mobile, desktop]
-        stage: ['1-2', '3-4', '5-6', '7-9']
+        stage: ['1-2', '3-6', '7-8', '9-11']
     steps:
       - uses: actions/checkout@v4
         with:

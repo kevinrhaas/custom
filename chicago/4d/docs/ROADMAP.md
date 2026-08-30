@@ -206,6 +206,62 @@ renumbers everything after it. The audit was taken at mobile too: old `SMOKE_STA
 staged / 9 always-on / 152 passed and new `7-9` gives **143 / 9 / 152**, in 5 m 53 s against
 5 m 49 s.
 
+**RE-CUT 2026-08-30 by T-0346: part 4 is cut in THREE and there are ELEVEN parts.** By
+2026-08-29 the old part 4 was not thin on margin, it was OVER — killed at 10 m 00 s on a
+data-only branch, and killed again on an unmodified `origin/dev` worktree, so it was the
+erosion this section keeps predicting and not any one branch's doing. Profiled under
+`SMOKE_TIMING=1` on the steward runner **with eight lanes of the loop running at once**, which
+is the load the ticket asked for and the reason the reading is worth keeping: the head — the
+raycast pick, walking, the bridge deck, the touch backend, the budgets and life size — cost
+**1 m 03 s**; the scene-detail sweep cost **5 m 46 s**; the DOM tail — the gate, the chrome and
+the confidence menu — cost **2 m 31 s**.
+
+**The sweep is why this is a three-way cut and not a halving.** It is ONE `page.evaluate` that
+walks three detail tiers across every stand in `STANDS`, so there is no section boundary inside
+it and no way to make it smaller without measuring fewer stands — which is the defect the set
+exists to close (see the sweep's own banner in `smoke_renderer.mjs`). It is therefore given a
+part of its own, where it is the floor under the whole recipe, and the two cheap sections are cut
+off either side of it rather than carried by it. Halving instead would have left 6 m 49 s in one
+part and 2 m 31 s in the other, and the expensive half would have been back at the ceiling within
+a fortnight on this section's own evidence.
+
+**Part 4 is not the tail, so unlike T-0167's cut this one RENUMBERS: old parts 5-9 are now
+7-11.** The pairing rule becomes **1+2, 3+4+5+6, 7+8, 9+10+11** — the mobile recipe is still four
+commands and its leg boundaries have not moved, only the numbers inside them. Everything that
+holds a part number moved with it in the same commit: `anyStage(5, 7)` for the shared street-layer
+reading is now `anyStage(7, 9)`, `chicago-4d-bake.yml`'s smoke matrix tiles `1-2 3-6 7-8 9-11`,
+and `dev-smoke-state.mjs`'s `CHANGELOG_PARTS` moved from part 8 to part 10.
+
+**Measured after the cut, at desktop, on the same eight-way-loaded runner: part 4 — 1 m 03 s,
+17 staged · part 5 — 6 m 12 s, 16 staged · part 6 — 2 m 58 s, 6 staged.** All three PASS, and the
+worst margin among them is part 5's **3 m 48 s** — taken under load rather than asserted, which is
+the correction the ticket made to its own acceptance after the same tree gave >10 m in the morning
+and 7 m 37 s in the evening. The audit was taken at mobile, where the old part still fit: old
+`SMOKE_STAGE=4` gives **42 staged / 9 always-on / 51 passed** in 5 m 41 s, and new
+`SMOKE_STAGE=4-6` gives **42 / 9 / 51** in 5 m 41 s. Not a check moved, and a binding that crossed
+either boundary would have thrown rather than balanced.
+
+**One binding did cross, and it was found by scanning rather than by the run.** The old part 4
+read `stats` at the reference stand near its head and used `stats.budget.drawCalls` down in the
+sweep. The call ceiling is pose- and tier-independent — only `budget.triangles` follows the detail
+tier — so part 5 now reads it for itself: an unfiltered run gets the same number twice, and a
+part-5-alone run gets it at all. Neither new part inherits a pose. The sweep frames or teleports
+to each stand itself and restores the tier the visitor started on; the DOM tail opens by clicking
+`#gate-btn`, which is what a fresh boot is already standing in front of.
+
+**`dev`'s standing smoke record had to be told about the renumbering, and that is the part worth
+copying next time.** `tools/dev-smoke-state.json` files each reading against PART NUMBERS, so
+after a renumber a question like *"was `dev` already red at part 9"* would have been answered out
+of a record about a different section — not a stale answer but a WRONG one, which is the
+confidently misattributed red T-0215 exists to stop. Readings now carry the generation they were
+taken under; `ask` reads only its own and prints how many it set aside. The 60 older ones are kept,
+because they are still the honest history of the parts they were actually about.
+
+**And the next one over is already visible: part 7 — old part 5 — measured 8 m 48 s at desktop on
+this same loaded runner, a margin of 1 m 12 s.** T-0167 wrote that a 74-second margin is not a
+margin, and this is one. It is T-0173's, and this re-cut deliberately did not take it: cutting it
+would renumber a second time in one PR and the honest reading of it needs its own profile.
+
 **AND THE HEADING OF THIS SECTION IS OUT OF DATE BY A FACTOR OF TWO.** "The smoke costs 26 of
 them" was measured on 2026-08-14. T-0167's profile puts the staged gate at **39 m 58 s of desktop
 across nine commands plus 13 m 26 s of mobile across four** — call it **53 minutes**, better than a

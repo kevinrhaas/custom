@@ -61,7 +61,25 @@ const REPO = path.resolve(APP, '..', '..');           // the monorepo root
 const STATE = path.join(HERE, 'dev-smoke-state.json');
 
 /** Parts of the smoke body. Mirrors `PARTS` in tools/smoke_renderer.mjs. */
-const PARTS = 9;
+const PARTS = 11;
+
+/**
+ * WHICH CUT OF THE BODY A PART NUMBER IS ABOUT (T-0346).
+ *
+ * A reading is stored against PART NUMBERS, and a re-cut of the suite can move
+ * what a number means: T-0346 cut the old part 4 into 4, 5 and 6, so old parts
+ * 5-9 became 7-11 and every reading taken before it now names a different
+ * section than it did when it was filed. Answering "was dev already red at
+ * part 9" out of a record written under the old numbering is not a stale answer,
+ * it is a WRONG one — the sort of confidently misattributed red T-0215 exists to
+ * stop. So each reading carries the generation it was taken under and `ask`
+ * reads only its own; older ones are counted and set aside, not deleted, because
+ * they are still the history of the parts they were actually about.
+ *
+ * Bump this string in the same commit as any future re-cut that renumbers.
+ */
+const NUMBERING = 'T-0346';
+const numberingOf = (r) => r.numbering ?? 'pre-T-0346';
 
 const NOTE =
   'T-0216 — dev\'s standing smoke result, so a branch can answer "is this red mine, or did I '
@@ -129,7 +147,8 @@ const CHANGELOG_INPUTS = [
 ];
 
 /** The parts whose checks actually read the release notes. */
-const CHANGELOG_PARTS = [8];
+// T-0346 renumbered the body: the What's-new part was 8 and is now 10.
+const CHANGELOG_PARTS = [10];
 
 /**
  * Smoke inputs carrying a publish stamp: hashed by CONTENT with the stamp
@@ -320,9 +339,13 @@ function parseSmokeLog(text) {
 // ---------------------------------------------------------------------------
 
 function load() {
-  if (!fs.existsSync(STATE)) return { note: NOTE, readings: [] };
+  if (!fs.existsSync(STATE)) return { note: NOTE, readings: [], stale: 0 };
   const j = JSON.parse(fs.readFileSync(STATE, 'utf8'));
-  return { note: NOTE, readings: j.readings ?? [] };
+  const all = j.readings ?? [];
+  // Everything, for `save`/`prune` — dropping the older generation would throw
+  // away the history of the parts it WAS about. Only `readings` is answered from.
+  const readings = all.filter((r) => numberingOf(r) === NUMBERING);
+  return { note: NOTE, readings, all, stale: all.length - readings.length };
 }
 
 /**
@@ -347,7 +370,15 @@ function prune(readings, cap = 60) {
 }
 
 function save(readings) {
-  fs.writeFileSync(STATE, `${JSON.stringify({ note: NOTE, readings: prune(readings) }, null, 2)}\n`);
+  // `prune` keeps the two rows `ask` needs per (viewport, part) — which it can
+  // only do for the CURRENT numbering, so readings from an older cut are carried
+  // through untouched and capped separately rather than competing for the slots.
+  const mine = readings.filter((r) => numberingOf(r) === NUMBERING);
+  const older = readings.filter((r) => numberingOf(r) !== NUMBERING)
+    .sort((a, b) => String(b.takenAt).localeCompare(String(a.takenAt)))
+    .slice(0, 20);
+  fs.writeFileSync(STATE, `${JSON.stringify(
+    { note: NOTE, readings: [...prune(mine), ...older] }, null, 2)}\n`);
 }
 
 /** The conditions half of a reading — the thing T-0215 says a verdict is worthless without. */
@@ -372,6 +403,7 @@ function addReadings(parsed, { host, source, when }) {
     viewport: r.viewport,
     stage: r.stage,
     parts: r.parts,
+    numbering: NUMBERING,
     verdict: r.verdict,
     target: r.target,
     passed: r.passed,
@@ -389,7 +421,7 @@ function addReadings(parsed, { host, source, when }) {
     source,
   }));
   const state = load();
-  save([...rows, ...state.readings]);
+  save([...rows, ...state.all]);
   return rows;
 }
 
@@ -421,6 +453,10 @@ function ask(argv) {
     + 'stage your changes for an exact comparison)' : ''}`);
   console.log(`your release notes:       ${th.changelogHash}  (hashed apart: every branch `
     + `appends one entry, and only part ${CHANGELOG_PARTS.join('/')} reads them)`);
+  if (state.stale) {
+    console.log(`set aside:                ${state.stale} reading(s) taken before the `
+      + `${NUMBERING} re-cut, whose part numbers mean a different section`);
+  }
   if (!state.readings.length) {
     console.log('\nno readings yet. Fold one in with:\n'
       + '  node tools/dev-smoke-state.mjs record <smoke.log>\n'

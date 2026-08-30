@@ -1,7 +1,7 @@
 ---
 id: T-0346
 title: Desktop smoke stage 4 no longer fits the ten-minute foreground ceiling, so no steward run can take the whole desktop gate
-state: open
+state: claimed
 epic: META
 requested_by: loop
 seen: false
@@ -11,7 +11,7 @@ parent: null
 opened: 2026-08-28
 closed: null
 pr: null
-claimed_by: null
+claimed_by: run 8/29/2026, 9:13:04 PM CT
 blocked_on: null
 needs_bake: false
 ---
