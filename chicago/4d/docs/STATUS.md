@@ -45,6 +45,19 @@ gives **42 staged / 9 always-on / 51 passed** in 5 m 41 s, and this branch at `S
 gives **42 / 9 / 51** in 5 m 41 s — not a check dropped, and a crossing binding would have thrown
 rather than balanced.
 
+**Re-taken in full after a rebase onto T-0349's merge**, which added checks to parts 1, 2 and 10
+and none to the cut region: `check.sh` PASS, desktop part 4 **1 m 01 s** (17/9/26), part 5
+**6 m 06 s** (16/9/25), part 6 **2 m 59 s** (6/9/15), all PASS with zero page errors, and the audit
+re-run against the moved `dev` gives **42 / 9 / 51** in 5 m 40 s on its side and **42 / 9 / 51** in
+5 m 44 s on this branch's `4-6`. The desktop figures move by seconds between readings on this
+runner, which is the variance T-0167 recorded and not a change in the suite.
+
+**One thing was deliberately left alone.** The `# --- THE RUNS CANNOT PROVE THEMSELVES` band header
+in `tickets/QUEUE.md` names T-0346 as the sharp one and points at "the two order-dependent gates
+below" — all three of those tickets closed tonight, so the prose is stale. It is the owner's, in
+the file whose ordering is his, and AGENTS.md § THE QUEUE lets an agent append and remove ticket
+lines and nothing else. The band's four remaining tickets still belong to it.
+
 **What this does not fix, said plainly.** Part 7 — the old part 5 — measured **8 m 48 s** here, a
 margin of 1 m 12 s, and T-0167's rule is that a 74-second margin is not a margin. It is the next
 one over and it is T-0173's; cutting it in this PR would renumber the body twice in one commit and
