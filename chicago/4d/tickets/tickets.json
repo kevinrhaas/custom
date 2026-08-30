@@ -1,6 +1,6 @@
 {
   "project": "chicago-4d",
-  "generated_ct": "Aug 29, 2026, 8:54 PM",
+  "generated_ct": "Aug 29, 2026, 9:32 PM",
   "tickets": [
     {
       "id": "T-0001",
@@ -3080,7 +3080,7 @@
     {
       "id": "T-0180",
       "title": "The bake opens a content PR on every run, because the build stamp it writes is always dirty",
-      "state": "open",
+      "state": "claimed",
       "epic": "META",
       "requested_by": "steward",
       "seen": false,
@@ -3090,7 +3090,7 @@
       "opened": "2026-08-24",
       "closed": null,
       "pr": null,
-      "claimed_by": null,
+      "claimed_by": "run 8/29/2026, 9:32:49 PM CT",
       "blocked_on": null,
       "needs_bake": false,
       "queue_rank": 12

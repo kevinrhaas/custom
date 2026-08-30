@@ -1,4 +1,12 @@
 export const CHANGELOG = [ // newest first
+  { v: 421, title: 'The nightly rebuild stops announcing itself when it rebuilt nothing', kind: 'chore', ts: '2026-08-30T02:33:24.375Z', date: 'Aug 29, 2026, 9:33 PM CT',
+    items: [
+      'Nothing you can see changed today. Every night a machine regenerates the whole town from the records \u2014 every building, every derived file \u2014 and if anything came out different it puts the result up for review. That was the signal: a review waiting in the morning meant the town had changed overnight.',
+      'The signal had been dead for months. The last thing the rebuild does is stamp the page with which version it is and when it was built, and that stamp moves every single night by definition. So the rebuild always looked as though it had produced something, and it always asked for a review \u2014 five of them piled up in the hour before this was written, each one two files of clock and version number and not a single building between them.',
+      'The question is now asked of the town rather than of the clock. A rebuild that changed no geometry, no data and no derived file pushes nothing and says in its log that it found nothing; a rebuild that changed one byte of any of them still asks for its review.',
+      'The stamp itself is untouched \u2014 it is written every night as before, it is what the entry screen shows you, and it travels with the next rebuild that has real work in it. What it stops doing is inventing that work.',
+      'The rule is deliberately narrow, because the obvious version of it would break the same signal from the other side: simply ignoring the two stamped files would mean a genuine change to either of them never surfaced again. Instead each is compared with its stamp put back, so the version line can move freely and anything else moving still counts. Seven cases hold that, and two more watch the build itself in case it ever starts stamping a third file.',
+    ] },
   { v: 420, title: 'A third printing of one letter list, on a page nobody opened', kind: 'fix', ts: '2026-08-30T01:54:54.155Z', date: 'Aug 29, 2026, 8:54 PM CT',
     items: [
       'Nothing you can see changed today. The list of letters waiting uncalled-for at the Chicago post office on 1 April 1834 is the largest single body of names this reconstruction holds for that spring, and until today it stood at 179 \u2014 a number its own record called a floor, because nineteen lines of the two printings it was read from carry ink-damage where a name had been.',
