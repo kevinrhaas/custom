@@ -287,6 +287,79 @@ back at **6 m 10 s** — T-0167's figure to the second, all 28 checks — by not
 where the frames are not the subject. Desktop-only: the same part costs 2 m 52 s at 390×780, where
 a frame covers a quarter the pixels.
 
+**THE LEG COSTS WERE NEVER MEASURED AS LEGS, AND T-0181 MEASURED THEM — 104 REAL ONES.**
+T-0171's merge commit said its four desktop legs cost *"6 m 08 s, 8 m 47 s, 8 m 04 s and
+17 m 02 s"* and that the *"worst leg keeps better than ten minutes of margin"*. **Both claims
+are wrong, and the record is corrected here.** Those four numbers were SUMMED from T-0167's
+per-PART profile on the reasoning that a pair boots once where the profile paid a boot per
+part; not one of them was a reading of a leg. T-0181 then restated the margin as **9 m 49 s**
+from a single leg in bake run #273. That is also wrong — one sample of a quantity T-0167 had
+already written down as varying "by minutes between runs".
+
+**The readings are this workflow's own job history**, taken 2026-08-30 from the Actions API for
+`chicago-4d-bake.yml`, runs **#271-#391** — every desktop tail leg it has ever run (`7-9` before
+T-0346 renumbered the parts, `9-11` after it, and `10-12` since T-0173 halved part 7 later the same
+day; the leg carries identical content across all three renames, so they are one population). Each job is decomposed into its steps, which is what makes
+the result legible:
+
+| quantity | n | min | median | worst |
+|---|---|---|---|---|
+| the leg's **smoke command**, body completed | **90** | 9 m 26 s | **17 m 12 s** | **21 m 48 s** (#306) |
+| …of those, the ones that also passed | 47 | 12 m 10 s | 16 m 48 s | 21 m 48 s |
+| the **whole job** (checkout + install + smoke) | 90 | 10 m 41 s | 18 m 38 s | **28 m 04 s** (#293) |
+| `actions/checkout@v4` | 104 | 0 m 31 s | **0 m 38 s** | **30 m 01 s** (#284) |
+
+Standard deviation on the smoke command is **2 m 58 s**. So the honest margin on a 30-minute cap
+is **about seven minutes against the worst smoke ever recorded**, and **1 m 56 s against the worst
+whole job** — not ten minutes, and not 9 m 49 s.
+
+**THE RISK T-0181 CALLED HYPOTHETICAL HAS MATERIALISED SEVEN TIMES.** The ticket said "nothing
+today… the risk is a slow runner pushing desktop 7-9 past 30 minutes". It has, in runs **#284,
+#288, #290, #357, #358, #360 and #364**, every one killed at 30 m 1x s with `open-pr` never
+running — exactly the failure T-0171 was written to end. GitHub reports a `timeout-minutes` kill
+as `cancelled`, which is why a scan for failures missed all seven.
+
+**AND NOT ONE OF THEM WAS A SLOW SMOKE.**
+
+| run | job total | `checkout` | smoke |
+|---|---|---|---|
+| #364 | 30 m 16 s | **13 m 20 s** | 16 m 23 s |
+| #360 | 30 m 15 s | **21 m 38 s** | 8 m 08 s |
+| #358 | 30 m 15 s | **15 m 20 s** | 14 m 23 s |
+| #357 | 30 m 14 s | **21 m 19 s** | 8 m 26 s |
+| #290 | 30 m 16 s | **23 m 23 s** | 6 m 21 s |
+| #288 | 30 m 20 s | **29 m 17 s** | 0 m 33 s |
+| #284 | 30 m 07 s | **30 m 01 s** | 0 m 00 s |
+
+The checkout's median is 38 seconds and its 75th percentile is 47; but **11 of 104 exceeded five
+minutes and 7 exceeded thirteen**, and in #284 it ate the entire cap before the suite ran a single
+check. The distribution is bimodal, and the upper mode is the whole failure mode. `custom` is a
+3.2 GB monorepo of unrelated projects — `garage/` alone is 968 MB against `chicago/4d`'s 182 MB —
+and this job clones all of it to run one subtree's tools against an artifact it downloads
+separately. That is **T-0437**, filed by this ticket; it is the real defect and no cap closes it.
+
+**SO THE CUT IS THE WRONG INSTRUMENT HERE, AND THIS IS THE EVIDENCE AGAINST IT.** T-0181 offered
+two candidates and asked for a choice on evidence rather than taste. Splitting the tail leg
+further halves its smoke but leaves its checkout untouched, so every new leg draws again from the
+distribution that is actually causing the kills. Against these 104 checkouts a two-way split moves
+the expected breach rate from 7/104 to roughly 6/104 — noise — while adding a runner and another
+boot. **Three of the seven breaching checkouts are longer than a split leg's entire budget would
+be.** Splitting is not merely insufficient; it buys nothing.
+
+**THE CAP IS THEREFORE 45 MINUTES** (`chicago-4d-bake.yml`, the `smoke` job), sized on the table
+above: worst measured smoke command 21 m 48 s, plus the ~22 minutes of checkout excursion the
+raise is meant to absorb. That covers five of the seven breaches outright and the sixth against a
+median smoke. It does **not** cover #284 and #288, and it is not supposed to — a 30-minute
+checkout is a defect to fix, not a budget to fund.
+
+**The general lesson, which is now three-for-three.** T-0165 sized this cap off mobile; T-0167
+exists because T-0166's cut was sized off mobile too; T-0171's margin was summed rather than
+measured; T-0181's was one sample. Each was a number nobody had read off the thing it governed.
+**The job history is free and it is right there** — `gh api repos/OWNER/REPO/actions/runs/ID/jobs`
+gives per-step `started_at`/`completed_at` for every leg this workflow has ever run. Any future
+change to this cap or this cut should quote that, and should decompose the job into steps before
+blaming the suite, because on the evidence above the suite was never the problem.
+
 ### NEXT UP — every row says whether a visitor can SEE it
 
 **Rewritten 2026-08-15 on the owner's report that the loop does research and organisation rather

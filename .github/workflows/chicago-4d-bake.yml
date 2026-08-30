@@ -303,9 +303,32 @@ jobs:
   # THE CUT IS T-0167's PAIRING RULE, `1+2, 3+4, 5+6, 7+8+9`. Against the
   # measured desktop profile those legs cost 6 m 08 s, 8 m 47 s, 8 m 04 s and
   # 17 m 02 s — less in practice, because a pair boots ONCE where the profile
-  # paid a boot per part. Worst leg keeps better than ten minutes of margin
-  # under the 30-minute cap, and the smoke phase's wall clock drops from over
-  # 40 minutes (fatal) to under 20.
+  # paid a boot per part.
+  #
+  # THAT PARAGRAPH USED TO END "Worst leg keeps better than ten minutes of
+  # margin under the 30-minute cap". IT WAS WRONG, AND T-0181 MEASURED IT
+  # (ROADMAP § THE RUN BUDGET). The four figures above were SUMMED from
+  # T-0167's per-PART profile, never measured as legs. Read from this
+  # workflow's own job history — 104 desktop tail legs, runs #271-#391 —
+  # the leg's smoke command has a median of 17 m 12 s and a WORST of
+  # 21 m 48 s (run #306), so the true margin is about seven minutes, not ten.
+  # T-0181's own restatement of it, 9 m 49 s, came from a single sample and
+  # is wrong the same way.
+  #
+  # AND THE CAP HAS ALREADY FIRED SEVEN TIMES — runs #284, #288, #290, #357,
+  # #358, #360, #364, each killed at 30 m 1x s. NOT ONE was a slow smoke.
+  # Every one of the seven spent 13 m 20 s to 30 m 01 s inside
+  # `actions/checkout`, whose median here is 38 s. In #284 the checkout alone
+  # consumed the whole cap and the smoke never started. The binding constraint
+  # on this job is the checkout's tail, not the suite's body — that is
+  # T-0437, and it is why the cap below is 45 and not a further cut.
+  #
+  # CUTTING THE TAIL LEG FURTHER IS REFUTED, on the same readings. A split
+  # halves a leg's smoke but not its checkout, so each new leg draws again
+  # from the distribution that is actually causing the kills; against the
+  # measured checkouts a two-way split of this leg moves the breach rate from
+  # 7/104 to about 6/104, which is noise. Three of the seven breaching
+  # checkouts are longer than a split leg's entire budget would be.
   #
   # T-0346 CUT PART 4 INTO THREE AND RENUMBERED 5-9 AS 7-11, and the note below
   # is why this list moved in the same commit. The pairing rule is UNCHANGED in
@@ -319,17 +342,27 @@ jobs:
   # and 8, both of which sit inside the third leg, so no leg gained or lost a
   # check and the measured costs above still stand.
   #
-  # THE RANGES MUST COVER 1..11 EXACTLY ONCE. Each leg prints "NOT THE FULL GATE"
+  # THE RANGES MUST COVER 1..12 EXACTLY ONCE. Each leg prints "NOT THE FULL GATE"
   # because on its own it is not one; the UNION of the eight legs is, and that
   # holds only while these four ranges tile the parts with no gap and no overlap.
   # smoke_renderer.mjs's own arithmetic — the parts' staged counts sum to an
   # unfiltered run's — is what makes the union checkable rather than asserted.
   # If a part is ever added or renumbered (T-0346 renumbered everything after 4;
   # T-0173 renumbered everything after 7), THIS LIST IS PART OF THAT EDIT.
+  #
+  # THE CAP IS 45 MINUTES, AND T-0181 SIZED IT ON THE SPREAD ABOVE RATHER THAN
+  # ON ONE SAMPLE — which is the whole reason the previous three numbers rotted.
+  # The job is checkout + a ~25 s Playwright install + the smoke. Worst measured
+  # smoke command: 21 m 48 s. 45 minutes therefore absorbs a checkout of some
+  # 22 minutes even on the worst smoke the history holds, which covers five of
+  # the seven breaches above outright and the sixth against a median smoke. The
+  # two ~30-minute checkouts (#284, #288) are NOT covered and no cap fixes them;
+  # they are T-0437. Raise this again only with a fresh reading of the job
+  # history beside it, the way this one was taken.
   smoke:
     needs: bake
     runs-on: ubuntu-latest
-    timeout-minutes: 30
+    timeout-minutes: 45
     strategy:
       fail-fast: false
       matrix:

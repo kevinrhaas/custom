@@ -82,7 +82,6 @@ T-0318 — The January 1834 letter list: the third printing repairs the A-H half
 # --- ten-minute foreground ceiling, so no steward run can complete it at all, and three
 # --- PRs tonight had to say so instead of reporting a result. The two order-dependent
 # --- gates below make a green run and a red run of the same tree.
-T-0181 — The desktop 7-9 smoke leg has 9m49s of margin against its 30-minute cap, and the margin was asserted rather than measured
 T-0170 — The desktop smoke's part 7 has 2 m 17 s of margin, and it is the one measured over the ceiling on another runner
 
 # --- VISIBLE: THE GROUND, THE FORT, AND WHAT THE ORDINANCES PUT ON EVERY ROOF.
@@ -179,3 +178,4 @@ T-0428 — The 1 April 1834 letter list has three positions no printing reads, a
 T-0433 — T-0346's measured costs for the new desktop parts 4, 5 and 6 were never filed, and the two places they are written down disagree
 T-0435 — 30 of the 47 cat-and-clay stacks stand against an eave wall, and both the archetype and the fabric argument say gable
 T-0436 — The corporation's limits have no committed geometry, and the fire ordinance binds only inside them
+T-0437 — The bake smoke clones a 3.2 GB monorepo to test one subtree, and that checkout has killed seven legs at the cap

@@ -1,7 +1,7 @@
 ---
 id: T-0181
 title: The desktop 7-9 smoke leg has 9m49s of margin against its 30-minute cap, and the margin was asserted rather than measured
-state: open
+state: done
 epic: META
 requested_by: steward
 seen: false
@@ -9,9 +9,9 @@ effort: S
 legacy_id: null
 parent: null
 opened: 2026-08-24
-closed: null
-pr: null
-claimed_by: null
+closed: 2026-08-30
+pr: 591
+claimed_by: run 8/29/2026, 11:23:37 PM CT
 blocked_on: null
 needs_bake: false
 ---
@@ -134,3 +134,48 @@ stations were 7 m 04 s of a part killed at 9 m 25 s — so old part 7 is now par
 parts 8-11 are 9-12. Read this ticket's post-T-0346 numbers through `old 8→9, 9→10, 10→11,
 11→12`, and old part 7 as new parts 7+8. The mobile legs are `1-2 3-6 7-9 10-12` and carry
 exactly what they carried. The readings themselves stand; only the labels moved.
+---
+
+## RESOLVED 2026-08-30 — measured on 104 real legs, not on a sample
+
+**The readings are this workflow's own job history**, runs #271-#391 of `chicago-4d-bake.yml`,
+taken through the Actions API with each job decomposed into its steps. The `7-9` leg before
+T-0346's renumber, the `9-11` leg after it, and the `10-12` leg since T-0173 halved part 7 all carry
+identical content, so they are one population.
+
+| quantity | n | min | median | worst |
+|---|---|---|---|---|
+| the leg's smoke command, body completed | **90** | 9 m 26 s | **17 m 12 s** | **21 m 48 s** (#306) |
+| the whole job (checkout + install + smoke) | 90 | 10 m 41 s | 18 m 38 s | **28 m 04 s** (#293) |
+| `actions/checkout@v4` | 104 | 0 m 31 s | **0 m 38 s** | **30 m 01 s** (#284) |
+
+σ on the smoke command is 2 m 58 s.
+
+**This ticket's own 9 m 49 s was wrong, the same way T-0171's ">ten minutes" was.** It came from
+one leg in run #273. The true margin on the old 30-minute cap is ~7 minutes against the worst
+smoke ever recorded and **1 m 56 s** against the worst whole job. T-0171's merge-commit claim is
+corrected in ROADMAP § THE RUN BUDGET, as this ticket's third acceptance line required.
+
+**The risk this ticket called hypothetical has already fired seven times** — runs #284, #288,
+#290, #357, #358, #360, #364, each killed at 30 m 1x s with `open-pr` never running. They were
+invisible because GitHub reports a `timeout-minutes` kill as `cancelled`, not `failure`.
+
+**And the diagnosis in this ticket was wrong.** Not one of the seven was a slow smoke. Every one
+spent 13 m 20 s to 30 m 01 s inside `actions/checkout` — median 38 s — and in #284 the checkout
+consumed the whole cap before a single check ran. See the decomposition table in the ROADMAP
+section. The binding constraint on this job is the checkout's tail; that is **T-0437**, filed by
+this run.
+
+**Candidate 2 (split 7-9 further) is REFUTED on these readings.** A split halves a leg's smoke and
+leaves its checkout alone, so each new leg draws again from the distribution doing the killing.
+Against the 104 measured checkouts a two-way split moves the expected breach rate from 7/104 to
+about 6/104 — noise — for the price of a runner and another boot. Three of the seven breaching
+checkouts are longer than a split leg's whole budget would be. **Candidate 1 is taken**, and sized
+on the spread rather than on taste: **the cap is 45 minutes**, absorbing the worst measured smoke
+(21 m 48 s) plus ~22 minutes of checkout excursion. That covers five of the seven outright and the
+sixth against a median smoke; #284 and #288 are T-0437's and no cap reaches them.
+
+**Acceptance, line by line.** (1) The worst desktop leg is measured on 90 runs rather than the
+three asked for, and the spread is in ROADMAP § THE RUN BUDGET beside T-0060's, T-0166's and
+T-0167's fits. (2) The cap is set from that spread and both the workflow comment and the ROADMAP
+say which measurement it used. (3) T-0171's claim is corrected there in as many words.
