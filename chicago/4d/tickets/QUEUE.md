@@ -76,7 +76,6 @@ T-0305 — Four readings the American contradicts itself on need the page images
 # --- out, and T-0183 is back with the owner on what to do with it. The ~20 roofs T-0009
 # --- freed are unaffected.
 T-0365 — The anonymous-block programme has no unblocked ground left: every block with headroom is on the South Water reach T-0009 holds open
-T-0274 — The inferred-household parcel's form values come from the archetype and cite the family band: 8 families, 10 claims outside it
 
 # --- THE RUNS CANNOT PROVE THEMSELVES — invisible, and it blocks the EVIDENCE every
 # --- visible ticket owes. T-0346 is the sharp one: desktop stage 4 no longer fits the

@@ -242,6 +242,27 @@ def default_roof_pitch_deg(roof_type: str) -> float:
     return 32.0 if roof_type == "gable" else 18.0
 
 
+def eave_overhang_m(width_m: float, depth_m: float) -> float:
+    """How far this archetype's roof planes stand out past the walls, in metres.
+
+    NAMED HERE rather than left as an expression inside `outbuilding._roof` (T-0274),
+    for the reason `shed_axis_for` above is a module-level function: it is not only the
+    mesh's business. A SHED's plane continues its slope out over the overhang instead
+    of being pinned at the eave — the roof builder says so in as many words — so the
+    highest point of a shed roof is not the high wall top, it is the high wall top plus
+    this distance times the pitch. Any tool modelling where a shed roof gets to has to
+    ask the same number the mesh will, and `generators/archetypes/outbuilding.py`
+    cannot be imported outside Blender, which is why the number lives in the params
+    module beside the door table `tools/family_bands.eave_floor` already asks for.
+
+    The scaling is the roof builder's own and is not re-argued here: a fixed 0.25 m
+    eave is a tenth of a privy's plan on each side and turns it into a mushroom, so the
+    overhang grows with the smaller plan dimension between a 0.10 m floor and a 0.35 m
+    ceiling.
+    """
+    return min(0.35, max(0.10, 0.12 + 0.03 * min(width_m, depth_m)))
+
+
 def shed_axis_for(open_sides) -> str:
     """Which way a shed roof falls: 'y' front-to-back, 'x' side-to-side.
 
