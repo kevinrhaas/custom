@@ -9637,22 +9637,28 @@ for (const [label, viewport, touch] of [
       };
     });
     check(`${label}: every household in the layer is on the card`,
-      residents.households === 205 && residents.rendered === 205 && !residents.busy,
+      residents.households === 207 && residents.rendered === 207 && !residents.busy,
       `${residents.households} loaded / ${residents.rendered} rendered (${residents.error})`);
-    check(`${label}: the 241 person entries are counted`, residents.persons === 241,
+    check(`${label}: the 243 person entries are counted`, residents.persons === 243,
       `${residents.persons}`);
     // The finding itself, asserted as a number so it cannot quietly grow back:
     // the households that reach no building sidecar are each marked on their own
-    // row. 17 of the 49 are the original fault — records whose residence and
-    // workplace are both unattested. The other 32 reach no building BY
+    // row. 17 of the 51 are the original fault — records whose residence and
+    // workplace are both unattested. The other 34 reach no building BY
     // CONSTRUCTION, and they are three passes of the same kind: T-0376's 16
     // minted tradespeople, whose trade the papers print and whose address they
-    // do not; T-0378's 12 letter-list names, where a list of uncalled-for letters
-    // gives a name and no address at all; and T-0373's 4 residency-tested people,
-    // whom the papers name with no trade either. In every case the chip is the
-    // card telling the truth rather than a regression.
+    // do not; 14 letter-list names, where a list of uncalled-for letters gives a
+    // name and no address at all; and T-0373's 4 residency-tested people, whom
+    // the papers name with no trade either. In every case the chip is the card
+    // telling the truth rather than a regression.
+    // The letter-list figure was 12 until T-0331: the Democrat of 1834-03-04
+    // prints the NINTH impression of the 1 January 1834 return, its scan lost the
+    // left edge of every line, and completing 25 of those forenames from the
+    // concordant printings brought Thomas Conger and John Thompson over the
+    // minting bar. Two more names on the card, both still addressless — which is
+    // what a letter list is.
     check(`${label}: the households no building card can reach are marked`,
-      residents.offCard === 49 && residents.orphanChips === 49,
+      residents.offCard === 51 && residents.orphanChips === 51,
       `${residents.offCard} off-card / ${residents.orphanChips} chip(s)`);
     check(`${label}: the researched non-residents are published too`,
       residents.notResident === 10, `${residents.notResident}`);
@@ -9717,7 +9723,7 @@ for (const [label, viewport, touch] of [
       && /weakest evidence/.test(residents.letterText),
       residents.letterText.slice(0, 200));
     check(`${label}: the count sentence says how many people are known only that way`,
-      /12 of the people here are known ONLY from the post office/.test(residents.prose),
+      /14 of the people here are known ONLY from the post office/.test(residents.prose),
       residents.prose.slice(0, 240));
     // And the other half of the same ruling: none of the ten may carry a trade
     // the papers do not give them. The occupation on a letter-list person reads

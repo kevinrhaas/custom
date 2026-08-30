@@ -1204,8 +1204,12 @@
         },
         {
           "as_printed": "ell Baldwin",
-          "normalized": "[…]ell Baldwin",
-          "role": "named in the Chicago post-office letter list printed 1834-03-04"
+          "normalized": "Russel Baldwin",
+          "role": "named in the Chicago post-office letter list printed 1834-03-04",
+          "completed_from": [
+            "1834-01-28",
+            "1834-02-04"
+          ]
         },
         {
           "as_printed": "A.O.T. Breed",
@@ -1214,8 +1218,14 @@
         },
         {
           "as_printed": "Ca Conger",
-          "normalized": "[?] Conger",
-          "role": "named in the Chicago post-office letter list printed 1834-03-04"
+          "normalized": "Thomas Conger",
+          "role": "named in the Chicago post-office letter list printed 1834-03-04",
+          "completed_from": [
+            "1834-01-07",
+            "1834-01-14",
+            "1834-02-04",
+            "1834-02-18"
+          ]
         },
         {
           "as_printed": "I Cenige",
@@ -1234,23 +1244,43 @@
         },
         {
           "as_printed": "& Delano",
-          "normalized": "[?] Delano",
-          "role": "named in the Chicago post-office letter list printed 1834-03-04"
+          "normalized": "Loring Delano",
+          "role": "named in the Chicago post-office letter list printed 1834-03-04",
+          "completed_from": [
+            "1834-01-07",
+            "1834-01-14",
+            "1834-01-21",
+            "1834-02-04"
+          ]
         },
         {
           "as_printed": "nel Devoe",
-          "normalized": "[…]nel Devoe",
-          "role": "named in the Chicago post-office letter list printed 1834-03-04"
+          "normalized": "Samuel Devoe",
+          "role": "named in the Chicago post-office letter list printed 1834-03-04",
+          "completed_from": [
+            "1834-01-14",
+            "1834-02-04",
+            "1834-02-18"
+          ]
         },
         {
           "as_printed": "Elliot 3",
-          "normalized": "[?] Elliot",
-          "role": "named in the Chicago post-office letter list printed 1834-03-04"
+          "normalized": "William Elliot",
+          "role": "named in the Chicago post-office letter list printed 1834-03-04",
+          "completed_from": [
+            "1834-01-28",
+            "1834-02-04",
+            "1834-02-18"
+          ]
         },
         {
           "as_printed": "il. Frazer",
-          "normalized": "[…]l. Frazer",
-          "role": "named in the Chicago post-office letter list printed 1834-03-04"
+          "normalized": "Wm. H. Frazer",
+          "role": "named in the Chicago post-office letter list printed 1834-03-04",
+          "completed_from": [
+            "1834-01-07",
+            "1834-01-21"
+          ]
         },
         {
           "as_printed": "Caleb Foster",
@@ -1268,7 +1298,7 @@
           "role": "named in the Chicago post-office letter list printed 1834-03-04"
         }
       ],
-      "notes": "A CHICAGO POST-OFFICE LETTER LIST NOBODY KNEW WAS HERE, AND THE SWEEP THAT MISSED IT. `data/research/newspapers/README.md` records a sweep of T-0258's thirty issues concluding that only four carry a list — 1834-01-28, 1834-02-04, 1834-04-23 and 1834-04-30. THIS IS A FIFTH, and the reason the sweep missed it is legible in the quote: the heading is cut IN HALF by the segmenter, so the words 'List of L' stand at the top of this crop and 'etters … ost-Offiee at Chica- … 34.' at the top of the next one (claim c025 here). No search for 'list of letters' or 'remaining in the post office' could match a heading that exists in neither column whole. RULING 1 APPLIES: this is Chicago's own office, so every listed name mints a resident candidate, flagged `letter_list_only`. THE NAMES ARE CUT ON THEIR LEFT EDGE, which is the opposite damage to January's: the crop has taken the forenames, so 'as Bennett' and 'ell Baldwin' are minted as the fragments they are, with `[…]` marking the cut, and NOT completed into the Thomas Bennett and Russell Baldwin who stand in the 1 January list — a completion that would look right and prove nothing. WHICH RETURN THIS IS CANNOT BE READ. The date line survives only as '34.', and the name set is neither the January list nor a subset of it: Atkins, Benton, Conger, Carrier, Crisey and Delano are new here, while much of January's list is absent. A quarterly return of 1 March 1834 is the obvious candidate and is NOT asserted, because the paper's own words for it are gone. THE COUNT IS A FLOOR, and a low one: eighteen names from this half-column, against the ninety-seven of 1834-01-28. See claim c025 for the hand count of the whole list."
+      "notes": "A CHICAGO POST-OFFICE LETTER LIST NOBODY KNEW WAS HERE, AND THE SWEEP THAT MISSED IT. `data/research/newspapers/README.md` records a sweep of T-0258's thirty issues concluding that only four carry a list — 1834-01-28, 1834-02-04, 1834-04-23 and 1834-04-30. THIS IS A FIFTH, and the reason the sweep missed it is legible in the quote: the heading is cut IN HALF by the segmenter, so the words 'List of L' stand at the top of this crop and 'etters … ost-Offiee at Chica- … 34.' at the top of the next one (claim c027 here). No search for 'list of letters' or 'remaining in the post office' could match a heading that exists in neither column whole. RULING 1 APPLIES: this is Chicago's own office, so every listed name mints a resident candidate, flagged `letter_list_only`. THE NAMES ARE CUT ON THEIR LEFT EDGE, which is the opposite damage to January's: the crop has taken the forenames, so 'as Bennett' and 'ell Baldwin' are minted as the fragments they are, with `[…]` marking the cut, and NOT completed into the Thomas Bennett and Russell Baldwin who stand in the 1 January list — a completion that would look right and prove nothing. WHICH RETURN THIS IS CANNOT BE READ. The date line survives only as '34.', and the name set is neither the January list nor a subset of it: Atkins, Benton, Conger, Carrier, Crisey and Delano are new here, while much of January's list is absent. A quarterly return of 1 March 1834 is the obvious candidate and is NOT asserted, because the paper's own words for it are gone. THE COUNT IS A FLOOR, and a low one: eighteen names from this half-column, against the ninety-seven of 1834-01-28. See claim c025 for the hand count of the whole list. THE RETURN IS 1 JANUARY 1834, AND THIS IS ITS NINTH PRINTING (T-0331). The date line survives on this page only as `34.`, and T-0312 could not say which return the list was, so a 1 March quarterly return was floated as the obvious candidate and rightly not asserted. It is not one. `tools/letter_list_printings.py` counts the printings the way `data/research/newspapers/README.md` prescribes for exactly this - by the notice's OWN BODY TEXT and not by its heading (T-0328, T-0350) - and the Chicago post office's 1 January 1834 return stands in EVERY issue of the Democrat from Vol. I No. 7 of 1834-01-07 to this one, No. 15 of 1834-03-04, nine weeks without a break. A letter list is standing type, and this crop is the last impression of it, not a cohort of its own. FOUR OF THE NINE PRINTINGS SET THE DATE LINE WHOLE OR NEARLY: 'EMAINING in the Post-Offiee at Chic / go, Ill. January [1,] 1834.' at No. 7 line 645, 'in the Port-Offiee at Ch- go, Ill. Fammuary 1, 1604.' at No. 10 line 1107, 'go, Ill, January 3, 1934.' at No. 11 line 2858, and 'REMAINISG in the Pest[-Office at Chica]go, Il January 1, 63[4].' at No. 14 line 2947. The `34.` at the head of this page's column 3 is the tail of that same line's year. NO PAGE IMAGE WAS READ, so the reading stays `transcription_mediated`; the witnesses are eight other transcriptions of eight other impressions. WHAT THIS MEANS FOR THE PEOPLE WORK, and it is the opposite of what the ticket hoped: these are not a second census-proxy cohort for 1834. They are January's names, printed an eighth time, and T-0299's rule that one list mints once applies to them as one list with January's. A SECOND OFFICE'S RETURN RUNS IN THE SAME WEEKS AND IS NOT CHICAGO'S - read 'at Henne[pin]' at No. 9 line 937 and 'at H- mi pin, Hl.' at No. 10 line 957 - so a later sweep must not fold the two together. THE FORENAMES ARE REPAIRED FROM THE CONCORDANT PRINTINGS, NOT GUESSED (T-0331). The crop cut every name on its LEFT edge, which took the forename; the other eight impressions are cut in other places and carry it. `tools/letter_list_printings.py` matches on the surname - which this page states plainly, and which is therefore the thing being matched, not the thing being supplied - and completes a forename ONLY where two or more PRINTINGS set the same one. Twenty-five of the fifty-seven cut readings are completed that way and appear here with `completed_from` naming the printings that carry them; the rest are left cut, and the tool says why for each: twelve have no two printings agreeing, four carry a surname that stands TWICE in this list - Bennett, Miner, Temple, and a crop that lost both forenames cannot say which line is which - fifteen have no witness at all, and one, Tuller, is reported as a disagreement rather than a winner because Alden Tuller and Elam Tuller BOTH stand in the list, two lines apart, at No. 13 lines 3137-3138. NOTHING IS AMENDED TO AGREE WITH ANYTHING: `as_printed` keeps this page's setting verbatim beside every completion, and the claim's own `normalized` is untouched, because it is the reading of THIS page and a forename taken off another impression is not."
     },
     {
       "id": "c027",
@@ -1402,8 +1432,13 @@
         },
         {
           "as_printed": "Lake",
-          "normalized": "[?] Lake",
-          "role": "named in the Chicago post-office letter list printed 1834-03-04"
+          "normalized": "Lewis Lake",
+          "role": "named in the Chicago post-office letter list printed 1834-03-04",
+          "completed_from": [
+            "1834-01-07",
+            "1834-01-28",
+            "1834-02-11"
+          ]
         },
         {
           "as_printed": "Re Leena,",
@@ -1422,8 +1457,12 @@
         },
         {
           "as_printed": "s, Miller",
-          "normalized": "[…]s Miller",
-          "role": "named in the Chicago post-office letter list printed 1834-03-04"
+          "normalized": "Chas. Miller",
+          "role": "named in the Chicago post-office letter list printed 1834-03-04",
+          "completed_from": [
+            "1834-01-07",
+            "1834-02-11"
+          ]
         },
         {
           "as_printed": "y Meriams",
@@ -1472,8 +1511,12 @@
         },
         {
           "as_printed": "Plumer",
-          "normalized": "[?] Plumer",
-          "role": "named in the Chicago post-office letter list printed 1834-03-04"
+          "normalized": "F. Plumer",
+          "role": "named in the Chicago post-office letter list printed 1834-03-04",
+          "completed_from": [
+            "1834-01-28",
+            "1834-02-11"
+          ]
         },
         {
           "as_printed": "in Poel",
@@ -1482,8 +1525,12 @@
         },
         {
           "as_printed": "1. Pease",
-          "normalized": "[?] Pease",
-          "role": "named in the Chicago post-office letter list printed 1834-03-04"
+          "normalized": "H. Pease",
+          "role": "named in the Chicago post-office letter list printed 1834-03-04",
+          "completed_from": [
+            "1834-01-07",
+            "1834-02-25"
+          ]
         },
         {
           "as_printed": "1 Phelps",
@@ -1497,8 +1544,13 @@
         },
         {
           "as_printed": "Rouit 2",
-          "normalized": "[?] Rouit",
-          "role": "named in the Chicago post-office letter list printed 1834-03-04"
+          "normalized": "Mr. Rouit",
+          "role": "named in the Chicago post-office letter list printed 1834-03-04",
+          "completed_from": [
+            "1834-01-07",
+            "1834-02-11",
+            "1834-02-18"
+          ]
         },
         {
           "as_printed": "on Rutherford 3",
@@ -1507,13 +1559,23 @@
         },
         {
           "as_printed": "a Bteward",
-          "normalized": "[?] Steward",
-          "role": "named in the Chicago post-office letter list printed 1834-03-04"
+          "normalized": "James Steward",
+          "role": "named in the Chicago post-office letter list printed 1834-03-04",
+          "completed_from": [
+            "1834-01-07",
+            "1834-02-18"
+          ]
         },
         {
           "as_printed": "d Sprague",
-          "normalized": "[?] Sprague",
-          "role": "named in the Chicago post-office letter list printed 1834-03-04"
+          "normalized": "David Sprague",
+          "role": "named in the Chicago post-office letter list printed 1834-03-04",
+          "completed_from": [
+            "1834-01-07",
+            "1834-01-28",
+            "1834-02-11",
+            "1834-02-18"
+          ]
         },
         {
           "as_printed": "Scott",
@@ -1522,8 +1584,12 @@
         },
         {
           "as_printed": "h Stowell",
-          "normalized": "[?] Stowell",
-          "role": "named in the Chicago post-office letter list printed 1834-03-04"
+          "normalized": "Ralph Stowell",
+          "role": "named in the Chicago post-office letter list printed 1834-03-04",
+          "completed_from": [
+            "1834-02-11",
+            "1834-02-18"
+          ]
         },
         {
           "as_printed": "uel Stout",
@@ -1532,18 +1598,33 @@
         },
         {
           "as_printed": "Schermerhorn",
-          "normalized": "[?] Schermerhorn",
-          "role": "named in the Chicago post-office letter list printed 1834-03-04"
+          "normalized": "J. F. Schermerhorn",
+          "role": "named in the Chicago post-office letter list printed 1834-03-04",
+          "completed_from": [
+            "1834-02-11",
+            "1834-02-18",
+            "1834-02-25"
+          ]
         },
         {
           "as_printed": ", Shier",
-          "normalized": "[?] Shier",
-          "role": "named in the Chicago post-office letter list printed 1834-03-04"
+          "normalized": "Wm. Shier",
+          "role": "named in the Chicago post-office letter list printed 1834-03-04",
+          "completed_from": [
+            "1834-01-28",
+            "1834-02-11",
+            "1834-02-18"
+          ]
         },
         {
           "as_printed": "Sewell",
-          "normalized": "[?] Sewell",
-          "role": "named in the Chicago post-office letter list printed 1834-03-04"
+          "normalized": "John Sewell",
+          "role": "named in the Chicago post-office letter list printed 1834-03-04",
+          "completed_from": [
+            "1834-01-07",
+            "1834-02-11",
+            "1834-02-18"
+          ]
         },
         {
           "as_printed": "hen Sherwood",
@@ -1552,8 +1633,14 @@
         },
         {
           "as_printed": ". Shearman",
-          "normalized": "[?] Shearman",
-          "role": "named in the Chicago post-office letter list printed 1834-03-04"
+          "normalized": "H.C. Shearman",
+          "role": "named in the Chicago post-office letter list printed 1834-03-04",
+          "completed_from": [
+            "1834-01-07",
+            "1834-01-28",
+            "1834-02-11",
+            "1834-02-18"
+          ]
         },
         {
           "as_printed": "n Tuller",
@@ -1562,13 +1649,22 @@
         },
         {
           "as_printed": ". Taylor",
-          "normalized": "[?] Taylor",
-          "role": "named in the Chicago post-office letter list printed 1834-03-04"
+          "normalized": "A. H. Taylor",
+          "role": "named in the Chicago post-office letter list printed 1834-03-04",
+          "completed_from": [
+            "1834-02-11",
+            "1834-02-18",
+            "1834-02-25"
+          ]
         },
         {
           "as_printed": "Thompaon",
-          "normalized": "[?] Thompson",
-          "role": "named in the Chicago post-office letter list printed 1834-03-04"
+          "normalized": "John Thompson",
+          "role": "named in the Chicago post-office letter list printed 1834-03-04",
+          "completed_from": [
+            "1834-02-11",
+            "1834-02-18"
+          ]
         },
         {
           "as_printed": "jam Teal",
@@ -1597,8 +1693,12 @@
         },
         {
           "as_printed": "Vandine",
-          "normalized": "[?] Vandine",
-          "role": "named in the Chicago post-office letter list printed 1834-03-04"
+          "normalized": "John Vandine",
+          "role": "named in the Chicago post-office letter list printed 1834-03-04",
+          "completed_from": [
+            "1834-02-11",
+            "1834-02-18"
+          ]
         },
         {
           "as_printed": "n Vanderwerker,",
@@ -1607,13 +1707,21 @@
         },
         {
           "as_printed": "Wilson 6 *",
-          "normalized": "[?] Wilson",
-          "role": "named in the Chicago post-office letter list printed 1834-03-04"
+          "normalized": "John Wilson",
+          "role": "named in the Chicago post-office letter list printed 1834-03-04",
+          "completed_from": [
+            "1834-01-28",
+            "1834-02-18"
+          ]
         },
         {
           "as_printed": "_ Winson",
-          "normalized": "[?] Winson",
-          "role": "named in the Chicago post-office letter list printed 1834-03-04"
+          "normalized": "Wm. Winson",
+          "role": "named in the Chicago post-office letter list printed 1834-03-04",
+          "completed_from": [
+            "1834-01-28",
+            "1834-02-11"
+          ]
         },
         {
           "as_printed": "p Willece",
@@ -1627,8 +1735,12 @@
         },
         {
           "as_printed": "el Warren",
-          "normalized": "[?] Warren",
-          "role": "named in the Chicago post-office letter list printed 1834-03-04"
+          "normalized": "Daniel Warren",
+          "role": "named in the Chicago post-office letter list printed 1834-03-04",
+          "completed_from": [
+            "1834-01-07",
+            "1834-02-11"
+          ]
         },
         {
           "as_printed": "Weed",
@@ -1637,8 +1749,12 @@
         },
         {
           "as_printed": "n Whitcomb",
-          "normalized": "[?] Whitcomb",
-          "role": "named in the Chicago post-office letter list printed 1834-03-04"
+          "normalized": "Aaron Whitcomb",
+          "role": "named in the Chicago post-office letter list printed 1834-03-04",
+          "completed_from": [
+            "1834-01-07",
+            "1834-02-11"
+          ]
         },
         {
           "as_printed": "ney Wells",
@@ -1668,7 +1784,7 @@
           ]
         }
       ],
-      "notes": "THE SECOND HALF OF THE SAME LIST, AND THE HALF THAT CARRIES THE HEADING AND THE SIGNATURE. Read with claim c024, this is one printed column of the Chicago post-office's list of uncalled-for letters, cut by the segmenter down its middle into two crops: this one opens '[L]etters … ost-Offiee at Chica-… 34.' and closes over the postmaster's name, 'HOGAN, P. M.', above the standard footer 'of the above letters … [will please say they are adve]rtised'. THE HAND COUNT THE TICKET REQUIRES, made by eye off the printed list as this transcription preserves it: eighteen names in the first crop (claim c024) and SIXTY-ONE here, of which sixty are private persons and one is the postmaster's own signature — SEVENTY-EIGHT PERSONAL NAMES IN TOTAL, plus John S. C. Hogan. THAT IS A FLOOR AND NOT THE PRINTED LENGTH, and the loss is visible rather than estimated: the Vision reading of both crops failed outright and the Tesseract fallback interleaved the list with whatever advertisement shared the printed column beside it, so every name here has lost its left edge and the debris between them — 'rackepelagd' at 3218, 'rhe ae' at 3225, '1e) Ws' at 3276 — stands where names stood. Closing the gap needs the page images, and that is filed as a ticket rather than guessed. NOTHING IS MERGED OUT OF THIS LIST. Fragments are minted as fragments; a bare surname with no initial is minted with its marker and NOT joined to anybody already in the gazetteer, even where the same surname stands in the 1 January list, because an initial is often the only thing separating two members of one family — the rule `identity.json` states and the rule that makes these two claims safe to mint at all. The trailing digits ('Elliot 3', 'Wilson 6', 'Rutherford 3', 'Marshall 2') are the count of letters waiting and are read as such."
+      "notes": "THE SECOND HALF OF THE SAME LIST, AND THE HALF THAT CARRIES THE HEADING AND THE SIGNATURE. Read with claim c026, this is one printed column of the Chicago post-office's list of uncalled-for letters, cut by the segmenter down its middle into two crops: this one opens '[L]etters … ost-Offiee at Chica-… 34.' and closes over the postmaster's name, 'HOGAN, P. M.', above the standard footer 'of the above letters … [will please say they are adve]rtised'. THE HAND COUNT THE TICKET REQUIRES, made by eye off the printed list as this transcription preserves it: eighteen names in the first crop (claim c024) and SIXTY-ONE here, of which sixty are private persons and one is the postmaster's own signature — SEVENTY-EIGHT PERSONAL NAMES IN TOTAL, plus John S. C. Hogan. THAT IS A FLOOR AND NOT THE PRINTED LENGTH, and the loss is visible rather than estimated: the Vision reading of both crops failed outright and the Tesseract fallback interleaved the list with whatever advertisement shared the printed column beside it, so every name here has lost its left edge and the debris between them — 'rackepelagd' at 3218, 'rhe ae' at 3225, '1e) Ws' at 3276 — stands where names stood. Closing the gap needs the page images, and that is filed as a ticket rather than guessed. NOTHING IS MERGED OUT OF THIS LIST. Fragments are minted as fragments; a bare surname with no initial is minted with its marker and NOT joined to anybody already in the gazetteer, even where the same surname stands in the 1 January list, because an initial is often the only thing separating two members of one family — the rule `identity.json` states and the rule that makes these two claims safe to mint at all. The trailing digits ('Elliot 3', 'Wilson 6', 'Rutherford 3', 'Marshall 2') are the count of letters waiting and are read as such. THE RETURN IS 1 JANUARY 1834, AND THIS IS ITS NINTH PRINTING (T-0331). The date line survives on this page only as `34.`, and T-0312 could not say which return the list was, so a 1 March quarterly return was floated as the obvious candidate and rightly not asserted. It is not one. `tools/letter_list_printings.py` counts the printings the way `data/research/newspapers/README.md` prescribes for exactly this - by the notice's OWN BODY TEXT and not by its heading (T-0328, T-0350) - and the Chicago post office's 1 January 1834 return stands in EVERY issue of the Democrat from Vol. I No. 7 of 1834-01-07 to this one, No. 15 of 1834-03-04, nine weeks without a break. A letter list is standing type, and this crop is the last impression of it, not a cohort of its own. FOUR OF THE NINE PRINTINGS SET THE DATE LINE WHOLE OR NEARLY: 'EMAINING in the Post-Offiee at Chic / go, Ill. January [1,] 1834.' at No. 7 line 645, 'in the Port-Offiee at Ch- go, Ill. Fammuary 1, 1604.' at No. 10 line 1107, 'go, Ill, January 3, 1934.' at No. 11 line 2858, and 'REMAINISG in the Pest[-Office at Chica]go, Il January 1, 63[4].' at No. 14 line 2947. The `34.` at the head of this page's column 3 is the tail of that same line's year. NO PAGE IMAGE WAS READ, so the reading stays `transcription_mediated`; the witnesses are eight other transcriptions of eight other impressions. WHAT THIS MEANS FOR THE PEOPLE WORK, and it is the opposite of what the ticket hoped: these are not a second census-proxy cohort for 1834. They are January's names, printed an eighth time, and T-0299's rule that one list mints once applies to them as one list with January's. A SECOND OFFICE'S RETURN RUNS IN THE SAME WEEKS AND IS NOT CHICAGO'S - read 'at Henne[pin]' at No. 9 line 937 and 'at H- mi pin, Hl.' at No. 10 line 957 - so a later sweep must not fold the two together. THE FORENAMES ARE REPAIRED FROM THE CONCORDANT PRINTINGS, NOT GUESSED (T-0331). The crop cut every name on its LEFT edge, which took the forename; the other eight impressions are cut in other places and carry it. `tools/letter_list_printings.py` matches on the surname - which this page states plainly, and which is therefore the thing being matched, not the thing being supplied - and completes a forename ONLY where two or more PRINTINGS set the same one. Twenty-five of the fifty-seven cut readings are completed that way and appear here with `completed_from` naming the printings that carry them; the rest are left cut, and the tool says why for each: twelve have no two printings agreeing, four carry a surname that stands TWICE in this list - Bennett, Miner, Temple, and a crop that lost both forenames cannot say which line is which - fifteen have no witness at all, and one, Tuller, is reported as a disagreement rather than a winner because Alden Tuller and Elam Tuller BOTH stand in the list, two lines apart, at No. 13 lines 3137-3138. NOTHING IS AMENDED TO AGREE WITH ANYTHING: `as_printed` keeps this page's setting verbatim beside every completion, and the claim's own `normalized` is untouched, because it is the reading of THIS page and a forename taken off another impression is not."
     },
     {
       "id": "c028",
