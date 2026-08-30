@@ -1,6 +1,6 @@
 {
   "project": "chicago-4d",
-  "generated_ct": "Aug 29, 2026, 11:47 PM",
+  "generated_ct": "Aug 30, 2026, 12:02 AM",
   "tickets": [
     {
       "id": "T-0001",
@@ -7126,6 +7126,42 @@
       "blocked_on": null,
       "needs_bake": false,
       "queue_rank": 71
+    },
+    {
+      "id": "T-0435",
+      "title": "30 of the 47 cat-and-clay stacks stand against an eave wall, and both the archetype and the fabric argument say gable",
+      "state": "open",
+      "epic": "META",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "M",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-08-30",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": true,
+      "queue_rank": 72
+    },
+    {
+      "id": "T-0436",
+      "title": "The corporation's limits have no committed geometry, and the fire ordinance binds only inside them",
+      "state": "open",
+      "epic": "META",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "M",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-08-30",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "queue_rank": 73
     }
   ]
 }
