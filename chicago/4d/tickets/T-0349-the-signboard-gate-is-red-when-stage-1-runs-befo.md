@@ -1,7 +1,7 @@
 ---
 id: T-0349
 title: The signboard gate is red when stage 1 runs before it and green when stage 2 runs alone
-state: open
+state: done
 epic: META
 requested_by: loop
 seen: false
@@ -9,9 +9,9 @@ effort: S
 legacy_id: null
 parent: null
 opened: 2026-08-28
-closed: null
-pr: null
-claimed_by: null
+closed: 2026-08-29
+pr: 580
+claimed_by: run 8/29/2026, 9:13:24 PM CT
 blocked_on: null
 needs_bake: false
 ---
@@ -80,3 +80,43 @@ fix: the census clause wants the layer's authored meshes, which is the set that 
 include a merge artefact, and it wants to be its own check with its own name. **The six
 lettering clauses are green in every one of the three runs above** — the painted name has
 never been what failed.
+
+## Resolved — 2026-08-30, and the two readings measured on this branch
+
+`frontage.meshes` was `f.group.children.length`. `far-merge.js` parents its welded mesh
+onto the SAME layer group it merged out of (`mesh.name = '<group>-far-merge'`,
+`mesh.userData.farMerged = true`), so that length is the layer's own meshes PLUS however
+many clusters the camera's history has caused to merge. It was never a census of the
+layer. The other clause it could have been confused with is not affected: the vertex
+assertions above it already walk `timber`, which filters on the names `frontage` and
+`frontage-chunk`, so a merge artefact has never entered a height, a grade or a band
+reading — only the count.
+
+The census is split out as its own check, **"the frontage layer draws the meshes it
+authored"**, and it asserts the authored set — every child that is not
+`userData.farMerged` — which is the set that can carry a number across stages. The
+artefact count is REPORTED and not asserted, because how many exist is a fact about where
+the camera has been; what IS asserted about them is that every extra child is a
+`frontage-far-merge`, so a stray mesh parented onto this group by anything else still
+fails. Nothing was deleted: 62 is still asserted, and 67 is still printed.
+
+The check prints its detail on a PASS as well as a FAIL (`check`'s `show` flag, T-0187),
+because the drawn count is the quantity this ticket found varying and a reading nobody can
+see is a reading nobody can check.
+
+**Measured on the steward runner against the published mirror, 2026-08-30, this branch:**
+
+| run | verdict | authored | far-merge | drawn |
+|---|---|---|---|---|
+| `SMOKE_VIEWPORT=desktop SMOKE_STAGE=2`   | PASS 83/0  | 62 | 0 | 62 |
+| `SMOKE_VIEWPORT=desktop SMOKE_STAGE=1-2` | PASS 150/0 | 62 | **5** | **67** |
+| `SMOKE_VIEWPORT=mobile SMOKE_STAGE=1-2`  | PASS 150/0 | 62 | 0 | 62 |
+
+The five artefacts really did arrive in the desktop 1-2 run — that is the condition the
+old clause failed on — and the verdict is now the same one in all three. The six lettering
+clauses are untouched and green in every reading, here as in the three the ticket already
+records.
+
+Two of the three failures the ticket opened against are gone independently: the desktop
+1-2 run that read 146/3 on 2026-08-29 reads 150/0 today, so T-0243's and T-0244's standing
+reds have been closed by other work since.
