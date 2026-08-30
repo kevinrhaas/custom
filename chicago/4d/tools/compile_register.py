@@ -220,6 +220,262 @@ TRADE_TO_OCCUPATION = (
     ("trader", "trader"),
     ("merchant", "merchant"),
     ("store", "merchant"),
+
+    # --- T-0418: the trades the papers printed and this table could not say ---
+    # 129 people in the gazetteer arrived with `occupation: null` while the corpus
+    # printed a trade for each of them, and the reason was always this table rather
+    # than the vocabulary: `justice_of_the_peace`, `minister`, `army_officer`,
+    # `soldier` and `farmer` were already declared in data/residents/index.json and
+    # simply had no needle. The rest are new words in that manifest, and every one of
+    # them is a word the corpus itself prints.
+    #
+    # THE RULE THAT BOUNDS THIS BLOCK, so the next reading pass can apply it rather
+    # than guess at it. A printed trade earns a needle when it names WHAT A PERSON DID
+    # FOR A LIVING and the mapping REACHES SOMEBODY NEW. It is refused, in
+    # TRADE_NOT_AN_OCCUPATION below, when it names an office rather than a livelihood,
+    # a station or a property rather than a trade, a class of workers rather than a
+    # trade, a role in a single legal notice — or when the only people who carry it are
+    # already committed households compiled from another word, because a needle that
+    # rewrites a committed record without reaching a new person is churn, not evidence.
+    ("carriage and sleigh", "carriage_maker"),
+    ("carriage maker", "carriage_maker"),
+    ("carriage making", "carriage_maker"),
+    ("sleigh maker", "carriage_maker"),
+    ("sleigh making", "carriage_maker"),
+    ("livery", "livery_stable_keeper"),
+    ("provision", "provision_dealer"),
+    ("bookseller", "bookseller"),
+    ("stationer", "bookseller"),
+    ("hatter", "hatter"),
+    ("hat manufactur", "hatter"),
+    # Tin and sheet iron are one shop in this town: J. K. Botsford advertises himself a
+    # "sheet iron worker" and a "tinsmith" in the same breath, and G. W. Keeney's works
+    # is printed as "tin, sheet iron and copper". "stove dealer" is NOT here — see the
+    # refusal below, which is about Byram King rather than about stoves.
+    ("tinsmith", "tinsmith"),
+    ("tinner", "tinsmith"),
+    ("sheet iron", "tinsmith"),
+    ("tin ware", "tinsmith"),
+    ("house and lot agent", "land_agent"),
+    ("land agent", "land_agent"),
+    ("confectionary", "confectioner"),
+    ("confectioner", "confectioner"),
+    ("brewing", "brewer"),
+    ("brewer", "brewer"),
+    ("pedlar", "pedlar"),
+    ("peddler", "pedlar"),
+    ("army officer", "army_officer"),
+    ("soldier", "soldier"),
+    ("farmer", "farmer"),
+    # A licensed house of public entertainment is called a tavern, an inn or a public
+    # house indifferently in this corpus; the table already collapses "public house".
+    ("innkeeper", "tavern_keeper"),
+    ("inn keeper", "tavern_keeper"),
+
+    # The second sweep, which the audit below found rather than a reading did: 32 more
+    # printed trades this table had no word for, most of them a shop rather than a
+    # person's own line in a marine or official column.
+    ("ironmonger", "hardware_merchant"),        # the British word for the same shop
+    ("crockery", "crockery_dealer"),
+    ("leather", "leather_dealer"),
+    ("liquor", "liquor_dealer"),
+    ("silversmith", "silversmith"),
+    ("jeweller", "silversmith"),                # J. H. Mulford advertises as both
+    ("chandler", "soap_and_candle_maker"),      # "candle" does not contain it
+    ("chemist", "druggist"),                    # chemist and druggist is one trade
+    ("botanic practitioner", "physician"),
+    ("cloak maker", "dressmaker"),
+    ("habit maker", "dressmaker"),
+    ("pork curer", "packer"),
+    ("land speculator", "speculator"),
+    ("forwarder", "forwarding_and_commission"),
+    ("solicitor", "attorney"),                  # beside the table's own "counsellor"
+    ("shopkeeper", "merchant"),
+)
+
+# The other half of the same decision, and the reason this file now refuses to leave a
+# printed trade unanswered (T-0418). A trade in this table maps to NOTHING ON PURPOSE,
+# and the string beside it is why. It is consulted only after TRADE_TO_OCCUPATION has
+# failed, so it changes no mapping — it is a DECLARATION, and `check()` holds every
+# printed trade in the gazetteer to being in one table or the other.
+#
+# Before this existed, a person the papers gave a trade to and this table had no word
+# for was indistinguishable from a person the papers said nothing about: both arrived
+# as `occupation: null`, and the only way to tell them apart was to read 2,630 register
+# rows against the gazetteer by hand. That is how 129 of them went unnoticed.
+TRADE_NOT_AN_OCCUPATION = (
+    # 1. ANOTHER JURISDICTION'S OFFICE. The Chicago papers print the doings of the
+    #    state and the nation, and a man named in them held his office elsewhere.
+    ("postmaster general", "a national office at Washington (W. T. Barry); it is not "
+                           "the Chicago post office"),
+    ("governor of illinois", "a state office held at Vandalia (Joseph Duncan)"),
+    ("secretary of war", "a national office (Lewis Cass)"),
+    ("secretary of state of illinois", "a state office held at Vandalia (A. B. Field)"),
+    ("judicial circuit", "a circuit judge rode a circuit of counties; the corpus puts "
+                         "his household in none of them (Richard M. Young)"),
+    ("circuit judge", "as above (Sidney Breese)"),
+    ("railroad commissioner", "a state appointment under the internal-improvement acts "
+                              "(William B. Archer)"),
+    # 2. AN OFFICE THE PRINTED TRADE CANNOT PLACE. The needle sees the office and not
+    #    the jurisdiction, and this corpus names the postmasters of Hennepin,
+    #    Plainfield, Golconda, Waterloo and Juliet beside Chicago's own. A needle here
+    #    would mint every one of them as a resident of this town. Chicago's own
+    #    postmaster, J. S. C. Hogan, is a committed household already and carries the
+    #    word by hand; the vocabulary keeps `postmaster` for exactly that.
+    ("postmaster", "the trade alone cannot say WHOSE post office, and the corpus names "
+                   "five other towns' postmasters; Chicago's own is committed by hand"),
+    ("sheriff", "an office of Cook County; the corpus places Stephen Forbes and Silas "
+                "W. Sherman in the county and says nothing about the town"),
+    ("public administrator", "a county appointment, not a livelihood (G. W. Snow, a "
+                             "committed resident, who earned his living otherwise)"),
+    ("receiver of public moneys", "an appointment at the United States Land Office; an "
+                                  "office, not a trade"),
+    ("receiver, united states land office", "as above (E. D. Taylor)"),
+    ("register of the land office", "as above (James Whitlock)"),
+    ("register, united states land office", "as above"),
+    # 3. A TOWN OR COUNTY APPOINTMENT RATHER THAN A LIVELIHOOD. Every man here earns
+    #    his living at a trade the corpus names elsewhere, and most are committed
+    #    residents already: Hamilton, Snow, Owen, Beaubien, Fullerton, Harmon.
+    ("clerk of the board of trustees", "a town appointment, not a livelihood"),
+    ("clerk of the circuit court", "a county appointment (R. J. Hamilton, a committed "
+                                   "resident who is compiled as county_clerk)"),
+    ("clerk of court", "as above"),
+    ("clerk of the county commissioners", "as above"),
+    ("county clerk", "the word is in the vocabulary and R. J. Hamilton carries it by "
+                     "hand; a needle would reach nobody new and rewrites nothing"),
+    ("clerk pro tem", "a single meeting's minute-taker (E. W. Casey)"),
+    ("town clerk", "a town appointment, not a livelihood (Isaac Harmon)"),
+    ("secretary to the town trustees", "as above (Alex. N. Fullerton)"),
+    ("secretary, board of trustees", "as above (Isaac Harmon)"),
+    ("president of the town trustees", "an elected chair, not a livelihood"),
+    ("president of the board of trustees", "as above (T. J. V. Owen, a committed "
+                                           "resident compiled as indian_agent)"),
+    ("judge of election", "one day's appointment at one poll (E. Peacock)"),
+    ("fire warden", "a town appointment served beside a trade (Edward F. Hunter)"),
+    ("appraiser", "an appointment in a single estate or estray notice; four men carry "
+                  "it and the corpus gives none of them another word"),
+    ("administratrix", "a role in one probate notice, not a trade (Harriet Bradford). "
+                       "The only word this corpus gives a widow, and it says what she "
+                       "was doing in court, not what she did for a living"),
+    ("militia officer", "a commission in the county regiment, served beside a trade"),
+    ("colonel of the cook county regiment", "as above (John B. Beaubien, a committed "
+                                            "resident)"),
+    ("regimental adjutant", "as above"),
+    # The needle was written, and then measured, and it minted two men this project
+    # already knows are not of this town: Stephen M. Salisbury and James Walker, whose
+    # only mention is an estray notice of 1833-11-26 filed at Du Page and Walker's
+    # Grove — the same three traps data/sources/chicago_democrat_1833_11_26.json
+    # quarantines. It is the postmaster case exactly: the trade names the office and
+    # not the jurisdiction.
+    ("justice of the peace", "the trade alone cannot say WHOSE bench, and this corpus's "
+                             "justices sit at Du Page, Walker's Grove and Juliet; the "
+                             "town's own — J. D. Caton and R. J. Hamilton — are "
+                             "committed residents already"),
+    ("justice", "the bare word names the bench and not the office"),
+    # 4. AN ARMY APPOINTMENT, WHERE `army_officer` IS THE OCCUPATION. The corpus gives
+    #    each of these men "army officer" as well, and that needle answers them; these
+    #    strings name the duty he was detailed to, not what he was.
+    ("commissary of subsistence", "a detail, not a rank or a trade; the same men are "
+                                  "printed 'army officer', which maps"),
+    ("post adjutant", "as above (E. Kirby Smith)"),
+    ("lieutenant", "a rank; the same men are printed 'army officer', which maps"),
+    ("major", "as above (J. Green, commanding the post)"),
+    ("superintendent of public works", "the harbour detail Lieut. James Allen was on, "
+                                       "not his occupation"),
+    ("harbour agent", "a federal appointment on the harbour works, held by an officer "
+                      "of Engineers (Lieut. J. Allen)"),
+    ("engineer", "the corps he belonged to, printed beside 'army officer'"),
+    # 5. A STATION OR A PROPERTY RATHER THAN A TRADE. Ten men in this corpus are named
+    #    only as the master of a named vessel in a marine column, and a master's home
+    #    port is very rarely this one; nine of the ten are printed as a bare surname.
+    ("schooner master", "the master of a named vessel in a marine column; the corpus "
+                        "gives his home port to no one of them"),
+    ("ship master", "as above"),
+    ("sloop master", "as above"),
+    ("master mariner", "as above (Hiram Hugunin, who is compiled from his own "
+                       "insurance agency instead)"),
+    ("steamboat owner", "ownership of a vessel named in a marine notice; a property, "
+                        "not a trade"),
+    ("steamboat agent", "the agency of one boat for one season, and the corpus names "
+                        "the firm (J. Griffiths & Co.) rather than a man"),
+    # 6. A CLASS OF WORKERS, OR AN AGENCY HELD BESIDE A TRADE. Neither names a trade
+    #    the town could put a man to.
+    ("mechanic", "in 1835 the word names the whole class of skilled handworkers, not a "
+                 "trade; Wm. Payne is given no other word"),
+    ("newspaper subscription agent", "an agency held beside a trade; R. Stewart is "
+                                     "compiled an attorney"),
+    ("patent medicine agent", "an agency held by a bookstore; Russell & Clift are "
+                              "compiled booksellers"),
+    ("insurance agent", "an agency held beside a trade, and it displaces the trade "
+                        "when it is taken: E. K. Hubbard carries it beside 'merchant' "
+                        "and Hiram Hugunin beside 'master mariner'"),
+    ("insurance agency", "as above"),
+    ("fire insurance", "as above"),
+    ("agent", "the bare word names no trade (Samuel Miller, 'agent' at Michigan "
+              "City); 'land agent' maps"),
+    # 7. A REAL TRADE WHOSE ONLY CARRIERS ARE ALREADY ANSWERED. A needle here would
+    #    rewrite a committed household's occupation without reaching one new person,
+    #    which is churn dressed as evidence. Each of these is worth a ticket, not a
+    #    silent edit.
+    ("founder", "the corpus names three: M. Jones and Wm. Jones, whom the mint refuses "
+                "because the town already names a Jones, and Byram King, a committed "
+                "household compiled from his own shop's printed trade ('hardware')"),
+    ("stove", "as above — every stove dealer here is one of those three men"),
+    ("iron castings", "as above"),
+    ("hollow ware", "as above"),
+    ("music teacher", "Samuel Lewis is a committed household compiled from his own "
+                      "school's printed trade"),
+    ("piano", "as above"),
+    ("dancing master", "J. A. Marshall is a committed household compiled from his own "
+                       "school's printed trade"),
+    # 8. NOT A TRADE PRACTISED IN THIS TOWN.
+    # Measured, not assumed. The needle was written, and the ONE man it minted was the
+    # Rev. Samuel McBurney, who appears in this corpus solemnising a marriage "at Sugar
+    # Creek Meadows, near Lewiston" — three hundred miles from the town. Every other
+    # clergyman here is refused on other grounds. Same shape as the postmaster and the
+    # justice: the trade names the calling and not the pulpit.
+    ("clergyman", "the trade alone cannot say WHOSE pulpit, and this corpus's ministers "
+                  "preach and marry at Lewiston, Naper's Settlement and Hennepin as "
+                  "often as at Chicago"),
+    ("pastor", "as above"),
+    ("minister", "as above; the word stays in the vocabulary, where a committed "
+                 "resident already carries it"),
+    ("ventriloquist", "R. Kenworthy advertised an exhibition of a few nights; the "
+                      "corpus gives him no standing in the town"),
+    ("keeper of the exchange coffee house", "George Smith is named as the house's "
+                                            "keeper in one notice and the house itself "
+                                            "is not in this reconstruction"),
+    ("refectory keeper", "J. A. Collett's refectory is named in one notice and this "
+                         "project holds no such house; 'restorator' is the same shop"),
+    ("restorator keeper", "as above"),
+    # 9. The second sweep's refusals, on the same four grounds as above.
+    ("circuit court", "a county appointment (R. J. Hamilton again, under the Cook "
+                      "Circuit Court's own name)"),
+    ("board of trustees", "a seat at the town board, not a livelihood (J. H. Kinzie, "
+                          "a committed resident)"),
+    ("assessor", "a town appointment served beside a trade (G. W. Snow)"),
+    ("mail contractor", "a contract to carry the mail, held beside a trade (John T. "
+                        "Temple, whom this corpus compiles a physician)"),
+    ("price reporter", "one man's service to the Democrat's price current (P. F. "
+                       "Peck), not a trade"),
+    ("land owner", "a property, not a trade (J. T. Temple)"),
+    ("property owner", "as above"),
+    ("land dealer", "the same man is printed 'land speculator', which maps (Hiram "
+                    "Pearsons)"),
+    ("landlord", "here it names a man letting a building he owns (John T. Temple), "
+                 "not the keeper of a house of entertainment"),
+    ("commission dealer", "this project's word is `forwarding_and_commission`, which "
+                          "claims a forwarding business Jones & King's notice does not"),
+    ("conveyancer", "a branch of practice advertised beside the law; S. Abell is "
+                    "compiled an attorney"),
+    ("storage keeper", "a warehouse keeper; the nearest word here, "
+                       "`forwarding_and_commission`, claims a forwarding business "
+                       "B. Jones's notice does not"),
+    ("trunk maker", "advertised by Goss & Cobb, a firm this corpus compiles saddlers "
+                    "from their own saddlery notice"),
+    ("map publisher", "one map issued by a firm (Kinzie & Forsyth); the trade is the "
+                      "printer's and this corpus names the printer separately"),
+    ("newspaper publisher", "John Calhoun is printed 'editor' as well, which maps"),
 )
 
 
@@ -248,6 +504,37 @@ def occupation_of(text):
         if needle in t:
             return occ
     return None
+
+
+def trade_refusal(text):
+    """Why a printed trade deliberately has no word, or None if nothing declares it.
+
+    Consulted only where `occupation_of` has already returned None, so it can never
+    change a mapping — it says whether the None was DECIDED or merely unnoticed.
+    """
+    t = (text or "").lower()
+    for needle, reason in TRADE_NOT_AN_OCCUPATION:
+        if needle in t:
+            return reason
+    return None
+
+
+def unclassified_person_trades(gazetteer):
+    """Printed trades of PERSONS that neither map to a word nor carry a refusal.
+
+    Scoped to `persons[].occupations` on purpose. A business `trade` and a structure
+    `function` are read through the same table, but they are prose about a shop and a
+    vocabulary of building uses — "root cellar" and "freight shed" are not answers this
+    table owes. What it owes is an answer for every trade the papers give a PERSON,
+    because that is the field the register turns into a resident.
+    """
+    unclassified = {}
+    for p in gazetteer.get("persons") or []:
+        for printed in p.get("occupations") or []:
+            if occupation_of(printed) or trade_refusal(printed):
+                continue
+            unclassified.setdefault(printed, []).append(p["name"])
+    return unclassified
 
 
 # --------------------------------------------------------------------------
@@ -1129,6 +1416,19 @@ def check():
             bad.append("%s: excluded and says nothing about why" % b["id"])
         if not b["exclusion"] and not b["present_at_scene_date"]:
             bad.append("%s: absent from the scene date with no exclusion" % b["id"])
+    # T-0418: no printed trade is left unanswered. A person the papers give a trade to
+    # and this file has no word for used to be indistinguishable from a person the
+    # papers say nothing about — both arrived `occupation: null` — and 129 of them went
+    # unnoticed for that reason. Every trade now either maps or carries a written
+    # refusal, and a reading pass that prints a new one is told here rather than
+    # discovering it a month later.
+    for printed, who in sorted(unclassified_person_trades(load_json(GAZETTEER)).items()):
+        bad.append("the printed trade %r (%s) neither maps to a word in "
+                   "data/residents/index.json's occupations vocabulary nor carries a "
+                   "reason in TRADE_NOT_AN_OCCUPATION. Decide it in "
+                   "tools/compile_register.py: give it a word, or say why it cannot "
+                   "have one." % (printed, ", ".join(who[:3])))
+
     for p in on_disk.get("persons", []):
         if p["action"] not in PERSON_ACTIONS:
             bad.append("%s: action %r is not in the vocabulary" % (p["id"], p["action"]))
@@ -1154,6 +1454,12 @@ def check():
         print("  ok    %d committed name(s) are held by more than one structure; an "
               "anchor naming one is refused, not placed (%d today)"
               % (on_disk["compiled_from"]["structures_sharing_a_name"], len(ambiguous)))
+        printed = {o for pp in load_json(GAZETTEER)["persons"]
+                   for o in (pp.get("occupations") or [])}
+        print("  ok    %d printed trade(s) of a person are all answered: %d map to a "
+              "word, %d carry a written refusal"
+              % (len(printed), sum(1 for t in printed if occupation_of(t)),
+                 sum(1 for t in printed if not occupation_of(t))))
     return bad
 
 
@@ -1585,7 +1891,46 @@ def self_test():
          lambda d: True if d["counts"]["invented_residents"]["retirable_total"] == 1
          else "retirable=%r" % d["counts"]["invented_residents"]["retirable_total"])
 
-    # 7. Determinism: the same inputs twice, byte for byte.
+    # 7. T-0418 — the trade table answers every printed trade, one way or the other.
+    #    The milliner guard is re-asserted here because these are the needles most
+    #    likely to break it: "leather" and "liquor" and "livery" are all short.
+    unit("a printed trade with a word maps to it", occupation_of("tinsmith"), "tinsmith")
+    unit("the sheet-iron half of the same shop maps to the same word",
+         occupation_of("sheet iron worker"), "tinsmith")
+    unit("an office of another jurisdiction maps to nothing",
+         occupation_of("postmaster general"), None)
+    unit("...and says why, rather than being silently null",
+         bool(trade_refusal("postmaster general")), True)
+    unit("the office it contains is refused too, and for its own stated reason",
+         bool(trade_refusal("postmaster")), True)
+    unit("a vessel's master is a station, not a trade",
+         occupation_of("schooner master"), None)
+    unit("...and it is written down", bool(trade_refusal("schooner master")), True)
+    unit("a trade nobody has decided is neither mapped nor refused",
+         (occupation_of("cordwainer"), trade_refusal("cordwainer")), (None, None))
+    unit("...and the audit names it and the person who carries it",
+         sorted(unclassified_person_trades(
+             gaz(persons=[person("p1", "Amos Thing", occupations=["cordwainer"])]))),
+         ["cordwainer"])
+    unit("...while a decided one does not reach the audit",
+         unclassified_person_trades(
+             gaz(persons=[person("p1", "Amos Thing", occupations=["tinsmith"])])), {})
+    unit("a refusal never changes a mapping: it is consulted only after one fails. "
+         "'agent' is refused; 'land agent' still maps, and the refusal cannot eat it",
+         (occupation_of("house and land agent"), trade_refusal("agent")[:9]),
+         ("land_agent", "the bare "))
+    unit("the milliner guard still holds against the new short needles",
+         occupation_of("Millinery & Dress Making"), "milliner")
+    unit("a leather DEALER is not the tanner the town would otherwise mint",
+         occupation_of("leather dealer"), "leather_dealer")
+    unit("a livery stable keeper is not a stable",
+         occupation_of("livery stable keeper"), "livery_stable_keeper")
+    unit("every word this table can produce is declared in the residents manifest",
+         sorted({occ for _, occ in TRADE_TO_OCCUPATION}
+                - set(load_json(ROOT / "data" / "residents" / "index.json")
+                      ["vocabulary"]["occupations"])), [])
+
+    # 8. Determinism: the same inputs twice, byte for byte.
     g = gaz([biz("b1", proprietors=["George W. Dole"], street="Lake Street")],
             [person("p1", "P. Cohen")])
     if dumps(compile_register(g, town)[0]) != dumps(compile_register(g, town)[0]):

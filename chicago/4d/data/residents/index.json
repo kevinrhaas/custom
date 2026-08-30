@@ -39,15 +39,20 @@
    "blacksmith",
    "boarding_house_keeper",
    "boatman",
+   "bookseller",
+   "brewer",
    "brickmaker",
    "builder",
    "butcher",
    "carpenter",
+   "carriage_maker",
    "chaplain",
    "clerk",
    "clothier",
+   "confectioner",
    "cooper",
    "county_clerk",
+   "crockery_dealer",
    "dentist",
    "domestic",
    "dressmaker",
@@ -62,6 +67,7 @@
    "gunsmith",
    "hardware_merchant",
    "harness_maker",
+   "hatter",
    "hotel_keeper",
    "hunter",
    "indian_agent",
@@ -69,8 +75,12 @@
    "joiner",
    "justice_of_the_peace",
    "labourer",
+   "land_agent",
    "laundress",
+   "leather_dealer",
    "lighthouse_keeper",
+   "liquor_dealer",
+   "livery_stable_keeper",
    "lumber_merchant",
    "mason",
    "merchant",
@@ -80,11 +90,13 @@
    "none_recorded",
    "packer",
    "painter",
+   "pedlar",
    "physician",
    "plasterer",
    "postmaster",
    "priest",
    "printer",
+   "provision_dealer",
    "saddler",
    "sailmaker",
    "sawyer",
@@ -92,6 +104,7 @@
    "seaman",
    "ship_carpenter",
    "shoemaker",
+   "silversmith",
    "soap_and_candle_maker",
    "soldier",
    "speculator",
@@ -101,6 +114,7 @@
    "tanner",
    "tavern_keeper",
    "teamster",
+   "tinsmith",
    "trader",
    "watchmaker",
    "wheelwright"
@@ -131,10 +145,10 @@
   ]
  },
  "counts": {
-  "households": 920,
-  "persons": 956,
+  "households": 930,
+  "persons": 966,
   "by_grade": {
-   "attested": 823,
+   "attested": 833,
    "inferred": 25,
    "reconstructed": 108
   },
@@ -440,6 +454,34 @@
    "review_required": false
   },
   {
+   "id": "hh_doc_aaron_russell",
+   "file": "households/hh_doc_aaron_russell.json",
+   "head": "doc_aaron_russell",
+   "division": "unplaced",
+   "persons": 1,
+   "grades": {
+    "attested": 1
+   },
+   "lives_at": null,
+   "works_at": null,
+   "present_on_scene_date": "uncertain",
+   "review_required": false
+  },
+  {
+   "id": "hh_doc_botsford_j_k",
+   "file": "households/hh_doc_botsford_j_k.json",
+   "head": "doc_botsford_j_k",
+   "division": "unplaced",
+   "persons": 1,
+   "grades": {
+    "attested": 1
+   },
+   "lives_at": null,
+   "works_at": null,
+   "present_on_scene_date": "uncertain",
+   "review_required": false
+  },
+  {
    "id": "hh_doc_byram_king",
    "file": "households/hh_doc_byram_king.json",
    "head": "doc_byram_king",
@@ -471,6 +513,34 @@
    "id": "hh_doc_elmira_fowler",
    "file": "households/hh_doc_elmira_fowler.json",
    "head": "doc_elmira_fowler",
+   "division": "unplaced",
+   "persons": 1,
+   "grades": {
+    "attested": 1
+   },
+   "lives_at": null,
+   "works_at": null,
+   "present_on_scene_date": "uncertain",
+   "review_required": false
+  },
+  {
+   "id": "hh_doc_f_g_blanshard",
+   "file": "households/hh_doc_f_g_blanshard.json",
+   "head": "doc_f_g_blanshard",
+   "division": "unplaced",
+   "persons": 1,
+   "grades": {
+    "attested": 1
+   },
+   "lives_at": null,
+   "works_at": null,
+   "present_on_scene_date": "uncertain",
+   "review_required": false
+  },
+  {
+   "id": "hh_doc_g_w_keeney",
+   "file": "households/hh_doc_g_w_keeney.json",
+   "head": "doc_g_w_keeney",
    "division": "unplaced",
    "persons": 1,
    "grades": {
@@ -594,9 +664,51 @@
    "review_required": false
   },
   {
+   "id": "hh_doc_j_m_baxley",
+   "file": "households/hh_doc_j_m_baxley.json",
+   "head": "doc_j_m_baxley",
+   "division": "unplaced",
+   "persons": 1,
+   "grades": {
+    "attested": 1
+   },
+   "lives_at": null,
+   "works_at": null,
+   "present_on_scene_date": "uncertain",
+   "review_required": false
+  },
+  {
    "id": "hh_doc_james_grant",
    "file": "households/hh_doc_james_grant.json",
    "head": "doc_james_grant",
+   "division": "unplaced",
+   "persons": 1,
+   "grades": {
+    "attested": 1
+   },
+   "lives_at": null,
+   "works_at": null,
+   "present_on_scene_date": "uncertain",
+   "review_required": false
+  },
+  {
+   "id": "hh_doc_lathrop_johnson",
+   "file": "households/hh_doc_lathrop_johnson.json",
+   "head": "doc_lathrop_johnson",
+   "division": "unplaced",
+   "persons": 1,
+   "grades": {
+    "attested": 1
+   },
+   "lives_at": null,
+   "works_at": null,
+   "present_on_scene_date": "uncertain",
+   "review_required": false
+  },
+  {
+   "id": "hh_doc_lieut_james_allen",
+   "file": "households/hh_doc_lieut_james_allen.json",
+   "head": "doc_lieut_james_allen",
    "division": "unplaced",
    "persons": 1,
    "grades": {
@@ -633,6 +745,48 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "present",
+   "review_required": false
+  },
+  {
+   "id": "hh_doc_silvester_marsh",
+   "file": "households/hh_doc_silvester_marsh.json",
+   "head": "doc_silvester_marsh",
+   "division": "unplaced",
+   "persons": 1,
+   "grades": {
+    "attested": 1
+   },
+   "lives_at": null,
+   "works_at": null,
+   "present_on_scene_date": "uncertain",
+   "review_required": false
+  },
+  {
+   "id": "hh_doc_w_g_blanchard",
+   "file": "households/hh_doc_w_g_blanchard.json",
+   "head": "doc_w_g_blanchard",
+   "division": "unplaced",
+   "persons": 1,
+   "grades": {
+    "attested": 1
+   },
+   "lives_at": null,
+   "works_at": null,
+   "present_on_scene_date": "uncertain",
+   "review_required": false
+  },
+  {
+   "id": "hh_doc_william_clay",
+   "file": "households/hh_doc_william_clay.json",
+   "head": "doc_william_clay",
+   "division": "unplaced",
+   "persons": 1,
+   "grades": {
+    "attested": 1
+   },
+   "lives_at": null,
+   "works_at": null,
+   "present_on_scene_date": "uncertain",
    "review_required": false
   },
   {

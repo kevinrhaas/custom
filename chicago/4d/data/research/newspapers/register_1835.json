@@ -49,8 +49,8 @@
       "total": 2630,
       "by_action": {
         "enrich": 1004,
-        "new_resident": 1510,
-        "replace_invented": 116
+        "new_resident": 1512,
+        "replace_invented": 114
       },
       "letter_list_only": 1936
     },
@@ -300,7 +300,7 @@
       "id": "business_a_leather_stock_chicago_june_1835",
       "name": "a leather stock, Chicago, June 1835",
       "trade": "leather",
-      "occupation": null,
+      "occupation": "leather_dealer",
       "proprietors": [],
       "street": null,
       "street_id": null,
@@ -481,7 +481,7 @@
       "id": "business_a_wholesale_wine_and_liquor_store_dearborn_street",
       "name": "a wholesale wine and liquor store, Dearborn Street",
       "trade": "wholesale wine and liquors",
-      "occupation": null,
+      "occupation": "liquor_dealer",
       "proprietors": [],
       "street": "Dearborn Street",
       "street_id": "dearborn",
@@ -738,7 +738,7 @@
       "id": "business_briggs_humphrey",
       "name": "Briggs & Humphrey",
       "trade": "carriage and sleigh making",
-      "occupation": null,
+      "occupation": "carriage_maker",
       "proprietors": [
         "Briggs & Humphrey",
         "Briggs",
@@ -1409,7 +1409,7 @@
       "id": "business_cromelien_brothers_co",
       "name": "Cromelien, Brothers & Co.",
       "trade": "foreign wine and liquor establishment",
-      "occupation": null,
+      "occupation": "liquor_dealer",
       "proprietors": [],
       "street": null,
       "street_id": null,
@@ -2371,7 +2371,7 @@
       "id": "business_everson_co",
       "name": "Everson & Co.",
       "trade": "livery stable",
-      "occupation": null,
+      "occupation": "livery_stable_keeper",
       "proprietors": [
         "Everson"
       ],
@@ -2482,7 +2482,7 @@
       "id": "business_fullerton_botsford",
       "name": "Fullerton & Botsford",
       "trade": "pork and provisions",
-      "occupation": null,
+      "occupation": "provision_dealer",
       "proprietors": [
         "Fullerton & Botsford"
       ],
@@ -3556,7 +3556,7 @@
       "id": "business_j_k_botsford_tin_sheet_iron_and_copper_factory",
       "name": "J. K. Botsford, Tin, Sheet Iron and Copper Factory",
       "trade": "tin, sheet iron and copper factory",
-      "occupation": null,
+      "occupation": "tinsmith",
       "proprietors": [
         "J. K. Botsford"
       ],
@@ -4502,7 +4502,7 @@
       "id": "business_lathrop_johnson_co_livery",
       "name": "Lathrop Johnson & Co., livery",
       "trade": "livery",
-      "occupation": null,
+      "occupation": "livery_stable_keeper",
       "proprietors": [
         "Lathrop Johnson"
       ],
@@ -4539,7 +4539,7 @@
       "id": "business_m_cormick_moon",
       "name": "M'Cormick & Moon",
       "trade": "hat manufacturers and wholesale dealers, Detroit",
-      "occupation": null,
+      "occupation": "hatter",
       "proprietors": [
         "M'Cormick & Moon"
       ],
@@ -4652,7 +4652,7 @@
       "id": "business_marsh_simons",
       "name": "Marsh & Simons",
       "trade": "provision dealers at the Boston Market",
-      "occupation": null,
+      "occupation": "provision_dealer",
       "proprietors": [
         "Silvester Marsh",
         "Edward Simons"
@@ -5664,7 +5664,7 @@
       "id": "business_riggs_humphrey",
       "name": "Riggs & Humphrey",
       "trade": "carriage and sleigh making",
-      "occupation": null,
+      "occupation": "carriage_maker",
       "proprietors": [
         "Riggs & Humphrey"
       ],
@@ -5776,7 +5776,7 @@
       "id": "business_russell_clift",
       "name": "Russell & Clift",
       "trade": "bookseller and stationer",
-      "occupation": null,
+      "occupation": "bookseller",
       "proprietors": [
         "Aaron Russell",
         "Benj. H. Clift",
@@ -6180,7 +6180,7 @@
       "id": "business_stuart_s_confectionary_and_perfumery",
       "name": "Stuart's confectionary and perfumery",
       "trade": "confectionary and perfumery",
-      "occupation": null,
+      "occupation": "confectioner",
       "proprietors": [
         "Stuart"
       ],
@@ -6255,7 +6255,7 @@
       "id": "business_the_boston_market",
       "name": "The Boston Market",
       "trade": "market, provisions",
-      "occupation": null,
+      "occupation": "provision_dealer",
       "proprietors": [
         "Edward Simons"
       ],
@@ -6399,7 +6399,7 @@
       "id": "business_the_chicago_brewery",
       "name": "the Chicago Brewery",
       "trade": "brewing",
-      "occupation": null,
+      "occupation": "brewer",
       "proprietors": [
         "Crawford"
       ],
@@ -6521,7 +6521,7 @@
       "id": "business_the_livery_stable_at_the_point",
       "name": "the Livery Stable at the Point",
       "trade": "livery stable",
-      "occupation": null,
+      "occupation": "livery_stable_keeper",
       "proprietors": [],
       "street": null,
       "street_id": null,
@@ -6703,7 +6703,7 @@
       "id": "business_the_stove_and_tin_ware_store_in_water_street_near_the_bridge",
       "name": "the stove and tin ware store in Water Street near the bridge",
       "trade": "stoves, tin ware and hollow ware",
-      "occupation": null,
+      "occupation": "tinsmith",
       "proprietors": [],
       "street": "Water Street",
       "street_id": null,
@@ -6810,7 +6810,7 @@
       "id": "business_thos_emerson_co",
       "name": "Thos. Emerson & Co.",
       "trade": "livery stable",
-      "occupation": null,
+      "occupation": "livery_stable_keeper",
       "proprietors": [],
       "street": null,
       "street_id": null,
@@ -6845,7 +6845,7 @@
       "id": "business_tin_sheet_iron_and_stove_manufactory_proprietor_not_recovered",
       "name": "[tin, sheet iron and stove manufactory, proprietor not recovered]",
       "trade": "tin, sheet iron and stove work",
-      "occupation": null,
+      "occupation": "tinsmith",
       "proprietors": [],
       "street": "Dearborn Street",
       "street_id": "dearborn",
@@ -6955,7 +6955,7 @@
       "id": "business_uncertain_j_i_mulford_carriage_and_sleigh_maker",
       "name": "[uncertain: J. I. Mulford], carriage and sleigh maker",
       "trade": "carriage and sleigh making, and repairing",
-      "occupation": null,
+      "occupation": "carriage_maker",
       "proprietors": [
         "[uncertain: J. I. Mulford]"
       ],
@@ -7370,7 +7370,7 @@
       "id": "business_w_g_blanchard",
       "name": "W. G. Blanchard",
       "trade": "house and land agent",
-      "occupation": null,
+      "occupation": "land_agent",
       "proprietors": [
         "W. G. Blanchard"
       ],
@@ -7479,7 +7479,7 @@
       "id": "business_w_keeney",
       "name": "W. Keeney",
       "trade": "tin, sheet iron and copper ware, stoves and castings",
-      "occupation": null,
+      "occupation": "tinsmith",
       "proprietors": [
         "W. Keeney"
       ],
@@ -7797,7 +7797,7 @@
       "id": "business_william_clay",
       "name": "William Clay",
       "trade": "hat manufacturing and dealing",
-      "occupation": null,
+      "occupation": "hatter",
       "proprietors": [
         "William Clay"
       ],
@@ -7880,7 +7880,7 @@
       "id": "business_wm_g_branchaud",
       "name": "Wm. G. Branchaud",
       "trade": "house and land agent",
-      "occupation": null,
+      "occupation": "land_agent",
       "proprietors": [
         "Wm. G. Branchaud"
       ],
@@ -8464,7 +8464,7 @@
     {
       "id": "person_aaron_russell",
       "name": "Aaron Russell",
-      "occupation": null,
+      "occupation": "bookseller",
       "letter_list_only": false,
       "first_seen": "1834-11-12",
       "last_seen": "1834-11-12",
@@ -10917,7 +10917,7 @@
     {
       "id": "person_botsford_j_k",
       "name": "Botsford, J. K.",
-      "occupation": null,
+      "occupation": "tinsmith",
       "letter_list_only": false,
       "first_seen": "1834-09-10",
       "last_seen": "1834-09-24",
@@ -11027,7 +11027,7 @@
     {
       "id": "person_briggs_humphrey",
       "name": "Briggs & Humphrey",
-      "occupation": null,
+      "occupation": "carriage_maker",
       "letter_list_only": false,
       "first_seen": "1834-06-04",
       "last_seen": "1835-05-20",
@@ -11676,7 +11676,7 @@
     {
       "id": "person_capt_d_wilcox",
       "name": "Capt. D. Wilcox",
-      "occupation": null,
+      "occupation": "soldier",
       "letter_list_only": false,
       "first_seen": "1834-02-04",
       "last_seen": "1834-02-04",
@@ -11687,7 +11687,7 @@
     {
       "id": "person_capt_j_m_baxley",
       "name": "Capt. J. M. Baxley",
-      "occupation": null,
+      "occupation": "army_officer",
       "letter_list_only": false,
       "first_seen": "1834-11-19",
       "last_seen": "1834-11-19",
@@ -12710,7 +12710,7 @@
     {
       "id": "person_clift_benj_h",
       "name": "Clift, Benj. H.",
-      "occupation": null,
+      "occupation": "bookseller",
       "letter_list_only": false,
       "first_seen": "1834-09-03",
       "last_seen": "1834-11-12",
@@ -13084,7 +13084,7 @@
     {
       "id": "person_crawford",
       "name": "Crawford",
-      "occupation": null,
+      "occupation": "brewer",
       "letter_list_only": false,
       "first_seen": "1835-06-20",
       "last_seen": "1835-06-20",
@@ -13326,7 +13326,7 @@
     {
       "id": "person_d_elston_co",
       "name": "D. Elston & Co.",
-      "occupation": "soap_and_candle_maker",
+      "occupation": "provision_dealer",
       "letter_list_only": false,
       "first_seen": "1834-04-01",
       "last_seen": "1834-04-01",
@@ -14646,7 +14646,7 @@
     {
       "id": "person_e_kirby_smith",
       "name": "E. Kirby Smith",
-      "occupation": null,
+      "occupation": "army_officer",
       "letter_list_only": false,
       "first_seen": "1834-03-25",
       "last_seen": "1834-03-25",
@@ -15053,7 +15053,7 @@
     {
       "id": "person_edward_simons",
       "name": "Edward Simons",
-      "occupation": null,
+      "occupation": "provision_dealer",
       "letter_list_only": false,
       "first_seen": "1834-07-02",
       "last_seen": "1834-08-13",
@@ -15504,7 +15504,7 @@
     {
       "id": "person_everson",
       "name": "Everson",
-      "occupation": null,
+      "occupation": "livery_stable_keeper",
       "letter_list_only": false,
       "first_seen": "1834-03-04",
       "last_seen": "1834-03-04",
@@ -15581,7 +15581,7 @@
     {
       "id": "person_f_g_blanshard",
       "name": "F. G. Blanshard",
-      "occupation": null,
+      "occupation": "land_agent",
       "letter_list_only": false,
       "first_seen": "1834-11-12",
       "last_seen": "1834-11-12",
@@ -16109,7 +16109,7 @@
     {
       "id": "person_fullerton_botsford",
       "name": "Fullerton & Botsford",
-      "occupation": null,
+      "occupation": "provision_dealer",
       "letter_list_only": false,
       "first_seen": "1834-06-04",
       "last_seen": "1834-07-09",
@@ -16263,7 +16263,7 @@
     {
       "id": "person_g_w_keeney",
       "name": "G. W. Keeney",
-      "occupation": null,
+      "occupation": "tinsmith",
       "letter_list_only": false,
       "first_seen": "1834-05-07",
       "last_seen": "1834-05-07",
@@ -16692,7 +16692,7 @@
     {
       "id": "person_gholson_kercheval",
       "name": "Gholson Kercheval",
-      "occupation": null,
+      "occupation": "land_agent",
       "letter_list_only": false,
       "first_seen": "1834-06-04",
       "last_seen": "1834-06-04",
@@ -16846,7 +16846,7 @@
     {
       "id": "person_goodhue_j_c",
       "name": "Goodhue, J. C.",
-      "occupation": null,
+      "occupation": "land_agent",
       "letter_list_only": false,
       "first_seen": "1835-08-19",
       "last_seen": "1835-08-19",
@@ -19024,13 +19024,13 @@
     {
       "id": "person_hubbard_e_k",
       "name": "Hubbard, E. K.",
-      "occupation": "merchant",
+      "occupation": "land_agent",
       "letter_list_only": false,
       "first_seen": "1835-08-05",
       "last_seen": "1835-08-05",
-      "action": "replace_invented",
-      "action_target": "merchant",
-      "action_note": "A documented merchant. The town invented 1 household(s) of this trade because no documented person was available; this is a candidate to retire one."
+      "action": "new_resident",
+      "action_target": null,
+      "action_note": "Ruling 1: a named person the town does not hold. Named in a claim other than a letter list."
     },
     {
       "id": "person_hubbard_gurdon_s",
@@ -19871,7 +19871,7 @@
     {
       "id": "person_j_green",
       "name": "J. Green",
-      "occupation": null,
+      "occupation": "army_officer",
       "letter_list_only": false,
       "first_seen": "1835-05-27",
       "last_seen": "1835-06-13",
@@ -19937,13 +19937,13 @@
     {
       "id": "person_j_h_mulford",
       "name": "J. H. Mulford",
-      "occupation": "merchant",
+      "occupation": "silversmith",
       "letter_list_only": false,
       "first_seen": "1834-06-04",
       "last_seen": "1835-06-17",
-      "action": "replace_invented",
-      "action_target": "merchant",
-      "action_note": "A documented merchant. The town invented 1 household(s) of this trade because no documented person was available; this is a candidate to retire one."
+      "action": "new_resident",
+      "action_target": null,
+      "action_note": "Ruling 1: a named person the town does not hold. Named in a claim other than a letter list."
     },
     {
       "id": "person_j_j_garland",
@@ -20036,7 +20036,7 @@
     {
       "id": "person_j_n_story",
       "name": "J. N. Story",
-      "occupation": null,
+      "occupation": "livery_stable_keeper",
       "letter_list_only": false,
       "first_seen": "1835-07-04",
       "last_seen": "1835-07-04",
@@ -21257,7 +21257,7 @@
     {
       "id": "person_jeste_or_ya_ple_bernard",
       "name": "Jeste or [Ya]ple, Bernard",
-      "occupation": null,
+      "occupation": "pedlar",
       "letter_list_only": false,
       "first_seen": "1835-08-05",
       "last_seen": "1835-08-05",
@@ -22104,7 +22104,7 @@
     {
       "id": "person_john_watkins",
       "name": "John Watkins",
-      "occupation": "schoolteacher",
+      "occupation": "bookseller",
       "letter_list_only": false,
       "first_seen": "1833-12-24",
       "last_seen": "1835-06-13",
@@ -23589,7 +23589,7 @@
     {
       "id": "person_l_t_jamison",
       "name": "L. T. Jamison",
-      "occupation": null,
+      "occupation": "army_officer",
       "letter_list_only": false,
       "first_seen": "1834-06-04",
       "last_seen": "1835-07-01",
@@ -23710,7 +23710,7 @@
     {
       "id": "person_lathrop_johnson",
       "name": "Lathrop Johnson",
-      "occupation": null,
+      "occupation": "livery_stable_keeper",
       "letter_list_only": false,
       "first_seen": "1835-06-27",
       "last_seen": "1835-06-27",
@@ -24106,7 +24106,7 @@
     {
       "id": "person_lieut_allen",
       "name": "Lieut. Allen",
-      "occupation": null,
+      "occupation": "army_officer",
       "letter_list_only": false,
       "first_seen": "1834-03-25",
       "last_seen": "1834-03-25",
@@ -24117,7 +24117,7 @@
     {
       "id": "person_lieut_j_allen",
       "name": "Lieut. J. Allen",
-      "occupation": null,
+      "occupation": "army_officer",
       "letter_list_only": false,
       "first_seen": "1835-07-18",
       "last_seen": "1835-07-18",
@@ -24128,7 +24128,7 @@
     {
       "id": "person_lieut_j_l_thompson",
       "name": "Lieut. J. L. Thompson",
-      "occupation": null,
+      "occupation": "soldier",
       "letter_list_only": false,
       "first_seen": "1834-02-04",
       "last_seen": "1834-02-04",
@@ -24139,7 +24139,7 @@
     {
       "id": "person_lieut_james_allen",
       "name": "Lieut. James Allen",
-      "occupation": null,
+      "occupation": "army_officer",
       "letter_list_only": false,
       "first_seen": "1834-08-13",
       "last_seen": "1834-08-13",
@@ -24150,7 +24150,7 @@
     {
       "id": "person_lieutenant_5th_infantry_assistant_commissary_of_subsistence",
       "name": "[…], Lieutenant, 5th Infantry, Assistant Commissary of Subsistence",
-      "occupation": null,
+      "occupation": "army_officer",
       "letter_list_only": false,
       "first_seen": "1834-05-28",
       "last_seen": "1834-05-28",
@@ -24612,7 +24612,7 @@
     {
       "id": "person_m_cormick_moon",
       "name": "M'Cormick & Moon",
-      "occupation": null,
+      "occupation": "hatter",
       "letter_list_only": false,
       "first_seen": "1834-07-02",
       "last_seen": "1834-07-02",
@@ -26273,7 +26273,7 @@
     {
       "id": "person_mulford_j_h",
       "name": "Mulford, J. H.",
-      "occupation": "watchmaker",
+      "occupation": "silversmith",
       "letter_list_only": false,
       "first_seen": "1834-09-17",
       "last_seen": "1835-08-12",
@@ -26515,7 +26515,7 @@
     {
       "id": "person_nathaniel_carpenter",
       "name": "Nathaniel Carpenter",
-      "occupation": null,
+      "occupation": "soldier",
       "letter_list_only": false,
       "first_seen": "1834-01-14",
       "last_seen": "1834-01-14",
@@ -29034,7 +29034,7 @@
     {
       "id": "person_richard_j_hamilton",
       "name": "Richard J. Hamilton",
-      "occupation": "schoolteacher",
+      "occupation": "land_agent",
       "letter_list_only": false,
       "first_seen": "1834-03-18",
       "last_seen": "1835-08-22",
@@ -29056,7 +29056,7 @@
     {
       "id": "person_richard_m_sweet",
       "name": "Richard M. Sweet",
-      "occupation": null,
+      "occupation": "farmer",
       "letter_list_only": false,
       "first_seen": "1833-12-03",
       "last_seen": "1833-12-03",
@@ -29144,7 +29144,7 @@
     {
       "id": "person_riggs_humphrey",
       "name": "Riggs & Humphrey",
-      "occupation": null,
+      "occupation": "carriage_maker",
       "letter_list_only": false,
       "first_seen": "1834-09-03",
       "last_seen": "1834-09-03",
@@ -29617,7 +29617,7 @@
     {
       "id": "person_russell_aaron",
       "name": "Russell, Aaron",
-      "occupation": null,
+      "occupation": "bookseller",
       "letter_list_only": false,
       "first_seen": "1834-09-03",
       "last_seen": "1834-09-03",
@@ -29639,7 +29639,7 @@
     {
       "id": "person_russell_clift",
       "name": "Russell & Clift",
-      "occupation": null,
+      "occupation": "bookseller",
       "letter_list_only": false,
       "first_seen": "1835-08-19",
       "last_seen": "1835-08-19",
@@ -30882,7 +30882,7 @@
     {
       "id": "person_silvester_marsh",
       "name": "Silvester Marsh",
-      "occupation": null,
+      "occupation": "provision_dealer",
       "letter_list_only": false,
       "first_seen": "1834-08-13",
       "last_seen": "1834-08-13",
@@ -31883,7 +31883,7 @@
     {
       "id": "person_stuart",
       "name": "Stuart",
-      "occupation": null,
+      "occupation": "confectioner",
       "letter_list_only": false,
       "first_seen": "1834-10-08",
       "last_seen": "1835-06-08",
@@ -33049,13 +33049,13 @@
     {
       "id": "person_trowbridge",
       "name": "Trowbridge",
-      "occupation": null,
+      "occupation": "tavern_keeper",
       "letter_list_only": false,
       "first_seen": "1835-06-24",
       "last_seen": "1835-06-24",
-      "action": "new_resident",
-      "action_target": null,
-      "action_note": "Ruling 1: a named person the town does not hold. Named in a claim other than a letter list."
+      "action": "replace_invented",
+      "action_target": "tavern_keeper",
+      "action_note": "A documented tavern_keeper. The town invented 4 household(s) of this trade because no documented person was available; this is a candidate to retire one."
     },
     {
       "id": "person_truman_king",
@@ -33566,7 +33566,7 @@
     {
       "id": "person_uncertain_j_i_mulford",
       "name": "[uncertain: J. I. Mulford]",
-      "occupation": null,
+      "occupation": "carriage_maker",
       "letter_list_only": false,
       "first_seen": "1834-07-02",
       "last_seen": "1834-07-02",
@@ -33808,7 +33808,7 @@
     {
       "id": "person_uncertain_lt_allen",
       "name": "[uncertain: Lt. Allen]",
-      "occupation": null,
+      "occupation": "army_officer",
       "letter_list_only": false,
       "first_seen": "1834-07-09",
       "last_seen": "1834-07-09",
@@ -34930,7 +34930,7 @@
     {
       "id": "person_w_g_blanchard",
       "name": "W. G. Blanchard",
-      "occupation": null,
+      "occupation": "land_agent",
       "letter_list_only": false,
       "first_seen": "1834-07-09",
       "last_seen": "1834-07-09",
@@ -35183,7 +35183,7 @@
     {
       "id": "person_w_keeney",
       "name": "W. Keeney",
-      "occupation": null,
+      "occupation": "tinsmith",
       "letter_list_only": false,
       "first_seen": "1834-06-04",
       "last_seen": "1834-06-04",
@@ -35997,7 +35997,7 @@
     {
       "id": "person_william_clay",
       "name": "William Clay",
-      "occupation": null,
+      "occupation": "hatter",
       "letter_list_only": false,
       "first_seen": "1834-06-04",
       "last_seen": "1834-06-04",
@@ -36547,13 +36547,13 @@
     {
       "id": "person_wm_hogue_co",
       "name": "Wm. Hogue & Co",
-      "occupation": "grocer",
+      "occupation": "crockery_dealer",
       "letter_list_only": false,
       "first_seen": "1834-11-05",
       "last_seen": "1834-11-05",
-      "action": "replace_invented",
-      "action_target": "grocer",
-      "action_note": "A documented grocer. The town invented 4 household(s) of this trade because no documented person was available; this is a candidate to retire one."
+      "action": "new_resident",
+      "action_target": null,
+      "action_note": "Ruling 1: a named person the town does not hold. Named in a claim other than a letter list."
     },
     {
       "id": "person_wm_j_m_a_rlatt",
