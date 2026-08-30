@@ -88,7 +88,7 @@ T-0181 — The desktop 7-9 smoke leg has 9m49s of margin against its 30-minute c
 T-0170 — The desktop smoke's part 7 has 2 m 17 s of margin, and it is the one measured over the ceiling on another runner
 
 # --- VISIBLE: THE GROUND, THE FORT, AND WHAT THE ORDINANCES PUT ON EVERY ROOF.
-# --- T-0219 is parked on PR #432. T-0333 CLOSED in PR #TBD: every one of the town's 234
+# --- T-0219 is parked on PR #432. T-0333 CLOSED in PR #592: every one of the town's 234
 # --- stacks was measured against the ordinance's eighteen inches and Andreas's four feet,
 # --- none was short, and the nine that were too tall — all on tavern blocks deeper than
 # --- they are wide — now stand on the ridge. T-0334, the hay-stacking boundary, is the
