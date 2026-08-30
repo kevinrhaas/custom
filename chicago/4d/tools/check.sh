@@ -929,6 +929,15 @@ step "closing a ticket leaves the mirror fresh, and a stale one still fails" \
 step "stamping the changelog leaves both mirrors fresh, and a stale one still fails" \
   node tools/test_changelog_mirror.mjs
 
+# T-0180. The nightly bake decides whether it produced anything by asking this
+# script, so the script's own assertions are the gate on that decision. The two
+# it exists to hold are the two that would silently break it: publish.sh stamping
+# a THIRD path, and the exclusion widening from "the stamp moved" to "those two
+# files moved" — after which a real change to build.json or to the gate page
+# would stop opening a PR, which is the same dead signal in the other direction.
+step "the bake's content test refuses the stamp and nothing else" \
+  python3 tools/bake_content_changed.py --self-test
+
 # The duplicate-id remedy, tested in the only state it ever runs in. `restamp`
 # used to find the ticket by FILE (its own comment explains that with two files
 # sharing an id, nothing else can tell them apart) and then edit the queue by ID,
