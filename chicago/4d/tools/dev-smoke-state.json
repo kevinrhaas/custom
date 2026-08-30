@@ -74,6 +74,68 @@
       "passed": 37,
       "failed": 0,
       "failures": [],
+      "wallSeconds": 122,
+      "takenAt": "2026-08-30T05:07:30.461Z",
+      "ref": "steward/t-0333-stove-pipe-eighteen-inches",
+      "commit": "a02a79ec44a9",
+      "devCommit": "a02a79ec44a9",
+      "treeHash": "sha256:d81bf2d90c39782b",
+      "treeDirty": false,
+      "changelogHash": "sha256:d6f2595c94849f64",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          4.5,
+          2.6,
+          1.7
+        ]
+      },
+      "source": "/tmp/d10b.log"
+    },
+    {
+      "viewport": "mobile",
+      "stage": "10",
+      "parts": [
+        10
+      ],
+      "verdict": "pass",
+      "target": "published",
+      "passed": 37,
+      "failed": 0,
+      "failures": [],
+      "wallSeconds": 70,
+      "takenAt": "2026-08-30T05:07:30.395Z",
+      "ref": "steward/t-0333-stove-pipe-eighteen-inches",
+      "commit": "a02a79ec44a9",
+      "devCommit": "a02a79ec44a9",
+      "treeHash": "sha256:d81bf2d90c39782b",
+      "treeDirty": false,
+      "changelogHash": "sha256:d6f2595c94849f64",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          4.5,
+          2.6,
+          1.7
+        ]
+      },
+      "source": "/tmp/m10b.log"
+    },
+    {
+      "viewport": "desktop",
+      "stage": "10",
+      "parts": [
+        10
+      ],
+      "verdict": "pass",
+      "target": "published",
+      "passed": 37,
+      "failed": 0,
+      "failures": [],
       "wallSeconds": 171,
       "takenAt": "2026-08-30T04:55:28.053Z",
       "ref": "steward/t-0235-smoke-budget",

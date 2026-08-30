@@ -279,3 +279,71 @@ drawn. What it holds is that none may drop back under. The day a record legitima
 stands a shorter stack outside the limits, T-0334's boundary is what will scope this gate
 — and the gate's own failure message says so, rather than tempting the next run to weaken
 a documented figure.
+
+### The same by-law read one stack at a time (T-0333's other half)
+
+The gate above reads accessor bounds, and says plainly what that costs: *"a building
+carrying stacks on two roofs reports its TALLEST stack. That the lower one clears its own
+ridge by the same margin is the archetype's guarantee, not this measurement's."* A glTF
+POSITION accessor carries one bound per primitive, so an ell's low stack and the main
+block's high one collapse into a single number and "the roof" collapses to the tallest
+ridge on the building. That is the right conservatism for a floor and it cannot answer a
+question about a particular stack.
+
+`tools/measure_stack_projection.py` answers those, and **it is not a second gate — it is
+not wired into `tools/check.sh`, and the by-law has one gate.** It runs the archetypes
+outside Blender (`common/mesh.MeshBuilder` needs bpy only at `to_object`), builds each
+building twice — once as its record counts, once with the count forced to zero — and takes
+the boxes that appear only in the first as the stacks, so it trusts no archetype's private
+helper and no material name. The roof under each stack is then sampled over that stack's
+own plan footprint.
+
+**The guarantee holds, and is now a reading.** All 234 stacks clear eighteen inches stack
+by stack, not only building by building; the minimum is the same 0.550 m and nothing else
+is within eight inches of the floor. `miller_house` is the case that shows the two
+measurements are genuinely different: its second stack stands on the frame addition and
+its head is **2.271 m BELOW the log core's ridge**, exactly as `log_dwelling._chimneys`
+argues it should be — a figure a bounds reading would have to report as a stack sunk into
+its roof.
+
+**And it found one thing the bounds cannot see.** Classified against each roof's own ridge
+frame, `log_dwelling`'s 47 stacks split **17 at a gable end** (0.720 m clear, every one)
+and **30 against an EAVE wall** (2.344 to 3.197 m clear, because an eave stack runs up
+past a roof that is at eave height beside it and keeps going to the ridge). `_stack` builds
+at the −x face unconditionally while `_roof` runs the ridge along the longer plan axis, so
+a cabin deeper than it is wide gets an eave stack. That contradicts the archetype's own
+docstring — *"one exterior stack against a gable end"* — and it is the disposition **§3
+argues the cat-and-clay fabric from**: *"built against the gable so it can be pulled away
+from the building when it catches fire."* Two-thirds of the town's log stacks are not in
+it. **T-0435** owns that; it moves geometry on 29 masters and needs a bake.
+
+### A correction: section 22 is not the corporation limits
+
+The paragraph above says section 22 of this sitting *"walks those limits street by
+street"*. It does not, and the distinction matters because two different lines are being
+run together. **Section 22 is the hay-stacking boundary** — *"it shall not be lawful for
+any person to stack hay within the following limits in the town of Chicago, to wit:
+commencing on Washington street at the United States Reservation, and running thence West
+to the intersection of Canal Street, thence North to the intersection of Kinzie Street,
+thence East to the intersection of Wolcott street, thence to Illinois Street, and thence
+to Lake Michigan"* — a six-vertex line drawn round the built core, INSIDE the corporation
+and narrower than it, under a twenty-five dollar penalty. It is a use restriction with its
+own limits, not a statement of the town's boundary. That line is **T-0334**.
+
+**The corporation's own limits are not in this repository at all**, as geometry or as a
+sourced claim. The one description held is the note on `chicagology_prefire278` — fixed
+6 November 1833 at Jackson south, Jefferson and Cook west, Ohio north, "barely
+seven-eighths of a square mile", extended 11 February 1835 east to the lake shore and out
+to Chicago Avenue and Twelfth Street — and that record's own note grades the incorporation
+half of the page **rung 3, not 2**, and says in terms that no value in the dataset rests on
+it. Nothing here changes that: no boundary is committed and no confidence is graded off it.
+**T-0436** owns finding it in something better.
+
+What can be measured meanwhile is the drawn town's extent, and it is why the gate is safe
+without the line. The 213 chimneyed buildings stand between local **E −273.2** (on Clinton
+Street, the westernmost street this project commits) and **E +1287.3** in the North
+Division, and between **N −619.6** (`heacock_house_monroe`, on Monroe) and **N +386.7**.
+Every limit street named above lies whole platted tiers beyond that box on its own side.
+So the gate covers the whole drawn town soundly today, and the outside-the-limits column of
+any census of it is empty **by extent rather than by a boundary** — which is a different
+and weaker thing to be able to say, and is worth saying in those words.
