@@ -72,6 +72,11 @@ T-0305 — Four readings the American contradicts itself on need the page images
 # --- against the 24.384 m one platted lot fronts. It is a wedge the South Branch pinches
 # --- out, and T-0183 is back with the owner on what to do with it. The ~20 roofs T-0009
 # --- freed are unaffected.
+# --- T-0365 CLOSED IN PR #581 and this band is now empty of tickets. Its successor,
+# --- T-0420, was one ticket holding four blocks — four runs, which `claim` refuses —
+# --- so it is split into T-0429/T-0430/T-0431/T-0432, one block each, `needs_bake`.
+# --- They hold T-0420's own place AT THE BOTTOM of this file, because an agent may not
+# --- re-rank. If this band's ranking is what you meant, MOVE THOSE FOUR LINES HERE.
 
 # --- THE RUNS CANNOT PROVE THEMSELVES — invisible, and it blocks the EVIDENCE every
 # --- visible ticket owes. T-0346 is the sharp one: desktop stage 4 no longer fits the
@@ -80,7 +85,6 @@ T-0305 — Four readings the American contradicts itself on need the page images
 # --- gates below make a green run and a red run of the same tree.
 T-0346 — Desktop smoke stage 4 no longer fits the ten-minute foreground ceiling, so no steward run can take the whole desktop gate
 T-0349 — The signboard gate is red when stage 1 runs before it and green when stage 2 runs alone
-T-0369 — Desktop stage 8's panel walk is red when stage 1 runs before it and green when stage 8 runs alone
 T-0235 — The unfiltered renderer smoke takes 55 minutes on the steward runner, and three tickets reason against a 30-minute cap
 T-0173 — The desktop smoke's part 4 and part 5 have under a minute of margin on the ceiling, and part 7 is over it
 T-0181 — The desktop 7-9 smoke leg has 9m49s of margin against its 30-minute cap, and the margin was asserted rather than measured
