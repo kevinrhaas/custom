@@ -1,6 +1,6 @@
 {
   "project": "chicago-4d",
-  "generated_ct": "Aug 29, 2026, 8:54 PM",
+  "generated_ct": "Aug 29, 2026, 9:13 PM",
   "tickets": [
     {
       "id": "T-0001",
@@ -6050,7 +6050,7 @@
     {
       "id": "T-0369",
       "title": "Desktop stage 8's panel walk is red when stage 1 runs before it and green when stage 8 runs alone",
-      "state": "open",
+      "state": "claimed",
       "epic": "META",
       "requested_by": "loop",
       "seen": false,
@@ -6060,7 +6060,7 @@
       "opened": "2026-08-29",
       "closed": null,
       "pr": null,
-      "claimed_by": null,
+      "claimed_by": "run 8/29/2026, 9:13:23 PM CT",
       "blocked_on": null,
       "needs_bake": false,
       "queue_rank": 7

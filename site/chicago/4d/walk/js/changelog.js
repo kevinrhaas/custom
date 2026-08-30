@@ -1,4 +1,12 @@
 export const CHANGELOG = [ // newest first
+  { v: 421, title: 'The panel\u2019s own test could not say the same thing twice', kind: 'chore', ts: '2026-08-30T02:30:09.883Z', date: 'Aug 29, 2026, 9:30 PM CT',
+    items: [
+      'Nothing you can see changed today. The walkthrough is checked before every release by a suite that drives the real page \u2014 it walks the town, clicks the panel open, moves the eye-height slider, opens the release notes. It runs in nine parts, because the whole of it takes far longer than one machine is given, and a part is supposed to give the same verdict whichever of its neighbours ran beside it.',
+      'Part eight did not. Asked for on its own it passed; asked for after part one it died on its very first click, on a settings tab it reported as covered by a heading. Same code, same page, one command apart \u2014 so any change to this project could be told its work was broken when the only thing broken was the order the checks were requested in.',
+      'The cause is a card left standing. Part one aims twenty-five times at a signboard to prove that reading a sign opens the shop behind it, and the last of those aims opens the shop\u2019s card \u2014 which sits pinned to the top right of the screen, exactly over the panel\u2019s row of tabs. Nothing between there and part eight touches the panel, so nobody noticed for as long as the split has existed.',
+      'Part one now closes the card it opened, and says so with a check of its own, so the next part that walks away leaving something over the controls is named where it happened rather than four parts later under another test\u2019s name. Part eight also clears the way itself before it starts, so its verdict no longer depends on what ran in front of it at all.',
+      'And when a click is blocked in future the failure names the thing blocking it. It used to say only that a heading was in the way; it now says which panel that heading belongs to, which is the whole diagnosis in one line.',
+    ] },
   { v: 420, title: 'A third printing of one letter list, on a page nobody opened', kind: 'fix', ts: '2026-08-30T01:54:54.155Z', date: 'Aug 29, 2026, 8:54 PM CT',
     items: [
       'Nothing you can see changed today. The list of letters waiting uncalled-for at the Chicago post office on 1 April 1834 is the largest single body of names this reconstruction holds for that spring, and until today it stood at 179 \u2014 a number its own record called a floor, because nineteen lines of the two printings it was read from carry ink-damage where a name had been.',

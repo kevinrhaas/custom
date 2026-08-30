@@ -1,7 +1,7 @@
 ---
 id: T-0369
 title: Desktop stage 8's panel walk is red when stage 1 runs before it and green when stage 8 runs alone
-state: open
+state: claimed
 epic: META
 requested_by: loop
 seen: false
@@ -11,7 +11,7 @@ parent: null
 opened: 2026-08-29
 closed: null
 pr: null
-claimed_by: null
+claimed_by: run 8/29/2026, 9:13:23 PM CT
 blocked_on: null
 needs_bake: false
 ---
@@ -46,3 +46,35 @@ one should read the other.
 so it takes stages — and a subset that is red only because of its own composition costs every branch
 an argument about whose failure it is. This run had to re-run `dev` twice to establish that its own
 change was innocent.
+
+## Answered 2026-08-30 — a card left standing over the tab strip, and it is not T-0349's fault
+
+Reproduced on this runner against the published mirror of an unmodified `dev`, exactly as filed:
+`SMOKE_STAGE=8` 37/0, `SMOKE_STAGE=1,8` 75/1 on `clickChrome: .panel-tab[data-tab="settings"] is
+covered at its own centre by <h2>`.
+
+**The `<h2>` belongs to `#popup`, the building inspect card, and part 1 opened it.** `clickChrome`
+reported the tag and not its owner, so it now walks up to the nearest ancestor with an id and says
+`covered at its own centre by <h2> inside #popup`. Part 1's last page interaction is `boardPick` —
+twenty-five `pick()` calls proving that aiming at the Tremont House's signboard opens the business
+behind it — and a `pick()` that lands on a structure opens the card. Part 1 never closed it.
+`#popup` is `position: fixed; z-index: 30; top: 58px; right: 12px` and 392 px wide; the HUD panel
+is 380 px wide at the same corner, so at 1280×800 the card lies on the panel's tab strip. Parts
+2–7 read the scene graph rather than chrome, which is why nothing noticed for as long as the split
+has existed; part 8 is nothing but chrome and its first statement clicks a tab.
+
+**Repair, at both ends.** Part 1 closes the card it opened and asserts the teardown (`part 1 hands
+the page on with nothing standing over the chrome`, over `#popup` and `#control-help`), so the next
+leak is named at its own boundary. Part 8 clears the card in the preamble that already re-opens the
+panel, so its verdict is independent of every predecessor and not just of part 1. No assertion was
+weakened or deleted.
+
+**The shared-cause hypothesis with T-0349 is REFUTED, not inherited.** T-0349's third reading names
+its own cause: its seventh clause counts `frontage.meshes === 62`, and a run with stage 1 behind it
+carries five extra `frontage-far-merge` meshes the desktop camera's history caused — a census clause
+reading a distance-merge artefact. This ticket is an overlay left standing over a control. The two
+share the phrase "red after stage 1" and nothing else, so T-0349 still wants its own repair and is
+untouched by this one.
+
+**Verification.** `./tools/check.sh` PASS. desktop `SMOKE_STAGE=1,8` 105/0 (was 75/1), desktop
+`SMOKE_STAGE=8` 37/0 — the same verdict both ways. mobile `SMOKE_STAGE=1,8` 105/0.
