@@ -131,14 +131,14 @@
   ]
  },
  "counts": {
-  "households": 207,
-  "persons": 243,
+  "households": 208,
+  "persons": 244,
   "by_grade": {
-   "attested": 110,
+   "attested": 111,
    "inferred": 25,
    "reconstructed": 108
   },
-  "letter_list_only": 14
+  "letter_list_only": 15
  },
  "households": [
   {
@@ -2390,6 +2390,20 @@
    "id": "hh_ll_chester_house",
    "file": "households/hh_ll_chester_house.json",
    "head": "ll_chester_house",
+   "division": "unplaced",
+   "persons": 1,
+   "grades": {
+    "attested": 1
+   },
+   "lives_at": null,
+   "works_at": null,
+   "present_on_scene_date": "uncertain",
+   "review_required": false
+  },
+  {
+   "id": "hh_ll_elam_tuller",
+   "file": "households/hh_ll_elam_tuller.json",
+   "head": "ll_elam_tuller",
    "division": "unplaced",
    "persons": 1,
    "grades": {

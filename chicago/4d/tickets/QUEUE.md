@@ -59,7 +59,6 @@ T-0375 — Every reconstructed roof on South Water Street is a labourer's, so fi
 # --- opened that live outside the repository. Workable the day the images are supplied;
 # --- until then a run should take something above instead.
 T-0318 — The January 1834 letter list: the third printing repairs the A-H half, and the images are needed only for the rest
-T-0321 — The 1 April 1834 Chicago letter list is 179 names and nineteen lines of debris stand where more did
 T-0305 — Four readings the American contradicts itself on need the page images: the tailor's street, which Water street two forwarding houses stood in, and the corner of Cobb's saddlery
 
 # --- THE TOWN GROWS AGAIN — UNBLOCKED BY THE OWNER, 2026-08-29. T-0365 measured that
@@ -177,3 +176,4 @@ T-0423 — G. Spring's large dwelling-house and fine well stands on lot 7 of blo
 T-0398 — A firm's own style stands in its proprietor list, because a claim read the signature where a person was wanted
 T-0424 — The 1 January 1834 letter list's printed length, and the names all nine printings lost, need the page images
 T-0425 — A letter-list household's arrival bound is dated by the printing it was extracted from, not by the return, so nine printings of one list give nine different bounds
+T-0428 — The 1 April 1834 letter list has three positions no printing reads, and only the page images can say how long it was
