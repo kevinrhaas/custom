@@ -1,6 +1,6 @@
 {
   "project": "chicago-4d",
-  "generated_ct": "Aug 30, 2026, 1:36 AM",
+  "generated_ct": "Aug 30, 2026, 2:11 AM",
   "tickets": [
     {
       "id": "T-0001",
@@ -6302,7 +6302,7 @@
     {
       "id": "T-0384",
       "title": "John Holbrook's store takes its door on South Water Street, one door from Dearborn",
-      "state": "open",
+      "state": "claimed",
       "epic": "META",
       "requested_by": "loop",
       "seen": false,
@@ -6312,7 +6312,7 @@
       "opened": "2026-08-29",
       "closed": null,
       "pr": null,
-      "claimed_by": "run 8/29/2026, 4:27:33 PM CT",
+      "claimed_by": "run 8/30/2026, 2:11:39 AM CT",
       "blocked_on": null,
       "needs_bake": true,
       "queue_rank": 7
@@ -7162,6 +7162,24 @@
       "blocked_on": null,
       "needs_bake": false,
       "queue_rank": 38
+    },
+    {
+      "id": "T-0438",
+      "title": "Clark, Filer & Co.'s live placement is empty while three printings put its warehouse five doors east of Randolph",
+      "state": "open",
+      "epic": "META",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "M",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-08-30",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "queue_rank": 76
     }
   ]
 }

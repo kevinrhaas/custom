@@ -41,12 +41,12 @@
      "business_uncertain_w_h_taylor_dearborn_street_boot_and_shoe_store",
      "business_unnamed_new_store_la_salle_street"
     ],
-    "would_still_refuse": 28,
+    "would_still_refuse": 27,
     "would_still_refuse_by_reason": {
      "not present at the scene date": 0,
      "the face holds no roof whose lot fronts it": 2,
      "this face already holds this proprietor": 12,
-     "every roof on the face is spoken for": 14
+     "every roof on the face is spoken for": 13
     }
    },
    "corner side or the band is a face": {
@@ -78,25 +78,25 @@
      "business_unnamed_new_store_la_salle_street",
      "business_wm_sabine_storage_forwarding_and_commission_merchant"
     ],
-    "would_still_refuse": 27,
+    "would_still_refuse": 26,
     "would_still_refuse_by_reason": {
      "not present at the scene date": 0,
      "the face holds no roof whose lot fronts it": 0,
      "this face already holds this proprietor": 12,
-     "every roof on the face is spoken for": 15
+     "every roof on the face is spoken for": 14
     }
    }
   }
  },
  "counts": {
-  "street_only_in_register": 59,
+  "street_only_in_register": 58,
   "adopted": 19,
-  "refused": 40,
+  "refused": 39,
   "refused_by_reason": {
    "not present at the scene date": 0,
    "the face holds no roof whose lot fronts it": 24,
    "this face already holds this proprietor": 9,
-   "every roof on the face is spoken for": 7
+   "every roof on the face is spoken for": 6
   },
   "unplaceable_present_at_scene_date": 76,
   "by_street": {
@@ -168,7 +168,7 @@
    },
    "south_water": {
     "street_name": "South Water Street",
-    "businesses_naming_it": 23,
+    "businesses_naming_it": 22,
     "adopted": 9,
     "roofs_fronting": 19,
     "roofs_fronting_free": 9,
@@ -736,14 +736,6 @@
   {
    "business_id": "business_j_curtiss_attorney_and_counsellor_at_law",
    "business_name": "J. Curtiss, Attorney and Counsellor at Law",
-   "street_id": "south_water",
-   "street_name": "South Water Street",
-   "refusal": "every roof on the face is spoken for",
-   "detail": "19 roof(s) front this street: 5 are a named household's dwelling, 5 are yard buildings the parcels dealt behind a lot, and 9 are already adopted by a better-evidenced business."
-  },
-  {
-   "business_id": "business_john_holbrook",
-   "business_name": "John Holbrook",
    "street_id": "south_water",
    "street_name": "South Water Street",
    "refusal": "every roof on the face is spoken for",

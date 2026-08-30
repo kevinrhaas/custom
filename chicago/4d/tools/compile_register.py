@@ -602,6 +602,21 @@ def outside_the_plat(business, town):
 
 CORNER = re.compile(r"corner of\s+(.{0,40}?)\s+and\s+(.{0,40})", re.I)
 
+# "one door from Dearborn street", "two doors north of Lake street" — a COUNT OF DOORS
+# off a named cross street. The owner ruled on 2026-08-30 (T-0384) that this is an
+# ordinal off the corner and not a street and nothing narrower; `docs/CORNER-ORDINAL.md`
+# is the policy and this regex is the only place the phrase is recognised, so a reading
+# pass writes `class: relative`, an `anchor` naming the cross street and an
+# `offset_normalized` carrying the count, and gets the ordinal reading without deciding
+# anything. THE COUNT IS THE SOURCE'S AND THE METRES ARE NOT (L214).
+ORDINAL_COUNT = {"one": 1, "first": 1, "two": 2, "second": 2, "three": 3, "third": 3,
+                 "four": 4, "fourth": 4, "five": 5, "fifth": 5, "six": 6, "sixth": 6}
+# 'a few doors below' is deliberately NOT here and must not be added: 'few' is not a
+# count, and a placement that cannot say how many doors is a reach of the street.
+ORDINAL_DOOR = re.compile(
+    r"\b(%s)\s+doors?\b\s*(north|south|east|west)?\s+(?:from|of|above|below)\s+(.{0,40})"
+    % "|".join(sorted(ORDINAL_COUNT)), re.I)
+
 
 def streets_in(town, text, require_suffix):
     """Every platted street a phrase names, as street ids.
@@ -629,10 +644,78 @@ def streets_in(town, text, require_suffix):
     return sorted(found)
 
 
+def ordinal_off_a_corner(town, placement):
+    """A count of doors off a named cross street, resolved — or None.
+
+    **The owner's ruling of 2026-08-30 (T-0384), in code.** Asked whether "one door from
+    Dearborn street" places a store or is a street and nothing narrower, he chose: *read
+    it as an ordinal off the corner*. So the phrase is NARROWER than the street it stands
+    on — it counts doors from a crossing, which is a position along a face — and this
+    reading runs BEFORE the `street` fallback and AFTER the landmark ones, which is the
+    whole of its precedence:
+
+    - after `structure` and `business`, so "first door west of Jones, King & Co." stays a
+      landmark hop. An ordinal off a BUILDING is placed by that building and was always
+      read that way; nothing about those claims changes here.
+    - before `street`, because a reach of a street is what this phrase was being read as
+      and is exactly the reading the owner overturned.
+
+    Three things must hold, and each refuses a real phrase rather than a hypothetical one:
+
+    1. the offset counts DOORS, in a word this project will translate to a number.
+       'a few doors below Messrs. Newberry & Dole' names no count and stays unresolved.
+    2. its reference resolves to exactly ONE platted street, suffix required — the same
+       test `street` uses, so a phrase that could not have been read as a street cannot
+       be read as an ordinal off one either.
+    3. the business's OWN street is platted and is a different street. "two doors north
+       of Lake street" said by a house on Lake Street is not an ordinal off a corner;
+       the crossing an ordinal counts from is the crossing of two streets.
+
+    What comes back names the crossing in `streets` (the pair, as `corner` does) and the
+    reading itself in `ordinal`, so a gate can read the count without parsing prose.
+    **The count is the source's; the metres between two doors are this project's** —
+    `docs/CORNER-ORDINAL.md` and L214 own that arithmetic, and no part of it is here.
+    """
+    # The fields are searched in order and the FIRST that carries the phrase supplies it,
+    # rather than concatenating them: `offset_normalized` is the reading after OCR
+    # judgment and `offset_text` is the raw column, and joining the two quotes a phrase
+    # that stands in neither.
+    m = None
+    for field in ("offset_normalized", "offset_text"):
+        m = ORDINAL_DOOR.search(str(placement.get(field) or ""))
+        if m:
+            break
+    if not m:
+        return None
+    reference = streets_in(town, m.group(3), True)
+    if len(reference) != 1:
+        return None
+    # The placement's own `street` is a declared field and not free prose, so the suffix
+    # is not required of it — 'South Water' and 'South Water Street' are one answer.
+    along = streets_in(town, placement.get("street"), False)
+    if len(along) != 1 or along[0] == reference[0]:
+        return None
+    count = ORDINAL_COUNT[m.group(1).lower()]
+    direction = (m.group(2) or "").lower() or None
+    return {
+        "kind": "corner_ordinal", "target": None,
+        "streets": sorted({along[0], reference[0]}), "via": None,
+        "ordinal": {"count": count, "direction": direction,
+                    "along": along[0], "from_street": reference[0],
+                    "phrase": " ".join(m.group(0).split())},
+        "note": "An ordinal off a corner: %d door%s%s the %s crossing, counted along %s. "
+                "The count of doors is the paper's; how far one door is from the corner "
+                "is this project's reconstruction (docs/CORNER-ORDINAL.md, L214)."
+                % (count, "" if count == 1 else "s",
+                   " %s of" % direction if direction else " from",
+                   reference[0], along[0]),
+    }
+
+
 def resolve_anchor(town, business, by_firm):
     """Where the paper's own placement lands in the committed town.
 
-    Six outcomes, and the note on each says which one and why, because the seeding
+    Seven outcomes, and the note on each says which one and why, because the seeding
     tickets have to be able to argue with it:
 
       corner     both streets named are on the committed plat
@@ -641,6 +724,11 @@ def resolve_anchor(town, business, by_firm):
                  one hop and no more. 'One door east of Brewster, Hogan & Co.' is only
                  as placed as Brewster, Hogan & Co. is, and a chain of guesses is not
                  a placement.
+      corner_ordinal
+                 the offset counts DOORS off a named cross street — 'on South-Water st.
+                 one door from Dearborn street'. A position along a face, and the owner
+                 ruled on 2026-08-30 that it places a store; see `ordinal_off_a_corner`
+                 above for the three tests and `docs/CORNER-ORDINAL.md` for the ruling.
       street     the anchor is a REACH of a platted street and nothing narrower — 'the
                  east end of South Water-street'. It is a real resolution and it is not
                  a placement, so it reads as its own kind rather than as a failure.
@@ -651,8 +739,8 @@ def resolve_anchor(town, business, by_firm):
                  both are named. It never places (T-0386).
       unresolved everything else, stated
 
-    Only the first three put a building on the ground; `street` and `unresolved` do not,
-    which is what the action rules below turn on.
+    Only the first three and `corner_ordinal` put a building on the ground; `street` and
+    `unresolved` do not, which is what the action rules below turn on.
     """
     placement = business.get("placement") or {}
     text = " ".join(str(x) for x in (placement.get("anchor"),
@@ -706,6 +794,9 @@ def resolve_anchor(town, business, by_firm):
                     "note": "The landmark is another documented business (%s), which "
                             "places this one exactly as well as that one is placed."
                             % others[0]}
+    ordinal = ordinal_off_a_corner(town, placement)
+    if ordinal:
+        return ordinal
     named = streets_in(town, placement.get("anchor"), True)
     if named:
         return {"kind": "street", "target": None, "streets": named, "via": None,
@@ -757,8 +848,13 @@ def anchor_change(town, business, by_firm):
 # `ambiguous` outranks `unresolved` because it RECOGNISED the name and outranks nothing
 # else, because it places nothing: a reading that resolves to a street beats a reading
 # that resolves to two buildings and cannot choose.
+# `corner_ordinal` ranks WITH `corner` and `structure` rather than above them, although it
+# is the narrower phrase, because this rank chooses between a house's several PRINTINGS
+# and 'corner of Lake and Clark' is not a worse address than 'one door from Clark street'.
+# Where a house prints both, the tie-break below keeps the earlier reading, which is the
+# rule already governing a corner against a landmark.
 ANCHOR_KIND_RANK = {"unresolved": 0, "ambiguous": 1, "street": 2, "business": 3,
-                    "corner": 4, "structure": 4}
+                    "corner": 4, "structure": 4, "corner_ordinal": 4}
 
 
 def dated_anchor(town, business, by_firm, window):
@@ -881,7 +977,8 @@ def compile_register(gazetteer, town, quiet=True):
                                     "papers add trade, goods and dates to a record that "
                                     "exists." % (committed, tier, ", ".join(sorted(require)),
                                                  (evidence or "")[:160]))
-        elif entry["anchor"]["kind"] in ("corner", "structure", "business"):
+        elif entry["anchor"]["kind"] in ("corner", "structure", "business",
+                                         "corner_ordinal"):
             entry["action"] = "new_building"
             entry["action_target"] = (entry["anchor"]["target"]
                                       or entry["anchor"]["via"]
@@ -1197,7 +1294,10 @@ def self_test():
              "identity_text": "Reconstructed meeting hall #015",
              "occupation": None, "anonymous": True},
         ],
-        "streets": {"south_water": "south_water", "clark": "clark", "lake": "lake"},
+        # `dearborn` is in the fixture so the ordinal cases below can quote the phrase the
+        # corpus actually prints rather than a stand-in.
+        "streets": {"south_water": "south_water", "clark": "clark", "lake": "lake",
+                    "dearborn": "dearborn"},
         "residents": [{"household": "hh_x", "person": "cohen_peter", "name": "Peter Cohen",
                        "grade": "attested", "occupation": "clothier"},
                       {"household": "hh_inf_baker", "person": "inf_baker_01",
@@ -1429,6 +1529,52 @@ def self_test():
     case("a reach of a platted street resolves as a street, not as a failure",
          gaz([biz("b1", street="South Water Street", placement={
              "class": "relative", "anchor": "the east end of South Water-street"})]),
+         lambda d: True if (d["businesses"][0]["anchor"]["kind"] == "street"
+                            and d["businesses"][0]["action"] == "street_only")
+         else "anchor=%r action=%r" % (d["businesses"][0]["anchor"]["kind"],
+                                       d["businesses"][0]["action"]))
+
+    # 4b-ii. THE ORDINAL OFF A CORNER (T-0384, the owner's ruling of 2026-08-30). Every
+    # one of these is a phrase this corpus actually prints, so the tests say what the
+    # reading does and does not reach rather than what a hypothetical reader might write.
+    def ordinal(anchor, offset, street="South Water Street"):
+        return gaz([biz("b1", street=street, placement={
+            "class": "relative", "anchor": anchor, "street": street,
+            "offset_normalized": offset})])
+
+    case("a count of doors off a cross street is an ordinal, and it places",
+         ordinal("Dearborn Street",
+                 "on South-Water st. one door from Dearborn street"),
+         lambda d: True if (d["businesses"][0]["anchor"]["kind"] == "corner_ordinal"
+                            and d["businesses"][0]["anchor"]["ordinal"]["count"] == 1
+                            and d["businesses"][0]["anchor"]["ordinal"]["from_street"] == "dearborn"
+                            and d["businesses"][0]["anchor"]["ordinal"]["along"] == "south_water"
+                            and d["businesses"][0]["action"] == "new_building")
+         else "anchor=%r action=%r" % (d["businesses"][0]["anchor"],
+                                       d["businesses"][0]["action"]))
+    case("…and the direction is carried when the paper prints one",
+         ordinal("Lake Street", "two doors north of Lake street",
+                 street="Clark Street"),
+         lambda d: True if (d["businesses"][0]["anchor"]["kind"] == "corner_ordinal"
+                            and d["businesses"][0]["anchor"]["ordinal"]["count"] == 2
+                            and d["businesses"][0]["anchor"]["ordinal"]["direction"] == "north")
+         else "anchor=%r" % (d["businesses"][0]["anchor"],))
+    case("'a few doors below' counts nothing and is refused the ordinal reading",
+         ordinal("Newberry & Dole", "a few doors below Messrs. Newberry & Dole"),
+         lambda d: True if d["businesses"][0]["anchor"]["kind"] != "corner_ordinal"
+         else "a phrase with no count was read as an ordinal")
+    case("an ordinal off a LANDMARK stays a landmark hop, not a corner ordinal",
+         ordinal("Brewster, Hogan & Co.",
+                 "one door east of Brewster, Hogan & Co."),
+         lambda d: True if d["businesses"][0]["anchor"]["kind"] != "corner_ordinal"
+         else "a building anchor was read as a street crossing")
+    case("doors counted off the house's OWN street name no crossing and are refused",
+         ordinal("South Water Street",
+                 "two doors east of South Water street"),
+         lambda d: True if d["businesses"][0]["anchor"]["kind"] != "corner_ordinal"
+         else "one street was read as a crossing of itself")
+    case("a reach of a street with no count is still a street, not an ordinal",
+         ordinal("Lake Street", "on the east end of Lake street"),
          lambda d: True if (d["businesses"][0]["anchor"]["kind"] == "street"
                             and d["businesses"][0]["action"] == "street_only")
          else "anchor=%r action=%r" % (d["businesses"][0]["anchor"]["kind"],
