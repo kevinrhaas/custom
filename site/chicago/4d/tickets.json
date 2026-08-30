@@ -1,6 +1,6 @@
 {
   "project": "chicago-4d",
-  "generated_ct": "Aug 30, 2026, 12:20 AM",
+  "generated_ct": "Aug 30, 2026, 12:51 AM",
   "tickets": [
     {
       "id": "T-0001",
@@ -2990,7 +2990,7 @@
     {
       "id": "T-0170",
       "title": "The desktop smoke's part 7 has 2 m 17 s of margin, and it is the one measured over the ceiling on another runner",
-      "state": "open",
+      "state": "claimed",
       "epic": "META",
       "requested_by": "loop",
       "seen": false,
@@ -3000,7 +3000,7 @@
       "opened": "2026-08-23",
       "closed": null,
       "pr": null,
-      "claimed_by": null,
+      "claimed_by": "run 8/30/2026, 12:51:31 AM CT",
       "blocked_on": null,
       "needs_bake": false,
       "queue_rank": 4

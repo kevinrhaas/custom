@@ -1,7 +1,7 @@
 ---
 id: T-0170
 title: The desktop smoke's part 7 has 2 m 17 s of margin, and it is the one measured over the ceiling on another runner
-state: open
+state: claimed
 epic: META
 requested_by: loop
 seen: false
@@ -11,7 +11,7 @@ parent: T-0121
 opened: 2026-08-23
 closed: null
 pr: null
-claimed_by: null
+claimed_by: run 8/30/2026, 12:51:31 AM CT
 blocked_on: null
 needs_bake: false
 ---

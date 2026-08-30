@@ -36,14 +36,16 @@ accumulate the figures move on their own; file the smoke you ran anyway:
 node tools/dev-smoke-state.mjs record /tmp/smoke-desktop4.log
 ```
 
-**The numbering changed TWICE on 2026-08-30** — T-0346 cut old part 4 into
-4 + 5 + 6 and renumbered old 5-9 to 7-11, and T-0173 then cut part 7 into 7 + 8
-and renumbered 8-11 to 9-12. Readings filed before a cut are labelled in the
-numbering of their day and the tool RENUMBERS them rather than discarding them,
-pushing each one through every cut it predates in order: a reading of old part 5
-is a reading of what is now parts 7 + 8. Two cases cannot be renumbered to a
-single part — old part 4 is a reading of 4 + 5 + 6 together and old part 7 is a
-reading of 7 + 8 together — and each is reported as the group it is.
+**The numbering changed THREE TIMES on 2026-08-30** — T-0346 cut old part 4 into
+4 + 5 + 6 and renumbered old 5-9 to 7-11; T-0173 then cut part 7 into 7 + 8 and
+renumbered 8-11 to 9-12; T-0170 then cut part 10 into 10 + 11 and renumbered
+11-12 to 12-13. Readings filed before a cut are labelled in the numbering of
+their day and the tool RENUMBERS them rather than discarding them, pushing each
+one through every cut it predates in order: a reading of old part 5 is a reading
+of what is now parts 7 + 8. Three cases cannot be renumbered to a single part —
+old part 4 is a reading of 4 + 5 + 6, a T-0346-era part 7 is a reading of 7 + 8,
+and a T-0173-era part 10 is a reading of 10 + 11 — and each is reported as the
+group it is.
 
 ## The recipe is conservative by construction
 
@@ -57,7 +59,7 @@ The map in `tools/smoke_budget.mjs` can only ever ADD parts:
   boot, the page-error check and the vendor checks are taken in **every**
   invocation whichever stage is asked for;
 - `--self-test` fails if a mapped path has vanished from the tree, if any part
-  1..12 is covered by no row, if `PARTS` in `smoke_renderer.mjs` has moved out
+  1..13 is covered by no row, if `PARTS` in `smoke_renderer.mjs` has moved out
   from under the map, if the renumbering arithmetic breaks, or if an unmapped
   path ever stops meaning the whole gate. `check.sh` runs it.
 
@@ -89,11 +91,13 @@ The map's rows are justified by the parts' own section headings in
 | 4 | the raycast pick, walking, standing, the bridge decks, the touch backend, the budgets, life size, nothing hovers |
 | 5 | the scene-detail ladder, and nothing else (T-0346 cut it out on its own) |
 | 6 | the gate and the chrome, and the confidence menu's own clicks |
-| 7 | navigation and its readouts, the road-legibility aid, the batch merge |
-| 8 | the facade tones, the shadow reach, the shadow box, the brightness aid |
-| 9 | the flora census, the sward, the horizon timber, the streets a visitor reads |
-| 10 | eye height, typing is not driving, the Go-to tab, What's-new |
-| 11 | the Evidence panel — liberties, people, wildlife, what grows, what is not here, researched-and-open, what the ground claims — free-fly, and inspecting from the air |
+| 7 | navigation and its readouts, and two of the three road-legibility stations (T-0173 cut it here) |
+| 8 | the third road station, the road-legibility aid taken standing at it, and the batch merge |
+| 9 | the facade tones, the shadow reach, the shadow box, the brightness aid |
+| 10 | the drawn population, the horizon timber, the sward dealt in every community, the marsh substrate, the pop-in, the flower heads (T-0170 cut it here) |
+| 11 | the sward's ragged boundary and its fringe, each community's recorded ground cover, the street readouts, the navigation guide, the Settings units |
+| 12 | eye height, typing is not driving, the Go-to tab, What's-new |
+| 13 | the Evidence panel — liberties, people, wildlife, what grows, what is not here, researched-and-open, what the ground claims — free-fly, and inspecting from the air |
 
 ## The zero-byte log, which is why a green run got killed
 
@@ -118,5 +122,5 @@ exactly the ones a plain run learns nothing about.
 
 `docs/PIPELINE.md` (where a green gate sends the work) · `AGENTS.md` § How work
 ships · T-0216 `tools/dev-smoke-state.mjs` (the record these figures are read
-from) · T-0346 (the last re-cut) · T-0170, T-0173, T-0181 (the three margins
-taken against the 30-minute cap) · ROADMAP § THE RUN BUDGET.
+from) · T-0170 (the last re-cut) · T-0173, T-0181 (the margins taken against the
+30-minute cap) · ROADMAP § THE RUN BUDGET.

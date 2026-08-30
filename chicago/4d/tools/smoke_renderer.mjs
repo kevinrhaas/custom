@@ -10,8 +10,9 @@
  * `SMOKE_VIEWPORT=mobile` (or `desktop`) runs one of the two while iterating.
  * That is not the gate and the run says so on its first line.
  *
- * `SMOKE_STAGE=1` … `12` runs one part of each viewport's body (T-0060, re-cut
- * by T-0121, T-0167, T-0346 and T-0173), and `SMOKE_STAGE=1-2` runs a contiguous run.
+ * `SMOKE_STAGE=1` … `13` runs one part of each viewport's body (T-0060, re-cut
+ * by T-0121, T-0167, T-0346, T-0173 and T-0170), and `SMOKE_STAGE=1-2` runs a
+ * contiguous run.
  * The cuts sit at section boundaries measured for zero crossing bindings. It
  * exists because a steward run's single foreground command is capped at ten
  * minutes and by 2026-08-18 neither viewport's full pass fit inside it, so the
@@ -32,12 +33,16 @@
  * stations stay in part 7 and the third goes to a new part 8 with the aid taken
  * standing at it and the batch merge under that — 4 m 48 s against 4 m 53 s of
  * work — so parts 8-11 became 9-12. See ROAD_STATIONS and `readRoadStations`.
+ * T-0170 halved PART 10 for the same reason and on the same evidence: at
+ * 1280x800 on an IDLE runner it was killed at 9 m 20 s with the street readouts
+ * and the Settings units still to run, so old parts 11-12 became 12-13 and there
+ * are thirteen.
  *
  * A staged run is not the gate either, and says so; the gate is both viewports,
  * every part, e.g.:
  *
- *   for s in 1-2 3-6 7-9 10-12;            do SMOKE_VIEWPORT=mobile  SMOKE_STAGE=$s node tools/smoke_renderer.mjs --published; done
- *   for s in 1 2 3 4 5 6 7 8 9 10 11 12;   do SMOKE_VIEWPORT=desktop SMOKE_STAGE=$s node tools/smoke_renderer.mjs --published; done
+ *   for s in 1-2 3-6 7-9 10-13;               do SMOKE_VIEWPORT=mobile  SMOKE_STAGE=$s node tools/smoke_renderer.mjs --published; done
+ *   for s in 1 2 3 4 5 6 7 8 9 10 11 12 13;   do SMOKE_VIEWPORT=desktop SMOKE_STAGE=$s node tools/smoke_renderer.mjs --published; done
  *
  * `SMOKE_TIMING=1` stamps each check line with the elapsed clock. Off by
  * default; turn it on to profile a part, because a part that BREACHES the
@@ -52,7 +57,7 @@
  * Boot, the page-error check and the vendor checks run in EVERY invocation,
  * whichever stage is asked for: the summary separates "staged-section checks"
  * from those always-on checks so the parts can be audited to add up to an
- * unfiltered pass — the twelve parts' section counts SUM to an unfiltered run's
+ * unfiltered pass — the thirteen parts' section counts SUM to an unfiltered run's
  * section count, and the always-on count is identical in every one of them.
  *
  * What it asserts, and why each one is here:
@@ -1139,7 +1144,19 @@ if (ONLY) console.log(`NOT THE FULL GATE — viewports filtered to "${ONLY}"\n`)
 // `lake_market` at 2 m 49 s plus the aid at 1 m 04 s and the batch merge.
 // The pairing rule survives again as 1+2, 3+4+5+6, 7+8+9, 10+11+12 — the same
 // content in the same four mobile commands, ranges `1-2 3-6 7-9 10-12`.
-const PARTS = 12;
+// T-0170 HALVED PART 10, the last part on T-0167's profile still over the
+// ceiling: measured at 1280x800 on an IDLE runner (load average 0.27-1.48, no
+// other Chromium on the box) it was killed at 9 m 20 s with the street readouts
+// and the Settings units still to run, so the ten minutes had never contained
+// it. It carried no `// --- section ---` headers, which is why T-0167 left it;
+// the seams are named now and the cut is the one the profile chose — the ragged
+// boundary and everything after it becomes part 11, so old parts 11 and 12 are
+// renumbered 12 and 13. `anyStage(7, 10)` becomes `anyStage(7, 10, 11)`: both
+// halves read `streetLayer`, the first for the road panels and the second for
+// the readouts. The pairing rule is unchanged in content — 1+2, 3+4+5+6, 7+8+9,
+// 10+11+12+13 — and the mobile recipe's last range widens from `10-12` to
+// `10-13`, still four commands.
+const PARTS = 13;
 const STAGE = process.env.SMOKE_STAGE || '';
 // `3` is one part; `3-4` is a contiguous run of them; `1,5-6` is any set. The
 // range form exists so the cheap viewport does not pay eight boots to run a
@@ -1164,7 +1181,7 @@ if (typeof wantedParts === 'string') {
 }
 if (STAGE) console.log(`NOT THE FULL GATE — stages filtered to "${STAGE}" of ${PARTS}\n`);
 const stageOn = (n) => !wantedParts || wantedParts.has(n);
-// Readability at the guard on a reading shared by several parts: `anyStage(7, 9)`
+// Readability at the guard on a reading shared by several parts: `anyStage(7, 10, 11)`
 // says which parts need it, and adding a part to that list is the whole edit.
 const anyStage = (...ns) => ns.some(stageOn);
 const startedAt = Date.now();
@@ -1436,7 +1453,7 @@ for (const [label, viewport, touch] of [
     // times over the desktop pass instead of twice, on the very reading this
     // gate can least afford.
     let streetLayer = null;
-    if (anyStage(7, 10)) {
+    if (anyStage(7, 10, 11)) {
       streetLayer = await page.evaluate(() => {
         const a = window.__chicago4d;
         // Sample the dynamic flora from a known dry South Division viewpoint.
@@ -8075,10 +8092,16 @@ for (const [label, viewport, touch] of [
 
     inStageWork = false;
     } // end PART 9 (T-0060 stage 3b, cut by T-0121; renumbered by T-0346 and T-0173)
-    // PART 10 — the flora census through the streets a visitor reads: the drawn
-    // population, the sward, the horizon timber and the street names. Every
-    // binding it shares with earlier parts (`streetLayer`) is read above the
-    // split; the teleport below re-establishes the camera pose it expects on
+    // PART 10 — the flora census through the flower heads: the drawn population,
+    // the horizon timber, the sward dealt in every community, the marsh's
+    // substrate, T-0035's pop-in and R-BUG7's head-attachment census. The head
+    // of T-0060's stage 4a; T-0170 cut the ragged boundary, the ground cover,
+    // the street readouts and the Settings units off its tail into part 11,
+    // because at 1280x800 the whole of it ran past the ten-minute foreground
+    // ceiling and was killed there with two sections still to run.
+    //
+    // Every binding it shares with earlier parts (`streetLayer`) is read above
+    // the split; the teleport below re-establishes the camera pose it expects on
     // its own.
     if (stageOn(10)) {
     inStageWork = true;
@@ -8372,6 +8395,8 @@ for (const [label, viewport, touch] of [
       `${horizon.pxPerRad?.toFixed?.(1)} px/rad against ${expectedPxPerRad.toFixed(1)} live `
       + `(${horizon.liveHeightCss} css px over ${horizon.liveFovDeg?.toFixed?.(1)}°)`);
 
+    // --- the drawn population (ROADMAP K48) ---------------------------------
+
     // THE DRAWN POPULATION — ROADMAP K48, and it is the census K47 found
     // missing. `tools/measure_planting_reach.py` proves a record can be
     // CHOSEN; nothing proved one is DRAWN, and the difference was a whole
@@ -8428,6 +8453,8 @@ for (const [label, viewport, touch] of [
         ? `${sycamore.drawn} stem(s) for ${sycamore.expected.toFixed(2)} owed, of `
           + `${gallery.stems} in the gallery`
         : 'no gallery mix census at all');
+
+    // --- the sward, asked what the wood was asked (ROADMAP K49(a)) ---------
 
     // ROADMAP K49(a) — THE SAME QUESTION, ASKED OF THE SWARD.
     //
@@ -8497,6 +8524,8 @@ for (const [label, viewport, touch] of [
       + `and drawn nowhere${swardAbsent.length ? `: ${swardAbsent.join(', ')}` : ''}, over `
       + `${dealt.reduce((t, d) => t + d.drawn, 0)} slots in ${dealt.map((d) => (
         `${d.community}.${d.list}=${d.drawn}`)).join(' ')}`);
+
+    // --- and the same sward census in every community (ROADMAP K49(f)) -----
 
     // ROADMAP K49(f) — AND NOW THE SAME CENSUS IN EVERY COMMUNITY, AS A GATE.
     //
@@ -8656,6 +8685,8 @@ for (const [label, viewport, touch] of [
       && aquatics.marshDry.includes('typha_latifolia')
       && aquatics.marshWet.includes('typha_latifolia'),
       `dry [${aquatics.marshDry.join(',')}] wet [${aquatics.marshWet.join(',')}]`);
+
+    // --- a plant arrives faint, and at its own height (T-0035) --------------
 
     // The owner: "grass and flowers appear out of the ground as you walk towards
     // them". The lattice is rebuilt every `step` metres walked and the fade ramp
@@ -8820,6 +8851,8 @@ for (const [label, viewport, touch] of [
           + `${(popIn.grewAt.to * 100).toFixed(0)}% at ${popIn.grewAt.d.toFixed(2)} m)`
         : ''));
 
+    // --- the flower heads, read back off the drawing (R-BUG7) ---------------
+
     // R-BUG7 — flower heads hanging in the sky with nothing under them. The
     // owner photographed two of them over South Water Street on stalks that
     // stop in mid-air, and **the same symptom had been repaired four times in
@@ -8945,6 +8978,48 @@ for (const [label, viewport, touch] of [
           + `foot ${headSupport.worst.y.toFixed(2)} m, ${headSupport.worst.rise.toFixed(2)} m over its base `
           + (headSupport.worst.orphan ? 'over open ground' : `above a ${headSupport.worst.gap.toFixed(2)} m gap`)
         : ''));
+
+    inStageWork = false;
+    } // end PART 10 (T-0060 stage 4a, cut by T-0121; renumbered by T-0346 and T-0173, halved by T-0170)
+    // PART 11 — the sward's ragged boundary through the units a visitor reads:
+    // the boundary and its fringe, each community's own recorded ground cover,
+    // the street readouts, the navigation guide and the Settings units. The
+    // second half of T-0060's stage 4a.
+    //
+    // T-0170 CUT IT HERE, and the boundary had to be MADE before it could be
+    // taken: this part carried no `// --- section ---` headers at all, which is
+    // the reason T-0167 left it alone. The seams are named now, and the profile
+    // is what chose this one out of them. The first candidate — one section
+    // earlier, above the flower-head census — was cut, measured and rejected:
+    // 5 m 05 s and 6 m 24 s, and 3 m 36 s is not a margin on a suite whose own
+    // readings move by minutes with the load. Moving that one section up into
+    // the head buys the balance, and both halves are measured under six minutes.
+    //
+    // Exactly one binding crosses, and it is the same one that already crossed
+    // the stage split: `streetLayer`, read above it and now named in
+    // `anyStage(7, 10, 11)` because BOTH halves read it — the first half for the
+    // road panels and the horizon band, this one for the street readouts. The
+    // scan turned up six other names below this line (`headSupport`, `horizon`,
+    // `over`, `planted`, `popIn`, `sward`) and every occurrence is prose or a
+    // string, not the binding.
+    if (stageOn(11)) {
+    inStageWork = true;
+
+    // Same fresh-boot accommodation as the part above: the tail of this one
+    // drives the panel chrome (`#btn-help`), and while the gate screen stands
+    // the chrome has no layout at all — the click waits ninety seconds for a
+    // zero-size button and dies. In a full run this is a no-op.
+    await enterTown();
+
+    // Every camera-bearing section below teleports itself, so this part takes
+    // no pose. What they all assume is a walker ON THE GROUND — the boundary
+    // sections measure screen rows against eye height, and the last thing this
+    // part does is fly. The part above lands the walker there itself; from a
+    // fresh boot this is what puts it there. Idempotent by construction, so an
+    // unfiltered run pays one call for it.
+    await page.evaluate(() => { window.__chicago4d.setFly(false); });
+
+    // --- the sward's ragged boundary (ROADMAP § S6a) ------------------------
 
     // ROADMAP § S6a item 3: a ring is a circle about the walker, so on flat
     // ground its outer edge maps to a CONSTANT SCREEN ROW — measured at row
@@ -9189,6 +9264,8 @@ for (const [label, viewport, touch] of [
       seam.anchored.same && seam.anchored.spread > 0.5,
       `same from 40 m away: ${seam.anchored.same}; `
       + `spread over nine points ${seam.anchored.spread.toFixed(2)} m`);
+    // --- what each community's own records say its ground carries -----------
+
     // Each flora zone record authors how much of the ground its matrix covers
     // — `cover.matrix_fraction`, with a `bare_soil_fraction` beside it that the
     // manifest even denormalises — and the renderer planted all ten communities
@@ -9276,6 +9353,8 @@ for (const [label, viewport, touch] of [
           + `${worst.share} = ${worst.implied.toFixed(2)}` : ''));
     }
 
+    // --- the streets a visitor reads ----------------------------------------
+
     check(`${label}: every structure, including Exchange Coffee House, shares the terrain surface`,
       streetLayer.anchoredBuildings > 20
       // Never ABOVE the origin's ground; below it only as far as the terrain
@@ -9308,6 +9387,8 @@ for (const [label, viewport, touch] of [
       && /\d+ ft/.test(streetLayer.approaching.ahead)
       && !/\d+ m(?:\s|$)/.test(streetLayer.approaching.ahead),
       JSON.stringify(streetLayer.approaching));
+
+    // --- the navigation guide, and the units the whole HUD reads in --------
 
     // The menu is built from the two runtime collections, not from a sampled
     // shortlist.  With an empty query every loaded structure and every compiled
@@ -9373,10 +9454,10 @@ for (const [label, viewport, touch] of [
       JSON.stringify(unitChoice));
 
     inStageWork = false;
-    } // end PART 10 (T-0060 stage 4a, cut by T-0121; renumbered by T-0346 and T-0173)
-    // PART 11 — eye height through What's-new: the settings, the Go-to tab and
+    } // end PART 11 (the tail of T-0060 stage 4a, cut out of part 10 by T-0170)
+    // PART 12 — eye height through What's-new: the settings, the Go-to tab and
     // the release notes. The head of T-0060's stage 4b; T-0167 cut the Evidence
-    // panel and free-fly off its tail into part 11.
+    // panel and free-fly off its tail into part 13.
     //
     // It drives the panel chrome from its first line, so it enters the town on
     // its own account. It takes no pose of its own on purpose: the checks below
@@ -9392,10 +9473,10 @@ for (const [label, viewport, touch] of [
     // part down before one assertion had run. Not one assertion is dropped or
     // softened by the change: `clickChrome` hit-tests the control at its own
     // centre the way a real click does, and says what covered it when it fails.
-    if (stageOn(11)) {
+    if (stageOn(12)) {
     inStageWork = true;
     await enterTown();
-    // …and the PANEL, which part 9 leaves open at its last line and this part
+    // …and the PANEL, which part 11 leaves open at its last line and this part
     // reaches straight into: its first statement clicks a tab inside it, and a
     // click on a tab that has no layout waits ninety seconds and dies. Guarded
     // on the panel's own hidden state rather than toggling, for the same reason
@@ -9769,26 +9850,26 @@ for (const [label, viewport, touch] of [
       `${ret.flagged.length} of ${ret.total} flagged: ${ret.flagged.join(' | ')}`);
 
     inStageWork = false;
-    } // end PART 11 (T-0060 stage 4b-i, cut by T-0121, halved by T-0167; renumbered by T-0346 and T-0173)
-    // PART 12 — the Evidence panel through inspecting from the air: the
+    } // end PART 12 (T-0060 stage 4b-i, cut by T-0121, halved by T-0167; renumbered by T-0346, T-0173 and T-0170)
+    // PART 13 — the Evidence panel through inspecting from the air: the
     // liberties, the people, the wildlife, what is not here, what the ground
     // claims, free-fly and the two inspect keys. The tail of T-0060's stage 4.
     //
-    // T-0167 cut it off part 10 (part 8 then) because it was the thinnest margin on the
+    // T-0167 cut it off part 12 (part 8 then) because it was the thinnest margin on the
     // measured DESKTOP profile — 8 m 46 s against a ten-minute ceiling, with
     // 107 staged checks, more than any other part — and the desktop readings
     // move by minutes between runs on a software renderer, so a 74-second
     // margin is not one. The boundary is this one because the desktop profile
-    // put 6 m 05 s of part 10's cost above it and 2 m 41 s below, and because
+    // put 6 m 05 s of part 12's cost above it and 2 m 41 s below, and because
     // nothing declared above it is read below it: the scope-aware scan found
     // `eye`, `toggles` and `typed` reaching across and all three are prose or a
     // different local (`typedE.typed`).
     //
     // Its prologue is `enterTown()` alone: the liberties reading below already
     // carries its own guarded panel-open and clicks the Evidence tab itself, so
-    // unlike part 10 this part needs no panel guard bolted on. It takes no pose
+    // unlike part 12 this part needs no panel guard bolted on. It takes no pose
     // — free-fly is entered from wherever the visitor stands.
-    if (stageOn(12)) {
+    if (stageOn(13)) {
     inStageWork = true;
     await enterTown();
     // --- the liberties, in the Evidence panel ------------------------------
@@ -10751,7 +10832,7 @@ for (const [label, viewport, touch] of [
       ground.overflow);
     // T-0210, and it was the LAST frame-bound chrome click in the file. This one
     // close timed out at ninety seconds on an unmodified tree and took the desktop
-    // half of part 11 down with it, which read as a broken control and was not one.
+    // half of part 13 down with it, which read as a broken control and was not one.
     // Measured here at the click site itself, on the published mirror at 1280x800,
     // at three machine loads on one runner:
     //
@@ -11014,7 +11095,7 @@ for (const [label, viewport, touch] of [
     await page.evaluate(() => window.__chicago4d.frame('sauganash_hotel', 26));
 
     inStageWork = false;
-    } // end PART 12 (T-0060 stage 4b-ii, cut by T-0167; renumbered by T-0346 and T-0173)
+    } // end PART 13 (T-0060 stage 4b-ii, cut by T-0167; renumbered by T-0346, T-0173 and T-0170)
     } catch (e) {
       inStageWork = false;
       thrown = e;
