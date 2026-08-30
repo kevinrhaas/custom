@@ -1,6 +1,6 @@
 {
   "project": "chicago-4d",
-  "generated_ct": "Aug 29, 2026, 11:10 PM",
+  "generated_ct": "Aug 29, 2026, 11:16 PM",
   "tickets": [
     {
       "id": "T-0001",
@@ -7108,6 +7108,24 @@
       "blocked_on": null,
       "needs_bake": true,
       "queue_rank": 64
+    },
+    {
+      "id": "T-0433",
+      "title": "T-0346's measured costs for the new desktop parts 4, 5 and 6 were never filed, and the two places they are written down disagree",
+      "state": "open",
+      "epic": "META",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "S",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-08-29",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "queue_rank": 73
     }
   ]
 }

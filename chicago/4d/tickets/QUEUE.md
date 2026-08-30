@@ -179,3 +179,4 @@ T-0398 — A firm's own style stands in its proprietor list, because a claim rea
 T-0424 — The 1 January 1834 letter list's printed length, and the names all nine printings lost, need the page images
 T-0425 — A letter-list household's arrival bound is dated by the printing it was extracted from, not by the return, so nine printings of one list give nine different bounds
 T-0428 — The 1 April 1834 letter list has three positions no printing reads, and only the page images can say how long it was
+T-0433 — T-0346's measured costs for the new desktop parts 4, 5 and 6 were never filed, and the two places they are written down disagree

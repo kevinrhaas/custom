@@ -1097,6 +1097,18 @@ step "a street's invented line reaches the picture" \
 step "a spatial filter still cannot bias the sward's rank deal" \
   node tools/measure_rank_bias.mjs --self-test
 
+# The smoke's parts get re-cut whenever the town outgrows the ten-minute foreground
+# ceiling — four of them in 2026 alone — and docs/SMOKE-BUDGET.md's map of "which
+# parts cover which change" is the kind of table that goes quietly wrong the first
+# time a renderer module is renamed under it. So the map is not prose: it is a
+# structure in tools/smoke_budget.mjs, and this holds it against the tree. It fails
+# if a mapped path no longer exists, if a part of the body is covered by no row, if
+# `PARTS` in smoke_renderer.mjs has moved out from under it, or if an unmapped path
+# ever stops meaning THE WHOLE GATE — which is the property that makes the recipe
+# safe to follow (T-0235).
+step "the smoke's change-to-parts map still matches the tree" \
+  node tools/smoke_budget.mjs --self-test
+
 # The 1833-1835 newspaper corpus is the PAPERS epic's foundation: eighty-six issues
 # that the project could not cite until they had a register to resolve against. The
 # register is only worth something if it is true, so this asserts the count rather
