@@ -265,7 +265,7 @@ jobs:
   # T-0171 — WHY THE STAGE DIMENSION IS HERE AND NOT JUST A BIGGER TIMEOUT.
   # This job used to run each viewport UNSPLIT: one command, `SMOKE_VIEWPORT`
   # only, under `timeout-minutes: 30`. T-0167's measured desktop profile
-  # (ROADMAP § THE RUN BUDGET) totals 39 m 58 s across the nine parts, so the
+  # (ROADMAP § THE RUN BUDGET) totals 39 m 58 s across the parts, so the
   # desktop leg could not fit that cap and never could. Run #269 on dev is the
   # observation: mobile passed unfiltered (420 passed / 0 failed, 15 m 50 s) and
   # desktop was CANCELLED at 29 m 05 s having reached 285 passed / 0 failed — a
@@ -287,13 +287,19 @@ jobs:
   # under the 30-minute cap, and the smoke phase's wall clock drops from over
   # 40 minutes (fatal) to under 20.
   #
-  # THE RANGES MUST COVER 1..9 EXACTLY ONCE. Each leg prints "NOT THE FULL GATE"
+  # T-0346 CUT PART 4 INTO THREE AND RENUMBERED 5-9 AS 7-11, and the note below
+  # is why this list moved in the same commit. The pairing rule is UNCHANGED in
+  # content — the legs carry exactly the parts they carried — it is only spelled
+  # in the new numbers: `1+2, 3+4+5+6, 7+8, 9+10+11`, i.e. `1-2 3-6 7-8 9-11`.
+  # So the measured leg costs above still stand; nothing was added to a leg.
+  #
+  # THE RANGES MUST COVER 1..11 EXACTLY ONCE. Each leg prints "NOT THE FULL GATE"
   # because on its own it is not one; the UNION of the eight legs is, and that
   # holds only while these four ranges tile the parts with no gap and no overlap.
   # smoke_renderer.mjs's own arithmetic — the parts' staged counts sum to an
   # unfiltered run's — is what makes the union checkable rather than asserted.
-  # If a part is ever added or renumbered (T-0170 renumbers everything after 7),
-  # THIS LIST IS PART OF THAT EDIT.
+  # If a part is ever added or renumbered (T-0170 renumbers everything after 7;
+  # T-0346 renumbered everything after 4), THIS LIST IS PART OF THAT EDIT.
   smoke:
     needs: bake
     runs-on: ubuntu-latest
@@ -302,7 +308,7 @@ jobs:
       fail-fast: false
       matrix:
         viewport: [mobile, desktop]
-        stage: ['1-2', '3-4', '5-6', '7-9']
+        stage: ['1-2', '3-6', '7-8', '9-11']
     steps:
       - uses: actions/checkout@v4
         with:

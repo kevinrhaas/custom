@@ -61,7 +61,7 @@ const REPO = path.resolve(APP, '..', '..');           // the monorepo root
 const STATE = path.join(HERE, 'dev-smoke-state.json');
 
 /** Parts of the smoke body. Mirrors `PARTS` in tools/smoke_renderer.mjs. */
-const PARTS = 9;
+const PARTS = 11;
 
 const NOTE =
   'T-0216 — dev\'s standing smoke result, so a branch can answer "is this red mine, or did I '
@@ -73,7 +73,12 @@ const NOTE =
   + 'loadavg is sampled when the reading is filed, so it includes the smoke\'s own load. '
   + '`treeHash` digests exactly what the smoke exercises (renderers, data, assets, '
   + 'smoke_renderer.mjs, the published mirror), so a reading whose hash matches yours is a '
-  + 'reading OF YOUR TREE. A RECORD, NOT A BAR: nothing here gates anything.';
+  + 'reading OF YOUR TREE. A RECORD, NOT A BAR: nothing here gates anything. THE PART '
+  + 'NUMBERS CHANGED ON 2026-08-30 (T-0346): part 4 was cut into 4, 5 and 6 and the old '
+  + 'parts 5-9 became 7-11, so a reading filed before that date is labelled in the OLD '
+  + 'numbering. Each of those also carries a treeHash that cannot match a tree containing '
+  + 'the cut, so `ask` already reports them as not taken on your tree — but read the stage '
+  + 'number as dated rather than current.';
 
 // ---------------------------------------------------------------------------
 // the smoke-relevant tree hash
@@ -128,8 +133,9 @@ const CHANGELOG_INPUTS = [
   'site/chicago/4d/walk/js/changelog.js',
 ];
 
-/** The parts whose checks actually read the release notes. */
-const CHANGELOG_PARTS = [8];
+/** The parts whose checks actually read the release notes. Part 8 until T-0346
+ * renumbered the tail of the body; What's-new is part 10 now. */
+const CHANGELOG_PARTS = [10];
 
 /**
  * Smoke inputs carrying a publish stamp: hashed by CONTENT with the stamp
