@@ -82,7 +82,6 @@ T-0318 — The January 1834 letter list: the third printing repairs the A-H half
 # --- ten-minute foreground ceiling, so no steward run can complete it at all, and three
 # --- PRs tonight had to say so instead of reporting a result. The two order-dependent
 # --- gates below make a green run and a red run of the same tree.
-T-0235 — The unfiltered renderer smoke takes 55 minutes on the steward runner, and three tickets reason against a 30-minute cap
 T-0173 — The desktop smoke's part 4 and part 5 have under a minute of margin on the ceiling, and part 7 is over it
 T-0181 — The desktop 7-9 smoke leg has 9m49s of margin against its 30-minute cap, and the margin was asserted rather than measured
 T-0170 — The desktop smoke's part 7 has 2 m 17 s of margin, and it is the one measured over the ceiling on another runner
@@ -178,3 +177,4 @@ T-0398 — A firm's own style stands in its proprietor list, because a claim rea
 T-0424 — The 1 January 1834 letter list's printed length, and the names all nine printings lost, need the page images
 T-0425 — A letter-list household's arrival bound is dated by the printing it was extracted from, not by the return, so nine printings of one list give nine different bounds
 T-0428 — The 1 April 1834 letter list has three positions no printing reads, and only the page images can say how long it was
+T-0433 — T-0346's measured costs for the new desktop parts 4, 5 and 6 were never filed, and the two places they are written down disagree
