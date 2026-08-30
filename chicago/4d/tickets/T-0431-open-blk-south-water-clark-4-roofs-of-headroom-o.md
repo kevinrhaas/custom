@@ -1,7 +1,7 @@
 ---
 id: T-0431
 title: Open blk_south_water_clark: 4 roofs of headroom on two free lots
-state: claimed
+state: done
 epic: META
 requested_by: loop
 seen: false
@@ -9,8 +9,8 @@ effort: S
 legacy_id: null
 parent: T-0420
 opened: 2026-08-29
-closed: null
-pr: null
+closed: 2026-08-30
+pr: 601
 claimed_by: run 8/30/2026, 1:58:03 AM CT
 blocked_on: null
 needs_bake: true
