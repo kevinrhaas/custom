@@ -192,6 +192,20 @@ step "the fort wood re-derives from the palisade and the apron it stands off" \
 step "no stack in the town is painted the colour of the roof it passes through" \
   python3 tools/measure_stack_fabric.py --gate --quiet
 
+# Its neighbour, on the same accessor bounds and the same principle (T-0333). The Town of
+# Chicago's by-law of 5 August 1835 section 18 — chicago_democrat_1835_08_19#c005 — carries
+# every stove pipe or chimney "at least eighteen inches above the roof" under a five-dollar
+# penalty, which is the first documented DIMENSIONAL constraint this project holds on
+# anything above a roof line. Every stack in the town already clears it; this is the ratchet
+# that stops one dropping back under. It does NOT decide which buildings the by-law reaches:
+# section 22's corporation limits are T-0334's and are not drawn yet, and nothing here is
+# conformed to a rule that may not bind it, because nothing has to move.
+step "every stack is carried eighteen inches above its roof, as the by-law of 5 August 1835 requires" \
+  python3 tools/measure_stack_ordinance.py --gate --quiet
+
+step "…and its own assertions still fire when broken" \
+  python3 tools/measure_stack_ordinance.py --self-test
+
 # The river wharves are the fourth record of this shape and the first whose rule
 # reads a record's OWN attribute rather than a trade table: a sidecar standing on
 # the scene date whose `dock` is true and graded attested or inferred. Two
