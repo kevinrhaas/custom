@@ -1,7 +1,7 @@
 ---
 id: T-0429
 title: Open blk_south_water_lasalle: 8 roofs of headroom on three free lots
-state: open
+state: claimed
 epic: META
 requested_by: loop
 seen: false
@@ -11,7 +11,7 @@ parent: T-0420
 opened: 2026-08-29
 closed: null
 pr: null
-claimed_by: null
+claimed_by: run 8/30/2026, 1:51:13 AM CT
 blocked_on: null
 needs_bake: true
 ---
