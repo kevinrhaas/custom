@@ -62,6 +62,53 @@ issues. Eight assertions, each proved to fire under `--self-test`. The day one o
 answered — by an image, or by an extraction pass reaching a card nobody has read — the build says
 so.
 
+## Shipped 2026-08-30 — T-0369: desktop stage 8's verdict stops depending on which stages ran in front of it
+
+**Nothing you can see changed.** This is a gate repair, taken under AGENTS.md's third
+visible-progress exemption: the stage split exists so a branch can verify a subset, and a subset
+that is red only because of its own composition costs every visible parcel an argument about whose
+failure it is. T-0316's run re-ran `dev` twice to establish that its own change was innocent.
+
+**The measurement, reproduced on this runner on an unmodified `dev` (published mirror):**
+
+| command | verdict |
+|---|---|
+| `SMOKE_VIEWPORT=desktop SMOKE_STAGE=8` | 37 passed, 0 failed |
+| `SMOKE_VIEWPORT=desktop SMOKE_STAGE=1,8` | 75 passed, **1 failed** — `clickChrome: .panel-tab[data-tab="settings"] is covered at its own centre by <h2>` |
+
+- **The `<h2>` is the inspect card's, and the card is part 1's.** `clickChrome` named the tag and
+  not the thing it belongs to, so the first act of this ticket was to make it walk up to the
+  nearest ancestor carrying an id. The failure then reads `covered at its own centre by <h2>
+  inside #popup`, which is the whole diagnosis in one line. Part 1's last page interaction is
+  `boardPick` — twenty-five `pick()` calls proving that aiming at the Tremont House's signboard
+  opens the business behind it — and a `pick()` that lands on a structure OPENS the card. Part 1
+  never closed it. `#popup` is `position: fixed; z-index: 30; top: 58px; right: 12px`, 392 px
+  wide; the HUD panel is 380 px wide at the same corner, so on 1280×800 the card sits squarely on
+  the panel's tab strip. Part 8's first statement clicks a tab.
+- **Why it survived the split's whole existence.** Nothing between part 1 and part 7 reads panel
+  chrome — parts 2–7 read the scene graph or take their own captures, and part 4 happens to close
+  the card mid-part for its own reasons. Part 8 is *nothing but* panel chrome, and it is the only
+  part that inherits the leak with something to lose.
+- **Repaired at both ends, and only the second end makes the verdict order-independent.** Part 1
+  closes the card it opened and now ASSERTS the teardown — `part 1 hands the page on with nothing
+  standing over the chrome`, over `#popup` and `#control-help` — so the next part that walks away
+  leaving an overlay up is named at the boundary where it happened rather than four parts later
+  under another gate's name. Part 8 also clears the card in the same preamble that already
+  re-opens the panel, so it no longer depends on *every* predecessor being well-behaved. Nothing
+  was weakened: the added check is new, and no existing assertion moved.
+- **It is NOT the same fault as T-0349, and that hypothesis is now refuted rather than open.**
+  T-0369 was filed as the second instance of T-0349's shape and suggested both be answered by one
+  repair. They cannot be. T-0349's own third reading names its cause exactly — the signboard
+  gate's seventh clause counts `frontage.meshes === 62` and a run with stage 1 behind it carries
+  five extra `frontage-far-merge` meshes the desktop camera's history caused. That is a census
+  clause reading a distance-merge artefact; this is an overlay left standing over a control. Two
+  different faults that share only the phrase "red after stage 1". T-0349 is untouched here.
+
+**Verification.** `./tools/check.sh` PASS. `tools/smoke_renderer.mjs --published`: desktop
+`SMOKE_STAGE=1,8` **105 passed / 0 failed** (was 75/1), desktop `SMOKE_STAGE=8` alone **37 passed
+/ 0 failed** — the same verdict both ways, which is the acceptance. Mobile `SMOKE_STAGE=1,8`
+**105 passed / 0 failed**. Both viewports carry the new part-1 check.
+
 ## Shipped 2026-08-29 — T-0358: the plat gets its block numbers, and the corpus's only address resolves
 
 **Nothing you can see changed.** This is a dependency: the corpus's one lot-and-block address —

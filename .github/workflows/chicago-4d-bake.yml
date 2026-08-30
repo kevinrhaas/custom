@@ -227,11 +227,31 @@ jobs:
       # PUSHED, NOT PR'd. The branch exists the moment the bake succeeds, so a red
       # smoke costs a review rather than twenty minutes of Blender output. The PR
       # is `open-pr`, which waits for the smoke.
+      # T-0180 — ASK THE CONTENT, NOT THE TREE. This read
+      # `[ -z "$(git status --porcelain)" ]`, and that test can never say no:
+      # publish.sh IS the build and its last act is to write the build stamp —
+      # the head sha and a wall clock — into site/chicago/4d/build.json and the
+      # gate paragraph of site/chicago/4d/walk/index.html. Both move every run by
+      # construction, so the tree was always dirty, `changed=0` was unreachable,
+      # and every bake opened a PR whose entire diff was those two files. Four
+      # were open at once on 2026-08-24 and the signal the PR carries — this bake
+      # rebuilt something — fired identically whether 300 structures had been
+      # rebuilt or nothing had.
+      #
+      # The stamp is still written and still ships; it just stops manufacturing
+      # the PR. The verdict is a script rather than a shell condition here so it
+      # can be tested: tools/bake_content_changed.py --self-test runs in check.sh
+      # and asserts, among other things, that build.json growing a real field or
+      # the gate page changing anywhere but its stamp still counts as content.
+      - name: Did the bake produce content, or only its own stamp?
+        id: content
+        run: python3 chicago/4d/tools/bake_content_changed.py --github
+
       - name: Push a bake branch
         id: push
         run: |
-          if [ -z "$(git status --porcelain)" ]; then
-            echo "bake produced no changes — nothing to push"
+          if [ "${{ steps.content.outputs.changed }}" != "1" ]; then
+            echo "bake produced no content — nothing to push"
             echo "changed=0" >> "$GITHUB_OUTPUT"
             exit 0
           fi
