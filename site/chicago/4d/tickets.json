@@ -1,6 +1,6 @@
 {
   "project": "chicago-4d",
-  "generated_ct": "Aug 29, 2026, 8:54 PM",
+  "generated_ct": "Aug 29, 2026, 9:18 PM",
   "tickets": [
     {
       "id": "T-0001",
@@ -5978,7 +5978,7 @@
     {
       "id": "T-0365",
       "title": "The anonymous-block programme has no unblocked ground left: every block with headroom is on the South Water reach T-0009 holds open",
-      "state": "open",
+      "state": "claimed",
       "epic": "META",
       "requested_by": "loop",
       "seen": false,
@@ -5988,7 +5988,7 @@
       "opened": "2026-08-29",
       "closed": null,
       "pr": null,
-      "claimed_by": null,
+      "claimed_by": "run 8/29/2026, 9:16:09 PM CT",
       "blocked_on": null,
       "needs_bake": false,
       "queue_rank": 4
@@ -6513,7 +6513,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 72
+      "queue_rank": 75
     },
     {
       "id": "T-0399",
@@ -6873,7 +6873,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 70
+      "queue_rank": 73
     },
     {
       "id": "T-0419",
@@ -6896,7 +6896,7 @@
     {
       "id": "T-0420",
       "title": "Open the four South Water blocks T-0009 has unblocked: 20 roofs of headroom on franklin, lasalle, clark and dearborn",
-      "state": "open",
+      "state": "split",
       "epic": "META",
       "requested_by": "loop",
       "seen": false,
@@ -6904,12 +6904,12 @@
       "legacy_id": null,
       "parent": null,
       "opened": "2026-08-29",
-      "closed": null,
+      "closed": "2026-08-29",
       "pr": null,
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 67
+      "queue_rank": null
     },
     {
       "id": "T-0421",
@@ -6927,7 +6927,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 68
+      "queue_rank": 71
     },
     {
       "id": "T-0422",
@@ -6945,7 +6945,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 69
+      "queue_rank": 72
     },
     {
       "id": "T-0423",
@@ -6963,7 +6963,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 71
+      "queue_rank": 74
     },
     {
       "id": "T-0424",
@@ -6981,7 +6981,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 73
+      "queue_rank": 76
     },
     {
       "id": "T-0425",
@@ -6999,7 +6999,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 74
+      "queue_rank": 77
     },
     {
       "id": "T-0427",
@@ -7035,7 +7035,79 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 75
+      "queue_rank": 78
+    },
+    {
+      "id": "T-0429",
+      "title": "Open blk_south_water_lasalle: 8 roofs of headroom on 3 free lots, the largest of the four",
+      "state": "open",
+      "epic": "META",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "M",
+      "legacy_id": null,
+      "parent": "T-0420",
+      "opened": "2026-08-29",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": true,
+      "queue_rank": 67
+    },
+    {
+      "id": "T-0430",
+      "title": "Open blk_south_water_franklin: 4 roofs of headroom on 2 free lots",
+      "state": "open",
+      "epic": "META",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "M",
+      "legacy_id": null,
+      "parent": "T-0420",
+      "opened": "2026-08-29",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": true,
+      "queue_rank": 68
+    },
+    {
+      "id": "T-0431",
+      "title": "Open blk_south_water_clark: 4 roofs of headroom on 2 free lots",
+      "state": "open",
+      "epic": "META",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "M",
+      "legacy_id": null,
+      "parent": "T-0420",
+      "opened": "2026-08-29",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": true,
+      "queue_rank": 69
+    },
+    {
+      "id": "T-0432",
+      "title": "Open blk_south_water_dearborn: 4 roofs of headroom on 2 free lots",
+      "state": "open",
+      "epic": "META",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "M",
+      "legacy_id": null,
+      "parent": "T-0420",
+      "opened": "2026-08-29",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": true,
+      "queue_rank": 70
     }
   ]
 }

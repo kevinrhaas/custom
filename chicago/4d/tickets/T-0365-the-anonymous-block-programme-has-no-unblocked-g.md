@@ -1,7 +1,7 @@
 ---
 id: T-0365
 title: The anonymous-block programme has no unblocked ground left: every block with headroom is on the South Water reach T-0009 holds open
-state: open
+state: claimed
 epic: META
 requested_by: loop
 seen: false
@@ -11,7 +11,7 @@ parent: null
 opened: 2026-08-29
 closed: null
 pr: null
-claimed_by: null
+claimed_by: run 8/29/2026, 9:16:09 PM CT
 blocked_on: null
 needs_bake: false
 ---
@@ -60,3 +60,60 @@ holds, and the succession stops rather than being handed on to a block that cann
 
 **Links:** T-0028 (the programme) - T-0317 (the run that filed this) - T-0009 - T-0183 - T-0163 -
 T-0143 - T-0188 - `tools/reconcile_665.py` - `tools/measure_block_gating.py`.
+
+---
+
+## RESOLVED 2026-08-29 — THE OWNER ANSWERED, AND IT WAS OPTION 1
+
+The fork this ticket posed is closed. Both blocking tickets moved on 2026-08-29, and the
+answers are recorded in the tickets themselves rather than only in a PR body:
+
+- **Option 1 — T-0009 (`done`, PR #567).** The owner was asked which of three readings the
+  South Water corridor is and chose: *derive the platted corridor from the street CONTROL
+  rather than from the drawn line.* The half of that ruling this programme needed is one
+  sentence — **the drawn South Water line does not move** ("It does not license moving the
+  drawn centreline back onto the control. The street is drawn where it is for a stated
+  reason and stays there"). That discharges the refusal this ticket inherited: T-0143 and
+  T-0188 each declined to tighten a party-line row *against a line that may move*, and the
+  line has now been ruled not to move. The four `open` blocks are workable ground.
+- **Option 2 — T-0183 (`blocked-owner`, measured in PR #573).** Its 27 roofs are not
+  available and may never be. Closing South Water's west end onto Market as committed emits
+  `blk_south_water_market` as a bowtie, and carried as far north as the committed waterline
+  allows the block has 2.8 m of depth at Market against the 24.384 m one platted lot fronts.
+  It is a wedge the South Branch pinches out, and the choice between building it and
+  returning the roofs to the South balance is back with the owner. **This programme does not
+  wait on it** — the 20 roofs option 1 freed are unaffected.
+
+### The census re-derives unchanged on today's `dev`
+
+`tools/reconcile_665.py` re-run on an unmodified `dev` at `6a88b421`, and it is the same table
+this ticket derived when it was filed, so nothing has been spent or lost in between:
+
+| block | state | headroom | free lots | what holds it |
+|---|---|---|---|---|
+| `blk_south_water_lasalle` | open | 8 | 3 | nothing — T-0009 answered |
+| `blk_south_water_franklin` | open | 4 | 2 | nothing — T-0009 answered |
+| `blk_south_water_clark` | open | 4 | 2 | nothing — T-0009 answered |
+| `blk_south_water_dearborn` | open | 4 | 2 | nothing — T-0009 answered |
+| `blk_south_water_market` | gated | 27 | 8 | **T-0183**, `blocked-owner` — the wedge |
+
+`coverage.schedulable_on_committed_ground` reads **20**, which is the four `open` blocks
+exactly. Every other platted block in the schedule is `at_capacity`, `blk_south_water_clinton`
+is `not_a_block` (T-0163), and the four remaining `gated` rows are the un-surveyed divisions,
+not lots.
+
+### The successor, and why it had to be split before it could be run
+
+T-0028's programme rule is *one run, one demonstration, one successor*, and this ticket's
+acceptance is that the succession is handed to ground that can actually be built. T-0420 was
+filed against that ground but could not be run as written: it holds **four** blocks and says
+so itself — *"Take ONE block per run — four blocks is four runs."* An `M` carrying four
+demonstrations is the case AGENTS.md's sizing test exists for, and the failure it invites is
+the self-invented "(1/4)" the same page forbids: a run claims it, opens one block, and leaves
+the ticket claimed with three blocks of work still in it.
+
+So T-0420 is **split** here, one ticket per block, each one run with its bake, each with the
+acceptance stated on its own face. The children hold T-0420's place in QUEUE — this is a
+split, not a re-ranking, and the owner's order is untouched.
+
+**The succession stands.** This ticket closes handing four buildable blocks to four runs.

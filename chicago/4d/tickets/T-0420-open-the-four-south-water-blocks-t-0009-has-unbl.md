@@ -1,7 +1,7 @@
 ---
 id: T-0420
 title: Open the four South Water blocks T-0009 has unblocked: 20 roofs of headroom on franklin, lasalle, clark and dearborn
-state: open
+state: split
 epic: META
 requested_by: loop
 seen: false
@@ -9,7 +9,7 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-08-29
-closed: null
+closed: 2026-08-29
 pr: null
 claimed_by: null
 blocked_on: null
