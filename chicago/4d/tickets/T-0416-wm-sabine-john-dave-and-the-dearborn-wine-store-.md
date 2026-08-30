@@ -1,7 +1,7 @@
 ---
 id: T-0416
 title: Wm. Sabine, John Dave and the Dearborn wine store: the three storefronts the street-face policy refuses for want of a fronting roof
-state: open
+state: claimed
 epic: META
 requested_by: loop
 seen: false
@@ -11,7 +11,7 @@ parent: T-0387
 opened: 2026-08-29
 closed: null
 pr: null
-claimed_by: run 8/29/2026, 4:23:13 PM CT
+claimed_by: run 8/30/2026, 1:52:40 AM CT
 blocked_on: null
 needs_bake: false
 ---

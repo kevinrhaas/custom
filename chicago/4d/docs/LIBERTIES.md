@@ -9772,7 +9772,32 @@ Related: **L205** (documented men on reconstructed roofs, the pattern this follo
 reconstructed roofs' own presence and placement) · **L1** · tickets **T-0354** (this), **T-0262**,
 **T-0263**, **T-0375**, **T-0338**, **T-0408**, **T-0417** (spent into the roofs, and the yard
 refusal).
-**Recorded:** 2026-08-29. **Revised:** 2026-08-29 (T-0417).
+**Revised:** 2026-08-30 (T-0416) — **a corner side is now a face, on the owner's ruling of
+that day, and this entry covers 29 businesses rather than 19.** The paragraph above ends
+"a ruling that a corner side is a face would move up to twenty-four more into this entry
+rather than out of it", and that is the ruling. It was asked for with a measurement rather
+than an argument: the tool deals every reading of "face" out in full, so the question put
+to him was "twelve shops on Dearborn, La Salle and Canal" and not "twenty-four eligible".
+He took the corner side and DECLINED the centreline band in the same breath — a corner
+building genuinely has a door on each of the two streets it meets, and a band is a
+distance from a line that says nothing about which way a building looks. **Ten businesses
+seated, not twelve**, and the two the measurement over-counted are the correction this
+entry has to carry: refusal 5 refused a roof `data/residents/` seats a NAMED household in,
+and the inferred-household programme's 101 households are not there under a name, so its
+roofs looked free. The first re-derivation put Elmira Fowler's millinery into one and
+`tools/inferred_occupancy.py` raised, exactly as it is built to. The refusal now covers
+both layers. **This is the second time spending the allocation is what found the error** —
+T-0417 was the first, and nine businesses were standing in privies — and the lesson is the
+same one: an allocation nothing consumes is an allocation nothing checks. **What is
+invented is unchanged and is still only WHICH roof**: no geometry moved, no triangle was
+added, no building changed grade, and a corner adoption's card says it took the tier end
+rather than the lot front, so a visitor is not told the plat put a door where it did not.
+**And the entry's own subject is still not seated:** Wm. Sabine and John Dave want North
+Water Street, which has no roof standing on it under any adopted reading, and its one roof
+in the declined band is an inferred household's home — so even the band would have seated
+neither. Their answer is frontage (**T-0375**), and **T-0416** records that rather than
+closing over it.
+**Recorded:** 2026-08-29. **Revised:** 2026-08-29 (T-0417), 2026-08-30 (T-0416).
 
 ### L213 — Four people the papers name with no trade are written as households of one, on a residency test
 **Decision:** L206 seated the register's `new_resident` people whose TRADE the papers print, and
