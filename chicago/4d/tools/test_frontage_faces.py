@@ -85,10 +85,13 @@ def main(break_it: bool = False) -> int:
     cross = [f for f in got if f["axis"] == 1]
     along = [f for f in got if f["axis"] == 0]
 
-    # 1. THE PLAT'S OWN COUNT. Seventeen blocks of the South Division are bounded
+    # 1. THE PLAT'S OWN COUNT. Eighteen blocks of the South Division are bounded
     #    east and west by a cross street; `blk_lake_clinton` is skipped as the
     #    West Division block, and Canal and Clinton Streets bound only it.
-    check("the seven cross streets have 34 platted faces", len(cross) == 34,
+    #    It was seventeen and 34 faces until T-0183 closed South Water Street's
+    #    west end on Market's corridor and `blk_south_water_market` began to
+    #    build; that block's Market and Franklin faces are the eighteenth pair.
+    check("the seven cross streets have 36 platted faces", len(cross) == 36,
           f"got {len(cross)}")
     check("naming the cross streets does not disturb the east-west faces",
           len(along) == len(faces_with((), lots)),

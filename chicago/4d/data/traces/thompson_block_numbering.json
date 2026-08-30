@@ -39,7 +39,7 @@
       "numeral_on_sheet": false,
       "confidence": "inferred",
       "sources": ["wright_1834"],
-      "note": "Two blocks west of the read 19, counted at one block per step along the tier. This block is OMITTED from the generated grid — South Water Street's committed centreline stops 24 m short of it (docs/RESEARCH/thompson_plat_grid.md § 6) — so the number is carried here and stamped onto the omission rather than onto a block. Nothing says whether the tier's run continues west of Market Street; only that this block is two steps from one that was read."
+      "note": "Two blocks west of the read 19, counted at one block per step along the tier. THE BLOCK NOW BUILDS: it was OMITTED from the generated grid until 2026-08-30, because South Water Street's committed centreline stopped 24 m short of it, and T-0183 closed that street's west end on Market's corridor (docs/RESEARCH/thompson_plat_grid.md § 6.2), so the number is stamped onto a block rather than onto an omission. Nothing says whether the tier's run continues west of Market Street; only that this block is two steps from one that was read."
     },
     {
       "block_id": "blk_south_water_franklin",

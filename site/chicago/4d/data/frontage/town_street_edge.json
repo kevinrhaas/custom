@@ -24,11 +24,11 @@
       "randolph",
       "washington"
     ],
-    "faces_laid": 36,
-    "walk_m": 3170.7,
-    "crossing_m": 857.5,
+    "faces_laid": 38,
+    "walk_m": 3260.7,
+    "crossing_m": 908.6,
     "fence_m": 1669.0,
-    "walking_decks": 254,
+    "walking_decks": 265,
     "hitching_posts": 14
   },
   "card": {
@@ -44,10 +44,10 @@
         "note": "Asked for by the owner, 2026-08-18, of the first Cook County jail engraving: 'note the fences lining the street and what appears to be plank sidewalks. all of the streets should be updated like this... at least south of the river or near the river.' No 1835 source names a walk or a fence on any particular stretch of these streets."
       },
       "walk_m": {
-        "value": 3170.7,
+        "value": 3260.7,
         "confidence": "reconstructed",
         "sources": [],
-        "note": "41 run(s) of sidewalk on 36 platted block face(s), plus 857.5 m of board crossing at 36 corner(s). Nothing measured: every metre is derived from the committed plat and audited against the committed ground."
+        "note": "43 run(s) of sidewalk on 38 platted block face(s), plus 908.6 m of board crossing at 38 corner(s). Nothing measured: every metre is derived from the committed plat and audited against the committed ground."
       },
       "fence_m": {
         "value": 1669.0,
@@ -7581,6 +7581,370 @@
       "note": "THE PLANK SIDEWALK ON THE LAKE STREET FRONTAGE of blk_south_water_lasalle's south face, at the lot line. WHERE is DERIVED and nothing here is placed: the face is a committed street centreline offset by half the committed 80 ft corridor (data/traces/vectors/thompson_lots.json, re-derived by tools/generate_plat_lots.py), and the walk's centre lies 1.165 m outward of it — 0.25 m of daylight off the fence line and half a walk's width — leaving 4.86 m of verge between its outer edge and the Lake Street track. This run is the stretch from 26.1 m to 99.1 m along the face that passed the march: dry committed ground, flat enough for one walking deck, and nothing already standing on it. What is invented is the width, the rise, the plank pitch and that a walk stood on this ground at noon on 1 July 1835: docs/LIBERTIES.md L160."
     },
     {
+      "id": "blk_south_water_market_north_crossing_blk_south_water_franklin_north",
+      "belongs_to": "town_street_edge",
+      "kind": "board_crossing",
+      "confidence": "reconstructed",
+      "street": "south_water",
+      "street_name": "South Water Street",
+      "chunk": "blk_south_water_market_north_1",
+      "centreline_local_enu_m": [
+        [
+          195.89,
+          -12.07
+        ],
+        [
+          221.69,
+          -5.02
+        ]
+      ],
+      "width_m": 1.83,
+      "rise_m": 0.06,
+      "plank_run": "along",
+      "plank_count": 6,
+      "plank_thickness_m": 0.055,
+      "plank_underside": false,
+      "plank_step_m": 1.8,
+      "run_m": 26.74,
+      "footway_decks": [
+        {
+          "y": 0.713,
+          "pts": [
+            [
+              196.06,
+              -12.97
+            ],
+            [
+              209.11,
+              -9.4
+            ],
+            [
+              208.63,
+              -7.64
+            ],
+            [
+              195.57,
+              -11.21
+            ]
+          ],
+          "ground_roll_m": 0.036
+        },
+        {
+          "y": 0.744,
+          "pts": [
+            [
+              208.95,
+              -9.44
+            ],
+            [
+              222.01,
+              -5.88
+            ],
+            [
+              221.53,
+              -4.11
+            ],
+            [
+              208.47,
+              -7.68
+            ]
+          ],
+          "ground_roll_m": 0.032
+        }
+      ],
+      "note": "A BOARD CROSSING OVER SOUTH WATER STREET. Images 6 and 8 give plank sidewalks WITH board crossings at the town's two inns, so the fact is the plates' and every dimension is invented. Its boards run the way a foot travels rather than across it, which is what a crossing is FOR — it spans the ruts instead of lying in them — and it lies lower than the walk because a wheel crosses it. WHERE is derived: the two ends are the two walks it joins, so the run is the corridor those walks stop either side of, 26.7 m of it, and the crossing exists only where both of them were laid. docs/LIBERTIES.md L160."
+    },
+    {
+      "id": "blk_south_water_market_north_walk_1",
+      "belongs_to": "town_street_edge",
+      "kind": "plank_walk",
+      "confidence": "reconstructed",
+      "street": "south_water",
+      "street_name": "South Water Street",
+      "chunk": "blk_south_water_market_north_1",
+      "centreline_local_enu_m": [
+        [
+          184.75,
+          -15.13
+        ],
+        [
+          195.89,
+          -12.07
+        ]
+      ],
+      "width_m": 1.83,
+      "rise_m": 0.11,
+      "plank_run": "across",
+      "plank_pitch_m": 0.32,
+      "plank_thickness_m": 0.055,
+      "plank_underside": false,
+      "stringer_pitch_m": 2.08,
+      "lot_line_offset_m": 1.17,
+      "verge_to_track_m": 4.86,
+      "footway_decks": [
+        {
+          "y": 0.734,
+          "pts": [
+            [
+              184.92,
+              -16.03
+            ],
+            [
+              190.64,
+              -14.46
+            ],
+            [
+              190.16,
+              -12.69
+            ],
+            [
+              184.43,
+              -14.27
+            ]
+          ],
+          "ground_roll_m": 0.067
+        },
+        {
+          "y": 0.75,
+          "pts": [
+            [
+              190.49,
+              -14.5
+            ],
+            [
+              196.21,
+              -12.93
+            ],
+            [
+              195.73,
+              -11.16
+            ],
+            [
+              190.0,
+              -12.74
+            ]
+          ],
+          "ground_roll_m": 0.066
+        }
+      ],
+      "note": "THE PLANK SIDEWALK ON THE SOUTH WATER STREET FRONTAGE of blk_south_water_market's north face, at the lot line. WHERE is DERIVED and nothing here is placed: the face is a committed street centreline offset by half the committed 80 ft corridor (data/traces/vectors/thompson_lots.json, re-derived by tools/generate_plat_lots.py), and the walk's centre lies 1.165 m outward of it — 0.25 m of daylight off the fence line and half a walk's width — leaving 4.86 m of verge between its outer edge and the South Water Street track. This run is the stretch from 0.0 m to 11.6 m along the face that passed the march: dry committed ground, flat enough for one walking deck, and nothing already standing on it. What is invented is the width, the rise, the plank pitch and that a walk stood on this ground at noon on 1 July 1835: docs/LIBERTIES.md L160."
+    },
+    {
+      "id": "blk_south_water_market_south_crossing_blk_south_water_franklin_south",
+      "belongs_to": "town_street_edge",
+      "kind": "board_crossing",
+      "confidence": "reconstructed",
+      "street": "lake",
+      "street_name": "Lake Street",
+      "chunk": "blk_south_water_market_south_1",
+      "centreline_local_enu_m": [
+        [
+          195.68,
+          -100.23
+        ],
+        [
+          220.06,
+          -100.43
+        ]
+      ],
+      "width_m": 1.83,
+      "rise_m": 0.06,
+      "plank_run": "along",
+      "plank_count": 6,
+      "plank_thickness_m": 0.055,
+      "plank_underside": false,
+      "plank_step_m": 1.8,
+      "run_m": 24.38,
+      "footway_decks": [
+        {
+          "y": 0.865,
+          "pts": [
+            [
+              195.59,
+              -101.15
+            ],
+            [
+              207.94,
+              -101.25
+            ],
+            [
+              207.96,
+              -99.42
+            ],
+            [
+              195.61,
+              -99.32
+            ]
+          ],
+          "ground_roll_m": 0.005
+        },
+        {
+          "y": 0.865,
+          "pts": [
+            [
+              207.78,
+              -101.25
+            ],
+            [
+              220.13,
+              -101.35
+            ],
+            [
+              220.15,
+              -99.52
+            ],
+            [
+              207.8,
+              -99.42
+            ]
+          ],
+          "ground_roll_m": 0.0
+        }
+      ],
+      "note": "A BOARD CROSSING OVER LAKE STREET. Images 6 and 8 give plank sidewalks WITH board crossings at the town's two inns, so the fact is the plates' and every dimension is invented. Its boards run the way a foot travels rather than across it, which is what a crossing is FOR — it spans the ruts instead of lying in them — and it lies lower than the walk because a wheel crosses it. WHERE is derived: the two ends are the two walks it joins, so the run is the corridor those walks stop either side of, 24.4 m of it, and the crossing exists only where both of them were laid. docs/LIBERTIES.md L160."
+    },
+    {
+      "id": "blk_south_water_market_south_walk_1",
+      "belongs_to": "town_street_edge",
+      "kind": "plank_walk",
+      "confidence": "reconstructed",
+      "street": "lake",
+      "street_name": "Lake Street",
+      "chunk": "blk_south_water_market_south_1",
+      "centreline_local_enu_m": [
+        [
+          117.18,
+          -99.6
+        ],
+        [
+          195.68,
+          -100.23
+        ]
+      ],
+      "width_m": 1.83,
+      "rise_m": 0.11,
+      "plank_run": "across",
+      "plank_pitch_m": 0.32,
+      "plank_thickness_m": 0.055,
+      "plank_underside": false,
+      "stringer_pitch_m": 2.08,
+      "lot_line_offset_m": 1.17,
+      "verge_to_track_m": 4.86,
+      "footway_decks": [
+        {
+          "y": 0.875,
+          "pts": [
+            [
+              117.11,
+              -98.69
+            ],
+            [
+              132.97,
+              -98.81
+            ],
+            [
+              132.95,
+              -100.64
+            ],
+            [
+              117.09,
+              -100.52
+            ]
+          ],
+          "ground_roll_m": 0.007
+        },
+        {
+          "y": 0.885,
+          "pts": [
+            [
+              132.81,
+              -98.81
+            ],
+            [
+              148.67,
+              -98.94
+            ],
+            [
+              148.65,
+              -100.77
+            ],
+            [
+              132.79,
+              -100.64
+            ]
+          ],
+          "ground_roll_m": 0.01
+        },
+        {
+          "y": 0.89,
+          "pts": [
+            [
+              148.51,
+              -98.94
+            ],
+            [
+              164.37,
+              -99.07
+            ],
+            [
+              164.35,
+              -100.9
+            ],
+            [
+              148.49,
+              -100.77
+            ]
+          ],
+          "ground_roll_m": 0.005
+        },
+        {
+          "y": 0.9,
+          "pts": [
+            [
+              164.21,
+              -99.07
+            ],
+            [
+              180.07,
+              -99.19
+            ],
+            [
+              180.05,
+              -101.02
+            ],
+            [
+              164.19,
+              -100.9
+            ]
+          ],
+          "ground_roll_m": 0.01
+        },
+        {
+          "y": 0.91,
+          "pts": [
+            [
+              179.91,
+              -99.19
+            ],
+            [
+              195.77,
+              -99.32
+            ],
+            [
+              195.75,
+              -101.15
+            ],
+            [
+              179.89,
+              -101.02
+            ]
+          ],
+          "ground_roll_m": 0.01
+        }
+      ],
+      "note": "THE PLANK SIDEWALK ON THE LAKE STREET FRONTAGE of blk_south_water_market's south face, at the lot line. WHERE is DERIVED and nothing here is placed: the face is a committed street centreline offset by half the committed 80 ft corridor (data/traces/vectors/thompson_lots.json, re-derived by tools/generate_plat_lots.py), and the walk's centre lies 1.165 m outward of it — 0.25 m of daylight off the fence line and half a walk's width — leaving 4.86 m of verge between its outer edge and the Lake Street track. This run is the stretch from 15.7 m to 94.2 m along the face that passed the march: dry committed ground, flat enough for one walking deck, and nothing already standing on it. What is invented is the width, the rise, the plank pitch and that a walk stood on this ground at noon on 1 July 1835: docs/LIBERTIES.md L160."
+    },
+    {
       "id": "blk_south_water_wells_north_walk_1",
       "belongs_to": "town_street_edge",
       "kind": "plank_walk",
@@ -8711,7 +9075,7 @@
           -265.47
         ],
         [
-          147.5,
+          147.49,
           -265.86
         ]
       ],
@@ -9767,6 +10131,36 @@
       "why": "the two walks stop 34.8 m apart, wider than the platted corridor between them — the walk on one side was refused short of its corner, so no crossing is laid."
     },
     {
+      "structure_id": "blk_south_water_market_lot0",
+      "wall": "blk_south_water_market north face, lot 0",
+      "why": "no committed building stands on this platted lot — an unimproved lot is open prairie and takes no street fence."
+    },
+    {
+      "structure_id": "blk_south_water_market_lot1",
+      "wall": "blk_south_water_market south face, lot 1",
+      "why": "hogan_store stands 0.15 m from this lot's frontage line, inside the 3.0 m a street fence needs — the building IS the street wall here, and a fence in front of it would be a second one."
+    },
+    {
+      "structure_id": "blk_south_water_market_lot3",
+      "wall": "blk_south_water_market south face, lot 3",
+      "why": "no committed building stands on this platted lot — an unimproved lot is open prairie and takes no street fence."
+    },
+    {
+      "structure_id": "blk_south_water_market_lot5",
+      "wall": "blk_south_water_market south face, lot 5",
+      "why": "no committed building stands on this platted lot — an unimproved lot is open prairie and takes no street fence."
+    },
+    {
+      "structure_id": "blk_south_water_market_lot6",
+      "wall": "blk_south_water_market north face, lot 6",
+      "why": "no committed building stands on this platted lot — an unimproved lot is open prairie and takes no street fence."
+    },
+    {
+      "structure_id": "blk_south_water_market_lot7",
+      "wall": "blk_south_water_market south face, lot 7",
+      "why": "no committed building stands on this platted lot — an unimproved lot is open prairie and takes no street fence."
+    },
+    {
       "structure_id": "blk_south_water_wells_lot0",
       "wall": "blk_south_water_wells north face, lot 0",
       "why": "h_jones_store stands 1.50 m from this lot's frontage line, inside the 3.0 m a street fence needs — the building IS the street wall here, and a fence in front of it would be a second one."
@@ -9800,6 +10194,11 @@
       "structure_id": "dole_warehouse_south",
       "wall": "blk_lake_dearborn north face, lot 0",
       "why": "dole_warehouse_south is a warehouse_and_slaughter_yard — a works and a warehouse took carts and drays at a yard gate, not riders at a post, which is the same distinction that hangs a board over a footway at a counter and paints a firm's name on a works front. No hitching post is set."
+    },
+    {
+      "structure_id": "hogan_store",
+      "wall": "blk_south_water_market south face, lot 1",
+      "why": "no walk is laid at 8.7 m along this face, where a post off hogan_store's own frontage would stand — a post stands in the verge OUTSIDE a walk, and there is no walk here to stand outside of."
     },
     {
       "structure_id": "mason_blacksmith_shop",

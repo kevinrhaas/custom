@@ -198,6 +198,41 @@ control point anywhere on South Water Street. It is recorded and deliberately no
 committing it re-derives placements, and it does nothing for this block, whose gap is at the west
 end.
 
+### 6.2 And it was closed — the owner's ruling, carried out 2026-08-30
+
+Asked the one question § 6.1 left, the owner ruled: **close South Water Street's committed west end
+onto Market's corridor from the 1834 sheets and the committed bank, on the same basis the rest of
+that curve already stands on, and grade it for what it is.** T-0183 carried that out.
+
+**The corner is (89.51, −71.02).** Market's platted centreline — the line through the data box at
+N −400 and the committed control point `lake_market` — is carried north until the committed
+heightfield `e1834_harbor_cut` turns wet, and the northernmost dry sample on it, bisected to 0.01 m
+against the same water test `tools/generate_plat_lots.py` uses, is that point. Market's path gains
+it as a vertex; the vertex is collinear with the control the line already stood on, so nothing
+between Lake Street and the data box moved. South Water's path loses its old terminal vertex
+(100, −101) — which ran 30 m down the South Branch's east bank, past Lake Street's own latitude, and
+is Market Street's ground rather than this street's — and gains the corner plus one vertex at
+(101, −71) that carries the line east along the point of land to the committed (120, −57). Every
+0.5 m sample of both new segments is dry.
+
+**The refusal was not softened, and that is the load-bearing half.** This corner still has no
+derivable control. `python3 tools/refetch_control.py --discover market_south_water` still exits 1,
+`refused_control.market_south_water` is unchanged except for an appended record of what the owner
+ruled, and the end is graded `conjectural` in `south_water.west_end` in `data/streets/1835.json`,
+where the position is — with the bend, the two nodes and the 110 m named in the record itself, so a
+reader can tell this corner from one that has a control point. It is liberty **L214**.
+
+**What the grid does with it.** `blk_south_water_market` builds: 8 lots, 4,957 m², 107.0 m of
+frontage, a depth running 8.8 m at the Market end to 36.9 m at Franklin — the wedge the bank leaves
+between the river and Lake Street, and the first platted block this grid has emitted west of
+Franklin on the river front. Plat block **21**'s number is now stamped on a block rather than on an
+omission. The grid goes from 19 blocks to 20 and from 34 cross-street platted faces to 36
+(`tools/test_frontage_faces.py`). Its 27 roofs of headroom are schedulable and are deliberately
+**not** dealt here: `tools/reconcile_665.py` schedules blocks, and dealing them is its own unit of
+work. `tools/measure_block_gating.py` still passes — the block has left the `awaiting_control` list
+because it no longer refuses, and `blk_south_water_clinton` stays `never_platted`, still measured
+across the water.
+
 ## 7. The cross-check: where the town's buildings actually stand
 
 `tools/generate_plat_lots.py --report` puts every placed structure in the 1835 scene against the

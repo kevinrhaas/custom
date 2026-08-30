@@ -16,7 +16,20 @@
       "name_1835": "South Water Street",
       "name_2026": "Wacker Drive",
       "name_changed": true,
-      "path_local_enu_m": [[100, -101], [120, -57], [140, -35], [160, -18], [180, -5], [220, 6], [330, 7], [452, 8], [576, 9], [699, 7], [805, 4]],
+      "path_local_enu_m": [[89.51, -71.02], [101, -71], [120, -57], [140, -35], [160, -18], [180, -5], [220, 6], [330, 7], [452, 8], [576, 9], [699, 7], [805, 4]],
+      "west_end": {
+            "closes_on": "market",
+            "corner_local_enu_m": [
+                  89.51,
+                  -71.02
+            ],
+            "basis": "the 1834 sheets and the committed bank",
+            "confidence": "conjectural",
+            "derivation": "Market Street's platted centreline, which is the line through the data box at N -400 and the committed control point `lake_market`, carried NORTH until the committed heightfield e1834_harbor_cut turns wet. The last dry sample on that line is local (89.51, -71.02), bisected to 0.01 m against the same water test tools/generate_plat_lots.py uses (a sample is wet where the field does not cover it or covers it below the datum surface). South Water's west end is closed there and one vertex, (101, -71), carries the line east along the point of land to the committed (120, -57) without crossing water: every 0.5 m sample of both new segments is dry. The old west end (100, -101) ran 30 m DOWN the South Branch's east bank past Lake Street's own latitude, which is Market Street's ground and not this street's, and it is what made blk_south_water_market impossible to build.",
+            "not_control": "THIS END IS NOT DERIVED CONTROL AND IS NOT GRADED AS THOUGH IT WERE. `node_rule` refuses this corner and the refusal stands: Market's and South Water's modern successors — North Upper Wacker Drive and West Upper Wacker Drive — are one carriageway pair changing name through a BEND at the Lake Street junction, so the only nodes they share are `lake_market`'s own two, 110 m south of the corner they would name (measured 2026-08-27, `refused_control.market_south_water` in data/traces/street_control.json). `python3 tools/refetch_control.py --discover market_south_water` still exits 1, and softening that refusal to make this end pass would be the wrong repair.",
+            "authorised_by": "The owner's ruling of 2026-08-29 on ticket T-0183, taken after the refusal was measured: close the west end on Market's corridor from the 1834 sheets and the committed bank — the same basis the rest of this curve already stands on — and grade it for what it is.",
+            "liberty": "L214"
+      },
       "corridor_width_m": 24.384,
       "track_width_m": 10.5,
       "surface": "graded_earth",
@@ -25,7 +38,7 @@
       "surface_confidence": "inferred",
       "wear_confidence": "reconstructed",
       "sources": ["chicago_dpw_1891_streets", "wright_1834", "osm_streets_2026"],
-      "note": "The curved west approach follows the dry south bank resolved by the committed heightfield; east of Franklin the line follows the modern Wacker control used by the structure placements but is shifted into the dry half of the platted riverfront corridor, AND SINCE 2026-08-28 THAT SHIFT IS A MEASUREMENT RATHER THAN A SENTENCE: 8.28 m south, measured perpendicular to this centreline from `control.south_water_franklin` in data/traces/street_control.json, the first control point ever committed on this street. That is 68 per cent of the 12.192 m half of the 80 ft platted module, so the line sits inside the corridor's dry half with 3.91 m to spare before its south edge if the corridor is centred on the modern junction. Nothing was re-derived and nothing moved — the standoff is the reconstruction decision this note already described, and it is now checkable. The corner of the two committed centrelines falls at local (208.49, +2.83) against the control's (208.46, +11.41): the whole 8.58 m disagreement is across this street and 0.03 m of it is across Franklin. The street stops at the United States Reservation, matching the 1833 order. Track width and ruts are visual interpretation, not measurements."
+      "note": "The curved west approach follows the dry south bank resolved by the committed heightfield; east of Franklin the line follows the modern Wacker control used by the structure placements but is shifted into the dry half of the platted riverfront corridor, AND SINCE 2026-08-28 THAT SHIFT IS A MEASUREMENT RATHER THAN A SENTENCE: 8.28 m south, measured perpendicular to this centreline from `control.south_water_franklin` in data/traces/street_control.json, the first control point ever committed on this street. That is 68 per cent of the 12.192 m half of the 80 ft platted module, so the line sits inside the corridor's dry half with 3.91 m to spare before its south edge if the corridor is centred on the modern junction. Nothing was re-derived and nothing moved — the standoff is the reconstruction decision this note already described, and it is now checkable. The corner of the two committed centrelines falls at local (208.49, +2.83) against the control's (208.46, +11.41): the whole 8.58 m disagreement is across this street and 0.03 m of it is across Franklin. The street stops at the United States Reservation, matching the 1833 order. Track width and ruts are visual interpretation, not measurements. THE WEST END WAS CLOSED ON MARKET'S CORRIDOR ON 2026-08-30 (T-0183): the line used to stop at (100, -101), 30 m down the South Branch's east bank and 24 m short of Market's east block edge, and it now ends at the corner (89.51, -71.02) where Market's platted centreline meets the committed 1834 bank. See `west_end` above for the derivation and for the grade — that corner has NO derivable control and does not pretend to. blk_south_water_market builds because of it."
     },
     {
       "id": "lake",
@@ -76,7 +89,16 @@
       "name_1835": "Market Street",
       "name_2026": "N Wacker Drive",
       "name_changed": true,
-      "path_local_enu_m": [[86.9, -400], [89.2, -110.4]],
+      "path_local_enu_m": [[86.9, -400], [89.2, -110.4], [89.51, -71.02]],
+      "north_end": {
+            "carried_north_on": "2026-08-30",
+            "by": "T-0183",
+            "to_local_enu_m": [
+                  89.51,
+                  -71.02
+            ],
+            "note": "Market's committed centreline used to stop at `lake_market`, its only control point, where Lake Street crosses it. It is carried the further ~39 m north to the committed 1834 bank so that South Water Street's west end has a corridor to close on; the added vertex is collinear with the control the line already stood on, so nothing between Lake and the data box moved. North of `lake_market` this line is an extension and not control — see `south_water.west_end` and liberty L214."
+      },
       "track_width_m": 8.0,
       "surface": "worn_earth",
       "traffic": "principal",

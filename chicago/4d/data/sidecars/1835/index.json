@@ -92,8 +92,12 @@
       "name_changed": true,
       "path_local_enu_m": [
         [
-          100,
-          -101
+          89.51,
+          -71.02
+        ],
+        [
+          101,
+          -71
         ],
         [
           120,
@@ -143,7 +147,7 @@
       "geometry_confidence": "inferred",
       "surface_confidence": "inferred",
       "wear_confidence": "reconstructed",
-      "note": "The curved west approach follows the dry south bank resolved by the committed heightfield; east of Franklin the line follows the modern Wacker control used by the structure placements but is shifted into the dry half of the platted riverfront corridor, AND SINCE 2026-08-28 THAT SHIFT IS A MEASUREMENT RATHER THAN A SENTENCE: 8.28 m south, measured perpendicular to this centreline from `control.south_water_franklin` in data/traces/street_control.json, the first control point ever committed on this street. That is 68 per cent of the 12.192 m half of the 80 ft platted module, so the line sits inside the corridor's dry half with 3.91 m to spare before its south edge if the corridor is centred on the modern junction. Nothing was re-derived and nothing moved — the standoff is the reconstruction decision this note already described, and it is now checkable. The corner of the two committed centrelines falls at local (208.49, +2.83) against the control's (208.46, +11.41): the whole 8.58 m disagreement is across this street and 0.03 m of it is across Franklin. The street stops at the United States Reservation, matching the 1833 order. Track width and ruts are visual interpretation, not measurements.",
+      "note": "The curved west approach follows the dry south bank resolved by the committed heightfield; east of Franklin the line follows the modern Wacker control used by the structure placements but is shifted into the dry half of the platted riverfront corridor, AND SINCE 2026-08-28 THAT SHIFT IS A MEASUREMENT RATHER THAN A SENTENCE: 8.28 m south, measured perpendicular to this centreline from `control.south_water_franklin` in data/traces/street_control.json, the first control point ever committed on this street. That is 68 per cent of the 12.192 m half of the 80 ft platted module, so the line sits inside the corridor's dry half with 3.91 m to spare before its south edge if the corridor is centred on the modern junction. Nothing was re-derived and nothing moved — the standoff is the reconstruction decision this note already described, and it is now checkable. The corner of the two committed centrelines falls at local (208.49, +2.83) against the control's (208.46, +11.41): the whole 8.58 m disagreement is across this street and 0.03 m of it is across Franklin. The street stops at the United States Reservation, matching the 1833 order. Track width and ruts are visual interpretation, not measurements. THE WEST END WAS CLOSED ON MARKET'S CORRIDOR ON 2026-08-30 (T-0183): the line used to stop at (100, -101), 30 m down the South Branch's east bank and 24 m short of Market's east block edge, and it now ends at the corner (89.51, -71.02) where Market's platted centreline meets the committed 1834 bank. See `west_end` above for the derivation and for the grade — that corner has NO derivable control and does not pretend to. blk_south_water_market builds because of it.",
       "citations": [
         {
           "source_id": "chicago_dpw_1891_streets",
@@ -506,6 +510,10 @@
         [
           89.2,
           -110.4
+        ],
+        [
+          89.51,
+          -71.02
         ]
       ],
       "corridor_width_m": 24.384,

@@ -9,15 +9,15 @@
   "counts": {
     "frontages": 27,
     "objects": 153,
-    "wagons": 64,
+    "wagons": 65,
     "wagons_by_kind": {
       "farm_box": 26,
-      "covered": 22,
+      "covered": 23,
       "cart": 16
     },
-    "wagons_at_street_verges": 58,
+    "wagons_at_street_verges": 59,
     "wagons_in_yards": 3,
-    "wagon_stands_refused": 40,
+    "wagon_stands_refused": 41,
     "benches": 1,
     "sheds": 1,
     "marked_objects": 153,
@@ -4298,6 +4298,23 @@
       "note": "A farm box wagon standing at the verge of Randolph Street, and it is HERE because the rule put it here. The owner asked for the town's wagons, 2026-08-18: 'there can be more wagons! of course there would be more wagons all over the place in a frontier town.' He gave no place, so the place is derived: a stand is offered every 90 m along this street's committed centreline (its traffic class is 'ordinary'), at the verge 1.05 m clear of the travelled track, drawn up along the road and facing the way traffic on this side of it goes. THE TEAM IS NOT DRAWN and never will be: this project models no animal in the scene, so the wagon stands unhitched with its tongue down on the ground. Everything about it is invented — that it stood here at noon on 1 July 1835, whose it was, and what it was carrying, which is why it carries no mark of any kind: docs/LIBERTIES.md L162."
     },
     {
+      "id": "town_wagon_south_water_9",
+      "kind": "covered",
+      "stands_on": "south_water",
+      "belongs_to": null,
+      "tilt": true,
+      "yoke": true,
+      "confidence": "reconstructed",
+      "at_local_enu_m": [
+        233.65,
+        -0.93
+      ],
+      "bearing_deg": 269.5,
+      "drawn_up": "along the road",
+      "clear_of_track_m": 1.05,
+      "note": "A covered emigrant wagon standing at the verge of South Water Street, and it is HERE because the rule put it here. The owner asked for the town's wagons, 2026-08-18: 'there can be more wagons! of course there would be more wagons all over the place in a frontier town.' He gave no place, so the place is derived: a stand is offered every 20 m along this street's committed centreline (its traffic class is 'principal'), at the verge 1.05 m clear of the travelled track, drawn up along the road and facing the way traffic on this side of it goes. THE TEAM IS NOT DRAWN and never will be: this project models no animal in the scene, so the wagon stands unhitched with its tongue down on the ground and its ox-yoke laid by on the grass. Everything about it is invented — that it stood here at noon on 1 July 1835, whose it was, and what it was carrying, which is why it carries no mark of any kind: docs/LIBERTIES.md L162."
+    },
+    {
       "id": "town_wagon_south_water_10",
       "kind": "covered",
       "stands_on": "south_water",
@@ -4306,8 +4323,25 @@
       "yoke": true,
       "confidence": "reconstructed",
       "at_local_enu_m": [
-        240.41,
-        -0.86
+        253.65,
+        -0.74
+      ],
+      "bearing_deg": 269.5,
+      "drawn_up": "along the road",
+      "clear_of_track_m": 1.05,
+      "note": "A covered emigrant wagon standing at the verge of South Water Street, and it is HERE because the rule put it here. The owner asked for the town's wagons, 2026-08-18: 'there can be more wagons! of course there would be more wagons all over the place in a frontier town.' He gave no place, so the place is derived: a stand is offered every 20 m along this street's committed centreline (its traffic class is 'principal'), at the verge 1.05 m clear of the travelled track, drawn up along the road and facing the way traffic on this side of it goes. THE TEAM IS NOT DRAWN and never will be: this project models no animal in the scene, so the wagon stands unhitched with its tongue down on the ground and its ox-yoke laid by on the grass. Everything about it is invented — that it stood here at noon on 1 July 1835, whose it was, and what it was carrying, which is why it carries no mark of any kind: docs/LIBERTIES.md L162."
+    },
+    {
+      "id": "town_wagon_south_water_12",
+      "kind": "covered",
+      "stands_on": "south_water",
+      "belongs_to": null,
+      "tilt": true,
+      "yoke": true,
+      "confidence": "reconstructed",
+      "at_local_enu_m": [
+        293.65,
+        -0.38
       ],
       "bearing_deg": 269.5,
       "drawn_up": "along the road",
@@ -4323,25 +4357,8 @@
       "yoke": true,
       "confidence": "reconstructed",
       "at_local_enu_m": [
-        300.41,
-        -0.32
-      ],
-      "bearing_deg": 269.5,
-      "drawn_up": "along the road",
-      "clear_of_track_m": 1.05,
-      "note": "A covered emigrant wagon standing at the verge of South Water Street, and it is HERE because the rule put it here. The owner asked for the town's wagons, 2026-08-18: 'there can be more wagons! of course there would be more wagons all over the place in a frontier town.' He gave no place, so the place is derived: a stand is offered every 20 m along this street's committed centreline (its traffic class is 'principal'), at the verge 1.05 m clear of the travelled track, drawn up along the road and facing the way traffic on this side of it goes. THE TEAM IS NOT DRAWN and never will be: this project models no animal in the scene, so the wagon stands unhitched with its tongue down on the ground and its ox-yoke laid by on the grass. Everything about it is invented — that it stood here at noon on 1 July 1835, whose it was, and what it was carrying, which is why it carries no mark of any kind: docs/LIBERTIES.md L162."
-    },
-    {
-      "id": "town_wagon_south_water_14",
-      "kind": "covered",
-      "stands_on": "south_water",
-      "belongs_to": null,
-      "tilt": true,
-      "yoke": true,
-      "confidence": "reconstructed",
-      "at_local_enu_m": [
-        320.41,
-        -0.14
+        313.65,
+        -0.2
       ],
       "bearing_deg": 269.5,
       "drawn_up": "along the road",
@@ -4357,8 +4374,8 @@
       "yoke": true,
       "confidence": "reconstructed",
       "at_local_enu_m": [
-        340.4,
-        0.04
+        353.64,
+        0.14
       ],
       "bearing_deg": 269.5,
       "drawn_up": "along the road",
@@ -4374,8 +4391,8 @@
       "yoke": true,
       "confidence": "reconstructed",
       "at_local_enu_m": [
-        360.4,
-        0.2
+        373.64,
+        0.31
       ],
       "bearing_deg": 269.5,
       "drawn_up": "along the road",
@@ -4391,8 +4408,8 @@
       "yoke": true,
       "confidence": "reconstructed",
       "at_local_enu_m": [
-        380.4,
-        0.36
+        393.64,
+        0.47
       ],
       "bearing_deg": 269.5,
       "drawn_up": "along the road",
@@ -4408,8 +4425,8 @@
       "yoke": true,
       "confidence": "reconstructed",
       "at_local_enu_m": [
-        400.4,
-        0.53
+        413.64,
+        0.64
       ],
       "bearing_deg": 269.5,
       "drawn_up": "along the road",
@@ -4425,8 +4442,8 @@
       "yoke": true,
       "confidence": "reconstructed",
       "at_local_enu_m": [
-        420.4,
-        0.69
+        433.64,
+        0.8
       ],
       "bearing_deg": 269.5,
       "drawn_up": "along the road",
@@ -4434,7 +4451,7 @@
       "note": "A covered emigrant wagon standing at the verge of South Water Street, and it is HERE because the rule put it here. The owner asked for the town's wagons, 2026-08-18: 'there can be more wagons! of course there would be more wagons all over the place in a frontier town.' He gave no place, so the place is derived: a stand is offered every 20 m along this street's committed centreline (its traffic class is 'principal'), at the verge 1.05 m clear of the travelled track, drawn up along the road and facing the way traffic on this side of it goes. THE TEAM IS NOT DRAWN and never will be: this project models no animal in the scene, so the wagon stands unhitched with its tongue down on the ground and its ox-yoke laid by on the grass. Everything about it is invented — that it stood here at noon on 1 July 1835, whose it was, and what it was carrying, which is why it carries no mark of any kind: docs/LIBERTIES.md L162."
     },
     {
-      "id": "town_wagon_south_water_24",
+      "id": "town_wagon_south_water_23",
       "kind": "covered",
       "stands_on": "south_water",
       "belongs_to": null,
@@ -4442,10 +4459,27 @@
       "yoke": true,
       "confidence": "reconstructed",
       "at_local_enu_m": [
-        520.39,
-        1.5
+        513.64,
+        1.45
       ],
       "bearing_deg": 269.5,
+      "drawn_up": "along the road",
+      "clear_of_track_m": 1.05,
+      "note": "A covered emigrant wagon standing at the verge of South Water Street, and it is HERE because the rule put it here. The owner asked for the town's wagons, 2026-08-18: 'there can be more wagons! of course there would be more wagons all over the place in a frontier town.' He gave no place, so the place is derived: a stand is offered every 20 m along this street's committed centreline (its traffic class is 'principal'), at the verge 1.05 m clear of the travelled track, drawn up along the road and facing the way traffic on this side of it goes. THE TEAM IS NOT DRAWN and never will be: this project models no animal in the scene, so the wagon stands unhitched with its tongue down on the ground and its ox-yoke laid by on the grass. Everything about it is invented — that it stood here at noon on 1 July 1835, whose it was, and what it was carrying, which is why it carries no mark of any kind: docs/LIBERTIES.md L162."
+    },
+    {
+      "id": "town_wagon_south_water_35",
+      "kind": "covered",
+      "stands_on": "south_water",
+      "belongs_to": null,
+      "tilt": true,
+      "yoke": true,
+      "confidence": "reconstructed",
+      "at_local_enu_m": [
+        753.34,
+        -1.59
+      ],
+      "bearing_deg": 271.6,
       "drawn_up": "along the road",
       "clear_of_track_m": 1.05,
       "note": "A covered emigrant wagon standing at the verge of South Water Street, and it is HERE because the rule put it here. The owner asked for the town's wagons, 2026-08-18: 'there can be more wagons! of course there would be more wagons all over the place in a frontier town.' He gave no place, so the place is derived: a stand is offered every 20 m along this street's committed centreline (its traffic class is 'principal'), at the verge 1.05 m clear of the travelled track, drawn up along the road and facing the way traffic on this side of it goes. THE TEAM IS NOT DRAWN and never will be: this project models no animal in the scene, so the wagon stands unhitched with its tongue down on the ground and its ox-yoke laid by on the grass. Everything about it is invented — that it stood here at noon on 1 July 1835, whose it was, and what it was carrying, which is why it carries no mark of any kind: docs/LIBERTIES.md L162."
@@ -4459,8 +4493,8 @@
       "yoke": true,
       "confidence": "reconstructed",
       "at_local_enu_m": [
-        760.1,
-        -1.78
+        773.33,
+        -2.16
       ],
       "bearing_deg": 271.6,
       "drawn_up": "along the road",
@@ -4476,27 +4510,10 @@
       "yoke": true,
       "confidence": "reconstructed",
       "at_local_enu_m": [
-        780.09,
-        -2.35
+        793.72,
+        11.37
       ],
-      "bearing_deg": 271.6,
-      "drawn_up": "along the road",
-      "clear_of_track_m": 1.05,
-      "note": "A covered emigrant wagon standing at the verge of South Water Street, and it is HERE because the rule put it here. The owner asked for the town's wagons, 2026-08-18: 'there can be more wagons! of course there would be more wagons all over the place in a frontier town.' He gave no place, so the place is derived: a stand is offered every 20 m along this street's committed centreline (its traffic class is 'principal'), at the verge 1.05 m clear of the travelled track, drawn up along the road and facing the way traffic on this side of it goes. THE TEAM IS NOT DRAWN and never will be: this project models no animal in the scene, so the wagon stands unhitched with its tongue down on the ground and its ox-yoke laid by on the grass. Everything about it is invented — that it stood here at noon on 1 July 1835, whose it was, and what it was carrying, which is why it carries no mark of any kind: docs/LIBERTIES.md L162."
-    },
-    {
-      "id": "town_wagon_south_water_38",
-      "kind": "covered",
-      "stands_on": "south_water",
-      "belongs_to": null,
-      "tilt": true,
-      "yoke": true,
-      "confidence": "reconstructed",
-      "at_local_enu_m": [
-        800.08,
-        -2.91
-      ],
-      "bearing_deg": 271.6,
+      "bearing_deg": 91.6,
       "drawn_up": "along the road",
       "clear_of_track_m": 1.05,
       "note": "A covered emigrant wagon standing at the verge of South Water Street, and it is HERE because the rule put it here. The owner asked for the town's wagons, 2026-08-18: 'there can be more wagons! of course there would be more wagons all over the place in a frontier town.' He gave no place, so the place is derived: a stand is offered every 20 m along this street's committed centreline (its traffic class is 'principal'), at the verge 1.05 m clear of the travelled track, drawn up along the road and facing the way traffic on this side of it goes. THE TEAM IS NOT DRAWN and never will be: this project models no animal in the scene, so the wagon stands unhitched with its tongue down on the ground and its ox-yoke laid by on the grass. Everything about it is invented — that it stood here at noon on 1 July 1835, whose it was, and what it was carrying, which is why it carries no mark of any kind: docs/LIBERTIES.md L162."
@@ -4776,6 +4793,11 @@
       "why": "on the right verge, the ground under it is under 0.60 m over the water surface — a wagon standing in the river or in the slough would be a claim about the bank, not about the wagon."
     },
     {
+      "stand": "market 7",
+      "street": "Market Street",
+      "why": "on the right verge, the ground under it is under 0.60 m over the water surface — a wagon standing in the river or in the slough would be a claim about the bank, not about the wagon."
+    },
+    {
       "stand": "randolph 1",
       "street": "Randolph Street",
       "why": "on the left verge, it reaches into the Clinton Street travelled track, which is where a visitor walks. Nothing on this layer is drawn in a roadway."
@@ -4798,7 +4820,7 @@
     {
       "stand": "south_water 1",
       "street": "South Water Street",
-      "why": "on the left verge, the ground under it is under 0.60 m over the water surface — a wagon standing in the river or in the slough would be a claim about the bank, not about the wagon. · on the right verge, the ground under it is under 0.60 m over the water surface — a wagon standing in the river or in the slough would be a claim about the bank, not about the wagon."
+      "why": "on the right verge, the ground under it is under 0.60 m over the water surface — a wagon standing in the river or in the slough would be a claim about the bank, not about the wagon."
     },
     {
       "stand": "south_water 2",
@@ -4811,14 +4833,19 @@
       "why": "on the right verge, the ground under it is under 0.60 m over the water surface — a wagon standing in the river or in the slough would be a claim about the bank, not about the wagon."
     },
     {
+      "stand": "south_water 4",
+      "street": "South Water Street",
+      "why": "on the right verge, the ground under it is under 0.60 m over the water surface — a wagon standing in the river or in the slough would be a claim about the bank, not about the wagon."
+    },
+    {
       "stand": "south_water 5",
       "street": "South Water Street",
       "why": "on the right verge, the ground under it is under 0.60 m over the water surface — a wagon standing in the river or in the slough would be a claim about the bank, not about the wagon."
     },
     {
-      "stand": "south_water 6",
+      "stand": "south_water 7",
       "street": "South Water Street",
-      "why": "on the right verge, the ground under it is under 0.60 m over the water surface — a wagon standing in the river or in the slough would be a claim about the bank, not about the wagon."
+      "why": "on the left verge, the ground under it is under 0.60 m over the water surface — a wagon standing in the river or in the slough would be a claim about the bank, not about the wagon. · on the right verge, the ground under it is under 0.60 m over the water surface — a wagon standing in the river or in the slough would be a claim about the bank, not about the wagon."
     },
     {
       "stand": "south_water 8",
@@ -4826,14 +4853,14 @@
       "why": "on the right verge, the ground under it is under 0.60 m over the water surface — a wagon standing in the river or in the slough would be a claim about the bank, not about the wagon. · on the left verge, the ground under it is under 0.60 m over the water surface — a wagon standing in the river or in the slough would be a claim about the bank, not about the wagon."
     },
     {
-      "stand": "south_water 9",
+      "stand": "south_water 14",
       "street": "South Water Street",
-      "why": "on the left verge, the ground under it is under 0.60 m over the water surface — a wagon standing in the river or in the slough would be a claim about the bank, not about the wagon. · on the right verge, the ground under it is under 0.60 m over the water surface — a wagon standing in the river or in the slough would be a claim about the bank, not about the wagon."
+      "why": "on the right verge, it reaches into the Wells Street travelled track, which is where a visitor walks. Nothing on this layer is drawn in a roadway."
     },
     {
       "stand": "south_water 20",
       "street": "South Water Street",
-      "why": "on the right verge, the ground under it is under 0.60 m over the water surface — a wagon standing in the river or in the slough would be a claim about the bank, not about the wagon."
+      "why": "on the right verge, the ground under it is under 0.60 m over the water surface — a wagon standing in the river or in the slough would be a claim about the bank, not about the wagon. · on the left verge, the ground under it is under 0.60 m over the water surface — a wagon standing in the river or in the slough would be a claim about the bank, not about the wagon."
     },
     {
       "stand": "south_water 21",
@@ -4841,9 +4868,9 @@
       "why": "on the left verge, the ground under it is under 0.60 m over the water surface — a wagon standing in the river or in the slough would be a claim about the bank, not about the wagon. · on the right verge, the ground under it is under 0.60 m over the water surface — a wagon standing in the river or in the slough would be a claim about the bank, not about the wagon."
     },
     {
-      "stand": "south_water 22",
+      "stand": "south_water 24",
       "street": "South Water Street",
-      "why": "on the right verge, the ground under it is under 0.60 m over the water surface — a wagon standing in the river or in the slough would be a claim about the bank, not about the wagon. · on the left verge, the ground under it is under 0.60 m over the water surface — a wagon standing in the river or in the slough would be a claim about the bank, not about the wagon."
+      "why": "on the right verge, the ground under it is under 0.60 m over the water surface — a wagon standing in the river or in the slough would be a claim about the bank, not about the wagon."
     },
     {
       "stand": "south_water 25",
@@ -4883,20 +4910,15 @@
     {
       "stand": "south_water 32",
       "street": "South Water Street",
-      "why": "on the right verge, the ground under it is under 0.60 m over the water surface — a wagon standing in the river or in the slough would be a claim about the bank, not about the wagon."
+      "why": "on the right verge, the ground under it is under 0.60 m over the water surface — a wagon standing in the river or in the slough would be a claim about the bank, not about the wagon. · on the left verge, it stands on the plank walk river_plank_walk_dearborn_crossing (T-0119). A footway is a floor and a wagon parked across it is the town's own Ordinance 9 complaint, drawn."
     },
     {
       "stand": "south_water 33",
       "street": "South Water Street",
-      "why": "on the left verge, the ground under it is under 0.60 m over the water surface — a wagon standing in the river or in the slough would be a claim about the bank, not about the wagon. · on the right verge, the ground under it is under 0.60 m over the water surface — a wagon standing in the river or in the slough would be a claim about the bank, not about the wagon."
-    },
-    {
-      "stand": "south_water 34",
-      "street": "South Water Street",
       "why": "on the right verge, the ground under it is under 0.60 m over the water surface — a wagon standing in the river or in the slough would be a claim about the bank, not about the wagon."
     },
     {
-      "stand": "south_water 35",
+      "stand": "south_water 34",
       "street": "South Water Street",
       "why": "on the right verge, the ground under it is under 0.60 m over the water surface — a wagon standing in the river or in the slough would be a claim about the bank, not about the wagon."
     },

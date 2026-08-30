@@ -9829,3 +9829,53 @@ Related: **L207** (the letter-list names) · **L206** (the sixteen with a trade)
 documented men who took reconstructed roofs) · **L1** (no figure is drawn for any resident) ·
 tickets **T-0373** (this), **T-0368**, **T-0376**, **T-0378**, **T-0374**, **T-0418** (the trades the vocabulary cannot say).
 **Recorded:** 2026-08-29.
+
+### L214 — South Water Street's west end is closed on Market's corridor, on ground rather than on control
+**Decision:** South Water Street's committed centreline used to stop at local (100, −101) — 30 m
+down the South Branch's east bank, past Lake Street's own latitude, and 24 m short of Market
+Street's east block edge. On 2026-08-30 it was closed on Market's corridor instead, at the corner
+local **(89.51, −71.02)**, and Market's centreline was carried the ~39 m north from `lake_market`
+to meet it there. `blk_south_water_market` — the block bounded north by South Water, south by Lake,
+west by Market and east by Franklin, plat block **21** — builds because of it: 8 lots, 4,957 m²,
+107.0 m of frontage, the first platted block this grid has ever emitted west of Franklin on the
+river front.
+
+**What is not invented.** That the two streets met is not in doubt and never was. The post office
+stood at the south-west corner of Franklin and South Water from 2 Nov 1832 to 3 Mar 1837, so South
+Water ran west at least that far; Market is the plat's westernmost South Division column and ran
+north to the river. The block between them is one of the most built-up in the 1835 town.
+
+**What is invented, and it is only this: WHERE the corner falls.** There is no derivable control at
+it. `node_rule` was run against today's OpenStreetMap on 2026-08-27 and refused the junction, and
+the refusal is recorded rather than left as an absence
+(`refused_control.market_south_water` in `data/traces/street_control.json`): Market's and South
+Water's modern successors, North Upper Wacker Drive and West Upper Wacker Drive, are one carriageway
+pair changing name through a **bend at the Lake Street junction**, so the only nodes they share are
+`lake_market`'s own two — 110 m south of the corner they would name. Committed as control, that
+reading would have put the corner on Lake Street and built this block with no depth at all.
+
+**So the corner stands on a different basis, stated as such.** Market's platted centreline — the
+line through the data box at N −400 and the committed control point `lake_market` — is carried north
+until the committed heightfield `e1834_harbor_cut` turns wet, and the last dry sample on it, found
+by bisection to 0.01 m, is (89.51, −71.02). That is the 1834 sheets for the line and the committed
+bank for the stop, which is the same basis the rest of this street's curved west approach already
+stood on and which its own record already described. One vertex, (101, −71), carries the line east
+along the point of land to the committed (120, −57): every 0.5 m sample of both new segments is on
+dry, modelled ground. The end is graded **`conjectural`** in `south_water.west_end`
+(`data/streets/1835.json`) and the record names the refusal it does not rest on, so a reader can
+tell this corner from a corner that has a control point. The refusal itself was not touched:
+`python3 tools/refetch_control.py --discover market_south_water` still exits 1, and it should.
+
+**Consequence:** a visitor walking west along South Water Street now reaches Market Street and the
+forks instead of the street turning south down the branch, and a new platted block stands between
+Market and Franklin on the river front — its lot lines, its alley, its street-edge boards and its
+lot-line fences all drawn from the same module every other block uses. Its 27 roofs of headroom
+become schedulable and are **not** dealt in this entry: `tools/reconcile_665.py` schedules blocks,
+this changes what the plat emits, and dealing them is its own unit of work. The block is out of the
+`awaiting_control` refusal list `tools/measure_block_gating.py` keeps; `blk_south_water_clinton`
+stays refused as `never_platted`, still measured across the water.
+
+Related: **L79** (the travelled way inside the platted corridor) · tickets **T-0183** (this, and the
+owner's ruling of 2026-08-29 it carries out), **T-0163** (which split the two refusals apart),
+**T-0365** (the anonymous-block programme's unblocked ground), **T-0420**.
+**Recorded:** 2026-08-30.

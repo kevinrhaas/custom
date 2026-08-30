@@ -53,24 +53,306 @@
  "confidence": "inferred",
  "confidence_note": "The blocks are arithmetic on inferred inputs — street lines whose own geometry confidence is `inferred`, offset by a module width the street control also grades `inferred` — so `inferred` is the most this grid can carry. The lots and the alleys inside those blocks are `conjectural` and are recorded separately for that reason: a visitor is entitled to know that the block face is a defensible position and the line dividing it is not.",
  "summary": {
-  "blocks": 19,
-  "omitted": 5,
+  "blocks": 20,
+  "omitted": 4,
   "reserved": 1,
-  "numbered": 5,
-  "numbered_omitted": 1,
-  "lots": 144,
-  "numbered_lots": 40,
+  "numbered": 6,
+  "numbered_omitted": 0,
+  "lots": 152,
+  "numbered_lots": 48,
   "block_frontage_ft": {
    "min": 309.6,
    "median": 323.4,
-   "max": 340.2
+   "max": 351.1
   },
   "lot_frontage_ft": {
    "min": 77.3,
-   "max": 85.1
+   "max": 98.1
   }
  },
  "blocks": [
+  {
+   "id": "blk_south_water_market",
+   "bounded_by": {
+    "north": "south_water",
+    "south": "lake",
+    "west": "market",
+    "east": "franklin"
+   },
+   "boundary_local_enu_m": [
+    [
+     101.61,
+     -83.19
+    ],
+    [
+     105.02,
+     -83.19
+    ],
+    [
+     128.21,
+     -66.1
+    ],
+    [
+     148.49,
+     -43.78
+    ],
+    [
+     167.3,
+     -27.8
+    ],
+    [
+     185.06,
+     -16.25
+    ],
+    [
+     196.2,
+     -13.19
+    ],
+    [
+     195.69,
+     -99.07
+    ],
+    [
+     101.49,
+     -98.31
+    ]
+   ],
+   "area_m2": 4957.5,
+   "frontage_m": 107.0,
+   "frontage_ft": 351.1,
+   "depth_m": 46.33,
+   "lots_per_face": 4,
+   "alley_local_enu_m": [
+    [
+     101.57,
+     -88.01
+    ],
+    [
+     195.96,
+     -53.39
+    ],
+    [
+     195.93,
+     -58.88
+    ],
+    [
+     101.52,
+     -93.49
+    ]
+   ],
+   "lots": [
+    {
+     "tier": "north",
+     "frontage_m": 29.36,
+     "depth_m": 8.81,
+     "polygon": [
+      [
+       101.61,
+       -83.19
+      ],
+      [
+       126.38,
+       -67.44
+      ],
+      [
+       125.83,
+       -80.23
+      ],
+      [
+       101.57,
+       -88.01
+      ]
+     ],
+     "plat_lot_number": 4,
+     "plat_lot_confidence": "conjectural"
+    },
+    {
+     "tier": "south",
+     "frontage_m": 23.55,
+     "depth_m": 8.81,
+     "polygon": [
+      [
+       101.52,
+       -93.49
+      ],
+      [
+       125.59,
+       -85.71
+      ],
+      [
+       125.04,
+       -98.5
+      ],
+      [
+       101.49,
+       -98.31
+      ]
+     ],
+     "plat_lot_number": 5,
+     "plat_lot_confidence": "conjectural"
+    },
+    {
+     "tier": "north",
+     "frontage_m": 29.91,
+     "depth_m": 18.3,
+     "polygon": [
+      [
+       126.38,
+       -67.44
+      ],
+      [
+       146.83,
+       -45.62
+      ],
+      [
+       147.62,
+       -69.41
+      ],
+      [
+       125.83,
+       -80.23
+      ]
+     ],
+     "plat_lot_number": 3,
+     "plat_lot_confidence": "conjectural"
+    },
+    {
+     "tier": "south",
+     "frontage_m": 23.55,
+     "depth_m": 18.3,
+     "polygon": [
+      [
+       125.59,
+       -85.71
+      ],
+      [
+       147.8,
+       -74.9
+      ],
+      [
+       148.59,
+       -98.69
+      ],
+      [
+       125.04,
+       -98.5
+      ]
+     ],
+     "plat_lot_number": 6,
+     "plat_lot_confidence": "conjectural"
+    },
+    {
+     "tier": "north",
+     "frontage_m": 29.9,
+     "depth_m": 28.7,
+     "polygon": [
+      [
+       146.83,
+       -45.62
+      ],
+      [
+       169.64,
+       -26.28
+      ],
+      [
+       170.79,
+       -59.84
+      ],
+      [
+       147.62,
+       -69.41
+      ]
+     ],
+     "plat_lot_number": 2,
+     "plat_lot_confidence": "conjectural"
+    },
+    {
+     "tier": "south",
+     "frontage_m": 23.55,
+     "depth_m": 28.7,
+     "polygon": [
+      [
+       147.8,
+       -74.9
+      ],
+      [
+       170.98,
+       -65.32
+      ],
+      [
+       172.14,
+       -98.88
+      ],
+      [
+       148.59,
+       -98.69
+      ]
+     ],
+     "plat_lot_number": 7,
+     "plat_lot_confidence": "conjectural"
+    },
+    {
+     "tier": "north",
+     "frontage_m": 29.61,
+     "depth_m": 36.89,
+     "polygon": [
+      [
+       169.64,
+       -26.28
+      ],
+      [
+       196.2,
+       -13.19
+      ],
+      [
+       195.96,
+       -53.39
+      ],
+      [
+       170.79,
+       -59.84
+      ]
+     ],
+     "plat_lot_number": 1,
+     "plat_lot_confidence": "conjectural"
+    },
+    {
+     "tier": "south",
+     "frontage_m": 23.55,
+     "depth_m": 36.89,
+     "polygon": [
+      [
+       170.98,
+       -65.32
+      ],
+      [
+       195.93,
+       -58.88
+      ],
+      [
+       195.69,
+       -99.07
+      ],
+      [
+       172.14,
+       -98.88
+      ]
+     ],
+     "plat_lot_number": 8,
+     "plat_lot_confidence": "conjectural"
+    }
+   ],
+   "plat_block_number": {
+    "number": 21,
+    "confidence": "inferred",
+    "numeral_on_sheet": false,
+    "sources": [
+     "wright_1834"
+    ],
+    "authored_in": "data/traces/thompson_block_numbering.json",
+    "note": "Two blocks west of the read 19, counted at one block per step along the tier. THE BLOCK NOW BUILDS: it was OMITTED from the generated grid until 2026-08-30, because South Water Street's committed centreline stopped 24 m short of it, and T-0183 closed that street's west end on Market's corridor (docs/RESEARCH/thompson_plat_grid.md § 6.2), so the number is stamped onto a block rather than onto an omission. Nothing says whether the tier's run continues west of Market Street; only that this block is two steps from one that was read."
+   }
+  },
   {
    "id": "blk_south_water_franklin",
    "bounded_by": {
@@ -1653,14 +1935,14 @@
      -241.08
     ]
    ],
-   "area_m2": 11173.6,
-   "frontage_m": 94.37,
+   "area_m2": 11173.8,
+   "frontage_m": 94.38,
    "frontage_ft": 309.6,
    "depth_m": 118.4,
    "lots_per_face": 4,
    "alley_local_enu_m": [
     [
-     100.85,
+     100.84,
      -179.14
     ],
     [
@@ -1695,7 +1977,7 @@
        -179.34
       ],
       [
-       100.85,
+       100.84,
        -179.14
       ]
      ]
@@ -1802,7 +2084,7 @@
        -185.01
       ],
       [
-       171.59,
+       171.58,
        -185.21
       ],
       [
@@ -1844,7 +2126,7 @@
      "depth_m": 56.46,
      "polygon": [
       [
-       171.59,
+       171.58,
        -185.21
       ],
       [
@@ -3306,7 +3588,7 @@
     ]
    ],
    "area_m2": 10501.5,
-   "frontage_m": 94.65,
+   "frontage_m": 94.66,
    "frontage_ft": 310.5,
    "depth_m": 110.95,
    "lots_per_face": 4,
@@ -3339,7 +3621,7 @@
        -265.47
       ],
       [
-       123.8,
+       123.79,
        -265.66
       ],
       [
@@ -3381,7 +3663,7 @@
      "depth_m": 52.73,
      "polygon": [
       [
-       123.8,
+       123.79,
        -265.66
       ],
       [
@@ -3389,7 +3671,7 @@
        -265.85
       ],
       [
-       147.07,
+       147.06,
        -318.58
       ],
       [
@@ -3439,7 +3721,7 @@
        -318.77
       ],
       [
-       147.07,
+       147.06,
        -318.58
       ]
      ]
@@ -4514,7 +4796,7 @@
     "west": "clinton",
     "east": "canal"
    },
-   "reason": "South Water Street's committed centreline stops 878 m short of this block"
+   "reason": "South Water Street's committed centreline stops 361 m short of this block"
   },
   {
    "id": "blk_south_water_canal",
@@ -4524,27 +4806,7 @@
     "west": "canal",
     "east": "market"
    },
-   "reason": "the streets are 258 m apart, past the 200 m the plat's module allows a block — what lies between them is the river, not a block"
-  },
-  {
-   "id": "blk_south_water_market",
-   "bounded_by": {
-    "north": "south_water",
-    "south": "lake",
-    "west": "market",
-    "east": "franklin"
-   },
-   "reason": "South Water Street's committed centreline stops 24 m short of this block",
-   "plat_block_number": {
-    "number": 21,
-    "confidence": "inferred",
-    "numeral_on_sheet": false,
-    "sources": [
-     "wright_1834"
-    ],
-    "authored_in": "data/traces/thompson_block_numbering.json",
-    "note": "Two blocks west of the read 19, counted at one block per step along the tier. This block is OMITTED from the generated grid — South Water Street's committed centreline stops 24 m short of it (docs/RESEARCH/thompson_plat_grid.md § 6) — so the number is carried here and stamped onto the omission rather than onto a block. Nothing says whether the tier's run continues west of Market Street; only that this block is two steps from one that was read."
-   }
+   "reason": "the streets are 259 m apart, past the 200 m the plat's module allows a block — what lies between them is the river, not a block"
   },
   {
    "id": "blk_lake_canal",
@@ -4554,7 +4816,7 @@
     "west": "canal",
     "east": "market"
    },
-   "reason": "the streets are 258 m apart, past the 200 m the plat's module allows a block — what lies between them is the river, not a block"
+   "reason": "the streets are 259 m apart, past the 200 m the plat's module allows a block — what lies between them is the river, not a block"
   },
   {
    "id": "blk_randolph_canal",
@@ -4564,7 +4826,7 @@
     "west": "canal",
     "east": "market"
    },
-   "reason": "the streets are 258 m apart, past the 200 m the plat's module allows a block — what lies between them is the river, not a block"
+   "reason": "the streets are 259 m apart, past the 200 m the plat's module allows a block — what lies between them is the river, not a block"
   }
  ]
 }
