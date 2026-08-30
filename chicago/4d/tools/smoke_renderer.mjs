@@ -934,6 +934,16 @@ const stamp = () => {
 // boundary has to be able to say what the reach was before and after, and a
 // green line that prints nothing makes that a re-run with an edited gate.
 // Deterministic figures only — the output stays comparable between runs.
+// A mesh census reads as sixty-odd repetitions of two names, which is a wall of
+// text nobody reads, so a name list is reported as a tally: `frontage x1,
+// frontage-chunk x60`. Order is first-appearance, so the shared mesh stays at
+// the head where the layer puts it.
+function tallyNames(names) {
+  const counts = new Map();
+  for (const n of names ?? []) counts.set(n, (counts.get(n) ?? 0) + 1);
+  return [...counts].map(([n, c]) => (c === 1 ? n : `${n} x${c}`)).join(', ');
+}
+
 function check(name, cond, detail = '', show = false) {
   if (inStageWork) stageWorkChecks += 1;
   const t = TIMING ? stamp() : '';
@@ -1178,8 +1188,17 @@ for (const [label, viewport, touch] of [
       const top = document.elementFromPoint(b.x + b.width / 2, b.y + b.height / 2);
       if (!top || !(top === el || el.contains(top))) {
         const cls = top && typeof top.className === 'string' ? top.className : '';
+        // NAME THE OVERLAY, NOT JUST THE TAG IT ENDS IN (T-0369). The first
+        // report of this failure said only `<h2>`, and an `<h2>` is a heading
+        // inside something — the thing worth naming is the panel that heading
+        // belongs to. Walking up to the nearest ancestor carrying an id turns
+        // "covered by <h2>" into "covered by <h2> inside #popup", which is the
+        // whole diagnosis of a stale overlay left open by an earlier stage.
+        let owner = top;
+        while (owner && !owner.id && owner !== document.body) owner = owner.parentElement;
+        const inside = owner && owner.id && owner !== el ? ` inside #${owner.id}` : '';
         return `${s} is covered at its own centre by `
-          + `<${top ? top.tagName.toLowerCase() : 'nothing'}${cls ? ` class="${cls}"` : ''}>`;
+          + `<${top ? top.tagName.toLowerCase() : 'nothing'}${cls ? ` class="${cls}"` : ''}>${inside}`;
       }
       // A real mouse press FOCUSES a focusable control, and an untrusted
       // `.click()` does not — which is a difference the suite already depends on
@@ -3042,6 +3061,35 @@ for (const [label, viewport, touch] of [
         && boards.devices[0] === 'carpenter_south_water_store',
       `${boards.devices?.length} device(s) [${(boards.devices ?? []).join(', ')}]`);
 
+    // --- and part 1 hands the page on clean (T-0369) -------------------------
+    //
+    // The twenty-five aims above are `pick()` calls, and a pick that lands on a
+    // structure OPENS THE INSPECT CARD. The last one lands on the Tremont
+    // House's signboard, so this part used to END with `#popup` standing —
+    // `position: fixed`, `z-index: 30`, `top: 58px`, `right: 12px`, 392 px wide,
+    // which on a 1280 x 800 viewport is squarely on top of the HUD panel's tab
+    // strip. Nothing between here and part 7 reads panel chrome, so nothing
+    // noticed. Part 8 is nothing BUT panel chrome and its first statement clicks
+    // a tab, so it inherited an unclickable strip and died on it: same commit,
+    // one command apart, `SMOKE_STAGE=8` reached the settings tab and
+    // `SMOKE_STAGE=1,8` failed with `covered at its own centre by <h2>`.
+    //
+    // So the part that opened the card closes it, and the teardown is ASSERTED
+    // rather than silent. A stage that hands on an overlay standing over the
+    // chrome is the defect, and the next one to do it should be named here — at
+    // the boundary where it happened — instead of surfacing four parts later
+    // under some other gate's name.
+    const part1Overlays = await page.evaluate(() => {
+      window.__chicago4d.popup.close();
+      return ['popup', 'control-help'].filter((id) => {
+        const el = document.getElementById(id);
+        return el && !el.hasAttribute('hidden');
+      });
+    });
+    check(`${label}: part 1 hands the page on with nothing standing over the chrome`,
+      part1Overlays.length === 0,
+      `still showing: ${part1Overlays.map((id) => `#${id}`).join(', ') || 'nothing'}`);
+
     inStageWork = false;
     } // end PART 1 (T-0060 stage 1a, cut by T-0121)
     // PART 2 — the goods at the trading frontages through the confidence
@@ -3922,6 +3970,21 @@ for (const [label, viewport, touch] of [
         census: f?.census ?? null,
         meshes: f?.group?.children?.length ?? 0,
         names: (f?.group?.children ?? []).map((c) => c.name),
+        // AUTHORED AGAINST DRAWN (T-0349). A layer's group holds the meshes the
+        // layer built AND whatever the frame's draw-call economy has since put
+        // there: `far-merge.js` welds a distant cluster into one extra mesh,
+        // parents it onto the same group and marks it `userData.farMerged`. So
+        // `children.length` is not a census of the layer — it is the census plus
+        // the camera's history, and it moves with where a stage last stood.
+        // These two split that apart: `authored` is what the layer laid, which
+        // is the number a census clause can hold across stages, and `merged` is
+        // the artefact count, reported beside it rather than folded into it.
+        authored: (f?.group?.children ?? []).filter((c) => !c.userData?.farMerged).length,
+        authoredNames: (f?.group?.children ?? [])
+          .filter((c) => !c.userData?.farMerged).map((c) => c.name),
+        merged: (f?.group?.children ?? []).filter((c) => !!c.userData?.farMerged).length,
+        mergedNames: (f?.group?.children ?? [])
+          .filter((c) => !!c.userData?.farMerged).map((c) => c.name),
         verts,
         letterVerts: letters?.geometry?.getAttribute('position')?.count ?? 0,
         letterMap: !!letters?.material?.map,
@@ -4048,36 +4111,69 @@ for (const [label, viewport, touch] of [
       `post ${frontage.highest?.toFixed(2)} m over its grade against a recorded `
       + `${frontage.postHeight} m, board's underside ${frontage.boardLow?.toFixed(2)} m up, `
       + `${frontage.clearOfTrack} m clear of the travelled track`);
-    // THE NAME IS DRAWN, AND IT IS THE RECORD'S. This is the only lettering in the
-    // renderer (L135), and it is the record's wording rather than the renderer's:
-    // a board whose painted name drifted from the record would be this project
-    // inventing a sign, which is exactly what L25 and L130 refuse. Thirty-seven
-    // meshes and no more — the shared timber, the river walk's fifteen culling
+    // THE LAYER DRAWS THE MESHES IT LAID, AND ONLY THOSE ARE ITS OWN (T-0349).
+    // This census used to be the seventh clause of the lettering check below,
+    // and it was the only clause in that conjunction whose verdict depended on
+    // what had run BEFORE it: stage 1-2 read 67 on desktop and failed, stage 2
+    // alone read 62 and passed, on the same tree and the same published mirror
+    // minutes apart, and the six lettering clauses were green in both. The five
+    // extra were all `frontage-far-merge` — `far-merge.js` welds a distant
+    // cluster of this layer's chunks into one more mesh, parents it onto this
+    // same group and marks it `userData.farMerged`, and stage 1 walks the
+    // desktop camera somewhere that causes five such merges where stage 2 alone
+    // and the mobile viewport cause none. So `children.length` was never a
+    // census of the layer; it was the layer plus the camera's history, reported
+    // under a name that promised the painted name was wrong.
+    //
+    // The count is not dropped, it is re-stated over the set that can carry it:
+    // the meshes the layer AUTHORED, which is every child that is not a merge
+    // artefact. Sixty-two — the shared timber, the river walk's fifteen culling
     // chunks (T-0119), the town street edge's thirty-four (T-0069 laid
     // twenty-one; T-0198's six reconciled South Water placements welded two runs
     // into one and T-0199's last five welded two more, taking it to eighteen;
     // T-0240 laid Randolph Street's thirteen block faces and took it to
     // thirty-three; T-0196 reconciled three Lake Street placements, and clearing
     // old_bank_building off blk_lake_lasalle's north face opened a fourteenth
-    // Lake run west of the ground break that still cuts it) and the THREE
-    // street-fence meshes — one per covered street
-    // that carries a fence, which T-0198 split off so the boards could leave the
-    // shadow map while the fences stayed in it, and which is why this number
-    // moves with `EDGE_STREETS` — all on ONE material, and the painted name on
-    // its own mesh, the only thing here that may carry a texture.
+    // Lake run west of the ground break that still cuts it), the THREE
+    // street-fence meshes — one per covered street that carries a fence, which
+    // T-0198 split off so the boards could leave the shadow map while the fences
+    // stayed in it, and which is why this number moves with `EDGE_STREETS` — and
+    // the lettering mesh. 53 -> 61 with T-0241's Washington faces, because the
+    // walk is chunked one mesh per run and Washington laid eight more of them;
+    // T-0196's Lake Street repair opens a forty-first run, so 62.
+    //
+    // The merge artefacts are REPORTED and not asserted, and that asymmetry is
+    // the finding: how many of them exist is a fact about where the camera has
+    // been, so a number here would be asserting the walk this suite happens to
+    // take. What is asserted about them is that they are the layer's own kind of
+    // artefact — every extra child is a `frontage-far-merge` — so a stray mesh
+    // parented onto this group by anything else still fails.
+    check(`${label}: the frontage layer draws the meshes it authored`,
+      frontage.authored === 62
+        && frontage.mergedNames.every((nm) => nm === 'frontage-far-merge'),
+      `${frontage.authored} authored mesh(es) (${tallyNames(frontage.authoredNames)}), `
+      + `${frontage.merged} far-merge artefact(s) `
+      + `[${tallyNames(frontage.mergedNames) || 'none'}], `
+      + `${frontage.meshes} drawn in all`,
+      // PRINTED ON A PASS TOO (the `show` flag, T-0187), because the drawn count
+      // is the number this ticket found varying with run order and a reading
+      // nobody can see is a reading nobody can check. A green line here states
+      // both figures, so the next run that wonders whether the merge artefacts
+      // are still arriving can read it off the log instead of re-measuring.
+      true);
+    // THE NAME IS DRAWN, AND IT IS THE RECORD'S. This is the only lettering in the
+    // renderer (L135), and it is the record's wording rather than the renderer's:
+    // a board whose painted name drifted from the record would be this project
+    // inventing a sign, which is exactly what L25 and L130 refuse. The painted
+    // name is on its own mesh, the only thing in this layer that may carry a
+    // texture; the timber it hangs over is all on ONE material and carries none.
     check(`${label}: the board carries the record's own name, painted`,
       frontage.census?.lettered === 1 && frontage.letterVerts >= 6
         && frontage.letterMap === true && frontage.timberMap === false
         && frontage.lettering === frontage.recordText
         && frontage.recordText === 'GREEN TREE'
-        && frontage.textGrade === 'inferred'
-        // 53 -> 61 with T-0241's Washington faces, for the reason stated above:
-        // this number moves with `EDGE_STREETS` because the walk is chunked one
-        // mesh per run and Washington laid eight more of them. T-0196's Lake
-        // Street repair opens a forty-first run, so 62.
-        && frontage.meshes === 62,
-      `"${frontage.lettering}" on ${frontage.letterVerts} vertices across `
-      + `${frontage.meshes} mesh(es) (${frontage.names?.join(', ')}), record says `
+        && frontage.textGrade === 'inferred',
+      `"${frontage.lettering}" on ${frontage.letterVerts} vertices, record says `
       + `"${frontage.recordText}" graded ${frontage.textGrade}`);
 
     // AND IT READS FROM THE STREET, which is what a walk and a signboard are FOR.
@@ -9223,7 +9319,17 @@ for (const [label, viewport, touch] of [
     // click on a tab that has no layout waits ninety seconds and dies. Guarded
     // on the panel's own hidden state rather than toggling, for the same reason
     // enterTown() is guarded: in an unfiltered run this must do nothing at all.
+    // …and NOTHING STANDING OVER IT (T-0369). The inspect card is fixed at the
+    // top right and overlaps this panel's tab strip on the desktop viewport, so
+    // ANY predecessor that picked a structure and left its card open makes the
+    // first click below fail — which is exactly what part 1 did. Part 1 no
+    // longer leaks it, and this part no longer depends on that being true of
+    // every predecessor either: a part that drives chrome establishes the
+    // chrome's state, for the same reason the panel below is opened rather than
+    // assumed. Both halves are the fix, because only the second one makes this
+    // part's verdict independent of which stages ran in front of it.
     await page.evaluate(() => {
+      window.__chicago4d.popup.close();
       if (document.getElementById('panel').hasAttribute('hidden')) {
         document.getElementById('btn-help').click();
       }
