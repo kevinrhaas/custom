@@ -1,4 +1,11 @@
 export const CHANGELOG = [ // newest first
+  { v: 424, title: 'The riverfront blocks the ruling opened get one ticket each', kind: 'chore', ts: '2026-08-30T03:14:42.125Z', date: 'Aug 29, 2026, 10:14 PM CT',
+    items: [
+      'Nothing you can see changed today. Behind the model there is a programme that decides where the next unbuilt roof in this town may stand, and since last night it has had somewhere to put twenty of them \u2014 four blocks between South Water Street and Lake Street, at Franklin, La Salle, Clark and Dearborn, freed when the owner ruled that the South Water street line stays where it is drawn.',
+      'They were all filed as a single piece of work, and they are four. The rule this project builds under is one run, one thing shown, one thing handed on; a ticket holding four blocks can only ever be a quarter finished, and a half-finished ticket is how the same ground gets built twice. So there are four now, one per block, each carrying that block\u2019s own measured headroom \u2014 eight roofs at La Salle, four each at Franklin, Clark and Dearborn \u2014 and each marked as needing the roofs baked.',
+      'The fifth block, at Market Street, is deliberately not among them. The owner ruled for it too, and the ground refused: the river pinches it to under three metres of depth where a lot needs twenty-four. Its twenty-seven roofs go back into the balance rather than being promised again.',
+      'What that leaves is worth saying plainly, so nobody has to work it out twice: four runs of ground the project actually holds, twenty roofs, and after them this programme is finished until terrain, water or street control reach further than they do today.',
+    ] },
   { v: 423, title: 'A test said the signboard was wrong when the signboard was fine', kind: 'fix', ts: '2026-08-30T03:08:50.138Z', date: 'Aug 29, 2026, 10:08 PM CT',
     items: [
       'Nothing you can see changed today. The Green Tree Inn\u2019s signboard \u2014 the only painted lettering anywhere in this reconstruction \u2014 is checked on every change against the record it is copied from: that the name is drawn, that it is the record\u2019s own wording and not the renderer\u2019s, that it is the one thing in that layer allowed to carry a picture. Those checks have never failed. The test reporting them has, and it reported them under the wrong name.',
