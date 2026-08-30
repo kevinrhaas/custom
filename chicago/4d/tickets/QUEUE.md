@@ -163,3 +163,4 @@ T-0388 — Three derived records have drifted from their own generators on an un
 T-0438 — The run grading criterion is read two ways — the crosswalk's scheduling rank and the building's own size — and the two disagree the first time an H roof stands beside D roofs
 T-0439 — blk_south_water_dearborn keeps no lot open, because the owner's business-front clause and the density standard's closing clause cannot both hold on a built-out block
 T-0440 — Where the anonymous-block programme's committed ground runs out, now that the four South Water blocks T-0420 held are dealt
+T-0441 — The balanced rung is full again: dev stands 1,566 triangles under a ceiling this project has twice refused to raise, and the queue's whole top band is bigger than that

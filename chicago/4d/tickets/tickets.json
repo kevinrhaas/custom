@@ -1,6 +1,6 @@
 {
   "project": "chicago-4d",
-  "generated_ct": "Aug 30, 2026, 2:01 AM",
+  "generated_ct": "Aug 30, 2026, 3:30 AM",
   "tickets": [
     {
       "id": "T-0001",
@@ -7216,6 +7216,24 @@
       "blocked_on": null,
       "needs_bake": false,
       "queue_rank": 78
+    },
+    {
+      "id": "T-0441",
+      "title": "The balanced rung is full again: dev stands 1,566 triangles under a ceiling this project has twice refused to raise, and the queue's whole top band is bigger than that",
+      "state": "open",
+      "epic": "META",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "M",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-08-30",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "queue_rank": 79
     }
   ]
 }

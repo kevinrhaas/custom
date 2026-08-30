@@ -63,3 +63,34 @@ changed should trust the tool and correct this table):
 **Links:** T-0420 (the parent) · T-0365 (the succession this discharges) · T-0009 (the ruling) ·
 T-0028 (the programme) · T-0143 · T-0188 · T-0317 · T-0183 (the market wedge, not this ground) ·
 `tools/reconcile_665.py` · `tools/measure_block_gating.py`.
+
+---
+
+## 2026-08-30 — BUILT, GATED, AND PARKED ON ONE MEASUREMENT (PR pending)
+
+The four roofs are built, baked, published and green on `./tools/check.sh` (0 errors,
+28 warnings — the same 28 `dev` carries) and on the FULL mobile smoke at 390x780. They
+stand on lot 7, the block's one free corner lot, packed east to the Lake-and-State corner:
+`h3_07` (boarding house) on the corner, `d5_08`, `d4_09` closing the run at the west end
+nearest the bridge, and `a5_10` in the yard behind them. The block moves to `at_capacity`.
+
+**What stops the merge is not this parcel.** `SMOKE_VIEWPORT=desktop SMOKE_STAGE=5` fails
+one assertion — the `balanced` scene-detail tier's triangle ceiling at the worst stand:
+
+| tree | balanced, worst stand (the forks, from Wolf Point) | verdict |
+|---|---|---|
+| `dev` at 590e64c1 | 1,208,434 of 1,210,000 | PASS by 1,566 |
+| this branch | 1,210,608 of 1,210,000 | FAIL by 608 |
+
+Four roofs cost 2,174 triangles and `dev` has 1,566 to give. **T-0441** holds the fork and
+the reasoning; the short of it is that the ceiling's own block comment records five raises
+and one return and twice declined a sixth, so raising it to land this parcel is exactly
+what it forbids and is not a call this run may make. Every other ticket in the queue's top
+band adds roofs and will meet the same wall.
+
+**The ticket is left `open` and claimed rather than `blocked` ON PURPOSE.** `ticket.mjs
+block` removes a ticket from QUEUE.md and `unblock` appends it to the BOTTOM, which would
+silently re-rank a ticket the owner put in the top band on 2026-08-30 — and the queue is
+his. The collision lock still holds: `claim` refuses a ticket with a rival branch, and
+`steward/t-0432-south-water-dearborn` carries this work. Merge that PR once T-0441 is
+answered; nothing about the parcel needs redoing.
