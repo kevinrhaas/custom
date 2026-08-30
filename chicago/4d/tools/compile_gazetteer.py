@@ -153,6 +153,55 @@ READINGS = ("transcription_mediated", "scan_verified")
 # later pass can count them.
 PLACEMENT_CLASSES = ("corner", "relative", "street_only", "none")
 
+# AND A PLACEMENT IS WHERE THE ADVERTISER STANDS, NOT WHERE A BUILDING HE IS SELLING
+# STANDS (T-0412). A claim of kind `building` may carry a business block, because the man
+# who advertises a house is a named advertiser and the compile has to be able to reach
+# him. But when he signs the notice as its VENDOR he is the seller and not the occupant,
+# and the address in it is the address of the thing being sold. P. Pruyne offered "the
+# House on [the corner] of Lasalle and Lake streets ... 16 by 30 feet" on 1834-05-21 and
+# signed it `P. PRUYNE`; the corner went into his own firm's readings as though it were a
+# second frontage of the store the same papers put between Clark and Dearborn streets.
+#
+# It was not wrong on the ground, and that was luck rather than design: the record the
+# corner minted carried a live placement of `none`, so `placement_rank` never promoted it
+# past the store's own `relative` reading. A vendor notice that happened to be the only
+# reading on its record would have moved a firm to a house it was selling — and `corner`
+# is the TOP of that rank, so it would have beaten every other reading the house had.
+#
+# So a vendor's building claim contributes no placement reading. Everything else about
+# the claim still attaches — he is named in that issue, on that date, and the mention,
+# the copy date and the goods are all his. The placement is kept too, on
+# `vendor_readings`, because the notice is real evidence about a real Chicago building
+# and dropping it silently would be the other way of getting this wrong; what it is not
+# is evidence about where his shop was.
+#
+# THE ROLE VOCABULARY IS OPEN AND THIS TEST IS CLOSED, deliberately. Entity roles here
+# are free prose — 373 distinct strings over the corpus — and a test that pattern-matched
+# them would quietly grow. `vendor` is a token the extraction sets exactly, and the sweep
+# in `--check` reports what sits NEXT to it rather than absorbing it: the letting side
+# (`lessor`, "advertiser letting the building", and the rest) is T-0415's, and a
+# `business`-kind claim signed by a vendor is a different shape again — Hiram Pearsons
+# cries water lots "situate in the [busin]ess part of the town", which is a placement of
+# the GOODS, and it is `street_only` rather than a corner.
+VENDOR_ROLES = ("vendor",)
+
+
+def vendor_of_the_building(claim):
+    """Is this claim's business block signed by the SELLER of the building it describes?
+
+    Both halves are required and neither is sufficient. A `building` claim signed by an
+    occupant is a placement — that is how a shop advertises its own house. A `business`
+    claim signed by a vendor is a business's own notice, whatever it is selling. What
+    this refuses is the intersection: a building offered for sale, by the man selling it.
+
+    Every entity carrying a role must carry a vendor one. A notice that names the vendor
+    AND the occupant is placing the occupant, and refusing it would lose a real reading.
+    """
+    if claim.get("kind") != "building" or not claim.get("business"):
+        return False
+    roles = [e.get("role") for e in claim.get("entities", []) if e.get("role")]
+    return bool(roles) and all(r in VENDOR_ROLES for r in roles)
+
 # AND A PAPER CAN SAY WHEN A HOUSE OPENED (T-0356). The register had no way to ask the
 # question, so it answered a different one: a business whose FIRST issue postdated the
 # scene date was excluded as `first_evidence_after_scene_date`, which is the absence of
@@ -578,10 +627,17 @@ def compile_gazetteer(files, identity, corpus, quiet=True):
             biz = claim.get("business")
             if biz:
                 bk = slug(biz.get("name"))
+                # T-0412. A vendor's building notice mints a record like any other claim
+                # — the man and his trade are in it — but it mints one with NO placement,
+                # because the address in it belongs to the house he is selling. Minting
+                # it with `placement: None` rather than skipping the record keeps the
+                # advertiser reachable and leaves `placement_rank` at the bottom, where a
+                # later printing of his own shop can only improve on it.
+                vendor_claim = vendor_of_the_building(claim)
                 b = businesses.setdefault(bk, {
                     "id": "business_" + bk, "name": biz.get("name"), "proprietors": [],
                     "trade": biz.get("trade"), "goods": [], "street": biz.get("street"),
-                    "placement": biz.get("placement"),
+                    "placement": None if vendor_claim else biz.get("placement"),
                     "evidence": {"first_issue": issue_date, "last_issue": issue_date,
                                  "copy_dates": []},
                     "contradicted_by": [], "opening_announced": [], "mentions": [],
@@ -597,7 +653,14 @@ def compile_gazetteer(files, identity, corpus, quiet=True):
                 # and the gazetteer held only the first. Readings collapse on (class,
                 # anchor) and carry their own dates: this is what each printing SAID and
                 # when, not a judgement about it. The judgement is `anchor_changes`.
-                record_reading(b, biz.get("placement") or {}, issue_date, key)
+                # ... AND A VENDOR'S IS NOT ONE OF THEM (T-0412). See VENDOR_ROLES
+                # above: the notice is kept, on `vendor_readings`, and it is not a
+                # reading of where this house stood.
+                if vendor_claim:
+                    record_vendor_reading(b, biz.get("placement") or {}, issue_date, key,
+                                          claim)
+                else:
+                    record_reading(b, biz.get("placement") or {}, issue_date, key)
                 b["evidence"]["first_issue"] = min(b["evidence"]["first_issue"], issue_date)
                 b["evidence"]["last_issue"] = max(b["evidence"]["last_issue"], issue_date)
                 for who in biz.get("proprietors", []):
@@ -917,6 +980,23 @@ def compile_gazetteer(files, identity, corpus, quiet=True):
         dst["opening_announced"].extend(src["opening_announced"])
         for reading in src["placement_readings"]:
             absorb_reading(dst, reading)
+        # T-0412's list travels with the rest of the evidence. A merge is what put the
+        # Lasalle-and-Lake house into P. Pruyne & Co. in the first place — the vendor
+        # notice minted `P. Pruyne` and T-0400 folded that record into the firm — so a
+        # merge that carried the mentions and dropped this would lose the very notice
+        # this ticket exists to keep.
+        for reading in src.get("vendor_readings") or []:
+            held = dst.setdefault("vendor_readings", [])
+            for r in held:
+                if reading_key(r["placement"]) == reading_key(reading["placement"]):
+                    r["first_issue"] = min(r["first_issue"], reading["first_issue"])
+                    r["last_issue"] = max(r["last_issue"], reading["last_issue"])
+                    for c in reading["claims"]:
+                        if c not in r["claims"]:
+                            r["claims"].append(c)
+                    break
+            else:
+                held.append(reading)
         for cd in src["evidence"]["copy_dates"]:
             if cd not in dst["evidence"]["copy_dates"]:
                 dst["evidence"]["copy_dates"].append(cd)
@@ -1548,6 +1628,36 @@ def record_reading(business, placement, issue_date, key):
                               "last_issue": issue_date, "claims": [key]})
 
 
+def record_vendor_reading(business, placement, issue_date, key, claim):
+    """What a VENDOR'S notice said, kept apart from where his own house stood (T-0412).
+
+    Same shape as a placement reading and deliberately not the same field, because the
+    two answer different questions and a reader who meets them in one list cannot tell
+    which is which. `describes` carries the paper's own words for the building, so the
+    entry says what was being sold and not merely that something was.
+    """
+    readings = business.setdefault("vendor_readings", [])
+    for r in readings:
+        if reading_key(r["placement"]) != reading_key(placement or {}):
+            continue
+        r["first_issue"] = min(r["first_issue"], issue_date)
+        r["last_issue"] = max(r["last_issue"], issue_date)
+        if key not in r["claims"]:
+            r["claims"].append(key)
+        return
+    readings.append({
+        "anchor": (placement or {}).get("anchor"),
+        "class": (placement or {}).get("class"),
+        "first_issue": issue_date, "last_issue": issue_date, "claims": [key],
+        "placement": placement or {},
+        "describes": (claim.get("business") or {}).get("address_text"),
+        "note": ("THE ADVERTISER SIGNS AS VENDOR, so this is the address of a building he "
+                 "offered for sale and not a reading of where his own house stood "
+                 "(T-0412). It is held here so the notice is not lost and cannot be "
+                 "mistaken for a frontage."),
+    })
+
+
 def placement_rank(placement):
     """How much of the ground a placement can actually put a storefront on."""
     order = list(reversed(PLACEMENT_CLASSES))          # none < street_only < relative < corner
@@ -1853,6 +1963,50 @@ def check(extracted=EXTRACTED, gazetteer=GAZETTEER, identity=IDENTITY, corpus=CO
         if not entry.get("mentions"):
             bad.append("%s has no mention — every entry is compiled FROM a claim, so an "
                        "entry with none cannot have come from one" % entry["id"])
+
+    # T-0412. THE ASSERTION AND THE SWEEP, and they are different things. The assertion
+    # is that no vendor's building notice reached a placement reading — a guard on the
+    # compile, which is where it could go wrong again. The sweep is the count the ticket
+    # asked for: how many business records rest on such a notice, and what sits next to
+    # them that this rule deliberately does not reach.
+    vendor_claims, adjacent = {}, []
+    for path, doc_ in ((f, load_json(f)) for f in files):
+        issue_id = doc_.get("issue_id")
+        for claim in doc_.get("claims", []):
+            key = claim_key(issue_id, claim)
+            biz = claim.get("business")
+            if not biz:
+                continue
+            roles = [e.get("role") for e in claim.get("entities", []) if e.get("role")]
+            if vendor_of_the_building(claim):
+                vendor_claims[key] = biz.get("name")
+            elif any(r in VENDOR_ROLES for r in roles):
+                adjacent.append((key, claim.get("kind"), biz.get("name"),
+                                 (biz.get("placement") or {}).get("class")))
+    placed_by_a_vendor = sorted(
+        (b["id"], key) for b in doc["businesses"]
+        for r in b.get("placement_readings", []) for key in r["claims"]
+        if key in vendor_claims)
+    for bid, key in placed_by_a_vendor:
+        bad.append("%s carries a placement reading minted by %s, which is a building its "
+                   "own advertiser signs as VENDOR — the address in it belongs to the "
+                   "house being sold, not to his stand (T-0412)" % (bid, key))
+
+    if not quiet:
+        held = [b for b in doc["businesses"] if b.get("vendor_readings")]
+        print("  ok    %d business record(s) rest on a `building` claim the advertiser "
+              "signs as vendor; %d reading(s) held apart as the address of a house for "
+              "sale and none of them placing a storefront"
+              % (len(held), sum(len(b["vendor_readings"]) for b in held)))
+        for b in held:
+            for r in b["vendor_readings"]:
+                print("          %s — %s (%s), %s"
+                      % (b["id"], r["anchor"], r["class"], ", ".join(r["claims"])))
+        print("        %d claim(s) sit NEXT to the rule and are deliberately outside it: "
+              "a vendor signing a claim that is not of kind `building` places his own "
+              "notice, whatever it sells" % len(adjacent))
+        for key, kind, name, cls in sorted(adjacent):
+            print("          %s — %s, kind %s, placement %s" % (key, name, kind, cls))
 
     if not quiet:
         state = "present" if Path(deposit).exists() else "absent (this branch has no deposit)"
@@ -2795,6 +2949,92 @@ def self_test():
                     quiet=True)
         if not any("is missing" in b for b in bad):
             failures.append("a missing gazetteer.json was not caught")
+
+    # T-0412 — A VENDOR'S BUILDING NOTICE PLACES NOTHING. Run against
+    # `compile_gazetteer` directly, because what has to be asserted is the compiled
+    # record: green is also what a rule that quietly stopped firing would look like.
+    # Four shapes, and only the first is refused — the intersection the rule is about.
+
+    def vendor_doc(kind, roles, name="Q. Vendor"):
+        return {"issue_id": early_id, "claims": [{
+            "id": "v001", "kind": kind, "reading": "transcription_mediated",
+            "entities": [{"as_printed": name, "normalized": name, "role": r}
+                         for r in roles],
+            "business": {"name": name, "trade": "timber merchant",
+                         "address_text": "the House on the corner of A and B streets",
+                         "placement": {"class": "corner", "anchor": "A and B streets"}},
+        }]}
+
+    def compile_one(doc):
+        with tempfile.TemporaryDirectory() as td:
+            ex = Path(td) / "extracted"
+            ex.mkdir()
+            (ex / ("%s.json" % doc["issue_id"])).write_text(
+                json.dumps(doc, ensure_ascii=False), encoding="utf-8")
+            out, probs = compile_gazetteer(sorted(ex.glob("*.json")), {"merges": []},
+                                           corpus_doc)
+        return out["businesses"][0], probs
+
+    def vendor_case(kind, roles, placed, label):
+        cases.append(label)
+        got, probs = compile_one(vendor_doc(kind, roles))
+        anchors = [r["anchor"] for r in got.get("placement_readings") or []]
+        vendors = [r["anchor"] for r in got.get("vendor_readings") or []]
+        if probs:
+            failures.append("%s: did not compile clean: %r" % (label, probs))
+        elif placed and "A and B streets" not in anchors:
+            failures.append("%s: the corner should be a placement reading, got %r"
+                            % (label, anchors))
+        elif placed and vendors:
+            failures.append("%s: held a vendor reading it should not have: %r"
+                            % (label, vendors))
+        elif not placed and "A and B streets" in anchors:
+            failures.append("%s: a vendor's corner reached the placement readings"
+                            % label)
+        elif not placed and vendors != ["A and B streets"]:
+            failures.append("%s: the notice was dropped instead of held apart: %r"
+                            % (label, vendors))
+        elif not placed and got.get("placement") is not None:
+            failures.append("%s: a vendor's notice minted a live placement: %r"
+                            % (label, got.get("placement")))
+
+    vendor_case("building", ["vendor"], False,
+                "a building offered for sale by its vendor")
+    vendor_case("building", ["proprietor"], True,
+                "a building claim signed by its occupant")
+    vendor_case("business", ["vendor"], True,
+                "a business claim signed by a vendor of something else")
+    vendor_case("building", ["vendor", "occupant"], True,
+                "a building notice naming the vendor AND the occupant")
+
+    # And the gate assertion itself, provoked the only way it can be: with the rule
+    # switched off, so a compiler that stopped applying it is caught by `--check` and
+    # not only by the cases above.
+    cases.append("the vendor rule switched off")
+    kept = globals()["VENDOR_ROLES"]
+    try:
+        globals()["VENDOR_ROLES"] = ()
+        with tempfile.TemporaryDirectory() as td:
+            ex = Path(td) / "extracted"
+            ex.mkdir()
+            d = vendor_doc("building", ["vendor"])
+            (ex / ("%s.json" % d["issue_id"])).write_text(
+                json.dumps(d, ensure_ascii=False), encoding="utf-8")
+            ip = Path(td) / "identity.json"
+            ip.write_text(json.dumps({"merges": []}), encoding="utf-8")
+            gz = Path(td) / "gazetteer.json"
+            out, _ = compile_gazetteer(sorted(ex.glob("*.json")), {"merges": []},
+                                       corpus_doc)
+            gz.write_text(dumps(out), encoding="utf-8")
+            globals()["VENDOR_ROLES"] = kept
+            bad = check(extracted=ex, gazetteer=gz, identity=ip, corpus=CORPUS,
+                        deposit=DEPOSIT, repo=REPO, coverage=Path(td) / "none.json",
+                        quiet=True)
+        if not any("signs as VENDOR" in b for b in bad):
+            failures.append("a placement reading minted by a vendor's building notice "
+                            "was not caught by the gate: %r" % bad)
+    finally:
+        globals()["VENDOR_ROLES"] = kept
 
     if failures:
         for f in failures:
