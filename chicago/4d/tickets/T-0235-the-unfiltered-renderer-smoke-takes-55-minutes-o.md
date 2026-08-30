@@ -1,7 +1,7 @@
 ---
 id: T-0235
 title: The unfiltered renderer smoke takes 55 minutes on the steward runner, and three tickets reason against a 30-minute cap
-state: open
+state: claimed
 epic: META
 requested_by: loop
 seen: false
@@ -11,7 +11,7 @@ parent: null
 opened: 2026-08-27
 closed: null
 pr: null
-claimed_by: null
+claimed_by: run 8/29/2026, 11:10:00 PM CT
 blocked_on: null
 needs_bake: false
 ---
