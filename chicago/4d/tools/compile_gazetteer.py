@@ -61,7 +61,11 @@ because the letter lists are full of families. A firm cannot be held to that —
 style routinely elides or misprints the forename it trades under, and one Wilson house is
 printed 'J. L.', 'Jno. L.', 'Jno. S.', 'Jno.' and bare 'L.' across eleven months — so what
 a firm is held to is its PARTNERS: the same set of surnames on both sides, with or without
-a rule, plus no street the papers contradict. AND THE PROPRIETORS ARE A THIRD PLACE
+a rule, plus no street the papers contradict. THE ONE LOOSENING (T-0340) is the style that
+names NO partner — a heading whose signature went with the woven half of the column —
+because an empty set is not a different partnership, only a printing that did not say; that
+escape is DECLARED in `firm_sign_names` and refused for any house a claim ever signed with a
+proprietor. AND THE PROPRIETORS ARE A THIRD PLACE
 AGAIN (T-0337): a partner's name on a business record is neither a gazetteer person nor a
 firm style, so until that ticket one man read two ways stood as two proprietors of his own
 house and nothing could see it. Two person-styled proprietors of ONE house sharing a
@@ -810,6 +814,46 @@ def compile_gazetteer(files, identity, corpus, quiet=True):
     # that guard has no escape, exactly as the person one has none. The second guard is
     # not about the name at all — two styles the papers put in different STREETS are not
     # one firm without a removal notice, and a removal notice is a claim, not a merge.
+    # THE SIGN-NAME DECLARATIONS (T-0340), read before the merges because the guard
+    # below runs on them. Each one splits a style verbatim into the partners it names
+    # and the shop-sign it carries, and both halves have to put the style back together
+    # exactly, so a declaration can neither invent a partner nor drop one. A style
+    # declared to name NO partner at all must also be one no claim ever signed with a
+    # proprietor: if a printing put a person's name to the house, the house names its
+    # partners and the ordinary guard is the one that applies to it.
+    signs, declared = {}, sign_name_index(identity)
+    for decl in identity.get("firm_sign_names", []):
+        style = decl.get("style")
+        partners, sign = (decl.get("partners") or ""), (decl.get("sign") or "")
+        label = "identity.json firm_sign_name %r" % style
+        if not style or not sign:
+            problems.append("%s: a sign-name declaration needs both `style` and `sign`"
+                            % label)
+            continue
+        if not (decl.get("note") or "").strip():
+            problems.append("%s: no note — an undeclared reason is a judgement nobody "
+                            "can check afterwards" % label)
+            continue
+        rebuilt = re.match(r"^%s[,\s]*%s$" % (re.escape(partners), re.escape(sign)), style)
+        if not rebuilt:
+            problems.append("%s: `partners` + `sign` (%r + %r) do not put the style back "
+                            "together verbatim — a split that loses or adds a word is a "
+                            "hand-edit of the name" % (label, partners, sign))
+            continue
+        if slug(style) not in businesses:
+            problems.append("%s: not a firm any claim carries — a sign-name declaration "
+                            "for a business that is not in the corpus is a declaration "
+                            "nobody can check" % label)
+            continue
+        if not partners and businesses[slug(style)]["proprietors"]:
+            problems.append("%s: declared to name no partner, but the claims sign it with "
+                            "%s — a printing that put a person to the house is a printing "
+                            "that names its partners"
+                            % (label, ", ".join(repr(x) for x in
+                                                businesses[slug(style)]["proprietors"])))
+            continue
+        signs[style] = declared[style]
+
     for rule in identity.get("firm_merges", []):
         into, frm = rule.get("into"), rule.get("from")
         why = (rule.get("merge_rule") or "").strip()
@@ -835,13 +879,23 @@ def compile_gazetteer(files, identity, corpus, quiet=True):
                             "business that is not in the corpus is a rule nobody can check"
                             % (label, ", ".join(repr(m) for m in missing)))
             continue
-        if firm_surnames(into) != firm_surnames(frm):
+        # THE PARTNER GUARD, and T-0340 is the one loosening it has ever had. Two styles
+        # that each NAME partners must name the same ones — a partnership is its partners
+        # and a changed one is a different house, which is what keeps 'Clark, Filer & Co.'
+        # and 'A. Filer & Co.' apart. Where one of them names NONE, there is nothing to
+        # compare and an empty set is not a contradiction: it is a printing that lost the
+        # signature, which is the commonest thing a segmenter does to an advertisement.
+        # Such a merge rests entirely on its stated rule, so the escape is not free — the
+        # style has to be DECLARED a sign-name above, and that declaration is refused for
+        # any house a claim ever signed with a proprietor.
+        into_names, frm_names = partner_surnames(into, signs), partner_surnames(frm, signs)
+        if into_names and frm_names and into_names != frm_names:
             problems.append("%s: the partner surnames differ (%s against %s) — this "
                             "project never merges those, with or without a rule, because "
                             "a partnership IS its partners and a changed one is a "
                             "different house"
-                            % (label, sorted(firm_surnames(into)) or "none",
-                               sorted(firm_surnames(frm)) or "none"))
+                            % (label, sorted(into_names) or "none",
+                               sorted(frm_names) or "none"))
             continue
         dst, src = businesses[a], businesses[b]
         if dst.get("street") and src.get("street") and \
@@ -1371,6 +1425,31 @@ def firm_surnames(name):
         if words:
             out.add(slug(words[-1]))
     return out
+
+
+def sign_name_index(identity):
+    """`identity.json`'s `firm_sign_names`, as {style: the partner half of that style}.
+
+    A SIGN-NAME is the shop's own name over its door — 'Chicago Wholesale and Retail Book
+    & Stationary Store' — and `firm_style` cannot see one, because the heuristic it runs
+    on is that partners are capitalised and trades are not, and a sign-name is a
+    capitalised trade. Left alone, `firm_surnames` reads 'Book', 'Store' and 'Wholesale'
+    as three partners and the guard then reports partner surnames that no printing ever
+    carried. So the split is DECLARED, next to the merges it governs, and checked below.
+    """
+    return {d.get("style"): (d.get("partners") or "")
+            for d in identity.get("firm_sign_names", []) if d.get("style")}
+
+
+def partner_surnames(name, signs):
+    """The partner surnames a style states, with any declared sign-name taken off it.
+
+    'Russell & Clift, Chicago Book and Stationary Store' → {'clift', 'russell'}, because
+    the declaration says the partner half is 'Russell & Clift'. A style declared to be a
+    sign-name and nothing else states NO partner and returns the empty set — which is not
+    a different partnership, only a printing that did not name one (see the guard).
+    """
+    return firm_surnames(signs.get(name, name)) if signs.get(name, name) else set()
 
 
 # --------------------------------------------------------------------------
@@ -2115,6 +2194,54 @@ def self_test():
                       firm_rule(i, "L. Wilson & Co.", "Jno. Wilson & Co."),
                       firm_refusal(i, "L. Wilson & Co.", "Jno. Wilson & Co.")),
         "cannot both join and hold apart", "a pair both merged and refused")
+
+    # THE SIGN-NAME ESCAPE AND ITS NEGATIVE CASES (T-0340). The guard above lets a style
+    # that names NO partner merge into one that does; everything here is the price of
+    # that, because a loosening nobody can fire is a loosening nobody can trust. The
+    # FIRST case is the one that matters most: undeclared, a headline-only style is still
+    # refused, so the escape cannot be taken by accident or by silence.
+    def sign_decl(i, style, partners, sign, note="the self-test's own declaration"):
+        i.setdefault("firm_sign_names", []).append(
+            {"style": style, "partners": partners, "sign": sign, "note": note})
+
+    run(lambda d, i: (variant(d, "Chicago Book and Stationary Store", proprietors=[]),
+                      firm_rule(i, "L. Wilson & Co.", "Chicago Book and Stationary Store")),
+        "the partner surnames differ",
+        "a headline-only style merged with no sign-name declared")
+    run(lambda d, i: (variant(d, "Chicago Book and Stationary Store", proprietors=[]),
+                      sign_decl(i, "Chicago Book and Stationary Store", "",
+                                "Chicago Book and Stationary Store"),
+                      firm_rule(i, "L. Wilson & Co.", "Chicago Book and Stationary Store")),
+        None, "a declared sign-name merged into the style that names the partners")
+    run(lambda d, i: (variant(d, "Chicago Book and Stationary Store",
+                              proprietors=["Ezekiel Book"]),
+                      sign_decl(i, "Chicago Book and Stationary Store", "",
+                                "Chicago Book and Stationary Store"),
+                      firm_rule(i, "L. Wilson & Co.", "Chicago Book and Stationary Store")),
+        "the claims sign it with",
+        "a house declared to name no partner that a printing signs with one")
+    run(lambda d, i: (variant(d, "Chicago Book and Stationary Store", proprietors=[]),
+                      sign_decl(i, "Chicago Book and Stationary Store", "",
+                                "Chicago Book Store")),
+        "put the style back together verbatim",
+        "a sign-name split that quietly drops a word of the style")
+    run(lambda d, i: sign_decl(i, "Nobody & Co., Chicago Book Store", "Nobody & Co.",
+                               "Chicago Book Store"),
+        "a business that is not in the corpus",
+        "a sign-name declaration for a house nobody claimed")
+    run(lambda d, i: (variant(d, "Chicago Book and Stationary Store", proprietors=[]),
+                      i.setdefault("firm_sign_names", []).append(
+                          {"style": "Chicago Book and Stationary Store", "partners": "",
+                           "sign": "Chicago Book and Stationary Store"})),
+        "no note", "a sign-name declaration with no stated reason")
+    # And a declaration cannot FORCE a merge: split the style honestly and the partners
+    # it does name are compared exactly as before.
+    run(lambda d, i: (variant(d, "Goss & Cobb, Chicago Book Store", proprietors=[]),
+                      sign_decl(i, "Goss & Cobb, Chicago Book Store", "Goss & Cobb",
+                                "Chicago Book Store"),
+                      firm_rule(i, "L. Wilson & Co.", "Goss & Cobb, Chicago Book Store")),
+        "the partner surnames differ",
+        "a sign-name declaration used to smuggle two other partners in")
 
     # THE PROPRIETORS' HALF (T-0337). Every case is the shape the Russell & Clift pair
     # actually had: two readings of one house's partner, sitting in one `proprietors`

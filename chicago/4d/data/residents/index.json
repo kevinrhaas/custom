@@ -131,14 +131,14 @@
   ]
  },
  "counts": {
-  "households": 206,
-  "persons": 242,
+  "households": 208,
+  "persons": 244,
   "by_grade": {
-   "attested": 109,
+   "attested": 111,
    "inferred": 25,
    "reconstructed": 108
   },
-  "letter_list_only": 13
+  "letter_list_only": 15
  },
  "households": [
   {
@@ -2429,6 +2429,20 @@
    "review_required": false
   },
   {
+   "id": "hh_ll_john_thompson",
+   "file": "households/hh_ll_john_thompson.json",
+   "head": "ll_john_thompson",
+   "division": "unplaced",
+   "persons": 1,
+   "grades": {
+    "attested": 1
+   },
+   "lives_at": null,
+   "works_at": null,
+   "present_on_scene_date": "uncertain",
+   "review_required": false
+  },
+  {
    "id": "hh_ll_lucas_robert",
    "file": "households/hh_ll_lucas_robert.json",
    "head": "ll_lucas_robert",
@@ -2530,6 +2544,20 @@
    "id": "hh_ll_stephen_mack",
    "file": "households/hh_ll_stephen_mack.json",
    "head": "ll_stephen_mack",
+   "division": "unplaced",
+   "persons": 1,
+   "grades": {
+    "attested": 1
+   },
+   "lives_at": null,
+   "works_at": null,
+   "present_on_scene_date": "uncertain",
+   "review_required": false
+  },
+  {
+   "id": "hh_ll_thomas_conger",
+   "file": "households/hh_ll_thomas_conger.json",
+   "head": "ll_thomas_conger",
    "division": "unplaced",
    "persons": 1,
    "grades": {

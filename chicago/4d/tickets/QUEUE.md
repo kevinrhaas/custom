@@ -41,7 +41,6 @@
 # --- seeding SPEND the gazetteer: a firm minted twice, a surname that can never join its
 # --- forename, or a tavern minted as a person becomes a wrong building once seeded.
 # --- Cheap (mostly S/XS) and each one makes the seeding below more accurate.
-T-0340 — The bookseller's sign-name and its partners' firm-name are three gazetteer entries for one house
 
 # --- THE NEWSPAPER STREAM (b) THE POLICY THAT DECIDES HOW MUCH TOWN THE PAPERS REACH.
 # --- T-0354 shipped in #551 on 2026-08-29: the owner's ruling — a street-only
@@ -60,7 +59,6 @@ T-0375 — Every reconstructed roof on South Water Street is a labourer's, so fi
 # --- opened that live outside the repository. Workable the day the images are supplied;
 # --- until then a run should take something above instead.
 T-0318 — The January 1834 letter list: the third printing repairs the A-H half, and the images are needed only for the rest
-T-0331 — The March 1834 letter list lost its date line and both its crops failed Vision; the page images can say which return it is
 T-0305 — Four readings the American contradicts itself on need the page images: the tailor's street, which Water street two forwarding houses stood in, and the corner of Cobb's saddlery
 
 # --- THE TOWN GROWS AGAIN — UNBLOCKED BY THE OWNER, 2026-08-29. T-0365 measured that
@@ -68,10 +66,13 @@ T-0305 — Four readings the American contradicts itself on need the page images
 # --- headroom was gated on T-0009 or T-0183, both blocked-owner. Both are now answered
 # --- (the rulings are written into the tickets), which frees ~20 roofs on four South Water
 # --- blocks and 27 more on blk_south_water_market — the largest visible win available.
-T-0183 — The Market and South Water corner needs one control point, and the node rule may not be able to make it
+# --- AND THE 27 ARE NOT THERE, measured 2026-08-30 by T-0183 (PR #573): closing South
+# --- Water's west end onto Market emits blk_south_water_market as a bowtie, and carried as
+# --- far north as the committed waterline allows the block has 2.8 m of depth at Market
+# --- against the 24.384 m one platted lot fronts. It is a wedge the South Branch pinches
+# --- out, and T-0183 is back with the owner on what to do with it. The ~20 roofs T-0009
+# --- freed are unaffected.
 T-0365 — The anonymous-block programme has no unblocked ground left: every block with headroom is on the South Water reach T-0009 holds open
-T-0372 — North Water Street's two tight spots are 5.5 m and 8.5 m from water, and the setback rule cannot see either
-T-0274 — The inferred-household parcel's form values come from the archetype and cite the family band: 8 families, 10 claims outside it
 
 # --- THE RUNS CANNOT PROVE THEMSELVES — invisible, and it blocks the EVIDENCE every
 # --- visible ticket owes. T-0346 is the sharp one: desktop stage 4 no longer fits the
@@ -172,4 +173,7 @@ T-0421 — Canal Street's three control points spread 2.33 m, so its corridor ca
 T-0422 — The widened counterfactual deals a roof per street, and every roof a widening adds already fronts another street
 T-0418 — The 36 documented tradespeople whose trade the residents vocabulary has no word for
 T-0423 — G. Spring's large dwelling-house and fine well stands on lot 7 of block 16, where an anonymous roof stands now
-T-0424 — The 1 April 1834 letter list has three positions no printing reads, and only the page images can say how long it was
+T-0398 — A firm's own style stands in its proprietor list, because a claim read the signature where a person was wanted
+T-0424 — The 1 January 1834 letter list's printed length, and the names all nine printings lost, need the page images
+T-0425 — A letter-list household's arrival bound is dated by the printing it was extracted from, not by the return, so nine printings of one list give nine different bounds
+T-0428 — The 1 April 1834 letter list has three positions no printing reads, and only the page images can say how long it was

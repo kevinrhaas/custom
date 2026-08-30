@@ -50,6 +50,33 @@ CONFIDENCE_VALUE = {"attested": 0.0, "inferred": 0.5, "reconstructed": 1.0}
 # refuses it loudly rather than quietly substituting a gable.
 LOG_ROOF_TYPES = ("gable", "shed")
 
+# The eave band this archetype will actually BUILD at a storey count, in metres.
+#
+# NAMED HERE rather than left as bare numbers inside `validate()` (T-0274, following
+# the shape T-0142 gave `frame_dwelling`) because a reconstruction sampler has to draw
+# an eave this archetype can carry, and until now it could not ask: `family_bands`
+# read the absence of this table as "no storey-dependent limit", which was true of
+# `outbuilding` and false here. The cost was measurable — the inferred-household
+# programme pairs H1 with this archetype, H1's authored eave band is 11-13 ft, and a
+# uniform draw across it put 227 walls in four hundred above the one-storey limit and
+# the build refused every one.
+#
+# The numbers are exactly the ones `validate()` enforces and are not re-argued here:
+# 1.8-7 m overall, and a one-storey record capped at 3.6 m because more than that is
+# two storeys' worth of wall. Asking the archetype is the rule; retyping its limit
+# into tools/ is the fault `tools/family_bands.py` exists to end.
+WALL_HEIGHT_M = {1.0: (1.8, 3.6), 2.0: (1.8, 7.0)}
+
+
+def wall_height_band_m(stories: float) -> tuple[float, float]:
+    """The eave band this archetype will build at a storey count.
+
+    Read by `tools/family_bands.eave_limits`. A storey count this archetype refuses
+    outright raises here rather than returning a band, so a caller cannot sample its
+    way past `validate()`.
+    """
+    return WALL_HEIGHT_M[float(stories)]
+
 # How a signboard is displayed. `bracket` is an arm off the wall; `sapling_pole` is
 # a slender trunk set in the ground with a cross-arm at its head, which is what the
 # Wolf Point sources describe and what its engraving draws. See `sign_mount`.

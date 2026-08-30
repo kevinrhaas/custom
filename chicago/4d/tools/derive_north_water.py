@@ -86,6 +86,43 @@ SETBACK_M along the bank, and looking across the crossing with it would be wrong
 E +190 the funnel and the slough are one water run reaching N +165, and an offset that
 saw it would push the street up the slough instead of over it.
 
+THE TWO ENDS ARE EXEMPT FROM THE SETBACK, AND THE REST OF THE STREET IS GATED ON IT
+-- T-0372. The clearance report above measures the drawn centreline against the water
+mask in every direction, and it reads two figures far under the half module: 5.50 m at
+the west terminus on the North Branch, and 8.50 m at the slough crossing's east
+abutment. T-0372 asked which of three those are, and the answer is the first: the
+street ended AT the fork and ON a bridgehead, and both are places where a town street
+meets water on purpose rather than places where the setback failed. The other two were
+refused with numbers:
+
+  * RAISING THE REQUIREMENT ON THE WATER MASK -- `nearest_water(e, n) >= SETBACK_M`,
+    which would see the branch and the bay as well as the main stem -- cannot be
+    satisfied at a crossing. Measured here: to stand a half module off the water at the
+    deck's east end the street would have to be 25.5 m north of it at E +196, and 15.0 m
+    north at E +200. The deck is at N +157.5. That is not an approach to a bridge, it is
+    a street that never reaches one, and T-0254 already ruled the street arrives AT the
+    abutment. A bridgehead is next to water by construction; a setback is the wrong
+    instrument to point at one.
+  * RETREATING THE TERMINUS EAST until the branch is a half module off costs 11.0 m of
+    centreline and lands the street's end at E -20, where nothing is. E_WEST_END is at
+    the fork because that is where the street ended; moving it buys 6.7 m of clearance
+    by making the terminus arbitrary instead of sourced.
+
+So the exemption is written down, BOUNDED, and gated at its own floor rather than the
+whole street being loosened to 5 m -- a flat 5 m gate would stop testing the 96 per cent
+of this street where the half module is the actual requirement, and the open reach
+measures 12.00 m. Two tiers instead:
+
+  * THE OPEN REACH holds CLEARANCE_FLOOR_M = 11.5 m, which is the half module less the
+    fit's own BELOW_M give. Measured minimum today 12.00 m.
+  * THE TWO ENDS hold END_FLOOR_M = 5.0 m, and they are named windows, not a tolerance:
+    the last TERMINUS_EXEMPT_M of the street at the branch, and APPROACH_EXEMPT_M either
+    side of the deck's span. Measured minima 5.50 m at the terminus, 9.00 m and 8.50 m
+    on the crossing's two approaches. Together the windows are 32 m of 1175.8 m.
+
+`--gate` enforces both tiers, so a future derivation that lets the street drift toward
+the water anywhere else is refused, and one that walks either end further in is too.
+
     tools/derive_north_water.py            print the derivation
     tools/derive_north_water.py --write    write it into data/streets/1835.json
     tools/derive_north_water.py --gate     exit 1 if the committed line is not this one
@@ -126,6 +163,15 @@ CROSSING = "north_water_slough_crossing"
 # one 5 m step, so the setback rule has nothing to read. The street ends where the
 # street ended -- at the branch.
 E_WEST_END = -30.0
+
+# THE CLEARANCE RULE AND ITS TWO EXEMPT ENDS -- T-0372; the reasoning is in the module
+# docstring, THE TWO ENDS ARE EXEMPT. The floors are measured figures with margin, not
+# tuned ones: the open reach reads 12.00 m today and the tightest end 5.50 m.
+CLEARANCE_FLOOR_M = 11.5     # the open reach: the half module less the fit's BELOW_M
+END_FLOOR_M = 5.0            # the terminus and the bridgeheads, where the street meets water
+TERMINUS_EXEMPT_M = 10.0     # how far east of E_WEST_END the terminus window reaches
+APPROACH_EXEMPT_M = 10.0     # how far either side of the deck the approach windows reach
+CLEARANCE_STEP_M = 2.0       # how finely the drawn centreline is probed for the gate
 
 
 def load_field():
@@ -417,6 +463,32 @@ def report(path, st, is_water):
         print("    %s: %.2f m .. %.2f m" % (
             (label,) + perpendicular_clearance(path, is_water, w_end, e_end,
                                                lo_e, hi_e)))
+    # THE TWO-TIER CLEARANCE RULE -- T-0372. Reported per tier as well as per reach,
+    # because the per-reach minima are the two exempt ends and they hide what the rest
+    # of the street holds: west of the slough reads 5.50 m and 9.00 m of it is the last
+    # eight metres at the fork.
+    tiers = {}
+    for e, n, where in clearance_probes(path, w_end, e_end):
+        tier = where or "the open reach"
+        d = nearest_water(is_water, e, n)
+        lo, hi, count = tiers.get(tier, (999.0, 0.0, 0))
+        tiers[tier] = (min(lo, d), max(hi, d), count + 1)
+    print("  the clearance rule (T-0372): the open reach owes %.1f m, the two ends %.1f m"
+          % (CLEARANCE_FLOOR_M, END_FLOOR_M))
+    for tier in ("the open reach", "the west terminus at the North Branch",
+                 "the slough crossing's approaches"):
+        if tier not in tiers:
+            continue
+        lo, _hi, count = tiers[tier]
+        floor = CLEARANCE_FLOOR_M if tier == "the open reach" else END_FLOOR_M
+        print("    %-38s %5.2f m minimum over %3d probe(s), floor %.1f m"
+              % (tier, lo, count, floor))
+    breaches = clearance_gate(path, is_water)
+    print("    exempt because the street MEETS the water there on purpose: it ends at "
+          "the fork (T-0226) and is anchored on the crossing's abutments (T-0254); a "
+          "half-module setback at the deck's east end would stand the street 15.0 m "
+          "north of it and never reach the bridge")
+    print("    breaches: %s" % ("none" if not breaches else "%d" % len(breaches)))
     _w, _e, n_deck = w_end, e_end, deck()[2]
     dry_edges = [q for q in edge_probes(path)
                  if not (w_end - 4.0 <= q[0] <= e_end + 4.0) and is_water(*q)]
@@ -464,6 +536,73 @@ def perpendicular_clearance(path, is_water, w_end, e_end, e_from=None, e_to=None
     return lo, hi
 
 
+def end_exemption(e, w_end, e_end):
+    """Which of T-0372's two exempt ends this easting belongs to, or None.
+
+    The windows are named places rather than a tolerance, and they are bounded: the
+    street's last run down to the fork, and the ground either side of the crossing's
+    deck where the line is anchored on the abutments instead of on the setback.
+    """
+    if e <= E_WEST_END + TERMINUS_EXEMPT_M:
+        return "the west terminus at the North Branch"
+    if w_end - APPROACH_EXEMPT_M <= e <= e_end + APPROACH_EXEMPT_M:
+        return "the slough crossing's approaches"
+    return None
+
+
+def clearance_short_of(is_water, e, n, floor, step=0.5):
+    """The distance to water if it is UNDER `floor`, else None.
+
+    `nearest_water` with an early exit at the floor, and the reason for the second
+    function is cost: the gate asks a yes-or-no question of 587 probes, and the honest
+    answer for most of them is "further than 80 m", which the full search pays for one
+    ring at a time. Bounded at the floor it is the same walk stopped where the answer
+    stops mattering.
+    """
+    r = step
+    while r <= floor + 1e-9:
+        count = max(8, int(2 * math.pi * r / step))
+        for k in range(count):
+            a = 2 * math.pi * k / count
+            if is_water(e + math.cos(a) * r, n + math.sin(a) * r):
+                return r
+        r += step
+    return None
+
+
+def clearance_probes(path, w_end, e_end, step=CLEARANCE_STEP_M):
+    """Every probe on the drawn centreline off the deck's own span, with its tier."""
+    for i in range(len(path) - 1):
+        e0, n0 = path[i]
+        e1, n1 = path[i + 1]
+        length = math.hypot(e1 - e0, n1 - n0)
+        if length < 1e-9:
+            continue
+        for k in range(int(length / step) + 1):
+            t = k * step / length
+            e, n = e0 + (e1 - e0) * t, n0 + (n1 - n0) * t
+            if w_end - 4.0 <= e <= e_end + 4.0:
+                continue          # the deck's own reach; the crossing owns that water
+            yield e, n, end_exemption(e, w_end, e_end)
+
+
+def clearance_gate(path, is_water):
+    """T-0372's two-tier clearance rule, as a list of breaches.
+
+    The open reach owes CLEARANCE_FLOOR_M and the two named ends owe END_FLOOR_M. A
+    breach is returned as (easting, northing, distance, floor, tier) so the caller can
+    say which rule was broken and where, rather than only that something was.
+    """
+    w_end, e_end, _n_deck = deck()
+    bad = []
+    for e, n, where in clearance_probes(path, w_end, e_end):
+        floor = END_FLOOR_M if where else CLEARANCE_FLOOR_M
+        d = clearance_short_of(is_water, e, n, floor)
+        if d is not None:
+            bad.append((e, n, d, floor, where or "the open reach"))
+    return bad
+
+
 def nearest_water(is_water, e, n, limit=80.0, step=0.5):
     """Distance from (e, n) to the closest wet cell in ANY direction, or `limit`."""
     r = step
@@ -502,11 +641,89 @@ def edge_probes(path, half=3.0, step=1.0):
     return out
 
 
+def self_test():
+    """Every way T-0372's clearance rule could fail to bite, made to bite.
+
+    A gate that has never been seen to refuse anything is a comment. Three of these
+    walk a stretch of the committed line toward the water until its own tier's floor is
+    broken; the fourth is the one that matters most, because it proves the two
+    exemptions are LOAD-BEARING rather than decorative -- the committed terminus and
+    abutment probes are under the open reach's floor and would be refused without them.
+    """
+    is_water = load_field()
+    path, _st, _iw = derive()
+    w_end, e_end, _n = deck()
+    cases = 0
+    fails = []
+
+    def south(seg, drop):
+        return [[e, n - drop] for e, n in seg]
+
+    def bites(seg, label, limit=20.0):
+        nonlocal cases
+        cases += 1
+        for drop in range(1, int(limit) + 1):
+            if clearance_gate(south(seg, float(drop)), is_water):
+                print("  fires: %s, %d m toward the water" % (label, drop))
+                return
+        fails.append("%s never refused within %g m of the water" % (label, limit))
+
+    # 1-3. Each tier refuses its own stretch walked toward the water.
+    bites([[375.0, 121.6], [410.0, 118.1]], "the open reach walked south")
+    bites([[-30.0, 45.2], [-25.0, 44.2]], "the west terminus walked south")
+    bites([[200.0, 156.9], [230.0, 141.3]], "the crossing's east approach walked south")
+
+    # 4. The exemptions are load-bearing: the committed line's own end probes are
+    # UNDER the open reach's floor, so without the two windows this gate would refuse
+    # the line it is committed to hold.
+    cases += 1
+    exempt_under_open = [
+        (e, n, where) for e, n, where in clearance_probes(path, w_end, e_end)
+        if where and clearance_short_of(is_water, e, n, CLEARANCE_FLOOR_M) is not None
+    ]
+    if exempt_under_open:
+        print("  fires: %d exempt probe(s) are under the open reach's %.1f m floor, so "
+              "the two windows are what let the committed line stand"
+              % (len(exempt_under_open), CLEARANCE_FLOOR_M))
+    else:
+        fails.append("no exempt probe is under the open floor, so the windows are "
+                     "exempting nothing and the rule is one tier pretending to be two")
+
+    # 5. The windows are BOUNDED -- a metre past either edge is open reach again.
+    cases += 1
+    edges = [
+        (E_WEST_END + TERMINUS_EXEMPT_M - 1.0, "the west terminus at the North Branch"),
+        (E_WEST_END + TERMINUS_EXEMPT_M + 1.0, None),
+        (w_end - APPROACH_EXEMPT_M + 1.0, "the slough crossing's approaches"),
+        (w_end - APPROACH_EXEMPT_M - 1.0, None),
+        (e_end + APPROACH_EXEMPT_M - 1.0, "the slough crossing's approaches"),
+        (e_end + APPROACH_EXEMPT_M + 1.0, None),
+    ]
+    wrong = [(e, want, end_exemption(e, w_end, e_end))
+             for e, want in edges if end_exemption(e, w_end, e_end) != want]
+    if wrong:
+        fails.append("the exempt windows do not end where they say: %s" % (wrong,))
+    else:
+        print("  ok:    both windows end where they are declared to (6 edge cases)")
+
+    if fails:
+        for f in fails:
+            print("SELF-TEST FAIL: %s" % f)
+        return 1
+    print("SELF-TEST PASS — the clearance rule refuses every tier, and its two "
+          "exemptions are the ones holding the committed line up (%d cases)" % cases)
+    return 0
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--write", action="store_true")
     ap.add_argument("--gate", action="store_true")
+    ap.add_argument("--self-test", action="store_true")
     args = ap.parse_args()
+
+    if args.self_test:
+        return self_test()
 
     path, st, is_water = derive()
     doc = json.loads(STREETS.read_text())
@@ -529,8 +746,23 @@ def main():
             print("north_water's bends in water are %s; the only one allowed is the "
                   "crossing's, at %s" % (wet, expect))
             return 1
+        # T-0372's two-tier clearance rule. The open reach owes the half module less
+        # the fit's give; the terminus and the crossing's approaches owe END_FLOOR_M,
+        # because a street that ends at a fork and crosses on a deck meets the water at
+        # both on purpose. See the module docstring, THE TWO ENDS ARE EXEMPT.
+        breaches = clearance_gate(path, is_water)
+        if breaches:
+            print("north_water's drawn centreline is closer to water than its own rule "
+                  "allows, at %d probe(s):" % len(breaches))
+            for e, n, d, floor, tier in breaches[:8]:
+                print("  E %+.1f N %.1f  %.2f m from water, %s owes %.1f m"
+                      % (e, n, d, tier, floor))
+            return 1
         print("north_water: derived line committed, %d bends, one in water and it is "
               "%s's deck midpoint" % (len(committed), CROSSING))
+        print("  clearance: the open reach clears %.1f m, and the two ends %.1f m -- "
+              "the terminus at the fork and the crossing's approaches (T-0372)"
+              % (CLEARANCE_FLOOR_M, END_FLOOR_M))
         return 0
 
     report(path, st, is_water)

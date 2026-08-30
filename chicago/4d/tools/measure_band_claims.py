@@ -15,19 +15,27 @@ counted 40 eaves outside their band on the way past. This tool asks K25's questi
 a machine-readable band for**: footprint, eave, roof pitch, storeys-and-loft, roof
 form. Both layers, 249 records.
 
-## The root cause, and it is one line
+## The root cause, and it is one line — REPAIRED IN ALL FOUR PARCELS AS OF T-0274
+
+Read the next three paragraphs in the past tense. The fault they describe was taken
+out of the platted-block parcel by T-0144 and T-0145, out of the West approaches by
+T-0272, out of the South infill by T-0273, and out of the inferred-household parcel —
+the one quoted below, and the last of the four — by T-0274 on 2026-08-30. All four now
+draw the eave and the pitch from the family's own authored band through
+`tools/family_bands.py`, bounded at both ends by limits ASKED of the archetype. The
+census below is what remains after that: 5 offenders, none of them an eave or a pitch.
 
 `inferred_form()` in `tools/generate_inferred_households.py` — and the anonymous
-generators alongside it — select every form value from the **archetype**, consulting
+generators alongside it — selected every form value from the **archetype**, consulting
 the family only for a handful of named special cases:
 
     wall = 3.42 if door == "wagon" else (2.75 if door == "stable" else 2.05)
     ...
     "roof_pitch_deg": a(18.0 if roof == "shed" else 32.0),
 
-The note attached to that value cites the **family**. So `outbuilding` hands out a
-2.05 m wall whether the family band asks for 7-8 ft (D2, a hair under) or 9-18 ft (W4,
-out by a third of the band's floor), and every archetype constant lands on a dozen
+The note attached to that value cites the **family**. So `outbuilding` handed out a
+2.05 m wall whether the family band asked for 7-8 ft (D2, a hair under) or 9-18 ft (W4,
+out by a third of the band's floor), and every archetype constant landed on a dozen
 families at once. That is why the offenders come in bands of identical values rather
 than scattered: 6.73 ft appears on D2, A5 and W4 alike because it is 2.05 m, and
 2.05 m is what the outbuilding archetype builds.

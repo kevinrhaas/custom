@@ -293,6 +293,43 @@ Democrat's.
 
 **Nor does the Democrat carry one every month.** July 1834 (T-0289) and September 1834 (T-0291) were both swept for every form of the heading — *list of letters*, *letters remaining*, *remaining in the post office*, *uncalled for*, a signature ending *P. M.*, and the bare words *letter*, *postmaster* and *list* — and September's four issues carry none. The month's post-office matter is a reprinted Senate report, a Cumberland postmaster's letter about mail robbers, the Postmaster General's own Chicago-to-Green-Bay proposals (extracted as `infrastructure`) and a want-advertisement routing replies through the office. So the letter-list ruling has nothing to bite on there either, and `coverage.json` records the sweep rather than the silence — an absence a pass has looked for is evidence, an absence nobody looked for is a hole.
 
+**A LETTER LIST IS STANDING TYPE, SO COUNT ITS PRINTINGS BEFORE YOU DATE IT (T-0331).**
+The rule two sections above — count the printings before you send for the images — was
+written about advertising and it holds harder for a quarterly return, because a return
+runs unchanged until its letters go to the dead-letter office. The Chicago post office's
+**1 January 1834** return stands in **every Democrat from Vol. I No. 7 of 1834-01-07 to
+No. 15 of 1834-03-04, nine weeks unbroken**. The sweep this file used to record found
+FOUR lists in T-0258's thirty issues; there are nine Chicago printings of this one return
+alone, and the reason the sweep missed five of them is that it searched for the HEADING:
+four of the nine headings are cut in half by the segmenter, illegible, or in a different
+crop from the names they head. `tools/letter_list_printings.py` holds the nine, each with
+the line its fingerprint stands on, and re-derives them.
+
+Three things follow, and each has cost a run already.
+
+- **DATE A LIST BY ITS CONCORDANT PRINTINGS, NOT BY THE ISSUE IT SITS IN.** The
+  1834-03-04 crop keeps `34.` of its date line and nothing else, and T-0312 reasonably
+  floated a 1 March quarterly return. It is January's. Four printings set the line whole
+  or nearly — `go, Ill. January [1,] 1834.` at No. 7 line 645 is the plainest.
+- **A LATER PRINTING IS NOT A SECOND COHORT.** T-0299's rule that one list mints once is
+  a rule about the RETURN, not about the issue: nine printings of the 1 January 1834
+  return are one list, and minting the ninth as a fresh 1834 cohort would have put the
+  same men in the town twice.
+- **THE CONCORDANCE REPAIRS THE DAMAGE THE IMAGES WERE ASKED FOR.** Every printing is
+  cut in a different place, so the forename one crop loses another sets. Match on the
+  SURNAME — the part the damaged crop states plainly — and complete a forename only where
+  two or more PRINTINGS agree; twenty-five of fifty-seven cut readings on 1834-03-04 were
+  repaired that way and none of them needed a scan. Two guards make it safe, and both were
+  put in after the loose version proposed `Thomas Bonnet` for `[…]as Bennett`: the fold
+  closes only the confusions the scans actually make, and **a surname standing TWICE in
+  one list is never completed** — two Bennetts, two Miners, two Temples and two Tullers
+  stand in this return, and a crop that lost both forenames cannot say which line is which.
+
+**A SECOND OFFICE'S RETURN RUNS IN THE SAME WEEKS.** Hennepin's 1 January 1834 list is
+printed alongside Chicago's at No. 9 line 937 and No. 10 line 957, and a sweep that
+matches on `REMAINING in the Post-Office` alone will fold the two towns together. Resolve
+the office off the heading's own tail before minting a name.
+
 **`[…]` marks absence, `[word]` marks a supply.** Text the column edge cut away is a gap,
 not an invitation. The worked fixture leaves *'a few doors below'* unsupplied for exactly
 that reason and says where a fuller witness might be found.

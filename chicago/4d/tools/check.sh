@@ -91,6 +91,14 @@ step "every clapboard wall's stock re-derives from its deal" \
 step "the platted block and lot grid re-derives from the module" \
   python3 tools/generate_plat_lots.py --check
 
+# And the grid's own refusals still fire. The one that matters is the youngest: four
+# crossings can be found and still describe no block, because two committed centrelines
+# can converge to less than a corridor apart before they get there. Measured 2026-08-29
+# by T-0183 on the closure the owner ruled for at Market x South Water, which emitted a
+# 4,411 m2 bowtie with a plausible depth rather than refusing.
+step "…and a block whose rows have crossed is refused rather than emitted" \
+  python3 tools/generate_plat_lots.py --self-test
+
 # The dooryard garden pickets are the first record on the enclosure layer whose evidence
 # is a TREATMENT and not a place — the Kinzie-view plate shows picket-fenced garden plots
 # and no source puts a garden on any lot in this town. So the answer to "why this lot" is
@@ -397,6 +405,16 @@ step "…and its absolute assertion still fires when a generated roof is put in 
 # so a bank that moves under the street is a red build rather than a silent hole.
 step "north water street is still the line its own derivation produces, and still dry" \
   python3 tools/derive_north_water.py --gate
+
+# T-0372. "Still dry" was a weaker question than it sounded: the gate above asks whether
+# any BEND stands in water, and a street can hug a bank for a hundred metres without
+# putting a vertex in it. The derivation now carries a clearance rule with two tiers —
+# the open reach owes the half module less the fit's own give, and the two ends, where
+# the street meets the water on purpose (it stops at the fork and crosses on a deck),
+# owe five metres. This is the proof the rule refuses each tier, and that the two
+# exemptions are load-bearing rather than a way of saying nothing.
+step "…and its own assertions still fire when broken" \
+  python3 tools/derive_north_water.py --self-test
 
 step "a block face carries one street line, across every generator that builds on it" \
   python3 tools/measure_street_line.py --gate --quiet
