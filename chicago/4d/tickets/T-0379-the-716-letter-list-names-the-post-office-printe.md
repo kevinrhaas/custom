@@ -1,7 +1,7 @@
 ---
 id: T-0379
 title: The letter-list names the post office printed in a single return, and the change of scale they put to the town
-state: open
+state: claimed
 epic: PAPERS
 requested_by: owner
 seen: false
@@ -11,7 +11,7 @@ parent: T-0374
 opened: 2026-08-29
 closed: null
 pr: null
-claimed_by: run 8/29/2026, 4:26:41 PM CT
+claimed_by: run 8/30/2026, 1:52:59 AM CT
 blocked_on: null
 needs_bake: false
 ---

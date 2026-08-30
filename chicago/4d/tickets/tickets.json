@@ -1,6 +1,6 @@
 {
   "project": "chicago-4d",
-  "generated_ct": "Aug 30, 2026, 1:36 AM",
+  "generated_ct": "Aug 30, 2026, 2:12 AM",
   "tickets": [
     {
       "id": "T-0001",
@@ -6212,7 +6212,7 @@
     {
       "id": "T-0379",
       "title": "The letter-list names the post office printed in a single return, and the change of scale they put to the town",
-      "state": "open",
+      "state": "claimed",
       "epic": "PAPERS",
       "requested_by": "owner",
       "seen": false,
@@ -6222,7 +6222,7 @@
       "opened": "2026-08-29",
       "closed": null,
       "pr": null,
-      "claimed_by": "run 8/29/2026, 4:26:41 PM CT",
+      "claimed_by": "run 8/30/2026, 1:52:59 AM CT",
       "blocked_on": null,
       "needs_bake": false,
       "queue_rank": 0
@@ -7162,6 +7162,24 @@
       "blocked_on": null,
       "needs_bake": false,
       "queue_rank": 38
+    },
+    {
+      "id": "T-0438",
+      "title": "The letter-list cohort is 2.54 MiB of the published tree, and it is now the largest single item in it",
+      "state": "open",
+      "epic": "META",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "M",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-08-30",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "queue_rank": 76
     }
   ]
 }
