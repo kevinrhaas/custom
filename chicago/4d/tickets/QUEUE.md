@@ -173,3 +173,4 @@ T-0421 — Canal Street's three control points spread 2.33 m, so its corridor ca
 T-0422 — The widened counterfactual deals a roof per street, and every roof a widening adds already fronts another street
 T-0418 — The 36 documented tradespeople whose trade the residents vocabulary has no word for
 T-0423 — G. Spring's large dwelling-house and fine well stands on lot 7 of block 16, where an anonymous roof stands now
+T-0424 — The 1 April 1834 letter list has three positions no printing reads, and only the page images can say how long it was

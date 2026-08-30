@@ -60,3 +60,18 @@ shared surname and — since T-0397 — the parsed `initials_read` of both sides
 **Acceptance:** the owner rules; the ruling is written into `identity.json`'s note and into
 `data/research/newspapers/README.md`, not only into a PR body; and whichever branch it
 takes is carried out above.
+
+## Two more cases, from the 1 April 1834 list (T-0321, 2026-08-29)
+
+Not the July list and not a `[?]` initial, but the same question with the forename
+missing entirely rather than unread. The 1 April 1834 Chicago list is printed three
+times; the 1834-04-08 reprint could read two of its names by surname alone and minted
+`[uncertain: — Duncklo]` and `[uncertain: — Denny]`. The third printing —
+`chicago_democrat_1834_04_16` c016, found on 2026-08-29 — sets `Hexekial’ Dunchi` and
+`William Denoy` at those same two positions of that same return, so the forenames are
+legible: Hezekiah and William.
+
+Merges were written for both and the compiler refused both, correctly and by its stated
+rule. So the readings stand in `normalized` and the gazetteer keeps two people with no
+forename that it could name. **No = two more accepted duplicates on top of the eighteen
+below; Yes = two more closed by the same bounded exception.** Nothing was changed here.
