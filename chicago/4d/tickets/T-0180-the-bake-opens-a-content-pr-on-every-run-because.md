@@ -1,7 +1,7 @@
 ---
 id: T-0180
 title: The bake opens a content PR on every run, because the build stamp it writes is always dirty
-state: claimed
+state: done
 epic: META
 requested_by: steward
 seen: false
@@ -9,8 +9,8 @@ effort: S
 legacy_id: null
 parent: null
 opened: 2026-08-24
-closed: null
-pr: null
+closed: 2026-08-29
+pr: 579
 claimed_by: run 8/29/2026, 9:32:49 PM CT
 blocked_on: null
 needs_bake: false
