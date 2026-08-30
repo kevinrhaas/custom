@@ -46,7 +46,6 @@
 # ---   T-0416  +12 documented shops take corner sides (ruled: a corner side IS a face)
 # ---   T-0183  the 27 roofs of a block the river pinches out, returned to the South balance
 # ---   T-0384  Holbrook's store, read as an ordinal off the corner rather than street-only
-T-0379 — The letter-list names the post office printed in a single return, and the change of scale they put to the town
 T-0429 — Open blk_south_water_lasalle: 8 roofs of headroom on three free lots
 T-0430 — Open blk_south_water_franklin: 4 roofs of headroom on two free lots
 T-0431 — Open blk_south_water_clark: 4 roofs of headroom on two free lots
@@ -161,3 +160,4 @@ T-0388 — Three derived records have drifted from their own generators on an un
 # --- NEWLY FILED — `ticket.mjs new` appends to the END of this file, so new tickets
 # --- land under this line. NOT yet placed by the owner.
 T-0438 — The letter-list cohort is 2.54 MiB of the published tree, and it is now the largest single item in it
+T-0439 — Two pixel-sensitivity checks fail when parts 9-12 run together and pass when part 9 runs alone
