@@ -66,3 +66,10 @@ the part.
 
 Mobile is still comfortable — `SMOKE_VIEWPORT=mobile SMOKE_STAGE=3-4` ran 7 m 20 s green
 (116 passed, 0 failed) on the same tree and the same runner, in the same session.
+
+**THE PART NUMBERS IN THIS TICKET ARE DATED (T-0346, 2026-08-30).** Part 4 was cut into
+parts 4, 5 and 6 — the scene-detail ladder was 6 m 17 s of a part the ten-minute ceiling was
+killing — and the old parts 5-9 are now 7-11. So read this ticket's numbers through
+`old 5→7, 6→8, 7→9, 8→10, 9→11`, and old part 4 as new parts 4+5+6. The mobile legs are
+`1-2 3-6 7-8 9-11` and carry exactly what they carried. The readings themselves stand; only
+the labels moved.

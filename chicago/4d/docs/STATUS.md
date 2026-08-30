@@ -62,6 +62,69 @@ issues. Eight assertions, each proved to fire under `--self-test`. The day one o
 answered — by an image, or by an extraction pass reaching a card nobody has read — the build says
 so.
 
+## Shipped 2026-08-30 — T-0346: the desktop gate's costliest part is cut into three
+
+**Nothing you can see changed.** This is exemption 3 of the visible-progress rule: a gate that is
+blocking visible parcels. `tools/smoke_renderer.mjs` part 4 was being killed at the ten-minute
+foreground ceiling a steward run's single command has, so no run could take the desktop half of its
+own gate — and part 4 is where the draw-call and triangle ceilings are gated at the town's worst
+frame, which is exactly the check a NEW BUILDING breaks. T-0385 (the New York Clothing Store in
+Dearborn Street) and T-0375 (five documented tradesmen on South Water Street) both stand roofs and
+both have to clear that ceiling; until today neither could demonstrate it on the runner that ships
+them.
+
+**The cost was one section of ten, and it was measured rather than guessed.** `SMOKE_TIMING=1`
+under this lane's own eight-way contention, 2026-08-30, against `--published`:
+
+| section of part 4 | reached at | left at |
+|---|---|---|
+| raycast pick → walking → bridge deck → budgets → life size → nothing hovers | 0:18 | 1:10 |
+| **the scene-detail ladder** | 1:10 | **7:27** |
+| the gate and the chrome | 7:27 | 8:42 |
+| the confidence menu's own clicks | 8:42 | killed at 9:20 |
+
+Six minutes and seventeen seconds of a ten-minute part sat in ONE section. That section walks every
+stand in `STANDS` at every detail tier and cannot be halved without walking the set twice — the
+single-walk saving is what T-0135 built it around — so it is a part on its own rather than a
+boundary nudged along.
+
+**The cut, and what crossed it.** Two named section boundaries, both re-verified for crossing
+bindings the way T-0121 and T-0167 verified theirs. Exactly one binding crossed: part 4's `stats`,
+read only for `stats.budget.drawCalls`. Part 5 now reads that ceiling itself, out of `stats.budget`
+rather than written into the test, so the bar still follows its definition site in `main.js` and a
+scene that outgrew its budget still cannot be made green by editing this file. The ladder takes no
+pose from what ran before it — `order` teleports to each stand itself and finishes at the reference
+frame — so no `enterTown()` or re-framing was needed at the boundary.
+
+- **Parts 4, 5 and 6, measured under the same load:** 1 m 09 s (17 staged checks), 6 m 46 s (16),
+  3 m 13 s (6). All three SMOKE PASS at desktop against `--published`.
+- **Nothing was dropped, and it is checked rather than claimed.** At mobile, where the old part 4
+  still fitted the ceiling, `origin/dev`'s part 4 and this branch's parts 4-6 report the SAME
+  numbers on the same tree: **51 passed, 0 failed, 42 staged-section checks, 9 always-on** — 6 m 17 s
+  against 6 m 15 s. That is the arithmetic the audit line exists for, run as an equality.
+- **Parts 5-9 are renumbered 7-11**, because these two sections sit in the MIDDLE of the body and
+  T-0167's append could not be repeated. `anyStage(5, 7)` — the shared street reading — becomes
+  `anyStage(7, 9)`; `streetLayer` is referenced in parts 7 and 9 and nowhere else, checked
+  statically and then run: `SMOKE_VIEWPORT=mobile SMOKE_STAGE=7-8` is **43 passed, 0 failed** in
+  7 m 31 s.
+- **The pairing rule survives in content and moves in spelling.** `1+2, 3+4, 5+6, 7+8+9` becomes
+  `1+2, 3+4+5+6, 7+8, 9+10+11` — the same four mobile commands carrying the same parts, ranges
+  `1-2 3-6 7-8 9-11`. `chicago-4d-bake.yml`'s smoke matrix is edited in this commit, as its own
+  comment demands of any renumbering; the ranges still tile 1..11 once each with no gap or overlap.
+- **`tools/dev-smoke-state.mjs` mirrors `PARTS` and had to move with it** (9 → 11), and
+  `CHANGELOG_PARTS` with it (What's-new is part 10 now, not 8).
+
+**One thing this leaves behind, stated rather than hidden.** Every reading already in
+`tools/dev-smoke-state.json` is filed under the OLD numbering, so a reading labelled `stage: "5"`
+is the part that is now 7. Nothing reads them as a bar and every one of them carries a `treeHash`
+that no longer matches any tree with this file in it, so `ask` will say it was not taken on your
+tree — but the numbering is now dated and the record's note says so.
+
+**What this does NOT do.** It does not re-profile the whole desktop recipe under load, and it does
+not resize the parts T-0346's second measurement put over the ceiling for reasons that were later
+shown to be contention rather than cost (old stages 5 and 7, now 7 and 9). That is a second
+demonstration and therefore a second ticket: T-0346 was split rather than shipped as a self-invented
+half.
 ## Shipped 2026-08-30 — T-0369: desktop stage 8's verdict stops depending on which stages ran in front of it
 
 **Nothing you can see changed.** This is a gate repair, taken under AGENTS.md's third
@@ -449,7 +512,6 @@ T-0279 (flower heads over open ground), T-0247/T-0249 (the light tier's draw cal
 **Nothing you can see changed.** No renderer, no data record and no geometry was touched — only the
 harness that reads the geometry back.
 
-
 ## Shipped 2026-08-29 — T-0316: the large river warehouse leaves the plat
 
 `tools/reconcile_665.py` dealt **F3, the large river warehouse**, to platted blocks. T-0028 found
@@ -557,7 +619,6 @@ this file; the posts were drawn all along and the probe read one mesh of the lay
 
 **Nothing you can see changed.** No renderer, no data record and no geometry was touched —
 only the harness that reads the geometry back.
-
 
 ## Recorded 2026-08-29 — T-0328's tail: the reading gets its dossier, and coverage.json stops saying 56
 
@@ -7428,7 +7489,6 @@ whose custom arrived on foot, and that judgement is recorded in the generator an
 than derived from a source. And nothing here is baked, so a scene wanting these boards as solid
 timber still needs the generator half of K5 (b).
 
-
 ## Shipped 2026-08-18 — fenced gardens behind eighteen of the town's houses
 
 **T-0052 (piece 3 of 3 of T-0038, legacy K5).** The Kinzie-view plate shows *"picket-fenced garden
@@ -7667,7 +7727,6 @@ now reaches **0.58** of the middle where the acceptance asks for 0.5. 338 distin
 also pulled a well-separated pair back toward the target, collapsed the median to 4.9 % and the
 ratio to 0.31 — repulsion only pushes, and that is why it is the right shape.
 
-
 ## Changed 2026-08-17 — the backlog is a ticket queue the owner can reorder
 
 **On the owner's direct request.** His words: tracking "what i have asked for and what you
@@ -7682,7 +7741,6 @@ parcel (with `legacy_id`), the owner's six recovered K-asks at the top of the qu
 the four standing owner decisions as `blocked-owner` tickets with their options inline.
 ROADMAP's NEXT UP table is frozen with a tombstone; the deep boxes remain the reasoning
 archive. AGENTS.md § THE QUEUE is the new contract.
-
 
 ## Shipped 2026-08-17 — the bridge is a surface now, and you still cannot get onto it from the bank
 
@@ -8016,7 +8074,6 @@ draw strictly less; the mobile viewport (390×780) was not rendered at all, so t
 shrub were never measured at the detail level a phone gets; and no assertion about the wet woods'
 frame time was taken, which is the half **K57** says a grain change needs before it moves.
 
-
 `tools/shoot.mjs` gained a `--at e,n,yaw[,name]` flag, because an archetype before/after pair needs
 one arbitrary station and the tool only had the visitor anchors, none of which stands in a plant
 community. Its positional arguments are now read with flags removed, which also fixes `--at`
@@ -8153,7 +8210,6 @@ lattice and cap and sits just under it today. What ran in the foreground: `tools
 PASS, the dev gate), `tools/measure_sward_draw.mjs --gate` (PASS, both columns above), zero page
 errors in every run.
 
-
 ## Shipped 2026-08-17 — the shrub layer was drawn with the forb archetype, and the clamp that made that survivable was hiding the recorded width
 
 **ROADMAP K53**, from K45(b4)'s *"still not planted"* note. Twenty-one records across eight zones
@@ -8201,7 +8257,6 @@ so the new set is inside them rather than invisible to them, **and that extensio
 here.** What did run, in the foreground: `tools/check.sh` (CHECK PASS, the dev gate),
 `tools/measure_sward_draw.mjs --gate` (PASS), and the instance read-back above, with zero page
 errors in every run.
-
 
 ## Measured 2026-08-17 — the flicker left after the shadow fix is NOT co-planar ties, and two tests say so
 
@@ -8258,7 +8313,6 @@ The desktop half of `smoke_renderer.mjs` does not fit the runner's ten-minute pe
 ceiling and did not run. No renderer file was changed by this parcel, so there was nothing for
 it to regress. R-BUG6(c) — whether the 36,187 co-planar pixels show the surface their record
 intends — needs a bake and is not answered here.
-
 
 ## Fixed 2026-08-17 — the shadow grid slid a fraction of a texel under every step
 
@@ -8405,7 +8459,6 @@ Every desktop figure above comes from `tools/measure_shadow_reach.mjs` and
 hardware; the frame-time readings are swiftshader's and moved by under 2 %, consistent with
 R-W3b(a)'s finding that the pass is geometry-bound. A phone that cannot allocate 2048² is not
 something this runner can observe.
-
 
 ## Fixed 2026-08-17 — the sun threw a shadow within 60 m of the visitor and nowhere else
 
@@ -8947,7 +9000,6 @@ has, which is the same class of error flora.js already traverses for the sun to 
 **Not attempted, and not measured:** the mobile viewport's critic set, and the eight other
 critic stations. Only the three named above were re-shot. The published `--published` critic
 run was not taken either. Nothing here should be quoted as a whole-scene result.
-
 
 ## Shipped 2026-08-17 — the town's animals were researched, graded, cited, and read by nothing
 
@@ -13235,7 +13287,6 @@ civic roofs T-A3 refused — research, not massing) in lane 2. **T-A2h** is in t
 count is **261 structure records — 251 physical roofs of a 665 target — 154 households, 190
 persons**. Everything arrives as a PR into `dev` and waits there.
 
-
 Honest state of the project. Things that are unverified stay labeled unverified; a gate that
 was skipped is recorded as skipped. Updated in the same commit as the work it describes.
 
@@ -14096,7 +14147,6 @@ states one:
    both 390×780 and 1280×800. Current full-scene budgets are 49 / 53 draw calls and 378,647 /
    499,343 triangles respectively; the desktop renderer remains slow at 2 fps under SwiftShader,
    but elapsed-time walking is no longer coupled to that frame count.
-
 
 1. **One structure record does not prove the schema.** The Sauganash exercises phases, a
    building move, and the full confidence range, but the model has not met a fort, a bridge, or
