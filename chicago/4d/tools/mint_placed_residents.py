@@ -129,6 +129,7 @@ from mint_documented_residents import (  # noqa: E402  (shared, deliberately)
     cited, display, dumps, in_town_places, issue_of, load, paper_for, slug,
     surname, titles_in, town_family_names, words,
 )
+from compile_register import ruled_not_an_occupation  # noqa: E402
 
 PREFIX = "hh_placed_"
 LETTER_LIST_PREFIX = "hh_ll_"   # tools/mint_letter_list_residents.py; see the mint
@@ -317,7 +318,24 @@ def mint(docs: dict, index: dict):
             reason = "no surname the corpus prints"
         elif len(words(name)) < 2:
             reason = "a surname and nothing else"
+        elif g.get("occupations") and all(
+                ruled_not_an_occupation(o) for o in g["occupations"]):
+            # T-0418. The two halves of this refusal read the same from here and are
+            # not the same finding, so they no longer share a sentence. THIS half is
+            # the project's own ruling: every role the papers print for this person is
+            # one `compile_register.TRADE_RULED_NOT_AN_OCCUPATION` refuses a word —
+            # an office held somewhere other than this town, an appointment made for
+            # one probate or one poll, a word that names no particular trade, or the
+            # ownership of a thing. Nothing is missing from the vocabulary; the
+            # decision is written down, in that table and in
+            # docs/RESEARCH/trade_vocabulary_1835.md.
+            reason = ("the corpus prints a role this project has ruled is not an "
+                      "occupation (" + ", ".join(g["occupations"]) + ")")
         elif g.get("occupations"):
+            # …and this half is the gap it used to be confused with: a trade the
+            # papers print plainly and the vocabulary cannot yet say. T-0418 emptied
+            # it; a name arriving here again is a trade to rule on, not a person to
+            # mint trade-less.
             reason = ("the corpus prints a trade the residents vocabulary has no "
                       "word for (" + ", ".join(g["occupations"]) + ")")
         elif outside:
@@ -562,6 +580,38 @@ def report(accepted, refusals) -> None:
 # the assertions, so a refusal that stopped firing is a failure and not a discovery
 # ---------------------------------------------------------------------------
 
+def gate(refusals) -> int:
+    """No documented tradesperson is refused for a word nobody has decided about.
+
+    T-0418. This pass will not mint a printed tinsmith as trade-less, which is right —
+    but it left thirty-three documented people held on a refusal that named no
+    decision: `the corpus prints a trade the residents vocabulary has no word for`.
+    That sentence is a to-do written into the town's data, and it sat there because
+    nothing counted it. Every one of those trades now either has a word
+    (`compile_register.TRADE_TO_OCCUPATION_T0418`) or a written ruling
+    (`TRADE_RULED_NOT_AN_OCCUPATION`), and this is the ratchet that keeps it that way.
+
+    The failure it catches is the ordinary one: a run transcribes another issue, the
+    papers print a trade nobody has met before, and a documented Chicago tradesman
+    joins a queue nobody reads. The gate names the trade and the person, and ruling on
+    it is one row in one of two tables.
+    """
+    open_trades = [(name, reason) for _id, name, reason in refusals
+                   if reason.startswith("the corpus prints a trade the residents "
+                                        "vocabulary has no word for")]
+    if not open_trades:
+        print("  ok    every printed trade in the pool is given a word or ruled on")
+        return 0
+    print("  FAIL  %d documented person(s) are held on a trade nobody has ruled on."
+          % len(open_trades))
+    print("        Give it a word in compile_register.TRADE_TO_OCCUPATION_T0418, or a")
+    print("        reason in TRADE_RULED_NOT_AN_OCCUPATION. Both are written down in")
+    print("        docs/RESEARCH/trade_vocabulary_1835.md.")
+    for name, reason in open_trades:
+        print("          %-34s %s" % (name, reason))
+    return 1
+
+
 def self_test() -> int:
     """Every rule in the residency test, fired against a case it must refuse.
 
@@ -641,12 +691,16 @@ def main() -> int:
                     help="print the mint and every refusal")
     ap.add_argument("--self-test", action="store_true",
                     help="fire every refusal against the case it exists for")
+    ap.add_argument("--gate", action="store_true",
+                    help="refuse a printed trade that is neither given a word nor ruled")
     args = ap.parse_args()
 
     if args.self_test:
         return self_test()
 
     files, accepted, refusals = build()
+    if args.gate:
+        return gate(refusals)
     if args.report:
         report(accepted, refusals)
         return 0

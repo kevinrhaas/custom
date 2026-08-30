@@ -1056,6 +1056,16 @@ step "the residency-tested residents re-derive from the register" \
 step "…and its own assertions still fire when broken" \
   python3 tools/mint_placed_residents.py --self-test
 
+# …and the half of that pass T-0418 closed. It refuses to mint a documented tradesman
+# as trade-less, which is right, and thirty-three of them were sitting behind a refusal
+# that named no decision — `the corpus prints a trade the residents vocabulary has no
+# word for` is a to-do written into the town's data, and nothing counted it. Every one
+# of those trades now has either a word or a written ruling; this is what stops the
+# queue re-forming the next time an issue is transcribed. It names the trade and the
+# person, and ruling on it is one row in one of two tables in compile_register.py.
+step "every printed trade in the residency pool has a word or a written ruling" \
+  python3 tools/mint_placed_residents.py --gate
+
 # And the pass beside it, on the other half of `new_resident` (T-0378, T-0379). A person
 # the register reads ONLY from the post office's lists of uncalled-for letters has no
 # trade, so the pass above cannot reach him. It used to take only the names held in more

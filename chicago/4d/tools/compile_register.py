@@ -223,6 +223,132 @@ TRADE_TO_OCCUPATION = (
 )
 
 
+# T-0418. Thirty-three documented people arrived at the minting passes with
+# `occupation: null` NOT because the papers are silent about their trade but
+# because this table had no needle for it, and the passes refuse — rightly — to
+# mint a printed tinsmith as trade-less. The rows below are that gap closed, and
+# `docs/RESEARCH/trade_vocabulary_1835.md` is the reading behind every one of
+# them: which word, why that word, and which printed trades were REFUSED a word
+# instead (`TRADE_RULED_NOT_AN_OCCUPATION` below). Nothing here is a fuzzy match
+# and nothing is a near miss — every needle is a phrase the paper prints, and the
+# word it maps to is the trade that phrase names.
+#
+# A SEPARATE TABLE, and the separation is load-bearing: `best_occupation` reads it only
+# after the settled table above has nothing to say, so a word added here cannot take a
+# man the vocabulary could already speak for. Without that, adding `insurance_agent`
+# would silently stop E. K. Hubbard being the documented merchant who retires an
+# invented merchant's household, and nothing in the diff would have said why.
+TRADE_TO_OCCUPATION_T0418 = (
+    ("register of the land office", "land_office_register"),
+    ("register, united states land office", "land_office_register"),
+    ("house and lot agent", "land_agent"),
+    ("land agent", "land_agent"),
+    ("insurance", "insurance_agent"),
+    ("master mariner", "master_mariner"),
+    ("harbour agent", "harbour_agent"),
+    ("harbor agent", "harbour_agent"),
+    ("justice of the peace", "justice_of_the_peace"),
+    ("postmaster", "postmaster"),
+    ("army officer", "army_officer"),
+    ("sheriff", "sheriff"),
+    ("coffee house", "coffee_house_keeper"),
+    ("refectory", "refectory_keeper"),
+    ("restorator", "refectory_keeper"),
+    ("provision dealer", "provision_dealer"),
+    ("bookseller", "bookseller"),
+    ("stationer", "stationer"),
+    ("tinsmith", "tinsmith"),
+    ("founder", "founder"),
+    ("ventriloquist", "ventriloquist"),
+)
+
+
+# The other half of T-0418, and it is the half that keeps the table above honest. A
+# printed role this project has RULED is not an occupation is matched on the WHOLE
+# trade string rather than on a substring, because that is the only way "postmaster
+# general" can be refused while "postmaster" is kept: the Postmaster General of the
+# United States sat at Washington and was named in this town's post-office notices,
+# and John S. C. Hogan kept its post office. A substring rule cannot tell those two
+# apart, and mapping the first to `postmaster` would put a cabinet officer in
+# Chicago's people.
+#
+# Each entry carries the reason IN THIS FILE, because "written down" has to mean
+# somewhere a reader of the code will meet it. The long form, with the sources, is
+# `docs/RESEARCH/trade_vocabulary_1835.md`.
+#
+# Four principles decide these, and they are stated there in full:
+#   1. An office exercised somewhere other than this town is not a Chicago occupation.
+#   2. An appointment made for ONE proceeding — a probate, a poll — is not a trade.
+#   3. A word that names no particular trade ("agent", "mechanic") may not be
+#      resolved into one; that is exactly the milliner-compiled-as-miller fault.
+#   4. Owning a thing is not practising a trade.
+TRADE_RULED_NOT_AN_OCCUPATION = {
+    "postmaster general":
+        "the office of the Postmaster General of the United States, held at "
+        "Washington. This town's post office is `postmaster`, and its keeper is not "
+        "the cabinet officer its notices are signed under.",
+    "governor of illinois":
+        "a state office, exercised at Vandalia. The corpus names the Governor in "
+        "proclamations printed here; it does not put him in the town.",
+    "secretary of state of illinois":
+        "a state office, exercised at Vandalia — the same reading as the Governor.",
+    "secretary of war":
+        "a cabinet office, exercised at Washington.",
+    "judge of the fifth judicial circuit":
+        "a judge who rode a circuit of many counties. The office is real and it is "
+        "not a livelihood carried on in this town.",
+    "circuit judge":
+        "the same office under its short printed name.",
+    "judge of election":
+        "an appointment for ONE poll. A man who judged an election on a Monday had a "
+        "trade on the Tuesday, and the corpus does not print it.",
+    "appraiser":
+        "an appointment for ONE probate, made by the county court over one estate. "
+        "Three men in this corpus are printed as appraisers and none of them is "
+        "printed as anything else.",
+    "administratrix":
+        "a capacity in ONE estate, and the only thing the corpus prints of Harriet "
+        "Bradford. It is the legal standing in which she advertised, not her work.",
+    "militia officer":
+        "a commission held beside a livelihood, in a militia that mustered a few days "
+        "a year. The corpus prints no livelihood for the man who holds it.",
+    "agent":
+        "names no trade. Agent for whom, or for what, is not printed, and this "
+        "project may not resolve a bare word into a particular calling.",
+    "mechanic":
+        "in 1835 the general word for a skilled tradesman — the 'mechanics' of a town "
+        "were its whole artisan class. It names no particular trade, and mapping it "
+        "to `labourer` or `builder` would give a man a trade the paper never gives "
+        "him. This is the milliner-compiled-as-miller fault under another word.",
+    "steamboat owner":
+        "owning a thing is not practising a trade. The corpus prints J. F. Wight's "
+        "boat and not his work.",
+    "sheet iron worker":
+        "one of the stove trade's several printed names. The men who print it also "
+        "print `tinsmith`, which is the word this vocabulary carries; nobody in the "
+        "corpus prints it alone.",
+    "stove manufacturer":
+        "the stove trade again, and the same reading: J. K. Botsford prints it beside "
+        "`tinsmith` in the same advertisement.",
+    "stove dealer":
+        "a DEALER is not given the maker's word. The Joneses print `founder` beside "
+        "it and take that; a man printed only as a dealer in stoves is left without "
+        "one rather than made a founder.",
+    "stove and hollow ware dealer":
+        "the same reading as `stove dealer`, under the fuller printed name.",
+}
+
+
+def ruled_not_an_occupation(text):
+    """The reason this project refuses the printed role a word, or None.
+
+    Matched on the WHOLE trade as printed, lower-cased and space-normalised. A
+    substring rule is what would collapse `postmaster general` into `postmaster`.
+    """
+    key = " ".join((text or "").lower().split())
+    return TRADE_RULED_NOT_AN_OCCUPATION.get(key)
+
+
 # --------------------------------------------------------------------------
 # normalising an anchor, a name and a street
 
@@ -241,11 +367,51 @@ def street_key(name):
     return "_".join(t.split())
 
 
-def occupation_of(text):
-    """The residents vocabulary's word for a printed trade, or None."""
+def _needle(text, table):
     t = (text or "").lower()
-    for needle, occ in TRADE_TO_OCCUPATION:
+    for needle, occ in table:
         if needle in t:
+            return occ
+    return None
+
+
+def occupation_of(text):
+    """The residents vocabulary's word for a printed trade, or None.
+
+    A role this project has RULED is not an occupation is refused before any needle is
+    tried, so that a ruling on the WHOLE printed phrase outranks a substring of it.
+    That ordering is the whole of how `postmaster general` and `postmaster` stay two
+    different things (T-0418).
+    """
+    if ruled_not_an_occupation(text):
+        return None
+    return (_needle(text, TRADE_TO_OCCUPATION)
+            or _needle(text, TRADE_TO_OCCUPATION_T0418))
+
+
+def best_occupation(printed):
+    """The vocabulary's word for a person printed with one or more trades.
+
+    THE SETTLED TABLE IS ASKED FIRST, ACROSS ALL OF THEM, AND ONLY THEN THE NEW ONE.
+    A gazetteer person carries every trade the papers print for him, and the register
+    used to take the first of that list any needle matched. That was fine while the
+    table only ever grew rows nobody was competing for; it stops being fine the moment
+    a new word can sort ahead of a settled one. E. K. Hubbard is printed as an
+    insurance agent AND a merchant, and reading him as an insurance agent would have
+    quietly stopped him being the documented merchant who retires an invented
+    merchant's household — a real loss to the town, arriving with no line in the diff
+    to explain it.
+
+    So T-0418's words fill gaps and never contest: a man the vocabulary could already
+    speak for keeps the word it already gave him.
+    """
+    for trade in printed:
+        occ = None if ruled_not_an_occupation(trade) else _needle(trade, TRADE_TO_OCCUPATION)
+        if occ:
+            return occ
+    for trade in printed:
+        occ = None if ruled_not_an_occupation(trade) else _needle(trade, TRADE_TO_OCCUPATION_T0418)
+        if occ:
             return occ
     return None
 
@@ -976,11 +1142,7 @@ def compile_register(gazetteer, town, quiet=True):
 
     persons = []
     for p in sorted(gazetteer["persons"], key=lambda x: x["id"]):
-        occ = None
-        for o in p.get("occupations") or []:
-            occ = occupation_of(o)
-            if occ:
-                break
+        occ = best_occupation(p.get("occupations") or [])
         occ = occ or trade_of_person.get(slug(p["name"]))
         match = resident_match(p["name"])
         entry = {
