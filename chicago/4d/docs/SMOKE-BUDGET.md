@@ -1,16 +1,75 @@
 # The renderer gate's budget — what it costs here, and what covers what
 
-**T-0235.** Three tickets — T-0170, T-0173 and T-0181 — reason about the desktop
-legs' margin against a **30-minute** cap. That cap is not this machine's. The
-steward runner has no GPU: chromium launches with `--enable-unsafe-swiftshader`
-and rasterises on the CPU, and the whole gate was measured at **55 m 10 s**
-unfiltered there on 2026-08-27, nearly twice the figure those three margins are
-taken against.
+**T-0235**, corrected by **T-0435**. A steward run's single foreground command is
+capped at **600 s**, so no run can take the gate whole. It takes the parts that
+cover what it touched — and until this page, nothing said which those were. A run
+either spent more than its entire budget on all fifteen staged commands, or
+picked by feel.
 
-And a steward run's single foreground command is capped at **600 s**, so no run
-can take the gate whole. It takes the parts that cover what it touched — and
-until this page, nothing said which those were. A run either spent more than its
-entire budget on all fifteen staged commands, or picked by feel.
+## Three caps, and they are three different quantities (T-0435)
+
+This page opened by reading a 55-minute unfiltered pass against a 30-minute cap
+and concluding the cap "is not this machine's". Both halves of that were wrong,
+and the correction is measured rather than argued.
+
+| cap | what it bounds | value | where |
+|---|---|---|---|
+| the foreground-command ceiling | ONE `node tools/smoke_renderer.mjs …` a run blocks on | **600 s** | the agent harness |
+| the **leg** cap | ONE matrix job of the nightly gate — one viewport, one range of parts, **eight legs in parallel** | **30 min** | `chicago-4d-bake.yml` § `smoke`, `timeout-minutes` |
+| the reference pass | both viewports, unfiltered, one process | **90 min** | `chicago-4d-smoke.yml`, `timeout-minutes` |
+
+The 55 m 10 s measured on 2026-08-27 is **all eight legs' work in one process**.
+The 30 minutes governs **one leg**. Neither figure bounds the other, and "nearly
+twice the figure those margins are taken against" compared a whole to a part.
+T-0170, T-0173 and T-0181 are reasoning about the leg cap, correctly.
+
+**And it is the same machine.** `steward-improve.yml`, `chicago-4d-bake.yml`
+§ `smoke` and `chicago-4d-smoke.yml` are all `runs-on: ubuntu-latest` — 4 × AMD
+EPYC 7763, 15 GiB, **no GPU**, so chromium rasterises on SwiftShader in all
+three. The A/B, on `dev` at `415909cf`, same leg against the same bytes:
+
+| mobile `SMOKE_STAGE=1-2 --published` | |
+|---|---|
+| bake runner — run 33290607360, `Smoke the published mirror` step | **4 m 40 s** |
+| improve runner — T-0435 | **4 m 44 s** |
+
+1.4 per cent apart. The control is real rather than incidental: that bake
+produced no changes (`open-pr` skipped), so the mirror it smoked out of its own
+artifact is `dev`'s committed mirror byte for byte. **So the desktop figures in
+T-0167, T-0170, T-0173 and T-0181 do describe the machine the gate runs on**, and
+none of them needs re-measuring on that account.
+
+**What moves a reading is LOAD, not hardware.** T-0215 measured the same tree
+twenty times slower on a busy box than a quiet one; part 10 took **2 m 53 s** at
+desktop on 2026-08-30 against T-0167's **6 m 10 s** for the same 28 checks six
+days earlier. That is why `dev-smoke-state.json` stamps cpu count and load
+average on every record, why `smoke_budget.mjs` reports a median, and why a part
+must never be re-cut off a single reading.
+
+## What the eight legs cost, measured (T-0435)
+
+`smoke_budget.mjs` reads per-PART readings out of the standing record and names
+the six desktop parts that have none. The **legs** — the four ranges
+`1-2 3-6 7-8 9-11` the nightly gate actually runs — have no gaps at all, because
+every one of them runs every night. From run 33290607360 (2026-08-30), the
+`Smoke the published mirror` step alone, not the job:
+
+| leg | mobile | desktop |
+|---|---|---|
+| `1-2` | 4 m 40 s | 8 m 36 s |
+| `3-6` | 7 m 02 s | 12 m 23 s |
+| `7-8` | 6 m 39 s | 12 m 04 s |
+| `9-11` | 9 m 14 s | 17 m 28 s |
+| **total** | **27 m 35 s** | **50 m 31 s** |
+
+Three readings follow. The whole **mobile** half is four commands and every one
+fits the 600 s ceiling — a run that changed something mobile-wide can take that
+half entire. Three of the four **desktop** legs are over the ceiling, so desktop
+is taken part by part, which is what the map above is for. And the whole staged
+gate is **78 m 06 s** of compute against the 55-minute unfiltered pass, because
+it pays eight boots where that pays two: the price of the cut, not a regression.
+The worst leg, desktop `9-11`, has 12 m 32 s of margin under the 30-minute leg
+cap.
 
 Two things follow, and both are tools rather than prose, because a table of part
 numbers rots the first time the parts are re-cut — which has happened four times
@@ -117,4 +176,5 @@ exactly the ones a plain run learns nothing about.
 `docs/PIPELINE.md` (where a green gate sends the work) · `AGENTS.md` § How work
 ships · T-0216 `tools/dev-smoke-state.mjs` (the record these figures are read
 from) · T-0346 (the last re-cut) · T-0170, T-0173, T-0181 (the three margins
-taken against the 30-minute cap) · ROADMAP § THE RUN BUDGET.
+taken against the 30-minute LEG cap — which is the right cap for them to take)
+· T-0435 (the three caps, and the two-runner A/B) · ROADMAP § THE RUN BUDGET.

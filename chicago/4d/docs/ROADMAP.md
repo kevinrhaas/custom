@@ -213,6 +213,38 @@ third of the 150-minute run budget, and that is before a part is re-run after a 
 passes rule above should be read as ONE full pass and a re-run of the parts a change touches; a
 parcel whose acceptance needs the whole gate twice has already outgrown a run.
 
+**AND THE THREE CAPS ARE THREE DIFFERENT QUANTITIES — T-0435, 2026-08-30.** This section has
+been read as though one number bounded the gate, and T-0235's budget page inherited the same
+reading. **600 s** caps ONE foreground command a steward run blocks on (the harness).
+**Thirty minutes** caps ONE LEG of the nightly gate — one viewport, one range of parts, eight
+of them in parallel (`chicago-4d-bake.yml` § `smoke`, `timeout-minutes`). **Ninety minutes**
+caps the unfiltered both-viewport reference pass (`chicago-4d-smoke.yml`). The 55 m 10 s
+measured on 2026-08-27 is all eight legs' work in one process; the thirty minutes governs one
+leg. Neither bounds the other, so "the whole gate is nearly twice the cap" compares a whole to
+a part — and T-0170, T-0173 and T-0181 are reasoning about the leg cap, correctly.
+
+**The improve runner IS the runner the gate runs on, measured rather than assumed.**
+`steward-improve.yml`, `chicago-4d-bake.yml` § `smoke` and `chicago-4d-smoke.yml` are all
+`runs-on: ubuntu-latest` — 4 × AMD EPYC 7763, 15 GiB, no GPU, SwiftShader in all three. On
+`dev` at `415909cf`, mobile `SMOKE_STAGE=1-2 --published`: **4 m 40 s** on the bake runner
+(run 33290607360, whose bake changed nothing, so its artifact mirror is `dev`'s committed
+mirror byte for byte) against **4 m 44 s** here — 1.4 per cent apart, same leg, same bytes. So
+T-0167's and T-0170's desktop figures describe this machine after all. **What moves a reading
+by minutes is LOAD**, exactly as T-0215 measured: part 10 took 2 m 53 s at desktop here
+against T-0167's 6 m 10 s for the same 28 checks six days earlier, which is why
+`tools/dev-smoke-state.json` stamps cpu count and load average on every record and why a part
+must never be re-cut off one reading.
+
+**The four legs, measured 2026-08-30** from run 33290607360's smoke step (the command alone):
+mobile `1-2` 4 m 40 s · `3-6` 7 m 02 s · `7-8` 6 m 39 s · `9-11` 9 m 14 s — **27 m 35 s**, and
+every mobile leg fits the 600 s ceiling. Desktop `1-2` 8 m 36 s · `3-6` 12 m 23 s · `7-8`
+12 m 04 s · `9-11` 17 m 28 s — **50 m 31 s**, three of the four over it, so the desktop half is
+taken part by part. **The whole staged gate is 78 m 06 s of compute across eight legs** — more
+than the 55-minute unfiltered pass because it pays eight boots where that pays two, which is
+the price of the cut and not a regression. The worst leg has 12 m 32 s of margin under the
+30-minute leg cap. Which parts cover which change is `docs/SMOKE-BUDGET.md` and
+`tools/smoke_budget.mjs`.
+
 **`SMOKE_TIMING=1` stamps every check line with the elapsed clock**, and T-0167 added it because
 the profile could not have been taken without it. A part that BREACHES the ceiling is killed
 *before* it prints its wall clock, so the parts actually worth cutting were the only ones a plain
