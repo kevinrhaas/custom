@@ -168,7 +168,10 @@ T-0413 — Six of T-0401's surname traps are one house on the printings, and the
 T-0414 — The street-face adoption refuses W. Montgomery a roof for being the bootmaker, and identity.json already ruled they are two houses
 T-0415 — John Wright's two buildings to let are named (east) and (west) and stand the other way round
 T-0419 — The re-centred South Water corridor stands 8.58 m off its own block faces, and the strip between belongs to neither
-T-0420 — Open the four South Water blocks T-0009 has unblocked: 20 roofs of headroom on franklin, lasalle, clark and dearborn
+T-0429 — Open blk_south_water_lasalle: 8 roofs of headroom on three free lots
+T-0430 — Open blk_south_water_franklin: 4 roofs of headroom on two free lots
+T-0431 — Open blk_south_water_clark: 4 roofs of headroom on two free lots
+T-0432 — Open blk_south_water_dearborn: 4 roofs of headroom on two free lots
 T-0421 — Canal Street's three control points spread 2.33 m, so its corridor cannot be centred on any of them
 T-0422 — The widened counterfactual deals a roof per street, and every roof a widening adds already fronts another street
 T-0418 — The 36 documented tradespeople whose trade the residents vocabulary has no word for

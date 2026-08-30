@@ -1,4 +1,11 @@
 export const CHANGELOG = [ // newest first
+  { v: 421, title: 'The riverfront blocks the ruling opened get one ticket each', kind: 'chore', ts: '2026-08-30T02:20:53.619Z', date: 'Aug 29, 2026, 9:20 PM CT',
+    items: [
+      'Nothing you can see changed today. Behind the model there is a programme that decides where the next unbuilt roof in this town may stand, and since last night it has had somewhere to put twenty of them \u2014 four blocks between South Water Street and Lake Street, at Franklin, La Salle, Clark and Dearborn, freed when the owner ruled that the South Water street line stays where it is drawn.',
+      'They were all filed as a single piece of work, and they are four. The rule this project builds under is one run, one thing shown, one thing handed on; a ticket holding four blocks can only ever be a quarter finished, and a half-finished ticket is how the same ground gets built twice. So there are four now, one per block, each carrying that block\u2019s own measured headroom \u2014 eight roofs at La Salle, four each at Franklin, Clark and Dearborn \u2014 and each marked as needing the roofs baked.',
+      'The fifth block, at Market Street, is deliberately not among them. The owner ruled for it too, and the ground refused: the river pinches it to under three metres of depth where a lot needs twenty-four. Its twenty-seven roofs go back into the balance rather than being promised again.',
+      'What that leaves is worth saying plainly, so nobody has to work it out twice: four runs of ground the project actually holds, twenty roofs, and after them this programme is finished until terrain, water or street control reach further than they do today.',
+    ] },
   { v: 420, title: 'A third printing of one letter list, on a page nobody opened', kind: 'fix', ts: '2026-08-30T01:54:54.155Z', date: 'Aug 29, 2026, 8:54 PM CT',
     items: [
       'Nothing you can see changed today. The list of letters waiting uncalled-for at the Chicago post office on 1 April 1834 is the largest single body of names this reconstruction holds for that spring, and until today it stood at 179 \u2014 a number its own record called a floor, because nineteen lines of the two printings it was read from carry ink-damage where a name had been.',
