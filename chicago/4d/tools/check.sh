@@ -84,6 +84,18 @@ step "inferred placeholder GLBs match their records" \
 step "every clapboard wall's stock re-derives from its deal" \
   python3 tools/deal_siding_stock.py --check
 
+# T-0423. The one newspaper address that names a LOT AND A BLOCK is resolved onto the
+# roof standing on it through a chain of committed things — the block's number, the lot
+# numbering inside it, the lot polygon, and which footprint stands on that polygon. Every
+# link of that chain can move under a row authored once and never looked at again, and the
+# card would go on naming a house that is no longer there. So the row is re-resolved here
+# rather than trusted, and refused rather than repaired.
+step "every lot address still resolves onto the roof its record names" \
+  python3 tools/lot_address_adoption.py --check
+
+step "…and the lot-address layer still refuses every way a row could lie" \
+  python3 tools/lot_address_adoption.py --self-test
+
 # The platted block and lot grid is generated from the Thompson module and the
 # committed street lines, never traced off the 1834 sheets. Re-deriving it here is
 # what keeps it a derivation: a hand-nudged block face would otherwise sit in the

@@ -76,6 +76,12 @@ def no_build_rings() -> dict[str, list[tuple[float, float]]]:
 # the drift check that makes these parcels trustworthy in the first place.
 from inferred_occupancy import occupancy  # noqa: E402
 
+# And the third layer that reaches a generated record from outside it (T-0423): the one
+# statement in the newspaper corpus that names a LOT AND A BLOCK rather than a street.
+# Same arrangement and for the same reason — the address is authored and verified in one
+# place, this generator owns the record, and neither hand-edits the other.
+from lot_address_adoption import overrides as lot_addresses  # noqa: E402
+
 # Which lot is already taken is the SAME question the schedule asks before it deals this
 # parcel its roofs, so it is asked in one place and imported by both (ROADMAP T-A7).
 from plat_occupancy import LOT_MARGIN_M, exclusive_lots, footprints  # noqa: E402
@@ -104,6 +110,7 @@ from ridge_model import ridge_run_m  # noqa: E402
 from roof_form import note_refusal, roof_kind  # noqa: E402
 
 OCCUPANCY = occupancy()
+LOT_ADDRESS = lot_addresses()
 
 # The same separation the household parcel enforces. A generated building that lands
 # three metres from another one is not a dense town, it is two records occupying one
@@ -733,22 +740,35 @@ def make_record(block: dict, slot: dict, lot_index: int | None, frame: dict | No
     mapping = (" H-family house massing currently resolves through the frame dwelling "
                "archetype; no larger house generator is implemented."
                if family.startswith("H") else "")
+    # T-0423. A roof whose LOT a period notice names keeps everything the parcel dealt
+    # it — its id, its family, its sequence, its place in the 665-roof programme — and
+    # gains the address, the title a visitor reads, and the one attribute the address
+    # actually contradicts: a count-unit's `documented_range` says no evidence establishes
+    # that this building existed, which stops being true the moment the plat resolves an
+    # address onto it. tools/lot_address_adoption.py is where that is verified.
+    address = LOT_ADDRESS.get(sid)
+    spec_name = f"Reconstructed {family} {function} #{seq:02d}"
+    anonymous_range = {
+        "from": "1835-01-01", "to": "1835-12-31", "confidence": "reconstructed",
+        "note": "Anonymous count-unit toward the July 1835 665-roof programme. No evidence establishes that this particular building existed, and no source names an occupant of this lot."
+    }
     return {
         "id": sid,
-        "name": f"Reconstructed {family} {function} #{seq:02d}",
+        "name": address["name"] if address else spec_name,
+        # The production identity is not deleted when an address takes the title — the
+        # owner's rule of 2026-08-18 keeps it on the card, and the search reads `aka`.
+        **({"aka": [*address["aka"], spec_name]} if address else {}),
         "archetype": spec["archetype"],
         "phases": [{
             "id": PHASE_ID,
-            "documented_range": {
-                "from": "1835-01-01", "to": "1835-12-31", "confidence": "reconstructed",
-                "note": "Anonymous count-unit toward the July 1835 665-roof programme. No evidence establishes that this particular building existed, and no source names an occupant of this lot."
-            },
+            "documented_range": address["documented_range"] if address else anonymous_range,
             "position": {
                 "utm_e": round(float(datum["origin_utm_e"]) + local_e, 3),
                 "utm_n": round(float(datum["origin_utm_n"]) + local_n, 3),
-                "rotation_deg": bearing, "symbolic_location": where,
+                "rotation_deg": bearing,
+                "symbolic_location": (address["symbolic_location"] if address else where),
                 "confidence": "reconstructed", "note": position_note,
-                "derivation": {"method": "not_derivable", "reason": "No parcel-by-parcel July 1835 roof register survives in the supplied evidence, and no lot in this block is numbered."}
+                "derivation": {"method": "not_derivable", "reason": (address["position_derivation_reason"] if address else "No parcel-by-parcel July 1835 roof register survives in the supplied evidence, and no lot in this block is numbered.")}
             },
             "footprint": {
                 "polygon": [[0, 0], [width, 0], [width, depth], [0, depth]],
@@ -762,7 +782,8 @@ def make_record(block: dict, slot: dict, lot_index: int | None, frame: dict | No
         **({"occupants": OCCUPANCY[sid]} if sid in OCCUPANCY else {}),
         "reconstruction": reconstruction,
         **({"_frontage": anchor} if on_frontage else {}),
-        "research_note": ("RECONSTRUCTED / GENERATED, NOT AN ATTESTED NAMED BUILDING. The "
+        "research_note": ((address["research_note"] + " " if address else "")
+                          + "RECONSTRUCTED / GENERATED, NOT AN ATTESTED NAMED BUILDING. The "
                           "block, its scheduled roof count and its family mix follow the "
                           "665-roof programme; exact presence, lot, position, footprint, "
                           "finish and instance-level form are interpretive." + mapping),

@@ -1,0 +1,53 @@
+{
+  "$schema_note": "AUTHORED, and deliberately small — one row, because the corpus holds one address of this shape. It carries the newspaper addresses that name a LOT AND A BLOCK of the Thompson plat, the reconstructed roof each one resolves onto, and what the resolution is worth. Nothing here authors geometry and nothing here moves a building: the roof named in a row already stands where the plat put it, and this file only says WHICH DOCUMENTED HOUSE the town was calling it. Read by tools/lot_address_adoption.py, which re-resolves every row against the committed plat numbering and the committed footprints on every commit and refuses a row that has drifted; spent into the structure record by tools/generate_block_infill.py, the same arrangement the inferred-household ledger and the street-face adoptions use.",
+  "id": "lot_address_adoptions_1835",
+  "scene": "1835",
+  "target_date": "1835-07-01",
+  "policy": "A LOT ADDRESS IS NOT A STREET FACE, and the difference is the whole reason this file is not docs/STREET-FACE-ADOPTION.md's table. A street-face adoption picks WHICH roof on a face a documented business takes, and its first limit is that it claims a face and never a lot (tools/adopt_street_faces.py, the owner's ruling of 2026-08-29). Here the source names the lot itself, so there is no allocation to make and nothing to choose: the plat numbering resolves the address to one lot, one roof stands on that lot, and the only question is whether this project holds the numbering well enough to say so. It does not hold it perfectly, and every grade below says which part is weak.",
+  "limits": [
+    "1. THE ROOF STAYS RECONSTRUCTED. Adopting an address does not promote a building. The fabric standing under the address — that this roof exists at all, its position inside the lot, its footprint, its family and its form — is invented by the 665-roof programme and is untouched here. Only `documented_range` is regraded, because that attribute is the claim that A BUILDING stood on this ground in the scene year, which is the one thing the notice actually says.",
+    "2. THE ADDRESS INHERITS THE WEAKEST GRADE IN THE CHAIN THAT RESOLVES IT. The notice is a period document; the block NUMBER is `inferred` (counted three blocks east of a read numeral, data/traces/thompson_block_numbering.json); the lot LINES are `conjectural` (the plat module divided into a block, drawn from no sheet). So the identification of this roof with this address is graded `inferred` and may never be graded above it, whatever the notice itself is worth.",
+    "3. ONE LOT, ONE ROOF. A row is refused if the lot it resolves to holds no roof, or more than one, or a roof outside the anonymous `recon_*` layer. A documented named building already standing on the lot is a different question — a reconciliation between two documented claims — and this file is not the place to answer it.",
+    "4. THE ROOF THAT MADE WAY IS NOT DEALT TWICE. An adopted roof stays in the block parcel it was dealt, keeps its id, its family, its sequence and its count toward the 665-roof programme, and keeps whatever occupant the occupancy ledger already seated in it. Nothing is added to the town's roof count and nothing is taken out of it; a count-unit becomes a count-unit with a documented address."
+  ],
+  "adoptions": [
+    {
+      "address_id": "spring_lot_7_block_16",
+      "printed_address": "LOT No. 7, in block No. 16, one lot east of Haddock's Tavern, on Lake street",
+      "printed_building": "a large Dwelling-House and fine well",
+      "advertised_by": "G. Spring",
+      "plat_block_number": 16,
+      "plat_lot_number": 7,
+      "block_id": "blk_south_water_dearborn",
+      "structure_id": "recon_1835_blk_south_water_dearborn_d3_03",
+      "name": "The large dwelling-house on lot 7 of block 16",
+      "aka": ["G. Spring's dwelling-house"],
+      "confidence": "inferred",
+      "first_issue": "1834-06-18",
+      "last_issue": "1834-11-19",
+      "printings": 6,
+      "cites": [
+        "chicago_democrat_1834_06_18#c006",
+        "chicago_democrat_1834_07_02#c053",
+        "chicago_democrat_1834_07_09#c024",
+        "chicago_democrat_1834_09_03#c005",
+        "chicago_democrat_1834_10_15#c006",
+        "chicago_democrat_1834_11_19#c010"
+      ],
+      "cites_legible": [
+        "chicago_democrat_1834_06_18#c006",
+        "chicago_democrat_1834_09_03#c005",
+        "chicago_democrat_1834_10_15#c006",
+        "chicago_democrat_1834_11_19#c010"
+      ],
+      "legibility_note": "Six settings of one notice, dated June 18 1834 and standing to November. Four read the neighbour as Haddock's Tavern and are legible end to end; the setting of 1834-07-09 reads Maddock's, which data/research/newspapers/identity.json merges into Haddock's on those four; the setting of 1834-07-02 is damaged at both the tavern's name and the building's and its own claim refused to supply either word.",
+      "scene_date_note": "The last printing is 1834-11-19, seven and a half months before the scene date. That the house still stood on 1835-07-01 is INFERRED and not documented: a dwelling advertised for sale over five months is a standing building rather than a project, nothing in the corpus records a fire, a removal or a rebuilding on this lot, and the town of 1835 was adding houses rather than losing them. What would replace the inference is a printing of 1835 that names the lot; the register holds none.",
+      "well": {
+        "documented": true,
+        "drawn": false,
+        "why_not": "The notice attests a well ON THE LOT and gives it no position, no diameter, no curb and no cover, so the whole of a drawn well would be invention standing beside a documented building — and this project draws small ground objects from a RULE that a gate re-derives (the yard goods, the dooryard pickets, the lot-line fences), not from one hand-placed record. There is no well layer to add a row to and writing one is more than this adoption. Filed as its own ticket rather than left as a silence."
+      },
+      "fabric_note": "THE NOTICE SAYS `LARGE` AND THE ROOF UNDER IT IS THE BLOCK'S SMALLEST FAMILY — a D3 one-room frame cottage of 5.36 x 6.38 m. The address is documented and the fabric is not, so the mismatch is a statement about the reconstruction and not about the evidence; correcting it means re-dealing the block's family mix and re-baking, which is a second demonstration and is filed as its own ticket."
+    }
+  ]
+}
