@@ -99,6 +99,18 @@ step "the platted block and lot grid re-derives from the module" \
 step "…and a block whose rows have crossed is refused rather than emitted" \
   python3 tools/generate_plat_lots.py --self-test
 
+# The band the two halves of that plat now leave between them (T-0419). Since the owner
+# ruled on 2026-08-29 that a corridor is derived from the street CONTROL, south_water's
+# corridor stands 8.58 m north of block faces that are still offset from the DRAWN line,
+# and 6,132 m2 of ground belongs to neither. Which of them is wrong is the owner's
+# question and this gate does not answer it — it pins the figures the question is asked
+# about, so the fork he is being asked to rule on cannot drift under him while it waits.
+step "the band between the re-centred corridor and its block faces is what T-0419 measured" \
+  python3 tools/measure_corridor_strip.py --gate
+
+step "…and that measurement's own assertions still fire when broken" \
+  python3 tools/measure_corridor_strip.py --self-test
+
 # The dooryard garden pickets are the first record on the enclosure layer whose evidence
 # is a TREATMENT and not a place — the Kinzie-view plate shows picket-fenced garden plots
 # and no source puts a garden on any lot in this town. So the answer to "why this lot" is

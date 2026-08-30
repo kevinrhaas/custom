@@ -1,4 +1,12 @@
 export const CHANGELOG = [ // newest first
+  { v: 434, title: 'A third of South Water Street belongs to nobody, measured', kind: 'chore', ts: '2026-08-30T09:33:33.078Z', date: 'Aug 30, 2026, 4:33 AM CT',
+    items: [
+      'Nothing you can see changed today. This town is laid out on the 1830 plat, and a street on that plat is a legal strip 80 feet wide. A ruling here yesterday was that the strip should be positioned from the surveyed control point, not from the line this project drew for people to walk down \u2014 and on South Water Street those two are 8.58 metres apart.',
+      'The blocks on either side did not move with it. So the strip and the blocks stopped touching, and a band of ground fell between them belonging to neither. That band had been noted and never measured. It is 6,132 square metres, a third of the street\u2019s own area, running the whole 716 metres of it, and 99 per cent of it is dry land.',
+      'There are two such bands, not one, which is the part nobody had spotted. Moving a strip gives up exactly as much as it takes, so there is a second band of the same size on the river side \u2014 and more than half of that one is the river. Four buildings the newspapers place stand in the first band. The Dearborn Street drawbridge stands in the second.',
+      'That is the whole question, and it is the owner\u2019s. Either the blocks are also off their control, in which case the lots move too \u2014 32 of them re-cut, 43 buildings standing on them, and one whole block would end up with a corner in the water and drop out of the plat, taking eight lots and nine buildings; or the drawn street is the blocks\u2019 own reference, and the two are simply answers to different questions.',
+      'It is filed with both costs beside it and nothing has been moved. The figures are now re-measured on every build, so the question cannot quietly change shape while it waits for an answer.',
+    ] },
   { v: 433, title: 'The town gains 712 people, and every one is only a name', kind: 'feature', ts: '2026-08-30T08:43:00.956Z', date: 'Aug 30, 2026, 3:43 AM CT',
     items: [
       'The people section of the Evidence panel went from 244 people to 956 today. The 712 new ones all come from the same place: the Chicago post office periodically printed a list of the letters it was holding that nobody had called for, and these are the names on those lists.',

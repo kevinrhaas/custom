@@ -7001,6 +7001,76 @@ workable — **20 roofs of headroom.** `blk_south_water_market` stays gated on T
 `chicago/4d/tickets/T-0009-*.md`. **No structure record, footprint, coordinate, confidence or
 street line was touched, and `docs/LIBERTIES.md` gains no entry — nothing was invented.**
 
+### K30(f) — the band the ruling opens, measured on the ground · **MEASURED 2026-08-30 (T-0419) · THE FORK IS THE OWNER'S**
+
+K30(e) filed a strip and did not measure it: *"that 8.58 m strip, which now belongs to neither the
+corridor nor the block, is a real question about the plat."* This is the strip, on the ground, with
+both branches priced. **Nothing moved.** No street line, no block, no lot, no structure record, no
+confidence, no coordinate — the ticket's own acceptance forbids it, and the tool written here is a
+measurement wired to no generator.
+
+**There are TWO bands, not one, and that is the first finding.** A rigid translation gives up
+exactly what it takes, so the displacement opens a band of the same size on each side. K30(e) named
+the southern one; leaving the northern one out priced half the question.
+
+| | area | share of the drawn corridor | dry | platted lots in it | committed footprints lapping |
+|---|---|---|---|---|---|
+| **abandoned** — inside the DRAWN corridor, outside the control one | 6,132 m² | 33 % | **99.1 %** (6,024 m² dry, 52 m² water) | **0** | 4 |
+| **claimed** — inside the CONTROL corridor, outside the drawn one | 6,132 m² | 33 % | **47.6 %** (2,892 m² dry, **3,184 m² river**) | **0** | 1 |
+
+The drawn corridor is 18,403 m² over 716 m, so **a third of it moves off itself**. Both bands cut
+8.58 m at their widest, which is the displacement and nothing else; a platted lot on this row is
+43.83 m deep, so the abandoned band is **19.6 % of a lot depth** and cannot hold a lot whatever the
+ruling is.
+
+**Zero platted lots, and it is measured as AREA rather than contact.** The band's south edge and the
+block's north face are the same offset of the same line, so all sixteen lots on the row touch the
+band along their whole frontage. A contact test reported sixteen lots lapped — the wrong answer to
+the ticket's own question, by sixteen — so the overlap is integrated over the band's own sample
+grid instead, and a lot that merely abuts scores zero.
+
+**The five records that lap a band are the same five K30(e) moved, and all five are `research`** —
+records a person placed from a source, not generated ones. `hogan_store`, `newberry_dole_warehouse`,
+`lasalle_slough_crossing` and `slough_log_bridge` lap the abandoned band; `dearborn_street_drawbridge`
+laps the claimed one. Under the drawn corridor those four stand in the roadway. Under the control
+corridor they stand on the band that belongs to nobody.
+
+**BRANCH A PRICED — the block grid moves with the control.** Re-derived through the committed
+generator with the control-centred line standing in as `block_edges`' input, rather than reasoned
+about:
+
+* four blocks deepen by 8.58 m (`blk_south_water_franklin` 93.90 → 102.48 m, `_wells` 95.97 →
+  104.55, `_clark` 98.47 → 107.05, `_dearborn` 96.67 → 105.25), **32 lots re-cut**, and **43
+  committed roofs stand on them**;
+* **`blk_south_water_lasalle` leaves the grid entirely** — 19 blocks / 144 lots become 18 / 136 —
+  because one of its four corners then falls on water, which `generate_plat_lots` refuses by name.
+  It takes **8 lots and 9 committed roofs** with it, **and it is T-0429**, the top ticket in the
+  queue, whose whole content is eight roofs of headroom on that block.
+
+**BRANCH B PRICED — the corridor and the blocks are answers to two different questions.** Nothing
+in `data/` moves; **10 modules read `plat_corridors` or `block_edges`** and each has to declare
+which line it is asking about, plus the five gates T-0009 measured red when the default was
+swapped (the cross-street platted-face census in `reconcile_665.py`, the southern-ground stations,
+the block-parcel street-line assertions and their self-tests, and the far-timber census).
+
+**What the ground says, without settling it.** The control-derived corridor is **52.4 % river**,
+and `south_water`'s own record says the drawn line "is shifted into the dry half of the platted
+riverfront corridor". A plat corridor lying half in the water on this reach, with the town's built
+street drawn in its dry half, is consistent with both halves of the record — and the abandoned band
+is then the dry remainder of the platted corridor that the street does not occupy, which is exactly
+where four documented buildings already stand. **That is an argument, not a ruling, and the ticket
+says the ruling is the owner's.** It is written down here so he can rule on it with the numbers in
+front of him rather than on the shape of the question.
+
+**The ratchet:** `tools/measure_corridor_strip.py --gate` against `tools/corridor_strip_baseline.json`,
+in `check.sh`, with `--self-test` beside it. It pins the figures the fork is asked about so they
+cannot drift while it waits — a red there means the question changed, not that anything is broken.
+
+**Files:** `tools/measure_corridor_strip.py` (new) · `tools/corridor_strip_baseline.json` (new) ·
+`tools/check.sh` · `docs/ROADMAP.md` · `chicago/4d/tickets/T-0419-*.md` (now `blocked-owner`).
+**No structure record, footprint, coordinate, confidence, street line or lot was touched, and
+`docs/LIBERTIES.md` gains no entry — nothing was invented.**
+
 ### T-A3 — the second refreshed block · **DONE 2026-08-14 (`blk_randolph_dearborn`)**
 
 **The parcel shape did repeat, and that is the finding.** Appending a block to

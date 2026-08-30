@@ -1,7 +1,7 @@
 ---
 id: T-0419
 title: The re-centred South Water corridor stands 8.58 m off its own block faces, and the strip between belongs to neither
-state: open
+state: blocked-owner
 epic: META
 requested_by: loop
 seen: false
@@ -11,8 +11,8 @@ parent: null
 opened: 2026-08-29
 closed: null
 pr: null
-claimed_by: null
-blocked_on: null
+claimed_by: run 8/30/2026, 4:23:47 AM CT
+blocked_on: Is the platted BLOCK grid on the South Water reach offset from the control too — branch A, which re-cuts 32 lots and drops blk_south_water_lasalle (8 lots, 9 roofs, all of T-0429) into the river — or is the drawn line the block grid's own control, branch B, in which case the corridor and the blocks answer two different questions and 10 corridor readers each declare which? Measured 2026-08-30: the abandoned band is 6,132 m2 and 99.1% dry, the band the corridor claims instead is 52.4% river. See docs/ROADMAP.md K30(f).
 needs_bake: false
 ---
 
@@ -49,3 +49,48 @@ each branch costs; nothing moves until he answers. **Do not "fix" this by moving
 
 **Links:** T-0009 · K30(e) in `docs/ROADMAP.md` · `tools/plat_corridors.py` ·
 `tools/generate_plat_lots.py` · T-0421.
+
+---
+
+## MEASURED 2026-08-30 — the strip on the ground, and both branches priced
+
+`tools/measure_corridor_strip.py` (new, gated in `check.sh`, baseline in
+`tools/corridor_strip_baseline.json`). **Nothing moved**: no street line, block, lot, structure
+record, coordinate or confidence. The full write-up is `docs/ROADMAP.md` § K30(f).
+
+**There are two bands, not one.** A rigid translation gives up exactly what it takes.
+
+| band | area | dry | platted lots in it | footprints lapping |
+|---|---|---|---|---|
+| **abandoned** — in the DRAWN corridor, outside the control one | 6,132 m² | **99.1 %** | **0** | `hogan_store`, `newberry_dole_warehouse`, `lasalle_slough_crossing`, `slough_log_bridge` — all `research` |
+| **claimed** — in the CONTROL corridor, outside the drawn one | 6,132 m² | **47.6 %** (3,184 m² is river) | **0** | `dearborn_street_drawbridge` |
+
+Each is 33 % of the drawn corridor's own 18,403 m². Both cut 8.58 m at their widest — the
+displacement and nothing else. A lot on this row is 43.83 m deep, so the abandoned band is **19.6 %
+of a lot depth and cannot hold a lot** under either branch. Zero lots is measured as AREA: all
+sixteen lots on the row *touch* the band along their frontage, and a contact test answered
+"sixteen".
+
+**THE FORK, WITH WHAT EACH BRANCH COSTS.**
+
+**A — the block grid is offset from the control too, so the lots move with the corridor.** Priced by
+re-deriving the grid through `generate_plat_lots` with the control-centred line as `block_edges`'
+input: four blocks deepen 8.58 m, **32 lots re-cut**, **43 committed roofs stand on them** — and
+**`blk_south_water_lasalle` leaves the grid** (19 blocks/144 lots → 18/136) because a corner then
+falls on water. That block is **8 lots, 9 committed roofs, and the whole content of T-0429**, the
+top ticket in the queue.
+
+**B — the drawn line is the block grid's own control, so the corridor and the blocks answer two
+different questions.** Nothing in `data/` moves; **10 modules** that read `plat_corridors` or
+`block_edges` each declare which line they ask, and the five gates T-0009 measured red are re-read
+rather than repaired.
+
+**What the ground says, and it is an argument rather than a ruling.** The control-derived corridor
+is **52.4 % river**. `data/streets/1835.json` already records that this line "is shifted into the
+dry half of the platted riverfront corridor", 8.28 m perpendicular, "with 3.91 m to spare before
+its south edge". A plat corridor half in the water with the built street drawn in its dry half is
+consistent with both halves of the record — and the abandoned band is then the dry remainder of the
+platted corridor, which is exactly where four documented buildings already stand. Under branch A
+that reading has to be wrong, and a documented block goes into the river with it.
+
+**Nothing moves until the owner answers**, per this ticket's own acceptance.
