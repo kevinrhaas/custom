@@ -79,7 +79,6 @@ T-0365 — The anonymous-block programme has no unblocked ground left: every blo
 # --- ten-minute foreground ceiling, so no steward run can complete it at all, and three
 # --- PRs tonight had to say so instead of reporting a result. The two order-dependent
 # --- gates below make a green run and a red run of the same tree.
-T-0346 — Desktop smoke stage 4 no longer fits the ten-minute foreground ceiling, so no steward run can take the whole desktop gate
 T-0349 — The signboard gate is red when stage 1 runs before it and green when stage 2 runs alone
 T-0369 — Desktop stage 8's panel walk is red when stage 1 runs before it and green when stage 8 runs alone
 T-0235 — The unfiltered renderer smoke takes 55 minutes on the steward runner, and three tickets reason against a 30-minute cap
