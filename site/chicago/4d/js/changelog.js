@@ -1,10 +1,18 @@
 export const CHANGELOG = [ // newest first
-  { v: 422, title: 'The riverfront blocks the ruling opened get one ticket each', kind: 'chore', ts: '2026-08-30T02:59:12.120Z', date: 'Aug 29, 2026, 9:59 PM CT',
+  { v: 423, title: 'The riverfront blocks the ruling opened get one ticket each', kind: 'chore', ts: '2026-08-30T03:09:18.895Z', date: 'Aug 29, 2026, 10:09 PM CT',
     items: [
       'Nothing you can see changed today. Behind the model there is a programme that decides where the next unbuilt roof in this town may stand, and since last night it has had somewhere to put twenty of them \u2014 four blocks between South Water Street and Lake Street, at Franklin, La Salle, Clark and Dearborn, freed when the owner ruled that the South Water street line stays where it is drawn.',
       'They were all filed as a single piece of work, and they are four. The rule this project builds under is one run, one thing shown, one thing handed on; a ticket holding four blocks can only ever be a quarter finished, and a half-finished ticket is how the same ground gets built twice. So there are four now, one per block, each carrying that block\u2019s own measured headroom \u2014 eight roofs at La Salle, four each at Franklin, Clark and Dearborn \u2014 and each marked as needing the roofs baked.',
       'The fifth block, at Market Street, is deliberately not among them. The owner ruled for it too, and the ground refused: the river pinches it to under three metres of depth where a lot needs twenty-four. Its twenty-seven roofs go back into the balance rather than being promised again.',
       'What that leaves is worth saying plainly, so nobody has to work it out twice: four runs of ground the project actually holds, twenty roofs, and after them this programme is finished until terrain, water or street control reach further than they do today.',
+    ] },
+  { v: 422, title: 'The nightly rebuild stops announcing itself when it rebuilt nothing', kind: 'chore', ts: '2026-08-30T02:49:41.581Z', date: 'Aug 29, 2026, 9:49 PM CT',
+    items: [
+      'Nothing you can see changed today. Every night a machine regenerates the whole town from the records \u2014 every building, every derived file \u2014 and if anything came out different it puts the result up for review. That was the signal: a review waiting in the morning meant the town had changed overnight.',
+      'The signal had been dead for months. The last thing the rebuild does is stamp the page with which version it is and when it was built, and that stamp moves every single night by definition. So the rebuild always looked as though it had produced something, and it always asked for a review \u2014 five of them piled up in the hour before this was written, each one two files of clock and version number and not a single building between them.',
+      'The question is now asked of the town rather than of the clock. A rebuild that changed no geometry, no data and no derived file pushes nothing and says in its log that it found nothing; a rebuild that changed one byte of any of them still asks for its review.',
+      'The stamp itself is untouched \u2014 it is written every night as before, it is what the entry screen shows you, and it travels with the next rebuild that has real work in it. What it stops doing is inventing that work.',
+      'The rule is deliberately narrow, because the obvious version of it would break the same signal from the other side: simply ignoring the two stamped files would mean a genuine change to either of them never surfaced again. Instead each is compared with its stamp put back, so the version line can move freely and anything else moving still counts. Seven cases hold that, and two more watch the build itself in case it ever starts stamping a third file.',
     ] },
   { v: 421, title: 'The panel\u2019s own test could not say the same thing twice', kind: 'chore', ts: '2026-08-30T02:30:09.883Z', date: 'Aug 29, 2026, 9:30 PM CT',
     items: [
