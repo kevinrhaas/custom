@@ -1,7 +1,7 @@
 ---
 id: T-0418
 title: The 36 documented tradespeople whose trade the residents vocabulary has no word for
-state: open
+state: claimed
 epic: META
 requested_by: loop
 seen: false
@@ -11,7 +11,7 @@ parent: T-0373
 opened: 2026-08-29
 closed: null
 pr: null
-claimed_by: null
+claimed_by: run 8/30/2026, 4:23:26 AM CT
 blocked_on: null
 needs_bake: false
 ---

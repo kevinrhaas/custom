@@ -134,6 +134,74 @@ ANCHOR_STOP = {
     "next", "near", "above", "below", "east", "west", "north", "south", "side",
 }
 
+# The trades the vocabulary REFUSES, and the reason each one is refused (T-0418).
+# Read BEFORE the translation table below, and matched against the WHOLE printed trade
+# rather than anywhere inside it. Both halves of that sentence are load-bearing. FIRST,
+# because the table below matches a needle ANYWHERE in the printed trade and two of the
+# refusals here contain a word that would otherwise fire — 'postmaster general' contains
+# 'postmaster', 'judge of election' contains 'judge' — so refusing first is what lets
+# those two words be said at all. WHOLE, because the reverse trap is just as easy:
+# refusing the bare word 'agent' as a substring would refuse 'Indian agent',
+# 'insurance agent' and 'land agent' with it, which are three trades the papers print
+# plainly and the vocabulary can say.
+#
+# A refusal is not a gap to be filled later by someone with more nerve. Each of these
+# is a printed phrase that is NOT a livelihood — an office held elsewhere, a duty
+# discharged for one day, a class of men rather than a trade, or a possession. The
+# project's rule is that a trade the paper does not give a man may not be minted for
+# him (T-0376, the milliner compiled as a MILLER), and the honest form of that rule
+# here is a written refusal rather than a near-miss word.
+TRADE_NO_OCCUPATION = (
+    ("postmaster general", "the office was held at Washington. The papers print "
+     "W. T. Barry as the signature on a Post Office Department notice, not as a "
+     "Chicago man; reading it as this town's `postmaster` would seat the "
+     "Postmaster General of the United States in Chicago"),
+    ("governor of illinois", "a state office held at Vandalia. Joseph Duncan is "
+     "printed here as the authority a notice cites, and the vocabulary describes "
+     "what a resident of this town did for a living"),
+    ("secretary of war", "a federal office held at Washington, printed for the same "
+     "reason as the Governor: it is the authority above a notice"),
+    ("secretary of state of illinois", "a state office held at Vandalia"),
+    ("judge of election", "an appointment for one election day. Three men held it "
+     "at each of the town's polls and went back to their trades the next morning"),
+    ("administratrix", "a role held for one estate under a probate notice. Harriet "
+     "Bradford administers her husband's estate; the paper says nothing about what "
+     "she did for a living"),
+    ("appraiser", "an appointment per estate, made by the same probate notices that "
+     "name an administrator. The men named are appraising one inventory, not "
+     "practising a trade"),
+    ("public administrator", "a county appointment discharged over particular "
+     "estates, and printed as such"),
+    ("public administrator of cook county", "the same appointment, printed with "
+     "its county"),
+    ("militia officer", "the militia was a duty every able man owed, not a "
+     "livelihood — a militia officer's trade is whatever else he did, and the "
+     "papers that give the rank do not give the trade"),
+    ("colonel of the cook county regiment", "the same duty, printed with its rank"),
+    ("regimental adjutant", "the same duty, printed with its appointment"),
+    ("fire warden", "an annual town appointment, unpaid, held beside a trade"),
+    ("mechanic", "in 1835 the word names the whole handicraft class — the "
+     "'mechanics of Chicago' a card is addressed to — and not one trade. Which "
+     "craft Wm. Payne worked is exactly what the paper does not say"),
+    ("ventriloquist", "a travelling exhibitor billed for a night at a hotel. The "
+     "vocabulary describes the town's own working people"),
+    ("steamboat owner", "a possession rather than a trade: the papers name J. F. "
+     "Wight as the owner of a boat, not as her master or her agent"),
+    ("harbour agent", "a federal appointment over the harbour works, printed as the "
+     "office a man signs from; the corpus gives no trade beside it"),
+    ("school trustee", "an elected member of the school board. The `school` needle "
+     "in the table below reads it as a SCHOOLTEACHER, which is the milliner-as-miller "
+     "fault T-0376 found in another coat: a trustee of the school is not the man who "
+     "keeps it"),
+    ("school commissioner", "the county officer who sold the school lands, and the "
+     "same near miss"),
+    ("school district clerk", "the clerk of the district's board, and the same near "
+     "miss"),
+    ("agent", "the bare word names no trade — the paper does not say an agent of "
+     "what. Every agency this vocabulary can say ('insurance agent', 'land agent') "
+     "is printed with the thing it is an agency for"),
+)
+
 # The trade a paper prints is prose; `data/residents/` speaks a closed occupation
 # vocabulary. This is the whole of the translation between them and it is deliberately
 # a table rather than a matcher: a fuzzy trade match would silently retire an invented
@@ -148,6 +216,44 @@ TRADE_TO_OCCUPATION = (
     # Mrs H. Sherman, who took a room two doors from the Mansion House a month later.
     # A dressmaker recorded as a grain miller is not a near miss; it is a trade the
     # paper never gives her, and this project may not mint a resident over one.
+    # THE WORDS THE VOCABULARY ALREADY HELD AND THIS TABLE COULD NOT SAY (T-0418).
+    # 23 of the 73 occupations `data/residents/index.json` publishes had no needle
+    # that could produce them, so a paper printing one of them VERBATIM still left
+    # its man occupation-less and out of the mint. These eight are the verbatim
+    # cases: the printed trade names the vocabulary's own word, so there is no
+    # judgement in the mapping and none of the near-miss risk the table exists to
+    # avoid. A trade that only MEANS one of these words — 'Baptist pastor' for
+    # `minister`, 'schooner master' for `seaman` — is deliberately NOT here; that is
+    # a reading, and a reading belongs in a ticket rather than in a substring.
+    ("justice of the peace", "justice_of_the_peace"),
+    ("army officer", "army_officer"),
+    ("indian agent", "indian_agent"),
+    ("postmaster", "postmaster"),
+    ("county clerk", "county_clerk"),
+    ("farmer", "farmer"),
+    ("soldier", "soldier"),
+    ("minister", "minister"),
+
+    # AND THE WORDS IT DID NOT HOLD, added to `data/residents/index.json` in the same
+    # commit (T-0418). Each one is a trade the papers print for a person the register
+    # otherwise had to refuse, and each is the printed word itself rather than a
+    # neighbouring one: a tinsmith is not a blacksmith, a bookseller is not a
+    # merchant, a provision dealer is not a grocer. `sheriff` and `judge` are OFFICES,
+    # and they are here because the vocabulary already carries five of those
+    # (`justice_of_the_peace`, `postmaster`, `county_clerk`, `indian_agent`,
+    # `sub_agent`) — the committed manifest settled that question long before this
+    # ticket asked it.
+    ("insurance agent", "insurance_agent"),
+    ("land agent", "land_agent"),
+    ("provision dealer", "provision_dealer"),
+    ("bookseller", "bookseller"),
+    ("coffee house", "coffee_house_keeper"),
+    ("tinsmith", "tinsmith"),
+    ("tinner", "tinsmith"),
+    ("founder", "founder"),
+    ("sheriff", "sheriff"),
+    ("judge", "judge"),
+
     ("millinery", "milliner"),
     ("milliner", "milliner"),
     ("dress making", "dressmaker"),
@@ -241,13 +347,87 @@ def street_key(name):
     return "_".join(t.split())
 
 
+def refusal_of(text):
+    """Why the vocabulary will not say this printed trade, or None if it is silent.
+
+    Matched on the WHOLE printed trade — see TRADE_NO_OCCUPATION's own note.
+    """
+    t = " ".join((text or "").lower().split()).strip(" .,;")
+    for phrase, reason in TRADE_NO_OCCUPATION:
+        if t == phrase:
+            return reason
+    return None
+
+
 def occupation_of(text):
     """The residents vocabulary's word for a printed trade, or None."""
+    if refusal_of(text):
+        return None
     t = (text or "").lower()
     for needle, occ in TRADE_TO_OCCUPATION:
         if needle in t:
             return occ
     return None
+
+
+# An OFFICE and an AGENCY are not livelihoods in the sense the rest of this
+# vocabulary is, and a man who holds one nearly always has a trade underneath it.
+# John S. C. Hogan kept the post office in his own store; T-0410 records a fire
+# insurance agency passing between three houses in a year, which is precisely what a
+# trade does not do. So when the papers print both for one man, the trade is what
+# `data/residents/` should hold him as.
+OFFICE_OCCUPATIONS = frozenset((
+    "justice_of_the_peace", "postmaster", "county_clerk", "indian_agent",
+    "sub_agent", "sheriff", "judge",
+))
+AGENCY_OCCUPATIONS = frozenset(("insurance_agent", "land_agent"))
+
+
+def occupation_for(printed, committed=None):
+    """One vocabulary word for a person the papers give several trades (T-0418).
+
+    The gazetteer sorts a person's printed trades ALPHABETICALLY, and this compiler
+    used to take the first of them the table could say. That was never a reading —
+    it was the alphabet — and it only stopped being harmless when the vocabulary
+    learned more words: teaching it `provision dealer` would have made Daniel Elston,
+    the town's soap and candle manufacturer, a provision dealer, because `p` sorts
+    before `s`. Four such displacements appeared the moment the words landed, so the
+    choice is made on evidence here instead, in this order:
+
+      1. A TRADE OUTRANKS AN OFFICE, AND AN OFFICE OUTRANKS AN AGENCY (above). This
+         is what keeps E. K. Hubbard a `merchant` who also took the Howard's fire
+         insurance agency, rather than an insurance agent who also kept a store.
+      2. THEN THE READING THE TOWN ALREADY HOLDS. Daniel Elston is committed as a
+         `soap_and_candle_maker`, and the corpus prints him as a soap boiler, a soap
+         and candle manufacturer, a chandler, a pork curer and a provision dealer. It
+         gives no reason to prefer one over another, so the town's own answer stands
+         rather than being churned for the alphabet's sake — the same reason
+         `measure_name_churn` exists. This breaks a tie and can do nothing else: a
+         committed word that is not printed for the man never enters the list.
+      3. Then THE ORDER THE CORPUS ITSELF PRINTS THEM IN, which is what this
+         compiler has always used and is left alone where nothing above decides.
+
+    A FOURTH RULE WAS TRIED AND REJECTED: preferring the word the corpus prints MOST
+    OFTEN. It is a better rule in the abstract and it changed seventeen readings that
+    have nothing to do with this ticket — four of them documented men who stopped
+    retiring an invented household, because the count preferred a second trade over
+    the one the retirement was made on. Ranking evidence by how often a phrase was
+    typeset is a whole unit of work with its own before-and-after, and it is
+    T-0433's.
+    """
+    found: dict[str, int] = {}
+    for i, text in enumerate(printed):
+        occ = occupation_of(text)
+        if occ and occ not in found:
+            found[occ] = i
+    if not found:
+        return None
+
+    def rank(occ):
+        klass = 2 if occ in AGENCY_OCCUPATIONS else 1 if occ in OFFICE_OCCUPATIONS else 0
+        return (klass, 0 if occ == committed else 1, found[occ])
+
+    return min(found, key=rank)
 
 
 # --------------------------------------------------------------------------
@@ -976,13 +1156,10 @@ def compile_register(gazetteer, town, quiet=True):
 
     persons = []
     for p in sorted(gazetteer["persons"], key=lambda x: x["id"]):
-        occ = None
-        for o in p.get("occupations") or []:
-            occ = occupation_of(o)
-            if occ:
-                break
-        occ = occ or trade_of_person.get(slug(p["name"]))
         match = resident_match(p["name"])
+        occ = occupation_for(p.get("occupations") or [],
+                             (match or {}).get("occupation"))
+        occ = occ or trade_of_person.get(slug(p["name"]))
         entry = {
             "id": p["id"],
             "name": p["name"],

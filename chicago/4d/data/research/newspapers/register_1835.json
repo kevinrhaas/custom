@@ -3519,7 +3519,7 @@
       "id": "business_j_k_botsford",
       "name": "J. K. Botsford",
       "trade": "grocer and tinner",
-      "occupation": "grocer",
+      "occupation": "tinsmith",
       "proprietors": [
         "J. K. Botsford"
       ],
@@ -4652,7 +4652,7 @@
       "id": "business_marsh_simons",
       "name": "Marsh & Simons",
       "trade": "provision dealers at the Boston Market",
-      "occupation": null,
+      "occupation": "provision_dealer",
       "proprietors": [
         "Silvester Marsh",
         "Edward Simons"
@@ -5776,7 +5776,7 @@
       "id": "business_russell_clift",
       "name": "Russell & Clift",
       "trade": "bookseller and stationer",
-      "occupation": null,
+      "occupation": "bookseller",
       "proprietors": [
         "Aaron Russell",
         "Benj. H. Clift",
@@ -5815,7 +5815,7 @@
       "id": "business_russell_e_heacock",
       "name": "Russell E. Heacock",
       "trade": "counsellor and attorney at law, land conveyancing, justice of the peace business, and a land agency office",
-      "occupation": "attorney",
+      "occupation": "justice_of_the_peace",
       "proprietors": [
         "Russell E. Heacock"
       ],
@@ -7370,7 +7370,7 @@
       "id": "business_w_g_blanchard",
       "name": "W. G. Blanchard",
       "trade": "house and land agent",
-      "occupation": null,
+      "occupation": "land_agent",
       "proprietors": [
         "W. G. Blanchard"
       ],
@@ -7880,7 +7880,7 @@
       "id": "business_wm_g_branchaud",
       "name": "Wm. G. Branchaud",
       "trade": "house and land agent",
-      "occupation": null,
+      "occupation": "land_agent",
       "proprietors": [
         "Wm. G. Branchaud"
       ],
@@ -8464,7 +8464,7 @@
     {
       "id": "person_aaron_russell",
       "name": "Aaron Russell",
-      "occupation": null,
+      "occupation": "bookseller",
       "letter_list_only": false,
       "first_seen": "1834-11-12",
       "last_seen": "1834-11-12",
@@ -9630,7 +9630,7 @@
     {
       "id": "person_b_jones",
       "name": "B. Jones",
-      "occupation": "forwarding_and_commission",
+      "occupation": "grocer",
       "letter_list_only": false,
       "first_seen": "1834-01-21",
       "last_seen": "1834-07-16",
@@ -10917,7 +10917,7 @@
     {
       "id": "person_botsford_j_k",
       "name": "Botsford, J. K.",
-      "occupation": null,
+      "occupation": "tinsmith",
       "letter_list_only": false,
       "first_seen": "1834-09-10",
       "last_seen": "1834-09-24",
@@ -11434,7 +11434,7 @@
     {
       "id": "person_byra_m_king",
       "name": "Byra[m] King",
-      "occupation": null,
+      "occupation": "founder",
       "letter_list_only": false,
       "first_seen": "1834-07-23",
       "last_seen": "1834-07-23",
@@ -11676,7 +11676,7 @@
     {
       "id": "person_capt_d_wilcox",
       "name": "Capt. D. Wilcox",
-      "occupation": null,
+      "occupation": "soldier",
       "letter_list_only": false,
       "first_seen": "1834-02-04",
       "last_seen": "1834-02-04",
@@ -11687,7 +11687,7 @@
     {
       "id": "person_capt_j_m_baxley",
       "name": "Capt. J. M. Baxley",
-      "occupation": null,
+      "occupation": "army_officer",
       "letter_list_only": false,
       "first_seen": "1834-11-19",
       "last_seen": "1834-11-19",
@@ -11863,7 +11863,7 @@
     {
       "id": "person_caton_j_dean",
       "name": "Caton, J. Dean",
-      "occupation": null,
+      "occupation": "justice_of_the_peace",
       "letter_list_only": false,
       "first_seen": "1834-09-24",
       "last_seen": "1834-09-24",
@@ -12061,7 +12061,7 @@
     {
       "id": "person_charles_dann",
       "name": "Charles Dann",
-      "occupation": null,
+      "occupation": "postmaster",
       "letter_list_only": false,
       "first_seen": "1834-07-02",
       "last_seen": "1834-07-02",
@@ -12710,7 +12710,7 @@
     {
       "id": "person_clift_benj_h",
       "name": "Clift, Benj. H.",
-      "occupation": null,
+      "occupation": "bookseller",
       "letter_list_only": false,
       "first_seen": "1834-09-03",
       "last_seen": "1834-11-12",
@@ -12776,7 +12776,7 @@
     {
       "id": "person_col_owen",
       "name": "Col. Owen",
-      "occupation": null,
+      "occupation": "indian_agent",
       "letter_list_only": false,
       "first_seen": "1834-02-18",
       "last_seen": "1834-03-04",
@@ -13018,7 +13018,7 @@
     {
       "id": "person_cornelius_c_van_horn",
       "name": "Cornelius C. Van Horn",
-      "occupation": null,
+      "occupation": "justice_of_the_peace",
       "letter_list_only": false,
       "first_seen": "1834-03-18",
       "last_seen": "1834-07-23",
@@ -13326,7 +13326,7 @@
     {
       "id": "person_d_elston_co",
       "name": "D. Elston & Co.",
-      "occupation": "soap_and_candle_maker",
+      "occupation": "provision_dealer",
       "letter_list_only": false,
       "first_seen": "1834-04-01",
       "last_seen": "1834-04-01",
@@ -13524,7 +13524,7 @@
     {
       "id": "person_daniel_elston_co",
       "name": "Daniel Elston & Co.",
-      "occupation": "soap_and_candle_maker",
+      "occupation": "provision_dealer",
       "letter_list_only": false,
       "first_seen": "1834-02-18",
       "last_seen": "1834-07-02",
@@ -13766,7 +13766,7 @@
     {
       "id": "person_david_carver",
       "name": "David Carver",
-      "occupation": "auctioneer",
+      "occupation": "lumber_merchant",
       "letter_list_only": false,
       "first_seen": "1833-12-03",
       "last_seen": "1835-07-29",
@@ -14646,7 +14646,7 @@
     {
       "id": "person_e_kirby_smith",
       "name": "E. Kirby Smith",
-      "occupation": null,
+      "occupation": "army_officer",
       "letter_list_only": false,
       "first_seen": "1834-03-25",
       "last_seen": "1834-03-25",
@@ -15053,7 +15053,7 @@
     {
       "id": "person_edward_simons",
       "name": "Edward Simons",
-      "occupation": null,
+      "occupation": "provision_dealer",
       "letter_list_only": false,
       "first_seen": "1834-07-02",
       "last_seen": "1834-08-13",
@@ -15878,7 +15878,7 @@
     {
       "id": "person_forbes_stephen",
       "name": "Forbes, Stephen",
-      "occupation": null,
+      "occupation": "sheriff",
       "letter_list_only": false,
       "first_seen": "1834-09-03",
       "last_seen": "1834-09-03",
@@ -16109,7 +16109,7 @@
     {
       "id": "person_fullerton_botsford",
       "name": "Fullerton & Botsford",
-      "occupation": null,
+      "occupation": "provision_dealer",
       "letter_list_only": false,
       "first_seen": "1834-06-04",
       "last_seen": "1834-07-09",
@@ -16263,7 +16263,7 @@
     {
       "id": "person_g_w_keeney",
       "name": "G. W. Keeney",
-      "occupation": null,
+      "occupation": "founder",
       "letter_list_only": false,
       "first_seen": "1834-05-07",
       "last_seen": "1834-05-07",
@@ -16593,7 +16593,7 @@
     {
       "id": "person_george_smith",
       "name": "George Smith",
-      "occupation": null,
+      "occupation": "coffee_house_keeper",
       "letter_list_only": false,
       "first_seen": "1834-11-05",
       "last_seen": "1835-05-20",
@@ -16648,7 +16648,7 @@
     {
       "id": "person_george_w_snow",
       "name": "George W. Snow",
-      "occupation": "builder",
+      "occupation": "surveyor",
       "letter_list_only": false,
       "first_seen": "1833-12-10",
       "last_seen": "1834-08-13",
@@ -16692,7 +16692,7 @@
     {
       "id": "person_gholson_kercheval",
       "name": "Gholson Kercheval",
-      "occupation": null,
+      "occupation": "land_agent",
       "letter_list_only": false,
       "first_seen": "1834-06-04",
       "last_seen": "1834-06-04",
@@ -16846,7 +16846,7 @@
     {
       "id": "person_goodhue_j_c",
       "name": "Goodhue, J. C.",
-      "occupation": null,
+      "occupation": "land_agent",
       "letter_list_only": false,
       "first_seen": "1835-08-19",
       "last_seen": "1835-08-19",
@@ -17308,7 +17308,7 @@
     {
       "id": "person_h_crocker",
       "name": "H. Crocker",
-      "occupation": "schoolteacher",
+      "occupation": null,
       "letter_list_only": false,
       "first_seen": "1835-01-21",
       "last_seen": "1835-07-08",
@@ -17715,7 +17715,7 @@
     {
       "id": "person_hamilton_rich_d_j",
       "name": "Hamilton, Rich'd J.",
-      "occupation": null,
+      "occupation": "justice_of_the_peace",
       "letter_list_only": false,
       "first_seen": "1833-11-26",
       "last_seen": "1833-11-26",
@@ -18562,7 +18562,7 @@
     {
       "id": "person_hiram_hugunin",
       "name": "Hiram Hugunin",
-      "occupation": null,
+      "occupation": "insurance_agent",
       "letter_list_only": false,
       "first_seen": "1835-05-20",
       "last_seen": "1835-06-17",
@@ -18628,7 +18628,7 @@
     {
       "id": "person_hogan_john_s_c",
       "name": "Hogan, John S. C.",
-      "occupation": null,
+      "occupation": "postmaster",
       "letter_list_only": true,
       "first_seen": "1835-08-12",
       "last_seen": "1835-08-19",
@@ -18793,7 +18793,7 @@
     {
       "id": "person_hon_r_j_hamilton",
       "name": "Hon. R. J. Hamilton",
-      "occupation": null,
+      "occupation": "county_clerk",
       "letter_list_only": false,
       "first_seen": "1834-02-04",
       "last_seen": "1834-02-04",
@@ -19475,7 +19475,7 @@
     {
       "id": "person_isaac_harmon",
       "name": "Isaac Harmon",
-      "occupation": null,
+      "occupation": "justice_of_the_peace",
       "letter_list_only": false,
       "first_seen": "1833-12-17",
       "last_seen": "1834-07-30",
@@ -19871,7 +19871,7 @@
     {
       "id": "person_j_green",
       "name": "J. Green",
-      "occupation": null,
+      "occupation": "army_officer",
       "letter_list_only": false,
       "first_seen": "1835-05-27",
       "last_seen": "1835-06-13",
@@ -20696,7 +20696,7 @@
     {
       "id": "person_james_kinzie",
       "name": "James Kinzie",
-      "occupation": "auctioneer",
+      "occupation": "merchant",
       "letter_list_only": false,
       "first_seen": "1833-12-10",
       "last_seen": "1834-11-19",
@@ -21510,7 +21510,7 @@
     {
       "id": "person_john_colman",
       "name": "John Colman",
-      "occupation": null,
+      "occupation": "postmaster",
       "letter_list_only": false,
       "first_seen": "1834-07-02",
       "last_seen": "1834-07-02",
@@ -22335,7 +22335,7 @@
     {
       "id": "person_jones_b",
       "name": "Jones, B.",
-      "occupation": "merchant",
+      "occupation": "grocer",
       "letter_list_only": false,
       "first_seen": "1833-11-26",
       "last_seen": "1833-11-26",
@@ -22885,7 +22885,7 @@
     {
       "id": "person_judge_sidney_breese",
       "name": "Judge Sidney Breese",
-      "occupation": null,
+      "occupation": "judge",
       "letter_list_only": false,
       "first_seen": "1835-06-10",
       "last_seen": "1835-06-10",
@@ -23391,7 +23391,7 @@
     {
       "id": "person_kinzie_john_h",
       "name": "Kinzie, John H.",
-      "occupation": "forwarding_and_commission",
+      "occupation": "merchant",
       "letter_list_only": false,
       "first_seen": "1834-09-03",
       "last_seen": "1835-08-19",
@@ -23534,7 +23534,7 @@
     {
       "id": "person_l_f_arnold",
       "name": "L. F. Arnold",
-      "occupation": null,
+      "occupation": "postmaster",
       "letter_list_only": false,
       "first_seen": "1834-07-02",
       "last_seen": "1834-07-09",
@@ -23589,7 +23589,7 @@
     {
       "id": "person_l_t_jamison",
       "name": "L. T. Jamison",
-      "occupation": null,
+      "occupation": "army_officer",
       "letter_list_only": false,
       "first_seen": "1834-06-04",
       "last_seen": "1835-07-01",
@@ -23908,7 +23908,7 @@
     {
       "id": "person_levi_f_arnold",
       "name": "Levi F. Arnold",
-      "occupation": null,
+      "occupation": "postmaster",
       "letter_list_only": false,
       "first_seen": "1835-01-21",
       "last_seen": "1835-01-21",
@@ -24106,7 +24106,7 @@
     {
       "id": "person_lieut_allen",
       "name": "Lieut. Allen",
-      "occupation": null,
+      "occupation": "army_officer",
       "letter_list_only": false,
       "first_seen": "1834-03-25",
       "last_seen": "1834-03-25",
@@ -24117,7 +24117,7 @@
     {
       "id": "person_lieut_j_allen",
       "name": "Lieut. J. Allen",
-      "occupation": null,
+      "occupation": "army_officer",
       "letter_list_only": false,
       "first_seen": "1835-07-18",
       "last_seen": "1835-07-18",
@@ -24128,7 +24128,7 @@
     {
       "id": "person_lieut_j_l_thompson",
       "name": "Lieut. J. L. Thompson",
-      "occupation": null,
+      "occupation": "soldier",
       "letter_list_only": false,
       "first_seen": "1834-02-04",
       "last_seen": "1834-02-04",
@@ -24139,7 +24139,7 @@
     {
       "id": "person_lieut_james_allen",
       "name": "Lieut. James Allen",
-      "occupation": null,
+      "occupation": "army_officer",
       "letter_list_only": false,
       "first_seen": "1834-08-13",
       "last_seen": "1834-08-13",
@@ -24150,7 +24150,7 @@
     {
       "id": "person_lieutenant_5th_infantry_assistant_commissary_of_subsistence",
       "name": "[…], Lieutenant, 5th Infantry, Assistant Commissary of Subsistence",
-      "occupation": null,
+      "occupation": "army_officer",
       "letter_list_only": false,
       "first_seen": "1834-05-28",
       "last_seen": "1834-05-28",
@@ -24711,7 +24711,7 @@
     {
       "id": "person_m_jones",
       "name": "M. Jones",
-      "occupation": null,
+      "occupation": "founder",
       "letter_list_only": false,
       "first_seen": "1834-07-09",
       "last_seen": "1834-07-09",
@@ -26515,7 +26515,7 @@
     {
       "id": "person_nathaniel_carpenter",
       "name": "Nathaniel Carpenter",
-      "occupation": null,
+      "occupation": "soldier",
       "letter_list_only": false,
       "first_seen": "1834-01-14",
       "last_seen": "1834-01-14",
@@ -28858,7 +28858,7 @@
     {
       "id": "person_rev_mr_blackwell",
       "name": "Rev. Mr. Blackwell",
-      "occupation": null,
+      "occupation": "minister",
       "letter_list_only": false,
       "first_seen": "1835-07-22",
       "last_seen": "1835-07-22",
@@ -28902,7 +28902,7 @@
     {
       "id": "person_rev_samuel_mcburney",
       "name": "Rev. Samuel McBurney",
-      "occupation": null,
+      "occupation": "minister",
       "letter_list_only": false,
       "first_seen": "1835-05-27",
       "last_seen": "1835-05-27",
@@ -29001,7 +29001,7 @@
     {
       "id": "person_rich_d_j_hamilton",
       "name": "Rich'd J. Hamilton",
-      "occupation": "schoolteacher",
+      "occupation": "justice_of_the_peace",
       "letter_list_only": false,
       "first_seen": "1833-12-03",
       "last_seen": "1834-10-15",
@@ -29034,7 +29034,7 @@
     {
       "id": "person_richard_j_hamilton",
       "name": "Richard J. Hamilton",
-      "occupation": "schoolteacher",
+      "occupation": "land_agent",
       "letter_list_only": false,
       "first_seen": "1834-03-18",
       "last_seen": "1835-08-22",
@@ -29056,7 +29056,7 @@
     {
       "id": "person_richard_m_sweet",
       "name": "Richard M. Sweet",
-      "occupation": null,
+      "occupation": "farmer",
       "letter_list_only": false,
       "first_seen": "1833-12-03",
       "last_seen": "1833-12-03",
@@ -29067,7 +29067,7 @@
     {
       "id": "person_richard_m_young",
       "name": "Richard M. Young",
-      "occupation": null,
+      "occupation": "judge",
       "letter_list_only": false,
       "first_seen": "1834-12-24",
       "last_seen": "1834-12-24",
@@ -29617,7 +29617,7 @@
     {
       "id": "person_russell_aaron",
       "name": "Russell, Aaron",
-      "occupation": null,
+      "occupation": "bookseller",
       "letter_list_only": false,
       "first_seen": "1834-09-03",
       "last_seen": "1834-09-03",
@@ -29639,7 +29639,7 @@
     {
       "id": "person_russell_clift",
       "name": "Russell & Clift",
-      "occupation": null,
+      "occupation": "bookseller",
       "letter_list_only": false,
       "first_seen": "1835-08-19",
       "last_seen": "1835-08-19",
@@ -30024,7 +30024,7 @@
     {
       "id": "person_salisbury_stephen_m",
       "name": "Salisbury, Stephen M.",
-      "occupation": null,
+      "occupation": "justice_of_the_peace",
       "letter_list_only": false,
       "first_seen": "1833-11-26",
       "last_seen": "1833-11-26",
@@ -30860,7 +30860,7 @@
     {
       "id": "person_silas_w_sherman",
       "name": "Silas W. Sherman",
-      "occupation": null,
+      "occupation": "sheriff",
       "letter_list_only": false,
       "first_seen": "1833-12-03",
       "last_seen": "1835-07-15",
@@ -30882,7 +30882,7 @@
     {
       "id": "person_silvester_marsh",
       "name": "Silvester Marsh",
-      "occupation": null,
+      "occupation": "provision_dealer",
       "letter_list_only": false,
       "first_seen": "1834-08-13",
       "last_seen": "1834-08-13",
@@ -31542,7 +31542,7 @@
     {
       "id": "person_stephen_forbes",
       "name": "Stephen Forbes",
-      "occupation": null,
+      "occupation": "sheriff",
       "letter_list_only": false,
       "first_seen": "1834-03-18",
       "last_seen": "1835-05-20",
@@ -31553,7 +31553,7 @@
     {
       "id": "person_stephen_m_salisbury",
       "name": "Stephen M. Salisbury",
-      "occupation": null,
+      "occupation": "justice_of_the_peace",
       "letter_list_only": false,
       "first_seen": "1833-12-03",
       "last_seen": "1833-12-03",
@@ -32147,7 +32147,7 @@
     {
       "id": "person_t_j_v_owen",
       "name": "T. J. V. Owen",
-      "occupation": null,
+      "occupation": "indian_agent",
       "letter_list_only": false,
       "first_seen": "1834-06-18",
       "last_seen": "1834-11-19",
@@ -32400,7 +32400,7 @@
     {
       "id": "person_th_j_v_owen",
       "name": "Th. J. V. Owen",
-      "occupation": null,
+      "occupation": "indian_agent",
       "letter_list_only": false,
       "first_seen": "1834-07-02",
       "last_seen": "1834-08-20",
@@ -32631,7 +32631,7 @@
     {
       "id": "person_thomas_galaher",
       "name": "Thomas Galaher",
-      "occupation": null,
+      "occupation": "postmaster",
       "letter_list_only": false,
       "first_seen": "1835-01-21",
       "last_seen": "1835-01-21",
@@ -32642,7 +32642,7 @@
     {
       "id": "person_thomas_galaher_jr",
       "name": "Thomas Galaher, Jr.",
-      "occupation": null,
+      "occupation": "postmaster",
       "letter_list_only": true,
       "first_seen": "1834-08-06",
       "last_seen": "1834-08-06",
@@ -32686,7 +32686,7 @@
     {
       "id": "person_thomas_j_v_owen",
       "name": "Thomas J. V. Owen",
-      "occupation": null,
+      "occupation": "indian_agent",
       "letter_list_only": false,
       "first_seen": "1833-12-24",
       "last_seen": "1833-12-24",
@@ -32851,7 +32851,7 @@
     {
       "id": "person_thos_galaher_jr",
       "name": "Thos. Galaher jr.",
-      "occupation": null,
+      "occupation": "postmaster",
       "letter_list_only": true,
       "first_seen": "1834-07-30",
       "last_seen": "1834-07-30",
@@ -33808,7 +33808,7 @@
     {
       "id": "person_uncertain_lt_allen",
       "name": "[uncertain: Lt. Allen]",
-      "occupation": null,
+      "occupation": "army_officer",
       "letter_list_only": false,
       "first_seen": "1834-07-09",
       "last_seen": "1834-07-09",
@@ -34930,7 +34930,7 @@
     {
       "id": "person_w_g_blanchard",
       "name": "W. G. Blanchard",
-      "occupation": null,
+      "occupation": "land_agent",
       "letter_list_only": false,
       "first_seen": "1834-07-09",
       "last_seen": "1834-07-09",
@@ -35183,7 +35183,7 @@
     {
       "id": "person_w_keeney",
       "name": "W. Keeney",
-      "occupation": null,
+      "occupation": "tinsmith",
       "letter_list_only": false,
       "first_seen": "1834-06-04",
       "last_seen": "1834-06-04",
@@ -35480,7 +35480,7 @@
     {
       "id": "person_walker_james",
       "name": "Walker, James",
-      "occupation": null,
+      "occupation": "justice_of_the_peace",
       "letter_list_only": false,
       "first_seen": "1833-11-26",
       "last_seen": "1833-11-26",
@@ -36569,7 +36569,7 @@
     {
       "id": "person_wm_jones",
       "name": "Wm. Jones",
-      "occupation": null,
+      "occupation": "founder",
       "letter_list_only": false,
       "first_seen": "1834-07-02",
       "last_seen": "1834-07-23",
