@@ -1,4 +1,13 @@
 export const CHANGELOG = [ // newest first
+  { v: 427, title: 'Eighteen inches of chimney, and the town already had them', kind: 'chore', ts: '2026-08-30T04:25:31.108Z', date: 'Aug 29, 2026, 11:25 PM CT',
+    items: [
+      'Nothing you can see changed today. On 5 August 1835 the Trustees of the Town of Chicago passed their by-laws, and section 18 of them says that every stove pipe or chimney passing through a roof shall be carried at least eighteen inches above it, under a five-dollar penalty \u2014 with a fire warden walking into every house, store and shop in his district once a month from September to May.',
+      'It is the first measurement this project has of anything above a roof line. Everything else it holds about a chimney is a guess the archetype makes; this is a number the town wrote down and fined people for breaking.',
+      'It also brackets a figure there was only one side of. Andreas, writing much later, remembered a Chicago with \u201Cnot a single steeple nor a chimney four feet above any roof\u201D \u2014 a maximum somebody noticed. Eighteen inches is a minimum the town enforced. Every stack in the scene now has to sit between the two.',
+      'So all 234 of them were measured, off the built models rather than off the code that wrote them. The tallest stand two feet six above their own roof; the shortest are the eleven on the four frame taverns, at twenty-one and a half inches. Not one is under the by-law, and nothing was raised, moved or rebuilt.',
+      'Two things the by-law says are recorded as binding nothing. There is no stove pipe anywhere in this model \u2014 every stack drawn is masonry \u2014 so the clause forbidding a pipe out through a side or end wall reaches none of them. And the by-law applies only inside the limits of the town, which this project does not draw yet, so the check makes no ruling about which buildings it covers.',
+      'What is new is the check itself: a stack may not drop back under eighteen inches without the build saying so, and if one ever legitimately should, the failure names the boundary work that would let it.',
+    ] },
   { v: 426, title: 'The saddlery\u2019s corner becomes a question you can read', kind: 'fix', ts: '2026-08-30T03:48:04.447Z', date: 'Aug 29, 2026, 10:48 PM CT',
     items: [
       'Walk up to S. B. Cobb\u2019s saddle, harness and trunk manufactory, on Lake Street in the West Division, and the card you open now carries an open question of its own: which cross street is this? The town\u2019s list of open questions goes from four to five, and this is the second one that is about a building you can stand in front of rather than a patch of empty ground.',
