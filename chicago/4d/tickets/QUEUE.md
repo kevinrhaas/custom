@@ -1,99 +1,111 @@
 # QUEUE — top is next. Everything after the ticket id on a line is a label, not data.
-# The owner owns this order. Reordered by an agent on 2026-08-29 (second pass that day)
-# on his explicit instruction: "any tickets you recommend prioritizing in the queue
-# because of dependencies on visual items? You can improve reorganize the queue, keep
-# the newspaper stream near the top until we complete it for now." Earlier instructions:
-# 2026-08-29 (first pass — the newspaper stream to the top), 2026-08-28 (the NEWSPAPERS
-# band after the visible bands, now superseded), 2026-08-27 and 2026-08-23 (visible
-# progress first). Absent such an instruction, agents only APPEND (new) and REMOVE (done)
-# — do not re-rank on your own judgement.
+# The owner owns this order. Reordered by an agent on 2026-08-30 on his explicit
+# instruction: "lots of nothing happened in the city which is bad. any decisions
+# needed, update and improve the tickets to make progress." Earlier instructions:
+# 2026-08-29 x2 (the newspaper stream to the top, then dependencies on visible items),
+# 2026-08-28, 2026-08-27, 2026-08-23. Absent such an instruction, agents only APPEND
+# (new) and REMOVE (done) — do not re-rank on your own judgement.
+#
+# WHY THIS ORDER CHANGED, and it is the whole point of the pass. Between 2026-08-29 and
+# 2026-08-30 the loop merged 41 PRs and added ZERO buildings: 359 structure records
+# before, 359 after. It was not idle — it modified 75 structure records, 98 assets, put
+# a stove pipe on every roof and moved nine shops out of the yard — but a visitor
+# walking the town saw the same town. The reason was structural, and T-0301 predicted
+# it: every path to a NEW building ended at a question only the owner could answer, so
+# the loop did the invisible work because the visible work was all blocked. Four of
+# those questions were answered on 2026-08-30 and the tickets that spend the answers
+# were at the BOTTOM of a 77-line queue, where no slice would ever reach them —
+# including T-0429..T-0432, which are twenty roofs, and which the previous pass left
+# there because an agent may not re-rank without being asked. This pass was asked.
 #
 # The ordering rule, so it can be maintained rather than guessed at:
-#   1. A RED DEV GATE OUTRANKS EVERYTHING. While check.sh fails on an unmodified dev,
-#      every branch is red before it changes a line and every run pays T-0215's cost
-#      proving its red is inherited. One ticket, and it is the top of the file.
-#   2. THE NEWSPAPER STREAM RUNS NEXT until it is finished (owner, 2026-08-29): identity
-#      hygiene cleans what the register mints, the seeding policy decides how much of the
-#      town the papers can reach, and the seeding itself is the visible payoff.
-#   3. VISIBLE NEXT. AGENTS.md's test — when this merges, what is different in a
-#      screenshot taken from the same spot? "See" means in the 3-D scene or on a card
-#      a visitor opens. A gate, a metric, a source record and a refactor are not.
-#   4. An INVISIBLE ticket outranks visible ones only when it BLOCKS them, and the
-#      band it sits in has to say what it blocks.
+#   1. THE CITY GAINS SOMETHING FIRST. A ticket that adds a building, a person or a
+#      trade to the scene outranks one that measures, grades or gates. The band at the
+#      top is ordered by HOW MUCH it adds.
+#   2. Then what those additions depend on, and the repairs that make them correct.
+#   3. VISIBLE REFINEMENT next — the town changing rather than growing.
+#   4. An INVISIBLE ticket outranks a visible one only when it BLOCKS it, and its band
+#      has to say what it blocks.
 #   5. Related work runs together, so a run can carry the context of the last one.
 # The `# ---` band headers are comments; the parser reads only lines starting T-NNNN.
 #
-# Labels on these lines are regenerated from each ticket's own `title:` field. If a
-# label and its ticket disagree, the ticket wins — one line was found mislabelled
-# on 2026-08-27, damage from the `ticket.mjs restamp` bug that T-0217 records.
+# `needs_bake: true` marks a ticket whose merge changes baked geometry. Those are the
+# ones that put something in the scene — several are in the top band.
 #
-# NOTE ON `epic:` — 55 of the 74 tickets queued on 2026-08-29 carried epic META,
-# including newspaper reads, storefront placements and street work. The field has
-# drifted to a default and the BANDS below, not the epic, are what say where a ticket
-# belongs. Correcting the field is worth a run of its own; nothing here depends on it.
+# Labels are regenerated from each ticket's own `title:`. If a label and its ticket
+# disagree, the ticket wins (T-0217 records the restamp bug that caused one).
+# NOTE ON `epic:` — the field has drifted to a default (mostly META, including
+# newspaper reads and street work). The BANDS, not the epic, say where a ticket
+# belongs. Correcting the field is worth a run of its own.
 
-# --- DEV IS RED. TAKE THIS FIRST — measured on an unmodified origin/dev at 9b6e3276,
-# --- 2026-08-29: three check.sh steps fail, all on one cause, left by the most recent
-# --- merge (#536). Every branch cut from dev inherits it.
+# --- THE CITY GAINS PEOPLE AND ROOFS — FOUR OWNER RULINGS, 2026-08-30, each written
+# --- into its ticket with its limits. This band exists because the last 41 merges added
+# --- no buildings. Ordered by how much each one adds. TAKE FROM THE TOP.
+# ---   T-0379  705 letter-list names -> the town goes 237 to 942 people (ruled: all 705)
+# ---   T-0429..0432  twenty roofs across four South Water blocks, one block per run
+# ---   T-0416  +12 documented shops take corner sides (ruled: a corner side IS a face)
+# ---   T-0183  the 27 roofs of a block the river pinches out, returned to the South balance
+# ---   T-0384  Holbrook's store, read as an ordinal off the corner rather than street-only
+T-0379 — The letter-list names the post office printed in a single return, and the change of scale they put to the town
+T-0429 — Open blk_south_water_lasalle: 8 roofs of headroom on three free lots
+T-0430 — Open blk_south_water_franklin: 4 roofs of headroom on two free lots
+T-0431 — Open blk_south_water_clark: 4 roofs of headroom on two free lots
+T-0432 — Open blk_south_water_dearborn: 4 roofs of headroom on two free lots
+T-0416 — Wm. Sabine, John Dave and the Dearborn wine store: the three storefronts the street-face policy refuses for want of a fronting roof
+T-0183 — The Market and South Water corner needs one control point, and the node rule may not be able to make it
+T-0384 — John Holbrook's store takes its door on South Water Street, one door from Dearborn
 
-# --- THE NEWSPAPER STREAM (a) IDENTITY HYGIENE — the owner keeps this stream near the
-# --- top until it is done. These come FIRST inside it because the register and the
-# --- seeding SPEND the gazetteer: a firm minted twice, a surname that can never join its
-# --- forename, or a tavern minted as a person becomes a wrong building once seeded.
-# --- Cheap (mostly S/XS) and each one makes the seeding below more accurate.
-
-# --- THE NEWSPAPER STREAM (b) THE POLICY THAT DECIDES HOW MUCH TOWN THE PAPERS REACH.
-# --- T-0354 shipped in #551 on 2026-08-29: the owner's ruling — a street-only
-# --- business adopts a reconstructed roof already standing on that street face, never
-# --- claiming a lot — is now docs/STREET-FACE-ADOPTION.md, derived by
-# --- tools/adopt_street_faces.py and gated in check.sh. T-0357 is its companion.
-
-# --- THE NEWSPAPER STREAM (c) THE VISIBLE SEEDING — documented storefronts and people
-# --- standing in the model. This is the payoff the whole epic was for. T-0358 sits here
-# --- rather than with the streets because the corpus's ONLY lot-and-block address cannot
-# --- be used until the Thompson plat's block numbering is committed.
+# --- MORE BUILDINGS AND TRADES, ALREADY RUNNABLE — no ruling needed, and each one puts
+# --- something in the scene or lets a documented person stand somewhere.
 T-0385 — The New York Clothing Store stands three doors north of the Tremont House in Dearborn Street
 T-0375 — Every reconstructed roof on South Water Street is a labourer's, so five documented tradesmen the papers put there have nowhere to stand
+T-0423 — G. Spring's large dwelling-house and fine well stands on lot 7 of block 16, where an anonymous roof stands now
+T-0418 — The 36 documented tradespeople whose trade the residents vocabulary has no word for
+T-0414 — The street-face adoption refuses W. Montgomery a roof for being the bootmaker, and identity.json already ruled they are two houses
+T-0412 — A building offered FOR SALE mints a placement reading on the vendor's own firm, so P. Pruyne & Co.'s store carries a corner it never stood on
+T-0415 — John Wright's two buildings to let are named (east) and (west) and stand the other way round
 
-# --- THE NEWSPAPER STREAM (d) WAITING ON THE OWNER'S PAGE IMAGES — each needs scans
-# --- opened that live outside the repository. Workable the day the images are supplied;
-# --- until then a run should take something above instead.
+# --- THE LOT GRID QUESTION — measure, THEN ask. Carrying out T-0009's ruling left the
+# --- South Water corridor 8.58 m north of its own block faces, with a strip belonging to
+# --- neither. T-0419's acceptance is the right shape (measure the strip on the ground,
+# --- put the fork to the owner with costs, move nothing until he answers) and the four
+# --- block tickets above are NOT blocked on it. Note the risk plainly: if the answer
+# --- later moves the lot grid, roofs built on those lots move with their lots — which is
+# --- how the grid works, and is not a reason to build nothing meanwhile.
+T-0419 — The re-centred South Water corridor stands 8.58 m off its own block faces, and the strip between belongs to neither
+T-0421 — Canal Street's three control points spread 2.33 m, so its corridor cannot be centred on any of them
+T-0422 — The widened counterfactual deals a roof per street, and every roof a widening adds already fronts another street
+
+# --- THE REPAIRS THE SEEDING READS — identity, anchors and placements. These do not add
+# --- buildings themselves; they decide whether the buildings above land on the right
+# --- names and the right corners. Cheap, and each one is a wrong building avoided.
+T-0406 — 'the Tremont House' resolves to nothing, because the committed record is named 'Tremont House (the first)'
+T-0403 — The Democrat's office keeps its 1834 corner through a merge, and the paper moved along South Water Street before the scene date
+T-0396 — Newberry & Dole's partner is read as Oliver Newberry in 1834 and Walter L. Newberry in 1835, and the corpus cannot say which stood in the firm
+T-0391 — Are 'Eagle Hotel' and 'the Eagle Hotel (Steele's)' one house, and no issue prints both
+T-0407 — The same blacksmith notice is read as 'Matthias Nason & Co.' in one impression, and the partner-surname guard can never merge it
+T-0408 — Four spellings of one Lake Street trade take four separate roofs, and the identity layer has judged none of them
+T-0410 — The Howard fire-insurance agency passes between three houses, and the gazetteer has no relation that can hold it
+T-0411 — A newspaper and its own printing office are two businesses, and the partner-surname guard can never join them
+T-0413 — Six of T-0401's surname traps are one house on the printings, and the merge is unwritten
+T-0398 — A firm's own style stands in its proprietor list, because a claim read the signature where a person was wanted
+T-0395 — The New York House's footprint is graded reconstructed but its note cites a source, and the gate warns
+T-0404 — 33 documented businesses will stand on a backdating liberty and LIBERTIES.md carries none of them
+T-0405 — Adding one signboard repaints every board alphabetically after it, and some lose a line
+T-0425 — A letter-list household's arrival bound is dated by the printing it was extracted from, not by the return, so nine printings of one list give nine different bounds
+T-0424 — The 1 January 1834 letter list's printed length, and the names all nine printings lost, need the page images
+T-0428 — The 1 April 1834 letter list has three positions no printing reads, and only the page images can say how long it was
 T-0318 — The January 1834 letter list: the third printing repairs the A-H half, and the images are needed only for the rest
 
-# --- THE TOWN GROWS AGAIN — UNBLOCKED BY THE OWNER, 2026-08-29. T-0365 measured that
-# --- the anonymous-block programme had NO unblocked ground left: every platted block with
-# --- headroom was gated on T-0009 or T-0183, both blocked-owner. Both are now answered
-# --- (the rulings are written into the tickets), which frees ~20 roofs on four South Water
-# --- blocks and 27 more on blk_south_water_market — the largest visible win available.
-# --- AND THE 27 ARE NOT THERE, measured 2026-08-30 by T-0183 (PR #573): closing South
-# --- Water's west end onto Market emits blk_south_water_market as a bowtie, and carried as
-# --- far north as the committed waterline allows the block has 2.8 m of depth at Market
-# --- against the 24.384 m one platted lot fronts. It is a wedge the South Branch pinches
-# --- out, and T-0183 is back with the owner on what to do with it. The ~20 roofs T-0009
-# --- freed are unaffected.
-# --- T-0365 CLOSED IN PR #581 and this band is now empty of tickets. Its successor,
-# --- T-0420, was one ticket holding four blocks — four runs, which `claim` refuses —
-# --- so it is split into T-0429/T-0430/T-0431/T-0432, one block each, `needs_bake`.
-# --- They hold T-0420's own place AT THE BOTTOM of this file, because an agent may not
-# --- re-rank. If this band's ranking is what you meant, MOVE THOSE FOUR LINES HERE.
-
-# --- THE RUNS CANNOT PROVE THEMSELVES — invisible, and it blocks the EVIDENCE every
-# --- visible ticket owes. T-0346 is the sharp one: desktop stage 4 no longer fits the
-# --- ten-minute foreground ceiling, so no steward run can complete it at all, and three
-# --- PRs tonight had to say so instead of reporting a result. The two order-dependent
-# --- gates below make a green run and a red run of the same tree.
-T-0181 — The desktop 7-9 smoke leg has 9m49s of margin against its 30-minute cap, and the margin was asserted rather than measured
-
-# --- VISIBLE: THE GROUND, THE FORT, AND WHAT THE ORDINANCES PUT ON EVERY ROOF.
-# --- T-0219 is parked on PR #432. T-0333 and T-0334 are two ordinances the papers
-# --- yielded that nothing draws yet — a stove pipe on every roof in the town, and the
-# --- hay-stacking boundary.
+# --- VISIBLE REFINEMENT — the town changing rather than growing: the ground it stands
+# --- on, the ordinances the papers yielded, the fort, what grows, and the cards a
+# --- visitor opens. T-0219 is parked on PR #432.
 T-0219 — Finish the heightfield SOUTH to Madison Street, the plat's last tier
+T-0435 — 30 of the 47 cat-and-clay stacks stand against an eave wall, and both the archetype and the fabric argument say gable
 T-0334 — The hay-stacking ordinance walks a six-vertex boundary round the built town, and nothing draws or tests it
+T-0436 — The corporation's limits have no committed geometry, and the fire ordinance binds only inside them
 T-0266 — On a phone from across the river the stockade's picket rhythm falls under the pixel grid and beats
 T-0332 — The sheet's one brick is called chimney_brick, and a wall now reads it
-
-# --- VISIBLE: WHAT GROWS, WHAT A PHONE SEES, AND THE CARDS A VISITOR OPENS
 T-0277 — The mid and forb rings' outer edges are re-priced for a density handover, now the reach statistic is honest
 T-0279 — 2,526 of 18,911 drawn flower heads stand over open ground with no plant under their own stalk, on an unmodified dev
 T-0280 — The far band's grass-or-flower split is made on the forb lattice's CLAMPED share
@@ -101,9 +113,9 @@ T-0302 — The .lib-body grid resolves toward max-content under all six other Ev
 T-0268 — A building held under the standing constraint says so nowhere a visitor can see
 
 # --- THE TRIANGLE AND DRAW-CALL BUDGET — invisible, and it gates EVERY visible ticket
-# --- that adds geometry. The town is about to gain 47 roofs and 49 trades from the two
-# --- bands above, so this is where the room for them comes from: the two AO tickets are
-# --- the measured headroom, and T-0364 is 7.2 per cent of the published payload.
+# --- that adds geometry. The band at the top of this file is about to add twenty roofs,
+# --- twelve shops and seven hundred people, so this is where the room for them comes
+# --- from: the two AO tickets are the measured headroom.
 T-0237 — The full ceiling has 1,145 triangles clear on the published mirror, twelve hours after T-0229 raised it
 T-0285 — An asset carrying its own AO map cannot batch with the town: +2 draw calls for one building
 T-0286 — The AO unwrap leaves 68.9 per cent of every atlas empty, and the map is priced as if it were full
@@ -113,6 +125,7 @@ T-0252 — Decide once whether a baked town carries the nine renderer-drawn laye
 T-0253 — May an invented building stand on the river margin of a platted street corridor
 
 # --- MEASUREMENT, GATES AND PROVENANCE — invisible, and nothing below blocks the above
+T-0409 — A change can land on dev with no changelog entry, and one did today
 T-0239 — Nothing tests the party-line note's prose against the placement it describes
 T-0230 — Two named South Water frontages carry a reconstructed trade, so neither a signboard nor a hitching post will ever stand at them
 T-0371 — The lattice path's block rotation is dead code that measure_rank_bias.mjs's drift guard pins in place
@@ -122,10 +135,13 @@ T-0053 — A patched lit material silently inherits another layer's shader progr
 T-0037 — The liberties gate reads the whole Evidence panel, so a liberty saying 'Three of these' fails it
 T-0030 — A queue card in Manager reading tickets.json
 T-0255 — The dooryard planting rule reads every street in the town with no bound on reach, so a track across the river can turn a house's yard
+T-0433 — T-0346's measured costs for the new desktop parts 4, 5 and 6 were never filed, and the two places they are written down disagree
 
-# --- THE PIPELINE AND ITS RUNNERS — invisible; the loop's own health. T-0238 gained a
-# --- second data point on 2026-08-29: T-0377 and T-0388 are the same defect filed twice
-# --- by two runs that could not see each other, this time through `new` and not `claim`.
+# --- THE SMOKE AND ITS RUNNER — the evidence every ticket above owes. T-0346 cut the
+# --- costliest desktop part into three so a run can take it; these are what remains.
+T-0181 — The desktop 7-9 smoke leg has 9m49s of margin against its 30-minute cap, and the margin was asserted rather than measured
+
+# --- THE PIPELINE AND ITS RUNNERS — invisible; the loop's own health
 T-0236 — The loop's 10-minute heartbeat fires every one to four hours, and the gaps are widening
 T-0238 — Two parallel slices took the same ticket, because the rule that ranks them is evaluated per-slice
 T-0232 — The owner's production switch is a coin toss: one promotion in four never reaches a promotion step
@@ -134,10 +150,8 @@ T-0301 — Every visible ticket at the top of the queue is parked on hold or in 
 T-0231 — T-0229's expiry was blocked on a flora ticket, so the raised ceilings would never have come down
 
 # --- PROBABLY ALREADY ANSWERED — verify, then withdraw WITH THE EVIDENCE written into
-# --- the ticket; never on a guess. All five were measured green on an unmodified dev at
-# --- 9b6e3276 on 2026-08-29. T-0377 and T-0388 are twins of each other and one withdrawal
-# --- closes both; the withdrawing run still owes which merge repaired them and whether
-# --- the poplar row they predicted losing actually left the town.
+# --- the ticket; never on a guess. T-0377 and T-0388 are twins of each other and one
+# --- withdrawal closes both.
 T-0203 — The 'balanced' scene-detail ceiling is breached at Lake and Canal by 4,015 triangles
 T-0218 — The 'balanced' scene-detail ceiling is breached at Lake and Canal, at both viewports
 T-0271 — The balanced ceiling is breached at the forks by 5,290 triangles on an unmodified dev, and both open tickets name a different stand
@@ -146,35 +160,3 @@ T-0388 — Three derived records have drifted from their own generators on an un
 
 # --- NEWLY FILED — `ticket.mjs new` appends to the END of this file, so new tickets
 # --- land under this line. NOT yet placed by the owner.
-T-0395 — The New York House's footprint is graded reconstructed but its note cites a source, and the gate warns
-T-0396 — Newberry & Dole's partner is read as Oliver Newberry in 1834 and Walter L. Newberry in 1835, and the corpus cannot say which stood in the firm
-T-0391 — Are 'Eagle Hotel' and 'the Eagle Hotel (Steele's)' one house, and no issue prints both
-T-0407 — The same blacksmith notice is read as 'Matthias Nason & Co.' in one impression, and the partner-surname guard can never merge it
-T-0408 — Four spellings of one Lake Street trade take four separate roofs, and the identity layer has judged none of them
-T-0406 — 'the Tremont House' resolves to nothing, because the committed record is named 'Tremont House (the first)'
-T-0403 — The Democrat's office keeps its 1834 corner through a merge, and the paper moved along South Water Street before the scene date
-T-0404 — 33 documented businesses will stand on a backdating liberty and LIBERTIES.md carries none of them
-T-0405 — Adding one signboard repaints every board alphabetically after it, and some lose a line
-T-0409 — A change can land on dev with no changelog entry, and one did today
-T-0410 — The Howard fire-insurance agency passes between three houses, and the gazetteer has no relation that can hold it
-T-0411 — A newspaper and its own printing office are two businesses, and the partner-surname guard can never join them
-T-0412 — A building offered FOR SALE mints a placement reading on the vendor's own firm, so P. Pruyne & Co.'s store carries a corner it never stood on
-T-0413 — Six of T-0401's surname traps are one house on the printings, and the merge is unwritten
-T-0414 — The street-face adoption refuses W. Montgomery a roof for being the bootmaker, and identity.json already ruled they are two houses
-T-0415 — John Wright's two buildings to let are named (east) and (west) and stand the other way round
-T-0419 — The re-centred South Water corridor stands 8.58 m off its own block faces, and the strip between belongs to neither
-T-0429 — Open blk_south_water_lasalle: 8 roofs of headroom on three free lots
-T-0430 — Open blk_south_water_franklin: 4 roofs of headroom on two free lots
-T-0431 — Open blk_south_water_clark: 4 roofs of headroom on two free lots
-T-0432 — Open blk_south_water_dearborn: 4 roofs of headroom on two free lots
-T-0421 — Canal Street's three control points spread 2.33 m, so its corridor cannot be centred on any of them
-T-0422 — The widened counterfactual deals a roof per street, and every roof a widening adds already fronts another street
-T-0418 — The 36 documented tradespeople whose trade the residents vocabulary has no word for
-T-0423 — G. Spring's large dwelling-house and fine well stands on lot 7 of block 16, where an anonymous roof stands now
-T-0398 — A firm's own style stands in its proprietor list, because a claim read the signature where a person was wanted
-T-0424 — The 1 January 1834 letter list's printed length, and the names all nine printings lost, need the page images
-T-0425 — A letter-list household's arrival bound is dated by the printing it was extracted from, not by the return, so nine printings of one list give nine different bounds
-T-0428 — The 1 April 1834 letter list has three positions no printing reads, and only the page images can say how long it was
-T-0433 — T-0346's measured costs for the new desktop parts 4, 5 and 6 were never filed, and the two places they are written down disagree
-T-0435 — 30 of the 47 cat-and-clay stacks stand against an eave wall, and both the archetype and the fabric argument say gable
-T-0436 — The corporation's limits have no committed geometry, and the fire ordinance binds only inside them

@@ -1,7 +1,7 @@
 ---
 id: T-0379
 title: The letter-list names the post office printed in a single return, and the change of scale they put to the town
-state: blocked-owner
+state: open
 epic: PAPERS
 requested_by: owner
 seen: false
@@ -12,7 +12,7 @@ opened: 2026-08-29
 closed: null
 pr: null
 claimed_by: run 8/29/2026, 4:26:41 PM CT
-blocked_on: How many of the 705 single-return letter-list names should this town hold? A: all 705 (237 -> 942 people, 76.1% of the town a post-office name and nothing else). B: the dated head — the return of 1 July 1835 alone is 312 of them (237 -> 549, 59.0%), and the ticket carries the whole ladder by return. C: a lighter form than a household, which needs its own ticket to describe. Re-derive any of it with tools/mint_letter_list_residents.py --scale-report.
+blocked_on: null
 needs_bake: false
 ---
 
@@ -142,3 +142,52 @@ country around the town as well as the town itself. Refusal 6 catches only the 2
 corpus places elsewhere by name; it cannot catch a settler the corpus never places at
 all. At 12 records that limit is a footnote on each of them. At 705 it is a property of
 the town.
+
+---
+
+## THE OWNER'S RULING, 2026-08-30 — OPTION A, ALL 705
+
+Asked how many of the 705 single-return letter-list names the town should hold,
+the owner chose:
+
+> **All 705.** 237 → **942 people**.
+
+This is the largest single change to the town's population the corpus can make,
+and it is a deliberate change of scale, not an accident of a threshold: **76.1
+per cent of the town becomes a person known only by having had a letter waiting
+for him at the post office.** The ticket measured that number before the ruling
+and the ruling was taken with it in view.
+
+**What a single-return name IS, and the honesty this now owes.** The post office
+printed a list of letters it was holding. A name on it establishes that a person
+of that name was expected to be reachable in Chicago at that date — nothing more.
+It does not establish that he lived here, kept a trade here, or was here on
+1 July 1835. Ruling 1 of the publication record ("a letter-list name is enough to
+mint a resident") is what makes them mintable at all; this ruling sets the scale.
+
+So every one of the 705 must carry, and a gate must prove it carries:
+
+- `letter_list_only: true` — already the convention, and now load-bearing for
+  three quarters of the town.
+- The **return it came from**, by date, so a reader can tell a name printed on
+  the scene date from one printed eighteen months earlier.
+- **No roof, no household, no trade** unless a separate source gives one. A
+  letter-list person is a name the town knows, not a man with an address, and
+  nothing may quietly promote him.
+
+**The confidence view is the test of this ruling.** With 942 people and 705 of
+them letter-list-only, a visitor who filters to documented-and-placed must still
+see a coherent town, and a visitor who looks at the whole must be able to tell
+at a glance which three quarters are names alone. If that reads as a wall of
+undifferentiated people, the ruling has been implemented badly, not chosen badly.
+
+**Acceptance:** (state it before working — the definition of done, never weakened to pass)
+
+- All 705 minted, re-derived by `tools/mint_letter_list_residents.py`, gated in
+  `check.sh` — not hand-authored.
+- Every one carries `letter_list_only: true` and its source return's date, and a
+  gate FAILS if one does not.
+- None gains a roof, household or trade from this ticket alone; a gate proves it.
+- The card and the confidence view are checked at both viewports with 942 people
+  in the town, and the PR says what a visitor now sees that they did not.
+- `docs/LIBERTIES.md` carries the scale change with its percentage.

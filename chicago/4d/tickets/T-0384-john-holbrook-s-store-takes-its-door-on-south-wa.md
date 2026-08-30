@@ -1,7 +1,7 @@
 ---
 id: T-0384
 title: John Holbrook's store takes its door on South Water Street, one door from Dearborn
-state: blocked-owner
+state: open
 epic: META
 requested_by: loop
 seen: false
@@ -12,7 +12,7 @@ opened: 2026-08-29
 closed: null
 pr: null
 claimed_by: run 8/29/2026, 4:27:33 PM CT
-blocked_on: Does "one door from Dearborn street" place a store, or is it a street and nothing narrower? The register reads it street_only, so the 2026-08-29 street-face ruling gives Holbrook a standing South Water roof and never a new building — and South Water has none free, so he waits on T-0375 and seats himself automatically. Read as an ordinal off the corner instead, the register anchor is wrong at the source and PR #514 is right. Nothing else in the corpus turns on it: 0 register businesses anchor on any of the 5 documented buildings holding a business-front lot.
+blocked_on: null
 needs_bake: true
 ---
 
@@ -104,3 +104,48 @@ Dearborn"*, printed 10 June to 12 August 1835.
 that moved this) · T-0375 (the roof that would seat him without any ruling at all) ·
 T-0416 (the other three storefronts the same policy refuses) · PR #514 (`hold`, built and
 baked against the superseded reading)
+
+---
+
+## THE OWNER'S RULING, 2026-08-30 — READ IT AS AN ORDINAL OFF THE CORNER
+
+Asked whether *"one door from Dearborn street"* places a store or is a street and
+nothing narrower, the owner chose:
+
+> **Read it as an ordinal off the corner.**
+
+So *"one door from Dearborn"* is a NARROWER claim than *"on South Water Street"*:
+it counts doors from a named corner, which is a position along a face and not
+merely the face. **The register's anchor is therefore wrong at the source, and
+PR #514's reading is the right one.**
+
+**What follows, and the two things that must not be over-read.**
+
+- Holbrook does **not** fall to the street-face policy. Under it he would have
+  taken a standing South Water roof and never a new building — and South Water
+  has none free, so he would have waited on T-0375 indefinitely. The ordinal
+  reading is what lets him be placed at all.
+- An ordinal is **still not a lot.** "One door from the corner" fixes a position
+  in a sequence along a face; it does not name a platted lot and may not claim
+  one. The same limit the street-face ruling carries applies here.
+- **The door count is evidence; the metres are not.** How far one door is from
+  the corner is a reconstruction, and the record says so — the source gives an
+  ordinal, and turning it into a distance is this project's arithmetic.
+
+**The blast radius is small and was measured before the ruling:** nothing else in
+the corpus turns on it — **0 register businesses anchor on any of the 5
+documented buildings holding a business-front lot**. So this corrects one anchor
+and does not cascade.
+
+**Acceptance:** (state it before working — the definition of done, never weakened to pass)
+
+- The register's anchor for Holbrook is corrected at the source, and the ordinal
+  reading is written into the extraction/claim vocabulary so the NEXT "n doors
+  from" advertisement is read the same way without re-deciding.
+- The placement claims a position on a face, never a lot, and a gate proves it.
+- The metres between doors are recorded as this project's reconstruction, with
+  the rule that produced them.
+- PR #514 is either merged or superseded explicitly — it must not be left open
+  as a parked branch whose reading has since been ratified.
+- A sweep says how many other corpus claims use an "n doors from" form and are
+  now readable; if there are none, that is stated.
