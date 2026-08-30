@@ -1,7 +1,7 @@
 ---
 id: T-0427
 title: The outbuilding shed's overhang keeps climbing, and the ridge model stopped at the wall
-state: open
+state: done
 epic: META
 requested_by: loop
 seen: false
@@ -9,8 +9,8 @@ effort: S
 legacy_id: null
 parent: null
 opened: 2026-08-29
-closed: null
-pr: null
+closed: 2026-08-29
+pr: 574
 claimed_by: null
 blocked_on: null
 needs_bake: true
