@@ -1,5 +1,5 @@
 export const CHANGELOG = [ // newest first
-  { v: null, title: 'A third shop front on South Water Street, one door from Dearborn', kind: 'feature', ts: '', date: '',
+  { v: 433, title: 'A third shop front on South Water Street, one door from Dearborn', kind: 'feature', ts: '2026-08-30T08:31:55.626Z', date: 'Aug 30, 2026, 3:31 AM CT',
     items: [
       'Walk east from Dearborn along the south side of South Water Street and there are three shop fronts in a row now, where there were two and a gap. The new one is John Holbrook\u2019s: hats, clothing, boots and shoes, wholesale and retail, restocked every fifteen or twenty days through the shipping season. Two of the town\u2019s own newspapers print his card in June 1835, three weeks before the day this scene is set, both giving the same address \u2014 \u201Cone door from Dearborn street\u201D.',
       'The reason he was not standing there already is a question about eight words. Does \u201Cone door from Dearborn street\u201D place a shop, or does it just say which street he was on? Read the second way, Holbrook was owed one of the roofs already standing on South Water, and every one of them is spoken for; he would have waited indefinitely. The owner ruled: read it as an ordinal off the corner. A count of doors from a named crossing is a position along the street, and it is narrower than the street.',
