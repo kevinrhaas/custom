@@ -741,7 +741,7 @@
       ]
     }
   ],
-  "uncertain_standard": "Structures whose status on this date is genuinely OPEN — neither built with confidence nor ruled out. They are the third category, and one of them is standing in front of you.",
+  "uncertain_standard": "Structures whose status on this date is genuinely OPEN — neither built with confidence nor ruled out. They are the third category, and each one says whether it is standing in front of you or was never found on the ground.",
   "uncertain": [
     {
       "id": "cobweb_castle",
@@ -873,6 +873,116 @@
         }
       ],
       "carried_by": "frame_1834.position",
+      "carried_confidence": "inferred"
+    },
+    {
+      "id": "goss_cobb_saddlery",
+      "name": "S. B. Cobb's saddle, harness and trunk manufactory",
+      "question": "Which cross street? The corner is read once and never again. The Chicago Democrat of 26 November 1833 puts Goss & Cobb's new shop \"on the corner of Lake and Canal streets\", and that reading is as strong as this corpus gets — it is one of the addresses `chicago_democrat_1833_11_26` was verified against the page images for. The Chicago American then sets S. B. Cobb's own card three times in the weeks either side of the scene date, and loses the cross street in every one of them: \"corner of Lake an[d] [Amor.] streets\" (1835-06-08), no street names at all (1835-06-13), \"corner of [L]ake [an]d the [Balle]\" (1835-07-11). So nothing printed within twenty months of 1 July 1835 says which corner of Lake Street this is, and the building stands on a corner derived from the 1833 advertisement.",
+      "consequence": "The shop STANDS in the scene, so the question is not whether to build it but what a visitor is told when they open its card. It reaches the card through the placement's own confidence, which is `inferred`, and the position note argues the identification of the 1833 shop with the 1835 one rather than hiding it. T-0383 settled the firm's SURVIVAL from those three American cards — four printed dates, the last ten days after the scene date — and could not settle the corner, which is the half of that record's own \"TO RESOLVE\" sentence still outstanding. One page image of either 1835 card closes it in a word: it either corroborates Canal, or it moves this building.",
+      "standing": true,
+      "no_source_record": "",
+      "dossier": {
+        "file": "docs/RESEARCH/american_self_contradictions.md",
+        "anchor": "Which cross street is S. B. Cobb's saddlery on"
+      },
+      "citations": [
+        {
+          "source_id": "chicago_american_1835",
+          "citation": "The Chicago American. Vol. I, No. 1 (June 8, 1835) through Vol. I, No. 12 (August 29, 1835). Chicago, Ill.: T. O. Davis. Thirteen issues, OCR-assisted research transcriptions from page scans.",
+          "url": "",
+          "archived_url": "",
+          "tier": 1,
+          "tier_label": "period/eyewitness",
+          "what_it_supplies": [
+            "a second, independent contemporary witness to the town in the twelve weeks around the scene date",
+            "advertisements and self-reported addresses from a different advertiser base than the Democrat's",
+            "attestation that needs no survival liberty: the whole run is within twelve weeks of 1835-07-01",
+            "corroboration or contradiction of a Democrat address, which is worth more than either paper alone",
+            "the paper's own correction of its first masthead date"
+          ],
+          "what_it_does_not_supply": [
+            "any building's form, material, storey count, fenestration or dimensions",
+            "a reliable reading of a dense body column — this run had no reconciled second pass",
+            "a word count or uncertainty-marker count: none was delivered, and corpus.json records null rather than zero",
+            "identification by volume and number: No. 12 is printed on two different issues",
+            "anything at all from an engraving — the cuts are the printer's stock",
+            "a citation without an issue page and column"
+          ]
+        },
+        {
+          "source_id": "chicago_democrat_1833_11_26",
+          "citation": "The Chicago Democrat. Vol. I, No. 1. Chicago, Ill.: John Calhoun, Tuesday, November 26, 1833.",
+          "url": "",
+          "archived_url": "",
+          "tier": 1,
+          "tier_label": "period/eyewitness",
+          "what_it_supplies": [
+            "that a named trade was being carried on in Chicago in November 1833",
+            "the Chicago Democrat's own address, self-reported: the corner of South Water and Clark streets",
+            "Philo Carpenter advertising drugs, medicines, oils, paints and dye-stuffs, dated Nov. 22, 1833 — with NO address, so it cannot disambiguate his two shops",
+            "C. & I. Harmon advertising dry goods, crockery, hardware and wet and dry groceries, dated Nov. 18, 1833 — with NO address, so it does NOT corroborate the Clark/South Water corner Andreas gives them",
+            "W. Kimball's 'New Store' at the corner of South Water and Clark — a SECOND, independently attested occupant of that junction in the same issue, signed",
+            "Peter Cohen, clothier and grocer, self-reported at the EAST END OF SOUTH WATER-STREET, and trading in Chicago before Nov 1833 ('old customers ... past favors')",
+            "Goss & Cobb, saddle and harness makers, self-reported on the corner of Lake and Canal streets",
+            "Matthias Mason & Co., blacksmiths, on 'Main-street, nearly opposite Graves' Tavern' — a street name this project does not otherwise hold",
+            "B. Jones, grocery and provision store, and separately a storage/forwarding/commission business — both ads give NO street",
+            "Newberry & Dole, forwarding and commission merchants — no address",
+            "John Wright, cut nails and general merchandise; and TWO BUILDINGS TO LET until 1 June 1834",
+            "Daniel Elston & [illegible], soap and candle manufactory, paying cash for tallow and house ashes",
+            "a tavern stand kept by Chester Ingersoll, 'lately occupied by Mr. Wm. W. WATTLES', dated 4 October 1833",
+            "the house of Chester Ingersoll used as the district polling place, 9 December 1833",
+            "THE VILLAGE ORDINANCES of 7 November 1833, complete — the richest single item in the paper",
+            "Ordinance 1: the corporate limits surveyed ALONG the northern United States' Pier 'to the termination thereof' — the pier as an existing, walkable structure with a definite landward end",
+            "Ordinance 5: 'either of the bridges in said town' and their 'plank or any piece of timber' — EXACTLY TWO bridges on 7 Nov 1833, of plank-and-timber construction",
+            "Ordinance 6: wooden buildings with wooden and lath-and-plaster partitions, heated by STOVES not fireplaces, pipes passing through roof or side wall and carried 18 inches above the roof, guarded by stone-ware pipe, brick, tin or sheet iron",
+            "Ordinance 9: timber, stone, brick, boxes and barrels stacked in the streets",
+            "Ordinances 3, 7 and 8: hogs at large, horses run through the streets, stallions",
+            "the schooner Austerlitz, Capt. Smith, from Buffalo, arrived about the 1[9]th inst. with a full cargo of merchandise for citizens of this village and cleared on the 21st IN BALLAST",
+            "a school established in the village by Mr. Sproat of Boston, already running on 26 Nov 1833",
+            "a public auction of United States property held AT FORT DEARBORN, 2 December 1833",
+            "the village population passing 'more than eight hundred souls' in late 1833"
+          ],
+          "what_it_does_not_supply": [
+            "any building's dimensions",
+            "any building's form, material, storey count or fenestration",
+            "the specific corner of any junction it names — the imprint says 'on the corner of', and which of the four is not in the sentence",
+            "evidence that any building named here still stood on 1835-07-01 — this issue is NINETEEN MONTHS before the scene date, in the town's fastest-changing period, and the population went from 800 to 3,265 in between",
+            "any building footprint or plan",
+            "any length or width for the piers",
+            "any corroboration of the estray pen — see the negative finding in the note"
+          ]
+        },
+        {
+          "source_id": "chicago_democrat_1833_1835",
+          "citation": "The Chicago Democrat. Vol. I, No. 1 (November 26, 1833) through Vol. II, No. 18 (August 26, 1835). Chicago, Ill.: John Calhoun, editor and publisher. Seventy-three issues, OCR-assisted research transcriptions from page scans.",
+          "url": "",
+          "archived_url": "",
+          "tier": 1,
+          "tier_label": "period/eyewitness",
+          "what_it_supplies": [
+            "that a named trade was being carried on in Chicago in a named week, and often where",
+            "self-reported addresses, which are the strongest address evidence this project has: the advertiser was paying, and his customers had to find him",
+            "dissolution, removal and replacement notices — the only thing that keeps a documented business out of the 1835 town under the owner's ruling 3",
+            "post-office letter lists, naming residents by the hundred (ruling 1: a listed name mints a resident candidate, flagged letter_list_only)",
+            "the village and later town ordinances, printed complete — the 7 November 1833 code is the richest single item in the run",
+            "arrivals and clearances, which date the piers and the harbour as working structures",
+            "public notices that fix a building as a polling place, an auction site or a meeting place on a given day",
+            "the paper's own imprint, self-reported: the corner of South Water and Clark streets",
+            "twenty-one months of continuous weekly attestation ending three weeks before the scene date, including the issue printed on 1835-07-01"
+          ],
+          "what_it_does_not_supply": [
+            "any building's form, material, storey count, fenestration or dimensions — an advertisement describes a trade, not a building",
+            "the specific corner of any junction it names: 'on the corner of' does not say which of the four",
+            "anything at all from an engraving — see trap 1; the cuts are the printer's stock",
+            "proof that a business named in 1833 or 1834 still stood on 1835-07-01; that is ruling 3's survival liberty, and it is a liberty",
+            "an argument from silence, unless corpus.json shows the issues either side of the silence are both in the deposit",
+            "a reading that outranks a scan read of the same passage — see ruling 2 and the C. & I. HARMON case",
+            "a citation without an issue page and column"
+          ]
+        }
+      ],
+      "carried_by": "shop_1833.position",
       "carried_confidence": "inferred"
     }
   ]

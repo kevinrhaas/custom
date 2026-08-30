@@ -1119,6 +1119,22 @@ step "every newspaper claim resolves, quotes verbatim, and the gazetteer is comp
 step "…and its own assertions still fire when broken" \
   python3 tools/compile_gazetteer.py --self-test
 
+# T-0305. Four times in its thirteen issues the Chicago American contradicts ITSELF about
+# a street, or prints one and loses the cross street that would locate it — the tailor's
+# Franklin-or-Lake, which Water street Wm. Sabine and John Dave[s] stood in, and the corner
+# of S. B. Cobb's saddlery. None of the four is closeable from the material this repository
+# holds: the page images are held outside it, and three of the four subjects appear nowhere
+# in the Democrat but a post-office letter list. So the four are DECLARED — each printing
+# by claim, page, column and the exact substring it has to carry — and re-derived here,
+# along with the negative half over all 73 Democrat issues. The day one of them is answered,
+# by an image or by an extraction pass reaching a card nobody has read, this says so instead
+# of docs/RESEARCH/american_self_contradictions.md going quietly out of date.
+step "the American's four self-contradictions still read as declared" \
+  python3 tools/measure_american_contradictions.py --gate
+
+step "…and its own assertions still fire when broken" \
+  python3 tools/measure_american_contradictions.py --self-test
+
 # T-0262. The gazetteer says what was PRINTED; the register says what the town has to
 # do about it — for every business an action and, where the action needs one, a
 # committed target; for every person whether the town already holds them, invented a

@@ -244,7 +244,7 @@
       ]
     }
   ],
-  "watch_list_doc": "Structures whose 1835 status is genuinely uncertain rather than excluded — the third category, between a building that stands and one that was researched and left out. They belong in the dataset with honest confidence, and they are listed here so nobody promotes them to documented without new evidence. That last sentence was unenforced prose until 2026-08-10: `original` on each entry is the free-text line it was written as, kept verbatim because this file's rule is that a finding is added to and not rewritten.",
+  "watch_list_doc": "Structures whose 1835 status is genuinely uncertain rather than excluded — the third category, between a building that stands and one that was researched and left out. They belong in the dataset with honest confidence, and they are listed here so nobody promotes them to documented without new evidence. That last sentence was unenforced prose until 2026-08-10: `original` on each entry is the free-text line it was written as, kept verbatim because this file's rule is that a finding is added to and not rewritten. Entries opened since carry `opened` instead, because there is no scaffold line to keep.",
   "watch_list": [
     {
       "id": "cobweb_castle",
@@ -311,6 +311,24 @@
         "andreas_1884_v1",
         "chicago_american_1835",
         "drloih_hotels"
+      ]
+    },
+    {
+      "id": "goss_cobb_saddlery",
+      "name": "S. B. Cobb's saddle, harness and trunk manufactory",
+      "in_dataset": true,
+      "carried_by": "shop_1833.position",
+      "question": "Which cross street? The corner is read once and never again. The Chicago Democrat of 26 November 1833 puts Goss & Cobb's new shop \"on the corner of Lake and Canal streets\", and that reading is as strong as this corpus gets — it is one of the addresses `chicago_democrat_1833_11_26` was verified against the page images for. The Chicago American then sets S. B. Cobb's own card three times in the weeks either side of the scene date, and loses the cross street in every one of them: \"corner of Lake an[d] [Amor.] streets\" (1835-06-08), no street names at all (1835-06-13), \"corner of [L]ake [an]d the [Balle]\" (1835-07-11). So nothing printed within twenty months of 1 July 1835 says which corner of Lake Street this is, and the building stands on a corner derived from the 1833 advertisement.",
+      "consequence": "The shop STANDS in the scene, so the question is not whether to build it but what a visitor is told when they open its card. It reaches the card through the placement's own confidence, which is `inferred`, and the position note argues the identification of the 1833 shop with the 1835 one rather than hiding it. T-0383 settled the firm's SURVIVAL from those three American cards — four printed dates, the last ten days after the scene date — and could not settle the corner, which is the half of that record's own \"TO RESOLVE\" sentence still outstanding. One page image of either 1835 card closes it in a word: it either corroborates Canal, or it moves this building.",
+      "opened": "2026-08-30 — T-0305. Not a migrated scaffold line, so there is no `original` to keep verbatim; the entry is written from the measurement that opened it. The doubt itself is older than the entry and was argued inside the record's own prose from 2026-08-11, which is precisely the problem this list exists to fix: a live question about a standing building that only an agent reading JSON would ever meet.",
+      "dossier": {
+        "file": "docs/RESEARCH/american_self_contradictions.md",
+        "anchor": "Which cross street is S. B. Cobb's saddlery on"
+      },
+      "sources": [
+        "chicago_democrat_1833_11_26",
+        "chicago_american_1835",
+        "chicago_democrat_1833_1835"
       ]
     }
   ],

@@ -59,7 +59,6 @@ T-0375 — Every reconstructed roof on South Water Street is a labourer's, so fi
 # --- opened that live outside the repository. Workable the day the images are supplied;
 # --- until then a run should take something above instead.
 T-0318 — The January 1834 letter list: the third printing repairs the A-H half, and the images are needed only for the rest
-T-0305 — Four readings the American contradicts itself on need the page images: the tailor's street, which Water street two forwarding houses stood in, and the corner of Cobb's saddlery
 
 # --- THE TOWN GROWS AGAIN — UNBLOCKED BY THE OWNER, 2026-08-29. T-0365 measured that
 # --- the anonymous-block programme had NO unblocked ground left: every platted block with

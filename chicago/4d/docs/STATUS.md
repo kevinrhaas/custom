@@ -1,5 +1,67 @@
 # STATUS
 
+## Shipped 2026-08-30 — T-0305: the four readings the American contradicts itself on
+
+**What a visitor sees:** S. B. Cobb's saddlery — the corner shop on Lake Street in the West
+Division — now carries an **open question** on the provenance card you get by walking up to it,
+and the Evidence panel's open-questions list goes from four to five. It is the second building in
+the scene whose card asks a live question rather than only grading a claim.
+
+**The ticket was filed with a title that asserted its own answer** — *"need the page images"* —
+and an empty acceptance clause. The acceptance was written first, and written so that it could
+refute the title: name the four, test each against the whole 86-issue corpus rather than against
+the American alone, and only then put what survives to the owner. Nothing survived the corpus
+test. The title was right, and it is right for a stated reason now instead of by assertion.
+
+**The four, and the shape of each.** `tools/measure_american_contradictions.py --gate` re-derives
+them; `docs/RESEARCH/american_self_contradictions.md` quotes every printing.
+
+| # | question | printings | the corpus |
+|---|---|---|---|
+| 1 | Edward Burton's tailoring shop — Franklin or Lake street | one card, one copy date, four settings: Franklin, Franklin, unresolved, **Lake** | `Burton` is not in the Democrat at all |
+| 2 | Wm. Sabine — North or South Water Street | North 06-13 and 06-20, **South** 07-04 | one post-office letter-list line |
+| 3 | John Dave[s] — the card set below Sabine's | the same two dates, the same two readings | three letter-list lines |
+| 4 | S. B. Cobb's saddlery — which cross street | Lake legible in all three 1835 cards, the cross street lost in all three | the Democrat's 1833 *"Lake and Canal streets"* |
+
+**Three things the run found that the ticket did not know.**
+
+- **2 and 3 are one event, not two.** Both houses read North in both June settings and South in
+  the July one. Two firms do not cross a river together between issues; a compositor resets a
+  column. That does not say which reading is right — it does mean **one page image settles both**,
+  and it is why the ask is six columns for four questions rather than eight.
+- **The contradicting printing is invisible to the register.** On 1835-07-04 the three forwarding
+  cards were extracted as ONE claim, filed under the third firm's name (Newberry & Dole), so
+  `business_wm_sabine_storage_forwarding_and_commission_merchant` reads "North Water Street" flat
+  with no disagreement recorded on it. The South reading survives only on John Davis's entity and
+  in that claim's own note. **Not re-cut here**, deliberately: re-cutting a claim is a reading of
+  the page, and the page is the thing that is missing.
+- **Question 4 is the weakest of the four, and that is worth knowing before anyone spends a
+  scan on it.** The 1833 corner is one of the few addresses in this project read off the page
+  images themselves — `chicago_democrat_1833_11_26` carries `verified: true` — so the American's
+  silence is not doubt about 1833. What it leaves open is the twenty months after it: whether the
+  shop Cobb *"will continue the above business at"* in June 1835 is the same corner, which is
+  exactly the identification the record grades `inferred`.
+
+**A sentence that was counting, and had already gone wrong.** The Evidence panel's own account of
+the open questions ended *"one of them is standing in front of you"*. That was true of four
+entries and stopped being true on 2026-08-29, when the New York House became the second standing
+one — a day before this run added a fifth. It is the same failure the hand-typed paraphrase before
+it made, and the same failure the panel's own changelog entry says it fixed. It counts nothing now:
+each entry carries its own `standing` flag and the chip beside it says which.
+
+**What is left is the owner's, and it is six columns**, all in the American — 1835-06-13 p3 c5,
+1835-07-04 p4 c4, 1835-06-27 p3 c5, 1835-08-15 p3 c6, 1835-06-08 p3 c5, 1835-07-11 p3 c6. Two of
+them serve two questions each. Nothing smaller will do it: every reading above is already the best
+the transcription can give, and three of the four subjects appear nowhere else in eighty-six
+issues except a list of letters waiting at the post office. The ticket is `blocked-owner` on
+exactly that ask.
+
+**Held by a gate, not by memory.** Every reading is declared with the page and column it sits in
+and re-derived on every `check.sh`, along with the negative half over all seventy-three Democrat
+issues. Eight assertions, each proved to fire under `--self-test`. The day one of these four is
+answered — by an image, or by an extraction pass reaching a card nobody has read — the build says
+so.
+
 ## Shipped 2026-08-29 — T-0358: the plat gets its block numbers, and the corpus's only address resolves
 
 **Nothing you can see changed.** This is a dependency: the corpus's one lot-and-block address —
