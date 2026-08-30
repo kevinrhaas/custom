@@ -213,7 +213,7 @@ third of the 150-minute run budget, and that is before a part is re-run after a 
 passes rule above should be read as ONE full pass and a re-run of the parts a change touches; a
 parcel whose acceptance needs the whole gate twice has already outgrown a run.
 
-**AND THE THREE CAPS ARE THREE DIFFERENT QUANTITIES — T-0435, 2026-08-30.** This section has
+**AND THE THREE CAPS ARE THREE DIFFERENT QUANTITIES — T-0437, 2026-08-30.** This section has
 been read as though one number bounded the gate, and T-0235's budget page inherited the same
 reading. **600 s** caps ONE foreground command a steward run blocks on (the harness).
 **Thirty minutes** caps ONE LEG of the nightly gate — one viewport, one range of parts, eight

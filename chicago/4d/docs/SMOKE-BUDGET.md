@@ -1,12 +1,12 @@
 # The renderer gate's budget — what it costs here, and what covers what
 
-**T-0235**, corrected by **T-0435**. A steward run's single foreground command is
+**T-0235**, corrected by **T-0437**. A steward run's single foreground command is
 capped at **600 s**, so no run can take the gate whole. It takes the parts that
 cover what it touched — and until this page, nothing said which those were. A run
 either spent more than its entire budget on all fifteen staged commands, or
 picked by feel.
 
-## Three caps, and they are three different quantities (T-0435)
+## Three caps, and they are three different quantities (T-0437)
 
 This page opened by reading a 55-minute unfiltered pass against a 30-minute cap
 and concluding the cap "is not this machine's". Both halves of that were wrong,
@@ -31,7 +31,7 @@ three. The A/B, on `dev` at `415909cf`, same leg against the same bytes:
 | mobile `SMOKE_STAGE=1-2 --published` | |
 |---|---|
 | bake runner — run 33290607360, `Smoke the published mirror` step | **4 m 40 s** |
-| improve runner — T-0435 | **4 m 44 s** |
+| improve runner — T-0437 | **4 m 44 s** |
 
 1.4 per cent apart. The control is real rather than incidental: that bake
 produced no changes (`open-pr` skipped), so the mirror it smoked out of its own
@@ -46,7 +46,7 @@ days earlier. That is why `dev-smoke-state.json` stamps cpu count and load
 average on every record, why `smoke_budget.mjs` reports a median, and why a part
 must never be re-cut off a single reading.
 
-## What the eight legs cost, measured (T-0435)
+## What the eight legs cost, measured (T-0437)
 
 `smoke_budget.mjs` reads per-PART readings out of the standing record and names
 the six desktop parts that have none. The **legs** — the four ranges
@@ -177,4 +177,4 @@ exactly the ones a plain run learns nothing about.
 ships · T-0216 `tools/dev-smoke-state.mjs` (the record these figures are read
 from) · T-0346 (the last re-cut) · T-0170, T-0173, T-0181 (the three margins
 taken against the 30-minute LEG cap — which is the right cap for them to take)
-· T-0435 (the three caps, and the two-runner A/B) · ROADMAP § THE RUN BUDGET.
+· T-0437 (the three caps, and the two-runner A/B) · ROADMAP § THE RUN BUDGET.

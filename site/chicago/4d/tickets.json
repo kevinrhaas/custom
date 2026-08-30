@@ -1,6 +1,6 @@
 {
   "project": "chicago-4d",
-  "generated_ct": "Aug 30, 2026, 12:18 AM",
+  "generated_ct": "Aug 30, 2026, 12:24 AM",
   "tickets": [
     {
       "id": "T-0001",
@@ -7146,24 +7146,6 @@
       "queue_rank": 72
     },
     {
-      "id": "T-0435",
-      "title": "The budget page says the 30-minute cap is not this machine's, and the same leg measures 4 m 40 s there against 4 m 44 s here",
-      "state": "done",
-      "epic": "META",
-      "requested_by": "loop",
-      "seen": false,
-      "effort": "M",
-      "legacy_id": null,
-      "parent": null,
-      "opened": "2026-08-30",
-      "closed": "2026-08-30",
-      "pr": "589",
-      "claimed_by": "run 8/30/2026, 12:06:07 AM CT",
-      "blocked_on": null,
-      "needs_bake": false,
-      "queue_rank": null
-    },
-    {
       "id": "T-0436",
       "title": "The corporation's limits have no committed geometry, and the fire ordinance binds only inside them",
       "state": "open",
@@ -7180,6 +7162,24 @@
       "blocked_on": null,
       "needs_bake": false,
       "queue_rank": 73
+    },
+    {
+      "id": "T-0437",
+      "title": "The budget page says the 30-minute cap is not this machine's, and the same leg measures 4 m 40 s there against 4 m 44 s here",
+      "state": "done",
+      "epic": "META",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "M",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-08-30",
+      "closed": "2026-08-30",
+      "pr": "589",
+      "claimed_by": "run 8/30/2026, 12:06:07 AM CT",
+      "blocked_on": null,
+      "needs_bake": false,
+      "queue_rank": null
     }
   ]
 }

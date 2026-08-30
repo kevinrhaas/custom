@@ -12,6 +12,68 @@
       "passed": 37,
       "failed": 0,
       "failures": [],
+      "wallSeconds": 99,
+      "takenAt": "2026-08-30T05:32:31.065Z",
+      "ref": "steward/t-0235-stage-recipe",
+      "commit": "7937b15a1fef",
+      "devCommit": "f89ed520d628",
+      "treeHash": "sha256:d81bf2d90c39782b",
+      "treeDirty": false,
+      "changelogHash": "sha256:c8ac82d4e6d3a7cc",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          4,
+          3.2,
+          2.4
+        ]
+      },
+      "source": "/tmp/f-m10.log"
+    },
+    {
+      "viewport": "desktop",
+      "stage": "10",
+      "parts": [
+        10
+      ],
+      "verdict": "pass",
+      "target": "published",
+      "passed": 37,
+      "failed": 0,
+      "failures": [],
+      "wallSeconds": 173,
+      "takenAt": "2026-08-30T05:32:30.980Z",
+      "ref": "steward/t-0235-stage-recipe",
+      "commit": "7937b15a1fef",
+      "devCommit": "f89ed520d628",
+      "treeHash": "sha256:d81bf2d90c39782b",
+      "treeDirty": false,
+      "changelogHash": "sha256:c8ac82d4e6d3a7cc",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          4,
+          3.2,
+          2.4
+        ]
+      },
+      "source": "/tmp/f-d10.log"
+    },
+    {
+      "viewport": "mobile",
+      "stage": "10",
+      "parts": [
+        10
+      ],
+      "verdict": "pass",
+      "target": "published",
+      "passed": 37,
+      "failed": 0,
+      "failures": [],
       "wallSeconds": 97,
       "takenAt": "2026-08-30T05:15:04.270Z",
       "ref": "steward/t-0235-stage-recipe",
@@ -1687,132 +1749,6 @@
         ]
       },
       "source": "/tmp/pub_d2.log"
-    },
-    {
-      "viewport": "mobile",
-      "stage": "3-4",
-      "parts": [
-        3,
-        4
-      ],
-      "verdict": "pass",
-      "target": "published",
-      "passed": 116,
-      "failed": 0,
-      "failures": [],
-      "wallSeconds": 400,
-      "takenAt": "2026-08-29T09:09:48.415Z",
-      "ref": "steward/t-0317-randolph-market-second-deal",
-      "commit": "e9608e4fc777",
-      "devCommit": "05cf916dab39",
-      "treeHash": "sha256:b1c3e853ee258e0c",
-      "treeDirty": false,
-      "changelogHash": "sha256:2459b0b21acaa167",
-      "host": {
-        "kind": "steward-runner",
-        "cpus": 4,
-        "memGB": 15.6,
-        "loadavg": [
-          4.7,
-          4,
-          3.4
-        ]
-      },
-      "source": "/tmp/smoke_m34c.log"
-    },
-    {
-      "viewport": "mobile",
-      "stage": "3-4",
-      "parts": [
-        3,
-        4
-      ],
-      "verdict": "pass",
-      "target": "published",
-      "passed": 116,
-      "failed": 0,
-      "failures": [],
-      "wallSeconds": 404,
-      "takenAt": "2026-08-29T08:59:59.828Z",
-      "ref": "steward/t-0317-randolph-market-second-deal",
-      "commit": "06f38aa8123a",
-      "devCommit": "a4d2819fb9ee",
-      "treeHash": "sha256:ca519d7988968b7d",
-      "treeDirty": false,
-      "changelogHash": "sha256:d3a006ebc7ff18cd",
-      "host": {
-        "kind": "steward-runner",
-        "cpus": 4,
-        "memGB": 15.6,
-        "loadavg": [
-          4.4,
-          3.7,
-          3.3
-        ]
-      },
-      "source": "/tmp/smoke_m34b.log"
-    },
-    {
-      "viewport": "desktop",
-      "stage": "8",
-      "parts": [
-        8
-      ],
-      "verdict": "pass",
-      "target": "published",
-      "passed": 37,
-      "failed": 0,
-      "failures": [],
-      "wallSeconds": 162,
-      "takenAt": "2026-08-29T08:47:06.954Z",
-      "ref": "steward/t-0317-randolph-market-second-deal",
-      "commit": "164d25737e7d",
-      "devCommit": "83a4e221536c",
-      "treeHash": "sha256:87ac01206a8d36c9",
-      "treeDirty": false,
-      "changelogHash": "sha256:6e5fb0f98ef975e5",
-      "host": {
-        "kind": "steward-runner",
-        "cpus": 4,
-        "memGB": 15.6,
-        "loadavg": [
-          4.4,
-          4.3,
-          3.6
-        ]
-      },
-      "source": "/tmp/smoke_d8.log"
-    },
-    {
-      "viewport": "desktop",
-      "stage": "3",
-      "parts": [
-        3
-      ],
-      "verdict": "pass",
-      "target": "published",
-      "passed": 74,
-      "failed": 0,
-      "failures": [],
-      "wallSeconds": 123,
-      "takenAt": "2026-08-29T08:47:06.866Z",
-      "ref": "steward/t-0317-randolph-market-second-deal",
-      "commit": "164d25737e7d",
-      "devCommit": "83a4e221536c",
-      "treeHash": "sha256:87ac01206a8d36c9",
-      "treeDirty": false,
-      "changelogHash": "sha256:6e5fb0f98ef975e5",
-      "host": {
-        "kind": "steward-runner",
-        "cpus": 4,
-        "memGB": 15.6,
-        "loadavg": [
-          4.4,
-          4.3,
-          3.6
-        ]
-      },
-      "source": "/tmp/smoke_d3.log"
     },
     {
       "viewport": "desktop",
