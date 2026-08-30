@@ -1638,6 +1638,15 @@
       "phase_id": "inferred_1835",
       "structure_id": "recon_1835_blk_south_water_dearborn_a3_06"
     },
+    "recon_1835_blk_south_water_dearborn_a5_10__inferred_1835.glb": {
+      "archetype": "outbuilding",
+      "baked_ao": false,
+      "bytes": 52656,
+      "inputs_sha256": "24a7cbdee23db5aef8708e73e8405df9960bd2d6d24f22ef88b10761114a5540",
+      "kind": "generated",
+      "phase_id": "inferred_1835",
+      "structure_id": "recon_1835_blk_south_water_dearborn_a5_10"
+    },
     "recon_1835_blk_south_water_dearborn_c3_01__inferred_1835.glb": {
       "archetype": "frame_storefront",
       "baked_ao": false,
@@ -1682,6 +1691,33 @@
       "kind": "generated",
       "phase_id": "inferred_1835",
       "structure_id": "recon_1835_blk_south_water_dearborn_d3_03"
+    },
+    "recon_1835_blk_south_water_dearborn_d4_09__inferred_1835.glb": {
+      "archetype": "frame_dwelling",
+      "baked_ao": false,
+      "bytes": 33324,
+      "inputs_sha256": "c7db2d92d267630163a94157e8f3ee216fe9eb186acd4412cfbf5246d14ffae6",
+      "kind": "generated",
+      "phase_id": "inferred_1835",
+      "structure_id": "recon_1835_blk_south_water_dearborn_d4_09"
+    },
+    "recon_1835_blk_south_water_dearborn_d5_08__inferred_1835.glb": {
+      "archetype": "frame_dwelling",
+      "baked_ao": false,
+      "bytes": 30520,
+      "inputs_sha256": "f2377dd3b3d26c1738888e41f06cc17290fc50b03b8546bf1db7c143b3dd2c7b",
+      "kind": "generated",
+      "phase_id": "inferred_1835",
+      "structure_id": "recon_1835_blk_south_water_dearborn_d5_08"
+    },
+    "recon_1835_blk_south_water_dearborn_h3_07__inferred_1835.glb": {
+      "archetype": "frame_tavern",
+      "baked_ao": false,
+      "bytes": 22228,
+      "inputs_sha256": "ec5d15adfdc14d7319236dad51d48eb350aff894f2187d48eb07d57dbaf06813",
+      "kind": "generated",
+      "phase_id": "inferred_1835",
+      "structure_id": "recon_1835_blk_south_water_dearborn_h3_07"
     },
     "recon_1835_blk_south_water_franklin_a1_06__inferred_1835.glb": {
       "archetype": "outbuilding",
@@ -3090,8 +3126,8 @@
     "st_marys_church__frame_1833.glb": {
       "archetype": "frame_dwelling",
       "baked_ao": false,
-      "bytes": 38860,
-      "inputs_sha256": "318f11243d83ca17dad8cd81a72c52f11047684c0c77291370a1fbcfc868d71e",
+      "bytes": 33864,
+      "inputs_sha256": "a03bbd22479852a40e1c594d430d7fc81081a14053f2c74ae01b6fcdc1d1deee",
       "kind": "generated",
       "phase_id": "frame_1833",
       "structure_id": "st_marys_church"

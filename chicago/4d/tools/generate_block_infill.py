@@ -33,6 +33,7 @@ numbering off a sheet, and standing on a generated lot is not standing on a reco
 from __future__ import annotations
 
 import argparse
+import functools
 import importlib
 import json
 import math
@@ -316,6 +317,43 @@ def door_kind(family: str) -> str:
     if family in ("W2", "A1"):
         return "stable"
     return "man"
+
+
+@functools.lru_cache(maxsize=None)
+def consumed_by(archetype: str) -> frozenset[str]:
+    """The form attributes this archetype's generator actually reads.
+
+    Asked of `generators/archetypes/<archetype>_params.py` rather than retyped, for the
+    reason every other number in this file is read rather than retyped: the CONSUMED set
+    is the archetype's own claim about which values reach the mesh, and a copy of it here
+    would be a second opinion that drifts the first time an archetype grows a parameter.
+    """
+    module = importlib.import_module(f"archetypes.{archetype}_params")
+    return frozenset(getattr(module, "CONSUMED", ()) or ())
+
+
+def declare_unbuilt(form: dict, archetype: str) -> dict:
+    """`geometry: simplified` on every value this record's archetype never reads.
+
+    T-0432, and it is the rule tools/validate.py already states from the other side: a
+    record may not state something the mesh does not contain without saying so, because
+    the popup shows the value with a confidence chip either way and a visitor cannot tell
+    a built value from a stated one. Until this parcel the question never arose here —
+    every family the generator had built resolved through an archetype that reads the
+    whole dwelling body — and it arose the moment the schedule dealt an H3, whose
+    `frame_tavern` archetype reads neither `plan`, `bays` nor `porch`.
+
+    `simplified` rather than `record_only` is the honest word for it, and the difference
+    is what the mesh does instead of nothing: the archetype builds a fixed elevation in
+    the value's place, so there IS something standing there and it is not what the record
+    says. That is an omission, so it owes docs/LIBERTIES.md an entry, which
+    `check_liberties_coverage` collects and this parcel wrote (L204).
+    """
+    known = consumed_by(archetype)
+    for attr, value in form.items():
+        if attr not in known and isinstance(value, dict) and value.get("value"):
+            value["geometry"] = "simplified"
+    return form
 
 
 def band_note(family: str) -> str:
@@ -755,7 +793,8 @@ def make_record(block: dict, slot: dict, lot_index: int | None, frame: dict | No
                 "confidence": "reconstructed",
                 "note": f"A {width:.2f} × {depth:.2f} m rectangle sampled deterministically inside the {family} family's authored footprint band; no individual dimensions are documented."
             },
-            "form": form_for(family, spec, sid, width, depth, paint),
+            "form": declare_unbuilt(form_for(family, spec, sid, width, depth, paint),
+                                    spec["archetype"]),
             "change_note": "Reconstructed anonymous July 1835 block infill; a better-evidenced named roof substitutes for a compatible count-unit rather than increasing the 665-roof total."
         }],
         "function": invented(function, f"Assigned from the {family} family to satisfy the block's scheduled mix; no occupant or individual use is known."),

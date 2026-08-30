@@ -9832,3 +9832,33 @@ Related: **L207** (the letter-list names) · **L206** (the sixteen with a trade)
 documented men who took reconstructed roofs) · **L1** (no figure is drawn for any resident) ·
 tickets **T-0373** (this), **T-0368**, **T-0376**, **T-0378**, **T-0374**, **T-0418** (the trades the vocabulary cannot say).
 **Recorded:** 2026-08-29.
+
+### L214 — The boarding house's plan, bays and porch are recorded and not built
+**Decision:** `recon_1835_blk_south_water_dearborn_h3_07`, the two-storey boarding house this
+parcel stands at the Lake-and-State corner, states `plan: hall_parlour`, `bays: 3` and
+`porch: stoop`, and its `frame_tavern` archetype reads none of the three. The three values are
+declared `geometry: "simplified"` on the record, which is the admission this entry claims: what
+stands in the scene is the tavern archetype's own fixed elevation, and it is not what the record
+says.
+**Why it happened, because it is a seam and not a slip.** Every family this generator had built
+before now resolves through `frame_dwelling`, `log_dwelling`, `frame_storefront` or `outbuilding`,
+and the first three of those read `plan`, `bays` and `porch` — so the dwelling body
+`tools/generate_block_infill.py` writes reached the mesh whole and the question never came up. H3
+is the first family it has been dealt whose crosswalk archetype is `frame_tavern`, which builds a
+larger massing and takes its elevation from its own parameters. The generator now asks each
+archetype's own `CONSUMED` set what it reads and declares the difference, rather than a reviewer
+noticing it; `tools/validate.py`'s geometry gate is what caught this one and would catch the next.
+**What is NOT admitted here:** the values are not wrong and are not removed. They are the
+generator's type defaults for an H-family house, they are graded at the bottom tier with a note
+saying the specification's H3 band does not speak to any of them, and they stay on the record so
+that a boarding-house generator — when one exists — has something to build from. What a visitor
+cannot see today is a three-bay hall-and-parlour front with a stoop, and that is the gap.
+**What would discharge it:** a `frame_tavern` elevation that reads a bay rhythm and an entrance
+treatment, or an H-family archetype of its own. Either turns the declaration into a build.
+Related: **L21** (chimneys counted in the record and fixed in the archetype) · **L208** (the New
+York House's `cladding` and `fenestration`, the same admission on a documented building) ·
+**L201** · tickets **T-0432** (this), **T-0438**.
+
+**Covers:** `recon_1835_blk_south_water_dearborn_h3_07.inferred_1835.form.plan`, `recon_1835_blk_south_water_dearborn_h3_07.inferred_1835.form.bays`, `recon_1835_blk_south_water_dearborn_h3_07.inferred_1835.form.porch`
+
+**Recorded:** 2026-08-30.

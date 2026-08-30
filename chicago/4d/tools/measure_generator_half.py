@@ -97,13 +97,19 @@ RENDERER_JS = RENDERERS / "web" / "js"
 # frame_tavern record, so one more committed asset and one more mesh a change to the shared
 # generator modules or to build.py would re-stale; terrain and pier_crib stay at 2 each.
 #
+# 359 -> 363 and 357 -> 361 on 2026-08-30 (T-0432): `blk_south_water_dearborn` took its second
+# deal — a party-line run of three on the block's free corner lot at Lake and State, and the
+# utility building in its yard. Four new structure assets, so four more meshes a change to the
+# shared generator modules or to build.py would re-stale; the terrain and pier_crib reaches stay
+# at 2 each, which is the point of stating them separately.
+#
 STATED = {
-    "assets": 359,
+    "assets": 363,
     "restales": {
-        "generators/common/*.py": 359,
+        "generators/common/*.py": 363,
         "generators/common/__init__.py": 0,
         "generators/common/phases.py": 0,
-        "generators/build.py": 357,
+        "generators/build.py": 361,
         "generators/terrain_gen.py": 2,
         "generators/archetypes/pier_crib.py": 2,
     },

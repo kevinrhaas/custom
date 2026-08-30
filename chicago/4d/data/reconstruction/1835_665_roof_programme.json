@@ -41,15 +41,14 @@
    "moved": [
     {
      "district": "south",
-     "blocks": 5,
+     "blocks": 4,
      "trade_roofs": 7,
-     "blocks_redealt": 5,
+     "blocks_redealt": 3,
      "quota": {
       "blk_south_water_franklin": 1,
       "blk_south_water_lasalle": 1,
-      "blk_south_water_clark": 1,
-      "blk_south_water_dearborn": 0,
-      "blk_south_water_market": 4
+      "blk_south_water_clark": 0,
+      "blk_south_water_market": 5
      }
     }
    ],
@@ -77,26 +76,26 @@
   "naming": "A unit is named for a block only where the plat module reaches it. Everything else is a district balance that states what it waits on."
  },
  "standing": {
-  "structure_records": 359,
+  "structure_records": 363,
   "physical_roofs": {
-   "min": 346,
-   "max": 347,
+   "min": 350,
+   "max": 351,
    "range_note": "one record — the Robinson/Caldwell cabins — is two or three cabins in its source; the ledger counts the low reading."
   },
   "by_source": {
-   "generated": 237,
+   "generated": 241,
    "inferred_household_programme": 38,
    "pre_existing": 71
   },
   "by_district": {
-   "south": 203,
+   "south": 207,
    "west": 48,
    "north": 85,
    "fort": 10
   },
   "by_group": {
-   "ordinary_dwellings": 163,
-   "larger_boarding_houses": 11,
+   "ordinary_dwellings": 165,
+   "larger_boarding_houses": 12,
    "stores_mixed_use": 35,
    "inns_taverns": 10,
    "workshops": 29,
@@ -104,14 +103,14 @@
    "institutional_public": 10,
    "fort_principal": 10,
    "barns_stables": 31,
-   "small_outbuildings": 35
+   "small_outbuildings": 36
   },
   "by_family": {
    "A1": 20,
    "A2": 11,
    "A3": 20,
    "A4": 11,
-   "A5": 4,
+   "A5": 5,
    "C1": 19,
    "C2": 5,
    "C3": 10,
@@ -119,8 +118,8 @@
    "D1": 36,
    "D2": 22,
    "D3": 34,
-   "D4": 31,
-   "D5": 25,
+   "D4": 32,
+   "D5": 26,
    "D6": 12,
    "D7": 3,
    "F1": 8,
@@ -129,7 +128,7 @@
    "F4": 1,
    "H1": 7,
    "H2": 3,
-   "H3": 1,
+   "H3": 2,
    "I1": 4,
    "I2": 3,
    "I3": 3,
@@ -162,10 +161,10 @@
   ]
  },
  "remaining": {
-  "roofs": 316,
+  "roofs": 312,
   "of_target": 662,
   "by_district": {
-   "south": 162,
+   "south": 158,
    "west": 87,
    "north": 67,
    "fort": 0
@@ -173,9 +172,9 @@
   "by_district_group": {
    "south": {
     "barns_stables": 19,
-    "larger_boarding_houses": 22,
-    "ordinary_dwellings": 75,
-    "small_outbuildings": 25,
+    "larger_boarding_houses": 21,
+    "ordinary_dwellings": 73,
+    "small_outbuildings": 24,
     "stores_mixed_use": 14,
     "warehouses_freight": 6,
     "workshops": 1
@@ -201,7 +200,7 @@
    "A2": 19,
    "A3": 20,
    "A4": 17,
-   "A5": 10,
+   "A5": 9,
    "C1": 0,
    "C2": 7,
    "C3": 7,
@@ -209,8 +208,8 @@
    "D1": 16,
    "D2": 16,
    "D3": 31,
-   "D4": 34,
-   "D5": 33,
+   "D4": 33,
+   "D5": 32,
    "D6": 17,
    "D7": 15,
    "F1": 0,
@@ -219,7 +218,7 @@
    "F4": 1,
    "H1": 11,
    "H2": 11,
-   "H3": 9,
+   "H3": 8,
    "I1": 0,
    "I2": 0,
    "I3": 0,
@@ -239,15 +238,15 @@
     "A2": 9,
     "H1": 8,
     "H2": 8,
-    "H3": 6,
-    "D1": 8,
+    "H3": 5,
+    "D1": 7,
     "D2": 7,
     "D3": 14,
-    "D4": 16,
+    "D4": 15,
     "D5": 15,
     "D6": 8,
     "D7": 7,
-    "A3": 11,
+    "A3": 10,
     "A4": 9,
     "A5": 5,
     "C2": 6,
@@ -290,8 +289,8 @@
     "D2": 4,
     "D3": 8,
     "D4": 9,
-    "D5": 9,
-    "D6": 4,
+    "D5": 8,
+    "D6": 5,
     "D7": 4,
     "A3": 5,
     "A4": 4,
@@ -322,9 +321,9 @@
   }
  },
  "coverage": {
-  "schedulable_on_committed_ground": 20,
+  "schedulable_on_committed_ground": 16,
   "gated_on_coverage": 296,
-  "statement": "20 of the 316 remaining roofs stand on ground this project has already surveyed, platted and modelled. The other 296 have nowhere to go until street control, terrain and hydrology reach them. The binding constraint on the 662-roof programme is coverage, not recipes.",
+  "statement": "16 of the 312 remaining roofs stand on ground this project has already surveyed, platted and modelled. The other 296 have nowhere to go until street control, terrain and hydrology reach them. The binding constraint on the 662-roof programme is coverage, not recipes.",
   "platted_lots": 144,
   "blocks_named": 21,
   "southern_ground": {
@@ -359,10 +358,10 @@
    "state": "open",
    "roofs": 4,
    "families": {
-    "A3": 1,
+    "A1": 1,
     "C2": 1,
-    "D4": 1,
-    "D5": 1
+    "D3": 1,
+    "D4": 1
    },
    "principal": 3,
    "ancillary": 1,
@@ -412,12 +411,12 @@
    "state": "open",
    "roofs": 8,
    "families": {
-    "A1": 1,
     "A2": 1,
+    "A3": 1,
     "C3": 1,
     "D1": 1,
     "D2": 1,
-    "D3": 1,
+    "D5": 1,
     "D6": 1,
     "D7": 1
    },
@@ -447,14 +446,14 @@
    "roofs": 4,
    "families": {
     "A4": 1,
-    "C4": 1,
+    "D4": 1,
     "H1": 1,
     "H2": 1
    },
    "principal": 3,
    "ancillary": 1,
    "frontage_weight": 0.6023,
-   "trade_roofs": 1
+   "trade_roofs": 0
   },
   {
    "id": "blk_south_water_dearborn",
@@ -468,23 +467,16 @@
    },
    "lots": 8,
    "capacity_roofs": 31,
-   "standing_roofs": 10,
-   "free_lots": 2,
-   "principal_room": 3,
-   "ancillary_room": 1,
-   "headroom": 4,
-   "state": "open",
-   "roofs": 4,
-   "families": {
-    "A5": 1,
-    "D4": 1,
-    "D5": 1,
-    "H3": 1
-   },
-   "principal": 3,
-   "ancillary": 1,
-   "frontage_weight": 0.4886,
-   "trade_roofs": 0
+   "standing_roofs": 14,
+   "free_lots": 1,
+   "principal_room": 0,
+   "ancillary_room": 0,
+   "headroom": 0,
+   "state": "at_capacity",
+   "roofs": 0,
+   "families": {},
+   "principal": 0,
+   "ancillary": 0
   },
   {
    "id": "blk_lake_clinton",
@@ -844,11 +836,13 @@
    "families": {
     "A1": 2,
     "A2": 1,
-    "A3": 2,
+    "A3": 1,
     "A4": 1,
+    "A5": 1,
     "C2": 2,
     "C3": 1,
-    "D1": 2,
+    "C4": 1,
+    "D1": 1,
     "D2": 1,
     "D3": 3,
     "D4": 3,
@@ -863,7 +857,7 @@
    "principal": 21,
    "ancillary": 6,
    "frontage_weight": 0.6761,
-   "trade_roofs": 4
+   "trade_roofs": 5
   },
   {
    "id": "blk_south_water_clinton",
@@ -941,8 +935,8 @@
     "D1": 5,
     "D2": 5,
     "D3": 10,
-    "D4": 11,
-    "D5": 10,
+    "D4": 10,
+    "D5": 11,
     "D6": 6,
     "D7": 5,
     "F2": 2,
@@ -1011,8 +1005,8 @@
     "D2": 4,
     "D3": 8,
     "D4": 9,
-    "D5": 9,
-    "D6": 4,
+    "D5": 8,
+    "D6": 5,
     "D7": 4,
     "H1": 2,
     "H2": 1,

@@ -1,6 +1,6 @@
 {
   "project": "chicago-4d",
-  "generated_ct": "Aug 30, 2026, 1:51 AM",
+  "generated_ct": "Aug 30, 2026, 2:01 AM",
   "tickets": [
     {
       "id": "T-0001",
@@ -7162,6 +7162,60 @@
       "blocked_on": null,
       "needs_bake": false,
       "queue_rank": 38
+    },
+    {
+      "id": "T-0438",
+      "title": "The run grading criterion is read two ways — the crosswalk's scheduling rank and the building's own size — and the two disagree the first time an H roof stands beside D roofs",
+      "state": "open",
+      "epic": "META",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "M",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-08-30",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "queue_rank": 76
+    },
+    {
+      "id": "T-0439",
+      "title": "blk_south_water_dearborn keeps no lot open, because the owner's business-front clause and the density standard's closing clause cannot both hold on a built-out block",
+      "state": "open",
+      "epic": "META",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "M",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-08-30",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "queue_rank": 77
+    },
+    {
+      "id": "T-0440",
+      "title": "Where the anonymous-block programme's committed ground runs out, now that the four South Water blocks T-0420 held are dealt",
+      "state": "open",
+      "epic": "META",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "M",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-08-30",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "queue_rank": 78
     }
   ]
 }

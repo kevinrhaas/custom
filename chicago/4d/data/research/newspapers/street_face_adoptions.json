@@ -126,10 +126,10 @@
     "street_name": "Lake Street",
     "businesses_naming_it": 11,
     "adopted": 9,
-    "roofs_fronting": 51,
-    "roofs_fronting_free": 19,
+    "roofs_fronting": 55,
+    "roofs_fronting_free": 22,
     "roofs_fronting_home": 22,
-    "roofs_fronting_yard": 10,
+    "roofs_fronting_yard": 11,
     "roofs_side_only": 0,
     "roofs_in_centreline_band": 4
    },
