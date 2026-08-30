@@ -140,7 +140,6 @@ T-0433 — T-0346's measured costs for the new desktop parts 4, 5 and 6 were nev
 # --- THE SMOKE AND ITS RUNNER — the evidence every ticket above owes. T-0346 cut the
 # --- costliest desktop part into three so a run can take it; these are what remains.
 T-0181 — The desktop 7-9 smoke leg has 9m49s of margin against its 30-minute cap, and the margin was asserted rather than measured
-T-0170 — The desktop smoke's part 7 has 2 m 17 s of margin, and it is the one measured over the ceiling on another runner
 
 # --- THE PIPELINE AND ITS RUNNERS — invisible; the loop's own health
 T-0236 — The loop's 10-minute heartbeat fires every one to four hours, and the gaps are widening

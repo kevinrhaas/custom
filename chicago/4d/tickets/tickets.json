@@ -1,6 +1,6 @@
 {
   "project": "chicago-4d",
-  "generated_ct": "Aug 30, 2026, 1:22 AM",
+  "generated_ct": "Aug 30, 2026, 1:36 AM",
   "tickets": [
     {
       "id": "T-0001",
@@ -2990,7 +2990,7 @@
     {
       "id": "T-0170",
       "title": "The desktop smoke's part 7 has 2 m 17 s of margin, and it is the one measured over the ceiling on another runner",
-      "state": "open",
+      "state": "done",
       "epic": "META",
       "requested_by": "loop",
       "seen": false,
@@ -2998,12 +2998,12 @@
       "legacy_id": null,
       "parent": "T-0121",
       "opened": "2026-08-23",
-      "closed": null,
-      "pr": null,
-      "claimed_by": null,
+      "closed": "2026-08-30",
+      "pr": "593",
+      "claimed_by": "run 8/30/2026, 12:51:31 AM CT",
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 65
+      "queue_rank": null
     },
     {
       "id": "T-0171",
@@ -3507,7 +3507,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 72
+      "queue_rank": 71
     },
     {
       "id": "T-0207",
@@ -3723,7 +3723,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 73
+      "queue_rank": 72
     },
     {
       "id": "T-0219",
@@ -3939,7 +3939,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 71
+      "queue_rank": 70
     },
     {
       "id": "T-0232",
@@ -3957,7 +3957,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 68
+      "queue_rank": 67
     },
     {
       "id": "T-0233",
@@ -3993,7 +3993,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 69
+      "queue_rank": 68
     },
     {
       "id": "T-0235",
@@ -4029,7 +4029,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 66
+      "queue_rank": 65
     },
     {
       "id": "T-0237",
@@ -4065,7 +4065,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 67
+      "queue_rank": 66
     },
     {
       "id": "T-0239",
@@ -4623,7 +4623,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 74
+      "queue_rank": 73
     },
     {
       "id": "T-0272",
@@ -5109,7 +5109,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 70
+      "queue_rank": 69
     },
     {
       "id": "T-0302",
@@ -6189,7 +6189,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 75
+      "queue_rank": 74
     },
     {
       "id": "T-0378",
@@ -6387,7 +6387,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 76
+      "queue_rank": 75
     },
     {
       "id": "T-0389",

@@ -98,7 +98,7 @@ permissions:
 # own rule. Each matrix leg prints "NOT THE FULL GATE" because on its own it is
 # not one; all eight legs together are, and `needs: smoke` fails if ANY fails.
 # The workflow reconstitutes the gate the suite refuses to let one run claim —
-# which holds only while the stage ranges tile 1..9 with no gap and no overlap.
+# which holds only while the stage ranges tile 1..13 with no gap and no overlap.
 #
 # WHY THE BRANCH IS PUSHED BEFORE THE SMOKE RUNS, and the PR only after. The push
 # is in `bake` so a red smoke never destroys twenty minutes of Blender output —
@@ -319,13 +319,19 @@ jobs:
   # and 8, both of which sit inside the third leg, so no leg gained or lost a
   # check and the measured costs above still stand.
   #
-  # THE RANGES MUST COVER 1..11 EXACTLY ONCE. Each leg prints "NOT THE FULL GATE"
+  # T-0170 HALVED PART 10 AND RENUMBERED 11-12 AS 12-13, and this list moves with
+  # it on the same terms: `1+2, 3+4+5+6, 7+8+9, 10+11+12+13`, i.e.
+  # `1-2 3-6 7-9 10-13`. The old part 10's content is now parts 10 and 11, both
+  # inside the fourth leg, so no leg gained or lost a check.
+  #
+  # THE RANGES MUST COVER 1..13 EXACTLY ONCE. Each leg prints "NOT THE FULL GATE"
   # because on its own it is not one; the UNION of the eight legs is, and that
   # holds only while these four ranges tile the parts with no gap and no overlap.
   # smoke_renderer.mjs's own arithmetic — the parts' staged counts sum to an
   # unfiltered run's — is what makes the union checkable rather than asserted.
   # If a part is ever added or renumbered (T-0346 renumbered everything after 4;
-  # T-0173 renumbered everything after 7), THIS LIST IS PART OF THAT EDIT.
+  # T-0173 everything after 7; T-0170 everything after 10), THIS LIST IS PART OF
+  # THAT EDIT.
   smoke:
     needs: bake
     runs-on: ubuntu-latest
@@ -334,7 +340,7 @@ jobs:
       fail-fast: false
       matrix:
         viewport: [mobile, desktop]
-        stage: ['1-2', '3-6', '7-9', '10-12']
+        stage: ['1-2', '3-6', '7-9', '10-13']
     steps:
       - uses: actions/checkout@v4
         with:
