@@ -41,7 +41,6 @@
 # --- seeding SPEND the gazetteer: a firm minted twice, a surname that can never join its
 # --- forename, or a tavern minted as a person becomes a wrong building once seeded.
 # --- Cheap (mostly S/XS) and each one makes the seeding below more accurate.
-T-0340 — The bookseller's sign-name and its partners' firm-name are three gazetteer entries for one house
 
 # --- THE NEWSPAPER STREAM (b) THE POLICY THAT DECIDES HOW MUCH TOWN THE PAPERS REACH.
 # --- T-0354 shipped in #551 on 2026-08-29: the owner's ruling — a street-only
@@ -176,3 +175,4 @@ T-0421 — Canal Street's three control points spread 2.33 m, so its corridor ca
 T-0422 — The widened counterfactual deals a roof per street, and every roof a widening adds already fronts another street
 T-0418 — The 36 documented tradespeople whose trade the residents vocabulary has no word for
 T-0423 — G. Spring's large dwelling-house and fine well stands on lot 7 of block 16, where an anonymous roof stands now
+T-0398 — A firm's own style stands in its proprietor list, because a claim read the signature where a person was wanted
