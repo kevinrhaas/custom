@@ -50,7 +50,6 @@ T-0429 — Open blk_south_water_lasalle: 8 roofs of headroom on three free lots
 T-0430 — Open blk_south_water_franklin: 4 roofs of headroom on two free lots
 T-0431 — Open blk_south_water_clark: 4 roofs of headroom on two free lots
 T-0432 — Open blk_south_water_dearborn: 4 roofs of headroom on two free lots
-T-0416 — Wm. Sabine, John Dave and the Dearborn wine store: the three storefronts the street-face policy refuses for want of a fronting roof
 T-0183 — The Market and South Water corner needs one control point, and the node rule may not be able to make it
 T-0384 — John Holbrook's store takes its door on South Water Street, one door from Dearborn
 
