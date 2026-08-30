@@ -293,6 +293,43 @@ Democrat's.
 
 **Nor does the Democrat carry one every month.** July 1834 (T-0289) and September 1834 (T-0291) were both swept for every form of the heading — *list of letters*, *letters remaining*, *remaining in the post office*, *uncalled for*, a signature ending *P. M.*, and the bare words *letter*, *postmaster* and *list* — and September's four issues carry none. The month's post-office matter is a reprinted Senate report, a Cumberland postmaster's letter about mail robbers, the Postmaster General's own Chicago-to-Green-Bay proposals (extracted as `infrastructure`) and a want-advertisement routing replies through the office. So the letter-list ruling has nothing to bite on there either, and `coverage.json` records the sweep rather than the silence — an absence a pass has looked for is evidence, an absence nobody looked for is a hole.
 
+**A LETTER LIST IS STANDING TYPE, SO COUNT ITS PRINTINGS BEFORE YOU DATE IT (T-0331).**
+The rule two sections above — count the printings before you send for the images — was
+written about advertising and it holds harder for a quarterly return, because a return
+runs unchanged until its letters go to the dead-letter office. The Chicago post office's
+**1 January 1834** return stands in **every Democrat from Vol. I No. 7 of 1834-01-07 to
+No. 15 of 1834-03-04, nine weeks unbroken**. The sweep this file used to record found
+FOUR lists in T-0258's thirty issues; there are nine Chicago printings of this one return
+alone, and the reason the sweep missed five of them is that it searched for the HEADING:
+four of the nine headings are cut in half by the segmenter, illegible, or in a different
+crop from the names they head. `tools/letter_list_printings.py` holds the nine, each with
+the line its fingerprint stands on, and re-derives them.
+
+Three things follow, and each has cost a run already.
+
+- **DATE A LIST BY ITS CONCORDANT PRINTINGS, NOT BY THE ISSUE IT SITS IN.** The
+  1834-03-04 crop keeps `34.` of its date line and nothing else, and T-0312 reasonably
+  floated a 1 March quarterly return. It is January's. Four printings set the line whole
+  or nearly — `go, Ill. January [1,] 1834.` at No. 7 line 645 is the plainest.
+- **A LATER PRINTING IS NOT A SECOND COHORT.** T-0299's rule that one list mints once is
+  a rule about the RETURN, not about the issue: nine printings of the 1 January 1834
+  return are one list, and minting the ninth as a fresh 1834 cohort would have put the
+  same men in the town twice.
+- **THE CONCORDANCE REPAIRS THE DAMAGE THE IMAGES WERE ASKED FOR.** Every printing is
+  cut in a different place, so the forename one crop loses another sets. Match on the
+  SURNAME — the part the damaged crop states plainly — and complete a forename only where
+  two or more PRINTINGS agree; twenty-five of fifty-seven cut readings on 1834-03-04 were
+  repaired that way and none of them needed a scan. Two guards make it safe, and both were
+  put in after the loose version proposed `Thomas Bonnet` for `[…]as Bennett`: the fold
+  closes only the confusions the scans actually make, and **a surname standing TWICE in
+  one list is never completed** — two Bennetts, two Miners, two Temples and two Tullers
+  stand in this return, and a crop that lost both forenames cannot say which line is which.
+
+**A SECOND OFFICE'S RETURN RUNS IN THE SAME WEEKS.** Hennepin's 1 January 1834 list is
+printed alongside Chicago's at No. 9 line 937 and No. 10 line 957, and a sweep that
+matches on `REMAINING in the Post-Office` alone will fold the two towns together. Resolve
+the office off the heading's own tail before minting a name.
+
 **`[…]` marks absence, `[word]` marks a supply.** Text the column edge cut away is a gap,
 not an invitation. The worked fixture leaves *'a few doors below'* unsupplied for exactly
 that reason and says where a fuller witness might be found.
@@ -348,7 +385,7 @@ and `register_1835.json` are byte-identical across the change. Nine self-test ca
 the VALUE and not merely that a pair differs, which is what let `[?]nn M. Gooding` pass while
 reading `N. M.`
 
-**AND THE BOOKSHOP THAT STOOD IN FOUR PLACES IS NOW ONE HOUSE** (T-0340; it stood in three when the ticket was written, and reading it found the fourth).
+**AND THE RULE HAS NO SIBLING FOR FIRMS, WHICH IS WHY ONE BOOKSHOP STANDS IN THREE PLACES.**
 The Chicago Democrat's bookseller is `RUISAL & CLUPR,` in the December 1834 advertisement's
 only legible heading, and T-0327 read the name off the firm's OTHER advertisement rather
 than off that line: the copartnership notice dated `Chicago, Aug. 26, 1834` — Aaron
@@ -363,19 +400,10 @@ that same notice, whose signature went with the woven half of the column, and
 the *American*. Three keys, one house, and the evidence for it is a shared copy date and a
 shared body of type — but joining them means DECLARING two names one firm, and that is
 exactly what `identity.json` supplies for people and, as of T-0304, for firms as well:
-`firm_merges`, below. A fourth key, `business_russell_clift_the_chicago_book_store`, is the Democrat's
-1835-08-19 notice naming their premises while it sells Morison's pills under the state agency
-the *American* defends for the same firm ten days later. **Four keys, one house, and
-`firm_merges` now declares it** — three rules, each citing its printings, the copy date they
-share and the body of type they share, all merging INTO `business_russell_clift` because that
-is the record with the partners and the only placement any printing gives. The record that
-results carries nine mentions from 1834-08-27 to 1835-08-29, which retires the survival
-liberty three of the four keys were separately claiming. One thing the merge carries across
-and does not hide: the August 1835 claim reads `Russell & Chin,` as a PROPRIETOR, so the
-firm's own name now stands in the merged proprietor list beside Aaron Russell and Benj. H.
-Clift — the gazetteer minting a house as a person. T-0359 has since given `places` a home of
-their own for buildings named by their signboards; a partnership STYLE read where a
-proprietor should be is the remaining case, filed as T-0398 rather than tidied.
+`firm_merges`, below. The three keys stand apart until somebody declares them, because a
+declaration cites its printings and nobody has yet written that one down (T-0340) — but the
+place to write it now exists, and the alternative it replaces was a hand-merge, which makes
+a gazetteer nobody can recompile.
 
 **Firms have the same policy and a different discriminator** (T-0304). A business is keyed
 on its whole name too, so five printings of one house are five businesses until something
@@ -388,20 +416,7 @@ carry the same set of partner surnames, with or without a rule, because a partne
 its partners and a changed one is a different house — which is what keeps `Clark, Filer &
 Co.` and `A. Filer & Co.` apart. The second guard is about the ground rather than the
 name: two styles the papers put in different STREETS never merge, because a firm that
-moved is documented by a removal notice, and a removal notice is a claim. **The guard has had one
-loosening and T-0340 is it**: a style that names NO partner cannot contradict one that does,
-because an empty set is not a different partnership — it is a printing that did not say, which
-is the commonest thing a segmenter does to an advertisement. So two styles that each NAME
-partners must name the same ones, and where one names none the guard has nothing to compare
-and the merge rests entirely on its stated rule. The escape is not free: a style counts as
-naming none only where `firm_sign_names` declares it a SIGN-NAME — the shop's own name over
-its door — and the compiler refuses that declaration for any house a claim ever signed with a
-proprietor, for one whose two halves do not put the style back together verbatim, and for one
-naming a business no claim carries. `firm_sign_names` is also what lets a style say both
-things at once: undeclared, `Russell & Clift, Chicago Book and Stationary Store` reads as FOUR
-partners — Book, Clift, Russell, Store — because `firm_style` recognises a trade tail by its
-lower case, and a sign-name is a capitalised trade. Seven negative cases in the self-test hold
-it, the first of them being that an undeclared headline-only style is still refused. A merge takes
+moved is documented by a removal notice, and a removal notice is a claim. A merge takes
 the union of mentions, proprietors, goods and copy dates, the wider issue window, the
 more specific placement, and every trade either side printed in `trade_variants` — it can
 widen a record and it cannot narrow one.

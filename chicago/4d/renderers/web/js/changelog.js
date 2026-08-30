@@ -1,4 +1,12 @@
 export const CHANGELOG = [ // newest first
+  { v: 419, title: 'Twenty-five people in the post office\u2019s list get their first names back', kind: 'fix', ts: '2026-08-30T01:35:12.038Z', date: 'Aug 29, 2026, 8:35 PM CT',
+    items: [
+      'A list of letters waiting at the Chicago post office was printed in the Democrat of 4 March 1834, and the scan of it lost the left-hand edge of every line \u2014 which is where the first names were. Fifty-seven of the seventy-eight people on it stood in this project\u2019s records as \u201C[?] Conger\u201D, \u201C[?] Sprague\u201D, \u201C\u2026ell Baldwin\u201D. Twenty-five of them now read Thomas Conger, David Sprague and Russel Baldwin.',
+      'Nothing was guessed. That same list was standing type: the paper reprinted it, unchanged, every week for nine weeks. Each week\u2019s printing is damaged in a different place, so a name one week loses another week keeps, and a first name is only restored here where two or more separate printings set the same one.',
+      'The list also turns out not to be dated 4 March at all. Its date line had survived as the two characters \u201C34.\u201D and nothing else. Four of the other printings carry it whole: these are the letters waiting on 1 January 1834, printed for the ninth time. That matters because it means these are not new arrivals \u2014 they are January\u2019s people, and counting them twice would have put the same men in the town twice.',
+      'Two of the restored names clear the bar to be recorded as residents. Thomas Conger and John Thompson join the town\u2019s people, unplaced \u2014 the post office gives a name and never an address.',
+      'What is still unreadable is said so, one by one, rather than filled in: thirty-two names stay cut. Four of them are surnames the list carries twice \u2014 there are two Bennetts, two Miners, two Temples and two Tullers \u2014 and a line that has lost its first name cannot say which of the two it is.',
+    ] },
   { v: 418, title: 'One Chicago bookshop stops being four bookshops', kind: 'chore', ts: '2026-08-30T01:24:26.512Z', date: 'Aug 29, 2026, 8:24 PM CT',
     items: [
       'Nothing you can see changed today. Behind the model there is a register of everybody and every business the Chicago papers of 1833 to 1835 name, and it was carrying the town\u2019s only bookshop four times over. It is now one house with nine printings behind it, running from August 1834 to the end of August 1835.',

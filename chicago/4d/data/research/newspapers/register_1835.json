@@ -6,13 +6,13 @@
   "compiled_from": {
     "gazetteer": {
       "claims": 1166,
-      "persons": 2628,
+      "persons": 2620,
       "businesses": 206
     },
     "structures": 359,
     "structures_sharing_a_name": 35,
     "streets": 19,
-    "resident_persons": 241
+    "resident_persons": 243
   },
   "counts": {
     "businesses": {
@@ -46,13 +46,13 @@
       "dissolved_after_scene_date": 1
     },
     "persons": {
-      "total": 2628,
+      "total": 2620,
       "by_action": {
-        "enrich": 188,
-        "new_resident": 2322,
+        "enrich": 191,
+        "new_resident": 2311,
         "replace_invented": 118
       },
-      "letter_list_only": 1934
+      "letter_list_only": 1926
     },
     "invented_residents": {
       "households_by_trade": {
@@ -8264,6 +8264,17 @@
       "action_note": "Ruling 1: a named person the town does not hold. Named in a claim other than a letter list."
     },
     {
+      "id": "person_a_h_taylor",
+      "name": "A. H. Taylor",
+      "occupation": null,
+      "letter_list_only": true,
+      "first_seen": "1834-03-04",
+      "last_seen": "1834-03-04",
+      "action": "enrich",
+      "action_target": "taylor_anson_h",
+      "action_note": "data/residents/ already holds this person as taylor_anson_h (hh_taylor_anson, attested). The papers add mentions and dates."
+    },
+    {
       "id": "person_a_hayward",
       "name": "A. Hayward",
       "occupation": null,
@@ -8467,7 +8478,7 @@
       "occupation": null,
       "letter_list_only": true,
       "first_seen": "1834-01-28",
-      "last_seen": "1834-01-28",
+      "last_seen": "1834-03-04",
       "action": "enrich",
       "action_target": "inf_laundress_south_01",
       "action_note": "data/residents/ already holds this person as inf_laundress_south_01 (hh_inf_laundress_south_01, reconstructed). The papers add mentions and dates."
@@ -12246,6 +12257,17 @@
       "action_note": "Ruling 1: a named person the town does not hold. Known only from the post-office letter lists."
     },
     {
+      "id": "person_chas_miller",
+      "name": "Chas. Miller",
+      "occupation": null,
+      "letter_list_only": true,
+      "first_seen": "1834-03-04",
+      "last_seen": "1834-03-04",
+      "action": "new_resident",
+      "action_target": null,
+      "action_note": "Ruling 1: a named person the town does not hold. Known only from the post-office letter lists."
+    },
+    {
       "id": "person_chase_peter",
       "name": "Chase, Peter",
       "occupation": null,
@@ -12879,17 +12901,6 @@
       "letter_list_only": true,
       "first_seen": "1835-08-19",
       "last_seen": "1835-08-19",
-      "action": "new_resident",
-      "action_target": null,
-      "action_note": "Ruling 1: a named person the town does not hold. Known only from the post-office letter lists."
-    },
-    {
-      "id": "person_conger",
-      "name": "[?] Conger",
-      "occupation": null,
-      "letter_list_only": true,
-      "first_seen": "1834-03-04",
-      "last_seen": "1834-03-04",
       "action": "new_resident",
       "action_target": null,
       "action_note": "Ruling 1: a named person the town does not hold. Known only from the post-office letter lists."
@@ -13621,6 +13632,17 @@
       "action_note": "Ruling 1: a named person the town does not hold. Known only from the post-office letter lists."
     },
     {
+      "id": "person_daniel_warren",
+      "name": "Daniel Warren",
+      "occupation": null,
+      "letter_list_only": true,
+      "first_seen": "1834-03-04",
+      "last_seen": "1834-03-04",
+      "action": "new_resident",
+      "action_target": null,
+      "action_note": "Ruling 1: a named person the town does not hold. Known only from the post-office letter lists."
+    },
+    {
       "id": "person_daniel_wright",
       "name": "Daniel Wright",
       "occupation": null,
@@ -13868,7 +13890,7 @@
       "occupation": null,
       "letter_list_only": true,
       "first_seen": "1834-01-28",
-      "last_seen": "1834-01-28",
+      "last_seen": "1834-03-04",
       "action": "new_resident",
       "action_target": null,
       "action_note": "Ruling 1: a named person the town does not hold. Known only from the post-office letter lists."
@@ -14034,17 +14056,6 @@
       "letter_list_only": true,
       "first_seen": "1834-01-28",
       "last_seen": "1834-01-28",
-      "action": "new_resident",
-      "action_target": null,
-      "action_note": "Ruling 1: a named person the town does not hold. Known only from the post-office letter lists."
-    },
-    {
-      "id": "person_delano",
-      "name": "[?] Delano",
-      "occupation": null,
-      "letter_list_only": true,
-      "first_seen": "1834-03-04",
-      "last_seen": "1834-03-04",
       "action": "new_resident",
       "action_target": null,
       "action_note": "Ruling 1: a named person the town does not hold. Known only from the post-office letter lists."
@@ -15282,28 +15293,6 @@
       "action_note": "Ruling 1: a named person the town does not hold. Named in a claim other than a letter list."
     },
     {
-      "id": "person_ell_baldwin",
-      "name": "[…]ell Baldwin",
-      "occupation": null,
-      "letter_list_only": true,
-      "first_seen": "1834-03-04",
-      "last_seen": "1834-03-04",
-      "action": "new_resident",
-      "action_target": null,
-      "action_note": "Ruling 1: a named person the town does not hold. Known only from the post-office letter lists."
-    },
-    {
-      "id": "person_elliot",
-      "name": "[?] Elliot",
-      "occupation": null,
-      "letter_list_only": true,
-      "first_seen": "1834-03-04",
-      "last_seen": "1834-03-04",
-      "action": "new_resident",
-      "action_target": null,
-      "action_note": "Ruling 1: a named person the town does not hold. Known only from the post-office letter lists."
-    },
-    {
       "id": "person_elliott_n_ig",
       "name": "Elliott, N, iG.",
       "occupation": null,
@@ -15585,6 +15574,17 @@
       "letter_list_only": true,
       "first_seen": "1834-07-02",
       "last_seen": "1834-07-16",
+      "action": "new_resident",
+      "action_target": null,
+      "action_note": "Ruling 1: a named person the town does not hold. Known only from the post-office letter lists."
+    },
+    {
+      "id": "person_f_plumer",
+      "name": "F. Plumer",
+      "occupation": null,
+      "letter_list_only": true,
+      "first_seen": "1834-03-04",
+      "last_seen": "1834-03-04",
       "action": "new_resident",
       "action_target": null,
       "action_note": "Ruling 1: a named person the town does not hold. Known only from the post-office letter lists."
@@ -17223,7 +17223,7 @@
       "occupation": null,
       "letter_list_only": true,
       "first_seen": "1834-01-28",
-      "last_seen": "1834-01-28",
+      "last_seen": "1834-03-04",
       "action": "new_resident",
       "action_target": null,
       "action_note": "Ruling 1: a named person the town does not hold. Known only from the post-office letter lists."
@@ -17392,6 +17392,17 @@
       "action": "enrich",
       "action_target": "pearsons_hiram",
       "action_note": "data/residents/ already holds this person as pearsons_hiram (hh_pearsons_hiram, attested). The papers add mentions and dates."
+    },
+    {
+      "id": "person_h_pease",
+      "name": "H. Pease",
+      "occupation": null,
+      "letter_list_only": true,
+      "first_seen": "1834-03-04",
+      "last_seen": "1834-03-04",
+      "action": "new_resident",
+      "action_target": null,
+      "action_note": "Ruling 1: a named person the town does not hold. Known only from the post-office letter lists."
     },
     {
       "id": "person_h_porter",
@@ -19770,6 +19781,17 @@
       "action_note": "Ruling 1: a named person the town does not hold. Named in a claim other than a letter list."
     },
     {
+      "id": "person_j_f_schermerhorn",
+      "name": "J. F. Schermerhorn",
+      "occupation": null,
+      "letter_list_only": true,
+      "first_seen": "1834-03-04",
+      "last_seen": "1834-03-04",
+      "action": "new_resident",
+      "action_target": null,
+      "action_note": "Ruling 1: a named person the town does not hold. Known only from the post-office letter lists."
+    },
+    {
       "id": "person_j_f_wight",
       "name": "J. F. Wight",
       "occupation": null,
@@ -20791,6 +20813,17 @@
       "action": "new_resident",
       "action_target": null,
       "action_note": "Ruling 1: a named person the town does not hold. Named in a claim other than a letter list."
+    },
+    {
+      "id": "person_james_steward",
+      "name": "James Steward",
+      "occupation": null,
+      "letter_list_only": true,
+      "first_seen": "1834-03-04",
+      "last_seen": "1834-03-04",
+      "action": "new_resident",
+      "action_target": null,
+      "action_note": "Ruling 1: a named person the town does not hold. Known only from the post-office letter lists."
     },
     {
       "id": "person_james_troutman",
@@ -21908,11 +21941,11 @@
       "name": "John Thompson",
       "occupation": null,
       "letter_list_only": true,
-      "first_seen": "1835-05-20",
+      "first_seen": "1834-03-04",
       "last_seen": "1835-05-20",
-      "action": "new_resident",
-      "action_target": null,
-      "action_note": "Ruling 1: a named person the town does not hold. Known only from the post-office letter lists."
+      "action": "enrich",
+      "action_target": "ll_john_thompson",
+      "action_note": "data/residents/ already holds this person as ll_john_thompson (hh_ll_john_thompson, attested). The papers add mentions and dates."
     },
     {
       "id": "person_john_uncertain_milsted",
@@ -21954,6 +21987,17 @@
       "letter_list_only": true,
       "first_seen": "1835-05-20",
       "last_seen": "1835-05-20",
+      "action": "new_resident",
+      "action_target": null,
+      "action_note": "Ruling 1: a named person the town does not hold. Known only from the post-office letter lists."
+    },
+    {
+      "id": "person_john_vandine",
+      "name": "John Vandine",
+      "occupation": null,
+      "letter_list_only": true,
+      "first_seen": "1834-03-04",
+      "last_seen": "1834-03-04",
       "action": "new_resident",
       "action_target": null,
       "action_note": "Ruling 1: a named person the town does not hold. Known only from the post-office letter lists."
@@ -22041,7 +22085,7 @@
       "occupation": null,
       "letter_list_only": true,
       "first_seen": "1834-01-28",
-      "last_seen": "1834-01-28",
+      "last_seen": "1834-03-04",
       "action": "new_resident",
       "action_target": null,
       "action_note": "Ruling 1: a named person the town does not hold. Known only from the post-office letter lists."
@@ -23455,17 +23499,6 @@
       "action_note": "Ruling 1: a named person the town does not hold. Named in a claim other than a letter list."
     },
     {
-      "id": "person_l_frazer",
-      "name": "[…]l. Frazer",
-      "occupation": null,
-      "letter_list_only": true,
-      "first_seen": "1834-03-04",
-      "last_seen": "1834-03-04",
-      "action": "new_resident",
-      "action_target": null,
-      "action_note": "Ruling 1: a named person the town does not hold. Known only from the post-office letter lists."
-    },
-    {
       "id": "person_l_g_curtin",
       "name": "L. G. Curtin",
       "occupation": null,
@@ -23549,17 +23582,6 @@
       "letter_list_only": true,
       "first_seen": "1834-07-09",
       "last_seen": "1834-07-16",
-      "action": "new_resident",
-      "action_target": null,
-      "action_note": "Ruling 1: a named person the town does not hold. Known only from the post-office letter lists."
-    },
-    {
-      "id": "person_lake",
-      "name": "[?] Lake",
-      "occupation": null,
-      "letter_list_only": true,
-      "first_seen": "1834-03-04",
-      "last_seen": "1834-03-04",
       "action": "new_resident",
       "action_target": null,
       "action_note": "Ruling 1: a named person the town does not hold. Known only from the post-office letter lists."
@@ -23977,7 +23999,7 @@
       "occupation": null,
       "letter_list_only": true,
       "first_seen": "1834-01-28",
-      "last_seen": "1834-01-28",
+      "last_seen": "1834-03-04",
       "action": "new_resident",
       "action_target": null,
       "action_note": "Ruling 1: a named person the town does not hold. Known only from the post-office letter lists."
@@ -24220,6 +24242,17 @@
       "letter_list_only": true,
       "first_seen": "1834-07-02",
       "last_seen": "1834-07-16",
+      "action": "new_resident",
+      "action_target": null,
+      "action_note": "Ruling 1: a named person the town does not hold. Known only from the post-office letter lists."
+    },
+    {
+      "id": "person_loring_delano",
+      "name": "Loring Delano",
+      "occupation": null,
+      "letter_list_only": true,
+      "first_seen": "1834-03-04",
+      "last_seen": "1834-03-04",
       "action": "new_resident",
       "action_target": null,
       "action_note": "Ruling 1: a named person the town does not hold. Known only from the post-office letter lists."
@@ -26051,6 +26084,17 @@
       "action_note": "Ruling 1: a named person the town does not hold. Known only from the post-office letter lists."
     },
     {
+      "id": "person_mr_rouit",
+      "name": "Mr. Rouit",
+      "occupation": null,
+      "letter_list_only": true,
+      "first_seen": "1834-03-04",
+      "last_seen": "1834-03-04",
+      "action": "new_resident",
+      "action_target": null,
+      "action_note": "Ruling 1: a named person the town does not hold. Known only from the post-office letter lists."
+    },
+    {
       "id": "person_mr_russell",
       "name": "Mr. Russell",
       "occupation": null,
@@ -26475,17 +26519,6 @@
       "letter_list_only": true,
       "first_seen": "1834-07-02",
       "last_seen": "1834-07-16",
-      "action": "new_resident",
-      "action_target": null,
-      "action_note": "Ruling 1: a named person the town does not hold. Known only from the post-office letter lists."
-    },
-    {
-      "id": "person_nel_devoe",
-      "name": "[…]nel Devoe",
-      "occupation": null,
-      "letter_list_only": true,
-      "first_seen": "1834-03-04",
-      "last_seen": "1834-03-04",
       "action": "new_resident",
       "action_target": null,
       "action_note": "Ruling 1: a named person the town does not hold. Known only from the post-office letter lists."
@@ -27559,10 +27592,10 @@
     },
     {
       "id": "person_pease",
-      "name": "[?] Pease",
+      "name": "Pease",
       "occupation": null,
       "letter_list_only": false,
-      "first_seen": "1834-03-04",
+      "first_seen": "1834-08-27",
       "last_seen": "1834-08-27",
       "action": "new_resident",
       "action_target": null,
@@ -28163,17 +28196,6 @@
       "action_note": "Ruling 1: a named person the town does not hold. Known only from the post-office letter lists."
     },
     {
-      "id": "person_plumer",
-      "name": "[?] Plumer",
-      "occupation": null,
-      "letter_list_only": true,
-      "first_seen": "1834-03-04",
-      "last_seen": "1834-03-04",
-      "action": "new_resident",
-      "action_target": null,
-      "action_note": "Ruling 1: a named person the town does not hold. Known only from the post-office letter lists."
-    },
-    {
       "id": "person_poke_edward",
       "name": "Poke, Edward",
       "occupation": null,
@@ -28576,6 +28598,17 @@
       "letter_list_only": true,
       "first_seen": "1834-04-01",
       "last_seen": "1834-04-01",
+      "action": "new_resident",
+      "action_target": null,
+      "action_note": "Ruling 1: a named person the town does not hold. Known only from the post-office letter lists."
+    },
+    {
+      "id": "person_ralph_stowell",
+      "name": "Ralph Stowell",
+      "occupation": null,
+      "letter_list_only": true,
+      "first_seen": "1834-03-04",
+      "last_seen": "1834-03-04",
       "action": "new_resident",
       "action_target": null,
       "action_note": "Ruling 1: a named person the town does not hold. Known only from the post-office letter lists."
@@ -29362,17 +29395,6 @@
       "action_note": "Ruling 1: a named person the town does not hold. Known only from the post-office letter lists."
     },
     {
-      "id": "person_rouit",
-      "name": "[?] Rouit",
-      "occupation": null,
-      "letter_list_only": true,
-      "first_seen": "1834-03-04",
-      "last_seen": "1834-03-04",
-      "action": "new_resident",
-      "action_target": null,
-      "action_note": "Ruling 1: a named person the town does not hold. Known only from the post-office letter lists."
-    },
-    {
       "id": "person_rowe_anson_or_joseph",
       "name": "Rowe, Anson or Joseph",
       "occupation": null,
@@ -29478,6 +29500,17 @@
       "letter_list_only": true,
       "first_seen": "1835-08-19",
       "last_seen": "1835-08-19",
+      "action": "new_resident",
+      "action_target": null,
+      "action_note": "Ruling 1: a named person the town does not hold. Known only from the post-office letter lists."
+    },
+    {
+      "id": "person_russel_baldwin",
+      "name": "Russel Baldwin",
+      "occupation": null,
+      "letter_list_only": true,
+      "first_seen": "1834-03-04",
+      "last_seen": "1834-03-04",
       "action": "new_resident",
       "action_target": null,
       "action_note": "Ruling 1: a named person the town does not hold. Known only from the post-office letter lists."
@@ -29769,17 +29802,6 @@
       "action_note": "Ruling 1: a named person the town does not hold. Known only from the post-office letter lists."
     },
     {
-      "id": "person_s_miller",
-      "name": "[…]s Miller",
-      "occupation": null,
-      "letter_list_only": true,
-      "first_seen": "1834-03-04",
-      "last_seen": "1834-03-04",
-      "action": "new_resident",
-      "action_target": null,
-      "action_note": "Ruling 1: a named person the town does not hold. Known only from the post-office letter lists."
-    },
-    {
       "id": "person_s_mills",
       "name": "S. Mills",
       "occupation": null,
@@ -30042,6 +30064,17 @@
       "action": "new_resident",
       "action_target": null,
       "action_note": "Ruling 1: a named person the town does not hold. Named in a claim other than a letter list."
+    },
+    {
+      "id": "person_samuel_devoe",
+      "name": "Samuel Devoe",
+      "occupation": null,
+      "letter_list_only": true,
+      "first_seen": "1834-03-04",
+      "last_seen": "1834-03-04",
+      "action": "new_resident",
+      "action_target": null,
+      "action_note": "Ruling 1: a named person the town does not hold. Known only from the post-office letter lists."
     },
     {
       "id": "person_samuel_e_toby",
@@ -30363,17 +30396,6 @@
       "action_note": "Ruling 1: a named person the town does not hold. Known only from the post-office letter lists."
     },
     {
-      "id": "person_schermerhorn",
-      "name": "[?] Schermerhorn",
-      "occupation": null,
-      "letter_list_only": true,
-      "first_seen": "1834-03-04",
-      "last_seen": "1834-03-04",
-      "action": "new_resident",
-      "action_target": null,
-      "action_note": "Ruling 1: a named person the town does not hold. Known only from the post-office letter lists."
-    },
-    {
       "id": "person_schernerborn_peter_b",
       "name": "Schernerborn, Peter B.",
       "occupation": null,
@@ -30528,17 +30550,6 @@
       "action_note": "Ruling 1: a named person the town does not hold. Known only from the post-office letter lists."
     },
     {
-      "id": "person_sewell",
-      "name": "[?] Sewell",
-      "occupation": null,
-      "letter_list_only": true,
-      "first_seen": "1834-03-04",
-      "last_seen": "1834-03-04",
-      "action": "new_resident",
-      "action_target": null,
-      "action_note": "Ruling 1: a named person the town does not hold. Known only from the post-office letter lists."
-    },
-    {
       "id": "person_sewell_joh_n",
       "name": "Sewell, Joh[n]",
       "occupation": null,
@@ -30600,17 +30611,6 @@
       "letter_list_only": true,
       "first_seen": "1835-08-19",
       "last_seen": "1835-08-19",
-      "action": "new_resident",
-      "action_target": null,
-      "action_note": "Ruling 1: a named person the town does not hold. Known only from the post-office letter lists."
-    },
-    {
-      "id": "person_shearman",
-      "name": "[?] Shearman",
-      "occupation": null,
-      "letter_list_only": true,
-      "first_seen": "1834-03-04",
-      "last_seen": "1834-03-04",
       "action": "new_resident",
       "action_target": null,
       "action_note": "Ruling 1: a named person the town does not hold. Known only from the post-office letter lists."
@@ -30721,17 +30721,6 @@
       "letter_list_only": true,
       "first_seen": "1835-07-01",
       "last_seen": "1835-07-01",
-      "action": "new_resident",
-      "action_target": null,
-      "action_note": "Ruling 1: a named person the town does not hold. Known only from the post-office letter lists."
-    },
-    {
-      "id": "person_shier",
-      "name": "[?] Shier",
-      "occupation": null,
-      "letter_list_only": true,
-      "first_seen": "1834-03-04",
-      "last_seen": "1834-03-04",
       "action": "new_resident",
       "action_target": null,
       "action_note": "Ruling 1: a named person the town does not hold. Known only from the post-office letter lists."
@@ -31237,7 +31226,7 @@
       "occupation": null,
       "letter_list_only": true,
       "first_seen": "1834-01-28",
-      "last_seen": "1834-03-04",
+      "last_seen": "1834-01-28",
       "action": "new_resident",
       "action_target": null,
       "action_note": "Ruling 1: a named person the town does not hold. Known only from the post-office letter lists."
@@ -31606,17 +31595,6 @@
       "action_note": "Ruling 1: a named person the town does not hold. Known only from the post-office letter lists."
     },
     {
-      "id": "person_steward",
-      "name": "[?] Steward",
-      "occupation": null,
-      "letter_list_only": true,
-      "first_seen": "1834-03-04",
-      "last_seen": "1834-03-04",
-      "action": "new_resident",
-      "action_target": null,
-      "action_note": "Ruling 1: a named person the town does not hold. Known only from the post-office letter lists."
-    },
-    {
       "id": "person_stewart_alexander",
       "name": "Stewart, Alexander'",
       "occupation": null,
@@ -31744,17 +31722,6 @@
       "letter_list_only": true,
       "first_seen": "1835-08-19",
       "last_seen": "1835-08-19",
-      "action": "new_resident",
-      "action_target": null,
-      "action_note": "Ruling 1: a named person the town does not hold. Known only from the post-office letter lists."
-    },
-    {
-      "id": "person_stowell",
-      "name": "[?] Stowell",
-      "occupation": null,
-      "letter_list_only": true,
-      "first_seen": "1834-03-04",
-      "last_seen": "1834-03-04",
       "action": "new_resident",
       "action_target": null,
       "action_note": "Ruling 1: a named person the town does not hold. Known only from the post-office letter lists."
@@ -32211,17 +32178,6 @@
       "action_note": "Ruling 1: a named person the town does not hold. Known only from the post-office letter lists."
     },
     {
-      "id": "person_taylor",
-      "name": "[?] Taylor",
-      "occupation": null,
-      "letter_list_only": true,
-      "first_seen": "1834-03-04",
-      "last_seen": "1834-03-04",
-      "action": "new_resident",
-      "action_target": null,
-      "action_note": "Ruling 1: a named person the town does not hold. Known only from the post-office letter lists."
-    },
-    {
       "id": "person_taylor_charles",
       "name": "Taylor, Charles",
       "occupation": null,
@@ -32523,11 +32479,11 @@
       "name": "Thomas Conger",
       "occupation": null,
       "letter_list_only": true,
-      "first_seen": "1834-07-09",
+      "first_seen": "1834-03-04",
       "last_seen": "1834-07-16",
-      "action": "new_resident",
-      "action_target": null,
-      "action_note": "Ruling 1: a named person the town does not hold. Known only from the post-office letter lists."
+      "action": "enrich",
+      "action_target": "ll_thomas_conger",
+      "action_note": "data/residents/ already holds this person as ll_thomas_conger (hh_ll_thomas_conger, attested). The papers add mentions and dates."
     },
     {
       "id": "person_thomas_d_grant",
@@ -32756,17 +32712,6 @@
       "letter_list_only": true,
       "first_seen": "1834-07-02",
       "last_seen": "1834-07-16",
-      "action": "new_resident",
-      "action_target": null,
-      "action_note": "Ruling 1: a named person the town does not hold. Known only from the post-office letter lists."
-    },
-    {
-      "id": "person_thompson",
-      "name": "[?] Thompson",
-      "occupation": null,
-      "letter_list_only": true,
-      "first_seen": "1834-03-04",
-      "last_seen": "1834-03-04",
       "action": "new_resident",
       "action_target": null,
       "action_note": "Ruling 1: a named person the town does not hold. Known only from the post-office letter lists."
@@ -34510,17 +34455,6 @@
       "action_note": "Ruling 1: a named person the town does not hold. Known only from the post-office letter lists."
     },
     {
-      "id": "person_vandine",
-      "name": "[?] Vandine",
-      "occupation": null,
-      "letter_list_only": true,
-      "first_seen": "1834-03-04",
-      "last_seen": "1834-03-04",
-      "action": "new_resident",
-      "action_target": null,
-      "action_note": "Ruling 1: a named person the town does not hold. Known only from the post-office letter lists."
-    },
-    {
       "id": "person_vanf_le_et_john",
       "name": "Vanf[le]et, John",
       "occupation": null,
@@ -35604,7 +35538,7 @@
       "occupation": null,
       "letter_list_only": true,
       "first_seen": "1834-01-28",
-      "last_seen": "1834-03-04",
+      "last_seen": "1834-01-28",
       "action": "new_resident",
       "action_target": null,
       "action_note": "Ruling 1: a named person the town does not hold. Known only from the post-office letter lists."
@@ -35795,17 +35729,6 @@
       "action": "new_resident",
       "action_target": null,
       "action_note": "Ruling 1: a named person the town does not hold. Named in a claim other than a letter list."
-    },
-    {
-      "id": "person_whitcomb",
-      "name": "[?] Whitcomb",
-      "occupation": null,
-      "letter_list_only": true,
-      "first_seen": "1834-03-04",
-      "last_seen": "1834-03-04",
-      "action": "new_resident",
-      "action_target": null,
-      "action_note": "Ruling 1: a named person the town does not hold. Known only from the post-office letter lists."
     },
     {
       "id": "person_white_edson",
@@ -36000,7 +35923,7 @@
       "occupation": null,
       "letter_list_only": true,
       "first_seen": "1834-01-28",
-      "last_seen": "1834-01-28",
+      "last_seen": "1834-03-04",
       "action": "new_resident",
       "action_target": null,
       "action_note": "Ruling 1: a named person the town does not hold. Known only from the post-office letter lists."
@@ -36248,17 +36171,6 @@
       "action_note": "Ruling 1: a named person the town does not hold. Known only from the post-office letter lists."
     },
     {
-      "id": "person_wilson",
-      "name": "[?] Wilson",
-      "occupation": null,
-      "letter_list_only": true,
-      "first_seen": "1834-03-04",
-      "last_seen": "1834-03-04",
-      "action": "new_resident",
-      "action_target": null,
-      "action_note": "Ruling 1: a named person the town does not hold. Known only from the post-office letter lists."
-    },
-    {
       "id": "person_wilson_asahe_l_b",
       "name": "Wilson, Asahe[l] B.",
       "occupation": null,
@@ -36298,17 +36210,6 @@
       "letter_list_only": true,
       "first_seen": "1834-10-22",
       "last_seen": "1834-10-22",
-      "action": "new_resident",
-      "action_target": null,
-      "action_note": "Ruling 1: a named person the town does not hold. Known only from the post-office letter lists."
-    },
-    {
-      "id": "person_winson",
-      "name": "[?] Winson",
-      "occupation": null,
-      "letter_list_only": true,
-      "first_seen": "1834-03-04",
-      "last_seen": "1834-03-04",
       "action": "new_resident",
       "action_target": null,
       "action_note": "Ruling 1: a named person the town does not hold. Known only from the post-office letter lists."
@@ -36452,6 +36353,17 @@
       "letter_list_only": true,
       "first_seen": "1834-01-28",
       "last_seen": "1834-01-28",
+      "action": "new_resident",
+      "action_target": null,
+      "action_note": "Ruling 1: a named person the town does not hold. Known only from the post-office letter lists."
+    },
+    {
+      "id": "person_wm_h_frazer",
+      "name": "Wm. H. Frazer",
+      "occupation": null,
+      "letter_list_only": true,
+      "first_seen": "1834-03-04",
+      "last_seen": "1834-03-04",
       "action": "new_resident",
       "action_target": null,
       "action_note": "Ruling 1: a named person the town does not hold. Known only from the post-office letter lists."
@@ -36660,7 +36572,7 @@
       "occupation": null,
       "letter_list_only": true,
       "first_seen": "1834-01-28",
-      "last_seen": "1834-01-28",
+      "last_seen": "1834-03-04",
       "action": "new_resident",
       "action_target": null,
       "action_note": "Ruling 1: a named person the town does not hold. Known only from the post-office letter lists."
@@ -36737,7 +36649,7 @@
       "occupation": null,
       "letter_list_only": true,
       "first_seen": "1834-01-28",
-      "last_seen": "1834-01-28",
+      "last_seen": "1834-03-04",
       "action": "new_resident",
       "action_target": null,
       "action_note": "Ruling 1: a named person the town does not hold. Known only from the post-office letter lists."

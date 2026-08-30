@@ -1,7 +1,7 @@
 ---
 id: T-0331
 title: The March 1834 letter list lost its date line and both its crops failed Vision; the page images can say which return it is
-state: open
+state: done
 epic: PAPERS
 requested_by: loop
 seen: false
@@ -9,9 +9,9 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-08-28
-closed: null
-pr: null
-claimed_by: null
+closed: 2026-08-29
+pr: 575
+claimed_by: run 8/29/2026, 6:41:04 PM CT
 blocked_on: null
 needs_bake: false
 ---
