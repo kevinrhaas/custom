@@ -36,12 +36,14 @@ accumulate the figures move on their own; file the smoke you ran anyway:
 node tools/dev-smoke-state.mjs record /tmp/smoke-desktop4.log
 ```
 
-**The numbering changed on 2026-08-30** (T-0346 cut old part 4 into 4 + 5 + 6 and
-renumbered old 5-9 to 7-11). Readings filed before that merge are labelled in the
-old numbering and the tool RENUMBERS them rather than discarding them: the
-content of old part 5 is the content of new part 7, so the reading is a reading
-of new part 7. Old part 4 is the one case that cannot be renumbered to a single
-part — it is a reading of 4 + 5 + 6 together and is reported as the group.
+**The numbering changed TWICE on 2026-08-30** — T-0346 cut old part 4 into
+4 + 5 + 6 and renumbered old 5-9 to 7-11, and T-0173 then cut part 7 into 7 + 8
+and renumbered 8-11 to 9-12. Readings filed before a cut are labelled in the
+numbering of their day and the tool RENUMBERS them rather than discarding them,
+pushing each one through every cut it predates in order: a reading of old part 5
+is a reading of what is now parts 7 + 8. Two cases cannot be renumbered to a
+single part — old part 4 is a reading of 4 + 5 + 6 together and old part 7 is a
+reading of 7 + 8 together — and each is reported as the group it is.
 
 ## The recipe is conservative by construction
 
@@ -55,7 +57,7 @@ The map in `tools/smoke_budget.mjs` can only ever ADD parts:
   boot, the page-error check and the vendor checks are taken in **every**
   invocation whichever stage is asked for;
 - `--self-test` fails if a mapped path has vanished from the tree, if any part
-  1..11 is covered by no row, if `PARTS` in `smoke_renderer.mjs` has moved out
+  1..12 is covered by no row, if `PARTS` in `smoke_renderer.mjs` has moved out
   from under the map, if the renumbering arithmetic breaks, or if an unmapped
   path ever stops meaning the whole gate. `check.sh` runs it.
 

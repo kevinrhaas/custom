@@ -10,8 +10,8 @@
  * `SMOKE_VIEWPORT=mobile` (or `desktop`) runs one of the two while iterating.
  * That is not the gate and the run says so on its first line.
  *
- * `SMOKE_STAGE=1` … `11` runs one part of each viewport's body (T-0060, re-cut
- * by T-0121, T-0167 and T-0346), and `SMOKE_STAGE=1-2` runs a contiguous run.
+ * `SMOKE_STAGE=1` … `12` runs one part of each viewport's body (T-0060, re-cut
+ * by T-0121, T-0167, T-0346 and T-0173), and `SMOKE_STAGE=1-2` runs a contiguous run.
  * The cuts sit at section boundaries measured for zero crossing bindings. It
  * exists because a steward run's single foreground command is capped at ten
  * minutes and by 2026-08-18 neither viewport's full pass fit inside it, so the
@@ -26,12 +26,18 @@
  * now part 5 and the gate-and-chrome tail is part 6, so parts 5-9 became 7-11 and
  * the mobile recipe's ranges move with them. The parts after the cut cost about
  * 1 m 10 s, 6 m 17 s and 1 m 55 s against the ten minutes, measured the same way.
+ * T-0173 then HALVED PART 7, which had gone the same way: profiled on the steward
+ * runner the same day it was killed at 9 m 25 s with its last two assertions
+ * unrun, and 7 m 04 s of that was the three road-legibility stations. Two
+ * stations stay in part 7 and the third goes to a new part 8 with the aid taken
+ * standing at it and the batch merge under that — 4 m 48 s against 4 m 53 s of
+ * work — so parts 8-11 became 9-12. See ROAD_STATIONS and `readRoadStations`.
  *
  * A staged run is not the gate either, and says so; the gate is both viewports,
  * every part, e.g.:
  *
- *   for s in 1-2 3-6 7-8 9-11;         do SMOKE_VIEWPORT=mobile  SMOKE_STAGE=$s node tools/smoke_renderer.mjs --published; done
- *   for s in 1 2 3 4 5 6 7 8 9 10 11;   do SMOKE_VIEWPORT=desktop SMOKE_STAGE=$s node tools/smoke_renderer.mjs --published; done
+ *   for s in 1-2 3-6 7-9 10-12;            do SMOKE_VIEWPORT=mobile  SMOKE_STAGE=$s node tools/smoke_renderer.mjs --published; done
+ *   for s in 1 2 3 4 5 6 7 8 9 10 11 12;   do SMOKE_VIEWPORT=desktop SMOKE_STAGE=$s node tools/smoke_renderer.mjs --published; done
  *
  * `SMOKE_TIMING=1` stamps each check line with the elapsed clock. Off by
  * default; turn it on to profile a part, because a part that BREACHES the
@@ -46,7 +52,7 @@
  * Boot, the page-error check and the vendor checks run in EVERY invocation,
  * whichever stage is asked for: the summary separates "staged-section checks"
  * from those always-on checks so the parts can be audited to add up to an
- * unfiltered pass — the eleven parts' section counts SUM to an unfiltered run's
+ * unfiltered pass — the twelve parts' section counts SUM to an unfiltered run's
  * section count, and the always-on count is identical in every one of them.
  *
  * What it asserts, and why each one is here:
@@ -313,9 +319,15 @@ const FAR_TIMBER_BANKED = Object.keys(FAR_TIMBER_BANKED_BY_ID);
  * road that far off is a couple of pixels tall through a mile of haze, and a
  * threshold there would be a claim about fog, not about roads.
  */
+//
+// T-0173 — and `part` says which PART reads each of them. The three together
+// cost 7 m 04 s of a part measured at 9 m 25 s and still running, so parts 7 and
+// 8 take two of them and one: 2 m 13 s + 2 m 02 s against 2 m 49 s, which is what
+// puts the aid and the batch merge in the cheaper half, beside the station they
+// are taken at. Moving a station between the parts is this field and nothing else.
 const ROAD_STATIONS = [
-  { id: 'south_water', kind: 'anchor', what: 'from the walker’s eye, down an open street', minBands: 2 },
-  { id: 'from_above', kind: 'anchor', what: 'from the air, at the aerial anchor', minBands: 2 },
+  { id: 'south_water', part: 7, kind: 'anchor', what: 'from the walker’s eye, down an open street', minBands: 2 },
+  { id: 'from_above', part: 7, kind: 'anchor', what: 'from the air, at the aerial anchor', minBands: 2 },
   // R-BUG3. Neither anchor above STANDS ON A ROAD — the `south_water` viewpoint
   // is 101 m from the centreline it is named after (T-V2) and 17 m from the
   // nearest one — so the near band was empty at both and no threshold could
@@ -323,10 +335,84 @@ const ROAD_STATIONS = [
   // does, by clicking a verified street-control intersection in the Go to tab,
   // which puts the roadway under the camera and its coordinates stay in the
   // compiled index rather than being copied into this gate.
-  { id: 'lake_market', kind: 'intersection', what: 'standing on the crossing itself', minBands: 2 },
+  // R-A1's three assertions are taken standing HERE, so this station and the aid
+  // stay in one part however this list is re-divided (T-0173).
+  { id: 'lake_market', part: 8, kind: 'intersection', what: 'standing on the crossing itself', minBands: 2 },
 ];
 const ROAD_BANDS = [[2, 40], [40, 100], [100, 250], [250, 600], [600, 4000]];
 const ROAD_GATED_BEYOND_M = 600;
+
+/**
+ * T-0173 — the road-legibility stations, read by whichever PART owns them.
+ *
+ * These three stations were one block inside part 7, and profiled on the steward
+ * runner (SMOKE_TIMING=1, 2026-08-30) that block was 7 m 04 s of a part that was
+ * killed at 9 m 25 s with its tail unrun. So the cut that makes part 7 fit had to
+ * fall INSIDE the block: neither of the part's own `// --- ` section boundaries
+ * leaves both sides more than 2 m 36 s of margin, and 2 m 36 s is what T-0121
+ * already proved is not a margin on a machine whose cost tracks its neighbours.
+ *
+ * The stations are the natural grain and the only one that crosses no binding.
+ * Each teleports to its own viewpoint, takes its own frames and answers its own
+ * `check`; none reads anything a sibling station left standing. `part:` on the
+ * station is therefore the whole of the split — see ROAD_STATIONS.
+ *
+ * The movement report moves with them, and it is the same report it always was:
+ * printed, never gated, and comparing only what THIS invocation measured. That
+ * is what already let `SMOKE_VIEWPORT=mobile` run without retiring desktop's
+ * half of the bank, and it is why a part reporting on its own stations is not a
+ * new rule. `--update-road-bands` merges per band and leaves untouched bands
+ * alone, so a part banks what it read.
+ */
+async function readRoadStations(page, label, stations) {
+  const roadRuns = [];   // T-0016: what each station's bands read this run
+  for (const station of stations) {
+    const road = await roadContrast(page, { id: station.id, kind: station.kind });
+    roadRuns.push({ id: station.id, bands: road.bands });
+    const bands = road.bands.filter((b) => b.gated);
+    const bad = bands.filter((b) => b.medianDeltaL < ROAD_MIN_DELTA_L
+      || b.perceptible < ROAD_MIN_PERCEPTIBLE);
+    const report = road.bands.map((b) => `${b.lo}-${b.hi} m: `
+      + (b.nProjected < ROAD_MIN_PROBES ? `projects ${b.nProjected}× (not gated)`
+        : `ΔL* ${b.medianDeltaL.toFixed(1)} of ${b.opaqueDeltaL.toFixed(1)} opaque, `
+          + `${(b.perceptible * 100).toFixed(0)} % perceptible of ${b.nBare} bare, `
+          // R-M1a. Both halves of the owner's ruling, measured beside the bar
+          // they are going to join: Weber says how distinguishable the road
+          // is whatever the exposure, groundL says whether there is light to
+          // distinguish it by. Neither is gated yet — R-M1b sets the bars.
+          + `weber ${b.weber.toFixed(4)} (n ${b.weberN}) over ground L* `
+          + `${b.groundL.toFixed(1)}, seen ${b.n} of `
+          + `${b.nProjected} projected (${b.nBare} clear of flora)`
+          + `${b.gated ? '' : ' (reported only)'}`)).join(' · ');
+    check(`${label}: the roads reach the screen ${station.what}`,
+      bands.length >= station.minBands && bad.length === 0, report);
+    console.log(`        ${station.id}: ${report}`);
+  }
+
+  // T-0016 (R-M1d) — MOVEMENT AGAINST THE BANK, BOTH DIRECTIONS.
+  //
+  // Printed, never gated. Every check above has already run and its verdict
+  // stands whatever this says; the point is only that a band which collapses
+  // inside a passing station stops being invisible. A filtered run banks
+  // nothing and compares only what it measured, so `SMOKE_VIEWPORT=mobile`
+  // cannot silently retire desktop's half of the baseline.
+  const vp = label.split(' ')[0];
+  const observed = collectRoadBands(vp, roadRuns, {
+    failing: (b) => b.medianDeltaL < ROAD_MIN_DELTA_L || b.perceptible < ROAD_MIN_PERCEPTIBLE,
+  });
+  Object.assign(ROAD_BAND_OBSERVED, observed);
+  const bankedHere = Object.fromEntries(
+    Object.entries(ROAD_BAND_BANKED).filter(([k]) => k.startsWith(`${vp}/`)));
+  if (!Object.keys(bankedHere).length) {
+    console.log(`        road bands: nothing banked for ${vp} yet`
+      + ' — re-run with --update-road-bands to bank this run (T-0016)');
+  } else {
+    for (const line of renderRoadBands(compareRoadBands(bankedHere, observed))) {
+      console.log(`        ${line}`);
+    }
+  }
+}
+
 // R-A1. How much of the frame the aid has to move at full strength before this
 // gate believes the control reaches the render at all.
 //
@@ -1036,7 +1122,24 @@ if (ONLY) console.log(`NOT THE FULL GATE — viewports filtered to "${ONLY}"\n`)
 // for its draw-call ceiling), and part 5 now reads that ceiling itself.
 // The pairing rule survives as 1+2, 3+4+5+6, 7+8, 9+10+11 — the same content in
 // the same four mobile commands, whose ranges become `1-2 3-6 7-8 9-11`.
-const PARTS = 11;
+// T-0173 HALVED PART 7 and this one could not be an append either, so parts 8-11
+// are renumbered 9-12 and the old part 7 becomes 7 + 8. The cut is measured, not
+// guessed: profiled with SMOKE_TIMING=1 on the steward runner on 2026-08-30 at
+// load 0.8-2.9, part 7 was killed at 9 m 25 s with its last two assertions unrun,
+// and 7 m 04 s of its cost was ONE block — the three road-legibility stations,
+// each of which teleports to its own viewpoint and screenshots it. No boundary
+// between the part's own `// --- ` section headers leaves both sides a margin
+// (the best is 7 m 37 s against 1 m 30 s), so the cut falls at the station, which
+// is the grain the block is made of and crosses no binding: `roadRuns` is local
+// to the block, the movement report built from it is printed rather than gated
+// and has always compared only what the invocation measured, and
+// `--update-road-bands` merges per band. R-A1's three assertions are taken
+// STANDING AT `lake_market`, so that station goes with them: part 7 keeps
+// `south_water` and `from_above` at 2 m 13 s + 2 m 02 s, part 8 takes
+// `lake_market` at 2 m 49 s plus the aid at 1 m 04 s and the batch merge.
+// The pairing rule survives again as 1+2, 3+4+5+6, 7+8+9, 10+11+12 — the same
+// content in the same four mobile commands, ranges `1-2 3-6 7-9 10-12`.
+const PARTS = 12;
 const STAGE = process.env.SMOKE_STAGE || '';
 // `3` is one part; `3-4` is a contiguous run of them; `1,5-6` is any set. The
 // range form exists so the cheap viewport does not pay eight boots to run a
@@ -1328,12 +1431,12 @@ for (const [label, viewport, touch] of [
     // viewpoints, so it does not care what ran before it.
     //
     // T-0121 narrowed the guard from "stage 3 or stage 4" to the two PARTS that
-    // actually read it: parts 8 and 10 hold no reference to `streetLayer`, and
+    // actually read it: parts 9 and 11 hold no reference to `streetLayer`, and
     // under the old guard each of them would have paid for it anyway — four
     // times over the desktop pass instead of twice, on the very reading this
     // gate can least afford.
     let streetLayer = null;
-    if (anyStage(7, 9)) {
+    if (anyStage(7, 10)) {
       streetLayer = await page.evaluate(() => {
         const a = window.__chicago4d;
         // Sample the dynamic flora from a known dry South Division viewpoint.
@@ -7369,8 +7472,10 @@ for (const [label, viewport, touch] of [
 
     inStageWork = false;
     } // end PART 6 (the tail of T-0060 stage 2b, cut out of part 4 by T-0346)
-    // PART 7 — navigation through the batch merge: the readouts, the
-    // road-legibility aid and the merge the reach below stands on.
+    // PART 7 — navigation through the second road-legibility station: the
+    // readouts, the streets the heightfield carries, and the roads read from the
+    // walker's eye and from the air. T-0173 cut the crossing station, the aid
+    // and the batch merge out of here into part 8.
     if (stageOn(7)) {
     inStageWork = true;
 
@@ -7495,52 +7600,28 @@ for (const [label, viewport, touch] of [
     // out, which is indistinguishable from a band with no road in it.
     // R-M1c finished that argument one level down: the band's SCORE divided by
     // `seen` too, so an occluder raised it. It divides by `nBare` now.
-    const roadRuns = [];   // T-0016: what each station's bands read this run
-    for (const station of ROAD_STATIONS) {
-      const road = await roadContrast(page, { id: station.id, kind: station.kind });
-      roadRuns.push({ id: station.id, bands: road.bands });
-      const bands = road.bands.filter((b) => b.gated);
-      const bad = bands.filter((b) => b.medianDeltaL < ROAD_MIN_DELTA_L
-        || b.perceptible < ROAD_MIN_PERCEPTIBLE);
-      const report = road.bands.map((b) => `${b.lo}-${b.hi} m: `
-        + (b.nProjected < ROAD_MIN_PROBES ? `projects ${b.nProjected}× (not gated)`
-          : `ΔL* ${b.medianDeltaL.toFixed(1)} of ${b.opaqueDeltaL.toFixed(1)} opaque, `
-            + `${(b.perceptible * 100).toFixed(0)} % perceptible of ${b.nBare} bare, `
-            // R-M1a. Both halves of the owner's ruling, measured beside the bar
-            // they are going to join: Weber says how distinguishable the road
-            // is whatever the exposure, groundL says whether there is light to
-            // distinguish it by. Neither is gated yet — R-M1b sets the bars.
-            + `weber ${b.weber.toFixed(4)} (n ${b.weberN}) over ground L* `
-            + `${b.groundL.toFixed(1)}, seen ${b.n} of `
-            + `${b.nProjected} projected (${b.nBare} clear of flora)`
-            + `${b.gated ? '' : ' (reported only)'}`)).join(' · ');
-      check(`${label}: the roads reach the screen ${station.what}`,
-        bands.length >= station.minBands && bad.length === 0, report);
-      console.log(`        ${station.id}: ${report}`);
-    }
+    // T-0173. The first two stations are part 7's; the third is part 8's, and
+    // the movement report each part prints covers the stations that part read.
+    await readRoadStations(page, label, ROAD_STATIONS.filter((st) => st.part === 7));
 
-    // T-0016 (R-M1d) — MOVEMENT AGAINST THE BANK, BOTH DIRECTIONS.
-    //
-    // Printed, never gated. Every check above has already run and its verdict
-    // stands whatever this says; the point is only that a band which collapses
-    // inside a passing station stops being invisible. A filtered run banks
-    // nothing and compares only what it measured, so `SMOKE_VIEWPORT=mobile`
-    // cannot silently retire desktop's half of the baseline.
-    const vp = label.split(' ')[0];
-    const observed = collectRoadBands(vp, roadRuns, {
-      failing: (b) => b.medianDeltaL < ROAD_MIN_DELTA_L || b.perceptible < ROAD_MIN_PERCEPTIBLE,
-    });
-    Object.assign(ROAD_BAND_OBSERVED, observed);
-    const bankedHere = Object.fromEntries(
-      Object.entries(ROAD_BAND_BANKED).filter(([k]) => k.startsWith(`${vp}/`)));
-    if (!Object.keys(bankedHere).length) {
-      console.log(`        road bands: nothing banked for ${vp} yet`
-        + ' — re-run with --update-road-bands to bank this run (T-0016)');
-    } else {
-      for (const line of renderRoadBands(compareRoadBands(bankedHere, observed))) {
-        console.log(`        ${line}`);
-      }
-    }
+    inStageWork = false;
+    } // end PART 7 (T-0060 stage 3a, cut by T-0121; renumbered by T-0346, halved by T-0173)
+    // PART 8 — the crossing station, the road-legibility aid and the batch merge
+    // the aid's reach stands on: the tail T-0173 cut out of part 7 when the three
+    // road-legibility stations alone came to 7 m 04 s of a 9 m 25 s part. The
+    // three assertions of R-A1 are taken STANDING AT `lake_market`, where the
+    // bands were just read, so the station and the aid could not be separated —
+    // they are both here, in that order, exactly as they ran before.
+    if (stageOn(8)) {
+    inStageWork = true;
+
+    // The same prologue part 7 carries, and for the same reason: a fresh boot is
+    // still standing at the gate screen, and every check below measures a
+    // `page.screenshot` frame that includes the DOM overlays. In a full run this
+    // is a no-op — part 6 entered the town long ago.
+    await enterTown();
+
+    await readRoadStations(page, label, ROAD_STATIONS.filter((st) => st.part === 8));
 
     // --- R-A1, the road-legibility aid, and the three things it owes --------
     //
@@ -7667,13 +7748,13 @@ for (const [label, viewport, touch] of [
       + `${dRoughBack.worst}`);
 
     inStageWork = false;
-    } // end PART 7 (T-0060 stage 3a, cut by T-0121; renumbered by T-0346)
-    // PART 8 — the facade tones, the shadow reach, the shadow box and the K24
+    } // end PART 8 (the tail of T-0060 stage 3a, cut out of part 7 by T-0173)
+    // PART 9 — the facade tones, the shadow reach, the shadow box and the K24
     // brightness aid: the camera-heavy tail of T-0060's stage 3, and every
     // check in it measures a page.screenshot frame. So it enters the town on
     // its own account, and it holds no reference to the shared street reading —
     // which is why that reading is now gated on parts 7 and 9 alone.
-    if (stageOn(8)) {
+    if (stageOn(9)) {
     inStageWork = true;
     await enterTown();
 
@@ -7993,13 +8074,13 @@ for (const [label, viewport, touch] of [
       + `${dBrightBack.mean?.toFixed(2)} / worst ${dBrightBack.worst}`);
 
     inStageWork = false;
-    } // end PART 8 (T-0060 stage 3b, cut by T-0121; renumbered by T-0346)
-    // PART 9 — the flora census through the streets a visitor reads: the drawn
+    } // end PART 9 (T-0060 stage 3b, cut by T-0121; renumbered by T-0346 and T-0173)
+    // PART 10 — the flora census through the streets a visitor reads: the drawn
     // population, the sward, the horizon timber and the street names. Every
     // binding it shares with earlier parts (`streetLayer`) is read above the
     // split; the teleport below re-establishes the camera pose it expects on
     // its own.
-    if (stageOn(9)) {
+    if (stageOn(10)) {
     inStageWork = true;
 
     // Same fresh-boot accommodation as stage 3: this stage drives the panel
@@ -9292,8 +9373,8 @@ for (const [label, viewport, touch] of [
       JSON.stringify(unitChoice));
 
     inStageWork = false;
-    } // end PART 9 (T-0060 stage 4a, cut by T-0121; renumbered by T-0346)
-    // PART 10 — eye height through What's-new: the settings, the Go-to tab and
+    } // end PART 10 (T-0060 stage 4a, cut by T-0121; renumbered by T-0346 and T-0173)
+    // PART 11 — eye height through What's-new: the settings, the Go-to tab and
     // the release notes. The head of T-0060's stage 4b; T-0167 cut the Evidence
     // panel and free-fly off its tail into part 11.
     //
@@ -9311,7 +9392,7 @@ for (const [label, viewport, touch] of [
     // part down before one assertion had run. Not one assertion is dropped or
     // softened by the change: `clickChrome` hit-tests the control at its own
     // centre the way a real click does, and says what covered it when it fails.
-    if (stageOn(10)) {
+    if (stageOn(11)) {
     inStageWork = true;
     await enterTown();
     // …and the PANEL, which part 9 leaves open at its last line and this part
@@ -9688,8 +9769,8 @@ for (const [label, viewport, touch] of [
       `${ret.flagged.length} of ${ret.total} flagged: ${ret.flagged.join(' | ')}`);
 
     inStageWork = false;
-    } // end PART 10 (T-0060 stage 4b-i, cut by T-0121, halved by T-0167; renumbered by T-0346)
-    // PART 11 — the Evidence panel through inspecting from the air: the
+    } // end PART 11 (T-0060 stage 4b-i, cut by T-0121, halved by T-0167; renumbered by T-0346 and T-0173)
+    // PART 12 — the Evidence panel through inspecting from the air: the
     // liberties, the people, the wildlife, what is not here, what the ground
     // claims, free-fly and the two inspect keys. The tail of T-0060's stage 4.
     //
@@ -9707,7 +9788,7 @@ for (const [label, viewport, touch] of [
     // carries its own guarded panel-open and clicks the Evidence tab itself, so
     // unlike part 10 this part needs no panel guard bolted on. It takes no pose
     // — free-fly is entered from wherever the visitor stands.
-    if (stageOn(11)) {
+    if (stageOn(12)) {
     inStageWork = true;
     await enterTown();
     // --- the liberties, in the Evidence panel ------------------------------
@@ -10933,7 +11014,7 @@ for (const [label, viewport, touch] of [
     await page.evaluate(() => window.__chicago4d.frame('sauganash_hotel', 26));
 
     inStageWork = false;
-    } // end PART 11 (T-0060 stage 4b-ii, cut by T-0167; renumbered by T-0346)
+    } // end PART 12 (T-0060 stage 4b-ii, cut by T-0167; renumbered by T-0346 and T-0173)
     } catch (e) {
       inStageWork = false;
       thrown = e;
@@ -11048,7 +11129,7 @@ if (UPDATE_ROAD_BANDS) {
 
 console.log(`\n${passes.length} passed, ${failures.length} failed`);
 // T-0060: the audit line. In an unfiltered run the staged-section count is the
-// sum of what SMOKE_STAGE=1 … 11 each report, and the always-on count is
+// sum of what SMOKE_STAGE=1 … 12 each report, and the always-on count is
 // identical in every one of them — that arithmetic is how the parts are
 // demonstrated to add up to the whole.
 console.log(`${stageWorkChecks} staged-section check(s)`

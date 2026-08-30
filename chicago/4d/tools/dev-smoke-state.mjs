@@ -61,7 +61,7 @@ const REPO = path.resolve(APP, '..', '..');           // the monorepo root
 const STATE = path.join(HERE, 'dev-smoke-state.json');
 
 /** Parts of the smoke body. Mirrors `PARTS` in tools/smoke_renderer.mjs. */
-const PARTS = 11;
+const PARTS = 12;
 
 const NOTE =
   'T-0216 — dev\'s standing smoke result, so a branch can answer "is this red mine, or did I '
@@ -134,8 +134,9 @@ const CHANGELOG_INPUTS = [
 ];
 
 /** The parts whose checks actually read the release notes. Part 8 until T-0346
- * renumbered the tail of the body; What's-new is part 10 now. */
-const CHANGELOG_PARTS = [10];
+ * renumbered the tail of the body, then part 10 until T-0173 halved part 7 and
+ * renumbered it again; What's-new is part 11 now. */
+const CHANGELOG_PARTS = [11];
 
 /**
  * Smoke inputs carrying a publish stamp: hashed by CONTENT with the stamp

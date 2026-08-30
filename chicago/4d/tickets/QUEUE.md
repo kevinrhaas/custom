@@ -82,7 +82,6 @@ T-0318 — The January 1834 letter list: the third printing repairs the A-H half
 # --- ten-minute foreground ceiling, so no steward run can complete it at all, and three
 # --- PRs tonight had to say so instead of reporting a result. The two order-dependent
 # --- gates below make a green run and a red run of the same tree.
-T-0173 — The desktop smoke's part 4 and part 5 have under a minute of margin on the ceiling, and part 7 is over it
 T-0181 — The desktop 7-9 smoke leg has 9m49s of margin against its 30-minute cap, and the margin was asserted rather than measured
 T-0170 — The desktop smoke's part 7 has 2 m 17 s of margin, and it is the one measured over the ceiling on another runner
 

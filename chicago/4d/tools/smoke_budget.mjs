@@ -53,7 +53,7 @@ const SMOKE = path.join(HERE, 'smoke_renderer.mjs');
 
 /** Parts of the smoke body. Mirrors `PARTS` in tools/smoke_renderer.mjs, and
  *  `--self-test` fails if the two ever disagree. */
-const PARTS = 11;
+const PARTS = 12;
 
 /** A steward run's single foreground command is capped at 600 s (ROADMAP § THE
  *  RUN BUDGET). Recipes are packed to a lower figure so a part that has grown
@@ -61,9 +61,13 @@ const PARTS = 11;
 const CEILING_S = 600;
 const PACK_TO_S = 480;
 
-/** The T-0346 merge, after which a reading's stage numbers are the current
- *  ones. Before it, old part 4 is new 4+5+6 and old 5-9 are new 7-11. */
-const RENUMBERED_AT = Date.parse('2026-08-30T03:35:16Z');
+/** The two renumberings of 2026-08-30, newest last. A reading is renumbered
+ *  through every cut it PREDATES, in order, so the arithmetic composes instead
+ *  of having to be restated each time the body is cut again.
+ *  T-0346: old part 4 is new 4+5+6, and old 5-9 are new 7-11.
+ *  T-0173: old part 7 is new 7+8, and old 8-11 are new 9-12. */
+const RENUMBERED_AT = Date.parse('2026-08-30T03:35:16Z');          // T-0346
+const RENUMBERED_AGAIN_AT = Date.parse('2026-08-30T05:20:22Z');    // T-0173
 
 /** Which parts cover which change.
  *
@@ -107,8 +111,8 @@ const COVERAGE = [
   ['renderers/web/css/', ALL, 'the chrome every panel check clicks'],
   ['data/reconstruction/', ALL, 'the infill programme the records are expanded from'],
   ['site/chicago/4d/', ALL, 'the published mirror, which is the --published target'],
-  ['site/chicago/4d/js/changelog.js', [10], "the mirrored entries What's-new reads"],
-  ['site/chicago/4d/walk/js/changelog.js', [10], "the mirrored entries What's-new reads"],
+  ['site/chicago/4d/js/changelog.js', [11], "the mirrored entries What's-new reads"],
+  ['site/chicago/4d/walk/js/changelog.js', [11], "the mirrored entries What's-new reads"],
   ['site/chicago/4d/tickets.json', NONE, 'the backlog mirror — the renderer never loads it'],
   ['site/chicago/4d/build.json', NONE, 'the publish stamp; the gate screen that shows it is boot scaffolding, taken in every invocation'],
 
@@ -134,51 +138,53 @@ const COVERAGE = [
   ['renderers/web/js/ground.js', [3], 'the ground faces the sky (R-BUG3c)'],
   ['renderers/web/js/terrain.js', [3], 'the ground the town stands on'],
   ['renderers/web/js/citations.js', [3], 'pick -> provenance, and what kind of source'],
-  ['renderers/web/js/liberties.js', [3, 11], 'the liberties on the card, and in the panel'],
-  ['renderers/web/js/residents.js', [3, 11], 'who was here, and the people in the panel'],
+  ['renderers/web/js/liberties.js', [3, 12], 'the liberties on the card, and in the panel'],
+  ['renderers/web/js/residents.js', [3, 12], 'who was here, and the people in the panel'],
   ['renderers/web/js/display-name.js', [3], 'the prose may not name a level the record is not'],
   ['renderers/web/js/popup.js', [3], 'the card a visitor opens'],
-  ['renderers/web/js/census.js', [3, 9], 'the population on the card and in the census'],
+  ['renderers/web/js/census.js', [3, 10], 'the population on the card and in the census'],
   ['data/terrain/', [3], 'the heightfield'],
-  ['data/liberties.json', [3, 11], 'what we made up about THAT building'],
-  ['docs/LIBERTIES.md', [3, 11], 'the source the liberties are compiled from'],
-  ['data/residents/', [3, 11], 'the invented residents have names now (K18)'],
+  ['data/liberties.json', [3, 12], 'what we made up about THAT building'],
+  ['docs/LIBERTIES.md', [3, 12], 'the source the liberties are compiled from'],
+  ['data/residents/', [3, 12], 'the invented residents have names now (K18)'],
   ['data/sources/', [3], 'the citation -> its document'],
   ['data/sidecars/', [3], 'the record\'s own account, on the card'],
 
   // --- PARTS 4-6: standing, walking, the detail ladder and the chrome
   ['renderers/web/js/walker.js', [4, 5, 6], 'walking, standing, and the ladder they are measured on'],
-  ['renderers/web/js/controls/', [4, 5, 6, 10], 'the pick, the touch backend and the settings'],
-  ['renderers/web/js/far-merge.js', [5, 7], 'the detail ladder and the batch merge'],
+  ['renderers/web/js/controls/', [4, 5, 6, 11], 'the pick, the touch backend and the settings'],
+  ['renderers/web/js/far-merge.js', [5, 8], 'the detail ladder and the batch merge, which T-0173 moved into part 8'],
 
-  // --- PART 7: navigation, the roads and the merge the reach stands on
+  // --- PARTS 7-8: navigation, the roads, the aid and the merge the reach
+  // --- stands on. T-0173 cut the third road station, the road-legibility aid
+  // --- and the batch merge out of part 7 into part 8.
   ['renderers/web/js/navigation.js', [7], 'navigation and its readouts'],
   ['renderers/web/js/hud.js', [7], 'the readouts a visitor navigates by'],
 
-  // --- PART 8: what the light does to the town
-  ['renderers/web/js/facades.js', [8], 'T-0002, the facade tones'],
-  ['renderers/web/js/buildings.js', [8], 'the facades and the shadow reach they carry'],
+  // --- PART 9: what the light does to the town
+  ['renderers/web/js/facades.js', [9], 'T-0002, the facade tones'],
+  ['renderers/web/js/buildings.js', [8, 9], 'the facades and the shadow reach they carry, and the merged batch part 8 reads the roughness channel out of'],
 
-  // --- PART 9: what grows, what moves, and the streets a visitor reads
-  ['renderers/web/js/flora.js', [9], 'the flora census'],
-  ['renderers/web/js/plants.js', [9], 'the sward'],
-  ['renderers/web/js/trees.js', [9], 'the horizon timber'],
-  ['renderers/web/js/shrub-grain.js', [9], 'the sward\'s grain'],
-  ['renderers/web/js/fauna.js', [9, 11], 'the wildlife, drawn and in the panel'],
-  ['renderers/web/js/streets.js', [2, 7, 9], 'the street edge, the road aid and the street names'],
-  ['data/flora/', [9, 11], 'what grows here'],
-  ['data/fauna/', [9, 11], 'the wildlife'],
-  ['data/streets/', [2, 7, 9], 'the street records'],
-  ['data/traces/', [2, 7, 9], 'the traced lines the streets and the bank are built from'],
-  ['data/town_census.json', [9], 'the drawn population'],
+  // --- PART 10: what grows, what moves, and the streets a visitor reads
+  ['renderers/web/js/flora.js', [10], 'the flora census'],
+  ['renderers/web/js/plants.js', [10], 'the sward'],
+  ['renderers/web/js/trees.js', [10], 'the horizon timber'],
+  ['renderers/web/js/shrub-grain.js', [10], 'the sward\'s grain'],
+  ['renderers/web/js/fauna.js', [10, 12], 'the wildlife, drawn and in the panel'],
+  ['renderers/web/js/streets.js', [2, 7, 8, 10], 'the street edge, the roads read from two stations in part 7 and one in part 8 with the aid, and the street names'],
+  ['data/flora/', [10, 12], 'what grows here'],
+  ['data/fauna/', [10, 12], 'the wildlife'],
+  ['data/streets/', [2, 7, 8, 10], 'the street records'],
+  ['data/traces/', [2, 7, 8, 10], 'the traced lines the streets and the bank are built from'],
+  ['data/town_census.json', [10], 'the drawn population'],
 
-  // --- PART 10: the settings, the Go-to tab and What's-new
-  ['renderers/web/js/whatsnew.js', [10], "what's new"],
-  ['renderers/web/js/changelog.js', [10], "the entries What's-new reads"],
-  ['renderers/web/js/units.js', [10], 'the settings that change what the readouts say'],
+  // --- PART 11: the settings, the Go-to tab and What's-new
+  ['renderers/web/js/whatsnew.js', [11], "what's new"],
+  ['renderers/web/js/changelog.js', [11], "the entries What's-new reads"],
+  ['renderers/web/js/units.js', [11], 'the settings that change what the readouts say'],
 
-  // --- PART 11: the Evidence panel and the air above the town
-  ['data/research/', [11], 'researched, and still open — the third category'],
+  // --- PART 12: the Evidence panel and the air above the town
+  ['data/research/', [12], 'researched, and still open — the third category'],
 ];
 
 // ---------------------------------------------------------------------------
@@ -189,16 +195,24 @@ const key = (parts) => parts.join(',');
 /** The current parts a reading covers, renumbering it if it predates T-0346. */
 function currentParts(reading) {
   const taken = Date.parse(reading.takenAt);
-  const parts = reading.parts || [];
+  let parts = reading.parts || [];
   if (!parts.length) return null;
-  if (Number.isFinite(taken) && taken >= RENUMBERED_AT) return parts.slice().sort((a, b) => a - b);
-  const out = new Set();
-  for (const p of parts) {
-    if (p <= 3) out.add(p);
-    else if (p === 4) { out.add(4); out.add(5); out.add(6); }
-    else out.add(p + 2);
-  }
-  return [...out].sort((a, b) => a - b);
+  // A reading is pushed through every cut it PREDATES, oldest first, so two
+  // renumberings on one day compose rather than needing a combined table. A
+  // reading with no parsable date is treated as older than all of them, which
+  // is the safe direction: it widens the parts it claims to cover.
+  const stale = (at) => !Number.isFinite(taken) || taken < at;
+  if (stale(RENUMBERED_AT)) parts = parts.flatMap((p) => {   // T-0346
+    if (p <= 3) return [p];
+    if (p === 4) return [4, 5, 6];
+    return [p + 2];
+  });
+  if (stale(RENUMBERED_AGAIN_AT)) parts = parts.flatMap((p) => {   // T-0173
+    if (p <= 6) return [p];
+    if (p === 7) return [7, 8];
+    return [p + 1];
+  });
+  return [...new Set(parts)].sort((a, b) => a - b);
 }
 
 /** Every measured group, per viewport: a set of current parts -> median seconds. */
@@ -428,11 +442,15 @@ function selfTest() {
   const before = '2026-08-29T12:00:00Z';
   const after = '2026-08-30T12:00:00Z';
   const eq = (a, b) => JSON.stringify(a) === JSON.stringify(b);
+  // Between the two cuts of 2026-08-30: T-0173 applies, T-0346 does not.
+  const between = '2026-08-30T04:00:00Z';
   if (!eq(old([3], before), [3])) fails.push('old part 3 must renumber to 3');
   if (!eq(old([4], before), [4, 5, 6])) fails.push('old part 4 must renumber to 4,5,6');
-  if (!eq(old([5], before), [7])) fails.push('old part 5 must renumber to 7');
-  if (!eq(old([7, 8, 9], before), [9, 10, 11])) fails.push('old parts 7-9 must renumber to 9-11');
-  if (!eq(old([4], after), [4])) fails.push('a reading filed after the cut must not be renumbered');
+  if (!eq(old([5], before), [7, 8])) fails.push('old part 5 must renumber to 7,8 through both cuts');
+  if (!eq(old([7, 8, 9], before), [10, 11, 12])) fails.push('old parts 7-9 must renumber to 10-12');
+  if (!eq(old([7], between), [7, 8])) fails.push('T-0346-era part 7 must renumber to 7,8');
+  if (!eq(old([8, 11], between), [9, 12])) fails.push('T-0346-era parts 8 and 11 must renumber to 9 and 12');
+  if (!eq(old([4], after), [4])) fails.push('a reading filed after both cuts must not be renumbered');
 
   if (!eq(stageArg([1, 2, 3, 5, 7, 8]), '1-3,5,7-8')) fails.push('stageArg does not fold contiguous runs');
 

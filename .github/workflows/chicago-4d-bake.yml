@@ -297,8 +297,8 @@ jobs:
   # Raising the cap alone would work today and rot the same way — the number
   # would again be one nobody had measured against, and desktop would again be a
   # single command costing the sum of everything. Splitting is what makes the
-  # margin legible PER LEG, and it is what T-0170's further cut of part 7
-  # improves rather than invalidates.
+  # margin legible PER LEG, and it is what T-0173's cut of part 7 — and T-0170's
+  # further cut of what is now part 10 — improve rather than invalidate.
   #
   # THE CUT IS T-0167's PAIRING RULE, `1+2, 3+4, 5+6, 7+8+9`. Against the
   # measured desktop profile those legs cost 6 m 08 s, 8 m 47 s, 8 m 04 s and
@@ -313,13 +313,19 @@ jobs:
   # in the new numbers: `1+2, 3+4+5+6, 7+8, 9+10+11`, i.e. `1-2 3-6 7-8 9-11`.
   # So the measured leg costs above still stand; nothing was added to a leg.
   #
+  # T-0173 HALVED PART 7 AND RENUMBERED 8-11 AS 9-12, and this list moves with it
+  # for the same reason and with the same guarantee: `1+2, 3+4+5+6, 7+8+9,
+  # 10+11+12`, i.e. `1-2 3-6 7-9 10-12`. The old part 7's content is now parts 7
+  # and 8, both of which sit inside the third leg, so no leg gained or lost a
+  # check and the measured costs above still stand.
+  #
   # THE RANGES MUST COVER 1..11 EXACTLY ONCE. Each leg prints "NOT THE FULL GATE"
   # because on its own it is not one; the UNION of the eight legs is, and that
   # holds only while these four ranges tile the parts with no gap and no overlap.
   # smoke_renderer.mjs's own arithmetic — the parts' staged counts sum to an
   # unfiltered run's — is what makes the union checkable rather than asserted.
-  # If a part is ever added or renumbered (T-0170 renumbers everything after 7;
-  # T-0346 renumbered everything after 4), THIS LIST IS PART OF THAT EDIT.
+  # If a part is ever added or renumbered (T-0346 renumbered everything after 4;
+  # T-0173 renumbered everything after 7), THIS LIST IS PART OF THAT EDIT.
   smoke:
     needs: bake
     runs-on: ubuntu-latest
@@ -328,7 +334,7 @@ jobs:
       fail-fast: false
       matrix:
         viewport: [mobile, desktop]
-        stage: ['1-2', '3-6', '7-8', '9-11']
+        stage: ['1-2', '3-6', '7-9', '10-12']
     steps:
       - uses: actions/checkout@v4
         with:

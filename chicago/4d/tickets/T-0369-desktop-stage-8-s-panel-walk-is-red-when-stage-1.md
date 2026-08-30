@@ -85,3 +85,10 @@ killing — and the old parts 5-9 are now 7-11. So read this ticket's numbers th
 `old 5→7, 6→8, 7→9, 8→10, 9→11`, and old part 4 as new parts 4+5+6. The mobile legs are
 `1-2 3-6 7-8 9-11` and carry exactly what they carried. The readings themselves stand; only
 the labels moved.
+
+
+**AND AGAIN, THE SAME DAY (T-0173, 2026-08-30).** Part 7 was halved — the three road-legibility
+stations were 7 m 04 s of a part killed at 9 m 25 s — so old part 7 is now parts 7 + 8 and old
+parts 8-11 are 9-12. Read this ticket's post-T-0346 numbers through `old 8→9, 9→10, 10→11,
+11→12`, and old part 7 as new parts 7+8. The mobile legs are `1-2 3-6 7-9 10-12` and carry
+exactly what they carried. The readings themselves stand; only the labels moved.
