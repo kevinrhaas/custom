@@ -248,6 +248,52 @@ committed centreline up to 34 m north onto the waterline and re-scoring every ga
 it — or return the 27 roofs to the South balance the way T-0163 returned
 `blk_south_water_clinton`'s to the West.
 
+### 6.3 The 27 roofs go back to the South balance — the owner's second ruling, 2026-08-30
+
+The third option § 6.2 ended on was put to the owner with the pinch measured in front of him,
+and he took it:
+
+> Return the 27 roofs to the South balance, the way `blk_south_water_clinton`'s went back
+> when T-0163 measured it.
+
+**The wedge is not built.** Building it means re-deriving a committed centreline up to 34 m
+north onto the waterline — no clearance — and re-scoring every gate that reads that line, for
+a block that is 2.8 m deep at its west corner. That cost bought about two thirds of a block,
+and it was declined.
+
+So `blk_south_water_market` stops being scheduled. `tools/reconcile_665.py` used to hold it in
+`STREET_CONTROL_OMISSIONS` with 27 roofs of headroom `gated` on a trace; it now holds it in
+`GROUND_REFUSES_OMISSIONS`, kind `platted_block_ground_refuses`, state
+`ground_cannot_carry_it`, with **no headroom at all**. Its 27 roofs land in
+`south_plat_beyond_committed_control`, which goes **115 → 142**. Nothing else moves: the South
+Division's remainder is 162 either way and `remaining.of_target` is 662 either way. **The roofs
+moved; they were not lost**, and that is the arithmetic the ledger is asked to keep.
+
+**Three refusals, not two.** This is the reason the set was split rather than the block being
+filed under one of the two that already existed. Neither fits:
+
+| refusal | the streets | the run between | what is wrong | example |
+|---|---|---|---|---|
+| `awaiting_street_control` | met | dry | the centreline has not been carried that far | *(empty today)* |
+| `never_platted` | never met | **wet** — opposite banks | the pairing is an artifact of the cartesian product | `blk_south_water_clinton` |
+| `ground_refuses` | met | **dry** | the block has no **depth**; the river takes it | `blk_south_water_market` |
+
+`tools/measure_block_gating.py` measures all three and keeps measuring this one. It is expected
+to read **dry** — 25 m, 0 of 5 samples — because that is exactly the distinction: a dry approach
+to ground that still cannot carry a lot. Dropping the block off that gate would have hidden the
+one measurement that tells the third case from the second.
+
+**What stays, and must stay.** `generate_plat_lots.py`'s crossed-rows refusal and the
+`--self-test` case that fires it on this block are the evidence for everything above, and
+`tools/check.sh` runs them on every commit. A later run that deletes either — to tidy an
+omission out of the output, or because the block is "answered now" — has deleted the finding.
+The plat put a block here and the river takes it away; **both of those stay on the record.**
+
+**What this does not settle.** It does not say the Thompson plat was wrong to lay out block 21.
+It was not: the sheets put a block there, the block numbering still stamps it, and § 6.2's
+measurement is of the 1835 shoreline and not of the drawing. If a source ever shows the west
+corner filled, or the bank cut back, this is the paragraph the claim is argued against.
+
 ## 7. The cross-check: where the town's buildings actually stand
 
 `tools/generate_plat_lots.py --report` puts every placed structure in the 1835 scene against the

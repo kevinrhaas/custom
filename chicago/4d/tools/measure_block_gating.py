@@ -1,6 +1,11 @@
 #!/usr/bin/env python3
 """Why a platted block the grid refuses is refused: short of control, or never a block.
 
+T-0183 added a third answer this gate reads but does not itself measure — a block whose
+streets DO meet, whose access IS dry, and whose ground still cannot carry a lot because the
+South Branch takes its depth. It is expected to measure dry here, and the refusal that
+holds it is `tools/generate_plat_lots.py`'s crossed-rows rule.
+
 T-0163. `tools/generate_plat_lots.py` builds the platted grid as the CARTESIAN PRODUCT of
 the committed east-west rows and north-south columns, and refuses any pairing whose four
 centrelines do not meet. It reports each refusal as a distance — "South Water Street's
@@ -149,7 +154,8 @@ def main() -> int:
     programme = json.loads(PROGRAMME.read_text())
     units = [u for u in programme["schedule"]
              if u.get("kind", "").startswith("platted_block_awaiting_street_control")
-             or u.get("kind") == "platted_block_never_platted"]
+             or u.get("kind") in ("platted_block_never_platted",
+                                  "platted_block_ground_refuses")]
     if not units:
         die("the programme names no street-control refusals to measure")
 
@@ -162,11 +168,18 @@ def main() -> int:
               f"{row['wet']:7d}{row['samples']:5d}  {row['class']}")
 
     print()
+    by_kind = {u["id"]: u.get("kind") for u in units}
     for row in rows:
         if row["class"] == "never_platted":
             print(f"  {row['id']}: {row['street']} is {row['gap_m']:.0f} m away and "
                   f"{row['wet']} of {row['samples']} samples between them are water. "
                   "The two are on opposite banks; no trace joins them.")
+        elif by_kind[row["id"]] == "platted_block_ground_refuses":
+            print(f"  {row['id']}: {row['street']} is {row['gap_m']:.0f} m away over dry "
+                  "ground, and this block is NOT waiting on control. The access is dry; "
+                  "what the river takes is the block's depth. See "
+                  "tools/generate_plat_lots.py, which refuses it as a block whose rows "
+                  "have crossed, and thompson_plat_grid.md §§ 6.2-6.3.")
         else:
             print(f"  {row['id']}: {row['street']} is {row['gap_m']:.0f} m away over dry "
                   "ground. This block is really waiting on control.")
@@ -178,6 +191,15 @@ def main() -> int:
     expected = {
         "platted_block_awaiting_street_control": "awaiting_control",
         "platted_block_never_platted": "never_platted",
+        # T-0183, the owner's ruling of 2026-08-30. A block whose ground cannot carry a lot
+        # stays on this gate rather than dropping quietly off it, and it is expected to
+        # measure DRY — that is the whole distinction it exists to hold. Its refusal is
+        # geometric, not hydrological: the streets meet, the run between them is dry, and
+        # the South Branch takes the block's DEPTH instead of its access (2.8 m at Market
+        # against the 24.384 m one platted lot fronts). If this ever measured
+        # `never_platted` the classification really would have moved and the check should
+        # fail, which is why it is asserted here and not exempted.
+        "platted_block_ground_refuses": "awaiting_control",
     }
     by_id = {u["id"]: u for u in units}
     for row in rows:

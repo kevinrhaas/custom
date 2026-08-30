@@ -41,15 +41,14 @@
    "moved": [
     {
      "district": "south",
-     "blocks": 5,
-     "trade_roofs": 7,
-     "blocks_redealt": 5,
+     "blocks": 4,
+     "trade_roofs": 2,
+     "blocks_redealt": 4,
      "quota": {
       "blk_south_water_franklin": 1,
       "blk_south_water_lasalle": 1,
-      "blk_south_water_clark": 1,
-      "blk_south_water_dearborn": 0,
-      "blk_south_water_market": 4
+      "blk_south_water_clark": 0,
+      "blk_south_water_dearborn": 0
      }
     }
    ],
@@ -62,15 +61,7 @@
     "F3": "Landing apron and cargo-door arrangement must follow site access and cannot extend into water or duplicate a counted pier.",
     "W5": "A crane/derrick is rare and must not become a default; river access requires validated dry-bank terrain contact."
    },
-   "swapped": [
-    {
-     "family": "F3",
-     "from": "blk_south_water_market",
-     "to": "south_plat_beyond_committed_control",
-     "for": "C2",
-     "same_trade": true
-    }
-   ],
+   "swapped": [],
    "held": [],
    "ticket": "T-0316"
   },
@@ -361,8 +352,8 @@
    "families": {
     "A3": 1,
     "C2": 1,
-    "D4": 1,
-    "D5": 1
+    "D3": 1,
+    "D4": 1
    },
    "principal": 3,
    "ancillary": 1,
@@ -417,7 +408,7 @@
     "C3": 1,
     "D1": 1,
     "D2": 1,
-    "D3": 1,
+    "D5": 1,
     "D6": 1,
     "D7": 1
    },
@@ -447,14 +438,14 @@
    "roofs": 4,
    "families": {
     "A4": 1,
-    "C4": 1,
     "H1": 1,
-    "H2": 1
+    "H2": 1,
+    "H3": 1
    },
    "principal": 3,
    "ancillary": 1,
    "frontage_weight": 0.6023,
-   "trade_roofs": 1
+   "trade_roofs": 0
   },
   {
    "id": "blk_south_water_dearborn",
@@ -477,9 +468,9 @@
    "roofs": 4,
    "families": {
     "A5": 1,
+    "D3": 1,
     "D4": 1,
-    "D5": 1,
-    "H3": 1
+    "D5": 1
    },
    "principal": 3,
    "ancillary": 1,
@@ -822,7 +813,7 @@
   },
   {
    "id": "blk_south_water_market",
-   "kind": "platted_block_awaiting_street_control",
+   "kind": "platted_block_ground_refuses",
    "district": "south",
    "bounded_by": {
     "north": "south_water",
@@ -830,40 +821,20 @@
     "west": "market",
     "east": "franklin"
    },
-   "lots": 8,
-   "capacity_roofs": 31,
+   "lots": 0,
+   "capacity_roofs": 0,
    "standing_roofs": 0,
-   "free_lots": 8,
-   "principal_room": 21,
-   "ancillary_room": 6,
-   "headroom": 27,
-   "state": "gated",
-   "waiting_on": "South Water Street's committed centreline stops 24 m short of this block — the street control ROADMAP S9 records as owed. Measured dry: tools/measure_block_gating.py carries South Water toward this block over 25 m of ground with no wet sample on it, so this one really is waiting on a trace. What is missing is one control point at Market and South Water: the committed set holds four (Lake-Canal, Lake-Market, Randolph-Canal, Kinzie-Canal) and NONE anywhere on South Water, and Market's centreline stops at its single control point where Lake crosses it. AND THAT POINT CANNOT BE DERIVED, MEASURED 2026-08-27 BY T-0183. Under the node rule in data/traces/street_control.json the two modern successors — North Upper Wacker Drive and West Upper Wacker Drive — share exactly two nodes, and they are lake_market's own committed pair: Wacker changes name through a bend at the Lake Street junction rather than crossing at South Water, so the rule returns a plausible point 110 m south of the corner it names. Re-run it with tools/refetch_control.py --discover market_south_water, which now refuses the set rather than reporting it; the reading is filed under `refused_control` in street_control.json. So this block is NOT waiting on somebody fetching a junction. It is waiting on an owner decision — close South Water's west end onto Market from the 1834 sheets and the committed bank, which is what the rest of that curve already stands on, or return these 27 roofs to the South balance. HE RULED FOR THE CLOSURE ON 2026-08-29, AND THE GROUND REFUSED IT. Executed on the line as committed, the closure emits this block as a bowtie — South Water has converged on Lake Street before it reaches Market and their platted corridors overlap by 14.9 m there — and carried as far north as the committed waterline allows it leaves 2.8 m of block depth at Market against the 24.384 m one platted lot fronts. So these 27 roofs are not on the ground the ruling was about: the block is a wedge the South Branch pinches out at its west corner, and only its eastern two thirds could ever carry a lot. The refusal now fires in tools/generate_plat_lots.py --self-test rather than emitting a 4,411 m2 block with a plausible depth; the measurement is under `refused_control.market_south_water` in street_control.json and in docs/RESEARCH/thompson_plat_grid.md § 6.2, and what to do with the wedge is back with the owner.",
-   "lots_note": "eight lots assumed from the emitted blocks' own subdivision; the block itself is not generated, so it has no measured geometry",
-   "roofs": 27,
-   "families": {
-    "A1": 2,
-    "A2": 1,
-    "A3": 2,
-    "A4": 1,
-    "C2": 2,
-    "C3": 1,
-    "D1": 2,
-    "D2": 1,
-    "D3": 3,
-    "D4": 3,
-    "D5": 3,
-    "D6": 1,
-    "D7": 1,
-    "F2": 1,
-    "H1": 1,
-    "H2": 1,
-    "H3": 1
-   },
-   "principal": 21,
-   "ancillary": 6,
-   "frontage_weight": 0.6761,
-   "trade_roofs": 4
+   "free_lots": 0,
+   "principal_room": 0,
+   "ancillary_room": 0,
+   "headroom": 0,
+   "state": "ground_cannot_carry_it",
+   "waiting_on": "nothing — this block is not waiting, it is answered. The plat put a block here and the river takes it away, and both of those stay on the record. Its four streets do meet and the run between it and South Water is dry over 25 m with no wet sample on it, so it is neither a short-centreline refusal nor an opposite-banks one; what the South Branch takes is the block's DEPTH. The one control point it wanted, at Market and South Water, cannot be derived — the two modern successors change name through a BEND at the Lake Street junction rather than crossing, so the node rule returns lake_market's own committed pair 110 m south of the corner it would name (measured 2026-08-27; the reading is under `refused_control.market_south_water` in data/traces/street_control.json and tools/refetch_control.py --discover market_south_water still refuses it). The owner ruled on 2026-08-29 for closing South Water's west end onto Market's corridor from the 1834 sheets and the committed bank, and CARRIED OUT, THAT CLOSURE EMITS A BOWTIE: South Water has converged to within 9.5 m of Lake Street by the time it reaches Market, so their two 24.384 m platted corridors overlap by 14.9 m and the block's north-west corner falls south of its south-west one. Nor is that a badly drawn line. Pushed as far north as the committed heightfield allows — the north corridor edge exactly on the waterline, no clearance — the block measures 2.8 m deep at Market's easting against the 24.384 m one platted lot fronts, and does not reach a lot's frontage until about 15 m east of the corner. Building the wedge would mean re-deriving a committed centreline up to 34 m north onto the waterline and re-scoring every gate that reads it, for a block 2.8 m deep at its west corner; put to the owner with that cost, he declined it on 2026-08-30 and RETURNED THESE 27 ROOFS TO THE SOUTH BALANCE — the precedent being blk_south_water_clinton, whose 27 went back to the West balance when T-0163 measured them. The roofs moved and were not lost: remaining.of_target does not change. tools/generate_plat_lots.py refuses this block by name, as a block whose rows have crossed, and tools/check.sh fires that refusal on this exact case in --self-test. THAT REFUSAL IS THE FINDING; a later run must not delete it to tidy the output. docs/RESEARCH/thompson_plat_grid.md §§ 6.1-6.3.",
+   "lots_note": "no lots: the block is not generated, and on the measurement above its west corner could not carry one if it were",
+   "roofs": 0,
+   "families": {},
+   "principal": 0,
+   "ancillary": 0
   },
   {
    "id": "blk_south_water_clinton",
@@ -923,38 +894,38 @@
    "id": "south_plat_beyond_committed_control",
    "kind": "district_balance",
    "district": "south",
-   "capacity_roofs": 115,
+   "capacity_roofs": 142,
    "standing_roofs": 0,
-   "headroom": 115,
+   "headroom": 142,
    "state": "gated",
    "waiting_on": "TERRAIN, and not the street control ROADMAP S9 records as owed. The modelled heightfield ends at local N -400.0 m, which falls inside Washington Street's own platted corridor — 0.33 ha of that street's south half lies off the field. South of the corridor the field holds 0.0819 ha of land above the water surface and 0.0000 ha of it is in the South Division: the rest is the West Division bank, across the South Branch. Madison Street, the plat's south boundary, is 125.2 m further south again, so the plat's last tier — 6 blocks and 48 lots between Market and State, 6.28 ha — is not modelled ground at all. Every north-south column of the south plat has its committed centreline cut at the field's own south edge, so carrying street control further south would emit blocks whose every placement tools/generate_block_infill.py refuses for standing outside the modelled terrain. Ground east of State is not coming at any date — it is the United States Reservation (T-E2). Measured by tools/measure_southern_ground.py.",
-   "roofs": 115,
+   "roofs": 142,
    "families": {
-    "A1": 7,
-    "A2": 7,
-    "A3": 8,
-    "A4": 7,
+    "A1": 9,
+    "A2": 8,
+    "A3": 10,
+    "A4": 8,
     "A5": 4,
-    "C2": 3,
-    "C3": 3,
-    "C4": 2,
-    "D1": 5,
-    "D2": 5,
-    "D3": 10,
-    "D4": 11,
-    "D5": 10,
-    "D6": 6,
-    "D7": 5,
-    "F2": 2,
+    "C2": 5,
+    "C3": 4,
+    "C4": 3,
+    "D1": 7,
+    "D2": 6,
+    "D3": 12,
+    "D4": 14,
+    "D5": 13,
+    "D6": 7,
+    "D7": 6,
+    "F2": 3,
     "F3": 2,
     "F4": 1,
-    "H1": 6,
-    "H2": 6,
-    "H3": 4,
+    "H1": 7,
+    "H2": 7,
+    "H3": 5,
     "W2": 1
    },
-   "principal": 82,
-   "ancillary": 33
+   "principal": 103,
+   "ancillary": 39
   },
   {
    "id": "west_division_beyond_committed_control",

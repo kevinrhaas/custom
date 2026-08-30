@@ -75,7 +75,11 @@ step is an inference and is graded as one; it is not a close call.
 
 `blk_south_water_market` is not in the grid — South Water's committed centreline stops 24 m short
 of it (`thompson_plat_grid.md` § 6) — so its number is stamped onto the omission, where the two
-facts sit together instead of one contradicting the other's absence.
+facts sit together instead of one contradicting the other's absence. That omission is **permanent
+rather than pending**: closing the 24 m gap was ruled on, carried out and measured, and the block
+it opens is 2.8 m deep at Market against the 24.384 m one platted lot fronts, because the South
+Branch is there (§§ 6.2–6.3, T-0183). The number stays. What the sheets laid out and what the 1835
+shoreline allows are two different facts, and this file is the one that holds the first.
 
 **Nothing else is numbered, and the refusals are the load-bearing part.** The crop fixes the
 direction of the run *inside* a row and says nothing about how it passes from one row to the

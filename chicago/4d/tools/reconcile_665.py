@@ -162,13 +162,24 @@ def block_capacity(lots: int) -> int:
 #   blk_south_water_market    south_water  25 m away,   0 of 5 samples wet
 #   blk_south_water_clinton   south_water 328 m away,  20 of 66 samples wet
 #
-# THE FIRST IS STILL DRY AND STILL GATED, AND SINCE 2026-08-27 IT IS GATED ON A DIFFERENT
-# THING. T-0183 went to fetch the one control point it waits on — Market x South Water —
-# and the rule cannot make it: the two modern successors meet at a BEND, not a crossing,
-# and return lake_market's own nodes 110 m away (data/traces/street_control.json,
-# `refused_control.market_south_water`). The block stays here because it is real dry
-# ground with 27 roofs of headroom, but what it waits on is now an owner decision about
-# how to close South Water's west end, not an errand.
+# THE FIRST IS DRY AND IS NO LONGER HERE, AND T-0183 IS THE WHOLE OF WHY. It went to fetch
+# the one control point the block waits on — Market x South Water — and the rule cannot
+# make it: the two modern successors meet at a BEND, not a crossing, and return
+# lake_market's own nodes 110 m away (data/traces/street_control.json,
+# `refused_control.market_south_water`). Put the fork to the owner and he ruled, on
+# 2026-08-29, for closing South Water's west end onto Market's corridor from the 1834
+# sheets and the committed bank. Carried out, THE GROUND REFUSED THE RULING: the closure
+# emits a bowtie, and pushed as far north as the committed waterline allows the block has
+# 2.8 m of depth at Market against the 24.384 m one platted lot fronts. Told that, he ruled
+# again on 2026-08-30 and sent the 27 roofs back to the South balance. So this block is not
+# gated on a trace, on an errand or on a decision any more — it is ground that cannot carry
+# a lot, and it moved to GROUND_REFUSES_OMISSIONS below.
+#
+# WHAT IS LEFT IN THIS SET IS NOTHING, and that is a real state rather than a tidy-up: no
+# block in this plat is now waiting on street control that street control could deliver.
+# The set is kept, with its rule and its two-way split intact, because the plat grid emits
+# omissions on every run and the next one to be refused for a SHORT CENTRELINE belongs
+# here — not because the case is hypothetical.
 #
 # The second is the South Branch. South Water Street is a SOUTH-BANK street; the block
 # between Clinton and Canal is on the West Side, two blocks back from the west bank. No
@@ -181,13 +192,33 @@ def block_capacity(lots: int) -> int:
 # columns, and scheduling its 27 roofs against "street control ROADMAP S9 records as owed"
 # promised ground that no trace can deliver. Those roofs go back to the West Division
 # balance, where "waiting on coverage" is a statement the ledger can actually make.
-STREET_CONTROL_OMISSIONS = {"blk_south_water_market"}
+STREET_CONTROL_OMISSIONS: set[str] = set()
 
 # Refused because the two streets never met, not because a centreline is short. Kept in the
 # schedule rather than dropped, so the block is visibly answered instead of silently absent
 # — and so the day a source shows the row really did run that far, this is where the claim
 # is argued rather than re-discovered.
 NEVER_PLATTED_OMISSIONS = {"blk_south_water_clinton"}
+
+# Refused because the ground between the streets cannot carry a lot, which is a third thing
+# again and is T-0183's answer. The streets DO meet here and the run between them IS dry —
+# that is what put 27 roofs of headroom behind this block for as long as it stood in
+# STREET_CONTROL_OMISSIONS — so neither of the two sets above can hold it honestly. What
+# the South Branch takes away is the block's DEPTH: measured against the committed
+# heightfield (docs/RESEARCH/thompson_plat_grid.md § 6.2), the most northerly South Water
+# corridor the waterline allows leaves 2.8 m at Market's easting, against the 24.384 m one
+# platted lot fronts, and South Water has converged to within 9.5 m of Lake Street by then
+# so their platted corridors overlap by 14.9 m. `tools/generate_plat_lots.py` refuses the
+# emission by name — a block whose two rows have CROSSED — and `tools/check.sh` fires that
+# refusal on this exact case every commit. THAT REFUSAL IS THE EVIDENCE AND MUST NOT BE
+# DELETED to tidy the output.
+#
+# The block keeps its place in the schedule, for `blk_south_water_clinton`'s reason: an
+# answered block is visible and a dropped one is not. It keeps NO headroom — its 27 roofs
+# go back to the South balance, exactly as T-0163 returned Clinton's 27 to the West, where
+# "waiting on coverage" is a statement the ledger can actually make. The roofs move; they
+# are not lost, and `remaining.of_target` does not change.
+GROUND_REFUSES_OMISSIONS = {"blk_south_water_market"}
 
 # The West recipe's own instantiation block: "do not emit structure records or meshes for
 # any placement with centre E < -300 m until the heightfield, collision surface,
@@ -953,46 +984,69 @@ def programme_document():
             "principal_room": rooms[0], "ancillary_room": rooms[1],
             "headroom": rooms[0] + rooms[1],
             "state": "gated",
-            "waiting_on": f"{block['reason']} — the street control ROADMAP S9 records as owed. "
-                          "Measured dry: tools/measure_block_gating.py carries South Water "
-                          "toward this block over 25 m of ground with no wet sample on it, "
-                          "so this one really is waiting on a trace. What is missing is one "
-                          "control point at Market and South Water: the committed set holds "
-                          "four (Lake-Canal, Lake-Market, Randolph-Canal, Kinzie-Canal) and "
-                          "NONE anywhere on South Water, and Market's centreline stops at "
-                          "its single control point where Lake crosses it. "
-                          "AND THAT POINT CANNOT BE DERIVED, MEASURED 2026-08-27 BY T-0183. "
-                          "Under the node rule in data/traces/street_control.json the two "
-                          "modern successors — North Upper Wacker Drive and West Upper "
-                          "Wacker Drive — share exactly two nodes, and they are lake_market's "
-                          "own committed pair: Wacker changes name through a bend at the "
-                          "Lake Street junction rather than crossing at South Water, so the "
-                          "rule returns a plausible point 110 m south of the corner it names. "
-                          "Re-run it with tools/refetch_control.py --discover "
-                          "market_south_water, which now refuses the set rather than "
-                          "reporting it; the reading is filed under `refused_control` in "
-                          "street_control.json. So this block is NOT waiting on somebody "
-                          "fetching a junction. It is waiting on an owner decision — close "
-                          "South Water's west end onto Market from the 1834 sheets and the "
-                          "committed bank, which is what the rest of that curve already "
-                          "stands on, or return these 27 roofs to the South balance. "
-                          "HE RULED FOR THE CLOSURE ON 2026-08-29, AND THE GROUND REFUSED "
-                          "IT. Executed on the line as committed, the closure emits this "
-                          "block as a bowtie — South Water has converged on Lake Street "
-                          "before it reaches Market and their platted corridors overlap by "
-                          "14.9 m there — and carried as far north as the committed "
-                          "waterline allows it leaves 2.8 m of block depth at Market against "
-                          "the 24.384 m one platted lot fronts. So these 27 roofs are not on "
-                          "the ground the ruling was about: the block is a wedge the South "
-                          "Branch pinches out at its west corner, and only its eastern two "
-                          "thirds could ever carry a lot. The refusal now fires in "
-                          "tools/generate_plat_lots.py --self-test rather than emitting a "
-                          "4,411 m2 block with a plausible depth; the measurement is under "
-                          "`refused_control.market_south_water` in street_control.json and "
-                          "in docs/RESEARCH/thompson_plat_grid.md § 6.2, and what to do with "
-                          "the wedge is back with the owner.",
+            "waiting_on": f"{block['reason']} — the street control ROADMAP S9 records as owed, "
+                          "and tools/measure_block_gating.py has measured the run between "
+                          "this block and the street it is refused for as dry, so the "
+                          "refusal really is a short centreline and not a river.",
             "lots_note": "eight lots assumed from the emitted blocks' own subdivision; the "
                          "block itself is not generated, so it has no measured geometry",
+        })
+    # A block the plat grid proposed, whose four streets really do meet and whose ground
+    # really is dry — and which the ground still cannot carry, because the South Branch
+    # takes its DEPTH rather than its access. T-0183, and the owner's second ruling on
+    # 2026-08-30. It keeps its place in the schedule so the answer is visible, and it keeps
+    # NO headroom: its roofs go back to the district balance, the way T-0163 sent
+    # blk_south_water_clinton's there. See GROUND_REFUSES_OMISSIONS above.
+    for block in grid["omitted"]:
+        if block["id"] not in GROUND_REFUSES_OMISSIONS:
+            continue
+        units.append({
+            "id": block["id"], "kind": "platted_block_ground_refuses",
+            "district": "west" if block["id"].endswith("clinton") else "south",
+            "bounded_by": block["bounded_by"], "lots": 0,
+            "capacity_roofs": 0, "standing_roofs": 0, "free_lots": 0,
+            "principal_room": 0, "ancillary_room": 0, "headroom": 0,
+            "state": "ground_cannot_carry_it",
+            "waiting_on": "nothing — this block is not waiting, it is answered. The plat "
+                          "put a block here and the river takes it away, and both of those "
+                          "stay on the record. Its four streets do meet and the run between "
+                          "it and South Water is dry over 25 m with no wet sample on it, so "
+                          "it is neither a short-centreline refusal nor an opposite-banks "
+                          "one; what the South Branch takes is the block's DEPTH. The one "
+                          "control point it wanted, at Market and South Water, cannot be "
+                          "derived — the two modern successors change name through a BEND "
+                          "at the Lake Street junction rather than crossing, so the node "
+                          "rule returns lake_market's own committed pair 110 m south of the "
+                          "corner it would name (measured 2026-08-27; the reading is under "
+                          "`refused_control.market_south_water` in "
+                          "data/traces/street_control.json and "
+                          "tools/refetch_control.py --discover market_south_water still "
+                          "refuses it). The owner ruled on 2026-08-29 for closing South "
+                          "Water's west end onto Market's corridor from the 1834 sheets and "
+                          "the committed bank, and CARRIED OUT, THAT CLOSURE EMITS A BOWTIE: "
+                          "South Water has converged to within 9.5 m of Lake Street by the "
+                          "time it reaches Market, so their two 24.384 m platted corridors "
+                          "overlap by 14.9 m and the block's north-west corner falls south "
+                          "of its south-west one. Nor is that a badly drawn line. Pushed as "
+                          "far north as the committed heightfield allows — the north "
+                          "corridor edge exactly on the waterline, no clearance — the block "
+                          "measures 2.8 m deep at Market's easting against the 24.384 m one "
+                          "platted lot fronts, and does not reach a lot's frontage until "
+                          "about 15 m east of the corner. Building the wedge would mean "
+                          "re-deriving a committed centreline up to 34 m north onto the "
+                          "waterline and re-scoring every gate that reads it, for a block "
+                          "2.8 m deep at its west corner; put to the owner with that cost, "
+                          "he declined it on 2026-08-30 and RETURNED THESE 27 ROOFS TO THE "
+                          "SOUTH BALANCE — the precedent being blk_south_water_clinton, "
+                          "whose 27 went back to the West balance when T-0163 measured them. "
+                          "The roofs moved and were not lost: remaining.of_target does not "
+                          "change. tools/generate_plat_lots.py refuses this block by name, "
+                          "as a block whose rows have crossed, and tools/check.sh fires that "
+                          "refusal on this exact case in --self-test. THAT REFUSAL IS THE "
+                          "FINDING; a later run must not delete it to tidy the output. "
+                          "docs/RESEARCH/thompson_plat_grid.md §§ 6.1-6.3.",
+            "lots_note": "no lots: the block is not generated, and on the measurement above "
+                         "its west corner could not carry one if it were",
         })
     # A block the grid proposed and the ground refuses. It keeps its bounded_by and its
     # place in the schedule so the answer is visible, and it keeps NO headroom: its roofs

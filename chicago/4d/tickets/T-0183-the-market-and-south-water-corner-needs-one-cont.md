@@ -1,7 +1,7 @@
 ---
 id: T-0183
 title: The Market and South Water corner needs one control point, and the node rule may not be able to make it
-state: open
+state: claimed
 epic: META
 requested_by: steward
 seen: false
@@ -11,7 +11,7 @@ parent: null
 opened: 2026-08-24
 closed: null
 pr: null
-claimed_by: run 8/29/2026, 6:42:06 PM CT
+claimed_by: run 8/30/2026, 4:28:56 AM CT
 blocked_on: null
 needs_bake: false
 ---
@@ -241,3 +241,64 @@ must not delete it to tidy the output.
   both REMAIN. A run that removes either has removed the evidence.
 - The 665-roof total does not change — these roofs move, they are not lost. If a
   run finds the total must move, it says so with its reason.
+
+---
+
+## WHAT WAS DONE — 2026-08-30, the second ruling carried out
+
+The 27 roofs are back in the South balance and the block is answered rather than waiting.
+Nothing in the scene moved; no record, mesh or street line was touched.
+
+**A third refusal, because neither existing one is true here.** `tools/reconcile_665.py`
+held two sets: `STREET_CONTROL_OMISSIONS` (the streets met, the run between is dry, the
+centreline is short) and `NEVER_PLATTED_OMISSIONS` (the streets never met, the run is wet,
+the pairing is an artifact of the grid's cartesian product). `blk_south_water_market` is
+neither: its streets DO meet and its approach IS dry — 25 m, 0 of 5 samples wet — and it
+still cannot carry a lot, because what the South Branch takes is the block's DEPTH. So it
+moves to a new `GROUND_REFUSES_OMISSIONS`, kind `platted_block_ground_refuses`, state
+`ground_cannot_carry_it`, with no lots and **no headroom**.
+
+| | before | after |
+|---|---|---|
+| `blk_south_water_market` headroom | 27, `gated` | **0**, `ground_cannot_carry_it` |
+| `south_plat_beyond_committed_control` | 115 | **142** |
+| South Division remainder | 162 | **162** |
+| `remaining.of_target` | 662 | **662** |
+
+The roofs moved and were not lost, which is the acceptance's own arithmetic.
+`blk_south_water_clinton`'s precedent is cited in the code comment, in the ledger's
+`waiting_on`, and in the doc. Two derived terms re-dealt as a consequence and are reported
+by the tool rather than asserted: the business front now re-deals 2 trade roofs over 4
+platted blocks instead of 7 over 5 (the block's quota of 4 had nowhere to sit), and the
+waterside term's F3 swap out of this block disappears because the block is dealt nothing.
+
+**`STREET_CONTROL_OMISSIONS` is now empty**, and it is kept rather than deleted: no block in
+this plat is waiting on control that control could deliver, which is a real state, and the
+plat grid emits omissions on every run so the next short-centreline refusal belongs there.
+
+**The gate keeps measuring the block.** `tools/measure_block_gating.py` now reads the third
+kind and expects it to measure **dry** — that is precisely the distinction it exists to
+hold, a dry approach to ground that cannot carry a lot. Dropping the block off the gate
+would have hidden the one measurement that tells this case from `never_platted`. It prints
+a third narrative line saying the refusal is geometric and pointing at where it lives.
+`BLOCK GATING PASS`, both rows.
+
+**Nothing was softened.** `tools/generate_plat_lots.py`'s crossed-rows refusal and its
+`--self-test` case are untouched and still fire on this block every commit — the acceptance
+requires it and the comment now says why a later run must not tidy them away.
+`data/traces/street_control.json`'s `refused_control.market_south_water` is unchanged except
+for an appended `and_the_owner_answered_it_2026_08_30` recording the outcome; no coordinate
+was written for the junction and `tools/refetch_control.py --discover market_south_water`
+still exits 1 (re-run in this run: same two nodes, same 17.68 m spread, same identification
+as `lake_market`).
+
+**Where it is written down.** `docs/RESEARCH/thompson_plat_grid.md` § 6.3 — the ruling, the
+three-refusal table, the 115 → 142 move, and what this does NOT settle (the plat was not
+wrong to lay out block 21). `data/traces/thompson_block_numbering.json` and
+`docs/RESEARCH/thompson_block_numbering.md` now say the omission is permanent rather than
+pending, so a reader of the numbering does not infer a pending trace. No `LIBERTIES.md`
+entry: nothing was invented — a booking was withdrawn.
+
+**PR #577 is superseded and was left alone.** It carries out the 2026-08-29 ruling — the
+closure, the block built as a wedge — which the 2026-08-30 ruling declines. It is labelled
+`hold`, so it is the owner's to close; a comment on it points here.

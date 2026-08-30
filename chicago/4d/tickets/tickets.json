@@ -1,6 +1,6 @@
 {
   "project": "chicago-4d",
-  "generated_ct": "Aug 30, 2026, 3:43 AM",
+  "generated_ct": "Aug 30, 2026, 4:28 AM",
   "tickets": [
     {
       "id": "T-0001",
@@ -3134,7 +3134,7 @@
     {
       "id": "T-0183",
       "title": "The Market and South Water corner needs one control point, and the node rule may not be able to make it",
-      "state": "open",
+      "state": "claimed",
       "epic": "META",
       "requested_by": "steward",
       "seen": false,
@@ -3144,7 +3144,7 @@
       "opened": "2026-08-24",
       "closed": null,
       "pr": null,
-      "claimed_by": "run 8/29/2026, 6:42:06 PM CT",
+      "claimed_by": "run 8/30/2026, 4:28:56 AM CT",
       "blocked_on": null,
       "needs_bake": false,
       "queue_rank": 4

@@ -39,7 +39,7 @@
       "numeral_on_sheet": false,
       "confidence": "inferred",
       "sources": ["wright_1834"],
-      "note": "Two blocks west of the read 19, counted at one block per step along the tier. This block is OMITTED from the generated grid — South Water Street's committed centreline stops 24 m short of it (docs/RESEARCH/thompson_plat_grid.md § 6) — so the number is carried here and stamped onto the omission rather than onto a block. Nothing says whether the tier's run continues west of Market Street; only that this block is two steps from one that was read."
+      "note": "Two blocks west of the read 19, counted at one block per step along the tier. This block is OMITTED from the generated grid — South Water Street's committed centreline stops 24 m short of it (docs/RESEARCH/thompson_plat_grid.md § 6) — so the number is carried here and stamped onto the omission rather than onto a block. The omission is now permanent rather than pending: closing that 24 m gap was ruled on, carried out and measured, and the block it opens is 2.8 m deep at Market against the 24.384 m one platted lot fronts \u2014 the South Branch pinches it out. See thompson_plat_grid.md \u00a7\u00a7 6.2-6.3 (T-0183). The number stays because the sheets put a block here; what the plat laid out and what the shoreline allows are two different facts and both are on the record. Nothing says whether the tier's run continues west of Market Street; only that this block is two steps from one that was read."
     },
     {
       "block_id": "blk_south_water_franklin",
