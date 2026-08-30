@@ -157,9 +157,20 @@ def build(params: FrameTavernParams, name: str):
                       ridge_z + 0.55, c_ch, m_ch, skip=("bottom",))
     else:
         c_ch = params.worst_conf(*ch_attrs) if len(ch_attrs) > 1 else params.conf("chimneys")
+        # SPACED ALONG THE RIDGE, whichever way the ridge runs. The roof above is
+        # built `ridge_along_x=(w >= d)`, so on a block deeper than it is wide the
+        # ridge runs across the frontage and the depth midline is a SLOPE. This
+        # branch spaced its stacks at the depth midline unconditionally, which put
+        # them a third of the way down two slopes on every such block and stood them
+        # up to 3.217 m proud of the roof they break — measured by
+        # tools/measure_stove_pipe_ordinance.py on five of these eleven buildings,
+        # against the four feet Andreas says no chimney in this town exceeded.
+        # The `gable_ends` branch above has always turned with the ridge; this one
+        # now does the same, and on a block at least as wide as it is deep the two
+        # expressions are identical, so no building that was right has moved (T-0333).
         for fx in _stack_fractions(params.chimneys):
-            cx = w * fx
-            b.add_box(cx - 0.45, d / 2 - 0.45, wall_z, cx + 0.45, d / 2 + 0.45,
+            cx, cy = (w * fx, d / 2) if w >= d else (w / 2, d * fx)
+            b.add_box(cx - 0.45, cy - 0.45, wall_z, cx + 0.45, cy + 0.45,
                       ridge_z + 0.55, c_ch, m_ch, skip=("bottom",))
 
     # The roof keeps the archetype's weathered grey unless the record states a

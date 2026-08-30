@@ -1,4 +1,12 @@
 export const CHANGELOG = [ // newest first
+  { v: 427, title: 'Five chimneys come down off the roof slope onto the ridge', kind: 'fix', ts: '2026-08-30T04:37:57.321Z', date: 'Aug 29, 2026, 11:37 PM CT',
+    items: [
+      'Look at the Western Hotel, or at four inferred houses on the North Side, and two brick stacks that stood halfway down each roof slope \u2014 the tallest of them ten feet of bare brick above the shingles \u2014 now sit on the ridge where a stack belongs.',
+      'The town has a rule about this, and it is the town\u2019s own. The Trustees\u2019 ordinance of 5 August 1835 says every stove pipe or chimney passing through a roof must be carried at least eighteen inches above it, on a five-dollar penalty, with a fire warden calling at every house once a month from September to May. The corporation\u2019s earlier fire ordinance, in force at the scene date, says eighteen inches too.',
+      'Andreas gives the other end of it: a Chicago with \u201Cnot a single steeple nor a chimney four feet above any roof\u201D. One is a minimum the town enforced and one is a maximum somebody noticed, and together they bracket every stack in the scene.',
+      'All 234 stacks were measured against that bracket, one at a time. None was short \u2014 the lowest stands twenty-one and a half inches proud. Nine on five buildings were far too tall, and every one was a tavern block deeper than it was wide, where the roof runs its ridge the other way and the stacks were being spaced across the wrong axis. They now turn with the ridge, as the archetype\u2019s other placement always has.',
+      'Six of the eleven tavern blocks rebuilt byte for byte, which is the check that no building that was already right has moved. The bracket is now a gate: no stack in this town can drift under eighteen inches or over four feet without the build saying so.',
+    ] },
   { v: 426, title: 'The saddlery\u2019s corner becomes a question you can read', kind: 'fix', ts: '2026-08-30T03:48:04.447Z', date: 'Aug 29, 2026, 10:48 PM CT',
     items: [
       'Walk up to S. B. Cobb\u2019s saddle, harness and trunk manufactory, on Lake Street in the West Division, and the card you open now carries an open question of its own: which cross street is this? The town\u2019s list of open questions goes from four to five, and this is the second one that is about a building you can stand in front of rather than a patch of empty ground.',

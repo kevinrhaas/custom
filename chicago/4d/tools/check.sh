@@ -192,6 +192,24 @@ step "the fort wood re-derives from the palisade and the apron it stands off" \
 step "no stack in the town is painted the colour of the roof it passes through" \
   python3 tools/measure_stack_fabric.py --gate --quiet
 
+# ...and no stack stands the wrong HEIGHT above it. The Trustees' ordinance of 5 August
+# 1835, section 18, requires every stove pipe or chimney passing through a roof to be
+# carried at least eighteen inches above it under a five-dollar penalty
+# (chicago_democrat_1835_08_19#c005); the corporation's fire ordinance of 26 November
+# 1833, the one actually in force at the scene date, carries the same figure
+# (chicago_democrat_1833_11_26#c028). Andreas describes the other end of the same
+# bracket — "not a single steeple nor a chimney four feet above any roof" — so the two
+# together bound every stack in the scene. This is the project's FIRST documented
+# dimensional constraint on anything above a roof line, and unlike the gate above it
+# decodes the mesh, because the question is per-STACK: accessor bounds report a
+# building's tallest stack and its main ridge, which hides a short stack on a kitchen
+# ell behind a tall one on the main block. T-0333.
+step "every stack in the town stands inside the ordinance's eighteen inches and Andreas's four feet" \
+  python3 tools/measure_stove_pipe_ordinance.py --gate --quiet
+
+step "...and the instrument that measures them fails when it should" \
+  python3 tools/measure_stove_pipe_ordinance.py --self-test
+
 # The river wharves are the fourth record of this shape and the first whose rule
 # reads a record's OWN attribute rather than a trade table: a sidecar standing on
 # the scene date whose `dock` is true and graded attested or inferred. Two

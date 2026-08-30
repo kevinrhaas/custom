@@ -88,11 +88,12 @@ T-0181 — The desktop 7-9 smoke leg has 9m49s of margin against its 30-minute c
 T-0170 — The desktop smoke's part 7 has 2 m 17 s of margin, and it is the one measured over the ceiling on another runner
 
 # --- VISIBLE: THE GROUND, THE FORT, AND WHAT THE ORDINANCES PUT ON EVERY ROOF.
-# --- T-0219 is parked on PR #432. T-0333 and T-0334 are two ordinances the papers
-# --- yielded that nothing draws yet — a stove pipe on every roof in the town, and the
-# --- hay-stacking boundary.
+# --- T-0219 is parked on PR #432. T-0333 CLOSED in PR #TBD: every one of the town's 234
+# --- stacks was measured against the ordinance's eighteen inches and Andreas's four feet,
+# --- none was short, and the nine that were too tall — all on tavern blocks deeper than
+# --- they are wide — now stand on the ridge. T-0334, the hay-stacking boundary, is the
+# --- other ordinance the papers yielded that nothing draws yet.
 T-0219 — Finish the heightfield SOUTH to Madison Street, the plat's last tier
-T-0333 — Every stove pipe in the town owes eighteen inches above its roof, and the ordinance of 5 August 1835 says so
 T-0334 — The hay-stacking ordinance walks a six-vertex boundary round the built town, and nothing draws or tests it
 T-0266 — On a phone from across the river the stockade's picket rhythm falls under the pixel grid and beats
 T-0332 — The sheet's one brick is called chimney_brick, and a wall now reads it
@@ -179,3 +180,4 @@ T-0398 — A firm's own style stands in its proprietor list, because a claim rea
 T-0424 — The 1 January 1834 letter list's printed length, and the names all nine printings lost, need the page images
 T-0425 — A letter-list household's arrival bound is dated by the printing it was extracted from, not by the return, so nine printings of one list give nine different bounds
 T-0428 — The 1 April 1834 letter list has three positions no printing reads, and only the page images can say how long it was
+T-0433 — The frame_tavern archetype's chimney placement assumed a ridge direction the roof generator does not always take, and no other archetype was checked for the same assumption
