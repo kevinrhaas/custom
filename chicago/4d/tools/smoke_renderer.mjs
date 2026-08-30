@@ -3968,10 +3968,18 @@ for (const [label, viewport, touch] of [
       // hitching post there would be furniture standing on an invention").
       // Nothing else moves: no run opens, no crossing is added, and the shop's
       // own wall was never a street-fence refusal.
-      frontage.census?.records === 5 && frontage.census?.walks === 51
-        && frontage.census?.crossings === 39
+      // T-0183 closed South Water Street's west end on Market's corridor, so
+      // blk_south_water_market became the plat's EIGHTEENTH block bounded east
+      // and west by a cross street and the street edge gained its four faces:
+      // 51 walks to 53, 39 crossings to 41, 83 refusals to 90. Posts and fences
+      // do not move — the block carries no building at all yet, so it has no
+      // named trade for the hitching rule and no wall for the fence rule to
+      // stand back from; every one of its walls is refused for want of one,
+      // which is where six of the seven new refusals come from.
+      frontage.census?.records === 5 && frontage.census?.walks === 53
+        && frontage.census?.crossings === 41
         && frontage.census?.posts === 17 && frontage.census?.fences === 35
-        && frontage.census?.refused === 83
+        && frontage.census?.refused === 90
         && frontage.recordIds.join(',')
           === 'green_tree_frontage,sauganash_frontage,river_walk_frontage,'
             + 'lasalle_crossing_frontage,town_street_edge'
@@ -4055,8 +4063,9 @@ for (const [label, viewport, touch] of [
         // 53 -> 61 with T-0241's Washington faces, for the reason stated above:
         // this number moves with `EDGE_STREETS` because the walk is chunked one
         // mesh per run and Washington laid eight more of them. T-0196's Lake
-        // Street repair opens a forty-first run, so 62.
-        && frontage.meshes === 62,
+        // Street repair opens a forty-first run, so 62. T-0183's new block on
+        // the river front opens two more runs, so 64.
+        && frontage.meshes === 64,
       `"${frontage.lettering}" on ${frontage.letterVerts} vertices across `
       + `${frontage.meshes} mesh(es) (${frontage.names?.join(', ')}), record says `
       + `"${frontage.recordText}" graded ${frontage.textGrade}`);
@@ -4503,9 +4512,14 @@ for (const [label, viewport, touch] of [
     // the same division as before — the face count is the scope statement and
     // has to be exact, and a walk that shrank under a floor would be a march
     // quietly refusing ground it used to lay.
+    // T-0183 raised the face count once more, and only the face count: closing
+    // South Water Street's west end on Market's corridor built
+    // blk_south_water_market, whose four faces take 36 to 38. The three floors
+    // below are left where they are — they are floors, and a new block only
+    // ever adds to them.
     check(`${label}: the street edge is generated from the plat, not placed on one block`,
       edge.hasRecord && edge.cardId === 'town_street_edge'
-        && edge.faces === 36 && edge.walkM >= 3050 && edge.fences >= 34
+        && edge.faces === 38 && edge.walkM >= 3050 && edge.fences >= 34
         && edge.decks >= 232,
       `record ${edge.hasRecord}, card ${edge.cardId}, ${edge.faces} block face(s), `
       + `${edge.walkM} m of walk, ${edge.fences} fence run(s), `

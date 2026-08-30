@@ -201,3 +201,62 @@ rule refused it and why.
   itself editing that refusal to make this pass, it has taken the wrong path and stops.
 - The block's 27 roofs are confirmed schedulable, or the reason they are not is recorded.
 - A liberty entry, because a closed end on a non-control basis is a stated liberty.
+
+---
+
+## DONE — the closure, 2026-08-30
+
+The owner's ruling was carried out. **South Water Street's west end is closed on Market's
+corridor at local (89.51, −71.02), and `blk_south_water_market` builds.**
+
+### The corner, and how it was derived
+
+Market Street's platted centreline — the line through the data box at N −400 and the committed
+control point `lake_market` — is carried NORTH until the committed heightfield
+`e1834_harbor_cut` turns wet. The northernmost dry sample on it, bisected to 0.01 m against the
+same water test `tools/generate_plat_lots.py` uses, is **(89.51, −71.02)**. That is the 1834
+sheets for the line and the committed bank for the stop, which is the basis the ruling named and
+the basis the rest of this street's curved west approach already stood on.
+
+South Water's path loses its old terminal vertex **(100, −101)** — which ran 30 m down the South
+Branch's east bank, past Lake Street's own latitude, and is Market Street's ground rather than
+this street's — and gains the corner plus one vertex at **(101, −71)** carrying the line east
+along the point of land to the committed (120, −57). Every 0.5 m sample of both new segments is
+on dry, modelled ground; a single segment from the corner to (120, −57) is not, and that is why
+there are two.
+
+Market's own path gains (89.51, −71.02) as its north end. The added vertex is collinear with the
+control the line already stood on, so nothing between Lake Street and the data box moved: the
+seven `blk_lake_market` and `blk_randolph_market` roofs shift by at most 5 mm and 0.01°, from the
+miter join, and no mesh goes stale.
+
+### Graded for what it is
+
+- `south_water.west_end` in `data/streets/1835.json` carries the corner, the derivation, the
+  grade **`conjectural`**, and `not_control` — which names the refusal in its own words: the bend
+  at the Lake Street junction, the two shared nodes, the 110 m.
+- `refused_control.market_south_water` in `data/traces/street_control.json` is **unchanged**
+  except for an appended `what_the_owner_ruled` recording the decision and the fact that nothing
+  was softened. **`python3 tools/refetch_control.py --discover market_south_water` was re-run
+  against today's OpenStreetMap in this run and still exits 1** — same two nodes, same 17.68 m
+  spread, same verdict.
+- Liberty **L214**, and `docs/RESEARCH/thompson_plat_grid.md` § 6.2.
+
+### The block
+
+8 lots, 4,957 m², 107.0 m of frontage, depth 8.8 m at the Market end to 36.9 m at Franklin — the
+wedge the bank leaves between the river and Lake Street. Plat block **21**'s number is stamped on
+a block instead of on an omission. The grid goes 19 blocks → 20 and 34 cross-street platted faces
+→ 36; the street edge goes 36 block faces → 38.
+
+**The 27 roofs are confirmed schedulable and are deliberately not dealt here.**
+`tools/measure_block_gating.py` no longer lists the block at all — it stopped being a refusal, so
+there is nothing left for that gate to classify, and `blk_south_water_clinton` stays
+`never_platted` (316 m, 26 of 64 samples wet). `tools/reconcile_665.py` re-ran and the block is
+available to the schedule; dealing its roofs re-derives the occupancy ledger and is its own unit
+of work, filed rather than smuggled in here.
+
+### Found along the way
+
+**T-0428** — `tools/derive_timber_belt.py --write` left `trees.js` unparseable when the derived
+belt grew from 7 points to 8. Repaired by hand in this run; the tool is not.

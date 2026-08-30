@@ -1,6 +1,6 @@
 {
   "project": "chicago-4d",
-  "generated_ct": "Aug 29, 2026, 6:37 PM",
+  "generated_ct": "Aug 29, 2026, 8:48 PM",
   "tickets": [
     {
       "id": "T-0001",
@@ -6946,6 +6946,24 @@
       "blocked_on": null,
       "needs_bake": false,
       "queue_rank": 77
+    },
+    {
+      "id": "T-0428",
+      "title": "derive_timber_belt.py --write leaves trees.js unparseable when the derived belt has more points than the committed one",
+      "state": "open",
+      "epic": "META",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "S",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-08-30",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "queue_rank": 78
     }
   ]
 }
