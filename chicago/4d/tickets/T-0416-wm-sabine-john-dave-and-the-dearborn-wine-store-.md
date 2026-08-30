@@ -1,7 +1,7 @@
 ---
 id: T-0416
 title: Wm. Sabine, John Dave and the Dearborn wine store: the three storefronts the street-face policy refuses for want of a fronting roof
-state: blocked-owner
+state: open
 epic: META
 requested_by: loop
 seen: false
@@ -12,7 +12,7 @@ opened: 2026-08-29
 closed: null
 pr: null
 claimed_by: run 8/29/2026, 4:23:13 PM CT
-blocked_on: Is a corner side a face, and is the centreline band? Measured: a corner-side ruling seats +12 shops (Dearborn 8, La Salle 3, Canal 1) and NONE of this ticket's three; adding the band seats one more, Wm. Sabine. The three storefronts here want frontage on North Water and Dearborn, not a widened reading.
+blocked_on: null
 needs_bake: false
 ---
 
@@ -94,3 +94,42 @@ every `check.sh`, so whenever the ruling comes it is applied rather than re-argu
 `tools/adopt_street_faces.py` and `data/research/newspapers/street_face_adoptions.json`;
 it re-derives on every `check.sh`, so the ruling can be applied whenever it comes without
 re-arguing the numbers.*
+
+---
+
+## THE OWNER'S RULING, 2026-08-30 — A CORNER SIDE IS A FACE
+
+Asked whether a corner side counts as a face and whether to add the centreline
+band, the owner chose:
+
+> **Yes — a corner side is a face.** The band is NOT added.
+
+**Measured before the ruling, in this ticket: +12 shops seat immediately** —
+Dearborn 8, La Salle 3, Canal 1. Adding the band would have seated one more
+(Wm. Sabine) and was declined.
+
+**Why this is a physical fact and not a widening.** A building on a corner
+genuinely fronts two streets: it has a side on each, and a business advertising
+on either one is describing where its door is. The street-face policy
+(docs/STREET-FACE-ADOPTION.md, T-0354) already lets a business adopt a roof
+standing on the face its advertisement names; this says a corner roof stands on
+BOTH its faces. Nothing about the roof changes and no new geometry is raised.
+
+**THIS TICKET'S OWN THREE STOREFRONTS ARE STILL NOT SEATED, and that is on the
+record rather than glossed.** Wm. Sabine, John Dave and the Dearborn Street wine
+store want frontage on North Water and Dearborn that the policy does not reach
+even widened — the ticket measured that a corner-side ruling seats NONE of them.
+So this ruling is worth +12 shops elsewhere and leaves this ticket's subject
+unresolved. Do not close T-0416 on the strength of the twelve.
+
+**Acceptance:** (state it before working — the definition of done, never weakened to pass)
+
+- The corner-side reading is written into `docs/STREET-FACE-ADOPTION.md` as an
+  extension of the ruling it already carries, with the +12 measurement.
+- The adoption re-derives (`tools/adopt_street_faces.py`) and is gated; the 12
+  are not hand-placed.
+- A corner adoption still claims a FACE, never a lot, and the roof stays
+  `reconstructed` — the limits of the parent ruling are unchanged.
+- The centreline band is recorded as CONSIDERED AND DECLINED, with the one shop
+  it would have added named, so a later run does not re-open it as an oversight.
+- The three storefronts this ticket is named for remain open with their reason.
