@@ -110,6 +110,7 @@ const COVERAGE = [
   ['site/chicago/4d/js/changelog.js', [10], "the mirrored entries What's-new reads"],
   ['site/chicago/4d/walk/js/changelog.js', [10], "the mirrored entries What's-new reads"],
   ['site/chicago/4d/tickets.json', NONE, 'the backlog mirror — the renderer never loads it'],
+  ['site/chicago/4d/build.json', NONE, 'the publish stamp; the gate screen that shows it is boot scaffolding, taken in every invocation'],
 
   // --- PART 1: the enclosure layer, the plantings inside it, and the signs
   ['renderers/web/js/enclosures.js', [1], 'the enclosure layer (T-0038)'],

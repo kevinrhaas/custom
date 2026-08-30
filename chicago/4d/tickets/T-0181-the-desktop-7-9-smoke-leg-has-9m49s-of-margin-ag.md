@@ -121,8 +121,8 @@ the labels moved.
 2026-08-30).** The margins above are taken against a 30-minute figure that was never
 measured on the steward runner, which has no GPU and rasterises on the CPU. The whole
 gate was measured at 55 m 10 s unfiltered there on 2026-08-27, and the staged total the
-committed record now yields is 46 m 52 s — desktop 18 m 20 s over the five parts that
-have a reading, mobile 28 m 32 s over all four legs. `node tools/smoke_budget.mjs`
+committed record now yields is 46 m 35 s — desktop 18 m 02 s over the five parts that
+have a reading, mobile 28 m 33 s over all four legs. `node tools/smoke_budget.mjs`
 prints that table out of `tools/dev-smoke-state.json` rather than asserting it, names
 the parts that still have no reading at all — desktop 4-9 — and `--for <path>…` answers
 the question this ticket's margins exist to serve: which parts cover the change in
