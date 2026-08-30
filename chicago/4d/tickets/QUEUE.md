@@ -160,3 +160,4 @@ T-0388 — Three derived records have drifted from their own generators on an un
 
 # --- NEWLY FILED — `ticket.mjs new` appends to the END of this file, so new tickets
 # --- land under this line. NOT yet placed by the owner.
+T-0439 — Four South Water frontage entries declare lots their runs never reach, and each hides its block's headroom

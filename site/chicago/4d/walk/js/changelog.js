@@ -1,4 +1,12 @@
 export const CHANGELOG = [ // newest first
+  { v: 432, title: 'Six roofs on South Water Street, and the slough that moved them', kind: 'feature', ts: '2026-08-30T07:31:19.912Z', date: 'Aug 30, 2026, 2:31 AM CT',
+    items: [
+      'Six buildings now stand shoulder to shoulder along the west half of South Water Street, between La Salle and Clark \u2014 the longest unbroken row this reconstruction has built. A log cabin, a plank shanty, three frame houses of rising size and a narrow two-storey store, with a stable and a carriage shed in the yards behind them.',
+      'They were meant to start at the corner, and the ground would not take it. Wright\u2019s 1834 map draws a slough dropping south off the main stem just east of La Salle Street; where exactly it ran is this project\u2019s reconstruction, and as modelled it crosses this block\u2019s frontage about five metres in. The row begins ten metres east of the corner instead, at the westmost point the modelled ground carries a building at all.',
+      'Six documented businesses moved in. A. Filer & Co., A. Garrett, E. L. Thrall, John Holbrook, the new store at Water and Clark and a South Water auction house are each named in the 1835 papers on this street and nothing narrower, so none of them had a roof to stand on. Nineteen such seatings became twenty-five.',
+      'The block could not have been built yesterday, for a reason in the files rather than in the town. The row built here in August declared three lots of frontage and stands, measured, on one \u2014 so the recipe read two lots as built on while the ground read them empty, and eight roofs of room went unspent. Correcting the declaration moved no building a millimetre.',
+      'The block is full now, and one lot stays deliberately open: the Lake-and-La Salle corner, the least attractive on it. A block with every lot built is a claim nobody made.',
+    ] },
   { v: 431, title: 'The last part of the gate that could not run is halved', kind: 'chore', ts: '2026-08-30T05:55:03.526Z', date: 'Aug 30, 2026, 12:55 AM CT',
     items: [
       'Nothing you can see changed today. This project\u2019s smoke gate drives the walkthrough in a real browser at a phone\u2019s width and at a desktop\u2019s, and it is cut into parts because the automation that runs it is allowed ten minutes for any one command. Two of those parts were cut smaller earlier today for exactly that reason. This is the last one \u2014 the part the record has named as next to go for a week.',
