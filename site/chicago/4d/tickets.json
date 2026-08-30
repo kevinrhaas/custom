@@ -1,6 +1,6 @@
 {
   "project": "chicago-4d",
-  "generated_ct": "Aug 29, 2026, 8:51 PM",
+  "generated_ct": "Aug 29, 2026, 8:55 PM",
   "tickets": [
     {
       "id": "T-0001",
@@ -3134,7 +3134,7 @@
     {
       "id": "T-0183",
       "title": "The Market and South Water corner needs one control point, and the node rule may not be able to make it",
-      "state": "done",
+      "state": "blocked-owner",
       "epic": "META",
       "requested_by": "steward",
       "seen": false,
@@ -3145,7 +3145,7 @@
       "closed": "2026-08-29",
       "pr": "577",
       "claimed_by": "run 8/29/2026, 6:37:28 PM CT",
-      "blocked_on": null,
+      "blocked_on": "Which corner rule closes South Water Street's west end: the centreline on the committed bank (built and gated on this branch — blk_south_water_market emits 8 lots, 4,957 m2, 15.1 m of depth at Market's corridor edge, with the corridor's north half overhanging the water the way this street already does east of Franklin), or the north corridor EDGE on the bank (PR #573's reading, which measures 2.8 m of depth and calls the block a wedge that pinches out)? The two runs answered the owner's 2026-08-29 ruling differently and both are on the record; PR #577 holds the first.",
       "needs_bake": false,
       "queue_rank": null
     },
