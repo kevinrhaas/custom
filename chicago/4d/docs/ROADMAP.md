@@ -213,6 +213,34 @@ third of the 150-minute run budget, and that is before a part is re-run after a 
 passes rule above should be read as ONE full pass and a re-run of the parts a change touches; a
 parcel whose acceptance needs the whole gate twice has already outgrown a run.
 
+**RE-CUT 2026-08-30 by T-0173: part 7 is halved and there are TWELVE parts.** T-0346 cut part 4
+into three that morning; part 7 went the same way by the evening. Profiled with `SMOKE_TIMING=1`
+on the steward runner at **load average 0.81-2.86, 4 cores**, part 7 was **killed at 9 m 25 s**
+with its last two assertions unrun — so the reading in T-0167's table above, 7 m 43 s, is again a
+description of a machine rather than of the part. **7 m 04 s of that cost was ONE block**: the
+three road-legibility stations, each teleporting to its own viewpoint and reading
+`page.screenshot` frames through five distance bands (`south_water` 2 m 13 s, `from_above`
+2 m 02 s, `lake_market` 2 m 49 s). Around it, 20 s of boot, 33 s of navigation and the street
+checks, 1 m 04 s of the R-A1 aid and the batch merge under it.
+
+**So the boundary is not a section header, and T-0170 had already said why it could not be.** The
+best of part 7's own `// --- ` boundaries leaves 7 m 37 s against 1 m 30 s. The cut falls at the
+STATION — the grain the block is made of — and nothing crosses it: `roadRuns` is local, the
+movement report built from it is printed and never gated and has always compared only what the
+invocation measured, and `--update-road-bands` merges per band. R-A1's three assertions are taken
+standing at `lake_market`, so that station moves into the new part with them.
+
+**Measured after the cut, at desktop, on the same runner in the same hour: part 7 — 5 m 05 s, 12
+staged · part 8 — 5 m 06 s, 8 staged, both SMOKE PASS.** 12 + 8 = 20, exactly the old part 7's
+count. Both clear the ceiling by 4 m 55 s. Part 7 keeps the shared `streetLayer` reading, so the
+guard becomes `anyStage(7, 10)`; part 8's profile — boot at 0 m 17 s, first station at 3 m 17 s —
+is the proof it does not pay for it. Parts 8-11 are renumbered 9-12; the pairing rule survives as
+1+2, 3+4+5+6, **7+8+9**, **10+11+12**, ranges `1-2 3-6 7-9 10-12`. The audit was taken at mobile
+too: old `SMOKE_STAGE=7-8` gave 43 passed and new `7-9` gives **43 passed, 34 staged** in 7 m 33 s,
+and `10-12` gives 168 passed / 159 staged in 9 m 33 s. **The worst desktop margin left on the
+profile is what was part 7 and is now part 10 — T-0170, still open**, which this cut re-labels
+rather than takes.
+
 **`SMOKE_TIMING=1` stamps every check line with the elapsed clock**, and T-0167 added it because
 the profile could not have been taken without it. A part that BREACHES the ceiling is killed
 *before* it prints its wall clock, so the parts actually worth cutting were the only ones a plain

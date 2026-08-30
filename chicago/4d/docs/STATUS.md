@@ -58,6 +58,72 @@ satisfies is not an invention.
 
 `docs/RESEARCH/chimneys.md` § 7 holds the reading. `tools/check.sh` runs the gate and its
 four self-test cases.
+## Shipped 2026-08-30 — T-0173: the desktop gate's part 7 is halved, and both halves fit
+
+**Not a thing a visitor sees.** It is the thing that lets a run PROVE what a visitor sees. A
+steward run's single foreground command is capped at ten minutes, and part 7 stopped fitting
+inside it: profiled on the steward runner with `SMOKE_TIMING=1` at load 0.81-2.86, it was killed
+at **9 m 25 s** with its last two assertions unrun and `the suite body ran to completion` reporting
+a FAIL that looks like a product red and is not one. That is the third desktop part to go this
+way (T-0121's four, T-0167's part 8, T-0346's part 4 the same morning), and the cause is the same
+one every time: the town grows and the part grows with it.
+
+- **The cut is measured, and the measurement says where.** The profile puts **7 m 04 s of a
+  9 m 25 s part in ONE block** — the three road-legibility stations, each of which teleports to
+  its own viewpoint and reads `page.screenshot` frames through five distance bands. Around it:
+  20 s of boot, 33 s of navigation and the street-layer checks, 1 m 04 s of the R-A1 aid, and the
+  batch merge under that.
+- **So the boundary could not be one of the file's own `// --- ` section headers**, which is what
+  T-0170 had already found and left for whoever cut it: the best of them leaves **7 m 37 s against
+  1 m 30 s**, which is not a cut, it is a rename. The cut falls at the STATION instead — the grain
+  the block is actually made of. Each station teleports to its own viewpoint, takes its own frames
+  and answers its own `check`, and none of them reads anything a sibling left standing.
+- **Nothing crosses it.** `roadRuns` is local to the block. The movement report built from it is
+  printed and never gated, and it has always compared only what the invocation measured — that is
+  what lets `SMOKE_VIEWPORT=mobile` run without retiring desktop's half of the bank — so a part
+  reporting on its own stations is the existing rule, not a new one. `--update-road-bands` merges
+  per band and leaves untouched bands alone. R-A1's three assertions are taken STANDING AT
+  `lake_market`, so that station goes into the new part with them, in the same order, unchanged.
+- **Measured after the cut, at desktop, same runner and same hour:** part 7 — **5 m 05 s, 12
+  staged, SMOKE PASS**; part 8 — **5 m 06 s, 8 staged, SMOKE PASS**. 12 + 8 = **20**, exactly the
+  count the old part 7 was taking, which is how "never dropping a check" is demonstrated rather
+  than asserted. Both halves clear the ceiling by **4 m 55 s**, against the 35 s the old part 7 was
+  over it by.
+- **Which of the two carries the shared street reading matters, and it is part 7.** `anyStage(7, 9)`
+  becomes `anyStage(7, 10)`; `streetLayer` — the most expensive single evaluate in the file — is
+  referenced in parts 7 and 10 and nowhere else, checked statically and then run. Part 8's own
+  profile is the proof it does not pay for it: boot at 0 m 17 s, first station at 3 m 17 s, no gap
+  where that reading would sit.
+- **Parts 8-11 are renumbered 9-12**, because this cut is mid-body and T-0167's append could not be
+  repeated (T-0346 hit the same wall the same day). The pairing rule survives in content and moves
+  in spelling: `1+2, 3+4+5+6, 7+8, 9+10+11` becomes `1+2, 3+4+5+6, 7+8+9, 10+11+12`, ranges
+  `1-2 3-6 7-9 10-12`. `chicago-4d-bake.yml`'s smoke matrix is edited in this commit, as its own
+  comment demands of any renumbering; the ranges still tile 1..12 once each with no gap or overlap.
+- **The renumbered legs were run, not reasoned about.** Mobile `SMOKE_STAGE=7-9` is **43 passed,
+  0 failed, 34 staged** in 7 m 33 s — the same 43 the old `7-8` leg reported on 2026-08-30, so the
+  leg carries exactly what it carried. Mobile `SMOKE_STAGE=10-12` is **168 passed, 0 failed, 159
+  staged** in 9 m 33 s, which fires all three renumbered tail parts.
+- **`tools/dev-smoke-state.mjs` mirrors `PARTS` and had to move with it** (11 → 12), and
+  `CHANGELOG_PARTS` with it (What's-new is part 11 now, not 10).
+
+**What this does NOT close.** T-0173's acceptance names three parts and this is one of them: the
+old part 4 was T-0346's, and the old part 7 — **now part 10** — is T-0170's, which is still open
+and still measured over the ceiling on three separate runners. T-0173's own instruction was "do
+not cut part 7 twice", and cutting a part that another ticket owns while eight slices of this lane
+run at once is exactly the way to do it twice. So T-0173 closes on what it uniquely owned and
+T-0170 keeps its own part, with the numbers in it re-labelled for this cut.
+
+**Re-taken after a rebase, because dev had gained a geometry change under it.** T-0333 put a stove
+pipe on every roof in the town while this branch was being measured, so the desktop pair was run
+again on the rebased tree: part 7 **5 m 03 s / 12 staged** and part 8 **5 m 06 s / 8 staged**,
+both SMOKE PASS, within three seconds of the first pair. `./tools/check.sh` PASS on the same tree,
+and `node tools/smoke_budget.mjs --self-test` — T-0235's map, merged into dev the same hour — is
+green on the new numbering.
+
+**A caveat on every figure above, and the ROADMAP already states the rule.** These readings were
+taken at load average 0.81-2.86 on a 4-core runner. T-0215 measured a factor of twenty between a
+quiet box and a loaded one, so 4 m 55 s of margin is a floor on what these parts cost, not a
+description of it.
 
 ## Shipped 2026-08-30 — T-0305: the four readings the American contradicts itself on
 

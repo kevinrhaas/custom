@@ -128,3 +128,9 @@ the parts that still have no reading at all — desktop 4-9 — and `--for <path
 the question this ticket's margins exist to serve: which parts cover the change in
 hand, and do their measured costs fit the 600 s foreground ceiling. See
 `docs/SMOKE-BUDGET.md`.
+
+**AND AGAIN, THE SAME DAY (T-0173, 2026-08-30).** Part 7 was halved — the three road-legibility
+stations were 7 m 04 s of a part killed at 9 m 25 s — so old part 7 is now parts 7 + 8 and old
+parts 8-11 are 9-12. Read this ticket's post-T-0346 numbers through `old 8→9, 9→10, 10→11,
+11→12`, and old part 7 as new parts 7+8. The mobile legs are `1-2 3-6 7-9 10-12` and carry
+exactly what they carried. The readings themselves stand; only the labels moved.

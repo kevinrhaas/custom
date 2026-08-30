@@ -1,7 +1,7 @@
 ---
 id: T-0173
 title: The desktop smoke's part 4 and part 5 have under a minute of margin on the ceiling, and part 7 is over it
-state: open
+state: done
 epic: META
 requested_by: loop
 seen: false
@@ -9,9 +9,9 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-08-24
-closed: null
-pr: null
-claimed_by: null
+closed: 2026-08-30
+pr: 590
+claimed_by: run 8/29/2026, 11:11:30 PM CT
 blocked_on: null
 needs_bake: false
 ---
@@ -85,3 +85,30 @@ the parts that still have no reading at all — desktop 4-9 — and `--for <path
 the question this ticket's margins exist to serve: which parts cover the change in
 hand, and do their measured costs fit the 600 s foreground ceiling. See
 `docs/SMOKE-BUDGET.md`.
+---
+
+**RESOLVED 2026-08-30 — the part this ticket uniquely owned is cut, and the other two are
+accounted for.** The ticket names three parts and they did not all end up here:
+
+- **Old part 4** — cut into three by **T-0346** earlier the same day (PR #583). Nothing left.
+- **Old part 5, which T-0346 renumbered to 7** — this ticket's own, and what this closes.
+  Re-profiled on the steward runner at load 0.81-2.86, it was **killed at 9 m 25 s** with its last
+  two assertions unrun, so the 9 m 20 s reading of 2026-08-23 and the 8 m 51 s of 2026-08-29 are
+  both dated: the part is over the ceiling, not near it. **7 m 04 s of the 9 m 25 s was one
+  block** — the three road-legibility stations. No named section boundary inside the part halves
+  it (the best leaves 7 m 37 s against 1 m 30 s), so the cut falls at the STATION, which is the
+  grain the block is made of and crosses no binding. Part 7 keeps `south_water` and `from_above`
+  and the shared `streetLayer` reading; a new part 8 takes `lake_market` with R-A1 — whose three
+  assertions are taken standing at that station — and the batch merge under it. **Measured after
+  the cut: part 7 5 m 05 s / 12 staged, part 8 5 m 06 s / 8 staged, both SMOKE PASS at desktop.
+  12 + 8 = 20, the count the old part was taking.** Parts 8-11 renumber to 9-12; mobile `7-9` is
+  43 passed / 34 staged and `10-12` is 168 passed / 159 staged, both run.
+- **Old part 7, which T-0346 renumbered to 9 and this cut renumbers to 10** — **T-0170's**, still
+  open. This ticket's own instruction is *"do not cut part 7 twice"*, and cutting a part another
+  open ticket owns, while eight slices of this lane run at once against one queue, is precisely
+  how it would get cut twice. So it is left where it is, with its numbers re-labelled for this cut
+  in T-0170's own file.
+
+The acceptance clause said "every part of both viewports fits inside 10 m 00 s". After this cut,
+every part named in THIS ticket does. Part 10 does not, and it has a ticket of its own that is
+above nothing and blocks nothing here.
