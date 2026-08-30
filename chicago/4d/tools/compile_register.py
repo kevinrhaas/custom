@@ -36,16 +36,38 @@ THE OWNER'S THREE RULINGS, 2026-08-28, and where each one lands here:
      BEFORE the scene date. A LATER one is recorded, not obeyed —
      `dissolved_after_scene_date` — and the business stands.
 
-TWO EXCLUSIONS, AND THE SECOND ONE IS THE TICKET'S CLAUSE REBUILT OUT OF WHAT THE
-DATA ACTUALLY CARRIES. T-0262 asks to exclude "entries whose only 1835 evidence
-`announces_opening` after Jul 1". There is no `announces_opening` in the claim
-vocabulary — the ticket describes a field the extraction schema never grew — so the
-derivable test is the one that answers the same question without inventing one: a
-business whose FIRST issue is after the scene date has no evidence whatever that it
-stood on 1 July, and is excluded as `first_evidence_after_scene_date`. That is
-conservative in the direction provenance wants. It is also not a claim that the
-business was absent, so the register keeps every one of them, with the exclusion
-named, for a later pass that can read an opening notice properly.
+TWO EXCLUSIONS, AND THE SECOND ONE NOW READS THE PAPER RATHER THAN A PROXY (T-0356).
+T-0262 asked to exclude "entries whose only 1835 evidence `announces_opening` after
+Jul 1", and there was no such field to read, so this tool used the derivable proxy
+instead: a business whose FIRST issue postdated the scene date was excluded as
+`first_evidence_after_scene_date`. Conservative in the direction provenance wants,
+and NOT the same question — and the re-read of the thirty-eight it caught is what
+settles that. Wm. H. Taylor's boot store advertised over a dateline of 8 JULY 1834,
+Wm. H. Kennicott said he had practised dentistry in the town "for the past year",
+Samuel Lewis's music-school copy is dated 22 June, S. Abell's 24 June and John
+Holbrook's 10 June. Five houses excluded from a town they were printed standing in,
+because the first SURVIVING issue that carried them falls in August.
+
+So `announces_opening` is a field now (tools/compile_gazetteer.py § OPENING_DATINGS)
+and the exclusion reads it. The DATING is what decides:
+
+  stated    the paper names a date the house WILL open. After the scene date, that is
+            the paper saying it was not open then — `opening_announced_after_scene_date`.
+            Four houses: Cromelien's wine branch (14 Aug), Everts' high school for young
+            gentlemen (10 Aug), Hunt's for young ladies (17 Aug) and Lyon's wholesale
+            grocery (1 Sep).
+  effected  an opening already made, dated by the advertisement's own dateline. It bounds
+            the opening from ABOVE and can never exclude — "has opened", printed on 7
+            August, is silent about 1 July. On or before the scene date it is the
+            opposite: positive evidence the house stood.
+  undated   an opening the printing dates nowhere. It decides nothing either way.
+
+WHAT REPLACED THE PROXY IS NOT NOTHING. A business first printed in August and never
+announcing an opening now stands in the July town under ruling 3 — documented, not
+contradicted — and that is a LIBERTY, the forward twin of `survival_liberty_required`.
+`backdating_liberty_required` names it: existence documented only after the scene date,
+presence on the scene date assumed, and no opening notice dated on or before it to
+carry the assumption. It is computed here and never asserted, exactly as its twin is.
 
 WHAT AN ACTION MEANS, for the seeding tickets that consume this:
 
@@ -57,7 +79,8 @@ WHAT AN ACTION MEANS, for the seeding tickets that consume this:
                    documented business that is. Placeable; T-0263's queue.
   street_only      documented and placeable no further than a street face. The paper
                    named a street this town has, and nothing narrower.
-  unplaceable      no street the model holds. Recorded, not buildable.
+  unplaceable      no street the model holds, OR the firm's own record puts it out of
+                   town (T-0355, `outside_plat`). Recorded, not buildable.
 
 AND WHAT A PERSON ACTION MEANS:
 
@@ -98,7 +121,7 @@ SCHEMA_VERSION = 1
 
 BUSINESS_ACTIONS = ("enrich_existing", "new_building", "street_only", "unplaceable")
 PERSON_ACTIONS = ("enrich", "replace_invented", "new_resident")
-EXCLUSIONS = ("contradicted_before_scene_date", "first_evidence_after_scene_date")
+EXCLUSIONS = ("contradicted_before_scene_date", "opening_announced_after_scene_date")
 
 # Words that carry no identity in a name or an anchor: articles, the honorifics the
 # papers set before a name, and the four nouns that appear in half the storefronts in
@@ -237,12 +260,14 @@ def read_town(structures_dir=STRUCTURES, streets_file=STREETS, residents_dir=RES
     Read in sorted filename order and reduced to sets, so the register does not depend
     on the order a filesystem hands back.
     """
-    town = {"structures": [], "streets": {}, "residents": [], "invented": {}}
+    town = {"structures": [], "streets": {}, "residents": [], "invented": {},
+            "has_creek": False}
 
     for path in sorted(Path(structures_dir).glob("*.json")):
         d = load_json(path)
         names = [d.get("name") or ""] + list(d.get("aka") or [])
-        occ = (d.get("occupants") or {}).get("value") or ""
+        occ_prose = (d.get("occupants") or {}).get("value") or ""
+        occ = scene_date_occupants(occ_prose)
         function = (d.get("function") or {}).get("value")
         town["structures"].append({
             "id": d["id"],
@@ -252,7 +277,7 @@ def read_town(structures_dir=STRUCTURES, streets_file=STREETS, residents_dir=RES
             "occupant_words": set(words(occ)),
             "occupant_text": occ,
             "aka_texts": [head_of(n) for n in names[1:]],
-            "identity_text": " ; ".join([d.get("name") or "", occ]
+            "identity_text": " ; ".join([d.get("name") or "", occ_prose]
                                         + [head_of(n) for n in names[1:]]),
             "function": function,
             "occupation": occupation_of((function or "").replace("_", " ")),
@@ -262,6 +287,11 @@ def read_town(structures_dir=STRUCTURES, streets_file=STREETS, residents_dir=RES
     for s in load_json(streets_file).get("streets", []):
         town["streets"][street_key(s["name_1835"])] = s["id"]
         town["streets"][s["id"]] = s["id"]
+
+    # The creek marker in OUTSIDE_MARKERS is only sound while this stays False.
+    town["has_creek"] = any(
+        "creek" in n.lower()
+        for st in town["structures"] for n in [st["name"] or ""] + st["aka_texts"])
 
     for path in sorted(Path(residents_dir, "households").glob("*.json")):
         d = load_json(path)
@@ -286,16 +316,29 @@ def read_town(structures_dir=STRUCTURES, streets_file=STREETS, residents_dir=RES
     return town
 
 
-def match_landmark(town, anchor_words):
-    """The committed structure an anchor NAMES, or None.
+def match_landmarks(town, anchor_words):
+    """EVERY committed structure an anchor NAMES, in id order. A list, never a pick.
 
     Whole-set equality, not containment: an anchor is only a landmark when it is the
     same set of identity-bearing words as a record's name or aka. Containment would put
     'the store' on the first store in the town.
+
+    AND IT RETURNS ALL OF THEM, BECAUSE A NAME IS NOT ALWAYS ONE BUILDING. This used to
+    end `return sorted(hits)[0] if hits else None`, which is an alphabetical tie-break
+    wearing a resolution's clothes: where two committed records answer to one name, the
+    register seated the business in whichever id sorted first and wrote "the landmark is
+    the committed structure X" over a coin toss, with nothing in the file to say a
+    second record had answered to the same name. `structures_sharing_a_name` in the
+    register's `compiled_from` block counts the town's exposure (T-0386); the named case
+    is John Wright's two buildings to let, `wright_building_to_let_a` and `_b`, which
+    are one advertisement's two buildings under one proprietor's name, and the piers,
+    the two branch bridges and the school houses are the same shape. `resolve_anchor`
+    refuses the ambiguity rather than taking the first.
     """
-    hits = [s["id"] for s in town["structures"]
-            if anchor_words and any(anchor_words == pool for pool in s["name_words"])]
-    return sorted(hits)[0] if hits else None
+    if not anchor_words:
+        return []
+    return sorted({s["id"] for s in town["structures"]
+                   if any(anchor_words == pool for pool in s["name_words"])})
 
 
 # A phrase that locates a building by ANOTHER building is not that building's name.
@@ -311,6 +354,63 @@ LOCATIVE = re.compile(
 def head_of(name):
     """A name with any locative tail cut away. 'Log cabins at Wolf Point' → 'Log cabins'."""
     return LOCATIVE.split(name or "", maxsplit=1)[0]
+
+
+# A DATE QUALIFICATION ON AN OCCUPANT IS A STATEMENT THAT HE IS NOT THERE NOW (T-0355).
+# `wolf_point_tavern_stable` records "the tavern's keeper of the day — Elijah Wentworth
+# in 1831, William Walters on the scene date", and the sentence names its scene-date
+# occupant in the same breath as the man who preceded him. Read whole, the line put
+# E. Wentworth's tavern — which is on Flag Creek, eighteen miles out on the Ottawa road
+# — inside a Wolf Point stable, three times over.
+#
+# The clause is the unit, because that is how these lines are written: a comma, a
+# semicolon or a spaced dash separates one tenancy from the next. A clause that dates
+# ITSELF to a year the scene date does not fall in describes a FORMER occupant and is
+# no evidence of who is in the building on 1 July 1835. A clause carrying no year at
+# all says nothing about date and is kept — the great majority of these lines.
+#
+# Only the WORDS are filtered. `occupant_text` reports the scene-date reading so the
+# register's evidence quotes what actually matched, and `identity_text` keeps the whole
+# prose, because a forename printed anywhere in the record can still contradict a
+# paper's (initials_compatible is a veto, and a veto wants every word it can get).
+OCCUPANT_CLAUSE = re.compile(r"\s*[;,]\s*|\s+[\u2014\u2013-]\s+")
+YEAR_SPAN = re.compile(r"\b(1[78]\d\d)(?:\s*[-\u2013]\s*(\d{2,4}))?\b")
+
+
+def year_spans(text):
+    """Every year or year range a clause states, as inclusive (from, to) pairs.
+
+    '1833-34' is 1833 to 1834 and '1834-1836' is 1834 to 1836; a two-digit tail takes
+    its century from the year it hangs off, which is how the committed records write it.
+    """
+    out = []
+    for start, tail in YEAR_SPAN.findall(text or ""):
+        start = int(start)
+        end = start
+        if tail:
+            end = int(tail)
+            if end < 100:
+                end += start - start % 100
+        out.append((start, max(start, end)))
+    return out
+
+
+def scene_date_occupants(text, scene_year=SCENE_DATE.year):
+    """An occupants line with the clauses it dates away from the scene date struck out.
+
+    Returns the surviving clauses rejoined. A clause survives when it states no year, or
+    when a year it states — or a range it states — covers the scene year.
+    """
+    kept = []
+    for clause in OCCUPANT_CLAUSE.split(text or ""):
+        clause = clause.strip()
+        if not clause:
+            continue
+        spans = year_spans(clause)
+        if spans and not any(a <= scene_year <= b for a, b in spans):
+            continue
+        kept.append(clause)
+    return "; ".join(kept)
 
 
 FORENAME_RUN = r"((?:[A-Z][A-Za-z]*\.?\s+){0,3})"
@@ -434,6 +534,72 @@ def match_occupant(town, require, business_occupation, proprietors):
     return None, None, None
 
 
+# OUTSIDE THE PLAT IS A THING THE PAPERS SAY, AND SAYING IT ENDS THE MATTER (T-0355).
+# A tavern eighteen miles out on the Ottawa road cannot be in a Wolf Point stable
+# whoever kept it, and no reading of a committed record's prose should be able to put
+# it there. This is the general form of that fault: the firm's OWN record states where
+# it stands, and when what it states is outside the committed town, no match against
+# the committed town is admissible — not on an occupants line, not on a name, not on
+# an aka, and the town does not build it either.
+#
+# THREE MARKERS, AND EACH IS A POSITIVE STATEMENT, never an absence. A business the
+# papers place nowhere is `unplaceable` already and is not this; a business this rule
+# excludes is one whose own printed placement puts it out of town.
+#
+#   miles   a distance in miles. The plat is under a mile across, so nothing inside it
+#           is ever described in miles.
+#   road    a ROAD LEADING TO somewhere. The town's own ways are streets and are named
+#           as streets; 'the road from Chicago leading to Ottawa' is a road out of it.
+#   creek   a named creek. The committed town holds the river and its two branches and
+#           no creek of any name — checked in read_town, not asserted here — so a named
+#           creek is ground this reconstruction does not cover.
+#
+# Counted over the 242 gazetteer businesses on 2026-08-29: five hits, and all five are
+# genuinely out of town (the four Flag Creek readings of Wentworth's tavern, and Richard
+# M. Sweet's barn on the Dupage, which the gazetteer's own note already calls outside).
+OUTSIDE_MARKERS = (
+    ("a distance in miles", re.compile(r"\b(?:[A-Za-z0-9-]+\s+)?miles?\b", re.I)),
+    ("a road leading out of town", re.compile(r"\broad\b[^.;]{0,40}?\bto\b", re.I)),
+    ("a named creek", re.compile(r"\b[A-Z][a-z]+\s+Creek\b")),
+)
+
+
+def structures_sharing_a_name(town):
+    """How many identity-word sets the committed town holds under MORE THAN ONE record.
+
+    The exposure `match_landmarks` refuses: every one of these is a name an anchor could
+    print and no record could claim alone. Derived on every build so the figure cannot
+    go stale in prose, and reported by `--check` (T-0386).
+    """
+    seen = {}
+    for s in town["structures"]:
+        for pool in s["name_words"]:
+            if pool:
+                seen.setdefault(frozenset(pool), set()).add(s["id"])
+    return sum(1 for ids in seen.values() if len(ids) > 1)
+
+
+def outside_the_plat(business, town):
+    """Why the firm's own record puts it outside the committed town, or None.
+
+    Reads everything the gazetteer prints about WHERE the business is — its name, which
+    is the paper's own wording, and every field of its placement. A marker that names a
+    creek is only believed while the committed town holds no creek; if one is ever
+    committed the marker retires itself rather than mis-excluding a business on it.
+    """
+    placement = business.get("placement") or {}
+    text = " | ".join(str(placement.get(k) or "")
+                      for k in ("anchor", "offset_normalized", "offset_text", "note"))
+    text = (business.get("name") or "") + " | " + text
+    for why, pattern in OUTSIDE_MARKERS:
+        if why == "a named creek" and town["has_creek"]:
+            continue
+        m = pattern.search(text)
+        if m:
+            return "%s — %r" % (why, m.group(0).strip())
+    return None
+
+
 CORNER = re.compile(r"corner of\s+(.{0,40}?)\s+and\s+(.{0,40})", re.I)
 
 
@@ -466,7 +632,7 @@ def streets_in(town, text, require_suffix):
 def resolve_anchor(town, business, by_firm):
     """Where the paper's own placement lands in the committed town.
 
-    Four outcomes, and the note on each says which one and why, because the seeding
+    Six outcomes, and the note on each says which one and why, because the seeding
     tickets have to be able to argue with it:
 
       corner     both streets named are on the committed plat
@@ -478,6 +644,11 @@ def resolve_anchor(town, business, by_firm):
       street     the anchor is a REACH of a platted street and nothing narrower — 'the
                  east end of South Water-street'. It is a real resolution and it is not
                  a placement, so it reads as its own kind rather than as a failure.
+      ambiguous  the anchor NAMES something the town holds, and the town holds it more
+                 than once. 'J. Wright's' is `wright_building_to_let_a` and `_b`. This
+                 is a finding and not a failure: the name was recognised and the choice
+                 between the records is not the paper's to make, so it is refused and
+                 both are named. It never places (T-0386).
       unresolved everything else, stated
 
     Only the first three put a building on the ground; `street` and `unresolved` do not,
@@ -505,20 +676,36 @@ def resolve_anchor(town, business, by_firm):
 
     anchor_words = set(words(placement.get("anchor")))
     if anchor_words:
-        sid = match_landmark(town, anchor_words)
-        if sid:
-            return {"kind": "structure", "target": sid, "streets": None, "via": None,
-                    "note": "The landmark is the committed structure %s." % sid}
-        # One hop: the landmark is another documented business.
-        for other_id, other in by_firm:
-            if other_id == business["id"]:
-                continue
-            if other and anchor_words and set(words(other)) == anchor_words:
-                return {"kind": "business", "target": None, "streets": None,
-                        "via": other_id,
-                        "note": "The landmark is another documented business (%s), which "
-                                "places this one exactly as well as that one is placed."
-                                % other_id}
+        sids = match_landmarks(town, anchor_words)
+        if len(sids) > 1:
+            return {"kind": "ambiguous", "target": None, "streets": None, "via": None,
+                    "note": "The landmark %r is the name of %d committed structures — "
+                            "%s — and the anchor does not say which. Refused: the paper "
+                            "names one building and this project holds more than one "
+                            "under that name, so any pick between them would be this "
+                            "file's and not the paper's."
+                            % (placement.get("anchor"), len(sids), ", ".join(sids))}
+        if sids:
+            return {"kind": "structure", "target": sids[0], "streets": None, "via": None,
+                    "note": "The landmark is the committed structure %s." % sids[0]}
+        # One hop: the landmark is another documented business. Same refusal — the
+        # corpus prints one house under more than one heading, so a firm name can
+        # answer for two records here exactly as a building name can above.
+        others = sorted({other_id for other_id, other in by_firm
+                         if other_id != business["id"] and other
+                         and set(words(other)) == anchor_words})
+        if len(others) > 1:
+            return {"kind": "ambiguous", "target": None, "streets": None, "via": None,
+                    "note": "The landmark %r is the name of %d documented businesses — "
+                            "%s — and the anchor does not say which. Refused: one hop "
+                            "off a house this corpus holds twice is not a placement."
+                            % (placement.get("anchor"), len(others), ", ".join(others))}
+        if others:
+            return {"kind": "business", "target": None, "streets": None,
+                    "via": others[0],
+                    "note": "The landmark is another documented business (%s), which "
+                            "places this one exactly as well as that one is placed."
+                            % others[0]}
     named = streets_in(town, placement.get("anchor"), True)
     if named:
         return {"kind": "street", "target": None, "streets": named, "via": None,
@@ -531,6 +718,69 @@ def resolve_anchor(town, business, by_firm):
 
 # --------------------------------------------------------------------------
 # the register
+
+
+def anchor_change(town, business, by_firm):
+    """The dated anchor change a house's own printings carry, resolved (T-0345).
+
+    `anchor` above resolves the ONE placement the gazetteer holds live at the scene
+    date. This is the rest of the history, and it exists because holding a superseded
+    anchor as a second standing placement is how a placement sweep puts one shop in two
+    places: Matthias Mason & Co.'s notice reads "nearly opposite Graves' Tavern" to
+    1834-06-11 and "opposite the Tremont House" from 1834-09-10, and the register
+    carried both as if they were live at once.
+
+    Every superseded anchor is resolved against the committed town the same way the
+    live one is, so a later pass can see what each reading WOULD have placed — which is
+    the whole difference between a shop that moved and a landmark that was renamed, and
+    this file decides neither.
+    """
+    change = business.get("anchor_change")
+    if not change:
+        return None
+    return {
+        "live_anchor": change["live_anchor"],
+        "live_reason": change["live_reason"],
+        "changes": change["changes"],
+        "rule": change["rule"],
+        "cannot_say": change["cannot_say"],
+        "history": [dated_anchor(town, business, by_firm, w)
+                    for w in change["history"]],
+    }
+
+
+# structure / corner / business put a building on the ground, `street` names a reach and
+# nothing narrower, `unresolved` is a statement that the town holds no such thing. An
+# anchor printed four ways is resolved on its BEST reading, because the four are declared
+# to be one landmark and "Graves' Tavern" resolving where "Graves' Tavern, on Main-street"
+# does not is a fact about how much of the sentence one reading pass swept into the field.
+# `ambiguous` outranks `unresolved` because it RECOGNISED the name and outranks nothing
+# else, because it places nothing: a reading that resolves to a street beats a reading
+# that resolves to two buildings and cannot choose.
+ANCHOR_KIND_RANK = {"unresolved": 0, "ambiguous": 1, "street": 2, "business": 3,
+                    "corner": 4, "structure": 4}
+
+
+def dated_anchor(town, business, by_firm, window):
+    """One anchor of a dated history, with every reading of it resolved."""
+    readings = [dict(r, resolved=resolve_anchor(
+        town, {"id": business["id"], "placement": r["placement"]}, by_firm))
+        for r in window["readings"]]
+    best = max(readings,
+               key=lambda r: (ANCHOR_KIND_RANK.get(r["resolved"]["kind"], 0),
+                              -readings.index(r)))
+    return {
+        "anchor": window["anchor"],
+        "first_issue": window["first_issue"],
+        "last_issue": window["last_issue"],
+        "claims": window["claims"],
+        "live_at_scene_date": window["live_at_scene_date"],
+        "resolved": best["resolved"],
+        "resolved_on_reading": best["anchor"],
+        "readings": [{"anchor": r["anchor"], "first_issue": r["first_issue"],
+                      "last_issue": r["last_issue"], "claims": r["claims"],
+                      "resolved": r["resolved"]} for r in readings],
+    }
 
 
 def compile_register(gazetteer, town, quiet=True):
@@ -552,11 +802,22 @@ def compile_register(gazetteer, town, quiet=True):
             exclusion_note = ("Contradicted on or before the scene date by %s."
                               % ", ".join("%s (%s, %s)" % (c["claim"], c["kind"], c["issue"])
                                           for c in before))
-        elif first > scene:
-            exclusion = "first_evidence_after_scene_date"
-            exclusion_note = ("The earliest issue carrying this business is %s, after the "
-                              "scene date, so nothing evidences it standing on %s."
-                              % (first, scene))
+        # T-0356. Only a STATED future opening can exclude, and it excludes on its own
+        # date. An `effected` or `undated` announcement is recorded and obeyed by nothing.
+        announced = b.get("opening_announced") or []
+        stated_after = sorted(o for o in announced
+                              if o.get("dating") == "stated" and (o.get("iso") or "") > scene)
+        if not before and stated_after:
+            o = stated_after[0]
+            exclusion = "opening_announced_after_scene_date"
+            exclusion_note = ("%s announces this house opening on %s, after the scene date "
+                              "— \u201c%s\u201d. %s"
+                              % (o["claim"], o["iso"], o["verbatim"], o["note"]))
+
+        # The forward twin of the survival liberty: documented only after the scene date,
+        # and standing in the July town on the assumption that it was already there.
+        opened_by_scene = any((o.get("iso") or "") <= scene for o in announced if o.get("iso"))
+        backdating = (exclusion is None and first > scene and not opened_by_scene)
 
         entry = {
             "id": b["id"],
@@ -572,8 +833,12 @@ def compile_register(gazetteer, town, quiet=True):
             "exclusion": exclusion,
             "exclusion_note": exclusion_note,
             "dissolved_after_scene_date": [c["claim"] for c in after] if after else [],
+            "opening_announced": announced,
             "survival_liberty_required": bool(b.get("survival_liberty_required")) and exclusion is None,
+            "backdating_liberty_required": backdating,
             "anchor": resolve_anchor(town, b, by_firm),
+            "anchor_change": anchor_change(town, b, by_firm),
+            "outside_plat": outside_the_plat(b, town),
             "action": None,
             "action_target": None,
             "match_tier": None,
@@ -591,14 +856,22 @@ def compile_register(gazetteer, town, quiet=True):
         for p in entry["proprietors"]:
             require |= firm_surnames(p)
         require.discard("")
-        committed, tier, evidence = match_occupant(
-            town, require, entry["occupation"], entry["proprietors"])
+        committed, tier, evidence = (None, None, None)
+        if not entry["outside_plat"]:
+            committed, tier, evidence = match_occupant(
+                town, require, entry["occupation"], entry["proprietors"])
 
         if exclusion is not None:
             entry["action"] = "unplaceable"
             entry["action_note"] = ("Excluded from the scene-date town: %s "
                                     "No action; the record is kept so the exclusion can "
                                     "be argued with." % exclusion_note)
+        elif entry["outside_plat"]:
+            entry["action"] = "unplaceable"
+            entry["action_note"] = (
+                "The paper puts this business outside the committed town — %s — so no "
+                "structure inside it carries the firm and none is built for it. %s"
+                % (entry["outside_plat"], entry["anchor"]["note"]))
         elif committed:
             entry["action"] = "enrich_existing"
             entry["action_target"] = committed
@@ -635,6 +908,37 @@ def compile_register(gazetteer, town, quiet=True):
             problems.append("%s: an exclusion must name its contradiction" % b["id"])
         if entry["placement_class"] is None:
             problems.append("%s: no placement class" % b["id"])
+        # The three ways a dated anchor history could quietly go back to being two
+        # standing placements, which is the defect T-0345 is about.
+        ac = entry["anchor_change"]
+        if ac:
+            live = [w for w in ac["history"] if w["live_at_scene_date"]]
+            if len(live) != 1:
+                problems.append("%s: %d of this house's anchors are live at the scene "
+                                "date — exactly one printed anchor stands on %s, which "
+                                "is the whole point of dating the change"
+                                % (b["id"], len(live), scene))
+            elif live[0]["anchor"] != ac["live_anchor"]:
+                problems.append("%s: the live anchor is named %r and the dated history "
+                                "makes it %r" % (b["id"], ac["live_anchor"],
+                                                 live[0]["anchor"]))
+            elif entry["anchor"] not in [r["resolved"] for r in live[0]["readings"]]:
+                problems.append("%s: the row resolves its anchor to something no reading "
+                                "of the LIVE printing resolves to (%s) — the register "
+                                "would be placing this house against a superseded "
+                                "printing" % (b["id"], entry["anchor"]["note"]))
+            for w in ac["history"]:
+                placed = {(r["resolved"]["kind"], r["resolved"]["target"],
+                           r["resolved"]["via"], tuple(r["resolved"]["streets"] or []))
+                          for r in w["readings"]
+                          if r["resolved"]["kind"] != "unresolved"}
+                if len(placed) > 1:
+                    problems.append(
+                        "%s: the readings grouped under the anchor %r resolve to %d "
+                        "different things in the committed town (%s) — they were "
+                        "declared one landmark, and one landmark is one place"
+                        % (b["id"], w["anchor"], len(placed),
+                           ", ".join(sorted(str(x) for x in placed))))
         businesses.append(entry)
 
     # ---- persons -----------------------------------------------------------
@@ -738,7 +1042,10 @@ def compile_register(gazetteer, town, quiet=True):
             "by_action": tally(businesses, "action"),
             "by_placement_class": tally(businesses, "placement_class"),
             "present_by_action": tally(present, "action"),
+            "outside_the_plat": sum(1 for b in businesses if b["outside_plat"]),
             "survival_liberty_required": sum(1 for b in present if b["survival_liberty_required"]),
+            "backdating_liberty_required": sum(1 for b in present
+                                               if b["backdating_liberty_required"]),
             "dissolved_after_scene_date": sum(1 for b in businesses if b["dissolved_after_scene_date"]),
         },
         "persons": {
@@ -767,6 +1074,7 @@ def compile_register(gazetteer, town, quiet=True):
                           "persons": gazetteer["counts"]["persons"],
                           "businesses": gazetteer["counts"]["businesses"]},
             "structures": len(town["structures"]),
+            "structures_sharing_a_name": structures_sharing_a_name(town),
             "streets": len({v for v in town["streets"].values()}),
             "resident_persons": len(town["residents"]),
         },
@@ -841,6 +1149,11 @@ def check():
         print("  ok    register: %d business(es), %d person(s), %d invented household(s) retirable"
               % (len(on_disk["businesses"]), len(on_disk["persons"]),
                  on_disk["counts"]["invented_residents"]["retirable_total"]))
+        ambiguous = [b["id"] for b in on_disk["businesses"]
+                     if b["anchor"]["kind"] == "ambiguous"]
+        print("  ok    %d committed name(s) are held by more than one structure; an "
+              "anchor naming one is refused, not placed (%d today)"
+              % (on_disk["compiled_from"]["structures_sharing_a_name"], len(ambiguous)))
     return bad
 
 
@@ -861,6 +1174,22 @@ def self_test():
              "occupant_text": "William Walters, landlord", "function": "tavern_inn",
              "identity_text": "Wolf Point Tavern ; William Walters, landlord ; Taylor's tavern",
              "occupation": "tavern_keeper", "anonymous": False},
+            # T-0386's own case, and it is a real one: ONE advertisement of two
+            # buildings to let under one proprietor's name. Nothing distinguishes them
+            # but the (east)/(west) disambiguators this project added, so an anchor
+            # reading 'John Wright's Building to Let' answers to both.
+            {"id": "wright_building_to_let_a", "name": "John Wright's Building to Let",
+             "name_words": [{"john", "wright", "building", "let"}],
+             "aka_head_words": [], "aka_texts": [], "occupant_words": set(),
+             "occupant_text": "", "function": "dwelling_to_let",
+             "identity_text": "John Wright's Building to Let",
+             "occupation": None, "anonymous": False},
+            {"id": "wright_building_to_let_b", "name": "John Wright's Building to Let",
+             "name_words": [{"john", "wright", "building", "let"}],
+             "aka_head_words": [], "aka_texts": [], "occupant_words": set(),
+             "occupant_text": "", "function": "dwelling_to_let",
+             "identity_text": "John Wright's Building to Let",
+             "occupation": None, "anonymous": False},
             {"id": "recon_1835_north_i2_015", "name": "Reconstructed meeting hall #015",
              "name_words": [{"reconstructed", "meeting", "hall", "015"}],
              "aka_head_words": [], "aka_texts": [], "occupant_words": set(),
@@ -874,9 +1203,15 @@ def self_test():
                       {"household": "hh_inf_baker", "person": "inf_baker_01",
                        "name": "Silas Stiles", "grade": "reconstructed", "occupation": "baker"}],
         "invented": {"baker": ["hh_inf_baker"]},
+        "has_creek": False,
     }
     failures = []
     CASES = [0]
+
+    def unit(label, got, want):
+        CASES[0] += 1
+        if got != want:
+            failures.append("%s: got %r, wanted %r" % (label, got, want))
 
     def case(label, gaz, want):
         CASES[0] += 1
@@ -900,9 +1235,20 @@ def self_test():
              "evidence": {"first_issue": kw.get("first", "1834-01-01"),
                           "last_issue": kw.get("last", "1835-06-01"), "copy_dates": []},
              "contradicted_by": kw.get("contradicted", []),
+             "opening_announced": kw.get("announced", []),
              "mentions": [], "built_at_scene_date": True,
              "survival_liberty_required": kw.get("survival", False)}
+        if kw.get("anchor_change"):
+            b["anchor_change"] = kw["anchor_change"]
         return b
+
+    def refuses(label, gaz, want):
+        """A case that must be REFUSED, and on the sentence it is refused with."""
+        CASES[0] += 1
+        _, problems = compile_register(gaz, town)
+        if not any(want in p for p in problems):
+            failures.append("%s: expected a refusal mentioning %r, got %r"
+                            % (label, want, problems))
 
     def person(pid, name, **kw):
         return {"id": pid, "name": name, "variants": [], "mentions": [],
@@ -923,12 +1269,67 @@ def self_test():
          else "present=%r after=%r" % (d["businesses"][0]["present_at_scene_date"],
                                        d["businesses"][0]["dissolved_after_scene_date"]))
 
-    # 2. First evidence after the scene date excludes, and says so.
-    case("first evidence after the scene date excludes",
-         gaz([biz("b1", first="1835-08-08", last="1835-08-08")]),
-         lambda d: True if (d["businesses"][0]["exclusion"] == "first_evidence_after_scene_date"
-                            and "1835-08-08" in d["businesses"][0]["exclusion_note"])
+    # 2. T-0356. The exclusion reads the paper's own opening notice, and the DATING is
+    #    what decides. Every case below was a live reading in the 1835 corpus.
+    def opening(dating, iso, claim="c#1", verbatim="will open", note="a reading"):
+        return {"claim": claim, "issue": "1835-08-05", "dating": dating, "iso": iso,
+                "verbatim": verbatim, "note": note}
+
+    case("a STATED opening after the scene date excludes, and quotes the paper",
+         gaz([biz("b1", first="1835-08-05", last="1835-08-05",
+                  announced=[opening("stated", "1835-08-14",
+                                     verbatim="open a Branch of their House")])]),
+         lambda d: True if (d["businesses"][0]["exclusion"] == "opening_announced_after_scene_date"
+                            and "1835-08-14" in d["businesses"][0]["exclusion_note"]
+                            and "open a Branch of their House" in d["businesses"][0]["exclusion_note"])
+         else "excluded as %r, %r" % (d["businesses"][0]["exclusion"],
+                                      d["businesses"][0]["exclusion_note"]))
+    case("a STATED opening on or before the scene date does not exclude",
+         gaz([biz("b1", street="Lake Street", first="1835-08-05", last="1835-08-05",
+                  announced=[opening("stated", "1835-06-20")])]),
+         lambda d: True if d["businesses"][0]["present_at_scene_date"]
          else "excluded as %r" % d["businesses"][0]["exclusion"])
+    case("an EFFECTED opening after the scene date never excludes — it bounds from above",
+         gaz([biz("b1", street="Lake Street", first="1835-08-19", last="1835-08-19",
+                  announced=[opening("effected", "1835-08-18", verbatim="she has taken a room")])]),
+         lambda d: True if (d["businesses"][0]["present_at_scene_date"]
+                            and d["businesses"][0]["action"] == "street_only")
+         else "excluded as %r" % d["businesses"][0]["exclusion"])
+    case("an UNDATED opening decides nothing",
+         gaz([biz("b1", street="Lake Street", first="1835-08-05", last="1835-08-05",
+                  announced=[opening("undated", None, verbatim="has just opened")])]),
+         lambda d: True if d["businesses"][0]["present_at_scene_date"]
+         else "excluded as %r" % d["businesses"][0]["exclusion"])
+    case("a contradiction before the scene date outranks a stated opening",
+         gaz([biz("b1", first="1835-08-05", last="1835-08-05",
+                  announced=[opening("stated", "1835-08-14")],
+                  contradicted=[{"claim": "c#9", "kind": "notice", "issue": "1834-06-11"}])]),
+         lambda d: True if d["businesses"][0]["exclusion"] == "contradicted_before_scene_date"
+         else "excluded as %r" % d["businesses"][0]["exclusion"])
+
+    # 2b. THE PROXY IS GONE, and this is the case that proves it: a house whose first
+    #     surviving issue is August and whose copy is dated a year earlier stands in the
+    #     July town, on no liberty at all. Wm. H. Taylor's boot store, 8 July 1834.
+    case("first evidence after the scene date no longer excludes by itself",
+         gaz([biz("b1", street="Lake Street", first="1835-08-08", last="1835-08-08")]),
+         lambda d: True if (d["businesses"][0]["present_at_scene_date"]
+                            and d["businesses"][0]["exclusion"] is None)
+         else "excluded as %r" % d["businesses"][0]["exclusion"])
+    case("standing on August evidence alone is a backdating liberty",
+         gaz([biz("b1", street="Lake Street", first="1835-08-08", last="1835-08-08")]),
+         lambda d: True if d["businesses"][0]["backdating_liberty_required"]
+         else "backdating_liberty_required=%r" % d["businesses"][0]["backdating_liberty_required"])
+    case("an opening dated before the scene date clears the backdating liberty",
+         gaz([biz("b1", street="Lake Street", first="1835-08-05", last="1835-08-05",
+                  announced=[opening("effected", "1834-07-08",
+                                     verbatim="HAS opened an extensive Boot, Shoe and Leather Store")])]),
+         lambda d: True if (d["businesses"][0]["present_at_scene_date"]
+                            and not d["businesses"][0]["backdating_liberty_required"])
+         else "backdating_liberty_required=%r" % d["businesses"][0]["backdating_liberty_required"])
+    case("a house documented before the scene date owes no backdating liberty",
+         gaz([biz("b1", street="Lake Street", first="1834-05-01", last="1835-06-01")]),
+         lambda d: True if not d["businesses"][0]["backdating_liberty_required"]
+         else "backdating_liberty_required=%r" % d["businesses"][0]["backdating_liberty_required"])
 
     # 3. The four actions, each on its own ground.
     case("a committed structure carrying the proprietor takes enrich_existing",
@@ -962,6 +1363,40 @@ def self_test():
          lambda d: True if (d["businesses"][1]["anchor"]["kind"] == "business"
                             and d["businesses"][1]["anchor"]["via"] == "b1")
          else "anchor=%r" % d["businesses"][1]["anchor"])
+
+    # 4a. T-0386. A NAME THE TOWN HOLDS TWICE IS REFUSED, NEVER TIE-BROKEN. The pick
+    #     this replaces was `sorted(hits)[0]` — an alphabetical coin toss that the
+    #     register then reported as "the landmark is the committed structure X".
+    case("an anchor naming TWO committed structures is refused, not placed",
+         gaz([biz("b1", street="South Water Street", placement={
+             "class": "relative", "anchor": "John Wright's Building to Let"})]),
+         lambda d: True if (d["businesses"][0]["anchor"]["kind"] == "ambiguous"
+                            and d["businesses"][0]["anchor"]["target"] is None
+                            and "wright_building_to_let_a" in d["businesses"][0]["anchor"]["note"]
+                            and "wright_building_to_let_b" in d["businesses"][0]["anchor"]["note"]
+                            and d["businesses"][0]["action"] == "street_only")
+         else "anchor=%r action=%r" % (d["businesses"][0]["anchor"],
+                                       d["businesses"][0]["action"]))
+    case("…and an anchor naming exactly ONE still places on it",
+         gaz([biz("b1", street="Lake Street", placement={
+             "class": "relative", "anchor": "Dole's Warehouse"})]),
+         lambda d: True if (d["businesses"][0]["anchor"]["kind"] == "structure"
+                            and d["businesses"][0]["anchor"]["target"] == "dole_warehouse_south"
+                            and d["businesses"][0]["action"] == "new_building")
+         else "anchor=%r action=%r" % (d["businesses"][0]["anchor"],
+                                       d["businesses"][0]["action"]))
+    case("an anchor naming TWO documented businesses is refused on the hop too",
+         gaz([biz("b1", name="Newberry & Dole", street="South Water Street"),
+              biz("b2", name="Newberry & Dole", street="South Water Street"),
+              biz("b3", street="South Water Street", placement={
+                  "class": "relative", "anchor": "Messrs. Newberry & Dole"})]),
+         lambda d: True if (d["businesses"][2]["anchor"]["kind"] == "ambiguous"
+                            and d["businesses"][2]["anchor"]["via"] is None
+                            and d["businesses"][2]["action"] == "street_only")
+         else "anchor=%r action=%r" % (d["businesses"][2]["anchor"],
+                                       d["businesses"][2]["action"]))
+    unit("the town's exposure is counted, not asserted",
+         structures_sharing_a_name(town), 1)
 
     # 4b. The guards on enrich_existing, each on the case that forced it.
     case("a firm style in `proprietors` yields its PARTNERS, not its '& Co.'",
@@ -998,6 +1433,129 @@ def self_test():
                             and d["businesses"][0]["action"] == "street_only")
          else "anchor=%r action=%r" % (d["businesses"][0]["anchor"]["kind"],
                                        d["businesses"][0]["action"]))
+
+    # 4c. THE DATED ANCHOR CHANGE (T-0345). A house whose printed anchor changed on a
+    # date carries ONE live placement and the superseded ones as dated history; the
+    # guards below are the three ways that could go back to being two standing
+    # placements, which is the defect the ticket is about.
+    def reading(a, first, last):
+        return {"anchor": a, "class": "relative", "first_issue": first,
+                "last_issue": last, "claims": ["c#%s" % a],
+                "placement": {"class": "relative", "anchor": a}}
+
+    def window(name, live, readings, first="1834-01-01", last="1834-06-01"):
+        return {"anchor": name, "why": None, "first_issue": first, "last_issue": last,
+                "readings": [reading(a, first, last) for a in readings],
+                "claims": ["c#%s" % a for a in readings], "live_at_scene_date": live,
+                "placement": {"class": "relative", "anchor": readings[0]}}
+
+    def history(*windows, **kw):
+        return {"rule": "the anchor changed", "cannot_say": "which side of it moved",
+                "live_anchor": kw.get("live_anchor", "the hotel"),
+                "live_reason": "the later of the two, printed before the scene date",
+                "changes": [], "history": list(windows)}
+
+    case("a superseded anchor is resolved and kept, and does not place the house",
+         gaz([biz("b1", street="Lake Street",
+                  placement={"class": "relative", "anchor": "the hotel"},
+                  anchor_change=history(
+                      window("Wolf Point Tavern", False, ["Wolf Point Tavern"]),
+                      window("the hotel", True, ["the hotel"],
+                             "1834-09-10", "1834-12-10")))]),
+         lambda d: True if (
+             d["businesses"][0]["anchor_change"]["history"][0]["resolved"]["target"]
+             == "wolf_point_tavern"
+             and d["businesses"][0]["anchor"]["kind"] == "unresolved"
+             and d["businesses"][0]["action"] == "street_only")
+         else "superseded=%r live=%r action=%r"
+              % (d["businesses"][0]["anchor_change"]["history"][0]["resolved"],
+                 d["businesses"][0]["anchor"], d["businesses"][0]["action"]))
+    case("an anchor printed four ways resolves on the reading that resolves best",
+         gaz([biz("b1", street="Lake Street",
+                  placement={"class": "relative", "anchor": "the hotel"},
+                  anchor_change=history(
+                      window("Wolf Point Tavern", False,
+                             ["Wolf Point Tavern, on Main-street", "Wolf Point Tavern"]),
+                      window("the hotel", True, ["the hotel"],
+                             "1834-09-10", "1834-12-10")))]),
+         lambda d: True if (
+             d["businesses"][0]["anchor_change"]["history"][0]["resolved_on_reading"]
+             == "Wolf Point Tavern")
+         else "resolved on %r"
+              % d["businesses"][0]["anchor_change"]["history"][0]["resolved_on_reading"])
+    refuses("two anchors live at the scene date is two standing placements",
+            gaz([biz("b1", street="Lake Street",
+                     placement={"class": "relative", "anchor": "the hotel"},
+                     anchor_change=history(
+                         window("Wolf Point Tavern", True, ["Wolf Point Tavern"]),
+                         window("the hotel", True, ["the hotel"])))]),
+            "are live at the scene date")
+    refuses("the named live anchor must be the one the dates make live",
+            gaz([biz("b1", street="Lake Street",
+                     placement={"class": "relative", "anchor": "the hotel"},
+                     anchor_change=history(
+                         window("Wolf Point Tavern", True, ["Wolf Point Tavern"]),
+                         window("the hotel", False, ["the hotel"])))]),
+            "the dated history makes it")
+    refuses("the row may not place the house on a superseded printing",
+            gaz([biz("b1", street="Lake Street",
+                     placement={"class": "relative", "anchor": "Wolf Point Tavern"},
+                     anchor_change=history(
+                         window("Dole's Warehouse", False, ["Dole's Warehouse"]),
+                         window("the hotel", True, ["the hotel"])))]),
+            "no reading of the LIVE printing resolves to")
+    refuses("readings called one landmark may not resolve to two",
+            gaz([biz("b1", street="Lake Street",
+                     placement={"class": "relative", "anchor": "the hotel"},
+                     anchor_change=history(
+                         window("the tavern", False,
+                                ["Wolf Point Tavern", "Dole's Warehouse"]),
+                         window("the hotel", True, ["the hotel"])))]),
+            "one landmark is one place")
+    # 4c. T-0355 — the two readings that put a Flag Creek tavern in a Wolf Point stable.
+    # First the occupants line that caused it, read directly, because the town fixture
+    # above supplies `occupant_words` ready-made and cannot exercise the clause filter.
+    unit("a clause dated to another year is not a scene-date occupant",
+         scene_date_occupants("the tavern's keeper of the day \u2014 Elijah Wentworth in "
+                              "1831, William Walters on the scene date"),
+         "the tavern's keeper of the day; William Walters on the scene date")
+    unit("a clause stating no year is kept whole",
+         scene_date_occupants("William Walters, landlord"), "William Walters; landlord")
+    unit("a range that covers the scene date is kept",
+         scene_date_occupants("William Walters 1833-1836"), "William Walters 1833-1836")
+    unit("a two-digit range takes its century from its own head",
+         scene_date_occupants("Eliza Chappel and her infant school, 1833-34"),
+         "Eliza Chappel and her infant school")
+    unit("a year range is one span, not two loose years",
+         year_spans("1833-34 and 1836"), [(1833, 1834), (1836, 1836)])
+
+    # Then the guard the fault generalises to: the firm's own record says where it is.
+    case("a distance in miles refuses every match into the committed town",
+         gaz([biz("b1", proprietors=["George W. Dole"], street="Lake Street", placement={
+             "class": "relative", "anchor": "thirteen miles south of Chicago"})]),
+         lambda d: True if (d["businesses"][0]["action"] == "unplaceable"
+                            and d["businesses"][0]["outside_plat"])
+         else "action=%r outside=%r" % (d["businesses"][0]["action"],
+                                        d["businesses"][0]["outside_plat"]))
+    case("a road leading out of town refuses it too",
+         gaz([biz("b1", proprietors=["George W. Dole"], placement={
+             "class": "relative", "anchor": "the road from Chicago leading to Ottawa"})]),
+         lambda d: True if d["businesses"][0]["action"] == "unplaceable"
+         else "action=%r target=%r" % (d["businesses"][0]["action"],
+                                       d["businesses"][0]["action_target"]))
+    case("a named creek in the firm's own name refuses it, placement or no placement",
+         gaz([biz("b1", name="E. Wentworth's tavern, Flag Creek",
+                  proprietors=["George W. Dole"])]),
+         lambda d: True if (d["businesses"][0]["action"] == "unplaceable"
+                            and "Flag Creek" in d["businesses"][0]["outside_plat"])
+         else "action=%r outside=%r" % (d["businesses"][0]["action"],
+                                        d["businesses"][0]["outside_plat"]))
+    case("a firm the papers do NOT put out of town still enriches",
+         gaz([biz("b1", proprietors=["George W. Dole"], street="Lake Street")]),
+         lambda d: True if (d["businesses"][0]["action"] == "enrich_existing"
+                            and d["businesses"][0]["outside_plat"] is None)
+         else "action=%r outside=%r" % (d["businesses"][0]["action"],
+                                        d["businesses"][0]["outside_plat"]))
 
     # 5. The identity policy is the gazetteer's, imported and not re-invented.
     case("a resident already held takes enrich",

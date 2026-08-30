@@ -225,25 +225,37 @@ def in_town_places() -> set[str]:
     return places
 
 
-def town_family_names(docs: dict, index: dict) -> set[str]:
+# The minting passes run in a fixed ORDER, and `skip` below is what encodes it.
+# Each pass must not read its OWN output back as "the town already names a
+# <Surname>" — it would refuse on the second run every man it seated on the first
+# and make `--check` pass against any tree at all. But it must not read a LATER
+# pass's output either, and THAT is a precedence rule rather than the same rule
+# twice: where two passes reach for one family name, the better-evidenced pass
+# keeps it and the later one gives way.
+#
+# The order is documented (a trade the papers print) ▸ placed (a residency test
+# over the corpus, T-0373) ▸ letter-list-only (a name on a list of uncalled-for
+# letters, T-0378), best-evidenced first:
+#
+#   mint_documented_residents   skips hh_doc_, hh_placed_, hh_ll_ — sees none
+#   mint_placed_residents       skips hh_placed_, hh_ll_         — sees hh_doc_
+#   mint_letter_list_residents  skips hh_ll_                     — sees both
+#
+# So this derivation is unchanged by anything any of the three mints, which is
+# what keeps all three re-derivable beside each other in any order.
+MINTED_PREFIXES = ("hh_doc_", "hh_placed_", "hh_ll_")
+
+
+def town_family_names(docs: dict, index: dict, skip=MINTED_PREFIXES) -> set[str]:
     """The family names the committed dataset already has something to say about.
 
     Read from the household records' own person names and from the index's
-    researched-not-resident findings — NOT from this pass's own output, which
-    would refuse on the second run every man it seated on the first and make
-    `--check` pass against any tree at all.
-
-    NOR from the letter-list pass's output, and that is a PRECEDENCE rule rather
-    than the same rule twice. `tools/mint_letter_list_residents.py` mints people
-    whose only evidence is a name on a list of uncalled-for letters; a man the
-    papers give a trade is better evidenced, so where the two passes reach for
-    one family name this one keeps it and that one gives way. It reads THIS
-    pass's households and refuses on them; this pass cannot see its households at
-    all, which is what keeps this derivation unchanged by anything it mints.
+    researched-not-resident findings — minus the minted households named by
+    `skip`; see MINTED_PREFIXES above for why that is an order and not a set.
     """
     known: set[str] = set()
     for path, doc in docs.items():
-        if path.name.startswith(PREFIX) or path.name.startswith(LETTER_LIST_PREFIX):
+        if path.name.startswith(tuple(skip)):
             continue
         for person in doc.get("persons") or []:
             fam = surname(person.get("name") or "")

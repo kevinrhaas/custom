@@ -406,6 +406,97 @@ the union of mentions, proprietors, goods and copy dates, the wider issue window
 more specific placement, and every trade either side printed in `trade_variants` — it can
 widen a record and it cannot narrow one.
 
+**A pair judged NOT one house is a record too** (T-0399). `firm_surnames()` groups the
+register on the partner surname alone, so it puts together houses that are not one house
+— the two Montgomerys, a namesake, an anchor mistaken for a partner. Until this ticket the
+only record of having judged such a group was the ABSENCE of a merge rule, which reads
+exactly like a group nobody has looked at yet: the next sweep finds the group again, does
+the work again, and the argument for keeping the pair apart — the thing that stops a wrong
+merge on the second pass — is the part that was never written down.
+`refused_firm_merges` is that argument, declared as explicitly as a merge and held to the
+same disciplines. `refused_because` names BOTH styles verbatim; `witnesses` names the
+printings the refusal rests on, because a refusal rests on printings exactly as a merge
+does; `kind` is one of three, because *not shown to be one* is a different finding from
+*shown to be two* — `two_houses` (the papers show two houses under one surname),
+`not_joined` (one name, and no printing puts the two styles under one roof), and
+`different_ground` (one house, and the papers put the two styles in different places: a
+removal or a succession, which is a claim and not a merge). And a refusal **cannot outlive
+its pair**: if a later merge collapses the two styles it names, the refusal is a judgement
+nobody can check, and the compile fails rather than leaving it to rot. Each refusal is
+written onto both of the businesses it holds apart, so a reader meeting one of them meets
+the reason the other is not it.
+
+**The first firm pass is T-0399**, the restyled duplicates of T-0338's surname groups —
+where one style is the other with a trade description, a signboard or an extractor's
+parenthesis after it. **25 merge rules over 20 houses, and 3 refusals**; the businesses
+table went from 242 to 221 and `survival_liberty_required` from 126 to 111, because
+records that were each claiming a liberty for a shop last seen before 1835 turned out to
+belong to a house still advertising in 1835 under its other heading. The three refusals
+are A. Garrett (`different_ground` — the auctioneer advertises from South Water street in
+December 1834 and signs from Dearborn street twenty months later, with no removal notice
+between them), B. Jones (`not_joined` — a grocery and a forwarding house set as two
+advertisements in one issue; a business record here is a trade with a place, not a
+proprietor) and W. Montgomery (`two_houses` — the auctioneer at David Carver's old stand
+against L. W. Montgomery the bootmaker next door to P. Cohen's). T-0400, T-0401 and T-0402
+carry the bands the pass did not reach.
+
+**The second firm pass is T-0401**, the surname groups that are NOT one house — and it
+merges nothing at all. **16 refusals, and the businesses table does not move**, which is the
+shape of the ticket: the whole output is the written argument. Five hold the Kinzies apart
+(J. H., John S. and R. A. — the Democrat of 1833-12-10 prints two of the family on one
+page, and 'JOHN 8. KINZIE' in that same issue is a damaged glyph the file refuses to repair
+into an H, so that pair is `not_joined` rather than `two_houses`); one each for J. H.
+Mulford the jeweller against the carriage and sleigh maker who shares his surname and an
+issue, W. H. Brown the grocer against 'Brown, painter' who has no forename to compare, and
+Wm. H. Taylor the boot store against Charles Taylor the tailor; three for the Curtisses,
+where an attorney read once as J and once as L stands against L. G. Curtiss the deputy
+surveyor of Cook County, and the Democrat of 1835-08-05 prints the attorney and the
+surveyor in one issue.
+
+The last five are the ones worth the section existing. `firm_surnames()` takes the LAST
+word of a partnership segment as the surname, so a style ending in a trade word is grouped
+on the word: 'store' alone holds thirteen businesses, and the New York Clothing Store,
+Peter Cohen's store and W. Kimball's New Store are refused against each other with that
+said in each, so the failure stays legible if the function changes. 'Eagle Hotel' against
+'the new blacksmith shop opposite the Chicago Hotel' is the same failure one step worse —
+the word belongs to the ANCHOR inside the second style, so a house is grouped with the
+building it stands opposite. And the two Chicago & St. Joseph packets are a group made
+entirely of words: the split on '&' and 'and' turns the route's own name into the partners
+'Chicago' and 'packet', and the schooners Llewellyn and Phillips are two hulls on one run.
+
+**Six of T-0401's candidates turned out to be one house** and are recorded in T-0413 rather
+than refused, with the printings that show it: P. F. Peck and P. F. W. Peck on one La Salle
+corner in abutting windows, F. G. and G. Blanshard opposite Dr. Temple's, G. W. and W.
+Keeney a few doors below Newberry & Dole's, Dr. J. B. and Dr. J. H. Barnard at the New-York
+House nine days apart, M. H. and Wm. H. Kennicott on one copy date, and J. and L. Curtiss
+on one copy date at one anchor. A refusal asserted against the evidence is worth less than
+no refusal at all, so none was written for them; a merge would have moved the business
+count this ticket holds fixed, so none was written either, and the reading is in the ticket
+so it is not done a third time.
+
+**The second firm pass is T-0400**, and it is the band where the two styles carry the SAME
+partner surnames and differ only in the FORM of a forename — whole against abbreviated
+against bare initial. T-0304 had already ruled that a forename initial is not decisive for a
+firm the way it is for a person, so this band is judgeable; what it needed was, in each case,
+the printing that ties the two forms to one house. **Eight merges and two refusals over ten
+groups**, taking the businesses table from 217 to 209 and `survival_liberty_required` from
+109 to 103. Not one of the eight rests on the forename. `Collins & Caton` and `J. H. Collins
+& J. D. Caton` share the card copy-dated Jan. 20, 1834 and the anchor next door east of
+Brewster, Hogan & Co.; `G. Spring` and `Giles Spring` share the card of Dec. 3, 1834 and then
+print the same removal to the Tremont House; `J. Bates, Jr.` and `John Bates, Jr.` run the
+same advertisement for the same sixteen steel-pointed crowbars, both times signed with the
+INITIAL, the kegs of blasting powder down from twelve to seven; `J. Wellmaker & Co.`'s own
+dissolution notice sets the firm's name as `John Wellmaker & Co.` inside the record filed
+under the short style; and the timber notice of Ap'l. 22 runs over `P. PRUYNE & CO.` in one
+printing and `P PRUYNE` in the next, with a plural subscriber above a singular signature both
+times. The two refusals are as much the point of the band as the merges: `J. D. Caton,
+attorney and counsellor at law` against `John Dean Caton` is `different_ground` — the same
+man, South Water Street in December 1833 and Dearborn Street in July 1835, with the
+partnership between them and no removal notice anywhere — and `John Wright` against `J.
+Wright, merchant` is `not_joined`, a Democrat dry-goods house of 1833-34 against an American
+seller of leather, salt and oak scantling in July 1835, with nothing printed to join the two
+forms.
+
 **And the proprietors are a third place a name lives** (T-0337). `business.proprietors` is
 neither a gazetteer person nor a firm style — it is a string put on a business record by
 whichever claim read that printing — so neither policy above could reach it, and one man
@@ -500,14 +591,58 @@ a landmark that is a committed structure, or ONE hop through another documented 
 is. `street_only` — a platted street face and nothing narrower. `unplaceable` — no street the
 model holds.
 
+**Two guards on a match into the committed town, both T-0355.** A structure's `occupants`
+line is read CLAUSE BY CLAUSE, and a clause that dates itself to a year the scene date does
+not fall in is a former tenant, not evidence of who is there now:
+`wolf_point_tavern_stable` records "the tavern's keeper of the day — Elijah Wentworth in
+1831, William Walters on the scene date", and read whole it matched E. Wentworth's tavern.
+And a business whose OWN record puts it out of town takes no action at all — `outside_plat`
+names the marker and quotes it. Three markers, each a positive statement: a distance in
+miles (the plat is under a mile across), a road LEADING TO somewhere (the town's own ways
+are streets), and a named creek (the committed town holds the river and its branches and no
+creek — `read_town` checks that rather than asserting it). Five of the 242 businesses are
+excluded this way and all five are genuinely out of town: four readings of Wentworth's
+tavern on Flag Creek, eighteen miles out on the Ottawa road, and Richard M. Sweet's barn on
+the Dupage.
+
 **Three person actions.** `enrich` (already in `data/residents/`, matched under the
 gazetteer's own identity policy, imported so the two tools cannot drift), `replace_invented`
 (a documented person of a trade the town invented a household for) and `new_resident`
 (everybody else — owner ruling 1, a letter-list name is enough).
 
-**Two exclusions, and the second is a proxy that says so.** A contradiction dated ON OR
+**Two exclusions, and the second one reads the paper (T-0356).** A contradiction dated ON OR
 BEFORE the scene date excludes; a LATER one is recorded (`dissolved_after_scene_date`) and
 disobeyed, because a firm dissolved in August 1835 was demonstrably open in July. The second
-is `first_evidence_after_scene_date`: T-0262 asked to exclude on an `announces_opening` field
-the claim vocabulary does not have, and this is the derivable question that comes closest.
-T-0356 is the field.
+used to be the proxy `first_evidence_after_scene_date` — T-0262 asked to exclude on an
+`announces_opening` field the claim vocabulary did not have, so the register excluded every
+business whose first surviving issue postdated 1 July. It is now
+`opening_announced_after_scene_date`, and it reads the field itself.
+
+**`announces_opening` is a reading, and its `dating` is the whole of it.** A claim of kind
+`business` or `building` may carry `{verbatim, dating, iso, note}`. `verbatim` must appear
+character for character in the claim's `normalized` reading; `note` says how the date was
+read; and `dating` is one of:
+
+| dating | what the printing says | what the register does |
+|---|---|---|
+| `stated` | names a date the house WILL open | excludes if that date is after the scene date |
+| `effected` | announces an opening already made; `iso` is the advertisement's own dateline and the gate refuses any other number | never excludes — the dateline bounds the opening from ABOVE. On or before the scene date it is positive evidence |
+| `undated` | announces an opening and dates it nowhere; `iso` must be absent | decides nothing |
+
+It had been a bare `true` on twenty claims that nothing read. The gate now refuses the
+boolean, so those twenty were re-read into dated readings, which is where Wm. H. Taylor's
+8 July 1834 dateline came from.
+
+**What the proxy cost, measured on the re-read.** Thirty-eight businesses carried it; four
+of them genuinely announce an opening after the scene date and stay out (Cromelien's wine
+branch, 14 Aug; Everts' high school, 10 Aug; Hunt's, 17 Aug; Lyon's wholesale grocery,
+1 Sep). The other thirty-four are back in the July town — among them five printed standing
+in it: Taylor's boot store over an 8 July 1834 dateline, Kennicott saying he had practised
+dentistry here "for the past year", Samuel Lewis's copy dated 22 June, S. Abell's 24 June
+and John Holbrook's 10 June.
+
+**And standing on August evidence alone is a liberty, which the register names.**
+`backdating_liberty_required` is the forward twin of `survival_liberty_required`: documented
+only after the scene date, present on it by assumption, and no opening notice dated on or
+before it to carry the assumption. Thirty-three businesses. `docs/LIBERTIES.md` carries
+neither class yet — T-0357 is the survival half and T-0404 the backdating half.

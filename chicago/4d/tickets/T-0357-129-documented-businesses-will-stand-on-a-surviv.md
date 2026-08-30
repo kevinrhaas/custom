@@ -1,7 +1,7 @@
 ---
 id: T-0357
 title: 129 documented businesses will stand on a survival liberty and LIBERTIES.md carries none of them
-state: open
+state: done
 epic: PAPERS
 requested_by: loop
 seen: false
@@ -9,9 +9,9 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-08-29
-closed: null
-pr: null
-claimed_by: null
+closed: 2026-08-29
+pr: 548
+claimed_by: run 8/29/2026, 12:24:26 PM CT
 blocked_on: null
 needs_bake: false
 ---

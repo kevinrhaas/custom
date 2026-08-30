@@ -155,6 +155,57 @@ WILDCARD = "*"
 TERRAIN_NS = "terrain"
 TERRAIN_TOKEN = re.compile(r"^terrain\.([a-z0-9_]+)\.(.+)$")
 
+# "**Scope:** `register_1835.businesses[survival_liberty_required]` — 126 businesses"
+# — the second field read as data rather than as prose, and the answer to a
+# liberty that is owed by a POPULATION rather than by a record.
+#
+# `Covers:` names invented values one at a time, which is the right shape while
+# the admission is about a building. It cannot state the assumption the
+# newspaper register mints: a business documented before 1835 is taken to be
+# still standing on the scene date unless something contradicts it (owner ruling
+# 3, 2026-08-28). Not one of those businesses has a structure record yet — the
+# seeding that raises them is still ahead — so there is no token to write, and
+# writing one near-identical entry per business the day there is would bury the
+# register under its own bookkeeping, which is the fault the class wildcard above
+# was added to avoid.
+#
+# So one entry states the assumption once and DELEGATES its membership to a
+# derived file, naming the file, the predicate, and how many it reaches. The
+# count is the load-bearing half. A scope that has drifted from its register is
+# worse than no scope at all, because it reads as a measured claim and is not
+# one — the T-0207 shape again, one step further out: here the two sides are the
+# prose and the data, and only re-deriving the number can tell them apart. So it
+# is re-derived on every compile and a disagreement is a gate failure.
+SCOPE_TOKEN = re.compile(r"^`([a-z0-9_]+\.[a-z0-9_]+\[[a-z0-9_]+\])`"
+                         r"\s*[\u2014-]\s*(\d+)\b(.*)$")
+
+REGISTER_1835 = ROOT / "data" / "research" / "newspapers" / "register_1835.json"
+
+
+def _register_survival_liberty_count() -> int:
+    """Businesses standing at the scene date on an assumption, not on a source.
+
+    `present_at_scene_date` as well as the flag, because the register only
+    carries the flag forward for a business nothing contradicts — asserting both
+    here keeps this count from quietly widening if that ever separates.
+    """
+    doc = json.loads(REGISTER_1835.read_text())
+    return sum(1 for b in doc.get("businesses", [])
+               if b.get("present_at_scene_date") and b.get("survival_liberty_required"))
+
+
+# enumeration -> (how many it reaches now, where that number is derived from).
+#
+# A scope may only name an enumeration written down HERE. The alternative — an
+# entry free to spell its own predicate — is a check marking its own homework:
+# whatever the prose selected would be exactly what the prose counted, for ever.
+SCOPE_SOURCES = {
+    "register_1835.businesses[survival_liberty_required]": (
+        _register_survival_liberty_count,
+        "data/research/newspapers/register_1835.json, itself re-derived by "
+        "tools/compile_register.py --check"),
+}
+
 SECTION_KEY = {
     "standing liberties": "standing",
     "per-subject liberties": "per_subject",
@@ -246,6 +297,46 @@ def parse_covers(text: str, lid: str, problems: list[str]) -> list[dict]:
     return sorted(claims, key=claim_sort_key)
 
 
+def parse_scope(text: str, lid: str, problems: list[str], sources: dict) -> dict | None:
+    """`Scope:` -> the population an entry covers, and the count it claims to reach.
+
+    Two independent statements of one fact, which is the same discipline the
+    section check runs on. The markdown declares a number a reader can see; the
+    derived file it names is counted here. Neither is believed alone — a
+    hand-typed count is a claim about data that moves under it, and a count taken
+    silently from the data would agree with itself for ever and tell a reader
+    nothing at all.
+
+    Returns the declared reading, not the derived one, on purpose: this file is a
+    faithful copy of the markdown, so a drift has to surface as a problem the
+    gate reports rather than as a number the next compile quietly absorbs.
+    """
+    m = SCOPE_TOKEN.match(text.strip())
+    if not m:
+        problems.append(
+            f"{lid}: Scope must read '`<enumeration>` \u2014 <n> <noun>', naming an "
+            f"enumeration something derives and how many of it the liberty reaches; "
+            f"got {text[:60]!r}")
+        return None
+    enumeration, declared = m.group(1), int(m.group(2))
+    source = sources.get(enumeration)
+    if source is None:
+        problems.append(
+            f"{lid}: Scope names the enumeration '{enumeration}', which nothing "
+            f"derives \u2014 a population selected by the same sentence that counts it "
+            f"is unchecked. Add it to compile_liberties.SCOPE_SOURCES. Known: "
+            f"{', '.join(sorted(sources)) or '(none)'}")
+        return None
+    count, derived_from = source
+    actual = count()
+    if actual != declared:
+        problems.append(
+            f"{lid}: Scope claims {declared} for '{enumeration}' and it reaches "
+            f"{actual} today \u2014 the population moved under the liberty. Restate the "
+            f"count, and the prose that reasons from it, against {derived_from}")
+    return {"enumeration": enumeration, "count": declared}
+
+
 def settled_section(lid: str, positional: str, states_settled: bool,
                     problems: list[str]) -> str:
     """The section an entry is in, from its position AND its own words.
@@ -329,8 +420,10 @@ def duplicate_ids(entries: list[dict]) -> list[str]:
     return problems
 
 
-def parse(markdown: str, known: dict[str, str]) -> tuple[list[dict], list[str]]:
+def parse(markdown: str, known: dict[str, str],
+          sources: dict | None = None) -> tuple[list[dict], list[str]]:
     problems: list[str] = []
+    sources = SCOPE_SOURCES if sources is None else sources
     for lineno, line in unparsed_headings(markdown):
         problems.append(
             f"line {lineno}: '{line.strip()[:70]}' looks like an entry heading and "
@@ -392,6 +485,8 @@ def parse(markdown: str, known: dict[str, str]) -> tuple[list[dict], list[str]]:
 
         covers = (parse_covers(by_label["covers"], m.group(1), problems)
                   if "covers" in by_label else [])
+        scope = (parse_scope(by_label["scope"], m.group(1), problems, sources)
+                 if "scope" in by_label else None)
 
         entries.append({
             "id": m.group(1),
@@ -400,6 +495,9 @@ def parse(markdown: str, known: dict[str, str]) -> tuple[list[dict], list[str]]:
                                        SETTLED_FIELD in by_label, problems),
             "subjects": subjects,
             "covers": covers,
+            # Present only where an entry declares one, so the 200-odd liberties
+            # owed by a record rather than by a population carry no empty field.
+            **({"scope": scope} if scope else {}),
             "recorded": recorded.group(1) if recorded else None,
             "revised": revised.group(1) if revised else None,
             "fields": fields,
@@ -531,6 +629,41 @@ SHAPE_SPECIMEN = """# Liberties taken
 """
 
 
+# The scope field's four readings, which a specimen is the only way to hold: the
+# committed document cannot carry a drifted count or an invented enumeration,
+# because the gate refuses to compile one.
+#
+# `specimen.things[flagged]` is resolved by a stub that returns 3, so L60 agrees,
+# L61 has drifted by one, L62 names a predicate nothing derives, and L63 writes
+# the field as the sentence a person would reach for first.
+SCOPE_SPECIMEN = """# Liberties taken
+
+## Per-subject liberties
+
+### L60 — A population, counted, and the count agrees
+**Decision:** something assumed about a whole class of things.
+**Scope:** `specimen.things[flagged]` — 3 things carrying the flag.
+**Recorded:** 2026-08-09.
+
+### L61 — The same population, and the count has drifted under it
+**Decision:** something assumed about a whole class of things.
+**Scope:** `specimen.things[flagged]` — 2 things carrying the flag.
+**Recorded:** 2026-08-10.
+
+### L62 — A scope naming a predicate nothing derives
+**Decision:** something assumed about a whole class of things.
+**Scope:** `specimen.things[invented_right_here]` — 3 things carrying the flag.
+**Recorded:** 2026-08-11.
+
+### L63 — A scope written as the sentence a person reaches for first
+**Decision:** something assumed about a whole class of things.
+**Scope:** all the things in the register that carry the flag.
+**Recorded:** 2026-08-12.
+"""
+
+SCOPE_STUB = {"specimen.things[flagged]": (lambda: 3, "the specimen")}
+
+
 def self_test() -> bool:
     """Every assertion fires when broken.
 
@@ -598,6 +731,33 @@ def self_test() -> bool:
     check("…and it is the ONLY entry parsed, which is why the silence mattered",
           [e["id"] for e in shape] == ["L40"])
 
+    # The scope field, whose whole value is the count, and whose whole risk is
+    # that the count stops being true without anything looking different.
+    sco, sco_problems = parse(SCOPE_SPECIMEN, {}, SCOPE_STUB)
+    scoped = {e["id"]: e.get("scope") for e in sco}
+    sco_blamed = {lid: [p for p in sco_problems if p.startswith(lid + ":")]
+                  for lid in scoped}
+
+    check("a scope whose count agrees with its enumeration compiles",
+          scoped.get("L60") == {"enumeration": "specimen.things[flagged]", "count": 3})
+    check("…and is not blamed for anything", not sco_blamed.get("L60"))
+    check("a count that has drifted from its enumeration is reported",
+          len(sco_blamed.get("L61") or []) == 1)
+    check("…and the report names BOTH numbers, so it can be repaired without "
+          "re-deriving the population by hand",
+          bool(sco_blamed.get("L61")) and "claims 2" in sco_blamed["L61"][0]
+          and "reaches 3" in sco_blamed["L61"][0])
+    check("…and the drifted entry still compiles the DECLARED count, so the next "
+          "compile cannot absorb the drift into the derived file",
+          (scoped.get("L61") or {}).get("count") == 2)
+    check("an enumeration nothing derives is reported rather than believed",
+          len(sco_blamed.get("L62") or []) == 1 and not scoped.get("L62"))
+    check("…and the report lists the enumerations that do exist",
+          bool(sco_blamed.get("L62"))
+          and "specimen.things[flagged]" in sco_blamed["L62"][0])
+    check("a Scope field written as prose is reported, not parsed into a count",
+          len(sco_blamed.get("L63") or []) == 1 and not scoped.get("L63"))
+
     # And the document that ships. The fault this exists for is exactly a
     # section nobody meant to be in, so the specimen proving the assertion
     # fires is worth nothing without the live reading beside it.
@@ -617,6 +777,16 @@ def self_test() -> bool:
           f"({', '.join(subs)})", not duplicate_ids(live))
     check(f"…and every one of its {len(live)} headings parses",
           not unparsed_headings(SOURCE.read_text()))
+
+    # The live scopes, resolved against the real register rather than the stub.
+    # The specimen proves the assertion fires; this proves the document it fires
+    # on is clean today, which is the half a synthetic document cannot show.
+    live_scopes = [(e["id"], e["scope"]["count"]) for e in live if e.get("scope")]
+    scope_problems = [p for p in live_problems if ": Scope " in p]
+    declared = ", ".join(f"{lid} reaches {n}" for lid, n in live_scopes)
+    check(f"every scope in the committed document resolves and its count agrees "
+          f"({declared or 'none declared'})",
+          bool(live_scopes) and not scope_problems)
     return ok
 
 

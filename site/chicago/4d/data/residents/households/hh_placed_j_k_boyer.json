@@ -1,0 +1,68 @@
+{
+ "id": "hh_placed_j_k_boyer",
+ "name": "The Boyer household — documented at Chicago, no trade printed, unplaced in the town",
+ "division": "unplaced",
+ "head": "placed_j_k_boyer",
+ "arrival": {
+  "value": "1834-08-13",
+  "confidence": "inferred",
+  "sources": [
+   "chicago_democrat_1833_1835"
+  ],
+  "note": "A BOUND FROM THE PAPER, NOT AN ARRIVAL. The corpus first prints this person at the Democrat of 13 August 1834, column 1, so they are in the town's paper by 1834-08-13 and at no stated time before it; nothing reached says when they came. Last printed 1835-07-01.",
+  "precision": "not_later_than"
+ },
+ "party_size_on_arrival": {
+  "value": null,
+  "confidence": "reconstructed",
+  "note": "Not attested."
+ },
+ "origin": {
+  "value": null,
+  "confidence": "reconstructed",
+  "note": "Not attested."
+ },
+ "reason_for_coming": {
+  "value": null,
+  "confidence": "reconstructed",
+  "note": "Not attested."
+ },
+ "lives_at": {
+  "value": null,
+  "confidence": "reconstructed",
+  "note": "Not attested. NOTHING IS BEING WITHHELD HERE: no source reached says where this person lived, and 52 households in this dataset were already in that position before this one was written."
+ },
+ "works_at": {
+  "value": null,
+  "confidence": "reconstructed",
+  "note": "Not attested, and no trade is recorded either — the papers name this person without saying what they did."
+ },
+ "present_on_scene_date": {
+  "value": "present",
+  "confidence": "inferred",
+  "sources": [
+   "chicago_democrat_1833_1835"
+  ],
+  "note": "Printed on or after the scene date — last at the Democrat of 1 July 1835, column 11 — so the corpus itself puts this person in the town's paper at 1835-07-01."
+ },
+ "persons": [
+  {
+   "id": "placed_j_k_boyer",
+   "name": "J. K. Boyer",
+   "relationship": "head",
+   "grade": "attested",
+   "occupation": {
+    "value": "none_recorded",
+    "confidence": "reconstructed",
+    "note": "No source records an occupation for this person. This is the ABSENCE of a record rather than a claim that they did no work: the papers name them in a proceedings column, a public card or an advertisement and simply do not say what they did for a living, and `data/research/newspapers/register_1835.json` reads no trade for them. Reasoning a trade out of the company they keep would be inventing one, so the vocabulary's own word for an absent record is what stands here."
+   },
+   "sources": [
+    "chicago_democrat_1833_1835"
+   ],
+   "note": "A DOCUMENTED PERSON, AND NO TRADE IS CLAIMED BECAUSE THE PAPERS GIVE NONE. The corpus prints 'J. K. Boyer' and places them at Chicago; it does not say what they did for a living, where this household lived, who else was in it, or when it came. The occupation therefore reads `none_recorded`, this dataset's own word for an absent record, rather than a trade reasoned from the company they keep — the absence is the finding. Cited at the Democrat of 13 August 1834, column 1; the Democrat of 1 July 1835, column 11. THE CORPUS PRINTS THIS PERSON IN 2 SEPARATE ISSUES. A transient is printed once and is gone; recurrence across the run is the paper's own evidence that the town kept dealing with them. A place the corpus associates with a person is where the paper does business with them and not a statement about where they slept. No figure is drawn (docs/LIBERTIES.md L1). READ THROUGH A TRANSCRIPTION, not a scan: the owner's ruling of 2026-08-28 grades a transcription-mediated reading as documented, and the source record for the run states that standard and its limits. A scan read that confirms or corrects the name upgrades this entry."
+  }
+ ],
+ "touches_removal": false,
+ "review_required": false,
+ "research_note": "MINTED FROM THE NEWSPAPER REGISTER (T-0373) BY A RESIDENCY TEST, NOT BY A TRADE. T-0376's pass mints the register's `new_resident` people whose trade the papers print; this one takes the rest, where there is no trade to anchor anybody and a printed name on its own proves only that a Chicago paper set the type. The test asks the corpus two questions instead: does it place this person inside the town and NOWHERE outside it, and does a second independent witness corroborate a bare 'Chicago' — an address at street level, print in two or more issues, or print beside two or more people this reconstruction already holds. THE CORPUS PRINTS THIS PERSON IN 2 SEPARATE ISSUES. A transient is printed once and is gone; recurrence across the run is the paper's own evidence that the town kept dealing with them. The household around them is a CONTAINER and not an argument: one member, no dwelling, no division, no family, no recorded trade, and every one of those absences written as unattested rather than filled in from the shape of the rest of the town. That the person is a HOUSEHOLD is the one invention here and it is recorded as docs/LIBERTIES.md L213. tools/mint_placed_residents.py derives the whole minted set and prints every candidate it refused, with the reason."
+}

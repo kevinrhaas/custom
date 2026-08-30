@@ -1,7 +1,7 @@
 ---
 id: T-0354
 title: The register can only place 24 of 190 documented businesses; 49 more reach a street face and 78 reach nothing
-state: open
+state: done
 epic: PAPERS
 requested_by: loop
 seen: false
@@ -9,9 +9,9 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-08-29
-closed: null
-pr: null
-claimed_by: null
+closed: 2026-08-29
+pr: 551
+claimed_by: run 8/29/2026, 12:20:06 PM CT
 blocked_on: null
 needs_bake: false
 ---

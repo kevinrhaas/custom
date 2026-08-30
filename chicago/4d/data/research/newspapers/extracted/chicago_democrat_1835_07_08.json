@@ -80,7 +80,12 @@
           "street": "South Water Street"
         }
       },
-      "announces_opening": true,
+      "announces_opening": {
+        "verbatim": "has taken David Carver's Old Stand, South Water-Street, for the purpose of transacting the above business",
+        "dating": "effected",
+        "iso": "1835-07-06",
+        "note": "'Has taken' over a dateline of 6 July 1835: the stand was taken on or before that day, never after it. The fuller printing of the same copy in this issue ('New Establishment', page 3 columns 5-6) says his first public sale falls on 'the 1st day of July', which is the scene date."
+      },
       "notes": "INTERLEAVE. The segmenter cut each printed column in half and wove the halves line by line, so lines 2645, 2647, 2649, 2655 and 2657 inside this range carry the Howard Fire Insurance notice that stands beside it ('Company', 'cago and', 'gainst lo', 'TOT', 'Mic' — the same notice quoted whole at c005) and are excluded. Line 2651 ('July 1.') belongs to neither reading with any confidence and is left out rather than assigned. OCR JUDGEMENTS: '1 NIE'→'THE', 'subseriber'→'subscriber', 'Sonth'→'South', 'Goons'→'Goods', 's inade'→'[Advance]s made' (the same sentence reads 'Advances made upon Goods' in the 1835-07-29 printing, line 409). NEW OPENING. The copy announces a business taking a stand rather than standing at one — the fuller version of the same advertisement, printed in this issue at page 3 column 5-6 under the heading 'New Establishment', says 'His first public sale will take place on [Wednesday] next, the 1st day of July' — so `announces_opening` is true and the opening date is the scene date itself, 1 July 1835. The Auction Room's street is corroborated on 1835-07-22 (page 3 column 4): 'received at Montgomery's Auction Room, South Water Street. W. MONTGOMERY, Agent'."
     },
     {
@@ -576,7 +581,12 @@
           "class": "none"
         }
       },
-      "announces_opening": true,
+      "announces_opening": {
+        "verbatim": "[The un]dersigned have formed a connection [in the] mercantile business, under the firm [of Jones, Ki]ng & Co.",
+        "dating": "undated",
+        "iso": null,
+        "note": "A firm announcing its own formation, and this printing carries no dateline. The 5 August printing of the same copy does, and it is dated 1 July 1835."
+      },
       "notes": "A FIRM ANNOUNCING ITSELF, not a firm advertising from a stand: 'The undersigned have formed a connection in the mercantile business, under the firm of Jones, King & Co.' The copy carries no address at all, so the placement class is `none`, and `announces_opening` is true — under the parent's rule this house is NOT evidence of a storefront standing on 1 July 1835 unless the formation predates it. The same three names stand over the same advertisement on 1835-07-22 (line 348) and 1835-07-29 (line 396). Interleaved lines carry the adjacent goods column and are excluded."
     },
     {

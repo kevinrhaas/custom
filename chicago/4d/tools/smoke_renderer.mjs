@@ -3956,10 +3956,22 @@ for (const [label, viewport, touch] of [
       // for its whole length, so no run opens and no crossing is added, and the
       // house stands 1.50 m back from the frontage line, which is inside the
       // 3.0 m a street fence needs and was already refused there.
+      // T-0263 settled the TRADE at frederick_thomas_shop — `drug_store`,
+      // attested, out of Frederick Thomas's own advertisement heading in the
+      // Chicago American — where it had read `shop` at the reconstructed grade.
+      // The hitching rule takes its frontages from the trade, so the frontage
+      // this record REFUSED IN WRITING now qualifies: 16 posts to 17, and the
+      // refusal that named it retires with it, 84 to 83. Those two numbers move
+      // together and only together, which is the check that this is the trade
+      // and not a new placement — the refusal text is quoted on the retiring
+      // entry ("the trade at frederick_thomas_shop is reconstructed ... a
+      // hitching post there would be furniture standing on an invention").
+      // Nothing else moves: no run opens, no crossing is added, and the shop's
+      // own wall was never a street-fence refusal.
       frontage.census?.records === 5 && frontage.census?.walks === 51
         && frontage.census?.crossings === 39
-        && frontage.census?.posts === 16 && frontage.census?.fences === 35
-        && frontage.census?.refused === 84
+        && frontage.census?.posts === 17 && frontage.census?.fences === 35
+        && frontage.census?.refused === 83
         && frontage.recordIds.join(',')
           === 'green_tree_frontage,sauganash_frontage,river_walk_frontage,'
             + 'lasalle_crossing_frontage,town_street_edge'
@@ -4108,7 +4120,12 @@ for (const [label, viewport, touch] of [
     // T-0380 made it fifteen AND UPDATED THE LINE IN THE SAME COMMIT, which is
     // what the paragraph below asks of a run that adds a post: the New York
     // House is a documented public house on Lake Street, so the rule stands a
-    // post at its frontage. The street-edge population is thirteen. The two
+    // post at its frontage. T-0263 makes it sixteen the same way and by the
+    // same bookkeeping, and this one is a TRADE moving rather than a building
+    // arriving: frederick_thomas_shop already stood on South Water Street and
+    // its frontage was refused a post in writing because its trade was
+    // reconstructed, so settling that trade on the Chicago American's own
+    // heading is what qualifies it. The street-edge population is fourteen. The two
     // populations are told apart by `street`, which is exactly the field that
     // decides the mesh: a post naming a street is standing timber in that
     // street's chunk, and a post naming none falls back to the shared mesh. The
@@ -4124,11 +4141,11 @@ for (const [label, viewport, touch] of [
     const postsBad = frontage.hitching.filter((h) => !(h.found > 0
       && Math.abs(h.top - h.recorded) <= 0.05
       && Math.abs(h.low) <= 0.02 && h.clear > 0 && !h.text));
-    check(`${label}: the fifteen hitching posts stand on their own ground, carrying nothing`,
-      frontage.hitching.length === 15
-        && frontage.census?.hitching === 15
+    check(`${label}: the sixteen hitching posts stand on their own ground, carrying nothing`,
+      frontage.hitching.length === 16
+        && frontage.census?.hitching === 16
         && frontage.hitching.filter((h) => !h.street).length === 2
-        && frontage.hitching.filter((h) => h.street).length === 13
+        && frontage.hitching.filter((h) => h.street).length === 14
         && postsBad.length === 0
         && frontage.census?.lettered === 1
         && frontage.noBoardHere === false,
@@ -9620,21 +9637,22 @@ for (const [label, viewport, touch] of [
       };
     });
     check(`${label}: every household in the layer is on the card`,
-      residents.households === 201 && residents.rendered === 201 && !residents.busy,
+      residents.households === 205 && residents.rendered === 205 && !residents.busy,
       `${residents.households} loaded / ${residents.rendered} rendered (${residents.error})`);
-    check(`${label}: the 237 person entries are counted`, residents.persons === 237,
+    check(`${label}: the 241 person entries are counted`, residents.persons === 241,
       `${residents.persons}`);
     // The finding itself, asserted as a number so it cannot quietly grow back:
     // the households that reach no building sidecar are each marked on their own
-    // row. 17 of the 33 are the original fault — records whose residence and
-    // workplace are both unattested. The other 16 are T-0376's minted
-    // tradespeople, who reach no building BY CONSTRUCTION: the papers name them
-    // and their trade and say nothing whatever about where they lived, so the
-    // chip is the card telling the truth rather than a regression, and T-0378's
-    // twelve letter-list names are twelve more of the same kind: a list of uncalled-for
-    // letters gives a name and no address at all.
+    // row. 17 of the 49 are the original fault — records whose residence and
+    // workplace are both unattested. The other 32 reach no building BY
+    // CONSTRUCTION, and they are three passes of the same kind: T-0376's 16
+    // minted tradespeople, whose trade the papers print and whose address they
+    // do not; T-0378's 12 letter-list names, where a list of uncalled-for letters
+    // gives a name and no address at all; and T-0373's 4 residency-tested people,
+    // whom the papers name with no trade either. In every case the chip is the
+    // card telling the truth rather than a regression.
     check(`${label}: the households no building card can reach are marked`,
-      residents.offCard === 45 && residents.orphanChips === 45,
+      residents.offCard === 49 && residents.orphanChips === 49,
       `${residents.offCard} off-card / ${residents.orphanChips} chip(s)`);
     check(`${label}: the researched non-residents are published too`,
       residents.notResident === 10, `${residents.notResident}`);

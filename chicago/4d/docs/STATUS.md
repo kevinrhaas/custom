@@ -1,5 +1,186 @@
 # STATUS
 
+## Shipped 2026-08-29 — T-0358: the plat gets its block numbers, and the corpus's only address resolves
+
+**Nothing you can see changed.** This is a dependency: the corpus's one lot-and-block address —
+G. Spring's *"LOT No. 7, in block No. 16, one lot east of Haddock's Tavern, on Lake street"*,
+printed six times in the *Chicago Democrat* — resolved to nothing, because
+`data/traces/vectors/thompson_lots.json` keys its nineteen blocks on their bounding streets and no
+committed source numbered one. Three separate readings had recorded that this was the most
+placeable statement the corpus makes and that placing it was somebody else's job.
+
+**The evidence turned out to be two numerals, not three.** `clark_reach_bulge_1834.md` § 8 and
+`thompson_plat_grid.md` § 4 both said the owner's crop of Wright's 1834 sheet reads *"block numbers
+19, 18 and 17"*. Re-read at full resolution — the file is 639 × 719 px — it carries **19 and 18**,
+and the map region ends at block 18's east edge; the asset's own README, written when it was
+supplied, describes two. The third arrived in the retelling. Both memos are corrected, and nothing
+built on them moves: two consecutive numerals fix the step and the direction as well as three would.
+What changes is that a later reader can now see how far the base can be pushed, which matters
+because this ticket pushes it three blocks.
+
+- **Six blocks are numbered and everything else is refused in writing.** 19 west of 18 fixes the
+  step at one, falling eastward, and fixes it *along the tier* — two blocks side by side differing
+  by one cannot be column-major. The watercourse drawn in the street between them is the one
+  already traced at local E +462…+469, the east half of the La Salle corridor (centreline E +451.3;
+  Wells 122 m west, Clark 123 m east), so they are Wells–La Salle and La Salle–Clark. Counting:
+  **21 Market–Franklin, 20 Franklin–Wells, 19, 18, 17 Clark–Dearborn, 16 Dearborn–State.** The other
+  two tiers, the West Division, the North Division and where the run begins and ends are all refused,
+  each with its reason: two numerals in one row say nothing about how the run passes to the next.
+- **Block 16 is the one counted number an independent source agrees with.** Dearborn–State is
+  bounded south by Lake Street, and the lot scheme the same crop shows runs 5 6 7 8 west to east
+  along a south row — so lot 7 is the third lot east of Dearborn and Haddock's Tavern, one lot west,
+  is the second. That is where T-0324 had already argued the Mansion House stood, from Andreas's
+  "on Lake near Dearborn" and Botsford's corner advertisements, before any of this existed. Three
+  statements, three sources, one block face. **The count stays `inferred`** — agreement is not a
+  survey — and 17, 20 and 21 have no such check and say so on each record.
+- **Nothing was promoted and no confidence moved.** `data/traces/thompson_block_numbering.json` is
+  authored and carries the reading, the identification and the refusals;
+  `tools/generate_plat_lots.py` only stamps it, and re-derives the grid byte for byte as before.
+  Every `plat_lot_number` is `conjectural` *including block 18's own*: a number put on a line the
+  module drew is conjectural whatever the number's provenance. No modern plat reprint was consulted
+  and the record says so in terms.
+- **Two consequences are now measurable and neither is acted on here.** The Mansion House stands on
+  lot 5, the corner lot, and the corpus puts it on lot 6 — a gap of **24.2 m, one lot east**, which
+  is inside the along-street allowance that record already declares, so the coordinate is unchanged
+  and the note now carries the number instead of the sentence. And lot 7, which carried "a large
+  Dwelling-House and fine well", holds an anonymous reconstructed count-unit roof. Standing Spring's
+  documented house there is the visible follow-up, filed as **T-0423**.
+- **No mesh went stale and this cost no bake.** `generators/mesh_inputs.py` hashes archetype, phase
+  and resolved params; a block number moves no vertex.
+
+## Blocked 2026-08-29 — T-0384: Holbrook's blocker was answered by a ruling nobody carried back to the ticket
+
+**Nothing was built and that is the finding.** T-0384 sat at row 2 of the queue, `state: open`
+and `blocked_on: null`, over a body that said in prose it was blocked behind an owner ruling —
+*may a platted business-front lot carry TWO documented storefronts standing at the street?* — the
+question PR #514 asked and is still parked on `hold` carrying. Every run that took row 2 had to
+re-derive the same conclusion before it could put the ticket down. **The question in the ticket is
+now the wrong one, and answering it would not have placed the store.**
+
+- **The register re-read the advertisement.** `business_john_holbrook` today reads `action:
+  street_only`, `anchor.kind: street`, over *"[on South] Water st., one door from Dearborn
+  street"*, noting *"the anchor is a reach of dearborn and names nothing narrower"*. PR #514 read
+  the same printed line as an ordinal off the corner and raised a 30 × 25 ft shop 3.048 m east of
+  the American's office. One line, two readings, and the register's is the committed one.
+- **The owner ruled the same day what a `street_only` business gets** (T-0354, L212): it adopts a
+  standing roof, nothing is built for it, and every adoption declares `lot: null` and
+  `claims_lot: false`. Under that ruling Holbrook never seats on a platted lot, so the lot clause
+  is **moot for him**. `street_face_adoptions.json` refuses him for supply instead — one of seven
+  South Water advertisements against nineteen fronting roofs of which five are homes, five are yard
+  buildings and nine are already taken.
+- **The old clause was measured rather than assumed stale.** Through `tools/plat_occupancy.py`, no
+  figure authored: 19 business-front lots dealt town-wide, 5 carry a documented building, the
+  2026-08-27 clause is live on 2 and already off on 3 — and **0 register businesses anchor on any of
+  those five**. The red PR #514 reported still reproduces (a second documented holder makes
+  `len(holders) != 1` in `shared_business_fronts`, the run loses its lot, the platted-parcels step
+  goes red), but widening the clause today would unblock nothing at all, Holbrook included.
+- **The cheaper exit needs no ruling.** `adopt_street_faces.py` re-derives on every commit, so the
+  first South Water roof **T-0375** frees seats Holbrook automatically. The ticket now carries that,
+  and the one-line question it is actually waiting on, in `blocked_on` where `ticket.mjs board`
+  shows it to the owner.
+
+## Shipped 2026-08-29 — T-0417: the street-face adoptions reach the buildings, and nine come out of the yard
+
+**The allocation is now SPENT.** T-0354 paired 24 documented businesses with reconstructed roofs
+on the streets their advertisements name, and stopped there: the pairing lived in
+`data/research/newspapers/street_face_adoptions.json`, the buildings still opened as anonymous
+count-units, and the policy's own file said so — *"Nothing here writes a card"*. Nineteen roofs on
+South Water Street, Lake Street and Randolph Street now carry an `occupants` block naming the
+business, its trade, the street the paper puts it on and every claim the reading rests on. It is
+derived, not authored: `tools/inferred_occupancy.py` — the ledger the inferred-household programme
+already used for exactly this — hands the block to whichever generator owns the roof, so
+`generate_block_infill.py --check` re-derives all nineteen byte for byte.
+
+**Twenty-four became nineteen, and that is the finding.** Nine of T-0354's adoptions had been
+seated in ANCILLARY roofs — the privies, stables and woodsheds the anonymous parcels deal behind a
+lot. **Peter Cohen, clothier, grocer and liquor dealer and the best-attested shopkeeper in the
+whole corpus at eight printings, was in `recon_1835_blk_south_water_clark_a3_05`, a privy.** The
+rule against it was not new and was not weakly held: `tools/generate_block_infill.py` has refused
+to hang an occupant on an ancillary roof since the inferred-household programme, on the ground that
+*"a yard building serves the lot it stands behind, and an adoption is a claim about who lived or
+worked in a building"*. The allocation simply could not see which roofs were sheds, and nothing
+noticed for a day because nothing consumed the table. **An allocation nothing spends is an
+allocation nothing checks** — that is the transferable lesson here.
+
+- `tools/adopt_street_faces.py` gained refusal 6, *the roof is a yard building*, and its supply
+  count now reports fronting roofs less homes less yards. Four of the nine took a principal roof
+  instead — Harmon, Loomis & Co. moved from a shed into a narrow two-storey store — and five had
+  none left on their street, so `every roof on the face is spoken for` goes 3 → 8 and the waiting
+  pile 36 → 41 against the register this branch was cut from. Re-derived once more on the rebase
+  onto T-0400, which merged firm groups and moved `street_only` 60 → 59: **19 adopted, 40 waiting,
+  7 of them short purely of supply.** All of it re-derived; none of it authored, which is the point
+  of deriving the allocation rather than listing it.
+- **Fifteen assertions fire when broken**, up from eight: nine in `adopt_street_faces --self-test`
+  (including a business seated in a yard building) and six in `inferred_occupancy --self-test`
+  (an adoption that claims a lot, an order that has become a claim, nothing to cite, a roof outside
+  the anonymous layer, two businesses on one roof, a claim id naming no corpus source). The ledger
+  also raises if the household programme and an adoption claim one roof, which nothing upstream
+  prevents.
+- **No geometry moved and no mesh went stale.** `generators/mesh_inputs.py` hashes archetype,
+  phase and resolved params; an `occupants` block moves no vertex, so this cost no bake.
+- **L212 is revised** with the new counts and the yard refusal; `docs/STREET-FACE-ADOPTION.md`
+  carries refusal 6 and a re-measured table. The derived table's `_doc` had been citing L207 for
+  its own liberty and now cites L212.
+- Still not written here: a SIGNBOARD. `tools/generate_business_signboards.py` refuses a `recon_*`
+  record by name, so a board on one of these roofs is a change to the signage rule and needs its
+  own argument rather than a quiet exception.
+- **T-0416** carries the rest of T-0387 — Wm. Sabine, John Dave and the Dearborn Street wine store,
+  all three refused for want of a roof whose lot fronts North Water or Dearborn. That is an owner
+  question (is a corner side a face?) before it is a placement.
+
+## Shipped 2026-08-29 — T-0354: what a business does when the paper names a street and nothing narrower
+
+**The register could place 58 of 203 documented businesses; 24 more now stand on the street faces
+their advertisements name.** (T-0354's title says 24 of 190 with 49 `street_only`. It was filed that
+morning; T-0380, T-0383, T-0355, T-0399 and T-0356 all landed on `dev` before this branch merged and
+the `street_only` pile went 47 → 45 → 60 while it was being written. Every figure here is this
+branch's own re-derivation against the register as merged, and none of it is authored —
+`tools/adopt_street_faces.py --report` reprints all of it. **The policy did not move with the
+counts**, which is the argument for deriving the allocation instead of listing it.) The owner ruled on 2026-08-29, choosing between the three options the
+ticket set out, that a `street_only` business *adopts a reconstructed roof already standing on that
+street face*. `docs/STREET-FACE-ADOPTION.md` is that ruling written so a later run applies it
+without re-deciding it, `tools/adopt_street_faces.py` derives the allocation,
+`data/research/newspapers/street_face_adoptions.json` is the derived table, **L212** is the liberty,
+and `tools/check.sh` re-derives all of it on every commit.
+
+**The four limits are assertions, not promises.** No adoption claims a lot (`lot: null`,
+`claims_lot: false`, and the gate refuses a record that grows a lot field of any name); the adopted
+roof stays `reconstructed`, re-read from the structure's own phase on every commit; which roof on a
+face is an allocation by deterministic rule and says so in every record; and order within a face is
+not a claim. Each of those four is a way the ruling could be breached silently by a later run, which
+is why each is a check rather than a paragraph.
+
+**What it moves, and where the rest wait.** 60 `street_only` in the register: **24 adopted, 36
+waiting.** Twenty-four name Dearborn, La Salle, Canal or North Water, where no reconstructed roof's
+platted lot faces the street — Dearborn has eighteen roofs showing it a corner side and none showing
+it a front. Nine are a second heading of a house already seated on that face. Three are short purely
+of supply. South Water took 14 of its 19 fronting roofs (5 are households' dwellings); Lake took 9;
+Randolph took 1.
+
+**What is unverified or deliberately left, stated plainly.**
+
+- **Only `lot front` is adopted, and that is a decision with a cost.** `tools/fronting_street.py`
+  also answers `corner side` and `centreline band`; both are refused here, because an
+  advertisement's street is where the door is and a gable end reaching a street is not a doorway.
+  **Widening the reading would reach 24 more**, and `--report` prints both readings side by side so
+  the number an owner ruling would change is one number, not a rewrite.
+- **Three Lake Street roofs are probably one house.** Wm. G. Branchaud, W. G. Blanchard, G.
+  Blanshard and F. G. Blanshard advertise one trade within five months under four transcribed
+  spellings, and the gazetteer's identity layer has judged none of them. The duplicate refusal here
+  matches exact surnames only — deciding by resemblance is the identity layer's job — so it caught
+  one of the four and left three roofs standing. Filed as **T-0408**, with the page images named as
+  the remedy.
+- **The 84 `unplaceable` are untouched and T-0354's second half stays open.** The ruling does not
+  reach them and this policy does not extend it; some are outside the plat entirely.
+- **Nothing is spent yet.** This is the policy and the allocation. No card, signboard or frontage
+  reads it — that is T-0263's and the seeding tickets'. No geometry moved and no triangle was added,
+  so no bake was required.
+- **The renderer smoke was not run and did not need to be.** This branch touches
+  `data/research/`, `docs/`, `tools/` and the changelog only; no scene, structure, terrain or
+  renderer file changes, and `data/research/` is not published. `tools/check.sh` — the dev gate —
+  is green in full, including its own new step.
+
+---
 ## Shipped 2026-08-29 — T-0380: the New York House stands on Lake Street near Wells
 
 **A building this project had wrongly ruled out now stands in the town.** The New York House sat
@@ -321,14 +502,30 @@ whatever the contradiction is dated, which struck a firm out of a July town on t
 August dissolution notice. Here the veto is a contradiction dated ON OR BEFORE 1835-07-01. A later
 one is recorded — `dissolved_after_scene_date`, one business — and disobeyed.
 
-**The ticket's second exclusion had to be rebuilt out of what the data carries.** T-0262 asks to
-exclude entries whose only 1835 evidence `announces_opening` after 1 July. There is no
-`announces_opening` in the claim vocabulary; the ticket describes a field the extraction schema
-never grew. The derivable test that answers the same question without inventing one is
-`first_evidence_after_scene_date`: a business whose FIRST issue postdates the scene date evidences
-nothing about 1 July. Seventeen businesses. It is conservative in the direction provenance wants,
-it is not a claim that they were absent, and every one of them is kept in the register with the
-exclusion named so a later pass that can read an opening notice properly may overturn it.
+**The ticket's second exclusion was a proxy, and T-0356 replaced it with the field.** T-0262 asked
+to exclude entries whose only 1835 evidence `announces_opening` after 1 July. There was no
+`announces_opening` in the claim vocabulary — except as a bare `true` on twenty claims that no tool
+read — so the register used the derivable proxy `first_evidence_after_scene_date`: a business whose
+FIRST issue postdates the scene date evidences nothing about 1 July. Thirty-eight businesses by the
+time the corpus was fully read.
+
+**The re-read settled it, and the proxy was excluding houses the papers put in the town.** The
+claim now carries `{verbatim, dating, iso, note}` and the DATING decides: a `stated` future opening
+after the scene date excludes; an `effected` one is dated by the advertisement's own dateline and
+bounds the opening from ABOVE, so it never excludes; an `undated` one decides nothing. Four of the
+thirty-eight genuinely announce a later opening and stay out — Cromelien's wine branch (14 Aug),
+Everts' high school for young gentlemen (10 Aug), Hunt's for young ladies (17 Aug), Lyon's
+wholesale grocery (1 Sep). **Thirty-four are restored**, and five of those are printed standing in
+the July town: Wm. H. Taylor's boot store over a dateline of 8 JULY 1834, Wm. H. Kennicott saying he
+had practised dentistry here "for the past year", Samuel Lewis's music-school copy dated 22 June,
+S. Abell's 24 June and John Holbrook's 10 June. The register's placeable count moves from 66 to 78
+and its street-only count from 47 to 63.
+
+**What replaced the proxy is not nothing.** A business first printed in August that announces no
+opening now stands under ruling 3, and that is a liberty: `backdating_liberty_required`, the
+forward twin of `survival_liberty_required` — documented only after the scene date, present on it
+by assumption. Thirty-three businesses carry it, computed and never asserted. `docs/LIBERTIES.md`
+carries neither class yet (T-0357 is the survival half, T-0404 the backdating half).
 
 ### The counts, which are the epic's yield measured
 
@@ -336,7 +533,7 @@ exclusion named so a later pass that can read an opening notice properly may ove
 |---|---|
 | present at the scene date | 190 |
 | excluded — contradicted before 1835-07-01 | 14 |
-| excluded — first evidence after 1835-07-01 | 17 |
+| excluded — first evidence after 1835-07-01 (the proxy T-0356 retired) | 17 |
 | `enrich_existing` (a committed building already carries it) | 39 |
 | `new_building` (placeable against the committed town) | 24 |
 | `street_only` (a street face and no closer) | 49 |
@@ -350,6 +547,29 @@ exclusion named so a later pass that can read an opening notice properly may ove
 | `new_resident` — ruling 1 | 1,971 |
 | …of those, known only from the letter lists | 1,555 |
 | **invented households the register can retire** | **28 of 117** |
+
+Those are the figures the epic landed on, and they are kept as landed. **Re-measured on
+2026-08-29, after the whole corpus was read and after T-0356 replaced the proxy exclusion
+with the field**, the same register reads:
+
+| businesses | 242 |
+|---|---|
+| present at the scene date | 224 |
+| excluded — contradicted before 1835-07-01 | 14 |
+| excluded — opening announced after 1835-07-01 | 4 |
+| `enrich_existing` | 38 |
+| `new_building` | 30 |
+| `street_only` | 63 |
+| `unplaceable` | 111 |
+| standing on a survival liberty (last evidence pre-1835) | 126 |
+| standing on a backdating liberty (first evidence post-scene-date) | 33 |
+
+| persons | 2,628 |
+|---|---|
+| `enrich` | 184 |
+| `replace_invented` | 119 |
+| `new_resident` | 2,325 |
+| **invented households the register can retire** | **27** |
 
 The retirement figure is a count of HOUSEHOLDS and it is capped per trade by construction: three
 documented tailors retire at most the tailors the town invented. Reporting the matched persons
@@ -385,6 +605,47 @@ distinct ways. Each is now a guard with a self-test on the case that forced it.
 
 Every surviving `enrich_existing` carries the tier it matched on and the exact text it matched
 against, so T-0263 can argue with a proposal without re-running anything.
+
+### A name is not always one building, and the anchor path used to pretend it was
+
+`resolve_anchor` reads the landmark a paper prints — "David Carver's Old Stand", "west of J.
+Wright's" — against the committed town, and until 2026-08-29 `match_landmark` ended
+`return sorted(hits)[0] if hits else None`. Where two committed records answered to one name it
+took whichever id sorted first and the register wrote *"The landmark is the committed structure
+X"* over it. Nothing in the file said a second record had answered to the same name; an
+alphabetical tie-break came out looking like a reading.
+
+**Thirty-five identity-word sets in the committed town are held by more than one record**, and the
+figure is derived on every build — `compiled_from.structures_sharing_a_name` in the register, and
+`tools/check.sh` prints it. Twenty-eight are anonymous count-units, where the collision is a
+consequence of naming a roof "Reconstructed 2-room frame cottage 02" and no advertisement will
+ever print it. **Seven are named landmarks a paper could name, and would:**
+
+| the name | the records it answers to |
+|---|---|
+| `pier`, `harbour pier works` | `north_pier`, `south_pier` |
+| `branch bridge`, `branch bridge first over` | `north_branch_bridge`, `south_branch_raft_bridge` |
+| `house school watkins` | `north_side_school_1833`, `watkins_school_house` |
+| `crossing slough water` | `north_water_slough_crossing`, `slough_log_bridge` |
+| `building john let wright` | `wright_building_to_let_a`, `wright_building_to_let_b` |
+
+The Wright pair is the case T-0386 is blocked behind and the clearest of the seven: one
+advertisement, two buildings to let, one proprietor's name, and the only thing separating the two
+records is the *(east)* / *(west)* this project added — which `words()` drops as a stop word, so
+the two are one name to every reading pass that will ever run. `north` and `south` are stop words
+for the same reason, which is why the piers and the branch bridges collide too.
+
+So the anchor now has a **sixth kind, `ambiguous`**: the name was recognised, the town holds it
+more than once, and the register refuses rather than picks — naming every rival in the note. It
+never places; a business whose anchor is ambiguous falls to `street_only` or `unplaceable` on the
+street the paper printed, exactly as an unresolved one does. The same refusal guards the one-hop
+business match below it, because the corpus prints one house under more than one heading.
+
+**No placement in the register moves today**, and that is the honest measure of this change: zero
+of the 209 businesses print an anchor that lands on one of the thirty-five. It is a guard against a
+fabrication rather than the repair of one — and the thing it guards is live, because the moment a
+reading pass widens enough to see past a project-added disambiguator, "J. Wright's" resolves onto
+two records and the old code would have picked the east one.
 
 ### The T-0257 fixtures, as the acceptance requires
 

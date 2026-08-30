@@ -3,7 +3,7 @@
   "source": "docs/LIBERTIES.md",
   "standard": "A visitor should be able to tell you which parts we made up.",
   "note": "The confidence model covers attributes. These are the decisions that live above any single attribute: scope, omission, simplification, and the choices a visitor would otherwise have to reverse-engineer.",
-  "count": 210,
+  "count": 213,
   "liberties": [
     {
       "id": "L1",
@@ -1608,12 +1608,6 @@
           "domain": "structure",
           "structure": "frederick_thomas_shop",
           "phase": null,
-          "aspect": "function"
-        },
-        {
-          "domain": "structure",
-          "structure": "frederick_thomas_shop",
-          "phase": null,
           "aspect": "position"
         },
         {
@@ -1682,7 +1676,11 @@
       "fields": [
         {
           "label": "Decision",
-          "text": "the footprints of the South Water Street and Lake Street commercial buildings — `peck_store`, `chicago_democrat_office`, `harmon_loomis_store`, `madore_beaubien_house`, `bates_auction_room`, `jb_beaubien_homestead`, `dole_warehouse_south`, `carpenter_south_water_store`, `chicago_american_office`, `frederick_thomas_shop`, `old_bank_building` and `pruyne_kimball_drugstore` — are invented polygons tagged `conjectural`, citing no source. Several of their **storey counts** are invented too, and one of them, Frederick Thomas's shop, has an invented **position** and an invented **function** as well."
+          "text": "the footprints of the South Water Street and Lake Street commercial buildings — `peck_store`, `chicago_democrat_office`, `harmon_loomis_store`, `madore_beaubien_house`, `bates_auction_room`, `jb_beaubien_homestead`, `dole_warehouse_south`, `carpenter_south_water_store`, `chicago_american_office`, `frederick_thomas_shop`, `old_bank_building` and `pruyne_kimball_drugstore` — are invented polygons tagged `conjectural`, citing no source. Several of their **storey counts** are invented too, and one of them, Frederick Thomas's shop, has an invented **position** as well. **THE FUNCTION CLAUSE OF THIS LIBERTY IS RESOLVED, 2026-08-29 (T-0263), AND IS THE FIRST PIECE OF IT TO GO.** Thomas's trade was invented here — 'shop', the weakest word that fits a street of stores — precisely because nothing said what he sold. The *Chicago American* now does, in his own heading: *\"FREDERIC[K] THOMA[S], D[r]ug[gi]st and Apothec[ary], W[at]er Street\"* (1835-07-04, page 4 column 5, claim `chicago_american_1835_07_04#c005`), with two earlier printings of the same advertisement on 8 and 13 June. So `frederick_thomas_shop.function` is `drug_store` at `attested` and no longer sits under this entry."
+        },
+        {
+          "label": "Its position does, unchanged\nand unimproved",
+          "text": "the paper's own anchors are the drawbridge and the American office, which are the two this record was already derived from, so the reading corroborates the derivation and adds nothing to it, and the street it would settle is cut to `W[ater?]` with the transcription's own question mark."
         },
         {
           "label": "Why",
@@ -1694,11 +1692,11 @@
         },
         {
           "label": "How to resolve",
-          "text": "a dimension for any single one of them upgrades that one and nothing else. The most likely source is the *Chicago Democrat* itself — an advertiser describing his own premises, or a to-let notice giving a size. The project holds one issue and more is expected."
+          "text": "a dimension for any single one of them upgrades that one and nothing else. The most likely source is the *Chicago Democrat* itself — an advertiser describing his own premises, or a to-let notice giving a size. **Seventy-three issues of the *Democrat* and thirteen of the *American* are now read (T-0258–T-0261, T-0326), and not one of the advertisers on this street states a dimension of his own premises** — they state a trade, a corner and a stock list, which is what this entry always said the sources give. The route left is a to-let or an insurance notice in an issue still unread, or the page images."
         },
         {
           "label": "Covers",
-          "text": "`peck_store.footprint`, `chicago_democrat_office.footprint`, `harmon_loomis_store.footprint`, `madore_beaubien_house.footprint`, `bates_auction_room.footprint`, `jb_beaubien_homestead.footprint`, `dole_warehouse_south.footprint`, `carpenter_south_water_store.footprint`, `chicago_american_office.footprint`, `frederick_thomas_shop.footprint`, `old_bank_building.footprint`, `old_bank_building.position`, `pruyne_kimball_drugstore.footprint`, `pruyne_kimball_drugstore.position`, `pruyne_kimball_drugstore.form.stories`, `old_bank_building.form.stories`, `chicago_american_office.form.stories`, `dole_warehouse_south.form.stories`, `frederick_thomas_shop.form.stories`, `frederick_thomas_shop.position`, `frederick_thomas_shop.function`."
+          "text": "`peck_store.footprint`, `chicago_democrat_office.footprint`, `harmon_loomis_store.footprint`, `madore_beaubien_house.footprint`, `bates_auction_room.footprint`, `jb_beaubien_homestead.footprint`, `dole_warehouse_south.footprint`, `carpenter_south_water_store.footprint`, `chicago_american_office.footprint`, `frederick_thomas_shop.footprint`, `old_bank_building.footprint`, `old_bank_building.position`, `pruyne_kimball_drugstore.footprint`, `pruyne_kimball_drugstore.position`, `pruyne_kimball_drugstore.form.stories`, `old_bank_building.form.stories`, `chicago_american_office.form.stories`, `dole_warehouse_south.form.stories`, `frederick_thomas_shop.form.stories`, `frederick_thomas_shop.position`."
         },
         {
           "label": "Recorded",
@@ -13396,6 +13394,129 @@
         {
           "label": "Covers",
           "text": "`recon_1835_west_008.inferred_1835.form.wall_height_m`, `recon_1835_west_009.inferred_1835.form.wall_height_m`, `recon_1835_west_010.inferred_1835.form.wall_height_m`, `recon_1835_west_011.inferred_1835.form.wall_height_m`, `recon_1835_west_012.inferred_1835.form.wall_height_m`, `recon_1835_west_021.inferred_1835.form.wall_height_m`"
+        },
+        {
+          "label": "Recorded",
+          "text": "2026-08-29."
+        }
+      ]
+    },
+    {
+      "id": "L211",
+      "title": "101 documented businesses stand on 1 July 1835 because nothing says they closed",
+      "section": "per_subject",
+      "subjects": [],
+      "covers": [],
+      "scope": {
+        "enumeration": "register_1835.businesses[survival_liberty_required]",
+        "count": 101
+      },
+      "recorded": "2026-08-29",
+      "revised": null,
+      "fields": [
+        {
+          "label": "Decision",
+          "text": "every business the newspaper register flags `survival_liberty_required` is treated as standing at the scene date. Its existence is documented — a dated advertisement or notice in the *Chicago Democrat* or the *Chicago American* — and its survival to 1835-07-01 is assumed. The assumption is stated HERE and nowhere else: the register carries the flag, this entry carries the liberty, and no business record is graded `documented` for a survival nothing witnessed."
+        },
+        {
+          "label": "Why",
+          "text": "the corpus is thinnest in the year it most needs to be thick. 189 documented businesses are present at the scene date and only **88** of them are documented *in* 1835; the other **101** were last printed between 1833-11-26 and 1834-12-24, a median of 364 days before the day the town is drawn. Refusing the assumption is the only alternative to making it, and refusing it empties more than half the documented trade out of Chicago on the strength of a newspaper run nobody has finished reading — the 1835 issues that would re-attest most of these houses are still unopened (the `PAPERS` reading tickets). Owner ruling 3, 2026-08-28: such a business is BUILT, with the liberty stated. The register already refuses everything that CAN be refused — 13 businesses are excluded by a claim that contradicts them before the scene date and 4 by an opening announced after it — so this covers what is left after the evidence has spoken, not instead of it."
+        },
+        {
+          "label": "Scope",
+          "text": "`register_1835.businesses[survival_liberty_required]` — 101 businesses, enumerated by `tools/compile_register.py` from the gazetteer and the committed town, and re-counted by `tools/compile_liberties.py` on every compile. The number above cannot drift from the register without `check.sh` saying so, which is the point of writing it down: a scope that has silently stopped matching its population reads as a measurement and is not one."
+        },
+        {
+          "label": "Consequence",
+          "text": "as the register is seeded into the town, half of these reach something a visitor can see. Measured on the register as it stands on 2026-08-29, **53** of the 101 do — 16 enrich a house already standing, 14 ask for a new building, 23 take a street face — and **48** reach nothing yet. That split moves whenever an anchor is re-read or two firms are judged one house, and it is a dated reading rather than a standing claim; the 101 is the number this entry is held to and the number the gate re-derives. It has now moved three times for exactly the second reason. This entry was written at 111 the same day T-0345 found that four of the register's businesses were four readings of Matthias Mason & Co.'s one blacksmithing notice; T-0400 judged the ten surname groups whose two styles differ only in the FORM of a forename — whole against abbreviated against bare initial — merging eight of them and taking the count from 109 to 103; and T-0340 joined the town's only bookshop, whose sign-name, its partners' firm-name and the shop's own premises stood as separate houses, and the joined record advertises in August 1835 and needs no survival assumed at all, taking 103 to 101. No movement is a business leaving Chicago; all are shops the register was holding twice. Every one of them puts a trade sign, a card or an occupant into July 1835 on an inference, and a visitor reading such a card is being told the shop was there when what is known is that it was there the winter before. The Evidence panel carries this entry so that sentence is available to them; the per-attribute chips cannot say it, because the thing assumed is not an attribute but a continued existence."
+        },
+        {
+          "label": "What is NOT invented",
+          "text": "the business, its trade, its proprietors, its street and its advertisement are all documented and cited. Only the survival of the concern from its last printed notice to 1835-07-01 is assumed. Where a claim after the scene date says a firm dissolved, the register records it (`dissolved_after_scene_date`) and this liberty does not reach it."
+        },
+        {
+          "label": "How to resolve",
+          "text": "read the rest of the 1835 run. A business re-printed in 1835 loses the flag when `tools/compile_register.py` re-derives, with no edit to this file and none to its record — so this liberty shrinks by itself as the corpus grows, and the count above is restated each time it does. It reaches zero when the 1835 papers have been read in full, or it stops at whatever number the surviving issues cannot reach."
+        },
+        {
+          "label": "Ticket",
+          "text": "T-0357."
+        },
+        {
+          "label": "Related",
+          "text": "T-0354 (how much of the town these businesses may be placed in at all), T-0263 (the seeding that raises the first of them)."
+        },
+        {
+          "label": "Recorded",
+          "text": "2026-08-29."
+        }
+      ]
+    },
+    {
+      "id": "L212",
+      "title": "Nineteen documented businesses are seated on reconstructed roofs, and no source puts them there",
+      "section": "per_subject",
+      "subjects": [
+        "recon_1835_blk_south_water_clark_a3_05"
+      ],
+      "covers": [],
+      "recorded": "2026-08-29",
+      "revised": "2026-08-29",
+      "fields": [
+        {
+          "label": "Decision",
+          "text": "where the newspaper register can place a business no closer than a platted street, the business adopts an anonymous reconstructed roof already standing on that street face. The owner ruled it on 2026-08-29 (T-0354), choosing adoption over a new frontage record with a conjectural along-street position and over waiting for a corner. Nineteen of the register's 59 `street_only` businesses are seated; `docs/STREET-FACE-ADOPTION.md` is the policy, `data/research/newspapers/street_face_adoptions.json` the derived table, and `tools/adopt_street_faces.py --check` re-derives both on every commit."
+        },
+        {
+          "label": "The seating REACHES THE\nBUILDINGS as of T-0417",
+          "text": "`tools/inferred_occupancy.py` hands each adopted roof its `occupants` block, so the card a visitor opens on that roof names the business rather than showing an anonymous count-unit. It was 24 for one day; carrying the allocation into the records is what found that nine of those roofs were yard buildings, which is the refusal below."
+        },
+        {
+          "label": "What is not invented",
+          "text": "the businesses, their trades and their streets. Every one of the 19 is printed in the *Chicago Democrat* or the *Chicago American* at the issue and column its record cites, and every one names a platted street this model holds — Peter Cohen at the east end of South Water-street, Miss Bayne's school in Randolph Street, the Chicago Bakery on South Water. The street is a real constraint and it survives this entry untouched."
+        },
+        {
+          "label": "What is invented, and it is the whole of the placement",
+          "text": "WHICH roof on that face. Nothing reached says where on South Water Street Peter Cohen stood, and the roof he now sits on is an anonymous count-unit raised by the reconstruction to meet an aggregate roof target. Its existence, its position and its footprint are exactly what they were before this pass ran and are still conjectural under **L92**. The pairing is an allocation by a deterministic rule — businesses ranked by printings, roofs taken in id order — and a rule is not a reading. **Four things this deliberately does not claim, and each is a field or a gate rather than a promise.** A lot: every record carries `lot: null` and `claims_lot: false`, and the gate refuses a record that grows a lot field of any name — the paper's constraint is the face and the lot is the reconstruction's. A promotion: the adopted roof stays `reconstructed`, and the gate re-reads the structure's own phase and fails if it has stopped saying so, because the business is documented and the building under it is not. An along-street position: `order_is_a_claim: false` on every record. And a neighbour: two businesses on one face stand in no order any source supports. **The refusals are what keep it honest, and they refuse more than they take.** Forty of the 59 are not seated. Twenty-four name a street — Dearborn, La Salle, Canal, North Water — with no roof whose platted lot faces it, and adopting a roof that shows the street only a corner side would have put a door where the plat puts a gable end. Nine are a second heading of a house already seated on that face, because the corpus prints \"Peter Cohen\" and \"Peter Cohen's store\" as two entries and one man did not keep two storefronts on one street on any evidence here. Seven are short purely of supply. `python3 tools/adopt_street_faces.py --report` prints every refusal with its reason and its count, so the ratio is auditable rather than asserted. **AND A ROOF CAN BE REFUSED AS WELL AS A BUSINESS, WHICH IS WHERE THIS ENTRY LOST FIVE OF ITS TWENTY-FOUR.** The anonymous parcels deal ANCILLARY roofs as well as principal ones — privies, stables and woodsheds standing behind a lot — and for its first day this pass counted them as free supply. Nine documented businesses were seated in outbuildings, Peter Cohen among them, in `recon_1835_blk_south_water_clark_a3_05`, which is a privy. The rule against it was older than the pass and enforced elsewhere: `tools/generate_block_infill.py` has refused an occupant on an ancillary roof since the inferred-household programme, because \"a yard building serves the lot it stands behind, and an adoption is a claim about who lived or worked in a building\". Trying to spend the allocation into the structure records is what ran into it (T-0417). Four of the nine took a principal roof instead — Harmon, Loomis & Co. moved into a narrow two-storey store — and five had no unspoken-for roof left on their street, so they join the refusals with that reason counted. **A known residue, stated rather than absorbed.** Four Lake Street entries — Wm. G. Branchaud, W. G. Blanchard, G. Blanshard and F. G. Blanshard — advertise one trade within five months and read as one man under four transcribed spellings. The refusal above matches exact surnames and caught one of the four; the other three take three roofs for what is probably one house. This pass will not decide by resemblance what the gazetteer's identity layer has not judged, and **T-0408** is the ticket that judges it from the page images."
+        },
+        {
+          "label": "Consequence",
+          "text": "twenty-four businesses the papers name move from a research file into the town's own street faces, on roofs that were already standing. **No geometry moves, no triangle is added, and no building changes grade.** What this entry admits is that a visitor standing on South Water Street in front of Peter Cohen's store is looking at a building we raised and a name the paper printed, and that nothing joins the two but this rule."
+        },
+        {
+          "label": "How to resolve",
+          "text": "a directory, a tax list, or a lot-and-block address in the corpus would put any of these 19 on a lot, at which point that business leaves this entry for a placement of its own — the shape **T-0384** through **T-0387** already take for the businesses whose advertisements name an anchor. A ruling that a corner side is a street face would move up to twenty-four more into this entry rather than out of it, and the count above is what would change. Related: **L205** (documented men on reconstructed roofs, the pattern this follows) · **L92** (the reconstructed roofs' own presence and placement) · **L1** · tickets **T-0354** (this), **T-0262**, **T-0263**, **T-0375**, **T-0338**, **T-0408**, **T-0417** (spent into the roofs, and the yard refusal)."
+        },
+        {
+          "label": "Recorded",
+          "text": "2026-08-29."
+        },
+        {
+          "label": "Revised",
+          "text": "2026-08-29 (T-0417)."
+        }
+      ]
+    },
+    {
+      "id": "L213",
+      "title": "Four people the papers name with no trade are written as households of one, on a residency test",
+      "section": "per_subject",
+      "subjects": [],
+      "covers": [],
+      "recorded": "2026-08-29",
+      "revised": null,
+      "fields": [
+        {
+          "label": "Decision",
+          "text": "L206 seated the register's `new_resident` people whose TRADE the papers print, and L207 the names known only from the post office's letter lists. What is left of that half — 386 people named in a proceedings column, a public card, a shipping notice or an advertisement, with no trade the register can read — have no anchor at all, and a name printed in a Chicago paper is not a Chicago resident. So on 2026-08-29 they were put to a residency test derived from the corpus rather than judged one by one, and four passed it: J. K. Boyer, Thomas Hoit, B. S. Morris and J. W. Fell. `tools/mint_placed_residents.py` derives the set and re-derives it on every commit; `--report` prints all 382 refusals with their reasons and `--self-test` fires every rule against the case it exists for. **What is not invented: the people, and where the papers put them.** Each is named in the Chicago Democrat or the Chicago American at the issue and column their record cites, and the corpus gives each a place inside the town and none outside it. They are graded `attested` on that basis and on nothing else. **What is invented, and it is only this: that each is a household.** As L206 and L207, and for the same reason — `data/residents/` has no way to carry a person except inside one. Each record carries a single member, `lives_at` null, `works_at` null, no origin, no party size, no family, and `division: unplaced`. Their occupation reads `none_recorded` — the residents vocabulary's own word for an absent record, already carried by committed people — because the papers give none; the absence is the finding and not a hole, and it is written as an absence rather than reasoned from the company they keep. **The test, stated so it can be argued with.** (a) The corpus must place the person inside the town — the bare town, a committed 1835 street, a committed structure — and NOWHERE outside it; fifteen are refused on a place elsewhere (Ottawa, Detroit, Cook county) and thirty-six on no place at all. (b) A bare \"Chicago\" is where the papers say somebody did something at Chicago, which is not the claim that they lived there, so it needs a second witness and only three count: an address at street level, print in two or more separate issues, or print in the same claim as two or more people this reconstruction already holds (the register's own `enrich` finding). Fell came in on the first, Boyer and Hoit the second, Morris the third; twelve reached that question with none of the three. (c) The name must be found whole in the transcription, outside every uncertainty bracket and not cut off by one — 176 are refused there, and the rule exists because the first run of this pass minted \"The Blanshard household\" out of the letters `fG. BL NSHARD` and \"The Dave household\" out of `JOHN DAVE[S?]`. Thirty-six more carry a trade the residents vocabulary has no word for and are held for a ticket of their own rather than minted trade-less."
+        },
+        {
+          "label": "A limit, stated rather than papered over",
+          "text": "the duplicate guards compare surnames exactly, so 'Blanshard' and 'Blanchard', or 'Eldredge' and 'Eldridge', pass each other untouched and may be one man under two printed spellings. A fuzzy match was rejected for the reason `compile_register.py` gives for refusing a fuzzy trade match. **Where this pass stands in the order, because it changes what it can see.** Three passes now mint residents out of the register and they run in a fixed precedence, best-evidenced first: documented (a trade the papers print) ▸ placed (this entry) ▸ letter-list-only. Each skips its own output and every pass below it, so no derivation is changed by anything any of the three mints. Where two reach for one family name the higher one keeps it; this pass gave way to L206 three times."
+        },
+        {
+          "label": "Consequence",
+          "text": "the Evidence panel's people section goes from 201 households and 237 people to 205 and 241, `households_without_a_dwelling` in the town census moves from 80 to 84, and the four new rows carry the orphan chip that says no building card can reach them. No geometry moves, no triangle is added and no figure is drawn (L1). Related: **L207** (the letter-list names) · **L206** (the sixteen with a trade) · **L205** (the documented men who took reconstructed roofs) · **L1** (no figure is drawn for any resident) · tickets **T-0373** (this), **T-0368**, **T-0376**, **T-0378**, **T-0374**, **T-0418** (the trades the vocabulary cannot say)."
         },
         {
           "label": "Recorded",

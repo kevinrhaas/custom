@@ -143,7 +143,12 @@
         "verbatim": "July 22, AR,",
         "iso": "1835-07-22"
       },
-      "announces_opening": true
+      "announces_opening": {
+        "verbatim": "the[y] have taken a shop on Dearborn Street",
+        "dating": "effected",
+        "iso": "1835-07-22",
+        "note": "The third printing of the tailors' notice, over the same 22 July 1835 dateline. An opening already made, bounded from above."
+      }
     },
     {
       "id": "c006",
@@ -298,7 +303,12 @@
         "verbatim": "Puly 1 FB.",
         "iso": "1835-07-01"
       },
-      "announces_opening": true
+      "announces_opening": {
+        "verbatim": "having been appointed Agent for the Howard Fire Insurance Company",
+        "dating": "effected",
+        "iso": "1835-07-01",
+        "note": "The agency is already held, over a dateline of 1 July 1835 — on the scene date, not after it."
+      }
     },
     {
       "id": "c009",
@@ -394,6 +404,12 @@
       "ad_copy_date": {
         "verbatim": "Chicago, Jatt 6, 12%",
         "iso": "1835-07-06"
+      },
+      "announces_opening": {
+        "verbatim": "ha[s] taken David Car[ver]'s O[l]d Stand, [S]out[h] Water Street",
+        "dating": "effected",
+        "iso": "1835-07-06",
+        "note": "The reprint of the 8 July notice under the fuller firm style, carrying the same 6 July 1835 dateline."
       }
     },
     {
@@ -640,7 +656,12 @@
           "anchor": null
         }
       },
-      "announces_opening": true
+      "announces_opening": {
+        "verbatim": "open a [Branch] of their House in this [place …] from the [Manhattan?] Ho[u]se[…] on the [1]4th inst.",
+        "dating": "stated",
+        "iso": "1835-08-14",
+        "note": "'the 14th inst.' in the Democrat of 5 August 1835 is the fourteenth of the current month, 14 August 1835. The New York house is announcing a branch it has not opened yet, six weeks after the scene date."
+      }
     },
     {
       "id": "c014",
@@ -1267,6 +1288,12 @@
       "ad_copy_date": {
         "verbatim": "Chicago, July 8, 1834. 82",
         "iso": "1834-07-08"
+      },
+      "announces_opening": {
+        "verbatim": "HAS opened an extensive Boot, Shoe and [Leather] Store on Dearborn street",
+        "dating": "effected",
+        "iso": "1834-07-08",
+        "note": "THE DATELINE IS 8 JULY 1834 — a year and a day before the scene date. Taylor's store was opened, and advertised as opened, in the summer of 1834; the August 1835 printing is a standing advertisement and not a new one. This is the reading the proxy could not make, and it excluded him from a town he demonstrably stood in."
       }
     },
     {
@@ -1314,7 +1341,12 @@
           "offset_text": "on tr Saila otrest, two keg | doorr north of Lakh street"
         }
       },
-      "announces_opening": true
+      "announces_opening": {
+        "verbatim": "he ha[s] ju[st] ope[ned a] Boot, Sho[e] an[d] Leather store on [Clark?] street, two doors north of Lak[e] street",
+        "dating": "undated",
+        "iso": null,
+        "note": "'Just opened', and the printing is unsigned and undated. There is no date to carry, so none is supplied — the store is not excluded on a number nobody printed."
+      }
     },
     {
       "id": "c026",
