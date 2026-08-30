@@ -151,7 +151,13 @@ and these are the numbers it puts with it.
 **Every number below is DERIVED, and none of it is authored.** Re-measured 2026-08-29 after
 T-0417 added refusal 6; the previous reading of this table was 24 adopted and 36 waiting, over a
 supply that counted sheds. Re-derived again on the rebase onto `dev` at T-0400, which merged firm
-groups and took `street_only` from 60 to 59.
+groups and took `street_only` from 60 to 59, and once more on the merge of T-0385, which took it
+to 57: the New York Clothing Store left this pile for a placement of its own and H. C. Bennett
+left it for an anchor the register can now resolve, while Andrews & Eells left the `unplaceable`
+pile the same way. **That is the movement this table exists to record** — a business waiting here
+is one whose paper gave a street and nothing narrower, and reading its anchor is what takes it
+out. Not one adoption changed: Dearborn Street's supply was zero before and is zero after, so the
+three that left were all refused on it.
 
 **Every number below is DERIVED, and none of it is authored.** `python3
 tools/adopt_street_faces.py --report` reprints all of it from the register as committed, so
@@ -164,13 +170,13 @@ point of deriving the allocation instead of listing it.
 
 | | |
 |---|---|
-| `street_only` in the register | **59** |
+| `street_only` in the register | **57** |
 | adopted a street face | **19** |
-| waiting | **40** |
-| — no roof whose lot fronts the named street | 24 |
+| waiting | **38** |
+| — no roof whose lot fronts the named street | 22 |
 | — this face already holds this proprietor | 9 |
 | — every roof on the face is spoken for | 7 |
-| `unplaceable`, outside this policy and still open | **79** |
+| `unplaceable`, outside this policy and still open | **78** |
 
 `free` below is now the supply this pass may actually take: fronting roofs less the named
 households' homes (refusal 5) and less the yard buildings (refusal 6).
@@ -178,7 +184,7 @@ households' homes (refusal 5) and less the yard buildings (refusal 6).
 | street face | ads | took | roofs fronting | free | side only | in band |
 |---|---|---|---|---|---|---|
 | South Water Street | 23 | 9 | 19 | 9 | 0 | 0 |
-| Dearborn Street | 18 | 0 | 0 | 0 | 18 | 0 |
+| Dearborn Street | 16 | 0 | 0 | 0 | 18 | 0 |
 | Lake Street | 11 | 9 | 51 | 19 | 0 | 4 |
 | La Salle Street | 3 | 0 | 0 | 0 | 8 | 0 |
 | North Water Street | 2 | 0 | 0 | 0 | 0 | 1 |
@@ -187,14 +193,15 @@ households' homes (refusal 5) and less the yard buildings (refusal 6).
 
 **Where the rest wait, named rather than implied:**
 
-- **Dearborn Street (18), La Salle Street (3), Canal Street (1), North Water Street (2).**
-  No roof's platted lot faces them, which is 24 of the 36 that wait. Two remedies, and
+- **Dearborn Street (16), La Salle Street (3), Canal Street (1), North Water Street (2).**
+  No roof's platted lot faces them, which is 22 of the 38 that wait. Two remedies, and
   neither is this policy's to take: a ruling that a corner side is a face — which would
-  seat twelve of these twenty-four and not twenty-four, measured above — or a
-  reconstruction that raises frontage on those streets. Three of the Dearborn Street
-  advertisements — the New York Clothing Store, the Dearborn Street wine store and W. H.
-  Taylor's boot and shoe store — have their own tickets (**T-0385**, **T-0387**) that place
-  them from an anchor and do not need this policy at all.
+  seat twelve of these twenty-two and not twenty-two, measured above — or a
+  reconstruction that raises frontage on those streets. The Dearborn Street advertisements
+  that name an anchor do not need this policy at all: the New York Clothing Store took its
+  own place three doors north of the Tremont House on 2026-08-29 (**T-0385**) and left this
+  table, H. C. Bennett is **T-0425**, and the Dearborn Street wine store and W. H. Taylor's
+  boot and shoe store are **T-0387**.
 - **South Water Street (14 refused).** Nineteen roofs front it: five are households' homes,
   five are yard buildings and nine are adopted, so fourteen advertisements are short of a roof —
   seven a second heading of a house already seated, seven short purely on supply. **T-0375** is
@@ -203,13 +210,15 @@ households' homes (refusal 5) and less the yard buildings (refusal 6).
   automatically.
 - **Lake Street (2 refused)** — both a second heading of a proprietor already seated.
 
-## The 84 `unplaceable` are NOT covered, and stay open
+## The 78 `unplaceable` are NOT covered, and stay open
 
 The ruling does not reach them and this policy does not extend it. Some are outside the
 plat entirely — E. Wentworth's public house on Flag Creek, on the road to Ottawa — and
 adopting a roof for them would put a business in a town it never stood in. Some simply
 never printed an address. **T-0354's second half is still open**, and the honest answer for
-these 84 today is that the corpus records them and the model does not hold them.
+these 78 today is that the corpus records them and the model does not hold them. (The heading
+read 84 until 2026-08-29 and the table beneath it read 79: a figure written into prose goes
+stale the next time the register moves, which is the whole argument for the derived table above.)
 
 ## How it is spent
 

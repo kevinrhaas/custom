@@ -3968,10 +3968,23 @@ for (const [label, viewport, touch] of [
       // hitching post there would be furniture standing on an invention").
       // Nothing else moves: no run opens, no crossing is added, and the shop's
       // own wall was never a street-fence refusal.
+      // T-0385 stood the New York Clothing Store on lot 7 of blk_south_water_clark,
+      // the Dearborn Street face — a documented store, which is a trade the
+      // hitching rule accepts, so ONE more post stands there: 17 to 18. And the
+      // REFUSAL that named that lot retires with it, 83 to 82: it read "no
+      // committed building stands on this platted lot — an unimproved lot is open
+      // prairie and takes no street fence", and a lot with a building on it is no
+      // longer unimproved. Those two move in OPPOSITE directions here, which is
+      // the tell that this is a building arriving rather than a trade settling:
+      // T-0263 retired a refusal that named a post, this one retires a refusal
+      // that named an empty lot. Nothing else moves — the walk along Dearborn's
+      // west face was already laid for its whole length, so no run opens and no
+      // crossing is added, and the shop stands 1.50 m back from the frontage
+      // line, inside the 3.0 m a street fence needs.
       frontage.census?.records === 5 && frontage.census?.walks === 51
         && frontage.census?.crossings === 39
-        && frontage.census?.posts === 17 && frontage.census?.fences === 35
-        && frontage.census?.refused === 83
+        && frontage.census?.posts === 18 && frontage.census?.fences === 35
+        && frontage.census?.refused === 82
         && frontage.recordIds.join(',')
           === 'green_tree_frontage,sauganash_frontage,river_walk_frontage,'
             + 'lasalle_crossing_frontage,town_street_edge'
@@ -4141,11 +4154,16 @@ for (const [label, viewport, touch] of [
     const postsBad = frontage.hitching.filter((h) => !(h.found > 0
       && Math.abs(h.top - h.recorded) <= 0.05
       && Math.abs(h.low) <= 0.02 && h.clear > 0 && !h.text));
-    check(`${label}: the sixteen hitching posts stand on their own ground, carrying nothing`,
-      frontage.hitching.length === 16
-        && frontage.census?.hitching === 16
+    // T-0385 makes it seventeen, and by the first of those two shapes: the New
+    // York Clothing Store is a documented store on the Dearborn Street face of
+    // blk_south_water_clark, so the rule stands a post at its frontage. The
+    // street-edge population is fifteen; the two on a record's own ground do not
+    // move, because this post names a street.
+    check(`${label}: the seventeen hitching posts stand on their own ground, carrying nothing`,
+      frontage.hitching.length === 17
+        && frontage.census?.hitching === 17
         && frontage.hitching.filter((h) => !h.street).length === 2
-        && frontage.hitching.filter((h) => h.street).length === 14
+        && frontage.hitching.filter((h) => h.street).length === 15
         && postsBad.length === 0
         && frontage.census?.lettered === 1
         && frontage.noBoardHere === false,

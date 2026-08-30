@@ -12,7 +12,7 @@
    "centreline band"
   ],
   "why": "An advertisement's street is where the door is. A corner side is the cross street's building shown end-on, and a centreline band is a distance rather than an orientation.",
-  "widened_reading_would_reach": 24,
+  "widened_reading_would_reach": 22,
   "widened_reading_would_reach_note": "The count of businesses REFUSED FOR WANT OF A FACE, which is how many a widened reading would let back into the deal — not how many it would seat. `widened_readings` below deals each widening out and reports what it actually stands up (T-0416).",
   "widened_readings": {
    "corner side is a face": {
@@ -35,18 +35,18 @@
      "business_j_l_wilson_co",
      "business_james_grant",
      "business_magie_wilkinson",
-     "business_new_york_clothing_store",
      "business_pierce_french",
      "business_s_abell_attorney_and_counsellor",
+     "business_tin_sheet_iron_and_stove_manufactory_proprietor_not_recovered",
      "business_uncertain_w_h_taylor_dearborn_street_boot_and_shoe_store",
      "business_unnamed_new_store_la_salle_street"
     ],
-    "would_still_refuse": 28,
+    "would_still_refuse": 26,
     "would_still_refuse_by_reason": {
      "not present at the scene date": 0,
      "the face holds no roof whose lot fronts it": 2,
      "this face already holds this proprietor": 12,
-     "every roof on the face is spoken for": 14
+     "every roof on the face is spoken for": 12
     }
    },
    "corner side or the band is a face": {
@@ -71,34 +71,34 @@
      "business_j_l_wilson_co",
      "business_james_grant",
      "business_magie_wilkinson",
-     "business_new_york_clothing_store",
      "business_pierce_french",
      "business_s_abell_attorney_and_counsellor",
+     "business_tin_sheet_iron_and_stove_manufactory_proprietor_not_recovered",
      "business_uncertain_w_h_taylor_dearborn_street_boot_and_shoe_store",
      "business_unnamed_new_store_la_salle_street",
      "business_wm_sabine_storage_forwarding_and_commission_merchant"
     ],
-    "would_still_refuse": 27,
+    "would_still_refuse": 25,
     "would_still_refuse_by_reason": {
      "not present at the scene date": 0,
      "the face holds no roof whose lot fronts it": 0,
      "this face already holds this proprietor": 12,
-     "every roof on the face is spoken for": 15
+     "every roof on the face is spoken for": 13
     }
    }
   }
  },
  "counts": {
-  "street_only_in_register": 59,
+  "street_only_in_register": 57,
   "adopted": 19,
-  "refused": 40,
+  "refused": 38,
   "refused_by_reason": {
    "not present at the scene date": 0,
-   "the face holds no roof whose lot fronts it": 24,
+   "the face holds no roof whose lot fronts it": 22,
    "this face already holds this proprietor": 9,
    "every roof on the face is spoken for": 7
   },
-  "unplaceable_present_at_scene_date": 79,
+  "unplaceable_present_at_scene_date": 78,
   "by_street": {
    "canal": {
     "street_name": "Canal Street",
@@ -113,7 +113,7 @@
    },
    "dearborn": {
     "street_name": "Dearborn Street",
-    "businesses_naming_it": 18,
+    "businesses_naming_it": 16,
     "adopted": 0,
     "roofs_fronting": 0,
     "roofs_fronting_free": 0,
@@ -822,14 +822,6 @@
    "detail": "18 roof(s) show this street a corner side and 0 stand within the centreline band; none has its platted lot on it."
   },
   {
-   "business_id": "business_h_c_bennett",
-   "business_name": "H. C. Bennett",
-   "street_id": "dearborn",
-   "street_name": "Dearborn Street",
-   "refusal": "the face holds no roof whose lot fronts it",
-   "detail": "18 roof(s) show this street a corner side and 0 stand within the centreline band; none has its platted lot on it."
-  },
-  {
    "business_id": "business_j_b_brown_dearborn_street_grocery",
    "business_name": "J. B. Brown, Dearborn Street grocery",
    "street_id": "dearborn",
@@ -868,14 +860,6 @@
    "street_name": "La Salle Street",
    "refusal": "the face holds no roof whose lot fronts it",
    "detail": "8 roof(s) show this street a corner side and 0 stand within the centreline band; none has its platted lot on it."
-  },
-  {
-   "business_id": "business_new_york_clothing_store",
-   "business_name": "New York Clothing Store",
-   "street_id": "dearborn",
-   "street_name": "Dearborn Street",
-   "refusal": "the face holds no roof whose lot fronts it",
-   "detail": "18 roof(s) show this street a corner side and 0 stand within the centreline band; none has its platted lot on it."
   },
   {
    "business_id": "business_pierce_french",

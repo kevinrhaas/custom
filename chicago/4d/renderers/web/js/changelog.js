@@ -1,5 +1,5 @@
 export const CHANGELOG = [ // newest first
-  { v: null, title: 'A clothing store opens in Dearborn Street', kind: 'feature', ts: '', date: '',
+  { v: 415, title: 'A clothing store opens in Dearborn Street', kind: 'feature', ts: '2026-08-29T23:54:03.490Z', date: 'Aug 29, 2026, 6:54 PM CT',
     items: [
       'A new shop stands on the west side of Dearborn Street, three doors north of the Tremont House. Its board reads NEW YORK CLOTHING STORE \u2014 Wholesale & Retail Clothing \u2014 Dearborn Street, and Tuthill King\u2019s own advertisement in the Chicago American is where every word of that comes from.',
       'The paper puts him there in six words: \u201Cthree doors north of the Tremont House, in Dearborn street\u201D. That is a direction, a count, a street and a named building \u2014 the strongest address any storefront in these papers gives, and the only one with all four.',

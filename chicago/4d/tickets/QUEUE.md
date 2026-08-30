@@ -175,3 +175,4 @@ T-0418 — The 36 documented tradespeople whose trade the residents vocabulary h
 T-0423 — G. Spring's large dwelling-house and fine well stands on lot 7 of block 16, where an anonymous roof stands now
 T-0424 — Andrews & Eells stand north of the Tremont House, and the register can now say so
 T-0425 — H. C. Bennett's shop is one door north of the Tremont House
+T-0426 — A shop addressed on a cross street improves the lot the plat fronts elsewhere, so 24.7 m of board fence lands across the Tremont House's goods

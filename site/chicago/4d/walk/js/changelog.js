@@ -1,4 +1,12 @@
 export const CHANGELOG = [ // newest first
+  { v: 415, title: 'A clothing store opens in Dearborn Street', kind: 'feature', ts: '2026-08-29T23:54:03.490Z', date: 'Aug 29, 2026, 6:54 PM CT',
+    items: [
+      'A new shop stands on the west side of Dearborn Street, three doors north of the Tremont House. Its board reads NEW YORK CLOTHING STORE \u2014 Wholesale & Retail Clothing \u2014 Dearborn Street, and Tuthill King\u2019s own advertisement in the Chicago American is where every word of that comes from.',
+      'The paper puts him there in six words: \u201Cthree doors north of the Tremont House, in Dearborn street\u201D. That is a direction, a count, a street and a named building \u2014 the strongest address any storefront in these papers gives, and the only one with all four.',
+      'It could not be built until now for two reasons, both fixed today. This project calls the hotel \u201CTremont House (the first)\u201D, to tell it from the one that replaced it, and the ledger matched names whole \u2014 so the two words the American prints matched nothing. And the shop\u2019s notice ran three times, with the hotel\u2019s name legible in only the last printing; the ledger placed the shop on the first, which had lost it.',
+      'What is the paper\u2019s and what is ours is worth separating here, because the balance is unusual. The address is documented. The building is not: its size, its single storey, its roof and its shopfront are all the type talking, and every one of them is listed in the Evidence panel under L214. Where along the street it stands is L215 \u2014 the count of doors is printed, the width of a door is borrowed from the only frontage this town has a figure for.',
+      'Two more shops, Andrews & Eells and H. C. Bennett, are anchored on the Tremont by the same repair and are filed to be built next.',
+    ] },
   { v: 414, title: 'The platted town gets its block numbers, and one address resolves', kind: 'fix', ts: '2026-08-29T23:24:49.719Z', date: 'Aug 29, 2026, 6:24 PM CT',
     items: [
       'Nothing you can see changed today. The Chicago Democrat of 18 June 1834 advertised \u201CLOT No. 7, in block No. 16, one lot east of Haddock\u2019s Tavern, on Lake street\u201D \u2014 the only address in either newspaper naming a lot and a block, and the most precise thing the papers say about where anything in this town stood. It has been unusable throughout, because nothing here carried the plat\u2019s block NUMBERS: the blocks are named for the streets around them, and no source numbered one.',

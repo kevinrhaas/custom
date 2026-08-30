@@ -66375,11 +66375,11 @@
             "live_at_scene_date": false,
             "placement": {
               "class": "relative",
-              "anchor": "Graves' Tavern, on Main-street",
-              "offset_text": "n opposite Graves' Tavern, where they Intend",
+              "anchor": "Graves' Tavern",
+              "offset_text": "on Main-street, nearly opposite Graves' Tavern",
               "offset_normalized": "on Main-street, nearly opposite Graves' Tavern",
               "street": "Main Street",
-              "note": "UNRESOLVED ANCHOR. Neither 'Main-street' nor 'Graves' Tavern' is a feature this reconstruction holds, and neither is mapped onto one that it does."
+              "note": "A named street AND a named building opposite, which is the strongest form of relative placement this corpus carries."
             }
           },
           {
@@ -66683,9 +66683,9 @@
       "street": "Dearborn Street",
       "placement": {
         "class": "relative",
-        "anchor": "three doors north of an unread anchor, in Dearborn Street",
-        "offset_text": "a tue abuve business three doors worth of i,",
-        "offset_normalized": "the above business three doors [n]orth of [uncertain: …]",
+        "anchor": "the Tremont House",
+        "offset_text": "the abova business threw doors north of of] ‘fremont House, in Dearborn atteal,",
+        "offset_normalized": "the above business thre[e] doors north of [the T]remont House, in Dearborn [s]t[r]e[et]",
         "street": "Dearborn Street"
       },
       "evidence": {
@@ -66752,6 +66752,84 @@
           }
         }
       ],
+      "anchor_change": {
+        "rule": "One anchor, the Tremont House, read three ways and never changing. This is not a dated change and no change is asserted: it is the same standing advertisement over one copy date, and the difference between its printings is the segmenter's, not the advertiser's. The house is therefore placed on the reading that names the anchor — 1835-07-04's — rather than on the 8 June printing that lost it, which is the only printing order would otherwise have offered.",
+        "cannot_say": "WHICH SIDE OF DEARBORN STREET, AND HOW WIDE A DOOR IS. “Three doors north of the Tremont House, in Dearborn street” fixes the street, the direction and the count and states neither the side of the street nor the frontage of a door, and nothing else in this corpus supplies either. Nor does any printing say the Tremont's own door on Dearborn is the one being counted from; the hotel is documented at the north-west corner of Lake and Dearborn and fronts Lake, so the count starts at a flank. The placement this supports is recorded on the structure record and its residual is stated there.",
+        "live_anchor": "the Tremont House",
+        "live_reason": "This house has one declared anchor, read 3 ways between 1835-06-08 and 1835-07-04, so it is the anchor live at the scene date 1835-07-01 and no change is asserted.",
+        "changes": [],
+        "history": [
+          {
+            "anchor": "the Tremont House",
+            "why": "Three printings of ONE advertisement, and the anchor of all three is the Tremont House. The copy is the same in each and carries one dateline, “Chicago, June 8, 1835”: “the above business three doors north of [the T]remont House, in Dearborn [s]t[r]e[et]”. What differs is how much of the hotel's name the segmenter left standing — 1835-06-08 sets “three doors worth of i,” and the anchor is gone, 1835-06-20 sets “thrve doors north o at House” and keeps only the word House, 1835-07-04 sets “threw doors north of of] ‘fremont House” and loses only the initial. The first two readings are records of a FAILURE to read, not names of other landmarks, which is why they are worded as failures; grouping them under the Tremont House asserts nothing about 8 and 20 June beyond that they print the same sentence as 4 July, and each reading keeps its own offset text so no printing's words are lost.",
+            "first_issue": "1835-06-08",
+            "last_issue": "1835-07-04",
+            "readings": [
+              {
+                "anchor": "three doors north of an unread anchor, in Dearborn Street",
+                "class": "relative",
+                "first_issue": "1835-06-08",
+                "last_issue": "1835-06-08",
+                "claims": [
+                  "chicago_american_1835_06_08#c014"
+                ],
+                "placement": {
+                  "class": "relative",
+                  "anchor": "three doors north of an unread anchor, in Dearborn Street",
+                  "offset_text": "a tue abuve business three doors worth of i,",
+                  "offset_normalized": "the above business three doors [n]orth of [uncertain: …]",
+                  "street": "Dearborn Street"
+                }
+              },
+              {
+                "anchor": "an unnamed House, three doors south, in Dearborn Street",
+                "class": "relative",
+                "first_issue": "1835-06-20",
+                "last_issue": "1835-06-20",
+                "claims": [
+                  "chicago_american_1835_06_20#c007"
+                ],
+                "placement": {
+                  "class": "relative",
+                  "anchor": "an unnamed House, three doors south, in Dearborn Street",
+                  "offset_text": "1 above business thrve doors north o at House, in Dearborn street,",
+                  "offset_normalized": "the above business three doors north o[f the … ] House, in Dearborn street",
+                  "street": "Dearborn Street"
+                }
+              },
+              {
+                "anchor": "the Tremont House",
+                "class": "relative",
+                "first_issue": "1835-07-04",
+                "last_issue": "1835-07-04",
+                "claims": [
+                  "chicago_american_1835_07_04#c003"
+                ],
+                "placement": {
+                  "class": "relative",
+                  "anchor": "the Tremont House",
+                  "offset_text": "the abova business threw doors north of of] ‘fremont House, in Dearborn atteal,",
+                  "offset_normalized": "the above business thre[e] doors north of [the T]remont House, in Dearborn [s]t[r]e[et]",
+                  "street": "Dearborn Street"
+                }
+              }
+            ],
+            "claims": [
+              "chicago_american_1835_06_08#c014",
+              "chicago_american_1835_06_20#c007",
+              "chicago_american_1835_07_04#c003"
+            ],
+            "live_at_scene_date": true,
+            "placement": {
+              "class": "relative",
+              "anchor": "the Tremont House",
+              "offset_text": "the abova business threw doors north of of] ‘fremont House, in Dearborn atteal,",
+              "offset_normalized": "the above business thre[e] doors north of [the T]remont House, in Dearborn [s]t[r]e[et]",
+              "street": "Dearborn Street"
+            }
+          }
+        ]
+      },
       "refused_merges": [
         {
           "with": "Peter Cohen's store",

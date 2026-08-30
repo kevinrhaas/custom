@@ -17,10 +17,19 @@ Tremont House carries a disambiguator this project added — *(the first)*, *I*,
 which is the part worth reading: `first` and `old` are ordinary words a source prints, and striking
 them wherever they fall turned *"the First Baptist meeting house"* into an anchor for the Temple
 Building and *"Chicago's first post office"* into one for Hogan's store on the first cut of this
-rule. Only a trailing parenthetical, a trailing roman numeral and a leading `old` are stripped, only
-after exact matching has failed, and only when what is left resolves to exactly ONE building — so a
-second Tremont in the dataset makes this anchor unresolved again instead of resolving it by sort
-order. Nine self-test cases, three of them the false positives above.
+rule. Only a trailing parenthetical, a trailing roman numeral and a leading `old` are stripped, and
+only after exact matching has failed. Nine self-test cases, three of them the false positives above.
+
+**Where the ambiguity guard lives changed on the merge onto `dev`, and it moved to a better place.**
+This branch was written against a `match_landmark` that returned one id, so its guard was a local
+one: the relaxed pass returned a building only when exactly one answered, and a second Tremont in
+the dataset made the anchor a silent `None`. T-0386 (#563) landed on `dev` first and turned the
+function into `match_landmarks`, which returns EVERY structure a name reaches so that
+`resolve_anchor` can refuse the ambiguity in writing rather than tie-break it alphabetically. The
+relaxed pass now returns a list on the same terms, and a second Tremont gives two hits that are
+refused with both ids printed in the register's own note — the same outcome for this shop, and a
+reported refusal instead of a disappearance for the next one. The unit case that asserted `None`
+now asserts `["a", "b"]` and says why.
 
 **The second blocker was not in the ticket and is the more general one.** The gazetteer keeps every
 printing's placement (T-0345) and made the EARLIEST one live. King's notice ran three times over one
@@ -96,6 +105,55 @@ on it, because the heading is the sign-name and the signature is the bottom of t
 re-derived and re-checked: the 665 programme, the town census, the siding stock, the lot-line
 fences, the signboards, the yard goods, the building material, the frontage works, the register and
 the street-face adoptions. `tools/measure_generator_half.py`'s stated asset count goes 359 → 360.
+
+### PARKED — the renderer smoke found a visible regression this PR should not ship (T-0426)
+
+**`./tools/check.sh` is green and the renderer smoke is not, so PR #562 carries `hold` rather
+than a merge.** One check fails at mobile 390×780, stage 1-2, published, reproducible to the
+digit across two runs: *the goods reach the screen from the footway* reads mean **0.19**,
+worst **22** where an unmodified `dev` reads mean **3.01**, worst **58** (measured on a clean
+`origin/dev` worktree on this same runner, so it is this branch and not the machine).
+
+**Why.** The shop is addressed in Dearborn Street and Dearborn has no platted lot fronting it
+anywhere on this block — the plat runs `blk_south_water_clark` in two east-west tiers. Standing
+the shop three doors north of the Tremont puts it against the mid-block alley, 0.27 m inside
+the NORTH edge of lot 7, which is a **Lake Street** lot 46.6 m deep. `generate_frontage_works.py`
+asks only whether a building stands inside the lot polygon, so lot 7 stops being unimproved and
+the Lake face takes **24.7 m more board fence** (73.9 m → 98.6 m along, `fence_m` 1669.0 →
+1693.7) — and the same containment stands this shop's hitching post on **Lake Street** at local
+(678.9, −105.99), 49 m from its own door, with the FACE's bearing of 180.5 written over the
+building's own 90.
+
+That fence lands on the frontage line at y ≈ −103, between the smoke's walker at (684.9, −104.3)
+and the Tremont House's casks at y = −101.11. The town's longest group of trade goods stops
+reading from its own footway.
+
+**Why it is not fixed here.** Only half of it is plainly a bug. The POST is: a trade takes its
+custom from a stranger off the street, so a post belongs at the face the door is on, and a
+building whose facade disagrees with the face's normal should be refused in writing. The FENCE
+may be right — an improved lot fronting Lake taking a fence at its Lake frontage is L160's
+engraving read literally. What it collides with is that `tremont_house_1`'s own placement point
+falls 1.5 m EAST of lot 7 and improves nothing, while its goods are laid inside lot 7 — so this
+check's pass on `dev` was an accident of one origin point and the collision was always latent.
+Choosing between the two readings changes a shared rule across all 359 committed footprints and
+wants its own run with its own before/after census. **T-0426** carries it with these figures.
+
+**What IS verified and stands:** `./tools/check.sh` green in the foreground; the register,
+gazetteer, adoptions and liberties all re-derived from source after the merge; the changelog
+stamped and contract-green; the published mirror regenerated; and 148 of 149 checks green at
+mobile stage 1-2 including zero page errors, with the two count assertions this roof legitimately
+moves updated in the same commit (`census.posts` 17 → 18, `census.refused` 83 → 82,
+`hitching` 16 → 17 with the street-edge population 14 → 15).
+
+**Re-verified on the merge onto `dev`**, twelve commits after this branch was cut. The register,
+the gazetteer, the street-face adoptions and `data/liberties.json` were all re-derived from their
+sources rather than merged as text, `tools/publish.sh` was re-run, and `./tools/check.sh` is green
+again. Three collisions the merge exposed and their resolutions: this branch's two follow-up
+tickets were renumbered T-0413/T-0414 → **T-0424/T-0425** (dev had already issued those numbers),
+its two liberties L213/L214 → **L214/L215** (dev had already issued L213), and its changelog entry
+was re-authored with `v: null` and re-stamped, because it had been stamped v406 and `dev` shipped a
+different v406 in the meantime. That last one is the changelog contract working as designed.
+
 ## Shipped 2026-08-29 — T-0358: the plat gets its block numbers, and the corpus's only address resolves
 
 **Nothing you can see changed.** This is a dependency: the corpus's one lot-and-block address —
