@@ -192,8 +192,12 @@ class HouseholdParcel(Parcel):
         note = (f"Type-level choice within the {family} band in the reconstruction "
                 f"specification; it is not evidence for this building.")
         archetype = dict(self._pairs).get(family) or spec.get("archetype")
+        # Dealt on the same synthetic key every other parcel's adapter deals on, and
+        # the generator's own key is the STRUCTURE ID (T-0274) — a string either way,
+        # so the sampler sees the shape it sees in production.
         return note_refusal(
-            split_notes(hh.inferred_form(archetype, family, note, width,
+            split_notes(hh.inferred_form(archetype, family, note,
+                                         f"deal_{family}_{i:04d}", width, depth,
                                          building_documented=False), family, note),
             family, width, depth)
 

@@ -59,7 +59,7 @@ from common.logwork import (  # noqa: E402
 from common import materials  # noqa: E402
 from common.mesh import MeshBuilder, simple_material  # noqa: E402
 from archetypes.outbuilding_params import (  # noqa: E402
-    DOOR_JAMB_M, OutbuildingParams,
+    DOOR_JAMB_M, OutbuildingParams, eave_overhang_m,
 )
 
 # Materials are indices into the list passed to to_object(), in this order.
@@ -726,7 +726,9 @@ def _roof(b: MeshBuilder, p: OutbuildingParams, conf: float) -> float:
     fixed 0.25 m eave is a tenth of a privy's plan on each side and turns it into a
     mushroom.
     """
-    oh = min(0.35, max(0.10, 0.12 + 0.03 * min(p.width_m, p.depth_m)))
+    # The same number `tools/ridge_model.py` asks the params module for, so a model of
+    # where this roof gets to and the roof itself cannot drift apart (T-0274).
+    oh = eave_overhang_m(p.width_m, p.depth_m)
     w, d = p.width_m, p.depth_m
 
     # `along` is the axis the roof slopes down; `z_at` is the roof's top surface at a
