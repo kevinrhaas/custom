@@ -1,5 +1,67 @@
 # STATUS
 
+## Shipped 2026-08-30 — T-0305: the four readings the American contradicts itself on
+
+**What a visitor sees:** S. B. Cobb's saddlery — the corner shop on Lake Street in the West
+Division — now carries an **open question** on the provenance card you get by walking up to it,
+and the Evidence panel's open-questions list goes from four to five. It is the second building in
+the scene whose card asks a live question rather than only grading a claim.
+
+**The ticket was filed with a title that asserted its own answer** — *"need the page images"* —
+and an empty acceptance clause. The acceptance was written first, and written so that it could
+refute the title: name the four, test each against the whole 86-issue corpus rather than against
+the American alone, and only then put what survives to the owner. Nothing survived the corpus
+test. The title was right, and it is right for a stated reason now instead of by assertion.
+
+**The four, and the shape of each.** `tools/measure_american_contradictions.py --gate` re-derives
+them; `docs/RESEARCH/american_self_contradictions.md` quotes every printing.
+
+| # | question | printings | the corpus |
+|---|---|---|---|
+| 1 | Edward Burton's tailoring shop — Franklin or Lake street | one card, one copy date, four settings: Franklin, Franklin, unresolved, **Lake** | `Burton` is not in the Democrat at all |
+| 2 | Wm. Sabine — North or South Water Street | North 06-13 and 06-20, **South** 07-04 | one post-office letter-list line |
+| 3 | John Dave[s] — the card set below Sabine's | the same two dates, the same two readings | three letter-list lines |
+| 4 | S. B. Cobb's saddlery — which cross street | Lake legible in all three 1835 cards, the cross street lost in all three | the Democrat's 1833 *"Lake and Canal streets"* |
+
+**Three things the run found that the ticket did not know.**
+
+- **2 and 3 are one event, not two.** Both houses read North in both June settings and South in
+  the July one. Two firms do not cross a river together between issues; a compositor resets a
+  column. That does not say which reading is right — it does mean **one page image settles both**,
+  and it is why the ask is six columns for four questions rather than eight.
+- **The contradicting printing is invisible to the register.** On 1835-07-04 the three forwarding
+  cards were extracted as ONE claim, filed under the third firm's name (Newberry & Dole), so
+  `business_wm_sabine_storage_forwarding_and_commission_merchant` reads "North Water Street" flat
+  with no disagreement recorded on it. The South reading survives only on John Davis's entity and
+  in that claim's own note. **Not re-cut here**, deliberately: re-cutting a claim is a reading of
+  the page, and the page is the thing that is missing.
+- **Question 4 is the weakest of the four, and that is worth knowing before anyone spends a
+  scan on it.** The 1833 corner is one of the few addresses in this project read off the page
+  images themselves — `chicago_democrat_1833_11_26` carries `verified: true` — so the American's
+  silence is not doubt about 1833. What it leaves open is the twenty months after it: whether the
+  shop Cobb *"will continue the above business at"* in June 1835 is the same corner, which is
+  exactly the identification the record grades `inferred`.
+
+**A sentence that was counting, and had already gone wrong.** The Evidence panel's own account of
+the open questions ended *"one of them is standing in front of you"*. That was true of four
+entries and stopped being true on 2026-08-29, when the New York House became the second standing
+one — a day before this run added a fifth. It is the same failure the hand-typed paraphrase before
+it made, and the same failure the panel's own changelog entry says it fixed. It counts nothing now:
+each entry carries its own `standing` flag and the chip beside it says which.
+
+**What is left is the owner's, and it is six columns**, all in the American — 1835-06-13 p3 c5,
+1835-07-04 p4 c4, 1835-06-27 p3 c5, 1835-08-15 p3 c6, 1835-06-08 p3 c5, 1835-07-11 p3 c6. Two of
+them serve two questions each. Nothing smaller will do it: every reading above is already the best
+the transcription can give, and three of the four subjects appear nowhere else in eighty-six
+issues except a list of letters waiting at the post office. The ticket is `blocked-owner` on
+exactly that ask.
+
+**Held by a gate, not by memory.** Every reading is declared with the page and column it sits in
+and re-derived on every `check.sh`, along with the negative half over all seventy-three Democrat
+issues. Eight assertions, each proved to fire under `--self-test`. The day one of these four is
+answered — by an image, or by an extraction pass reaching a card nobody has read — the build says
+so.
+
 ## Shipped 2026-08-30 — T-0346: the desktop gate's costliest part is cut into three
 
 **Nothing you can see changed.** This is exemption 3 of the visible-progress rule: a gate that is
@@ -450,7 +512,6 @@ T-0279 (flower heads over open ground), T-0247/T-0249 (the light tier's draw cal
 **Nothing you can see changed.** No renderer, no data record and no geometry was touched — only the
 harness that reads the geometry back.
 
-
 ## Shipped 2026-08-29 — T-0316: the large river warehouse leaves the plat
 
 `tools/reconcile_665.py` dealt **F3, the large river warehouse**, to platted blocks. T-0028 found
@@ -558,7 +619,6 @@ this file; the posts were drawn all along and the probe read one mesh of the lay
 
 **Nothing you can see changed.** No renderer, no data record and no geometry was touched —
 only the harness that reads the geometry back.
-
 
 ## Recorded 2026-08-29 — T-0328's tail: the reading gets its dossier, and coverage.json stops saying 56
 
@@ -7429,7 +7489,6 @@ whose custom arrived on foot, and that judgement is recorded in the generator an
 than derived from a source. And nothing here is baked, so a scene wanting these boards as solid
 timber still needs the generator half of K5 (b).
 
-
 ## Shipped 2026-08-18 — fenced gardens behind eighteen of the town's houses
 
 **T-0052 (piece 3 of 3 of T-0038, legacy K5).** The Kinzie-view plate shows *"picket-fenced garden
@@ -7668,7 +7727,6 @@ now reaches **0.58** of the middle where the acceptance asks for 0.5. 338 distin
 also pulled a well-separated pair back toward the target, collapsed the median to 4.9 % and the
 ratio to 0.31 — repulsion only pushes, and that is why it is the right shape.
 
-
 ## Changed 2026-08-17 — the backlog is a ticket queue the owner can reorder
 
 **On the owner's direct request.** His words: tracking "what i have asked for and what you
@@ -7683,7 +7741,6 @@ parcel (with `legacy_id`), the owner's six recovered K-asks at the top of the qu
 the four standing owner decisions as `blocked-owner` tickets with their options inline.
 ROADMAP's NEXT UP table is frozen with a tombstone; the deep boxes remain the reasoning
 archive. AGENTS.md § THE QUEUE is the new contract.
-
 
 ## Shipped 2026-08-17 — the bridge is a surface now, and you still cannot get onto it from the bank
 
@@ -8017,7 +8074,6 @@ draw strictly less; the mobile viewport (390×780) was not rendered at all, so t
 shrub were never measured at the detail level a phone gets; and no assertion about the wet woods'
 frame time was taken, which is the half **K57** says a grain change needs before it moves.
 
-
 `tools/shoot.mjs` gained a `--at e,n,yaw[,name]` flag, because an archetype before/after pair needs
 one arbitrary station and the tool only had the visitor anchors, none of which stands in a plant
 community. Its positional arguments are now read with flags removed, which also fixes `--at`
@@ -8154,7 +8210,6 @@ lattice and cap and sits just under it today. What ran in the foreground: `tools
 PASS, the dev gate), `tools/measure_sward_draw.mjs --gate` (PASS, both columns above), zero page
 errors in every run.
 
-
 ## Shipped 2026-08-17 — the shrub layer was drawn with the forb archetype, and the clamp that made that survivable was hiding the recorded width
 
 **ROADMAP K53**, from K45(b4)'s *"still not planted"* note. Twenty-one records across eight zones
@@ -8202,7 +8257,6 @@ so the new set is inside them rather than invisible to them, **and that extensio
 here.** What did run, in the foreground: `tools/check.sh` (CHECK PASS, the dev gate),
 `tools/measure_sward_draw.mjs --gate` (PASS), and the instance read-back above, with zero page
 errors in every run.
-
 
 ## Measured 2026-08-17 — the flicker left after the shadow fix is NOT co-planar ties, and two tests say so
 
@@ -8259,7 +8313,6 @@ The desktop half of `smoke_renderer.mjs` does not fit the runner's ten-minute pe
 ceiling and did not run. No renderer file was changed by this parcel, so there was nothing for
 it to regress. R-BUG6(c) — whether the 36,187 co-planar pixels show the surface their record
 intends — needs a bake and is not answered here.
-
 
 ## Fixed 2026-08-17 — the shadow grid slid a fraction of a texel under every step
 
@@ -8406,7 +8459,6 @@ Every desktop figure above comes from `tools/measure_shadow_reach.mjs` and
 hardware; the frame-time readings are swiftshader's and moved by under 2 %, consistent with
 R-W3b(a)'s finding that the pass is geometry-bound. A phone that cannot allocate 2048² is not
 something this runner can observe.
-
 
 ## Fixed 2026-08-17 — the sun threw a shadow within 60 m of the visitor and nowhere else
 
@@ -8948,7 +9000,6 @@ has, which is the same class of error flora.js already traverses for the sun to 
 **Not attempted, and not measured:** the mobile viewport's critic set, and the eight other
 critic stations. Only the three named above were re-shot. The published `--published` critic
 run was not taken either. Nothing here should be quoted as a whole-scene result.
-
 
 ## Shipped 2026-08-17 — the town's animals were researched, graded, cited, and read by nothing
 
@@ -13236,7 +13287,6 @@ civic roofs T-A3 refused — research, not massing) in lane 2. **T-A2h** is in t
 count is **261 structure records — 251 physical roofs of a 665 target — 154 households, 190
 persons**. Everything arrives as a PR into `dev` and waits there.
 
-
 Honest state of the project. Things that are unverified stay labeled unverified; a gate that
 was skipped is recorded as skipped. Updated in the same commit as the work it describes.
 
@@ -14097,7 +14147,6 @@ states one:
    both 390×780 and 1280×800. Current full-scene budgets are 49 / 53 draw calls and 378,647 /
    499,343 triangles respectively; the desktop renderer remains slow at 2 fps under SwiftShader,
    but elapsed-time walking is no longer coupled to that frame count.
-
 
 1. **One structure record does not prove the schema.** The Sauganash exercises phases, a
    building move, and the full confidence range, but the model has not met a fort, a bridge, or

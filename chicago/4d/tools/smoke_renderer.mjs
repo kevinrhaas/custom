@@ -10353,10 +10353,13 @@ for (const [label, viewport, touch] of [
     // when its record was written: it had been an EXCLUSION whose own text said it
     // would stay one "only until a structure record replaces it", and the entry it
     // leaves behind still carries a live question — Andreas says "near Wells" and
-    // Wells has two sides. The count is exact on purpose, the same bookkeeping the
-    // frontage censuses above carry: an open question appearing is worth failing over.
+    // Wells has two sides. T-0305 made it FIVE on 2026-08-30: S. B. Cobb's saddlery
+    // stands on a corner read once, in 1833, and the Chicago American loses the cross
+    // street in all three of its 1835 printings of the same card. The count is exact
+    // on purpose, the same bookkeeping the frontage censuses above carry: an open
+    // question appearing is worth failing over.
     check(`${label}: the open questions load`,
-      open.counted === 4 && !open.busy && open.rendered === open.counted,
+      open.counted === 5 && !open.busy && open.rendered === open.counted,
       `${open.rendered} rendered of ${open.counted}`);
     // The discriminating pair, and it is the whole argument for the section: two
     // of these three are buildings the visitor can walk up to and one is empty
@@ -10460,15 +10463,18 @@ for (const [label, viewport, touch] of [
     check(`${label}: it starts collapsed like every other disclosure on the card`,
       openCard.western.collapsed === true, `collapsed ${openCard.western.collapsed}`);
     // The discriminating case, and it is a deliberate silence rather than a
-    // missing empty state. The watch list has exactly THREE structures in the
-    // scene: the Western Hotel, Cobweb Castle and — since T-0380 on 2026-08-29 —
-    // the New York House, whose open question is which side of Wells Street it
-    // stood on. Every other building must stay silent; a card dumping the whole
-    // list would fail this exact set. Membership rather than order: the panel's
-    // ordering is the file's, and this assertion is about which buildings speak.
+    // missing empty state. The watch list has exactly FOUR structures in the
+    // scene: the Western Hotel, Cobweb Castle, the New York House (T-0380,
+    // 2026-08-29, whose open question is which side of Wells Street it stood on)
+    // and Goss & Cobb's saddlery (T-0305, 2026-08-30, whose question is which
+    // cross street its corner of Lake Street is). Every other building must stay
+    // silent; a card dumping the whole list would fail this exact set. Membership
+    // rather than order: the panel's ordering is the file's, and this assertion is
+    // about which buildings speak.
     check(`${label}: only tracked in-scene buildings carry open questions`,
-      openCard.others.length === 2
-      && ['cobweb_castle', 'new_york_house'].every((id) => openCard.others.includes(id)),
+      openCard.others.length === 3
+      && ['cobweb_castle', 'new_york_house', 'goss_cobb_saddlery']
+        .every((id) => openCard.others.includes(id)),
       `beside western_hotel: ${openCard.others.join(', ') || 'none'}`);
     // Reading every card leaves one open over the panel, which the panel's own
     // close button then cannot be clicked through.

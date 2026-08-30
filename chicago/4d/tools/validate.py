@@ -442,7 +442,7 @@ def check_watch_list(exclusions: dict, structures: dict, source_ids: set,
     nobody carried a change back.
 
     The named claim must also be one the provenance card RENDERS, which is the
-    other half of the same promise. The Evidence panel's entry for the standing
+    other half of the same promise. The Evidence panel's entry for a standing
     structure ends by telling a visitor that "the provenance card shows it" — a
     sentence about a surface this file could not see, which is exactly the shape
     of the two faults that cost this project a `documented_range` and an
