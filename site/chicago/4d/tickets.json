@@ -1,6 +1,6 @@
 {
   "project": "chicago-4d",
-  "generated_ct": "Aug 30, 2026, 1:58 AM",
+  "generated_ct": "Aug 30, 2026, 2:51 AM",
   "tickets": [
     {
       "id": "T-0001",
@@ -7162,6 +7162,24 @@
       "blocked_on": null,
       "needs_bake": false,
       "queue_rank": 38
+    },
+    {
+      "id": "T-0439",
+      "title": "The 665 schedule sizes a block's principal room in LOTS, so a business-front lot already carrying a documented store is dealt roofs its free frontage cannot hold",
+      "state": "open",
+      "epic": "META",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "M",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-08-30",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "queue_rank": 76
     }
   ]
 }

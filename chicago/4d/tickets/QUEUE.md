@@ -160,3 +160,4 @@ T-0388 — Three derived records have drifted from their own generators on an un
 
 # --- NEWLY FILED — `ticket.mjs new` appends to the END of this file, so new tickets
 # --- land under this line. NOT yet placed by the owner.
+T-0439 — The 665 schedule sizes a block's principal room in LOTS, so a business-front lot already carrying a documented store is dealt roofs its free frontage cannot hold

@@ -1,5 +1,59 @@
 # STATUS
 
+## Shipped 2026-08-30 — T-0431: a two-storey store joins the South Water row, on the drug store's own party wall
+
+**Two roofs a visitor can walk to**, and the first time this project has stood an invented
+building shoulder to shoulder with a DOCUMENTED one: `recon_1835_blk_south_water_clark_c4_06`,
+a C4 wide two-storey store 10.632 m x 17.294 m, its east wall the west wall of
+`pruyne_kimball_drugstore` on a shared party line, and `..._a4_07`, the woodshed in the same
+lot's yard. Piece 3 of 4 of **T-0420**, on the ground **T-0009** unblocked when the owner ruled
+that the drawn South Water line does not move.
+
+**The face was read off this block, not off the town.** `tools/measure_street_frontage.py
+south_water lake clark dearborn` reads the two streets town-wide at South Water 15 documented /
+2 households against Lake's 17 / 8 — which does NOT make South Water the better face by the
+usual count. The reading that decides the parcel is the block's own: South Water carries four
+documented records here (Harmon & Loomis's store, Pruyne & Kimball's drug store, Bates's
+auction room, Madore Beaubien's house) against Lake's one, the first Tremont House, and three
+of the four are commercial. T-0024's second clause then puts a commercial roof ON the street
+line. The end rule agrees and is read rather than asserted: lot 2 is **84.44 m walked** from
+the Dearborn drawbridge against lot 1's **231.87 m**, and this face grades only on the walked
+criterion (6.07 m unit step) — the straight line reads 4.81 m and is BELOW THE FLOOR.
+
+**THE SCHEDULE DEALT FOUR ROOFS AND THE GROUND HELD TWO, and that is the parcel's finding.**
+`tools/reconcile_665.py` sizes principal room as `ROW_UNITS_PER_LOT * (free_lots - 1)`, which
+counts LOTS. Lot 2 is free only under the owner's 2026-08-27 business-front clause, so it is by
+construction not a whole lot: measured on the committed face it offers 22.11 m of buildable
+frontage and the drug store holds 39.11-46.83 m of it, leaving **12.97 m west and 1.42 m
+east**. The store took 10.632 m of the west gap; the two dealt houses are 8.388 m and 8.034 m
+wide and neither could join it. The two unbuilt roofs return to the south district's balance.
+Filed as **T-0439**, the successor T-0028's programme rule owes.
+
+**A declaration was corrected, and it is what made the deal possible at all.** The first deal
+(2026-08-15) was dealt frontage lots [2, 4] and its run stands entirely on lot 4 — 60.44 m to
+72.89 m, where lot 4 runs 49.29 m to 74.39 m — because it packs west from the east end and ran
+out of roofs 10.7 m short of lot 2. Lot 2 stayed declared as ground that run may stand on, and
+the two halves of the programme then read it two ways: `reconcile_665.py` counted it a FREE
+lot, `generate_block_infill.py`'s T-0105 lot accounting counted it "built on by another deal on
+this block" and refused it to any later deal. Narrowing the declaration to [4] moves no
+coordinate — the east anchor reads `along_max`, which lot 4 sets either way, and both units
+re-derive byte-identical.
+
+**Lot 1 stays open**, on the first deal's own reason now measured: the Lake-and-Clark corner is
+the remotest of the eight lots from the only crossing of the main stem in July 1835. The
+schedule's sizing reserves a lot on purpose; spending it for two more roofs would spend exactly
+what that rule protects. The block moves to `at_capacity` with headroom 0.
+
+**A side effect worth having.** With two more roofs fronting South Water,
+`tools/adopt_street_faces.py` seats one more documented trader on the street — John Holbrook,
+clothing, boots and shoes — 19 adoptions to 20, and the face's refusal detail moves from "19
+roofs front this street" to 21.
+
+**Verification.** `tools/check.sh` PASS; `tools/bake.sh --only` on the two new records and on
+`pruyne_kimball_drugstore` (its siding exposure re-deals against the new party wall);
+`tools/web_derivatives.sh --only` on all three; `tools/smoke_renderer.mjs` at 390x780 and
+1280x800.
+
 ## Shipped 2026-08-30 — T-0170: the last part of the gate that could not be run is halved
 
 **Nothing a visitor sees.** `SMOKE_STAGE` has THIRTEEN parts; part 10 is halved and old parts

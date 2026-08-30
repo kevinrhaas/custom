@@ -97,13 +97,19 @@ RENDERER_JS = RENDERERS / "web" / "js"
 # frame_tavern record, so one more committed asset and one more mesh a change to the shared
 # generator modules or to build.py would re-stale; terrain and pier_crib stay at 2 each.
 #
+# 359 -> 361 and 357 -> 359 on 2026-08-30 (T-0431): `blk_south_water_clark` took its second
+# deal — the wide two-storey store that joins the South Water row on Pruyne & Kimball's west
+# party wall, and the woodshed in the lot's yard. Two new structure assets, so two more meshes
+# a change to the shared generator modules or to build.py would re-stale; the terrain and
+# pier_crib reaches stay at 2 each.
+#
 STATED = {
-    "assets": 359,
+    "assets": 361,
     "restales": {
-        "generators/common/*.py": 359,
+        "generators/common/*.py": 361,
         "generators/common/__init__.py": 0,
         "generators/common/phases.py": 0,
-        "generators/build.py": 357,
+        "generators/build.py": 359,
         "generators/terrain_gen.py": 2,
         "generators/archetypes/pier_crib.py": 2,
     },
