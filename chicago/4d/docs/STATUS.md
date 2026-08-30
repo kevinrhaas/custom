@@ -1,5 +1,53 @@
 # STATUS
 
+## Shipped 2026-08-30 — T-0170: the last part of the gate that could not be run is halved
+
+**Nothing a visitor sees.** `SMOKE_STAGE` has THIRTEEN parts; part 10 is halved and old parts
+11-12 are 12-13. This is the last piece of T-0121 and the third re-cut of the day, after T-0346
+and T-0173.
+
+**The part was never inside the ceiling.** Profiled at 1280x800 with `SMOKE_TIMING=1` on an
+**idle** runner — load average 0.27-1.48, zero other Chromium processes, the friendliest reading
+this suite can be given — it was **killed at 9 m 20 s** with the street readouts and the Settings
+units still to run. Third and fourth kill of the same part. T-0167's 7 m 43 s is the outlier in
+the record, not the number to size a cut from.
+
+**It had been skipped twice for want of a boundary.** This part carried no `// --- section ---`
+headers at all; that is the stated reason T-0167 cut part 8 instead. Eight seams are named now,
+so the next cut here is a choice from a list rather than a fresh profile.
+
+**The first cut was measured and rejected, and it is in the record.** Cutting above R-BUG7's
+flower-head census gave **5 m 05 s / 6 m 24 s** — a 3 m 36 s margin, and this project's own rule
+(ROADMAP § THE RUN BUDGET) is that a margin that thin is not a margin. Moving that one section up
+into the head balances it.
+
+| part | desktop | margin | staged | verdict |
+|---|---|---|---|---|
+| 10 | **5 m 59 s** | 4 m 01 s | 23 | 1 failed — T-0279's flower heads, 2,693 of 18,893 |
+| 11 | **4 m 41 s** | 5 m 19 s | 13 | SMOKE PASS |
+
+23 + 13 = **36**, the count the single part took. The red is inherited:
+`tools/dev-smoke-state.json` records the same check red on dev at 2,526 of 18,911 on 2026-08-29,
+and it does not fire at mobile at all.
+
+**Nothing dropped, measured as an equality.** At mobile on the same tree, the pre-cut
+`smoke_renderer.mjs` at the single part gives **45 passed / 0 failed / 36 staged / 9 always-on in
+5 m 59 s**; the pair gives **45 / 0 / 36 / 9 in 6 m 01 s**. A pair still boots once, so the mobile
+recipe does not grow a command.
+
+**One binding crosses and it is the one that already crossed the stage split.** `streetLayer`, so
+`anyStage(7, 10)` becomes `anyStage(7, 10, 11)`. The other six names the scan found below the
+line (`headSupport`, `horizon`, `over`, `planted`, `popIn`, `sward`) are prose or strings in every
+occurrence. The second half's prologue is `enterTown()` and `setFly(false)`.
+
+**The readings are of THIS tree.** The cut was first measured at parts 9 and 10, before T-0173
+merged and shifted the whole tail by one; every figure above was re-taken after the re-derivation
+onto T-0173's numbering and agrees with the first pass to within six seconds (5 m 58 s / 4 m 38 s
+then, 5 m 59 s / 4 m 41 s now). All three are filed in `tools/dev-smoke-state.json`.
+
+**Read the margins as readings of an idle machine.** T-0215's factor of twenty is not repealed by
+a cut: 4 m 01 s is a margin against the box that measured it.
+
 ## Shipped 2026-08-30 — T-0333: eighteen inches of stack, and the town was already inside it
 
 **The Town of Chicago's by-law of 5 August 1835, section 18, is the first documented

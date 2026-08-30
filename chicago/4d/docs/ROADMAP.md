@@ -241,6 +241,55 @@ and `10-12` gives 168 passed / 159 staged in 9 m 33 s. **The worst desktop margi
 profile is what was part 7 and is now part 10 — T-0170, still open**, which this cut re-labels
 rather than takes.
 
+**RE-CUT 2026-08-30 by T-0170 (the last piece of T-0121): part 10 is HALVED and there are
+THIRTEEN.** Part 10 — the part T-0173 above hands on as "the worst desktop margin left" — was
+never inside the ceiling at all. Profiled at 1280x800 on an **idle** runner (load average
+0.27-1.48, zero other Chromium processes, so this is the friendliest reading the suite can be
+given) it was **killed at 9 m 20 s with the street readouts and the Settings units still to
+run**. That is the third and fourth kill of the same part; T-0167's 7 m 43 s is the outlier in
+the record rather than the reading to size a cut from.
+
+**Why it had been left, and what changed.** This part carried no `// --- section ---` headers at
+all, which is exactly why T-0167 cut part 8 instead: the boundary had to be MADE before it could
+be taken. Its seams are named now — eight of them, five in the head and three in the tail — so
+the next cut in this part is a choice from a list rather than a fresh profile.
+
+**The cut is the second candidate, and the first one is in the record because it was measured
+and rejected.** Cutting above R-BUG7's flower-head census gave **5 m 05 s / 6 m 24 s** — a
+3 m 36 s margin on the second half, and this section's own rule is that a margin that thin is
+not a margin. Moving that one section up into the first half balances it:
+
+| part | desktop | margin | staged checks | what it is |
+|---|---|---|---|---|
+| 10 | **5 m 59 s** | 4 m 01 s | 23 | the drawn population, the horizon timber, the sward census in every community, the marsh substrate, T-0035's pop-in, R-BUG7's heads |
+| 11 | **4 m 41 s** | 5 m 19 s | 13 | the ragged boundary and its fringe, each community's recorded ground cover, the street readouts, the navigation guide, the Settings units |
+
+23 + 13 = **36**, exactly the count the part took before the cut, which is how "never dropping a
+check" is demonstrated rather than asserted. The second half is SMOKE PASS; the first half's one
+red is **T-0279's flower heads** (2,693 of 18,893), which `tools/dev-smoke-state.json` already
+records as dev's on 2026-08-29 at 2,526 of 18,911 — it moved parts, not sides, and it does not
+fire at mobile at all.
+
+**The audit was taken against the old code rather than asserted.** Running the pre-cut
+`smoke_renderer.mjs` beside the re-cut one, at mobile on the published mirror and on the same
+tree: the single part gives **45 passed / 0 failed / 36 staged / 9 always-on in 5 m 59 s**, and
+the pair gives **45 / 0 / 36 / 9 in 6 m 01 s** — one boot for the pair, which is why the mobile
+recipe does not grow a command.
+
+**One binding crosses the new boundary and it is the one that already crossed the stage split.**
+`streetLayer`, and BOTH halves read it — the head for the road panels and the horizon band, the
+tail for the readouts — so the guard becomes `anyStage(7, 10, 11)`. The scan turned up six other
+names below the line (`headSupport`, `horizon`, `over`, `planted`, `popIn`, `sward`) and every
+occurrence is prose or a string. The second half's prologue is `enterTown()` and `setFly(false)`:
+every camera-bearing section below it teleports itself, but all of them read the drawing from a
+walker on the ground and the last thing the part does is fly.
+
+**AND THESE READINGS WERE TAKEN AT LOAD 0.9-5.1 WITH NO OTHER AGENT ON THE BOX**, which is the
+condition this section demands be recorded. T-0215's factor of twenty applies to them the same as
+to every row above: 4 m 01 s of margin is a margin against the machine that measured it, and no
+cut of this suite survives load 50. Old parts 11-12 are renumbered 12-13; the pairing rule
+survives as 1+2, 3+4+5+6, 7+8+9, **10+11+12+13**, ranges `1-2 3-6 7-9 10-13`.
+
 **`SMOKE_TIMING=1` stamps every check line with the elapsed clock**, and T-0167 added it because
 the profile could not have been taken without it. A part that BREACHES the ceiling is killed
 *before* it prints its wall clock, so the parts actually worth cutting were the only ones a plain

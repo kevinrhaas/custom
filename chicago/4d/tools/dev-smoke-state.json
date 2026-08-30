@@ -1,6 +1,102 @@
 {
-  "note": "T-0216 — dev's standing smoke result, so a branch can answer \"is this red mine, or did I inherit it?\" from the record instead of re-running the stage on a clean worktree (three agents paid that price on one red on 2026-08-27; T-0215). Written by tools/dev-smoke-state.mjs, which parses a smoke log — local or from a chicago-4d-smoke.yml run. Every reading carries the CONDITIONS it was taken under, because a quiet CI runner does not predict a loaded steward box: T-0215 measured a factor of twenty on one tree. loadavg is sampled when the reading is filed, so it includes the smoke's own load. `treeHash` digests exactly what the smoke exercises (renderers, data, assets, smoke_renderer.mjs, the published mirror), so a reading whose hash matches yours is a reading OF YOUR TREE. A RECORD, NOT A BAR: nothing here gates anything. THE PART NUMBERS CHANGED ON 2026-08-30 (T-0346): part 4 was cut into 4, 5 and 6 and the old parts 5-9 became 7-11, so a reading filed before that date is labelled in the OLD numbering. Each of those also carries a treeHash that cannot match a tree containing the cut, so `ask` already reports them as not taken on your tree — but read the stage number as dated rather than current. IT CHANGED AGAIN THE SAME DAY (T-0173): part 7 was halved into 7 and 8 and the old parts 8-11 became 9-12, so a reading filed before that is dated twice over.",
+  "note": "T-0216 — dev's standing smoke result, so a branch can answer \"is this red mine, or did I inherit it?\" from the record instead of re-running the stage on a clean worktree (three agents paid that price on one red on 2026-08-27; T-0215). Written by tools/dev-smoke-state.mjs, which parses a smoke log — local or from a chicago-4d-smoke.yml run. Every reading carries the CONDITIONS it was taken under, because a quiet CI runner does not predict a loaded steward box: T-0215 measured a factor of twenty on one tree. loadavg is sampled when the reading is filed, so it includes the smoke's own load. `treeHash` digests exactly what the smoke exercises (renderers, data, assets, smoke_renderer.mjs, the published mirror), so a reading whose hash matches yours is a reading OF YOUR TREE. A RECORD, NOT A BAR: nothing here gates anything. THE PART NUMBERS CHANGED ON 2026-08-30 (T-0346): part 4 was cut into 4, 5 and 6 and the old parts 5-9 became 7-11; then T-0173 halved part 7 (8-11 -> 9-12) and T-0170 halved part 10 (11-12 -> 12-13). A reading filed before any of those is labelled in the OLD numbering of its day. Each of those also carries a treeHash that cannot match a tree containing the cut, so `ask` already reports them as not taken on your tree — but read the stage number as dated rather than current.",
   "readings": [
+    {
+      "viewport": "mobile",
+      "stage": "10-11",
+      "parts": [
+        10,
+        11
+      ],
+      "verdict": "pass",
+      "target": "published",
+      "passed": 45,
+      "failed": 0,
+      "failures": [],
+      "wallSeconds": 359,
+      "takenAt": "2026-08-30T06:14:59.833Z",
+      "ref": "steward/t-0170-part-9-halved",
+      "commit": "1f7b01c49903",
+      "devCommit": "1f7b01c49903",
+      "treeHash": "sha256:d4dbcf50ea1bdc0a",
+      "treeDirty": true,
+      "changelogHash": "sha256:0e138e63dcce5e98",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          3.7,
+          4.1,
+          3.5
+        ]
+      },
+      "source": "/tmp/v-m1011.log"
+    },
+    {
+      "viewport": "desktop",
+      "stage": "11",
+      "parts": [
+        11
+      ],
+      "verdict": "pass",
+      "target": "published",
+      "passed": 22,
+      "failed": 0,
+      "failures": [],
+      "wallSeconds": 281,
+      "takenAt": "2026-08-30T06:14:59.748Z",
+      "ref": "steward/t-0170-part-9-halved",
+      "commit": "1f7b01c49903",
+      "devCommit": "1f7b01c49903",
+      "treeHash": "sha256:d4dbcf50ea1bdc0a",
+      "treeDirty": true,
+      "changelogHash": "sha256:0e138e63dcce5e98",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          3.7,
+          4.1,
+          3.5
+        ]
+      },
+      "source": "/tmp/v-d11.log"
+    },
+    {
+      "viewport": "desktop",
+      "stage": "10",
+      "parts": [
+        10
+      ],
+      "verdict": "fail",
+      "target": "published",
+      "passed": 31,
+      "failed": 1,
+      "failures": [
+        "desktop 1280x800: every drawn flower head has a plant under its own stalk — 2693 of 18893 drawn heads over 40 poses had nothing under the foot of their own stalk; worst flora-head-corymb at from_above 270deg, foot 0.36 m, 0.36 m over its base over open ground"
+      ],
+      "wallSeconds": 359,
+      "takenAt": "2026-08-30T06:14:59.661Z",
+      "ref": "steward/t-0170-part-9-halved",
+      "commit": "1f7b01c49903",
+      "devCommit": "1f7b01c49903",
+      "treeHash": "sha256:d4dbcf50ea1bdc0a",
+      "treeDirty": true,
+      "changelogHash": "sha256:0e138e63dcce5e98",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          3.7,
+          4.1,
+          3.5
+        ]
+      },
+      "source": "/tmp/v-d10.log"
+    },
     {
       "viewport": "desktop",
       "stage": "10",
@@ -1657,100 +1753,6 @@
         ]
       },
       "source": "/tmp/smoke_m34c.log"
-    },
-    {
-      "viewport": "mobile",
-      "stage": "3-4",
-      "parts": [
-        3,
-        4
-      ],
-      "verdict": "pass",
-      "target": "published",
-      "passed": 116,
-      "failed": 0,
-      "failures": [],
-      "wallSeconds": 404,
-      "takenAt": "2026-08-29T08:59:59.828Z",
-      "ref": "steward/t-0317-randolph-market-second-deal",
-      "commit": "06f38aa8123a",
-      "devCommit": "a4d2819fb9ee",
-      "treeHash": "sha256:ca519d7988968b7d",
-      "treeDirty": false,
-      "changelogHash": "sha256:d3a006ebc7ff18cd",
-      "host": {
-        "kind": "steward-runner",
-        "cpus": 4,
-        "memGB": 15.6,
-        "loadavg": [
-          4.4,
-          3.7,
-          3.3
-        ]
-      },
-      "source": "/tmp/smoke_m34b.log"
-    },
-    {
-      "viewport": "desktop",
-      "stage": "8",
-      "parts": [
-        8
-      ],
-      "verdict": "pass",
-      "target": "published",
-      "passed": 37,
-      "failed": 0,
-      "failures": [],
-      "wallSeconds": 162,
-      "takenAt": "2026-08-29T08:47:06.954Z",
-      "ref": "steward/t-0317-randolph-market-second-deal",
-      "commit": "164d25737e7d",
-      "devCommit": "83a4e221536c",
-      "treeHash": "sha256:87ac01206a8d36c9",
-      "treeDirty": false,
-      "changelogHash": "sha256:6e5fb0f98ef975e5",
-      "host": {
-        "kind": "steward-runner",
-        "cpus": 4,
-        "memGB": 15.6,
-        "loadavg": [
-          4.4,
-          4.3,
-          3.6
-        ]
-      },
-      "source": "/tmp/smoke_d8.log"
-    },
-    {
-      "viewport": "desktop",
-      "stage": "3",
-      "parts": [
-        3
-      ],
-      "verdict": "pass",
-      "target": "published",
-      "passed": 74,
-      "failed": 0,
-      "failures": [],
-      "wallSeconds": 123,
-      "takenAt": "2026-08-29T08:47:06.866Z",
-      "ref": "steward/t-0317-randolph-market-second-deal",
-      "commit": "164d25737e7d",
-      "devCommit": "83a4e221536c",
-      "treeHash": "sha256:87ac01206a8d36c9",
-      "treeDirty": false,
-      "changelogHash": "sha256:6e5fb0f98ef975e5",
-      "host": {
-        "kind": "steward-runner",
-        "cpus": 4,
-        "memGB": 15.6,
-        "loadavg": [
-          4.4,
-          4.3,
-          3.6
-        ]
-      },
-      "source": "/tmp/smoke_d3.log"
     },
     {
       "viewport": "desktop",

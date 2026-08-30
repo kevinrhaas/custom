@@ -32,12 +32,16 @@
  * pattern in the map against the committed tree, so a renamed module shows up
  * here rather than as a part that silently stopped being recommended.
  *
- * THE NUMBERING CHANGED ON 2026-08-30 (T-0346): old part 4 became 4 + 5 + 6 and
- * old parts 5-9 became 7-11. Readings filed before that merge are labelled in
- * the old numbering, and this tool RENUMBERS them rather than discarding them —
- * the content of old part 5 is the content of new part 7, so the reading is a
- * reading of new part 7. Old part 4 is the one that cannot be renumbered to a
- * single part: it is a reading of 4+5+6 together, and it is reported that way.
+ * THE NUMBERING CHANGED THREE TIMES ON 2026-08-30, and this tool holds every
+ * epoch. T-0346 made old part 4 into 4 + 5 + 6 and old 5-9 into 7-11; T-0173
+ * halved part 7 (8-11 -> 9-12); T-0170 halved part 10 (11-12 -> 12-13).
+ * Readings filed before any of those are labelled in the numbering of their day,
+ * and this tool RENUMBERS them rather than discarding them, pushing each reading
+ * through every cut it predates — the content of old part 5 is the content of
+ * new parts 7+8, so the reading is a reading of that group. Three readings
+ * cannot be renumbered to a single part and are reported as the group they are:
+ * old part 4 is 4+5+6, a T-0346-era part 7 is 7+8, and a T-0173-era part 10 is
+ * 10+11.
  */
 
 import fs from 'node:fs';
@@ -53,7 +57,7 @@ const SMOKE = path.join(HERE, 'smoke_renderer.mjs');
 
 /** Parts of the smoke body. Mirrors `PARTS` in tools/smoke_renderer.mjs, and
  *  `--self-test` fails if the two ever disagree. */
-const PARTS = 12;
+const PARTS = 13;
 
 /** A steward run's single foreground command is capped at 600 s (ROADMAP § THE
  *  RUN BUDGET). Recipes are packed to a lower figure so a part that has grown
@@ -68,6 +72,7 @@ const PACK_TO_S = 480;
  *  T-0173: old part 7 is new 7+8, and old 8-11 are new 9-12. */
 const RENUMBERED_AT = Date.parse('2026-08-30T03:35:16Z');          // T-0346
 const RENUMBERED_AGAIN_AT = Date.parse('2026-08-30T05:20:22Z');    // T-0173
+const HALVED_AT = Date.parse('2026-08-30T06:14:00Z');              // T-0170
 
 /** Which parts cover which change.
  *
@@ -111,8 +116,8 @@ const COVERAGE = [
   ['renderers/web/css/', ALL, 'the chrome every panel check clicks'],
   ['data/reconstruction/', ALL, 'the infill programme the records are expanded from'],
   ['site/chicago/4d/', ALL, 'the published mirror, which is the --published target'],
-  ['site/chicago/4d/js/changelog.js', [11], "the mirrored entries What's-new reads"],
-  ['site/chicago/4d/walk/js/changelog.js', [11], "the mirrored entries What's-new reads"],
+  ['site/chicago/4d/js/changelog.js', [12], "the mirrored entries What's-new reads"],
+  ['site/chicago/4d/walk/js/changelog.js', [12], "the mirrored entries What's-new reads"],
   ['site/chicago/4d/tickets.json', NONE, 'the backlog mirror — the renderer never loads it'],
   ['site/chicago/4d/build.json', NONE, 'the publish stamp; the gate screen that shows it is boot scaffolding, taken in every invocation'],
 
@@ -138,21 +143,21 @@ const COVERAGE = [
   ['renderers/web/js/ground.js', [3], 'the ground faces the sky (R-BUG3c)'],
   ['renderers/web/js/terrain.js', [3], 'the ground the town stands on'],
   ['renderers/web/js/citations.js', [3], 'pick -> provenance, and what kind of source'],
-  ['renderers/web/js/liberties.js', [3, 12], 'the liberties on the card, and in the panel'],
-  ['renderers/web/js/residents.js', [3, 12], 'who was here, and the people in the panel'],
+  ['renderers/web/js/liberties.js', [3, 13], 'the liberties on the card, and in the panel'],
+  ['renderers/web/js/residents.js', [3, 13], 'who was here, and the people in the panel'],
   ['renderers/web/js/display-name.js', [3], 'the prose may not name a level the record is not'],
   ['renderers/web/js/popup.js', [3], 'the card a visitor opens'],
   ['renderers/web/js/census.js', [3, 10], 'the population on the card and in the census'],
   ['data/terrain/', [3], 'the heightfield'],
-  ['data/liberties.json', [3, 12], 'what we made up about THAT building'],
-  ['docs/LIBERTIES.md', [3, 12], 'the source the liberties are compiled from'],
-  ['data/residents/', [3, 12], 'the invented residents have names now (K18)'],
+  ['data/liberties.json', [3, 13], 'what we made up about THAT building'],
+  ['docs/LIBERTIES.md', [3, 13], 'the source the liberties are compiled from'],
+  ['data/residents/', [3, 13], 'the invented residents have names now (K18)'],
   ['data/sources/', [3], 'the citation -> its document'],
   ['data/sidecars/', [3], 'the record\'s own account, on the card'],
 
   // --- PARTS 4-6: standing, walking, the detail ladder and the chrome
   ['renderers/web/js/walker.js', [4, 5, 6], 'walking, standing, and the ladder they are measured on'],
-  ['renderers/web/js/controls/', [4, 5, 6, 11], 'the pick, the touch backend and the settings'],
+  ['renderers/web/js/controls/', [4, 5, 6, 11, 12], 'the pick, the touch backend and the settings'],
   ['renderers/web/js/far-merge.js', [5, 8], 'the detail ladder and the batch merge, which T-0173 moved into part 8'],
 
   // --- PARTS 7-8: navigation, the roads, the aid and the merge the reach
@@ -165,26 +170,26 @@ const COVERAGE = [
   ['renderers/web/js/facades.js', [9], 'T-0002, the facade tones'],
   ['renderers/web/js/buildings.js', [8, 9], 'the facades and the shadow reach they carry, and the merged batch part 8 reads the roughness channel out of'],
 
-  // --- PART 10: what grows, what moves, and the streets a visitor reads
-  ['renderers/web/js/flora.js', [10], 'the flora census'],
-  ['renderers/web/js/plants.js', [10], 'the sward'],
+  // --- PARTS 10-11: what grows, what moves, and the streets a visitor reads
+  ['renderers/web/js/flora.js', [10, 11], 'the flora census, and the boundary it fades at'],
+  ['renderers/web/js/plants.js', [10, 11], 'the sward, and its ragged edge'],
   ['renderers/web/js/trees.js', [10], 'the horizon timber'],
-  ['renderers/web/js/shrub-grain.js', [10], 'the sward\'s grain'],
-  ['renderers/web/js/fauna.js', [10, 12], 'the wildlife, drawn and in the panel'],
-  ['renderers/web/js/streets.js', [2, 7, 8, 10], 'the street edge, the roads read from two stations in part 7 and one in part 8 with the aid, and the street names'],
-  ['data/flora/', [10, 12], 'what grows here'],
-  ['data/fauna/', [10, 12], 'the wildlife'],
-  ['data/streets/', [2, 7, 8, 10], 'the street records'],
-  ['data/traces/', [2, 7, 8, 10], 'the traced lines the streets and the bank are built from'],
+  ['renderers/web/js/shrub-grain.js', [10, 11], 'the sward\'s grain'],
+  ['renderers/web/js/fauna.js', [10, 13], 'the wildlife, drawn and in the panel'],
+  ['renderers/web/js/streets.js', [2, 7, 8, 10, 11], 'the street edge, the roads read from two stations in part 7 and one in part 8 with the aid, and the street names'],
+  ['data/flora/', [10, 11, 13], 'what grows here'],
+  ['data/fauna/', [10, 13], 'the wildlife'],
+  ['data/streets/', [2, 7, 8, 10, 11], 'the street records'],
+  ['data/traces/', [2, 7, 8, 10, 11], 'the traced lines the streets and the bank are built from'],
   ['data/town_census.json', [10], 'the drawn population'],
 
-  // --- PART 11: the settings, the Go-to tab and What's-new
-  ['renderers/web/js/whatsnew.js', [11], "what's new"],
-  ['renderers/web/js/changelog.js', [11], "the entries What's-new reads"],
-  ['renderers/web/js/units.js', [11], 'the settings that change what the readouts say'],
+  // --- PART 12: the settings, the Go-to tab and What's-new
+  ['renderers/web/js/whatsnew.js', [12], "what's new"],
+  ['renderers/web/js/changelog.js', [12], "the entries What's-new reads"],
+  ['renderers/web/js/units.js', [11, 12], 'the settings that change what the readouts say'],
 
-  // --- PART 12: the Evidence panel and the air above the town
-  ['data/research/', [12], 'researched, and still open — the third category'],
+  // --- PART 13: the Evidence panel and the air above the town
+  ['data/research/', [13], 'researched, and still open — the third category'],
 ];
 
 // ---------------------------------------------------------------------------
@@ -210,6 +215,11 @@ function currentParts(reading) {
   if (stale(RENUMBERED_AGAIN_AT)) parts = parts.flatMap((p) => {   // T-0173
     if (p <= 6) return [p];
     if (p === 7) return [7, 8];
+    return [p + 1];
+  });
+  if (stale(HALVED_AT)) parts = parts.flatMap((p) => {             // T-0170
+    if (p <= 9) return [p];
+    if (p === 10) return [10, 11];
     return [p + 1];
   });
   return [...new Set(parts)].sort((a, b) => a - b);
@@ -447,10 +457,16 @@ function selfTest() {
   if (!eq(old([3], before), [3])) fails.push('old part 3 must renumber to 3');
   if (!eq(old([4], before), [4, 5, 6])) fails.push('old part 4 must renumber to 4,5,6');
   if (!eq(old([5], before), [7, 8])) fails.push('old part 5 must renumber to 7,8 through both cuts');
-  if (!eq(old([7, 8, 9], before), [10, 11, 12])) fails.push('old parts 7-9 must renumber to 10-12');
+  if (!eq(old([7, 8, 9], before), [10, 11, 12, 13])) fails.push('old parts 7-9 must renumber to 10-13');
   if (!eq(old([7], between), [7, 8])) fails.push('T-0346-era part 7 must renumber to 7,8');
-  if (!eq(old([8, 11], between), [9, 12])) fails.push('T-0346-era parts 8 and 11 must renumber to 9 and 12');
-  if (!eq(old([4], after), [4])) fails.push('a reading filed after both cuts must not be renumbered');
+  if (!eq(old([8, 11], between), [9, 13])) fails.push('T-0346-era parts 8 and 11 must renumber to 9 and 13');
+  // …and the epoch between T-0173 and T-0170, which is the one a renumbering
+  // that composes only the first two cuts gets wrong.
+  const between2 = '2026-08-30T05:40:00Z';
+  if (!eq(old([10], between2), [10, 11])) fails.push('a T-0173-era part 10 must renumber to 10,11');
+  if (!eq(old([11], between2), [12])) fails.push('a T-0173-era part 11 must renumber to 12');
+  if (!eq(old([7], between2), [7])) fails.push('a T-0173-era part 7 must not be renumbered again');
+  if (!eq(old([4], after), [4])) fails.push('a reading filed after all three cuts must not be renumbered');
 
   if (!eq(stageArg([1, 2, 3, 5, 7, 8]), '1-3,5,7-8')) fails.push('stageArg does not fold contiguous runs');
 
