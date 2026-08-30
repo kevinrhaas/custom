@@ -975,7 +975,22 @@ def programme_document():
                           "fetching a junction. It is waiting on an owner decision — close "
                           "South Water's west end onto Market from the 1834 sheets and the "
                           "committed bank, which is what the rest of that curve already "
-                          "stands on, or return these 27 roofs to the South balance.",
+                          "stands on, or return these 27 roofs to the South balance. "
+                          "HE RULED FOR THE CLOSURE ON 2026-08-29, AND THE GROUND REFUSED "
+                          "IT. Executed on the line as committed, the closure emits this "
+                          "block as a bowtie — South Water has converged on Lake Street "
+                          "before it reaches Market and their platted corridors overlap by "
+                          "14.9 m there — and carried as far north as the committed "
+                          "waterline allows it leaves 2.8 m of block depth at Market against "
+                          "the 24.384 m one platted lot fronts. So these 27 roofs are not on "
+                          "the ground the ruling was about: the block is a wedge the South "
+                          "Branch pinches out at its west corner, and only its eastern two "
+                          "thirds could ever carry a lot. The refusal now fires in "
+                          "tools/generate_plat_lots.py --self-test rather than emitting a "
+                          "4,411 m2 block with a plausible depth; the measurement is under "
+                          "`refused_control.market_south_water` in street_control.json and "
+                          "in docs/RESEARCH/thompson_plat_grid.md § 6.2, and what to do with "
+                          "the wedge is back with the owner.",
             "lots_note": "eight lots assumed from the emitted blocks' own subdivision; the "
                          "block itself is not generated, so it has no measured geometry",
         })

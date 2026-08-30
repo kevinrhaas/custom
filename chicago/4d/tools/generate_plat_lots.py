@@ -309,6 +309,24 @@ def build_block(north_id, south_id, west_id, east_id, lines, edges, reach_m):
                 return None, (f"{lines[edge_id]['name']}'s committed centreline stops "
                               f"{gap:.0f} m short of this block")
 
+    # AND THE TWO ROWS MUST NOT HAVE CROSSED. Four crossings can all be found and still
+    # describe no block: where an east-west street bends onto the dry bank it can converge
+    # on the row below it to less than a corridor, and then the block's north-west corner
+    # falls SOUTH of its south-west one. The ring is a bowtie, `polygon_area` returns the
+    # difference of its two lobes rather than nothing, and the block is emitted with a
+    # plausible area and a plausible depth. Measured 2026-08-29 by T-0183 at
+    # blk_south_water_market, where closing South Water's west end onto Market's corridor
+    # produced a 4,411 m2 "block" 36.85 m deep whose north-west corner stood 14.9 m south
+    # of its south-west one. It is `node_rule`'s own failure mode one layer down — an
+    # answer that looks right rather than no answer — so it is refused here by name.
+    for corner_n, corner_s, side in ((nw, sw, "west"), (ne, se, "east")):
+        depth = corner_n[1] - corner_s[1]
+        if depth <= 0.0:
+            return None, (f"{lines[north_id]['name']} and {lines[south_id]['name']} have "
+                          f"crossed by this block's {side} corner \u2014 their platted "
+                          f"corridors overlap by {-depth:.1f} m there, so what lies between "
+                          "them is not a block")
+
     north_chain = polyline_between(north_edge, nw, nw_i, ne, ne_i)
     south_chain = polyline_between(south_edge, sw, sw_i, se, se_i)
     ring = north_chain + list(reversed(south_chain))
@@ -756,13 +774,117 @@ def report(grid: dict) -> int:
     return 0
 
 
+def self_test() -> int:
+    """The crossed-corner refusal fires, and it fires on the case that produced it.
+
+    T-0183. The owner ruled on 2026-08-29 that South Water Street's committed west end
+    should be CLOSED onto Market's corridor. Executed on the line as committed, that
+    closure does not open `blk_south_water_market`: South Water's west approach has already
+    converged onto Lake Street by the time it reaches Market, so the block's north-west
+    corner falls south of its south-west one and the ring is a bowtie. This rebuilds that
+    exact case from the committed inputs and asserts the refusal, so nobody has to take the
+    measurement on trust — and asserts a real block still builds, so the guard cannot pass
+    by refusing everything.
+    """
+    import copy  # noqa: PLC0415
+
+    streets = load(DATA / "streets" / "1835.json")
+    control = load(DATA / "traces" / "street_control.json")
+    half_width = float(control["platted_street"]["half_width_m"])
+    cases, failed = 0, 0
+
+    def build(doc):
+        lines = street_lines(doc)
+        return lines, build_block("south_water", "lake", "market", "franklin",
+                                  lines, block_edges(lines, half_width), half_width)
+
+    # 1. As committed: the north row simply does not reach the block.
+    cases += 1
+    _, (built, why) = build(streets)
+    if built is not None or "stops" not in (why or ""):
+        print(f"  NOT REFUSED as committed: {why}")
+        failed += 1
+    else:
+        print(f"  ok:    as committed \u2014 {why}")
+
+    # 2. Closed onto Market's corridor: the crossing is found, and the corners are inverted.
+    closed = copy.deepcopy(streets)
+    for street in closed["streets"]:
+        if street["id"] == "south_water":
+            street["path_local_enu_m"] = [[89.27, -101]] + street["path_local_enu_m"]
+    cases += 1
+    lines, (built, why) = build(closed)
+    if built is not None or "have crossed" not in (why or ""):
+        print(f"  GUARD DID NOT FIRE on the closed west end: {why}")
+        failed += 1
+    else:
+        print(f"  fires: the closure the ruling asks for \u2014 {why}")
+
+    # 3. And the guard is not refusing everything: the block east of it still builds.
+    cases += 1
+    lines = street_lines(streets)
+    built, why = build_block("south_water", "lake", "franklin", "wells",
+                             lines, block_edges(lines, half_width), half_width)
+    if built is None:
+        print(f"  A REAL BLOCK WAS REFUSED: {why}")
+        failed += 1
+    else:
+        print("  ok:    blk_south_water_franklin still builds "
+              f"({polygon_area(built['ring']):.0f} m2)")
+
+    # 4. AND THE GROUND IS THE REASON, not the drawn line. Push South Water as far north
+    #    at Market's easting as the committed heightfield allows — its north corridor edge
+    #    exactly on the waterline — and measure what is left between it and Lake Street.
+    #    If that ever exceeds a lot's own depth the finding recorded on
+    #    `refused_control.market_south_water` is stale and wants re-reading.
+    cases += 1
+    try:
+        sys.path.insert(0, str(ROOT / "tools"))
+        from heightfield import Heightfield  # noqa: PLC0415
+        field = Heightfield.load(DATA / "terrain" / "epochs" / "e1834_harbor_cut")
+    except Exception as exc:  # pragma: no cover - the field is committed
+        print(f"  the committed heightfield did not load: {exc}")
+        return 1
+    market = next(s for s in streets["streets"] if s["id"] == "market")
+    lake = next(s for s in streets["streets"] if s["id"] == "lake")
+    corner_e = market["path_local_enu_m"][-1][0]
+    waterline = -140.0
+    while waterline < 60.0:
+        if not (field.covers(corner_e, waterline) and field.height(corner_e, waterline) >= 0.0):
+            break
+        waterline += 0.1
+    lake_line = [(float(e), float(n)) for e, n in lake["path_local_enu_m"]]
+    lake_n = next(a[1] + (corner_e - a[0]) * (b[1] - a[1]) / (b[0] - a[0])
+                  for a, b in zip(lake_line, lake_line[1:]) if a[0] <= corner_e <= b[0])
+    headroom = (waterline - 2 * half_width) - (lake_n + half_width)
+    if headroom > LOT_FRONTAGE_FT * FT_M:
+        print(f"  THE GROUND HAS CHANGED: {headroom:.1f} m of block depth at Market now")
+        failed += 1
+    else:
+        print(f"  ok:    the ground, not the line \u2014 South Water carried as far north at "
+              f"Market as the committed waterline (local N {waterline:.1f}) allows leaves "
+              f"{headroom:.1f} m between it and Lake Street")
+
+    if failed:
+        print(f"SELF-TEST FAIL \u2014 {failed} of {cases}")
+        return 1
+    print(f"SELF-TEST PASS \u2014 the crossed-corner refusal fires on the case that "
+          f"produced it, and the ground says why ({cases} cases)")
+    return 0
+
+
 def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("--check", action="store_true",
                         help="fail if the committed grid is not what the inputs re-derive")
     parser.add_argument("--report", action="store_true",
                         help="report where the dataset's structures fall on the grid")
+    parser.add_argument("--self-test", action="store_true",
+                        help="the crossed-corner refusal fires on the case that produced it")
     args = parser.parse_args()
+
+    if args.self_test:
+        return self_test()
 
     grid = grid_from_inputs()
     if args.report:
