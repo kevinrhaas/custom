@@ -1,7 +1,7 @@
 ---
 id: T-0365
 title: The anonymous-block programme has no unblocked ground left: every block with headroom is on the South Water reach T-0009 holds open
-state: claimed
+state: done
 epic: META
 requested_by: loop
 seen: false
@@ -9,8 +9,8 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-08-29
-closed: null
-pr: null
+closed: 2026-08-29
+pr: 581
 claimed_by: run 8/29/2026, 9:18:05 PM CT
 blocked_on: null
 needs_bake: false
