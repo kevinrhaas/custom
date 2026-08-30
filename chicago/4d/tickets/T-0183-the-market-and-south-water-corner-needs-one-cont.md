@@ -1,7 +1,7 @@
 ---
 id: T-0183
 title: The Market and South Water corner needs one control point, and the node rule may not be able to make it
-state: claimed
+state: blocked-owner
 epic: META
 requested_by: steward
 seen: false
@@ -12,7 +12,7 @@ opened: 2026-08-24
 closed: null
 pr: null
 claimed_by: run 8/29/2026, 6:42:06 PM CT
-blocked_on: null
+blocked_on: blk_south_water_market can be built only as a wedge that tapers to nothing at Market. Closing the west end on the line as committed emits a bowtie (corridors overlap Lake's by 14.9 m), and carried as far north as the committed waterline allows the block has 2.8 m of depth at Market against the 24.384 m one platted lot fronts. So the choice is a third one neither branch of the 2026-08-29 question offered: build the wedge, which means re-deriving a committed centreline up to 34 m north onto the waterline with no clearance and re-scoring every gate that reads it — or return the 27 roofs to the South balance the way blk_south_water_clinton's went back. Measured in PR #573; see docs/RESEARCH/thompson_plat_grid.md § 6.2.
 needs_bake: false
 ---
 
