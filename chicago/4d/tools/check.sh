@@ -91,6 +91,14 @@ step "every clapboard wall's stock re-derives from its deal" \
 step "the platted block and lot grid re-derives from the module" \
   python3 tools/generate_plat_lots.py --check
 
+# And the grid's own refusals still fire. The one that matters is the youngest: four
+# crossings can be found and still describe no block, because two committed centrelines
+# can converge to less than a corridor apart before they get there. Measured 2026-08-29
+# by T-0183 on the closure the owner ruled for at Market x South Water, which emitted a
+# 4,411 m2 bowtie with a plausible depth rather than refusing.
+step "…and a block whose rows have crossed is refused rather than emitted" \
+  python3 tools/generate_plat_lots.py --self-test
+
 # The dooryard garden pickets are the first record on the enclosure layer whose evidence
 # is a TREATMENT and not a place — the Kinzie-view plate shows picket-fenced garden plots
 # and no source puts a garden on any lot in this town. So the answer to "why this lot" is
