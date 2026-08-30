@@ -1,7 +1,7 @@
 ---
 id: T-0420
 title: Open the four South Water blocks T-0009 has unblocked: 20 roofs of headroom on franklin, lasalle, clark and dearborn
-state: open
+state: split
 epic: META
 requested_by: loop
 seen: false
@@ -9,7 +9,7 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-08-29
-closed: null
+closed: 2026-08-29
 pr: null
 claimed_by: null
 blocked_on: null
@@ -47,3 +47,14 @@ face rather than on a re-derived line; the census in `tools/reconcile_665.py` re
 screenshot from the same spot shows roofs that were not there.
 
 **Links:** T-0365 · T-0009 · T-0028 · T-0143 · T-0188 · T-0317 · T-0183 · `tools/reconcile_665.py`.
+
+---
+
+**SPLIT ON 2026-08-30, by T-0365's close.** This ticket's own body says "Take ONE block per run …
+four blocks is four runs", which is the definition of effort L, and `ticket.mjs claim` refuses an
+L for the reason `tickets/README.md` records: a run that can only finish a quarter of a ticket
+leaves it claimed and open, and the next run rebuilds it. The four blocks are now T-0429
+(`lasalle`, 8), T-0430 (`franklin`, 4), T-0431 (`clark`, 4) and T-0432 (`dearborn`, 4). Each
+carries its own re-derived headroom table and `needs_bake: true`. They hold this ticket's exact
+place in QUEUE — nothing was re-ranked. This record keeps the full ask, the ruling it rests on and
+the links.
