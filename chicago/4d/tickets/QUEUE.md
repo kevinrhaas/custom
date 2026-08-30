@@ -83,7 +83,6 @@ T-0305 — Four readings the American contradicts itself on need the page images
 # --- ten-minute foreground ceiling, so no steward run can complete it at all, and three
 # --- PRs tonight had to say so instead of reporting a result. The two order-dependent
 # --- gates below make a green run and a red run of the same tree.
-T-0346 — Desktop smoke stage 4 no longer fits the ten-minute foreground ceiling, so no steward run can take the whole desktop gate
 T-0235 — The unfiltered renderer smoke takes 55 minutes on the steward runner, and three tickets reason against a 30-minute cap
 T-0173 — The desktop smoke's part 4 and part 5 have under a minute of margin on the ceiling, and part 7 is over it
 T-0181 — The desktop 7-9 smoke leg has 9m49s of margin against its 30-minute cap, and the margin was asserted rather than measured

@@ -1,5 +1,68 @@
 # STATUS
 
+## Shipped 2026-08-30 — T-0346: the desktop gate's costliest part is cut into three
+
+**Nothing you can see changed.** This is exemption 3 of the visible-progress rule: a gate that is
+blocking visible parcels. `tools/smoke_renderer.mjs` part 4 was being killed at the ten-minute
+foreground ceiling a steward run's single command has, so no run could take the desktop half of its
+own gate — and part 4 is where the draw-call and triangle ceilings are gated at the town's worst
+frame, which is exactly the check a NEW BUILDING breaks. T-0385 (the New York Clothing Store in
+Dearborn Street) and T-0375 (five documented tradesmen on South Water Street) both stand roofs and
+both have to clear that ceiling; until today neither could demonstrate it on the runner that ships
+them.
+
+**The cost was one section of ten, and it was measured rather than guessed.** `SMOKE_TIMING=1`
+under this lane's own eight-way contention, 2026-08-30, against `--published`:
+
+| section of part 4 | reached at | left at |
+|---|---|---|
+| raycast pick → walking → bridge deck → budgets → life size → nothing hovers | 0:18 | 1:10 |
+| **the scene-detail ladder** | 1:10 | **7:27** |
+| the gate and the chrome | 7:27 | 8:42 |
+| the confidence menu's own clicks | 8:42 | killed at 9:20 |
+
+Six minutes and seventeen seconds of a ten-minute part sat in ONE section. That section walks every
+stand in `STANDS` at every detail tier and cannot be halved without walking the set twice — the
+single-walk saving is what T-0135 built it around — so it is a part on its own rather than a
+boundary nudged along.
+
+**The cut, and what crossed it.** Two named section boundaries, both re-verified for crossing
+bindings the way T-0121 and T-0167 verified theirs. Exactly one binding crossed: part 4's `stats`,
+read only for `stats.budget.drawCalls`. Part 5 now reads that ceiling itself, out of `stats.budget`
+rather than written into the test, so the bar still follows its definition site in `main.js` and a
+scene that outgrew its budget still cannot be made green by editing this file. The ladder takes no
+pose from what ran before it — `order` teleports to each stand itself and finishes at the reference
+frame — so no `enterTown()` or re-framing was needed at the boundary.
+
+- **Parts 4, 5 and 6, measured under the same load:** 1 m 09 s (17 staged checks), 6 m 46 s (16),
+  3 m 13 s (6). All three SMOKE PASS at desktop against `--published`.
+- **Nothing was dropped, and it is checked rather than claimed.** At mobile, where the old part 4
+  still fitted the ceiling, `origin/dev`'s part 4 and this branch's parts 4-6 report the SAME
+  numbers on the same tree: **51 passed, 0 failed, 42 staged-section checks, 9 always-on** — 6 m 17 s
+  against 6 m 15 s. That is the arithmetic the audit line exists for, run as an equality.
+- **Parts 5-9 are renumbered 7-11**, because these two sections sit in the MIDDLE of the body and
+  T-0167's append could not be repeated. `anyStage(5, 7)` — the shared street reading — becomes
+  `anyStage(7, 9)`; `streetLayer` is referenced in parts 7 and 9 and nowhere else, checked
+  statically and then run: `SMOKE_VIEWPORT=mobile SMOKE_STAGE=7-8` is **43 passed, 0 failed** in
+  7 m 31 s.
+- **The pairing rule survives in content and moves in spelling.** `1+2, 3+4, 5+6, 7+8+9` becomes
+  `1+2, 3+4+5+6, 7+8, 9+10+11` — the same four mobile commands carrying the same parts, ranges
+  `1-2 3-6 7-8 9-11`. `chicago-4d-bake.yml`'s smoke matrix is edited in this commit, as its own
+  comment demands of any renumbering; the ranges still tile 1..11 once each with no gap or overlap.
+- **`tools/dev-smoke-state.mjs` mirrors `PARTS` and had to move with it** (9 → 11), and
+  `CHANGELOG_PARTS` with it (What's-new is part 10 now, not 8).
+
+**One thing this leaves behind, stated rather than hidden.** Every reading already in
+`tools/dev-smoke-state.json` is filed under the OLD numbering, so a reading labelled `stage: "5"`
+is the part that is now 7. Nothing reads them as a bar and every one of them carries a `treeHash`
+that no longer matches any tree with this file in it, so `ask` will say it was not taken on your
+tree — but the numbering is now dated and the record's note says so.
+
+**What this does NOT do.** It does not re-profile the whole desktop recipe under load, and it does
+not resize the parts T-0346's second measurement put over the ceiling for reasons that were later
+shown to be contention rather than cost (old stages 5 and 7, now 7 and 9). That is a second
+demonstration and therefore a second ticket: T-0346 was split rather than shipped as a self-invented
+half.
 ## Shipped 2026-08-30 — T-0369: desktop stage 8's verdict stops depending on which stages ran in front of it
 
 **Nothing you can see changed.** This is a gate repair, taken under AGENTS.md's third
