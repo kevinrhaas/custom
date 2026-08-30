@@ -1,5 +1,64 @@
 # STATUS
 
+## Shipped 2026-08-30 — T-0333: eighteen inches of stack, and the town was already inside it
+
+**The Town of Chicago's by-law of 5 August 1835, section 18, is the first documented
+DIMENSIONAL constraint this project holds on anything above a roof line**, and it is now
+measured and gated. `chicago_democrat_1835_08_19#c005`, page 1 column 2, prints it line by
+line: *"every stove pipe or chimney passing through the roof of any building shall extend
+and be carried at least eighteen inches above the roof, and no stove pipe shall be passed
+through the side or end of any building"*, under five dollars for each and every offence,
+with a fire warden in every house, store and shop once a month from September to May.
+
+### The census, and it is the whole finding
+
+`tools/measure_stack_ordinance.py`, read off the committed masters' glTF accessor bounds
+rather than off the generators that wrote them — the same discipline `measure_stack_fabric.py`
+(T-0137) uses, and for the same reason: the generator is the thing under test.
+
+| archetype | buildings | above its own roof |
+|---|---|---|
+| `frame_dwelling` | 116 | 0.780 m — 30.7 in |
+| `log_dwelling` | 44 | 0.720 m — 28.3 in |
+| `frame_storefront` | 36 | 0.710 m — 28.0 in |
+| `frame_tavern` | 11 | 0.550 m — **21.7 in**, the tightest in the town |
+| `fort_structure` | 6 | 0.780 m — 30.7 in |
+| **town** | **213 buildings, 234 stacks** | **least 0.550 m, 3.7 in of margin** |
+
+**Nothing was raised, moved or rebuilt, and no master was rebaked.** The ticket anticipated
+this outcome in its own words — *"the answer may already be compliant, in which case this
+ticket closes as a GATE and a provenance note rather than as geometry"* — and it is what the
+measurement says. `docs/LIBERTIES.md` is untouched: a documented constraint the model already
+satisfies is not an invention.
+
+### What is unverified, and what is deliberately not decided
+
+- **The clearance is measured to the RIDGE**, which is the top of the `roof` material. A
+  stack standing off the ridge — `frame_tavern` across the frontage, `frame_storefront` on
+  a shed roof — breaks a roof plane lower than that, so its true projection is larger than
+  the figure above. The figures are a floor, not an estimate.
+- **A building carrying stacks on two roofs reports its tallest.** That the ell's or the
+  frame addition's stack clears its own ridge by the same margin is the ARCHETYPE's
+  guarantee — every archetype builds each stack with one helper, relative to the ridge it
+  is handed — and not this measurement's. Stated rather than assumed.
+- **The corporation limits are not drawn and this gate makes no ruling about them.**
+  Section 18 binds *"within the limits of the Corporation"*; section 22 of the same sitting
+  walks those limits street by street and is **T-0334**, unbuilt. Nothing is conformed to a
+  rule that may not bind it, because nothing has to move: every stack clears eighteen inches
+  on both sides of a line nobody has drawn. If a record ever legitimately stands a shorter
+  stack outside the limits, T-0334's boundary is what scopes this gate, and the gate's own
+  failure message says so instead of inviting the next run to weaken a documented figure.
+- **The by-law postdates the scene date by five weeks and is not applied retrospectively.**
+  It is used as a bound the drawn town is measured against, not as a rule the 1 July town
+  was held to.
+- **There is no stove pipe anywhere in this model.** Every stack drawn is masonry, so
+  section 18's second clause — no pipe out through a side or end wall — binds nothing that
+  is drawn. That answers the ticket's second question: the archetypes do not distinguish a
+  pipe from a chimney because they have only chimneys.
+
+`docs/RESEARCH/chimneys.md` § 7 holds the reading. `tools/check.sh` runs the gate and its
+four self-test cases.
+
 ## Shipped 2026-08-30 — T-0305: the four readings the American contradicts itself on
 
 **What a visitor sees:** S. B. Cobb's saddlery — the corner shop on Lake Street in the West

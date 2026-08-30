@@ -198,3 +198,84 @@ clear the roof to draw at all, so if the highest thing over the roof is the roof
 inside the roof's own primitive and is painted with it. That is the fault R-W2a found, stated
 as a property of the bytes rather than of a generator, and `tools/check.sh` now fails on it.
 Before this parcel: **6 buildings, 10 stacks**, all of them the fort's. After: none.
+
+## 7 · How HIGH a stack had to stand: the by-law of 5 August 1835 (T-0333)
+
+Sections 1 to 6 above are about what a stack is made of. This section is about a number,
+and it is the first documented **dimensional** constraint this project holds on anything
+above a roof line.
+
+The Trustees of the Town of Chicago passed their by-laws on **5 August 1835**, over
+Hugunin's and Alex. N. Fullerton's names. The Democrat printed them three times that
+month, and `chicago_democrat_1835_08_19` — page 1, column 2, lines 106-123, claim
+**`c005`** — is the printing that sets them line by line where 12 August weaves the two
+halves of the sentence into one column. Section 18:
+
+> *"…and every stove pipe or chimney passing through the roof of any building shall
+> extend and be carried at least eighteen inches above the roof, and no stove pipe shall
+> be passed through the side or end of any building, under the penalty of five dollars
+> for each and every offence."*
+
+It was enforced, not merely printed: section 21 sends a fire warden into every house,
+store and shop in his district once a month from September to May. Sections 15 to 17 are
+the same fear from the other side — shavings swept out weekly, nothing burnt in a street
+or on a lot without a trustee's leave.
+
+**The date is after the scene date and the constraint is not applied retrospectively.**
+1 July 1835 is five weeks before the sitting, so nothing in this reconstruction is
+conformed to a rule the town had not yet passed. What the by-law is used for here is the
+opposite direction: as a **bound** the drawn town is measured against, and it turns out
+the town was already inside it.
+
+### It brackets a figure this project had only one side of
+
+`docs/ROADMAP.md`'s flagstaff work quotes Andreas describing a Chicago with *"not a
+single steeple nor a chimney four feet above any roof."* That is a maximum a memoirist
+noticed, twenty years later, with no instrument. Eighteen inches is a minimum the town
+wrote down and fined people for breaking. Both can be true, and together they bracket
+every stack in the scene between **0.457 m and 1.219 m** above its own roof. Every stack
+this project draws stands inside that bracket.
+
+### The census, measured on the committed masters
+
+`tools/measure_stack_ordinance.py`, read off the glTF accessor bounds rather than off any
+generator — the same discipline §6's fabric gate uses, for the same reason. Clearance is
+measured to the top of the `roof` material, which is the ridge, so a stack standing off
+the ridge clears its own roof plane by MORE than the figure below.
+
+| archetype | buildings | stacks | above its own roof |
+|---|---|---|---|
+| `frame_dwelling` | 116 | | 0.780 m — **30.7 in** |
+| `log_dwelling` | 44 | | 0.720 m — **28.3 in** |
+| `frame_storefront` | 36 | | 0.710 m — **28.0 in** |
+| `frame_tavern` | 11 | | 0.550 m — **21.7 in** |
+| `fort_structure` | 6 | | 0.780 m — **30.7 in** |
+| **town** | **213** | **234** | **least 0.550 m — 21.7 in** |
+
+**Every stack in the town already complies, and the tightest has 3.7 inches to spare** —
+the eleven `frame_tavern` stacks, which are the only ones the archetypes finish without a
+corbelled head. So this ticket closes as a gate and this section, and **no geometry
+moves**: nothing was raised, no master was rebuilt, and `docs/LIBERTIES.md` is untouched,
+because a documented constraint the model already satisfies is not an invention.
+
+### Two questions the ticket asked, answered
+
+**Is a stove pipe the same object as a chimney here?** The by-law names both and treats
+them alike. This model has only one of them: **there is no stove pipe anywhere in it.**
+Every stack drawn is masonry — brick on §2's and §6's argument — and no archetype carries
+a pipe object at all. So section 18's second clause, *"no stove pipe shall be passed
+through the side or end of any building"*, binds nothing that is drawn. `log_dwelling`'s
+stack does stand OUTSIDE its gable, which §3 argues is the frontier pattern, but it is a
+chimney and it is carried above the roof like every other; it is not a pipe out through
+an end wall.
+
+**What about the limits of the Corporation?** Section 18 binds *"within the limits of the
+Corporation"*, and section 22 of the same sitting walks those limits street by street —
+the only documented statement in this corpus of where the built town was held to end in
+1835. **This project does not draw that boundary yet: T-0334 owns it.** The gate therefore
+does not decide which buildings the by-law reaches, and it conforms nothing, because
+nothing has to move: every stack clears eighteen inches on both sides of a line nobody has
+drawn. What it holds is that none may drop back under. The day a record legitimately
+stands a shorter stack outside the limits, T-0334's boundary is what will scope this gate
+— and the gate's own failure message says so, rather than tempting the next run to weaken
+a documented figure.
