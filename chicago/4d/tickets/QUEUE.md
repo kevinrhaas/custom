@@ -60,7 +60,6 @@ T-0375 — Every reconstructed roof on South Water Street is a labourer's, so fi
 # --- opened that live outside the repository. Workable the day the images are supplied;
 # --- until then a run should take something above instead.
 T-0318 — The January 1834 letter list: the third printing repairs the A-H half, and the images are needed only for the rest
-T-0321 — The 1 April 1834 Chicago letter list is 179 names and nineteen lines of debris stand where more did
 T-0331 — The March 1834 letter list lost its date line and both its crops failed Vision; the page images can say which return it is
 T-0305 — Four readings the American contradicts itself on need the page images: the tailor's street, which Water street two forwarding houses stood in, and the corner of Cobb's saddlery
 
