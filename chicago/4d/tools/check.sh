@@ -406,6 +406,16 @@ step "…and its absolute assertion still fires when a generated roof is put in 
 step "north water street is still the line its own derivation produces, and still dry" \
   python3 tools/derive_north_water.py --gate
 
+# T-0372. "Still dry" was a weaker question than it sounded: the gate above asks whether
+# any BEND stands in water, and a street can hug a bank for a hundred metres without
+# putting a vertex in it. The derivation now carries a clearance rule with two tiers —
+# the open reach owes the half module less the fit's own give, and the two ends, where
+# the street meets the water on purpose (it stops at the fork and crosses on a deck),
+# owe five metres. This is the proof the rule refuses each tier, and that the two
+# exemptions are load-bearing rather than a way of saying nothing.
+step "…and its own assertions still fire when broken" \
+  python3 tools/derive_north_water.py --self-test
+
 step "a block face carries one street line, across every generator that builds on it" \
   python3 tools/measure_street_line.py --gate --quiet
 
