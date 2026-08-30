@@ -52,8 +52,8 @@
     "would_still_refuse_by_reason": {
      "not present at the scene date": 0,
      "the face holds no roof standing on it": 24,
-     "this face already holds this proprietor": 9,
-     "every roof on the face is spoken for": 7
+     "this face already holds this proprietor": 8,
+     "every roof on the face is spoken for": 8
     }
    },
    "a corner side is a face": {
@@ -71,8 +71,8 @@
     "would_still_refuse_by_reason": {
      "not present at the scene date": 0,
      "the face holds no roof standing on it": 2,
-     "this face already holds this proprietor": 10,
-     "every roof on the face is spoken for": 18
+     "this face already holds this proprietor": 9,
+     "every roof on the face is spoken for": 19
     }
    },
    "a corner side or the band is a face": {
@@ -91,10 +91,101 @@
     "would_still_refuse_by_reason": {
      "not present at the scene date": 0,
      "the face holds no roof standing on it": 0,
-     "this face already holds this proprietor": 10,
-     "every roof on the face is spoken for": 20
+     "this face already holds this proprietor": 9,
+     "every roof on the face is spoken for": 21
     }
    }
+  }
+ },
+ "identity_layer": {
+  "source": "data/research/newspapers/identity.json",
+  "section": "refused_firm_merges",
+  "kind": "two_houses",
+  "why": "Refusal 3 collapses a face's businesses on the proprietor surname SET. Where the identity layer has already ruled a surname set holds two houses ON THE TRADE, that collapse would answer an identity question by refusing, and answer it against the corpus's own committed reading. The stated trade therefore joins the collapse key for those groups and only those groups (T-0414).",
+  "split_surname_sets": {
+   "curtiss": [
+    {
+     "into": "J. Curtiss",
+     "from": "L. G. Curtiss",
+     "trades": [
+      "attorney",
+      "surveyor"
+     ],
+     "witnesses": 3
+    },
+    {
+     "into": "L. Curtiss, attorney and counsellor at law",
+     "from": "L. G. Curtiss",
+     "trades": [
+      "attorney",
+      "surveyor"
+     ],
+     "witnesses": 4
+    }
+   ],
+   "kinzie": [
+    {
+     "into": "John H. Kinzie",
+     "from": "R. A. Kinzie",
+     "trades": [
+      "forwarding_and_commission",
+      "merchant"
+     ],
+     "witnesses": 7
+    },
+    {
+     "into": "John S. Kinzie, forwarding and commission merchant",
+     "from": "R. A. Kinzie",
+     "trades": [
+      "forwarding_and_commission",
+      "merchant"
+     ],
+     "witnesses": 4
+    },
+    {
+     "into": "J. H. Kinzie, merchant",
+     "from": "R. A. Kinzie",
+     "trades": [
+      "lumber_merchant",
+      "merchant"
+     ],
+     "witnesses": 4
+    }
+   ],
+   "montgomery": [
+    {
+     "into": "W. Montgomery",
+     "from": "W. Montgomery, boot and shoe maker",
+     "trades": [
+      "auctioneer",
+      "shoemaker"
+     ],
+     "witnesses": 5
+    }
+   ],
+   "taylor": [
+    {
+     "into": "Wm. H. Taylor",
+     "from": "Charles Taylor",
+     "trades": [
+      "shoemaker",
+      "clothier"
+     ],
+     "witnesses": 2
+    }
+   ]
+  },
+  "headings_un_refused": [
+   "business_a_new_auction_and_commission_room_south_water_street"
+  ],
+  "headings_displaced": [
+   "business_samuel_lewis"
+  ],
+  "refused_by_reason_if_ignored": {
+   "not present at the scene date": 0,
+   "the face holds no roof standing on it": 2,
+   "this face already holds this proprietor": 10,
+   "every roof on the face is spoken for": 18
   }
  },
  "counts": {
@@ -104,8 +195,8 @@
   "refused_by_reason": {
    "not present at the scene date": 0,
    "the face holds no roof standing on it": 2,
-   "this face already holds this proprietor": 10,
-   "every roof on the face is spoken for": 18
+   "this face already holds this proprietor": 9,
+   "every roof on the face is spoken for": 19
   },
   "unplaceable_present_at_scene_date": 76,
   "by_street": {
@@ -210,6 +301,35 @@
   }
  },
  "adoptions": [
+  {
+   "business_id": "business_a_new_auction_and_commission_room_south_water_street",
+   "business_name": "a new auction and commission room, South Water Street",
+   "trade": "auction and commission",
+   "proprietors": [
+    "W. Montgomery"
+   ],
+   "street_id": "south_water",
+   "street_name": "South Water Street",
+   "street_text": "South Water Street",
+   "placement_class": "relative",
+   "cites": [
+    "chicago_american_1835_06_27#c008",
+    "chicago_american_1835_07_04#c012",
+    "chicago_american_1835_07_11#c003",
+    "chicago_american_1835_07_18#c003",
+    "chicago_american_1835_07_25#c003"
+   ],
+   "first_issue": "1835-06-27",
+   "last_issue": "1835-07-25",
+   "mentions": 5,
+   "structure_id": "recon_1835_blk_south_water_wells_d5_02",
+   "face": "lot front",
+   "roof_confidence": "reconstructed",
+   "lot": null,
+   "claims_lot": false,
+   "order_is_a_claim": false,
+   "note": "The advertisement names South Water Street and nothing narrower, so this business takes the street face and not a lot. The roof it is attached to is an anonymous reconstructed count-unit whose platted lot faces South Water Street; it stays reconstructed, and WHICH roof on the face is an allocation by tools/adopt_street_faces.py rather than a reading of any source. Nothing here says this business stood nearer the corner than any other on the same face."
+  },
   {
    "business_id": "business_boot_shoe_and_leather_store_lake_street_proprietor_not_recovered",
    "business_name": "[boot, shoe and leather store, Lake street, proprietor not recovered]",
@@ -417,7 +537,7 @@
    "first_issue": "1834-05-28",
    "last_issue": "1834-07-02",
    "mentions": 4,
-   "structure_id": "recon_1835_blk_south_water_wells_d5_02",
+   "structure_id": "recon_1835_blk_south_water_wells_d6_01",
    "face": "lot front",
    "roof_confidence": "reconstructed",
    "lot": null,
@@ -813,35 +933,6 @@
    "note": "The advertisement names Dearborn Street and nothing narrower, so this business takes the street face and not a lot. The roof it is attached to is an anonymous reconstructed count-unit standing at the end of its platted tier, where the tier meets Dearborn Street: a corner building, which the owner ruled on 2026-08-30 stands on both its faces; it stays reconstructed, and WHICH roof on the face is an allocation by tools/adopt_street_faces.py rather than a reading of any source. Nothing here says this business stood nearer the corner than any other on the same face."
   },
   {
-   "business_id": "business_samuel_lewis",
-   "business_name": "Samuel Lewis",
-   "trade": "vocal and instrumental music school, and the repair and tuning of piano fortes",
-   "proprietors": [
-    "Samuel Lewis",
-    "Lewis, Samuel"
-   ],
-   "street_id": "south_water",
-   "street_name": "South Water Street",
-   "street_text": "South Water Street",
-   "placement_class": "street_only",
-   "cites": [
-    "chicago_democrat_1835_07_22#c005",
-    "chicago_democrat_1835_07_29#c008",
-    "chicago_democrat_1835_08_05#c004",
-    "chicago_democrat_1835_08_12#c005"
-   ],
-   "first_issue": "1835-07-22",
-   "last_issue": "1835-08-12",
-   "mentions": 4,
-   "structure_id": "recon_1835_blk_south_water_wells_d6_01",
-   "face": "lot front",
-   "roof_confidence": "reconstructed",
-   "lot": null,
-   "claims_lot": false,
-   "order_is_a_claim": false,
-   "note": "The advertisement names South Water Street and nothing narrower, so this business takes the street face and not a lot. The roof it is attached to is an anonymous reconstructed count-unit whose platted lot faces South Water Street; it stays reconstructed, and WHICH roof on the face is an allocation by tools/adopt_street_faces.py rather than a reading of any source. Nothing here says this business stood nearer the corner than any other on the same face."
-  },
-  {
    "business_id": "business_sarah_d_howe",
    "business_name": "Sarah D. Howe",
    "trade": "dress, cloak and habit making",
@@ -1106,6 +1197,14 @@
    "detail": "19 roof(s) stand on this street: 5 are a household's dwelling under one layer or the other, 5 are yard buildings the parcels dealt behind a lot, and 9 are already adopted by a better-evidenced business."
   },
   {
+   "business_id": "business_samuel_lewis",
+   "business_name": "Samuel Lewis",
+   "street_id": "south_water",
+   "street_name": "South Water Street",
+   "refusal": "every roof on the face is spoken for",
+   "detail": "19 roof(s) stand on this street: 5 are a household's dwelling under one layer or the other, 5 are yard buildings the parcels dealt behind a lot, and 9 are already adopted by a better-evidenced business."
+  },
+  {
    "business_id": "business_the_dearborn_street_auction_and_commission_rooms",
    "business_name": "the Dearborn Street auction and commission rooms",
    "street_id": "dearborn",
@@ -1178,19 +1277,12 @@
    "detail": "no roof stands on this street under an adopted reading: 0 has its platted lot on it, 0 end a tier against it, and 1 lie within the centreline band, which the owner declined as a face on 2026-08-30."
   },
   {
-   "business_id": "business_a_new_auction_and_commission_room_south_water_street",
-   "business_name": "a new auction and commission room, South Water Street",
-   "street_id": "south_water",
-   "street_name": "South Water Street",
-   "refusal": "this face already holds this proprietor",
-   "detail": "'L. W. Montgomery, boot and shoe maker' already stands on this face under the same proprietor surname(s) montgomery, on better evidence. One house, one roof per face; whether these are two headings of one business is the gazetteer's to judge (T-0338, T-0340), not this pass's."
-  },
-  {
    "business_id": "business_chicago_bakery",
    "business_name": "Chicago Bakery",
    "street_id": "south_water",
    "street_name": "South Water Street",
    "refusal": "this face already holds this proprietor",
+   "held_by": "D. Graves",
    "detail": "'D. Graves' already stands on this face under the same proprietor surname(s) graves, on better evidence. One house, one roof per face; whether these are two headings of one business is the gazetteer's to judge (T-0338, T-0340), not this pass's."
   },
   {
@@ -1199,6 +1291,7 @@
    "street_id": "lake",
    "street_name": "Lake Street",
    "refusal": "this face already holds this proprietor",
+   "held_by": "G. Blanshard",
    "detail": "'G. Blanshard' already stands on this face under the same proprietor surname(s) blanshard, on better evidence. One house, one roof per face; whether these are two headings of one business is the gazetteer's to judge (T-0338, T-0340), not this pass's."
   },
   {
@@ -1207,6 +1300,7 @@
    "street_id": "lake",
    "street_name": "Lake Street",
    "refusal": "this face already holds this proprietor",
+   "held_by": "Wm. H. Kennicott, Surgeon Dentist",
    "detail": "'Wm. H. Kennicott, Surgeon Dentist' already stands on this face under the same proprietor surname(s) kennicott, on better evidence. One house, one roof per face; whether these are two headings of one business is the gazetteer's to judge (T-0338, T-0340), not this pass's."
   },
   {
@@ -1215,7 +1309,8 @@
    "street_id": "south_water",
    "street_name": "South Water Street",
    "refusal": "this face already holds this proprietor",
-   "detail": "'L. W. Montgomery, boot and shoe maker' already stands on this face under the same proprietor surname(s) montgomery, on better evidence. One house, one roof per face; whether these are two headings of one business is the gazetteer's to judge (T-0338, T-0340), not this pass's."
+   "held_by": "a new auction and commission room, South Water Street",
+   "detail": "'a new auction and commission room, South Water Street' already stands on this face under the same proprietor surname(s) montgomery and the same trade: auctioneer, on better evidence. One house, one roof per face; whether these are two headings of one business is the gazetteer's to judge (T-0338, T-0340), not this pass's."
   },
   {
    "business_id": "business_peter_cohen_s_store",
@@ -1223,6 +1318,7 @@
    "street_id": "south_water",
    "street_name": "South Water Street",
    "refusal": "this face already holds this proprietor",
+   "held_by": "Peter Cohen",
    "detail": "'Peter Cohen' already stands on this face under the same proprietor surname(s) cohen, on better evidence. One house, one roof per face; whether these are two headings of one business is the gazetteer's to judge (T-0338, T-0340), not this pass's."
   },
   {
@@ -1231,6 +1327,7 @@
    "street_id": "dearborn",
    "street_name": "Dearborn Street",
    "refusal": "this face already holds this proprietor",
+   "held_by": "S. Abell, attorney and counsellor",
    "detail": "'S. Abell, attorney and counsellor' already stands on this face under the same proprietor surname(s) abell, on better evidence. One house, one roof per face; whether these are two headings of one business is the gazetteer's to judge (T-0338, T-0340), not this pass's."
   },
   {
@@ -1239,6 +1336,7 @@
    "street_id": "south_water",
    "street_name": "South Water Street",
    "refusal": "this face already holds this proprietor",
+   "held_by": "J. H. Mulford",
    "detail": "'J. H. Mulford' already stands on this face under the same proprietor surname(s) mulford, on better evidence. One house, one roof per face; whether these are two headings of one business is the gazetteer's to judge (T-0338, T-0340), not this pass's."
   },
   {
@@ -1247,7 +1345,8 @@
    "street_id": "south_water",
    "street_name": "South Water Street",
    "refusal": "this face already holds this proprietor",
-   "detail": "'L. W. Montgomery, boot and shoe maker' already stands on this face under the same proprietor surname(s) montgomery, on better evidence. One house, one roof per face; whether these are two headings of one business is the gazetteer's to judge (T-0338, T-0340), not this pass's."
+   "held_by": "a new auction and commission room, South Water Street",
+   "detail": "'a new auction and commission room, South Water Street' already stands on this face under the same proprietor surname(s) montgomery and the same trade: auctioneer, on better evidence. One house, one roof per face; whether these are two headings of one business is the gazetteer's to judge (T-0338, T-0340), not this pass's."
   },
   {
    "business_id": "business_w_montgomery_auction_and_commission_house",
@@ -1255,7 +1354,8 @@
    "street_id": "south_water",
    "street_name": "South Water Street",
    "refusal": "this face already holds this proprietor",
-   "detail": "'L. W. Montgomery, boot and shoe maker' already stands on this face under the same proprietor surname(s) montgomery, on better evidence. One house, one roof per face; whether these are two headings of one business is the gazetteer's to judge (T-0338, T-0340), not this pass's."
+   "held_by": "a new auction and commission room, South Water Street",
+   "detail": "'a new auction and commission room, South Water Street' already stands on this face under the same proprietor surname(s) montgomery and the same trade: auctioneer, on better evidence. One house, one roof per face; whether these are two headings of one business is the gazetteer's to judge (T-0338, T-0340), not this pass's."
   }
  ]
 }
