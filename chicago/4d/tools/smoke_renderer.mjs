@@ -1159,8 +1159,17 @@ for (const [label, viewport, touch] of [
       const top = document.elementFromPoint(b.x + b.width / 2, b.y + b.height / 2);
       if (!top || !(top === el || el.contains(top))) {
         const cls = top && typeof top.className === 'string' ? top.className : '';
+        // NAME THE OVERLAY, NOT JUST THE TAG IT ENDS IN (T-0369). The first
+        // report of this failure said only `<h2>`, and an `<h2>` is a heading
+        // inside something — the thing worth naming is the panel that heading
+        // belongs to. Walking up to the nearest ancestor carrying an id turns
+        // "covered by <h2>" into "covered by <h2> inside #popup", which is the
+        // whole diagnosis of a stale overlay left open by an earlier stage.
+        let owner = top;
+        while (owner && !owner.id && owner !== document.body) owner = owner.parentElement;
+        const inside = owner && owner.id && owner !== el ? ` inside #${owner.id}` : '';
         return `${s} is covered at its own centre by `
-          + `<${top ? top.tagName.toLowerCase() : 'nothing'}${cls ? ` class="${cls}"` : ''}>`;
+          + `<${top ? top.tagName.toLowerCase() : 'nothing'}${cls ? ` class="${cls}"` : ''}>${inside}`;
       }
       // A real mouse press FOCUSES a focusable control, and an untrusted
       // `.click()` does not — which is a difference the suite already depends on
@@ -3022,6 +3031,35 @@ for (const [label, viewport, touch] of [
       boards.devices?.length === 1
         && boards.devices[0] === 'carpenter_south_water_store',
       `${boards.devices?.length} device(s) [${(boards.devices ?? []).join(', ')}]`);
+
+    // --- and part 1 hands the page on clean (T-0369) -------------------------
+    //
+    // The twenty-five aims above are `pick()` calls, and a pick that lands on a
+    // structure OPENS THE INSPECT CARD. The last one lands on the Tremont
+    // House's signboard, so this part used to END with `#popup` standing —
+    // `position: fixed`, `z-index: 30`, `top: 58px`, `right: 12px`, 392 px wide,
+    // which on a 1280 x 800 viewport is squarely on top of the HUD panel's tab
+    // strip. Nothing between here and part 7 reads panel chrome, so nothing
+    // noticed. Part 8 is nothing BUT panel chrome and its first statement clicks
+    // a tab, so it inherited an unclickable strip and died on it: same commit,
+    // one command apart, `SMOKE_STAGE=8` reached the settings tab and
+    // `SMOKE_STAGE=1,8` failed with `covered at its own centre by <h2>`.
+    //
+    // So the part that opened the card closes it, and the teardown is ASSERTED
+    // rather than silent. A stage that hands on an overlay standing over the
+    // chrome is the defect, and the next one to do it should be named here — at
+    // the boundary where it happened — instead of surfacing four parts later
+    // under some other gate's name.
+    const part1Overlays = await page.evaluate(() => {
+      window.__chicago4d.popup.close();
+      return ['popup', 'control-help'].filter((id) => {
+        const el = document.getElementById(id);
+        return el && !el.hasAttribute('hidden');
+      });
+    });
+    check(`${label}: part 1 hands the page on with nothing standing over the chrome`,
+      part1Overlays.length === 0,
+      `still showing: ${part1Overlays.map((id) => `#${id}`).join(', ') || 'nothing'}`);
 
     inStageWork = false;
     } // end PART 1 (T-0060 stage 1a, cut by T-0121)
@@ -9164,7 +9202,17 @@ for (const [label, viewport, touch] of [
     // click on a tab that has no layout waits ninety seconds and dies. Guarded
     // on the panel's own hidden state rather than toggling, for the same reason
     // enterTown() is guarded: in an unfiltered run this must do nothing at all.
+    // …and NOTHING STANDING OVER IT (T-0369). The inspect card is fixed at the
+    // top right and overlaps this panel's tab strip on the desktop viewport, so
+    // ANY predecessor that picked a structure and left its card open makes the
+    // first click below fail — which is exactly what part 1 did. Part 1 no
+    // longer leaks it, and this part no longer depends on that being true of
+    // every predecessor either: a part that drives chrome establishes the
+    // chrome's state, for the same reason the panel below is opened rather than
+    // assumed. Both halves are the fix, because only the second one makes this
+    // part's verdict independent of which stages ran in front of it.
     await page.evaluate(() => {
+      window.__chicago4d.popup.close();
       if (document.getElementById('panel').hasAttribute('hidden')) {
         document.getElementById('btn-help').click();
       }
