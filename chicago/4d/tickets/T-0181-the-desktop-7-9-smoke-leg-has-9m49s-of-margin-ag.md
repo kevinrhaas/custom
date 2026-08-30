@@ -109,3 +109,5 @@ under a minute of margin each. Parts 8 and 9 have no reading today because part 
 not be got past. That is one more reason this ticket's leg margins have to be measured
 per leg rather than summed from parts — three of the nine parts are now at or past the
 per-command ceiling the parts were cut to fit.
+
+**RENUMBERED BY T-0346, 2026-08-30.** The desktop leg this ticket is about is still the LAST leg of `chicago-4d-bake.yml`'s smoke matrix and its boundaries have not moved — but it is spelled **`9-11`** now, not `7-9`, because T-0346 cut the old part 4 into three and renumbered old parts 5-9 to 7-11. The matrix reads `'1-2', '3-6', '7-8', '9-11'`.

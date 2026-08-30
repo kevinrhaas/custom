@@ -78,3 +78,5 @@ untouched by this one.
 
 **Verification.** `./tools/check.sh` PASS. desktop `SMOKE_STAGE=1,8` 105/0 (was 75/1), desktop
 `SMOKE_STAGE=8` 37/0 — the same verdict both ways. mobile `SMOKE_STAGE=1,8` 105/0.
+
+**RENUMBERED BY T-0346, 2026-08-30.** "Desktop stage 8" here is the part that was 8 under T-0167's nine-way cut — the eye-height-through-What's-new part. It is **part 10** now: T-0346 cut the old part 4 into three and renumbered old parts 5-9 to 7-11. "Stage 1" and "stage 2" in this ticket are unchanged, since the cut is below them.

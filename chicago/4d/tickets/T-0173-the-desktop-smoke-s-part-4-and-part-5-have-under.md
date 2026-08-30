@@ -66,3 +66,5 @@ the part.
 
 Mobile is still comfortable — `SMOKE_VIEWPORT=mobile SMOKE_STAGE=3-4` ran 7 m 20 s green
 (116 passed, 0 failed) on the same tree and the same runner, in the same session.
+
+**RENUMBERED BY T-0346, 2026-08-30, and half of it is done.** "Part 4" here was the part T-0346 cut into parts 4, 5 and 6 — measured after that cut at 1 m 03 s, 6 m 12 s and 2 m 58 s at desktop under eight-way load, so the part-4 half of this ticket is closed by that work. **"Part 5" is now part 7, and it is what is left here**: measured **8 m 48 s** at desktop on the same loaded runner, a margin of **1 m 12 s**, which is T-0167's own definition of not-a-margin. "Part 7" here is now part 9. See ROADMAP § THE RUN BUDGET.

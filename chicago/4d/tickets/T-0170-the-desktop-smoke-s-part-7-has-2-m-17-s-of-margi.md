@@ -52,3 +52,5 @@ runner in the same hour — desktop 4 at 9 m 49 s (11 s of margin, T-0173's tick
 called a disagreement; three, with two of them kills, are a part that does not fit. The T-0358 PR
 had to report the desktop repeat of part 7 as unrun and lean on the mobile leg, which covers the
 same assertions, to say the change was gated.
+
+**RENUMBERED BY T-0346, 2026-08-30.** This ticket's "part 7" is the part that was 7 under T-0167's nine-way cut; T-0346 cut the old part 4 into three, so it is **part 9** now. Its point stands unchanged — it holds one half of the shared street-layer reading (the guard is `anyStage(7, 9)` today) and it is not the tail, so cutting it renumbers everything after it a second time.
