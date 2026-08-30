@@ -894,8 +894,8 @@
     "pruyne_kimball_drugstore__frame_1830s.glb": {
       "archetype": "frame_storefront",
       "baked_ao": false,
-      "bytes": 47864,
-      "inputs_sha256": "5dfa9304bf5db5059b05680504552c0ec01e7a7a5816aa5e2734b1e7f1ef93db",
+      "bytes": 45524,
+      "inputs_sha256": "90f582593f708557017ec3a04511e486d566c21e5856dc65f2abc7f5d9170c1f",
       "kind": "generated",
       "phase_id": "frame_1830s",
       "structure_id": "pruyne_kimball_drugstore"
@@ -1592,6 +1592,24 @@
       "kind": "generated",
       "phase_id": "inferred_1835",
       "structure_id": "recon_1835_blk_south_water_clark_a3_05"
+    },
+    "recon_1835_blk_south_water_clark_a4_07__inferred_1835.glb": {
+      "archetype": "outbuilding",
+      "baked_ao": false,
+      "bytes": 46068,
+      "inputs_sha256": "e01d8728a26f5b7f7d0b2ac75155b6b258015d2eeef00c67b1992712e19be6b3",
+      "kind": "generated",
+      "phase_id": "inferred_1835",
+      "structure_id": "recon_1835_blk_south_water_clark_a4_07"
+    },
+    "recon_1835_blk_south_water_clark_c4_06__inferred_1835.glb": {
+      "archetype": "frame_storefront",
+      "baked_ao": false,
+      "bytes": 69188,
+      "inputs_sha256": "28d707ffb78f581183b51a44dc57671bdf387d9e2ce3ddcd92dda0f8885d7fde",
+      "kind": "generated",
+      "phase_id": "inferred_1835",
+      "structure_id": "recon_1835_blk_south_water_clark_c4_06"
     },
     "recon_1835_blk_south_water_clark_d1_04__inferred_1835.glb": {
       "archetype": "log_dwelling",

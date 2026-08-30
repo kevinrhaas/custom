@@ -942,11 +942,10 @@
         "fronts": "south_water",
         "setback_m": 1.5,
         "lots": [
-          2,
           4
         ],
         "why": "T-0078, and the owner's standing ruling of 2026-08-18 with it: \"there should be more and denser buildings. this is important.\" The reference he supplied for this reach — \"South Water Street in 1834\", the south bank of the Main Branch — shows a CONTINUOUS WORKING ROW: one-storey log and frame buildings shoulder to shoulder facing the river, the street between them and the grassy bank, two-storey frame stores anchoring its east end. This block's anonymous roofs stood seven metres back from that frontage, a full lot apart, each nudged off the line by its own lateral offset and — because the placement rule takes its bearing from the way into the lot — facing the block's interior rather than the river. That is the shape of a distribution across a block, not of a street. They now stand ON the frontage: the line, its bearing and the end they pack back from are read from the committed block boundary in data/traces/vectors/thompson_lots.json, and this recipe authors no coordinate for any of them. The 1.5 m setback is not a measurement of this frontage — it is the closest line the plat module's own lot margin allows, adopted so the street wall is one wall. NO ROOF IS ADDED: the run carries exactly the roofs the schedule dealt this block's frontage lots, with every id, family and dimension the one it already had. What the view drives is the treatment — a row on its line, facing the water — never a coordinate, and the side lot lines the row crosses between its own units were conjectural in every record this generator has ever written.",
-        "runs": "One run of two — this block was dealt only two frontage roofs, because Harmon and Loomis's store holds lot 0 and Madore Beaubien's house lot 6 — packed west from the east end of lots 2-4. Pruyne and Kimball's drugstore stands proud of the line in front of lot 2 and the run keeps its distance from it. T-0022 put the block's log dwelling into this run in place of a frame cottage; the run's length, line, anchors and unit count are unchanged."
+        "runs": "One run of two — this block was dealt only two frontage roofs, because Harmon and Loomis's store holds lot 0 and Madore Beaubien's house lot 6 — packed west from the east end of lots 2-4. Pruyne and Kimball's drugstore stands proud of the line in front of lot 2 and the run keeps its distance from it. T-0022 put the block's log dwelling into this run in place of a frame cottage; the run's length, line, anchors and unit count are unchanged. AMENDED 2026-08-30, T-0431, and it is a correction of this declaration rather than of the ground: the run was DEALT lots 2 and 4 and it stands entirely on lot 4 — the two units measure 60.44 m to 72.89 m along the north face, where lot 4 runs 49.29 m to 74.39 m — because it packs west from the east end and ran out of roofs 10.7 m short of lot 2. Lot 2 was left declared as ground this run may stand on, and the two halves of the programme then read it two different ways: tools/reconcile_665.py counts it a FREE lot, because the owner's business-front clause says Pruyne & Kimball's drug store does not exhaust it, while tools/generate_block_infill.py's lot accounting (T-0105) counts it 'built on by another deal on this block' and refuses it to any later deal. A lot cannot be both, and the schedule is right: nothing of this run stands there. Narrowing the declaration to the lot the run occupies changes no coordinate — the east anchor reads `along_max`, which lot 4 sets either way, and both units re-derive unchanged — and it is what lets the second deal below take the frontage this one never reached."
       }
     },
     {
@@ -1836,6 +1835,71 @@
           "fronts": "washington",
           "setback_m": 5.0,
           "lateral_m": -4.0
+        }
+      ]
+    },
+    {
+      "block_id": "blk_south_water_clark",
+      "district": "south",
+      "programme_phase": "phase3_platted_block_south_water_clark_second_deal",
+      "claimed": "2026-08-30",
+      "seq_start": 6,
+      "bounded_by": {
+        "north": "south_water",
+        "south": "lake",
+        "west": "clark",
+        "east": "dearborn"
+      },
+      "drawn_from_schedule": {
+        "capacity_roofs": 31,
+        "standing_roofs": 10,
+        "free_lots": 2,
+        "headroom": 4,
+        "dealt_roofs": 2,
+        "dealt_principal": 1,
+        "dealt_ancillary": 1,
+        "principal": 1,
+        "ancillary": 1
+      },
+      "families": {
+        "C4": 1,
+        "A4": 1
+      },
+      "open_lots": [
+        {
+          "lot": 1,
+          "why": "The Lake-and-Clark corner, kept open on the reason the first deal gave it and now measured rather than named: tools/measure_end_rule.py blk_south_water_clark --list puts its frontage 231.87 m walked from the foot of the Dearborn Street drawbridge, the remotest of this block's eight lots from the only crossing of the main stem in July 1835, where lot 6 at the other corner reads 35.15 m. It is also the lot the schedule's own sizing reserves — principal room is ROW_UNITS_PER_LOT times the free lots LESS ONE, precisely so a block is never dealt out of its open lot — and the programme's placement rule is explicit that a block at capacity is a claim about 1835 the evidence does not support."
+        }
+      ],
+      "frontage": {
+        "face": "north",
+        "fronts": "south_water",
+        "setback_m": 1.5,
+        "lots": [
+          2
+        ],
+        "why": "T-0431, piece 3 of 4 of T-0420, and the ruling that made this ground workable at all. T-0143 and T-0188 each refused to tighten a party-line row against a street line that might move, and T-0317 inherited the refusal; T-0009 closed it on 2026-08-29 under the owner's ruling that the drawn South Water line does NOT move — the corridor was re-derived from committed control and data/streets/1835.json was not touched — so this face may carry a row again. THE FACE IS THIS BLOCK'S OWN RECORD RATHER THAN THE TOWN'S. tools/measure_street_frontage.py south_water lake clark dearborn reads the two streets town-wide at South Water 15 documented and 2 inferred households against Lake's 17 and 8, which does NOT make South Water the better face by the usual count — and the reading that decides this parcel is the BLOCK's, where South Water carries four documented records (Harmon & Loomis's store, Pruyne & Kimball's drug store, John Bates Jr.'s auction room and Madore Beaubien's house) against Lake's one, the first Tremont House. Three of those four are commercial. That is the face a store belongs on here, and T-0024's second clause puts a commercial roof ON the street line rather than back at a dwelling's setback. THE END RULE AGREES AND IS READ RATHER THAN ASSERTED: tools/measure_end_rule.py blk_south_water_clark --list puts lot 2 at 84.44 m walked from the foot of the Dearborn Street drawbridge — the only crossing of the main stem in July 1835 — against 231.87 m for lot 1, the block's other free lot. The face grades on the walked criterion at a 6.07 m unit step and is BELOW THE FLOOR at 4.81 m on T-A11's straight line, so the walk is what makes any grading of this face possible, exactly as it was on blk_randolph_market. NO COORDINATE IS AUTHORED: the line, its bearing and the lot's own stretch of it are read from the committed block boundary in data/traces/vectors/thompson_lots.json, and the 1.5 m setback is the plat module's own lot margin rather than a measurement of this frontage. WHAT IS INVENTED IS STILL EVERYTHING THAT MATTERS: that a building stood on this ground at all, that it was a store, and that it shared a wall with the drug store next to it.",
+        "runs": "One run of ONE, and the count is the parcel's finding rather than its convenience. The unit is the wide two-storey store, its east wall the west wall of Pruyne & Kimball's drug store, which it shares a party line with — the first time this project has joined an invented roof to a DOCUMENTED one on the same street wall. Measured on the committed face: lot 2 projects onto the north face between 24.64 m and 49.75 m, so with the plat module's 1.5 m margin off each conjectural side line the lot offers 22.11 m of buildable frontage; the drug store — seated back onto the committed line by T-0198 and T-0199, and no longer standing proud of it as the first deal's note describes — holds 39.11 m to 46.83 m of it. That leaves 12.97 m clear to the west and 1.42 m to the east. The store is 10.63 m wide and takes the west gap with 2.34 m to spare; the east sliver holds nothing. THE SCHEDULE DEALT THIS BLOCK THREE PRINCIPAL ROOFS AND THE GROUND HOLDS ONE, and that gap is the reading this parcel owes its reader: tools/reconcile_665.py sizes a block's principal room as ROW_UNITS_PER_LOT times its free lots less one, which counts LOTS, and on a business-front lot already carrying a documented store at the street it is the free FRONTAGE METRES that bind first. Filed as the successor ticket rather than worked around here."
+      },
+      "arrangement_note": "THE SECOND DEAL ON THIS BLOCK, and the third of the four South Water blocks T-0009 unblocked. The first deal (2026-08-15, the entry above) built five roofs under the rule that allowed one principal roof per platted lot; T-0079 retired that ceiling and T-0198, T-0199 and the owner's 2026-08-27 business-front clause then seated the street's documented stores back onto the committed plat, which is what left this block two free lots and four roofs of headroom. Rewriting the first entry would restate an August schedule under numbers that were not true in August, so this is its own entry against its own headroom, numbered from seq_start so the two cannot collide on a record id. WHAT IS BUILT: one wide two-storey store on the South Water frontage, party-walled to Pruyne & Kimball's drug store, and the woodshed that belongs to the lot it stands on. WHY LOT 2 AND NOT LOT 1: the block's two free lots are lot 2 on South Water — free only under the owner's clause, which says a documented store standing at the street does not exhaust a business-front lot — and lot 1, the Lake-and-Clark corner. Both the face reading and the end rule name lot 2, and the four-to-one documented split on this block's own faces is what a store answers to. LOT 1 STAYS OPEN and its reason is the one the first deal gave, now measured rather than named: at 231.87 m walked from the Dearborn drawbridge it is the remotest of the eight lots from the only crossing of the main stem in July 1835, where lot 6 at the far corner is 35.15 m from it. The programme's own placement rule says a block at capacity is a claim about 1835 that the evidence does not support, and the schedule's sizing keeps a lot open on purpose — spending lot 1 to take two more roofs would spend exactly the lot that rule reserves. THIS PARCEL CLAIMS TWO OF THE FOUR ROOFS THE SCHEDULE DEALT, AND SAYS SO IN ITS NUMBERS rather than in prose alone: drawn_from_schedule records the block's headroom of 4 and a claim of 2. The other two — a larger one-and-a-half-storey house and a merchant two-storey house — are NOT deferred, because this generator's deferral list is for families it refuses BY NAME and it refuses neither of these; they are simply roofs the ground would not hold. Lot 2's remaining frontage is 1.42 m, both houses are over eight metres wide, a principal roof may not stand on a lot the run was dealt, and a house set back at the recipe's own typology range (1.5 m to 7.5 m, the range tools/measure_end_rule.py reads its floor out of) cannot clear the drug store's back wall by the three metres the separation gate requires. AFTER THIS DEAL THE BLOCK IS AT CAPACITY with lot 1 open: lot 2 stops being a shared business front the moment a second roof stands on it, so the schedule's free-lot count falls to one and its principal room to zero. The two unbuilt roofs return to the south district's balance, where every marginal still sums to the programme's total. NOTHING ELSE ON THIS BLOCK MOVES: every record the first deal wrote keeps its id, family, footprint and every form value, and no household is re-homed. WHAT IS UNVERIFIED IS EVERYTHING THAT MATTERS — that any building stood on this ground, that it was a store, that it was two storeys, and that it shared a wall with the drug store are all inventions of this programme, and the side lot line the run stands clear of is conjectural in every record this generator has ever written.",
+      "slots": [
+        {
+          "family": "C4",
+          "inventory_class": "principal_functional",
+          "stands_on": "frontage",
+          "fronts": "south_water",
+          "anchor": {
+            "abut_west_of": "pruyne_kimball_drugstore"
+          }
+        },
+        {
+          "family": "A4",
+          "inventory_class": "ancillary",
+          "lot": 2,
+          "stands_on": "alley",
+          "fronts": "south_water",
+          "setback_m": 5.0,
+          "lateral_m": -3.5
         }
       ]
     }

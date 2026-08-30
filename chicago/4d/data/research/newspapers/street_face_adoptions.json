@@ -20,7 +20,7 @@
      "lot front",
      "corner side"
     ],
-    "would_seat": 31,
+    "would_seat": 32,
     "seats_more_than_today": 12,
     "newly_seated_by_street": {
      "canal": 1,
@@ -41,12 +41,12 @@
      "business_uncertain_w_h_taylor_dearborn_street_boot_and_shoe_store",
      "business_unnamed_new_store_la_salle_street"
     ],
-    "would_still_refuse": 28,
+    "would_still_refuse": 27,
     "would_still_refuse_by_reason": {
      "not present at the scene date": 0,
      "the face holds no roof whose lot fronts it": 2,
      "this face already holds this proprietor": 12,
-     "every roof on the face is spoken for": 14
+     "every roof on the face is spoken for": 13
     }
    },
    "corner side or the band is a face": {
@@ -55,7 +55,7 @@
      "corner side",
      "centreline band"
     ],
-    "would_seat": 32,
+    "would_seat": 33,
     "seats_more_than_today": 13,
     "newly_seated_by_street": {
      "canal": 1,
@@ -78,25 +78,25 @@
      "business_unnamed_new_store_la_salle_street",
      "business_wm_sabine_storage_forwarding_and_commission_merchant"
     ],
-    "would_still_refuse": 27,
+    "would_still_refuse": 26,
     "would_still_refuse_by_reason": {
      "not present at the scene date": 0,
      "the face holds no roof whose lot fronts it": 0,
      "this face already holds this proprietor": 12,
-     "every roof on the face is spoken for": 15
+     "every roof on the face is spoken for": 14
     }
    }
   }
  },
  "counts": {
   "street_only_in_register": 59,
-  "adopted": 19,
-  "refused": 40,
+  "adopted": 20,
+  "refused": 39,
   "refused_by_reason": {
    "not present at the scene date": 0,
    "the face holds no roof whose lot fronts it": 24,
    "this face already holds this proprietor": 9,
-   "every roof on the face is spoken for": 7
+   "every roof on the face is spoken for": 6
   },
   "unplaceable_present_at_scene_date": 76,
   "by_street": {
@@ -169,11 +169,11 @@
    "south_water": {
     "street_name": "South Water Street",
     "businesses_naming_it": 23,
-    "adopted": 9,
-    "roofs_fronting": 19,
-    "roofs_fronting_free": 9,
+    "adopted": 10,
+    "roofs_fronting": 21,
+    "roofs_fronting_free": 10,
     "roofs_fronting_home": 5,
-    "roofs_fronting_yard": 5,
+    "roofs_fronting_yard": 6,
     "roofs_side_only": 0,
     "roofs_in_centreline_band": 0
    }
@@ -226,7 +226,7 @@
    "first_issue": "1834-06-04",
    "last_issue": "1835-05-20",
    "mentions": 5,
-   "structure_id": "recon_1835_blk_south_water_franklin_d5_01",
+   "structure_id": "recon_1835_blk_south_water_franklin_d4_02",
    "face": "lot front",
    "roof_confidence": "reconstructed",
    "lot": null,
@@ -255,7 +255,7 @@
    "first_issue": "1834-03-25",
    "last_issue": "1834-12-10",
    "mentions": 5,
-   "structure_id": "recon_1835_blk_south_water_franklin_d4_02",
+   "structure_id": "recon_1835_blk_south_water_dearborn_c3_02",
    "face": "lot front",
    "roof_confidence": "reconstructed",
    "lot": null,
@@ -335,7 +335,7 @@
    "first_issue": "1834-05-28",
    "last_issue": "1834-07-02",
    "mentions": 4,
-   "structure_id": "recon_1835_blk_south_water_wells_d5_02",
+   "structure_id": "recon_1835_blk_south_water_lasalle_d5_01",
    "face": "lot front",
    "roof_confidence": "reconstructed",
    "lot": null,
@@ -369,7 +369,7 @@
    "first_issue": "1834-07-02",
    "last_issue": "1835-07-25",
    "mentions": 7,
-   "structure_id": "recon_1835_blk_south_water_dearborn_c3_01",
+   "structure_id": "recon_1835_blk_south_water_clark_d5_01",
    "face": "lot front",
    "roof_confidence": "reconstructed",
    "lot": null,
@@ -399,7 +399,35 @@
    "first_issue": "1834-06-04",
    "last_issue": "1835-08-12",
    "mentions": 5,
-   "structure_id": "recon_1835_blk_south_water_lasalle_d4_02",
+   "structure_id": "recon_1835_blk_south_water_franklin_d5_01",
+   "face": "lot front",
+   "roof_confidence": "reconstructed",
+   "lot": null,
+   "claims_lot": false,
+   "order_is_a_claim": false,
+   "note": "The advertisement names South Water Street and nothing narrower, so this business takes the street face and not a lot. The roof it is attached to is an anonymous reconstructed count-unit whose platted lot faces that street; it stays reconstructed, and WHICH roof on the face is an allocation by tools/adopt_street_faces.py rather than a reading of any source. Nothing here says this business stood nearer the corner than any other on the same face."
+  },
+  {
+   "business_id": "business_john_holbrook",
+   "business_name": "John Holbrook",
+   "trade": "clothing, boots and shoes, wholesale and retail, as agent for the manufacturers",
+   "proprietors": [
+    "John Holbrook",
+    "Holbrook, John"
+   ],
+   "street_id": "south_water",
+   "street_name": "South Water Street",
+   "street_text": "South Water Street",
+   "placement_class": "relative",
+   "cites": [
+    "chicago_american_1835_06_13#c012",
+    "chicago_democrat_1835_06_10#c010",
+    "chicago_democrat_1835_08_12#c012"
+   ],
+   "first_issue": "1835-06-10",
+   "last_issue": "1835-08-12",
+   "mentions": 3,
+   "structure_id": "recon_1835_blk_south_water_wells_d6_01",
    "face": "lot front",
    "roof_confidence": "reconstructed",
    "lot": null,
@@ -432,7 +460,7 @@
    "first_issue": "1835-05-27",
    "last_issue": "1835-08-05",
    "mentions": 5,
-   "structure_id": "recon_1835_blk_south_water_lasalle_d5_01",
+   "structure_id": "recon_1835_blk_south_water_lasalle_d4_02",
    "face": "lot front",
    "roof_confidence": "reconstructed",
    "lot": null,
@@ -462,7 +490,7 @@
    "first_issue": "1833-12-17",
    "last_issue": "1835-05-20",
    "mentions": 6,
-   "structure_id": "recon_1835_blk_south_water_dearborn_c3_02",
+   "structure_id": "recon_1835_blk_south_water_dearborn_c3_01",
    "face": "lot front",
    "roof_confidence": "reconstructed",
    "lot": null,
@@ -519,7 +547,7 @@
    "first_issue": "1833-11-26",
    "last_issue": "1835-07-08",
    "mentions": 8,
-   "structure_id": "recon_1835_blk_south_water_clark_d5_01",
+   "structure_id": "recon_1835_blk_south_water_clark_c4_06",
    "face": "lot front",
    "roof_confidence": "reconstructed",
    "lot": null,
@@ -548,7 +576,7 @@
    "first_issue": "1835-07-22",
    "last_issue": "1835-08-12",
    "mentions": 4,
-   "structure_id": "recon_1835_blk_south_water_wells_d6_01",
+   "structure_id": "recon_1835_blk_south_water_wells_d5_02",
    "face": "lot front",
    "roof_confidence": "reconstructed",
    "lot": null,
@@ -715,7 +743,7 @@
    "street_id": "south_water",
    "street_name": "South Water Street",
    "refusal": "every roof on the face is spoken for",
-   "detail": "19 roof(s) front this street: 5 are a named household's dwelling, 5 are yard buildings the parcels dealt behind a lot, and 9 are already adopted by a better-evidenced business."
+   "detail": "21 roof(s) front this street: 5 are a named household's dwelling, 6 are yard buildings the parcels dealt behind a lot, and 10 are already adopted by a better-evidenced business."
   },
   {
    "business_id": "business_a_garrett",
@@ -723,7 +751,7 @@
    "street_id": "south_water",
    "street_name": "South Water Street",
    "refusal": "every roof on the face is spoken for",
-   "detail": "19 roof(s) front this street: 5 are a named household's dwelling, 5 are yard buildings the parcels dealt behind a lot, and 9 are already adopted by a better-evidenced business."
+   "detail": "21 roof(s) front this street: 5 are a named household's dwelling, 6 are yard buildings the parcels dealt behind a lot, and 10 are already adopted by a better-evidenced business."
   },
   {
    "business_id": "business_e_l_thrall",
@@ -731,7 +759,7 @@
    "street_id": "south_water",
    "street_name": "South Water Street",
    "refusal": "every roof on the face is spoken for",
-   "detail": "19 roof(s) front this street: 5 are a named household's dwelling, 5 are yard buildings the parcels dealt behind a lot, and 9 are already adopted by a better-evidenced business."
+   "detail": "21 roof(s) front this street: 5 are a named household's dwelling, 6 are yard buildings the parcels dealt behind a lot, and 10 are already adopted by a better-evidenced business."
   },
   {
    "business_id": "business_j_curtiss_attorney_and_counsellor_at_law",
@@ -739,15 +767,7 @@
    "street_id": "south_water",
    "street_name": "South Water Street",
    "refusal": "every roof on the face is spoken for",
-   "detail": "19 roof(s) front this street: 5 are a named household's dwelling, 5 are yard buildings the parcels dealt behind a lot, and 9 are already adopted by a better-evidenced business."
-  },
-  {
-   "business_id": "business_john_holbrook",
-   "business_name": "John Holbrook",
-   "street_id": "south_water",
-   "street_name": "South Water Street",
-   "refusal": "every roof on the face is spoken for",
-   "detail": "19 roof(s) front this street: 5 are a named household's dwelling, 5 are yard buildings the parcels dealt behind a lot, and 9 are already adopted by a better-evidenced business."
+   "detail": "21 roof(s) front this street: 5 are a named household's dwelling, 6 are yard buildings the parcels dealt behind a lot, and 10 are already adopted by a better-evidenced business."
   },
   {
    "business_id": "business_the_new_store_at_the_corner_of_water_and_clark_streets",
@@ -755,7 +775,7 @@
    "street_id": "south_water",
    "street_name": "South Water Street",
    "refusal": "every roof on the face is spoken for",
-   "detail": "19 roof(s) front this street: 5 are a named household's dwelling, 5 are yard buildings the parcels dealt behind a lot, and 9 are already adopted by a better-evidenced business."
+   "detail": "21 roof(s) front this street: 5 are a named household's dwelling, 6 are yard buildings the parcels dealt behind a lot, and 10 are already adopted by a better-evidenced business."
   },
   {
    "business_id": "business_uncertain_datid_gad_auction_and_commission_merchant_south_water_street",
@@ -763,7 +783,7 @@
    "street_id": "south_water",
    "street_name": "South Water Street",
    "refusal": "every roof on the face is spoken for",
-   "detail": "19 roof(s) front this street: 5 are a named household's dwelling, 5 are yard buildings the parcels dealt behind a lot, and 9 are already adopted by a better-evidenced business."
+   "detail": "21 roof(s) front this street: 5 are a named household's dwelling, 6 are yard buildings the parcels dealt behind a lot, and 10 are already adopted by a better-evidenced business."
   },
   {
    "business_id": "business_a_garrett_auctioneer",
