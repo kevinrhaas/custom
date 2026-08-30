@@ -4,32 +4,40 @@
  "_doc": "DERIVED, NEVER AUTHORED. Rebuilt from register_1835.json, the committed structures and data/residents/ by tools/adopt_street_faces.py; tools/check.sh refuses a committed copy a rebuild would not produce. The policy is docs/STREET-FACE-ADOPTION.md and the liberty is L212. An adoption claims a STREET FACE and never a lot.",
  "policy": "docs/STREET-FACE-ADOPTION.md",
  "ruling": "The owner, 2026-08-29 (T-0354): a business the paper places on a platted street and nothing narrower adopts a reconstructed roof already standing on that street face.",
+ "ruling_extended": "The owner, 2026-08-30 (T-0416): a corner side IS a face — a building on a corner stands on both the streets it meets, and a business advertising on either is saying where its door is. The centreline band was offered in the same question and DECLINED.",
  "scene_date": "1835-07-01",
  "reading": {
-  "adopted_face": "lot front",
+  "adopted_faces": [
+   "lot front",
+   "corner side"
+  ],
   "refused_faces": [
-   "corner side",
    "centreline band"
   ],
-  "why": "An advertisement's street is where the door is. A corner side is the cross street's building shown end-on, and a centreline band is a distance rather than an orientation.",
-  "widened_reading_would_reach": 24,
-  "widened_reading_would_reach_note": "The count of businesses REFUSED FOR WANT OF A FACE, which is how many a widened reading would let back into the deal — not how many it would seat. `widened_readings` below deals each widening out and reports what it actually stands up (T-0416).",
-  "widened_readings": {
-   "corner side is a face": {
+  "why": "An advertisement's street is where the door is. A corner building has a door on each of the two streets it meets, so both are faces; a centreline band is a distance from a line rather than an orientation, and says nothing about which way a building looks.",
+  "considered_and_declined": {
+   "reading": "centreline band",
+   "ruled": "The owner, 2026-08-30 (T-0416): the band is NOT added.",
+   "why": "A band is a distance from a centreline and not an orientation. A roof within 25 m of a street's platted line may show it a wall, a gable end or nothing at all, and no reading of the plat can say which. The corner side adopted above is an orientation the plat does state.",
+   "it_would_have_seated": 0,
+   "it_would_have_seated_ids": [],
+   "it_would_have_cost": 0,
+   "it_would_have_cost_ids": []
+  },
+  "refused_for_want_of_a_face": 2,
+  "refused_for_want_of_a_face_note": "The count of businesses REFUSED FOR WANT OF A FACE, which is how many a wider reading would let back into the deal — not how many it would seat. `costed_readings` below deals every reading out in full and reports what each actually stands up (T-0416).",
+  "costed_readings": {
+   "lot front only": {
     "adopted_faces": [
-     "lot front",
-     "corner side"
+     "lot front"
     ],
-    "would_seat": 31,
-    "seats_more_than_today": 12,
-    "newly_seated_by_street": {
-     "canal": 1,
-     "dearborn": 8,
-     "lasalle": 3
-    },
-    "newly_seated": [
+    "in_force": false,
+    "would_seat": 19,
+    "against_the_reading_in_force": -10,
+    "seats_that_the_reading_in_force_does_not": [],
+    "seats_that_the_reading_in_force_does_not_by_street": {},
+    "loses_against_the_reading_in_force": [
      "business_cooley_and_halsman",
-     "business_elmira_fowler",
      "business_fullerton_botsford",
      "business_j_b_brown_dearborn_street_grocery",
      "business_j_l_wilson_co",
@@ -38,144 +46,166 @@
      "business_new_york_clothing_store",
      "business_pierce_french",
      "business_s_abell_attorney_and_counsellor",
-     "business_uncertain_w_h_taylor_dearborn_street_boot_and_shoe_store",
      "business_unnamed_new_store_la_salle_street"
     ],
-    "would_still_refuse": 28,
+    "would_still_refuse": 40,
     "would_still_refuse_by_reason": {
      "not present at the scene date": 0,
-     "the face holds no roof whose lot fronts it": 2,
-     "this face already holds this proprietor": 12,
-     "every roof on the face is spoken for": 14
+     "the face holds no roof standing on it": 24,
+     "this face already holds this proprietor": 9,
+     "every roof on the face is spoken for": 7
     }
    },
-   "corner side or the band is a face": {
+   "a corner side is a face": {
+    "adopted_faces": [
+     "lot front",
+     "corner side"
+    ],
+    "in_force": true,
+    "would_seat": 29,
+    "against_the_reading_in_force": 0,
+    "seats_that_the_reading_in_force_does_not": [],
+    "seats_that_the_reading_in_force_does_not_by_street": {},
+    "loses_against_the_reading_in_force": [],
+    "would_still_refuse": 30,
+    "would_still_refuse_by_reason": {
+     "not present at the scene date": 0,
+     "the face holds no roof standing on it": 2,
+     "this face already holds this proprietor": 10,
+     "every roof on the face is spoken for": 18
+    }
+   },
+   "a corner side or the band is a face": {
     "adopted_faces": [
      "lot front",
      "corner side",
      "centreline band"
     ],
-    "would_seat": 32,
-    "seats_more_than_today": 13,
-    "newly_seated_by_street": {
-     "canal": 1,
-     "dearborn": 8,
-     "lasalle": 3,
-     "north_water": 1
-    },
-    "newly_seated": [
-     "business_cooley_and_halsman",
-     "business_elmira_fowler",
-     "business_fullerton_botsford",
-     "business_j_b_brown_dearborn_street_grocery",
-     "business_j_l_wilson_co",
-     "business_james_grant",
-     "business_magie_wilkinson",
-     "business_new_york_clothing_store",
-     "business_pierce_french",
-     "business_s_abell_attorney_and_counsellor",
-     "business_uncertain_w_h_taylor_dearborn_street_boot_and_shoe_store",
-     "business_unnamed_new_store_la_salle_street",
-     "business_wm_sabine_storage_forwarding_and_commission_merchant"
-    ],
-    "would_still_refuse": 27,
+    "in_force": false,
+    "would_seat": 29,
+    "against_the_reading_in_force": 0,
+    "seats_that_the_reading_in_force_does_not": [],
+    "seats_that_the_reading_in_force_does_not_by_street": {},
+    "loses_against_the_reading_in_force": [],
+    "would_still_refuse": 30,
     "would_still_refuse_by_reason": {
      "not present at the scene date": 0,
-     "the face holds no roof whose lot fronts it": 0,
-     "this face already holds this proprietor": 12,
-     "every roof on the face is spoken for": 15
+     "the face holds no roof standing on it": 0,
+     "this face already holds this proprietor": 10,
+     "every roof on the face is spoken for": 20
     }
    }
   }
  },
  "counts": {
   "street_only_in_register": 59,
-  "adopted": 19,
-  "refused": 40,
+  "adopted": 29,
+  "refused": 30,
   "refused_by_reason": {
    "not present at the scene date": 0,
-   "the face holds no roof whose lot fronts it": 24,
-   "this face already holds this proprietor": 9,
-   "every roof on the face is spoken for": 7
+   "the face holds no roof standing on it": 2,
+   "this face already holds this proprietor": 10,
+   "every roof on the face is spoken for": 18
   },
   "unplaceable_present_at_scene_date": 76,
   "by_street": {
    "canal": {
     "street_name": "Canal Street",
     "businesses_naming_it": 1,
-    "adopted": 0,
-    "roofs_fronting": 0,
-    "roofs_fronting_free": 0,
-    "roofs_fronting_home": 0,
-    "roofs_fronting_yard": 0,
-    "roofs_side_only": 3,
-    "roofs_in_centreline_band": 0
+    "adopted": 1,
+    "roofs_lot_front": 0,
+    "roofs_corner_side": 3,
+    "roofs_on_the_adopted_face": 3,
+    "roofs_free": 2,
+    "roofs_home": 0,
+    "roofs_home_named": 0,
+    "roofs_home_inferred": 0,
+    "roofs_yard": 1,
+    "roofs_in_centreline_band_declined": 0
    },
    "dearborn": {
     "street_name": "Dearborn Street",
     "businesses_naming_it": 18,
-    "adopted": 0,
-    "roofs_fronting": 0,
-    "roofs_fronting_free": 0,
-    "roofs_fronting_home": 0,
-    "roofs_fronting_yard": 0,
-    "roofs_side_only": 18,
-    "roofs_in_centreline_band": 0
+    "adopted": 6,
+    "roofs_lot_front": 0,
+    "roofs_corner_side": 18,
+    "roofs_on_the_adopted_face": 18,
+    "roofs_free": 6,
+    "roofs_home": 7,
+    "roofs_home_named": 0,
+    "roofs_home_inferred": 7,
+    "roofs_yard": 5,
+    "roofs_in_centreline_band_declined": 0
    },
    "lake": {
     "street_name": "Lake Street",
     "businesses_naming_it": 11,
     "adopted": 9,
-    "roofs_fronting": 51,
-    "roofs_fronting_free": 19,
-    "roofs_fronting_home": 22,
-    "roofs_fronting_yard": 10,
-    "roofs_side_only": 0,
-    "roofs_in_centreline_band": 4
+    "roofs_lot_front": 51,
+    "roofs_corner_side": 0,
+    "roofs_on_the_adopted_face": 51,
+    "roofs_free": 17,
+    "roofs_home": 24,
+    "roofs_home_named": 0,
+    "roofs_home_inferred": 24,
+    "roofs_yard": 10,
+    "roofs_in_centreline_band_declined": 4
    },
    "lasalle": {
     "street_name": "La Salle Street",
     "businesses_naming_it": 3,
-    "adopted": 0,
-    "roofs_fronting": 0,
-    "roofs_fronting_free": 0,
-    "roofs_fronting_home": 0,
-    "roofs_fronting_yard": 0,
-    "roofs_side_only": 8,
-    "roofs_in_centreline_band": 0
+    "adopted": 3,
+    "roofs_lot_front": 0,
+    "roofs_corner_side": 8,
+    "roofs_on_the_adopted_face": 8,
+    "roofs_free": 3,
+    "roofs_home": 4,
+    "roofs_home_named": 0,
+    "roofs_home_inferred": 4,
+    "roofs_yard": 1,
+    "roofs_in_centreline_band_declined": 0
    },
    "north_water": {
     "street_name": "North Water Street",
     "businesses_naming_it": 2,
     "adopted": 0,
-    "roofs_fronting": 0,
-    "roofs_fronting_free": 0,
-    "roofs_fronting_home": 0,
-    "roofs_fronting_yard": 0,
-    "roofs_side_only": 0,
-    "roofs_in_centreline_band": 1
+    "roofs_lot_front": 0,
+    "roofs_corner_side": 0,
+    "roofs_on_the_adopted_face": 0,
+    "roofs_free": 0,
+    "roofs_home": 0,
+    "roofs_home_named": 0,
+    "roofs_home_inferred": 0,
+    "roofs_yard": 0,
+    "roofs_in_centreline_band_declined": 1
    },
    "randolph": {
     "street_name": "Randolph Street",
     "businesses_naming_it": 1,
     "adopted": 1,
-    "roofs_fronting": 64,
-    "roofs_fronting_free": 33,
-    "roofs_fronting_home": 14,
-    "roofs_fronting_yard": 17,
-    "roofs_side_only": 0,
-    "roofs_in_centreline_band": 0
+    "roofs_lot_front": 64,
+    "roofs_corner_side": 0,
+    "roofs_on_the_adopted_face": 64,
+    "roofs_free": 27,
+    "roofs_home": 21,
+    "roofs_home_named": 0,
+    "roofs_home_inferred": 21,
+    "roofs_yard": 16,
+    "roofs_in_centreline_band_declined": 0
    },
    "south_water": {
     "street_name": "South Water Street",
     "businesses_naming_it": 23,
     "adopted": 9,
-    "roofs_fronting": 19,
-    "roofs_fronting_free": 9,
-    "roofs_fronting_home": 5,
-    "roofs_fronting_yard": 5,
-    "roofs_side_only": 0,
-    "roofs_in_centreline_band": 0
+    "roofs_lot_front": 19,
+    "roofs_corner_side": 0,
+    "roofs_on_the_adopted_face": 19,
+    "roofs_free": 9,
+    "roofs_home": 5,
+    "roofs_home_named": 0,
+    "roofs_home_inferred": 5,
+    "roofs_yard": 5,
+    "roofs_in_centreline_band_declined": 0
    }
   }
  },
@@ -201,7 +231,7 @@
    "lot": null,
    "claims_lot": false,
    "order_is_a_claim": false,
-   "note": "The advertisement names Lake Street and nothing narrower, so this business takes the street face and not a lot. The roof it is attached to is an anonymous reconstructed count-unit whose platted lot faces that street; it stays reconstructed, and WHICH roof on the face is an allocation by tools/adopt_street_faces.py rather than a reading of any source. Nothing here says this business stood nearer the corner than any other on the same face."
+   "note": "The advertisement names Lake Street and nothing narrower, so this business takes the street face and not a lot. The roof it is attached to is an anonymous reconstructed count-unit whose platted lot faces Lake Street; it stays reconstructed, and WHICH roof on the face is an allocation by tools/adopt_street_faces.py rather than a reading of any source. Nothing here says this business stood nearer the corner than any other on the same face."
   },
   {
    "business_id": "business_briggs_humphrey",
@@ -232,7 +262,33 @@
    "lot": null,
    "claims_lot": false,
    "order_is_a_claim": false,
-   "note": "The advertisement names South Water Street and nothing narrower, so this business takes the street face and not a lot. The roof it is attached to is an anonymous reconstructed count-unit whose platted lot faces that street; it stays reconstructed, and WHICH roof on the face is an allocation by tools/adopt_street_faces.py rather than a reading of any source. Nothing here says this business stood nearer the corner than any other on the same face."
+   "note": "The advertisement names South Water Street and nothing narrower, so this business takes the street face and not a lot. The roof it is attached to is an anonymous reconstructed count-unit whose platted lot faces South Water Street; it stays reconstructed, and WHICH roof on the face is an allocation by tools/adopt_street_faces.py rather than a reading of any source. Nothing here says this business stood nearer the corner than any other on the same face."
+  },
+  {
+   "business_id": "business_cooley_and_halsman",
+   "business_name": "Cooley and Halsman",
+   "trade": "tailors",
+   "proprietors": [
+    "Cooley and Halsman"
+   ],
+   "street_id": "dearborn",
+   "street_name": "Dearborn Street",
+   "street_text": "Dearborn Street",
+   "placement_class": "relative",
+   "cites": [
+    "chicago_democrat_1835_07_22#c006",
+    "chicago_democrat_1835_07_29#c009"
+   ],
+   "first_issue": "1835-07-22",
+   "last_issue": "1835-07-29",
+   "mentions": 2,
+   "structure_id": "recon_1835_blk_randolph_dearborn_h1_14",
+   "face": "corner side",
+   "roof_confidence": "reconstructed",
+   "lot": null,
+   "claims_lot": false,
+   "order_is_a_claim": false,
+   "note": "The advertisement names Dearborn Street and nothing narrower, so this business takes the street face and not a lot. The roof it is attached to is an anonymous reconstructed count-unit standing at the end of its platted tier, where the tier meets Dearborn Street: a corner building, which the owner ruled on 2026-08-30 stands on both its faces; it stays reconstructed, and WHICH roof on the face is an allocation by tools/adopt_street_faces.py rather than a reading of any source. Nothing here says this business stood nearer the corner than any other on the same face."
   },
   {
    "business_id": "business_d_graves",
@@ -261,7 +317,7 @@
    "lot": null,
    "claims_lot": false,
    "order_is_a_claim": false,
-   "note": "The advertisement names South Water Street and nothing narrower, so this business takes the street face and not a lot. The roof it is attached to is an anonymous reconstructed count-unit whose platted lot faces that street; it stays reconstructed, and WHICH roof on the face is an allocation by tools/adopt_street_faces.py rather than a reading of any source. Nothing here says this business stood nearer the corner than any other on the same face."
+   "note": "The advertisement names South Water Street and nothing narrower, so this business takes the street face and not a lot. The roof it is attached to is an anonymous reconstructed count-unit whose platted lot faces South Water Street; it stays reconstructed, and WHICH roof on the face is an allocation by tools/adopt_street_faces.py rather than a reading of any source. Nothing here says this business stood nearer the corner than any other on the same face."
   },
   {
    "business_id": "business_dr_w_g_austin",
@@ -288,7 +344,33 @@
    "lot": null,
    "claims_lot": false,
    "order_is_a_claim": false,
-   "note": "The advertisement names Lake Street and nothing narrower, so this business takes the street face and not a lot. The roof it is attached to is an anonymous reconstructed count-unit whose platted lot faces that street; it stays reconstructed, and WHICH roof on the face is an allocation by tools/adopt_street_faces.py rather than a reading of any source. Nothing here says this business stood nearer the corner than any other on the same face."
+   "note": "The advertisement names Lake Street and nothing narrower, so this business takes the street face and not a lot. The roof it is attached to is an anonymous reconstructed count-unit whose platted lot faces Lake Street; it stays reconstructed, and WHICH roof on the face is an allocation by tools/adopt_street_faces.py rather than a reading of any source. Nothing here says this business stood nearer the corner than any other on the same face."
+  },
+  {
+   "business_id": "business_fullerton_botsford",
+   "business_name": "Fullerton & Botsford",
+   "trade": "pork and provisions",
+   "proprietors": [
+    "Fullerton & Botsford"
+   ],
+   "street_id": "dearborn",
+   "street_name": "Dearborn Street",
+   "street_text": "Dearborn Street",
+   "placement_class": "corner",
+   "cites": [
+    "chicago_democrat_1834_06_04#c024",
+    "chicago_democrat_1834_07_09#c027"
+   ],
+   "first_issue": "1834-06-04",
+   "last_issue": "1834-07-09",
+   "mentions": 2,
+   "structure_id": "recon_1835_blk_randolph_dearborn_d1_16",
+   "face": "corner side",
+   "roof_confidence": "reconstructed",
+   "lot": null,
+   "claims_lot": false,
+   "order_is_a_claim": false,
+   "note": "The advertisement names Dearborn Street and nothing narrower, so this business takes the street face and not a lot. The roof it is attached to is an anonymous reconstructed count-unit standing at the end of its platted tier, where the tier meets Dearborn Street: a corner building, which the owner ruled on 2026-08-30 stands on both its faces; it stays reconstructed, and WHICH roof on the face is an allocation by tools/adopt_street_faces.py rather than a reading of any source. Nothing here says this business stood nearer the corner than any other on the same face."
   },
   {
    "business_id": "business_g_blanshard",
@@ -313,7 +395,7 @@
    "lot": null,
    "claims_lot": false,
    "order_is_a_claim": false,
-   "note": "The advertisement names Lake Street and nothing narrower, so this business takes the street face and not a lot. The roof it is attached to is an anonymous reconstructed count-unit whose platted lot faces that street; it stays reconstructed, and WHICH roof on the face is an allocation by tools/adopt_street_faces.py rather than a reading of any source. Nothing here says this business stood nearer the corner than any other on the same face."
+   "note": "The advertisement names Lake Street and nothing narrower, so this business takes the street face and not a lot. The roof it is attached to is an anonymous reconstructed count-unit whose platted lot faces Lake Street; it stays reconstructed, and WHICH roof on the face is an allocation by tools/adopt_street_faces.py rather than a reading of any source. Nothing here says this business stood nearer the corner than any other on the same face."
   },
   {
    "business_id": "business_h_doty_co",
@@ -341,7 +423,7 @@
    "lot": null,
    "claims_lot": false,
    "order_is_a_claim": false,
-   "note": "The advertisement names South Water Street and nothing narrower, so this business takes the street face and not a lot. The roof it is attached to is an anonymous reconstructed count-unit whose platted lot faces that street; it stays reconstructed, and WHICH roof on the face is an allocation by tools/adopt_street_faces.py rather than a reading of any source. Nothing here says this business stood nearer the corner than any other on the same face."
+   "note": "The advertisement names South Water Street and nothing narrower, so this business takes the street face and not a lot. The roof it is attached to is an anonymous reconstructed count-unit whose platted lot faces South Water Street; it stays reconstructed, and WHICH roof on the face is an allocation by tools/adopt_street_faces.py rather than a reading of any source. Nothing here says this business stood nearer the corner than any other on the same face."
   },
   {
    "business_id": "business_harmon_loomis_co",
@@ -375,7 +457,33 @@
    "lot": null,
    "claims_lot": false,
    "order_is_a_claim": false,
-   "note": "The advertisement names South Water Street and nothing narrower, so this business takes the street face and not a lot. The roof it is attached to is an anonymous reconstructed count-unit whose platted lot faces that street; it stays reconstructed, and WHICH roof on the face is an allocation by tools/adopt_street_faces.py rather than a reading of any source. Nothing here says this business stood nearer the corner than any other on the same face."
+   "note": "The advertisement names South Water Street and nothing narrower, so this business takes the street face and not a lot. The roof it is attached to is an anonymous reconstructed count-unit whose platted lot faces South Water Street; it stays reconstructed, and WHICH roof on the face is an allocation by tools/adopt_street_faces.py rather than a reading of any source. Nothing here says this business stood nearer the corner than any other on the same face."
+  },
+  {
+   "business_id": "business_j_b_brown_dearborn_street_grocery",
+   "business_name": "J. B. Brown, Dearborn Street grocery",
+   "trade": "groceries",
+   "proprietors": [
+    "J. B. Brown",
+    "J. B. Tuttle"
+   ],
+   "street_id": "dearborn",
+   "street_name": "Dearborn Street",
+   "street_text": "Dearborn Street",
+   "placement_class": "relative",
+   "cites": [
+    "chicago_democrat_1834_07_02#c021"
+   ],
+   "first_issue": "1834-07-02",
+   "last_issue": "1834-07-02",
+   "mentions": 1,
+   "structure_id": "recon_1835_south_c3_040",
+   "face": "corner side",
+   "roof_confidence": "reconstructed",
+   "lot": null,
+   "claims_lot": false,
+   "order_is_a_claim": false,
+   "note": "The advertisement names Dearborn Street and nothing narrower, so this business takes the street face and not a lot. The roof it is attached to is an anonymous reconstructed count-unit standing at the end of its platted tier, where the tier meets Dearborn Street: a corner building, which the owner ruled on 2026-08-30 stands on both its faces; it stays reconstructed, and WHICH roof on the face is an allocation by tools/adopt_street_faces.py rather than a reading of any source. Nothing here says this business stood nearer the corner than any other on the same face."
   },
   {
    "business_id": "business_j_h_mulford",
@@ -405,7 +513,70 @@
    "lot": null,
    "claims_lot": false,
    "order_is_a_claim": false,
-   "note": "The advertisement names South Water Street and nothing narrower, so this business takes the street face and not a lot. The roof it is attached to is an anonymous reconstructed count-unit whose platted lot faces that street; it stays reconstructed, and WHICH roof on the face is an allocation by tools/adopt_street_faces.py rather than a reading of any source. Nothing here says this business stood nearer the corner than any other on the same face."
+   "note": "The advertisement names South Water Street and nothing narrower, so this business takes the street face and not a lot. The roof it is attached to is an anonymous reconstructed count-unit whose platted lot faces South Water Street; it stays reconstructed, and WHICH roof on the face is an allocation by tools/adopt_street_faces.py rather than a reading of any source. Nothing here says this business stood nearer the corner than any other on the same face."
+  },
+  {
+   "business_id": "business_j_l_wilson_co",
+   "business_name": "J. L. Wilson & Co.",
+   "trade": "dry goods, groceries, hardware and crockery",
+   "proprietors": [
+    "J. L. Wilson & Co.",
+    "J. L. Wilson & Co",
+    "J. L. Wilson",
+    "Jno. L. Wilson & Co.",
+    "Jno. S. Wilson & Co",
+    "Jno. S. Wilson & Co."
+   ],
+   "street_id": "dearborn",
+   "street_name": "Dearborn Street",
+   "street_text": "Dearborn Street",
+   "placement_class": "relative",
+   "cites": [
+    "chicago_american_1835_06_08#c012",
+    "chicago_american_1835_06_20#c002",
+    "chicago_american_1835_07_18#c005",
+    "chicago_democrat_1834_09_17#c003",
+    "chicago_democrat_1834_10_15#c001",
+    "chicago_democrat_1834_11_05#c008",
+    "chicago_democrat_1834_11_12#c013",
+    "chicago_democrat_1834_12_03#c006",
+    "chicago_democrat_1835_05_20#c018"
+   ],
+   "first_issue": "1834-09-17",
+   "last_issue": "1835-07-18",
+   "mentions": 9,
+   "structure_id": "recon_1835_blk_randolph_clark_c2_01",
+   "face": "corner side",
+   "roof_confidence": "reconstructed",
+   "lot": null,
+   "claims_lot": false,
+   "order_is_a_claim": false,
+   "note": "The advertisement names Dearborn Street and nothing narrower, so this business takes the street face and not a lot. The roof it is attached to is an anonymous reconstructed count-unit standing at the end of its platted tier, where the tier meets Dearborn Street: a corner building, which the owner ruled on 2026-08-30 stands on both its faces; it stays reconstructed, and WHICH roof on the face is an allocation by tools/adopt_street_faces.py rather than a reading of any source. Nothing here says this business stood nearer the corner than any other on the same face."
+  },
+  {
+   "business_id": "business_james_grant",
+   "business_name": "James Grant",
+   "trade": "attorney and counsellor at law",
+   "proprietors": [
+    "James Grant"
+   ],
+   "street_id": "lasalle",
+   "street_name": "La Salle Street",
+   "street_text": "La Salle Street",
+   "placement_class": "relative",
+   "cites": [
+    "chicago_democrat_1835_06_10#c008"
+   ],
+   "first_issue": "1835-06-10",
+   "last_issue": "1835-06-10",
+   "mentions": 1,
+   "structure_id": "recon_1835_blk_randolph_wells_d4_04",
+   "face": "corner side",
+   "roof_confidence": "reconstructed",
+   "lot": null,
+   "claims_lot": false,
+   "order_is_a_claim": false,
+   "note": "The advertisement names La Salle Street and nothing narrower, so this business takes the street face and not a lot. The roof it is attached to is an anonymous reconstructed count-unit standing at the end of its platted tier, where the tier meets La Salle Street: a corner building, which the owner ruled on 2026-08-30 stands on both its faces; it stays reconstructed, and WHICH roof on the face is an allocation by tools/adopt_street_faces.py rather than a reading of any source. Nothing here says this business stood nearer the corner than any other on the same face."
   },
   {
    "business_id": "business_jones_king_co",
@@ -438,7 +609,7 @@
    "lot": null,
    "claims_lot": false,
    "order_is_a_claim": false,
-   "note": "The advertisement names South Water Street and nothing narrower, so this business takes the street face and not a lot. The roof it is attached to is an anonymous reconstructed count-unit whose platted lot faces that street; it stays reconstructed, and WHICH roof on the face is an allocation by tools/adopt_street_faces.py rather than a reading of any source. Nothing here says this business stood nearer the corner than any other on the same face."
+   "note": "The advertisement names South Water Street and nothing narrower, so this business takes the street face and not a lot. The roof it is attached to is an anonymous reconstructed count-unit whose platted lot faces South Water Street; it stays reconstructed, and WHICH roof on the face is an allocation by tools/adopt_street_faces.py rather than a reading of any source. Nothing here says this business stood nearer the corner than any other on the same face."
   },
   {
    "business_id": "business_l_w_montgomery_boot_and_shoe_maker",
@@ -468,7 +639,36 @@
    "lot": null,
    "claims_lot": false,
    "order_is_a_claim": false,
-   "note": "The advertisement names South Water Street and nothing narrower, so this business takes the street face and not a lot. The roof it is attached to is an anonymous reconstructed count-unit whose platted lot faces that street; it stays reconstructed, and WHICH roof on the face is an allocation by tools/adopt_street_faces.py rather than a reading of any source. Nothing here says this business stood nearer the corner than any other on the same face."
+   "note": "The advertisement names South Water Street and nothing narrower, so this business takes the street face and not a lot. The roof it is attached to is an anonymous reconstructed count-unit whose platted lot faces South Water Street; it stays reconstructed, and WHICH roof on the face is an allocation by tools/adopt_street_faces.py rather than a reading of any source. Nothing here says this business stood nearer the corner than any other on the same face."
+  },
+  {
+   "business_id": "business_magie_wilkinson",
+   "business_name": "Magie & Wilkinson",
+   "trade": "dry goods, groceries, hardware, crockery, boots, shoes and hats, wholesale and retail",
+   "proprietors": [
+    "Magie",
+    "Wilkinson",
+    "Magie & Wilkinson"
+   ],
+   "street_id": "lasalle",
+   "street_name": "La Salle Street",
+   "street_text": "La Salle Street",
+   "placement_class": "relative",
+   "cites": [
+    "chicago_democrat_1835_06_10#c009",
+    "chicago_democrat_1835_06_17#c007",
+    "chicago_democrat_1835_07_01#c014"
+   ],
+   "first_issue": "1835-06-10",
+   "last_issue": "1835-07-01",
+   "mentions": 3,
+   "structure_id": "recon_1835_blk_randolph_wells_d2_07",
+   "face": "corner side",
+   "roof_confidence": "reconstructed",
+   "lot": null,
+   "claims_lot": false,
+   "order_is_a_claim": false,
+   "note": "The advertisement names La Salle Street and nothing narrower, so this business takes the street face and not a lot. The roof it is attached to is an anonymous reconstructed count-unit standing at the end of its platted tier, where the tier meets La Salle Street: a corner building, which the owner ruled on 2026-08-30 stands on both its faces; it stays reconstructed, and WHICH roof on the face is an allocation by tools/adopt_street_faces.py rather than a reading of any source. Nothing here says this business stood nearer the corner than any other on the same face."
   },
   {
    "business_id": "business_miss_bayne_s_boarding_and_day_school",
@@ -493,7 +693,34 @@
    "lot": null,
    "claims_lot": false,
    "order_is_a_claim": false,
-   "note": "The advertisement names Randolph Street and nothing narrower, so this business takes the street face and not a lot. The roof it is attached to is an anonymous reconstructed count-unit whose platted lot faces that street; it stays reconstructed, and WHICH roof on the face is an allocation by tools/adopt_street_faces.py rather than a reading of any source. Nothing here says this business stood nearer the corner than any other on the same face."
+   "note": "The advertisement names Randolph Street and nothing narrower, so this business takes the street face and not a lot. The roof it is attached to is an anonymous reconstructed count-unit whose platted lot faces Randolph Street; it stays reconstructed, and WHICH roof on the face is an allocation by tools/adopt_street_faces.py rather than a reading of any source. Nothing here says this business stood nearer the corner than any other on the same face."
+  },
+  {
+   "business_id": "business_new_york_clothing_store",
+   "business_name": "New York Clothing Store",
+   "trade": "clothing, wholesale and retail",
+   "proprietors": [
+    "Tuthill King"
+   ],
+   "street_id": "dearborn",
+   "street_name": "Dearborn Street",
+   "street_text": "Dearborn Street",
+   "placement_class": "relative",
+   "cites": [
+    "chicago_american_1835_06_08#c014",
+    "chicago_american_1835_06_20#c007",
+    "chicago_american_1835_07_04#c003"
+   ],
+   "first_issue": "1835-06-08",
+   "last_issue": "1835-07-04",
+   "mentions": 3,
+   "structure_id": "recon_1835_blk_randolph_clark_d6_04",
+   "face": "corner side",
+   "roof_confidence": "reconstructed",
+   "lot": null,
+   "claims_lot": false,
+   "order_is_a_claim": false,
+   "note": "The advertisement names Dearborn Street and nothing narrower, so this business takes the street face and not a lot. The roof it is attached to is an anonymous reconstructed count-unit standing at the end of its platted tier, where the tier meets Dearborn Street: a corner building, which the owner ruled on 2026-08-30 stands on both its faces; it stays reconstructed, and WHICH roof on the face is an allocation by tools/adopt_street_faces.py rather than a reading of any source. Nothing here says this business stood nearer the corner than any other on the same face."
   },
   {
    "business_id": "business_peter_cohen",
@@ -525,7 +752,65 @@
    "lot": null,
    "claims_lot": false,
    "order_is_a_claim": false,
-   "note": "The advertisement names South Water Street and nothing narrower, so this business takes the street face and not a lot. The roof it is attached to is an anonymous reconstructed count-unit whose platted lot faces that street; it stays reconstructed, and WHICH roof on the face is an allocation by tools/adopt_street_faces.py rather than a reading of any source. Nothing here says this business stood nearer the corner than any other on the same face."
+   "note": "The advertisement names South Water Street and nothing narrower, so this business takes the street face and not a lot. The roof it is attached to is an anonymous reconstructed count-unit whose platted lot faces South Water Street; it stays reconstructed, and WHICH roof on the face is an allocation by tools/adopt_street_faces.py rather than a reading of any source. Nothing here says this business stood nearer the corner than any other on the same face."
+  },
+  {
+   "business_id": "business_pierce_french",
+   "business_name": "Pierce & French",
+   "trade": "blacksmithing and edge tool making",
+   "proprietors": [
+    "Asahel Pierce",
+    "French",
+    "Pierce & French"
+   ],
+   "street_id": "canal",
+   "street_name": "Canal Street",
+   "street_text": "Canal Street",
+   "placement_class": "corner",
+   "cites": [
+    "chicago_democrat_1834_06_25#c005",
+    "chicago_democrat_1834_07_02#c051",
+    "chicago_democrat_1834_09_10#c017",
+    "chicago_democrat_1834_11_19#c007",
+    "chicago_democrat_1834_12_17#c008"
+   ],
+   "first_issue": "1834-06-25",
+   "last_issue": "1834-12-17",
+   "mentions": 5,
+   "structure_id": "recon_1835_blk_randolph_clinton_d3_04",
+   "face": "corner side",
+   "roof_confidence": "reconstructed",
+   "lot": null,
+   "claims_lot": false,
+   "order_is_a_claim": false,
+   "note": "The advertisement names Canal Street and nothing narrower, so this business takes the street face and not a lot. The roof it is attached to is an anonymous reconstructed count-unit standing at the end of its platted tier, where the tier meets Canal Street: a corner building, which the owner ruled on 2026-08-30 stands on both its faces; it stays reconstructed, and WHICH roof on the face is an allocation by tools/adopt_street_faces.py rather than a reading of any source. Nothing here says this business stood nearer the corner than any other on the same face."
+  },
+  {
+   "business_id": "business_s_abell_attorney_and_counsellor",
+   "business_name": "S. Abell, attorney and counsellor",
+   "trade": "attorney, counsellor and land conveyancer",
+   "proprietors": [
+    "S. Abell",
+    "Abell"
+   ],
+   "street_id": "dearborn",
+   "street_name": "Dearborn Street",
+   "street_text": "Dearborn Street",
+   "placement_class": "relative",
+   "cites": [
+    "chicago_american_1835_08_01#c003",
+    "chicago_democrat_1835_06_24#c006"
+   ],
+   "first_issue": "1835-06-24",
+   "last_issue": "1835-08-01",
+   "mentions": 2,
+   "structure_id": "recon_1835_blk_randolph_dearborn_d3_15",
+   "face": "corner side",
+   "roof_confidence": "reconstructed",
+   "lot": null,
+   "claims_lot": false,
+   "order_is_a_claim": false,
+   "note": "The advertisement names Dearborn Street and nothing narrower, so this business takes the street face and not a lot. The roof it is attached to is an anonymous reconstructed count-unit standing at the end of its platted tier, where the tier meets Dearborn Street: a corner building, which the owner ruled on 2026-08-30 stands on both its faces; it stays reconstructed, and WHICH roof on the face is an allocation by tools/adopt_street_faces.py rather than a reading of any source. Nothing here says this business stood nearer the corner than any other on the same face."
   },
   {
    "business_id": "business_samuel_lewis",
@@ -554,7 +839,7 @@
    "lot": null,
    "claims_lot": false,
    "order_is_a_claim": false,
-   "note": "The advertisement names South Water Street and nothing narrower, so this business takes the street face and not a lot. The roof it is attached to is an anonymous reconstructed count-unit whose platted lot faces that street; it stays reconstructed, and WHICH roof on the face is an allocation by tools/adopt_street_faces.py rather than a reading of any source. Nothing here says this business stood nearer the corner than any other on the same face."
+   "note": "The advertisement names South Water Street and nothing narrower, so this business takes the street face and not a lot. The roof it is attached to is an anonymous reconstructed count-unit whose platted lot faces South Water Street; it stays reconstructed, and WHICH roof on the face is an allocation by tools/adopt_street_faces.py rather than a reading of any source. Nothing here says this business stood nearer the corner than any other on the same face."
   },
   {
    "business_id": "business_sarah_d_howe",
@@ -581,7 +866,7 @@
    "lot": null,
    "claims_lot": false,
    "order_is_a_claim": false,
-   "note": "The advertisement names Lake Street and nothing narrower, so this business takes the street face and not a lot. The roof it is attached to is an anonymous reconstructed count-unit whose platted lot faces that street; it stays reconstructed, and WHICH roof on the face is an allocation by tools/adopt_street_faces.py rather than a reading of any source. Nothing here says this business stood nearer the corner than any other on the same face."
+   "note": "The advertisement names Lake Street and nothing narrower, so this business takes the street face and not a lot. The roof it is attached to is an anonymous reconstructed count-unit whose platted lot faces Lake Street; it stays reconstructed, and WHICH roof on the face is an allocation by tools/adopt_street_faces.py rather than a reading of any source. Nothing here says this business stood nearer the corner than any other on the same face."
   },
   {
    "business_id": "business_uncertain_the_dentist_lodging_near_lake_street_july_1834",
@@ -604,7 +889,30 @@
    "lot": null,
    "claims_lot": false,
    "order_is_a_claim": false,
-   "note": "The advertisement names Lake Street and nothing narrower, so this business takes the street face and not a lot. The roof it is attached to is an anonymous reconstructed count-unit whose platted lot faces that street; it stays reconstructed, and WHICH roof on the face is an allocation by tools/adopt_street_faces.py rather than a reading of any source. Nothing here says this business stood nearer the corner than any other on the same face."
+   "note": "The advertisement names Lake Street and nothing narrower, so this business takes the street face and not a lot. The roof it is attached to is an anonymous reconstructed count-unit whose platted lot faces Lake Street; it stays reconstructed, and WHICH roof on the face is an allocation by tools/adopt_street_faces.py rather than a reading of any source. Nothing here says this business stood nearer the corner than any other on the same face."
+  },
+  {
+   "business_id": "business_unnamed_new_store_la_salle_street",
+   "business_name": "[unnamed] New Store, La Salle street",
+   "trade": "dry goods, groceries, hardware, crockery, boots, shoes and hats, wholesale and retail",
+   "proprietors": [],
+   "street_id": "lasalle",
+   "street_name": "La Salle Street",
+   "street_text": "La Salle Street",
+   "placement_class": "relative",
+   "cites": [
+    "chicago_democrat_1835_08_12#c011"
+   ],
+   "first_issue": "1835-08-12",
+   "last_issue": "1835-08-12",
+   "mentions": 1,
+   "structure_id": "recon_1835_south_f1_038",
+   "face": "corner side",
+   "roof_confidence": "reconstructed",
+   "lot": null,
+   "claims_lot": false,
+   "order_is_a_claim": false,
+   "note": "The advertisement names La Salle Street and nothing narrower, so this business takes the street face and not a lot. The roof it is attached to is an anonymous reconstructed count-unit standing at the end of its platted tier, where the tier meets La Salle Street: a corner building, which the owner ruled on 2026-08-30 stands on both its faces; it stays reconstructed, and WHICH roof on the face is an allocation by tools/adopt_street_faces.py rather than a reading of any source. Nothing here says this business stood nearer the corner than any other on the same face."
   },
   {
    "business_id": "business_w_g_blanchard",
@@ -629,7 +937,7 @@
    "lot": null,
    "claims_lot": false,
    "order_is_a_claim": false,
-   "note": "The advertisement names Lake Street and nothing narrower, so this business takes the street face and not a lot. The roof it is attached to is an anonymous reconstructed count-unit whose platted lot faces that street; it stays reconstructed, and WHICH roof on the face is an allocation by tools/adopt_street_faces.py rather than a reading of any source. Nothing here says this business stood nearer the corner than any other on the same face."
+   "note": "The advertisement names Lake Street and nothing narrower, so this business takes the street face and not a lot. The roof it is attached to is an anonymous reconstructed count-unit whose platted lot faces Lake Street; it stays reconstructed, and WHICH roof on the face is an allocation by tools/adopt_street_faces.py rather than a reading of any source. Nothing here says this business stood nearer the corner than any other on the same face."
   },
   {
    "business_id": "business_william_clay",
@@ -654,7 +962,7 @@
    "lot": null,
    "claims_lot": false,
    "order_is_a_claim": false,
-   "note": "The advertisement names Lake Street and nothing narrower, so this business takes the street face and not a lot. The roof it is attached to is an anonymous reconstructed count-unit whose platted lot faces that street; it stays reconstructed, and WHICH roof on the face is an allocation by tools/adopt_street_faces.py rather than a reading of any source. Nothing here says this business stood nearer the corner than any other on the same face."
+   "note": "The advertisement names Lake Street and nothing narrower, so this business takes the street face and not a lot. The roof it is attached to is an anonymous reconstructed count-unit whose platted lot faces Lake Street; it stays reconstructed, and WHICH roof on the face is an allocation by tools/adopt_street_faces.py rather than a reading of any source. Nothing here says this business stood nearer the corner than any other on the same face."
   },
   {
    "business_id": "business_wm_g_branchaud",
@@ -679,7 +987,7 @@
    "lot": null,
    "claims_lot": false,
    "order_is_a_claim": false,
-   "note": "The advertisement names Lake Street and nothing narrower, so this business takes the street face and not a lot. The roof it is attached to is an anonymous reconstructed count-unit whose platted lot faces that street; it stays reconstructed, and WHICH roof on the face is an allocation by tools/adopt_street_faces.py rather than a reading of any source. Nothing here says this business stood nearer the corner than any other on the same face."
+   "note": "The advertisement names Lake Street and nothing narrower, so this business takes the street face and not a lot. The roof it is attached to is an anonymous reconstructed count-unit whose platted lot faces Lake Street; it stays reconstructed, and WHICH roof on the face is an allocation by tools/adopt_street_faces.py rather than a reading of any source. Nothing here says this business stood nearer the corner than any other on the same face."
   },
   {
    "business_id": "business_wm_h_kennicott_surgeon_dentist",
@@ -705,7 +1013,7 @@
    "lot": null,
    "claims_lot": false,
    "order_is_a_claim": false,
-   "note": "The advertisement names Lake Street and nothing narrower, so this business takes the street face and not a lot. The roof it is attached to is an anonymous reconstructed count-unit whose platted lot faces that street; it stays reconstructed, and WHICH roof on the face is an allocation by tools/adopt_street_faces.py rather than a reading of any source. Nothing here says this business stood nearer the corner than any other on the same face."
+   "note": "The advertisement names Lake Street and nothing narrower, so this business takes the street face and not a lot. The roof it is attached to is an anonymous reconstructed count-unit whose platted lot faces Lake Street; it stays reconstructed, and WHICH roof on the face is an allocation by tools/adopt_street_faces.py rather than a reading of any source. Nothing here says this business stood nearer the corner than any other on the same face."
   }
  ],
  "refusals": [
@@ -715,7 +1023,7 @@
    "street_id": "south_water",
    "street_name": "South Water Street",
    "refusal": "every roof on the face is spoken for",
-   "detail": "19 roof(s) front this street: 5 are a named household's dwelling, 5 are yard buildings the parcels dealt behind a lot, and 9 are already adopted by a better-evidenced business."
+   "detail": "19 roof(s) stand on this street: 5 are a household's dwelling under one layer or the other, 5 are yard buildings the parcels dealt behind a lot, and 9 are already adopted by a better-evidenced business."
   },
   {
    "business_id": "business_a_garrett",
@@ -723,7 +1031,31 @@
    "street_id": "south_water",
    "street_name": "South Water Street",
    "refusal": "every roof on the face is spoken for",
-   "detail": "19 roof(s) front this street: 5 are a named household's dwelling, 5 are yard buildings the parcels dealt behind a lot, and 9 are already adopted by a better-evidenced business."
+   "detail": "19 roof(s) stand on this street: 5 are a household's dwelling under one layer or the other, 5 are yard buildings the parcels dealt behind a lot, and 9 are already adopted by a better-evidenced business."
+  },
+  {
+   "business_id": "business_a_garrett_auctioneer",
+   "business_name": "A. Garrett, auctioneer",
+   "street_id": "dearborn",
+   "street_name": "Dearborn Street",
+   "refusal": "every roof on the face is spoken for",
+   "detail": "18 roof(s) stand on this street: 7 are a household's dwelling under one layer or the other, 5 are yard buildings the parcels dealt behind a lot, and 6 are already adopted by a better-evidenced business."
+  },
+  {
+   "business_id": "business_a_wholesale_wine_and_liquor_store_dearborn_street",
+   "business_name": "a wholesale wine and liquor store, Dearborn Street",
+   "street_id": "dearborn",
+   "street_name": "Dearborn Street",
+   "refusal": "every roof on the face is spoken for",
+   "detail": "18 roof(s) stand on this street: 7 are a household's dwelling under one layer or the other, 5 are yard buildings the parcels dealt behind a lot, and 6 are already adopted by a better-evidenced business."
+  },
+  {
+   "business_id": "business_cooley_and_hol_b_man",
+   "business_name": "Cooley and Hol[b]man",
+   "street_id": "dearborn",
+   "street_name": "Dearborn Street",
+   "refusal": "every roof on the face is spoken for",
+   "detail": "18 roof(s) stand on this street: 7 are a household's dwelling under one layer or the other, 5 are yard buildings the parcels dealt behind a lot, and 6 are already adopted by a better-evidenced business."
   },
   {
    "business_id": "business_e_l_thrall",
@@ -731,7 +1063,31 @@
    "street_id": "south_water",
    "street_name": "South Water Street",
    "refusal": "every roof on the face is spoken for",
-   "detail": "19 roof(s) front this street: 5 are a named household's dwelling, 5 are yard buildings the parcels dealt behind a lot, and 9 are already adopted by a better-evidenced business."
+   "detail": "19 roof(s) stand on this street: 5 are a household's dwelling under one layer or the other, 5 are yard buildings the parcels dealt behind a lot, and 9 are already adopted by a better-evidenced business."
+  },
+  {
+   "business_id": "business_elmira_fowler",
+   "business_name": "Elmira Fowler",
+   "street_id": "dearborn",
+   "street_name": "Dearborn Street",
+   "refusal": "every roof on the face is spoken for",
+   "detail": "18 roof(s) stand on this street: 7 are a household's dwelling under one layer or the other, 5 are yard buildings the parcels dealt behind a lot, and 6 are already adopted by a better-evidenced business."
+  },
+  {
+   "business_id": "business_george_holsman",
+   "business_name": "George Holsman",
+   "street_id": "dearborn",
+   "street_name": "Dearborn Street",
+   "refusal": "every roof on the face is spoken for",
+   "detail": "18 roof(s) stand on this street: 7 are a household's dwelling under one layer or the other, 5 are yard buildings the parcels dealt behind a lot, and 6 are already adopted by a better-evidenced business."
+  },
+  {
+   "business_id": "business_h_c_bennett",
+   "business_name": "H. C. Bennett",
+   "street_id": "dearborn",
+   "street_name": "Dearborn Street",
+   "refusal": "every roof on the face is spoken for",
+   "detail": "18 roof(s) stand on this street: 7 are a household's dwelling under one layer or the other, 5 are yard buildings the parcels dealt behind a lot, and 6 are already adopted by a better-evidenced business."
   },
   {
    "business_id": "business_j_curtiss_attorney_and_counsellor_at_law",
@@ -739,7 +1095,7 @@
    "street_id": "south_water",
    "street_name": "South Water Street",
    "refusal": "every roof on the face is spoken for",
-   "detail": "19 roof(s) front this street: 5 are a named household's dwelling, 5 are yard buildings the parcels dealt behind a lot, and 9 are already adopted by a better-evidenced business."
+   "detail": "19 roof(s) stand on this street: 5 are a household's dwelling under one layer or the other, 5 are yard buildings the parcels dealt behind a lot, and 9 are already adopted by a better-evidenced business."
   },
   {
    "business_id": "business_john_holbrook",
@@ -747,7 +1103,15 @@
    "street_id": "south_water",
    "street_name": "South Water Street",
    "refusal": "every roof on the face is spoken for",
-   "detail": "19 roof(s) front this street: 5 are a named household's dwelling, 5 are yard buildings the parcels dealt behind a lot, and 9 are already adopted by a better-evidenced business."
+   "detail": "19 roof(s) stand on this street: 5 are a household's dwelling under one layer or the other, 5 are yard buildings the parcels dealt behind a lot, and 9 are already adopted by a better-evidenced business."
+  },
+  {
+   "business_id": "business_the_dearborn_street_auction_and_commission_rooms",
+   "business_name": "the Dearborn Street auction and commission rooms",
+   "street_id": "dearborn",
+   "street_name": "Dearborn Street",
+   "refusal": "every roof on the face is spoken for",
+   "detail": "18 roof(s) stand on this street: 7 are a household's dwelling under one layer or the other, 5 are yard buildings the parcels dealt behind a lot, and 6 are already adopted by a better-evidenced business."
   },
   {
    "business_id": "business_the_new_store_at_the_corner_of_water_and_clark_streets",
@@ -755,7 +1119,15 @@
    "street_id": "south_water",
    "street_name": "South Water Street",
    "refusal": "every roof on the face is spoken for",
-   "detail": "19 roof(s) front this street: 5 are a named household's dwelling, 5 are yard buildings the parcels dealt behind a lot, and 9 are already adopted by a better-evidenced business."
+   "detail": "19 roof(s) stand on this street: 5 are a household's dwelling under one layer or the other, 5 are yard buildings the parcels dealt behind a lot, and 9 are already adopted by a better-evidenced business."
+  },
+  {
+   "business_id": "business_tin_sheet_iron_and_stove_manufactory_proprietor_not_recovered",
+   "business_name": "[tin, sheet iron and stove manufactory, proprietor not recovered]",
+   "street_id": "dearborn",
+   "street_name": "Dearborn Street",
+   "refusal": "every roof on the face is spoken for",
+   "detail": "18 roof(s) stand on this street: 7 are a household's dwelling under one layer or the other, 5 are yard buildings the parcels dealt behind a lot, and 6 are already adopted by a better-evidenced business."
   },
   {
    "business_id": "business_uncertain_datid_gad_auction_and_commission_merchant_south_water_street",
@@ -763,199 +1135,47 @@
    "street_id": "south_water",
    "street_name": "South Water Street",
    "refusal": "every roof on the face is spoken for",
-   "detail": "19 roof(s) front this street: 5 are a named household's dwelling, 5 are yard buildings the parcels dealt behind a lot, and 9 are already adopted by a better-evidenced business."
-  },
-  {
-   "business_id": "business_a_garrett_auctioneer",
-   "business_name": "A. Garrett, auctioneer",
-   "street_id": "dearborn",
-   "street_name": "Dearborn Street",
-   "refusal": "the face holds no roof whose lot fronts it",
-   "detail": "18 roof(s) show this street a corner side and 0 stand within the centreline band; none has its platted lot on it."
-  },
-  {
-   "business_id": "business_a_wholesale_wine_and_liquor_store_dearborn_street",
-   "business_name": "a wholesale wine and liquor store, Dearborn Street",
-   "street_id": "dearborn",
-   "street_name": "Dearborn Street",
-   "refusal": "the face holds no roof whose lot fronts it",
-   "detail": "18 roof(s) show this street a corner side and 0 stand within the centreline band; none has its platted lot on it."
-  },
-  {
-   "business_id": "business_cooley_and_halsman",
-   "business_name": "Cooley and Halsman",
-   "street_id": "dearborn",
-   "street_name": "Dearborn Street",
-   "refusal": "the face holds no roof whose lot fronts it",
-   "detail": "18 roof(s) show this street a corner side and 0 stand within the centreline band; none has its platted lot on it."
-  },
-  {
-   "business_id": "business_cooley_and_hol_b_man",
-   "business_name": "Cooley and Hol[b]man",
-   "street_id": "dearborn",
-   "street_name": "Dearborn Street",
-   "refusal": "the face holds no roof whose lot fronts it",
-   "detail": "18 roof(s) show this street a corner side and 0 stand within the centreline band; none has its platted lot on it."
-  },
-  {
-   "business_id": "business_elmira_fowler",
-   "business_name": "Elmira Fowler",
-   "street_id": "dearborn",
-   "street_name": "Dearborn Street",
-   "refusal": "the face holds no roof whose lot fronts it",
-   "detail": "18 roof(s) show this street a corner side and 0 stand within the centreline band; none has its platted lot on it."
-  },
-  {
-   "business_id": "business_fullerton_botsford",
-   "business_name": "Fullerton & Botsford",
-   "street_id": "dearborn",
-   "street_name": "Dearborn Street",
-   "refusal": "the face holds no roof whose lot fronts it",
-   "detail": "18 roof(s) show this street a corner side and 0 stand within the centreline band; none has its platted lot on it."
-  },
-  {
-   "business_id": "business_george_holsman",
-   "business_name": "George Holsman",
-   "street_id": "dearborn",
-   "street_name": "Dearborn Street",
-   "refusal": "the face holds no roof whose lot fronts it",
-   "detail": "18 roof(s) show this street a corner side and 0 stand within the centreline band; none has its platted lot on it."
-  },
-  {
-   "business_id": "business_h_c_bennett",
-   "business_name": "H. C. Bennett",
-   "street_id": "dearborn",
-   "street_name": "Dearborn Street",
-   "refusal": "the face holds no roof whose lot fronts it",
-   "detail": "18 roof(s) show this street a corner side and 0 stand within the centreline band; none has its platted lot on it."
-  },
-  {
-   "business_id": "business_j_b_brown_dearborn_street_grocery",
-   "business_name": "J. B. Brown, Dearborn Street grocery",
-   "street_id": "dearborn",
-   "street_name": "Dearborn Street",
-   "refusal": "the face holds no roof whose lot fronts it",
-   "detail": "18 roof(s) show this street a corner side and 0 stand within the centreline band; none has its platted lot on it."
-  },
-  {
-   "business_id": "business_j_l_wilson_co",
-   "business_name": "J. L. Wilson & Co.",
-   "street_id": "dearborn",
-   "street_name": "Dearborn Street",
-   "refusal": "the face holds no roof whose lot fronts it",
-   "detail": "18 roof(s) show this street a corner side and 0 stand within the centreline band; none has its platted lot on it."
-  },
-  {
-   "business_id": "business_james_grant",
-   "business_name": "James Grant",
-   "street_id": "lasalle",
-   "street_name": "La Salle Street",
-   "refusal": "the face holds no roof whose lot fronts it",
-   "detail": "8 roof(s) show this street a corner side and 0 stand within the centreline band; none has its platted lot on it."
-  },
-  {
-   "business_id": "business_john_dave_north_water_street",
-   "business_name": "John Dave, North Water Street",
-   "street_id": "north_water",
-   "street_name": "North Water Street",
-   "refusal": "the face holds no roof whose lot fronts it",
-   "detail": "0 roof(s) show this street a corner side and 1 stand within the centreline band; none has its platted lot on it."
-  },
-  {
-   "business_id": "business_magie_wilkinson",
-   "business_name": "Magie & Wilkinson",
-   "street_id": "lasalle",
-   "street_name": "La Salle Street",
-   "refusal": "the face holds no roof whose lot fronts it",
-   "detail": "8 roof(s) show this street a corner side and 0 stand within the centreline band; none has its platted lot on it."
-  },
-  {
-   "business_id": "business_new_york_clothing_store",
-   "business_name": "New York Clothing Store",
-   "street_id": "dearborn",
-   "street_name": "Dearborn Street",
-   "refusal": "the face holds no roof whose lot fronts it",
-   "detail": "18 roof(s) show this street a corner side and 0 stand within the centreline band; none has its platted lot on it."
-  },
-  {
-   "business_id": "business_pierce_french",
-   "business_name": "Pierce & French",
-   "street_id": "canal",
-   "street_name": "Canal Street",
-   "refusal": "the face holds no roof whose lot fronts it",
-   "detail": "3 roof(s) show this street a corner side and 0 stand within the centreline band; none has its platted lot on it."
-  },
-  {
-   "business_id": "business_s_abell_attorney_and_counsellor",
-   "business_name": "S. Abell, attorney and counsellor",
-   "street_id": "dearborn",
-   "street_name": "Dearborn Street",
-   "refusal": "the face holds no roof whose lot fronts it",
-   "detail": "18 roof(s) show this street a corner side and 0 stand within the centreline band; none has its platted lot on it."
-  },
-  {
-   "business_id": "business_s_abell_attorney_counsellor_at_law",
-   "business_name": "S. Abell, Attorney & Counsellor at Law",
-   "street_id": "dearborn",
-   "street_name": "Dearborn Street",
-   "refusal": "the face holds no roof whose lot fronts it",
-   "detail": "18 roof(s) show this street a corner side and 0 stand within the centreline band; none has its platted lot on it."
-  },
-  {
-   "business_id": "business_the_dearborn_street_auction_and_commission_rooms",
-   "business_name": "the Dearborn Street auction and commission rooms",
-   "street_id": "dearborn",
-   "street_name": "Dearborn Street",
-   "refusal": "the face holds no roof whose lot fronts it",
-   "detail": "18 roof(s) show this street a corner side and 0 stand within the centreline band; none has its platted lot on it."
-  },
-  {
-   "business_id": "business_tin_sheet_iron_and_stove_manufactory_proprietor_not_recovered",
-   "business_name": "[tin, sheet iron and stove manufactory, proprietor not recovered]",
-   "street_id": "dearborn",
-   "street_name": "Dearborn Street",
-   "refusal": "the face holds no roof whose lot fronts it",
-   "detail": "18 roof(s) show this street a corner side and 0 stand within the centreline band; none has its platted lot on it."
+   "detail": "19 roof(s) stand on this street: 5 are a household's dwelling under one layer or the other, 5 are yard buildings the parcels dealt behind a lot, and 9 are already adopted by a better-evidenced business."
   },
   {
    "business_id": "business_uncertain_w_h_taylor_dearborn_street_boot_and_shoe_store",
    "business_name": "[uncertain: W. H. Taylor], Dearborn Street boot and shoe store",
    "street_id": "dearborn",
    "street_name": "Dearborn Street",
-   "refusal": "the face holds no roof whose lot fronts it",
-   "detail": "18 roof(s) show this street a corner side and 0 stand within the centreline band; none has its platted lot on it."
-  },
-  {
-   "business_id": "business_unnamed_new_store_la_salle_street",
-   "business_name": "[unnamed] New Store, La Salle street",
-   "street_id": "lasalle",
-   "street_name": "La Salle Street",
-   "refusal": "the face holds no roof whose lot fronts it",
-   "detail": "8 roof(s) show this street a corner side and 0 stand within the centreline band; none has its platted lot on it."
+   "refusal": "every roof on the face is spoken for",
+   "detail": "18 roof(s) stand on this street: 7 are a household's dwelling under one layer or the other, 5 are yard buildings the parcels dealt behind a lot, and 6 are already adopted by a better-evidenced business."
   },
   {
    "business_id": "business_wm_h_taylor",
    "business_name": "Wm. H. Taylor",
    "street_id": "dearborn",
    "street_name": "Dearborn Street",
-   "refusal": "the face holds no roof whose lot fronts it",
-   "detail": "18 roof(s) show this street a corner side and 0 stand within the centreline band; none has its platted lot on it."
+   "refusal": "every roof on the face is spoken for",
+   "detail": "18 roof(s) stand on this street: 7 are a household's dwelling under one layer or the other, 5 are yard buildings the parcels dealt behind a lot, and 6 are already adopted by a better-evidenced business."
   },
   {
    "business_id": "business_wm_h_taylor_boot_shoe_leather_store",
    "business_name": "Wm. H. Taylor, Boot, Shoe & Leather Store",
    "street_id": "dearborn",
    "street_name": "Dearborn Street",
-   "refusal": "the face holds no roof whose lot fronts it",
-   "detail": "18 roof(s) show this street a corner side and 0 stand within the centreline band; none has its platted lot on it."
+   "refusal": "every roof on the face is spoken for",
+   "detail": "18 roof(s) stand on this street: 7 are a household's dwelling under one layer or the other, 5 are yard buildings the parcels dealt behind a lot, and 6 are already adopted by a better-evidenced business."
+  },
+  {
+   "business_id": "business_john_dave_north_water_street",
+   "business_name": "John Dave, North Water Street",
+   "street_id": "north_water",
+   "street_name": "North Water Street",
+   "refusal": "the face holds no roof standing on it",
+   "detail": "no roof stands on this street under an adopted reading: 0 has its platted lot on it, 0 end a tier against it, and 1 lie within the centreline band, which the owner declined as a face on 2026-08-30."
   },
   {
    "business_id": "business_wm_sabine_storage_forwarding_and_commission_merchant",
    "business_name": "Wm. Sabine, storage, forwarding and commission merchant",
    "street_id": "north_water",
    "street_name": "North Water Street",
-   "refusal": "the face holds no roof whose lot fronts it",
-   "detail": "0 roof(s) show this street a corner side and 1 stand within the centreline band; none has its platted lot on it."
+   "refusal": "the face holds no roof standing on it",
+   "detail": "no roof stands on this street under an adopted reading: 0 has its platted lot on it, 0 end a tier against it, and 1 lie within the centreline band, which the owner declined as a face on 2026-08-30."
   },
   {
    "business_id": "business_a_new_auction_and_commission_room_south_water_street",
@@ -1004,6 +1224,14 @@
    "street_name": "South Water Street",
    "refusal": "this face already holds this proprietor",
    "detail": "'Peter Cohen' already stands on this face under the same proprietor surname(s) cohen, on better evidence. One house, one roof per face; whether these are two headings of one business is the gazetteer's to judge (T-0338, T-0340), not this pass's."
+  },
+  {
+   "business_id": "business_s_abell_attorney_counsellor_at_law",
+   "business_name": "S. Abell, Attorney & Counsellor at Law",
+   "street_id": "dearborn",
+   "street_name": "Dearborn Street",
+   "refusal": "this face already holds this proprietor",
+   "detail": "'S. Abell, attorney and counsellor' already stands on this face under the same proprietor surname(s) abell, on better evidence. One house, one roof per face; whether these are two headings of one business is the gazetteer's to judge (T-0338, T-0340), not this pass's."
   },
   {
    "business_id": "business_uncertain_j_i_mulford_carriage_and_sleigh_maker",
