@@ -198,6 +198,56 @@ control point anywhere on South Water Street. It is recorded and deliberately no
 committing it re-derives placements, and it does nothing for this block, whose gap is at the west
 end.
 
+### 6.2 The owner ruled for the closure, and the ground refused it — 2026-08-29
+
+Asked which way to settle § 6.1, the owner chose the first branch:
+
+> Close the west end on Market's corridor, from the 1834 sheets and the committed bank — the
+> same basis the rest of that curve already stands on — and grade it for what it is.
+
+**Carried out, that closure does not open the block. It emits a bowtie.** South Water's
+committed west approach bends south onto the dry bank at Wolf Point, and by the time it stops
+it has converged on the row below it: its drawn end at local (100, −101) is **9.5 m from Lake
+Street's committed centreline**, so the two 24.384 m platted corridors already overlap by
+**14.9 m** there. Close the end onto Market's corridor and all four crossings `build_block`
+looks for are found — and `blk_south_water_market` comes out with its **north-west corner
+14.9 m SOUTH of its south-west one**, reported as a 4,411 m² block 36.85 m deep.
+
+That is `node_rule`'s own failure mode one layer down, and § 6.1 wrote the sentence for it:
+an answer that looks right rather than no answer. This one arrives out of the street layer
+instead of OpenStreetMap, and `polygon_area` is what hides it — a bowtie's area is the
+difference of its two lobes, which is a plausible number. **`tools/generate_plat_lots.py`
+now refuses a block whose rows have crossed**, naming the two streets and the overlap, and
+`tools/check.sh` fires that refusal on this exact case (`--self-test`).
+
+### And the ground is the reason, not the drawn line
+
+The tempting reply is that the west approach is simply drawn too far south — it is, by 34 m —
+and that a better line would open the block. It would not. Push South Water as far north at
+Market's easting as the committed heightfield allows, its north corridor edge **exactly on the
+waterline with no clearance at all**, and measure what is left between it and Lake Street:
+
+| at | committed waterline | most northerly South Water | block depth |
+|---|---|---|---|
+| Market (E +89.3) | N −71.0 | N −83.2 | **2.8 m** |
+| E +100 | N −66.8 | N −78.9 | 7.2 m |
+| E +110 | N −51.4 | N −63.7 | 22.5 m |
+| E +120 | N −36.5 | N −48.7 | 37.6 m |
+| Franklin (E +196.2) | N +11.8 | N −0.4 | 86.4 m |
+
+One platted lot fronts 24.384 m. **The first fifteen metres of this block cannot hold one**,
+on any derivation of the closure, because the South Branch is there. `blk_south_water_market`
+is not a rectangle waiting on a trace; it is a wedge that tapers to nothing at its west corner,
+and the **27 roofs** `tools/reconcile_665.py` schedules against it are not on the ground the
+ruling was about. The 2.8 m is gated rather than asserted: `--self-test` re-derives it from the
+committed heightfield on every commit and fails if it ever exceeds a lot's frontage.
+
+What is left is the owner's, and it is a third option neither branch of the 2026-08-29 question
+offered, because nobody had measured the pinch: build the wedge — which means re-deriving a
+committed centreline up to 34 m north onto the waterline and re-scoring every gate that reads
+it — or return the 27 roofs to the South balance the way T-0163 returned
+`blk_south_water_clinton`'s to the West.
+
 ## 7. The cross-check: where the town's buildings actually stand
 
 `tools/generate_plat_lots.py --report` puts every placed structure in the 1835 scene against the

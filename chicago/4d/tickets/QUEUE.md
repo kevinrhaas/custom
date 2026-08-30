@@ -68,10 +68,13 @@ T-0305 — Four readings the American contradicts itself on need the page images
 # --- headroom was gated on T-0009 or T-0183, both blocked-owner. Both are now answered
 # --- (the rulings are written into the tickets), which frees ~20 roofs on four South Water
 # --- blocks and 27 more on blk_south_water_market — the largest visible win available.
-T-0183 — The Market and South Water corner needs one control point, and the node rule may not be able to make it
+# --- AND THE 27 ARE NOT THERE, measured 2026-08-30 by T-0183 (PR #573): closing South
+# --- Water's west end onto Market emits blk_south_water_market as a bowtie, and carried as
+# --- far north as the committed waterline allows the block has 2.8 m of depth at Market
+# --- against the 24.384 m one platted lot fronts. It is a wedge the South Branch pinches
+# --- out, and T-0183 is back with the owner on what to do with it. The ~20 roofs T-0009
+# --- freed are unaffected.
 T-0365 — The anonymous-block programme has no unblocked ground left: every block with headroom is on the South Water reach T-0009 holds open
-T-0372 — North Water Street's two tight spots are 5.5 m and 8.5 m from water, and the setback rule cannot see either
-T-0274 — The inferred-household parcel's form values come from the archetype and cite the family band: 8 families, 10 claims outside it
 
 # --- THE RUNS CANNOT PROVE THEMSELVES — invisible, and it blocks the EVIDENCE every
 # --- visible ticket owes. T-0346 is the sharp one: desktop stage 4 no longer fits the

@@ -61,7 +61,7 @@
       "note": "INVENTED, NOT DERIVED. A typology value from the reconstruction spec — what a building of this kind was ordinarily like — not a reading of evidence about this particular building, because no source speaks to it: the structure exists in the model because the town demonstrably needed one of these, and nothing more. The spec is cited because the invention is bounded by it. Type-level choice within the D4 band in the reconstruction specification; it is not evidence for this building."
     },
     "wall_height_m": {
-      "value": 2.78,
+      "value": 2.959,
       "confidence": "reconstructed",
       "sources": [
         "owner_chicago_1835_reconstruction_spec_2026"
@@ -77,7 +77,7 @@
       "note": "INVENTED, NOT DERIVED. A typology value from the reconstruction spec — what a building of this kind was ordinarily like — not a reading of evidence about this particular building, because no source speaks to it: the structure exists in the model because the town demonstrably needed one of these, and nothing more. The spec is cited because the invention is bounded by it. Type-level choice within the D4 band in the reconstruction specification; it is not evidence for this building."
     },
     "roof_pitch_deg": {
-      "value": 38.0,
+      "value": 33.7,
       "confidence": "reconstructed",
       "sources": [
         "owner_chicago_1835_reconstruction_spec_2026"

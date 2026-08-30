@@ -1,7 +1,7 @@
 ---
 id: T-0372
 title: North Water Street's two tight spots are 5.5 m and 8.5 m from water, and the setback rule cannot see either
-state: open
+state: done
 epic: TOWN
 requested_by: loop
 seen: false
@@ -9,9 +9,9 @@ effort: S
 legacy_id: null
 parent: null
 opened: 2026-08-29
-closed: null
-pr: null
-claimed_by: null
+closed: 2026-08-29
+pr: 572
+claimed_by: run 8/29/2026, 6:41:58 PM CT
 blocked_on: null
 needs_bake: false
 ---

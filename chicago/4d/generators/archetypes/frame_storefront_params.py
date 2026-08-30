@@ -107,6 +107,27 @@ CONFIDENCE_VALUE = {"attested": 0.0, "inferred": 0.5, "reconstructed": 1.0}
 # archetype invents a building.
 ROOF_TYPES = ("gable", "shed")
 
+# The eave band this archetype will actually BUILD at a storey count, in metres.
+#
+# NAMED HERE rather than left as bare numbers inside `validate()` for the reason
+# T-0142 named `frame_dwelling`'s and T-0274 named `log_dwelling`'s: a reconstruction
+# sampler drawing an eave from a family's authored band has to know which part of that
+# band this archetype can carry, and `tools/family_bands.eave_limits` can only ask a
+# module that publishes the answer. The numbers are exactly the ones `validate()`
+# enforces — 2.2-9 m overall, and a one-storey record capped at 4.2 m because more
+# than that is two storeys' worth of wall — and are not re-argued here.
+WALL_HEIGHT_M = {1.0: (2.2, 4.2), 2.0: (2.2, 9.0)}
+
+
+def wall_height_band_m(stories: float) -> tuple[float, float]:
+    """The eave band this archetype will build at a storey count.
+
+    Read by `tools/family_bands.eave_limits`. A storey count this archetype refuses
+    outright raises here rather than returning a band, so a caller cannot sample its
+    way past `validate()`.
+    """
+    return WALL_HEIGHT_M[float(stories)]
+
 # The two framing systems this archetype builds, and the only two that can be
 # meant here. `log` and `brick` are refused with an argument in validate().
 CONSTRUCTIONS = ("balloon_frame", "braced_frame")
