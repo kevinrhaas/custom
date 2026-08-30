@@ -1,7 +1,7 @@
 ---
 id: T-0414
 title: The street-face adoption refuses W. Montgomery a roof for being the bootmaker, and identity.json already ruled they are two houses
-state: open
+state: claimed
 epic: META
 requested_by: loop
 seen: false
@@ -11,7 +11,7 @@ parent: null
 opened: 2026-08-29
 closed: null
 pr: null
-claimed_by: null
+claimed_by: run 8/30/2026, 4:24:56 AM CT
 blocked_on: null
 needs_bake: false
 ---
