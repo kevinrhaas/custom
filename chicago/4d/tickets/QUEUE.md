@@ -92,7 +92,6 @@ T-0170 — The desktop smoke's part 7 has 2 m 17 s of margin, and it is the one 
 # --- yielded that nothing draws yet — a stove pipe on every roof in the town, and the
 # --- hay-stacking boundary.
 T-0219 — Finish the heightfield SOUTH to Madison Street, the plat's last tier
-T-0333 — Every stove pipe in the town owes eighteen inches above its roof, and the ordinance of 5 August 1835 says so
 T-0334 — The hay-stacking ordinance walks a six-vertex boundary round the built town, and nothing draws or tests it
 T-0266 — On a phone from across the river the stockade's picket rhythm falls under the pixel grid and beats
 T-0332 — The sheet's one brick is called chimney_brick, and a wall now reads it

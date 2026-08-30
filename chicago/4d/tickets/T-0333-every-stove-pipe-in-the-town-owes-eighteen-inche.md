@@ -1,7 +1,7 @@
 ---
 id: T-0333
 title: Every stove pipe in the town owes eighteen inches above its roof, and the ordinance of 5 August 1835 says so
-state: claimed
+state: done
 epic: META
 requested_by: loop
 seen: false
@@ -9,8 +9,8 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-08-28
-closed: null
-pr: null
+closed: 2026-08-29
+pr: 587
 claimed_by: run 8/29/2026, 11:20:50 PM CT
 blocked_on: null
 needs_bake: false
