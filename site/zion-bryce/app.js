@@ -14,6 +14,7 @@ const STORAGE = {
   checked: 'zionBryce.checked.v1',
   customItems: 'zionBryce.customItems.v1',
   completedDays: 'zionBryce.completedDays.v1',
+  dayPack: 'zionBryce.dayPack.v1',
   notes: 'zionBryce.notes.v1',
   stays: 'zionBryce.stays.v1',
   weather: 'zionBryce.weather.v1'
@@ -30,6 +31,7 @@ const activityIds = Object.keys(activityPlans);
 let assignments = normalizeAssignments(readJSON(STORAGE.assignments, defaultAssignments));
 let completedDays = new Set(readJSON(STORAGE.completedDays, []));
 let checkedItems = new Set(readJSON(STORAGE.checked, []));
+let dayPackChecked = new Set(readJSON(STORAGE.dayPack, []));
 let customItems = readJSON(STORAGE.customItems, []);
 let privateStays = readJSON(STORAGE.stays, {});
 let forecastData = null;
@@ -100,10 +102,48 @@ function getEffectiveDay(day) {
     summary: plan.strap,
     chips: plan.stats,
     schedule: plan.schedule,
+    carry: plan.carry,
+    tips: plan.tips,
     alerts: plan.alerts,
     links: plan.links,
     activity: plan.id
   };
+}
+
+function dayPackKey(day, item) {
+  return `${day.date}:${day.activity || 'base'}:${item.id}`;
+}
+
+function dayExtrasTemplate(day) {
+  const carry = day.carry || [];
+  const tips = day.tips || [];
+  if (!carry.length && !tips.length) return '';
+  const ready = carry.filter((item) => dayPackChecked.has(dayPackKey(day, item))).length;
+  return `<div class="day-extras">
+    <section class="day-kit" data-day-kit>
+      <div class="extra-heading">
+        <div><span class="eyebrow">Carry today</span><h4>Before leaving the room</h4></div>
+        <span class="kit-progress" data-kit-progress>${ready}/${carry.length} ready</span>
+      </div>
+      <div class="day-kit-list">
+        ${carry.map((item) => {
+          const key = dayPackKey(day, item);
+          const checked = dayPackChecked.has(key);
+          return `<label class="day-kit-item ${checked ? 'ready' : ''}">
+            <input type="checkbox" data-day-pack-id="${escapeHtml(key)}" ${checked ? 'checked' : ''}>
+            <span class="mini-check">${icon('check')}</span>
+            <span>${escapeHtml(item.label)}</span>
+          </label>`;
+        }).join('')}
+      </div>
+    </section>
+    <section class="day-tips">
+      <div class="extra-heading"><div><span class="eyebrow">Field notes</span><h4>Small things that save the day</h4></div></div>
+      <div class="tip-list">
+        ${tips.map((tip, index) => `<div class="tip-item"><span>${String(index + 1).padStart(2, '0')}</span><div><strong>${escapeHtml(tip.title)}</strong><p>${escapeHtml(tip.text)}</p></div></div>`).join('')}
+      </div>
+    </section>
+  </div>`;
 }
 
 function dayCardTemplate(rawDay, initiallyOpen) {
@@ -141,6 +181,7 @@ function dayCardTemplate(rawDay, initiallyOpen) {
               <div class="timeline-body"><h4>${escapeHtml(entry.title)}</h4><p>${escapeHtml(entry.detail)}</p></div>
             </div>`).join('')}
         </div>
+        ${dayExtrasTemplate(day)}
         <div class="alert-grid">
           ${(day.alerts || []).map((alert) => `<div class="alert-box ${escapeHtml(alert.tone)}"><strong>${escapeHtml(alert.title)}</strong><p>${escapeHtml(alert.text)}</p></div>`).join('')}
         </div>
@@ -165,6 +206,19 @@ function renderDays({ preserveOpen = false } = {}) {
       else completedDays.delete(value);
       writeJSON(STORAGE.completedDays, [...completedDays]);
       box.closest('.day-card').classList.toggle('day-done', box.checked);
+    });
+  });
+  list.querySelectorAll('[data-day-pack-id]').forEach((box) => {
+    box.addEventListener('change', () => {
+      const key = box.dataset.dayPackId;
+      if (box.checked) dayPackChecked.add(key);
+      else dayPackChecked.delete(key);
+      writeJSON(STORAGE.dayPack, [...dayPackChecked]);
+      box.closest('.day-kit-item').classList.toggle('ready', box.checked);
+      const kit = box.closest('[data-day-kit]');
+      const boxes = [...kit.querySelectorAll('[data-day-pack-id]')];
+      const done = boxes.filter((item) => item.checked).length;
+      kit.querySelector('[data-kit-progress]').textContent = `${done}/${boxes.length} ready`;
     });
   });
 }
@@ -588,6 +642,7 @@ function exportPrivateBackup() {
     assignments,
     completedDays: [...completedDays],
     checkedItems: [...checkedItems],
+    dayPackChecked: [...dayPackChecked],
     customItems,
     stays: privateStays,
     notes: document.querySelector('#tripNotes').value

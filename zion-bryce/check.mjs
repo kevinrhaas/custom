@@ -46,10 +46,16 @@ expect(css.includes('@media (prefers-reduced-motion: reduce)'), 'reduced-motion 
 expect(css.includes('@media print'), 'print layout is missing');
 expect(app.includes('serviceWorker.register'), 'service worker registration is missing');
 expect(app.includes('forecastSuggestion'), 'forecast-assisted day swap is missing');
+expect(app.includes('zionBryce.dayPack.v1'), 'saved day-specific packing state is missing');
+expect(app.includes('dayExtrasTemplate'), 'day packing and tips renderer is missing');
 expect(data.includes('Bryce shuttle starts at 8:00 AM'), 'Bryce sunrise shuttle correction is missing');
 expect(data.includes('Scout Cave does not fit'), 'Day 8 feasibility correction is missing');
 expect(data.includes('Red Canyon arches'), 'Red Canyon route correction is missing');
 expect(data.includes('Flight number to confirm'), 'return-flight verification flag is missing');
+expect((data.match(/\n    carry: \[/g) || []).length === 9, 'every fixed/activity day needs a carry checklist');
+expect((data.match(/\n    tips: \[/g) || []).length === 9, 'every fixed/activity day needs field tips');
+expect((data.match(/category: '/g) || []).length >= 45, 'master packing checklist is unexpectedly thin');
+expect(css.includes('.day-extras'), 'responsive day packing/tips styling is missing');
 expect(!allPublicText.includes('70O3T4'), 'private Bryce confirmation leaked into the public app');
 expect(!allPublicText.includes('AA14970'), 'unverified return flight number leaked into the public app');
 expect((data.match(/https:\/\//g) || []).length >= 25, 'research/source coverage is unexpectedly thin');
