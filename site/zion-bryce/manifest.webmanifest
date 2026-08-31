@@ -1,0 +1,19 @@
+{
+  "name": "Zion + Bryce Canyon Loop",
+  "short_name": "Canyon Loop",
+  "description": "An offline-ready field guide for a nine-day Zion and Bryce Canyon road trip.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#141210",
+  "theme_color": "#141210",
+  "orientation": "any",
+  "icons": [
+    {
+      "src": "icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}

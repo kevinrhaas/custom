@@ -1,6 +1,6 @@
 {
  "id": "hh_ll_myers_frederick",
- "name": "The Myers household — a name from the post office's letter lists, unplaced in the town",
+ "name": "The Myers household — a name from the post office's letter lists",
  "division": "unplaced",
  "head": "ll_myers_frederick",
  "arrival": {
@@ -9,7 +9,7 @@
   "sources": [
    "chicago_democrat_1833_1835"
   ],
-  "note": "A BOUND FROM THE PAPER, NOT AN ARRIVAL. The first return holding a letter for this name is the Democrat of 22 October 1834, column 2, so somebody was writing to them at Chicago by 1834-10-22 and at no stated time before it; nothing reached says when they came. Last printed 1835-08-19.",
+  "note": "A BOUND FROM THE PAPER, NOT AN ARRIVAL. Somebody was writing to this name at Chicago by 1834-10-22 and at no stated time before it; nothing says when they came.",
   "precision": "not_later_than"
  },
  "party_size_on_arrival": {
@@ -30,12 +30,12 @@
  "lives_at": {
   "value": null,
   "confidence": "reconstructed",
-  "note": "Not attested. NOTHING IS BEING WITHHELD HERE: a letter list gives a name and no address, and 52 households in this dataset were already in that position before this one was written."
+  "note": "Not attested: a letter list gives a name and no address."
  },
  "works_at": {
   "value": null,
   "confidence": "reconstructed",
-  "note": "Not attested. No trade is recorded for this person at all, so there is no premises to look for among the committed records."
+  "note": "Not attested. No trade is recorded, so there is no premises to seek."
  },
  "present_on_scene_date": {
   "value": "present",
@@ -43,7 +43,7 @@
   "sources": [
    "chicago_democrat_1833_1835"
   ],
-  "note": "A letter was still waiting for this name at the Democrat of 19 August 1835, column 20, on or after the scene date, so the corpus itself puts somebody expecting them at Chicago at 1835-08-19."
+  "note": "A letter was still waiting for this name at the Democrat of 19 August 1835, column 20, on or after the scene date, so the corpus puts somebody expecting them at Chicago at 1835-08-19."
  },
  "persons": [
   {
@@ -52,18 +52,22 @@
    "relationship": "head",
    "grade": "attested",
    "letter_list_only": true,
+   "letter_list_returns": [
+    "1834-10-22",
+    "1835-08-19"
+   ],
    "occupation": {
     "value": "none_recorded",
     "confidence": "reconstructed",
-    "note": "No source records an occupation for this person. A list of uncalled-for letters prints a name and nothing else, and this pass will not read a trade into one: the absence is recorded here rather than filled in from what a man of that name might have done."
+    "note": "No source records an occupation for this person. A list of uncalled-for letters prints a name and no trade, and this pass will not read one in."
    },
    "sources": [
     "chicago_democrat_1833_1835"
    ],
-   "note": "KNOWN ONLY FROM THE POST OFFICE, AND HELD THERE MORE THAN ONCE. The papers print 'Myers, Frederick' in 2 separate returns of letters remaining uncalled-for at the Chicago post office — the Democrat of 22 October 1834, column 2; the Democrat of 19 August 1835, column 20 — across 1834-10-22 to 1835-08-19. Nothing else in the corpus names this person: no trade, no street, no household, no arrival. So the record around them carries the person and nothing more, every other claim written unattested in its own block. Cited at the Democrat of 22 October 1834, column 2; the Democrat of 19 August 1835, column 20. WHY TWO RETURNS AND NOT ONE: the Democrat reprinted a single return over consecutive weekly issues, so a repeated printing is not repeated evidence; a name in a LATER return is somebody who was still being written to, months on, by a correspondent who believed them reachable at Chicago. 716 names in the same pool are printed in one return only and this reconstruction does not hold them — ticket T-0379 is that question and it is the owner's. THE LIMIT: the Chicago office served the country around the town, so a letter waiting here is not proof of a bed here. A scan read, a land record or a second corpus that places this person outside the town retires this record. No figure is drawn (docs/LIBERTIES.md L1). READ THROUGH A TRANSCRIPTION, not a scan: the owner's ruling of 2026-08-28 grades a transcription-mediated reading as documented, and the source record for the run states that standard and its limits."
+   "note": "KNOWN ONLY FROM THE POST OFFICE, AND HELD THERE MORE THAN ONCE. The papers print 'Myers, Frederick' in 2 separate returns of letters uncalled-for at the Chicago post office — the Democrat of 22 October 1834, column 2; the Democrat of 19 August 1835, column 20 — across 1834-10-22 to 1835-08-19. A name in a LATER return is somebody still being written to, months on, which is the strongest thing a letter list can say about residence and is why this person outranks a single-return name of the same surname. Nothing else in the corpus names this person: no trade, no street, no household, no arrival, so every other claim here is written unattested in its own block. WHAT THAT IS WORTH: a correspondent believed a person of this name reachable at Chicago on that date, and nothing further — not that they lived here, kept a trade here, or were here on 1 July 1835. It is the weakest evidence this project accepts for a resident, and a source placing them elsewhere retires the record. THE ARGUMENT EVERY RECORD OF THIS KIND SHARES is written once instead of once per file: the ruling of 2026-08-30 and what it cost the town (docs/LIBERTIES.md L214), the refusals and the transcription standard behind the reading (tools/mint_letter_list_residents.py). No figure is drawn (L1)."
   }
  ],
  "touches_removal": false,
  "review_required": false,
- "research_note": "MINTED FROM THE LETTER LISTS (T-0378), AND THE HOUSEHOLD IS A CONTAINER RATHER THAN AN ARGUMENT. Every other record in this dataset argues for a household — a family the sources count, or a trade the town demonstrably needed. This one argues for a PERSON, and on the weakest evidence this project accepts for one: the post office at Chicago held a letter for Frederick Myers in 2 separate returns and nobody called for it. `data/residents/` has no way to carry a person except inside a household, so one was written around them and told to claim nothing: one member, no dwelling, no division, no trade, no family, no arrival beyond the bound the paper sets. `letter_list_only` is true on the person so that this evidence and a shopkeeper's advertisement never read as the same claim — on the card a visitor opens as well as in the file. tools/mint_letter_list_residents.py derives the whole minted set and prints every candidate it refused, with the reason."
+ "research_note": "MINTED FROM THE LETTER LISTS (T-0378, T-0379). THE HOUSEHOLD IS A CONTAINER, NOT AN ARGUMENT: every other record here argues for a household, and this one argues for a PERSON. `data/residents/` cannot carry a person outside a household, so one was written around them and told to claim nothing — one member, no dwelling, no division, no trade, no family, no arrival beyond the paper's bound. tools/mint_letter_list_residents.py derives the set and prints every refusal, `--gate` proves no record here gained a roof, a trade or a second member, and docs/LIBERTIES.md L214 carries the change of scale."
 }

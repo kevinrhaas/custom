@@ -60,23 +60,48 @@ and it is the narrow one.
   * `centreline band`— the roof is off the platted grid and its centroid is within 25 m
                        of this street's centreline. Proximity, not orientation.
 
-**Only `lot front` is adopted.** An advertisement that says "on South Water Street" says
-where the door is, and a roof whose lot faces Randolph does not have a door on Dearborn
-because its gable end reaches it. A band is a distance and says nothing about which way a
-building looks. Refusing the other two costs this pass the whole of Dearborn Street, and
-that cost is reported rather than avoided: `--report` prints BOTH readings, because the
-reader is owed the disagreement the decision was made about, and a later owner ruling
-that a corner side is a face has one number to change.
+**`lot front` AND `corner side` are adopted; the band is not.** The narrow reading shipped
+first — only `lot front`, on the owner's ruling of 2026-08-29 — and it refused the whole of
+Dearborn Street, which shows eighteen roofs a side and not one a front. T-0416 dealt that
+cost out rather than estimating it and put the two remaining questions to the owner
+separately. **He ruled on 2026-08-30: a corner side IS a face; the band is NOT added.**
+
+  * A corner building genuinely fronts two streets. It has a side on each, and a business
+    advertising on either one is describing where its door is. Saying a corner roof stands
+    on BOTH its faces is a physical fact about a corner lot; it raises no geometry, moves
+    no roof and promotes nothing.
+  * A band is a DISTANCE from a centreline and not an orientation. A roof 20 m from
+    Dearborn's centreline may show it a wall, a gable end or nothing at all, and no reading
+    of the plat can say which. It was considered and declined in the same breath, and
+    `reading.considered_and_declined` in the written table names the one business it would
+    have added (Wm. Sabine, on North Water Street) so a later run does not re-open it as an
+    oversight.
+
+**The cost of BOTH rulings was DEALT, not estimated (T-0416).** "Twenty-four would become
+eligible" is the count of businesses a widening lets back into the deal, and it is not what
+one seats: those twenty-four then meet refusal 3 and refusal 4, and the supply a widening
+adds is already net of the households' homes and the yard buildings among the side-only
+roofs. So the pass re-runs the whole allocation under each reading and prints what it
+stands up. Measured on `dev`, 2026-08-29, before the ruling: the corner-side reading seats
+TWELVE more, not twenty-four — Dearborn +8, La Salle +3, Canal +1 — and adding the band
+would have seated one further. Those twelve are seated now; the one is not.
+
+**What the corner-side reading still does NOT do.** It seats none of the three storefronts
+T-0416 is named for — Wm. Sabine and John Dave on North Water Street, which has no
+side-only roof at all, and the Dearborn Street wine store, which is refused on supply
+under both widenings. Their answer is frontage (T-0375's neighbourhood), not a wider
+reading, and the ticket says so on the record rather than closing over it.
 
 THE REFUSALS, AND WHY EACH ONE IS THERE.
 
   1. `not present at the scene date`  — the register excluded it already; a business
                                         contradicted before 1 July 1835, or first printed
                                         after it, is not standing in this town.
-  2. `the face holds no roof whose lot fronts it` — the named street has reconstructed
-                                        roofs beside it but none whose platted lot faces
-                                        it. Dearborn Street is the case: eighteen roofs
-                                        show it a corner side and not one a front.
+  2. `the face holds no roof standing on it` — the named street has no reconstructed roof
+                                        under either adopted reading: no lot fronts it and
+                                        no roof ends its tier against it. North Water
+                                        Street is the case since 2026-08-30 — one roof
+                                        lies in the band and the band is not a face.
   3. `every roof on the face is spoken for` — the supply ran out. South Water Street is
                                         the case, and it is the count this ticket exists
                                         to produce rather than a failure.
@@ -156,6 +181,7 @@ GAZETTEER = DATA / "research" / "newspapers" / "gazetteer.json"
 OUT = DATA / "research" / "newspapers" / "street_face_adoptions.json"
 STRUCTURES = DATA / "structures"
 HOUSEHOLDS = DATA / "residents" / "households"
+PROGRAMME = DATA / "reconstruction" / "1835_inferred_household_programme.json"
 
 SCENE_DATE = "1835-07-01"
 FRONT = "lot front"          # tools/fronting_street.FRONT
@@ -174,10 +200,36 @@ ADOPTION_KEYS = {
 
 REFUSALS = (
     "not present at the scene date",
-    "the face holds no roof whose lot fronts it",
+    "the face holds no roof standing on it",
     "this face already holds this proprietor",
     "every roof on the face is spoken for",
 )
+
+#: The readings of "already standing on that street face" the ruling adopts, in the order
+#: a face is dealt. `lot front` is the owner's ruling of 2026-08-29 (T-0354); `corner side`
+#: is his ruling of 2026-08-30 (T-0416), on the measurement this file produced. `centreline
+#: band` was put to him in the same question and DECLINED, and it is absent here rather than
+#: commented out so that adopting it again would have to be a deliberate edit.
+ADOPTED_READINGS = (FRONT, SIDE)
+
+#: How a record says, in its own note, why its roof stands on the face it took. A corner
+#: adoption must not read as a lot-front one: the visitor is owed the difference between
+#: "its platted lot faces that street" and "it ends its tier against that street".
+FACE_PHRASE = {
+    FRONT: "whose platted lot faces %s",
+    SIDE: "standing at the end of its platted tier, where the tier meets %s: a corner "
+          "building, which the owner ruled on 2026-08-30 stands on both its faces",
+    # Only reachable from a COUNTERFACTUAL deal — the band is not an adopted reading, so
+    # no record derive() writes can carry this phrase. It is here so that costing the
+    # declined reading does not crash, which is a poorer reason to lose a measurement than
+    # any argument about it.
+    BAND: "lying within 25 m of the platted centreline of %s, which is the reading the "
+          "owner declined on 2026-08-30",
+}
+
+#: The reading that was measured, offered and refused. Kept so the written table can name
+#: what declining it cost, and so `--report` can go on printing the disagreement.
+DECLINED_READING = BAND
 
 
 def load(path: pathlib.Path):
@@ -229,8 +281,8 @@ def yard_roofs() -> set[str]:
     return out
 
 
-def dwellings() -> dict[str, list[str]]:
-    """structure id -> the household ids `data/residents/` seats in it."""
+def named_dwellings() -> dict[str, list[str]]:
+    """structure id -> the NAMED household ids `data/residents/` seats in it."""
     out: dict[str, list[str]] = {}
     for path in sorted(HOUSEHOLDS.glob("*.json")):
         doc = load(path)
@@ -240,24 +292,106 @@ def dwellings() -> dict[str, list[str]]:
     return out
 
 
+def inferred_dwellings() -> dict[str, list[str]]:
+    """structure id -> the INFERRED household ids the reconstruction seats in it.
+
+    The other layer that holds a roof, and it does not live in `data/residents/`: the
+    inferred-household programme hypothesises an occupant from the town's arithmetic
+    without naming anybody, so its households have no resident record to be found by
+    `named_dwellings()` above. `tools/inferred_occupancy.py` is the ledger that spends
+    both layers into the structure records, and it RAISES if one roof is claimed twice —
+    "one roof, one occupant" — because letting either win silently would put a documented
+    shopkeeper into an inferred labourer's cottage, or lose the labourer.
+    """
+    if not PROGRAMME.exists():
+        return {}
+    out: dict[str, list[str]] = {}
+    for household in load(PROGRAMME).get("households", []):
+        for key in ("lives_at", "works_at"):
+            at = household.get(key)
+            if isinstance(at, str) and at.startswith("recon_"):
+                out.setdefault(at, []).append(household["id"])
+    return out
+
+
+def dwellings() -> dict[str, list[str]]:
+    """structure id -> every household id ANY layer seats in it. Refusal 4's supply test.
+
+    Both layers, and refusal 4 has covered both since 2026-08-30. It could not bite under
+    the narrow reading — no roof the inferred programme held happened to have its platted
+    lot on a street the register named — and the corner-side ruling made it bite at once:
+    the very first re-derivation handed Elmira Fowler's Dearborn Street millinery a corner
+    roof, `recon_1835_south_w4_032`, that the inferred layer already holds. The ledger
+    caught it, which is what the ledger is for; refusing it HERE is what keeps the table
+    derivable rather than merely gated.
+
+    It is the same refusal in both cases and for the same reason. A roof some layer seats
+    a household in is that household's home, and hanging a documented store on it would
+    assert a relation between two claims nothing supports. That the inferred household is
+    itself an invention makes the case stronger, not weaker: the relation would then be
+    between a printed advertisement and a hypothesis.
+    """
+    out = {sid: list(ids) for sid, ids in named_dwellings().items()}
+    for sid, ids in inferred_dwellings().items():
+        out.setdefault(sid, []).extend(ids)
+    return out
+
+
 EMPTY_FACE = {FRONT: [], SIDE: [], BAND: [], "free": [], "homes": [], "yards": []}
+
+# The order a pass deals a face's roofs when it is allowed to read more than one of
+# them: the plat first, then the corner sides, then the band. It is the order of
+# decreasing claim, so a widened reading never takes a weaker roof while a stronger one
+# is free, and the lot-front-only allocation this pass actually writes is unchanged by
+# the existence of the others.
+READING_ORDER = (FRONT, SIDE, BAND)
+
+
+def free_under(face: dict, readings: tuple[str, ...], homes: dict,
+               yards: set[str]) -> list[str]:
+    """The roofs a pass adopting `readings` could take, in READING_ORDER then id order.
+
+    Refusals 5 and 6 are applied here rather than by the caller, because they are
+    refusals of a ROOF and hold under any reading of "face": a named household's home is
+    that household's home whichever street the roof shows, and a privy is a privy.
+    `free_under(face, (FRONT,), ...)` is exactly `face["free"]`, which is what keeps the
+    committed allocation byte-identical.
+    """
+    out: list[str] = []
+    for how in READING_ORDER:
+        if how not in readings:
+            continue
+        out += [sid for sid in face[how] if sid not in homes and sid not in yards]
+    return out
+
+
+def reading_of(face: dict, structure_id: str) -> str:
+    """Which of the three readings put this roof on this face."""
+    for how in READING_ORDER:
+        if structure_id in face[how]:
+            return how
+    raise AssertionError("%s is not on this face under any reading" % structure_id)
 
 
 def supply(roofs: dict[str, str], homes: dict[str, list[str]],
            yards: set[str]) -> dict:
-    """Per street: the roofs that front it, and the free ones, under each reading.
+    """Per street: the roofs that show it a face, under each reading, and the free ones.
 
-    A fronting roof lands in exactly one of three buckets, and only `free` is supply: a
-    named household's home (refusal 4), a yard building (refusal 5), or a roof a business
-    may take.
+    A roof standing on this street under an ADOPTED reading lands in exactly one of three
+    buckets, and only `free` is supply: a named household's home (refusal 4), a yard
+    building (refusal 5), or a roof a business may take. The bucketing spans the adopted
+    readings rather than `lot front` alone, because refusals 4 and 5 refuse a ROOF and hold
+    whichever way it shows the street — a privy is a privy seen end-on. Roofs that reach
+    the street only by the DECLINED reading are counted under their own key and are not
+    supply at all.
     """
     out: dict[str, dict] = {}
     for structure_id in sorted(roofs):
         for street_id, how in fronting_street.fronting(structure_id):
             face = out.setdefault(street_id, {key: list(value)
                                               for key, value in EMPTY_FACE.items()})
-            face.setdefault(how, []).append(structure_id)
-            if how == FRONT:
+            face[how].append(structure_id)
+            if how in ADOPTED_READINGS:
                 if structure_id in homes:
                     face["homes"].append(structure_id)
                 elif structure_id in yards:
@@ -304,18 +438,25 @@ def rank_key(entry: dict, gaz: dict) -> tuple:
     return (-mentions, first, entry["id"])
 
 
-def derive() -> dict:
-    register = load(REGISTER)
-    gaz = {b["id"]: b for b in load(GAZETTEER)["businesses"]}
-    roofs = reconstructed_roofs()
-    homes = dwellings()
-    yards = yard_roofs()
-    faces = supply(roofs, homes, yards)
+def allocate(pool: list, gaz: dict, faces: dict, roofs: dict, homes: dict,
+             yards: set[str], readings: tuple[str, ...]) -> tuple[list, list]:
+    """Deal the ranked pool onto the faces, reading "face" as `readings` says.
 
-    pool = [b for b in register["businesses"] if b["action"] == "street_only"]
-    pool.sort(key=lambda entry: rank_key(entry, gaz))
+    The pass this file writes calls it with `ADOPTED_READINGS` and nothing else, and
+    `limits()` re-asserts that against the committed document independently of anything
+    here. The parameter exists so the counterfactual another ruling would produce can be
+    MEASURED by dealing it, rather than estimated from the count of businesses a widened
+    supply would make eligible; those two numbers are not the same, because a widened
+    supply still meets refusals 3 and 4. It is what produced the +12 the owner ruled on.
 
-    taken: dict[str, list[str]] = {}
+    ONE ROOF, ONE BUSINESS — AND `taken` IS THEREFORE GLOBAL RATHER THAN PER STREET. Under
+    the narrow reading a roof reached exactly one face, so the two were the same thing.
+    From 2026-08-30 a corner roof stands on TWO faces, and a per-street ledger would let
+    the Dearborn deal and the Lake deal each hand out the same corner: one building, two
+    shopfronts, on nothing. `limits()` would have caught it after the fact and failed the
+    gate; refusing it here means the table is never written that way in the first place.
+    """
+    taken: set[str] = set()
     seated: dict[str, dict[tuple[str, ...], str]] = {}
     adoptions: list[dict] = []
     refusals: list[dict] = []
@@ -336,13 +477,16 @@ def derive() -> dict:
             continue
         face = faces.get(street_id) or {key: list(value)
                                         for key, value in EMPTY_FACE.items()}
-        free = [sid for sid in face["free"] if sid not in taken.get(street_id, [])]
-        if not face[FRONT]:
+        free = [sid for sid in free_under(face, readings, homes, yards)
+                if sid not in taken]
+        if not any(face[how] for how in readings):
             refusals.append(dict(
                 common, refusal=REFUSALS[1],
-                detail="%d roof(s) show this street a corner side and %d stand within "
-                       "the centreline band; none has its platted lot on it."
-                       % (len(face[SIDE]), len(face[BAND]))))
+                detail="no roof stands on this street under an adopted reading: %d has "
+                       "its platted lot on it, %d end a tier against it, and %d lie "
+                       "within the centreline band, which the owner declined as a face "
+                       "on 2026-08-30."
+                       % (len(face[FRONT]), len(face[SIDE]), len(face[BAND]))))
             continue
         house = surnames(entry)
         held = seated.setdefault(street_id, {})
@@ -356,19 +500,24 @@ def derive() -> dict:
                        % (held[house], ", ".join(house))))
             continue
         if not free:
+            on_face = [sid for how in readings for sid in face[how]]
             refusals.append(dict(
                 common, refusal=REFUSALS[3],
-                detail="%d roof(s) front this street: %d are a named household's "
-                       "dwelling, %d are yard buildings the parcels dealt behind a lot, "
-                       "and %d are already adopted by a better-evidenced business."
-                       % (len(face[FRONT]), len(face["homes"]), len(face["yards"]),
-                          len(taken.get(street_id, [])))))
+                detail="%d roof(s) stand on this street: %d are a household's "
+                       "dwelling under one layer or the other, %d are yard buildings the "
+                       "parcels dealt behind a lot, and %d are already adopted by a "
+                       "better-evidenced business."
+                       % (len(on_face),
+                          len([sid for sid in on_face if sid in homes]),
+                          len([sid for sid in on_face if sid in yards]),
+                          len([sid for sid in on_face if sid in taken]))))
             continue
 
         structure_id = free[0]
-        taken.setdefault(street_id, []).append(structure_id)
+        taken.add(structure_id)
         if house:
             held[house] = entry["name"]
+        how = reading_of(face, structure_id)
         adoptions.append({
             "business_id": entry["id"],
             "business_name": entry["name"],
@@ -383,23 +532,100 @@ def derive() -> dict:
             "last_issue": (entry.get("evidence") or {}).get("last_issue"),
             "mentions": len(printed.get("mentions") or []),
             "structure_id": structure_id,
-            "face": FRONT,
+            "face": how,
             "roof_confidence": roofs[structure_id],
             "lot": None,
             "claims_lot": False,
             "order_is_a_claim": False,
             "note": "The advertisement names %s and nothing narrower, so this business "
                     "takes the street face and not a lot. The roof it is attached to is "
-                    "an anonymous reconstructed count-unit whose platted lot faces that "
-                    "street; it stays reconstructed, and WHICH roof on the face is an "
-                    "allocation by tools/adopt_street_faces.py rather than a reading of "
-                    "any source. Nothing here says this business stood nearer the corner "
-                    "than any other on the same face."
-                    % fronting_street.street_name(street_id),
+                    "an anonymous reconstructed count-unit %s; it stays reconstructed, "
+                    "and WHICH roof on the face is an allocation by "
+                    "tools/adopt_street_faces.py rather than a reading of any source. "
+                    "Nothing here says this business stood nearer the corner than any "
+                    "other on the same face."
+                    % (fronting_street.street_name(street_id),
+                       FACE_PHRASE[how] % fronting_street.street_name(street_id)),
         })
 
     adoptions.sort(key=lambda row: row["business_id"])
     refusals.sort(key=lambda row: (row["refusal"], row["business_id"]))
+    return adoptions, refusals
+
+
+#: Every reading of "face" the project has costed, dealt out in full so the table carries
+#: the disagreement the decisions were made about. The first two are now HISTORY — the
+#: narrow reading that shipped on 2026-08-29 and the corner-side widening the owner adopted
+#: on 2026-08-30 — and the third is the one he declined. Keeping all three means the
+#: written table answers "what did that ruling cost, and what did the other one save?"
+#: without anybody re-deriving it from a git history.
+COSTED_READINGS = (
+    ("lot front only", (FRONT,)),
+    ("a corner side is a face", (FRONT, SIDE)),
+    ("a corner side or the band is a face", (FRONT, SIDE, BAND)),
+)
+
+
+def costed(pool: list, gaz: dict, faces: dict, roofs: dict, homes: dict,
+           yards: set[str], adoptions: list) -> dict:
+    """What each reading of "face" actually SEATS, dealt rather than estimated.
+
+    `widened_reading_would_reach` counts the businesses refused for want of a face —
+    the ones a wider reading would let back into the deal. It is NOT the number one
+    seats, and reading it as one overstates the ruling: those businesses then meet
+    refusal 3 (this face already holds this proprietor) and refusal 4 (every roof on the
+    face is spoken for), and the supply a widening adds is itself net of refusals 5 and 6,
+    because a corner-side roof can be a household's home or a privy exactly as a fronting
+    one can. T-0416 is the ticket that put this to the owner, and dealing it is what let
+    the question be asked as "twelve shops" rather than "twenty-four".
+    """
+    today = {row["business_id"]: row for row in adoptions}
+    out: dict[str, dict] = {}
+    for label, readings in COSTED_READINGS:
+        would, refused = allocate(pool, gaz, faces, roofs, homes, yards, readings)
+        seated = {row["business_id"]: row for row in would}
+        gained = sorted(set(seated) - set(today))
+        # A wider reading is not automatically a superset. Roofs are dealt to the pool in
+        # evidence order and a roof can be taken once, so a corner roof a side-reading
+        # hands to a Dearborn advertisement is a roof no longer free to the Lake Street
+        # one whose lot fronts it. Reporting only the gain would hide that, so both
+        # directions are counted and the delta below is the net.
+        lost = sorted(set(today) - set(seated))
+        by_street: dict[str, int] = {}
+        for business_id in gained:
+            street_id = seated[business_id]["street_id"]
+            by_street[street_id] = by_street.get(street_id, 0) + 1
+        out[label] = {
+            "adopted_faces": list(readings),
+            "in_force": tuple(readings) == ADOPTED_READINGS,
+            "would_seat": len(would),
+            "against_the_reading_in_force": len(would) - len(today),
+            "seats_that_the_reading_in_force_does_not": gained,
+            "seats_that_the_reading_in_force_does_not_by_street":
+                dict(sorted(by_street.items())),
+            "loses_against_the_reading_in_force": lost,
+            "would_still_refuse": len(refused),
+            "would_still_refuse_by_reason": {reason: sum(1 for row in refused
+                                                         if row["refusal"] == reason)
+                                             for reason in REFUSALS},
+        }
+    return out
+
+
+def derive() -> dict:
+    register = load(REGISTER)
+    gaz = {b["id"]: b for b in load(GAZETTEER)["businesses"]}
+    roofs = reconstructed_roofs()
+    named = named_dwellings()
+    homes = dwellings()
+    yards = yard_roofs()
+    faces = supply(roofs, homes, yards)
+
+    pool = [b for b in register["businesses"] if b["action"] == "street_only"]
+    pool.sort(key=lambda entry: rank_key(entry, gaz))
+
+    adoptions, refusals = allocate(pool, gaz, faces, roofs, homes, yards,
+                                   ADOPTED_READINGS)
 
     unplaceable = [b for b in register["businesses"]
                    if b["action"] == "unplaceable" and b.get("present_at_scene_date")]
@@ -415,15 +641,38 @@ def derive() -> dict:
             "street_name": fronting_street.street_name(street_id),
             "businesses_naming_it": len(named),
             "adopted": sum(1 for row in adoptions if row["street_id"] == street_id),
-            "roofs_fronting": len(face[FRONT]),
-            "roofs_fronting_free": len(face["free"]),
-            "roofs_fronting_home": len(face["homes"]),
-            "roofs_fronting_yard": len(face["yards"]),
-            "roofs_side_only": len(face[SIDE]),
-            "roofs_in_centreline_band": len(face[BAND]),
+            "roofs_lot_front": len(face[FRONT]),
+            "roofs_corner_side": len(face[SIDE]),
+            "roofs_on_the_adopted_face": sum(len(face[how])
+                                             for how in ADOPTED_READINGS),
+            "roofs_free": len(face["free"]),
+            "roofs_home": len(face["homes"]),
+            "roofs_home_named": len([sid for sid in face["homes"] if sid in named]),
+            "roofs_home_inferred": len([sid for sid in face["homes"]
+                                        if sid not in named]),
+            "roofs_yard": len(face["yards"]),
+            "roofs_in_centreline_band_declined": len(face[BAND]),
         }
 
-    widened = sum(1 for row in refusals if row["refusal"] == REFUSALS[1])
+    eligible = sum(1 for row in refusals if row["refusal"] == REFUSALS[1])
+    costed_readings = costed(pool, gaz, faces, roofs, homes, yards, adoptions)
+
+    # THE BAND, CONSIDERED AND DECLINED — recorded here rather than left to a document,
+    # so a later run reads the refusal off the same file it reads the adoption off and
+    # does not re-open it as an oversight (T-0416's acceptance).
+    band = costed_readings["a corner side or the band is a face"]
+    declined = {
+        "reading": DECLINED_READING,
+        "ruled": "The owner, 2026-08-30 (T-0416): the band is NOT added.",
+        "why": "A band is a distance from a centreline and not an orientation. A roof "
+               "within 25 m of a street's platted line may show it a wall, a gable end "
+               "or nothing at all, and no reading of the plat can say which. The corner "
+               "side adopted above is an orientation the plat does state.",
+        "it_would_have_seated": len(band["seats_that_the_reading_in_force_does_not"]),
+        "it_would_have_seated_ids": band["seats_that_the_reading_in_force_does_not"],
+        "it_would_have_cost": len(band["loses_against_the_reading_in_force"]),
+        "it_would_have_cost_ids": band["loses_against_the_reading_in_force"],
+    }
     return {
         "schema": 1,
         "generated_by": "tools/adopt_street_faces.py",
@@ -436,14 +685,27 @@ def derive() -> dict:
         "ruling": "The owner, 2026-08-29 (T-0354): a business the paper places on a "
                   "platted street and nothing narrower adopts a reconstructed roof "
                   "already standing on that street face.",
+        "ruling_extended": "The owner, 2026-08-30 (T-0416): a corner side IS a face — a "
+                           "building on a corner stands on both the streets it meets, "
+                           "and a business advertising on either is saying where its "
+                           "door is. The centreline band was offered in the same "
+                           "question and DECLINED.",
         "scene_date": SCENE_DATE,
         "reading": {
-            "adopted_face": FRONT,
-            "refused_faces": [SIDE, BAND],
-            "why": "An advertisement's street is where the door is. A corner side is the "
-                   "cross street's building shown end-on, and a centreline band is a "
-                   "distance rather than an orientation.",
-            "widened_reading_would_reach": widened,
+            "adopted_faces": list(ADOPTED_READINGS),
+            "refused_faces": [DECLINED_READING],
+            "why": "An advertisement's street is where the door is. A corner building has "
+                   "a door on each of the two streets it meets, so both are faces; a "
+                   "centreline band is a distance from a line rather than an "
+                   "orientation, and says nothing about which way a building looks.",
+            "considered_and_declined": declined,
+            "refused_for_want_of_a_face": eligible,
+            "refused_for_want_of_a_face_note":
+                "The count of businesses REFUSED FOR WANT OF A FACE, which is how many a "
+                "wider reading would let back into the deal — not how many it would "
+                "seat. `costed_readings` below deals every reading out in full and "
+                "reports what each actually stands up (T-0416).",
+            "costed_readings": costed_readings,
         },
         "counts": {
             "street_only_in_register": len(pool),
@@ -495,19 +757,33 @@ def limits(doc: dict) -> list[str]:
         elif roofs[structure_id] != "reconstructed":
             bad.append("%s adopts %s, whose building is now %r — limit 2 refuses a "
                        "promoted roof" % (who, structure_id, roofs[structure_id]))
-        elif fronting_street.fronts(structure_id, row["street_id"]) != FRONT:
-            bad.append("%s adopts %s, which does not front %s by its platted lot"
-                       % (who, structure_id, row["street_id"]))
+        else:
+            how = fronting_street.fronts(structure_id, row["street_id"])
+            if how not in ADOPTED_READINGS:
+                bad.append("%s adopts %s, which does not front %s by a lot front or a "
+                           "corner side — it reaches that street %s"
+                           % (who, structure_id, row["street_id"],
+                              "by the centreline band, which the owner declined as a "
+                              "face on 2026-08-30" if how == BAND else "not at all"))
+            elif row.get("face") != how:
+                # The `face` field is what a card, a note or a later pass reads to know
+                # WHICH claim the adoption makes. A record that says `lot front` over a
+                # corner is the quiet way this ruling gets overstated, so it is checked
+                # against the derivation rather than taken on trust.
+                bad.append("%s says it took %s by its %r, but %s reaches that street by "
+                           "its %r" % (who, row["street_id"], row.get("face"),
+                                       structure_id, how))
         if structure_id in seen:
             bad.append("%s is the second business on %s — one roof, one business"
                        % (who, structure_id))
         seen.add(structure_id)
         if not row.get("cites"):
             bad.append("%s cites no printing of its street" % who)
-    homes = dwellings()
-    for structure_id in sorted(seen & set(homes)):
-        bad.append("%s is a named household's dwelling and cannot also be adopted"
-                   % structure_id)
+    named = named_dwellings()
+    inferred = inferred_dwellings()
+    for structure_id in sorted(seen & (set(named) | set(inferred))):
+        bad.append("%s is a %s household's dwelling and cannot also be adopted"
+                   % (structure_id, "named" if structure_id in named else "n inferred"))
     for structure_id in sorted(seen & yard_roofs()):
         bad.append("%s is a yard building — a privy, a stable or a woodshed standing "
                    "behind a lot — and a business cannot be seated in one" % structure_id)
@@ -544,27 +820,47 @@ def check() -> int:
 def report() -> int:
     doc = derive()
     counts = doc["counts"]
-    print("STREET-FACE ADOPTION — T-0354, the owner's ruling of 2026-08-29\n")
+    print("STREET-FACE ADOPTION — T-0354, the owner's ruling of 2026-08-29,")
+    print("extended by his ruling of 2026-08-30 that a corner side is a face (T-0416)\n")
     print("  %-28s %s" % ("street_only in the register", counts["street_only_in_register"]))
     print("  %-28s %s" % ("adopted a street face", counts["adopted"]))
     print("  %-28s %s" % ("waiting", counts["refused"]))
     for reason, n in counts["refused_by_reason"].items():
         print("      %-40s %s" % (reason, n))
     print("  %-28s %s" % ("unplaceable, still open", counts["unplaceable_present_at_scene_date"]))
-    print("\n  BY STREET FACE")
+    print("\n  BY STREET FACE — `front` and `side` are both adopted faces; `band` is not")
     print("  %-20s %5s %5s %6s %5s %5s %5s"
-          % ("street", "ads", "took", "fronts", "free", "side", "band"))
+          % ("street", "ads", "took", "front", "side", "free", "band"))
     for street_id, row in sorted(counts["by_street"].items(),
                                  key=lambda kv: (-kv[1]["businesses_naming_it"], kv[0])):
         print("  %-20s %5d %5d %6d %5d %5d %5d"
               % (row["street_name"], row["businesses_naming_it"], row["adopted"],
-                 row["roofs_fronting"], row["roofs_fronting_free"],
-                 row["roofs_side_only"], row["roofs_in_centreline_band"]))
-    print("\n  BOTH READINGS, because the reader is owed the disagreement:")
-    print("      lot front only (this pass)              %d adopted"
-          % counts["adopted"])
-    print("      widened to a corner side or a band      %d more would become eligible"
-          % doc["reading"]["widened_reading_would_reach"])
+                 row["roofs_lot_front"], row["roofs_corner_side"], row["roofs_free"],
+                 row["roofs_in_centreline_band_declined"]))
+    print("\n  EVERY READING COSTED, because the reader is owed the disagreement the")
+    print("  decisions were made about. Eligible is not seated: refusals 3 and 4 still")
+    print("  hold, and the supply a wider reading adds is already net of a household's")
+    print("  home and a yard building, so each row below is DEALT rather than estimated.")
+    print("      %-36s %d refused for want of any face"
+          % ("in force:", doc["reading"]["refused_for_want_of_a_face"]))
+    for label, row in doc["reading"]["costed_readings"].items():
+        mark = "<-- IN FORCE" if row["in_force"] else ""
+        print("      %-34s %2d seated (%+d), %d still refused  %s"
+              % (label, row["would_seat"], row["against_the_reading_in_force"],
+                 row["would_still_refuse"], mark))
+        gains = row["seats_that_the_reading_in_force_does_not_by_street"]
+        print("          gains: %s" % (", ".join(
+            "%s +%d" % (fronting_street.street_name(street_id), n)
+            for street_id, n in gains.items()) or "nothing"))
+        if row["loses_against_the_reading_in_force"]:
+            print("          loses: %s"
+                  % ", ".join(row["loses_against_the_reading_in_force"]))
+    declined = doc["reading"]["considered_and_declined"]
+    print("\n  CONSIDERED AND DECLINED — the %s, %s" % (declined["reading"],
+                                                        declined["ruled"]))
+    print("      it would have seated %d further business(es): %s"
+          % (declined["it_would_have_seated"],
+             ", ".join(declined["it_would_have_seated_ids"]) or "none"))
     print("\n  ADOPTIONS")
     for row in doc["adoptions"]:
         print("      %-46s %-20s %s" % (row["business_name"][:46], row["street_name"],
@@ -578,7 +874,7 @@ def report() -> int:
 
 
 def self_test() -> int:
-    """Break each limit in turn against the committed table; every one must fire.
+    """Break each limit and each ruling boundary in turn; every one must fire.
 
     `--check` compares a rebuild before it reaches the limits, so a hand-edit trips the
     staleness gate first and the limits themselves would never be exercised by any
@@ -623,6 +919,37 @@ def self_test() -> int:
     case("an adoption on a roof that does not front its street",
          lambda b: first(b).update(street_id="washington"),
          "does not front")
+
+    # THE 2026-08-30 RULING'S OWN BOUNDARY. It widened what counts as a face by exactly
+    # one reading, and the two ways that widening could quietly become three are a record
+    # that reaches its street only by the DECLINED band, and a corner adoption that
+    # describes itself as a lot front. Neither is caught by any case above: both name a
+    # street the roof genuinely reaches, and the second is a true record of a real
+    # adoption with one field overstated.
+    corner = next((row for row in doc["adoptions"] if row["face"] == SIDE), None)
+    if corner is None:
+        print("  FAIL  nothing is adopted on a corner side, so the 2026-08-30 ruling "
+              "cannot be tested")
+        failed = 1
+    else:
+        case("a corner adoption that calls itself a lot front",
+             lambda b: next(row for row in b["adoptions"]
+                            if row["business_id"] == corner["business_id"]
+                            ).update(face=FRONT),
+             "says it took")
+
+    banded = next(((sid, street_id) for sid in sorted(reconstructed_roofs())
+                   for street_id, how in fronting_street.fronting(sid) if how == BAND),
+                  None)
+    if banded is None:
+        print("  FAIL  no roof reaches a street by the band, so the declined reading "
+              "cannot be tested")
+        failed = 1
+    else:
+        case("an adoption reaching its street only by the declined centreline band",
+             lambda b: first(b).update(structure_id=banded[0], street_id=banded[1],
+                                       face=BAND),
+             "declined as a face")
     case("two businesses on one roof",
          lambda b: b["adoptions"].__setitem__(
              1, dict(b["adoptions"][1], structure_id=first(b)["structure_id"])),
@@ -645,6 +972,20 @@ def self_test() -> int:
                  if how == FRONT)),
              "is a yard building")
 
+    # Refusal 4's OTHER half, and the one the corner-side ruling made live. A roof the
+    # inferred-household programme holds is somebody's home too, and it is invisible to
+    # `data/residents/`; the first re-derivation under the widened reading walked straight
+    # into one. This is the case that would have caught it.
+    inferred_only = sorted(set(inferred_dwellings()) - set(named_dwellings()))
+    if not inferred_only:
+        print("  FAIL  the inferred-household programme holds no roof of its own, so "
+              "refusal 4's second half cannot be tested")
+        failed = 1
+    else:
+        case("a business seated in a roof the inferred-household layer holds",
+             lambda b: first(b).update(structure_id=inferred_only[0]),
+             "inferred household's dwelling")
+
     # Limit 2's live half: a roof promoted out of `reconstructed` must fail. It cannot be
     # faked by mutating the table — the confidence is read from the structure — so this
     # asserts the reader that limit 2 depends on actually distinguishes the grades.
@@ -660,8 +1001,9 @@ def self_test() -> int:
     if failed:
         print("SELF-TEST FAIL")
         return 1
-    print("SELF-TEST PASS — all four limits and both roof refusals fire when broken "
-          "(9 cases)")
+    print("SELF-TEST PASS — all four limits, both halves of both roof "
+          "refusals and both edges of the 2026-08-30 face ruling fire when broken "
+          "(12 cases)")
     return 0
 
 

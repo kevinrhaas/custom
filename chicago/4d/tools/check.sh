@@ -91,6 +91,14 @@ step "every clapboard wall's stock re-derives from its deal" \
 step "the platted block and lot grid re-derives from the module" \
   python3 tools/generate_plat_lots.py --check
 
+# And the grid's own refusals still fire. The one that matters is the youngest: four
+# crossings can be found and still describe no block, because two committed centrelines
+# can converge to less than a corridor apart before they get there. Measured 2026-08-29
+# by T-0183 on the closure the owner ruled for at Market x South Water, which emitted a
+# 4,411 m2 bowtie with a plausible depth rather than refusing.
+step "…and a block whose rows have crossed is refused rather than emitted" \
+  python3 tools/generate_plat_lots.py --self-test
+
 # The dooryard garden pickets are the first record on the enclosure layer whose evidence
 # is a TREATMENT and not a place — the Kinzie-view plate shows picket-fenced garden plots
 # and no source puts a garden on any lot in this town. So the answer to "why this lot" is
@@ -183,6 +191,20 @@ step "the fort wood re-derives from the palisade and the apron it stands off" \
 # own primitive. It reads the committed masters' accessor bounds and decodes no mesh.
 step "no stack in the town is painted the colour of the roof it passes through" \
   python3 tools/measure_stack_fabric.py --gate --quiet
+
+# Its neighbour, on the same accessor bounds and the same principle (T-0333). The Town of
+# Chicago's by-law of 5 August 1835 section 18 — chicago_democrat_1835_08_19#c005 — carries
+# every stove pipe or chimney "at least eighteen inches above the roof" under a five-dollar
+# penalty, which is the first documented DIMENSIONAL constraint this project holds on
+# anything above a roof line. Every stack in the town already clears it; this is the ratchet
+# that stops one dropping back under. It does NOT decide which buildings the by-law reaches:
+# section 22's corporation limits are T-0334's and are not drawn yet, and nothing here is
+# conformed to a rule that may not bind it, because nothing has to move.
+step "every stack is carried eighteen inches above its roof, as the by-law of 5 August 1835 requires" \
+  python3 tools/measure_stack_ordinance.py --gate --quiet
+
+step "…and its own assertions still fire when broken" \
+  python3 tools/measure_stack_ordinance.py --self-test
 
 # The river wharves are the fourth record of this shape and the first whose rule
 # reads a record's OWN attribute rather than a trade table: a sidecar standing on
@@ -397,6 +419,16 @@ step "…and its absolute assertion still fires when a generated roof is put in 
 # so a bank that moves under the street is a red build rather than a silent hole.
 step "north water street is still the line its own derivation produces, and still dry" \
   python3 tools/derive_north_water.py --gate
+
+# T-0372. "Still dry" was a weaker question than it sounded: the gate above asks whether
+# any BEND stands in water, and a street can hug a bank for a hundred metres without
+# putting a vertex in it. The derivation now carries a clearance rule with two tiers —
+# the open reach owes the half module less the fit's own give, and the two ends, where
+# the street meets the water on purpose (it stops at the fork and crosses on a deck),
+# owe five metres. This is the proof the rule refuses each tier, and that the two
+# exemptions are load-bearing rather than a way of saying nothing.
+step "…and its own assertions still fire when broken" \
+  python3 tools/derive_north_water.py --self-test
 
 step "a block face carries one street line, across every generator that builds on it" \
   python3 tools/measure_street_line.py --gate --quiet
@@ -911,6 +943,15 @@ step "closing a ticket leaves the mirror fresh, and a stale one still fails" \
 step "stamping the changelog leaves both mirrors fresh, and a stale one still fails" \
   node tools/test_changelog_mirror.mjs
 
+# T-0180. The nightly bake decides whether it produced anything by asking this
+# script, so the script's own assertions are the gate on that decision. The two
+# it exists to hold are the two that would silently break it: publish.sh stamping
+# a THIRD path, and the exclusion widening from "the stamp moved" to "those two
+# files moved" — after which a real change to build.json or to the gate page
+# would stop opening a PR, which is the same dead signal in the other direction.
+step "the bake's content test refuses the stamp and nothing else" \
+  python3 tools/bake_content_changed.py --self-test
+
 # The duplicate-id remedy, tested in the only state it ever runs in. `restamp`
 # used to find the ticket by FILE (its own comment explains that with two files
 # sharing an id, nothing else can tell them apart) and then edit the queue by ID,
@@ -1000,16 +1041,46 @@ step "the documented residents on reconstructed roofs re-derive from the registe
 step "the minted documented residents re-derive from the register" \
   python3 tools/mint_documented_residents.py --check
 
-# And the pass beside it, on the other half of `new_resident` (T-0378). A person the
-# register reads ONLY from the post office's lists of uncalled-for letters has no trade,
-# so the pass above cannot reach him; 726 of them clear its eight refusals, which is a
-# change of scale that belongs to the owner (T-0379). This pass takes the ten the corpus
-# itself ranks highest — printed in more than ONE return of uncalled-for letters, months
-# apart — and gates them for the same reason: the return rule and the eight refusals are
-# what stop it becoming a list somebody chose. `--report` prints the mint and every
-# refusal with its reason.
+# And the pass that adds the rest of that half (T-0373): the `new_resident` people
+# the papers name with NO trade at all. There is no trade to anchor them, so the
+# whole pass is a residency test — the corpus must place them inside the town and
+# nowhere outside it, a bare "Chicago" must be corroborated by an address, a second
+# issue or the committed company they are printed beside, and the name itself must be
+# printed clear of the transcription's uncertainty marks. Gated because a refusal
+# that quietly stopped firing would mint 'The Blanshard household' out of the letters
+# `fG. BL NSHARD`, or seat a steamboat passenger from Green Bay in the town.
+# `--report` prints the 4 minted and all 382 refusals with their reasons.
+step "the residency-tested residents re-derive from the register" \
+  python3 tools/mint_placed_residents.py --check
+
+step "…and its own assertions still fire when broken" \
+  python3 tools/mint_placed_residents.py --self-test
+
+# And the pass beside it, on the other half of `new_resident` (T-0378, T-0379). A person
+# the register reads ONLY from the post office's lists of uncalled-for letters has no
+# trade, so the pass above cannot reach him. It used to take only the names held in more
+# than one return and leave the rest to a decision the owner had not made; he made it on
+# 2026-08-30 — HOLD ALL OF THEM — and this pass now mints every name its refusals admit,
+# which is most of the people in the town. Gated for the same reason and more of it: the
+# refusals are the only thing between a post-office list and the town's population, and
+# one of them quietly ceasing to fire would now be worth hundreds of records rather than
+# one. `--report` prints the mint and every refusal with its reason; `--scale` counts
+# what the ruling did to the town on whatever tree it is run against.
 step "the minted letter-list residents re-derive from the register" \
   python3 tools/mint_letter_list_residents.py --check
+
+# …and the ruling's own conditions, which --check cannot see. --check proves the records
+# are what the pass derives; this proves the DERIVATION is what the owner permitted —
+# every minted person carrying `letter_list_only` and the dated return behind it, and not
+# one of them holding a roof, a trade, a second member or a building that names them. The
+# failure mode it guards is silent: a later generator that deals roofs by household would
+# put seven hundred invented dwellings in the town off a post-office list, and nothing
+# about any single record would look wrong.
+step "the letter-list cohort is what the owner's ruling permits" \
+  python3 tools/mint_letter_list_residents.py --gate
+
+step "…and that gate's own assertions still fire when broken" \
+  python3 tools/mint_letter_list_residents.py --self-test
 
 step "the three levels mean what they say" \
   python3 tools/audit_confidence.py --strict
@@ -1055,6 +1126,18 @@ step "a street's invented line reaches the picture" \
 step "a spatial filter still cannot bias the sward's rank deal" \
   node tools/measure_rank_bias.mjs --self-test
 
+# The smoke's parts get re-cut whenever the town outgrows the ten-minute foreground
+# ceiling — four of them in 2026 alone — and docs/SMOKE-BUDGET.md's map of "which
+# parts cover which change" is the kind of table that goes quietly wrong the first
+# time a renderer module is renamed under it. So the map is not prose: it is a
+# structure in tools/smoke_budget.mjs, and this holds it against the tree. It fails
+# if a mapped path no longer exists, if a part of the body is covered by no row, if
+# `PARTS` in smoke_renderer.mjs has moved out from under it, or if an unmapped path
+# ever stops meaning THE WHOLE GATE — which is the property that makes the recipe
+# safe to follow (T-0235).
+step "the smoke's change-to-parts map still matches the tree" \
+  node tools/smoke_budget.mjs --self-test
+
 # The 1833-1835 newspaper corpus is the PAPERS epic's foundation: eighty-six issues
 # that the project could not cite until they had a register to resolve against. The
 # register is only worth something if it is true, so this asserts the count rather
@@ -1085,6 +1168,22 @@ step "every newspaper claim resolves, quotes verbatim, and the gazetteer is comp
 
 step "…and its own assertions still fire when broken" \
   python3 tools/compile_gazetteer.py --self-test
+
+# T-0305. Four times in its thirteen issues the Chicago American contradicts ITSELF about
+# a street, or prints one and loses the cross street that would locate it — the tailor's
+# Franklin-or-Lake, which Water street Wm. Sabine and John Dave[s] stood in, and the corner
+# of S. B. Cobb's saddlery. None of the four is closeable from the material this repository
+# holds: the page images are held outside it, and three of the four subjects appear nowhere
+# in the Democrat but a post-office letter list. So the four are DECLARED — each printing
+# by claim, page, column and the exact substring it has to carry — and re-derived here,
+# along with the negative half over all 73 Democrat issues. The day one of them is answered,
+# by an image or by an extraction pass reaching a card nobody has read, this says so instead
+# of docs/RESEARCH/american_self_contradictions.md going quietly out of date.
+step "the American's four self-contradictions still read as declared" \
+  python3 tools/measure_american_contradictions.py --gate
+
+step "…and its own assertions still fire when broken" \
+  python3 tools/measure_american_contradictions.py --self-test
 
 # T-0262. The gazetteer says what was PRINTED; the register says what the town has to
 # do about it — for every business an action and, where the action needs one, a

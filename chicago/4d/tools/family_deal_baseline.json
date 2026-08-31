@@ -3,8 +3,8 @@
   "$measured": "2026-08-28, T-0172. 400 synthetic deals per family per parcel. 0 refusals across all four parcels; 31 off-band claims on 25 (parcel, family) rows, every one a per-family CONSTANT, so each is made on 100 per cent of that family's deals. 12 of the 15 (family, field) pairs behind them already stand as landed offenders in band_claims_baseline.json; three do NOT — west H2 eave, west H2 pitch and household H1 eave — and those are the latent shape this sweep exists to catch, a card the recipe may deal and has not.",
   "$repairs": {
     "west": "T-0272 — DONE, 2026-08-29",
-    "infill": "T-0273",
-    "household": "T-0274",
+    "infill": "T-0273 — DONE",
+    "household": "T-0274 — DONE, 2026-08-30",
     "$why": "The repair is one shape in all three files and it is not an edit: replace the literal with family_bands.pitch_deg / wall_height_m sampled inside the family's own band and bounded by eave_limits, which is exactly what T-0144 and T-0145 did to the platted-block parcel. It moves the eave and the pitch on every standing record of those families, so it re-derives and re-bakes. One ticket per parcel because one bake per parcel is what a run holds."
   },
   "parcels": {
@@ -21,99 +21,8 @@
       "families": {}
     },
     "household": {
-      "why": "generate_inferred_households.py, `inferred_form`. Same shape again, keyed on the ARCHETYPE rather than the family, which is why `measure_band_claims.py`'s own root-cause section quotes this function. Repair is T-0274.",
-      "families": {
-        "A2": {
-          "archetype": "outbuilding",
-          "claims": [
-            {
-              "claim": "pitch 32.0 outside 33.69-45 deg",
-              "deals": 400,
-              "why": "`18.0 if roof == \"shed\" else 32.0` in `inferred_form`'s tail, against A2's 8:12-12:12. The third copy of the same literal."
-            }
-          ]
-        },
-        "A5": {
-          "archetype": "outbuilding",
-          "claims": [
-            {
-              "claim": "eave 2.05 outside 2.134-2.743 m",
-              "deals": 400,
-              "why": "`wall = 3.42 if door == \"wagon\" else (2.75 if door == \"stable\" else 2.05)` — the man-door 2.05 m against A5's 7-9 ft."
-            }
-          ]
-        },
-        "C2": {
-          "archetype": "frame_storefront",
-          "claims": [
-            {
-              "claim": "eave 3.25 outside 3.353-3.962 m",
-              "deals": 400,
-              "why": "`a(3.25)` in the `frame_storefront` branch, one wall for every C family, against C2's 11-13 ft."
-            },
-            {
-              "claim": "pitch 33.0 outside 33.69-42.51 deg",
-              "deals": 400,
-              "why": "`a(33.0)` in the same branch against C2's 8:12-11:12, under the floor by 0.69 deg."
-            }
-          ]
-        },
-        "C3": {
-          "archetype": "frame_storefront",
-          "claims": [
-            {
-              "claim": "eave 3.25 outside 5.486-6.706 m",
-              "deals": 400,
-              "why": "The same 3.25 m against C3's 18-22 ft — the widest miss here. The one C3 in the programme, `temple_lake_st_building`, stands at 5.05 m because the programme hands it a `form` override; the DEFAULT the parcel would deal an unoverridden C3 is this one."
-            }
-          ]
-        },
-        "D2": {
-          "archetype": "outbuilding",
-          "claims": [
-            {
-              "claim": "eave 2.05 outside 2.134-2.438 m",
-              "deals": 400,
-              "why": "D2 is paired with `outbuilding` in the programme and takes the man-door 2.05 m, against a 7-8 ft band. Five D2s in the programme."
-            },
-            {
-              "claim": "pitch 18.0 outside 18.435-33.69 deg",
-              "deals": 400,
-              "why": "The same pairing: shed, 18.0 deg, against D2's 4:12-8:12."
-            }
-          ]
-        },
-        "D3": {
-          "archetype": "frame_dwelling",
-          "claims": [
-            {
-              "claim": "eave 2.78 outside 2.438-2.743 m",
-              "deals": 400,
-              "why": "`a(5.05 if two else 2.78)` in the `frame_dwelling` branch, against D3's 8-9 ft."
-            }
-          ]
-        },
-        "H1": {
-          "archetype": "log_dwelling",
-          "claims": [
-            {
-              "claim": "eave 2.5 outside 3.353-3.962 m",
-              "deals": 400,
-              "why": "LATENT for the same reason as west H2, and reached differently: the programme pairs H1 with `log_dwelling`, whose branch deals a flat 2.5 m against H1's 11-13 ft — a metre short. The one H1 in the programme, `brown_boarding_house`, stands at 2.9 m on a programme `form` override (itself still outside the band, and invisible to band_claims_baseline because that record carries no `reconstruction.family`). Nothing in the repo says the card is bad."
-            }
-          ]
-        },
-        "W4": {
-          "archetype": "outbuilding",
-          "claims": [
-            {
-              "claim": "eave 2.05 outside 2.743-5.486 m",
-              "deals": 400,
-              "why": "The man-door 2.05 m against W4's 9-18 ft. Three W4s stand on it."
-            }
-          ]
-        }
-      }
+      "why": "GATED ABSOLUTELY — no entry may ever be added here. T-0274 took the constants out of `generate_inferred_households.py`'s `inferred_form`, the last of the four parcels to make the move. This one keyed the eave and the pitch on the ARCHETYPE rather than the family, so one figure per archetype reached every family that archetype serves — which is why `measure_band_claims.py`'s root-cause section quoted this function. Both values are now sampled inside the family's own authored band, bounded by `eave_limits` at both ends and by the family's ridge band once more, and the 31 standing inferred records were re-derived and re-baked in the same commit. Two of the limits could not be ASKED for before this ticket: `log_dwelling` and `frame_storefront` enforced a storey-dependent eave ceiling inside `validate()` and published no table, so `eave_limits` read the silence as 'no limit' — both now publish `wall_height_band_m`, the way `frame_dwelling` has since T-0142. 0 refusals, 0 off-band claims, 15 families. If a claim appears under `household`, the repair regressed.",
+      "families": {}
     }
   }
 }

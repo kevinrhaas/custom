@@ -10,8 +10,9 @@
  * `SMOKE_VIEWPORT=mobile` (or `desktop`) runs one of the two while iterating.
  * That is not the gate and the run says so on its first line.
  *
- * `SMOKE_STAGE=1` … `9` runs one part of each viewport's body (T-0060, re-cut
- * by T-0121 and T-0167), and `SMOKE_STAGE=1-2` runs a contiguous run of them.
+ * `SMOKE_STAGE=1` … `13` runs one part of each viewport's body (T-0060, re-cut
+ * by T-0121, T-0167, T-0346, T-0173 and T-0170), and `SMOKE_STAGE=1-2` runs a
+ * contiguous run.
  * The cuts sit at section boundaries measured for zero crossing bindings. It
  * exists because a steward run's single foreground command is capped at ten
  * minutes and by 2026-08-18 neither viewport's full pass fit inside it, so the
@@ -20,12 +21,28 @@
  * until three of the four DESKTOP quarters ran past the ceiling too, so each
  * quarter was halved; T-0167 measured the desktop profile that eight-way cut
  * had never been sized from and halved part 8, the thinnest margin on it.
+ * T-0346 cut PART 4 in three when it stopped fitting at all: profiled under this
+ * lane's own eight-way contention on 2026-08-30 it was killed at the ceiling with
+ * 6 m 17 s of its cost in ONE section, the scene-detail ladder. That section is
+ * now part 5 and the gate-and-chrome tail is part 6, so parts 5-9 became 7-11 and
+ * the mobile recipe's ranges move with them. The parts after the cut cost about
+ * 1 m 10 s, 6 m 17 s and 1 m 55 s against the ten minutes, measured the same way.
+ * T-0173 then HALVED PART 7, which had gone the same way: profiled on the steward
+ * runner the same day it was killed at 9 m 25 s with its last two assertions
+ * unrun, and 7 m 04 s of that was the three road-legibility stations. Two
+ * stations stay in part 7 and the third goes to a new part 8 with the aid taken
+ * standing at it and the batch merge under that — 4 m 48 s against 4 m 53 s of
+ * work — so parts 8-11 became 9-12. See ROAD_STATIONS and `readRoadStations`.
+ * T-0170 halved PART 10 for the same reason and on the same evidence: at
+ * 1280x800 on an IDLE runner it was killed at 9 m 20 s with the street readouts
+ * and the Settings units still to run, so old parts 11-12 became 12-13 and there
+ * are thirteen.
  *
  * A staged run is not the gate either, and says so; the gate is both viewports,
  * every part, e.g.:
  *
- *   for s in 1-2 3-4 5-6 7-9;   do SMOKE_VIEWPORT=mobile SMOKE_STAGE=$s node tools/smoke_renderer.mjs --published; done
- *   for s in 1 2 3 4 5 6 7 8 9; do SMOKE_VIEWPORT=desktop SMOKE_STAGE=$s node tools/smoke_renderer.mjs --published; done
+ *   for s in 1-2 3-6 7-9 10-13;               do SMOKE_VIEWPORT=mobile  SMOKE_STAGE=$s node tools/smoke_renderer.mjs --published; done
+ *   for s in 1 2 3 4 5 6 7 8 9 10 11 12 13;   do SMOKE_VIEWPORT=desktop SMOKE_STAGE=$s node tools/smoke_renderer.mjs --published; done
  *
  * `SMOKE_TIMING=1` stamps each check line with the elapsed clock. Off by
  * default; turn it on to profile a part, because a part that BREACHES the
@@ -40,7 +57,7 @@
  * Boot, the page-error check and the vendor checks run in EVERY invocation,
  * whichever stage is asked for: the summary separates "staged-section checks"
  * from those always-on checks so the parts can be audited to add up to an
- * unfiltered pass — the nine parts' section counts SUM to an unfiltered run's
+ * unfiltered pass — the thirteen parts' section counts SUM to an unfiltered run's
  * section count, and the always-on count is identical in every one of them.
  *
  * What it asserts, and why each one is here:
@@ -307,9 +324,15 @@ const FAR_TIMBER_BANKED = Object.keys(FAR_TIMBER_BANKED_BY_ID);
  * road that far off is a couple of pixels tall through a mile of haze, and a
  * threshold there would be a claim about fog, not about roads.
  */
+//
+// T-0173 — and `part` says which PART reads each of them. The three together
+// cost 7 m 04 s of a part measured at 9 m 25 s and still running, so parts 7 and
+// 8 take two of them and one: 2 m 13 s + 2 m 02 s against 2 m 49 s, which is what
+// puts the aid and the batch merge in the cheaper half, beside the station they
+// are taken at. Moving a station between the parts is this field and nothing else.
 const ROAD_STATIONS = [
-  { id: 'south_water', kind: 'anchor', what: 'from the walker’s eye, down an open street', minBands: 2 },
-  { id: 'from_above', kind: 'anchor', what: 'from the air, at the aerial anchor', minBands: 2 },
+  { id: 'south_water', part: 7, kind: 'anchor', what: 'from the walker’s eye, down an open street', minBands: 2 },
+  { id: 'from_above', part: 7, kind: 'anchor', what: 'from the air, at the aerial anchor', minBands: 2 },
   // R-BUG3. Neither anchor above STANDS ON A ROAD — the `south_water` viewpoint
   // is 101 m from the centreline it is named after (T-V2) and 17 m from the
   // nearest one — so the near band was empty at both and no threshold could
@@ -317,10 +340,84 @@ const ROAD_STATIONS = [
   // does, by clicking a verified street-control intersection in the Go to tab,
   // which puts the roadway under the camera and its coordinates stay in the
   // compiled index rather than being copied into this gate.
-  { id: 'lake_market', kind: 'intersection', what: 'standing on the crossing itself', minBands: 2 },
+  // R-A1's three assertions are taken standing HERE, so this station and the aid
+  // stay in one part however this list is re-divided (T-0173).
+  { id: 'lake_market', part: 8, kind: 'intersection', what: 'standing on the crossing itself', minBands: 2 },
 ];
 const ROAD_BANDS = [[2, 40], [40, 100], [100, 250], [250, 600], [600, 4000]];
 const ROAD_GATED_BEYOND_M = 600;
+
+/**
+ * T-0173 — the road-legibility stations, read by whichever PART owns them.
+ *
+ * These three stations were one block inside part 7, and profiled on the steward
+ * runner (SMOKE_TIMING=1, 2026-08-30) that block was 7 m 04 s of a part that was
+ * killed at 9 m 25 s with its tail unrun. So the cut that makes part 7 fit had to
+ * fall INSIDE the block: neither of the part's own `// --- ` section boundaries
+ * leaves both sides more than 2 m 36 s of margin, and 2 m 36 s is what T-0121
+ * already proved is not a margin on a machine whose cost tracks its neighbours.
+ *
+ * The stations are the natural grain and the only one that crosses no binding.
+ * Each teleports to its own viewpoint, takes its own frames and answers its own
+ * `check`; none reads anything a sibling station left standing. `part:` on the
+ * station is therefore the whole of the split — see ROAD_STATIONS.
+ *
+ * The movement report moves with them, and it is the same report it always was:
+ * printed, never gated, and comparing only what THIS invocation measured. That
+ * is what already let `SMOKE_VIEWPORT=mobile` run without retiring desktop's
+ * half of the bank, and it is why a part reporting on its own stations is not a
+ * new rule. `--update-road-bands` merges per band and leaves untouched bands
+ * alone, so a part banks what it read.
+ */
+async function readRoadStations(page, label, stations) {
+  const roadRuns = [];   // T-0016: what each station's bands read this run
+  for (const station of stations) {
+    const road = await roadContrast(page, { id: station.id, kind: station.kind });
+    roadRuns.push({ id: station.id, bands: road.bands });
+    const bands = road.bands.filter((b) => b.gated);
+    const bad = bands.filter((b) => b.medianDeltaL < ROAD_MIN_DELTA_L
+      || b.perceptible < ROAD_MIN_PERCEPTIBLE);
+    const report = road.bands.map((b) => `${b.lo}-${b.hi} m: `
+      + (b.nProjected < ROAD_MIN_PROBES ? `projects ${b.nProjected}× (not gated)`
+        : `ΔL* ${b.medianDeltaL.toFixed(1)} of ${b.opaqueDeltaL.toFixed(1)} opaque, `
+          + `${(b.perceptible * 100).toFixed(0)} % perceptible of ${b.nBare} bare, `
+          // R-M1a. Both halves of the owner's ruling, measured beside the bar
+          // they are going to join: Weber says how distinguishable the road
+          // is whatever the exposure, groundL says whether there is light to
+          // distinguish it by. Neither is gated yet — R-M1b sets the bars.
+          + `weber ${b.weber.toFixed(4)} (n ${b.weberN}) over ground L* `
+          + `${b.groundL.toFixed(1)}, seen ${b.n} of `
+          + `${b.nProjected} projected (${b.nBare} clear of flora)`
+          + `${b.gated ? '' : ' (reported only)'}`)).join(' · ');
+    check(`${label}: the roads reach the screen ${station.what}`,
+      bands.length >= station.minBands && bad.length === 0, report);
+    console.log(`        ${station.id}: ${report}`);
+  }
+
+  // T-0016 (R-M1d) — MOVEMENT AGAINST THE BANK, BOTH DIRECTIONS.
+  //
+  // Printed, never gated. Every check above has already run and its verdict
+  // stands whatever this says; the point is only that a band which collapses
+  // inside a passing station stops being invisible. A filtered run banks
+  // nothing and compares only what it measured, so `SMOKE_VIEWPORT=mobile`
+  // cannot silently retire desktop's half of the baseline.
+  const vp = label.split(' ')[0];
+  const observed = collectRoadBands(vp, roadRuns, {
+    failing: (b) => b.medianDeltaL < ROAD_MIN_DELTA_L || b.perceptible < ROAD_MIN_PERCEPTIBLE,
+  });
+  Object.assign(ROAD_BAND_OBSERVED, observed);
+  const bankedHere = Object.fromEntries(
+    Object.entries(ROAD_BAND_BANKED).filter(([k]) => k.startsWith(`${vp}/`)));
+  if (!Object.keys(bankedHere).length) {
+    console.log(`        road bands: nothing banked for ${vp} yet`
+      + ' — re-run with --update-road-bands to bank this run (T-0016)');
+  } else {
+    for (const line of renderRoadBands(compareRoadBands(bankedHere, observed))) {
+      console.log(`        ${line}`);
+    }
+  }
+}
+
 // R-A1. How much of the frame the aid has to move at full strength before this
 // gate believes the control reaches the render at all.
 //
@@ -422,10 +519,12 @@ const shadowRigFor = (level, touch) => {
  * stage split has outgrown its sections — and the answer to it is to re-cut the
  * stages, NOT to measure fewer stands: measuring one friendly stand is the
  * defect this set exists to close. T-0166 re-cut the four stages into eight, so
- * this sweep is now inside PART 4 rather than a whole quarter, and T-0167 then
- * measured that part at DESKTOP: **7 m 07 s**, inside the ceiling with 2 m 53 s
- * to spare, so the instruction that used to stand here — run part 4 outside the
- * ceiling, or read the mobile pass instead — is withdrawn. It is a reading and
+ * this sweep is now inside PART 5 — it was inside part 4 until T-0346, which cut
+ * it out into a part of its own after measuring it at 6 m 17 s of a part the
+ * ten-minute ceiling was killing outright. T-0167 had measured that part at
+ * DESKTOP at **7 m 07 s**, inside the ceiling with 2 m 53 s to spare, so the
+ * instruction that used to stand here — run part 4 outside the ceiling, or read
+ * the mobile pass instead — is withdrawn. It is a reading and
  * not a constant: these desktop numbers move by minutes between runs on a
  * software renderer, which is why the margin is what this sweep is judged on
  * and why `SMOKE_TIMING=1` exists to re-take it.
@@ -926,6 +1025,16 @@ const stamp = () => {
 // boundary has to be able to say what the reach was before and after, and a
 // green line that prints nothing makes that a re-run with an edited gate.
 // Deterministic figures only — the output stays comparable between runs.
+// A mesh census reads as sixty-odd repetitions of two names, which is a wall of
+// text nobody reads, so a name list is reported as a tally: `frontage x1,
+// frontage-chunk x60`. Order is first-appearance, so the shared mesh stays at
+// the head where the layer puts it.
+function tallyNames(names) {
+  const counts = new Map();
+  for (const n of names ?? []) counts.set(n, (counts.get(n) ?? 0) + 1);
+  return [...counts].map(([n, c]) => (c === 1 ? n : `${n} x${c}`)).join(', ');
+}
+
 function check(name, cond, detail = '', show = false) {
   if (inStageWork) stageWorkChecks += 1;
   const t = TIMING ? stamp() : '';
@@ -1007,7 +1116,47 @@ if (ONLY) console.log(`NOT THE FULL GATE — viewports filtered to "${ONLY}"\n`)
 // was the tail, so the ninth part is APPENDED and parts 1-7 keep their numbers:
 // the pairing rule survives as 1+2, 3+4, 5+6, 7+8+9, and the mobile recipe's
 // last command widens from `7-8` to `7-9`.
-const PARTS = 9;
+// T-0346 cut PART 4 into THREE, and this one could not be an append: the two new
+// sections sit in the middle of the body, so parts 5-9 are renumbered 7-11 and
+// the old part 4 becomes 4 + 5 + 6. The cut is measured, not guessed — part 4 was
+// being killed at the ceiling and 6 m 17 s of its cost was one section, the
+// scene-detail ladder, which walks every stand at every tier and cannot be halved
+// again without walking the set twice. So the ladder is part 5 on its own and the
+// gate-and-chrome tail is part 6. Both boundaries are named section boundaries
+// re-verified for crossing bindings: exactly one crossed (part 4's `stats`, read
+// for its draw-call ceiling), and part 5 now reads that ceiling itself.
+// The pairing rule survives as 1+2, 3+4+5+6, 7+8, 9+10+11 — the same content in
+// the same four mobile commands, whose ranges become `1-2 3-6 7-8 9-11`.
+// T-0173 HALVED PART 7 and this one could not be an append either, so parts 8-11
+// are renumbered 9-12 and the old part 7 becomes 7 + 8. The cut is measured, not
+// guessed: profiled with SMOKE_TIMING=1 on the steward runner on 2026-08-30 at
+// load 0.8-2.9, part 7 was killed at 9 m 25 s with its last two assertions unrun,
+// and 7 m 04 s of its cost was ONE block — the three road-legibility stations,
+// each of which teleports to its own viewpoint and screenshots it. No boundary
+// between the part's own `// --- ` section headers leaves both sides a margin
+// (the best is 7 m 37 s against 1 m 30 s), so the cut falls at the station, which
+// is the grain the block is made of and crosses no binding: `roadRuns` is local
+// to the block, the movement report built from it is printed rather than gated
+// and has always compared only what the invocation measured, and
+// `--update-road-bands` merges per band. R-A1's three assertions are taken
+// STANDING AT `lake_market`, so that station goes with them: part 7 keeps
+// `south_water` and `from_above` at 2 m 13 s + 2 m 02 s, part 8 takes
+// `lake_market` at 2 m 49 s plus the aid at 1 m 04 s and the batch merge.
+// The pairing rule survives again as 1+2, 3+4+5+6, 7+8+9, 10+11+12 — the same
+// content in the same four mobile commands, ranges `1-2 3-6 7-9 10-12`.
+// T-0170 HALVED PART 10, the last part on T-0167's profile still over the
+// ceiling: measured at 1280x800 on an IDLE runner (load average 0.27-1.48, no
+// other Chromium on the box) it was killed at 9 m 20 s with the street readouts
+// and the Settings units still to run, so the ten minutes had never contained
+// it. It carried no `// --- section ---` headers, which is why T-0167 left it;
+// the seams are named now and the cut is the one the profile chose — the ragged
+// boundary and everything after it becomes part 11, so old parts 11 and 12 are
+// renumbered 12 and 13. `anyStage(7, 10)` becomes `anyStage(7, 10, 11)`: both
+// halves read `streetLayer`, the first for the road panels and the second for
+// the readouts. The pairing rule is unchanged in content — 1+2, 3+4+5+6, 7+8+9,
+// 10+11+12+13 — and the mobile recipe's last range widens from `10-12` to
+// `10-13`, still four commands.
+const PARTS = 13;
 const STAGE = process.env.SMOKE_STAGE || '';
 // `3` is one part; `3-4` is a contiguous run of them; `1,5-6` is any set. The
 // range form exists so the cheap viewport does not pay eight boots to run a
@@ -1032,7 +1181,7 @@ if (typeof wantedParts === 'string') {
 }
 if (STAGE) console.log(`NOT THE FULL GATE — stages filtered to "${STAGE}" of ${PARTS}\n`);
 const stageOn = (n) => !wantedParts || wantedParts.has(n);
-// Readability at the guard on a reading shared by several parts: `anyStage(5, 7)`
+// Readability at the guard on a reading shared by several parts: `anyStage(7, 10, 11)`
 // says which parts need it, and adding a part to that list is the whole edit.
 const anyStage = (...ns) => ns.some(stageOn);
 const startedAt = Date.now();
@@ -1083,7 +1232,7 @@ for (const [label, viewport, touch] of [
   page.setDefaultTimeout(90_000);
 
   // A fresh boot stands at the GATE SCREEN, and the part that enters the town
-  // is part 4's "the gate and the chrome" section. Every part after it that
+  // is part 6's "the gate and the chrome" section (part 4's until T-0346). Every part after it that
   // measures a page.screenshot frame (those include DOM overlays; the
   // GL-capture checks do not) or clicks the panel chrome (which has no layout
   // at all while the gate stands, so a click waits ninety seconds for a
@@ -1140,7 +1289,7 @@ for (const [label, viewport, touch] of [
   // it now fails in one round trip with a sentence naming what covered it,
   // instead of in ninety seconds with a call log that reads like a broken
   // control. A real `page.click` stays the instrument wherever the trusted event
-  // ITSELF is the subject: the confidence menu in part 4 is the case, and it says
+  // ITSELF is the subject: the confidence menu in part 6 is the case, and it says
   // so where it stands.
   const clickChrome = async (sel) => {
     const why = await page.evaluate((s) => {
@@ -1159,8 +1308,17 @@ for (const [label, viewport, touch] of [
       const top = document.elementFromPoint(b.x + b.width / 2, b.y + b.height / 2);
       if (!top || !(top === el || el.contains(top))) {
         const cls = top && typeof top.className === 'string' ? top.className : '';
+        // NAME THE OVERLAY, NOT JUST THE TAG IT ENDS IN (T-0369). The first
+        // report of this failure said only `<h2>`, and an `<h2>` is a heading
+        // inside something — the thing worth naming is the panel that heading
+        // belongs to. Walking up to the nearest ancestor carrying an id turns
+        // "covered by <h2>" into "covered by <h2> inside #popup", which is the
+        // whole diagnosis of a stale overlay left open by an earlier stage.
+        let owner = top;
+        while (owner && !owner.id && owner !== document.body) owner = owner.parentElement;
+        const inside = owner && owner.id && owner !== el ? ` inside #${owner.id}` : '';
         return `${s} is covered at its own centre by `
-          + `<${top ? top.tagName.toLowerCase() : 'nothing'}${cls ? ` class="${cls}"` : ''}>`;
+          + `<${top ? top.tagName.toLowerCase() : 'nothing'}${cls ? ` class="${cls}"` : ''}>${inside}`;
       }
       // A real mouse press FOCUSES a focusable control, and an untrusted
       // `.click()` does not — which is a difference the suite already depends on
@@ -1282,7 +1440,7 @@ for (const [label, viewport, touch] of [
                terrainProblems: api.problems.filter((t) => /^\s*(terrain|water)\b/i.test(t)) };
     });
 
-    // Read once, shared by parts 5 and 7 (T-0060, re-cut by T-0121): the street
+    // Read once, shared by parts 7 and 9 (T-0060, re-cut by T-0121 and T-0346): the street
     // layer, the flora rooted around it, the building anchors and the two
     // readouts. Its checks span both of those parts, so the reading is taken
     // before the split — and skipped when neither runs, because it is the most
@@ -1290,12 +1448,12 @@ for (const [label, viewport, touch] of [
     // viewpoints, so it does not care what ran before it.
     //
     // T-0121 narrowed the guard from "stage 3 or stage 4" to the two PARTS that
-    // actually read it: parts 6 and 8 hold no reference to `streetLayer`, and
+    // actually read it: parts 9 and 11 hold no reference to `streetLayer`, and
     // under the old guard each of them would have paid for it anyway — four
     // times over the desktop pass instead of twice, on the very reading this
     // gate can least afford.
     let streetLayer = null;
-    if (anyStage(5, 7)) {
+    if (anyStage(7, 10, 11)) {
       streetLayer = await page.evaluate(() => {
         const a = window.__chicago4d;
         // Sample the dynamic flora from a known dry South Division viewpoint.
@@ -3023,6 +3181,35 @@ for (const [label, viewport, touch] of [
         && boards.devices[0] === 'carpenter_south_water_store',
       `${boards.devices?.length} device(s) [${(boards.devices ?? []).join(', ')}]`);
 
+    // --- and part 1 hands the page on clean (T-0369) -------------------------
+    //
+    // The twenty-five aims above are `pick()` calls, and a pick that lands on a
+    // structure OPENS THE INSPECT CARD. The last one lands on the Tremont
+    // House's signboard, so this part used to END with `#popup` standing —
+    // `position: fixed`, `z-index: 30`, `top: 58px`, `right: 12px`, 392 px wide,
+    // which on a 1280 x 800 viewport is squarely on top of the HUD panel's tab
+    // strip. Nothing between here and part 7 reads panel chrome, so nothing
+    // noticed. Part 8 is nothing BUT panel chrome and its first statement clicks
+    // a tab, so it inherited an unclickable strip and died on it: same commit,
+    // one command apart, `SMOKE_STAGE=8` reached the settings tab and
+    // `SMOKE_STAGE=1,8` failed with `covered at its own centre by <h2>`.
+    //
+    // So the part that opened the card closes it, and the teardown is ASSERTED
+    // rather than silent. A stage that hands on an overlay standing over the
+    // chrome is the defect, and the next one to do it should be named here — at
+    // the boundary where it happened — instead of surfacing four parts later
+    // under some other gate's name.
+    const part1Overlays = await page.evaluate(() => {
+      window.__chicago4d.popup.close();
+      return ['popup', 'control-help'].filter((id) => {
+        const el = document.getElementById(id);
+        return el && !el.hasAttribute('hidden');
+      });
+    });
+    check(`${label}: part 1 hands the page on with nothing standing over the chrome`,
+      part1Overlays.length === 0,
+      `still showing: ${part1Overlays.map((id) => `#${id}`).join(', ') || 'nothing'}`);
+
     inStageWork = false;
     } // end PART 1 (T-0060 stage 1a, cut by T-0121)
     // PART 2 — the goods at the trading frontages through the confidence
@@ -3903,6 +4090,21 @@ for (const [label, viewport, touch] of [
         census: f?.census ?? null,
         meshes: f?.group?.children?.length ?? 0,
         names: (f?.group?.children ?? []).map((c) => c.name),
+        // AUTHORED AGAINST DRAWN (T-0349). A layer's group holds the meshes the
+        // layer built AND whatever the frame's draw-call economy has since put
+        // there: `far-merge.js` welds a distant cluster into one extra mesh,
+        // parents it onto the same group and marks it `userData.farMerged`. So
+        // `children.length` is not a census of the layer — it is the census plus
+        // the camera's history, and it moves with where a stage last stood.
+        // These two split that apart: `authored` is what the layer laid, which
+        // is the number a census clause can hold across stages, and `merged` is
+        // the artefact count, reported beside it rather than folded into it.
+        authored: (f?.group?.children ?? []).filter((c) => !c.userData?.farMerged).length,
+        authoredNames: (f?.group?.children ?? [])
+          .filter((c) => !c.userData?.farMerged).map((c) => c.name),
+        merged: (f?.group?.children ?? []).filter((c) => !!c.userData?.farMerged).length,
+        mergedNames: (f?.group?.children ?? [])
+          .filter((c) => !!c.userData?.farMerged).map((c) => c.name),
         verts,
         letterVerts: letters?.geometry?.getAttribute('position')?.count ?? 0,
         letterMap: !!letters?.material?.map,
@@ -4029,36 +4231,69 @@ for (const [label, viewport, touch] of [
       `post ${frontage.highest?.toFixed(2)} m over its grade against a recorded `
       + `${frontage.postHeight} m, board's underside ${frontage.boardLow?.toFixed(2)} m up, `
       + `${frontage.clearOfTrack} m clear of the travelled track`);
-    // THE NAME IS DRAWN, AND IT IS THE RECORD'S. This is the only lettering in the
-    // renderer (L135), and it is the record's wording rather than the renderer's:
-    // a board whose painted name drifted from the record would be this project
-    // inventing a sign, which is exactly what L25 and L130 refuse. Thirty-seven
-    // meshes and no more — the shared timber, the river walk's fifteen culling
+    // THE LAYER DRAWS THE MESHES IT LAID, AND ONLY THOSE ARE ITS OWN (T-0349).
+    // This census used to be the seventh clause of the lettering check below,
+    // and it was the only clause in that conjunction whose verdict depended on
+    // what had run BEFORE it: stage 1-2 read 67 on desktop and failed, stage 2
+    // alone read 62 and passed, on the same tree and the same published mirror
+    // minutes apart, and the six lettering clauses were green in both. The five
+    // extra were all `frontage-far-merge` — `far-merge.js` welds a distant
+    // cluster of this layer's chunks into one more mesh, parents it onto this
+    // same group and marks it `userData.farMerged`, and stage 1 walks the
+    // desktop camera somewhere that causes five such merges where stage 2 alone
+    // and the mobile viewport cause none. So `children.length` was never a
+    // census of the layer; it was the layer plus the camera's history, reported
+    // under a name that promised the painted name was wrong.
+    //
+    // The count is not dropped, it is re-stated over the set that can carry it:
+    // the meshes the layer AUTHORED, which is every child that is not a merge
+    // artefact. Sixty-two — the shared timber, the river walk's fifteen culling
     // chunks (T-0119), the town street edge's thirty-four (T-0069 laid
     // twenty-one; T-0198's six reconciled South Water placements welded two runs
     // into one and T-0199's last five welded two more, taking it to eighteen;
     // T-0240 laid Randolph Street's thirteen block faces and took it to
     // thirty-three; T-0196 reconciled three Lake Street placements, and clearing
     // old_bank_building off blk_lake_lasalle's north face opened a fourteenth
-    // Lake run west of the ground break that still cuts it) and the THREE
-    // street-fence meshes — one per covered street
-    // that carries a fence, which T-0198 split off so the boards could leave the
-    // shadow map while the fences stayed in it, and which is why this number
-    // moves with `EDGE_STREETS` — all on ONE material, and the painted name on
-    // its own mesh, the only thing here that may carry a texture.
+    // Lake run west of the ground break that still cuts it), the THREE
+    // street-fence meshes — one per covered street that carries a fence, which
+    // T-0198 split off so the boards could leave the shadow map while the fences
+    // stayed in it, and which is why this number moves with `EDGE_STREETS` — and
+    // the lettering mesh. 53 -> 61 with T-0241's Washington faces, because the
+    // walk is chunked one mesh per run and Washington laid eight more of them;
+    // T-0196's Lake Street repair opens a forty-first run, so 62.
+    //
+    // The merge artefacts are REPORTED and not asserted, and that asymmetry is
+    // the finding: how many of them exist is a fact about where the camera has
+    // been, so a number here would be asserting the walk this suite happens to
+    // take. What is asserted about them is that they are the layer's own kind of
+    // artefact — every extra child is a `frontage-far-merge` — so a stray mesh
+    // parented onto this group by anything else still fails.
+    check(`${label}: the frontage layer draws the meshes it authored`,
+      frontage.authored === 62
+        && frontage.mergedNames.every((nm) => nm === 'frontage-far-merge'),
+      `${frontage.authored} authored mesh(es) (${tallyNames(frontage.authoredNames)}), `
+      + `${frontage.merged} far-merge artefact(s) `
+      + `[${tallyNames(frontage.mergedNames) || 'none'}], `
+      + `${frontage.meshes} drawn in all`,
+      // PRINTED ON A PASS TOO (the `show` flag, T-0187), because the drawn count
+      // is the number this ticket found varying with run order and a reading
+      // nobody can see is a reading nobody can check. A green line here states
+      // both figures, so the next run that wonders whether the merge artefacts
+      // are still arriving can read it off the log instead of re-measuring.
+      true);
+    // THE NAME IS DRAWN, AND IT IS THE RECORD'S. This is the only lettering in the
+    // renderer (L135), and it is the record's wording rather than the renderer's:
+    // a board whose painted name drifted from the record would be this project
+    // inventing a sign, which is exactly what L25 and L130 refuse. The painted
+    // name is on its own mesh, the only thing in this layer that may carry a
+    // texture; the timber it hangs over is all on ONE material and carries none.
     check(`${label}: the board carries the record's own name, painted`,
       frontage.census?.lettered === 1 && frontage.letterVerts >= 6
         && frontage.letterMap === true && frontage.timberMap === false
         && frontage.lettering === frontage.recordText
         && frontage.recordText === 'GREEN TREE'
-        && frontage.textGrade === 'inferred'
-        // 53 -> 61 with T-0241's Washington faces, for the reason stated above:
-        // this number moves with `EDGE_STREETS` because the walk is chunked one
-        // mesh per run and Washington laid eight more of them. T-0196's Lake
-        // Street repair opens a forty-first run, so 62.
-        && frontage.meshes === 62,
-      `"${frontage.lettering}" on ${frontage.letterVerts} vertices across `
-      + `${frontage.meshes} mesh(es) (${frontage.names?.join(', ')}), record says `
+        && frontage.textGrade === 'inferred',
+      `"${frontage.lettering}" on ${frontage.letterVerts} vertices, record says `
       + `"${frontage.recordText}" graded ${frontage.textGrade}`);
 
     // AND IT READS FROM THE STREET, which is what a walk and a signboard are FOR.
@@ -6773,6 +7008,34 @@ for (const [label, viewport, touch] of [
             + `against a documented ${s.wallHeight} m wall`).join('; ')
           : `${claimed.length} structures agree with their documented wall height`);
 
+    inStageWork = false;
+    } // end PART 4 (T-0060 stage 2b, cut by T-0121, cut again by T-0346)
+    // PART 5 — the scene-detail ladder, and nothing else. T-0346 cut it out of
+    // part 4 because it IS part 4's cost. Profiled under this lane's own eight-way
+    // contention on 2026-08-30, part 4 reached this section at 1 m 10 s and left it
+    // at 7 m 27 s: one section of the ten was 6 m 17 s of a part the ten-minute
+    // ceiling was killing outright. The sweep walks every stand at every tier and
+    // cannot be halved again without walking the set twice — which is the whole
+    // saving T-0135 built it around — so it becomes a part on its own. That is the
+    // honest shape for a section whose cost is one indivisible measurement.
+    //
+    // It inherits NO POSE. `order` below teleports to each stand itself and
+    // finishes at the reference frame on purpose, so the cut needed no re-framing
+    // here and no `enterTown()`: the town is not entered until part 6. The one
+    // binding that did cross this boundary was the draw-call ceiling, read again
+    // below rather than borrowed from part 4's `stats`.
+    if (stageOn(5)) {
+    inStageWork = true;
+
+    // T-0346 — the call ceiling, read here rather than carried across the cut.
+    // Part 4's budget block is the REFERENCE reading and is where the number is
+    // pinned; this is the GATE. Since the cut they are separate commands, so a
+    // `const` over there is not in scope here. Read out of `stats.budget` exactly
+    // as it is there, so the bar still follows its definition site in main.js and
+    // cannot be made green by editing this file.
+    const callBudget = (await page.evaluate(
+      () => window.__chicago4d.stats())).budget.drawCalls;
+
     // --- scene detail -------------------------------------------------------
     //
     // The triangle ceiling used to be one hard number for everyone. It is now the
@@ -6896,10 +7159,10 @@ for (const [label, viewport, touch] of [
     }, STANDS);
     for (const s of detail.seen) {
       check(`${label}: scene detail '${s.level}' stays inside its own ceiling at the WORST stand`,
-        s.worstTris.tris <= s.ceiling && s.worstCalls.calls <= stats.budget.drawCalls,
+        s.worstTris.tris <= s.ceiling && s.worstCalls.calls <= callBudget,
         `${s.worstTris.tris.toLocaleString('en-US')} tris of `
         + `${s.ceiling.toLocaleString('en-US')} at ${s.worstTris.label}, `
-        + `${s.worstCalls.calls} calls of ${stats.budget.drawCalls} at ${s.worstCalls.label} `
+        + `${s.worstCalls.calls} calls of ${callBudget} at ${s.worstCalls.label} `
         + `— spread: ${s.atStands.slice().sort((a, b) => b.tris - a.tris)
           .map((x) => `${x.label} ${x.tris.toLocaleString('en-US')}/${x.calls}c`).join(' · ')}`);
     }
@@ -6913,9 +7176,9 @@ for (const [label, viewport, touch] of [
       .flatMap((lv) => lv.atStands.map((x) => ({ ...x, level: lv.level })))
       .reduce((a, b) => (b.calls > a.calls ? b : a));
     check(`${label}: draw calls under budget at the town's WORST frame`,
-      townWorstCalls.calls <= stats.budget.drawCalls,
+      townWorstCalls.calls <= callBudget,
       `${townWorstCalls.calls} calls at ${townWorstCalls.label}, '${townWorstCalls.level}' `
-      + `(budget ${stats.budget.drawCalls}) — spread by level: `
+      + `(budget ${callBudget}) — spread by level: `
       + detail.seen.map((lv) => `${lv.level} ${lv.worstCalls.calls} at ${lv.worstCalls.label}`)
         .join(' · '));
     // Asserted PER STAND rather than on one reading, because "turning it down
@@ -7138,6 +7401,18 @@ for (const [label, viewport, touch] of [
         + `worst ${String(s.worstCalls.calls).padStart(4)} calls at ${s.worstCalls.label}`);
     }
 
+    inStageWork = false;
+    } // end PART 5 (the scene-detail ladder, cut out of part 4 by T-0346)
+    // PART 6 — the gate, the chrome and the confidence menu's own clicks: the
+    // tail of what was part 4, and the point at which an unfiltered pass ENTERS
+    // THE TOWN. It stands alone because the sweep above it had to, and it is the
+    // right side of the boundary to have been left on: every check in it is a
+    // real click on the HUD, and none of them shares a reading with the budgets
+    // or the ladder. Measured at about 1 m 55 s under load on 2026-08-30, the
+    // cheapest of the three.
+    if (stageOn(6)) {
+    inStageWork = true;
+
     // --- the gate and the chrome -------------------------------------------
     await page.click('#gate-btn');
     await page.waitForTimeout(150);
@@ -7213,13 +7488,15 @@ for (const [label, viewport, touch] of [
       JSON.stringify(cmRestored));
 
     inStageWork = false;
-    } // end PART 4 (T-0060 stage 2b, cut by T-0121)
-    // PART 5 — navigation through the batch merge: the readouts, the
-    // road-legibility aid and the merge the reach below stands on.
-    if (stageOn(5)) {
+    } // end PART 6 (the tail of T-0060 stage 2b, cut out of part 4 by T-0346)
+    // PART 7 — navigation through the second road-legibility station: the
+    // readouts, the streets the heightfield carries, and the roads read from the
+    // walker's eye and from the air. T-0173 cut the crossing station, the aid
+    // and the batch merge out of here into part 8.
+    if (stageOn(7)) {
     inStageWork = true;
 
-    // A fresh boot is still standing at the GATE SCREEN: stage 2's "the gate
+    // A fresh boot is still standing at the GATE SCREEN: part 6's "the gate
     // and the chrome" section is what enters the town, releases the pointer
     // and dismisses the first-entry navigation guide, and this point of an
     // unfiltered pass runs long after it did. The road-legibility bands
@@ -7340,52 +7617,28 @@ for (const [label, viewport, touch] of [
     // out, which is indistinguishable from a band with no road in it.
     // R-M1c finished that argument one level down: the band's SCORE divided by
     // `seen` too, so an occluder raised it. It divides by `nBare` now.
-    const roadRuns = [];   // T-0016: what each station's bands read this run
-    for (const station of ROAD_STATIONS) {
-      const road = await roadContrast(page, { id: station.id, kind: station.kind });
-      roadRuns.push({ id: station.id, bands: road.bands });
-      const bands = road.bands.filter((b) => b.gated);
-      const bad = bands.filter((b) => b.medianDeltaL < ROAD_MIN_DELTA_L
-        || b.perceptible < ROAD_MIN_PERCEPTIBLE);
-      const report = road.bands.map((b) => `${b.lo}-${b.hi} m: `
-        + (b.nProjected < ROAD_MIN_PROBES ? `projects ${b.nProjected}× (not gated)`
-          : `ΔL* ${b.medianDeltaL.toFixed(1)} of ${b.opaqueDeltaL.toFixed(1)} opaque, `
-            + `${(b.perceptible * 100).toFixed(0)} % perceptible of ${b.nBare} bare, `
-            // R-M1a. Both halves of the owner's ruling, measured beside the bar
-            // they are going to join: Weber says how distinguishable the road
-            // is whatever the exposure, groundL says whether there is light to
-            // distinguish it by. Neither is gated yet — R-M1b sets the bars.
-            + `weber ${b.weber.toFixed(4)} (n ${b.weberN}) over ground L* `
-            + `${b.groundL.toFixed(1)}, seen ${b.n} of `
-            + `${b.nProjected} projected (${b.nBare} clear of flora)`
-            + `${b.gated ? '' : ' (reported only)'}`)).join(' · ');
-      check(`${label}: the roads reach the screen ${station.what}`,
-        bands.length >= station.minBands && bad.length === 0, report);
-      console.log(`        ${station.id}: ${report}`);
-    }
+    // T-0173. The first two stations are part 7's; the third is part 8's, and
+    // the movement report each part prints covers the stations that part read.
+    await readRoadStations(page, label, ROAD_STATIONS.filter((st) => st.part === 7));
 
-    // T-0016 (R-M1d) — MOVEMENT AGAINST THE BANK, BOTH DIRECTIONS.
-    //
-    // Printed, never gated. Every check above has already run and its verdict
-    // stands whatever this says; the point is only that a band which collapses
-    // inside a passing station stops being invisible. A filtered run banks
-    // nothing and compares only what it measured, so `SMOKE_VIEWPORT=mobile`
-    // cannot silently retire desktop's half of the baseline.
-    const vp = label.split(' ')[0];
-    const observed = collectRoadBands(vp, roadRuns, {
-      failing: (b) => b.medianDeltaL < ROAD_MIN_DELTA_L || b.perceptible < ROAD_MIN_PERCEPTIBLE,
-    });
-    Object.assign(ROAD_BAND_OBSERVED, observed);
-    const bankedHere = Object.fromEntries(
-      Object.entries(ROAD_BAND_BANKED).filter(([k]) => k.startsWith(`${vp}/`)));
-    if (!Object.keys(bankedHere).length) {
-      console.log(`        road bands: nothing banked for ${vp} yet`
-        + ' — re-run with --update-road-bands to bank this run (T-0016)');
-    } else {
-      for (const line of renderRoadBands(compareRoadBands(bankedHere, observed))) {
-        console.log(`        ${line}`);
-      }
-    }
+    inStageWork = false;
+    } // end PART 7 (T-0060 stage 3a, cut by T-0121; renumbered by T-0346, halved by T-0173)
+    // PART 8 — the crossing station, the road-legibility aid and the batch merge
+    // the aid's reach stands on: the tail T-0173 cut out of part 7 when the three
+    // road-legibility stations alone came to 7 m 04 s of a 9 m 25 s part. The
+    // three assertions of R-A1 are taken STANDING AT `lake_market`, where the
+    // bands were just read, so the station and the aid could not be separated —
+    // they are both here, in that order, exactly as they ran before.
+    if (stageOn(8)) {
+    inStageWork = true;
+
+    // The same prologue part 7 carries, and for the same reason: a fresh boot is
+    // still standing at the gate screen, and every check below measures a
+    // `page.screenshot` frame that includes the DOM overlays. In a full run this
+    // is a no-op — part 6 entered the town long ago.
+    await enterTown();
+
+    await readRoadStations(page, label, ROAD_STATIONS.filter((st) => st.part === 8));
 
     // --- R-A1, the road-legibility aid, and the three things it owes --------
     //
@@ -7512,13 +7765,13 @@ for (const [label, viewport, touch] of [
       + `${dRoughBack.worst}`);
 
     inStageWork = false;
-    } // end PART 5 (T-0060 stage 3a, cut by T-0121)
-    // PART 6 — the facade tones, the shadow reach, the shadow box and the K24
+    } // end PART 8 (the tail of T-0060 stage 3a, cut out of part 7 by T-0173)
+    // PART 9 — the facade tones, the shadow reach, the shadow box and the K24
     // brightness aid: the camera-heavy tail of T-0060's stage 3, and every
     // check in it measures a page.screenshot frame. So it enters the town on
     // its own account, and it holds no reference to the shared street reading —
-    // which is why that reading is now gated on parts 5 and 7 alone.
-    if (stageOn(6)) {
+    // which is why that reading is now gated on parts 7 and 9 alone.
+    if (stageOn(9)) {
     inStageWork = true;
     await enterTown();
 
@@ -7838,13 +8091,19 @@ for (const [label, viewport, touch] of [
       + `${dBrightBack.mean?.toFixed(2)} / worst ${dBrightBack.worst}`);
 
     inStageWork = false;
-    } // end PART 6 (T-0060 stage 3b, cut by T-0121)
-    // PART 7 — the flora census through the streets a visitor reads: the drawn
-    // population, the sward, the horizon timber and the street names. Every
-    // binding it shares with earlier parts (`streetLayer`) is read above the
-    // split; the teleport below re-establishes the camera pose it expects on
+    } // end PART 9 (T-0060 stage 3b, cut by T-0121; renumbered by T-0346 and T-0173)
+    // PART 10 — the flora census through the flower heads: the drawn population,
+    // the horizon timber, the sward dealt in every community, the marsh's
+    // substrate, T-0035's pop-in and R-BUG7's head-attachment census. The head
+    // of T-0060's stage 4a; T-0170 cut the ragged boundary, the ground cover,
+    // the street readouts and the Settings units off its tail into part 11,
+    // because at 1280x800 the whole of it ran past the ten-minute foreground
+    // ceiling and was killed there with two sections still to run.
+    //
+    // Every binding it shares with earlier parts (`streetLayer`) is read above
+    // the split; the teleport below re-establishes the camera pose it expects on
     // its own.
-    if (stageOn(7)) {
+    if (stageOn(10)) {
     inStageWork = true;
 
     // Same fresh-boot accommodation as stage 3: this stage drives the panel
@@ -8136,6 +8395,8 @@ for (const [label, viewport, touch] of [
       `${horizon.pxPerRad?.toFixed?.(1)} px/rad against ${expectedPxPerRad.toFixed(1)} live `
       + `(${horizon.liveHeightCss} css px over ${horizon.liveFovDeg?.toFixed?.(1)}°)`);
 
+    // --- the drawn population (ROADMAP K48) ---------------------------------
+
     // THE DRAWN POPULATION — ROADMAP K48, and it is the census K47 found
     // missing. `tools/measure_planting_reach.py` proves a record can be
     // CHOSEN; nothing proved one is DRAWN, and the difference was a whole
@@ -8192,6 +8453,8 @@ for (const [label, viewport, touch] of [
         ? `${sycamore.drawn} stem(s) for ${sycamore.expected.toFixed(2)} owed, of `
           + `${gallery.stems} in the gallery`
         : 'no gallery mix census at all');
+
+    // --- the sward, asked what the wood was asked (ROADMAP K49(a)) ---------
 
     // ROADMAP K49(a) — THE SAME QUESTION, ASKED OF THE SWARD.
     //
@@ -8261,6 +8524,8 @@ for (const [label, viewport, touch] of [
       + `and drawn nowhere${swardAbsent.length ? `: ${swardAbsent.join(', ')}` : ''}, over `
       + `${dealt.reduce((t, d) => t + d.drawn, 0)} slots in ${dealt.map((d) => (
         `${d.community}.${d.list}=${d.drawn}`)).join(' ')}`);
+
+    // --- and the same sward census in every community (ROADMAP K49(f)) -----
 
     // ROADMAP K49(f) — AND NOW THE SAME CENSUS IN EVERY COMMUNITY, AS A GATE.
     //
@@ -8420,6 +8685,8 @@ for (const [label, viewport, touch] of [
       && aquatics.marshDry.includes('typha_latifolia')
       && aquatics.marshWet.includes('typha_latifolia'),
       `dry [${aquatics.marshDry.join(',')}] wet [${aquatics.marshWet.join(',')}]`);
+
+    // --- a plant arrives faint, and at its own height (T-0035) --------------
 
     // The owner: "grass and flowers appear out of the ground as you walk towards
     // them". The lattice is rebuilt every `step` metres walked and the fade ramp
@@ -8584,6 +8851,8 @@ for (const [label, viewport, touch] of [
           + `${(popIn.grewAt.to * 100).toFixed(0)}% at ${popIn.grewAt.d.toFixed(2)} m)`
         : ''));
 
+    // --- the flower heads, read back off the drawing (R-BUG7) ---------------
+
     // R-BUG7 — flower heads hanging in the sky with nothing under them. The
     // owner photographed two of them over South Water Street on stalks that
     // stop in mid-air, and **the same symptom had been repaired four times in
@@ -8709,6 +8978,48 @@ for (const [label, viewport, touch] of [
           + `foot ${headSupport.worst.y.toFixed(2)} m, ${headSupport.worst.rise.toFixed(2)} m over its base `
           + (headSupport.worst.orphan ? 'over open ground' : `above a ${headSupport.worst.gap.toFixed(2)} m gap`)
         : ''));
+
+    inStageWork = false;
+    } // end PART 10 (T-0060 stage 4a, cut by T-0121; renumbered by T-0346 and T-0173, halved by T-0170)
+    // PART 11 — the sward's ragged boundary through the units a visitor reads:
+    // the boundary and its fringe, each community's own recorded ground cover,
+    // the street readouts, the navigation guide and the Settings units. The
+    // second half of T-0060's stage 4a.
+    //
+    // T-0170 CUT IT HERE, and the boundary had to be MADE before it could be
+    // taken: this part carried no `// --- section ---` headers at all, which is
+    // the reason T-0167 left it alone. The seams are named now, and the profile
+    // is what chose this one out of them. The first candidate — one section
+    // earlier, above the flower-head census — was cut, measured and rejected:
+    // 5 m 05 s and 6 m 24 s, and 3 m 36 s is not a margin on a suite whose own
+    // readings move by minutes with the load. Moving that one section up into
+    // the head buys the balance, and both halves are measured under six minutes.
+    //
+    // Exactly one binding crosses, and it is the same one that already crossed
+    // the stage split: `streetLayer`, read above it and now named in
+    // `anyStage(7, 10, 11)` because BOTH halves read it — the first half for the
+    // road panels and the horizon band, this one for the street readouts. The
+    // scan turned up six other names below this line (`headSupport`, `horizon`,
+    // `over`, `planted`, `popIn`, `sward`) and every occurrence is prose or a
+    // string, not the binding.
+    if (stageOn(11)) {
+    inStageWork = true;
+
+    // Same fresh-boot accommodation as the part above: the tail of this one
+    // drives the panel chrome (`#btn-help`), and while the gate screen stands
+    // the chrome has no layout at all — the click waits ninety seconds for a
+    // zero-size button and dies. In a full run this is a no-op.
+    await enterTown();
+
+    // Every camera-bearing section below teleports itself, so this part takes
+    // no pose. What they all assume is a walker ON THE GROUND — the boundary
+    // sections measure screen rows against eye height, and the last thing this
+    // part does is fly. The part above lands the walker there itself; from a
+    // fresh boot this is what puts it there. Idempotent by construction, so an
+    // unfiltered run pays one call for it.
+    await page.evaluate(() => { window.__chicago4d.setFly(false); });
+
+    // --- the sward's ragged boundary (ROADMAP § S6a) ------------------------
 
     // ROADMAP § S6a item 3: a ring is a circle about the walker, so on flat
     // ground its outer edge maps to a CONSTANT SCREEN ROW — measured at row
@@ -8953,6 +9264,8 @@ for (const [label, viewport, touch] of [
       seam.anchored.same && seam.anchored.spread > 0.5,
       `same from 40 m away: ${seam.anchored.same}; `
       + `spread over nine points ${seam.anchored.spread.toFixed(2)} m`);
+    // --- what each community's own records say its ground carries -----------
+
     // Each flora zone record authors how much of the ground its matrix covers
     // — `cover.matrix_fraction`, with a `bare_soil_fraction` beside it that the
     // manifest even denormalises — and the renderer planted all ten communities
@@ -9040,6 +9353,8 @@ for (const [label, viewport, touch] of [
           + `${worst.share} = ${worst.implied.toFixed(2)}` : ''));
     }
 
+    // --- the streets a visitor reads ----------------------------------------
+
     check(`${label}: every structure, including Exchange Coffee House, shares the terrain surface`,
       streetLayer.anchoredBuildings > 20
       // Never ABOVE the origin's ground; below it only as far as the terrain
@@ -9072,6 +9387,8 @@ for (const [label, viewport, touch] of [
       && /\d+ ft/.test(streetLayer.approaching.ahead)
       && !/\d+ m(?:\s|$)/.test(streetLayer.approaching.ahead),
       JSON.stringify(streetLayer.approaching));
+
+    // --- the navigation guide, and the units the whole HUD reads in --------
 
     // The menu is built from the two runtime collections, not from a sampled
     // shortlist.  With an empty query every loaded structure and every compiled
@@ -9137,10 +9454,10 @@ for (const [label, viewport, touch] of [
       JSON.stringify(unitChoice));
 
     inStageWork = false;
-    } // end PART 7 (T-0060 stage 4a, cut by T-0121)
-    // PART 8 — eye height through What's-new: the settings, the Go-to tab and
+    } // end PART 11 (the tail of T-0060 stage 4a, cut out of part 10 by T-0170)
+    // PART 12 — eye height through What's-new: the settings, the Go-to tab and
     // the release notes. The head of T-0060's stage 4b; T-0167 cut the Evidence
-    // panel and free-fly off its tail into part 9.
+    // panel and free-fly off its tail into part 13.
     //
     // It drives the panel chrome from its first line, so it enters the town on
     // its own account. It takes no pose of its own on purpose: the checks below
@@ -9156,15 +9473,25 @@ for (const [label, viewport, touch] of [
     // part down before one assertion had run. Not one assertion is dropped or
     // softened by the change: `clickChrome` hit-tests the control at its own
     // centre the way a real click does, and says what covered it when it fails.
-    if (stageOn(8)) {
+    if (stageOn(12)) {
     inStageWork = true;
     await enterTown();
-    // …and the PANEL, which part 7 leaves open at its last line and this part
+    // …and the PANEL, which part 11 leaves open at its last line and this part
     // reaches straight into: its first statement clicks a tab inside it, and a
     // click on a tab that has no layout waits ninety seconds and dies. Guarded
     // on the panel's own hidden state rather than toggling, for the same reason
     // enterTown() is guarded: in an unfiltered run this must do nothing at all.
+    // …and NOTHING STANDING OVER IT (T-0369). The inspect card is fixed at the
+    // top right and overlaps this panel's tab strip on the desktop viewport, so
+    // ANY predecessor that picked a structure and left its card open makes the
+    // first click below fail — which is exactly what part 1 did. Part 1 no
+    // longer leaks it, and this part no longer depends on that being true of
+    // every predecessor either: a part that drives chrome establishes the
+    // chrome's state, for the same reason the panel below is opened rather than
+    // assumed. Both halves are the fix, because only the second one makes this
+    // part's verdict independent of which stages ran in front of it.
     await page.evaluate(() => {
+      window.__chicago4d.popup.close();
       if (document.getElementById('panel').hasAttribute('hidden')) {
         document.getElementById('btn-help').click();
       }
@@ -9523,26 +9850,26 @@ for (const [label, viewport, touch] of [
       `${ret.flagged.length} of ${ret.total} flagged: ${ret.flagged.join(' | ')}`);
 
     inStageWork = false;
-    } // end PART 8 (T-0060 stage 4b-i, cut by T-0121, halved again by T-0167)
-    // PART 9 — the Evidence panel through inspecting from the air: the
+    } // end PART 12 (T-0060 stage 4b-i, cut by T-0121, halved by T-0167; renumbered by T-0346, T-0173 and T-0170)
+    // PART 13 — the Evidence panel through inspecting from the air: the
     // liberties, the people, the wildlife, what is not here, what the ground
     // claims, free-fly and the two inspect keys. The tail of T-0060's stage 4.
     //
-    // T-0167 cut it off part 8 because part 8 was the thinnest margin on the
+    // T-0167 cut it off part 12 (part 8 then) because it was the thinnest margin on the
     // measured DESKTOP profile — 8 m 46 s against a ten-minute ceiling, with
     // 107 staged checks, more than any other part — and the desktop readings
     // move by minutes between runs on a software renderer, so a 74-second
     // margin is not one. The boundary is this one because the desktop profile
-    // put 6 m 05 s of part 8's cost above it and 2 m 41 s below, and because
+    // put 6 m 05 s of part 12's cost above it and 2 m 41 s below, and because
     // nothing declared above it is read below it: the scope-aware scan found
     // `eye`, `toggles` and `typed` reaching across and all three are prose or a
     // different local (`typedE.typed`).
     //
     // Its prologue is `enterTown()` alone: the liberties reading below already
     // carries its own guarded panel-open and clicks the Evidence tab itself, so
-    // unlike part 8 this part needs no panel guard bolted on. It takes no pose
+    // unlike part 12 this part needs no panel guard bolted on. It takes no pose
     // — free-fly is entered from wherever the visitor stands.
-    if (stageOn(9)) {
+    if (stageOn(13)) {
     inStageWork = true;
     await enterTown();
     // --- the liberties, in the Evidence panel ------------------------------
@@ -9601,8 +9928,13 @@ for (const [label, viewport, touch] of [
       const named = rows.find((r) => r.dataset.id === 'hh_inf_baker_south_01');
       const dated = rows.find((r) => r.dataset.id === 'hh_egan_william_b');
       // T-0378. A fourth row, for the same reason: `letter_list_only` is on the
-      // ten people the post office's letter lists minted and on nobody else, so
-      // no row above can fail for it.
+      // people the post office's letter lists minted and on nobody else, so no row
+      // above can fail for it. Since T-0379 that row lives inside the letter-list
+      // group, and `<details>` inside a closed `<details>` still renders — the
+      // group is opened here so the row is reached the way a visitor reaches it.
+      const group = mount ? mount.querySelector('details.res-ll-group') : null;
+      const groupClosedOnMount = group ? !group.open : null;
+      if (group) group.open = true;
       const letter = rows.find((r) => r.dataset.id === 'hh_ll_william_luce');
       for (const el of [target, named, dated, letter]) {
         if (!el) continue;
@@ -9623,6 +9955,16 @@ for (const [label, viewport, touch] of [
         error: window.__chicago4d.residents?.error ?? 'no residents on the handle',
         rendered: rows.length,
         orphanChips: mount ? mount.querySelectorAll('.res-orphan').length : 0,
+        // T-0379: the two halves of the list, and the group that holds the second.
+        evidenced: window.__chicago4d.residents?.evidenced ?? -1,
+        letterList: window.__chicago4d.residents?.letterList ?? -1,
+        letterListOffCard: window.__chicago4d.residents?.letterListOffCard ?? -1,
+        groupRows: group ? group.querySelectorAll('details.res-hh').length : -1,
+        groupText: group ? group.textContent.replace(/\s+/g, ' ').slice(0, 900) : '',
+        // The group must be a DELIBERATE open. A section that renders 727 rows
+        // expanded is the "wall of undifferentiated people" the ruling named as
+        // the way to implement it badly, so this is read before anything opens it.
+        groupClosedOnMount,
         busy: mount ? mount.hasAttribute('aria-busy') : true,
         collapsed,
         openedId: target?.dataset.id ?? '',
@@ -9637,22 +9979,52 @@ for (const [label, viewport, touch] of [
       };
     });
     check(`${label}: every household in the layer is on the card`,
-      residents.households === 201 && residents.rendered === 201 && !residents.busy,
+      residents.households === 920 && residents.rendered === 920 && !residents.busy,
       `${residents.households} loaded / ${residents.rendered} rendered (${residents.error})`);
-    check(`${label}: the 237 person entries are counted`, residents.persons === 237,
+    check(`${label}: the 956 person entries are counted`, residents.persons === 956,
       `${residents.persons}`);
+    // T-0379, and the assertion the ruling itself asked for. 727 of the 920
+    // households are a name on a post-office list and nothing else, and the
+    // ruling's own test of a good implementation is that a visitor can tell which
+    // ones at a glance. So: the town's evidenced households are still 193 rows in
+    // the section proper — the list did not become three-quarters noise — the
+    // cohort is one group holding all 727, and that group is CLOSED when the
+    // section mounts. A regression here does not break the page; it drowns it,
+    // which is why it is a number and not an eyeball.
+    check(`${label}: the letter-list cohort is held apart from the evidenced town`,
+      residents.evidenced === 193 && residents.letterList === 727
+      && residents.groupRows === 727 && residents.groupClosedOnMount === true,
+      `${residents.evidenced} evidenced / ${residents.letterList} letter-list, `
+      + `${residents.groupRows} in the group, closed on mount: `
+      + `${residents.groupClosedOnMount}`);
+    check(`${label}: the group says what that evidence is worth before it is opened`,
+      /post office/.test(residents.groupText)
+      && /does not.{0,40}establish/is.test(residents.groupText)
+      && /weakest evidence/.test(residents.groupText),
+      residents.groupText.slice(0, 240));
     // The finding itself, asserted as a number so it cannot quietly grow back:
     // the households that reach no building sidecar are each marked on their own
-    // row. 17 of the 33 are the original fault — records whose residence and
-    // workplace are both unattested. The other 16 are T-0376's minted
-    // tradespeople, who reach no building BY CONSTRUCTION: the papers name them
-    // and their trade and say nothing whatever about where they lived, so the
-    // chip is the card telling the truth rather than a regression, and T-0378's
-    // twelve letter-list names are twelve more of the same kind: a list of uncalled-for
-    // letters gives a name and no address at all.
+    // row. 17 of the 52 are the original fault — records whose residence and
+    // workplace are both unattested. The other 35 reach no building BY
+    // CONSTRUCTION, and they are three passes of the same kind: T-0376's 16
+    // minted tradespeople, whose trade the papers print and whose address they
+    // do not; 15 letter-list names, where a list of uncalled-for letters gives a
+    // name and no address at all; and T-0373's 4 residency-tested people, whom
+    // the papers name with no trade either. In every case the chip is the card
+    // telling the truth rather than a regression.
+    // T-0379 SPLIT THIS NUMBER IN TWO, and the split is the honest form of it. Of
+    // the 764 households that reach no building card, 727 are the letter-list
+    // cohort and reach none BY DEFINITION — a list of uncalled-for letters gives a
+    // name and no address, so a chip announcing it on every one of those rows is
+    // wallpaper, and the group's own summary says it once instead. The chip stays
+    // where it is a finding: 37 households the rest of the corpus documents and
+    // this project still could not attach to a building. That 37 is the number a
+    // regression would move, so it is the number asserted.
     check(`${label}: the households no building card can reach are marked`,
-      residents.offCard === 45 && residents.orphanChips === 45,
-      `${residents.offCard} off-card / ${residents.orphanChips} chip(s)`);
+      residents.offCard === 764 && residents.orphanChips === 37
+      && residents.letterListOffCard === 727,
+      `${residents.offCard} off-card / ${residents.orphanChips} chip(s) / `
+      + `${residents.letterListOffCard} of them letter-list`);
     check(`${label}: the researched non-residents are published too`,
       residents.notResident === 10, `${residents.notResident}`);
     // The lazy read, proved by opening the household that IS the finding: Mark
@@ -9716,7 +10088,8 @@ for (const [label, viewport, touch] of [
       && /weakest evidence/.test(residents.letterText),
       residents.letterText.slice(0, 200));
     check(`${label}: the count sentence says how many people are known only that way`,
-      /12 of the people here are known ONLY from the post office/.test(residents.prose),
+      /727 of the people here are known ONLY from the post office/.test(residents.prose)
+      && /per cent of this town/.test(residents.prose),
       residents.prose.slice(0, 240));
     // And the other half of the same ruling: none of the ten may carry a trade
     // the papers do not give them. The occupation on a letter-list person reads
@@ -10179,10 +10552,13 @@ for (const [label, viewport, touch] of [
     // when its record was written: it had been an EXCLUSION whose own text said it
     // would stay one "only until a structure record replaces it", and the entry it
     // leaves behind still carries a live question — Andreas says "near Wells" and
-    // Wells has two sides. The count is exact on purpose, the same bookkeeping the
-    // frontage censuses above carry: an open question appearing is worth failing over.
+    // Wells has two sides. T-0305 made it FIVE on 2026-08-30: S. B. Cobb's saddlery
+    // stands on a corner read once, in 1833, and the Chicago American loses the cross
+    // street in all three of its 1835 printings of the same card. The count is exact
+    // on purpose, the same bookkeeping the frontage censuses above carry: an open
+    // question appearing is worth failing over.
     check(`${label}: the open questions load`,
-      open.counted === 4 && !open.busy && open.rendered === open.counted,
+      open.counted === 5 && !open.busy && open.rendered === open.counted,
       `${open.rendered} rendered of ${open.counted}`);
     // The discriminating pair, and it is the whole argument for the section: two
     // of these three are buildings the visitor can walk up to and one is empty
@@ -10286,15 +10662,18 @@ for (const [label, viewport, touch] of [
     check(`${label}: it starts collapsed like every other disclosure on the card`,
       openCard.western.collapsed === true, `collapsed ${openCard.western.collapsed}`);
     // The discriminating case, and it is a deliberate silence rather than a
-    // missing empty state. The watch list has exactly THREE structures in the
-    // scene: the Western Hotel, Cobweb Castle and — since T-0380 on 2026-08-29 —
-    // the New York House, whose open question is which side of Wells Street it
-    // stood on. Every other building must stay silent; a card dumping the whole
-    // list would fail this exact set. Membership rather than order: the panel's
-    // ordering is the file's, and this assertion is about which buildings speak.
+    // missing empty state. The watch list has exactly FOUR structures in the
+    // scene: the Western Hotel, Cobweb Castle, the New York House (T-0380,
+    // 2026-08-29, whose open question is which side of Wells Street it stood on)
+    // and Goss & Cobb's saddlery (T-0305, 2026-08-30, whose question is which
+    // cross street its corner of Lake Street is). Every other building must stay
+    // silent; a card dumping the whole list would fail this exact set. Membership
+    // rather than order: the panel's ordering is the file's, and this assertion is
+    // about which buildings speak.
     check(`${label}: only tracked in-scene buildings carry open questions`,
-      openCard.others.length === 2
-      && ['cobweb_castle', 'new_york_house'].every((id) => openCard.others.includes(id)),
+      openCard.others.length === 3
+      && ['cobweb_castle', 'new_york_house', 'goss_cobb_saddlery']
+        .every((id) => openCard.others.includes(id)),
       `beside western_hotel: ${openCard.others.join(', ') || 'none'}`);
     // Reading every card leaves one open over the panel, which the panel's own
     // close button then cannot be clicked through.
@@ -10490,7 +10869,7 @@ for (const [label, viewport, touch] of [
       ground.overflow);
     // T-0210, and it was the LAST frame-bound chrome click in the file. This one
     // close timed out at ninety seconds on an unmodified tree and took the desktop
-    // half of part 9 down with it, which read as a broken control and was not one.
+    // half of part 13 down with it, which read as a broken control and was not one.
     // Measured here at the click site itself, on the published mirror at 1280x800,
     // at three machine loads on one runner:
     //
@@ -10753,7 +11132,7 @@ for (const [label, viewport, touch] of [
     await page.evaluate(() => window.__chicago4d.frame('sauganash_hotel', 26));
 
     inStageWork = false;
-    } // end PART 9 (T-0060 stage 4b-ii, cut by T-0167)
+    } // end PART 13 (T-0060 stage 4b-ii, cut by T-0167; renumbered by T-0346, T-0173 and T-0170)
     } catch (e) {
       inStageWork = false;
       thrown = e;
@@ -10868,7 +11247,7 @@ if (UPDATE_ROAD_BANDS) {
 
 console.log(`\n${passes.length} passed, ${failures.length} failed`);
 // T-0060: the audit line. In an unfiltered run the staged-section count is the
-// sum of what SMOKE_STAGE=1 … 8 each report, and the always-on count is
+// sum of what SMOKE_STAGE=1 … 12 each report, and the always-on count is
 // identical in every one of them — that arithmetic is how the parts are
 // demonstrated to add up to the whole.
 console.log(`${stageWorkChecks} staged-section check(s)`

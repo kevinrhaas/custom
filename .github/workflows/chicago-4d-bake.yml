@@ -98,7 +98,7 @@ permissions:
 # own rule. Each matrix leg prints "NOT THE FULL GATE" because on its own it is
 # not one; all eight legs together are, and `needs: smoke` fails if ANY fails.
 # The workflow reconstitutes the gate the suite refuses to let one run claim —
-# which holds only while the stage ranges tile 1..9 with no gap and no overlap.
+# which holds only while the stage ranges tile 1..13 with no gap and no overlap.
 #
 # WHY THE BRANCH IS PUSHED BEFORE THE SMOKE RUNS, and the PR only after. The push
 # is in `bake` so a red smoke never destroys twenty minutes of Blender output —
@@ -227,11 +227,31 @@ jobs:
       # PUSHED, NOT PR'd. The branch exists the moment the bake succeeds, so a red
       # smoke costs a review rather than twenty minutes of Blender output. The PR
       # is `open-pr`, which waits for the smoke.
+      # T-0180 — ASK THE CONTENT, NOT THE TREE. This read
+      # `[ -z "$(git status --porcelain)" ]`, and that test can never say no:
+      # publish.sh IS the build and its last act is to write the build stamp —
+      # the head sha and a wall clock — into site/chicago/4d/build.json and the
+      # gate paragraph of site/chicago/4d/walk/index.html. Both move every run by
+      # construction, so the tree was always dirty, `changed=0` was unreachable,
+      # and every bake opened a PR whose entire diff was those two files. Four
+      # were open at once on 2026-08-24 and the signal the PR carries — this bake
+      # rebuilt something — fired identically whether 300 structures had been
+      # rebuilt or nothing had.
+      #
+      # The stamp is still written and still ships; it just stops manufacturing
+      # the PR. The verdict is a script rather than a shell condition here so it
+      # can be tested: tools/bake_content_changed.py --self-test runs in check.sh
+      # and asserts, among other things, that build.json growing a real field or
+      # the gate page changing anywhere but its stamp still counts as content.
+      - name: Did the bake produce content, or only its own stamp?
+        id: content
+        run: python3 chicago/4d/tools/bake_content_changed.py --github
+
       - name: Push a bake branch
         id: push
         run: |
-          if [ -z "$(git status --porcelain)" ]; then
-            echo "bake produced no changes — nothing to push"
+          if [ "${{ steps.content.outputs.changed }}" != "1" ]; then
+            echo "bake produced no content — nothing to push"
             echo "changed=0" >> "$GITHUB_OUTPUT"
             exit 0
           fi
@@ -265,7 +285,7 @@ jobs:
   # T-0171 — WHY THE STAGE DIMENSION IS HERE AND NOT JUST A BIGGER TIMEOUT.
   # This job used to run each viewport UNSPLIT: one command, `SMOKE_VIEWPORT`
   # only, under `timeout-minutes: 30`. T-0167's measured desktop profile
-  # (ROADMAP § THE RUN BUDGET) totals 39 m 58 s across the nine parts, so the
+  # (ROADMAP § THE RUN BUDGET) totals 39 m 58 s across the parts, so the
   # desktop leg could not fit that cap and never could. Run #269 on dev is the
   # observation: mobile passed unfiltered (420 passed / 0 failed, 15 m 50 s) and
   # desktop was CANCELLED at 29 m 05 s having reached 285 passed / 0 failed — a
@@ -277,8 +297,8 @@ jobs:
   # Raising the cap alone would work today and rot the same way — the number
   # would again be one nobody had measured against, and desktop would again be a
   # single command costing the sum of everything. Splitting is what makes the
-  # margin legible PER LEG, and it is what T-0170's further cut of part 7
-  # improves rather than invalidates.
+  # margin legible PER LEG, and it is what T-0173's cut of part 7 — and T-0170's
+  # further cut of what is now part 10 — improve rather than invalidate.
   #
   # THE CUT IS T-0167's PAIRING RULE, `1+2, 3+4, 5+6, 7+8+9`. Against the
   # measured desktop profile those legs cost 6 m 08 s, 8 m 47 s, 8 m 04 s and
@@ -287,13 +307,31 @@ jobs:
   # under the 30-minute cap, and the smoke phase's wall clock drops from over
   # 40 minutes (fatal) to under 20.
   #
-  # THE RANGES MUST COVER 1..9 EXACTLY ONCE. Each leg prints "NOT THE FULL GATE"
+  # T-0346 CUT PART 4 INTO THREE AND RENUMBERED 5-9 AS 7-11, and the note below
+  # is why this list moved in the same commit. The pairing rule is UNCHANGED in
+  # content — the legs carry exactly the parts they carried — it is only spelled
+  # in the new numbers: `1+2, 3+4+5+6, 7+8, 9+10+11`, i.e. `1-2 3-6 7-8 9-11`.
+  # So the measured leg costs above still stand; nothing was added to a leg.
+  #
+  # T-0173 HALVED PART 7 AND RENUMBERED 8-11 AS 9-12, and this list moves with it
+  # for the same reason and with the same guarantee: `1+2, 3+4+5+6, 7+8+9,
+  # 10+11+12`, i.e. `1-2 3-6 7-9 10-12`. The old part 7's content is now parts 7
+  # and 8, both of which sit inside the third leg, so no leg gained or lost a
+  # check and the measured costs above still stand.
+  #
+  # T-0170 HALVED PART 10 AND RENUMBERED 11-12 AS 12-13, and this list moves with
+  # it on the same terms: `1+2, 3+4+5+6, 7+8+9, 10+11+12+13`, i.e.
+  # `1-2 3-6 7-9 10-13`. The old part 10's content is now parts 10 and 11, both
+  # inside the fourth leg, so no leg gained or lost a check.
+  #
+  # THE RANGES MUST COVER 1..13 EXACTLY ONCE. Each leg prints "NOT THE FULL GATE"
   # because on its own it is not one; the UNION of the eight legs is, and that
   # holds only while these four ranges tile the parts with no gap and no overlap.
   # smoke_renderer.mjs's own arithmetic — the parts' staged counts sum to an
   # unfiltered run's — is what makes the union checkable rather than asserted.
-  # If a part is ever added or renumbered (T-0170 renumbers everything after 7),
-  # THIS LIST IS PART OF THAT EDIT.
+  # If a part is ever added or renumbered (T-0346 renumbered everything after 4;
+  # T-0173 everything after 7; T-0170 everything after 10), THIS LIST IS PART OF
+  # THAT EDIT.
   smoke:
     needs: bake
     runs-on: ubuntu-latest
@@ -302,7 +340,7 @@ jobs:
       fail-fast: false
       matrix:
         viewport: [mobile, desktop]
-        stage: ['1-2', '3-4', '5-6', '7-9']
+        stage: ['1-2', '3-6', '7-9', '10-13']
     steps:
       - uses: actions/checkout@v4
         with:

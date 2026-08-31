@@ -1,6 +1,6 @@
 {
   "project": "chicago-4d",
-  "generated_ct": "Aug 29, 2026, 4:14 PM",
+  "generated_ct": "Aug 31, 2026, 10:35 AM",
   "tickets": [
     {
       "id": "T-0001",
@@ -149,7 +149,7 @@
     {
       "id": "T-0009",
       "title": "Redraw 29 building bodies out of the roadway",
-      "state": "open",
+      "state": "done",
       "epic": "TOWN",
       "requested_by": "loop",
       "seen": true,
@@ -157,12 +157,12 @@
       "legacy_id": "K30(c)",
       "parent": null,
       "opened": "2026-08-17",
-      "closed": null,
-      "pr": null,
-      "claimed_by": "run 8/22/2026, 5:26:36 AM CT",
+      "closed": "2026-08-29",
+      "pr": "567",
+      "claimed_by": "run 8/29/2026, 4:27:24 PM CT",
       "blocked_on": null,
       "needs_bake": true,
-      "queue_rank": 11
+      "queue_rank": null
     },
     {
       "id": "T-0010",
@@ -539,7 +539,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 48
+      "queue_rank": 58
     },
     {
       "id": "T-0031",
@@ -663,7 +663,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 47
+      "queue_rank": 57
     },
     {
       "id": "T-0038",
@@ -951,7 +951,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 46
+      "queue_rank": 56
     },
     {
       "id": "T-0054",
@@ -987,7 +987,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 45
+      "queue_rank": 55
     },
     {
       "id": "T-0056",
@@ -2427,7 +2427,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 44
+      "queue_rank": 54
     },
     {
       "id": "T-0137",
@@ -2990,7 +2990,7 @@
     {
       "id": "T-0170",
       "title": "The desktop smoke's part 7 has 2 m 17 s of margin, and it is the one measured over the ceiling on another runner",
-      "state": "open",
+      "state": "done",
       "epic": "META",
       "requested_by": "loop",
       "seen": false,
@@ -2998,12 +2998,12 @@
       "legacy_id": null,
       "parent": "T-0121",
       "opened": "2026-08-23",
-      "closed": null,
-      "pr": null,
-      "claimed_by": null,
+      "closed": "2026-08-30",
+      "pr": "593",
+      "claimed_by": "run 8/30/2026, 12:51:31 AM CT",
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 22
+      "queue_rank": null
     },
     {
       "id": "T-0171",
@@ -3044,7 +3044,7 @@
     {
       "id": "T-0173",
       "title": "The desktop smoke's part 4 and part 5 have under a minute of margin on the ceiling, and part 7 is over it",
-      "state": "open",
+      "state": "done",
       "epic": "META",
       "requested_by": "loop",
       "seen": false,
@@ -3052,12 +3052,12 @@
       "legacy_id": null,
       "parent": null,
       "opened": "2026-08-24",
-      "closed": null,
-      "pr": null,
-      "claimed_by": null,
+      "closed": "2026-08-30",
+      "pr": "590",
+      "claimed_by": "run 8/29/2026, 11:11:30 PM CT",
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 20
+      "queue_rank": null
     },
     {
       "id": "T-0179",
@@ -3080,7 +3080,7 @@
     {
       "id": "T-0180",
       "title": "The bake opens a content PR on every run, because the build stamp it writes is always dirty",
-      "state": "open",
+      "state": "done",
       "epic": "META",
       "requested_by": "steward",
       "seen": false,
@@ -3088,12 +3088,12 @@
       "legacy_id": null,
       "parent": null,
       "opened": "2026-08-24",
-      "closed": null,
-      "pr": null,
-      "claimed_by": null,
+      "closed": "2026-08-29",
+      "pr": "579",
+      "claimed_by": "run 8/29/2026, 9:32:49 PM CT",
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 23
+      "queue_rank": null
     },
     {
       "id": "T-0181",
@@ -3111,7 +3111,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 21
+      "queue_rank": 61
     },
     {
       "id": "T-0182",
@@ -3144,10 +3144,10 @@
       "opened": "2026-08-24",
       "closed": null,
       "pr": null,
-      "claimed_by": "run 8/27/2026, 6:17:17 PM CT",
+      "claimed_by": "run 8/29/2026, 6:42:06 PM CT",
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 12
+      "queue_rank": 4
     },
     {
       "id": "T-0184",
@@ -3273,7 +3273,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 38
+      "queue_rank": 47
     },
     {
       "id": "T-0191",
@@ -3507,7 +3507,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 56
+      "queue_rank": 68
     },
     {
       "id": "T-0207",
@@ -3723,7 +3723,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 57
+      "queue_rank": 69
     },
     {
       "id": "T-0219",
@@ -3741,7 +3741,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": true,
-      "queue_rank": 24
+      "queue_rank": 32
     },
     {
       "id": "T-0220",
@@ -3921,7 +3921,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 42
+      "queue_rank": 52
     },
     {
       "id": "T-0231",
@@ -3939,7 +3939,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 55
+      "queue_rank": 67
     },
     {
       "id": "T-0232",
@@ -3957,7 +3957,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 52
+      "queue_rank": 64
     },
     {
       "id": "T-0233",
@@ -3993,12 +3993,12 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 53
+      "queue_rank": 65
     },
     {
       "id": "T-0235",
       "title": "The unfiltered renderer smoke takes 55 minutes on the steward runner, and three tickets reason against a 30-minute cap",
-      "state": "open",
+      "state": "done",
       "epic": "META",
       "requested_by": "loop",
       "seen": false,
@@ -4006,12 +4006,12 @@
       "legacy_id": null,
       "parent": null,
       "opened": "2026-08-27",
-      "closed": null,
-      "pr": null,
-      "claimed_by": null,
+      "closed": "2026-08-29",
+      "pr": "588",
+      "claimed_by": "run 8/29/2026, 11:10:00 PM CT",
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 19
+      "queue_rank": null
     },
     {
       "id": "T-0236",
@@ -4029,7 +4029,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 50
+      "queue_rank": 62
     },
     {
       "id": "T-0237",
@@ -4047,7 +4047,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 34
+      "queue_rank": 43
     },
     {
       "id": "T-0238",
@@ -4065,7 +4065,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 51
+      "queue_rank": 63
     },
     {
       "id": "T-0239",
@@ -4083,7 +4083,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 41
+      "queue_rank": 51
     },
     {
       "id": "T-0240",
@@ -4317,7 +4317,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 39
+      "queue_rank": 48
     },
     {
       "id": "T-0253",
@@ -4335,7 +4335,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 40
+      "queue_rank": 49
     },
     {
       "id": "T-0254",
@@ -4371,7 +4371,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 49
+      "queue_rank": 59
     },
     {
       "id": "T-0256",
@@ -4569,7 +4569,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 27
+      "queue_rank": 36
     },
     {
       "id": "T-0267",
@@ -4605,7 +4605,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 33
+      "queue_rank": 42
     },
     {
       "id": "T-0271",
@@ -4623,7 +4623,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 58
+      "queue_rank": 70
     },
     {
       "id": "T-0272",
@@ -4664,7 +4664,7 @@
     {
       "id": "T-0274",
       "title": "The inferred-household parcel's form values come from the archetype and cite the family band: 8 families, 10 claims outside it",
-      "state": "open",
+      "state": "done",
       "epic": "META",
       "requested_by": "loop",
       "seen": false,
@@ -4672,12 +4672,12 @@
       "legacy_id": null,
       "parent": null,
       "opened": "2026-08-28",
-      "closed": null,
-      "pr": null,
-      "claimed_by": null,
+      "closed": "2026-08-29",
+      "pr": "574",
+      "claimed_by": "run 8/29/2026, 6:43:18 PM CT",
       "blocked_on": null,
       "needs_bake": true,
-      "queue_rank": 15
+      "queue_rank": null
     },
     {
       "id": "T-0275",
@@ -4731,7 +4731,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 29
+      "queue_rank": 38
     },
     {
       "id": "T-0279",
@@ -4749,7 +4749,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 30
+      "queue_rank": 39
     },
     {
       "id": "T-0280",
@@ -4767,7 +4767,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 31
+      "queue_rank": 40
     },
     {
       "id": "T-0281",
@@ -4857,7 +4857,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 35
+      "queue_rank": 44
     },
     {
       "id": "T-0286",
@@ -4875,7 +4875,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 36
+      "queue_rank": 45
     },
     {
       "id": "T-0289",
@@ -5109,7 +5109,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 54
+      "queue_rank": 66
     },
     {
       "id": "T-0302",
@@ -5127,7 +5127,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 32
+      "queue_rank": 41
     },
     {
       "id": "T-0304",
@@ -5150,7 +5150,7 @@
     {
       "id": "T-0305",
       "title": "Four readings the American contradicts itself on need the page images: the tailor's street, which Water street two forwarding houses stood in, and the corner of Cobb's saddlery",
-      "state": "open",
+      "state": "blocked-owner",
       "epic": "META",
       "requested_by": "loop",
       "seen": false,
@@ -5160,10 +5160,10 @@
       "opened": "2026-08-28",
       "closed": null,
       "pr": null,
-      "claimed_by": null,
-      "blocked_on": null,
+      "claimed_by": "run 8/29/2026, 9:19:33 PM CT",
+      "blocked_on": "Six columns of Chicago American page images, which are held outside this repository: 1835-06-13 p3 c5 and 1835-07-04 p4 c4 (Sabine and John Dave[s], North in June and South in July — opposite banks of the river for two wharf trades); 1835-06-27 p3 c5 and 1835-08-15 p3 c6 (Edward Burton's tailoring shop, Franklin in two settings and Lake in a third); 1835-06-08 p3 c5 and 1835-07-11 p3 c6 (the cross street of S. B. Cobb's saddlery, lost in all three 1835 printings). Every reading is already the best the transcription can give, and three of the four subjects appear nowhere else in 86 issues except a post-office letter list, so nothing smaller than an image will do it.",
       "needs_bake": false,
-      "queue_rank": 10
+      "queue_rank": null
     },
     {
       "id": "T-0306",
@@ -5397,12 +5397,12 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 7
+      "queue_rank": 31
     },
     {
       "id": "T-0321",
       "title": "The 1 April 1834 Chicago letter list is 179 names and nineteen lines of debris stand where more did",
-      "state": "open",
+      "state": "done",
       "epic": "META",
       "requested_by": "loop",
       "seen": false,
@@ -5410,12 +5410,12 @@
       "legacy_id": null,
       "parent": null,
       "opened": "2026-08-28",
-      "closed": null,
-      "pr": null,
-      "claimed_by": null,
+      "closed": "2026-08-29",
+      "pr": "576",
+      "claimed_by": "run 8/29/2026, 6:39:03 PM CT",
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 8
+      "queue_rank": null
     },
     {
       "id": "T-0323",
@@ -5564,7 +5564,7 @@
     {
       "id": "T-0331",
       "title": "The March 1834 letter list lost its date line and both its crops failed Vision; the page images can say which return it is",
-      "state": "open",
+      "state": "done",
       "epic": "PAPERS",
       "requested_by": "loop",
       "seen": false,
@@ -5572,12 +5572,12 @@
       "legacy_id": null,
       "parent": null,
       "opened": "2026-08-28",
-      "closed": null,
-      "pr": null,
-      "claimed_by": null,
+      "closed": "2026-08-29",
+      "pr": "575",
+      "claimed_by": "run 8/29/2026, 6:41:04 PM CT",
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 9
+      "queue_rank": null
     },
     {
       "id": "T-0332",
@@ -5595,12 +5595,12 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": true,
-      "queue_rank": 28
+      "queue_rank": 37
     },
     {
       "id": "T-0333",
       "title": "Every stove pipe in the town owes eighteen inches above its roof, and the ordinance of 5 August 1835 says so",
-      "state": "open",
+      "state": "done",
       "epic": "META",
       "requested_by": "loop",
       "seen": false,
@@ -5608,12 +5608,12 @@
       "legacy_id": null,
       "parent": null,
       "opened": "2026-08-28",
-      "closed": null,
-      "pr": null,
-      "claimed_by": null,
+      "closed": "2026-08-29",
+      "pr": "587",
+      "claimed_by": "run 8/29/2026, 11:20:50 PM CT",
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 25
+      "queue_rank": null
     },
     {
       "id": "T-0334",
@@ -5631,7 +5631,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 26
+      "queue_rank": 34
     },
     {
       "id": "T-0335",
@@ -5726,7 +5726,7 @@
     {
       "id": "T-0340",
       "title": "The bookseller's sign-name and its partners' firm-name are three gazetteer entries for one house",
-      "state": "open",
+      "state": "done",
       "epic": "PAPERS",
       "requested_by": "loop",
       "seen": false,
@@ -5734,12 +5734,12 @@
       "legacy_id": null,
       "parent": null,
       "opened": "2026-08-28",
-      "closed": null,
-      "pr": null,
-      "claimed_by": null,
+      "closed": "2026-08-29",
+      "pr": "547",
+      "claimed_by": "run 8/29/2026, 9:42:37 AM CT",
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 0
+      "queue_rank": null
     },
     {
       "id": "T-0341",
@@ -5780,7 +5780,7 @@
     {
       "id": "T-0346",
       "title": "Desktop smoke stage 4 no longer fits the ten-minute foreground ceiling, so no steward run can take the whole desktop gate",
-      "state": "open",
+      "state": "done",
       "epic": "META",
       "requested_by": "loop",
       "seen": false,
@@ -5788,12 +5788,12 @@
       "legacy_id": null,
       "parent": null,
       "opened": "2026-08-28",
-      "closed": null,
-      "pr": null,
-      "claimed_by": null,
+      "closed": "2026-08-29",
+      "pr": "583",
+      "claimed_by": "run 8/29/2026, 9:15:46 PM CT",
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 16
+      "queue_rank": null
     },
     {
       "id": "T-0348",
@@ -5816,7 +5816,7 @@
     {
       "id": "T-0349",
       "title": "The signboard gate is red when stage 1 runs before it and green when stage 2 runs alone",
-      "state": "open",
+      "state": "done",
       "epic": "META",
       "requested_by": "loop",
       "seen": false,
@@ -5824,12 +5824,12 @@
       "legacy_id": null,
       "parent": null,
       "opened": "2026-08-28",
-      "closed": null,
-      "pr": null,
-      "claimed_by": null,
+      "closed": "2026-08-29",
+      "pr": "580",
+      "claimed_by": "run 8/29/2026, 9:13:24 PM CT",
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 17
+      "queue_rank": null
     },
     {
       "id": "T-0350",
@@ -5924,7 +5924,7 @@
     {
       "id": "T-0358",
       "title": "The Thompson plat's block NUMBERING is uncommitted, so the corpus's only lot-and-block address cannot be placed",
-      "state": "open",
+      "state": "done",
       "epic": "META",
       "requested_by": "loop",
       "seen": false,
@@ -5932,12 +5932,12 @@
       "legacy_id": null,
       "parent": null,
       "opened": "2026-08-29",
-      "closed": null,
-      "pr": null,
-      "claimed_by": null,
+      "closed": "2026-08-29",
+      "pr": "571",
+      "claimed_by": "run 8/29/2026, 4:28:55 PM CT",
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 4
+      "queue_rank": null
     },
     {
       "id": "T-0359",
@@ -5973,12 +5973,12 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 37
+      "queue_rank": 46
     },
     {
       "id": "T-0365",
       "title": "The anonymous-block programme has no unblocked ground left: every block with headroom is on the South Water reach T-0009 holds open",
-      "state": "open",
+      "state": "done",
       "epic": "META",
       "requested_by": "loop",
       "seen": false,
@@ -5986,12 +5986,12 @@
       "legacy_id": null,
       "parent": null,
       "opened": "2026-08-29",
-      "closed": null,
-      "pr": null,
-      "claimed_by": null,
+      "closed": "2026-08-29",
+      "pr": "581",
+      "claimed_by": "run 8/29/2026, 9:18:05 PM CT",
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 13
+      "queue_rank": null
     },
     {
       "id": "T-0366",
@@ -6050,7 +6050,7 @@
     {
       "id": "T-0369",
       "title": "Desktop stage 8's panel walk is red when stage 1 runs before it and green when stage 8 runs alone",
-      "state": "open",
+      "state": "done",
       "epic": "META",
       "requested_by": "loop",
       "seen": false,
@@ -6058,12 +6058,12 @@
       "legacy_id": null,
       "parent": null,
       "opened": "2026-08-29",
-      "closed": null,
-      "pr": null,
-      "claimed_by": null,
+      "closed": "2026-08-29",
+      "pr": "578",
+      "claimed_by": "run 8/29/2026, 9:13:23 PM CT",
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 18
+      "queue_rank": null
     },
     {
       "id": "T-0371",
@@ -6081,12 +6081,12 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 43
+      "queue_rank": 53
     },
     {
       "id": "T-0372",
       "title": "North Water Street's two tight spots are 5.5 m and 8.5 m from water, and the setback rule cannot see either",
-      "state": "open",
+      "state": "done",
       "epic": "TOWN",
       "requested_by": "loop",
       "seen": false,
@@ -6094,17 +6094,17 @@
       "legacy_id": null,
       "parent": null,
       "opened": "2026-08-29",
-      "closed": null,
-      "pr": null,
-      "claimed_by": null,
+      "closed": "2026-08-29",
+      "pr": "572",
+      "claimed_by": "run 8/29/2026, 6:41:58 PM CT",
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 14
+      "queue_rank": null
     },
     {
       "id": "T-0373",
       "title": "The documented people the papers name with no trade at all, and the town does not hold",
-      "state": "open",
+      "state": "done",
       "epic": "PAPERS",
       "requested_by": "owner",
       "seen": false,
@@ -6112,12 +6112,12 @@
       "legacy_id": null,
       "parent": "T-0368",
       "opened": "2026-08-29",
-      "closed": null,
-      "pr": null,
-      "claimed_by": null,
+      "closed": "2026-08-29",
+      "pr": "539",
+      "claimed_by": "run 8/29/2026, 7:14:36 AM CT",
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 5
+      "queue_rank": null
     },
     {
       "id": "T-0374",
@@ -6189,7 +6189,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 59
+      "queue_rank": 71
     },
     {
       "id": "T-0378",
@@ -6212,7 +6212,7 @@
     {
       "id": "T-0379",
       "title": "The letter-list names the post office printed in a single return, and the change of scale they put to the town",
-      "state": "open",
+      "state": "done",
       "epic": "PAPERS",
       "requested_by": "owner",
       "seen": false,
@@ -6220,12 +6220,12 @@
       "legacy_id": null,
       "parent": "T-0374",
       "opened": "2026-08-29",
-      "closed": null,
-      "pr": null,
-      "claimed_by": null,
+      "closed": "2026-08-30",
+      "pr": "600",
+      "claimed_by": "run 8/30/2026, 1:52:59 AM CT",
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 6
+      "queue_rank": null
     },
     {
       "id": "T-0380",
@@ -6312,10 +6312,10 @@
       "opened": "2026-08-29",
       "closed": null,
       "pr": null,
-      "claimed_by": null,
+      "claimed_by": "run 8/29/2026, 4:27:33 PM CT",
       "blocked_on": null,
       "needs_bake": true,
-      "queue_rank": 1
+      "queue_rank": 5
     },
     {
       "id": "T-0385",
@@ -6333,7 +6333,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": true,
-      "queue_rank": 2
+      "queue_rank": 6
     },
     {
       "id": "T-0386",
@@ -6387,7 +6387,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 60
+      "queue_rank": 72
     },
     {
       "id": "T-0389",
@@ -6423,7 +6423,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 63
+      "queue_rank": 18
     },
     {
       "id": "T-0392",
@@ -6459,7 +6459,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 61
+      "queue_rank": 25
     },
     {
       "id": "T-0396",
@@ -6477,7 +6477,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 62
+      "queue_rank": 17
     },
     {
       "id": "T-0397",
@@ -6496,6 +6496,24 @@
       "blocked_on": null,
       "needs_bake": false,
       "queue_rank": null
+    },
+    {
+      "id": "T-0398",
+      "title": "A firm's own style stands in its proprietor list, because a claim read the signature where a person was wanted",
+      "state": "open",
+      "epic": "META",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "M",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-08-29",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "queue_rank": 24
     },
     {
       "id": "T-0399",
@@ -6585,7 +6603,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 67
+      "queue_rank": 16
     },
     {
       "id": "T-0404",
@@ -6603,7 +6621,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 68
+      "queue_rank": 26
     },
     {
       "id": "T-0405",
@@ -6621,7 +6639,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 69
+      "queue_rank": 27
     },
     {
       "id": "T-0406",
@@ -6639,7 +6657,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 66
+      "queue_rank": 15
     },
     {
       "id": "T-0407",
@@ -6657,7 +6675,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 64
+      "queue_rank": 19
     },
     {
       "id": "T-0408",
@@ -6675,7 +6693,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 65
+      "queue_rank": 20
     },
     {
       "id": "T-0409",
@@ -6693,7 +6711,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 70
+      "queue_rank": 50
     },
     {
       "id": "T-0410",
@@ -6711,7 +6729,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 71
+      "queue_rank": 21
     },
     {
       "id": "T-0411",
@@ -6729,7 +6747,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 72
+      "queue_rank": 22
     },
     {
       "id": "T-0412",
@@ -6747,7 +6765,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 73
+      "queue_rank": 10
     },
     {
       "id": "T-0413",
@@ -6765,7 +6783,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 74
+      "queue_rank": 23
     },
     {
       "id": "T-0414",
@@ -6783,7 +6801,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 75
+      "queue_rank": 9
     },
     {
       "id": "T-0415",
@@ -6801,12 +6819,12 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 76
+      "queue_rank": 11
     },
     {
       "id": "T-0416",
       "title": "Wm. Sabine, John Dave and the Dearborn wine store: the three storefronts the street-face policy refuses for want of a fronting roof",
-      "state": "open",
+      "state": "done",
       "epic": "META",
       "requested_by": "loop",
       "seen": false,
@@ -6814,12 +6832,12 @@
       "legacy_id": null,
       "parent": "T-0387",
       "opened": "2026-08-29",
-      "closed": null,
-      "pr": null,
-      "claimed_by": null,
+      "closed": "2026-08-30",
+      "pr": "596",
+      "claimed_by": "run 8/30/2026, 1:52:40 AM CT",
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 3
+      "queue_rank": null
     },
     {
       "id": "T-0417",
@@ -6838,6 +6856,348 @@
       "blocked_on": null,
       "needs_bake": false,
       "queue_rank": null
+    },
+    {
+      "id": "T-0418",
+      "title": "The 36 documented tradespeople whose trade the residents vocabulary has no word for",
+      "state": "open",
+      "epic": "META",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "S",
+      "legacy_id": null,
+      "parent": "T-0373",
+      "opened": "2026-08-29",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "queue_rank": 8
+    },
+    {
+      "id": "T-0419",
+      "title": "The re-centred South Water corridor stands 8.58 m off its own block faces, and the strip between belongs to neither",
+      "state": "open",
+      "epic": "META",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "M",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-08-29",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "queue_rank": 12
+    },
+    {
+      "id": "T-0420",
+      "title": "Open the four South Water blocks T-0009 has unblocked: 20 roofs of headroom on franklin, lasalle, clark and dearborn",
+      "state": "split",
+      "epic": "META",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "M",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-08-29",
+      "closed": "2026-08-29",
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "queue_rank": null
+    },
+    {
+      "id": "T-0421",
+      "title": "Canal Street's three control points spread 2.33 m, so its corridor cannot be centred on any of them",
+      "state": "open",
+      "epic": "META",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "M",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-08-29",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "queue_rank": 13
+    },
+    {
+      "id": "T-0422",
+      "title": "The widened counterfactual deals a roof per street, and every roof a widening adds already fronts another street",
+      "state": "open",
+      "epic": "META",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "S",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-08-29",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "queue_rank": 14
+    },
+    {
+      "id": "T-0423",
+      "title": "G. Spring's large dwelling-house and fine well stands on lot 7 of block 16, where an anonymous roof stands now",
+      "state": "open",
+      "epic": "META",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "M",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-08-29",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "queue_rank": 7
+    },
+    {
+      "id": "T-0424",
+      "title": "The 1 January 1834 letter list's printed length, and the names all nine printings lost, need the page images",
+      "state": "open",
+      "epic": "PAPERS",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "M",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-08-29",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "queue_rank": 29
+    },
+    {
+      "id": "T-0425",
+      "title": "A letter-list household's arrival bound is dated by the printing it was extracted from, not by the return, so nine printings of one list give nine different bounds",
+      "state": "open",
+      "epic": "PAPERS",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "S",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-08-29",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "queue_rank": 28
+    },
+    {
+      "id": "T-0427",
+      "title": "The outbuilding shed's overhang keeps climbing, and the ridge model stopped at the wall",
+      "state": "done",
+      "epic": "META",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "S",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-08-29",
+      "closed": "2026-08-29",
+      "pr": "574",
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": true,
+      "queue_rank": null
+    },
+    {
+      "id": "T-0428",
+      "title": "The 1 April 1834 letter list has three positions no printing reads, and only the page images can say how long it was",
+      "state": "open",
+      "epic": "META",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "M",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-08-29",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "queue_rank": 30
+    },
+    {
+      "id": "T-0429",
+      "title": "Open blk_south_water_lasalle: 8 roofs of headroom on three free lots",
+      "state": "open",
+      "epic": "META",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "S",
+      "legacy_id": null,
+      "parent": "T-0420",
+      "opened": "2026-08-29",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": true,
+      "queue_rank": 0
+    },
+    {
+      "id": "T-0430",
+      "title": "Open blk_south_water_franklin: 4 roofs of headroom on two free lots",
+      "state": "open",
+      "epic": "META",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "S",
+      "legacy_id": null,
+      "parent": "T-0420",
+      "opened": "2026-08-29",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": true,
+      "queue_rank": 1
+    },
+    {
+      "id": "T-0431",
+      "title": "Open blk_south_water_clark: 4 roofs of headroom on two free lots",
+      "state": "open",
+      "epic": "META",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "S",
+      "legacy_id": null,
+      "parent": "T-0420",
+      "opened": "2026-08-29",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": true,
+      "queue_rank": 2
+    },
+    {
+      "id": "T-0432",
+      "title": "Open blk_south_water_dearborn: 4 roofs of headroom on two free lots",
+      "state": "open",
+      "epic": "META",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "S",
+      "legacy_id": null,
+      "parent": "T-0420",
+      "opened": "2026-08-29",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": true,
+      "queue_rank": 3
+    },
+    {
+      "id": "T-0433",
+      "title": "T-0346's measured costs for the new desktop parts 4, 5 and 6 were never filed, and the two places they are written down disagree",
+      "state": "open",
+      "epic": "META",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "S",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-08-29",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "queue_rank": 60
+    },
+    {
+      "id": "T-0435",
+      "title": "30 of the 47 cat-and-clay stacks stand against an eave wall, and both the archetype and the fabric argument say gable",
+      "state": "open",
+      "epic": "META",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "M",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-08-30",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": true,
+      "queue_rank": 33
+    },
+    {
+      "id": "T-0436",
+      "title": "The corporation's limits have no committed geometry, and the fire ordinance binds only inside them",
+      "state": "open",
+      "epic": "META",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "M",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-08-30",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "queue_rank": 35
+    },
+    {
+      "id": "T-0438",
+      "title": "The letter-list cohort is 2.54 MiB of the published tree, and it is now the largest single item in it",
+      "state": "open",
+      "epic": "META",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "M",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-08-30",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "queue_rank": 73
+    },
+    {
+      "id": "T-0439",
+      "title": "Two pixel-sensitivity checks fail when parts 9-12 run together and pass when part 9 runs alone",
+      "state": "open",
+      "epic": "META",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "M",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-08-30",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "queue_rank": 74
     }
   ]
 }

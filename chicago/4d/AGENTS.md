@@ -288,6 +288,15 @@ straight to production.* The fleet pilot is `kevinrhaas/jobtracker.polecat.live`
   anything, and says whether the reading was taken on your exact tree. Four runs re-derived
   the same two reds by hand on 2026-08-27 for want of it (T-0215, T-0216). File the smoke
   you ran anyway: `node tools/dev-smoke-state.mjs record <log>`.
+- **Before you spend the run's budget on the smoke, ASK WHAT IT COSTS AND WHAT YOU
+  NEED**: `node tools/smoke_budget.mjs --for-diff` names the parts that cover your own
+  diff and prints the commands, each packed under the 600 s foreground ceiling, with the
+  measured margin — read out of the same record above, never asserted. With no arguments
+  it prints what the whole gate costs on THIS machine, which is not the 30-minute figure
+  three tickets reason against. `docs/SMOKE-BUDGET.md` is the page (T-0235). And redirect
+  a smoke to a FILE, never a pipe: node block-buffers stdout to a pipe, so a piped log
+  stays at zero bytes until the process exits, and a run once killed a green smoke one
+  minute from its finish for want of a byte to look at.
 - **Both gates, in the foreground, before merging**: `tools/check.sh` (needs `jsonschema` +
   `pyproj`) and `node tools/smoke_renderer.mjs` (Playwright, 390×780 AND 1280×800, zero
   page errors). Mobile is a release gate. **Never weaken an assertion to pass.** The

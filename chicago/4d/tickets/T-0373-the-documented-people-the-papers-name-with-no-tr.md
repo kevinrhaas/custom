@@ -1,7 +1,7 @@
 ---
 id: T-0373
 title: The documented people the papers name with no trade at all, and the town does not hold
-state: open
+state: done
 epic: PAPERS
 requested_by: owner
 seen: false
@@ -9,9 +9,9 @@ effort: S
 legacy_id: null
 parent: T-0368
 opened: 2026-08-29
-closed: null
-pr: null
-claimed_by: null
+closed: 2026-08-29
+pr: 539
+claimed_by: run 8/29/2026, 7:14:36 AM CT
 blocked_on: null
 needs_bake: false
 ---

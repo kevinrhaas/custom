@@ -312,9 +312,16 @@ def compile_exclusions(scene_id: str, scene: dict, target: dt.date,
                     "this scene, with the evidence that dates them. It is not a list of "
                     "everything missing: most of the town is simply not built yet.",
         "excluded": entries,
+        # T-0305: this sentence counted, and it had gone wrong the way the
+        # paraphrase it replaced went wrong. "One of them is standing in front of
+        # you" was true of four entries and stopped being true at the second
+        # standing one — the New York House, on 2026-08-29 — a day before a fifth
+        # entry was added and nobody read it. It counts nothing now: each entry
+        # carries its own `standing` flag and the chip beside it says which.
         "uncertain_standard": "Structures whose status on this date is genuinely OPEN — "
                               "neither built with confidence nor ruled out. They are the "
-                              "third category, and one of them is standing in front of you.",
+                              "third category, and each one says whether it is standing in "
+                              "front of you or was never found on the ground.",
         "uncertain": uncertain,
     })
     return len(entries)
@@ -326,12 +333,13 @@ def compile_watch_list(scene_id: str, sources: dict, exclusions: dict,
 
     A visitor can be told what stands and, since the exclusions shipped, what was
     researched and left out. Between those sits a third statement the walkthrough
-    could not make: researched, and still open. Three of the four are empty
+    could not make: researched, and still open. Three of the five are empty
     ground for the same reason a gap is empty — nobody could establish whether
-    the building was there — and the fourth is standing in the scene with an
-    `inferred` claim about its own date. Putting all four under "what is not
-    here" would be false about that one, which is why they get their own section
-    rather than a footnote on somebody else's.
+    the building was there — and two are standing in the scene, each with an
+    `inferred` claim carrying the doubt: the New York House's side of Wells, and
+    (T-0305) the corner S. B. Cobb's saddlery stands on. Putting the standing
+    ones under "what is not here" would be false about them, which is why they
+    get their own section rather than a footnote on somebody else's.
 
     `standing` is derived from the scene rather than read off the entry: whether
     a structure resolves into 1 July 1835 is a fact about the dataset and the

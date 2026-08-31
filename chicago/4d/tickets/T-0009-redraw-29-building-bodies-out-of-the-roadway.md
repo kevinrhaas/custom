@@ -1,7 +1,7 @@
 ---
 id: T-0009
 title: Redraw 29 building bodies out of the roadway
-state: open
+state: done
 epic: TOWN
 requested_by: loop
 seen: true
@@ -9,9 +9,9 @@ effort: M
 legacy_id: K30(c)
 parent: null
 opened: 2026-08-17
-closed: null
-pr: null
-claimed_by: run 8/22/2026, 5:26:36 AM CT
+closed: 2026-08-29
+pr: 567
+claimed_by: run 8/29/2026, 4:27:24 PM CT
 blocked_on: null
 needs_bake: true
 ---
@@ -90,3 +90,52 @@ move) is discharged: the line is not moving.
 - Nothing in `data/streets/1835.json` moves; if a run finds it must move the drawn line to
   make this work, it stops and says so rather than moving it.
 - The four blocks above are confirmed workable (or the reason one is not is recorded).
+
+---
+
+## DONE 2026-08-29 — THE CORRIDOR IS DERIVED FROM THE CONTROL, AND THE TABLE IS RE-RUN
+
+Carried out under the owner's Option 2. Full reasoning in `docs/ROADMAP.md` § K30(e).
+
+**Nothing in the scene moved.** No structure record, footprint, coordinate or confidence was
+touched, and `data/streets/1835.json` is byte-identical.
+
+**The derivation** is `plat_corridors.control_offsets()`: every committed control point in
+`data/traces/street_control.json` is measured against the drawn centreline of each street it
+names — cross-axis, at the control's own along-axis value. No street ids appear in the rule.
+
+| verdict | streets | offset |
+|---|---|---|
+| `recentred` | `south_water` | **+8.58 m** |
+| `centred` | `lake`, `market`, `randolph` | 0.00–0.01 m, under the centimetre a depth is quoted to |
+| `disagree` | `canal` | three points spread **2.33 m** — left on the drawn line, filed as **T-0421** |
+| `off_line` | `franklin` | `south_water_franklin` is beyond franklin's drawn span |
+| `no_control` | 13 others | — |
+
+`tools/measure_corridor_intrusion.py --control` prints it; `--drawn` re-runs every mode against
+the pre-ruling corridor, so the before-and-after is two commands.
+
+**Before → after.** 19 of 359 phases lap, both ways; 17 buildings, both ways; 5 in the deep mode,
+both ways; centroid-in **5 → 4**; generated roofs lapping **0 → 0**. Four records moved:
+`newberry_dole_warehouse` 12.10 m on `south_water` → 9.81 m on `franklin`; `hogan_store`
+10.06 → **3.98 m**, centroid out; `lasalle_slough_crossing` (furniture) 11.39 on `south_water` →
+3.17 on `lasalle`; `dearborn_street_drawbridge` **newly laps `south_water` by 7.13 m** — furniture,
+a drawbridge in a street corridor is the bridge doing its job; `slough_log_bridge` clears.
+
+**INTRUSIONS THAT SURVIVE, listed and left open, not absorbed:** `newberry_dole_warehouse` laps
+`franklin` by **9.81 m** and still laps `south_water`; `hogan_store` is still in the deep mode at
+**3.98 m**. Both are ratcheted in `tools/corridor_intrusion_baseline.json`. The three T-0195
+refusals are on other streets and outlive their laps unchanged.
+
+**Scope, and it is the ruling's own** — *"what changes is what the intrusion table measures
+against"*. `plat_corridors.corridors()` still answers the DRAWN corridor by default and every
+generator keeps asking it that, because a generator asks where a roof may stand relative to the
+street a visitor walks. Swapping the default was tried and measured: five gates that read a
+corridor edge against a block face or a frontage line went red, because the re-centred corridor
+stands 8.58 m off block faces that do not move. Filed as **T-0419**.
+
+**The four blocks are confirmed workable.** T-0143 and T-0188 refused to tighten a row against a
+line that may move; the line is not moving, so the refusal is discharged and
+`blk_south_water_franklin` (4), `blk_south_water_lasalle` (8), `blk_south_water_clark` (4) and
+`blk_south_water_dearborn` (4) carry **20 roofs**. Filed as **T-0420**.
+`blk_south_water_market` stays gated on T-0183, unchanged.

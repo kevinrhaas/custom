@@ -3,7 +3,7 @@
   "source": "docs/LIBERTIES.md",
   "standard": "A visitor should be able to tell you which parts we made up.",
   "note": "The confidence model covers attributes. These are the decisions that live above any single attribute: scope, omission, simplification, and the choices a visitor would otherwise have to reverse-engineer.",
-  "count": 212,
+  "count": 214,
   "liberties": [
     {
       "id": "L1",
@@ -13229,7 +13229,7 @@
         },
         {
           "label": "Consequence",
-          "text": "the people section goes from 189 households and 225 people to 201 and 237; `households_without_a_dwelling` in the town census moves from 68 to 80 and `housed` does not move, because none of these twelve is placed anywhere. `letter_list_only` now reaches the visitor's card — a row of its own on the person and a clause in the section's count sentence — so a letter-list name and a shopkeeper who advertised his stock can never again read as the same claim. No figure is drawn (L1). Related: **L206** (the documented tradespeople minted as households of one) · **L205** · **L1** (no figure is drawn for any resident) · tickets **T-0378** (this), **T-0379**, **T-0374**, **T-0368**, **T-0264**."
+          "text": "the people section goes from 189 households and 225 people to 201 and 237; `households_without_a_dwelling` in the town census moves from 68 to 80 and `housed` does not move, because none of these twelve is placed anywhere. `letter_list_only` now reaches the visitor's card — a row of its own on the person and a clause in the section's count sentence — so a letter-list name and a shopkeeper who advertised his stock can never again read as the same claim. No figure is drawn (L1). **The scale question this entry left open has since been answered — see L214.** T-0379 put the numbers above to the owner and he ruled, on 2026-08-30, HOLD ALL OF THEM: every name these refusals admit joins the town. So \"why twelve and not 1,907\" is now a record of how the question was framed rather than a description of what stands, the twelve are fifteen and then 727, and L214 carries the change of scale, its share of the town and the gate that binds it. Related: **L214** (the ruling that scaled this pass up) · **L206** (the documented tradespeople minted as households of one) · **L205** · **L1** (no figure is drawn for any resident) · tickets **T-0378** (this), **T-0379**, **T-0374**, **T-0368**, **T-0264**."
         },
         {
           "label": "Recorded",
@@ -13403,13 +13403,13 @@
     },
     {
       "id": "L211",
-      "title": "103 documented businesses stand on 1 July 1835 because nothing says they closed",
+      "title": "101 documented businesses stand on 1 July 1835 because nothing says they closed",
       "section": "per_subject",
       "subjects": [],
       "covers": [],
       "scope": {
         "enumeration": "register_1835.businesses[survival_liberty_required]",
-        "count": 103
+        "count": 101
       },
       "recorded": "2026-08-29",
       "revised": null,
@@ -13420,15 +13420,15 @@
         },
         {
           "label": "Why",
-          "text": "the corpus is thinnest in the year it most needs to be thick. 192 documented businesses are present at the scene date and only **89** of them are documented *in* 1835; the other **103** were last printed between 1833-11-26 and 1834-12-24, a median of 364 days before the day the town is drawn. Refusing the assumption is the only alternative to making it, and refusing it empties more than half the documented trade out of Chicago on the strength of a newspaper run nobody has finished reading — the 1835 issues that would re-attest most of these houses are still unopened (the `PAPERS` reading tickets). Owner ruling 3, 2026-08-28: such a business is BUILT, with the liberty stated. The register already refuses everything that CAN be refused — 13 businesses are excluded by a claim that contradicts them before the scene date and 4 by an opening announced after it — so this covers what is left after the evidence has spoken, not instead of it."
+          "text": "the corpus is thinnest in the year it most needs to be thick. 189 documented businesses are present at the scene date and only **88** of them are documented *in* 1835; the other **101** were last printed between 1833-11-26 and 1834-12-24, a median of 364 days before the day the town is drawn. Refusing the assumption is the only alternative to making it, and refusing it empties more than half the documented trade out of Chicago on the strength of a newspaper run nobody has finished reading — the 1835 issues that would re-attest most of these houses are still unopened (the `PAPERS` reading tickets). Owner ruling 3, 2026-08-28: such a business is BUILT, with the liberty stated. The register already refuses everything that CAN be refused — 13 businesses are excluded by a claim that contradicts them before the scene date and 4 by an opening announced after it — so this covers what is left after the evidence has spoken, not instead of it."
         },
         {
           "label": "Scope",
-          "text": "`register_1835.businesses[survival_liberty_required]` — 103 businesses, enumerated by `tools/compile_register.py` from the gazetteer and the committed town, and re-counted by `tools/compile_liberties.py` on every compile. The number above cannot drift from the register without `check.sh` saying so, which is the point of writing it down: a scope that has silently stopped matching its population reads as a measurement and is not one."
+          "text": "`register_1835.businesses[survival_liberty_required]` — 101 businesses, enumerated by `tools/compile_register.py` from the gazetteer and the committed town, and re-counted by `tools/compile_liberties.py` on every compile. The number above cannot drift from the register without `check.sh` saying so, which is the point of writing it down: a scope that has silently stopped matching its population reads as a measurement and is not one."
         },
         {
           "label": "Consequence",
-          "text": "as the register is seeded into the town, half of these reach something a visitor can see. Measured on the register as it stands on 2026-08-29, **53** of the 103 do — 16 enrich a house already standing, 14 ask for a new building, 23 take a street face — and **50** reach nothing yet. That split moves whenever an anchor is re-read or two firms are judged one house, and it is a dated reading rather than a standing claim; the 103 is the number this entry is held to and the number the gate re-derives. It has now moved twice for exactly the second reason. This entry was written at 111 the same day T-0345 found that four of the register's businesses were four readings of Matthias Mason & Co.'s one blacksmithing notice; and T-0400 judged the ten surname groups whose two styles differ only in the FORM of a forename — whole against abbreviated against bare initial — merging eight of them and taking the count from 109 to 103. Neither movement is a business leaving Chicago; both are shops the register was holding twice. Every one of them puts a trade sign, a card or an occupant into July 1835 on an inference, and a visitor reading such a card is being told the shop was there when what is known is that it was there the winter before. The Evidence panel carries this entry so that sentence is available to them; the per-attribute chips cannot say it, because the thing assumed is not an attribute but a continued existence."
+          "text": "as the register is seeded into the town, half of these reach something a visitor can see. Measured on the register as it stands on 2026-08-29, **53** of the 101 do — 16 enrich a house already standing, 14 ask for a new building, 23 take a street face — and **48** reach nothing yet. That split moves whenever an anchor is re-read or two firms are judged one house, and it is a dated reading rather than a standing claim; the 101 is the number this entry is held to and the number the gate re-derives. It has now moved three times for exactly the second reason. This entry was written at 111 the same day T-0345 found that four of the register's businesses were four readings of Matthias Mason & Co.'s one blacksmithing notice; T-0400 judged the ten surname groups whose two styles differ only in the FORM of a forename — whole against abbreviated against bare initial — merging eight of them and taking the count from 109 to 103; and T-0340 joined the town's only bookshop, whose sign-name, its partners' firm-name and the shop's own premises stood as separate houses, and the joined record advertises in August 1835 and needs no survival assumed at all, taking 103 to 101. No movement is a business leaving Chicago; all are shops the register was holding twice. Every one of them puts a trade sign, a card or an occupant into July 1835 on an inference, and a visitor reading such a card is being told the shop was there when what is known is that it was there the winter before. The Evidence panel carries this entry so that sentence is available to them; the per-attribute chips cannot say it, because the thing assumed is not an attribute but a continued existence."
         },
         {
           "label": "What is NOT invented",
@@ -13488,12 +13488,78 @@
           "text": "a directory, a tax list, or a lot-and-block address in the corpus would put any of these 19 on a lot, at which point that business leaves this entry for a placement of its own — the shape **T-0384** through **T-0387** already take for the businesses whose advertisements name an anchor. A ruling that a corner side is a street face would move up to twenty-four more into this entry rather than out of it, and the count above is what would change. Related: **L205** (documented men on reconstructed roofs, the pattern this follows) · **L92** (the reconstructed roofs' own presence and placement) · **L1** · tickets **T-0354** (this), **T-0262**, **T-0263**, **T-0375**, **T-0338**, **T-0408**, **T-0417** (spent into the roofs, and the yard refusal)."
         },
         {
+          "label": "Revised",
+          "text": "2026-08-30 (T-0416) — **a corner side is now a face, on the owner's ruling of that day, and this entry covers 29 businesses rather than 19.** The paragraph above ends \"a ruling that a corner side is a face would move up to twenty-four more into this entry rather than out of it\", and that is the ruling. It was asked for with a measurement rather than an argument: the tool deals every reading of \"face\" out in full, so the question put to him was \"twelve shops on Dearborn, La Salle and Canal\" and not \"twenty-four eligible\". He took the corner side and DECLINED the centreline band in the same breath — a corner building genuinely has a door on each of the two streets it meets, and a band is a distance from a line that says nothing about which way a building looks. **Ten businesses seated, not twelve**, and the two the measurement over-counted are the correction this entry has to carry: refusal 5 refused a roof `data/residents/` seats a NAMED household in, and the inferred-household programme's 101 households are not there under a name, so its roofs looked free. The first re-derivation put Elmira Fowler's millinery into one and `tools/inferred_occupancy.py` raised, exactly as it is built to. The refusal now covers both layers. **This is the second time spending the allocation is what found the error** — T-0417 was the first, and nine businesses were standing in privies — and the lesson is the same one: an allocation nothing consumes is an allocation nothing checks. **What is invented is unchanged and is still only WHICH roof**: no geometry moved, no triangle was added, no building changed grade, and a corner adoption's card says it took the tier end rather than the lot front, so a visitor is not told the plat put a door where it did not."
+        },
+        {
+          "label": "And the entry's own subject is still not seated",
+          "text": "Wm. Sabine and John Dave want North Water Street, which has no roof standing on it under any adopted reading, and its one roof in the declined band is an inferred household's home — so even the band would have seated neither. Their answer is frontage (**T-0375**), and **T-0416** records that rather than closing over it."
+        },
+        {
           "label": "Recorded",
           "text": "2026-08-29."
         },
         {
           "label": "Revised",
-          "text": "2026-08-29 (T-0417)."
+          "text": "2026-08-29 (T-0417), 2026-08-30 (T-0416)."
+        }
+      ]
+    },
+    {
+      "id": "L213",
+      "title": "Four people the papers name with no trade are written as households of one, on a residency test",
+      "section": "per_subject",
+      "subjects": [],
+      "covers": [],
+      "recorded": "2026-08-29",
+      "revised": null,
+      "fields": [
+        {
+          "label": "Decision",
+          "text": "L206 seated the register's `new_resident` people whose TRADE the papers print, and L207 the names known only from the post office's letter lists. What is left of that half — 386 people named in a proceedings column, a public card, a shipping notice or an advertisement, with no trade the register can read — have no anchor at all, and a name printed in a Chicago paper is not a Chicago resident. So on 2026-08-29 they were put to a residency test derived from the corpus rather than judged one by one, and four passed it: J. K. Boyer, Thomas Hoit, B. S. Morris and J. W. Fell. `tools/mint_placed_residents.py` derives the set and re-derives it on every commit; `--report` prints all 382 refusals with their reasons and `--self-test` fires every rule against the case it exists for. **What is not invented: the people, and where the papers put them.** Each is named in the Chicago Democrat or the Chicago American at the issue and column their record cites, and the corpus gives each a place inside the town and none outside it. They are graded `attested` on that basis and on nothing else. **What is invented, and it is only this: that each is a household.** As L206 and L207, and for the same reason — `data/residents/` has no way to carry a person except inside one. Each record carries a single member, `lives_at` null, `works_at` null, no origin, no party size, no family, and `division: unplaced`. Their occupation reads `none_recorded` — the residents vocabulary's own word for an absent record, already carried by committed people — because the papers give none; the absence is the finding and not a hole, and it is written as an absence rather than reasoned from the company they keep. **The test, stated so it can be argued with.** (a) The corpus must place the person inside the town — the bare town, a committed 1835 street, a committed structure — and NOWHERE outside it; fifteen are refused on a place elsewhere (Ottawa, Detroit, Cook county) and thirty-six on no place at all. (b) A bare \"Chicago\" is where the papers say somebody did something at Chicago, which is not the claim that they lived there, so it needs a second witness and only three count: an address at street level, print in two or more separate issues, or print in the same claim as two or more people this reconstruction already holds (the register's own `enrich` finding). Fell came in on the first, Boyer and Hoit the second, Morris the third; twelve reached that question with none of the three. (c) The name must be found whole in the transcription, outside every uncertainty bracket and not cut off by one — 176 are refused there, and the rule exists because the first run of this pass minted \"The Blanshard household\" out of the letters `fG. BL NSHARD` and \"The Dave household\" out of `JOHN DAVE[S?]`. Thirty-six more carry a trade the residents vocabulary has no word for and are held for a ticket of their own rather than minted trade-less."
+        },
+        {
+          "label": "A limit, stated rather than papered over",
+          "text": "the duplicate guards compare surnames exactly, so 'Blanshard' and 'Blanchard', or 'Eldredge' and 'Eldridge', pass each other untouched and may be one man under two printed spellings. A fuzzy match was rejected for the reason `compile_register.py` gives for refusing a fuzzy trade match. **Where this pass stands in the order, because it changes what it can see.** Three passes now mint residents out of the register and they run in a fixed precedence, best-evidenced first: documented (a trade the papers print) ▸ placed (this entry) ▸ letter-list-only. Each skips its own output and every pass below it, so no derivation is changed by anything any of the three mints. Where two reach for one family name the higher one keeps it; this pass gave way to L206 three times."
+        },
+        {
+          "label": "Consequence",
+          "text": "the Evidence panel's people section goes from 201 households and 237 people to 205 and 241, `households_without_a_dwelling` in the town census moves from 80 to 84, and the four new rows carry the orphan chip that says no building card can reach them. No geometry moves, no triangle is added and no figure is drawn (L1). Related: **L207** (the letter-list names) · **L206** (the sixteen with a trade) · **L205** (the documented men who took reconstructed roofs) · **L1** (no figure is drawn for any resident) · tickets **T-0373** (this), **T-0368**, **T-0376**, **T-0378**, **T-0374**, **T-0418** (the trades the vocabulary cannot say)."
+        },
+        {
+          "label": "Recorded",
+          "text": "2026-08-29."
+        }
+      ]
+    },
+    {
+      "id": "L214",
+      "title": "Three quarters of this town's people are a name on a post-office list and nothing else",
+      "section": "per_subject",
+      "subjects": [],
+      "covers": [],
+      "scope": {
+        "enumeration": "residents.persons[letter_list_only]",
+        "count": 727
+      },
+      "recorded": "2026-08-30",
+      "revised": null,
+      "fields": [
+        {
+          "label": "Scope",
+          "text": "`residents.persons[letter_list_only]` — 727 people"
+        },
+        {
+          "label": "Decision",
+          "text": "on 2026-08-30 the owner ruled that EVERY name the post office's lists of uncalled-for letters yield, and the mint's refusals admit, joins the town. 712 names were minted on that ruling, beside the 15 L207 already held, and the reconstruction went from 244 people in 208 households to 956 in 920. `tools/mint_letter_list_residents.py` derives the whole set and re-derives it on every commit; `--gate` proves what it is not allowed to do. **Why this is a liberty and not a dataset growing.** Nothing here is invented and no confidence was upgraded to allow it: every one of the 727 is printed by name in a list headed as letters remaining in the Post Office at Chicago and uncalled-for, at the issue and column its own record cites. The liberty is one of SCALE. About 76 per cent of the people a visitor can open are now known from that and from nothing else — no trade, no street, no household, no arrival — against 6 per cent the day before. A reader who counts this town's people is counting a post-office list with a town attached, and no single record says so, because no single record is wrong. **What each of the 727 may not have, and a gate proves none of them has it.** A letter waiting at Chicago establishes that a correspondent believed a person of that name reachable here on that date. It does not establish that they lived here, kept a trade here, or were here on 1 July 1835. So each is a household of ONE, `division: unplaced`, `lives_at` and `works_at` unattested, `occupation` recorded as none, `letter_list_only: true`, carrying `letter_list_returns` — the dated returns behind it — so a name printed on the scene date can be told from one printed eighteen months earlier. `--gate` refuses a roof, a trade, a second member, a manifest row that drops the flag and a structure record that names one of them; `--self-test` breaks each of those seven assertions and requires the gate to fire. **What the refusals still take, and they are the only thing between a post-office list and this town's population.** 1,181 of the 1,908 names in the pool are refused, in order: 454 garbled by the transcription, 310 whose first evidence falls after the scene date, 243 for a surname this pass had already minted, 128 because the town already names that family, 22 placed where this project cannot put them, 12 firms, 12 a surname and nothing else. The count moves with the corpus and `--scale` re-derives it on any tree; what does not move is that a refusal quietly ceasing to fire is now worth hundreds of records rather than one. **The limit L207 stated as a footnote, restated as a property of the town.** The Chicago post office served the country around the town as well as the town, so an uncalled-for letter is evidence a writer believed the addressee reachable at Chicago and not proof that anyone slept here. Refusal 6 catches the 22 the corpus places elsewhere by name; it cannot catch a settler the corpus never places at all. At 15 records that was a caveat on each of them. At 727 it is a statement about how this town's population was assembled, and this entry is where it is admitted as one."
+        },
+        {
+          "label": "Consequence",
+          "text": "the Evidence panel's people section goes from 208 households and 244 people to 920 and 956. `households_without_a_dwelling` in the town census moves from 87 to 799 and `housed` does not move at all, because not one of these people is placed anywhere — which is the ruling's own condition, measured. The section is SPLIT rather than sorted: the 193 households the rest of the corpus documents keep the list they had, at the length they had, and the 727 sit under them in one closed group that says what that evidence is worth before it is opened. That is the ruling's own test of whether it was implemented well — *a visitor who looks at the whole must be able to tell at a glance which three quarters are names alone.* No geometry moves, no triangle is added and no figure is drawn (L1). Related: **L207** (the fifteen this ruling scaled up) · **L213** · **L206** · **L205** · **L1** (no figure is drawn for any resident) · tickets **T-0379** (this), **T-0378**, **T-0374**."
+        },
+        {
+          "label": "Recorded",
+          "text": "2026-08-30."
         }
       ]
     },

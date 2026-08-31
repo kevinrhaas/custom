@@ -1,5 +1,5 @@
 {
- "_doc": "The platted block and lot grid, generated from the Thompson module and snapped to this project's committed street lines — never traced off the 1834 sheets, whose 3.7-4.5% anisotropic stretch would arrive as 4% of wobble in every block face. A block edge here is a street centreline from data/streets/1835.json offset by half the platted corridor; a lot line is the module divided into it. Written by tools/generate_plat_lots.py, which re-derives this file byte for byte offline on every commit (tools/check.sh). Block ids name the streets that bound a block, NOT Thompson's block numbers: this project has never read those off a sheet and does not have them to give.",
+ "_doc": "The platted block and lot grid, generated from the Thompson module and snapped to this project's committed street lines — never traced off the 1834 sheets, whose 3.7-4.5% anisotropic stretch would arrive as 4% of wobble in every block face. A block edge here is a street centreline from data/streets/1835.json offset by half the platted corridor; a lot line is the module divided into it. Written by tools/generate_plat_lots.py, which re-derives this file byte for byte offline on every commit (tools/check.sh). Block ids name the streets that bound a block, which is a description and not a claim. Thompson's own block NUMBERS are carried separately, in `plat_block_number`, and only for the six blocks of the South Water tier that two numerals on Wright's 1834 sheet can be counted along — see `block_numbering` below and data/traces/thompson_block_numbering.json. Every other block in this file is unnumbered on purpose.",
  "tool": "tools/generate_plat_lots.py",
  "generated_from": [
   "data/traces/street_control.json",
@@ -23,7 +23,7 @@
   "lot_frontage_m": 24.384,
   "lot_frontage_ft": 80.0,
   "lot_confidence": "reconstructed",
-  "lot_note": "Four lots to a block face, 80 ft each, is a reading of ONE block: the owner's crop of Wright's sheet at the Clark reach carries block 18's north row numbered 4 3 2 1 and its south row 5 6 7 (docs/RESEARCH/clark_reach_bulge_1834.md § 8), which is four lots across a block of about 320 ft. Applying it to the other blocks is inference from a single instance and it is graded as the conjecture it is. Lots are NOT numbered here — the crop reads block 18's numbering and nothing fixes the other blocks', and a numbering invented to look complete is exactly what this project does not do."
+  "lot_note": "Four lots to a block face, 80 ft each, is a reading of ONE block: the owner's crop of Wright's sheet at the Clark reach carries block 18's north row numbered 4 3 2 and its south row 5 6 7 (docs/RESEARCH/clark_reach_bulge_1834.md § 8), which is four lots across a block of about 320 ft. Applying it to the other blocks is inference from a single instance and it is graded as the conjecture it is. Lots carry a `plat_lot_number` ONLY inside a numbered block, under the scheme the same crop shows on block 18 — 1-4 east to west along the north row, 5-8 west to east along the south row — and that number is `conjectural` wherever it appears, because it is put on a line no sheet drew. Nothing else in this file is numbered: a numbering invented to look complete is exactly what this project does not do."
  },
  "method": {
   "block_edge": "a street centreline offset by half the platted corridor (12.192 m), the four offsets intersected",
@@ -33,13 +33,33 @@
   "water_rule": "a block with a corner on water or beyond the modelled ground is omitted rather than drawn over the river",
   "lot_subdivision": "the block's north and south faces divided in the same proportion, joined station to station, with a centred alley taken out of the middle"
  },
+ "block_numbering": {
+  "authored_in": "data/traces/thompson_block_numbering.json",
+  "read": "TWO adjacent blocks in one tier, the western numbered 19 and the eastern 18, separated by a street with the platted 80 written in it, and a narrow sinuous watercourse drawn down that street. Block 18's north row of lots is numbered 4 3 2 running west to east and its south row 5 6 7 running west to east; the fourth lot of each row falls outside the crop.",
+  "source": "wright_1834",
+  "step": -1,
+  "direction": "The number falls by one for each block eastward along a tier, so it rises westward. That the run is along the TIER and not down a column follows from the two numerals being side by side in one row and one apart: a column-major numbering would separate two blocks in the same row by the number of rows.",
+  "lot_scheme": "counter-clockwise from the block's north-east corner: lot 1 at the east end of the north row, running WEST to lot 4 at its west end; lot 5 at the west end of the south row, running EAST to lot 8 at its east end.",
+  "lot_confidence": "conjectural",
+  "refused": [
+   "every block of the Lake–Randolph and Randolph–Washington tiers (14 held by this reconstruction)",
+   "blk_south_water_clinton, blk_lake_clinton, blk_randolph_clinton and every other West Division block",
+   "the North Division",
+   "where the tier's run begins and ends",
+   "a modern plat reprint"
+  ],
+  "note": "Two numerals were read and the rest were counted along one tier. `numeral_on_sheet` on each block says which is which, and the authored file carries the reading, the identification and the refusals in full."
+ },
  "confidence": "inferred",
  "confidence_note": "The blocks are arithmetic on inferred inputs — street lines whose own geometry confidence is `inferred`, offset by a module width the street control also grades `inferred` — so `inferred` is the most this grid can carry. The lots and the alleys inside those blocks are `conjectural` and are recorded separately for that reason: a visitor is entitled to know that the block face is a defensible position and the line dividing it is not.",
  "summary": {
   "blocks": 19,
   "omitted": 5,
   "reserved": 1,
+  "numbered": 5,
+  "numbered_omitted": 1,
   "lots": 144,
+  "numbered_lots": 40,
   "block_frontage_ft": {
    "min": 309.6,
    "median": 323.4,
@@ -126,7 +146,9 @@
        220.37,
        -50.13
       ]
-     ]
+     ],
+     "plat_lot_number": 4,
+     "plat_lot_confidence": "conjectural"
     },
     {
      "tier": "south",
@@ -149,7 +171,9 @@
        220.07,
        -99.27
       ]
-     ]
+     ],
+     "plat_lot_number": 5,
+     "plat_lot_confidence": "conjectural"
     },
     {
      "tier": "north",
@@ -172,7 +196,9 @@
        244.75,
        -49.98
       ]
-     ]
+     ],
+     "plat_lot_number": 3,
+     "plat_lot_confidence": "conjectural"
     },
     {
      "tier": "south",
@@ -195,7 +221,9 @@
        244.47,
        -99.47
       ]
-     ]
+     ],
+     "plat_lot_number": 6,
+     "plat_lot_confidence": "conjectural"
     },
     {
      "tier": "north",
@@ -218,7 +246,9 @@
        269.16,
        -49.96
       ]
-     ]
+     ],
+     "plat_lot_number": 2,
+     "plat_lot_confidence": "conjectural"
     },
     {
      "tier": "south",
@@ -241,7 +271,9 @@
        268.88,
        -99.67
       ]
-     ]
+     ],
+     "plat_lot_number": 7,
+     "plat_lot_confidence": "conjectural"
     },
     {
      "tier": "north",
@@ -264,7 +296,9 @@
        293.57,
        -49.95
       ]
-     ]
+     ],
+     "plat_lot_number": 1,
+     "plat_lot_confidence": "conjectural"
     },
     {
      "tier": "south",
@@ -287,9 +321,21 @@
        293.28,
        -99.87
       ]
-     ]
+     ],
+     "plat_lot_number": 8,
+     "plat_lot_confidence": "conjectural"
     }
-   ]
+   ],
+   "plat_block_number": {
+    "number": 20,
+    "confidence": "inferred",
+    "numeral_on_sheet": false,
+    "sources": [
+     "wright_1834"
+    ],
+    "authored_in": "data/traces/thompson_block_numbering.json",
+    "note": "One block west of the read 19, counted at one block per step along the tier. No independent statement corroborates this number."
+   }
   },
   {
    "id": "blk_south_water_wells",
@@ -362,7 +408,9 @@
        342.36,
        -49.93
       ]
-     ]
+     ],
+     "plat_lot_number": 4,
+     "plat_lot_confidence": "conjectural"
     },
     {
      "tier": "south",
@@ -385,7 +433,9 @@
        342.06,
        -100.27
       ]
-     ]
+     ],
+     "plat_lot_number": 5,
+     "plat_lot_confidence": "conjectural"
     },
     {
      "tier": "north",
@@ -408,7 +458,9 @@
        366.76,
        -49.93
       ]
-     ]
+     ],
+     "plat_lot_number": 3,
+     "plat_lot_confidence": "conjectural"
     },
     {
      "tier": "south",
@@ -431,7 +483,9 @@
        366.46,
        -100.46
       ]
-     ]
+     ],
+     "plat_lot_number": 6,
+     "plat_lot_confidence": "conjectural"
     },
     {
      "tier": "north",
@@ -454,7 +508,9 @@
        391.16,
        -49.93
       ]
-     ]
+     ],
+     "plat_lot_number": 2,
+     "plat_lot_confidence": "conjectural"
     },
     {
      "tier": "south",
@@ -477,7 +533,9 @@
        390.86,
        -100.66
       ]
-     ]
+     ],
+     "plat_lot_number": 7,
+     "plat_lot_confidence": "conjectural"
     },
     {
      "tier": "north",
@@ -500,7 +558,9 @@
        415.56,
        -49.93
       ]
-     ]
+     ],
+     "plat_lot_number": 1,
+     "plat_lot_confidence": "conjectural"
     },
     {
      "tier": "south",
@@ -523,9 +583,21 @@
        415.26,
        -100.86
       ]
-     ]
+     ],
+     "plat_lot_number": 8,
+     "plat_lot_confidence": "conjectural"
     }
-   ]
+   ],
+   "plat_block_number": {
+    "number": 19,
+    "confidence": "inferred",
+    "numeral_on_sheet": true,
+    "sources": [
+     "wright_1834"
+    ],
+    "authored_in": "data/traces/thompson_block_numbering.json",
+    "note": "THE NUMERAL IS READ OFF THE SHEET; WHICH BLOCK CARRIES IT IS INFERRED. The crop sets 19 on the western of its two blocks, and the watercourse drawn in the street between them is the one this project traced at local E +462…+469, which is the La Salle corridor — so the block west of it is the Wells–La Salle block. The grade is the weaker of the two steps."
+   }
   },
   {
    "id": "blk_south_water_lasalle",
@@ -598,7 +670,9 @@
        464.35,
        -49.93
       ]
-     ]
+     ],
+     "plat_lot_number": 4,
+     "plat_lot_confidence": "conjectural"
     },
     {
      "tier": "south",
@@ -621,7 +695,9 @@
        464.05,
        -101.26
       ]
-     ]
+     ],
+     "plat_lot_number": 5,
+     "plat_lot_confidence": "conjectural"
     },
     {
      "tier": "north",
@@ -644,7 +720,9 @@
        489.12,
        -49.93
       ]
-     ]
+     ],
+     "plat_lot_number": 3,
+     "plat_lot_confidence": "conjectural"
     },
     {
      "tier": "south",
@@ -667,7 +745,9 @@
        488.81,
        -101.46
       ]
-     ]
+     ],
+     "plat_lot_number": 6,
+     "plat_lot_confidence": "conjectural"
     },
     {
      "tier": "north",
@@ -690,7 +770,9 @@
        513.89,
        -49.93
       ]
-     ]
+     ],
+     "plat_lot_number": 2,
+     "plat_lot_confidence": "conjectural"
     },
     {
      "tier": "south",
@@ -713,7 +795,9 @@
        513.58,
        -101.66
       ]
-     ]
+     ],
+     "plat_lot_number": 7,
+     "plat_lot_confidence": "conjectural"
     },
     {
      "tier": "north",
@@ -736,7 +820,9 @@
        538.66,
        -49.93
       ]
-     ]
+     ],
+     "plat_lot_number": 1,
+     "plat_lot_confidence": "conjectural"
     },
     {
      "tier": "south",
@@ -759,9 +845,21 @@
        538.34,
        -101.86
       ]
-     ]
+     ],
+     "plat_lot_number": 8,
+     "plat_lot_confidence": "conjectural"
     }
-   ]
+   ],
+   "plat_block_number": {
+    "number": 18,
+    "confidence": "inferred",
+    "numeral_on_sheet": true,
+    "sources": [
+     "wright_1834"
+    ],
+    "authored_in": "data/traces/thompson_block_numbering.json",
+    "note": "THE NUMERAL IS READ OFF THE SHEET; WHICH BLOCK CARRIES IT IS INFERRED, by the same watercourse. This is also the block whose lot numbering the crop shows, and the block from which four-lots-to-a-face was read in the first place — so it is the one block here where the plat grid's subdivision and its numbering rest on the same reading."
+   }
   },
   {
    "id": "blk_south_water_clark",
@@ -834,7 +932,9 @@
        587.82,
        -50.08
       ]
-     ]
+     ],
+     "plat_lot_number": 4,
+     "plat_lot_confidence": "conjectural"
     },
     {
      "tier": "south",
@@ -857,7 +957,9 @@
        587.48,
        -102.26
       ]
-     ]
+     ],
+     "plat_lot_number": 5,
+     "plat_lot_confidence": "conjectural"
     },
     {
      "tier": "north",
@@ -880,7 +982,9 @@
        612.46,
        -50.38
       ]
-     ]
+     ],
+     "plat_lot_number": 3,
+     "plat_lot_confidence": "conjectural"
     },
     {
      "tier": "south",
@@ -903,7 +1007,9 @@
        612.13,
        -102.46
       ]
-     ]
+     ],
+     "plat_lot_number": 6,
+     "plat_lot_confidence": "conjectural"
     },
     {
      "tier": "north",
@@ -926,7 +1032,9 @@
        637.1,
        -50.69
       ]
-     ]
+     ],
+     "plat_lot_number": 2,
+     "plat_lot_confidence": "conjectural"
     },
     {
      "tier": "south",
@@ -949,7 +1057,9 @@
        636.77,
        -102.66
       ]
-     ]
+     ],
+     "plat_lot_number": 7,
+     "plat_lot_confidence": "conjectural"
     },
     {
      "tier": "north",
@@ -972,7 +1082,9 @@
        661.74,
        -50.99
       ]
-     ]
+     ],
+     "plat_lot_number": 1,
+     "plat_lot_confidence": "conjectural"
     },
     {
      "tier": "south",
@@ -995,9 +1107,21 @@
        661.41,
        -102.87
       ]
-     ]
+     ],
+     "plat_lot_number": 8,
+     "plat_lot_confidence": "conjectural"
     }
-   ]
+   ],
+   "plat_block_number": {
+    "number": 17,
+    "confidence": "inferred",
+    "numeral_on_sheet": false,
+    "sources": [
+     "wright_1834"
+    ],
+    "authored_in": "data/traces/thompson_block_numbering.json",
+    "note": "Two blocks east of the read 19, counted at one block per step along the tier. No independent statement corroborates this number. Both memos that previously claimed the crop READ a 17 were describing this block; it is counted, not read."
+   }
   },
   {
    "id": "blk_south_water_dearborn",
@@ -1074,7 +1198,9 @@
        710.76,
        -51.66
       ]
-     ]
+     ],
+     "plat_lot_number": 4,
+     "plat_lot_confidence": "conjectural"
     },
     {
      "tier": "south",
@@ -1097,7 +1223,9 @@
        710.44,
        -103.26
       ]
-     ]
+     ],
+     "plat_lot_number": 5,
+     "plat_lot_confidence": "conjectural"
     },
     {
      "tier": "north",
@@ -1120,7 +1248,9 @@
        736.68,
        -52.13
       ]
-     ]
+     ],
+     "plat_lot_number": 3,
+     "plat_lot_confidence": "conjectural"
     },
     {
      "tier": "south",
@@ -1143,7 +1273,9 @@
        736.36,
        -103.48
       ]
-     ]
+     ],
+     "plat_lot_number": 6,
+     "plat_lot_confidence": "conjectural"
     },
     {
      "tier": "north",
@@ -1166,7 +1298,9 @@
        762.6,
        -52.6
       ]
-     ]
+     ],
+     "plat_lot_number": 2,
+     "plat_lot_confidence": "conjectural"
     },
     {
      "tier": "south",
@@ -1189,7 +1323,9 @@
        762.27,
        -103.69
       ]
-     ]
+     ],
+     "plat_lot_number": 7,
+     "plat_lot_confidence": "conjectural"
     },
     {
      "tier": "north",
@@ -1212,7 +1348,9 @@
        788.52,
        -53.07
       ]
-     ]
+     ],
+     "plat_lot_number": 1,
+     "plat_lot_confidence": "conjectural"
     },
     {
      "tier": "south",
@@ -1235,9 +1373,23 @@
        788.19,
        -103.9
       ]
-     ]
+     ],
+     "plat_lot_number": 8,
+     "plat_lot_confidence": "conjectural"
     }
-   ]
+   ],
+   "plat_block_number": {
+    "number": 16,
+    "confidence": "inferred",
+    "numeral_on_sheet": false,
+    "sources": [
+     "wright_1834",
+     "chicago_democrat_1833_1835",
+     "andreas_1884_v1"
+    ],
+    "authored_in": "data/traces/thompson_block_numbering.json",
+    "note": "THREE BLOCKS EAST OF THE READ 19 — AND THE ONE DERIVED NUMBER HERE THAT AN INDEPENDENT SOURCE AGREES WITH. G. Spring's For-Sale notice puts 'LOT No. 7, in block No. 16' ON LAKE STREET and 'one lot east of Haddock's Tavern' (Chicago Democrat, 1834-06-18 c006; also 1834-09-03 c005, 1834-10-15 c006, 1834-11-19 c010). Counting east gives block 16 the Dearborn–State block of the South Water tier, whose Lake Street frontage is its south row — and under the lot scheme above the south row runs 5 6 7 8 west to east from the Dearborn corner, so lot 7 is the THIRD lot east of Dearborn and Haddock's Tavern, one lot west of it, is the SECOND. That is where this dataset already stands the Mansion House, which is Haddock's Tavern: Andreas has it 'on Lake near Dearborn', and T-0324 read J. K. Botsford's advertisements — 'next door to Graves' Tavern' and 'Corner of Dearborn and Lake-sts.' — as one frontage on the corner lot, which puts the tavern on the second lot from Dearborn (docs/RESEARCH/botsford_graves_1834.md). The count, the newspaper's own 'on Lake street', and a placement argued from Andreas and Botsford before this file existed all land on the same block face. The arithmetic is still arithmetic and the grade stays `inferred`; what the agreement buys is that three statements made independently do not contradict it."
+   }
   },
   {
    "id": "blk_lake_clinton",
@@ -4382,7 +4534,17 @@
     "west": "market",
     "east": "franklin"
    },
-   "reason": "South Water Street's committed centreline stops 24 m short of this block"
+   "reason": "South Water Street's committed centreline stops 24 m short of this block",
+   "plat_block_number": {
+    "number": 21,
+    "confidence": "inferred",
+    "numeral_on_sheet": false,
+    "sources": [
+     "wright_1834"
+    ],
+    "authored_in": "data/traces/thompson_block_numbering.json",
+    "note": "Two blocks west of the read 19, counted at one block per step along the tier. This block is OMITTED from the generated grid — South Water Street's committed centreline stops 24 m short of it (docs/RESEARCH/thompson_plat_grid.md § 6) — so the number is carried here and stamped onto the omission rather than onto a block. Nothing says whether the tier's run continues west of Market Street; only that this block is two steps from one that was read."
+   }
   },
   {
    "id": "blk_lake_canal",
