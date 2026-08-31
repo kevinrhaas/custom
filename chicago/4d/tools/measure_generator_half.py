@@ -103,13 +103,18 @@ RENDERER_JS = RENDERERS / "web" / "js"
 # shared generator modules or to build.py would re-stale; the terrain and pier_crib reaches stay
 # at 2 each, which is the point of stating them separately.
 #
+# 359 -> 360 and 357 -> 358 on 2026-08-30 (T-0384): `john_holbrook_store__frame_1835.glb`,
+# the clothing store two papers place one door from Dearborn on South Water Street. One new
+# frame_storefront record, so one more committed asset and one more mesh a change to the
+# shared generator modules or to build.py would re-stale; terrain and pier_crib stay at 2.
+#
 STATED = {
-    "assets": 363,
+    "assets": 364,
     "restales": {
-        "generators/common/*.py": 363,
+        "generators/common/*.py": 364,
         "generators/common/__init__.py": 0,
         "generators/common/phases.py": 0,
-        "generators/build.py": 361,
+        "generators/build.py": 362,
         "generators/terrain_gen.py": 2,
         "generators/archetypes/pier_crib.py": 2,
     },

@@ -243,6 +243,37 @@
         }
       }
     },
+    "lot_claim": {
+      "type": "object",
+      "additionalProperties": false,
+      "description": "What this record asserts about the platted lot it physically stands on. Present only where the answer is NOTHING, which is why the block exists: a record placed by an ordinal off a corner ('one door from Dearborn street') names a position along a street face and no lot at all, so it must be able to say so in a field rather than in prose. The owner's ruling of 2026-08-30 (T-0384, docs/CORNER-ORDINAL.md) is the authority; tools/plat_occupancy.py reads this block and treats such a record as transparent to the plat's lot entitlements, and tools/measure_corner_ordinals.py is the gate. A record with no lot_claim block is unchanged in every way: this asserts a NEGATIVE and there was never a positive lot field to assert.",
+      "required": [
+        "claims_lot",
+        "lot",
+        "placement_rule",
+        "note"
+      ],
+      "properties": {
+        "claims_lot": {
+          "const": false,
+          "description": "Always false. The block exists to declare that no lot is claimed; a record that DOES stand on a lot it claims says so by standing there and carries no block."
+        },
+        "lot": {
+          "type": "null",
+          "description": "Always null, and named so the gate can refuse a lot field that has grown a value — the same shape the street-face adoptions carry."
+        },
+        "placement_rule": {
+          "enum": [
+            "corner_ordinal"
+          ],
+          "description": "The reading that placed the record and owes this declaration. One value today; a later rule that also places without a lot adds its own rather than reusing this one."
+        },
+        "note": {
+          "type": "string",
+          "description": "Why no lot is claimed, in the record's own words, and what the declaration does and does not relax."
+        }
+      }
+    },
     "xref": {
       "type": "object",
       "additionalProperties": false,

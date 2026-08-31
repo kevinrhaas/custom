@@ -82,7 +82,7 @@ one assertion — the `balanced` scene-detail tier's triangle ceiling at the wor
 | `dev` at 590e64c1 | 1,208,434 of 1,210,000 | PASS by 1,566 |
 | this branch | 1,210,608 of 1,210,000 | FAIL by 608 |
 
-Four roofs cost 2,174 triangles and `dev` has 1,566 to give. **T-0441** holds the fork and
+Four roofs cost 2,174 triangles and `dev` has 1,566 to give. **T-0458** holds the fork and
 the reasoning; the short of it is that the ceiling's own block comment records five raises
 and one return and twice declined a sixth, so raising it to land this parcel is exactly
 what it forbids and is not a call this run may make. Every other ticket in the queue's top
@@ -92,5 +92,5 @@ band adds roofs and will meet the same wall.
 block` removes a ticket from QUEUE.md and `unblock` appends it to the BOTTOM, which would
 silently re-rank a ticket the owner put in the top band on 2026-08-30 — and the queue is
 his. The collision lock still holds: `claim` refuses a ticket with a rival branch, and
-`steward/t-0432-south-water-dearborn` carries this work. Merge that PR once T-0441 is
+`steward/t-0432-south-water-dearborn` carries this work. Merge that PR once T-0458 is
 answered; nothing about the parcel needs redoing.

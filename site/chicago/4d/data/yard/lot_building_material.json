@@ -14,14 +14,14 @@
       "timber": 3,
       "stone": 2
     },
-    "refused": 13
+    "refused": 14
   },
   "census": {
-    "standing": 362,
-    "anonymous_refused": 271,
-    "named_examined": 91,
-    "named_with_1835_start_refused": 13,
-    "state_not_stated_refused": 90,
+    "standing": 359,
+    "anonymous_refused": 267,
+    "named_examined": 92,
+    "named_with_1835_start_refused": 14,
+    "state_not_stated_refused": 91,
     "qualified": 1
   },
   "existence": {
@@ -296,6 +296,13 @@
       "name": "Russel E. Heacock's House, Monroe Street",
       "function": "dwelling",
       "documented_range_from": "1835-01-01",
+      "why": "its documented range opens inside 1835, which is the nearest thing to a start date this dataset carries and is NOT one: it is the date the record is first attested — a first issue, a directory line, a deed — and the record nowhere says the building was going up on the scene date. Clause 2 asks the record to SAY it, and this one does not."
+    },
+    {
+      "structure_id": "john_holbrook_store",
+      "name": "John Holbrook's Clothing Store",
+      "function": "store",
+      "documented_range_from": "1835-06-10",
       "why": "its documented range opens inside 1835, which is the nearest thing to a start date this dataset carries and is NOT one: it is the date the record is first attested — a first issue, a directory line, a deed — and the record nowhere says the building was going up on the scene date. Clause 2 asks the record to SAY it, and this one does not."
     },
     {

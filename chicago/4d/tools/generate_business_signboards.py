@@ -453,6 +453,32 @@ SIGN_WORDING = {
             "people, and the record's own note says so. Reconstructed."
         ),
     },
+    "john_holbrook_store": {
+        "name": "JOHN HOLBROOK", "trade": "Clothing, Boots & Shoes",
+        "trade_short": "Clothing & Boots", "place": "Wholesale & Retail",
+        "identity": "Holbrook", "grade": "inferred",
+        "sources": ["chicago_democrat_1833_1835", "chicago_american_1835"],
+        "why": (
+            "THE WORDING IS THE ADVERTISEMENT'S OWN HEAD, AND TWO PAPERS SET IT. The "
+            "Chicago Democrat of 1835-06-10 heads the column \"[C]L[O]T[H]ING, BOOTS & "
+            "SHOES, WHOLESALE AND RETAIL\" and signs it \"JOHN HOLBROOK\" (page 3 "
+            "column 2, claim chicago_democrat_1835_06_10#c010); the Chicago American of "
+            "1835-06-13 heads the same card \"[H]at[s], Clothing, Boo[ts and Shoes \u2026] "
+            "WHOLESALE & [RETAIL]\" (claim chicago_american_1835_06_13#c012). Man, then "
+            "trade, which is the register T-0130 fixed this table in, and the words are "
+            "his own rather than this project's label for them. THE THIRD LINE IS THE "
+            "TERMS AND NOT THE STREET: both printings set WHOLESALE AND RETAIL in their "
+            "own head, and it is the thing a trader passing the door needed to know. THE "
+            "COUNT OF DOORS IS DELIBERATELY NOT ON THE BOARD \u2014 'one door from "
+            "Dearborn street' is how a newspaper reader FINDS the shop, and a customer "
+            "standing in front of the board has already found it. THE READING IS "
+            "TRANSCRIPTION-MEDIATED, flagged under the owner's ruling of 2026-08-28, with "
+            "the brackets left in. WHAT KEEPS THIS `inferred` RATHER THAN BETTER is that a "
+            "transcription is not a page image; UPGRADE IT TO `attested` when either "
+            "paper's scans are committed as a source record and this note can cite the "
+            "plate."
+        ),
+    },
     "frederick_thomas_shop": {
         "name": "FREDERICK THOMAS", "trade": "Druggist & Apothecary",
         "trade_short": "Druggist", "place": "Drugs, Paints & Dye Stuffs",

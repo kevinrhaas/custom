@@ -61,6 +61,21 @@ CORPUS_SOURCE = (
 class LedgerError(RuntimeError):
     """Two programmes claim one roof, or an adoption is malformed."""
 
+#: How a card says WHICH face the roof shows the street, because the two readings the
+#: ruling adopts are two different claims and a visitor is owed the difference. A lot
+#: front is the plat speaking; a corner side is the owner's ruling of 2026-08-30 that a
+#: building on a corner stands on both the streets it meets. A record carrying anything
+#: else — the centreline band he declined in the same breath — is refused here rather
+#: than quietly worded as one of these.
+FACE_NOTE = {
+    "lot front": "THE ROOF'S PLATTED LOT FACES %s, which is the plat's own answer to "
+                 "which street it fronts.",
+    "corner side": "THE ROOF ENDS ITS PLATTED TIER AGAINST %s, so it is a corner "
+                   "building and stands on that street as well as on the one its lot "
+                   "faces — the owner's ruling of 2026-08-30 (T-0416). Nothing about the "
+                   "roof changed and no geometry was raised to seat this business.",
+}
+
 TRADE_LABEL = {
     "barber_surgeon": "barber-surgeon",
     "boarding_house_keeper": "boarding-house keeper",
@@ -127,6 +142,9 @@ def street_face_occupancy(doc: dict | None = None) -> dict[str, dict]:
         trade = row.get("trade")
         name = row["business_name"]
         street = row["street_name"]
+        face = row.get("face")
+        if face not in FACE_NOTE:
+            raise LedgerError("%s took %r, which is not a face the ruling adopts" % (who, face))
         printings = ("%d printing%s, %s to %s"
                      % (row["mentions"], "" if row["mentions"] == 1 else "s",
                         row["first_issue"], row["last_issue"]))
@@ -139,10 +157,12 @@ def street_face_occupancy(doc: dict | None = None) -> dict[str, dict]:
             "confidence": "reconstructed",
             "sources": _sources(cites),
             "note": ("SEATED BY THE STREET-FACE ADOPTION POLICY (docs/STREET-FACE-"
-                     "ADOPTION.md, the owner's ruling of 2026-08-29 for T-0354; liberty "
-                     "L212). The newspaper register places this business on " + street
+                     "ADOPTION.md, the owner's ruling of 2026-08-29 for T-0354, extended "
+                     "2026-08-30 for T-0416; liberty L212). The newspaper register places "
+                     "this business on " + street
                      + " AND NOTHING NARROWER — " + printings + ", claims "
                      + ", ".join(cites) + " — so it takes the STREET FACE and not a lot. "
+                     + FACE_NOTE[face] % street + " "
                      "WHICH roof on that face it is given is an allocation by "
                      "tools/adopt_street_faces.py and not a reading of any source, and "
                      "nothing here says this business stood nearer the corner than any "
@@ -261,6 +281,11 @@ def self_test() -> int:
                      structure_id=b["adoptions"][0]["structure_id"]))))
     case("a claim id that names no corpus source",
          lambda: spend(lambda b: b["adoptions"][0].update(cites=["the_tribune_1871#c1"])))
+    # The face the owner DECLINED on 2026-08-30. A record reaching its street only by the
+    # centreline band would otherwise be spent into a card that reads exactly like a lot
+    # front — the one shape of this policy overstating itself that no other case catches.
+    case("an adoption on the centreline band the owner declined",
+         lambda: spend(lambda b: b["adoptions"][0].update(face="centreline band")))
 
     households = {sid for sid in occupancy()
                   if sid not in street_face_occupancy()}
@@ -286,7 +311,7 @@ def self_test() -> int:
     if failed:
         print("SELF-TEST FAIL")
         return 1
-    print("SELF-TEST PASS — the ledger refuses every way an adoption could lie (6 cases)")
+    print("SELF-TEST PASS — the ledger refuses every way an adoption could lie (7 cases)")
     return 0
 
 
