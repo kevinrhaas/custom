@@ -9928,8 +9928,13 @@ for (const [label, viewport, touch] of [
       const named = rows.find((r) => r.dataset.id === 'hh_inf_baker_south_01');
       const dated = rows.find((r) => r.dataset.id === 'hh_egan_william_b');
       // T-0378. A fourth row, for the same reason: `letter_list_only` is on the
-      // ten people the post office's letter lists minted and on nobody else, so
-      // no row above can fail for it.
+      // people the post office's letter lists minted and on nobody else, so no row
+      // above can fail for it. Since T-0379 that row lives inside the letter-list
+      // group, and `<details>` inside a closed `<details>` still renders — the
+      // group is opened here so the row is reached the way a visitor reaches it.
+      const group = mount ? mount.querySelector('details.res-ll-group') : null;
+      const groupClosedOnMount = group ? !group.open : null;
+      if (group) group.open = true;
       const letter = rows.find((r) => r.dataset.id === 'hh_ll_william_luce');
       for (const el of [target, named, dated, letter]) {
         if (!el) continue;
@@ -9950,6 +9955,16 @@ for (const [label, viewport, touch] of [
         error: window.__chicago4d.residents?.error ?? 'no residents on the handle',
         rendered: rows.length,
         orphanChips: mount ? mount.querySelectorAll('.res-orphan').length : 0,
+        // T-0379: the two halves of the list, and the group that holds the second.
+        evidenced: window.__chicago4d.residents?.evidenced ?? -1,
+        letterList: window.__chicago4d.residents?.letterList ?? -1,
+        letterListOffCard: window.__chicago4d.residents?.letterListOffCard ?? -1,
+        groupRows: group ? group.querySelectorAll('details.res-hh').length : -1,
+        groupText: group ? group.textContent.replace(/\s+/g, ' ').slice(0, 900) : '',
+        // The group must be a DELIBERATE open. A section that renders 727 rows
+        // expanded is the "wall of undifferentiated people" the ruling named as
+        // the way to implement it badly, so this is read before anything opens it.
+        groupClosedOnMount,
         busy: mount ? mount.hasAttribute('aria-busy') : true,
         collapsed,
         openedId: target?.dataset.id ?? '',
@@ -9964,10 +9979,29 @@ for (const [label, viewport, touch] of [
       };
     });
     check(`${label}: every household in the layer is on the card`,
-      residents.households === 208 && residents.rendered === 208 && !residents.busy,
+      residents.households === 920 && residents.rendered === 920 && !residents.busy,
       `${residents.households} loaded / ${residents.rendered} rendered (${residents.error})`);
-    check(`${label}: the 244 person entries are counted`, residents.persons === 244,
+    check(`${label}: the 956 person entries are counted`, residents.persons === 956,
       `${residents.persons}`);
+    // T-0379, and the assertion the ruling itself asked for. 727 of the 920
+    // households are a name on a post-office list and nothing else, and the
+    // ruling's own test of a good implementation is that a visitor can tell which
+    // ones at a glance. So: the town's evidenced households are still 193 rows in
+    // the section proper — the list did not become three-quarters noise — the
+    // cohort is one group holding all 727, and that group is CLOSED when the
+    // section mounts. A regression here does not break the page; it drowns it,
+    // which is why it is a number and not an eyeball.
+    check(`${label}: the letter-list cohort is held apart from the evidenced town`,
+      residents.evidenced === 193 && residents.letterList === 727
+      && residents.groupRows === 727 && residents.groupClosedOnMount === true,
+      `${residents.evidenced} evidenced / ${residents.letterList} letter-list, `
+      + `${residents.groupRows} in the group, closed on mount: `
+      + `${residents.groupClosedOnMount}`);
+    check(`${label}: the group says what that evidence is worth before it is opened`,
+      /post office/.test(residents.groupText)
+      && /does not.{0,40}establish/is.test(residents.groupText)
+      && /weakest evidence/.test(residents.groupText),
+      residents.groupText.slice(0, 240));
     // The finding itself, asserted as a number so it cannot quietly grow back:
     // the households that reach no building sidecar are each marked on their own
     // row. 17 of the 52 are the original fault — records whose residence and
@@ -9978,17 +10012,19 @@ for (const [label, viewport, touch] of [
     // name and no address at all; and T-0373's 4 residency-tested people, whom
     // the papers name with no trade either. In every case the chip is the card
     // telling the truth rather than a regression.
-    // The letter-list figure was 12 until T-0331: the Democrat of 1834-03-04
-    // prints the NINTH impression of the 1 January 1834 return, its scan lost the
-    // left edge of every line, and completing 25 of those forenames from the
-    // concordant printings brought Thomas Conger and John Thompson over the
-    // minting bar. Two more names on the card, both still addressless — which is
-    // what a letter list is. T-0321 then found the THIRD printing of the 1 April
-    // 1834 return on a page its own reading pass had never opened, which put
-    // Elam Tuller in a second return and brought the figure to 15.
+    // T-0379 SPLIT THIS NUMBER IN TWO, and the split is the honest form of it. Of
+    // the 764 households that reach no building card, 727 are the letter-list
+    // cohort and reach none BY DEFINITION — a list of uncalled-for letters gives a
+    // name and no address, so a chip announcing it on every one of those rows is
+    // wallpaper, and the group's own summary says it once instead. The chip stays
+    // where it is a finding: 37 households the rest of the corpus documents and
+    // this project still could not attach to a building. That 37 is the number a
+    // regression would move, so it is the number asserted.
     check(`${label}: the households no building card can reach are marked`,
-      residents.offCard === 52 && residents.orphanChips === 52,
-      `${residents.offCard} off-card / ${residents.orphanChips} chip(s)`);
+      residents.offCard === 764 && residents.orphanChips === 37
+      && residents.letterListOffCard === 727,
+      `${residents.offCard} off-card / ${residents.orphanChips} chip(s) / `
+      + `${residents.letterListOffCard} of them letter-list`);
     check(`${label}: the researched non-residents are published too`,
       residents.notResident === 10, `${residents.notResident}`);
     // The lazy read, proved by opening the household that IS the finding: Mark
@@ -10052,7 +10088,8 @@ for (const [label, viewport, touch] of [
       && /weakest evidence/.test(residents.letterText),
       residents.letterText.slice(0, 200));
     check(`${label}: the count sentence says how many people are known only that way`,
-      /15 of the people here are known ONLY from the post office/.test(residents.prose),
+      /727 of the people here are known ONLY from the post office/.test(residents.prose)
+      && /per cent of this town/.test(residents.prose),
       residents.prose.slice(0, 240));
     // And the other half of the same ruling: none of the ten may carry a trade
     // the papers do not give them. The occupation on a letter-list person reads

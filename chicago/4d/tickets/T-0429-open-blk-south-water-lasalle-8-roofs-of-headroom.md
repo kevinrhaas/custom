@@ -80,7 +80,7 @@ clean, `publish.sh` run. `./tools/check.sh` PASS, 0 errors, 28 warnings, the sam
 The first deal on this block DECLARED its frontage as lots 0, 2 and 4 and its run stands, measured,
 on lot 4 alone — so `plat_occupancy.py` scored the lots free off footprints while `check_block`
 scored them built on off the recipe, and the eight roofs of headroom could not be spent by anybody.
-Corrected to `[4]`; no roof moved and no record changed. **T-0439 filed**: four MORE entries do the
+Corrected to `[4]`; no roof moved and no record changed. **T-0449 filed**: four MORE entries do the
 same thing, and they are precisely T-0430, T-0431 and T-0432's blocks.
 
 **The corner clause met a watercourse, and that is the parcel's one new reading.** Lot 0 is the free

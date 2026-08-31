@@ -1,0 +1,305 @@
+<!doctype html>
+<html lang="en" data-theme="dark" data-theme-mode="system">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Zion + Bryce · Canyon Loop Field Guide</title>
+  <meta name="description" content="A detailed, offline-ready field guide for a nine-day Zion and Bryce Canyon road trip from Chicago, September 5–13, 2026.">
+  <meta name="theme-color" content="#141210">
+  <meta property="og:title" content="Zion + Bryce · Canyon Loop Field Guide">
+  <meta property="og:description" content="Nine days, two parks, one field-ready plan—from first shuttle to new-moon stargazing.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://kevinrhaas.github.io/custom/zion-bryce/">
+  <link rel="icon" href="icon.svg" type="image/svg+xml">
+  <link rel="manifest" href="manifest.webmanifest">
+  <script>
+    (function () {
+      var mode = 'system';
+      try { mode = localStorage.getItem('custom.theme') || 'system'; } catch (error) {}
+      var dark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+      var resolved = mode === 'system' ? (dark ? 'dark' : 'light') : mode;
+      document.documentElement.dataset.theme = resolved;
+      document.documentElement.dataset.themeMode = mode;
+    }());
+  </script>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to trip plan</a>
+
+  <svg class="svg-defs" aria-hidden="true" focusable="false">
+    <symbol id="i-mountain" viewBox="0 0 24 24"><path d="m3 19 6.2-10 3.1 4.8L15.8 8 22 19H3Z"/><path d="m7.2 12.2 2 1.1 2.1-1.4M14.4 10.3l1.8 1.2 1.6-1"/></symbol>
+    <symbol id="i-plan" viewBox="0 0 24 24"><path d="M6 3h12v18H6z"/><path d="M9 7h6M9 11h6M9 15h4"/></symbol>
+    <symbol id="i-swap" viewBox="0 0 24 24"><path d="M7 7h11l-3-3M17 17H6l3 3"/><path d="m18 7-3 3M6 17l3-3"/></symbol>
+    <symbol id="i-route" viewBox="0 0 24 24"><circle cx="6" cy="18" r="2"/><circle cx="18" cy="6" r="2"/><path d="M7.5 16.7c2.2-2 1.2-4.6 3.6-6 1.5-.9 3.2.1 5.4-3.3"/></symbol>
+    <symbol id="i-pack" viewBox="0 0 24 24"><path d="M7 8V6a5 5 0 0 1 10 0v2M5 8h14l1 13H4L5 8Z"/><path d="M9 8v3h6V8"/></symbol>
+    <symbol id="i-note" viewBox="0 0 24 24"><path d="M5 3h14v18H5z"/><path d="M8 7h8M8 11h8M8 15h5"/></symbol>
+    <symbol id="i-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></symbol>
+    <symbol id="i-calendar" viewBox="0 0 24 24"><path d="M4 6h16v15H4zM8 3v6M16 3v6M4 10h16"/></symbol>
+    <symbol id="i-share" viewBox="0 0 24 24"><circle cx="18" cy="5" r="2"/><circle cx="6" cy="12" r="2"/><circle cx="18" cy="19" r="2"/><path d="m8 11 8-5M8 13l8 5"/></symbol>
+    <symbol id="i-print" viewBox="0 0 24 24"><path d="M7 8V3h10v5M7 17H4v-7h16v7h-3M7 14h10v7H7z"/><path d="M17 11h.01"/></symbol>
+    <symbol id="i-cloud" viewBox="0 0 24 24"><path d="M6.5 18h11a4 4 0 0 0 .5-8 6 6 0 0 0-11.5-1.2A4.6 4.6 0 0 0 6.5 18Z"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24"><path d="m5 12 4 4L19 6"/></symbol>
+    <symbol id="i-external" viewBox="0 0 24 24"><path d="M14 4h6v6M20 4l-9 9"/><path d="M18 13v7H4V6h7"/></symbol>
+    <symbol id="i-alert" viewBox="0 0 24 24"><path d="M12 3 2.8 20h18.4L12 3Z"/><path d="M12 9v5M12 17h.01"/></symbol>
+    <symbol id="i-lock" viewBox="0 0 24 24"><path d="M6 10h12v11H6zM8 10V7a4 4 0 0 1 8 0v3"/></symbol>
+    <symbol id="i-download" viewBox="0 0 24 24"><path d="M12 3v12M7 10l5 5 5-5M4 21h16"/></symbol>
+    <symbol id="i-trash" viewBox="0 0 24 24"><path d="M4 7h16M9 7V4h6v3M7 7l1 14h8l1-14M10 11v6M14 11v6"/></symbol>
+  </svg>
+
+  <header class="app-header">
+    <a class="brand" href="../" aria-label="Back to Custom home">
+      <span class="brand-mark"><svg><use href="#i-mountain"/></svg></span>
+      <span><b>Zion + Bryce</b><small>canyon loop</small></span>
+    </a>
+    <div class="header-tools">
+      <span class="net-status" id="netStatus"><span></span><span class="net-label">Checking</span></span>
+      <button class="icon-button" id="installButton" type="button" hidden>
+        <svg><use href="#i-download"/></svg><span class="wide-label">Install</span>
+      </button>
+      <button class="icon-button" id="themeButton" type="button" aria-label="Theme: system">
+        <svg><use href="#i-sun"/></svg><span class="wide-label" id="themeLabel">System</span>
+      </button>
+    </div>
+  </header>
+
+  <div class="scenery" aria-hidden="true">
+    <div class="sun-disc"></div>
+    <svg viewBox="0 0 1440 430" preserveAspectRatio="none">
+      <path class="ridge ridge-back" d="M0 325 130 260l120 35 160-127 116 102 150-174 156 166 165-113 120 118 122-54 201 111v106H0Z"/>
+      <path class="ridge ridge-front" d="M0 357 138 310l121 49 147-98 155 85 129-119 165 111 142-69 118 77 141-45 184 71v58H0Z"/>
+      <path class="contour" d="M-30 351c160-66 244 24 384-34s203-133 341-66 168 93 303 39 272-54 477 16"/>
+      <path class="contour" d="M-40 382c172-63 260 30 399-25s210-117 341-57 174 77 306 34 282-50 469 10"/>
+    </svg>
+  </div>
+
+  <section class="trip-hero shell" aria-labelledby="tripTitle">
+    <div class="hero-copy">
+      <p class="overline">September 5–13, 2026 · field guide</p>
+      <h1 id="tripTitle">Canyon country,<br><span>properly planned.</span></h1>
+      <p>Nine days from Chicago through Zion, Bryce and southern Utah—with the shuttle clocks, safer trail calls and dinner deadlines already reconciled.</p>
+      <div class="hero-actions">
+        <button class="button primary" id="calendarButton" type="button"><svg><use href="#i-calendar"/></svg>Save trip calendar</button>
+        <button class="button secondary" id="shareButton" type="button"><svg><use href="#i-share"/></svg>Share</button>
+        <button class="button secondary" id="printButton" type="button"><svg><use href="#i-print"/></svg>Print</button>
+      </div>
+    </div>
+    <aside class="trip-ticket" aria-label="Trip summary">
+      <div class="ticket-top"><span>ORD</span><svg><use href="#i-route"/></svg><span>LAS</span></div>
+      <div class="ticket-date">SEP <strong>05—13</strong> 2026</div>
+      <dl>
+        <div><dt>Duration</dt><dd>9 days · 8 nights</dd></div>
+        <div><dt>Parks</dt><dd>Zion · Bryce</dd></div>
+        <div><dt>Clock shift</dt><dd>PDT ⇄ MDT</dd></div>
+        <div><dt>Moon</dt><dd>New · Sept 10</dd></div>
+      </dl>
+      <div class="countdown" id="countdown">Loading trip clock…</div>
+    </aside>
+  </section>
+
+  <div class="critical-bar">
+    <div class="shell critical-inner">
+      <svg><use href="#i-alert"/></svg>
+      <p><strong>Field rule:</strong> official park conditions override every plan here. The Narrows needs a same-morning flood and river check.</p>
+      <a href="https://www.nps.gov/zion/planyourvisit/conditions.htm" target="_blank" rel="noreferrer">Zion conditions <svg><use href="#i-external"/></svg></a>
+    </div>
+  </div>
+
+  <nav class="view-nav" aria-label="Trip sections">
+    <div class="shell view-nav-inner">
+      <button type="button" class="view-tab active" data-view-target="plan" aria-current="page"><svg><use href="#i-plan"/></svg><span>Plan</span></button>
+      <button type="button" class="view-tab" data-view-target="swap"><svg><use href="#i-swap"/></svg><span>Swap days</span></button>
+      <button type="button" class="view-tab" data-view-target="route"><svg><use href="#i-route"/></svg><span>Route</span></button>
+      <button type="button" class="view-tab" data-view-target="pack"><svg><use href="#i-pack"/></svg><span>Pack</span></button>
+      <button type="button" class="view-tab" data-view-target="notes"><svg><use href="#i-note"/></svg><span>Notes</span></button>
+    </div>
+  </nav>
+
+  <main id="main">
+    <section class="view shell" id="view-plan" data-view="plan" aria-labelledby="planHeading">
+      <div class="section-heading">
+        <div><p class="overline">The whole run</p><h2 id="planHeading">Day-by-day field plan</h2></div>
+        <div class="section-tools">
+          <button class="small-button" id="expandDays" type="button">Expand all</button>
+          <button class="small-button" id="collapseDays" type="button">Collapse all</button>
+        </div>
+      </div>
+
+      <div class="ops-grid" aria-label="Operating essentials">
+        <article class="ops-card">
+          <span class="ops-index">01</span>
+          <div><h3>Zion shuttle</h3><p>Sept 6–10: first canyon bus 7:00 AM, last outbound 7:00 PM, final return from Temple of Sinawava 8:15 PM.</p></div>
+        </article>
+        <article class="ops-card">
+          <span class="ops-index">02</span>
+          <div><h3>Bryce sunrise</h3><p>Sunrise is 7:07 AM on Sept 11. The shuttle starts at 8:00 AM, so walk from the Lodge or drive.</p></div>
+        </article>
+        <article class="ops-card">
+          <span class="ops-index">03</span>
+          <div><h3>Clock discipline</h3><p>Lose one hour driving Nevada → Utah. Gain it back on the St. George → Las Vegas flight day.</p></div>
+        </article>
+      </div>
+
+      <div class="days-list" id="daysList" aria-live="polite"></div>
+    </section>
+
+    <section class="view shell" id="view-swap" data-view="swap" aria-labelledby="swapHeading" hidden>
+      <div class="section-heading">
+        <div><p class="overline">Flexible park plans</p><h2 id="swapHeading">Adjust the plan without losing the trip</h2></div>
+      </div>
+      <div class="park-tabs" role="tablist" aria-label="Choose park plan">
+        <button class="park-tab active" id="parkTabZion" type="button" role="tab" aria-selected="true" aria-controls="parkPanelZion" data-park-tab="zion">Zion · Sept 7–9</button>
+        <button class="park-tab" id="parkTabBryce" type="button" role="tab" aria-selected="false" aria-controls="parkPanelBryce" data-park-tab="bryce" tabindex="-1">Bryce · Sept 10–11</button>
+      </div>
+
+      <div id="parkPanelZion" role="tabpanel" aria-labelledby="parkTabZion" data-park-panel="zion">
+      <div class="park-panel-heading"><span class="eyebrow">Zion · three flexible days</span><h3>Put each day where it belongs</h3><p>Swap the three full-day activities as weather and trail conditions change.</p></div>
+      <div class="advisory blue">
+        <svg><use href="#i-cloud"/></svg>
+        <div><strong>Forecast fit is a planning signal, not a safety decision.</strong><p>The app favors the driest day for the Narrows and the coolest morning for Scout Lookout. NPS closures, flash-flood potential and river flow still decide whether the Narrows is open.</p></div>
+      </div>
+
+      <div class="weather-toolbar">
+        <div><span class="eyebrow">Live forecast</span><p id="weatherStatus">Loading Springdale forecast…</p></div>
+        <button class="small-button" id="refreshWeather" type="button">Refresh forecast</button>
+      </div>
+      <div class="weather-grid" id="weatherGrid"></div>
+
+      <div class="assignment-panel">
+        <div class="assignment-head">
+          <div><span class="eyebrow">Your working order</span><h3>Three days, three jobs</h3></div>
+          <button class="button primary compact" id="applyForecast" type="button" disabled>Use forecast fit</button>
+        </div>
+        <div class="assignment-grid" id="assignmentGrid"></div>
+        <p class="fine-print">Changes save only in this browser and update the day-by-day plan immediately.</p>
+      </div>
+
+      <div class="section-heading subheading">
+        <div><p class="overline">Reality check</p><h2>Trail comparison</h2></div>
+      </div>
+      <div class="table-scroll">
+        <table class="trail-table">
+          <thead><tr><th>Trail</th><th>Distance</th><th>Gain</th><th>Level</th><th>Best use</th><th>Watch for</th></tr></thead>
+          <tbody id="trailTableBody"></tbody>
+        </table>
+      </div>
+      </div>
+
+      <div id="parkPanelBryce" role="tabpanel" aria-labelledby="parkTabBryce" data-park-panel="bryce" hidden>
+        <div class="park-panel-heading"><span class="eyebrow">Bryce · one arrival evening + one full day</span><h3>Shape the Bryce 24 hours</h3><p>Bryce does not have two interchangeable full days, so this editor swaps the flexible pieces while protecting sunrise and the classic loop.</p></div>
+        <div class="advisory blue">
+          <svg><use href="#i-cloud"/></svg>
+          <div><strong>Two anchors stay fixed.</strong><p>Sunrise Point at 7:07 AM and the Queen’s Garden/Navajo Loop remain in the morning. Arrival timing, the afternoon drive and stargazing can flex.</p></div>
+        </div>
+        <div class="weather-toolbar">
+          <div><span class="eyebrow">Bryce forecast</span><p>Use weather to choose the afternoon and night—not to move sunrise.</p></div>
+          <button class="small-button" id="applyBryceForecast" type="button">Use weather fit</button>
+        </div>
+        <div class="weather-grid bryce-weather-grid" id="bryceWeatherGrid"></div>
+        <div class="assignment-panel bryce-panel">
+          <div class="assignment-head"><div><span class="eyebrow">Your Bryce sequence</span><h3>Three flexible decisions</h3></div></div>
+          <div class="assignment-grid" id="brycePlannerGrid"></div>
+          <p class="fine-print">Choices save in this browser and immediately update Days 6–7 in the main plan.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="view shell" id="view-route" data-view="route" aria-labelledby="routeHeading" hidden>
+      <div class="section-heading">
+        <div><p class="overline">The driving line</p><h2 id="routeHeading">One loop, two clocks</h2></div>
+      </div>
+
+      <div class="route-layout">
+        <article class="route-map-card">
+          <div class="route-map-top"><span>About 650 road miles</span><span>Not to scale</span></div>
+          <svg class="route-map" viewBox="0 0 760 540" role="img" aria-labelledby="routeMapTitle routeMapDesc">
+            <title id="routeMapTitle">Zion and Bryce Canyon driving loop</title>
+            <desc id="routeMapDesc">A route from Las Vegas through Valley of Fire, Springdale, Bryce Canyon, Kanab, Snow Canyon, St. George and back to Las Vegas.</desc>
+            <path class="map-contour" d="M26 102c102-66 176 19 269-27s148-60 221-8 111 37 211-7M-13 160c134-54 198 25 297-20s153-52 236-2 120 25 259-35M5 444c112-61 203 8 276-38s151-51 239-5 139 34 239-23"/>
+            <path class="map-state" d="M190 22 210 500M552 22l-16 492"/>
+            <path class="map-route" d="M115 420C178 358 198 300 270 278S390 257 403 176 480 78 561 103 642 165 584 237 530 314 468 359 376 429 276 466 115 420"/>
+            <g class="map-node major" transform="translate(115 420)"><circle r="10"/><circle r="4"/><text x="-4" y="-22" text-anchor="middle">LAS VEGAS</text></g>
+            <g class="map-node" transform="translate(270 278)"><circle r="7"/><text x="-10" y="-18" text-anchor="end">VALLEY OF FIRE</text></g>
+            <g class="map-node major" transform="translate(403 176)"><circle r="10"/><circle r="4"/><text x="-14" y="-20" text-anchor="end">ZION</text></g>
+            <g class="map-node major" transform="translate(561 103)"><circle r="10"/><circle r="4"/><text x="8" y="-20">BRYCE</text></g>
+            <g class="map-node" transform="translate(584 237)"><circle r="7"/><text x="14" y="6">KANAB</text></g>
+            <g class="map-node" transform="translate(530 314)"><circle r="7"/><text x="14" y="5">CORAL PINK</text></g>
+            <g class="map-node" transform="translate(468 359)"><circle r="7"/><text x="14" y="5">SNOW CANYON</text></g>
+            <g class="map-node major" transform="translate(376 429)"><circle r="10"/><circle r="4"/><text x="4" y="30" text-anchor="middle">ST. GEORGE</text></g>
+            <text class="map-state-label" x="88" y="60">NEVADA · PDT</text>
+            <text class="map-state-label" x="296" y="60">UTAH · MDT</text>
+          </svg>
+        </article>
+
+        <aside class="route-ledger" id="routeLedger"></aside>
+      </div>
+
+      <div class="timezone-card">
+        <div class="clock-face"><span>−1</span><small>hour eastbound</small></div>
+        <div><span class="eyebrow">The clock trap</span><h3>Nevada and Utah are one hour apart in September</h3><p>Leaving Las Vegas at 7:30 AM PDT and driving 2 hours 45 minutes reaches Springdale around 11:15 AM MDT. On flight day, 7:45 AM MDT from St. George becomes roughly 8:45 AM PDT at LAS after a two-hour drive.</p></div>
+      </div>
+
+      <details class="source-drawer">
+        <summary>Research sources and last-checked date</summary>
+        <div class="source-content"><p>Operations were checked against official park and state sources on <strong>August 30, 2026</strong>. Recheck closures and weather during the trip.</p><div class="source-grid" id="sourceGrid"></div></div>
+      </details>
+    </section>
+
+    <section class="view shell" id="view-pack" data-view="pack" aria-labelledby="packHeading" hidden>
+      <div class="section-heading">
+        <div><p class="overline">Before wheels up</p><h2 id="packHeading">Master packing checklist</h2></div>
+      </div>
+      <div class="advisory blue pack-advisory">
+        <svg><use href="#i-pack"/></svg>
+        <div><strong>Pack once here, stage each morning in the day plan.</strong><p>This master list covers documents, clothing, trail gear, Narrows equipment, car supplies, electronics, health and food. Every day card now has a smaller saved “carry today” kit.</p></div>
+      </div>
+      <div class="check-progress-card">
+        <div class="progress-copy"><span class="eyebrow">Trip readiness</span><strong id="progressText">0 of 0 done</strong></div>
+        <div class="progress-track" aria-hidden="true"><span id="progressBar"></span></div>
+        <button class="small-button" id="showRemaining" type="button">Show remaining</button>
+      </div>
+      <div class="check-filters" id="checkFilters" aria-label="Checklist filters"></div>
+      <div class="checklist" id="checklist"></div>
+      <form class="add-item" id="addItemForm">
+        <label for="newItem">Add a private item</label>
+        <div><input id="newItem" name="newItem" autocomplete="off" maxlength="120" placeholder="One more thing…"><button class="button primary compact" type="submit">Add</button></div>
+      </form>
+    </section>
+
+    <section class="view shell" id="view-notes" data-view="notes" aria-labelledby="notesHeading" hidden>
+      <div class="section-heading">
+        <div><p class="overline">Private trip desk</p><h2 id="notesHeading">Confirmations and notes</h2></div>
+      </div>
+      <div class="privacy-banner">
+        <svg><use href="#i-lock"/></svg>
+        <div><strong>These fields stay on this device.</strong><p>Nothing typed here is in the public GitHub app or sent to a server. Export a backup if you will use another phone.</p></div>
+      </div>
+
+      <div class="stay-grid" id="stayGrid"></div>
+
+      <div class="notes-card">
+        <label for="tripNotes"><span>Trip notes</span><small id="notesStatus">Saved locally</small></label>
+        <textarea id="tripNotes" rows="9" placeholder="Gear pickup, dinner ideas, trail decisions, room details…"></textarea>
+      </div>
+      <div class="notes-actions">
+        <button class="button secondary" id="exportNotes" type="button"><svg><use href="#i-download"/></svg>Export private backup</button>
+        <button class="button danger" id="clearPrivate" type="button"><svg><use href="#i-trash"/></svg>Clear private data</button>
+      </div>
+
+      <div class="about-card">
+        <div><span class="eyebrow">About this field guide</span><h3>Static, local-first and account-free</h3><p>The plan works offline after the first visit. Forecasts need a connection and are cached when available. No analytics, account or booking data is collected.</p></div>
+        <a href="https://github.com/kevinrhaas/custom/tree/main/zion-bryce" target="_blank" rel="noreferrer">View source <svg><use href="#i-external"/></svg></a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="app-footer shell">
+    <p>Zion + Bryce · Sept 5–13, 2026</p>
+    <p>Built for the trail, not for collecting data.</p>
+    <a href="../">Back to Custom</a>
+  </footer>
+
+  <div class="toast" id="toast" role="status" aria-live="polite" aria-atomic="true"></div>
+  <script type="module" src="app.js"></script>
+</body>
+</html>
