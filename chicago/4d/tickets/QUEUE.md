@@ -65,7 +65,6 @@ T-0384 — John Holbrook's store takes its door on South Water Street, one door 
 # --- MORE BUILDINGS AND TRADES, ALREADY RUNNABLE — no ruling needed, and each one puts
 # --- something in the scene or lets a documented person stand somewhere.
 T-0385 — The New York Clothing Store stands three doors north of the Tremont House in Dearborn Street
-T-0375 — Every reconstructed roof on South Water Street is a labourer's, so five documented tradesmen the papers put there have nowhere to stand
 T-0423 — G. Spring's large dwelling-house and fine well stands on lot 7 of block 16, where an anonymous roof stands now
 T-0418 — The 36 documented tradespeople whose trade the residents vocabulary has no word for
 T-0414 — The street-face adoption refuses W. Montgomery a roof for being the bootmaker, and identity.json already ruled they are two houses
