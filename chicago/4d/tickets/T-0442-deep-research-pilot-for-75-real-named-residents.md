@@ -1,7 +1,7 @@
 ---
 id: T-0442
 title: Deep research pilot for 75 real named residents
-state: claimed
+state: done
 epic: META
 requested_by: owner
 seen: false
@@ -9,8 +9,8 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-08-31
-closed: null
-pr: null
+closed: 2026-08-31
+pr: 609
 claimed_by: run 8/31/2026, 3:36:41 AM CT
 blocked_on: null
 needs_bake: false
