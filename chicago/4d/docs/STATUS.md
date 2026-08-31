@@ -1,5 +1,30 @@
 # STATUS
 
+## Shipped 2026-08-31 — T-0442: 75 real named residents receive identity reviews
+
+**Seventy-five of 848 eligible attested or inferred named people (8.8%) now have a
+dated, reproducible identity-research outcome.** The fixed sample spans five established
+profiles, every one of the twenty richer unplaced newspaper records, and fifty of the
+post-office-only names split evenly between present and uncertain. No reconstructed
+person is eligible.
+
+The result is deliberately less flattering than 75 new biographies: **4 corroborated
+findings, 7 candidate identities and 64 searches with no safe match**. Candidates are
+published on the resident card with their supporting source, conflict and an explicit
+“not merged” warning. A no-find says what it is too: the reviewed search did not find a
+safe bridge, not that the person did not exist.
+
+The useful near-matches include Augustus Garrett, James Curtiss, Buckner Stith Morris
+and David Brookins. Jesse W. Fell is explicitly rejected as the automatic expansion of
+J. W. Fell because institutional chronologies put Jesse in Vandalia and Clinton in
+1835. J. H. Collins is the strongest resolution: profession and his distinctive Caton
+partnership connect the abbreviation to James H. Collins by more than the name.
+
+No household, marriage, kinship, immigration or heritage field was invented. The
+source hierarchy explicitly forbids surname-based heritage claims. The cohort,
+outcomes, source resolutions and public payload re-derive in the gate; browser checks
+hold both candidate and negative-result warnings on mobile and desktop.
+
 ## Shipped 2026-08-30 — T-0170: the last part of the gate that could not be run is halved
 
 **Nothing a visitor sees.** `SMOKE_STAGE` has THIRTEEN parts; part 10 is halved and old parts

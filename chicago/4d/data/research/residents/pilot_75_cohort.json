@@ -1,0 +1,1173 @@
+{
+  "_doc": "T-0442's reproducible 75-person research cohort. This is a sampling manifest, not new evidence about any person.",
+  "version": 1,
+  "scene_date": "1835-07-01",
+  "generated_by": "tools/select_resident_research_pilot.py",
+  "population_frame": {
+    "eligible_real_named_people": 848,
+    "sample_size": 75,
+    "strata": {
+      "established_profile": 5,
+      "newspaper_profile_unplaced": 20,
+      "letter_list_only_present": 25,
+      "letter_list_only_uncertain": 25
+    }
+  },
+  "people": [
+    {
+      "household_id": "hh_carpenter_philo",
+      "person_id": "carpenter_philo",
+      "name": "Philo Carpenter",
+      "starting_evidence": "established_profile",
+      "starting_grade": "attested",
+      "starting_presence": "present",
+      "starting_occupation": "druggist",
+      "letter_list_returns": [],
+      "sources": [
+        "andreas_1884_v1",
+        "chicago_democrat_1833_11_26"
+      ],
+      "selection_reason": "Established, occupationally identified resident selected for deeper household research."
+    },
+    {
+      "household_id": "hh_caton_john_dean",
+      "person_id": "caton_john_dean",
+      "name": "John Dean Caton",
+      "starting_evidence": "established_profile",
+      "starting_grade": "attested",
+      "starting_presence": "present",
+      "starting_occupation": "attorney",
+      "letter_list_returns": [],
+      "sources": [
+        "andreas_1884_v1"
+      ],
+      "selection_reason": "Established, occupationally identified resident selected for deeper household research."
+    },
+    {
+      "household_id": "hh_dole_george_w",
+      "person_id": "dole_george_w",
+      "name": "George Washington Dole",
+      "starting_evidence": "established_profile",
+      "starting_grade": "attested",
+      "starting_presence": "present",
+      "starting_occupation": "forwarding_and_commission",
+      "letter_list_returns": [],
+      "sources": [
+        "andreas_1884_v1",
+        "chicago_democrat_1833_11_26"
+      ],
+      "selection_reason": "Established, occupationally identified resident selected for deeper household research."
+    },
+    {
+      "household_id": "hh_egan_william_b",
+      "person_id": "egan_william_b",
+      "name": "Dr William Bradshaw Egan",
+      "starting_evidence": "established_profile",
+      "starting_grade": "attested",
+      "starting_presence": "present",
+      "starting_occupation": "physician",
+      "letter_list_returns": [],
+      "sources": [
+        "andreas_1884_v1"
+      ],
+      "selection_reason": "Established, occupationally identified resident selected for deeper household research."
+    },
+    {
+      "household_id": "hh_hubbard_gurdon",
+      "person_id": "hubbard_gurdon",
+      "name": "Gurdon Saltonstall Hubbard",
+      "starting_evidence": "established_profile",
+      "starting_grade": "attested",
+      "starting_presence": "present",
+      "starting_occupation": "packer",
+      "letter_list_returns": [],
+      "sources": [
+        "andreas_1884_v1"
+      ],
+      "selection_reason": "Established, occupationally identified resident selected for deeper household research."
+    },
+    {
+      "household_id": "hh_doc_a_garrett",
+      "person_id": "doc_a_garrett",
+      "name": "A. Garrett",
+      "starting_evidence": "newspaper_profile_unplaced",
+      "starting_grade": "attested",
+      "starting_presence": "present",
+      "starting_occupation": "auctioneer",
+      "letter_list_returns": [],
+      "sources": [
+        "chicago_american_1835",
+        "chicago_democrat_1833_1835"
+      ],
+      "selection_reason": "All richer, real named residents still lacking a dwelling were included, not sampled."
+    },
+    {
+      "household_id": "hh_doc_byram_king",
+      "person_id": "doc_byram_king",
+      "name": "Byram King",
+      "starting_evidence": "newspaper_profile_unplaced",
+      "starting_grade": "attested",
+      "starting_presence": "present",
+      "starting_occupation": "hardware_merchant",
+      "letter_list_returns": [],
+      "sources": [
+        "chicago_democrat_1833_1835"
+      ],
+      "selection_reason": "All richer, real named residents still lacking a dwelling were included, not sampled."
+    },
+    {
+      "household_id": "hh_doc_e_l_thrall",
+      "person_id": "doc_e_l_thrall",
+      "name": "E. L. Thrall",
+      "starting_evidence": "newspaper_profile_unplaced",
+      "starting_grade": "attested",
+      "starting_presence": "uncertain",
+      "starting_occupation": "clothier",
+      "letter_list_returns": [],
+      "sources": [
+        "chicago_democrat_1833_1835"
+      ],
+      "selection_reason": "All richer, real named residents still lacking a dwelling were included, not sampled."
+    },
+    {
+      "household_id": "hh_doc_elmira_fowler",
+      "person_id": "doc_elmira_fowler",
+      "name": "Elmira Fowler",
+      "starting_evidence": "newspaper_profile_unplaced",
+      "starting_grade": "attested",
+      "starting_presence": "uncertain",
+      "starting_occupation": "dressmaker",
+      "letter_list_returns": [],
+      "sources": [
+        "chicago_democrat_1833_1835"
+      ],
+      "selection_reason": "All richer, real named residents still lacking a dwelling were included, not sampled."
+    },
+    {
+      "household_id": "hh_doc_h_b_clarke",
+      "person_id": "doc_h_b_clarke",
+      "name": "H. B. Clarke",
+      "starting_evidence": "newspaper_profile_unplaced",
+      "starting_grade": "attested",
+      "starting_presence": "present",
+      "starting_occupation": "hardware_merchant",
+      "letter_list_returns": [],
+      "sources": [
+        "chicago_democrat_1833_1835"
+      ],
+      "selection_reason": "All richer, real named residents still lacking a dwelling were included, not sampled."
+    },
+    {
+      "household_id": "hh_doc_h_c_bennett",
+      "person_id": "doc_h_c_bennett",
+      "name": "H. C. Bennett",
+      "starting_evidence": "newspaper_profile_unplaced",
+      "starting_grade": "attested",
+      "starting_presence": "uncertain",
+      "starting_occupation": "attorney",
+      "letter_list_returns": [],
+      "sources": [
+        "chicago_democrat_1833_1835"
+      ],
+      "selection_reason": "All richer, real named residents still lacking a dwelling were included, not sampled."
+    },
+    {
+      "household_id": "hh_doc_h_crocker",
+      "person_id": "doc_h_crocker",
+      "name": "H. Crocker",
+      "starting_evidence": "newspaper_profile_unplaced",
+      "starting_grade": "attested",
+      "starting_presence": "present",
+      "starting_occupation": "schoolteacher",
+      "letter_list_returns": [],
+      "sources": [
+        "chicago_democrat_1833_1835"
+      ],
+      "selection_reason": "All richer, real named residents still lacking a dwelling were included, not sampled."
+    },
+    {
+      "household_id": "hh_doc_h_sherman",
+      "person_id": "doc_h_sherman",
+      "name": "Mrs. H. Sherman",
+      "starting_evidence": "newspaper_profile_unplaced",
+      "starting_grade": "attested",
+      "starting_presence": "uncertain",
+      "starting_occupation": "dressmaker",
+      "letter_list_returns": [],
+      "sources": [
+        "chicago_democrat_1833_1835"
+      ],
+      "selection_reason": "All richer, real named residents still lacking a dwelling were included, not sampled."
+    },
+    {
+      "household_id": "hh_doc_henry_moore",
+      "person_id": "doc_henry_moore",
+      "name": "Henry Moore",
+      "starting_evidence": "newspaper_profile_unplaced",
+      "starting_grade": "attested",
+      "starting_presence": "present",
+      "starting_occupation": "attorney",
+      "letter_list_returns": [],
+      "sources": [
+        "chicago_american_1835",
+        "chicago_democrat_1833_1835"
+      ],
+      "selection_reason": "All richer, real named residents still lacking a dwelling were included, not sampled."
+    },
+    {
+      "household_id": "hh_doc_j_a_marshall",
+      "person_id": "doc_j_a_marshall",
+      "name": "J. A. Marshall",
+      "starting_evidence": "newspaper_profile_unplaced",
+      "starting_grade": "attested",
+      "starting_presence": "uncertain",
+      "starting_occupation": "schoolteacher",
+      "letter_list_returns": [],
+      "sources": [
+        "chicago_democrat_1833_1835"
+      ],
+      "selection_reason": "All richer, real named residents still lacking a dwelling were included, not sampled."
+    },
+    {
+      "household_id": "hh_doc_j_curtiss",
+      "person_id": "doc_j_curtiss",
+      "name": "J. Curtiss",
+      "starting_evidence": "newspaper_profile_unplaced",
+      "starting_grade": "attested",
+      "starting_presence": "present",
+      "starting_occupation": "attorney",
+      "letter_list_returns": [],
+      "sources": [
+        "chicago_democrat_1833_1835"
+      ],
+      "selection_reason": "All richer, real named residents still lacking a dwelling were included, not sampled."
+    },
+    {
+      "household_id": "hh_doc_j_h_collins",
+      "person_id": "doc_j_h_collins",
+      "name": "J. H. Collins",
+      "starting_evidence": "newspaper_profile_unplaced",
+      "starting_grade": "attested",
+      "starting_presence": "uncertain",
+      "starting_occupation": "attorney",
+      "letter_list_returns": [],
+      "sources": [
+        "chicago_democrat_1833_1835"
+      ],
+      "selection_reason": "All richer, real named residents still lacking a dwelling were included, not sampled."
+    },
+    {
+      "household_id": "hh_doc_james_grant",
+      "person_id": "doc_james_grant",
+      "name": "James Grant",
+      "starting_evidence": "newspaper_profile_unplaced",
+      "starting_grade": "attested",
+      "starting_presence": "uncertain",
+      "starting_occupation": "attorney",
+      "letter_list_returns": [],
+      "sources": [
+        "chicago_democrat_1833_1835"
+      ],
+      "selection_reason": "All richer, real named residents still lacking a dwelling were included, not sampled."
+    },
+    {
+      "household_id": "hh_doc_r_stewart",
+      "person_id": "doc_r_stewart",
+      "name": "R. Stewart",
+      "starting_evidence": "newspaper_profile_unplaced",
+      "starting_grade": "attested",
+      "starting_presence": "uncertain",
+      "starting_occupation": "attorney",
+      "letter_list_returns": [],
+      "sources": [
+        "chicago_american_1835",
+        "chicago_democrat_1833_1835"
+      ],
+      "selection_reason": "All richer, real named residents still lacking a dwelling were included, not sampled."
+    },
+    {
+      "household_id": "hh_doc_samuel_lewis",
+      "person_id": "doc_samuel_lewis",
+      "name": "Samuel Lewis",
+      "starting_evidence": "newspaper_profile_unplaced",
+      "starting_grade": "attested",
+      "starting_presence": "present",
+      "starting_occupation": "schoolteacher",
+      "letter_list_returns": [],
+      "sources": [
+        "chicago_democrat_1833_1835"
+      ],
+      "selection_reason": "All richer, real named residents still lacking a dwelling were included, not sampled."
+    },
+    {
+      "household_id": "hh_doc_wm_sabine",
+      "person_id": "doc_wm_sabine",
+      "name": "Wm. Sabine",
+      "starting_evidence": "newspaper_profile_unplaced",
+      "starting_grade": "attested",
+      "starting_presence": "uncertain",
+      "starting_occupation": "forwarding_and_commission",
+      "letter_list_returns": [],
+      "sources": [
+        "chicago_american_1835"
+      ],
+      "selection_reason": "All richer, real named residents still lacking a dwelling were included, not sampled."
+    },
+    {
+      "household_id": "hh_placed_b_s_morris",
+      "person_id": "placed_b_s_morris",
+      "name": "B. S. Morris",
+      "starting_evidence": "newspaper_profile_unplaced",
+      "starting_grade": "attested",
+      "starting_presence": "uncertain",
+      "starting_occupation": "none_recorded",
+      "letter_list_returns": [],
+      "sources": [
+        "chicago_democrat_1833_1835"
+      ],
+      "selection_reason": "All richer, real named residents still lacking a dwelling were included, not sampled."
+    },
+    {
+      "household_id": "hh_placed_hoit_thomas",
+      "person_id": "placed_hoit_thomas",
+      "name": "Thomas Hoit",
+      "starting_evidence": "newspaper_profile_unplaced",
+      "starting_grade": "attested",
+      "starting_presence": "present",
+      "starting_occupation": "none_recorded",
+      "letter_list_returns": [],
+      "sources": [
+        "chicago_democrat_1833_1835"
+      ],
+      "selection_reason": "All richer, real named residents still lacking a dwelling were included, not sampled."
+    },
+    {
+      "household_id": "hh_placed_j_k_boyer",
+      "person_id": "placed_j_k_boyer",
+      "name": "J. K. Boyer",
+      "starting_evidence": "newspaper_profile_unplaced",
+      "starting_grade": "attested",
+      "starting_presence": "present",
+      "starting_occupation": "none_recorded",
+      "letter_list_returns": [],
+      "sources": [
+        "chicago_democrat_1833_1835"
+      ],
+      "selection_reason": "All richer, real named residents still lacking a dwelling were included, not sampled."
+    },
+    {
+      "household_id": "hh_placed_j_w_fell",
+      "person_id": "placed_j_w_fell",
+      "name": "J. W. Fell",
+      "starting_evidence": "newspaper_profile_unplaced",
+      "starting_grade": "attested",
+      "starting_presence": "uncertain",
+      "starting_occupation": "none_recorded",
+      "letter_list_returns": [],
+      "sources": [
+        "chicago_democrat_1833_1835"
+      ],
+      "selection_reason": "All richer, real named residents still lacking a dwelling were included, not sampled."
+    },
+    {
+      "household_id": "hh_ll_hail_aifred",
+      "person_id": "ll_hail_aifred",
+      "name": "Aifred Hail",
+      "starting_evidence": "letter_list_only",
+      "starting_grade": "attested",
+      "starting_presence": "present",
+      "starting_occupation": "none_recorded",
+      "letter_list_returns": [
+        "1835-07-01"
+      ],
+      "sources": [
+        "chicago_democrat_1833_1835"
+      ],
+      "selection_reason": "Fixed stratified sample of the weakest-evidence cohort: 25 present and 25 uncertain, including every member whose sex was already recorded."
+    },
+    {
+      "household_id": "hh_ll_beddlecome_ash",
+      "person_id": "ll_beddlecome_ash",
+      "name": "Ash Beddlecome",
+      "starting_evidence": "letter_list_only",
+      "starting_grade": "attested",
+      "starting_presence": "present",
+      "starting_occupation": "none_recorded",
+      "letter_list_returns": [
+        "1835-07-01"
+      ],
+      "sources": [
+        "chicago_democrat_1833_1835"
+      ],
+      "selection_reason": "Fixed stratified sample of the weakest-evidence cohort: 25 present and 25 uncertain, including every member whose sex was already recorded."
+    },
+    {
+      "household_id": "hh_ll_gooding_caroline",
+      "person_id": "ll_gooding_caroline",
+      "name": "Caroline Miss Gooding",
+      "starting_evidence": "letter_list_only",
+      "starting_grade": "attested",
+      "starting_presence": "present",
+      "starting_occupation": "none_recorded",
+      "letter_list_returns": [
+        "1835-07-01"
+      ],
+      "sources": [
+        "chicago_democrat_1833_1835"
+      ],
+      "selection_reason": "Fixed stratified sample of the weakest-evidence cohort: 25 present and 25 uncertain, including every member whose sex was already recorded."
+    },
+    {
+      "household_id": "hh_ll_benubien_charl",
+      "person_id": "ll_benubien_charl",
+      "name": "Charl Benubien",
+      "starting_evidence": "letter_list_only",
+      "starting_grade": "attested",
+      "starting_presence": "present",
+      "starting_occupation": "none_recorded",
+      "letter_list_returns": [
+        "1835-07-01"
+      ],
+      "sources": [
+        "chicago_democrat_1833_1835"
+      ],
+      "selection_reason": "Fixed stratified sample of the weakest-evidence cohort: 25 present and 25 uncertain, including every member whose sex was already recorded."
+    },
+    {
+      "household_id": "hh_ll_brookins_david",
+      "person_id": "ll_brookins_david",
+      "name": "David Brookins",
+      "starting_evidence": "letter_list_only",
+      "starting_grade": "attested",
+      "starting_presence": "present",
+      "starting_occupation": "none_recorded",
+      "letter_list_returns": [
+        "1835-07-01"
+      ],
+      "sources": [
+        "chicago_democrat_1833_1835"
+      ],
+      "selection_reason": "Fixed stratified sample of the weakest-evidence cohort: 25 present and 25 uncertain, including every member whose sex was already recorded."
+    },
+    {
+      "household_id": "hh_ll_ehjah_doolittle",
+      "person_id": "ll_ehjah_doolittle",
+      "name": "Ehjah Doolittle",
+      "starting_evidence": "letter_list_only",
+      "starting_grade": "attested",
+      "starting_presence": "present",
+      "starting_occupation": "none_recorded",
+      "letter_list_returns": [
+        "1835-07-01"
+      ],
+      "sources": [
+        "chicago_democrat_1833_1835"
+      ],
+      "selection_reason": "Fixed stratified sample of the weakest-evidence cohort: 25 present and 25 uncertain, including every member whose sex was already recorded."
+    },
+    {
+      "household_id": "hh_ll_boles_george",
+      "person_id": "ll_boles_george",
+      "name": "George Boles",
+      "starting_evidence": "letter_list_only",
+      "starting_grade": "attested",
+      "starting_presence": "present",
+      "starting_occupation": "none_recorded",
+      "letter_list_returns": [
+        "1835-07-01"
+      ],
+      "sources": [
+        "chicago_democrat_1833_1835"
+      ],
+      "selection_reason": "Fixed stratified sample of the weakest-evidence cohort: 25 present and 25 uncertain, including every member whose sex was already recorded."
+    },
+    {
+      "household_id": "hh_ll_vyekoff_henry_s",
+      "person_id": "ll_vyekoff_henry_s",
+      "name": "Henry S. Vyekoff",
+      "starting_evidence": "letter_list_only",
+      "starting_grade": "attested",
+      "starting_presence": "present",
+      "starting_occupation": "none_recorded",
+      "letter_list_returns": [
+        "1835-07-01"
+      ],
+      "sources": [
+        "chicago_democrat_1833_1835"
+      ],
+      "selection_reason": "Fixed stratified sample of the weakest-evidence cohort: 25 present and 25 uncertain, including every member whose sex was already recorded."
+    },
+    {
+      "household_id": "hh_ll_demans_j_t",
+      "person_id": "ll_demans_j_t",
+      "name": "J. T Demans",
+      "starting_evidence": "letter_list_only",
+      "starting_grade": "attested",
+      "starting_presence": "present",
+      "starting_occupation": "none_recorded",
+      "letter_list_returns": [
+        "1835-07-01"
+      ],
+      "sources": [
+        "chicago_democrat_1833_1835"
+      ],
+      "selection_reason": "Fixed stratified sample of the weakest-evidence cohort: 25 present and 25 uncertain, including every member whose sex was already recorded."
+    },
+    {
+      "household_id": "hh_ll_force_john",
+      "person_id": "ll_force_john",
+      "name": "John Force",
+      "starting_evidence": "letter_list_only",
+      "starting_grade": "attested",
+      "starting_presence": "present",
+      "starting_occupation": "none_recorded",
+      "letter_list_returns": [
+        "1835-07-01"
+      ],
+      "sources": [
+        "chicago_democrat_1833_1835"
+      ],
+      "selection_reason": "Fixed stratified sample of the weakest-evidence cohort: 25 present and 25 uncertain, including every member whose sex was already recorded."
+    },
+    {
+      "household_id": "hh_ll_bloget_josiah_i",
+      "person_id": "ll_bloget_josiah_i",
+      "name": "Josiah I Bloget",
+      "starting_evidence": "letter_list_only",
+      "starting_grade": "attested",
+      "starting_presence": "present",
+      "starting_occupation": "none_recorded",
+      "letter_list_returns": [
+        "1835-07-01"
+      ],
+      "sources": [
+        "chicago_democrat_1833_1835"
+      ],
+      "selection_reason": "Fixed stratified sample of the weakest-evidence cohort: 25 present and 25 uncertain, including every member whose sex was already recorded."
+    },
+    {
+      "household_id": "hh_ll_maccoy_lorenzo",
+      "person_id": "ll_maccoy_lorenzo",
+      "name": "maccoy Lorenzo",
+      "starting_evidence": "letter_list_only",
+      "starting_grade": "attested",
+      "starting_presence": "present",
+      "starting_occupation": "none_recorded",
+      "letter_list_returns": [
+        "1835-07-01"
+      ],
+      "sources": [
+        "chicago_democrat_1833_1835"
+      ],
+      "selection_reason": "Fixed stratified sample of the weakest-evidence cohort: 25 present and 25 uncertain, including every member whose sex was already recorded."
+    },
+    {
+      "household_id": "hh_ll_sunny_miches",
+      "person_id": "ll_sunny_miches",
+      "name": "Miches! Sunny",
+      "starting_evidence": "letter_list_only",
+      "starting_grade": "attested",
+      "starting_presence": "present",
+      "starting_occupation": "none_recorded",
+      "letter_list_returns": [
+        "1835-07-01"
+      ],
+      "sources": [
+        "chicago_democrat_1833_1835"
+      ],
+      "selection_reason": "Fixed stratified sample of the weakest-evidence cohort: 25 present and 25 uncertain, including every member whose sex was already recorded."
+    },
+    {
+      "household_id": "hh_ll_anstin_al",
+      "person_id": "ll_anstin_al",
+      "name": "Mr. Al. Anstin",
+      "starting_evidence": "letter_list_only",
+      "starting_grade": "attested",
+      "starting_presence": "present",
+      "starting_occupation": "none_recorded",
+      "letter_list_returns": [
+        "1835-07-01"
+      ],
+      "sources": [
+        "chicago_democrat_1833_1835"
+      ],
+      "selection_reason": "Fixed stratified sample of the weakest-evidence cohort: 25 present and 25 uncertain, including every member whose sex was already recorded."
+    },
+    {
+      "household_id": "hh_ll_nelson_mary",
+      "person_id": "ll_nelson_mary",
+      "name": "Nelson mary Miss",
+      "starting_evidence": "letter_list_only",
+      "starting_grade": "attested",
+      "starting_presence": "present",
+      "starting_occupation": "none_recorded",
+      "letter_list_returns": [
+        "1835-07-01"
+      ],
+      "sources": [
+        "chicago_democrat_1833_1835"
+      ],
+      "selection_reason": "Fixed stratified sample of the weakest-evidence cohort: 25 present and 25 uncertain, including every member whose sex was already recorded."
+    },
+    {
+      "household_id": "hh_ll_oakley_benjamin_w",
+      "person_id": "ll_oakley_benjamin_w",
+      "name": "Oakley Benjamin W.",
+      "starting_evidence": "letter_list_only",
+      "starting_grade": "attested",
+      "starting_presence": "present",
+      "starting_occupation": "none_recorded",
+      "letter_list_returns": [
+        "1835-07-01"
+      ],
+      "sources": [
+        "chicago_democrat_1833_1835"
+      ],
+      "selection_reason": "Fixed stratified sample of the weakest-evidence cohort: 25 present and 25 uncertain, including every member whose sex was already recorded."
+    },
+    {
+      "household_id": "hh_ll_paddock_harriet",
+      "person_id": "ll_paddock_harriet",
+      "name": "Paddock Harriet Miss.",
+      "starting_evidence": "letter_list_only",
+      "starting_grade": "attested",
+      "starting_presence": "present",
+      "starting_occupation": "none_recorded",
+      "letter_list_returns": [
+        "1835-07-01"
+      ],
+      "sources": [
+        "chicago_democrat_1833_1835"
+      ],
+      "selection_reason": "Fixed stratified sample of the weakest-evidence cohort: 25 present and 25 uncertain, including every member whose sex was already recorded."
+    },
+    {
+      "household_id": "hh_ll_payne_win",
+      "person_id": "ll_payne_win",
+      "name": "Payne Win.",
+      "starting_evidence": "letter_list_only",
+      "starting_grade": "attested",
+      "starting_presence": "present",
+      "starting_occupation": "none_recorded",
+      "letter_list_returns": [
+        "1835-07-01"
+      ],
+      "sources": [
+        "chicago_democrat_1833_1835"
+      ],
+      "selection_reason": "Fixed stratified sample of the weakest-evidence cohort: 25 present and 25 uncertain, including every member whose sex was already recorded."
+    },
+    {
+      "household_id": "hh_ll_preston_stephen_ii",
+      "person_id": "ll_preston_stephen_ii",
+      "name": "Preston Stephen II.",
+      "starting_evidence": "letter_list_only",
+      "starting_grade": "attested",
+      "starting_presence": "present",
+      "starting_occupation": "none_recorded",
+      "letter_list_returns": [
+        "1835-07-01"
+      ],
+      "sources": [
+        "chicago_democrat_1833_1835"
+      ],
+      "selection_reason": "Fixed stratified sample of the weakest-evidence cohort: 25 present and 25 uncertain, including every member whose sex was already recorded."
+    },
+    {
+      "household_id": "hh_ll_starkweather_rob_t",
+      "person_id": "ll_starkweather_rob_t",
+      "name": "Rob't. Starkweather",
+      "starting_evidence": "letter_list_only",
+      "starting_grade": "attested",
+      "starting_presence": "present",
+      "starting_occupation": "none_recorded",
+      "letter_list_returns": [
+        "1835-07-01"
+      ],
+      "sources": [
+        "chicago_democrat_1833_1835"
+      ],
+      "selection_reason": "Fixed stratified sample of the weakest-evidence cohort: 25 present and 25 uncertain, including every member whose sex was already recorded."
+    },
+    {
+      "household_id": "hh_ll_codding_sally",
+      "person_id": "ll_codding_sally",
+      "name": "Sally Mr Codding",
+      "starting_evidence": "letter_list_only",
+      "starting_grade": "attested",
+      "starting_presence": "present",
+      "starting_occupation": "none_recorded",
+      "letter_list_returns": [
+        "1835-07-01"
+      ],
+      "sources": [
+        "chicago_democrat_1833_1835"
+      ],
+      "selection_reason": "Fixed stratified sample of the weakest-evidence cohort: 25 present and 25 uncertain, including every member whose sex was already recorded."
+    },
+    {
+      "household_id": "hh_ll_byam_seth",
+      "person_id": "ll_byam_seth",
+      "name": "Seth Byam",
+      "starting_evidence": "letter_list_only",
+      "starting_grade": "attested",
+      "starting_presence": "present",
+      "starting_occupation": "none_recorded",
+      "letter_list_returns": [
+        "1835-07-01"
+      ],
+      "sources": [
+        "chicago_democrat_1833_1835"
+      ],
+      "selection_reason": "Fixed stratified sample of the weakest-evidence cohort: 25 present and 25 uncertain, including every member whose sex was already recorded."
+    },
+    {
+      "household_id": "hh_ll_soren_helen",
+      "person_id": "ll_soren_helen",
+      "name": "Soren Helen Miss",
+      "starting_evidence": "letter_list_only",
+      "starting_grade": "attested",
+      "starting_presence": "present",
+      "starting_occupation": "none_recorded",
+      "letter_list_returns": [
+        "1835-07-01"
+      ],
+      "sources": [
+        "chicago_democrat_1833_1835"
+      ],
+      "selection_reason": "Fixed stratified sample of the weakest-evidence cohort: 25 present and 25 uncertain, including every member whose sex was already recorded."
+    },
+    {
+      "household_id": "hh_ll_beger_tobias",
+      "person_id": "ll_beger_tobias",
+      "name": "Tobias Beger",
+      "starting_evidence": "letter_list_only",
+      "starting_grade": "attested",
+      "starting_presence": "present",
+      "starting_occupation": "none_recorded",
+      "letter_list_returns": [
+        "1835-07-01"
+      ],
+      "sources": [
+        "chicago_democrat_1833_1835"
+      ],
+      "selection_reason": "Fixed stratified sample of the weakest-evidence cohort: 25 present and 25 uncertain, including every member whose sex was already recorded."
+    },
+    {
+      "household_id": "hh_ll_saunders_william_s",
+      "person_id": "ll_saunders_william_s",
+      "name": "William S. Saunders",
+      "starting_evidence": "letter_list_only",
+      "starting_grade": "attested",
+      "starting_presence": "present",
+      "starting_occupation": "none_recorded",
+      "letter_list_returns": [
+        "1835-07-01"
+      ],
+      "sources": [
+        "chicago_democrat_1833_1835"
+      ],
+      "selection_reason": "Fixed stratified sample of the weakest-evidence cohort: 25 present and 25 uncertain, including every member whose sex was already recorded."
+    },
+    {
+      "household_id": "hh_ll_alanson_b_vaughan",
+      "person_id": "ll_alanson_b_vaughan",
+      "name": "Alanson B. Vaughan",
+      "starting_evidence": "letter_list_only",
+      "starting_grade": "attested",
+      "starting_presence": "uncertain",
+      "starting_occupation": "none_recorded",
+      "letter_list_returns": [
+        "1834-07-02"
+      ],
+      "sources": [
+        "chicago_democrat_1833_1835"
+      ],
+      "selection_reason": "Fixed stratified sample of the weakest-evidence cohort: 25 present and 25 uncertain, including every member whose sex was already recorded."
+    },
+    {
+      "household_id": "hh_ll_m_vaughton_angus",
+      "person_id": "ll_m_vaughton_angus",
+      "name": "Angus M'Vaughton",
+      "starting_evidence": "letter_list_only",
+      "starting_grade": "attested",
+      "starting_presence": "uncertain",
+      "starting_occupation": "none_recorded",
+      "letter_list_returns": [
+        "1834-10-22"
+      ],
+      "sources": [
+        "chicago_democrat_1833_1835"
+      ],
+      "selection_reason": "Fixed stratified sample of the weakest-evidence cohort: 25 present and 25 uncertain, including every member whose sex was already recorded."
+    },
+    {
+      "household_id": "hh_ll_ostrander_catherine",
+      "person_id": "ll_ostrander_catherine",
+      "name": "Catherine Ostrander",
+      "starting_evidence": "letter_list_only",
+      "starting_grade": "attested",
+      "starting_presence": "uncertain",
+      "starting_occupation": "none_recorded",
+      "letter_list_returns": [
+        "1834-10-22"
+      ],
+      "sources": [
+        "chicago_democrat_1833_1835"
+      ],
+      "selection_reason": "Fixed stratified sample of the weakest-evidence cohort: 25 present and 25 uncertain, including every member whose sex was already recorded."
+    },
+    {
+      "household_id": "hh_ll_d_v_s_torry",
+      "person_id": "ll_d_v_s_torry",
+      "name": "D. V. S. Torry",
+      "starting_evidence": "letter_list_only",
+      "starting_grade": "attested",
+      "starting_presence": "uncertain",
+      "starting_occupation": "none_recorded",
+      "letter_list_returns": [
+        "1834-04-16"
+      ],
+      "sources": [
+        "chicago_democrat_1833_1835"
+      ],
+      "selection_reason": "Fixed stratified sample of the weakest-evidence cohort: 25 present and 25 uncertain, including every member whose sex was already recorded."
+    },
+    {
+      "household_id": "hh_ll_dean_farren",
+      "person_id": "ll_dean_farren",
+      "name": "Dean Farren",
+      "starting_evidence": "letter_list_only",
+      "starting_grade": "attested",
+      "starting_presence": "uncertain",
+      "starting_occupation": "none_recorded",
+      "letter_list_returns": [
+        "1834-01-28"
+      ],
+      "sources": [
+        "chicago_democrat_1833_1835"
+      ],
+      "selection_reason": "Fixed stratified sample of the weakest-evidence cohort: 25 present and 25 uncertain, including every member whose sex was already recorded."
+    },
+    {
+      "household_id": "hh_ll_eli_benn",
+      "person_id": "ll_eli_benn",
+      "name": "Eli Benn",
+      "starting_evidence": "letter_list_only",
+      "starting_grade": "attested",
+      "starting_presence": "uncertain",
+      "starting_occupation": "none_recorded",
+      "letter_list_returns": [
+        "1834-04-08"
+      ],
+      "sources": [
+        "chicago_democrat_1833_1835"
+      ],
+      "selection_reason": "Fixed stratified sample of the weakest-evidence cohort: 25 present and 25 uncertain, including every member whose sex was already recorded."
+    },
+    {
+      "household_id": "hh_ll_franklin_spalding",
+      "person_id": "ll_franklin_spalding",
+      "name": "Franklin Spalding",
+      "starting_evidence": "letter_list_only",
+      "starting_grade": "attested",
+      "starting_presence": "uncertain",
+      "starting_occupation": "none_recorded",
+      "letter_list_returns": [
+        "1834-04-01"
+      ],
+      "sources": [
+        "chicago_democrat_1833_1835"
+      ],
+      "selection_reason": "Fixed stratified sample of the weakest-evidence cohort: 25 present and 25 uncertain, including every member whose sex was already recorded."
+    },
+    {
+      "household_id": "hh_ll_h_vanderbogart",
+      "person_id": "ll_h_vanderbogart",
+      "name": "H. Vanderbogart",
+      "starting_evidence": "letter_list_only",
+      "starting_grade": "attested",
+      "starting_presence": "uncertain",
+      "starting_occupation": "none_recorded",
+      "letter_list_returns": [
+        "1835-05-20"
+      ],
+      "sources": [
+        "chicago_democrat_1833_1835"
+      ],
+      "selection_reason": "Fixed stratified sample of the weakest-evidence cohort: 25 present and 25 uncertain, including every member whose sex was already recorded."
+    },
+    {
+      "household_id": "hh_ll_hiram_eager",
+      "person_id": "ll_hiram_eager",
+      "name": "Hiram Eager",
+      "starting_evidence": "letter_list_only",
+      "starting_grade": "attested",
+      "starting_presence": "uncertain",
+      "starting_occupation": "none_recorded",
+      "letter_list_returns": [
+        "1835-05-20"
+      ],
+      "sources": [
+        "chicago_democrat_1833_1835"
+      ],
+      "selection_reason": "Fixed stratified sample of the weakest-evidence cohort: 25 present and 25 uncertain, including every member whose sex was already recorded."
+    },
+    {
+      "household_id": "hh_ll_jacob_langer",
+      "person_id": "ll_jacob_langer",
+      "name": "Jacob Langer",
+      "starting_evidence": "letter_list_only",
+      "starting_grade": "attested",
+      "starting_presence": "uncertain",
+      "starting_occupation": "none_recorded",
+      "letter_list_returns": [
+        "1835-05-20"
+      ],
+      "sources": [
+        "chicago_democrat_1833_1835"
+      ],
+      "selection_reason": "Fixed stratified sample of the weakest-evidence cohort: 25 present and 25 uncertain, including every member whose sex was already recorded."
+    },
+    {
+      "household_id": "hh_ll_james_mcfadden",
+      "person_id": "ll_james_mcfadden",
+      "name": "James McFadden",
+      "starting_evidence": "letter_list_only",
+      "starting_grade": "attested",
+      "starting_presence": "uncertain",
+      "starting_occupation": "none_recorded",
+      "letter_list_returns": [
+        "1834-07-02"
+      ],
+      "sources": [
+        "chicago_democrat_1833_1835"
+      ],
+      "selection_reason": "Fixed stratified sample of the weakest-evidence cohort: 25 present and 25 uncertain, including every member whose sex was already recorded."
+    },
+    {
+      "household_id": "hh_ll_jesse_holder",
+      "person_id": "ll_jesse_holder",
+      "name": "Jesse Holder",
+      "starting_evidence": "letter_list_only",
+      "starting_grade": "attested",
+      "starting_presence": "uncertain",
+      "starting_occupation": "none_recorded",
+      "letter_list_returns": [
+        "1835-05-20"
+      ],
+      "sources": [
+        "chicago_democrat_1833_1835"
+      ],
+      "selection_reason": "Fixed stratified sample of the weakest-evidence cohort: 25 present and 25 uncertain, including every member whose sex was already recorded."
+    },
+    {
+      "household_id": "hh_ll_john_musgrave",
+      "person_id": "ll_john_musgrave",
+      "name": "John Musgrave",
+      "starting_evidence": "letter_list_only",
+      "starting_grade": "attested",
+      "starting_presence": "uncertain",
+      "starting_occupation": "none_recorded",
+      "letter_list_returns": [
+        "1835-05-20"
+      ],
+      "sources": [
+        "chicago_democrat_1833_1835"
+      ],
+      "selection_reason": "Fixed stratified sample of the weakest-evidence cohort: 25 present and 25 uncertain, including every member whose sex was already recorded."
+    },
+    {
+      "household_id": "hh_ll_jonathan_folliott",
+      "person_id": "ll_jonathan_folliott",
+      "name": "Jonathan Folliott",
+      "starting_evidence": "letter_list_only",
+      "starting_grade": "attested",
+      "starting_presence": "uncertain",
+      "starting_occupation": "none_recorded",
+      "letter_list_returns": [
+        "1835-05-20"
+      ],
+      "sources": [
+        "chicago_democrat_1833_1835"
+      ],
+      "selection_reason": "Fixed stratified sample of the weakest-evidence cohort: 25 present and 25 uncertain, including every member whose sex was already recorded."
+    },
+    {
+      "household_id": "hh_ll_joshua_kinsey",
+      "person_id": "ll_joshua_kinsey",
+      "name": "Joshua Kinsey",
+      "starting_evidence": "letter_list_only",
+      "starting_grade": "attested",
+      "starting_presence": "uncertain",
+      "starting_occupation": "none_recorded",
+      "letter_list_returns": [
+        "1834-07-09"
+      ],
+      "sources": [
+        "chicago_democrat_1833_1835"
+      ],
+      "selection_reason": "Fixed stratified sample of the weakest-evidence cohort: 25 present and 25 uncertain, including every member whose sex was already recorded."
+    },
+    {
+      "household_id": "hh_ll_lucius_b_albyn",
+      "person_id": "ll_lucius_b_albyn",
+      "name": "Lucius B. Albyn",
+      "starting_evidence": "letter_list_only",
+      "starting_grade": "attested",
+      "starting_presence": "uncertain",
+      "starting_occupation": "none_recorded",
+      "letter_list_returns": [
+        "1834-07-09"
+      ],
+      "sources": [
+        "chicago_democrat_1833_1835"
+      ],
+      "selection_reason": "Fixed stratified sample of the weakest-evidence cohort: 25 present and 25 uncertain, including every member whose sex was already recorded."
+    },
+    {
+      "household_id": "hh_ll_morris_cutler",
+      "person_id": "ll_morris_cutler",
+      "name": "Morris Cutler",
+      "starting_evidence": "letter_list_only",
+      "starting_grade": "attested",
+      "starting_presence": "uncertain",
+      "starting_occupation": "none_recorded",
+      "letter_list_returns": [
+        "1835-05-20"
+      ],
+      "sources": [
+        "chicago_democrat_1833_1835"
+      ],
+      "selection_reason": "Fixed stratified sample of the weakest-evidence cohort: 25 present and 25 uncertain, including every member whose sex was already recorded."
+    },
+    {
+      "household_id": "hh_ll_s_stephens",
+      "person_id": "ll_s_stephens",
+      "name": "Mrs. S. Stephens",
+      "starting_evidence": "letter_list_only",
+      "starting_grade": "attested",
+      "starting_presence": "uncertain",
+      "starting_occupation": "none_recorded",
+      "letter_list_returns": [
+        "1834-04-01"
+      ],
+      "sources": [
+        "chicago_democrat_1833_1835"
+      ],
+      "selection_reason": "Fixed stratified sample of the weakest-evidence cohort: 25 present and 25 uncertain, including every member whose sex was already recorded."
+    },
+    {
+      "household_id": "hh_ll_orange_chauncy",
+      "person_id": "ll_orange_chauncy",
+      "name": "Orange Chauncy",
+      "starting_evidence": "letter_list_only",
+      "starting_grade": "attested",
+      "starting_presence": "uncertain",
+      "starting_occupation": "none_recorded",
+      "letter_list_returns": [
+        "1834-04-01"
+      ],
+      "sources": [
+        "chicago_democrat_1833_1835"
+      ],
+      "selection_reason": "Fixed stratified sample of the weakest-evidence cohort: 25 present and 25 uncertain, including every member whose sex was already recorded."
+    },
+    {
+      "household_id": "hh_ll_pierce_howley",
+      "person_id": "ll_pierce_howley",
+      "name": "Pierce Howley",
+      "starting_evidence": "letter_list_only",
+      "starting_grade": "attested",
+      "starting_presence": "uncertain",
+      "starting_occupation": "none_recorded",
+      "letter_list_returns": [
+        "1834-07-09"
+      ],
+      "sources": [
+        "chicago_democrat_1833_1835"
+      ],
+      "selection_reason": "Fixed stratified sample of the weakest-evidence cohort: 25 present and 25 uncertain, including every member whose sex was already recorded."
+    },
+    {
+      "household_id": "hh_ll_roy_k_westover",
+      "person_id": "ll_roy_k_westover",
+      "name": "Roy K. Westover",
+      "starting_evidence": "letter_list_only",
+      "starting_grade": "attested",
+      "starting_presence": "uncertain",
+      "starting_occupation": "none_recorded",
+      "letter_list_returns": [
+        "1835-05-20"
+      ],
+      "sources": [
+        "chicago_democrat_1833_1835"
+      ],
+      "selection_reason": "Fixed stratified sample of the weakest-evidence cohort: 25 present and 25 uncertain, including every member whose sex was already recorded."
+    },
+    {
+      "household_id": "hh_ll_samuel_stuart",
+      "person_id": "ll_samuel_stuart",
+      "name": "Samuel Stuart",
+      "starting_evidence": "letter_list_only",
+      "starting_grade": "attested",
+      "starting_presence": "uncertain",
+      "starting_occupation": "none_recorded",
+      "letter_list_returns": [
+        "1834-07-02"
+      ],
+      "sources": [
+        "chicago_democrat_1833_1835"
+      ],
+      "selection_reason": "Fixed stratified sample of the weakest-evidence cohort: 25 present and 25 uncertain, including every member whose sex was already recorded."
+    },
+    {
+      "household_id": "hh_ll_theophilus_renwick",
+      "person_id": "ll_theophilus_renwick",
+      "name": "Theophilus Renwick",
+      "starting_evidence": "letter_list_only",
+      "starting_grade": "attested",
+      "starting_presence": "uncertain",
+      "starting_occupation": "none_recorded",
+      "letter_list_returns": [
+        "1835-05-20"
+      ],
+      "sources": [
+        "chicago_democrat_1833_1835"
+      ],
+      "selection_reason": "Fixed stratified sample of the weakest-evidence cohort: 25 present and 25 uncertain, including every member whose sex was already recorded."
+    },
+    {
+      "household_id": "hh_ll_willard_conter",
+      "person_id": "ll_willard_conter",
+      "name": "Willard Conter",
+      "starting_evidence": "letter_list_only",
+      "starting_grade": "attested",
+      "starting_presence": "uncertain",
+      "starting_occupation": "none_recorded",
+      "letter_list_returns": [
+        "1835-05-20"
+      ],
+      "sources": [
+        "chicago_democrat_1833_1835"
+      ],
+      "selection_reason": "Fixed stratified sample of the weakest-evidence cohort: 25 present and 25 uncertain, including every member whose sex was already recorded."
+    },
+    {
+      "household_id": "hh_ll_wm_loring",
+      "person_id": "ll_wm_loring",
+      "name": "Wm. Loring",
+      "starting_evidence": "letter_list_only",
+      "starting_grade": "attested",
+      "starting_presence": "uncertain",
+      "starting_occupation": "none_recorded",
+      "letter_list_returns": [
+        "1835-05-20"
+      ],
+      "sources": [
+        "chicago_democrat_1833_1835"
+      ],
+      "selection_reason": "Fixed stratified sample of the weakest-evidence cohort: 25 present and 25 uncertain, including every member whose sex was already recorded."
+    }
+  ]
+}

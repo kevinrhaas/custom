@@ -9936,7 +9936,9 @@ for (const [label, viewport, touch] of [
       const groupClosedOnMount = group ? !group.open : null;
       if (group) group.open = true;
       const letter = rows.find((r) => r.dataset.id === 'hh_ll_william_luce');
-      for (const el of [target, named, dated, letter]) {
+      const candidate = rows.find((r) => r.dataset.id === 'hh_doc_a_garrett');
+      const noFind = rows.find((r) => r.dataset.id === 'hh_ll_hail_aifred');
+      for (const el of [target, named, dated, letter, candidate, noFind]) {
         if (!el) continue;
         el.open = true;
         for (let i = 0; i < 100 && el.querySelector('.res-hh-body .legend-note'); i++) {
@@ -9948,6 +9950,8 @@ for (const [label, viewport, touch] of [
         namedText: bodyOf(named),
         datedText: bodyOf(dated),
         letterText: bodyOf(letter),
+        candidateText: bodyOf(candidate),
+        noFindText: bodyOf(noFind),
         households: window.__chicago4d.residents?.households ?? 0,
         persons: window.__chicago4d.residents?.persons ?? 0,
         offCard: window.__chicago4d.residents?.offCard ?? -1,
@@ -9959,6 +9963,8 @@ for (const [label, viewport, touch] of [
         evidenced: window.__chicago4d.residents?.evidenced ?? -1,
         letterList: window.__chicago4d.residents?.letterList ?? -1,
         letterListOffCard: window.__chicago4d.residents?.letterListOffCard ?? -1,
+        researchReviewed: window.__chicago4d.residents?.researchReviewed ?? -1,
+        researchCounts: window.__chicago4d.residents?.researchCounts ?? {},
         groupRows: group ? group.querySelectorAll('details.res-hh').length : -1,
         groupText: group ? group.textContent.replace(/\s+/g, ' ').slice(0, 900) : '',
         // The group must be a DELIBERATE open. A section that renders 727 rows
@@ -10099,6 +10105,24 @@ for (const [label, viewport, touch] of [
       /none recorded/i.test(residents.letterText)
       && /No source records an occupation/.test(residents.letterText),
       residents.letterText.slice(0, 200));
+    // T-0442: a candidate biography is useful only if it remains visibly a
+    // candidate. The same public payload also carries negative work so silence
+    // cannot be mistaken for a person who was never researched.
+    check(`${label}: the 75-person research pilot reaches resident cards`,
+      residents.researchReviewed === 75
+      && residents.researchCounts.corroborated_enrichment === 4
+      && residents.researchCounts.candidate_identity === 7
+      && residents.researchCounts.no_corroboration === 64,
+      `${residents.researchReviewed}: ${JSON.stringify(residents.researchCounts)}`);
+    check(`${label}: candidate identities are visibly unmerged`,
+      /Augustus Garrett/.test(residents.candidateText)
+      && /candidate identity.{0,20}not merged/i.test(residents.candidateText)
+      && /not an asserted identity/i.test(residents.candidateText),
+      residents.candidateText.slice(0, 260));
+    check(`${label}: a negative search is published without denying existence`,
+      /no safe match found/i.test(residents.noFindText)
+      && /not evidence that the person did not exist/i.test(residents.noFindText),
+      residents.noFindText.slice(0, 260));
     // The one thing this section must never imply, and the constraint that
     // outranks every other consideration in this project: v1 draws no human
     // figures, and the removal of August 1835 is not staged anywhere.

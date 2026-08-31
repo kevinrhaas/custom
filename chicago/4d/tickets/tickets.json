@@ -1,6 +1,6 @@
 {
   "project": "chicago-4d",
-  "generated_ct": "Aug 30, 2026, 3:43 AM",
+  "generated_ct": "Aug 31, 2026, 3:36 AM",
   "tickets": [
     {
       "id": "T-0001",
@@ -7198,6 +7198,24 @@
       "blocked_on": null,
       "needs_bake": false,
       "queue_rank": 75
+    },
+    {
+      "id": "T-0442",
+      "title": "Deep research pilot for 75 real named residents",
+      "state": "claimed",
+      "epic": "META",
+      "requested_by": "owner",
+      "seen": false,
+      "effort": "M",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-08-31",
+      "closed": null,
+      "pr": null,
+      "claimed_by": "run 8/31/2026, 3:36:41 AM CT",
+      "blocked_on": null,
+      "needs_bake": false,
+      "queue_rank": 76
     }
   ]
 }

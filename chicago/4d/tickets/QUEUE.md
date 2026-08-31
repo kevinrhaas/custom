@@ -160,3 +160,4 @@ T-0388 — Three derived records have drifted from their own generators on an un
 # --- land under this line. NOT yet placed by the owner.
 T-0438 — The letter-list cohort is 2.54 MiB of the published tree, and it is now the largest single item in it
 T-0439 — Two pixel-sensitivity checks fail when parts 9-12 run together and pass when part 9 runs alone
+T-0442 — Deep research pilot for 75 real named residents
