@@ -91,6 +91,14 @@ step "every clapboard wall's stock re-derives from its deal" \
 step "the platted block and lot grid re-derives from the module" \
   python3 tools/generate_plat_lots.py --check
 
+# And the grid's own refusals still fire. The one that matters is the youngest: four
+# crossings can be found and still describe no block, because two committed centrelines
+# can converge to less than a corridor apart before they get there. Measured 2026-08-29
+# by T-0183 on the closure the owner ruled for at Market x South Water, which emitted a
+# 4,411 m2 bowtie with a plausible depth rather than refusing.
+step "…and a block whose rows have crossed is refused rather than emitted" \
+  python3 tools/generate_plat_lots.py --self-test
+
 # The dooryard garden pickets are the first record on the enclosure layer whose evidence
 # is a TREATMENT and not a place — the Kinzie-view plate shows picket-fenced garden plots
 # and no source puts a garden on any lot in this town. So the answer to "why this lot" is
@@ -184,6 +192,20 @@ step "the fort wood re-derives from the palisade and the apron it stands off" \
 step "no stack in the town is painted the colour of the roof it passes through" \
   python3 tools/measure_stack_fabric.py --gate --quiet
 
+# Its neighbour, on the same accessor bounds and the same principle (T-0333). The Town of
+# Chicago's by-law of 5 August 1835 section 18 — chicago_democrat_1835_08_19#c005 — carries
+# every stove pipe or chimney "at least eighteen inches above the roof" under a five-dollar
+# penalty, which is the first documented DIMENSIONAL constraint this project holds on
+# anything above a roof line. Every stack in the town already clears it; this is the ratchet
+# that stops one dropping back under. It does NOT decide which buildings the by-law reaches:
+# section 22's corporation limits are T-0334's and are not drawn yet, and nothing here is
+# conformed to a rule that may not bind it, because nothing has to move.
+step "every stack is carried eighteen inches above its roof, as the by-law of 5 August 1835 requires" \
+  python3 tools/measure_stack_ordinance.py --gate --quiet
+
+step "…and its own assertions still fire when broken" \
+  python3 tools/measure_stack_ordinance.py --self-test
+
 # The river wharves are the fourth record of this shape and the first whose rule
 # reads a record's OWN attribute rather than a trade table: a sidecar standing on
 # the scene date whose `dock` is true and graded attested or inferred. Two
@@ -219,12 +241,41 @@ step "the case T-0059 was withdrawn on still holds" \
 step "the frontage works re-derive from the rule that chose their walls" \
   python3 tools/generate_frontage_works.py --check
 
+# AND THE HALF OF THAT RULE NO RECORD EXERCISES. A cross street bounds a block on
+# its EAST and WEST faces; every street this record carries today bounds one on the
+# north and south. T-0192 enumerated all four and made every ordering in that
+# generator axis-aware, then measured the seven cross streets over all three
+# scene-detail ceilings and left them out — so the east/west path ships with an
+# empty covered tuple and the re-derivation above cannot touch it. This drives it
+# over all seven, in hundredths of a second, so it is code somebody is keeping
+# rather than code waiting to rot until the frame budget is won back.
+step "the street edge's cross-street faces enumerate as the plat says" \
+  python3 tools/test_frontage_faces.py
+
+step "…and those assertions still fire when the enumeration is broken" \
+  python3 tools/test_frontage_faces.py --self-test
+
 # The 665-roof programme's remainder is a function of what has been built, and the town
 # grows most nights. Left as an authored number it goes stale silently — the crosswalk
 # called 617 roofs remaining while 232 were standing — and the next block parcel schedules
 # against a figure that is wrong by a third of the programme.
 step "the 665-roof programme reconciles with the town that stands" \
   python3 tools/reconcile_665.py --check
+
+# T-0233, and the question the recipes cannot answer by being read: does a party-line
+# run stand on the lots it was dealt? It does not — 8 of the 19 dealt lots carry none of
+# their own run's roofs — and the ticket ruled that a RESERVATION rather than a defect,
+# because `reconcile_665`'s free-lot arithmetic is derived from committed footprints and
+# has never read a recipe's deal, so nothing is withheld from the programme by it. What
+# was wrong was only that nobody could see it, which is why the measurement is wired in
+# here instead of left as a command somebody remembers. The gate itself is the ceiling
+# T-0079 established — `ROW_UNITS_PER_LOT` units per dealt lot, every roof already
+# standing on those lots counted against it — and it passes today, so it is cheap.
+step "no party-line run carries more roofs than the frontage it was dealt" \
+  python3 tools/measure_frontage_entitlement.py --gate --quiet
+
+step "…and its own assertions still fire when broken" \
+  python3 tools/measure_frontage_entitlement.py --self-test
 
 # T-0163. The plat grid is the cartesian product of its east-west rows and north-south
 # columns, so it proposes blocks that never existed, and it reports every refusal the same
@@ -368,6 +419,16 @@ step "…and its absolute assertion still fires when a generated roof is put in 
 # so a bank that moves under the street is a red build rather than a silent hole.
 step "north water street is still the line its own derivation produces, and still dry" \
   python3 tools/derive_north_water.py --gate
+
+# T-0372. "Still dry" was a weaker question than it sounded: the gate above asks whether
+# any BEND stands in water, and a street can hug a bank for a hundred metres without
+# putting a vertex in it. The derivation now carries a clearance rule with two tiers —
+# the open reach owes the half module less the fit's own give, and the two ends, where
+# the street meets the water on purpose (it stops at the fork and crosses on a deck),
+# owe five metres. This is the proof the rule refuses each tier, and that the two
+# exemptions are load-bearing rather than a way of saying nothing.
+step "…and its own assertions still fire when broken" \
+  python3 tools/derive_north_water.py --self-test
 
 step "a block face carries one street line, across every generator that builds on it" \
   python3 tools/measure_street_line.py --gate --quiet
@@ -874,6 +935,23 @@ fi
 step "closing a ticket leaves the mirror fresh, and a stale one still fails" \
   node tools/test_ticket_mirror.mjs
 
+# The same trap, one file over (T-0155). changelog.js is published to TWO paths
+# check_published compares byte for byte, and stamp-changelog.mjs rewrites the
+# source — so a run that stamps AFTER publish.sh was red for following the rules.
+# The stamper now carries both mirrors itself. Both halves again: that stamping
+# late ends green, AND that a mirror somebody else made stale still fails.
+step "stamping the changelog leaves both mirrors fresh, and a stale one still fails" \
+  node tools/test_changelog_mirror.mjs
+
+# T-0180. The nightly bake decides whether it produced anything by asking this
+# script, so the script's own assertions are the gate on that decision. The two
+# it exists to hold are the two that would silently break it: publish.sh stamping
+# a THIRD path, and the exclusion widening from "the stamp moved" to "those two
+# files moved" — after which a real change to build.json or to the gate page
+# would stop opening a PR, which is the same dead signal in the other direction.
+step "the bake's content test refuses the stamp and nothing else" \
+  python3 tools/bake_content_changed.py --self-test
+
 # The duplicate-id remedy, tested in the only state it ever runs in. `restamp`
 # used to find the ticket by FILE (its own comment explains that with two files
 # sharing an id, nothing else can tell them apart) and then edit the queue by ID,
@@ -943,6 +1021,67 @@ step "the reconstructed residents' invented names re-derive" \
 step "one new household renames only the people it collides with" \
   python3 tools/measure_name_churn.py --gate --probes 8 --quiet
 
+# And the pass that RETIRES an invented name (T-0264): where the newspaper
+# register found a documented person for a trade the town had invented a
+# household for, the documented man takes the roof. Re-derived here because the
+# deal is a derivation and not a list — six refusals shape it, and a candidate
+# that quietly stopped being refused would otherwise plant a real man on a roof
+# his own record contradicts. `--report` prints the deal and every refusal.
+step "the documented residents on reconstructed roofs re-derive from the register" \
+  python3 tools/replace_invented_residents.py --check
+
+# And the pass that ADDS one (T-0376). The register's `new_resident` people are
+# the ones this reconstruction does not hold at all; where it can also read a
+# trade, that trade is by construction one the occupation census never invented a
+# roof for, so the only thing the town can do with the man is mint him. Gated for
+# the same reason as the deal above: eight refusals shape the set, and one of
+# them quietly ceasing to fire would put a firm, a man at the mouth of the
+# St. Joseph, or a second copy of a real resident into the town's people.
+# `--report` prints the mint and every refusal with its reason.
+step "the minted documented residents re-derive from the register" \
+  python3 tools/mint_documented_residents.py --check
+
+# And the pass that adds the rest of that half (T-0373): the `new_resident` people
+# the papers name with NO trade at all. There is no trade to anchor them, so the
+# whole pass is a residency test — the corpus must place them inside the town and
+# nowhere outside it, a bare "Chicago" must be corroborated by an address, a second
+# issue or the committed company they are printed beside, and the name itself must be
+# printed clear of the transcription's uncertainty marks. Gated because a refusal
+# that quietly stopped firing would mint 'The Blanshard household' out of the letters
+# `fG. BL NSHARD`, or seat a steamboat passenger from Green Bay in the town.
+# `--report` prints the 4 minted and all 382 refusals with their reasons.
+step "the residency-tested residents re-derive from the register" \
+  python3 tools/mint_placed_residents.py --check
+
+step "…and its own assertions still fire when broken" \
+  python3 tools/mint_placed_residents.py --self-test
+
+# And the pass beside it, on the other half of `new_resident` (T-0378, T-0379). A person
+# the register reads ONLY from the post office's lists of uncalled-for letters has no
+# trade, so the pass above cannot reach him. It used to take only the names held in more
+# than one return and leave the rest to a decision the owner had not made; he made it on
+# 2026-08-30 — HOLD ALL OF THEM — and this pass now mints every name its refusals admit,
+# which is most of the people in the town. Gated for the same reason and more of it: the
+# refusals are the only thing between a post-office list and the town's population, and
+# one of them quietly ceasing to fire would now be worth hundreds of records rather than
+# one. `--report` prints the mint and every refusal with its reason; `--scale` counts
+# what the ruling did to the town on whatever tree it is run against.
+step "the minted letter-list residents re-derive from the register" \
+  python3 tools/mint_letter_list_residents.py --check
+
+# …and the ruling's own conditions, which --check cannot see. --check proves the records
+# are what the pass derives; this proves the DERIVATION is what the owner permitted —
+# every minted person carrying `letter_list_only` and the dated return behind it, and not
+# one of them holding a roof, a trade, a second member or a building that names them. The
+# failure mode it guards is silent: a later generator that deals roofs by household would
+# put seven hundred invented dwellings in the town off a post-office list, and nothing
+# about any single record would look wrong.
+step "the letter-list cohort is what the owner's ruling permits" \
+  python3 tools/mint_letter_list_residents.py --gate
+
+step "…and that gate's own assertions still fire when broken" \
+  python3 tools/mint_letter_list_residents.py --self-test
+
 step "the three levels mean what they say" \
   python3 tools/audit_confidence.py --strict
 
@@ -987,6 +1126,18 @@ step "a street's invented line reaches the picture" \
 step "a spatial filter still cannot bias the sward's rank deal" \
   node tools/measure_rank_bias.mjs --self-test
 
+# The smoke's parts get re-cut whenever the town outgrows the ten-minute foreground
+# ceiling — four of them in 2026 alone — and docs/SMOKE-BUDGET.md's map of "which
+# parts cover which change" is the kind of table that goes quietly wrong the first
+# time a renderer module is renamed under it. So the map is not prose: it is a
+# structure in tools/smoke_budget.mjs, and this holds it against the tree. It fails
+# if a mapped path no longer exists, if a part of the body is covered by no row, if
+# `PARTS` in smoke_renderer.mjs has moved out from under it, or if an unmapped path
+# ever stops meaning THE WHOLE GATE — which is the property that makes the recipe
+# safe to follow (T-0235).
+step "the smoke's change-to-parts map still matches the tree" \
+  node tools/smoke_budget.mjs --self-test
+
 # The 1833-1835 newspaper corpus is the PAPERS epic's foundation: eighty-six issues
 # that the project could not cite until they had a register to resolve against. The
 # register is only worth something if it is true, so this asserts the count rather
@@ -1017,6 +1168,60 @@ step "every newspaper claim resolves, quotes verbatim, and the gazetteer is comp
 
 step "…and its own assertions still fire when broken" \
   python3 tools/compile_gazetteer.py --self-test
+
+# T-0305. Four times in its thirteen issues the Chicago American contradicts ITSELF about
+# a street, or prints one and loses the cross street that would locate it — the tailor's
+# Franklin-or-Lake, which Water street Wm. Sabine and John Dave[s] stood in, and the corner
+# of S. B. Cobb's saddlery. None of the four is closeable from the material this repository
+# holds: the page images are held outside it, and three of the four subjects appear nowhere
+# in the Democrat but a post-office letter list. So the four are DECLARED — each printing
+# by claim, page, column and the exact substring it has to carry — and re-derived here,
+# along with the negative half over all 73 Democrat issues. The day one of them is answered,
+# by an image or by an extraction pass reaching a card nobody has read, this says so instead
+# of docs/RESEARCH/american_self_contradictions.md going quietly out of date.
+step "the American's four self-contradictions still read as declared" \
+  python3 tools/measure_american_contradictions.py --gate
+
+step "…and its own assertions still fire when broken" \
+  python3 tools/measure_american_contradictions.py --self-test
+
+# T-0262. The gazetteer says what was PRINTED; the register says what the town has to
+# do about it — for every business an action and, where the action needs one, a
+# committed target; for every person whether the town already holds them, invented a
+# stand-in for them, or has never heard of them. It is DERIVED from the gazetteer and
+# the committed dataset, so this refuses a hand-edit for the same reason the gazetteer
+# gate does: a hand-edited register is a place to promote a business into the town
+# without an argument, and the seeding tickets read it as if it were derived.
+step "the scene-date register re-derives, and every action names its target" \
+  python3 tools/compile_register.py --check
+
+step "…and its own assertions still fire when broken" \
+  python3 tools/compile_register.py --self-test
+
+# And what the town DOES with the register's `street_only` businesses (T-0354). The owner
+# ruled on 2026-08-29 that a business the paper places on a platted street and nothing
+# narrower adopts a reconstructed roof already standing on that street face;
+# docs/STREET-FACE-ADOPTION.md is the policy and this re-derives the allocation. Gated
+# rather than committed once because all four of the ruling's limits are assertions about
+# a moving town: a roof that gets promoted, a roof that becomes a household's dwelling, a
+# second business landing on one roof, or a record that quietly grows a lot field are each
+# a silent breach of the ruling, and each one fails here. `--report` prints the deal, every
+# refusal with its reason, and both readings of what "standing on that face" means.
+step "the street-face adoptions re-derive, and no adopted business claims a lot" \
+  python3 tools/adopt_street_faces.py --check
+
+step "…and its own assertions still fire when broken" \
+  python3 tools/adopt_street_faces.py --self-test
+
+# SPENDING that allocation is a second gate, because the table and the structure records
+# are two files and a policy that only reaches one of them is a policy the visitor never
+# sees (T-0417). tools/inferred_occupancy.py is the ledger both the household programme
+# and the adoptions hand their `occupants` block to; the generators' own `--check` above
+# already refuses a record that has drifted from it, so what is left to prove here is that
+# the ledger refuses a malformed adoption rather than passing it through — and that the
+# two programmes never both claim one roof.
+step "…and the ledger that spends them into the roofs refuses every way one could lie" \
+  python3 tools/inferred_occupancy.py --self-test
 
 printf '\n'
 if [ "$FAILED" -eq 0 ]; then

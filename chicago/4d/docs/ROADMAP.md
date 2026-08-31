@@ -213,6 +213,83 @@ third of the 150-minute run budget, and that is before a part is re-run after a 
 passes rule above should be read as ONE full pass and a re-run of the parts a change touches; a
 parcel whose acceptance needs the whole gate twice has already outgrown a run.
 
+**RE-CUT 2026-08-30 by T-0173: part 7 is halved and there are TWELVE parts.** T-0346 cut part 4
+into three that morning; part 7 went the same way by the evening. Profiled with `SMOKE_TIMING=1`
+on the steward runner at **load average 0.81-2.86, 4 cores**, part 7 was **killed at 9 m 25 s**
+with its last two assertions unrun — so the reading in T-0167's table above, 7 m 43 s, is again a
+description of a machine rather than of the part. **7 m 04 s of that cost was ONE block**: the
+three road-legibility stations, each teleporting to its own viewpoint and reading
+`page.screenshot` frames through five distance bands (`south_water` 2 m 13 s, `from_above`
+2 m 02 s, `lake_market` 2 m 49 s). Around it, 20 s of boot, 33 s of navigation and the street
+checks, 1 m 04 s of the R-A1 aid and the batch merge under it.
+
+**So the boundary is not a section header, and T-0170 had already said why it could not be.** The
+best of part 7's own `// --- ` boundaries leaves 7 m 37 s against 1 m 30 s. The cut falls at the
+STATION — the grain the block is made of — and nothing crosses it: `roadRuns` is local, the
+movement report built from it is printed and never gated and has always compared only what the
+invocation measured, and `--update-road-bands` merges per band. R-A1's three assertions are taken
+standing at `lake_market`, so that station moves into the new part with them.
+
+**Measured after the cut, at desktop, on the same runner in the same hour: part 7 — 5 m 05 s, 12
+staged · part 8 — 5 m 06 s, 8 staged, both SMOKE PASS.** 12 + 8 = 20, exactly the old part 7's
+count. Both clear the ceiling by 4 m 55 s. Part 7 keeps the shared `streetLayer` reading, so the
+guard becomes `anyStage(7, 10)`; part 8's profile — boot at 0 m 17 s, first station at 3 m 17 s —
+is the proof it does not pay for it. Parts 8-11 are renumbered 9-12; the pairing rule survives as
+1+2, 3+4+5+6, **7+8+9**, **10+11+12**, ranges `1-2 3-6 7-9 10-12`. The audit was taken at mobile
+too: old `SMOKE_STAGE=7-8` gave 43 passed and new `7-9` gives **43 passed, 34 staged** in 7 m 33 s,
+and `10-12` gives 168 passed / 159 staged in 9 m 33 s. **The worst desktop margin left on the
+profile is what was part 7 and is now part 10 — T-0170, still open**, which this cut re-labels
+rather than takes.
+
+**RE-CUT 2026-08-30 by T-0170 (the last piece of T-0121): part 10 is HALVED and there are
+THIRTEEN.** Part 10 — the part T-0173 above hands on as "the worst desktop margin left" — was
+never inside the ceiling at all. Profiled at 1280x800 on an **idle** runner (load average
+0.27-1.48, zero other Chromium processes, so this is the friendliest reading the suite can be
+given) it was **killed at 9 m 20 s with the street readouts and the Settings units still to
+run**. That is the third and fourth kill of the same part; T-0167's 7 m 43 s is the outlier in
+the record rather than the reading to size a cut from.
+
+**Why it had been left, and what changed.** This part carried no `// --- section ---` headers at
+all, which is exactly why T-0167 cut part 8 instead: the boundary had to be MADE before it could
+be taken. Its seams are named now — eight of them, five in the head and three in the tail — so
+the next cut in this part is a choice from a list rather than a fresh profile.
+
+**The cut is the second candidate, and the first one is in the record because it was measured
+and rejected.** Cutting above R-BUG7's flower-head census gave **5 m 05 s / 6 m 24 s** — a
+3 m 36 s margin on the second half, and this section's own rule is that a margin that thin is
+not a margin. Moving that one section up into the first half balances it:
+
+| part | desktop | margin | staged checks | what it is |
+|---|---|---|---|---|
+| 10 | **5 m 59 s** | 4 m 01 s | 23 | the drawn population, the horizon timber, the sward census in every community, the marsh substrate, T-0035's pop-in, R-BUG7's heads |
+| 11 | **4 m 41 s** | 5 m 19 s | 13 | the ragged boundary and its fringe, each community's recorded ground cover, the street readouts, the navigation guide, the Settings units |
+
+23 + 13 = **36**, exactly the count the part took before the cut, which is how "never dropping a
+check" is demonstrated rather than asserted. The second half is SMOKE PASS; the first half's one
+red is **T-0279's flower heads** (2,693 of 18,893), which `tools/dev-smoke-state.json` already
+records as dev's on 2026-08-29 at 2,526 of 18,911 — it moved parts, not sides, and it does not
+fire at mobile at all.
+
+**The audit was taken against the old code rather than asserted.** Running the pre-cut
+`smoke_renderer.mjs` beside the re-cut one, at mobile on the published mirror and on the same
+tree: the single part gives **45 passed / 0 failed / 36 staged / 9 always-on in 5 m 59 s**, and
+the pair gives **45 / 0 / 36 / 9 in 6 m 01 s** — one boot for the pair, which is why the mobile
+recipe does not grow a command.
+
+**One binding crosses the new boundary and it is the one that already crossed the stage split.**
+`streetLayer`, and BOTH halves read it — the head for the road panels and the horizon band, the
+tail for the readouts — so the guard becomes `anyStage(7, 10, 11)`. The scan turned up six other
+names below the line (`headSupport`, `horizon`, `over`, `planted`, `popIn`, `sward`) and every
+occurrence is prose or a string. The second half's prologue is `enterTown()` and `setFly(false)`:
+every camera-bearing section below it teleports itself, but all of them read the drawing from a
+walker on the ground and the last thing the part does is fly.
+
+**AND THESE READINGS WERE TAKEN AT LOAD 0.9-5.1 WITH NO OTHER AGENT ON THE BOX**, which is the
+condition this section demands be recorded. T-0215's factor of twenty applies to them the same as
+to every row above: 4 m 01 s of margin is a margin against the machine that measured it, and no
+cut of this suite survives load 50. Old parts 11-12 are renumbered 12-13; the pairing rule
+survives as 1+2, 3+4+5+6, 7+8+9, **10+11+12+13**, ranges `1-2 3-6 7-9 10-13`.
+
 **`SMOKE_TIMING=1` stamps every check line with the elapsed clock**, and T-0167 added it because
 the profile could not have been taken without it. A part that BREACHES the ceiling is killed
 *before* it prints its wall clock, so the parts actually worth cutting were the only ones a plain
@@ -6844,6 +6921,85 @@ and committed as a derived table; the three cases above are attributed to a caus
 recorded; anything invented in the resolution goes to `docs/LIBERTIES.md`; a gate reports the
 figure so it cannot silently grow. **Do not move a documented building to make a number look
 better** — a position with a source outranks a corridor this project derived.
+
+### K30(e) — the corridor is derived from the CONTROL, and the table is re-run · **DONE 2026-08-29 (T-0009)**
+
+**The owner took K30(d)'s resolution 2 on 2026-08-29**, in T-0009, in his own words: *"derive the
+platted corridor from the street CONTROL rather than from the drawn line."* This is the run that
+carried it out. **Nothing in the scene moved**: no structure record, no coordinate, no confidence,
+no footprint, and `data/streets/1835.json` is not touched. What moved is what the intrusion table
+measures against.
+
+**The derivation, and it is a rule rather than a number.**
+`plat_corridors.control_offsets()` reads every committed control point in
+`data/traces/street_control.json`, finds the streets it names, and measures the cross-axis offset
+from that street's own drawn centreline to the point — a northing for an east-west street, an
+easting for a north-south one, taken where the line passes the control's along-axis value. Each
+street then falls into one verdict, and there is no list of street ids anywhere in it:
+
+| verdict | streets | what it means |
+|---|---|---|
+| `recentred` | `south_water` **+8.58 m** | one agreed offset larger than the centimetre this project quotes a depth to. The corridor is translated onto the control; the drawn line stays where it is |
+| `centred` | `lake`, `market`, `randolph` | the drawn line reproduces its control to under a centimetre (0.00–0.01 m). Nothing moves |
+| `disagree` | `canal` | three control points spread **2.33 m** — `kinzie_canal` −2.24, `lake_canal` 0.00, `randolph_canal` +0.09. No rigid translation satisfies them and re-drawing the line is what the ruling forbids, so the corridor stays on the drawn line and the spread is recorded |
+| `off_line` | `franklin` | `south_water_franklin` lies beyond franklin's own drawn span, so it says nothing about the part of it that exists |
+| `no_control` | the other 13 | no committed control point names them |
+
+`tools/measure_corridor_intrusion.py --control` prints that table; `--drawn` re-runs every mode
+against the pre-ruling corridor, so the before-and-after below is two commands and not a checkout.
+
+**Before → after, on the same tree.**
+
+| | drawn corridor | control-derived |
+|---|---|---|
+| placed phases lapping | 19 of 359 | **19 of 359** |
+| buildings (furniture set aside) | 17 | **17** |
+| in the DEEP mode (≥ 3.48 m) | 5 | **5** |
+| centroid inside a corridor | 5 | **4** |
+| deepest lap on `south_water` | 12.10 m | **7.13 m**, and it is a drawbridge |
+| generated roofs lapping | 0 | **0** |
+
+Four records moved and they are the whole of the change:
+
+* `newberry_dole_warehouse` — 12.10 m into `south_water` → its deepest lap is now `franklin` at
+  **9.81 m**. It still laps `south_water`, less deeply. **The franklin lap SURVIVES and is left
+  open.**
+* `hogan_store` — 10.06 m → **3.98 m**, and its centroid leaves the corridor. Still in the deep
+  mode. **Survives, left open.**
+* `lasalle_slough_crossing` — 11.39 m on `south_water` → **3.17 m** on `lasalle`. Street furniture.
+* `dearborn_street_drawbridge` — **newly laps `south_water` by 7.13 m**, because a corridor centred
+  on the control reaches the crossing. Street furniture: a drawbridge in a street corridor is the
+  bridge doing its job, and it is categorised by its own archetype and function, not by an id list.
+* `slough_log_bridge` — 0.03 m, clears entirely.
+
+**The ratchet was re-baselined to bank the repair**, which is the only reason that file is ever
+rewritten, and the three T-0195 refusals are on `clark`, `dearborn` and `lasalle` and all outlive
+their laps unchanged.
+
+**THE SCOPE, AND IT IS THE RULING'S OWN.** The ruling says what it changes — *"what changes is
+what the intrusion table measures against"* — so `plat_corridors.corridors()` still answers the
+DRAWN corridor by default and every generator keeps asking it that. A generator is asking a
+different question: where a roof may stand relative to the street a visitor walks. Swapping the
+default was tried first and MEASURED: the re-centred `south_water` corridor sits 8.58 m off its
+own block faces, which `generate_plat_lots.block_edges` offsets from the drawn line and which do
+not move, and five gates that read a corridor edge against a block face or a frontage line went
+red — the cross-street face census, the southern-ground stations, the block-parcel street-line
+assertions and the far-timber census. **That 8.58 m strip, which now belongs to neither the
+corridor nor the block, is a real question about the plat and it is filed rather than settled
+here.**
+
+**What it unblocks, named as the visible-progress rule requires.** T-0365 measured that every
+platted block still carrying headroom was gated on this ticket or on T-0183. T-0143 and T-0188
+each refused to tighten a party-line row *against a line that may move*; the ruling settles that
+the line does not move, so the refusal is discharged and `blk_south_water_franklin` (4),
+`blk_south_water_lasalle` (8), `blk_south_water_clark` (4) and `blk_south_water_dearborn` (4) are
+workable — **20 roofs of headroom.** `blk_south_water_market` stays gated on T-0183.
+
+**Files:** `tools/plat_corridors.py` (`control_offsets`, `corridors(from_control=…)`) ·
+`tools/measure_corridor_intrusion.py` (`--control`, `--drawn`) ·
+`tools/corridor_intrusion_baseline.json` (re-baselined) · `docs/ROADMAP.md` ·
+`chicago/4d/tickets/T-0009-*.md`. **No structure record, footprint, coordinate, confidence or
+street line was touched, and `docs/LIBERTIES.md` gains no entry — nothing was invented.**
 
 ### T-A3 — the second refreshed block · **DONE 2026-08-14 (`blk_randolph_dearborn`)**
 

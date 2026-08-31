@@ -1,7 +1,7 @@
 ---
 id: T-0183
 title: The Market and South Water corner needs one control point, and the node rule may not be able to make it
-state: blocked-owner
+state: open
 epic: META
 requested_by: steward
 seen: false
@@ -11,8 +11,8 @@ parent: null
 opened: 2026-08-24
 closed: null
 pr: null
-claimed_by: run 8/27/2026, 6:17:17 PM CT
-blocked_on: blk_south_water_market has 27 roofs of headroom on measured dry ground and NO derivable control at its west corner — Market x South Water is a bend in Wacker Drive, not a crossing, and the node rule returns lake_market's own two nodes 110 m away (measured 2026-08-27; tools/refetch_control.py --discover market_south_water now refuses it). So the question is no longer 'may a bend node be control' — that is answered, and it is no. It is: should South Water Street's committed west end be CLOSED onto Market's corridor from the 1834 sheets and the committed bank, the same basis the rest of that curve already stands on and graded for what it is, or should the block's 27 roofs stop being scheduled as gated on street control and go back to the South balance, the way blk_south_water_clinton's did when T-0163 measured them?
+claimed_by: run 8/29/2026, 6:42:06 PM CT
+blocked_on: null
 needs_bake: false
 ---
 
@@ -167,3 +167,77 @@ precedent for every block after this one:
 
 `tools/measure_block_gating.py` still passes: nothing here moved a street line, so the block
 is still classified `awaiting_control` and still measures dry.
+
+---
+
+## THE OWNER'S RULING, 2026-08-29
+
+Asked whether to close South Water's west end on Market's corridor or to un-gate the
+block's roofs to the South balance, the owner chose:
+
+> **Close the west end on Market's corridor, from the 1834 sheets and the committed bank
+> — the same basis the rest of that curve already stands on — and grade it for what it is.**
+
+So `blk_south_water_market`'s **27 roofs of headroom on measured dry ground** become
+schedulable: the single largest block of headroom left in the programme, and T-0365
+measured that it and T-0009's four blocks were the whole of it.
+
+**"Graded for what it is" is the load-bearing half of the ruling.** This end is NOT
+derived control and must not be recorded as though it were. The node rule's refusal
+stands — `tools/refetch_control.py --discover market_south_water` refuses it, correctly,
+and that refusal is not to be softened to make this pass. What the ruling authorises is a
+DIFFERENT basis, stated as such: the 1834 sheets plus the committed bank, which is what
+the rest of this curve already rests on. The grade must make a reader able to tell this
+corner from a corner that has a control point, and the position note must say the node
+rule refused it and why.
+
+**Acceptance for the run that takes this:**
+
+- South Water's committed west end is closed on Market's corridor, derived from the 1834
+  sheets and the committed bank, with the derivation written where the position is.
+- The record grades it for its actual basis and NAMES the refusal: no derivable control
+  at that corner, bend not crossing, nearest nodes 110 m away (measured 2026-08-27).
+- `tools/refetch_control.py --discover market_south_water` still refuses. If a run finds
+  itself editing that refusal to make this pass, it has taken the wrong path and stops.
+- The block's 27 roofs are confirmed schedulable, or the reason they are not is recorded.
+- A liberty entry, because a closed end on a non-control basis is a stated liberty.
+
+---
+
+## THE OWNER'S SECOND RULING, 2026-08-30 — THE 27 ROOFS GO BACK TO THE SOUTH BALANCE
+
+PR #573 carried out the 2026-08-29 ruling faithfully and the ground refused it:
+closing South Water's west end onto Market emits `blk_south_water_market` as a
+**bowtie** (corridors overlap Lake's by 14.9 m), and carried as far north as the
+committed waterline allows the block has **2.8 m of depth at Market against the
+24.384 m one platted lot fronts**. That is the South Branch pinching the block
+out, not a drawing error, and it is the right answer to have come back with.
+
+Put the measured third option to the owner, he chose:
+
+> **Return the 27 roofs to the South balance**, the way `blk_south_water_clinton`'s
+> went back when T-0163 measured it.
+
+**The wedge is NOT built.** Building it would mean re-deriving a committed
+centreline up to 34 m north onto the waterline with no clearance and re-scoring
+every gate that reads it — a large disturbance to a committed line for a block
+2.8 m deep. Declined.
+
+**What this settles and what it does not.** It settles where the 27 roofs go: to
+the South balance, to be dealt onto ground that can carry them. It does NOT say
+the plat was wrong to emit the block — the Thompson plat put a block there and
+the river takes it away, and both facts stay on the record.
+`generate_plat_lots.py`'s new refusal (a block whose rows have crossed) STAYS,
+and `check.sh` goes on firing it: the refusal is the finding, and a later run
+must not delete it to tidy the output.
+
+**Acceptance:** (state it before working — the definition of done, never weakened to pass)
+
+- The 27 roofs are returned to the South balance, and the reconciliation ledger
+  shows the move with `blk_south_water_clinton`'s precedent cited.
+- `blk_south_water_market` is recorded as a block the ground cannot carry, with
+  the 2.8 m and the 14.9 m overlap on the record, and stops being scheduled.
+- The crossed-rows refusal in `generate_plat_lots.py` and its `check.sh` step
+  both REMAIN. A run that removes either has removed the evidence.
+- The 665-roof total does not change — these roofs move, they are not lost. If a
+  run finds the total must move, it says so with its reason.

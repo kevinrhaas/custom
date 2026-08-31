@@ -109,3 +109,28 @@ under a minute of margin each. Parts 8 and 9 have no reading today because part 
 not be got past. That is one more reason this ticket's leg margins have to be measured
 per leg rather than summed from parts — three of the nine parts are now at or past the
 per-command ceiling the parts were cut to fit.
+
+**THE PART NUMBERS IN THIS TICKET ARE DATED (T-0346, 2026-08-30).** Part 4 was cut into
+parts 4, 5 and 6 — the scene-detail ladder was 6 m 17 s of a part the ten-minute ceiling was
+killing — and the old parts 5-9 are now 7-11. So read this ticket's numbers through
+`old 5→7, 6→8, 7→9, 8→10, 9→11`, and old part 4 as new parts 4+5+6. The mobile legs are
+`1-2 3-6 7-8 9-11` and carry exactly what they carried. The readings themselves stand; only
+the labels moved.
+
+**AND THE 30-MINUTE CAP THIS TICKET REASONS AGAINST IS NOT THIS MACHINE'S (T-0235,
+2026-08-30).** The margins above are taken against a 30-minute figure that was never
+measured on the steward runner, which has no GPU and rasterises on the CPU. The whole
+gate was measured at 55 m 10 s unfiltered there on 2026-08-27, and the staged total the
+committed record now yields is 46 m 35 s — desktop 18 m 02 s over the five parts that
+have a reading, mobile 28 m 33 s over all four legs. `node tools/smoke_budget.mjs`
+prints that table out of `tools/dev-smoke-state.json` rather than asserting it, names
+the parts that still have no reading at all — desktop 4-9 — and `--for <path>…` answers
+the question this ticket's margins exist to serve: which parts cover the change in
+hand, and do their measured costs fit the 600 s foreground ceiling. See
+`docs/SMOKE-BUDGET.md`.
+
+**AND AGAIN, THE SAME DAY (T-0173, 2026-08-30).** Part 7 was halved — the three road-legibility
+stations were 7 m 04 s of a part killed at 9 m 25 s — so old part 7 is now parts 7 + 8 and old
+parts 8-11 are 9-12. Read this ticket's post-T-0346 numbers through `old 8→9, 9→10, 10→11,
+11→12`, and old part 7 as new parts 7+8. The mobile legs are `1-2 3-6 7-9 10-12` and carry
+exactly what they carried. The readings themselves stand; only the labels moved.

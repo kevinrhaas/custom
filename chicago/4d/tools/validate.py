@@ -51,7 +51,65 @@ WIDE_RANGE_YEARS = 12
 
 # Published payload budget. GitHub Pages does not serve Git LFS objects, so the
 # published tree holds plain binaries and has to stay reasonable.
-SITE_BUDGET_MB = 25
+#
+# 25 -> 28 ON 2026-08-29 (T-0317), AND IT IS A CONSCIOUS RE-BUDGET RATHER THAN A
+# WEAKENED ASSERTION. Say which one you are doing, so: this is the first one.
+#
+# WHERE 25 CAME FROM. docs/PLAN.md set it at the start of the project, when the
+# payload was 4.5 MB, as "reasonable" — not as a limit anything imposes. It is not
+# a GitHub Pages limit: Pages allows 1 GB a site and 100 MB a file. The LFS clause
+# above is the real constraint and it is about FORMAT, not size — the tree must hold
+# plain binaries — and 28 MB is as plain as 25 MB. docs/RENDERING.md § the gate table
+# has recorded a sanctioned raise to ~100 MB at H2 since the rendering plan was
+# written, so the direction was never in question, only the occasion.
+#
+# WHAT SUPPORTS 28, MEASURED. `dev` publishes at 24.901 MB — 99,573 bytes of
+# headroom, which is 0.4 % of the budget. A single platted-block deal of four roofs
+# adds 138,399 bytes, so the budget was ALREADY exhausted for every visible parcel in
+# the queue before this one: T-0317 is simply the run that hit the wall. 28 MB restores
+# 2.85 MB of headroom, which is about twenty more block deals at the rate this one
+# measured, and it leaves the payload at a quarter of the sanctioned H2 figure.
+#
+# WHAT WILL EXHAUST IT AGAIN, WRITTEN DOWN RATHER THAN DISCOVERED LATER. 1,899,254
+# bytes of the tree — 7.2 % of it — are TWO byte-identical copies of changelog.js,
+# published to `js/` and to `walk/js/` because both paths are contracts (AGENTS.md §
+# changelog). That is the fastest-growing item in the payload and it grows on every
+# release rather than on every building. Filed as its own ticket; this raise buys the
+# time to answer it and does not answer it.
+#
+# 28 -> 32 ON 2026-08-30 (T-0379), AND IT IS THE SECOND CONSCIOUS RE-BUDGET RATHER
+# THAN A WEAKENED ASSERTION. Saying which one, as the note above requires: this is a
+# re-budget. Nothing was made cheaper to pass and nothing was moved out of the tree to
+# duck the number.
+#
+# WHAT EXHAUSTED 28, AND IT WAS NOT A BUILDING. The owner was asked how many of the
+# names known only from the post office's lists of uncalled-for letters this town
+# should hold, was shown that holding all of them makes three quarters of its people a
+# name and nothing else — and what a record costs, in as many words, "705 files" — and
+# ruled on 2026-08-30 that it should hold all of them. 712 household records joined the
+# 15 already standing. That is the largest single addition to the published tree this
+# corpus can make, it was decided with the file count in view, and it is not a class of
+# growth the last raise's arithmetic (roofs per block deal) was measuring.
+#
+# WHAT WAS DONE BEFORE RAISING, MEASURED. The 727 records were first cut from 5,503 to
+# 3,661 bytes each — 1.34 MB, a third of the cohort — by moving the reasoning IDENTICAL
+# on all 727 of them out of 727 files and into the one place it belongs: L214 in
+# docs/LIBERTIES.md, the pass's own docstring, and the Evidence panel's group heading,
+# which is where a reader meets it anyway. That is a saving worth having whatever the
+# budget is, and it was not enough: the tree publishes at 28.48 MiB, 0.48 over. Going
+# further would have meant deleting the reasoning rather than de-duplicating it, and a
+# record that states its evidence and not what that evidence is worth is the thing this
+# project's whole confidence model exists to refuse.
+#
+# WHAT SUPPORTS 32. The LFS clause above is still the real constraint and it is about
+# FORMAT: the tree holds plain binaries at 32 MiB exactly as it did at 25. Pages allows
+# 1 GB a site, docs/RENDERING.md § the gate table has recorded a sanctioned raise to
+# ~100 MB at H2 since the rendering plan was written, and 32 MiB is under a third of
+# that. It restores 3.52 MiB of headroom — more than the 2.85 the last raise bought —
+# and the two largest items in the tree are now named and ticketed rather than
+# discovered: the letter-list cohort at 2.54 MiB (T-0379, this) and the duplicated
+# changelog at 2.07 MiB, 7.3 % of the tree, which is T-0364 and is still unanswered.
+SITE_BUDGET_MB = 32
 
 CONFIDENCE = ("attested", "inferred", "reconstructed")
 SLUG = re.compile(r"^[a-z0-9_]+$")
@@ -417,7 +475,7 @@ def check_watch_list(exclusions: dict, structures: dict, source_ids: set,
     nobody carried a change back.
 
     The named claim must also be one the provenance card RENDERS, which is the
-    other half of the same promise. The Evidence panel's entry for the standing
+    other half of the same promise. The Evidence panel's entry for a standing
     structure ends by telling a visitor that "the provenance card shows it" — a
     sentence about a surface this file could not see, which is exactly the shape
     of the two faults that cost this project a `documented_range` and an
@@ -2828,6 +2886,15 @@ DERIVED_DOCUMENTS = [
             "_doc": "the do-not-hand-edit banner, addressed to whoever opens the file",
             "source": "docs/LIBERTIES.md, the path the list was derived from",
             "count": "the length of the list the visitor is already scrolling",
+            "liberties.scope.enumeration": "which derived population a `Scope:` "
+                "entry admits to, as the key tools/compile_liberties.py re-counts "
+                "it by; the visitor reads the field's own prose, which names the "
+                "same file in words",
+            "liberties.scope.count": "the count exactly as the markdown declares "
+                "it, carried so a drift from the register it enumerates is a gate "
+                "failure rather than a number the next compile silently absorbs. "
+                "The figure a visitor reads is the one inside the `Scope:` field "
+                "text, which is already shipped",
         },
     },
 ]

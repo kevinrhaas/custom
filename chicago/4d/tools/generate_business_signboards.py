@@ -453,21 +453,57 @@ SIGN_WORDING = {
             "people, and the record's own note says so. Reconstructed."
         ),
     },
-    "goss_cobb_saddlery": {
-        "name": "GOSS & COBB", "trade": "Saddle & Harness Making",
-        "place": "Lake & Canal Streets", "identity": "Goss",
-        "grade": "inferred", "sources": ["chicago_democrat_1833_11_26"],
+    "frederick_thomas_shop": {
+        "name": "FREDERICK THOMAS", "trade": "Druggist & Apothecary",
+        "trade_short": "Druggist", "place": "Drugs, Paints & Dye Stuffs",
+        "identity": "Thomas", "grade": "inferred",
+        "sources": ["chicago_american_1835"],
         "why": (
-            "THE FIRM'S OWN WORDS, OFF A COMMITTED PAGE IMAGE, read from the scan on "
-            "2026-08-11 and quoted verbatim in this building's own record: \"[Saddle & "
-            "H]arness Making. GOSS & COBB, respectfully inform the inhabitants of Chicago "
-            "and the neighboring settlements, that they have opened a shop in this "
-            "village, on the conner of Lake and Canal-streets\". Heading, firm, address — "
-            "which is the whole of the board. THIS IS THE FIRST WORDING IN THE SET THAT "
-            "COULD BE UPGRADED: its page is already committed at "
-            "data/sources/assets/chicago_democrat_1833_11_26/, and what keeps it "
-            "`inferred` is that an advertisement heading is still not a description of a "
-            "signboard."
+            "HIS OWN HEADING, AND IT IS ALREADY SET LIKE A SIGNBOARD: \"FREDERIC[K] "
+            "THOMA[S], D[r]ug[gi]st and Apothec[ary], W[at]er Street\" \u2014 The Chicago "
+            "American, 1835-07-04, page 4 column 5, claim chicago_american_1835_07_04#c005, "
+            "over the dateline \"Chicago, June [2]d, 18[35]\". Man, then trade, which is "
+            "the register T-0130 fixed this table in, and the two words of the trade are "
+            "his own rather than this project's label for it. THE THIRD LINE IS THE GOODS "
+            "AND NOT THE STREET, DELIBERATELY. His June printings head themselves \"[Drugs "
+            "and] PAINTS\" and keep \"Chemicals, Perfumery [and] Dye Stuffs\" "
+            "(1835-06-08 page 3 column 6, claim #c016; 1835-06-13 page 4 column 6, claim "
+            "#c018), so the line is quoted stock. The street is NOT put on this board "
+            "because the transcription cannot read it: 1835-06-13 gives \"a[t the] "
+            "Drawbridge, W[ater?] [s]t[r]eet\" with the question mark the transcription "
+            "itself set, and a store at the drawbridge could front either bank \u2014 the "
+            "extraction refuses to record a street for that reason and a signwriter's "
+            "board is not the place to invent one. THE READING IS TRANSCRIPTION-MEDIATED, "
+            "flagged under the owner's ruling of 2026-08-28, with the brackets left in. "
+            "WHAT KEEPS THIS `inferred` RATHER THAN BETTER is the same thing that keeps "
+            "Goss & Cobb's there: an advertisement heading is still not a description of a "
+            "signboard, and nobody records that this shop announced itself at all."
+        ),
+    },
+    "goss_cobb_saddlery": {
+        "name": "S. B. COBB", "trade": "Saddle, Harness & Trunk Manufactory",
+        "place": "Lake & Canal Streets", "identity": "Cobb",
+        "grade": "inferred",
+        "sources": ["chicago_american_1835", "chicago_democrat_1833_11_26"],
+        "why": (
+            "THIS BOARD USED TO LETTER A FIRM THAT NO LONGER EXISTED ON THE SCENE DATE, "
+            "AND THE CHICAGO AMERICAN IS WHAT SAYS SO. Its first two issues carry the "
+            "dissolution — \"NOTICE. [Th]e co-partnership heretofore [existing under] the "
+            "firm of Go[ss] & Cob[b] [is] this day [dis]solved by m[ut]ual consent. "
+            "OL[IVE]R GOS[S]. S. B. [C]O[BB]. Chicago, Feb. 18, 183[5].\" — four and a "
+            "half months before 1 July 1835. Beside it on the same page is Cobb's own "
+            "card, and the board is now lettered from ITS heading rather than the 1833 "
+            "one: \"[S]A[D]DLE, HARNESS & TRUNK M[anufa]c[tor]y. S[. ]B[. ]COB[B] "
+            "[w]il[l] [c]o[nt]in[ue] the [above business] at his shop\" "
+            "(`chicago_american_1835_06_13#c016`, page 3 column 6; the same card is set "
+            "on 1835-06-08 and again on 1835-07-11, ten days after the scene date). "
+            "THE PLACE LINE IS STILL THE DEMOCRAT'S, and deliberately: the American loses "
+            "the cross street in all three printings, so \"Lake & Canal Streets\" comes "
+            "from the 1833 advertisement that this record's position is derived from and "
+            "not from the 1835 ones. T-0305 holds that cross street open on the page "
+            "images. WHAT KEEPS THE WORDING `inferred` is unchanged and is not about "
+            "which paper it came from: an advertisement heading is still not a "
+            "description of a signboard."
         ),
     },
     "h_jones_store": {
@@ -607,6 +643,21 @@ SIGN_WORDING = {
             "best-attested thing about the building — \"a log house … that he used as a "
             "tannery, Chicago's first recorded factory\" — and the proprietor is named. "
             "The board carries the two and drops the walls. Reconstructed."
+        ),
+    },
+    "new_york_house": {
+        "name": "NEW YORK HOUSE", "trade": "Public House", "identity": "New York House",
+        "grade": "reconstructed",
+        "why": (
+            "No advertisement for this house is in the pages read, and the two the "
+            "Chicago American does carry are its TENANTS' — a physician and a travelling "
+            "dentist, each giving \"the New York House\" as his address (1835-06-13, p. 3 "
+            "cols. 2 and 3). That is evidence the house was a known landmark a reader "
+            "could find, which is the argument for a board at all; it is not the house's "
+            "own copy, so the trade line is not its own words. \"Public House\" is E. "
+            "Wentworth's own 1833 trade line and the period's word for what this building "
+            "was. Johnson and Stevens kept it and are not lettered, for the same reason "
+            "W. H. Stow is not on the Western Hotel's board. Reconstructed."
         ),
     },
     "newberry_dole_slaughterhouse_south_branch": {

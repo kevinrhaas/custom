@@ -180,6 +180,10 @@ reasoned from attested evidence rather than invented, so it is **inferred** and 
   The fort's own WALL brick is a third value — `fort_structure.WALL_RGBA["brick"]`,
   0.47/0.26/0.20 — and converging it is **T-0267**, not this parcel: it moves two committed
   masters and is a separate argument.
+  **CLOSED 2026-08-29 (T-0267).** It converged onto this same row, on this same argument, and
+  the walls make no more of a claim about 1816 clay than the stacks did. Three masters moved,
+  not two — `lake_house_construction` carries `construction: brick` as well.
+  `docs/RESEARCH/materials.md` §9 is the whole of it.
 - **Not that every fort building had a chimney.** The COUNT is the record's, as everywhere
   else. Six of the thirteen `fort_structure` masters count one; the magazine's record says
   in terms that a magazine has none, and the tool below reads the records, not the geometry.
@@ -194,3 +198,152 @@ clear the roof to draw at all, so if the highest thing over the roof is the roof
 inside the roof's own primitive and is painted with it. That is the fault R-W2a found, stated
 as a property of the bytes rather than of a generator, and `tools/check.sh` now fails on it.
 Before this parcel: **6 buildings, 10 stacks**, all of them the fort's. After: none.
+
+## 7 · How HIGH a stack had to stand: the by-law of 5 August 1835 (T-0333)
+
+Sections 1 to 6 above are about what a stack is made of. This section is about a number,
+and it is the first documented **dimensional** constraint this project holds on anything
+above a roof line.
+
+The Trustees of the Town of Chicago passed their by-laws on **5 August 1835**, over
+Hugunin's and Alex. N. Fullerton's names. The Democrat printed them three times that
+month, and `chicago_democrat_1835_08_19` — page 1, column 2, lines 106-123, claim
+**`c005`** — is the printing that sets them line by line where 12 August weaves the two
+halves of the sentence into one column. Section 18:
+
+> *"…and every stove pipe or chimney passing through the roof of any building shall
+> extend and be carried at least eighteen inches above the roof, and no stove pipe shall
+> be passed through the side or end of any building, under the penalty of five dollars
+> for each and every offence."*
+
+It was enforced, not merely printed: section 21 sends a fire warden into every house,
+store and shop in his district once a month from September to May. Sections 15 to 17 are
+the same fear from the other side — shavings swept out weekly, nothing burnt in a street
+or on a lot without a trustee's leave.
+
+**The date is after the scene date and the constraint is not applied retrospectively.**
+1 July 1835 is five weeks before the sitting, so nothing in this reconstruction is
+conformed to a rule the town had not yet passed. What the by-law is used for here is the
+opposite direction: as a **bound** the drawn town is measured against, and it turns out
+the town was already inside it.
+
+### It brackets a figure this project had only one side of
+
+`docs/ROADMAP.md`'s flagstaff work quotes Andreas describing a Chicago with *"not a
+single steeple nor a chimney four feet above any roof."* That is a maximum a memoirist
+noticed, twenty years later, with no instrument. Eighteen inches is a minimum the town
+wrote down and fined people for breaking. Both can be true, and together they bracket
+every stack in the scene between **0.457 m and 1.219 m** above its own roof. Every stack
+this project draws stands inside that bracket.
+
+### The census, measured on the committed masters
+
+`tools/measure_stack_ordinance.py`, read off the glTF accessor bounds rather than off any
+generator — the same discipline §6's fabric gate uses, for the same reason. Clearance is
+measured to the top of the `roof` material, which is the ridge, so a stack standing off
+the ridge clears its own roof plane by MORE than the figure below.
+
+| archetype | buildings | stacks | above its own roof |
+|---|---|---|---|
+| `frame_dwelling` | 116 | | 0.780 m — **30.7 in** |
+| `log_dwelling` | 44 | | 0.720 m — **28.3 in** |
+| `frame_storefront` | 36 | | 0.710 m — **28.0 in** |
+| `frame_tavern` | 11 | | 0.550 m — **21.7 in** |
+| `fort_structure` | 6 | | 0.780 m — **30.7 in** |
+| **town** | **213** | **234** | **least 0.550 m — 21.7 in** |
+
+**Every stack in the town already complies, and the tightest has 3.7 inches to spare** —
+the eleven `frame_tavern` stacks, which are the only ones the archetypes finish without a
+corbelled head. So this ticket closes as a gate and this section, and **no geometry
+moves**: nothing was raised, no master was rebuilt, and `docs/LIBERTIES.md` is untouched,
+because a documented constraint the model already satisfies is not an invention.
+
+### Two questions the ticket asked, answered
+
+**Is a stove pipe the same object as a chimney here?** The by-law names both and treats
+them alike. This model has only one of them: **there is no stove pipe anywhere in it.**
+Every stack drawn is masonry — brick on §2's and §6's argument — and no archetype carries
+a pipe object at all. So section 18's second clause, *"no stove pipe shall be passed
+through the side or end of any building"*, binds nothing that is drawn. `log_dwelling`'s
+stack does stand OUTSIDE its gable, which §3 argues is the frontier pattern, but it is a
+chimney and it is carried above the roof like every other; it is not a pipe out through
+an end wall.
+
+**What about the limits of the Corporation?** Section 18 binds *"within the limits of the
+Corporation"*, and section 22 of the same sitting walks those limits street by street —
+the only documented statement in this corpus of where the built town was held to end in
+1835. **This project does not draw that boundary yet: T-0334 owns it.** The gate therefore
+does not decide which buildings the by-law reaches, and it conforms nothing, because
+nothing has to move: every stack clears eighteen inches on both sides of a line nobody has
+drawn. What it holds is that none may drop back under. The day a record legitimately
+stands a shorter stack outside the limits, T-0334's boundary is what will scope this gate
+— and the gate's own failure message says so, rather than tempting the next run to weaken
+a documented figure.
+
+### The same by-law read one stack at a time (T-0333's other half)
+
+The gate above reads accessor bounds, and says plainly what that costs: *"a building
+carrying stacks on two roofs reports its TALLEST stack. That the lower one clears its own
+ridge by the same margin is the archetype's guarantee, not this measurement's."* A glTF
+POSITION accessor carries one bound per primitive, so an ell's low stack and the main
+block's high one collapse into a single number and "the roof" collapses to the tallest
+ridge on the building. That is the right conservatism for a floor and it cannot answer a
+question about a particular stack.
+
+`tools/measure_stack_projection.py` answers those, and **it is not a second gate — it is
+not wired into `tools/check.sh`, and the by-law has one gate.** It runs the archetypes
+outside Blender (`common/mesh.MeshBuilder` needs bpy only at `to_object`), builds each
+building twice — once as its record counts, once with the count forced to zero — and takes
+the boxes that appear only in the first as the stacks, so it trusts no archetype's private
+helper and no material name. The roof under each stack is then sampled over that stack's
+own plan footprint.
+
+**The guarantee holds, and is now a reading.** All 234 stacks clear eighteen inches stack
+by stack, not only building by building; the minimum is the same 0.550 m and nothing else
+is within eight inches of the floor. `miller_house` is the case that shows the two
+measurements are genuinely different: its second stack stands on the frame addition and
+its head is **2.271 m BELOW the log core's ridge**, exactly as `log_dwelling._chimneys`
+argues it should be — a figure a bounds reading would have to report as a stack sunk into
+its roof.
+
+**And it found one thing the bounds cannot see.** Classified against each roof's own ridge
+frame, `log_dwelling`'s 47 stacks split **17 at a gable end** (0.720 m clear, every one)
+and **30 against an EAVE wall** (2.344 to 3.197 m clear, because an eave stack runs up
+past a roof that is at eave height beside it and keeps going to the ridge). `_stack` builds
+at the −x face unconditionally while `_roof` runs the ridge along the longer plan axis, so
+a cabin deeper than it is wide gets an eave stack. That contradicts the archetype's own
+docstring — *"one exterior stack against a gable end"* — and it is the disposition **§3
+argues the cat-and-clay fabric from**: *"built against the gable so it can be pulled away
+from the building when it catches fire."* Two-thirds of the town's log stacks are not in
+it. **T-0435** owns that; it moves geometry on 29 masters and needs a bake.
+
+### A correction: section 22 is not the corporation limits
+
+The paragraph above says section 22 of this sitting *"walks those limits street by
+street"*. It does not, and the distinction matters because two different lines are being
+run together. **Section 22 is the hay-stacking boundary** — *"it shall not be lawful for
+any person to stack hay within the following limits in the town of Chicago, to wit:
+commencing on Washington street at the United States Reservation, and running thence West
+to the intersection of Canal Street, thence North to the intersection of Kinzie Street,
+thence East to the intersection of Wolcott street, thence to Illinois Street, and thence
+to Lake Michigan"* — a six-vertex line drawn round the built core, INSIDE the corporation
+and narrower than it, under a twenty-five dollar penalty. It is a use restriction with its
+own limits, not a statement of the town's boundary. That line is **T-0334**.
+
+**The corporation's own limits are not in this repository at all**, as geometry or as a
+sourced claim. The one description held is the note on `chicagology_prefire278` — fixed
+6 November 1833 at Jackson south, Jefferson and Cook west, Ohio north, "barely
+seven-eighths of a square mile", extended 11 February 1835 east to the lake shore and out
+to Chicago Avenue and Twelfth Street — and that record's own note grades the incorporation
+half of the page **rung 3, not 2**, and says in terms that no value in the dataset rests on
+it. Nothing here changes that: no boundary is committed and no confidence is graded off it.
+**T-0436** owns finding it in something better.
+
+What can be measured meanwhile is the drawn town's extent, and it is why the gate is safe
+without the line. The 213 chimneyed buildings stand between local **E −273.2** (on Clinton
+Street, the westernmost street this project commits) and **E +1287.3** in the North
+Division, and between **N −619.6** (`heacock_house_monroe`, on Monroe) and **N +386.7**.
+Every limit street named above lies whole platted tiers beyond that box on its own side.
+So the gate covers the whole drawn town soundly today, and the outside-the-limits column of
+any census of it is empty **by extent rather than by a boundary** — which is a different
+and weaker thing to be able to say, and is worth saying in those words.

@@ -17,11 +17,11 @@
     "refused": 13
   },
   "census": {
-    "standing": 352,
-    "anonymous_refused": 263,
-    "named_examined": 89,
+    "standing": 358,
+    "anonymous_refused": 267,
+    "named_examined": 91,
     "named_with_1835_start_refused": 13,
-    "state_not_stated_refused": 88,
+    "state_not_stated_refused": 90,
     "qualified": 1
   },
   "existence": {
@@ -280,7 +280,7 @@
     {
       "structure_id": "frederick_thomas_shop",
       "name": "Frederick Thomas's Shop",
-      "function": "shop",
+      "function": "drug_store",
       "documented_range_from": "1835-06-08",
       "why": "its documented range opens inside 1835, which is the nearest thing to a start date this dataset carries and is NOT one: it is the date the record is first attested — a first issue, a directory line, a deed — and the record nowhere says the building was going up on the scene date. Clause 2 asks the record to SAY it, and this one does not."
     },

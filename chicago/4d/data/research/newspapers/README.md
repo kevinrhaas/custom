@@ -24,7 +24,9 @@ A claim that cannot name its column cannot be made. Resolve the issue through
 > `chicago/reference/newspapers/Transcriptions/Chicago_Democrat_1833-11_to_1835-08/Chicago_Democrat_1835-07-01_Vol2_No11_Transcription.txt`, lines 812-819.
 
 Page and column come from the transcription's own column markers — and this file has now
-been wrong about how many dialects there are **twice**. The sixty-six issues the deposit
+been wrong about how many dialects there are **three times**. There are SEVEN, the last
+two found by T-0325, and the count is now measured against every artifact in the corpus
+rather than asserted. The sixty-six issues the deposit
 delivered as committed `.txt` carry a RULED marker in one of three shapes:
 
     ===== ISSUE PAGE 4 / PDF PAGE 36 / COLUMN 5 OF 6 =====
@@ -56,6 +58,36 @@ rule here not lifted verbatim off the line, it is a reading of the transcription
 method — "assembled in printed page and column order" — and it is not used when the banner
 states the issue page itself. The self-test carries a case per dialect plus three negatives.
 
+**AND A SIXTH AND A SEVENTH SHAPE, WHICH ARE THE FIRST HALF OF 1835 — the last two, and
+this is now measured rather than asserted (T-0325).** Six of the eight Democrats between
+1835-01-21 and 1835-06-24 resolved to ZERO columns, so every claim citing them would have
+failed the gate with *"the transcription carries no ISSUE PAGE / COLUMN marker"* and the
+read of that range could not have landed at all. T-0298 had recorded three of them as
+*"bare `=====` rules carrying no page or column at all"* and left open whether that was a
+transcription defect. **It was not.** The rules are decoration around a page banner, and
+every column carries its own rule naming the scan page:
+
+    [Source PDF page 9; newspaper page 1; column 1]      1835-01-21, the 03-25 Extra, 05-20
+    PRINTED PAGE 1 — SOURCE PDF PAGE 13                  1835-05-27, 06-04, 06-10
+    --- SOURCE PDF PAGE 13, COLUMN 1 ---
+
+46 bracket markers and 72 dash rules under 12 banners: **118 column markers invisible to a
+resolver already corrected twice for exactly this.** The seventh dialect's column rule
+states its own scan page, so it is resolved through the banner naming that page rather than
+through the banner last passed — no ordinal, nothing counted. One bracket marker carries no
+column number, `[Source PDF page 8; Extra page 4; single-column subscription prospectus]`,
+and is read as that page's column 1 on the warrant of its own word and its file's header
+line ("Extra pages 1–3 have 3 columns; page 4 is a single-column subscription prospectus").
+That page is Calhoun's subscription list and it names people.
+
+**Where the census now stands.** Every artifact in `corpus.json` was resolved before and
+after the change on 2026-08-29: the six move, the other 83 do not. **One artifact of the
+89 still resolves no column and it is not a resolver gap** — the `alternate` of 1833-11-26,
+a prose reading transcription made from the page images, which segments nothing and names
+its pages "SUPPLIED SCAN PAGE 1". There is no column marker in it to find, so it is not
+citable at column level and a claim needing it must cite the `primary`, which is what
+T-0308 read. That is a fact about the artifact, recorded here rather than left silent.
+
 **The middle ruled shape is the majority and it was the one nobody had.** Counted across
 the deposit on 2026-08-28 while reading July 1834 (T-0289): 1,176 of the 1,266 ruled column
 markers say `SOURCE PDF PAGE`, 90 say the bare `PDF PAGE`, and four say `ORIGINAL PDF
@@ -80,14 +112,23 @@ reports them, which is green.
 | delivered as `.docx` only | 20 primaries + 3 alternates | extracted here to `text/`, and **committed** |
 
 The deposit is the owner's archival deposit and this project reads it only. It was
-committed to `main` on 2026-08-28 and **is not on `dev`**, where this subtree is
-developed — so on `dev` the sixty-six reference paths do not resolve and the
-twenty-three derived ones do. `tools/newspaper_corpus.py --check` treats that as one
-of three states: deposit **present** (every path resolved file by file), **absent**
-(reported, and green), **partial** (always red — that state means damage). T-0275
-carries the back-merge, which is not free: `main` also carries sixty Finder-duplicate
-`... 2.json` / `... 2.glb` files under `site/chicago/4d/data/` that turn this repo's
-gate red in twenty-three places.
+committed to `main` on 2026-08-28, and for a week after that it was NOT on `dev`, where
+this subtree is developed — so ten reading passes materialised a read-only copy from
+`main` and machine-checked their quotes with `--check --deposit <path>`, which is why so
+many `coverage.json` notes say so.
+
+**IT IS ON `dev` NOW, and a reading pass no longer needs `--deposit` (found 2026-08-29,
+T-0325).** The promotion back-merge carried `chicago/reference/` across, and every one of
+the 178 recorded paths and sha256s in `corpus.json` resolves and matches on this branch —
+checked file by file, not assumed. `tools/newspaper_corpus.py --check` says `deposit
+present`, and the gate reassembles all 713 committed quotes here rather than counting them
+unresolved. `--deposit` stays for the case it was built for: a branch or a checkout that
+does not carry it. T-0275, which asks for exactly this back-merge, has not been closed and
+should be looked at by whoever next reads its queue row rather than being done again.
+
+The three states `tools/newspaper_corpus.py --check` reports are unchanged: deposit
+**present** (every path resolved file by file), **absent** (reported, and green),
+**partial** (always red — that state means damage).
 
 ## Quality is not uniform
 
@@ -119,7 +160,7 @@ Deterministic: the same deposit produces byte-identical `corpus.json` and `text/
 | | |
 |---|---|
 | `extracted/<issue_id>.json` | one file per issue, holding `claims[]` — hand-authored |
-| `identity.json` | the only place two differently-spelled names may become one person |
+| `identity.json` | the only place two differently-spelled names may become one person, two firm styles one house, or two of a house's proprietors one partner — and the only place a name is declared a PLACE rather than a person |
 | `coverage.json` | the ranges a reading pass has DECLARED it read, and the gate holds it to them |
 | `gazetteer.json` | **generated** by `tools/compile_gazetteer.py --build` — never hand-edited |
 
@@ -142,6 +183,50 @@ after OCR judgment — interleaved columns unshuffled, `rn/m`-class confusions c
 The gate reassembles `quote` out of the transcription line by line and refuses any claim
 whose text differs by a character, so a smoothed quote fails rather than passing quietly.
 
+**WHEN TWO PRINTINGS DISAGREE, COUNT THE PRINTINGS BEFORE YOU SEND FOR THE IMAGES
+(T-0328).** A weekly's advertising is STANDING type: the same notice runs week after week,
+and every week is a separate impression, separately scanned. So a disagreement between two
+settings of one advertisement is rarely a two-witness problem — it is an n-witness problem
+in which n has not been counted. D. Weaver's building on North Water street was read as
+Lot 9 in one issue and Lot 2 in the next, and the reading pass filed a ticket for the page
+images because "one of the two transcriptions is simply wrong". It ran FIVE times, from
+1834-11-26 to 1834-12-24. Four of the five read Lot 2; the outlier's own line drops the t
+out of `Norh`. No image was needed.
+
+The method, and it is three greps: search the whole run for the advertiser's name, resolve
+each hit's page and column, and read the settings side by side. It has now answered three
+questions the ticket queue had assigned to the page images — the blacksmith's "opposite the
+Tremont House" (T-0330), the axes that belonged to the ironmongers and not the booksellers,
+and this lot number. **Nothing is amended to agree with anything**: every printing keeps its
+own verbatim quote, the losing reading stays visible in `normalized`, and the winner is
+declared in the notes with the tally that decided it.
+
+Two cautions, both learned here. **The tally is over impressions, not over readings** — two
+transcriptions of the SAME impression are one witness, and `corpus.json`'s `-2` rebuilds are
+exactly that. And **a run of concordant settings does not make a scan trustworthy in
+general**: the same printings that agree on the lot number set the advertisement's copy date
+four different ways, so the digit that was decidable and the digit that was not stood two
+lines apart in one column.
+
+**AND COUNT THE PRINTINGS BY THE NOTICE'S BODY TEXT, NOT BY ITS ADVERTISER (T-0350).** The
+sentence above used to say "the same FIVE printings", and five was wrong: D. Weaver's notice
+ran SEVEN times, from Vol. I No. 50 of 1834-11-12 to Vol. II No. 4. Two reading passes and
+then T-0328's tally all missed the two earliest, for one reason — a search for the advertiser
+cannot find a column that sets his name `D. WEAVE.R`, or one that loses the name to the
+alternating column entirely. Search a standing notice's own words instead; a notice already
+claimed somewhere gives you them for nothing.
+
+**THE DATELINE'S TRAILING FIGURE IS AN INSERTION KEY, AND IT DATES THE COPY WHEN THE DAY IS
+ILLEGIBLE (T-0350).** `Nov. 5, 1834.—49`, `Nov. 26, 1834-52`, `Dec. 16, 1834.-3` — the number
+after the year is not part of the date, it is the number of the issue the copy is keyed to,
+the first number published on or after the dateline. Vol. I No. 49 was printed 5 November,
+No. 52 on 26 November, Vol. II No. 3 on 17 December. So a key **bounds the dateline to one
+week**, which is a second instrument on any damaged date and a stronger one than a tally:
+D. Weaver's seven settings all key 50, No. 50 was printed 12 November, and that excludes the
+`Nov. 13` and `Nov. 19` two of them read without needing to count anything. Read it as a fact
+about the DATELINE and not about first appearance — J. Bates's `Nov. 5, 1834.—49` notice does
+not stand in No. 49 at all, and first appears in No. 50.
+
 **Interleaving is the normal case.** The segmenter frequently alternates two physical
 columns line by line, so one advertisement occupies a SUBSET of a line range with another
 woven through it. `locator.lines` is the range cited; `locator.lines_of_claim` names the
@@ -159,11 +244,29 @@ gate; only the grain is finer. It is optional and additive: a claim without `spa
 behaves exactly as before, which is why the T-0257 fixture and the Democrat read needed no
 edit. All 130 of the American's claims use it.
 
-**Nor does the Democrat's own first issue, and only four of T-0258's thirty do.** Swept the
-same way: 1834-01-28, 1834-02-04, 1834-04-23 and 1834-04-30 carry a list and the other
-twenty-six do not, so a reading pass over 1833 and the first half of 1834 meets the epic's
-letter-list clause mostly by demonstrating absence. Where a list IS there it is the census
-proxy and ruling 1 applies in full.
+**Nor does the Democrat's own first issue, and SIX of T-0258's thirty do.** This count
+has been corrected twice by reading — the two paragraphs below are the corrections, and
+each names the sweep it refuted — and it stands at six issues carrying Chicago's own list:
+**1834-01-14** and **1834-01-28** (the 1 January list, printed cut and then nearly whole,
+T-0310), **1834-02-04**, **1834-03-04** (T-0312), and **1834-04-01** with its
+**1834-04-08** reprint (the 1 April list, T-0313). The other twenty-four carry none of
+Chicago's — the April Hennepin printings are another town's and mint nobody — so a reading
+pass over 1833 and the first half of 1834 meets the epic's letter-list clause mostly by
+demonstrating absence. Where a list IS there it is the census proxy and ruling 1 applies
+in full.
+
+**The fifth was found by READING and not by searching, and that is the lesson (T-0312).**
+This file said four until March 1834 was read through, because a text sweep cannot match a
+heading the segmenter has cut in half. The list of 1834-03-04 sits on page 4, and the crop
+boundary runs down the middle of its printed column: `List of L` stands at the head of
+column 2 and `etters` / `ost-Offiee at Chica-` / `34.` at the head of column 3. No search
+for *list of letters*, *letters remaining* or *remaining in the post office* can hit a
+heading that exists whole in neither column. **So sweep for the FRAGMENTS too** — `ist of L`,
+`etters`, `ost-Off`, `advertis` — and expect a list to be split across two claims, one per
+crop, the way `chicago_democrat_1834_03_04.json` c024 and c025 carry it. Its date line
+survives only as `34.`, so WHICH return it is cannot be read and is not asserted; its
+seventy-eight extracted names are a floor, cut on their left edge where January's were cut
+on their right.
 
 **THAT SWEEP WAS WRONG, AND READING APRIL 1834 IS HOW IT WAS FOUND OUT (T-0313).** It is
 six of the thirty, not four, and the two it names for April are the wrong two. **1834-04-23
@@ -190,6 +293,43 @@ Democrat's.
 
 **Nor does the Democrat carry one every month.** July 1834 (T-0289) and September 1834 (T-0291) were both swept for every form of the heading — *list of letters*, *letters remaining*, *remaining in the post office*, *uncalled for*, a signature ending *P. M.*, and the bare words *letter*, *postmaster* and *list* — and September's four issues carry none. The month's post-office matter is a reprinted Senate report, a Cumberland postmaster's letter about mail robbers, the Postmaster General's own Chicago-to-Green-Bay proposals (extracted as `infrastructure`) and a want-advertisement routing replies through the office. So the letter-list ruling has nothing to bite on there either, and `coverage.json` records the sweep rather than the silence — an absence a pass has looked for is evidence, an absence nobody looked for is a hole.
 
+**A LETTER LIST IS STANDING TYPE, SO COUNT ITS PRINTINGS BEFORE YOU DATE IT (T-0331).**
+The rule two sections above — count the printings before you send for the images — was
+written about advertising and it holds harder for a quarterly return, because a return
+runs unchanged until its letters go to the dead-letter office. The Chicago post office's
+**1 January 1834** return stands in **every Democrat from Vol. I No. 7 of 1834-01-07 to
+No. 15 of 1834-03-04, nine weeks unbroken**. The sweep this file used to record found
+FOUR lists in T-0258's thirty issues; there are nine Chicago printings of this one return
+alone, and the reason the sweep missed five of them is that it searched for the HEADING:
+four of the nine headings are cut in half by the segmenter, illegible, or in a different
+crop from the names they head. `tools/letter_list_printings.py` holds the nine, each with
+the line its fingerprint stands on, and re-derives them.
+
+Three things follow, and each has cost a run already.
+
+- **DATE A LIST BY ITS CONCORDANT PRINTINGS, NOT BY THE ISSUE IT SITS IN.** The
+  1834-03-04 crop keeps `34.` of its date line and nothing else, and T-0312 reasonably
+  floated a 1 March quarterly return. It is January's. Four printings set the line whole
+  or nearly — `go, Ill. January [1,] 1834.` at No. 7 line 645 is the plainest.
+- **A LATER PRINTING IS NOT A SECOND COHORT.** T-0299's rule that one list mints once is
+  a rule about the RETURN, not about the issue: nine printings of the 1 January 1834
+  return are one list, and minting the ninth as a fresh 1834 cohort would have put the
+  same men in the town twice.
+- **THE CONCORDANCE REPAIRS THE DAMAGE THE IMAGES WERE ASKED FOR.** Every printing is
+  cut in a different place, so the forename one crop loses another sets. Match on the
+  SURNAME — the part the damaged crop states plainly — and complete a forename only where
+  two or more PRINTINGS agree; twenty-five of fifty-seven cut readings on 1834-03-04 were
+  repaired that way and none of them needed a scan. Two guards make it safe, and both were
+  put in after the loose version proposed `Thomas Bonnet` for `[…]as Bennett`: the fold
+  closes only the confusions the scans actually make, and **a surname standing TWICE in
+  one list is never completed** — two Bennetts, two Miners, two Temples and two Tullers
+  stand in this return, and a crop that lost both forenames cannot say which line is which.
+
+**A SECOND OFFICE'S RETURN RUNS IN THE SAME WEEKS.** Hennepin's 1 January 1834 list is
+printed alongside Chicago's at No. 9 line 937 and No. 10 line 957, and a sweep that
+matches on `REMAINING in the Post-Office` alone will fold the two towns together. Resolve
+the office off the heading's own tail before minting a name.
+
 **`[…]` marks absence, `[word]` marks a supply.** Text the column edge cut away is a gap,
 not an invitation. The worked fixture leaves *'a few doors below'* unsupplied for exactly
 that reason and says where a fuller witness might be found.
@@ -205,6 +345,212 @@ contradicts them, and one last seen before 1835 stands on a stated liberty.
 name, so `Cohen, P.` and `Cohen, J.` are two people. A merge is declared in
 `identity.json` with a `merge_rule` naming both spellings; same surname with different
 initials never merges, rule or no rule.
+
+**The first bulk merge pass is T-0299**: the list of letters remaining in the Post Office at
+Chicago on 1 July 1834, which the Democrat printed three times — 1834-07-02, 1834-07-09 and
+1834-07-16 — and which the segmenter cut differently each time, so 298 names had been
+minting up to three people apiece. The three readings are aligned BY POSITION, because the
+list is one ordered sequence that every printing carries in the same order; a pair is a
+candidate only where the alignment puts the two readings at the same entry, never on
+resemblance alone. **175 merges declared and 29 REFUSED**, the refusals recorded in
+`refused_merges` beside them with the surname the two share and the initials that separate
+them — the refusals are the evidence that the pass was a judgement and not a
+de-duplication. The gazetteer went from 2,108 persons to 1,933. The file's `passes` block
+states the method, the canonical-reading rule, and the two returns printed in the same
+issues that are deliberately NOT part of this list (Plainfield and Juliet). Seventeen of
+the twenty-nine refusals are an initial one printing could not read against the same
+initial another prints whole. **Whether such a pair may merge is NOT settled here**: it is a
+change to the identity policy and it is the owner's, and T-0392 carries the question with
+both answers and their costs — no keeps eighteen duplicate persons the project's own best
+witness resolves, yes needs a bound (same list, same entry, no competing letter).
+
+`surname()` and `initials()` take the transcription's markup off before they parse (T-0299).
+They did not, so `A[n]drew W. Borland` read as four forenames and `Benjamın Swena` as two,
+and whether the policy protected a pair came down to which side of a name a bracket fell on.
+The policy is unchanged; ten self-test cases hold both halves of that.
+
+**AN UNREAD `[?]` IS A POSITION, NOT AN ABSENCE (T-0397).** Taking the markup off is right
+for a surname and was wrong for a forename, because DELETING the `[?]` hands the initial to
+whatever letter stood behind it. All seventeen `[?]` refusals above had been stated on such
+a reading: seven named a letter invented from the rest of the forename (`[?]rah Fowler` as
+`R.`, `[?]nn M. Gooding` as `N. M.`, `[?]saac Scarrett` as `S.`), six collapsed a middle
+initial into first position (`[?]. M. Fish` as `M.` against `E. M. Fish`'s `E. M.`), and
+four read no initial at all — which is the shape all seventeen were assumed to have. So a
+committed record was asserting letters no printing carried. `initials()` now records the
+marker as UNREAD, in the slot it was printed in, welded to the word it opens, and UNREAD is
+equal to no letter; every `refused_because` states the reading the page carries and each
+refusal carries its parsed `initials_read`. **Nothing merged or unmerged** — 177 declared
+person merges and 29 refusals before and after, 2,634 persons either way, and `gazetteer.json`
+and `register_1835.json` are byte-identical across the change. Nine self-test cases assert
+the VALUE and not merely that a pair differs, which is what let `[?]nn M. Gooding` pass while
+reading `N. M.`
+
+**AND THE RULE HAS NO SIBLING FOR FIRMS, WHICH IS WHY ONE BOOKSHOP STANDS IN THREE PLACES.**
+The Chicago Democrat's bookseller is `RUISAL & CLUPR,` in the December 1834 advertisement's
+only legible heading, and T-0327 read the name off the firm's OTHER advertisement rather
+than off that line: the copartnership notice dated `Chicago, Aug. 26, 1834` — Aaron
+Russell of Boston and [—] Clift of Philadelphia, opening a store adjoining P. Carpenter's
+drug establishment in Water-street — runs from 1834-08-27 to 1834-11-12 and is signed
+legibly four times, `RUSSELL & CLIFT`. So the December claim's business name is now a
+supply, `[RUSSELL & CLIFT]`, and the compiler folds it into `business_russell_clift` by
+key, which is a corrected READING and not a merge. What the key cannot fold is the rest:
+`business_chicago_wholesale_and_retail_book_stationary_store` is the 1834-08-27 printing of
+that same notice, whose signature went with the woven half of the column, and
+`business_russell_clift_chicago_book_and_stationary_store` is the firm's own 1835 card in
+the *American*. Three keys, one house, and the evidence for it is a shared copy date and a
+shared body of type — but joining them means DECLARING two names one firm, and that is
+exactly what `identity.json` supplies for people and, as of T-0304, for firms as well:
+`firm_merges`, below. The three keys stand apart until somebody declares them, because a
+declaration cites its printings and nobody has yet written that one down (T-0340) — but the
+place to write it now exists, and the alternative it replaces was a hand-merge, which makes
+a gazetteer nobody can recompile.
+
+**Firms have the same policy and a different discriminator** (T-0304). A business is keyed
+on its whole name too, so five printings of one house are five businesses until something
+says otherwise, and `firm_merges` is where that is said — same two rules, a `merge_rule`
+naming both spellings verbatim. What changes is the guard. For a person a differing
+forename initial is fatal, because the letter lists are full of families; a `& Co.` style
+routinely elides or misprints the forename it trades under, so applying that rule to firms
+would refuse every merge a firm needs. What survives is the SURNAME: the two styles must
+carry the same set of partner surnames, with or without a rule, because a partnership is
+its partners and a changed one is a different house — which is what keeps `Clark, Filer &
+Co.` and `A. Filer & Co.` apart. The second guard is about the ground rather than the
+name: two styles the papers put in different STREETS never merge, because a firm that
+moved is documented by a removal notice, and a removal notice is a claim. A merge takes
+the union of mentions, proprietors, goods and copy dates, the wider issue window, the
+more specific placement, and every trade either side printed in `trade_variants` — it can
+widen a record and it cannot narrow one.
+
+**A pair judged NOT one house is a record too** (T-0399). `firm_surnames()` groups the
+register on the partner surname alone, so it puts together houses that are not one house
+— the two Montgomerys, a namesake, an anchor mistaken for a partner. Until this ticket the
+only record of having judged such a group was the ABSENCE of a merge rule, which reads
+exactly like a group nobody has looked at yet: the next sweep finds the group again, does
+the work again, and the argument for keeping the pair apart — the thing that stops a wrong
+merge on the second pass — is the part that was never written down.
+`refused_firm_merges` is that argument, declared as explicitly as a merge and held to the
+same disciplines. `refused_because` names BOTH styles verbatim; `witnesses` names the
+printings the refusal rests on, because a refusal rests on printings exactly as a merge
+does; `kind` is one of three, because *not shown to be one* is a different finding from
+*shown to be two* — `two_houses` (the papers show two houses under one surname),
+`not_joined` (one name, and no printing puts the two styles under one roof), and
+`different_ground` (one house, and the papers put the two styles in different places: a
+removal or a succession, which is a claim and not a merge). And a refusal **cannot outlive
+its pair**: if a later merge collapses the two styles it names, the refusal is a judgement
+nobody can check, and the compile fails rather than leaving it to rot. Each refusal is
+written onto both of the businesses it holds apart, so a reader meeting one of them meets
+the reason the other is not it.
+
+**The first firm pass is T-0399**, the restyled duplicates of T-0338's surname groups —
+where one style is the other with a trade description, a signboard or an extractor's
+parenthesis after it. **25 merge rules over 20 houses, and 3 refusals**; the businesses
+table went from 242 to 221 and `survival_liberty_required` from 126 to 111, because
+records that were each claiming a liberty for a shop last seen before 1835 turned out to
+belong to a house still advertising in 1835 under its other heading. The three refusals
+are A. Garrett (`different_ground` — the auctioneer advertises from South Water street in
+December 1834 and signs from Dearborn street twenty months later, with no removal notice
+between them), B. Jones (`not_joined` — a grocery and a forwarding house set as two
+advertisements in one issue; a business record here is a trade with a place, not a
+proprietor) and W. Montgomery (`two_houses` — the auctioneer at David Carver's old stand
+against L. W. Montgomery the bootmaker next door to P. Cohen's). T-0400, T-0401 and T-0402
+carry the bands the pass did not reach.
+
+**The second firm pass is T-0401**, the surname groups that are NOT one house — and it
+merges nothing at all. **16 refusals, and the businesses table does not move**, which is the
+shape of the ticket: the whole output is the written argument. Five hold the Kinzies apart
+(J. H., John S. and R. A. — the Democrat of 1833-12-10 prints two of the family on one
+page, and 'JOHN 8. KINZIE' in that same issue is a damaged glyph the file refuses to repair
+into an H, so that pair is `not_joined` rather than `two_houses`); one each for J. H.
+Mulford the jeweller against the carriage and sleigh maker who shares his surname and an
+issue, W. H. Brown the grocer against 'Brown, painter' who has no forename to compare, and
+Wm. H. Taylor the boot store against Charles Taylor the tailor; three for the Curtisses,
+where an attorney read once as J and once as L stands against L. G. Curtiss the deputy
+surveyor of Cook County, and the Democrat of 1835-08-05 prints the attorney and the
+surveyor in one issue.
+
+The last five are the ones worth the section existing. `firm_surnames()` takes the LAST
+word of a partnership segment as the surname, so a style ending in a trade word is grouped
+on the word: 'store' alone holds thirteen businesses, and the New York Clothing Store,
+Peter Cohen's store and W. Kimball's New Store are refused against each other with that
+said in each, so the failure stays legible if the function changes. 'Eagle Hotel' against
+'the new blacksmith shop opposite the Chicago Hotel' is the same failure one step worse —
+the word belongs to the ANCHOR inside the second style, so a house is grouped with the
+building it stands opposite. And the two Chicago & St. Joseph packets are a group made
+entirely of words: the split on '&' and 'and' turns the route's own name into the partners
+'Chicago' and 'packet', and the schooners Llewellyn and Phillips are two hulls on one run.
+
+**Six of T-0401's candidates turned out to be one house** and are recorded in T-0413 rather
+than refused, with the printings that show it: P. F. Peck and P. F. W. Peck on one La Salle
+corner in abutting windows, F. G. and G. Blanshard opposite Dr. Temple's, G. W. and W.
+Keeney a few doors below Newberry & Dole's, Dr. J. B. and Dr. J. H. Barnard at the New-York
+House nine days apart, M. H. and Wm. H. Kennicott on one copy date, and J. and L. Curtiss
+on one copy date at one anchor. A refusal asserted against the evidence is worth less than
+no refusal at all, so none was written for them; a merge would have moved the business
+count this ticket holds fixed, so none was written either, and the reading is in the ticket
+so it is not done a third time.
+
+**The second firm pass is T-0400**, and it is the band where the two styles carry the SAME
+partner surnames and differ only in the FORM of a forename — whole against abbreviated
+against bare initial. T-0304 had already ruled that a forename initial is not decisive for a
+firm the way it is for a person, so this band is judgeable; what it needed was, in each case,
+the printing that ties the two forms to one house. **Eight merges and two refusals over ten
+groups**, taking the businesses table from 217 to 209 and `survival_liberty_required` from
+109 to 103. Not one of the eight rests on the forename. `Collins & Caton` and `J. H. Collins
+& J. D. Caton` share the card copy-dated Jan. 20, 1834 and the anchor next door east of
+Brewster, Hogan & Co.; `G. Spring` and `Giles Spring` share the card of Dec. 3, 1834 and then
+print the same removal to the Tremont House; `J. Bates, Jr.` and `John Bates, Jr.` run the
+same advertisement for the same sixteen steel-pointed crowbars, both times signed with the
+INITIAL, the kegs of blasting powder down from twelve to seven; `J. Wellmaker & Co.`'s own
+dissolution notice sets the firm's name as `John Wellmaker & Co.` inside the record filed
+under the short style; and the timber notice of Ap'l. 22 runs over `P. PRUYNE & CO.` in one
+printing and `P PRUYNE` in the next, with a plural subscriber above a singular signature both
+times. The two refusals are as much the point of the band as the merges: `J. D. Caton,
+attorney and counsellor at law` against `John Dean Caton` is `different_ground` — the same
+man, South Water Street in December 1833 and Dearborn Street in July 1835, with the
+partnership between them and no removal notice anywhere — and `John Wright` against `J.
+Wright, merchant` is `not_joined`, a Democrat dry-goods house of 1833-34 against an American
+seller of leather, salt and oak scantling in July 1835, with nothing printed to join the two
+forms.
+
+**And the proprietors are a third place a name lives** (T-0337). `business.proprietors` is
+neither a gazetteer person nor a firm style — it is a string put on a business record by
+whichever claim read that printing — so neither policy above could reach it, and one man
+read two ways stood as two proprietors of his own house. `business_russell_clift` carried
+'Benj. Clift' from the 1834-09-03 impression of the copartnership notice and '[H. H.] Clift'
+from the 1834-11-12 impression of the SAME notice; four impressions of it survive in the
+deposit and three set the name whole, so the man is Benj. H. Clift and the second initial
+was the line's debris. The rule that now stops the next one is the firm-side sibling of the
+person rule, pointing the other way on purpose: two person-styled proprietors of one house
+sharing a surname and carrying different READ initials are refused until `identity.json`
+declares which they are — `proprietor_merges` to join two readings, `proprietor_distinctions`
+to hold two men apart, each with its reasoning. Neither merge nor silence can be the default,
+because a house really does hold brothers (William and Franklin Brewster sign one dissolution
+notice) and really does hold one man read twice. A bare surname beside a full name is not a
+pair — that is the papers printing less — and a declaration whose pair has gone is refused
+too, so the file cannot rot.
+
+**And a name is not always a person** (T-0359). A claim's entities are keyed on a name and
+carry no notion of what KIND of thing a name is, so a building the papers name by its
+signboard arrives in the persons table and is then held to a policy written for people.
+The compiler read `Tavern` as the surname and `Haddock's` against `Maddock's` as forename
+initials, and the families rule refused a reconciliation the evidence closes: one For-Sale
+notice of G. Spring's stands over five settings, four read Haddock's and one reads
+Maddock's. The rule is right and the subject was wrong. `identity.json` therefore has a
+third section — `places`, where a name is declared NOT to be a person with the argument
+written out, and `place_merges`, which joins two spellings of one building afterwards. A
+place has no forename initial to be a family by and no partners to be a house by, so the
+discriminator is the declaration itself: **a place merge may only join two names `places`
+has already argued are not people**, which is what keeps this from becoming a hole in the
+families rule. Two more guards protect the same thing from the other side — a name whose
+every mention is a post-office letter list may not be declared a place at all (a letter
+list is a list of people somebody wrote to, and `Chester House` and `Rodney House` are
+exactly that shape, both recorded in `refused_places`), and neither may a name a claim
+gives an occupation to. Five names are declared: Haddock's and Maddock's Tavern, the Eagle
+Hotel, the Eagle Hotel (Steele's) and the Baptist meeting house; the two taverns merge and
+the two Eagle readings deliberately do not, because nothing in the corpus prints both and
+a shared word is the resemblance argument this file exists to refuse (T-0397). The table
+lands in `gazetteer.json` as `places`, beside `persons` and `businesses`, and the register
+compiled from it no longer carries signboards as inhabitants of the town.
 
 The scene-date Democrat, `extracted/chicago_democrat_1835_07_01.json`, is both the worked
 fixture (claims c001-c003, T-0257 — Peter Cohen and J. S. C. Hogan on South Water Street,
@@ -235,3 +581,83 @@ and the committed gate on `dev` reports them unresolved-but-green until T-0275 l
 segmenter cut each printed column in half and alternates the halves line by line, so nearly
 every claim there is `interleaved`, and most bracketed supplies are read off the OTHER half
 of the same printed lines — each claim's note names the lines they came from.
+
+## `register_1835.json` — the work list (T-0262)
+
+`gazetteer.json` is an index of what was PRINTED. It says nothing about what the model
+should build. `tools/compile_register.py --build` turns it into the register the seeding
+tickets read: for every business, whether it stood on 1 July 1835 and what the town has to
+do about it; for every person, whether the town already holds them.
+
+    tools/compile_register.py --build       recompile register_1835.json
+    tools/compile_register.py --check       the gate (check.sh runs it)
+    tools/compile_register.py --self-test   the gate's assertions still fire
+
+**It is DERIVED, and the gate refuses a hand-edit** — the same contract `gazetteer.json` is
+under, for the same reason: a hand-edited register is a place to promote a business into the
+town without an argument, and T-0263 and T-0264 read it as if it were derived. Its inputs are
+the gazetteer, `data/structures/`, `data/streets/1835.json` and `data/residents/`; change
+those, not this.
+
+**Four business actions.** `enrich_existing` — a committed building already carries this
+house, and the row names the field it matched on and the exact text. `new_building` — nothing
+committed carries it and the paper's own placement resolves: a corner of two platted streets,
+a landmark that is a committed structure, or ONE hop through another documented business that
+is. `street_only` — a platted street face and nothing narrower. `unplaceable` — no street the
+model holds.
+
+**Two guards on a match into the committed town, both T-0355.** A structure's `occupants`
+line is read CLAUSE BY CLAUSE, and a clause that dates itself to a year the scene date does
+not fall in is a former tenant, not evidence of who is there now:
+`wolf_point_tavern_stable` records "the tavern's keeper of the day — Elijah Wentworth in
+1831, William Walters on the scene date", and read whole it matched E. Wentworth's tavern.
+And a business whose OWN record puts it out of town takes no action at all — `outside_plat`
+names the marker and quotes it. Three markers, each a positive statement: a distance in
+miles (the plat is under a mile across), a road LEADING TO somewhere (the town's own ways
+are streets), and a named creek (the committed town holds the river and its branches and no
+creek — `read_town` checks that rather than asserting it). Five of the 242 businesses are
+excluded this way and all five are genuinely out of town: four readings of Wentworth's
+tavern on Flag Creek, eighteen miles out on the Ottawa road, and Richard M. Sweet's barn on
+the Dupage.
+
+**Three person actions.** `enrich` (already in `data/residents/`, matched under the
+gazetteer's own identity policy, imported so the two tools cannot drift), `replace_invented`
+(a documented person of a trade the town invented a household for) and `new_resident`
+(everybody else — owner ruling 1, a letter-list name is enough).
+
+**Two exclusions, and the second one reads the paper (T-0356).** A contradiction dated ON OR
+BEFORE the scene date excludes; a LATER one is recorded (`dissolved_after_scene_date`) and
+disobeyed, because a firm dissolved in August 1835 was demonstrably open in July. The second
+used to be the proxy `first_evidence_after_scene_date` — T-0262 asked to exclude on an
+`announces_opening` field the claim vocabulary did not have, so the register excluded every
+business whose first surviving issue postdated 1 July. It is now
+`opening_announced_after_scene_date`, and it reads the field itself.
+
+**`announces_opening` is a reading, and its `dating` is the whole of it.** A claim of kind
+`business` or `building` may carry `{verbatim, dating, iso, note}`. `verbatim` must appear
+character for character in the claim's `normalized` reading; `note` says how the date was
+read; and `dating` is one of:
+
+| dating | what the printing says | what the register does |
+|---|---|---|
+| `stated` | names a date the house WILL open | excludes if that date is after the scene date |
+| `effected` | announces an opening already made; `iso` is the advertisement's own dateline and the gate refuses any other number | never excludes — the dateline bounds the opening from ABOVE. On or before the scene date it is positive evidence |
+| `undated` | announces an opening and dates it nowhere; `iso` must be absent | decides nothing |
+
+It had been a bare `true` on twenty claims that nothing read. The gate now refuses the
+boolean, so those twenty were re-read into dated readings, which is where Wm. H. Taylor's
+8 July 1834 dateline came from.
+
+**What the proxy cost, measured on the re-read.** Thirty-eight businesses carried it; four
+of them genuinely announce an opening after the scene date and stay out (Cromelien's wine
+branch, 14 Aug; Everts' high school, 10 Aug; Hunt's, 17 Aug; Lyon's wholesale grocery,
+1 Sep). The other thirty-four are back in the July town — among them five printed standing
+in it: Taylor's boot store over an 8 July 1834 dateline, Kennicott saying he had practised
+dentistry here "for the past year", Samuel Lewis's copy dated 22 June, S. Abell's 24 June
+and John Holbrook's 10 June.
+
+**And standing on August evidence alone is a liberty, which the register names.**
+`backdating_liberty_required` is the forward twin of `survival_liberty_required`: documented
+only after the scene date, present on it by assumption, and no opening notice dated on or
+before it to carry the assumption. Thirty-three businesses. `docs/LIBERTIES.md` carries
+neither class yet — T-0357 is the survival half and T-0404 the backdating half.

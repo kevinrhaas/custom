@@ -1,7 +1,7 @@
 ---
 id: T-0323
 title: The 1 January 1834 letter list has a third printing that T-0318 did not know about, and it repairs the A-H half without page images
-state: open
+state: done
 epic: META
 requested_by: loop
 seen: false
@@ -9,9 +9,9 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-08-28
-closed: null
-pr: null
-claimed_by: null
+closed: 2026-08-28
+pr: 507
+claimed_by: run 8/28/2026, 10:15:43 PM CT
 blocked_on: null
 needs_bake: false
 ---

@@ -67,6 +67,14 @@ from siding_stock import deal_records as deal_siding  # noqa: E402
 # read rather than retyped — the same module `tools/generate_inferred_infill.py` and
 # `tools/generate_block_infill.py` already import for their own frontage rows.
 from block_faces import face_frame  # noqa: E402
+# T-0274. The eave and the pitch are drawn from the family's own authored band
+# instead of being retyped as a per-archetype constant, and the sampler is the one
+# `tools/family_bands.py` already holds for the other three parcels. The run the
+# roof climbs is the ARCHETYPE's, so `tools/ridge_model.py` is asked for it rather
+# than it being computed here.
+from family_bands import (eave_floor, eave_for_ridge, eave_limits,  # noqa: E402
+                          families, pitch_deg, wall_height_m)
+from ridge_model import ridge_run_m  # noqa: E402
 
 
 def load(path: Path):
@@ -383,7 +391,98 @@ def footprint_origin(ce: float, cn: float, w: float, d: float, bearing: float):
     return (ce - w * .5 * cos - d * .5 * sin, cn + w * .5 * sin - d * .5 * cos)
 
 
-def inferred_form(archetype: str, family: str, spec_note: str, width_m: float = 9.0,
+# The crosswalk's per-family bands, read once through the one module that reads them.
+# This parcel pairs family with archetype BY HAND in the programme — H1 reaches
+# `log_dwelling` here and nowhere else — so the archetype below stays the programme's
+# answer; it is only the eave and the pitch that stop being the archetype's business.
+FAMILY_BANDS = families()
+
+
+def band_spec(family: str) -> dict:
+    spec = FAMILY_BANDS.get(family)
+    if spec is None or not spec.get("eave_ft"):
+        raise SystemExit(f"the crosswalk authors no eave band for family {family}; "
+                         f"the inferred-household programme cannot sample it")
+    return spec
+
+
+def storeys_for(archetype: str, family: str) -> float | None:
+    """The storey count this parcel deals, hoisted out of the branches below.
+
+    It is hoisted because `family_bands.eave_limits` asks the ARCHETYPE what wall it
+    will carry AT A STOREY COUNT, and the count has to be known before the branch that
+    writes it is reached. The values are exactly the ones those branches wrote; `None`
+    is the outbuilding tail, which authors no storey count at all and which
+    `eave_limits` reads as "no storey-dependent limit" — the truth for `outbuilding`.
+    """
+    if archetype == "log_dwelling":
+        return 1
+    if archetype == "frame_dwelling":
+        return 2 if family in ("D7", "H2", "H3") else 1
+    if archetype == "frame_storefront":
+        # C3 IS TWO STOREYS AND EVERY OTHER STORE HERE IS ONE. The flat 1 this branch
+        # used to write was the retyped constant that made C3's authored 18-22 ft eave
+        # band unbuildable: `frame_storefront` refuses more than 4.2 m of wall on a
+        # one-storey record, so not one value in that band could stand. The crosswalk
+        # authors `levels: 2` for the family and `generate_inferred_infill.storeys_for`
+        # already deals it two; this parcel was the one out of step. The single C3 this
+        # programme raises is documented and overrides its form to two storeys by hand,
+        # which is why nothing standing was wrong and only the sweep could see it.
+        return 2 if family == "C3" else 1
+    return None
+
+
+def door_kind(family: str) -> str:
+    """WHICH DOOR a family carries, asked for rather than read off the form dict.
+
+    The eave FLOOR depends on it — a wagon door needs a metre more wall than a man
+    door — and the floor has to be known before the eave is drawn. The membership is
+    the one the outbuilding tail below has always written.
+    """
+    if family in ("W1", "W2", "W3", "W5", "F1", "A2"):
+        return "wagon"
+    return "stable" if family == "A1" else "man"
+
+
+def roof_for(archetype: str, family: str) -> tuple[str, bool | None]:
+    """The roof type and gable orientation the branches below actually WRITE.
+
+    Asked separately from `roof_form.roof_kind` and hoisted, because `ridge_model` has
+    to be handed the roof the record will carry rather than the one the family's
+    crosswalk line offers, and for this parcel those differ. Three of the four
+    archetypes here build a gable whatever the family's roof line says — only the
+    outbuilding tail takes `roof_kind`'s answer — and the storefront branch writes
+    `gable_front: True`, which is what turns the ridge across the plan and so decides
+    which of width and depth the roof climbs. Handing `ridge_model` the family's raw
+    answer instead put the barber's shop on its DEPTH, made the ridge band look
+    reachable from an eave that could not reach it, and shipped a roof 1.6 ft under its
+    own band.
+    """
+    if archetype in ("log_dwelling", "frame_dwelling"):
+        return "gable", None
+    if archetype == "frame_storefront":
+        return "gable", True
+    return roof_kind(family)
+
+
+def pitch_default(archetype: str, family: str) -> float:
+    """The generator's own type value, which is what a family authoring no band gets.
+
+    `family_bands.pitch_deg` returns this unchanged for a family whose roof line names
+    no rise:run at all, so the sampler invents no claim where the specification makes
+    none. The four values are the constants the branches below used to write.
+    """
+    if archetype == "log_dwelling":
+        return 35.0
+    if archetype == "frame_dwelling":
+        return 38.0
+    if archetype == "frame_storefront":
+        return 33.0
+    return 18.0 if roof_kind(family)[0] == "shed" else 32.0
+
+
+def inferred_form(archetype: str, family: str, spec_note: str, key: str,
+                  width_m: float = 9.0, depth_m: float = 9.0,
                   building_documented: bool = False) -> dict:
     # Every value below is INVENTED, and the grade says so.
     #
@@ -406,14 +505,58 @@ def inferred_form(archetype: str, family: str, spec_note: str, width_m: float = 
         return {"value": v, "confidence": "reconstructed", "sources": [SPEC],
                 "note": lede + spec_note}
 
+    # THE EAVE AND THE PITCH COME FROM THE FAMILY'S OWN BAND (T-0274), and this is the
+    # fourth and last parcel to make the move T-0144 and T-0145 made on the platted
+    # blocks, T-0272 on the West approaches and T-0273 on the South infill.
+    #
+    # This parcel keyed both values on the ARCHETYPE, so one figure per archetype was
+    # dealt to every family that reaches it, and the note printed under each one told a
+    # visitor it was a type-level choice "within the {family} band" — which for ten of
+    # them was not true. `tools/measure_family_deal.py` named all ten: A5 and W4 stood
+    # at a man door's 2.05 m under bands starting at 7 and 9 ft, C2 at 3.25 m and
+    # 33.0 deg, C3 at the same 3.25 m under an 18-22 ft band, D3 at 2.78 m, D2 fell
+    # past the frame branches into the outbuilding tail and took 2.05 m and 18.0 deg
+    # with it, A2 at 32.0 deg, and H1 — reached through `log_dwelling`, which this
+    # parcel alone pairs it with — at that branch's flat 2.5 m, a metre short of its
+    # own band. Every one was a per-family CONSTANT, so it was made on 100 per cent of
+    # that family's deals and not on a tail.
+    #
+    # A constant is also a claim of uniformity no source makes: five D3 dwellings dealt
+    # from one figure are not five dwellings. Sampling adds variety, not knowledge —
+    # every value still grades at the bottom tier and the note still says the band is a
+    # typology and not evidence about this building. What changes is that the band is
+    # used as the range it was authored as instead of being collapsed to a point.
+    #
+    # The archetype bounds the band at BOTH ends and the limits are ASKED of it, never
+    # retyped: `eave_floor` for the door a family's wall has to header, `eave_limits`
+    # for the storey-height ceiling `frame_dwelling` publishes. The family's own RIDGE
+    # band bounds it once more (T-0148), which needs the run the roof climbs, and that
+    # is the archetype's too.
+    spec = band_spec(family)
+    roof, gable_front = roof_for(archetype, family)
+    stories = storeys_for(archetype, family)
+    run = ridge_run_m(archetype, roof, width_m, depth_m, gable_front)
+    arch_lo, arch_hi = eave_limits(archetype, stories)
+    floor, ceiling = max(eave_floor(family, door_kind(family)), arch_lo), arch_hi
+    default_pitch = pitch_default(archetype, family)
+    wall = eave_for_ridge(wall_height_m(family, spec["eave_ft"], key, floor, ceiling),
+                          family, spec["eave_ft"], spec.get("roof"),
+                          spec.get("ridge_ft"), run, default_pitch, key, floor, ceiling)
+
+    def pitch() -> float:
+        # A pitch and a footprint together make the RIDGE, and the crosswalk authors a
+        # band for that too, so the sampler is constrained by it.
+        return pitch_deg(family, spec.get("roof"), key, default_pitch,
+                         eave_m=wall, run_m=run, ridge_ft=spec.get("ridge_ft"))
+
     if archetype == "log_dwelling":
-        return {"stories": a(1), "wall_height_m": a(2.5), "roof_type": a("gable"),
-                "roof_pitch_deg": a(35.0), "construction": a("log"), "loft": a(True),
+        return {"stories": a(stories), "wall_height_m": a(wall), "roof_type": a("gable"),
+                "roof_pitch_deg": a(pitch()), "construction": a("log"), "loft": a(True),
                 "chimneys": a(1)}
     if archetype == "frame_dwelling":
-        two = family in ("D7", "H2", "H3")
-        return {"stories": a(2 if two else 1), "wall_height_m": a(5.05 if two else 2.78),
-                "roof_type": a("gable"), "roof_pitch_deg": a(38.0),
+        two = stories == 2
+        return {"stories": a(stories), "wall_height_m": a(wall),
+                "roof_type": a("gable"), "roof_pitch_deg": a(pitch()),
                 "construction": a("braced_frame"),
                 "plan": a("centre_passage" if two else ("single_pen" if family == "D3"
                                                         else "hall_parlour")),
@@ -426,22 +569,19 @@ def inferred_form(archetype: str, family: str, spec_note: str, width_m: float = 
         narrow_note = (spec_note + " THE SHOPFRONT IS OFF because this frontage cannot carry "
                        "one: the archetype's glazed front needs 3.25 m of bay plus a return at "
                        "each end, and a shop of this width had a door and a window instead.")
-        return {"stories": a(1), "wall_height_m": a(3.25), "roof_type": a("gable"),
-                "roof_pitch_deg": a(33.0), "gable_front": a(True),
+        return {"stories": a(stories), "wall_height_m": a(wall), "roof_type": a("gable"),
+                "roof_pitch_deg": a(pitch()), "gable_front": a(True),
                 "construction": a("braced_frame"), "cladding": a("clapboard"),
                 "paint": a("unpainted"), "loft": a(family in ("C2", "C3")), "chimneys": a(1),
                 "shopfront": ({"value": False, "confidence": "reconstructed", "sources": [SPEC],
                                "note": lede + narrow_note} if not wide else a(True)),
                 "goods_door": a(wide), "goods_door_side": a("end")}
-    door = "wagon" if family in ("W1", "W2", "W3", "W5", "F1", "A2") else (
-        "stable" if family == "A1" else "man")
+    door = door_kind(family)
     # WHICH ROOF A FAMILY GETS is `tools/roof_form.py`'s answer and no longer this
     # file's (T-0179): the same literal used to sit in five parcels and the five had
-    # already drifted over A5.
-    roof = roof_kind(family)[0]
-    wall = 3.42 if door == "wagon" else (2.75 if door == "stable" else 2.05)
+    # already drifted over A5. `roof_for` above returns it unchanged for this tail.
     return {"wall_height_m": a(wall), "roof_type": a(roof),
-            "roof_pitch_deg": a(18.0 if roof == "shed" else 32.0),
+            "roof_pitch_deg": a(pitch()),
             "construction": a("plank" if family.startswith("D") else "light_frame"),
             "door": a(door), "door_side": a("front"),
             "loft": a(family in ("W2", "W5", "A1", "A2")),
@@ -545,7 +685,7 @@ def structure_record(b: dict, datum: dict, prose: dict, hh_by_building: dict) ->
     # ...and T-0179's other half lands in the same place: where the family's roof line
     # offers a SHED this town does not build, the record says so and says by how much.
     form = note_refusal(
-        split_notes(inferred_form(b["archetype"], b["family"], spec_note, w,
+        split_notes(inferred_form(b["archetype"], b["family"], spec_note, bid, w, d,
                                   building_documented=documented),
                     b["family"], spec_note),
         b["family"], w, d)
@@ -1027,9 +1167,17 @@ def build_all() -> tuple[dict[Path, str], list[dict], list[dict]]:
     for entry in rows:
         for grade, n in entry["grades"].items():
             totals[grade] = totals.get(grade, 0) + n
+    # The three counts this programme OWNS, and then every other count key the
+    # manifest carries, preserved rather than dropped. A later pass may tally
+    # something this one knows nothing about — `letter_list_only` is
+    # tools/mint_letter_list_residents.py's — and rebuilding `counts` from
+    # scratch would delete it here and re-add it there on every run, which reads
+    # as drift in whichever pass ran last.
     index["counts"] = {"households": len(rows),
                        "persons": sum(e["persons"] for e in rows),
-                       "by_grade": totals}
+                       "by_grade": totals,
+                       **{k: v for k, v in (index.get("counts") or {}).items()
+                          if k not in ("households", "persons", "by_grade")}}
     files[INDEX] = dumps(index, 1)
     return files, records, households
 
@@ -1055,6 +1203,18 @@ def main() -> int:
         gen_names = importlib.util.module_from_spec(spec)
         spec.loader.exec_module(gen_names)
         files = gen_names.overlay(files)
+
+        # And the THIRD stage, for the same reason: since T-0264 the newspaper
+        # register retires an invented name where it found a documented person
+        # for that trade, rewriting the head's name, grade, sources, occupation
+        # and the household's own arrival bound. Comparing this programme's
+        # output against the tree without it would report every retired roof as
+        # drift on every run.
+        spec = importlib.util.spec_from_file_location(
+            "replace_invented", Path(__file__).with_name("replace_invented_residents.py"))
+        replace_invented = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(replace_invented)
+        files = replace_invented.overlay(files)
 
     drift = []
     for path, text in sorted(files.items()):

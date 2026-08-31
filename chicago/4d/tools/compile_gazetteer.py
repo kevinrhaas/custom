@@ -38,6 +38,45 @@ THE OWNER'S THREE RULINGS, 2026-08-28, and where each one lives in the data:
      the last ISSUE that carried the business is earlier than 1835 — existence documented,
      survival to the scene date assumed, and docs/LIBERTIES.md carries the liberty.
 
+AND A NAME IS NOT ALWAYS A PERSON (T-0359). The entities a claim carries are keyed on a
+name and nothing else, so a signboard the papers name — "Haddock's Tavern", "the Eagle
+Hotel" — arrives in the persons table and is then held to a policy written for people:
+"Tavern" reads as the surname, "Haddock's" against "Maddock's" as forename initials, and
+the families rule refuses a reconciliation the evidence closes. The rule is right and the
+subject is wrong. `identity.json`'s `places` is where a name is declared NOT a person,
+with the argument written out; `place_merges` then joins two spellings of one building
+under a discriminator of its own. Neither touches the families rule, and a declaration
+cannot reach a name whose every mention is a post-office letter list — which is what
+keeps the letter lists' own Chester House and Rodney House the people they are.
+
+IDENTITY IS DECLARED, NEVER INFERRED, AND FIRMS DECLARE IT DIFFERENTLY FROM PEOPLE
+(T-0304). Both are keyed on the whole normalized name, so nothing coalesces by accident,
+and `identity.json` is the only place a merge may be stated: `merges` for people,
+`firm_merges` for houses, each rule naming both spellings verbatim — and, since T-0399,
+`refused_firm_merges` for the groups the surname puts together that are NOT one house,
+because the absence of a merge rule reads exactly like a group nobody has judged yet. The
+guard is where
+they part. A person with the same surname and a different forename initial NEVER merges,
+because the letter lists are full of families. A firm cannot be held to that — a '& Co.'
+style routinely elides or misprints the forename it trades under, and one Wilson house is
+printed 'J. L.', 'Jno. L.', 'Jno. S.', 'Jno.' and bare 'L.' across eleven months — so what
+a firm is held to is its PARTNERS: the same set of surnames on both sides, with or without
+a rule, plus no street the papers contradict. THE ONE LOOSENING (T-0340) is the style that
+names NO partner — a heading whose signature went with the woven half of the column —
+because an empty set is not a different partnership, only a printing that did not say; that
+escape is DECLARED in `firm_sign_names` and refused for any house a claim ever signed with a
+proprietor. AND THE PROPRIETORS ARE A THIRD PLACE
+AGAIN (T-0337): a partner's name on a business record is neither a gazetteer person nor a
+firm style, so until that ticket one man read two ways stood as two proprietors of his own
+house and nothing could see it. Two person-styled proprietors of ONE house sharing a
+surname and carrying different read initials are REFUSED until `identity.json` declares
+which they are — `proprietor_merges` to join two readings, `proprietor_distinctions` to
+hold two men apart. The default is neither merge nor silence, because a house really does
+hold brothers and really does hold one man read twice. Merging widens a record and never narrows
+one, and ruling 3 below is recomputed afterwards, which is the point: three of that
+Wilson house's five spellings were last seen in 1834 and were each claiming a survival
+liberty the fourth and fifth disprove.
+
 THE QUOTE IS MACHINE-CHECKED AGAINST THE TRANSCRIPTION, which is the one gate here that
 is about provenance rather than shape. A claim names the exact line numbers its quote is
 built from, and `--check` reassembles the quote out of the transcription and refuses any
@@ -68,11 +107,13 @@ a judgement and it lives in `normalized`, beside the quote and never replacing i
 this file's fixture leaves 'a few doors below' unsupplied for exactly that reason, and
 says where a fuller witness might be found.
 
-WHERE THE DEPOSIT IS. The transcriptions are on `main` and not on `dev` (T-0275), so the
-quote check runs against whatever text this branch can actually read: the 23 derived
-files under `text/` always, the 66 deposit-held ones when the deposit is present. Same
-three-state discipline as `tools/newspaper_corpus.py` — present, absent, partial — and
-absent is green and reported, never silently skipped.
+WHERE THE DEPOSIT IS. The quote check runs against whatever text the branch can actually
+read: the 23 derived files under `text/` always, the 66 deposit-held ones when the deposit
+is present. Same three-state discipline as `tools/newspaper_corpus.py` — present, absent,
+partial — and absent is green and reported, never silently skipped. It WAS absent on `dev`
+for a week (T-0275) and ten reading passes ran `--check --deposit <a copy from main>`
+because of it; the promotion back-merge has since carried it across, so on `dev` today
+every path resolves and `--deposit` is only needed by a checkout that lacks it.
 """
 import argparse
 import copy
@@ -111,6 +152,45 @@ READINGS = ("transcription_mediated", "scan_verified")
 # honest answers when it cannot, and they are values rather than absences so that a
 # later pass can count them.
 PLACEMENT_CLASSES = ("corner", "relative", "street_only", "none")
+
+# AND A PAPER CAN SAY WHEN A HOUSE OPENED (T-0356). The register had no way to ask the
+# question, so it answered a different one: a business whose FIRST issue postdated the
+# scene date was excluded as `first_evidence_after_scene_date`, which is the absence of
+# earlier evidence and not a statement about the business. Thirty-eight of them, and the
+# re-read found Wm. H. Taylor's boot store advertising over a dateline of 8 July 1834 and
+# Wm. H. Kennicott saying he had practised dentistry in the town "for the past year".
+# Both were excluded from a town they demonstrably stood in.
+#
+# `announces_opening` is the field the ticket named, and the DATING is the whole of it,
+# because the two shapes an opening notice comes in point in opposite directions:
+#
+#   stated    the notice names a date the business WILL open — "will open a Branch of
+#             their House ... on the 14th inst.", "the first term will commence Monday
+#             August 17". If that date falls after the scene date, the paper is saying
+#             the house was not open on the scene date. THIS is what excludes.
+#   effected  the notice announces an opening already made — "has opened", "has taken a
+#             shop on Dearborn street". Its date is the LATEST the opening can have been,
+#             never the earliest, so it can never exclude: an advertisement dated 7 August
+#             is silent about 1 July. When the date falls on or before the scene date it is
+#             positive evidence the house was standing, which is what clears the
+#             backdating liberty in tools/compile_register.py.
+#   undated   the notice announces an opening and dates it nowhere. It carries NO `iso`,
+#             and the gate refuses one: a reading with no date behind it must not be given
+#             a number to make the arithmetic tidy.
+#
+# THE FIELD WAS ALREADY THERE AS A BARE `true`, on twenty claims, and nothing read it.
+# That is worse than absent: an author who sets it believes the register is listening. The
+# gate below now refuses the boolean outright, so the twenty had to be re-read into dated
+# readings before this could land — which is where the 8 July 1834 dateline came from.
+#
+# An `effected` announcement therefore carries the advertisement's OWN dateline and the
+# gate refuses any other number, so the reading cannot become a free-hand date. Every
+# announcement carries a `note` saying how its date was read ("the 14th inst." in an issue
+# of 5 August 1835 is 14 August 1835), and its `verbatim` must appear character for
+# character in the claim's `normalized` reading, which is itself tied to the
+# machine-checked quote. A dateless opening notice records no field: the paper announced
+# an opening and did not date it, and inventing a date is the one thing forbidden here.
+OPENING_DATINGS = ("stated", "effected", "undated")
 
 # THE DEPOSIT SPEAKS THREE RULED MARKER DIALECTS AND ONE PROSE ONE, and T-0257 could
 # only see two of them.
@@ -172,6 +252,59 @@ DASH_COLUMN_HEADING = re.compile(r"^\s*-{2,}\s*Column\s+(\d+)\s*-{2,}\s*$")
 RULED_PAGE_BANNER = re.compile(
     r"^=====\s*(?:\w+\s+)?PDF PAGE\s+(\d+)\s*/\s*ISSUE PAGE\s+(\d+)\s*=====\s*$")
 BARE_PAGE_BANNER = re.compile(r"^\s*(?:\w+\s+)?PDF PAGE\s+(\d+)\s*$")
+
+# AND A SIXTH SHAPE AND A SEVENTH, WHICH ARE THE FIRST HALF OF 1835 (T-0298). Six of the
+# eight Democrats between 1835-01-21 and 1835-06-24 resolved to ZERO columns before this,
+# so every claim citing them would have failed the gate with "the transcription carries no
+# ISSUE PAGE / COLUMN marker" and the reading pass could not have landed at all. Counted
+# on 2026-08-29 over the whole deposit, they are the LAST two: after these, every one of
+# the 89 artifacts in corpus.json resolves its columns except the 1833-11-26 alternate,
+# which is a prose reading transcription with no column segmentation to find.
+#
+# T-0298 recorded three of the six as "bare `=====` rules carrying no page or column at
+# all" and left open whether that was a transcription defect. IT IS NOT. The rules are
+# decoration around a banner, and each column carries its own rule naming the scan page:
+#
+#   1835-01-21, the 03-25 Extra, 05-20   [Source PDF page 9; newspaper page 1; column 1]
+#   1835-05-27, 06-04, 06-10             PRINTED PAGE 1 — SOURCE PDF PAGE 13
+#                                        --- SOURCE PDF PAGE 13, COLUMN 1 ---
+#
+# 46 bracket markers over the first three issues, and 72 dash rules under 12 banners over
+# the second three: 118 column markers that were invisible to a resolver already twice
+# corrected for exactly this. Nothing else in the corpus moves — the other 83 artifacts
+# resolve to the same columns before and after, asserted by re-running the census.
+#
+# The dash rule of the seventh dialect names its OWN scan page, so it is resolved through
+# the banner that states that page rather than through the banner most recently passed.
+# There is no ordering assumption here to be wrong about, which is the difference between
+# this dialect and the bare 1833 banner that has to be counted ordinally.
+#
+# ONE MARKER IN THE SIXTH DIALECT CARRIES NO COLUMN NUMBER, and it is read as column 1:
+# `[Source PDF page 8; Extra page 4; single-column subscription prospectus]`, the last
+# page of the 1835-03-25 Extra. The warrant is the marker's own word and the same file's
+# header line — "Extra pages 1–3 have 3 columns; page 4 is a single-column subscription
+# prospectus" — so the page has one column and it is the first. That page is Calhoun's
+# subscription list and naming people, so leaving it uncitable would have cost the read a
+# page rather than saved it a guess.
+BRACKET_COLUMN = re.compile(
+    r"^\s*\[\s*(?:\w+\s+)?PDF page\s+(\d+)\s*;\s*\w+ page\s+(\d+)\s*;\s*"
+    r"(?:column\s+(\d+)|single-column\b[^\]]*)\]\s*$", re.IGNORECASE)
+PRINTED_PAGE_BANNER = re.compile(
+    r"^\s*PRINTED PAGE\s+(\d+)\s*[\u2014\u2013-]\s*(?:\w+\s+)?PDF PAGE\s+(\d+)\s*$")
+SCAN_DASH_COLUMN = re.compile(
+    r"^\s*-{2,}\s*(?:\w+\s+)?PDF PAGE\s+(\d+)\s*,\s*COLUMN\s+(\d+)\s*-{2,}\s*$")
+
+
+# THE ONE ARTIFACT IN THE CORPUS THAT RESOLVES NO COLUMN AND IS NOT A RESOLVER GAP.
+# Measured over all 89 artifacts on 2026-08-29 (T-0325): every one of them resolves its
+# columns except this, and this one has no column structure to resolve. A reading pass
+# that needs 1833-11-26 cites the `primary`, which is what T-0308 did.
+UNSEGMENTED = {
+    ("chicago_democrat_1833_11_26", "alternate"):
+        "a prose reading transcription made from the page images, which segments nothing: "
+        "its pages are headed `SUPPLIED SCAN PAGE 1` and its columns described in words "
+        "('Left-side news columns'). There is no marker in it to read.",
+}
 
 
 def sha256(path):
@@ -240,25 +373,60 @@ def text_lines(recorded_path, deposit, repo):
     return target.read_text(encoding="utf-8").splitlines()
 
 
+def printed_page_index(lines):
+    """scan page -> issue page, from `PRINTED PAGE n — SOURCE PDF PAGE m` banners.
+
+    The seventh dialect's column rules name their own SCAN page, so a column is resolved
+    through the banner that states that page rather than through the banner most recently
+    passed. Both facts are lifted off their own lines and nothing is counted.
+    """
+    index = {}
+    for line in lines:
+        m = PRINTED_PAGE_BANNER.match(line)
+        if m:
+            index.setdefault(int(m.group(2)), int(m.group(1)))
+    return index
+
+
 def column_starts(lines):
     """Every column boundary in a transcription, in every dialect: [(line, page, col)].
 
-    In the two dialects that separate page from column the page is carried by the most
+    In the dialects that separate page from column the page is carried by the most
     recent page line, so a column before any page line is skipped rather than guessed
     at. A bare `SOURCE PDF PAGE n` banner names the scan page and not the issue page, so
-    it counts ordinally: the nth page banner of a transcription is issue page n.
+    it counts ordinally: the nth page banner of a transcription is issue page n. The
+    seventh dialect is the exception and needs no ordinal at all: its column rules state
+    the scan page themselves, so they are looked up in `printed_page_index`.
     """
     starts = []
     page = None
     banners = 0
+    printed = printed_page_index(lines)
     for n, line in enumerate(lines, 1):
         m = COLUMN_MARKER.match(line)
         if m:
             starts.append((n, int(m.group(1)), int(m.group(3))))
             continue
+        m = BRACKET_COLUMN.match(line)
+        if m:
+            # group 3 is absent on the Extra's single-column prospectus page, which the
+            # marker and its file's own header agree has one column: it is column 1.
+            starts.append((n, int(m.group(2)), int(m.group(3) or 1)))
+            continue
+        m = SCAN_DASH_COLUMN.match(line)
+        if m:
+            issue_page = printed.get(int(m.group(1)))
+            if issue_page is not None:
+                starts.append((n, issue_page, int(m.group(2))))
+            continue
         m = PAGE_HEADING.match(line)
         if m:
             page = int(m.group(1))
+            banners += 1
+            continue
+        m = PRINTED_PAGE_BANNER.match(line)
+        if m:
+            page = int(m.group(1))       # group 1 is the issue's page, group 2 the scan's
             banners += 1
             continue
         m = RULED_PAGE_BANNER.match(line)
@@ -416,9 +584,20 @@ def compile_gazetteer(files, identity, corpus, quiet=True):
                     "placement": biz.get("placement"),
                     "evidence": {"first_issue": issue_date, "last_issue": issue_date,
                                  "copy_dates": []},
-                    "contradicted_by": [], "mentions": [],
+                    "contradicted_by": [], "opening_announced": [], "mentions": [],
+                    "placement_readings": [],
                 })
                 b["mentions"].append(key)
+                # EVERY PRINTING'S OWN PLACEMENT, KEPT (T-0345). The dict above takes
+                # the placement of whichever claim mints the key, and until now every
+                # later printing's was thrown away — which is why a house whose printed
+                # anchor CHANGES could not be represented at all. Mason & Co.'s standing
+                # advertisement is set "nearly opposite Graves' Tavern" to 1834-07-16 and
+                # "opposite the Tremont House" from 1834-09-10 under the same copy date,
+                # and the gazetteer held only the first. Readings collapse on (class,
+                # anchor) and carry their own dates: this is what each printing SAID and
+                # when, not a judgement about it. The judgement is `anchor_changes`.
+                record_reading(b, biz.get("placement") or {}, issue_date, key)
                 b["evidence"]["first_issue"] = min(b["evidence"]["first_issue"], issue_date)
                 b["evidence"]["last_issue"] = max(b["evidence"]["last_issue"], issue_date)
                 for who in biz.get("proprietors", []):
@@ -436,6 +615,151 @@ def compile_gazetteer(files, identity, corpus, quiet=True):
                 if claim.get("contradicts"):
                     b["contradicted_by"].append(
                         {"claim": key, "kind": claim.get("kind"), "issue": issue_date})
+                # T-0356. The gazetteer says what was PRINTED, so every announcement a
+                # printing carries is kept; which of them the scene date obeys is the
+                # register's judgement and is made there.
+                op = claim.get("announces_opening")
+                if isinstance(op, dict):
+                    b["opening_announced"].append(
+                        {"claim": key, "issue": issue_date, "dating": op.get("dating"),
+                         "iso": op.get("iso"), "verbatim": op.get("verbatim"),
+                         "note": op.get("note")})
+
+    # THE PLACES, and they are DECLARED, exactly the way a merge is (T-0359). The table
+    # above is keyed on a name and knows nothing about what kind of thing a name is, so a
+    # signboard the papers name — "Haddock's Tavern", "the Eagle Hotel" — is minted as a
+    # person and then held to the identity policy for PEOPLE. That policy reads "Tavern"
+    # as the surname and "Haddock's" against "Maddock's" as forename initials, and
+    # refuses the merge under the families rule. The rule is not wrong; it is being
+    # applied to something that is not a person. So a name leaves the persons table only
+    # where `identity.json` declares it a place and says why, and the families rule for
+    # actual people is untouched by every line below.
+    #
+    # Four guards, and each one is a way this declaration could quietly delete a person:
+    #   1. a place needs a written reason that names it VERBATIM, so the judgement can be
+    #      read back without the code — the merges' rule, for the same reason;
+    #   2. the name has to be one some claim actually carries, or nobody can check it;
+    #   3. a name known ONLY from the post office's lists of uncalled-for letters is
+    #      somebody a correspondent wrote to. "Chester House" and "Rodney House" are
+    #      exactly that shape — a surname House with a forename before it — and this
+    #      guard is what stops a word-shaped rule turning two of the town's people into
+    #      buildings. A genuine place will have a mention outside the lists;
+    #   4. a name carrying an OCCUPATION is being read as a person by the very claim that
+    #      mints it, and the two readings cannot both stand.
+    places = {}
+    for rule in identity.get("places", []):
+        name = rule.get("name")
+        why = (rule.get("why") or "").strip()
+        label = "identity.json place %r" % name
+        if not name:
+            problems.append("identity.json place: a declaration needs a `name`")
+            continue
+        if not why:
+            problems.append("%s: no `why` — an undeclared reason is a compile error, "
+                            "because a name moved out of the persons table on nobody's "
+                            "argument is a person silently deleted" % label)
+            continue
+        if name not in why:
+            problems.append("%s: `why` must name the place VERBATIM, so the judgement "
+                            "can be read back without the code" % label)
+            continue
+        pk = person_key(name)
+        if pk not in persons:
+            problems.append("%s: not a name any claim carries — a place declaration for "
+                            "a name that is not in the corpus is a rule nobody can check"
+                            % label)
+            continue
+        rec = persons[pk]
+        if rec.get("letter_list_only"):
+            problems.append("%s: every mention of this name is a post-office letter "
+                            "list, and a letter list is a list of PEOPLE somebody wrote "
+                            "to — declaring it a place deletes a resident. Bring a "
+                            "mention from outside the lists first" % label)
+            continue
+        if rec.get("occupations"):
+            problems.append("%s: this name carries an occupation (%s), so a claim is "
+                            "reading it as a person — the two readings cannot both stand"
+                            % (label, ", ".join(rec["occupations"])))
+            continue
+        rec = persons.pop(pk)
+        rec["id"] = "place_" + pk
+        rec["kind"] = rule.get("kind")
+        rec["why"] = why
+        rec.pop("letter_list_only", None)
+        rec.pop("occupations", None)
+        places[pk] = rec
+
+    # AND THE REFUSALS, which are the same record kept the other way up. A name that
+    # LOOKS like a building and is a person is the dangerous case here — the refusal is
+    # what stops the next reader declaring it — so it is written down beside the
+    # declarations and held to the same three shapes: the reason names the name verbatim,
+    # the name is one some claim carries, and the file cannot both refuse and declare it.
+    for rule in identity.get("refused_places", []):
+        name = rule.get("name")
+        why = (rule.get("refused_because") or "").strip()
+        label = "identity.json refused_place %r" % name
+        if not name:
+            problems.append("identity.json refused_place: a refusal needs a `name`")
+            continue
+        if not why:
+            problems.append("%s: no `refused_because` — a refusal nobody argued is a "
+                            "refusal the next reader will overturn by accident" % label)
+            continue
+        if name not in why:
+            problems.append("%s: `refused_because` must name the name VERBATIM, so the "
+                            "judgement can be read back without the code" % label)
+            continue
+        pk = person_key(name)
+        if pk in places:
+            problems.append("%s: this name is DECLARED a place and refused as one in the "
+                            "same file" % label)
+            continue
+        if pk not in persons:
+            problems.append("%s: not a name any claim carries as a person — a refusal "
+                            "about a name that is not in the persons table is a rule "
+                            "nobody can check" % label)
+            continue
+
+    # THE PLACE MERGES. Two spellings of one signboard, and the discriminator is neither
+    # the person one nor the firm one: a building has no forename initial to be a family
+    # by and no partners to be a house by. What holds instead is that BOTH sides must
+    # already be declared places above — so the loosening reaches exactly the names an
+    # author has argued in writing are not people, and can never reach a person.
+    for rule in identity.get("place_merges", []):
+        into, frm = rule.get("into"), rule.get("from")
+        why = (rule.get("merge_rule") or "").strip()
+        label = "identity.json place_merge %r <- %r" % (into, frm)
+        if not into or not frm:
+            problems.append("%s: a merge needs both `into` and `from`" % label)
+            continue
+        if not why:
+            problems.append("%s: no merge_rule — an unexplained merge is a compile error, "
+                            "because a wrong one is invisible afterwards" % label)
+            continue
+        if into not in why or frm not in why:
+            problems.append("%s: merge_rule must name BOTH spellings verbatim, so the "
+                            "judgement can be read back without the code" % label)
+            continue
+        a, b = person_key(into), person_key(frm)
+        if a == b:
+            problems.append("%s: a place cannot be merged into itself" % label)
+            continue
+        if a not in places or b not in places:
+            missing = [n for n, k in ((into, a), (frm, b)) if k not in places]
+            problems.append("%s: %s is not a DECLARED place — a place merge is not held "
+                            "to the families rule, so it may only join two names "
+                            "`places` has already argued are not people"
+                            % (label, ", ".join(repr(m) for m in missing)))
+            continue
+        src = places.pop(b)
+        dst = places[a]
+        dst["variants"].extend(src["variants"])
+        dst["mentions"].extend(src["mentions"])
+        dst["first_seen"] = min(dst["first_seen"], src["first_seen"])
+        dst["last_seen"] = max(dst["last_seen"], src["last_seen"])
+        dst["associated_places"] = sorted(
+            set(dst["associated_places"]) | set(src["associated_places"]))
+        dst.setdefault("merged", []).append({"from": frm, "merge_rule": why})
 
     # THE MERGES, and every one of them has to say why. `identity.json` is the only
     # place two differently-spelled names may become one person, and the rules below
@@ -479,6 +803,451 @@ def compile_gazetteer(files, identity, corpus, quiet=True):
             set(dst["associated_places"]) | set(src["associated_places"]))
         dst.setdefault("merged", []).append({"from": frm, "merge_rule": why})
 
+    # THE FIRM MERGES (T-0304), and they are the person merges' equivalent rather than
+    # their copy. A firm is not a person and the discriminator differs: the letter lists
+    # made a forename INITIAL decisive for people, but a '& Co.' style routinely elides
+    # or misprints the forename it is trading under — 'Jno. L. Wilson & Co.' is printed
+    # 'L. Wilson & Co.' in one paper and 'Jno. S. Wilson & Co' in another — so the same
+    # rule applied to firms would refuse every merge a firm actually needs. What survives
+    # unchanged is the SURNAME: a partnership's identity is who its partners are, so the
+    # guard here is that the two styles must carry the same set of partner surnames, and
+    # that guard has no escape, exactly as the person one has none. The second guard is
+    # not about the name at all — two styles the papers put in different STREETS are not
+    # one firm without a removal notice, and a removal notice is a claim, not a merge.
+    # THE SIGN-NAME DECLARATIONS (T-0340), read before the merges because the guard
+    # below runs on them. Each one splits a style verbatim into the partners it names
+    # and the shop-sign it carries, and both halves have to put the style back together
+    # exactly, so a declaration can neither invent a partner nor drop one. A style
+    # declared to name NO partner at all must also be one no claim ever signed with a
+    # proprietor: if a printing put a person's name to the house, the house names its
+    # partners and the ordinary guard is the one that applies to it.
+    signs, declared = {}, sign_name_index(identity)
+    for decl in identity.get("firm_sign_names", []):
+        style = decl.get("style")
+        partners, sign = (decl.get("partners") or ""), (decl.get("sign") or "")
+        label = "identity.json firm_sign_name %r" % style
+        if not style or not sign:
+            problems.append("%s: a sign-name declaration needs both `style` and `sign`"
+                            % label)
+            continue
+        if not (decl.get("note") or "").strip():
+            problems.append("%s: no note — an undeclared reason is a judgement nobody "
+                            "can check afterwards" % label)
+            continue
+        rebuilt = re.match(r"^%s[,\s]*%s$" % (re.escape(partners), re.escape(sign)), style)
+        if not rebuilt:
+            problems.append("%s: `partners` + `sign` (%r + %r) do not put the style back "
+                            "together verbatim — a split that loses or adds a word is a "
+                            "hand-edit of the name" % (label, partners, sign))
+            continue
+        if slug(style) not in businesses:
+            problems.append("%s: not a firm any claim carries — a sign-name declaration "
+                            "for a business that is not in the corpus is a declaration "
+                            "nobody can check" % label)
+            continue
+        if not partners and businesses[slug(style)]["proprietors"]:
+            problems.append("%s: declared to name no partner, but the claims sign it with "
+                            "%s — a printing that put a person to the house is a printing "
+                            "that names its partners"
+                            % (label, ", ".join(repr(x) for x in
+                                                businesses[slug(style)]["proprietors"])))
+            continue
+        signs[style] = declared[style]
+
+    for rule in identity.get("firm_merges", []):
+        into, frm = rule.get("into"), rule.get("from")
+        why = (rule.get("merge_rule") or "").strip()
+        label = "identity.json firm_merge %r <- %r" % (into, frm)
+        if not into or not frm:
+            problems.append("%s: a merge needs both `into` and `from`" % label)
+            continue
+        if not why:
+            problems.append("%s: no merge_rule — an unexplained merge is a compile error, "
+                            "because a wrong one is invisible afterwards" % label)
+            continue
+        if into not in why or frm not in why:
+            problems.append("%s: merge_rule must name BOTH spellings verbatim, so the "
+                            "judgement can be read back without the code" % label)
+            continue
+        a, b = slug(into), slug(frm)
+        if a == b:
+            problems.append("%s: a firm cannot be merged into itself" % label)
+            continue
+        if a not in businesses or b not in businesses:
+            missing = [n for n, k in ((into, a), (frm, b)) if k not in businesses]
+            problems.append("%s: %s is not a firm any claim carries — a merge rule for a "
+                            "business that is not in the corpus is a rule nobody can check"
+                            % (label, ", ".join(repr(m) for m in missing)))
+            continue
+        # THE PARTNER GUARD, and T-0340 is the one loosening it has ever had. Two styles
+        # that each NAME partners must name the same ones — a partnership is its partners
+        # and a changed one is a different house, which is what keeps 'Clark, Filer & Co.'
+        # and 'A. Filer & Co.' apart. Where one of them names NONE, there is nothing to
+        # compare and an empty set is not a contradiction: it is a printing that lost the
+        # signature, which is the commonest thing a segmenter does to an advertisement.
+        # Such a merge rests entirely on its stated rule, so the escape is not free — the
+        # style has to be DECLARED a sign-name above, and that declaration is refused for
+        # any house a claim ever signed with a proprietor.
+        into_names, frm_names = partner_surnames(into, signs), partner_surnames(frm, signs)
+        if into_names and frm_names and into_names != frm_names:
+            problems.append("%s: the partner surnames differ (%s against %s) — this "
+                            "project never merges those, with or without a rule, because "
+                            "a partnership IS its partners and a changed one is a "
+                            "different house"
+                            % (label, sorted(into_names) or "none",
+                               sorted(frm_names) or "none"))
+            continue
+        dst, src = businesses[a], businesses[b]
+        if dst.get("street") and src.get("street") and \
+                slug(dst["street"]) != slug(src["street"]):
+            problems.append("%s: the papers put these in different streets (%r against "
+                            "%r) — a firm that moved is documented by a removal notice, "
+                            "which is a claim, not a merge"
+                            % (label, dst["street"], src["street"]))
+            continue
+        businesses.pop(b)
+        dst["mentions"].extend(src["mentions"])
+        for who in src["proprietors"]:
+            if who not in dst["proprietors"]:
+                dst["proprietors"].append(who)
+        for good in src["goods"]:
+            if good not in dst["goods"]:
+                dst["goods"].append(good)
+        dst["contradicted_by"].extend(src["contradicted_by"])
+        dst["opening_announced"].extend(src["opening_announced"])
+        for reading in src["placement_readings"]:
+            absorb_reading(dst, reading)
+        for cd in src["evidence"]["copy_dates"]:
+            if cd not in dst["evidence"]["copy_dates"]:
+                dst["evidence"]["copy_dates"].append(cd)
+        dst["evidence"]["first_issue"] = min(dst["evidence"]["first_issue"],
+                                             src["evidence"]["first_issue"])
+        dst["evidence"]["last_issue"] = max(dst["evidence"]["last_issue"],
+                                            src["evidence"]["last_issue"])
+        # NOTHING IS INVENTED AND NOTHING IS THROWN AWAY. Where one side is silent the
+        # other's reading stands; where both speak, the merge keeps the one that can put
+        # more of the firm on the ground, and every trade either side printed is kept in
+        # `trade_variants` so the merge cannot quietly narrow what the papers said.
+        dst["street"] = dst.get("street") or src.get("street")
+        if placement_rank(src.get("placement")) > placement_rank(dst.get("placement")):
+            dst["placement"] = src.get("placement")
+        trades = {t for t in (dst.get("trade"), src.get("trade")) if t}
+        trades |= set(dst.get("trade_variants") or []) | set(src.get("trade_variants") or [])
+        dst["trade"] = dst.get("trade") or src.get("trade")
+        if len(trades) > 1:
+            dst["trade_variants"] = sorted(trades)
+        dst.setdefault("merged", []).append({"from": frm, "merge_rule": why})
+
+    # THE DATED ANCHOR CHANGE (T-0345). A firm merge unions two STYLES of one house.
+    # This is the other thing two printings of one advertisement can differ about, and
+    # it is not a spelling: Mason & Co.'s blacksmith notice runs under one copy date of
+    # 26 November 1833, reads "on Main-street, nearly opposite Graves' Tavern" to
+    # 1834-07-16, and from 1834-09-10 reads "on Main-street, opposite the Tremont House"
+    # with the rest of the copy word for word unchanged. Nothing printed says WHICH
+    # changed — the shop, or the name of the house across the street — and no
+    # declaration here may decide it.
+    #
+    # What is DECLARED is only that two of a house's readings name two different
+    # landmarks rather than two spellings of one. Everything else is COMPUTED from the
+    # readings the claims carry: the weeks each anchor was printed between, the order
+    # they were printed in, the gap the change is bracketed by, and which anchor is live
+    # at the scene date. Seven guards, and each one is a way this could quietly assert
+    # something the corpus does not say:
+    #   1. the house has to be one the corpus compiles, or nobody can check the rule;
+    #   2. two anchors at least — one anchor is not a change;
+    #   3. every reading the declaration names has to be a string some printing of THIS
+    #      house actually carries, matched verbatim against its own readings;
+    #   4. EVERY reading of the house has to be claimed by exactly one anchor. A
+    #      printing left out of the history is a printing silently dropped, which is the
+    #      defect this whole mechanism exists to end;
+    #   5. an anchor holding more than one reading is a GROUPING, which is a judgement,
+    #      so it needs its own `why` naming the anchor verbatim;
+    #   6. the windows may not OVERLAP. Two anchors printed in the same weeks are two
+    #      standing placements and this ticket's actual complaint; a change is a change
+    #      only where one anchor stops before the next starts;
+    #   7. `cannot_say` has to be written down. A dated anchor change that says nothing
+    #      about what the corpus leaves open has decided it in silence.
+    scene_iso = SCENE_DATE.isoformat()
+    for rule in identity.get("anchor_changes", []):
+        bid = rule.get("business")
+        groups = rule.get("anchors") or []
+        why = (rule.get("rule") or "").strip()
+        cannot = (rule.get("cannot_say") or "").strip()
+        label = "identity.json anchor_change %r" % bid
+        bkey = bid[len("business_"):] if (bid or "").startswith("business_") else bid
+        if not bkey or bkey not in businesses:
+            problems.append("%s: no business of that id is compiled — an anchor rule for "
+                            "a house that is not in the corpus is a rule nobody can check"
+                            % label)
+            continue
+        if len(groups) < 2:
+            problems.append("%s: a change needs at least two anchors — one anchor is not "
+                            "a change" % label)
+            continue
+        if not why:
+            problems.append("%s: no rule — an unexplained anchor change is a compile "
+                            "error, because a wrong reading of two printings is "
+                            "invisible afterwards" % label)
+            continue
+        if not cannot:
+            problems.append("%s: no `cannot_say` — a dated anchor change that does not "
+                            "state what the corpus leaves open has decided it in silence"
+                            % label)
+            continue
+        names = [g.get("name") for g in groups]
+        if not all(names):
+            problems.append("%s: every anchor needs a `name`" % label)
+            continue
+        unnamed = [n for n in names if n not in why]
+        if unnamed:
+            problems.append("%s: the rule must name %s verbatim, so the judgement can be "
+                            "read back without the code"
+                            % (label, ", ".join(repr(n) for n in unnamed)))
+            continue
+        biz = businesses[bkey]
+        held = {r["anchor"]: r for r in biz["placement_readings"]}
+        claimed, windows, bad = [], [], False
+        for g in groups:
+            readings = g.get("readings") or []
+            if not readings:
+                problems.append("%s: anchor %r claims no reading — an anchor nothing was "
+                                "printed under places nothing" % (label, g.get("name")))
+                bad = True
+                break
+            unknown = [r for r in readings if r not in held]
+            if unknown:
+                problems.append(
+                    "%s: %s is not an anchor any printing of this house carries (it "
+                    "reads %s) — an anchor rule may only order readings the corpus "
+                    "already made"
+                    % (label, ", ".join(repr(u) for u in unknown),
+                       ", ".join(repr(a) for a in sorted(held, key=lambda x: x or ""))))
+                bad = True
+                break
+            if len(readings) > 1 and g.get("name") not in (g.get("why") or ""):
+                problems.append("%s: anchor %r groups %d readings and its `why` does not "
+                                "name it verbatim — calling two printed anchors one "
+                                "landmark is a judgement and it has to be written down"
+                                % (label, g.get("name"), len(readings)))
+                bad = True
+                break
+            claimed.extend(readings)
+            rs = [held[r] for r in readings]
+            windows.append({
+                "name": g.get("name"),
+                "why": (g.get("why") or "").strip() or None,
+                "first_issue": min(r["first_issue"] for r in rs),
+                "last_issue": max(r["last_issue"] for r in rs),
+                "readings": sorted(
+                    ({"anchor": r["anchor"], "class": r["class"],
+                      "first_issue": r["first_issue"], "last_issue": r["last_issue"],
+                      "claims": sorted(r["claims"]), "placement": r["placement"]}
+                     for r in rs),
+                    key=lambda r: (r["first_issue"], r["anchor"] or "")),
+                "claims": sorted({c for r in rs for c in r["claims"]}),
+                "placement": min(rs, key=lambda r: (r["first_issue"],
+                                                    min(r["claims"])))["placement"],
+            })
+        if bad:
+            continue
+        if len(set(claimed)) != len(claimed):
+            problems.append("%s: a reading is claimed by two anchors — one printing "
+                            "names one landmark" % label)
+            continue
+        left = [a for a in held if a not in set(claimed)]
+        if left:
+            problems.append("%s: %s is printed for this house and no anchor claims it — "
+                            "a reading left out of the history is a printing silently "
+                            "dropped, which is what this mechanism exists to end"
+                            % (label, ", ".join(repr(a) for a in sorted(left,
+                                                                       key=lambda x: x or ""))))
+            continue
+        windows.sort(key=lambda w: (w["first_issue"], w["last_issue"], w["name"]))
+        overlap = ["%r runs to %s and %r starts %s"
+                   % (a["name"], a["last_issue"], b2["name"], b2["first_issue"])
+                   for a, b2 in zip(windows, windows[1:])
+                   if b2["first_issue"] <= a["last_issue"]]
+        if overlap:
+            problems.append("%s: %s — these anchors were printed in overlapping weeks, "
+                            "which is two standing placements and not a change. A change "
+                            "is a change only where one anchor stops before the next "
+                            "starts." % (label, "; ".join(overlap)))
+            continue
+        live = windows[0]
+        for w in windows:
+            if w["first_issue"] <= scene_iso:
+                live = w
+        biz["placement"] = live["placement"]
+        biz["anchor_change"] = {
+            "rule": why,
+            "cannot_say": cannot,
+            "live_anchor": live["name"],
+            "live_reason": "The last of these anchors first printed on or before the "
+                           "scene date %s; this one was first printed %s."
+                           % (scene_iso, live["first_issue"]),
+            "changes": [{"from": a["name"], "to": b2["name"],
+                         "after": a["last_issue"], "before": b2["first_issue"]}
+                        for a, b2 in zip(windows, windows[1:])],
+            "history": [{"anchor": w["name"], "why": w["why"],
+                         "first_issue": w["first_issue"], "last_issue": w["last_issue"],
+                         "readings": w["readings"], "claims": w["claims"],
+                         "live_at_scene_date": w is live,
+                         "placement": w["placement"]}
+                        for w in windows],
+        }
+    # …AND THE FIRMS' REFUSAL (T-0399), which is the other half of the same judgement
+    # and had nowhere to live until now. `firm_surnames()` groups the register on the
+    # partner surname alone, so it puts together houses that are not one house — the two
+    # Montgomerys, a namesake, an anchor mistaken for a partner — and a sweep that
+    # merged on the name would have merged them. Before this, the only record of such a
+    # judgement was the ABSENCE of a merge rule, which reads exactly like a group nobody
+    # has looked at yet; the next sweep finds the group again and has to do the work
+    # again. So a refusal is declared as explicitly as a merge, and held to the same
+    # three disciplines: it names both spellings verbatim, it names the printings it
+    # rests on, and it cannot outlive its pair — a refusal whose two styles a later
+    # merge has already collapsed is a judgement nobody can check, and is an error.
+    REFUSAL_KINDS = {
+        # the papers show two different houses under one surname
+        "two_houses",
+        # one name, and no printing puts the two styles under one roof — the honest
+        # answer is "not shown to be one", which is not the same as "shown to be two"
+        "not_joined",
+        # one house, and the papers put the two styles on different ground: a removal
+        # or a succession, which is a claim and not a merge
+        "different_ground",
+    }
+    merged_pairs = {frozenset((slug(r.get("into") or ""), slug(r.get("from") or "")))
+                    for r in identity.get("firm_merges", [])}
+    for rule in identity.get("refused_firm_merges", []):
+        into, frm = rule.get("into"), rule.get("from")
+        why = (rule.get("refused_because") or "").strip()
+        kind = rule.get("kind")
+        witnesses = rule.get("witnesses") or []
+        label = "identity.json refused_firm_merge %r <- %r" % (into, frm)
+        if not into or not frm:
+            problems.append("%s: a refusal needs both `into` and `from`" % label)
+            continue
+        if not why:
+            problems.append("%s: no refused_because — an unexplained refusal is worth no "
+                            "more than no refusal at all, because the next sweep cannot "
+                            "tell it from a group nobody has judged" % label)
+            continue
+        if into not in why or frm not in why:
+            problems.append("%s: refused_because must name BOTH spellings verbatim, so "
+                            "the judgement can be read back without the code" % label)
+            continue
+        if kind not in REFUSAL_KINDS:
+            problems.append("%s: `kind` must be one of %s — the shape of a refusal is "
+                            "part of what it says, and 'not shown to be one' is not the "
+                            "same judgement as 'shown to be two'"
+                            % (label, ", ".join(sorted(REFUSAL_KINDS))))
+            continue
+        if not witnesses:
+            problems.append("%s: no `witnesses` — a refusal rests on printings exactly as "
+                            "a merge does, and one that names none cannot be checked"
+                            % label)
+            continue
+        a, b = slug(into), slug(frm)
+        if a == b:
+            problems.append("%s: a firm cannot be refused against itself" % label)
+            continue
+        if frozenset((a, b)) in merged_pairs:
+            problems.append("%s: this pair is also declared in `firm_merges` — the file "
+                            "cannot both join and hold apart the same two styles" % label)
+            continue
+        missing = [n for n, k in ((into, a), (frm, b)) if k not in businesses]
+        if missing:
+            problems.append("%s: %s is not a firm the compiled register carries — a "
+                            "refusal that has outlived its pair is a judgement nobody can "
+                            "check, and it will not be left to rot here"
+                            % (label, ", ".join(repr(m) for m in missing)))
+            continue
+        for key, name in ((a, into), (b, frm)):
+            businesses[key].setdefault("refused_merges", []).append(
+                {"with": frm if key == a else into, "kind": kind,
+                 "witnesses": list(witnesses), "refused_because": why})
+
+    # THE PROPRIETORS' HALF (T-0337). Applied after the firm merges, because a firm
+    # merge is what unions two houses' proprietor lists in the first place, and a pair
+    # that needs adjudicating can be created by one.
+    for rule in identity.get("proprietor_merges", []):
+        bid, into, frm = rule.get("business"), rule.get("into"), rule.get("from")
+        why = (rule.get("merge_rule") or "").strip()
+        label = "identity.json proprietor_merge %r: %r <- %r" % (bid, into, frm)
+        if not bid or not into or not frm:
+            problems.append("%s: a proprietor merge needs `business`, `into` and `from`"
+                            % label)
+            continue
+        if not why:
+            problems.append("%s: no merge_rule — an unexplained merge is a compile error, "
+                            "because a wrong one is invisible afterwards" % label)
+            continue
+        if into not in why or frm not in why:
+            problems.append("%s: merge_rule must name BOTH spellings verbatim, so the "
+                            "judgement can be read back without the code" % label)
+            continue
+        biz = businesses.get(bid[len("business_"):] if bid.startswith("business_") else bid)
+        if biz is None:
+            problems.append("%s: no business of that id is compiled — a proprietor rule "
+                            "for a house that is not in the corpus is a rule nobody can "
+                            "check" % label)
+            continue
+        missing = [n for n in (into, frm) if n not in (biz.get("proprietors") or [])]
+        if missing:
+            problems.append("%s: %s is not a proprietor this house carries — the rule has "
+                            "gone stale, or it names a spelling no claim reads"
+                            % (label, ", ".join(repr(m) for m in missing)))
+            continue
+        if surname(into) != surname(frm):
+            problems.append("%s: the surnames differ (%r against %r) — a proprietor merge "
+                            "may join two readings of one name and never two names"
+                            % (label, surname(into), surname(frm)))
+            continue
+        biz["proprietors"] = [p for p in biz["proprietors"] if p != frm]
+        biz.setdefault("proprietors_merged", []).append({"into": into, "from": frm,
+                                                         "merge_rule": why})
+
+    # …and the refusal. Every same-surname pair left standing in one house's proprietors
+    # is either two people or one read twice, and the gate will not guess which.
+    declared = {}
+    for rule in identity.get("proprietor_distinctions", []):
+        bid = rule.get("business")
+        names = rule.get("names") or []
+        label = "identity.json proprietor_distinction %r %s" % (bid, names)
+        if not bid or len(names) != 2 or not all(names):
+            problems.append("%s: a distinction needs a `business` and exactly two `names`"
+                            % label)
+            continue
+        if not (rule.get("rule") or "").strip():
+            problems.append("%s: no rule — declaring two men without saying how they are "
+                            "told apart is the assertion this gate exists to refuse"
+                            % label)
+            continue
+        key = bid[len("business_"):] if bid.startswith("business_") else bid
+        if key not in businesses:
+            problems.append("%s: no business of that id is compiled" % label)
+            continue
+        declared.setdefault(key, set()).add(frozenset(names))
+
+    for key, biz in businesses.items():
+        want = {frozenset(pair) for pair in proprietor_pairs(biz)}
+        have = declared.get(key, set())
+        for pair in sorted(want - have, key=lambda s: sorted(s)):
+            a, b = sorted(pair)
+            problems.append(
+                "%s: %r and %r are one surname with different forenames, and nothing "
+                "declares which they are. One house's proprietors are read printing by "
+                "printing, so this is either two men or one man read twice — declare it "
+                "in identity.json: `proprietor_merges` to join them, or "
+                "`proprietor_distinctions` to hold them apart, with the reasoning."
+                % (biz["id"], a, b))
+        for pair in sorted(have - want, key=lambda s: sorted(s)):
+            problems.append(
+                "%s: the distinction declared for %s no longer answers anything — those "
+                "two spellings are not both proprietors of this house any more. A "
+                "declaration that has outlived its pair is a judgement nobody can check."
+                % (biz["id"], sorted(pair)))
+
     for b in businesses.values():
         # Ruling 3, computed and never asserted: a documented business stands in the
         # 1835 town unless a claim contradicts it, and one whose last issue predates
@@ -488,12 +1257,21 @@ def compile_gazetteer(files, identity, corpus, quiet=True):
         b["survival_liberty_required"] = b["built_at_scene_date"] and last.year < SCENE_DATE.year
         b["goods"].sort()
         b["mentions"].sort()
+        b["opening_announced"].sort(key=lambda o: (o["iso"] or "", o["claim"]))
         b["evidence"]["copy_dates"].sort()
+        for r in b["placement_readings"]:
+            r["claims"].sort()
+        b["placement_readings"].sort(
+            key=lambda r: (r["first_issue"], r["anchor"] or "", r["class"] or ""))
     for p in persons.values():
         p["mentions"].sort()
         p["variants"].sort(key=lambda v: (v["claim"], v["as_printed"] or ""))
         p["occupations"].sort()
         p["associated_places"].sort()
+    for pl in places.values():
+        pl["mentions"].sort()
+        pl["variants"].sort(key=lambda v: (v["claim"], v["as_printed"] or ""))
+        pl["associated_places"].sort()
 
     doc = {
         "schema": SCHEMA_VERSION,
@@ -504,29 +1282,277 @@ def compile_gazetteer(files, identity, corpus, quiet=True):
             for p in sorted(files, key=lambda p: Path(p).name)
         ],
         "counts": {"claims": claim_count, "persons": len(persons),
-                   "businesses": len(businesses)},
+                   "places": len(places), "businesses": len(businesses)},
         "persons": sorted(persons.values(), key=lambda p: p["id"]),
+        "places": sorted(places.values(), key=lambda p: p["id"]),
         "businesses": sorted(businesses.values(), key=lambda b: b["id"]),
     }
     if not quiet:
-        print("  ok    %d claim(s) → %d person(s), %d business(es)"
-              % (claim_count, len(persons), len(businesses)))
+        print("  ok    %d claim(s) → %d person(s), %d place(s), %d business(es)"
+              % (claim_count, len(persons), len(places), len(businesses)))
     return doc, problems
 
 
 def surname(name):
-    """'Work, James Houston' → 'work'; 'Peter Cohen' → 'cohen'."""
-    name = (name or "").strip()
+    """'Work, James Houston' → 'work'; 'Peter Cohen' → 'cohen'.
+
+    Markup off first, for the same reason `initials` takes it off (T-0299) and for one
+    more: the two halves of the refusal rule have to answer about the SAME name. While
+    this slugged the markup and `initials` parsed it, `Charles Work[s]` and `Charles
+    Works` were two surnames — so the rule did not fire — and `A. Beegle` and `[?]. Beegle`
+    were one, so it did. Whether the policy protected a pair came down to which side of
+    the name a bracket happened to fall on.
+    """
+    name = unmarked(name).strip()
     if "," in name:
         return slug(name.split(",", 1)[0])
     return slug(name.split()[-1]) if name.split() else ""
 
 
+UNCERTAIN_PART = re.compile(r"\[uncertain:\s*(.*?)\]")
+
+# An initial the printing does not read. It is a VALUE in the initials tuple, never a
+# letter, so it is equal to itself and to nothing else — which is exactly the policy:
+# an unread initial is not the same as a read one. `UNREAD_MARK` is its in-string form,
+# carried through the bracket strip so the marker survives to the tokenizer.
+UNREAD_MARK = "\x00"
+UNREAD = "?"
+
+
+def unmarked(name):
+    """A normalized reading with the transcriber's markup taken off.
+
+    `normalized` carries three marks and they are all ABOUT the reading, not part of
+    the name: `[x]` around a letter the transcriber supplied for a recognition-class
+    error, `[?]` where no letter could be supplied, and an `[uncertain: …]` wrapper
+    where the printed form supports no reading at all. They belong in the stored
+    reading — that is the honesty — and they do not belong in the name parse below,
+    which is why this exists rather than being folded into `slug`.
+
+    The `[uncertain: …]` wrapper is stripped wherever it stands, not only around the
+    whole name: `Dani[e]l O. [uncertain: Robian]` wraps the surname alone, and leaving
+    the word `uncertain` in the string made it a third forename.
+    """
+    name = UNCERTAIN_PART.sub(r"\1", name or "")
+    name = name.replace("[?]", "")
+    return re.sub(r"\[([^\]]*)\]", r"\1", name)
+
+
 def initials(name):
-    """The forename initials, in order — the half of a name the letter lists turn on."""
-    name = (name or "").strip()
+    """The forename initials, in order — the half of a name the letter lists turn on.
+
+    THE MARKUP IS NOT A WORD BOUNDARY, AND NEITHER IS A LETTER PYTHON HAS NOT HEARD OF
+    (T-0299). This split on `[A-Za-z]+`, so `A[n]drew W. Borland` parsed as the four
+    forenames A / n / drew / W and `[uncertain: Abey Blankinship]` parsed as `uncertain`
+    and `Abey`; against the plain `Andrew W. Borland` of another printing that reads as
+    two different people under one surname, and the identity policy then refuses the
+    merge that would join them. Measured on the three printings of the 1 July 1834
+    letter list: 120 of 206 correct merges were refused this way, none of them for a
+    reason the policy is about. The same defect ate `Benjamın Swena`, whose OCR left a
+    dotless ı that `[A-Za-z]` treats as a space.
+
+    The policy itself is untouched and is the reason this is a parser fix rather than a
+    loosening: `Cohen, P.` and `Cohen, J.` still carry different initials and still
+    never merge, and so do `Lyman R. Lovell` and `Lyman B. Lovell`, `[H]enry Swartwout
+    jr.` and `J[n]o. Swartwout jr.` — a bracketed letter is READ, so it counts.
+
+    AN UNREAD `[?]` IS A POSITION, NOT AN ABSENCE (T-0397). `unmarked` DELETES the
+    marker, which is right for a surname and wrong here, because deleting it hands the
+    initial to whatever letter stood behind it. Every one of the seventeen `[?]`
+    refusals on the 1 July 1834 list parsed wrongly, in three shapes:
+
+      - a letter INVENTED from the rest of the forename — `[?]rah Fowler` read as `R.`,
+        `[?]nn M. Gooding` as `N. M.`, `[?]saac Scarrett` as `S.`;
+      - a POSITION collapsed — `[?]. M. Fish` read as `M.` in FIRST position, against
+        `E. M. Fish`'s `E. M.`, so a middle initial was compared with a forename one;
+      - an absence — `[?]. Beegle` read as no initial at all, which is the shape the
+        ticket's own diagnosis assumed all seventeen had.
+
+    Those readings then went into `identity.json` as the STATED reason for a refusal —
+    "A. against R." — so a committed record asserted a letter no printing ever read.
+    That is a provenance defect and it is what this repairs. `UNREAD` occupies the slot
+    the marker stood in and equals no read letter, so the refusals all stand (the policy
+    does not move: 177 merges and 29 refusals before and after) and both answers to the
+    OPEN policy question are now expressible, because the parse can finally SAY which
+    side is unread instead of guessing a letter for it.
+    """
+    name = UNCERTAIN_PART.sub(r"\1", name or "")
+    # The marker becomes a sentinel BEFORE the generic bracket strip, so `[?]` is not
+    # mistaken for a supplied letter, and it stays welded to the word it opens: the
+    # first character of `[?]rah` is unread, and `[?]rah` is still ONE forename.
+    name = re.sub(r"\[([^\]]*)\]", r"\1", name.replace("[?]", UNREAD_MARK)).strip()
     fore = name.split(",", 1)[1] if "," in name else " ".join(name.split()[:-1])
-    return tuple(w[0].lower() for w in re.findall(r"[A-Za-z]+", fore))
+    words = re.findall(r"(?:%s|[^\W\d_])+" % re.escape(UNREAD_MARK), fore, re.UNICODE)
+    return tuple(UNREAD if w[0] == UNREAD_MARK else w[0].lower() for w in words)
+
+
+# --------------------------------------------------------------------------
+# the firm's half of the identity policy (T-0304)
+
+# What a partnership style says AFTER the partners: '& Co.', '& Son', 'Brothers'.
+# These are not surnames and a firm's identity does not turn on them.
+FIRM_SUFFIXES = {"co", "company", "son", "sons", "bro", "bros", "brother", "brothers"}
+
+
+def firm_style(name):
+    """A firm name with any trailing trade description cut away.
+
+    'Collins & Caton, attorneys and counsellors at law' → 'Collins & Caton'.
+
+    The tail is recognisable without a dictionary because of how the papers set type:
+    names are capitalised and trades are not, so a comma followed by a LOWER-CASE word
+    begins the trade and everything before it is the style. That is why 'Clark, Filer
+    & Co.' keeps both its partners — 'Filer' is capitalised, so the comma is a partner
+    separator and not the start of a trade.
+    """
+    name = re.sub(r"\s*\([^)]*\)", "", (name or "")).strip()
+    return re.split(r",\s+(?=[a-z])", name, maxsplit=1)[0].strip().rstrip(",")
+
+
+def firm_surnames(name):
+    """The set of partner surnames a firm style carries.
+
+    'J. L. Wilson & Co.' → {'wilson'} · 'Clark, Filer & Co.' → {'clark', 'filer'}.
+
+    Split the style on the separators a partnership uses — '&', ',' and 'and' — and take
+    the LAST word of each partner, which is the surname whether the forename was printed
+    whole ('Giles Spring'), abbreviated ('Jno. L. Wilson') or dropped ('L. Wilson').
+    """
+    out = set()
+    for seg in re.split(r"\s*(?:&|,|\band\b)\s*", firm_style(name)):
+        words = [w for w in re.findall(r"[A-Za-z][A-Za-z\u2019']*", seg)
+                 if slug(w) not in FIRM_SUFFIXES]
+        if words:
+            out.add(slug(words[-1]))
+    return out
+
+
+def sign_name_index(identity):
+    """`identity.json`'s `firm_sign_names`, as {style: the partner half of that style}.
+
+    A SIGN-NAME is the shop's own name over its door — 'Chicago Wholesale and Retail Book
+    & Stationary Store' — and `firm_style` cannot see one, because the heuristic it runs
+    on is that partners are capitalised and trades are not, and a sign-name is a
+    capitalised trade. Left alone, `firm_surnames` reads 'Book', 'Store' and 'Wholesale'
+    as three partners and the guard then reports partner surnames that no printing ever
+    carried. So the split is DECLARED, next to the merges it governs, and checked below.
+    """
+    return {d.get("style"): (d.get("partners") or "")
+            for d in identity.get("firm_sign_names", []) if d.get("style")}
+
+
+def partner_surnames(name, signs):
+    """The partner surnames a style states, with any declared sign-name taken off it.
+
+    'Russell & Clift, Chicago Book and Stationary Store' → {'clift', 'russell'}, because
+    the declaration says the partner half is 'Russell & Clift'. A style declared to be a
+    sign-name and nothing else states NO partner and returns the empty set — which is not
+    a different partnership, only a printing that did not name one (see the guard).
+    """
+    return firm_surnames(signs.get(name, name)) if signs.get(name, name) else set()
+
+
+# --------------------------------------------------------------------------
+# the PROPRIETORS' half of the identity policy (T-0337)
+#
+# A firm's `proprietors` are the third place a name lives here, and until this ticket
+# it was the only one with no rule at all. `identity.json.merges` governs gazetteer
+# PERSONS and `firm_merges` governs business STYLES; a proprietor is neither — it is a
+# string on a business record, put there by whichever claim read that printing. So one
+# man read two ways became two proprietors of his own house and nothing could see it:
+# `business_russell_clift` carried 'Benj. Clift' from the 1834-09-03 impression of the
+# copartnership notice and '[H. H.] Clift' from the 1834-11-12 impression of the SAME
+# notice, and neither the person policy nor the firm policy can reach across to say so.
+#
+# The rule here is the firm-side sibling of the person one, and it points the other way
+# on purpose. For a person, same surname with different initials NEVER merges, silently
+# and by default, because the letter lists are full of families. For two proprietors of
+# ONE house the default cannot be silence either way: brothers really do trade together
+# (William and Franklin Brewster sign one dissolution notice) and so does one man read
+# twice. So the pair is REFUSED until `identity.json` says which it is —
+# `proprietor_merges` to join them, `proprietor_distinctions` to hold them apart — and
+# each declaration carries the reasoning, exactly as a merge rule does.
+
+
+def firm_styled(name):
+    """Is this proprietor string a firm's style rather than a person's name?
+
+    `proprietors` carries both — a claim that reads only the signature 'JONES & KING.'
+    records that as the proprietor, because it is what the paper printed. A style is
+    not a person and the rule below is about people, so these are stepped over.
+    """
+    text = unmarked(name or "")
+    if "&" in text or re.search(r"\band\b", text):
+        return True
+    words = [slug(w) for w in re.findall(r"[A-Za-z][A-Za-z\u2019']*", text)]
+    return bool(words) and words[-1] in FIRM_SUFFIXES
+
+
+def proprietor_pairs(business):
+    """Every pair of this business's proprietors that one surname could be hiding in.
+
+    Two person-styled proprietors, the same surname, and forename initials that are
+    READ on both sides and disagree. Both sides must carry initials: a bare surname
+    beside a full name ('Hubbard' beside 'Gurdon S. Hubbard') is the papers printing
+    less, not a second man, and there is nothing there to adjudicate.
+    """
+    names = [n for n in (business.get("proprietors") or []) if not firm_styled(n)]
+    for i, a in enumerate(names):
+        for b in names[i + 1:]:
+            if not surname(a) or surname(a) != surname(b):
+                continue
+            ia, ib = initials(a), initials(b)
+            if ia and ib and ia != ib:
+                yield a, b
+
+
+# --------------------------------------------------------------------------
+# the placements a house was printed with, and their dates
+
+
+def reading_key(placement):
+    """Two printings carry ONE reading when they set the same class and anchor."""
+    p = placement or {}
+    return ((p.get("class") or ""), (p.get("anchor") or ""))
+
+
+def absorb_reading(business, reading):
+    """Fold a printing's placement into a house's readings, widening the window.
+
+    The placement KEPT for a reading is the earliest printing's, so the offset text
+    quoted beside it is the one the anchor was first set with. Ties break on the claim
+    key, because this compile is re-derived and byte-compared by the gate.
+    """
+    for r in business["placement_readings"]:
+        if reading_key(r["placement"]) != reading_key(reading["placement"]):
+            continue
+        if (reading["first_issue"], min(reading["claims"])) < (r["first_issue"],
+                                                              min(r["claims"])):
+            r["placement"] = reading["placement"]
+        r["first_issue"] = min(r["first_issue"], reading["first_issue"])
+        r["last_issue"] = max(r["last_issue"], reading["last_issue"])
+        for c in reading["claims"]:
+            if c not in r["claims"]:
+                r["claims"].append(c)
+        return
+    business["placement_readings"].append({
+        "anchor": (reading["placement"] or {}).get("anchor"),
+        "class": (reading["placement"] or {}).get("class"),
+        "first_issue": reading["first_issue"], "last_issue": reading["last_issue"],
+        "claims": list(reading["claims"]), "placement": reading["placement"],
+    })
+
+
+def record_reading(business, placement, issue_date, key):
+    absorb_reading(business, {"placement": placement or {}, "first_issue": issue_date,
+                              "last_issue": issue_date, "claims": [key]})
+
+
+def placement_rank(placement):
+    """How much of the ground a placement can actually put a storefront on."""
+    order = list(reversed(PLACEMENT_CLASSES))          # none < street_only < relative < corner
+    cls = (placement or {}).get("class")
+    return order.index(cls) if cls in order else -1
 
 
 # --------------------------------------------------------------------------
@@ -661,6 +1687,57 @@ def check(extracted=EXTRACTED, gazetteer=GAZETTEER, identity=IDENTITY, corpus=CO
                     bad.append("%s %s: ad_copy_date.iso %r does not parse"
                                % (at, key, ad.get("iso")))
 
+            # T-0356's field, and every guard on it is a way a date could be invented.
+            op = claim.get("announces_opening")
+            if op is not None and not isinstance(op, dict):
+                bad.append("%s %s: announces_opening is %r. It was a bare boolean on twenty "
+                           "claims and no tool read it; it is now a reading — "
+                           "{verbatim, dating, iso, note} — and the register excludes on "
+                           "its date" % (at, key, op))
+                op = None
+            if op is not None:
+                if claim.get("kind") not in ("business", "building"):
+                    bad.append("%s %s: announces_opening on a %s claim — an opening is "
+                               "something a HOUSE does, and only a business or building "
+                               "claim has one to announce"
+                               % (at, key, claim.get("kind")))
+                phrase = op.get("verbatim")
+                if not phrase:
+                    bad.append("%s %s: announces_opening with no verbatim — the paper's own "
+                               "words are the evidence" % (at, key))
+                elif phrase not in (claim.get("normalized") or ""):
+                    bad.append("%s %s: announces_opening.verbatim is not in the claim's "
+                               "normalized reading, character for character" % (at, key))
+                if not (op.get("note") or "").strip():
+                    bad.append("%s %s: announces_opening with no note — the note says how "
+                               "the date was READ, and a date with no reading behind it is "
+                               "the invention this field exists to prevent" % (at, key))
+                if op.get("dating") not in OPENING_DATINGS:
+                    bad.append("%s %s: announces_opening.dating %r is not one of %s"
+                               % (at, key, op.get("dating"), "/".join(OPENING_DATINGS)))
+                if op.get("dating") == "undated":
+                    if op.get("iso") is not None:
+                        bad.append("%s %s: an `undated` opening carries a date (%r). The "
+                                   "paper dated nothing; supplying a number here is the "
+                                   "invention this field exists to prevent"
+                                   % (at, key, op.get("iso")))
+                else:
+                    try:
+                        date.fromisoformat(op.get("iso") or "")
+                    except ValueError:
+                        bad.append("%s %s: announces_opening.iso %r does not parse"
+                                   % (at, key, op.get("iso")))
+                if op.get("dating") == "effected":
+                    if ad is None:
+                        bad.append("%s %s: an `effected` opening is dated by the "
+                                   "advertisement's own dateline, and this claim carries no "
+                                   "ad_copy_date to take it from" % (at, key))
+                    elif op.get("iso") != ad.get("iso"):
+                        bad.append("%s %s: an `effected` opening is dated %r and the "
+                                   "advertisement's dateline is %r — the dateline is the "
+                                   "only date this reading may carry"
+                                   % (at, key, op.get("iso"), ad.get("iso")))
+
             loc = claim.get("locator") or {}
             if not loc:
                 continue
@@ -718,6 +1795,37 @@ def check(extracted=EXTRACTED, gazetteer=GAZETTEER, identity=IDENTITY, corpus=CO
             else:
                 checked_quotes += 1
 
+    # THE RESOLVER CENSUS (T-0325). Three times now a marker dialect has been found only
+    # because somebody sat down to READ the issues that speak it — T-0289's majority ruled
+    # shape, T-0258's 1833 dash-column one, and the two here. Each time the reason nothing
+    # caught it earlier was the same: `check` only opens the transcriptions its CLAIMS cite,
+    # so an unread issue's dialect is not exercised by anything. This walks every artifact
+    # in the corpus instead of every cited one, and refuses any readable transcription that
+    # resolves no column at all. It costs one pass over the deposit and it turns "found when
+    # read" into "found when the deposit lands".
+    #
+    # Unreadable is silent, not a failure: on `dev` the deposit is absent and that is the
+    # green state (T-0275), exactly as it is for the quotes above.
+    resolved = unreadable = 0
+    for issue in corpus_doc.get("issues", []):
+        for art in issue.get("artifacts", []):
+            recorded = art.get("text_path")
+            if not recorded:
+                continue
+            lines = text_lines(recorded, deposit, repo)
+            if lines is None:
+                unreadable += 1
+                continue
+            if column_starts(lines):
+                resolved += 1
+                continue
+            why = UNSEGMENTED.get((issue["id"], art.get("role")))
+            if why is None:
+                bad.append("%s %s resolves NO column marker, so no claim can ever cite it "
+                           "— either its transcription speaks an eighth dialect nothing "
+                           "here has been shown, or it carries no column structure and "
+                           "belongs in UNSEGMENTED with the reason" % (issue["id"], art.get("role")))
+
     coverage_doc = load_json(coverage) if Path(coverage).exists() else {"ranges": []}
     bad.extend(coverage_problems(coverage_doc, corpus_doc, files))
 
@@ -741,7 +1849,7 @@ def check(extracted=EXTRACTED, gazetteer=GAZETTEER, identity=IDENTITY, corpus=CO
                    "it is GENERATED and was hand-edited or left stale. Fix the claims and "
                    "run `tools/compile_gazetteer.py --build`.")
 
-    for entry in doc["persons"] + doc["businesses"]:
+    for entry in doc["persons"] + doc.get("places", []) + doc["businesses"]:
         if not entry.get("mentions"):
             bad.append("%s has no mention — every entry is compiled FROM a claim, so an "
                        "entry with none cannot have come from one" % entry["id"])
@@ -752,14 +1860,44 @@ def check(extracted=EXTRACTED, gazetteer=GAZETTEER, identity=IDENTITY, corpus=CO
               % (len(files), len(seen_claims), state))
         print("  ok    %d quote(s) reassembled from the transcription and identical"
               % checked_quotes)
-        print("  ok    %d person(s), %d business(es), compile deterministic and committed"
-              % (len(doc["persons"]), len(doc["businesses"])))
+        print("  ok    %d person(s), %d place(s), %d business(es), compile deterministic "
+              "and committed"
+              % (len(doc["persons"]), len(doc.get("places", [])), len(doc["businesses"])))
+        print("  ok    %d declared identity merge(s): %d person, %d firm, %d place, "
+              "%d proprietor — each one carrying its reason"
+              % (len(identity_doc.get("merges", []))
+                 + len(identity_doc.get("firm_merges", []))
+                 + len(identity_doc.get("place_merges", []))
+                 + len(identity_doc.get("proprietor_merges", [])),
+                 len(identity_doc.get("merges", [])),
+                 len(identity_doc.get("firm_merges", [])),
+                 len(identity_doc.get("place_merges", [])),
+                 len(identity_doc.get("proprietor_merges", []))))
+        print("  ok    %d name(s) declared a place rather than a person, each with its "
+              "reason and none of them letter-list-only"
+              % len(identity_doc.get("places", [])))
+        print("  ok    %d house(s) hold two proprietors of one surname apart, each with "
+              "the sentence that tells them apart"
+              % len(identity_doc.get("proprietor_distinctions", [])))
+        readings = sum(len(b.get("placement_readings") or []) for b in doc["businesses"])
+        many = sum(1 for b in doc["businesses"]
+                   if len(b.get("placement_readings") or []) > 1)
+        print("  ok    %d placement reading(s) kept with their own dates, %d house(s) "
+              "printed with more than one, %d whose anchor CHANGES on a date — every "
+              "reading of those accounted for, the live one computed from the scene date"
+              % (readings, many,
+                 sum(1 for b in doc["businesses"] if b.get("anchor_change"))))
+        print("  ok    %d firm group(s) refused rather than merged, each naming the "
+              "printings the refusal rests on"
+              % len(identity_doc.get("refused_firm_merges", [])))
         covered = sum(1 for i in corpus_doc.get("issues", [])
                       for r in coverage_doc.get("ranges", [])
                       if i.get("publication") == r.get("publication")
                       and r.get("from", "") <= i.get("date", "") <= r.get("to", ""))
         print("  ok    %d issue(s) inside %d declared coverage range(s), none missing"
               % (covered, len(coverage_doc.get("ranges", []))))
+        print("  ok    %d transcription(s) resolve their columns, %d unreadable here, "
+              "%d unsegmented by nature" % (resolved, unreadable, len(UNSEGMENTED)))
         if unresolved:
             print("  note  %d claim(s) cite deposit-held text not readable here — it is on "
                   "`main` (T-0275), so their quotes are checked there" % unresolved)
@@ -826,6 +1964,9 @@ def text_backed_fixture(corpus):
 
 def self_test():
     failures = []
+    cases = []                      # every broken-fixture case run below, counted rather
+                                    # than asserted: the printed number was hand-kept and
+                                    # stopped moving when cases were added (T-0337).
     corpus_doc = load_json(CORPUS)
     fixtures = sorted(EXTRACTED.glob("*.json"))
     base = load_json(fixtures[0]) if fixtures else None
@@ -834,6 +1975,7 @@ def self_test():
         return 1
 
     def run(mutate, want, label, identity=None):
+        cases.append(label)
         d = copy.deepcopy(base)
         ident = copy.deepcopy(identity) if identity else {"merges": []}
         mutate(d, ident)
@@ -876,6 +2018,47 @@ def self_test():
     run(lambda d, i: d.update(claims=[]), "no claims", "an extraction file with no claims")
     run(lambda d, i: d.update(schema=99), "schema is", "a schema bump")
 
+    # T-0356'S FIELD, and every guard on it is a way a date could be invented. Claim 7
+    # of this fixture is S. B. Cobb's saddlery, a business claim carrying a dateline of
+    # 8 June 1835, which is the shape every `effected` reading in the corpus has.
+    COBB = 6
+
+    def opening(d, **kw):
+        c = d["claims"][COBB]
+        rec = {"verbatim": c["normalized"][:40], "dating": "effected",
+               "iso": (c.get("ad_copy_date") or {}).get("iso"),
+               "note": "the reading, written down"}
+        rec.update(kw)
+        c["announces_opening"] = rec
+
+    run(lambda d, i: opening(d), None, "an effected opening over the ad's own dateline")
+    run(lambda d, i: opening(d, dating="stated", iso="1835-09-01"),
+        None, "a stated opening naming its own date")
+    run(lambda d, i: opening(d, dating="undated", iso=None),
+        None, "an opening the printing dates nowhere")
+    run(lambda d, i: d["claims"][COBB].update(announces_opening=True),
+        "it is now a reading", "the bare boolean the field used to be")
+    run(lambda d, i: opening(d, verbatim="he will open on the glorious Fourth"),
+        "not in the claim's normalized reading",
+        "an opening quoting words the paper does not carry")
+    run(lambda d, i: opening(d, note="   "),
+        "no note", "an opening with no reading behind its date")
+    run(lambda d, i: opening(d, dating="rumoured"),
+        "is not one of", "a dating outside the vocabulary")
+    run(lambda d, i: opening(d, dating="stated", iso="the fourteenth"),
+        "does not parse", "an opening date that is not a date")
+    run(lambda d, i: opening(d, iso="1835-08-14"),
+        "the dateline is the only date", "an effected opening dated off its own dateline")
+    run(lambda d, i: (d["claims"][COBB].pop("ad_copy_date"), opening(d, iso="1835-06-08")),
+        "carries no ad_copy_date", "an effected opening with no dateline to take")
+    run(lambda d, i: opening(d, dating="undated", iso="1835-08-14"),
+        "carries a date", "an undated opening given a number anyway")
+    run(lambda d, i: (d["claims"][0].update(
+            announces_opening={"verbatim": d["claims"][0]["normalized"][:20],
+                               "dating": "undated", "iso": None, "note": "n"})),
+        "an opening is something a HOUSE does",
+        "an opening announced by a claim that is not about a house")
+
     # The identity policy, both halves.
     run(lambda d, i: i["merges"].append({"into": "Peter Cohen", "from": "J. S. C. Hogan"}),
         "no merge_rule", "a merge with no stated reason")
@@ -891,6 +2074,510 @@ def self_test():
              "merge_rule": "Peter Cohen and Nobody At All, on a whim"}),
         "not a name any claim carries", "a merge rule for a person nobody claimed")
 
+    # AND THE NAME PARSE THE POLICY RUNS ON (T-0299). The cases are the ones the three
+    # printings of the 1 July 1834 letter list actually produced: markup inside a name and
+    # an `[uncertain: …]` wrapper must not invent forenames, an OCR'd dotless ı must not
+    # split one, and every genuine disagreement of initials — two read letters, a read
+    # letter against an unread `[?]`, a present initial against an absent one — must still
+    # refuse. A loosening here shows up as a failure in the SECOND list, which is why both
+    # are asserted and not just the first.
+    for a, b in (("A[n]drew W. Borland", "Andrew W. Borland"),
+                 ("[uncertain: Abey Blankinship]", "Abey Blankinship"),
+                 ("Benjam\u0131n Swena", "Benjamin Swena"),
+                 ("Ch[a]s. L. Barry", "[C]h[a]s. L. Barry"),
+                 ("Dani[e]l O. [uncertain: Robian]", "Daniel O. Robian"),
+                 ("W[m]. C. Whittely", "Wm. C Whittely")):
+        if surname(a) == surname(b) and initials(a) != initials(b):
+            failures.append("the name parse: %r and %r read as different initials, and the "
+                            "difference is the transcriber's markup" % (a, b))
+    for a, b in (("Cohen, P.", "Cohen, J."),
+                 ("Lyman R. Lovell", "Lyman B. Lovell"),
+                 ("[H]enry Swartwout jr.", "J[n]o. Swartwout jr."),
+                 ("Ann M. Gooding", "[?]nn M. Gooding"),
+                 ("Samuel E. Toby", "Samuel. Toby")):
+        if not (surname(a) == surname(b) and initials(a) != initials(b)):
+            failures.append("the identity policy: %r and %r no longer refuse to merge, and "
+                            "an initial is what separates them" % (a, b))
+
+    # AND WHAT AN UNREAD INITIAL ACTUALLY READS AS (T-0397). The two loops above assert
+    # only that a pair DIFFERS — and `Ann M. Gooding` / `[?]nn M. Gooding` did differ, for
+    # the wrong reason: the parse read `N. M.` off the rest of the forename, and
+    # identity.json then STATED that invented letter as the ground of the refusal. So this
+    # asserts the VALUE and not the difference. All three shapes the 1 July 1834 list
+    # produced are here, because each failed differently.
+    for name, want in (("[?]rah Fowler", (UNREAD,)),           # a letter invented from the word
+                       ("[?]saac Scarrett", (UNREAD,)),
+                       ("[?]nn M. Gooding", (UNREAD, "m")),    # invented, and a position kept
+                       ("[?]. M. Fish", (UNREAD, "m")),        # a position that used to collapse
+                       ("[?]. [H]. Scott", (UNREAD, "h")),
+                       ("[?]. Beegle", (UNREAD,)),             # the absence the ticket assumed
+                       ("[?] Adkins", (UNREAD,)),
+                       ("Ann M. Gooding", ("a", "m")),         # a read name is untouched
+                       ("[uncertain: Abey Blankinship]", ("a",))):
+        if initials(name) != want:
+            failures.append("the name parse: %r reads as %r, and the printing gives %r"
+                            % (name, initials(name), want))
+
+
+    # THE FIRM'S HALF OF THE SAME POLICY (T-0304). Every case below is built by giving
+    # the fixture's own Wilson advertisement a SECOND printing under another spelling,
+    # which is the shape every firm merge in identity.json actually has.
+    def variant(d, name, **biz):
+        src = next(c for c in d["claims"]
+                   if (c.get("business") or {}).get("name") == "L. Wilson & Co.")
+        c = copy.deepcopy(src)
+        c["id"] = "zz1"
+        c["business"]["name"] = name
+        c["business"].update(biz)
+        d["claims"].append(c)
+
+    def firm_rule(i, into, frm, why=None):
+        i.setdefault("firm_merges", []).append({
+            "into": into, "from": frm,
+            "merge_rule": why if why is not None
+            else "%s and %s are one house: the same advertisement, twice printed" % (into, frm)})
+
+    run(lambda d, i: (variant(d, "Jno. Wilson & Co."), firm_rule(i, "L. Wilson & Co.", "Jno. Wilson & Co.")),
+        None, "two printings of one firm, merged by a stated rule")
+    run(lambda d, i: (variant(d, "Jno. Wilson & Co."),
+                      i.setdefault("firm_merges", []).append(
+                          {"into": "L. Wilson & Co.", "from": "Jno. Wilson & Co."})),
+        "no merge_rule", "a firm merge with no stated reason")
+    run(lambda d, i: (variant(d, "Jno. Wilson & Co."),
+                      firm_rule(i, "L. Wilson & Co.", "Jno. Wilson & Co.", "they look alike")),
+        "name BOTH spellings", "a firm merge rule that does not name what it merges")
+    run(lambda d, i: firm_rule(i, "Goss & Cobb",
+                               "S. B. Cobb, saddle, harness and trunk manufactory"),
+        "the partner surnames differ", "a merge that would change who the partners are")
+    run(lambda d, i: firm_rule(i, "L. Wilson & Co.", "Nobody & Co."),
+        "not a firm any claim carries", "a firm merge rule for a house nobody claimed")
+    run(lambda d, i: firm_rule(i, "L. Wilson & Co.", "L. Wilson & Co."),
+        "cannot be merged into itself", "a firm merged into itself")
+    def street_of(d, name, street):
+        next(c for c in d["claims"]
+             if (c.get("business") or {}).get("name") == name)["business"]["street"] = street
+
+    run(lambda d, i: (street_of(d, "L. Wilson & Co.", "Dearborn Street"),
+                      variant(d, "Jno. Wilson & Co.", street="Lake Street"),
+                      firm_rule(i, "L. Wilson & Co.", "Jno. Wilson & Co.")),
+        "different streets", "a firm merge across a street the papers contradict")
+
+    # …AND THE REFUSAL (T-0399). Same fixture, same shape: the second printing is a
+    # DIFFERENT house that happens to carry the partner surname, which is what
+    # `firm_surnames()` cannot tell apart and what the sweep has to be able to write down.
+    def firm_refusal(i, into, frm, why=None, kind="two_houses", witnesses=("the fixture",)):
+        i.setdefault("refused_firm_merges", []).append({
+            "into": into, "from": frm, "kind": kind, "witnesses": list(witnesses),
+            "refused_because": why if why is not None
+            else "%s and %s are two houses: one surname, two trades, no printing joining them"
+                 % (into, frm)})
+
+    run(lambda d, i: (variant(d, "Jno. Wilson & Co."), firm_refusal(i, "L. Wilson & Co.", "Jno. Wilson & Co.")),
+        None, "two firm styles held apart by a stated refusal")
+    run(lambda d, i: (variant(d, "Jno. Wilson & Co."),
+                      firm_refusal(i, "L. Wilson & Co.", "Jno. Wilson & Co.", "")),
+        "no refused_because", "a firm refusal that does not say why it refuses")
+    run(lambda d, i: (variant(d, "Jno. Wilson & Co."),
+                      firm_refusal(i, "L. Wilson & Co.", "Jno. Wilson & Co.", "they differ")),
+        "name BOTH spellings", "a firm refusal that does not name what it holds apart")
+    run(lambda d, i: (variant(d, "Jno. Wilson & Co."),
+                      firm_refusal(i, "L. Wilson & Co.", "Jno. Wilson & Co.", kind="probably")),
+        "`kind` must be one of", "a firm refusal whose kind is not one of the three")
+    run(lambda d, i: (variant(d, "Jno. Wilson & Co."),
+                      firm_refusal(i, "L. Wilson & Co.", "Jno. Wilson & Co.", witnesses=())),
+        "no `witnesses`", "a firm refusal that rests on no printing")
+    run(lambda d, i: firm_refusal(i, "L. Wilson & Co.", "Nobody & Co."),
+        "outlived its pair", "a firm refusal for a house nobody claimed")
+    run(lambda d, i: firm_refusal(i, "L. Wilson & Co.", "L. Wilson & Co."),
+        "refused against itself", "a firm refused against itself")
+    run(lambda d, i: (variant(d, "Jno. Wilson & Co."),
+                      firm_rule(i, "L. Wilson & Co.", "Jno. Wilson & Co."),
+                      firm_refusal(i, "L. Wilson & Co.", "Jno. Wilson & Co.")),
+        "cannot both join and hold apart", "a pair both merged and refused")
+
+    # THE SIGN-NAME ESCAPE AND ITS NEGATIVE CASES (T-0340). The guard above lets a style
+    # that names NO partner merge into one that does; everything here is the price of
+    # that, because a loosening nobody can fire is a loosening nobody can trust. The
+    # FIRST case is the one that matters most: undeclared, a headline-only style is still
+    # refused, so the escape cannot be taken by accident or by silence.
+    def sign_decl(i, style, partners, sign, note="the self-test's own declaration"):
+        i.setdefault("firm_sign_names", []).append(
+            {"style": style, "partners": partners, "sign": sign, "note": note})
+
+    run(lambda d, i: (variant(d, "Chicago Book and Stationary Store", proprietors=[]),
+                      firm_rule(i, "L. Wilson & Co.", "Chicago Book and Stationary Store")),
+        "the partner surnames differ",
+        "a headline-only style merged with no sign-name declared")
+    run(lambda d, i: (variant(d, "Chicago Book and Stationary Store", proprietors=[]),
+                      sign_decl(i, "Chicago Book and Stationary Store", "",
+                                "Chicago Book and Stationary Store"),
+                      firm_rule(i, "L. Wilson & Co.", "Chicago Book and Stationary Store")),
+        None, "a declared sign-name merged into the style that names the partners")
+    run(lambda d, i: (variant(d, "Chicago Book and Stationary Store",
+                              proprietors=["Ezekiel Book"]),
+                      sign_decl(i, "Chicago Book and Stationary Store", "",
+                                "Chicago Book and Stationary Store"),
+                      firm_rule(i, "L. Wilson & Co.", "Chicago Book and Stationary Store")),
+        "the claims sign it with",
+        "a house declared to name no partner that a printing signs with one")
+    run(lambda d, i: (variant(d, "Chicago Book and Stationary Store", proprietors=[]),
+                      sign_decl(i, "Chicago Book and Stationary Store", "",
+                                "Chicago Book Store")),
+        "put the style back together verbatim",
+        "a sign-name split that quietly drops a word of the style")
+    run(lambda d, i: sign_decl(i, "Nobody & Co., Chicago Book Store", "Nobody & Co.",
+                               "Chicago Book Store"),
+        "a business that is not in the corpus",
+        "a sign-name declaration for a house nobody claimed")
+    run(lambda d, i: (variant(d, "Chicago Book and Stationary Store", proprietors=[]),
+                      i.setdefault("firm_sign_names", []).append(
+                          {"style": "Chicago Book and Stationary Store", "partners": "",
+                           "sign": "Chicago Book and Stationary Store"})),
+        "no note", "a sign-name declaration with no stated reason")
+    # And a declaration cannot FORCE a merge: split the style honestly and the partners
+    # it does name are compared exactly as before.
+    run(lambda d, i: (variant(d, "Goss & Cobb, Chicago Book Store", proprietors=[]),
+                      sign_decl(i, "Goss & Cobb, Chicago Book Store", "Goss & Cobb",
+                                "Chicago Book Store"),
+                      firm_rule(i, "L. Wilson & Co.", "Goss & Cobb, Chicago Book Store")),
+        "the partner surnames differ",
+        "a sign-name declaration used to smuggle two other partners in")
+
+    # THE PROPRIETORS' HALF (T-0337). Every case is the shape the Russell & Clift pair
+    # actually had: two readings of one house's partner, sitting in one `proprietors`
+    # list, which neither the person policy nor the firm policy can reach.
+    def props(d, name, *who):
+        next(c for c in d["claims"]
+             if (c.get("business") or {}).get("name") == name)["business"]["proprietors"] = list(who)
+
+    def prop_merge(i, bid, into, frm, why=None):
+        i.setdefault("proprietor_merges", []).append({
+            "business": bid, "into": into, "from": frm,
+            "merge_rule": why if why is not None
+            else "%s and %s are one man: the same notice, twice printed" % (into, frm)})
+
+    def prop_distinct(i, bid, a, b, why="two partners, both signing one notice"):
+        i.setdefault("proprietor_distinctions", []).append(
+            {"business": bid, "names": [a, b], "rule": why})
+
+    WILSON = "business_l_wilson_co"
+    run(lambda d, i: props(d, "L. Wilson & Co.", "Benj. Clift", "[H. H.] Clift"),
+        "one surname with different forenames",
+        "one house's proprietors read two ways, undeclared")
+    run(lambda d, i: (props(d, "L. Wilson & Co.", "Benj. Clift", "[H. H.] Clift"),
+                      prop_merge(i, WILSON, "Benj. Clift", "[H. H.] Clift")),
+        None, "…and joined by a stated proprietor merge")
+    run(lambda d, i: (props(d, "L. Wilson & Co.", "Benj. Clift", "[H. H.] Clift"),
+                      prop_distinct(i, WILSON, "Benj. Clift", "[H. H.] Clift")),
+        None, "…or held apart by a stated distinction")
+    run(lambda d, i: (props(d, "L. Wilson & Co.", "Benj. Clift", "[H. H.] Clift"),
+                      prop_distinct(i, WILSON, "Benj. Clift", "[H. H.] Clift", "")),
+        "no rule", "a distinction that does not say how the two are told apart")
+    run(lambda d, i: (props(d, "L. Wilson & Co.", "Benj. Clift", "[H. H.] Clift"),
+                      i.setdefault("proprietor_merges", []).append(
+                          {"business": WILSON, "into": "Benj. Clift", "from": "[H. H.] Clift"})),
+        "no merge_rule", "a proprietor merge with no stated reason")
+    run(lambda d, i: (props(d, "L. Wilson & Co.", "Benj. Clift", "[H. H.] Clift"),
+                      prop_merge(i, WILSON, "Benj. Clift", "[H. H.] Clift", "they look alike")),
+        "name BOTH spellings", "a proprietor merge rule that does not name what it merges")
+    run(lambda d, i: (props(d, "L. Wilson & Co.", "Aaron Russell", "Benj. Clift"),
+                      prop_merge(i, WILSON, "Aaron Russell", "Benj. Clift")),
+        "a proprietor merge may join two readings of one name",
+        "a proprietor merge across two different surnames")
+    run(lambda d, i: (props(d, "L. Wilson & Co.", "Benj. Clift"),
+                      prop_merge(i, WILSON, "Benj. Clift", "[H. H.] Clift")),
+        "is not a proprietor this house carries", "a proprietor merge gone stale")
+    run(lambda d, i: (props(d, "L. Wilson & Co.", "Benj. Clift"),
+                      prop_distinct(i, WILSON, "Benj. Clift", "[H. H.] Clift")),
+        "no longer answers anything", "a distinction whose pair has gone")
+    run(lambda d, i: prop_merge(i, "business_nobody_at_all", "A. Nobody", "B. Nobody"),
+        "no business of that id is compiled", "a proprietor rule for a house nobody claimed")
+    # A BARE SURNAME IS NOT A SECOND MAN. 'Hubbard' beside 'Gurdon S. Hubbard' is the
+    # papers printing less, and the gate must not send anyone to adjudicate it.
+    run(lambda d, i: props(d, "L. Wilson & Co.", "Hubbard", "Gurdon S. Hubbard"),
+        None, "a bare surname beside a full name is nothing to declare")
+    # …and neither is a firm's own style, which `proprietors` carries wherever a claim
+    # read only the signature.
+    run(lambda d, i: props(d, "L. Wilson & Co.", "Jones & King", "Byram King"),
+        None, "a firm style in the proprietors is not a person")
+
+    # And the merge has to DO something: green is also what a merge that quietly did
+    # nothing would look like, so the union is asserted on the compiled record itself.
+    merged_fixture = copy.deepcopy(base)
+    variant(merged_fixture, "Jno. Wilson & Co.")
+    merged_fixture["claims"][-1]["business"]["goods"] = ["Window Sash"]
+    merged_ident = {"merges": []}
+    firm_rule(merged_ident, "L. Wilson & Co.", "Jno. Wilson & Co.")
+    with tempfile.TemporaryDirectory() as td:
+        ex = Path(td) / "extracted"
+        ex.mkdir()
+        (ex / ("%s.json" % merged_fixture["issue_id"])).write_text(
+            json.dumps(merged_fixture, ensure_ascii=False), encoding="utf-8")
+        doc, probs = compile_gazetteer(sorted(ex.glob("*.json")), merged_ident, corpus_doc)
+    names = [b["name"] for b in doc["businesses"]]
+    got = next((b for b in doc["businesses"] if b["name"] == "L. Wilson & Co."), None)
+    if probs:
+        failures.append("the union case did not compile clean: %r" % probs)
+    elif "Jno. Wilson & Co." in names:
+        failures.append("a declared firm merge left both spellings standing")
+    elif got is None:
+        failures.append("a declared firm merge lost the firm it merged into")
+    elif len(got["mentions"]) != 2:
+        failures.append("a firm merge did not carry the mentions across: %r" % got["mentions"])
+    elif "Window Sash" not in got["goods"]:
+        failures.append("a firm merge did not carry the goods across: %r" % got["goods"])
+    elif not got.get("merged"):
+        failures.append("a firm merge left no record of itself on the firm")
+
+
+    # THE DATED ANCHOR CHANGE (T-0345). These run against compile_gazetteer directly
+    # rather than through `run`, because a CHANGE needs two issues printed on different
+    # days and `run` writes one extraction file. Two issues are taken from corpus.json
+    # itself, earliest and latest, so the cases cannot rot into asserting a date the
+    # corpus stopped carrying.
+    dates = sorted((i.get("date"), i.get("id")) for i in corpus_doc.get("issues", [])
+                   if i.get("date") and i.get("id"))
+    scene_iso = SCENE_DATE.isoformat()
+    early_id = dates[0][1]
+    late_id = [i for d, i in dates if d <= scene_iso][-1]
+    after_id = dates[-1][1]                     # the corpus runs past the scene date
+
+    def anchor_docs(early_anchors, late_anchors):
+        def doc_for(issue_id, anchors):
+            return {"issue_id": issue_id, "claims": [
+                {"id": "za%d" % n, "kind": "business", "reading": "transcription_mediated",
+                 "business": {"name": "A. Smith & Co.", "trade": "blacksmith",
+                              "street": "Lake Street",
+                              "placement": {"class": "relative", "anchor": a,
+                                            "offset_text": "opposite %s" % a}}}
+                for n, a in enumerate(anchors)]}
+        return [doc_for(early_id, early_anchors), doc_for(late_id, late_anchors)]
+
+    def anchor_rule(groups, rule=None, cannot="the corpus does not say which moved",
+                    business="business_a_smith_co"):
+        names = [g["name"] for g in groups]
+        return {"merges": [], "anchor_changes": [{
+            "business": business, "anchors": groups,
+            "rule": rule if rule is not None
+            else "the anchor changes from %s" % " to ".join('"%s"' % n for n in names),
+            "cannot_say": cannot}]}
+
+    def run_anchor(docs, ident, want, label):
+        cases.append(label)
+        with tempfile.TemporaryDirectory() as td:
+            ex = Path(td) / "extracted"
+            ex.mkdir()
+            for doc in docs:
+                (ex / ("%s.json" % doc["issue_id"])).write_text(
+                    json.dumps(doc, ensure_ascii=False), encoding="utf-8")
+            out, probs = compile_gazetteer(sorted(ex.glob("*.json")), ident, corpus_doc)
+        if want is None:
+            if probs:
+                failures.append("%s: expected a clean compile, got %r" % (label, probs))
+            return out
+        if not any(want in b for b in probs):
+            failures.append("%s: expected a failure mentioning %r, got %r"
+                            % (label, want, probs))
+        return out
+
+    GRAVES = {"name": "the tavern", "readings": ["the tavern", "the tavern, on Main-st"],
+              "why": "two readings of the tavern, one sweeping the street in after it"}
+    TREMONT = {"name": "the hotel", "readings": ["the hotel"]}
+
+    out = run_anchor(anchor_docs(["the tavern", "the tavern, on Main-st"], ["the hotel"]),
+                     anchor_rule([GRAVES, TREMONT]), None,
+                     "an anchor that changes on a date, declared and dated")
+    got = next((b for b in out["businesses"] if b["id"] == "business_a_smith_co"), None)
+    if got is None:
+        failures.append("the dated anchor case lost the house it was declared on")
+    elif not got.get("anchor_change"):
+        failures.append("a declared anchor change left no history on the house")
+    elif got["anchor_change"]["live_anchor"] != "the hotel":
+        failures.append("the anchor live at the scene date is computed as %r, and the "
+                        "later printing is 'the hotel'" % got["anchor_change"]["live_anchor"])
+    elif got["placement"]["anchor"] != "the hotel":
+        failures.append("a dated anchor change left the house placed on the SUPERSEDED "
+                        "reading %r" % got["placement"]["anchor"])
+    elif [c["after"] for c in got["anchor_change"]["changes"]] != [dates[0][0]]:
+        failures.append("the change is bracketed by %r and the earlier printing is %s"
+                        % (got["anchor_change"]["changes"], dates[0][0]))
+    elif len(got["placement_readings"]) != 3:
+        failures.append("three printings, three readings kept, got %d"
+                        % len(got["placement_readings"]))
+
+    # …and the scene date is what decides which is live, not the order they were
+    # printed in: an anchor first set AFTER 1 July 1835 was not up on 1 July 1835.
+    out = run_anchor(
+        [{"issue_id": early_id, "claims": [
+            {"id": "za0", "business": {"name": "A. Smith & Co.", "trade": "blacksmith",
+                                       "street": "Lake Street",
+                                       "placement": {"class": "relative",
+                                                     "anchor": "the tavern"}}}]},
+         {"issue_id": after_id, "claims": [
+             {"id": "za1", "business": {"name": "A. Smith & Co.", "trade": "blacksmith",
+                                        "street": "Lake Street",
+                                        "placement": {"class": "relative",
+                                                      "anchor": "the hotel"}}}]}],
+        anchor_rule([{"name": "the tavern", "readings": ["the tavern"]}, TREMONT]),
+        None, "an anchor first printed after the scene date")
+    got = next((b for b in out["businesses"] if b["id"] == "business_a_smith_co"), None)
+    if got and got["anchor_change"]["live_anchor"] != "the tavern":
+        failures.append("an anchor first printed %s was made live at the scene date %s"
+                        % (dates[-1][0], scene_iso))
+
+    run_anchor(anchor_docs(["the tavern"], ["the hotel"]),
+               anchor_rule([{"name": "the tavern", "readings": ["the tavern"]}, TREMONT],
+                           rule=""),
+               "no rule", "an anchor change with no stated reason")
+    run_anchor(anchor_docs(["the tavern"], ["the hotel"]),
+               anchor_rule([{"name": "the tavern", "readings": ["the tavern"]}, TREMONT],
+                           rule="the anchor changed at some point"),
+               "must name", "an anchor rule that does not name the anchors it orders")
+    run_anchor(anchor_docs(["the tavern"], ["the hotel"]),
+               anchor_rule([{"name": "the tavern", "readings": ["the tavern"]}, TREMONT],
+                           cannot=""),
+               "cannot_say", "a dated change that says nothing about what stays open")
+    run_anchor(anchor_docs(["the tavern"], ["the hotel"]),
+               anchor_rule([{"name": "the tavern", "readings": ["the tavern"]}, TREMONT],
+                           business="business_nobody_at_all"),
+               "no business of that id is compiled",
+               "an anchor rule for a house nobody claimed")
+    run_anchor(anchor_docs(["the tavern"], ["the hotel"]),
+               anchor_rule([{"name": "the tavern", "readings": ["the tavern"]}]),
+               "one anchor is not a change", "an anchor change with a single anchor")
+    run_anchor(anchor_docs(["the tavern"], ["the hotel"]),
+               anchor_rule([{"name": "the tavern", "readings": ["the tavern"]},
+                            {"name": "the hotel", "readings": ["the hotel", "the barn"]},
+                            ]),
+               "not an anchor any printing of this house carries",
+               "an anchor rule naming a reading nobody printed")
+    run_anchor(anchor_docs(["the tavern", "the tavern, on Main-st"], ["the hotel"]),
+               anchor_rule([{"name": "the tavern", "readings": ["the tavern"]}, TREMONT]),
+               "silently dropped", "a printing left out of the history")
+    run_anchor(anchor_docs(["the tavern", "the tavern, on Main-st"], ["the hotel"]),
+               anchor_rule([GRAVES, {"name": "the hotel",
+                                     "readings": ["the hotel", "the tavern"],
+                                     "why": "the hotel, twice"}]),
+               "claimed by two anchors", "one printing naming two landmarks")
+    run_anchor(anchor_docs(["the tavern", "the tavern, on Main-st"], ["the hotel"]),
+               anchor_rule([dict(GRAVES, why="two readings, grouped"), TREMONT]),
+               "is a judgement and it has to be written down",
+               "two readings called one landmark on nobody's argument")
+    run_anchor(anchor_docs(["the tavern", "the hotel"], ["the hotel"]),
+               anchor_rule([{"name": "the tavern", "readings": ["the tavern"]}, TREMONT]),
+               "overlapping weeks", "two anchors printed in the same weeks")
+
+    # A NAME IS NOT ALWAYS A PERSON (T-0359), and the cases below are the ones the
+    # Haddock's/Maddock's pair actually produced. Every guard here exists to stop the
+    # place table becoming a hole in the families rule, so each is asserted from the
+    # direction that would open one.
+    def entity(d, name, claim_id="zp1", letter_list=False, occupations=None):
+        c = copy.deepcopy(d["claims"][0])
+        c["id"] = claim_id
+        c["entities"] = [{"as_printed": name, "normalized": name,
+                          "occupations": list(occupations or [])}]
+        if letter_list:
+            c["letter_list_only"] = True
+        d["claims"].append(c)
+
+    def place_rule(i, name, why=None, kind="tavern"):
+        i.setdefault("places", []).append({
+            "name": name, "kind": kind,
+            "why": why if why is not None
+            else "%s is a signboard the papers measure a lot from, not a man" % name})
+
+    def place_merge(i, into, frm, why=None):
+        i.setdefault("place_merges", []).append({
+            "into": into, "from": frm,
+            "merge_rule": why if why is not None
+            else "%s and %s are one building, printed twice" % (into, frm)})
+
+    run(lambda d, i: (entity(d, "Haddock's Tavern"),
+                      entity(d, "Maddock's Tavern", claim_id="zp2"),
+                      place_rule(i, "Haddock's Tavern"), place_rule(i, "Maddock's Tavern"),
+                      place_merge(i, "Haddock's Tavern", "Maddock's Tavern")),
+        None, "two spellings of one signboard, declared places and merged")
+    run(lambda d, i: (entity(d, "Haddock's Tavern"),
+                      i.setdefault("places", []).append({"name": "Haddock's Tavern"})),
+        "no `why`", "a place declared with no reason")
+    run(lambda d, i: (entity(d, "Haddock's Tavern"),
+                      place_rule(i, "Haddock's Tavern", "it sounds like a building")),
+        "name the place VERBATIM", "a place reason that does not name what it declares")
+    run(lambda d, i: place_rule(i, "Nowhere Tavern"),
+        "not a name any claim carries", "a place nobody claimed")
+    run(lambda d, i: (entity(d, "Chester House", letter_list=True),
+                      place_rule(i, "Chester House", kind="hotel")),
+        "post-office letter list", "a letter-list name declared a building")
+    run(lambda d, i: (entity(d, "Haddock's Tavern", occupations=["innkeeper"]),
+                      place_rule(i, "Haddock's Tavern")),
+        "carries an occupation", "a name a claim reads as a person, declared a place")
+
+    # The families rule is not loosened, and these two say so from both sides: a place
+    # merge cannot reach a name that was not declared, and once a name IS declared the
+    # PERSON merge path cannot see it at all.
+    run(lambda d, i: (entity(d, "Haddock's Tavern"),
+                      entity(d, "Maddock's Tavern", claim_id="zp2"),
+                      place_rule(i, "Haddock's Tavern"),
+                      place_merge(i, "Haddock's Tavern", "Maddock's Tavern")),
+        "not a DECLARED place", "a place merge reaching a name nobody declared a place")
+    run(lambda d, i: (entity(d, "Haddock's Tavern"), place_rule(i, "Haddock's Tavern"),
+                      i["merges"].append(
+                          {"into": "W. L. Newberry", "from": "Haddock's Tavern",
+                           "merge_rule": "W. L. Newberry and Haddock's Tavern, as people"})),
+        "not a name any claim carries", "a declared place merged as if it were a person")
+    run(lambda d, i: (entity(d, "Haddock's Tavern"), place_rule(i, "Haddock's Tavern"),
+                      place_merge(i, "Haddock's Tavern", "Haddock's Tavern")),
+        "cannot be merged into itself", "a place merged into itself")
+    run(lambda d, i: (entity(d, "Haddock's Tavern"),
+                      entity(d, "Maddock's Tavern", claim_id="zp2"),
+                      place_rule(i, "Haddock's Tavern"), place_rule(i, "Maddock's Tavern"),
+                      i.setdefault("place_merges", []).append(
+                          {"into": "Haddock's Tavern", "from": "Maddock's Tavern"})),
+        "no merge_rule", "a place merge with no stated reason")
+    run(lambda d, i: i.setdefault("refused_places", []).append(
+            {"name": "Chester House",
+             "refused_because": "Chester House is a person: the surname is House"}),
+        "not a name any claim carries as a person", "a refusal about a name nobody claimed")
+    run(lambda d, i: (entity(d, "Haddock's Tavern"), place_rule(i, "Haddock's Tavern"),
+                      i.setdefault("refused_places", []).append(
+                          {"name": "Haddock's Tavern",
+                           "refused_because": "Haddock's Tavern is a person after all"})),
+        "DECLARED a place and refused", "a name both declared and refused in one file")
+
+    # And the declaration has to DO something: green is also what a place table that
+    # quietly changed nothing would look like, so the move and the union are asserted on
+    # the compiled record itself.
+    placed = copy.deepcopy(base)
+    entity(placed, "Haddock's Tavern")
+    entity(placed, "Maddock's Tavern", claim_id="zp2")
+    placed_ident = {"merges": []}
+    place_rule(placed_ident, "Haddock's Tavern")
+    place_rule(placed_ident, "Maddock's Tavern")
+    place_merge(placed_ident, "Haddock's Tavern", "Maddock's Tavern")
+    with tempfile.TemporaryDirectory() as td:
+        ex = Path(td) / "extracted"
+        ex.mkdir()
+        (ex / ("%s.json" % placed["issue_id"])).write_text(
+            json.dumps(placed, ensure_ascii=False), encoding="utf-8")
+        doc, probs = compile_gazetteer(sorted(ex.glob("*.json")), placed_ident, corpus_doc)
+    person_names = [p["name"] for p in doc["persons"]]
+    got = next((p for p in doc.get("places", []) if p["name"] == "Haddock's Tavern"), None)
+    if probs:
+        failures.append("the place case did not compile clean: %r" % probs)
+    elif "Haddock's Tavern" in person_names or "Maddock's Tavern" in person_names:
+        failures.append("a declared place is still standing in the persons table")
+    elif got is None:
+        failures.append("a declared place reached neither table")
+    elif len(got["mentions"]) != 2:
+        failures.append("a place merge did not carry the mentions across: %r" % got["mentions"])
+    elif "letter_list_only" in got or "occupations" in got:
+        failures.append("a place kept a field that only means something about a person: %r"
+                        % sorted(got))
+    elif not got.get("merged"):
+        failures.append("a place merge left no record of itself on the place")
+    elif doc["counts"].get("places") != 1:
+        failures.append("the places count does not match the table: %r" % doc["counts"])
+
     # THE ASSERTIONS THAT NEED A TRANSCRIPTION TO READ, and they must fire on `dev`,
     # where the deposit is absent. So they are run against an issue whose text is
     # DERIVED and therefore committed — the American run — with the claim built out of
@@ -900,6 +2587,7 @@ def self_test():
         failures.append("no derived-text issue to build the text-backed cases from")
     else:
         def run_backed(mutate, want, label):
+            cases.append(label)
             d = copy.deepcopy(backed)
             mutate(d)
             with tempfile.TemporaryDirectory() as td:
@@ -974,6 +2662,7 @@ def self_test():
     # in the tree. Every other case breaks something present; these break something by
     # its absence, which is the shape of the fault a reading pass actually has.
     def run_coverage(ranges, want, label):
+        cases.append(label)
         with tempfile.TemporaryDirectory() as td:
             ex = Path(td) / "extracted"
             ex.mkdir()
@@ -1046,6 +2735,43 @@ def self_test():
     if column_starts(["--- Column 1 ---", "orphan"]):
         failures.append("a column before any page line was guessed at rather than skipped")
 
+    # THE SIXTH SHAPE, WHICH IS THREE OF THE EIGHT DEMOCRATS OF EARLY 1835 (T-0298): page
+    # and column on one bracketed line. Asserted on two pages for the same reason the
+    # 1833 case is, and with the Extra's column-less prospectus line beside them, because
+    # reading that one as column 1 is the only judgement in this dialect.
+    bracket = ["[Source PDF page 9; newspaper page 1; column 1]", "a",
+               "[Source PDF page 9; newspaper page 1; column 3]", "b",
+               "[Source PDF page 10; newspaper page 2; column 1]", "c",
+               "[Source PDF page 8; Extra page 4; single-column subscription prospectus]"]
+    if column_starts(bracket) != [(1, 1, 1), (3, 1, 3), (5, 2, 1), (7, 4, 1)]:
+        failures.append("the 1835 bracket dialect does not resolve: page and column are "
+                        "both on the line, and a column-less `single-column` marker is "
+                        "that page's column 1")
+    if BRACKET_COLUMN.match("[uncertain: page 3; column 1]"):
+        failures.append("the bracket column pattern matched a bracketed uncertainty note, "
+                        "which would invent a column boundary inside an advertisement")
+
+    # THE SEVENTH SHAPE, WHICH IS THE OTHER THREE (T-0298). The column rule names the SCAN
+    # page, so it is resolved through the banner stating that page — asserted here with
+    # the banners OUT of scan order, which is what tells the lookup apart from a
+    # most-recent-banner rule that would pass on a tidy file and be wrong on a real one.
+    printed = ["PRINTED PAGE 1 \u2014 SOURCE PDF PAGE 13", "--- SOURCE PDF PAGE 13, COLUMN 1 ---", "a",
+               "PRINTED PAGE 2 \u2014 SOURCE PDF PAGE 14", "--- SOURCE PDF PAGE 13, COLUMN 2 ---", "b",
+               "--- SOURCE PDF PAGE 14, COLUMN 1 ---", "c"]
+    if column_starts(printed) != [(2, 1, 1), (5, 1, 2), (7, 2, 1)]:
+        failures.append("the 1835 printed-page dialect does not resolve: a `--- SOURCE PDF "
+                        "PAGE m, COLUMN k ---` rule takes its issue page from the banner "
+                        "that states scan page m, not from the banner last passed")
+    if column_starts(["--- SOURCE PDF PAGE 13, COLUMN 1 ---", "orphan"]):
+        failures.append("a scan-page column rule with no banner naming its page was "
+                        "guessed at rather than skipped")
+    if BARE_PAGE_BANNER.match("PRINTED PAGE 1 \u2014 SOURCE PDF PAGE 13"):
+        failures.append("the bare page banner pattern swallowed a printed-page banner, "
+                        "which would resolve the issue page by ordinal instead of reading it")
+    if DASH_COLUMN_HEADING.match("--- SOURCE PDF PAGE 13, COLUMN 1 ---"):
+        failures.append("the 1833 dash-column heading swallowed a 1835 scan-page column "
+                        "rule, which carries a page the 1833 shape does not")
+
     # A hand-edit to the generated file, which is the fault nothing downstream can see.
     with tempfile.TemporaryDirectory() as td:
         ex = Path(td) / "extracted"
@@ -1074,8 +2800,8 @@ def self_test():
         for f in failures:
             print("FAIL: " + f, file=sys.stderr)
         return 1
-    print("  ok    every gazetteer assertion fires when broken (36 cases), and all\n"
-          "        five marker dialects resolve")
+    print("  ok    every gazetteer assertion fires when broken (%d cases), and all\n"
+          "        seven marker dialects resolve" % len(cases))
     return 0
 
 

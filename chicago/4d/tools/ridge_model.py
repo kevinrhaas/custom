@@ -40,11 +40,13 @@ WHAT EACH ARCHETYPE DOES, and where it does it:
                       WIDTH when it is true.
   outbuilding         its OWN roof builder, and the one that does not grow the plan:
                       "THE OVERHANG CONTINUES THE SLOPE rather than being pinned at the
-                      eave height", so the ridge stands over the building's own centre
-                      line and the overhang adds nothing to the height. `roof_run_m`
-                      names the run directly — half the span across the ridge for a
-                      gable, the whole span for a shed — and `ridge_along_x` is
-                      `width >= depth`, the long-axis rule.
+                      eave height". For its GABLE that costs nothing — the apex stands
+                      over the building's own centre line and the overhang falls away
+                      from it on both sides — so the run is half the span across the
+                      ridge. For its SHED it costs `oh x tan(pitch)`, because a single
+                      plane running from -oh to span+oh is still climbing when it gets
+                      there, so the run is the whole span PLUS the overhang (T-0274).
+                      `ridge_along_x` is `width >= depth`, the long-axis rule.
 
 A shed roof has no ridge; its high eave is what `ridge_ft` has to be read against, and
 the run is the whole span rather than half of it.
@@ -81,7 +83,9 @@ import sys
 
 sys.path.insert(0, str(pathlib.Path(__file__).resolve().parents[1] / "generators"))
 
-from archetypes.outbuilding_params import shed_axis_for  # noqa: E402
+from archetypes.outbuilding_params import (  # noqa: E402
+    eave_overhang_m, shed_axis_for,
+)
 
 # `MeshBuilder.add_gable_roof`'s default overhang, which `frame_tavern` and
 # `frame_storefront` already name as a constant of their own for the same reason. The
@@ -120,7 +124,20 @@ def ridge_run_m(archetype: str, roof_type: str, width_m: float, depth_m: float,
         if is_shed:
             # The archetype's own rule, imported: an open long side puts the fall across
             # the SHORT span, a closed shell falls front-to-back down the depth.
-            return depth_m if shed_axis_for(open_sides) == "y" else width_m
+            span = depth_m if shed_axis_for(open_sides) == "y" else width_m
+            # ...AND THE OVERHANG IS PART OF THE RUN ON A SHED, which the paragraph
+            # about `outbuilding` in the module note above had exactly backwards
+            # (T-0274). "The overhang continues the slope rather than being pinned at
+            # the eave height" is true of both of this archetype's roofs, and for a
+            # GABLE it costs nothing because the apex stands over the centre line and
+            # the overhang falls away from it on both sides. A shed has no centre line:
+            # its single plane runs from -oh to span+oh and keeps climbing the whole
+            # way, so its highest point is `oh` further along the slope than the high
+            # wall. Left out, the modelled ridge was short by `oh x tan(pitch)` on every
+            # shed in the dataset — 0.08 m at 12 degrees and 0.15 m at 25, which
+            # `tools/measure_ridge_band.py` had been absorbing in the board-thickness
+            # tolerance it compares the built GLB with until a steeper shed outgrew it.
+            return span + eave_overhang_m(width_m, depth_m)
         # `ridge_along_x = width >= depth`; the ridge runs down the long axis, so the
         # plane covers half of the SHORT one.
         return (depth_m if width_m >= depth_m else width_m) / 2.0

@@ -1,7 +1,7 @@
 /**
  * residents.js — the town's people, in the Evidence panel.
  *
- * ROADMAP K52, from K51. `data/residents/` holds 173 households and 209 person
+ * ROADMAP K52, from K51. `data/residents/` holds 201 households and 237 person
  * entries, every one of them graded and most of them cited, and unlike this
  * morning's fauna the layer already had *a* reader: `tools/compile_scene.py`
  * attaches a household to a building's sidecar and `popup.js` names it on the
@@ -27,17 +27,41 @@
  * and reasoning, nor the ten `researched_not_resident` findings — which are the
  * exclusions-style half of the dataset and as load-bearing as the households.
  *
+ * TWO EVIDENCE STRENGTHS, KEPT APART (T-0378). The newspaper register reads people
+ * out of the Democrat and the American, and the two kinds it reads are not the same
+ * claim: a man who advertised his stock is named, dated, placed and given a trade,
+ * while a name in the post office's list of uncalled-for letters is a name and
+ * nothing else. `mint_letter_list_residents.py` carries `letter_list_only` onto the
+ * person for the second kind, and this file is where the distinction has to survive
+ * — it reached `gazetteer.json` and `register_1835.json` and stopped there, so on the
+ * card the two read identically. It is now a row of its own on the person, and a
+ * clause in the section's own count sentence.
+ *
  * WHAT THIS IS NOT. It is a card, not a crowd. Nothing here is drawn: L1 and
  * AGENTS.md stand, v1 ships no human figures, and the standing constraint on
  * depicting the Potawatomi in the year of the removal is untouched by a section
  * that publishes what the sources say and nothing else.
  *
+ * AND THEN THAT DISTINCTION BECAME THE SHAPE OF THE SECTION (T-0379). The owner was
+ * asked how many of the letter-list names the town should hold and ruled, on
+ * 30 August 2026, that it should hold every one the evidence admits. That is the
+ * largest single change to this town's population the corpus can make — it took it
+ * from a couple of hundred people to most of a thousand, roughly three quarters of
+ * them a name on a post-office list and nothing else — and the ruling set its own
+ * test for whether the implementation was any good: *a visitor who looks at the
+ * whole must be able to tell at a glance which three quarters are names alone. If
+ * that reads as a wall of undifferentiated people, the ruling has been implemented
+ * badly, not chosen badly.* So the list is SPLIT rather than sorted: the households
+ * the rest of the corpus documents keep the section they had, at the length they
+ * had, and the cohort sits under them in one closed group that says what it is.
+ *
  * ONE FETCH, THEN ONE PER HOUSEHOLD A VISITOR OPENS. The manifest is a
- * denormalised summary of all 173 records — `tools/validate.py` fails the build
+ * denormalised summary of every record — `tools/validate.py` fails the build
  * when a copy disagrees with its record — so the list renders from a single
  * file, and the full record is fetched the first time its own row is opened.
- * 173 fetches on mount to show 173 collapsed summaries would be a worse card and
- * a slower one; the summary is the manifest's job and the manifest says so.
+ * A fetch per household on mount, to show that many collapsed summaries, would be
+ * a worse card and a slower one; the summary is the manifest's job and the manifest
+ * says so. That was true of 201 records and it is the load-bearing decision at 920.
  */
 
 import { citationItems, escapeHtml } from './citations.js';
@@ -63,6 +87,20 @@ function rank(list, value) {
 function swatch(level) {
   const cls = { attested: 'sw-doc', inferred: 'sw-inf' }[level] || 'sw-rec';
   return `<i class="sw ${cls}" title="${escapeHtml(level || 'reconstructed')}"></i>`;
+}
+
+/**
+ * `1835-07-01` as a reader should see it. The letter-list records carry the dates
+ * of the returns that printed them as ISO strings so a gate can read them; a card
+ * is not a database, and a visitor reading which day the post office was holding
+ * a letter should not have to parse one.
+ */
+function printedOn(iso) {
+  const m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(String(iso ?? ''));
+  if (!m) return String(iso ?? '');
+  const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July',
+    'August', 'September', 'October', 'November', 'December'];
+  return `${Number(m[3])} ${months[Number(m[2]) - 1]} ${m[1]}`;
 }
 
 /** A `<dt>/<dd>` pair, omitted entirely when the record carries nothing. */
@@ -140,6 +178,16 @@ function personHtml(person, citationsById) {
         occ.note ? `<br><span class="res-why">${escapeHtml(occ.note)}</span>` : ''}${
         occCites.length ? `<ol class="cites">${citationItems(occCites)}</ol>` : ''}</dd>` : ''}
       ${claimRow('How this person is named', named && named.value, named, citationsById)}
+      ${person.letter_list_only
+        ? `<dt>How this person is known</dt><dd>${swatch('attested')}Only from the post office's lists of uncalled-for letters. A name on one of those lists is somebody a correspondent believed was reachable at Chicago; it gives no trade, no street and no household, and it is the weakest evidence this project accepts for a resident. A shopkeeper who advertised his stock is a different claim, and this row is here so the two never read as the same one.</dd>` : ''}
+      ${person.letter_list_only && (person.letter_list_returns || []).length
+        ? `<dt>The post office was holding a letter on</dt><dd>${swatch('attested')}${
+          (person.letter_list_returns || []).map((d) => escapeHtml(printedOn(d))).join(' · ')
+        }<br><span class="res-why">Each date is a separate return of uncalled-for letters
+          carrying this name — not a reprint of one. It is the sharpest thing this record
+          can be dated by: a letter waiting on 1 July 1835 is the day this scene is set,
+          and one waiting eighteen months earlier is a different claim about the same
+          person.</span></dd>` : ''}
       ${person.note ? `<dt>What the sources say</dt><dd>${escapeHtml(person.note)}</dd>` : ''}
       ${cites.length ? `<dt>Sources</dt><dd><ol class="cites">${citationItems(cites)}</ol></dd>` : ''}
     </dl>
@@ -163,7 +211,7 @@ function gradeChips(grades) {
  * reaches no building sidecar, so before this section it appeared nowhere a
  * visitor could go.
  */
-function householdSummary(entry) {
+function householdSummary(entry, { orphanChip = true } = {}) {
   const reaches = Boolean(entry.lives_at || entry.works_at);
   const label = entry.id.replace(/^hh_/, '').replace(/_/g, ' ');
   return `<details class="lib res-hh" data-file="${escapeHtml(entry.file)}"
@@ -173,7 +221,8 @@ function householdSummary(entry) {
       <span class="res-role">${escapeHtml(words(entry.division))} division · ${
         entry.persons} ${entry.persons === 1 ? 'person' : 'people'}</span>
       <span class="res-chips">${gradeChips(entry.grades)}${
-        reaches ? '' : '<span class="res-chip res-orphan">on no building card</span>'}</span></summary>
+        reaches || !orphanChip
+          ? '' : '<span class="res-chip res-orphan">on no building card</span>'}</span></summary>
     <div class="lib-body res-hh-body"><p class="legend-note">Loading…</p></div>
   </details>`;
 }
@@ -235,6 +284,50 @@ function notResidentHtml(entries, citationsById) {
         recorded so the gap stays visible instead of being quietly filled, which is the same
         rule the excluded buildings follow.</p>
       ${body}
+    </div>
+  </details>`;
+}
+
+/**
+ * The letter-list cohort, held together in one group (T-0379).
+ *
+ * The owner ruled on 30 August 2026 that every name the post office's lists of
+ * uncalled-for letters yields, and the mint's refusals admit, joins the town. That
+ * took it from a couple of hundred people to most of a thousand and made roughly
+ * three quarters of them a name on a list and nothing else — which is a change to
+ * what a visitor is looking at, not only to what the data holds, and the ruling
+ * said so in as many words: *if that reads as a wall of undifferentiated people,
+ * the ruling has been implemented badly, not chosen badly.*
+ *
+ * So they do not sit interleaved with the town's evidenced households. They are one
+ * closed disclosure that says what they are and how many, and the list above it is
+ * the town as the rest of the corpus documents it — the same records, in the same
+ * order, at the same length it was before the ruling. Opening this group is a
+ * deliberate act, and the rows inside it behave exactly like every other row.
+ *
+ * The `on no building card` chip is dropped inside here on purpose. On an evidenced
+ * household it is a FINDING — a record this project could not attach to a building.
+ * On 727 rows that by construction have no address it is wallpaper, and the group's
+ * own summary says the same thing once, where it means something.
+ */
+function letterListGroupHtml(entries, persons) {
+  if (!entries.length) return '';
+  const share = persons ? Math.round((entries.length / persons) * 100) : 0;
+  return `<details class="lib res-ll-group">
+    <summary><span class="lib-title">Known only from the post office's letter lists</span>
+      <span class="res-role">${entries.length} ${entries.length === 1 ? 'person' : 'people'}
+        · about ${share}% of this town</span></summary>
+    <div class="lib-body">
+      <p class="legend-note">Each of these is a name the Chicago post office printed in a
+        list of letters nobody had called for. That establishes one thing: a correspondent
+        believed a person of that name was reachable at Chicago on that date. It does
+        <b>not</b> establish that they lived here, kept a trade here, or were here on
+        1 July 1835 — and the office served the country around the town as well as the town.
+        It is the weakest evidence this project accepts for a resident, and it is admitted
+        by an owner's ruling of 30 August 2026 rather than by the sources getting better.
+        Every row carries the date of the return that printed it; none of them has a
+        building, a household or a trade, because a letter list gives none.</p>
+      ${entries.map((entry) => householdSummary(entry, { orphanChip: false })).join('')}
     </div>
   </details>`;
 }
@@ -341,6 +434,13 @@ export async function mountResidents({ mount, noteMount = null, sceneId, dataBas
   const offCardPersons = entries
     .filter((e) => !e.lives_at && !e.works_at)
     .reduce((n, e) => n + (e.persons || 0), 0);
+  // T-0379. The manifest says which rows are the letter-list cohort, so the split
+  // is read from the data rather than from a mint tool's id prefix — and it is a
+  // split rather than a sort because after the ruling those rows outnumber the
+  // town's evidenced households roughly three to one.
+  const letterList = entries.filter((e) => e.letter_list_only);
+  const evidenced = entries.filter((e) => !e.letter_list_only);
+  const letterListOffCard = letterList.filter((e) => !e.lives_at && !e.works_at).length;
 
   if (noteMount) {
     // The layer's own grade tally, which the manifest has always carried and
@@ -354,15 +454,25 @@ export async function mountResidents({ mount, noteMount = null, sceneId, dataBas
       + `fill a demonstrable need of the town. `
       + `${offCard} of the households are attached to no building in this scene — neither `
       + `where they lived nor where they worked is attested on 1 July 1835 — so ${offCardPersons} `
-      + `people reached no card anywhere until this section existed. Nobody is drawn: this `
-      + `is the research, not a population.`;
+      + `people reached no card anywhere until this section existed. `
+      + (counts.letter_list_only
+        ? `${counts.letter_list_only} of the people here are known ONLY from the post `
+          + `office's lists of uncalled-for letters, which is the weakest evidence this `
+          + `layer carries and is marked as such on each of their cards. That is about `
+          + `${Math.round((counts.letter_list_only / persons) * 100)} per cent of this `
+          + `town: the owner ruled on 30 August 2026 that every such name the evidence `
+          + `admits should be held, so they are listed together, below the households the `
+          + `rest of the corpus documents, and which of these people are a name and `
+          + `nothing else can be seen without opening anything. ` : '')
+      + `Nobody is drawn: this is the research, not a population.`;
     noteMount.removeAttribute('aria-busy');
   }
 
   if (mount) {
     mount.innerHTML = vocabularyHtml(vocab)
       + notResidentHtml(notResident, citationsById)
-      + entries.map((entry) => householdSummary(entry)).join('');
+      + evidenced.map((entry) => householdSummary(entry)).join('')
+      + letterListGroupHtml(letterList, persons);
     mount.removeAttribute('aria-busy');
 
     // The lazy read. A row's body arrives the first time it is opened, from the
@@ -394,6 +504,13 @@ export async function mountResidents({ mount, noteMount = null, sceneId, dataBas
     persons,
     offCard,
     offCardPersons,
+    // T-0379's two halves, separately, because the interesting assertion is not
+    // the total: it is that the town's evidenced households did not move when
+    // seven hundred letter-list names joined it, and that the cohort is held
+    // apart where a visitor can see it.
+    evidenced: evidenced.length,
+    letterList: letterList.length,
+    letterListOffCard,
     notResident: notResident.length,
     error: null,
   };

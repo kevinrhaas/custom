@@ -30,7 +30,8 @@ ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT / "tools"))
 
 from generate_plat_lots import (  # noqa: E402
-    DATA, corridor_rings, load, point_in_polygon, point_to_ring_m, street_lines,
+    DATA, EW_STREETS, NS_STREETS, corridor_rings, load, point_in_polygon,
+    point_to_ring_m, street_lines,
 )
 
 # Footprint edges are sampled at this pitch before the point test. A corridor is 24 m
@@ -39,14 +40,169 @@ from generate_plat_lots import (  # noqa: E402
 # drawn END, where the ring turns.
 SAMPLE_M = 0.5
 
+# The centimetre this project quotes a corridor depth to. It is not a tolerance anybody
+# chose for THIS question: `measure_corridor_intrusion` already refuses to report a depth
+# finer than 0.01 m because the ring and the footprint are both derived and the last
+# millimetre is arithmetic rather than evidence. The same figure decides here whether a
+# control point and the drawn line DISAGREE at all — a street whose line reproduces its
+# control to under a centimetre is a street drawn on its control, and re-centring it would
+# move the whole town by arithmetic noise.
+QUOTED_M = 0.01
 
-def corridors() -> dict:
-    """Every grid street's platted corridor, by street id."""
+
+def _cross_axis_of_line(points: list, along: float, axis: str) -> float | None:
+    """The drawn centreline's cross-axis value where it passes the given along-axis value.
+
+    `axis` is the street's own axis: an east-west street is read for a NORTHING at an
+    easting, a north-south street for an EASTING at a northing. Returns None when the
+    control point lies outside the span this project has actually drawn — a street's
+    corridor is only as long as its committed centreline, so a control point beyond the
+    drawn end says nothing about the part of it that exists.
+    """
+    i, j = (0, 1) if axis == "ew" else (1, 0)
+    for a, b in zip(points, points[1:]):
+        lo, hi = min(a[i], b[i]), max(a[i], b[i])
+        if lo - 1e-9 <= along <= hi + 1e-9:
+            t = 0.0 if b[i] == a[i] else (along - a[i]) / (b[i] - a[i])
+            return a[j] + (b[j] - a[j]) * t
+    return None
+
+
+def control_offsets(lines: dict | None = None, control: dict | None = None) -> dict:
+    """How far each street's committed CONTROL stands off its own drawn centreline.
+
+    T-0009, and the owner's ruling of 2026-08-29 that produced it: *"derive the platted
+    corridor from the street CONTROL rather than from the drawn line."*
+
+    A drawn centreline in `data/streets/1835.json` is a reconstruction decision about where
+    a street can be DRAWN — south_water's own record says its line east of Franklin "is
+    shifted into the dry half of the platted riverfront corridor", 8.28 m perpendicular off
+    `control.south_water_franklin`. That shift is not a claim about where the platted
+    corridor was, so measuring building bodies against the drawn line reported them
+    intruding into a corridor the plat does not put there.
+
+    So the corridor is centred on the control where a street HAS committed control. Per
+    street this returns every control point naming it, the cross-axis offset from the drawn
+    line to that point, and the verdict:
+
+    * `centred`   — the line reproduces its control to under `QUOTED_M`. Nothing moves.
+    * `recentred` — one agreed offset, larger than `QUOTED_M`. The corridor is translated
+                    onto the control by it; the drawn line does NOT move.
+    * `disagree`  — two or more control points that do not agree on one offset. A rigid
+                    translation cannot satisfy them and re-DRAWING the line is exactly what
+                    the ruling forbids, so the corridor stays on the drawn line and the
+                    spread is recorded rather than averaged away.
+    * `off_line`  — the control point lies beyond the drawn centreline's own span.
+
+    The verdict is computed from the committed control and the committed lines every time.
+    There is no list of street ids anywhere in it: a street acquires or loses a re-centring
+    by what its control says, which is the whole point of deriving it.
+    """
+    control = load(DATA / "traces" / "street_control.json") if control is None else control
+    lines = street_lines(load(DATA / "streets" / "1835.json")) if lines is None else lines
+    datum = load(DATA / "datum.json")
+    origin_e, origin_n = float(datum["origin_utm_e"]), float(datum["origin_utm_n"])
+
+    found: dict = {sid: [] for sid in lines}
+    for point_id, point in sorted(control["control"].items()):
+        local_e = float(point["utm_e"]) - origin_e
+        local_n = float(point["utm_n"]) - origin_n
+        for sid in point["streets"]:
+            if sid not in lines:
+                continue
+            if sid in EW_STREETS:
+                axis, along, control_cross = "ew", local_e, local_n
+            elif sid in NS_STREETS:
+                axis, along, control_cross = "ns", local_n, local_e
+            else:
+                continue
+            drawn = _cross_axis_of_line(lines[sid]["points"], along, axis)
+            found[sid].append({
+                "control": point_id,
+                "axis": axis,
+                "drawn_cross_m": None if drawn is None else round(drawn, 2),
+                "offset_m": None if drawn is None else round(control_cross - drawn, 2),
+            })
+
+    out = {}
+    for sid, points in found.items():
+        usable = [p for p in points if p["offset_m"] is not None]
+        if not points:
+            verdict, offset = "no_control", 0.0
+        elif not usable:
+            verdict, offset = "off_line", 0.0
+        else:
+            offsets = [p["offset_m"] for p in usable]
+            spread = max(offsets) - min(offsets)
+            if spread > QUOTED_M:
+                verdict, offset = "disagree", 0.0
+            elif abs(offsets[0]) <= QUOTED_M:
+                verdict, offset = "centred", 0.0
+            else:
+                verdict, offset = "recentred", round(sum(offsets) / len(offsets), 2)
+        out[sid] = {
+            "axis": "ew" if sid in EW_STREETS else "ns" if sid in NS_STREETS else None,
+            "points": points,
+            "spread_m": (round(max(p["offset_m"] for p in points if p["offset_m"] is not None)
+                               - min(p["offset_m"] for p in points
+                                     if p["offset_m"] is not None), 2)
+                         if usable else None),
+            "verdict": verdict,
+            "offset_m": offset,
+        }
+    return out
+
+
+def corridors(from_control: bool = False) -> dict:
+    """Every grid street's platted corridor, by street id.
+
+    `from_control=True` centres the corridor on the street's committed CONTROL wherever it
+    has one the drawn line does not reproduce — see `control_offsets`, and T-0009 for the
+    owner's ruling of 2026-08-29 that asked for it.
+
+    **IT IS NOT THE DEFAULT, AND THAT IS THE RULING'S OWN SCOPE.** The ruling says in as
+    many words what it changes: *"what changes is what the intrusion TABLE measures
+    against"* — whether a body a person placed stands in the platted roadway. It did not
+    decide the other question this module is asked, which is where a GENERATOR may put a
+    roof, and that one is about the street as DRAWN: a visitor walks the committed
+    centreline, not the plat.
+
+    The split is not a convenience. Re-centring south_water town-wide was measured on
+    2026-08-29 (T-0009) and moves the corridor 8.58 m off its own block faces, which are
+    offset from the drawn line by `generate_plat_lots.block_edges` and do not move. Five
+    gates that read a corridor edge AGAINST a block face or a frontage line then disagree
+    with the plat — the cross-street face census, the southern-ground stations, the
+    block-parcel street-line assertions and the far-timber census all went red. That strip
+    between the re-centred corridor and the block face it no longer abuts is a real
+    question about the plat, and it is filed rather than settled here.
+    """
     control = load(DATA / "traces" / "street_control.json")
     half_width = float(control["platted_street"]["half_width_m"])
     lines = street_lines(load(DATA / "streets" / "1835.json"))
-    return {sid: {"name": lines[sid]["name"], "ring": ring, "points": lines[sid]["points"]}
-            for sid, ring in corridor_rings(lines, half_width).items()}
+    offsets = (control_offsets(lines, control) if from_control
+               else {sid: {"offset_m": 0.0, "verdict": "drawn"} for sid in lines})
+    out = {}
+    for sid, ring in corridor_rings(lines, half_width).items():
+        shift = float(offsets.get(sid, {}).get("offset_m") or 0.0)
+        i = 1 if sid in EW_STREETS else 0
+        if shift:
+            ring = [(e, n + shift) if i else (e + shift, n) for e, n in ring]
+        drawn = lines[sid]["points"]
+        centre = ([(e, n + shift) if i else (e + shift, n) for e, n in drawn]
+                  if shift else drawn)
+        out[sid] = {
+            "name": lines[sid]["name"],
+            "ring": ring,
+            # `points` is the line as DRAWN and stays the drawn line: callers that ask
+            # where the street is drawn are asking about data/streets/1835.json, which
+            # this derivation does not move. `centre` is the corridor's own centre, which
+            # is what a question about the PLAT should be asked against.
+            "points": drawn,
+            "centre": centre,
+            "control_offset_m": shift,
+            "control_verdict": offsets.get(sid, {}).get("verdict", "no_control"),
+        }
+    return out
 
 
 def sampled(polygon: list, pitch: float = SAMPLE_M) -> list:

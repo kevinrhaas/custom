@@ -95,7 +95,13 @@
           "street": null
         }
       },
-      "notes": "THE ONLY WOMAN PROPRIETOR IN THE RUN, AND THE ONLY PLACEMENT WITH TWO ANCHORS. Sarah D. Howe takes a room in the house occupied by Dr. Austin — the botanic physician 1835-08-08 places ON LAKE STREET, NEAR THE POST OFFICE — and describes it as OPPOSITE Dr. Temple's. Three documented tenancies now triangulate on one spot: a doctor's house with a dressmaker's room in it, a second doctor's premises across the street, and the post office nearby. That is a piece of streetscape this project could actually build. THE STREET WORD IN HER OWN SENTENCE IS CUT ('taken a room a street'), so no street is recorded on the business; Lake Street comes from Austin's card and belongs there, not here. SHE IS ALSO HIRING: four or five young ladies wanted as apprentices, which documents a small workshop and not a one-woman room."
+      "notes": "THE ONLY WOMAN PROPRIETOR IN THE RUN, AND THE ONLY PLACEMENT WITH TWO ANCHORS. Sarah D. Howe takes a room in the house occupied by Dr. Austin — the botanic physician 1835-08-08 places ON LAKE STREET, NEAR THE POST OFFICE — and describes it as OPPOSITE Dr. Temple's. Three documented tenancies now triangulate on one spot: a doctor's house with a dressmaker's room in it, a second doctor's premises across the street, and the post office nearby. That is a piece of streetscape this project could actually build. THE STREET WORD IN HER OWN SENTENCE IS CUT ('taken a room a street'), so no street is recorded on the business; Lake Street comes from Austin's card and belongs there, not here. SHE IS ALSO HIRING: four or five young ladies wanted as apprentices, which documents a small workshop and not a one-woman room.",
+      "announces_opening": {
+        "verbatim": "[s]he ha[s] taken a room [in …] street, in the house [o]c[c]upied by Dr. Aus[tin]",
+        "dating": "effected",
+        "iso": "1835-08-18",
+        "note": "The American's printing of Sarah Howe's notice, over the same 18 August 1835 dateline as the Democrat's."
+      }
     },
     {
       "id": "c002",

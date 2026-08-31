@@ -1,5 +1,1068 @@
 # STATUS
 
+## Shipped 2026-08-30 — T-0170: the last part of the gate that could not be run is halved
+
+**Nothing a visitor sees.** `SMOKE_STAGE` has THIRTEEN parts; part 10 is halved and old parts
+11-12 are 12-13. This is the last piece of T-0121 and the third re-cut of the day, after T-0346
+and T-0173.
+
+**The part was never inside the ceiling.** Profiled at 1280x800 with `SMOKE_TIMING=1` on an
+**idle** runner — load average 0.27-1.48, zero other Chromium processes, the friendliest reading
+this suite can be given — it was **killed at 9 m 20 s** with the street readouts and the Settings
+units still to run. Third and fourth kill of the same part. T-0167's 7 m 43 s is the outlier in
+the record, not the number to size a cut from.
+
+**It had been skipped twice for want of a boundary.** This part carried no `// --- section ---`
+headers at all; that is the stated reason T-0167 cut part 8 instead. Eight seams are named now,
+so the next cut here is a choice from a list rather than a fresh profile.
+
+**The first cut was measured and rejected, and it is in the record.** Cutting above R-BUG7's
+flower-head census gave **5 m 05 s / 6 m 24 s** — a 3 m 36 s margin, and this project's own rule
+(ROADMAP § THE RUN BUDGET) is that a margin that thin is not a margin. Moving that one section up
+into the head balances it.
+
+| part | desktop | margin | staged | verdict |
+|---|---|---|---|---|
+| 10 | **5 m 59 s** | 4 m 01 s | 23 | 1 failed — T-0279's flower heads, 2,693 of 18,893 |
+| 11 | **4 m 41 s** | 5 m 19 s | 13 | SMOKE PASS |
+
+23 + 13 = **36**, the count the single part took. The red is inherited:
+`tools/dev-smoke-state.json` records the same check red on dev at 2,526 of 18,911 on 2026-08-29,
+and it does not fire at mobile at all.
+
+**Nothing dropped, measured as an equality.** At mobile on the same tree, the pre-cut
+`smoke_renderer.mjs` at the single part gives **45 passed / 0 failed / 36 staged / 9 always-on in
+5 m 59 s**; the pair gives **45 / 0 / 36 / 9 in 6 m 01 s**. A pair still boots once, so the mobile
+recipe does not grow a command.
+
+**One binding crosses and it is the one that already crossed the stage split.** `streetLayer`, so
+`anyStage(7, 10)` becomes `anyStage(7, 10, 11)`. The other six names the scan found below the
+line (`headSupport`, `horizon`, `over`, `planted`, `popIn`, `sward`) are prose or strings in every
+occurrence. The second half's prologue is `enterTown()` and `setFly(false)`.
+
+**The readings are of THIS tree.** The cut was first measured at parts 9 and 10, before T-0173
+merged and shifted the whole tail by one; every figure above was re-taken after the re-derivation
+onto T-0173's numbering and agrees with the first pass to within six seconds (5 m 58 s / 4 m 38 s
+then, 5 m 59 s / 4 m 41 s now). All three are filed in `tools/dev-smoke-state.json`.
+
+**Read the margins as readings of an idle machine.** T-0215's factor of twenty is not repealed by
+a cut: 4 m 01 s is a margin against the box that measured it.
+
+## Shipped 2026-08-30 — T-0333: eighteen inches of stack, and the town was already inside it
+
+**The Town of Chicago's by-law of 5 August 1835, section 18, is the first documented
+DIMENSIONAL constraint this project holds on anything above a roof line**, and it is now
+measured and gated. `chicago_democrat_1835_08_19#c005`, page 1 column 2, prints it line by
+line: *"every stove pipe or chimney passing through the roof of any building shall extend
+and be carried at least eighteen inches above the roof, and no stove pipe shall be passed
+through the side or end of any building"*, under five dollars for each and every offence,
+with a fire warden in every house, store and shop once a month from September to May.
+
+### The census, and it is the whole finding
+
+`tools/measure_stack_ordinance.py`, read off the committed masters' glTF accessor bounds
+rather than off the generators that wrote them — the same discipline `measure_stack_fabric.py`
+(T-0137) uses, and for the same reason: the generator is the thing under test.
+
+| archetype | buildings | above its own roof |
+|---|---|---|
+| `frame_dwelling` | 116 | 0.780 m — 30.7 in |
+| `log_dwelling` | 44 | 0.720 m — 28.3 in |
+| `frame_storefront` | 36 | 0.710 m — 28.0 in |
+| `frame_tavern` | 11 | 0.550 m — **21.7 in**, the tightest in the town |
+| `fort_structure` | 6 | 0.780 m — 30.7 in |
+| **town** | **213 buildings, 234 stacks** | **least 0.550 m, 3.7 in of margin** |
+
+**Nothing was raised, moved or rebuilt, and no master was rebaked.** The ticket anticipated
+this outcome in its own words — *"the answer may already be compliant, in which case this
+ticket closes as a GATE and a provenance note rather than as geometry"* — and it is what the
+measurement says. `docs/LIBERTIES.md` is untouched: a documented constraint the model already
+satisfies is not an invention.
+
+### What is unverified, and what is deliberately not decided
+
+- **The clearance is measured to the RIDGE**, which is the top of the `roof` material. A
+  stack standing off the ridge — `frame_tavern` across the frontage, `frame_storefront` on
+  a shed roof — breaks a roof plane lower than that, so its true projection is larger than
+  the figure above. The figures are a floor, not an estimate.
+- **A building carrying stacks on two roofs reports its tallest.** That the ell's or the
+  frame addition's stack clears its own ridge by the same margin is the ARCHETYPE's
+  guarantee — every archetype builds each stack with one helper, relative to the ridge it
+  is handed — and not this measurement's. Stated rather than assumed.
+- **The corporation limits are not drawn and this gate makes no ruling about them.**
+  Section 18 binds *"within the limits of the Corporation"*; section 22 of the same sitting
+  walks those limits street by street and is **T-0334**, unbuilt. Nothing is conformed to a
+  rule that may not bind it, because nothing has to move: every stack clears eighteen inches
+  on both sides of a line nobody has drawn. If a record ever legitimately stands a shorter
+  stack outside the limits, T-0334's boundary is what scopes this gate, and the gate's own
+  failure message says so instead of inviting the next run to weaken a documented figure.
+- **The by-law postdates the scene date by five weeks and is not applied retrospectively.**
+  It is used as a bound the drawn town is measured against, not as a rule the 1 July town
+  was held to.
+- **There is no stove pipe anywhere in this model.** Every stack drawn is masonry, so
+  section 18's second clause — no pipe out through a side or end wall — binds nothing that
+  is drawn. That answers the ticket's second question: the archetypes do not distinguish a
+  pipe from a chimney because they have only chimneys.
+
+`docs/RESEARCH/chimneys.md` § 7 holds the reading. `tools/check.sh` runs the gate and its
+four self-test cases.
+## Shipped 2026-08-30 — T-0173: the desktop gate's part 7 is halved, and both halves fit
+
+**Not a thing a visitor sees.** It is the thing that lets a run PROVE what a visitor sees. A
+steward run's single foreground command is capped at ten minutes, and part 7 stopped fitting
+inside it: profiled on the steward runner with `SMOKE_TIMING=1` at load 0.81-2.86, it was killed
+at **9 m 25 s** with its last two assertions unrun and `the suite body ran to completion` reporting
+a FAIL that looks like a product red and is not one. That is the third desktop part to go this
+way (T-0121's four, T-0167's part 8, T-0346's part 4 the same morning), and the cause is the same
+one every time: the town grows and the part grows with it.
+
+- **The cut is measured, and the measurement says where.** The profile puts **7 m 04 s of a
+  9 m 25 s part in ONE block** — the three road-legibility stations, each of which teleports to
+  its own viewpoint and reads `page.screenshot` frames through five distance bands. Around it:
+  20 s of boot, 33 s of navigation and the street-layer checks, 1 m 04 s of the R-A1 aid, and the
+  batch merge under that.
+- **So the boundary could not be one of the file's own `// --- ` section headers**, which is what
+  T-0170 had already found and left for whoever cut it: the best of them leaves **7 m 37 s against
+  1 m 30 s**, which is not a cut, it is a rename. The cut falls at the STATION instead — the grain
+  the block is actually made of. Each station teleports to its own viewpoint, takes its own frames
+  and answers its own `check`, and none of them reads anything a sibling left standing.
+- **Nothing crosses it.** `roadRuns` is local to the block. The movement report built from it is
+  printed and never gated, and it has always compared only what the invocation measured — that is
+  what lets `SMOKE_VIEWPORT=mobile` run without retiring desktop's half of the bank — so a part
+  reporting on its own stations is the existing rule, not a new one. `--update-road-bands` merges
+  per band and leaves untouched bands alone. R-A1's three assertions are taken STANDING AT
+  `lake_market`, so that station goes into the new part with them, in the same order, unchanged.
+- **Measured after the cut, at desktop, same runner and same hour:** part 7 — **5 m 05 s, 12
+  staged, SMOKE PASS**; part 8 — **5 m 06 s, 8 staged, SMOKE PASS**. 12 + 8 = **20**, exactly the
+  count the old part 7 was taking, which is how "never dropping a check" is demonstrated rather
+  than asserted. Both halves clear the ceiling by **4 m 55 s**, against the 35 s the old part 7 was
+  over it by.
+- **Which of the two carries the shared street reading matters, and it is part 7.** `anyStage(7, 9)`
+  becomes `anyStage(7, 10)`; `streetLayer` — the most expensive single evaluate in the file — is
+  referenced in parts 7 and 10 and nowhere else, checked statically and then run. Part 8's own
+  profile is the proof it does not pay for it: boot at 0 m 17 s, first station at 3 m 17 s, no gap
+  where that reading would sit.
+- **Parts 8-11 are renumbered 9-12**, because this cut is mid-body and T-0167's append could not be
+  repeated (T-0346 hit the same wall the same day). The pairing rule survives in content and moves
+  in spelling: `1+2, 3+4+5+6, 7+8, 9+10+11` becomes `1+2, 3+4+5+6, 7+8+9, 10+11+12`, ranges
+  `1-2 3-6 7-9 10-12`. `chicago-4d-bake.yml`'s smoke matrix is edited in this commit, as its own
+  comment demands of any renumbering; the ranges still tile 1..12 once each with no gap or overlap.
+- **The renumbered legs were run, not reasoned about.** Mobile `SMOKE_STAGE=7-9` is **43 passed,
+  0 failed, 34 staged** in 7 m 33 s — the same 43 the old `7-8` leg reported on 2026-08-30, so the
+  leg carries exactly what it carried. Mobile `SMOKE_STAGE=10-12` is **168 passed, 0 failed, 159
+  staged** in 9 m 33 s, which fires all three renumbered tail parts.
+- **`tools/dev-smoke-state.mjs` mirrors `PARTS` and had to move with it** (11 → 12), and
+  `CHANGELOG_PARTS` with it (What's-new is part 11 now, not 10).
+
+**What this does NOT close.** T-0173's acceptance names three parts and this is one of them: the
+old part 4 was T-0346's, and the old part 7 — **now part 10** — is T-0170's, which is still open
+and still measured over the ceiling on three separate runners. T-0173's own instruction was "do
+not cut part 7 twice", and cutting a part that another ticket owns while eight slices of this lane
+run at once is exactly the way to do it twice. So T-0173 closes on what it uniquely owned and
+T-0170 keeps its own part, with the numbers in it re-labelled for this cut.
+
+**Re-taken after a rebase, because dev had gained a geometry change under it.** T-0333 put a stove
+pipe on every roof in the town while this branch was being measured, so the desktop pair was run
+again on the rebased tree: part 7 **5 m 03 s / 12 staged** and part 8 **5 m 06 s / 8 staged**,
+both SMOKE PASS, within three seconds of the first pair. `./tools/check.sh` PASS on the same tree,
+and `node tools/smoke_budget.mjs --self-test` — T-0235's map, merged into dev the same hour — is
+green on the new numbering.
+
+**A caveat on every figure above, and the ROADMAP already states the rule.** These readings were
+taken at load average 0.81-2.86 on a 4-core runner. T-0215 measured a factor of twenty between a
+quiet box and a loaded one, so 4 m 55 s of margin is a floor on what these parts cost, not a
+description of it.
+
+## Shipped 2026-08-30 — T-0305: the four readings the American contradicts itself on
+
+**What a visitor sees:** S. B. Cobb's saddlery — the corner shop on Lake Street in the West
+Division — now carries an **open question** on the provenance card you get by walking up to it,
+and the Evidence panel's open-questions list goes from four to five. It is the second building in
+the scene whose card asks a live question rather than only grading a claim.
+
+**The ticket was filed with a title that asserted its own answer** — *"need the page images"* —
+and an empty acceptance clause. The acceptance was written first, and written so that it could
+refute the title: name the four, test each against the whole 86-issue corpus rather than against
+the American alone, and only then put what survives to the owner. Nothing survived the corpus
+test. The title was right, and it is right for a stated reason now instead of by assertion.
+
+**The four, and the shape of each.** `tools/measure_american_contradictions.py --gate` re-derives
+them; `docs/RESEARCH/american_self_contradictions.md` quotes every printing.
+
+| # | question | printings | the corpus |
+|---|---|---|---|
+| 1 | Edward Burton's tailoring shop — Franklin or Lake street | one card, one copy date, four settings: Franklin, Franklin, unresolved, **Lake** | `Burton` is not in the Democrat at all |
+| 2 | Wm. Sabine — North or South Water Street | North 06-13 and 06-20, **South** 07-04 | one post-office letter-list line |
+| 3 | John Dave[s] — the card set below Sabine's | the same two dates, the same two readings | three letter-list lines |
+| 4 | S. B. Cobb's saddlery — which cross street | Lake legible in all three 1835 cards, the cross street lost in all three | the Democrat's 1833 *"Lake and Canal streets"* |
+
+**Three things the run found that the ticket did not know.**
+
+- **2 and 3 are one event, not two.** Both houses read North in both June settings and South in
+  the July one. Two firms do not cross a river together between issues; a compositor resets a
+  column. That does not say which reading is right — it does mean **one page image settles both**,
+  and it is why the ask is six columns for four questions rather than eight.
+- **The contradicting printing is invisible to the register.** On 1835-07-04 the three forwarding
+  cards were extracted as ONE claim, filed under the third firm's name (Newberry & Dole), so
+  `business_wm_sabine_storage_forwarding_and_commission_merchant` reads "North Water Street" flat
+  with no disagreement recorded on it. The South reading survives only on John Davis's entity and
+  in that claim's own note. **Not re-cut here**, deliberately: re-cutting a claim is a reading of
+  the page, and the page is the thing that is missing.
+- **Question 4 is the weakest of the four, and that is worth knowing before anyone spends a
+  scan on it.** The 1833 corner is one of the few addresses in this project read off the page
+  images themselves — `chicago_democrat_1833_11_26` carries `verified: true` — so the American's
+  silence is not doubt about 1833. What it leaves open is the twenty months after it: whether the
+  shop Cobb *"will continue the above business at"* in June 1835 is the same corner, which is
+  exactly the identification the record grades `inferred`.
+
+**A sentence that was counting, and had already gone wrong.** The Evidence panel's own account of
+the open questions ended *"one of them is standing in front of you"*. That was true of four
+entries and stopped being true on 2026-08-29, when the New York House became the second standing
+one — a day before this run added a fifth. It is the same failure the hand-typed paraphrase before
+it made, and the same failure the panel's own changelog entry says it fixed. It counts nothing now:
+each entry carries its own `standing` flag and the chip beside it says which.
+
+**What is left is the owner's, and it is six columns**, all in the American — 1835-06-13 p3 c5,
+1835-07-04 p4 c4, 1835-06-27 p3 c5, 1835-08-15 p3 c6, 1835-06-08 p3 c5, 1835-07-11 p3 c6. Two of
+them serve two questions each. Nothing smaller will do it: every reading above is already the best
+the transcription can give, and three of the four subjects appear nowhere else in eighty-six
+issues except a list of letters waiting at the post office. The ticket is `blocked-owner` on
+exactly that ask.
+
+**Held by a gate, not by memory.** Every reading is declared with the page and column it sits in
+and re-derived on every `check.sh`, along with the negative half over all seventy-three Democrat
+issues. Eight assertions, each proved to fire under `--self-test`. The day one of these four is
+answered — by an image, or by an extraction pass reaching a card nobody has read — the build says
+so.
+
+## Shipped 2026-08-30 — T-0346: the desktop gate's costliest part is cut into three
+
+**Nothing you can see changed.** This is exemption 3 of the visible-progress rule: a gate that is
+blocking visible parcels. `tools/smoke_renderer.mjs` part 4 was being killed at the ten-minute
+foreground ceiling a steward run's single command has, so no run could take the desktop half of its
+own gate — and part 4 is where the draw-call and triangle ceilings are gated at the town's worst
+frame, which is exactly the check a NEW BUILDING breaks. T-0385 (the New York Clothing Store in
+Dearborn Street) and T-0375 (five documented tradesmen on South Water Street) both stand roofs and
+both have to clear that ceiling; until today neither could demonstrate it on the runner that ships
+them.
+
+**The cost was one section of ten, and it was measured rather than guessed.** `SMOKE_TIMING=1`
+under this lane's own eight-way contention, 2026-08-30, against `--published`:
+
+| section of part 4 | reached at | left at |
+|---|---|---|
+| raycast pick → walking → bridge deck → budgets → life size → nothing hovers | 0:18 | 1:10 |
+| **the scene-detail ladder** | 1:10 | **7:27** |
+| the gate and the chrome | 7:27 | 8:42 |
+| the confidence menu's own clicks | 8:42 | killed at 9:20 |
+
+Six minutes and seventeen seconds of a ten-minute part sat in ONE section. That section walks every
+stand in `STANDS` at every detail tier and cannot be halved without walking the set twice — the
+single-walk saving is what T-0135 built it around — so it is a part on its own rather than a
+boundary nudged along.
+
+**The cut, and what crossed it.** Two named section boundaries, both re-verified for crossing
+bindings the way T-0121 and T-0167 verified theirs. Exactly one binding crossed: part 4's `stats`,
+read only for `stats.budget.drawCalls`. Part 5 now reads that ceiling itself, out of `stats.budget`
+rather than written into the test, so the bar still follows its definition site in `main.js` and a
+scene that outgrew its budget still cannot be made green by editing this file. The ladder takes no
+pose from what ran before it — `order` teleports to each stand itself and finishes at the reference
+frame — so no `enterTown()` or re-framing was needed at the boundary.
+
+- **Parts 4, 5 and 6, measured under the same load:** 1 m 09 s (17 staged checks), 6 m 46 s (16),
+  3 m 13 s (6). All three SMOKE PASS at desktop against `--published`.
+- **Nothing was dropped, and it is checked rather than claimed.** At mobile, where the old part 4
+  still fitted the ceiling, `origin/dev`'s part 4 and this branch's parts 4-6 report the SAME
+  numbers on the same tree: **51 passed, 0 failed, 42 staged-section checks, 9 always-on** — 6 m 17 s
+  against 6 m 15 s. That is the arithmetic the audit line exists for, run as an equality.
+- **Parts 5-9 are renumbered 7-11**, because these two sections sit in the MIDDLE of the body and
+  T-0167's append could not be repeated. `anyStage(5, 7)` — the shared street reading — becomes
+  `anyStage(7, 9)`; `streetLayer` is referenced in parts 7 and 9 and nowhere else, checked
+  statically and then run: `SMOKE_VIEWPORT=mobile SMOKE_STAGE=7-8` is **43 passed, 0 failed** in
+  7 m 31 s.
+- **The pairing rule survives in content and moves in spelling.** `1+2, 3+4, 5+6, 7+8+9` becomes
+  `1+2, 3+4+5+6, 7+8, 9+10+11` — the same four mobile commands carrying the same parts, ranges
+  `1-2 3-6 7-8 9-11`. `chicago-4d-bake.yml`'s smoke matrix is edited in this commit, as its own
+  comment demands of any renumbering; the ranges still tile 1..11 once each with no gap or overlap.
+- **`tools/dev-smoke-state.mjs` mirrors `PARTS` and had to move with it** (9 → 11), and
+  `CHANGELOG_PARTS` with it (What's-new is part 10 now, not 8).
+
+**One thing this leaves behind, stated rather than hidden.** Every reading already in
+`tools/dev-smoke-state.json` is filed under the OLD numbering, so a reading labelled `stage: "5"`
+is the part that is now 7. Nothing reads them as a bar and every one of them carries a `treeHash`
+that no longer matches any tree with this file in it, so `ask` will say it was not taken on your
+tree — but the numbering is now dated and the record's note says so.
+
+**What this does NOT do.** It does not re-profile the whole desktop recipe under load, and it does
+not resize the parts T-0346's second measurement put over the ceiling for reasons that were later
+shown to be contention rather than cost (old stages 5 and 7, now 7 and 9). That is a second
+demonstration and therefore a second ticket: T-0346 was split rather than shipped as a self-invented
+half.
+## Shipped 2026-08-30 — T-0369: desktop stage 8's verdict stops depending on which stages ran in front of it
+
+**Nothing you can see changed.** This is a gate repair, taken under AGENTS.md's third
+visible-progress exemption: the stage split exists so a branch can verify a subset, and a subset
+that is red only because of its own composition costs every visible parcel an argument about whose
+failure it is. T-0316's run re-ran `dev` twice to establish that its own change was innocent.
+
+**The measurement, reproduced on this runner on an unmodified `dev` (published mirror):**
+
+| command | verdict |
+|---|---|
+| `SMOKE_VIEWPORT=desktop SMOKE_STAGE=8` | 37 passed, 0 failed |
+| `SMOKE_VIEWPORT=desktop SMOKE_STAGE=1,8` | 75 passed, **1 failed** — `clickChrome: .panel-tab[data-tab="settings"] is covered at its own centre by <h2>` |
+
+- **The `<h2>` is the inspect card's, and the card is part 1's.** `clickChrome` named the tag and
+  not the thing it belongs to, so the first act of this ticket was to make it walk up to the
+  nearest ancestor carrying an id. The failure then reads `covered at its own centre by <h2>
+  inside #popup`, which is the whole diagnosis in one line. Part 1's last page interaction is
+  `boardPick` — twenty-five `pick()` calls proving that aiming at the Tremont House's signboard
+  opens the business behind it — and a `pick()` that lands on a structure OPENS the card. Part 1
+  never closed it. `#popup` is `position: fixed; z-index: 30; top: 58px; right: 12px`, 392 px
+  wide; the HUD panel is 380 px wide at the same corner, so on 1280×800 the card sits squarely on
+  the panel's tab strip. Part 8's first statement clicks a tab.
+- **Why it survived the split's whole existence.** Nothing between part 1 and part 7 reads panel
+  chrome — parts 2–7 read the scene graph or take their own captures, and part 4 happens to close
+  the card mid-part for its own reasons. Part 8 is *nothing but* panel chrome, and it is the only
+  part that inherits the leak with something to lose.
+- **Repaired at both ends, and only the second end makes the verdict order-independent.** Part 1
+  closes the card it opened and now ASSERTS the teardown — `part 1 hands the page on with nothing
+  standing over the chrome`, over `#popup` and `#control-help` — so the next part that walks away
+  leaving an overlay up is named at the boundary where it happened rather than four parts later
+  under another gate's name. Part 8 also clears the card in the same preamble that already
+  re-opens the panel, so it no longer depends on *every* predecessor being well-behaved. Nothing
+  was weakened: the added check is new, and no existing assertion moved.
+- **It is NOT the same fault as T-0349, and that hypothesis is now refuted rather than open.**
+  T-0369 was filed as the second instance of T-0349's shape and suggested both be answered by one
+  repair. They cannot be. T-0349's own third reading names its cause exactly — the signboard
+  gate's seventh clause counts `frontage.meshes === 62` and a run with stage 1 behind it carries
+  five extra `frontage-far-merge` meshes the desktop camera's history caused. That is a census
+  clause reading a distance-merge artefact; this is an overlay left standing over a control. Two
+  different faults that share only the phrase "red after stage 1". T-0349 is untouched here.
+
+**Verification.** `./tools/check.sh` PASS. `tools/smoke_renderer.mjs --published`: desktop
+`SMOKE_STAGE=1,8` **105 passed / 0 failed** (was 75/1), desktop `SMOKE_STAGE=8` alone **37 passed
+/ 0 failed** — the same verdict both ways, which is the acceptance. Mobile `SMOKE_STAGE=1,8`
+**105 passed / 0 failed**. Both viewports carry the new part-1 check.
+
+## Shipped 2026-08-29 — T-0358: the plat gets its block numbers, and the corpus's only address resolves
+
+**Nothing you can see changed.** This is a dependency: the corpus's one lot-and-block address —
+G. Spring's *"LOT No. 7, in block No. 16, one lot east of Haddock's Tavern, on Lake street"*,
+printed six times in the *Chicago Democrat* — resolved to nothing, because
+`data/traces/vectors/thompson_lots.json` keys its nineteen blocks on their bounding streets and no
+committed source numbered one. Three separate readings had recorded that this was the most
+placeable statement the corpus makes and that placing it was somebody else's job.
+
+**The evidence turned out to be two numerals, not three.** `clark_reach_bulge_1834.md` § 8 and
+`thompson_plat_grid.md` § 4 both said the owner's crop of Wright's 1834 sheet reads *"block numbers
+19, 18 and 17"*. Re-read at full resolution — the file is 639 × 719 px — it carries **19 and 18**,
+and the map region ends at block 18's east edge; the asset's own README, written when it was
+supplied, describes two. The third arrived in the retelling. Both memos are corrected, and nothing
+built on them moves: two consecutive numerals fix the step and the direction as well as three would.
+What changes is that a later reader can now see how far the base can be pushed, which matters
+because this ticket pushes it three blocks.
+
+- **Six blocks are numbered and everything else is refused in writing.** 19 west of 18 fixes the
+  step at one, falling eastward, and fixes it *along the tier* — two blocks side by side differing
+  by one cannot be column-major. The watercourse drawn in the street between them is the one
+  already traced at local E +462…+469, the east half of the La Salle corridor (centreline E +451.3;
+  Wells 122 m west, Clark 123 m east), so they are Wells–La Salle and La Salle–Clark. Counting:
+  **21 Market–Franklin, 20 Franklin–Wells, 19, 18, 17 Clark–Dearborn, 16 Dearborn–State.** The other
+  two tiers, the West Division, the North Division and where the run begins and ends are all refused,
+  each with its reason: two numerals in one row say nothing about how the run passes to the next.
+- **Block 16 is the one counted number an independent source agrees with.** Dearborn–State is
+  bounded south by Lake Street, and the lot scheme the same crop shows runs 5 6 7 8 west to east
+  along a south row — so lot 7 is the third lot east of Dearborn and Haddock's Tavern, one lot west,
+  is the second. That is where T-0324 had already argued the Mansion House stood, from Andreas's
+  "on Lake near Dearborn" and Botsford's corner advertisements, before any of this existed. Three
+  statements, three sources, one block face. **The count stays `inferred`** — agreement is not a
+  survey — and 17, 20 and 21 have no such check and say so on each record.
+- **Nothing was promoted and no confidence moved.** `data/traces/thompson_block_numbering.json` is
+  authored and carries the reading, the identification and the refusals;
+  `tools/generate_plat_lots.py` only stamps it, and re-derives the grid byte for byte as before.
+  Every `plat_lot_number` is `conjectural` *including block 18's own*: a number put on a line the
+  module drew is conjectural whatever the number's provenance. No modern plat reprint was consulted
+  and the record says so in terms.
+- **Two consequences are now measurable and neither is acted on here.** The Mansion House stands on
+  lot 5, the corner lot, and the corpus puts it on lot 6 — a gap of **24.2 m, one lot east**, which
+  is inside the along-street allowance that record already declares, so the coordinate is unchanged
+  and the note now carries the number instead of the sentence. And lot 7, which carried "a large
+  Dwelling-House and fine well", holds an anonymous reconstructed count-unit roof. Standing Spring's
+  documented house there is the visible follow-up, filed as **T-0423**.
+- **No mesh went stale and this cost no bake.** `generators/mesh_inputs.py` hashes archetype, phase
+  and resolved params; a block number moves no vertex.
+
+## Blocked 2026-08-29 — T-0384: Holbrook's blocker was answered by a ruling nobody carried back to the ticket
+
+**Nothing was built and that is the finding.** T-0384 sat at row 2 of the queue, `state: open`
+and `blocked_on: null`, over a body that said in prose it was blocked behind an owner ruling —
+*may a platted business-front lot carry TWO documented storefronts standing at the street?* — the
+question PR #514 asked and is still parked on `hold` carrying. Every run that took row 2 had to
+re-derive the same conclusion before it could put the ticket down. **The question in the ticket is
+now the wrong one, and answering it would not have placed the store.**
+
+- **The register re-read the advertisement.** `business_john_holbrook` today reads `action:
+  street_only`, `anchor.kind: street`, over *"[on South] Water st., one door from Dearborn
+  street"*, noting *"the anchor is a reach of dearborn and names nothing narrower"*. PR #514 read
+  the same printed line as an ordinal off the corner and raised a 30 × 25 ft shop 3.048 m east of
+  the American's office. One line, two readings, and the register's is the committed one.
+- **The owner ruled the same day what a `street_only` business gets** (T-0354, L212): it adopts a
+  standing roof, nothing is built for it, and every adoption declares `lot: null` and
+  `claims_lot: false`. Under that ruling Holbrook never seats on a platted lot, so the lot clause
+  is **moot for him**. `street_face_adoptions.json` refuses him for supply instead — one of seven
+  South Water advertisements against nineteen fronting roofs of which five are homes, five are yard
+  buildings and nine are already taken.
+- **The old clause was measured rather than assumed stale.** Through `tools/plat_occupancy.py`, no
+  figure authored: 19 business-front lots dealt town-wide, 5 carry a documented building, the
+  2026-08-27 clause is live on 2 and already off on 3 — and **0 register businesses anchor on any of
+  those five**. The red PR #514 reported still reproduces (a second documented holder makes
+  `len(holders) != 1` in `shared_business_fronts`, the run loses its lot, the platted-parcels step
+  goes red), but widening the clause today would unblock nothing at all, Holbrook included.
+- **The cheaper exit needs no ruling.** `adopt_street_faces.py` re-derives on every commit, so the
+  first South Water roof **T-0375** frees seats Holbrook automatically. The ticket now carries that,
+  and the one-line question it is actually waiting on, in `blocked_on` where `ticket.mjs board`
+  shows it to the owner.
+
+## Shipped 2026-08-29 — T-0417: the street-face adoptions reach the buildings, and nine come out of the yard
+
+**The allocation is now SPENT.** T-0354 paired 24 documented businesses with reconstructed roofs
+on the streets their advertisements name, and stopped there: the pairing lived in
+`data/research/newspapers/street_face_adoptions.json`, the buildings still opened as anonymous
+count-units, and the policy's own file said so — *"Nothing here writes a card"*. Nineteen roofs on
+South Water Street, Lake Street and Randolph Street now carry an `occupants` block naming the
+business, its trade, the street the paper puts it on and every claim the reading rests on. It is
+derived, not authored: `tools/inferred_occupancy.py` — the ledger the inferred-household programme
+already used for exactly this — hands the block to whichever generator owns the roof, so
+`generate_block_infill.py --check` re-derives all nineteen byte for byte.
+
+**Twenty-four became nineteen, and that is the finding.** Nine of T-0354's adoptions had been
+seated in ANCILLARY roofs — the privies, stables and woodsheds the anonymous parcels deal behind a
+lot. **Peter Cohen, clothier, grocer and liquor dealer and the best-attested shopkeeper in the
+whole corpus at eight printings, was in `recon_1835_blk_south_water_clark_a3_05`, a privy.** The
+rule against it was not new and was not weakly held: `tools/generate_block_infill.py` has refused
+to hang an occupant on an ancillary roof since the inferred-household programme, on the ground that
+*"a yard building serves the lot it stands behind, and an adoption is a claim about who lived or
+worked in a building"*. The allocation simply could not see which roofs were sheds, and nothing
+noticed for a day because nothing consumed the table. **An allocation nothing spends is an
+allocation nothing checks** — that is the transferable lesson here.
+
+- `tools/adopt_street_faces.py` gained refusal 6, *the roof is a yard building*, and its supply
+  count now reports fronting roofs less homes less yards. Four of the nine took a principal roof
+  instead — Harmon, Loomis & Co. moved from a shed into a narrow two-storey store — and five had
+  none left on their street, so `every roof on the face is spoken for` goes 3 → 8 and the waiting
+  pile 36 → 41 against the register this branch was cut from. Re-derived once more on the rebase
+  onto T-0400, which merged firm groups and moved `street_only` 60 → 59: **19 adopted, 40 waiting,
+  7 of them short purely of supply.** All of it re-derived; none of it authored, which is the point
+  of deriving the allocation rather than listing it.
+- **Fifteen assertions fire when broken**, up from eight: nine in `adopt_street_faces --self-test`
+  (including a business seated in a yard building) and six in `inferred_occupancy --self-test`
+  (an adoption that claims a lot, an order that has become a claim, nothing to cite, a roof outside
+  the anonymous layer, two businesses on one roof, a claim id naming no corpus source). The ledger
+  also raises if the household programme and an adoption claim one roof, which nothing upstream
+  prevents.
+- **No geometry moved and no mesh went stale.** `generators/mesh_inputs.py` hashes archetype,
+  phase and resolved params; an `occupants` block moves no vertex, so this cost no bake.
+- **L212 is revised** with the new counts and the yard refusal; `docs/STREET-FACE-ADOPTION.md`
+  carries refusal 6 and a re-measured table. The derived table's `_doc` had been citing L207 for
+  its own liberty and now cites L212.
+- Still not written here: a SIGNBOARD. `tools/generate_business_signboards.py` refuses a `recon_*`
+  record by name, so a board on one of these roofs is a change to the signage rule and needs its
+  own argument rather than a quiet exception.
+- **T-0416** carries the rest of T-0387 — Wm. Sabine, John Dave and the Dearborn Street wine store,
+  all three refused for want of a roof whose lot fronts North Water or Dearborn. That is an owner
+  question (is a corner side a face?) before it is a placement.
+
+## Shipped 2026-08-29 — T-0354: what a business does when the paper names a street and nothing narrower
+
+**The register could place 58 of 203 documented businesses; 24 more now stand on the street faces
+their advertisements name.** (T-0354's title says 24 of 190 with 49 `street_only`. It was filed that
+morning; T-0380, T-0383, T-0355, T-0399 and T-0356 all landed on `dev` before this branch merged and
+the `street_only` pile went 47 → 45 → 60 while it was being written. Every figure here is this
+branch's own re-derivation against the register as merged, and none of it is authored —
+`tools/adopt_street_faces.py --report` reprints all of it. **The policy did not move with the
+counts**, which is the argument for deriving the allocation instead of listing it.) The owner ruled on 2026-08-29, choosing between the three options the
+ticket set out, that a `street_only` business *adopts a reconstructed roof already standing on that
+street face*. `docs/STREET-FACE-ADOPTION.md` is that ruling written so a later run applies it
+without re-deciding it, `tools/adopt_street_faces.py` derives the allocation,
+`data/research/newspapers/street_face_adoptions.json` is the derived table, **L212** is the liberty,
+and `tools/check.sh` re-derives all of it on every commit.
+
+**The four limits are assertions, not promises.** No adoption claims a lot (`lot: null`,
+`claims_lot: false`, and the gate refuses a record that grows a lot field of any name); the adopted
+roof stays `reconstructed`, re-read from the structure's own phase on every commit; which roof on a
+face is an allocation by deterministic rule and says so in every record; and order within a face is
+not a claim. Each of those four is a way the ruling could be breached silently by a later run, which
+is why each is a check rather than a paragraph.
+
+**What it moves, and where the rest wait.** 60 `street_only` in the register: **24 adopted, 36
+waiting.** Twenty-four name Dearborn, La Salle, Canal or North Water, where no reconstructed roof's
+platted lot faces the street — Dearborn has eighteen roofs showing it a corner side and none showing
+it a front. Nine are a second heading of a house already seated on that face. Three are short purely
+of supply. South Water took 14 of its 19 fronting roofs (5 are households' dwellings); Lake took 9;
+Randolph took 1.
+
+**What is unverified or deliberately left, stated plainly.**
+
+- **Only `lot front` is adopted, and that is a decision with a cost.** `tools/fronting_street.py`
+  also answers `corner side` and `centreline band`; both are refused here, because an
+  advertisement's street is where the door is and a gable end reaching a street is not a doorway.
+  **Widening the reading would reach 24 more**, and `--report` prints both readings side by side so
+  the number an owner ruling would change is one number, not a rewrite.
+- **Three Lake Street roofs are probably one house.** Wm. G. Branchaud, W. G. Blanchard, G.
+  Blanshard and F. G. Blanshard advertise one trade within five months under four transcribed
+  spellings, and the gazetteer's identity layer has judged none of them. The duplicate refusal here
+  matches exact surnames only — deciding by resemblance is the identity layer's job — so it caught
+  one of the four and left three roofs standing. Filed as **T-0408**, with the page images named as
+  the remedy.
+- **The 84 `unplaceable` are untouched and T-0354's second half stays open.** The ruling does not
+  reach them and this policy does not extend it; some are outside the plat entirely.
+- **Nothing is spent yet.** This is the policy and the allocation. No card, signboard or frontage
+  reads it — that is T-0263's and the seeding tickets'. No geometry moved and no triangle was added,
+  so no bake was required.
+- **The renderer smoke was not run and did not need to be.** This branch touches
+  `data/research/`, `docs/`, `tools/` and the changelog only; no scene, structure, terrain or
+  renderer file changes, and `data/research/` is not published. `tools/check.sh` — the dev gate —
+  is green in full, including its own new step.
+
+---
+## Shipped 2026-08-29 — T-0380: the New York House stands on Lake Street near Wells
+
+**A building this project had wrongly ruled out now stands in the town.** The New York House sat
+on the EXCLUDE list of the first structures dossier on the grounds that "build date not attested in
+Andreas". Andreas I p. 635 attests it plainly — *"built in 1834 and opened to the public the
+following year by Lathrop Johnson and George Stevens, who conducted it until the fall of 1839"* —
+and that was found on 2026-08-11, when `data/exclusions.json`'s entry was rewritten to say the
+exclusion was FALSIFIED and would stay "only until a structure record replaces it". It waited
+eighteen days. `data/structures/new_york_house.json` is that record, and the entry has moved from
+`excluded` to the watch list, which is the category it has actually belonged to since.
+
+**The opening month is answered from the other side.** Andreas gives no month, so on Andreas alone
+whether the house was open on the scene date was an argument. The Chicago American of 13 June 1835
+carries two men advertising offices AT the house — Dr J. B. Barnard, physician, "at the New York
+House, Lake street" (p. 3 col. 3), and J. C. Bradley, a travelling dentist, "his office at the New
+York House, where he will remain until after the Land Sale" (p. 3 col. 2, repeated 1835-06-20).
+Both are carried on the record's `occupants` with their claims, and both readings are
+transcription-mediated under the owner's ruling of 2026-08-28.
+
+**What this unblocks.** "The New York House" is an anchor in the American's advertising, and
+`tools/compile_register.py` refused two placeable businesses with the same sentence — *"The anchor
+'the New York House' names nothing the committed town holds."* Rebuilt against the committed town
+it resolves both: Bradley matches the house's occupants, and Barnard's placement now names
+`new_york_house` as its landmark. That is why T-0306 was split; the remaining pieces are T-0381
+and T-0382.
+
+**What is unverified, stated plainly.**
+
+- **The side of Wells is not evidence.** Andreas says "near Wells" and Wells has two sides. The
+  house stands on the free Wells-end lot of `blk_south_water_franklin`, west of Wells, because
+  that lot is empty while the eastern block's Lake face already carries three dealt roofs — a
+  reason about this dataset, recorded at **L209** and carried as the watch-list entry's own
+  question. The corner is refused in writing: the source says *near*, not *at the corner of*.
+- **The form beyond two storeys and eaves-to-the-street is the type talking**, claimed at **L208**:
+  the 40 × 25 ft plan is the dataset's stock period rectangle, and the paint, pitch, bays, gallery
+  and two stacks are the archetype's.
+- **The desktop viewport of the renderer smoke was NOT run.** `docs/PIPELINE.md`'s dev gate is
+  `tools/check.sh` and this suite is dispatch-plus-one-path; desktop part 4 alone exceeded the
+  ten-minute ceiling on a single foreground command on a loaded runner, and the run had no room
+  for the ~25-minute crawl. **Mobile was run in full, all nine parts, against the published
+  mirror, and is green** — mobile is the release gate. Desktop part 4 also carries a standing red
+  on `dev` from before this branch (`tools/dev-smoke-state.json`, 2026-08-28: the light tier's
+  80-call floor at Lake and Market).
+- **`tools/check.sh` is green except for the seven failures `origin/dev` already carries** — the
+  cross-street faces, `blk_washington_clark` standing off the modelled ground, the southern
+  coverage reading and three far-timber census lines. Measured on an unmodified `origin/dev`
+  worktree in this run: the same seven, and no others on either side.
+
+**Three census lines in the suite moved with the data and were updated in the same commit**, which
+is what each of their own comments asks of a run that moves them: the frontage layer's post count
+(15 → 16), the hitching posts (14 → 15, twelve at the street edge → thirteen — a documented public
+house qualifies for a post under T-0194's rule), and the Evidence panel's open questions (3 → 4,
+with the card's in-scene set going from one beside the Western Hotel to two).
+
+---
+## Shipped 2026-08-29 — T-0383: the saddlery at Lake and Canal is S. B. Cobb's alone
+
+**The board on that shop lettered a partnership the same corpus says was dissolved four and a half
+months before the scene date.** `goss_cobb_saddlery` was built in August 2026 from one advertisement
+— the *Chicago Democrat* of 26 November 1833, "they have opened a shop in this village, on the
+conner of Lake and Canal-streets" — and its own `documented_range` note closed by naming what would
+move it: *"further issues of the Chicago Democrat or the Chicago American. One line of an 1834 or
+1835 advertisement would settle the survival and might settle the corner."* T-0261 read the
+American's thirteen issues on 2026-08-28. It answers one half of that sentence and refuses the
+other.
+
+| what the American prints | claim |
+|---|---|
+| the dissolution, dated *Chicago, Feb. 18, 1835*, one signature unread | `chicago_american_1835_06_08#c006` |
+| the same notice with **OLIVER GOS[S]** now legible | `chicago_american_1835_06_13#c015` |
+| *"[S]A[D]DLE, HARNESS & TRUNK M[anufa]c[tor]y. S[. ]B[. ]COB[B] [w]il[l] [c]o[nt]in[ue] the [above business] at his shop"* | `chicago_american_1835_06_13#c016` |
+| the same card again, ten days AFTER the scene date | `chicago_american_1835_07_11#c008` |
+
+**Survival is settled and the corner is not.** `documented_range` moves `reconstructed` →
+`inferred`: four printed dates now bridge the nineteen months the old range carried forward on
+nothing, the last of them past 1 July 1835. The cross street is lost in all three 1835 printings —
+*"Lake anc Amor. streets"*, then no street names at all, then *"corner of Lake and THE Balle"* — so
+**the building has not moved a metre**, the quadrant guard and the Canal-versus-West-Water doubt
+stand exactly as written, and that question stays T-0305's, on the page images.
+
+**What a visitor sees.** The board reads `S. B. COBB / Saddle, Harness & Trunk Manufactory / Lake &
+Canal Streets` (2.30 m wide against 2.29, which is the only geometry that moved anywhere in this
+change), and the card behind it is headed for Cobb instead of the firm. `occupants` is `attested`
+over `chicago_american_1835`; the firm survives in `aka` and in the record's own prose, because the
+1833 advertisement is the better-attested of the two facts and deleting it to record the later one
+would be a loss.
+
+**`docs/LIBERTIES.md` L78 is REVISED rather than resolved.** It covered three admissions — the
+range, the footprint and the storey count — and exactly one of them has been discharged, so its
+`Covers:` line drops `documented_range` and keeps the other two. Moving it to Resolved would have
+exempted two live inventions from the gate that checks them.
+
+**Not verified here, and stated.** `dev`'s own gate was red at three steps before this branch
+existed — the dooryard plantings, the planted poplar rows and the yard goods have all drifted from
+their rules since T-0307 moved North Water Street, which is **T-0377**. This diff is red at those
+same three steps and no others; none of the three files names this record, this phase or this trade
+anywhere in them.
+
+## Shipped 2026-08-29 — T-0244: the gate could not see twelve of the fourteen hitching posts
+
+**The geometry was right the whole time and the instrument was blind.** The frontage layer's post
+probe in `tools/smoke_renderer.mjs` read `mesh?.geometry` — the layer's single shared `frontage`
+mesh — with a comment saying "the posts live in the shared mesh". That was true on 2026-08-19 and
+stopped being true on 2026-08-21, when T-0194 put twelve hitching posts at the town's trading
+frontages. A post that names a street is STANDING timber and lands in that street's
+`<record>__<street>__standing` chunk, published as a `frontage-chunk` mesh so it culls and casts
+with the fences beside it and costs no draw call of its own (T-0069, T-0194). The shared mesh never
+holds one. So all twelve reported a max and a min over an EMPTY vertex set — `-Infinity` for a
+height, `Infinity` for a foot — and the Sauganash's two, which its own record stands and which do
+fall back to the shared mesh, went on measuring correctly.
+
+**The repair is the resolution rule, not the count.** A post is now found by WHERE IT STANDS,
+across every mesh the layer draws, because which mesh a post is folded into is a draw-call decision
+that may change again without the post moving — the same lesson T-0243's batched wood taught the
+tree census two days earlier. Read at both viewports on the published mirror:
+
+| | posts | reading |
+|---|---:|---|
+| the Sauganash's own record (no `street`) | 2 | 1.300 m against a recorded 1.30, foot 0.000 |
+| the street edge (`street` named) | 12 | 1.300 m against a recorded 1.30, foot 0.000 |
+
+Each box holds exactly the 72 vertices of one post's shaft and cap, with one exception stated in
+the code: at the Mansion House the board crossing over Lake Street brings its near edge 0.13 m from
+the post and lays 15 more vertices in the box. They move neither reading — a crossing deck stands
+0.06 m over its ground, under the foot the min is looking for and a metre and a quarter under the
+head the max is — and the 0.4 m box is left alone rather than tightened onto the 0.22 m cap, which
+would leave 0.02 m of margin against that same crossing.
+
+**`found` is asserted separately from the heights**, because an empty vertex set fails the height
+test too and reads as a post of the wrong height rather than as a post the gate cannot see. That
+distinction is what cost this defect two days.
+
+**A second stale number in the same part, and it is the ledger rather than an assertion weakened.**
+"the frontage layer lays all five records' walks" expected **83** refusals and `dev` has **84**:
+T-0028 opened `blk_lake_franklin`, whose dealt warehouse stands 1.50 m off that lot's frontage line
+— inside the 3.0 m a street fence needs, so the building IS the street wall and the fence is
+refused with a written reason. Nothing else in that line moves: 5 records, 51 walks, 39 crossings,
+15 posts, 35 fence runs, 899,148 vertices, no problems. The count carries its reason beside T-0241's,
+T-0196's, T-0024's, T-0228's and T-0246's, as each of those did.
+
+**Why both reached `dev`.** `docs/PIPELINE.md`: the dev gate is `check.sh` and nothing else, and
+`check.sh` asks whether a record re-derives from its own rule, never whether the renderer draws it.
+The renderer smoke is dispatch-plus-one-path on purpose, so a check that only Playwright runs can go
+red on `dev` without blocking a merge — the same gap T-0242 and T-0243 record for two other layers.
+
+**The visible parcel this unblocks (AGENTS.md § VISIBLE-PROGRESS exemption 3): T-0192**, at the top
+of QUEUE.md — the cross streets' own frontages get the street edge. It lands in this exact layer and
+its demonstration is desktop part 2, which could not be read while two of that part's frontage
+assertions were standing red for reasons of their own.
+
+**Gates.** `./tools/check.sh` **PASS**. `node tools/smoke_renderer.mjs --published` stage **2** at
+**both** viewports — desktop 1280×800 and mobile 390×780 — **82/0 each, zero page errors**. The
+other standing reds on `dev` are untouched and are their own tickets: T-0243 (the tree stations),
+T-0279 (flower heads over open ground), T-0247/T-0249 (the light tier's draw calls), T-0271/T-0223
+(`balanced` at the forks).
+
+**Nothing you can see changed.** No renderer, no data record and no geometry was touched — only the
+harness that reads the geometry back.
+
+## Shipped 2026-08-29 — T-0316: the large river warehouse leaves the plat
+
+`tools/reconcile_665.py` dealt **F3, the large river warehouse**, to platted blocks. T-0028 found
+it on 2026-08-28 by opening `blk_lake_franklin` and being unable to build the F3 it had been dealt:
+sampled against the committed heightfield the nearest water to that block's boundary is **134 m**,
+its cargo doors would open onto a residential street and its landing apron would cross a public
+one. The stopgap put F3 in `tools/generate_block_infill.py`'s `REFUSED_FAMILIES`, so the recipe
+DEFERS the slot with a stated reason (L203) instead of reaching for a shape — which keeps the roof
+on the books and treats a fault in the DEAL as a fault at the block. Every future platted block
+dealt an F3 would have deferred it too.
+
+**The repair is upstream, in T-0213's shape.** A family whose own crosswalk record makes water
+access a precondition of the FORM is never dealt to a platted block — **at any distance**, because
+the constraint is the generator's and not the ground's: `generate_block_infill.py` authors no metre
+outside a committed lot polygon inside four platted STREETS, and the wharf and landing ground of
+the main stem is placed by `generate_river_wharves.py` against the committed bank, outside that
+grid entirely.
+
+**Which families, read off the records rather than asserted.** Two readings of the crosswalk have
+to agree or the derive refuses: a keyword scan of `required_variant` and the `variants` line says
+which families are even in question (**F1, F3, W5**), and `WATERSIDE_JUDGEMENT` says which of those
+the record REQUIRES water for, **quoting that record's own `assumption_note` verbatim**.
+
+| family | requires water | the record's own sentence |
+|---|---|---|
+| **F3** Large river warehouse | yes | "Landing apron and cargo-door arrangement must follow site access and cannot extend into water or duplicate a counted pier." |
+| **W5** Sawmill, boat-repair or riverside shop | yes | "river access requires validated dry-bank terrain contact." |
+| F1 Freight or storage shed | no | "Stored goods and dock relationship are not known for anonymous slots; skids belong only where terrain and route access support them." |
+
+T-0316 asked for F1, F2 and F4 to be checked while the run was here. **F2** ("Hoist beam presence
+varies; cargo type and operator are not inferred") and **F4** ("Board-stack quantity and open-side
+pattern are visual variation, not inventory facts") name no water at all and are not candidates —
+so the ticket's own guess that F4 "carries the same site logic" is **refuted by F4's record**.
+Edit any of those notes, or add a family that names a wharf, and the re-derive fails by name rather
+than silently re-classifying it.
+
+**It is a permutation, and that is asserted rather than trusted.** One waterside roof on a platted
+block is exchanged for a dry PRINCIPAL roof of the same trade-ness on that district's own unbounded
+balance. The re-derive moves exactly one roof today:
+
+```
+waterside (T-0316): F3, W5 require water — F3 blk_south_water_market -> south_plat_beyond_committed_control for C2
+```
+
+No total moves: not the 662, not a district, not a family, not any unit's roof count, and not its
+principal/ancillary split — each of those is checked in the tool. `blk_lake_franklin`'s own
+deferral stands as the record of what happened; the block generator's refusal stays where T-0028
+put it, now as a belt rather than the only brace.
+
+**Gates.** `tools/check.sh` green (the full dev gate, including the `reconcile_665.py --check`
+re-derive and the changelog contract). `python3 tools/measure_family_deal.py` green — 0 refusals,
+31 off-band claims, every one already named in `tools/family_deal_baseline.json`, nothing new and
+nothing grown. No renderer file, no geometry, no coordinate, no mesh, no bake: the programme
+document is not loaded by the walkthrough and is not published.
+
+## Shipped 2026-08-29 — T-0243: the two timber gates read a batched mesh, and one of them could never fail
+
+**T-0243.** `tools/smoke_renderer.mjs` stage 7 held two checks on the near-field wood, and
+both traversed for `/^timber__/` — the four merged quadrant meshes `timber__q0…q3`. T-0223
+replaced them on 2026-08-27 with a single `THREE.BatchedMesh` named **`timber`**, and from
+that merge the regex matched nothing:
+
+- **`every tree drawn stands at its own station`** went red on its own liveness clause
+  (`meshes > 0`), on an **unmodified `dev`**. Every branch cut from dev inherited it and had
+  to argue "not mine" — measured three times in two days.
+- **`no timber is drawn out in the channel`** asserts `offshore === 0`, and an empty
+  traversal yields zero offshore vertices. **It passed, green, for a fortnight, having
+  asserted nothing at all about the timber.** That is the worse half, and it is the reason
+  this ticket was sized as a repair rather than a rename.
+
+**Why a rename would have been the wrong fix.** A `BatchedMesh` holds every chunk in one pair
+of buffers with a per-instance transform the batch owns, so
+`geometry.getAttribute('position')` read through `matrixWorld` is not a chunk's world
+position. `tools/drawn_timber_census.mjs` (new) walks each instance's own geometry range
+under its own matrix, through `_instanceInfo` / `_geometryInfo` / `_matricesTexture` — the two
+structures `getBoundingBoxAt()` and `getMatrixAt()` read, walked in the page so the census
+needs no THREE there. It is the same arrangement `drawn_placement_census.mjs` uses for the
+building batches, deliberately: the gate and the instrument run ONE census, not two readings
+of the same idea.
+
+**It still reads a plain `timber__*` mesh.** Unwinding the batching cannot silently empty the
+gate the way landing it did.
+
+**The bars did not move, and the liveness clauses grew.** 24 m is the widest crown's reach
+plus its lean; 12 m is a bank willow leaning over the channel; both were argued in T-0110's
+box and neither was touched. Both now come back FROM the census (`strayBarM`, `offshoreBarM`)
+rather than being written a second time in the gate. And `chunks > 0 && verts > 1000 &&
+unreadable === 0` guards **both** checks now — the offshore half had no liveness clause at
+all, which is precisely how it passed on nothing.
+
+**And it is demonstrated to fail.** `tools/measure_drawn_timber.mjs --refute` displaces two
+chunks of the live scene — one mirrored across the datum's east-west line (R-BUG5b's own
+fault, applied to the chunk standing furthest from that line, because a chunk on the line is
+its own mirror), one translated to a point the terrain mask calls water more than 16 m from
+any bank — and requires the census to report each. Clean run, source tree, 1280×800:
+**152,792 vertices across 70 chunks in 1 batch against 881 stations, 0 stray (worst
+measurable 15.4 m), 242 over water at all and 0 offshore.** Broken: **3,140 stray** (3,118
+beyond the station hash) and **1,099 offshore**, worst 24 m. A gate this shape is believed
+because it can be made to fail, not because it is green.
+
+**What this does not do.** It repairs neither T-0244 (the twelve hitching posts draw no
+vertices the gate can find) nor T-0265 (the sward census at a phone). Those are the other two
+standing reds and they are their own tickets. *(T-0244 closed 2026-08-29 — the top section of
+this file; the posts were drawn all along and the probe read one mesh of the layer's several.)*
+
+**Nothing you can see changed.** No renderer, no data record and no geometry was touched —
+only the harness that reads the geometry back.
+
+## Recorded 2026-08-29 — T-0328's tail: the reading gets its dossier, and coverage.json stops saying 56
+
+**T-0328 shipped in PR #510** — D. Weaver's building is on **Lot 2**, block 1, North Water
+street, on four printings against one. The notice turned out to be a standing advertisement
+running in five consecutive numbers; three of them (1834-11-26 c010, 1834-12-03 c025,
+1834-12-10 c012) had never been claimed by any reading pass, and all three set Lot 2. No
+transcription was amended to reach it, which is the rule T-0294 was keeping when it claimed
+both disagreeing printings and edited neither.
+
+**This entry is what that merge left behind**, and both halves are record hygiene rather than
+new reading:
+
+- **`coverage.json` was asserting a count that had stopped being true.** The December 1834
+  range said *"Four issues, read through, 56 claims"* and *"none of the 56 claims is counted
+  unresolved"*. The month holds **60**. Counted per commit rather than re-asserted: 56 at
+  `103168a0` (T-0294), 57 at `26f03456` (T-0339), 58 at `c49d8fa5` (T-0330), 60 at `5c638546`
+  (T-0328). The range now says so, and says the later four are machine-checked on `dev` like
+  the original 56. The November range records its own addition and — the part worth keeping —
+  **why the read missed it**: the notice stands in the alternating pair of physical columns,
+  surviving as every other line, which is the shape that month's reads found hardest. That is
+  a fact about the instrument and it belongs where the next reader of the month will see it.
+- **`docs/RESEARCH/weaver_building_north_water_block_1.md` is new.** AGENTS.md § Honesty
+  rules requires a dossier where sources disagree; the reading was made and defended in the
+  claim notes, which is where a reader of that claim finds it and nowhere else.
+
+**The dossier also states what the ticket's own premise got wrong.** T-0328 rested on "2 and
+9 are not a confusable pair in clean type". True, and the conclusion followed — but this type
+is not clean: the same advertisement's copy dateline is set **12, 12, 13 and 19** across the
+five weeks. The reading stands on the count of independent settings, not on any one column
+being trustworthy. **T-0350** carries the dateline.
+
+**Still `transcription_mediated`.** The acceptance asked for the digit off a page image; the
+deposit holds transcriptions only, and no scan has been read. Written down rather than
+passed over.
+
+**Nothing you can see changed**, and no claim, quote, gazetteer entry or geometry was
+touched — only the two records that describe what was read.
+
+## Shipped 2026-08-29 — T-0262: the scene-date register, and what the papers can actually do to the town
+
+**`tools/compile_register.py` turns the gazetteer into a work list.** The gazetteer is an index of
+what was PRINTED — 1,094 claims out of 82 issues, 221 businesses, 2,201 people. It says nothing
+about what the model should build. The register does: for every business an ACTION against the
+committed town, for every person whether the town already holds them. It is derived, wholly, and
+`check.sh` re-derives it and refuses a committed copy a rebuild would not produce — the same
+contract `gazetteer.json` is under, for the same reason.
+
+**Ruling 3 gains the word BEFORE.** `built_at_scene_date` in the gazetteer is `not contradicted_by`,
+whatever the contradiction is dated, which struck a firm out of a July town on the strength of an
+August dissolution notice. Here the veto is a contradiction dated ON OR BEFORE 1835-07-01. A later
+one is recorded — `dissolved_after_scene_date`, one business — and disobeyed.
+
+**The ticket's second exclusion was a proxy, and T-0356 replaced it with the field.** T-0262 asked
+to exclude entries whose only 1835 evidence `announces_opening` after 1 July. There was no
+`announces_opening` in the claim vocabulary — except as a bare `true` on twenty claims that no tool
+read — so the register used the derivable proxy `first_evidence_after_scene_date`: a business whose
+FIRST issue postdates the scene date evidences nothing about 1 July. Thirty-eight businesses by the
+time the corpus was fully read.
+
+**The re-read settled it, and the proxy was excluding houses the papers put in the town.** The
+claim now carries `{verbatim, dating, iso, note}` and the DATING decides: a `stated` future opening
+after the scene date excludes; an `effected` one is dated by the advertisement's own dateline and
+bounds the opening from ABOVE, so it never excludes; an `undated` one decides nothing. Four of the
+thirty-eight genuinely announce a later opening and stay out — Cromelien's wine branch (14 Aug),
+Everts' high school for young gentlemen (10 Aug), Hunt's for young ladies (17 Aug), Lyon's
+wholesale grocery (1 Sep). **Thirty-four are restored**, and five of those are printed standing in
+the July town: Wm. H. Taylor's boot store over a dateline of 8 JULY 1834, Wm. H. Kennicott saying he
+had practised dentistry here "for the past year", Samuel Lewis's music-school copy dated 22 June,
+S. Abell's 24 June and John Holbrook's 10 June. The register's placeable count moves from 66 to 78
+and its street-only count from 47 to 63.
+
+**What replaced the proxy is not nothing.** A business first printed in August that announces no
+opening now stands under ruling 3, and that is a liberty: `backdating_liberty_required`, the
+forward twin of `survival_liberty_required` — documented only after the scene date, present on it
+by assumption. Thirty-three businesses carry it, computed and never asserted. `docs/LIBERTIES.md`
+carries neither class yet (T-0357 is the survival half, T-0404 the backdating half).
+
+### The counts, which are the epic's yield measured
+
+| businesses | 221 |
+|---|---|
+| present at the scene date | 190 |
+| excluded — contradicted before 1835-07-01 | 14 |
+| excluded — first evidence after 1835-07-01 (the proxy T-0356 retired) | 17 |
+| `enrich_existing` (a committed building already carries it) | 39 |
+| `new_building` (placeable against the committed town) | 24 |
+| `street_only` (a street face and no closer) | 49 |
+| `unplaceable` (no street the model holds) | 109 |
+| standing on a survival liberty (last evidence pre-1835) | 129 |
+
+| persons | 2,201 |
+|---|---|
+| `enrich` — already in `data/residents/` | 117 |
+| `replace_invented` — a documented person of an invented household's trade | 113 |
+| `new_resident` — ruling 1 | 1,971 |
+| …of those, known only from the letter lists | 1,555 |
+| **invented households the register can retire** | **28 of 117** |
+
+Those are the figures the epic landed on, and they are kept as landed. **Re-measured on
+2026-08-29, after the whole corpus was read and after T-0356 replaced the proxy exclusion
+with the field**, the same register reads:
+
+| businesses | 242 |
+|---|---|
+| present at the scene date | 224 |
+| excluded — contradicted before 1835-07-01 | 14 |
+| excluded — opening announced after 1835-07-01 | 4 |
+| `enrich_existing` | 38 |
+| `new_building` | 30 |
+| `street_only` | 63 |
+| `unplaceable` | 111 |
+| standing on a survival liberty (last evidence pre-1835) | 126 |
+| standing on a backdating liberty (first evidence post-scene-date) | 33 |
+
+| persons | 2,628 |
+|---|---|
+| `enrich` | 184 |
+| `replace_invented` | 119 |
+| `new_resident` | 2,325 |
+| **invented households the register can retire** | **27** |
+
+The retirement figure is a count of HOUSEHOLDS and it is capped per trade by construction: three
+documented tailors retire at most the tailors the town invented. Reporting the matched persons
+instead would report 113 people retiring 117 households, which is a number about nothing. The 28
+are 4 blacksmiths, 4 grocers, 4 tavern keepers, 3 shoemakers, 2 joiners, 2 tailors and one each of
+baker, butcher, cooper, dentist, harness maker, hotel keeper, merchant, painter and physician.
+
+### Matching a firm to a building is a different question from matching a firm to a firm
+
+The first cut of `enrich_existing` claimed 58 buildings and a good many of them were wrong, in four
+distinct ways. Each is now a guard with a self-test on the case that forced it.
+
+1. **A `proprietors` entry is routinely a whole firm style** — `Clark, Filer & Co.`, `H. Doty & Co.`,
+   `Kinzie & Hall` — and taking its last word for a surname reads those three firms as `co`, `co`
+   and `hall`. Two of them then matched Daniel Elston's soap works, whose occupants line ends
+   `& Co.`. The partners now come from the gazetteer's own firm policy (`firm_surnames`, T-0304).
+2. **A surname is not a person.** The Kinzie brothers are one surname and three businesses; matching
+   on `kinzie` put R. A. Kinzie's store inside J. H. Kinzie's. Where the RECORD prints a forename
+   and the PAPER prints one, they must now agree — and two spelled-out forenames must agree whole,
+   not by initial, because `John S. Kinzie` and the James Kinzie House share a `j`. The test is
+   asked of the whole record, not of the field the surname was found in, or a disagreement simply
+   routes round the guard by dropping to the next tier.
+3. **An `aka` is where a record keeps its loosest descriptions.** `Taylor's tavern` is a real second
+   name of the Wolf Point Tavern and W. H. Taylor's boot and shoe store is a different Taylor, so
+   an aka match now also requires the trades to agree. And an aka that locates a building by
+   ANOTHER building — `the cabins near Wentworth's tavern` — is cut at its locative word, which is
+   what stopped Elijah Wentworth's tavern on Flag Creek matching a row of log cabins at Wolf Point.
+4. **An anonymous reconstructed roof cannot ALREADY carry a documented business.** `recon_*` and
+   `inf_*` are excluded outright. Putting a documented firm into an invented roof is a decision
+   T-0263 makes deliberately, with the adoption written down; making it by string match is how an
+   invention gets laundered into the documented layer. `Kinzie Hall` had matched
+   `recon_1835_north_i2_015` on the word "hall".
+
+Every surviving `enrich_existing` carries the tier it matched on and the exact text it matched
+against, so T-0263 can argue with a proposal without re-running anything.
+
+### A name is not always one building, and the anchor path used to pretend it was
+
+`resolve_anchor` reads the landmark a paper prints — "David Carver's Old Stand", "west of J.
+Wright's" — against the committed town, and until 2026-08-29 `match_landmark` ended
+`return sorted(hits)[0] if hits else None`. Where two committed records answered to one name it
+took whichever id sorted first and the register wrote *"The landmark is the committed structure
+X"* over it. Nothing in the file said a second record had answered to the same name; an
+alphabetical tie-break came out looking like a reading.
+
+**Thirty-five identity-word sets in the committed town are held by more than one record**, and the
+figure is derived on every build — `compiled_from.structures_sharing_a_name` in the register, and
+`tools/check.sh` prints it. Twenty-eight are anonymous count-units, where the collision is a
+consequence of naming a roof "Reconstructed 2-room frame cottage 02" and no advertisement will
+ever print it. **Seven are named landmarks a paper could name, and would:**
+
+| the name | the records it answers to |
+|---|---|
+| `pier`, `harbour pier works` | `north_pier`, `south_pier` |
+| `branch bridge`, `branch bridge first over` | `north_branch_bridge`, `south_branch_raft_bridge` |
+| `house school watkins` | `north_side_school_1833`, `watkins_school_house` |
+| `crossing slough water` | `north_water_slough_crossing`, `slough_log_bridge` |
+| `building john let wright` | `wright_building_to_let_a`, `wright_building_to_let_b` |
+
+The Wright pair is the case T-0386 is blocked behind and the clearest of the seven: one
+advertisement, two buildings to let, one proprietor's name, and the only thing separating the two
+records is the *(east)* / *(west)* this project added — which `words()` drops as a stop word, so
+the two are one name to every reading pass that will ever run. `north` and `south` are stop words
+for the same reason, which is why the piers and the branch bridges collide too.
+
+So the anchor now has a **sixth kind, `ambiguous`**: the name was recognised, the town holds it
+more than once, and the register refuses rather than picks — naming every rival in the note. It
+never places; a business whose anchor is ambiguous falls to `street_only` or `unplaceable` on the
+street the paper printed, exactly as an unresolved one does. The same refusal guards the one-hop
+business match below it, because the corpus prints one house under more than one heading.
+
+**No placement in the register moves today**, and that is the honest measure of this change: zero
+of the 209 businesses print an anchor that lands on one of the thirty-five. It is a guard against a
+fabrication rather than the repair of one — and the thing it guards is live, because the moment a
+reading pass widens enough to see past a project-added disambiguator, "J. Wright's" resolves onto
+two records and the old code would have picked the east one.
+
+### The T-0257 fixtures, as the acceptance requires
+
+`business_j_s_c_hogan` → `enrich_existing`, target `hogan_store`, matched on the record's own name.
+`business_peter_cohen` → `street_only`, target `south_water`: the paper's anchor is "the east end of
+South Water-street", which the register resolves as a REACH of a platted street — a real resolution
+and not a placement, so it reads as its own anchor kind rather than as a failure.
+
+### What is honestly not settled
+
+- **One reading pass is still open.** T-0297 (August 1835, the four issues AFTER the scene date) was
+  in flight in a sibling run when this was built. The register is deterministic and re-derived by
+  the gate, so `--build` after that merges refreshes it; the counts above are as of the gazetteer on
+  `dev` at 2026-08-29.
+- **`wolf_point_tavern_stable` still takes Elijah Wentworth's Flag Creek tavern**, on an occupants
+  line that reads "Elijah Wentworth in 1831, William Walters on the scene date". The match is on a
+  HISTORICAL occupant of a building whose scene-date occupant the same sentence names. T-0355.
+- **78 businesses stand at the scene date and are placeable nowhere.** That is the size of the
+  problem the seeding tickets do not solve, and it is a fact about the papers, not about the tool.
+
+Filed with the register in hand: **T-0354** (the `street_only` and `unplaceable` policy — 49 and
+78), **T-0355** (the historical-occupant match), **T-0356** (`announces_opening` as a real claim
+field rather than a proxy) and **T-0357** (the 129 survival liberties `docs/LIBERTIES.md` does not
+yet carry). All PAPERS, all appended to the bottom of QUEUE.md — the owner orders it.
+
+## Shipped 2026-08-29 — T-0283: the North's freight row is repaired, and the fault was a split fault
+
+**The row allowed the North Division ONE freight roof and seven stand there.** T-0211 found the
+breach on 2026-08-28, declared it as a ratchet so it could not grow, and deliberately did not repair
+it: repairing it is a decision about the authored target, and the cells sum to their division's
+target AND to their group's total, so no cell moves alone.
+
+**The decision, and it is narrower than the ticket feared.** The town-wide freight total is
+contradicted by nothing — twenty are authored, twelve stand. What is wrong is WHERE the programme
+put them. So the repair is a split repair, four cells wide:
+
+| group | division | was | now |
+|---|---|---|---|
+| `warehouses_freight` | north | 1 | **7** |
+| `warehouses_freight` | south | 17 | **11** |
+| `ordinary_dwellings` | north | 90 | **84** |
+| `ordinary_dwellings` | south | 170 | **176** |
+
+Both row totals stand (335 and 20), all four district targets stand (365 / 135 / 152 / 10),
+`family_targets` is untouched and `roof_total` is untouched. Nothing that stands moves; no mesh
+changes; the 662 roofs are the same 662 roofs, re-typed.
+
+**Why the South pays and no one else.** Six of the North's seven freight roofs are documented
+pre-existing records — Kinzie & Hunter's warehouse, the four north-bank sheds at the Dearborn reach,
+the north-side brickyard — and the seventh, `recon_1835_north_f1_022`, was dealt by a parcel that ran
+before anything measured this. Against them the South's freight cell holds seventeen authored slots
+of which five stand: twelve are unbuilt and unnamed. **An authored slot yields to a documented
+record** — the principle T-0032 established when it held the institutional row to the named census —
+and the South's cell is the only one that can pay without moving a group total or a division target.
+The compensating `ordinary_dwellings` swap is what keeps each division's own column on its target.
+
+**What it costs, stated rather than clamped.** The South is scheduled six fewer warehouses (freight
+remainder 12 → 6) and six more ordinary dwellings (72 → 78), and its business-front re-deal now moves
+7 trade roofs where it moved 9. The North's remainder does not move by a single roof — but it stops
+being scheduled seven houses short for a reason nothing anywhere stated:
+`reconcile_665.py`'s clamp shed **7** slots from north `ordinary_dwellings` before this and sheds
+**1** after. That last one is L93's anonymous school, which is not an authoring fault at all — it is
+`measure_group_district_rows.py` and `measure_institutional_claims.py` reading one liberty
+differently — and it moves when the liberty is retired, not before.
+
+**The gate lost its declaration and gained a case.** `("north", "warehouses_freight")` is RETIRED
+from `DECLARED_OVERSHOOT`, not lowered, and a new self-test case asserts both halves of that — the
+row is not over AND it carries no declaration — because either half alone passes vacuously. The
+three ratchet cases used to drive the freight declaration; a declaration of size 1 cannot fall
+without disappearing, so `overshoot_findings` now takes the table it reads and the self-test hands it
+a synthetic one. `--self-test` is nine cases green. The argument lives at
+`district_group_matrix_note` in `data/reconstruction/1835_building_inventory.json`, beside the
+`roof_total_note` that records the only other time a count in that file moved.
+
 ## Shipped 2026-08-28 — T-0028: `blk_lake_franklin` opens, and the warehouse it was dealt is refused rather than massed
 
 **The first NEW platted block this programme has opened since 2026-08-23**, when T-0028 re-derived
@@ -6599,7 +7662,6 @@ whose custom arrived on foot, and that judgement is recorded in the generator an
 than derived from a source. And nothing here is baked, so a scene wanting these boards as solid
 timber still needs the generator half of K5 (b).
 
-
 ## Shipped 2026-08-18 — fenced gardens behind eighteen of the town's houses
 
 **T-0052 (piece 3 of 3 of T-0038, legacy K5).** The Kinzie-view plate shows *"picket-fenced garden
@@ -6838,7 +7900,6 @@ now reaches **0.58** of the middle where the acceptance asks for 0.5. 338 distin
 also pulled a well-separated pair back toward the target, collapsed the median to 4.9 % and the
 ratio to 0.31 — repulsion only pushes, and that is why it is the right shape.
 
-
 ## Changed 2026-08-17 — the backlog is a ticket queue the owner can reorder
 
 **On the owner's direct request.** His words: tracking "what i have asked for and what you
@@ -6853,7 +7914,6 @@ parcel (with `legacy_id`), the owner's six recovered K-asks at the top of the qu
 the four standing owner decisions as `blocked-owner` tickets with their options inline.
 ROADMAP's NEXT UP table is frozen with a tombstone; the deep boxes remain the reasoning
 archive. AGENTS.md § THE QUEUE is the new contract.
-
 
 ## Shipped 2026-08-17 — the bridge is a surface now, and you still cannot get onto it from the bank
 
@@ -7187,7 +8247,6 @@ draw strictly less; the mobile viewport (390×780) was not rendered at all, so t
 shrub were never measured at the detail level a phone gets; and no assertion about the wet woods'
 frame time was taken, which is the half **K57** says a grain change needs before it moves.
 
-
 `tools/shoot.mjs` gained a `--at e,n,yaw[,name]` flag, because an archetype before/after pair needs
 one arbitrary station and the tool only had the visitor anchors, none of which stands in a plant
 community. Its positional arguments are now read with flags removed, which also fixes `--at`
@@ -7324,7 +8383,6 @@ lattice and cap and sits just under it today. What ran in the foreground: `tools
 PASS, the dev gate), `tools/measure_sward_draw.mjs --gate` (PASS, both columns above), zero page
 errors in every run.
 
-
 ## Shipped 2026-08-17 — the shrub layer was drawn with the forb archetype, and the clamp that made that survivable was hiding the recorded width
 
 **ROADMAP K53**, from K45(b4)'s *"still not planted"* note. Twenty-one records across eight zones
@@ -7372,7 +8430,6 @@ so the new set is inside them rather than invisible to them, **and that extensio
 here.** What did run, in the foreground: `tools/check.sh` (CHECK PASS, the dev gate),
 `tools/measure_sward_draw.mjs --gate` (PASS), and the instance read-back above, with zero page
 errors in every run.
-
 
 ## Measured 2026-08-17 — the flicker left after the shadow fix is NOT co-planar ties, and two tests say so
 
@@ -7429,7 +8486,6 @@ The desktop half of `smoke_renderer.mjs` does not fit the runner's ten-minute pe
 ceiling and did not run. No renderer file was changed by this parcel, so there was nothing for
 it to regress. R-BUG6(c) — whether the 36,187 co-planar pixels show the surface their record
 intends — needs a bake and is not answered here.
-
 
 ## Fixed 2026-08-17 — the shadow grid slid a fraction of a texel under every step
 
@@ -7576,7 +8632,6 @@ Every desktop figure above comes from `tools/measure_shadow_reach.mjs` and
 hardware; the frame-time readings are swiftshader's and moved by under 2 %, consistent with
 R-W3b(a)'s finding that the pass is geometry-bound. A phone that cannot allocate 2048² is not
 something this runner can observe.
-
 
 ## Fixed 2026-08-17 — the sun threw a shadow within 60 m of the visitor and nowhere else
 
@@ -8118,7 +9173,6 @@ has, which is the same class of error flora.js already traverses for the sun to 
 **Not attempted, and not measured:** the mobile viewport's critic set, and the eight other
 critic stations. Only the three named above were re-shot. The published `--published` critic
 run was not taken either. Nothing here should be quoted as a whole-scene result.
-
 
 ## Shipped 2026-08-17 — the town's animals were researched, graded, cited, and read by nothing
 
@@ -12406,7 +13460,6 @@ civic roofs T-A3 refused — research, not massing) in lane 2. **T-A2h** is in t
 count is **261 structure records — 251 physical roofs of a 665 target — 154 households, 190
 persons**. Everything arrives as a PR into `dev` and waits there.
 
-
 Honest state of the project. Things that are unverified stay labeled unverified; a gate that
 was skipped is recorded as skipped. Updated in the same commit as the work it describes.
 
@@ -13267,7 +14320,6 @@ states one:
    both 390×780 and 1280×800. Current full-scene budgets are 49 / 53 draw calls and 378,647 /
    499,343 triangles respectively; the desktop renderer remains slow at 2 fps under SwiftShader,
    but elapsed-time walking is no longer coupled to that frame count.
-
 
 1. **One structure record does not prove the schema.** The Sauganash exercises phases, a
    building move, and the full confidence range, but the model has not met a fort, a bridge, or

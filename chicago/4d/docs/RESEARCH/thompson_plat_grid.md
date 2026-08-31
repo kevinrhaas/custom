@@ -50,17 +50,51 @@ with a corner on water or beyond the modelled ground is refused outright.
 | alley width (18 ft) | as attested as the street | the module figure, and the 1834 traverses read 17.1–18.7 ft on the same passes that settled the street |
 | alley **position** | `conjectural` | nothing in `data/sources/` says which blocks were alleyed, or whether the alley ran with a block's long axis or across it |
 | lot lines | `conjectural` | four to a face is a reading of **one** block (§ 4). Applying it to eighteen others is inference from a single instance |
-| lot **numbers** | not emitted | the one crop that carries numbering carries block 18's. Nothing fixes the rest, and a numbering invented to look complete is the thing this project does not do |
-| block **numbers** | not emitted | this project has never read Thompson's block numbers off a sheet. Blocks here are named for the streets that bound them, which is a description, not a claim |
+| lot **numbers** | `conjectural`, inside a numbered block only | the scheme is block 18's, read once; the lines it numbers are the module's, drawn from no sheet. A number on a line nobody drew is conjectural whatever the number's provenance (§ 4a) |
+| block **numbers** | `inferred`, six blocks only | two numerals on the crop, counted one block per step along their own tier. Everywhere else — the other two tiers, the West Division, where the run begins and ends — is refused in writing (§ 4a). Block ids still name the streets that bound them, which is a description that never goes wrong |
 
 ## 4. The single reading behind four lots to a face
 
 `docs/RESEARCH/clark_reach_bulge_1834.md` § 8 records the owner's crop of Wright's sheet at the
-Clark reach, read at 3×: block numbers 19, 18 and 17, the lot numbers **4 3 2 1** along block
-18's north row and **5 6 7** along its south row, and the platted **80** written in each street.
+Clark reach, read at 3×: block numbers 19 and 18, the lot numbers **4 3 2** along block 18's
+north row and **5 6 7** along its south row, and the platted **80** written in each street.
 That is four lots across a block face of about 320 ft, in two rows, which is exactly the
 arrangement generated here — and it is one block. It is enough to choose the arrangement and not
 enough to document it, which is what `conjectural` is for.
+
+(This paragraph said "19, 18 and 17" and gave each row its fourth lot number until 2026-08-29.
+The crop carries two blocks and three numerals a row; the rest was retelling. Corrected under
+T-0358, and nothing built on it moves — see § 4a.)
+
+### 4a. The block numbers, and the address that needed them
+
+**Landed 2026-08-29, T-0358.** The same two numerals now put a number on six blocks.
+`data/traces/thompson_block_numbering.json` is authored, `tools/generate_plat_lots.py` stamps it,
+and `plat_block_number` / `plat_lot_number` appear in the generated grid.
+
+19 west of 18 fixes the step at one and the direction as falling eastward, and fixes it *along
+the tier* rather than down a column — two blocks side by side differing by one cannot be
+column-major. The stream drawn in the street between them is the one § 4 of the bulge memo
+traced at local E +462…+469, which is the east half of the La Salle corridor (centreline
+E +451.3; Wells 122 m west, Clark 123 m east), so the two are the Wells–La Salle and La Salle–
+Clark blocks. Counting the tier: **21 Market–Franklin, 20 Franklin–Wells, 19 Wells–La Salle,
+18 La Salle–Clark, 17 Clark–Dearborn, 16 Dearborn–State.**
+
+**Block 16 is the one that mattered**, and it is the one number here an independent source
+agrees with. G. Spring's For-Sale notice — the only lot-and-block address in the newspaper
+corpus — puts "LOT No. 7, in block No. 16 … on Lake street, one lot east of Haddock's Tavern".
+Dearborn–State is bounded south by Lake; the lot scheme read off block 18 runs 5–8 west to east
+along a south row, so lot 7 is the third from Dearborn and Haddock's the second; and the Mansion
+House, which is Haddock's Tavern, was already argued onto the second lot from Dearborn from
+Andreas and from Botsford's advertisements, before any of this existed. The count still stays
+`inferred` — three agreeing statements are not a survey — but nothing independent contradicts it.
+
+**Everything outside that tier is refused**, because two numerals in one row say nothing about
+how the run passes to the next row, and three schemes that all reproduce 19 beside 18 give the
+Lake–Randolph and Randolph–Washington tiers different numbers. Full reading, refusals and the
+two consequences it exposes — the Mansion House standing one lot west of where the corpus puts
+it, and the anonymous roof sitting on Spring's documented dwelling-house — in
+`docs/RESEARCH/thompson_block_numbering.md`.
 
 The same crop is the reason the alley is drawn east–west: two rows of lots facing opposite ways
 require something between them.
@@ -163,6 +197,56 @@ post office stood on from 2 Nov 1832 to 3 Mar 1837, and it would be this dataset
 control point anywhere on South Water Street. It is recorded and deliberately not adopted here:
 committing it re-derives placements, and it does nothing for this block, whose gap is at the west
 end.
+
+### 6.2 The owner ruled for the closure, and the ground refused it — 2026-08-29
+
+Asked which way to settle § 6.1, the owner chose the first branch:
+
+> Close the west end on Market's corridor, from the 1834 sheets and the committed bank — the
+> same basis the rest of that curve already stands on — and grade it for what it is.
+
+**Carried out, that closure does not open the block. It emits a bowtie.** South Water's
+committed west approach bends south onto the dry bank at Wolf Point, and by the time it stops
+it has converged on the row below it: its drawn end at local (100, −101) is **9.5 m from Lake
+Street's committed centreline**, so the two 24.384 m platted corridors already overlap by
+**14.9 m** there. Close the end onto Market's corridor and all four crossings `build_block`
+looks for are found — and `blk_south_water_market` comes out with its **north-west corner
+14.9 m SOUTH of its south-west one**, reported as a 4,411 m² block 36.85 m deep.
+
+That is `node_rule`'s own failure mode one layer down, and § 6.1 wrote the sentence for it:
+an answer that looks right rather than no answer. This one arrives out of the street layer
+instead of OpenStreetMap, and `polygon_area` is what hides it — a bowtie's area is the
+difference of its two lobes, which is a plausible number. **`tools/generate_plat_lots.py`
+now refuses a block whose rows have crossed**, naming the two streets and the overlap, and
+`tools/check.sh` fires that refusal on this exact case (`--self-test`).
+
+### And the ground is the reason, not the drawn line
+
+The tempting reply is that the west approach is simply drawn too far south — it is, by 34 m —
+and that a better line would open the block. It would not. Push South Water as far north at
+Market's easting as the committed heightfield allows, its north corridor edge **exactly on the
+waterline with no clearance at all**, and measure what is left between it and Lake Street:
+
+| at | committed waterline | most northerly South Water | block depth |
+|---|---|---|---|
+| Market (E +89.3) | N −71.0 | N −83.2 | **2.8 m** |
+| E +100 | N −66.8 | N −78.9 | 7.2 m |
+| E +110 | N −51.4 | N −63.7 | 22.5 m |
+| E +120 | N −36.5 | N −48.7 | 37.6 m |
+| Franklin (E +196.2) | N +11.8 | N −0.4 | 86.4 m |
+
+One platted lot fronts 24.384 m. **The first fifteen metres of this block cannot hold one**,
+on any derivation of the closure, because the South Branch is there. `blk_south_water_market`
+is not a rectangle waiting on a trace; it is a wedge that tapers to nothing at its west corner,
+and the **27 roofs** `tools/reconcile_665.py` schedules against it are not on the ground the
+ruling was about. The 2.8 m is gated rather than asserted: `--self-test` re-derives it from the
+committed heightfield on every commit and fails if it ever exceeds a lot's frontage.
+
+What is left is the owner's, and it is a third option neither branch of the 2026-08-29 question
+offered, because nobody had measured the pinch: build the wedge — which means re-deriving a
+committed centreline up to 34 m north onto the waterline and re-scoring every gate that reads
+it — or return the 27 roofs to the South balance the way T-0163 returned
+`blk_south_water_clinton`'s to the West.
 
 ## 7. The cross-check: where the town's buildings actually stand
 
@@ -324,5 +408,6 @@ rule instead of waiting to be found in the road by a report — which is how the
   the streets this project has committed. The North Division is absent on purpose — its street
   control is the work § S9 still records as owed, and a block generated between two lines that
   are not yet fixed would look exactly like one that is.
-- **Not a cadastre.** No lot is numbered, no lot is owned, and no lot is claimed to be the lot a
-  particular building stood on.
+- **Not a cadastre.** No lot is owned and no lot is claimed to be the lot a particular building
+  stood on. Forty lots carry a plat number since T-0358 (§ 4a) and every one of them is
+  `conjectural`: it is a number put on a line the module drew, not a line a surveyor did.

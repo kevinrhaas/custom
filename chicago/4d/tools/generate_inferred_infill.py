@@ -43,6 +43,14 @@ sys.path.insert(0, str(ROOT / "tools"))
 # and the occupancy block arrives from the household programme's ledger.
 from band_notes import split_notes  # noqa: E402
 from roof_form import note_refusal, roof_kind  # noqa: E402
+# THE ONE SAMPLING RULE (T-0273). The eave and the pitch used to be retyped here, one
+# constant per family, and ten of them sat outside the very band their own note cites.
+# They are asked of the family's authored band now, exactly as the block parcel asks
+# (T-0144, T-0145) and the north parcel after it — same module, so a value and the gate
+# that tests it cannot be reading two different bands.
+from family_bands import (eave_floor, eave_for_ridge, eave_limits,  # noqa: E402
+                          families, pitch_deg, wall_height_m)
+from ridge_model import ridge_run_m  # noqa: E402
 from inferred_occupancy import occupancy  # noqa: E402
 # Every committed footprint in this scene's local frame, so a frontage run can butt
 # onto a building this parcel did not write — read from the module the occupancy and
@@ -57,6 +65,10 @@ from block_faces import extent, face_frame as block_face, project  # noqa: E402
 from siding_stock import deal_records as deal_siding  # noqa: E402
 
 OCCUPANCY = occupancy()
+# The crosswalk's per-family bands, read once. `family_bands` is the only reader of that
+# file, so this parcel and every gate that measures it see the same eave, roof and ridge
+# columns.
+FAMILY_BANDS = families()
 
 
 def load(path: Path):
@@ -168,41 +180,140 @@ def form_for(family: str, seq: int, finish: str, width: float, depth: float) -> 
         family, width, depth)
 
 
+def door_kind(family: str) -> str:
+    """Which door an outbuilding family carries, and it is asked BEFORE the eave.
+
+    The eave floor depends on it — a wagon door needs a metre more wall than a man
+    door — so the choice that used to sit halfway down the outbuilding tail is hoisted
+    to where `eave_floor` can be asked about it.
+    """
+    if family in ("W1", "W3", "F1", "A2"):
+        return "wagon"
+    if family in ("W2", "A1"):
+        return "stable"
+    return "man"
+
+
+def storeys_for(family: str) -> float:
+    """The storey count this parcel deals a family — unchanged, and hoisted.
+
+    It is hoisted because `family_bands.eave_limits` asks the ARCHETYPE what wall it
+    will carry AT A STOREY COUNT, and the count was authored twice inside the branches
+    below. The values are exactly the ones those branches wrote.
+    """
+    if family == "D1":
+        return 1
+    if family.startswith("D") and family != "D2":
+        return 1.5 if family == "D6" else (2 if family == "D7" else 1)
+    if family.startswith(("C", "F")) and family != "F1":
+        return 2 if family in ("C3", "F2") else 1
+    return 1
+
+
+def _pitch_default(family: str) -> float:
+    """The generator's own type value, which is what a family authoring no band gets.
+
+    Six of the families this parcel deals write a roof line with no rise:run in it —
+    "gable or shed" — and `family_bands.pitch_deg` returns this unchanged for them, so
+    the sampler invents no claim where the specification makes none.
+    """
+    if family == "D1":
+        return 38.0
+    if family.startswith("D") and family != "D2":
+        return 44.0 if family == "D6" else 38.0
+    if family.startswith(("C", "F")) and family != "F1":
+        return 34.0
+    return 18.0 if roof_kind(family, PARCEL)[0] == "shed" else 32.0
+
+
 def _form_body(family: str, seq: int, finish: str, width: float, depth: float) -> dict:
     why = band_note(family)
-    construction = "balloon_frame" if stable_fraction(f"{family}:{seq}", 6) < .52 else "braced_frame"
+    key = f"{family}:{seq}"
+    spec = FAMILY_BANDS[family]
+    construction = "balloon_frame" if stable_fraction(key, 6) < .52 else "braced_frame"
+
+    # THE EAVE AND THE PITCH, T-0273, and it is the repair T-0144 and T-0145 already
+    # made on the block parcel arriving in the parcel that needed it next. This file
+    # dealt one retyped constant per family — 2.75 m to the whole outbuilding tail,
+    # 3.25 m to every one-storey shop, 34 deg to every C and F roof — and a constant is
+    # a claim of uniformity no source makes. Worse, ten of them sat OUTSIDE the very
+    # band the note attached to them cites: A4's 2.75 m against an authored 6-8 ft,
+    # C3's 5.35 m against 18-22 ft, D2 falling past the D branch into the tail
+    # altogether. So the value is drawn from the family's own authored band instead,
+    # on the same stable key the footprint is drawn on.
+    #
+    # Sampling adds variety, not knowledge. Every value still grades at the bottom
+    # tier and the note still says the band is a typology and not evidence about this
+    # building; what changes is that the band is used as the range it was authored as
+    # instead of being collapsed to a point.
+    #
+    # WHICH ROOF A FAMILY GETS is `tools/roof_form.py`'s answer and no longer this
+    # file's (T-0179). This parcel was the one held back from part of that rule — it had
+    # retyped the shed set without A5 and one A5 roof stood on the difference, which
+    # could not move without a bake. T-0212 baked it, so the hold is gone and this call
+    # now returns the same shed every other parcel deals an A5. The parcel name is still
+    # passed because the mechanism it reads stays: see `roof_form.AWAITING_BAKE`.
+    roof, gable_front = roof_kind(family, PARCEL)
+    stories = storeys_for(family)
+    archetype = archetype_for(family)
+    run = ridge_run_m(archetype, roof, width, depth, gable_front)
+    # The band is bounded at BOTH ends by what the archetype will actually build, and
+    # both limits are ASKED OF IT rather than retyped: `eave_floor` for the door a
+    # family's wall has to header, `eave_limits` for the storey-height ceiling
+    # `frame_dwelling` publishes. This parcel's tail is exactly why that matters — it
+    # deals 2.75 m for a man door where the west parcel deals 2.05 m for the same door,
+    # two copies of one constant that had already drifted apart.
+    arch_lo, arch_hi = eave_limits(archetype, stories)
+    floor, ceiling = max(eave_floor(family, door_kind(family)), arch_lo), arch_hi
+    # ...and the family's own RIDGE band bounds it once more (T-0148): a low draw can
+    # leave no pitch inside the family's band able to reach the ridge the same entry
+    # authors, and the eave is held at the nearest value in its OWN band that can. A
+    # draw that already reaches it is returned untouched, to the bit.
+    wall = eave_for_ridge(wall_height_m(family, spec["eave_ft"], key, floor, ceiling),
+                          family, spec["eave_ft"], spec.get("roof"),
+                          spec.get("ridge_ft"), run, _pitch_default(family),
+                          key, floor, ceiling)
+
+    def pitch() -> float:
+        # A pitch and a footprint together make the RIDGE, and the crosswalk authors a
+        # band for that too, so the sampler is constrained by it — which needs the run
+        # the roof climbs, and that is the archetype's, not the family's.
+        return pitch_deg(family, spec.get("roof"), key, _pitch_default(family),
+                         eave_m=wall, run_m=run, ridge_ft=spec.get("ridge_ft"))
 
     if family == "D1":
         return {
-            "stories": inferred(1, why), "wall_height_m": inferred(2.62, why),
-            "roof_type": inferred("gable", why), "roof_pitch_deg": inferred(38.0, why),
+            "stories": inferred(stories, why), "wall_height_m": inferred(wall, why),
+            "roof_type": inferred("gable", why),
+            "roof_pitch_deg": inferred(pitch(), why),
             "construction": inferred("log", why), "loft": inferred(True, why),
             "chimneys": inferred(1, why),
         }
 
     if family.startswith("D") and family != "D2":
-        stories = 1.5 if family == "D6" else (2 if family == "D7" else 1)
-        wall = 3.6 if family == "D6" else (5.05 if family == "D7" else 2.78)
         bays = 5 if family == "D7" else (3 if width >= 5.4 else 2)
         plan = "centre_passage" if family == "D7" else ("single_pen" if family == "D3" else "hall_parlour")
         result = {
             "stories": inferred(stories, why), "wall_height_m": inferred(wall, why),
             "roof_type": inferred("gable", why),
-            "roof_pitch_deg": inferred(44.0 if family == "D6" else 38.0, why),
+            "roof_pitch_deg": inferred(pitch(), why),
             "construction": inferred(construction, why), "plan": inferred(plan, why),
             "bays": inferred(bays, why), "chimneys": inferred(1, why),
             "paint": inferred(finish, why),
         }
-        if stable_fraction(f"{family}:{seq}", 7) < .58:
+        # Slot 10, not slot 7: `family_bands.pitch_deg` draws on 7, and two decisions
+        # sharing a slot would make a house's porch a function of its roof pitch. The
+        # block parcel moved this same draw for this same reason.
+        if stable_fraction(key, 10) < .58:
             result["porch"] = inferred("stoop", why)
         return result
 
     if family.startswith(("C", "F")) and family != "F1":
-        stories = 2 if family in ("C3", "F2") else 1
         return {
             "stories": inferred(stories, why),
-            "wall_height_m": inferred(5.35 if stories == 2 else 3.25, why),
-            "roof_type": inferred("gable", why), "roof_pitch_deg": inferred(34.0, why),
+            "wall_height_m": inferred(wall, why),
+            "roof_type": inferred("gable", why),
+            "roof_pitch_deg": inferred(pitch(), why),
             "gable_front": inferred(family in ("C1", "C2", "C3"), why),
             "construction": inferred(construction, why),
             "cladding": inferred("clapboard" if family != "F2" else "vertical_board", why),
@@ -212,19 +323,7 @@ def _form_body(family: str, seq: int, finish: str, width: float, depth: float) -
             "goods_door": inferred(True, why), "goods_door_side": inferred("end", why),
         }
 
-    door = "man"
-    if family in ("W1", "W3", "F1", "A2"):
-        door = "wagon"
-    elif family in ("W2", "A1"):
-        door = "stable"
-    # WHICH ROOF A FAMILY GETS is `tools/roof_form.py`'s answer and no longer this
-    # file's (T-0179). This parcel was the one held back from part of that rule — it had
-    # retyped the shed set without A5 and one A5 roof stood on the difference, which
-    # could not move without a bake. T-0212 baked it, so the hold is gone and this call
-    # now returns the same shed every other parcel deals an A5. The parcel name is still
-    # passed because the mechanism it reads stays: see `roof_form.AWAITING_BAKE`.
-    roof = roof_kind(family, PARCEL)[0]
-    wall = 2.05 if family == "A3" else (3.42 if door == "wagon" else 2.75)
+    door = door_kind(family)
     material = "plank"
     if family == "A1" and min(width, depth) >= 2.2:
         material = "log"
@@ -232,7 +331,7 @@ def _form_body(family: str, seq: int, finish: str, width: float, depth: float) -
         material = "light_frame"
     return {
         "wall_height_m": inferred(wall, why), "roof_type": inferred(roof, why),
-        "roof_pitch_deg": inferred(18.0 if roof == "shed" else 32.0, why),
+        "roof_pitch_deg": inferred(pitch(), why),
         "construction": inferred(material, why), "door": inferred(door, why),
         "door_side": inferred("front", why),
         "loft": inferred(family in ("W2", "A1", "A2"), why),

@@ -347,6 +347,17 @@
       "reasoning": "Open parade and drill ground."
     },
     {
+      "structure_id": "fort_dearborn_flagstaff",
+      "district": "fort",
+      "roof_count": 0,
+      "inventory_eligible": false,
+      "inventory_roof_count": 0,
+      "likely_family": null,
+      "substitutes_anonymous_slots": 0,
+      "confidence": "high",
+      "reasoning": "A bare spar standing on the parade. Not a roofed structure and not a building; it contributes no roof and substitutes for no anonymous slot."
+    },
+    {
       "structure_id": "fort_dearborn_root_house",
       "district": "fort",
       "roof_count": 1,
@@ -557,6 +568,17 @@
       "substitutes_anonymous_slots": 1,
       "confidence": "moderate",
       "reasoning": "One documented log tannery house; yard apparatus is not an additional roof."
+    },
+    {
+      "structure_id": "new_york_house",
+      "district": "south",
+      "roof_count": 1,
+      "inventory_eligible": true,
+      "inventory_roof_count": 1,
+      "likely_family": "T2",
+      "substitutes_anonymous_slots": 1,
+      "confidence": "high",
+      "reasoning": "Documented two-story frame inn on Lake Street near Wells, one principal roof \u2014 the same reading as tremont_house_1 and exchange_coffee_house. Andreas p. 635 has it built in 1834 and opened by Johnson and Stevens, and the Chicago American of 13 June 1835 advertises two professional offices in it seventeen days before the scene date, so it is a covered building standing on 1 July 1835 and eligible. It is a PRE-EXISTING roof, not a reconstructed one: the town this project models already had it, so it substitutes an anonymous T2 slot rather than adding to the target. T2 is the frontier-inn family \u2014 two storeys, clapboard frame, 5-8 bays \u2014 which is what Andreas's 'two-story building, with eaves to the street' describes; T1 is the lower one-and-a-half-storey public house and T3 is the Sauganash's single custom asset, and neither fits. No stable is attested here, so no A1 roof is claimed with it (T2's own crosswalk note forbids adding one silently)."
     },
     {
       "structure_id": "newberry_dole_slaughterhouse_south_branch",

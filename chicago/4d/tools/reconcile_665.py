@@ -426,6 +426,196 @@ def weight_the_business_front(units: list[dict], shares: dict,
     return moved
 
 
+# ---- the waterside term (T-0316) -------------------------------------------------
+#
+# THE PLAT IS NOT GROUND A LANDING APRON CAN STAND ON, AND THAT IS A FACT ABOUT THE
+# GENERATOR RATHER THAN ABOUT ANY ONE BLOCK.
+#
+# `tools/generate_block_infill.py` authors no coordinates. Every metre it places comes
+# from a committed lot polygon inside a block bounded by four platted STREETS, and the
+# wharf and landing ground of the main stem lies outside that grid entirely — it is
+# placed by `tools/generate_river_wharves.py` against the committed bank. So a family
+# whose own crosswalk record makes water access a PRECONDITION OF THE FORM cannot be
+# built by the parcel that builds platted blocks, at any distance: even on a block whose
+# own face is a river street, the apron would have to cross a public one.
+#
+# T-0028 found this on 2026-08-28 by opening `blk_lake_franklin` and being unable to
+# build the F3 it had been dealt, 134 m from the nearest water. The stopgap was to put
+# F3 in the block generator's `REFUSED_FAMILIES`, so a recipe meeting the slot DEFERS it
+# with a stated reason (L203) rather than reaching for a shape. That keeps the roof on
+# the books, and it treats a fault in the DEAL as a fault at the block: every future
+# platted block dealt an F3 defers it, and the deferrals accumulate. T-0316 moves the
+# repair upstream, which is T-0213's shape — weight the deal, do not teach each block to
+# refuse.
+#
+# IT IS A PERMUTATION, exactly as the business front is: a waterside roof on a platted
+# block is exchanged for a principal roof of the same trade-ness sitting in that
+# district's own unbounded balance — the ground beyond committed control, which is where
+# the wharf and landing ground is. No total moves: not the target, not a district, not a
+# family, not any unit's roof count, not its principal/ancillary split. A district with
+# no unbounded partner to swap with HOLDS the roof and says so, because a deal that
+# quietly dropped it would be worse than the fault.
+
+# The words that make a crosswalk entry a CANDIDATE for the waterside rule. Read off the
+# record's `required_variant` and its `variants` line, which is where the form lives.
+WATERSIDE_CANDIDATE_WORDS = ("river", "landing", "dock", "wharf", "quay")
+
+# ...and the judgement on each candidate, which the keyword scan cannot make: whether
+# the record's own assumption note states water access as a REQUIREMENT of the form or
+# as a conditional variant. The note is quoted VERBATIM so that editing the record fails
+# this derive rather than silently re-classifying a family — and a new candidate the
+# crosswalk grows tomorrow fails it by name, unjudged, which is the point.
+WATERSIDE_JUDGEMENT = {
+    "F3": (True, "Landing apron and cargo-door arrangement must follow site access and "
+                 "cannot extend into water or duplicate a counted pier."),
+    "W5": (True, "A crane/derrick is rare and must not become a default; river access "
+                 "requires validated dry-bank terrain contact."),
+    # NOT waterside, and the record is what says so: the dock relationship is unknown for
+    # an anonymous slot and the skids are conditional on the site, so an F1 dealt to a
+    # platted block is a freight shed without skids rather than a form that cannot stand.
+    # T-0316 was asked to check F1, F2 and F4 while it was here; F2 ("Hoist beam presence
+    # varies; cargo type and operator are not inferred") and F4 ("Board-stack quantity and
+    # open-side pattern are visual variation, not inventory facts") name no water at all
+    # and are not candidates, so they are not listed — being absent from this table is
+    # itself the statement, and the scan below is what keeps it true.
+    "F1": (False, "Stored goods and dock relationship are not known for anonymous slots; "
+                  "skids belong only where terrain and route access support them."),
+}
+
+
+def waterside_families() -> dict[str, str]:
+    """The families the committed crosswalk makes waterside, and the sentence that says so.
+
+    Two readings of the same record have to agree or this refuses to derive: the keyword
+    scan says which families are even in question, and `WATERSIDE_JUDGEMENT` says which of
+    those the record REQUIRES water for, quoting its own assumption note back at it.
+    """
+    crosswalk = load(DATA / "reconstruction" / "1835_family_archetype_crosswalk.json")
+    seen: dict[str, str] = {}
+
+    def walk(node):
+        if isinstance(node, dict):
+            if "id" in node and "label" in node and "required_variant" in node:
+                hay = " ".join([
+                    str(node.get("required_variant") or ""),
+                    str((node.get("key_geometry_parameters") or {}).get("variants") or ""),
+                ]).lower()
+                if any(word in hay for word in WATERSIDE_CANDIDATE_WORDS):
+                    seen[node["id"]] = str(node.get("assumption_note") or "").strip()
+            for value in node.values():
+                walk(value)
+        elif isinstance(node, list):
+            for value in node:
+                walk(value)
+
+    walk(crosswalk)
+    unjudged = sorted(set(seen) - set(WATERSIDE_JUDGEMENT))
+    if unjudged:
+        raise SystemExit(
+            f"the crosswalk names water in the form of {', '.join(unjudged)} and "
+            "tools/reconcile_665.py carries no judgement on them. Read each record's "
+            "assumption_note and add it to WATERSIDE_JUDGEMENT — requiring water is a "
+            "reading of the record, not of a keyword.")
+    stale = sorted(set(WATERSIDE_JUDGEMENT) - set(seen))
+    if stale:
+        raise SystemExit(
+            f"WATERSIDE_JUDGEMENT judges {', '.join(stale)}, which the crosswalk no "
+            "longer names water in. The record moved; re-read it.")
+    for family, (_, quoted) in sorted(WATERSIDE_JUDGEMENT.items()):
+        if seen[family] != quoted:
+            raise SystemExit(
+                f"{family}: WATERSIDE_JUDGEMENT quotes an assumption note the crosswalk "
+                "no longer carries. Re-read the record and re-make the judgement.\n"
+                f"  crosswalk: {seen[family]}\n  here:      {quoted}")
+    return {f: q for f, (requires, q) in sorted(WATERSIDE_JUDGEMENT.items()) if requires}
+
+
+def _take_one(unit: dict, family: str) -> None:
+    unit["families"][family] -= 1
+    if unit["families"][family] == 0:
+        del unit["families"][family]
+
+
+def _give_one(unit: dict, family: str) -> None:
+    unit["families"][family] = unit["families"].get(family, 0) + 1
+    unit["families"] = {f: unit["families"][f] for f in sorted(unit["families"])}
+
+
+def keep_the_waterside_off_the_plat(units: list[dict], waterside: dict[str, str],
+                                    shares: dict, traffic: dict) -> dict:
+    """Exchange every waterside roof on a platted block for a principal roof on the
+    district's own unbounded balance. See the block comment above."""
+    swapped, held = [], []
+    for district in DISTRICTS:
+        blocks = [u for u in units
+                  if u["district"] == district and u.get("bounded_by") and u.get("roofs")]
+        balances = [u for u in units
+                    if u["district"] == district and not u.get("bounded_by")
+                    and u.get("roofs")]
+        for unit in blocks:
+            for family in sorted(f for f in unit["families"] if f in waterside):
+                for _ in range(unit["families"][family]):
+                    partner = None
+                    # Same trade-ness first, so the business-front weighting this term
+                    # runs after is left exactly where T-0213 put it; anything principal
+                    # and dry after that, and the ledger says which rule was used.
+                    for want_same_trade in (True, False):
+                        for other in balances:
+                            for candidate in sorted(other["families"]):
+                                if candidate in waterside:
+                                    continue
+                                if group_of(candidate) in ANCILLARY_GROUPS:
+                                    continue
+                                if want_same_trade and is_trade(candidate) != is_trade(family):
+                                    continue
+                                partner = (other, candidate)
+                                break
+                            if partner:
+                                break
+                        if partner:
+                            break
+                    if partner is None:
+                        held.append({
+                            "unit": unit["id"], "family": family,
+                            "why": f"{district} has no unbounded balance holding a dry "
+                                   "principal roof to exchange, so the roof stays on the "
+                                   "block and the block generator defers it (L203)",
+                        })
+                        continue
+                    other, candidate = partner
+                    _take_one(unit, family)
+                    _give_one(unit, candidate)
+                    _take_one(other, candidate)
+                    _give_one(other, family)
+                    swapped.append({
+                        "family": family, "from": unit["id"], "to": other["id"],
+                        "for": candidate,
+                        "same_trade": is_trade(candidate) == is_trade(family),
+                    })
+            if unit.get("bounded_by"):
+                unit["trade_roofs"] = sum(n for f, n in unit["families"].items()
+                                          if is_trade(f))
+                unit["frontage_weight"] = round(
+                    frontage_weight(unit["bounded_by"], shares, traffic), 4)
+    # The permutation is the safety argument, so it is asserted rather than trusted.
+    for unit in units:
+        if not unit.get("families"):
+            continue
+        roofs = sum(unit["families"].values())
+        if roofs != unit["roofs"]:
+            raise SystemExit(f"{unit['id']}: the waterside term changed a roof count")
+        principal = sum(n for f, n in unit["families"].items()
+                        if group_of(f) not in ANCILLARY_GROUPS)
+        if principal != unit["principal"]:
+            raise SystemExit(f"{unit['id']}: the waterside term moved an ancillary roof")
+    stranded = sorted(f"{u['id']}.{f}" for u in units if u.get("bounded_by")
+                      for f in u.get("families", {}) if f in waterside)
+    if len(stranded) != len(held):
+        raise SystemExit("the waterside term left a waterside family on a platted block "
+                         f"without holding it: {', '.join(stranded)}")
+    return {"swapped": swapped, "held": held}
+
+
 def inside(point, polygon) -> bool:
     x, y = point
     hit = False
@@ -785,7 +975,22 @@ def programme_document():
                           "fetching a junction. It is waiting on an owner decision — close "
                           "South Water's west end onto Market from the 1834 sheets and the "
                           "committed bank, which is what the rest of that curve already "
-                          "stands on, or return these 27 roofs to the South balance.",
+                          "stands on, or return these 27 roofs to the South balance. "
+                          "HE RULED FOR THE CLOSURE ON 2026-08-29, AND THE GROUND REFUSED "
+                          "IT. Executed on the line as committed, the closure emits this "
+                          "block as a bowtie — South Water has converged on Lake Street "
+                          "before it reaches Market and their platted corridors overlap by "
+                          "14.9 m there — and carried as far north as the committed "
+                          "waterline allows it leaves 2.8 m of block depth at Market against "
+                          "the 24.384 m one platted lot fronts. So these 27 roofs are not on "
+                          "the ground the ruling was about: the block is a wedge the South "
+                          "Branch pinches out at its west corner, and only its eastern two "
+                          "thirds could ever carry a lot. The refusal now fires in "
+                          "tools/generate_plat_lots.py --self-test rather than emitting a "
+                          "4,411 m2 block with a plausible depth; the measurement is under "
+                          "`refused_control.market_south_water` in street_control.json and "
+                          "in docs/RESEARCH/thompson_plat_grid.md § 6.2, and what to do with "
+                          "the wedge is back with the owner.",
             "lots_note": "eight lots assumed from the emitted blocks' own subdivision; the "
                          "block itself is not generated, so it has no measured geometry",
         })
@@ -928,7 +1133,13 @@ def programme_document():
     # The business front, last: it re-deals what the district deal placed, so it has to run
     # after every unit's counts are settled and it must not disturb them (T-0213).
     trade_shares = trade_share_by_class()
-    business_front = weight_the_business_front(units, trade_shares, street_traffic())
+    traffic = street_traffic()
+    business_front = weight_the_business_front(units, trade_shares, traffic)
+    # ...and the waterside term after it, for the same reason and in the same shape: it
+    # exchanges roofs the business front has already placed, and it must not disturb any
+    # count it finds (T-0316).
+    waterside = waterside_families()
+    waterside_term = keep_the_waterside_off_the_plat(units, waterside, trade_shares, traffic)
 
     schedulable = sum(u["roofs"] for u in units if u["state"] == "open")
     gated = sum(u["roofs"] for u in units if u["state"] == "gated")
@@ -999,6 +1210,27 @@ def programme_document():
                                          for k, v in sorted(trade_shares.items())},
                 "moved": business_front,
                 "ticket": "T-0213",
+            },
+            "waterside": {
+                "what": "A family whose own crosswalk record makes water access a "
+                        "precondition of the FORM is never dealt to a platted block. "
+                        "tools/generate_block_infill.py authors no coordinates outside a "
+                        "committed lot polygon inside four platted streets, and the wharf "
+                        "and landing ground lies outside that grid, so the roof would be "
+                        "deferred wherever it landed. Like the business front it is a "
+                        "permutation — the roof is exchanged for a dry principal roof of "
+                        "the same trade-ness on the district's own unbounded balance — so "
+                        "no total moves and no unit's roof count or principal/ancillary "
+                        "split changes.",
+                "read_from": "data/reconstruction/1835_family_archetype_crosswalk.json — "
+                             "the required_variant and variants lines say which families "
+                             "are in question, and each one's own assumption_note says "
+                             "whether water is required or conditional. The note is quoted "
+                             "in the tool, so editing the record fails the re-derive.",
+                "families": waterside,
+                "swapped": waterside_term["swapped"],
+                "held": waterside_term["held"],
+                "ticket": "T-0316",
             },
             "naming": "A unit is named for a block only where the plat module reaches it. "
                       "Everything else is a district balance that states what it waits on.",
@@ -1085,6 +1317,13 @@ def main() -> int:
                       f"{row['blocks']} platted block(s)" for row in front["moved"])
     print(f"  business front (T-0213): documented trade share {shares} — "
           f"{moved or 'no district has a platted block to weight'}")
+    water = programme["method"]["waterside"]
+    swaps = ", ".join(f"{row['family']} {row['from']} -> {row['to']} for {row['for']}"
+                      for row in water["swapped"])
+    families = ", ".join(sorted(water["families"]))
+    print(f"  waterside (T-0316): {families} require water — "
+          f"{swaps or 'no platted block was dealt one'}"
+          + (f"; {len(water['held'])} HELD on the plat" if water["held"] else ""))
     return 0
 
 
