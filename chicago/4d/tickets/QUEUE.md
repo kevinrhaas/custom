@@ -38,6 +38,15 @@
 # newspaper reads and street work). The BANDS, not the epic, say where a ticket
 # belongs. Correcting the field is worth a run of its own.
 
+# --- DEV'S OWN SMOKE IS RED, AND EVERY PR INHERITS IT — 2026-08-31.
+# --- 2,693 of 18,893 drawn flower heads stand over nothing at desktop width. The
+# --- same count, pose and worst offender appear on dev at 54921610 and on PR #560
+# --- at ab4dad40, so no branch caused it. It is first here because a red dev makes
+# --- every other ticket's gate unreadable: a run cannot tell its own failure from
+# --- the one it inherited, and #591 and #432 may already be blocked by nothing but
+# --- this. Fix it and their smoke may simply pass.
+T-0448 — 2,693 drawn flower heads stand over nothing — dev's full smoke has been red on it since 2026-08-30 and every PR inherits it
+
 # --- THE CITY GAINS PEOPLE AND ROOFS — FOUR OWNER RULINGS, 2026-08-30, each written
 # --- into its ticket with its limits. This band exists because the last 41 merges added
 # --- no buildings. Ordered by how much each one adds. TAKE FROM THE TOP.
