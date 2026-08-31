@@ -2557,6 +2557,12 @@
       "asset": "gltf/jh_kinzie_forwarding_store__frame_1830s.glb"
     },
     {
+      "id": "john_holbrook_store",
+      "name": "John Holbrook's Clothing Store",
+      "sidecar": "sidecars/1835/john_holbrook_store.json",
+      "asset": "gltf/john_holbrook_store__frame_1835.glb"
+    },
+    {
       "id": "kinzie_hunter_warehouse",
       "name": "Kinzie & Hunter's Warehouse",
       "sidecar": "sidecars/1835/kinzie_hunter_warehouse.json",

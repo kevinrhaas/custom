@@ -1,7 +1,7 @@
 ---
 id: T-0384
 title: John Holbrook's store takes its door on South Water Street, one door from Dearborn
-state: open
+state: done
 epic: META
 requested_by: loop
 seen: false
@@ -9,9 +9,9 @@ effort: M
 legacy_id: null
 parent: T-0306
 opened: 2026-08-29
-closed: null
-pr: null
-claimed_by: run 8/29/2026, 4:27:33 PM CT
+closed: 2026-08-30
+pr: 598
+claimed_by: run 8/30/2026, 2:11:39 AM CT
 blocked_on: null
 needs_bake: true
 ---
