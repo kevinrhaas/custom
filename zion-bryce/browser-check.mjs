@@ -69,7 +69,11 @@ try {
   await page.getByRole('button', { name: 'Pack' }).click();
   const firstCheck = page.locator('[data-check-id]').first();
   const firstCheckId = await firstCheck.getAttribute('data-check-id');
-  await firstCheck.check();
+  // The native input is intentionally visually hidden; exercise the same
+  // associated label a keyboard/touch user activates instead of force-clicking
+  // through the presentation layer.
+  await page.locator(`[data-check-row="${firstCheckId}"] .check-copy`).click();
+  expect(await firstCheck.isChecked(), 'desktop: checklist label did not toggle its input');
   await page.reload({ waitUntil: 'networkidle' });
   expect(await page.locator(`[data-check-id="${firstCheckId}"]`).isChecked(), 'desktop: checklist state did not persist');
 
