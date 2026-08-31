@@ -67,6 +67,20 @@ T-0445 — West Water, Jefferson and Des Plaines: the three West Division street
 T-0446 — Carroll and Fulton: two platted tiers the West Division has no street between
 T-0447 — North Water Street's west end runs across Wolf Point, which the Thompson plat does not give it
 
+# --- THE NORTH DIVISION AND THE WATER — OWNER MARK-UP OF THE DEV PREVIEW, 2026-08-31.
+# --- Ordered by dependency, not by size. T-0453 is FIRST because both the street
+# --- tickets measure against the bank, and the bank is what is in question: every
+# --- planform in this project is traced from Wright 1834 and the owner reads the
+# --- Thompson plat differently at Wolf Point. It also carries a named defect — a
+# --- single vertex on the South Branch 9.4 m off its own neighbours, the worst in
+# --- the feature. T-0451 is the North Division's missing grid: ONE north-south
+# --- street stands north of the river where the plat carries a whole division.
+# --- T-0452 is the sloughs: the plat draws three, this holds one, as a bare
+# --- centreline with no banks — and they cross the ground T-0451 wants to plat.
+T-0453 — The river banks are traced from Wright 1834 and the owner reads the Thompson plat differently at Wolf Point
+T-0451 — Only one north-south street stands north of the river, where the Thompson plat carries the North Division's whole grid
+T-0452 — The plat draws three sloughs off the Main Branch; this reconstruction holds one, as a centreline with no banks
+
 # --- THE CITY GAINS PEOPLE AND ROOFS — FOUR OWNER RULINGS, 2026-08-30, each written
 # --- into its ticket with its limits. This band exists because the last 41 merges added
 # --- no buildings. Ordered by how much each one adds. TAKE FROM THE TOP.

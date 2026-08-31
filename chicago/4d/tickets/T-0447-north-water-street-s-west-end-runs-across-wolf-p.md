@@ -16,22 +16,51 @@ blocked_on: null
 needs_bake: false
 ---
 
-North Water Street's west end runs across Wolf Point, which the Thompson plat does not give it.
+**Reopened and widened on 2026-08-31** after the owner marked up the dev preview
+against the Thompson plat. The original ticket called this a stray west-end
+vertex. It is not: **the whole course is wrong**, and the west end is only where
+it shows first.
 
-Piece 4 of 4 of **T-0443 — The West Division's street grid is short three north-south streets and two east-west, and what is drawn as Canal may be Clinton**, split because the parent needed more than one run's demonstration to be done. The parent keeps the full ask and its links; this ticket owns one slice of it.
+## Measured, from the committed path
 
-`north_water`'s committed path runs from east **−30.0** to 970.0. That west end
-carries it across the point of land at the river forks.
+`north_water`'s 24 vertices run:
 
-On the Thompson plat, North Water Street is a **north-bank street east of the
-North Branch**. Nothing on the sheet runs it over Wolf Point. Reported by the
-owner on 2026-08-31 from the dev preview.
+| | local E | local N |
+|---|---|---|
+| west end | −30.0 | +45.2 |
+| **lowest point** | **+5.0** | **+2.2** |
+| | +183.0 | +157.5 |
+| | +830.0 | +104.2 |
+| east end | +970.0 | **+270.0** |
+
+The line **dives to N +2.2 at E +5** — down at the water at the forks — then
+climbs **268 m** to N +270 by the east end, wandering between N +104 and N +157
+across the middle. On the plat, **North Water Street is a straight street along
+the north bank of the main stem**, parallel to the river, east of the North
+Branch. It does not dip to the waterline at the forks and it does not climb away
+northward at its east end.
+
+## What the owner marked
+
+Red lines on the preview mark where the Thompson plat puts the **river borders**;
+yellow lines mark where the **streets** belong. Around Wolf Point the two
+disagree, and this street is drawn across ground the plat does not give it.
+
+**This ticket owns North Water Street's own geometry only.** The three things it
+touches but does not own:
+
+- the North Division's missing north-south grid — **T-0451**
+- the sloughs — **T-0452**
+- whether the bank itself is in the right place at all — **T-0453**, which may
+  move the ground this street is measured against, so **take T-0453 first**.
 
 **Acceptance:**
 
-1. What the west end is for is established from committed sources — a stray
-   vertex, a deliberate approach to a crossing, or a reading of a later street
-   that did not exist in 1835.
-2. Either the vertex is removed and the line re-derived, or the approach is
-   justified in writing on the record and at `docs/LIBERTIES.md` as an invention.
-3. `tools/check.sh` green.
+1. North Water Street's course is re-derived from the Thompson plat and the
+   committed bank, with the same arithmetic that reproduced the South Division
+   to 0 mm (80 ft streets, 18 ft alleys, 80 x 180 ft lots — see T-0444).
+2. The dip to N +2.2 and the climb to N +270 are each either committed with a
+   source, or removed and the reason recorded.
+3. If the line moves, every record seated off it is re-derived and the count of
+   changed records reported.
+4. `tools/check.sh` green.
