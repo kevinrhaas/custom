@@ -38,6 +38,21 @@
 # newspaper reads and street work). The BANDS, not the epic, say where a ticket
 # belongs. Correcting the field is worth a run of its own.
 
+# --- THE WEST DIVISION IS WRONG ON THE GROUND — OWNER FAULT REPORT, 2026-08-31.
+# --- Reported from the dev preview against the Thompson plat sheet. Three of its
+# --- findings are already measured from the committed files: only TWO of the plat's
+# --- five north-south West Division streets exist, carroll and fulton exist nowhere,
+# --- and the one west-side spacing this project holds is 112.1 m against a South
+# --- Division band of 119.2-123.4 m. The fourth — whether the whole grid sits one
+# --- street west, so that `canal` is really Clinton — is a MEASUREMENT nobody has
+# --- taken yet, and every building west of the river depends on the answer.
+# --- This outranks the roof bands: those add buildings to ground that is correct,
+# --- and this asks whether a quarter of the town is standing in the wrong place.
+T-0444 — Measure the west bank of the South Branch and step the plat's sequence from it: is the line drawn as Canal really Clinton?
+T-0445 — West Water, Jefferson and Des Plaines: the three West Division streets the plat carries and no committed file holds
+T-0446 — Carroll and Fulton: two platted tiers the West Division has no street between
+T-0447 — North Water Street's west end runs across Wolf Point, which the Thompson plat does not give it
+
 # --- THE CITY GAINS PEOPLE AND ROOFS — FOUR OWNER RULINGS, 2026-08-30, each written
 # --- into its ticket with its limits. This band exists because the last 41 merges added
 # --- no buildings. Ordered by how much each one adds. TAKE FROM THE TOP.
