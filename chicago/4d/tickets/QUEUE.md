@@ -75,7 +75,6 @@ T-0430 — Open blk_south_water_franklin: 4 roofs of headroom on two free lots
 T-0431 — Open blk_south_water_clark: 4 roofs of headroom on two free lots
 T-0432 — Open blk_south_water_dearborn: 4 roofs of headroom on two free lots
 T-0183 — The Market and South Water corner needs one control point, and the node rule may not be able to make it
-T-0384 — John Holbrook's store takes its door on South Water Street, one door from Dearborn
 
 # --- MORE BUILDINGS AND TRADES, ALREADY RUNNABLE — no ruling needed, and each one puts
 # --- something in the scene or lets a documented person stand somewhere.
@@ -183,3 +182,4 @@ T-0388 — Three derived records have drifted from their own generators on an un
 # --- land under this line. NOT yet placed by the owner.
 T-0438 — The letter-list cohort is 2.54 MiB of the published tree, and it is now the largest single item in it
 T-0439 — Two pixel-sensitivity checks fail when parts 9-12 run together and pass when part 9 runs alone
+T-0440 — Clark, Filer & Co.'s live placement is empty while three printings put its warehouse five doors east of Randolph

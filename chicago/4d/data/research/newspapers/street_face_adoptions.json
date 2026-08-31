@@ -48,12 +48,12 @@
      "business_s_abell_attorney_and_counsellor",
      "business_unnamed_new_store_la_salle_street"
     ],
-    "would_still_refuse": 40,
+    "would_still_refuse": 39,
     "would_still_refuse_by_reason": {
      "not present at the scene date": 0,
      "the face holds no roof standing on it": 24,
      "this face already holds this proprietor": 9,
-     "every roof on the face is spoken for": 7
+     "every roof on the face is spoken for": 6
     }
    },
    "a corner side is a face": {
@@ -67,12 +67,12 @@
     "seats_that_the_reading_in_force_does_not": [],
     "seats_that_the_reading_in_force_does_not_by_street": {},
     "loses_against_the_reading_in_force": [],
-    "would_still_refuse": 30,
+    "would_still_refuse": 29,
     "would_still_refuse_by_reason": {
      "not present at the scene date": 0,
      "the face holds no roof standing on it": 2,
      "this face already holds this proprietor": 10,
-     "every roof on the face is spoken for": 18
+     "every roof on the face is spoken for": 17
     }
    },
    "a corner side or the band is a face": {
@@ -87,25 +87,25 @@
     "seats_that_the_reading_in_force_does_not": [],
     "seats_that_the_reading_in_force_does_not_by_street": {},
     "loses_against_the_reading_in_force": [],
-    "would_still_refuse": 30,
+    "would_still_refuse": 29,
     "would_still_refuse_by_reason": {
      "not present at the scene date": 0,
      "the face holds no roof standing on it": 0,
      "this face already holds this proprietor": 10,
-     "every roof on the face is spoken for": 20
+     "every roof on the face is spoken for": 19
     }
    }
   }
  },
  "counts": {
-  "street_only_in_register": 59,
+  "street_only_in_register": 58,
   "adopted": 29,
-  "refused": 30,
+  "refused": 29,
   "refused_by_reason": {
    "not present at the scene date": 0,
    "the face holds no roof standing on it": 2,
    "this face already holds this proprietor": 10,
-   "every roof on the face is spoken for": 18
+   "every roof on the face is spoken for": 17
   },
   "unplaceable_present_at_scene_date": 76,
   "by_street": {
@@ -195,7 +195,7 @@
    },
    "south_water": {
     "street_name": "South Water Street",
-    "businesses_naming_it": 23,
+    "businesses_naming_it": 22,
     "adopted": 9,
     "roofs_lot_front": 19,
     "roofs_corner_side": 0,
@@ -1092,14 +1092,6 @@
   {
    "business_id": "business_j_curtiss_attorney_and_counsellor_at_law",
    "business_name": "J. Curtiss, Attorney and Counsellor at Law",
-   "street_id": "south_water",
-   "street_name": "South Water Street",
-   "refusal": "every roof on the face is spoken for",
-   "detail": "19 roof(s) stand on this street: 5 are a household's dwelling under one layer or the other, 5 are yard buildings the parcels dealt behind a lot, and 9 are already adopted by a better-evidenced business."
-  },
-  {
-   "business_id": "business_john_holbrook",
-   "business_name": "John Holbrook",
    "street_id": "south_water",
    "street_name": "South Water Street",
    "refusal": "every roof on the face is spoken for",

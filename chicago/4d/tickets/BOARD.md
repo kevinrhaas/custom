@@ -12,7 +12,6 @@
 - **T-0431** Open blk_south_water_clark: 4 roofs of headroom on two free lots · needs-bake
 - **T-0432** Open blk_south_water_dearborn: 4 roofs of headroom on two free lots · needs-bake
 - **T-0183** The Market and South Water corner needs one control point, and the node rule may not be able to make it
-- **T-0384** John Holbrook's store takes its door on South Water Street, one door from Dearborn · needs-bake
 - **T-0385** The New York Clothing Store stands three doors north of the Tremont House in Dearborn Street · needs-bake
 - **T-0423** G. Spring's large dwelling-house and fine well stands on lot 7 of block 16, where an anonymous roof stands now
 - **T-0418** The 36 documented tradespeople whose trade the residents vocabulary has no word for
@@ -82,6 +81,7 @@
 - **T-0388** Three derived records have drifted from their own generators on an unmodified dev, so every branch's gate is red
 - **T-0438** The letter-list cohort is 2.54 MiB of the published tree, and it is now the largest single item in it
 - **T-0439** Two pixel-sensitivity checks fail when parts 9-12 run together and pass when part 9 runs alone
+- **T-0440** Clark, Filer & Co.'s live placement is empty while three printings put its warehouse five doors east of Randolph
 
 ## ⏸ Waiting on an owner decision (5)
 
@@ -141,6 +141,7 @@
 - **T-0170** The desktop smoke's part 7 has 2 m 17 s of margin, and it is the one measured over the ceiling on another runner · 2026-08-30 · PR #593
 - **T-0173** The desktop smoke's part 4 and part 5 have under a minute of margin on the ceiling, and part 7 is over it · 2026-08-30 · PR #590
 - **T-0379** The letter-list names the post office printed in a single return, and the change of scale they put to the town · **OWNER** · 2026-08-30 · PR #600
+- **T-0384** John Holbrook's store takes its door on South Water Street, one door from Dearborn · needs-bake · 2026-08-30 · PR #598
 - **T-0416** Wm. Sabine, John Dave and the Dearborn wine store: the three storefronts the street-face policy refuses for want of a fronting roof · 2026-08-30 · PR #596
 - **T-0009** Redraw 29 building bodies out of the roadway · SEEN · needs-bake · was K30(c) · 2026-08-29 · PR #567
 - **T-0180** The bake opens a content PR on every run, because the build stamp it writes is always dirty · 2026-08-29 · PR #579
@@ -157,5 +158,4 @@
 - **T-0283** The North Division's warehouse row allows one freight roof and six documented ones stand above it · 2026-08-29 · PR #511
 - **T-0307** The derivation's running maximum costs 42 m of verge where the bank turns a right angle at Wolf Point · 2026-08-29 · PR #530
 - **T-0316** The 665-roof deal puts a large river warehouse on an inland platted block, and the block generator cannot build one · 2026-08-29 · PR #520
-- **T-0317** Build out the NEXT anonymous block: after blk_lake_franklin the last ungenerated block is owner-blocked, and the roofs left stand on blocks that already stand · 2026-08-29 · PR #521
 

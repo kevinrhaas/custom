@@ -4170,9 +4170,18 @@ for (const [label, viewport, touch] of [
       // hitching post there would be furniture standing on an invention").
       // Nothing else moves: no run opens, no crossing is added, and the shop's
       // own wall was never a street-fence refusal.
+      // T-0384 stood john_holbrook_store on the South Water face of
+      // blk_south_water_dearborn — a documented STORE, which is a trade the
+      // hitching rule accepts — so ONE more post stands at that frontage: 17 to
+      // 18. This is a building ARRIVING rather than a trade settling, so unlike
+      // T-0263 no refusal retires with it and 83 does not move. Nothing else
+      // moves either: the face's walk was already laid for its whole length so
+      // no run opens and no crossing is added, and the shop stands 1.50 m back
+      // from the frontage line, inside the 3.0 m a street fence needs, which was
+      // already refused on that wall.
       frontage.census?.records === 5 && frontage.census?.walks === 51
         && frontage.census?.crossings === 39
-        && frontage.census?.posts === 17 && frontage.census?.fences === 35
+        && frontage.census?.posts === 18 && frontage.census?.fences === 35
         && frontage.census?.refused === 83
         && frontage.recordIds.join(',')
           === 'green_tree_frontage,sauganash_frontage,river_walk_frontage,'
@@ -4360,7 +4369,10 @@ for (const [label, viewport, touch] of [
     // arriving: frederick_thomas_shop already stood on South Water Street and
     // its frontage was refused a post in writing because its trade was
     // reconstructed, so settling that trade on the Chicago American's own
-    // heading is what qualifies it. The street-edge population is fourteen. The two
+    // heading is what qualifies it. T-0384 makes it seventeen, and that one IS a building
+    // arriving: John Holbrook's clothing store is a documented store on
+    // South Water Street, so the rule stands a post at its frontage and no
+    // refusal retires with it. The street-edge population is fifteen. The two
     // populations are told apart by `street`, which is exactly the field that
     // decides the mesh: a post naming a street is standing timber in that
     // street's chunk, and a post naming none falls back to the shared mesh. The
@@ -4376,11 +4388,11 @@ for (const [label, viewport, touch] of [
     const postsBad = frontage.hitching.filter((h) => !(h.found > 0
       && Math.abs(h.top - h.recorded) <= 0.05
       && Math.abs(h.low) <= 0.02 && h.clear > 0 && !h.text));
-    check(`${label}: the sixteen hitching posts stand on their own ground, carrying nothing`,
-      frontage.hitching.length === 16
-        && frontage.census?.hitching === 16
+    check(`${label}: the seventeen hitching posts stand on their own ground, carrying nothing`,
+      frontage.hitching.length === 17
+        && frontage.census?.hitching === 17
         && frontage.hitching.filter((h) => !h.street).length === 2
-        && frontage.hitching.filter((h) => h.street).length === 14
+        && frontage.hitching.filter((h) => h.street).length === 15
         && postsBad.length === 0
         && frontage.census?.lettered === 1
         && frontage.noBoardHere === false,

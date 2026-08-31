@@ -1213,6 +1213,24 @@ step "the street-face adoptions re-derive, and no adopted business claims a lot"
 step "…and its own assertions still fire when broken" \
   python3 tools/adopt_street_faces.py --self-test
 
+# THE OTHER HALF OF THE SAME PROBLEM (T-0384, the owner's ruling of 2026-08-30). Where the
+# adoptions answer "the paper names a face and no position", this answers "the paper names
+# a position and no lot": a count of doors off a named corner — "on South-Water st. one
+# door from Dearborn street" — places a store along the face, and AN ORDINAL IS STILL NOT A
+# LOT. The limit is written in a field rather than in prose (`lot_claim` on the record) and
+# this proves the chain: that the reading and the declaration name the same records, that
+# the declaration is well formed and the record has grown no lot field under another name,
+# that the plat's barred-lot map is IDENTICAL with the declaring records in the town and
+# out of it — the transparency PR #514 lacked, which switched off the business-front clause
+# and cost a dealt roof — and that the metres between a door and a corner, which are this
+# project's arithmetic and not the paper's, are admitted at a liberty. `--report` prints
+# the sweep of every `n doors` phrase the corpus holds. docs/CORNER-ORDINAL.md is the policy.
+step "an ordinal off a corner places a position and claims no lot" \
+  python3 tools/measure_corner_ordinals.py --gate --quiet
+
+step "…and its own assertions still fire when broken" \
+  python3 tools/measure_corner_ordinals.py --self-test
+
 # SPENDING that allocation is a second gate, because the table and the structure records
 # are two files and a policy that only reaches one of them is a policy the visitor never
 # sees (T-0417). tools/inferred_occupancy.py is the ledger both the household programme

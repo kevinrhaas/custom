@@ -9,7 +9,7 @@
       "persons": 2630,
       "businesses": 206
     },
-    "structures": 359,
+    "structures": 360,
     "structures_sharing_a_name": 35,
     "streets": 19,
     "resident_persons": 956
@@ -23,9 +23,9 @@
         "opening_announced_after_scene_date": 4
       },
       "by_action": {
-        "enrich_existing": 29,
+        "enrich_existing": 30,
         "new_building": 25,
-        "street_only": 59,
+        "street_only": 58,
         "unplaceable": 93
       },
       "by_placement_class": {
@@ -35,9 +35,9 @@
         "street_only": 18
       },
       "present_by_action": {
-        "enrich_existing": 29,
+        "enrich_existing": 30,
         "new_building": 25,
-        "street_only": 59,
+        "street_only": 58,
         "unplaceable": 76
       },
       "outside_the_plat": 5,
@@ -4003,21 +4003,29 @@
       "survival_liberty_required": false,
       "backdating_liberty_required": false,
       "anchor": {
-        "kind": "street",
+        "kind": "corner_ordinal",
         "target": null,
         "streets": [
-          "dearborn"
+          "dearborn",
+          "south_water"
         ],
         "via": null,
-        "note": "The anchor is a reach of dearborn and names nothing narrower."
+        "ordinal": {
+          "count": 1,
+          "direction": null,
+          "along": "south_water",
+          "from_street": "dearborn",
+          "phrase": "one door from Dearborn street"
+        },
+        "note": "An ordinal off a corner: 1 door from the dearborn crossing, counted along south_water. The count of doors is the paper's; how far one door is from the corner is this project's reconstruction (docs/CORNER-ORDINAL.md, L215)."
       },
       "anchor_change": null,
       "outside_plat": null,
-      "action": "street_only",
-      "action_target": "south_water",
-      "match_tier": null,
-      "match_evidence": null,
-      "action_note": "The paper names South Water Street and nothing narrower; the anchor is a reach of dearborn and names nothing narrower."
+      "action": "enrich_existing",
+      "action_target": "john_holbrook_store",
+      "match_tier": "occupants",
+      "match_evidence": "John Holbrook",
+      "action_note": "john_holbrook_store already stands and its occupants carries holbrook, john — 'John Holbrook'. The papers add trade, goods and dates to a record that exists."
     },
     {
       "id": "business_john_s_kinzie_forwarding_and_commission_merchant",

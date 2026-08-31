@@ -402,6 +402,17 @@
       "reasoning": "A named shop in a single inferred frame building."
     },
     {
+      "structure_id": "john_holbrook_store",
+      "district": "south",
+      "roof_count": 1,
+      "inventory_eligible": true,
+      "inventory_roof_count": 1,
+      "likely_family": "C1",
+      "substitutes_anonymous_slots": 1,
+      "confidence": "low",
+      "reasoning": "A named clothing store in a single inferred frame building, one door east of the Chicago American's office on South Water Street. C1 rather than C3 for the same reason frederick_thomas_shop is C1: the advertisements describe a counter trade and a stock room and never a room above, so the record stands one storey. Substitutes one anonymous slot and adds nothing above 665."
+    },
+    {
       "structure_id": "goss_cobb_saddlery",
       "district": "west",
       "roof_count": 1,
@@ -578,7 +589,7 @@
       "likely_family": "T2",
       "substitutes_anonymous_slots": 1,
       "confidence": "high",
-      "reasoning": "Documented two-story frame inn on Lake Street near Wells, one principal roof \u2014 the same reading as tremont_house_1 and exchange_coffee_house. Andreas p. 635 has it built in 1834 and opened by Johnson and Stevens, and the Chicago American of 13 June 1835 advertises two professional offices in it seventeen days before the scene date, so it is a covered building standing on 1 July 1835 and eligible. It is a PRE-EXISTING roof, not a reconstructed one: the town this project models already had it, so it substitutes an anonymous T2 slot rather than adding to the target. T2 is the frontier-inn family \u2014 two storeys, clapboard frame, 5-8 bays \u2014 which is what Andreas's 'two-story building, with eaves to the street' describes; T1 is the lower one-and-a-half-storey public house and T3 is the Sauganash's single custom asset, and neither fits. No stable is attested here, so no A1 roof is claimed with it (T2's own crosswalk note forbids adding one silently)."
+      "reasoning": "Documented two-story frame inn on Lake Street near Wells, one principal roof — the same reading as tremont_house_1 and exchange_coffee_house. Andreas p. 635 has it built in 1834 and opened by Johnson and Stevens, and the Chicago American of 13 June 1835 advertises two professional offices in it seventeen days before the scene date, so it is a covered building standing on 1 July 1835 and eligible. It is a PRE-EXISTING roof, not a reconstructed one: the town this project models already had it, so it substitutes an anonymous T2 slot rather than adding to the target. T2 is the frontier-inn family — two storeys, clapboard frame, 5-8 bays — which is what Andreas's 'two-story building, with eaves to the street' describes; T1 is the lower one-and-a-half-storey public house and T3 is the Sauganash's single custom asset, and neither fits. No stable is attested here, so no A1 roof is claimed with it (T2's own crosswalk note forbids adding one silently)."
     },
     {
       "structure_id": "newberry_dole_slaughterhouse_south_branch",

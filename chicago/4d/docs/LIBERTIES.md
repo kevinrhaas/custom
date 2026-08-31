@@ -9920,3 +9920,68 @@ added and no figure is drawn (L1).
 Related: **L207** (the fifteen this ruling scaled up) · **L213** · **L206** · **L205** · **L1**
 (no figure is drawn for any resident) · tickets **T-0379** (this), **T-0378**, **T-0374**.
 **Recorded:** 2026-08-30.
+
+
+### L215 — John Holbrook's store: the count of doors is the paper's, the metres between them are ours
+
+**Decision:** the Chicago Democrat of 10 June 1835 and the Chicago American of 13 June 1835 both
+carry John Holbrook's card — hats, clothing, boots and shoes, wholesale and retail, "on South-Water
+st. one door from Dearborn street" — and neither says one word about the premises. So the ADDRESS is
+read and the BUILDING is invented: a 30 by 25 ft one-storey frame shop, seated one door east of the
+Chicago American's own office on the block face all three of these addresses share. Its footprint,
+its storey count and its clapboard stock are declared here. Two further inventions are declared here
+that a footprint entry would not usually carry, because the ordinal reading is what makes them load
+bearing:
+**THE DOOR-GAP RULE — the metres, which are not evidence.** The owner ruled on 2026-08-30 (T-0384,
+`docs/CORNER-ORDINAL.md`) that "one door from Dearborn street" is an ordinal off the corner, and his
+ruling says in terms that *the door count is evidence and the metres are not*. This entry owns the
+metres. THE RULE: a front placed one door along from a named neighbour is set **3.048 m (10 ft) clear
+of that neighbour's wall**, measured along the face. It is a convention with two reasons and no
+source: "one door from" describes a neighbouring front and not a party wall, so the gap may not be
+zero; and ten feet is the smallest gap that still reads as two buildings rather than one at walking
+distance, which is the scale this reconstruction is looked at from. Applied here it puts Holbrook's
+west wall at local ENU E 726.30, and every other number in `position.note` follows from it.
+**AND THE SIDE OF DEARBORN.** The phrase gives a count and not a direction. East is taken because
+the first premises west is a documented dwelling and the second is off the face entirely, and
+because read eastward the three addresses this face's own papers print — the American's office at
+the corner, Holbrook one door from Dearborn, Frederick Thomas two doors from the American office —
+describe a continuous row with no contradiction, and read westward they describe nothing that
+closes. That is a reading of three sources against each other, which is why the position is graded
+`inferred` rather than `reconstructed`; but the fork is real and it is recorded here as well as on
+the record.
+**Why:** every dimension of the building is borrowed from its own neighbours rather than found. The
+30 ft front is the parcel's small-shop figure and is what fits between the American office's east
+wall and the lot line with both margins kept; the 25 ft depth is `chicago_american_office`'s own
+committed depth on this same face, taken because Holbrook advertises a large stock replenished every
+fifteen or twenty days and a shop taking fortnightly shipments needs a storeroom behind its counter.
+One storey is the smaller claim for premises the advertisements describe only as a counter and a
+stock. The alternative to inventing them was to leave a documented trade standing nowhere, and a
+door the papers themselves say was occupied reading as empty ground.
+**Consequence:** a visitor walking South Water Street east of Dearborn sees three shop fronts in a
+row where the committed data previously had two and a gap. The row is the point: read eastward the
+three printed addresses describe a continuous frontage with no contradiction between them, which is
+evidence about the STREET even where it is weak evidence about any one shop. The Evidence panel
+grades the footprint and the storey count `reconstructed` and says on each value that it is
+borrowed. **No lot is claimed and none is taken**: the record carries a `lot_claim` block declaring
+`claims_lot: false`, `tools/plat_occupancy.py` reads it and leaves the plat's entitlements exactly
+where they were, and `tools/measure_corner_ordinals.py` fails if any of that stops being true.
+**On the clapboard, and on L148, which this does not edit:** the exposed face of this building's
+siding is L148's rule applied to a record written after that entry was — `tools/deal_siding_stock.py`
+dealt it, keyed to the construction season and advanced so no frame building within 60 m shares it,
+and the tool's own note names L148 as the owner of the invention. L148's Decision counts the named
+frame buildings it covers, and with this record standing that count is one higher than the number
+written there. It is recorded here rather than by correcting that entry, because this document is
+append-only and a later count belongs in a later entry.
+**How to resolve:** the page images for either printing would settle whether the advertisements carry
+a side of the street. A canal-commission lot record or an assessment naming Holbrook would replace
+the count of doors with a lot — and would be the thing that lets this record claim one, which today
+it may not. Any measured description of the premises would replace the whole of this entry, and a
+second ordinal placement anywhere in the corpus would turn the door-gap rule from a convention used
+once into a rule that has to be argued.
+Related: **L212** (street-face adoption, the policy this address was read under until the ruling) ·
+**L148** (the clapboard rule this record's siding is dealt by) · **L130** (the fact of a sign on a
+named trade) · tickets **T-0384** (this), **T-0306** (its parent, the American's storefronts),
+**T-0375** (the South Water roofs an adoption would have needed), **T-0261** (the read that found the
+advertisement).
+**Covers:** `john_holbrook_store.frame_1835.footprint`, `john_holbrook_store.frame_1835.form.stories`, `john_holbrook_store.frame_1835.form.siding_exposure_m`.
+**Recorded:** 2026-08-30.

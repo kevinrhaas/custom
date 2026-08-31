@@ -7,8 +7,8 @@
   "target_date": "1835-07-01",
   "coordinates": "Local East-North-Up metres from data/datum.json's origin, the same frame data/enclosures/ and data/signage/ and the sidecars' placement.local_e / local_n use.",
   "counts": {
-    "frontages": 27,
-    "objects": 153,
+    "frontages": 28,
+    "objects": 158,
     "wagons": 64,
     "wagons_by_kind": {
       "farm_box": 26,
@@ -20,8 +20,8 @@
     "wagon_stands_refused": 40,
     "benches": 1,
     "sheds": 1,
-    "marked_objects": 153,
-    "distinct_marks": 73
+    "marked_objects": 158,
+    "distinct_marks": 75
   },
   "existence": {
     "value": true,
@@ -1697,6 +1697,119 @@
           "mark": {
             "lines": [
               "MERCHANDISE"
+            ],
+            "letterform": "stencil",
+            "says": "commodity"
+          }
+        }
+      ]
+    },
+    {
+      "structure_id": "john_holbrook_store",
+      "name": "John Holbrook's Clothing Store",
+      "trade": "store",
+      "trade_confidence": "attested",
+      "why_goods": "a counter whose stock arrives in boxes and barrels off a lake schooner",
+      "confidence": "reconstructed",
+      "facade_bearing_deg": 0.0,
+      "frontage_m": 9.14,
+      "usable_frontage_m": 8.14,
+      "standoff_m": 0.55,
+      "ground_quad_local_enu_m": [
+        [
+          726.3,
+          -15.35
+        ],
+        [
+          735.44,
+          -15.35
+        ],
+        [
+          735.44,
+          -7.73
+        ],
+        [
+          726.3,
+          -7.73
+        ]
+      ],
+      "items": [
+        {
+          "kind": "barrel",
+          "pose": "upright",
+          "at_local_enu_m": [
+            727.11,
+            -7.18
+          ],
+          "bearing_deg": 0.0,
+          "mark": {
+            "lines": [
+              "NAILS"
+            ],
+            "letterform": "stencil",
+            "says": "commodity"
+          }
+        },
+        {
+          "kind": "barrel",
+          "pose": "upright",
+          "at_local_enu_m": [
+            727.73,
+            -7.18
+          ],
+          "bearing_deg": 0.0,
+          "mark": {
+            "lines": [
+              "WHISKEY"
+            ],
+            "letterform": "stencil",
+            "says": "commodity"
+          }
+        },
+        {
+          "kind": "barrel",
+          "pose": "upright",
+          "at_local_enu_m": [
+            728.35,
+            -7.18
+          ],
+          "bearing_deg": 0.0,
+          "mark": {
+            "lines": [
+              "JOHN HOLBROOK"
+            ],
+            "letterform": "brand",
+            "says": "house"
+          }
+        },
+        {
+          "kind": "crate",
+          "tier": 0,
+          "at_local_enu_m": [
+            729.64,
+            -7.18
+          ],
+          "bearing_deg": 0.0,
+          "mark": {
+            "lines": [
+              "JOHN HOLBROOK",
+              "CHICAGO"
+            ],
+            "letterform": "shipping",
+            "says": "shipping"
+          }
+        },
+        {
+          "kind": "crate",
+          "tier": 1,
+          "at_local_enu_m": [
+            729.64,
+            -7.18
+          ],
+          "bearing_deg": 0.0,
+          "mark": {
+            "lines": [
+              "DRY GOODS"
             ],
             "letterform": "stencil",
             "says": "commodity"
