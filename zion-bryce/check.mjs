@@ -45,6 +45,7 @@ expect(css.includes('@media (max-width: 430px)'), 'small-mobile layout gate is m
 expect(css.includes('@media (prefers-reduced-motion: reduce)'), 'reduced-motion support is missing');
 expect(css.includes('@media print'), 'print layout is missing');
 expect(app.includes('serviceWorker.register'), 'service worker registration is missing');
+expect((await read(join(sourceRoot, 'sw.js'))).includes('fetch(request)'), 'offline shell is not network-first for version consistency');
 expect(app.includes('forecastSuggestion'), 'forecast-assisted day swap is missing');
 expect(app.includes('zionBryce.dayPack.v1'), 'saved day-specific packing state is missing');
 expect(app.includes('dayExtrasTemplate'), 'day packing and tips renderer is missing');
