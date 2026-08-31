@@ -1,7 +1,7 @@
 ---
 id: T-0183
 title: The Market and South Water corner needs one control point, and the node rule may not be able to make it
-state: open
+state: done
 epic: META
 requested_by: steward
 seen: false
@@ -9,8 +9,8 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-08-24
-closed: null
-pr: null
+closed: 2026-08-31
+pr: 573
 claimed_by: run 8/29/2026, 6:42:06 PM CT
 blocked_on: null
 needs_bake: false
@@ -241,3 +241,49 @@ must not delete it to tidy the output.
   both REMAIN. A run that removes either has removed the evidence.
 - The 665-roof total does not change — these roofs move, they are not lost. If a
   run finds the total must move, it says so with its reason.
+
+---
+
+## THE OWNER'S RULING, 2026-08-31 — the corridor EDGE, not the centreline
+
+Two runs carried out the 2026-08-29 ruling and answered it differently. Both are
+on the record; the owner ruled for **PR #573**, which is merged. **PR #577 is
+closed unmerged**, and its work is sound — it answers a question that was put and
+declined, rather than being wrong in its own terms.
+
+**The question.** A platted corridor is 24.384 m. Put its **north edge** on the
+committed bank and `blk_south_water_market` is a wedge with **2.8 m** of depth at
+Market. Put its **centreline** on the bank — so the north half, 12.192 m of
+platted street, hangs over the South Branch — and the block builds **8 lots,
+4,957 m2, 107.0 m of frontage**. The whole difference between the two answers is
+one half-corridor.
+
+**Why the edge.** Three things, measured rather than preferred:
+
+1. **The committed street does not overhang anywhere it can be checked.** Against
+   the waterline at five eastings, `south_water`'s north corridor edge is south
+   of the water every time — 22.0 m clear at E 100, 15.4 m at E 110, 8.3 m at
+   E 120, and **0.2 m at Franklin**. Twenty centimetres is not a coincidence; it
+   is the edge rule already in force. PR #577's case rested on this street
+   already overhanging east of Franklin, and that could not be reproduced.
+2. **The rule is committed as executing code, not as prose.** `generate_plat_lots.py`
+   computes `headroom = (waterline - 2 * half_width) - (lake_n + half_width)` —
+   north edge on the waterline, south edge a full width below — and its self-test
+   runs in `tools/check.sh` on every commit. Re-run on 2026-08-31: *waterline at
+   local N -71.0, leaving 2.8 m*.
+3. **The two errors are not symmetrical.** The centreline reading puts eight
+   buildings on ground the committed heightfield calls river. The edge reading
+   leaves ground unbuilt that might be buildable. This project grades every
+   invention it makes; a town smaller than the evidence allows is a cost it can
+   carry, and a town standing in the water is not.
+
+**This is falsifiable and is left that way.** The self-test fails loudly if the
+headroom ever exceeds a lot's frontage — `THE GROUND HAS CHANGED` — so better
+bank evidence reopens the block by itself. Nothing here needs to be remembered
+for that to happen.
+
+**What follows, and it is a real loss.** T-0365 called these **27 roofs** the
+largest unblocked headroom left in the anonymous-block programme. They are not on
+the ground: `blk_south_water_market` tapers to nothing at Market. Any queue
+ranking that still counts them is counting a wedge.
+
