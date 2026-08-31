@@ -608,7 +608,7 @@ CORNER = re.compile(r"corner of\s+(.{0,40}?)\s+and\s+(.{0,40})", re.I)
 # is the policy and this regex is the only place the phrase is recognised, so a reading
 # pass writes `class: relative`, an `anchor` naming the cross street and an
 # `offset_normalized` carrying the count, and gets the ordinal reading without deciding
-# anything. THE COUNT IS THE SOURCE'S AND THE METRES ARE NOT (L214).
+# anything. THE COUNT IS THE SOURCE'S AND THE METRES ARE NOT (L215).
 ORDINAL_COUNT = {"one": 1, "first": 1, "two": 2, "second": 2, "three": 3, "third": 3,
                  "four": 4, "fourth": 4, "five": 5, "fifth": 5, "six": 6, "sixth": 6}
 # 'a few doors below' is deliberately NOT here and must not be added: 'few' is not a
@@ -674,7 +674,7 @@ def ordinal_off_a_corner(town, placement):
     What comes back names the crossing in `streets` (the pair, as `corner` does) and the
     reading itself in `ordinal`, so a gate can read the count without parsing prose.
     **The count is the source's; the metres between two doors are this project's** —
-    `docs/CORNER-ORDINAL.md` and L214 own that arithmetic, and no part of it is here.
+    `docs/CORNER-ORDINAL.md` and L215 own that arithmetic, and no part of it is here.
     """
     # The fields are searched in order and the FIRST that carries the phrase supplies it,
     # rather than concatenating them: `offset_normalized` is the reading after OCR
@@ -705,7 +705,7 @@ def ordinal_off_a_corner(town, placement):
                     "phrase": " ".join(m.group(0).split())},
         "note": "An ordinal off a corner: %d door%s%s the %s crossing, counted along %s. "
                 "The count of doors is the paper's; how far one door is from the corner "
-                "is this project's reconstruction (docs/CORNER-ORDINAL.md, L214)."
+                "is this project's reconstruction (docs/CORNER-ORDINAL.md, L215)."
                 % (count, "" if count == 1 else "s",
                    " %s of" % direction if direction else " from",
                    reference[0], along[0]),

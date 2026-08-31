@@ -4,7 +4,7 @@
 same day. A later run applies this without re-deciding it; a run that wants to change it
 opens a ticket and asks. The implementation is the `corner_ordinal` anchor kind in
 `tools/compile_register.py`, the transparency clause is `no_lot_claim_ids` in
-`tools/plat_occupancy.py`, the liberty is **L214**, and `tools/check.sh` re-derives the
+`tools/plat_occupancy.py`, the liberty is **L215**, and `tools/check.sh` re-derives the
 register and runs `tools/measure_corner_ordinals.py` on every commit.
 
 ## The question, and it was one line
@@ -63,19 +63,19 @@ second ruling, about ground rather than about evidence, and this policy does not
 
 The owner's ruling says it in terms, and it is the sentence a later run is most likely to
 forget. How far one door is from the corner is a **reconstruction**. The rule that produced
-the number is **L214's door-gap rule**: a front placed one door along from a named
+the number is **L215's door-gap rule**: a front placed one door along from a named
 neighbour is set **3.048 m (10 ft) clear of that neighbour's wall**, measured along the
 face — because "one door from" describes a neighbouring front and not a party wall, so the
 gap may not be zero, and because ten feet is the smallest gap that still reads as two
 buildings rather than one at walking distance. It is a convention with two reasons and no
-source, it is declared at L214, and a second ordinal placement anywhere in the corpus turns
+source, it is declared at L215, and a second ordinal placement anywhere in the corpus turns
 it from a convention used once into a rule that has to be argued.
 
 The DIRECTION is the same kind of thing where the paper omits it. Holbrook's card gives a
 count and no side of Dearborn; east is read from three of this face's own printed addresses
 agreeing when read eastward and closing on nothing when read westward. That is a reading of
 sources against each other, which is why the position is graded `inferred`; the fork is
-recorded on the record and at L214 rather than resolved silently.
+recorded on the record and at L215 rather than resolved silently.
 
 ## How a reading pass gets this for free
 
@@ -131,12 +131,12 @@ Three readable claims, two businesses, and only one of them reaches the register
   on South water St. five [doors east] of the corner [of Randolph st.]"* — readable at
   claim level and **invisible to the register**, because the gazetteer's LIVE placement for
   that house is `class: none` with a null street while three of its printings carry the
-  anchor. That is a gazetteer fault and not a fault of this policy; **T-0438** carries it.
+  anchor. That is a gazetteer fault and not a fault of this policy; **T-0440** carries it.
 
 So the honest count of what the ruling moves today is **one store**, which is what the
 measurement taken before the ruling said it would be — and one more waits on a fix
 somewhere else.
 
 **Related:** `docs/STREET-FACE-ADOPTION.md` (the policy for the other half of the problem) ·
-**L214** (the metres, the side of Dearborn, and the invented building) · T-0384 (the ruling) ·
+**L215** (the metres, the side of Dearborn, and the invented building) · T-0384 (the ruling) ·
 T-0306 (the American's six storefronts) · T-0375 (the South Water roofs an adoption wanted).

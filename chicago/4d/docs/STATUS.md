@@ -58,7 +58,7 @@ corroborates the street word the American's column lost.
 **Clark, Filer & Co. is a finding and it is not fixed here.** Three of its printings carry the
 anchor and the gazetteer's LIVE placement for the house is `class: none` with a null street, so
 `resolve_anchor` is handed nothing and the row reads `unplaceable`. That is a gazetteer fault,
-not this policy's; **T-0438** carries it, including the count of other houses in the same
+not this policy's; **T-0440** carries it, including the count of other houses in the same
 position, which nobody has taken.
 
 ### What is unverified, stated plainly
@@ -66,7 +66,7 @@ position, which nobody has taken.
 - **Which side of Dearborn is a reading, not a source.** East is taken because the three
   addresses this block face's own papers print describe a continuous row when read eastward and
   nothing that closes when read westward. The position is graded `inferred` for that reason.
-- **The metres are a convention.** L214's door-gap rule — a neighbouring front stands 3.048 m
+- **The metres are a convention.** L215's door-gap rule — a neighbouring front stands 3.048 m
   (10 ft) clear of the wall it neighbours — has two reasons and no source. A second ordinal
   placement anywhere in the corpus turns it from a convention used once into a rule that has to
   be argued.

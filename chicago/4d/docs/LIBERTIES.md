@@ -9539,7 +9539,14 @@ a row of its own on the person and a clause in the section's count sentence — 
 name and a shopkeeper who advertised his stock can never again read as the same claim. No figure
 is drawn (L1).
 
-Related: **L206** (the documented tradespeople minted as households of one) · **L205** · **L1**
+**The scale question this entry left open has since been answered — see L214.** T-0379 put the
+numbers above to the owner and he ruled, on 2026-08-30, HOLD ALL OF THEM: every name these
+refusals admit joins the town. So "why twelve and not 1,907" is now a record of how the question
+was framed rather than a description of what stands, the twelve are fifteen and then 727, and
+L214 carries the change of scale, its share of the town and the gate that binds it.
+
+Related: **L214** (the ruling that scaled this pass up) · **L206** (the documented tradespeople
+minted as households of one) · **L205** · **L1**
 (no figure is drawn for any resident) · tickets **T-0378** (this), **T-0379**, **T-0374**,
 **T-0368**, **T-0264**.
 **Recorded:** 2026-08-29.
@@ -9772,7 +9779,32 @@ Related: **L205** (documented men on reconstructed roofs, the pattern this follo
 reconstructed roofs' own presence and placement) · **L1** · tickets **T-0354** (this), **T-0262**,
 **T-0263**, **T-0375**, **T-0338**, **T-0408**, **T-0417** (spent into the roofs, and the yard
 refusal).
-**Recorded:** 2026-08-29. **Revised:** 2026-08-29 (T-0417).
+**Revised:** 2026-08-30 (T-0416) — **a corner side is now a face, on the owner's ruling of
+that day, and this entry covers 29 businesses rather than 19.** The paragraph above ends
+"a ruling that a corner side is a face would move up to twenty-four more into this entry
+rather than out of it", and that is the ruling. It was asked for with a measurement rather
+than an argument: the tool deals every reading of "face" out in full, so the question put
+to him was "twelve shops on Dearborn, La Salle and Canal" and not "twenty-four eligible".
+He took the corner side and DECLINED the centreline band in the same breath — a corner
+building genuinely has a door on each of the two streets it meets, and a band is a
+distance from a line that says nothing about which way a building looks. **Ten businesses
+seated, not twelve**, and the two the measurement over-counted are the correction this
+entry has to carry: refusal 5 refused a roof `data/residents/` seats a NAMED household in,
+and the inferred-household programme's 101 households are not there under a name, so its
+roofs looked free. The first re-derivation put Elmira Fowler's millinery into one and
+`tools/inferred_occupancy.py` raised, exactly as it is built to. The refusal now covers
+both layers. **This is the second time spending the allocation is what found the error** —
+T-0417 was the first, and nine businesses were standing in privies — and the lesson is the
+same one: an allocation nothing consumes is an allocation nothing checks. **What is
+invented is unchanged and is still only WHICH roof**: no geometry moved, no triangle was
+added, no building changed grade, and a corner adoption's card says it took the tier end
+rather than the lot front, so a visitor is not told the plat put a door where it did not.
+**And the entry's own subject is still not seated:** Wm. Sabine and John Dave want North
+Water Street, which has no roof standing on it under any adopted reading, and its one roof
+in the declined band is an inferred household's home — so even the band would have seated
+neither. Their answer is frontage (**T-0375**), and **T-0416** records that rather than
+closing over it.
+**Recorded:** 2026-08-29. **Revised:** 2026-08-29 (T-0417), 2026-08-30 (T-0416).
 
 ### L213 — Four people the papers name with no trade are written as households of one, on a residency test
 **Decision:** L206 seated the register's `new_resident` people whose TRADE the papers print, and
@@ -9833,7 +9865,64 @@ documented men who took reconstructed roofs) · **L1** (no figure is drawn for a
 tickets **T-0373** (this), **T-0368**, **T-0376**, **T-0378**, **T-0374**, **T-0418** (the trades the vocabulary cannot say).
 **Recorded:** 2026-08-29.
 
-### L214 — John Holbrook's store: the count of doors is the paper's, the metres between them are ours
+### L214 — Three quarters of this town's people are a name on a post-office list and nothing else
+**Scope:** `residents.persons[letter_list_only]` — 727 people
+**Decision:** on 2026-08-30 the owner ruled that EVERY name the post office's lists of
+uncalled-for letters yield, and the mint's refusals admit, joins the town. 712 names were
+minted on that ruling, beside the 15 L207 already held, and the reconstruction went from 244
+people in 208 households to 956 in 920. `tools/mint_letter_list_residents.py` derives the whole
+set and re-derives it on every commit; `--gate` proves what it is not allowed to do.
+
+**Why this is a liberty and not a dataset growing.** Nothing here is invented and no confidence
+was upgraded to allow it: every one of the 727 is printed by name in a list headed as letters
+remaining in the Post Office at Chicago and uncalled-for, at the issue and column its own record
+cites. The liberty is one of SCALE. About 76 per cent of the people a visitor can open are now
+known from that and from nothing else — no trade, no street, no household, no arrival — against
+6 per cent the day before. A reader who counts this town's people is counting a post-office list
+with a town attached, and no single record says so, because no single record is wrong.
+
+**What each of the 727 may not have, and a gate proves none of them has it.** A letter waiting at
+Chicago establishes that a correspondent believed a person of that name reachable here on that
+date. It does not establish that they lived here, kept a trade here, or were here on 1 July 1835.
+So each is a household of ONE, `division: unplaced`, `lives_at` and `works_at` unattested,
+`occupation` recorded as none, `letter_list_only: true`, carrying `letter_list_returns` — the
+dated returns behind it — so a name printed on the scene date can be told from one printed
+eighteen months earlier. `--gate` refuses a roof, a trade, a second member, a manifest row that
+drops the flag and a structure record that names one of them; `--self-test` breaks each of those
+seven assertions and requires the gate to fire.
+
+**What the refusals still take, and they are the only thing between a post-office list and this
+town's population.** 1,181 of the 1,908 names in the pool are refused, in order: 454 garbled by
+the transcription, 310 whose first evidence falls after the scene date, 243 for a surname this
+pass had already minted, 128 because the town already names that family, 22 placed where this
+project cannot put them, 12 firms, 12 a surname and nothing else. The count moves with the corpus
+and `--scale` re-derives it on any tree; what does not move is that a refusal quietly ceasing to
+fire is now worth hundreds of records rather than one.
+
+**The limit L207 stated as a footnote, restated as a property of the town.** The Chicago post
+office served the country around the town as well as the town, so an uncalled-for letter is
+evidence a writer believed the addressee reachable at Chicago and not proof that anyone slept
+here. Refusal 6 catches the 22 the corpus places elsewhere by name; it cannot catch a settler the
+corpus never places at all. At 15 records that was a caveat on each of them. At 727 it is a
+statement about how this town's population was assembled, and this entry is where it is admitted
+as one.
+
+**Consequence:** the Evidence panel's people section goes from 208 households and 244 people to
+920 and 956. `households_without_a_dwelling` in the town census moves from 87 to 799 and `housed`
+does not move at all, because not one of these people is placed anywhere — which is the ruling's
+own condition, measured. The section is SPLIT rather than sorted: the 193 households the rest of
+the corpus documents keep the list they had, at the length they had, and the 727 sit under them
+in one closed group that says what that evidence is worth before it is opened. That is the
+ruling's own test of whether it was implemented well — *a visitor who looks at the whole must be
+able to tell at a glance which three quarters are names alone.* No geometry moves, no triangle is
+added and no figure is drawn (L1).
+
+Related: **L207** (the fifteen this ruling scaled up) · **L213** · **L206** · **L205** · **L1**
+(no figure is drawn for any resident) · tickets **T-0379** (this), **T-0378**, **T-0374**.
+**Recorded:** 2026-08-30.
+
+
+### L215 — John Holbrook's store: the count of doors is the paper's, the metres between them are ours
 
 **Decision:** the Chicago Democrat of 10 June 1835 and the Chicago American of 13 June 1835 both
 carry John Holbrook's card — hats, clothing, boots and shoes, wholesale and retail, "on South-Water

@@ -43,7 +43,7 @@ and says so.
 **4. The metres are admitted.** How far one door is from a corner is this project's
 arithmetic, not the paper's, and the ruling says so in terms. So a declaring record's
 position may never be graded `attested`, and some liberty must cover the record — the
-project's standing way of saying *we made this up*. L214 is that liberty today and owns
+project's standing way of saying *we made this up*. L215 is that liberty today and owns
 the door-gap rule (a neighbouring front stands 3.048 m clear of the wall it neighbours).
 
     tools/measure_corner_ordinals.py            the report, and the corpus sweep

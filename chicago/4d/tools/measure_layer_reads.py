@@ -387,6 +387,14 @@ RESIDENTS_MANIFEST_READS: dict[str, tuple[str, str]] = {
     # (T-0378), so the count sentence says how many of the people listed are the
     # first kind.
     "counts.letter_list_only": ("shown", "counts.letter_list_only"),
+    # T-0379. The owner ruled that every letter-list name the evidence admits joins
+    # the town, which made this cohort most of the people in it, so the section is
+    # SPLIT on this flag rather than sorted by it: the households the rest of the
+    # corpus documents keep the list they had, and the letter-list rows sit under
+    # them in one closed group. The flag is on the manifest row so that split costs
+    # one pass over a file the panel already has, rather than a fetch per household
+    # or a renderer that reads a mint tool's id prefix.
+    "households[].letter_list_only": ("shown", "entries.filter((e) => e.letter_list_only)"),
     # One row per household: which division it stands in, how many people it
     # holds, and its grade tally as chips.
     "households[].division": ("shown", "words(entry.division)"),
@@ -472,6 +480,12 @@ RESIDENTS_HOUSEHOLD_READS: dict[str, tuple[str, str]] = {
     # read identically on the card — which is the one thing T-0368's owner ruling
     # said must never happen. It is a row of its own now.
     "persons[].letter_list_only": ("shown", "person.letter_list_only"),
+    # T-0379's own condition on the ruling: a letter-list person carries the DATES
+    # of the returns that printed them, and the card shows them. With three quarters
+    # of the town known this way, "a name on a post-office list" is not one claim —
+    # a letter waiting on the scene date and one waiting eighteen months earlier say
+    # different things about the same person, and only this figure tells them apart.
+    "persons[].letter_list_returns": ("shown", "person.letter_list_returns"),
     "persons[].occupation.value": ("shown", "words(occ.value)"),
     "persons[].occupation.confidence": ("shown", "swatch(occ.confidence)"),
     "persons[].occupation.note": ("shown", "escapeHtml(occ.note)"),
