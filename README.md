@@ -10,6 +10,7 @@ A garden-themed landing page and the interactive **Hosta Gangway Guide** are pub
 - **Hosta guide:** `https://kevinrhaas.github.io/custom/hosta/`
 - **Porchfest Planner:** `https://kevinrhaas.github.io/custom/porchfest/`
 - **Stay Finder:** `https://kevinrhaas.github.io/custom/stay/`
+- **Zion + Bryce Field Guide:** `https://kevinrhaas.github.io/custom/zion-bryce/`
 - **Wau-Bun:** `https://kevinrhaas.github.io/custom/wau-bun/`
 
 The published site is only the `site/` folder (curated web content) — the CAD source in the project folders stays in the repo but out of the deploy. See [`site/`](site/) and `.github/workflows/deploy.yml`. Not part of the Polecat app fleet, but it follows the platform's static-first / aurora-backdrop / light-dark conventions. The Hosta app is generated from `hosta/hosta_gangway_guide_v3.html` by `hosta/build_app.py`.
@@ -28,6 +29,7 @@ The published site is only the `site/` folder (curated web content) — the CAD 
 | [porchfest](porchfest/) | Uptown Porchfest 2026 walking-route planner — 91 bands rated across ten dimensions, an orienteering solver over the real street grid, self-contained map, and shareable plans. Builds `site/porchfest/app/` |
 | [pentaho](pentaho/) | Pentaho logo 3D prints, modeled in Blender from SVG source |
 | [stay](stay/) | Stay Finder — 168 houses, estates and inn buyouts across Tampa Bay, the Gulf beaches, the Nature Coast and inland ranch country for Dec 19–27, 2026, ranked for a party of nine wanting five or six rooms and three kings, and mapped on a coastline built from US Census TIGERweb. Builds `site/stay/` |
+| [zion-bryce](zion-bryce/) | Zion + Bryce Field Guide — a nine-day, offline-ready September 2026 canyon-loop planner with researched daily run sheets, live forecast-assisted Zion day swaps, time-zone cues, trail comparisons, checklists, calendar export, and private on-device notes. Builds `site/zion-bryce/` |
 | [wau-bun](site/wau-bun/) | Juliette Kinzie's 1856 frontier memoir as an interactive telling — a character-presence chart of every person against every scene, a scene-by-scene reader carrying four readings of every scene — summary, modernized text, a modern horror-suspense retelling, and the original 1856 text — and the full cast. All three parts are complete — 158 scenes across chapters I–XXXVIII, 225 people |
 
 ## File Formats

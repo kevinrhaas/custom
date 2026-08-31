@@ -26,6 +26,7 @@
     <a href="chicago/">Chicago Atlas</a>
     <a href="wau-bun/">Wau-Bun</a>
     <a href="stay/">Stay Finder</a>
+    <a href="zion-bryce/">Zion + Bryce</a>
     <a href="vehicle/">Vehicle Finder</a>
     <a href="porchfest/">Porchfest Planner</a>
     <a href="#about">About</a>
@@ -117,6 +118,7 @@
     <a href="chicago/">Chicago Atlas</a>
     <a href="wau-bun/">Wau-Bun</a>
     <a href="stay/">Stay Finder</a>
+    <a href="zion-bryce/">Zion + Bryce</a>
     <a href="vehicle/">Vehicle Finder</a>
     <a href="porchfest/">Porchfest Planner</a>
   </div>
@@ -159,6 +161,11 @@
     { dir: 'ac-support', name: 'AC Support', glyph: '❄️', c: 'var(--sky)', tag: 'A support bracket for a window AC unit.' }
   ];
   var grid = document.getElementById('projectsGrid');
+  var zionBryceCard = '<a class="app-card reveal" href="zion-bryce/" style="--c:#d96f45">' +
+    '<div class="app-top"><span class="app-glyph"><svg viewBox="0 0 24 24" width="25" height="25" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m3 19 6.2-10 3.1 4.8L15.8 8 22 19H3Z"/><path d="m7.2 12.2 2 1.1 2.1-1.4M14.4 10.3l1.8 1.2 1.6-1"/></svg></span>' +
+    '<div><div class="app-name">Zion + Bryce Field Guide</div><div class="app-sub">9 days · two parks · one canyon loop</div></div></div>' +
+    '<p class="app-tagline">An offline-ready September 2026 road-trip companion: researched daily run sheets, Zion shuttle clocks, a live forecast-assisted Narrows/Scout day swap, trail comparisons, driving buffers, time-zone cues, calendar export, checklists, and private on-device confirmations.</p>' +
+    '<div class="app-status"><span class="app-dot"></span>Live · open the field guide ↗</div></a>';
   var chicagoCard = '<a class="app-card reveal" href="chicago/" style="--c:#aa3c27">' +
     '<div class="app-top"><span class="app-glyph">🏙️</span>' +
     '<div><div class="app-name">Chicago Building Atlas</div><div class="app-sub">1674–1879 · maps + buildings</div></div></div>' +
@@ -195,7 +202,7 @@
     'rooms and three king beds, not a house built for twenty. Eighty-nine carry a real eight-night price quoted for Dec 19\u201327. '  +
     'Mapped on a real coastline, and linked straight to the original listing with the dates already filled in.</p>' +
     '<div class="app-status"><span class="app-dot"></span>Live \u00b7 open the search \u2197</div></a>';
-  grid.innerHTML = chicagoCard + waubunCard + stayCard + vehicleCard + porchfestCard + projects.map(function (p) {
+  grid.innerHTML = zionBryceCard + chicagoCard + waubunCard + stayCard + vehicleCard + porchfestCard + projects.map(function (p) {
     return '<div class="app-card reveal" style="--c:' + p.c + '">' +
       '<div class="app-top"><span class="app-glyph">' + p.glyph + '</span>' +
       '<div><div class="app-name">' + p.name + '</div><div class="app-sub">' + p.dir + '</div></div></div>' +
