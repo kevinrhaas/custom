@@ -8,6 +8,7 @@ Live app: `https://kevinrhaas.github.io/custom/zion-bryce/`
 
 - turns the source itinerary into exact daily run sheets with realistic buffers;
 - lets Sept 7–9 swap between Scout Lookout, the Narrows and a Zion flex day;
+- adds Zion/Bryce tabs to the planning view, with a saved arrival/afternoon/night editor for Bryce that updates Days 6–7;
 - uses an Open-Meteo forecast as a planning signal for those swaps while keeping official NPS conditions authoritative;
 - explains the Nevada/Utah time-zone shift in both directions;
 - includes route links, official conditions, trail comparisons, a comprehensive categorized packing checklist, calendar export, print layout and an installable offline shell;

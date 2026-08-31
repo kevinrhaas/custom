@@ -145,8 +145,15 @@
 
     <section class="view shell" id="view-swap" data-view="swap" aria-labelledby="swapHeading" hidden>
       <div class="section-heading">
-        <div><p class="overline">Sept 7–9 · Zion</p><h2 id="swapHeading">Put each day where it belongs</h2></div>
+        <div><p class="overline">Flexible park plans</p><h2 id="swapHeading">Adjust the plan without losing the trip</h2></div>
       </div>
+      <div class="park-tabs" role="tablist" aria-label="Choose park plan">
+        <button class="park-tab active" id="parkTabZion" type="button" role="tab" aria-selected="true" aria-controls="parkPanelZion" data-park-tab="zion">Zion · Sept 7–9</button>
+        <button class="park-tab" id="parkTabBryce" type="button" role="tab" aria-selected="false" aria-controls="parkPanelBryce" data-park-tab="bryce" tabindex="-1">Bryce · Sept 10–11</button>
+      </div>
+
+      <div id="parkPanelZion" role="tabpanel" aria-labelledby="parkTabZion" data-park-panel="zion">
+      <div class="park-panel-heading"><span class="eyebrow">Zion · three flexible days</span><h3>Put each day where it belongs</h3><p>Swap the three full-day activities as weather and trail conditions change.</p></div>
       <div class="advisory blue">
         <svg><use href="#i-cloud"/></svg>
         <div><strong>Forecast fit is a planning signal, not a safety decision.</strong><p>The app favors the driest day for the Narrows and the coolest morning for Scout Lookout. NPS closures, flash-flood potential and river flow still decide whether the Narrows is open.</p></div>
@@ -175,6 +182,25 @@
           <thead><tr><th>Trail</th><th>Distance</th><th>Gain</th><th>Level</th><th>Best use</th><th>Watch for</th></tr></thead>
           <tbody id="trailTableBody"></tbody>
         </table>
+      </div>
+      </div>
+
+      <div id="parkPanelBryce" role="tabpanel" aria-labelledby="parkTabBryce" data-park-panel="bryce" hidden>
+        <div class="park-panel-heading"><span class="eyebrow">Bryce · one arrival evening + one full day</span><h3>Shape the Bryce 24 hours</h3><p>Bryce does not have two interchangeable full days, so this editor swaps the flexible pieces while protecting sunrise and the classic loop.</p></div>
+        <div class="advisory blue">
+          <svg><use href="#i-cloud"/></svg>
+          <div><strong>Two anchors stay fixed.</strong><p>Sunrise Point at 7:07 AM and the Queen’s Garden/Navajo Loop remain in the morning. Arrival timing, the afternoon drive and stargazing can flex.</p></div>
+        </div>
+        <div class="weather-toolbar">
+          <div><span class="eyebrow">Bryce forecast</span><p>Use weather to choose the afternoon and night—not to move sunrise.</p></div>
+          <button class="small-button" id="applyBryceForecast" type="button">Use weather fit</button>
+        </div>
+        <div class="weather-grid bryce-weather-grid" id="bryceWeatherGrid"></div>
+        <div class="assignment-panel bryce-panel">
+          <div class="assignment-head"><div><span class="eyebrow">Your Bryce sequence</span><h3>Three flexible decisions</h3></div></div>
+          <div class="assignment-grid" id="brycePlannerGrid"></div>
+          <p class="fine-print">Choices save in this browser and immediately update Days 6–7 in the main plan.</p>
+        </div>
       </div>
     </section>
 
