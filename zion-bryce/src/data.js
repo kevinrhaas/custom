@@ -63,6 +63,19 @@ export const activityPlans = {
       { time: '11:00 AM', title: 'Recover at Zion Lodge', detail: 'Ride or walk one stop to the lodge lawn for shade, lunch and a slow reset.' },
       { time: '2:00 PM onward', title: 'Pool, nap or Springdale', detail: 'Keep the afternoon deliberately light. This is not the day to stack another exposed hike.' }
     ],
+    carry: [
+      { id: 'water-3l', label: '3 liters of water per person' },
+      { id: 'breakfast-lunch', label: 'Packed breakfast, salty snacks and lunch' },
+      { id: 'sun-kit', label: 'Sun hoodie or shirt, hat, sunscreen and sunglasses' },
+      { id: 'trail-shoes', label: 'Dry hiking shoes with dependable traction' },
+      { id: 'poles', label: 'Trekking poles, if helpful on the descent' },
+      { id: 'phone-power', label: 'Phone, offline map and small power bank' }
+    ],
+    tips: [
+      { title: 'Use the restroom at The Grotto', text: 'There are no facilities on the climb. Refill water and go before leaving the shuttle stop.' },
+      { title: 'Set a turnaround time', text: 'Aim to leave Scout Lookout by about 10:15 AM so the exposed descent is finished before peak heat.' },
+      { title: 'Protect the knees', text: 'Short steps and poles help on the steep return through Walter’s Wiggles; descending often feels harder than climbing.' }
+    ],
     alerts: [
       { tone: 'amber', title: 'The original mileage was low', text: 'NPS lists the Scout Lookout outing at about 4.2 miles round trip and strenuous—not 3.6 miles.' },
       { tone: 'blue', title: 'Permit line', text: 'No permit is needed to stop at Scout Lookout. Continuing onto the Angels Landing chain section requires an Angels Landing permit.' }
@@ -85,6 +98,19 @@ export const activityPlans = {
       { time: '7:45–8:25 AM', title: 'Riverside Walk approach', detail: 'The paved trail ends where river hiking begins. Reassess the sky, water and group comfort before entering.' },
       { time: '8:25–11:30 AM', title: 'Hike upstream, then turn around', detail: 'Wall Street is roughly 3 miles upstream. There is no prize for forcing a mileage goal—save equal time and energy for the return.' },
       { time: '1:00 PM onward', title: 'Warm up in Springdale', detail: 'Dry clothes, lunch, shops and galleries. Keep the rest of the day unstructured.' }
+    ],
+    carry: [
+      { id: 'river-kit', label: 'Canyon shoes, neoprene socks and wooden river pole' },
+      { id: 'drybag', label: 'Dry bag or waterproof phone pouch' },
+      { id: 'warm-layer', label: 'Quick-dry layers plus a light warm layer' },
+      { id: 'water-2l', label: 'At least 2 liters of drinking water per person' },
+      { id: 'food', label: 'Breakfast, trail food and salty snacks' },
+      { id: 'car-change', label: 'Complete dry change and towel left at the hotel' }
+    ],
+    tips: [
+      { title: 'Check the whole watershed', text: 'A blue sky over Springdale is not enough—storms upstream can reach the Narrows later.' },
+      { title: 'The pole matters', text: 'Plant it before each step and maintain three points of contact. Ordinary trekking poles are less stable between submerged rocks.' },
+      { title: 'Turn around early', text: 'Make 11:00 AM the default turnaround even if Wall Street is close. The return takes longer when the river gets crowded.' }
     ],
     alerts: [
       { tone: 'red', title: 'Forecast is not clearance', text: 'Do not enter with rain in the watershed or a flash-flood warning. Zion closes the Narrows above 150 CFS. Check NPS and river flow the same morning.' },
@@ -109,6 +135,19 @@ export const activityPlans = {
       { time: '1:00–4:30 PM', title: 'Lunch + genuine downtime', detail: 'Pool, spa, galleries or a no-agenda afternoon. Keep legs fresh for Bryce.' },
       { time: '5:35 PM', title: 'Optional Watchman Trail', detail: 'A moderate, exposed 3.3-mile outing with limited shade—not an easy stroll. Carry headlamps if timing it near sunset.' },
       { time: 'Sunset', title: 'Or choose Pa’rus instead', detail: 'The accessible Pa’rus Trail is the calmer sunset call. Use the pedestrian bridge view; do not stop on the road bridge at Canyon Junction.' }
+    ],
+    carry: [
+      { id: 'water-2l', label: '2 liters of water per person' },
+      { id: 'bike-sun', label: 'Sun protection and a light long-sleeve layer' },
+      { id: 'bike-glasses', label: 'Sunglasses or clear eye protection for riding' },
+      { id: 'trail-shoes', label: 'Walking shoes for Emerald Pools or Watchman' },
+      { id: 'headlamp', label: 'Headlamp if Watchman remains an option' },
+      { id: 'swimsuit', label: 'Swimsuit and a separate dry outfit for downtime' }
+    ],
+    tips: [
+      { title: 'Confirm the bike class', text: 'Only Class 1 pedal-assist e-bikes are allowed. Test brakes, battery level and saddle height before leaving town.' },
+      { title: 'Yield completely to shuttles', text: 'Pull over, stop and place one foot down. Ride single-file and expect to pedal both directions.' },
+      { title: 'Choose one sunset', text: 'Watchman is a real moderate hike; Pa’rus is the recovery-day choice. Do not force both.' }
     ],
     alerts: [
       { tone: 'blue', title: 'Long-hike alternative', text: 'Observation Point via East Mesa is an all-day replacement, not an add-on. Allow roughly 8 miles and arrange the East Zion trailhead shuttle if selected.' },
@@ -139,6 +178,18 @@ export const days = [
       { time: '5:30 PM', title: 'Easy dinner nearby', detail: 'Stay close to the Waldorf/CityCenter. The objective is food, hydration and an early night—not a Vegas evening.' },
       { time: '8:30 PM', title: 'Reset for mountain time', detail: 'Put tomorrow’s park layers and water in the car. Utah is one hour ahead.' }
     ],
+    carry: [
+      { id: 'id-wallet', label: 'Photo ID, wallet and airline details' },
+      { id: 'rental', label: 'Rental confirmation and driver’s license' },
+      { id: 'charger', label: 'Phone charger and power bank in carry-on' },
+      { id: 'meds', label: 'Medication and one essential outfit in carry-on' },
+      { id: 'light-layer', label: 'Light layer for the flight and hotel' }
+    ],
+    tips: [
+      { title: 'Photograph the rental', text: 'Capture every side, wheels, fuel gauge and odometer before leaving the garage.' },
+      { title: 'Keep valuables invisible', text: 'Move luggage directly to the hotel; do not leave visible bags in the vehicle during dinner.' },
+      { title: 'Buy tomorrow’s basics', text: 'If energy allows, pick up a cooler, gallon of car water and breakfast supplies before the early start.' }
+    ],
     alerts: [
       { tone: 'blue', title: 'Clock change tomorrow', text: 'Las Vegas is on Pacific time; Zion is on Mountain time. The drive east costs one hour on the clock.' }
     ],
@@ -163,6 +214,19 @@ export const days = [
       { time: '12:30–2:00 PM MDT', title: 'Lunch + arrive Springdale', detail: 'The exact arrival depends on the detour. Check in when available and leave the car parked at Cliffrose.' },
       { time: '5:45 PM MDT', title: 'Pa’rus Trail', detail: 'Walk from the Visitor Center side and use the pedestrian bridge for the Watchman view. The full trail is about 3.5 miles round trip, but sunset can be a shorter out-and-back.' },
       { time: '7:55 PM MDT', title: 'Sunset, then dinner', detail: 'Carry a small light for the walk back. Do not stop on the Canyon Junction road bridge.' }
+    ],
+    carry: [
+      { id: 'park-pass', label: 'Park pass or card for entrance fees' },
+      { id: 'car-water', label: 'Extra gallon of water in the car' },
+      { id: 'cooler-food', label: 'Cooler, lunch and road snacks' },
+      { id: 'sun-kit', label: 'Hat, sunscreen, sunglasses and light long sleeves' },
+      { id: 'walk-shoes', label: 'Walking shoes for Pa’rus Trail' },
+      { id: 'headlamp', label: 'Small headlamp for the walk after sunset' }
+    ],
+    tips: [
+      { title: 'Make the detour decision early', text: 'Valley of Fire adds hours, not minutes. Skip it if the temperature is extreme or the flight day left everyone tired.' },
+      { title: 'Change the car clock in Utah', text: 'Phones update automatically; the dashboard may not. Utah is one hour ahead of Las Vegas.' },
+      { title: 'Leave the car at Cliffrose', text: 'Walk the roughly half-mile to the Visitor Center instead of joining the parking queue.' }
     ],
     alerts: [
       { tone: 'amber', title: 'Valley of Fire summer closures', text: 'Fire Wave, Seven Wonders, White Domes, Pink Canyon and several other trails are closed on this date. Treat the park as a scenic drive and check the alert again that morning.' },
@@ -198,6 +262,19 @@ export const days = [
       { time: '3:00–4:00 PM', title: 'Check in at Bryce', detail: 'Settle at the Lodge, walk the rim and identify the path to Sunrise Point for the dark pre-dawn start.' },
       { time: '6:55 PM', title: 'Sunrise Point → Sunset Point', detail: 'The paved Rim Trail is about a half-mile one way. Be at Sunset Point before the 7:43 PM sunset.' }
     ],
+    carry: [
+      { id: 'daypack', label: 'Small daypack kept accessible between stops' },
+      { id: 'water-food', label: '2 liters of water, lunch and road snacks' },
+      { id: 'trail-shoes', label: 'Hiking shoes for Canyon Overlook' },
+      { id: 'layers', label: 'Warm Bryce layer moved out of packed luggage' },
+      { id: 'headlamp', label: 'Headlamp for the post-sunset walk' },
+      { id: 'paper-route', label: 'Offline route and hotel address' }
+    ],
+    tips: [
+      { title: 'Never circle for Canyon Overlook', text: 'Check both legal lots once. If full, continue—the schedule has plenty of scenery without it.' },
+      { title: 'Treat Belly as a culvert', text: 'Skip it with any storm potential and expect rough footing, mud or standing water.' },
+      { title: 'Expect a temperature drop', text: 'Bryce sits thousands of feet above Springdale. Put the warm layer in the cabin, not under the luggage.' }
+    ],
     alerts: [
       { tone: 'red', title: 'Never stop in the tunnel', text: 'Use signed pullouts only. Canyon Overlook parking is small; an illegal roadside stop is not worth forcing the hike.' },
       { tone: 'blue', title: 'New moon tonight', text: 'The new moon arrives this evening, setting up exceptionally dark skies at Bryce on both nights.' }
@@ -226,6 +303,20 @@ export const days = [
       { time: '12:00 PM', title: 'Lunch and a quiet hour', detail: 'Altitude is about 8,000 feet at the amphitheater. Hydrate and avoid turning the afternoon into a mileage contest.' },
       { time: '2:00–5:00 PM', title: 'Scenic drive to Rainbow Point', detail: 'Drive the 18-mile park road to the end first, then stop at overlooks on the return when the pullouts are on your side.' },
       { time: '8:45 PM', title: 'Dark-sky reset', detail: 'Astronomical darkness arrives around 9:11 PM. Check the Visitor Center for a ranger astronomy program and let your eyes adapt for 20 minutes.' }
+    ],
+    carry: [
+      { id: 'warm-kit', label: 'Warm jacket, beanie and thin gloves' },
+      { id: 'red-headlamp', label: 'Headlamp with a true red-light mode' },
+      { id: 'water-3l', label: '2–3 liters of water plus electrolytes' },
+      { id: 'trail-food', label: 'Breakfast, lunch and salty snacks' },
+      { id: 'trail-shoes', label: 'Hiking shoes with good downhill traction' },
+      { id: 'poles', label: 'Trekking poles for the Navajo ascent' },
+      { id: 'stars', label: 'Binoculars and stargazing app downloaded offline' }
+    ],
+    tips: [
+      { title: 'Walk, do not wait for a bus', text: 'The shuttle starts after sunrise. Follow the rim path from the Lodge with a headlamp.' },
+      { title: 'Pause at altitude', text: 'The rim is near 8,000 feet and Rainbow Point exceeds 9,000. Hydrate and keep the first climb deliberately slow.' },
+      { title: 'Preserve night vision', text: 'Use red light only after dark, dim phone screens and allow about 20 minutes for your eyes to adapt.' }
     ],
     alerts: [
       { tone: 'amber', title: 'Wall Street can close', text: 'Rockfall or weather can close the Wall Street side of Navajo Loop. Two Bridges preserves the same loop structure when Wall Street is unavailable.' },
@@ -256,6 +347,19 @@ export const days = [
       { time: '5:00 PM', title: 'Check in at The Advenire', detail: 'Shower, change and leave buffer for parking or the short walk to Ancestor Square.' },
       { time: '6:40 PM', title: 'Arrive at Painted Pony', detail: 'Reservation is at 7:00 PM. The restaurant lists free parking behind Ancestor Square plus street parking.' }
     ],
+    carry: [
+      { id: 'car-water', label: 'Extra water and electrolytes in the car' },
+      { id: 'sand-shoes', label: 'Closed shoes for sand plus clean socks' },
+      { id: 'towel-bag', label: 'Small towel and bag for sandy clothing' },
+      { id: 'sun-kit', label: 'Hat, sunscreen and sunglasses' },
+      { id: 'dinner-clothes', label: 'Dinner clothes kept separate and clean' },
+      { id: 'reservation', label: 'Painted Pony reservation saved offline' }
+    ],
+    tips: [
+      { title: 'Use the noon gate', text: 'If leaving Coral Pink after 12:15 PM, shorten Snow Canyon immediately rather than borrowing time from dinner.' },
+      { title: 'Use the 2:30 gate', text: 'Arriving at Snow Canyon after 2:30 means Jenny’s Canyon only; after 3:30, skip the hike.' },
+      { title: 'Change before the restaurant', text: 'Sand travels. Bag dusty shoes and clothes before checking in so dinner gear stays clean.' }
+    ],
     alerts: [
       { tone: 'red', title: 'Scout Cave does not fit', text: 'The official Scout Cave route is about 6 miles and moderate. It would put the dinner reservation at risk; Jenny’s Canyon is the right short stop.' },
       { tone: 'blue', title: 'Want more Snow Canyon?', text: 'Skip Coral Pink and use the extra time for Lava Flow (2.6 miles) or more overlooks. Do not try to do every listed stop.' }
@@ -282,6 +386,18 @@ export const days = [
       { time: '10:30 AM MDT', title: 'Leave St. George', detail: 'The westbound clock change means a roughly two-hour drive lands around 11:30 AM Pacific time.' },
       { time: '11:30 AM PDT', title: 'Rental return at LAS', detail: 'This leaves more than four hours before the scheduled flight for fuel, shuttle, bags and security.' },
       { time: '3:48 PM PDT', title: 'Fly Las Vegas → Chicago', detail: 'The source itinerary appears to contain a mistyped American flight number. Confirm it in the airline booking before departure.' }
+    ],
+    carry: [
+      { id: 'id-wallet', label: 'Photo ID, wallet and confirmed flight details' },
+      { id: 'rental-receipt', label: 'Rental agreement and fuel receipt' },
+      { id: 'flight-layer', label: 'Flight layer kept outside checked luggage' },
+      { id: 'charger', label: 'Phone charger and power bank' },
+      { id: 'snacks', label: 'Water bottle emptied for security and travel snacks' }
+    ],
+    tips: [
+      { title: 'Confirm the flight before leaving St. George', text: 'The departure time is preserved, but the source flight number appears mistyped.' },
+      { title: 'Keep the clock math visible', text: '10:30 AM Mountain becomes roughly 11:30 AM Pacific after the two-hour drive.' },
+      { title: 'Photograph the final dashboard', text: 'Capture fuel and mileage at return, then keep the rental receipt until the final charge settles.' }
     ],
     alerts: [
       { tone: 'amber', title: 'One unresolved item', text: 'The return flight number needs confirmation. The app preserves the 3:48 PM departure time without inventing a corrected flight.' }
@@ -316,14 +432,56 @@ export const checklist = [
   { id: 'east-mesa', category: 'Reserve', label: 'Book East Mesa shuttle only if choosing Observation Point', note: 'This is an alternate full-day plan, not an add-on.' },
   { id: 'offline-maps', category: 'Download', label: 'Download NPS app maps for Zion and Bryce', note: 'Also save the route in Google Maps for offline use.' },
   { id: 'conditions', category: 'Download', label: 'Bookmark Zion and Bryce current-conditions pages', note: 'Check again the night before and morning of each hike.' },
-  { id: 'headlamps', category: 'Pack', label: 'Headlamps for Bryce sunrise, stars and sunset returns', note: 'Pack spare batteries.' },
-  { id: 'water', category: 'Pack', label: '2–3 liters per person plus electrolytes', note: 'Carry more for exposed or river days.' },
-  { id: 'layers', category: 'Pack', label: '40°F-to-95°F layering system', note: 'Bryce dawn can feel wintry while Zion afternoons are hot.' },
-  { id: 'sun', category: 'Pack', label: 'Sun hat, sunscreen and sunglasses', note: 'Most routes have limited midday shade.' },
-  { id: 'shoes', category: 'Pack', label: 'Dry hiking shoes plus Narrows footwear', note: 'Keep one pair dry for Bryce and dinner.' },
-  { id: 'drybag', category: 'Pack', label: 'Dry bag or waterproof phone pouch', note: 'Useful in the Narrows; never rely on a pocket.' },
-  { id: 'first-aid', category: 'Pack', label: 'Blister kit and basic first aid', note: 'Include any personal medications in carry-on luggage.' },
-  { id: 'snacks', category: 'Pack', label: 'Trail breakfasts and salty snacks', note: 'First-shuttle mornings start before many kitchens.' }
+  { id: 'offline-stays', category: 'Download', label: 'Screenshot hotels, rental and Painted Pony details', note: 'Do not depend on cell service to retrieve confirmations.' },
+
+  { id: 'photo-id', category: 'Documents', label: 'Photo ID and driver’s license', note: 'Keep both in the flight-day personal item.' },
+  { id: 'insurance-card', category: 'Documents', label: 'Health-insurance card and emergency contacts', note: 'Store a paper copy separately from the phone.' },
+  { id: 'park-pass-paper', category: 'Documents', label: 'Park pass or payment card', note: 'Keep it accessible in the vehicle, not packed in luggage.' },
+  { id: 'itinerary-paper', category: 'Documents', label: 'One-page paper itinerary and hotel addresses', note: 'Useful when navigation or phone service fails.' },
+
+  { id: 'daypack', category: 'Trail', label: 'Comfortable 15–25 liter daypack', note: 'Large enough for water, food and layers without overpacking.' },
+  { id: 'headlamps', category: 'Trail', label: 'Headlamps with spare batteries', note: 'At least one should have a true red-light mode for Bryce.' },
+  { id: 'water', category: 'Trail', label: '2–3 liter water capacity per person', note: 'Carry more for exposed days and keep reserve water in the car.' },
+  { id: 'poles', category: 'Trail', label: 'Collapsible trekking poles', note: 'Helpful on Scout Lookout and the Bryce switchbacks; not a substitute for a Narrows pole.' },
+  { id: 'binoculars', category: 'Trail', label: 'Compact binoculars for Bryce dark skies', note: 'More travel-friendly than a telescope under the near-new moon.' },
+  { id: 'sit-pad', category: 'Trail', label: 'Small sit pad or packable towel', note: 'Useful on the Lodge lawn, wet river gear and sunrise overlooks.' },
+
+  { id: 'layers', category: 'Clothing', label: '40°F-to-95°F layering system', note: 'Bryce dawn can feel wintry while Zion afternoons are hot.' },
+  { id: 'shoes', category: 'Clothing', label: 'Broken-in dry hiking shoes', note: 'Keep these separate from Narrows footwear.' },
+  { id: 'socks', category: 'Clothing', label: 'Hiking socks plus two spare pairs', note: 'Carry a dry pair in the daypack on river and sand days.' },
+  { id: 'sun-shirt', category: 'Clothing', label: 'Sun hoodie or light long-sleeve shirt', note: 'Better all-day coverage than repeatedly applying sunscreen.' },
+  { id: 'warm-jacket', category: 'Clothing', label: 'Packable fleece or light down jacket', note: 'Keep it accessible during the drive to Bryce.' },
+  { id: 'rain-shell', category: 'Clothing', label: 'Light rain shell', note: 'For wind and brief rain—not permission to hike during flood risk.' },
+  { id: 'cold-accessories', category: 'Clothing', label: 'Thin gloves and beanie', note: 'Small weight, large payoff at Bryce sunrise.' },
+  { id: 'swimsuit', category: 'Clothing', label: 'Swimsuit and casual recovery clothes', note: 'Useful for the Cliffrose pool and post-hike downtime.' },
+  { id: 'dinner-outfit', category: 'Clothing', label: 'Clean Painted Pony outfit and shoes', note: 'Pack separately from sand and hiking gear.' },
+
+  { id: 'drybag', category: 'Narrows', label: 'Dry bag or waterproof phone pouch', note: 'Never rely on a pocket or ordinary backpack zipper.' },
+  { id: 'quick-dry', category: 'Narrows', label: 'Quick-dry shorts or pants and synthetic layers', note: 'Avoid cotton in the river.' },
+  { id: 'river-change', category: 'Narrows', label: 'Complete dry change and towel', note: 'Leave it ready at Cliffrose for the return.' },
+
+  { id: 'sun', category: 'Health', label: 'Sun hat, sunscreen, sunglasses and lip balm', note: 'Most routes have limited midday shade.' },
+  { id: 'first-aid', category: 'Health', label: 'Blister kit and basic first aid', note: 'Include tape, bandages, pain relief and antiseptic.' },
+  { id: 'medications', category: 'Health', label: 'Prescription medication plus one spare day', note: 'Keep it in carry-on luggage, never the checked bag.' },
+  { id: 'electrolytes', category: 'Health', label: 'Electrolyte packets', note: 'Heat, altitude and dry air make plain water insufficient for some hikers.' },
+  { id: 'sanitizer', category: 'Health', label: 'Hand sanitizer, tissues and small toilet kit', note: 'Facilities are limited on long trail and scenic-drive stretches.' },
+  { id: 'bug-spray', category: 'Health', label: 'Small insect repellent', note: 'Mostly for dusk near the river and Springdale rather than exposed trails.' },
+
+  { id: 'car-water', category: 'Car', label: 'One extra gallon of water', note: 'Emergency reserve; refill as it is used.' },
+  { id: 'cooler', category: 'Car', label: 'Small soft cooler and reusable ice packs', note: 'Keeps early breakfasts, lunches and drinks available.' },
+  { id: 'car-charger', category: 'Car', label: '12V/USB car charger and spare cable', note: 'Navigation days can drain a phone quickly.' },
+  { id: 'trash-bags', category: 'Car', label: 'Trash bags and zip bags for wet or sandy gear', note: 'Keep dinner clothes and dry shoes isolated.' },
+  { id: 'rental-kit', category: 'Car', label: 'Rental inspection photos and roadside number', note: 'Confirm the tire-inflation kit or spare before leaving Las Vegas.' },
+
+  { id: 'power-bank', category: 'Electronics', label: 'Charged power bank', note: 'Keep it in the daypack, not the vehicle.' },
+  { id: 'cables', category: 'Electronics', label: 'Phone, watch and camera charging cables', note: 'Add a compact multi-port wall charger.' },
+  { id: 'camera', category: 'Electronics', label: 'Camera or phone tripod and lens cloth', note: 'A small stable support is useful for Bryce night photos.' },
+  { id: 'star-app', category: 'Electronics', label: 'Stargazing app with offline data', note: 'Sky Guide or Stellarium works well without cell service.' },
+
+  { id: 'snacks', category: 'Food', label: 'Trail breakfasts and salty snacks', note: 'First-shuttle mornings begin before many kitchens.' },
+  { id: 'lunches', category: 'Food', label: 'Packable lunch supplies', note: 'Plan at least Scout, Narrows and the Bryce loop lunches in advance.' },
+  { id: 'road-food', category: 'Food', label: 'Shelf-stable road snacks', note: 'Keep a separate reserve for Days 6, 8 and 9.' },
+  { id: 'bottles', category: 'Food', label: 'Reusable bottles or hydration reservoirs', note: 'Label them so each person’s capacity is obvious.' }
 ];
 
 export const weatherPlaces = [

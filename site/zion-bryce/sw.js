@@ -1,4 +1,4 @@
-const CACHE = 'zion-bryce-field-guide-v1';
+const CACHE = 'zion-bryce-field-guide-v2';
 const CORE = [
   './',
   './index.html',

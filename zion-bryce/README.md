@@ -10,7 +10,8 @@ Live app: `https://kevinrhaas.github.io/custom/zion-bryce/`
 - lets Sept 7–9 swap between Scout Lookout, the Narrows and a Zion flex day;
 - uses an Open-Meteo forecast as a planning signal for those swaps while keeping official NPS conditions authoritative;
 - explains the Nevada/Utah time-zone shift in both directions;
-- includes route links, official conditions, trail comparisons, checklist progress, calendar export, print layout and an installable offline shell;
+- includes route links, official conditions, trail comparisons, a comprehensive categorized packing checklist, calendar export, print layout and an installable offline shell;
+- adds a saved “carry today” kit and tactical field tips to every day, automatically changing the kit when a flexible Zion day is swapped;
 - stores confirmations and notes only in browser `localStorage` and keeps all reservation numbers out of the public repository.
 
 The implementation is static HTML, CSS and ES modules—no framework, dependency install, account, analytics or build-time network request.
