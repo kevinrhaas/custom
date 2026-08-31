@@ -1,5 +1,6 @@
 import {
   activityPlans,
+  brycePlanOptions,
   checklist,
   days,
   sources,
@@ -11,6 +12,7 @@ import {
 
 const STORAGE = {
   assignments: 'zionBryce.assignments.v1',
+  brycePlan: 'zionBryce.brycePlan.v1',
   checked: 'zionBryce.checked.v1',
   customItems: 'zionBryce.customItems.v1',
   completedDays: 'zionBryce.completedDays.v1',
@@ -27,8 +29,11 @@ const defaultAssignments = {
   '2026-09-09': 'flex'
 };
 const activityIds = Object.keys(activityPlans);
+const defaultBrycePlan = { arrival: 'rim', afternoon: 'rainbow', night: 'stars' };
+const bryceDates = ['2026-09-10', '2026-09-11'];
 
 let assignments = normalizeAssignments(readJSON(STORAGE.assignments, defaultAssignments));
+let brycePlan = normalizeBrycePlan(readJSON(STORAGE.brycePlan, defaultBrycePlan));
 let completedDays = new Set(readJSON(STORAGE.completedDays, []));
 let checkedItems = new Set(readJSON(STORAGE.checked, []));
 let dayPackChecked = new Set(readJSON(STORAGE.dayPack, []));
@@ -76,6 +81,13 @@ function normalizeAssignments(candidate) {
   return { ...defaultAssignments };
 }
 
+function normalizeBrycePlan(candidate) {
+  return Object.fromEntries(Object.entries(brycePlanOptions).map(([group, config]) => [
+    group,
+    Object.hasOwn(config.options, candidate?.[group]) ? candidate[group] : defaultBrycePlan[group]
+  ]));
+}
+
 function showToast(message) {
   const toast = document.querySelector('#toast');
   toast.textContent = message;
@@ -94,6 +106,27 @@ function formatShortDate(date) {
 }
 
 function getEffectiveDay(day) {
+  if (day.day === 6) {
+    const choice = brycePlanOptions.arrival.options[brycePlan.arrival];
+    return {
+      ...day,
+      summary: `${day.summary} Arrival plan: ${choice.short.toLowerCase()}.`,
+      schedule: [...day.schedule.slice(0, -1), choice.entry],
+      activity: `bryce-${brycePlan.arrival}`
+    };
+  }
+  if (day.day === 7) {
+    const afternoon = brycePlanOptions.afternoon.options[brycePlan.afternoon];
+    const night = brycePlanOptions.night.options[brycePlan.night];
+    return {
+      ...day,
+      summary: `Walk to sunrise, hike the classic loop, then choose ${afternoon.short.toLowerCase()} and ${night.short.toLowerCase()}.`,
+      schedule: [...day.schedule.slice(0, 5), afternoon.entry, night.entry],
+      carry: brycePlan.night === 'rest' ? day.carry.filter((item) => item.id !== 'stars') : day.carry,
+      tips: brycePlan.night === 'rest' ? day.tips.filter((tip) => tip.title !== 'Preserve night vision') : day.tips,
+      activity: `bryce-${brycePlan.afternoon}-${brycePlan.night}`
+    };
+  }
   if (!day.flexible) return day;
   const plan = activityPlans[assignments[day.date]];
   return {
@@ -279,6 +312,56 @@ function renderAssignments() {
   });
 }
 
+function setupParkTabs() {
+  const tabs = [...document.querySelectorAll('[data-park-tab]')];
+  const panels = [...document.querySelectorAll('[data-park-panel]')];
+  const activate = (tab) => {
+    const target = tab.dataset.parkTab;
+    tabs.forEach((candidate) => {
+      const active = candidate === tab;
+      candidate.classList.toggle('active', active);
+      candidate.setAttribute('aria-selected', String(active));
+      candidate.tabIndex = active ? 0 : -1;
+    });
+    panels.forEach((panel) => { panel.hidden = panel.dataset.parkPanel !== target; });
+  };
+  tabs.forEach((tab, index) => {
+    tab.addEventListener('click', () => activate(tab));
+    tab.addEventListener('keydown', (event) => {
+      if (!['ArrowLeft', 'ArrowRight'].includes(event.key)) return;
+      event.preventDefault();
+      const offset = event.key === 'ArrowRight' ? 1 : -1;
+      const next = tabs[(index + offset + tabs.length) % tabs.length];
+      activate(next);
+      next.focus();
+    });
+  });
+}
+
+function renderBrycePlanner() {
+  const grid = document.querySelector('#brycePlannerGrid');
+  grid.innerHTML = Object.entries(brycePlanOptions).map(([group, config]) => {
+    const value = brycePlan[group];
+    return `<div class="assignment-card bryce-choice-card">
+      <label for="bryce-${group}">${escapeHtml(config.label)}</label>
+      <select id="bryce-${group}" data-bryce-choice="${group}">
+        ${Object.entries(config.options).map(([id, option]) => `<option value="${id}" ${id === value ? 'selected' : ''}>${escapeHtml(option.short)}</option>`).join('')}
+      </select>
+      <p>${escapeHtml(config.options[value].description)}</p>
+      <small>${escapeHtml(config.help)}</small>
+    </div>`;
+  }).join('');
+  grid.querySelectorAll('[data-bryce-choice]').forEach((select) => {
+    select.addEventListener('change', () => {
+      brycePlan[select.dataset.bryceChoice] = select.value;
+      writeJSON(STORAGE.brycePlan, brycePlan);
+      renderBrycePlanner();
+      renderDays({ preserveOpen: true });
+      showToast('Bryce plan updated in Days 6–7.');
+    });
+  });
+}
+
 function renderTrailTable() {
   document.querySelector('#trailTableBody').innerHTML = trailMatrix.map((trail) => `<tr>
     <td>${escapeHtml(trail.name)}<br><small>${escapeHtml(trail.place)}</small></td>
@@ -388,6 +471,24 @@ async function fetchWeather() {
 
 function renderWeatherSkeleton() {
   document.querySelector('#weatherGrid').innerHTML = flexibleDates.map(() => '<div class="weather-skeleton" aria-hidden="true"></div>').join('');
+  document.querySelector('#bryceWeatherGrid').innerHTML = bryceDates.map(() => '<div class="weather-skeleton" aria-hidden="true"></div>').join('');
+}
+
+function renderBryceWeather() {
+  const grid = document.querySelector('#bryceWeatherGrid');
+  const records = forecastData?.bryce;
+  if (!records || !bryceDates.every((date) => records[date])) {
+    grid.innerHTML = bryceDates.map((date) => `<article class="weather-card"><div class="weather-date"><span>${escapeHtml(formatShortDate(date))}</span>${icon('cloud')}</div><p>No live forecast is available yet. Keep the default Bryce sequence as a placeholder.</p></article>`).join('');
+    return;
+  }
+  grid.innerHTML = bryceDates.map((date) => {
+    const record = records[date];
+    return `<article class="weather-card">
+      <div class="weather-date"><span>${escapeHtml(formatShortDate(date))}</span>${icon('cloud')}</div>
+      <div class="weather-temp"><strong>${Math.round(record.high)}°</strong><span>low ${Math.round(record.low)}°</span></div>
+      <p>${escapeHtml(weatherDescription(record.code))} · ${Math.round(record.precip)}% max precipitation chance</p>
+    </article>`;
+  }).join('');
 }
 
 function renderWeather() {
@@ -398,6 +499,7 @@ function renderWeather() {
     forecastSuggestion = null;
     apply.disabled = true;
     grid.innerHTML = flexibleDates.map((date) => `<article class="weather-card"><div class="weather-date"><span>${escapeHtml(formatShortDate(date))}</span>${icon('cloud')}</div><p>No live forecast is available for this date yet. Keep the original order as a placeholder.</p></article>`).join('');
+    renderBryceWeather();
     return;
   }
   forecastSuggestion = buildForecastSuggestion(zion);
@@ -412,6 +514,7 @@ function renderWeather() {
       <span class="forecast-pick">Best forecast fit: ${escapeHtml(pick)}</span>
     </article>`;
   }).join('');
+  renderBryceWeather();
 }
 
 function renderRouteLedger() {
@@ -662,6 +765,7 @@ function exportPrivateBackup() {
     app: 'Zion + Bryce Canyon Field Guide',
     exportedAt: new Date().toISOString(),
     assignments,
+    brycePlan,
     completedDays: [...completedDays],
     checkedItems: [...checkedItems],
     dayPackChecked: [...dayPackChecked],
@@ -687,6 +791,19 @@ function setupActions() {
     renderAssignments();
     renderDays({ preserveOpen: true });
     showToast('Forecast-fit order applied. Check official conditions next.');
+  });
+  document.querySelector('#applyBryceForecast').addEventListener('click', () => {
+    const record = forecastData?.bryce?.['2026-09-11'];
+    if (!record) {
+      showToast('Bryce forecast is not available yet.');
+      return;
+    }
+    const wet = isWetCode(Number(record.code)) || Number(record.precip) >= 30;
+    brycePlan = { ...brycePlan, afternoon: wet ? 'rim' : 'rainbow', night: wet ? 'rest' : 'stars' };
+    writeJSON(STORAGE.brycePlan, brycePlan);
+    renderBrycePlanner();
+    renderDays({ preserveOpen: true });
+    showToast('Bryce weather-fit options applied. Check the hourly forecast on the day.');
   });
   document.querySelector('#showRemaining').addEventListener('click', () => {
     remainingOnly = !remainingOnly;
@@ -757,12 +874,14 @@ function init() {
   renderCountdown();
   renderDays();
   renderAssignments();
+  renderBrycePlanner();
   renderTrailTable();
   renderRouteLedger();
   renderSources();
   renderChecklist();
   renderStays();
   setupNavigation();
+  setupParkTabs();
   setupActions();
   setupInstall();
   renderWeatherSkeleton();

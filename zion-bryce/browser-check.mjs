@@ -60,11 +60,20 @@ try {
   await page.screenshot({ path: join(artifactRoot, 'zion-bryce-desktop.png'), fullPage: false });
 
   await page.getByRole('button', { name: 'Swap days' }).click();
+  expect(await page.locator('[data-park-tab]').count() === 2, 'desktop: expected Zion and Bryce planning tabs');
   expect(await page.locator('#assignmentGrid select').count() === 3, 'desktop: expected three flexible-day assignments');
   expect(await page.locator('#weatherGrid .weather-card').count() === 3, 'desktop: expected three weather cards');
   await page.locator('#assign-2026-09-07').selectOption('narrows');
   await page.getByRole('button', { name: 'Plan' }).click();
   expect((await page.locator('.day-card[data-day="3"] h3').textContent()).includes('Narrows'), 'desktop: flexible assignment did not update plan');
+
+  await page.getByRole('button', { name: 'Swap days' }).click();
+  await page.locator('[data-park-tab="bryce"]').click();
+  expect(await page.locator('#brycePlannerGrid select').count() === 3, 'desktop: expected three Bryce planning choices');
+  await page.locator('#bryce-afternoon').selectOption('rim');
+  await page.getByRole('button', { name: 'Plan' }).click();
+  await page.locator('.day-card[data-day="7"] summary').click();
+  expect((await page.locator('.day-card[data-day="7"]').innerText()).includes('Lodge reset + amphitheater overlooks'), 'desktop: Bryce choice did not update Day 7');
 
   await page.getByRole('button', { name: 'Pack' }).click();
   const firstCheck = page.locator('[data-check-id]').first();
@@ -116,6 +125,8 @@ try {
   await phone.getByRole('button', { name: 'Swap days' }).click();
   await phone.screenshot({ path: join(artifactRoot, 'zion-bryce-mobile-swap.png'), fullPage: false });
   expect(await phone.locator('#assignmentGrid select').count() === 3, 'mobile: assignment controls are missing');
+  await phone.locator('[data-park-tab="bryce"]').click();
+  expect(await phone.locator('#brycePlannerGrid select').count() === 3, 'mobile: Bryce planning controls are missing');
   expect(mobileErrors.length === 0, `mobile: console errors: ${mobileErrors.join(' | ')}`);
   await mobile.close();
 } catch (error) {

@@ -161,6 +161,57 @@ export const activityPlans = {
   }
 };
 
+export const brycePlanOptions = {
+  arrival: {
+    label: 'Arrival evening · Sept 10',
+    help: 'Choose based on arrival time and energy. Sunset is 7:43 PM.',
+    options: {
+      rim: {
+        short: 'Rim walk to sunset',
+        description: 'Walk the paved half-mile from Sunrise Point to Sunset Point.',
+        entry: { time: '6:55 PM', title: 'Sunrise Point → Sunset Point', detail: 'The paved Rim Trail is about a half-mile one way. Be at Sunset Point before the 7:43 PM sunset.' }
+      },
+      direct: {
+        short: 'Sunset Point only',
+        description: 'Protect a late arrival or tired legs with one excellent overlook.',
+        entry: { time: '7:05 PM', title: 'Go directly to Sunset Point', detail: 'Use the shortest version of the evening: settle in, carry a warm layer and reach the overlook before the 7:43 PM sunset.' }
+      }
+    }
+  },
+  afternoon: {
+    label: 'Full-day afternoon · Sept 11',
+    help: 'The morning sunrise and classic loop stay fixed; choose how much driving follows.',
+    options: {
+      rainbow: {
+        short: 'Rainbow Point drive',
+        description: 'Cover the full 18-mile park road and work back through overlooks.',
+        entry: { time: '2:00–5:00 PM', title: 'Scenic drive to Rainbow Point', detail: 'Drive the 18-mile park road to the end first, then stop at overlooks on the return when the pullouts are on your side.' }
+      },
+      rim: {
+        short: 'Lodge reset + rim overlooks',
+        description: 'Trade driving for recovery and short amphitheater viewpoints.',
+        entry: { time: '2:30–5:00 PM', title: 'Lodge reset + amphitheater overlooks', detail: 'Rest at the Lodge, then choose one or two rim stops such as Inspiration Point or Bryce Point. Keep this version deliberately low-mileage.' }
+      }
+    }
+  },
+  night: {
+    label: 'Night plan · Sept 11',
+    help: 'Dark skies are exceptional, but clouds and fatigue get the final vote.',
+    options: {
+      stars: {
+        short: 'Dark-sky session',
+        description: 'Use the new moon for stargazing after astronomical darkness.',
+        entry: { time: '8:45 PM', title: 'Dark-sky reset', detail: 'Astronomical darkness arrives around 9:11 PM. Check the Visitor Center for a ranger astronomy program and let your eyes adapt for 20 minutes.' }
+      },
+      rest: {
+        short: 'Early night',
+        description: 'Bank recovery if clouds, cold or altitude make stars a poor trade.',
+        entry: { time: '8:30 PM', title: 'Early night at the Lodge', detail: 'Skip the late outing, organize tomorrow’s southbound drive and get a full night at altitude.' }
+      }
+    }
+  }
+};
+
 export const days = [
   {
     day: 1,

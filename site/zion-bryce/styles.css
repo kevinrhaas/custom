@@ -263,6 +263,14 @@ svg { fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round
 .advisory > svg { width: 24px; height: 24px; flex: 0 0 auto; color: var(--blue); }
 .advisory strong { font-size: 13px; }
 .advisory p { margin: 3px 0 0; color: var(--ink-2); font-size: 12px; }
+.park-tabs { display: inline-flex; gap: 5px; margin: 0 0 24px; padding: 5px; border: 1px solid var(--line); border-radius: 13px; background: var(--surface); box-shadow: var(--shadow-soft); }
+.park-tab { min-height: 42px; padding: 9px 16px; border: 0; border-radius: 9px; background: transparent; color: var(--ink-3); cursor: pointer; font: inherit; font-size: 11px; font-weight: 820; }
+.park-tab:hover { color: var(--ink); background: var(--surface-2); }
+.park-tab.active { color: var(--canyon); background: color-mix(in srgb, var(--canyon) 12%, transparent); }
+.park-tab:focus-visible { outline: 3px solid var(--canyon); outline-offset: 2px; }
+.park-panel-heading { margin: 0 0 17px; }
+.park-panel-heading h3 { margin: 4px 0 4px; font-size: clamp(24px, 4vw, 38px); letter-spacing: -.045em; }
+.park-panel-heading p { max-width: 720px; margin: 0; color: var(--ink-2); font-size: 12px; }
 .weather-toolbar { display: flex; align-items: center; justify-content: space-between; gap: 14px; margin: 28px 0 12px; }
 .weather-toolbar p { margin: 3px 0 0; color: var(--ink-2); font-size: 12px; }
 .weather-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
@@ -284,6 +292,8 @@ svg { fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round
 .assignment-card label { display: block; margin-bottom: 8px; color: var(--ink-3); font-size: 10px; font-weight: 820; letter-spacing: .08em; text-transform: uppercase; }
 .assignment-card select { width: 100%; min-height: 42px; padding: 8px 34px 8px 10px; border: 1px solid var(--line-strong); border-radius: 9px; background: var(--surface); color: var(--ink); font-size: 12px; font-weight: 780; }
 .assignment-card p { margin: 8px 0 0; color: var(--ink-3); font-size: 10px; }
+.bryce-choice-card small { display: block; margin-top: 9px; padding-top: 9px; border-top: 1px solid var(--line); color: var(--ink-3); font-size: 9px; line-height: 1.45; }
+.bryce-weather-grid { grid-template-columns: repeat(2, 1fr); }
 .fine-print { margin: 13px 0 0; color: var(--ink-3); font-size: 10px; }
 .table-scroll { overflow-x: auto; border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); box-shadow: var(--shadow-soft); }
 .trail-table { width: 100%; min-width: 850px; border-collapse: collapse; text-align: left; }
@@ -429,6 +439,9 @@ svg { fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round
   .alert-grid { grid-template-columns: 1fr; }
   .day-extras { grid-template-columns: 1fr; }
   .weather-grid, .assignment-grid { grid-template-columns: 1fr; }
+  .park-tabs { display: flex; width: 100%; }
+  .park-tab { flex: 1; padding-inline: 8px; }
+  .bryce-weather-grid { grid-template-columns: 1fr; }
   .weather-card { display: grid; grid-template-columns: 1fr auto; align-items: center; }
   .weather-card > p, .forecast-pick { grid-column: 1 / -1; }
   .assignment-panel { padding: 16px; }
