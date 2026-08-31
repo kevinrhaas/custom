@@ -171,11 +171,12 @@ export const days = [
     eyebrow: 'Arrival day',
     stay: 'Waldorf Astoria Las Vegas',
     summary: 'Pick up the car, eat close to the hotel and protect tomorrow’s early start.',
-    chips: ['AA1497', 'Arrive 2:25 PM PDT', '1 night'],
+    chips: ['AA1497', 'ORD 10:30 AM CDT', 'LAS 12:25 PM PDT'],
     schedule: [
-      { time: '2:25 PM PDT', title: 'Arrive at LAS', detail: 'AA1497 from Chicago. Follow the airport rental-car signs and allow time for the off-terminal shuttle.' },
-      { time: '3:30–4:30 PM', title: 'Rental car + hotel', detail: 'Photograph the vehicle, confirm the spare/tire kit and make sure the fuel policy matches the booking.' },
-      { time: '5:30 PM', title: 'Easy dinner nearby', detail: 'Stay close to the Waldorf/CityCenter. The objective is food, hydration and an early night—not a Vegas evening.' },
+      { time: '10:30 AM CDT', title: 'Fly Chicago → Las Vegas', detail: 'AA1497 nonstop from ORD. Scheduled arrival is 12:25 PM Pacific time.' },
+      { time: '12:25 PM PDT', title: 'Arrive at LAS', detail: 'Follow the airport rental-car signs and allow time for the off-terminal Rental Car Center shuttle.' },
+      { time: '1:30–2:30 PM', title: 'Rental car + hotel', detail: 'Photograph the vehicle, confirm the spare/tire kit and make sure the fuel policy matches the booking.' },
+      { time: '5:00 PM', title: 'Easy dinner nearby', detail: 'Stay close to the Waldorf/CityCenter. The objective is food, hydration and an early night—not a Vegas evening.' },
       { time: '8:30 PM', title: 'Reset for mountain time', detail: 'Put tomorrow’s park layers and water in the car. Utah is one hour ahead.' }
     ],
     carry: [
@@ -379,13 +380,14 @@ export const days = [
     title: 'Cash in the time-zone hour',
     eyebrow: 'Flight day · gain 1 hour',
     stay: 'Home',
-    summary: 'Leave St. George at 10:30 AM Mountain time and reach the rental center around 11:30 AM Pacific time.',
-    chips: ['Flight 3:48 PM PDT', 'Drive ≈2 hr', 'Flight number to confirm'],
+    summary: 'Leave St. George at 7:45 AM Mountain time, return the car around 9:00 AM Pacific time and protect the 12:56 PM departure.',
+    chips: ['AA1497', 'LAS 12:56 PM PDT', 'ORD 7:19 PM CDT'],
     schedule: [
-      { time: '8:30 AM MDT', title: 'Breakfast + final pack', detail: 'Refill fuel if needed, check the room and separate flight layers from checked luggage.' },
-      { time: '10:30 AM MDT', title: 'Leave St. George', detail: 'The westbound clock change means a roughly two-hour drive lands around 11:30 AM Pacific time.' },
-      { time: '11:30 AM PDT', title: 'Rental return at LAS', detail: 'This leaves more than four hours before the scheduled flight for fuel, shuttle, bags and security.' },
-      { time: '3:48 PM PDT', title: 'Fly Las Vegas → Chicago', detail: 'The source itinerary appears to contain a mistyped American flight number. Confirm it in the airline booking before departure.' }
+      { time: '6:30 AM MDT', title: 'Breakfast + final pack', detail: 'Check the room, load the car and keep flight layers outside checked luggage.' },
+      { time: '7:45 AM MDT', title: 'Leave St. George', detail: 'After gaining an hour at the Nevada line, a roughly two-hour drive reaches Las Vegas around 8:45 AM Pacific time. Keep 15 minutes for fuel.' },
+      { time: '9:00 AM PDT', title: 'Rental return at LAS', detail: 'Target the off-terminal Rental Car Center about four hours before departure, leaving comfortable time for the shuttle, checked bags and security.' },
+      { time: '12:56 PM PDT', title: 'AA1497 · Las Vegas → Chicago', detail: 'Nonstop to ORD, scheduled to arrive at 7:19 PM Central time.' },
+      { time: '7:19 PM CDT', title: 'Arrive at ORD', detail: 'Collect bags and head home.' }
     ],
     carry: [
       { id: 'id-wallet', label: 'Photo ID, wallet and confirmed flight details' },
@@ -395,12 +397,12 @@ export const days = [
       { id: 'snacks', label: 'Water bottle emptied for security and travel snacks' }
     ],
     tips: [
-      { title: 'Confirm the flight before leaving St. George', text: 'The departure time is preserved, but the source flight number appears mistyped.' },
-      { title: 'Keep the clock math visible', text: '10:30 AM Mountain becomes roughly 11:30 AM Pacific after the two-hour drive.' },
+      { title: 'Use 7:45 as the hard departure', text: 'Do not let breakfast or repacking consume the highway buffer; the flight now leaves before 1:00 PM.' },
+      { title: 'Keep the clock math visible', text: '7:45 AM Mountain becomes roughly 8:45 AM Pacific after the two-hour drive.' },
       { title: 'Photograph the final dashboard', text: 'Capture fuel and mileage at return, then keep the rental receipt until the final charge settles.' }
     ],
     alerts: [
-      { tone: 'amber', title: 'One unresolved item', text: 'The return flight number needs confirmation. The app preserves the 3:48 PM departure time without inventing a corrected flight.' }
+      { tone: 'blue', title: 'Confirmed return', text: 'AA1497 departs LAS at 12:56 PM PDT and arrives ORD at 7:19 PM CDT. The public guide intentionally omits the booking confirmation code.' }
     ],
     links: [
       ['Drive to LAS Rental Car Center', 'https://www.google.com/maps/dir/The+Advenire,+Autograph+Collection/Harry+Reid+International+Airport+Rent-A-Car+Center'],
@@ -421,7 +423,7 @@ export const trailMatrix = [
 ];
 
 export const checklist = [
-  { id: 'flight-return', category: 'Confirm', label: 'Verify the return AA flight number', note: 'The source itinerary’s number appears mistyped; departure is listed as 3:48 PM.' },
+  { id: 'flight-return', category: 'Confirm', label: 'Save return flight AA1497 offline', note: 'LAS 12:56 PM PDT → ORD 7:19 PM CDT on Sept 13.' },
   { id: 'flight-app', category: 'Confirm', label: 'Load both flights in the American app', note: 'Save boarding passes when available.' },
   { id: 'rental', category: 'Confirm', label: 'Confirm rental pickup, fuel policy and return location', note: 'Return is the LAS off-terminal Rental Car Center.' },
   { id: 'hotels', category: 'Confirm', label: 'Save all hotel confirmations offline', note: 'Use the private notes tab rather than publishing numbers.' },

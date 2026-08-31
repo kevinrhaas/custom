@@ -35,6 +35,6 @@ node zion-bryce/browser-check.mjs
 - A bottom-up Narrows outing requires no permit to Big Spring, but flash-flood potential, water flow and park closures override the plan.
 - Red Canyon’s roadside tunnels sit naturally on the September 10 drive into Bryce, not the southbound September 12 route.
 - Snow Canyon’s Scout Cave route is roughly six miles and does not fit before a fixed 7:00 PM dinner. Jenny’s Canyon is the short-stop recommendation.
-- The return flight number from the source itinerary is flagged for confirmation rather than silently “corrected.”
+- Confirmed AA1497 flight times are shown for both directions; booking codes and passenger details remain private.
 
 Primary sources are linked in the app and include NPS Zion and Bryce operations, USGS river data, NWS flash-flood potential, Nevada State Parks and Utah State Parks. Operations were last researched August 30, 2026 and must be rechecked during the trip.

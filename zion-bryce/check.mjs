@@ -51,13 +51,16 @@ expect(app.includes('dayExtrasTemplate'), 'day packing and tips renderer is miss
 expect(data.includes('Bryce shuttle starts at 8:00 AM'), 'Bryce sunrise shuttle correction is missing');
 expect(data.includes('Scout Cave does not fit'), 'Day 8 feasibility correction is missing');
 expect(data.includes('Red Canyon arches'), 'Red Canyon route correction is missing');
-expect(data.includes('Flight number to confirm'), 'return-flight verification flag is missing');
+expect(data.includes("chips: ['AA1497', 'LAS 12:56 PM PDT', 'ORD 7:19 PM CDT']"), 'confirmed return flight is missing');
+expect(data.includes("chips: ['AA1497', 'ORD 10:30 AM CDT', 'LAS 12:25 PM PDT']"), 'confirmed outbound flight is missing');
+expect(app.includes('20260913T195600Z'), 'timed return flight calendar event is missing');
 expect((data.match(/\n    carry: \[/g) || []).length === 9, 'every fixed/activity day needs a carry checklist');
 expect((data.match(/\n    tips: \[/g) || []).length === 9, 'every fixed/activity day needs field tips');
 expect((data.match(/category: '/g) || []).length >= 45, 'master packing checklist is unexpectedly thin');
 expect(css.includes('.day-extras'), 'responsive day packing/tips styling is missing');
 expect(!allPublicText.includes('70O3T4'), 'private Bryce confirmation leaked into the public app');
 expect(!allPublicText.includes('AA14970'), 'unverified return flight number leaked into the public app');
+expect(!allPublicText.includes('QQIPDU'), 'private airline confirmation code leaked into the public app');
 expect((data.match(/https:\/\//g) || []).length >= 25, 'research/source coverage is unexpectedly thin');
 
 const ids = [...html.matchAll(/\sid="([^"]+)"/g)].map((match) => match[1]);

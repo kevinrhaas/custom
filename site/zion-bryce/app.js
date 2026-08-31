@@ -617,6 +617,28 @@ function downloadCalendar() {
     'DESCRIPTION:Arrive by 6:40 PM. Reservation is at 7:00 PM.',
     'END:VEVENT'
   ].join('\r\n'));
+  events.push([
+    'BEGIN:VEVENT',
+    'UID:zion-bryce-aa1497-outbound@custom.polecat',
+    `DTSTAMP:${stamp}`,
+    'DTSTART:20260905T153000Z',
+    'DTEND:20260905T192500Z',
+    'SUMMARY:AA1497 · Chicago to Las Vegas',
+    'LOCATION:ORD → LAS',
+    'DESCRIPTION:Departs ORD 10:30 AM CDT. Arrives LAS 12:25 PM PDT.',
+    'END:VEVENT'
+  ].join('\r\n'));
+  events.push([
+    'BEGIN:VEVENT',
+    'UID:zion-bryce-aa1497-return@custom.polecat',
+    `DTSTAMP:${stamp}`,
+    'DTSTART:20260913T195600Z',
+    'DTEND:20260914T001900Z',
+    'SUMMARY:AA1497 · Las Vegas to Chicago',
+    'LOCATION:LAS → ORD',
+    'DESCRIPTION:Departs LAS 12:56 PM PDT. Arrives ORD 7:19 PM CDT.',
+    'END:VEVENT'
+  ].join('\r\n'));
   const calendar = ['BEGIN:VCALENDAR', 'VERSION:2.0', 'CALSCALE:GREGORIAN', 'METHOD:PUBLISH', 'PRODID:-//Custom//Zion Bryce Field Guide//EN', ...events, 'END:VCALENDAR'].join('\r\n');
   downloadBlob('zion-bryce-2026.ics', calendar, 'text/calendar;charset=utf-8');
   showToast('Trip calendar downloaded.');
