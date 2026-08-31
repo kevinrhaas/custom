@@ -46,6 +46,11 @@
 # --- the one it inherited, and #591 and #432 may already be blocked by nothing but
 # --- this. Fix it and their smoke may simply pass.
 T-0448 — 2,693 drawn flower heads stand over nothing — dev's full smoke has been red on it since 2026-08-30 and every PR inherits it
+# --- T-0450 sits beside T-0448 because both make a gate unreadable: one leaves dev red
+# --- so a run cannot tell its own failure from an inherited one, and this one misstates
+# --- the cap three tickets measure their margins against. T-0181 (PR #591) is arguing
+# --- against the wrong bound until it is fixed.
+T-0450 — SMOKE-BUDGET.md compares a per-leg cap with a whole-gate total, and calls one runner a different machine from the other
 
 # --- THE WEST DIVISION IS WRONG ON THE GROUND — OWNER FAULT REPORT, 2026-08-31.
 # --- Reported from the dev preview against the Thompson plat sheet. Three of its
