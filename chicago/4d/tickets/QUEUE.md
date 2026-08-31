@@ -51,6 +51,10 @@ T-0448 — 2,693 drawn flower heads stand over nothing — dev's full smoke has 
 # --- the cap three tickets measure their margins against. T-0181 (PR #591) is arguing
 # --- against the wrong bound until it is fixed.
 T-0450 — SMOKE-BUDGET.md compares a per-leg cap with a whole-gate total, and calls one runner a different machine from the other
+# --- T-0454 is beside T-0450 for the same reason: it makes a gate's own instruction
+# --- untrue. The gate says re-bake a stale asset; the bake, run on that exact tree,
+# --- rebuilds nothing. PR #597 is blocked on this and nothing else.
+T-0454 — The gate calls a GLB stale and the bake declines to rebuild it, so a stale asset cannot be cleared by baking
 
 # --- THE WEST DIVISION IS WRONG ON THE GROUND — OWNER FAULT REPORT, 2026-08-31.
 # --- Reported from the dev preview against the Thompson plat sheet. Three of its
