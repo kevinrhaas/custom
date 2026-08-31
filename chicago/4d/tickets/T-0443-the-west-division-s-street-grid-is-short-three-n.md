@@ -54,8 +54,8 @@ north to south: **Kinzie, Carroll, Fulton, Lake, Randolph, Washington**.
 Division have no street between them, which is why the preview shows unbroken
 ground where the plat shows two rows of blocks.
 
-## 3. The one west-side spacing this project does hold is short of its own
-module — measured
+## 3. The one west-side spacing this project does hold is short of the plat's
+own arithmetic by 90 feet — measured
 
 Adjacent north-south centreline spacings, from the committed paths:
 
@@ -75,24 +75,21 @@ and *"a scale of 160 feet to an inch"*, so the module is a stated quantity and
 not a matter of taste. A West Division laid to the same plat should not be
 narrower than the South Division by most of a lot width.
 
-## 4. THE OWNER'S REPORT, PUT AS A QUESTION — is the whole grid one street west?
+## 4. THE PLAT SETTLES THE SPACING, AND THE SPACING IS WRONG
 
-If West Water Street was never drawn and the remaining lines were seated from
-the river outward, then what this project calls **Canal** stands where **Clinton**
-belongs, what it calls **Clinton** stands at **Jefferson** or **Des Plaines**,
-and every building seated off those two lines is west of where the plat puts it.
-That is the owner's reading and it is consistent with finding 1: a missing West
-Water Street is exactly the kind of omission that shifts everything behind it.
+The plat's legend gives streets 80 ft and alleys 18 ft. The committed east-west
+streets give the lot depth: 184.1 and 174.9 ft, so **80 x 180 ft**. Those figures
+reproduce the South Division exactly — 4x80 + 80 = **400 ft = 121.92 m** against
+a committed mean of **121.92 m, delta 0 mm**.
 
-It is **not confirmed here**, and it must not be assumed. What settles it is one
-measurement this ticket does not have: the local-ENU east coordinate of the
-**west bank of the South Branch** at each tier, against which the plat's
-sequence — bank, West Water, block, Canal, block, Clinton — can be stepped at
-the 122 m module the South Division already demonstrates. If Canal lands within
-a lot width of −170 the current line is right and only the neighbours are
-missing; if it lands near −290 the owner is right and the grid is one street out.
+The West Division's blocks are two lots across by five down, so its module is a
+block depth plus a street: **2x180 + 18 + 80 = 458 ft = 139.60 m**. The committed
+`clinton -> canal` is **112.1 m**, short by **27.5 m (90.2 ft)**.
 
-Do that arithmetic first and write the answer down before moving anything.
+A spacing is independent of the anchor, so this holds whatever the answer to the
+owner's shift report. What still needs one number is where the West Division sits
+relative to the South, because the river breaks the module between Market Street
+and West Water Street. **T-0444 owns that.**
 
 ## 5. North Water Street crosses ground the plat does not give it
 
