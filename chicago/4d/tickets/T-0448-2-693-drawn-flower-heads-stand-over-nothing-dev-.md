@@ -1,7 +1,7 @@
 ---
 id: T-0448
 title: 2,693 drawn flower heads stand over nothing — dev's full smoke has been red on it since 2026-08-30 and every PR inherits it
-state: open
+state: done
 epic: FLORA
 requested_by: owner
 seen: true
@@ -9,8 +9,8 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-08-31
-closed: null
-pr: null
+closed: 2026-09-01
+pr: 621
 claimed_by: null
 blocked_on: null
 needs_bake: false
