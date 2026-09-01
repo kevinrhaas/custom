@@ -10202,14 +10202,14 @@ for (const [label, viewport, touch] of [
       /none recorded/i.test(residents.letterText)
       && /No source records an occupation/.test(residents.letterText),
       residents.letterText.slice(0, 200));
-    // T-0442: a candidate biography is useful only if it remains visibly a
+    // T-0442/T-0462: a candidate biography is useful only if it remains visibly a
     // candidate. The same public payload also carries negative work so silence
     // cannot be mistaken for a person who was never researched.
-    check(`${label}: the 75-person research pilot reaches resident cards`,
-      residents.researchReviewed === 75
-      && residents.researchCounts.corroborated_enrichment === 4
-      && residents.researchCounts.candidate_identity === 7
-      && residents.researchCounts.no_corroboration === 64,
+    check(`${label}: 150 resident research reviews reach resident cards`,
+      residents.researchReviewed === 150
+      && residents.researchCounts.corroborated_enrichment === 31
+      && residents.researchCounts.candidate_identity === 30
+      && residents.researchCounts.no_corroboration === 89,
       `${residents.researchReviewed}: ${JSON.stringify(residents.researchCounts)}`);
     check(`${label}: candidate identities are visibly unmerged`,
       /Augustus Garrett/.test(residents.candidateText)

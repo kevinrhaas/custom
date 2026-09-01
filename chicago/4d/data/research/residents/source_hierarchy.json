@@ -1,7 +1,7 @@
 {
-  "_doc": "T-0442 source-selection and identity-resolution ledger. It governs the pilot's research reviews; it is not evidence about a resident.",
-  "ticket": "T-0442",
-  "reviewed_on": "2026-08-31",
+  "_doc": "Resident-research source-selection and identity-resolution ledger. It governs research reviews; it is not evidence about a resident.",
+  "tickets": ["T-0442", "T-0462"],
+  "reviewed_on": "2026-09-01",
   "ranked_source_types": [
     {"rank": 1, "type": "contemporary named record", "examples": ["newspaper advertisement", "letter", "court or land record"], "use": "May assert a fact when the record identifies the Chicago person."},
     {"rank": 2, "type": "government or institutional biographical record", "examples": ["court biography", "library mayor biography"], "use": "May corroborate biography; abbreviated-name links still require a second identifier."},
@@ -19,7 +19,9 @@
     "repository newspaper transcriptions and existing source records",
     "institutional biographies from Illinois Courts and Chicago Public Library",
     "Papers of Abraham Lincoln person and place records",
-    "digitized county histories and historical encyclopedias",
+    "court decisions, government treaty and statute volumes, and city directories",
+    "institutional finding aids, historic-site records and edited documentary projects",
+    "digitized county histories, memoirs and historical encyclopedias",
     "broad web and genealogy indexes used only to locate candidate records"
   ]
 }
