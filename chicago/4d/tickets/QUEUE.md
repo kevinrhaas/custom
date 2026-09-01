@@ -55,6 +55,13 @@ T-0448 — 2,693 drawn flower heads stand over nothing — dev's full smoke has 
 # --- ground work below, and this band is the answer to the queue's own complaint
 # --- that 41 merges added nothing a visitor could see.
 T-0460 — The plank walk meets the dirt road in a jagged sawtooth, and it is the first thing a visitor sees
+# --- T-0426 IS RULED AND T-0461 IS WHAT THE RULING LEFT — 2026-08-31. The fence
+# --- stays where the lot fronts (L160 read literally); the post follows the door,
+# --- and that half has landed. What is left is that the Tremont House's goods sit
+# --- on lot 7 while its own placement point falls 1.5 m outside it, so PR #562 is
+# --- parked on T-0461 and on nothing else.
+T-0426 — A shop addressed on a cross street improves the lot the plat fronts elsewhere, so 24.7 m of board fence lands across the Tremont House's goods
+T-0461 — The Tremont House's goods are laid on lot 7, which its own placement point falls outside — one building's goods on another lot's frontage
 T-0459 — Signboards are mounted over doors and windows, when the same wall has blank face to put them on
 # --- T-0450 sits beside T-0448 because both make a gate unreadable: one leaves dev red
 # --- so a run cannot tell its own failure from an inherited one, and this one misstates
