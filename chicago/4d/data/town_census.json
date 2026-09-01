@@ -10,7 +10,7 @@
   "data/residents/households/"
  ],
  "buildings": {
-  "standing": 347,
+  "standing": 355,
   "target": 662,
   "records_in_scene": 367,
   "basis": "Physical roofs credited by the roof reconciliation, not structure records: a bridge, a pier, a palisade and a parade ground are records that are not buildings.",
