@@ -1,5 +1,81 @@
 # STATUS
 
+## Shipped 2026-08-30 — T-0384: an ordinal off a corner places a store, and claims no lot
+
+**John Holbrook's clothing store stands on South Water Street, one door east of Dearborn**,
+between the Chicago American's office at the corner and Frederick Thomas's shop. Two papers
+print the address — Democrat 1835-06-10 c010 (*"on South-Water st. one door from Dearborn
+street"*) and American 1835-06-13 c012 — and the reading that let him be placed is the
+owner's ruling of 2026-08-30: **a count of doors off a named corner is an ordinal off the
+corner, not a reach of the street**. `docs/CORNER-ORDINAL.md` is the policy.
+
+### What was in the way, and it was not the question the ticket named
+
+T-0384 was written believing the blocker was *"may a business-front lot carry two documented
+storefronts standing at the street?"* — PR #514's question, parked on `hold`. It was not. Under
+the register as committed the advertisement read as `street_only`, so `docs/STREET-FACE-ADOPTION.md`
+owed Holbrook a standing South Water roof and **there is not one free**: nineteen front the
+street, five are a named household's dwelling, five are yard buildings, nine are already
+adopted. He was one of seven South Water advertisements short purely on supply.
+
+### The limit, and it is enforced in fields rather than in prose
+
+An ordinal is **not a lot**. The record carries `lot_claim` — `claims_lot: false`, `lot: null`,
+`placement_rule: corner_ordinal` — the schema permits no other value for either of the first
+two, and `tools/plat_occupancy.no_lot_claim_ids` reads it: such a record is not a HOLDER of the
+lot for the owner's business-front clause of 2026-08-27, so it neither entitles the lot it
+stands on nor exhausts it. That is exactly what PR #514 lacked — standing Holbrook beside the
+American's office switched the clause off, `len(holders) != 1`, and `generate_block_infill.py`
+was refused a roof it had been dealt. Nothing physical is relaxed: separation, lot margins and
+corridor intrusion all still bind, and `occupied_lots` still counts the roof against its
+block's headroom.
+
+The transparency runs **one way on purpose**. A lot held only by no-lot-claim records reads as
+taken and the run is not dealt it — the conservative answer, costing nothing today because no
+such lot exists. Freeing it would be a second ruling, about ground rather than evidence.
+
+### The vocabulary is derived, which is why it does not have to be re-decided
+
+A reading pass writes what it always wrote — `class: relative`, an anchor naming the cross
+street, an `offset_normalized` carrying the phrase — and `compile_register.ordinal_off_a_corner`
+reads the ordinal out of it. Three tests, each refusing a phrase the corpus actually prints:
+the offset must count doors in a word translatable to a number (*"a few doors below"* is
+refused), the reference must resolve to exactly one platted street, and the business's own
+street must be a different one. An ordinal off a BUILDING is untouched — it resolves earlier,
+as a landmark hop.
+
+### The sweep, and what it found that is not this ticket's
+
+`tools/measure_corner_ordinals.py` reports it on every run: over 86 extraction files, **28**
+claims count doors, 5 name a corner of two streets and resolve as one, 20 are landmark hops or
+name no platted street, and **3 are readable as an ordinal off a corner**. Those three are
+Holbrook's Democrat printing and Clark, Filer & Co.'s warehouse *"five [doors east] of the
+corner [of Randolph st.]"*, printed twice. Holbrook's other printing is NOT readable: the
+American's transcription cuts the cross street to *"De[arborn]"* and a bracketed supply is not
+a street name — so the Democrat's printing is what carries the placement, and it also
+corroborates the street word the American's column lost.
+
+**Clark, Filer & Co. is a finding and it is not fixed here.** Three of its printings carry the
+anchor and the gazetteer's LIVE placement for the house is `class: none` with a null street, so
+`resolve_anchor` is handed nothing and the row reads `unplaceable`. That is a gazetteer fault,
+not this policy's; **T-0440** carries it, including the count of other houses in the same
+position, which nobody has taken.
+
+### What is unverified, stated plainly
+
+- **Which side of Dearborn is a reading, not a source.** East is taken because the three
+  addresses this block face's own papers print describe a continuous row when read eastward and
+  nothing that closes when read westward. The position is graded `inferred` for that reason.
+- **The metres are a convention.** L215's door-gap rule — a neighbouring front stands 3.048 m
+  (10 ft) clear of the wall it neighbours — has two reasons and no source. A second ordinal
+  placement anywhere in the corpus turns it from a convention used once into a rule that has to
+  be argued.
+- **Every dimension of the building is borrowed** from `chicago_american_office` and
+  `frederick_thomas_shop` on the same face. Nothing about the premises is attested.
+- **PR #514 is superseded, not merged.** It built the same store against a reading the owner has
+  since ratified, but it claimed the lot and went red on the platted-parcels step; its branch is
+  closed rather than left parked.
+
 ## Shipped 2026-08-31 — T-0442: 75 real named residents receive identity reviews
 
 **Seventy-five of 848 eligible attested or inferred named people (8.8%) now have a

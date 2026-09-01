@@ -69,12 +69,38 @@ candidate is REFUSED, and the refusal printed with its reason, when:
                             sit here on the tree this was written against, out of
                             the 27 the flat refusal used to hold, and the reason is
                             worth reading: every reconstructed roof
-                            fronting South Water Street is a LABOURER's, so a
-                            baker, two joiners and two shoemakers the papers put
-                            on South Water have nowhere on it to go. That is a
-                            fact about where the occupation census placed the
-                            trades, not about the evidence, and it is the finding
-                            this refusal exists to surface.
+                            fronting South Water Street that carries a HOUSEHOLD is
+                            a LABOURER's, so a baker, two joiners and two
+                            shoemakers the papers put on South Water have no
+                            dwelling on it to take. That is a fact about where the
+                            occupation census placed the trades, not about the
+                            evidence, and it is the finding this refusal exists to
+                            surface.
+
+                            T-0375 ASKED WHETHER THE TRADE A ROOF CARRIES COULD BE
+                            RE-ARGUED AGAINST THE STREET IT FRONTS, and the answer
+                            is no — but not for the reason the sentence above used
+                            to imply, which is why it now says `dwelling` and
+                            `carries a household` rather than `nowhere to go`.
+                            `docs/STREET-FACE-ADOPTION.md`, the owner's ruling of
+                            2026-08-29, already stands four of those six men on
+                            South Water Street as documented STOREFRONTS —
+                            D. Graves, A. Filer & Co., L. W. Montgomery and John
+                            Holbrook — and that pass has taken all fourteen roofs
+                            on the face it was allowed to take, leaving three more
+                            businesses refused for want of one. So reseating a
+                            shoemaker household onto a South Water roof of its own
+                            family band would not add a man to the street; it
+                            would evict a better-evidenced documented business
+                            from a roof one-for-one, and it would stand
+                            L. W. Montgomery or John Holbrook on that street a
+                            second time. The remaining route — trading a
+                            labourer's D1 log cabin for a shoemaker's D4 cottage
+                            — is a claim about those men's means that no source
+                            carries, and the family band IS that claim. The
+                            refusal therefore stands and now names the adoption
+                            when there is one, so it can never again be read as
+                            saying the man is absent from the town.
   5. `already named in the town` — his surname already appears, capitalised, in a
                             committed structure record, household record or the
                             exclusions. The dataset has something to say about
@@ -133,6 +159,7 @@ REGISTER = DATA / "research" / "newspapers" / "register_1835.json"
 GAZETTEER = DATA / "research" / "newspapers" / "gazetteer.json"
 STRUCTURES = DATA / "structures"
 EXCLUSIONS = DATA / "exclusions.json"
+ADOPTIONS = DATA / "research" / "newspapers" / "street_face_adoptions.json"
 
 SCENE_DATE = "1835-07-01"
 PREFIX = "hh_inf_"
@@ -266,6 +293,40 @@ def invented_roofs(docs: dict) -> dict:
     return roofs
 
 
+def street_face_stands() -> dict[tuple[str, str], tuple[str, str]]:
+    """{(proprietor surname, street_id): (business name, roof)} from T-0354's pass.
+
+    T-0375 ASKED WHETHER THIS DEAL COULD PUT A TRADESMAN ON THE STREET HIS
+    ADVERTISEMENT NAMES, and refusal 8 below used to answer for the whole town
+    when it only ever spoke for the household layer. `docs/STREET-FACE-ADOPTION.md`
+    landed the owner's ruling of 2026-08-29 the same day the ticket was filed: a
+    business the paper puts on a street and nothing narrower adopts a reconstructed
+    roof whose platted lot fronts that street. Four of the six men refusal 8 was
+    written about — D. Graves, A. Filer & Co., L. W. Montgomery and John Holbrook —
+    are standing on South Water Street through that pass while this one still
+    reported that they had nowhere on it to go.
+
+    So the refusal now READS the adoption table before it speaks. It is not
+    softened and it seats nobody: a business adoption is a storefront and a
+    household seat is a dwelling, and this deal still has no roof of the man's
+    trade on his street to give him. What changes is that the refusal says which
+    of the two is missing instead of implying both are.
+    """
+    if not ADOPTIONS.exists():
+        return {}
+    stands: dict[tuple[str, str], tuple[str, str]] = {}
+    for row in load(ADOPTIONS).get("adoptions") or []:
+        street_id = row.get("street_id")
+        roof = row.get("structure_id")
+        if not street_id or not roof:
+            continue
+        for who in (row.get("proprietors") or []):
+            sur = surname(who)
+            if sur:
+                stands.setdefault((sur, street_id), (row.get("business_name") or who, roof))
+    return stands
+
+
 def trade_fronts(roof_list) -> str:
     """What a trade's invented roofs front, for a refusal that must say so."""
     seen: list[str] = []
@@ -289,6 +350,7 @@ def deal(docs: dict):
     known = town_surnames()
     roofs = invented_roofs(docs)
 
+    adopted = street_face_stands()
     pairs, refusals = [], []
     # One surname, one roof, ACROSS the whole deal and not merely within a trade:
     # a shared surname reads as kinship and this pass claims none.
@@ -413,11 +475,23 @@ def deal(docs: dict):
                      (roof[1].get("lives_at") or {}).get("value") or "", street_id)]
                  if how), None)
             if seat is None:
-                refusals.append((trade, cand["id"], cand["name"], (
+                reason = (
                     f"wanted {', '.join(fronting_street.street_name(s) for s in want)}; "
                     f"no invented {trade.replace('_', ' ')} roof fronts it "
                     f"(this trade's {len(roofs[trade])} roof(s) front "
-                    f"{trade_fronts(roofs[trade])})")))
+                    f"{trade_fronts(roofs[trade])})")
+                # T-0375: say so when he is already standing on that street as a
+                # storefront. The household seat is still refused; what the man
+                # is short of is a dwelling, not a place in the town.
+                already = next((adopted[(surname(cand["name"]), s)]
+                                for s in want
+                                if (surname(cand["name"]), s) in adopted), None)
+                if already:
+                    reason += (f" — but he stands on that street already as "
+                               f"'{already[0]}', a street-face adoption on "
+                               f"{already[1]} (T-0354); what he is short of here "
+                               f"is a dwelling, not a place in the town")
+                refusals.append((trade, cand["id"], cand["name"], reason))
                 continue
             roof, street_id, how = seat
             free.remove(roof)

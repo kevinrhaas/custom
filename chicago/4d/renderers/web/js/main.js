@@ -456,9 +456,27 @@ const DETAIL = {
   // block above `full` rather than written out twice.
   // T-0241 GIVES THIS RUNG A FURNITURE REACH, 800 m — the first trim `balanced`
   // has ever carried, and the whole reading is at `FURNITURE_REACH_BALANCED_M`
-  // above. The ceiling here is UNTOUCHED at 1,210,000; what changed is what the
-  // tier draws, which is the other way round from every entry above it.
-  balanced: { triangles: 1210000, shadowReachM: 240, furnitureCastsShadow: true,
+  // above. The ceiling was UNTOUCHED at 1,210,000 by that entry; what changed is
+  // what the tier draws, which is the other way round from every entry above it.
+  //
+  // -- 2026-08-31 -- T-0098's RULING IS APPLIED HERE, SEVEN DAYS LATE --
+  //
+  // The re-budget to 1,225,000 recorded above on 2026-08-24, and repeated in
+  // `docs/LIBERTIES.md`, was written into the comment and into the ledger and
+  // NEVER INTO THE VALUE. `git log -S"triangles: 1225000"` on this file is
+  // empty: the number has read 1,210,000 without interruption since before that
+  // ruling was made. The 1,260,000 in the ledger's table is a different episode
+  // — T-0229 raised it with `full` and returned it with `full` a day later, from
+  // 1,260,000 and not from 1,225,000 — so T-0098's figure was never in force and
+  // was never revoked. It is simply missing, and this applies it unchanged.
+  //
+  // What it unblocks, measured: PR #599 stood at 1,210,608 at the release
+  // smoke's worst stand and failed by 608 against the un-applied number. It is
+  // inside this one by 14,392, and so is #601's block. T-0098's own sizing still
+  // holds — this gives `balanced` about the 1 % headroom `full` carries, and buys
+  // no room for the parcel after these; T-0149 and T-0147 still own the trim
+  // that would win the rung back.
+  balanced: { triangles: 1225000, shadowReachM: 240, furnitureCastsShadow: true,
               furnitureReachM: FURNITURE_REACH_BALANCED_M },
   // -- T-0147, 2026-08-27 -- AND THE FLOOR IS WON BACK: 1,050,000 -> 785,000 --
   //

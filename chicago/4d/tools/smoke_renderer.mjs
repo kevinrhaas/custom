@@ -4170,9 +4170,18 @@ for (const [label, viewport, touch] of [
       // hitching post there would be furniture standing on an invention").
       // Nothing else moves: no run opens, no crossing is added, and the shop's
       // own wall was never a street-fence refusal.
+      // T-0384 stood john_holbrook_store on the South Water face of
+      // blk_south_water_dearborn — a documented STORE, which is a trade the
+      // hitching rule accepts — so ONE more post stands at that frontage: 17 to
+      // 18. This is a building ARRIVING rather than a trade settling, so unlike
+      // T-0263 no refusal retires with it and 83 does not move. Nothing else
+      // moves either: the face's walk was already laid for its whole length so
+      // no run opens and no crossing is added, and the shop stands 1.50 m back
+      // from the frontage line, inside the 3.0 m a street fence needs, which was
+      // already refused on that wall.
       frontage.census?.records === 5 && frontage.census?.walks === 51
         && frontage.census?.crossings === 39
-        && frontage.census?.posts === 17 && frontage.census?.fences === 35
+        && frontage.census?.posts === 18 && frontage.census?.fences === 35
         && frontage.census?.refused === 83
         && frontage.recordIds.join(',')
           === 'green_tree_frontage,sauganash_frontage,river_walk_frontage,'
@@ -4360,7 +4369,10 @@ for (const [label, viewport, touch] of [
     // arriving: frederick_thomas_shop already stood on South Water Street and
     // its frontage was refused a post in writing because its trade was
     // reconstructed, so settling that trade on the Chicago American's own
-    // heading is what qualifies it. The street-edge population is fourteen. The two
+    // heading is what qualifies it. T-0384 makes it seventeen, and that one IS a building
+    // arriving: John Holbrook's clothing store is a documented store on
+    // South Water Street, so the rule stands a post at its frontage and no
+    // refusal retires with it. The street-edge population is fifteen. The two
     // populations are told apart by `street`, which is exactly the field that
     // decides the mesh: a post naming a street is standing timber in that
     // street's chunk, and a post naming none falls back to the shared mesh. The
@@ -4376,11 +4388,11 @@ for (const [label, viewport, touch] of [
     const postsBad = frontage.hitching.filter((h) => !(h.found > 0
       && Math.abs(h.top - h.recorded) <= 0.05
       && Math.abs(h.low) <= 0.02 && h.clear > 0 && !h.text));
-    check(`${label}: the sixteen hitching posts stand on their own ground, carrying nothing`,
-      frontage.hitching.length === 16
-        && frontage.census?.hitching === 16
+    check(`${label}: the seventeen hitching posts stand on their own ground, carrying nothing`,
+      frontage.hitching.length === 17
+        && frontage.census?.hitching === 17
         && frontage.hitching.filter((h) => !h.street).length === 2
-        && frontage.hitching.filter((h) => h.street).length === 14
+        && frontage.hitching.filter((h) => h.street).length === 15
         && postsBad.length === 0
         && frontage.census?.lettered === 1
         && frontage.noBoardHere === false,
@@ -8921,7 +8933,7 @@ for (const [label, viewport, touch] of [
               const key = `${Math.floor(x)},${Math.floor(z)}`;
               let b = grid.get(key);
               if (!b) { b = []; grid.set(key, b); }
-              b.push({ x, z, top: mm[o + 13] + fl[i * 4] * h, r: fl[i * 4 + 1] * h });
+              b.push({ x, z, top: mm[o + 13] + fl[i * 4] * h, r: fl[i * 4 + 1] * h, set: m.name });
             }
           }
           for (const m of meshes) {
@@ -8945,13 +8957,18 @@ for (const [label, viewport, touch] of [
               const fy = y + mm[o + 5] * s;
               const fz = z + mm[o + 6] * s;
               let best = -Infinity;
+              // T-0448 diagnostic: the nearest rooted plant IGNORING the radius
+              // test, so an orphan can be told from a stem the radius missed.
+              let nearest = null;
               for (let kx = Math.floor(fx) - 1; kx <= Math.floor(fx) + 1; kx++) {
                 for (let kz = Math.floor(fz) - 1; kz <= Math.floor(fz) + 1; kz++) {
                   const b = grid.get(`${kx},${kz}`);
                   if (!b) continue;
                   for (const p of b) {
+                    const d = Math.hypot(p.x - fx, p.z - fz);
+                    if (!nearest || d < nearest.d) nearest = { d, r: p.r, top: p.top, set: p.set };
                     if (p.top > best
-                      && Math.hypot(p.x - fx, p.z - fz) <= Math.max(0.05, p.r) + SLACK) best = p.top;
+                      && d <= Math.max(0.05, p.r) + SLACK) best = p.top;
                   }
                 }
               }
@@ -8960,7 +8977,10 @@ for (const [label, viewport, touch] of [
                 const gap = best === -Infinity ? null : fy - best;
                 if (!worst || (gap ?? 9) > (worst.gap ?? 9) || best === -Infinity) {
                   worst = { set: m.name, at: anchor.id, yaw, y: fy, gap, rise: rise[i],
-                    orphan: best === -Infinity };
+                    orphan: best === -Infinity,
+                    // What was actually there, and why it did not count.
+                    nearest: nearest && { set: nearest.set, d: +nearest.d.toFixed(3),
+                      r: +nearest.r.toFixed(3), reach: +(nearest.top - fy).toFixed(3) } };
                 }
               }
             }
@@ -8977,6 +8997,13 @@ for (const [label, viewport, touch] of [
         ? `; worst ${headSupport.worst.set} at ${headSupport.worst.at} ${headSupport.worst.yaw}deg, `
           + `foot ${headSupport.worst.y.toFixed(2)} m, ${headSupport.worst.rise.toFixed(2)} m over its base `
           + (headSupport.worst.orphan ? 'over open ground' : `above a ${headSupport.worst.gap.toFixed(2)} m gap`)
+          // T-0448: name what WAS there. An orphan with a rooted plant 0.2 m away
+          // is the radius test being too tight; one with nothing for metres is the
+          // flora layer placing a head its stem never got.
+          + (headSupport.worst.nearest
+            ? `; nearest rooted ${headSupport.worst.nearest.set} at ${headSupport.worst.nearest.d} m `
+              + `(its own radius ${headSupport.worst.nearest.r} m, top ${headSupport.worst.nearest.reach} m from the foot)`
+            : '; no rooted plant in the nine cells at all')
         : ''));
 
     inStageWork = false;

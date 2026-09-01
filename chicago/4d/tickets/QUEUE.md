@@ -38,6 +38,63 @@
 # newspaper reads and street work). The BANDS, not the epic, say where a ticket
 # belongs. Correcting the field is worth a run of its own.
 
+# --- DEV'S OWN SMOKE IS RED, AND EVERY PR INHERITS IT — 2026-08-31.
+# --- 2,693 of 18,893 drawn flower heads stand over nothing at desktop width. The
+# --- same count, pose and worst offender appear on dev at 54921610 and on PR #560
+# --- at ab4dad40, so no branch caused it. It is first here because a red dev makes
+# --- every other ticket's gate unreadable: a run cannot tell its own failure from
+# --- the one it inherited, and #591 and #432 may already be blocked by nothing but
+# --- this. Fix it and their smoke may simply pass.
+T-0448 — 2,693 drawn flower heads stand over nothing — dev's full smoke has been red on it since 2026-08-30 and every PR inherits it
+
+# --- WHAT A VISITOR ACTUALLY SEES — OWNER REPORTS, 2026-08-31. Both are visible
+# --- faults at walking distance, and the owner asked for T-0460 SOONER THAN MOST:
+# --- the plank walk's sawtooth against the dirt road is among the first things in
+# --- view. T-0459 is 20 signs mounted flat on facades by a generator that mentions
+# --- doors sixteen times and never once as geometry. Both are cheap beside the
+# --- ground work below, and this band is the answer to the queue's own complaint
+# --- that 41 merges added nothing a visitor could see.
+T-0460 — The plank walk meets the dirt road in a jagged sawtooth, and it is the first thing a visitor sees
+T-0459 — Signboards are mounted over doors and windows, when the same wall has blank face to put them on
+# --- T-0450 sits beside T-0448 because both make a gate unreadable: one leaves dev red
+# --- so a run cannot tell its own failure from an inherited one, and this one misstates
+# --- the cap three tickets measure their margins against. T-0181 (PR #591) is arguing
+# --- against the wrong bound until it is fixed.
+T-0450 — SMOKE-BUDGET.md compares a per-leg cap with a whole-gate total, and calls one runner a different machine from the other
+# --- T-0454 is beside T-0450 for the same reason: it makes a gate's own instruction
+# --- untrue. The gate says re-bake a stale asset; the bake, run on that exact tree,
+# --- rebuilds nothing. PR #597 is blocked on this and nothing else.
+T-0454 — The gate calls a GLB stale and the bake declines to rebuild it, so a stale asset cannot be cleared by baking
+
+# --- THE WEST DIVISION IS WRONG ON THE GROUND — OWNER FAULT REPORT, 2026-08-31.
+# --- Reported from the dev preview against the Thompson plat sheet. Three of its
+# --- findings are already measured from the committed files: only TWO of the plat's
+# --- five north-south West Division streets exist, carroll and fulton exist nowhere,
+# --- and the one west-side spacing this project holds is 112.1 m against a South
+# --- Division band of 119.2-123.4 m. The fourth — whether the whole grid sits one
+# --- street west, so that `canal` is really Clinton — is a MEASUREMENT nobody has
+# --- taken yet, and every building west of the river depends on the answer.
+# --- This outranks the roof bands: those add buildings to ground that is correct,
+# --- and this asks whether a quarter of the town is standing in the wrong place.
+T-0444 — Measure the west bank of the South Branch and step the plat's sequence from it: is the line drawn as Canal really Clinton?
+T-0445 — West Water, Jefferson and Des Plaines: the three West Division streets the plat carries and no committed file holds
+T-0446 — Carroll and Fulton: two platted tiers the West Division has no street between
+T-0447 — North Water Street's west end runs across Wolf Point, which the Thompson plat does not give it
+
+# --- THE NORTH DIVISION AND THE WATER — OWNER MARK-UP OF THE DEV PREVIEW, 2026-08-31.
+# --- Ordered by dependency, not by size. T-0453 is FIRST because both the street
+# --- tickets measure against the bank, and the bank is what is in question: every
+# --- planform in this project is traced from Wright 1834 and the owner reads the
+# --- Thompson plat differently at Wolf Point. It also carries a named defect — a
+# --- single vertex on the South Branch 9.4 m off its own neighbours, the worst in
+# --- the feature. T-0451 is the North Division's missing grid: ONE north-south
+# --- street stands north of the river where the plat carries a whole division.
+# --- T-0452 is the sloughs: the plat draws three, this holds one, as a bare
+# --- centreline with no banks — and they cross the ground T-0451 wants to plat.
+T-0453 — The river banks are traced from Wright 1834 and the owner reads the Thompson plat differently at Wolf Point
+T-0451 — Only one north-south street stands north of the river, where the Thompson plat carries the North Division's whole grid
+T-0452 — The plat draws three sloughs off the Main Branch; this reconstruction holds one, as a centreline with no banks
+
 # --- THE CITY GAINS PEOPLE AND ROOFS — FOUR OWNER RULINGS, 2026-08-30, each written
 # --- into its ticket with its limits. This band exists because the last 41 merges added
 # --- no buildings. Ordered by how much each one adds. TAKE FROM THE TOP.
@@ -50,13 +107,10 @@ T-0429 — Open blk_south_water_lasalle: 8 roofs of headroom on three free lots
 T-0430 — Open blk_south_water_franklin: 4 roofs of headroom on two free lots
 T-0431 — Open blk_south_water_clark: 4 roofs of headroom on two free lots
 T-0432 — Open blk_south_water_dearborn: 4 roofs of headroom on two free lots
-T-0183 — The Market and South Water corner needs one control point, and the node rule may not be able to make it
-T-0384 — John Holbrook's store takes its door on South Water Street, one door from Dearborn
 
 # --- MORE BUILDINGS AND TRADES, ALREADY RUNNABLE — no ruling needed, and each one puts
 # --- something in the scene or lets a documented person stand somewhere.
 T-0385 — The New York Clothing Store stands three doors north of the Tremont House in Dearborn Street
-T-0375 — Every reconstructed roof on South Water Street is a labourer's, so five documented tradesmen the papers put there have nowhere to stand
 T-0423 — G. Spring's large dwelling-house and fine well stands on lot 7 of block 16, where an anonymous roof stands now
 T-0418 — The 36 documented tradespeople whose trade the residents vocabulary has no word for
 T-0414 — The street-face adoption refuses W. Montgomery a roof for being the bootmaker, and identity.json already ruled they are two houses
@@ -160,3 +214,5 @@ T-0388 — Three derived records have drifted from their own generators on an un
 # --- land under this line. NOT yet placed by the owner.
 T-0438 — The letter-list cohort is 2.54 MiB of the published tree, and it is now the largest single item in it
 T-0439 — Two pixel-sensitivity checks fail when parts 9-12 run together and pass when part 9 runs alone
+T-0440 — Clark, Filer & Co.'s live placement is empty while three printings put its warehouse five doors east of Randolph
+T-0449 — Four South Water frontage entries declare lots their runs never reach, and each hides its block's headroom

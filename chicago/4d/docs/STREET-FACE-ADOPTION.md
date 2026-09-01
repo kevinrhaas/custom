@@ -265,6 +265,20 @@ goes from nought shops to six**, La Salle from nought to three, Canal from nough
   **T-0375** is the ticket that notices South Water's reconstructed roofs are all a
   labourer's, and any roof it adds to that face is a roof this pass will take on its next
   re-derivation, automatically.
+
+  **T-0375 closed refuted on 2026-08-29, and the reason belongs here because it is a cost
+  of this policy rather than of that ticket.** It asked whether an inferred household could
+  be reseated onto a South Water roof of its own family band so a documented tradesman
+  could take it. **Not one roof on this face is free**, so taking two is one-for-one:
+  re-deriving this pass with them marked as households' homes drops the town's adoptions
+  from 24 to 22 and this face's from 14 to 12, evicting `E. L. Thrall` and `the New Store at
+  the corner of Water and Clark streets`. **This face is exhausted, so every roof a
+  household takes on it now comes out of a documented business.** One of the two is
+  John Holbrook's own adoption, so the seat would evict the man it was meant to seat; and
+  both men it would go to — L. W. Montgomery and John Holbrook — are already standing on
+  this face under limit 3 above, which would have put them on the street twice. The remedy
+  is unchanged and is T-0375's own: raise more frontage on South Water, and this pass takes
+  it automatically.
 - **Lake Street (2 refused)** — both a second heading of a proprietor already seated.
 
 ## The 84 `unplaceable` are NOT covered, and stay open
