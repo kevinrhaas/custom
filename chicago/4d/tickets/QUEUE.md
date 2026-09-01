@@ -184,7 +184,6 @@ T-0252 — Decide once whether a baked town carries the nine renderer-drawn laye
 T-0253 — May an invented building stand on the river margin of a platted street corridor
 
 # --- MEASUREMENT, GATES AND PROVENANCE — invisible, and nothing below blocks the above
-T-0409 — A change can land on dev with no changelog entry, and one did today
 T-0239 — Nothing tests the party-line note's prose against the placement it describes
 T-0230 — Two named South Water frontages carry a reconstructed trade, so neither a signboard nor a hitching post will ever stand at them
 T-0371 — The lattice path's block rotation is dead code that measure_rank_bias.mjs's drift guard pins in place
