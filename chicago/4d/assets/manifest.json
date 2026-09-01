@@ -345,8 +345,8 @@
     "harmon_loomis_store__frame_1833.glb": {
       "archetype": "frame_storefront",
       "baked_ao": false,
-      "bytes": 63444,
-      "inputs_sha256": "c9ca4d5e25f0c1519bbc5a2cf4dca26b5dae615e44e861d501766c5aea911a95",
+      "bytes": 66252,
+      "inputs_sha256": "58e3dd2fba9549677ce331b39435a700a9b75253c20aa641fd947bc8bd173862",
       "kind": "generated",
       "phase_id": "frame_1833",
       "structure_id": "harmon_loomis_store"
@@ -903,8 +903,8 @@
     "pruyne_kimball_drugstore__frame_1830s.glb": {
       "archetype": "frame_storefront",
       "baked_ao": false,
-      "bytes": 47864,
-      "inputs_sha256": "5dfa9304bf5db5059b05680504552c0ec01e7a7a5816aa5e2734b1e7f1ef93db",
+      "bytes": 43964,
+      "inputs_sha256": "31e4096184ad3aa94bae086b30da5ab721530812ceacaa9ad2d4297e2fc2b41c",
       "kind": "generated",
       "phase_id": "frame_1830s",
       "structure_id": "pruyne_kimball_drugstore"
@@ -1764,6 +1764,24 @@
       "phase_id": "inferred_1835",
       "structure_id": "recon_1835_blk_south_water_lasalle_a1_06"
     },
+    "recon_1835_blk_south_water_lasalle_a1_14__inferred_1835.glb": {
+      "archetype": "outbuilding",
+      "baked_ao": false,
+      "bytes": 91088,
+      "inputs_sha256": "c17de13693aba04b4a219763965f5e25520fab57327827897f5c695261e02b28",
+      "kind": "generated",
+      "phase_id": "inferred_1835",
+      "structure_id": "recon_1835_blk_south_water_lasalle_a1_14"
+    },
+    "recon_1835_blk_south_water_lasalle_a2_15__inferred_1835.glb": {
+      "archetype": "outbuilding",
+      "baked_ao": false,
+      "bytes": 174608,
+      "inputs_sha256": "b2a3c897e150601fdd29a92edcfb2cfd24b95e171f2e25e19fceaa6b3a3e1025",
+      "kind": "generated",
+      "phase_id": "inferred_1835",
+      "structure_id": "recon_1835_blk_south_water_lasalle_a2_15"
+    },
     "recon_1835_blk_south_water_lasalle_a3_07__inferred_1835.glb": {
       "archetype": "outbuilding",
       "baked_ao": false,
@@ -1772,6 +1790,15 @@
       "kind": "generated",
       "phase_id": "inferred_1835",
       "structure_id": "recon_1835_blk_south_water_lasalle_a3_07"
+    },
+    "recon_1835_blk_south_water_lasalle_c3_13__inferred_1835.glb": {
+      "archetype": "frame_storefront",
+      "baked_ao": false,
+      "bytes": 58796,
+      "inputs_sha256": "8c05188f43c9731f20f84b7df5ce9f7cd5c4ead181140bacd931d0d47dd3e742",
+      "kind": "generated",
+      "phase_id": "inferred_1835",
+      "structure_id": "recon_1835_blk_south_water_lasalle_c3_13"
     },
     "recon_1835_blk_south_water_lasalle_d1_04__inferred_1835.glb": {
       "archetype": "log_dwelling",
@@ -1782,6 +1809,15 @@
       "phase_id": "inferred_1835",
       "structure_id": "recon_1835_blk_south_water_lasalle_d1_04"
     },
+    "recon_1835_blk_south_water_lasalle_d1_08__inferred_1835.glb": {
+      "archetype": "log_dwelling",
+      "baked_ao": false,
+      "bytes": 32824,
+      "inputs_sha256": "db6935e782cccfddc7fdb1240554c0151f8010a4eb9453111facd9368d0a7385",
+      "kind": "generated",
+      "phase_id": "inferred_1835",
+      "structure_id": "recon_1835_blk_south_water_lasalle_d1_08"
+    },
     "recon_1835_blk_south_water_lasalle_d2_05__inferred_1835.glb": {
       "archetype": "outbuilding",
       "baked_ao": false,
@@ -1790,6 +1826,15 @@
       "kind": "generated",
       "phase_id": "inferred_1835",
       "structure_id": "recon_1835_blk_south_water_lasalle_d2_05"
+    },
+    "recon_1835_blk_south_water_lasalle_d2_09__inferred_1835.glb": {
+      "archetype": "outbuilding",
+      "baked_ao": false,
+      "bytes": 70416,
+      "inputs_sha256": "5f5d862c3466e778f9ca59f8262ec4440b8cd0a5d0917fad3c4f7efeeba3266b",
+      "kind": "generated",
+      "phase_id": "inferred_1835",
+      "structure_id": "recon_1835_blk_south_water_lasalle_d2_09"
     },
     "recon_1835_blk_south_water_lasalle_d3_03__inferred_1835.glb": {
       "archetype": "frame_dwelling",
@@ -1800,11 +1845,20 @@
       "phase_id": "inferred_1835",
       "structure_id": "recon_1835_blk_south_water_lasalle_d3_03"
     },
+    "recon_1835_blk_south_water_lasalle_d3_10__inferred_1835.glb": {
+      "archetype": "frame_dwelling",
+      "baked_ao": false,
+      "bytes": 29264,
+      "inputs_sha256": "b8a93d1041328908e98ed75259a33b238603ed11ca99ddd26a5a798754e90f42",
+      "kind": "generated",
+      "phase_id": "inferred_1835",
+      "structure_id": "recon_1835_blk_south_water_lasalle_d3_10"
+    },
     "recon_1835_blk_south_water_lasalle_d4_02__inferred_1835.glb": {
       "archetype": "frame_dwelling",
       "baked_ao": false,
-      "bytes": 27080,
-      "inputs_sha256": "032beb895e2a1ca8c3b160fa8f2681586376ea1acc38d9d72e8759fa88098b6b",
+      "bytes": 29888,
+      "inputs_sha256": "7a9cfe9694f3f7cbf36fb39187955d5d02423e426bb93e879b1ac58c79701e22",
       "kind": "generated",
       "phase_id": "inferred_1835",
       "structure_id": "recon_1835_blk_south_water_lasalle_d4_02"
@@ -1812,11 +1866,29 @@
     "recon_1835_blk_south_water_lasalle_d5_01__inferred_1835.glb": {
       "archetype": "frame_dwelling",
       "baked_ao": false,
-      "bytes": 29888,
-      "inputs_sha256": "fde10b5de4cee2cdcee2a86cc230462c12e9f65619326cbe62d17ba4863d9a5d",
+      "bytes": 28016,
+      "inputs_sha256": "2a9a88639248f3f9380b8107fcb7020f684e299c17e267429829954deb04af43",
       "kind": "generated",
       "phase_id": "inferred_1835",
       "structure_id": "recon_1835_blk_south_water_lasalle_d5_01"
+    },
+    "recon_1835_blk_south_water_lasalle_d6_11__inferred_1835.glb": {
+      "archetype": "frame_dwelling",
+      "baked_ao": false,
+      "bytes": 35196,
+      "inputs_sha256": "901e5570f1fc83a68b1fb929eadac8b598e0f46c60bcefd50f96f5e9ea5ecbb2",
+      "kind": "generated",
+      "phase_id": "inferred_1835",
+      "structure_id": "recon_1835_blk_south_water_lasalle_d6_11"
+    },
+    "recon_1835_blk_south_water_lasalle_d7_12__inferred_1835.glb": {
+      "archetype": "frame_dwelling",
+      "baked_ao": false,
+      "bytes": 47368,
+      "inputs_sha256": "2b2543e2c288416ea38c318430ebcd13318a54159cf60a01e3419f3692338bcf",
+      "kind": "generated",
+      "phase_id": "inferred_1835",
+      "structure_id": "recon_1835_blk_south_water_lasalle_d7_12"
     },
     "recon_1835_blk_south_water_wells_a1_07__inferred_1835.glb": {
       "archetype": "outbuilding",

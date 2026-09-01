@@ -1,6 +1,6 @@
 {
   "project": "chicago-4d",
-  "generated_ct": "Aug 31, 2026, 4:18 PM",
+  "generated_ct": "Aug 31, 2026, 7:26 PM",
   "tickets": [
     {
       "id": "T-0001",
@@ -7040,7 +7040,7 @@
     {
       "id": "T-0429",
       "title": "Open blk_south_water_lasalle: 8 roofs of headroom on three free lots",
-      "state": "open",
+      "state": "claimed",
       "epic": "META",
       "requested_by": "loop",
       "seen": false,
@@ -7050,7 +7050,7 @@
       "opened": "2026-08-29",
       "closed": null,
       "pr": null,
-      "claimed_by": null,
+      "claimed_by": "run 8/30/2026, 1:51:13 AM CT",
       "blocked_on": null,
       "needs_bake": true,
       "queue_rank": 10
@@ -7324,6 +7324,24 @@
       "blocked_on": null,
       "needs_bake": false,
       "queue_rank": 0
+    },
+    {
+      "id": "T-0449",
+      "title": "Four South Water frontage entries declare lots their runs never reach, and each hides its block's headroom",
+      "state": "open",
+      "epic": "META",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "M",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-08-30",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "queue_rank": 84
     },
     {
       "id": "T-0450",
