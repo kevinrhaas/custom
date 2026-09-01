@@ -1,4 +1,11 @@
 export const CHANGELOG = [ // newest first
+  { v: 438, title: 'Seventy-five real names get a research trail, including the dead ends', kind: 'feature', ts: '2026-08-31T08:58:45.943Z', date: 'Aug 31, 2026, 3:58 AM CT',
+    items: [
+      'Seventy-five of the town’s 848 real named people have received a dated identity-research review. The sample deliberately mixes five established profiles, all twenty richer newspaper names still lacking a home, and fifty names known only from the post office’s lists.',
+      'The result is four corroborated findings, seven possible identities and sixty-four searches where no safe match was found. A no-find does not say the person never existed; it says this pass found no record that could be connected without relying on the name alone.',
+      'Possible identities now appear on the person’s card with the evidence for and against them and the words “not merged.” Augustus Garrett may be A. Garrett the auctioneer, and James Curtiss may be J. Curtiss the attorney, but neither biography has been silently imported into an initial.',
+      'Two tempting matches are recorded as conflicts instead of discarded. The known Jesse W. Fell was in Vandalia and Clinton during 1835, not automatically Chicago’s J. W. Fell; a northern-Illinois James McFadden is placed at Dayton and Galena. Surnames were search leads only—nobody gained an invented heritage, family, marriage, birthplace or occupation.',
+    ] },
   { v: 437, title: 'Six roofs on South Water Street, and the slough that moved them', kind: 'feature', ts: '2026-08-30T07:31:19.912Z', date: 'Aug 30, 2026, 2:31 AM CT',
     items: [
       'Six buildings now stand shoulder to shoulder along the west half of South Water Street, between La Salle and Clark \u2014 the longest unbroken row this reconstruction has built. A log cabin, a plank shanty, three frame houses of rising size and a narrow two-storey store, with a stable and a carriage shed in the yards behind them.',

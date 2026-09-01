@@ -399,7 +399,9 @@ jobs:
             --head "$BRANCH" 2>&1); then
             # GitHub reports this org/repo policy failure as a GraphQL error string.
             # Match it exactly so other gh failures still stop the workflow.
-            if printf '%s\n' "$pr_output" | grep -Fq "GitHub Actions is not permitted to create or approve pull requests"; then
+            # GitHub varies the exact wording for repo policy blocks; warn for the
+            # known permission-denied cases but still fail for unrelated gh errors.
+            if printf '%s\n' "$pr_output" | grep -Eiq "GitHub Actions.*not permitted.*pull request|pull request creation is disabled for this repository"; then
               echo "::warning::$pr_output"
               echo "::notice::Baked changes were pushed to $BRANCH. Open a PR manually at https://github.com/${GITHUB_REPOSITORY}/compare/${BRANCH}?expand=1"
             else

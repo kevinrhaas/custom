@@ -1069,6 +1069,15 @@ step "…and its own assertions still fire when broken" \
 step "the minted letter-list residents re-derive from the register" \
   python3 tools/mint_letter_list_residents.py --check
 
+# T-0442. These reviews sit beside household facts on purpose: a plausible
+# biography must stay a candidate until something more than the name bridges it
+# to the 1835 record. Re-derive the fixed cohort and its public review payload.
+step "the 75-person real-resident research cohort is fixed" \
+  python3 tools/select_resident_research_pilot.py --gate
+
+step "every pilot resident has a reproducible research outcome" \
+  python3 tools/compile_resident_research_pilot.py --gate
+
 # …and the ruling's own conditions, which --check cannot see. --check proves the records
 # are what the pass derives; this proves the DERIVATION is what the owner permitted —
 # every minted person carrying `letter_list_only` and the dated return behind it, and not
