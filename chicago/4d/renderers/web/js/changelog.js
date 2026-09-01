@@ -1,4 +1,12 @@
 export const CHANGELOG = [ // newest first
+  { v: 439, title: 'A hitching post stops standing at the wrong end of the block', kind: 'fix', ts: '2026-09-01T03:55:14.551Z', date: 'Aug 31, 2026, 10:55 PM CT',
+    items: [
+      'A post to tie a horse to belongs outside the shop it serves. This town has been placing them by asking a narrower question \u2014 does the building stand inside this lot? \u2014 and on a deep corner lot the answer can be yes while the shop\u2019s door opens onto the other street entirely.',
+      'The case that showed it: a clothing store whose door is on Dearborn Street sits on a lot that fronts Lake Street, and the rule stood its hitching post on the Lake frontage, forty-nine metres from the door it was meant to serve. A rider tying up there would have had a walk to the shop.',
+      'The rule now asks the building which way it faces, not just which lot it is standing on. Where the two disagree by more than forty-five degrees the post is refused, and the refusal is written down with both bearings and the street each belongs to, so the reason survives for anyone reading the record later.',
+      'Nothing you can see in the town changed today. No post moved and none was removed, because the building that exposed this is not standing yet \u2014 what changed is that when it arrives, its post will be at its own door. One existing refusal now gives a truer reason than it did: the auction room was already going without a post for want of a footway, and it is really the same fault, its door facing ninety degrees away from the frontage it stands on.',
+      'The other half of this question was ruled and deliberately left alone. A board fence still runs along the lot\u2019s own street frontage whichever way the building faces, because a fence is the lot\u2019s boundary and not the shop\u2019s advertisement.',
+    ] },
   { v: 438, title: 'Seventy-five real names get a research trail, including the dead ends', kind: 'feature', ts: '2026-08-31T08:58:45.943Z', date: 'Aug 31, 2026, 3:58 AM CT',
     items: [
       'Seventy-five of the town’s 848 real named people have received a dated identity-research review. The sample deliberately mixes five established profiles, all twenty richer newspaper names still lacking a home, and fifty names known only from the post office’s lists.',
