@@ -143,3 +143,65 @@ So fixing this releases **#591 outright**. #432 needs its own run whatever happe
 here, and its different flora count (2,316 of 18,002 against dev's 2,693 of
 18,893) says its tree is different rather than that it inherited this one.
 
+---
+
+## THE LEAD ABOVE IS WRONG, AND HERE IS THE EVIDENCE — 2026-08-31
+
+The lead recorded earlier guessed that `ROOTED` was short two meshes and that the
+ASSERTION might be at fault. **It is not.** Read from `renderers/web/js/flora.js`
+rather than from a grep for name strings:
+
+`instSet(...)` is what makes an instanced mesh, and it is called for exactly
+**fifteen**:
+
+| non-head (6) | head (9) |
+|---|---|
+| `flora-near`, `flora-forb`, `flora-rosette`, `flora-shrub` | `flora-head-` spike, spire, panicle, corymb, dome, pompom, ray, raydroop, compound |
+| `flora-mid`, `flora-far` | |
+
+`ROOTED` holds the four in the first row and excludes `flora-mid` and `flora-far`
+— and **both of those are `cardGeometry(...)`**, the billboard LOD:
+
+```
+flora-mid = instSet('flora-mid', cardGeometry(7),               ...)
+flora-far = instSet('flora-far', cardGeometry(tune.far.columns), ...)
+```
+
+A card carries no head, which is exactly what the comment above `ROOTED` says it
+is excluding and why. **`flora-tuft` and `flora-card` are not meshes at all** —
+they are geometry labels passed to `finishGeo`, which is what the earlier grep
+caught and misread.
+
+**So the support set is correct and the heads really are unsupported.** The fault
+is in the flora layer, not in the check. Anyone arriving here should not spend a
+second on `ROOTED`.
+
+### What is now known about where to look
+
+The caps are worth a look but do not obviously explain it. At full detail
+(`TUNE.cap`) the stems get `near: 2400` and `forb: 900` against `head: 820`
+shared across all nine head shapes, so heads are the scarcer instance — a cap
+that binds would give a stem with no head, which is harmless, rather than the
+head with no stem that is being reported.
+
+The check's own geometry is the next thing to read. It derives the head's foot as
+
+```
+s  = lo * fl[i*4]          // lo = lowest y in the head geometry, fl = scale
+fx = x + mm[o+4] * s       // origin + the instance's local Y axis, scaled
+```
+
+and then requires a plant whose top reaches `fy` **and** whose base is within
+`max(0.05, p.r) + SLACK` of `(fx, fz)` horizontally. Two candidates follow, and
+neither is tested here:
+
+1. **The horizontal test is too tight for a leaning stem.** A head sitting at the
+   top of a stem that leans is offset from its own base by more than the base's
+   radius, and would read as an orphan while standing on its own plant.
+2. **The head is genuinely placed without its stem** — the scatter puts heads and
+   stems from separate passes and one of them drops instances the other keeps.
+
+Telling those apart needs the renderer, which is why this is left as a reading
+and not a fix. The diagnostic recorded earlier still stands: make the walk report
+the STEM's mesh alongside `worst.set`, and the answer falls out.
+

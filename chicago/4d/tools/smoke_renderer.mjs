@@ -8933,7 +8933,7 @@ for (const [label, viewport, touch] of [
               const key = `${Math.floor(x)},${Math.floor(z)}`;
               let b = grid.get(key);
               if (!b) { b = []; grid.set(key, b); }
-              b.push({ x, z, top: mm[o + 13] + fl[i * 4] * h, r: fl[i * 4 + 1] * h });
+              b.push({ x, z, top: mm[o + 13] + fl[i * 4] * h, r: fl[i * 4 + 1] * h, set: m.name });
             }
           }
           for (const m of meshes) {
@@ -8957,13 +8957,18 @@ for (const [label, viewport, touch] of [
               const fy = y + mm[o + 5] * s;
               const fz = z + mm[o + 6] * s;
               let best = -Infinity;
+              // T-0448 diagnostic: the nearest rooted plant IGNORING the radius
+              // test, so an orphan can be told from a stem the radius missed.
+              let nearest = null;
               for (let kx = Math.floor(fx) - 1; kx <= Math.floor(fx) + 1; kx++) {
                 for (let kz = Math.floor(fz) - 1; kz <= Math.floor(fz) + 1; kz++) {
                   const b = grid.get(`${kx},${kz}`);
                   if (!b) continue;
                   for (const p of b) {
+                    const d = Math.hypot(p.x - fx, p.z - fz);
+                    if (!nearest || d < nearest.d) nearest = { d, r: p.r, top: p.top, set: p.set };
                     if (p.top > best
-                      && Math.hypot(p.x - fx, p.z - fz) <= Math.max(0.05, p.r) + SLACK) best = p.top;
+                      && d <= Math.max(0.05, p.r) + SLACK) best = p.top;
                   }
                 }
               }
@@ -8972,7 +8977,10 @@ for (const [label, viewport, touch] of [
                 const gap = best === -Infinity ? null : fy - best;
                 if (!worst || (gap ?? 9) > (worst.gap ?? 9) || best === -Infinity) {
                   worst = { set: m.name, at: anchor.id, yaw, y: fy, gap, rise: rise[i],
-                    orphan: best === -Infinity };
+                    orphan: best === -Infinity,
+                    // What was actually there, and why it did not count.
+                    nearest: nearest && { set: nearest.set, d: +nearest.d.toFixed(3),
+                      r: +nearest.r.toFixed(3), reach: +(nearest.top - fy).toFixed(3) } };
                 }
               }
             }
@@ -8989,6 +8997,13 @@ for (const [label, viewport, touch] of [
         ? `; worst ${headSupport.worst.set} at ${headSupport.worst.at} ${headSupport.worst.yaw}deg, `
           + `foot ${headSupport.worst.y.toFixed(2)} m, ${headSupport.worst.rise.toFixed(2)} m over its base `
           + (headSupport.worst.orphan ? 'over open ground' : `above a ${headSupport.worst.gap.toFixed(2)} m gap`)
+          // T-0448: name what WAS there. An orphan with a rooted plant 0.2 m away
+          // is the radius test being too tight; one with nothing for metres is the
+          // flora layer placing a head its stem never got.
+          + (headSupport.worst.nearest
+            ? `; nearest rooted ${headSupport.worst.nearest.set} at ${headSupport.worst.nearest.d} m `
+              + `(its own radius ${headSupport.worst.nearest.r} m, top ${headSupport.worst.nearest.reach} m from the foot)`
+            : '; no rooted plant in the nine cells at all')
         : ''));
 
     inStageWork = false;
