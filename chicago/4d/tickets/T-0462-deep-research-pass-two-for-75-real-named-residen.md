@@ -1,7 +1,7 @@
 ---
 id: T-0462
 title: Deep research pass two for 75 real named residents
-state: claimed
+state: done
 epic: META
 requested_by: owner
 seen: false
@@ -9,8 +9,8 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-09-01
-closed: null
-pr: null
+closed: 2026-09-01
+pr: 622
 claimed_by: run 9/1/2026, 1:07:10 AM CT
 blocked_on: null
 needs_bake: false

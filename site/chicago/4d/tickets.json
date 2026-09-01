@@ -1,6 +1,6 @@
 {
   "project": "chicago-4d",
-  "generated_ct": "Sep 1, 2026, 1:28 AM",
+  "generated_ct": "Sep 1, 2026, 7:08 AM",
   "tickets": [
     {
       "id": "T-0001",
@@ -7526,7 +7526,7 @@
     {
       "id": "T-0462",
       "title": "Deep research pass two for 75 real named residents",
-      "state": "claimed",
+      "state": "done",
       "epic": "META",
       "requested_by": "owner",
       "seen": false,
@@ -7534,12 +7534,12 @@
       "legacy_id": null,
       "parent": null,
       "opened": "2026-09-01",
-      "closed": null,
-      "pr": null,
+      "closed": "2026-09-01",
+      "pr": "622",
       "claimed_by": "run 9/1/2026, 1:07:10 AM CT",
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 87
+      "queue_rank": null
     },
     {
       "id": "T-0463",
@@ -7557,7 +7557,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 88
+      "queue_rank": 87
     }
   ]
 }
