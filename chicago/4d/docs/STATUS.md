@@ -1,5 +1,154 @@
 # STATUS
 
+## Shipped 2026-08-30 — T-0384: an ordinal off a corner places a store, and claims no lot
+
+**John Holbrook's clothing store stands on South Water Street, one door east of Dearborn**,
+between the Chicago American's office at the corner and Frederick Thomas's shop. Two papers
+print the address — Democrat 1835-06-10 c010 (*"on South-Water st. one door from Dearborn
+street"*) and American 1835-06-13 c012 — and the reading that let him be placed is the
+owner's ruling of 2026-08-30: **a count of doors off a named corner is an ordinal off the
+corner, not a reach of the street**. `docs/CORNER-ORDINAL.md` is the policy.
+
+### What was in the way, and it was not the question the ticket named
+
+T-0384 was written believing the blocker was *"may a business-front lot carry two documented
+storefronts standing at the street?"* — PR #514's question, parked on `hold`. It was not. Under
+the register as committed the advertisement read as `street_only`, so `docs/STREET-FACE-ADOPTION.md`
+owed Holbrook a standing South Water roof and **there is not one free**: nineteen front the
+street, five are a named household's dwelling, five are yard buildings, nine are already
+adopted. He was one of seven South Water advertisements short purely on supply.
+
+### The limit, and it is enforced in fields rather than in prose
+
+An ordinal is **not a lot**. The record carries `lot_claim` — `claims_lot: false`, `lot: null`,
+`placement_rule: corner_ordinal` — the schema permits no other value for either of the first
+two, and `tools/plat_occupancy.no_lot_claim_ids` reads it: such a record is not a HOLDER of the
+lot for the owner's business-front clause of 2026-08-27, so it neither entitles the lot it
+stands on nor exhausts it. That is exactly what PR #514 lacked — standing Holbrook beside the
+American's office switched the clause off, `len(holders) != 1`, and `generate_block_infill.py`
+was refused a roof it had been dealt. Nothing physical is relaxed: separation, lot margins and
+corridor intrusion all still bind, and `occupied_lots` still counts the roof against its
+block's headroom.
+
+The transparency runs **one way on purpose**. A lot held only by no-lot-claim records reads as
+taken and the run is not dealt it — the conservative answer, costing nothing today because no
+such lot exists. Freeing it would be a second ruling, about ground rather than evidence.
+
+### The vocabulary is derived, which is why it does not have to be re-decided
+
+A reading pass writes what it always wrote — `class: relative`, an anchor naming the cross
+street, an `offset_normalized` carrying the phrase — and `compile_register.ordinal_off_a_corner`
+reads the ordinal out of it. Three tests, each refusing a phrase the corpus actually prints:
+the offset must count doors in a word translatable to a number (*"a few doors below"* is
+refused), the reference must resolve to exactly one platted street, and the business's own
+street must be a different one. An ordinal off a BUILDING is untouched — it resolves earlier,
+as a landmark hop.
+
+### The sweep, and what it found that is not this ticket's
+
+`tools/measure_corner_ordinals.py` reports it on every run: over 86 extraction files, **28**
+claims count doors, 5 name a corner of two streets and resolve as one, 20 are landmark hops or
+name no platted street, and **3 are readable as an ordinal off a corner**. Those three are
+Holbrook's Democrat printing and Clark, Filer & Co.'s warehouse *"five [doors east] of the
+corner [of Randolph st.]"*, printed twice. Holbrook's other printing is NOT readable: the
+American's transcription cuts the cross street to *"De[arborn]"* and a bracketed supply is not
+a street name — so the Democrat's printing is what carries the placement, and it also
+corroborates the street word the American's column lost.
+
+**Clark, Filer & Co. is a finding and it is not fixed here.** Three of its printings carry the
+anchor and the gazetteer's LIVE placement for the house is `class: none` with a null street, so
+`resolve_anchor` is handed nothing and the row reads `unplaceable`. That is a gazetteer fault,
+not this policy's; **T-0440** carries it, including the count of other houses in the same
+position, which nobody has taken.
+
+### What is unverified, stated plainly
+
+- **Which side of Dearborn is a reading, not a source.** East is taken because the three
+  addresses this block face's own papers print describe a continuous row when read eastward and
+  nothing that closes when read westward. The position is graded `inferred` for that reason.
+- **The metres are a convention.** L215's door-gap rule — a neighbouring front stands 3.048 m
+  (10 ft) clear of the wall it neighbours — has two reasons and no source. A second ordinal
+  placement anywhere in the corpus turns it from a convention used once into a rule that has to
+  be argued.
+- **Every dimension of the building is borrowed** from `chicago_american_office` and
+  `frederick_thomas_shop` on the same face. Nothing about the premises is attested.
+- **PR #514 is superseded, not merged.** It built the same store against a reading the owner has
+  since ratified, but it claimed the lot and went red on the platted-parcels step; its branch is
+  closed rather than left parked.
+
+## Shipped 2026-08-31 — T-0442: 75 real named residents receive identity reviews
+
+**Seventy-five of 848 eligible attested or inferred named people (8.8%) now have a
+dated, reproducible identity-research outcome.** The fixed sample spans five established
+profiles, every one of the twenty richer unplaced newspaper records, and fifty of the
+post-office-only names split evenly between present and uncertain. No reconstructed
+person is eligible.
+
+The result is deliberately less flattering than 75 new biographies: **4 corroborated
+findings, 7 candidate identities and 64 searches with no safe match**. Candidates are
+published on the resident card with their supporting source, conflict and an explicit
+“not merged” warning. A no-find says what it is too: the reviewed search did not find a
+safe bridge, not that the person did not exist.
+
+The useful near-matches include Augustus Garrett, James Curtiss, Buckner Stith Morris
+and David Brookins. Jesse W. Fell is explicitly rejected as the automatic expansion of
+J. W. Fell because institutional chronologies put Jesse in Vandalia and Clinton in
+1835. J. H. Collins is the strongest resolution: profession and his distinctive Caton
+partnership connect the abbreviation to James H. Collins by more than the name.
+
+No household, marriage, kinship, immigration or heritage field was invented. The
+source hierarchy explicitly forbids surname-based heritage claims. The cohort,
+outcomes, source resolutions and public payload re-derive in the gate; browser checks
+hold both candidate and negative-result warnings on mobile and desktop.
+
+## Shipped 2026-08-30 — T-0170: the last part of the gate that could not be run is halved
+
+**Nothing a visitor sees.** `SMOKE_STAGE` has THIRTEEN parts; part 10 is halved and old parts
+11-12 are 12-13. This is the last piece of T-0121 and the third re-cut of the day, after T-0346
+and T-0173.
+
+**The part was never inside the ceiling.** Profiled at 1280x800 with `SMOKE_TIMING=1` on an
+**idle** runner — load average 0.27-1.48, zero other Chromium processes, the friendliest reading
+this suite can be given — it was **killed at 9 m 20 s** with the street readouts and the Settings
+units still to run. Third and fourth kill of the same part. T-0167's 7 m 43 s is the outlier in
+the record, not the number to size a cut from.
+
+**It had been skipped twice for want of a boundary.** This part carried no `// --- section ---`
+headers at all; that is the stated reason T-0167 cut part 8 instead. Eight seams are named now,
+so the next cut here is a choice from a list rather than a fresh profile.
+
+**The first cut was measured and rejected, and it is in the record.** Cutting above R-BUG7's
+flower-head census gave **5 m 05 s / 6 m 24 s** — a 3 m 36 s margin, and this project's own rule
+(ROADMAP § THE RUN BUDGET) is that a margin that thin is not a margin. Moving that one section up
+into the head balances it.
+
+| part | desktop | margin | staged | verdict |
+|---|---|---|---|---|
+| 10 | **5 m 59 s** | 4 m 01 s | 23 | 1 failed — T-0279's flower heads, 2,693 of 18,893 |
+| 11 | **4 m 41 s** | 5 m 19 s | 13 | SMOKE PASS |
+
+23 + 13 = **36**, the count the single part took. The red is inherited:
+`tools/dev-smoke-state.json` records the same check red on dev at 2,526 of 18,911 on 2026-08-29,
+and it does not fire at mobile at all.
+
+**Nothing dropped, measured as an equality.** At mobile on the same tree, the pre-cut
+`smoke_renderer.mjs` at the single part gives **45 passed / 0 failed / 36 staged / 9 always-on in
+5 m 59 s**; the pair gives **45 / 0 / 36 / 9 in 6 m 01 s**. A pair still boots once, so the mobile
+recipe does not grow a command.
+
+**One binding crosses and it is the one that already crossed the stage split.** `streetLayer`, so
+`anyStage(7, 10)` becomes `anyStage(7, 10, 11)`. The other six names the scan found below the
+line (`headSupport`, `horizon`, `over`, `planted`, `popIn`, `sward`) are prose or strings in every
+occurrence. The second half's prologue is `enterTown()` and `setFly(false)`.
+
+**The readings are of THIS tree.** The cut was first measured at parts 9 and 10, before T-0173
+merged and shifted the whole tail by one; every figure above was re-taken after the re-derivation
+onto T-0173's numbering and agrees with the first pass to within six seconds (5 m 58 s / 4 m 38 s
+then, 5 m 59 s / 4 m 41 s now). All three are filed in `tools/dev-smoke-state.json`.
+
+**Read the margins as readings of an idle machine.** T-0215's factor of twenty is not repealed by
+a cut: 4 m 01 s is a margin against the box that measured it.
+
 ## Shipped 2026-08-30 — T-0333: eighteen inches of stack, and the town was already inside it
 
 **The Town of Chicago's by-law of 5 August 1835, section 18, is the first documented

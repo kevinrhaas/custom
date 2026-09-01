@@ -98,6 +98,17 @@ three-metre separation rule — not this recipe — is what fixes the size of th
 break was not the real gap at all. So the RECIPE moved to the gate (2.4 → 3.0 m, with
 `clear_why` beside it) rather than the gate to the recipe. One rule changed in this work,
 and it is the one above.
+
+## AND ONE RECORD MAY DECLARE THAT IT HOLDS NO LOT AT ALL
+
+**Owner's ruling, 2026-08-30 (T-0384, `docs/CORNER-ORDINAL.md`).** An advertisement that
+counts doors off a named corner — "on South-Water st. one door from Dearborn street" —
+places a store along a face, and *an ordinal is still not a lot*. A record placed that way
+carries a `lot_claim` block saying so, and `no_lot_claim_ids` below is where the
+declaration is read: such a record is not a HOLDER of the lot for the clause above, so it
+neither entitles the lot nor exhausts it. It is still counted by `occupied_lots`, still a
+roof of its block, and still bound by every physical gate. The function's own docstring
+carries the reasoning, including why the transparency deliberately runs one way only.
 """
 
 from __future__ import annotations
@@ -398,6 +409,47 @@ def researched_ids() -> set[str]:
     return {sid for sid, layer in layers().items() if layer == "research"}
 
 
+def no_lot_claim_ids() -> set[str]:
+    """Every committed structure that declares, in a field, that it stands on no lot.
+
+    **The owner's ruling of 2026-08-30 (T-0384), in code.** A store placed by an ORDINAL
+    OFF A CORNER — "on South-Water st. one door from Dearborn street" — is fixed to a
+    position along a street face, counted from a crossing. That is narrower than the
+    street and it is *not a lot*: the ruling says so in terms, and `docs/CORNER-ORDINAL.md`
+    carries it. Such a record declares `lot_claim: {"claims_lot": false, "lot": null}` and
+    this is the one place the declaration bites.
+
+    **It bites on ENTITLEMENT, and on nothing physical.** The clause below asks whether a
+    lot of a business front is held by ONE documented store standing at the street; a
+    record that claims no lot is not a holder of the lot for that question, so it neither
+    entitles the lot nor exhausts it, and the schedule and the generator see the lot
+    exactly as they would if this record named a different street. Everything physical is
+    untouched: the footprint still may not overlap, still clears its neighbours by the
+    separation gate's three metres, still stands inside the block's own lot lines and still
+    may not lap a platted corridor. `tools/measure_corner_ordinals.py` is the gate that
+    holds all of that together.
+
+    **`occupied_lots` still counts it, which is deliberate.** The record physically stands
+    where it stands, is a roof of its block, and has to be subtracted from that block's
+    headroom exactly as any other roof is — the same reason `occupied_lots` and
+    `exclusive_lots` were split in the first place. Only the entitlement question reads
+    this set.
+
+    **And the transparency is one-directional, which is the conservative half.** A lot held
+    ONLY by no-lot-claim records has no documented store entitling it under the clause, so
+    it reads as taken and the run is not dealt it. That is the cautious answer and it costs
+    nothing today: no such lot exists. Making it free would be a second ruling, about
+    ground rather than about evidence, and it is not made here.
+    """
+    out = set()
+    for path in sorted(STRUCTURES.glob("*.json")):
+        record = json.loads(path.read_text(encoding="utf-8"))
+        claim = record.get("lot_claim")
+        if claim and claim.get("claims_lot") is False:
+            out.add(record["id"])
+    return out
+
+
 def business_fronts() -> dict[str, list[dict]]:
     """{block_id: [frontage entry, …]} — the faces the block programme deals a row.
 
@@ -439,6 +491,9 @@ def shared_business_fronts(grid: dict, datum: dict,
     held = lot_holders(grid, datum, exclude) if held is None else held
     fronts = business_fronts()
     documented = researched_ids()
+    # A record that declares it claims no lot is not a holder of one for this question.
+    # See `no_lot_claim_ids` for the ruling and for what the transparency does not relax.
+    transparent = no_lot_claim_ids()
     blocks = {block["id"]: block for block in grid["blocks"]}
 
     walls: dict[tuple[str, str], float] = {}     # (block_id+face, structure) -> outward
@@ -449,9 +504,10 @@ def shared_business_fronts(grid: dict, datum: dict,
             reach = float(frontage["setback_m"]) + LOT_MARGIN_M
             dealt = {int(index) for index in frontage["lots"]}
             for index, holders in lots.items():
-                if index not in dealt or len(holders) != 1:
+                claimants = [h for h in holders if h not in transparent]
+                if index not in dealt or len(claimants) != 1:
                     continue
-                holder = holders[0]
+                holder = claimants[0]
                 if holder not in documented:
                     continue
                 key = (f"{block_id}:{frontage['face']}", holder)

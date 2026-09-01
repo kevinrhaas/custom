@@ -1,7 +1,7 @@
 ---
 id: T-0429
 title: Open blk_south_water_lasalle: 8 roofs of headroom on three free lots
-state: open
+state: claimed
 epic: META
 requested_by: loop
 seen: false
@@ -11,7 +11,7 @@ parent: T-0420
 opened: 2026-08-29
 closed: null
 pr: null
-claimed_by: null
+claimed_by: run 8/30/2026, 1:51:13 AM CT
 blocked_on: null
 needs_bake: true
 ---
@@ -63,3 +63,53 @@ changed should trust the tool and correct this table):
 **Links:** T-0420 (the parent) · T-0365 (the succession this discharges) · T-0009 (the ruling) ·
 T-0028 (the programme) · T-0143 · T-0188 · T-0317 · T-0183 (the market wedge, not this ground) ·
 `tools/reconcile_665.py` · `tools/measure_block_gating.py`.
+
+---
+
+## 2026-08-30 — built, gated green on `check.sh`, and PARKED on the balanced tier's ceiling
+
+PR **#597**, branch `steward/t-0429-south-water-lasalle`, left OPEN with the `hold` label.
+
+**Built as the acceptance asks.** Six principal roofs shoulder to shoulder on lots 0 and 2 —
+this block's own committed lots, the row standing ON THE BLOCK FACE and not on a re-derived
+line — and the two yard buildings behind them. `reconcile_665.py` re-derives and the block moves
+to `at_capacity`; lot 1 stays open. Every mesh baked in the same commit, `validate.py --stale`
+clean, `publish.sh` run. `./tools/check.sh` PASS, 0 errors, 28 warnings, the same 28 dev carries.
+
+**Two things had to be found before it could be dealt.** The ruling (T-0009) was only half of it.
+The first deal on this block DECLARED its frontage as lots 0, 2 and 4 and its run stands, measured,
+on lot 4 alone — so `plat_occupancy.py` scored the lots free off footprints while `check_block`
+scored them built on off the recipe, and the eight roofs of headroom could not be spent by anybody.
+Corrected to `[4]`; no roof moved and no record changed. **T-0449 filed**: four MORE entries do the
+same thing, and they are precisely T-0430, T-0431 and T-0432's blocks.
+
+**The corner clause met a watercourse, and that is the parcel's one new reading.** Lot 0 is the free
+corner at South Water and LaSalle, so the density standard says build to the corner and T-0022's
+fabric rule independently sends the log dwelling to the west end — the two agree here, unlike
+T-0317. `lasalle_slough_lower`, the slough Wright 1834 draws dropping south off the main stem just
+east of La Salle Street, crosses this frontage at 4.86 m on its committed alignment. The westmost
+point that carries a roof at all is 9.81 m; the run stands at 10.11 m. The corner clause is recorded
+as REFUSED BY THE GROUND rather than dropped.
+
+**WHY IT IS NOT MERGED, and it is the owner's call rather than a failure of the parcel.** The
+renderer smoke is green everywhere except `desktop part 5`: `balanced` reads **1,216,632 triangles
+of 1,210,000** at the forks from Wolf Point — over by 6,632, 0.55 %. That is a triangle count, not a
+timing, and desktop part 5 read PASS on dev on 2026-08-28, so it is this parcel's eight roofs.
+`full` and `light` are untouched.
+
+The remedy would ordinarily be the conscious re-budget AGENTS.md sanctions. **It is refused here
+because the record already refused it**, at the definition in `renderers/web/js/main.js`: *"the
+number stays at 1,210,000 and the budget question lives entirely in T-0223, which orders the trim
+first and the ceiling after."* T-0223 has 180,100 triangles — 27x this overshoot — cast by
+kilometre-wide quadrant meshes submitted whole to a shadow box that cannot hold them. Two routes,
+both his: land T-0223's trim and this fits inside the existing ceiling, or re-budget `balanced`
+alone with a measured figure written at the definition.
+
+A second red, `mobile part 9`, is two pixel-difference checks moving 2 cells against thresholds of
+3 and 4. Part 9 last read PASS on dev on 2026-08-29. It was NOT attributed — no re-run on a quiet
+box and none against a clean `origin/dev` — and this record says so rather than guessing. All seven
+readings are filed in `tools/dev-smoke-state.json` with their conditions; mobile part 12 had no
+reading at all before this branch.
+
+**The successor T-0028's programme rule owes is already in the queue**: T-0430, the next block in
+this family. The ticket stays `open` because its PR has not merged.

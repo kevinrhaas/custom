@@ -1,7 +1,7 @@
 ---
 id: T-0409
 title: A change can land on dev with no changelog entry, and one did today
-state: open
+state: done
 epic: META
 requested_by: loop
 seen: false
@@ -9,8 +9,8 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-08-29
-closed: null
-pr: null
+closed: 2026-08-31
+pr: 620
 claimed_by: null
 blocked_on: null
 needs_bake: false
@@ -56,3 +56,55 @@ touches `tickets/` or `docs/` is a real case, and it is most of the queue's invi
 - The opt-out exists, is explicit, and is recorded in the branch rather than in a habit.
 - A self-test case per assertion, in the shape `check.sh` already uses.
 - Reproduces the miss: the case is built from #549's own file list.
+
+---
+
+## DONE, 2026-08-31 — option 1, and it caught its own second occurrence
+
+This ticket offered three options and named the first as cheapest. That is what
+shipped: `tools/check-changelog-entry.mjs`, wired into `chicago-4d-check.yml` on
+`pull_request` only.
+
+**It happened again before it was built.** PR #619 changed where the town stands
+its hitching posts and merged with no entry, along with three others that
+touched only tickets, a workflow grep and a smoke message. The owner found it the
+way this ticket predicted, word for word: *"the What's-new tab inside the
+walkthrough shows the town's last change as something older than it is."* He was
+looking at v438 while a rule about the town's furniture had gone in behind it.
+
+Run against that merge afterwards, the new gate names it:
+
+```
+changelog entry: MISSING.
+2 file(s) under the watched paths changed and …/changelog.js did not:
+  chicago/4d/data/frontage/town_street_edge.json
+  chicago/4d/tools/generate_frontage_works.py
+```
+
+### Why it is not in `check.sh`, which this ticket did not consider
+
+The nightly bake regenerates `data/` and ships no changelog entry, correctly — it
+carries no change, only rebuilt bytes. A gate inside `check.sh` would have failed
+**every bake**. It runs from the PR gate instead, where a base ref exists and the
+question is meaningful, and where the bake never reaches it.
+
+### The opt-out is a sentence somebody has to write
+
+    Changelog: none — <why this changes nothing a visitor or the feed would see>
+
+Read from any commit in the PR. The reason is required and its content is not
+checked: the point is that a person decided and signed it, the same trade the
+liberty ledger and every refusal list in this project already make.
+
+### Verified on four real merges before wiring
+
+| merge | what it is | verdict |
+|---|---|---|
+| #619 | changed the hitching rule, no entry | **MISSING** — correct |
+| #618 | smoke failure message only, no entry | **MISSING** — correct, it owed a `Changelog: none` |
+| #616 | tickets only | not required |
+| this branch | writes the entry #619 owed | present |
+
+`tickets/` and `docs/` are exempt inside the watched paths, so a ticket-filing
+branch is never asked for an entry.
+

@@ -1,7 +1,7 @@
 ---
 id: T-0183
 title: The Market and South Water corner needs one control point, and the node rule may not be able to make it
-state: blocked-owner
+state: done
 epic: META
 requested_by: steward
 seen: false
@@ -9,10 +9,10 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-08-24
-closed: null
-pr: null
+closed: 2026-08-31
+pr: 573
 claimed_by: run 8/29/2026, 6:42:06 PM CT
-blocked_on: blk_south_water_market can be built only as a wedge that tapers to nothing at Market. Closing the west end on the line as committed emits a bowtie (corridors overlap Lake's by 14.9 m), and carried as far north as the committed waterline allows the block has 2.8 m of depth at Market against the 24.384 m one platted lot fronts. So the choice is a third one neither branch of the 2026-08-29 question offered: build the wedge, which means re-deriving a committed centreline up to 34 m north onto the waterline with no clearance and re-scoring every gate that reads it — or return the 27 roofs to the South balance the way blk_south_water_clinton's went back. Measured in PR #573; see docs/RESEARCH/thompson_plat_grid.md § 6.2.
+blocked_on: null
 needs_bake: false
 ---
 
@@ -201,3 +201,89 @@ rule refused it and why.
   itself editing that refusal to make this pass, it has taken the wrong path and stops.
 - The block's 27 roofs are confirmed schedulable, or the reason they are not is recorded.
 - A liberty entry, because a closed end on a non-control basis is a stated liberty.
+
+---
+
+## THE OWNER'S SECOND RULING, 2026-08-30 — THE 27 ROOFS GO BACK TO THE SOUTH BALANCE
+
+PR #573 carried out the 2026-08-29 ruling faithfully and the ground refused it:
+closing South Water's west end onto Market emits `blk_south_water_market` as a
+**bowtie** (corridors overlap Lake's by 14.9 m), and carried as far north as the
+committed waterline allows the block has **2.8 m of depth at Market against the
+24.384 m one platted lot fronts**. That is the South Branch pinching the block
+out, not a drawing error, and it is the right answer to have come back with.
+
+Put the measured third option to the owner, he chose:
+
+> **Return the 27 roofs to the South balance**, the way `blk_south_water_clinton`'s
+> went back when T-0163 measured it.
+
+**The wedge is NOT built.** Building it would mean re-deriving a committed
+centreline up to 34 m north onto the waterline with no clearance and re-scoring
+every gate that reads it — a large disturbance to a committed line for a block
+2.8 m deep. Declined.
+
+**What this settles and what it does not.** It settles where the 27 roofs go: to
+the South balance, to be dealt onto ground that can carry them. It does NOT say
+the plat was wrong to emit the block — the Thompson plat put a block there and
+the river takes it away, and both facts stay on the record.
+`generate_plat_lots.py`'s new refusal (a block whose rows have crossed) STAYS,
+and `check.sh` goes on firing it: the refusal is the finding, and a later run
+must not delete it to tidy the output.
+
+**Acceptance:** (state it before working — the definition of done, never weakened to pass)
+
+- The 27 roofs are returned to the South balance, and the reconciliation ledger
+  shows the move with `blk_south_water_clinton`'s precedent cited.
+- `blk_south_water_market` is recorded as a block the ground cannot carry, with
+  the 2.8 m and the 14.9 m overlap on the record, and stops being scheduled.
+- The crossed-rows refusal in `generate_plat_lots.py` and its `check.sh` step
+  both REMAIN. A run that removes either has removed the evidence.
+- The 665-roof total does not change — these roofs move, they are not lost. If a
+  run finds the total must move, it says so with its reason.
+
+---
+
+## THE OWNER'S RULING, 2026-08-31 — the corridor EDGE, not the centreline
+
+Two runs carried out the 2026-08-29 ruling and answered it differently. Both are
+on the record; the owner ruled for **PR #573**, which is merged. **PR #577 is
+closed unmerged**, and its work is sound — it answers a question that was put and
+declined, rather than being wrong in its own terms.
+
+**The question.** A platted corridor is 24.384 m. Put its **north edge** on the
+committed bank and `blk_south_water_market` is a wedge with **2.8 m** of depth at
+Market. Put its **centreline** on the bank — so the north half, 12.192 m of
+platted street, hangs over the South Branch — and the block builds **8 lots,
+4,957 m2, 107.0 m of frontage**. The whole difference between the two answers is
+one half-corridor.
+
+**Why the edge.** Three things, measured rather than preferred:
+
+1. **The committed street does not overhang anywhere it can be checked.** Against
+   the waterline at five eastings, `south_water`'s north corridor edge is south
+   of the water every time — 22.0 m clear at E 100, 15.4 m at E 110, 8.3 m at
+   E 120, and **0.2 m at Franklin**. Twenty centimetres is not a coincidence; it
+   is the edge rule already in force. PR #577's case rested on this street
+   already overhanging east of Franklin, and that could not be reproduced.
+2. **The rule is committed as executing code, not as prose.** `generate_plat_lots.py`
+   computes `headroom = (waterline - 2 * half_width) - (lake_n + half_width)` —
+   north edge on the waterline, south edge a full width below — and its self-test
+   runs in `tools/check.sh` on every commit. Re-run on 2026-08-31: *waterline at
+   local N -71.0, leaving 2.8 m*.
+3. **The two errors are not symmetrical.** The centreline reading puts eight
+   buildings on ground the committed heightfield calls river. The edge reading
+   leaves ground unbuilt that might be buildable. This project grades every
+   invention it makes; a town smaller than the evidence allows is a cost it can
+   carry, and a town standing in the water is not.
+
+**This is falsifiable and is left that way.** The self-test fails loudly if the
+headroom ever exceeds a lot's frontage — `THE GROUND HAS CHANGED` — so better
+bank evidence reopens the block by itself. Nothing here needs to be remembered
+for that to happen.
+
+**What follows, and it is a real loss.** T-0365 called these **27 roofs** the
+largest unblocked headroom left in the anonymous-block programme. They are not on
+the ground: `blk_south_water_market` tapers to nothing at Market. Any queue
+ranking that still counts them is counting a wedge.
+

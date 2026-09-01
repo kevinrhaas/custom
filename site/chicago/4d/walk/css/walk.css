@@ -571,10 +571,20 @@ body.is-touch .gate-touch { display: block; }
   font-size: 10.5px; color: var(--ink-dim); border: 1px solid var(--edge);
   border-radius: 999px; padding: 0 6px; white-space: nowrap;
 }
+.res-research { border-color: rgb(212 173 93 / 58%); color: #f0d293; }
+.res-candidates { margin: 7px 0 0 18px; padding: 0; }
+.res-candidates > li { margin: 0 0 8px; }
 /* The seventeen households this project could not put on a building card. The
    chip is the finding, so it is the one thing in the list drawn in the
-   conjectural colour rather than the dim one. */
+   conjectural colour rather than the dim one. It is NOT drawn inside the
+   letter-list group, where having no building is the definition rather than a
+   finding — see residents.js § letterListGroupHtml. */
 .res-orphan { border-color: var(--con); color: var(--con); }
+/* The letter-list cohort (T-0379), which is most of the town's people and none of
+   its evidence. One closed group, marked in the conjectural colour the same way a
+   single thin claim is, so the split is visible before it is opened. */
+.res-ll-group { border-left: 2px solid var(--con); padding-left: 9px; }
+.res-ll-group > summary .lib-title { color: var(--ink-dim); }
 .res-hh summary { display: flex; flex-wrap: wrap; align-items: baseline; }
 .res-hh .lib-title { text-transform: capitalize; }
 

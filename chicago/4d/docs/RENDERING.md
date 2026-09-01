@@ -730,7 +730,7 @@ recipes in Appendix B.
 | 8-axis rubric | mean ≥ 8.0, no axis < 7, ≤ 4 iterations | Joliet QUALITY-LOG protocol |
 | Draw calls (`walk/`) | ≤ 120 (raised from 80, 2026-08-21 — see §above and `main.js` BUDGET); shadow pass included in the count | existing BUDGET + W5 |
 | Triangles (`walk/`) | ≤ 1,000,000 / 800,000 / 600,000 by tier | existing DETAIL |
-| Published site | ≤ 28 MB (raised from 25, 2026-08-29, T-0317 — `dev` had 0.4 % of the 25 MB left and one block deal costs 138 KB; reasoning at `validate.py` § SITE_BUDGET_MB) until H2's sanctioned raise (~100 MB) | validate.py + §8 |
+| Published site | ≤ 32 MB (raised from 25 on 2026-08-29, T-0317, and from 28 on 2026-08-30, T-0379 — the owner's ruling that the town holds every letter-list name added 712 household records; the cohort was first cut by a third by de-duplicating prose identical on all 727, which was not enough. Both raises reasoned at `validate.py` § SITE_BUDGET_MB) until H2's sanctioned raise (~100 MB) | validate.py + §8 |
 | Drawn ground vs the heightfield | within the 22 mm road lift at **every** field sample, after conforming (16-bit: 12.9 mm worst; 14-bit was 46.3 mm at 87 samples) | R-W6, `tools/measure_terrain_horizontal.mjs` |
 | Page errors | zero, at 390×780 AND 1280×800, every renderer | AGENTS.md |
 | Fog extinction | total by 1500 m, every renderer, every mode | LIBERTIES L17 |

@@ -194,6 +194,25 @@ def _register_survival_liberty_count() -> int:
                if b.get("present_at_scene_date") and b.get("survival_liberty_required"))
 
 
+RESIDENTS_HOUSEHOLDS = ROOT / "data" / "residents" / "households"
+
+
+def _letter_list_person_count() -> int:
+    """People the town holds on a post-office letter list and nothing else.
+
+    Counted off the household RECORDS rather than off `index.json`'s `counts`
+    block, which is a denormalised copy another tool writes: a scope that reads a
+    number somebody else derived is agreeing with a second opinion, not measuring.
+    T-0379's ruling made this most of the town's people, so the liberty that admits
+    the change of scale has to be able to restate its own share.
+    """
+    n = 0
+    for path in sorted(RESIDENTS_HOUSEHOLDS.glob("*.json")):
+        doc = json.loads(path.read_text())
+        n += sum(1 for p in doc.get("persons") or [] if p.get("letter_list_only"))
+    return n
+
+
 # enumeration -> (how many it reaches now, where that number is derived from).
 #
 # A scope may only name an enumeration written down HERE. The alternative — an
@@ -204,6 +223,10 @@ SCOPE_SOURCES = {
         _register_survival_liberty_count,
         "data/research/newspapers/register_1835.json, itself re-derived by "
         "tools/compile_register.py --check"),
+    "residents.persons[letter_list_only]": (
+        _letter_list_person_count,
+        "data/residents/households/*.json, themselves re-derived by "
+        "tools/mint_letter_list_residents.py --check"),
 }
 
 SECTION_KEY = {

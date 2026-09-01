@@ -207,6 +207,30 @@
         "any citation whatever for its addendum"
       ]
     },
+    "cpl_augustus_garrett_biography": {
+      "source_id": "cpl_augustus_garrett_biography",
+      "citation": "Chicago Public Library. \"Mayor Augustus Garrett Biography.\"",
+      "url": "https://www.chipublib.org/mayor-augustus-garrett-biography/",
+      "archived_url": "",
+      "tier": 4,
+      "tier_label": "later scholarship"
+    },
+    "cpl_buckner_stith_morris_biography": {
+      "source_id": "cpl_buckner_stith_morris_biography",
+      "citation": "Chicago Public Library. \"Mayor Buckner Stith Morris Biography.\"",
+      "url": "https://www.chipublib.org/mayor-buckner-stith-morris-biography/",
+      "archived_url": "",
+      "tier": 4,
+      "tier_label": "later scholarship"
+    },
+    "cpl_james_curtiss_biography": {
+      "source_id": "cpl_james_curtiss_biography",
+      "citation": "Chicago Public Library. \"Mayor James Curtiss Biography.\"",
+      "url": "https://www.chipublib.org/mayor-james-curtiss-biography/",
+      "archived_url": "",
+      "tier": 4,
+      "tier_label": "later scholarship"
+    },
     "drloih_fort_dearborn": {
       "source_id": "drloih_fort_dearborn",
       "citation": "\"The Complete History of the First and Second Fort Dearborn in Chicago.\" Digital Research Library of Illinois History Journal, June 2018.",
@@ -239,6 +263,38 @@
       "tier": 4,
       "tier_label": "later scholarship"
     },
+    "dupage_history_david_brookins": {
+      "source_id": "dupage_history_david_brookins",
+      "citation": "History of Du Page County, Illinois. Chicago: O. L. Baskin & Co., 1882.",
+      "url": "https://archive.org/search?query=%22David+Brookins%22+DuPage",
+      "archived_url": "",
+      "tier": 3,
+      "tier_label": "compiled secondary (Andreas)"
+    },
+    "encyclopedia_chicago_biographical_index_d": {
+      "source_id": "encyclopedia_chicago_biographical_index_d",
+      "citation": "Encyclopedia of Chicago. \"Biographical Dictionary: D.\" Chicago Historical Society and Newberry Library.",
+      "url": "https://www.encyclopedia.chicagohistory.org/browse/bioD.html",
+      "archived_url": "",
+      "tier": 4,
+      "tier_label": "later scholarship"
+    },
+    "encyclopedia_chicago_medical_pharmaceutical": {
+      "source_id": "encyclopedia_chicago_medical_pharmaceutical",
+      "citation": "Encyclopedia of Chicago. \"Medical and Pharmaceutical Industries.\" Chicago Historical Society and Newberry Library.",
+      "url": "https://www.encyclopedia.chicagohistory.org/pages/806.html",
+      "archived_url": "",
+      "tier": 4,
+      "tier_label": "later scholarship"
+    },
+    "illinois_courts_caton_biography": {
+      "source_id": "illinois_courts_caton_biography",
+      "citation": "Illinois Courts. \"John Dean Caton.\" Illinois Supreme Court Justices biographical directory.",
+      "url": "https://www.illinoiscourts.gov/courts/supreme-court/illinois-supreme-court-justices/",
+      "archived_url": "",
+      "tier": 4,
+      "tier_label": "later scholarship"
+    },
     "kinzie_waubun_1856": {
       "source_id": "kinzie_waubun_1856",
       "citation": "Kinzie, Juliette A. M. Wau-Bun: The 'Early Day' in the North-West. New York: Derby & Jackson, 1856.",
@@ -246,6 +302,30 @@
       "archived_url": "https://archive.org/details/waubunearlydayin00kinzbyu",
       "tier": 2,
       "tier_label": "near-primary recollection"
+    },
+    "lasalle_history_james_mcfadden": {
+      "source_id": "lasalle_history_james_mcfadden",
+      "citation": "History of La Salle County, Illinois. Inter-State Publishing Co., 1886.",
+      "url": "https://ldsgenealogy.com/IL/books/History-of-La-Salle-County-Illinois-part-25.htm",
+      "archived_url": "",
+      "tier": 3,
+      "tier_label": "compiled secondary (Andreas)"
+    },
+    "mclean_history_jesse_w_fell": {
+      "source_id": "mclean_history_jesse_w_fell",
+      "citation": "McLean County Museum of History. \"Jesse Weldon Fell.\"",
+      "url": "https://mchistory.org/research/biographies/fell-jesse-weldon",
+      "archived_url": "",
+      "tier": 4,
+      "tier_label": "later scholarship"
+    },
+    "mower_history_alanson_vaughan": {
+      "source_id": "mower_history_alanson_vaughan",
+      "citation": "History of Mower County and biographies of its pioneers, including Alanson B. Vaughan.",
+      "url": "https://archive.org/search?query=%22Alanson+B.+Vaughan%22",
+      "archived_url": "",
+      "tier": 3,
+      "tier_label": "compiled secondary (Andreas)"
     },
     "owner_chicago_1835_reconstruction_spec_2026": {
       "source_id": "owner_chicago_1835_reconstruction_spec_2026",
@@ -265,6 +345,22 @@
         "Exact locations, dimensions, appearance, occupants, or construction dates for anonymous roofs.",
         "Authority to replace stronger building-specific evidence already represented in the dataset."
       ]
+    },
+    "papers_abraham_lincoln_clinton": {
+      "source_id": "papers_abraham_lincoln_clinton",
+      "citation": "The Papers of Abraham Lincoln. \"Clinton, Illinois.\" Place record x4009071.",
+      "url": "https://papersofabrahamlincoln.org/places/x4009071",
+      "archived_url": "",
+      "tier": 4,
+      "tier_label": "later scholarship"
+    },
+    "papers_abraham_lincoln_james_h_collins": {
+      "source_id": "papers_abraham_lincoln_james_h_collins",
+      "citation": "The Papers of Abraham Lincoln. \"James H. Collins.\" Person record CO15911.",
+      "url": "https://papersofabrahamlincoln.org/persons/CO15911",
+      "archived_url": "",
+      "tier": 4,
+      "tier_label": "later scholarship"
     }
   }
 }

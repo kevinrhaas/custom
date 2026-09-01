@@ -10,8 +10,9 @@
  * `SMOKE_VIEWPORT=mobile` (or `desktop`) runs one of the two while iterating.
  * That is not the gate and the run says so on its first line.
  *
- * `SMOKE_STAGE=1` … `12` runs one part of each viewport's body (T-0060, re-cut
- * by T-0121, T-0167, T-0346 and T-0173), and `SMOKE_STAGE=1-2` runs a contiguous run.
+ * `SMOKE_STAGE=1` … `13` runs one part of each viewport's body (T-0060, re-cut
+ * by T-0121, T-0167, T-0346, T-0173 and T-0170), and `SMOKE_STAGE=1-2` runs a
+ * contiguous run.
  * The cuts sit at section boundaries measured for zero crossing bindings. It
  * exists because a steward run's single foreground command is capped at ten
  * minutes and by 2026-08-18 neither viewport's full pass fit inside it, so the
@@ -32,12 +33,16 @@
  * stations stay in part 7 and the third goes to a new part 8 with the aid taken
  * standing at it and the batch merge under that — 4 m 48 s against 4 m 53 s of
  * work — so parts 8-11 became 9-12. See ROAD_STATIONS and `readRoadStations`.
+ * T-0170 halved PART 10 for the same reason and on the same evidence: at
+ * 1280x800 on an IDLE runner it was killed at 9 m 20 s with the street readouts
+ * and the Settings units still to run, so old parts 11-12 became 12-13 and there
+ * are thirteen.
  *
  * A staged run is not the gate either, and says so; the gate is both viewports,
  * every part, e.g.:
  *
- *   for s in 1-2 3-6 7-9 10-12;            do SMOKE_VIEWPORT=mobile  SMOKE_STAGE=$s node tools/smoke_renderer.mjs --published; done
- *   for s in 1 2 3 4 5 6 7 8 9 10 11 12;   do SMOKE_VIEWPORT=desktop SMOKE_STAGE=$s node tools/smoke_renderer.mjs --published; done
+ *   for s in 1-2 3-6 7-9 10-13;               do SMOKE_VIEWPORT=mobile  SMOKE_STAGE=$s node tools/smoke_renderer.mjs --published; done
+ *   for s in 1 2 3 4 5 6 7 8 9 10 11 12 13;   do SMOKE_VIEWPORT=desktop SMOKE_STAGE=$s node tools/smoke_renderer.mjs --published; done
  *
  * `SMOKE_TIMING=1` stamps each check line with the elapsed clock. Off by
  * default; turn it on to profile a part, because a part that BREACHES the
@@ -52,7 +57,7 @@
  * Boot, the page-error check and the vendor checks run in EVERY invocation,
  * whichever stage is asked for: the summary separates "staged-section checks"
  * from those always-on checks so the parts can be audited to add up to an
- * unfiltered pass — the twelve parts' section counts SUM to an unfiltered run's
+ * unfiltered pass — the thirteen parts' section counts SUM to an unfiltered run's
  * section count, and the always-on count is identical in every one of them.
  *
  * What it asserts, and why each one is here:
@@ -1139,7 +1144,19 @@ if (ONLY) console.log(`NOT THE FULL GATE — viewports filtered to "${ONLY}"\n`)
 // `lake_market` at 2 m 49 s plus the aid at 1 m 04 s and the batch merge.
 // The pairing rule survives again as 1+2, 3+4+5+6, 7+8+9, 10+11+12 — the same
 // content in the same four mobile commands, ranges `1-2 3-6 7-9 10-12`.
-const PARTS = 12;
+// T-0170 HALVED PART 10, the last part on T-0167's profile still over the
+// ceiling: measured at 1280x800 on an IDLE runner (load average 0.27-1.48, no
+// other Chromium on the box) it was killed at 9 m 20 s with the street readouts
+// and the Settings units still to run, so the ten minutes had never contained
+// it. It carried no `// --- section ---` headers, which is why T-0167 left it;
+// the seams are named now and the cut is the one the profile chose — the ragged
+// boundary and everything after it becomes part 11, so old parts 11 and 12 are
+// renumbered 12 and 13. `anyStage(7, 10)` becomes `anyStage(7, 10, 11)`: both
+// halves read `streetLayer`, the first for the road panels and the second for
+// the readouts. The pairing rule is unchanged in content — 1+2, 3+4+5+6, 7+8+9,
+// 10+11+12+13 — and the mobile recipe's last range widens from `10-12` to
+// `10-13`, still four commands.
+const PARTS = 13;
 const STAGE = process.env.SMOKE_STAGE || '';
 // `3` is one part; `3-4` is a contiguous run of them; `1,5-6` is any set. The
 // range form exists so the cheap viewport does not pay eight boots to run a
@@ -1164,7 +1181,7 @@ if (typeof wantedParts === 'string') {
 }
 if (STAGE) console.log(`NOT THE FULL GATE — stages filtered to "${STAGE}" of ${PARTS}\n`);
 const stageOn = (n) => !wantedParts || wantedParts.has(n);
-// Readability at the guard on a reading shared by several parts: `anyStage(7, 9)`
+// Readability at the guard on a reading shared by several parts: `anyStage(7, 10, 11)`
 // says which parts need it, and adding a part to that list is the whole edit.
 const anyStage = (...ns) => ns.some(stageOn);
 const startedAt = Date.now();
@@ -1436,7 +1453,7 @@ for (const [label, viewport, touch] of [
     // times over the desktop pass instead of twice, on the very reading this
     // gate can least afford.
     let streetLayer = null;
-    if (anyStage(7, 10)) {
+    if (anyStage(7, 10, 11)) {
       streetLayer = await page.evaluate(() => {
         const a = window.__chicago4d;
         // Sample the dynamic flora from a known dry South Division viewpoint.
@@ -4153,9 +4170,18 @@ for (const [label, viewport, touch] of [
       // hitching post there would be furniture standing on an invention").
       // Nothing else moves: no run opens, no crossing is added, and the shop's
       // own wall was never a street-fence refusal.
+      // T-0384 stood john_holbrook_store on the South Water face of
+      // blk_south_water_dearborn — a documented STORE, which is a trade the
+      // hitching rule accepts — so ONE more post stands at that frontage: 17 to
+      // 18. This is a building ARRIVING rather than a trade settling, so unlike
+      // T-0263 no refusal retires with it and 83 does not move. Nothing else
+      // moves either: the face's walk was already laid for its whole length so
+      // no run opens and no crossing is added, and the shop stands 1.50 m back
+      // from the frontage line, inside the 3.0 m a street fence needs, which was
+      // already refused on that wall.
       frontage.census?.records === 5 && frontage.census?.walks === 51
         && frontage.census?.crossings === 39
-        && frontage.census?.posts === 17 && frontage.census?.fences === 35
+        && frontage.census?.posts === 18 && frontage.census?.fences === 35
         && frontage.census?.refused === 83
         && frontage.recordIds.join(',')
           === 'green_tree_frontage,sauganash_frontage,river_walk_frontage,'
@@ -4343,7 +4369,10 @@ for (const [label, viewport, touch] of [
     // arriving: frederick_thomas_shop already stood on South Water Street and
     // its frontage was refused a post in writing because its trade was
     // reconstructed, so settling that trade on the Chicago American's own
-    // heading is what qualifies it. The street-edge population is fourteen. The two
+    // heading is what qualifies it. T-0384 makes it seventeen, and that one IS a building
+    // arriving: John Holbrook's clothing store is a documented store on
+    // South Water Street, so the rule stands a post at its frontage and no
+    // refusal retires with it. The street-edge population is fifteen. The two
     // populations are told apart by `street`, which is exactly the field that
     // decides the mesh: a post naming a street is standing timber in that
     // street's chunk, and a post naming none falls back to the shared mesh. The
@@ -4359,11 +4388,11 @@ for (const [label, viewport, touch] of [
     const postsBad = frontage.hitching.filter((h) => !(h.found > 0
       && Math.abs(h.top - h.recorded) <= 0.05
       && Math.abs(h.low) <= 0.02 && h.clear > 0 && !h.text));
-    check(`${label}: the sixteen hitching posts stand on their own ground, carrying nothing`,
-      frontage.hitching.length === 16
-        && frontage.census?.hitching === 16
+    check(`${label}: the seventeen hitching posts stand on their own ground, carrying nothing`,
+      frontage.hitching.length === 17
+        && frontage.census?.hitching === 17
         && frontage.hitching.filter((h) => !h.street).length === 2
-        && frontage.hitching.filter((h) => h.street).length === 14
+        && frontage.hitching.filter((h) => h.street).length === 15
         && postsBad.length === 0
         && frontage.census?.lettered === 1
         && frontage.noBoardHere === false,
@@ -8075,10 +8104,16 @@ for (const [label, viewport, touch] of [
 
     inStageWork = false;
     } // end PART 9 (T-0060 stage 3b, cut by T-0121; renumbered by T-0346 and T-0173)
-    // PART 10 — the flora census through the streets a visitor reads: the drawn
-    // population, the sward, the horizon timber and the street names. Every
-    // binding it shares with earlier parts (`streetLayer`) is read above the
-    // split; the teleport below re-establishes the camera pose it expects on
+    // PART 10 — the flora census through the flower heads: the drawn population,
+    // the horizon timber, the sward dealt in every community, the marsh's
+    // substrate, T-0035's pop-in and R-BUG7's head-attachment census. The head
+    // of T-0060's stage 4a; T-0170 cut the ragged boundary, the ground cover,
+    // the street readouts and the Settings units off its tail into part 11,
+    // because at 1280x800 the whole of it ran past the ten-minute foreground
+    // ceiling and was killed there with two sections still to run.
+    //
+    // Every binding it shares with earlier parts (`streetLayer`) is read above
+    // the split; the teleport below re-establishes the camera pose it expects on
     // its own.
     if (stageOn(10)) {
     inStageWork = true;
@@ -8372,6 +8407,8 @@ for (const [label, viewport, touch] of [
       `${horizon.pxPerRad?.toFixed?.(1)} px/rad against ${expectedPxPerRad.toFixed(1)} live `
       + `(${horizon.liveHeightCss} css px over ${horizon.liveFovDeg?.toFixed?.(1)}°)`);
 
+    // --- the drawn population (ROADMAP K48) ---------------------------------
+
     // THE DRAWN POPULATION — ROADMAP K48, and it is the census K47 found
     // missing. `tools/measure_planting_reach.py` proves a record can be
     // CHOSEN; nothing proved one is DRAWN, and the difference was a whole
@@ -8428,6 +8465,8 @@ for (const [label, viewport, touch] of [
         ? `${sycamore.drawn} stem(s) for ${sycamore.expected.toFixed(2)} owed, of `
           + `${gallery.stems} in the gallery`
         : 'no gallery mix census at all');
+
+    // --- the sward, asked what the wood was asked (ROADMAP K49(a)) ---------
 
     // ROADMAP K49(a) — THE SAME QUESTION, ASKED OF THE SWARD.
     //
@@ -8497,6 +8536,8 @@ for (const [label, viewport, touch] of [
       + `and drawn nowhere${swardAbsent.length ? `: ${swardAbsent.join(', ')}` : ''}, over `
       + `${dealt.reduce((t, d) => t + d.drawn, 0)} slots in ${dealt.map((d) => (
         `${d.community}.${d.list}=${d.drawn}`)).join(' ')}`);
+
+    // --- and the same sward census in every community (ROADMAP K49(f)) -----
 
     // ROADMAP K49(f) — AND NOW THE SAME CENSUS IN EVERY COMMUNITY, AS A GATE.
     //
@@ -8656,6 +8697,8 @@ for (const [label, viewport, touch] of [
       && aquatics.marshDry.includes('typha_latifolia')
       && aquatics.marshWet.includes('typha_latifolia'),
       `dry [${aquatics.marshDry.join(',')}] wet [${aquatics.marshWet.join(',')}]`);
+
+    // --- a plant arrives faint, and at its own height (T-0035) --------------
 
     // The owner: "grass and flowers appear out of the ground as you walk towards
     // them". The lattice is rebuilt every `step` metres walked and the fade ramp
@@ -8820,6 +8863,8 @@ for (const [label, viewport, touch] of [
           + `${(popIn.grewAt.to * 100).toFixed(0)}% at ${popIn.grewAt.d.toFixed(2)} m)`
         : ''));
 
+    // --- the flower heads, read back off the drawing (R-BUG7) ---------------
+
     // R-BUG7 — flower heads hanging in the sky with nothing under them. The
     // owner photographed two of them over South Water Street on stalks that
     // stop in mid-air, and **the same symptom had been repaired four times in
@@ -8840,10 +8885,26 @@ for (const [label, viewport, touch] of [
       const clamp01 = (x) => (x < 0 ? 0 : x > 1 ? 1 : x);
       const fadeOf = (r, i, d) => clamp01((r[i] - d) / Math.max(r[i + 1], 1e-4))
         * (r[i + 3] > 0 ? clamp01((d - r[i + 2]) / r[i + 3]) : 1);
-      /** Sets a head is ever hung from. A mid clump card is a billboard standing
+      /** Sets a head is ever hung from. A MID clump card is a billboard standing
        *  for a patch of matrix and carries no head, so counting one as support
-       *  is a free pass — it is what made a first cut of this read zero. */
-      const ROOTED = new Set(['flora-near', 'flora-forb', 'flora-rosette', 'flora-shrub']);
+       *  is a free pass — it is what made a first cut of this read zero.
+       *
+       *  `flora-far` is not that card, and since T-0209 it is not excluded:
+       *  the far band deals the WHOLE community, and a flowering forb's far
+       *  card carries its flower — `rebuildFar` calls `maybeHead` on it. The
+       *  comment this replaces predates that and had gone false. Measured on
+       *  the published mirror 2026-09-01: 2693 of 2693 orphans stood on a far
+       *  card at 0.000 m whose top reached them. `flora-mid` stays out, and
+       *  that is measured too — its scatter deals graminoids and never calls
+       *  `maybeHead`, and no orphan stood on one. */
+      const ROOTED = new Set(['flora-near', 'flora-forb', 'flora-rosette', 'flora-shrub',
+        'flora-far']);
+      /** A card's `spread` is its billboard HALF-WIDTH — 1.5 m at the near far
+       *  band, not a stem's radius. Counting that as the support's reach would
+       *  pass any head within a card's width of one, which is the free pass the
+       *  note above refuses. A card carries only the head `maybeHead` puts at
+       *  its own `e,n`, so it supports at its foot and nowhere else. */
+      const CARD = new Set(['flora-far']);
       /** Under a twentieth of coverage the screen-door dither is writing one
        *  pixel in twenty of a head that is already only a few across at the
        *  distances its own ring covers. */
@@ -8861,6 +8922,7 @@ for (const [label, viewport, touch] of [
       const nominal = new Map(meshes.map((m) => [m.name, footOf(m.geometry)]));
 
       let drawn = 0; let unsupported = 0; let worst = null;
+      let onCard = 0; const bySet = new Map();
       const anchors = a.scene?.anchors ?? [];
       for (const anchor of anchors) {
         for (const yaw of [0, 90, 180, 270]) {
@@ -8884,11 +8946,35 @@ for (const [label, viewport, touch] of [
               // whole or not at all, so the drawn top and the drawn reach are
               // the record's own numbers and the ramp only says WHETHER.
               if (f <= 0) continue;
-              const h = a.flora.heightAt(m.name, Math.hypot(x - cx, z - cz), rg[i * 4]);
+              // `heightAt` is null for a set with no ring of its own, which is
+              // what `flora-far` is — T-0035 draws every visible plant whole,
+              // so the fraction is 1 and the null is "no ramp", not "no height".
+              const h = a.flora.heightAt(m.name, Math.hypot(x - cx, z - cz), rg[i * 4]) ?? 1;
               const key = `${Math.floor(x)},${Math.floor(z)}`;
               let b = grid.get(key);
               if (!b) { b = []; grid.set(key, b); }
-              b.push({ x, z, top: mm[o + 13] + fl[i * 4] * h, r: fl[i * 4 + 1] * h });
+              b.push({ x, z, top: mm[o + 13] + fl[i * 4] * h, set: m.name,
+                r: CARD.has(m.name) ? 0 : fl[i * 4 + 1] * h });
+            }
+          }
+          // T-0448 diagnostic, second grid: the meshes ROOTED leaves out, built
+          // the same way and consulted only to explain an orphan. The support
+          // test above does not read it, so the count stays comparable.
+          const cardGrid = new Map();
+          for (const m of meshes) {
+            if (ROOTED.has(m.name) || m.name.startsWith('flora-head-') || !m.count) continue;
+            const mm = m.instanceMatrix.array;
+            const fl = m.geometry.getAttribute('aFlora').array;
+            const rg = m.geometry.getAttribute('aChiRing').array;
+            for (let i = 0; i < m.count; i++) {
+              const o = i * 16;
+              const x = mm[o + 12]; const z = mm[o + 14];
+              if (fadeOf(rg, i * 4, Math.hypot(x - cx, z - cz)) <= 0) continue;
+              const h = a.flora.heightAt(m.name, Math.hypot(x - cx, z - cz), rg[i * 4]) ?? 1;
+              const key = `${Math.floor(x)},${Math.floor(z)}`;
+              let b = cardGrid.get(key);
+              if (!b) { b = []; cardGrid.set(key, b); }
+              b.push({ x, z, top: mm[o + 13] + fl[i * 4] * h, r: fl[i * 4 + 1] * h, set: m.name });
             }
           }
           for (const m of meshes) {
@@ -8912,29 +8998,58 @@ for (const [label, viewport, touch] of [
               const fy = y + mm[o + 5] * s;
               const fz = z + mm[o + 6] * s;
               let best = -Infinity;
+              // T-0448 diagnostic: the nearest rooted plant IGNORING the radius
+              // test, so an orphan can be told from a stem the radius missed.
+              let nearest = null;
               for (let kx = Math.floor(fx) - 1; kx <= Math.floor(fx) + 1; kx++) {
                 for (let kz = Math.floor(fz) - 1; kz <= Math.floor(fz) + 1; kz++) {
                   const b = grid.get(`${kx},${kz}`);
                   if (!b) continue;
                   for (const p of b) {
+                    const d = Math.hypot(p.x - fx, p.z - fz);
+                    if (!nearest || d < nearest.d) nearest = { d, r: p.r, top: p.top, set: p.set };
                     if (p.top > best
-                      && Math.hypot(p.x - fx, p.z - fz) <= Math.max(0.05, p.r) + SLACK) best = p.top;
+                      && d <= Math.max(0.05, p.r) + SLACK) best = p.top;
                   }
                 }
               }
               if (best < fy - SLACK) {
                 unsupported++;
+                // T-0448: does a mesh ROOTED excludes stand where the stem is
+                // missing, and would it have counted? Answers whether these are
+                // far-card heads (T-0209) or geometry over nothing at all.
+                let card = null;
+                for (let kx = Math.floor(fx) - 1; kx <= Math.floor(fx) + 1; kx++) {
+                  for (let kz = Math.floor(fz) - 1; kz <= Math.floor(fz) + 1; kz++) {
+                    const b = cardGrid.get(`${kx},${kz}`);
+                    if (!b) continue;
+                    for (const p of b) {
+                      const d = Math.hypot(p.x - fx, p.z - fz);
+                      if (!card || d < card.d) card = { d, r: p.r, top: p.top, set: p.set };
+                    }
+                  }
+                }
+                if (card && card.d <= Math.max(0.05, card.r) + SLACK && card.top >= fy - SLACK) {
+                  onCard++;
+                  bySet.set(card.set, (bySet.get(card.set) ?? 0) + 1);
+                }
                 const gap = best === -Infinity ? null : fy - best;
                 if (!worst || (gap ?? 9) > (worst.gap ?? 9) || best === -Infinity) {
                   worst = { set: m.name, at: anchor.id, yaw, y: fy, gap, rise: rise[i],
-                    orphan: best === -Infinity };
+                    orphan: best === -Infinity,
+                    // What was actually there, and why it did not count.
+                    nearest: nearest && { set: nearest.set, d: +nearest.d.toFixed(3),
+                      r: +nearest.r.toFixed(3), reach: +(nearest.top - fy).toFixed(3) },
+                    card: card && { set: card.set, d: +card.d.toFixed(3),
+                      r: +card.r.toFixed(3), reach: +(card.top - fy).toFixed(3) } };
                 }
               }
             }
           }
         }
       }
-      return { drawn, unsupported, worst, poses: anchors.length * 4 };
+      return { drawn, unsupported, worst, poses: anchors.length * 4,
+        onCard, bySet: [...bySet].sort((p, q) => q[1] - p[1]) };
     });
     check(`${label}: every drawn flower head has a plant under its own stalk`,
       headSupport.drawn > 500 && headSupport.unsupported === 0,
@@ -8944,7 +9059,64 @@ for (const [label, viewport, touch] of [
         ? `; worst ${headSupport.worst.set} at ${headSupport.worst.at} ${headSupport.worst.yaw}deg, `
           + `foot ${headSupport.worst.y.toFixed(2)} m, ${headSupport.worst.rise.toFixed(2)} m over its base `
           + (headSupport.worst.orphan ? 'over open ground' : `above a ${headSupport.worst.gap.toFixed(2)} m gap`)
+          // T-0448: name what WAS there. An orphan with a rooted plant 0.2 m away
+          // is the radius test being too tight; one with nothing for metres is the
+          // flora layer placing a head its stem never got.
+          + (headSupport.worst.nearest
+            ? `; nearest rooted ${headSupport.worst.nearest.set} at ${headSupport.worst.nearest.d} m `
+              + `(its own radius ${headSupport.worst.nearest.r} m, top ${headSupport.worst.nearest.reach} m from the foot)`
+            : '; no rooted plant in the nine cells at all')
+          // T-0448: and what a mesh ROOTED excludes had standing there instead.
+          + (headSupport.worst.card
+            ? `; excluded ${headSupport.worst.card.set} at ${headSupport.worst.card.d} m `
+              + `(radius ${headSupport.worst.card.r} m, top ${headSupport.worst.card.reach} m from the foot)`
+            : '; nothing ROOTED excludes was there either')
+          + `; ${headSupport.onCard} of ${headSupport.unsupported} orphans stand on a mesh `
+          + `ROOTED excludes that reaches them [`
+          + headSupport.bySet.map(([k, v]) => `${k} ${v}`).join(', ') + ']'
         : ''));
+
+    inStageWork = false;
+    } // end PART 10 (T-0060 stage 4a, cut by T-0121; renumbered by T-0346 and T-0173, halved by T-0170)
+    // PART 11 — the sward's ragged boundary through the units a visitor reads:
+    // the boundary and its fringe, each community's own recorded ground cover,
+    // the street readouts, the navigation guide and the Settings units. The
+    // second half of T-0060's stage 4a.
+    //
+    // T-0170 CUT IT HERE, and the boundary had to be MADE before it could be
+    // taken: this part carried no `// --- section ---` headers at all, which is
+    // the reason T-0167 left it alone. The seams are named now, and the profile
+    // is what chose this one out of them. The first candidate — one section
+    // earlier, above the flower-head census — was cut, measured and rejected:
+    // 5 m 05 s and 6 m 24 s, and 3 m 36 s is not a margin on a suite whose own
+    // readings move by minutes with the load. Moving that one section up into
+    // the head buys the balance, and both halves are measured under six minutes.
+    //
+    // Exactly one binding crosses, and it is the same one that already crossed
+    // the stage split: `streetLayer`, read above it and now named in
+    // `anyStage(7, 10, 11)` because BOTH halves read it — the first half for the
+    // road panels and the horizon band, this one for the street readouts. The
+    // scan turned up six other names below this line (`headSupport`, `horizon`,
+    // `over`, `planted`, `popIn`, `sward`) and every occurrence is prose or a
+    // string, not the binding.
+    if (stageOn(11)) {
+    inStageWork = true;
+
+    // Same fresh-boot accommodation as the part above: the tail of this one
+    // drives the panel chrome (`#btn-help`), and while the gate screen stands
+    // the chrome has no layout at all — the click waits ninety seconds for a
+    // zero-size button and dies. In a full run this is a no-op.
+    await enterTown();
+
+    // Every camera-bearing section below teleports itself, so this part takes
+    // no pose. What they all assume is a walker ON THE GROUND — the boundary
+    // sections measure screen rows against eye height, and the last thing this
+    // part does is fly. The part above lands the walker there itself; from a
+    // fresh boot this is what puts it there. Idempotent by construction, so an
+    // unfiltered run pays one call for it.
+    await page.evaluate(() => { window.__chicago4d.setFly(false); });
+
+    // --- the sward's ragged boundary (ROADMAP § S6a) ------------------------
 
     // ROADMAP § S6a item 3: a ring is a circle about the walker, so on flat
     // ground its outer edge maps to a CONSTANT SCREEN ROW — measured at row
@@ -9189,6 +9361,8 @@ for (const [label, viewport, touch] of [
       seam.anchored.same && seam.anchored.spread > 0.5,
       `same from 40 m away: ${seam.anchored.same}; `
       + `spread over nine points ${seam.anchored.spread.toFixed(2)} m`);
+    // --- what each community's own records say its ground carries -----------
+
     // Each flora zone record authors how much of the ground its matrix covers
     // — `cover.matrix_fraction`, with a `bare_soil_fraction` beside it that the
     // manifest even denormalises — and the renderer planted all ten communities
@@ -9276,6 +9450,8 @@ for (const [label, viewport, touch] of [
           + `${worst.share} = ${worst.implied.toFixed(2)}` : ''));
     }
 
+    // --- the streets a visitor reads ----------------------------------------
+
     check(`${label}: every structure, including Exchange Coffee House, shares the terrain surface`,
       streetLayer.anchoredBuildings > 20
       // Never ABOVE the origin's ground; below it only as far as the terrain
@@ -9308,6 +9484,8 @@ for (const [label, viewport, touch] of [
       && /\d+ ft/.test(streetLayer.approaching.ahead)
       && !/\d+ m(?:\s|$)/.test(streetLayer.approaching.ahead),
       JSON.stringify(streetLayer.approaching));
+
+    // --- the navigation guide, and the units the whole HUD reads in --------
 
     // The menu is built from the two runtime collections, not from a sampled
     // shortlist.  With an empty query every loaded structure and every compiled
@@ -9373,10 +9551,10 @@ for (const [label, viewport, touch] of [
       JSON.stringify(unitChoice));
 
     inStageWork = false;
-    } // end PART 10 (T-0060 stage 4a, cut by T-0121; renumbered by T-0346 and T-0173)
-    // PART 11 — eye height through What's-new: the settings, the Go-to tab and
+    } // end PART 11 (the tail of T-0060 stage 4a, cut out of part 10 by T-0170)
+    // PART 12 — eye height through What's-new: the settings, the Go-to tab and
     // the release notes. The head of T-0060's stage 4b; T-0167 cut the Evidence
-    // panel and free-fly off its tail into part 11.
+    // panel and free-fly off its tail into part 13.
     //
     // It drives the panel chrome from its first line, so it enters the town on
     // its own account. It takes no pose of its own on purpose: the checks below
@@ -9392,10 +9570,10 @@ for (const [label, viewport, touch] of [
     // part down before one assertion had run. Not one assertion is dropped or
     // softened by the change: `clickChrome` hit-tests the control at its own
     // centre the way a real click does, and says what covered it when it fails.
-    if (stageOn(11)) {
+    if (stageOn(12)) {
     inStageWork = true;
     await enterTown();
-    // …and the PANEL, which part 9 leaves open at its last line and this part
+    // …and the PANEL, which part 11 leaves open at its last line and this part
     // reaches straight into: its first statement clicks a tab inside it, and a
     // click on a tab that has no layout waits ninety seconds and dies. Guarded
     // on the panel's own hidden state rather than toggling, for the same reason
@@ -9769,26 +9947,26 @@ for (const [label, viewport, touch] of [
       `${ret.flagged.length} of ${ret.total} flagged: ${ret.flagged.join(' | ')}`);
 
     inStageWork = false;
-    } // end PART 11 (T-0060 stage 4b-i, cut by T-0121, halved by T-0167; renumbered by T-0346 and T-0173)
-    // PART 12 — the Evidence panel through inspecting from the air: the
+    } // end PART 12 (T-0060 stage 4b-i, cut by T-0121, halved by T-0167; renumbered by T-0346, T-0173 and T-0170)
+    // PART 13 — the Evidence panel through inspecting from the air: the
     // liberties, the people, the wildlife, what is not here, what the ground
     // claims, free-fly and the two inspect keys. The tail of T-0060's stage 4.
     //
-    // T-0167 cut it off part 10 (part 8 then) because it was the thinnest margin on the
+    // T-0167 cut it off part 12 (part 8 then) because it was the thinnest margin on the
     // measured DESKTOP profile — 8 m 46 s against a ten-minute ceiling, with
     // 107 staged checks, more than any other part — and the desktop readings
     // move by minutes between runs on a software renderer, so a 74-second
     // margin is not one. The boundary is this one because the desktop profile
-    // put 6 m 05 s of part 10's cost above it and 2 m 41 s below, and because
+    // put 6 m 05 s of part 12's cost above it and 2 m 41 s below, and because
     // nothing declared above it is read below it: the scope-aware scan found
     // `eye`, `toggles` and `typed` reaching across and all three are prose or a
     // different local (`typedE.typed`).
     //
     // Its prologue is `enterTown()` alone: the liberties reading below already
     // carries its own guarded panel-open and clicks the Evidence tab itself, so
-    // unlike part 10 this part needs no panel guard bolted on. It takes no pose
+    // unlike part 12 this part needs no panel guard bolted on. It takes no pose
     // — free-fly is entered from wherever the visitor stands.
-    if (stageOn(12)) {
+    if (stageOn(13)) {
     inStageWork = true;
     await enterTown();
     // --- the liberties, in the Evidence panel ------------------------------
@@ -9847,10 +10025,17 @@ for (const [label, viewport, touch] of [
       const named = rows.find((r) => r.dataset.id === 'hh_inf_baker_south_01');
       const dated = rows.find((r) => r.dataset.id === 'hh_egan_william_b');
       // T-0378. A fourth row, for the same reason: `letter_list_only` is on the
-      // ten people the post office's letter lists minted and on nobody else, so
-      // no row above can fail for it.
+      // people the post office's letter lists minted and on nobody else, so no row
+      // above can fail for it. Since T-0379 that row lives inside the letter-list
+      // group, and `<details>` inside a closed `<details>` still renders — the
+      // group is opened here so the row is reached the way a visitor reaches it.
+      const group = mount ? mount.querySelector('details.res-ll-group') : null;
+      const groupClosedOnMount = group ? !group.open : null;
+      if (group) group.open = true;
       const letter = rows.find((r) => r.dataset.id === 'hh_ll_william_luce');
-      for (const el of [target, named, dated, letter]) {
+      const candidate = rows.find((r) => r.dataset.id === 'hh_doc_a_garrett');
+      const noFind = rows.find((r) => r.dataset.id === 'hh_ll_hail_aifred');
+      for (const el of [target, named, dated, letter, candidate, noFind]) {
         if (!el) continue;
         el.open = true;
         for (let i = 0; i < 100 && el.querySelector('.res-hh-body .legend-note'); i++) {
@@ -9862,6 +10047,8 @@ for (const [label, viewport, touch] of [
         namedText: bodyOf(named),
         datedText: bodyOf(dated),
         letterText: bodyOf(letter),
+        candidateText: bodyOf(candidate),
+        noFindText: bodyOf(noFind),
         households: window.__chicago4d.residents?.households ?? 0,
         persons: window.__chicago4d.residents?.persons ?? 0,
         offCard: window.__chicago4d.residents?.offCard ?? -1,
@@ -9869,6 +10056,18 @@ for (const [label, viewport, touch] of [
         error: window.__chicago4d.residents?.error ?? 'no residents on the handle',
         rendered: rows.length,
         orphanChips: mount ? mount.querySelectorAll('.res-orphan').length : 0,
+        // T-0379: the two halves of the list, and the group that holds the second.
+        evidenced: window.__chicago4d.residents?.evidenced ?? -1,
+        letterList: window.__chicago4d.residents?.letterList ?? -1,
+        letterListOffCard: window.__chicago4d.residents?.letterListOffCard ?? -1,
+        researchReviewed: window.__chicago4d.residents?.researchReviewed ?? -1,
+        researchCounts: window.__chicago4d.residents?.researchCounts ?? {},
+        groupRows: group ? group.querySelectorAll('details.res-hh').length : -1,
+        groupText: group ? group.textContent.replace(/\s+/g, ' ').slice(0, 900) : '',
+        // The group must be a DELIBERATE open. A section that renders 727 rows
+        // expanded is the "wall of undifferentiated people" the ruling named as
+        // the way to implement it badly, so this is read before anything opens it.
+        groupClosedOnMount,
         busy: mount ? mount.hasAttribute('aria-busy') : true,
         collapsed,
         openedId: target?.dataset.id ?? '',
@@ -9883,10 +10082,29 @@ for (const [label, viewport, touch] of [
       };
     });
     check(`${label}: every household in the layer is on the card`,
-      residents.households === 208 && residents.rendered === 208 && !residents.busy,
+      residents.households === 920 && residents.rendered === 920 && !residents.busy,
       `${residents.households} loaded / ${residents.rendered} rendered (${residents.error})`);
-    check(`${label}: the 244 person entries are counted`, residents.persons === 244,
+    check(`${label}: the 956 person entries are counted`, residents.persons === 956,
       `${residents.persons}`);
+    // T-0379, and the assertion the ruling itself asked for. 727 of the 920
+    // households are a name on a post-office list and nothing else, and the
+    // ruling's own test of a good implementation is that a visitor can tell which
+    // ones at a glance. So: the town's evidenced households are still 193 rows in
+    // the section proper — the list did not become three-quarters noise — the
+    // cohort is one group holding all 727, and that group is CLOSED when the
+    // section mounts. A regression here does not break the page; it drowns it,
+    // which is why it is a number and not an eyeball.
+    check(`${label}: the letter-list cohort is held apart from the evidenced town`,
+      residents.evidenced === 193 && residents.letterList === 727
+      && residents.groupRows === 727 && residents.groupClosedOnMount === true,
+      `${residents.evidenced} evidenced / ${residents.letterList} letter-list, `
+      + `${residents.groupRows} in the group, closed on mount: `
+      + `${residents.groupClosedOnMount}`);
+    check(`${label}: the group says what that evidence is worth before it is opened`,
+      /post office/.test(residents.groupText)
+      && /does not.{0,40}establish/is.test(residents.groupText)
+      && /weakest evidence/.test(residents.groupText),
+      residents.groupText.slice(0, 240));
     // The finding itself, asserted as a number so it cannot quietly grow back:
     // the households that reach no building sidecar are each marked on their own
     // row. 17 of the 52 are the original fault — records whose residence and
@@ -9897,17 +10115,19 @@ for (const [label, viewport, touch] of [
     // name and no address at all; and T-0373's 4 residency-tested people, whom
     // the papers name with no trade either. In every case the chip is the card
     // telling the truth rather than a regression.
-    // The letter-list figure was 12 until T-0331: the Democrat of 1834-03-04
-    // prints the NINTH impression of the 1 January 1834 return, its scan lost the
-    // left edge of every line, and completing 25 of those forenames from the
-    // concordant printings brought Thomas Conger and John Thompson over the
-    // minting bar. Two more names on the card, both still addressless — which is
-    // what a letter list is. T-0321 then found the THIRD printing of the 1 April
-    // 1834 return on a page its own reading pass had never opened, which put
-    // Elam Tuller in a second return and brought the figure to 15.
+    // T-0379 SPLIT THIS NUMBER IN TWO, and the split is the honest form of it. Of
+    // the 764 households that reach no building card, 727 are the letter-list
+    // cohort and reach none BY DEFINITION — a list of uncalled-for letters gives a
+    // name and no address, so a chip announcing it on every one of those rows is
+    // wallpaper, and the group's own summary says it once instead. The chip stays
+    // where it is a finding: 37 households the rest of the corpus documents and
+    // this project still could not attach to a building. That 37 is the number a
+    // regression would move, so it is the number asserted.
     check(`${label}: the households no building card can reach are marked`,
-      residents.offCard === 52 && residents.orphanChips === 52,
-      `${residents.offCard} off-card / ${residents.orphanChips} chip(s)`);
+      residents.offCard === 764 && residents.orphanChips === 37
+      && residents.letterListOffCard === 727,
+      `${residents.offCard} off-card / ${residents.orphanChips} chip(s) / `
+      + `${residents.letterListOffCard} of them letter-list`);
     check(`${label}: the researched non-residents are published too`,
       residents.notResident === 10, `${residents.notResident}`);
     // The lazy read, proved by opening the household that IS the finding: Mark
@@ -9971,7 +10191,8 @@ for (const [label, viewport, touch] of [
       && /weakest evidence/.test(residents.letterText),
       residents.letterText.slice(0, 200));
     check(`${label}: the count sentence says how many people are known only that way`,
-      /15 of the people here are known ONLY from the post office/.test(residents.prose),
+      /727 of the people here are known ONLY from the post office/.test(residents.prose)
+      && /per cent of this town/.test(residents.prose),
       residents.prose.slice(0, 240));
     // And the other half of the same ruling: none of the ten may carry a trade
     // the papers do not give them. The occupation on a letter-list person reads
@@ -9981,6 +10202,24 @@ for (const [label, viewport, touch] of [
       /none recorded/i.test(residents.letterText)
       && /No source records an occupation/.test(residents.letterText),
       residents.letterText.slice(0, 200));
+    // T-0442: a candidate biography is useful only if it remains visibly a
+    // candidate. The same public payload also carries negative work so silence
+    // cannot be mistaken for a person who was never researched.
+    check(`${label}: the 75-person research pilot reaches resident cards`,
+      residents.researchReviewed === 75
+      && residents.researchCounts.corroborated_enrichment === 4
+      && residents.researchCounts.candidate_identity === 7
+      && residents.researchCounts.no_corroboration === 64,
+      `${residents.researchReviewed}: ${JSON.stringify(residents.researchCounts)}`);
+    check(`${label}: candidate identities are visibly unmerged`,
+      /Augustus Garrett/.test(residents.candidateText)
+      && /candidate identity.{0,20}not merged/i.test(residents.candidateText)
+      && /not an asserted identity/i.test(residents.candidateText),
+      residents.candidateText.slice(0, 260));
+    check(`${label}: a negative search is published without denying existence`,
+      /no safe match found/i.test(residents.noFindText)
+      && /not evidence that the person did not exist/i.test(residents.noFindText),
+      residents.noFindText.slice(0, 260));
     // The one thing this section must never imply, and the constraint that
     // outranks every other consideration in this project: v1 draws no human
     // figures, and the removal of August 1835 is not staged anywhere.
@@ -10751,7 +10990,7 @@ for (const [label, viewport, touch] of [
       ground.overflow);
     // T-0210, and it was the LAST frame-bound chrome click in the file. This one
     // close timed out at ninety seconds on an unmodified tree and took the desktop
-    // half of part 11 down with it, which read as a broken control and was not one.
+    // half of part 13 down with it, which read as a broken control and was not one.
     // Measured here at the click site itself, on the published mirror at 1280x800,
     // at three machine loads on one runner:
     //
@@ -11014,7 +11253,7 @@ for (const [label, viewport, touch] of [
     await page.evaluate(() => window.__chicago4d.frame('sauganash_hotel', 26));
 
     inStageWork = false;
-    } // end PART 12 (T-0060 stage 4b-ii, cut by T-0167; renumbered by T-0346 and T-0173)
+    } // end PART 13 (T-0060 stage 4b-ii, cut by T-0167; renumbered by T-0346, T-0173 and T-0170)
     } catch (e) {
       inStageWork = false;
       thrown = e;
