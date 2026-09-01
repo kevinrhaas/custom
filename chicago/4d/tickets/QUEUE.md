@@ -215,3 +215,4 @@ T-0388 — Three derived records have drifted from their own generators on an un
 T-0438 — The letter-list cohort is 2.54 MiB of the published tree, and it is now the largest single item in it
 T-0439 — Two pixel-sensitivity checks fail when parts 9-12 run together and pass when part 9 runs alone
 T-0440 — Clark, Filer & Co.'s live placement is empty while three printings put its warehouse five doors east of Randolph
+T-0449 — Four South Water frontage entries declare lots their runs never reach, and each hides its block's headroom
