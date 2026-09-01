@@ -141,14 +141,14 @@
     "street_name": "Lake Street",
     "businesses_naming_it": 11,
     "adopted": 9,
-    "roofs_lot_front": 51,
+    "roofs_lot_front": 55,
     "roofs_corner_side": 0,
-    "roofs_on_the_adopted_face": 51,
-    "roofs_free": 17,
+    "roofs_on_the_adopted_face": 55,
+    "roofs_free": 20,
     "roofs_home": 24,
     "roofs_home_named": 0,
     "roofs_home_inferred": 24,
-    "roofs_yard": 10,
+    "roofs_yard": 11,
     "roofs_in_centreline_band_declined": 4
    },
    "lasalle": {
