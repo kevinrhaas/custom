@@ -8885,10 +8885,26 @@ for (const [label, viewport, touch] of [
       const clamp01 = (x) => (x < 0 ? 0 : x > 1 ? 1 : x);
       const fadeOf = (r, i, d) => clamp01((r[i] - d) / Math.max(r[i + 1], 1e-4))
         * (r[i + 3] > 0 ? clamp01((d - r[i + 2]) / r[i + 3]) : 1);
-      /** Sets a head is ever hung from. A mid clump card is a billboard standing
+      /** Sets a head is ever hung from. A MID clump card is a billboard standing
        *  for a patch of matrix and carries no head, so counting one as support
-       *  is a free pass — it is what made a first cut of this read zero. */
-      const ROOTED = new Set(['flora-near', 'flora-forb', 'flora-rosette', 'flora-shrub']);
+       *  is a free pass — it is what made a first cut of this read zero.
+       *
+       *  `flora-far` is not that card, and since T-0209 it is not excluded:
+       *  the far band deals the WHOLE community, and a flowering forb's far
+       *  card carries its flower — `rebuildFar` calls `maybeHead` on it. The
+       *  comment this replaces predates that and had gone false. Measured on
+       *  the published mirror 2026-09-01: 2693 of 2693 orphans stood on a far
+       *  card at 0.000 m whose top reached them. `flora-mid` stays out, and
+       *  that is measured too — its scatter deals graminoids and never calls
+       *  `maybeHead`, and no orphan stood on one. */
+      const ROOTED = new Set(['flora-near', 'flora-forb', 'flora-rosette', 'flora-shrub',
+        'flora-far']);
+      /** A card's `spread` is its billboard HALF-WIDTH — 1.5 m at the near far
+       *  band, not a stem's radius. Counting that as the support's reach would
+       *  pass any head within a card's width of one, which is the free pass the
+       *  note above refuses. A card carries only the head `maybeHead` puts at
+       *  its own `e,n`, so it supports at its foot and nowhere else. */
+      const CARD = new Set(['flora-far']);
       /** Under a twentieth of coverage the screen-door dither is writing one
        *  pixel in twenty of a head that is already only a few across at the
        *  distances its own ring covers. */
@@ -8930,11 +8946,15 @@ for (const [label, viewport, touch] of [
               // whole or not at all, so the drawn top and the drawn reach are
               // the record's own numbers and the ramp only says WHETHER.
               if (f <= 0) continue;
-              const h = a.flora.heightAt(m.name, Math.hypot(x - cx, z - cz), rg[i * 4]);
+              // `heightAt` is null for a set with no ring of its own, which is
+              // what `flora-far` is — T-0035 draws every visible plant whole,
+              // so the fraction is 1 and the null is "no ramp", not "no height".
+              const h = a.flora.heightAt(m.name, Math.hypot(x - cx, z - cz), rg[i * 4]) ?? 1;
               const key = `${Math.floor(x)},${Math.floor(z)}`;
               let b = grid.get(key);
               if (!b) { b = []; grid.set(key, b); }
-              b.push({ x, z, top: mm[o + 13] + fl[i * 4] * h, r: fl[i * 4 + 1] * h, set: m.name });
+              b.push({ x, z, top: mm[o + 13] + fl[i * 4] * h, set: m.name,
+                r: CARD.has(m.name) ? 0 : fl[i * 4 + 1] * h });
             }
           }
           // T-0448 diagnostic, second grid: the meshes ROOTED leaves out, built
