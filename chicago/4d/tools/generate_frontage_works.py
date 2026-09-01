@@ -524,6 +524,13 @@ EDGE_HITCH_ALONG = HITCH_ALONG[0]
 # sign post and the inns' own hitching posts stand in.
 EDGE_HITCH_OFFSET_M = EDGE_OFFSET_M + WALK_W_M / 2.0 + HITCH_VERGE_M
 
+# T-0426. How far a building's own facing may differ from the face it stands on
+# before this layer stops standing a post there. 45 deg because the platted grid
+# is right-angled: a building fronting the same street as its lot reads within a
+# few degrees of the face, and one fronting the cross street reads about 90 off.
+# 45 is the midpoint and there is nothing between the two populations to tune to.
+EDGE_HITCH_FACE_TOL_DEG = 45.0
+
 # THE SOUTH WATER PLACEMENTS (T-0127), NAMED HERE BECAUSE THE RECORD IS WHERE A
 # READER MEETS THEM. Eleven documented buildings on South Water Street's south
 # side were placed in August 2026 by reading the MODERN West Wacker Drive
@@ -2336,6 +2343,9 @@ def _placed_footprints() -> list[dict]:
                     "name": sc.get("name") or "",
                     "trade": fn.get("value"),
                     "trade_grade": fn.get("confidence"),
+                    # T-0426: the building's OWN facing, so a rule can tell the
+                    # face a lot fronts from the face this building's door is on.
+                    "bearing": float(place.get("rotation_deg") or 0.0),
                     "at": (float(place["local_e"]), float(place["local_n"]))})
     return out
 
@@ -2711,6 +2721,30 @@ def _edge_hitching(entry, laid, chunks, buildings, hf, streets, refused):
                     f"the trade at {b['id']} is {b['trade_grade']} — dealt by the roof "
                     "schedule rather than held on evidence. A hitching post there "
                     "would be furniture standing on an invention. No post is set.")})
+                continue
+            # T-0426 — A POST BELONGS AT THE FACE THE DOOR IS ON, and until now
+            # this rule asked only whether the footprint fell inside the lot.
+            #
+            # The lot says which street it fronts; the BUILDING says which way it
+            # faces, and on a deep lot those are two different streets. The New
+            # York Clothing Store fronts east onto Dearborn at bearing 90 and
+            # stands on a lot whose face looks south onto Lake at 180.5, so the
+            # containment test stood its post 49 m from its own door — furniture
+            # for a stranger off a street the shop does not open onto.
+            #
+            # The post is what this refusal covers and nothing else. Whether the
+            # same containment should still lay a street-lining FENCE on that
+            # face is a different question over a shared rule, and it is the
+            # owner's: see T-0426.
+            face_out = math.degrees(math.atan2(frame["outward"][0], frame["outward"][1])) % 360.0
+            off_face = abs((b["bearing"] - face_out + 180.0) % 360.0 - 180.0)
+            if off_face > EDGE_HITCH_FACE_TOL_DEG:
+                refused.append({"structure_id": b["id"], "wall": where, "why": (
+                    f"{b['id']} faces {b['bearing']:.1f}deg and this platted face looks "
+                    f"{face_out:.1f}deg — {off_face:.1f}deg apart, over the "
+                    f"{EDGE_HITCH_FACE_TOL_DEG}deg this layer allows. The lot fronts "
+                    f"{name} and the building's door does not, so a post here would "
+                    "serve a street the trade does not open onto. No post is set.")})
                 continue
             spans = [project(frame, tuple(p)) for p in b["pts"]]
             f0 = min(t for t, _ in spans)
