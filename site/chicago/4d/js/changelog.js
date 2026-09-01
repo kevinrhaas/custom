@@ -1,4 +1,13 @@
 export const CHANGELOG = [ // newest first
+  { v: 440, title: 'Seventy-five more real names receive a sourced research trail', kind: 'feature', ts: '2026-09-01T06:25:19.533Z', date: 'Sep 1, 2026, 1:25 AM CT',
+    items: [
+      'A fixed second cohort brings dated identity reviews to 150 of 848 eligible real named people; reconstructed residents remain excluded.',
+      'This pass records 27 corroborated enrichments, 23 unmerged candidates and 25 documented no-find outcomes.',
+      'Forty-seven source records cover contemporary law, court and directory material, institutional biographies, finding aids and cited local histories.',
+      'Eliza Chappel, Aaron Parcel/Aron Parcell and Alonzo Murray/Murry remain explicit duplicate candidates rather than silent merges.',
+      'Postal evidence is treated as reachability: candidates at Warrenville, Joliet, Milwaukee, Salt Creek and House’s Grove are not promoted into town residents.',
+      'The manifest, findings, cumulative public payload and resident-card counts now re-derive in the per-commit gate.'
+    ] },
   { v: 439, title: 'A hitching post stops standing at the wrong end of the block', kind: 'fix', ts: '2026-09-01T03:55:14.551Z', date: 'Aug 31, 2026, 10:55 PM CT',
     items: [
       'A post to tie a horse to belongs outside the shop it serves. This town has been placing them by asking a narrower question \u2014 does the building stand inside this lot? \u2014 and on a deep corner lot the answer can be yes while the shop\u2019s door opens onto the other street entirely.',

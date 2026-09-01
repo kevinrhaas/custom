@@ -37,6 +37,30 @@
         "Grenville T. Sproat's school, which is not on this page"
       ]
     },
+    "berrien_eben_griswold": {
+      "source_id": "berrien_eben_griswold",
+      "citation": "Twentieth Century History of Berrien County, Eben Griswold constable entry",
+      "url": "https://archive.org/stream/twentiethcentury00cool/twentiethcentury00cool_djvu.txt",
+      "archived_url": "",
+      "tier": 4,
+      "tier_label": "later scholarship"
+    },
+    "buck_pioneer_milwaukee": {
+      "source_id": "buck_pioneer_milwaukee",
+      "citation": "James S. Buck, Pioneer History of Milwaukee",
+      "url": "https://upload.wikimedia.org/wikipedia/commons/4/4c/Pioneer_history_of_Milwaukee_%28IA_cu31924070693969%29.pdf",
+      "archived_url": "",
+      "tier": 4,
+      "tier_label": "later scholarship"
+    },
+    "buffalo_nehemiah_case": {
+      "source_id": "buffalo_nehemiah_case",
+      "citation": "Buffalo city directory, Nehemiah Case entry",
+      "url": "https://cdm16694.contentdm.oclc.org/digital/api/collection/VHB011/id/3028/download",
+      "archived_url": "",
+      "tier": 4,
+      "tier_label": "later scholarship"
+    },
     "chicago_american_1835": {
       "source_id": "chicago_american_1835",
       "citation": "The Chicago American. Vol. I, No. 1 (June 8, 1835) through Vol. I, No. 12 (August 29, 1835). Chicago, Ill.: T. O. Davis. Thirteen issues, OCR-assisted research transcriptions from page scans.",
@@ -207,6 +231,38 @@
         "any citation whatever for its addendum"
       ]
     },
+    "chm_eliza_chappel": {
+      "source_id": "chm_eliza_chappel",
+      "citation": "Chicago Historical Society, My Chicago: Eliza Chappel",
+      "url": "https://www.chicagohistory.org/app/uploads/2016/10/MyChicagointro.pdf",
+      "archived_url": "",
+      "tier": 4,
+      "tier_label": "later scholarship"
+    },
+    "chm_george_snow_assessor": {
+      "source_id": "chm_george_snow_assessor",
+      "citation": "Chicago Historical Society annual report, George W. Snow",
+      "url": "https://archive.org/stream/annualreport39socigoog/annualreport39socigoog_djvu.txt",
+      "archived_url": "",
+      "tier": 4,
+      "tier_label": "later scholarship"
+    },
+    "chm_ira_couch_portrait": {
+      "source_id": "chm_ira_couch_portrait",
+      "citation": "Chicago History Museum, Ira Couch portrait authority record",
+      "url": "https://images.chicagohistory.org/asset/30376/",
+      "archived_url": "",
+      "tier": 4,
+      "tier_label": "later scholarship"
+    },
+    "chm_thomas_owen_papers": {
+      "source_id": "chm_thomas_owen_papers",
+      "citation": "Chicago History Museum, Thomas J. V. Owen papers finding aid",
+      "url": "https://explore.chicagocollections.org/marcxml/chicagohistory/30/4f1nx64/",
+      "archived_url": "",
+      "tier": 4,
+      "tier_label": "later scholarship"
+    },
     "cpl_augustus_garrett_biography": {
       "source_id": "cpl_augustus_garrett_biography",
       "citation": "Chicago Public Library. \"Mayor Augustus Garrett Biography.\"",
@@ -227,6 +283,38 @@
       "source_id": "cpl_james_curtiss_biography",
       "citation": "Chicago Public Library. \"Mayor James Curtiss Biography.\"",
       "url": "https://www.chipublib.org/mayor-james-curtiss-biography/",
+      "archived_url": "",
+      "tier": 4,
+      "tier_label": "later scholarship"
+    },
+    "cpl_john_s_wright_papers": {
+      "source_id": "cpl_john_s_wright_papers",
+      "citation": "Chicago Public Library, John S. Wright Papers finding aid",
+      "url": "https://www.chipublib.org/fa-john-s-wright-papers-2/",
+      "archived_url": "",
+      "tier": 4,
+      "tier_label": "later scholarship"
+    },
+    "cpn_beaubien_family": {
+      "source_id": "cpn_beaubien_family",
+      "citation": "Citizen Potawatomi Nation Cultural Heritage Center, Beaubien Family",
+      "url": "https://www.potawatomiheritage.com/encyclopedia/beaubien-family/",
+      "archived_url": "",
+      "tier": 4,
+      "tier_label": "later scholarship"
+    },
+    "cpn_madore_beaubien": {
+      "source_id": "cpn_madore_beaubien",
+      "citation": "Citizen Potawatomi Nation Cultural Heritage Center, Madore Beaubien",
+      "url": "https://www.potawatomiheritage.com/encyclopedia/beaubien-madore-b/",
+      "archived_url": "",
+      "tier": 4,
+      "tier_label": "later scholarship"
+    },
+    "desplaines_gardner_brooks": {
+      "source_id": "desplaines_gardner_brooks",
+      "citation": "Centi-Quad-O-Rama: Des Plaines anniversary history",
+      "url": "https://www.scribd.com/doc/24474797/Centi-Quad-O-Rama-Des-Plaines-125th-Anniversary-1835-1960",
       "archived_url": "",
       "tier": 4,
       "tier_label": "later scholarship"
@@ -263,6 +351,14 @@
       "tier": 4,
       "tier_label": "later scholarship"
     },
+    "dupage_constant_abbott": {
+      "source_id": "dupage_constant_abbott",
+      "citation": "History of DuPage County, Constant Abbott entries",
+      "url": "https://archive.org/download/historyofdupage00blan/historyofdupage00blan.pdf",
+      "archived_url": "",
+      "tier": 4,
+      "tier_label": "later scholarship"
+    },
     "dupage_history_david_brookins": {
       "source_id": "dupage_history_david_brookins",
       "citation": "History of Du Page County, Illinois. Chicago: O. L. Baskin & Co., 1882.",
@@ -271,10 +367,50 @@
       "tier": 3,
       "tier_label": "compiled secondary (Andreas)"
     },
+    "encyclopedia_chicago_balloon_frame": {
+      "source_id": "encyclopedia_chicago_balloon_frame",
+      "citation": "Encyclopedia of Chicago, Balloon Frame",
+      "url": "https://www.encyclopedia.chicagohistory.org/pages/105.html",
+      "archived_url": "",
+      "tier": 4,
+      "tier_label": "later scholarship"
+    },
     "encyclopedia_chicago_biographical_index_d": {
       "source_id": "encyclopedia_chicago_biographical_index_d",
       "citation": "Encyclopedia of Chicago. \"Biographical Dictionary: D.\" Chicago Historical Society and Newberry Library.",
       "url": "https://www.encyclopedia.chicagohistory.org/browse/bioD.html",
+      "archived_url": "",
+      "tier": 4,
+      "tier_label": "later scholarship"
+    },
+    "encyclopedia_chicago_biographical_p": {
+      "source_id": "encyclopedia_chicago_biographical_p",
+      "citation": "Encyclopedia of Chicago, biographical index P",
+      "url": "https://www.encyclopedia.chicagohistory.org/browse/bioP.html",
+      "archived_url": "",
+      "tier": 4,
+      "tier_label": "later scholarship"
+    },
+    "encyclopedia_chicago_church_architecture": {
+      "source_id": "encyclopedia_chicago_church_architecture",
+      "citation": "Encyclopedia of Chicago, Church Architecture",
+      "url": "https://www.encyclopedia.chicagohistory.org/pages/1058.html",
+      "archived_url": "",
+      "tier": 4,
+      "tier_label": "later scholarship"
+    },
+    "encyclopedia_chicago_food_processing": {
+      "source_id": "encyclopedia_chicago_food_processing",
+      "citation": "Encyclopedia of Chicago, Food Processing: Local Market",
+      "url": "https://www.encyclopedia.chicagohistory.org/pages/468.html",
+      "archived_url": "",
+      "tier": 4,
+      "tier_label": "later scholarship"
+    },
+    "encyclopedia_chicago_mark_beaubien": {
+      "source_id": "encyclopedia_chicago_mark_beaubien",
+      "citation": "Encyclopedia of Chicago, Mark Beaubien biography",
+      "url": "https://www.encyclopedia.chicagohistory.org/pages/10904.html",
       "archived_url": "",
       "tier": 4,
       "tier_label": "later scholarship"
@@ -287,10 +423,74 @@
       "tier": 4,
       "tier_label": "later scholarship"
     },
+    "encyclopedia_chicago_newspapers": {
+      "source_id": "encyclopedia_chicago_newspapers",
+      "citation": "Encyclopedia of Chicago, Newspapers",
+      "url": "https://www.encyclopedia.chicagohistory.org/pages/889.html",
+      "archived_url": "",
+      "tier": 4,
+      "tier_label": "later scholarship"
+    },
+    "encyclopedia_chicago_potawatomis": {
+      "source_id": "encyclopedia_chicago_potawatomis",
+      "citation": "Encyclopedia of Chicago, Potawatomis",
+      "url": "https://www.encyclopedia.chicagohistory.org/pages/1001.html",
+      "archived_url": "",
+      "tier": 4,
+      "tier_label": "later scholarship"
+    },
+    "first_presbyterian_chicago_1833_1913": {
+      "source_id": "first_presbyterian_chicago_1833_1913",
+      "citation": "The First Presbyterian Church, 1833–1913",
+      "url": "https://upload.wikimedia.org/wikipedia/commons/1/1d/The_First_Presbyterian_church%2C_1833-1913%3B_a_history_of_the_oldest_organization_in_Chicago%2C_with_biographical_sketches_of_the_ministers_and_extracts_from_the_choir_records_%28IA_firstpreschurch00otis%29.pdf",
+      "archived_url": "",
+      "tier": 4,
+      "tier_label": "later scholarship"
+    },
+    "goodman_history_cook_county_hamilton": {
+      "source_id": "goodman_history_cook_county_hamilton",
+      "citation": "History of Cook County, Richard Jones Hamilton offices",
+      "url": "https://libsysdigi.library.uiuc.edu/OCA/Books2009-04/historyofcookcou/historyofcookcou01good/historyofcookcou01good_djvu.txt",
+      "archived_url": "",
+      "tier": 4,
+      "tier_label": "later scholarship"
+    },
     "illinois_courts_caton_biography": {
       "source_id": "illinois_courts_caton_biography",
       "citation": "Illinois Courts. \"John Dean Caton.\" Illinois Supreme Court Justices biographical directory.",
       "url": "https://www.illinoiscourts.gov/courts/supreme-court/illinois-supreme-court-justices/",
+      "archived_url": "",
+      "tier": 4,
+      "tier_label": "later scholarship"
+    },
+    "im_canal_albert_dow": {
+      "source_id": "im_canal_albert_dow",
+      "citation": "Illinois River Road, I&M Canal Toll House",
+      "url": "https://www.illinoisriverroad.org/places/united-states/illinois/ottawa/attractions/i-m-canal-toll-house/",
+      "archived_url": "",
+      "tier": 4,
+      "tier_label": "later scholarship"
+    },
+    "indigenous_chicago_alexander_robinson": {
+      "source_id": "indigenous_chicago_alexander_robinson",
+      "citation": "Indigenous Chicago, Alexander Robinson profile",
+      "url": "https://map.indigenous-chicago.org/pr/indigenous-chicago/post/12396165-bc1e-4edf-9198-b8588839bc9f",
+      "archived_url": "",
+      "tier": 4,
+      "tier_label": "later scholarship"
+    },
+    "ingale_early_chicago_reminiscence": {
+      "source_id": "ingale_early_chicago_reminiscence",
+      "citation": "Reminiscence of Early Chicago, Hiram Pearsons passage",
+      "url": "https://dn720304.ca.archive.org/0/items/reminiscenceofe00ingale/reminiscenceofe00ingale.pdf",
+      "archived_url": "",
+      "tier": 4,
+      "tier_label": "later scholarship"
+    },
+    "kaneville_amanda_miner": {
+      "source_id": "kaneville_amanda_miner",
+      "citation": "Kaneville Township History, Amos and Amanda Miner",
+      "url": "https://www.kanevilletownship.com/township_history.htm",
       "archived_url": "",
       "tier": 4,
       "tier_label": "later scholarship"
@@ -311,10 +511,26 @@
       "tier": 3,
       "tier_label": "compiled secondary (Andreas)"
     },
+    "lasalle_thomas_covell": {
+      "source_id": "lasalle_thomas_covell",
+      "citation": "History of La Salle County, Thomas R. Covell",
+      "url": "https://ia801903.us.archive.org/27/items/cihm_14681/cihm_14681.pdf",
+      "archived_url": "",
+      "tier": 4,
+      "tier_label": "later scholarship"
+    },
     "mclean_history_jesse_w_fell": {
       "source_id": "mclean_history_jesse_w_fell",
       "citation": "McLean County Museum of History. \"Jesse Weldon Fell.\"",
       "url": "https://mchistory.org/research/biographies/fell-jesse-weldon",
+      "archived_url": "",
+      "tier": 4,
+      "tier_label": "later scholarship"
+    },
+    "michigan_frederick_curtenius": {
+      "source_id": "michigan_frederick_curtenius",
+      "citation": "Michigan Department of Military and Veterans Affairs, Frederick W. Curtenius",
+      "url": "https://www.michigan.gov/dmva/about/history/military-personalities/team-listing-page/frederick-w-curtenius",
       "archived_url": "",
       "tier": 4,
       "tier_label": "later scholarship"
@@ -326,6 +542,30 @@
       "archived_url": "",
       "tier": 3,
       "tier_label": "compiled secondary (Andreas)"
+    },
+    "norris_chicago_directory_1843": {
+      "source_id": "norris_chicago_directory_1843",
+      "citation": "J. W. Norris, General Directory and Business Advertiser of Chicago for 1843",
+      "url": "https://archive.org/download/generaldirector00norr/generaldirector00norr.pdf",
+      "archived_url": "",
+      "tier": 4,
+      "tier_label": "later scholarship"
+    },
+    "nps_bailly_homestead": {
+      "source_id": "nps_bailly_homestead",
+      "citation": "National Park Service, Joseph Bailly Homestead nomination",
+      "url": "https://npgallery.nps.gov/GetAsset/8277bfa4-97d5-43b3-a1c8-63020e08cdf3",
+      "archived_url": "",
+      "tier": 4,
+      "tier_label": "later scholarship"
+    },
+    "nwchicago_elijah_wentworth": {
+      "source_id": "nwchicago_elijah_wentworth",
+      "citation": "Northwest Chicago Historical Society, Elijah Wentworth Sr.",
+      "url": "https://nwchicagohistory.org/wp-content/uploads/2020/09/NWCHSJan-2020.pdf",
+      "archived_url": "",
+      "tier": 4,
+      "tier_label": "later scholarship"
     },
     "owner_chicago_1835_reconstruction_spec_2026": {
       "source_id": "owner_chicago_1835_reconstruction_spec_2026",
@@ -346,6 +586,38 @@
         "Authority to replace stronger building-specific evidence already represented in the dataset."
       ]
     },
+    "pal_chicago_incorporation_1835": {
+      "source_id": "pal_chicago_incorporation_1835",
+      "citation": "Papers of Abraham Lincoln, Act to Incorporate Chicago",
+      "url": "https://papersofabrahamlincoln.org/documents/D251446",
+      "archived_url": "",
+      "tier": 4,
+      "tier_label": "later scholarship"
+    },
+    "pal_giles_spring": {
+      "source_id": "pal_giles_spring",
+      "citation": "Papers of Abraham Lincoln, Giles Spring person record",
+      "url": "https://papersofabrahamlincoln.org/persons/SP16925",
+      "archived_url": "",
+      "tier": 4,
+      "tier_label": "later scholarship"
+    },
+    "pal_john_harris_kinzie": {
+      "source_id": "pal_john_harris_kinzie",
+      "citation": "Papers of Abraham Lincoln, John Harris Kinzie person record",
+      "url": "https://papersofabrahamlincoln.org/persons/KI36592",
+      "archived_url": "",
+      "tier": 4,
+      "tier_label": "later scholarship"
+    },
+    "pal_thomas_owen_house": {
+      "source_id": "pal_thomas_owen_house",
+      "citation": "Papers of Abraham Lincoln, payment concerning Thomas J. V. Owen's Chicago house",
+      "url": "https://papersofabrahamlincoln.org/documents/D250143",
+      "archived_url": "",
+      "tier": 4,
+      "tier_label": "later scholarship"
+    },
     "papers_abraham_lincoln_clinton": {
       "source_id": "papers_abraham_lincoln_clinton",
       "citation": "The Papers of Abraham Lincoln. \"Clinton, Illinois.\" Place record x4009071.",
@@ -358,6 +630,110 @@
       "source_id": "papers_abraham_lincoln_james_h_collins",
       "citation": "The Papers of Abraham Lincoln. \"James H. Collins.\" Person record CO15911.",
       "url": "https://papersofabrahamlincoln.org/persons/CO15911",
+      "archived_url": "",
+      "tier": 4,
+      "tier_label": "later scholarship"
+    },
+    "plainfield_john_temple_report": {
+      "source_id": "plainfield_john_temple_report",
+      "citation": "Plainfield Historic Preservation Commission, John Taylor Temple report",
+      "url": "https://d3n9y02raazwpg.cloudfront.net/plainfieldil/7d2f98dd-3f4c-11e8-b712-00505691de41-a802ee97-cced-4ca0-98e5-b7ba7d6db94a-1524588783.pdf",
+      "archived_url": "",
+      "tier": 4,
+      "tier_label": "later scholarship"
+    },
+    "presbyterian_history_jeremiah_porter": {
+      "source_id": "presbyterian_history_jeremiah_porter",
+      "citation": "Presbyterian Historical Society, Jeremiah Porter and First Presbyterian Church",
+      "url": "https://pcusa.org/news-storytelling/blogs/historical-society-blog/america-chicago",
+      "archived_url": "",
+      "tier": 4,
+      "tier_label": "later scholarship"
+    },
+    "rochester_porter_chappel_marriage": {
+      "source_id": "rochester_porter_chappel_marriage",
+      "citation": "Rochester newspaper marriage notices, Jeremiah Porter and Eliza Chappel",
+      "url": "https://mcnygenealogy.com/vr/newspaper-marr-deaths-1835a.htm",
+      "archived_url": "",
+      "tier": 4,
+      "tier_label": "later scholarship"
+    },
+    "talcott_chester_house_1835": {
+      "source_id": "talcott_chester_house_1835",
+      "citation": "Edward Benton Talcott letter, 1835, Chester House land reference",
+      "url": "https://sparedandshared2.wordpress.com/letters/1835-edward-benton-talcott-to-james-farquharson/",
+      "archived_url": "",
+      "tier": 4,
+      "tier_label": "later scholarship"
+    },
+    "treaty_chicago_1833_statutes": {
+      "source_id": "treaty_chicago_1833_statutes",
+      "citation": "United States Statutes at Large, Treaty of Chicago, 1833",
+      "url": "https://www.govinfo.gov/content/pkg/STATUTE-7/pdf/STATUTE-7-Pg442.pdf",
+      "archived_url": "",
+      "tier": 4,
+      "tier_label": "later scholarship"
+    },
+    "warrenville_ezra_galusha": {
+      "source_id": "warrenville_ezra_galusha",
+      "citation": "Warrenville Historical Society, Ezra Galusha",
+      "url": "https://warrenvillehistorical.wordpress.com/tag/ezra-galusha/",
+      "archived_url": "",
+      "tier": 4,
+      "tier_label": "later scholarship"
+    },
+    "whiteside_elam_tuller": {
+      "source_id": "whiteside_elam_tuller",
+      "citation": "Whiteside County biography, Elam Tuller family",
+      "url": "https://genealogytrails.com/ill/whiteside/biosT.html",
+      "archived_url": "",
+      "tier": 4,
+      "tier_label": "later scholarship"
+    },
+    "whs_alson_felch": {
+      "source_id": "whs_alson_felch",
+      "citation": "Wisconsin Historical Society, Alson Felch manuscript catalog",
+      "url": "https://www.wisconsinhistory.org/record/texts/W01DMA4/alson-felch",
+      "archived_url": "",
+      "tier": 4,
+      "tier_label": "later scholarship"
+    },
+    "whs_elihu_filer_house": {
+      "source_id": "whs_elihu_filer_house",
+      "citation": "Wisconsin Historical Society, Elihu Filer House",
+      "url": "https://www.wisconsinhistory.org/record/property/HI11139/1242-main-st",
+      "archived_url": "",
+      "tier": 4,
+      "tier_label": "later scholarship"
+    },
+    "whs_kinzie_agency_house": {
+      "source_id": "whs_kinzie_agency_house",
+      "citation": "Wisconsin Historical Society, John and Juliette Kinzie Agency House",
+      "url": "https://www.wisconsinhistory.org/record/property/HI3696/1490-agency-house-rd",
+      "archived_url": "",
+      "tier": 4,
+      "tier_label": "later scholarship"
+    },
+    "wilcox_v_jackson_1839": {
+      "source_id": "wilcox_v_jackson_1839",
+      "citation": "Wilcox v. Jackson, 38 U.S. 498, Supreme Court record",
+      "url": "https://tile.loc.gov/storage-services/service/ll/usrep/usrep038/usrep038498/usrep038498.pdf",
+      "archived_url": "",
+      "tier": 4,
+      "tier_label": "later scholarship"
+    },
+    "will_george_makepeace": {
+      "source_id": "will_george_makepeace",
+      "citation": "History of Will County, George R. Makepeace chronology",
+      "url": "https://will-ilgw.genealogyvillage.com/history/1878-3.htm",
+      "archived_url": "",
+      "tier": 4,
+      "tier_label": "later scholarship"
+    },
+    "wttw_ira_couch": {
+      "source_id": "wttw_ira_couch",
+      "citation": "WTTW, Ira Couch biography",
+      "url": "https://www.wttw.com/loop/heroes-villains/ira-couch",
       "archived_url": "",
       "tier": 4,
       "tier_label": "later scholarship"

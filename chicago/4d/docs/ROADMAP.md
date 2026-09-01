@@ -15,15 +15,16 @@ S2 ──► S6 flora + fauna ──► S7 polish, audio, perf ──► release
 **Critical path: S1 → S2 → S3.** The datum gates every coordinate in the project. Work that does
 not need coordinates is deliberately structured to proceed in parallel.
 
-### Resident identity research — T-0442 pilot complete 2026-08-31
+### Resident identity research — two passes complete 2026-09-01
 
-The first reproducible identity pass covers 75 of 848 eligible real named people:
-4 corroborated findings, 7 unmerged candidates and 64 documented no-find outcomes.
-`docs/RESEARCH/resident_identity_pilot_75.md` records the method and conflicts. The
-next useful slice is not another broad name search: adjudicate the three strong
-initialed candidates from period directories and Cook County records, then pursue
-uncommon letter-list names in naturalization, marriage, land and probate indexes.
-Reconstructed residents remain outside this program.
+Two reproducible passes now cover 150 of 848 eligible real named people (17.7%):
+31 corroborated findings, 30 unmerged candidate identities and 89 documented no-find
+outcomes cumulatively. `docs/RESEARCH/resident_identity_pass_02_75.md` records the
+second cohort, evidence, duplicate probes and limits. Next: inspect the original Eliza
+Chappel and ambiguous-name newspaper columns, adjudicate the strongest hinterland
+candidates, then continue with a third non-overlapping 75-person pass through land,
+probate, naturalization, marriage and church records. Reconstructed residents remain
+outside this programme.
 
 ---
 

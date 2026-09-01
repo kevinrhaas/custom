@@ -173,7 +173,7 @@ function researchHtml(review, citationsById) {
       This candidate is not an asserted identity.</span>
       ${cc.length ? `<ol class="cites">${citationItems(cc)}</ol>` : ''}</li>`;
   }).join('');
-  return `<dt>T-0442 research review</dt><dd><span class="res-chip res-research">${
+  return `<dt>Resident research review</dt><dd><span class="res-chip res-research">${
       escapeHtml(labels[review.outcome] || words(review.outcome))}</span>
     <span class="res-why">Reviewed ${escapeHtml(printedOn(review.reviewed_on))}. ${
       escapeHtml(review.summary)} A no-find records the limits of this search; it is not
@@ -445,7 +445,7 @@ export async function mountResidents({ mount, noteMount = null, sceneId, dataBas
     problems.push(`residents: ${err.message} — the household records are shown without their citations`);
   }
 
-  // T-0442's deliberately separate review layer. A possible identity must not
+  // The deliberately separate review layer. A possible identity must not
   // become an asserted household fact merely because its biography is useful.
   const researchByPerson = new Map();
   let researchCounts = {};
@@ -456,7 +456,7 @@ export async function mountResidents({ mount, noteMount = null, sceneId, dataBas
     researchEligible = pilot.eligible_real_named_people || 0;
     for (const review of pilot.reviews || []) researchByPerson.set(review.person_id, review);
   } catch (err) {
-    problems.push(`residents: ${err.message} — T-0442 research reviews are not shown`);
+    problems.push(`residents: ${err.message} — resident research reviews are not shown`);
   }
 
   const vocab = index.vocabulary || {};

@@ -1,5 +1,32 @@
 # STATUS
 
+## Shipped 2026-09-01 — T-0462: the next 75 real names receive deep research
+
+**Resident identity research now covers 150 of 848 eligible real named people
+(17.7%), with no reconstructed person admitted.** The second fixed, non-overlapping
+cohort contributes 27 corroborated enrichments, 23 explicitly unmerged candidates and
+25 documented no-find outcomes. Cumulatively the public layer carries 31 corroborated
+findings, 30 candidates and 89 no-finds.
+
+The pass used six parallel research streams and 47 newly registered sources across
+contemporary statutes, a Supreme Court report, an 1843 directory, institutional
+biographies and finding aids, edited papers, county and church histories and local
+archives. Exact queries, source limits and conflicts are retained. Surname form was a
+search lead only; it produced no heritage, lineage, immigration, kinship or occupation
+claim.
+
+The most important correction is methodological: **a waiting letter demonstrates
+postal reachability, not bodily presence in Chicago**. Strong matches place Ezra
+Galusha at Warrenville, George R. Makepeace near Joliet, Paul Burdick at Milwaukee,
+Thomas R. Covell at Salt Creek and Chester House at House's Grove. Each remains a
+candidate rather than being rewritten as a town resident.
+
+The likely Eliza Chappel duplicate remains merge-pending-scan, as do Aaron
+Parcel/Aron Parcell and Alonzo Murray/Murry spelling pairs. Ebenezer Ford gains a
+strong Fort Dearborn/church candidate and an identified missing May return, but no
+household was silently edited. `docs/RESEARCH/resident_identity_pass_02_75.md` records
+the full assessment and continuation priorities.
+
 ## Shipped 2026-08-30 — T-0384: an ordinal off a corner places a store, and claims no lot
 
 **John Holbrook's clothing store stands on South Water Street, one door east of Dearborn**,
