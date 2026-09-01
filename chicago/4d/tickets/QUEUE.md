@@ -46,6 +46,16 @@
 # --- the one it inherited, and #591 and #432 may already be blocked by nothing but
 # --- this. Fix it and their smoke may simply pass.
 T-0448 — 2,693 drawn flower heads stand over nothing — dev's full smoke has been red on it since 2026-08-30 and every PR inherits it
+
+# --- WHAT A VISITOR ACTUALLY SEES — OWNER REPORTS, 2026-08-31. Both are visible
+# --- faults at walking distance, and the owner asked for T-0460 SOONER THAN MOST:
+# --- the plank walk's sawtooth against the dirt road is among the first things in
+# --- view. T-0459 is 20 signs mounted flat on facades by a generator that mentions
+# --- doors sixteen times and never once as geometry. Both are cheap beside the
+# --- ground work below, and this band is the answer to the queue's own complaint
+# --- that 41 merges added nothing a visitor could see.
+T-0460 — The plank walk meets the dirt road in a jagged sawtooth, and it is the first thing a visitor sees
+T-0459 — Signboards are mounted over doors and windows, when the same wall has blank face to put them on
 # --- T-0450 sits beside T-0448 because both make a gate unreadable: one leaves dev red
 # --- so a run cannot tell its own failure from an inherited one, and this one misstates
 # --- the cap three tickets measure their margins against. T-0181 (PR #591) is arguing
