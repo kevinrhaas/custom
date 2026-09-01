@@ -533,6 +533,12 @@ def compile_residents_sources(scene_id: str, sources: dict, outdir: Path) -> int
         household_path = DATA / "residents" / entry.get("file", "")
         if household_path.exists():
             walk(load(household_path))
+    # T-0442 keeps candidate identities beside, not inside, authoritative
+    # household records. They still need the same citation join when a visitor
+    # opens a researched person's card.
+    research_path = DATA / "residents" / "research_pilot.json"
+    if research_path.exists():
+        walk(load(research_path))
 
     citations = cite(sorted(cited), sources)
     emit(outdir / "residents_sources.json", {

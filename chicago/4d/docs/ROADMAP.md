@@ -15,6 +15,16 @@ S2 ──► S6 flora + fauna ──► S7 polish, audio, perf ──► release
 **Critical path: S1 → S2 → S3.** The datum gates every coordinate in the project. Work that does
 not need coordinates is deliberately structured to proceed in parallel.
 
+### Resident identity research — T-0442 pilot complete 2026-08-31
+
+The first reproducible identity pass covers 75 of 848 eligible real named people:
+4 corroborated findings, 7 unmerged candidates and 64 documented no-find outcomes.
+`docs/RESEARCH/resident_identity_pilot_75.md` records the method and conflicts. The
+next useful slice is not another broad name search: adjudicate the three strong
+initialed candidates from period directories and Cook County records, then pursue
+uncommon letter-list names in naturalization, marriage, land and probate indexes.
+Reconstructed residents remain outside this program.
+
 ---
 
 ## THE OVERNIGHT LANES — 2026-08-14 · **START HERE**
