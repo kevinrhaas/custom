@@ -158,7 +158,31 @@ function claimRow(label, value, block, citationsById) {
  * INVENTED. No source names this resident."* They go through `claimRow` now,
  * with the same swatch, reasoning and citations every other graded claim gets.
  */
-function personHtml(person, citationsById) {
+function researchHtml(review, citationsById) {
+  if (!review) return '';
+  const labels = {
+    corroborated_enrichment: 'corroborated profile finding',
+    candidate_identity: 'candidate identity — not merged',
+    no_corroboration: 'reviewed — no safe match found',
+  };
+  const cites = (review.sources || []).map((id) => citationsById.get(id)).filter(Boolean);
+  const candidates = (review.candidates || []).map((candidate) => {
+    const cc = (candidate.sources || []).map((id) => citationsById.get(id)).filter(Boolean);
+    return `<li><b>${escapeHtml(candidate.name)}</b> · ${escapeHtml(words(candidate.assessment))}
+      <br><span class="res-why">${escapeHtml(candidate.basis)} ${escapeHtml((candidate.conflicts || []).join(' '))}
+      This candidate is not an asserted identity.</span>
+      ${cc.length ? `<ol class="cites">${citationItems(cc)}</ol>` : ''}</li>`;
+  }).join('');
+  return `<dt>T-0442 research review</dt><dd><span class="res-chip res-research">${
+      escapeHtml(labels[review.outcome] || words(review.outcome))}</span>
+    <span class="res-why">Reviewed ${escapeHtml(printedOn(review.reviewed_on))}. ${
+      escapeHtml(review.summary)} A no-find records the limits of this search; it is not
+      evidence that the person did not exist.</span>
+    ${candidates ? `<ul class="res-candidates">${candidates}</ul>` : ''}
+    ${cites.length ? `<ol class="cites">${citationItems(cites)}</ol>` : ''}</dd>`;
+}
+
+function personHtml(person, citationsById, researchByPerson) {
   const occ = person.occupation || {};
   const cites = (person.sources || []).map((id) => citationsById.get(id)).filter(Boolean);
   const occCites = (occ.sources || []).map((id) => citationsById.get(id)).filter(Boolean);
@@ -189,6 +213,7 @@ function personHtml(person, citationsById) {
           and one waiting eighteen months earlier is a different claim about the same
           person.</span></dd>` : ''}
       ${person.note ? `<dt>What the sources say</dt><dd>${escapeHtml(person.note)}</dd>` : ''}
+      ${researchHtml(researchByPerson.get(person.id), citationsById)}
       ${cites.length ? `<dt>Sources</dt><dd><ol class="cites">${citationItems(cites)}</ol></dd>` : ''}
     </dl>
   </details>`;
@@ -228,7 +253,7 @@ function householdSummary(entry, { orphanChip = true } = {}) {
 }
 
 /** The household record itself, rendered into an opened row. */
-function householdHtml(hh, citationsById) {
+function householdHtml(hh, citationsById, researchByPerson) {
   const persons = Array.isArray(hh.persons) ? hh.persons : [];
   const party = hh.party_size_on_arrival || null;
   return `<dl class="lib-body res-fields">
@@ -249,7 +274,7 @@ function householdHtml(hh, citationsById) {
       ${hh.research_note
         ? `<dt>What this record is worth</dt><dd>${escapeHtml(hh.research_note)}</dd>` : ''}
     </dl>
-    <div class="res-people">${persons.map((p) => personHtml(p, citationsById)).join('')}</div>`;
+    <div class="res-people">${persons.map((p) => personHtml(p, citationsById, researchByPerson)).join('')}</div>`;
 }
 
 /**
@@ -420,6 +445,20 @@ export async function mountResidents({ mount, noteMount = null, sceneId, dataBas
     problems.push(`residents: ${err.message} — the household records are shown without their citations`);
   }
 
+  // T-0442's deliberately separate review layer. A possible identity must not
+  // become an asserted household fact merely because its biography is useful.
+  const researchByPerson = new Map();
+  let researchCounts = {};
+  let researchEligible = 0;
+  try {
+    const pilot = await getJson('residents/research_pilot.json');
+    researchCounts = pilot.counts || {};
+    researchEligible = pilot.eligible_real_named_people || 0;
+    for (const review of pilot.reviews || []) researchByPerson.set(review.person_id, review);
+  } catch (err) {
+    problems.push(`residents: ${err.message} — T-0442 research reviews are not shown`);
+  }
+
   const vocab = index.vocabulary || {};
   const entries = Array.isArray(index.households) ? [...index.households] : [];
   if (!entries.length) return fail('the manifest lists no household');
@@ -464,6 +503,11 @@ export async function mountResidents({ mount, noteMount = null, sceneId, dataBas
           + `admits should be held, so they are listed together, below the households the `
           + `rest of the corpus documents, and which of these people are a name and `
           + `nothing else can be seen without opening anything. ` : '')
+      + (researchByPerson.size
+        ? `${researchByPerson.size} real named people (${Math.round((researchByPerson.size / researchEligible) * 100)}% of the eligible research population) received a dated identity review: `
+          + `${researchCounts.corroborated_enrichment || 0} corroborated findings, `
+          + `${researchCounts.candidate_identity || 0} candidate identities kept unmerged, and `
+          + `${researchCounts.no_corroboration || 0} searches with no safe match. ` : '')
       + `Nobody is drawn: this is the research, not a population.`;
     noteMount.removeAttribute('aria-busy');
   }
@@ -487,7 +531,7 @@ export async function mountResidents({ mount, noteMount = null, sceneId, dataBas
       const body = el.querySelector('.res-hh-body');
       try {
         const hh = await getJson(`residents/${el.dataset.file}`);
-        if (body) body.innerHTML = householdHtml(hh, citationsById);
+        if (body) body.innerHTML = householdHtml(hh, citationsById, researchByPerson);
       } catch (err) {
         el.dataset.loaded = '0';
         problems.push(`residents: ${err.message} — one household record is missing`);
@@ -512,6 +556,8 @@ export async function mountResidents({ mount, noteMount = null, sceneId, dataBas
     letterList: letterList.length,
     letterListOffCard,
     notResident: notResident.length,
+    researchReviewed: researchByPerson.size,
+    researchCounts,
     error: null,
   };
 }
