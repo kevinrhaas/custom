@@ -9479,7 +9479,7 @@
     {
       "structure_id": "bates_auction_room",
       "wall": "blk_south_water_clark north face, lot 6",
-      "why": "no walk is laid at 94.4 m along this face, where a post off bates_auction_room's own frontage would stand — a post stands in the verge OUTSIDE a walk, and there is no walk here to stand outside of."
+      "why": "bates_auction_room faces 90.0deg and this platted face looks 0.9deg — 89.1deg apart, over the 45.0deg this layer allows. The lot fronts South Water Street and the building's door does not, so a post here would serve a street the trade does not open onto. No post is set."
     },
     {
       "structure_id": "blk_lake_clark_lot0",
