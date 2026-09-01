@@ -8885,10 +8885,26 @@ for (const [label, viewport, touch] of [
       const clamp01 = (x) => (x < 0 ? 0 : x > 1 ? 1 : x);
       const fadeOf = (r, i, d) => clamp01((r[i] - d) / Math.max(r[i + 1], 1e-4))
         * (r[i + 3] > 0 ? clamp01((d - r[i + 2]) / r[i + 3]) : 1);
-      /** Sets a head is ever hung from. A mid clump card is a billboard standing
+      /** Sets a head is ever hung from. A MID clump card is a billboard standing
        *  for a patch of matrix and carries no head, so counting one as support
-       *  is a free pass — it is what made a first cut of this read zero. */
-      const ROOTED = new Set(['flora-near', 'flora-forb', 'flora-rosette', 'flora-shrub']);
+       *  is a free pass — it is what made a first cut of this read zero.
+       *
+       *  `flora-far` is not that card, and since T-0209 it is not excluded:
+       *  the far band deals the WHOLE community, and a flowering forb's far
+       *  card carries its flower — `rebuildFar` calls `maybeHead` on it. The
+       *  comment this replaces predates that and had gone false. Measured on
+       *  the published mirror 2026-09-01: 2693 of 2693 orphans stood on a far
+       *  card at 0.000 m whose top reached them. `flora-mid` stays out, and
+       *  that is measured too — its scatter deals graminoids and never calls
+       *  `maybeHead`, and no orphan stood on one. */
+      const ROOTED = new Set(['flora-near', 'flora-forb', 'flora-rosette', 'flora-shrub',
+        'flora-far']);
+      /** A card's `spread` is its billboard HALF-WIDTH — 1.5 m at the near far
+       *  band, not a stem's radius. Counting that as the support's reach would
+       *  pass any head within a card's width of one, which is the free pass the
+       *  note above refuses. A card carries only the head `maybeHead` puts at
+       *  its own `e,n`, so it supports at its foot and nowhere else. */
+      const CARD = new Set(['flora-far']);
       /** Under a twentieth of coverage the screen-door dither is writing one
        *  pixel in twenty of a head that is already only a few across at the
        *  distances its own ring covers. */
@@ -8906,6 +8922,7 @@ for (const [label, viewport, touch] of [
       const nominal = new Map(meshes.map((m) => [m.name, footOf(m.geometry)]));
 
       let drawn = 0; let unsupported = 0; let worst = null;
+      let onCard = 0; const bySet = new Map();
       const anchors = a.scene?.anchors ?? [];
       for (const anchor of anchors) {
         for (const yaw of [0, 90, 180, 270]) {
@@ -8929,10 +8946,34 @@ for (const [label, viewport, touch] of [
               // whole or not at all, so the drawn top and the drawn reach are
               // the record's own numbers and the ramp only says WHETHER.
               if (f <= 0) continue;
-              const h = a.flora.heightAt(m.name, Math.hypot(x - cx, z - cz), rg[i * 4]);
+              // `heightAt` is null for a set with no ring of its own, which is
+              // what `flora-far` is — T-0035 draws every visible plant whole,
+              // so the fraction is 1 and the null is "no ramp", not "no height".
+              const h = a.flora.heightAt(m.name, Math.hypot(x - cx, z - cz), rg[i * 4]) ?? 1;
               const key = `${Math.floor(x)},${Math.floor(z)}`;
               let b = grid.get(key);
               if (!b) { b = []; grid.set(key, b); }
+              b.push({ x, z, top: mm[o + 13] + fl[i * 4] * h, set: m.name,
+                r: CARD.has(m.name) ? 0 : fl[i * 4 + 1] * h });
+            }
+          }
+          // T-0448 diagnostic, second grid: the meshes ROOTED leaves out, built
+          // the same way and consulted only to explain an orphan. The support
+          // test above does not read it, so the count stays comparable.
+          const cardGrid = new Map();
+          for (const m of meshes) {
+            if (ROOTED.has(m.name) || m.name.startsWith('flora-head-') || !m.count) continue;
+            const mm = m.instanceMatrix.array;
+            const fl = m.geometry.getAttribute('aFlora').array;
+            const rg = m.geometry.getAttribute('aChiRing').array;
+            for (let i = 0; i < m.count; i++) {
+              const o = i * 16;
+              const x = mm[o + 12]; const z = mm[o + 14];
+              if (fadeOf(rg, i * 4, Math.hypot(x - cx, z - cz)) <= 0) continue;
+              const h = a.flora.heightAt(m.name, Math.hypot(x - cx, z - cz), rg[i * 4]) ?? 1;
+              const key = `${Math.floor(x)},${Math.floor(z)}`;
+              let b = cardGrid.get(key);
+              if (!b) { b = []; cardGrid.set(key, b); }
               b.push({ x, z, top: mm[o + 13] + fl[i * 4] * h, r: fl[i * 4 + 1] * h, set: m.name });
             }
           }
@@ -8974,20 +9015,41 @@ for (const [label, viewport, touch] of [
               }
               if (best < fy - SLACK) {
                 unsupported++;
+                // T-0448: does a mesh ROOTED excludes stand where the stem is
+                // missing, and would it have counted? Answers whether these are
+                // far-card heads (T-0209) or geometry over nothing at all.
+                let card = null;
+                for (let kx = Math.floor(fx) - 1; kx <= Math.floor(fx) + 1; kx++) {
+                  for (let kz = Math.floor(fz) - 1; kz <= Math.floor(fz) + 1; kz++) {
+                    const b = cardGrid.get(`${kx},${kz}`);
+                    if (!b) continue;
+                    for (const p of b) {
+                      const d = Math.hypot(p.x - fx, p.z - fz);
+                      if (!card || d < card.d) card = { d, r: p.r, top: p.top, set: p.set };
+                    }
+                  }
+                }
+                if (card && card.d <= Math.max(0.05, card.r) + SLACK && card.top >= fy - SLACK) {
+                  onCard++;
+                  bySet.set(card.set, (bySet.get(card.set) ?? 0) + 1);
+                }
                 const gap = best === -Infinity ? null : fy - best;
                 if (!worst || (gap ?? 9) > (worst.gap ?? 9) || best === -Infinity) {
                   worst = { set: m.name, at: anchor.id, yaw, y: fy, gap, rise: rise[i],
                     orphan: best === -Infinity,
                     // What was actually there, and why it did not count.
                     nearest: nearest && { set: nearest.set, d: +nearest.d.toFixed(3),
-                      r: +nearest.r.toFixed(3), reach: +(nearest.top - fy).toFixed(3) } };
+                      r: +nearest.r.toFixed(3), reach: +(nearest.top - fy).toFixed(3) },
+                    card: card && { set: card.set, d: +card.d.toFixed(3),
+                      r: +card.r.toFixed(3), reach: +(card.top - fy).toFixed(3) } };
                 }
               }
             }
           }
         }
       }
-      return { drawn, unsupported, worst, poses: anchors.length * 4 };
+      return { drawn, unsupported, worst, poses: anchors.length * 4,
+        onCard, bySet: [...bySet].sort((p, q) => q[1] - p[1]) };
     });
     check(`${label}: every drawn flower head has a plant under its own stalk`,
       headSupport.drawn > 500 && headSupport.unsupported === 0,
@@ -9004,6 +9066,14 @@ for (const [label, viewport, touch] of [
             ? `; nearest rooted ${headSupport.worst.nearest.set} at ${headSupport.worst.nearest.d} m `
               + `(its own radius ${headSupport.worst.nearest.r} m, top ${headSupport.worst.nearest.reach} m from the foot)`
             : '; no rooted plant in the nine cells at all')
+          // T-0448: and what a mesh ROOTED excludes had standing there instead.
+          + (headSupport.worst.card
+            ? `; excluded ${headSupport.worst.card.set} at ${headSupport.worst.card.d} m `
+              + `(radius ${headSupport.worst.card.r} m, top ${headSupport.worst.card.reach} m from the foot)`
+            : '; nothing ROOTED excludes was there either')
+          + `; ${headSupport.onCard} of ${headSupport.unsupported} orphans stand on a mesh `
+          + `ROOTED excludes that reaches them [`
+          + headSupport.bySet.map(([k, v]) => `${k} ${v}`).join(', ') + ']'
         : ''));
 
     inStageWork = false;

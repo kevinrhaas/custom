@@ -45,7 +45,6 @@
 # --- every other ticket's gate unreadable: a run cannot tell its own failure from
 # --- the one it inherited, and #591 and #432 may already be blocked by nothing but
 # --- this. Fix it and their smoke may simply pass.
-T-0448 — 2,693 drawn flower heads stand over nothing — dev's full smoke has been red on it since 2026-08-30 and every PR inherits it
 
 # --- WHAT A VISITOR ACTUALLY SEES — OWNER REPORTS, 2026-08-31. Both are visible
 # --- faults at walking distance, and the owner asked for T-0460 SOONER THAN MOST:

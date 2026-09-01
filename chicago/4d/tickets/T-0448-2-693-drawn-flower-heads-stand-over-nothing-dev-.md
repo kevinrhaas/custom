@@ -1,7 +1,7 @@
 ---
 id: T-0448
 title: 2,693 drawn flower heads stand over nothing — dev's full smoke has been red on it since 2026-08-30 and every PR inherits it
-state: open
+state: done
 epic: FLORA
 requested_by: owner
 seen: true
@@ -9,8 +9,8 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-08-31
-closed: null
-pr: null
+closed: 2026-09-01
+pr: 621
 claimed_by: null
 blocked_on: null
 needs_bake: false
@@ -205,3 +205,97 @@ Telling those apart needs the renderer, which is why this is left as a reading
 and not a fix. The diagnostic recorded earlier still stands: make the walk report
 the STEM's mesh alongside `worst.set`, and the answer falls out.
 
+
+---
+
+## ANSWERED, MEASURED, 2026-09-01 — the heads are not floating; the check was stale
+
+Both earlier readings named the wrong thing. The mechanism is now measured on
+the published mirror, twice, and it is neither of the two candidates left above.
+
+### Run 1 — the lean is not it
+
+`dev` at `516b0ccf`, desktop stage 10-12, with #618's diagnostic:
+
+```
+worst flora-head-corymb at from_above 270deg, foot 0.36 m, 0.36 m over its base
+over open ground; nearest rooted flora-forb at 1.693 m
+(its own radius 0.146 m, top 0.202 m from the foot)
+```
+
+The radius test would have accepted `max(0.05, 0.146) + 0.02 = 0.166 m`. The
+nearest rooted plant is **1.693 m** — ten times that, and an order beyond the
+~0.2 m a stalk can swing its foot at `reach 2.2`, `size 0.12`. **Candidate 1,
+"the horizontal test is too tight for a leaning stem", is dead.**
+
+### Run 2 — it is the far card, and it is all of them
+
+A second grid was added holding exactly the meshes `ROOTED` leaves out,
+consulted only to explain an orphan and never read by the support test, so the
+count stayed comparable. Same branch, same leg:
+
+```
+excluded flora-far at 0 m (radius 1.576 m, top 0.324 m from the foot)
+2693 of 2693 orphans stand on a mesh ROOTED excludes that reaches them
+[flora-far 2693]
+```
+
+**2693 of 2693.** Not most — all. Every orphaned head stands on a `flora-far`
+card at **0.000 m**: not near one, the same position, because `rebuildFar`
+places the head at the card's own `e,n`. The card's top reaches 0.324 m above
+the foot. **None** stood on `flora-mid`.
+
+### Why, with a date on it
+
+T-0209 made the far band deal the WHOLE community rather than its grass alone,
+and gave a flowering forb's far card its flower:
+
+```js
+const h = placeFarCard(farSet, sp, zone, e, y, n, rng, band);
+if (forb && h > 0 && sp.head && tune.far.minPx && r <= farHeadReach(...)) {
+  maybeHead(heads, sp, e, y, n, rng, h, farHeadRing(...));
+}
+```
+
+`ROOTED` went on excluding `flora-far` on the stated grounds that "a card
+carries no head". **True when written, false since T-0209**, and nobody updated
+the support set. So the check has been asking for a stem under a head whose
+plant is deliberately drawn as a billboard.
+
+Acceptance 1 is met: the mechanism is demonstrated, not guessed. The fix is the
+check, not the flora layer — no geometry moves.
+
+### The naive fix would have been wrong
+
+A card's `spread` is its billboard HALF-WIDTH — 1.576 m in the measurement
+above, `wide: [1.5, 2.6]` and `[2.6, 4.6]` in TUNE. Admitting `flora-far` to
+`ROOTED` as-is would let any head within a card's width of one count as
+supported, which is precisely the free pass the original note refuses and the
+mistake it records an earlier cut making.
+
+So a card is admitted with **radius zero**: it supports the head at its own foot
+and nowhere else, a 0.07 m window once `SLACK` is added, and the measured `d` is
+0.000. `flora-mid` stays excluded and that is measured too — its scatter deals
+`graminoids` only and never calls `maybeHead`, and no orphan stood on one.
+
+One more fault was in the way and would have made a wholesale addition read
+zero for the wrong reason: `heightAt` returns **null** for `flora-far`, because
+`ringOfSet` has no entry for it. Left alone, the card's top would have been its
+own base and the reach test would have failed. Since T-0035 a drawn plant is
+drawn whole, so the fraction is 1 and the null means "no ramp", not "no height".
+
+`SLACK` is untouched, the pose list is untouched, and the head-side test is
+untouched — acceptance 3.
+
+### The earlier leads, and what they cost
+
+| lead | verdict |
+|---|---|
+| `ROOTED` is short `flora-mid`/`flora-tuft`, so the assertion is wrong | wrong meshes, **right instinct** — and it was retracted in #618 on the strength of the `cardGeometry` reading, which was correct about `flora-mid` and did not think to ask whether `flora-far` had changed |
+| the fade/ring ramp draws a head its stem did not get | ruled out by construction: `headRingAt` puts the head's outer radius at `fade[0] - 0.35*fade[1]` with the same inner ramp, strictly INSIDE its plant's ring |
+| the horizontal test is too tight for a lean | ruled out by measurement, 1.693 m against a 0.166 m tolerance |
+| heads and stems come from separate passes | false — one callback, one plant record; `maybeHead` is only reached when the plant's own push returned `h > 0` |
+
+The retraction in #618 was right to kill the `flora-mid` theory and wrong to
+conclude from it that "the support set is correct and the heads really are
+unsupported". The support set was incorrect for a different mesh.
