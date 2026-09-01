@@ -46,6 +46,15 @@
 # --- the one it inherited, and #591 and #432 may already be blocked by nothing but
 # --- this. Fix it and their smoke may simply pass.
 T-0448 — 2,693 drawn flower heads stand over nothing — dev's full smoke has been red on it since 2026-08-30 and every PR inherits it
+# --- T-0450 sits beside T-0448 because both make a gate unreadable: one leaves dev red
+# --- so a run cannot tell its own failure from an inherited one, and this one misstates
+# --- the cap three tickets measure their margins against. T-0181 (PR #591) is arguing
+# --- against the wrong bound until it is fixed.
+T-0450 — SMOKE-BUDGET.md compares a per-leg cap with a whole-gate total, and calls one runner a different machine from the other
+# --- T-0454 is beside T-0450 for the same reason: it makes a gate's own instruction
+# --- untrue. The gate says re-bake a stale asset; the bake, run on that exact tree,
+# --- rebuilds nothing. PR #597 is blocked on this and nothing else.
+T-0454 — The gate calls a GLB stale and the bake declines to rebuild it, so a stale asset cannot be cleared by baking
 
 # --- THE WEST DIVISION IS WRONG ON THE GROUND — OWNER FAULT REPORT, 2026-08-31.
 # --- Reported from the dev preview against the Thompson plat sheet. Three of its
@@ -62,6 +71,20 @@ T-0445 — West Water, Jefferson and Des Plaines: the three West Division street
 T-0446 — Carroll and Fulton: two platted tiers the West Division has no street between
 T-0447 — North Water Street's west end runs across Wolf Point, which the Thompson plat does not give it
 
+# --- THE NORTH DIVISION AND THE WATER — OWNER MARK-UP OF THE DEV PREVIEW, 2026-08-31.
+# --- Ordered by dependency, not by size. T-0453 is FIRST because both the street
+# --- tickets measure against the bank, and the bank is what is in question: every
+# --- planform in this project is traced from Wright 1834 and the owner reads the
+# --- Thompson plat differently at Wolf Point. It also carries a named defect — a
+# --- single vertex on the South Branch 9.4 m off its own neighbours, the worst in
+# --- the feature. T-0451 is the North Division's missing grid: ONE north-south
+# --- street stands north of the river where the plat carries a whole division.
+# --- T-0452 is the sloughs: the plat draws three, this holds one, as a bare
+# --- centreline with no banks — and they cross the ground T-0451 wants to plat.
+T-0453 — The river banks are traced from Wright 1834 and the owner reads the Thompson plat differently at Wolf Point
+T-0451 — Only one north-south street stands north of the river, where the Thompson plat carries the North Division's whole grid
+T-0452 — The plat draws three sloughs off the Main Branch; this reconstruction holds one, as a centreline with no banks
+
 # --- THE CITY GAINS PEOPLE AND ROOFS — FOUR OWNER RULINGS, 2026-08-30, each written
 # --- into its ticket with its limits. This band exists because the last 41 merges added
 # --- no buildings. Ordered by how much each one adds. TAKE FROM THE TOP.
@@ -74,7 +97,6 @@ T-0429 — Open blk_south_water_lasalle: 8 roofs of headroom on three free lots
 T-0430 — Open blk_south_water_franklin: 4 roofs of headroom on two free lots
 T-0431 — Open blk_south_water_clark: 4 roofs of headroom on two free lots
 T-0432 — Open blk_south_water_dearborn: 4 roofs of headroom on two free lots
-T-0183 — The Market and South Water corner needs one control point, and the node rule may not be able to make it
 
 # --- MORE BUILDINGS AND TRADES, ALREADY RUNNABLE — no ruling needed, and each one puts
 # --- something in the scene or lets a documented person stand somewhere.

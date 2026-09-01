@@ -1,11 +1,18 @@
 export const CHANGELOG = [ // newest first
-  { v: 436, title: 'Six roofs on South Water Street, and the slough that moved them', kind: 'feature', ts: '2026-08-30T07:31:19.912Z', date: 'Aug 30, 2026, 2:31 AM CT',
+  { v: 437, title: 'Six roofs on South Water Street, and the slough that moved them', kind: 'feature', ts: '2026-08-30T07:31:19.912Z', date: 'Aug 30, 2026, 2:31 AM CT',
     items: [
       'Six buildings now stand shoulder to shoulder along the west half of South Water Street, between La Salle and Clark \u2014 the longest unbroken row this reconstruction has built. A log cabin, a plank shanty, three frame houses of rising size and a narrow two-storey store, with a stable and a carriage shed in the yards behind them.',
       'They were meant to start at the corner, and the ground would not take it. Wright\u2019s 1834 map draws a slough dropping south off the main stem just east of La Salle Street; where exactly it ran is this project\u2019s reconstruction, and as modelled it crosses this block\u2019s frontage about five metres in. The row begins ten metres east of the corner instead, at the westmost point the modelled ground carries a building at all.',
       'Six documented businesses moved in. A. Filer & Co., A. Garrett, E. L. Thrall, John Holbrook, the new store at Water and Clark and a South Water auction house are each named in the 1835 papers on this street and nothing narrower, so none of them had a roof to stand on. Nineteen such seatings became twenty-five.',
       'The block could not have been built yesterday, for a reason in the files rather than in the town. The row built here in August declared three lots of frontage and stands, measured, on one \u2014 so the recipe read two lots as built on while the ground read them empty, and eight roofs of room went unspent. Correcting the declaration moved no building a millimetre.',
       'The block is full now, and one lot stays deliberately open: the Lake-and-La Salle corner, the least attractive on it. A block with every lot built is a claim nobody made.',
+    ] },
+  { v: 436, title: 'A decision made a week ago reaches the line it was made about', kind: 'fix', ts: '2026-08-31T21:29:32.246Z', date: 'Aug 31, 2026, 4:29 PM CT',
+    items: [
+      'Nothing you can see changed today, and the point is that something should have changed a week ago and did not. This project draws the town at three detail settings, and the middle one \u2014 the one most visitors are on \u2014 has a ceiling on how much geometry it may put on screen at once. On 24 August that ceiling was deliberately raised, after a careful measurement, from 1,210,000 triangles to 1,225,000.',
+      'The new number was written into the note beside the setting and into the ledger of decisions this project keeps. It was never written into the setting. The value has read 1,210,000 without interruption from before that decision until today, so for a week the reconstruction has been enforcing a limit its own records say was lifted.',
+      'It was found because it was blocking work. Two blocks of South Water Street have roofs waiting to be built, and the run that built one of them measured 1,210,608 at the worst place a visitor can stand \u2014 over the old limit by 608 triangles, about a twentieth of one percent, and comfortably inside the limit that was actually agreed. Those roofs were held back by a number nobody meant to still be in force.',
+      'The old readings in the note are left exactly as they were. They were taken against the old ceiling and they are still true of it; rewriting them to match today would destroy the record of how the decision was reached. What changed is one number, and the note now says when it changed and why it was late.',
     ] },
   { v: 435, title: 'A third shop front on South Water Street, one door from Dearborn', kind: 'feature', ts: '2026-08-30T07:39:01.237Z', date: 'Aug 30, 2026, 2:39 AM CT',
     items: [
