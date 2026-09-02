@@ -1069,7 +1069,7 @@ step "…and its own assertions still fire when broken" \
 step "the minted letter-list residents re-derive from the register" \
   python3 tools/mint_letter_list_residents.py --check
 
-# T-0442, T-0462, T-0463, and T-0478. These reviews sit beside household facts on purpose: a plausible
+# T-0442, T-0462, T-0463, T-0478, and T-0479. These reviews sit beside household facts on purpose: a plausible
 # biography must stay a candidate until something more than the name bridges it
 # to the 1835 record. Re-derive the fixed cohort and its public review payload.
 step "the 75-person real-resident research cohort is fixed" \
@@ -1084,7 +1084,10 @@ step "the third non-overlapping 75-person research cohort is fixed" \
 step "the fourth non-overlapping 75-person research cohort is fixed" \
   python3 tools/select_resident_research_pass_4.py --gate
 
-step "all 300 reviewed residents have reproducible research outcomes" \
+step "the fifth non-overlapping 75-person research cohort is fixed" \
+  python3 tools/select_resident_research_pass_5.py --gate
+
+step "all 375 reviewed residents have reproducible research outcomes" \
   python3 tools/compile_resident_research_pilot.py --gate
 
 # …and the ruling's own conditions, which --check cannot see. --check proves the records
