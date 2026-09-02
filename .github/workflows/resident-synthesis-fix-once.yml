@@ -17,6 +17,10 @@ jobs:
         with:
           ref: resident/1835-evidence-synthesis-20260902
           fetch-depth: 1
+          sparse-checkout: |
+            .github/workflows
+            chicago/4d
+            chicago/reference/census1840/validation
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
