@@ -1,4 +1,4 @@
-name: T-0479 build research artifacts
+name: T-0479 artifact build
 
 on:
   push:
@@ -22,228 +22,12 @@ jobs:
             chicago/reference/resident-research
             site/chicago/4d/data/residents/research_pilot.json
           sparse-checkout-cone-mode: false
-
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-
-      - name: Build T-0479 handoff and gate wiring
-        run: |
-          python - <<'PY'
-          from pathlib import Path
-          from collections import Counter
-          import csv, json
-
-          root = Path('chicago/4d')
-          findings_path = root / 'data/research/residents/pass_05_findings.json'
-          manifest_path = root / 'data/research/residents/pass_05_75_cohort.json'
-          findings = json.loads(findings_path.read_text())
-          manifest = json.loads(manifest_path.read_text())
-
-          candidate_ids = {
-            'murphy_harriet': 'cand_harriet_murphy_us_hotel',
-            'll_dalton_edward': 'cand_edward_dalton_chicago_1840',
-            'll_gooding_jaines': 'cand_james_gooding_grove',
-            'll_gould_a_b': 'cand_ambrose_b_gould_1843',
-            'll_hateh_betsey': 'cand_betsey_hatch_lasalle',
-            'll_holliday_william': 'cand_william_holliday_white_hall',
-            'll_daniel_newton': 'cand_daniel_newton_ottawa',
-            'll_daniel_platt': 'cand_daniel_platt_lisbon',
-            'll_e_dimmick': 'cand_edward_dimmick_1839',
-            'll_edward_poor': 'cand_edward_poor_homer',
-            'll_edward_trimble': 'cand_edward_trimble_geneva',
-            'll_elijah_garton': 'cand_elijah_garton_st_charles',
-            'll_hezekiah_gifford': 'cand_hezekiah_gifford_elgin',
-          }
-          for pid, cid in candidate_ids.items():
-              result = findings['overrides'][pid]
-              if result['outcome'] != 'candidate_identity' or len(result.get('candidates', [])) != 1:
-                  raise SystemExit(f'{pid}: candidate shape changed')
-              result['candidates'][0]['candidate_id'] = cid
-          findings_path.write_text(json.dumps(findings, indent=2, ensure_ascii=False) + '\n')
-
-          hierarchy_path = root / 'data/research/residents/source_hierarchy.json'
-          hierarchy = json.loads(hierarchy_path.read_text())
-          hierarchy['tickets'] = ['T-0442','T-0462','T-0463','T-0478','T-0479']
-          hierarchy['reviewed_on'] = '2026-09-02'
-          hierarchy_path.write_text(json.dumps(hierarchy, indent=2, ensure_ascii=False) + '\n')
-
-          check_path = root / 'tools/check.sh'
-          check = check_path.read_text()
-          check = check.replace(
-              '# T-0442, T-0462, T-0463, and T-0478. These reviews sit beside household facts on purpose:',
-              '# T-0442, T-0462, T-0463, T-0478, and T-0479. These reviews sit beside household facts on purpose:'
-          )
-          old = '''step "the fourth non-overlapping 75-person research cohort is fixed" \\
-  python3 tools/select_resident_research_pass_4.py --gate
-
-step "all 300 reviewed residents have reproducible research outcomes" \\
-  python3 tools/compile_resident_research_pilot.py --gate'''
-          new = '''step "the fourth non-overlapping 75-person research cohort is fixed" \\
-  python3 tools/select_resident_research_pass_4.py --gate
-
-step "the fifth non-overlapping 75-person research cohort is fixed" \\
-  python3 tools/select_resident_research_pass_5.py --gate
-
-step "all 375 reviewed residents have reproducible research outcomes" \\
-  python3 tools/compile_resident_research_pilot.py --gate'''
-          if old not in check:
-              raise SystemExit('current resident-research check block not found')
-          check_path.write_text(check.replace(old, new))
-
-          residents = root / 'data/residents'
-          idx = json.loads((residents / 'index.json').read_text())
-          person_index = {}
-          for entry in idx['households']:
-              h = json.loads((residents / entry['file']).read_text())
-              for p in h.get('persons', []):
-                  person_index[p['id']] = (h, p)
-
-          source_cache = {}
-          for p in (root / 'data/sources').glob('*.json'):
-              source_cache[p.stem] = json.loads(p.read_text())
-
-          headers = [
-            'ticket','cohort','person_id','household_id','name_transcribed','name_normalized',
-            'stratum','seed_source_id','seed_source_date','letter_list_dates','research_outcome',
-            'identity_confidence','residence_confidence','household_confidence','occupation_confidence',
-            'candidate_ids','proposed_birth','proposed_death','proposed_arrival_migration',
-            'proposed_occupation_trade','proposed_address_property','proposed_spouse_kin',
-            'proposed_civic_voter_census','proposed_household_facts','evidence_for','evidence_against',
-            'source_ids','source_urls_locators','source_tiers','queries','access_dates',
-            'source_limitations','recommended_data_action','notes'
-          ]
-          proposed = {
-            'kercheval_gholson': {'civic': "named 'of Chicago' in the 1833 treaty federal-payment clause; early civic chronology"},
-            'kimball_walter': {'occupation': "merchant; W. Kimball's New Store", 'address': 'South Water / Clark junction in 1833 advertisement'},
-            'lampman_henry_s': {'migration': 'then of Ann Arbor before spring-1833 Chicago brickyard work', 'occupation': "brickmaker/workman at Tyler K. Blodgett's brickyard"},
-            'wright_john_s': {'address': 'Chicago original-town land purchases documented in the Wright papers; later dates not back-projected'},
-            'll_hugunin_leonard_c': {'migration': 'arrived Chicago 1833-08-17', 'occupation': 'speculator by 1839 directory'},
-          }
-          rows = []
-          for member in manifest['people']:
-              pid = member['person_id']
-              if pid not in person_index:
-                  raise SystemExit(f'{pid}: missing canonical resident')
-              h, p = person_index[pid]
-              result = findings['overrides'].get(pid, {
-                  'outcome': 'no_corroboration', 'summary': findings['default_summary'],
-                  'sources': [], 'candidates': []
-              })
-              candidates = result.get('candidates', [])
-              cand_ids = '; '.join(c.get('candidate_id','') for c in candidates if c.get('candidate_id'))
-              against = ' | '.join('; '.join(c.get('conflicts', [])) for c in candidates if c.get('conflicts'))
-              sources = result.get('sources', [])
-              locators = []
-              tiers = []
-              limitations = []
-              for sid in sources:
-                  s = source_cache.get(sid)
-                  if not s:
-                      raise SystemExit(f'{pid}: unresolved source {sid}')
-                  loc = s.get('url','')
-                  if s.get('locator'):
-                      loc += ' — ' + s['locator']
-                  locators.append(f'{sid}: {loc}')
-                  tiers.append(f"{sid}:{s.get('tier','')}")
-                  if s.get('note'):
-                      limitations.append(f"{sid}: {s['note']}")
-              queries = result.get('queries', [q.format(name=p['name']) for q in findings['query_templates']])
-              presence = h.get('present_on_scene_date', {})
-              if isinstance(presence, dict):
-                  presence_text = f"{presence.get('value','')} ({presence.get('confidence','')})".strip()
-              else:
-                  presence_text = str(presence)
-              occ = p.get('occupation') or {}
-              if isinstance(occ, dict):
-                  occ_text = f"{occ.get('value','')} ({occ.get('confidence','')})".strip()
-              else:
-                  occ_text = str(occ)
-              pf = proposed.get(pid, {})
-              action = (
-                  'T-0487 adjudication; T-0488 attested promotion where independently supported'
-                  if result['outcome'] == 'corroborated_enrichment' else
-                  'retain candidate unasserted; resolve in T-0487 before any canonical identity change'
-                  if result['outcome'] == 'candidate_identity' else
-                  'retain documented no-find; revisit only with new evidence'
-              )
-              identity_conf = (
-                  'corroborated' if result['outcome'] == 'corroborated_enrichment' else
-                  'candidate — unasserted' if result['outcome'] == 'candidate_identity' else
-                  'unresolved / no safe external match'
-              )
-              rows.append([
-                  'T-0479','5',pid,h['id'],p['name'],p['name'],member['stratum'],
-                  '; '.join(p.get('sources', [])),'','; '.join(p.get('letter_list_returns', [])),
-                  result['outcome'],identity_conf,presence_text,
-                  'existing canonical household; composition not re-adjudicated in T-0479',occ_text,
-                  cand_ids,'','',pf.get('migration',''),pf.get('occupation',''),pf.get('address',''),' ',
-                  pf.get('civic',''),' ',result['summary'],against,'; '.join(sources),
-                  ' | '.join(locators),'; '.join(tiers),' | '.join(queries),'2026-09-02',
-                  ' | '.join(limitations),action,result['summary']
-              ])
-
-          outdir = Path('chicago/reference/resident-research/T-0479')
-          outdir.mkdir(parents=True, exist_ok=True)
-          csv_path = outdir / 'T-0479_resident_research.csv'
-          with csv_path.open('w', newline='', encoding='utf-8') as fh:
-              w = csv.writer(fh)
-              w.writerow(headers)
-              w.writerows(rows)
-
-          counts = Counter(r[10] for r in rows)
-          expected = {'corroborated_enrichment': 5, 'candidate_identity': 13, 'no_corroboration': 57}
-          if len(rows) != 75 or dict(counts) != expected:
-              raise SystemExit(f'bad T-0479 CSV census: rows={len(rows)} counts={dict(counts)}')
-
-          readme = '''# T-0479 — fifth resident-research cohort
-
-## Scope and completion
-
-T-0479 researches the frozen fifth 75-person cohort for the 1835-07-01 scene date: 9 remaining individually named non-letter-list people, 33 scene-date postal-list people, and 33 earlier/uncertain postal-list people. The cohort is unchanged from its committed selector/manifest and does not overlap the first four passes.
-
-All 75 members now have a resolved outcome: **5 corroborated enrichments, 13 explicitly unasserted candidate identities, and 57 documented no-corroboration outcomes. There are 0 pending members.** With passes 1–4, cumulative completed research is 375 people.
-
-## Method
-
-The pass searched the repository newspaper/reference corpus, Chicago directories (especially 1839 and 1843), institutional/municipal history, digitized Cook/Will/Kane/Kendall/La Salle/Greene county histories, and broad exact-name searches. OCR and spelling variants were searched when the recorded form plausibly reflected transcription error. Searches were reviewed on 2026-09-02.
-
-An exact name is a search lead, not an identity assertion. Later Chicago directory continuity, nearby-county settlement, occupation, migration chronology, and household information were retained as candidates unless independent evidence bridged the outside record to the 1835 Chicago person. Competing geography is recorded rather than normalized away. A documented no-find is not evidence that a person did not exist.
-
-## Key findings
-
-The strongest new completion-stage corroboration is **Leonard C. Hugunin**: Old Settlers of Chicago proceedings give an arrival date of 17 August 1833, and the 1839 Chicago directory independently lists Leonard C. Hugunin as a speculator. The initial tranche's corroborations for Gholson Kercheval, Walter Kimball, Henry S. Lampman and John S. Wright are preserved.
-
-Thirteen candidates remain deliberately unasserted, including Harriet Murphy; Edward Dalton (1840 Chicago census-index lead); James Gooding; Ambrose B. Gould; Betsey Hatch; William Holliday; Daniel Newton; Daniel Platt; Edward Dimmick; Edward Poor; Edward Trimble; Elijah Garton; and Hezekiah Gifford. Their conflicts—especially later dates and competing Fox River, Ottawa, Homer, La Salle, Elgin or downstate geography—remain visible in the CSV/workbook and findings ledger.
-
-## Durable files
-
-- `T-0479_resident_research.csv` — machine-readable cohort research table using the shared template.
-- `T-0479_resident_research_working.xlsx` — human-reviewable workbook with Residents, Candidates, Sources, Search_Log and Summary sheets.
-- `README.md` — this method, limitation and handoff note.
-- `chicago/4d/data/research/residents/pass_05_findings.json` — authoritative outcome/candidate ledger.
-- `chicago/4d/data/sources/*.json` — stable source records referenced by the findings.
-
-No canonical household/person facts are promoted by this completion pass. Corroborated facts and candidates are handed to the later T-0487–T-0490 adjudication/promotion sequence.
-'''
-          (outdir / 'README.md').write_text(readme)
-
-          memo = '''# T-0479 — Fifth resident-research pass
-
-Status: **research complete; integration pending** · reviewed 2026-09-02
-
-The frozen fifth cohort contains 75 unique real named people: nine remaining individually named non-letter-list residents, 33 scene-date postal-list names and 33 earlier/uncertain postal-list names. All 75 now have resolved outcomes: **5 corroborated enrichments, 13 candidate identities, 57 documented no-corroboration outcomes, 0 pending**.
-
-The initial tranche's four corroborations (Gholson Kercheval, Walter Kimball, Henry S. Lampman and John S. Wright) remain intact. Completion adds a fifth: Leonard C. Hugunin, whose 17 August 1833 Chicago arrival is preserved by the Old Settlers of Chicago proceedings and whose continued Chicago presence is independently visible in the 1839 directory.
-
-Candidate matching remained conservative. Later Chicago records for Edward Dalton, Ambrose B. Gould and Edward Dimmick are not back-projected to 1835. Northern-Illinois pioneers Daniel Newton, Daniel Platt, Edward Poor, Edward Trimble, Elijah Garton, Hezekiah Gifford, James Gooding and Betsey Hatch remain candidates because their documented geography competes with a Chicago identity and no direct postal bridge was found. William Holliday's 1834 White Hall record is retained only as a weak competing Illinois namesake. Harriet Murphy remains the initial tranche's strong but unasserted hotel-history candidate.
-
-No household or canonical person fields are changed by this completion. The research artifacts preserve exact recorded spellings, candidate conflicts, source IDs/locators, query families and negative-search scope for later T-0487–T-0490 adjudication.
-'''
-          (root / 'docs/RESEARCH/resident-research-pass-5.md').write_text(memo)
-          PY
-
-      - name: Rebuild and validate cumulative resident research
+      - name: Generate durable text artifacts
+        run: python3 chicago/4d/tools/complete_resident_research_pass_5.py
+      - name: Rebuild cumulative resident research
         run: |
           cd chicago/4d
           python3 tools/select_resident_research_pass_5.py --gate
@@ -251,12 +35,11 @@ No household or canonical person fields are changed by this completion. The rese
           python3 tools/compile_resident_research_pilot.py --gate
           mkdir -p ../../site/chicago/4d/data/residents
           cp data/residents/research_pilot.json ../../site/chicago/4d/data/residents/research_pilot.json
-
-      - name: Verify T-0479 invariants
+      - name: Verify completion invariants
         run: |
-          python - <<'PY'
-          from pathlib import Path
+          python3 - <<'PY'
           from collections import Counter
+          from pathlib import Path
           import csv, json
           root = Path('chicago/4d')
           findings = json.loads((root/'data/research/residents/pass_05_findings.json').read_text())
@@ -264,28 +47,27 @@ No household or canonical person fields are changed by this completion. The rese
           assert findings['status'] == 'complete'
           assert findings['pending_person_ids'] == []
           assert set(findings['completed_person_ids']) == {p['person_id'] for p in manifest['people']}
-          assert findings['outcome_counts'] == {'corroborated_enrichment':5,'candidate_identity':13,'no_corroboration':57}
+          expected = {'corroborated_enrichment':5,'candidate_identity':13,'no_corroboration':57}
+          assert findings['outcome_counts'] == expected
           for result in findings['overrides'].values():
-              for c in result.get('candidates', []):
-                  assert c['asserted'] is False and c.get('candidate_id')
+              for candidate in result.get('candidates', []):
+                  assert candidate['asserted'] is False and candidate.get('candidate_id')
           with Path('chicago/reference/resident-research/T-0479/T-0479_resident_research.csv').open(newline='', encoding='utf-8') as fh:
               rows = list(csv.DictReader(fh))
           assert len(rows) == 75
-          assert Counter(r['research_outcome'] for r in rows) == Counter({'no_corroboration':57,'candidate_identity':13,'corroborated_enrichment':5})
-          assert all(r['research_outcome'] != 'pending' for r in rows)
+          assert Counter(r['research_outcome'] for r in rows) == Counter(expected)
           compiled = json.loads((root/'data/residents/research_pilot.json').read_text())
           assert compiled['ticket'] == 'T-0479' and compiled['cohort_size'] == 375
-          assert compiled['passes'][-1]['counts'] == findings['outcome_counts']
-          assert Path('site/chicago/4d/data/residents/research_pilot.json').read_bytes() == (root/'data/residents/research_pilot.json').read_bytes()
+          assert compiled['passes'][-1]['counts'] == expected
+          published = Path('site/chicago/4d/data/residents/research_pilot.json')
+          assert published.read_bytes() == (root/'data/residents/research_pilot.json').read_bytes()
           print('T-0479 completion invariants PASS')
           PY
-
-      - name: Commit generated research state and remove workflow
+      - name: Commit generated research state
         run: |
           git rm .github/workflows/t0479-build-research-artifacts.yml
           git config user.name "ChatGPT resident research agent"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add chicago/4d chicago/reference/resident-research/T-0479 site/chicago/4d/data/residents/research_pilot.json
-          git status --short
           git commit -m "research: complete T-0479 resident cohort artifacts"
           git push origin HEAD:research/T-0479-chatgpt-a7c4f2-complete
