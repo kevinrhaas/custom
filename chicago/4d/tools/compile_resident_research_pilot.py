@@ -1,9 +1,13 @@
 #!/usr/bin/env python3
 """Compile every reviewed resident-research pass into the public payload."""
 from __future__ import annotations
+
 import argparse
 import json
 from pathlib import Path
+
+from select_resident_research_pass_2 import load_people
+from select_resident_research_pass_4 import derive as derive_pass4_cohort
 
 ROOT = Path(__file__).resolve().parents[1]
 PASS4_COHORT = ROOT / "data/research/residents/pass_04_75_cohort.json"
@@ -18,11 +22,21 @@ def load(path: Path) -> dict:
 def derive() -> dict:
     prior = load(OUT)
     cohort, findings = load(PASS4_COHORT), load(PASS4_FINDINGS)
+
+    # T-0478 deliberately keeps a compact manifest. Prove it still describes the
+    # current resident records rather than asking downstream code to trust stale
+    # copied names, household ids or presence flags.
+    expected_cohort = derive_pass4_cohort()
+    if cohort != expected_cohort:
+        raise SystemExit("pass-four cohort is stale; regenerate with select_resident_research_pass_4.py")
+
     baseline = prior.get("reviews", [])[:225]
     tickets = prior.get("tickets", [prior.get("ticket")])
     expected_prior = ["T-0442", "T-0462", "T-0463"]
     if len(baseline) != 225 or tickets[:3] != expected_prior:
         raise SystemExit("expected the committed T-0442/T-0462/T-0463 225-review baseline")
+
+    index, _ = load_people()
     prior_ids = {r["person_id"] for r in baseline}
     cohort_ids = {p["person_id"] for p in cohort["people"]}
     if prior_ids & cohort_ids:
@@ -31,8 +45,16 @@ def derive() -> dict:
         raise SystemExit(f"pass-four findings outside cohort: {sorted(extras)}")
 
     reviews = list(baseline)
-    for person in cohort["people"]:
-        pid, name = person["person_id"], person["name"]
+    for member in cohort["people"]:
+        pid = member["person_id"]
+        if pid not in index:
+            raise SystemExit(f"pass-four person missing from residents layer: {pid}")
+        household, person = index[pid]
+        name = person["name"]
+        stratum = member["stratum"]
+        starting_evidence = (
+            "established_profile" if stratum == "established_profile" else "letter_list_only"
+        )
         result = findings["overrides"].get(
             pid,
             {
@@ -42,15 +64,23 @@ def derive() -> dict:
                 "candidates": [],
             },
         )
+        if result["outcome"] not in {
+            "corroborated_enrichment",
+            "candidate_identity",
+            "no_corroboration",
+        }:
+            raise SystemExit(f"{pid}: unsupported or pending research outcome {result['outcome']!r}")
         reviews.append({
             "person_id": pid,
-            "household_id": person["household_id"],
+            "household_id": household["id"],
             "name_as_recorded": name,
-            "starting_evidence": person["starting_evidence"],
+            "starting_evidence": starting_evidence,
             "reviewed_on": findings["reviewed_on"],
             "outcome": result["outcome"],
             "summary": result["summary"],
-            "queries": result.get("queries", [t.format(name=name) for t in findings["query_templates"]]),
+            "queries": result.get(
+                "queries", [t.format(name=name) for t in findings["query_templates"]]
+            ),
             "sources": result.get("sources", []),
             "candidates": result.get("candidates", []),
             "identity_rule": "Candidate facts remain unasserted until a source bridges the candidate to the historical record by more than name similarity.",
@@ -76,6 +106,15 @@ def derive() -> dict:
             "size": 75,
             "counts": {k: sum(r["outcome"] == k for r in review_pass) for k in outcomes},
         })
+
+    pass4_counts = pass_counts[-1]["counts"]
+    expected_pass4 = {
+        "corroborated_enrichment": 22,
+        "candidate_identity": 4,
+        "no_corroboration": 49,
+    }
+    if pass4_counts != expected_pass4:
+        raise SystemExit(f"pass-four outcome census changed: {pass4_counts}")
 
     return {
         "_doc": "T-0442, T-0462, T-0463, and T-0478 public resident research reviews. Candidate biographies are leads, not asserted resident facts.",
