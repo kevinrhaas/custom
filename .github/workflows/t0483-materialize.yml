@@ -1,4 +1,4 @@
-name: T0483 recover staged completion payload
+name: T0483 recover intact staged payload prefix
 
 on:
   push:
@@ -9,7 +9,7 @@ permissions:
   contents: write
 
 jobs:
-  repair-part04:
+  recover-prefix:
     if: github.actor != 'github-actions[bot]'
     runs-on: ubuntu-latest
     steps:
@@ -21,74 +21,60 @@ jobs:
             .t0483_payload
             .github/workflows/t0483-materialize.yml
           sparse-checkout-cone-mode: false
-      - name: Recover the single missing base64 character in part04
+      - name: Extract all complete tar members before missing part06
         shell: bash
         run: |
           set -euo pipefail
           python3 - <<'PY'
-          import base64, pathlib, zlib, sys
+          import base64, pathlib, zlib, os
           d=pathlib.Path('.t0483_payload')
-          a=''.join((d/f'part{i:02d}').read_text().strip() for i in range(4))
-          b=(d/'part04').read_text().strip()
-          c=(d/'part05').read_text().strip()
-          assert len(a)==24000 and len(b)==5999 and len(c)==6000, (len(a),len(b),len(c))
-          alphabet='ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/'
-          # Estimate where the deletion first corrupts the deflate stream by placing the missing char at the end.
-          probe=base64.b64decode(a+b+c+'A', validate=True)
-          zz=zlib.decompressobj(16+zlib.MAX_WBITS)
-          fail=None
-          for i,x in enumerate(probe):
-              try: zz.decompress(bytes([x]))
-              except zlib.error:
-                  fail=i; break
-          est=max(0,min(len(b), int((fail or 18000)*4/3)-len(a)))
-          print('probe_failure_compressed_offset',fail,'estimated_part04_position',est)
-          def valid(candidate):
-              raw=base64.b64decode(a+candidate+c, validate=True)
-              zz=zlib.decompressobj(16+zlib.MAX_WBITS)
-              try: out=zz.decompress(raw)
-              except zlib.error: return None
-              # Validate every complete tar header checksum in the recovered prefix.
-              p=0; members=0
-              while p+512<=len(out):
-                  h=out[p:p+512]
-                  if h==b'\0'*512: break
-                  try:
-                      stored=int((h[148:156].split(b'\0',1)[0].strip() or b'0'),8)
-                      chk=sum(h[:148])+sum(b'        ')+sum(h[156:])
-                      if stored!=chk: return None
-                      size=int((h[124:136].split(b'\0',1)[0].strip() or b'0'),8)
-                  except Exception: return None
-                  end=p+512+size
-                  if end>len(out): break
-                  members+=1
-                  p=p+512+((size+511)//512)*512
-              return (len(out),members)
-          ranges=[]
-          lo=max(0,est-800); hi=min(len(b),est+800)
-          ranges.append(range(lo,hi+1))
-          if lo>0 or hi<len(b): ranges.append(range(0,len(b)+1))
-          seen=set()
-          for rr in ranges:
-              for pos in rr:
-                  if pos in seen: continue
-                  seen.add(pos)
-                  for ch in alphabet:
-                      cand=b[:pos]+ch+b[pos:]
-                      score=valid(cand)
-                      if score and score[0] > 1024 and score[1] >= 1:
-                          print('recovered_part04_position',pos,'char',ch,'decompressed_bytes',score[0],'complete_members',score[1])
-                          (d/'part04').write_text(cand)
-                          sys.exit(0)
-          raise SystemExit('no valid single-character repair found')
+          s=''.join((d/f'part{i:02d}').read_text().strip() for i in range(6))
+          assert len(s)==36000, len(s)
+          raw=base64.b64decode(s, validate=True)
+          z=zlib.decompressobj(16+zlib.MAX_WBITS)
+          out=z.decompress(raw)
+          root=pathlib.Path('.t0483_recovered')
+          root.mkdir(exist_ok=True)
+          report=[f'compressed_prefix_bytes={len(raw)}', f'decompressed_prefix_bytes={len(out)}']
+          p=0; n=0
+          while p+512 <= len(out):
+              h=out[p:p+512]
+              if h == b'\0'*512: break
+              try:
+                  stored=int((h[148:156].split(b'\0',1)[0].strip() or b'0'),8)
+                  chk=sum(h[:148])+sum(b'        ')+sum(h[156:])
+                  if stored != chk:
+                      report.append(f'stop_invalid_header_at={p}')
+                      break
+                  name=h[:100].split(b'\0',1)[0].decode('utf-8','replace')
+                  size=int((h[124:136].split(b'\0',1)[0].strip() or b'0'),8)
+                  typ=h[156:157]
+              except Exception as e:
+                  report.append(f'stop_header_error_at={p}:{e}')
+                  break
+              data0=p+512; data1=data0+size
+              if data1 > len(out):
+                  report.append(f'incomplete_member={name} size={size} available={max(0,len(out)-data0)}')
+                  break
+              report.append(f'complete_member={name} size={size} type={typ!r}')
+              if typ in (b'0', b'\0') and name and not name.startswith('/') and '..' not in pathlib.PurePosixPath(name).parts:
+                  target=root/pathlib.PurePosixPath(name)
+                  target.parent.mkdir(parents=True, exist_ok=True)
+                  target.write_bytes(out[data0:data1])
+                  n += 1
+              p=data0+((size+511)//512)*512
+          report.append(f'extracted_regular_files={n}')
+          (root/'PREFIX_RECOVERY_REPORT.txt').write_text('\n'.join(report)+'\n')
+          print('\n'.join(report))
           PY
-      - name: Commit repaired part04
+      - name: Commit recovered complete members
         shell: bash
         run: |
           set -euo pipefail
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add --sparse .t0483_payload/part04
+          git add --sparse .t0483_recovered
+          git diff --cached --stat
           git diff --cached --quiet && exit 0
-          git commit -m 'T-0483: repair staged payload part04'
+          git commit -m 'T-0483: recover intact completion payload prefix'
           git push origin HEAD:research/T-0483-5e8a41-complete
