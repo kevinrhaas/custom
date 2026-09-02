@@ -1,33 +1,62 @@
-# T-0484 — tenth resident-research cohort
+# T-0484 — tenth 75-person real-resident research cohort
 
-## Scope and completion
+## Status
 
-T-0484 researches the frozen tenth 75-person continuation cohort for the 1835-07-01 scene date. The cohort contains **31 scene-date letter-list names and 44 earlier/uncertain letter-list names**; it is fixed by `pass_10_75_cohort.json` and does not overlap the earlier reserved cohorts.
+Complete research handoff for the fixed T-0484 manifest. All 75 reserved people have a dated outcome and there are no pending members.
 
-All 75 members now have a resolved outcome: **5 corroborated enrichments, 9 explicitly unasserted candidate identities, and 61 documented no-corroboration outcomes. There are 0 pending members.** In the full cohort sequence this pass occupies reviews 676–750, so the cumulative reviewed total is 750 once the parallel T-0482/T-0483 passes immediately before it are integrated.
+- corroborated enrichment: **5**
+- candidate identity / duplicate lead: **9**
+- documented no-corroboration: **61**
+- pending: **0**
+
+## Cohort
+
+The frozen manifest contains 75 unique real named postal-list residents:
+
+- 31 `letter_list_only_present`
+- 44 `letter_list_only_uncertain`
+
+No reconstructed `inf_*` people or unnamed/count placeholders are included. The manifest is treated as an identity lock. This completion does not regenerate or substitute cohort membership.
 
 ## Method
 
-The pass searched the repository Chicago Democrat transcriptions, newspaper identity ledger, resident/source registry, Fergus directories, and digitized Cook/Will/Kane/Lake/Racine-area local histories, plus government, tribal, library and archival institutional records. Exact-name searches were followed by justified OCR/spelling variants only where the printed form was visibly suspect. Searches were reviewed on 2026-09-02.
+Every member was checked against the repository's Chicago Democrat/newspaper identity material and resident/source registers, then against appropriate Chicago directories, digitized county/local histories, government or institutional records, and exact-name plus justified OCR/spelling-variant web searches. The standard query family was:
 
-An exact name is a search lead, not an identity assertion. Later Chicago continuity, nearby-county settlement, occupation, migration chronology, kinship and paired-name evidence were retained as candidates unless independent evidence bridged the outside record to the postal person. Competing geography is recorded rather than normalized away. A documented no-find is not evidence that a person did not exist.
+- `"<name>" Chicago 1835`
+- `"<name>" Illinois 1834 1835`
+- `"<name>" Chicago directory`
+- `"<name>" genealogy occupation migration`
+- justified OCR/spelling variants only where the printed form was visibly suspect
+
+A surname or generic same-name hit is never an identity bridge. Candidate records remain explicitly unasserted when geography, dates, competing people, later chronology, or OCR uncertainty prevent a safe merge.
 
 ## Strongest findings
 
-- **Nicholas Boilvin** — repeated 1834 Chicago postal evidence plus the independent 1833 Treaty of Chicago payment schedule corroborate the uncommon exact identity and treaty-era Chicago/Cook County context.
-- **Noel Vasseur** — 1835 Chicago postal evidence plus the 1833 Treaty of Chicago payment schedule corroborate the uncommon exact identity; later Will/Kankakee geography prevents a Chicago-household inference.
-- **Mary Barrows** — early-Chicago education histories independently place her with Miss Chappel's school/boarding-school work.
-- **Martin Cleland** — an 1886 family genealogy gives a specific 1834 prospecting trip from Chautauqua to Chicago before the family settled near Niles, Michigan.
-- **Nathan Christy** — Nathan and the uncommon Rumsey Christy occur together in the 1834 Chicago letter list and both appear again in the 1843 Chicago directory, providing paired-name continuity beyond a lone same-name match.
+1. **Nicholas Boilvin** — independent 1833 Treaty of Chicago payment schedule plus multiple 1834 Chicago postal returns safely corroborate the uncommon identity and treaty-era context. This does not prove a July 1, 1835 dwelling.
+2. **Noel Vasseur** — independent treaty payment schedule corroborates the uncommon identity and regional/treaty context; later Will/Kankakee geography prevents a Chicago-household inference.
+3. **Mary Barrows** — retrospective early-Chicago education history independently names her in Miss Chappel's school network and boarding-house context.
+4. **Martin Cleland** — later genealogy gives a specific 1834 prospecting trip to Chicago, but the family selected a future home near Niles, Michigan, so July 1835 Chicago residence is not inferred.
+5. **Nathan Christy** — the unusual paired Nathan/Rumsey Christy names recur from the 1834 postal material to the 1843 Chicago directory, providing a stronger discriminator than a lone same-name match.
 
-Nine candidates remain deliberately unasserted: Elisha Raymond; the Bachelor's Grove Thomas McClintock father/son pair; former governor/Representative John Reynolds; Robert Moody; Nathan Hutchins; Oscar L. Hawley; Moritz Baumgarten; Samuel L. Selden; and Starr Titus. Their later dates, competing geography, duplicated given names, or chronology conflicts remain visible in the workbook and findings ledger.
+Nine additional records are retained as candidate identities only, including Elisha Raymond, Thomas McClintock, Hon. John Reynolds, Robert Moody, Nathan Hutchins, Oscar L. Hawley, Moritz Baumgarten, Samuel L. Selden and Starr Titus.
 
-## Durable files
+## Guardrails and limitations
 
-- `T-0484_resident_research.csv` — machine-readable cohort research table.
-- `T-0484_resident_research_working.xlsx` — human-reviewable workbook with Summary, Residents, Candidates, Sources and Search_Log sheets.
-- `README.md` — method, limitations and handoff note.
-- `chicago/4d/data/research/residents/pass_10_findings.json` — authoritative outcome/candidate ledger.
-- `chicago/4d/data/sources/*.json` — stable source records referenced by the findings.
+- A waiting letter is evidence of a postal-list resident candidate under the owner's standing ruling; it is not automatically proof of a specific roof, occupation, kinship or bodily presence on July 1, 1835.
+- Retrospective county histories and genealogies are used conservatively and are not allowed to override contemporary geography or chronology.
+- Later directories can establish continuity leads, but later addresses/occupations are not back-projected to 1835.
+- Negative searches are recorded outcomes, not proof that the person did not exist.
+- No canonical household/person fields are modified by this pass. Promotion of supported facts belongs in the later adjudication/promotion sequence.
+- The public cumulative payload remains at the last fully integrated baseline until the separately claimed T-0482 and T-0483 passes complete. T-0484 should only advance the cumulative total to 750 when the missing preceding passes are merged and the compiler can reconcile all ten 75-person cohorts without overlap.
 
-No canonical household/person facts are promoted by T-0484. Corroborated facts and candidates are handed to the later adjudication/promotion sequence so provenance and conflicts can be applied field-by-field instead of silently overwriting resident records.
+## Files
+
+- `T-0484_resident_research_working.xlsx` — human-reviewable table with one row per manifest person and evidence/candidate columns.
+- `T-0484_resident_research.csv` — machine-readable export of the same 75 rows.
+- `README.md` — this methods, findings and limitations note.
+- `chicago/4d/data/research/residents/pass_10_findings.json` — canonical machine-readable outcome ledger.
+- source records under `chicago/4d/data/sources/` — exact source IDs referenced by the workbook/CSV.
+
+## Validation contract
+
+The completion branch must retain exactly 75 unique manifest IDs, all 75 in `completed_person_ids`, no pending IDs, and outcome counts of 5 / 9 / 61. Every override source ID must resolve to a committed source record or an existing repository source. The completion PR targets `dev`.
