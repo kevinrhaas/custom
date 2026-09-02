@@ -1,11 +1,26 @@
-# T-0485 — Eleventh resident-research cohort (75)
+# Resident research pass 11 — T-0485
 
-Status: **queued for research** · manifest frozen 2026-09-02
+**Status:** complete on 2026-09-02  
+**Frozen cohort:** 75 earlier/uncertain letter-list-only residents  
+**Cumulative reviewed total:** 825
 
-This planning branch reserves 75 real named, non-reconstructed residents from the remaining letter-list-only pool: 0 scene-date names and 75 earlier/uncertain names. Passes 1–5 reserve 375 IDs; this cohort raises the reserved total to 450. The seven continuation groups together exhaust the 461 eligible named letter-list-only people.
+## Results
 
-The manifest is deterministic and non-overlapping: remaining person IDs are sorted within the present/uncertain strata, interleaved, and chunked in fixed order. It excludes reconstructed records, hypothesised inf_* records, unnamed/count placeholders and every ID reserved by the pilot or passes 2–5. Do not infer heritage, immigration origin, kinship, marriage, occupation, address or residence from a surname or a weak same-name match.
+This pass closes all 75 pending entries with 4 corroborated enrichments, 14 candidate/duplicate/competing-identity leads, and 57 documented no-corroboration outcomes.
 
-The findings ledger starts every member as **pending**, not as a no-find. The research run must search the repository corpus and the strongest available primary, institutional and local-history sources; retain queries, URLs/source IDs, access date, source tier, candidate duplicates, conflicts and negative searches. Promote only evidence that resolves the person, date and Chicago/Cook County connection, and make no silent household edits.
+### Corroborated enrichments
 
-This is a planning scaffold. The completion PR must add dated outcomes for all 75 members, source-ledger records and any justified candidate/household provenance, then run the relevant checks and update the cumulative research/status references before merge.
+- **Paul Kingston** — Andreas records early Chicago land ownership; Racine old-settlers history says he came from Chicago on January 2, 1835. This corroborates the historical Chicago person but also warns against assuming July 1835 residence.
+- **Samuel S. Lathrop** — Andreas' early First Baptist Church history names him among the early Chicago congregation and in connection with Rev. A. B. Freeman's Chicago grave enclosure.
+- **Sciota Evans** — a Cook County history quoting the *Chicago Democrat* October 15, 1834 list names him among leading Cook County Democratic-Republicans; Milwaukee records place him there as constable by September 1835.
+- **Thomas Andrus** — DuPage history documents his Chicago arrival December 1, 1833, Chicago work in 1834, return to Chicago in June 1835, and move into DuPage in July 1835.
+
+### High-value candidates and conflicts
+
+Pierce Downer is firmly documented at Downers Grove after a Chicago/Fort Dearborn visit; Ruel Starr is firmly in Porter County, Indiana; Salmon Rutherford is at Aux Sable/Grundy County; William Luce is at Racine by January 1835; William Osborn has a contemporaneous Thorn Creek/Will County namesake; and Winthrop Merrill has both early Chicago-area history and a probable repository duplicate under `ll_merrill_winthrop`. The Wm. H. Fraser/Frazer pair is retained as an unresolved orthographic duplicate lead.
+
+Later Chicago evidence for Edward Parsons, Robert C. Bristol, and Samuel Brookes is useful but too late to merge with the 1834-35 postal entries without an additional bridge.
+
+## Method
+
+Each stable person ID was checked against the repository seed/source context and an exact/variant-name web sweep emphasizing 1833-1835 Chicago, Cook County, neighboring northern Illinois, Indiana, Wisconsin, and Michigan records. Negative searches are recorded as dated no-corroboration outcomes rather than evidence of nonexistence. No candidate evidence directly changes household placement.
