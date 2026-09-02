@@ -1,0 +1,14 @@
+{
+  "id": "dalton_1840_chicago_census_index",
+  "type": "website",
+  "citation": "Dalton Data Bank, Illinois census indexes, 1840: Edward Dalton, Chicago 1st Ward",
+  "date": "index accessed 2026-09-02",
+  "describes_date": "1840",
+  "locator": "1840 census indexes — Edward Dalton, Chicago 1st Ward",
+  "url": "https://daltondatabank.net/Illinois.html",
+  "tier": 4,
+  "rights_status": "check_required",
+  "asset_use": "text_only",
+  "verified": true,
+  "note": "Genealogy/index access path, not the census image. Retained only as a later-Chicago identity candidate; the index does not bridge the 1835 postal entry to the 1840 household."
+}
