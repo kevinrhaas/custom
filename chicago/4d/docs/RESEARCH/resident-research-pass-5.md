@@ -1,40 +1,11 @@
-# T-0479 — Fifth resident-research pass (initial tranche)
+# T-0479 — Fifth resident-research pass
 
-Status: **in progress** · reviewed 2026-09-02
+Status: **research complete; integration pending** · reviewed 2026-09-02
 
-The claimed branch `steward/resident-research-pass-5` carries a frozen, reproducible 75-person manifest: nine remaining individually named non-letter-list residents, 33 scene-date postal-list names and 33 earlier/uncertain postal-list names. The selector fails closed against the 225 merged pilot/pass-2/pass-3 IDs and the 75 IDs claimed by the unmerged T-0478 selector. Reconstructed, hypothesised `inf_*`, and unnamed/count placeholders are excluded.
+The frozen fifth cohort contains 75 unique real named people: nine remaining individually named non-letter-list residents, 33 scene-date postal-list names and 33 earlier/uncertain postal-list names. All 75 now have resolved outcomes: **5 corroborated enrichments, 13 candidate identities, 57 documented no-corroboration outcomes, 0 pending**.
 
-## Initial evidence sweep
+The initial tranche's four corroborations (Gholson Kercheval, Walter Kimball, Henry S. Lampman and John S. Wright) remain intact. Completion adds Leonard C. Hugunin, whose 17 August 1833 Chicago arrival is preserved by the Old Settlers of Chicago proceedings and whose continued Chicago presence is independently visible in the 1839 directory.
 
-The first tranche covers all nine individually named members.
+Candidate matching remained conservative. Later Chicago records for Edward Dalton, Ambrose B. Gould and Edward Dimmick are not back-projected to 1835. Northern-Illinois pioneers Daniel Newton, Daniel Platt, Edward Poor, Edward Trimble, Elijah Garton, Hezekiah Gifford, James Gooding and Betsey Hatch remain candidates because their documented geography competes with a Chicago identity and no direct postal bridge was found. William Holliday's 1834 White Hall record is retained only as a weak competing Illinois namesake. Harriet Murphy remains the initial tranche's strong but unasserted hotel-history candidate.
 
-- **Corroborated enrichment (4):** Gholson Kercheval, W. Kimball, Henry S. Lampman and John S. Wright.
-- **Candidate identity (1):** Harriet Murphy. The later hotel-management chronology is retained as a candidate and is not back-projected to the 1 July 1835 household.
-- **Provisional no-corroboration (4):** Oscar Pratt, Benjamin Hall, Charles H. Taylor and Dr Peter Temple. These are documented search outcomes, not claims that the people did not exist.
-- **Household edits:** none. No weak name match was promoted into a resident or household record.
-
-The four strongest additions are:
-
-1. An Oklahoma State University treaty transcription names Gholson Kercheval “of Chicago” in the 1833 federal payment clause.
-2. The contemporary *Chicago Democrat* source already in the repository places W. Kimball's New Store at the South Water/Clark junction.
-3. A Chicagology compilation preserves the early brickmaking account identifying Henry S. Lampman, then of Ann Arbor, as Blodgett's workman.
-4. The Chicago Public Library John S. Wright papers finding aid, supplemented by Augustine W. Wright's 1885 *In Memoriam*, anchors the exact Chicago figure and later land chronology.
-
-The 66 postal-list members are explicitly marked **pending**, not silently treated as no-finds. Their next sweep should prioritize original newspaper scans/transcriptions, directories, county histories, land/probate, church/marriage records and immigration/military records, preserving competing same-name candidates.
-
-## Source register
-
-New source records committed for this tranche:
-
-- `okstate_treaty_chicago_1833` — tier 1 institutional treaty transcription.
-- `chicagology_chicago_brick` — tier 3 retrospective compilation; used only for the Lampman lead.
-- `wright_in_memoriam_1885` — tier 2 near-primary family address, with family-memory limitations.
-
-Existing repository sources reused:
-
-- `chicago_democrat_1833_11_26`
-- `chicagology_prefire278`
-- `chicagology_prefire127`
-- `cpl_john_s_wright_papers`
-
-The findings ledger records the query templates, source IDs, limitations and candidate/non-corroboration status. The pass remains open until the 66 pending outcomes and cumulative compiler/sidecar integration are complete.
+No household or canonical person fields are changed by this completion. The research artifacts preserve recorded spellings, candidate conflicts, source IDs/locators, query families and negative-search scope for later T-0487–T-0490 adjudication.

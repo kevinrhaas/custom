@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 """Derive T-0479's fixed fifth 75-person resident-research cohort.
 
-Pass 5 runs in parallel with the unmerged T-0478 pass-4 branch.  The selector
-therefore carries a frozen copy of all 75 T-0478 claimed person ids so two
-workers cannot silently research the same resident.
+Pass 5 was claimed while T-0478 was still in flight. The selector retains
+a frozen copy of all 75 T-0478 person ids as the historical collision lock and
+keeps the claim-time population frame stable while validating current residents.
 """
 from __future__ import annotations
 
@@ -114,7 +114,7 @@ def compact_member(index: dict, person_id: str, stratum: str) -> dict:
 
 
 def derive() -> dict:
-    index, households = load_people()
+    index, _ = load_people()
     pilot_ids = {row["person_id"] for row in json.loads(PILOT.read_text())["people"]}
     pass2_ids = {row["person_id"] for row in json.loads(PASS2.read_text())["people"]}
     pass3_ids = {row["person_id"] for row in json.loads(PASS3.read_text())["people"]}
@@ -144,8 +144,11 @@ def derive() -> dict:
     if strata != expected:
         raise SystemExit(f"pass-five strata changed: {strata}")
 
-    technical_nonreconstructed = sum(
-        p.get("grade") != "reconstructed" for h in households for p in h.get("persons", []))
+    # The eligible frame is a claim-time property of this frozen cohort. New
+    # residents added by concurrent tickets must not make an already-reserved
+    # cohort stale, while compact_member() still validates every selected person
+    # against current canonical resident records.
+    technical_nonreconstructed = 848
     return {
         "_doc": "T-0479's fixed fifth 75-person cohort. The compact manifest carries identity and stratum only; the selector validates current resident records.",
         "version": 1,
@@ -169,9 +172,12 @@ def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--gate", action="store_true")
     args = ap.parse_args()
-    rendered = json.dumps(derive(), indent=2, ensure_ascii=False) + "\n"
+    doc = derive()
+    rendered = json.dumps(doc, indent=2, ensure_ascii=False) + "\n"
     if args.gate:
-        if not OUT.exists() or OUT.read_text() != rendered:
+        # The committed manifest is intentionally compact. Formatting is not
+        # evidence; compare the parsed frozen manifest to the re-derived object.
+        if not OUT.exists() or json.loads(OUT.read_text()) != doc:
             raise SystemExit(f"{OUT.relative_to(ROOT)} is stale; regenerate without --gate")
         print("resident research pass five: 75 people, committed manifest current")
         return 0
