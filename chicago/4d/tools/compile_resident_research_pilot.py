@@ -73,6 +73,12 @@ def main() -> int:
         print(f"resident research reviews: 225 current ({doc['counts']})")
     else:
         OUT.write_text(rendered); print(f"resident research reviews: wrote 225 ({doc['counts']})")
-    return 0
+
+    # T-0478 deliberately remains a separate compact sidecar until the corpus-wide
+    # adjudication sequence (T-0487..T-0490). It is nevertheless part of this gate:
+    # its selector is re-derived, its 75 outcomes are complete, its candidates remain
+    # unasserted, every source id resolves, and it proves non-overlap with these 225.
+    from compile_resident_research_pass_4 import main as pass4_main
+    return pass4_main()
 
 if __name__ == "__main__": raise SystemExit(main())
