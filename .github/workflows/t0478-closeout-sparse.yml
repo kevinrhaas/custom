@@ -1,0 +1,152 @@
+name: T-0478 sparse closeout repair
+
+on:
+  push:
+    branches:
+      - steward/t0478-closeout-fix
+
+permissions:
+  contents: write
+
+jobs:
+  repair:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: steward/t0478-closeout-fix
+          fetch-depth: 1
+          sparse-checkout: |
+            .github/workflows
+            chicago/4d
+            chicago/reference/resident-research/T-0478
+          sparse-checkout-cone-mode: false
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install dependencies
+        run: python -m pip install --quiet openpyxl jsonschema pyproj
+
+      - name: Repair T-0478 closeout contract
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import csv, json
+          from openpyxl import load_workbook
+
+          root = Path('chicago/4d')
+          ref = Path('chicago/reference/resident-research/T-0478')
+
+          # Export the already-committed working workbook's Residents sheet to
+          # the machine-readable CSV required by the resident-research contract.
+          xlsx = ref / 'T-0478_resident_research_working.xlsx'
+          csv_path = ref / 'T-0478_resident_research.csv'
+          wb = load_workbook(xlsx, read_only=True, data_only=False)
+          ws = wb['Residents']
+          with csv_path.open('w', newline='', encoding='utf-8') as fh:
+              writer = csv.writer(fh)
+              for row in ws.iter_rows(values_only=True):
+                  writer.writerow(['' if value is None else value for value in row])
+
+          # #639 preserved a compact pass-4 manifest (person_id + stratum), but
+          # its compiler still expected pass-2/3's richer manifest shape. Read
+          # display/household metadata from the mutually traceable durable CSV;
+          # membership stays governed by the manifest and outcomes by findings.
+          compiler = root / 'tools/compile_resident_research_pilot.py'
+          s = compiler.read_text()
+          if 'import csv\n' not in s:
+              s = s.replace('import argparse\nimport json', 'import argparse\nimport csv\nimport json')
+          old = 'PASS4_FINDINGS = ROOT / "data/research/residents/pass_04_findings.json"\nOUT = ROOT / "data/residents/research_pilot.json"'
+          new = 'PASS4_FINDINGS = ROOT / "data/research/residents/pass_04_findings.json"\nPASS4_CSV = ROOT.parent / "reference/resident-research/T-0478/T-0478_resident_research.csv"\nOUT = ROOT / "data/residents/research_pilot.json"'
+          if old in s:
+              s = s.replace(old, new)
+          elif 'PASS4_CSV' not in s:
+              raise SystemExit('PASS4 constant block not found')
+
+          marker = 'def derive() -> dict:\n    prior = load(OUT)\n    cohort, findings = load(PASS4_COHORT), load(PASS4_FINDINGS)\n'
+          replacement = '''def load_pass4_rows() -> dict[str, dict[str, str]]:\n    with PASS4_CSV.open(newline="", encoding="utf-8") as fh:\n        rows = list(csv.DictReader(fh))\n    if len(rows) != 75:\n        raise SystemExit(f"T-0478 durable CSV must contain 75 residents, got {len(rows)}")\n    by_id = {}\n    for row in rows:\n        pid = row.get("person_id", "")\n        if not pid or pid in by_id:\n            raise SystemExit(f"T-0478 durable CSV has missing/duplicate person_id {pid!r}")\n        if row.get("ticket") != "T-0478":\n            raise SystemExit(f"{pid}: durable CSV ticket is not T-0478")\n        by_id[pid] = row\n    return by_id\n\n\ndef derive() -> dict:\n    prior = load(OUT)\n    cohort, findings = load(PASS4_COHORT), load(PASS4_FINDINGS)\n    csv_rows = load_pass4_rows()\n'''
+          if marker in s:
+              s = s.replace(marker, replacement)
+          elif 'def load_pass4_rows()' not in s:
+              raise SystemExit('compiler derive marker not found')
+
+          marker = '    cohort_ids = {p["person_id"] for p in cohort["people"]}\n    if prior_ids & cohort_ids:'
+          replacement = '''    cohort_ids = {p["person_id"] for p in cohort["people"]}\n    if set(csv_rows) != cohort_ids:\n        missing = sorted(cohort_ids - set(csv_rows))\n        extra = sorted(set(csv_rows) - cohort_ids)\n        raise SystemExit(f"T-0478 durable CSV/manifest mismatch: missing={missing}, extra={extra}")\n    if prior_ids & cohort_ids:'''
+          if marker in s:
+              s = s.replace(marker, replacement)
+          elif 'durable CSV/manifest mismatch' not in s:
+              raise SystemExit('compiler cohort marker not found')
+
+          marker = '        pid, name = person["person_id"], person["name"]\n'
+          replacement = '''        pid = person["person_id"]\n        meta = csv_rows[pid]\n        name = meta.get("name_normalized") or meta.get("name_transcribed") or pid\n        household_id = meta.get("household_id") or ""\n        if not household_id:\n            raise SystemExit(f"{pid}: durable CSV is missing household_id")\n        stratum = person.get("stratum") or meta.get("stratum")\n        starting_evidence = "established_profile" if stratum == "established_profile" else "letter_list_only"\n'''
+          if marker in s:
+              s = s.replace(marker, replacement)
+          elif 'meta = csv_rows[pid]' not in s:
+              raise SystemExit('compiler person marker not found')
+          s = s.replace('            "household_id": person["household_id"],', '            "household_id": household_id,')
+          s = s.replace('            "starting_evidence": person["starting_evidence"],', '            "starting_evidence": starting_evidence,')
+          compiler.write_text(s)
+
+          hierarchy_path = root / 'data/research/residents/source_hierarchy.json'
+          hierarchy = json.loads(hierarchy_path.read_text())
+          if 'T-0478' not in hierarchy['tickets']:
+              hierarchy['tickets'].append('T-0478')
+          hierarchy['reviewed_on'] = '2026-09-02'
+          hierarchy_path.write_text(json.dumps(hierarchy, indent=2, ensure_ascii=False) + '\n')
+
+          check = root / 'tools/check.sh'
+          text = check.read_text()
+          text = text.replace('# T-0442, T-0462, and T-0463. These reviews sit beside household facts on purpose:',
+                              '# T-0442, T-0462, T-0463, and T-0478. These reviews sit beside household facts on purpose:')
+          old = '''step "the third non-overlapping 75-person research cohort is fixed" \\\n  python3 tools/select_resident_research_pass_3.py --gate\n\nstep "all 225 reviewed residents have reproducible research outcomes" \\\n  python3 tools/compile_resident_research_pilot.py --gate'''
+          new = '''step "the third non-overlapping 75-person research cohort is fixed" \\\n  python3 tools/select_resident_research_pass_3.py --gate\n\nstep "the fourth non-overlapping 75-person research cohort is fixed" \\\n  python3 tools/select_resident_research_pass_4.py --gate\n\nstep "all 300 reviewed residents have reproducible research outcomes" \\\n  python3 tools/compile_resident_research_pilot.py --gate'''
+          if old in text:
+              text = text.replace(old, new)
+          elif 'fourth non-overlapping 75-person research cohort' not in text:
+              raise SystemExit('check.sh resident-research block not found')
+          check.write_text(text)
+          PY
+
+      - name: Rebuild T-0478 derived state
+        run: |
+          cd chicago/4d
+          python3 tools/compile_resident_research_pilot.py
+          python3 tools/select_resident_research_pass_4.py --gate
+          python3 tools/compile_resident_research_pilot.py --gate
+          python3 tools/compile_scene.py --all
+          python3 tools/compile_scene.py --all --check
+          node tools/ticket.mjs done T-0478 --pr 639
+          ./tools/publish.sh
+
+      - name: Verify closeout invariants
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import csv, json
+          root = Path('chicago/4d')
+          with Path('chicago/reference/resident-research/T-0478/T-0478_resident_research.csv').open(newline='', encoding='utf-8') as fh:
+              rows = list(csv.DictReader(fh))
+          assert len(rows) == 75
+          assert all(r['research_outcome'] != 'pending' for r in rows)
+          doc = json.loads((root / 'data/residents/research_pilot.json').read_text())
+          assert doc['version'] == 4
+          assert doc['ticket'] == 'T-0478'
+          assert doc['cohort_size'] == 300
+          assert doc['counts'] == {'corroborated_enrichment': 69, 'candidate_identity': 49, 'no_corroboration': 182}, doc['counts']
+          ticket = (root / 'tickets/T-0478-research-fourth-75-person-real-resident-cohort.md').read_text()
+          assert 'state: done' in ticket or 'state: closed' in ticket
+          assert 'pr: 639' in ticket
+          print('T-0478 closeout invariants PASS')
+          PY
+
+      - name: Commit repair and remove temporary workflows
+        run: |
+          git rm -f .github/workflows/t0478-closeout-fix.yml .github/workflows/t0478-closeout-sparse.yml
+          git config user.name "Kevin Haas"
+          git config user.email "kevinroberthaas@gmail.com"
+          git add -A
+          git status --short
+          git commit -m "fix(chicago): finish T-0478 closeout artifacts"
+          git push origin HEAD:steward/t0478-closeout-fix
