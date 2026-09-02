@@ -1,19 +1,15 @@
-name: T0483 materialize staged completion payload
+name: T0483 recover staged completion payload
 
 on:
   push:
     branches:
       - research/T-0483-5e8a41-complete
-  pull_request:
-    branches:
-      - dev
 
 permissions:
   contents: write
 
 jobs:
-  materialize:
-    if: github.actor != 'github-actions[bot]'
+  diagnose:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -24,24 +20,35 @@ jobs:
             .t0483_payload
             .github/workflows/t0483-materialize.yml
           sparse-checkout-cone-mode: false
-      - name: Decode and unpack completion payload
+      - name: Inspect recoverable tar prefix before missing part06
         shell: bash
         run: |
           set -euo pipefail
-          cat .t0483_payload/part* | tr -d '\r\n' > /tmp/t0483.b64
-          base64 --decode /tmp/t0483.b64 > /tmp/t0483.gz
-          tar -tzf /tmp/t0483.gz | tee /tmp/t0483-list.txt
-          tar -xzf /tmp/t0483.gz -C .
-          rm -rf .t0483_payload
-          rm -f .github/workflows/t0483-materialize.yml
-      - name: Commit materialized T-0483 work
-        shell: bash
-        run: |
-          set -euo pipefail
-          git config user.name 'github-actions[bot]'
-          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add --sparse -A
-          git diff --cached --stat
-          git diff --cached --quiet && exit 0
-          git commit -m 'T-0483: materialize completion payload'
-          git push origin HEAD:research/T-0483-5e8a41-complete
+          cat .t0483_payload/part00 .t0483_payload/part01 .t0483_payload/part02 .t0483_payload/part03 .t0483_payload/part04 .t0483_payload/part05 | tr -d '\r\n' > /tmp/prefix.b64
+          base64 --decode /tmp/prefix.b64 > /tmp/prefix.gz
+          python3 - <<'PY'
+          import zlib, pathlib
+          raw = pathlib.Path('/tmp/prefix.gz').read_bytes()
+          d = zlib.decompressobj(16 + zlib.MAX_WBITS)
+          out = d.decompress(raw)
+          pathlib.Path('/tmp/prefix.tar').write_bytes(out)
+          print('compressed_prefix_bytes', len(raw))
+          print('decompressed_prefix_bytes', len(out))
+          p=0
+          while p+512 <= len(out):
+              h=out[p:p+512]
+              if h == b'\0'*512:
+                  print('tar_end_at', p); break
+              name=h[:100].split(b'\0',1)[0].decode('utf-8','replace')
+              size_raw=h[124:136].split(b'\0',1)[0].strip() or b'0'
+              try: size=int(size_raw,8)
+              except Exception:
+                  print('invalid_header_at',p,'name',name,'size_raw',size_raw); break
+              data_start=p+512
+              data_end=data_start+size
+              padded_end=data_start+((size+511)//512)*512
+              complete=data_end <= len(out)
+              print('member',name,'size',size,'complete',complete,'header',p,'data_end',data_end,'available',len(out))
+              if not complete: break
+              p=padded_end
+          PY
