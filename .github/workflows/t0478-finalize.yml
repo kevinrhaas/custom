@@ -1,5 +1,6 @@
 name: T-0478 final closeout
 
+# One-shot workflow; it removes itself after a successful closeout commit.
 on:
   push:
     branches:
