@@ -10,6 +10,14 @@
       "tier": 3,
       "tier_label": "compiled secondary (Andreas)"
     },
+    "andreas_seth_paine_1834": {
+      "source_id": "andreas_seth_paine_1834",
+      "citation": "A. T. Andreas, History of Cook County, Illinois (Chicago, 1884), pp. 315-320, Seth Paine biography; accessed through an IAPSOP excerpt.",
+      "url": "https://iapsop.com/spirithistory/spirit_bank.html",
+      "archived_url": "",
+      "tier": 3,
+      "tier_label": "compiled secondary (Andreas)"
+    },
     "baptisthistoryhomepage": {
       "source_id": "baptisthistoryhomepage",
       "citation": "\"Early Chicago Baptist Churches and Ministers.\" Baptist History Homepage. A verbatim transcription of A. T. Andreas, History of Chicago, Volume 1 (1884), pp. 315-325, from the Google Books scan, scanned and formatted by Jim Duvall.",
@@ -53,10 +61,42 @@
       "tier": 4,
       "tier_label": "later scholarship"
     },
+    "buck_pioneer_milwaukee_alanson_sweet": {
+      "source_id": "buck_pioneer_milwaukee_alanson_sweet",
+      "citation": "James S. Buck, Pioneer History of Milwaukee, vol. 1 (Milwaukee, 1876), biographical notice of Alanson Sweet.",
+      "url": "https://brittlebooks.library.illinois.edu/brittlebooks_open/Books2008-06/buckja0001piohis/buckja0001piohisv00001/buckja0001piohisv00001.pdf",
+      "archived_url": "",
+      "tier": 3,
+      "tier_label": "compiled secondary (Andreas)"
+    },
+    "buck_pioneer_milwaukee_porthier_1835": {
+      "source_id": "buck_pioneer_milwaukee_porthier_1835",
+      "citation": "James S. Buck, Pioneer History of Milwaukee, vol. 1 (Milwaukee, 1876), early-settlement chronology describing Horace Chase and Joseph Porthier's February-March 1835 travel from Chicago to Milwaukee.",
+      "url": "https://brittlebooks.library.illinois.edu/brittlebooks_open/Books2008-06/buckja0001piohis/buckja0001piohisv00001/buckja0001piohisv00001.pdf",
+      "archived_url": "",
+      "tier": 3,
+      "tier_label": "compiled secondary (Andreas)"
+    },
     "buffalo_nehemiah_case": {
       "source_id": "buffalo_nehemiah_case",
       "citation": "Buffalo city directory, Nehemiah Case entry",
       "url": "https://cdm16694.contentdm.oclc.org/digital/api/collection/VHB011/id/3028/download",
+      "archived_url": "",
+      "tier": 4,
+      "tier_label": "later scholarship"
+    },
+    "catholic_chicago_st_cyr_1833": {
+      "source_id": "catholic_chicago_st_cyr_1833",
+      "citation": "Catholic Encyclopedia, Archdiocese of Chicago entry, early institutional history describing John Mary Irenaeus St. Cyr's 1833 appointment, first Mass and first church, and his 1837 recall.",
+      "url": "https://www.catholic.org/encyclopedia/view.php?id=2871",
+      "archived_url": "",
+      "tier": 4,
+      "tier_label": "later scholarship"
+    },
+    "caton_atlantic_chicago_1893": {
+      "source_id": "caton_atlantic_chicago_1893",
+      "citation": "John Dean Caton, '’T Is Sixty Years Since in Chicago,' The Atlantic, May 1893",
+      "url": "https://www.theatlantic.com/magazine/archive/1893/05/t-is-sixty-years-since-in-chicago/633458/",
       "archived_url": "",
       "tier": 4,
       "tier_label": "later scholarship"
@@ -155,6 +195,14 @@
         "a citation without an issue page and column"
       ]
     },
+    "chicago_newspapers_mulford_1835": {
+      "source_id": "chicago_newspapers_mulford_1835",
+      "citation": "Chicago Democrat, July 15 and August 26, 1835, project newspaper corpus; watch/jewelry notices print J. H. Mulford.",
+      "url": "https://github.com/kevinrhaas/custom/tree/dev/chicago/4d/data/research/newspapers/text",
+      "archived_url": "",
+      "tier": 2,
+      "tier_label": "near-primary recollection"
+    },
     "chicagology_first_post_office": {
       "source_id": "chicagology_first_post_office",
       "citation": "\"Chicago's First Post Office.\" Chicagology, transcribing J. Seymour Currey, \"U. S. Government and Post Office Buildings,\" Fort Dearborn Magazine, December 1922.",
@@ -205,6 +253,41 @@
         "anything reliable in its header metadata block, which describes the later Tremonts"
       ]
     },
+    "chicagology_prefire127": {
+      "source_id": "chicagology_prefire127",
+      "citation": "\"Green Tree Tavern.\" Chicagology. Transcribing the Inter Ocean of 1 July 1883 — the old-settlers hotel feature, in which named witnesses who had lived in the house are shown a sketch of it and asked to correct it — and Edwin O. Gale's Reminiscences of Early Chicago and Vicinity (1902), around nine city directories 1839-1885 and Chicago Tribune notices of the 1880 move and the 1902 collapse.",
+      "url": "https://chicagology.com/prefire/prefire127/",
+      "archived_url": "https://web.archive.org/web/20260217122931/https://chicagology.com/prefire/prefire127/",
+      "tier": 2,
+      "tier_label": "near-primary recollection",
+      "transcribes": [
+        {
+          "work": "Inter Ocean, 'Old Chicago' — the early-hotels feature on the Green Tree: interviews with F. H. Taylor (in Chicago from 1834, lodged in the west one-storey addition), John Gray (landlord 1838-41) and Mrs. Murphy of the United States Hotel, each shown the S. W. Fallis sketch and asked to correct it",
+          "date": "1883-07-01",
+          "tier": 2,
+          "note": "Carries every Green Tree claim in this dataset: the function and occupants, the two-storey block with a divided hall and a stairway to the second floor, the gable with an attic window that fixes the roof form, and the dated span. Recollection by men who lived in the house, taken down in print — rung 2, not the reporter's rung."
+        },
+        {
+          "work": "Edwin O. Gale, Reminiscences of Early Chicago and Vicinity — the Green Tree bar-room chapter",
+          "date": "1902",
+          "tier": 2,
+          "note": "Gale reached Chicago in 1835 and describes the bar-room from inside: the room module ('about 12x12, with two windows 6x8'), the whitewashed walls, ceilings and board partitions, and the seven-and-a-half-foot ceiling the record's storey height is reasoned from. A participant writing his own recollection — rung 2."
+        }
+      ],
+      "what_it_supplies": [
+        "interior room module and ceiling height",
+        "plan and circulation",
+        "which street the front faced",
+        "roof form (gable end with attic window)",
+        "landlord chronology",
+        "the 1880 move and 1902 demolition"
+      ],
+      "what_it_does_not_supply": [
+        "overall building dimensions in feet",
+        "exterior finish or colour",
+        "the date the one-story side additions were built"
+      ]
+    },
     "chicagology_prefire275": {
       "source_id": "chicagology_prefire275",
       "citation": "\"Early Street Maps of Chicago.\" Chicagology. A gallery of reproduced early Chicago maps - Thompson 1830, the Kinzie manuscript map hand-dated 1833, Wright 1834, Wabonsia 1835, Andreas's 1830 landownership map, Wolf's Point 1853 and both states of the Conley/Stelzer map - with an uncredited editorial ADDENDUM on the town's first streets and roads.",
@@ -230,6 +313,30 @@
         "reliable bibliographic data for the Conley/Stelzer map",
         "any citation whatever for its addendum"
       ]
+    },
+    "chicagology_wolf_point_walters": {
+      "source_id": "chicagology_wolf_point_walters",
+      "citation": "Chicagology, 'Wolf's Point and the Town of Chicago,' transcription/excerpt from A. T. Andreas, History of Chicago, identifying William Walters as proprietor of the Wolf Point Tavern, 1833-1836.",
+      "url": "https://chicagology.com/prefire/prefire273/",
+      "archived_url": "",
+      "tier": 3,
+      "tier_label": "compiled secondary (Andreas)",
+      "transcribes": [
+        {
+          "work": "A. T. Andreas, History of Chicago, vol. 1",
+          "date": "1884",
+          "tier": 3,
+          "note": "Carries the Wolf Point Tavern proprietor chronology used for William Walters."
+        }
+      ]
+    },
+    "chm_bartlett_diaries": {
+      "source_id": "chm_bartlett_diaries",
+      "citation": "Chicago History Museum, Charles H. Bartlett diaries, 1829-1891, catalog record",
+      "url": "https://explore.chicagocollections.org/marcxml/chicagohistory/30/p26r92f/",
+      "archived_url": "",
+      "tier": 4,
+      "tier_label": "later scholarship"
     },
     "chm_eliza_chappel": {
       "source_id": "chm_eliza_chappel",
@@ -351,6 +458,14 @@
       "tier": 4,
       "tier_label": "later scholarship"
     },
+    "dunlap_alva_dunlap_history": {
+      "source_id": "dunlap_alva_dunlap_history",
+      "citation": "Dunlap Community Unit School District, community history of Alva Dunlap",
+      "url": "https://www.dunlapcusd.net/district/history",
+      "archived_url": "",
+      "tier": 4,
+      "tier_label": "later scholarship"
+    },
     "dupage_constant_abbott": {
       "source_id": "dupage_constant_abbott",
       "citation": "History of DuPage County, Constant Abbott entries",
@@ -407,6 +522,14 @@
       "tier": 4,
       "tier_label": "later scholarship"
     },
+    "encyclopedia_chicago_frederick_thomas": {
+      "source_id": "encyclopedia_chicago_frederick_thomas",
+      "citation": "Encyclopedia of Chicago, 'Medical Manufacturing and Pharmaceuticals,' identifying Frederick Thomas as Chicago's first barber-surgeon and a retail druggist in the 1830s.",
+      "url": "https://www.encyclopedia.chicagohistory.org/pages/806.html",
+      "archived_url": "",
+      "tier": 4,
+      "tier_label": "later scholarship"
+    },
     "encyclopedia_chicago_mark_beaubien": {
       "source_id": "encyclopedia_chicago_mark_beaubien",
       "citation": "Encyclopedia of Chicago, Mark Beaubien biography",
@@ -447,10 +570,34 @@
       "tier": 4,
       "tier_label": "later scholarship"
     },
+    "goodman_history_cook_county_early": {
+      "source_id": "goodman_history_cook_county_early",
+      "citation": "Josiah Seymour Currey and Weston A. Goodspeed, History of Cook County, Illinois, early Chicago chapters",
+      "url": "https://libsysdigi.library.uiuc.edu/OCA/Books2009-04/historyofcookcou/historyofcookcou01good/historyofcookcou01good_djvu.txt",
+      "archived_url": "",
+      "tier": 4,
+      "tier_label": "later scholarship"
+    },
     "goodman_history_cook_county_hamilton": {
       "source_id": "goodman_history_cook_county_hamilton",
       "citation": "History of Cook County, Richard Jones Hamilton offices",
       "url": "https://libsysdigi.library.uiuc.edu/OCA/Books2009-04/historyofcookcou/historyofcookcou01good/historyofcookcou01good_djvu.txt",
+      "archived_url": "",
+      "tier": 4,
+      "tier_label": "later scholarship"
+    },
+    "history_medicine_chicago_kimberly_maxwell": {
+      "source_id": "history_medicine_chicago_kimberly_maxwell",
+      "citation": "History of Medicine and Surgery and Physicians and Surgeons of Chicago (Chicago: Biographical Publishing Corporation, 1922), biographies of Philip Maxwell and Edmund Stoughton Kimberly.",
+      "url": "https://upload.wikimedia.org/wikipedia/commons/a/aa/History_of_medicine_and_surgery_and_physicians_and_surgeons_of_Chicago_%28IA_historyofmedicin00biog%29.pdf",
+      "archived_url": "",
+      "tier": 4,
+      "tier_label": "later scholarship"
+    },
+    "hmdb_butterfield_trail": {
+      "source_id": "hmdb_butterfield_trail",
+      "citation": "Butterfield Trail historical marker transcription",
+      "url": "https://www.hmdb.org/m.asp?m=164819",
       "archived_url": "",
       "tier": 4,
       "tier_label": "later scholarship"
@@ -471,6 +618,14 @@
       "tier": 4,
       "tier_label": "later scholarship"
     },
+    "indiana_absalom_reel_1834": {
+      "source_id": "indiana_absalom_reel_1834",
+      "citation": "Western Sun & General Advertiser, 29 March 1834, Absalom Reel court notice",
+      "url": "https://newspapers.library.in.gov/?a=d&d=WSGA18340329.1.3",
+      "archived_url": "",
+      "tier": 4,
+      "tier_label": "later scholarship"
+    },
     "indigenous_chicago_alexander_robinson": {
       "source_id": "indigenous_chicago_alexander_robinson",
       "citation": "Indigenous Chicago, Alexander Robinson profile",
@@ -483,6 +638,30 @@
       "source_id": "ingale_early_chicago_reminiscence",
       "citation": "Reminiscence of Early Chicago, Hiram Pearsons passage",
       "url": "https://dn720304.ca.archive.org/0/items/reminiscenceofe00ingale/reminiscenceofe00ingale.pdf",
+      "archived_url": "",
+      "tier": 4,
+      "tier_label": "later scholarship"
+    },
+    "jsp_illinois_statutes_gale_imprint": {
+      "source_id": "jsp_illinois_statutes_gale_imprint",
+      "citation": "Joseph Smith Papers bibliography, Public and General Statute Laws of Illinois, Chicago: Stephen F. Gale, 1839",
+      "url": "https://www.josephsmithpapers.org/paper-summary/mayors-order-to-henry-g-sherwood-8-december-1843/2",
+      "archived_url": "",
+      "tier": 4,
+      "tier_label": "later scholarship"
+    },
+    "jsp_russel_heacock_plat": {
+      "source_id": "jsp_russel_heacock_plat",
+      "citation": "Papers of Abraham Lincoln, act concerning Russel E. Heacock's Chicago subdivision plat",
+      "url": "https://papersofabrahamlincoln.org/documents/D271291",
+      "archived_url": "",
+      "tier": 4,
+      "tier_label": "later scholarship"
+    },
+    "kane_geneva_andrew_miles": {
+      "source_id": "kane_geneva_andrew_miles",
+      "citation": "History of Kane County, Geneva Township chapter, Andrew Miles or Mills passage",
+      "url": "https://genealogytrails.com/ill/kane/geneva.html",
       "archived_url": "",
       "tier": 4,
       "tier_label": "later scholarship"
@@ -519,6 +698,14 @@
       "tier": 4,
       "tier_label": "later scholarship"
     },
+    "loc_mantowoc_benjamin_jones": {
+      "source_id": "loc_mantowoc_benjamin_jones",
+      "citation": "Library of Congress, Historic American Engineering Record WI-78, Eighth Street Bridge historical report",
+      "url": "https://tile.loc.gov/storage-services/master/pnp/habshaer/wi/wi0300/wi0348/data/wi0348data.pdf",
+      "archived_url": "",
+      "tier": 4,
+      "tier_label": "later scholarship"
+    },
     "mclean_history_jesse_w_fell": {
       "source_id": "mclean_history_jesse_w_fell",
       "citation": "McLean County Museum of History. \"Jesse Weldon Fell.\"",
@@ -531,6 +718,22 @@
       "source_id": "michigan_frederick_curtenius",
       "citation": "Michigan Department of Military and Veterans Affairs, Frederick W. Curtenius",
       "url": "https://www.michigan.gov/dmva/about/history/military-personalities/team-listing-page/frederick-w-curtenius",
+      "archived_url": "",
+      "tier": 4,
+      "tier_label": "later scholarship"
+    },
+    "michigan_hh_comstock_history": {
+      "source_id": "michigan_hh_comstock_history",
+      "citation": "History of Kalamazoo County, Michigan (1876), H. H. Comstock pioneer roster",
+      "url": "https://www.migenweb.org/kalamazoo/1876history.htm",
+      "archived_url": "",
+      "tier": 4,
+      "tier_label": "later scholarship"
+    },
+    "migenweb_clark_albee_grand_haven": {
+      "source_id": "migenweb_clark_albee_grand_haven",
+      "citation": "History of Grand Haven (1878), Clark B. Albee and David Carver passage",
+      "url": "https://migenweb.org/ottawa/towns/grhaven/1878history.html",
       "archived_url": "",
       "tier": 4,
       "tier_label": "later scholarship"
@@ -563,6 +766,14 @@
       "source_id": "nwchicago_elijah_wentworth",
       "citation": "Northwest Chicago Historical Society, Elijah Wentworth Sr.",
       "url": "https://nwchicagohistory.org/wp-content/uploads/2020/09/NWCHSJan-2020.pdf",
+      "archived_url": "",
+      "tier": 4,
+      "tier_label": "later scholarship"
+    },
+    "ohio_firelands_rouse_bly": {
+      "source_id": "ohio_firelands_rouse_bly",
+      "citation": "Firelands Pioneer, 1888, Rouse Bly passage",
+      "url": "https://www.ohiogenealogyexpress.com/huron/huronco_firelandpioneers_qtlys/huronco_fireland_1888_Vol_V/huronco_fireland_1888_vol_v_July_pg_060_104.htm",
       "archived_url": "",
       "tier": 4,
       "tier_label": "later scholarship"
@@ -642,6 +853,14 @@
       "tier": 4,
       "tier_label": "later scholarship"
     },
+    "porter_curtis_parkes": {
+      "source_id": "porter_curtis_parkes",
+      "citation": "History of Porter County, Indiana (1882), organization and election chapter",
+      "url": "https://www.inportercounty.org/Data/Misc/PorterCountyHistory-1882/PorterCountyHistory-1882-Chapter02.html",
+      "archived_url": "",
+      "tier": 4,
+      "tier_label": "later scholarship"
+    },
     "presbyterian_history_jeremiah_porter": {
       "source_id": "presbyterian_history_jeremiah_porter",
       "citation": "Presbyterian Historical Society, Jeremiah Porter and First Presbyterian Church",
@@ -654,6 +873,14 @@
       "source_id": "rochester_porter_chappel_marriage",
       "citation": "Rochester newspaper marriage notices, Jeremiah Porter and Eliza Chappel",
       "url": "https://mcnygenealogy.com/vr/newspaper-marr-deaths-1835a.htm",
+      "archived_url": "",
+      "tier": 4,
+      "tier_label": "later scholarship"
+    },
+    "rockford_first_settlers_1835": {
+      "source_id": "rockford_first_settlers_1835",
+      "citation": "History of Rockford and Winnebago County, first-settlers roster",
+      "url": "https://genealogytrails.com/ill/winnebago/firstsettlers.html",
       "archived_url": "",
       "tier": 4,
       "tier_label": "later scholarship"
@@ -674,10 +901,34 @@
       "tier": 4,
       "tier_label": "later scholarship"
     },
+    "tsaha_joseph_chadwick": {
+      "source_id": "tsaha_joseph_chadwick",
+      "citation": "Craig H. Roell, 'Chadwick, Joseph M.,' Handbook of Texas Online",
+      "url": "https://www.tshaonline.org/handbook/entries/chadwick-joseph-m",
+      "archived_url": "",
+      "tier": 4,
+      "tier_label": "later scholarship"
+    },
+    "uiuc_daniel_elston_papers": {
+      "source_id": "uiuc_daniel_elston_papers",
+      "citation": "University of Illinois, Illinois History and Lincoln Collections, Daniel Elston papers catalog record",
+      "url": "https://archon.library.illinois.edu/ihlc/index.php?p=collections/controlcard&id=614",
+      "archived_url": "",
+      "tier": 4,
+      "tier_label": "later scholarship"
+    },
     "warrenville_ezra_galusha": {
       "source_id": "warrenville_ezra_galusha",
       "citation": "Warrenville Historical Society, Ezra Galusha",
       "url": "https://warrenvillehistorical.wordpress.com/tag/ezra-galusha/",
+      "archived_url": "",
+      "tier": 4,
+      "tier_label": "later scholarship"
+    },
+    "wheeling_history_timothy_titcomb": {
+      "source_id": "wheeling_history_timothy_titcomb",
+      "citation": "Wheeling Historical Society, early settlement history, placing Timothy Titcomb on Section 13 among 1834 settlers.",
+      "url": "https://www.wheelinghistoricalsociety.com/history/history1.htm",
       "archived_url": "",
       "tier": 4,
       "tier_label": "later scholarship"
@@ -722,6 +973,22 @@
       "tier": 4,
       "tier_label": "later scholarship"
     },
+    "will_county_edson_white_1835": {
+      "source_id": "will_county_edson_white_1835",
+      "citation": "History of Will County, Illinois (Chicago: Wm. Le Baron, Jr. & Co., 1878), early Joliet settlement chronology listing Edson White among 1835 arrivals.",
+      "url": "https://will-ilgw.genealogyvillage.com/history/1878-4.htm",
+      "archived_url": "",
+      "tier": 3,
+      "tier_label": "compiled secondary (Andreas)"
+    },
+    "will_county_hannibal_ward_1833": {
+      "source_id": "will_county_hannibal_ward_1833",
+      "citation": "History of Will County, Illinois (Chicago: Wm. Le Baron, Jr. & Co., 1878), early-settlement chapter identifying Hannibal Ward among a western-New-York colony making claims in the DuPage River valley in 1833.",
+      "url": "https://libsysdigi.library.illinois.edu/OCA/Books2012-06/historyofwillcou/historyofwillcou01maue/historyofwillcou01maue.pdf",
+      "archived_url": "",
+      "tier": 3,
+      "tier_label": "compiled secondary (Andreas)"
+    },
     "will_george_makepeace": {
       "source_id": "will_george_makepeace",
       "citation": "History of Will County, George R. Makepeace chronology",
@@ -734,150 +1001,6 @@
       "source_id": "wttw_ira_couch",
       "citation": "WTTW, Ira Couch biography",
       "url": "https://www.wttw.com/loop/heroes-villains/ira-couch",
-      "archived_url": "",
-      "tier": 4,
-      "tier_label": "later scholarship"
-    },
-    "caton_atlantic_chicago_1893": {
-      "source_id": "caton_atlantic_chicago_1893",
-      "citation": "John Dean Caton, '’T Is Sixty Years Since in Chicago,' The Atlantic, May 1893",
-      "url": "https://www.theatlantic.com/magazine/archive/1893/05/t-is-sixty-years-since-in-chicago/633458/",
-      "archived_url": "",
-      "tier": 4,
-      "tier_label": "later scholarship"
-    },
-    "chicagology_prefire127": {
-      "source_id": "chicagology_prefire127",
-      "citation": "\"Green Tree Tavern.\" Chicagology. Transcribing the Inter Ocean of 1 July 1883 — the old-settlers hotel feature, in which named witnesses who had lived in the house are shown a sketch of it and asked to correct it — and Edwin O. Gale's Reminiscences of Early Chicago and Vicinity (1902), around nine city directories 1839-1885 and Chicago Tribune notices of the 1880 move and the 1902 collapse.",
-      "url": "https://chicagology.com/prefire/prefire127/",
-      "archived_url": "https://web.archive.org/web/20260217122931/https://chicagology.com/prefire/prefire127/",
-      "tier": 2,
-      "tier_label": "project synthesis"
-    },
-    "chm_bartlett_diaries": {
-      "source_id": "chm_bartlett_diaries",
-      "citation": "Chicago History Museum, Charles H. Bartlett diaries, 1829-1891, catalog record",
-      "url": "https://explore.chicagocollections.org/marcxml/chicagohistory/30/p26r92f/",
-      "archived_url": "",
-      "tier": 4,
-      "tier_label": "later scholarship"
-    },
-    "dunlap_alva_dunlap_history": {
-      "source_id": "dunlap_alva_dunlap_history",
-      "citation": "Dunlap Community Unit School District, community history of Alva Dunlap",
-      "url": "https://www.dunlapcusd.net/district/history",
-      "archived_url": "",
-      "tier": 4,
-      "tier_label": "later scholarship"
-    },
-    "goodman_history_cook_county_early": {
-      "source_id": "goodman_history_cook_county_early",
-      "citation": "Josiah Seymour Currey and Weston A. Goodspeed, History of Cook County, Illinois, early Chicago chapters",
-      "url": "https://libsysdigi.library.uiuc.edu/OCA/Books2009-04/historyofcookcou/historyofcookcou01good/historyofcookcou01good_djvu.txt",
-      "archived_url": "",
-      "tier": 4,
-      "tier_label": "later scholarship"
-    },
-    "hmdb_butterfield_trail": {
-      "source_id": "hmdb_butterfield_trail",
-      "citation": "Butterfield Trail historical marker transcription",
-      "url": "https://www.hmdb.org/m.asp?m=164819",
-      "archived_url": "",
-      "tier": 4,
-      "tier_label": "later scholarship"
-    },
-    "indiana_absalom_reel_1834": {
-      "source_id": "indiana_absalom_reel_1834",
-      "citation": "Western Sun & General Advertiser, 29 March 1834, Absalom Reel court notice",
-      "url": "https://newspapers.library.in.gov/?a=d&d=WSGA18340329.1.3",
-      "archived_url": "",
-      "tier": 4,
-      "tier_label": "later scholarship"
-    },
-    "jsp_illinois_statutes_gale_imprint": {
-      "source_id": "jsp_illinois_statutes_gale_imprint",
-      "citation": "Joseph Smith Papers bibliography, Public and General Statute Laws of Illinois, Chicago: Stephen F. Gale, 1839",
-      "url": "https://www.josephsmithpapers.org/paper-summary/mayors-order-to-henry-g-sherwood-8-december-1843/2",
-      "archived_url": "",
-      "tier": 4,
-      "tier_label": "later scholarship"
-    },
-    "jsp_russel_heacock_plat": {
-      "source_id": "jsp_russel_heacock_plat",
-      "citation": "Papers of Abraham Lincoln, act concerning Russel E. Heacock's Chicago subdivision plat",
-      "url": "https://papersofabrahamlincoln.org/documents/D271291",
-      "archived_url": "",
-      "tier": 4,
-      "tier_label": "later scholarship"
-    },
-    "kane_geneva_andrew_miles": {
-      "source_id": "kane_geneva_andrew_miles",
-      "citation": "History of Kane County, Geneva Township chapter, Andrew Miles or Mills passage",
-      "url": "https://genealogytrails.com/ill/kane/geneva.html",
-      "archived_url": "",
-      "tier": 4,
-      "tier_label": "later scholarship"
-    },
-    "loc_mantowoc_benjamin_jones": {
-      "source_id": "loc_mantowoc_benjamin_jones",
-      "citation": "Library of Congress, Historic American Engineering Record WI-78, Eighth Street Bridge historical report",
-      "url": "https://tile.loc.gov/storage-services/master/pnp/habshaer/wi/wi0300/wi0348/data/wi0348data.pdf",
-      "archived_url": "",
-      "tier": 4,
-      "tier_label": "later scholarship"
-    },
-    "michigan_hh_comstock_history": {
-      "source_id": "michigan_hh_comstock_history",
-      "citation": "History of Kalamazoo County, Michigan (1876), H. H. Comstock pioneer roster",
-      "url": "https://www.migenweb.org/kalamazoo/1876history.htm",
-      "archived_url": "",
-      "tier": 4,
-      "tier_label": "later scholarship"
-    },
-    "migenweb_clark_albee_grand_haven": {
-      "source_id": "migenweb_clark_albee_grand_haven",
-      "citation": "History of Grand Haven (1878), Clark B. Albee and David Carver passage",
-      "url": "https://migenweb.org/ottawa/towns/grhaven/1878history.html",
-      "archived_url": "",
-      "tier": 4,
-      "tier_label": "later scholarship"
-    },
-    "ohio_firelands_rouse_bly": {
-      "source_id": "ohio_firelands_rouse_bly",
-      "citation": "Firelands Pioneer, 1888, Rouse Bly passage",
-      "url": "https://www.ohiogenealogyexpress.com/huron/huronco_firelandpioneers_qtlys/huronco_fireland_1888_Vol_V/huronco_fireland_1888_vol_v_July_pg_060_104.htm",
-      "archived_url": "",
-      "tier": 4,
-      "tier_label": "later scholarship"
-    },
-    "porter_curtis_parkes": {
-      "source_id": "porter_curtis_parkes",
-      "citation": "History of Porter County, Indiana (1882), organization and election chapter",
-      "url": "https://www.inportercounty.org/Data/Misc/PorterCountyHistory-1882/PorterCountyHistory-1882-Chapter02.html",
-      "archived_url": "",
-      "tier": 4,
-      "tier_label": "later scholarship"
-    },
-    "rockford_first_settlers_1835": {
-      "source_id": "rockford_first_settlers_1835",
-      "citation": "History of Rockford and Winnebago County, first-settlers roster",
-      "url": "https://genealogytrails.com/ill/winnebago/firstsettlers.html",
-      "archived_url": "",
-      "tier": 4,
-      "tier_label": "later scholarship"
-    },
-    "tsaha_joseph_chadwick": {
-      "source_id": "tsaha_joseph_chadwick",
-      "citation": "Craig H. Roell, 'Chadwick, Joseph M.,' Handbook of Texas Online",
-      "url": "https://www.tshaonline.org/handbook/entries/chadwick-joseph-m",
-      "archived_url": "",
-      "tier": 4,
-      "tier_label": "later scholarship"
-    },
-    "uiuc_daniel_elston_papers": {
-      "source_id": "uiuc_daniel_elston_papers",
-      "citation": "University of Illinois, Illinois History and Lincoln Collections, Daniel Elston papers catalog record",
-      "url": "https://archon.library.illinois.edu/ihlc/index.php?p=collections/controlcard&id=614",
       "archived_url": "",
       "tier": 4,
       "tier_label": "later scholarship"
