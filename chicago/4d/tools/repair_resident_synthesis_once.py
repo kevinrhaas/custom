@@ -9,7 +9,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 SYNTH = ROOT / "tools" / "synthesize_resident_research.py"
 RESEARCH = ROOT / "data" / "research" / "residents"
-CENSUS = ROOT.parent.parent / "reference" / "census1840" / "validation"
+CENSUS = ROOT.parent / "reference" / "census1840" / "validation"
 
 
 def replace_once(text: str, old: str, new: str, label: str) -> str:
