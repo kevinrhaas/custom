@@ -20,6 +20,8 @@ jobs:
             .github/workflows
             chicago/4d
             chicago/reference/resident-research/T-0478
+            site/chicago/4d/data/sidecars/1835/residents_sources.json
+            site/chicago/4d/tickets.json
           sparse-checkout-cone-mode: false
 
       - uses: actions/setup-python@v5
@@ -42,9 +44,6 @@ jobs:
           cohort = json.loads(cohort_path.read_text())
           findings = json.loads(findings_path.read_text())
 
-          # Build a canonical person lookup. Pass 4 intentionally committed a
-          # compact manifest, so name/household metadata must be joined from the
-          # canonical resident records rather than assumed to exist in the manifest.
           residents = root / 'data/residents'
           index = json.loads((residents / 'index.json').read_text())
           person_index = {}
@@ -53,9 +52,6 @@ jobs:
               for person in household.get('persons', []):
                   person_index[person['id']] = (household, person)
 
-          # Export the required machine-readable research receipt from the fixed
-          # manifest + authored findings. This is a derived handoff; it makes no
-          # new historical judgment.
           headers = [
               'ticket','cohort','person_id','household_id','name_transcribed','name_normalized',
               'stratum','seed_source_id','seed_source_date','letter_list_dates','research_outcome',
@@ -119,8 +115,6 @@ jobs:
               writer.writerow(headers)
               writer.writerows(rows)
 
-          # Repair #639's pass-4 compiler: join compact manifest members to the
-          # canonical resident records instead of reading nonexistent manifest fields.
           compiler = root / 'tools/compile_resident_research_pilot.py'
           s = compiler.read_text()
           marker = 'def derive() -> dict:\n    prior = load(OUT)\n    cohort, findings = load(PASS4_COHORT), load(PASS4_FINDINGS)\n'
@@ -164,7 +158,8 @@ jobs:
           python3 tools/compile_scene.py --all
           python3 tools/compile_scene.py --all --check
           node tools/ticket.mjs done T-0478 --pr 639
-          ./tools/publish.sh
+          mkdir -p ../../site/chicago/4d/data/sidecars/1835
+          cp data/sidecars/1835/residents_sources.json ../../site/chicago/4d/data/sidecars/1835/residents_sources.json
 
       - name: Verify closeout invariants
         run: |
@@ -190,6 +185,8 @@ jobs:
           sidecar = (root / 'data/sidecars/1835/residents_sources.json').read_text()
           assert 'buck_pioneer_milwaukee_porthier_1835' in sidecar
           assert 'history_medicine_chicago_kimberly_maxwell' in sidecar
+          published = Path('site/chicago/4d/data/sidecars/1835/residents_sources.json')
+          assert published.read_bytes() == (root / 'data/sidecars/1835/residents_sources.json').read_bytes()
           print('T-0478 closeout invariants PASS')
           PY
 
