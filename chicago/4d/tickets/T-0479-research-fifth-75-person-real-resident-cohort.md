@@ -12,11 +12,13 @@ opened: 2026-09-02
 closed: null
 pr: null
 claimed_by: steward/resident-research-pass-5
-blocked_on: null
+blocked_on: T-0478
 needs_bake: false
 ---
 
-Continue the resident-identity research programme with a fifth fixed, non-overlapping 75-person cohort drawn only from real named residents. Exclude every reconstructed person and every person already selected by the pilot, pass 2, pass 3, or the in-progress T-0478 pass-4 selector. Preserve the established 25/25/25 mix: 25 established profiles, 25 scene-date postal-list names, and 25 earlier/uncertain postal-list names.
+Continue the resident-identity research programme with a fifth fixed, non-overlapping 75-person cohort drawn only from real named residents. Exclude every reconstructed or hypothesised `inf_*` person, every explicitly unnamed/count placeholder, and every person already selected by the pilot, pass 2, pass 3, or the in-progress T-0478 pass-4 selector.
+
+Four prior cohorts consume 100 non-letter-list selections. The current manifest contains only nine remaining non-letter-list entries that are both real and individually named: Oscar Pratt, Gholson Kercheval, Walter Kimball, Henry S. Lampman, Benjamin Hall, Harriet Murphy, Charles H. Taylor, Peter Temple and John S. Wright. T-0479 therefore exhausts those nine rather than duplicating six prior profiles merely to preserve the earlier 25/25/25 ratio. The remaining 66 places are split evenly between 33 scene-date postal-list names and 33 earlier/uncertain postal-list names. This 9/33/33 distribution is a consequence of cohort exhaustion, not a change in evidence standards.
 
 Research each selected person as deeply as the evidence permits using the repository reference corpus plus external primary, institutional and strong local-history sources: newspapers, directories, voter lists, census material, land/property, probate, naturalization/immigration, marriage/church records, military records and published reminiscences. A surname is a search clue only. Do not infer heritage, ethnicity, immigration origin, kinship, marriage, occupation or household membership from a surname or an unsupported name match.
 
@@ -24,11 +26,13 @@ For ambiguous identities, preserve one or more candidate records with explicit s
 
 **Acceptance:**
 
-- A committed reproducible pass-5 selector and manifest contain exactly 75 unique non-reconstructed residents and prove no overlap with the first four cohorts, including the claimed T-0478 IDs even if pass 4 has not merged yet.
+- A committed reproducible pass-5 selector and manifest contain exactly 75 unique real named residents: all nine remaining named non-letter-list people, 33 scene-date postal-list people and 33 earlier/uncertain postal-list people.
+- The selector proves no overlap with the first three merged cohorts and carries a frozen collision lock for all 75 IDs claimed by the unmerged T-0478 pass-4 selector.
+- Reconstructed people, hypothesised `inf_*` people, and entries whose names explicitly denote an unnamed/count placeholder are rejected even if their technical grade is not `reconstructed`.
 - Every cohort member has an outcome: corroborated enrichment, explicit candidate identity/duplicate lead, or documented no-corroboration result.
 - New sources are recorded in the resident source ledger/source registry with source tier, query/result and limitations; only high-confidence facts are promoted into household/person data.
 - Any household edits carry per-attribute provenance and preserve conflicting evidence instead of overwriting it silently.
-- The cumulative compiler/sidecar includes pass 5 without weakening existing gates.
+- Research files can be completed in parallel with T-0478; cumulative compiler/sidecar integration is rebased onto the 300-review T-0478 baseline after pass 4 lands, without weakening existing gates.
 - A research note records methods, strongest findings, candidate/no-find counts, limits and the cumulative reviewed total.
 - Relevant JSON/selector/compiler checks pass; any environment-only smoke limitation is reported rather than bypassed.
 - A PR targets `dev` and records the pass-5 results and continuation baseline.
