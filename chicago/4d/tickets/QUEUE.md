@@ -248,5 +248,4 @@ T-0480 — Research sixth 75-person real-resident cohort
 T-0481 — Research seventh 75-person real-resident cohort
 T-0482 — Research eighth 75-person real-resident cohort
 T-0483 — Research ninth 75-person real-resident cohort
-T-0485 — Research eleventh 75-person real-resident cohort
 T-0486 — Research twelfth 11-person real-resident cohort
