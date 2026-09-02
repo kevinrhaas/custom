@@ -1,7 +1,7 @@
 ---
 id: T-0484
 title: Research tenth 75-person real-resident cohort
-state: claimed
+state: done
 epic: META
 requested_by: owner
 seen: true
@@ -9,8 +9,8 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-09-02
-closed: null
-pr: null
+closed: 2026-09-02
+pr: 654
 claimed_by: chatgpt-resident-agent-sol56c 9/2/2026, 4:27 PM CT
 blocked_on: null
 needs_bake: false
