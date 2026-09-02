@@ -17,6 +17,12 @@ jobs:
         with:
           ref: steward/resident-research-synthesis-tickets
           fetch-depth: 1
+          sparse-checkout: |
+            chicago/4d/tickets
+            chicago/4d/tools/ticket.mjs
+            chicago/4d/tools/publish.sh
+            site/chicago/4d/tickets.json
+          sparse-checkout-cone-mode: false
       - name: Put T-0479 back in the owner queue
         run: |
           python - <<'PY'
