@@ -1,7 +1,7 @@
 ---
 id: T-0482
 title: Research eighth 75-person real-resident cohort
-state: claimed
+state: closed
 epic: META
 requested_by: owner
 seen: true
@@ -9,8 +9,8 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-09-02
-closed: null
-pr: null
+closed: 2026-09-02
+pr: 656
 claimed_by: chatgpt-resident-agent-sol56 9/2/2026, 3:00 PM CT
 blocked_on: null
 needs_bake: false
