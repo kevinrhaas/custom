@@ -9,8 +9,8 @@
   "sources": [
    "andreas_1884_v1"
   ],
-  "note": "'Russel E. Heacock, who had come in 1827' - the earliest arrival of any Anglo-American household in this parcel, four years before the town's incorporation and six before the treaty.",
-  "precision": "year"
+  "note": "'Russel E. Heacock, who had come in 1827' - the earliest arrival of any Anglo-American household in this parcel, four years before the town's incorporation and six before the treaty. A Chicago Historical Society report of his surviving 8 May 1828 letter independently places him at Chicago by the following spring but does not tighten the 1827 arrival year."
+ , "precision": "year"
  },
  "party_size_on_arrival": {
   "value": null,
@@ -18,9 +18,12 @@
   "note": "Not attested for 1827. What IS attested is the household's size later: a wife and five sons by the spring of 1835."
  },
  "origin": {
-  "value": null,
-  "confidence": "reconstructed",
-  "note": "Not attested in anything this project holds."
+  "value": "Litchfield, Connecticut",
+  "confidence": "attested",
+  "sources": [
+   "andreas_1884_v1"
+  ],
+  "note": "Andreas states that Russel E. Heacock was born at Litchfield, Connecticut, in 1779. This is birthplace/origin evidence for Heacock himself, not a surname-based inference."
  },
  "reason_for_coming": {
   "value": "Professional and business interests at the settlement",
@@ -47,9 +50,10 @@
   "value": "present",
   "confidence": "attested",
   "sources": [
-   "andreas_1884_v1"
+   "andreas_1884_v1",
+   "cook_ilgenweb_heacock_land_1835"
   ],
-  "note": "Building a house in the town in the spring of 1835 and advertising as an attorney there on 5 August 1835."
+  "note": "Andreas documents a house built in the town in the spring of 1835 and an attorney advertisement on 5 August 1835. A separate land-index lead places the exact name Russel E. Heacock on two 80-acre Worth Township entries dated 26 June 1835, five days before the scene date; that corroborates immediate Cook County activity but is not treated as a downtown address."
  },
  "persons": [
   {
@@ -58,6 +62,14 @@
    "relationship": "head",
    "grade": "attested",
    "sex": "male",
+   "birth_year": {
+    "value": 1779,
+    "confidence": "attested",
+    "sources": [
+     "andreas_1884_v1"
+    ],
+    "note": "Andreas states that he was born at Litchfield, Connecticut, in 1779."
+   },
    "occupation": {
     "value": "attorney",
     "confidence": "attested",
@@ -67,9 +79,11 @@
     "note": "'Russel E. Heacock, who had come in 1827' - the first of the six lawyers Andreas counts, and a justice of the peace for Cook County who administered the oaths at the incorporation meeting of 5 August 1833. Under date of 5 August 1835 - five weeks after the scene date - Andreas finds him 'advertised as attorney, which is perhaps an indication that he did not seek re-election as a Justice'. He was licensed to keep a tavern at Heacock's Point on the South Branch in April 1831 and cultivated land there, and Judge Goodrich records that 'Heacock in those first years, 1827 to 1835, made more money as a carpenter than as a lawyer or justice'."
    },
    "sources": [
-    "andreas_1884_v1"
+    "andreas_1884_v1",
+    "historical_magazine_heacock_1828_letter",
+    "cook_ilgenweb_heacock_land_1835"
    ],
-   "note": "THE ONE VOTE AGAINST THE TOWN. He cast the single 'against incorporation' ballot on 5 August 1833 - Andreas prints the poll - 'he living at that time beyond the extreme southern border of the proposed town, although having his business and professional interests at the settlement. He moved into the town the following year.' Andreas calls it 'exceptional fidelity to conviction and independence of opinion'. He received one hundred dollars at the Indian treaty of 26 September 1833 and was among the original subscribers to the Chicago Democrat in November 1833."
+   "note": "THE ONE VOTE AGAINST THE TOWN. He cast the single 'against incorporation' ballot on 5 August 1833 - Andreas prints the poll - 'he living at that time beyond the extreme southern border of the proposed town, although having his business and professional interests at the settlement. He moved into the town the following year.' Andreas calls it 'exceptional fidelity to conviction and independence of opinion'. He received one hundred dollars at the Indian treaty of 26 September 1833 and was among the original subscribers to the Chicago Democrat in November 1833. T-0463 follow-up adds two independent chronology anchors: the Chicago Historical Society's nineteenth-century report of his 8 May 1828 Chicago letter, and an indexed pair of 80-acre Worth Township land entries dated 26 June 1835. The latter remains a lead to the underlying government record, not a parcel assertion in the 1835 town model."
   },
   {
    "id": "heacock_household_unnamed",
@@ -89,5 +103,5 @@
  ],
  "touches_removal": false,
  "review_required": false,
- "research_note": "THE OLDEST RESIDENCE, THE ONLY VOTE AGAINST THE TOWN, AND THE LARGEST DOCUMENTED HOUSEHOLD IN THE PARCEL - a wife and five sons, the youngest born in the spring of 1835. It is also the record that best shows why the population layer must precede the building layer: this household of seven had a house built in the season before the scene date, at a street address, which the model does not contain. THE PROJECT SHOULD NOT LOSE THE ROLLERS. A documented instance of a Chicago house being moved bodily one block in 1835 is evidence about construction, weight and the town's attitude to its own buildings, and it belongs in the K4 facades work as much as here."
+ "research_note": "THE OLDEST RESIDENCE, THE ONLY VOTE AGAINST THE TOWN, AND THE LARGEST DOCUMENTED HOUSEHOLD IN THE PARCEL - a wife and five sons, the youngest born in the spring of 1835. It is also the record that best shows why the population layer must precede the building layer: this household of seven had a house built in the season before the scene date, at a street address, which the model does not contain. THE PROJECT SHOULD NOT LOSE THE ROLLERS. A documented instance of a Chicago house being moved bodily one block in 1835 is evidence about construction, weight and the town's attitude to its own buildings, and it belongs in the K4 facades work as much as here. T-0463 post-merge adjudication adds a reported 1828 Chicago letter and a June 1835 Cook County land-index lead while keeping both geographically distinct from the modeled town house."
 }
