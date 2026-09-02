@@ -1,0 +1,48 @@
+name: T-0478 final closeout
+
+on:
+  push:
+    branches:
+      - steward/resident-research-pass-4-reconciled
+
+permissions:
+  contents: write
+
+jobs:
+  finalize:
+    if: github.event.head_commit.message == 'T-0478 launch targeted final closeout'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: steward/resident-research-pass-4-reconciled
+          fetch-depth: 1
+      - name: Generate T-0478 closeout outputs
+        working-directory: chicago/4d
+        run: python3 tools/t0478_closeout.py
+      - name: Reconcile T-0478 derived files and mirrors
+        working-directory: chicago/4d
+        run: python3 tools/t0478_reconcile.py
+      - name: Run full Chicago 4D gate for diagnostic separation
+        continue-on-error: true
+        working-directory: chicago/4d
+        run: ./tools/check.sh
+      - name: Recheck T-0478 assertions after diagnostic gate
+        working-directory: chicago/4d
+        run: |
+          python3 tools/select_resident_research_pass_4.py --gate
+          python3 tools/compile_resident_research_pilot.py --gate
+          python3 tools/compile_scene.py --scene 1835 --check
+          python3 tools/t0478_reconcile.py
+      - name: Commit successful T-0478 closeout
+        shell: bash
+        run: |
+          set -euo pipefail
+          git rm .github/workflows/t0478-finalize.yml chicago/4d/tools/t0478_closeout.py chicago/4d/tools/t0478_reconcile.py
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -A
+          git diff --cached --check
+          git diff --cached --stat
+          git commit -m 'T-0478 generated closeout outputs'
+          git push origin HEAD:steward/resident-research-pass-4-reconciled
