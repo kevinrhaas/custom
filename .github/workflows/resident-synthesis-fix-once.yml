@@ -1,9 +1,6 @@
-name: Resident synthesis repair (one-time)
+name: Resident synthesis repair
 
-on:
-  push:
-    branches:
-      - resident/1835-evidence-synthesis-20260902
+on: [push]
 
 permissions:
   contents: write
@@ -14,132 +11,16 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          ref: resident/1835-evidence-synthesis-20260902
           fetch-depth: 0
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-      - name: Install workbook dependency
-        run: python -m pip install --quiet openpyxl
-      - name: Repair synthesis source and regenerate deterministically
-        shell: bash
-        run: |
-          set -euo pipefail
-          cd chicago/4d
-          python - <<'PY'
-          from pathlib import Path
-          p = Path('tools/synthesize_resident_research.py')
-          s = p.read_text(encoding='utf-8')
-
-          old = '''                hh["arrival"] = {"value": f"{year:04d}-01-01", "confidence": "attested",
-                    "sources": srcs, "precision": "year",
-                    "note": f"YEAR PRECISION ONLY. {item.get('ticket')} states arrival/move to Chicago in {year}; January 1 is only the dataset's year anchor."}'''
-          new = '''                hh["arrival"] = {"value": f"{year:04d}", "confidence": "attested",
-                    "sources": srcs, "precision": "year",
-                    "note": f"YEAR PRECISION ONLY. {item.get('ticket')} states arrival/move to Chicago in {year}; no month or day is asserted."}'''
-          if old not in s:
-              raise SystemExit('arrival source pattern not found')
-          s = s.replace(old, new, 1)
-
-          old = '''            if not (p.get("note") or "").startswith(prefix): p["note"]=prefix+(p.get("note") or "")'''
-          new = '''            existing = p.get("note") or ""
-            existing = re.sub(r"^(?:INDEPENDENTLY CORROBORATED RESIDENT\\. |PROJECTED RESIDENT\\. Documented in Chicago post-office evidence but not independently corroborated strongly enough for attested circa-1835 residence\\. )", "", existing, flags=re.I)
-            if outcome in CORROBORATED:
-                existing = re.sub(r"^KNOWN ONLY FROM THE POST OFFICE\\.\\s*", "", existing, flags=re.I)
-                existing = re.sub(r"Nothing else in the corpus names this person[^.]*\\.\\s*", "", existing, flags=re.I)
-                existing = re.sub(r"No (?:arrival|trade|occupation)[^.]*\\.\\s*", "", existing, flags=re.I)
-                prefix = "INDEPENDENTLY CORROBORATED RESIDENT. Originally documented in Chicago post-office evidence; independent resident research now corroborates the identity. "
-            p["note"]=(prefix+existing).strip()'''
-          if old not in s:
-              raise SystemExit('resident note pattern not found')
-          s = s.replace(old, new, 1)
-
-          old = '''    index=load(INDEX); before=snapshot(index); docs={p:load(p) for p in sorted(HOUSEHOLDS.glob("*.json"))}; research=research_rows()'''
-          new = '''    index=load(INDEX); current_before=snapshot(index)
-    prior_ledger=load(LEDGER) if LEDGER.exists() else {}
-    before=(prior_ledger.get("before") if current_before.get("reconstructed")==0 and prior_ledger.get("before") else current_before)
-    docs={p:load(p) for p in sorted(HOUSEHOLDS.glob("*.json"))}; research=research_rows()'''
-          if old not in s:
-              raise SystemExit('baseline pattern not found')
-          s = s.replace(old, new, 1)
-
-          old = '''    persons={p.get("id"):(p,d) for d in docs.values() for p in d.get("persons") or [] if p.get("id")}'''
-          new = '''    if prior_ledger and stats["removed_people"] == 0 and stats["removed_households"] == 0:
-        prior_retirement=prior_ledger.get("retirement") or {}
-        stats["removed_people"]=int(prior_retirement.get("removed_people") or 0)
-        stats["removed_households"]=int(prior_retirement.get("removed_households") or 0)
-    persons={p.get("id"):(p,d) for d in docs.values() for p in d.get("persons") or [] if p.get("id")}'''
-          if old not in s:
-              raise SystemExit('retirement pattern not found')
-          s = s.replace(old, new, 1)
-          p.write_text(s, encoding='utf-8')
-          PY
-
-          python tools/synthesize_resident_research.py
-          python tools/synthesize_resident_research.py --check
-      - name: Export census bridge rows for conservative 1835 review
-        shell: bash
-        run: |
-          set -euo pipefail
-          cd chicago/4d
-          python - <<'PY'
-          import json
-          from pathlib import Path
-          from openpyxl import load_workbook
-
-          root = Path('../../reference/census1840/validation')
-          out = []
-          wanted = {
-              '1835 Tier','Tier Confidence','Include Recommendation','Preferred Name',
-              '1835 Poll','1834 Poll','1833 Poll','1833 Tax','1840 Census Page','1840 Row',
-              'IPUMS SERIAL / Candidate Block','1840 Name Confidence','1839 directory match',
-              'Reasoning','reasoning','Notes','notes'
-          }
-          for path in sorted(root.glob('Chicago_1835_Best_Resident_Set_Research*.xlsx')):
-              wb = load_workbook(path, read_only=True, data_only=True)
-              for ws in wb.worksheets:
-                  header_row = None
-                  headers = None
-                  for rno, row in enumerate(ws.iter_rows(min_row=1, max_row=min(ws.max_row or 1, 30), values_only=True), 1):
-                      vals = [str(v).strip() if v is not None else '' for v in row]
-                      if 'Preferred Name' in vals and ('1835 Tier' in vals or 'Include Recommendation' in vals):
-                          header_row, headers = rno, vals
-                          break
-                  if not headers:
-                      continue
-                  for rno, row in enumerate(ws.iter_rows(min_row=header_row+1, values_only=True), header_row+1):
-                      rec = {headers[i]: row[i] for i in range(min(len(headers), len(row))) if headers[i]}
-                      preferred = rec.get('Preferred Name')
-                      if not preferred:
-                          continue
-                      selected = {'file': path.name, 'sheet': ws.title, 'row': rno}
-                      for k, v in rec.items():
-                          if k in wanted or any(x in k.lower() for x in ('reason','recommend','candidate','alternate','raw reading')):
-                              if v not in (None, ''):
-                                  selected[k] = v
-                      out.append(selected)
-              wb.close()
-          dest = Path('data/research/residents/census_1835_bridge_candidates.json')
-          dest.write_text(json.dumps({'generated':'2026-09-02','rows':out}, indent=2, ensure_ascii=False, default=str)+'\n', encoding='utf-8')
-          print(f'exported {len(out)} census/research bridge rows')
-          PY
-      - name: Capture validators and full gate
-        shell: bash
-        run: |
-          cd chicago/4d
-          python tools/validate.py --all > data/research/residents/synthesis_validate_after_fixes.log 2>&1 || true
-          bash tools/check.sh > data/research/residents/synthesis_full_gate_after_fixes.log 2>&1 || true
-      - name: Commit repair outputs and remove one-time workflow
-        shell: bash
-        run: |
-          set -euo pipefail
-          rm -f .github/workflows/resident-synthesis-fix-once.yml
+      - run: python -m pip install --quiet openpyxl
+      - run: python chicago/4d/tools/repair_resident_synthesis_once.py
+      - run: |
+          rm -f .github/workflows/resident-synthesis-fix-once.yml chicago/4d/tools/repair_resident_synthesis_once.py
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           git add -A
-          if git diff --cached --quiet; then
-            echo 'No changes to commit'
-          else
-            git commit -m 'T-0490: make resident synthesis reproducible and capture census bridge'
-            git push origin HEAD:resident/1835-evidence-synthesis-20260902
-          fi
+          git commit -m 'T-0490: make resident synthesis reproducible and capture census bridge'
+          git push
