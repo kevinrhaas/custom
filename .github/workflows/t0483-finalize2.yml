@@ -1,0 +1,99 @@
+name: T0483 final clean completion
+on:
+  push:
+    branches: [research/T-0483-5e8a41-complete]
+permissions:
+  contents: write
+jobs:
+  finish:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: research/T-0483-5e8a41-complete
+          fetch-depth: 1
+          sparse-checkout: |
+            .t0483_recovered
+            .github/workflows/t0483-finalize2.yml
+          sparse-checkout-cone-mode: false
+      - name: Build clean completion on latest dev
+        shell: bash
+        run: |
+          set -euo pipefail
+          cp -a .t0483_recovered /tmp/recovered
+          git fetch origin dev
+          git reset --hard origin/dev
+          mkdir -p chicago/4d/docs/RESEARCH chicago/4d/data/research/residents chicago/4d/data/sources chicago/reference/resident-research/T-0483 chicago/4d/tickets
+          cp /tmp/recovered/chicago/4d/docs/RESEARCH/resident-research-pass-9.md chicago/4d/docs/RESEARCH/
+          cp /tmp/recovered/chicago/4d/data/research/residents/pass_09_findings.json chicago/4d/data/research/residents/
+          cp /tmp/recovered/chicago/4d/data/sources/*.json chicago/4d/data/sources/
+          cp /tmp/recovered/chicago/reference/resident-research/T-0483/README.md chicago/reference/resident-research/T-0483/
+          cp /tmp/recovered/chicago/reference/resident-research/T-0483/T-0483_resident_research.csv chicago/reference/resident-research/T-0483/
+          git show origin/dev:chicago/4d/data/research/residents/pass_09_75_cohort.json > chicago/4d/data/research/residents/pass_09_75_cohort.json
+          git show origin/dev:chicago/4d/tickets/T-0483-research-ninth-75-person-real-resident-cohort.md > chicago/4d/tickets/T-0483-research-ninth-75-person-real-resident-cohort.md
+          git show origin/dev:chicago/4d/tickets/QUEUE.md > chicago/4d/tickets/QUEUE.md
+          python3 -m pip install --quiet openpyxl
+          python3 - <<'PY'
+          import csv,json,pathlib,re
+          from collections import Counter
+          from openpyxl import Workbook,load_workbook
+          from openpyxl.styles import Font,Alignment
+          from openpyxl.utils import get_column_letter
+          R=pathlib.Path('.')
+          C=R/'chicago/reference/resident-research/T-0483'
+          rows=list(csv.DictReader((C/'T-0483_resident_research.csv').open(encoding='utf-8',newline='')))
+          assert len(rows)==75 and len({r['person_id'] for r in rows})==75
+          ids={r['person_id'] for r in rows}
+          manifest=json.loads((R/'chicago/4d/data/research/residents/pass_09_75_cohort.json').read_text())
+          assert ids=={p['person_id'] for p in manifest['people']} and len(manifest['people'])==75
+          f=json.loads((R/'chicago/4d/data/research/residents/pass_09_findings.json').read_text())
+          assert f['status']=='complete' and set(f['completed_person_ids'])==ids
+          assert f['outcome_counts']=={'corroborated':4,'candidate':10,'no_corroboration':61}
+          cnt=Counter(r['research_outcome'] for r in rows)
+          assert sum(v for k,v in cnt.items() if k.startswith('corroborated'))==4
+          assert sum(v for k,v in cnt.items() if k.startswith('candidate'))==10
+          assert sum(v for k,v in cnt.items() if k.startswith('no_corroboration'))==61
+          assert not any('pending' in r['research_outcome'].lower() for r in rows)
+          wb=Workbook(); residents=wb.active; residents.title='Residents'
+          headers=list(rows[0]); residents.append(headers)
+          for r in rows: residents.append([r[h] for h in headers])
+          candidates=wb.create_sheet('Candidates')
+          ch=['person_id','name_transcribed','name_normalized','research_outcome','identity_confidence','candidate_ids','evidence_for','evidence_against','source_ids','source_urls_locators','source_tiers','recommended_data_action','notes']
+          candidates.append(ch)
+          for r in rows:
+              if r['research_outcome'].startswith('candidate'): candidates.append([r[h] for h in ch])
+          sm={}
+          for r in rows:
+              sids=[x.strip() for x in r['source_ids'].split(';') if x.strip()]; urls=[x.strip() for x in r['source_urls_locators'].split(';') if x.strip()]; tiers=[x.strip() for x in r['source_tiers'].split(';') if x.strip()]
+              for i,sid in enumerate(sids):
+                  z=sm.setdefault(sid,{'url':'','tier':'','people':set()}); z['people'].add(r['person_id'])
+                  if i<len(urls) and not z['url']: z['url']=urls[i]
+                  if i<len(tiers) and not z['tier']: z['tier']=tiers[i]
+          sources=wb.create_sheet('Sources'); sources.append(['source_id','url_or_locator','tier','used_by_person_ids','repository_record'])
+          for sid in sorted(sm):
+              p=R/'chicago/4d/data/sources'/f'{sid}.json'; z=sm[sid]
+              sources.append([sid,z['url'],z['tier'],'; '.join(sorted(z['people'])),str(p) if p.exists() else ''])
+          log=wb.create_sheet('Search_Log'); lh=['person_id','name_normalized','queries','access_dates','research_outcome','source_ids','source_limitations','notes']; log.append(lh)
+          for r in rows: log.append([r[h] for h in lh])
+          for s in wb.worksheets:
+              s.freeze_panes='A2'; s.auto_filter.ref=s.dimensions
+              for c in s[1]: c.font=Font(bold=True); c.alignment=Alignment(wrap_text=True,vertical='top')
+              for row in s.iter_rows(min_row=2):
+                  for c in row: c.alignment=Alignment(wrap_text=True,vertical='top')
+              for i in range(1,s.max_column+1): s.column_dimensions[get_column_letter(i)].width=min(55,max(12,max(len(str(s.cell(r,i).value or '')) for r in range(1,min(s.max_row,76)+1))+2))
+          x=C/'T-0483_resident_research_working.xlsx'; wb.save(x)
+          q=load_workbook(x,read_only=True); assert q.sheetnames==['Residents','Candidates','Sources','Search_Log'] and q['Residents'].max_row==76 and q['Candidates'].max_row==11; q.close()
+          note=R/'chicago/4d/docs/RESEARCH/resident-research-pass-9.md'; t=note.read_text(); t=t.replace('Because T-0484/pass 10 completed before this predecessor landed, actual completed coverage becomes **750** once this PR merges.','Because passes 10–12 completed before this predecessor landed, actual completed programme coverage becomes **836** once this PR merges.'); note.write_text(t)
+          ticket=R/'chicago/4d/tickets/T-0483-research-ninth-75-person-real-resident-cohort.md'; t=ticket.read_text(); t=re.sub(r'^state: .*$', 'state: done', t,1,flags=re.M); t=re.sub(r'^closed: .*$', 'closed: 2026-09-02', t,1,flags=re.M); t=re.sub(r'^pr: .*$', 'pr: 666', t,1,flags=re.M); ticket.write_text(t)
+          queue=R/'chicago/4d/tickets/QUEUE.md'; queue.write_text('\n'.join(x for x in queue.read_text().splitlines() if not x.startswith('T-0483 '))+'\n')
+          for p in (R/'chicago/4d/data/sources').glob('resident_research_*.json'): json.loads(p.read_text())
+          print('T-0483 validated:',dict(cnt),'75/75, 0 pending')
+          PY
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add --sparse chicago/4d/docs/RESEARCH/resident-research-pass-9.md chicago/4d/data/research/residents/pass_09_findings.json chicago/4d/data/sources/resident_research_*.json chicago/reference/resident-research/T-0483 chicago/4d/tickets/T-0483-research-ninth-75-person-real-resident-cohort.md chicago/4d/tickets/QUEUE.md
+          git status --short
+          git diff --cached --stat
+          git commit -m 'T-0483: complete ninth 75-person resident research cohort'
+          git push --force-with-lease origin HEAD:research/T-0483-5e8a41-complete
