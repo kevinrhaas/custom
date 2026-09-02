@@ -11,8 +11,8 @@ parent: null
 opened: 2026-09-02
 closed: null
 pr: 625
-claimed_by: steward/resident-research-pass-5
-blocked_on: T-0478
+claimed_by: null
+blocked_on: null
 needs_bake: false
 ---
 
@@ -24,15 +24,18 @@ Research each selected person as deeply as the evidence permits using the reposi
 
 For ambiguous identities, preserve one or more candidate records with explicit supporting and conflicting discriminators rather than merging them into resident facts. A generic exact-name match without a dated Chicago/Cook County, occupation, address, relative, migration, civic or document linkage is insufficient. Negative searches are valid documented outcomes and are not evidence that the person did not exist.
 
+PR #625 was the initial tranche, not completion: 66 postal-list members remained explicitly pending. The remaining research can proceed in parallel with pass 4; only cumulative compiler/sidecar integration must be reconciled after the T-0478 baseline lands. The completion work must commit a cohort research package under `chicago/reference/resident-research/T-0479/` following `chicago/reference/resident-research/README.md`: a human-reviewable XLSX workbook, a machine-readable CSV export, and a README/method note, plus the completed JSON findings ledger and all new/updated source records. Findings that exist only in chat, browser notes or an unpushed working tree do not count.
+
 **Acceptance:**
 
 - A committed reproducible pass-5 selector and manifest contain exactly 75 unique real named residents: all nine remaining named non-letter-list people, 33 scene-date postal-list people and 33 earlier/uncertain postal-list people.
-- The selector proves no overlap with the first three merged cohorts and carries a frozen collision lock for all 75 IDs claimed by the unmerged T-0478 pass-4 selector.
+- The selector proves no overlap with the first three merged cohorts and carries a frozen collision lock for all 75 IDs claimed by the T-0478 pass-4 selector.
 - Reconstructed people, hypothesised `inf_*` people, and entries whose names explicitly denote an unnamed/count placeholder are rejected even if their technical grade is not `reconstructed`.
-- Every cohort member has an outcome: corroborated enrichment, explicit candidate identity/duplicate lead, or documented no-corroboration result.
+- Every cohort member has an outcome: corroborated enrichment, explicit candidate identity/duplicate lead, or documented no-corroboration result; no member remains `pending` in the completion PR.
+- The XLSX, CSV, README, findings ledger and source records are committed and mutually traceable by stable person/source IDs; the workbook retains evidence for/against, candidate identities, source tiers, queries, access dates and limitations.
 - New sources are recorded in the resident source ledger/source registry with source tier, query/result and limitations; only high-confidence facts are promoted into household/person data.
 - Any household edits carry per-attribute provenance and preserve conflicting evidence instead of overwriting it silently.
-- Research files can be completed in parallel with T-0478; cumulative compiler/sidecar integration is rebased onto the 300-review T-0478 baseline after pass 4 lands, without weakening existing gates.
+- Research may complete in parallel with T-0478; cumulative compiler/sidecar integration is reconciled onto the pass-4 baseline before this ticket closes.
 - A research note records methods, strongest findings, candidate/no-find counts, limits and the cumulative reviewed total.
 - Relevant JSON/selector/compiler checks pass; any environment-only smoke limitation is reported rather than bypassed.
-- A PR targets `dev` and records the pass-5 results and continuation baseline.
+- A completion PR targets `dev` and records the pass-5 results and continuation baseline; PR #625 alone does not close this ticket.
