@@ -1,0 +1,38 @@
+name: T-0479 fast atomic claim
+
+on:
+  push:
+    branches:
+      - research/T-0479-chatgpt-a7c4f2
+
+permissions:
+  contents: write
+
+jobs:
+  claim:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: research/T-0479-chatgpt-a7c4f2
+          fetch-depth: 1
+          sparse-checkout: |
+            .github/workflows
+            chicago/4d/tools/ticket.mjs
+            chicago/4d/tools/publish.sh
+            chicago/4d/tickets
+            site/chicago/4d/tickets.json
+          sparse-checkout-cone-mode: false
+      - name: Claim and validate
+        run: |
+          cd chicago/4d
+          node tools/ticket.mjs claim T-0479 --by chatgpt-resident-agent-a7c4f2
+          node tools/ticket.mjs check
+      - name: Commit atomic claim
+        run: |
+          git rm -f .github/workflows/t0479-claim-chatgpt-a7c4f2.yml .github/workflows/t0479-claim-fast-a7c4f2.yml
+          git config user.name "ChatGPT resident research agent"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add chicago/4d/tickets site/chicago/4d/tickets.json
+          git commit -m "claim: T-0479 resident research"
+          git push origin HEAD:research/T-0479-chatgpt-a7c4f2
