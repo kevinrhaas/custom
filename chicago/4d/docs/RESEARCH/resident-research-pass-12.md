@@ -1,11 +1,20 @@
 # T-0486 — Twelfth resident-research cohort (11)
 
-Status: **queued for research** · manifest frozen 2026-09-02
+Status: **complete** · researched 2026-09-02
 
-This planning branch reserves 11 real named, non-reconstructed residents from the remaining letter-list-only pool: 0 scene-date names and 11 earlier/uncertain names. Passes 1–5 reserve 375 IDs; this cohort raises the reserved total to 386. The seven continuation groups together exhaust the 461 eligible named letter-list-only people.
+This final continuation cohort contains 11 real named, non-reconstructed residents, all from the earlier/uncertain letter-list stratum. Every manifest member received a dated source sweep; no entries remain pending.
 
-The manifest is deterministic and non-overlapping: remaining person IDs are sorted within the present/uncertain strata, interleaved, and chunked in fixed order. It excludes reconstructed records, hypothesised inf_* records, unnamed/count placeholders and every ID reserved by the pilot or passes 2–5. Do not infer heritage, immigration origin, kinship, marriage, occupation, address or residence from a surname or a weak same-name match.
+## Outcome
 
-The findings ledger starts every member as **pending**, not as a no-find. The research run must search the repository corpus and the strongest available primary, institutional and local-history sources; retain queries, URLs/source IDs, access date, source tier, candidate duplicates, conflicts and negative searches. Promote only evidence that resolves the person, date and Chicago/Cook County connection, and make no silent household edits.
+- corroborated enrichment: **1**
+- candidate identity / duplicate lead: **3**
+- documented no-corroboration: **7**
+- pending: **0**
 
-This is a planning scaffold. The completion PR must add dated outcomes for all 11 members, source-ledger records and any justified candidate/household provenance, then run the relevant checks and update the cumulative research/status references before merge.
+The strongest result is **James H. Woodworth**: the Papers of Abraham Lincoln independently documents his move to Chicago in 1833 and his dry-goods business there through 1840, directly spanning the postal evidence and July 1835 scene date.
+
+Three records remain explicitly unasserted candidates: **William Teall** (documented 1834 Michigan City merchant/warehouse operator), **Gideon Young** (documented at Naperville in January 1835), and **Charles Works** (later Winnebago/Rockford exact-name lead). Competing geography or later chronology prevents treating any of those as a Chicago household fact.
+
+The other seven records have documented no-corroboration outcomes after exact-name, expanded-name, directory, local-history and justified spelling-variant sweeps. Negative search is not proof of nonexistence.
+
+No canonical resident/household fields are changed in this pass. The completed findings ledger and cohort package under `chicago/reference/resident-research/T-0486/` are inputs to the later T-0487 adjudication and T-0488 promotion sequence. Once the preceding cohorts are integrated, this pass completes the planned **836-person** research corpus.
