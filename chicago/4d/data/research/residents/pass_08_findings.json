@@ -1,24 +1,25 @@
 {
-  "_doc": "Initial T-0482 ledger. Every selected person is explicitly pending until a dated source sweep records an outcome; pending is not a no-find.",
+  "_doc": "T-0482 research ledger. Every selected person is explicitly pending until a dated source sweep records an outcome; pending is not a no-find.",
   "ticket": "T-0482",
   "reviewed_on": "2026-09-02",
-  "status": "pending",
+  "status": "in_progress",
   "default_summary": "This member is reserved by the frozen manifest and has not yet received a complete source sweep. No household or person fact is promoted from this pending state.",
   "query_templates": [
     "\"{name}\" Chicago 1835",
     "\"{name}\" Illinois 1834 1835",
     "\"{name}\" genealogy occupation migration"
   ],
-  "completed_person_ids": [],
+  "completed_person_ids": [
+    "ll_kilburn_milton",
+    "ll_jesse_hobson"
+  ],
   "pending_person_ids": [
     "ll_kidder_luther",
     "ll_jeremiah_s_hull",
-    "ll_kilburn_milton",
     "ll_jesse_b_winn",
     "ll_kirne_e",
     "ll_jesse_chittenden",
     "ll_knowles_j_a",
-    "ll_jesse_hobson",
     "ll_kooken_james",
     "ll_jesse_morgan",
     "ll_lamb_a",
@@ -87,5 +88,48 @@
     "ll_joseph_boucher",
     "ll_mosgrove_jolin"
   ],
-  "overrides": {}
+  "overrides": {
+    "ll_kilburn_milton": {
+      "outcome": "candidate_identity",
+      "summary": "A 1905 Winnebago County history identifies an exact-name Milton Kilburn as coming from New Hampshire to the Rockford area in 1835 and later serving as the county's first probate judge. The exact name, year and northern-Illinois geography make this a plausible lead for the Chicago post-office entry, but no source yet ties this man to Chicago or the letter itself, so the identification is not asserted.",
+      "sources": [
+        "rockford_history_milton_kilburn"
+      ],
+      "candidates": [
+        {
+          "name": "Milton Kilburn, early Rockford/Winnebago County settler",
+          "assessment": "possible",
+          "asserted": false,
+          "basis": "Exact name; reported arrival in northern Illinois in 1835.",
+          "conflicts": [
+            "The source places him in the Rockford area rather than Chicago and provides no postal, address, kinship or occupation discriminator tying him to the Chicago letter-list entry."
+          ],
+          "sources": [
+            "rockford_history_milton_kilburn"
+          ]
+        }
+      ]
+    },
+    "ll_jesse_hobson": {
+      "outcome": "candidate_identity",
+      "summary": "A retrospective Hobson genealogy places an exact-name Jesse Hobson in the Naperville/Chicago area from about 1830 and records his marriage to Catherine Daugherty on 6 April 1835. That Cook-area chronology is close to the 20 May 1835 Chicago letter-list return and is a strong identity lead, but the genealogy is retrospective and does not itself connect the man to the postal entry, so no household fact is promoted.",
+      "sources": [
+        "hobson_descendants_jesse"
+      ],
+      "candidates": [
+        {
+          "name": "Jesse Hobson (1812-1883), Naperville-area settler",
+          "assessment": "strong",
+          "asserted": false,
+          "basis": "Exact uncommon name; near-Chicago residence before 1835; dated April 1835 marriage in the same regional context as the May Chicago post-office return.",
+          "conflicts": [
+            "The reviewed source is a later genealogy rather than a contemporary record and does not explicitly state that he received or awaited mail at Chicago."
+          ],
+          "sources": [
+            "hobson_descendants_jesse"
+          ]
+        }
+      ]
+    }
+  }
 }
