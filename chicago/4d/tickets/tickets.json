@@ -1,6 +1,6 @@
 {
   "project": "chicago-4d",
-  "generated_ct": "Sep 1, 2026, 7:08 AM",
+  "generated_ct": "Sep 2, 2026, 12:30 PM",
   "tickets": [
     {
       "id": "T-0001",
@@ -539,7 +539,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 68
+      "queue_rank": 82
     },
     {
       "id": "T-0031",
@@ -663,7 +663,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 67
+      "queue_rank": 81
     },
     {
       "id": "T-0038",
@@ -951,7 +951,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 66
+      "queue_rank": 80
     },
     {
       "id": "T-0054",
@@ -987,7 +987,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 65
+      "queue_rank": 79
     },
     {
       "id": "T-0056",
@@ -2427,7 +2427,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 64
+      "queue_rank": 78
     },
     {
       "id": "T-0137",
@@ -3111,7 +3111,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 71
+      "queue_rank": 85
     },
     {
       "id": "T-0182",
@@ -3273,7 +3273,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 58
+      "queue_rank": 72
     },
     {
       "id": "T-0191",
@@ -3507,7 +3507,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 78
+      "queue_rank": 92
     },
     {
       "id": "T-0207",
@@ -3723,7 +3723,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 79
+      "queue_rank": 93
     },
     {
       "id": "T-0219",
@@ -3921,7 +3921,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 62
+      "queue_rank": 76
     },
     {
       "id": "T-0231",
@@ -3939,7 +3939,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 77
+      "queue_rank": 91
     },
     {
       "id": "T-0232",
@@ -3957,7 +3957,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 74
+      "queue_rank": 88
     },
     {
       "id": "T-0233",
@@ -3993,7 +3993,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 75
+      "queue_rank": 89
     },
     {
       "id": "T-0235",
@@ -4029,7 +4029,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 72
+      "queue_rank": 86
     },
     {
       "id": "T-0237",
@@ -4047,7 +4047,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 54
+      "queue_rank": 68
     },
     {
       "id": "T-0238",
@@ -4065,7 +4065,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 73
+      "queue_rank": 87
     },
     {
       "id": "T-0239",
@@ -4083,7 +4083,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 61
+      "queue_rank": 75
     },
     {
       "id": "T-0240",
@@ -4317,7 +4317,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 59
+      "queue_rank": 73
     },
     {
       "id": "T-0253",
@@ -4335,7 +4335,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 60
+      "queue_rank": 74
     },
     {
       "id": "T-0254",
@@ -4371,7 +4371,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 69
+      "queue_rank": 83
     },
     {
       "id": "T-0256",
@@ -4569,7 +4569,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 47
+      "queue_rank": 61
     },
     {
       "id": "T-0267",
@@ -4605,7 +4605,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 53
+      "queue_rank": 67
     },
     {
       "id": "T-0271",
@@ -4623,7 +4623,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 80
+      "queue_rank": 94
     },
     {
       "id": "T-0272",
@@ -4731,7 +4731,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 49
+      "queue_rank": 63
     },
     {
       "id": "T-0279",
@@ -4749,7 +4749,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 50
+      "queue_rank": 64
     },
     {
       "id": "T-0280",
@@ -4767,7 +4767,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 51
+      "queue_rank": 65
     },
     {
       "id": "T-0281",
@@ -4857,7 +4857,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 55
+      "queue_rank": 69
     },
     {
       "id": "T-0286",
@@ -4875,7 +4875,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 56
+      "queue_rank": 70
     },
     {
       "id": "T-0289",
@@ -5109,7 +5109,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 76
+      "queue_rank": 90
     },
     {
       "id": "T-0302",
@@ -5127,7 +5127,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 52
+      "queue_rank": 66
     },
     {
       "id": "T-0304",
@@ -5595,7 +5595,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": true,
-      "queue_rank": 48
+      "queue_rank": 62
     },
     {
       "id": "T-0333",
@@ -5631,7 +5631,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 45
+      "queue_rank": 59
     },
     {
       "id": "T-0335",
@@ -5973,7 +5973,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 57
+      "queue_rank": 71
     },
     {
       "id": "T-0365",
@@ -6081,7 +6081,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 63
+      "queue_rank": 77
     },
     {
       "id": "T-0372",
@@ -6189,7 +6189,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 81
+      "queue_rank": 95
     },
     {
       "id": "T-0378",
@@ -6387,7 +6387,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 82
+      "queue_rank": 96
     },
     {
       "id": "T-0389",
@@ -7020,6 +7020,24 @@
       "queue_rank": 1
     },
     {
+      "id": "T-0426",
+      "title": "A shop addressed on a cross street improves the lot the plat fronts elsewhere, so 24.7 m of board fence lands across the Tremont House's goods",
+      "state": "open",
+      "epic": "META",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "M",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-08-29",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "queue_rank": 1
+    },
+    {
       "id": "T-0427",
       "title": "The outbuilding shed's overhang keeps climbing, and the ridge model stopped at the wall",
       "state": "done",
@@ -7143,7 +7161,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 70
+      "queue_rank": 84
     },
     {
       "id": "T-0435",
@@ -7161,7 +7179,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": true,
-      "queue_rank": 44
+      "queue_rank": 58
     },
     {
       "id": "T-0436",
@@ -7179,7 +7197,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 46
+      "queue_rank": 60
     },
     {
       "id": "T-0438",
@@ -7197,7 +7215,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 83
+      "queue_rank": 97
     },
     {
       "id": "T-0439",
@@ -7215,7 +7233,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 84
+      "queue_rank": 98
     },
     {
       "id": "T-0440",
@@ -7233,7 +7251,25 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 85
+      "queue_rank": 99
+    },
+    {
+      "id": "T-0442",
+      "title": "Deep research pilot for 75 real named residents",
+      "state": "done",
+      "epic": "META",
+      "requested_by": "owner",
+      "seen": false,
+      "effort": "M",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-08-31",
+      "closed": "2026-08-31",
+      "pr": "609",
+      "claimed_by": "run 8/31/2026, 3:36:41 AM CT",
+      "blocked_on": null,
+      "needs_bake": false,
+      "queue_rank": null
     },
     {
       "id": "T-0442",
@@ -7377,7 +7413,25 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 86
+      "queue_rank": 100
+    },
+    {
+      "id": "T-0449",
+      "title": "Four South Water frontage entries declare lots their runs never reach, and each hides its block's headroom",
+      "state": "open",
+      "epic": "META",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "M",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-08-30",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "queue_rank": 100
     },
     {
       "id": "T-0450",
@@ -7396,6 +7450,24 @@
       "blocked_on": null,
       "needs_bake": false,
       "queue_rank": 4
+    },
+    {
+      "id": "T-0451",
+      "title": "Only one north-south street stands north of the river, where the Thompson plat carries the North Division's whole grid",
+      "state": "open",
+      "epic": "GROUND",
+      "requested_by": "owner",
+      "seen": true,
+      "effort": "M",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-08-31",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "queue_rank": 11
     },
     {
       "id": "T-0451",
@@ -7452,6 +7524,24 @@
       "queue_rank": 10
     },
     {
+      "id": "T-0453",
+      "title": "The river banks are traced from Wright 1834 and the owner reads the Thompson plat differently at Wolf Point",
+      "state": "open",
+      "epic": "GROUND",
+      "requested_by": "owner",
+      "seen": true,
+      "effort": "M",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-08-31",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "queue_rank": 10
+    },
+    {
       "id": "T-0454",
       "title": "The gate calls a GLB stale and the bake declines to rebuild it, so a stale asset cannot be cleared by baking",
       "state": "open",
@@ -7488,6 +7578,24 @@
       "queue_rank": 3
     },
     {
+      "id": "T-0459",
+      "title": "Signboards are mounted over doors and windows, when the same wall has blank face to put them on",
+      "state": "open",
+      "epic": "RENDERING",
+      "requested_by": "owner",
+      "seen": true,
+      "effort": "M",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-08-31",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "queue_rank": 3
+    },
+    {
       "id": "T-0460",
       "title": "The plank walk meets the dirt road in a jagged sawtooth, and it is the first thing a visitor sees",
       "state": "open",
@@ -7504,6 +7612,42 @@
       "blocked_on": null,
       "needs_bake": false,
       "queue_rank": 0
+    },
+    {
+      "id": "T-0460",
+      "title": "The plank walk meets the dirt road in a jagged sawtooth, and it is the first thing a visitor sees",
+      "state": "open",
+      "epic": "RENDERING",
+      "requested_by": "owner",
+      "seen": true,
+      "effort": "M",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-08-31",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "queue_rank": 0
+    },
+    {
+      "id": "T-0461",
+      "title": "The Tremont House's goods are laid on lot 7, which its own placement point falls outside — one building's goods on another lot's frontage",
+      "state": "open",
+      "epic": "RENDERING",
+      "requested_by": "owner",
+      "seen": true,
+      "effort": "M",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-08-31",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "queue_rank": 2
     },
     {
       "id": "T-0461",
@@ -7557,7 +7701,263 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 87
+      "queue_rank": 101
+    },
+    {
+      "id": "T-0464",
+      "title": "Extend the shared south terrain from Madison through Cermak",
+      "state": "open",
+      "epic": "SOUTH_TIME",
+      "requested_by": "owner",
+      "seen": false,
+      "effort": "M",
+      "legacy_id": null,
+      "opened": "2026-09-01",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": "T-0219",
+      "needs_bake": true,
+      "queue_rank": 44
+    },
+    {
+      "id": "T-0465",
+      "title": "Trace the South Branch and early lakefront through the expanded field",
+      "state": "open",
+      "epic": "SOUTH_TIME",
+      "requested_by": "owner",
+      "seen": false,
+      "effort": "M",
+      "legacy_id": null,
+      "opened": "2026-09-01",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": "T-0464",
+      "needs_bake": true,
+      "queue_rank": 45
+    },
+    {
+      "id": "T-0466",
+      "title": "Build a south-terrain tiling and culling plan for a four-kilometre field",
+      "state": "open",
+      "epic": "SOUTH_TIME",
+      "requested_by": "owner",
+      "seen": false,
+      "effort": "S",
+      "legacy_id": null,
+      "opened": "2026-09-01",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": "T-0464",
+      "needs_bake": false,
+      "queue_rank": 46
+    },
+    {
+      "id": "T-0467",
+      "title": "Add south-scene camera anchors, navigation and map extents",
+      "state": "open",
+      "epic": "SOUTH_TIME",
+      "requested_by": "owner",
+      "seen": false,
+      "effort": "S",
+      "legacy_id": null,
+      "opened": "2026-09-01",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": "T-0464",
+      "needs_bake": false,
+      "queue_rank": 47
+    },
+    {
+      "id": "T-0468",
+      "title": "Create an e1812 natural terrain epoch for the Fort Dearborn battle landscape",
+      "state": "open",
+      "epic": "SOUTH_TIME",
+      "requested_by": "owner",
+      "seen": false,
+      "effort": "M",
+      "legacy_id": null,
+      "opened": "2026-09-01",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": "T-0465",
+      "needs_bake": true,
+      "queue_rank": 48
+    },
+    {
+      "id": "T-0469",
+      "title": "Reconstruct the first Fort Dearborn complex as it stood in August 1812",
+      "state": "open",
+      "epic": "SOUTH_TIME",
+      "requested_by": "owner",
+      "seen": false,
+      "effort": "M",
+      "legacy_id": null,
+      "opened": "2026-09-01",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": "T-0468",
+      "needs_bake": true,
+      "queue_rank": 49
+    },
+    {
+      "id": "T-0470",
+      "title": "Map the 15 August 1812 evacuation route and battle-location confidence zone",
+      "state": "open",
+      "epic": "SOUTH_TIME",
+      "requested_by": "owner",
+      "seen": false,
+      "effort": "S",
+      "legacy_id": null,
+      "opened": "2026-09-01",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": "T-0468",
+      "needs_bake": false,
+      "queue_rank": 50
+    },
+    {
+      "id": "T-0471",
+      "title": "Build the 1812 lakeshore prairie, vegetation and landscape features",
+      "state": "open",
+      "epic": "SOUTH_TIME",
+      "requested_by": "owner",
+      "seen": false,
+      "effort": "M",
+      "legacy_id": null,
+      "opened": "2026-09-01",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": "T-0468",
+      "needs_bake": true,
+      "queue_rank": 51
+    },
+    {
+      "id": "T-0472",
+      "title": "Build the 1812 interpretive scene with Indigenous-history review gates",
+      "state": "open",
+      "epic": "SOUTH_TIME",
+      "requested_by": "owner",
+      "seen": false,
+      "effort": "S",
+      "legacy_id": null,
+      "opened": "2026-09-01",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": "T-0470",
+      "needs_bake": false,
+      "queue_rank": 52
+    },
+    {
+      "id": "T-0473",
+      "title": "Create an 1880s South Side terrain and urban-ground epoch",
+      "state": "open",
+      "epic": "SOUTH_TIME",
+      "requested_by": "owner",
+      "seen": false,
+      "effort": "M",
+      "legacy_id": null,
+      "opened": "2026-09-01",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": "T-0465",
+      "needs_bake": true,
+      "queue_rank": 53
+    },
+    {
+      "id": "T-0474",
+      "title": "Reconstruct the 1880s Prairie Avenue street, parcel and service grid",
+      "state": "open",
+      "epic": "SOUTH_TIME",
+      "requested_by": "owner",
+      "seen": false,
+      "effort": "M",
+      "legacy_id": null,
+      "opened": "2026-09-01",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": "T-0473",
+      "needs_bake": true,
+      "queue_rank": 54
+    },
+    {
+      "id": "T-0475",
+      "title": "Build the Prairie Avenue landmark mansion core",
+      "state": "open",
+      "epic": "SOUTH_TIME",
+      "requested_by": "owner",
+      "seen": false,
+      "effort": "M",
+      "legacy_id": null,
+      "opened": "2026-09-01",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": "T-0474",
+      "needs_bake": true,
+      "queue_rank": 55
+    },
+    {
+      "id": "T-0476",
+      "title": "Fill the 1880s Prairie Avenue corridor with documented residences and outbuildings",
+      "state": "open",
+      "epic": "SOUTH_TIME",
+      "requested_by": "owner",
+      "seen": false,
+      "effort": "M",
+      "legacy_id": null,
+      "opened": "2026-09-01",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": "T-0475",
+      "needs_bake": true,
+      "queue_rank": 56
+    },
+    {
+      "id": "T-0477",
+      "title": "Build the 1880s Prairie Avenue streetscape, vegetation and urban furniture",
+      "state": "open",
+      "epic": "SOUTH_TIME",
+      "requested_by": "owner",
+      "seen": false,
+      "effort": "M",
+      "legacy_id": null,
+      "opened": "2026-09-01",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": "T-0474",
+      "needs_bake": true,
+      "queue_rank": 57
+    },
+    {
+      "id": "T-0479",
+      "title": "Research fifth 75-person real-resident cohort",
+      "state": "open",
+      "epic": "META",
+      "requested_by": "owner",
+      "seen": true,
+      "effort": "M",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-09-02",
+      "closed": null,
+      "pr": "625",
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "queue_rank": 102
     },
     {
       "id": "T-0480",
@@ -7575,7 +7975,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 88
+      "queue_rank": 103
     },
     {
       "id": "T-0481",
@@ -7593,7 +7993,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 89
+      "queue_rank": 104
     },
     {
       "id": "T-0482",
@@ -7611,7 +8011,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 90
+      "queue_rank": 105
     },
     {
       "id": "T-0483",
@@ -7629,7 +8029,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 91
+      "queue_rank": 106
     },
     {
       "id": "T-0484",
@@ -7647,7 +8047,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 92
+      "queue_rank": 107
     },
     {
       "id": "T-0485",
@@ -7665,7 +8065,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 93
+      "queue_rank": 108
     },
     {
       "id": "T-0486",
@@ -7683,7 +8083,79 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 94
+      "queue_rank": 109
+    },
+    {
+      "id": "T-0487",
+      "title": "Adjudicate the complete resident research corpus into one identity master",
+      "state": "blocked-tech",
+      "epic": "META",
+      "requested_by": "owner",
+      "seen": true,
+      "effort": "M",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-09-02",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": "Complete the resident-research cohort packages through T-0486, including T-0479's 66 pending people and the pass-4/T-0478 baseline; every cohort manifest must have zero pending outcomes on dev.",
+      "needs_bake": false,
+      "queue_rank": null
+    },
+    {
+      "id": "T-0488",
+      "title": "Promote attested residents, households, occupations and relationships into canonical data",
+      "state": "blocked-tech",
+      "epic": "META",
+      "requested_by": "owner",
+      "seen": true,
+      "effort": "M",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-09-02",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": "T-0487 must land the complete identity master and its attested/unresolved decisions on dev.",
+      "needs_bake": false,
+      "queue_rank": null
+    },
+    {
+      "id": "T-0489",
+      "title": "Integrate reasonable inferred residents and household members with explicit inference provenance",
+      "state": "blocked-tech",
+      "epic": "META",
+      "requested_by": "owner",
+      "seen": true,
+      "effort": "M",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-09-02",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": "T-0488 must land the attested canonical resident and household improvements on dev.",
+      "needs_bake": false,
+      "queue_rank": null
+    },
+    {
+      "id": "T-0490",
+      "title": "Final resident, household and occupation citation and coverage audit",
+      "state": "blocked-tech",
+      "epic": "META",
+      "requested_by": "owner",
+      "seen": true,
+      "effort": "M",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-09-02",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": "T-0489 must land the inferred-resident and household integration on dev.",
+      "needs_bake": false,
+      "queue_rank": null
     }
   ]
 }
