@@ -1,0 +1,50 @@
+name: Temporary T-0478 ticket refresh
+
+on:
+  push:
+    branches:
+      - steward/t-0478-artifact-contract
+
+permissions:
+  contents: write
+
+jobs:
+  refresh:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: steward/t-0478-artifact-contract
+          fetch-depth: 1
+          sparse-checkout: |
+            chicago/4d/tickets
+            chicago/4d/tools/ticket.mjs
+            chicago/4d/tools/publish.sh
+            site/chicago/4d/tickets.json
+          sparse-checkout-cone-mode: false
+      - name: Insert T-0478 before pass five
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          p = Path('chicago/4d/tickets/QUEUE.md')
+          s = p.read_text()
+          line = 'T-0478 — Research fourth 75-person real-resident cohort'
+          target = 'T-0479 — Research fifth 75-person real-resident cohort'
+          s = s.replace(line + '\n', '')
+          if target not in s:
+              raise SystemExit('T-0479 queue anchor missing')
+          s = s.replace(target, line + '\n' + target, 1)
+          p.write_text(s)
+          PY
+      - name: Regenerate board and ticket JSON
+        run: node chicago/4d/tools/ticket.mjs board
+      - name: Commit generated state
+        run: |
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git add chicago/4d/tickets/QUEUE.md chicago/4d/tickets/BOARD.md chicago/4d/tickets/tickets.json site/chicago/4d/tickets.json
+          if ! git diff --cached --quiet; then
+            git commit -m 'chore(chicago): regenerate T-0478 ticket state [skip ci]'
+            git push origin HEAD:steward/t-0478-artifact-contract
+          fi
