@@ -159,6 +159,28 @@ T-0318 — The January 1834 letter list: the third printing repairs the A-H half
 # --- on, the ordinances the papers yielded, the fort, what grows, and the cards a
 # --- visitor opens. T-0219 is parked on PR #432.
 T-0219 — Finish the heightfield SOUTH to Madison Street, the plat's last tier
+
+# --- SOUTH THROUGH TIME — OWNER EPIC, 2026-09-01. Continue T-0219's ground south
+# --- through the 1812 Fort Dearborn battle corridor and the 1880s Prairie Avenue
+# --- district. Shared geographic infrastructure comes first, then the 1812 natural
+# --- landscape/first fort/route, then the later urban terrain, grid and mansion district.
+# --- The 1812 work follows AGENTS.md's Indigenous-history review constraint: terrain,
+# --- structures and documentary geography may proceed, but human depiction is not inferred.
+T-0464 — Extend the shared south terrain from Madison through Cermak
+T-0465 — Trace the South Branch and early lakefront through the expanded field
+T-0466 — Build a south-terrain tiling and culling plan for a four-kilometre field
+T-0467 — Add south-scene camera anchors, navigation and map extents
+T-0468 — Create an e1812 natural terrain epoch for the Fort Dearborn battle landscape
+T-0469 — Reconstruct the first Fort Dearborn complex as it stood in August 1812
+T-0470 — Map the 15 August 1812 evacuation route and battle-location confidence zone
+T-0471 — Build the 1812 lakeshore prairie, vegetation and landscape features
+T-0472 — Build the 1812 interpretive scene with Indigenous-history review gates
+T-0473 — Create an 1880s South Side terrain and urban-ground epoch
+T-0474 — Reconstruct the 1880s Prairie Avenue street, parcel and service grid
+T-0475 — Build the Prairie Avenue landmark mansion core
+T-0476 — Fill the 1880s Prairie Avenue corridor with documented residences and outbuildings
+T-0477 — Build the 1880s Prairie Avenue streetscape, vegetation and urban furniture
+
 T-0435 — 30 of the 47 cat-and-clay stacks stand against an eave wall, and both the archetype and the fabric argument say gable
 T-0334 — The hay-stacking ordinance walks a six-vertex boundary round the built town, and nothing draws or tests it
 T-0436 — The corporation's limits have no committed geometry, and the fire ordinance binds only inside them
