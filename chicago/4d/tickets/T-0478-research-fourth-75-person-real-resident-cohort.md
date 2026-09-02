@@ -33,3 +33,7 @@ Repository handoff is part of the ticket. Commit a cohort research package under
 - Reconcile cumulative compiler and sidecar outputs onto current `dev` without deleting newer resident research, reference files, tickets or generated artifacts.
 - Relevant selector/compiler/source/published checks pass or inherited repository failures are explicitly separated from pass-4 regressions.
 - The completion PR targets `dev`, records the cumulative reviewed total of 300 after pass 4, includes the durable research package, and closes T-0478.
+
+## Completion receipt
+
+PR #639 landed the completed 75-person research payload and cumulative 300-review compiler integration. PR #643 supplies the required machine-readable CSV and closes T-0478 through `tools/ticket.mjs`, regenerating the queue, board, ticket index, and published ticket mirror with the repository's own tooling.
