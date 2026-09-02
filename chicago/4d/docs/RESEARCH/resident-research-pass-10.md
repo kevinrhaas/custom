@@ -1,11 +1,19 @@
 # T-0484 — Tenth resident-research cohort (75)
 
-Status: **queued for research** · manifest frozen 2026-09-02
+Status: **research complete** · manifest frozen 2026-09-02 · reviewed 2026-09-02
 
-This planning branch reserves 75 real named, non-reconstructed residents from the remaining letter-list-only pool: 31 scene-date names and 44 earlier/uncertain names. Passes 1–5 reserve 375 IDs; this cohort raises the reserved total to 450. The seven continuation groups together exhaust the 461 eligible named letter-list-only people.
+This pass covers the frozen 75-person T-0484 cohort: 31 scene-date letter-list names and 44 earlier/uncertain letter-list names. Every manifest member now has a dated outcome: **5 corroborated enrichments, 9 explicitly unasserted candidate identities, 61 documented no-corroboration results, and 0 pending**.
 
-The manifest is deterministic and non-overlapping: remaining person IDs are sorted within the present/uncertain strata, interleaved, and chunked in fixed order. It excludes reconstructed records, hypothesised inf_* records, unnamed/count placeholders and every ID reserved by the pilot or passes 2–5. Do not infer heritage, immigration origin, kinship, marriage, occupation, address or residence from a surname or a weak same-name match.
+The manifest remains deterministic and non-overlapping: remaining person IDs were sorted within the present/uncertain strata, interleaved, and chunked in fixed order. Reconstructed records, hypothesised `inf_*` records, unnamed/count placeholders and all previously reserved IDs remain excluded.
 
-The findings ledger starts every member as **pending**, not as a no-find. The research run must search the repository corpus and the strongest available primary, institutional and local-history sources; retain queries, URLs/source IDs, access date, source tier, candidate duplicates, conflicts and negative searches. Promote only evidence that resolves the person, date and Chicago/Cook County connection, and make no silent household edits.
+Research reviewed the repository Chicago Democrat transcriptions, newspaper identity ledger, resident/source registry, Fergus directories, Cook/Will/Kane/Lake/Racine-area local histories, and government, tribal, library and archival institutional records. Exact-name searches were followed by justified OCR/spelling variants only where the printed form was visibly suspect. A surname or exact-name hit remained a search lead unless a dated place, occupation, kinship, migration, paired-name or other independent discriminator bridged it to the postal person.
 
-This is a planning scaffold. The completion PR must add dated outcomes for all 75 members, source-ledger records and any justified candidate/household provenance, then run the relevant checks and update the cumulative research/status references before merge.
+Strong corroborations include Nicholas Boilvin and Noel Vasseur through the 1833 Treaty of Chicago payment schedule, Mary Barrows through early-Chicago school histories, Martin Cleland through a specific 1834 Chicago prospecting chronology, and Nathan Christy through paired Nathan/Rumsey Christy continuity into the 1843 Chicago directory.
+
+Nine candidates remain unasserted because of competing geography, date gaps, duplicate given-name possibilities or chronology conflicts: Elisha Raymond, Thomas McClintock, John Reynolds, Robert Moody, Nathan Hutchins, Oscar L. Hawley, Moritz Baumgarten, Samuel L. Selden and Starr Titus.
+
+The durable handoff is under `chicago/reference/resident-research/T-0484/` and includes the XLSX workbook, CSV export and README/method note. The authoritative outcome ledger is `data/research/residents/pass_10_findings.json`; new source records are in `data/sources/`.
+
+No canonical household/person facts are promoted by this pass. Later resident-research adjudication should apply any corroborated facts field-by-field with provenance and preserve conflicts rather than treating this research ledger as a silent household update.
+
+In the full cohort sequence T-0484 occupies reviews 676–750. The cumulative public compiler must be reconciled to **750** after the parallel T-0482 and T-0483 cohorts immediately before it are merged; T-0484 must not overwrite those in-flight integrations.

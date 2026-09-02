@@ -244,8 +244,9 @@ T-0439 — Two pixel-sensitivity checks fail when parts 9-12 run together and pa
 T-0440 — Clark, Filer & Co.'s live placement is empty while three printings put its warehouse five doors east of Randolph
 T-0449 — Four South Water frontage entries declare lots their runs never reach, and each hides its block's headroom
 T-0463 — Deep research pass three for 75 real named residents
+T-0480 — Research sixth 75-person real-resident cohort
+T-0481 — Research seventh 75-person real-resident cohort
 T-0482 — Research eighth 75-person real-resident cohort
 T-0483 — Research ninth 75-person real-resident cohort
-T-0484 — Research tenth 75-person real-resident cohort
 T-0485 — Research eleventh 75-person real-resident cohort
 T-0486 — Research twelfth 11-person real-resident cohort
