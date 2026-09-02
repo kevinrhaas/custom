@@ -5,12 +5,17 @@ on: [push]
 permissions:
   contents: write
 
+concurrency:
+  group: resident-synthesis-repair
+  cancel-in-progress: true
+
 jobs:
   repair:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
         with:
+          ref: resident/1835-evidence-synthesis-20260902
           fetch-depth: 0
       - uses: actions/setup-python@v5
         with:
@@ -23,4 +28,4 @@ jobs:
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           git add -A
           git commit -m 'T-0490: make resident synthesis reproducible and capture census bridge'
-          git push
+          git push origin HEAD:resident/1835-evidence-synthesis-20260902
