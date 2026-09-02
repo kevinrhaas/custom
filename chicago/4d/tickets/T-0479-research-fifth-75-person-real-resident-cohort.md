@@ -1,7 +1,7 @@
 ---
 id: T-0479
 title: Research fifth 75-person real-resident cohort
-state: claimed
+state: done
 epic: META
 requested_by: owner
 seen: true
@@ -9,8 +9,8 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-09-02
-closed: null
-pr: 625
+closed: 2026-09-02
+pr: 650
 claimed_by: chatgpt-resident-agent-a7c4f2 9/2/2026, 3:26:42 PM CT
 blocked_on: null
 needs_bake: false
@@ -39,3 +39,5 @@ PR #625 was the initial tranche, not completion: 66 postal-list members remained
 - A research note records methods, strongest findings, candidate/no-find counts, limits and the cumulative reviewed total.
 - Relevant JSON/selector/compiler checks pass; any environment-only smoke limitation is reported rather than bypassed.
 - A completion PR targets `dev` and records the pass-5 results and continuation baseline; PR #625 alone does not close this ticket.
+
+**Completion:** merged PR #650 supplies the completed 75-person findings ledger, source records, durable XLSX/CSV/README package, selector/gates, and cumulative 375-review integration on `dev`.
