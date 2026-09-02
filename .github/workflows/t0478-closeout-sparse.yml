@@ -16,6 +16,7 @@ jobs:
         with:
           ref: steward/t0478-closeout-fix
           fetch-depth: 1
+          lfs: true
           sparse-checkout: |
             .github/workflows
             chicago/4d
@@ -39,8 +40,6 @@ jobs:
           root = Path('chicago/4d')
           ref = Path('chicago/reference/resident-research/T-0478')
 
-          # Export the already-committed working workbook's Residents sheet to
-          # the machine-readable CSV required by the resident-research contract.
           xlsx = ref / 'T-0478_resident_research_working.xlsx'
           csv_path = ref / 'T-0478_resident_research.csv'
           wb = load_workbook(xlsx, read_only=True, data_only=False)
@@ -50,10 +49,6 @@ jobs:
               for row in ws.iter_rows(values_only=True):
                   writer.writerow(['' if value is None else value for value in row])
 
-          # #639 preserved a compact pass-4 manifest (person_id + stratum), but
-          # its compiler still expected pass-2/3's richer manifest shape. Read
-          # display/household metadata from the mutually traceable durable CSV;
-          # membership stays governed by the manifest and outcomes by findings.
           compiler = root / 'tools/compile_resident_research_pilot.py'
           s = compiler.read_text()
           if 'import csv\n' not in s:
