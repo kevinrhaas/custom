@@ -1,7 +1,7 @@
 ---
 id: T-0486
 title: Research twelfth 11-person real-resident cohort
-state: claimed
+state: open
 epic: META
 requested_by: owner
 seen: true
@@ -11,7 +11,7 @@ parent: null
 opened: 2026-09-02
 closed: null
 pr: null
-claimed_by: chatgpt-resident-agent-sol56 9/2/2026, 5:10 PM CT
+claimed_by: null
 blocked_on: null
 needs_bake: false
 ---
