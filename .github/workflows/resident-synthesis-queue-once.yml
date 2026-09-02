@@ -1,0 +1,39 @@
+name: resident-synthesis-queue-once
+
+on:
+  push:
+    branches:
+      - tickets/resident-synthesis-queue-20260902
+
+permissions:
+  contents: write
+
+jobs:
+  queue:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: tickets/resident-synthesis-queue-20260902
+          fetch-depth: 0
+      - name: Append owner-ordered resident synthesis sequence
+        shell: python
+        run: |
+          from pathlib import Path
+          p = Path('chicago/4d/tickets/QUEUE.md')
+          text = p.read_text(encoding='utf-8')
+          ids = ['T-0487', 'T-0488', 'T-0489', 'T-0490']
+          if not all(any(line.startswith(tid + ' ') for line in text.splitlines()) for tid in ids):
+              block = '''\n# --- RESIDENT / HOUSEHOLD EVIDENCE SYNTHESIS — OWNER REQUEST, 2026-09-02.\n# --- The twelve completed research cohorts are inputs. Run in dependency order: adjudicate,\n# --- promote attested facts, promote inferred/projected residents while retiring reconstructed\n# --- people, then audit the census/research synthesis.\nT-0487 — Adjudicate the complete resident research corpus against newspaper and census evidence\nT-0488 — Promote attested resident and household findings from the adjudicated research corpus\nT-0489 — Promote inferred and projected residents and retire the pre-existing reconstructed resident layer\nT-0490 — Audit the resident and household census synthesis and publish the evidence-based population summary\n'''
+              p.write_text(text.rstrip() + '\n' + block, encoding='utf-8')
+      - name: Remove one-time workflow and commit queue
+        run: |
+          rm .github/workflows/resident-synthesis-queue-once.yml
+          git config user.name "chatgpt-resident-synthesis"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add chicago/4d/tickets/QUEUE.md .github/workflows/resident-synthesis-queue-once.yml
+          if ! git diff --cached --quiet; then
+            git commit -m "tickets: queue T-0487 through T-0490 resident synthesis"
+            git push origin HEAD:tickets/resident-synthesis-queue-20260902
+          fi
