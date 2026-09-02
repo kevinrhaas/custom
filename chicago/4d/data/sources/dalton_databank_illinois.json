@@ -1,0 +1,14 @@
+{
+  "id": "dalton_databank_illinois",
+  "type": "website_index",
+  "citation": "Dalton Data Bank, Illinois census/genealogy index, Edward Dalton entry.",
+  "date": "1840",
+  "describes_date": "1840",
+  "locator": "Edward Dalton, Chicago First Ward, 1840 census index entry.",
+  "url": "https://www.daltondatabank.org/Illinois.html",
+  "tier": 5,
+  "rights_status": "web_index",
+  "asset_use": "text_only",
+  "verified": true,
+  "note": "Genealogy index used only as a candidate lead. The later 1840 Chicago record is not sufficient to identify the 1835 addressee without another discriminator."
+}
