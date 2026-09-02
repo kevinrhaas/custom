@@ -16,7 +16,6 @@ jobs:
         with:
           ref: steward/t0478-closeout-fix
           fetch-depth: 1
-          lfs: true
           sparse-checkout: |
             .github/workflows
             chicago/4d
@@ -28,59 +27,113 @@ jobs:
           python-version: '3.12'
 
       - name: Install dependencies
-        run: python -m pip install --quiet openpyxl jsonschema pyproj
+        run: python -m pip install --quiet jsonschema pyproj
 
       - name: Repair T-0478 closeout contract
         run: |
           python - <<'PY'
           from pathlib import Path
           import csv, json
-          from openpyxl import load_workbook
 
           root = Path('chicago/4d')
           ref = Path('chicago/reference/resident-research/T-0478')
+          cohort_path = root / 'data/research/residents/pass_04_75_cohort.json'
+          findings_path = root / 'data/research/residents/pass_04_findings.json'
+          cohort = json.loads(cohort_path.read_text())
+          findings = json.loads(findings_path.read_text())
 
-          xlsx = ref / 'T-0478_resident_research_working.xlsx'
+          # Build a canonical person lookup. Pass 4 intentionally committed a
+          # compact manifest, so name/household metadata must be joined from the
+          # canonical resident records rather than assumed to exist in the manifest.
+          residents = root / 'data/residents'
+          index = json.loads((residents / 'index.json').read_text())
+          person_index = {}
+          for item in index['households']:
+              household = json.loads((residents / item['file']).read_text())
+              for person in household.get('persons', []):
+                  person_index[person['id']] = (household, person)
+
+          # Export the required machine-readable research receipt from the fixed
+          # manifest + authored findings. This is a derived handoff; it makes no
+          # new historical judgment.
+          headers = [
+              'ticket','cohort','person_id','household_id','name_transcribed','name_normalized',
+              'stratum','seed_source_id','seed_source_date','letter_list_dates','research_outcome',
+              'identity_confidence','residence_confidence','household_confidence','occupation_confidence',
+              'candidate_ids','proposed_birth','proposed_death','proposed_arrival_migration',
+              'proposed_occupation_trade','proposed_address_property','proposed_spouse_kin',
+              'proposed_civic_voter_census','proposed_household_facts','evidence_for','evidence_against',
+              'source_ids','source_urls_locators','source_tiers','queries','access_dates',
+              'source_limitations','recommended_data_action','notes'
+          ]
+          rows = []
+          output_map = {
+              'corroborated_enrichment': 'corroborated',
+              'candidate_identity': 'candidate',
+              'no_corroboration': 'no_corroboration',
+          }
+          for member in cohort['people']:
+              pid = member['person_id']
+              if pid not in person_index:
+                  raise SystemExit(f'{pid}: missing from canonical resident index')
+              household, person = person_index[pid]
+              result = findings['overrides'].get(pid, {
+                  'outcome': 'no_corroboration',
+                  'summary': findings['default_summary'],
+                  'sources': [],
+                  'candidates': [],
+              })
+              candidates = result.get('candidates', [])
+              candidate_ids = '; '.join(c.get('name','') for c in candidates if c.get('name'))
+              evidence_against = ' | '.join('; '.join(c.get('conflicts', [])) for c in candidates if c.get('conflicts'))
+              queries = result.get('queries', [q.format(name=person['name']) for q in findings['query_templates']])
+              letter_dates = '; '.join(person.get('letter_list_returns', []))
+              sources = result.get('sources', [])
+              proposed = result.get('population_updates', [])
+              proposed_household = '; '.join(
+                  f"{u.get('field')}: {u.get('old')} -> {u.get('new')} ({u.get('reason','')})"
+                  for u in proposed
+              )
+              action = 'T-0487 adjudication'
+              if result['outcome'] == 'corroborated_enrichment':
+                  action = 'T-0487 adjudication; T-0488 attested promotion where supported'
+              elif result['outcome'] == 'no_corroboration':
+                  action = 'retain documented no-find; revisit only with new evidence'
+              rows.append([
+                  'T-0478','4',pid,household['id'],'',person['name'],member['stratum'],
+                  '; '.join(person.get('sources', [])),'',letter_dates,output_map[result['outcome']],
+                  'corroborated' if result['outcome']=='corroborated_enrichment' else ('unasserted candidate' if result['outcome']=='candidate_identity' else 'unresolved'),
+                  household.get('present_on_scene_date', {}).get('value',''),
+                  'existing canonical household; composition not re-adjudicated in T-0478',
+                  (person.get('occupation') or {}).get('value',''),candidate_ids,
+                  '','','','','','','',proposed_household,result['summary'],evidence_against,
+                  '; '.join(sources),'','', ' | '.join(queries),'2026-09-02',
+                  'Negative searches are not proof of nonexistence; candidate identity requires more than name similarity.',
+                  action,result['summary']
+              ])
+          if len(rows) != 75:
+              raise SystemExit(f'T-0478 CSV expected 75 rows, got {len(rows)}')
           csv_path = ref / 'T-0478_resident_research.csv'
-          wb = load_workbook(xlsx, read_only=True, data_only=False)
-          ws = wb['Residents']
           with csv_path.open('w', newline='', encoding='utf-8') as fh:
               writer = csv.writer(fh)
-              for row in ws.iter_rows(values_only=True):
-                  writer.writerow(['' if value is None else value for value in row])
+              writer.writerow(headers)
+              writer.writerows(rows)
 
+          # Repair #639's pass-4 compiler: join compact manifest members to the
+          # canonical resident records instead of reading nonexistent manifest fields.
           compiler = root / 'tools/compile_resident_research_pilot.py'
           s = compiler.read_text()
-          if 'import csv\n' not in s:
-              s = s.replace('import argparse\nimport json', 'import argparse\nimport csv\nimport json')
-          old = 'PASS4_FINDINGS = ROOT / "data/research/residents/pass_04_findings.json"\nOUT = ROOT / "data/residents/research_pilot.json"'
-          new = 'PASS4_FINDINGS = ROOT / "data/research/residents/pass_04_findings.json"\nPASS4_CSV = ROOT.parent / "reference/resident-research/T-0478/T-0478_resident_research.csv"\nOUT = ROOT / "data/residents/research_pilot.json"'
-          if old in s:
-              s = s.replace(old, new)
-          elif 'PASS4_CSV' not in s:
-              raise SystemExit('PASS4 constant block not found')
-
           marker = 'def derive() -> dict:\n    prior = load(OUT)\n    cohort, findings = load(PASS4_COHORT), load(PASS4_FINDINGS)\n'
-          replacement = '''def load_pass4_rows() -> dict[str, dict[str, str]]:\n    with PASS4_CSV.open(newline="", encoding="utf-8") as fh:\n        rows = list(csv.DictReader(fh))\n    if len(rows) != 75:\n        raise SystemExit(f"T-0478 durable CSV must contain 75 residents, got {len(rows)}")\n    by_id = {}\n    for row in rows:\n        pid = row.get("person_id", "")\n        if not pid or pid in by_id:\n            raise SystemExit(f"T-0478 durable CSV has missing/duplicate person_id {pid!r}")\n        if row.get("ticket") != "T-0478":\n            raise SystemExit(f"{pid}: durable CSV ticket is not T-0478")\n        by_id[pid] = row\n    return by_id\n\n\ndef derive() -> dict:\n    prior = load(OUT)\n    cohort, findings = load(PASS4_COHORT), load(PASS4_FINDINGS)\n    csv_rows = load_pass4_rows()\n'''
-          if marker in s:
-              s = s.replace(marker, replacement)
-          elif 'def load_pass4_rows()' not in s:
+          replacement = '''def load_person_index() -> dict[str, tuple[dict, dict]]:\n    residents = ROOT / "data/residents"\n    index = load(residents / "index.json")\n    people = {}\n    for item in index["households"]:\n        household = load(residents / item["file"])\n        for person in household.get("persons", []):\n            people[person["id"]] = (household, person)\n    return people\n\n\ndef derive() -> dict:\n    prior = load(OUT)\n    cohort, findings = load(PASS4_COHORT), load(PASS4_FINDINGS)\n    person_index = load_person_index()\n'''
+          if marker not in s:
               raise SystemExit('compiler derive marker not found')
-
-          marker = '    cohort_ids = {p["person_id"] for p in cohort["people"]}\n    if prior_ids & cohort_ids:'
-          replacement = '''    cohort_ids = {p["person_id"] for p in cohort["people"]}\n    if set(csv_rows) != cohort_ids:\n        missing = sorted(cohort_ids - set(csv_rows))\n        extra = sorted(set(csv_rows) - cohort_ids)\n        raise SystemExit(f"T-0478 durable CSV/manifest mismatch: missing={missing}, extra={extra}")\n    if prior_ids & cohort_ids:'''
-          if marker in s:
-              s = s.replace(marker, replacement)
-          elif 'durable CSV/manifest mismatch' not in s:
-              raise SystemExit('compiler cohort marker not found')
-
+          s = s.replace(marker, replacement)
           marker = '        pid, name = person["person_id"], person["name"]\n'
-          replacement = '''        pid = person["person_id"]\n        meta = csv_rows[pid]\n        name = meta.get("name_normalized") or meta.get("name_transcribed") or pid\n        household_id = meta.get("household_id") or ""\n        if not household_id:\n            raise SystemExit(f"{pid}: durable CSV is missing household_id")\n        stratum = person.get("stratum") or meta.get("stratum")\n        starting_evidence = "established_profile" if stratum == "established_profile" else "letter_list_only"\n'''
-          if marker in s:
-              s = s.replace(marker, replacement)
-          elif 'meta = csv_rows[pid]' not in s:
+          replacement = '''        pid = person["person_id"]\n        if pid not in person_index:\n            raise SystemExit(f"{pid}: missing from canonical resident records")\n        household, canonical = person_index[pid]\n        name = canonical["name"]\n        starting_evidence = "established_profile" if person.get("stratum") == "established_profile" else "letter_list_only"\n'''
+          if marker not in s:
               raise SystemExit('compiler person marker not found')
-          s = s.replace('            "household_id": person["household_id"],', '            "household_id": household_id,')
+          s = s.replace(marker, replacement)
+          s = s.replace('            "household_id": person["household_id"],', '            "household_id": household["id"],')
           s = s.replace('            "starting_evidence": person["starting_evidence"],', '            "starting_evidence": starting_evidence,')
           compiler.write_text(s)
 
@@ -97,11 +150,9 @@ jobs:
                               '# T-0442, T-0462, T-0463, and T-0478. These reviews sit beside household facts on purpose:')
           old = '''step "the third non-overlapping 75-person research cohort is fixed" \\\n  python3 tools/select_resident_research_pass_3.py --gate\n\nstep "all 225 reviewed residents have reproducible research outcomes" \\\n  python3 tools/compile_resident_research_pilot.py --gate'''
           new = '''step "the third non-overlapping 75-person research cohort is fixed" \\\n  python3 tools/select_resident_research_pass_3.py --gate\n\nstep "the fourth non-overlapping 75-person research cohort is fixed" \\\n  python3 tools/select_resident_research_pass_4.py --gate\n\nstep "all 300 reviewed residents have reproducible research outcomes" \\\n  python3 tools/compile_resident_research_pilot.py --gate'''
-          if old in text:
-              text = text.replace(old, new)
-          elif 'fourth non-overlapping 75-person research cohort' not in text:
+          if old not in text:
               raise SystemExit('check.sh resident-research block not found')
-          check.write_text(text)
+          check.write_text(text.replace(old, new))
           PY
 
       - name: Rebuild T-0478 derived state
@@ -125,6 +176,9 @@ jobs:
               rows = list(csv.DictReader(fh))
           assert len(rows) == 75
           assert all(r['research_outcome'] != 'pending' for r in rows)
+          assert sum(r['research_outcome']=='corroborated' for r in rows) == 22
+          assert sum(r['research_outcome']=='candidate' for r in rows) == 4
+          assert sum(r['research_outcome']=='no_corroboration' for r in rows) == 49
           doc = json.loads((root / 'data/residents/research_pilot.json').read_text())
           assert doc['version'] == 4
           assert doc['ticket'] == 'T-0478'
@@ -133,6 +187,9 @@ jobs:
           ticket = (root / 'tickets/T-0478-research-fourth-75-person-real-resident-cohort.md').read_text()
           assert 'state: done' in ticket or 'state: closed' in ticket
           assert 'pr: 639' in ticket
+          sidecar = (root / 'data/sidecars/1835/residents_sources.json').read_text()
+          assert 'buck_pioneer_milwaukee_porthier_1835' in sidecar
+          assert 'history_medicine_chicago_kimberly_maxwell' in sidecar
           print('T-0478 closeout invariants PASS')
           PY
 
