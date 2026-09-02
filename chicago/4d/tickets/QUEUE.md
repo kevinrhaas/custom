@@ -243,3 +243,12 @@ T-0438 — The letter-list cohort is 2.54 MiB of the published tree, and it is n
 T-0439 — Two pixel-sensitivity checks fail when parts 9-12 run together and pass when part 9 runs alone
 T-0440 — Clark, Filer & Co.'s live placement is empty while three printings put its warehouse five doors east of Randolph
 T-0449 — Four South Water frontage entries declare lots their runs never reach, and each hides its block's headroom
+
+# --- RESIDENT / HOUSEHOLD EVIDENCE SYNTHESIS — OWNER REQUEST, 2026-09-02.
+# --- The twelve completed research cohorts are inputs. Run in dependency order: adjudicate,
+# --- promote attested facts, promote inferred/projected residents while retiring reconstructed
+# --- people, then audit the census/research synthesis.
+T-0487 — Adjudicate the complete resident research corpus against newspaper and census evidence
+T-0488 — Promote attested resident and household findings from the adjudicated research corpus
+T-0489 — Promote inferred and projected residents and retire the pre-existing reconstructed resident layer
+T-0490 — Audit the resident and household census synthesis and publish the evidence-based population summary
