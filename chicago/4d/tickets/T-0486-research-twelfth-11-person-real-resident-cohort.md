@@ -10,7 +10,7 @@ legacy_id: null
 parent: null
 opened: 2026-09-02
 closed: 2026-09-02
-pr: completion PR pending
+pr: 665
 claimed_by: chatgpt-resident-agent-sol56 9/2/2026, 5:10 PM CT; completion takeover explicitly authorized by owner 2026-09-02
 blocked_on: null
 needs_bake: false
@@ -29,4 +29,4 @@ Acceptance notes:
 - candidate conflicts and negative searches are explicit;
 - workbook/CSV/README/findings/source records are committed and mutually traceable;
 - no silent household edits;
-- completion PR targets `dev`.
+- completion PR #665 targets `dev`.
