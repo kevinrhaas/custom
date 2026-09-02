@@ -9,7 +9,7 @@
   "sources": [
    "chicago_democrat_1833_11_26"
   ],
-  "note": "Not_later_than precision on the issue date.",
+  "note": "Not_later_than precision on the issue date. The UIUC Daniel Elston Papers finding aid independently says he came to Chicago in 1833, but the contemporary newspaper supplies the tighter bound used here.",
   "precision": "not_later_than"
  },
  "party_size_on_arrival": {
@@ -18,9 +18,12 @@
   "note": "Not attested in anything this project holds."
  },
  "origin": {
-  "value": null,
-  "confidence": "reconstructed",
-  "note": "Not attested in anything this project holds."
+  "value": "England",
+  "confidence": "attested",
+  "sources": [
+   "uiuc_daniel_elston_papers"
+  ],
+  "note": "The University of Illinois finding aid describes Daniel Elston as an English merchant who came to Chicago in 1833. It does not identify a more specific English birthplace."
  },
  "reason_for_coming": {
   "value": null,
@@ -36,9 +39,10 @@
   "value": "elston_soap_candle_manufactory",
   "confidence": "attested",
   "sources": [
-   "chicago_democrat_1833_11_26"
+   "chicago_democrat_1833_11_26",
+   "uiuc_daniel_elston_papers"
   ],
-  "note": "data/structures/elston_soap_candle_manufactory.json carries 'Daniel Elston & Co.' as its occupants on the same advertisement."
+  "note": "data/structures/elston_soap_candle_manufactory.json carries 'Daniel Elston & Co.' as its occupants on the contemporary advertisement. The UIUC finding aid independently corroborates that Elston manufactured soap and candles in Chicago."
  },
  "present_on_scene_date": {
   "value": "present",
@@ -59,18 +63,20 @@
     "value": "soap_and_candle_maker",
     "confidence": "attested",
     "sources": [
-     "chicago_democrat_1833_11_26"
+     "chicago_democrat_1833_11_26",
+     "uiuc_daniel_elston_papers"
     ],
-    "note": "'Daniel Elston & [illegible]', soap and candle manufactory, paying cash for tallow and house ashes - Chicago Democrat, 26 November 1833. The word after the ampersand is obliterated by an ink blot on the scan and 'Co.' is a reasonable expansion rather than a reading."
+    "note": "'Daniel Elston & [illegible]', soap and candle manufactory, paying cash for tallow and house ashes - Chicago Democrat, 26 November 1833. The word after the ampersand is obliterated by an ink blot on the scan and 'Co.' is a reasonable expansion rather than a reading. The UIUC finding aid independently identifies Elston as an English merchant who manufactured soap and candles in Chicago and later erected a small distillery and brewery."
    },
    "sources": [
     "andreas_1884_v1",
-    "chicago_democrat_1833_11_26"
+    "chicago_democrat_1833_11_26",
+    "uiuc_daniel_elston_papers"
    ],
-   "note": "A MANUFACTURER, WHICH THE 1835 TOWN HAS ALMOST NONE OF. Buying tallow and house ashes is buying the by-products of the packing trade and of every household fire in the town, which makes this one business a measure of how many households there were. Andreas has a Daniel Elston running the largest of the city's five brickyards by 1854 - two decades past the scene and evidence of nothing about 1835 except that the man stayed. The Chicago Democrat of 26 November 1833 is the only contemporary Chicago document this project holds; an advertiser in it was paying to be found, which makes it strong evidence of existence and address in November 1833 and weak evidence of survival to 1 July 1835, nineteen months and about 2,400 people later."
+   "note": "A MANUFACTURER, WHICH THE 1835 TOWN HAS ALMOST NONE OF. Buying tallow and house ashes is buying the by-products of the packing trade and of every household fire in the town, which makes this one business a measure of how many households there were. Andreas has a Daniel Elston running the largest of the city's five brickyards by 1854 - two decades past the scene and evidence of nothing about 1835 except that the man stayed. The Chicago Democrat of 26 November 1833 is the contemporary Chicago document this project holds; an advertiser in it was paying to be found, which makes it strong evidence of existence in November 1833 and weak evidence of survival to 1 July 1835, nineteen months and about 2,400 people later. The UIUC archive adds independently sourced English origin and a longer manufacturing chronology without supplying a 1 July 1835 address."
   }
  ],
  "touches_removal": false,
  "review_required": false,
- "research_note": "THE ONLY CHEMICAL WORKS IN THE 1835 DATASET, and the household that best shows what a single advertisement can imply about a population. A soap and candle manufactory buying tallow implies slaughtering (this dataset models three packing and slaughter buildings) and buying house ashes implies wood fires in a lot of houses, which is the population K1 is trying to count."
+ "research_note": "THE ONLY CHEMICAL WORKS IN THE 1835 DATASET, and the household that best shows what a single advertisement can imply about a population. A soap and candle manufactory buying tallow implies slaughtering (this dataset models three packing and slaughter buildings) and buying house ashes implies wood fires in a lot of houses, which is the population K1 is trying to count. T-0463 independently corroborated Elston through the University of Illinois Daniel Elston Papers finding aid and safely promotes only the finding aid's explicit English origin and manufacturing description; it does not backfill a scene-date address."
 }
