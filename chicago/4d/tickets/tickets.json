@@ -1,6 +1,6 @@
 {
   "project": "chicago-4d",
-  "generated_ct": "Sep 2, 2026, 12:30 PM",
+  "generated_ct": "Sep 2, 2026, 12:35 PM",
   "tickets": [
     {
       "id": "T-0001",
@@ -7942,6 +7942,24 @@
       "queue_rank": 57
     },
     {
+      "id": "T-0478",
+      "title": "Research fourth 75-person real-resident cohort",
+      "state": "review",
+      "epic": "META",
+      "requested_by": "owner",
+      "seen": true,
+      "effort": "M",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-09-02",
+      "closed": null,
+      "pr": null,
+      "claimed_by": "steward/resident-research-pass-4-reconciled",
+      "blocked_on": null,
+      "needs_bake": false,
+      "queue_rank": 102
+    },
+    {
       "id": "T-0479",
       "title": "Research fifth 75-person real-resident cohort",
       "state": "open",
@@ -7957,7 +7975,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 102
+      "queue_rank": 103
     },
     {
       "id": "T-0480",
@@ -7975,7 +7993,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 103
+      "queue_rank": 104
     },
     {
       "id": "T-0481",
@@ -7993,7 +8011,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 104
+      "queue_rank": 105
     },
     {
       "id": "T-0482",
@@ -8011,7 +8029,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 105
+      "queue_rank": 106
     },
     {
       "id": "T-0483",
@@ -8029,7 +8047,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 106
+      "queue_rank": 107
     },
     {
       "id": "T-0484",
@@ -8047,7 +8065,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 107
+      "queue_rank": 108
     },
     {
       "id": "T-0485",
@@ -8065,7 +8083,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 108
+      "queue_rank": 109
     },
     {
       "id": "T-0486",
@@ -8083,7 +8101,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 109
+      "queue_rank": 110
     },
     {
       "id": "T-0487",
