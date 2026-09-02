@@ -1,0 +1,27 @@
+{
+  "_doc": "Initial T-0486 ledger. Every selected person is explicitly pending until a dated source sweep records an outcome; pending is not a no-find.",
+  "ticket": "T-0486",
+  "reviewed_on": "2026-09-02",
+  "status": "pending",
+  "default_summary": "This member is reserved by the frozen manifest and has not yet received a complete source sweep. No household or person fact is promoted from this pending state.",
+  "query_templates": [
+    "\"{name}\" Chicago 1835",
+    "\"{name}\" Illinois 1834 1835",
+    "\"{name}\" genealogy occupation migration"
+  ],
+  "completed_person_ids": [],
+  "pending_person_ids": [
+    "ll_wm_p_cleaveland",
+    "ll_wm_shier",
+    "ll_wm_t_bently",
+    "ll_wm_teall",
+    "ll_wm_winson",
+    "ll_wm_wood",
+    "ll_woodworth_james_h",
+    "ll_worden_nathaniel",
+    "ll_works_charles",
+    "ll_young_gideon",
+    "ll_zearly_reason"
+  ],
+  "overrides": {}
+}
