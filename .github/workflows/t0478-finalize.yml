@@ -31,11 +31,7 @@ jobs:
       - name: Reconcile T-0478 derived files and mirrors
         working-directory: chicago/4d
         run: python3 tools/t0478_reconcile.py
-      - name: Run full Chicago 4D gate for diagnostic separation
-        continue-on-error: true
-        working-directory: chicago/4d
-        run: ./tools/check.sh
-      - name: Recheck T-0478 assertions after diagnostic gate
+      - name: Run T-0478 completion gates
         working-directory: chicago/4d
         run: |
           python3 tools/select_resident_research_pass_4.py --gate
