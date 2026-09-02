@@ -1,0 +1,33 @@
+name: T-0479 atomic claim
+
+on:
+  push:
+    branches:
+      - research/T-0479-chatgpt-a7c4f2
+
+permissions:
+  contents: write
+
+jobs:
+  claim:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: research/T-0479-chatgpt-a7c4f2
+          fetch-depth: 1
+
+      - name: Claim T-0479 with repository tooling
+        run: |
+          cd chicago/4d
+          node tools/ticket.mjs claim T-0479 --by chatgpt-resident-agent-a7c4f2
+          node tools/ticket.mjs check
+
+      - name: Commit claim and remove temporary workflow
+        run: |
+          git rm .github/workflows/t0479-claim-chatgpt-a7c4f2.yml
+          git config user.name "ChatGPT resident research agent"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add chicago/4d/tickets site/chicago/4d/tickets.json
+          git commit -m "claim: T-0479 resident research"
+          git push origin HEAD:research/T-0479-chatgpt-a7c4f2
