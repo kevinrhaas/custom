@@ -1,0 +1,42 @@
+name: T-0479 build
+on:
+  push:
+    branches:
+      - research/T-0479-chatgpt-a7c4f2-complete
+permissions:
+  contents: write
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: research/T-0479-chatgpt-a7c4f2-complete
+          fetch-depth: 1
+          sparse-checkout: |
+            .github/workflows
+            chicago/4d
+            chicago/reference/resident-research
+            site/chicago/4d/data/residents/research_pilot.json
+          sparse-checkout-cone-mode: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Generate T-0479 research artifacts
+        run: |
+          python3 chicago/4d/tools/freeze_resident_research_pass_5_frame.py
+          python3 chicago/4d/tools/complete_resident_research_pass_5.py
+          cd chicago/4d
+          python3 tools/select_resident_research_pass_5.py --gate
+          python3 tools/compile_resident_research_pilot.py
+          python3 tools/compile_resident_research_pilot.py --gate
+          mkdir -p ../../site/chicago/4d/data/residents
+          cp data/residents/research_pilot.json ../../site/chicago/4d/data/residents/research_pilot.json
+      - name: Commit generated state
+        run: |
+          git rm .github/workflows/t0479-build.yml
+          git config user.name "ChatGPT resident research agent"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add chicago/4d chicago/reference/resident-research/T-0479 site/chicago/4d/data/residents/research_pilot.json
+          git commit -m "research: complete T-0479 resident cohort artifacts"
+          git push origin HEAD:research/T-0479-chatgpt-a7c4f2-complete
