@@ -4,6 +4,9 @@ on:
   push:
     branches:
       - research/T-0483-5e8a41-complete
+  pull_request:
+    branches:
+      - dev
 
 permissions:
   contents: write
@@ -15,6 +18,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
+          ref: research/T-0483-5e8a41-complete
           fetch-depth: 0
       - name: Decode and unpack completion payload
         shell: bash
@@ -43,4 +47,4 @@ jobs:
           git diff --cached --stat
           git diff --cached --quiet && exit 0
           git commit -m 'T-0483: materialize completion payload'
-          git push origin HEAD:${GITHUB_REF_NAME}
+          git push origin HEAD:research/T-0483-5e8a41-complete
