@@ -91,6 +91,14 @@
 - **T-0449** Four South Water frontage entries declare lots their runs never reach, and each hides its block's headroom
 - **T-0463** Deep research pass three for 75 real named residents · **OWNER**
 
+- **T-0480** Research sixth 75-person real-resident cohort · **OWNER** · SEEN
+- **T-0481** Research seventh 75-person real-resident cohort · **OWNER** · SEEN
+- **T-0482** Research eighth 75-person real-resident cohort · **OWNER** · SEEN
+- **T-0483** Research ninth 75-person real-resident cohort · **OWNER** · SEEN
+- **T-0484** Research tenth 75-person real-resident cohort · **OWNER** · SEEN
+- **T-0485** Research eleventh 75-person real-resident cohort · **OWNER** · SEEN
+- **T-0486** Research twelfth 11-person real-resident cohort · **OWNER** · SEEN
+
 ## ⏸ Waiting on an owner decision (5)
 
 - **T-0135** The draw-call ceiling is checked at one camera, and it is not the worst one · **OWNER** · SEEN
