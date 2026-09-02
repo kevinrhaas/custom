@@ -1,14 +1,14 @@
 {
   "id": "uiuc_daniel_elston_papers",
   "type": "website",
-  "citation": "University of Illinois, Illinois History and Lincoln Collections, Daniel Elston papers catalog record",
-  "date": "accessed 2026-09-01",
-  "describes_date": "nineteenth century",
-  "locator": "collection description",
-  "url": "https://archon.library.illinois.edu/ihlc/index.php?p=collections/controlcard&id=614",
+  "citation": "University of Illinois, Illinois History and Lincoln Collections, Daniel Elston Papers, 1833-1852, collection identifier 613",
+  "date": "accessed 2026-09-02",
+  "describes_date": "1833-1852",
+  "locator": "collection 613; Archon internal record 602",
+  "url": "https://archon.library.illinois.edu/ihlc/?id=602&p=collections%2Fcontrolcard",
   "tier": 4,
   "rights_status": "check_required",
   "asset_use": "text_only",
   "verified": true,
-  "note": "Institutional finding aid reviewed for T-0463. It corroborates Elston's 1833 arrival, English origin and soap-and-candle manufacture; it is not a scene-date address."
+  "note": "Institutional finding aid reviewed for T-0463. It identifies Elston as an English merchant who came to Chicago in 1833, manufactured soap and candles, and later operated a small distillery and brewery. The previously committed URL pointed to the wrong collection record; this record was re-verified against the live UIUC catalog on 2026-09-02. It is not a scene-date address."
 }
