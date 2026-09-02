@@ -1,0 +1,172 @@
+{
+  "_doc": "Initial T-0479 research tranche. Every selected person is represented by either a reviewed outcome or an explicit pending state; pending is not a no-find.",
+  "ticket": "T-0479",
+  "reviewed_on": "2026-09-02",
+  "status": "in_progress",
+  "default_summary": "This member is queued in the frozen T-0479 manifest and has not yet received a complete source sweep. No household or person fact is promoted from this pending state.",
+  "query_templates": [
+    "\"{name}\" Chicago 1835",
+    "\"{name}\" Illinois 1834 1835",
+    "\"{name}\" genealogy occupation migration"
+  ],
+  "completed_person_ids": [
+    "pratt_oscar",
+    "kercheval_gholson",
+    "kimball_walter",
+    "lampman_henry_s",
+    "hall_benjamin",
+    "murphy_harriet",
+    "taylor_charles",
+    "temple_peter",
+    "wright_john_s"
+  ],
+  "pending_person_ids": [
+    "ll_dalton_edward",
+    "ll_damels_samuel",
+    "ll_darling_daniel",
+    "ll_day_ann_airs",
+    "ll_dean_james_l",
+    "ll_demotte_lenac",
+    "ll_dilbee_david_b",
+    "ll_dykine_elias_s",
+    "ll_fadhams_ddward",
+    "ll_failor_william",
+    "ll_fitzlugh_daniel_i",
+    "ll_food_alonzo_c",
+    "ll_forceman_robert_r",
+    "ll_fre_humphrey_lemuel",
+    "ll_gabbs_james_i1",
+    "ll_gariner_joseph",
+    "ll_gilman_eli",
+    "ll_glen_james_l",
+    "ll_gooding_jaines",
+    "ll_goodsough_harriet_m",
+    "ll_gordon_william",
+    "ll_gould_a_b",
+    "ll_green_damel_m",
+    "ll_harris_david",
+    "ll_harrison_caleb",
+    "ll_hart_edwin_c",
+    "ll_hartman_peter",
+    "ll_hateh_betsey",
+    "ll_hickcox_joseph",
+    "ll_holliday_william",
+    "ll_holmes_hiram",
+    "ll_hopkins_henry",
+    "ll_hugunin_leonard_c",
+    "ll_daniel_hasslen",
+    "ll_daniel_howland",
+    "ll_daniel_newton",
+    "ll_daniel_o_robian",
+    "ll_daniel_platt",
+    "ll_daniel_roberson",
+    "ll_david_ayers",
+    "ll_david_bigelow",
+    "ll_david_dickson",
+    "ll_david_groover",
+    "ll_david_harris",
+    "ll_e_dimmick",
+    "ll_e_simons",
+    "ll_e_w_conte",
+    "ll_edward_a_rogers",
+    "ll_edward_b_coleman",
+    "ll_edward_poor",
+    "ll_edward_trimble",
+    "ll_elias_maynard",
+    "ll_elijah_dix",
+    "ll_elijah_garton",
+    "ll_elisha_h_hazzard",
+    "ll_eliza_pearce",
+    "ll_esther_preston",
+    "ll_ezekiel_turner",
+    "ll_f_c_berger",
+    "ll_f_h_morland",
+    "ll_f_plumer",
+    "ll_ford_freeman",
+    "ll_francis_perry",
+    "ll_geo_a_burlingame",
+    "ll_george_b_parmlee",
+    "ll_hezekiah_gifford"
+  ],
+  "overrides": {
+    "pratt_oscar": {
+      "outcome": "no_corroboration_yet",
+      "summary": "The initial exact-name sweep did not identify a reliable Chicago/Cook County record that can be tied to this printer without an address, date or relative. This provisional no-corroboration result is not evidence that Oscar Pratt did not exist.",
+      "sources": [],
+      "candidates": []
+    },
+    "kercheval_gholson": {
+      "outcome": "corroborated_enrichment",
+      "summary": "The 1833 treaty transcription names Gholson Kercheval of Chicago in a federal payment clause, while the contemporary town record identifies him among Chicago's early civic actors. This corroborates the exact person, Chicago connection and treaty-service chronology; it does not prove a specific household or 1 July 1835 roof.",
+      "sources": [
+        "okstate_treaty_chicago_1833",
+        "chicagology_prefire278"
+      ],
+      "candidates": []
+    },
+    "kimball_walter": {
+      "outcome": "corroborated_enrichment",
+      "summary": "The project's 26 November 1833 Chicago Democrat source records W. Kimball's New Store at the South Water/Clark junction. The unusual initial-plus-surname form matches the resident record and strengthens the merchant identity, but does not safely expand the initial or prove scene-date occupancy.",
+      "sources": [
+        "chicago_democrat_1833_11_26"
+      ],
+      "candidates": []
+    },
+    "lampman_henry_s": {
+      "outcome": "corroborated_enrichment",
+      "summary": "A historical compilation states that Tyler K. Blodgett's spring 1833 north-side brickyard engaged Henry S. Lampman, then of Ann Arbor, as a workman; it calls him Chicago's first brickmaker. This adds a trade and Michigan-origin lead while leaving household membership and 1 July 1835 address unresolved.",
+      "sources": [
+        "chicagology_chicago_brick"
+      ],
+      "candidates": []
+    },
+    "hall_benjamin": {
+      "outcome": "no_corroboration_yet",
+      "summary": "The initial exact-name sweep did not yield a dated Chicago/Cook County record with a discriminator beyond the common name. No occupation, kinship, address or migration fact is promoted; this is not evidence of nonexistence.",
+      "sources": [],
+      "candidates": []
+    },
+    "murphy_harriet": {
+      "outcome": "candidate_identity",
+      "summary": "An 1883 early-Chicago hotel feature records Mrs. Murphy as a knowledgeable witness to the Green Tree, and later history places Harriet and John Murphy managing the United States Hotel by 1836. The exact female name and hotel chronology are useful, but the later management date is not silently back-projected to the 1 July 1835 household.",
+      "sources": [
+        "chicagology_prefire127"
+      ],
+      "candidates": [
+        {
+          "name": "Harriet Murphy, later United States Hotel manager",
+          "assessment": "strong",
+          "asserted": false,
+          "basis": "Named early-Chicago hotel witness and later 1836 hotel chronology.",
+          "conflicts": [
+            "The management evidence begins in 1836; it does not establish her 1835 roof or maiden name."
+          ],
+          "sources": [
+            "chicagology_prefire127"
+          ]
+        }
+      ]
+    },
+    "taylor_charles": {
+      "outcome": "no_corroboration_yet",
+      "summary": "The initial search surfaced several later Charles H. Taylor records but no dated Chicago/Cook County discriminator that safely separates this resident from namesakes. No marriage, occupation or household fact is promoted.",
+      "sources": [],
+      "candidates": []
+    },
+    "temple_peter": {
+      "outcome": "no_corroboration_yet",
+      "summary": "The initial exact-name sweep found multiple unrelated Peter Temple genealogical records but no reliable Chicago/Cook County record tied to Dr Peter Temple in this household. The name remains unresolved rather than merged with a namesake.",
+      "sources": [],
+      "candidates": []
+    },
+    "wright_john_s": {
+      "outcome": "corroborated_enrichment",
+      "summary": "The Chicago Public Library finding aid identifies John S. Wright's Chicago land purchases and original-town lots; a contemporary institutional record also preserves the family papers. This corroborates the exact named Chicago figure and real-estate chronology, while the 1848 deed date is not back-projected to 1835.",
+      "sources": [
+        "cpl_john_s_wright_papers",
+        "wright_in_memoriam_1885"
+      ],
+      "candidates": []
+    }
+  }
+}
