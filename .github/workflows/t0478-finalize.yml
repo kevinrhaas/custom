@@ -31,6 +31,14 @@ jobs:
       - name: Reconcile T-0478 derived files and mirrors
         working-directory: chicago/4d
         run: python3 tools/t0478_reconcile.py
+      - name: Normalize durable CSV line endings
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          p = Path('chicago/reference/resident-research/T-0478/T-0478_resident_research.csv')
+          p.write_bytes(p.read_bytes().replace(b'\r\n', b'\n'))
+          PY
       - name: Run T-0478 completion gates
         working-directory: chicago/4d
         run: |
