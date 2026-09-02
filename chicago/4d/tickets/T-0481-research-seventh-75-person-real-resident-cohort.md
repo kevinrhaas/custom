@@ -1,7 +1,7 @@
 ---
 id: T-0481
 title: Research seventh 75-person real-resident cohort
-state: claimed
+state: closed
 epic: META
 requested_by: owner
 seen: true
@@ -9,8 +9,8 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-09-02
-closed: null
-pr: null
+closed: 2026-09-02
+pr: 651
 claimed_by: chatgpt-resident-agent-b31e72 9/2/2026, 3:33:00 PM CT
 blocked_on: null
 needs_bake: false
@@ -34,3 +34,5 @@ Repository handoff is part of the ticket. Commit a cohort research package under
 - The source registry/ledger, research note, status/roadmap/changelog references and published mirror move together when the research tranche is completed.
 - Relevant JSON/selector/compiler checks pass, and any environment-only smoke limitation is reported rather than bypassed.
 - The completion PR targets `dev`, records the cumulative reviewed total (525 after this cohort), and closes this ticket only after all research artifacts are committed. The already-merged planning scaffold reserves the cohort; it is not completion.
+
+**Completion:** PR #651 commits the full research workbook, resident CSV, README, completed zero-pending findings ledger, source records and research note. Outcome totals are 1 corroborated, 8 candidates, 66 documented no-corroboration, 0 pending.
