@@ -1,0 +1,209 @@
+name: T-0478 finalize resident research pass 4
+
+on:
+  push:
+    branches:
+      - steward/resident-research-pass-4-reconciled
+
+permissions:
+  contents: write
+  pull-requests: read
+
+jobs:
+  finalize:
+    if: github.event.head_commit.message != 'T-0478 generated closeout outputs'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: steward/resident-research-pass-4-reconciled
+          fetch-depth: 0
+
+      - name: Resolve completion PR
+        id: pr
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          PR=""
+          for _ in $(seq 1 30); do
+            PR="$(gh pr list --repo "$GITHUB_REPOSITORY" --head "$GITHUB_REF_NAME" --state open --json number --jq '.[0].number // empty')"
+            [ -n "$PR" ] && break
+            sleep 2
+          done
+          [ -n "$PR" ] || { echo 'completion PR not found' >&2; exit 1; }
+          echo "number=$PR" >> "$GITHUB_OUTPUT"
+
+      - name: Compile 300-review resident payload
+        working-directory: chicago/4d
+        run: python3 tools/compile_resident_research_pilot.py
+
+      - name: Compile 1835 resident source sidecar
+        working-directory: chicago/4d
+        run: python3 tools/compile_scene.py --scene 1835
+
+      - name: Build durable T-0478 CSV
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          import csv, json, re
+          from pathlib import Path
+
+          root = Path('chicago/4d')
+          manifest = json.loads((root/'data/research/residents/pass_04_75_cohort.json').read_text())
+          findings = json.loads((root/'data/research/residents/pass_04_findings.json').read_text())
+          out = Path('chicago/reference/resident-research/T-0478/T-0478_resident_research.csv')
+          out.parent.mkdir(parents=True, exist_ok=True)
+          headers = [
+              'ticket','cohort','person_id','household_id','name_transcribed','name_normalized',
+              'stratum','seed_source_id','seed_source_date','letter_list_dates','research_outcome',
+              'identity_confidence','residence_confidence','household_confidence','occupation_confidence',
+              'candidate_ids','proposed_birth','proposed_death','proposed_arrival_migration',
+              'proposed_occupation_trade','proposed_address_property','proposed_spouse_kin',
+              'proposed_civic_voter_census','proposed_household_facts','evidence_for','evidence_against',
+              'source_ids','source_urls_locators','source_tiers','queries','access_dates',
+              'source_limitations','recommended_data_action','notes'
+          ]
+          candidate_ids = {
+              'mulford_e_h':'cand_mulford_james_h',
+              'll_timothy_titcomb':'cand_timothy_titcomb_wheeling',
+              'll_ward_hanibal':'cand_hannibal_ward_dupage',
+              'll_white_edson':'cand_edson_white_joliet',
+          }
+          proposals = {
+              'handy_major': {'proposed_civic_voter_census':'1833 river-improvement work'},
+              'mason_matthias': {'proposed_occupation_trade':'blacksmith; shop opened fall 1833'},
+              'maxwell_philip': {'proposed_birth':'Full birth data supplied by cited medical history','proposed_occupation_trade':'Fort Dearborn surgeon, 1833–1836'},
+              'mckee_david': {'proposed_occupation_trade':'government/agency blacksmith','proposed_address_property':'near foot of State Street'},
+              'meeker_joseph': {'proposed_arrival_migration':'arrived Chicago early 1833','proposed_occupation_trade':'builder; Sunday-school librarian 16 Mar 1835','proposed_civic_voter_census':'First Presbyterian institutional roles'},
+              'miller_john': {'proposed_occupation_trade':'tanner','proposed_address_property':'first tannery near North Branch/forks, 1831'},
+              'murphy_john': {'proposed_occupation_trade':'Exchange Coffee House keeper, Aug 1834–1836','proposed_spouse_kin':'Harriet Murphy','proposed_household_facts':'John and Harriet Murphy jointly associated with Exchange Coffee House'},
+              'norton_nelson_r': {'proposed_arrival_migration':'arrived 16 Nov 1833','proposed_occupation_trade':'shipwright / bridge builder','proposed_civic_voter_census':'Dearborn Street drawbridge work, Mar–Jun 1834'},
+              'pierce_asahel': {'proposed_arrival_migration':'arrived Oct 1833','proposed_occupation_trade':'blacksmith / agricultural-implement maker'},
+              'porthier_joseph': {'proposed_arrival_migration':'left Chicago 27 Feb 1835; brief return; left again 21 Mar; Milwaukee 23 Mar 1835','proposed_occupation_trade':'blacksmith striker','proposed_household_facts':'scene-date presence corrected to absent'},
+              'pruyne_peter': {'proposed_occupation_trade':"druggist; partner in Chicago's second drug store from early 1833",'proposed_spouse_kin':'married Rebecca Sherman 20 Aug 1835 (after scene date)'},
+              'kimberly_edmund_s': {'proposed_birth':'1803-04-07, Troy, New York','proposed_arrival_migration':'moved to Chicago in 1832','proposed_occupation_trade':'physician; drug-store partner','proposed_spouse_kin':'married Marie Theresa Ellis 16 May 1829','proposed_civic_voter_census':'1833 town trustee; 1834 cholera-hospital authorization'},
+              'sproat_grenville': {'proposed_occupation_trade':'teacher; English and Classical School, fall 1833'},
+              'st_cyr_john_mary': {'proposed_arrival_migration':'appointed to Chicago in 1833; recalled 1837','proposed_occupation_trade':'Catholic priest','proposed_civic_voter_census':'first Mass and first Catholic church in Chicago'},
+              'steele_ashbel': {'proposed_civic_voter_census':'Cook County coroner in the 1835 period'},
+              'sweet_alanson': {'proposed_arrival_migration':'moved from Chicago to Milwaukee in 1835; exact departure relative to 1 Jul unresolved','proposed_occupation_trade':'stone mason'},
+              'thomas_frederick': {'proposed_occupation_trade':'barber-surgeon; retail druggist'},
+              'walters_william': {'proposed_occupation_trade':'proprietor, Wolf Point Tavern, 1833–1836'},
+              'watkins_john': {'proposed_occupation_trade':'teacher in Chicago, 1835'},
+              'kinzie_james': {'proposed_occupation_trade':'auctioneer','proposed_civic_voter_census':'Wolf Point / early town affairs'},
+              'kinzie_robert_a': {'proposed_arrival_migration':'mostly Chicago 1825–1840','proposed_occupation_trade':'merchant; Kinzie, Davis & Hyde member in 1835','proposed_address_property':'frame store built 1832'},
+              'll_seth_paine': {'proposed_arrival_migration':'Montpelier, Vermont → Chicago, 1834'},
+          }
+          fields = ['proposed_birth','proposed_death','proposed_arrival_migration','proposed_occupation_trade','proposed_address_property','proposed_spouse_kin','proposed_civic_voter_census','proposed_household_facts']
+
+          def source_meta(ids):
+              urls, tiers, limits = [], [], []
+              for sid in ids:
+                  p = root/'data/sources'/f'{sid}.json'
+                  if not p.exists():
+                      continue
+                  rec = json.loads(p.read_text())
+                  if rec.get('url'): urls.append(rec['url'])
+                  if rec.get('locator'): urls.append(f"{sid}: {rec['locator']}")
+                  if rec.get('tier') is not None: tiers.append(f"{sid}:{rec['tier']}")
+                  limits.extend(rec.get('what_it_does_not_supply', []))
+              return ' | '.join(urls), ' | '.join(tiers), ' | '.join(limits)
+
+          rows=[]
+          default = {'outcome':'no_corroboration','summary':findings['default_summary'],'sources':[],'candidates':[]}
+          outcome_map={'corroborated_enrichment':'corroborated','candidate_identity':'candidate','no_corroboration':'no_corroboration'}
+          for person in manifest['people']:
+              pid=person['person_id']; name=person['name']; result=findings['overrides'].get(pid, default)
+              raw_out=result['outcome']; outcome=outcome_map[raw_out]
+              if person['starting_evidence']=='established_profile': stratum='established_profile'
+              elif person['starting_presence']=='present': stratum='letter_list_only_present'
+              else: stratum='letter_list_only_uncertain'
+              cands=result.get('candidates',[])
+              evidence_against=' | '.join(x for c in cands for x in c.get('conflicts',[]))
+              sids=result.get('sources',[])
+              urls,tiers,limits=source_meta(sids)
+              proposed={k:'' for k in fields}; proposed.update(proposals.get(pid,{}))
+              if result.get('population_updates'):
+                  proposed['proposed_household_facts'] = json.dumps(result['population_updates'], ensure_ascii=False)
+              if outcome=='corroborated': ident='strong corroboration'; action='Adjudicate in T-0487; promote qualifying facts in T-0488 with per-attribute provenance.'
+              elif outcome=='candidate': ident='strong candidate; explicitly unasserted'; action='Retain candidate unasserted; resolve in T-0487 before any canonical identity/household change.'
+              else: ident='unresolved / no safe external match'; action='No canonical change. Retain documented negative-search receipt for T-0487/future research.'
+              if pid in ('porthier_joseph','pruyne_peter','kimberly_edmund_s'):
+                  action += ' T-0478 already carries the specific safe household-record correction/enrichment where applicable.'
+              queries=result.get('queries',[t.format(name=name) for t in findings['query_templates']])
+              row={
+                  'ticket':'T-0478','cohort':'4','person_id':pid,'household_id':person['household_id'],
+                  'name_transcribed':name,'name_normalized':name,'stratum':stratum,
+                  'seed_source_id':' | '.join(person.get('sources',[])),'seed_source_date':'',
+                  'letter_list_dates':' | '.join(person.get('letter_list_returns',[])),
+                  'research_outcome':outcome,'identity_confidence':ident,
+                  'residence_confidence':f"starting scene-date status: {person['starting_presence']}",
+                  'household_confidence':'existing canonical container; composition not re-adjudicated by this research pass',
+                  'occupation_confidence':f"starting occupation: {person.get('starting_occupation') or 'none recorded'}",
+                  'candidate_ids':candidate_ids.get(pid,''),
+                  **proposed,
+                  'evidence_for':result['summary'],'evidence_against':evidence_against,
+                  'source_ids':' | '.join(sids),'source_urls_locators':urls,'source_tiers':tiers,
+                  'queries':' | '.join(queries),'access_dates':findings['reviewed_on'],
+                  'source_limitations':limits or 'Candidate and no-find decisions are bounded by the sources searched; name similarity alone was not accepted as identity evidence.',
+                  'recommended_data_action':action,'notes':result['summary'],
+              }
+              rows.append(row)
+          assert len(rows)==75
+          counts={k:sum(r['research_outcome']==k for r in rows) for k in ('corroborated','candidate','no_corroboration')}
+          assert counts=={'corroborated':22,'candidate':4,'no_corroboration':49}, counts
+          with out.open('w', newline='', encoding='utf-8') as f:
+              w=csv.DictWriter(f, fieldnames=headers); w.writeheader(); w.writerows(rows)
+          print(out, counts)
+          PY
+
+      - name: Close T-0478 against this PR
+        working-directory: chicago/4d
+        run: node tools/ticket.mjs done T-0478 --pr ${{ steps.pr.outputs.number }}
+
+      - name: Refresh targeted public mirrors
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p site/chicago/4d/data/residents site/chicago/4d/data/sidecars/1835
+          cp chicago/4d/data/residents/research_pilot.json site/chicago/4d/data/residents/research_pilot.json
+          cp chicago/4d/data/sidecars/1835/residents_sources.json site/chicago/4d/data/sidecars/1835/residents_sources.json
+          cp chicago/4d/tickets/tickets.json site/chicago/4d/tickets.json
+
+      - name: Relevant T-0478 gates
+        working-directory: chicago/4d
+        run: |
+          set -euo pipefail
+          python3 tools/select_resident_research_pass_4.py --gate
+          python3 tools/compile_resident_research_pilot.py --gate
+          python3 tools/compile_scene.py --scene 1835 --check
+
+      - name: Full repository gate
+        id: fullgate
+        continue-on-error: true
+        working-directory: chicago/4d
+        run: ./tools/check.sh
+
+      - name: Record and commit generated closeout
+        shell: bash
+        env:
+          FULL_GATE: ${{ steps.fullgate.outcome }}
+        run: |
+          set -euo pipefail
+          echo "full repository gate outcome: $FULL_GATE"
+          git rm .github/workflows/t0478-finalize.yml
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add chicago/4d/data/residents/research_pilot.json \
+                  chicago/4d/data/sidecars/1835/residents_sources.json \
+                  chicago/4d/tickets \
+                  chicago/reference/resident-research/T-0478/T-0478_resident_research.csv \
+                  site/chicago/4d/data/residents/research_pilot.json \
+                  site/chicago/4d/data/sidecars/1835/residents_sources.json \
+                  site/chicago/4d/tickets.json \
+                  .github/workflows/t0478-finalize.yml
+          git diff --cached --check
+          git diff --cached --stat
+          git commit -m 'T-0478 generated closeout outputs'
+          git push origin HEAD:steward/resident-research-pass-4-reconciled

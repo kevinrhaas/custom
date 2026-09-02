@@ -6,27 +6,13 @@
  "arrival": {
   "value": "1832",
   "confidence": "attested",
-  "sources": [
-   "andreas_1884_v1"
-  ],
-  "note": "Kimberly's year, stated plainly. Pruyne's own arrival is dated only by his shop - 'early in 1833' - and the household takes the earlier of the two because that is when it first existed in the town.",
+  "sources": ["andreas_1884_v1", "history_medicine_chicago_kimberly_maxwell"],
+  "note": "Kimberly's year is independently stated as 1832. Pruyne's own arrival is dated only by his shop - 'early in 1833' - and the household takes the earlier of the two because that is when it first existed in the town.",
   "precision": "year"
  },
- "party_size_on_arrival": {
-  "value": null,
-  "confidence": "reconstructed",
-  "note": "Not attested."
- },
- "origin": {
-  "value": null,
-  "confidence": "reconstructed",
-  "note": "Not attested."
- },
- "reason_for_coming": {
-  "value": null,
-  "confidence": "reconstructed",
-  "note": "Not attested."
- },
+ "party_size_on_arrival": {"value": null, "confidence": "reconstructed", "note": "Not attested."},
+ "origin": {"value": null, "confidence": "reconstructed", "note": "Not attested."},
+ "reason_for_coming": {"value": null, "confidence": "reconstructed", "note": "Not attested."},
  "lives_at": {
   "value": null,
   "confidence": "reconstructed",
@@ -35,18 +21,14 @@
  "works_at": {
   "value": "pruyne_kimball_drugstore",
   "confidence": "inferred",
-  "sources": [
-   "andreas_1884_v1"
-  ],
-  "note": "The partnership is documented; that it was trading on 1 July 1835 specifically is the inference, since Andreas dates it only to the 1830s. The building record carries the same grade for the same reason."
+  "sources": ["andreas_1884_v1", "history_medicine_chicago_kimberly_maxwell"],
+  "note": "The partnership is documented; that it was trading on 1 July 1835 specifically is the inference, since the retrospective sources do not supply a transaction on that exact day."
  },
  "present_on_scene_date": {
   "value": "present",
   "confidence": "inferred",
-  "sources": [
-   "andreas_1884_v1"
-  ],
-  "note": "Pruyne is married at Chicago on 20 August 1835, seven weeks after the scene date; Kimberly is continuously in the town's public life."
+  "sources": ["andreas_1884_v1", "history_medicine_chicago_kimberly_maxwell"],
+  "note": "Pruyne is married at Chicago on 20 August 1835, seven weeks after the scene date; Kimberly is continuously in the town's medical and public life through this period."
  },
  "persons": [
   {
@@ -58,15 +40,11 @@
    "occupation": {
     "value": "druggist",
     "confidence": "attested",
-    "sources": [
-     "andreas_1884_v1"
-    ],
-    "note": "'Early in 1833, Peter Pruyne and Edmund Stoughton Kimberly opened the second of Chicago's drug-stores' (Andreas, scan p. 955); the 1833 roster carries 'Peter Pruyne, druggist, early in 1833'."
+    "sources": ["andreas_1884_v1", "history_medicine_chicago_kimberly_maxwell"],
+    "note": "Early in 1833 Peter Pruyne and Edmund Stoughton Kimberly opened Chicago's second drug store."
    },
-   "sources": [
-    "andreas_1884_v1"
-   ],
-   "note": "Andreas adds a dated domestic fact in a footnote: 'On August 20, 1835, Mr. Peter Pruyne married Rebecca, only daughter of Silas W. Sherman.' THAT IS SEVEN WEEKS AFTER THE SCENE DATE, so on 1 July 1835 he is an unmarried man and Rebecca Sherman is not in this household - a small illustration of why every date in this layer has to be checked against 1835-07-01 rather than against 'the mid-1830s'."
+   "sources": ["andreas_1884_v1", "history_medicine_chicago_kimberly_maxwell"],
+   "note": "Andreas adds a dated domestic fact in a footnote: on August 20, 1835 Peter Pruyne married Rebecca, only daughter of Silas W. Sherman. That is seven weeks after the scene date, so on July 1 Rebecca Sherman is not silently added to this business household."
   },
   {
    "id": "kimberly_edmund_s",
@@ -75,33 +53,25 @@
    "grade": "attested",
    "sex": "male",
    "birth_year": {
-    "value": 1802,
-    "confidence": "inferred",
-    "sources": [
-     "andreas_1884_v1"
-    ],
-    "note": "NOT STATED. Andreas gives an age at death - seventy-two on 25 October 1874 - and 1802 is the arithmetic, which is why this is derived and not documented."
+    "value": 1803,
+    "confidence": "attested",
+    "sources": ["history_medicine_chicago_kimberly_maxwell"],
+    "note": "T-0478 replaces the age-at-death arithmetic with an explicit biographical date: Edmund Stoughton Kimberly was born at Troy, New York, April 7, 1803."
    },
    "age_on_scene_date": {
     "value": 32,
-    "confidence": "inferred",
-    "sources": [
-     "andreas_1884_v1"
-    ],
-    "note": "Follows from the derived birth year; 32 or 33 depending on his birthday, which is unknown."
+    "confidence": "attested",
+    "sources": ["history_medicine_chicago_kimberly_maxwell"],
+    "note": "Born April 7, 1803, so he was 32 on July 1, 1835."
    },
    "occupation": {
     "value": "physician",
     "confidence": "attested",
-    "sources": [
-     "andreas_1884_v1"
-    ],
-    "note": "One of the eight physicians Andreas counts in the town at the close of 1833 - 'In 1832, Dr. Edmund Stoughton Kimberly arrived here' - and the other half of the town's second drug store."
+    "sources": ["andreas_1884_v1", "history_medicine_chicago_kimberly_maxwell"],
+    "note": "Kimberly moved to Chicago in 1832, practiced medicine, and was the other half of the town's second drug store."
    },
-   "sources": [
-    "andreas_1884_v1"
-   ],
-   "note": "THE CLERK OF THE TOWN'S OWN CREATION. He was clerk of the meeting of 5 August 1833 that voted to incorporate, signed the poll 'Ed. S. Kimberly, Clerk', issued the election notice over his own name, and was then elected one of the five first trustees on 10 August with 20 of 28 votes. He died in Lake County, Illinois, 25 October 1874, aged seventy-two - which puts his birth about 1802 and makes him about 33 on the scene date."
+   "sources": ["andreas_1884_v1", "history_medicine_chicago_kimberly_maxwell"],
+   "note": "T-0478 adds exact birth data and independent biography: born April 7, 1803 at Troy, New York; Union College graduate; medical training in New York; married Marie Theresa Ellis May 16, 1829; moved to Chicago in 1832. He was clerk of the August 5, 1833 incorporation meeting and one of the first town trustees."
   }
  ],
  "touches_removal": false,
