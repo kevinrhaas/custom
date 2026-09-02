@@ -1,8905 +1,2064 @@
-/**
- * Smoke test for the three.js walkthrough.
- *
- *   PW_EXECUTABLE=/opt/pw-browsers/chromium-1194/chrome-linux/chrome \
- *     node tools/smoke_renderer.mjs
- *
- * Drives the real page in a real browser at 390x780 AND 1280x800 and fails on
- * any page error. Mobile is a release gate, not a nice-to-have.
- *
- * `SMOKE_VIEWPORT=mobile` (or `desktop`) runs one of the two while iterating.
- * That is not the gate and the run says so on its first line.
- *
- * `SMOKE_STAGE=1` â€¦ `13` runs one part of each viewport's body (T-0060, re-cut
- * by T-0121, T-0167, T-0346, T-0173 and T-0170), and `SMOKE_STAGE=1-2` runs a
- * contiguous run.
- * The cuts sit at section boundaries measured for zero crossing bindings. It
- * exists because a steward run's single foreground command is capped at ten
- * minutes and by 2026-08-18 neither viewport's full pass fit inside it, so the
- * run was killed mid-suite and the page-error assertion â€” the LAST line of each
- * viewport â€” was never taken. T-0060 cut four; by 2026-08-23 the town had grown
- * until three of the four DESKTOP quarters ran past the ceiling too, so each
- * quarter was halved; T-0167 measured the desktop profile that eight-way cut
- * had never been sized from and halved part 8, the thinnest margin on it.
- * T-0346 cut PART 4 in three when it stopped fitting at all: profiled under this
- * lane's own eight-way contention on 2026-08-30 it was killed at the ceiling with
- * 6 m 17 s of its cost in ONE section, the scene-detail ladder. That section is
- * now part 5 and the gate-and-chrome tail is part 6, so parts 5-9 became 7-11 and
- * the mobile recipe's ranges move with them. The parts after the cut cost about
- * 1 m 10 s, 6 m 17 s and 1 m 55 s against the ten minutes, measured the same way.
- * T-0173 then HALVED PART 7, which had gone the same way: profiled on the steward
- * runner the same day it was killed at 9 m 25 s with its last two assertions
- * unrun, and 7 m 04 s of that was the three road-legibility stations. Two
- * stations stay in part 7 and the third goes to a new part 8 with the aid taken
- * standing at it and the batch merge under that â€” 4 m 48 s against 4 m 53 s of
- * work â€” so parts 8-11 became 9-12. See ROAD_STATIONS and `readRoadStations`.
- * T-0170 halved PART 10 for the same reason and on the same evidence: at
- * 1280x800 on an IDLE runner it was killed at 9 m 20 s with the street readouts
- * and the Settings units still to run, so old parts 11-12 became 12-13 and there
- * are thirteen.
- *
- * A staged run is not the gate either, and says so; the gate is both viewports,
- * every part, e.g.:
- *
- *   for s in 1-2 3-6 7-9 10-13;               do SMOKE_VIEWPORT=mobile  SMOKE_STAGE=$s node tools/smoke_renderer.mjs --published; done
- *   for s in 1 2 3 4 5 6 7 8 9 10 11 12 13;   do SMOKE_VIEWPORT=desktop SMOKE_STAGE=$s node tools/smoke_renderer.mjs --published; done
- *
- * `SMOKE_TIMING=1` stamps each check line with the elapsed clock. Off by
- * default; turn it on to profile a part, because a part that BREACHES the
- * ceiling is killed before it prints its wall clock, and the parts worth
- * cutting are exactly the ones a plain run therefore reports nothing about.
- *
- * (each command above fits the ten-minute ceiling, measured â€” every invocation
- * prints its own wall clock on its last line so the next margin to go is
- * visible without anyone re-measuring by hand. The unfiltered single-process
- * pass lives in .github/workflows/chicago-4d-smoke.yml, which has no ceiling.)
- *
- * Boot, the page-error check and the vendor checks run in EVERY invocation,
- * whichever stage is asked for: the summary separates "staged-section checks"
- * from those always-on checks so the parts can be audited to add up to an
- * unfiltered pass â€” the thirteen parts' section counts SUM to an unfiltered run's
- * section count, and the always-on count is identical in every one of them.
- *
- * What it asserts, and why each one is here:
- *
- *   scene reaches ready ......... the boot chain actually completed
- *   canvas renders non-black .... WebGL produced an image, not a cleared buffer
- *   confidence toggle ........... the deliverable measurably changes the render
- *   pick -> citation ............ the visual claim and the citable claim connect
- *   citation -> its document .... why a modern page is on the rung it is on, and
- *                                 what the source itself says it cannot supply
- *   pick -> liberties ........... and what we made up about THAT building
- *   the bridge floats ........... a water-anchored structure is placed on the
- *                                 water plane, not on the river bed under it
- *   walk moves the camera ....... input intent reaches the walker
- *   the bridge carries a walker . a deck is a surface you stand on, end to end,
- *                                 and not the wading barrier under it
- *   the river wharves ........... the first derived layer that stands over water:
- *                                 its deck ties into the bank it was derived
- *                                 from, its crib reaches the bed, and neither is
- *                                 answerable from the dataset alone
- *   a wharf carries a walker .... and since T-0058 the planks are a floor: off
- *                                 the bank, up the boarding stair and out over
- *                                 the water at every one of the seven docks
- *   the boats on the river ...... the first layer that RIDES the water: every
- *                                 afloat hull floats in its own depth, beached
- *                                 hulls sit at the bank, the drawbridge's
- *                                 navigation span stays clear, and a boat
- *                                 answers a pick with its own card
- *   one terrain surface ......... walker, structures and flora share the rendered land
- *   streets drape + identify .... earth tracks share the heightfield and dated names
- *   the roads reach the screen .. and are distinguishable from the ground they
- *                                 occupy, on foot and from the air â€” draped is
- *                                 not seen, and every check above passed while
- *                                 the roads were invisible
- *   the horizon reads as timber . the band meets the fogged ground in one colour,
- *                                 and the crown modulation never cuts a silhouette
- *                                 below the pixel it needs to be seen at all
- *   navigation aids ............. compass, moving overview marker, settings toggles
- *   complete jump search ........ every viewpoint, verified junction and loaded
- *                                 structure, in one Go to tab, each structure
- *                                 graded with its own record's position grade
- *   liberties are readable ...... what we made up is in the panel, not only in the repo
- *   draw calls under budget ..... the batch strategy is doing its job, against a
- *                                 ceiling this file pins rather than merely reads
- *   zero page errors ............ everywhere, both widths
- *
- * On failure it prints the failing URL or text, never a bare status: a smoke
- * result you have to reproduce by hand has not saved you anything.
- */
-
-import http from 'node:http';
-import fs from 'node:fs';
-import path from 'node:path';
-import { execSync } from 'node:child_process';
-import { fileURLToPath } from 'node:url';
-
-// The critic harness's PNG reader and its CIE L*, so a road's contrast is
-// measured on the same scale as everything else this project quotes.
-import { decodePng, labL, relativeLuminance, weberContrast } from './critic_metrics.mjs';
-// ROADMAP K50. The gate and `tools/measure_drawn_placement.mjs` run ONE census
-// rather than two readings of it â€” see that module's header for why.
-import { CENSUS } from './drawn_placement_census.mjs';
-// T-0243. Same arrangement for the near-field timber, and for the same reason
-// twice over: the gate below and `tools/measure_drawn_timber.mjs` run ONE
-// census, and that census reads a `BatchedMesh` back through its own instance
-// ranges â€” which is what the inline traversal that used to live here stopped
-// being able to do the day T-0223 merged.
-import { TIMBER_CENSUS } from './drawn_timber_census.mjs';
-
-// Playwright is installed globally here, and ESM does not honour NODE_PATH, so
-// resolve the global root and import by absolute path.
-async function loadPlaywright() {
-  let ns;
-  try {
-    ns = await import('playwright');
-  } catch {
-    const root = (process.env.NODE_PATH
-      || execSync('npm root -g', { encoding: 'utf8' })).trim().split(path.delimiter)[0];
-    ns = await import(path.join(root, 'playwright', 'index.js'));
-  }
-  // playwright is CommonJS; imported as ESM its exports land under .default
-  return ns.chromium ? ns : ns.default;
-}
-const { chromium } = await loadPlaywright();
-// T-0016 â€” the per-band movement report. Pure functions in their own file so
-// the comparison is testable without a browser; see its --self-test.
-import { collect as collectRoadBands, compare as compareRoadBands, render as renderRoadBands }
-  from './road_band_movement.mjs';
-
-const HERE = path.dirname(fileURLToPath(import.meta.url));
-const PORT = Number(process.env.SMOKE_PORT || 4187);
-const YEAR = process.env.SMOKE_YEAR || '1835';
-const KEEP = process.env.SMOKE_SHOTS || '';
-
-/**
- * WHICH TREE gets tested, and why it is a question at all.
- *
- * The source tree and the published mirror do not load the same geometry. A
- * sidecar names its asset as `gltf/<name>.glb`, and that path resolves against
- * a different base in each: in the source tree to `assets/gltf/` â€” the
- * UNCOMPRESSED masters â€” and on the site to `data/gltf/`, which publish.sh
- * fills from `assets/web/`, the meshopt + `KHR_mesh_quantization` derivatives.
- *
- * So for as long as this only ever ran against the source tree, it never once
- * loaded a compressed asset. Every check was green while the deployed town was
- * a field of two-metre boxes, because the defect lived in a code path â€” the
- * dequantisation of normalized integer attributes â€” that the gate could not
- * reach. A gate that cannot see the bytes that ship is not a gate.
- *
- * `--published` (or SMOKE_TARGET=published) serves the mirror and enters at
- * /walk/, which is the visitor's exact layout. It also catches the other class
- * of bug this project keeps hitting: a file that exists in the source tree and
- * was never copied, which 404s only once it is live.
- */
-const wantPublished = process.argv.includes('--published')
-  || process.env.SMOKE_TARGET === 'published';
-const ROOT = process.env.SMOKE_ROOT
-  || (wantPublished
-    ? path.resolve(HERE, '../../../site/chicago/4d')
-    : path.resolve(HERE, '..'));
-const ENTRY = process.env.SMOKE_ENTRY || (wantPublished ? '/walk/' : '/renderers/web/index.html');
-const MODULE_BASE = wantPublished ? '/walk/js/' : '/renderers/web/js/';
-
-const TYPES = {
-  '.html': 'text/html', '.js': 'text/javascript', '.mjs': 'text/javascript',
-  '.css': 'text/css', '.json': 'application/json', '.glb': 'model/gltf-binary',
-  '.bin': 'application/octet-stream', '.png': 'image/png', '.jpg': 'image/jpeg',
-  '.svg': 'image/svg+xml', '.wasm': 'application/wasm', '.md': 'text/markdown',
-};
-
-/**
- * R-BUG2 â€” CAN A ROAD BE SEEN? The gate that did not exist.
- *
- * Everything this file asserted about the streets was about the DATA reaching
- * the geometry: seventeen records, a hundred thousand vertices, drape error
- * under 1e-5 m, no vertex over water. All of it passed while the roads were
- * invisible from the air. Draped is not seen, and nothing anywhere asked
- * whether a road reaches the screen.
- *
- * The measurement, per station and per viewport, is three frames of one held
- * scene:
- *
- *   R  the real render
- *   M  the same geometry drawn as an opaque marker with a DEEP polygon offset
- *   O  the same scene with the street group hidden
- *
- * M is the denominator and it is the reason this works. A probe point counts
- * only where the marker reached the screen â€” which is to say where a road is
- * present, in front of the camera, and not hidden behind a building, a tree or
- * a rise in the ground. Roads that are genuinely occluded drop out of the
- * sample instead of being scored as faults. The marker's offset is deliberately
- * DEEPER than the real material's: losing the depth fight to the terrain is the
- * failure being hunted, so it must stay inside the denominator and show up as a
- * road that covers the pixel and does not change it.
- *
- * The number is then |L*(R) - L*(O)| at each surviving probe â€” how much the
- * road changed what a visitor sees at the spot it occupies, in CIE L* units on
- * the same `labL` the critic harness measures reference photographs with. It is
- * the "distinguishable from the ground beside it" of the parcel's acceptance,
- * with the ground beside it read at the same pixel rather than a few metres
- * across, so a road crossing grass and a road crossing mud are held to the same
- * standard.
- *
- * WHAT THE FAULT MEASURED, before the fix, at desktop (mobile in the same
- * direction, smaller n): South Water Street at 250-600 m, unoccluded, scored
- * **0.3 L\* with 14 % of probes perceptible**; the aerial anchor at 100-250 m
- * scored **1.1 L\* with 0 %**. Both are FAILURES under the thresholds below,
- * which is the point â€” the check names the fault when the fault is put back.
- *
- * PROVENANCE OF THE NUMBERS (T-0033 / R-M1b, owner ruling 2026-08-17): these
- * bars are a PROVISIONAL BASELINE, not derived from a source â€” the photograph
- * R-M1 named as the derivation source contains no dirt track, and the owner
- * ruled "keep this baseline until I complain about it more later". Do not
- * describe them as derived, and do not spend a run re-deriving them unless the
- * owner reopens the question.
- */
-const ROAD_MIN_DELTA_L = 1.8;
-const ROAD_MIN_PERCEPTIBLE = 0.55;
-const ROAD_MIN_PROBES = 8;
-
-/**
- * T-0016 (R-M1d) â€” THE BANDS ARE ALSO REPORTED AGAINST THEIR OWN BANK.
- *
- * The three bars above gate PER STATION; the measurement is PER BAND. A band
- * can therefore collapse 55 points (71 % â†’ 16 % perceptible) without crossing
- * ROAD_MIN_PERCEPTIBLE, and the suite prints "229/2 before, 229/2 after" while
- * it happens. `road_band_movement.mjs` banks each gated band and says out loud
- * when one moves â€” in either direction.
- *
- * It is a REPORT and not a bar, deliberately. The thresholds above are the
- * owner's provisional baseline (T-0033 / R-M1b) and R-W1 is the standing proof
- * that tightening them punishes legitimate work. Nothing below can fail a run.
- *
- * Re-bank with `--update-road-bands` in the commit that moved the numbers on
- * purpose, the same way the far-timber census is re-banked.
- */
-const ROAD_BAND_BASELINE = path.join(HERE, 'road_band_baseline.json');
-const UPDATE_ROAD_BANDS = process.argv.includes('--update-road-bands');
-const ROAD_BAND_BANKED = (() => {
-  try { return JSON.parse(fs.readFileSync(ROAD_BAND_BASELINE, 'utf8')).bands || {}; }
-  catch { return {}; }
-})();
-const ROAD_BAND_OBSERVED = {};
-
-/**
- * ROADMAP R-BUG5 â€” the bodies of far timber whose authored polyline crosses
- * water, read from the same file `tools/measure_far_timber.py` writes rather
- * than restated here.
- *
- * Two readers of one number: the Python censuses `data/terrain/â€¦/heightfield.bin`
- * and this censuses the mask the browser loaded off the published mirror. They
- * must agree, and importing the baseline is what makes disagreement a failure
- * instead of a discrepancy nobody compares.
- */
-const FAR_TIMBER_BANKED_BY_ID = Object.fromEntries(
-  Object.entries(JSON.parse(
-    fs.readFileSync(path.join(HERE, 'far_timber_baseline.json'), 'utf8'),
-  ).bodies).map(([id, entry]) => [id, entry.wet]),
-);
-const FAR_TIMBER_BANKED = Object.keys(FAR_TIMBER_BANKED_BY_ID);
-/**
- * R-M1a â€” THE TWO NUMBERS THE BARS ABOVE CANNOT SEE, MEASURED AND NOT YET GATED.
- *
- * The owner ruled on 2026-08-14, after R-W1 broke this gate by legitimately
- * changing exposure: score exposure-invariant CONTRAST **and** keep an absolute
- * FLOOR. Both bars, not a replacement. The two thresholds above are neither â€”
- * Î”L* is compressive, so R-W1 preserved the road/ground ratio to within 0.4 %,
- * got 14â€“17 % darker, and lost a bar it had not actually regressed.
- *
- * So each band now also reports:
- *
- *   weber      |Y(road) âˆ’ Y(ground)| / Y(ground) on LINEAR luminance, median
- *              over the same probes. Exposure cancels out of it; see
- *              `weberContrast` in `critic_metrics.mjs` for why it is that
- *              quantity and not a bare ratio.
- *   groundL    median CIE L* of the ground at those probes with the street
- *              layer hidden â€” the floor reading. "Is there enough light here to
- *              distinguish anything at all", which is the failure mode a pure
- *              ratio would happily pass.
- *
- * **They are REPORTED AND NOT GATED, deliberately, and that is R-M1's split
- * rather than a half-finished job.** This half lands the measurement and commits
- * its numbers on `dev`; R-M1b sets the bars against them, and against the
- * pre-R-BUG2 build, which the acceptance requires the new bars still to FAIL.
- * Landing them silent means this change cannot alter a single pass/fail while
- * the baseline is being taken â€” a gate that moves at the same moment as its own
- * baseline has no baseline.
- *
- * **R-M1b has no threshold source yet, and that is the finding of this half.**
- * The parcel says to derive the bars from the reference photograph â€” "what
- * contrast does a real dirt track hold against real prairie". It does not hold
- * one: `python3 tools/measure_reference.py` now surveys the frame and the widest
- * contiguous bare-earth run anywhere in it is 8.2 % of the frame width, at
- * âˆ’38.2Â°, at the photographer's feet. Do not pick a number to fill that gap.
- */
-/**
- * Two stations because the report was two symptoms: roads that go "in places"
- * on foot, and roads you "lose" when you fly over them. `south_water` looks
- * east down an open street from eye height; `from_above` is the scene's own
- * aerial anchor. Both are anchors a visitor is offered, driven through `goTo`,
- * so the gate cannot drift from what is shipped.
- *
- * Bands beyond 600 m are measured and printed but not gated: at eye height a
- * road that far off is a couple of pixels tall through a mile of haze, and a
- * threshold there would be a claim about fog, not about roads.
- */
-//
-// T-0173 â€” and `part` says which PART reads each of them. The three together
-// cost 7 m 04 s of a part measured at 9 m 25 s and still running, so parts 7 and
-// 8 take two of them and one: 2 m 13 s + 2 m 02 s against 2 m 49 s, which is what
-// puts the aid and the batch merge in the cheaper half, beside the station they
-// are taken at. Moving a station between the parts is this field and nothing else.
-const ROAD_STATIONS = [
-  { id: 'south_water', part: 7, kind: 'anchor', what: 'from the walkerâ€™s eye, down an open street', minBands: 2 },
-  { id: 'from_above', part: 7, kind: 'anchor', what: 'from the air, at the aerial anchor', minBands: 2 },
-  // R-BUG3. Neither anchor above STANDS ON A ROAD â€” the `south_water` viewpoint
-  // is 101 m from the centreline it is named after (T-V2) and 17 m from the
-  // nearest one â€” so the near band was empty at both and no threshold could
-  // have caught the owner's report. This station arrives the way a visitor
-  // does, by clicking a verified street-control intersection in the Go to tab,
-  // which puts the roadway under the camera and its coordinates stay in the
-  // compiled index rather than being copied into this gate.
-  // R-A1's three assertions are taken standing HERE, so this station and the aid
-  // stay in one part however this list is re-divided (T-0173).
-  { id: 'lake_market', part: 8, kind: 'intersection', what: 'standing on the crossing itself', minBands: 2 },
-];
-const ROAD_BANDS = [[2, 40], [40, 100], [100, 250], [250, 600], [600, 4000]];
-const ROAD_GATED_BEYOND_M = 600;
-
-/**
- * T-0173 â€” the road-legibility stations, read by whichever PART owns them.
- *
- * These three stations were one block inside part 7, and profiled on the steward
- * runner (SMOKE_TIMING=1, 2026-08-30) that block was 7 m 04 s of a part that was
- * killed at 9 m 25 s with its tail unrun. So the cut that makes part 7 fit had to
- * fall INSIDE the block: neither of the part's own `// --- ` section boundaries
- * leaves both sides more than 2 m 36 s of margin, and 2 m 36 s is what T-0121
- * already proved is not a margin on a machine whose cost tracks its neighbours.
- *
- * The stations are the natural grain and the only one that crosses no binding.
- * Each teleports to its own viewpoint, takes its own frames and answers its own
- * `check`; none reads anything a sibling station left standing. `part:` on the
- * station is therefore the whole of the split â€” see ROAD_STATIONS.
- *
- * The movement report moves with them, and it is the same report it always was:
- * printed, never gated, and comparing only what THIS invocation measured. That
- * is what already let `SMOKE_VIEWPORT=mobile` run without retiring desktop's
- * half of the bank, and it is why a part reporting on its own stations is not a
- * new rule. `--update-road-bands` merges per band and leaves untouched bands
- * alone, so a part banks what it read.
- */
-async function readRoadStations(page, label, stations) {
-  const roadRuns = [];   // T-0016: what each station's bands read this run
-  for (const station of stations) {
-    const road = await roadContrast(page, { id: station.id, kind: station.kind });
-    roadRuns.push({ id: station.id, bands: road.bands });
-    const bands = road.bands.filter((b) => b.gated);
-    const bad = bands.filter((b) => b.medianDeltaL < ROAD_MIN_DELTA_L
-      || b.perceptible < ROAD_MIN_PERCEPTIBLE);
-    const report = road.bands.map((b) => `${b.lo}-${b.hi} m: `
-      + (b.nProjected < ROAD_MIN_PROBES ? `projects ${b.nProjected}Ã— (not gated)`
-        : `Î”L* ${b.medianDeltaL.toFixed(1)} of ${b.opaqueDeltaL.toFixed(1)} opaque, `
-          + `${(b.perceptible * 100).toFixed(0)} % perceptible of ${b.nBare} bare, `
-          // R-M1a. Both halves of the owner's ruling, measured beside the bar
-          // they are going to join: Weber says how distinguishable the road
-          // is whatever the exposure, groundL says whether there is light to
-          // distinguish it by. Neither is gated yet â€” R-M1b sets the bars.
-          + `weber ${b.weber.toFixed(4)} (n ${b.weberN}) over ground L* `
-          + `${b.groundL.toFixed(1)}, seen ${b.n} of `
-          + `${b.nProjected} projected (${b.nBare} clear of flora)`
-          + `${b.gated ? '' : ' (reported only)'}`)).join(' Â· ');
-    check(`${label}: the roads reach the screen ${station.what}`,
-      bands.length >= station.minBands && bad.length === 0, report);
-    console.log(`        ${station.id}: ${report}`);
-  }
-
-  // T-0016 (R-M1d) â€” MOVEMENT AGAINST THE BANK, BOTH DIRECTIONS.
-  //
-  // Printed, never gated. Every check above has already run and its verdict
-  // stands whatever this says; the point is only that a band which collapses
-  // inside a passing station stops being invisible. A filtered run banks
-  // nothing and compares only what it measured, so `SMOKE_VIEWPORT=mobile`
-  // cannot silently retire desktop's half of the baseline.
-  const vp = label.split(' ')[0];
-  const observed = collectRoadBands(vp, roadRuns, {
-    failing: (b) => b.medianDeltaL < ROAD_MIN_DELTA_L || b.perceptible < ROAD_MIN_PERCEPTIBLE,
-  });
-  Object.assign(ROAD_BAND_OBSERVED, observed);
-  const bankedHere = Object.fromEntries(
-    Object.entries(ROAD_BAND_BANKED).filter(([k]) => k.startsWith(`${vp}/`)));
-  if (!Object.keys(bankedHere).length) {
-    console.log(`        road bands: nothing banked for ${vp} yet`
-      + ' â€” re-run with --update-road-bands to bank this run (T-0016)');
-  } else {
-    for (const line of renderRoadBands(compareRoadBands(bankedHere, observed))) {
-      console.log(`        ${line}`);
-    }
-  }
-}
-
-// R-A1. How much of the frame the aid has to move at full strength before this
-// gate believes the control reaches the render at all.
-//
-// THE GRID IS THE MEASUREMENT AND IT WAS TAKEN, NOT ASSUMED. The 12Â² signature
-// the confidence view is graded on is the wrong instrument for this one, and
-// the first run said so: at `lake_market` the roadway is about a tenth of the
-// frame, so a whole-frame cell averages the aid away to a worst of 2 counts
-// against a restored residual of 0 â€” a real signal with no headroom to gate on.
-// A finer grid concentrates road pixels into cells that are mostly road without
-// changing what is being measured. Mobile 390Ã—780, published mirror, full aid:
-//
-//   48Â²  mean 0.26, worst 6      12Â²  mean 0.29, worst 2
-//   restored residual, 48Â²:  mean 0.00, worst 0
-//
-// The floors below sit a third under the measured 48Â² figures and four counts
-// above the residual, so "the aid changed the frame" and "the aid changed
-// nothing" cannot both be true. Both grids are printed; only 48Â² is gated.
-/**
- * R-W3b(a) â€” the shadow rig `renderers/web/js/world.js` ships, asserted here as
- * a number rather than read back off itself. Changing the reach or either map
- * size there without changing it here fails the gate, which is the point: the
- * texel size the reach is bought at is the claim, and a rig that quietly
- * stretched one map over more ground would otherwise pass unremarked.
- */
-const SHADOW_REACH_M = 240;
-const SHADOW_MAP_FULL = 4096;
-const SHADOW_MAP_LOW = 2048;
-/**
- * T-0115 â€” and the rig now depends on the scene-detail level, so the gate has
- * to know BOTH rigs rather than one.
- *
- * At `light` the box steps back to the Â±120 m the project shipped between
- * R-W3b(a) and R-W5a2, and the map halves with it, which is the whole of what
- * makes the step worth taking: 2Â·120/2048 is 11.7 cm on desktop and 2Â·120/1024
- * is 23.4 cm on a phone, both exactly the texel the Â±240 m rig resolves. So the
- * assertion below is no longer "the reach is 240" â€” it is "whichever rig this
- * level asks for is carried AT THE UNCHANGED TEXEL", which is a stronger claim
- * than the one it replaces: it catches a level that bought its reach by
- * blurring the eave a visitor stands under instead of by halving the box.
- *
- * It bites hardest on mobile, which boots at `light` without anybody touching
- * the control, so the phone is the viewport that measures the stepped rig.
- */
-const SHADOW_REACH_LIGHT_M = 120;
-const shadowRigFor = (level, touch) => {
-  const reachM = level === 'light' ? SHADOW_REACH_LIGHT_M : SHADOW_REACH_M;
-  const mapSize = (touch ? SHADOW_MAP_LOW : SHADOW_MAP_FULL) * (reachM / SHADOW_REACH_M);
-  return { reachM, mapSize, texelM: (2 * reachM) / mapSize };
-};
-/**
- * THE STAND SET â€” the cameras the frame budget is gated at (T-0135).
- *
- * Until 2026-08-22 everything this project believed about its own frame cost
- * came from ONE camera: `frame('sauganash_hotel', 26)`, the last move before the
- * scene-detail block. It is a courtyard view of a single hotel with the town
- * mostly behind the camera, and it is not the worst frame a visitor can reach â€”
- * it is close to the best.
- *
- * That mattered because the number the gate read was getting BETTER as the
- * number a visitor can hit got worse. Three layers were chunked in the week
- * before this ticket (frontage T-0119, enclosures T-0067, yard T-0064) so the
- * frustum can skip what is behind you. At an ordinary stand that is a large win.
- * Down a long street it is a loss: the whole town is in frustum at once, nothing
- * culls, and every chunk that bought the win becomes its own draw call. A guard
- * rail that improves when the thing it guards gets worse is the worst possible
- * shape for a guard rail, and it is why the draw-call ceiling could be raised
- * twice in one afternoon (80 -> 120 -> 140) with every raise honestly argued
- * against a reading now known to be optimistic.
- *
- * So the budget is read at a NAMED SET and gated on the WORST of it. Each stand
- * is here for a stated reason â€” a way this scene gets expensive that the others
- * do not cover â€” so the set can be argued with rather than trusted, and so a
- * stand can be added when somebody finds a worse one.
- *
- * MEASURED 2026-08-22 on the source tree at 1280x800, `full`, for the record and
- * for whoever wants to argue with the membership:
- *
- *   Lake at Canal, east      200 calls   1,320,377 tris   <- worst on both axes
- *   the forks, from Wolf Pt  181 calls   1,318,202 tris
- *   South Water at Wells     183 calls   1,267,605 tris
- *   Lake and Market          149 calls   1,112,086 tris
- *   the open aerial          119 calls     971,455 tris
- *   the Sauganash at 26 m    121 calls     960,515 tris   <- the old sole stand
- *   Newberry & Dole's wharf   94 calls     812,603 tris
- *
- * South Water is NOT in the set: it is inside the set's worst on both axes and
- * its shape â€” an axial street down built frontage â€” is already carried by Lake
- * at Canal, so it would cost the gate a stand's worth of time and buy no
- * coverage. Newberry & Dole's and the two Sauganash anchors are cheaper still.
- * Both readings are kept here so that judgement is checkable rather than
- * asserted.
- *
- * THE COST, measured on the same day, because a gate nobody can run is not a
- * gate either. Stage 2 of the DESKTOP pass ran **9 m 32 s** without this sweep,
- * against the ten-minute ceiling a steward run's single foreground command has;
- * fifteen more rendered frames of a 1.3-million-triangle scene on CI's software
- * renderer put it over, and the run is killed mid-section. The MOBILE pass runs
- * the whole sweep in 3 m 52 s and is unaffected. That is T-0121 â€” the four-way
- * stage split has outgrown its sections â€” and the answer to it is to re-cut the
- * stages, NOT to measure fewer stands: measuring one friendly stand is the
- * defect this set exists to close. T-0166 re-cut the four stages into eight, so
- * this sweep is now inside PART 5 â€” it was inside part 4 until T-0346, which cut
- * it out into a part of its own after measuring it at 6 m 17 s of a part the
- * ten-minute ceiling was killing outright. T-0167 had measured that part at
- * DESKTOP at **7 m 07 s**, inside the ceiling with 2 m 53 s to spare, so the
- * instruction that used to stand here â€” run part 4 outside the ceiling, or read
- * the mobile pass instead â€” is withdrawn. It is a reading and
- * not a constant: these desktop numbers move by minutes between runs on a
- * software renderer, which is why the margin is what this sweep is judged on
- * and why `SMOKE_TIMING=1` exists to re-take it.
- *
- * `kind` is how the harness gets there: `frame` stands a distance off a
- * structure, `anchor` teleports to one of `data/scenes/1835.json`'s authored
- * viewpoints â€” the same viewpoints the Go-to menu offers a visitor, which is
- * the point. Nothing here is a camera invented for the test.
- */
-const STANDS = [
-  {
-    id: 'sauganash_26', kind: 'frame', target: 'sauganash_hotel', distance: 26,
-    label: 'the Sauganash at 26 m',
-    // Kept, and kept FIRST, so every figure this project has ever recorded stays
-    // comparable with the new reading. It is also the only stand that is not an
-    // authored viewpoint, which is why it cannot be the only one.
-    why: 'the stand every earlier budget was measured at, kept for continuity',
-  },
-  {
-    id: 'lake_at_canal', kind: 'anchor', target: 'green_tree',
-    label: 'Lake Street at Canal, east down the axis',
-    // The known worst, and the reason this ticket exists: standing at the west
-    // end of Lake Street looking east puts the whole platted town inside one
-    // frustum, so every chunked layer pays for all of its chunks and the sun
-    // pays for them again.
-    why: 'the long axial street â€” nothing culls, so chunking costs instead of saves',
-  },
-  {
-    id: 'the_forks', kind: 'anchor', target: 'forks',
-    label: 'the forks, from Wolf Point',
-    // A different expensive shape from an axial street: across open water there
-    // is no building to occlude another, so the far bank draws in full. It is
-    // within two triangles per thousand of Lake at Canal and it gets there by an
-    // unrelated route, which is what makes it worth its place.
-    why: 'across open water â€” no occluders at all, and the far bank draws whole',
-  },
-  {
-    id: 'from_above', kind: 'anchor', target: 'from_above',
-    label: 'the open aerial',
-    // The ceiling on what the scene can cost AT ALL: everything is in front of
-    // the camera by construction. It reads cheaper than the axial views because
-    // distance culling and the flora density falloff both bite from 175 m up â€”
-    // which is itself worth gating, because a change that breaks the falloff
-    // shows here first.
-    why: 'everything in frustum by construction â€” the whole-scene upper bound',
-  },
-  {
-    id: 'lake_and_market', kind: 'anchor', target: 'lake_market',
-    label: 'Lake and Market, the corner itself',
-    // Standing IN the densest built corner rather than looking at it: near
-    // geometry at full detail, the tier the flora and fence LODs are least able
-    // to help with.
-    why: 'the densest built corner, stood in rather than looked at',
-  },
-];
-/**
- * R-W5a2 â€” the whole untextured town is ONE batch, and it must stay one.
- *
- * This is the number the reach above is standing on. R-W3b(a) measured the reach
- * as draw-call-bound because every batch entering the shadow box costs a call in
- * the shadow pass as well as in the colour pass, and 16 batches is what made
- * Â±180 m hit the 80-call budget exactly. Merging them is what bought Â±240 m, so
- * a change that splits the town back into per-material batches has silently
- * taken the reach's headroom with it â€” assert the cause here, not only the
- * effect.
- *
- * 1 rather than "â‰¤ 16" because the merge is total: colour and roughness are both
- * per-vertex now and nothing else in the 1,353 measured material slots differs
- * (R-W2a). A textured asset would legitimately raise this, and raising it is
- * then a deliberate edit with a reach measurement beside it.
- */
-const STRUCTURE_BATCHES = 1;
-/**
- * How many distinct roughness values the merged batch must still carry, and how
- * far the frame must move when they are flattened.
- *
- * The town ships **16** â€” the batch count R-W5a left behind, which is what those
- * 16 batches were separating on. Set at 12 rather than 16 so a block landing
- * with a finish the town already uses cannot fail the gate, and low enough that
- * a merge which kept two or three finishes still reads as the loss it is.
- *
- * `ROUGHNESS_MIN_WORST` is MEASURED BEFORE IT IS SET, the way R-A1's box says an
- * instrument owes: driving every building vertex to 0.02 moves the worst 48Â²
- * cell by the figure the run prints beside this assertion, and the floor is set
- * at roughly a third of the smaller viewport's reading.
- */
-const ROUGHNESS_VALUES_MIN = 12;
-const ROUGHNESS_MIN_WORST = 4;
-/**
- * T-0002, the facade tones â€” how many distinct ones the town must draw, how
- * near two structures have to be to count as neighbours, and how far the frame
- * must move when the tone is wound off.
- *
- * MEASURED BEFORE THEY WERE SET, with `tools/measure_facade_variety.mjs` on the
- * published mirror: **331 distinct tones across 331 structures**, and winding
- * the tone to 0 moves the worst 48Â² cell by **10** (mean 0.27) at 1280x800. At
- * the smaller viewport the same reading was **7** at the Â±10 % jitter this
- * parcel shipped with before the frames said it was too little. The floors are
- * set at 300 tones (a town that lost the jitter and kept only the age silvering
- * would draw about 45), worst 3 and mean 0.03 â€” under half and a third of the
- * smaller of those readings, the same margins `ROUGHNESS_MIN_WORST` and the
- * road aid took.
- *
- * `FACADE_PAIR_M` is 60 m because that is what "neighbouring" means in a town
- * whose platted blocks are 126 m long: the nearest structure within a block
- * face. The assertion on those pairs is an INVARIANT, not a number â€” no two
- * neighbours drawn the same colour â€” because the archetype town had **10 of
- * 321** such pairs identical to the bit and the whole ask is that it has none.
- */
-const FACADE_TONES_MIN = 300;
-const FACADE_PAIR_M = 60;
-const FACADE_MIN_WORST = 3;
-const FACADE_MIN_MEAN = 0.03;
-/** How many structures must change colour when the tone is wound off: 329 are
- *  eligible today and two are excluded by attestation, so anything near the
- *  town's own size proves the channel is not dead on most of it. */
-const FACADE_MOVED_MIN = 300;
-/**
- * How much the 48Â² frame signature must move when the reach is wound back to
- * the pre-R-W3b(a) Â±60 m.
- *
- * MEASURED BEFORE IT WAS SET, the way R-A1's box says an instrument owes:
- * `tools/measure_shadow_reach.mjs --stations lake_market --reaches 120,60` on
- * the published mirror moves 104 of 2,304 cells with a worst cell of **8** at
- * 1280Ã—800 over a 2048Â² map, and 86 cells with a worst of **8** at 390Ã—780 over
- * a 1024Â² one. Set at 4 â€” half the smaller of the two, and the same floor R-A1
- * measured the road aid against on the same grid.
- */
-const SHADOW_REACH_MIN_WORST = 4;
-
-const ROAD_AID_GRID = 48;
-const ROAD_AID_MIN_WORST = 4;
-const ROAD_AID_MIN_MEAN = 0.15;
-// K24. The brightness aid's own floors, and the reason they are not the road
-// aid's: exposure moves EVERY pixel, so the 12Â² whole-frame signature that was
-// too coarse for a roadway occupying a tenth of the frame is exactly the right
-// instrument here, and a finer grid would only cost time. Measured mobile
-// 390Ã—780 on the published mirror at `lake_market`, full aid (+1 stop):
-//
-//   12Â²  mean 49.40, worst 51      restored residual, 12Â²:  mean 0.00, worst 0
-//
-// That is two orders of magnitude more signal than the road aid's 0.29 at the
-// same grid, which is the expected shape: one aid repaints a tenth of the frame
-// and the other regrades all of it.
-//
-// The floors sit at roughly a third of the measured figures and far above the
-// restored residual, so "the aid changed the frame" and "the aid changed
-// nothing" cannot both be true â€” R-A1's third assertion, which is the one a
-// control wired to nothing passes.
-const BRIGHT_AID_GRID = 12;
-const BRIGHT_AID_MIN_WORST = 17;
-const BRIGHT_AID_MIN_MEAN = 15;
-// The calibrated grade, asserted rather than assumed: every band, probe and
-// critic frame this suite takes is read here. world.js Â§ BASE_EXPOSURE.
-const BASE_EXPOSURE = 0.95;
-
-/** Project the street centrelines, then read R, M and O. Restores what it moved. */
-async function roadContrast(page, station) {
-  const shot = await page.evaluate((st) => {
-    const a = window.__chicago4d;
-    a.setAnimationHold(true);
-    for (const id of ['hud', 'popup']) {
-      const el = document.getElementById(id);
-      if (el) { el.dataset.roadHidden = el.style.visibility; el.style.visibility = 'hidden'; }
-    }
-    if (st.kind === 'intersection') {
-      // The visitor's own route: the Go to tab's list is painted at boot, so the
-      // button is in the DOM whether or not the panel is open.
-      document.querySelector(`[data-jump-id="${st.id}"]`)?.click();
-      a.step();
-      // Then turn to look ALONG the street being stood on. The arrival pose
-      // aims at a fixed bearing, which at a crossing points diagonally into the
-      // block and puts no roadway in the frame at all â€” 0 probes inside 100 m.
-      // The bearing is read off the nearest committed centreline segment, so
-      // the direction is the dataset's and not a number chosen here.
-      const p = a.player;
-      let best = null;
-      for (const rec of a.streets.records) {
-        const path = rec.path;
-        for (let i = 1; i < path.length; i++) {
-          const A = path[i - 1];
-          const B = path[i];
-          const dE = B[0] - A[0];
-          const dN = B[1] - A[1];
-          const len2 = dE * dE + dN * dN;
-          const t = len2 ? Math.max(0, Math.min(1,
-            ((p.e - A[0]) * dE + (p.n - A[1]) * dN) / len2)) : 0;
-          const d = Math.hypot(p.e - (A[0] + t * dE), p.n - (A[1] + t * dN));
-          if (!best || d < best.d) best = { d, bearing: (Math.atan2(dE, dN) * 180) / Math.PI };
-        }
-      }
-      if (best) a.walker.teleport({ yaw_deg: (best.bearing + 360) % 360 });
-    } else {
-      a.goTo(st.id);
-    }
-    a.step();
-    a.step();
-    const cam = a.camera;
-    cam.updateMatrixWorld(true);
-    const w = a.renderer.domElement.clientWidth;
-    const h = a.renderer.domElement.clientHeight;
-    const v = new cam.position.constructor();
-    const out = [];
-    // Every four metres along every committed centreline. The lift matches
-    // streets.js so the probe reads the ribbon and not the ground under it.
-    for (const rec of a.streets.records) {
-      const p = rec.path;
-      for (let i = 1; i < p.length; i++) {
-        const A = p[i - 1];
-        const B = p[i];
-        const d = Math.hypot(B[0] - A[0], B[1] - A[1]);
-        const steps = Math.max(1, Math.round(d / 4));
-        for (let s = 0; s <= steps; s++) {
-          const t = s / steps;
-          const e = A[0] + (B[0] - A[0]) * t;
-          const n = A[1] + (B[1] - A[1]) * t;
-          if (a.terrain.isWater(e, n)) continue;
-          v.set(e, a.terrain.surfaceHeight(e, n) + 0.022, -n);
-          const dist = v.distanceTo(cam.position);
-          v.project(cam);
-          const x = (v.x * 0.5 + 0.5) * w;
-          const y = (-v.y * 0.5 + 0.5) * h;
-          if (v.z < -1 || v.z > 1 || x < 2 || x >= w - 2 || y < 2 || y >= h - 2) continue;
-          out.push({ dist, x, y });
-        }
-      }
-    }
-    // The CSS width these coordinates are in. The mobile context runs at
-    // deviceScaleFactor 2, so a screenshot is twice this wide and every probe
-    // lands in the wrong half of the frame unless it is scaled â€” which read as
-    // "no road is anywhere" rather than as a broken probe, because a mask that
-    // matches nothing and a road that paints nothing look identical from here.
-    return { probes: out, cssWidth: w };
-  }, station);
-
-  const shotR = await page.screenshot({ type: 'png' });
-  await page.evaluate(() => {
-    const a = window.__chicago4d;
-    a.__roadMarkers = [];
-    a.streets.group.traverse((o) => {
-      if (!o.material) return;
-      a.__roadMarkers.push([o, o.material]);
-      const marker = new o.material.constructor();
-      marker.color.setHex(0x000000);
-      marker.emissive?.setHex?.(0xff00ff);
-      marker.side = o.material.side;
-      marker.transparent = false;
-      marker.depthWrite = true;
-      marker.polygonOffset = true;
-      marker.polygonOffsetFactor = -8;
-      marker.polygonOffsetUnits = -32;
-      o.material = marker;
-    });
-    a.step();
-  });
-  const shotM = await page.screenshot({ type: 'png' });
-  // DIAGNOSTIC PASS â€” the same markers with the sward and the trees hidden. A
-  // probe marked here but not in `shotM` is a road that is ON SCREEN and
-  // COVERED BY VEGETATION, which the marked-only denominator drops instead of
-  // failing.
-  await page.evaluate(() => {
-    const a = window.__chicago4d;
-    a.__floraWas = [a.flora?.group?.visible, a.trees?.group?.visible];
-    if (a.flora?.group) a.flora.group.visible = false;
-    if (a.trees?.group) a.trees.group.visible = false;
-    a.step();
-  });
-  const shotMF = await page.screenshot({ type: 'png' });
-  await page.evaluate(() => {
-    const a = window.__chicago4d;
-    if (a.flora?.group) a.flora.group.visible = a.__floraWas[0] ?? true;
-    if (a.trees?.group) a.trees.group.visible = a.__floraWas[1] ?? true;
-    delete a.__floraWas;
-    for (const [o, m] of a.__roadMarkers) { o.material.dispose(); o.material = m; }
-    delete a.__roadMarkers;
-    a.streets.group.visible = false;
-    a.step();
-  });
-  const shotO = await page.screenshot({ type: 'png' });
-  // DIAGNOSTIC PASS â€” the road painted at FULL opacity. A near band that still
-  // scores flat here is not an alpha fault: it is the ribbon and the ground
-  // sharing a lightness.
-  await page.evaluate(() => {
-    const a = window.__chicago4d;
-    a.streets.group.visible = true;
-    a.__roadOpaque = [];
-    a.streets.group.traverse((o) => {
-      if (!o.material) return;
-      a.__roadOpaque.push([o.material, o.material.transparent, o.material.alphaTest,
-        o.material.depthWrite]);
-      o.material.transparent = false;
-      o.material.alphaTest = 0;
-      // depthWrite WITH it, exactly as the marker pass does. Leaving it false
-      // moves the ribbon into the opaque queue without letting it hold the
-      // depth buffer, so the terrain paints back over it and the band reports
-      // a 0.0 ceiling under a perfectly healthy road â€” which is what this
-      // measurement read at 100-250 m before the offset above was deepened.
-      o.material.depthWrite = true;
-      o.material.needsUpdate = true;
-    });
-    a.step();
-  });
-  const shotOP = await page.screenshot({ type: 'png' });
-  await page.evaluate(() => {
-    const a = window.__chicago4d;
-    for (const [m, t, at, dw] of a.__roadOpaque) {
-      m.transparent = t; m.alphaTest = at; m.depthWrite = dw; m.needsUpdate = true;
-    }
-    delete a.__roadOpaque;
-    a.streets.group.visible = true;
-    for (const id of ['hud', 'popup']) {
-      const el = document.getElementById(id);
-      if (el) { el.style.visibility = el.dataset.roadHidden ?? ''; delete el.dataset.roadHidden; }
-    }
-    a.step();
-    a.setAnimationHold(false);
-  });
-
-  const R = decodePng(shotR);
-  const M = decodePng(shotM);
-  const MF = decodePng(shotMF);
-  const O = decodePng(shotO);
-  const OP = decodePng(shotOP);
-  const scale = R.width / shot.cssWidth;
-  const probes = shot.probes.map((p) => ({
-    dist: p.dist,
-    x: Math.min(R.width - 1, Math.max(0, Math.round(p.x * scale))),
-    y: Math.min(R.height - 1, Math.max(0, Math.round(p.y * scale))),
-  }));
-  // Magenta survives tone mapping as a strongly red-and-blue, weakly green
-  // pixel; nothing else in this scene is.
-  const isMagenta = (img, x, y) => {
-    const i = (y * img.width + x) * 4;
-    return img.data[i] > 140 && img.data[i + 2] > 140 && img.data[i + 1] < 110;
-  };
-  const marked = (x, y) => isMagenta(M, x, y);
-  const markedBare = (x, y) => isMagenta(MF, x, y);
-  const deltaL = (x, y) => {
-    const i = (y * R.width + x) * 4;
-    return Math.abs(labL(R.data[i], R.data[i + 1], R.data[i + 2])
-      - labL(O.data[i], O.data[i + 1], O.data[i + 2]));
-  };
-  const deltaLOpaque = (x, y) => {
-    const i = (y * R.width + x) * 4;
-    return Math.abs(labL(OP.data[i], OP.data[i + 1], OP.data[i + 2])
-      - labL(O.data[i], O.data[i + 1], O.data[i + 2]));
-  };
-  // R-M1a. The same two frames on the other two scales: exposure-invariant
-  // contrast, and the absolute light the ground under the road is carrying.
-  // Magnitude, not sign â€” a road that is DARKER than the ground beside it is
-  // exactly as distinguishable, and `south_water`'s earth is both in one frame.
-  const groundY = (x, y) => {
-    const i = (y * R.width + x) * 4;
-    return relativeLuminance(O.data[i], O.data[i + 1], O.data[i + 2]);
-  };
-  const weber = (x, y) => {
-    const i = (y * R.width + x) * 4;
-    const w = weberContrast(relativeLuminance(R.data[i], R.data[i + 1], R.data[i + 2]),
-      groundY(x, y));
-    return w === null ? null : Math.abs(w);
-  };
-  const groundLabL = (x, y) => {
-    const i = (y * R.width + x) * 4;
-    return labL(O.data[i], O.data[i + 1], O.data[i + 2]);
-  };
-  const median = (xs) => {
-    const s = xs.slice().sort((a, b) => a - b);
-    return s.length ? s[Math.floor(s.length / 2)] : 0;
-  };
-  const bands = ROAD_BANDS.map(([lo, hi]) => {
-    const inBand = probes.filter((p) => p.dist >= lo && p.dist < hi);
-    const seen = inBand.filter((p) => marked(p.x, p.y));
-    const ds = seen.map((p) => deltaL(p.x, p.y));
-    const op = seen.map((p) => deltaLOpaque(p.x, p.y));
-    const wb = seen.map((p) => weber(p.x, p.y)).filter((w) => w !== null);
-    const gl = seen.map((p) => groundLabL(p.x, p.y));
-    return {
-      lo, hi, n: ds.length,
-      // R-BUG3. How many road points landed in the frame at all, and how many
-      // of those the marker pass can see once the sward and the trees are
-      // taken away. `nProjected` is what the band is GATED on, so a road that
-      // is on screen and invisible fails here instead of quietly leaving the
-      // sample; `nBare` is what tells occlusion apart from flatness, which is
-      // the distinction three gates in a row failed to draw.
-      //
-      // R-M1c: `nBare` is now also what `perceptible` is SCORED on. See its
-      // box below â€” it was a diagnostic for two parcels before anything
-      // divided by it, and the score it replaced could be raised by planting
-      // a tree in front of a road.
-      nProjected: inBand.length,
-      nBare: inBand.filter((p) => markedBare(p.x, p.y)).length,
-      // The ceiling: the same probes with the ribbon forced opaque. It says how
-      // much contrast the road's own colour has to spend before its alpha
-      // spends it, which is what separates "too transparent" from "the same
-      // lightness as the ground".
-      opaqueDeltaL: median(op),
-      medianDeltaL: median(ds),
-      // R-M1a, reported and not gated. `weber` is the exposure-invariant half
-      // of the owner's ruling and `groundL` is the floor half; R-M1b sets the
-      // bars. `weberN` is carried because a band can lose probes to a black
-      // ground the ratio cannot be taken against, and a median over a silently
-      // shorter sample is how this project has mis-stated a number before.
-      weber: median(wb),
-      weberN: wb.length,
-      groundL: median(gl),
-      /**
-       * ROADMAP R-M1c. THE DENOMINATOR IS `nBare`, NOT `seen`.
-       *
-       * This read `/ ds.length` â€” the probes the marker pass could see THROUGH
-       * the vegetation â€” until 2026-08-16. That makes the score go UP when
-       * something stands in front of a faint stretch of road, because the
-       * stretch leaves the sample instead of failing in it. **A gate that
-       * improves when an occluder hides the thing it measures is dividing by
-       * the wrong number**, and this one did, for as long as it has existed.
-       *
-       * The instrument to fix it was already here and already printing. The
-       * `shotMF` pass hides the sward and the trees for exactly this reason and
-       * its own comment says so: *"a road that is ON SCREEN and COVERED BY
-       * VEGETATION, which the marked-only denominator drops instead of
-       * failing."* It was built as a diagnostic and never wired to the score.
-       *
-       * `nBare` is the right denominator rather than `nProjected` because a
-       * road behind a STORE is a road a visitor legitimately cannot see, and
-       * demanding it read would be demanding X-ray vision. Vegetation is
-       * different: it is ours, it moves when we change it, and it must not be
-       * able to launder a faint road out of the sample. `seen âŠ† bare` always,
-       * so this can only ever LOWER a score â€” it is not a route through a bar.
-       *
-       * Measured on one band across three builds the same evening, where
-       * `seen` swung 157â†’177â†’163 and the old score swung 62 %â†’54 %â†’59 %
-       * (aerial, 250â€“600 m: wood mirrored, wood repaired by R-BUG5b, wood
-       * widened by K45(b2)). `nBare` was **182 in all three**, and this score
-       * reads **53.3 / 52.7 / 52.7 %**. The town did not change by eight
-       * points three times; the sample did.
-       */
-      /**
-       * COUNTED AT THE DECLARED BAR. This used to count `d >= 2` â€” a second,
-       * undeclared threshold sitting beside `ROAD_MIN_DELTA_L`, which is 1.8 and
-       * is what this file everywhere else calls the line between a road you can
-       * see and one you cannot. Two bars for one question, and the stricter one
-       * was the one nobody had written down.
-       *
-       * It surfaced on T-0005's sloughs (PR #273). Carving them tilts ground
-       * normals and darkens the ground about 0.4 L*; `lake_market` at 250â€“600 m
-       * moved its median Î”L* 2.3 â†’ 2.0 and this score fell 99 % â†’ 48 %. That is
-       * not a scene falling apart, it is a STEP FUNCTION being crossed: dev's
-       * whole distribution sat 0.3 above the step, so a 0.3 shift put half the
-       * probes under it. The band still cleared the declared 1.8 bar, and the
-       * two renders are indistinguishable â€” 0.3 L* is far below any perceptual
-       * threshold. A gate that fails a band passing its own standard is
-       * measuring its own arithmetic.
-       *
-       * THIS IS AN ALIGNMENT, NOT A RELAXATION, and the difference is checked
-       * rather than asserted: at 1.8 the two stations T-0114 already fails â€”
-       * `south_water` 100â€“250 m and `from_above` 250â€“600 m â€” STILL FAIL, on the
-       * same measurements, before and after. Had this edit turned a known fault
-       * green it would have been the forbidden kind of change, and the re-run is
-       * what would have caught it.
-       *
-       * The bar itself is still T-0033's provisional baseline. Counting at it
-       * does not make it derived; it makes there be one of it.
-       */
-      perceptible: (() => {
-        const nBare = inBand.filter((p) => markedBare(p.x, p.y)).length;
-        return nBare ? ds.filter((d) => d >= ROAD_MIN_DELTA_L).length / nBare : 0;
-      })(),
-      gated: inBand.length >= ROAD_MIN_PROBES && hi <= ROAD_GATED_BEYOND_M,
-    };
-  });
-  return { station, bands };
-}
-
-const failures = [];
-const passes = [];
-// T-0060: checks taken inside a stage block, as opposed to the always-on
-// scaffolding (page serves, ready, loader problems, completion, page errors,
-// vendor) that every invocation takes regardless of SMOKE_STAGE. The summary
-// prints both so two staged halves can be audited to add up to an unfiltered
-// pass: staged section counts sum, scaffolding counts match.
-let inStageWork = false;
-let stageWorkChecks = 0;
-// T-0167: `SMOKE_TIMING=1` stamps every check line with the elapsed clock.
-// A part that overruns the ten-minute ceiling is KILLED, and the wall clock it
-// prints at the end is the one reading it never gets to give â€” so before this,
-// the most expensive parts, the ones that actually need cutting, were the only
-// ones a profile run learned nothing about. With the stamp on, a killed run's
-// output is still a profile of everything it reached, which is what places the
-// next cut. Off by default: the gate's output stays byte-comparable between
-// runs, and a profile is something you ask for.
-const TIMING = !!process.env.SMOKE_TIMING;
-const stamp = () => {
-  const secs = Math.round((Date.now() - startedAt) / 1000);
-  return `[${Math.floor(secs / 60)}:${String(secs % 60).padStart(2, '0')}] `;
-};
-// T-0187: `show` prints the detail on a PASS as well as on a failure, for the
-// handful of checks whose measured figure is the thing a run has to be able to
-// quote. The sward's outer reach is the case that asked for it: a change to the
-// boundary has to be able to say what the reach was before and after, and a
-// green line that prints nothing makes that a re-run with an edited gate.
-// Deterministic figures only â€” the output stays comparable between runs.
-// A mesh census reads as sixty-odd repetitions of two names, which is a wall of
-// text nobody reads, so a name list is reported as a tally: `frontage x1,
-// frontage-chunk x60`. Order is first-appearance, so the shared mesh stays at
-// the head where the layer puts it.
-function tallyNames(names) {
-  const counts = new Map();
-  for (const n of names ?? []) counts.set(n, (counts.get(n) ?? 0) + 1);
-  return [...counts].map(([n, c]) => (c === 1 ? n : `${n} x${c}`)).join(', ');
-}
-
-function check(name, cond, detail = '', show = false) {
-  if (inStageWork) stageWorkChecks += 1;
-  const t = TIMING ? stamp() : '';
-  if (cond) {
-    passes.push(name);
-    console.log(`  pass  ${t}${name}${show && detail ? ` â€” ${detail}` : ''}`);
-  } else { failures.push(name); console.log(`  FAIL  ${t}${name}${detail ? ` â€” ${detail}` : ''}`); }
-}
-
-const server = http.createServer((req, res) => {
-  const url = decodeURIComponent(req.url.split('?')[0]);
-  let file = path.join(ROOT, url);
-  if (fs.existsSync(file) && fs.statSync(file).isDirectory()) file = path.join(file, 'index.html');
-  if (!file.startsWith(ROOT) || !fs.existsSync(file)) {
-    res.writeHead(404, { 'content-type': 'text/plain' });
-    res.end(`not found: ${url}`);
-    return;
-  }
-  res.writeHead(200, { 'content-type': TYPES[path.extname(file)] || 'application/octet-stream' });
-  fs.createReadStream(file).pipe(res);
-});
-
-await new Promise((r) => server.listen(PORT, r));
-const base = `http://127.0.0.1:${PORT}${ENTRY}?year=${YEAR}`;
-console.log(`serving ${ROOT} on ${PORT} â€” ${wantPublished ? 'PUBLISHED mirror '
-  + '(compressed assets, visitor layout)' : 'source tree (uncompressed masters)'}\n`);
-if (wantPublished && !fs.existsSync(path.join(ROOT, 'walk', 'index.html'))) {
-  console.error(`no published mirror at ${ROOT} â€” run tools/publish.sh first`);
-  process.exit(2);
-}
-
-const launchBrowser = () => chromium.launch({
-  executablePath: process.env.PW_EXECUTABLE || undefined,
-  // SwiftShader is the only GPU here. Chromium finds it unaided, but say so
-  // rather than leaving a headless run to chance.
-  args: ['--enable-unsafe-swiftshader'],
-});
-
-/** How different are two pixel signatures, 0..255 per cell. */
-function signatureDistance(a, b) {
-  if (!a?.cells || !b?.cells || a.cells.length !== b.cells.length) return Infinity;
-  let sum = 0;
-  let worst = 0;
-  for (let i = 0; i < a.cells.length; i++) {
-    const d = Math.abs(a.cells[i] - b.cells[i]);
-    sum += d;
-    worst = Math.max(worst, d);
-  }
-  return { mean: sum / a.cells.length, worst };
-}
-
-// The gate is both viewports and nothing less. SMOKE_VIEWPORT exists because a
-// full pass takes upwards of ten minutes on a software renderer and an agent
-// iterating on one half should not have to spend the other half to see it â€” it
-// says so out loud when it is used, so a filtered run cannot be mistaken for the
-// gate in a log somebody reads later.
-const ONLY = process.env.SMOKE_VIEWPORT || '';
-if (ONLY) console.log(`NOT THE FULL GATE â€” viewports filtered to "${ONLY}"\n`);
-
-// T-0060 â€” the ten-minute ceiling (ROADMAP Â§ THE RUN BUDGET). A steward run's
-// single foreground command is capped at ten minutes, and by 2026-08-18 neither
-// viewport's full pass fit: mobile was killed at 570 s at 208 passed, desktop
-// at 143, and the check that went unrun was always `zero page errors`, because
-// it was the tail. SMOKE_STAGE splits each viewport's body in four at section
-// boundaries verified for crossing bindings, so each part fits a command â€”
-// while boot, the page-error check and the vendor checks stay in every
-// invocation.
-// T-0121 re-cut the four into EIGHT, because the four had eroded: by
-// 2026-08-23 three of the desktop quarters ran past the ten-minute ceiling and
-// the fourth cleared it by two minutes, so the desktop half a run could reach
-// was stage 1 alone. The erosion is monotonic â€” the town keeps growing â€” so the
-// answer was a re-cut with margin rather than one more boundary nudged along.
-// Each of T-0060's four stages was halved at a section boundary re-verified for
-// crossing bindings, so PART 2k-1 + PART 2k was exactly T-0060's stage k and the
-// mobile pass can still be taken in four commands with the range syntax below.
-// T-0167 measured the DESKTOP profile the eight-way cut had never been sized
-// from â€” see ROADMAP Â§ THE RUN BUDGET for the eight readings â€” and halved the
-// one part the profile put inside a minute and a quarter of the ceiling. Part 8
-// was the tail, so the ninth part is APPENDED and parts 1-7 keep their numbers:
-// the pairing rule survives as 1+2, 3+4, 5+6, 7+8+9, and the mobile recipe's
-// last command widens from `7-8` to `7-9`.
-// T-0346 cut PART 4 into THREE, and this one could not be an append: the two new
-// sections sit in the middle of the body, so parts 5-9 are renumbered 7-11 and
-// the old part 4 becomes 4 + 5 + 6. The cut is measured, not guessed â€” part 4 was
-// being killed at the ceiling and 6 m 17 s of its cost was one section, the
-// scene-detail ladder, which walks every stand at every tier and cannot be halved
-// again without walking the set twice. So the ladder is part 5 on its own and the
-// gate-and-chrome tail is part 6. Both boundaries are named section boundaries
-// re-verified for crossing bindings: exactly one crossed (part 4's `stats`, read
-// for its draw-call ceiling), and part 5 now reads that ceiling itself.
-// The pairing rule survives as 1+2, 3+4+5+6, 7+8, 9+10+11 â€” the same content in
-// the same four mobile commands, whose ranges become `1-2 3-6 7-8 9-11`.
-// T-0173 HALVED PART 7 and this one could not be an append either, so parts 8-11
-// are renumbered 9-12 and the old part 7 becomes 7 + 8. The cut is measured, not
-// guessed: profiled with SMOKE_TIMING=1 on the steward runner on 2026-08-30 at
-// load 0.8-2.9, part 7 was killed at 9 m 25 s with its last two assertions unrun,
-// and 7 m 04 s of its cost was ONE block â€” the three road-legibility stations,
-// each of which teleports to its own viewpoint and screenshots it. No boundary
-// between the part's own `// --- ` section headers leaves both sides a margin
-// (the best is 7 m 37 s against 1 m 30 s), so the cut falls at the station, which
-// is the grain the block is made of and crosses no binding: `roadRuns` is local
-// to the block, the movement report built from it is printed rather than gated
-// and has always compared only what the invocation measured, and
-// `--update-road-bands` merges per band. R-A1's three assertions are taken
-// STANDING AT `lake_market`, so that station goes with them: part 7 keeps
-// `south_water` and `from_above` at 2 m 13 s + 2 m 02 s, part 8 takes
-// `lake_market` at 2 m 49 s plus the aid at 1 m 04 s and the batch merge.
-// The pairing rule survives again as 1+2, 3+4+5+6, 7+8+9, 10+11+12 â€” the same
-// content in the same four mobile commands, ranges `1-2 3-6 7-9 10-12`.
-// T-0170 HALVED PART 10, the last part on T-0167's profile still over the
-// ceiling: measured at 1280x800 on an IDLE runner (load average 0.27-1.48, no
-// other Chromium on the box) it was killed at 9 m 20 s with the street readouts
-// and the Settings units still to run, so the ten minutes had never contained
-// it. It carried no `// --- section ---` headers, which is why T-0167 left it;
-// the seams are named now and the cut is the one the profile chose â€” the ragged
-// boundary and everything after it becomes part 11, so old parts 11 and 12 are
-// renumbered 12 and 13. `anyStage(7, 10)` becomes `anyStage(7, 10, 11)`: both
-// halves read `streetLayer`, the first for the road panels and the second for
-// the readouts. The pairing rule is unchanged in content â€” 1+2, 3+4+5+6, 7+8+9,
-// 10+11+12+13 â€” and the mobile recipe's last range widens from `10-12` to
-// `10-13`, still four commands.
-const PARTS = 13;
-const STAGE = process.env.SMOKE_STAGE || '';
-// `3` is one part; `3-4` is a contiguous run of them; `1,5-6` is any set. The
-// range form exists so the cheap viewport does not pay eight boots to run a
-// body that fits in two commands.
-const wantedParts = (() => {
-  if (!STAGE) return null;
-  const want = new Set();
-  for (const tok of STAGE.split(',').map((t) => t.trim()).filter(Boolean)) {
-    const m = /^(\d+)(?:-(\d+))?$/.exec(tok);
-    if (!m) return tok;
-    const lo = Number(m[1]);
-    const hi = m[2] === undefined ? lo : Number(m[2]);
-    if (lo < 1 || hi > PARTS || lo > hi) return tok;
-    for (let n = lo; n <= hi; n++) want.add(n);
-  }
-  return want.size ? want : null;
-})();
-if (typeof wantedParts === 'string') {
-  console.error(`SMOKE_STAGE must be a part 1..${PARTS}, a range like 3-4, or a `
-    + `comma-separated set of those; got "${wantedParts}" in "${STAGE}"`);
-  process.exit(2);
-}
-if (STAGE) console.log(`NOT THE FULL GATE â€” stages filtered to "${STAGE}" of ${PARTS}\n`);
-const stageOn = (n) => !wantedParts || wantedParts.has(n);
-// Readability at the guard on a reading shared by several parts: `anyStage(7, 10, 11)`
-// says which parts need it, and adding a part to that list is the whole edit.
-const anyStage = (...ns) => ns.some(stageOn);
-const startedAt = Date.now();
-
-for (const [label, viewport, touch] of [
-  ['mobile 390x780', { width: 390, height: 780 }, true],
-  ['desktop 1280x800', { width: 1280, height: 800 }, false],
-].filter(([label]) => !ONLY || label.includes(ONLY))) {
-  console.log(`${label}:`);
-  // Give each release viewport a fresh renderer process. Reusing one process
-  // makes a software-only run measure the previous viewport's accumulated GPU
-  // state and can starve the second walk test down to a single frame.
-  const browser = await launchBrowser();
-  const ctx = await browser.newContext({
-    viewport,
-    hasTouch: touch,
-    isMobile: false,          // isMobile forces mobile emulation Chromium-side
-    deviceScaleFactor: touch ? 2 : 1,
-  });
-  const page = await ctx.newPage();
-  // A few checks import an app module directly to exercise a pure function. The
-  // path to those modules differs between the source tree and the published
-  // mirror, so it is handed to the page rather than written into each call.
-  await page.addInitScript((b) => { window.__MODULE_BASE = b; }, MODULE_BASE);
-  // Playwright's default 30 s action timeout is not an assertion, and on this
-  // scene it had quietly become one. A click waits for the element to be stable
-  // across animation frames and then hit-tests it, and every one of those steps
-  // queues behind the render loop â€” which on a software renderer drawing 533 000
-  // triangles takes 0.5â€“1.1 s per frame (measured, both viewports). So opening
-  // the menu was timing out on a button that `elementFromPoint` returned as the
-  // topmost element at its own centre, with no pointer lock, the page visible
-  // and focused: nothing was wrong with the page and everything was wrong with
-  // the budget. The desktop half of the gate had stopped running entirely
-  // because of it. Ninety seconds is room for a slow machine, not permission
-  // for a broken control: a click that never lands still fails, three times
-  // slower.
-  //
-  // IT IS NOT RAISED AGAIN, AND T-0215 IS WHY. On 2026-08-27 the same starvation
-  // took the desktop half down again, and the honest reading is that a budget
-  // measured in frames is the wrong instrument for a scene whose frame cost is
-  // set by whatever else the machine is doing (17-27 s per frame, measured, on a
-  // runner where the identical scene also drew frames in 29 ms). Raising 90 to
-  // 180 buys one more town-sized month and pays for it in wall clock against a
-  // ten-minute per-command ceiling this gate has already been re-cut for twice.
-  // The answer is `clickChrome` below â€” not paying for the frames at all where
-  // the frames are not the subject. This number stays what it is: the backstop
-  // for the clicks that must remain a visitor's own mouse.
-  page.setDefaultTimeout(90_000);
-
-  // A fresh boot stands at the GATE SCREEN, and the part that enters the town
-  // is part 6's "the gate and the chrome" section (part 4's until T-0346). Every part after it that
-  // measures a page.screenshot frame (those include DOM overlays; the
-  // GL-capture checks do not) or clicks the panel chrome (which has no layout
-  // at all while the gate stands, so a click waits ninety seconds for a
-  // zero-size button and dies) has to stand where the full run stands: gate
-  // entered, pointer free, guide down. Idempotent by construction â€” in a full
-  // run every branch below is a no-op â€” which is what lets it be called at the
-  // head of four different parts. T-0060 wrote it inline twice; T-0121 needed
-  // it twice more and made it one function instead of four copies.
-  const enterTown = () => page.evaluate(async () => {
-    if (!document.getElementById('gate').hasAttribute('hidden')) {
-      document.getElementById('gate-btn')?.click();
-      await new Promise((r) => setTimeout(r, 150));
-      document.exitPointerLock?.();
-    }
-    const help = document.getElementById('control-help');
-    if (help && !help.hasAttribute('hidden')) {
-      document.getElementById('control-help-gotit')?.click();
-    }
-  });
-
-  // A click on the HUD chrome that does not have to race the render loop for it.
-  //
-  // THE HAZARD THE 90 s ABOVE ONLY POSTPONED. `page.click` is frame-bound three
-  // ways over: it polls the target's box on consecutive animation frames until it
-  // holds still, then scrolls it into view, then hit-tests it, and every one of
-  // those steps queues behind whatever the render loop is doing. STATUS
-  // 2026-08-13 raised the budget to 90 s for exactly that and said, in writing,
-  // that it was **a standing hazard and not a fixed one**: *"the same starvation
-  // will return as the town grows, and the next symptom will again look like a UI
-  // bug rather than a budget."* It returned on 2026-08-27 (T-0215), and it
-  // returned looking precisely like that: `SMOKE_VIEWPORT=desktop SMOKE_STAGE=8`
-  // died on its FIRST click, on the Settings tab, before a single one of part 8's
-  // assertions had run â€” and three agents in one day read that as the What's-new
-  // panel being broken. It was not. Driven by hand at the same moment the gate was
-  // dying, the panel opened and painted all 272 releases and cleared its unread
-  // dot; the tab was the topmost element at its own centre with no pointer lock.
-  // What had moved was the cost of a frame: **17.0 / 0.03 / 0.33 / 21.5 / 20.2 /
-  // 0.12 / 4.4 / 22.3 / 12.2 / 26.6 seconds**, measured on the loaded runner
-  // against the 0.46-1.10 s this file's comment above records. The 29 ms frames
-  // in that list are the proof it is the machine and not the scene â€” the renderer
-  // draws fast when it is given the CPU, and it was not being given it. Another
-  // number is not the answer to that; not needing the frames is. And note there
-  // is no trigger to find: timed at the same load, that identical click landed in
-  // 10.9 s cold, 28.4 s settled and 53.8 s after a reload before it blew ninety
-  // in the gate. It is a distribution with a tail across the budget, so any
-  // budget is a coin toss and only removing the dependency ends it.
-  //
-  // NOTHING IS SKIPPED, AND THAT IS THE POINT. Everything `page.click` asserts
-  // implicitly is asserted here explicitly, in the page, in ONE round trip: the
-  // element exists, is enabled, has a real box, and is the topmost thing at its
-  // own centre. That last one is T-0108's assertion verbatim â€” a control the
-  // HUD's `pointer-events: none` swallows returns the CANVAS from
-  // `elementFromPoint` and fails here exactly as it fails a visitor's mouse â€” and
-  // it now fails in one round trip with a sentence naming what covered it,
-  // instead of in ninety seconds with a call log that reads like a broken
-  // control. A real `page.click` stays the instrument wherever the trusted event
-  // ITSELF is the subject: the confidence menu in part 6 is the case, and it says
-  // so where it stands.
-  const clickChrome = async (sel) => {
-    const why = await page.evaluate((s) => {
-      const el = document.querySelector(s);
-      if (!el) return `nothing matches ${s}`;
-      if (el.disabled) return `${s} is disabled`;
-      // The same scroll `page.click` would do, in the same round trip as the
-      // reading â€” a result row far down the Go-to list is off the panel's
-      // viewport until this runs, and `elementFromPoint` would then answer for
-      // whatever is at those coordinates instead.
-      el.scrollIntoView({ block: 'center', inline: 'center' });
-      const b = el.getBoundingClientRect();
-      if (b.width < 1 || b.height < 1) {
-        return `${s} has no box (${Math.round(b.width)}x${Math.round(b.height)})`;
-      }
-      const top = document.elementFromPoint(b.x + b.width / 2, b.y + b.height / 2);
-      if (!top || !(top === el || el.contains(top))) {
-        const cls = top && typeof top.className === 'string' ? top.className : '';
-        // NAME THE OVERLAY, NOT JUST THE TAG IT ENDS IN (T-0369). The first
-        // report of this failure said only `<h2>`, and an `<h2>` is a heading
-        // inside something â€” the thing worth naming is the panel that heading
-        // belongs to. Walking up to the nearest ancestor carrying an id turns
-        // "covered by <h2>" into "covered by <h2> inside #popup", which is the
-        // whole diagnosis of a stale overlay left open by an earlier stage.
-        let owner = top;
-        while (owner && !owner.id && owner !== document.body) owner = owner.parentElement;
-        const inside = owner && owner.id && owner !== el ? ` inside #${owner.id}` : '';
-        return `${s} is covered at its own centre by `
-          + `<${top ? top.tagName.toLowerCase() : 'nothing'}${cls ? ` class="${cls}"` : ''}>${inside}`;
-      }
-      // A real mouse press FOCUSES a focusable control, and an untrusted
-      // `.click()` does not â€” which is a difference the suite already depends on
-      // and which this helper got wrong on its first run, honestly and visibly.
-      // Part 8 closes the panel and then presses `g`, and `g` only reaches the
-      // window shortcut if focus has left the Go-to search box first: the shared
-      // `isTyping(e.target)` guard swallows it otherwise, which is the whole
-      // point of that guard. Without this line the panel stayed shut, `g` did
-      // nothing, and the next reading was a result row with a 0x0 box. So this
-      // is fidelity to the click being replaced, not a convenience.
-      if (typeof el.focus === 'function') el.focus({ preventScroll: true });
-      el.click();
-      return null;
-    }, sel);
-    if (why) throw new Error(`clickChrome: ${why}`);
-  };
-
-  const errors = [];
-  page.on('pageerror', (e) => errors.push(`pageerror: ${e.message || e}`));
-  page.on('response', (r) => {
-    if (r.status() >= 400) errors.push(`HTTP ${r.status()} ${r.url()}`);
-  });
-  page.on('requestfailed', (r) => {
-    const why = r.failure()?.errorText || '';
-    if (!/ERR_ABORTED/.test(why)) errors.push(`request failed (${why}) ${r.url()}`);
-  });
-  page.on('console', (m) => {
-    const t = m.text();
-    if (m.type() === 'error' && !t.startsWith('Failed to load resource')) {
-      errors.push(`console.error: ${t}`);
-    }
-  });
-
-  const res = await page.goto(base, { waitUntil: 'domcontentloaded' });
-  check(`${label}: page serves`, res.status() === 200, `status ${res.status()} at ${base}`);
-
-  // --- boot ---------------------------------------------------------------
-  let ready = false;
-  let thrown = null;
-  try {
-    await page.waitForFunction(() => window.__chicago4d?.ready === true, { timeout: 30000 });
-    ready = true;
-  } catch {
-    const state = await page.evaluate(() => ({
-      error: window.__chicago4d?.error ?? null,
-      problems: window.__chicago4d?.problems ?? [],
-    })).catch(() => ({}));
-    check(`${label}: scene reaches ready`, false,
-      `${state.error ?? 'timed out'} | ${(state.problems || []).slice(0, 3).join(' | ')}`);
-  }
-  if (ready) check(`${label}: scene reaches ready`, true);
-
-  if (ready) {
-    const problems = await page.evaluate(() => window.__chicago4d.problems);
-    // Provisional placement and placeholder-asset notes are expected findings,
-    // not defects. `review_required` is also a deliberate release blocker, but
-    // pin its exact records before excluding it so a new blocker cannot hide in
-    // the general integration-problem list.
-    const reviews = problems.filter((p) => /review_required is set/.test(p));
-    const expectedReviews = await page.evaluate(() => [...window.__chicago4d.registry.values()]
-      .filter((r) => r.sidecar?.review_required)
-      .map((r) => r.sidecar.id)
-      .sort());
-    const reportedReviews = reviews.map((p) => p.split(':', 1)[0]).sort();
-    check(`${label}: the scene declares its exact consultation blockers`,
-      expectedReviews.length > 0
-      && JSON.stringify(reportedReviews) === JSON.stringify(expectedReviews),
-      `reported ${JSON.stringify(reportedReviews)}, expected ${JSON.stringify(expectedReviews)}`);
-    const hard = problems.filter((p) => !/provisional|PLACEHOLDER|placeholder|review_required is set/i.test(p));
-    check(`${label}: no unexpected loader problems`, hard.length === 0, hard.slice(0, 3).join(' | '));
-
-    const structures = await page.evaluate(() => window.__chicago4d.registry.size);
-    check(`${label}: scene has structures`, structures > 0, `${structures} loaded`);
-
-    // ======================================================================
-    // T-0060 â€” everything below, to the end of this viewport's body, runs in
-    // four stages so each fits a ten-minute command. The sections are NOT
-    // re-indented inside the stage braces on purpose: wrapping ~6,400 lines
-    // would destroy blame and make the diff that introduced this unreviewable.
-    // The try/catch is part of the same repair â€” a throw mid-suite used to
-    // kill the process before the page-error check, the summary and the exit
-    // code; now it is a recorded FAIL and the tail still runs.
-    // ======================================================================
-
-    // Read once, used in TWO stages: stage 1's "traced river loaded" check
-    // and stage 2's terrain-problem check (R-BUG3c) share this one reading.
-    // It crosses a stage boundary â€” found because a filtered run threw
-    // ReferenceError on it; the indent-anchored scans (the ticket's and this
-    // run's first) both missed it, sitting as it was at column 0 â€” so it is
-    // taken here, before the splits: a scene fact settled at ready, cheap to
-    // read, identical whenever it is taken.
-    const terrainLoad = await page.evaluate(() => {
-      const api = window.__chicago4d;
-      let water = null;
-      let groundTiles = 0;
-      api.scene3d.traverse((o) => {
-        if (!o.isMesh) return;
-        if (/^water__/.test(o.name || '')) water = o;
-        if (/^terrain__/.test(o.name || '')) groundTiles += 1;
-      });
-      let box = null;
-      if (water) {
-        water.geometry.computeBoundingBox();
-        const b = water.geometry.boundingBox;
-        box = { w: +(b.max.x - b.min.x).toFixed(1), d: +(b.max.z - b.min.z).toFixed(1) };
-      }
-      return { box, groundTiles,
-               // ANCHORED, and the anchor is the whole point. `js/terrain.js` emits
-               // `terrain <epoch>: â€¦` and `water: â€¦`, always at the start of the
-               // string, so a problem ABOUT the ground or the river is recognisable
-               // by its subject. The unanchored `/terrain|water/i` this replaced
-               // matched the word anywhere, and the first block of the town whose
-               // id contains one of them â€” `blk_south_water_franklin`, ROADMAP T-A8
-               // â€” turned two ordinary placeholder-asset notes into a reported
-               // terrain load failure. Five of the ten open blocks are
-               // `blk_south_water_*`, so it would have fired on each of them in
-               // turn. This narrows what the filter MATCHES, not what the check
-               // ALLOWS: a real terrain or water problem still has to be zero.
-               terrainProblems: api.problems.filter((t) => /^\s*(terrain|water)\b/i.test(t)) };
-    });
-
-    // Read once, shared by parts 7 and 9 (T-0060, re-cut by T-0121 and T-0346): the street
-    // layer, the flora rooted around it, the building anchors and the two
-    // readouts. Its checks span both of those parts, so the reading is taken
-    // before the split â€” and skipped when neither runs, because it is the most
-    // expensive single evaluate in the file. It teleports to its own
-    // viewpoints, so it does not care what ran before it.
-    //
-    // T-0121 narrowed the guard from "stage 3 or stage 4" to the two PARTS that
-    // actually read it: parts 9 and 11 hold no reference to `streetLayer`, and
-    // under the old guard each of them would have paid for it anyway â€” four
-    // times over the desktop pass instead of twice, on the very reading this
-    // gate can least afford.
-    let streetLayer = null;
-    if (anyStage(7, 10, 11)) {
-      streetLayer = await page.evaluate(() => {
-        const a = window.__chicago4d;
-        // Sample the dynamic flora from a known dry South Division viewpoint.
-        // The preceding overview check deliberately teleports over the river;
-        // after the deep-channel vegetation fix an empty sward there is correct.
-        a.walker.teleport({ local_e: 107, local_n: -103, yaw_deg: 180 });
-        a.step();
-        let vertices = 0;
-        let worstDrape = 0;
-        let wetVertices = 0;
-        a.streets.group.traverse((o) => {
-          const pos = o.geometry?.getAttribute?.('position');
-          if (!pos) return;
-          vertices += pos.count;
-          const step = Math.max(1, Math.floor(pos.count / 900));
-          for (let i = 0; i < pos.count; i += step) {
-            const e = pos.getX(i);
-            const n = -pos.getZ(i);
-            worstDrape = Math.max(worstDrape,
-              Math.abs(pos.getY(i) - a.terrain.surfaceHeight(e, n) - 0.022));
-            if (a.terrain.isWater(e, n)) wetVertices++;
-          }
-        });
-
-        // The former far-field canopy was a solid horizontal mesh at plant-top
-        // height. It looked like a second terrain layer, hid the bases of the
-        // buildings and let the visitor walk underneath it. The actual flora is
-        // instanced geometry whose matrices must begin on the same terrain
-        // sampler the buildings and streets use (or at the water surface for
-        // emergent plants). There must be no replacement canopy slab.
-        const canopyPresent = !!a.flora.group.getObjectByName('flora-canopy');
-        const waterY = a.terrain.heightfield?.meta?.water_surface_m ?? 0;
-        let rootedPlants = 0;
-        let worstPlantRoot = 0;
-        let waterPlants = 0;
-        let deepWaterPlants = 0;
-        for (const name of ['flora-near', 'flora-mid', 'flora-forb', 'flora-rosette',
-          'flora-shrub']) {
-          const mesh = a.flora.group.getObjectByName(name);
-          const matrix = mesh?.instanceMatrix?.array;
-          if (!matrix) continue;
-          for (let i = 0; i < mesh.count; i++) {
-            const o = i * 16;
-            const e = matrix[o + 12];
-            const y = matrix[o + 13];
-            const n = -matrix[o + 14];
-            const expected = a.terrain.isWater(e, n)
-              ? waterY : a.terrain.surfaceHeight(e, n);
-            worstPlantRoot = Math.max(worstPlantRoot, Math.abs(y - expected));
-            if (a.terrain.isWater(e, n)) {
-              waterPlants++;
-              if (a.flora.shoreDistance(e, n) > 8.01) deepWaterPlants++;
-            }
-            rootedPlants++;
-          }
-        }
-        const treeStations = a.trees.group.userData.stations ?? [];
-        const wetTreeStations = treeStations.filter(({ e, n }) => a.terrain.isWater(e, n));
-        // ...and the stronger question the river mask does not answer. `isWater`
-        // asks whether the heightfield is below SHORE_Y, 100 mm UNDER the water
-        // plane, so a stem rooted in that band passes the mask and still renders
-        // standing in the river. Every station carries the ground height the
-        // renderer built it at; the water surface comes from the epoch record.
-        const drownedTreeStations = treeStations.filter(({ e, n, y }) => (
-          (typeof y === 'number' ? y : a.terrain.surfaceHeight(e, n)) < waterY
-        ));
-        const lowestTreeStation = treeStations.reduce(
-          (lo, { e, n, y }) => Math.min(lo, typeof y === 'number' ? y : a.terrain.surfaceHeight(e, n)),
-          Infinity,
-        );
-
-        let anchoredBuildings = 0;
-        let worstBuildingAnchor = 0;
-        let deepestBedding = 0;
-        let exchangeAnchor = null;
-        for (const [id, record] of a.registry.entries()) {
-          const p = record.sidecar?.placement;
-          const at = a.buildings.positionOf(id);
-          if (!p || !at) continue;
-          // The anchor is the LOWEST ground under the footprint, not the ground at
-          // the origin â€” see buildings.groundUnder(). So the origin sample is a
-          // CEILING here, not an equality: a building on a slope beds down to its
-          // downhill corner and sits below its own origin by up to the relief
-          // beneath it. What this still pins is that the anchor comes from the
-          // terrain sampler at all, and never floats above it; the companion check
-          // "no building hovers above the ground beneath it" measures the corners
-          // through the real instance matrix.
-          const expected = p.vertical_anchor === 'water'
-            ? waterY : a.terrain.surfaceHeight(p.local_e ?? 0, p.local_n ?? 0);
-          // Signed: above the origin's ground is a fault, below it is bedding.
-          worstBuildingAnchor = Math.max(worstBuildingAnchor, at.y - expected);
-          deepestBedding = Math.max(deepestBedding, expected - at.y);
-          const error = Math.abs(at.y - expected);
-          anchoredBuildings++;
-          if (id === 'exchange_coffee_house') {
-            // Flat ground here, so the origin sample and the footprint minimum
-            // agree and the equality is still the right assertion for this one.
-            exchangeAnchor = { y: at.y, expected, error };
-          }
-        }
-
-        // Dry land has one value no matter which compatibility entry point an
-        // older caller uses. The walk-specific sampler differs only over water,
-        // where it deliberately supplies the navigation barrier.
-        let worstDrySurfaceAlias = 0;
-        for (const [e, n] of [[319.12, -90.66], [140, -35], [89.2, -110.4]]) {
-          if (!a.terrain.isWater(e, n)) {
-            worstDrySurfaceAlias = Math.max(worstDrySurfaceAlias,
-              Math.abs(a.terrain.surfaceHeight(e, n) - a.terrain.walkHeight(e, n)));
-          }
-        }
-        a.walker.teleport({ local_e: 452.5, local_n: -110.4, yaw_deg: 0 });
-        a.step();
-        const crossing = {
-          state: a.navigation.streetState,
-          historic: document.getElementById('street-historic')?.textContent,
-          modern: document.getElementById('street-modern')?.textContent,
-          shown: !document.getElementById('street-readout')?.hasAttribute('hidden'),
-        };
-        a.walker.teleport({ local_e: 89.2, local_n: -180, yaw_deg: 0 });
-        a.step();
-        const approaching = {
-          state: a.navigation.streetState,
-          historic: document.getElementById('street-historic')?.textContent,
-          modern: document.getElementById('street-modern')?.textContent,
-          ahead: document.getElementById('street-approach')?.textContent,
-        };
-        // R-BUG4. A panel used to be DELETED outright when any one of its four
-        // corners fell on water, which took the dry part of the panel with it â€”
-        // the owner saw it as a clean-edged green hole punched through South
-        // Water Street. It is clipped at the waterline now. This re-derives the
-        // rule's own arithmetic and asserts the ribbon carries every panel whose
-        // CENTRELINE is dry, so a future "simplification" back to dropping the
-        // panel fails here instead of in a screenshot.
-        const STEP = 2.25;
-        const MIN_W = 1.0;
-        let dryCentrelinePanels = 0;
-        let clippedPanels = 0;
-        let slivers = 0;
-        // T-0111. Re-derived from the line the module DRAWS from â€” the worn
-        // wheel line where a street commits one, the platted line everywhere
-        // else (`drawn` is `path` unless `drawn_track_local_enu_m` is
-        // authored). Re-deriving from the plat would count panels the module
-        // never emitted and turn an authored track into a false failure here.
-        for (const rec of a.streets.records) {
-          const half = (rec.track_width_m ?? 10.5) * 0.5;
-          const line = rec.drawn ?? rec.path;
-          const pts = [];
-          for (let i = 1; i < line.length; i++) {
-            const A = line[i - 1];
-            const B = line[i];
-            const d = Math.hypot(B[0] - A[0], B[1] - A[1]);
-            const c = Math.max(1, Math.ceil(d / STEP));
-            for (let j = 0; j < c; j++) {
-              if (!pts.length) pts.push([A[0], A[1]]);
-              const t = (j + 1) / c;
-              pts.push([A[0] + (B[0] - A[0]) * t, A[1] + (B[1] - A[1]) * t]);
-            }
-          }
-          for (let i = 1; i < pts.length; i++) {
-            const A = pts[i - 1];
-            const B = pts[i];
-            const de = B[0] - A[0];
-            const dn = B[1] - A[1];
-            const L = Math.hypot(de, dn);
-            if (L < 1e-5) continue;
-            if (a.terrain.isWater(A[0], A[1]) || a.terrain.isWater(B[0], B[1])) continue;
-            dryCentrelinePanels++;
-            const ue = -dn / L;
-            const un = de / L;
-            const reach = (e0, n0, se, sn) => {
-              if (!a.terrain.isWater(e0 + se * half, n0 + sn * half)) return half;
-              let lo = 0;
-              let hi = half;
-              for (let k = 0; k < 6; k++) {
-                const mid = (lo + hi) * 0.5;
-                if (a.terrain.isWater(e0 + se * mid, n0 + sn * mid)) hi = mid;
-                else lo = mid;
-              }
-              return lo;
-            };
-            const aw = reach(A[0], A[1], ue, un) + reach(A[0], A[1], -ue, -un);
-            const bw = reach(B[0], B[1], ue, un) + reach(B[0], B[1], -ue, -un);
-            if (aw < half * 2 - 1e-6 || bw < half * 2 - 1e-6) clippedPanels++;
-            if (aw < MIN_W || bw < MIN_W) slivers++;
-          }
-        }
-        // T-0110. A panel is 6 indices only until it refines, so the module
-        // counts its own panels now â€” index arithmetic would misread refinement
-        // as extra roadway.
-        const emittedQuads = a.streets.stats?.panels ?? NaN;
-        const refinedPanels = a.streets.stats?.refinedPanels ?? NaN;
-
-        // T-0110, the regression the vertex-drape gate above cannot see: the
-        // ground rising THROUGH a panel between its vertices. T-0046's approach
-        // fills rose through the planar ribbon by up to 1.49 m â€” every vertex
-        // perfectly draped, the road erased by the depth test â€” and the owner
-        // read it as "grass triangles" and a road "ending" short of the deck.
-        // Probed at the half-points of every street triangle: refinement holds
-        // the interior miss under DRAPE_TOL_M except two nose-tip panels at the
-        // waterline (0.21 m, under the deck ends), so the bar is 0.35 â€” a third
-        // of the failure this gate exists to catch, with headroom over the
-        // measured worst. Off-grid probes are skipped: no sample, no verdict.
-        let worstSink = 0;
-        a.streets.group.traverse((o) => {
-          const pos = o.geometry?.getAttribute?.('position');
-          const idx = o.geometry?.index;
-          if (!pos || !idx) return;
-          for (let i = 0; i < idx.count; i += 3) {
-            const tri = [idx.getX(i), idx.getX(i + 1), idx.getX(i + 2)];
-            const pt = tri.map((v) => [pos.getX(v), pos.getY(v), -pos.getZ(v)]);
-            // A triangle with a vertex off the grid stands on the fallback
-            // height, not a measurement â€” the map-border cliff is a border
-            // condition, not a drape defect, and the refiner refuses those
-            // panels for the same reason.
-            if (pt.some(([e, , n]) => !a.terrain.inBounds(e, n))) continue;
-            for (const [wa, wb, wc] of [[0.5, 0.5, 0], [0, 0.5, 0.5], [0.5, 0, 0.5],
-              [1 / 3, 1 / 3, 1 / 3]]) {
-              const e = pt[0][0] * wa + pt[1][0] * wb + pt[2][0] * wc;
-              const n = pt[0][2] * wa + pt[1][2] * wb + pt[2][2] * wc;
-              if (!a.terrain.inBounds(e, n)) continue;
-              const y = pt[0][1] * wa + pt[1][1] * wb + pt[2][1] * wc;
-              worstSink = Math.max(worstSink,
-                a.terrain.surfaceHeight(e, n) + 0.022 - y);
-            }
-          }
-        });
-
-        // T-0110, the join itself: the worn track must run onto each bridge
-        // approach and meet the deck. Stations march the street's own centreline
-        // up both North Branch approaches (deck ends e âˆ’117.5 / âˆ’45.67, T-0046's
-        // terrain approaches) and up the Dearborn drawbridge fill.
-        // Each station must land inside a drawn road triangle in plan.
-        //
-        // T-0111 CARRIED THE DEARBORN STATIONS THE LAST 2.7 M. They used to
-        // stop at n 17.5 because the street record itself stopped at n 18, and
-        // the comment here said so: the bare crest between the ribbon's end and
-        // the causeway was outside what this gate could see. The worn track is
-        // now drawn from `drawn_track_local_enu_m` onto the deck's own south
-        // edge at [697.65, 20.70], so the stations run to n 20.5 â€” half a metre
-        // short of the boards, which is the last ground that is ground â€” and
-        // they are taken on the line the ribbon is drawn from, since a station
-        // on the plat line past n 18 is asking about a place the plat does not
-        // reach.
-        const covered = (e, n) => {
-          let hit = false;
-          a.streets.group.traverse((o) => {
-            if (hit) return;
-            const pos = o.geometry?.getAttribute?.('position');
-            const idx = o.geometry?.index;
-            if (!pos || !idx) return;
-            for (let i = 0; i < idx.count && !hit; i += 3) {
-              const p = [idx.getX(i), idx.getX(i + 1), idx.getX(i + 2)]
-                .map((v) => [pos.getX(v), -pos.getZ(v)]);
-              const s = (A, B) => (B[0] - A[0]) * (n - A[1]) - (B[1] - A[1]) * (e - A[0]);
-              const d0 = s(p[0], p[1]);
-              const d1 = s(p[1], p[2]);
-              const d2 = s(p[2], p[0]);
-              hit = !((d0 < 0 || d1 < 0 || d2 < 0) && (d0 > 0 || d1 > 0 || d2 > 0));
-            }
-          });
-          return hit;
-        };
-        const centreAt = (id, axis, value) => {
-          const rec = a.streets.records.find((r) => r.id === id);
-          const k = axis === 'e' ? 0 : 1;
-          const line = rec.drawn ?? rec.path;
-          for (let i = 1; i < line.length; i++) {
-            const [A, B] = [line[i - 1], line[i]];
-            const lo = Math.min(A[k], B[k]);
-            const hi = Math.max(A[k], B[k]);
-            if (value < lo || value > hi) continue;
-            const t = (value - A[k]) / (B[k] - A[k] || 1e-9);
-            return [A[0] + (B[0] - A[0]) * t, A[1] + (B[1] - A[1]) * t];
-          }
-          return null;
-        };
-        const approachGaps = [];
-        for (let e = -135; e <= -118; e += 1) {
-          const p = centreAt('kinzie', 'e', e);
-          if (!p || !covered(p[0], p[1])) approachGaps.push(`kinzie w ${e}`);
-        }
-        for (let e = -45; e <= -32; e += 1) {
-          const p = centreAt('kinzie', 'e', e);
-          if (!p || !covered(p[0], p[1])) approachGaps.push(`kinzie e ${e}`);
-        }
-        for (let n = 8; n <= 20.5; n += 0.5) {
-          const p = centreAt('dearborn', 'n', n);
-          if (!p || !covered(p[0], p[1])) approachGaps.push(`dearborn ${n}`);
-        }
-
-        /**
-         * T-0184 â€” THE OUTSIDE OF EVERY TURN, stationed the way the approaches
-         * above are, and for the same reason: a claim about roadway is only
-         * worth what a point standing on it is worth.
-         *
-         * Every panel used to be square to its own chord, so at a bend the two
-         * rows crossed at the centreline and diverged towards the edges and the
-         * outside of the turn carried a triangle of unpainted ground â€” 23.47 m2
-         * of it town-wide, worst 4.29 m2 at South Water Street's west approach
-         * (`tools/measure_road_joints.mjs`, a 2 cm plan lattice). Nine stations
-         * are dropped INSIDE that sector at each authored bend, spread across
-         * its angle and out to nine tenths of the half-width, and each must land
-         * on drawn roadway. Every one of them was uncovered before the mitre.
-         *
-         * The full lattice lives in the instrument; these stations are the part
-         * a release can afford. A bend whose own centreline is wet carries no
-         * question â€” North Water Street's line runs inside the water mask from
-         * E 330 to E 576, and no ribbon may be drawn there at all.
-         */
-        const jointGaps = [];
-        let jointStations = 0;
-        for (const rec of a.streets.records) {
-          const line = rec.drawn ?? rec.path;
-          const half = (rec.track_width_m ?? 6) * 0.5;
-          for (let i = 1; i < line.length - 1; i++) {
-            const [A, P, B] = [line[i - 1], line[i], line[i + 1]];
-            let turn = Math.atan2(B[1] - P[1], B[0] - P[0])
-              - Math.atan2(P[1] - A[1], P[0] - A[0]);
-            if (turn > Math.PI) turn -= 2 * Math.PI;
-            if (turn < -Math.PI) turn += 2 * Math.PI;
-            if (Math.abs(turn) < 0.25 * Math.PI / 180) continue;
-            if (a.terrain.isWater(A[0], A[1]) || a.terrain.isWater(P[0], P[1])
-              || a.terrain.isWater(B[0], B[1])) continue;
-            const l1 = Math.hypot(P[0] - A[0], P[1] - A[1]);
-            const u1e = -(P[1] - A[1]) / l1;
-            const u1n = (P[0] - A[0]) / l1;
-            const sgn = turn > 0 ? 1 : -1;
-            for (let s = 0; s < 3; s++) {
-              const ang = ((s + 0.5) * turn) / 3;
-              const c = Math.cos(ang);
-              const sn = Math.sin(ang);
-              const ve = u1e * c - u1n * sn;
-              const vn = u1e * sn + u1n * c;
-              for (const f of [0.35, 0.65, 0.9]) {
-                const e = P[0] - sgn * ve * half * f;
-                const n = P[1] - sgn * vn * half * f;
-                if (a.terrain.isWater(e, n)) continue;
-                jointStations++;
-                if (!covered(e, n)) {
-                  jointGaps.push(`${rec.id} [${P[0]}, ${P[1]}] ${(turn * 180 / Math.PI)
-                    .toFixed(1)} deg at ${f}`);
-                }
-              }
-            }
-          }
-        }
-
-        return {
-          worstSink, refinedPanels, approachGaps, jointGaps, jointStations,
-          joints: a.streets.stats?.joints ?? null,
-          squareJoints: a.streets.stats?.squareJoints ?? null,
-          mitredJoints: a.streets.stats?.mitredJoints ?? null,
-          fannedJoints: a.streets.stats?.fannedJoints ?? null,
-          jointFanTriangles: a.streets.stats?.jointFanTriangles ?? null,
-          records: a.streets.records.length, vertices, worstDrape, wetVertices,
-          dryCentrelinePanels, clippedPanels, slivers, emittedQuads,
-          canopyPresent, rootedPlants, worstPlantRoot, waterPlants, deepWaterPlants,
-          treeStations: treeStations.length, wetTreeStations: wetTreeStations.length,
-          drownedTreeStations: drownedTreeStations.length,
-          lowestTreeStation, waterY,
-          treeRejectedBelowWaterline: a.trees.stats?.rejectedBelowWaterline ?? null,
-          // ROADMAP R-BUG5. The population both woody checks above are blind to:
-          // `stations` is written only inside the near-field planter's 632 m
-          // square, so the five FAR_TIMBER bodies drawn as a horizon silhouette
-          // have never been asked where they stand. Measured against the mask the
-          // BROWSER loaded, not the one in data/ â€” tools/measure_far_timber.py
-          // asks the committed bytes and this project has twice shipped a bug
-          // living exactly in that gap.
-          farTimberWater: a.trees.farTimberWater?.() ?? null,
-          // ...and the clip that keeps them off the screen, exercised. The band is
-          // solved around the camera, so this has to stand far enough back that a
-          // body in water clears MIN_FAR_M and the solver actually reaches it â€”
-          // from the spawn point the nearest one is a metre inside the near
-          // cut-off, which is a green gate that has run nothing. Since T-0031 the
-          // body it exercises is `north_branch_belt`, whose wet crossing begins at
-          // its first vertex (-95, 345) â€” 605 m from this stand, and the first
-          // sample of a segment is emitted at the vertex itself, so the clip is
-          // reached whatever the adaptive step does with the 16 m of wet run.
-          horizonWetSkipped: (() => {
-            a.walker.teleport({ local_e: -100, local_n: -260, yaw_deg: 44 });
-            a.step();
-            return a.trees.stats?.horizonWetSkipped ?? null;
-          })(),
-          anchoredBuildings, worstBuildingAnchor, deepestBedding, exchangeAnchor,
-          worstDrySurfaceAlias,
-          clearsLake: a.streets.blocksGrowth(452.5, -110.4),
-          keepsBlockGreen: !a.streets.blocksGrowth(510, -180),
-          crossing, approaching,
-        };
-      });
-    }
-
-    try {
-    // PART 1 â€” "the gate counts the town" through the fort stockade and the
-    // business signs: the enclosure and signage layers, all read off the scene
-    // graph rather than off the screen.
-    if (stageOn(1)) {
-    inStageWork = true;
-
-    // --- the frame is multisampled, phone included (T-0157) ----------------
-    // `main.js` booted with `antialias: !coarse` from Milestone 0, so a touch
-    // device drew the whole town with no multisampling and its edges flipped
-    // whole. Measured at 390Ã—780 on the published mirror by
-    // `tools/measure_phone_aa.mjs`: switching MSAA on takes every one of the 149
-    // pixels that were swapping surface outright under a 2 mm nudge â€” 25 aerial,
-    // 124 at Lake and Market â€” to ZERO, and the worst per-pixel movement from
-    // 105/140 to 28/37.
-    //
-    // This is asserted on the live CONTEXT rather than on a pixel count, and the
-    // measurement is why: the flicker COUNT goes UP when MSAA is switched on
-    // (1,056 â†’ 2,482 aerial), because a partial resample touches more pixels
-    // than a whole flip does. Any gate written on the count would have to be
-    // written backwards.
-    //
-    // `antialias` is a context-creation attribute with no runtime handle, which
-    // is exactly what makes it worth a gate: the only way to lose it is a reboot
-    // with the flag off, and not one other check in this file would notice.
-    // `getContextAttributes()` alone will not do â€” it echoes what was ASKED for.
-    // `SAMPLES` is what the framebuffer actually has.
-    const multisample = await page.evaluate(() => {
-      const gl = window.__chicago4d.renderer.getContext();
-      return {
-        asked: gl.getContextAttributes().antialias,
-        samples: gl.getParameter(gl.SAMPLES),
-        coarse: window.matchMedia('(pointer: coarse)').matches,
-      };
-    });
-    check(`${label}: the frame is multisampled â€” the town's edges are resolved on a phone too`,
-      multisample.asked === true && multisample.samples >= 2,
-      `antialias=${multisample.asked} SAMPLES=${multisample.samples} `
-      + `pointer:coarse=${multisample.coarse}`);
-
-    // --- the gate counts the town (T-0036) --------------------------------
-    // The owner asked for the number of buildings and the number of people
-    // living in them on the FRONT screen. The assertion that matters is not
-    // "a row appeared" â€” it is that the row's NUMERALS are the committed
-    // data's, read back out of the rendered DOM and compared against the JSON
-    // the page fetched. A gate screen quoting a stale count is the failure this
-    // is here to catch, and it is invisible to every other check in this file.
-    //
-    // The gate is still open at this point in the run (the walk tests click
-    // through it much later), which is the only moment the row is on screen.
-    const gateCensus = await page.evaluate(() => {
-      const host = document.getElementById('gate-census');
-      const visible = !!host && !host.hasAttribute('hidden');
-      const figures = [...(host?.querySelectorAll('.gc-n') || [])].map((el) => el.textContent);
-      return {
-        visible,
-        figures,
-        text: host ? host.textContent.replace(/\s+/g, ' ').trim() : '',
-        box: host ? host.getBoundingClientRect().width : 0,
-        data: window.__chicago4d.census,
-      };
-    });
-    const shown = gateCensus.figures.map((t) => Number(String(t).replace(/,/g, '')));
-    const want = [gateCensus.data?.buildings?.standing, gateCensus.data?.people?.housed];
-    check(`${label}: the gate shows the town census`,
-      gateCensus.visible && gateCensus.box > 0 && shown.length === 2,
-      `visible=${gateCensus.visible} width=${gateCensus.box} figures=${JSON.stringify(gateCensus.figures)}`);
-    check(`${label}: the gate's figures are the committed data's`,
-      Number.isFinite(want[0]) && Number.isFinite(want[1])
-      && shown[0] === want[0] && shown[1] === want[1],
-      `showed ${JSON.stringify(shown)}, data says ${JSON.stringify(want)}`);
-    // Neither figure is a total, and the row has to say so or it misleads: the
-    // buildings are counted against the programme's target and the people
-    // against the town's own recorded size, both quoted out of the same file.
-    const grouped = (n) => String(n).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
-    check(`${label}: the gate names both denominators`,
-      Number.isFinite(gateCensus.data?.buildings?.target)
-      && Number.isFinite(gateCensus.data?.people?.town_total)
-      && gateCensus.text.includes(grouped(gateCensus.data.buildings.target))
-      && gateCensus.text.includes(`roughly ${grouped(gateCensus.data.people.town_total)}`),
-      gateCensus.text);
-
-    // --- water anchoring (docs/GLB-CONTRACT.md) ---------------------------
-    // A bridge's local y = 0 is the design water surface, not the ground, so
-    // the renderer must NOT sample the heightfield for it. Mid-channel the
-    // ground surface is the river BED, so a regression here sinks the bridge
-    // out of sight and reads as a missing asset. The assertion is written as
-    // the DIFFERENCE between the two anchors rather than "y === 0", because
-    // over dry land the two agree and a test that passed there would prove
-    // nothing.
-    //
-    // The bed is sampled at the deck's MIDPOINT, not at the placement origin.
-    // That origin is the polygon's (0, 0) â€” for this bridge the west end, which
-    // by construction sits exactly on the traced waterline where the ground
-    // surface crosses zero. Sampling there compares zero against zero and the
-    // check passes whatever the renderer does. Found by this assertion failing
-    // on its first run, which is the argument for writing it as a difference.
-    const anchored = await page.evaluate(() => {
-      const api = window.__chicago4d;
-      const rec = api.registry.get('north_branch_bridge');
-      const p = rec?.sidecar?.placement;
-      const poly = rec?.sidecar?.footprint?.polygon;
-      if (!p || !poly?.length) return { missing: true };
-      const world = api.buildings.positionOf('north_branch_bridge');
-      // Footprint bbox centre, rotated by the facade bearing exactly as
-      // walker.js's footprintsFrom does, then offset to world ENU.
-      const us = poly.map(([u]) => u);
-      const vs = poly.map(([, v]) => v);
-      const u = (Math.min(...us) + Math.max(...us)) / 2;
-      const v = (Math.min(...vs) + Math.max(...vs)) / 2;
-      const th = (p.rotation_deg ?? 0) * Math.PI / 180;
-      const midE = (p.local_e ?? 0) + u * Math.cos(th) + v * Math.sin(th);
-      const midN = (p.local_n ?? 0) - u * Math.sin(th) + v * Math.cos(th);
-      return {
-        anchor: p.vertical_anchor,
-        y: world ? world.y : null,
-        // The real channel bed, and what the terrain anchor would have
-        // returned here â€” which is NOT the bed: height() reports a wading
-        // barrier over water, so the regression this catches lifts the bridge
-        // metres into the air rather than sinking it.
-        bed: api.terrain.groundHeight(midE, midN),
-        terrainAnchor: api.terrain.height(midE, midN),
-      };
-    });
-    check(`${label}: the bridge declares a water anchor`,
-      anchored.anchor === 'water', `${anchored.anchor ?? 'record missing'}`);
-    check(`${label}: the bridge sits on the water plane, not on the terrain`,
-      anchored.y !== null && Math.abs(anchored.y) < 0.01
-      && anchored.bed < -0.5 && Math.abs(anchored.terrainAnchor - anchored.y) > 1,
-      `placed y ${anchored.y?.toFixed(2)}, bed ${anchored.bed?.toFixed(2)} m, `
-      + `terrain anchor would give ${anchored.terrainAnchor?.toFixed(2)} m`);
-
-    // --- the enclosure layer (T-0038) ---------------------------------------
-    //
-    // A fence is the first thing this project has drawn from a PERIMETER rather
-    // than a footprint, and it is drawn by the renderer rather than baked, so
-    // every one of these questions is answerable here and nowhere else. The last
-    // one is the acceptance clause of its ticket: not "the data loaded" but "you
-    // can see it from where a visitor stands".
-    //
-    // T-0067 replaced the layer's "one draw call" question with the OPPOSITE
-    // one, and the swap is a strengthening rather than a relaxation. One mesh
-    // spanning the whole town has a bounding sphere no frustum can cull, so
-    // every fence in Chicago drew in every frame including the ones behind the
-    // camera â€” 33,166 triangles of it, which T-0115 measured and named the
-    // largest free saving left in the scene. The layer now builds culling-sized
-    // chunks, and the assertion below is what makes a future re-merge fail
-    // loudly instead of quietly costing a phone its frame.
-    const encl = await page.evaluate(() => {
-      const e = window.__chicago4d.enclosures;
-      const meshes = (e?.group?.children ?? []).filter((c) => c.isMesh);
-      const box = { minE: Infinity, maxE: -Infinity, minN: Infinity, maxN: -Infinity };
-      for (const r of e?.records ?? []) {
-        for (const run of r.runs ?? []) {
-          for (const [pe, pn] of run.path_local_enu_m ?? []) {
-            box.minE = Math.min(box.minE, pe); box.maxE = Math.max(box.maxE, pe);
-            box.minN = Math.min(box.minN, pn); box.maxN = Math.max(box.maxN, pn);
-          }
-        }
-      }
-      let worst = 0;
-      let verts = 0;
-      let ungraded = 0;
-      let graded = 0;
-      // The widest bounding sphere on the layer: this is the number that decides
-      // whether the frustum can do anything at all, so it is read rather than
-      // inferred from the chunk count.
-      let widestSphere = 0;
-      for (const mesh of meshes) {
-        const g = mesh.geometry;
-        const pos = g.getAttribute('position');
-        verts += pos.count;
-        widestSphere = Math.max(widestSphere, g.boundingSphere?.radius ?? Infinity);
-        for (let i = 0; i < pos.count; i++) {
-          // world is (E, up, -N)
-          const e0 = pos.getX(i);
-          const n0 = -pos.getZ(i);
-          worst = Math.max(worst,
-            box.minE - e0, e0 - box.maxE, box.minN - n0, n0 - box.maxN);
-        }
-        const conf = g.getAttribute('_confidence');
-        if (!conf) continue;
-        graded += 1;
-        for (let i = 0; i < conf.count; i++) {
-          if (!(conf.getX(i) >= 0 && conf.getX(i) <= 1)) ungraded++;
-        }
-      }
-      return {
-        census: e?.census ?? null,
-        meshes: meshes.length,
-        runs: (e?.records ?? []).reduce((t, r) => t + (r.runs?.length ?? 0), 0),
-        graded,
-        verts,
-        widestSphere,
-        ungraded,
-        outsideRuns: Number.isFinite(worst) ? worst : null,
-        ids: (e?.records ?? []).map((r) => r.id),
-      };
-    });
-    check(`${label}: the enclosure layer draws its records`,
-      encl.census?.enclosures >= 1 && encl.census?.posts > 0 && encl.verts > 0,
-      `${encl.census?.enclosures} enclosure(s), ${encl.census?.posts} posts, `
-      + `${encl.verts} vertices, ${encl.census?.dropped} member(s) refused, `
-      + `ids [${encl.ids.join(', ')}]`);
-    // T-0068 added the second half of this. A layer of 3.5 km of lot-line fence
-    // can fail the culling contract in the OPPOSITE direction too: one mesh per
-    // run holds every sphere small and costs a draw call per fence, and at 189
-    // runs that is 51 calls of the frame's whole budget (measured). So it packs
-    // neighbouring runs into a shared chunk, and the bar is asserted from both
-    // ends â€” the widest sphere stays under 40 m AND the mesh count stays well
-    // under the run count, which is what says the packing is running at all.
-    check(`${label}: the enclosure layer is chunked so the frustum can cull it`,
-      encl.meshes > 1 && encl.widestSphere <= 40
-      && encl.runs > 50 && encl.meshes <= encl.runs / 2,
-      `${encl.meshes} mesh(es) for ${encl.runs} run(s) in the group, widest bounding `
-      + `sphere ${encl.widestSphere?.toFixed(1)} m (one town-wide mesh reads ~700 m)`);
-    // Unmarked geometry rendering as though it were evidence is the one failure
-    // the confidence view exists to prevent, and a layer built in JS can put a
-    // vertex on screen without ever passing through the GLB contract that would
-    // have caught it.
-    check(`${label}: every fence vertex carries a confidence grade`,
-      encl.meshes > 0 && encl.graded === encl.meshes && encl.ungraded === 0,
-      `${encl.graded} of ${encl.meshes} chunk(s) carry the attribute, `
-      + `${encl.ungraded} value(s) out of range`);
-    // The fence stands where the record puts it. The tolerance is the post's own
-    // half-section plus a rail's, which is the most a member can legitimately
-    // overhang the line its own centre is authored on.
-    check(`${label}: no fence member stands outside its own authored run`,
-      encl.outsideRuns !== null && encl.outsideRuns <= 0.15,
-      `worst overhang ${encl.outsideRuns?.toFixed(3)} m beyond the authored extent`);
-
-    // AND IT READS. Stand in the Western Hotel's yard, hold the clock so the
-    // grass cannot supply the difference, and compare the frame with the layer
-    // hidden. A fence nobody can see from the ground is the visible-progress
-    // rule's own failure case, so it is asserted rather than described.
-    await page.evaluate(() => window.__chicago4d.goToTarget(
-      { kind: 'intersection', local_e: -127.7, local_n: -292 }));
-    await page.waitForTimeout(350);
-    await page.evaluate(() => window.__chicago4d.setAnimationHold(true));
-    const yardWith = await page.evaluate(() => window.__chicago4d.capture());
-    await page.evaluate(() => { window.__chicago4d.enclosures.group.visible = false; });
-    const yardWithout = await page.evaluate(() => window.__chicago4d.capture());
-    await page.evaluate(() => { window.__chicago4d.enclosures.group.visible = true; });
-    await page.evaluate(() => window.__chicago4d.setAnimationHold(false));
-    const dYard = signatureDistance(yardWith, yardWithout);
-    check(`${label}: the yard fence reaches the screen from inside the yard`,
-      dYard.worst >= 6 && dYard.mean >= 0.3,
-      `cell delta mean ${dYard.mean?.toFixed(2)}, worst ${dYard.worst} (need worst>=6)`);
-
-    // --- the town pound is a fence, not a box (T-0051) -----------------------
-    //
-    // Chicago's first public building is an enclosure â€” Andreas: "a small wooden
-    // enclosure and quite roofless" â€” and it stood in this town as a roofed log
-    // box because the only archetype that would build a low walled rectangle
-    // cannot build a roofless one. Its geometry now lives on the layer above,
-    // and a record whose mesh moves layers can go wrong in four ways that no
-    // dataset gate can see: the GLB can still load, the card can become
-    // unreachable, the retired footprint can stay behind as an invisible wall,
-    // and the fence can fail to draw at all. One assertion each.
-    const pen = await page.evaluate(() => {
-      const api = window.__chicago4d;
-      const rec = api.loaded?.registry?.get?.('estray_pen')
-        ?? api.registry?.get?.('estray_pen') ?? null;
-      return {
-        inLayer: (api.enclosures?.records ?? []).some((r) => r.id === 'estray_pen'),
-        asset: rec ? rec.sidecar?.asset ?? null : 'NO RECORD',
-        drawnBy: rec?.sidecar?.drawn_by ?? null,
-        hasGltf: !!rec?.gltf,
-        obstructs: (api.footprints ?? []).some((f) => f.id === 'estray_pen'),
-      };
-    });
-    check(`${label}: the estray pen is drawn as an enclosure and bakes no mesh`,
-      pen.inLayer && pen.asset === null && pen.drawnBy === 'enclosures' && !pen.hasGltf,
-      `on the layer ${pen.inLayer}, sidecar asset ${JSON.stringify(pen.asset)}, `
-      + `drawn_by ${pen.drawnBy}, gltf loaded ${pen.hasGltf}`);
-    check(`${label}: the retired box leaves no invisible wall on the public square`,
-      !pen.obstructs, `walker footprint present: ${pen.obstructs}`);
-
-    // Stand in the pound and look around it. Two questions in one stand: can you
-    // SEE it (the visible-progress rule's own test), and can you still open the
-    // card behind it â€” which used to come free with a roof to click on and now
-    // has to be earned by picking the fence itself.
-    await page.evaluate(() => window.__chicago4d.goToTarget(
-      { kind: 'intersection', local_e: 473.07, local_n: -374.26 }));
-    await page.waitForTimeout(350);
-    await page.evaluate(() => window.__chicago4d.setAnimationHold(true));
-    const penWith = await page.evaluate(() => window.__chicago4d.capture());
-    await page.evaluate(() => { window.__chicago4d.enclosures.group.visible = false; });
-    const penWithout = await page.evaluate(() => window.__chicago4d.capture());
-    await page.evaluate(() => { window.__chicago4d.enclosures.group.visible = true; });
-    await page.evaluate(() => window.__chicago4d.setAnimationHold(false));
-    const dPen = signatureDistance(penWith, penWithout);
-    check(`${label}: the pen reaches the screen from inside the pen`,
-      dPen.worst >= 6 && dPen.mean >= 0.3,
-      `cell delta mean ${dPen.mean?.toFixed(2)}, worst ${dPen.worst} (need worst>=6)`);
-
-    const penPick = await page.evaluate(() => {
-      const hits = [];
-      for (const x of [-0.6, -0.3, 0, 0.3, 0.6]) {
-        for (const y of [-0.4, -0.2, 0, 0.2]) {
-          const hit = window.__chicago4d.pick({ x, y });
-          if (hit?.id) hits.push(hit.id);
-        }
-      }
-      return hits;
-    });
-    check(`${label}: aiming at the pen's fence still opens the pen's card`,
-      penPick.includes('estray_pen'),
-      `20 aims returned [${[...new Set(penPick)].join(', ') || 'nothing'}]`);
-
-    // --- the dooryard garden pickets (T-0052) --------------------------------
-    //
-    // The first record on this layer whose evidence is a TREATMENT rather than a
-    // place: the Kinzie-view plate shows picket-fenced garden plots and nothing
-    // says which lot in the town had one, so the record is GENERATED from a rule
-    // over the platted lots. Two things can go wrong that no dataset gate sees.
-    // The rule can produce a record the renderer then draws as the wrong KIND of
-    // fence â€” the layer knew only posts and horizontal rails until today, and a
-    // picket drawn as three rails would pass every count in this file. And a
-    // fence at the back of a lot can be invisible from anywhere a visitor stands.
-    const pickets = await page.evaluate(() => {
-      const e = window.__chicago4d.enclosures;
-      const rec = (e?.records ?? []).find((r) => r.id === 'town_dooryard_pickets');
-      return {
-        found: !!rec,
-        runs: rec?.runs?.length ?? 0,
-        type: rec?.form?.fence_type?.value ?? null,
-        pales: e?.census?.pales ?? 0,
-      };
-    });
-    check(`${label}: the town's house lots carry generated picket gardens`,
-      pickets.found && pickets.runs >= 10 && pickets.type === 'picket',
-      `record ${pickets.found}, ${pickets.runs} plot(s), fence type ${pickets.type}`);
-    // A pale per 0.178 m of perimeter is what makes it a picket and not a rail
-    // fence; the floor is deliberately far under the count so it asserts the
-    // BRANCH ran, not a number that will drift with the rule's output.
-    check(`${label}: the picket branch draws pales, not just posts and rails`,
-      pickets.pales >= 500, `${pickets.pales} pale(s) on the layer`);
-
-    // And stand in one of the gardens â€” Dr Harmon's lot on Randolph â€” holding the
-    // clock so the grass cannot supply the difference.
-    await page.evaluate(() => window.__chicago4d.goToTarget(
-      { kind: 'intersection', local_e: 249.65, local_n: -282.7 }));
-    await page.waitForTimeout(350);
-    await page.evaluate(() => window.__chicago4d.setAnimationHold(true));
-    const gardenWith = await page.evaluate(() => window.__chicago4d.capture());
-    await page.evaluate(() => { window.__chicago4d.enclosures.group.visible = false; });
-    const gardenWithout = await page.evaluate(() => window.__chicago4d.capture());
-    await page.evaluate(() => { window.__chicago4d.enclosures.group.visible = true; });
-    await page.evaluate(() => window.__chicago4d.setAnimationHold(false));
-    const dGarden = signatureDistance(gardenWith, gardenWithout);
-    check(`${label}: the garden fence reaches the screen from the dooryard`,
-      dGarden.worst >= 6 && dGarden.mean >= 0.3,
-      `cell delta mean ${dGarden.mean?.toFixed(2)}, worst ${dGarden.worst} (need worst>=6)`);
-
-    // --- the town's lot-line yard fences (T-0068) ----------------------------
-    //
-    // The owner: *"i think there should be more fences."* Four enclosures in the
-    // whole of Chicago, and every other lot open prairie from the house to the
-    // alley. The three generated `town_lot_line_*` records enclose the YARD of
-    // every improved platted lot the rule can find room behind, and the ticket's
-    // acceptance clause is a TOWN-WIDE one â€” *"improved lots across the town read
-    // as fenced"* â€” so the assertion has to be about COVERAGE and not about
-    // existence. Four failures this catches that no dataset gate can:
-    //
-    //   * the rule silently narrowing (a footprint moves, a clause bites harder)
-    //     until a handful of lots carry fences and the town reads as it did;
-    //   * the coverage stacking in one corner â€” the records could name a hundred
-    //     lots and the geometry stand in three blocks;
-    //   * one of the three fence TYPES failing to reach the screen, which the
-    //     board branch already did once (a type the renderer does not know falls
-    //     back to open rails and draws a yard you can see straight through);
-    //   * and a yard quietly acquiring a ground TREATMENT, which would take the
-    //     prairie off a hundred lots. These records state none ON PURPOSE â€” a
-    //     garden can say what it is, a yard cannot â€” and that decision is
-    //     invisible in every other check in this file.
-    const lotLines = await page.evaluate(() => {
-      const a = window.__chicago4d;
-      const recs = (a.enclosures?.records ?? []).filter((r) => /^town_lot_line_/.test(r.id));
-      const lots = new Set();
-      const blocks = new Set();
-      const types = {};
-      const graded = { existence: 0, form: 0, formValues: 0 };
-      let runs = 0;
-      let metres = 0;
-      let declaresGround = 0;
-      for (const r of recs) {
-        for (const id of r.coverage?.lots ?? []) {
-          lots.add(id);
-          blocks.add(id.replace(/_lot\d+$/, ''));
-        }
-        types[r.form?.fence_type?.value ?? '?'] = (r.coverage?.lots ?? []).length;
-        runs += (r.runs ?? []).length;
-        if (r.ground?.treatment) declaresGround += 1;
-        if (r.existence?.confidence === 'reconstructed') graded.existence += 1;
-        for (const v of Object.values(r.form ?? {})) {
-          graded.formValues += 1;
-          if (v?.confidence === 'reconstructed') graded.form += 1;
-        }
-        for (const run of r.runs ?? []) {
-          const p = run.path_local_enu_m ?? [];
-          for (let i = 1; i < p.length; i++) {
-            metres += Math.hypot(p[i][0] - p[i - 1][0], p[i][1] - p[i - 1][1]);
-          }
-        }
-      }
-      // AND WHAT IS DRAWN. Read off the MESHES rather than the records, so a
-      // record that loaded and built nothing cannot pass this: which 40 m cells
-      // of the town hold fence timber, and how tall the tallest stick in each
-      // fence type stands. A cell count is the cheapest honest answer to "is the
-      // enclosure spread across the town" that does not need the plat in here.
-      const meshes = (a.enclosures?.group?.children ?? []).filter((c) => c.isMesh);
-      const cells = new Set();
-      let ungraded = 0;
-      let lotMeshes = 0;
-      for (const m of meshes) {
-        // Scoped to the chunks these records reach: another record on this layer
-        // is free to be graded better than reconstructed the day a source
-        // describes its fence, and that must not fail this check.
-        if (!(m.userData.recordIds ?? []).some((id) => /^town_lot_line_/.test(id))) continue;
-        lotMeshes += 1;
-        const pos = m.geometry.getAttribute('position');
-        const conf = m.geometry.getAttribute('_confidence');
-        for (let i = 0; i < pos.count; i += 3) {
-          cells.add(`${Math.round(pos.getX(i) / 40)}:${Math.round(-pos.getZ(i) / 40)}`);
-          if (conf && conf.getX(i) !== 1) ungraded += 1;
-        }
-      }
-      return { records: recs.length, lots: lots.size, blocks: blocks.size, types, runs,
-        metres: Math.round(metres), declaresGround, cells: cells.size,
-        meshes: meshes.length, lotMeshes, graded, ungraded,
-        pales: a.enclosures?.census?.pales ?? 0, posts: a.enclosures?.census?.posts ?? 0 };
-    });
-    check(`${label}: the town's improved lots read as fenced, block after block`,
-      lotLines.records === 3 && lotLines.lots >= 100 && lotLines.blocks >= 17
-      && lotLines.runs >= 240 && lotLines.metres >= 4000,
-      `${lotLines.records} record(s) fencing ${lotLines.lots} platted lot(s) across `
-      + `${lotLines.blocks} block(s), ${lotLines.runs} run(s), ${lotLines.metres} m`);
-    check(`${label}: the lot fences are built in the period's three types`,
-      Object.keys(lotLines.types).length === 3
-      && ['board', 'picket', 'post_and_rail'].every((t) => lotLines.types[t] > 0),
-      `types ${JSON.stringify(lotLines.types)}`);
-    // 40 m cells, so this cannot be satisfied by one long fence: the town's
-    // platted blocks span roughly 1,100 m by 330 m and a coverage that had
-    // collapsed into one district would read well under half of this.
-    check(`${label}: the enclosure is spread over the town, not stacked in one district`,
-      lotLines.cells >= 95,
-      `fence timber stands in ${lotLines.cells} cell(s) of 40 m`);
-    check(`${label}: a lot's yard states no ground treatment, so its sward stands`,
-      lotLines.declaresGround === 0,
-      `${lotLines.declaresGround} of ${lotLines.records} lot-line record(s) declare one`);
-    // Carded reconstructed, in both halves: what the RECORDS claim about
-    // themselves, and what the drawn vertices carry. Nothing on this scheme is
-    // evidence and the confidence view has to be able to take all of it away.
-    check(`${label}: every lot fence is graded reconstructed, record and vertex`,
-      lotLines.graded.existence === 3 && lotLines.graded.formValues > 0
-      && lotLines.graded.form === lotLines.graded.formValues
-      && lotLines.lotMeshes > 0 && lotLines.ungraded === 0,
-      `${lotLines.graded.existence}/3 existence, ${lotLines.graded.form}/`
-      + `${lotLines.graded.formValues} form values, ${lotLines.ungraded} vertex/vertices in `
-      + `${lotLines.lotMeshes} chunk(s) graded better than reconstructed`);
-    // AND IT READS, from the ground these fences actually face. The alley behind
-    // the Randolph and Wells block, looking east down it: the plat drives a
-    // service alley through the middle of every block, the back of every lot on
-    // both sides opens onto it, and the yard fences stand within three metres of
-    // a visitor walking it. Compared with the layer hidden, holding the clock so
-    // the grass cannot supply the difference â€” the same instrument the wagon
-    // yard, the pen and the gardens use.
-    await page.evaluate(() => {
-      window.__chicago4d.walker.teleport({ local_e: 370, local_n: -323.3, yaw_deg: 90 });
-    });
-    await page.waitForTimeout(350);
-    await page.evaluate(() => window.__chicago4d.setAnimationHold(true));
-    const lotWith = await page.evaluate(() => window.__chicago4d.capture());
-    await page.evaluate(() => { window.__chicago4d.enclosures.group.visible = false; });
-    const lotWithout = await page.evaluate(() => window.__chicago4d.capture());
-    await page.evaluate(() => { window.__chicago4d.enclosures.group.visible = true; });
-    await page.evaluate(() => window.__chicago4d.setAnimationHold(false));
-    const dLot = signatureDistance(lotWith, lotWithout);
-    check(`${label}: the lot fences reach the screen from the alley they face`,
-      dLot.worst >= 6 && dLot.mean >= 0.3,
-      `cell delta mean ${dLot.mean?.toFixed(2)}, worst ${dLot.worst} (need worst>=6)`);
-
-    // --- the Sauganash's yard fence and its trees (T-0091) -------------------
-    //
-    // The first CLOSED fence this project builds that is not a garden pale, and
-    // the first tree in this scene whose position a record states rather than a
-    // density deals. Both failure modes are drawing faults that no dataset gate
-    // can see: a `board` fence type the renderer does not know falls back to the
-    // open rail branch and draws a yard you can see straight through, which is
-    // the opposite of what three views of this hotel show; and a placed stem is
-    // one bad axis away from standing in the neighbouring block, which is
-    // exactly the fault R-BUG5b caught in the planter it borrows its archetype
-    // from. So the geometry is measured against the record here.
-    const sauganash = await page.evaluate(() => {
-      const a = window.__chicago4d;
-      const rec = (a.enclosures?.records ?? []).find((r) => r.id === 'sauganash_yard');
-      const run = rec?.runs?.[0]?.path_local_enu_m ?? [];
-      const segDist = (pe, pn, p0, p1) => {
-        const dx = p1[0] - p0[0];
-        const dy = p1[1] - p0[1];
-        const len2 = dx * dx + dy * dy || 1;
-        let t = ((pe - p0[0]) * dx + (pn - p0[1]) * dy) / len2;
-        t = Math.min(Math.max(t, 0), 1);
-        return Math.hypot(p0[0] + dx * t - pe, p0[1] + dy * t - pn);
-      };
-      const onRun = (pe, pn) => {
-        let d = Infinity;
-        for (let k = 1; k < run.length; k++) d = Math.min(d, segDist(pe, pn, run[k - 1], run[k]));
-        return d;
-      };
-      // The DRAWN fence, off EVERY chunk the layer built (T-0067 â€” it used to be
-      // one merged buffer and reading `children[0]` was enough): how much timber
-      // stands on this record's own line, and how tall the tallest of it stands
-      // over the ground under it. A rail fence and a board fence of the same
-      // height differ by an order of magnitude in the first number, which is
-      // what makes this a test of the branch rather than of the record.
-      let onLine = 0;
-      let top = 0;
-      for (const mesh of a.enclosures?.group?.children ?? []) {
-        const pos = mesh.geometry?.getAttribute('position');
-        for (let i = 0; pos && i < pos.count; i++) {
-          const pe = pos.getX(i);
-          const pn = -pos.getZ(i);
-          if (onRun(pe, pn) > 0.25) continue;
-          onLine++;
-          top = Math.max(top, pos.getY(i) - a.terrain.surfaceHeight(pe, pn));
-        }
-      }
-      // And the stems the YARD's planting record placed, each asked whether it
-      // stands inside the fence it is supposed to stand behind. Filtered to the
-      // yard record since T-0074: the dooryard pass states stems all over the
-      // town through the same loop, and a dooryard elm two blocks away is not
-      // an escapee from this fence.
-      const stems = (a.trees?.stats?.plantedStems ?? [])
-        .filter((st) => st.record === 'sauganash_yard_trees')
-        .map((st) => ({
-          ...st,
-          inYard: st.e > 101.4 && st.e < 119.5 && st.n < -130.6 && st.n > -151.07,
-          clear: onRun(st.e, st.n),
-        }));
-      return {
-        found: !!rec,
-        type: rec?.form?.fence_type?.value ?? null,
-        stated: rec?.form?.height_m?.value ?? null,
-        onLine,
-        top,
-        planted: a.trees?.stats?.planted ?? 0,
-        stems,
-      };
-    });
-    check(`${label}: the Sauganash's rear yard is fenced with boards, not rails`,
-      sauganash.found && sauganash.type === 'board' && sauganash.onLine >= 2000,
-      `record ${sauganash.found}, type ${sauganash.type}, `
-      + `${sauganash.onLine} vertices on its own line`);
-    // Tall is the whole of what image 10 says about this fence, so the number
-    // the record turned that word into has to be the number on the screen.
-    check(`${label}: the yard fence is drawn at the height its record states`,
-      sauganash.stated !== null && Math.abs(sauganash.top - sauganash.stated) <= 0.12,
-      `drawn ${sauganash.top?.toFixed(2)} m against a stated ${sauganash.stated} m`);
-    check(`${label}: every stem the yard's planting record places stands inside that yard`,
-      sauganash.stems.length === 3
-      && sauganash.stems.every((st) => st.inYard && st.clear >= 2),
-      `${sauganash.stems.length} yard stem(s) of ${sauganash.planted} planted: `
-      + sauganash.stems.map((st) => `${st.id} ${st.inYard ? 'in' : 'OUT'} `
-        + `${st.clear.toFixed(1)} m off the fence`).join(', '));
-
-    // AND IT READS, from the street the fence stands on. Market Street beside
-    // the yard, looking east: the fence is six metres away and the trees the
-    // same plate shows behind it stand over it. Both are compared with the
-    // layer hidden, holding the clock so the grass cannot supply the difference.
-    await page.evaluate(() => {
-      window.__chicago4d.walker.teleport({ local_e: 95, local_n: -140, yaw_deg: 90 });
-    });
-    await page.waitForTimeout(350);
-    await page.evaluate(() => window.__chicago4d.setAnimationHold(true));
-    const yardAll = await page.evaluate(() => window.__chicago4d.capture());
-    await page.evaluate(() => { window.__chicago4d.enclosures.group.visible = false; });
-    const yardNoFence = await page.evaluate(() => window.__chicago4d.capture());
-    await page.evaluate(() => { window.__chicago4d.enclosures.group.visible = true; });
-    await page.evaluate(() => { window.__chicago4d.trees.group.visible = false; });
-    const yardNoTrees = await page.evaluate(() => window.__chicago4d.capture());
-    await page.evaluate(() => { window.__chicago4d.trees.group.visible = true; });
-    await page.evaluate(() => window.__chicago4d.setAnimationHold(false));
-    const dFence = signatureDistance(yardAll, yardNoFence);
-    const dTrees = signatureDistance(yardAll, yardNoTrees);
-    check(`${label}: the yard fence reaches the screen from Market Street`,
-      dFence.worst >= 6 && dFence.mean >= 0.3,
-      `cell delta mean ${dFence.mean?.toFixed(2)}, worst ${dFence.worst} (need worst>=6)`);
-    // The woody layer is hidden whole here, so this says "trees are visible from
-    // this stand" rather than "these three are". It is the yard's own crowns
-    // that carry it: the town is cleared ground and the nearest timber that is
-    // not in this yard is the river gallery two blocks north, behind the walker.
-    check(`${label}: the trees behind the fence reach the screen with it`,
-      dTrees.worst >= 6 && dTrees.mean >= 0.3,
-      `cell delta mean ${dTrees.mean?.toFixed(2)}, worst ${dTrees.worst} (need worst>=6)`);
-
-    // --- fenced ground is not prairie (T-0067) --------------------------------
-    //
-    // The owner, 2026-08-18: "everplace that is fenced in would have a different
-    // ground, the wagon yard would probably be dirty dusty ground and fences
-    // around properties inside the fence would not be wild prairie but curated
-    // lawn and garden or animal pens." Every fence above enclosed the same wild
-    // sward as the ground outside it, and three of the four records SAID SO in
-    // their own `ground` blocks with `geometry: "absent"`.
-    //
-    // Two halves, and both are asserted because either one alone looks finished:
-    // a treatment laid over a sward that still grows through it is a hole in the
-    // model, and a suppressed sward with nothing laid in its place is bare
-    // terrain inside a fence. The placer is asked DIRECTLY at interior points â€”
-    // the same instrument T-0124 uses on the plank decks, `plantableAt` plus
-    // `stationOf` for every species the ground's own zone could deal there,
-    // which is the half that regressed silently before.
-    const fenced = await page.evaluate(() => {
-      const a = window.__chicago4d;
-      const y = a.yards;
-      const subs = a.flora.substrates();
-      // One interior of each treatment, probed at the OPENEST point in it â€” a
-      // working yard, an animal pen and a picketed dooryard. Not a centroid: the
-      // Western Hotel's yard is an L wrapped round the hotel's own corner and
-      // the average of its six corners lands inside the hotel.
-      const wanted = ['worn_earth', 'trodden_earth', 'dooryard_garden'];
-      const stands = wanted.map((t) => {
-        const i = (y?.interiors ?? []).find((x) => x.treatment === t);
-        if (!i) return { treatment: t, missing: true };
-        const [e, n] = i.at;
-        const zone = a.flora.zoneAt(e, n);
-        const z = subs.find((x) => x.id === zone);
-        let speciesAsked = 0;
-        let speciesHits = 0;
-        for (const sp of (z ? z.dry.concat(z.wet) : [])) {
-          speciesAsked += 1;
-          if (a.flora.stationOf(e, n, sp) !== null) speciesHits += 1;
-        }
-        return {
-          treatment: t, id: i.id, e, n,
-          reads: y.treatmentAt(e, n),
-          suppressed: y.suppressesSward(e, n),
-          rootable: a.flora.plantableAt(e, n),
-          zone, speciesAsked, speciesHits,
-        };
-      });
-      // The treatment's own geometry: laid, graded, and casting nothing. A
-      // ground treatment lying ON the ground has nothing to cast onto, and it is
-      // deliberately outside the furniture-shadow policy for that reason.
-      let tris = 0;
-      let ungraded = 0;
-      let notReconstructed = 0;
-      let casting = 0;
-      for (const mesh of y?.group?.children ?? []) {
-        const g = mesh.geometry;
-        tris += g.getAttribute('position').count / 3;
-        if (mesh.castShadow) casting += 1;
-        const conf = g.getAttribute('_confidence');
-        if (!conf) { ungraded += 1; continue; }
-        for (let i = 0; i < conf.count; i++) {
-          const v = conf.getX(i);
-          if (!(v >= 0 && v <= 1)) ungraded += 1;
-          else if (v < 1) notReconstructed += 1;
-        }
-      }
-      // AND THE SUPPRESSION IS CONFINED. Sampled over the whole modelled box, so
-      // it is a property of the dataset rather than of where anyone stands: an
-      // interior polygon that went wrong â€” an unclosed ring, a sign flipped â€”
-      // would take the prairie off half the town and every check above would
-      // still pass.
-      const hf = a.terrain.heightfield;
-      const STEP = 4;
-      let land = 0;
-      let inside = 0;
-      for (let n = hf.originN; n <= hf.originN + hf.depthM; n += STEP) {
-        for (let e = hf.originE; e <= hf.originE + hf.widthM; e += STEP) {
-          if (a.terrain.isWater(e, n)) continue;
-          land += 1;
-          if (y.suppressesSward(e, n)) inside += 1;
-        }
-      }
-      // AND THE SUPPRESSED GROUND IS THE GROUND THE RECORDS DECLARE (T-0097).
-      // The sampled area above is compared against the shoelace area of the
-      // interiors the layer actually built, so the assertion is about the
-      // dataset agreeing with itself rather than about a constant somebody
-      // fitted to the fences of the day. An unclosed ring, a flipped sign or a
-      // lost coordinate moves the two apart; a new fence, a new yard or an
-      // apron the size of the fort's moves them together.
-      const shoelace = (pts) => {
-        let acc = 0;
-        for (let i = 0, j = pts.length - 1; i < pts.length; j = i++) {
-          acc += pts[j][0] * pts[i][1] - pts[i][0] * pts[j][1];
-        }
-        return Math.abs(acc) / 2;
-      };
-      const declaredArea = (y?.interiors ?? []).reduce((t, i) => t + shoelace(i.pts), 0);
-      // A record that DECLARES a treatment and got no interior is the failure
-      // this layer would most quietly make â€” an interior derived from runs that
-      // no longer close, or an authored ring that lost a coordinate. Asked of
-      // the records rather than of a count, so the assertion survives the town
-      // growing another fence.
-      const declared = (a.enclosures?.records ?? [])
-        .filter((r) => r.ground?.treatment)
-        .map((r) => ({ id: r.id, treatment: r.ground.treatment,
-          interiors: (y?.interiors ?? []).filter((i) => i.record === r.id).length }));
-      return {
-        stands,
-        declared,
-        census: y?.census ?? null,
-        meshes: (y?.group?.children ?? []).length,
-        tris, ungraded, notReconstructed, casting,
-        suppressedFraction: land ? inside / land : 1,
-        declaredArea,
-        sampledArea: inside * STEP * STEP,
-      };
-    });
-    check(`${label}: every fenced interior in the town carries a ground treatment`,
-      fenced.declared.length >= 4 && fenced.declared.every((d) => d.interiors >= 1)
-      && fenced.census?.interiors >= 18 && fenced.meshes >= 3 && fenced.tris > 0
-      && Object.keys(fenced.census?.byTreatment ?? {}).length === 3,
-      `${fenced.declared.length} record(s) declare a treatment `
-      + `[${fenced.declared.map((d) => `${d.id} ${d.treatment} x${d.interiors}`).join(', ')}]; `
-      + `${fenced.census?.interiors} interior(s) in ${fenced.meshes} mesh(es), `
-      + `${fenced.tris} triangles, ${fenced.census?.beds} bed(s), `
-      + `${fenced.census?.paths} path(s), treatments `
-      + JSON.stringify(fenced.census?.byTreatment ?? {}));
-    for (const s of fenced.stands) {
-      check(`${label}: the ground inside a '${s.treatment}' fence reads as its own type`,
-        !s.missing && s.reads === s.treatment && s.suppressed === true,
-        s.missing ? 'no interior carries this treatment at all'
-          : `${s.id} at E ${s.e?.toFixed(1)} / N ${s.n?.toFixed(1)} reads `
-            + `${JSON.stringify(s.reads)}`);
-      check(`${label}: no prairie plant roots inside a '${s.treatment}' fence`,
-        !s.missing && s.rootable === false && s.speciesHits === 0 && s.speciesAsked > 0,
-        s.missing ? 'no interior carries this treatment at all'
-          : `rootable ${s.rootable}, ${s.speciesHits} of ${s.speciesAsked} `
-            + `${s.zone} species granted a station`);
-    }
-    check(`${label}: the fenced ground is graded reconstructed and casts no shadow`,
-      fenced.ungraded === 0 && fenced.notReconstructed === 0 && fenced.casting === 0,
-      `${fenced.ungraded} ungraded vertex/vertices, ${fenced.notReconstructed} graded `
-      + `better than reconstructed, ${fenced.casting} mesh(es) casting`);
-    // T-0097 REPLACED THE HAND-FITTED CEILING HERE, and it is worth saying which
-    // act that is. The bar was `< 0.002` of the modelled dry ground â€” a number
-    // fitted to the four fenced records that existed when T-0067 wrote it, and one
-    // that a legitimate new record makes red without anything being wrong. The
-    // fort's apron is 3,120 mÂ² of ground the dataset DECLARES, which took the
-    // figure to 0.368 %, and raising a constant to 0.005 would have bought the
-    // same red again the next time the town encloses something.
-    //
-    // So the assertion now compares the SAMPLED suppression against the shoelace
-    // area of the interiors the layer built. That is strictly sharper: the old
-    // bar could not tell 3,120 mÂ² of apron from 3,120 mÂ² of prairie taken off by
-    // a ring that lost a coordinate, and this one fails on the second while
-    // passing the first. The tolerance is the 4 m sampling grid's, not a fudge:
-    // twenty-odd polygons between 50 and 800 mÂ² are counted by their corner
-    // samples, so a fifth either way is what the method can resolve. The absolute
-    // ceiling is kept as the blow-up guard the comment above describes â€” a
-    // fiftieth of the modelled dry ground, two orders off "half the town".
-    // MEASURED on the day it was written: 4,764 mÂ² declared across 22 interiors
-    // in 5 records, 4,592 mÂ² recovered by the sampler â€” 3.6 % apart, so the
-    // 20 % tolerance is five times the observed discretisation error and is a
-    // bound on the METHOD rather than a margin fitted to today's polygons.
-    const declaredGap = fenced.declaredArea
-      ? Math.abs(fenced.sampledArea - fenced.declaredArea) / fenced.declaredArea : 1;
-    check(`${label}: the sward is suppressed on the ground the records declare and nowhere else`,
-      fenced.suppressedFraction > 0 && fenced.suppressedFraction < 0.02
-      && fenced.declaredArea > 0 && declaredGap < 0.2,
-      `${(fenced.suppressedFraction * 100).toFixed(3)} % of the modelled dry ground; `
-      + `${fenced.sampledArea.toFixed(0)} mÂ² sampled against ${fenced.declaredArea.toFixed(0)} mÂ² `
-      + `declared by ${fenced.declared.length} record(s) (${(declaredGap * 100).toFixed(1)} % apart)`);
-
-    // AND IT READS, from inside two of the three. Stand in the Western Hotel's
-    // wagon yard and in one of the town's picketed dooryards, look at the ground,
-    // and hold the clock so the grass cannot supply the difference. Same bar as
-    // the fences, the boards and the goods: worst >= 6 and mean >= 0.3.
-    for (const stand of [
-      { id: 'worn_earth', name: 'the wagon yard', yaw: 200 },
-      { id: 'dooryard_garden', name: 'a picketed dooryard', yaw: 20 },
-    ]) {
-      const at = fenced.stands.find((s) => s.treatment === stand.id);
-      if (!at || at.missing) continue;
-      await page.evaluate(({ e, n, yaw }) => window.__chicago4d.walker.teleport(
-        { local_e: e, local_n: n, yaw_deg: yaw, pitch_deg: -38 }),
-      { e: at.e, n: at.n, yaw: stand.yaw });
-      await page.waitForTimeout(350);
-      await page.evaluate(() => window.__chicago4d.setAnimationHold(true));
-      const withGround = await page.evaluate(() => window.__chicago4d.capture());
-      await page.evaluate(() => { window.__chicago4d.yards.group.visible = false; });
-      const withoutGround = await page.evaluate(() => window.__chicago4d.capture());
-      await page.evaluate(() => { window.__chicago4d.yards.group.visible = true; });
-      await page.evaluate(() => window.__chicago4d.setAnimationHold(false));
-      const d = signatureDistance(withGround, withoutGround);
-      check(`${label}: the ground in ${stand.name} reaches the screen from inside it`,
-        d.worst >= 6 && d.mean >= 0.3,
-        `cell delta mean ${d.mean?.toFixed(2)}, worst ${d.worst} (need worst>=6)`);
-    }
-
-    // --- the dooryard plantings (T-0074) -------------------------------------
-    //
-    // The town-wide pass the yard record above was the precedent for: trees and
-    // currant bushes dealt around the dwellings by the rule in
-    // tools/generate_dooryard_plantings.py. A refused stem is a `problems` line
-    // and fails this suite on its own, so what is asserted here is the other
-    // half of T-0074's acceptance: at an ORDINARY house â€” the old agency house,
-    // a log dwelling on an unfenced lot â€” the dealt stems actually reach the
-    // screen from the walker. Cobweb Castle's deal is two cottonwoods
-    // north-west of the house and a currant clump by its south-east corner;
-    // the ids are the record's own, so a re-deal that moves this house's stems
-    // updates this list in the same commit or fails here, loudly.
-    const dooryard = await page.evaluate(() => {
-      const stems = (window.__chicago4d.trees?.stats?.plantedStems ?? [])
-        .filter((st) => st.record === 'town_dooryard_plantings');
-      return {
-        count: stems.length,
-        cobweb: stems.filter((st) => st.id.startsWith('cobweb_castle_')).map((st) => st.id),
-      };
-    });
-    check(`${label}: the dooryard pass planted stems across the town`,
-      dooryard.count >= 100,
-      `${dooryard.count} dooryard stem(s) drawn (the record states 125; a refusal `
-      + 'also fails the no-problems check)');
-    check(`${label}: Cobweb Castle's dealt stems are among them`,
-      dooryard.cobweb.length === 3,
-      `drawn: ${dooryard.cobweb.join(', ') || 'none'}`);
-    // The trees, from the road south-west of the house looking at its yard
-    // quarter: two 19-20 m crowns about 15 m off. Same layer-toggle probe and
-    // same declared bar as every screen check in this file.
-    await page.evaluate(() => {
-      window.__chicago4d.walker.teleport({ local_e: 788, local_n: 124, yaw_deg: 45 });
-    });
-    await page.waitForTimeout(350);
-    await page.evaluate(() => window.__chicago4d.setAnimationHold(true));
-    const doorWith = await page.evaluate(() => window.__chicago4d.capture());
-    await page.evaluate(() => { window.__chicago4d.trees.group.visible = false; });
-    const doorWithout = await page.evaluate(() => window.__chicago4d.capture());
-    await page.evaluate(() => { window.__chicago4d.trees.group.visible = true; });
-    const dDoor = signatureDistance(doorWith, doorWithout);
-    check(`${label}: Cobweb Castle's dooryard trees reach the screen`,
-      dDoor.worst >= 6 && dDoor.mean >= 0.3,
-      `cell delta mean ${dDoor.mean?.toFixed(2)}, worst ${dDoor.worst} (need worst>=6)`);
-    // The bush, stood over from five metres with the trees out of frame behind
-    // the walker â€” so this delta is the currant clump's own, not a crown's.
-    await page.evaluate(() => {
-      window.__chicago4d.walker.teleport({ local_e: 806, local_n: 131, yaw_deg: 135 });
-    });
-    await page.waitForTimeout(350);
-    const bushWith = await page.evaluate(() => window.__chicago4d.capture());
-    await page.evaluate(() => { window.__chicago4d.trees.group.visible = false; });
-    const bushWithout = await page.evaluate(() => window.__chicago4d.capture());
-    await page.evaluate(() => { window.__chicago4d.trees.group.visible = true; });
-    await page.evaluate(() => window.__chicago4d.setAnimationHold(false));
-    const dBush = signatureDistance(bushWith, bushWithout);
-    check(`${label}: the currant clump by its door reaches the screen`,
-      dBush.worst >= 6 && dBush.mean >= 0.3,
-      `cell delta mean ${dBush.mean?.toFixed(2)}, worst ${dBush.worst} (need worst>=6)`);
-
-    // --- the fort stockade against the garden fence (T-0123) -----------------
-    //
-    // The owner walked up to a wall at Fort Dearborn and reported it "way too
-    // short ... below my height". Two structures on that reservation answer to
-    // "a wall you can walk up to", and they are the SAME palisade archetype in
-    // its two modes: the stockade â€” picket_height_m 3.7 m, the record's honest
-    // number for Kinzie's "high pickets" â€” and the garrison garden's worm
-    // fence, 1.3 m stated, 1.14 m built, chest height by design. This block
-    // holds that pair as a gate, in the walker's own terms: the fence
-    // deliberately under a visitor's eye, the stockade over it, and a tap on
-    // either answering with its own name â€” so nobody ever takes this
-    // measurement by hand again, and a change that flattens the wall or raises
-    // the fence fails loudly. The stated heights are pinned literally: they
-    // move only on the owner's say-so (T-0123 rule 3), and this line moves in
-    // the same commit.
-    //
-    // WHERE THE WALKER STANDS FOR THE STOCKADE, AND WHY IT IS THE RIVER BANK.
-    // A rigid mesh takes ONE anchor, and the contract anchors it at the LOWEST
-    // ground under it (buildings.groundUnder; the "shares the terrain surface"
-    // check gates that bedding at 3 m). For the stockade that is the bank foot
-    // under the north-west bastion, and the stand below is there â€” where wall
-    // and anchor meet and the full twelve feet is rendered fact, so this gate
-    // answers for the BAKE whatever else moves.
-    //
-    // It once answered for the bake alone. The mound raise of v202 left the
-    // parade standing ~2.5 m over that anchor, so from the fort road only
-    // ~1.2 m of picket showed; T-0125 measured it and the owner ruled that the
-    // GROUND should give (2026-08-21). It did â€” the bank face at the fort
-    // narrows to 8 m, L155 â€” and the parade side is now gated too, at the
-    // bottom of this block, instead of being left open.
-    const fortPair = await page.evaluate(() => {
-      const a = window.__chicago4d;
-      const bounds = a.buildings.instanceBounds();
-      const stated = (id, key) => a.registry.get(id)?.sidecar?.attributes?.[key]?.value ?? null;
-      const topOf = (id) => {
-        const b = bounds[id];
-        const p = a.buildings.positionOf(id);
-        return b && p ? p.y + b.max[1] : null;
-      };
-      // The bank foot below the north-west bastion, facing the wall corner.
-      a.walker.teleport({ local_e: 1125.0, local_n: 256.5, yaw_deg: 143, pitch_deg: 0 });
-      a.step();
-      const stockadeEyeY = a.walker.state.eyeY;
-      const stockadeHit = a.pick({ x: 0, y: 0 });
-      const stockadeCard = document.querySelector('#popup h2')?.textContent ?? '';
-      // The owner's stand: on the reservation outside the garden's north-east
-      // fence, facing it on his own reported bearing â€” the fort at his back.
-      a.walker.teleport({ local_e: 1106.2, local_n: 124.0, yaw_deg: 233, pitch_deg: 0 });
-      a.step();
-      const gardenEyeY = a.walker.state.eyeY;
-      const levelHit = a.pick({ x: 0, y: 0 });
-      // A tap where a hand would land: aims dropped a little below level, at
-      // the rails of a chest-high fence three to four metres off. The spread
-      // covers the zig-zag's own offset and the daylight between rail courses.
-      const aims = [];
-      let gardenNdc = null;
-      for (const y of [-0.2, -0.35, -0.5]) {
-        for (const x of [-0.5, -0.25, 0, 0.25, 0.5]) {
-          const hit = a.pick({ x, y });
-          if (hit?.id) aims.push(hit.id);
-          if (!gardenNdc && hit?.id === 'fort_dearborn_garrison_garden') gardenNdc = { x, y };
-        }
-      }
-      let gardenCard = '';
-      if (gardenNdc) {
-        a.pick(gardenNdc);
-        gardenCard = document.querySelector('#popup h2')?.textContent ?? '';
-      }
-      a.popup.close();
-      // The parade side, facing the south wall â€” the approach T-0125 was
-      // opened on. NOT the middle of that wall: a level gaze from about
-      // (1148, 189) returns nothing at all, because it goes straight through
-      // the SOUTH GATEWAY into the parade beyond. Kinzie and Andreas both
-      // state gates north and south, the record builds them, and a stand
-      // aimed at the doorway measures the doorway. This one is offset east of
-      // it, onto wall.
-      a.walker.teleport({ local_e: 1155.0, local_n: 190.0, yaw_deg: 8, pitch_deg: 0 });
-      a.step();
-      const paradeEyeY = a.walker.state.eyeY;
-      const paradeHit = a.pick({ x: 0, y: 0 });
-      return {
-        stockade: {
-          statedM: stated('fort_dearborn_palisade', 'picket_height_m'),
-          meshM: bounds.fort_dearborn_palisade
-            ? bounds.fort_dearborn_palisade.max[1] - bounds.fort_dearborn_palisade.min[1]
-            : null,
-          topY: topOf('fort_dearborn_palisade'),
-          eyeY: stockadeEyeY,
-          levelPick: stockadeHit?.id ?? null,
-          card: stockadeCard,
-        },
-        garden: {
-          statedM: stated('fort_dearborn_garrison_garden', 'fence_height_m'),
-          builtM: bounds.fort_dearborn_garrison_garden?.max[1] ?? null,
-          topY: topOf('fort_dearborn_garrison_garden'),
-          eyeY: gardenEyeY,
-          levelPick: levelHit?.id ?? null,
-          aims: [...new Set(aims)],
-          card: gardenCard,
-        },
-        parade: {
-          topY: topOf('fort_dearborn_palisade'),
-          eyeY: paradeEyeY,
-          levelPick: paradeHit?.id ?? null,
-        },
-      };
-    });
-    // The record's twelve feet reached the bake. 0.15 m of tolerance is the
-    // cap rail the archetype adds over the stated picket, nothing more.
-    check(`${label}: the stockade's pickets are baked at the record's twelve feet`,
-      fortPair.stockade.statedM === 3.7 && fortPair.stockade.meshM !== null
-      && Math.abs(fortPair.stockade.meshM - fortPair.stockade.statedM) <= 0.15,
-      `record ${fortPair.stockade.statedM} m, mesh ${fortPair.stockade.meshM?.toFixed(2)} m`);
-    check(`${label}: the stockade tops a walker's eye where wall and anchor meet`,
-      fortPair.stockade.topY !== null
-      && fortPair.stockade.topY - fortPair.stockade.eyeY >= 0.5,
-      `wall top y ${fortPair.stockade.topY?.toFixed(2)}, `
-      + `eye y ${fortPair.stockade.eyeY?.toFixed(2)} (need 0.5 m of wall over the eye)`);
-    check(`${label}: a level gaze there stops at the stockade, and the card says so`,
-      fortPair.stockade.levelPick === 'fort_dearborn_palisade'
-      && /stockade/.test(fortPair.stockade.card),
-      `pick ${fortPair.stockade.levelPick ?? 'nothing'}, card "${fortPair.stockade.card}"`);
-    // The opposite number: 1.14 m of worm fence, deliberately below the eye.
-    check(`${label}: the garden fence holds below the eye of the walker who meets it`,
-      fortPair.garden.statedM === 1.3
-      && fortPair.garden.builtM !== null && fortPair.garden.builtM <= 1.35
-      && fortPair.garden.eyeY - fortPair.garden.topY >= 0.3,
-      `built ${fortPair.garden.builtM?.toFixed(2)} m against a stated `
-      + `${fortPair.garden.statedM} m, fence top y ${fortPair.garden.topY?.toFixed(2)}, `
-      + `eye y ${fortPair.garden.eyeY?.toFixed(2)} (need 0.3 m of eye over the fence)`);
-    check(`${label}: a level gaze sails clean over the garden fence`,
-      fortPair.garden.levelPick !== 'fort_dearborn_garrison_garden',
-      `level pick returned ${fortPair.garden.levelPick ?? 'nothing'}`);
-    check(`${label}: a tap on the garden fence names the garden, not a fort wall`,
-      fortPair.garden.aims.includes('fort_dearborn_garrison_garden')
-      && /garrison garden/.test(fortPair.garden.card)
-      && !/stockade/.test(fortPair.garden.card),
-      `15 aims returned [${fortPair.garden.aims.join(', ') || 'nothing'}], `
-      + `card "${fortPair.garden.card}"`);
-    // T-0125, settled. The wall used to stand at 5.06 m over a parade at 3.65 m
-    // â€” 1.41 m of picket against a 1.68 m eye, so a level gaze crossed the wall
-    // into the compound and a visitor walked up to a twelve-foot stockade that
-    // reached his chest. The ground gave, on the owner's ruling: the bank face
-    // at the fort narrows to 8 m (L155) and the north wall's ground rises
-    // 1.26 â†’ 2.57 m, which lifts the anchor and stands 2.34 m of picket â€” a
-    // little under eight feet â€” over the parade, where four feet showed.
-    //
-    // The bar is 0.5 m of wall over the eye: the same bar its sibling check
-    // above holds for the same property at the bank foot, and a bar this
-    // ground can keep. The full twelve feet from the parade would need the
-    // north wall's ground to equal the parade's exactly, and across a 4.5 m
-    // gap to the waterline that means a vertical face of earth at the river.
-    // That is not ground, so it is not built; a stepped or draped bake
-    // (T-0125 option 1) is the route to full height everywhere if it is ever
-    // wanted. What this gate holds is that a visitor cannot see over the wall.
-    check(`${label}: the stockade stands over a walker's eye from the parade side`,
-      fortPair.parade.topY !== null
-      && fortPair.parade.topY - fortPair.parade.eyeY >= 0.5,
-      `wall top y ${fortPair.parade.topY?.toFixed(2)}, `
-      + `eye y ${fortPair.parade.eyeY?.toFixed(2)} at the fort road `
-      + `(need 1.0 m of wall over the eye)`);
-    check(`${label}: a level gaze from the parade side stops at the stockade`,
-      fortPair.parade.levelPick === 'fort_dearborn_palisade',
-      `level pick returned ${fortPair.parade.levelPick ?? 'nothing'}`);
-
-    // --- the business signs (T-0039, widened by T-0066) ----------------------
-    //
-    // A second layer drawn from the dataset rather than baked, and the first one
-    // that hangs geometry OFF a building instead of standing it on the ground.
-    // That is where its failure modes live: a sign is positioned by arithmetic
-    // on the footprint, the placement and the facade bearing, so one sign error
-    // anywhere in that chain puts three dozen planks inside the walls, or
-    // floating in the road behind them, and every dataset gate in this repo
-    // would pass. So the geometry is measured against the record here, and
-    // nowhere else.
-    //
-    // T-0066 gave every sign a NAME, a MOUNTING and a STYLE, and each of those
-    // is a new way for the layer to be wrong without erroring: a name that does
-    // not match the card behind it, a mounting whose reach nobody bounded, or a
-    // town that quietly goes back to thirty-three identical boards. Each is
-    // asserted below rather than described.
-    const boards = await page.evaluate(() => {
-      const s = window.__chicago4d.signage;
-      const mesh = s?.group?.children?.[0] ?? null;
-      const g = mesh?.geometry ?? null;
-      const signs = s?.signs ?? [];
-      const spans = s?.spans ?? [];
-      let ungraded = 0;
-      let notReconstructed = 0;
-      let worstOver = -Infinity;   // furthest PAST its own declared reach
-      let worstReach = 0;          // the largest reach any sign declares
-      let worstInside = 0;         // deepest a vertex sits BEHIND its own facade
-      let unattributed = 0;        // a triangle belonging to no sign
-      const conf = g?.getAttribute('_confidence');
-      if (conf) {
-        for (let i = 0; i < conf.count; i++) {
-          const v = conf.getX(i);
-          if (!(v >= 0 && v <= 1)) ungraded++;
-          else if (v < 1) notReconstructed++;
-        }
-      }
-      // EVERY VERTEX AGAINST ITS OWN SIGN. The layer publishes the half-open
-      // triangle range each sign emitted, so this does not have to guess which
-      // anchor a vertex belongs to by proximity â€” which with a post standing two
-      // metres out in the street would sometimes guess the neighbour.
-      const uvRects = new Map();
-      const byId = new Map(signs.map((sg) => [sg.structure_id, sg]));
-      if (g && spans.length) {
-        const pos = g.getAttribute('position');
-        const uv = g.getAttribute('uv');
-        for (const sp of spans) {
-          const sg = byId.get(sp.id);
-          if (!sg) { unattributed++; continue; }
-          const reach = sg.reach_m ?? 2.2;
-          worstReach = Math.max(worstReach, reach);
-          const b = ((sg.facade_bearing_deg ?? 0) * Math.PI) / 180;
-          let u0 = Infinity; let v0 = Infinity; let u1 = -Infinity; let v1 = -Infinity;
-          for (let t = sp.from; t < sp.to; t++) {
-            for (let k = 0; k < 3; k++) {
-              const i = t * 3 + k;
-              const e = pos.getX(i);           // world is (E, up, -N)
-              const n = -pos.getZ(i);
-              const de = e - sg.anchor_local_enu_m[0];
-              const dn = n - sg.anchor_local_enu_m[1];
-              worstOver = Math.max(worstOver, Math.hypot(de, dn) - reach);
-              // Positive is out of the wall, along the facade's own normal.
-              worstInside = Math.min(worstInside, de * Math.sin(b) + dn * Math.cos(b));
-              if (uv) {
-                u0 = Math.min(u0, uv.getX(i)); u1 = Math.max(u1, uv.getX(i));
-                v0 = Math.min(v0, uv.getY(i)); v1 = Math.max(v1, uv.getY(i));
-              }
-            }
-          }
-          if (uv) {
-            uvRects.set(sp.id, [u0, v0, u1, v1].map((x) => x.toFixed(4)).join(','));
-          }
-        }
-      }
-      // The variation the owner asked for, measured on the record: no two signs
-      // a walker can see at once may share a style or a ground colour.
-      const NEAR_M = 40;
-      let pairs = 0;
-      let sameStyle = 0;
-      let sameGround = 0;
-      for (let i = 0; i < signs.length; i++) {
-        for (let j = i + 1; j < signs.length; j++) {
-          const a = signs[i];
-          const b = signs[j];
-          const d = Math.hypot(a.anchor_local_enu_m[0] - b.anchor_local_enu_m[0],
-            a.anchor_local_enu_m[1] - b.anchor_local_enu_m[1]);
-          if (d > NEAR_M) continue;
-          pairs++;
-          if (a.style?.id === b.style?.id) sameStyle++;
-          if (a.style?.ground === b.style?.ground) sameGround++;
-        }
-      }
-      // The South Water row, which is the street the town actually reads as one:
-      // every sign whose anchor sits on the frontage line north of the block.
-      const row = signs.filter((sg) => sg.anchor_local_enu_m[1] > -10
-        && sg.anchor_local_enu_m[1] < 12
-        && sg.anchor_local_enu_m[0] > 180 && sg.anchor_local_enu_m[0] < 760);
-      return {
-        census: s?.census ?? null,
-        meshes: s?.group?.children?.length ?? 0,
-        verts: g?.getAttribute('position')?.count ?? 0,
-        hasConfidence: !!conf,
-        hasUV: !!g?.getAttribute('uv'),
-        hasMap: !!mesh?.material?.map,
-        casts: mesh?.castShadow === true,
-        ungraded,
-        notReconstructed,
-        worstOver,
-        worstReach,
-        worstInside,
-        unattributed,
-        spans: spans.length,
-        signs: signs.length,
-        named: signs.filter((sg) => (sg.sign_text || '').trim().length > 0).length,
-        // T-0130: the board and the card have to agree about WHO, over the whole
-        // set and not only at the Tremont. Punctuation is dropped because the
-        // board keeps the advertisement's own spelling ("Steam-Boat Hotel") and
-        // the card carries this project's ("Steamboat Hotel").
-        identityMismatch: signs.filter((sg) => {
-          const norm = (s) => String(s || '').toUpperCase().replace(/[^A-Z0-9]/g, '');
-          const id = norm(sg.sign_identity);
-          return !id || !norm(sg.sign_text).includes(id) || !norm(sg.name).includes(id);
-        }).map((sg) => sg.structure_id),
-        // And no board has gone back to carrying this project's own way of
-        // describing a BUILDING. "Log" is the tell T-0130 was raised over.
-        labelled: signs.filter((sg) => /\blog\b/i.test(sg.sign_text || ''))
-          .map((sg) => sg.structure_id),
-        // Every board names a trade as well as a proprietor â€” the register the
-        // advertisements use, and the thing a descriptive label never carried.
-        withTrade: signs.filter((sg) => (sg.sign_lines || [])
-          .some((l) => l.role === 'trade')).length,
-        devices: signs.filter((sg) => sg.sign_device).map((sg) => sg.structure_id),
-        distinctArt: new Set(uvRects.values()).size,
-        mountings: new Set(signs.map((sg) => sg.mounting)).size,
-        grounds: new Set(signs.map((sg) => sg.style?.ground)).size,
-        faces: new Set(signs.map((sg) => sg.style?.face)).size,
-        pairs,
-        sameStyle,
-        sameGround,
-        rowSigns: row.length,
-        rowMountings: new Set(row.map((sg) => sg.mounting)).size,
-        rowGrounds: new Set(row.map((sg) => sg.style?.ground)).size,
-        ids: signs.map((sg) => sg.structure_id),
-      };
-    });
-    check(`${label}: the signage layer puts up the record's signs`,
-      boards.census?.boards >= 20 && boards.signs === boards.census?.boards
-        && boards.spans === boards.signs && boards.unattributed === 0
-        && boards.verts > 0,
-      `${boards.census?.boards} sign(s) from ${boards.census?.records} record(s), `
-      + `${boards.verts} vertices, ${boards.census?.refused} frontage(s) refused`);
-    check(`${label}: the whole signage layer is one draw call`,
-      boards.meshes === 1, `${boards.meshes} mesh(es) in the group`);
-    // AND ITS SHADOW IS STILL IN THE FRAME. T-0115 dropped the derived furniture
-    // out of the shadow map at `light` and put the signboards back in by
-    // measurement, because the shadow is most of what a board contributes to the
-    // frame at the Tremont's footway. A later trim that quietly swept them up
-    // with the fences would fail here rather than in the liveness check below.
-    check(`${label}: the signs still cast into the shadow map`,
-      boards.casts, `signage mesh castShadow ${boards.casts}`);
-    // NOT MERELY GRADED â€” graded reconstructed, every vertex of it. The fact of
-    // a sign on these frontages is invented (L130) and so are its wording, its
-    // colours and its mounting (L159); a single vertex claiming to be inferred
-    // or attested would be this layer overstating the one thing it must not.
-    check(`${label}: every signboard vertex is graded reconstructed`,
-      boards.hasConfidence && boards.ungraded === 0 && boards.notReconstructed === 0,
-      `attribute ${boards.hasConfidence ? 'present' : 'MISSING'}, ${boards.ungraded} out `
-      + `of range, ${boards.notReconstructed} claiming better than reconstructed`);
-    // EVERY SIGN INSIDE ITS OWN DECLARED REACH. The record computes, per sign,
-    // how far its own mounting may put a vertex from its own anchor â€” 1.06 m for
-    // a board fixed flat on a wall, 2.58 m for a post out at the street edge â€”
-    // so this holds the smallest board to a bound a metre tighter than the
-    // largest one needs, which one flat number never could. The 3 m ceiling on
-    // the reaches themselves is the second half of it: a mounting that declared
-    // itself twenty metres long would satisfy the first test and fail this one.
-    check(`${label}: no sign strays past the reach its own mounting declares`,
-      boards.worstOver > -Infinity && boards.worstOver <= 0.05
-        && boards.worstReach <= 3.0,
-      `worst vertex ${boards.worstOver?.toFixed(3)} m past its own reach; `
-      + `largest reach declared ${boards.worstReach?.toFixed(2)} m`);
-    // And it stands OUT of the wall, not into the parlour behind it. A painted
-    // name lies ON the front by construction, so the bar is a few centimetres of
-    // tolerance rather than zero.
-    check(`${label}: every sign stands outside its own facade`,
-      boards.worstInside >= -0.05,
-      `deepest vertex ${boards.worstInside?.toFixed(3)} m behind the facade plane`);
-    // --- what the signs SAY, and that no two of them are alike (T-0066) ------
-    //
-    // The owner asked for three things in one sentence â€” the name on the board,
-    // variation in colour and style, and more signage â€” and all three are the
-    // kind of thing that erodes silently. A refactor that lost the atlas would
-    // draw thirty-three blank planks and error nowhere.
-    check(`${label}: every sign carries its business's name, painted`,
-      boards.named === boards.signs && boards.census?.lettered === boards.signs
-        && boards.hasUV && boards.hasMap
-        && boards.distinctArt === boards.signs,
-      `${boards.named}/${boards.signs} named, ${boards.census?.lettered} lettered, `
-      + `uv ${boards.hasUV ? 'present' : 'MISSING'}, `
-      + `atlas ${boards.hasMap ? 'bound' : 'MISSING'}, `
-      + `${boards.distinctArt} distinct painted face(s)`);
-    check(`${label}: no two signs within sight of each other are alike`,
-      boards.pairs > 0 && boards.sameStyle === 0 && boards.sameGround === 0,
-      `${boards.pairs} pair(s) within 40 m â€” ${boards.sameStyle} share a style, `
-      + `${boards.sameGround} share a ground colour`);
-    check(`${label}: the town puts its signs up five different ways`,
-      boards.mountings >= 5 && boards.grounds >= 8 && boards.faces >= 4,
-      `${boards.mountings} mounting(s), ${boards.grounds} ground colour(s), `
-      + `${boards.faces} letterform(s) across ${boards.signs} signs`);
-    check(`${label}: one street's signs are visibly different from each other`,
-      boards.rowSigns >= 6 && boards.rowMountings >= 3 && boards.rowGrounds >= 5,
-      `South Water row: ${boards.rowSigns} sign(s), ${boards.rowMountings} `
-      + `mounting(s), ${boards.rowGrounds} ground colour(s)`);
-
-    // AND IT READS FROM THE STREET, which is the whole point of a sign. Stand on
-    // the footway in front of the Tremont House â€” a south-facing hotel frontage â€”
-    // hold the clock so the grass cannot supply the difference, and compare the
-    // frame with the layer hidden.
-    //
-    // THE STAND IS 3.5 m AND THAT NUMBER IS LOAD-BEARING, so it is explained
-    // rather than left as a coordinate. A board is 0.88 x 0.50 m. Measured on
-    // this runner from 8 m back it is plainly on screen â€” the crosshair picks it
-    // â€” and the 12-cell signature reads worst 4, because one cell of a 12x12
-    // grid is wider than the whole board at that range and averages it away. The
-    // answer is to stand where a person reading a sign stands, not to widen the
-    // grid or drop the threshold: at 3.5 m the same measurement reads worst 11 /
-    // mean 0.55 on desktop and 17 / 0.72 on mobile, against the SAME bar the two
-    // fence gates above use.
-    await page.evaluate(() => window.__chicago4d.walker.teleport(
-      { local_e: 678.5, local_n: -104.06, yaw_deg: 0, pitch_deg: 8 }));
-    await page.waitForTimeout(350);
-    await page.evaluate(() => window.__chicago4d.setAnimationHold(true));
-    const signWith = await page.evaluate(() => window.__chicago4d.capture());
-    await page.evaluate(() => { window.__chicago4d.signage.group.visible = false; });
-    const signWithout = await page.evaluate(() => window.__chicago4d.capture());
-    await page.evaluate(() => { window.__chicago4d.signage.group.visible = true; });
-    const dSign = signatureDistance(signWith, signWithout);
-    check(`${label}: the hotel's board reaches the screen from the street`,
-      dSign.worst >= 6 && dSign.mean >= 0.3,
-      `cell delta mean ${dSign.mean?.toFixed(2)}, worst ${dSign.worst} (need worst>=6)`);
-
-    // A sign is a thing you read and then walk into, so aiming at the board has
-    // to open the business behind it and not the wall past it â€” AND THE CARD IT
-    // OPENS HAS TO BE THE SAME BUSINESS (T-0066, corrected by T-0130). The
-    // record carries `sign_identity` for exactly that agreement, and this is
-    // where the board and the card are put side by side.
-    const boardPick = await page.evaluate(() => {
-      const hits = [];
-      let card = null;
-      for (const x of [-0.2, -0.1, 0, 0.1, 0.2]) {
-        for (const y of [-0.1, 0, 0.1, 0.2, 0.3]) {
-          const hit = window.__chicago4d.pick({ x, y });
-          if (!hit?.id) continue;
-          hits.push(hit.id);
-          if (hit.id === 'tremont_house_1' && !card) {
-            card = hit.record?.sidecar?.name ?? null;
-          }
-        }
-      }
-      const sign = (window.__chicago4d.signage.signs ?? [])
-        .find((s) => s.structure_id === 'tremont_house_1') ?? null;
-      return {
-        hits, card, painted: sign?.sign_text ?? null,
-        identity: sign?.sign_identity ?? null,
-      };
-    });
-    await page.evaluate(() => window.__chicago4d.setAnimationHold(false));
-    check(`${label}: aiming at a signboard opens the business behind it`,
-      boardPick.hits.includes('tremont_house_1'),
-      `25 aims returned [${[...new Set(boardPick.hits)].join(', ') || 'nothing'}]`);
-    // THIS ASSERTION IS CORRECTED BY T-0130, NOT RELAXED BY IT, and the
-    // difference is worth being explicit about because a check that gets weaker
-    // usually got weaker to go green.
-    //
-    // T-0066 asserted STRING EQUALITY: the painted name IS the card's name, up
-    // to a trailing parenthetical. That was enforcing the wrong invariant,
-    // because it took two different objects to be one. A record's `name` is OUR
-    // LABEL FOR A BUILDING â€” "Philo Carpenter's Log Drug Store", "Hogan's Store"
-    // â€” written so a modern reader knows which structure is meant. A SIGNBOARD
-    // carries what the trade lettered: the proprietor or firm and his trade, in
-    // the register a signwriter worked in. Held to equality, the board could
-    // only ever be the museum caption, which is the defect T-0130 was raised
-    // over. The two are now allowed to differ.
-    //
-    // What must NOT differ is WHO. A visitor who reads a name off a plank and
-    // then taps the plank must not be shown a different business, so the record
-    // declares a `sign_identity` â€” the proprietor, the firm or the house â€” and
-    // it has to appear in the board AND in the card. That is asserted here at
-    // the Tremont's own board against the CARD THE PICK ACTUALLY OPENED, and
-    // over every sign in the town in the check below, which is more than
-    // equality ever covered: equality was only ever tested at this one board.
-    const cardName = (boardPick.card ?? '').trim();
-    const norm = (s) => String(s || '').toUpperCase().replace(/[^A-Z0-9]/g, '');
-    const who = norm(boardPick.identity);
-    check(`${label}: the board and the card agree about whose business this is`,
-      !!boardPick.painted && !!cardName && !!who
-      && norm(boardPick.painted).includes(who) && norm(cardName).includes(who),
-      `board reads "${boardPick.painted ?? 'nothing'}", card says `
-      + `"${boardPick.card ?? 'nothing'}", both must carry `
-      + `"${boardPick.identity ?? 'no declared identity'}"`);
-    check(`${label}: every board names its proprietor and its trade, not our label`,
-      boards.identityMismatch?.length === 0 && boards.labelled?.length === 0
-        && boards.withTrade === boards.signs,
-      `${boards.identityMismatch?.length} board(s) disagree with their card `
-      + `[${(boards.identityMismatch ?? []).join(', ')}], `
-      + `${boards.labelled?.length} carry a building label `
-      + `[${(boards.labelled ?? []).join(', ')}], `
-      + `${boards.withTrade}/${boards.signs} letter a trade`);
-    // ONE PAINTED DEVICE IN THE TOWN, and it is the one a Chicago tradesman
-    // described himself: Carpenter's golden mortar, from his own 1835 notice
-    // "AT THE SIGN OF THE GOLDEN MORTAR". A device must not spread to trades
-    // whose advertisements name none â€” that would be this layer generalising an
-    // invention â€” so the count is pinned exactly rather than bounded below.
-    check(`${label}: the golden mortar is on Carpenter's board and on no other`,
-      boards.devices?.length === 1
-        && boards.devices[0] === 'carpenter_south_water_store',
-      `${boards.devices?.length} device(s) [${(boards.devices ?? []).join(', ')}]`);
-
-    // --- and part 1 hands the page on clean (T-0369) -------------------------
-    //
-    // The twenty-five aims above are `pick()` calls, and a pick that lands on a
-    // structure OPENS THE INSPECT CARD. The last one lands on the Tremont
-    // House's signboard, so this part used to END with `#popup` standing â€”
-    // `position: fixed`, `z-index: 30`, `top: 58px`, `right: 12px`, 392 px wide,
-    // which on a 1280 x 800 viewport is squarely on top of the HUD panel's tab
-    // strip. Nothing between here and part 7 reads panel chrome, so nothing
-    // noticed. Part 8 is nothing BUT panel chrome and its first statement clicks
-    // a tab, so it inherited an unclickable strip and died on it: same commit,
-    // one command apart, `SMOKE_STAGE=8` reached the settings tab and
-    // `SMOKE_STAGE=1,8` failed with `covered at its own centre by <h2>`.
-    //
-    // So the part that opened the card closes it, and the teardown is ASSERTED
-    // rather than silent. A stage that hands on an overlay standing over the
-    // chrome is the defect, and the next one to do it should be named here â€” at
-    // the boundary where it happened â€” instead of surfacing four parts later
-    // under some other gate's name.
-    const part1Overlays = await page.evaluate(() => {
-      window.__chicago4d.popup.close();
-      return ['popup', 'control-help'].filter((id) => {
-        const el = document.getElementById(id);
-        return el && !el.hasAttribute('hidden');
-      });
-    });
-    check(`${label}: part 1 hands the page on with nothing standing over the chrome`,
-      part1Overlays.length === 0,
-      `still showing: ${part1Overlays.map((id) => `#${id}`).join(', ') || 'nothing'}`);
-
-    inStageWork = false;
-    } // end PART 1 (T-0060 stage 1a, cut by T-0121)
-    // PART 2 â€” the goods at the trading frontages through the confidence
-    // machinery's inert state: the rest of T-0060's stage 1. The cut is a
-    // section boundary with no crossing binding (checked scope-aware, the way
-    // T-0060's three were) and no page state to inherit â€” everything below
-    // reads the scene graph or takes its own capture, and the gate screen it
-    // boots behind is exactly what an unfiltered run is standing at here.
-    if (stageOn(2)) {
-    inStageWork = true;
-
-    // --- the goods at the trading frontages (T-0040) -------------------------
-    //
-    // The third layer drawn from the dataset rather than baked, and the first
-    // one whose objects stand on the GROUND rather than on a building. That is
-    // where its failure modes live and they are not the signboards': a barrel
-    // hung off the wall base like a board would float or sink wherever the
-    // footway is not level, and a barrel is a body of revolution built from a
-    // frame this file has never had to check before, so a transposed axis puts
-    // a hundred and fifty casks inside the shops they belong to. Every dataset
-    // gate in this repo would pass through all of that. So the geometry is
-    // measured against the record here, and nowhere else.
-    const goods = await page.evaluate(() => {
-      const y = window.__chicago4d.yard;
-      // T-0064. The layer used to be one mesh and is now one mesh PER CHUNK of
-      // the town, all on the same material â€” sixty-four more wagons over a square
-      // kilometre would otherwise have drawn in every frame, behind the camera
-      // included (T-0115 item 2). So everything below reads the chunks together:
-      // the geometry is still one buffer's worth of contract, in several pieces.
-      const meshes = (y?.group?.children ?? []).filter((m) => m.isMesh);
-      const geos = meshes.map((m) => m.geometry).filter(Boolean);
-      const frontages = y?.frontages ?? [];
-      const wagons = y?.wagons ?? [];
-      const benches = y?.benches ?? [];
-      const sheds = y?.sheds ?? [];
-      const items = [];
-      for (const f of frontages) {
-        for (const it of f.items ?? []) {
-          items.push({ e: it.at_local_enu_m[0], n: it.at_local_enu_m[1],
-            b: ((it.bearing_deg ?? 0) * Math.PI) / 180 });
-        }
-      }
-      // T-0057. The building material on the one lot this town can say was going
-      // up. A pile is measured by its OWN bound and against its OWN lot, exactly
-      // as the wagon, the bench and the shed already are: a 0.75 m bar written
-      // for a barrel would fail on a 3.66 m stick that is exactly right.
-      const lots = y?.lots ?? [];
-      const piles = [];
-      for (const lot of lots) {
-        for (const it of lot.items ?? []) {
-          piles.push({ kind: it.kind, e: it.at_local_enu_m[0], n: it.at_local_enu_m[1],
-            b: ((it.bearing_deg ?? 0) * Math.PI) / 180,
-            quad: lot.ground_quad_local_enu_m ?? [] });
-        }
-      }
-      let ungraded = 0;
-      let notReconstructed = 0;
-      let worstStray = 0;      // furthest a vertex sits from its own object's anchor
-      let worstInside = 0;     // deepest a vertex sits BEHIND its own facade
-      let wagonVerts = 0;
-      // T-0080. A bench is 1.83 m of plank, so like the wagon it is measured by
-      // its OWN bound instead of being lumped in with the casks â€” a 0.75 m bar
-      // written for a barrel would fail on a bench that is exactly right.
-      let benchVerts = 0;
-      let benchStray = 0;
-      let benchInside = 0;
-      // T-0081. The shed is a BAY, not a point: what has to hold is that nothing
-      // standing in it â€” its own timber or the covered wagon under it â€” reaches
-      // through the inn's wall, out past its eaves or up through its roof. So it
-      // is measured in the shed's own frame and it is measured FIRST, because the
-      // wagon under it shares its centre and would otherwise absorb the roof.
-      let pileVerts = 0;
-      let pileStray = 0;       // furthest a vertex sits from its own pile's anchor
-      let pileInLot = 0;       // vertices standing inside the building's own footprint
-      let shedVerts = 0;
-      let shedOut = -Infinity;    // furthest out from the wall, along its normal
-      let shedIn = Infinity;      // deepest toward the wall (negative is behind it)
-      let shedHigh = -Infinity;
-      let shedLow = Infinity;
-      let lowest = Infinity;
-      let highest = -Infinity;
-      let hasConfidence = geos.length > 0;
-      for (const geo of geos) {
-        const conf = geo.getAttribute('_confidence');
-        if (!conf) { hasConfidence = false; continue; }
-        for (let i = 0; i < conf.count; i++) {
-          const v = conf.getX(i);
-          if (!(v >= 0 && v <= 1)) ungraded++;
-          else if (v < 1) notReconstructed++;
-        }
-      }
-      // T-0064. Sixty-eight wagons against a hundred thousand vertices is seven
-      // million distance tests if it is written the obvious way, so the wagons go
-      // into 8 m buckets first and each vertex only asks the nine buckets round it.
-      const BUCKET = 8;
-      const wagonGrid = new Map();
-      wagons.forEach((wg, i) => {
-        const at = wg.at_local_enu_m;
-        const key = `${Math.floor(at[0] / BUCKET)},${Math.floor(at[1] / BUCKET)}`;
-        if (!wagonGrid.has(key)) wagonGrid.set(key, []);
-        wagonGrid.get(key).push(i);
-      });
-      const wagonNear = (e, n) => {
-        const ce = Math.floor(e / BUCKET);
-        const cn = Math.floor(n / BUCKET);
-        for (let de = -1; de <= 1; de++) {
-          for (let dn = -1; dn <= 1; dn++) {
-            for (const i of wagonGrid.get(`${ce + de},${cn + dn}`) ?? []) {
-              const at = wagons[i].at_local_enu_m;
-              if (Math.hypot(e - at[0], n - at[1]) <= 4.6) return wagons[i];
-            }
-          }
-        }
-        return null;
-      };
-      // The piles are nine objects on one lot 130 m from the nearest wagon and
-      // further still from the nearest cask, so a plain radius claims them with
-      // nothing to collide with. The radius is the widest pile's own reach â€” a
-      // timber stick 3.66 m long lying across its pile â€” plus a margin.
-      // It returns the NEAREST pile and not the first one inside the radius: the
-      // brick stacks stand 3.2 m apart, so a vertex at the near end of one falls
-      // inside its neighbour's radius too, and taking the first match measured
-      // it against the wrong anchor and reported 2.49 m of stray on geometry
-      // that is exactly where the record puts it.
-      const pileNear = (e, n) => {
-        let best = null;
-        let bestD = 2.6;
-        for (const pl of piles) {
-          const d = Math.hypot(e - pl.e, n - pl.n);
-          if (d <= bestD) { bestD = d; best = pl; }
-        }
-        return best;
-      };
-      const inQuad = (e, n, quad) => {
-        let inside = false;
-        for (let i = 0, j = quad.length - 1; i < quad.length; j = i, i += 1) {
-          const [xi, yi] = quad[i];
-          const [xj, yj] = quad[j];
-          if ((yi > n) !== (yj > n)
-            && e < xi + ((n - yi) * (xj - xi)) / ((yj - yi) || 1e-12)) inside = !inside;
-        }
-        return inside;
-      };
-      for (const geo of (items.length ? geos : [])) {
-        const pos = geo.getAttribute('position');
-        for (let i = 0; i < pos.count; i++) {
-          // world is (E, up, -N)
-          const e = pos.getX(i);
-          const n = -pos.getZ(i);
-          lowest = Math.min(lowest, pos.getY(i));
-          highest = Math.max(highest, pos.getY(i));
-          // The shed's bay first: along the wall and out of it, in the shed's own
-          // frame. The wagon's tongue reaches past the bay and is left to the
-          // wagon bound below, which is exactly where it belongs.
-          let inBay = false;
-          for (const sh of sheds) {
-            const sb = ((sh.bearing_deg ?? 0) * Math.PI) / 180;
-            const de = e - sh.at_local_enu_m[0];
-            const dn = n - sh.at_local_enu_m[1];
-            const along = de * Math.cos(sb) - dn * Math.sin(sb);
-            const out = de * Math.sin(sb) + dn * Math.cos(sb);
-            if (Math.abs(along) > (sh.length_m ?? 0) / 2 + 0.4) continue;
-            if (Math.abs(out) > (sh.depth_m ?? 0) / 2 + 0.5) continue;
-            shedVerts++;
-            shedOut = Math.max(shedOut, out);
-            shedIn = Math.min(shedIn, out);
-            shedHigh = Math.max(shedHigh, pos.getY(i));
-            shedLow = Math.min(shedLow, pos.getY(i));
-            inBay = true;
-            break;
-          }
-          if (inBay) continue;
-          // T-0057's piles, claimed before the wagons: a pile is measured for how
-          // far it reaches from its own anchor and for the one thing that would
-          // make it wrong, which is a stack of brick standing inside the building
-          // it was delivered for.
-          const pl = pileNear(e, n);
-          if (pl) {
-            pileVerts++;
-            pileStray = Math.max(pileStray, Math.hypot(e - pl.e, n - pl.n));
-            if (inQuad(e, n, pl.quad)) pileInLot++;
-            continue;
-          }
-          // A wagon is 3 m of body and a 2.75 m tongue, so it is measured by its
-          // own bound rather than lumped in with the casks.
-          const w = wagonNear(e, n);
-          if (w) { wagonVerts++; continue; }
-          // A bench's furthest corner is hypot(L/2, D/2) = 0.93 m from its
-          // anchor, so 1.1 m catches it and nothing else on the layer.
-          const bh = benches.find((bn) => Math.hypot(e - bn.at_local_enu_m[0],
-            n - bn.at_local_enu_m[1]) <= 1.1);
-          if (bh) {
-            benchVerts++;
-            benchStray = Math.max(benchStray, Math.hypot(e - bh.at_local_enu_m[0],
-              n - bh.at_local_enu_m[1]));
-            const bb = ((bh.bearing_deg ?? 0) * Math.PI) / 180;
-            benchInside = Math.min(benchInside,
-              (e - bh.at_local_enu_m[0]) * Math.sin(bb)
-              + (n - bh.at_local_enu_m[1]) * Math.cos(bb));
-            continue;
-          }
-          let best = null;
-          let bestD = Infinity;
-          for (const it of items) {
-            const d = Math.hypot(e - it.e, n - it.n);
-            if (d < bestD) { bestD = d; best = it; }
-          }
-          worstStray = Math.max(worstStray, bestD);
-          // Positive is out of the wall, along the facade's own normal.
-          const outward = (e - best.e) * Math.sin(best.b) + (n - best.n) * Math.cos(best.b);
-          worstInside = Math.min(worstInside, outward);
-        }
-      }
-      const verts = geos.reduce(
-        (t, geo) => t + (geo.getAttribute('position')?.count ?? 0), 0);
-      return {
-        census: y?.census ?? null,
-        meshes: meshes.length,
-        // One material across every chunk, which is what makes the chunking a
-        // CULLING decision rather than a second layer.
-        materials: new Set(meshes.map((m) => m.material?.uuid)).size,
-        // And every chunk has to carry its own bounding sphere, or the frustum
-        // has nothing to test and the split bought nothing at all.
-        bounded: geos.every((geo) => !!geo.boundingSphere),
-        // T-0065. The marks ride on the ONE material as a canvas atlas, so what
-        // has to hold is that the material carries a map at all, that every
-        // chunk carries the uv to read it with, and that no uv leaves the sheet
-        // â€” a uv off the atlas is a mark painted on nothing, silently.
-        mapped: meshes.every((m) => !!m.material?.map?.image),
-        hasUV: geos.length > 0 && geos.every((geo) => !!geo.getAttribute('uv')),
-        uvOut: (() => {
-          let bad = 0;
-          for (const geo of geos) {
-            const uv = geo.getAttribute('uv');
-            if (!uv) { bad += 1; continue; }
-            for (let i = 0; i < uv.count; i += 1) {
-              const u = uv.getX(i);
-              const v = uv.getY(i);
-              if (!(u >= 0 && u <= 1 && v >= 0 && v <= 1)) bad += 1;
-            }
-          }
-          return bad;
-        })(),
-        verts,
-        tris: verts / 3,
-        hasConfidence,
-        ungraded,
-        notReconstructed,
-        worstStray,
-        worstInside,
-        wagonVerts,
-        benchVerts,
-        benchStray,
-        benchInside,
-        benches,
-        pileVerts,
-        pileStray,
-        pileInLot,
-        lots,
-        piles: piles.length,
-        shedVerts,
-        shedOut,
-        shedIn,
-        shedSpan: Number.isFinite(shedLow) ? shedHigh - shedLow : null,
-        shed: sheds[0] ?? null,
-        sheds: sheds.length,
-        // One material and the tilt still reads as canvas: the colour is per
-        // vertex, so the whole layer must carry exactly its OWN tones and no
-        // more. It was two â€” timber and duck â€” until T-0057 put brick and stone
-        // on a building lot, and four is now the number a second material would
-        // have been needed for.
-        tones: (() => {
-          const seen = new Set();
-          for (const geo of geos) {
-            const c = geo.getAttribute('color');
-            if (!c) return 0;
-            for (let i = 0; i < c.count; i++) {
-              seen.add(`${c.getX(i).toFixed(4)},${c.getY(i).toFixed(4)},`
-                + `${c.getZ(i).toFixed(4)}`);
-            }
-          }
-          return seen.size;
-        })(),
-        span: Number.isFinite(lowest) ? highest - lowest : null,
-        frontages: frontages.length,
-        items: items.length,
-        wagon: wagons.find((w) => w.in_enclosure === 'western_hotel_wagon_yard') ?? null,
-        greenTreeWagons: wagons.filter((w) => w.belongs_to === 'green_tree_tavern'
-          && !w.under_shed),
-        tiltWagon: wagons.find((w) => w.under_shed) ?? null,
-        // ---- T-0064: the town's wagons ------------------------------------ //
-        // The record's own list, carried out whole so the checks below can ask
-        // it questions the census cannot answer â€” where each one stands, what
-        // kind it is, which way it faces, and whether it is graded.
-        townWagons: wagons.filter((w) => w.stands_on || w.in_enclosure)
-          .map((w) => ({ id: w.id, kind: w.kind ?? 'farm_box',
-            e: w.at_local_enu_m[0], n: w.at_local_enu_m[1],
-            bearing: w.bearing_deg ?? 0, street: w.stands_on ?? null,
-            enclosure: w.in_enclosure ?? null, confidence: w.confidence,
-            yoke: !!w.yoke, tilt: !!w.tilt })),
-        wagonsRefused: (y?.records ?? []).reduce(
-          (t, r) => t + (r.wagons_refused ?? []).length, 0),
-      };
-    });
-    check(`${label}: the yard layer stands the record's goods`,
-      goods.census?.frontages >= 20 && goods.items >= 120 && goods.verts > 0
-        && goods.census?.wagons >= 60 && goods.census?.benches === 1
-        && goods.census?.sheds === 1,
-      `${goods.items} object(s) on ${goods.census?.frontages} frontage(s) from `
-      + `${goods.census?.records} record(s), ${goods.census?.wagons} wagon(s), `
-      + `${goods.census?.benches} bench(es), ${goods.census?.sheds} shed(s), `
-      + `${goods.verts} vertices, ${goods.census?.refused} frontage(s) refused`);
-    // T-0064. The layer was ONE draw call while it was barrels on twenty-six
-    // frontages; sixty-four more wagons spread over a square kilometre made a
-    // single town-wide geometry the thing T-0115 item 2 measured and named â€” a
-    // bounding sphere no frustum culls, so every wagon in Chicago drew in every
-    // frame. It chunks now, the way `frontage.js` and `enclosures.js` do. What
-    // must still hold, and is the whole reason chunking is cheap: ONE material
-    // across every chunk, and every chunk carrying its own bounding sphere.
-    check(`${label}: the yard layer chunks for culling on a single material`,
-      goods.meshes > 1 && goods.meshes <= 64 && goods.materials === 1
-        && goods.bounded,
-      `${goods.meshes} chunk mesh(es), ${goods.materials} material(s), `
-      + `bounding spheres ${goods.bounded ? 'on every chunk' : 'MISSING on one'}`);
-    // T-0065. Every cask and every case carries a mark the record dealt it â€” a
-    // stencilled commodity, the house's brand, or a shipping mark â€” and the
-    // census counts what was actually PAINTED rather than what the record asked
-    // for, so an atlas that silently refused a cell reads as a shortfall here.
-    check(`${label}: every cask and case carries the mark its record deals it`,
-      goods.census?.marked === goods.items && goods.census?.markCells >= 40,
-      `${goods.census?.marked} of ${goods.items} object(s) marked, out of `
-      + `${goods.census?.markCells} atlas cell(s)`);
-    // And the marks cost the layer nothing it did not already spend: they are
-    // painted on the SAME single material as a texture, so every chunk carries
-    // a uv and every uv lands on the sheet. Everything unmarked reads the white
-    // cell, which multiplies to the timber it was before there was an atlas.
-    check(`${label}: the marks ride on the layer's own material, on the sheet`,
-      goods.mapped && goods.hasUV && goods.uvOut === 0,
-      `map ${goods.mapped ? 'present' : 'MISSING'}, uv `
-      + `${goods.hasUV ? 'on every chunk' : 'MISSING on one'}, ${goods.uvOut} `
-      + 'coordinate(s) off the atlas');
-    // NOT MERELY GRADED â€” graded reconstructed, every vertex of it. That goods
-    // stood at these doors on this day is invented (L131) and a single vertex
-    // claiming to be inferred or attested would be this layer overstating the
-    // one thing it must not.
-    check(`${label}: every yard-goods vertex is graded reconstructed`,
-      goods.hasConfidence && goods.ungraded === 0 && goods.notReconstructed === 0,
-      `attribute ${goods.hasConfidence ? 'present' : 'MISSING'}, ${goods.ungraded} out `
-      + `of range, ${goods.notReconstructed} claiming better than reconstructed`);
-    // A cask is 0.53 m at the bilge and a case 1.05 m long, so nothing on a
-    // frontage legitimately reaches 0.75 m from its own anchor â€” a transposed
-    // axis or a dropped rotation would be metres out, not centimetres.
-    check(`${label}: no barrel or case strays from the frontage it stands at`,
-      goods.worstStray > 0 && goods.worstStray <= 0.75,
-      `furthest vertex ${goods.worstStray?.toFixed(2)} m from its own object's anchor`);
-    // And the goods stand ON the footway, not inside the shop. The record stands
-    // them 0.55 m out from the facade plane and the widest thing here is a case
-    // 0.72 m across, so 0.45 m back from an anchor is still 0.10 m clear of the
-    // wall; a sign flip anywhere in the frame would put them a metre inside it.
-    check(`${label}: every object stands outside its own facade`,
-      goods.worstInside >= -0.45,
-      `deepest vertex ${goods.worstInside?.toFixed(3)} m behind its object's anchor`);
-    // The wagon is drawn, in the yard whose own name is the attestation, with
-    // the clearance the record derived for it.
-    check(`${label}: the attested wagon stands in the yard it is named for`,
-      goods.wagonVerts > 0 && goods.wagon?.in_enclosure === 'western_hotel_wagon_yard'
-        && goods.wagon?.clearance_m >= 1.6,
-      `${goods.wagonVerts} wagon vertices, ${goods.wagon?.clearance_m} m clear in `
-      + `${goods.wagon?.in_enclosure}`);
-    // T-0080. The Green Tree's two, from the Trowbridge view: they stand square
-    // to the inn's rear wall â€” the bearing is the facade's own plus 180 â€” and
-    // every one of them cleared the committed walls by the margin a parked wagon
-    // is given, or the generator would have refused it in writing instead.
-    check(`${label}: the Green Tree's yard wagons stand clear, square to its rear wall`,
-      goods.greenTreeWagons?.length === 2
-        && goods.greenTreeWagons.every((w) => w.clearance_m >= 1.6
-          && w.bearing_deg === 90 && w.confidence === 'reconstructed'),
-      `${goods.greenTreeWagons?.length} wagon(s), clearances `
-      + `${goods.greenTreeWagons?.map((w) => w.clearance_m).join(', ')}, bearings `
-      + `${goods.greenTreeWagons?.map((w) => w.bearing_deg).join(', ')}`);
-    // And the bench is drawn, against the wall rather than through it. Its
-    // furthest corner is hypot(1.83/2, 0.36/2) = 0.93 m from its anchor, and the
-    // record stands that anchor half the seat's depth off the facade plane, so
-    // nothing may sit more than 0.18 m behind it â€” a sign flip on the standoff
-    // would put the whole bench inside the bar-room.
-    check(`${label}: the bench stands against the Green Tree's front wall`,
-      goods.benchVerts > 0 && goods.benchStray > 0 && goods.benchStray <= 1.0
-        && goods.benchInside >= -0.20,
-      `${goods.benchVerts} bench vertices, furthest ${goods.benchStray?.toFixed(2)} m `
-      + `from its anchor, deepest ${goods.benchInside?.toFixed(3)} m behind it`);
-
-    // T-0081. THE WAGON SHED, which is the first roof this layer has ever drawn.
-    // The record claims a bay, two plate heights and a fall between them; a shed
-    // whose head is not above its eave is not a lean-to, and one whose eave does
-    // not clear the tilt is a shed the covered wagon cannot stand in.
-    const tiltTop = 0.95 + 0.55 + 1.10;   // bed + body + the tilt's rise
-    check(`${label}: the Green Tree's wagon shed is a lean-to that clears its tilt`,
-      goods.sheds === 1 && goods.shed?.confidence === 'reconstructed'
-        && goods.shed?.head_m > goods.shed?.eave_m
-        && goods.shed?.eave_m >= tiltTop
-        && goods.shed?.length_m >= 3.05 && goods.shed?.depth_m >= 3.2
-        && goods.shed?.clearance_m >= 1.0
-        && goods.tiltWagon?.tilt === true,
-      `${goods.sheds} shed(s), bay ${goods.shed?.length_m} x ${goods.shed?.depth_m} m, `
-      + `eave ${goods.shed?.eave_m} m over a ${tiltTop.toFixed(2)} m tilt, head `
-      + `${goods.shed?.head_m} m, ${goods.shed?.clearance_m} m clear, covered wagon `
-      + `${goods.tiltWagon ? goods.tiltWagon.id : 'MISSING'}`);
-    // And it is BUILT inside its own bay. Nothing standing in it may reach back
-    // through the inn's clapboard, out past the eaves the record gives it, or up
-    // through its own roof â€” the three ways a transposed axis or a dropped sign
-    // would show, and none of them is visible from a census.
-    check(`${label}: nothing in the shed's bay reaches through its wall or its roof`,
-      goods.shedVerts > 0
-        && goods.shedIn >= -(goods.shed?.depth_m / 2 + 0.05)
-        && goods.shedOut <= goods.shed?.depth_m / 2 + 0.35
-        && goods.shedSpan > 2.8 && goods.shedSpan <= goods.shed?.head_m + 0.25,
-      `${goods.shedVerts} vertices in the bay, ${goods.shedIn?.toFixed(3)} m behind `
-      + `the wall, ${goods.shedOut?.toFixed(3)} m out from it, `
-      + `${goods.shedSpan?.toFixed(2)} m tall against a ${goods.shed?.head_m} m head`);
-    // ---- T-0057: the other half of Ordinance 9 ---------------------------- //
-    //
-    // The ordinance names timber, stone, brick, boxes and barrels; T-0040 drew
-    // the boxes and barrels and refused the rest, because building material
-    // belongs to a building that is GOING UP and the goods record cannot say
-    // which lot was. Exactly one structure in this scene states a construction
-    // state in its own attributes â€” `lake_house_construction`, attested â€” so
-    // what has to hold is that the material is on that lot, in all three
-    // materials, and reaches the screen as geometry rather than as a record.
-    check(`${label}: the building material stands on the lot that was going up`,
-      goods.census?.lots === 1 && goods.census?.piles >= 6 && goods.pileVerts > 0
-        && goods.lots?.[0]?.structure_id === 'lake_house_construction'
-        && (goods.census?.byMaterial?.brick ?? 0) > 0
-        && (goods.census?.byMaterial?.timber ?? 0) > 0
-        && (goods.census?.byMaterial?.stone ?? 0) > 0,
-      `${goods.census?.piles} pile(s) on ${goods.census?.lots} lot(s) `
-      + `(${JSON.stringify(goods.census?.byMaterial ?? {})}), ${goods.pileVerts} `
-      + `vertices, lot ${goods.lots?.[0]?.structure_id ?? 'MISSING'}`);
-    // And it stands where a builder's material stands: round the shell, not
-    // inside it. The widest pile is a 3.66 m stick lying across its own pile, so
-    // 1.90 m is the furthest any vertex may sit from its anchor and 2.1 m is the
-    // bar; a transposed axis would be metres out, not centimetres. The second
-    // half is the one that would be visible from the street â€” the generator
-    // turned its outward normal the wrong way on its first run and put every
-    // one of the nine piles inside the building, which clause 5 caught then and
-    // this catches now.
-    check(`${label}: no pile of material stands inside the building it is for`,
-      goods.pileStray > 0 && goods.pileStray <= 2.1 && goods.pileInLot === 0,
-      `furthest vertex ${goods.pileStray?.toFixed(2)} m from its own pile's anchor, `
-      + `${goods.pileInLot} vertex/vertices inside the lot's own footprint`);
-
-    // The canvas is canvas. The tilt arrived without a second material, which is
-    // only possible because the colour moved onto the geometry â€” so the whole
-    // layer, chunks and all, has to carry exactly two tones: timber and duck.
-    check(`${label}: the tilt is drawn in canvas on the layer's one material`,
-      goods.tones === 4 && goods.materials === 1,
-      `${goods.tones} vertex tone(s) across ${goods.meshes} chunk(s) on `
-      + `${goods.materials} material(s)`);
-
-    // ---- T-0064: more wagons, all over a frontier town ---------------------- //
-    //
-    // The owner, 2026-08-18: "there can be more wagons! of course there would be
-    // more wagons all over the place in a frontier town." T-0040 put wagons at
-    // two addresses because two addresses is as far as the evidence reaches; the
-    // restraint is overruled and the tier is `reconstructed`. What has to hold
-    // is not that the wagons are RIGHT â€” nothing can make an invented wagon right
-    // â€” but that they are SPREAD, VARIED, GRADED and standing on ground the rest
-    // of this town has already claimed for something else. Every one of those is
-    // decided at load or in the record, and no dataset gate in this repo sees any
-    // of it.
-    const townWagons = goods.townWagons ?? [];
-    const streets = new Set(townWagons.map((w) => w.street).filter(Boolean));
-    const kinds = new Set(townWagons.map((w) => w.kind));
-    // SPREAD, and it is measured rather than asserted: the wagons have to reach
-    // across the town's own streets, not cluster at the two doors the evidence
-    // named. Eight streets and 600 m of east-west spread is a walk, not a corner.
-    const spanE = townWagons.length
-      ? Math.max(...townWagons.map((w) => w.e)) - Math.min(...townWagons.map((w) => w.e))
-      : 0;
-    const spanN = townWagons.length
-      ? Math.max(...townWagons.map((w) => w.n)) - Math.min(...townWagons.map((w) => w.n))
-      : 0;
-    check(`${label}: the town's wagons are spread across its streets, not at two doors`,
-      townWagons.length >= 55 && streets.size >= 14 && spanE >= 1000 && spanN >= 700,
-      `${townWagons.length} town wagon(s) on ${streets.size} street(s) plus the `
-      + `working yards, spanning ${spanE.toFixed(0)} m east-west and `
-      + `${spanN.toFixed(0)} m north-south`);
-    // VARIED, in type and in the way they are drawn up. Three kinds, and no one
-    // kind may be more than three quarters of them â€” a town of sixty identical
-    // farm wagons is one wagon repeated, which is what the ticket asked against.
-    const kindCounts = {};
-    for (const w of townWagons) kindCounts[w.kind] = (kindCounts[w.kind] ?? 0) + 1;
-    const commonest = Math.max(0, ...Object.values(kindCounts));
-    const bearings = new Set(townWagons.map((w) => Math.round(w.bearing / 5)));
-    check(`${label}: the town's wagons vary in type and in the way they stand`,
-      kinds.size >= 3 && kinds.has('covered') && kinds.has('cart')
-        && kinds.has('farm_box')
-        && commonest <= townWagons.length * 0.75 && bearings.size >= 8,
-      `${Object.entries(kindCounts).map(([k, v]) => `${v} ${k}`).join(', ')}; `
-      + `${bearings.size} distinct heading(s) to the nearest 5 degrees`);
-    // GRADED, every one of them, and the tilt/yoke flags have to agree with the
-    // kind â€” a covered wagon without its canvas is a farm wagon the record is
-    // lying about.
-    check(`${label}: every wagon the town gained cards reconstructed`,
-      townWagons.length > 0
-        && townWagons.every((w) => w.confidence === 'reconstructed')
-        && townWagons.every((w) => (w.kind === 'covered') === w.tilt),
-      `${townWagons.filter((w) => w.confidence === 'reconstructed').length} of `
-      + `${townWagons.length} graded reconstructed, `
-      + `${townWagons.filter((w) => w.tilt).length} carrying a tilt`);
-    // AND THEY STAND ON GROUND NOTHING ELSE HAS CLAIMED. This is the check the
-    // ticket exists for: a wagon on a footway, in a kitchen garden or in the
-    // pound is the failure that no census and no screenshot would show. Every
-    // wagon's own GROUND â€” its body and the pole it has down on the grass â€” is
-    // rebuilt here from the record and tested against the plank walks
-    // (`frontage.keepOut`, T-0119), the fenced interiors and their treatments
-    // (`yards.treatmentAt`, T-0067) and the travelled tracks (`streets`). The
-    // page's own APIs answer, not a second copy of the rule.
-    const clashes = await page.evaluate(() => {
-      const a = window.__chicago4d;
-      const wagons = (a.yard?.wagons ?? []).filter((w) => w.stands_on || w.in_enclosure);
-      const walks = a.frontage?.keepOut ?? [];
-      const inPoly = (pts, e, n) => {
-        let inside = false;
-        for (let i = 0, j = pts.length - 1; i < pts.length; j = i++) {
-          const [xi, yi] = pts[i];
-          const [xj, yj] = pts[j];
-          if ((yi > n) !== (yj > n) && e < ((xj - xi) * (n - yi)) / (yj - yi) + xi) {
-            inside = !inside;
-          }
-        }
-        return inside;
-      };
-      const out = { onWalk: [], inGarden: [], inPen: [], inTrack: [], tested: 0 };
-      for (const w of wagons) {
-        // The vehicle's ground: 3.05 m of body (1.98 m for a cart) and the pole
-        // lying in front of it, 1.5 m across over the hubs. Sampled rather than
-        // integrated â€” a 0.5 m walk of the centreline plus the two rails is far
-        // finer than the 1.83 m walk or the 7 m track it is being asked about.
-        const cart = w.kind === 'cart';
-        const back = cart ? 0.99 : 1.525;
-        const fore = cart ? 0.99 + 2.44 : 1.525 + 2.75;
-        const b = ((w.bearing_deg ?? 0) * Math.PI) / 180;
-        const fe = Math.sin(b);
-        const fn = Math.cos(b);
-        const se = Math.cos(b);
-        const sn = -Math.sin(b);
-        for (let t = -back; t <= fore + 1e-6; t += 0.5) {
-          for (const s of [-0.75, 0, 0.75]) {
-            const e = w.at_local_enu_m[0] + fe * t + se * s;
-            const n = w.at_local_enu_m[1] + fn * t + sn * s;
-            out.tested += 1;
-            for (const rect of walks) {
-              if (inPoly(rect.pts, e, n)) { out.onWalk.push(w.id); break; }
-            }
-            const treatment = a.yards?.treatmentAt?.(e, n) ?? null;
-            if (treatment === 'dooryard_garden') out.inGarden.push(w.id);
-            if (treatment === 'trodden_earth') out.inPen.push(w.id);
-            if (a.streets?.blocksGrowth?.(e, n)) out.inTrack.push(w.id);
-          }
-        }
-      }
-      for (const k of ['onWalk', 'inGarden', 'inPen', 'inTrack']) {
-        out[k] = [...new Set(out[k])];
-      }
-      return out;
-    });
-    check(`${label}: no wagon stands on a plank walk, in a garden or in a pen`,
-      clashes.tested > 0 && clashes.onWalk.length === 0
-        && clashes.inGarden.length === 0 && clashes.inPen.length === 0,
-      `${clashes.tested} ground sample(s): ${clashes.onWalk.length} on a walk `
-      + `[${clashes.onWalk.join(', ')}], ${clashes.inGarden.length} in a dooryard `
-      + `garden [${clashes.inGarden.join(', ')}], ${clashes.inPen.length} in a pen `
-      + `[${clashes.inPen.join(', ')}]`);
-    // And out of the travelled way. `streets.blocksGrowth` is the same answer the
-    // planters get â€” the track plus its own shoulder â€” so a wagon that fails this
-    // is standing where the road is drawn and where a visitor walks.
-    check(`${label}: no wagon stands in a street's travelled track`,
-      clashes.inTrack.length === 0,
-      `${clashes.inTrack.length} wagon(s) in the track [${clashes.inTrack.join(', ')}]`);
-    // AND THE REFUSALS ARE IN WRITING. A rule that keeps sixty wagons off the
-    // town's walks and out of its roads necessarily refuses stands, and a
-    // generator that refused silently would leave nothing to argue with â€” the
-    // discipline `generate_business_signboards.py` keeps with its eight.
-    check(`${label}: the wagon rule wrote down what it refused`,
-      goods.wagonsRefused >= 20,
-      `${goods.wagonsRefused} refused wagon stand(s) recorded with a reason`);
-
-    // AND THEY READ FROM THE FOOTWAY, which is the whole point of standing them
-    // out. The Tremont House's south front on Lake Street carries the longest
-    // group on the layer â€” four casks, an empty on its side and two cases â€” so
-    // stand where a person walking past them stands, 3.2 m off the wall, and
-    // hold the clock so the grass cannot supply the difference. Same bar as the
-    // two fence gates and the signboard: worst >= 6 and mean >= 0.3.
-    await page.evaluate(() => window.__chicago4d.walker.teleport(
-      { local_e: 684.9, local_n: -104.3, yaw_deg: 0, pitch_deg: -10 }));
-    await page.waitForTimeout(350);
-    await page.evaluate(() => window.__chicago4d.setAnimationHold(true));
-    const goodsWith = await page.evaluate(() => window.__chicago4d.capture());
-    await page.evaluate(() => { window.__chicago4d.yard.group.visible = false; });
-    const goodsWithout = await page.evaluate(() => window.__chicago4d.capture());
-    await page.evaluate(() => { window.__chicago4d.yard.group.visible = true; });
-    const dGoods = signatureDistance(goodsWith, goodsWithout);
-    check(`${label}: the goods reach the screen from the footway`,
-      dGoods.worst >= 6 && dGoods.mean >= 0.3,
-      `cell delta mean ${dGoods.mean?.toFixed(2)}, worst ${dGoods.worst} (need worst>=6)`);
-
-    // A barrel at a shop door is the nearest thing to the crosshair when a
-    // visitor walks up to that door, so aiming at one has to open the business
-    // it belongs to rather than the wall behind it.
-    const goodsPick = await page.evaluate(() => {
-      const hits = [];
-      for (const x of [-0.3, -0.15, 0, 0.15, 0.3]) {
-        for (const y of [-0.3, -0.15, 0, 0.15, 0.3]) {
-          const hit = window.__chicago4d.pick({ x, y });
-          if (hit?.id) hits.push(hit.id);
-        }
-      }
-      return hits;
-    });
-    await page.evaluate(() => window.__chicago4d.setAnimationHold(false));
-    check(`${label}: aiming at a barrel opens the business it stands at`,
-      goodsPick.includes('tremont_house_1'),
-      `25 aims returned [${[...new Set(goodsPick)].join(', ') || 'nothing'}]`);
-
-    // --- the frontage layer: the Green Tree (T-0082) and the Sauganash (T-0090) ---
-    //
-    // The fifth layer drawn from the dataset rather than baked, and the first
-    // derived from a building AND a street at once. Its failure modes are its
-    // own: a deck laid on one height floats at one end of a frontage and is
-    // buried at the other, and a name painted on a board is the first lettering
-    // this renderer has ever drawn â€” a texture that fails to compose leaves a
-    // board that looks perfectly finished and says nothing. Neither is visible
-    // to any dataset gate in this repo, because both are decided at load.
-    //
-    // T-0090 added the second record, and with it the first post this layer
-    // draws with nothing on it. A hitching post that silently took the sign
-    // post's branch would stand 3.6 m tall under a blank board â€” geometry the
-    // dataset gate cannot see either, because the record says 1.30 m and it is
-    // the RENDERER that would be wrong. So each post is measured against its own
-    // stand's terrain sample, and the lettering count is asserted to stay at one.
-    const frontage = await page.evaluate(() => {
-      const a = window.__chicago4d;
-      const f = a?.frontage;
-      const terrain = a?.terrain;
-      // The layer's timber is the shared mesh plus the river walk's culling
-      // chunks (T-0119) â€” one material, many bounding spheres. Every vertex
-      // assertion below walks all of them.
-      const timber = (f?.group?.children ?? [])
-        .filter((c) => c.name === 'frontage' || c.name === 'frontage-chunk');
-      const mesh = timber.find((c) => c.name === 'frontage');
-      const letters = (f?.group?.children ?? []).find((c) => c.name === 'frontage-lettering');
-      const post = f?.posts?.[0] ?? null;
-      let sink = Infinity;
-      let deckTop = -Infinity;
-      let highest = -Infinity;
-      let boardLow = Infinity;
-      let ungraded = 0;
-      let notReconstructed = 0;
-      let verts = 0;
-      for (const t of timber) {
-        const conf = t.geometry?.getAttribute('_confidence');
-        if (!conf) continue;
-        for (let i = 0; i < conf.count; i++) {
-          const v = conf.getX(i);
-          if (!(v >= 0 && v <= 1)) ungraded++;
-          else if (v < 1) notReconstructed++;
-        }
-      }
-      // What a board must tie into is the surface a visitor walks: the ground,
-      // or a registered walker deck standing over it â€” the river walk's
-      // crossing footway rides the Slough Log Bridge's committed deck over the
-      // slough pool, where the terrain under a board is the carved bed (T-0119).
-      //
-      // A WALK'S OWN WALKING SURFACE IS NOT SUCH A DECK, and T-0069 is where the
-      // difference had to be drawn. The street edge publishes a deck per stretch
-      // of its own planks so the visitor stands ON them, and that deck IS the top
-      // of the timber being measured â€” counting it as the base would ask every
-      // board to tie into itself and read the whole walk as sunk by its own rise.
-      // Those decks are the ones named `â€¦__footway_<n>`; the ground is what their
-      // boards tie into and the ground is what they are measured against.
-      //
-      // AND A WHARF DECK IS NOT ONE EITHER â€” but since T-0228 it does not have
-      // to be excused, because no board stands under one. Two of the seven docks
-      // â€” Carpenter's and Jones's, both on the South Water reach â€” tie their
-      // heels back into the bank the riverside plank walk runs along, and until
-      // T-0228 their decks OVERSAILED about 3,000 of this layer's vertices by
-      // roughly half a metre. That was excluded here so a walk which had not
-      // moved would not read as newly sunk by the height of somebody else's
-      // floor. The walk is now CUT at every landing that comes ashore across it,
-      // so the exclusion is gone and the wharf decks are back in this probe: if
-      // a board ever returns under a dock the band reads it as sunk half a
-      // metre, and `underWharf` below names the dock it is under.
-      const deckAt = (e, n) => {
-        let y = null;
-        for (const d of a.decks ?? []) {
-          if (/__footway_\d+$/.test(d.id)) continue;
-          if (y !== null && d.y <= y) continue;
-          let hit = false;
-          const pts = d.pts;
-          for (let i = 0, j = pts.length - 1; i < pts.length; j = i++) {
-            const [xi, yi] = pts[i];
-            const [xj, yj] = pts[j];
-            if ((yi > n) !== (yj > n) && e < ((xj - xi) * (n - yi)) / (yj - yi) + xi) hit = !hit;
-          }
-          if (hit) y = d.y;
-        }
-        return y;
-      };
-      const postGround = post
-        ? terrain.surfaceHeight(post.at_local_enu_m[0], post.at_local_enu_m[1]) : null;
-      // A RIGID BOARD ON TILTED GROUND departs from grade by the relief across
-      // its own width â€” the river walk (T-0119) crosses the Dearborn approach's
-      // graded ramp and the pinched bank verge, where the land falls a quarter
-      // metre inside a board's reach. So a vertex that leaves the flat band is
-      // allowed exactly the relief the ground shows within a board's half-width
-      // of it, and not a millimetre of licence more; on the flat ground the
-      // original walks stand on, the original band still binds.
-      let bandBreaches = 0;
-      let worstBreach = 0;
-      // A FENCE IS NOT A DECK (T-0069). The street-lining fences share their
-      // walk's chunk â€” one street edge, one mesh â€” so the band below has to be
-      // told which timber is a floor and which is a fence standing beside one.
-      // The test is geometric and needs no new attribute: a fence's own line is
-      // on the record, its stock reaches 0.085 m across it at the widest (the
-      // post), and the nearest walk vertex is the deck's inner edge 0.25 m off.
-      // Everything within 0.2 m of a fence line is fence and is not measured as
-      // a deck; nothing else in the layer is within a metre of one.
-      const fenceLines = [];
-      for (const r of f?.records ?? []) {
-        for (const fence of r.fences ?? []) {
-          const line = fence.path_local_enu_m ?? [];
-          for (let i = 0; i + 1 < line.length; i++) fenceLines.push([line[i], line[i + 1]]);
-        }
-      }
-      const onFence = (e, n) => {
-        for (const [a0, b0] of fenceLines) {
-          const de = b0[0] - a0[0];
-          const dn = b0[1] - a0[1];
-          const l2 = de * de + dn * dn || 1;
-          let t = ((e - a0[0]) * de + (n - a0[1]) * dn) / l2;
-          t = Math.max(0, Math.min(1, t));
-          if (Math.hypot(a0[0] + de * t - e, a0[1] + dn * t - n) <= 0.2) return true;
-        }
-        return false;
-      };
-      const reliefAt = (e, n) => {
-        const g0 = terrain.surfaceHeight(e, n);
-        let lo = g0;
-        let hi = g0;
-        for (const [de, dn] of [[0.95, 0], [-0.95, 0], [0, 0.95], [0, -0.95]]) {
-          const gg = terrain.surfaceHeight(e + de, n + dn);
-          if (Number.isFinite(gg)) { lo = Math.min(lo, gg); hi = Math.max(hi, gg); }
-        }
-        return Number.isFinite(hi - lo) ? hi - lo : 0;
-      };
-      // NO BOARD UNDER A LANDING (T-0228). The wharves publish their deck and
-      // every stair tread to the walker as `<id>__wharf` / `<id>__wharf_step<n>`;
-      // those outlines are the timber a plank walk must not run beneath. This
-      // counts the frontage vertices standing inside one, by dock, and the check
-      // below asks for none. It is the loaded-page half of the generator's own
-      // audit: that one cuts the record, this one reads what was drawn from it.
-      const wharfDecks = (a.decks ?? []).filter((d) => /__wharf(_step\d+)?$/.test(d.id));
-      const underWharf = new Map();
-      const inPoly = (e, n, pts) => {
-        let hit = false;
-        for (let i = 0, j = pts.length - 1; i < pts.length; j = i++) {
-          const [xi, yi] = pts[i];
-          const [xj, yj] = pts[j];
-          if ((yi > n) !== (yj > n) && e < ((xj - xi) * (n - yi)) / (yj - yi) + xi) hit = !hit;
-        }
-        return hit;
-      };
-      for (const t of timber) {
-        const pos = t.geometry?.getAttribute('position');
-        if (!pos) continue;
-        verts += pos.count;
-        for (let i = 0; i < pos.count; i++) {
-          for (const d of wharfDecks) {
-            if (inPoly(pos.getX(i), -pos.getZ(i), d.pts)) {
-              underWharf.set(d.id, (underWharf.get(d.id) ?? 0) + 1);
-              break;
-            }
-          }
-        }
-        for (let i = 0; i < pos.count; i++) {
-          // world is (E, up, -N)
-          const e = pos.getX(i);
-          const y = pos.getY(i);
-          const n = -pos.getZ(i);
-          const ground = terrain.surfaceHeight(e, n);
-          const deck = deckAt(e, n);
-          const base = deck === null ? ground
-            : (Number.isFinite(ground) ? Math.max(ground, deck) : deck);
-          if (Number.isFinite(base) && !onFence(e, n)) {
-            const d = y - base;
-            highest = Math.max(highest, d);
-            // The deck: everything under a metre. The post and its board are
-            // measured against the post's own ground below, because a pole is
-            // not laid on the land the way a walk is.
-            if (d < 1.0) {
-              if (d >= -0.06 && d <= 0.18) {
-                sink = Math.min(sink, d);
-                deckTop = Math.max(deckTop, d);
-              } else {
-                const relief = reliefAt(e, n);
-                if (relief <= 0.12) {
-                  // Flat ground, out of band: the original fault, unexcused.
-                  sink = Math.min(sink, d);
-                  deckTop = Math.max(deckTop, d);
-                } else if (d < -(0.06 + relief) || d > 0.18 + relief) {
-                  bandBreaches += 1;
-                  worstBreach = Math.max(worstBreach,
-                    d > 0 ? d - (0.18 + relief) : -(0.06 + relief) - d);
-                }
-              }
-            }
-          }
-          if (Number.isFinite(postGround) && y - postGround > 2.0) {
-            boardLow = Math.min(boardLow, y - postGround);
-          }
-        }
-      }
-      // Each hitching post against its OWN stand: the tallest and the lowest
-      // vertex within 0.4 m of it, which is its own timber and nothing else â€”
-      // the front walk's near edge is 0.9 m off and the crossing is metres away.
-      // Measured over the record on 2026-08-29: the nearest fence line to any of
-      // the fourteen is 2.98 m, and thirteen boxes hold exactly the 72 vertices
-      // of one post's own shaft and cap and nothing else. The fourteenth is the
-      // Mansion House's, where the board crossing over Lake Street brings its
-      // near edge 0.13 m from the post and lays 15 more vertices in the box.
-      // They move neither reading â€” a crossing deck stands 0.06 m over its
-      // ground, so it is under the foot the min is looking for and a metre and a
-      // quarter under the head the max is â€” and the box is left at 0.4 m rather
-      // than tightened onto the 0.22 m cap, which would leave 0.02 m of margin
-      // against that same crossing and fail on a plank laid a hand further in.
-      //
-      // IT WALKS EVERY MESH IN THE LAYER, and T-0244 is why. This read the
-      // shared `frontage` mesh alone â€” `const g = mesh?.geometry`, with a
-      // comment saying the posts live in it â€” which was true of the two the
-      // Sauganash's own record stands and stopped being true the day T-0194
-      // added twelve at the street edge. A post that names a street is STANDING
-      // timber and lands in that street's `<record>__<street>__standing` chunk,
-      // published as a `frontage-chunk` mesh beside the fences it culls and
-      // casts with; the shared mesh never sees it. So all twelve reported a max
-      // over an empty vertex set â€” `-Infinity` for a height and `Infinity` for a
-      // foot â€” and the geometry was right the whole time. The lesson is the
-      // resolution rule, not the count: a post is found by WHERE IT STANDS,
-      // across every mesh the layer draws, because which mesh it is folded into
-      // is a draw-call decision that may change again without the post moving.
-      const hitching = (f?.posts ?? []).filter((q) => q.kind === 'hitching_post').map((q) => {
-        const [e0, n0] = q.at_local_enu_m;
-        const stand = terrain.surfaceHeight(e0, n0);
-        let top = -Infinity;
-        let low = Infinity;
-        let found = 0;
-        if (Number.isFinite(stand)) {
-          for (const t of timber) {
-            const pos = t.geometry?.getAttribute('position');
-            if (!pos) continue;
-            for (let i = 0; i < pos.count; i++) {
-              if (Math.abs(pos.getX(i) - e0) > 0.4) continue;
-              if (Math.abs(-pos.getZ(i) - n0) > 0.4) continue;
-              found += 1;
-              top = Math.max(top, pos.getY(i) - stand);
-              low = Math.min(low, pos.getY(i) - stand);
-            }
-          }
-        }
-        return { id: q.id, top, low, found, street: q.street ?? null,
-                 recorded: q.post_height_m ?? null,
-                 clear: q.clear_of_track_m ?? null, text: q.text ?? null };
-      });
-      return {
-        hitching,
-        recordIds: (f?.records ?? []).map((r) => r.id),
-        noBoardHere: (f?.records ?? []).find((r) => r.id === 'sauganash_frontage')
-          ?.board_on_a_post?.value ?? null,
-        census: f?.census ?? null,
-        meshes: f?.group?.children?.length ?? 0,
-        names: (f?.group?.children ?? []).map((c) => c.name),
-        // AUTHORED AGAINST DRAWN (T-0349). A layer's group holds the meshes the
-        // layer built AND whatever the frame's draw-call economy has since put
-        // there: `far-merge.js` welds a distant cluster into one extra mesh,
-        // parents it onto the same group and marks it `userData.farMerged`. So
-        // `children.length` is not a census of the layer â€” it is the census plus
-        // the camera's history, and it moves with where a stage last stood.
-        // These two split that apart: `authored` is what the layer laid, which
-        // is the number a census clause can hold across stages, and `merged` is
-        // the artefact count, reported beside it rather than folded into it.
-        authored: (f?.group?.children ?? []).filter((c) => !c.userData?.farMerged).length,
-        authoredNames: (f?.group?.children ?? [])
-          .filter((c) => !c.userData?.farMerged).map((c) => c.name),
-        merged: (f?.group?.children ?? []).filter((c) => !!c.userData?.farMerged).length,
-        mergedNames: (f?.group?.children ?? [])
-          .filter((c) => !!c.userData?.farMerged).map((c) => c.name),
-        verts,
-        letterVerts: letters?.geometry?.getAttribute('position')?.count ?? 0,
-        letterMap: !!letters?.material?.map,
-        timberMap: !!mesh?.material?.map,
-        lettering: f?.lettering ?? null,
-        recordText: post?.text ?? null,
-        textGrade: post?.text_confidence ?? null,
-        postHeight: post?.post_height_m ?? null,
-        clearOfTrack: post?.clear_of_track_m ?? null,
-        walks: f?.walks ?? [],
-        underWharf: [...underWharf.entries()].sort(),
-        wharfDeckCount: wharfDecks.length,
-        sink, deckTop, highest, boardLow, ungraded, notReconstructed,
-        bandBreaches, worstBreach,
-        problems: (a?.problems ?? []).filter((x) => /frontage/.test(x)),
-      };
-    });
-    check(`${label}: the frontage layer lays all five records' walks and stands their posts`,
-      // T-0241 laid Washington's seven block faces on top of Randolph's
-      // thirteen: 42 walks to 49, 28 crossings to 33, 26 fence runs to 35 and
-      // 74 refusals to 83. The post count does NOT move â€” Washington's
-      // frontages carry no named trade the hitching rule accepts.
-      // T-0196 then took three documented buildings off Lake Street's walk, which
-      // opened one more run and FOUR more corner crossings (two on Lake's north
-      // side, two on the South Water faces those walks now reach the corner of)
-      // and retired two refusals: 49 walks to 50, 33 crossings to 37, 83
-      // refusals to 81. Fences and posts do not move â€” a wall 1.50 m back from
-      // the frontage line is still inside the 3.0 m a street fence needs.
-      // T-0024 put the store on Randolph onto the street line, which refused one
-      // more street-edge wall and left this figure a count behind: 81 to 82,
-      // measured on an unmodified dev while T-0228 was taking its own reading.
-      // T-0228 then cut the river walk's wharf reach in two where Carpenter's
-      // and Jones's landings come ashore across it â€” 50 walks to 51 â€” and states
-      // each gap where it refuses to lay boards: 82 refusals to 84.
-      // T-0246 reconciled log_jail onto the committed plat, off the modern kerb
-      // it was placed from. The WALK count does not move â€” the two steps it
-      // returns extend an existing run to the full face rather than opening a
-      // new one â€” but a walk that stopped short of its corner had refused the
-      // corner CROSSING with it, and two of those are now laid: 37 crossings to
-      // 39, and the refusal that named them retires, 84 to 83.
-      // T-0028 opened blk_lake_franklin and the warehouse it was dealt stands
-      // 1.50 m off that lot's frontage line â€” inside the 3.0 m a street fence
-      // needs, so the building IS the street wall there and the fence is
-      // refused: 83 to 84, and nothing else in this line moves. Left a count
-      // behind for two days, the same way T-0024's did, and for the same reason
-      // as T-0244 below: this suite is not the dev gate.
-      // T-0380 stood the New York House on the Lake Street face of
-      // blk_south_water_franklin â€” a documented public house, which is a trade
-      // the hitching rule accepts â€” so ONE more post stands at that frontage:
-      // 15 to 16. Nothing else moves. The walk along that face was already laid
-      // for its whole length, so no run opens and no crossing is added, and the
-      // house stands 1.50 m back from the frontage line, which is inside the
-      // 3.0 m a street fence needs and was already refused there.
-      // T-0263 settled the TRADE at frederick_thomas_shop â€” `drug_store`,
-      // attested, out of Frederick Thomas's own advertisement heading in the
-      // Chicago American â€” where it had read `shop` at the reconstructed grade.
-      // The hitching rule takes its frontages from the trade, so the frontage
-      // this record REFUSED IN WRITING now qualifies: 16 posts to 17, and the
-      // refusal that named it retires with it, 84 to 83. Those two numbers move
-      // together and only together, which is the check that this is the trade
-      // and not a new placement â€” the refusal text is quoted on the retiring
-      // entry ("the trade at frederick_thomas_shop is reconstructed ... a
-      // hitching post there would be furniture standing on an invention").
-      // Nothing else moves: no run opens, no crossing is added, and the shop's
-      // own wall was never a street-fence refusal.
-      // T-0384 stood john_holbrook_store on the South Water face of
-      // blk_south_water_dearborn â€” a documented STORE, which is a trade the
-      // hitching rule accepts â€” so ONE more post stands at that frontage: 17 to
-      // 18. This is a building ARRIVING rather than a trade settling, so unlike
-      // T-0263 no refusal retires with it and 83 does not move. Nothing else
-      // moves either: the face's walk was already laid for its whole length so
-      // no run opens and no crossing is added, and the shop stands 1.50 m back
-      // from the frontage line, inside the 3.0 m a street fence needs, which was
-      // already refused on that wall.
-      frontage.census?.records === 5 && frontage.census?.walks === 51
-        && frontage.census?.crossings === 39
-        && frontage.census?.posts === 18 && frontage.census?.fences === 35
-        && frontage.census?.refused === 83
-        && frontage.recordIds.join(',')
-          === 'green_tree_frontage,sauganash_frontage,river_walk_frontage,'
-            + 'lasalle_crossing_frontage,town_street_edge'
-        && frontage.verts > 0 && frontage.problems.length === 0,
-      `${frontage.census?.records} record(s) [${frontage.recordIds.join(', ')}], `
-      + `${frontage.census?.walks} walk(s), ${frontage.census?.crossings} crossing(s), `
-      + `${frontage.census?.posts} post(s), ${frontage.census?.fences} fence run(s), `
-      + `${frontage.verts} vertices, `
-      + `${frontage.census?.refused} wall(s) refused, `
-      + `problems [${frontage.problems.join(' | ') || 'none'}]`);
-    // NO BOARD UNDER A LANDING (T-0228). Found by T-0058, which made the wharf
-    // decks walk surfaces and so made it matter: Carpenter's and Jones's decks
-    // tie their heels 2.0 m back into the bank the riverside plank walk runs
-    // along, and about 2,700 of this layer's vertices lay inside those two
-    // outlines with a further 270 inside their boarding stairs â€” the slab half a
-    // metre over the boards, 0.36 m of daylight under it, and a 0.50 m riser
-    // across the walker's path that the 0.35 m step-up rule refuses. The walk is
-    // now cut at every landing and the answer is stated where a visitor can read
-    // it: the gaps are in the record's `refused`, and the landing's own deck is
-    // the walking surface across it.
-    check(`${label}: no frontage board stands under a wharf deck or its stair`,
-      frontage.wharfDeckCount > 0 && frontage.underWharf.length === 0,
-      `${frontage.wharfDeckCount} wharf surface(s) published; under them `
-      + `[${frontage.underWharf.map(([id, k]) => `${id} ${k}`).join(', ') || 'no boards'}]`);
-    // NOT MERELY GRADED â€” graded reconstructed, every vertex. No source record in
-    // this repository states that a walk stood on this ground on 1 July 1835
-    // (L135), and a single vertex claiming inferred or attested would be this
-    // layer overstating the one thing it must not.
-    check(`${label}: every frontage vertex is graded reconstructed`,
-      frontage.ungraded === 0 && frontage.notReconstructed === 0 && frontage.verts > 0,
-      `${frontage.ungraded} out of range, ${frontage.notReconstructed} claiming better `
-      + 'than reconstructed');
-    // THE DECK TIES INTO THE GROUND IT CROSSES. Every board samples the surface
-    // a visitor walks under its own centre â€” the terrain, or a registered deck
-    // over water â€” so no part of a walk may hang over the land or be swallowed
-    // by it. On flat ground the whole layer under a metre lives in a band about
-    // 0.13 m deep, and that band still binds; on tilted ground (the river
-    // walk's ramp crossing and bank pinch, T-0119) a rigid board may depart by
-    // at most the relief across its own width, measured per vertex, and each
-    // stringer reaches the ground under its own line so the departure is
-    // carried on timber rather than open to daylight.
-    check(`${label}: the plank decks tie into the ground they cross`,
-      frontage.sink >= -0.06 && frontage.deckTop > 0.05 && frontage.deckTop <= 0.18
-        && frontage.bandBreaches === 0,
-      `deepest ${frontage.sink?.toFixed(3)} m below grade, highest flat-ground deck `
-      + `vertex ${frontage.deckTop?.toFixed(3)} m above it, ${frontage.bandBreaches} `
-      + `vertice(s) past even their own relief allowance (worst by `
-      + `${frontage.worstBreach?.toFixed(3)} m)`);
-    // THE POST STANDS ON THE GROUND AND ITS BOARD HANGS OVER A HEAD. A pole whose
-    // height came from a number beside the mesh rather than from a terrain sample
-    // floats; a board hung too low is one a visitor walks through.
-    check(`${label}: the named board hangs on a post that stands on the ground`,
-      Math.abs(frontage.highest - frontage.postHeight) <= 0.05
-        && frontage.boardLow >= 2.4 && frontage.clearOfTrack > 0,
-      `post ${frontage.highest?.toFixed(2)} m over its grade against a recorded `
-      + `${frontage.postHeight} m, board's underside ${frontage.boardLow?.toFixed(2)} m up, `
-      + `${frontage.clearOfTrack} m clear of the travelled track`);
-    // THE LAYER DRAWS THE MESHES IT LAID, AND ONLY THOSE ARE ITS OWN (T-0349).
-    // This census used to be the seventh clause of the lettering check below,
-    // and it was the only clause in that conjunction whose verdict depended on
-    // what had run BEFORE it: stage 1-2 read 67 on desktop and failed, stage 2
-    // alone read 62 and passed, on the same tree and the same published mirror
-    // minutes apart, and the six lettering clauses were green in both. The five
-    // extra were all `frontage-far-merge` â€” `far-merge.js` welds a distant
-    // cluster of this layer's chunks into one more mesh, parents it onto this
-    // same group and marks it `userData.farMerged`, and stage 1 walks the
-    // desktop camera somewhere that causes five such merges where stage 2 alone
-    // and the mobile viewport cause none. So `children.length` was never a
-    // census of the layer; it was the layer plus the camera's history, reported
-    // under a name that promised the painted name was wrong.
-    //
-    // The count is not dropped, it is re-stated over the set that can carry it:
-    // the meshes the layer AUTHORED, which is every child that is not a merge
-    // artefact. Sixty-two â€” the shared timber, the river walk's fifteen culling
-    // chunks (T-0119), the town street edge's thirty-four (T-0069 laid
-    // twenty-one; T-0198's six reconciled South Water placements welded two runs
-    // into one and T-0199's last five welded two more, taking it to eighteen;
-    // T-0240 laid Randolph Street's thirteen block faces and took it to
-    // thirty-three; T-0196 reconciled three Lake Street placements, and clearing
-    // old_bank_building off blk_lake_lasalle's north face opened a fourteenth
-    // Lake run west of the ground break that still cuts it), the THREE
-    // street-fence meshes â€” one per covered street that carries a fence, which
-    // T-0198 split off so the boards could leave the shadow map while the fences
-    // stayed in it, and which is why this number moves with `EDGE_STREETS` â€” and
-    // the lettering mesh. 53 -> 61 with T-0241's Washington faces, because the
-    // walk is chunked one mesh per run and Washington laid eight more of them;
-    // T-0196's Lake Street repair opens a forty-first run, so 62.
-    //
-    // The merge artefacts are REPORTED and not asserted, and that asymmetry is
-    // the finding: how many of them exist is a fact about where the camera has
-    // been, so a number here would be asserting the walk this suite happens to
-    // take. What is asserted about them is that they are the layer's own kind of
-    // artefact â€” every extra child is a `frontage-far-merge` â€” so a stray mesh
-    // parented onto this group by anything else still fails.
-    check(`${label}: the frontage layer draws the meshes it authored`,
-      frontage.authored === 62
-        && frontage.mergedNames.every((nm) => nm === 'frontage-far-merge'),
-      `${frontage.authored} authored mesh(es) (${tallyNames(frontage.authoredNames)}), `
-      + `${frontage.merged} far-merge artefact(s) `
-      + `[${tallyNames(frontage.mergedNames) || 'none'}], `
-      + `${frontage.meshes} drawn in all`,
-      // PRINTED ON A PASS TOO (the `show` flag, T-0187), because the drawn count
-      // is the number this ticket found varying with run order and a reading
-      // nobody can see is a reading nobody can check. A green line here states
-      // both figures, so the next run that wonders whether the merge artefacts
-      // are still arriving can read it off the log instead of re-measuring.
-      true);
-    // THE NAME IS DRAWN, AND IT IS THE RECORD'S. This is the only lettering in the
-    // renderer (L135), and it is the record's wording rather than the renderer's:
-    // a board whose painted name drifted from the record would be this project
-    // inventing a sign, which is exactly what L25 and L130 refuse. The painted
-    // name is on its own mesh, the only thing in this layer that may carry a
-    // texture; the timber it hangs over is all on ONE material and carries none.
-    check(`${label}: the board carries the record's own name, painted`,
-      frontage.census?.lettered === 1 && frontage.letterVerts >= 6
-        && frontage.letterMap === true && frontage.timberMap === false
-        && frontage.lettering === frontage.recordText
-        && frontage.recordText === 'GREEN TREE'
-        && frontage.textGrade === 'inferred',
-      `"${frontage.lettering}" on ${frontage.letterVerts} vertices, record says `
-      + `"${frontage.recordText}" graded ${frontage.textGrade}`);
-
-    // AND IT READS FROM THE STREET, which is what a walk and a signboard are FOR.
-    // Stand out on Canal Street where a traveller coming up to the inn stands and
-    // hold the clock, so the grass cannot supply the difference. Same bar as the
-    // goods, the fence gates and the signboard: worst >= 6 and mean >= 0.3.
-    await page.evaluate(() => window.__chicago4d.walker.teleport(
-      { local_e: -163, local_n: -99, yaw_deg: 80, pitch_deg: 0 }));
-    await page.waitForTimeout(350);
-    await page.evaluate(() => window.__chicago4d.setAnimationHold(true));
-    const frontWith = await page.evaluate(() => window.__chicago4d.capture());
-    await page.evaluate(() => { window.__chicago4d.frontage.group.visible = false; });
-    const frontWithout = await page.evaluate(() => window.__chicago4d.capture());
-    await page.evaluate(() => { window.__chicago4d.frontage.group.visible = true; });
-    const dFront = signatureDistance(frontWith, frontWithout);
-    check(`${label}: the walk and its board reach the screen from the street`,
-      dFront.worst >= 6 && dFront.mean >= 0.3,
-      `cell delta mean ${dFront.mean?.toFixed(2)}, worst ${dFront.worst} (need worst>=6)`);
-
-    // A board on a post at a corner is the nearest thing to the crosshair when a
-    // visitor walks up to that corner, so aiming at it has to open the inn. This
-    // asks the LAYER rather than the app's pick, because the app would answer the
-    // same building from the wall behind it and the assertion would pass while
-    // the layer picked nothing at all.
-    await page.evaluate(() => window.__chicago4d.setAnimationHold(false));
-    await page.evaluate(() => window.__chicago4d.walker.teleport(
-      { local_e: -155.0, local_n: -101.0, yaw_deg: 68, pitch_deg: 12 }));
-    await page.waitForTimeout(600);
-    const frontagePick = await page.evaluate(() => {
-      const a = window.__chicago4d;
-      const hits = [];
-      for (const x of [-0.3, -0.15, 0, 0.15, 0.3]) {
-        for (const y of [-0.3, -0.15, 0, 0.15, 0.3]) {
-          // A plain {x, y} is all `Raycaster.setFromCamera` reads, and it saves
-          // this file reaching for the app's three namespace to build a Vector2.
-          const hit = a.frontage.pickAt({ x, y }, a.camera);
-          if (hit?.id) hits.push(hit.id);
-        }
-      }
-      return hits;
-    });
-    check(`${label}: aiming at the frontage opens the inn it belongs to`,
-      frontagePick.includes('green_tree_tavern'),
-      `25 aims returned [${[...new Set(frontagePick)].join(', ') || 'nothing'}]`);
-
-    // --- and the same layer at the Sauganash (T-0090) and the street edge --
-    //
-    // THE POSTS ARE POSTS AND NOTHING ELSE. A hitching post that fell through to
-    // the sign post's branch would stand 3.6 m tall with a cross-arm and a blank
-    // board on it, and every dataset gate in this repo would still be green: the
-    // record says 1.30 m and it is the renderer that would be wrong. Measured
-    // against each post's own terrain sample, because a pole whose height came
-    // from a number beside the mesh floats.
-    //
-    // TWO ON THE SAUGANASH'S OWN RECORD AND THIRTEEN AT THE STREET EDGE. This
-    // asserted two, and T-0194 made it fourteen without touching the line, so it
-    // was red on `dev` from that merge until T-0244 (the dev gate is `check.sh`
-    // and this suite is dispatch-plus-one-path, so nothing stopped it).
-    // T-0380 made it fifteen AND UPDATED THE LINE IN THE SAME COMMIT, which is
-    // what the paragraph below asks of a run that adds a post: the New York
-    // House is a documented public house on Lake Street, so the rule stands a
-    // post at its frontage. T-0263 makes it sixteen the same way and by the
-    // same bookkeeping, and this one is a TRADE moving rather than a building
-    // arriving: frederick_thomas_shop already stood on South Water Street and
-    // its frontage was refused a post in writing because its trade was
-    // reconstructed, so settling that trade on the Chicago American's own
-    // heading is what qualifies it. T-0384 makes it seventeen, and that one IS a building
-    // arriving: John Holbrook's clothing store is a documented store on
-    // South Water Street, so the rule stands a post at its frontage and no
-    // refusal retires with it. The street-edge population is fifteen. The two
-    // populations are told apart by `street`, which is exactly the field that
-    // decides the mesh: a post naming a street is standing timber in that
-    // street's chunk, and a post naming none falls back to the shared mesh. The
-    // counts are exact on purpose â€” a post appearing or vanishing is a change
-    // worth failing over â€” so a run that adds posts updates them here and says
-    // so, the same bookkeeping the walk and crossing counts above carry.
-    //
-    // `found` is the vertex tally inside each post's box, and it is asserted
-    // non-zero SEPARATELY from the heights: an empty set makes `top` -Infinity
-    // and `low` Infinity, which fail the height tests too but read as a post of
-    // the wrong height rather than as a post the gate cannot see. That was
-    // twelve of these fifteen for two days.
-    const postsBad = frontage.hitching.filter((h) => !(h.found > 0
-      && Math.abs(h.top - h.recorded) <= 0.05
-      && Math.abs(h.low) <= 0.02 && h.clear > 0 && !h.text));
-    check(`${label}: the seventeen hitching posts stand on their own ground, carrying nothing`,
-      frontage.hitching.length === 17
-        && frontage.census?.hitching === 17
-        && frontage.hitching.filter((h) => !h.street).length === 2
-        && frontage.hitching.filter((h) => h.street).length === 15
-        && postsBad.length === 0
-        && frontage.census?.lettered === 1
-        && frontage.noBoardHere === false,
-      `${frontage.hitching.length} post(s) read, census says ${frontage.census?.hitching}`
-      + ` â€” ${frontage.hitching.filter((h) => !h.street).length} on a record's own`
-      + ` ground, ${frontage.hitching.filter((h) => h.street).length} at the street edge`
-      + `; ${postsBad.length} bad: `
-      + (postsBad.map((h) => `${h.id} ${h.top?.toFixed(2)}/${h.recorded} m, `
-        + `foot ${h.low?.toFixed(3)} m, ${h.found} vert, ${h.clear} m clear`).join(' | ')
-        || 'none')
-      + ` â€” ${frontage.census?.lettered} board(s) lettered in the layer, `
-      + `record says a board on a post here: ${frontage.noBoardHere}`);
-
-    // AND IT READS FROM THE STREET, the same bar the Green Tree's frontage is
-    // held to: stand on Lake Street where a traveller coming up to the hotel
-    // stands, hold the clock so the grass cannot supply the difference, and ask
-    // for worst >= 6 and mean >= 0.3.
-    await page.evaluate(() => window.__chicago4d.walker.teleport(
-      { local_e: 107.0, local_n: -113.0, yaw_deg: 180, pitch_deg: -6 }));
-    await page.waitForTimeout(350);
-    await page.evaluate(() => window.__chicago4d.setAnimationHold(true));
-    const saugWith = await page.evaluate(() => window.__chicago4d.capture());
-    await page.evaluate(() => { window.__chicago4d.frontage.group.visible = false; });
-    const saugWithout = await page.evaluate(() => window.__chicago4d.capture());
-    await page.evaluate(() => { window.__chicago4d.frontage.group.visible = true; });
-    const dSaug = signatureDistance(saugWith, saugWithout);
-    check(`${label}: the Sauganash's walks and posts reach the screen from Lake Street`,
-      dSaug.worst >= 6 && dSaug.mean >= 0.3,
-      `cell delta mean ${dSaug.mean?.toFixed(2)}, worst ${dSaug.worst} (need worst>=6)`);
-
-    // A walk is the thing a visitor is standing ON when they reach this corner,
-    // so aiming at it has to open the hotel. Asked of the LAYER for the same
-    // reason as at the Green Tree: the app would answer the same building off
-    // the wall behind it and pass while the layer picked nothing at all.
-    await page.evaluate(() => window.__chicago4d.setAnimationHold(false));
-    await page.evaluate(() => window.__chicago4d.walker.teleport(
-      { local_e: 102.62, local_n: -114.5, yaw_deg: 180, pitch_deg: -30 }));
-    await page.waitForTimeout(600);
-    const saugPick = await page.evaluate(() => {
-      const a = window.__chicago4d;
-      const hits = [];
-      for (const x of [-0.3, -0.15, 0, 0.15, 0.3]) {
-        for (const y of [-0.3, -0.15, 0, 0.15, 0.3]) {
-          const hit = a.frontage.pickAt({ x, y }, a.camera);
-          if (hit?.id) hits.push(hit.id);
-        }
-      }
-      return hits;
-    });
-    check(`${label}: aiming at the Sauganash's frontage opens the hotel it belongs to`,
-      saugPick.includes('sauganash_hotel'),
-      `25 aims returned [${[...new Set(saugPick)].join(', ') || 'nothing'}]`);
-
-    // --- and the river plank walk (T-0119) --------------------------------
-    //
-    // The first frontage record that is not a building's frontage: the plank
-    // footway over the State slough's mouth on the Slough Log Bridge's
-    // committed deck, and the riverside walk from it along the south bank to
-    // Jones's landing. Its failure modes are its own, and none is visible to a
-    // dataset gate: the footway must be a surface the walker STANDS ON over
-    // water (a deck registered from the walk record, T-0045's machinery), the
-    // planks must actually be under the boot at the mouth, and the whole run
-    // must publish its floor to the planting block-list.
-    const river = await page.evaluate(() => {
-      const a = window.__chicago4d;
-      const f = a?.frontage;
-      const rec = (f?.records ?? []).find((r) => r.id === 'river_walk_frontage');
-      const footway = (f?.walks ?? []).find((w) => w.id === 'river_plank_walk_crossing_footway');
-      const deck = (a.decks ?? []).find((d) => d.id === 'river_plank_walk_crossing_footway__footway');
-      const keepOut = (f?.keepOut ?? []).filter((k) => k.id === 'river_plank_walk__walk').length;
-      // Planks under the boot at the mouth: timber vertices inside the deck
-      // span, at the footway's own plank band and no other height.
-      let boardVerts = 0;
-      for (const t of f?.group?.children ?? []) {
-        if (t.name !== 'frontage' && t.name !== 'frontage-chunk') continue;
-        const pos = t.geometry?.getAttribute('position');
-        if (!pos) continue;
-        for (let i = 0; i < pos.count; i++) {
-          const e = pos.getX(i);
-          const n = -pos.getZ(i);
-          if (e < 805.4 || e > 813.2 || n < 13.1 || n > 15.3) continue;
-          const y = pos.getY(i);
-          if (deck && y > deck.y - 0.06 && y <= deck.y + 1e-6) boardVerts += 1;
-        }
-      }
-      // Stand mid-deck, over the water: the planks, not the wading barrier,
-      // hold the walker up â€” the exact-equality contract the bridge decks keep.
-      a.walker.teleport({ local_e: 809.4, local_n: 14.2, yaw_deg: 270 });
-      const stood = {
-        groundY: a.walker.state.groundY,
-        wet: a.terrain.isWater(809.4, 14.2),
-        barrier: a.terrain.walkHeight(809.4, 14.2),
-      };
-      // And the crossing is walkable END TO END: west off the deck onto the
-      // graded bank, no step refusal, ground continuous under every stride.
-      let worstStride = 0;
-      let prevY = a.walker.state.groundY;
-      let blocked = 0;
-      a.intent.forward = 1;
-      for (let i = 0; i < 220; i += 1) {
-        a.walker.update(0.05, a.intent);
-        worstStride = Math.max(worstStride, Math.abs(a.walker.state.groundY - prevY));
-        prevY = a.walker.state.groundY;
-        if (a.walker.state.blocked) blocked += 1;
-      }
-      a.intent.forward = 0;
-      return {
-        hasRecord: !!rec,
-        cardId: rec?.card?.id ?? null,
-        footwayDeckM: footway?.deck_m ?? null,
-        deckY: deck?.y ?? null,
-        walkRise: footway?.rise_m ?? null,
-        keepOut,
-        boardVerts,
-        stood,
-        walkedToE: a.walker.state.e,
-        worstStride,
-        blocked,
-      };
-    });
-    check(`${label}: the river walk publishes its floor and registers its crossing deck`,
-      river.hasRecord && river.cardId === 'river_plank_walk'
-        && river.keepOut >= 15
-        && river.deckY !== null && river.footwayDeckM !== null
-        && Math.abs(river.deckY - (river.footwayDeckM + river.walkRise)) < 1e-9,
-      `record ${river.hasRecord}, card ${river.cardId}, ${river.keepOut} keep-out `
-      + `rect(s), walker deck at ${river.deckY} m against deck_m ${river.footwayDeckM} `
-      + `+ rise ${river.walkRise}`);
-    check(`${label}: the walker stands on the planks over the water at the mouth`,
-      river.stood.wet === true && river.stood.groundY === river.deckY
-        && river.stood.barrier > river.deckY + 1,
-      `stood at ${river.stood.groundY} m over water=${river.stood.wet}, deck `
-      + `${river.deckY} m, barrier ${river.stood.barrier} m`);
-    check(`${label}: the crossing reads as planks underfoot, and walks off onto the bank`,
-      river.boardVerts >= 100 && river.walkedToE < 802 && river.blocked === 0
-        && river.worstStride <= 0.35,
-      `${river.boardVerts} plank vertice(s) in the footway band, walked west to `
-      + `E ${river.walkedToE?.toFixed(1)}, ${river.blocked} blocked stride(s), worst `
-      + `step ${river.worstStride?.toFixed(2)} m`);
-
-    // Aiming at the riverside run answers the walk's OWN card â€” there is no
-    // building on this bank for it to belong to, so the layer carries the
-    // record the popup shows, the same arrangement the boats keep (T-0063).
-    await page.evaluate(() => window.__chicago4d.walker.teleport(
-      { local_e: 600.0, local_n: 17.5, yaw_deg: 180, pitch_deg: -45 }));
-    await page.waitForTimeout(600);
-    const riverPick = await page.evaluate(() => {
-      const a = window.__chicago4d;
-      const hits = [];
-      for (const x of [-0.3, -0.15, 0, 0.15, 0.3]) {
-        for (const y of [-0.3, -0.15, 0, 0.15, 0.3]) {
-          const hit = a.frontage.pickAt({ x, y }, a.camera);
-          if (hit?.id) hits.push({ id: hit.id, name: hit.record?.sidecar?.name ?? null });
-        }
-      }
-      return hits;
-    });
-    check(`${label}: aiming at the riverside walk answers its own reconstructed card`,
-      riverPick.some((h) => h.id === 'river_plank_walk' && h.name === 'The river plank walk'),
-      `25 aims returned [${[...new Set(riverPick.map((h) => `${h.id}:${h.name}`))].join(', ')
-        || 'nothing'}]`);
-
-
-    // --- the town's street edge (T-0069) ----------------------------------
-    //
-    // The owner, of the first Cook County jail engraving: "note the fences
-    // lining the street and what appears to be plank sidewalks. all of the
-    // streets should be updated like this... at least south of the river or
-    // near the river." The record that answers it is generated from the platted
-    // block faces, and everything a dataset gate can ask of it â€” which face,
-    // which stretch, how far off the lot line â€” is already asked by
-    // `tools/generate_frontage_works.py --check`. What CANNOT be asked there is
-    // the only thing the owner would notice: that the walk is a surface a
-    // visitor is standing ON rather than a stripe they sink through, that it is
-    // continuous from one end of a street to the other, that a crossing carries
-    // them over the road at a corner, and that no part of it lies in the
-    // travelled way. All four are decided at load, out of a terrain sample and
-    // the walker's own deck registry, so they are decided here or nowhere.
-    const edge = await page.evaluate(() => {
-      const a = window.__chicago4d;
-      const f = a?.frontage;
-      const rec = (f?.records ?? []).find((r) => r.id === 'town_street_edge');
-      const walks = (f?.walks ?? []).filter((w) => w.belongs_to === 'town_street_edge');
-      const decks = (a.decks ?? []).filter((d) => /^blk_.*__footway_/.test(d.id));
-
-      // ---- WALKED END TO END, on Lake Street and, since T-0188, on the one
-      // South Water block face whose walk the reconciliation made whole.
-      // The walker is stood on the walk's own centreline every two metres and
-      // asked what is under their boots â€” the deck the record published, or the
-      // mud. One sample in the mud is a hole in the sidewalk, so the bar is
-      // every one of them.
-      const marchChain = (ids) => {
-        const chain = ids.map((id) => walks.find((w) => w.id === id) ?? null);
-        const out = { samples: 0, onPlanks: 0, worstLift: Infinity, gaps: 0, run: 0,
-          missing: chain.filter((w) => !w).length };
-        let previous = null;
-        for (const w of chain) {
-          if (!w) continue;
-          const line = w.centreline_local_enu_m;
-          for (let s = 0; s + 1 < line.length; s += 1) {
-            const [ae, an] = line[s];
-            const [be, bn] = line[s + 1];
-            const len = Math.hypot(be - ae, bn - an);
-            out.run += len;
-            if (previous) {
-              out.gaps += Math.hypot(ae - previous[0], an - previous[1]) > 1.0 ? 1 : 0;
-            }
-            const steps = Math.max(2, Math.round(len / 2));
-            for (let i = 0; i <= steps; i += 1) {
-              const e = ae + (be - ae) * (i / steps);
-              const n = an + (bn - an) * (i / steps);
-              a.walker.teleport({ local_e: e, local_n: n, yaw_deg: 90 });
-              const lift = a.walker.state.groundY - a.terrain.walkHeight(e, n);
-              out.samples += 1;
-              if (lift > 0.04) out.onPlanks += 1;
-              out.worstLift = Math.min(out.worstLift, lift);
-            }
-            previous = [be, bn];
-          }
-        }
-        return out;
-      };
-      // LAKE STREET (T-0069): the north frontage through two whole platted
-      // blocks and the board crossing over Wells Street between them, about
-      // 220 m, all of it derived from the plat and none of it placed.
-      const chain = ['blk_south_water_franklin_south_walk_1',
-        'blk_south_water_franklin_south_crossing_blk_south_water_wells_south',
-        'blk_south_water_wells_south_walk_1'];
-      const march = marchChain(chain);
-      // SOUTH WATER STREET (T-0188): the whole north face of
-      // blk_south_water_franklin, 96.5 m of it, and it is the acceptance clause
-      // this ticket had to EARN rather than assert. Before the reconciliation
-      // that face carried two stumps of 25.4 m and 45.7 m with the Temple
-      // Building and Kinzie's forwarding store standing in the roadway between
-      // them; both were re-derived against this project's own committed street
-      // line and the face is now one unbroken run â€” the first whole block face
-      // of sidewalk this street has ever had.
-      const southWater = marchChain(['blk_south_water_franklin_north_walk_1']);
-
-      // ---- AND WALKED, not teleported, over the crossing at the corner.
-      // Start on the planks a few metres short of the crossing, point along it,
-      // and push forward: the boot must stay on boards the whole way over the
-      // road and come off onto the far block's walk. A crossing that were only
-      // drawn â€” no deck registered â€” would drop the walker into the ruts here
-      // and every other check in this file would stay green.
-      const cross = walks.find((w) => w.id === chain[1]) ?? null;
-      const gait = { blocked: 0, offPlanks: 0, strides: 0, worstStride: 0,
-        startE: null, endE: null };
-      if (cross) {
-        const [c0, c1] = cross.centreline_local_enu_m;
-        const bearing = (Math.atan2(c1[0] - c0[0], c1[1] - c0[1]) * 180) / Math.PI;
-        const back = 6.0;
-        const len = Math.hypot(c1[0] - c0[0], c1[1] - c0[1]) || 1;
-        a.walker.teleport({
-          local_e: c0[0] - ((c1[0] - c0[0]) / len) * back,
-          local_n: c0[1] - ((c1[1] - c0[1]) / len) * back,
-          yaw_deg: bearing,
-        });
-        gait.startE = a.walker.state.e;
-        let prevY = a.walker.state.groundY;
-        a.intent.forward = 1;
-        for (let i = 0; i < 500; i += 1) {
-          a.walker.update(0.05, a.intent);
-          const st = a.walker.state;
-          gait.strides += 1;
-          gait.worstStride = Math.max(gait.worstStride, Math.abs(st.groundY - prevY));
-          prevY = st.groundY;
-          if (st.blocked) gait.blocked += 1;
-          if (st.groundY - a.terrain.walkHeight(st.e, st.n) <= 0.04) gait.offPlanks += 1;
-          if (Math.hypot(st.e - c1[0], st.n - c1[1]) < 1.0) break;
-        }
-        a.intent.forward = 0;
-        gait.endE = a.walker.state.e;
-        gait.reached = Math.hypot(a.walker.state.e - c1[0], a.walker.state.n - c1[1]);
-      }
-
-      // ---- AND NOT ONE BOARD OF IT IN THE TRAVELLED WAY. A sidewalk is at the
-      // lot line; the track is the street's own committed half-width out of
-      // data/streets/1835.json, which is the number this layer has refused to
-      // cross since T-0082. Measured on the walks themselves against the street
-      // layer's own prepared centrelines, so it is the drawn geometry that
-      // answers rather than a field the generator wrote about itself.
-      const track = { checked: 0, inTrack: 0, worstVerge: Infinity, worst: null };
-      for (const w of walks) {
-        if (w.kind !== 'plank_walk') continue;   // a crossing crosses, by design
-        const street = (a.streets?.records ?? []).find((r) => r.id === w.street);
-        if (!street) continue;
-        const line = w.centreline_local_enu_m;
-        const hw = (w.width_m ?? 1.83) / 2;
-        for (let s = 0; s + 1 < line.length; s += 1) {
-          const [ae, an] = line[s];
-          const [be, bn] = line[s + 1];
-          const steps = Math.max(2, Math.round(Math.hypot(be - ae, bn - an) / 4));
-          for (let i = 0; i <= steps; i += 1) {
-            const e = ae + (be - ae) * (i / steps);
-            const n = an + (bn - an) * (i / steps);
-            let d = Infinity;
-            for (let k = 1; k < street.path.length; k += 1) {
-              const [x1, y1] = street.path[k - 1];
-              const [x2, y2] = street.path[k];
-              const dx = x2 - x1;
-              const dy = y2 - y1;
-              const l2 = dx * dx + dy * dy || 1;
-              let t = ((e - x1) * dx + (n - y1) * dy) / l2;
-              t = Math.max(0, Math.min(1, t));
-              d = Math.min(d, Math.hypot(x1 + dx * t - e, y1 + dy * t - n));
-            }
-            const verge = d - hw - street.track_width_m / 2;
-            track.checked += 1;
-            if (verge < 0) {
-              track.inTrack += 1;
-              if (verge < track.worstVerge) track.worst = w.id;
-            }
-            track.worstVerge = Math.min(track.worstVerge, verge);
-          }
-        }
-      }
-
-      // ---- AND NOTHING GROWS THROUGH IT. The T-0124 instrument, asked of the
-      // street edge's own deck rectangles: the placer at the centre of each,
-      // for the generic community and for every species the ground's own zone
-      // could deal there, wet and dry alike.
-      const subs = a.flora.substrates();
-      const floor = { decks: 0, rootable: 0, speciesAsked: 0, speciesHits: 0 };
-      for (const k of (f?.keepOut ?? [])) {
-        if (k.id !== 'town_street_edge__walk') continue;
-        floor.decks += 1;
-        let e = 0;
-        let n = 0;
-        for (const q of k.pts) { e += q[0]; n += q[1]; }
-        e /= k.pts.length;
-        n /= k.pts.length;
-        if (a.flora.plantableAt(e, n)) floor.rootable += 1;
-        const z = subs.find((x) => x.id === a.flora.zoneAt(e, n));
-        for (const sp of (z ? z.dry.concat(z.wet) : [])) {
-          floor.speciesAsked += 1;
-          if (a.flora.stationOf(e, n, sp) !== null) floor.speciesHits += 1;
-        }
-      }
-      return {
-        hasRecord: !!rec,
-        cardId: rec?.card?.id ?? null,
-        fences: (rec?.fences ?? []).length,
-        faces: rec?.rule?.faces_laid ?? null,
-        walkM: rec?.rule?.walk_m ?? null,
-        decks: decks.length,
-        march, southWater, gait, track, floor,
-      };
-    });
-    // T-0240 RAISED EVERY FIGURE HERE by laying Randolph Street: 16 block faces
-    // to 29, 1,297.3 m of walk to 2,468.3, 11 street fence runs to 26 and 96
-    // walking decks to 190. T-0241 raised them again with Washington's seven
-    // faces: 29 to 36, 2,468.3 m to 3,129.1, 26 fence runs to 35 and 190 decks
-    // to 239. `faces` is an equality and the other three are floors, which is
-    // the same division as before â€” the face count is the scope statement and
-    // has to be exact, and a walk that shrank under a floor would be a march
-    // quietly refusing ground it used to lay.
-    check(`${label}: the street edge is generated from the plat, not placed on one block`,
-      edge.hasRecord && edge.cardId === 'town_street_edge'
-        && edge.faces === 36 && edge.walkM >= 3050 && edge.fences >= 34
-        && edge.decks >= 232,
-      `record ${edge.hasRecord}, card ${edge.cardId}, ${edge.faces} block face(s), `
-      + `${edge.walkM} m of walk, ${edge.fences} fence run(s), `
-      + `${edge.decks} walking deck(s) registered`);
-    // THE ACCEPTANCE CLAUSE, and it is a walking one: stand anywhere along
-    // 220 m of Lake Street's north frontage and the boards are under the boot.
-    // One sample in the mud is a hole in the sidewalk, so the bar is every one.
-    check(`${label}: Lake Street's walk is continuous and walkable end to end`,
-      edge.march.missing === 0 && edge.march.samples > 100
-        && edge.march.onPlanks === edge.march.samples
-        && edge.march.gaps === 0 && edge.march.run > 200,
-      `${edge.march.onPlanks} of ${edge.march.samples} sample(s) stood on planks over `
-      + `${edge.march.run?.toFixed(0)} m, ${edge.march.gaps} gap(s) in the chain, `
-      + `least lift ${edge.march.worstLift?.toFixed(3)} m, `
-      + `${edge.march.missing} run(s) missing from the record`);
-    // T-0188 â€” AND THE SAME CLAUSE ON THE STREET THAT HAD NEVER PASSED IT.
-    // South Water's frontages came out in pieces because eleven documented
-    // buildings on that side were placed against the modern kerb and stood up to
-    // 8.17 m out in the platted roadway. Six were reconciled against this
-    // project's own committed street line; this is the face where that closed a
-    // whole block. Asserted on the RUN as well as on the samples, because a
-    // shorter run with the same lift would pass a sample-only bar.
-    check(`${label}: South Water's reconciled block face is one walk, end to end`,
-      edge.southWater.missing === 0 && edge.southWater.samples > 45
-        && edge.southWater.onPlanks === edge.southWater.samples
-        && edge.southWater.gaps === 0 && edge.southWater.run > 95,
-      `${edge.southWater.onPlanks} of ${edge.southWater.samples} sample(s) stood on `
-      + `planks over ${edge.southWater.run?.toFixed(0)} m, `
-      + `${edge.southWater.gaps} gap(s), least lift `
-      + `${edge.southWater.worstLift?.toFixed(3)} m, `
-      + `${edge.southWater.missing} run(s) missing from the record`);
-    check(`${label}: a board crossing carries the walker over the road at the corner`,
-      edge.gait.strides > 0 && edge.gait.blocked === 0 && edge.gait.offPlanks === 0
-        && edge.gait.reached < 1.5 && edge.gait.worstStride <= 0.35,
-      `${edge.gait.strides} stride(s) from E ${edge.gait.startE?.toFixed(1)} to `
-      + `E ${edge.gait.endE?.toFixed(1)}, ${edge.gait.blocked} blocked, `
-      + `${edge.gait.offPlanks} stride(s) off the boards, ended `
-      + `${edge.gait.reached?.toFixed(2)} m from the far walk, worst step `
-      + `${edge.gait.worstStride?.toFixed(2)} m`);
-    check(`${label}: no plank sidewalk lies in the travelled track`,
-      edge.track.checked > 200 && edge.track.inTrack === 0,
-      `${edge.track.inTrack} of ${edge.track.checked} station(s) inside a track edge`
-      + `${edge.track.worst ? ` (worst ${edge.track.worst})` : ''}, least verge `
-      + `${edge.track.worstVerge?.toFixed(2)} m`);
-    check(`${label}: no street-edge walk admits a rooted plant through its deck`,
-      edge.floor.decks > 90 && edge.floor.rootable === 0
-        && edge.floor.speciesHits === 0,
-      `${edge.floor.decks} deck(s), ${edge.floor.rootable} rootable, `
-      + `${edge.floor.speciesHits} of ${edge.floor.speciesAsked} species stations granted`);
-
-    // --- the river wharves (T-0041) --------------------------------------
-    //
-    // The fourth layer drawn from the dataset rather than baked, and the first
-    // one that stands OVER WATER. That is where its failure modes live and they
-    // are not the goods': a deck whose height came from a number beside the mesh
-    // instead of from the mesh floats over the bank it ties into (T-0001's whole
-    // finding), and a crib that does not reach the bed hangs in the river with
-    // daylight under it. Neither is visible to any dataset gate in this repo,
-    // because both are decided at load out of a terrain sample. So the geometry
-    // is measured against the record and against the terrain here, and nowhere
-    // else.
-    const docks = await page.evaluate(() => {
-      const w = window.__chicago4d.wharves;
-      const terrain = window.__chicago4d.terrain;
-      const mesh = w?.group?.children?.[0] ?? null;
-      const g = mesh?.geometry ?? null;
-      const list = w?.wharves ?? [];
-      let ungraded = 0;
-      let notReconstructed = 0;
-      const conf = g?.getAttribute('_confidence');
-      if (conf) {
-        for (let i = 0; i < conf.count; i++) {
-          const v = conf.getX(i);
-          if (!(v >= 0 && v <= 1)) ungraded++;
-          else if (v < 1) notReconstructed++;
-        }
-      }
-      // Every vertex against its own deck outline: the quad's centre plus its
-      // half-diagonal is the furthest any part of a wharf may legitimately be
-      // from that centre, and a transposed axis or a dropped rotation would put
-      // it tens of metres out rather than centimetres.
-      let worstStray = 0;
-      let lowest = Infinity;
-      if (g && list.length) {
-        const pos = g.getAttribute('position');
-        const quads = list.map((d) => {
-          const q = d.deck_quad_local_enu_m;
-          const e = q.reduce((s, p) => s + p[0], 0) / 4;
-          const n = q.reduce((s, p) => s + p[1], 0) / 4;
-          const r = Math.max(...q.map((p) => Math.hypot(p[0] - e, p[1] - n)));
-          return { e, n, r };
-        });
-        for (let i = 0; i < pos.count; i++) {
-          const e = pos.getX(i);
-          const n = -pos.getZ(i);        // world is (E, up, -N)
-          lowest = Math.min(lowest, pos.getY(i));
-          let best = Infinity;
-          for (const q of quads) best = Math.min(best, Math.hypot(e - q.e, n - q.n) - q.r);
-          worstStray = Math.max(worstStray, best);
-        }
-      }
-      // Where each deck's own corners stand, asked of the terrain the browser
-      // loaded rather than of the heightfield the generator read.
-      const stands = list.map((d) => {
-        const [heelL, heelR, faceR, faceL] = d.deck_quad_local_enu_m;
-        return {
-          id: d.structure_id,
-          deckTop: d._drawn?.deck_top_m ?? null,
-          bents: d._drawn?.bents ?? 0,
-          treads: d._drawn?.stair_treads ?? null,
-          stairRise: d._drawn?.stair_rise_m ?? null,
-          stairFoot: d._drawn?.stair_foot_m ?? null,
-          heelDry: [heelL, heelR].every((p) => !terrain.isWater(p[0], p[1])),
-          faceWet: [faceL, faceR].every((p) => terrain.isWater(p[0], p[1])),
-          bankY: Math.max(...[heelL, heelR].map((p) => terrain.surfaceHeight(p[0], p[1]))),
-          depth: Math.min(...[faceL, faceR].map((p) => -terrain.surfaceHeight(p[0], p[1]))),
-        };
-      });
-      // What the layer PUBLISHES to the walker, as against what it drew: one
-      // entry per deck slab plus one per stair tread, each carrying the height
-      // that slab was actually built at.
-      const decks = (w?.decks ?? []).map((d) => ({ id: d.id, y: d.y, pts: d.pts.length }));
-      const deckY = new Map(list.map((d) => [`${d.structure_id}__wharf`,
-        d._drawn?.deck_top_m ?? null]));
-      const publishedMatchesDrawn = decks
-        .filter((d) => d.id.endsWith('__wharf'))
-        .every((d) => d.y === deckY.get(d.id));
-      const stairCeiling = w?.records?.[0]?.form?.boarding_stair_rise_m?.value ?? null;
-      return {
-        census: w?.census ?? null,
-        decks,
-        publishedMatchesDrawn,
-        stairCeiling,
-        keepOut: (w?.keepOut ?? []).length,
-        meshes: w?.group?.children?.length ?? 0,
-        verts: g?.getAttribute('position')?.count ?? 0,
-        hasConfidence: !!conf,
-        ungraded,
-        notReconstructed,
-        worstStray,
-        lowest: Number.isFinite(lowest) ? lowest : null,
-        stands,
-      };
-    });
-    // SEVEN docks, and the count is the sum of two runs that landed together.
-    // The two warehouses whose dock the dossier states; the four South Water
-    // landings the owner's 2026-08-18 ruling reconstructed that are drawable
-    // (J. H. Kinzie's, Jones's, and â€” since T-0106 â€” Carpenter's and Peck's);
-    // and Robert A. Kinzie's storehouse on the WEST bank at Wolf Point, the
-    // first landing this layer put on that shore (T-0107), which T-0062's
-    // South-Water-only pass had left with no candidate at all.
-    //
-    // T-0106 moved the count because the BANK moved, not the rule. The layer
-    // used to read only the forks tracing window, which closes at local E 390,
-    // and refused three frontages east of it for standing off untraced bank.
-    // They were never untraced â€” tools/trace_shoreline.py has carried the same
-    // waterline off the same 1834 sheet past the drawbridge since 2026-08-10,
-    // and the generator now composes both windows the way terrain_gen.py did.
-    //
-    // ONE refusal remains and it is a different kind from the three it replaces:
-    // Harmon & Loomis's frontage IS reached by the trace, and the modelled
-    // channel gives only 0.48 m under its deck face against the 0.50 m floor
-    // asserted just below. It is refused by a SOUNDING, in writing, on the
-    // record (clause 5b) rather than by a gap in the trace. A wharf appearing or
-    // a refusal disappearing without this line moving is a rule change nobody
-    // reviewed.
-    // The keep-out count is SEVEN DECKS PLUS EVERY STAIR TREAD (T-0058) â€” a
-    // tread is as much a floor as the deck it climbs to, and how many treads a
-    // site takes is the terrain's answer, so the bar is the layer's own census
-    // rather than a number written here that would go stale at the next regrade.
-    check(`${label}: every stated dock that has traced bank under it is drawn`,
-      docks.census?.wharves === 7 && docks.verts > 0
-        && docks.keepOut === 7 + (docks.census?.treads ?? -1)
-        && docks.census?.refused === 1
-        && docks.stands.every((s) => s.bents > 0),
-      `${docks.census?.wharves} wharf/wharves from ${docks.census?.records} record(s), `
-      + `${docks.census?.bents} crib bent(s), ${docks.verts} vertices, `
-      + `${docks.keepOut} planting keep-out(s) for 7 deck(s) and `
-      + `${docks.census?.treads} tread(s), ${docks.census?.refused} refused`);
-    check(`${label}: the whole wharf layer is one draw call`,
-      docks.meshes === 1, `${docks.meshes} mesh(es) in the group`);
-    // NOT MERELY GRADED â€” graded reconstructed, every vertex of it. That a dock
-    // stood at these two frontages is stated; every metre of its size is
-    // invented (L132), and a single vertex claiming to be inferred or attested
-    // would be this layer overstating the one thing it must not.
-    check(`${label}: every wharf vertex is graded reconstructed`,
-      docks.hasConfidence && docks.ungraded === 0 && docks.notReconstructed === 0,
-      `attribute ${docks.hasConfidence ? 'present' : 'MISSING'}, ${docks.ungraded} out `
-      + `of range, ${docks.notReconstructed} claiming better than reconstructed`);
-    check(`${label}: no wharf vertex strays off its own deck outline`,
-      docks.worstStray <= 1.0,
-      `furthest vertex ${docks.worstStray?.toFixed(2)} m outside its own deck's outline`);
-    // A dock stands with its heel on the bank and its face over the water, and
-    // that is the one thing about it that is derived rather than invented: if a
-    // bank were re-traced or a warehouse moved and the generator not re-run, the
-    // deck would be on the wrong ground and every dataset gate would still pass.
-    check(`${label}: every deck ties into the bank and reaches over the water`,
-      docks.stands.length === 7 && docks.stands.every((s) => s.heelDry && s.faceWet),
-      docks.stands.map((s) => `${s.id} heel ${s.heelDry ? 'dry' : 'WET'} / face `
-        + `${s.faceWet ? 'wet' : 'DRY'}`).join('; '));
-    // The deck is neither floating over the bank nor drowned in the river, and
-    // its crib reaches the bed under it â€” T-0001's finding, asked of a layer
-    // that has no walk surface to catch it a second time.
-    check(`${label}: no deck floats and every crib reaches the bed`,
-      docks.stands.every((s) => s.deckTop >= 0.9 - 1e-6 && s.deckTop >= s.bankY - 1e-6
-        && s.deckTop <= s.bankY + 1.0 && s.depth > 0.5)
-        && docks.lowest !== null && docks.lowest < -0.5,
-      docks.stands.map((s) => `${s.id} deck ${s.deckTop?.toFixed(2)} m over a bank at `
-        + `${s.bankY?.toFixed(2)} m, ${s.depth?.toFixed(2)} m of water at the face`).join('; ')
-      + `; lowest vertex ${docks.lowest?.toFixed(2)} m`);
-
-    // --- and a visitor can walk out along one (T-0058) ---------------------
-    //
-    // THE DECK IS A FLOOR AND THE WAY ONTO IT IS DRAWN. Until T-0058 the wading
-    // barrier `walkHeight()` puts over open water stood above every one of these
-    // decks, so a visitor saw seven docks from the bank and could step onto none
-    // of them. A wharf carries no structure record, so it cannot take the
-    // bridges' `placement.walk_surface_m` route; the LAYER publishes what it drew
-    // and `main.js` hands it to the walker beside the bridges'.
-    //
-    // That alone does not buy boarding, which is the half of this ticket that is
-    // easy to declare done and is not. The deck top is the ground's, floored at
-    // the record's 0.90 m freeboard over the water, and this terrain puts the
-    // bank at these seven heels between 0.12 and 0.58 m â€” a 0.32 to 0.78 m riser
-    // against the walker's 0.35 m step-up rule, which refuses six of the seven.
-    // So the layer draws a boarding stair and the bar here is the WALK, not the
-    // publication: start on the ground behind each dock, push forward, and be
-    // standing on the planks over the water at the far end having been refused
-    // nothing on the way.
-    check(`${label}: every plank a wharf drew is published to the walker at the height it drew it`,
-      docks.decks.length === 7 + (docks.census?.treads ?? -1)
-        && docks.publishedMatchesDrawn
-        && docks.decks.every((d) => d.pts === 4)
-        && docks.census?.stairs === 7,
-      `${docks.decks.length} walk surface(s) for 7 deck(s) and `
-      + `${docks.census?.treads} tread(s) on ${docks.census?.stairs} stair(s), `
-      + `heights ${docks.publishedMatchesDrawn ? 'match' : 'DISAGREE WITH'} the drawn slabs`);
-    // The stair divides whatever rise the terrain leaves it into equal treads,
-    // as many as it takes for none to exceed the record's ceiling â€” which is
-    // itself under the walker's step-up rule. Asserted against BOTH, because a
-    // record edited to 0.4 m would leave every other check here green and the
-    // decks unboardable again.
-    check(`${label}: no boarding tread rises past the record's ceiling or the step-up rule`,
-      docks.stairCeiling !== null && docks.stairCeiling <= 0.35
-        && docks.stands.every((s) => s.treads !== null && s.treads >= 0
-          && s.stairRise !== null && s.stairRise <= docks.stairCeiling + 1e-9
-          && s.stairRise <= 0.35),
-      `ceiling ${docks.stairCeiling} m against the 0.35 m step-up rule; `
-      + docks.stands.map((s) => `${s.id} ${s.treads} tread(s) of `
-        + `${s.stairRise?.toFixed(3)} m off ${s.stairFoot?.toFixed(2)} m`).join('; '));
-
-    const boarding = await page.evaluate(() => {
-      const a = window.__chicago4d;
-      const rows = [];
-      for (const d of a.wharves.wharves ?? []) {
-        const [heelL, heelR, faceR, faceL] = d.deck_quad_local_enu_m;
-        const mid = [(heelL[0] + heelR[0]) / 2, (heelL[1] + heelR[1]) / 2];
-        const face = [(faceL[0] + faceR[0]) / 2, (faceL[1] + faceR[1]) / 2];
-        const span = Math.hypot(face[0] - mid[0], face[1] - mid[1]) || 1;
-        const oe = (face[0] - mid[0]) / span;
-        const on = (face[1] - mid[1]) / span;
-        // Start on plain ground behind the stair's own foot, facing the river
-        // down the deck's waterward normal â€” the approach a visitor coming from
-        // the warehouse takes, and not a spot chosen to work.
-        const back = (d._drawn?.stair_treads ?? 0) * 0.75 + 2.0;
-        a.walker.teleport({
-          local_e: mid[0] - oe * back,
-          local_n: mid[1] - on * back,
-          yaw_deg: (Math.atan2(oe, on) * 180) / Math.PI,
-        });
-        const row = { id: d.structure_id, blocked: 0, worstStride: 0, strides: 0,
-          startY: a.walker.state.groundY };
-        // A metre in from the face, which is deck by construction and is where a
-        // visitor would stand to look at the river.
-        const target = [face[0] - oe * 1.0, face[1] - on * 1.0];
-        let prevY = a.walker.state.groundY;
-        a.intent.forward = 1;
-        for (let i = 0; i < 600; i += 1) {
-          a.walker.update(0.05, a.intent);
-          const st = a.walker.state;
-          row.strides += 1;
-          row.worstStride = Math.max(row.worstStride, Math.abs(st.groundY - prevY));
-          prevY = st.groundY;
-          if (st.blocked) row.blocked += 1;
-          if (Math.hypot(st.e - target[0], st.n - target[1]) < 0.8) break;
-        }
-        a.intent.forward = 0;
-        const st = a.walker.state;
-        row.reached = Math.hypot(st.e - target[0], st.n - target[1]);
-        row.endY = st.groundY;
-        row.overWater = a.terrain.isWater(st.e, st.n);
-        row.barrier = a.terrain.walkHeight(st.e, st.n);
-        row.deckTop = d._drawn?.deck_top_m ?? null;
-        rows.push(row);
-      }
-      return rows;
-    });
-    check(`${label}: a visitor walks off the bank, up the stair and out over the water`,
-      boarding.length === 7 && boarding.every((r) => r.blocked === 0
-        && r.reached < 1.0 && r.worstStride <= 0.35
-        && r.overWater === true && r.endY === r.deckTop && r.barrier > r.endY + 1),
-      boarding.map((r) => `${r.id}: ${r.strides} stride(s), ${r.blocked} blocked, `
-        + `worst ${r.worstStride?.toFixed(3)} m, ended ${r.reached?.toFixed(2)} m short `
-        + `at ${r.endY?.toFixed(2)} m over water=${r.overWater} `
-        + `(barrier ${r.barrier?.toFixed(1)} m)`).join('; '));
-
-    // AND IT READS FROM THE BANK, which is the whole point of building it. Stand
-    // at the wharf anchor â€” on the ground outside Newberry & Dole's river wall,
-    // looking down the dock's own waterward normal â€” and hold the clock so the
-    // grass cannot supply the difference. Same bar as the fences, the boards and
-    // the goods: worst >= 6 and mean >= 0.3.
-    await page.evaluate(() => window.__chicago4d.walker.teleport(
-      { local_e: 204.5, local_n: 9.8, yaw_deg: 339.4, pitch_deg: -6 }));
-    await page.waitForTimeout(350);
-    await page.evaluate(() => window.__chicago4d.setAnimationHold(true));
-    const dockWith = await page.evaluate(() => window.__chicago4d.capture());
-    await page.evaluate(() => { window.__chicago4d.wharves.group.visible = false; });
-    const dockWithout = await page.evaluate(() => window.__chicago4d.capture());
-    await page.evaluate(() => { window.__chicago4d.wharves.group.visible = true; });
-    const dDock = signatureDistance(dockWith, dockWithout);
-    check(`${label}: the wharf reaches the screen from the bank`,
-      dDock.worst >= 6 && dDock.mean >= 0.3,
-      `cell delta mean ${dDock.mean?.toFixed(2)}, worst ${dDock.worst} (need worst>=6)`);
-
-    // A dock is the largest thing on any of these derived layers and it stands
-    // between a visitor on the bank and the warehouse behind them, so aiming at
-    // it has to open the building it belongs to rather than answering nothing.
-    const dockPick = await page.evaluate(() => {
-      const hits = [];
-      for (const x of [-0.3, -0.15, 0, 0.15, 0.3]) {
-        for (const y of [-0.3, -0.15, 0, 0.15, 0.3]) {
-          const hit = window.__chicago4d.pick({ x, y });
-          if (hit?.id) hits.push(hit.id);
-        }
-      }
-      return hits;
-    });
-    await page.evaluate(() => window.__chicago4d.setAnimationHold(false));
-    check(`${label}: aiming at a wharf opens the warehouse it serves`,
-      dockPick.includes('newberry_dole_warehouse'),
-      `25 aims returned [${[...new Set(dockPick)].join(', ') || 'nothing'}]`);
-
-    // AND THE SAME, ON THE OTHER SHORE (T-0107). The capture above stands on the
-    // SOUTH bank, so it proves the layer reads from one bank and says nothing
-    // about the west one â€” which is exactly the shape of the gap T-0107 closed
-    // in the data, and there is no reason to leave it open in the gate. Stand on
-    // the west bank outside Robert Kinzie's own river wall, 7 m back along the
-    // deck's waterward normal (bearing 45.3, the same geometry the Newberry
-    // stand uses), and hold the clock so the river cannot supply the difference.
-    await page.evaluate(() => window.__chicago4d.walker.teleport(
-      { local_e: -58.3, local_n: -62.0, yaw_deg: 45.3, pitch_deg: -6 }));
-    await page.waitForTimeout(350);
-    await page.evaluate(() => window.__chicago4d.setAnimationHold(true));
-    const westWith = await page.evaluate(() => window.__chicago4d.capture());
-    await page.evaluate(() => { window.__chicago4d.wharves.group.visible = false; });
-    const westWithout = await page.evaluate(() => window.__chicago4d.capture());
-    await page.evaluate(() => { window.__chicago4d.wharves.group.visible = true; });
-    const westPick = await page.evaluate(() => {
-      const hits = [];
-      for (const x of [-0.3, -0.15, 0, 0.15, 0.3]) {
-        for (const y of [-0.3, -0.15, 0, 0.15, 0.3]) {
-          const hit = window.__chicago4d.pick({ x, y });
-          if (hit?.id) hits.push(hit.id);
-        }
-      }
-      return hits;
-    });
-    await page.evaluate(() => window.__chicago4d.setAnimationHold(false));
-    const dWest = signatureDistance(westWith, westWithout);
-    check(`${label}: the west bank's landing reaches the screen from Wolf Point`,
-      dWest.worst >= 6 && dWest.mean >= 0.3,
-      `cell delta mean ${dWest.mean?.toFixed(2)}, worst ${dWest.worst} (need worst>=6)`);
-    check(`${label}: aiming at the west bank's landing opens Robert Kinzie's store`,
-      westPick.includes('robert_kinzie_store'),
-      `25 aims returned [${[...new Set(westPick)].join(', ') || 'nothing'}]`);
-
-    // Nothing grows through a plank floor (T-0124; T-0085 was the first
-    // sighting). The placer is asked directly, at the centre of every deck
-    // rectangle the frontage and wharf layers publish: no rooted stand for the
-    // generic community, and no station for ANY species - wet or dry - that
-    // the ground's own zone could deal there. The wet half is the half that
-    // regressed silently before: the block-list ran after the water early
-    // return, so an emergent bulrush rooted through a dock deck without any
-    // gate ever asking about it.
-    const floors = await page.evaluate(() => {
-      const a = window.__chicago4d;
-      const subs = a.flora.substrates();
-      const probe = (list) => {
-        const out = { decks: 0, rootable: 0, speciesHits: 0, speciesAsked: 0 };
-        for (const { pts } of list ?? []) {
-          if (!Array.isArray(pts) || pts.length < 3) continue;
-          out.decks += 1;
-          let e = 0; let n = 0;
-          for (const q of pts) { e += q[0]; n += q[1]; }
-          e /= pts.length; n /= pts.length;
-          if (a.flora.plantableAt(e, n)) out.rootable += 1;
-          const zone = a.flora.zoneAt(e, n);
-          const z = subs.find((x) => x.id === zone);
-          for (const sp of (z ? z.dry.concat(z.wet) : [])) {
-            out.speciesAsked += 1;
-            if (a.flora.stationOf(e, n, sp) !== null) out.speciesHits += 1;
-          }
-        }
-        return out;
-      };
-      return { walks: probe(a.frontage?.keepOut), wharves: probe(a.wharves?.keepOut) };
-    });
-    check(`${label}: no plank walk admits a rooted plant through its deck`,
-      floors.walks.decks > 0 && floors.walks.rootable === 0 && floors.walks.speciesHits === 0,
-      `${floors.walks.decks} deck(s), ${floors.walks.rootable} rootable, `
-        + `${floors.walks.speciesHits} of ${floors.walks.speciesAsked} species stations granted`);
-    check(`${label}: no wharf deck admits a rooted plant - wet species included`,
-      floors.wharves.decks > 0 && floors.wharves.rootable === 0 && floors.wharves.speciesHits === 0,
-      `${floors.wharves.decks} deck(s), ${floors.wharves.rootable} rootable, `
-        + `${floors.wharves.speciesHits} of ${floors.wharves.speciesAsked} species stations granted`);
-
-    // --- the boats on the river (T-0063) ---------------------------------
-    //
-    // The first layer that RIDES the water rather than standing in it, and its
-    // failure modes are new: an afloat hull whose keel is not under the water
-    // plane is flying, one whose bed is nearer than its own draft is aground,
-    // and a hull inside the drawbridge's clearance is a rule change nobody
-    // reviewed. All of it is decided at load out of the record and a terrain
-    // sample, so it is measured here against the terrain the browser actually
-    // loaded, and nowhere else.
-    const flotilla = await page.evaluate(() => {
-      const b = window.__chicago4d.boats;
-      const terrain = window.__chicago4d.terrain;
-      const mesh = b?.group?.children?.[0] ?? null;
-      const g = mesh?.geometry ?? null;
-      let ungraded = 0;
-      let notReconstructed = 0;
-      const conf = g?.getAttribute('_confidence');
-      if (conf) {
-        for (let i = 0; i < conf.count; i++) {
-          const v = conf.getX(i);
-          if (!(v >= 0 && v <= 1)) ungraded++;
-          else if (v < 1) notReconstructed++;
-        }
-      }
-      const rec = (b?.records ?? [])[0] ?? {};
-      const clearance = rec.clearances?.drawbridge_span_m?.value ?? 30;
-      const form = rec.form ?? {};
-      const stands = (b?.boats ?? []).map((boat) => {
-        const [e, n] = boat.position_local_enu_m;
-        const draft = form[boat.type]?.draft_m?.value ?? 0;
-        const bed = terrain.surfaceHeight(e, n);
-        return {
-          id: boat.id,
-          type: boat.type,
-          afloat: boat._drawn?.afloat ?? null,
-          keelY: boat._drawn?.keel_y_m ?? null,
-          wet: terrain.isWater(e, n),
-          bed,
-          draft,
-          clearOfSpan: n >= 120 || Math.abs(e - 699.17) >= clearance,
-        };
-      });
-      return {
-        census: b?.census ?? null,
-        keepOut: (b?.keepOut ?? []).length,
-        meshes: b?.group?.children?.length ?? 0,
-        verts: g?.getAttribute('position')?.count ?? 0,
-        hasConfidence: !!conf,
-        ungraded,
-        notReconstructed,
-        stands,
-      };
-    });
-    // Thirteen boats since T-0140 â€” three schooners in the reach below the
-    // drawbridge and TWO AT THE WOLF POINT LANDINGS, four rowboats at the South
-    // Water bank and two more at the west bank at the forks, two canoes at the
-    // fort landing â€” and ZERO refused: every authored position was chosen
-    // against the committed heightfield, so a refusal appearing here means the
-    // terrain moved under the record and the record was not re-read. FIVE
-    // planting keep-outs, one per BEACHED hull (the two South Water skiffs, the
-    // Wolf Point skiff and the two fort canoes); an afloat hull needs none.
-    check(`${label}: every authored boat is on the water`,
-      flotilla.census?.boats === 13 && flotilla.census?.refused === 0
-        && flotilla.census?.schooners === 5 && flotilla.census?.rowboats === 6
-        && flotilla.census?.canoes === 2 && flotilla.verts > 0
-        && flotilla.keepOut === 5,
-      `${flotilla.census?.boats} boat(s) (${flotilla.census?.schooners} schooner(s), `
-      + `${flotilla.census?.rowboats} rowboat(s), ${flotilla.census?.canoes} canoe(s)), `
-      + `${flotilla.census?.refused} refused, ${flotilla.verts} vertices, `
-      + `${flotilla.keepOut} planting keep-out(s)`);
-    check(`${label}: the whole boat layer is one draw call`,
-      flotilla.meshes === 1, `${flotilla.meshes} mesh(es) in the group`);
-    check(`${label}: every boat vertex is graded reconstructed`,
-      flotilla.hasConfidence && flotilla.ungraded === 0 && flotilla.notReconstructed === 0,
-      `attribute ${flotilla.hasConfidence ? 'present' : 'MISSING'}, ${flotilla.ungraded} out `
-      + `of range, ${flotilla.notReconstructed} claiming better than reconstructed`);
-    // An afloat hull floats: keel below the water plane by its own draft, bed
-    // below the keel by the record's under-keel margin, real water at the
-    // position. A beached hull sits on ground at the water's edge â€” not out on
-    // open water, not up on the prairie.
-    check(`${label}: every afloat hull floats in its own water`,
-      flotilla.stands.filter((s) => s.afloat).every((s) => s.wet
-        && s.keelY !== null && Math.abs(s.keelY + s.draft) < 1e-6
-        && s.bed <= s.keelY - 0.25),
-      flotilla.stands.filter((s) => s.afloat).map((s) => `${s.id} keel `
-        + `${s.keelY?.toFixed(2)} m, bed ${s.bed?.toFixed(2)} m`).join('; '));
-    check(`${label}: every beached hull sits on the bank, at the water`,
-      flotilla.stands.filter((s) => !s.afloat).every((s) => s.keelY !== null
-        && s.keelY >= -0.6 && s.keelY <= 1.5),
-      flotilla.stands.filter((s) => !s.afloat).map((s) => `${s.id} keel `
-        + `${s.keelY?.toFixed(2)} m`).join('; '));
-    check(`${label}: the drawbridge's navigation span stays clear`,
-      flotilla.stands.every((s) => s.clearOfSpan),
-      flotilla.stands.filter((s) => !s.clearOfSpan).map((s) => s.id).join(', ') || 'all clear');
-
-    // AND THE REACH READS AS A HARBOUR, which is what the owner asked for.
-    // Stand on the south bank looking down the reach at the moored schooners
-    // and hold the clock, so the water and the grass cannot supply the
-    // difference. Same bar as the fences, the boards, the goods and the docks.
-    await page.evaluate(() => window.__chicago4d.walker.teleport(
-      { local_e: 765, local_n: 15, yaw_deg: 353, pitch_deg: -2 }));
-    await page.waitForTimeout(350);
-    await page.evaluate(() => window.__chicago4d.setAnimationHold(true));
-    const boatWith = await page.evaluate(() => window.__chicago4d.capture());
-    await page.evaluate(() => { window.__chicago4d.boats.group.visible = false; });
-    const boatWithout = await page.evaluate(() => window.__chicago4d.capture());
-    await page.evaluate(() => { window.__chicago4d.boats.group.visible = true; });
-    const dBoat = signatureDistance(boatWith, boatWithout);
-    check(`${label}: the schooners reach the screen from the bank`,
-      dBoat.worst >= 6 && dBoat.mean >= 0.3,
-      `cell delta mean ${dBoat.mean?.toFixed(2)}, worst ${dBoat.worst} (need worst>=6)`);
-
-    // A boat belongs to no structure, so aiming at one has to open its OWN
-    // card â€” the type, the size and what bounded the invention â€” rather than
-    // answering nothing or answering for a building behind it.
-    const boatPick = await page.evaluate(() => {
-      const hits = [];
-      for (const x of [-0.3, -0.15, 0, 0.15, 0.3]) {
-        for (const y of [-0.3, -0.15, 0, 0.15, 0.3]) {
-          const hit = window.__chicago4d.pick({ x, y });
-          if (hit?.id) hits.push(hit.id);
-        }
-      }
-      const title = document.querySelector('#popup h2')?.textContent ?? '';
-      return { hits, title };
-    });
-    await page.evaluate(() => window.__chicago4d.setAnimationHold(false));
-    check(`${label}: aiming at a schooner opens the boat's own card`,
-      boatPick.hits.some((id) => id.startsWith('boat_schooner')),
-      `25 aims returned [${[...new Set(boatPick.hits)].join(', ') || 'nothing'}] `
-      + `(last card: "${boatPick.title}")`);
-
-    // --- the scene actually draws ----------------------------------------
-    await page.evaluate(() => window.__chicago4d.frame('sauganash_hotel', 26));
-    await page.waitForTimeout(250);
-
-    // Hold the visual clock across the three captures below. They ask what the
-    // confidence view does to a frame, and the wind blows between them: without
-    // the hold the residual is mostly swaying grass, which made the restore
-    // check fail about two runs in three. Holding removes the variable rather
-    // than widening the tolerance around it, and it makes the "changes the
-    // render" assertion strictly harder, since sway can no longer supply any of
-    // the difference it needs to find.
-    await page.evaluate(() => window.__chicago4d.setAnimationHold(true));
-    const off = await page.evaluate(() => window.__chicago4d.capture());
-    check(`${label}: canvas renders non-black`,
-      off.mean > 12 && off.litFraction > 0.5,
-      `mean luminance ${off.mean?.toFixed(1)}, lit ${(off.litFraction * 100).toFixed(0)}%`);
-    check(`${label}: drawing buffer matches the viewport`,
-      off.width >= viewport.width && off.height >= viewport.height * 0.8,
-      `${off.width}x${off.height} for a ${viewport.width}x${viewport.height} viewport`);
-
-    // --- the confidence view ---------------------------------------------
-    const modeBefore = await page.evaluate(() => window.__chicago4d.confidenceView);
-    await page.evaluate(() => window.__chicago4d.setConfidenceView(true));
-    const on = await page.evaluate(() => window.__chicago4d.capture());
-    const modeAfter = await page.evaluate(() => window.__chicago4d.confidenceView);
-    const d = signatureDistance(off, on);
-    check(`${label}: confidence toggle flips state`, modeBefore === false && modeAfter === true,
-      `before ${modeBefore}, after ${modeAfter}`);
-    check(`${label}: confidence view changes the render`,
-      d.worst >= 6 && d.mean >= 0.6,
-      `cell delta mean ${d.mean?.toFixed(2)}, worst ${d.worst} (need worst>=6)`);
-
-    await page.evaluate(() => window.__chicago4d.setConfidenceView(false));
-    const back = await page.evaluate(() => window.__chicago4d.capture());
-    const dBack = signatureDistance(off, back);
-    await page.evaluate(() => window.__chicago4d.setAnimationHold(false));
-    // With the clock held these are two captures of one unchanged scene, so the
-    // restored frame should be the SAME frame. The residual left is readback
-    // noise, not weather; a confidence tint left enabled changes the mean
-    // broadly (the assertion immediately above pins that at >= 0.6).
-    check(`${label}: turning it off restores the render`,
-      dBack.mean <= 0.1 && dBack.worst <= 3,
-      `residual mean ${dBack.mean?.toFixed(2)}, worst-cell delta ${dBack.worst}`);
-
-    // --- the confidence machinery is INERT when nothing is switched on -------
-    //
-    // This is the assertion I owed after shipping a regression the whole suite
-    // waved through. Adding the hide-a-level branch to the shared fragment
-    // patch made the RIVER DISAPPEAR: the water surface stopped drawing and the
-    // town rendered one flat olive from the air, with nothing hidden and the
-    // uniform provably at (0,0,0). Every existing check passed, because they
-    // all compare a frame against another frame taken the same way â€” and both
-    // were equally wrong.
-    //
-    // What catches it is a claim about the WORLD rather than about a delta: the
-    // river is there, it is much darker than the prairie, and from above it
-    // occupies a large part of the frame. If the water stops drawing, the
-    // contrast between the darkest and the median cell collapses.
-    //
-    // (`terrainLoad` itself is read before the stage split now â€” see the T-0060
-    // banner above â€” because stage 2's terrain-problem check shares it.)
-    //
-    // The authored water surface spans the whole modelled box â€” about 5.4 km by
-    // 4.2 km. The FALLBACK is a 2400 m square at the datum. Those are nowhere
-    // near each other, which makes this a reliable test of "did the real river
-    // load" rather than a test of how the river looks.
-    //
-    // It exists because the answer was NO on the published site and every check
-    // passed: terrain.js built its own GLTFLoader without the meshopt decoder,
-    // which was harmless for as long as the terrain GLBs were the only assets
-    // gltf-transform had never been run over. The moment they were rebaked, the
-    // ground quietly fell back to a grid rebuilt from the heightfield â€” which
-    // looks right â€” and the water fell back to a flat square laid over the whole
-    // town. The river vanished and the place read as flooded.
-    check(`${label}: the traced river loaded, rather than the flat fallback plane`,
-      terrainLoad.box !== null
-      && terrainLoad.box.w > 3000 && terrainLoad.box.d > 3000
-      && terrainLoad.groundTiles > 1,
-      terrainLoad.box
-        ? `water ${terrainLoad.box.w} x ${terrainLoad.box.d} m across `
-          + `(the fallback is 2400 x 2400), ${terrainLoad.groundTiles} ground tile(s)`
-        : 'no water mesh in the scene at all');
-
-    inStageWork = false;
-    } // end PART 2 (T-0060 stage 1b, cut by T-0121)
-    // PART 3 â€” "the ground faces the sky" through the confidence card: the
-    // ground, the invented residents, and every graded claim the card makes.
-    // Every boundary sits where the crossing bindings were measured at zero
-    // (scope-aware, brace-depth-anchored â€” the indent-anchored scans missed
-    // `terrainLoad` at column 0); the two that did cross, `terrainLoad` and
-    // `streetLayer`, are read above the split, so any single stage boots into
-    // exactly the state its first line expects.
-    if (stageOn(3)) {
-    inStageWork = true;
-
-    // --- the ground faces the sky ------------------------------------------
-    //
-    // `gltf-transform optimize` SIMPLIFIES BY DEFAULT, and on this dataset that
-    // is damage rather than optimisation. The terrain was the one asset it had
-    // never been run over, so nobody had seen what it does to a large, low-relief
-    // surface: the ground came back at ~100 vertices per tile instead of 56,463,
-    // with 33 of one tile's 99 remaining vertices facing straight DOWN â€” a
-    // hard-edged black polygon across the south-east of the town, visible only
-    // from the air, and only in the published tree.
-    //
-    // A downward normal on the ground is never right, at any level of detail, so
-    // this asserts the surface rather than the toolchain. It also protects the
-    // measured promise generators/terrain_gen.py makes: it ray-casts its
-    // decimated mesh against the heightfield and refuses to export past 30 mm of
-    // drift, and a second blind simplification pass silently voids that.
-    const groundNormals = await page.evaluate(() => {
-      const api = window.__chicago4d;
-      let downward = 0;
-      let verts = 0;
-      const tiles = [];
-      api.scene3d.traverse((o) => {
-        if (!o.isMesh || !/^terrain__/.test(o.name || '')) return;
-        const n = o.geometry.getAttribute('normal');
-        if (!n) return;
-        let tileDown = 0;
-        for (let i = 0; i < n.count; i += 1) {
-          const y = n.getY(i);
-          if (!Number.isFinite(y) || y < 0.1) tileDown += 1;
-        }
-        verts += n.count;
-        downward += tileDown;
-        tiles.push({ name: o.name, verts: n.count, down: tileDown,
-                     share: n.count ? tileDown / n.count : 0 });
-      });
-      tiles.sort((a, b) => b.share - a.share);
-      return { tiles: tiles.length, verts, downward, worstTile: tiles[0] ?? null };
-    });
-    // TWO assertions, because there are two different things here and only one
-    // of them is the bug this was written for.
-    //
-    // (a) NO TILE IS SUBSTANTIALLY DOWNWARD-FACING. That is the simplifier's
-    //     signature and what a visitor actually sees: the wedge was 33 of one
-    //     tile's 99 vertices â€” a third of it â€” and it read as a black polygon.
-    //     One per cent of a tile is already far outside anything the terrain
-    //     generator produces.
-    check(`${label}: no ground tile faces away from the sky`,
-      groundNormals.tiles > 1 && groundNormals.verts > 1000
-      && (groundNormals.worstTile?.share ?? 1) < 0.01,
-      `${groundNormals.tiles} tiles, worst ${groundNormals.worstTile?.name}: `
-      + `${groundNormals.worstTile?.down}/${groundNormals.worstTile?.verts} down `
-      + `(${((groundNormals.worstTile?.share ?? 0) * 100).toFixed(2)}%)`);
-    // (b) AND THE SCATTERED ONES ARE GONE â€” the cap is 0, and it is 0 because
-    //     the generator now proves the invariant instead of this gate banking
-    //     the breaches. This assertion was written with a cap of 79 (ROADMAP
-    //     T-BUG2): isolated vertices, inside the town rather than in any
-    //     contiguous patch, that came out of the terrain generator facing down
-    //     and produced no visible artefact â€” a real defect the gate could pin
-    //     but not fix, so it pinned the measured number and let it only fall.
-    //
-    //     T-0014 fixed it at the source. `generators/terrain_gen.py`
-    //     Â§ _face_the_sky() re-winds the 33 backwards faces the n-gon
-    //     triangulation produced and deletes the 197 that stand edge-on, on a
-    //     classifier with no threshold in it â€” the plan-projected signed area,
-    //     which on this 2.5 m lattice is either exactly 0.0 or at least
-    //     3.125 mÂ² and never in between. The shipped master's worst ground
-    //     normal now points 0.737 up, so this is not a number sitting near its
-    //     bar: nothing quantisation does to it can reach 0.1.
-    //
-    //     KEEP IT AT 0. A cap that can be raised is a defect that can be
-    //     re-banked, and this one already was, for nine days.
-    check(`${label}: no ground vertex faces downward`,
-      groundNormals.downward === 0,
-      `${groundNormals.downward} of ${groundNormals.verts} vertices face down `
-      + `(the bar is 0 â€” see T-0014, was ROADMAP T-BUG2)`);
-
-    // And the renderer's OWN account of it, which is the part that was ignored:
-    // it pushed the fallback to `problems` every single load and nothing read it.
-    check(`${label}: the terrain and river report no load problems`,
-      terrainLoad.terrainProblems.length === 0,
-      terrainLoad.terrainProblems.slice(0, 2).join(' | '));
-
-    // --- the ground you see IS the ground the town stands on (R-BUG3c) ------
-    //
-    // The gate above protects the terrain generator's promise â€” 30 mm between
-    // its decimated mesh and the heightfield â€” and it cannot see whether the
-    // promise survived. It measures normals, and this project measured the fit
-    // only at bake time, on the MASTER. The file a browser loads is the
-    // derivative `gltf-transform optimize` writes afterwards, and it quantises
-    // POSITION to 14 bits under one uniform node scale: on a mesh 5,020 m wide
-    // and 8.6 m tall that is a 306 mm vertical lattice. Measured on the shipped
-    // bytes, the ground was up to 228 mm off the field with an rms of 85 mm.
-    //
-    // Everything in the town anchors to the heightfield â€” collision, buildings,
-    // flora roots, street drape â€” so the roadway was drawn 22 mm above a sampler
-    // that sat up to 228 mm BELOW the visible ground, and the near field went
-    // under it at a constant radius. That is R-BUG3c, reported twice by the
-    // owner, and three gates missed it because they all compared the render to
-    // itself.
-    //
-    // This one compares the SURFACE THAT IS DRAWN â€” the tiles, after every load
-    // step â€” against the sampler the town is placed with, at the tiles' own
-    // vertices. It is not a screenshot and it cannot be fooled by one.
-    const groundFit = await page.evaluate((tol) => {
-      const api = window.__chicago4d;
-      const hf = api.terrain.heightfield;
-      const eMin = hf.originE;
-      const eMax = hf.originE + hf.widthM;
-      const nMin = hf.originN;
-      const nMax = hf.originN + hf.depthM;
-      let worst = 0;
-      let over = 0;
-      let compared = 0;
-      let worstAt = null;
-      api.scene3d.traverse((o) => {
-        if (!o.isMesh || !/^terrain__/.test(o.name || '')) return;
-        const p = o.geometry.getAttribute('position');
-        for (let i = 0; i < p.count; i += 1) {
-          const e = p.getX(i);
-          const n = -p.getZ(i);
-          // The skirt reaches 1.55 km past the modelled box, where there is no
-          // field to be right or wrong about. Scoring it would measure the
-          // sampler's fallback rather than the ground.
-          if (e < eMin || e > eMax || n < nMin || n > nMax) continue;
-          compared += 1;
-          const d = Math.abs(p.getY(i) - api.terrain.surfaceHeight(e, n));
-          if (d > tol) over += 1;
-          if (d > worst) { worst = d; worstAt = { e: +e.toFixed(1), n: +n.toFixed(1) }; }
-        }
-      });
-      return { worst, over, compared, worstAt, fit: api.terrain.groundFit };
-    }, 0.03);
-    // The generator's own MESH_FIT_TOLERANCE_M, deliberately: the promise that
-    // "the ground you stand on is the ground you see" is not weaker for the file
-    // that ships than for the file that does not.
-    check(`${label}: the drawn ground matches the heightfield the town anchors to`,
-      groundFit.compared > 10000 && groundFit.over === 0 && groundFit.worst <= 0.03,
-      `worst ${(groundFit.worst * 1000).toFixed(1)} mm of 30 mm over `
-      + `${groundFit.compared.toLocaleString()} drawn vertices`
-      + (groundFit.worstAt ? ` (at E ${groundFit.worstAt.e}, N ${groundFit.worstAt.n})` : '')
-      + `, ${groundFit.over} beyond tolerance`);
-    // And the renderer's own account of the repair, so a run that stops needing
-    // it â€” because the terrain stopped shipping quantised â€” says so out loud
-    // rather than silently doing nothing.
-    check(`${label}: the ground was conformed to the field, with nothing left over`,
-      !!groundFit.fit && groundFit.fit.residual_max_m <= 1e-5,
-      groundFit.fit
-        ? `${groundFit.fit.moved.toLocaleString()} of `
-          + `${groundFit.fit.vertices.toLocaleString()} vertices moved, `
-          + `up to ${(groundFit.fit.correction_max_m * 1000).toFixed(1)} mm; `
-          + `residual ${(groundFit.fit.residual_max_m * 1000).toFixed(4)} mm`
-        : 'the terrain reported no fit at all');
-    await page.evaluate(() => {
-      const api = window.__chicago4d;
-      api.setFly(false);
-      api.walker.teleport({ local_e: 107, local_n: -103, yaw_deg: 180 });
-    });
-    await page.waitForTimeout(250);
-
-    // --- the invented residents have names now (K18) ------------------------
-    //
-    // Every reconstructed resident used to be "A baker (inferred resident,
-    // unnamed)". They carry invented names so a reconstructed household reads
-    // as a household â€” and a name LOOKS like a fact in a way a wall height does
-    // not, so the record has to declare it. What is pinned here is that the
-    // walkthrough SHOWS the declaration: a visitor who reads a name must be able
-    // to see, in the same card, that we made it up.
-    const invented = await page.evaluate(async () => {
-      const api = window.__chicago4d;
-      const res = await fetch(new URL('residents/index.json', api.dataBase));
-      const index = await res.json();
-      const row = index.households.find((h) => h.id.startsWith('hh_inf_'));
-      const hh = await (await fetch(new URL(`residents/${row.file}`, api.dataBase))).json();
-      const person = hh.persons.find((p) => p.grade === 'reconstructed');
-      return {
-        household: hh.name,
-        name: person?.name,
-        headGrade: (hh.persons.find((p) => p.relationship === 'head') || person)?.grade,
-        basisGrade: person?.name_basis?.confidence,
-        basisNote: (person?.name_basis?.note || '').slice(0, 60),
-        grades: index.vocabulary.grades,
-      };
-    });
-    check(`${label}: a reconstructed resident has an invented period name`,
-      /^[A-Z][a-z]+ [A-Z]/.test(invented.name ?? '')
-      && !/unnamed|inferred resident/i.test(invented.name ?? ''),
-      `name "${invented.name}"`);
-    check(`${label}: the invented name is graded as invented and says so`,
-      invented.basisGrade === 'reconstructed'
-      && /THE NAME IS INVENTED/.test(invented.basisNote ?? ''),
-      `name_basis ${invented.basisGrade} â€” "${invented.basisNote}"`);
-    // The layer-word in this label was `inferred` until K23a, and so was this
-    // assertion â€” which is how a name claiming a better grade than its own
-    // record survived a release gate. It is pinned to the HEAD'S OWN GRADE now
-    // rather than to a literal, so the label cannot drift from the record again
-    // and cannot be satisfied by whichever word happens to be in fashion.
-    check(`${label}: the household is named for its head and still says which layer it is`,
-      /household/.test(invented.household ?? '')
-      && new RegExp(invented.headGrade ?? 'x').test(invented.household ?? ''),
-      `household "${invented.household}" against head grade ${invented.headGrade}`);
-
-    // --- the prose may not name a level the record is not (K23a) ------------
-    //
-    // Owner-reported from a card on the dev preview: the title read "Inferred A2
-    // barn or carriage shed #08" while every chip beneath it read RECONSTRUCTED.
-    // Both were honest once. `inferred` was the BOTTOM tier under the vocabulary
-    // v76 retired; it is the MIDDLE one now â€” reasoned from evidence about this
-    // particular thing â€” which an anonymous count-unit is exactly not. So 193
-    // names were claiming a grade better than their own record, in the largest
-    // text on the card, and nothing in the suite could see it.
-    //
-    // The gate is over the whole registry rather than a sample: this fault
-    // arrived from a generator, so it arrives 193 at a time or not at all.
-    const naming = await page.evaluate(() => {
-      const LEVELS = ['attested', 'inferred', 'reconstructed'];
-      // The words v76 retired. A name may never open with one of these again:
-      // `documented` and `conjectural` were the old top and bottom tiers, and
-      // `recommended` was the word this project renamed away from by name.
-      const RETIRED = ['documented', 'conjectural', 'recommended'];
-      const verdict = (name, grade) => {
-        const first = String(name ?? '').trim().split(/\s+/)[0]
-          .replace(/[^A-Za-z]/g, '').toLowerCase();
-        if (RETIRED.includes(first)) return `names the retired level "${first}"`;
-        if (LEVELS.includes(first) && first !== grade) {
-          return `opens "${first}" over a record graded "${grade}"`;
-        }
-        return null;
-      };
-      const bad = [];
-      let scanned = 0;
-      for (const id of window.__chicago4d.registry.keys()) {
-        const s = window.__chicago4d.registry.get(id)?.sidecar;
-        if (!s?.name) continue;
-        scanned += 1;
-        const why = verdict(s.name, s.documented_range?.confidence);
-        if (why) bad.push(`${id}: "${s.name}" ${why}`);
-      }
-      // Put the fault back, in memory, and require the predicate to name it â€”
-      // otherwise a gate that scans a clean tree is indistinguishable from a
-      // gate that scans nothing, and this file has shipped that mistake before
-      // (STATUS Â§ 28: a card flag tested against a key the data never wrote).
-      const planted = [
-        verdict('Inferred A1 stable #07', 'reconstructed'),
-        verdict('Recommended A1 stable #07', 'reconstructed'),
-        verdict('Reconstructed A1 stable #07', 'reconstructed'),
-      ];
-      return { bad, scanned, planted };
-    });
-    check(`${label}: no building's name claims a grade its own record does not`,
-      naming.scanned > 100 && naming.bad.length === 0,
-      `${naming.scanned} scanned, ${naming.bad.length} bad â€” ${naming.bad.slice(0, 3).join(' | ')}`);
-    check(`${label}: that check still catches the fault when it is put back`,
-      naming.planted[0] !== null && naming.planted[1] !== null
-      && naming.planted[2] === null,
-      `planted verdicts: ${JSON.stringify(naming.planted)}`);
-
-    // --- and the title may not be a part number at all (T-0076) -------------
-    //
-    // Owner-reported from the same card: "this name is not great Reconstructed D3
-    // one-room frame cottage #03 â€¦ give the locations useful names not technical D3 #03
-    // names, you can have that somewhere on the card for reference identity purposes but
-    // dont make it the title." The rule is `js/display-name.js`; this asserts the three
-    // things that rule owes a visitor, on the shipped module rather than on a copy of it.
-    //
-    // Whole-registry again, for the naming gate's reason: the titles are composed by one
-    // function over one dataset, so a regression arrives 222 at a time. The card check
-    // underneath is what makes it about the CARD â€” a title composed correctly and never
-    // rendered would satisfy a registry scan and satisfy nobody standing in the town.
-    const titles = await page.evaluate(async () => {
-      const mod = await import(new URL('js/display-name.js', location.href).href);
-      const registry = window.__chicago4d.registry;
-      const specShaped = [];
-      let anonymous = 0;
-      let empty = 0;
-      for (const [id, record] of registry) {
-        const s = record?.sidecar;
-        if (!s) continue;
-        const { title, spec } = mod.displayName(s, id);
-        if (!title) empty += 1;
-        if (s.reconstruction?.status === 'inferred_anonymous') {
-          anonymous += 1;
-          if (/#\s*\d+\s*$/.test(title) || /^Reconstructed\b/.test(title)) {
-            specShaped.push(`${id}: "${title}"`);
-          }
-          // The other half of the owner's sentence: the production identity is kept.
-          if (spec !== s.name) specShaped.push(`${id}: reference line lost "${s.name}"`);
-        }
-      }
-      // A scan of a clean tree is indistinguishable from a scan of nothing, so the rule
-      // is also run against records made up here â€” one occupied, one empty, one named.
-      const anon = (extra) => ({
-        name: 'Reconstructed D3 one-room frame cottage #03',
-        reconstruction: { status: 'inferred_anonymous', family: 'D3' }, ...extra });
-      const planted = {
-        occupied: mod.displayName(anon({ residents: [{ name: 'The Tuttle household â€” a '
-          + 'reconstructed carpenter (south division)', relation: 'lived here',
-          persons: [{ name: 'Amos Tuttle', relationship: 'head' }] }] }), 'x').title,
-        vacant: mod.displayName(anon({}), 'x').title,
-        named: mod.displayName({ name: 'Green Tree Tavern' }, 'green_tree_tavern').title,
-      };
-      // And the search has to answer to BOTH names, which is the whole argument for
-      // keeping the production identity anywhere.
-      const anonId = [...registry.keys()].find((id) => registry.get(id)?.sidecar
-        ?.reconstruction?.status === 'inferred_anonymous'
-        && (registry.get(id)?.sidecar?.residents ?? []).length);
-      const sidecar = registry.get(anonId)?.sidecar ?? {};
-      const terms = mod.searchTerms(sidecar, anonId);
-      const surname = /^The\s+(.+?)\s+household\b/.exec(sidecar.residents?.[0]?.name ?? '');
-      // The card itself: opened on that record, reading what a visitor reads.
-      window.__chicago4d.popup.show(registry.get(anonId));
-      const card = {
-        id: anonId,
-        heading: document.querySelector('#popup h2')?.textContent?.trim() ?? '',
-        reference: document.querySelector('#popup .pop-spec')?.textContent ?? '',
-        expected: mod.displayName(sidecar, anonId).title,
-        spec: sidecar.name,
-      };
-      window.__chicago4d.popup.close();
-      return { specShaped, anonymous, empty, planted, card,
-               searchable: {
-                 bySpec: terms.includes(sidecar.name ?? '\u0000'),
-                 byHousehold: !!surname && terms.includes(surname[1]),
-               } };
-    });
-    check(`${label}: no building titles itself by its part number`,
-      titles.anonymous > 100 && titles.empty === 0 && titles.specShaped.length === 0,
-      `${titles.anonymous} anonymous roofs, ${titles.empty} untitled, `
-      + `${titles.specShaped.length} still spec-titled â€” ${titles.specShaped.slice(0, 3).join(' | ')}`);
-    check(`${label}: the naming rule titles a house for its people and an empty one plainly`,
-      titles.planted.occupied === 'The Tuttle house'
-      && titles.planted.vacant === 'A vacant one-room frame cottage'
-      && titles.planted.named === 'Green Tree Tavern',
-      `planted: ${JSON.stringify(titles.planted)}`);
-    check(`${label}: the card shows that title and keeps the reference below it`,
-      titles.card.heading === titles.card.expected
-      && !!titles.card.spec && titles.card.reference.includes(titles.card.spec),
-      `${titles.card.id}: "${titles.card.heading}" (want "${titles.card.expected}") `
-      + `over reference "${titles.card.reference.trim()}"`);
-    check(`${label}: search still finds it by its part number and by its household`,
-      titles.searchable.bySpec && titles.searchable.byHousehold,
-      `by spec ${titles.searchable.bySpec}, by household ${titles.searchable.byHousehold}`);
-
-    // --- hiding a level (K17) ----------------------------------------------
-    //
-    // The other half of the confidence control. Colouring asks how sure we are;
-    // hiding asks what is left if you keep only what somebody wrote down, and
-    // turning off `reconstructed` empties most of this town â€” which is the true
-    // shape of the evidence and the least comfortable thing the project can
-    // show. Three things have to hold: it must actually REMOVE geometry (not
-    // recolour it), it must work with the colouring OFF (the answer reads far
-    // better in daylight than through an amber filter), and it must survive a
-    // reload, because a visitor who hid a level and came back to a full town
-    // would reasonably conclude the control did nothing.
-    // Measured from ABOVE, because the difference has to be visible to be
-    // measurable: at eye level the frame is mostly prairie and one or two
-    // roofs, so removing 162 buildings barely moves a pixel signature. From the
-    // aerial anchor the reconstructed town IS the picture.
-    await page.evaluate(() => window.__chicago4d.setConfidenceView(false));
-    await page.evaluate(async () => {
-      const api = window.__chicago4d;
-      api.goTo('from_above');
-      await new Promise((r) => setTimeout(r, 400));
-    });
-    await page.evaluate(() => window.__chicago4d.setAnimationHold(true));
-    const fullTown = await page.evaluate(() => window.__chicago4d.capture());
-    const hiddenState = await page.evaluate(async () => {
-      const api = window.__chicago4d;
-      api.hud.setHidden('reconstructed', true, { announce: false });
-      await new Promise((r) => setTimeout(r, 120));
-      const u = api.confidence.uniforms.uHideLevel.value;
-      return { uniform: [u.x, u.y, u.z], hidden: api.hud.hiddenLevels,
-               colouring: api.confidenceView,
-               marked: !!document.getElementById('confidence-group')
-                 ?.classList.contains('has-hidden'),
-               stored: window.localStorage.getItem('chicago4d.confidence.hidden') };
-    });
-    const thinnedTown = await page.evaluate(() => window.__chicago4d.capture());
-    const dHide = signatureDistance(fullTown, thinnedTown);
-    // Thresholds calibrated against this suite's own measured noise floor, not
-    // guessed: the "turning it off restores the render" check two blocks up
-    // treats mean <= 0.1 with worst <= 3 as readback noise on an unchanged
-    // frame. So worst >= 6 and mean >= 0.25 is comfortably a real change. The
-    // mean bar is lower than the colour test's because the shapes of the two
-    // effects differ â€” a tint moves every lit cell a little, while removing
-    // buildings moves the cells that HAD buildings a lot and leaves sky and
-    // prairie untouched. At 390x780 the frame is proportionally more sky, which
-    // is why a bar set for the desktop frame failed a mobile run that was
-    // showing the feature working perfectly.
-    check(`${label}: hiding a level removes it from the view`,
-      dHide.worst >= 6 && dHide.mean >= 0.25,
-      `cell delta mean ${dHide.mean?.toFixed(2)}, worst ${dHide.worst}`);
-    check(`${label}: hiding works with the colouring switched off`,
-      hiddenState.colouring === false
-      && JSON.stringify(hiddenState.uniform) === JSON.stringify([0, 0, 1]),
-      `colouring ${hiddenState.colouring}, uHideLevel ${hiddenState.uniform}`);
-    check(`${label}: a hidden level is marked on the control and remembered`,
-      hiddenState.marked === true
-      && /reconstructed/.test(hiddenState.stored ?? ''),
-      `marked ${hiddenState.marked}, stored ${hiddenState.stored}`);
-
-    // The panel says how much of the town each level is, counted from the
-    // registry rather than written down â€” this dataset's own shape, stated
-    // before a visitor clicks anything.
-    const levelCounts = await page.evaluate(() => {
-      const read = (l) => Number(document.getElementById(`cm-count-${l}`)?.textContent || -1);
-      return { attested: read('attested'), inferred: read('inferred'),
-               reconstructed: read('reconstructed'),
-               structures: window.__chicago4d.registry.size };
-    });
-    check(`${label}: the control counts each level against the loaded town`,
-      levelCounts.attested + levelCounts.inferred + levelCounts.reconstructed
-        === levelCounts.structures
-      && levelCounts.reconstructed > levelCounts.attested,
-      JSON.stringify(levelCounts));
-
-    await page.evaluate(() => window.__chicago4d.hud.setHidden('reconstructed', false,
-      { announce: false }));
-    await page.evaluate(() => window.__chicago4d.setAnimationHold(false));
-    // Back on the ground where the rest of the suite expects to be standing.
-    await page.evaluate(() => {
-      const api = window.__chicago4d;
-      api.setFly(false);
-      api.walker.teleport({ local_e: 107, local_n: -103, yaw_deg: 180 });
-    });
-    await page.waitForTimeout(300);
-
-
-    // --- pick -> provenance ----------------------------------------------
-    const picked = await page.evaluate(() => {
-      const hit = window.__chicago4d.pick('sauganash_hotel');
-      const popup = document.getElementById('popup');
-      return {
-        ok: !!hit,
-        visible: popup && !popup.hasAttribute('hidden'),
-        text: popup?.textContent ?? '',
-      };
-    });
-    check(`${label}: pick('sauganash_hotel') opens the popup`, picked.ok && picked.visible,
-      `hit ${picked.ok}, visible ${picked.visible}`);
-    check(`${label}: popup carries a real citation`,
-      /Wau-Bun/.test(picked.text) && /Kinzie, Juliette/.test(picked.text),
-      `popup text did not contain the Wau-Bun citation: ${picked.text.slice(0, 160)}`);
-    check(`${label}: popup shows per-attribute confidence`,
-      /attested/.test(picked.text) && /reconstructed/.test(picked.text),
-      picked.text.slice(0, 160));
-
-    // --- and what KIND of source each citation is ---------------------------
-    // The card has printed a bare `tier 4` beside a citation since it was
-    // written, at a visitor with no table to look it up in, while the panel
-    // around it argues that a person can judge the evidence for themselves. The
-    // words come off `data/source.schema.json` through the compiled sidecar.
-    // Asserted as a pair on ONE card, each label matched to its own citation: the
-    // Sauganash cites a period survey, a near-primary recollection and a modern
-    // retrospective, so a card stamping one rung on every line â€” or the right
-    // words on the wrong citation â€” fails where a presence check would pass.
-    // `.cites > li` and not `.cites li`: a citation's stated limits are a nested
-    // list, and counting their items as citations is how this assertion first
-    // reported a card with no rung on it.
-    const rungs = await page.evaluate(() => {
-      window.__chicago4d.pick('sauganash_hotel');
-      return [...document.querySelectorAll('#popup .cites > li')].map((li) => ({
-        cite: li.querySelector('.cite-text')?.textContent.trim() ?? '',
-        tier: li.querySelector('.tier')?.textContent.trim() ?? '',
-      }));
-    });
-    const rungOf = (re) => rungs.find((r) => re.test(r.cite))?.tier ?? '(no such citation)';
-    check(`${label}: every citation says what rung it is on`,
-      rungs.length > 0 && rungs.every((r) => /^tier \d+ Â· \S/.test(r.tier)),
-      JSON.stringify(rungs.map((r) => r.tier)));
-    check(`${label}: the rung belongs to its own citation`,
-      /^tier 2 Â· near-primary recollection$/.test(rungOf(/Wau-Bun/))
-      && /^tier 1 Â· period\/eyewitness$/.test(rungOf(/Wright/))
-      && /^tier 5 Â· modern retrospective/.test(rungOf(/Kurz/)),
-      `Wau-Bun "${rungOf(/Wau-Bun/)}" Â· Wright "${rungOf(/Wright/)}" Â· Kurz "${rungOf(/Kurz/)}"`);
-    // --- and WHY a citation is on that rung, and what it cannot be used for --
-    // A rung is a judgement about a document, and on ten of these records the
-    // document is not the page: a visitor following `chicagology_prefire273`
-    // arrived at a modern blog stamped "tier 2 Â· near-primary recollection"
-    // with nothing saying it reprints the Chicago Magazine of 15 May 1857. The
-    // Sauganash's card carries the discriminating triple, which is why it is
-    // asserted here rather than by presence: one citation that reprints a
-    // document, one that IS one and reprints nothing (Wright's survey sheet,
-    // which instead states what it does not supply), and one that has neither.
-    // A card stamping the line on every citation fails on the second; a card
-    // showing none fails on the first.
-    const evidence = await page.evaluate(() => {
-      window.__chicago4d.pick('sauganash_hotel');
-      return [...document.querySelectorAll('#popup .cites > li')].map((li) => ({
-        cite: li.querySelector('.cite-text')?.textContent.trim() ?? '',
-        reprints: [...li.querySelectorAll('.cite-reprints')].map((p) => p.textContent.trim()),
-        limits: [...li.querySelectorAll('.cite-lim li')].map((x) => x.textContent.trim()),
-      }));
-    });
-    const ev = (re) => evidence.find((r) => re.test(r.cite)) ?? { reprints: [], limits: [] };
-    check(`${label}: a citation says what document it reprints`,
-      ev(/Chicagology/).reprints.length === 1
-      && /reprints\s+Chicago Magazine/.test(ev(/Chicagology/).reprints[0])
-      && /1857-05-15/.test(ev(/Chicagology/).reprints[0]),
-      JSON.stringify(ev(/Chicagology/).reprints));
-    check(`${label}: a source that IS its document reprints nothing`,
-      ev(/Wright/).reprints.length === 0 && ev(/Wau-Bun/).reprints.length === 0,
-      `Wright ${JSON.stringify(ev(/Wright/).reprints)} Â· `
-      + `Wau-Bun ${JSON.stringify(ev(/Wau-Bun/).reprints)}`);
-    // The limit that reached this project's own brief before anyone opened the
-    // scan, and then stayed in the repository: a survey of streets and blocks
-    // does not give you a building.
-    check(`${label}: a source states what it does not supply`,
-      ev(/Wright/).limits.includes('building footprints')
-      && ev(/Wau-Bun/).limits.length === 0,
-      `Wright ${JSON.stringify(ev(/Wright/).limits)} Â· `
-      + `Wau-Bun ${JSON.stringify(ev(/Wau-Bun/).limits)}`);
-    // --- the dossier link, which is a link and not a string ----------------
-    // The assertion this replaces tested `picked.text` for the path, and it
-    // passed on every run for months while every one of the 332 cards linked to
-    // a 404: `publish.sh` leaves `docs/` out of the payload by design, so a
-    // path relative to the walkthrough resolved in the source tree and nowhere a
-    // visitor stands (ROADMAP K26). The text was right the whole time. So this
-    // reads the HREF the card actually offers, and asserts it leaves the site â€”
-    // that is the property, because nothing served from this origin can satisfy
-    // it. And the discriminating case beside it: a record whose dossier nobody
-    // has written must offer no link at all rather than a plausible one.
-    const dossier = await page.evaluate(() => {
-      const read = (id) => {
-        window.__chicago4d.pick(id);
-        const a = [...document.querySelectorAll('#popup a')]
-          .find((el) => /docs\/RESEARCH\//.test(el.getAttribute('href') ?? ''));
-        return {
-          href: a?.href ?? '',
-          offSite: !!a && new URL(a.href).origin !== window.location.origin,
-          text: document.getElementById('popup')?.textContent ?? '',
-        };
-      };
-      return { linked: read('sauganash_hotel'), unwritten: read('temple_building') };
-    });
-    check(`${label}: the card's dossier link leaves the payload it is not in`,
-      dossier.linked.offSite
-      && /^https:\/\/github\.com\/[\w.-]+\/[\w.-]+\/blob\//.test(dossier.linked.href)
-      && dossier.linked.href.endsWith('/chicago/4d/docs/RESEARCH/sauganash_hotel.md'),
-      `href ${dossier.linked.href || '(none)'} Â· offSite ${dossier.linked.offSite}`);
-    check(`${label}: a building with no dossier written offers no dossier link`,
-      !dossier.unwritten.href && /no dossier written/.test(dossier.unwritten.text),
-      `href ${dossier.unwritten.href || '(none)'} Â· `
-      + `${dossier.unwritten.text.slice(-160)}`);
-
-    // Restore the card the assertions after this one are written against.
-    await page.evaluate(() => window.__chicago4d.pick('sauganash_hotel'));
-
-    // --- what the chip cannot say: whether you are looking at it -----------
-    // A confidence chip grades the evidence. It says nothing about whether the
-    // value reached the mesh, and the two come apart in the worst direction â€” the
-    // Wolf Point sign was `documented` on a building that had no sign until the
-    // rename and re-bake of 2026-08-10 (LIBERTIES L20). Asserted
-    // per-attribute rather than by presence, because a card that marked every row
-    // â€” or the wrong rows â€” would pass a count.
-    const geom = await page.evaluate(() => {
-      const read = (id) => {
-        window.__chicago4d.pick(id);
-        const rows = {};
-        for (const tr of document.querySelectorAll('#popup table.attrs tr')) {
-          const mark = tr.querySelector('.geom');
-          rows[tr.querySelector('th')?.textContent.trim() ?? '?'] =
-            mark ? mark.textContent.trim() : null;
-        }
-        return rows;
-      };
-      return { western: read('western_hotel'), wolf: read('wolf_point_tavern'),
-               greenTree: read('green_tree_tavern') };
-    });
-    check(`${label}: an attested feature the model omits says so on its row`,
-      geom.western.stables === 'not built',
-      `stables ${geom.western.stables}`);
-    // The case this whole marker exists for, now from the other side. The Wolf
-    // Point sign was `documented` on a building with no sign for a day, because
-    // the record spelled it `signage` and the archetype reads `sign`. It is built
-    // now, so its row must carry NO marker â€” an assertion that fails both if the
-    // rename is reverted and if the marker is ever applied to a built attribute.
-    check(`${label}: the documented wolf sign is built and its row is unmarked`,
-      geom.wolf.sign === null && geom.wolf['frame addition'] === null,
-      `sign ${geom.wolf.sign}, frame addition ${geom.wolf['frame addition']}`);
-    check(`${label}: a value a fixed default stands in for is marked differently`,
-      geom.western.cladding === 'not modelled from this',
-      `cladding ${geom.western.cladding}`);
-    // Chimneys were the other half of that marker until 2026-08-10: every record
-    // counted its stacks and neither archetype read the number, so Miller's house
-    // showed one stack over a record claiming two. The count is a parameter now, so
-    // the row carries no marker â€” on the log building that gained a stack and on the
-    // frame building whose pair was already right, which are different reasons to
-    // pass and both have to hold.
-    check(`${label}: the recorded chimney count is built, so its row is unmarked`,
-      geom.wolf.chimneys === null && geom.western.chimneys === null,
-      `wolf ${geom.wolf.chimneys}, western ${geom.western.chimneys}`);
-    // The discriminating cases. An attribute the archetype builds must carry no
-    // marker at all, or the card teaches a visitor to distrust the whole model;
-    // and a rejected reading is not a thing missing from the view.
-    check(`${label}: an attribute the generator builds carries no marker`,
-      geom.western.stories === null && geom.western['roof type'] === null,
-      `stories ${geom.western.stories}, roof type ${geom.western['roof type']}`);
-    // Until T-0083 `side additions` asserted 'not built' here; the rear one IS
-    // built now (form.rear_ell), so the testimony row is marked 'not modelled
-    // from this' â€” the ell attribute drives the mesh, Gray's sentence does not â€”
-    // and the ell's own row, being consumed, must carry no marker at all.
-    check(`${label}: a reading recorded but never a build instruction is not marked`,
-      geom.greenTree['log core'] === null && geom.greenTree.side_additions === undefined
-      && geom.greenTree['side additions'] === 'not modelled from this'
-      && geom.greenTree['rear ell'] === null,
-      `log core ${geom.greenTree['log core']}, side additions `
-      + `${geom.greenTree['side additions']}, rear ell ${geom.greenTree['rear ell']}`);
-
-    // --- the liberties for THIS building, on the card ----------------------
-    // The confidence chips answer "how sure are you of this value". They cannot
-    // answer "what did you decide without evidence at all", which is what the
-    // liberties record. Asserted per-building rather than as a count, because
-    // the failure this guards against is the card showing the whole list (or the
-    // wrong subset) instead of the ones the markdown attaches to this structure.
-    const popLib = await page.evaluate(() => {
-      const read = (id) => {
-        window.__chicago4d.pick(id);
-        const sec = document.querySelector('#popup .pop-liberties');
-        return {
-          present: !!sec,
-          ids: [...document.querySelectorAll('#popup .pop-liberties .lib-id')]
-            .map((n) => n.textContent.trim()),
-          text: sec?.textContent ?? '',
-        };
-      };
-      return { sauganash: read('sauganash_hotel'), greenTree: read('green_tree_tavern') };
-    });
-    check(`${label}: the popup carries the liberties taken with this building`,
-      popLib.sauganash.present
-      && ['L4', 'L4a', 'L5', 'L6', 'L18'].every((id) => popLib.sauganash.ids.includes(id)),
-      `got [${popLib.sauganash.ids.join(', ')}]`);
-    check(`${label}: it shows the reasoning, not just the admission`,
-      /invented/i.test(popLib.sauganash.text) && /Why/i.test(popLib.sauganash.text),
-      popLib.sauganash.text.slice(0, 200));
-    // The discriminating case: a different building, a different set. A popup
-    // that dumped the whole list would pass every assertion above.
-    check(`${label}: another building gets its own liberties, not the whole list`,
-      popLib.greenTree.ids.includes('L9') && popLib.greenTree.ids.includes('L19')
-      && !popLib.greenTree.ids.some((id) => ['L4', 'L5', 'L6', 'L1', 'L18'].includes(id)),
-      `green tree got [${popLib.greenTree.ids.join(', ')}]`);
-    check(`${label}: a scene-wide liberty is not attached to a building`,
-      !popLib.sauganash.ids.includes('L1') && !popLib.sauganash.ids.includes('L14'),
-      `sauganash got [${popLib.sauganash.ids.join(', ')}]`);
-
-    // Collapsed by default here too â€” the card must stay skimmable, and a
-    // building carrying several liberties would otherwise push the citations off it.
-    const popLibOpen = await page.evaluate(() => {
-      window.__chicago4d.pick('sauganash_hotel');
-      const first = document.querySelector('#popup .pop-liberties details.lib');
-      const body = first.querySelector('.lib-body');
-      const before = body.checkVisibility();
-      first.open = true;
-      return { before, after: body.checkVisibility() };
-    });
-    check(`${label}: popup liberties start collapsed and open on demand`,
-      popLibOpen.before === false && popLibOpen.after === true,
-      `${popLibOpen.before} -> ${popLibOpen.after}`);
-
-    // --- was it here at all? ----------------------------------------------
-    // The claim the whole scene rests on, and the last one to reach the card.
-    // `popup.js` read `documented_range` from the moment it was written and
-    // `compile_scene.py` never emitted it, so the line rendered as nothing on
-    // every building, silently, with every gate green â€” which is why the
-    // assertion is written against the RENDERED card rather than the sidecar.
-    //
-    // Asserted per building and on the discriminating pair, because a card that
-    // stamped one confidence on every presence claim would pass a check for
-    // "there is a chip". The Sauganash's frame phase is `documented` â€” Wau-Bun
-    // watched it go up and it burned on a recorded date in 1851. Hogan's store is
-    // `inferred` and is the weakest presence claim in the dataset: attested to
-    // about July 1834 and placed in a scene eleven months later on a continuity
-    // argument. Those two must not read the same.
-    const presence = await page.evaluate(() => {
-      const read = (id) => {
-        window.__chicago4d.pick(id);
-        const sec = [...document.querySelectorAll('#popup .pop-sec')]
-          .find((s) => /Was it here/i.test(s.querySelector('h3')?.textContent ?? ''));
-        if (!sec) return null;
-        const row = sec.querySelector('table.attrs tr');
-        const note = row?.querySelector('[data-note]');
-        return {
-          span: row?.querySelector('.val')?.textContent.trim() ?? '',
-          conf: row?.querySelector('.conf')?.textContent.trim() ?? '',
-          account: sec.querySelector('.pop-account')?.textContent.trim() ?? '',
-          noteText: note?.textContent.trim() ?? '',
-          noteHidden: note ? note.hasAttribute('hidden') : null,
-        };
-      };
-      return { hogan: read('hogan_store'), saug: read('sauganash_hotel') };
-    });
-    check(`${label}: the card says whether the building was here on the scene date`,
-      presence.hogan?.span === '1831-03-31 â†’ 1835-12-31',
-      `span "${presence.hogan?.span}"`);
-    check(`${label}: the presence claim is graded per building, not stamped`,
-      presence.hogan?.conf === 'inferred' && presence.saug?.conf === 'attested',
-      `hogan ${presence.hogan?.conf}, sauganash ${presence.saug?.conf}`);
-    // The reasoning is the point: a span with a chip and no argument is what the
-    // card already had everywhere else. Hogan's is the one that matters â€” the end
-    // of that range is a continuity argument, not a source.
-    check(`${label}: the presence claim carries its reasoning, folded away`,
-      presence.hogan?.noteHidden === true
-      && /NO SOURCE REACHED FOLLOWS THE BUILDING PAST IT/.test(presence.hogan?.noteText ?? ''),
-      `hidden ${presence.hogan?.noteHidden}, note "${(presence.hogan?.noteText ?? '').slice(0, 120)}"`);
-    // What no chip can express: this building held the post office for three
-    // years and is not the post office on the day you are standing in.
-    check(`${label}: the phase's own account of itself reaches the card`,
-      /post office/i.test(presence.hogan?.account ?? '')
-      && presence.saug?.account !== presence.hogan?.account,
-      `account "${(presence.hogan?.account ?? '').slice(0, 120)}"`);
-
-    // The position's argument, on the line that shows the position. Three of the
-    // eight placements are derived from bank geometry because no corner survives;
-    // the card showed the conclusion and hid the reasoning behind nothing.
-    const posWhy = await page.evaluate(() => {
-      window.__chicago4d.pick('walker_meeting_house');
-      const meta = document.querySelector('#popup .pop-meta [data-note]');
-      const btn = document.querySelector('#popup .pop-meta [data-toggle-note]');
-      const before = meta?.hasAttribute('hidden');
-      btn?.click();
-      return { before, after: meta?.hasAttribute('hidden'), text: meta?.textContent ?? '' };
-    });
-    check(`${label}: the position's reasoning opens on demand`,
-      posWhy.before === true && posWhy.after === false && posWhy.text.length > 200,
-      `${posWhy.before} -> ${posWhy.after}, ${posWhy.text.length} chars`);
-
-    // --- was it this shape? -----------------------------------------------
-    // The footprint is the largest claim a visitor is standing in front of and
-    // the card said nothing about it at all: `compile_scene.py` carried its
-    // confidence and dropped its sources and its argument. Six of the eight
-    // outlines here open with the word PLACEHOLDER and two are the opposite, and
-    // none of that reached anybody.
-    //
-    // Asserted on the discriminating pair, as everywhere else on this card, and
-    // the pair is the strongest one in the dataset: Hogan's store is the only
-    // BUILDING footprint that is evidence â€” Andreas gives twenty by forty-five
-    // feet twice â€” and the Sauganash's is the placeholder its own note calls the
-    // central unresolved question of the record. A card stamping one grade on all
-    // eight outlines would pass any check for "there is a chip".
-    const shape = await page.evaluate(() => {
-      const read = (id) => {
-        window.__chicago4d.pick(id);
-        const sec = [...document.querySelectorAll('#popup .pop-sec')]
-          .find((s) => /Was it this shape/i.test(s.querySelector('h3')?.textContent ?? ''));
-        const row = sec?.querySelector('table.attrs tr');
-        return {
-          present: !!sec,
-          conf: row?.querySelector('.conf')?.textContent.trim() ?? '',
-          shown: row?.querySelector('[data-note]')?.textContent ?? '',
-          recorded: window.__chicago4d.registry.get(id)?.sidecar?.footprint?.note ?? '',
-        };
-      };
-      const pair = { hogan: read('hogan_store'), saug: read('sauganash_hotel') };
-      // Every building, because the omission below is a rule and not a property
-      // of the two buildings the pair happens to name.
-      let valued = [];
-      for (const id of window.__chicago4d.registry.keys()) {
-        window.__chicago4d.pick(id);
-        if (document.querySelector('#popup .pop-shape .val')) valued.push(id);
-      }
-      return { ...pair, valued };
-    });
-    check(`${label}: the card says how much of the shape is evidence`,
-      shape.hogan.present && shape.saug.present
-      && shape.hogan.conf === 'attested' && shape.saug.conf === 'reconstructed',
-      `hogan ${shape.hogan.conf}, sauganash ${shape.saug.conf}`);
-    check(`${label}: the footprint's reasoning is the record's, verbatim`,
-      shape.saug.shown === shape.saug.recorded && shape.saug.recorded.length > 300
-      && /PLACEHOLDER/.test(shape.saug.shown)
-      && shape.hogan.shown === shape.hogan.recorded
-      && shape.hogan.shown !== shape.saug.shown,
-      `${shape.saug.shown.length} shown of ${shape.saug.recorded.length} recorded`);
-    // A deliberate omission, pinned so that a later slice cannot fill it by
-    // accident. The only printable value is the polygon and the only way to print
-    // a polygon in a table is to reduce it â€” a bounding box over Miller's L-plan
-    // would be a measurement the record does not make, on the card that exists to
-    // admit inventions. The shape is already in front of the visitor at full size.
-    check(`${label}: and prints no dimension it would have had to invent`,
-      shape.valued.length === 0,
-      shape.valued.length ? `value printed on ${shape.valued.join(', ')}` : 'no value cell on any building');
-
-    // The mechanism, rather than a third instance of the same discovery. Both
-    // `documented_range` and the footprint were graded in the sidecar and silent
-    // on the card, and each was found by somebody reading a file. A claim that
-    // carries a confidence and reaches no chip is exactly what a program can see:
-    // count the graded claims in the record and count the chips on the claim
-    // tables, for every building, and require them to agree. Scoped to the claim
-    // tables and the location line â€” the liberties carry their own chips and are
-    // not claims about a recorded value.
-    const chipCover = await page.evaluate(() => {
-      const out = [];
-      for (const id of window.__chicago4d.registry.keys()) {
-        const s = window.__chicago4d.registry.get(id)?.sidecar;
-        if (!s) continue;
-        window.__chicago4d.pick(id);
-        let graded = Object.keys(s.attributes ?? {}).length;
-        if (s.documented_range?.confidence) graded += 1;
-        if (s.placement?.position_confidence) graded += 1;
-        if (s.footprint?.confidence) graded += 1;
-        const chips = document.querySelectorAll(
-          '#popup .pop-meta .conf, #popup .pop-sec table.attrs .conf').length;
-        out.push({ id, graded, chips });
-      }
-      return out;
-    });
-    const uncovered = chipCover.filter((r) => r.graded !== r.chips);
-    check(`${label}: every graded claim in a record reaches the card as a chip`,
-      chipCover.length >= 8 && uncovered.length === 0,
-      uncovered.length
-        ? uncovered.map((r) => `${r.id} ${r.graded} graded / ${r.chips} shown`).join('; ')
-        : `${chipCover.length} building(s), ${chipCover.reduce((a, r) => a + r.graded, 0)} claims`);
-
-    // --- and the summary of those chips, which is what a visitor reads first -
-    // K23b, owner-reported from a card on the dev preview: *"when you say what we
-    // made up, say what we included in the recreation, or what we included in the
-    // inferred building, or what we included in the attested building."* Every
-    // part of the answer was already on the card â€” nineteen rows, each with its
-    // own chip â€” and a visitor could read all of it and still not say which parts
-    // of the building in front of them are evidence and which are ours.
-    //
-    // The section is a PARTITION of the claims below it, so the gate is a
-    // recount rather than a presence check: take the chips the assertion above
-    // has just proved complete, tally them by level, and require the summary's
-    // own three numbers to be those numbers. A summary that drifted from the card
-    // it summarises would be a worse fault than no summary, because it would be
-    // read first. Over the WHOLE registry, for the reason that assertion is:
-    // right on the sample and wrong on an anonymous roof is wrong on nearly all
-    // of this town.
-    const basis = await page.evaluate(() => {
-      const flat = (el) => (el?.textContent ?? '').replace(/\s+/g, ' ').trim();
-      const rowsOf = () => [...document.querySelectorAll('#popup .pop-basis .basis-row')]
-        .map((r) => {
-          const m = /(\d+) of (\d+)/.exec(flat(r.querySelector('.basis-count')));
-          return {
-            level: r.dataset.level ?? '',
-            count: m ? Number(m[1]) : -1,
-            total: m ? Number(m[2]) : -1,
-            gloss: flat(r.querySelector('.basis-gloss')),
-            what: flat(r.querySelector('.basis-what')),
-            from: flat(r.querySelector('.basis-from')),
-            absent: flat(r.querySelector('.basis-absent')),
-          };
-        });
-      // The same selector the chip-coverage gate above uses, deliberately: the
-      // card's graded claims are whatever that assertion says they are, and two
-      // definitions of "a claim on this card" is how the summary would come to
-      // disagree with the card while both gates stayed green.
-      const tallyOf = () => {
-        const t = { attested: 0, inferred: 0, reconstructed: 0 };
-        for (const c of document.querySelectorAll(
-          '#popup .pop-meta .conf, #popup .pop-sec table.attrs .conf')) {
-          const k = c.textContent.trim();
-          if (k in t) t[k] += 1;
-        }
-        return t;
-      };
-
-      const bad = [];
-      const keep = {};
-      let n = 0;
-      for (const id of window.__chicago4d.registry.keys()) {
-        window.__chicago4d.pick(id);
-        const rows = rowsOf();
-        const tally = tallyOf();
-        const total = tally.attested + tally.inferred + tally.reconstructed;
-        const problems = [];
-        if (rows.length !== 3) problems.push(`${rows.length} level rows, not 3`);
-        for (const r of rows) {
-          if (tally[r.level] === undefined) problems.push(`unknown level "${r.level}"`);
-          else if (r.count !== tally[r.level]) {
-            problems.push(`${r.level} claims ${r.count}, card shows ${tally[r.level]}`);
-          }
-          if (r.total !== total) problems.push(`${r.level} of ${r.total}, card shows ${total}`);
-          if (!r.what) problems.push(`${r.level} lists nothing at all`);
-          if (r.count && !r.from) problems.push(`${r.level} says nothing about where it came from`);
-        }
-        if (problems.length) bad.push(`${id}: ${problems.join('; ')}`);
-        if (['sauganash_hotel', 'recon_1835_south_d3_001', 'western_hotel'].includes(id)) {
-          keep[id] = rows;
-        }
-        n += 1;
-      }
-      const legend = [...document.querySelectorAll('.legend-list li')].map(flat);
-      return {
-        bad, n, legend,
-        saug: keep.sauganash_hotel ?? [],
-        anon: keep.recon_1835_south_d3_001 ?? [],
-        western: keep.western_hotel ?? [],
-      };
-    });
-    const row = (rows, level) => rows.find((r) => r.level === level) ?? {};
-    check(`${label}: the card's per-level summary is a partition of its own claims`,
-      basis.n >= 8 && basis.bad.length === 0 && basis.saug.length === 3 && basis.anon.length === 3,
-      basis.bad.length ? basis.bad.slice(0, 4).join(' | ')
-        : `${basis.n} building(s) summarised`);
-    // The discriminating pair, because a section that printed the same three rows
-    // on every card would pass a recount that only ever compared it to itself on
-    // a well-documented building. The Sauganash is attested by Wau-Bun; the
-    // anonymous roof is a count-unit toward the 665-roof programme and NOTHING
-    // about it is attested â€” which is the single most useful thing this section
-    // can tell a visitor, so it is said rather than left as a blank row.
-    check(`${label}: and it says what is NOT there, per building rather than stamped`,
-      row(basis.saug, 'attested').count > 0
-      && row(basis.anon, 'attested').count === 0
-      && /Nothing about this building is attested/.test(row(basis.anon, 'attested').what)
-      && row(basis.anon, 'reconstructed').count > 0,
-      `sauganash attested ${row(basis.saug, 'attested').count}, `
-      + `anonymous attested ${row(basis.anon, 'attested').count} `
-      + `("${row(basis.anon, 'attested').what.slice(0, 60)}")`);
-    // What a citation MEANS changes with the level, and one label over all three
-    // would be the category error this card's own history is made of. The
-    // anonymous roof cites the reconstruction spec on every attribute: that is
-    // what BOUNDED an invention, not where a value came from, and reading it as
-    // attribution turns the citation into evidence for a building nobody claims
-    // stood there.
-    check(`${label}: a source on an invention is named as a bound, not as attribution`,
-      /^Bounded by:/.test(row(basis.anon, 'reconstructed').from)
-      && /reconstruction_spec/.test(row(basis.anon, 'reconstructed').from)
-      && /^From:/.test(row(basis.saug, 'attested').from),
-      `invention "${row(basis.anon, 'reconstructed').from.slice(0, 70)}", `
-      + `attested "${row(basis.saug, 'attested').from.slice(0, 70)}"`);
-    // "Included" is a claim about the VIEW, not only about the evidence, and the
-    // two come apart in the direction that does the most damage: the Western
-    // Hotel's stables are ATTESTED â€” the wagon yard is in a pre-fire account â€”
-    // and there is nothing of them in the model. Counting that under "attested"
-    // and stopping would be a summary of what we included that named something
-    // we did not. The rows below already carry the mark; the summary repeats it
-    // rather than averaging it away.
-    check(`${label}: and separates what is attested from what is actually built`,
-      row(basis.western, 'attested').count > 0
-      && /^Not in the model:/.test(row(basis.western, 'attested').absent)
-      && /stables/.test(row(basis.western, 'attested').absent)
-      && !row(basis.saug, 'attested').absent,
-      `western "${row(basis.western, 'attested').absent.slice(0, 60)}", `
-      + `sauganash "${row(basis.saug, 'attested').absent}"`);
-    // Two surfaces defining `inferred` differently is the drift K23a spent a run
-    // cleaning up, and prose has no shared renderer to hold it â€” so the card's
-    // gloss is required to be the Evidence panel's own words, literally.
-    const glossDrift = ['attested', 'inferred', 'reconstructed'].filter((lvl) => {
-      const g = row(basis.saug, lvl).gloss;
-      return !g || !basis.legend.some((li) => li.includes(g));
-    });
-    check(`${label}: the summary defines each level in the Evidence panel's own words`,
-      basis.legend.length >= 3 && glossDrift.length === 0,
-      glossDrift.length
-        ? `${glossDrift.join(', ')} not found in the legend`
-        : `3 glosses matched against ${basis.legend.length} legend entries`);
-
-    // Is the shape a bake from the record, or a stand-in?  The established
-    // Sauganash asset must remain a real bake while the anonymous phase-one
-    // roofs must say both that their mesh is provisional and that their
-    // per-parcel placement is a reconstruction rather than a recovered parcel.
-    const placeholder = await page.evaluate(() => {
-      window.__chicago4d.pick('sauganash_hotel');
-      const realFlags = [...document.querySelectorAll('#popup .pop-flag')]
-        .map((f) => f.textContent);
-      window.__chicago4d.pick('recon_1835_south_d3_001');
-      const recommendedFlags = [...document.querySelectorAll('#popup .pop-flag')]
-        .map((f) => f.textContent);
-      return {
-        real: window.__chicago4d.registry.get('sauganash_hotel')?.assetIsPlaceholder,
-        realFlag: realFlags.some((t) => /placeholder massing/i.test(t)),
-        recommended: window.__chicago4d.registry.get('recon_1835_south_d3_001')
-          ?.assetIsPlaceholder,
-        placeholderFlag: recommendedFlags.some((t) => /placeholder massing/i.test(t)),
-        // THE THIRD TIME this literal has rotted. It tested `recommended` until
-        // the merge of 2026-08-13, then `inferred reconstruction` until K23a â€”
-        // and each rename broke it, because it pinned the WORDING rather than
-        // the thing the assertion is actually about. What it has always asked is
-        // that the card still says this roof is not a recovered building, in the
-        // grade the record itself carries. So it asks that now, off the record,
-        // and the next rename of the vocabulary cannot break it.
-        grade: window.__chicago4d.registry.get('recon_1835_south_d3_001')
-          ?.sidecar?.documented_range?.confidence,
-        reconstructionFlag: recommendedFlags.some(
-          (t) => /anonymous/i.test(t) && /not an attested named building/i.test(t)),
-        flagNamesTheGrade: recommendedFlags.some((t) => new RegExp(
-          window.__chicago4d.registry.get('recon_1835_south_d3_001')
-            ?.sidecar?.documented_range?.confidence ?? 'x', 'i').test(t)),
-      };
-    });
-    check(`${label}: established assets remain identified as real bakes`,
-      placeholder.real === false && placeholder.realFlag === false,
-      JSON.stringify(placeholder));
-    // Two claims that were tangled into one, and came apart the first time a
-    // canonical bake actually reached these roofs. "This building is anonymous
-    // inferred infill" is a fact about the RECORD and is permanent. "Its mesh is
-    // review massing" is a fact about the ASSET and stops being true the moment
-    // generators/build.py bakes it properly. Asserting them together meant the
-    // honest upgrade read as a regression.
-    check(`${label}: anonymous infill is visibly flagged as a reconstruction`,
-      placeholder.reconstructionFlag === true,
-      JSON.stringify(placeholder));
-    check(`${label}: that flag names the grade the record itself carries`,
-      placeholder.flagNamesTheGrade === true && placeholder.grade === 'reconstructed',
-      JSON.stringify(placeholder));
-    // Both directions, which the single assertion never checked: placeholder
-    // massing is claimed when the asset IS one, and â€” the half that was missing â€”
-    // never claimed when it is not. A real bake wearing a placeholder label is a
-    // lie in the opposite direction, and would previously have passed.
-    check(`${label}: the placeholder label agrees with the asset it describes`,
-      placeholder.placeholderFlag === (placeholder.recommended === true),
-      JSON.stringify(placeholder));
-
-    // --- the record's own account -----------------------------------------
-    // `research_note` is on every record and in every compiled sidecar, and the
-    // sidecar-contract gate reported it as compiled-and-never-read: an unshipped
-    // claim rather than dead weight. It is the paragraph that says which of two
-    // sources was believed, or that the likeliest reading of the evidence is that
-    // the record models the wrong building. Nothing was broken â€” the field simply
-    // had no surface â€” so unlike the two faults before it, this is asserted
-    // against what a visitor reads for the first time here.
-    //
-    // The assertion that matters is VERBATIM, and it is deliberately an exact
-    // string comparison against the sidecar rather than a substring match. A note
-    // about the limit of the evidence is the last text on this card that should be
-    // trimmed or summarised, and a renderer that showed a first sentence and an
-    // ellipsis would pass every looser check written here.
-    const account = await page.evaluate(() => {
-      const read = (id) => {
-        window.__chicago4d.pick(id);
-        const sec = [...document.querySelectorAll('#popup .pop-sec')]
-          .find((s) => /own account/i.test(s.querySelector('h3')?.textContent ?? ''));
-        const body = sec?.querySelector('.research-body');
-        return {
-          present: !!sec,
-          shown: body?.textContent ?? '',
-          recorded: window.__chicago4d.registry.get(id)?.sidecar?.research_note ?? '',
-        };
-      };
-      return { hogan: read('hogan_store'), saug: read('sauganash_hotel') };
-    });
-    check(`${label}: the record's own account reaches the card`,
-      account.hogan.present && /THE BUILDING WHERE CHICAGO'S MAIL BEGAN/.test(account.hogan.shown),
-      `present ${account.hogan.present}, "${account.hogan.shown.slice(0, 90)}"`);
-    check(`${label}: it is the record's words, unabridged`,
-      account.hogan.shown === account.hogan.recorded && account.hogan.recorded.length > 500,
-      `${account.hogan.shown.length} chars shown of ${account.hogan.recorded.length} recorded`);
-    // The discriminating case, as everywhere else on this card: a second building
-    // gets its own account. A section rendering one fixed block of prose â€” or the
-    // scene's, or the previous pick's â€” would pass both checks above.
-    check(`${label}: another building gets its own account, not this one's`,
-      account.saug.shown === account.saug.recorded
-      && account.saug.shown !== account.hogan.shown
-      && /MILESTONE 0 REFERENCE RECORD/.test(account.saug.shown),
-      `sauganash "${account.saug.shown.slice(0, 90)}"`);
-
-    // --- who was here -------------------------------------------------------
-    // `data/residents/` draws nobody by design, so the ONLY place a visitor can
-    // meet the town's people is this card. Before it existed the layer stopped at
-    // the repo â€” the failure mode that looks identical, from the street, to the
-    // work never having been done. The discriminating half is the third check: a
-    // building the programme RAISED for a hypothesised household has to say so,
-    // or the card reads as evidence that somebody lived here.
-    const who = await page.evaluate(() => {
-      const read = (id) => {
-        window.__chicago4d.pick(id);
-        const sec = [...document.querySelectorAll('#popup .pop-sec')]
-          .find((x) => /who was here/i.test(x.querySelector('h3')?.textContent ?? ''));
-        return {
-          present: !!sec,
-          text: sec?.textContent ?? '',
-          grades: [...(sec?.querySelectorAll('.grade') ?? [])].map((g) => g.className),
-          basis: sec?.querySelector('.res-basis')?.textContent ?? '',
-          recorded: window.__chicago4d.registry.get(id)?.sidecar?.residents ?? [],
-        };
-      };
-      return {
-        brown: read('brown_boarding_house'),
-        inferred: read('inf_cooperage_south'),
-        none: read('log_jail'),
-      };
-    });
-    check(`${label}: a building names the household the sources put in it`,
-      who.brown.present && /Mrs Rufus Brown/.test(who.brown.text)
-      && who.brown.grades.some((c) => c.includes('grade-attested')),
-      `present ${who.brown.present}, grades ${who.brown.grades.join('|')}`);
-    check(`${label}: a person's grade is shown, and it is not a confidence chip`,
-      who.brown.grades.some((c) => c.includes('grade-inferred'))
-      && !who.brown.grades.some((c) => c.includes('conf-')),
-      who.brown.grades.join('|'));
-    check(`${label}: a building raised for an inferred household says so`,
-      who.inferred.present
-      && who.inferred.grades.every((c) => c.includes('grade-reconstructed'))
-      && /BECAUSE OF THIS HOUSEHOLD/.test(who.inferred.basis),
-      `basis "${who.inferred.basis.slice(0, 80)}"`);
-    check(`${label}: a building with no household gets no section at all`,
-      !who.none.present && who.none.recorded.length === 0,
-      `present ${who.none.present}`);
-
-    // Collapsed by default, for the same reason the liberties are: these run to
-    // several hundred words, and on a phone the panel is 62vh â€” an open account
-    // would push the citations off the card entirely.
-    const accountOpen = await page.evaluate(() => {
-      window.__chicago4d.pick('hogan_store');
-      const d = document.querySelector('#popup .pop-research details.research');
-      const body = d.querySelector('.research-body');
-      const before = body.checkVisibility();
-      d.open = true;
-      return { before, after: body.checkVisibility() };
-    });
-    check(`${label}: the account starts collapsed and opens on demand`,
-      accountOpen.before === false && accountOpen.after === true,
-      `${accountOpen.before} -> ${accountOpen.after}`);
-
-    inStageWork = false;
-    } // end PART 3 (T-0060 stage 2a, cut by T-0121)
-    // PART 4 â€” the raycast pick through the confidence menu's own clicks:
-    // walking, the bridge deck, the budgets, life size, scene detail and the
-    // chrome. The rest of T-0060's stage 2.
-    //
-    // The one thing this cut inherits is a POSE. Everything above it framed the
-    // Sauganash to open its card, and the first check below picks whatever is
-    // down the crosshair and requires it to be that building. So the frame is
-    // re-taken here rather than assumed: in an unfiltered run it is the pose the
-    // camera is already in, and in a part-4 run it is the difference between
-    // measuring the Sauganash and measuring the prairie.
-    if (stageOn(4)) {
-    inStageWork = true;
-    await page.evaluate(() => window.__chicago4d.frame('sauganash_hotel', 26));
-
-    // --- a raycast pick down the crosshair, not just by id ----------------
-    const rayPick = await page.evaluate(() => {
-      const hit = window.__chicago4d.pick();
-      return hit ? hit.id : null;
-    });
-    check(`${label}: raycast down the crosshair resolves a structure_id`,
-      rayPick === 'sauganash_hotel', `got ${rayPick}`);
-
-    await page.evaluate(() => window.__chicago4d.popup.close());
-
-    // --- walking ----------------------------------------------------------
-    const before = await page.evaluate(() => ({ ...window.__chicago4d.player }));
-    // Software rasterisation runs this scene at a handful of frames a second,
-    // so give the walk a wall-clock window that survives it.
-    await page.keyboard.down('KeyW');
-    await page.waitForTimeout(2200);
-    await page.keyboard.up('KeyW');
-    const after = await page.evaluate(() => ({ ...window.__chicago4d.player }));
-    const moved = Math.hypot(after.e - before.e, after.n - before.n);
-    check(`${label}: walk intent moves the camera`, moved > 0.3,
-      `moved ${moved.toFixed(2)} m in 2.2 s (backend `
-      + `${await page.evaluate(() => window.__chicago4d.controlBackend)})`);
-
-    // Walking used to ease the eye toward the sampled ground. On a bank that
-    // put the camera below the visible mesh uphill and left it floating
-    // downhill, even though both are driven by the same heightfield. Disturb
-    // the eye deliberately, then traverse the resolved slope in both directions:
-    // every update must restore exact standing clearance, not approach it.
-    const terrainLock = await page.evaluate(() => {
-      const a = window.__chicago4d;
-      const run = (n, bearing) => {
-        a.walker.teleport({ local_e: 140, local_n: n, yaw_deg: bearing });
-        a.walker.state.eyeY += 0.9;
-        let worst = 0;
-        let minGround = Infinity;
-        let maxGround = -Infinity;
-        a.intent.forward = 1;
-        for (let i = 0; i < 520; i++) {
-          a.walker.update(0.05, a.intent);
-          const s = a.walker.state;
-          const ground = a.terrain.walkHeight(s.e, s.n);
-          minGround = Math.min(minGround, ground);
-          maxGround = Math.max(maxGround, ground);
-          worst = Math.max(worst, Math.abs(s.eyeY - ground - a.walkBudget.eyeHeight));
-        }
-        a.intent.forward = 0;
-        return { worst, relief: maxGround - minGround };
-      };
-      return { uphill: run(-20, 180), downhill: run(-58, 0) };
-    });
-    check(`${label}: walking stays exactly on the terrain through rises and falls`,
-      terrainLock.uphill.worst < 1e-6 && terrainLock.downhill.worst < 1e-6
-      && terrainLock.uphill.relief > 0.25 && terrainLock.downhill.relief > 0.25,
-      JSON.stringify(terrainLock));
-
-    // --- you cannot stand inside a building --------------------------------
-    const pushed = await page.evaluate(() => {
-      const a = window.__chicago4d;
-      const fp = a.footprints.find((f) => f.id === 'sauganash_hotel');
-      if (!fp) return { skipped: true };
-      const cx = fp.pts.reduce((s, p) => s + p[0], 0) / fp.pts.length;
-      const cn = fp.pts.reduce((s, p) => s + p[1], 0) / fp.pts.length;
-      a.walker.teleport({ local_e: cx, local_n: cn });
-      a.step();
-      const { e, n } = a.player;
-      // ray-cast point-in-polygon, same test the walker uses
-      let hit = false;
-      const pts = fp.pts;
-      for (let i = 0, j = pts.length - 1; i < pts.length; j = i++) {
-        const [xi, yi] = pts[i];
-        const [xj, yj] = pts[j];
-        if ((yi > n) !== (yj > n) && e < ((xj - xi) * (n - yi)) / (yj - yi) + xi) hit = !hit;
-      }
-      return { inside: hit, e, n, cx, cn };
-    });
-    check(`${label}: the walker is pushed out of a building footprint`,
-      pushed.skipped || pushed.inside === false,
-      `dropped at (${pushed.cx}, ${pushed.cn}), ended at (${pushed.e?.toFixed(2)}, ${pushed.n?.toFixed(2)})`);
-
-    // --- and you CAN stand on a bridge deck (T-0001) -----------------------
-    //
-    // The owner's question was "how would a wagon cross that?", and the first
-    // half of the answer is that a person cannot: the walker followed the
-    // heightfield, which over the river reports a wading barrier at 4.0 m, so a
-    // visitor set down on the North Branch bridge hovered 1.8 m above its planks
-    // and walked across thin air. This drives the crossing and asserts the DECK
-    // is under the boot for the whole span.
-    //
-    // Written as an exact equality rather than a tolerance, and that is the point
-    // of it: `placement.walk_surface_m` is the same `deck_height_m` the mesh was
-    // built from, so the number the walker stands on and the number the deck was
-    // drawn at are one value. A tolerance here would pass a renderer that had
-    // quietly grown a second definition, which is the fault docs/GLB-CONTRACT.md
-    // exists to prevent.
-    const crossing = await page.evaluate(() => {
-      const a = window.__chicago4d;
-      const deck = a.decks?.find((d) => d.id === 'north_branch_bridge');
-      if (!deck) return { missing: true };
-      const es = deck.pts.map((p) => p[0]);
-      const ns = deck.pts.map((p) => p[1]);
-      const west = Math.min(...es);
-      const east = Math.max(...es);
-      const mid = (Math.min(...ns) + Math.max(...ns)) / 2;
-      const on = (e, n) => {
-        let hit = false;
-        const pts = deck.pts;
-        for (let i = 0, j = pts.length - 1; i < pts.length; j = i++) {
-          const [xi, yi] = pts[i];
-          const [xj, yj] = pts[j];
-          if ((yi > n) !== (yj > n) && e < ((xj - xi) * (n - yi)) / (yj - yi) + xi) hit = !hit;
-        }
-        return hit;
-      };
-
-      // Start half a metre inside the west end, facing east down the deck.
-      a.walker.teleport({ local_e: west + 0.5, local_n: mid, yaw_deg: 90 });
-      const startedOn = a.walker.state.groundY;
-      let offDeck = 0;              // samples on the deck at the wrong height
-      let clearance = 0;            // worst eye-height error, on the deck
-      let firstE = null;
-      let lastE = null;
-      let leftE = null;             // where the walker ended up after the far end
-      a.intent.forward = 1;
-      a.intent.sprint = true;
-      for (let i = 0; i < 800; i += 1) {
-        a.walker.update(0.05, a.intent);
-        const s = a.walker.state;
-        if (on(s.e, s.n)) {
-          if (firstE === null) firstE = s.e;
-          lastE = s.e;
-          if (s.groundY !== deck.y) offDeck += 1;
-          clearance = Math.max(clearance, Math.abs(s.eyeY - s.groundY - a.walkBudget.eyeHeight));
-        } else if (lastE !== null && leftE === null) {
-          leftE = s.e;
-        }
-      }
-      a.intent.forward = 0;
-      a.intent.sprint = false;
-      const endState = { ...a.walker.state };
-      return {
-        deckY: deck.y,
-        span: east - west,
-        startedOn,
-        walked: firstE === null ? 0 : lastE - firstE,
-        offDeck,
-        clearance,
-        leftE,
-        // What the terrain alone would have said mid-span â€” the barrier this
-        // replaces. If this ever stops being well above the deck the assertion
-        // below has stopped proving anything.
-        barrier: a.terrain.walkHeight((west + east) / 2, mid),
-        endGroundY: endState.groundY,
-        endE: endState.e,
-      };
-    });
-    check(`${label}: the North Branch bridge has a walkable deck`,
-      !crossing.missing && crossing.deckY > 0,
-      crossing.missing ? 'no deck compiled for north_branch_bridge'
-        : `deck at ${crossing.deckY} m over the datum`);
-    check(`${label}: the walker crosses the bridge end to end on its deck`,
-      !crossing.missing
-      && crossing.walked >= crossing.span - 2
-      && crossing.offDeck === 0
-      && crossing.clearance < 1e-9,
-      `walked ${crossing.walked?.toFixed(1)} m of a ${crossing.span?.toFixed(1)} m deck, `
-      + `${crossing.offDeck} sample(s) not at deck height, worst standing clearance error `
-      + `${crossing.clearance?.toExponential(1)} m`);
-    check(`${label}: the deck, not the wading barrier, is what holds the walker up`,
-      !crossing.missing && crossing.barrier > crossing.deckY + 1
-      && crossing.startedOn === crossing.deckY,
-      `barrier ${crossing.barrier?.toFixed(2)} m vs deck ${crossing.deckY} m, `
-      + `stood at ${crossing.startedOn?.toFixed(2)} m`);
-    check(`${label}: and walks off the far end onto the bank`,
-      !crossing.missing && crossing.leftE !== null
-      && crossing.endGroundY < crossing.deckY,
-      `left the deck at E ${crossing.leftE?.toFixed(1)}, `
-      + `ended standing on ${crossing.endGroundY?.toFixed(2)} m at E ${crossing.endE?.toFixed(1)}`);
-
-    // --- and walks ONTO the deck from the bank (T-0046) ---------------------
-    //
-    // The other half of the owner's "how would a wagon cross that?": for a year
-    // the decks were walkable and unreachable â€” they stood 2.22 m over banks the
-    // terrain put at zero, and the 0.35 m step-up rule refused the deck end the
-    // way it refuses a wall. The approach earthworks grade the ground itself up
-    // to each deck, so this starts a walker on the plain EAST of the North
-    // Branch bridge, well below deck height, walks them west up Kinzie Street,
-    // and requires that they end standing ON the planks â€” no teleport onto the
-    // deck, no ramp object, just terrain rising at a wagon grade. If the ground
-    // under the climb ever exceeds the step-up rule per stride, the walker
-    // simply stops and this fails.
-    const ascent = await page.evaluate(() => {
-      const a = window.__chicago4d;
-      const deck = a.decks?.find((d) => d.id === 'north_branch_bridge');
-      if (!deck) return { missing: true };
-      const es = deck.pts.map((p) => p[0]);
-      const ns = deck.pts.map((p) => p[1]);
-      const east = Math.max(...es);
-      const mid = (Math.min(...ns) + Math.max(...ns)) / 2;
-      const on = (e, n) => {
-        let hit = false;
-        const pts = deck.pts;
-        for (let i = 0, j = pts.length - 1; i < pts.length; j = i++) {
-          const [xi, yi] = pts[i];
-          const [xj, yj] = pts[j];
-          if ((yi > n) !== (yj > n) && e < ((xj - xi) * (n - yi)) / (yj - yi) + xi) hit = !hit;
-        }
-        return hit;
-      };
-      // 18 m out: past the toe of the 1-in-12 ramp's upper half, on ground well
-      // below the deck, so the climb is real and not a courtesy hop.
-      a.walker.teleport({ local_e: east + 18, local_n: mid, yaw_deg: 270 });
-      a.step();
-      const startGround = a.walker.state.groundY;
-      let onDeck = false;
-      let worstStride = 0;
-      let prevY = startGround;
-      a.intent.forward = 1;
-      for (let i = 0; i < 600 && !onDeck; i += 1) {
-        a.walker.update(0.05, a.intent);
-        const s = a.walker.state;
-        worstStride = Math.max(worstStride, s.groundY - prevY);
-        prevY = s.groundY;
-        if (on(s.e, s.n) && s.groundY === deck.y) onDeck = true;
-      }
-      a.intent.forward = 0;
-      return {
-        deckY: deck.y,
-        startGround,
-        climbed: deck.y - startGround,
-        onDeck,
-        worstStride,
-        endE: a.walker.state.e,
-      };
-    });
-    check(`${label}: a walker on the bank climbs the approach onto the deck`,
-      !ascent.missing && ascent.onDeck
-      && ascent.startGround < ascent.deckY - 0.8,
-      ascent.missing ? 'no deck compiled for north_branch_bridge'
-        : `started on ${ascent.startGround?.toFixed(2)} m, climbed `
-          + `${ascent.climbed?.toFixed(2)} m to the planks at ${ascent.deckY} m, `
-          + `worst single stride +${ascent.worstStride?.toFixed(3)} m`
-          + (ascent.onDeck ? '' : ` â€” never reached the deck (stopped at E ${ascent.endE?.toFixed(1)})`));
-
-    await page.evaluate(() => window.__chicago4d.frame('sauganash_hotel', 26));
-
-    // --- the touch backend, on the mobile pass only ------------------------
-    if (touch) {
-      const stick = await page.evaluate(async () => {
-        const api = window.__chicago4d;
-        const c = document.getElementById('view');
-        const r = c.getBoundingClientRect();
-        const send = (type, x, y, id = 7) => c.dispatchEvent(new PointerEvent(type, {
-          pointerId: id, pointerType: 'touch', isPrimary: true, bubbles: true, cancelable: true,
-          clientX: r.left + x, clientY: r.top + y,
-        }));
-        // Left half: push the thumbstick forward.
-        send('pointerdown', r.width * 0.25, r.height * 0.75);
-        await new Promise((res) => requestAnimationFrame(res));
-        send('pointermove', r.width * 0.25, r.height * 0.75 - 60);
-        await new Promise((res) => setTimeout(res, 60));
-        const forward = api.intent.forward;
-        const backend = api.controlBackend;
-        send('pointerup', r.width * 0.25, r.height * 0.75 - 60);
-        return { forward, backend, stickVisible: !!document.getElementById('stick')?.classList.contains('on') };
-      });
-      check(`${label}: touch activates the touch backend`, stick.backend === 'touch', stick.backend);
-      check(`${label}: thumbstick writes forward intent`, stick.forward > 0.5,
-        `intent.forward = ${stick.forward}`);
-
-      // Right-half drag must turn the view and nothing else.
-      const look = await page.evaluate(async () => {
-        const api = window.__chicago4d;
-        const c = document.getElementById('view');
-        const r = c.getBoundingClientRect();
-        const b0 = api.player.bearingDeg;
-        const send = (type, x, y, id = 9) => c.dispatchEvent(new PointerEvent(type, {
-          pointerId: id, pointerType: 'touch', isPrimary: true, bubbles: true, cancelable: true,
-          clientX: r.left + x, clientY: r.top + y,
-        }));
-        send('pointerdown', r.width * 0.75, r.height * 0.4);
-        for (let i = 1; i <= 6; i++) {
-          send('pointermove', r.width * 0.75 - i * 12, r.height * 0.4);
-          await new Promise((res) => requestAnimationFrame(res));
-        }
-        send('pointerup', r.width * 0.75 - 72, r.height * 0.4);
-        await new Promise((res) => setTimeout(res, 80));
-        return { turned: Math.abs(((api.player.bearingDeg - b0 + 540) % 360) - 180) };
-      });
-      check(`${label}: right-half drag turns the view`, look.turned > 1,
-        `turned ${(180 - look.turned).toFixed(1)}Â°`);
-    }
-
-    // --- budgets ------------------------------------------------------------
-    //
-    // THE BUDGET IS NO LONGER GATED HERE. It is gated at a NAMED SET of stands
-    // and on the WORST of them, in the scene-detail block below, which is the
-    // one place the whole set can be walked at every tier for the price of
-    // walking it once (T-0135; `STANDS` at the top of this file is the set, with
-    // each stand's reason written beside it).
-    //
-    // What stays here is the reference reading â€” the Sauganash at 26 m, the
-    // single camera this project measured itself at until 2026-08-22 â€” kept so
-    // every figure ever recorded in `main.js`, LIBERTIES and the roadmap boxes
-    // stays comparable, and kept LABELLED as a reference rather than as a gate so
-    // nobody reads it as one again. The two assertions below are still hard: a
-    // scene that regressed at the friendly stand has regressed everywhere.
-    //
-    // THE DRAW-CALL CEILING IS 140 SINCE 2026-08-21, raised from 80 in three
-    // steps that afternoon â€” a conscious re-budget on the owner's ruling (*"or
-    // just raise the budget?"*), argued in full where the number is set,
-    // `main.js` BUDGET. The short of it: 80 was set when every derived layer was
-    // one town-spanning mesh, and T-0067, T-0119 and T-0069 have since chunked
-    // those layers so the frustum can cull them, which trades triangles for draw
-    // calls on purpose â€” and the sun's pass draws every chunk in its box a second
-    // time. The bar is still READ from `stats.budget` rather than written here, so
-    // this check follows the definition site and cannot drift from it.
-    const stats = await page.evaluate(() => window.__chicago4d.stats());
-    // THE CALL CEILING IS PINNED HERE AS WELL AS READ (T-0068). This check used
-    // to compare the frame against whatever number `main.js` happened to be
-    // carrying, so a scene that had outgrown its budget could be made green by
-    // editing the budget â€” the exact move T-0115's ledger exists to make
-    // impossible to do quietly. Moving the number has to move this line too, in
-    // the same commit, with the measurement that justified it.
-    //
-    // Only the CALL ceiling is pinned here, and deliberately: the triangle
-    // budget follows the detail tier the visitor is on (`BUDGET.triangles` is
-    // reset from `DETAIL[level]`), so it reads 600,000 on a phone booting into
-    // `light` and 1,000,000 on a desktop. The three tier ceilings have their own
-    // check further down, which is where a re-budget of those would show.
-    check(`${label}: the scene's draw-call ceiling is the one this gate was written against`,
-      stats.budget.drawCalls === 215,
-      `budget reads ${stats.budget.drawCalls} calls / ${stats.budget.triangles} tris`);
-    check(`${label}: draw calls under budget at the reference stand`,
-      stats.drawCalls <= stats.budget.drawCalls,
-      `${stats.drawCalls} calls (budget ${stats.budget.drawCalls}) â€” `
-      + `the gate is the worst-stand check below`);
-    check(`${label}: triangles under budget at the reference stand`,
-      stats.triangles <= stats.budget.triangles,
-      `${stats.triangles} tris (budget ${stats.budget.triangles}) â€” `
-      + `the gate is the worst-stand check below`);
-    console.log(`        ${stats.drawCalls} draw calls Â· ${stats.triangles} tris Â· `
-      + `${stats.batches} batch(es) Â· ${stats.structures} structure(s) Â· `
-      + `${(stats.bytes / 1024).toFixed(0)} KB of GLB Â· ${stats.fps} fps`);
-
-    // --- the scene is at life size ------------------------------------------
-    //
-    // This gate ran green through a scene in which every building was a sixth of
-    // its size and the ground had sunk under the water plane, because nothing it
-    // checked was a LENGTH. Draw calls, triangles, page errors and even "the
-    // walker stays on the terrain" all survive a uniform scale error: the walker
-    // reads the heightfield, not the mesh, so it went on standing at the correct
-    // height over a shrunken world and the owner got a photograph of a flood.
-    //
-    // So: measure the rendered geometry against the authored numbers it is a
-    // rendering OF. A quantised GLB carries its dequantisation on the node, and
-    // any loader that drops that transform fails here immediately.
-    const scale = await page.evaluate(() => {
-      const a = window.App ?? window.__chicago4d;
-      const hf = a.terrain.heightfield;
-      const wantW = (hf.cols - 1) * hf.cellM;
-      const wantD = (hf.rows - 1) * hf.cellM;
-      let minX = Infinity, maxX = -Infinity, minZ = Infinity, maxZ = -Infinity;
-      let terrainMeshes = 0;
-      a.scene3d.traverse((o) => {
-        if (!o.isMesh || !/^terrain__/.test(o.name || '')) return;
-        terrainMeshes++;
-        o.geometry.computeBoundingBox();
-        const b = o.geometry.boundingBox;
-        minX = Math.min(minX, b.min.x); maxX = Math.max(maxX, b.max.x);
-        minZ = Math.min(minZ, b.min.z); maxZ = Math.max(maxZ, b.max.z);
-      });
-      // A documented two-storey hotel, so its rendered height is a fact with a
-      // knowable range rather than a magic number.
-      const rec = a.registry.get('sauganash_hotel');
-      const wall = rec?.sidecar?.attributes?.wall_height_m?.value ?? null;
-
-      // EVERY structure, measured against what its own record claims â€” not the
-      // tallest one in the scene. See the note on the assertions below.
-      const bounds = a.buildings.instanceBounds();
-      const perStructure = [];
-      for (const [id, box] of Object.entries(bounds)) {
-        const r = a.registry.get(id);
-        const attrs = r?.sidecar?.attributes ?? {};
-        perStructure.push({
-          id,
-          size: box.size,
-          wallHeight: attrs.wall_height_m?.value ?? null,
-          footprint: [attrs.footprint_w_m?.value ?? null, attrs.footprint_d_m?.value ?? null],
-        });
-      }
-      return { terrainMeshes, gotW: maxX - minX, gotD: maxZ - minZ, wantW, wantD,
-        wall, perStructure, structureCount: a.registry.size };
-    });
-    // The ground is deliberately LARGER than the heightfield â€” it carries a
-    // far-field skirt past the modelled box, which is what you see on the horizon
-    // and what the fly-mode notice calls the edge of the detail. So the invariant
-    // is COVERAGE, not equality: there must be no place with terrain data and no
-    // ground under it. A dropped dequantisation shrinks the mesh and fails this
-    // instantly, which is the failure it exists to catch; the upper bound only
-    // stops the skirt growing without anyone noticing.
-    check(`${label}: the rendered ground covers the whole heightfield`,
-      scale.terrainMeshes > 0
-      && scale.gotW >= scale.wantW && scale.gotD >= scale.wantD
-      && scale.gotW <= scale.wantW * 8 && scale.gotD <= scale.wantD * 8,
-      `${scale.gotW?.toFixed(0)}x${scale.gotD?.toFixed(0)} m rendered against `
-      + `${scale.wantW?.toFixed(0)}x${scale.wantD?.toFixed(0)} m of heightfield `
-      + `(${scale.terrainMeshes} mesh(es))`);
-    // EVERY structure is measured, not the tallest one.
-    //
-    // The assertion this replaces read the largest bounding box in the whole
-    // group and asked whether it was between 3 and 30 m. That passes with one
-    // correct building and two hundred and forty-one collapsed ones â€” which is
-    // precisely the town that shipped, twice. Quantised POSITION attributes were
-    // being clamped to a 2 m cube, and the single uncompressed asset in the
-    // scene kept the number green while the visitor stood in a field of boxes.
-    //
-    // A rendered size only means something against a claim, so the floor here is
-    // the smallest thing the dataset actually contains â€” a privy, not a house â€”
-    // and anything at or under the quantisation clamp is called out by name.
-    const collapsed = scale.perStructure.filter((s) => Math.max(...s.size) <= 2.05);
-    check(`${label}: no structure is collapsed to the quantisation clamp`,
-      collapsed.length === 0,
-      collapsed.length
-        ? `${collapsed.length}/${scale.perStructure.length} at or under 2.05 m: `
-          + collapsed.slice(0, 5).map((s) => s.id).join(', ')
-        : `all ${scale.perStructure.length} structures larger than the 2 m clamp`);
-
-    const absurd = scale.perStructure.filter((s) => {
-      const m = Math.max(...s.size);
-      // Piers and bridges are legitimately long; nothing is legitimately taller
-      // than the courthouse cupola or smaller than a privy in every dimension.
-      return m < 1.5 || s.size[1] > 30;
-    });
-    check(`${label}: every structure is rendered at a believable size`,
-      absurd.length === 0,
-      absurd.length
-        ? absurd.slice(0, 5).map((s) => `${s.id} ${s.size.map((v) => v.toFixed(1)).join('x')}`).join('; ')
-        : `${scale.perStructure.length} structures within range`);
-
-    // --- nothing hovers -----------------------------------------------------
-    //
-    // Reported from use: "the building is hovering above the ground". Buildings
-    // were stood on the ground sampled at ONE point â€” their origin â€” which is
-    // right on flat land and wrong exactly where it shows. This town is nearly
-    // flat, so it was right for 221 of 236 structures and wrong for the fifteen
-    // on the riverbank and the fort mound, where the land falling away IS the
-    // point. The Wolf Point Tavern hung 1.84 m in the air on its river side.
-    //
-    // Measured through the REAL instance matrix, at the four base corners, in
-    // world space. My first pass at this measurement re-derived the placement
-    // instead of reading it and sampled an unrotated box, which reported eight
-    // failures that did not exist â€” a gate that guesses at what the renderer did
-    // is worth nothing.
-    const hover = await page.evaluate(() => {
-      const api = window.__chicago4d;
-      const bounds = api.buildings.instanceBounds();
-      const rows = [];
-      for (const [id, rec] of api.registry) {
-        const p = rec?.sidecar?.placement;
-        if (!p || typeof p.local_e !== 'number') continue;
-        if (p.vertical_anchor === 'water') continue;   // bridges sit at the datum
-        const b = bounds[id];
-        const m = api.buildings.matrixOf(id);
-        if (!b || !m) continue;
-        let gap = -Infinity;
-        for (const cx of [b.min[0], b.max[0]]) {
-          for (const cz of [b.min[2], b.max[2]]) {
-            const e = m.elements;
-            const wx = e[0] * cx + e[4] * b.min[1] + e[8] * cz + e[12];
-            const wy = e[1] * cx + e[5] * b.min[1] + e[9] * cz + e[13];
-            const wz = e[2] * cx + e[6] * b.min[1] + e[10] * cz + e[14];
-            gap = Math.max(gap, wy - api.terrain.surfaceHeight(wx, -wz));
-          }
-        }
-        rows.push({ id, gap: +gap.toFixed(3) });
-      }
-      rows.sort((a, b2) => b2.gap - a.gap);
-      return { n: rows.length, floating: rows.filter((r) => r.gap > 0.15), worst: rows[0] };
-    });
-    check(`${label}: no building hovers above the ground beneath it`,
-      hover.n > 200 && hover.floating.length === 0,
-      hover.floating.length
-        ? `${hover.floating.length}/${hover.n} float: `
-          + hover.floating.slice(0, 4).map((r) => `${r.id} ${r.gap} m`).join(', ')
-        : `${hover.n} structures, worst corner ${hover.worst?.gap} m`);
-
-    // Where a record states a wall height, the render has to honour it. This is
-    // the provenance check hiding inside the scale check: a documented number
-    // that the geometry ignores is a claim the walkthrough cannot support.
-    const claimed = scale.perStructure.filter((s) => typeof s.wallHeight === 'number');
-    const offClaim = claimed.filter((s) => {
-      // The box includes the roof, so height must be at least the walls and at
-      // most the walls plus a steep roof and a chimney.
-      const h = s.size[1];
-      return h < s.wallHeight * 0.9 || h > s.wallHeight * 2.6 + 3;
-    });
-    check(`${label}: rendered height matches the documented wall height`,
-      claimed.length > 0 && offClaim.length === 0,
-      claimed.length === 0
-        ? 'no structure carried a wall_height_m to check against'
-        : offClaim.length
-          ? offClaim.slice(0, 5).map((s) => `${s.id} rendered ${s.size[1].toFixed(1)} m `
-            + `against a documented ${s.wallHeight} m wall`).join('; ')
-          : `${claimed.length} structures agree with their documented wall height`);
-
-    inStageWork = false;
-    } // end PART 4 (T-0060 stage 2b, cut by T-0121, cut again by T-0346)
-    // PART 5 â€” the scene-detail ladder, and nothing else. T-0346 cut it out of
-    // part 4 because it IS part 4's cost. Profiled under this lane's own eight-way
-    // contention on 2026-08-30, part 4 reached this section at 1 m 10 s and left it
-    // at 7 m 27 s: one section of the ten was 6 m 17 s of a part the ten-minute
-    // ceiling was killing outright. The sweep walks every stand at every tier and
-    // cannot be halved again without walking the set twice â€” which is the whole
-    // saving T-0135 built it around â€” so it becomes a part on its own. That is the
-    // honest shape for a section whose cost is one indivisible measurement.
-    //
-    // It inherits NO POSE. `order` below teleports to each stand itself and
-    // finishes at the reference frame on purpose, so the cut needed no re-framing
-    // here and no `enterTown()`: the town is not entered until part 6. The one
-    // binding that did cross this boundary was the draw-call ceiling, read again
-    // below rather than borrowed from part 4's `stats`.
-    if (stageOn(5)) {
-    inStageWork = true;
-
-    // T-0346 â€” the call ceiling, read here rather than carried across the cut.
-    // Part 4's budget block is the REFERENCE reading and is where the number is
-    // pinned; this is the GATE. Since the cut they are separate commands, so a
-    // `const` over there is not in scope here. Read out of `stats.budget` exactly
-    // as it is there, so the bar still follows its definition site in main.js and
-    // cannot be made green by editing this file.
-    const callBudget = (await page.evaluate(
-      () => window.__chicago4d.stats())).budget.drawCalls;
-
-    // --- scene detail -------------------------------------------------------
-    //
-    // The triangle ceiling used to be one hard number for everyone. It is now the
-    // visitor's choice, which is only worth having if each level MEANS something,
-    // so this walks all three and asks two questions of each: does it stay inside
-    // its OWN ceiling, and does turning it down actually draw less? A setting that
-    // relabels the budget without changing the scene would pass the first and fail
-    // the second, which is exactly the failure worth catching.
-    //
-    // T-0115 added a third question, and it is the one that keeps the first
-    // answerable as the town grows. Until August 2026 the setting had a lever
-    // on flora and trees and on nothing else, so 61 % of the light frame was
-    // drawn exactly as `full` drew it, and the bottom rung went 11 % over a
-    // ceiling no single merge had done anything wrong to. The level now also
-    // decides how far the sun's shadow is cast and whether the derived
-    // furniture â€” fences, yard goods, plank walks, signboards, wharves, boats â€”
-    // is drawn a second time for it. So this reads back what each level DID to
-    // the scene rather than what its table asked for: `light` must cast none of
-    // that furniture and the other two must cast all of it, which is a claim
-    // that fails loudly if a new furniture layer is mounted outside the policy.
-    //
-    // T-0135 added the fourth, and it is the one that makes the first mean
-    // anything: every level is now walked at the WHOLE STAND SET and held to its
-    // ceiling at the worst of them. A tier ceiling checked at one friendly camera
-    // is a spot reading, and a spot reading is what let the ladder go on being
-    // described as a 40 % step while the bottom rung was, at an axial view, doing
-    // 25 %. The per-level rows below print the worst stand by name, so a level
-    // that fails says WHERE.
-    const detail = await page.evaluate(async (stands) => {
-      const a = window.__chicago4d;
-      const settle = () => new Promise((r) => requestAnimationFrame(
-        () => requestAnimationFrame(r)));
-      const started = a.detail;
-      const seen = [];
-      // The reference stand is walked LAST, and that is a cost decision with a
-      // number behind it: a frame at this scene costs about three seconds on the
-      // software renderer CI uses, and finishing the sweep where the rest of the
-      // suite expects the visitor to be saves one per level rather than teleport
-      // back afterwards. `restoredAt` below asserts the order actually did that,
-      // so the saving cannot quietly become a camera left up in the air.
-      const order = [...stands.filter((s) => s.kind !== 'frame'),
-        ...stands.filter((s) => s.kind === 'frame')];
-      for (const level of a.detailOrder) {
-        await a.setDetail(level);
-        await settle();
-        const atStands = [];
-        for (const st of order) {
-          // `goTo` on the aerial anchor turns flight ON; every `frame` stand
-          // turns it off again, which is why one has to be last.
-          if (st.kind === 'frame') { a.setFly(false); a.frame(st.target, st.distance); }
-          else a.goTo(st.target);
-          await settle();
-          const r = a.stats();
-          const row = { id: st.id, label: st.label, tris: r.triangles, calls: r.drawCalls,
-                        hidden: a.furnitureReach.hidden };
-          // T-0150 â€” WHAT THE FURNITURE'S REACH IS ACTUALLY WORTH, measured by
-          // turning it off and back on at the stand it exists for, rather than
-          // by reading the table that asked for it. Taken at the axial stand
-          // ONLY, and that is a cost decision: a frame is about three seconds on
-          // the software renderer CI uses, and this stage is already the longest
-          // in the suite (T-0121). Lake at Canal is the stand the trim was
-          // designed against and the one whose reading it has to keep earning.
-          if (st.id === 'lake_at_canal' && a.furnitureReach.reachM !== null) {
-            const on = a.furnitureReach.reachM;
-            a.setFurnitureReach(null);
-            await settle();
-            const off = a.stats();
-            a.setFurnitureReach(on);
-            await settle();
-            row.trimTris = off.triangles - r.triangles;
-            row.trimCalls = off.drawCalls - r.drawCalls;
-          }
-          // T-0146 â€” WHAT THE FAR MERGE IS WORTH, and the fact that it costs
-          // nothing, taken the same way and at the same stand and for the same
-          // cost reason: one tier only (`full`, where the worst frame is), one
-          // stand only, two extra frames in the whole stage. The merge submits
-          // a far cluster as one mesh only while the cluster is wholly inside
-          // the frustum, so the triangle delta is 0 BY CONSTRUCTION â€” it is
-          // asserted below rather than tolerated, because a merge that started
-          // drawing what the frustum used to skip would be a ceiling breach
-          // wearing a saving's clothes.
-          if (st.id === 'lake_at_canal' && level === 'full') {
-            row.mergeClusters = a.farMerge.clusters;
-            row.mergeMerged = a.farMerge.merged;
-            a.setFarMerge(false);
-            await settle();
-            const off = a.stats();
-            // Restored without a settle of its own, deliberately: this stand is
-            // never the last of the order, `setFarMerge` puts the visibility
-            // back synchronously, and the next stand settles before it reads.
-            // Part 4 is the thinnest margin in the desktop suite (T-0173) and a
-            // frame here costs about three seconds on the software renderer.
-            a.setFarMerge(true);
-            row.mergeTris = off.triangles - r.triangles;
-            row.mergeCalls = off.drawCalls - r.drawCalls;
-          }
-          atStands.push(row);
-        }
-        // The furniture and shadow-rig readings are properties of the LEVEL, not
-        // of where the camera is standing, so they are taken once â€” and taken
-        // with the visitor back at the reference stand, which is both where the
-        // rest of the suite expects them and what keeps `tris`/`calls` below the
-        // same reference figures this line has always reported.
-        const s = a.stats();
-        const f = a.furnitureShadows;
-        seen.push({ level, tris: s.triangles, calls: s.drawCalls,
-          ceiling: a.detailLevels[level].triangles,
-          furnitureReachM: a.furnitureReach.reachM,
-          furnitureMeshesReach: a.furnitureReach.meshes,
-          bankedSpheres: a.furnitureReach.banked,
-          atStands,
-          worstTris: atStands.reduce((x, y) => (y.tris > x.tris ? y : x)),
-          worstCalls: atStands.reduce((x, y) => (y.calls > x.calls ? y : x)),
-          reachM: a.world.shadowRig.reachM, texelM: a.world.shadowRig.texelM,
-          furnitureMeshes: f.meshes, furnitureCasting: f.casting,
-          furnitureGroundHugging: f.groundHugging });
-      }
-      await a.setDetail(started);
-      return { seen, restored: a.detail === started, flying: a.flying,
-        restoredAt: order[order.length - 1].id };
-    }, STANDS);
-    for (const s of detail.seen) {
-      check(`${label}: scene detail '${s.level}' stays inside its own ceiling at the WORST stand`,
-        s.worstTris.tris <= s.ceiling && s.worstCalls.calls <= callBudget,
-        `${s.worstTris.tris.toLocaleString('en-US')} tris of `
-        + `${s.ceiling.toLocaleString('en-US')} at ${s.worstTris.label}, `
-        + `${s.worstCalls.calls} calls of ${callBudget} at ${s.worstCalls.label} `
-        + `â€” spread: ${s.atStands.slice().sort((a, b) => b.tris - a.tris)
-          .map((x) => `${x.label} ${x.tris.toLocaleString('en-US')}/${x.calls}c`).join(' Â· ')}`);
-    }
-    const [full, balanced, light] = detail.seen;
-    // THE DRAW-CALL GATE, and the whole of it (T-0135). The budget block above
-    // reads the reference stand for continuity; this is the assertion. It takes
-    // the maximum over every stand at every tier â€” a draw call is not a tier's
-    // property the way its triangle ceiling is, so the number a visitor can
-    // reach is the worst frame anywhere in the set, whatever level they chose.
-    const townWorstCalls = detail.seen
-      .flatMap((lv) => lv.atStands.map((x) => ({ ...x, level: lv.level })))
-      .reduce((a, b) => (b.calls > a.calls ? b : a));
-    check(`${label}: draw calls under budget at the town's WORST frame`,
-      townWorstCalls.calls <= callBudget,
-      `${townWorstCalls.calls} calls at ${townWorstCalls.label}, '${townWorstCalls.level}' `
-      + `(budget ${callBudget}) â€” spread by level: `
-      + detail.seen.map((lv) => `${lv.level} ${lv.worstCalls.calls} at ${lv.worstCalls.label}`)
-        .join(' Â· '));
-    // Asserted PER STAND rather than on one reading, because "turning it down
-    // draws less" is a claim about the control and not about a camera: a level
-    // that cut the near flora and nothing else would hold at the reference stand
-    // and fail down the street, which is the shape of the defect T-0115 found.
-    const ladderBroken = STANDS.map((s) => {
-      const at = (lv) => lv.atStands.find((x) => x.id === s.id);
-      return { label: s.label, f: at(full).tris, b: at(balanced).tris, l: at(light).tris };
-    }).filter((r) => !(r.f > r.b && r.b > r.l));
-    check(`${label}: turning scene detail down actually draws less, at every stand`,
-      ladderBroken.length === 0,
-      ladderBroken.length
-        ? ladderBroken.map((r) => `${r.label} ${r.f} > ${r.b} > ${r.l}`).join('; ')
-        : STANDS.map((s) => {
-          const r = detail.seen.map((lv) => lv.atStands.find((x) => x.id === s.id).tris);
-          return `${s.label} ${((1 - r[2] / r[0]) * 100).toFixed(0)} %`;
-        }).join(' Â· '));
-    // THIS ASSERTION WAS WEAKENED ON 2026-08-22, AND CALLING IT ANYTHING ELSE
-    // WOULD BE A LIE. It used to hold that `light` draws inside the 80 calls
-    // this project budgeted before any of the 2026-08 content landed â€” the
-    // promise that the tier a weak machine boots into stays affordable. T-0135
-    // measured it at the WORST stand for the first time and found 167 calls
-    // down Lake Street. The owner ruled to raise the ceilings rather than trim
-    // the view ("raise it, I think", 2026-08-22), which surrenders that promise
-    // knowingly: `light` carried 1,050,000 triangles, more than `full` promised
-    // the day before. In the count's place stood a RATIO â€” `light` merely had to
-    // be materially cheaper than `full` â€” which guards the control doing
-    // something but promises a person nothing.
-    //
-    // AND THE COUNT IS BACK, 2026-08-27 (T-0147), which is what the note that
-    // stood here asked for in as many words: "when it does, this check should go
-    // back to being a count â€” and a count is what a promise to a person looks
-    // like." The trims that earned it are T-0150 (the derived furniture
-    // distance-culled at `light`), T-0146 (far chunks merged back into single
-    // draws) and T-0223's timber cull. Read on the published mirror at T-0135's
-    // five stands, dev @ f7aca445: `light`'s worst frame is 76 calls on desktop
-    // and 69 on mobile, against the 141 and 137 `full` reaches at its own worst.
-    // 80 was the ORIGINAL number and not one tuned to sit just over 76 â€” four
-    // calls of room, and the next chunked layer to reach it reaches a bar that
-    // means something. Thin on purpose and thin in fact: the reading was 75
-    // before T-0194's hitching posts merged and 76 after, so one ordinary
-    // parcel spent a quarter of the margin. When it goes red the answer is a
-    // trim or an argued re-budget at `DETAIL`, never a weakening of this line. `light`'s triangle ceiling came down in the same commit,
-    // 1,050,000 -> 785,000, and `DETAIL` in `main.js` carries that reading.
-    //
-    // AND IT WENT RED, AND THE ANSWER WAS THE RE-BUDGET. 80 -> 90 on the
-    // owner's ruling, 2026-08-28, taken against the current reading and not a
-    // week-old one: 85 calls at Lake and Market, the corner itself (dev's
-    // standing smoke, 2026-08-28T18:36Z, the T-0028 tree). The four calls of
-    // room T-0147 restored were spent in a day â€” hitching posts, Randolph's
-    // street edge, the jail â€” and the owner chose the re-budget over the trim
-    // (T-0247 carried the trim and is withdrawn with the ruling on it). Say
-    // what 90 surrenders: the pre-2026-08 count is gone for the second time,
-    // this bar has now moved twice (surrendered 2026-08-22, restored
-    // 2026-08-27, moved 2026-08-28), and a weak machine's promise is five
-    // calls of slack over today's worst frame instead of a chosen constant.
-    // 90 is still a bar: it moved BY a measured ten against a measured 85,
-    // not to wherever the reading was, and the next parcel to spend the five
-    // spare calls reaches it honestly. When THIS one goes red, same rule:
-    // a trim or an argued re-budget, never a quiet weakening.
-    //
-    // The ratio is KEPT underneath rather than replaced: the count is the
-    // promise to a weak machine, the ratio is the claim that the scene-detail
-    // control is not decoration, and a reading can break either without the
-    // other.
-    const LIGHT_CALL_FLOOR = 90;
-    check(`${label}: the light tier draws inside its ${LIGHT_CALL_FLOOR}-call floor at the worst stand`,
-      light.worstCalls.calls <= LIGHT_CALL_FLOOR,
-      `${light.worstCalls.calls} calls at light, worst stand ${light.worstCalls.label} `
-      + `â€” floor ${LIGHT_CALL_FLOOR}, set by the owner 2026-08-28 against a measured 85 `
-      + `at Lake and Market (was 80, the pre-2026-08 count restored by T-0147; `
-      + `the ruling is recorded at the definition site and on T-0247)`);
-    check(`${label}: the light tier stays materially cheaper than full at the worst stand`,
-      light.worstCalls.calls <= full.worstCalls.calls * 0.9,
-      `${light.worstCalls.calls} calls at light against ${full.worstCalls.calls} at full, `
-      + `worst stand ${light.worstCalls.label}`);
-    check(`${label}: the level the visitor started on is restored`,
-      detail.restored && !detail.flying && detail.restoredAt === STANDS[0].id,
-      `${detail.restored ? 'level restored' : 'level NOT restored'}, `
-      + `${detail.flying ? 'left flying' : 'back on foot'}, `
-      + `sweep ended at ${detail.restoredAt} (want ${STANDS[0].id})`);
-    // The trim, asserted on the meshes rather than on the table that asked for
-    // it: a policy that reaches `DETAIL` and not the scene passes every check
-    // above unchanged, which is the failure this one exists to catch.
-    //
-    // T-0188 â€” AND THE TWO CASTING TIERS ARE NO LONGER HELD TO "EVERY MESH".
-    // The ground-hugging furniture (the plank-walk and board-crossing chunks of
-    // the town street edge and the river walk, 2.9 km of boards lying 0.11 m
-    // proud of the ground) is exempt at every tier, because its own cast shadow
-    // is about 0.04 m wide at noon and drawing it into the shadow map costs its
-    // whole triangle count and a draw call per chunk for nothing a visitor can
-    // see. The exemption is COUNTED rather than assumed: `furnitureShadows`
-    // reports `groundHugging`, the bar is `casting === meshes - groundHugging`,
-    // and the count is asserted to be non-zero â€” so a layer that silently
-    // stopped casting still fails here, and an exemption nobody declared cannot
-    // hide in the difference.
-    check(`${label}: the light tier draws no furniture into the shadow map, and only the ground-hugging timber is exempt above it`,
-      light.furnitureMeshes > 0 && light.furnitureCasting === 0
-      && full.furnitureGroundHugging > 0
-      && full.furnitureCasting === full.furnitureMeshes - full.furnitureGroundHugging
-      && balanced.furnitureCasting === balanced.furnitureMeshes - balanced.furnitureGroundHugging,
-      detail.seen.map((s) => `${s.level} ${s.furnitureCasting}/${s.furnitureMeshes} casting `
-        + `(${s.furnitureGroundHugging} ground-hugging)`).join(', '));
-    /**
-     * T-0150 â€” THE FURNITURE'S REACH, asserted as three separate claims because
-     * three separate things can break it.
-     *
-     * FIRST, that the reach is a LADDER and that `full` sits at the top of it
-     * holding nothing back. Until T-0241 this check read "only the bottom rung
-     * holds anything back", because only the bottom rung did; `balanced` now
-     * carries 800 m to `light`'s 350 m, which is what makes "turn the quality
-     * down and less is drawn" true of the middle rung as well as the floor.
-     * What must never happen is a reach leaking into `full` â€” the tier whose
-     * whole promise is that nothing is held back â€” or the rungs crossing, which
-     * would be a visitor stepping DOWN a setting and getting more geometry.
-     * Read off the MESHES (`hidden`, counted at every stand) as well as off the
-     * level, for the reason `furnitureShadows` is: a policy that reaches `DETAIL`
-     * and not the scene passes every ceiling check unchanged.
-     */
-    const hiddenAtFull = full.atStands.filter((x) => x.hidden > 0);
-    check(`${label}: the furniture reach is a ladder â€” full holds nothing back, and each rung below reaches less far`,
-      full.furnitureReachM === null && hiddenAtFull.length === 0
-      && balanced.furnitureReachM !== null && light.furnitureReachM !== null
-      && light.furnitureReachM < balanced.furnitureReachM
-      && light.bankedSpheres > 0,
-      hiddenAtFull.length
-        ? `full hid ${hiddenAtFull[0].hidden} at ${hiddenAtFull[0].label}`
-        : detail.seen.map((lv) => `${lv.level} reach ${lv.furnitureReachM ?? 'none'}`).join(', ')
-          + ` â€” ${light.bankedSpheres} furniture chunk(s) banked`);
-    /**
-     * SECOND, that at `light` it reaches the frame at the stand it was built for.
-     * A reach set to a number larger than the town would satisfy the first check
-     * and do nothing at all.
-     */
-    /**
-     * T-0146 â€” THE FAR MERGE, asserted as the one claim it makes: down the
-     * axial street it gives back a large part of the call count the chunking
-     * spent, and it moves NOT ONE TRIANGLE doing it. Both halves come from the
-     * same frame read twice at the stand the trim was designed against, so
-     * neither can be satisfied by an unrelated layer getting cheaper.
-     *
-     * The call bar is set at roughly half the 54 calls measured when it landed
-     * (201 -> 147 at `full`, `tools/measure_far_merge.mjs`), which is the same
-     * margin T-0150's reach bar carries: enough that the merge going dead is
-     * caught, loose enough that a parcel adding a chunk somewhere does not have
-     * to re-argue the number. The triangle bar has no margin at all and must
-     * not be given one.
-     */
-    const merged = full.atStands.find((x) => x.id === 'lake_at_canal');
-    check(`${label}: the far merge gives back draw calls down the axial street and moves no triangle doing it`,
-      !!merged && merged.mergeTris === 0 && merged.mergeCalls >= 25
-      && merged.mergeMerged > 0,
-      merged
-        ? `${merged.mergeCalls} call(s) saved over ${merged.mergeMerged} of `
-          + `${merged.mergeClusters} cluster(s), ${merged.mergeTris} triangle(s) moved`
-        : 'the axial stand was not walked at full');
-    const axial = light.atStands.find((x) => x.id === 'lake_at_canal');
-    check(`${label}: the light tier holds furniture back down the axial street`,
-      !!axial && axial.hidden > 0,
-      axial ? `${axial.hidden} of ${light.furnitureMeshesReach} furniture chunk(s) `
-        + `beyond ${light.furnitureReachM} m at ${axial.label}`
-        : 'the axial stand was not walked');
-    /**
-     * THIRD, AND IT IS THE ONE WITH THE NUMBER IN IT: the reach is what is doing
-     * the saving. Measured in the gate by turning the cull off at that stand and
-     * reading the same frame twice, so this cannot be satisfied by some unrelated
-     * layer getting cheaper â€” the difference is attributable by construction.
-     *
-     * The bars are set at roughly half the measurement that chose the reach
-     * (`main.js` FURNITURE_REACH_LIGHT_M: 252,140 triangles and 107 calls at
-     * 1280x800, 248,748 and 102 at 390x780), which is the same order of margin
-     * the ceilings carry. Half rather than just-under, because this is a ratchet
-     * on a MECHANISM and not a budget: a change that halves what the trim is
-     * worth has broken it, and one that trims a little less because the town got
-     * denser inside 350 m has not.
-     */
-    check(`${label}: the furniture reach is what makes the light tier cheaper down that street`,
-      !!axial && axial.trimTris >= 120000 && axial.trimCalls >= 50,
-      axial?.trimTris === undefined
-        ? 'the trim was not measured at the axial stand'
-        : `turning the reach off adds ${axial.trimTris.toLocaleString('en-US')} triangles `
-          + `and ${axial.trimCalls} draw calls at ${axial.label} `
-          + `(need 120,000 and 50)`);
-    /**
-     * AND THE SAME TWO CLAIMS FOR THE MIDDLE RUNG â€” T-0241. `balanced`'s 800 m
-     * is what carries Washington Street, so it is the reach whose going dead
-     * would put a tier over its ceiling rather than merely cost it a saving.
-     *
-     * TRIANGLES ONLY, and the missing call bar is a measurement rather than an
-     * omission: 800 m gives back 68,772 triangles at this stand and FIVE draw
-     * calls (151 -> 146 desktop, 151 -> 147 mobile), because the chunks it hides
-     * at that range are the ones T-0146's far merge had already collapsed into
-     * single calls. A bar on five is a bar on noise. The triangle bar is half the
-     * measured 68,772, the same ratchet-not-a-budget margin the `light` bar
-     * above carries and for the same reason.
-     */
-    const axialBalanced = balanced.atStands.find((x) => x.id === 'lake_at_canal');
-    check(`${label}: the balanced tier holds furniture back down the axial street`,
-      !!axialBalanced && axialBalanced.hidden > 0,
-      axialBalanced ? `${axialBalanced.hidden} of ${balanced.furnitureMeshesReach} furniture `
-        + `chunk(s) beyond ${balanced.furnitureReachM} m at ${axialBalanced.label}`
-        : 'the axial stand was not walked at balanced');
-    check(`${label}: the furniture reach is what makes the balanced tier cheaper down that street`,
-      !!axialBalanced && axialBalanced.trimTris >= 34000,
-      axialBalanced?.trimTris === undefined
-        ? 'the trim was not measured at the axial stand at balanced'
-        : `turning the reach off adds ${axialBalanced.trimTris.toLocaleString('en-US')} `
-          + `triangles at ${axialBalanced.label} (need 34,000)`);
-    check(`${label}: the light tier's shorter shadow reach costs no texel`,
-      light.reachM < full.reachM && Math.abs(light.texelM - full.texelM) < 1e-6,
-      detail.seen.map((s) => `${s.level} Â±${s.reachM} m at `
-        + `${(s.texelM * 100).toFixed(1)} cm/texel`).join(', '));
-    console.log(`        detail  ${detail.seen.map((s) =>
-      `${s.level} ${s.tris}/${s.ceiling} (${s.calls} calls, Â±${s.reachM} m, `
-      + `${s.furnitureCasting}/${s.furnitureMeshes} furniture casting)`).join('  Â·  ')}`);
-    for (const s of detail.seen) {
-      console.log(`        ${s.level.padEnd(9)} worst ${s.worstTris.tris.toLocaleString('en-US').padStart(11)} tris `
-        + `of ${s.ceiling.toLocaleString('en-US')} at ${s.worstTris.label}  Â·  `
-        + `worst ${String(s.worstCalls.calls).padStart(4)} calls at ${s.worstCalls.label}`);
-    }
-
-    inStageWork = false;
-    } // end PART 5 (the scene-detail ladder, cut out of part 4 by T-0346)
-    // PART 6 â€” the gate, the chrome and the confidence menu's own clicks: the
-    // tail of what was part 4, and the point at which an unfiltered pass ENTERS
-    // THE TOWN. It stands alone because the sweep above it had to, and it is the
-    // right side of the boundary to have been left on: every check in it is a
-    // real click on the HUD, and none of them shares a reading with the budgets
-    // or the ladder. Measured at about 1 m 55 s under load on 2026-08-30, the
-    // cheapest of the three.
-    if (stageOn(6)) {
-    inStageWork = true;
-
-    // --- the gate and the chrome -------------------------------------------
-    await page.click('#gate-btn');
-    await page.waitForTimeout(150);
-    // Entering the walkthrough grabs the pointer on desktop; release it, or
-    // every later click lands on the locked canvas instead of the HUD.
-    await page.evaluate(() => document.exitPointerLock?.());
-    await page.waitForTimeout(120);
-    const chrome = await page.evaluate(() => ({
-      gateHidden: document.getElementById('gate').hasAttribute('hidden'),
-      hudShown: !document.getElementById('hud').hasAttribute('hidden'),
-      controlHelpShown: !document.getElementById('control-help').hasAttribute('hidden'),
-      desktopHelpShown: getComputedStyle(document.getElementById('control-help-desktop')).display !== 'none',
-      touchHelpShown: getComputedStyle(document.getElementById('control-help-touch')).display !== 'none',
-      overflow: document.documentElement.scrollWidth <= window.innerWidth + 1,
-    }));
-    check(`${label}: tap-to-start reveals the walkthrough`,
-      chrome.gateHidden && chrome.hudShown,
-      `gate hidden ${chrome.gateHidden}, hud shown ${chrome.hudShown}`);
-    check(`${label}: first entry shows the navigation guide for the active input mode`,
-      chrome.controlHelpShown
-      && (touch ? chrome.touchHelpShown && !chrome.desktopHelpShown
-        : chrome.desktopHelpShown && !chrome.touchHelpShown),
-      JSON.stringify(chrome));
-    check(`${label}: no horizontal overflow`, chrome.overflow);
-    await page.click('#control-help-gotit');
-    const controlHelpDismissed = await page.evaluate(() => ({
-      hidden: document.getElementById('control-help').hasAttribute('hidden'),
-      stored: localStorage.getItem('chicago4d.controlHelpDismissed'),
-    }));
-    check(`${label}: the navigation guide dismisses and remembers the choice`,
-      controlHelpDismissed.hidden && controlHelpDismissed.stored === '1',
-      JSON.stringify(controlHelpDismissed));
-
-    // --- the confidence menu takes its own clicks (T-0108) -------------------
-    //
-    // The HUD is pointer-events: none so the world stays live underneath, and
-    // every interactive piece re-enables it for itself. The level menu did not,
-    // so a click on a checkbox fell THROUGH to the canvas â€” re-locking the
-    // pointer and tripping the click-away close at once: the menu vanished and
-    // nothing toggled. Owner-reported. A REAL Playwright click is the only
-    // honest instrument for a pointer-events regression: it hit-tests like a
-    // visitor's mouse, where an evaluate()'d .click() would quietly pass. It
-    // runs here because the HUD only exists past the gate, and the guide that
-    // covers this corner of it was dismissed by the check above.
-    //
-    // SO THESE FOUR STAY `page.click` (T-0215). Part 8's chrome clicks moved to
-    // `clickChrome`, which hit-tests at the element's own centre and would catch
-    // this same regression â€” but here the trusted event is not the means, it is
-    // the SUBJECT, and the instrument should be the visitor's own mouse.
-    await page.click('#btn-confidence-more');
-    await page.click('#cm-reconstructed');
-    await page.waitForTimeout(120);
-    const cmClick = await page.evaluate(() => ({
-      menuOpen: !document.getElementById('confidence-menu').hasAttribute('hidden'),
-      unchecked: !document.getElementById('cm-reconstructed').checked,
-      marked: document.getElementById('confidence-group').classList.contains('has-hidden'),
-    }));
-    check(`${label}: a level checkbox takes the click and the menu stays open`,
-      cmClick.menuOpen && cmClick.unchecked && cmClick.marked,
-      JSON.stringify(cmClick));
-    // Put the town back the way it was, through the same real controls.
-    await page.click('#cm-reset');
-    await page.click('#btn-confidence-more');
-    await page.waitForTimeout(120);
-    const cmRestored = await page.evaluate(() => ({
-      menuShut: document.getElementById('confidence-menu').hasAttribute('hidden'),
-      allOn: ['cm-attested', 'cm-inferred', 'cm-reconstructed']
-        .every((id) => document.getElementById(id).checked),
-      marked: document.getElementById('confidence-group').classList.contains('has-hidden'),
-    }));
-    check(`${label}: reset restores every level and the caret shuts the menu`,
-      cmRestored.menuShut && cmRestored.allOn && !cmRestored.marked,
-      JSON.stringify(cmRestored));
-
-    inStageWork = false;
-    } // end PART 6 (the tail of T-0060 stage 2b, cut out of part 4 by T-0346)
-    // PART 7 â€” navigation through the second road-legibility station: the
-    // readouts, the streets the heightfield carries, and the roads read from the
-    // walker's eye and from the air. T-0173 cut the crossing station, the aid
-    // and the batch merge out of here into part 8.
-    if (stageOn(7)) {
-    inStageWork = true;
-
-    // A fresh boot is still standing at the GATE SCREEN: part 6's "the gate
-    // and the chrome" section is what enters the town, releases the pointer
-    // and dismisses the first-entry navigation guide, and this point of an
-    // unfiltered pass runs long after it did. The road-legibility bands
-    // measure page.screenshot frames, which include DOM overlays (the
-    // GL-capture checks do not) â€” so a staged run must stand where the full
-    // run stands: gate entered, pointer free, guide down. In a full run every
-    // branch below is a no-op.
-    await enterTown();
-
-    // --- navigation --------------------------------------------------------
-    // Both readouts are derived from the live walker.  The overview's signature
-    // is sampled from its own 2D canvas before and after a teleport so this
-    // checks the visible marker, not merely an object property updated beside it.
-    const nav = await page.evaluate(() => {
-      const api = window.__chicago4d;
-      const mapCanvas = document.getElementById('overview-map-canvas');
-      const signature = () => {
-        const p = mapCanvas.getContext('2d').getImageData(0, 0, mapCanvas.width, mapCanvas.height).data;
-        let hash = 2166136261;
-        for (let i = 0; i < p.length; i += 37) hash = Math.imul(hash ^ p[i], 16777619) >>> 0;
-        return hash;
-      };
-      api.walker.teleport({ local_e: 20, local_n: -40, yaw_deg: 90 });
-      api.step();
-      const first = signature();
-      const east = {
-        direction: document.getElementById('compass-direction')?.textContent,
-        bearing: document.getElementById('compass-bearing')?.textContent,
-        snapshot: api.navigation.snapshot(),
-      };
-      api.walker.teleport({ local_e: 180, local_n: 90, yaw_deg: 225 });
-      api.step();
-      return {
-        compassShown: !document.getElementById('compass')?.hasAttribute('hidden'),
-        mapShown: !document.getElementById('overview-map')?.hasAttribute('hidden'),
-        mapCaption: document.querySelector('.overview-caption')?.textContent?.trim(),
-        mapAria: document.getElementById('overview-map')?.getAttribute('aria-label'),
-        speedLabel: document.getElementById('v-speed')?.textContent?.trim(),
-        units: document.getElementById('s-units')?.value,
-        mapSize: [mapCanvas.width, mapCanvas.height],
-        east,
-        first,
-        second: signature(),
-        moved: api.navigation.snapshot(),
-      };
-    });
-    check(`${label}: compass shows the live heading`,
-      nav.compassShown && nav.east.direction === 'E' && nav.east.bearing === '090Â°',
-      `${nav.east.direction} ${nav.east.bearing}`);
-    check(`${label}: overview map renders the whole heightfield`,
-      nav.mapShown && nav.mapSize[0] >= 188 && nav.mapSize[1] >= 76
-      && nav.east.snapshot.bounds.eMax - nav.east.snapshot.bounds.eMin > 1900
-      && nav.mapCaption === 'map' && nav.units === 'imperial'
-      && /feet|ft/.test(nav.mapAria ?? ''),
-      `${nav.mapSize.join('x')}, caption ${nav.mapCaption}, aria ${nav.mapAria}, `
-      + `E ${nav.east.snapshot.bounds.eMin}â€¦${nav.east.snapshot.bounds.eMax}`);
-    check(`${label}: walking speed is presented in miles per hour`,
-      /^\d+(?:\.\d)? mph$/.test(nav.speedLabel ?? '') && !/m\/s/.test(nav.speedLabel ?? ''),
-      `speed label ${nav.speedLabel}`);
-    check(`${label}: overview marker follows position and bearing`,
-      nav.first !== nav.second && Math.abs(nav.moved.e - 180) < 0.1
-      && Math.abs(nav.moved.n - 90) < 0.1 && Math.abs(nav.moved.bearingDeg - 225) < 0.1,
-      `canvas ${nav.first} -> ${nav.second}; ${JSON.stringify(nav.moved)}`);
-
-    // (The street-layer reading that lived here moved above the stage split â€”
-    // T-0060 â€” because its checks span stages 3 and 4.)
-    check(`${label}: earth streets are populated and draped on the rendered ground`,
-      streetLayer.records >= 17 && streetLayer.vertices > 1000
-      && streetLayer.worstDrape < 1e-5 && streetLayer.wetVertices === 0,
-      `${streetLayer.records} streets, ${streetLayer.vertices} vertices, `
-      + `drape ${streetLayer.worstDrape}, wet ${streetLayer.wetVertices}`);
-    // R-BUG4. Every panel whose centreline is dry must reach the ribbon â€” the
-    // only panels allowed to go missing are those clipped below a walkable
-    // width, and they are counted rather than assumed to be few.
-    check(`${label}: no panel of road is deleted because its EDGE reached the water`,
-      streetLayer.emittedQuads === streetLayer.dryCentrelinePanels - streetLayer.slivers
-      && streetLayer.clippedPanels > 0,
-      `${streetLayer.emittedQuads} panels drawn of ${streetLayer.dryCentrelinePanels} `
-      + `with a dry centreline â€” ${streetLayer.clippedPanels} clipped at the waterline, `
-      + `${streetLayer.slivers} dropped as narrower than a metre`);
-    // T-0110. Vertex drape above says every vertex touches the ground; this
-    // says the ground stays UNDER the ribbon between them. The 0.35 bar is
-    // documented at the probe: measured worst after refinement is 0.21 m
-    // (two waterline nose tips), the failure class it guards is 0.9â€“1.5 m.
-    check(`${label}: the ground never rises through a road panel between its vertices`,
-      streetLayer.worstSink < 0.35 && streetLayer.refinedPanels > 0,
-      `worst interior sink ${streetLayer.worstSink.toFixed(3)} m, `
-      + `${streetLayer.refinedPanels} refined panels`);
-    check(`${label}: the worn track runs onto each bridge approach and meets the deck`,
-      streetLayer.approachGaps.length === 0,
-      streetLayer.approachGaps.length
-        ? `uncovered stations: ${streetLayer.approachGaps.join(', ')}`
-        : 'every approach station lands on drawn roadway');
-    // T-0184. Stations inside the sector on the OUTSIDE of every authored bend â€”
-    // the wedge of prairie a square joint opened, 23.47 m2 town-wide before the
-    // mitre. `squareJoints` is asserted at zero beside it because the module is
-    // allowed to give up on a hairpin it cannot mitre, and a town where every
-    // bend had quietly fallen through that guard would still have stations to
-    // pass if they were the only thing read here.
-    check(`${label}: no bend in the ribbon opens a wedge on the outside of its turn`,
-      streetLayer.jointGaps.length === 0 && streetLayer.jointStations > 100
-      && streetLayer.squareJoints === 0 && streetLayer.mitredJoints > 0,
-      streetLayer.jointGaps.length
-        ? `uncovered: ${streetLayer.jointGaps.slice(0, 6).join('; ')}`
-        : `${streetLayer.jointStations} stations across ${streetLayer.joints} joints â€” `
-          + `${streetLayer.mitredJoints} mitred, ${streetLayer.fannedJoints} cut into `
-          + `sub-mitres for ${streetLayer.jointFanTriangles} triangles, `
-          + `${streetLayer.squareJoints} left square`);
-    check(`${label}: no elevated flora sheet can masquerade as a second terrain layer`,
-      streetLayer.canopyPresent === false,
-      `flora-canopy present ${streetLayer.canopyPresent}`);
-
-    // R-BUG2. Draped is not seen: every assertion above passed while the roads
-    // were invisible. See `roadContrast()` for what this measures and why.
-    // R-BUG3 added the third station and the near band, and moved the gating
-    // test from "enough probes were SEEN" to "enough probes were PROJECTED" â€”
-    // under the old test a band nobody can see reports n=0 and gates itself
-    // out, which is indistinguishable from a band with no road in it.
-    // R-M1c finished that argument one level down: the band's SCORE divided by
-    // `seen` too, so an occluder raised it. It divides by `nBare` now.
-    // T-0173. The first two stations are part 7's; the third is part 8's, and
-    // the movement report each part prints covers the stations that part read.
-    await readRoadStations(page, label, ROAD_STATIONS.filter((st) => st.part === 7));
-
-    inStageWork = false;
-    } // end PART 7 (T-0060 stage 3a, cut by T-0121; renumbered by T-0346, halved by T-0173)
-    // PART 8 â€” the crossing station, the road-legibility aid and the batch merge
-    // the aid's reach stands on: the tail T-0173 cut out of part 7 when the three
-    // road-legibility stations alone came to 7 m 04 s of a 9 m 25 s part. The
-    // three assertions of R-A1 are taken STANDING AT `lake_market`, where the
-    // bands were just read, so the station and the aid could not be separated â€”
-    // they are both here, in that order, exactly as they ran before.
-    if (stageOn(8)) {
-    inStageWork = true;
-
-    // The same prologue part 7 carries, and for the same reason: a fresh boot is
-    // still standing at the gate screen, and every check below measures a
-    // `page.screenshot` frame that includes the DOM overlays. In a full run this
-    // is a no-op â€” part 6 entered the town long ago.
-    await enterTown();
-
-    await readRoadStations(page, label, ROAD_STATIONS.filter((st) => st.part === 8));
-
-    // --- R-A1, the road-legibility aid, and the three things it owes --------
-    //
-    // The aid is a viewing accommodation. Every band printed above measures the
-    // DEFAULT, and the whole reason this control was deferred for two days is
-    // that a preference which boosts road contrast can quietly become a way to
-    // launder a failing gate. So the aid owes three assertions and they are
-    // taken HERE, standing at `lake_market` where the bands were just read:
-    //
-    //   1. it is OFF with no stored preference â€” so every number above, and
-    //      every figure `critic_shots.mjs` and `light_probe.mjs` take, is the
-    //      recorded surface and not a visitor's dial;
-    //   2. raising it CHANGES the frame â€” because a control that reaches
-    //      nothing reports "no effect" for the same reason a broken thermometer
-    //      reports a steady temperature. R-BUG1's `--no-sun-shadow` cleared a
-    //      suspect it never touched; the instrument is proved before it is
-    //      quoted, not after;
-    //   3. dropping it back RESTORES the frame â€” which is what makes 1 and 2
-    //      compatible: the aid's existence changes no default.
-    const aidAtBoot = await page.evaluate(() => window.__chicago4d.roadAid);
-    check(`${label}: the road-legibility aid is off unless a visitor moves it`,
-      aidAtBoot === 0, `uRoadAid ${aidAtBoot} with no stored preference`);
-
-    await page.evaluate(() => window.__chicago4d.setAnimationHold(true));
-    const aidOff = await page.evaluate((g) => window.__chicago4d.capture(g), ROAD_AID_GRID);
-    const aidOff12 = await page.evaluate(() => window.__chicago4d.capture());
-    const aidSet = await page.evaluate(() => window.__chicago4d.setRoadAid(1));
-    // K24. The raised READING, which until now this suite never took: both of
-    // the assertions around this one expect 0, so a frozen readback satisfied
-    // them and only a value that is meant to MOVE can find that out. See
-    // main.js Â§ Live getters.
-    const aidLive = await page.evaluate(() => window.__chicago4d.roadAid);
-    const aidOn = await page.evaluate((g) => window.__chicago4d.capture(g), ROAD_AID_GRID);
-    const aidOn12 = await page.evaluate(() => window.__chicago4d.capture());
-    const dAid = signatureDistance(aidOff, aidOn);
-    const dAid12 = signatureDistance(aidOff12, aidOn12);
-    await page.evaluate(() => window.__chicago4d.setRoadAid(0));
-    const aidBack = await page.evaluate((g) => window.__chicago4d.capture(g), ROAD_AID_GRID);
-    const dAidBack = signatureDistance(aidOff, aidBack);
-    const aidRestored = await page.evaluate(() => window.__chicago4d.roadAid);
-    await page.evaluate(() => window.__chicago4d.setAnimationHold(false));
-
-    check(`${label}: raising the road-legibility aid reaches the render`,
-      aidSet === 1 && aidLive === 1
-      && dAid.worst >= ROAD_AID_MIN_WORST && dAid.mean >= ROAD_AID_MIN_MEAN,
-      `set to ${aidSet}, reads back ${aidLive}: cell delta mean ${dAid.mean?.toFixed(2)}, `
-      + `worst ${dAid.worst} (need worst>=${ROAD_AID_MIN_WORST}, `
-      + `mean>=${ROAD_AID_MIN_MEAN})`);
-    // With the clock held these are two captures of one unchanged scene, so an
-    // aid that left anything behind shows up as a residual the sway cannot
-    // explain. Same tolerance the confidence view is held to, for the same
-    // reason: it is readback noise, not weather.
-    check(`${label}: dropping the road-legibility aid restores the default frame`,
-      aidRestored === 0 && dAidBack.mean <= 0.1 && dAidBack.worst <= 3,
-      `uRoadAid ${aidRestored}, residual mean ${dAidBack.mean?.toFixed(2)}, `
-      + `worst-cell delta ${dAidBack.worst}`);
-    console.log(`        road aid: full-on delta mean ${dAid.mean?.toFixed(2)} / worst `
-      + `${dAid.worst} at ${ROAD_AID_GRID}Â², ${dAid12.mean?.toFixed(2)} / ${dAid12.worst} `
-      + `at 12Â²; restored residual mean ${dAidBack.mean?.toFixed(2)} / worst `
-      + `${dAidBack.worst}`);
-
-    // --- R-W5a2, the batch merge the reach below is standing on -------------
-    //
-    // Three assertions, and the shape is R-A1's: a count, the channel that count
-    // is bought with, and a proof the channel reaches the render. The first two
-    // on their own would pass identically on a town that had merged its batches
-    // by THROWING ROUGHNESS AWAY â€” one batch, one finish, every wall the same
-    // sheen â€” which is the failure that matters here and is not a crash.
-    const batchCensus = await page.evaluate(() => {
-      const bs = window.__chicago4d.buildings.batches;
-      const seen = new Set();
-      let min = Infinity, max = -Infinity;
-      for (const b of bs) {
-        const a = b.geometry.getAttribute('_roughness');
-        if (!a) continue;
-        for (let i = 0; i < a.array.length; i += 1) {
-          const v = a.array[i];
-          seen.add(v.toFixed(3));
-          if (v < min) min = v;
-          if (v > max) max = v;
-        }
-      }
-      return { batches: bs.length, values: seen.size, min, max };
-    });
-    check(`${label}: the untextured town is one batch`,
-      batchCensus.batches === STRUCTURE_BATCHES,
-      `${batchCensus.batches} structure batch(es), want ${STRUCTURE_BATCHES}`);
-    check(`${label}: the batch still carries the town's finishes`,
-      batchCensus.values >= ROUGHNESS_VALUES_MIN
-        && batchCensus.min <= 0.30 && batchCensus.max >= 0.95,
-      `${batchCensus.values} distinct roughness values in the merged batch, `
-      + `${batchCensus.min}â€“${batchCensus.max} (want >=${ROUGHNESS_VALUES_MIN} spanning 0.30â€“0.95)`);
-
-    await page.evaluate(() => window.__chicago4d.setAnimationHold(true));
-    const roughFull = await page.evaluate((g) => window.__chicago4d.capture(g), ROAD_AID_GRID);
-    await page.evaluate(() => {
-      const a = window.__chicago4d.buildings.batches[0].geometry.getAttribute('_roughness');
-      window.__chiRoughSaved = a.array.slice();
-      a.array.fill(0.02);
-      a.needsUpdate = true;
-    });
-    const roughFlat = await page.evaluate((g) => window.__chicago4d.capture(g), ROAD_AID_GRID);
-    const dRough = signatureDistance(roughFull, roughFlat);
-    await page.evaluate(() => {
-      const a = window.__chicago4d.buildings.batches[0].geometry.getAttribute('_roughness');
-      a.array.set(window.__chiRoughSaved);
-      a.needsUpdate = true;
-      delete window.__chiRoughSaved;
-    });
-    const roughBack = await page.evaluate((g) => window.__chicago4d.capture(g), ROAD_AID_GRID);
-    const dRoughBack = signatureDistance(roughFull, roughBack);
-    await page.evaluate(() => window.__chicago4d.setAnimationHold(false));
-
-    check(`${label}: the per-vertex roughness channel reaches the render`,
-      dRough.worst >= ROUGHNESS_MIN_WORST,
-      `driving every vertex to 0.02 moved the worst cell by ${dRough.worst}, `
-      + `mean ${dRough.mean?.toFixed(2)} (need worst>=${ROUGHNESS_MIN_WORST})`);
-    check(`${label}: restoring the roughness channel restores the frame`,
-      dRoughBack.mean <= 0.1 && dRoughBack.worst <= 3,
-      `residual mean ${dRoughBack.mean?.toFixed(2)}, worst-cell delta ${dRoughBack.worst}`);
-    console.log(`        batches: ${batchCensus.batches} Â· roughness `
-      + `${batchCensus.values} values ${batchCensus.min}â€“${batchCensus.max} Â· flattening moves `
-      + `worst cell ${dRough.worst}, mean ${dRough.mean?.toFixed(2)}; restored worst `
-      + `${dRoughBack.worst}`);
-
-    inStageWork = false;
-    } // end PART 8 (the tail of T-0060 stage 3a, cut out of part 7 by T-0173)
-    // PART 9 â€” the facade tones, the shadow reach, the shadow box and the K24
-    // brightness aid: the camera-heavy tail of T-0060's stage 3, and every
-    // check in it measures a page.screenshot frame. So it enters the town on
-    // its own account, and it holds no reference to the shared street reading â€”
-    // which is why that reading is now gated on parts 7 and 9 alone.
-    if (stageOn(9)) {
-    inStageWork = true;
-    await enterTown();
-
-    // --- T-0002, the facade tones ------------------------------------------
-    //
-    // The owner's report was that the buildings "read as freshly painted and
-    // identical", and the second half was exact: a wall took its colour from
-    // its ARCHETYPE, so two neighbours of the same archetype were the same
-    // brown to the bit â€” 10 of 321 adjacent pairs, measured.
-    //
-    // Four assertions, and they are shaped by R-A1's finding and K24's. The
-    // census and the invariant say the town wears many faces; the INERTNESS
-    // assertion says the two records a source speaks for were not touched, to
-    // the bit; and the liveness pair says the difference reaches a pixel and
-    // comes back. The first two would pass identically on a tone that never
-    // left its array, which is exactly the failure R-A1's dead readback was.
-    const facades = await page.evaluate(() => {
-      const api = window.__chicago4d;
-      const tones = api.buildings.facadeTones();
-      return Object.entries(tones).map(([id, t]) => {
-        const p = api.buildings.positionOf(id);
-        return {
-          id, drawn: t.drawn, eligible: t.eligible, confidence: t.confidence,
-          x: p ? p.x : null, z: p ? p.z : null,
-        };
-      });
-    });
-    const facadeLum = (c) => 0.2126 * c[0] + 0.7152 * c[1] + 0.0722 * c[2];
-    const facadeDrawn = facades.filter((r) => r.drawn);
-    const facadeTones = new Set(
-      facadeDrawn.map((r) => r.drawn.map((v) => v.toFixed(6)).join(','))).size;
-    const facadePlaced = facadeDrawn.filter((r) => Number.isFinite(r.x));
-    let facadeTwins = 0;
-    let facadePairs = 0;
-    for (const a of facadePlaced) {
-      let best = null;
-      let bd = Infinity;
-      for (const b of facadePlaced) {
-        if (b === a) continue;
-        const d = Math.hypot(a.x - b.x, a.z - b.z);
-        if (d < bd) { bd = d; best = b; }
-      }
-      if (best && bd <= FACADE_PAIR_M) {
-        facadePairs += 1;
-        if (Math.abs(facadeLum(a.drawn) - facadeLum(best.drawn)) < 1e-6) facadeTwins += 1;
-      }
-    }
-    const attested = facades.filter((r) => r.confidence === 'attested');
-
-    await page.evaluate(() => window.__chicago4d.setAnimationHold(true));
-    const toneOn = await page.evaluate((g) => window.__chicago4d.capture(g), ROAD_AID_GRID);
-    const toneOff = await page.evaluate(() => window.__chicago4d.setFacadeWeathering(0));
-    const flatFacades = await page.evaluate(() => {
-      const t = window.__chicago4d.buildings.facadeTones();
-      return Object.fromEntries(Object.entries(t).map(([id, v]) => [id, v.drawn]));
-    });
-    const toneOffShot = await page.evaluate((g) => window.__chicago4d.capture(g), ROAD_AID_GRID);
-    const toneBack = await page.evaluate(() => window.__chicago4d.setFacadeWeathering(1));
-    const backFacades = await page.evaluate(() => {
-      const t = window.__chicago4d.buildings.facadeTones();
-      return Object.fromEntries(Object.entries(t).map(([id, v]) => [id, v.drawn]));
-    });
-    const toneBackShot = await page.evaluate((g) => window.__chicago4d.capture(g), ROAD_AID_GRID);
-    await page.evaluate(() => window.__chicago4d.setAnimationHold(false));
-    const dTone = signatureDistance(toneOn, toneOffShot);
-    const dToneBack = signatureDistance(toneOn, toneBackShot);
-
-    const facadeMoved = facadeDrawn.filter((r) => {
-      const flat = flatFacades[r.id];
-      return flat && r.drawn.some((v, i) => Math.abs(v - flat[i]) > 1e-6);
-    }).length;
-    const attestedMoved = attested.filter((r) => {
-      const flat = flatFacades[r.id];
-      return r.drawn && flat && flat.some((v, i) => v !== r.drawn[i]);
-    });
-    const restoreError = Math.max(0, ...facadeDrawn.map((r) => {
-      const back = backFacades[r.id];
-      return back ? Math.max(...r.drawn.map((v, i) => Math.abs(v - back[i]))) : 0;
-    }));
-
-    check(`${label}: the town wears more than one face`,
-      facadeTones >= FACADE_TONES_MIN,
-      `${facadeTones} distinct drawn facade tones across ${facadeDrawn.length} `
-      + `structures (want >=${FACADE_TONES_MIN})`);
-    check(`${label}: no two neighbouring buildings are drawn the same colour`,
-      facadePairs > 0 && facadeTwins === 0,
-      `${facadeTwins} of ${facadePairs} nearest-neighbour pairs within `
-      + `${FACADE_PAIR_M} m are drawn identically (want 0)`);
-    // The honesty half of this parcel, and the one assertion here that must
-    // never be relaxed: `facades.js` hands an attested paint the identity tone,
-    // so a record a source speaks for is drawn at the colour its archetype
-    // baked whether the tone is on or off. Bit-exact, not close.
-    check(`${label}: a documented paint is never modulated`,
-      attested.length >= 1 && attestedMoved.length === 0,
-      `${attested.length} record(s) with attested paint, ${attestedMoved.length} `
-      + `changed when the tone was wound off (want 0): `
-      + `${attested.map((r) => r.id).join(', ') || 'none found'}`);
-    check(`${label}: the facade tones reach the render`,
-      toneOff === 0 && facadeMoved >= FACADE_MOVED_MIN
-        && dTone.worst >= FACADE_MIN_WORST && dTone.mean >= FACADE_MIN_MEAN,
-      `winding the tone off changed ${facadeMoved} structure(s) (want >=${FACADE_MOVED_MIN}) `
-      + `and moved the worst cell by ${dTone.worst}, mean ${dTone.mean?.toFixed(2)} `
-      + `(need worst>=${FACADE_MIN_WORST}, mean>=${FACADE_MIN_MEAN})`);
-    check(`${label}: restoring the facade tones restores the frame`,
-      toneBack === 1 && restoreError <= 1e-6
-        && dToneBack.mean <= 0.1 && dToneBack.worst <= 3,
-      `weathering ${toneBack}, worst per-structure restore error `
-      + `${restoreError.toExponential(2)}, residual mean ${dToneBack.mean?.toFixed(2)}, `
-      + `worst-cell delta ${dToneBack.worst}`);
-    console.log(`        facades: ${facadeTones} tones Â· ${facadeTwins}/${facadePairs} `
-      + `neighbour pairs identical Â· winding off moves worst cell ${dTone.worst}, `
-      + `mean ${dTone.mean?.toFixed(2)}; restored worst ${dToneBack.worst}`);
-
-    // --- R-W3b(a), the shadow reach, and the liveness assertion it owes -----
-    //
-    // The rig is one orthographic box that follows the visitor, and its reach
-    // decides how much of the town can cast a shadow AT ALL: at the old Â±60 m,
-    // measured at eight anchors on the published mirror, 5 to 8 of 331
-    // structures and 0 to 41 of 730 stems were inside it. Everything else met
-    // the ground with nothing under it.
-    //
-    // Two assertions, and the second is the one R-A1 says the first cannot do
-    // without: the rig CARRIES the documented reach at the documented texel
-    // size, and winding the reach back to the old Â±60 m CHANGES the frame. A
-    // reach wired to nothing passes the first on its own.
-    //
-    // T-0115: the rig the level asks for, not one rig. The reach and the map
-    // both step at `light`, and `shadowRigFor` above holds the pair â€” so the
-    // texel this asserts is the SAME number at either level, which is the
-    // claim. `restored` below winds back to THIS level's reach rather than to
-    // 240, or the phone (which boots at `light`) would be asked to restore a
-    // frame it never drew.
-    const rigLevel = await page.evaluate(() => window.__chicago4d.detail);
-    const rig = await page.evaluate(() => window.__chicago4d.world.shadowRig);
-    const want = shadowRigFor(rigLevel, touch);
-    check(`${label}: the sun's shadow reaches ${want.reachM} m at the documented texel `
-      + `(scene detail '${rigLevel}')`,
-      rig.reachM === want.reachM && rig.mapSize === want.mapSize,
-      `Â±${rig.reachM} m over a ${rig.mapSize}Â² map = ${(rig.texelM * 100).toFixed(1)} cm `
-      + `per texel (want Â±${want.reachM} m over ${want.mapSize}Â² = `
-      + `${(want.texelM * 100).toFixed(1)} cm)`);
-
-    await page.evaluate(() => window.__chicago4d.setAnimationHold(true));
-    const reachFull = await page.evaluate((g) => window.__chicago4d.capture(g), ROAD_AID_GRID);
-    const woundBack = await page.evaluate(() => window.__chicago4d.world.setShadowReach(60));
-    const reachOld = await page.evaluate((g) => window.__chicago4d.capture(g), ROAD_AID_GRID);
-    const dReach = signatureDistance(reachFull, reachOld);
-    const restored = await page.evaluate(
-      (m) => window.__chicago4d.world.setShadowReach(m), want.reachM);
-    const reachBack = await page.evaluate((g) => window.__chicago4d.capture(g), ROAD_AID_GRID);
-    const dReachBack = signatureDistance(reachFull, reachBack);
-    await page.evaluate(() => window.__chicago4d.setAnimationHold(false));
-
-    check(`${label}: the shadow reach reaches the render`,
-      woundBack === 60 && dReach.worst >= SHADOW_REACH_MIN_WORST,
-      `winding Â±${want.reachM} m back to Â±60 m moved the worst cell by `
-      + `${dReach.worst}, mean ${dReach.mean?.toFixed(2)} `
-      + `(need worst>=${SHADOW_REACH_MIN_WORST})`);
-    check(`${label}: restoring the shadow reach restores the frame`,
-      restored === want.reachM && dReachBack.mean <= 0.1 && dReachBack.worst <= 3,
-      `Â±${restored} m, residual mean ${dReachBack.mean?.toFixed(2)}, `
-      + `worst-cell delta ${dReachBack.worst}`);
-    console.log(`        shadow reach: Â±${rig.reachM} m at `
-      + `${(rig.texelM * 100).toFixed(1)} cm/texel Â· winding back to Â±60 m moves `
-      + `worst cell ${dReach.worst}; restored residual worst ${dReachBack.worst}`);
-
-    // --- R-BUG6, the shadow box moves in whole texels -----------------------
-    //
-    // The box follows the visitor. A shadow map is a raster fixed to that box,
-    // so re-centring it on their exact position slid the sample lattice by a
-    // fraction of a texel every frame and re-quantised every shadow edge in the
-    // scene â€” the crawl along an eave line, and 14â€“16 % of the whole-frame
-    // flicker `tools/measure_river_edge.mjs` catches under a 2 mm nudge.
-    //
-    // The invariant is exact, so it is asserted exactly rather than through a
-    // pixel signature: two positions a MILLIMETRE apart must put the shadow box
-    // in the same place to the bit. The equality is computed here, off
-    // `light.target.position`, which is the input three itself builds the shadow
-    // camera from â€” not off a reading the module makes about itself (K24).
-    //
-    // And it is asserted in BOTH directions, which is R-A1's lesson: "the box
-    // did not move" passes identically on a rig that snaps and on a rig whose
-    // follow() was never called, so the same millimetre with the snap OFF has to
-    // move it. The whole-texel half is the third: walk a long way and the box
-    // must land on the lattice, which is what says the quantisation is
-    // world-anchored rather than a copy of the walker.
-    const snapProbe = await page.evaluate((texel) => {
-      const api = window.__chicago4d;
-      const d = api.world.direction;
-      // `follow` is what the render loop calls every frame with the visitor's
-      // world position, so it is asked directly: no teleport and no capture, and
-      // the next drawn frame re-centres the box on the real walker anyway.
-      const centreAt = (x, z) => {
-        api.world.follow({ x, y: 0, z });
-        const t = api.world.light.target.position;
-        return { x: t.x, y: t.y, z: t.z };
-      };
-      /**
-       * THE DISTANCE THAT MATTERS IS ACROSS THE MAP, NOT ALONG THE SUN.
-       *
-       * The box is snapped on the two axes of the shadow map and deliberately not
-       * on the third: the centre keeps the walker's own component along the sun's
-       * direction, so it still slides by a tenth of a millimetre per millimetre
-       * walked (measured). That slide cannot re-quantise anything â€” an
-       * orthographic camera moved along its own view axis rasterises every world
-       * point to the identical texel, and the depth it writes and the depth it
-       * compares against shift together. So the perpendicular component is the
-       * claim, and asserting the raw distance instead would have failed a correct
-       * rig: it did, first time, at 0.107 mm.
-       */
-      const acrossMap = (p, q) => {
-        const v = { x: p.x - q.x, y: p.y - q.y, z: p.z - q.z };
-        const along = v.x * d.x + v.y * d.y + v.z * d.z;
-        return Math.hypot(v.x - along * d.x, v.y - along * d.y, v.z - along * d.z);
-      };
-      // A millimetre: 1/117 of a desktop texel, and three orders of magnitude
-      // under anything the walker's own stride resolves.
-      const a = centreAt(107, 103);
-      const snappedStep = acrossMap(a, centreAt(107.001, 103));
-      // The lattice PITCH, measured from outside and without the light's basis.
-      // Walk a metre in millimetres: each step can cross at most one lattice
-      // line of each axis, so every move the box makes across its map is one
-      // texel â€” or, if both axes cross on the same millimetre, a texel diagonal.
-      // Nothing else is possible on a lattice of this pitch, so the set of jump
-      // lengths IS the claim, and zero jumps would mean a box that never moves.
-      const jumps = [];
-      let prev = a;
-      for (let mm = 1; mm <= 1000; mm++) {
-        const c = centreAt(107 + mm / 1000, 103);
-        const j = acrossMap(prev, c);
-        if (j > 1e-9) jumps.push(j);
-        prev = c;
-      }
-      const wasOn = api.world.shadowRig.snapped;
-      api.world.setShadowSnap(false);
-      const loose = centreAt(107, 103);
-      const looseStep = acrossMap(loose, centreAt(107.001, 103));
-      api.world.setShadowSnap(wasOn);
-      const onLattice = jumps.every((j) => Math.abs(j - texel) < 1e-6
-        || Math.abs(j - texel * Math.SQRT2) < 1e-6);
-      return {
-        snappedStep,
-        looseStep,
-        jumps: jumps.length,
-        worstJumpTexels: jumps.length ? Math.max(...jumps.map((j) => j / texel)) : 0,
-        onLattice,
-        snapped: api.world.shadowRig.snapped,
-      };
-    }, rig.texelM);
-    check(`${label}: the shadow box holds still under a sub-texel step`,
-      snapProbe.snapped === true && snapProbe.snappedStep < 1e-9,
-      `a 1 mm walk moved the box ${(snapProbe.snappedStep * 1e6).toFixed(3)} Âµm across its `
-      + `map (texel ${(rig.texelM * 1000).toFixed(1)} mm); snapped=${snapProbe.snapped}`);
-    check(`${label}: the snap reaches the box â€” without it the same step moves it`,
-      snapProbe.looseStep > 0.0009,
-      `with the snap off a 1 mm walk moves the box `
-      + `${(snapProbe.looseStep * 1000).toFixed(3)} mm across its map (want >0.9)`);
-    check(`${label}: the box moves in texels of its own map, and only in those`,
-      snapProbe.jumps > 0 && snapProbe.onLattice,
-      `a 1 m walk moved the box ${snapProbe.jumps} time(s), worst jump `
-      + `${snapProbe.worstJumpTexels.toFixed(4)} texels of `
-      + `${(rig.texelM * 100).toFixed(1)} cm (want every jump 1 or âˆš2)`);
-    console.log(`        shadow snap: 1 mm moves the box `
-      + `${(snapProbe.snappedStep * 1e6).toFixed(2)} Âµm snapped, `
-      + `${(snapProbe.looseStep * 1000).toFixed(3)} mm loose; a 1 m walk moves it `
-      + `${snapProbe.jumps} time(s), worst ${snapProbe.worstJumpTexels.toFixed(3)} texels`);
-    // --- K24, the brightness aid, and the same three things it owes ---------
-    //
-    // Owner-requested, and it carries a fourth assertion the road aid does not
-    // need: the grade itself. The road aid moves a uniform on the street
-    // materials, so nothing else in the suite can be reached through it; this
-    // one moves `toneMappingExposure`, which lights the ground, the water and
-    // every documented wall colour at once. That is the whole reason K24 was
-    // written as an accommodation rather than a second grade, and the way to
-    // hold it there is to assert the calibrated number a gate is standing at,
-    // not merely the slider's own bookkeeping. A control that can be used to
-    // launder a failing gate has become a different thing.
-    const brightAtBoot = await page.evaluate(() => window.__chicago4d.brightness);
-    const exposureAtBoot = await page.evaluate(() => window.__chicago4d.exposure);
-    check(`${label}: the brightness aid is off unless a visitor moves it`,
-      brightAtBoot === 0 && Math.abs(exposureAtBoot - BASE_EXPOSURE) < 1e-6,
-      `brightness ${brightAtBoot} stops, exposure ${exposureAtBoot} `
-      + `(calibrated ${BASE_EXPOSURE}) with no stored preference`);
-
-    await page.evaluate(() => window.__chicago4d.setAnimationHold(true));
-    const brightOff = await page.evaluate((g) => window.__chicago4d.capture(g), BRIGHT_AID_GRID);
-    const brightSet = await page.evaluate(() => window.__chicago4d.setBrightness(1));
-    const brightOn = await page.evaluate((g) => window.__chicago4d.capture(g), BRIGHT_AID_GRID);
-    const exposureOn = await page.evaluate(() => window.__chicago4d.exposure);
-    const dBright = signatureDistance(brightOff, brightOn);
-    // Past the ceiling on purpose: the clamp is what keeps "one stop" a bound
-    // rather than a suggestion, and an unclamped slider is a way to reach an
-    // exposure no gate has ever read.
-    const brightClamped = await page.evaluate(() => window.__chicago4d.setBrightness(9));
-    await page.evaluate(() => window.__chicago4d.setBrightness(0));
-    const brightBack = await page.evaluate((g) => window.__chicago4d.capture(g), BRIGHT_AID_GRID);
-    const dBrightBack = signatureDistance(brightOff, brightBack);
-    const brightRestored = await page.evaluate(() => window.__chicago4d.brightness);
-    const exposureRestored = await page.evaluate(() => window.__chicago4d.exposure);
-    await page.evaluate(() => window.__chicago4d.setAnimationHold(false));
-
-    check(`${label}: raising the brightness aid reaches the render`,
-      brightSet === 1 && brightClamped === 1
-      && Math.abs(exposureOn - BASE_EXPOSURE * 2) < 1e-6
-      && dBright.worst >= BRIGHT_AID_MIN_WORST && dBright.mean >= BRIGHT_AID_MIN_MEAN,
-      `set to ${brightSet} stop (9 clamps to ${brightClamped}), exposure ${exposureOn}: `
-      + `cell delta mean ${dBright.mean?.toFixed(2)}, worst ${dBright.worst} `
-      + `(need worst>=${BRIGHT_AID_MIN_WORST}, mean>=${BRIGHT_AID_MIN_MEAN})`);
-    check(`${label}: dropping the brightness aid restores the calibrated frame`,
-      brightRestored === 0 && Math.abs(exposureRestored - BASE_EXPOSURE) < 1e-6
-      && dBrightBack.mean <= 0.1 && dBrightBack.worst <= 3,
-      `brightness ${brightRestored} stops, exposure ${exposureRestored}, `
-      + `residual mean ${dBrightBack.mean?.toFixed(2)}, worst-cell delta `
-      + `${dBrightBack.worst}`);
-    console.log(`        brightness aid: +1 stop delta mean ${dBright.mean?.toFixed(2)} / worst `
-      + `${dBright.worst} at ${BRIGHT_AID_GRID}Â²; restored residual mean `
-      + `${dBrightBack.mean?.toFixed(2)} / worst ${dBrightBack.worst}`);
-
-    inStageWork = false;
-    } // end PART 9 (T-0060 stage 3b, cut by T-0121; renumbered by T-0346 and T-0173)
-    // PART 10 â€” the flora census through the flower heads: the drawn population,
-    // the horizon timber, the sward dealt in every community, the marsh's
-    // substrate, T-0035's pop-in and R-BUG7's head-attachment census. The head
-    // of T-0060's stage 4a; T-0170 cut the ragged boundary, the ground cover,
-    // the street readouts and the Settings units off its tail into part 11,
-    // because at 1280x800 the whole of it ran past the ten-minute foreground
-    // ceiling and was killed there with two sections still to run.
-    //
-    // Every binding it shares with earlier parts (`streetLayer`) is read above
-    // the split; the teleport below re-establishes the camera pose it expects on
-    // its own.
-    if (stageOn(10)) {
-    inStageWork = true;
-
-    // Same fresh-boot accommodation as stage 3: this stage drives the panel
-    // chrome (`#btn-help` first), and while the gate screen stands the chrome
-    // has no layout at all â€” the click waits ninety seconds for a zero-size
-    // button and dies. In a full run every branch below is a no-op.
-    await enterTown();
-
-    // Put the visitor back where the street checks left them. `from_above` is
-    // an AERIAL anchor, and the horizon-timber check further down reads the
-    // band the tree solver builds around the camera â€” from 175 m up there is no
-    // band to read, and it reported nought of nought covered bearings. A
-    // measurement that moves the camera owes the next one its pose back.
-    await page.evaluate(() => {
-      const a = window.__chicago4d;
-      a.setFly(false);
-      a.walker.teleport({ local_e: 107, local_n: -103, yaw_deg: 180 });
-      for (let i = 0; i < 3; i++) a.step();
-    });
-    // The count is an anti-vacuity guard â€” a run that plants nothing would
-    // otherwise report a perfect worst error â€” and the tolerance below it is
-    // the actual assertion. The guard moved from 100 to 50 on 2026-08-13, and
-    // the reason is a dataset property rather than a weaker gate: this station
-    // stands in the settled town, whose own record says 45 % of its ground is
-    // bare and 45 % carries matrix, and that number now reaches the renderer.
-    // The mobile cone here holds 67 rooted plants where it held about 150 while
-    // every community was planted at prairie density. The 1e-5 m tolerance is
-    // untouched.
-    check(`${label}: detailed flora roots share the terrain and water surfaces`,
-      streetLayer.rootedPlants > 50 && streetLayer.worstPlantRoot < 1e-5,
-      `${streetLayer.rootedPlants} roots, worst error ${streetLayer.worstPlantRoot}`);
-    check(`${label}: emergent flora stays within eight metres of a riverbank`,
-      streetLayer.deepWaterPlants === 0,
-      `${streetLayer.waterPlants} water plants, ${streetLayer.deepWaterPlants} in deep water`);
-    check(`${label}: woody vegetation never occupies the river mask`,
-      streetLayer.treeStations > 10 && streetLayer.wetTreeStations === 0,
-      `${streetLayer.treeStations} trees, ${streetLayer.wetTreeStations} wet stations`);
-    // The owner photographed a row of gallery trees standing mid-channel while
-    // the mask check above was green: the mask's SHORE_Y sits 100 mm below the
-    // water plane, so a stem could root under the water and still pass. This
-    // asks the question the picture asks â€” is any stem's foot below the water
-    // surface â€” and it must never be relaxed into the mask test again.
-    check(`${label}: no tree stands below the waterline`,
-      streetLayer.treeStations > 10 && streetLayer.drownedTreeStations === 0,
-      `${streetLayer.drownedTreeStations} of ${streetLayer.treeStations} stations below `
-      + `z=${streetLayer.waterY}; lowest station ${streetLayer.lowestTreeStation?.toFixed?.(3)} m, `
-      + `${streetLayer.treeRejectedBelowWaterline} candidates rejected at placement`);
-
-    /**
-     * ROADMAP R-BUG5b â€” IS THE WOOD ON THE SCREEN THE WOOD THE STATION LIST
-     * DESCRIBES? The question three green gates never asked.
-     *
-     * Every woody check this project had â€” the two above, and
-     * `tools/measure_far_timber.py` â€” walks `stations`, the list the planter
-     * writes at the moment it decides to plant. `stations` records the point
-     * that was TESTED. Nothing anywhere read the geometry back and asked where
-     * the tree was DRAWN, so a fault that separates the two was invisible to
-     * all of them at once, and one was: the planter handed its ENU north
-     * straight to `addTree`, which takes a three world z, and `enuToWorld` is
-     * `(e, y, -n)` â€” so the whole near-field wood was drawn mirrored across the
-     * datum's east-west line. 391 stations, 0 wet; 64 of the same 391 wet at
-     * their mirror; 10,734 vertices of timber standing over open water, the
-     * worst 48 m from the nearest dry ground. That is the owner's line of
-     * crowns across the channel, and it survived #196 because #196 fixed the
-     * horizon band, which is a different body of timber.
-     *
-     * So this reads the merged buffers back, converts each vertex to ENU with
-     * the project's own `worldToEnu` convention, and asks two things of it:
-     *
-     *   1. every vertex stands within a crown's reach of SOME station, and
-     *   2. no vertex stands over the water mask further than a bank willow can
-     *      lean out over it.
-     *
-     * (1) is the structural half and is what could never have passed through
-     * this bug: under the mirror the nearest station to a vertex is twice its
-     * own northing away. (2) is the picture half, in the terms the owner
-     * reported it. Neither may be relaxed into a test of the placement â€” that
-     * is the test that was already green.
-     */
-    const drawnWood = await page.evaluate(`(${TIMBER_CENSUS.toString()})()`);
-    // T-0243 â€” WHY THIS IS A MODULE AND NOT THE TRAVERSAL THAT USED TO BE HERE.
-    //
-    // The traversal matched `/^timber__/`, the four merged quadrant meshes
-    // `timber__q0â€¦q3`. T-0223 replaced them with a single `THREE.BatchedMesh`
-    // named `timber`, and from that merge the regex matched NOTHING. The first
-    // check below went red on its own `meshes > 0` liveness clause, on an
-    // unmodified `dev`, so every branch cut from dev inherited a failure it had
-    // to argue was not its own. The second one asserts `offshore === 0`, and an
-    // empty traversal has zero offshore vertices â€” so it stayed GREEN, for a
-    // fortnight, having asserted nothing whatever about the timber. The green
-    // one was the worse half.
-    //
-    // Pointing the regex at `timber` would not have been the repair. A batch
-    // holds every chunk in one pair of buffers with a per-instance transform the
-    // batch owns, so the position attribute read through `matrixWorld` is not a
-    // chunk's world position: `drawn_timber_census.mjs` walks each instance's
-    // own geometry range under its own matrix, the two structures
-    // `getBoundingBoxAt()` and `getMatrixAt()` read. It still reads a plain
-    // `timber__*` mesh if one appears, so unwinding the batch cannot empty this
-    // gate the way landing it did.
-    //
-    // Both bars come back FROM the census (`strayBarM`, `offshoreBarM`) rather
-    // than being written again here. Neither moved: 24 m is the widest crown
-    // plus its lean and 12 m is a bank willow leaning over the channel, both
-    // argued in T-0110's box, and T-0243 repaired the traversal under them.
-    //
-    // The liveness clauses are now on BOTH checks, and that is the whole lesson:
-    // `chunks`, `verts` and `unreadable` are what make each count an assertion
-    // about timber that was walked rather than an assertion about an empty
-    // traversal. `tools/measure_drawn_timber.mjs --refute` displaces two chunks
-    // of the live scene â€” one mirrored across the datum, one shoved into open
-    // water â€” and requires this census to report each; a gate of this shape is
-    // believed because it can be made to fail, not because it is green.
-    check(`${label}: every tree drawn stands at its own station`,
-      drawnWood.chunks > 0 && drawnWood.verts > 1000 && drawnWood.stations > 10
-      && drawnWood.unreadable === 0 && drawnWood.stray === 0,
-      `${drawnWood.stray} of ${drawnWood.verts} vertices further than `
-      + `${drawnWood.strayBarM} m from any of ${drawnWood.stations} stations across `
-      + `${drawnWood.chunks} chunk(s) in ${drawnWood.batches} batch(es) and `
-      + `${drawnWood.plainMeshes} plain mesh(es); worst measurable ${drawnWood.worstStray} m`
-      + (drawnWood.worstStrayAt
-        ? ` at E ${drawnWood.worstStrayAt.e} N ${drawnWood.worstStrayAt.n}` : '')
-      + `, ${drawnWood.outOfHash} beyond the station hash altogether`
-      + `; ${drawnWood.unreadable} chunk(s) the census could not read back`);
-    // The same liveness clauses guard this one, because THIS is the check that
-    // spent a fortnight passing on nothing at all.
-    check(`${label}: no timber is drawn out in the channel`,
-      drawnWood.chunks > 0 && drawnWood.verts > 1000 && drawnWood.unreadable === 0
-      && drawnWood.offshore === 0,
-      `${drawnWood.offshore} vertices over water more than ${drawnWood.offshoreBarM} m from `
-      + `dry ground (${drawnWood.wet} over water at all, of ${drawnWood.verts} walked in `
-      + `${drawnWood.chunks} chunk(s)); worst ${drawnWood.worstOffshore} m`
-      + (drawnWood.worstOffshoreAt
-        ? ` at E ${drawnWood.worstOffshoreAt.e} N ${drawnWood.worstOffshoreAt.n}` : ''));
-
-    /**
-     * ROADMAP K50 â€” the R-BUG5b question, asked of the two layers it has not
-     * been asked of.
-     *
-     * R-BUG5b was invisible to three green gates because every one of them
-     * asked where the wood was DECIDED and none read back where it was DRAWN.
-     * Four layers in this renderer decide in ENU and draw in three's world
-     * space, and the conversion between them is one sign: `enuToWorld` is
-     * `(e, y, -n)`. `flora.js` was measured clean by R-BUG5b itself; the
-     * ground is answered twice over â€” `the drawn ground matches the
-     * heightfield the town anchors to` above reads every field sample off the
-     * drawn surface, and `tools/measure_terrain_horizontal.mjs` holds its two
-     * horizontal axes. That leaves `buildings.js` and `streets.js`, and
-     * neither has ever had its geometry read back.
-     *
-     * What each layer DECIDED is committed and independent of the renderer:
-     * a structure's `placement.local_e/local_n` in its sidecar, and a street's
-     * `path_local_enu_m`. So both halves below compare the drawn vertices
-     * against the DATA, never against another number the renderer computed.
-     *
-     * The buildings half reads the batch's own position buffer through the
-     * instance matrix the renderer will hand the GPU â€” the same two structures
-     * `BatchedMesh.getBoundingBoxAt()` and `getMatrixAt()` read, walked inside
-     * the census so the gate needs no THREE in the page. A structure's anchor
-     * is its FRONTAGE and the body grows from it (K30(b): 331 of 333 footprints
-     * grow from the minimum corner), so the invariant is not "the centre is the
-     * anchor" but the weaker, sign-sensitive one: **the anchor lies inside the
-     * body's own plan footprint**, to a metre. Under a mirrored northing a
-     * building 200 m north of the datum is drawn 400 m from its anchor, which
-     * no footprint in this town spans.
-     *
-     * TWO THINGS THIS GATE MEASURED ABOUT ITSELF BEFORE IT MEASURED THE TOWN,
-     * and both are in `drawn_placement_census.mjs` where the code is:
-     *
-     *   1. **a per-INSTANCE box is not a building.** A structure joins one
-     *      batch per material it uses, so the first reading compared 1,310
-     *      "bodies" for a town of 331 structures and reported 279 strays â€” one
-     *      body's walls judged without its roof. `instanceBounds()` warns about
-     *      exactly this in its own comment. The census unions per structure id.
-     *   2. **the mirror test does not discriminate on a street grid.** Asking
-     *      whether a road vertex is nearer to a street at its mirrored northing
-     *      answered "yes" for 3,975 of 19,372 vertices on a build where every
-     *      vertex is inside its own track, because a reflected point on a grid
-     *      lands on another east-west street. It is reported and gates nothing;
-     *      what catches a mirrored ribbon is the half-width test, because a
-     *      reflected road runs where no centreline is recorded.
-     */
-    const drawnTown = await page.evaluate(`(${CENSUS.toString()})()`);
-    check(`${label}: every building is drawn around the anchor its record gives it`,
-      drawnTown.buildings.compared > 200 && drawnTown.buildings.unrecorded === 0
-      && drawnTown.buildings.outside === 0 && drawnTown.buildings.mirrorCloser === 0,
-      `${drawnTown.buildings.outside} of ${drawnTown.buildings.compared} structures whose own `
-      + `anchor falls outside their drawn footprint â€” unioned from `
-      + `${drawnTown.buildings.instances} instances in ${drawnTown.buildings.batches} batches, `
-      + `${drawnTown.buildings.verts} vertices read back; worst `
-      + `${drawnTown.buildings.worst.toFixed(2)} m`
-      + (drawnTown.buildings.worstId ? ` (${drawnTown.buildings.worstId}, span `
-        + `${drawnTown.buildings.worstSpan} m)` : '')
-      + `; ${drawnTown.buildings.mirrorCloser} nearer to the MIRROR of their anchor`
-      + (drawnTown.buildings.worstMirrorId ? ` (${drawnTown.buildings.worstMirrorId})` : '')
-      + `; ${drawnTown.buildings.unrecorded} instances with no readable placement`);
-    check(`${label}: every panel of road is drawn on a street the data records`,
-      drawnTown.streets.verts > 1000 && drawnTown.streets.records >= 17
-      && drawnTown.streets.stray === 0,
-      `${drawnTown.streets.stray} of ${drawnTown.streets.verts} drawn vertices further than `
-      + `half a track from any of ${drawnTown.streets.records} centrelines across `
-      + `${drawnTown.streets.meshes} meshes; worst ${drawnTown.streets.worst.toFixed(2)} m`
-      + (drawnTown.streets.worstAt
-        ? ` at E ${drawnTown.streets.worstAt.e} N ${drawnTown.streets.worstAt.n}` : '')
-      + `, ${drawnTown.streets.beyondBounds} off the grid altogether`
-      + `; ${drawnTown.streets.mirrorAlsoOnRoad} whose MIRRORED northing is also on a road `
-      + '(reported, not gated â€” see the census header)');
-
-    // ROADMAP R-BUG5, and it is the same picture a third time. The two checks
-    // above walk `stations`, which the near-field planter writes and which
-    // therefore describes a 632 m square; the owner's line of trees was four
-    // hundred metres out, in the FAR_TIMBER band, where neither check has ever
-    // looked. Both halves are asserted: the solver refused water on this build
-    // (a number that would be zero if the clip were removed OR if the run never
-    // stood far enough back to reach the belt), and the browser's own census
-    // agrees with what `tools/far_timber_baseline.json` banks â€” the mask the
-    // page loaded and the mask in `data/` being the same mask is exactly the
-    // R-BUG3c-class assumption that has cost this project two parcels.
-    const farTimberWet = (streetLayer.farTimberWater ?? [])
-      .filter((b) => b.wet > 0);
-    check(`${label}: the horizon band refuses to draw timber over water`,
-      streetLayer.horizonWetSkipped > 0
-      && farTimberWet.length === FAR_TIMBER_BANKED.length
-      && farTimberWet.every((b) => b.wet === FAR_TIMBER_BANKED_BY_ID[b.id]),
-      `${streetLayer.horizonWetSkipped} samples clipped at the mask; census `
-      + (farTimberWet.map((b) => `${b.id} ${b.wet}/${b.samples} wet, `
-        + `${b.worstDepthM.toFixed(3)} m deep`).join(' Â· ') || 'nothing in water')
-      + ` against banked ${JSON.stringify(FAR_TIMBER_BANKED_BY_ID)}`);
-
-    // The horizon timber, in the two ways it was failing to read as timber.
-    //
-    // (1) COLOUR. The band opts out of the scene fog and out of tone mapping,
-    // so it has to be authored where the fogged ground lands â€” and it was aimed
-    // 16 red and 12 green past it, because `trees.js` ran the haze colour
-    // through ACES to derive a value the renderer never asks for. This compares
-    // the band's own hazed end against `scene.fog.color` rather than against a
-    // hex written down in either file, so retargeting the atmosphere cannot
-    // silently reopen the break.
-    //
-    // (2) CONTINUITY. The crown/gap modulation cuts a bearing to as little as
-    // 2 % of its height to open sky through a stand. At four hundred metres
-    // that is texture; on the dossier's three- to six-mile bodies, whose whole
-    // silhouette is one or two pixels, it is a deletion â€” only 31 % of horizon
-    // columns carried any timber at all. The solver now floors the result at a
-    // pixel and this asks IT what the modulation did, in its own bins, rather
-    // than re-deriving the noise or hunting the band in a screenshot.
-    const horizon = await page.evaluate(() => {
-      const a = window.__chicago4d;
-      const c = a.trees.horizonContinuity();
-      return {
-        ...c,
-        bandHaze: a.trees.hazeTargetHex(),
-        fogHex: a.scene3d.fog?.color?.getHex('srgb') ?? null,
-        bodies: a.trees.stats.horizonBodies,
-        // The live field, so the check below compares the band against the
-        // renderer's own viewport rather than against a second copy of main.js's
-        // Hor+ arithmetic living in the gate.
-        liveHeightCss: a.renderer.domElement.clientHeight,
-        liveFovDeg: a.camera.fov,
-      };
-    });
-    const expectedPxPerRad = horizon.liveHeightCss / (horizon.liveFovDeg * Math.PI / 180);
-    check(`${label}: the horizon band and the fogged ground converge on one colour`,
-      horizon.fogHex !== null && horizon.bandHaze === horizon.fogHex,
-      `band haze #${horizon.bandHaze?.toString(16)} against fog #${horizon.fogHex?.toString(16)}`);
-    // Anti-vacuity twice over: bodies must be on the horizon at all, and the
-    // resolvable count must be a real share of the covered bearings â€” a solver
-    // that silently stopped putting timber up would otherwise report a perfect
-    // fraction of nothing.
-    //
-    // The bar is EVERY resolvable bearing, not a percentage. Measured with the
-    // floor removed at the spawn station it fails at both viewports â€” 251 of
-    // 280 mobile and 267 of 281 desktop, worst silhouette 0.18 px and 0.31 px â€”
-    // so a 90 % bar would have passed the desktop half of the defect. A gate
-    // whose bar is set below the failure it exists to catch is not a gate.
-    check(`${label}: the crown modulation never deletes a resolvable silhouette`,
-      horizon.bodies >= 4 && horizon.covered > 100 && horizon.resolvable > 100
-      && horizon.drawn === horizon.resolvable
-      && horizon.worstResolvablePx >= horizon.minSilhouettePx - 1e-3,
-      `${horizon.drawn}/${horizon.resolvable} drawn of ${horizon.covered} covered bearings `
-      + `(${(horizon.fraction * 100).toFixed(1)} %), worst `
-      + `${horizon.worstResolvablePx?.toFixed?.(2)} px against a floor of `
-      + `${horizon.minSilhouettePx} px, at ${horizon.pxPerRad?.toFixed?.(0)} px/rad`);
-    // The floor is measured in pixels, so it has to be solved against the
-    // viewport the visitor has. A band solved against a hard-coded desktop
-    // field would over-cut a phone by 1.75x and this is what says so.
-    check(`${label}: the band is solved against this viewport, not a default one`,
-      Math.abs(horizon.pxPerRad - expectedPxPerRad) < expectedPxPerRad * 0.02,
-      `${horizon.pxPerRad?.toFixed?.(1)} px/rad against ${expectedPxPerRad.toFixed(1)} live `
-      + `(${horizon.liveHeightCss} css px over ${horizon.liveFovDeg?.toFixed?.(1)}Â°)`);
-
-    // --- the drawn population (ROADMAP K48) ---------------------------------
-
-    // THE DRAWN POPULATION â€” ROADMAP K48, and it is the census K47 found
-    // missing. `tools/measure_planting_reach.py` proves a record can be
-    // CHOSEN; nothing proved one is DRAWN, and the difference was a whole
-    // species: the American sycamore is recorded, archetyped, weighted, banded
-    // and gated, and stood NOWHERE in the scene â€” 0 of 163 stems. A census of
-    // what was planted only exists inside a running renderer, so this is a
-    // smoke assertion rather than a static scan.
-    //
-    // The bar is the draw's own two guarantees rather than a percentage, so a
-    // renderer that went back to an independent draw fails it on both counts:
-    // an independent draw overshoots freely (the gallery elm's 25/116 over 115
-    // stems has a standard deviation of 4.4 stems) and it loses the tail (the
-    // sycamore's 1.98 came out 0). Anti-vacuity: a census with no planted list,
-    // or a list with no species in it, reads as a failure and not as a pass.
-    const draws = await page.evaluate(() => (
-      window.__chicago4d.trees.stats.draws ?? []
-    ).map((d) => ({
-      community: d.community,
-      list: d.list,
-      stems: d.stems,
-      species: d.species.map((s) => ({ id: s.id, expected: s.expected, drawn: s.drawn })),
-    })));
-    const planted = draws.filter((d) => d.stems > 0);
-    const absent = [];
-    const over = [];
-    let worstOver = 0;
-    let worstUnder = 0;
-    for (const d of planted) {
-      for (const s of d.species) {
-        const where = `${d.community}.${d.list}.${s.id}`;
-        worstOver = Math.max(worstOver, s.drawn - s.expected);
-        worstUnder = Math.max(worstUnder, s.expected - s.drawn);
-        if (s.drawn === 0 && s.expected >= 1) absent.push(`${where} owed ${s.expected.toFixed(2)}`);
-        if (s.drawn - s.expected >= 1) over.push(`${where} ${s.drawn} for ${s.expected.toFixed(2)}`);
-      }
-    }
-    check(`${label}: every species the stand owes a stem to stands in it`,
-      planted.length >= 3 && planted.every((d) => d.species.length > 0)
-      && absent.length === 0 && over.length === 0,
-      `${planted.length} planted list(s), ${planted.reduce((t, d) => t + d.stems, 0)} stems, `
-      + `${planted.reduce((t, d) => t + d.species.length, 0)} weighted species; worst `
-      + `overshoot ${worstOver.toFixed(2)} stem(s), worst shortfall `
-      + `${worstUnder.toFixed(2)}`
-      + `${absent.length ? `; DRAWN NOWHERE: ${absent.join(', ')}` : ''}`
-      + `${over.length ? `; OVER BY A STEM: ${over.join(', ')}` : ''}`);
-    // The species this parcel exists for, named rather than left to the
-    // aggregate above: a gate that only reports a count would go green on the
-    // day the sycamore came back and say nothing about it.
-    const gallery = planted.find((d) => d.community === 'gallery' && d.list === 'mix');
-    const sycamore = gallery?.species.find((s) => s.id === 'platanus_occidentalis');
-    check(`${label}: the American sycamore stands on the riverbank`,
-      !!sycamore && sycamore.drawn >= 1,
-      sycamore
-        ? `${sycamore.drawn} stem(s) for ${sycamore.expected.toFixed(2)} owed, of `
-          + `${gallery.stems} in the gallery`
-        : 'no gallery mix census at all');
-
-    // --- the sward, asked what the wood was asked (ROADMAP K49(a)) ---------
-
-    // ROADMAP K49(a) â€” THE SAME QUESTION, ASKED OF THE SWARD.
-    //
-    // K48 built the census above for the woody stems, which are 36 of this
-    // project's 154 plant records. The other 118 are drawn by `flora.js` off
-    // the same shape of weighted draw and had never been counted at all. This
-    // counts them, and it reports what the count found rather than gating it,
-    // for the reason R-M1 splits a measurement from its bar: the repair needs a
-    // per-species footprint the dataset does not carry for 25 records, so a bar
-    // set today would either fail over unresearched data or be met with an
-    // invented number. K49(b) is the fix and closes `unconvertible` first.
-    //
-    // What IS gated is that the instrument works: every slot dealt is a slot
-    // attributed to a species, and it is counting a populated sward rather than
-    // an empty one.
-    const sward = await page.evaluate(() => {
-      const s = window.__chicago4d.flora.stats;
-      return {
-        abundance: s.abundance,
-        draws: (s.draws ?? []).map((d) => ({
-          community: d.community, list: d.list, drawn: d.drawn,
-          species: d.species.map((x) => ({
-            id: x.id, unit: x.unit, share: x.share, stems: x.stems,
-            expected: x.expected, drawn: x.drawn,
-          })),
-        })),
-      };
-    });
-    const dealt = sward.draws.filter((d) => d.drawn > 0);
-    const unattributed = sward.draws.filter(
-      (d) => d.species.reduce((t, x) => t + x.drawn, 0) !== d.drawn);
-    check(`${label}: every slot the sward deals is counted against a species`,
-      dealt.length >= 1 && unattributed.length === 0
-      && dealt.every((d) => d.species.length >= 1),
-      `${dealt.length} populated list(s) of ${sward.draws.length}, `
-      + `${dealt.reduce((t, d) => t + d.drawn, 0)} slots dealt`
-      + `${unattributed.length ? `; UNATTRIBUTED in ${unattributed.map((d) => (
-        `${d.community}.${d.list}`)).join(', ')}` : ''}`);
-    // Reported, not gated â€” the two numbers K49(b) has to move.
-    const ab = sward.abundance ?? { lists: 0, mixed: [], unconvertible: [] };
-    const swardAbsent = [];
-    for (const d of dealt) {
-      for (const x of d.species) {
-        if (x.drawn === 0 && x.expected >= 1) {
-          swardAbsent.push(`${d.community}.${d.list}.${x.id} owed ${x.expected.toFixed(2)}`);
-        }
-      }
-    }
-    console.log(`  note  ${label}: sward abundance â€” ${ab.mixed.length} of ${ab.lists} lists `
-      + `mix an area with a count${ab.mixed.length ? ` (${ab.mixed.map((m) => (
-        `${m.zone}.${m.list} ${(m.countedShare * 100).toFixed(1)}% of slots dealt off counts`
-      )).join('; ')})` : ''}`);
-    console.log(`  note  ${label}: ${ab.unconvertible.length} record(s) give cover with no `
-      + `width_m, so no count can be derived without inventing a footprint`
-      + `${ab.unconvertible.length ? `: ${ab.unconvertible.map((u) => (
-        `${u.zone}.${u.list}.${u.id}`)).join(', ')}` : ''}`);
-    // THE TAIL FIGURE HERE IS ABOUT THIS FRAME, AND THAT IS A WARNING LABEL
-    // RATHER THAN A CAVEAT. The sward is re-dealt per rebuild, so this answers
-    // for the community the gate is standing in â€” the settled town, 68 slots,
-    // one of ten â€” and from there it reads "0 absent". Run in every community
-    // by `tools/measure_sward_draw.mjs` the same census returns SIX species
-    // owed a whole plant and drawn nowhere, over 6,780 slots (ROADMAP K49(a)).
-    // Quote that tool for a claim about the dataset and this line for a claim
-    // about the gate's own frame. The two figures above are dataset-wide and do
-    // not move with the camera.
-    console.log(`  note  ${label}: sward tail â€” ${swardAbsent.length} species owed a whole slot `
-      + `and drawn nowhere${swardAbsent.length ? `: ${swardAbsent.join(', ')}` : ''}, over `
-      + `${dealt.reduce((t, d) => t + d.drawn, 0)} slots in ${dealt.map((d) => (
-        `${d.community}.${d.list}=${d.drawn}`)).join(' ')}`);
-
-    // --- and the same sward census in every community (ROADMAP K49(f)) -----
-
-    // ROADMAP K49(f) â€” AND NOW THE SAME CENSUS IN EVERY COMMUNITY, AS A GATE.
-    //
-    // The paragraph above is the reason this exists: the tail figure it prints
-    // is honest and it is blind, because one station is one community of ten,
-    // and the ten do not share a species list. K49(d) handed the matrix lists a
-    // fixed grid of `u`, which put wild rice out of the marsh and the prickly
-    // pear off the sand prairie in the same commit â€” and this gate, standing in
-    // the settled town, read "0 absent" through all of it.
-    //
-    // It costs a page.evaluate and no frames: `flora.update` is handed a
-    // synthetic camera at a plantable point inside each community in turn, which
-    // is what `tools/measure_sward_draw.mjs` does and the same entry point the
-    // render loop uses. The camera is put back afterwards, so nothing downstream
-    // reads a sward dealt at the last station visited.
-    //
-    // The bar is ABSOLUTE and it is on the SCENE, not on a station: a species
-    // counts as absent only where no station drew it at all while some station's
-    // list owed it a whole slot. That is what "drawn nowhere" means, and the
-    // distinction is not pedantry â€” a list is read from more than one community
-    // (the wet prairie's is read at four stations), the ring is a few blocks
-    // across, and a species owed 1.2 slots in one ring can legitimately take
-    // both of them in the next one. The fault this gate exists for is not a
-    // station missing a plant; it is a plant that is nowhere. `expected` is the
-    // list's own recorded share of the slots dealt, so this asserts the deal
-    // against the record rather than against a baseline.
-    const everywhere = await page.evaluate(async () => {
-      const a = window.__chicago4d;
-      const wanted = a.flora.substrates().map((z) => z.id);
-      const spots = {};
-      for (let e = -900; e <= 1200 && Object.keys(spots).length < wanted.length; e += 6) {
-        for (let n = -700; n <= 700; n += 6) {
-          const z = a.flora.zoneAt(e, n);
-          if (z && !spots[z] && a.flora.plantableAt(e, n)) spots[z] = [e, n];
-        }
-      }
-      const started = a.detail;
-      const levels = [];
-      for (const level of a.detailOrder) {
-        await a.setDetail(level);
-        const rows = [];
-        for (const [zone, [e, n]] of Object.entries(spots)) {
-          const camera = {
-            getWorldPosition: (v) => { v.set(e, 1.7, -n); return v; },
-            getWorldDirection: (v) => { v.set(0, 0, -1); return v; },
-          };
-          a.flora.update(0.016, camera);
-          a.flora.update(0.016, camera);
-          for (const d of a.flora.stats.draws) {
-            if (d.drawn <= 0) continue;
-            rows.push({
-              at: zone,
-              community: d.community,
-              list: d.list,
-              drawn: d.drawn,
-              species: d.species.map((s) => ({
-                id: s.id, drawn: s.drawn, expected: s.expected,
-              })),
-            });
-          }
-        }
-        levels.push({ level, rows });
-      }
-      // Put the visitor's own detail level and the walker's own camera back
-      // before anything else reads either.
-      await a.setDetail(started);
-      if (a.camera) {
-        a.flora.update(0.016, a.camera);
-        a.flora.update(0.016, a.camera);
-      }
-      return { spots: Object.keys(spots), levels };
-    });
-    // Summed over every station, per (community, list, species) â€” the scene's
-    // answer, at one detail level.
-    const swardCensus = (rows) => {
-      const tally = new Map();
-      for (const r of rows) {
-        for (const s of r.species) {
-          const key = `${r.community}.${r.list}.${s.id}`;
-          const t = tally.get(key) ?? { drawn: 0, owed: 0, at: [] };
-          t.drawn += s.drawn;
-          t.owed = Math.max(t.owed, s.expected);
-          if (s.expected >= 1) t.at.push(r.at);
-          tally.set(key, t);
-        }
-      }
-      return {
-        pairs: tally.size,
-        lists: new Set(rows.map((r) => `${r.community}.${r.list}`)).size,
-        slots: rows.reduce((t, r) => t + r.drawn, 0),
-        nowhere: [...tally.entries()].filter(([, t]) => t.drawn === 0 && t.owed >= 1)
-          .map(([k, t]) => `${k} owed ${t.owed.toFixed(2)} at ${t.at.join('/')}`),
-      };
-    };
-    const censuses = everywhere.levels.map((l) => ({ level: l.level, ...swardCensus(l.rows) }));
-    const richest = censuses[0] ?? { pairs: 0, lists: 0, slots: 0, nowhere: ['no census taken'] };
-    check(`${label}: no sward species its own list owes a plant to is drawn nowhere, `
-      + `in ANY community`,
-      everywhere.spots.length >= 2 && richest.pairs >= 2 && richest.nowhere.length === 0,
-      `${everywhere.spots.length} communities stood in, ${richest.lists} populated list(s), `
-      + `${richest.pairs} (list, species) pairs, ${richest.slots} slots dealt at detail `
-      + `'${richest.level}'`
-      + `${richest.nowhere.length ? `; DRAWN NOWHERE: ${richest.nowhere.join(', ')}` : ''}`);
-    // Reported, not gated: the same census at the levels a visitor can turn the
-    // scene down to. THE RESIDUAL IS REAL AND IS NAMED RATHER THAN GATED AWAY â€”
-    // at 'light' the wet prairie's prairie dock, owed 1.09 of the 2,670 slots
-    // that level deals, can take none. It is the FORB layer, which K49(f) did
-    // not touch, and one plant either side of an expectation of 1.09 is a
-    // sample rather than an exclusion. Quote the gated line for a claim about
-    // the deal, and this one for a claim about what a phone on 'light' shows.
-    console.log(`  note  ${label}: sward census by detail â€” ${censuses.map((c) => (
-      `${c.level} ${c.slots} slots, ${c.nowhere.length} drawn nowhere`
-      + `${c.nowhere.length ? ` (${c.nowhere.join('; ')})` : ''}`)).join('  Â·  ')}`);
-
-    // A pad FLOATS. Both water lilies in the marsh record are `role: emergent`
-    // exactly like the cattails, so the placer â€” which read the role â€” stood them
-    // on the dry marsh edge: 0.01-0.10 m mats rooted in soil, about 7 % of the
-    // tufts on that bank. The record's own `appearance` said "floating pads in
-    // open water" the whole time, which is prose, and prose is not a gate. The
-    // published `substrate` field is, and this asks the placer itself rather than
-    // re-deriving its rules: sweep the modelled box and ask where each species
-    // may stand. The cattail half is the anti-vacuity guard â€” a placer that
-    // refused everything on that bank would otherwise read as a pass.
-    const aquatics = await page.evaluate(() => {
-      const a = window.__chicago4d;
-      const FLOATING = ['nuphar_advena', 'nymphaea_odorata'];
-      const EMERGENT = 'typha_latifolia';
-      const seen = { floatingDry: 0, floatingWet: 0, emergentDry: 0, emergentWet: 0 };
-      const worst = [];
-      for (let e = -320; e <= 660; e += 8) {
-        for (let n = -240; n <= 240; n += 8) {
-          if (a.flora.zoneAt(e, n) !== 'z04_marsh') continue;
-          const wet = a.terrain.isWater(e, n);
-          for (const id of FLOATING) {
-            if (a.flora.stationOf(e, n, id) === null) continue;
-            seen[wet ? 'floatingWet' : 'floatingDry']++;
-            if (!wet && worst.length < 4) worst.push(`${id} at ${e},${n}`);
-          }
-          if (a.flora.stationOf(e, n, EMERGENT) !== null) {
-            seen[wet ? 'emergentWet' : 'emergentDry']++;
-          }
-        }
-      }
-      const marsh = a.flora.substrates().find((z) => z.id === 'z04_marsh') ?? { dry: [], wet: [] };
-      return { ...seen, worst, marshDry: marsh.dry, marshWet: marsh.wet };
-    });
-    check(`${label}: no floating-leaved aquatic is planted on dry ground`,
-      aquatics.floatingDry === 0 && aquatics.floatingWet > 20,
-      `${aquatics.floatingDry} dry station(s) [${aquatics.worst.join('; ')}], `
-      + `${aquatics.floatingWet} over water`);
-    check(`${label}: the marsh's emergents still stand on both sides of its waterline`,
-      aquatics.emergentDry > 20 && aquatics.emergentWet > 20,
-      `cattail: ${aquatics.emergentDry} dry station(s), ${aquatics.emergentWet} over water`);
-    check(`${label}: the marsh community is split by the substrate its records state`,
-      !aquatics.marshDry.includes('nymphaea_odorata')
-      && aquatics.marshWet.includes('nymphaea_odorata')
-      && aquatics.marshDry.includes('typha_latifolia')
-      && aquatics.marshWet.includes('typha_latifolia'),
-      `dry [${aquatics.marshDry.join(',')}] wet [${aquatics.marshWet.join(',')}]`);
-
-    // --- a plant arrives faint, and at its own height (T-0035) --------------
-
-    // The owner: "grass and flowers appear out of the ground as you walk towards
-    // them". The lattice is rebuilt every `step` metres walked and the fade ramp
-    // is evaluated per frame, so the ramp has to be inset from the lattice by at
-    // least the step â€” otherwise a plant that was outside the lattice at one
-    // rebuild is already well inside the ramp by the next and arrives at a real
-    // fraction of its height in a single frame. Two checks: the geometry of the
-    // rings, and then an actual walk, which is the one that would have caught it.
-    const popIn = await page.evaluate(() => {
-      const a = window.__chicago4d;
-      const SETS = ['flora-near', 'flora-mid', 'flora-forb', 'flora-rosette', 'flora-shrub'];
-      const rings = a.flora.rings;
-      const inset = Object.entries(rings.layers).map(([id, r]) => ({
-        id,
-        // The outer boundary carries a per-slot fringe, so the lattice has to
-        // clear the FURTHEST a slot's own ring can stand, not the nominal one.
-        // Measuring against the nominal radius would report three metres of
-        // margin on the mid ring where a fringed slot has none.
-        outer: r.lattice.outer - (r.fade[0] + (r.fringe ?? 0) + rings.step),
-        // Only the mid ring HAS an inner ramp; where there is none there is
-        // nothing for a plant to grow across on its way past the walker.
-        inner: r.fade[3] > 0 ? r.fade[2] - (r.lattice.inner + rings.step) : 0,
-      }));
-
-      a.walker.teleport({ local_e: 107, local_n: -103, yaw_deg: 180 });
-      a.step();
-      const snap = () => {
-        const p = a.camera.position;
-        const f = p.clone();
-        a.camera.getWorldDirection(f);
-        const fl = Math.hypot(f.x, f.z) || 1;
-        const seen = new Map();
-        for (const name of SETS) {
-          const mesh = a.flora.group.getObjectByName(name);
-          const m = mesh?.instanceMatrix?.array;
-          if (!m) continue;
-          // Each instance's OWN ring, off the attribute the shader reads. The
-          // layer's nominal ring answers for no particular plant once the
-          // boundary is fringed, and it answers zero â€” a free pass â€” for
-          // exactly the plants the fringe pushed furthest out.
-          //
-          // ALL FOUR NUMBERS, not just the outer radius: since T-0093 the mid
-          // ring's INNER boundary is spread per slot too, so a reading that
-          // carried only the outer one would ask `fadeAt` about the layer's
-          // nominal inner edge and be told every mid card past 4.5 m is drawn â€”
-          // including the ones whose own handover has not reached them yet.
-          // `flora.fadeAt` takes the whole ring for this reason.
-          const ring = mesh.geometry.getAttribute('aChiRing')?.array;
-          for (let i = 0; i < mesh.count; i++) {
-            const o = i * 16;
-            const e = m[o + 12];
-            const n = -m[o + 14];
-            seen.set(`${name}|${e.toFixed(3)}|${n.toFixed(3)}`,
-              { name, e, n, outer: ring
-                ? [ring[i * 4], ring[i * 4 + 1], ring[i * 4 + 2], ring[i * 4 + 3]]
-                : undefined });
-          }
-        }
-        return { seen, e: p.x, n: -p.z, fe: f.x / fl, fn: -f.z / fl };
-      };
-
-      // Short paces, so the lattice is rebuilt several times inside the walk and
-      // never by more than one pace beyond the step it is triggered on.
-      const PACE = 0.15;
-      const AHEAD = Math.cos(30 * Math.PI / 180);
-      let prev = snap();
-      let arrivals = 0;
-      let worst = 0;
-      let worstAt = null;
-      // T-0035. The owner's second report on this ring: the flowers "do not fade
-      // in as you walk towards, they grow up". The first report was answered by
-      // making the ramp smoother; this one is answered by taking it off the
-      // geometry, so the reading that settles it is the DRAWN HEIGHT of a plant
-      // over the same walk. Two numbers, and neither is asked of ARRIVALS only:
-      // the inset means a plant arrives at coverage zero, so an arrival-only
-      // reading of its height would be asked of a plant that is not yet drawn
-      // and would pass on anything. So: the shortest any plant is drawn at in
-      // any frame of the walk, over every plant that is drawn at all, and the
-      // most any plant already on screen gains between two frames a pace apart.
-      let shortest = 1;
-      let shortestAt = null;
-      let drawnPlants = 0;
-      let grew = 0;
-      let grewAt = null;
-      for (let k = 0; k < 20; k++) {
-        a.walker.teleport({ local_e: prev.e + prev.fe * PACE, local_n: prev.n + prev.fn * PACE });
-        a.step();
-        const now = snap();
-        for (const [key, plant] of now.seen) {
-          {
-            // Every drawn plant, arriving or not: how much of its own height is
-            // it drawn at, this frame, at this distance?
-            const d0 = Math.hypot(plant.e - now.e, plant.n - now.n) || 1e-6;
-            if (a.flora.fadeAt(plant.name, d0, plant.outer) > 0) {
-              const h0 = a.flora.heightAt(plant.name, d0, plant.outer);
-              // `<=`, not `<`: the reading has to record that it READ something.
-              // With `<` against a starting 1 the shortest plant of a healthy
-              // field never sets it, and "no plant was ever drawn" would be
-              // indistinguishable from "none was ever short".
-              if (h0 <= shortest) { shortest = h0; shortestAt = { set: plant.name, d: d0, h: h0 }; }
-              drawnPlants++;
-            }
-          }
-          const was = prev.seen.get(key);
-          if (was) {
-            // Already on screen a pace ago, and still here: it may not have got
-            // any taller in between.
-            const dWas = Math.hypot(plant.e - prev.e, plant.n - prev.n) || 1e-6;
-            const dNow = Math.hypot(plant.e - now.e, plant.n - now.n) || 1e-6;
-            const hWas = a.flora.heightAt(plant.name, dWas, plant.outer);
-            const hNow = a.flora.heightAt(plant.name, dNow, plant.outer);
-            if (hWas > 0 && hNow - hWas > grew) {
-              grew = hNow - hWas;
-              grewAt = { set: plant.name, from: hWas, to: hNow, d: dNow };
-            }
-            continue;
-          }
-          const d = Math.hypot(plant.e - now.e, plant.n - now.n) || 1e-6;
-          // Only what is in front of the walker. A plant may also arrive across
-          // the view-cone edge, which is 62 degrees wide against a frame that is
-          // never more than 40 â€” off-screen, and not what the owner saw.
-          if (((plant.e - now.e) * now.fe + (plant.n - now.n) * now.fn) / d < AHEAD) continue;
-          const fade = a.flora.fadeAt(plant.name, d, plant.outer);
-          arrivals++;
-          if (fade > worst) { worst = fade; worstAt = { set: plant.name, d, fade }; }
-        }
-        prev = now;
-      }
-      return { inset, arrivals, worst, worstAt, shortest, shortestAt, grew, grewAt,
-        drawnPlants, pace: PACE, step: rings.step };
-    });
-    check(`${label}: every flora fade ring is inset inside its own lattice`,
-      popIn.inset.length === 3
-      && popIn.inset.every((r) => r.outer >= -1e-9 && r.inner >= -1e-9),
-      popIn.inset.map((r) => `${r.id} outer +${r.outer.toFixed(2)} inner +${r.inner.toFixed(2)}`)
-        .join(', ') + ` against a ${popIn.step} m rebuild step`);
-    // The bound is one pace, not zero: the rebuild fires on the frame that
-    // carries the walker past the step, so it can overshoot by however far that
-    // one frame moved. 0.15 m of a 2.2 m near band is 7%.
-    check(`${label}: a plant in front of the walker never arrives already visible`,
-      popIn.arrivals >= 20 && popIn.worst <= 0.10,
-      `${popIn.arrivals} arrivals over ${(20 * popIn.pace).toFixed(2)} m; worst coverage `
-      + `${(popIn.worst * 100).toFixed(1)}% of full`
-      + (popIn.worstAt ? ` (${popIn.worstAt.set} at ${popIn.worstAt.d.toFixed(2)} m)` : ''));
-
-    // T-0035, and it is the owner's report read back off the drawing rather
-    // than off the shader source: "the flowers still seem like they grow out of
-    // the ground as you approach them, they do not fade in as you walk towards,
-    // they grow up." A plant may arrive at any coverage the ring gives it â€” the
-    // check above is the one that holds that faint â€” but it may not arrive
-    // SHORT, and it may not gain height between two frames. Both halves matter:
-    // the first would pass on a ramp that starts at 99%, the second would pass
-    // on a scene where nothing ever arrives at all.
-    check(`${label}: a plant is drawn at its own height, faint, never short`,
-      popIn.arrivals >= 20 && popIn.drawnPlants > 500 && popIn.shortest === 1 && popIn.grew === 0,
-      `${popIn.arrivals} arrivals, ${popIn.drawnPlants} plant-frames drawn; shortest `
-      + `${(popIn.shortest * 100).toFixed(1)}% of its own height`
-      + (popIn.shortestAt ? ` (${popIn.shortestAt.set} at ${popIn.shortestAt.d.toFixed(2)} m)` : '')
-      + `; worst gain over one ${popIn.pace} m pace ${(popIn.grew * 100).toFixed(1)}%`
-      + (popIn.grewAt
-        ? ` (${popIn.grewAt.set} ${(popIn.grewAt.from * 100).toFixed(0)} -> `
-          + `${(popIn.grewAt.to * 100).toFixed(0)}% at ${popIn.grewAt.d.toFixed(2)} m)`
-        : ''));
-
-    // --- the flower heads, read back off the drawing (R-BUG7) ---------------
-
-    // R-BUG7 â€” flower heads hanging in the sky with nothing under them. The
-    // owner photographed two of them over South Water Street on stalks that
-    // stop in mid-air, and **the same symptom had been repaired four times in
-    // `flora.js` by eye and asserted zero times here.** The two checks that
-    // sound like this one are not it: `floating` is about BUILDINGS hovering
-    // over their ground, and `floatingDry/floatingWet` asks where a water-lily
-    // RECORD is placed â€” and R-BUG5b proved that a placement test cannot see a
-    // drawing fault (391 stations dry, 10,734 vertices of timber in the river).
-    //
-    // So this reads the DRAWING back, off the instance buffers that went to the
-    // GPU: for every head that is actually drawn, the foot of its own stalk has
-    // to land inside a rooted plant's drawn body and under that plant's drawn
-    // top. The foot is taken from the archetype's own lowest vertex rather than
-    // from a constant here, so the assertion survives a change of anchoring.
-    // `tools/measure_head_support.mjs` is the same reading with the numbers.
-    const headSupport = await page.evaluate(() => {
-      const a = window.__chicago4d;
-      const clamp01 = (x) => (x < 0 ? 0 : x > 1 ? 1 : x);
-      const fadeOf = (r, i, d) => clamp01((r[i] - d) / Math.max(r[i + 1], 1e-4))
-        * (r[i + 3] > 0 ? clamp01((d - r[i + 2]) / r[i + 3]) : 1);
-      /** Sets a head is ever hung from. A MID clump card is a billboard standing
-       *  for a patch of matrix and carries no head, so counting one as support
-       *  is a free pass â€” it is what made a first cut of this read zero.
-       *
-       *  `flora-far` is not that card, and since T-0209 it is not excluded:
-       *  the far band deals the WHOLE community, and a flowering forb's far
-       *  card carries its flower â€” `rebuildFar` calls `maybeHead` on it. The
-       *  comment this replaces predates that and had gone false. Measured on
-       *  the published mirror 2026-09-01: 2693 of 2693 orphans stood on a far
-       *  card at 0.000 m whose top reached them. `flora-mid` stays out, and
-       *  that is measured too â€” its scatter deals graminoids and never calls
-       *  `maybeHead`, and no orphan stood on one. */
-      const ROOTED = new Set(['flora-near', 'flora-forb', 'flora-rosette', 'flora-shrub',
-        'flora-far']);
-      /** A card's `spread` is its billboard HALF-WIDTH â€” 1.5 m at the near far
+YªçŠx-®éÜj×¢ëiºÚ+Š§j[h‘éÜ¢éíÛmxÛÔèµ©hºÚn¶X§zÍKÊŠ‚ˆ
+ˆÛ[ÚÙH\Ý›ÜˆH™YKšœÈØ[Ý›ÝYÚ‚ˆ
+‚ˆ
+ˆ×ÑVPÕUP“OKÛÜÜËXœ›ÝÜÙ\œËØÚ›ÛZ][KLLNMØÚ›ÛYK[[^ØÚ›ÛYHˆ
+ˆ›ÙHÛÛËÜÛ[ÚÙWÜ™[™\™\‹›ZœÂˆ
+‚ˆ
+ˆš]™\ÈH™X[YÙH[ˆH™X[œ›ÝÜÙ\ˆ]ÎLÎS‘LŽ[™˜Z[ÈÛ‚ˆ
+ˆ[žHYÙH\œ›Ü‹ˆ[Øš[H\ÈH™[X\ÙHØ]K›ÝHšXÙK]ËZ]™K‚ˆ
+‚ˆ
+ˆÓSÒÑWÕ’QUÔÔ•[[Øš[X
+Üˆ\ÚÝÜ
+H[œÈÛ™HÙˆHÛÈÚ[H]\˜][™Ë‚ˆ
+ˆ]\È›ÝHØ]H[™H[ˆØ^\ÈÛÈÛˆ]Èš\œÝ[™K‚ˆ
+‚ˆ
+ˆÓSÒÑWÔÕQÑOLX8 )ˆLØ[œÈÛ™H\ÙˆXXÚšY]ÜÜ	ÜÈ›ÙH
+LŒ™KXÝ]ˆ
+ˆžHLLŒKLMËLÍ‹LMÌÈ[™LMÌ
+K[™ÓSÒÑWÔÕQÑOLKL˜[œÈBˆ
+ˆÛÛYÝ[Ý\È[‹‚ˆ
+ˆHÝ]ÈÚ]]ÙXÝ[Ûˆ›Ý[™\šY\ÈYX\Ý\™Y›Üˆ™\›ÈÜ›ÜÜÚ[™Èš[™[™ÜËˆ]ˆ
+ˆ^\ÝÈ™XØ]\ÙHHÝ]Ø\™[‰ÜÈÚ[™ÛH›Ü™YÜ›Ý[™ÛÛ[X[™\ÈØ\Y][‚ˆ
+ˆZ[]\È[™žHŒ‹LLN™Z]\ˆšY]ÜÜ	ÜÈ[\ÜÈš][œÚYH]ÛÈBˆ
+ˆ[ˆØ\ÈÚ[YZY\ÝZ]H[™HYÙKY\œ›Üˆ\ÜÙ\[Ûˆ8 %HTÕ[™HÙˆXXÚˆ
+ˆšY]ÜÜ8 %Ø\È™]™\ˆZÙ[‹ˆLŒÝ]›Ý\ŽÈžHŒ‹LLŒÈHÝÛˆYÜ›ÝÛ‚ˆ
+ˆ[[™YHÙˆH›Ý\ˆTÒÕÔ]X\\œÈ˜[ˆ\ÝHÙZ[[™ÈÛËÛÈXXÚˆ
+ˆ]X\\ˆØ\È[™YÈLMÈYX\Ý\™YH\ÚÝÜ›Ùš[H]ZYÚ]Ø^HÝ]ˆ
+ˆY™]™\ˆ™Y[ˆÚ^™Yœ›ÛH[™[™Y\H[›™\ÝX\™Ú[ˆÛˆ]‚ˆ
+ˆLÍˆÝ]T•[ˆ™YHÚ[ˆ]ÝÜYš][™È][ˆ›Ùš[Y[™\ˆ\Âˆ
+ˆ[™IÜÈÝÛˆZYÚ]Ø^HÛÛ[[ÛˆÛˆŒ‹LLÌ]Ø\ÈÚ[Y]HÙZ[[™ÈÚ]ˆ
+ˆˆHMÈÈÙˆ]ÈÛÜÝ[ˆÓ‘HÙXÝ[Û‹HØÙ[™KY]Z[Y\‹ˆ]ÙXÝ[Ûˆ\Âˆ
+ˆ›ÝÈ\H[™HØ]KX[™XÚ›ÛYHZ[\È\‹ÛÈ\ÈKNH™XØ[YHËLLH[™ˆ
+ˆH[Øš[H™XÚ\IÜÈ˜[™Ù\È[Ý™HÚ][KˆH\ÈY\ˆHÝ]ÛÜÝX›Ý]ˆ
+ˆHHLËˆHMÈÈ[™HHMHÈYØZ[œÝH[ˆZ[]\ËYX\Ý\™YHØ[YHØ^K‚ˆ
+ˆLMÌÈ[ˆS‘QT•ËÚXÚYÛÛ™HHØ[YHØ^Nˆ›Ùš[YÛˆHÝ]Ø\™ˆ
+ˆ[›™\ˆHØ[YH^H]Ø\ÈÚ[Y]HHHÈÚ]]È\ÝÛÈ\ÜÙ\[ÛœÂˆ
+ˆ[œ[‹[™ÈHÈÙˆ]Ø\ÈH™YH›ØY[YÚXš[]HÝ][ÛœËˆÛÂˆ
+ˆÝ][ÛœÈÝ^H[ˆ\È[™H\™ÛÙ\ÈÈH™]È\Ú]HZYZÙ[‚ˆ
+ˆÝ[™[™È]][™H˜]ÚY\™ÙH[™\ˆ]8 %HÈYØZ[œÝHLÈÈÙ‚ˆ
+ˆÛÜšÈ8 %ÛÈ\ÈLLH™XØ[YHKLL‹ˆÙYH“ÐQÔÕUSÓ”È[™™XY›ØYÝ][ÛœØ‚ˆ
+ˆLMÌ[™YT•L›ÜˆHØ[YH™X\ÛÛˆ[™ÛˆHØ[YH]šY[˜ÙNˆ]ˆ
+ˆLŽÛˆ[ˆQH[›™\ˆ]Ø\ÈÚ[Y]HHŒÈÚ]HÝ™Y]™XYÝ]Âˆ
+ˆ[™HÙ][™ÜÈ[š]ÈÝ[È[‹ÛÈÛ\ÈLKLLˆ™XØ[YHL‹LLÈ[™\™Bˆ
+ˆ\™H\Y[‹‚ˆ
+‚ˆ
+ˆHÝYÙY[ˆ\È›ÝHØ]HZ]\‹[™Ø^\ÈÛÎÈHØ]H\È›ÝšY]ÜÜËˆ
+ˆ]™\žH\K™ËŽ‚ˆ
+‚ˆ
+ˆ›ÜˆÈ[ˆKLˆËMˆËNHLLLÎÈÈÓSÒÑWÕ’QUÔÔ•[[Øš[HÓSÒÑWÔÕQÑOIÈ›ÙHÛÛËÜÛ[ÚÙWÜ™[™\™\‹›ZœÈK\X›\ÚYÈÛ™Bˆ
+ˆ›ÜˆÈ[ˆHˆÈHˆÈHLLHLˆLÎÈÈÓSÒÑWÕ’QUÔÔ•Y\ÚÝÜÓSÒÑWÔÕQÑOIÈ›ÙHÛÛËÜÛ[ÚÙWÜ™[™\™\‹›ZœÈK\X›\ÚYÈÛ™Bˆ
+‚ˆ
+ˆÓSÒÑWÕSRS‘ÏLXÝ[\ÈXXÚÚXÚÈ[™HÚ]H[\ÙYÛØÚËˆÙ™ˆžBˆ
+ˆY˜][È\›ˆ]ÛˆÈ›Ùš[HH\™XØ]\ÙHH\]”‘PPÒTÈBˆ
+ˆÙZ[[™È\ÈÚ[Y™Y›Ü™H]š[È]ÈØ[ÛØÚË[™H\ÈÛÜˆ
+ˆÝ][™È\™H^XÝHHÛ™\ÈHZ[ˆ[ˆ\™Y›Ü™H™\ÜÈ›Ý[™ÈX›Ý]‚ˆ
+‚ˆ
+ˆ
+XXÚÛÛ[X[™X›Ý™Hš]ÈH[‹[Z[]HÙZ[[™ËYX\Ý\™Y8 %]™\žH[›ØØ][Û‚ˆ
+ˆš[È]ÈÝÛˆØ[ÛØÚÈÛˆ]È\Ý[™HÛÈH™^X\™Ú[ˆÈÛÈ\Âˆ
+ˆš\ÚX›HÚ]Ý][ž[Û™H™K[YX\Ý\š[™ÈžH[™ˆH[™š[\™YÚ[™ÛK\›ØÙ\ÜÂˆ
+ˆ\ÜÈ]™\È[ˆ™Ú]X‹ÝÛÜšÙ›ÝÜËØÚXØYÛËM\Û[ÚÙKž[[ÚXÚ\È›ÈÙZ[[™ËŠBˆ
+‚ˆ
+ˆ›ÛÝHYÙKY\œ›ÜˆÚXÚÈ[™H™[™ÜˆÚXÚÜÈ[ˆ[ˆU‘T–H[›ØØ][Û‹ˆ
+ˆÚXÚ]™\ˆÝYÙH\È\ÚÙY›ÜŽˆHÝ[[X\žHÙ\\˜]\ÈœÝYÙY\ÙXÝ[ÛˆÚXÚÜÈ‚ˆ
+ˆœ›ÛHÜÙH[Ø^\Ë[ÛˆÚXÚÜÈÛÈH\ÈØ[ˆ™H]Y]YÈY\È[‚ˆ
+ˆ[™š[\™Y\ÜÈ8 %H\Y[ˆ\ÉÈÙXÝ[ÛˆÛÝ[ÈÕSHÈ[ˆ[™š[\™Y[‰ÜÂˆ
+ˆÙXÝ[ÛˆÛÝ[[™H[Ø^\Ë[ÛˆÛÝ[\ÈY[XØ[[ˆ]™\žHÛ™HÙˆ[K‚ˆ
+‚ˆ
+ˆÚ]]\ÜÙ\Ë[™ÚHXXÚÛ™H\È\™N‚ˆ
+‚ˆ
+ˆØÙ[™H™XXÚ\È™XYH‹‹‹‹‹‹‹‹ˆH›ÛÝÚZ[ˆXÝX[HÛÛ\]Yˆ
+ˆØ[˜\È™[™\œÈ›Û‹X›XÚÈ‹‹‹ˆÙX‘Ó›ÙXÙY[ˆ[XYÙK›ÝHÛX\™YY™™\‚ˆ
+ˆÛÛ™šY[˜ÙHÙÙÛH‹‹‹‹‹‹‹‹‹‹ˆH[]™\˜X›HYX\Ý\˜X›HÚ[™Ù\ÈH™[™\‚ˆ
+ˆXÚÈOˆÚ]][Ûˆ‹‹‹‹‹‹‹‹‹‹‹ˆHš\ÝX[ÛZ[H[™HÚ]X›HÛZ[HÛÛ›™XÝˆ
+ˆÚ]][ÛˆOˆ]ÈØÝ[Y[‹‹‹ˆÚHH[Ù\›ˆYÙH\ÈÛˆH[™È]\ÈÛ‹[™ˆ
+ˆÚ]HÛÝ\˜ÙH]Ù[ˆØ^\È]Ø[››ÝÝ\Bˆ
+ˆXÚÈOˆX™\Y\È‹‹‹‹‹‹‹‹‹‹ˆ[™Ú]ÙHXYH\X›Ý]UZ[[™Âˆ
+ˆHœšYÙH›Ø]È‹‹‹‹‹‹‹‹‹‹ˆHØ]\‹X[˜ÚÜ™YÝXÝ\™H\ÈXÙYÛˆBˆ
+ˆØ]\ˆ[™K›ÝÛˆHš]™\ˆ™Y[™\ˆ]ˆ
+ˆØ[È[Ý™\ÈHØ[Y\˜H‹‹‹‹‹‹ˆ[œ][[™XXÚ\ÈHØ[Ù\‚ˆ
+ˆHœšYÙHØ\œšY\ÈHØ[Ù\ˆˆHXÚÈ\ÈHÝ\™˜XÙH[ÝHÝ[™Û‹[™È[™ˆ
+ˆ[™›ÝHØY[™È˜\œšY\ˆ[™\ˆ]ˆ
+ˆHš]™\ˆÚ\™\È‹‹‹‹‹‹‹‹‹‹ˆHš\œÝ\š]™Y^Y\ˆ]Ý[™ÈÝ™\ˆØ]\Ž‚ˆ
+ˆ]ÈXÚÈY\È[ÈH˜[šÈ]Ø\È\š]™Yˆ
+ˆœ›ÛK]ÈÜšXˆ™XXÚ\ÈH™Y[™™Z]\ˆ\Âˆ
+ˆ[œÝÙ\˜X›Hœ›ÛHH]\Ù][Û™Bˆ
+ˆHÚ\™ˆØ\œšY\ÈHØ[Ù\ˆ‹‹‹ˆ[™Ú[˜ÙHLNH[šÜÈ\™HH›ÛÜŽˆÙ™‚ˆ
+ˆH˜[šË\H›Ø\™[™ÈÝZ\ˆ[™Ý]Ý™\‚ˆ
+ˆHØ]\ˆ]]™\žHÛ™HÙˆHÙ]™[ˆØÚÜÂˆ
+ˆH›Ø]ÈÛˆHš]™\ˆ‹‹‹‹‹ˆHš\œÝ^Y\ˆ]’QTÈHØ]\Žˆ]™\žBˆ
+ˆY›Ø][›Ø]È[ˆ]ÈÝÛˆ\™XXÚYˆ
+ˆ[ÈÚ]]H˜[šËH˜]ØœšYÙIÜÂˆ
+ˆ˜]šYØ][ÛˆÜ[ˆÝ^\ÈÛX\‹[™H›Ø]ˆ
+ˆ[œÝÙ\œÈHXÚÈÚ]]ÈÝÛˆØ\™ˆ
+ˆÛ™H\œ˜Z[ˆÝ\™˜XÙH‹‹‹‹‹‹‹‹ˆØ[Ù\‹ÝXÝ\™\È[™›Ü˜HÚ\™HH™[™\™Y[™ˆ
+ˆÝ™Y]È˜\H
+ÈY[YžH‹‹‹ˆX\˜XÚÜÈÚ\™HHZYÚšY[[™]Y˜[Y\Âˆ
+ˆH›ØYÈ™XXÚHØÜ™Y[ˆ‹ˆ[™\™H\Ý[™ÝZ\ÚX›Hœ›ÛHHÜ›Ý[™^Bˆ
+ˆØØÝ\KÛˆ›ÛÝ[™œ›ÛHHZ\ˆ8 %˜\Y\Âˆ
+ˆ›ÝÙY[‹[™]™\žHÚXÚÈX›Ý™H\ÜÙYÚ[Bˆ
+ˆH›ØYÈÙ\™H[š\ÚX›Bˆ
+ˆHÜš^›Ûˆ™XYÈ\È[X™\ˆˆH˜[™YY]ÈH›ÙÙÙYÜ›Ý[™[ˆÛ™HÛÛÝ\‹ˆ
+ˆ[™HÜ›ÝÛˆ[Ù[][Ûˆ™]™\ˆÝ]ÈHÚ[ÝY]Bˆ
+ˆ™[ÝÈH^[]™YYÈÈ™HÙY[ˆ][ˆ
+ˆ˜]šYØ][ÛˆZYÈ‹‹‹‹‹‹‹‹‹‹‹‹ˆÛÛ\\ÜË[Ýš[™ÈÝ™\šY]ÈX\šÙ\‹Ù][™ÜÈÙÙÛ\Âˆ
+ˆÛÛ\]H[\ÙX\˜Ú‹‹‹‹‹‹‹ˆ]™\žHšY]ÜÚ[™\šYšYY[˜Ý[Ûˆ[™ØYYˆ
+ˆÝXÝ\™K[ˆÛ™HÛÈÈX‹XXÚÝXÝ\™Bˆ
+ˆÜ˜YYÚ]]ÈÝÛˆ™XÛÜ™	ÜÈÜÚ][ÛˆÜ˜YBˆ
+ˆX™\Y\È\™H™XYX›H‹‹‹‹‹ˆÚ]ÙHXYH\\È[ˆH[™[›ÝÛ›H[ˆH™\Âˆ
+ˆ˜]ÈØ[È[™\ˆYÙ]‹‹‹‹ˆH˜]ÚÝ˜]YÞH\ÈÚ[™È]È›Ø‹YØZ[œÝBˆ
+ˆÙZ[[™È\Èš[H[œÈ˜]\ˆ[ˆY\™[H™XYÂˆ
+ˆ™\›ÈYÙH\œ›ÜœÈ‹‹‹‹‹‹‹‹‹‹‹ˆ]™\ž]Ú\™K›ÝÚYÂˆ
+‚ˆ
+ˆÛˆ˜Z[\™H]š[ÈH˜Z[[™ÈT“Üˆ^™]™\ˆH˜\™HÝ]\ÎˆHÛ[ÚÙBˆ
+ˆ™\Ý[[ÝH]™HÈ™\›ÙXÙHžH[™\È›ÝØ]™Y[ÝH[ž][™Ë‚ˆ
+‹Â‚š[\Üœ›ÛH	Û›ÙNš	ÎÂš[\ÜœÈœ›ÛH	Û›ÙN™œÉÎÂš[\Ü]œ›ÛH	Û›ÙNœ]	ÎÂš[\ÜÈ^XÔÞ[˜ÈHœ›ÛH	Û›ÙN˜Ú[Ü›ØÙ\ÜÉÎÂš[\ÜÈš[UT“Ô]Hœ›ÛH	Û›ÙN\›	ÎÂ‚‹ËÈHÜš]XÈ\›™\ÜÉÜÈ‘È™XY\ˆ[™]ÈÒQH
+‹ÛÈH›ØY	ÜÈÛÛ˜\Ý\Â‹ËÈYX\Ý\™YÛˆHØ[YHØØ[H\È]™\ž][™È[ÙH\È›Ú™XÝ][Ý\Ë‚š[\ÜÈXÛÙT™ËX“™[]]™S[Z[˜[˜ÙKÙX™\ÛÛ˜\ÝHœ›ÛH	Ë‹ØÜš]X×ÛY]šXÜË›ZœÉÎÂ‹ËÈ“ÐQPTÍLˆHØ]H[™ÛÛËÛYX\Ý\™WÙ˜]Û—ÜXÙ[Y[›ZœØ[ˆÓ‘HÙ[œÝ\Â‹ËÈ˜]\ˆ[ˆÛÈ™XY[™ÜÈÙˆ]8 %ÙYH][Ù[IÜÈXY\ˆ›ÜˆÚK‚š[\ÜÈÑS”ÕTÈHœ›ÛH	Ë‹Ù˜]Û—ÜXÙ[Y[ØÙ[œÝ\Ë›ZœÉÎÂ‹ËÈLËˆØ[YH\œ˜[™Ù[Y[›ÜˆH™X\‹YšY[[X™\‹[™›ÜˆHØ[YH™X\ÛÛ‚‹ËÈÚXÙHÝ™\ŽˆHØ]H™[ÝÈ[™ÛÛËÛYX\Ý\™WÙ˜]Û—Ý[X™\‹›ZœØ[ˆÓ‘B‹ËÈÙ[œÝ\Ë[™]Ù[œÝ\È™XYÈH˜]ÚYY\Ú˜XÚÈ›ÝYÚ]ÈÝÛˆ[œÝ[˜ÙB‹ËÈ˜[™Ù\È8 %ÚXÚ\ÈÚ]H[›[™H˜]™\œØ[]\ÙYÈ]™H\™HÝÜY‹ËÈ™Z[™ÈX›HÈÈH^HLŒŒÈY\™ÙY‚š[\ÜÈSP‘T—ÐÑS”ÕTÈHœ›ÛH	Ë‹Ù˜]Û—Ý[X™\—ØÙ[œÝ\Ë›ZœÉÎÂ‚‹ËÈ^]ÜšYÚ\È[œÝ[YÛØ˜[H\™K[™TÓHÙ\È›ÝÛ›Ý\ˆ“ÑWÔUÛÂ‹ËÈ™\ÛÛ™HHÛØ˜[›ÛÝ[™[\ÜžHXœÛÛ]H]‚˜\Þ[˜È[˜Ý[ÛˆØY^]ÜšYÚ
+
+HÂˆ]œÎÂˆžHÂˆœÈH]ØZ][\Ü
+	Ü^]ÜšYÚ	ÊNÂˆHØ]ÚÂˆÛÛœÝ›ÛÝH
+›ØÙ\ÜË™[‹““ÑWÔUˆ^XÔÞ[˜Ê	ÛœH›ÛÝYÉËÈ[˜ÛÙ[™Îˆ	Ý]Ž	ÈJJKš[J
+KœÜ]
+]™[[Z]\ŠVÌNÂˆœÈH]ØZ][\Ü
+]š›Ú[Š›ÛÝ	Ü^]ÜšYÚ	Ë	Ú[™^šœÉÊJNÂˆBˆËÈ^]ÜšYÚ\ÈÛÛ[[Û’”ÎÈ[\ÜY\ÈTÓH]È^ÜÈ[™[™\ˆ™Y˜][ˆ™]\›ˆœË˜Ú›ÛZ][HÈœÈˆœË™Y˜][ÂŸB˜ÛÛœÝÈÚ›ÛZ][HHH]ØZ]ØY^]ÜšYÚ
+
+NÂ‹ËÈLMˆ8 %H\‹X˜[™[Ý™[Y[™\Üˆ\™H[˜Ý[ÛœÈ[ˆZ\ˆÝÛˆš[HÛÂ‹ËÈHÛÛ\\š\ÛÛˆ\È\ÝX›HÚ]Ý]Hœ›ÝÜÙ\ŽÈÙYH]ÈK\Ù[‹]\Ý‚š[\ÜÈÛÛXÝ\ÈÛÛXÝ›ØY˜[™ËÛÛ\\™H\ÈÛÛ\\™T›ØY˜[™Ë™[™\ˆ\È™[™\”›ØY˜[™ÈBˆœ›ÛH	Ë‹Ü›ØYØ˜[™Û[Ý™[Y[›ZœÉÎÂ‚˜ÛÛœÝT‘HH]™\›˜[YJš[UT“Ô]
+[\Ü›Y]K\›
+JNÂ˜ÛÛœÝÔ•H[X™\Š›ØÙ\ÜË™[‹”ÓSÒÑWÔÔ•NÊNÂ˜ÛÛœÝQPTˆH›ØÙ\ÜË™[‹”ÓSÒÑWÖQPTˆ	ÌNÍIÎÂ˜ÛÛœÝÑQTH›ØÙ\ÜË™[‹”ÓSÒÑWÔÒÕÈ	ÉÎÂ‚‹ÊŠ‚ˆ
+ˆÒPÒ‘QHÙ]È\ÝY[™ÚH]\ÈH]Y\Ý[Ûˆ][‚ˆ
+‚ˆ
+ˆHÛÝ\˜ÙH™YH[™HX›\ÚYZ\œ›ÜˆÈ›ÝØYHØ[YHÙ[ÛY]žKˆBˆ
+ˆÚYXØ\ˆ˜[Y\È]È\ÜÙ]\ÈÛ‹Ï˜[YO‹™Û˜[™]]™\ÛÛ™\ÈYØZ[œÝˆ
+ˆHY™™\™[˜\ÙH[ˆXXÚˆ[ˆHÛÝ\˜ÙH™YHÈ\ÜÙ]ËÙÛ‹Ø8 %Bˆ
+ˆSÓÓT‘TÔÑQX\Ý\œÈ8 %[™ÛˆHÚ]HÈ]KÙÛ‹ØÚXÚX›\ÚœÚˆ
+ˆš[Èœ›ÛH\ÜÙ]ËÝÙX‹ØHY\ÚÜ
+ÈÒ—ÛY\ÚÜ]X[^˜][Û˜\š]˜]]™\Ë‚ˆ
+‚ˆ
+ˆÛÈ›Üˆ\ÈÛ™È\È\ÈÛ›H]™\ˆ˜[ˆYØZ[œÝHÛÝ\˜ÙH™YK]™]™\ˆÛ˜ÙBˆ
+ˆØYYHÛÛ\™\ÜÙY\ÜÙ]ˆ]™\žHÚXÚÈØ\ÈÜ™Y[ˆÚ[HH\ÞYYÝÛˆØ\Âˆ
+ˆHšY[ÙˆÛË[Y]™H›Þ\Ë™XØ]\ÙHHY™XÝ]™Y[ˆHÛÙH]8 %Bˆ
+ˆ\]X[\Ø][ÛˆÙˆ›Ü›X[^™Y[YÙ\ˆ]šX]\È8 %]HØ]HÛÝ[›Ýˆ
+ˆ™XXÚˆHØ]H]Ø[››ÝÙYHHž]\È]Ú\\È›ÝHØ]K‚ˆ
+‚ˆ
+ˆK\X›\ÚY
+ÜˆÓSÒÑWÕT‘ÑU\X›\ÚY
+HÙ\™\ÈHZ\œ›Üˆ[™[\œÈ]ˆ
+ˆÝØ[ËËÚXÚ\ÈHš\Ú]Ü‰ÜÈ^XÝ^[Ý]ˆ][ÛÈØ]Ú\ÈHÝ\ˆÛ\ÜÂˆ
+ˆÙˆYÈ\È›Ú™XÝÙY\È][™ÎˆHš[H]^\ÝÈ[ˆHÛÝ\˜ÙH™YH[™ˆ
+ˆØ\È™]™\ˆÛÜYYÚXÚÈÛ›HÛ˜ÙH]\È]™K‚ˆ
+‹Â˜ÛÛœÝØ[X›\ÚYH›ØÙ\ÜË˜\™Ý‹š[˜ÛY\Ê	ËK\X›\ÚY	ÊBˆ›ØÙ\ÜË™[‹”ÓSÒÑWÕT‘ÑUOOH	ÜX›\ÚY	ÎÂ˜ÛÛœÝ“ÓÕH›ØÙ\ÜË™[‹”ÓSÒÑWÔ“ÓÕˆ
+Ø[X›\ÚYˆÈ]œ™\ÛÛ™JT‘K	Ë‹‹Ë‹‹Ë‹‹ÜÚ]KØÚXØYÛËÍ	ÊBˆˆ]œ™\ÛÛ™JT‘K	Ë‹‰ÊJNÂ˜ÛÛœÝS•–HH›ØÙ\ÜË™[‹”ÓSÒÑWÑS•–H
+Ø[X›\ÚYÈ	ËÝØ[ËÉÈˆ	ËÜ™[™\™\œËÝÙX‹Ú[™^š[	ÊNÂ˜ÛÛœÝSÑSWÐTÑHHØ[X›\ÚYÈ	ËÝØ[ËÚœËÉÈˆ	ËÜ™[™\™\œËÝÙX‹ÚœËÉÎÂ‚˜ÛÛœÝTTÈHÂˆ	Ëš[	Îˆ	Ý^Ú[	Ë	ËšœÉÎˆ	Ý^Ú˜]˜\ØÜš\	Ë	Ë›ZœÉÎˆ	Ý^Ú˜]˜\ØÜš\	Ëˆ	Ë˜ÜÜÉÎˆ	Ý^ØÜÜÉË	ËšœÛÛ‰Îˆ	Ø\XØ][Û‹ÚœÛÛ‰Ë	Ë™Û‰Îˆ	Û[Ù[ÙÛ‹Xš[˜\žIËˆ	Ë˜š[‰Îˆ	Ø\XØ][Û‹ÛØÝ]\Ý™X[IË	Ëœ™ÉÎˆ	Ú[XYÙKÜ™ÉË	ËšœÉÎˆ	Ú[XYÙKÚœYÉËˆ	ËœÝ™ÉÎˆ	Ú[XYÙKÜÝ™ÊÞ[	Ë	ËØ\ÛIÎˆ	Ø\XØ][Û‹ÝØ\ÛIË	Ë›Y	Îˆ	Ý^ÛX\šÙÝÛ‰ËŸNÂ‚‹ÊŠ‚ˆ
+ˆ‹P•QÌˆ8 %ÐSˆH“ÐQ‘HÑQSÈHØ]H]Y›Ý^\Ý‚ˆ
+‚ˆ
+ˆ]™\ž][™È\Èš[H\ÜÙ\YX›Ý]HÝ™Y]ÈØ\ÈX›Ý]HUH™XXÚ[™Âˆ
+ˆHÙ[ÛY]žNˆÙ]™[Y[ˆ™XÛÜ™ËH[™™YÝ\Ø[™™\XÙ\Ë˜\H\œ›Ü‚ˆ
+ˆ[™\ˆYKMHK›È™\^Ý™\ˆØ]\‹ˆ[Ùˆ]\ÜÙYÚ[HH›ØYÈÙ\™Bˆ
+ˆ[š\ÚX›Hœ›ÛHHZ\‹ˆ˜\Y\È›ÝÙY[‹[™›Ý[™È[ž]Ú\™H\ÚÙYˆ
+ˆÚ]\ˆH›ØY™XXÚ\ÈHØÜ™Y[‹‚ˆ
+‚ˆ
+ˆHYX\Ý\™[Y[\ˆÝ][Ûˆ[™\ˆšY]ÜÜ\È™YHœ˜[Y\ÈÙˆÛ™H[ˆ
+ˆØÙ[™N‚ˆ
+‚ˆ
+ˆˆH™X[™[™\‚ˆ
+ˆHHØ[YHÙ[ÛY]žH˜]Ûˆ\È[ˆÜ\]YHX\šÙ\ˆÚ]HQTÛYÛÛˆÙ™œÙ]ˆ
+ˆÈHØ[YHØÙ[™HÚ]HÝ™Y]Ü›Ý\Y[‚ˆ
+‚ˆ
+ˆH\ÈH[›ÛZ[˜]Üˆ[™]\ÈH™X\ÛÛˆ\ÈÛÜšÜËˆH›Ø™HÚ[ÛÝ[Âˆ
+ˆÛ›HÚ\™HHX\šÙ\ˆ™XXÚYHØÜ™Y[ˆ8 %ÚXÚ\ÈÈØ^HÚ\™HH›ØY\Âˆ
+ˆ™\Ù[[ˆœ›ÛÙˆHØ[Y\˜K[™›ÝY[ˆ™Z[™HZ[[™ËH™YHÜ‚ˆ
+ˆHš\ÙH[ˆHÜ›Ý[™ˆ›ØYÈ]\™HÙ[Z[™[HØØÛYY›ÜÝ]ÙˆBˆ
+ˆØ[\H[œÝXYÙˆ™Z[™ÈØÛÜ™Y\È˜][ËˆHX\šÙ\‰ÜÈÙ™œÙ]\È[X™\˜][Bˆ
+ˆQTTˆ[ˆH™X[X]\šX[	ÜÎˆÜÚ[™ÈH\šYÚÈH\œ˜Z[ˆ\ÈBˆ
+ˆ˜Z[\™H™Z[™È[YÛÈ]]\ÝÝ^H[œÚYHH[›ÛZ[˜]Üˆ[™ÚÝÈ\\ÈBˆ
+ˆ›ØY]ÛÝ™\œÈH^[[™Ù\È›ÝÚ[™ÙH]‚ˆ
+‚ˆ
+ˆH[X™\ˆ\È[ˆ
+ŠŠHH
+ŠÊ_]XXÚÝ\š]š[™È›Ø™H8 %ÝÈ]XÚBˆ
+ˆ›ØYÚ[™ÙYÚ]Hš\Ú]ÜˆÙY\È]HÜÝ]ØØÝ\Y\Ë[ˆÒQH
+ˆ[š]ÈÛ‚ˆ
+ˆHØ[YHX“HÜš]XÈ\›™\ÜÈYX\Ý\™\È™Y™\™[˜ÙHÝÙÜ˜\ÈÚ]ˆ]\Âˆ
+ˆH™\Ý[™ÝZ\ÚX›Hœ›ÛHHÜ›Ý[™™\ÚYH]ˆÙˆH\˜Ù[	ÜÈXØÙ\[˜ÙKˆ
+ˆÚ]HÜ›Ý[™™\ÚYH]™XY]HØ[YH^[˜]\ˆ[ˆH™]ÈY]™\Âˆ
+ˆXÜ›ÜÜËÛÈH›ØYÜ›ÜÜÚ[™ÈÜ˜\ÜÈ[™H›ØYÜ›ÜÜÚ[™È]Y\™H[ÈHØ[YBˆ
+ˆÝ[™\™‚ˆ
+‚ˆ
+ˆÒUHUSQPTÕT‘Q™Y›Ü™HHš^]\ÚÝÜ
+[Øš[H[ˆHØ[YBˆ
+ˆ\™XÝ[Û‹ÛX[\ˆŠNˆÛÝ]Ø]\ˆÝ™Y]]LMŒK[›ØØÛYYØÛÜ™Yˆ
+ˆ
+ŠŒŒÈ
+ˆÚ]M	HÙˆ›Ø™\È\˜Ù\X›JŠŽÈHY\šX[[˜ÚÜˆ]LLLBˆ
+ˆØÛÜ™Y
+ŠŒKŒH
+ˆÚ]	JŠ‹ˆ›Ý\™HRST‘TÈ[™\ˆH™\ÚÛÈ™[ÝËˆ
+ˆÚXÚ\ÈHÚ[8 %HÚXÚÈ˜[Y\ÈH˜][Ú[ˆH˜][\È]˜XÚË‚ˆ
+‚ˆ
+ˆ“Õ‘SSÑHÑˆH•SP‘T”È
+LÌÈÈ‹SLX‹ÝÛ™\ˆ[[™ÈŒ‹LLMÊNˆ\ÙBˆ
+ˆ˜\œÈ\™HH“Õ’TÒSÓSTÑSS‘K›Ý\š]™Yœ›ÛHHÛÝ\˜ÙH8 %HÝÙÜ˜\ˆ
+ˆ‹SLH˜[YY\ÈH\š]˜][ÛˆÛÝ\˜ÙHÛÛZ[œÈ›È\˜XÚË[™HÝÛ™\‚ˆ
+ˆ[YšÙY\\È˜\Ù[[™H[[HÛÛ\Z[ˆX›Ý]][Ü™H]\ˆ‹ˆÈ›Ýˆ
+ˆ\ØÜšX™H[H\È\š]™Y[™È›ÝÜ[™H[ˆ™KY\š]š[™È[H[›\ÜÈBˆ
+ˆÝÛ™\ˆ™[Ü[œÈH]Y\Ý[Û‹‚ˆ
+‹Â˜ÛÛœÝ“ÐQÓRS—ÑSWÓHKŽÂ˜ÛÛœÝ“ÐQÓRS—ÔTÑTP“HHMNÂ˜ÛÛœÝ“ÐQÓRS—Ô“Ð‘TÈHÂ‚‹ÊŠ‚ˆ
+ˆLMˆ
+‹SLY
+H8 %HS‘ÈT‘HSÓÈ‘TÔ•QQÐRS”ÕRTˆÕÓˆS’Ë‚ˆ
+‚ˆ
+ˆH™YH˜\œÈX›Ý™HØ]HTˆÕUSÓŽÈHYX\Ý\™[Y[\ÈTˆS‘ˆH˜[™ˆ
+ˆØ[ˆ\™Y›Ü™HÛÛ\ÙHMHÚ[È
+ÌH	H8¡¤ˆMˆ	H\˜Ù\X›JHÚ]Ý]Ü›ÜÜÚ[™Âˆ
+ˆ“ÐQÓRS—ÔTÑTP“K[™HÝZ]Hš[ÈŒŒŽKÌˆ™Y›Ü™KŒŽKÌˆY\ˆˆÚ[Bˆ
+ˆ]\[œËˆ›ØYØ˜[™Û[Ý™[Y[›ZœØ˜[šÜÈXXÚØ]Y˜[™[™Ø^\ÈÝ]ÝYˆ
+ˆÚ[ˆÛ™H[Ý™\È8 %[ˆZ]\ˆ\™XÝ[Û‹‚ˆ
+‚ˆ
+ˆ]\ÈH‘TÔ•[™›ÝH˜\‹[X™\˜][KˆH™\ÚÛÈX›Ý™H\™HBˆ
+ˆÝÛ™\‰ÜÈ›Ýš\Ú[Û˜[˜\Ù[[™H
+LÌÈÈ‹SLXŠH[™‹UÌH\ÈHÝ[™[™È›ÛÙ‚ˆ
+ˆ]YÚ[š[™È[H[š\Ú\ÈYÚ][X]HÛÜšËˆ›Ý[™È™[ÝÈØ[ˆ˜Z[H[‹‚ˆ
+‚ˆ
+ˆ™KX˜[šÈÚ]K]\]K\›ØYX˜[™Ø[ˆHÛÛ[Z]][Ý™YH[X™\œÈÛ‚ˆ
+ˆ\œÜÙKHØ[YHØ^HH˜\‹][X™\ˆÙ[œÝ\È\È™KX˜[šÙY‚ˆ
+‹Â˜ÛÛœÝ“ÐQÐS‘ÐTÑSS‘HH]š›Ú[ŠT‘K	Ü›ØYØ˜[™Ø˜\Ù[[™KšœÛÛ‰ÊNÂ˜ÛÛœÝTUWÔ“ÐQÐS‘ÈH›ØÙ\ÜË˜\™Ý‹š[˜ÛY\Ê	ËK]\]K\›ØYX˜[™ÉÊNÂ˜ÛÛœÝ“ÐQÐS‘ÐS’ÑQH
+
+
+HOˆÂˆžHÈ™]\›ˆ”ÓÓ‹œ\œÙJœËœ™XYš[TÞ[˜Ê“ÐQÐS‘ÐTÑSS‘K	Ý]Ž	ÊJK˜˜[™ÈßNÈBˆØ]ÚÈ™]\›ˆßNÈBŸJJ
+NÂ˜ÛÛœÝ“ÐQÐS‘ÓÐ”ÑT•‘QHßNÂ‚‹ÊŠ‚ˆ
+ˆ“ÐQPT‹P•QÍH8 %H›ÙY\ÈÙˆ˜\ˆ[X™\ˆÚÜÙH]]Ü™YÛ[[™HÜ›ÜÜÙ\Âˆ
+ˆØ]\‹™XYœ›ÛHHØ[YHš[HÛÛËÛYX\Ý\™WÙ˜\—Ý[X™\‹œXÜš]\È˜]\‚ˆ
+ˆ[ˆ™\Ý]Y\™K‚ˆ
+‚ˆ
+ˆÛÈ™XY\œÈÙˆÛ™H[X™\ŽˆH]ÛˆÙ[œÝ\Ù\È]KÝ\œ˜Z[‹ø )‹ÚZYÚšY[˜š[˜ˆ
+ˆ[™\ÈÙ[œÝ\Ù\ÈHX\ÚÈHœ›ÝÜÙ\ˆØYYÙ™ˆHX›\ÚYZ\œ›Ü‹ˆ^Bˆ
+ˆ]\ÝYÜ™YK[™[\Ü[™ÈH˜\Ù[[™H\ÈÚ]XZÙ\È\ØYÜ™Y[Y[H˜Z[\™Bˆ
+ˆ[œÝXYÙˆH\ØÜ™\[˜ÞH›Ø›ÙHÛÛ\\™\Ë‚ˆ
+‹Â˜ÛÛœÝT—ÕSP‘T—ÐS’ÑQÐ–WÒQHØš™XÝ™œ›ÛQ[šY\ÊˆØš™XÝ™[šY\Ê”ÓÓ‹œ\œÙJˆœËœ™XYš[TÞ[˜Ê]š›Ú[ŠT‘K	Ù˜\—Ý[X™\—Ø˜\Ù[[™KšœÛÛ‰ÊK	Ý]Ž	ÊKˆ
+K˜›ÙY\ÊK›X\
+
+ÚY[žWJHOˆÚY[žKÙ]JKŠNÂ˜ÛÛœÝT—ÕSP‘T—ÐS’ÑQHØš™XÝšÙ^\ÊT—ÕSP‘T—ÐS’ÑQÐ–WÒQ
+NÂ‹ÊŠ‚ˆ
+ˆ‹SLXH8 %HÓÈ•SP‘T”ÈHT”ÈP“Õ‘HÐS““ÕÑQKQPTÕT‘QS‘“ÕQUÐUQ‚ˆ
+‚ˆ
+ˆHÝÛ™\ˆ[YÛˆŒ‹LLMY\ˆ‹UÌHœ›ÚÙH\ÈØ]HžHYÚ][X][Bˆ
+ˆÚ[™Ú[™È^ÜÝ\™NˆØÛÜ™H^ÜÝ\™KZ[˜\šX[ÓÓ•TÕ
+Š˜[™
+ŠˆÙY\[ˆXœÛÛ]Bˆ
+ˆ“ÓÔ‹ˆ›Ý˜\œË›ÝH™\XÙ[Y[ˆHÛÈ™\ÚÛÈX›Ý™H\™H™Z]\ˆ8 %ˆ
+ˆ3¥
+ˆ\ÈÛÛ\™\ÜÚ]™KÛÈ‹UÌH™\Ù\™YH›ØYÙÜ›Ý[™˜][ÈÈÚ][ˆ	Kˆ
+ˆÛÝM8 $ÌMÈ	H\šÙ\‹[™ÜÝH˜\ˆ]Y›ÝXÝX[H™YÜ™\ÜÙY‚ˆ
+‚ˆ
+ˆÛÈXXÚ˜[™›ÝÈ[ÛÈ™\ÜÎ‚ˆ
+‚ˆ
+ˆÙX™\ˆJ›ØY
+H8¢$ˆJÜ›Ý[™
+_ÈJÜ›Ý[™
+HÛˆS‘PTˆ[Z[˜[˜ÙKYYX[‚ˆ
+ˆÝ™\ˆHØ[YH›Ø™\Ëˆ^ÜÝ\™HØ[˜Ù[ÈÝ]Ùˆ]ÈÙYBˆ
+ˆÙX™\ÛÛ˜\Ý[ˆÜš]X×ÛY]šXÜË›ZœØ›ÜˆÚH]\È]ˆ
+ˆ]X[]H[™›ÝH˜\™H˜][Ë‚ˆ
+ˆÜ›Ý[™YYX[ˆÒQH
+ˆÙˆHÜ›Ý[™]ÜÙH›Ø™\ÈÚ]HÝ™Y]ˆ
+ˆ^Y\ˆY[ˆ8 %H›ÛÜˆ™XY[™Ëˆ’\È\™H[›ÝYÚYÚ\™HÂˆ
+ˆ\Ý[™ÝZ\Ú[ž][™È][‹ÚXÚ\ÈH˜Z[\™H[ÙHH\™Bˆ
+ˆ˜][ÈÛÝ[\[H\ÜË‚ˆ
+‚ˆ
+ˆ
+Š•^H\™H‘TÔ•QS‘“ÕÐUQ[X™\˜][K[™]\È‹SLIÜÈÜ]ˆ
+ˆ˜]\ˆ[ˆH[‹Yš[š\ÚY›Ø‹ŠŠˆ\È[ˆ[™ÈHYX\Ý\™[Y[[™ÛÛ[Z]Âˆ
+ˆ]È[X™\œÈÛˆ]˜È‹SLXˆÙ]ÈH˜\œÈYØZ[œÝ[K[™YØZ[œÝBˆ
+ˆ™KT‹P•QÌˆZ[ÚXÚHXØÙ\[˜ÙH™\]Z\™\ÈH™]È˜\œÈÝ[ÈRS‚ˆ
+ˆ[™[™È[HÚ[[YX[œÈ\ÈÚ[™ÙHØ[››Ý[\ˆHÚ[™ÛH\ÜËÙ˜Z[Ú[Bˆ
+ˆH˜\Ù[[™H\È™Z[™ÈZÙ[ˆ8 %HØ]H][Ý™\È]HØ[YH[ÛY[\È]ÈÝÛ‚ˆ
+ˆ˜\Ù[[™H\È›È˜\Ù[[™K‚ˆ
+‚ˆ
+ˆ
+Š”‹SLXˆ\È›È™\ÚÛÛÝ\˜ÙHY][™]\ÈHš[™[™ÈÙˆ\È[‹ŠŠ‚ˆ
+ˆH\˜Ù[Ø^\ÈÈ\š]™HH˜\œÈœ›ÛHH™Y™\™[˜ÙHÝÙÜ˜\8 %Ú]ˆ
+ˆÛÛ˜\ÝÙ\ÈH™X[\˜XÚÈÛYØZ[œÝ™X[˜Z\šYH‹ˆ]Ù\È›ÝÛˆ
+ˆÛ™Nˆ]ÛŒÈÛÛËÛYX\Ý\™WÜ™Y™\™[˜ÙKœX›ÝÈÝ\™^\ÈHœ˜[YH[™HÚY\Ýˆ
+ˆÛÛYÝ[Ý\È˜\™KYX\[ˆ[ž]Ú\™H[ˆ]\ÈŒˆ	HÙˆHœ˜[YHÚY]ˆ
+ˆ8¢$ŒÎŒ°¬]HÝÙÜ˜\\‰ÜÈ™Y]ˆÈ›ÝXÚÈH[X™\ˆÈš[]Ø\‚ˆ
+‹Â‹ÊŠ‚ˆ
+ˆÛÈÝ][ÛœÈ™XØ]\ÙHH™\ÜØ\ÈÛÈÞ[\Û\Îˆ›ØYÈ]ÛÈš[ˆXÙ\È‚ˆ
+ˆÛˆ›ÛÝ[™›ØYÈ[ÝH›ÜÙHˆÚ[ˆ[ÝH›HÝ™\ˆ[KˆÛÝ]ÝØ]\˜ÛÚÜÂˆ
+ˆX\ÝÝÛˆ[ˆÜ[ˆÝ™Y]œ›ÛH^YHZYÚÈœ›ÛWØX›Ý™X\ÈHØÙ[™IÜÈÝÛ‚ˆ
+ˆY\šX[[˜ÚÜ‹ˆ›Ý\™H[˜ÚÜœÈHš\Ú]Üˆ\ÈÙ™™\™Yš]™[ˆ›ÝYÚÛÕØˆ
+ˆÛÈHØ]HØ[››ÝšYœ›ÛHÚ]\ÈÚ\Y‚ˆ
+‚ˆ
+ˆ˜[™È™^[Û™ŒH\™HYX\Ý\™Y[™š[Y]›ÝØ]Yˆ]^YHZYÚBˆ
+ˆ›ØY]˜\ˆÙ™ˆ\ÈHÛÝ\HÙˆ^[È[›ÝYÚHZ[HÙˆ^™K[™Bˆ
+ˆ™\ÚÛ\™HÛÝ[™HHÛZ[HX›Ý]›ÙË›ÝX›Ý]›ØYË‚ˆ
+‹Â‹ËÂ‹ËÈLMÌÈ8 %[™\Ø^\ÈÚXÚT•™XYÈXXÚÙˆ[KˆH™YHÙÙ]\‚‹ËÈÛÜÝÈHÈÙˆH\YX\Ý\™Y]HHHÈ[™Ý[[›š[™ËÛÈ\ÈÈ[™‹ËÈZÙHÛÈÙˆ[H[™Û™NˆˆHLÈÈ
+ÈˆHˆÈYØZ[œÝˆHHËÚXÚ\ÈÚ]‹ËÈ]ÈHZY[™H˜]ÚY\™ÙH[ˆHÚX\\ˆ[‹™\ÚYHHÝ][Ûˆ^B‹ËÈ\™HZÙ[ˆ]ˆ[Ýš[™ÈHÝ][Ûˆ™]ÙY[ˆH\È\È\ÈšY[[™›Ý[™È[ÙK‚˜ÛÛœÝ“ÐQÔÕUSÓ”ÈHÂˆÈYˆ	ÜÛÝ]ÝØ]\‰Ë\ˆËÚ[™ˆ	Ø[˜ÚÜ‰ËÚ]ˆ	Ùœ›ÛHHØ[Ù\¸ &\È^YKÝÛˆ[ˆÜ[ˆÝ™Y]	ËZ[˜[™ÎˆˆKˆÈYˆ	Ùœ›ÛWØX›Ý™IË\ˆËÚ[™ˆ	Ø[˜ÚÜ‰ËÚ]ˆ	Ùœ›ÛHHZ\‹]HY\šX[[˜ÚÜ‰ËZ[˜[™ÎˆˆKˆËÈ‹P•QÌËˆ™Z]\ˆ[˜ÚÜˆX›Ý™HÕS‘ÈÓˆH“ÐQ8 %HÛÝ]ÝØ]\˜šY]ÜÚ[ˆËÈ\ÈLHHœ›ÛHHÙ[™[[™H]\È˜[YYY\ˆ
+UŒŠH[™MÈHœ›ÛHBˆËÈ™X\™\ÝÛ™H8 %ÛÈH™X\ˆ˜[™Ø\È[\H]›Ý[™›È™\ÚÛÛÝ[ˆËÈ]™HØ]YÚHÝÛ™\‰ÜÈ™\Üˆ\ÈÝ][Ûˆ\œš]™\ÈHØ^HHš\Ú]Ü‚ˆËÈÙ\ËžHÛXÚÚ[™ÈH™\šYšYYÝ™Y]XÛÛ›Û[\œÙXÝ[Ûˆ[ˆHÛÈÈX‹ˆËÈÚXÚ]ÈH›ØYØ^H[™\ˆHØ[Y\˜H[™]ÈÛÛÜ™[˜]\ÈÝ^H[ˆBˆËÈÛÛ\[Y[™^˜]\ˆ[ˆ™Z[™ÈÛÜYY[È\ÈØ]K‚ˆËÈ‹PLIÜÈ™YH\ÜÙ\[ÛœÈ\™HZÙ[ˆÝ[™[™ÈT‘KÛÈ\ÈÝ][Ûˆ[™HZYˆËÈÝ^H[ˆÛ™H\ÝÙ]™\ˆ\È\Ý\È™KY]šYY
+LMÌÊK‚ˆÈYˆ	ÛZÙWÛX\šÙ]	Ë\ˆÚ[™ˆ	Ú[\œÙXÝ[Û‰ËÚ]ˆ	ÜÝ[™[™ÈÛˆHÜ›ÜÜÚ[™È]Ù[‰ËZ[˜[™ÎˆˆK—NÂ˜ÛÛœÝ“ÐQÐS‘ÈHÖÌ‹KÍLKÌLLKÌLŒKÍŒWNÂ˜ÛÛœÝ“ÐQÑÐUQÐ‘VSÓ‘ÓHHŒÂ‚‹ÊŠ‚ˆ
+ˆLMÌÈ8 %H›ØY[YÚXš[]HÝ][ÛœË™XYžHÚXÚ]™\ˆT•ÝÛœÈ[K‚ˆ
+‚ˆ
+ˆ\ÙH™YHÝ][ÛœÈÙ\™HÛ™H›ØÚÈ[œÚYH\Ë[™›Ùš[YÛˆHÝ]Ø\™ˆ
+ˆ[›™\ˆ
+ÓSÒÑWÕSRS‘ÏLKŒ‹LLÌ
+H]›ØÚÈØ\ÈÈHÈÙˆH\]Ø\Âˆ
+ˆÚ[Y]HHHÈÚ]]ÈZ[[œ[‹ˆÛÈHÝ]]XZÙ\È\Èš]YÂˆ
+ˆ˜[S”ÒQHH›ØÚÎˆ™Z]\ˆÙˆH\	ÜÈÝÛˆËÈKKHÙXÝ[Ûˆ›Ý[™\šY\Âˆ
+ˆX]™\È›ÝÚY\È[Ü™H[ˆˆHÍˆÈÙˆX\™Ú[‹[™ˆHÍˆÈ\ÈÚ]LLŒBˆ
+ˆ[™XYH›Ý™Y\È›ÝHX\™Ú[ˆÛˆHXXÚ[™HÚÜÙHÛÜÝ˜XÚÜÈ]È™ZYÚ›Ý\œË‚ˆ
+‚ˆ
+ˆHÝ][ÛœÈ\™HH˜]\˜[Ü˜Z[ˆ[™HÛ›HÛ™H]Ü›ÜÜÙ\È›Èš[™[™Ë‚ˆ
+ˆXXÚ[\ÜÈÈ]ÈÝÛˆšY]ÜÚ[ZÙ\È]ÈÝÛˆœ˜[Y\È[™[œÝÙ\œÈ]ÈÝÛ‚ˆ
+ˆÚXÚØÈ›Û™H™XYÈ[ž][™ÈHÚX›[™ÈÝ][ÛˆYÝ[™[™Ëˆ\˜ÛˆBˆ
+ˆÝ][Ûˆ\È\™Y›Ü™HHÚÛHÙˆHÜ]8 %ÙYH“ÐQÔÕUSÓ”Ë‚ˆ
+‚ˆ
+ˆH[Ý™[Y[™\Ü[Ý™\ÈÚ][K[™]\ÈHØ[YH™\Ü][Ø^\ÈØ\Î‚ˆ
+ˆš[Y™]™\ˆØ]Y[™ÛÛ\\š[™ÈÛ›HÚ]TÈ[›ØØ][ÛˆYX\Ý\™Yˆ]ˆ
+ˆ\ÈÚ][™XYH]ÓSÒÑWÕ’QUÔÔ•[[Øš[X[ˆÚ]Ý]™]\š[™È\ÚÝÜ	ÜÂˆ
+ˆ[ˆÙˆH˜[šË[™]\ÈÚHH\™\Ü[™ÈÛˆ]ÈÝÛˆÝ][ÛœÈ\È›ÝBˆ
+ˆ™]È[KˆK]\]K\›ØYX˜[™ØY\™Ù\È\ˆ˜[™[™X]™\È[ÝXÚY˜[™Âˆ
+ˆ[Û™KÛÈH\˜[šÜÈÚ]]™XY‚ˆ
+‹Â˜\Þ[˜È[˜Ý[Ûˆ™XY›ØYÝ][ÛœÊYÙKX™[Ý][ÛœÊHÂˆÛÛœÝ›ØY[œÈH×NÈËÈLMŽˆÚ]XXÚÝ][Û‰ÜÈ˜[™È™XY\È[‚ˆ›Üˆ
+ÛÛœÝÝ][ÛˆÙˆÝ][ÛœÊHÂˆÛÛœÝ›ØYH]ØZ]›ØYÛÛ˜\Ý
+YÙKÈYˆÝ][Û‹šYÚ[™ˆÝ][Û‹šÚ[™JNÂˆ›ØY[œËœ\Ú
+ÈYˆÝ][Û‹šY˜[™Îˆ›ØY˜˜[™ÈJNÂˆÛÛœÝ˜[™ÈH›ØY˜˜[™Ë™š[\Š
+ŠHOˆ‹™Ø]Y
+NÂˆÛÛœÝ˜YH˜[™Ë™š[\Š
+ŠHOˆ‹›YYX[‘[S“ÐQÓRS—ÑSWÓˆ‹œ\˜Ù\X›H“ÐQÓRS—ÔTÑTP“JNÂˆÛÛœÝ™\ÜH›ØY˜˜[™Ë›X\
+
+ŠHOˆ	Ø‹›ßKIØ‹š_HNˆˆ
+È
+‹›”›Ú™XÝY“ÐQÓRS—Ô“Ð‘TÈÈ›Ú™XÝÈ	Ø‹›”›Ú™XÝYpåÈ
+›ÝØ]Y
+Xˆˆ3¥
+ˆ	Ø‹›YYX[‘[SÑš^Y
+J_HÙˆ	Ø‹›Ü\]YQ[SÑš^Y
+J_HÜ\]YKˆ
+È	Ê‹œ\˜Ù\X›H
+ˆL
+KÑš^Y
+
+_H	H\˜Ù\X›HÙˆ	Ø‹›˜\™_H˜\™KˆËÈ‹SLXKˆ›Ý[™\ÈÙˆHÝÛ™\‰ÜÈ[[™ËYX\Ý\™Y™\ÚYHH˜\‚ˆËÈ^H\™HÛÚ[™ÈÈ›Ú[ŽˆÙX™\ˆØ^\ÈÝÈ\Ý[™ÝZ\ÚX›HH›ØYˆËÈ\ÈÚ]]™\ˆH^ÜÝ\™KÜ›Ý[™Ø^\ÈÚ]\ˆ\™H\ÈYÚÂˆËÈ\Ý[™ÝZ\Ú]žKˆ™Z]\ˆ\ÈØ]YY]8 %‹SLXˆÙ]ÈH˜\œË‚ˆ
+ÈÙX™\ˆ	Ø‹ÙX™\‹Ñš^Y
+
+_H
+ˆ	Ø‹ÙX™\“ŸJHÝ™\ˆÜ›Ý[™
+ˆˆ
+È	Ø‹™Ü›Ý[™Ñš^Y
+J_KÙY[ˆ	Ø‹›ŸHÙˆˆ
+È	Ø‹›”›Ú™XÝYH›Ú™XÝY
+	Ø‹›˜\™_HÛX\ˆÙˆ›Ü˜JXˆ
+È	Ø‹™Ø]YÈ	ÉÈˆ	È
+™\ÜYÛ›JIßX
+JKš›Ú[Š	È0­È	ÊNÂˆÚXÚÊ	ÛX™[NˆH›ØYÈ™XXÚHØÜ™Y[ˆ	ÜÝ][Û‹Ú]Xˆ˜[™Ë›[™ÝHÝ][Û‹›Z[˜[™È	‰ˆ˜Y›[™ÝOOH™\Ü
+NÂˆÛÛœÛÛK›ÙÊ	ÜÝ][Û‹šYNˆ	Ü™\ÜX
+NÂˆB‚ˆËÈLMˆ
+‹SLY
+H8 %SÕ‘SQS•QÐRS”ÕHS’Ë“ÕT‘PÕSÓ”Ë‚ˆËÂˆËÈš[Y™]™\ˆØ]Yˆ]™\žHÚXÚÈX›Ý™H\È[™XYH[ˆ[™]È™\™XÝˆËÈÝ[™ÈÚ]]™\ˆ\ÈØ^\ÎÈHÚ[\ÈÛ›H]H˜[™ÚXÚÛÛ\Ù\ÂˆËÈ[œÚYHH\ÜÚ[™ÈÝ][ÛˆÝÜÈ™Z[™È[š\ÚX›KˆHš[\™Y[ˆ˜[šÜÂˆËÈ›Ý[™È[™ÛÛ\\™\ÈÛ›HÚ]]YX\Ý\™YÛÈÓSÒÑWÕ’QUÔÔ•[[Øš[XˆËÈØ[››ÝÚ[[H™]\™H\ÚÝÜ	ÜÈ[ˆÙˆH˜\Ù[[™K‚ˆÛÛœÝœHX™[œÜ]
+	È	ÊVÌNÂˆÛÛœÝØœÙ\™YHÛÛXÝ›ØY˜[™Êœ›ØY[œËÂˆ˜Z[[™Îˆ
+ŠHOˆ‹›YYX[‘[S“ÐQÓRS—ÑSWÓ‹œ\˜Ù\X›H“ÐQÓRS—ÔTÑTP“KˆJNÂˆØš™XÝ˜\ÜÚYÛŠ“ÐQÐS‘ÓÐ”ÑT•‘QØœÙ\™Y
+NÂˆÛÛœÝ˜[šÙY\™HHØš™XÝ™œ›ÛQ[šY\ÊˆØš™XÝ™[šY\Ê“ÐQÐS‘ÐS’ÑQ
+K™š[\Š
+Ú×JHOˆËœÝ\ÕÚ]
+	ÝœKØ
+JJNÂˆYˆ
+SØš™XÝšÙ^\Ê˜[šÙY\™JK›[™Ý
+HÂˆÛÛœÛÛK›ÙÊ›ØY˜[™Îˆ›Ý[™È˜[šÙY›Üˆ	ÝœHY]ˆ
+È	È8 %™K\[ˆÚ]K]\]K\›ØYX˜[™ÈÈ˜[šÈ\È[ˆ
+LMŠIÊNÂˆH[ÙHÂˆ›Üˆ
+ÛÛœÝ[™HÙˆ™[™\”›ØY˜[™ÊÛÛ\\™T›ØY˜[™Ê˜[šÙY\™KØœÙ\™Y
+JJHÂˆÛÛœÛÛK›ÙÊ	Û[™_X
+NÂˆBˆBŸB‚‹ËÈ‹PLKˆÝÈ]XÚÙˆHœ˜[YHHZY\ÈÈ[Ý™H][Ý™[™Ý™Y›Ü™H\Â‹ËÈØ]H™[Y]™\ÈHÛÛ›Û™XXÚ\ÈH™[™\ˆ][‚‹ËÂ‹ËÈHÔ’QTÈHQPTÕT‘SQS•S‘UÐTÈRÑS‹“ÕTÔÕSQQˆHL°¬ˆÚYÛ˜]\™B‹ËÈHÛÛ™šY[˜ÙHšY]È\ÈÜ˜YYÛˆ\ÈHÜ›Û™È[œÝ[Y[›Üˆ\ÈÛ™K[™‹ËÈHš\œÝ[ˆØZYÛÎˆ]ZÙWÛX\šÙ]H›ØYØ^H\ÈX›Ý]H[ÙˆB‹ËÈœ˜[YKÛÈHÚÛKYœ˜[YHÙ[]™\˜YÙ\ÈHZY]Ø^HÈHÛÜœÝÙˆˆÛÝ[Â‹ËÈYØZ[œÝH™\ÝÜ™Y™\ÚYX[Ùˆ8 %H™X[ÚYÛ˜[Ú]›ÈXY›ÛÛHÈØ]HÛ‹‚‹ËÈHš[™\ˆÜšYÛÛ˜Ù[˜]\È›ØY^[È[ÈÙ[È]\™H[ÜÝH›ØYÚ]Ý]‹ËÈÚ[™Ú[™ÈÚ]\È™Z[™ÈYX\Ý\™Yˆ[Øš[HÎL0åÍÎX›\ÚYZ\œ›Ü‹[ZY‚‹ËÂ‹ËÈ0¬ˆYX[ˆŒ‹ÛÜœÝˆL°¬ˆYX[ˆŒŽKÛÜœÝ‚‹ËÈ™\ÝÜ™Y™\ÚYX[0¬ŽˆYX[ˆŒÛÜœÝ‹ËÂ‹ËÈH›ÛÜœÈ™[ÝÈÚ]H\™[™\ˆHYX\Ý\™Y0¬ˆšYÝ\™\È[™›Ý\ˆÛÝ[Â‹ËÈX›Ý™HH™\ÚYX[ÛÈHZYÚ[™ÙYHœ˜[YHˆ[™HZYÚ[™ÙY‹ËÈ›Ý[™ÈˆØ[››Ý›Ý™HYKˆ›ÝÜšYÈ\™Hš[YÈÛ›H0¬ˆ\ÈØ]Y‚‹ÊŠ‚ˆ
+ˆ‹UÌØŠJH8 %HÚYÝÈšYÈ™[™\™\œËÝÙX‹ÚœËÝÛÜ›šœØÚ\Ë\ÜÙ\Y\™H\Âˆ
+ˆH[X™\ˆ˜]\ˆ[ˆ™XY˜XÚÈÙ™ˆ]Ù[‹ˆÚ[™Ú[™ÈH™XXÚÜˆZ]\ˆX\ˆ
+ˆÚ^™H\™HÚ]Ý]Ú[™Ú[™È]\™H˜Z[ÈHØ]KÚXÚ\ÈHÚ[ˆBˆ
+ˆ^[Ú^™HH™XXÚ\È›ÝYÚ]\ÈHÛZ[K[™HšYÈ]]ZY]Bˆ
+ˆÝ™]ÚYÛ™HX\Ý™\ˆ[Ü™HÜ›Ý[™ÛÝ[Ý\Ú\ÙH\ÜÈ[œ™[X\šÙY‚ˆ
+‹Â˜ÛÛœÝÒQÕ×Ô‘PPÒÓHHÂ˜ÛÛœÝÒQÕ×ÓPTÑ•SHMŽÂ˜ÛÛœÝÒQÕ×ÓPTÓÕÈHŒÂ‹ÊŠ‚ˆ
+ˆLLMH8 %[™HšYÈ›ÝÈ\[™ÈÛˆHØÙ[™KY]Z[]™[ÛÈHØ]H\Âˆ
+ˆÈÛ›ÝÈ“ÕšYÜÈ˜]\ˆ[ˆÛ™K‚ˆ
+‚ˆ
+ˆ]YÚH›ÞÝ\È˜XÚÈÈH0¬LLŒHH›Ú™XÝÚ\Y™]ÙY[‚ˆ
+ˆ‹UÌØŠJH[™‹UÍXL‹[™HX\[™\ÈÚ]]ÚXÚ\ÈHÚÛHÙˆÚ]ˆ
+ˆXZÙ\ÈHÝ\ÛÜZÚ[™Îˆ°­ÌLŒÌŒ\ÈLKÈÛHÛˆ\ÚÝÜ[™°­ÌLŒÌLˆ
+ˆ\ÈŒËÛHÛˆHÛ™K›Ý^XÝHH^[H0¬LHšYÈ™\ÛÛ™\ËˆÛÈBˆ
+ˆ\ÜÙ\[Ûˆ™[ÝÈ\È›ÈÛ™Ù\ˆH™XXÚ\Èˆ8 %]\ÈÚXÚ]™\ˆšYÈ\Âˆ
+ˆ]™[\ÚÜÈ›Üˆ\ÈØ\œšYYUHSÒS‘ÑQVS‹ÚXÚ\ÈHÝ›Û™Ù\ˆÛZ[Bˆ
+ˆ[ˆHÛ™H]™\XÙ\Îˆ]Ø]Ú\ÈH]™[]›ÝYÚ]È™XXÚžBˆ
+ˆ›\œš[™ÈHX]™HHš\Ú]ÜˆÝ[™È[™\ˆ[œÝXYÙˆžH[š[™ÈH›Þ‚ˆ
+‚ˆ
+ˆ]š]\È\™\ÝÛˆ[Øš[KÚXÚ›ÛÝÈ]YÚÚ]Ý][žX›ÙHÝXÚ[™Âˆ
+ˆHÛÛ›ÛÛÈHÛ™H\ÈHšY]ÜÜ]YX\Ý\™\ÈHÝ\YšYË‚ˆ
+‹Â˜ÛÛœÝÒQÕ×Ô‘PPÒÓQÒÓHHLŒÂ˜ÛÛœÝÚYÝÔšYÑ›ÜˆH
+]™[ÝXÚ
+HOˆÂˆÛÛœÝ™XXÚHH]™[OOH	ÛYÚ	ÈÈÒQÕ×Ô‘PPÒÓQÒÓHˆÒQÕ×Ô‘PPÒÓNÂˆÛÛœÝX\Ú^™HH
+ÝXÚÈÒQÕ×ÓPTÓÕÈˆÒQÕ×ÓPTÑ•S
+H
+ˆ
+™XXÚHÈÒQÕ×Ô‘PPÒÓJNÂˆ™]\›ˆÈ™XXÚKX\Ú^™K^[Nˆ
+ˆ
+ˆ™XXÚJHÈX\Ú^™HNÂŸNÂ‹ÊŠ‚ˆ
+ˆHÕS‘ÑU8 %HØ[Y\˜\ÈHœ˜[YHYÙ]\ÈØ]Y]
+LLÍJK‚ˆ
+‚ˆ
+ˆ[[Œ‹LLŒˆ]™\ž][™È\È›Ú™XÝ™[Y]™YX›Ý]]ÈÝÛˆœ˜[YHÛÜÝˆ
+ˆØ[YHœ›ÛHÓ‘HØ[Y\˜Nˆœ˜[YJ	ÜØ]YØ[˜\ÚÚÝ[	ËŠXH\Ý[Ý™H™Y›Ü™HBˆ
+ˆØÙ[™KY]Z[›ØÚËˆ]\ÈHÛÝ\X\™šY]ÈÙˆHÚ[™ÛHÝ[Ú]HÝÛ‚ˆ
+ˆ[ÜÝH™Z[™HØ[Y\˜K[™]\È›ÝHÛÜœÝœ˜[YHHš\Ú]ÜˆØ[ˆ™XXÚ8 %ˆ
+ˆ]\ÈÛÜÙHÈH™\Ý‚ˆ
+‚ˆ
+ˆ]X]\™Y™XØ]\ÙHH[X™\ˆHØ]H™XYØ\ÈÙ][™È‘UTˆ\ÈBˆ
+ˆ[X™\ˆHš\Ú]ÜˆØ[ˆ]ÛÝÛÜœÙKˆ™YH^Y\œÈÙ\™HÚ[šÙY[ˆHÙYZÂˆ
+ˆ™Y›Ü™H\ÈXÚÙ]
+œ›ÛYÙHLLNK[˜ÛÜÝ\™\ÈLËX\™L
+HÛÈBˆ
+ˆœ\Ý[HØ[ˆÚÚ\Ú]\È™Z[™[ÝKˆ][ˆÜ™[˜\žHÝ[™]\ÈH\™ÙHÚ[‹‚ˆ
+ˆÝÛˆHÛ™ÈÝ™Y]]\ÈHÜÜÎˆHÚÛHÝÛˆ\È[ˆœ\Ý[H]Û˜ÙK›Ý[™Âˆ
+ˆÝ[Ë[™]™\žHÚ[šÈ]›ÝYÚHÚ[ˆ™XÛÛY\È]ÈÝÛˆ˜]ÈØ[ˆHÝX\™ˆ
+ˆ˜Z[][\›Ý™\ÈÚ[ˆH[™È]ÝX\™ÈÙ]ÈÛÜœÙH\ÈHÛÜœÝÜÜÚX›Bˆ
+ˆÚ\H›ÜˆHÝX\™˜Z[[™]\ÈÚHH˜]ËXØ[ÙZ[[™ÈÛÝ[™H˜Z\ÙYˆ
+ˆÚXÙH[ˆÛ™HY\››ÛÛˆ
+OˆLŒOˆM
+HÚ]]™\žH˜Z\ÙHÛ™\ÝH\™ÝYYˆ
+ˆYØZ[œÝH™XY[™È›ÝÈÛ›ÝÛˆÈ™HÜ[Z\ÝXË‚ˆ
+‚ˆ
+ˆÛÈHYÙ]\È™XY]HSQQÑU[™Ø]YÛˆHÓÔ”ÕÙˆ]ˆXXÚÝ[™ˆ
+ˆ\È\™H›ÜˆHÝ]Y™X\ÛÛˆ8 %HØ^H\ÈØÙ[™HÙ]È^[œÚ]™H]HÝ\œÂˆ
+ˆÈ›ÝÛÝ™\ˆ8 %ÛÈHÙ]Ø[ˆ™H\™ÝYYÚ]˜]\ˆ[ˆ\ÝY[™ÛÈBˆ
+ˆÝ[™Ø[ˆ™HYYÚ[ˆÛÛYX›ÙHš[™ÈHÛÜœÙHÛ™K‚ˆ
+‚ˆ
+ˆQPTÕT‘QŒ‹LLŒˆÛˆHÛÝ\˜ÙH™YH]LŽ[›ÜˆH™XÛÜ™[™ˆ
+ˆ›ÜˆÚÙ]™\ˆØ[ÈÈ\™ÝYHÚ]HY[X™\œÚ\‚ˆ
+‚ˆ
+ˆZÙH]Ø[˜[X\ÝŒØ[ÈKÌŒÍÍÈš\ÈHÛÜœÝÛˆ›Ý^\Âˆ
+ˆH›ÜšÜËœ›ÛHÛÛˆNHØ[ÈKÌNŒˆš\Âˆ
+ˆÛÝ]Ø]\ˆ]Ù[ÈNÈØ[ÈKËŒHš\Âˆ
+ˆZÙH[™X\šÙ]MHØ[ÈKLL‹ˆš\Âˆ
+ˆHÜ[ˆY\šX[LNHØ[ÈMÌKMHš\Âˆ
+ˆHØ]YØ[˜\Ú]ˆHLŒHØ[ÈMŒLMHš\ÈHHÛÛÛHÝ[™ˆ
+ˆ™]Ø™\œžH	ˆÛIÜÈÚ\™ˆMØ[ÈL‹ŒÈš\Âˆ
+‚ˆ
+ˆÛÝ]Ø]\ˆ\È“Õ[ˆHÙ]ˆ]\È[œÚYHHÙ]	ÜÈÛÜœÝÛˆ›Ý^\È[™ˆ
+ˆ]ÈÚ\H8 %[ˆ^X[Ý™Y]ÝÛˆZ[œ›ÛYÙH8 %\È[™XYHØ\œšYYžHZÙBˆ
+ˆ]Ø[˜[ÛÈ]ÛÝ[ÛÜÝHØ]HHÝ[™	ÜÈÛÜÙˆ[YH[™^H›Âˆ
+ˆÛÝ™\˜YÙKˆ™]Ø™\œžH	ˆÛIÜÈ[™HÛÈØ]YØ[˜\Ú[˜ÚÜœÈ\™HÚX\\ˆÝ[‚ˆ
+ˆ›Ý™XY[™ÜÈ\™HÙ\\™HÛÈ]YÙ[Y[\ÈÚXÚØX›H˜]\ˆ[‚ˆ
+ˆ\ÜÙ\Y‚ˆ
+‚ˆ
+ˆHÓÔÕYX\Ý\™YÛˆHØ[YH^K™XØ]\ÙHHØ]H›Ø›ÙHØ[ˆ[ˆ\È›ÝBˆ
+ˆØ]HZ]\‹ˆÝYÙHˆÙˆHTÒÕÔ\ÜÈ˜[ˆ
+ŠŽHHÌˆÊŠˆÚ]Ý]\ÈÝÙY\ˆ
+ˆYØZ[œÝH[‹[Z[]HÙZ[[™ÈHÝ]Ø\™[‰ÜÈÚ[™ÛH›Ü™YÜ›Ý[™ÛÛ[X[™\ÎÂˆ
+ˆšYY[ˆ[Ü™H™[™\™Yœ˜[Y\ÈÙˆHKŒË[Z[[Û‹]šX[™ÛHØÙ[™HÛˆÒIÜÈÛÙØ\™Bˆ
+ˆ™[™\™\ˆ]]Ý™\‹[™H[ˆ\ÈÚ[YZY\ÙXÝ[Û‹ˆHSÐ’SH\ÜÈ[œÂˆ
+ˆHÚÛHÝÙY\[ˆÈHLˆÈ[™\È[˜Y™™XÝYˆ]\ÈLLŒH8 %H›Ý\‹]Ø^Bˆ
+ˆÝYÙHÜ]\ÈÝ]Ü›ÝÛˆ]ÈÙXÝ[ÛœÈ8 %[™H[œÝÙ\ˆÈ]\ÈÈ™KXÝ]Bˆ
+ˆÝYÙ\Ë“ÕÈYX\Ý\™H™]Ù\ˆÝ[™ÎˆYX\Ý\š[™ÈÛ™HœšY[™HÝ[™\ÈBˆ
+ˆY™XÝ\ÈÙ]^\ÝÈÈÛÜÙKˆLMˆ™KXÝ]H›Ý\ˆÝYÙ\È[ÈZYÚÛÂˆ
+ˆ\ÈÝÙY\\È›ÝÈ[œÚYHT•H8 %]Ø\È[œÚYH\[[LÍ‹ÚXÚÝ]ˆ
+ˆ]Ý][ÈH\Ùˆ]ÈÝÛˆY\ˆYX\Ý\š[™È]]ˆHMÈÈÙˆH\Bˆ
+ˆ[‹[Z[]HÙZ[[™ÈØ\ÈÚ[[™ÈÝ]šYÚˆLMÈYYX\Ý\™Y]\]ˆ
+ˆTÒÕÔ]
+ŠÈHÈÊŠ‹[œÚYHHÙZ[[™ÈÚ]ˆHLÈÈÈÜ\™KÛÈBˆ
+ˆ[œÝXÝ[Ûˆ]\ÙYÈÝ[™\™H8 %[ˆ\Ý]ÚYHHÙZ[[™ËÜˆ™XYˆ
+ˆH[Øš[H\ÜÈ[œÝXY8 %\ÈÚ]˜]Û‹ˆ]\ÈH™XY[™È[™ˆ
+ˆ›ÝHÛÛœÝ[ˆ\ÙH\ÚÝÜ[X™\œÈ[Ý™HžHZ[]\È™]ÙY[ˆ[œÈÛˆBˆ
+ˆÛÙØ\™H™[™\™\‹ÚXÚ\ÈÚHHX\™Ú[ˆ\ÈÚ]\ÈÝÙY\\ÈYÙYÛ‚ˆ
+ˆ[™ÚHÓSÒÑWÕSRS‘ÏLX^\ÝÈÈ™K]ZÙH]‚ˆ
+‚ˆ
+ˆÚ[™\ÈÝÈH\›™\ÜÈÙ]È\™Nˆœ˜[YXÝ[™ÈH\Ý[˜ÙHÙ™ˆBˆ
+ˆÝXÝ\™K[˜ÚÜ˜[\ÜÈÈÛ™HÙˆ]KÜØÙ[™\ËÌNÍKšœÛÛ˜	ÜÈ]]Ü™Yˆ
+ˆšY]ÜÚ[È8 %HØ[YHšY]ÜÚ[ÈHÛË]ÈY[HÙ™™\œÈHš\Ú]Ü‹ÚXÚ\Âˆ
+ˆHÚ[ˆ›Ý[™È\™H\ÈHØ[Y\˜H[™[Y›ÜˆH\Ý‚ˆ
+‹Â˜ÛÛœÝÕS‘ÈHÂˆÂˆYˆ	ÜØ]YØ[˜\ÚÌ‰ËÚ[™ˆ	Ùœ˜[YIË\™Ù]ˆ	ÜØ]YØ[˜\ÚÚÝ[	Ë\Ý[˜ÙNˆ‹ˆX™[ˆ	ÝHØ]YØ[˜\Ú]ˆIËˆËÈÙ\[™Ù\’T”ÕÛÈ]™\žHšYÝ\™H\È›Ú™XÝ\È]™\ˆ™XÛÜ™YÝ^\ÂˆËÈÛÛ\\˜X›HÚ]H™]È™XY[™Ëˆ]\È[ÛÈHÛ›HÝ[™]\È›Ý[‚ˆËÈ]]Ü™YšY]ÜÚ[ÚXÚ\ÈÚH]Ø[››Ý™HHÛ›HÛ™K‚ˆÚNˆ	ÝHÝ[™]™\žHX\›Y\ˆYÙ]Ø\ÈYX\Ý\™Y]Ù\›ÜˆÛÛ[Z]IËˆKˆÂˆYˆ	ÛZÙWØ]ØØ[˜[	ËÚ[™ˆ	Ø[˜ÚÜ‰Ë\™Ù]ˆ	ÙÜ™Y[—Ý™YIËˆX™[ˆ	ÓZÙHÝ™Y]]Ø[˜[X\ÝÝÛˆH^\ÉËˆËÈHÛ›ÝÛˆÛÜœÝ[™H™X\ÛÛˆ\ÈXÚÙ]^\ÝÎˆÝ[™[™È]HÙ\ÝˆËÈ[™ÙˆZÙHÝ™Y]ÛÚÚ[™ÈX\Ý]ÈHÚÛH]YÝÛˆ[œÚYHÛ™BˆËÈœ\Ý[KÛÈ]™\žHÚ[šÙY^Y\ˆ^\È›Üˆ[Ùˆ]ÈÚ[šÜÈ[™HÝ[‚ˆËÈ^\È›Üˆ[HYØZ[‹‚ˆÚNˆ	ÝHÛ™È^X[Ý™Y]8 %›Ý[™ÈÝ[ËÛÈÚ[šÚ[™ÈÛÜÝÈ[œÝXYÙˆØ]™\ÉËˆKˆÂˆYˆ	ÝWÙ›ÜšÜÉËÚ[™ˆ	Ø[˜ÚÜ‰Ë\™Ù]ˆ	Ù›ÜšÜÉËˆX™[ˆ	ÝH›ÜšÜËœ›ÛHÛÛˆÚ[	ËˆËÈHY™™\™[^[œÚ]™HÚ\Hœ›ÛH[ˆ^X[Ý™Y]ˆXÜ›ÜÜÈÜ[ˆØ]\ˆ\™BˆËÈ\È›ÈZ[[™ÈÈØØÛYH[›Ý\‹ÛÈH˜\ˆ˜[šÈ˜]ÜÈ[ˆ[ˆ]\ÂˆËÈÚ][ˆÛÈšX[™Û\È\ˆÝ\Ø[™ÙˆZÙH]Ø[˜[[™]Ù]È\™HžH[‚ˆËÈ[œ™[]Y›Ý]KÚXÚ\ÈÚ]XZÙ\È]ÛÜ]ÈXÙK‚ˆÚNˆ	ØXÜ›ÜÜÈÜ[ˆØ]\ˆ8 %›ÈØØÛY\œÈ][[™H˜\ˆ˜[šÈ˜]ÜÈÚÛIËˆKˆÂˆYˆ	Ùœ›ÛWØX›Ý™IËÚ[™ˆ	Ø[˜ÚÜ‰Ë\™Ù]ˆ	Ùœ›ÛWØX›Ý™IËˆX™[ˆ	ÝHÜ[ˆY\šX[	ËˆËÈHÙZ[[™ÈÛˆÚ]HØÙ[™HØ[ˆÛÜÝUSˆ]™\ž][™È\È[ˆœ›ÛÙ‚ˆËÈHØ[Y\˜HžHÛÛœÝXÝ[Û‹ˆ]™XYÈÚX\\ˆ[ˆH^X[šY]ÜÈ™XØ]\ÙBˆËÈ\Ý[˜ÙHÝ[[™È[™H›Ü˜H[œÚ]H˜[Ù™ˆ›Ýš]Hœ›ÛHMÍHH\8 %ˆËÈÚXÚ\È]Ù[ˆÛÜØ][™Ë™XØ]\ÙHHÚ[™ÙH]œ™XZÜÈH˜[Ù™‚ˆËÈÚÝÜÈ\™Hš\œÝ‚ˆÚNˆ	Ù]™\ž][™È[ˆœ\Ý[HžHÛÛœÝXÝ[Ûˆ8 %HÚÛK\ØÙ[™H\\ˆ›Ý[™	ËˆKˆÂˆYˆ	ÛZÙWØ[™ÛX\šÙ]	ËÚ[™ˆ	Ø[˜ÚÜ‰Ë\™Ù]ˆ	ÛZÙWÛX\šÙ]	ËˆX™[ˆ	ÓZÙH[™X\šÙ]HÛÜ›™\ˆ]Ù[‰ËˆËÈÝ[™[™ÈSˆH[œÙ\ÝZ[ÛÜ›™\ˆ˜]\ˆ[ˆÛÚÚ[™È]]ˆ™X\‚ˆËÈÙ[ÛY]žH][]Z[HY\ˆH›Ü˜H[™™[˜ÙHÑÈ\™HX\ÝX›BˆËÈÈ[Ú]‚ˆÚNˆ	ÝH[œÙ\ÝZ[ÛÜ›™\‹ÝÛÙ[ˆ˜]\ˆ[ˆÛÚÙY]	ËˆK—NÂ‹ÊŠ‚ˆ
+ˆ‹UÍXLˆ8 %HÚÛH[^\™YÝÛˆ\ÈÓ‘H˜]Ú[™]]\ÝÝ^HÛ™K‚ˆ
+‚ˆ
+ˆ\È\ÈH[X™\ˆH™XXÚX›Ý™H\ÈÝ[™[™ÈÛ‹ˆ‹UÌØŠJHYX\Ý\™YH™XXÚˆ
+ˆ\È˜]ËXØ[X›Ý[™™XØ]\ÙH]™\žH˜]Ú[\š[™ÈHÚYÝÈ›ÞÛÜÝÈHØ[[‚ˆ
+ˆHÚYÝÈ\ÜÈ\ÈÙ[\È[ˆHÛÛÝ\ˆ\ÜË[™Mˆ˜]Ú\È\ÈÚ]XYBˆ
+ˆ0¬LNH]HXØ[YÙ]^XÝKˆY\™Ú[™È[H\ÈÚ]›ÝYÚ0¬LKÛÂˆ
+ˆHÚ[™ÙH]Ü]ÈHÝÛˆ˜XÚÈ[È\‹[X]\šX[˜]Ú\È\ÈÚ[[Bˆ
+ˆZÙ[ˆH™XXÚ	ÜÈXY›ÛÛHÚ]]8 %\ÜÙ\HØ]\ÙH\™K›ÝÛ›HBˆ
+ˆY™™XÝ‚ˆ
+‚ˆ
+ˆH˜]\ˆ[ˆ¸¢iMˆˆ™XØ]\ÙHHY\™ÙH\ÈÝ[ˆÛÛÝ\ˆ[™›ÝYÚ™\ÜÈ\™H›Ýˆ
+ˆ\‹]™\^›ÝÈ[™›Ý[™È[ÙH[ˆHKÍLÈYX\Ý\™YX]\šX[ÛÝÈY™™\œÂˆ
+ˆ
+‹UÌ˜JKˆH^\™Y\ÜÙ]ÛÝ[YÚ][X][H˜Z\ÙH\Ë[™˜Z\Ú[™È]\Âˆ
+ˆ[ˆH[X™\˜]HY]Ú]H™XXÚYX\Ý\™[Y[™\ÚYH]‚ˆ
+‹Â˜ÛÛœÝÕ•PÕT‘WÐUÒTÈHNÂ‹ÊŠ‚ˆ
+ˆÝÈX[žH\Ý[˜Ý›ÝYÚ™\ÜÈ˜[Y\ÈHY\™ÙY˜]Ú]\ÝÝ[Ø\œžK[™ÝÂˆ
+ˆ˜\ˆHœ˜[YH]\Ý[Ý™HÚ[ˆ^H\™H›][™Y‚ˆ
+‚ˆ
+ˆHÝÛˆÚ\È
+ŠŒMŠŠˆ8 %H˜]ÚÛÝ[‹UÍXHY™Z[™ÚXÚ\ÈÚ]ÜÙBˆ
+ˆMˆ˜]Ú\ÈÙ\™HÙ\\˜][™ÈÛ‹ˆÙ]]Lˆ˜]\ˆ[ˆMˆÛÈH›ØÚÈ[™[™Âˆ
+ˆÚ]Hš[š\ÚHÝÛˆ[™XYH\Ù\ÈØ[››Ý˜Z[HØ]K[™ÝÈ[›ÝYÚ]ˆ
+ˆHY\™ÙHÚXÚÙ\ÛÈÜˆ™YHš[š\Ú\ÈÝ[™XYÈ\ÈHÜÜÈ]\Ë‚ˆ
+‚ˆ
+ˆ“ÕQÒ‘TÔ×ÓRS—ÕÓÔ”Õ\ÈQPTÕT‘Q‘Q“Ô‘HUTÈÑUHØ^H‹PLIÜÈ›ÞØ^\È[‚ˆ
+ˆ[œÝ[Y[ÝÙ\Îˆš]š[™È]™\žHZ[[™È™\^ÈŒˆ[Ý™\ÈHÛÜœÝ0¬‚ˆ
+ˆÙ[žHHšYÝ\™HH[ˆš[È™\ÚYH\È\ÜÙ\[Û‹[™H›ÛÜˆ\ÈÙ]ˆ
+ˆ]›ÝYÚHH\™ÙˆHÛX[\ˆšY]ÜÜ	ÜÈ™XY[™Ë‚ˆ
+‹Â˜ÛÛœÝ“ÕQÒ‘TÔ×ÕSQT×ÓRSˆHLŽÂ˜ÛÛœÝ“ÕQÒ‘TÔ×ÓRS—ÕÓÔ”ÕHÂ‹ÊŠ‚ˆ
+ˆL‹H˜XØYHÛ™\È8 %ÝÈX[žH\Ý[˜ÝÛ™\ÈHÝÛˆ]\Ý˜]ËÝÂˆ
+ˆ™X\ˆÛÈÝXÝ\™\È]™HÈ™HÈÛÝ[\È™ZYÚ›Ý\œË[™ÝÈ˜\ˆHœ˜[YBˆ
+ˆ]\Ý[Ý™HÚ[ˆHÛ™H\ÈÛÝ[™Ù™‹‚ˆ
+‚ˆ
+ˆQPTÕT‘Q‘Q“Ô‘HVHÑT‘HÑUÚ]ÛÛËÛYX\Ý\™WÙ˜XØYWÝ˜\šY]K›ZœØÛˆBˆ
+ˆX›\ÚYZ\œ›ÜŽˆ
+ŠŒÌÌH\Ý[˜ÝÛ™\ÈXÜ›ÜÜÈÌÌHÝXÝ\™\ÊŠ‹[™Ú[™[™Âˆ
+ˆHÛ™HÈ[Ý™\ÈHÛÜœÝ0¬ˆÙ[žH
+ŠŒL
+Šˆ
+YX[ˆŒÊH]LŽˆ]ˆ
+ˆHÛX[\ˆšY]ÜÜHØ[YH™XY[™ÈØ\È
+ŠÊŠˆ]H0¬LL	Hš]\ˆ\Âˆ
+ˆ\˜Ù[Ú\YÚ]™Y›Ü™HHœ˜[Y\ÈØZY]Ø\ÈÛÈ]KˆH›ÛÜœÈ\™Bˆ
+ˆÙ]]ÌÛ™\È
+HÝÛˆ]ÜÝHš]\ˆ[™Ù\Û›HHYÙHÚ[™\š[™Âˆ
+ˆÛÝ[˜]ÈX›Ý]JKÛÜœÝÈ[™YX[ˆŒÈ8 %[™\ˆ[ˆ[™H\™ÙˆBˆ
+ˆÛX[\ˆÙˆÜÙH™XY[™ÜËHØ[YHX\™Ú[œÈ“ÕQÒ‘TÔ×ÓRS—ÕÓÔ”Õ[™Bˆ
+ˆ›ØYZYÛÚË‚ˆ
+‚ˆ
+ˆPÐQWÔRT—ÓX\ÈŒH™XØ]\ÙH]\ÈÚ]›™ZYÚ›Ý\š[™ÈˆYX[œÈ[ˆHÝÛ‚ˆ
+ˆÚÜÙH]Y›ØÚÜÈ\™HLˆHÛ™ÎˆH™X\™\ÝÝXÝ\™HÚ][ˆH›ØÚÂˆ
+ˆ˜XÙKˆH\ÜÙ\[ÛˆÛˆÜÙHZ\œÈ\È[ˆS•T’PS•›ÝH[X™\ˆ8 %›ÈÛÂˆ
+ˆ™ZYÚ›Ý\œÈ˜]ÛˆHØ[YHÛÛÝ\ˆ8 %™XØ]\ÙHH\˜Ú]\HÝÛˆY
+ŠŒLÙ‚ˆ
+ˆÌŒJŠˆÝXÚZ\œÈY[XØ[ÈHš][™HÚÛH\ÚÈ\È]]\È›Û™K‚ˆ
+‹Â˜ÛÛœÝPÐQWÕÓ‘T×ÓRSˆHÌÂ˜ÛÛœÝPÐQWÔRT—ÓHHŒÂ˜ÛÛœÝPÐQWÓRS—ÕÓÔ”ÕHÎÂ˜ÛÛœÝPÐQWÓRS—ÓQPSˆHŒÎÂ‹ÊŠˆÝÈX[žHÝXÝ\™\È]\ÝÚ[™ÙHÛÛÝ\ˆÚ[ˆHÛ™H\ÈÛÝ[™Ù™ŽˆÌŽH\™Bˆ
+ˆ[YÚX›HÙ^H[™ÛÈ\™H^ÛYYžH]\Ý][Û‹ÛÈ[ž][™È™X\ˆBˆ
+ˆÝÛ‰ÜÈÝÛˆÚ^™H›Ý™\ÈHÚ[›™[\È›ÝXYÛˆ[ÜÝÙˆ]ˆ
+‹Â˜ÛÛœÝPÐQWÓSÕ‘QÓRSˆHÌÂ‹ÊŠ‚ˆ
+ˆÝÈ]XÚH0¬ˆœ˜[YHÚYÛ˜]\™H]\Ý[Ý™HÚ[ˆH™XXÚ\ÈÛÝ[™˜XÚÈÂˆ
+ˆH™KT‹UÌØŠJH0¬MŒK‚ˆ
+‚ˆ
+ˆQPTÕT‘Q‘Q“Ô‘HUÐTÈÑUHØ^H‹PLIÜÈ›ÞØ^\È[ˆ[œÝ[Y[ÝÙ\Î‚ˆ
+ˆÛÛËÛYX\Ý\™WÜÚYÝ×Ü™XXÚ›ZœÈK\Ý][ÛœÈZÙWÛX\šÙ]K\™XXÚ\ÈLŒŒÛ‚ˆ
+ˆHX›\ÚYZ\œ›Üˆ[Ý™\ÈLÙˆ‹ÌÙ[ÈÚ]HÛÜœÝÙ[Ùˆ
+ŠŽ
+Šˆ]ˆ
+ˆLŽ0åÎÝ™\ˆHŒ0¬ˆX\[™ˆÙ[ÈÚ]HÛÜœÝÙˆ
+ŠŽ
+Šˆ]ÎL0åÍÎÝ™\‚ˆ
+ˆHL0¬ˆÛ™KˆÙ]]8 %[ˆHÛX[\ˆÙˆHÛË[™HØ[YH›ÛÜˆ‹PLBˆ
+ˆYX\Ý\™YH›ØYZYYØZ[œÝÛˆHØ[YHÜšY‚ˆ
+‹Â˜ÛÛœÝÒQÕ×Ô‘PPÒÓRS—ÕÓÔ”ÕHÂ‚˜ÛÛœÝ“ÐQÐRQÑÔ’QHÂ˜ÛÛœÝ“ÐQÐRQÓRS—ÕÓÔ”ÕHÂ˜ÛÛœÝ“ÐQÐRQÓRS—ÓQPSˆHŒMNÂ‹ËÈÌˆHœšYÚ™\ÜÈZY	ÜÈÝÛˆ›ÛÜœË[™H™X\ÛÛˆ^H\™H›ÝH›ØY‹ËÈZY	ÜÎˆ^ÜÝ\™H[Ý™\ÈU‘T–H^[ÛÈHL°¬ˆÚÛKYœ˜[YHÚYÛ˜]\™H]Ø\Â‹ËÈÛÈÛØ\œÙH›ÜˆH›ØYØ^HØØÝ\Z[™ÈH[ÙˆHœ˜[YH\È^XÝHHšYÚ‹ËÈ[œÝ[Y[\™K[™Hš[™\ˆÜšYÛÝ[Û›HÛÜÝ[YKˆYX\Ý\™Y[Øš[B‹ËÈÎL0åÍÎÛˆHX›\ÚYZ\œ›Üˆ]ZÙWÛX\šÙ][ZY
+
+ÌHÝÜ
+N‚‹ËÂ‹ËÈL°¬ˆYX[ˆKÛÜœÝLH™\ÝÜ™Y™\ÚYX[L°¬ŽˆYX[ˆŒÛÜœÝ‹ËÂ‹ËÈ]\ÈÛÈÜ™\œÈÙˆXYÛš]YH[Ü™HÚYÛ˜[[ˆH›ØYZY	ÜÈŒŽH]B‹ËÈØ[YHÜšYÚXÚ\ÈH^XÝYÚ\NˆÛ™HZY™\Z[ÈH[ÙˆHœ˜[YB‹ËÈ[™HÝ\ˆ™YÜ˜Y\È[Ùˆ]‚‹ËÂ‹ËÈH›ÛÜœÈÚ]]›ÝYÚHH\™ÙˆHYX\Ý\™YšYÝ\™\È[™˜\ˆX›Ý™HB‹ËÈ™\ÝÜ™Y™\ÚYX[ÛÈHZYÚ[™ÙYHœ˜[YHˆ[™HZYÚ[™ÙY‹ËÈ›Ý[™ÈˆØ[››Ý›Ý™HYH8 %‹PLIÜÈ\™\ÜÙ\[Û‹ÚXÚ\ÈHÛ™HB‹ËÈÛÛ›ÛÚ\™YÈ›Ý[™È\ÜÙ\Ë‚˜ÛÛœÝ”’QÒÐRQÑÔ’QHLŽÂ˜ÛÛœÝ”’QÒÐRQÓRS—ÕÓÔ”ÕHMÎÂ˜ÛÛœÝ”’QÒÐRQÓRS—ÓQPSˆHMNÂ‹ËÈHØ[Xœ˜]YÜ˜YK\ÜÙ\Y˜]\ˆ[ˆ\ÜÝ[YYˆ]™\žH˜[™›Ø™H[™‹ËÈÜš]XÈœ˜[YH\ÈÝZ]HZÙ\È\È™XY\™KˆÛÜ›šœÈ0©ÈTÑWÑVÔÕT‘K‚˜ÛÛœÝTÑWÑVÔÕT‘HHŽMNÂ‚‹ÊŠˆ›Ú™XÝHÝ™Y]Ù[™[[™\Ë[ˆ™XY‹H[™Ëˆ™\ÝÜ™\ÈÚ]][Ý™Yˆ
+‹Â˜\Þ[˜È[˜Ý[Ûˆ›ØYÛÛ˜\Ý
+YÙKÝ][ÛŠHÂˆÛÛœÝÚÝH]ØZ]YÙK™]˜[X]J
+Ý
+HOˆÂˆÛÛœÝHHÚ[™ÝË—×ØÚXØYÛÍÂˆKœÙ][š[X][Û’Û
+YJNÂˆ›Üˆ
+ÛÛœÝYÙˆÉÚY	Ë	ÜÜ\	×JHÂˆÛÛœÝ[HØÝ[Y[™Ù][[Y[žRY
+Y
+NÂˆYˆ
+[
+HÈ[™]\Ù]œ›ØYY[ˆH[œÝ[Kš\ÚXš[]NÈ[œÝ[Kš\ÚXš[]HH	ÚY[‰ÎÈBˆBˆYˆ
+ÝšÚ[™OOH	Ú[\œÙXÝ[Û‰ÊHÂˆËÈHš\Ú]Ü‰ÜÈÝÛˆ›Ý]NˆHÛÈÈX‰ÜÈ\Ý\ÈZ[Y]›ÛÝÛÈBˆËÈ]Ûˆ\È[ˆHÓHÚ]\ˆÜˆ›ÝH[™[\ÈÜ[‹‚ˆØÝ[Y[œ]Y\žTÙ[XÝÜŠÙ]KZ[\ZYH‰ÜÝšYH—X
+OË˜ÛXÚÊ
+NÂˆKœÝ\
+
+NÂˆËÈ[ˆ\›ˆÈÛÚÈSÓ‘ÈHÝ™Y]™Z[™ÈÝÛÙÛ‹ˆH\œš]˜[ÜÙBˆËÈZ[\È]Hš^Y™X\š[™ËÚXÚ]HÜ›ÜÜÚ[™ÈÚ[ÈXYÛÛ˜[H[ÈBˆËÈ›ØÚÈ[™]È›È›ØYØ^H[ˆHœ˜[YH][8 %›Ø™\È[œÚYHLK‚ˆËÈH™X\š[™È\È™XYÙ™ˆH™X\™\ÝÛÛ[Z]YÙ[™[[™HÙYÛY[ÛÂˆËÈH\™XÝ[Ûˆ\ÈH]\Ù]	ÜÈ[™›ÝH[X™\ˆÚÜÙ[ˆ\™K‚ˆÛÛœÝHKœ^Y\ŽÂˆ]™\ÝH[Âˆ›Üˆ
+ÛÛœÝ™XÈÙˆKœÝ™Y]Ëœ™XÛÜ™ÊHÂˆÛÛœÝ]H™XËœ]Âˆ›Üˆ
+]HHNÈH]›[™ÝÈJÊÊHÂˆÛÛœÝHH]ÚHHWNÂˆÛÛœÝˆH]ÚWNÂˆÛÛœÝHH–ÌHHVÌNÂˆÛÛœÝˆH–ÌWHHVÌWNÂˆÛÛœÝ[ŒˆHH
+ˆH
+Èˆ
+ˆŽÂˆÛÛœÝH[ŒˆÈX]›X^
+X]›Z[ŠKˆ
+
+™HHVÌJH
+ˆH
+È
+›ˆHVÌWJH
+ˆŠHÈ[ŒŠJHˆÂˆÛÛœÝHX]š\Ý
+™HH
+VÌH
+È
+ˆJK›ˆH
+VÌWH
+È
+ˆŠJNÂˆYˆ
+X™\Ý™\Ý™
+H™\ÝHÈ™X\š[™Îˆ
+X]˜][ŒŠKŠH
+ˆN
+HÈX]”HNÂˆBˆBˆYˆ
+™\Ý
+HKØ[Ù\‹[\Ü
+ÈX]×ÙYÎˆ
+™\Ý˜™X\š[™È
+ÈÍŒ
+H	HÍŒJNÂˆH[ÙHÂˆK™ÛÕÊÝšY
+NÂˆBˆKœÝ\
+
+NÂˆKœÝ\
+
+NÂˆÛÛœÝØ[HHK˜Ø[Y\˜NÂˆØ[K\]SX]š^ÛÜ›
+YJNÂˆÛÛœÝÈHKœ™[™\™\‹™ÛQ[[Y[˜ÛY[ÚYÂˆÛÛœÝHKœ™[™\™\‹™ÛQ[[Y[˜ÛY[ZYÚÂˆÛÛœÝˆH™]ÈØ[KœÜÚ][Û‹˜ÛÛœÝXÝÜŠ
+NÂˆÛÛœÝÝ]H×NÂˆËÈ]™\žH›Ý\ˆY]™\È[Û™È]™\žHÛÛ[Z]YÙ[™[[™KˆHYX]Ú\ÂˆËÈÝ™Y]ËšœÈÛÈH›Ø™H™XYÈHšX˜›Ûˆ[™›ÝHÜ›Ý[™[™\ˆ]‚ˆ›Üˆ
+ÛÛœÝ™XÈÙˆKœÝ™Y]Ëœ™XÛÜ™ÊHÂˆÛÛœÝH™XËœ]Âˆ›Üˆ
+]HHNÈH›[™ÝÈJÊÊHÂˆÛÛœÝHHÚHHWNÂˆÛÛœÝˆHÚWNÂˆÛÛœÝHX]š\Ý
+–ÌHHVÌK–ÌWHHVÌWJNÂˆÛÛœÝÝ\ÈHX]›X^
+KX]œ›Ý[™
+È
+JNÂˆ›Üˆ
+]ÈHÈÈHÝ\ÎÈÊÊÊHÂˆÛÛœÝHÈÈÝ\ÎÂˆÛÛœÝHHVÌH
+È
+–ÌHHVÌJH
+ˆÂˆÛÛœÝˆHVÌWH
+È
+–ÌWHHVÌWJH
+ˆÂˆYˆ
+K\œ˜Z[‹š\ÕØ]\ŠKŠJHÛÛ[YNÂˆ‹œÙ]
+KK\œ˜Z[‹œÝ\™˜XÙRZYÚ
+KŠH
+ÈŒŒ‹[ŠNÂˆÛÛœÝ\ÝH‹™\Ý[˜ÙUÊØ[KœÜÚ][ÛŠNÂˆ‹œ›Ú™XÝ
+Ø[JNÂˆÛÛœÝH
+‹ž
+ˆH
+ÈJH
+ˆÎÂˆÛÛœÝHH
+]‹žH
+ˆH
+ÈJH
+ˆÂˆYˆ
+‹žˆLH‹žˆˆHˆHÈHˆHˆHHHŠHÛÛ[YNÂˆÝ]œ\Ú
+È\ÝHJNÂˆBˆBˆBˆËÈHÔÔÈÚY\ÙHÛÛÜ™[˜]\È\™H[‹ˆH[Øš[HÛÛ^[œÈ]ˆËÈ]šXÙTØØ[Q˜XÝÜˆ‹ÛÈHØÜ™Y[œÚÝ\ÈÚXÙH\ÈÚYH[™]™\žH›Ø™BˆËÈ[™È[ˆHÜ›Û™È[ˆÙˆHœ˜[YH[›\ÜÈ]\ÈØØ[Y8 %ÚXÚ™XY\ÂˆËÈ››È›ØY\È[ž]Ú\™Hˆ˜]\ˆ[ˆ\ÈHœ›ÚÙ[ˆ›Ø™K™XØ]\ÙHHX\ÚÈ]ˆËÈX]Ú\È›Ý[™È[™H›ØY]Z[È›Ý[™ÈÛÚÈY[XØ[œ›ÛH\™K‚ˆ™]\›ˆÈ›Ø™\ÎˆÝ]ÜÜÕÚYˆÈNÂˆKÝ][ÛŠNÂ‚ˆÛÛœÝÚÝˆH]ØZ]YÙKœØÜ™Y[œÚÝ
+È\Nˆ	Ü™ÉÈJNÂˆ]ØZ]YÙK™]˜[X]J
+
+HOˆÂˆÛÛœÝHHÚ[™ÝË—×ØÚXØYÛÍÂˆK—×Ü›ØYX\šÙ\œÈH×NÂˆKœÝ™Y]Ë™Ü›Ý\˜]™\œÙJ
+ÊHOˆÂˆYˆ
+[Ë›X]\šX[
+H™]\›ŽÂˆK—×Ü›ØYX\šÙ\œËœ\Ú
+ÛËË›X]\šX[JNÂˆÛÛœÝX\šÙ\ˆH™]ÈË›X]\šX[˜ÛÛœÝXÝÜŠ
+NÂˆX\šÙ\‹˜ÛÛÜ‹œÙ]^
+
+NÂˆX\šÙ\‹™[Z\ÜÚ]™OËœÙ]^ËŠ™Œ™ŠNÂˆX\šÙ\‹œÚYHHË›X]\šX[œÚYNÂˆX\šÙ\‹˜[œÜ\™[H˜[ÙNÂˆX\šÙ\‹™\Üš]HHYNÂˆX\šÙ\‹œÛYÛÛ“Ù™œÙ]HYNÂˆX\šÙ\‹œÛYÛÛ“Ù™œÙ]˜XÝÜˆHNÂˆX\šÙ\‹œÛYÛÛ“Ù™œÙ][š]ÈHLÌŽÂˆË›X]\šX[HX\šÙ\ŽÂˆJNÂˆKœÝ\
+
+NÂˆJNÂˆÛÛœÝÚÝHH]ØZ]YÙKœØÜ™Y[œÚÝ
+È\Nˆ	Ü™ÉÈJNÂˆËÈPQÓ“ÔÕPÈTÔÈ8 %HØ[YHX\šÙ\œÈÚ]HÝØ\™[™H™Y\ÈY[‹ˆBˆËÈ›Ø™HX\šÙY\™H]›Ý[ˆÚÝX\ÈH›ØY]\ÈÓˆÐÔ‘QSˆ[™ˆËÈÓÕ‘T‘Q–H‘QÑUUSÓ‹ÚXÚHX\šÙY[Û›H[›ÛZ[˜]Üˆ›ÜÈ[œÝXYÙ‚ˆËÈ˜Z[[™Ë‚ˆ]ØZ]YÙK™]˜[X]J
+
+HOˆÂˆÛÛœÝHHÚ[™ÝË—×ØÚXØYÛÍÂˆK—×Ù›Ü˜UØ\ÈHØK™›Ü˜OË™Ü›Ý\Ëš\ÚX›KK™Y\ÏË™Ü›Ý\Ëš\ÚX›WNÂˆYˆ
+K™›Ü˜OË™Ü›Ý\
+HK™›Ü˜K™Ü›Ý\š\ÚX›HH˜[ÙNÂˆYˆ
+K™Y\ÏË™Ü›Ý\
+HK™Y\Ë™Ü›Ý\š\ÚX›HH˜[ÙNÂˆKœÝ\
+
+NÂˆJNÂˆÛÛœÝÚÝQˆH]ØZ]YÙKœØÜ™Y[œÚÝ
+È\Nˆ	Ü™ÉÈJNÂˆ]ØZ]YÙK™]˜[X]J
+
+HOˆÂˆÛÛœÝHHÚ[™ÝË—×ØÚXØYÛÍÂˆYˆ
+K™›Ü˜OË™Ü›Ý\
+HK™›Ü˜K™Ü›Ý\š\ÚX›HHK—×Ù›Ü˜UØ\ÖÌHÏÈYNÂˆYˆ
+K™Y\ÏË™Ü›Ý\
+HK™Y\Ë™Ü›Ý\š\ÚX›HHK—×Ù›Ü˜UØ\ÖÌWHÏÈYNÂˆ[]HK—×Ù›Ü˜UØ\ÎÂˆ›Üˆ
+ÛÛœÝÛËWHÙˆK—×Ü›ØYX\šÙ\œÊHÈË›X]\šX[™\ÜÜÙJ
+NÈË›X]\šX[HNÈBˆ[]HK—×Ü›ØYX\šÙ\œÎÂˆKœÝ™Y]Ë™Ü›Ý\š\ÚX›HH˜[ÙNÂˆKœÝ\
+
+NÂˆJNÂˆÛÛœÝÚÝÈH]ØZ]YÙKœØÜ™Y[œÚÝ
+È\Nˆ	Ü™ÉÈJNÂˆËÈPQÓ“ÔÕPÈTÔÈ8 %H›ØYZ[Y]•SÜXÚ]KˆH™X\ˆ˜[™]Ý[ˆËÈØÛÜ™\È›]\™H\È›Ý[ˆ[H˜][ˆ]\ÈHšX˜›Ûˆ[™HÜ›Ý[™ˆËÈÚ\š[™ÈHYÚ™\ÜË‚ˆ]ØZ]YÙK™]˜[X]J
+
+HOˆÂˆÛÛœÝHHÚ[™ÝË—×ØÚXØYÛÍÂˆKœÝ™Y]Ë™Ü›Ý\š\ÚX›HHYNÂˆK—×Ü›ØYÜ\]YHH×NÂˆKœÝ™Y]Ë™Ü›Ý\˜]™\œÙJ
+ÊHOˆÂˆYˆ
+[Ë›X]\šX[
+H™]\›ŽÂˆK—×Ü›ØYÜ\]YKœ\Ú
+ÛË›X]\šX[Ë›X]\šX[˜[œÜ\™[Ë›X]\šX[˜[U\ÝˆË›X]\šX[™\Üš]WJNÂˆË›X]\šX[˜[œÜ\™[H˜[ÙNÂˆË›X]\šX[˜[U\ÝHÂˆËÈ\Üš]HÒU]^XÝH\ÈHX\šÙ\ˆ\ÜÈÙ\ËˆX]š[™È]˜[ÙBˆËÈ[Ý™\ÈHšX˜›Ûˆ[ÈHÜ\]YH]Y]YHÚ]Ý]][™È]ÛBˆËÈ\Y™™\‹ÛÈH\œ˜Z[ˆZ[È˜XÚÈÝ™\ˆ][™H˜[™™\ÜÂˆËÈHŒÙZ[[™È[™\ˆH\™™XÝHX[H›ØY8 %ÚXÚ\ÈÚ]\ÂˆËÈYX\Ý\™[Y[™XY]LLLH™Y›Ü™HHÙ™œÙ]X›Ý™HØ\ÈY\[™Y‚ˆË›X]\šX[™\Üš]HHYNÂˆË›X]\šX[›™YYÕ\]HHYNÂˆJNÂˆKœÝ\
+
+NÂˆJNÂˆÛÛœÝÚÝÔH]ØZ]YÙKœØÜ™Y[œÚÝ
+È\Nˆ	Ü™ÉÈJNÂˆ]ØZ]YÙK™]˜[X]J
+
+HOˆÂˆÛÛœÝHHÚ[™ÝË—×ØÚXØYÛÍÂˆ›Üˆ
+ÛÛœÝÛK]×HÙˆK—×Ü›ØYÜ\]YJHÂˆK˜[œÜ\™[HÈK˜[U\ÝH]ÈK™\Üš]HHÎÈK›™YYÕ\]HHYNÂˆBˆ[]HK—×Ü›ØYÜ\]YNÂˆKœÝ™Y]Ë™Ü›Ý\š\ÚX›HHYNÂˆ›Üˆ
+ÛÛœÝYÙˆÉÚY	Ë	ÜÜ\	×JHÂˆÛÛœÝ[HØÝ[Y[™Ù][[Y[žRY
+Y
+NÂˆYˆ
+[
+HÈ[œÝ[Kš\ÚXš[]HH[™]\Ù]œ›ØYY[ˆÏÈ	ÉÎÈ[]H[™]\Ù]œ›ØYY[ŽÈBˆBˆKœÝ\
+
+NÂˆKœÙ][š[X][Û’Û
+˜[ÙJNÂˆJNÂ‚ˆÛÛœÝˆHXÛÙT™ÊÚÝŠNÂˆÛÛœÝHHXÛÙT™ÊÚÝJNÂˆÛÛœÝQˆHXÛÙT™ÊÚÝQŠNÂˆÛÛœÝÈHXÛÙT™ÊÚÝÊNÂˆÛÛœÝÔHXÛÙT™ÊÚÝÔ
+NÂˆÛÛœÝØØ[HH‹ÚYÈÚÝ˜ÜÜÕÚYÂˆÛÛœÝ›Ø™\ÈHÚÝœ›Ø™\Ë›X\
+
+
+HOˆ
+Âˆ\Ýˆ™\ÝˆˆX]›Z[Š‹ÚYHKX]›X^
+X]œ›Ý[™
+ž
+ˆØØ[JJJKˆNˆX]›Z[Š‹šZYÚHKX]›X^
+X]œ›Ý[™
+žH
+ˆØØ[JJJKˆJJNÂˆËÈXYÙ[HÝ\š]™\ÈÛ™HX\[™È\ÈHÝ›Û™ÛH™YX[™X›YKÙXZÛHÜ™Y[‚ˆËÈ^[È›Ý[™È[ÙH[ˆ\ÈØÙ[™H\Ë‚ˆÛÛœÝ\ÓXYÙ[HH
+[YËJHOˆÂˆÛÛœÝHH
+H
+ˆ[YËÚY
+È
+H
+ˆÂˆ™]\›ˆ[YË™]VÚWHˆM	‰ˆ[YË™]VÚH
+È—HˆM	‰ˆ[YË™]VÚH
+ÈWHLLÂˆNÂˆÛÛœÝX\šÙYH
+JHOˆ\ÓXYÙ[JKJNÂˆÛÛœÝX\šÙY˜\™HH
+JHOˆ\ÓXYÙ[JQ‹JNÂˆÛÛœÝ[SH
+JHOˆÂˆÛÛœÝHH
+H
+ˆ‹ÚY
+È
+H
+ˆÂˆ™]\›ˆX]˜XœÊX“
+‹™]VÚWK‹™]VÚH
+ÈWK‹™]VÚH
+È—JBˆHX“
+Ë™]VÚWKË™]VÚH
+ÈWKË™]VÚH
+È—JJNÂˆNÂˆÛÛœÝ[SÜ\]YHH
+JHOˆÂˆÛÛœÝHH
+H
+ˆ‹ÚY
+È
+H
+ˆÂˆ™]\›ˆX]˜XœÊX“
+Ô™]VÚWKÔ™]VÚH
+ÈWKÔ™]VÚH
+È—JBˆHX“
+Ë™]VÚWKË™]VÚH
+ÈWKË™]VÚH
+È—JJNÂˆNÂˆËÈ‹SLXKˆHØ[YHÛÈœ˜[Y\ÈÛˆHÝ\ˆÛÈØØ[\Îˆ^ÜÝ\™KZ[˜\šX[ˆËÈÛÛ˜\Ý[™HXœÛÛ]HYÚHÜ›Ý[™[™\ˆH›ØY\ÈØ\œžZ[™Ë‚ˆËÈXYÛš]YK›ÝÚYÛˆ8 %H›ØY]\ÈT’ÑTˆ[ˆHÜ›Ý[™™\ÚYH]\ÂˆËÈ^XÝH\È\Ý[™ÝZ\ÚX›K[™ÛÝ]ÝØ]\˜	ÜÈX\\È›Ý[ˆÛ™Hœ˜[YK‚ˆÛÛœÝÜ›Ý[™HH
+JHOˆÂˆÛÛœÝHH
+H
+ˆ‹ÚY
+È
+H
+ˆÂˆ™]\›ˆ™[]]™S[Z[˜[˜ÙJË™]VÚWKË™]VÚH
+ÈWKË™]VÚH
+È—JNÂˆNÂˆÛÛœÝÙX™\ˆH
+JHOˆÂˆÛÛœÝHH
+H
+ˆ‹ÚY
+È
+H
+ˆÂˆÛÛœÝÈHÙX™\ÛÛ˜\Ý
+™[]]™S[Z[˜[˜ÙJ‹™]VÚWK‹™]VÚH
+ÈWK‹™]VÚH
+È—JKˆÜ›Ý[™JJJNÂˆ™]\›ˆÈOOH[È[ˆX]˜XœÊÊNÂˆNÂˆÛÛœÝÜ›Ý[™X“H
+JHOˆÂˆÛÛœÝHH
+H
+ˆ‹ÚY
+È
+H
+ˆÂˆ™]\›ˆX“
+Ë™]VÚWKË™]VÚH
+ÈWKË™]VÚH
+È—JNÂˆNÂˆÛÛœÝYYX[ˆH
+ÊHOˆÂˆÛÛœÝÈHËœÛXÙJ
+KœÛÜ
+
+KŠHOˆHHŠNÂˆ™]\›ˆË›[™ÝÈÖÓX]™›ÛÜŠË›[™ÝÈŠWHˆÂˆNÂˆÛÛœÝ˜[™ÈH“ÐQÐS‘Ë›X\
+
+ÛËWJHOˆÂˆÛÛœÝ[˜[™H›Ø™\Ë™š[\Š
+
+HOˆ™\ÝHÈ	‰ˆ™\ÝJNÂˆÛÛœÝÙY[ˆH[˜[™™š[\Š
+
+HOˆX\šÙY
+žžJJNÂˆÛÛœÝÈHÙY[‹›X\
+
+
+HOˆ[S
+žžJJNÂˆÛÛœÝÜHÙY[‹›X\
+
+
+HOˆ[SÜ\]YJžžJJNÂˆÛÛœÝØˆHÙY[‹›X\
+
+
+HOˆÙX™\ŠžžJJK™š[\Š
+ÊHOˆÈOOH[
+NÂˆÛÛœÝÛHÙY[‹›X\
+
+
+HOˆÜ›Ý[™X“
+žžJJNÂˆ™]\›ˆÂˆËKŽˆË›[™ÝˆËÈ‹P•QÌËˆÝÈX[žH›ØYÚ[È[™Y[ˆHœ˜[YH][[™ÝÈX[žBˆËÈÙˆÜÙHHX\šÙ\ˆ\ÜÈØ[ˆÙYHÛ˜ÙHHÝØ\™[™H™Y\È\™BˆËÈZÙ[ˆ]Ø^Kˆ”›Ú™XÝY\ÈÚ]H˜[™\ÈÐUQÛ‹ÛÈH›ØY]ˆËÈ\ÈÛˆØÜ™Y[ˆ[™[š\ÚX›H˜Z[È\™H[œÝXYÙˆ]ZY]HX]š[™ÈBˆËÈØ[\NÈ˜\™X\ÈÚ][ÈØØÛ\Ú[Ûˆ\\œ›ÛH›]™\ÜËÚXÚ\ÂˆËÈH\Ý[˜Ý[Ûˆ™YHØ]\È[ˆH›ÝÈ˜Z[YÈ˜]Ë‚ˆËÂˆËÈ‹SLXÎˆ˜\™X\È›ÝÈ[ÛÈÚ]\˜Ù\X›X\ÈÐÓÔ‘QÛ‹ˆÙYH]ÂˆËÈ›Þ™[ÝÈ8 %]Ø\ÈHXYÛ›ÜÝXÈ›ÜˆÛÈ\˜Ù[È™Y›Ü™H[ž][™ÂˆËÈ]šYYžH][™HØÛÜ™H]™\XÙYÛÝ[™H˜Z\ÙYžH[[™ÂˆËÈH™YH[ˆœ›ÛÙˆH›ØY‚ˆ”›Ú™XÝYˆ[˜[™›[™Ýˆ˜\™Nˆ[˜[™™š[\Š
+
+HOˆX\šÙY˜\™JžžJJK›[™ÝˆËÈHÙZ[[™ÎˆHØ[YH›Ø™\ÈÚ]HšX˜›Ûˆ›Ü˜ÙYÜ\]YKˆ]Ø^\ÈÝÂˆËÈ]XÚÛÛ˜\ÝH›ØY	ÜÈÝÛˆÛÛÝ\ˆ\ÈÈÜ[™™Y›Ü™H]È[BˆËÈÜ[™È]ÚXÚ\ÈÚ]Ù\\˜]\ÈÛÈ˜[œÜ\™[ˆœ›ÛHHØ[YBˆËÈYÚ™\ÜÈ\ÈHÜ›Ý[™‹‚ˆÜ\]YQ[SˆYYX[ŠÜ
+KˆYYX[‘[SˆYYX[ŠÊKˆËÈ‹SLXK™\ÜY[™›ÝØ]YˆÙX™\˜\ÈH^ÜÝ\™KZ[˜\šX[[‚ˆËÈÙˆHÝÛ™\‰ÜÈ[[™È[™Ü›Ý[™\ÈH›ÛÜˆ[ŽÈ‹SLXˆÙ]ÈBˆËÈ˜\œËˆÙX™\“˜\ÈØ\œšYY™XØ]\ÙHH˜[™Ø[ˆÜÙH›Ø™\ÈÈH›XÚÂˆËÈÜ›Ý[™H˜][ÈØ[››Ý™HZÙ[ˆYØZ[œÝ[™HYYX[ˆÝ™\ˆHÚ[[BˆËÈÚÜ\ˆØ[\H\ÈÝÈ\È›Ú™XÝ\ÈZ\Ë\Ý]YH[X™\ˆ™Y›Ü™K‚ˆÙX™\ŽˆYYX[ŠØŠKˆÙX™\“ŽˆØ‹›[™ÝˆÜ›Ý[™ˆYYX[ŠÛ
+KˆÊŠ‚ˆ
+ˆ“ÐQPT‹SLXËˆHS“ÓRSUÔˆTÈ˜\™X“ÕÙY[˜‚ˆ
+‚ˆ
+ˆ\È™XYÈË›[™Ý8 %H›Ø™\ÈHX\šÙ\ˆ\ÜÈÛÝ[ÙYH“ÕQÒˆ
+ˆH™YÙ]][Ûˆ8 %[[Œ‹LLM‹ˆ]XZÙ\ÈHØÛÜ™HÛÈTÚ[‚ˆ
+ˆÛÛY][™ÈÝ[™È[ˆœ›ÛÙˆH˜Z[Ý™]ÚÙˆ›ØY™XØ]\ÙHBˆ
+ˆÝ™]ÚX]™\ÈHØ[\H[œÝXYÙˆ˜Z[[™È[ˆ]ˆ
+ŠHØ]H]ˆ
+ˆ[\›Ý™\ÈÚ[ˆ[ˆØØÛY\ˆY\ÈH[™È]YX\Ý\™\È\È]šY[™ÈžBˆ
+ˆHÜ›Û™È[X™\ŠŠ‹[™\ÈÛ™HY›Üˆ\ÈÛ™È\È]\È^\ÝY‚ˆ
+‚ˆ
+ˆH[œÝ[Y[Èš^]Ø\È[™XYH\™H[™[™XYHš[[™ËˆBˆ
+ˆÚÝQ˜\ÜÈY\ÈHÝØ\™[™H™Y\È›Üˆ^XÝH\È™X\ÛÛˆ[™ˆ
+ˆ]ÈÝÛˆÛÛ[Y[Ø^\ÈÛÎˆ
+ˆ˜H›ØY]\ÈÓˆÐÔ‘QSˆ[™ÓÕ‘T‘Q–Bˆ
+ˆ‘QÑUUSÓ‹ÚXÚHX\šÙY[Û›H[›ÛZ[˜]Üˆ›ÜÈ[œÝXYÙ‚ˆ
+ˆ˜Z[[™ËˆŠˆ]Ø\ÈZ[\ÈHXYÛ›ÜÝXÈ[™™]™\ˆÚ\™YÈHØÛÜ™K‚ˆ
+‚ˆ
+ˆ˜\™X\ÈHšYÚ[›ÛZ[˜]Üˆ˜]\ˆ[ˆ”›Ú™XÝY™XØ]\ÙHBˆ
+ˆ›ØY™Z[™HÕÔ‘H\ÈH›ØYHš\Ú]ÜˆYÚ][X][HØ[››ÝÙYK[™ˆ
+ˆ[X[™[™È]™XYÛÝ[™H[X[™[™È\˜^Hš\Ú[Û‹ˆ™YÙ]][Ûˆ\Âˆ
+ˆY™™\™[ˆ]\ÈÝ\œË][Ý™\ÈÚ[ˆÙHÚ[™ÙH][™]]\Ý›Ý™Bˆ
+ˆX›HÈ][™\ˆH˜Z[›ØYÝ]ÙˆHØ[\KˆÙY[ˆ8¢¡ˆ˜\™X[Ø^\Ëˆ
+ˆÛÈ\ÈØ[ˆÛ›H]™\ˆÕÑTˆHØÛÜ™H8 %]\È›ÝH›Ý]H›ÝYÚH˜\‹‚ˆ
+‚ˆ
+ˆYX\Ý\™YÛˆÛ™H˜[™XÜ›ÜÜÈ™YHZ[ÈHØ[YH]™[š[™ËÚ\™Bˆ
+ˆÙY[˜ÝÝ[™ÈMMø¡¤ŒMÍø¡¤ŒMŒÈ[™HÛØÛÜ™HÝÝ[™ÈŒˆ	x¡¤M	x¡¤NH	Bˆ
+ˆ
+Y\šX[L8 $ÍŒNˆÛÛÙZ\œ›Ü™YÛÛÙ™\Z\™YžH‹P•QÍX‹ÛÛÙˆ
+ˆÚY[™YžHÍJŒŠJKˆ˜\™XØ\È
+ŠŒNˆ[ˆ[™YJŠ‹[™\ÈØÛÜ™Bˆ
+ˆ™XYÈ
+ŠLËŒÈÈL‹ÈÈL‹È	JŠ‹ˆHÝÛˆY›ÝÚ[™ÙHžHZYÚˆ
+ˆÚ[È™YH[Y\ÎÈHØ[\HY‚ˆ
+‹ÂˆÊŠ‚ˆ
+ˆÓÕS•QUHPÓT‘QT‹ˆ\È\ÙYÈÛÝ[H˜8 %HÙXÛÛ™ˆ
+ˆ[™XÛ\™Y™\ÚÛÚ][™È™\ÚYH“ÐQÓRS—ÑSWÓÚXÚ\ÈKŽ[™ˆ
+ˆ\ÈÚ]\Èš[H]™\ž]Ú\™H[ÙHØ[ÈH[™H™]ÙY[ˆH›ØY[ÝHØ[‚ˆ
+ˆÙYH[™Û™H[ÝHØ[››ÝˆÛÈ˜\œÈ›ÜˆÛ™H]Y\Ý[Û‹[™HÝšXÝ\ˆÛ™Bˆ
+ˆØ\ÈHÛ™H›Ø›ÙHYÜš][ˆÝÛ‹‚ˆ
+‚ˆ
+ˆ]Ý\™˜XÙYÛˆLIÜÈÛÝYÚÈ
+ˆÌÌÊKˆØ\š[™È[H[ÈÜ›Ý[™ˆ
+ˆ›Ü›X[È[™\šÙ[œÈHÜ›Ý[™X›Ý]
+ŽÈZÙWÛX\šÙ]]L8 $ÍŒBˆ
+ˆ[Ý™Y]ÈYYX[ˆ3¥
+ˆ‹ŒÈ8¡¤ˆ‹Œ[™\ÈØÛÜ™H™[NH	H8¡¤ˆ	Kˆ]\Âˆ
+ˆ›ÝHØÙ[™H˜[[™È\\]\ÈHÕT•SÕSÓˆ™Z[™ÈÜ›ÜÜÙYˆ]‰ÜÂˆ
+ˆÚÛH\ÝšX][ÛˆØ]ŒÈX›Ý™HHÝ\ÛÈHŒÈÚY][ˆBˆ
+ˆ›Ø™\È[™\ˆ]ˆH˜[™Ý[ÛX\™YHXÛ\™YKŽ˜\‹[™Bˆ
+ˆÛÈ™[™\œÈ\™H[™\Ý[™ÝZ\ÚX›H8 %ŒÈ
+ˆ\È˜\ˆ™[ÝÈ[žH\˜Ù\X[ˆ
+ˆ™\ÚÛˆHØ]H]˜Z[ÈH˜[™\ÜÚ[™È]ÈÝÛˆÝ[™\™\Âˆ
+ˆYX\Ý\š[™È]ÈÝÛˆ\š]Y]XË‚ˆ
+‚ˆ
+ˆTÈTÈSˆSQÓ“QS•“ÕH‘SVUSÓ‹[™HY™™\™[˜ÙH\ÈÚXÚÙYˆ
+ˆ˜]\ˆ[ˆ\ÜÙ\Yˆ]KŽHÛÈÝ][ÛœÈLLM[™XYH˜Z[È8 %ˆ
+ˆÛÝ]ÝØ]\˜L8 $ÌLH[™œ›ÛWØX›Ý™XL8 $ÍŒH8 %ÕSRSÛˆBˆ
+ˆØ[YHYX\Ý\™[Y[Ë™Y›Ü™H[™Y\‹ˆY\ÈY]\›™YHÛ›ÝÛˆ˜][ˆ
+ˆÜ™Y[ˆ]ÛÝ[]™H™Y[ˆH›Ü˜šY[ˆÚ[™ÙˆÚ[™ÙK[™H™K\[ˆ\Âˆ
+ˆÚ]ÛÝ[]™HØ]YÚ]‚ˆ
+‚ˆ
+ˆH˜\ˆ]Ù[ˆ\ÈÝ[LÌÉÜÈ›Ýš\Ú[Û˜[˜\Ù[[™KˆÛÝ[[™È]]ˆ
+ˆÙ\È›ÝXZÙH]\š]™YÈ]XZÙ\È\™H™HÛ™HÙˆ]‚ˆ
+‹Âˆ\˜Ù\X›Nˆ
+
+
+HOˆÂˆÛÛœÝ˜\™HH[˜[™™š[\Š
+
+HOˆX\šÙY˜\™JžžJJK›[™ÝÂˆ™]\›ˆ˜\™HÈË™š[\Š
+
+HOˆH“ÐQÓRS—ÑSWÓ
+K›[™ÝÈ˜\™HˆÂˆJJ
+KˆØ]Yˆ[˜[™›[™ÝH“ÐQÓRS—Ô“Ð‘TÈ	‰ˆHH“ÐQÑÐUQÐ‘VSÓ‘ÓKˆNÂˆJNÂˆ™]\›ˆÈÝ][Û‹˜[™ÈNÂŸB‚˜ÛÛœÝ˜Z[\™\ÈH×NÂ˜ÛÛœÝ\ÜÙ\ÈH×NÂ‹ËÈLŒˆÚXÚÜÈZÙ[ˆ[œÚYHHÝYÙH›ØÚË\ÈÜÜÙYÈH[Ø^\Ë[Û‚‹ËÈØØY™›Û[™È
+YÙHÙ\™\Ë™XYKØY\ˆ›Ø›[\ËÛÛ\][Û‹YÙH\œ›ÜœË‹ËÈ™[™ÜŠH]]™\žH[›ØØ][ÛˆZÙ\È™YØ\™\ÜÈÙˆÓSÒÑWÔÕQÑKˆHÝ[[X\žB‹ËÈš[È›ÝÛÈÛÈÝYÙY[™\ÈØ[ˆ™H]Y]YÈY\È[ˆ[™š[\™Y‹ËÈ\ÜÎˆÝYÙYÙXÝ[ÛˆÛÝ[ÈÝ[KØØY™›Û[™ÈÛÝ[ÈX]Ú‚›][”ÝYÙUÛÜšÈH˜[ÙNÂ›]ÝYÙUÛÜšÐÚXÚÜÈHÂ‹ËÈLMÎˆÓSÒÑWÕSRS‘ÏLXÝ[\È]™\žHÚXÚÈ[™HÚ]H[\ÙYÛØÚË‚‹ËÈH\]Ý™\œ[œÈH[‹[Z[]HÙZ[[™È\ÈÒSQ[™HØ[ÛØÚÈ]‹ËÈš[È]H[™\ÈHÛ™H™XY[™È]™]™\ˆÙ]ÈÈÚ]™H8 %ÛÈ™Y›Ü™H\Ë‹ËÈH[ÜÝ^[œÚ]™H\ËHÛ™\È]XÝX[H™YYÝ][™ËÙ\™HHÛ›B‹ËÈÛ™\ÈH›Ùš[H[ˆX\›™Y›Ý[™ÈX›Ý]ˆÚ]HÝ[\Û‹HÚ[Y[‰ÜÂ‹ËÈÝ]]\ÈÝ[H›Ùš[HÙˆ]™\ž][™È]™XXÚYÚXÚ\ÈÚ]XÙ\ÈB‹ËÈ™^Ý]ˆÙ™ˆžHY˜][ˆHØ]IÜÈÝ]]Ý^\Èž]KXÛÛ\\˜X›H™]ÙY[‚‹ËÈ[œË[™H›Ùš[H\ÈÛÛY][™È[ÝH\ÚÈ›Ü‹‚˜ÛÛœÝSRS‘ÈHH\›ØÙ\ÜË™[‹”ÓSÒÑWÕSRS‘ÎÂ˜ÛÛœÝÝ[\H
+
+HOˆÂˆÛÛœÝÙXÜÈHX]œ›Ý[™
+
+]K››ÝÊ
+HHÝ\Y]
+HÈL
+NÂˆ™]\›ˆÉÓX]™›ÛÜŠÙXÜÈÈŒ
+_N‰ÔÝš[™ÊÙXÜÈ	HŒ
+KœYÝ\
+‹	Ì	Ê_WHÂŸNÂ‹ËÈLNÎˆÚÝØš[ÈH]Z[ÛˆHTÔÈ\ÈÙ[\ÈÛˆH˜Z[\™K›ÜˆB‹ËÈ[™[ÙˆÚXÚÜÈÚÜÙHYX\Ý\™YšYÝ\™H\ÈH[™ÈH[ˆ\ÈÈ™HX›HÂ‹ËÈ][ÝKˆHÝØ\™	ÜÈÝ]\ˆ™XXÚ\ÈHØ\ÙH]\ÚÙY›Üˆ]ˆHÚ[™ÙHÈB‹ËÈ›Ý[™\žH\ÈÈ™HX›HÈØ^HÚ]H™XXÚØ\È™Y›Ü™H[™Y\‹[™B‹ËÈÜ™Y[ˆ[™H]š[È›Ý[™ÈXZÙ\È]H™K\[ˆÚ][ˆY]YØ]K‚‹ËÈ]\›Z[š\ÝXÈšYÝ\™\ÈÛ›H8 %HÝ]]Ý^\ÈÛÛ\\˜X›H™]ÙY[ˆ[œË‚‹ËÈHY\ÚÙ[œÝ\È™XYÈ\ÈÚ^K[Ù™\]][ÛœÈÙˆÛÈ˜[Y\ËÚXÚ\ÈHØ[Ù‚‹ËÈ^›Ø›ÙH™XYËÛÈH˜[YH\Ý\È™\ÜY\ÈH[Nˆœ›ÛYÙHK‹ËÈœ›ÛYÙKXÚ[šÈŒˆÜ™\ˆ\Èš\œÝX\X\˜[˜ÙKÛÈHÚ\™YY\ÚÝ^\È]‹ËÈHXYÚ\™HH^Y\ˆ]È]‚™[˜Ý[Ûˆ[S˜[Y\Ê˜[Y\ÊHÂˆÛÛœÝÛÝ[ÈH™]ÈX\
+
+NÂˆ›Üˆ
+ÛÛœÝˆÙˆ˜[Y\ÈÏÈ×JHÛÝ[ËœÙ]
+‹
+ÛÝ[Ë™Ù]
+ŠHÏÈ
+H
+ÈJNÂˆ™]\›ˆË‹‹˜ÛÝ[×K›X\
+
+Û‹×JHOˆ
+ÈOOHHÈˆˆ	ÛŸH	ØßX
+JKš›Ú[Š	Ë	ÊNÂŸB‚™[˜Ý[ÛˆÚXÚÊ˜[YKÛÛ™]Z[H	ÉËÚÝÈH˜[ÙJHÂˆYˆ
+[”ÝYÙUÛÜšÊHÝYÙUÛÜšÐÚXÚÜÈ
+ÏHNÂˆÛÛœÝHSRS‘ÈÈÝ[\
+
+Hˆ	ÉÎÂˆYˆ
+ÛÛ™
+HÂˆ\ÜÙ\Ëœ\Ú
+˜[YJNÂˆÛÛœÛÛK›ÙÊ\ÜÈ	ÝIÛ˜[Y_IÜÚÝÈ	‰ˆ]Z[È8 %	Ù]Z[Xˆ	ÉßX
+NÂˆH[ÙHÈ˜Z[\™\Ëœ\Ú
+˜[YJNÈÛÛœÛÛK›ÙÊRS	ÝIÛ˜[Y_IÙ]Z[È8 %	Ù]Z[Xˆ	ÉßX
+NÈBŸB‚˜ÛÛœÝÙ\™\ˆH˜Ü™X]TÙ\™\Š
+™\K™\ÊHOˆÂˆÛÛœÝ\›HXÛÙUT’PÛÛ\Û™[
+™\K\›œÜ]
+	ÏÉÊVÌJNÂˆ]š[HH]š›Ú[Š“ÓÕ\›
+NÂˆYˆ
+œË™^\ÝÔÞ[˜Êš[JH	‰ˆœËœÝ]Þ[˜Êš[JKš\Ñ\™XÝÜžJ
+JHš[HH]š›Ú[Šš[K	Ú[™^š[	ÊNÂˆYˆ
+Yš[KœÝ\ÕÚ]
+“ÓÕ
+HYœË™^\ÝÔÞ[˜Êš[JJHÂˆ™\ËÜš]RXY
+È	ØÛÛ[]\IÎˆ	Ý^ÜZ[‰ÈJNÂˆ™\Ë™[™
+›Ý›Ý[™ˆ	Ý\›X
+NÂˆ™]\›ŽÂˆBˆ™\ËÜš]RXY
+ŒÈ	ØÛÛ[]\IÎˆTTÖÜ]™^˜[YJš[JWH	Ø\XØ][Û‹ÛØÝ]\Ý™X[IÈJNÂˆœË˜Ü™X]T™XYÝ™X[Jš[JKœ\J™\ÊNÂŸJNÂ‚˜]ØZ]™]È›ÛZ\ÙJ
+ŠHOˆÙ\™\‹›\Ý[ŠÔ•ŠJNÂ˜ÛÛœÝ˜\ÙHH‹ËÌLËŒŒŒN‰ÔÔ•IÑS•–_OÞYX\IÖQPTŸXÂ˜ÛÛœÛÛK›ÙÊÙ\š[™È	Ô“ÓÕHÛˆ	ÔÔ•H8 %	ÝØ[X›\ÚYÈ	ÔP“TÒQZ\œ›Üˆ	Âˆ
+È	ÊÛÛ\™\ÜÙY\ÜÙ]Ëš\Ú]Üˆ^[Ý]
+IÈˆ	ÜÛÝ\˜ÙH™YH
+[˜ÛÛ\™\ÜÙYX\Ý\œÊIßW˜
+NÂšYˆ
+Ø[X›\ÚY	‰ˆYœË™^\ÝÔÞ[˜Ê]š›Ú[Š“ÓÕ	ÝØ[ÉË	Ú[™^š[	ÊJJHÂˆÛÛœÛÛK™\œ›ÜŠ›ÈX›\ÚYZ\œ›Üˆ]	Ô“ÓÕH8 %[ˆÛÛËÜX›\ÚœÚš\œÝ
+NÂˆ›ØÙ\ÜË™^]
+ŠNÂŸB‚˜ÛÛœÝ][˜Úœ›ÝÜÙ\ˆH
+
+HOˆÚ›ÛZ][K›][˜Ú
+Âˆ^XÝ]X›T]ˆ›ØÙ\ÜË™[‹”×ÑVPÕUP“H[™Yš[™YˆËÈÝÚYÚY\ˆ\ÈHÛ›HÔH\™KˆÚ›ÛZ][Hš[™È][˜ZYY]Ø^HÛÂˆËÈ˜]\ˆ[ˆX]š[™ÈHXY\ÜÈ[ˆÈÚ[˜ÙK‚ˆ\™ÜÎˆÉËKY[˜X›K][œØY™K\ÝÚYÚY\‰×KŸJNÂ‚‹ÊŠˆÝÈY™™\™[\™HÛÈ^[ÚYÛ˜]\™\Ë‹ŒMH\ˆÙ[ˆ
+‹Â™[˜Ý[ÛˆÚYÛ˜]\™Q\Ý[˜ÙJKŠHÂˆYˆ
+XOË˜Ù[ÈXË˜Ù[ÈK˜Ù[Ë›[™ÝOOH‹˜Ù[Ë›[™Ý
+H™]\›ˆ[™š[š]NÂˆ]Ý[HHÂˆ]ÛÜœÝHÂˆ›Üˆ
+]HHÈHK˜Ù[Ë›[™ÝÈJÊÊHÂˆÛÛœÝHX]˜XœÊK˜Ù[ÖÚWHH‹˜Ù[ÖÚWJNÂˆÝ[H
+ÏHÂˆÛÜœÝHX]›X^
+ÛÜœÝ
+NÂˆBˆ™]\›ˆÈYX[ŽˆÝ[HÈK˜Ù[Ë›[™ÝÛÜœÝNÂŸB‚‹ËÈHØ]H\È›ÝšY]ÜÜÈ[™›Ý[™È\ÜËˆÓSÒÑWÕ’QUÔÔ•^\ÝÈ™XØ]\ÙHB‹ËÈ[\ÜÈZÙ\È\Ø\™ÈÙˆ[ˆZ[]\ÈÛˆHÛÙØ\™H™[™\™\ˆ[™[ˆYÙ[‹ËÈ]\˜][™ÈÛˆÛ™H[ˆÚÝ[›Ý]™HÈÜ[™HÝ\ˆ[ˆÈÙYH]8 %]‹ËÈØ^\ÈÛÈÝ]ÝYÚ[ˆ]\È\ÙYÛÈHš[\™Y[ˆØ[››Ý™HZ\ÝZÙ[ˆ›ÜˆB‹ËÈØ]H[ˆHÙÈÛÛYX›ÙH™XYÈ]\‹‚˜ÛÛœÝÓ“HH›ØÙ\ÜË™[‹”ÓSÒÑWÕ’QUÔÔ•	ÉÎÂšYˆ
+Ó“JHÛÛœÛÛK›ÙÊ“ÕH•SÐUH8 %šY]ÜÜÈš[\™YÈ‰ÓÓ“_H—˜
+NÂ‚‹ËÈLŒ8 %H[‹[Z[]HÙZ[[™È
+“ÐQPT0©ÈH•Sˆ•QÑU
+KˆHÝ]Ø\™[‰ÜÂ‹ËÈÚ[™ÛH›Ü™YÜ›Ý[™ÛÛ[X[™\ÈØ\Y][ˆZ[]\Ë[™žHŒ‹LLN™Z]\‚‹ËÈšY]ÜÜ	ÜÈ[\ÜÈš]ˆ[Øš[HØ\ÈÚ[Y]MÌÈ]Œ\ÜÙY\ÚÝÜ‹ËÈ]MË[™HÚXÚÈ]Ù[[œ[ˆØ\È[Ø^\È™\›ÈYÙH\œ›ÜœØ™XØ]\ÙB‹ËÈ]Ø\ÈHZ[ˆÓSÒÑWÔÕQÑHÜ]ÈXXÚšY]ÜÜ	ÜÈ›ÙH[ˆ›Ý\ˆ]ÙXÝ[Û‚‹ËÈ›Ý[™\šY\È™\šYšYY›ÜˆÜ›ÜÜÚ[™Èš[™[™ÜËÛÈXXÚ\š]ÈHÛÛ[X[™8 %‹ËÈÚ[H›ÛÝHYÙKY\œ›ÜˆÚXÚÈ[™H™[™ÜˆÚXÚÜÈÝ^H[ˆ]™\žB‹ËÈ[›ØØ][Û‹‚‹ËÈLLŒH™KXÝ]H›Ý\ˆ[ÈRQÒ™XØ]\ÙHH›Ý\ˆY\›ÙYˆžB‹ËÈŒ‹LLŒÈ™YHÙˆH\ÚÝÜ]X\\œÈ˜[ˆ\ÝH[‹[Z[]HÙZ[[™È[™‹ËÈH›Ý\ÛX\™Y]žHÛÈZ[]\ËÛÈH\ÚÝÜ[ˆH[ˆÛÝ[™XXÚ‹ËÈØ\ÈÝYÙHH[Û™KˆH\›ÜÚ[Ûˆ\È[Û›ÝÛšXÈ8 %HÝÛˆÙY\ÈÜ›ÝÚ[™È8 %ÛÈB‹ËÈ[œÝÙ\ˆØ\ÈH™KXÝ]Ú]X\™Ú[ˆ˜]\ˆ[ˆÛ™H[Ü™H›Ý[™\žHYÙY[Û™Ë‚‹ËÈXXÚÙˆLŒ	ÜÈ›Ý\ˆÝYÙ\ÈØ\È[™Y]HÙXÝ[Ûˆ›Ý[™\žH™K]™\šYšYY›Ü‚‹ËÈÜ›ÜÜÚ[™Èš[™[™ÜËÛÈT•šËLH
+ÈT•šÈØ\È^XÝHLŒ	ÜÈÝYÙHÈ[™B‹ËÈ[Øš[H\ÜÈØ[ˆÝ[™HZÙ[ˆ[ˆ›Ý\ˆÛÛ[X[™ÈÚ]H˜[™ÙHÞ[^™[ÝË‚‹ËÈLMÈYX\Ý\™YHTÒÕÔ›Ùš[HHZYÚ]Ø^HÝ]Y™]™\ˆ™Y[ˆÚ^™Y‹ËÈœ›ÛH8 %ÙYH“ÐQPT0©ÈH•Sˆ•QÑU›ÜˆHZYÚ™XY[™ÜÈ8 %[™[™YB‹ËÈÛ™H\H›Ùš[H][œÚYHHZ[]H[™H]X\\ˆÙˆHÙZ[[™Ëˆ\‹ËÈØ\ÈHZ[ÛÈHš[\\ÈTS‘Q[™\ÈKMÈÙY\Z\ˆ[X™\œÎ‚‹ËÈHZ\š[™È[HÝ\š]™\È\ÈJÌ‹ÊÍJÍ‹ÊÎ
+ÎK[™H[Øš[H™XÚ\IÜÂ‹ËÈ\ÝÛÛ[X[™ÚY[œÈœ›ÛHËNÈËNX‚‹ËÈLÍˆÝ]T•[È‘QK[™\ÈÛ™HÛÝ[›Ý™H[ˆ\[™ˆHÛÈ™]Â‹ËÈÙXÝ[ÛœÈÚ][ˆHZYHÙˆH›ÙKÛÈ\ÈKNH\™H™[[X™\™YËLLH[™‹ËÈHÛ\™XÛÛY\È
+ÈH
+È‹ˆHÝ]\ÈYX\Ý\™Y›ÝÝY\ÜÙY8 %\Ø\Â‹ËÈ™Z[™ÈÚ[Y]HÙZ[[™È[™ˆHMÈÈÙˆ]ÈÛÜÝØ\ÈÛ™HÙXÝ[Û‹B‹ËÈØÙ[™KY]Z[Y\‹ÚXÚØ[ÜÈ]™\žHÝ[™]]™\žHY\ˆ[™Ø[››Ý™H[™Y‹ËÈYØZ[ˆÚ]Ý]Ø[Ú[™ÈHÙ]ÚXÙKˆÛÈHY\ˆ\È\HÛˆ]ÈÝÛˆ[™B‹ËÈØ]KX[™XÚ›ÛYHZ[\È\‹ˆ›Ý›Ý[™\šY\È\™H˜[YYÙXÝ[Ûˆ›Ý[™\šY\Â‹ËÈ™K]™\šYšYY›ÜˆÜ›ÜÜÚ[™Èš[™[™ÜÎˆ^XÝHÛ™HÜ›ÜÜÙY
+\	ÜÈÝ]Ø™XY‹ËÈ›Üˆ]È˜]ËXØ[ÙZ[[™ÊK[™\H›ÝÈ™XYÈ]ÙZ[[™È]Ù[‹‚‹ËÈHZ\š[™È[HÝ\š]™\È\ÈJÌ‹ÊÍ
+ÍJÍ‹ÊÎJÌL
+ÌLH8 %HØ[YHÛÛ[[‚‹ËÈHØ[YH›Ý\ˆ[Øš[HÛÛ[X[™ËÚÜÙH˜[™Ù\È™XÛÛYHKLˆËMˆËNKLLX‚‹ËÈLMÌÈS‘QT•È[™\ÈÛ™HÛÝ[›Ý™H[ˆ\[™Z]\‹ÛÈ\ÈLLB‹ËÈ\™H™[[X™\™YKLLˆ[™HÛ\È™XÛÛY\ÈÈ
+ÈˆHÝ]\ÈYX\Ý\™Y›Ý‹ËÈÝY\ÜÙYˆ›Ùš[YÚ]ÓSÒÑWÕSRS‘ÏLHÛˆHÝ]Ø\™[›™\ˆÛˆŒ‹LLÌ]‹ËÈØYŽL‹ŽK\ÈØ\ÈÚ[Y]HHHÈÚ]]È\ÝÛÈ\ÜÙ\[ÛœÈ[œ[‹‹ËÈ[™ÈHÈÙˆ]ÈÛÜÝØ\ÈÓ‘H›ØÚÈ8 %H™YH›ØY[YÚXš[]HÝ][ÛœË‹ËÈXXÚÙˆÚXÚ[\ÜÈÈ]ÈÝÛˆšY]ÜÚ[[™ØÜ™Y[œÚÝÈ]ˆ›È›Ý[™\žB‹ËÈ™]ÙY[ˆH\	ÜÈÝÛˆËÈKKHÙXÝ[ÛˆXY\œÈX]™\È›ÝÚY\ÈHX\™Ú[‚‹ËÈ
+H™\Ý\ÈÈHÍÈÈYØZ[œÝHHÌÊKÛÈHÝ]˜[È]HÝ][Û‹ÚXÚ‹ËÈ\ÈHÜ˜Z[ˆH›ØÚÈ\ÈXYHÙˆ[™Ü›ÜÜÙ\È›Èš[™[™Îˆ›ØY[œØ\ÈØØ[‹ËÈÈH›ØÚËH[Ý™[Y[™\ÜZ[œ›ÛH]\Èš[Y˜]\ˆ[ˆØ]Y‹ËÈ[™\È[Ø^\ÈÛÛ\\™YÛ›HÚ]H[›ØØ][ÛˆYX\Ý\™Y[™‹ËÈK]\]K\›ØYX˜[™ØY\™Ù\È\ˆ˜[™ˆ‹PLIÜÈ™YH\ÜÙ\[ÛœÈ\™HZÙ[‚‹ËÈÕS‘S‘ÈUZÙWÛX\šÙ]ÛÈ]Ý][ÛˆÛÙ\ÈÚ][Nˆ\ÈÙY\Â‹ËÈÛÝ]ÝØ]\˜[™œ›ÛWØX›Ý™X]ˆHLÈÈ
+ÈˆHˆË\ZÙ\Â‹ËÈZÙWÛX\šÙ]]ˆHHÈ\ÈHZY]HHÈ[™H˜]ÚY\™ÙK‚‹ËÈHZ\š[™È[HÝ\š]™\ÈYØZ[ˆ\ÈJÌ‹ÊÍ
+ÍJÍ‹ÊÎ
+ÎKL
+ÌLJÌLˆ8 %HØ[YB‹ËÈÛÛ[[ˆHØ[YH›Ý\ˆ[Øš[HÛÛ[X[™Ë˜[™Ù\ÈKLˆËMˆËNHLLL˜‚‹ËÈLMÌS‘QT•LH\Ý\ÛˆLMÉÜÈ›Ùš[HÝ[Ý™\ˆB‹ËÈÙZ[[™ÎˆYX\Ý\™Y]LŽÛˆ[ˆQH[›™\ˆ
+ØY]™\˜YÙHŒËLK›Â‹ËÈÝ\ˆÚ›ÛZ][HÛˆH›Þ
+H]Ø\ÈÚ[Y]HHŒÈÚ]HÝ™Y]™XYÝ]Â‹ËÈ[™HÙ][™ÜÈ[š]ÈÝ[È[‹ÛÈH[ˆZ[]\ÈY™]™\ˆÛÛZ[™Y‹ËÈ]ˆ]Ø\œšYY›ÈËÈKKHÙXÝ[ÛˆKKXXY\œËÚXÚ\ÈÚHLMÈY]Â‹ËÈHÙX[\È\™H˜[YY›ÝÈ[™HÝ]\ÈHÛ™HH›Ùš[HÚÜÙH8 %H˜YÙÙY‹ËÈ›Ý[™\žH[™]™\ž][™ÈY\ˆ]™XÛÛY\È\LKÛÈÛ\ÈLH[™Lˆ\™B‹ËÈ™[[X™\™YLˆ[™LËˆ[žTÝYÙJËL
+X™XÛÛY\È[žTÝYÙJËLLJXˆ›Ý‹ËÈ[™\È™XYÝ™Y]^Y\˜Hš\œÝ›ÜˆH›ØY[™[È[™HÙXÛÛ™›Ü‚‹ËÈH™XYÝ]ËˆHZ\š[™È[H\È[˜Ú[™ÙY[ˆÛÛ[8 %JÌ‹ÊÍ
+ÍJÍ‹ÊÎ
+ÎK‹ËÈL
+ÌLJÌLŠÌLÈ8 %[™H[Øš[H™XÚ\IÜÈ\Ý˜[™ÙHÚY[œÈœ›ÛHLLL˜Â‹ËÈLLLØÝ[›Ý\ˆÛÛ[X[™Ë‚˜ÛÛœÝT•ÈHLÎÂ˜ÛÛœÝÕQÑHH›ØÙ\ÜË™[‹”ÓSÒÑWÔÕQÑH	ÉÎÂ‹ËÈØ\ÈÛ™H\ÈËM\ÈHÛÛYÝ[Ý\È[ˆÙˆ[NÈKKM˜\È[žHÙ]ˆB‹ËÈ˜[™ÙH›Ü›H^\ÝÈÛÈHÚX\šY]ÜÜÙ\È›Ý^HZYÚ›ÛÝÈÈ[ˆB‹ËÈ›ÙH]š]È[ˆÛÈÛÛ[X[™Ë‚˜ÛÛœÝØ[Y\ÈH
+
+
+HOˆÂˆYˆ
+TÕQÑJH™]\›ˆ[ÂˆÛÛœÝØ[H™]ÈÙ]
+
+NÂˆ›Üˆ
+ÛÛœÝÚÈÙˆÕQÑKœÜ]
+	Ë	ÊK›X\
+
+
+HOˆš[J
+JK™š[\Š›ÛÛX[ŠJHÂˆÛÛœÝHH×Š
+ÊJÎ‹J
+ÊJOÉË™^XÊÚÊNÂˆYˆ
+[JH™]\›ˆÚÎÂˆÛÛœÝÈH[X™\ŠVÌWJNÂˆÛÛœÝHHVÌ—HOOH[™Yš[™YÈÈˆ[X™\ŠVÌ—JNÂˆYˆ
+ÈHHˆT•ÈÈˆJH™]\›ˆÚÎÂˆ›Üˆ
+]ˆHÎÈˆHNÈŠÊÊHØ[˜Y
+ŠNÂˆBˆ™]\›ˆØ[œÚ^™HÈØ[ˆ[ÂŸJJ
+NÂšYˆ
+\[ÙˆØ[Y\ÈOOH	ÜÝš[™ÉÊHÂˆÛÛœÛÛK™\œ›ÜŠÓSÒÑWÔÕQÑH]\Ý™HH\K‹‰ÔT•ßKH˜[™ÙHZÙHËMÜˆHˆ
+ÈÛÛ[XK\Ù\\˜]YÙ]ÙˆÜÙNÈÛÝ‰ÝØ[Y\ßHˆ[ˆ‰ÔÕQÑ_H˜
+NÂˆ›ØÙ\ÜË™^]
+ŠNÂŸBšYˆ
+ÕQÑJHÛÛœÛÛK›ÙÊ“ÕH•SÐUH8 %ÝYÙ\Èš[\™YÈ‰ÔÕQÑ_HˆÙˆ	ÔT•ßW˜
+NÂ˜ÛÛœÝÝYÙSÛˆH
+ŠHOˆ]Ø[Y\ÈØ[Y\Ëš\ÊŠNÂ‹ËÈ™XYXš[]H]HÝX\™ÛˆH™XY[™ÈÚ\™YžHÙ]™\˜[\Îˆ[žTÝYÙJËLLJX‹ËÈØ^\ÈÚXÚ\È™YY][™Y[™ÈH\È]\Ý\ÈHÚÛHY]‚˜ÛÛœÝ[žTÝYÙHH
+‹‹›œÊHOˆœËœÛÛYJÝYÙSÛŠNÂ˜ÛÛœÝÝ\Y]H]K››ÝÊ
+NÂ‚™›Üˆ
+ÛÛœÝÛX™[šY]ÜÜÝXÚHÙˆÂˆÉÛ[Øš[HÎLÎ	ËÈÚYˆÎLZYÚˆÎKYWKˆÉÙ\ÚÝÜLŽ	ËÈÚYˆLŽZYÚˆK˜[ÙWK—K™š[\Š
+ÛX™[JHOˆSÓ“HX™[š[˜ÛY\ÊÓ“JJJHÂˆÛÛœÛÛK›ÙÊ	ÛX™[N˜
+NÂˆËÈÚ]™HXXÚ™[X\ÙHšY]ÜÜHœ™\Ú™[™\™\ˆ›ØÙ\ÜËˆ™]\Ú[™ÈÛ™H›ØÙ\ÜÂˆËÈXZÙ\ÈHÛÙØ\™K[Û›H[ˆYX\Ý\™HH™]š[Ý\ÈšY]ÜÜ	ÜÈXØÝ[][]YÔBˆËÈÝ]H[™Ø[ˆÝ\™HHÙXÛÛ™Ø[È\ÝÝÛˆÈHÚ[™ÛHœ˜[YK‚ˆÛÛœÝœ›ÝÜÙ\ˆH]ØZ]][˜Úœ›ÝÜÙ\Š
+NÂˆÛÛœÝÝH]ØZ]œ›ÝÜÙ\‹›™]ÐÛÛ^
+ÂˆšY]ÜÜˆ\ÕÝXÚˆÝXÚˆ\Ó[Øš[Nˆ˜[ÙKËÈ\Ó[Øš[H›Ü˜Ù\È[Øš[H[][][ÛˆÚ›ÛZ][K\ÚYBˆ]šXÙTØØ[Q˜XÝÜŽˆÝXÚÈˆˆKˆJNÂˆÛÛœÝYÙHH]ØZ]Ý›™]ÔYÙJ
+NÂˆËÈH™]ÈÚXÚÜÈ[\Ü[ˆ\[Ù[H\™XÝHÈ^\˜Ú\ÙHH\™H[˜Ý[Û‹ˆBˆËÈ]ÈÜÙH[Ù[\ÈY™™\œÈ™]ÙY[ˆHÛÝ\˜ÙH™YH[™HX›\ÚYˆËÈZ\œ›Ü‹ÛÈ]\È[™YÈHYÙH˜]\ˆ[ˆÜš][ˆ[ÈXXÚØ[‚ˆ]ØZ]YÙK˜Y[š]ØÜš\
+
+ŠHOˆÈÚ[™ÝË—×ÓSÑSWÐTÑHHŽÈKSÑSWÐTÑJNÂˆËÈ^]ÜšYÚ	ÜÈY˜][ÌÈXÝ[Ûˆ[Y[Ý]\È›Ý[ˆ\ÜÙ\[Û‹[™Ûˆ\ÂˆËÈØÙ[™H]Y]ZY]H™XÛÛYHÛ™KˆHÛXÚÈØZ]È›ÜˆH[[Y[È™HÝX›BˆËÈXÜ›ÜÜÈ[š[X][Ûˆœ˜[Y\È[™[ˆ]]\ÝÈ][™]™\žHÛ™HÙˆÜÙHÝ\ÂˆËÈ]Y]Y\È™Z[™H™[™\ˆÛÜ8 %ÚXÚÛˆHÛÙØ\™H™[™\™\ˆ˜]Ú[™ÈLÌÈˆËÈšX[™Û\ÈZÙ\Èx $ÌKŒHÈ\ˆœ˜[YH
+YX\Ý\™Y›ÝšY]ÜÜÊKˆÛÈÜ[š[™ÂˆËÈHY[HØ\È[Z[™ÈÝ]ÛˆH]Ûˆ][[Y[œ›ÛTÚ[™]\›™Y\ÈBˆËÈÜ[ÜÝ[[Y[]]ÈÝÛˆÙ[™KÚ]›ÈÚ[\ˆØÚËHYÙHš\ÚX›BˆËÈ[™›ØÝ\ÙYˆ›Ý[™ÈØ\ÈÜ›Û™ÈÚ]HYÙH[™]™\ž][™ÈØ\ÈÜ›Û™ÈÚ]ˆËÈHYÙ]ˆH\ÚÝÜ[ˆÙˆHØ]HYÝÜY[›š[™È[\™[BˆËÈ™XØ]\ÙHÙˆ]ˆš[™]HÙXÛÛ™È\È›ÛÛH›ÜˆHÛÝÈXXÚ[™K›Ý\›Z\ÜÚ[Û‚ˆËÈ›ÜˆHœ›ÚÙ[ˆÛÛ›ÛˆHÛXÚÈ]™]™\ˆ[™ÈÝ[˜Z[Ë™YH[Y\ÂˆËÈÛÝÙ\‹‚ˆËÂˆËÈUTÈ“ÕRTÑQQÐRS‹S‘LŒMHTÈÒKˆÛˆŒ‹LLÈHØ[YHÝ\˜][Û‚ˆËÈÛÚÈH\ÚÝÜ[ˆÝÛˆYØZ[‹[™HÛ™\Ý™XY[™È\È]HYÙ]ˆËÈYX\Ý\™Y[ˆœ˜[Y\È\ÈHÜ›Û™È[œÝ[Y[›ÜˆHØÙ[™HÚÜÙHœ˜[YHÛÜÝ\ÂˆËÈÙ]žHÚ]]™\ˆ[ÙHHXXÚ[™H\ÈÚ[™È
+MËLÈÈ\ˆœ˜[YKYX\Ý\™YÛˆBˆËÈ[›™\ˆÚ\™HHY[XØ[ØÙ[™H[ÛÈ™]Èœ˜[Y\È[ˆŽH\ÊKˆ˜Z\Ú[™ÈLÂˆËÈN^\ÈÛ™H[Ü™HÝÛ‹\Ú^™Y[Û[™^\È›Üˆ][ˆØ[ÛØÚÈYØZ[œÝBˆËÈ[‹[Z[]H\‹XÛÛ[X[™ÙZ[[™È\ÈØ]H\È[™XYH™Y[ˆ™KXÝ]›ÜˆÚXÙK‚ˆËÈH[œÝÙ\ˆ\ÈÛXÚÐÚ›ÛYX™[ÝÈ8 %›Ý^Z[™È›ÜˆHœ˜[Y\È][Ú\™BˆËÈHœ˜[Y\È\™H›ÝHÝXš™XÝˆ\È[X™\ˆÝ^\ÈÚ]]\ÎˆH˜XÚÜÝÜˆËÈ›ÜˆHÛXÚÜÈ]]\Ý™[XZ[ˆHš\Ú]Ü‰ÜÈÝÛˆ[Ý\ÙK‚ˆYÙKœÙ]Y˜][[Y[Ý]
+LÌ
+NÂ‚ˆËÈHœ™\Ú›ÛÝÝ[™È]HÐUHÐÔ‘QS‹[™H\][\œÈHÝÛ‚ˆËÈ\È\‰ÜÈHØ]H[™HÚ›ÛYHˆÙXÝ[Ûˆ
+\	ÜÈ[[LÍŠKˆ]™\žH\Y\ˆ]]ˆËÈYX\Ý\™\ÈHYÙKœØÜ™Y[œÚÝœ˜[YH
+ÜÙH[˜ÛYHÓHÝ™\›^\ÎÈBˆËÈÓXØ\\™HÚXÚÜÈÈ›Ý
+HÜˆÛXÚÜÈH[™[Ú›ÛYH
+ÚXÚ\È›È^[Ý]ˆËÈ][Ú[HHØ]HÝ[™ËÛÈHÛXÚÈØZ]Èš[™]HÙXÛÛ™È›ÜˆBˆËÈ™\›Ë\Ú^™H]Ûˆ[™Y\ÊH\ÈÈÝ[™Ú\™HH[[ˆÝ[™ÎˆØ]BˆËÈ[\™YÚ[\ˆœ™YKÝZYHÝÛ‹ˆY[\Ý[žHÛÛœÝXÝ[Ûˆ8 %[ˆH[ˆËÈ[ˆ]™\žHœ˜[˜Ú™[ÝÈ\ÈH›Ë[Ü8 %ÚXÚ\ÈÚ]]È]™HØ[Y]BˆËÈXYÙˆ›Ý\ˆY™™\™[\ËˆLŒÜ›ÝH][›[™HÚXÙNÈLLŒH™YYYˆËÈ]ÚXÙH[Ü™H[™XYH]Û™H[˜Ý[Ûˆ[œÝXYÙˆ›Ý\ˆÛÜY\Ë‚ˆÛÛœÝ[\•ÝÛˆH
+
+HOˆYÙK™]˜[X]J\Þ[˜È
+
+HOˆÂˆYˆ
+YØÝ[Y[™Ù][[Y[žRY
+	ÙØ]IÊKš\Ð]šX]J	ÚY[‰ÊJHÂˆØÝ[Y[™Ù][[Y[žRY
+	ÙØ]KX‰ÊOË˜ÛXÚÊ
+NÂˆ]ØZ]™]È›ÛZ\ÙJ
+ŠHOˆÙ][Y[Ý]
+‹ML
+JNÂˆØÝ[Y[™^]Ú[\“ØÚÏËŠ
+NÂˆBˆÛÛœÝ[HØÝ[Y[™Ù][[Y[žRY
+	ØÛÛ›ÛZ[	ÊNÂˆYˆ
+[	‰ˆZ[š\Ð]šX]J	ÚY[‰ÊJHÂˆØÝ[Y[™Ù][[Y[žRY
+	ØÛÛ›ÛZ[YÛÝ]	ÊOË˜ÛXÚÊ
+NÂˆBˆJNÂ‚ˆËÈHÛXÚÈÛˆHQÚ›ÛYH]Ù\È›Ý]™HÈ˜XÙHH™[™\ˆÛÜ›Üˆ]‚ˆËÂˆËÈHVT‘HLÈP“Õ‘HÓ“HÔÕÓ‘QˆYÙK˜ÛXÚØ\Èœ˜[YKX›Ý[™™YBˆËÈØ^\ÈÝ™\Žˆ]ÛÈH\™Ù]	ÜÈ›ÞÛˆÛÛœÙXÝ]]™H[š[X][Ûˆœ˜[Y\È[[]ˆËÈÛÈÝ[[ˆØÜ›ÛÈ][ÈšY]Ë[ˆ]]\ÝÈ][™]™\žHÛ™HÙ‚ˆËÈÜÙHÝ\È]Y]Y\È™Z[™Ú]]™\ˆH™[™\ˆÛÜ\ÈÚ[™ËˆÕUTÂˆËÈŒ‹LLLÈ˜Z\ÙYHYÙ]ÈLÈ›Üˆ^XÝH][™ØZY[ˆÜš][™ËˆËÈ]]Ø\È
+Š˜HÝ[™[™È^˜\™[™›ÝHš^YÛ™JŠŽˆ
+ˆHØ[YHÝ\˜][Û‚ˆËÈÚ[™]\›ˆ\ÈHÝÛˆÜ›ÝÜË[™H™^Þ[\ÛHÚ[YØZ[ˆÛÚÈZÙHHRBˆËÈYÈ˜]\ˆ[ˆHYÙ]ˆŠˆ]™]\›™YÛˆŒ‹LLÈ
+LŒMJK[™]ˆËÈ™]\›™YÛÚÚ[™È™XÚ\Ù[HZÙH]ˆÓSÒÑWÕ’QUÔÔ•Y\ÚÝÜÓSÒÑWÔÕQÑONˆËÈYYÛˆ]È’T”ÕÛXÚËÛˆHÙ][™ÜÈX‹™Y›Ü™HHÚ[™ÛHÛ™HÙˆ\	ÜÂˆËÈ\ÜÙ\[ÛœÈY[ˆ8 %[™™YHYÙ[È[ˆÛ™H^H™XY]\ÈHÚ]	ÜË[™]ÂˆËÈ[™[™Z[™Èœ›ÚÙ[‹ˆ]Ø\È›Ýˆš]™[ˆžH[™]HØ[YH[ÛY[HØ]HØ\ÂˆËÈZ[™ËH[™[Ü[™Y[™Z[Y[Ìˆ™[X\Ù\È[™ÛX\™Y]È[œ™XYˆËÈÝÈHXˆØ\ÈHÜ[ÜÝ[[Y[]]ÈÝÛˆÙ[™HÚ]›ÈÚ[\ˆØÚË‚ˆËÈÚ]Y[Ý™YØ\ÈHÛÜÝÙˆHœ˜[YNˆ
+ŠŒMËŒÈŒÈÈŒÌÈÈŒKHÈŒŒˆÂˆËÈŒLˆÈÈŒ‹ŒÈÈL‹ŒˆÈ‹ˆÙXÛÛ™ÊŠ‹YX\Ý\™YÛˆHØYY[›™\‚ˆËÈYØZ[œÝH‹LKŒLÈ\Èš[IÜÈÛÛ[Y[X›Ý™H™XÛÜ™ËˆHŽH\Èœ˜[Y\ÂˆËÈ[ˆ]\Ý\™HH›ÛÙˆ]\ÈHXXÚ[™H[™›ÝHØÙ[™H8 %H™[™\™\‚ˆËÈ˜]ÜÈ˜\ÝÚ[ˆ]\ÈÚ]™[ˆHÔK[™]Ø\È›Ý™Z[™ÈÚ]™[ˆ]ˆ[›Ý\‚ˆËÈ[X™\ˆ\È›ÝH[œÝÙ\ˆÈ]È›Ý™YY[™ÈHœ˜[Y\È\Ëˆ[™›ÝH\™BˆËÈ\È›ÈšYÙÙ\ˆÈš[™ˆ[YY]HØ[YHØY]Y[XØ[ÛXÚÈ[™Y[‚ˆËÈLŽHÈÛÛŽÈÙ]Y[™LËŽÈY\ˆH™[ØY™Y›Ü™H]›]Èš[™]BˆËÈ[ˆHØ]Kˆ]\ÈH\ÝšX][ÛˆÚ]HZ[XÜ›ÜÜÈHYÙ]ÛÈ[žBˆËÈYÙ]\ÈHÛÚ[ˆÜÜÈ[™Û›H™[[Ýš[™ÈH\[™[˜ÞH[™È]‚ˆËÂˆËÈ“ÕS‘ÈTÈÒÒTQS‘UTÈHÒS•ˆ]™\ž][™ÈYÙK˜ÛXÚØ\ÜÙ\ÂˆËÈ[\XÚ]H\È\ÜÙ\Y\™H^XÚ]K[ˆHYÙK[ˆÓ‘H›Ý[™š\ˆBˆËÈ[[Y[^\ÝË\È[˜X›Y\ÈH™X[›Þ[™\ÈHÜ[ÜÝ[™È]]ÂˆËÈÝÛˆÙ[™Kˆ]\ÝÛ™H\ÈLL	ÜÈ\ÜÙ\[Ûˆ™\˜˜][H8 %HÛÛ›ÛBˆËÈQ	ÜÈÚ[\‹Y]™[Îˆ›Û™XÝØ[ÝÜÈ™]\›œÈHÐS•TÈœ›ÛBˆËÈ[[Y[œ›ÛTÚ[[™˜Z[È\™H^XÝH\È]˜Z[ÈHš\Ú]Ü‰ÜÈ[Ý\ÙH8 %[™ˆËÈ]›ÝÈ˜Z[È[ˆÛ™H›Ý[™š\Ú]HÙ[[˜ÙH˜[Z[™ÈÚ]ÛÝ™\™Y]ˆËÈ[œÝXYÙˆ[ˆš[™]HÙXÛÛ™ÈÚ]HØ[ÙÈ]™XYÈZÙHHœ›ÚÙ[‚ˆËÈÛÛ›ÛˆH™X[YÙK˜ÛXÚØÝ^\ÈH[œÝ[Y[Ú\™]™\ˆH\ÝY]™[ˆËÈUÑSˆ\ÈHÝXš™XÝˆHÛÛ™šY[˜ÙHY[H[ˆ\ˆ\ÈHØ\ÙK[™]Ø^\ÂˆËÈÛÈÚ\™H]Ý[™Ë‚ˆÛÛœÝÛXÚÐÚ›ÛYHH\Þ[˜È
+Ù[
+HOˆÂˆÛÛœÝÚHH]ØZ]YÙK™]˜[X]J
+ÊHOˆÂˆÛÛœÝ[HØÝ[Y[œ]Y\žTÙ[XÝÜŠÊNÂˆYˆ
+Y[
+H™]\›ˆ›Ý[™ÈX]Ú\È	ÜßXÂˆYˆ
+[™\ØX›Y
+H™]\›ˆ	ÜßH\È\ØX›YÂˆËÈHØ[YHØÜ›ÛYÙK˜ÛXÚØÛÝ[Ë[ˆHØ[YH›Ý[™š\\ÈBˆËÈ™XY[™È8 %H™\Ý[›ÝÈ˜\ˆÝÛˆHÛË]È\Ý\ÈÙ™ˆH[™[	ÜÂˆËÈšY]ÜÜ[[\È[œË[™[[Y[œ›ÛTÚ[ÛÝ[[ˆ[œÝÙ\ˆ›Ü‚ˆËÈÚ]]™\ˆ\È]ÜÙHÛÛÜ™[˜]\È[œÝXY‚ˆ[œØÜ›Û[ÕšY]ÊÈ›ØÚÎˆ	ØÙ[\‰Ë[›[™Nˆ	ØÙ[\‰ÈJNÂˆÛÛœÝˆH[™Ù]›Ý[™[™ÐÛY[™XÝ
+
+NÂˆYˆ
+‹ÚYH‹šZYÚJHÂˆ™]\›ˆ	ÜßH\È›È›Þ
+	ÓX]œ›Ý[™
+‹ÚY
+_^	ÓX]œ›Ý[™
+‹šZYÚ
+_JXÂˆBˆÛÛœÝÜHØÝ[Y[™[[Y[œ›ÛTÚ[
+‹ž
+È‹ÚYÈ‹‹žH
+È‹šZYÚÈŠNÂˆYˆ
+]ÜJÜOOH[[˜ÛÛZ[œÊÜ
+JJHÂˆÛÛœÝÛÈHÜ	‰ˆ\[ÙˆÜ˜Û\ÜÓ˜[YHOOH	ÜÝš[™ÉÈÈÜ˜Û\ÜÓ˜[YHˆ	ÉÎÂˆËÈSQHHÕ‘T“VK“Õ•TÕHQÈUS‘ÈSˆ
+LÍŽJKˆHš\œÝˆËÈ™\ÜÙˆ\È˜Z[\™HØZYÛ›H˜[™[ˆ˜\ÈHXY[™ÂˆËÈ[œÚYHÛÛY][™È8 %H[™ÈÛÜ˜[Z[™È\ÈH[™[]XY[™ÂˆËÈ™[Û™ÜÈËˆØ[Ú[™È\ÈH™X\™\Ý[˜Ù\ÝÜˆØ\œžZ[™È[ˆY\›œÂˆËÈ˜ÛÝ™\™YžHˆˆ[È˜ÛÝ™\™YžHˆ[œÚYHÜÜ\‹ÚXÚ\ÈBˆËÈÚÛHXYÛ›ÜÚ\ÈÙˆHÝ[HÝ™\›^HYÜ[ˆžH[ˆX\›Y\ˆÝYÙK‚ˆ]ÝÛ™\ˆHÜÂˆÚ[H
+ÝÛ™\ˆ	‰ˆ[ÝÛ™\‹šY	‰ˆÝÛ™\ˆOOHØÝ[Y[˜›ÙJHÝÛ™\ˆHÝÛ™\‹œ\™[[[Y[ÂˆÛÛœÝ[œÚYHHÝÛ™\ˆ	‰ˆÝÛ™\‹šY	‰ˆÝÛ™\ˆOOH[È[œÚYHÉÛÝÛ™\‹šYXˆ	ÉÎÂˆ™]\›ˆ	ÜßH\ÈÛÝ™\™Y]]ÈÝÛˆÙ[™HžHˆ
+È	ÝÜÈÜYÓ˜[YKÓÝÙ\Ø\ÙJ
+Hˆ	Û›Ý[™ÉßIØÛÈÈÛ\ÜÏH‰ØÛßH˜ˆ	ÉßO‰Ú[œÚY_XÂˆBˆËÈH™X[[Ý\ÙH™\ÜÈ“ÐÕTÑTÈH›ØÝ\ØX›HÛÛ›Û[™[ˆ[\ÝYˆËÈ˜ÛXÚÊ
+XÙ\È›Ý8 %ÚXÚ\ÈHY™™\™[˜ÙHHÝZ]H[™XYH\[™ÈÛ‚ˆËÈ[™ÚXÚ\È[\ˆÛÝÜ›Û™ÈÛˆ]Èš\œÝ[‹Û™\ÝH[™š\ÚX›K‚ˆËÈ\ÛÜÙ\ÈH[™[[™[ˆ™\ÜÙ\ÈØ[™ØÛ›H™XXÚ\ÈBˆËÈÚ[™ÝÈÚÜÝ]Yˆ›ØÝ\È\ÈYHÛË]ÈÙX\˜Ú›Þš\œÝˆHÚ\™YˆËÈ\Õ\[™ÊK\™Ù]
+XÝX\™ÝØ[ÝÜÈ]Ý\Ú\ÙKÚXÚ\ÈHÚÛBˆËÈÚ[Ùˆ]ÝX\™ˆÚ]Ý]\È[™HH[™[Ý^YYÚ]ØYˆËÈ›Ý[™Ë[™H™^™XY[™ÈØ\ÈH™\Ý[›ÝÈÚ]H›ÞˆÛÈ\ÂˆËÈ\ÈšY[]HÈHÛXÚÈ™Z[™È™\XÙY›ÝHÛÛ™[šY[˜ÙK‚ˆYˆ
+\[Ùˆ[™›ØÝ\ÈOOH	Ù[˜Ý[Û‰ÊH[™›ØÝ\ÊÈ™]™[ØÜ›ÛˆYHJNÂˆ[˜ÛXÚÊ
+NÂˆ™]\›ˆ[ÂˆKÙ[
+NÂˆYˆ
+ÚJH›ÝÈ™]È\œ›ÜŠÛXÚÐÚ›ÛYNˆ	ÝÚ_X
+NÂˆNÂ‚ˆÛÛœÝ\œ›ÜœÈH×NÂˆYÙK›ÛŠ	ÜYÙY\œ›Ü‰Ë
+JHOˆ\œ›ÜœËœ\Ú
+YÙY\œ›ÜŽˆ	ÙK›Y\ÜØYÙH_X
+JNÂˆYÙK›ÛŠ	Ü™\ÜÛœÙIË
+ŠHOˆÂˆYˆ
+‹œÝ]\Ê
+HH
+H\œ›ÜœËœ\Ú
+	Ü‹œÝ]\Ê
+_H	Ü‹\›
+
+_X
+NÂˆJNÂˆYÙK›ÛŠ	Ü™\]Y\Ý˜Z[Y	Ë
+ŠHOˆÂˆÛÛœÝÚHH‹™˜Z[\™J
+OË™\œ›Ü•^	ÉÎÂˆYˆ
+KÑT”—ÐP“Ô•QË\Ý
+ÚJJH\œ›ÜœËœ\Ú
+™\]Y\Ý˜Z[Y
+	ÝÚ_JH	Ü‹\›
+
+_X
+NÂˆJNÂˆYÙK›ÛŠ	ØÛÛœÛÛIË
+JHOˆÂˆÛÛœÝHK^
+
+NÂˆYˆ
+K\J
+HOOH	Ù\œ›Ü‰È	‰ˆ]œÝ\ÕÚ]
+	Ñ˜Z[YÈØY™\ÛÝ\˜ÙIÊJHÂˆ\œ›ÜœËœ\Ú
+ÛÛœÛÛK™\œ›ÜŽˆ	ÝX
+NÂˆBˆJNÂ‚ˆÛÛœÝ™\ÈH]ØZ]YÙK™ÛÝÊ˜\ÙKÈØZ][[ˆ	ÙÛXÛÛ[ØYY	ÈJNÂˆÚXÚÊ	ÛX™[NˆYÙHÙ\™\Ø™\ËœÝ]\Ê
+HOOHŒÝ]\È	Ü™\ËœÝ]\Ê
+_H]	Ø˜\Ù_X
+NÂ‚ˆËÈKKH›ÛÝKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKBˆ]™XYHH˜[ÙNÂˆ]›ÝÛˆH[ÂˆžHÂˆ]ØZ]YÙKØZ]›Ü‘[˜Ý[ÛŠ
+
+HOˆÚ[™ÝË—×ØÚXØYÛÍËœ™XYHOOHYKÈ[Y[Ý]ˆÌJNÂˆ™XYHHYNÂˆHØ]ÚÂˆÛÛœÝÝ]HH]ØZ]YÙK™]˜[X]J
+
+HOˆ
+Âˆ\œ›ÜŽˆÚ[™ÝË—×ØÚXØYÛÍË™\œ›ÜˆÏÈ[ˆ›Ø›[\ÎˆÚ[™ÝË—×ØÚXØYÛÍËœ›Ø›[\ÈÏÈ×KˆJJK˜Ø]Ú
+
+
+HOˆ
+ßJJNÂˆÚXÚÊ	ÛX™[NˆØÙ[™H™XXÚ\È™XYX˜[ÙKˆ	ÜÝ]K™\œ›ÜˆÏÈ	Ý[YYÝ]	ßH	ÊÝ]Kœ›Ø›[\È×JKœÛXÙJÊKš›Ú[Š	È	Ê_X
+NÂˆBˆYˆ
+™XYJHÚXÚÊ	ÛX™[NˆØÙ[™H™XXÚ\È™XYXYJNÂ‚ˆYˆ
+™XYJHÂˆÛÛœÝ›Ø›[\ÈH]ØZ]YÙK™]˜[X]J
+
+HOˆÚ[™ÝË—×ØÚXØYÛÍœ›Ø›[\ÊNÂˆËÈ›Ýš\Ú[Û˜[XÙ[Y[[™XÙZÛ\‹X\ÜÙ]›Ý\È\™H^XÝYš[™[™ÜËˆËÈ›ÝY™XÝËˆ™]šY]×Ü™\]Z\™Y\È[ÛÈH[X™\˜]H™[X\ÙH›ØÚÙ\‹]ˆËÈ[ˆ]È^XÝ™XÛÜ™È™Y›Ü™H^ÛY[™È]ÛÈH™]È›ØÚÙ\ˆØ[››ÝYH[‚ˆËÈHÙ[™\˜[[YÜ˜][Û‹\›Ø›[H\Ý‚ˆÛÛœÝ™]šY]ÜÈH›Ø›[\Ë™š[\Š
+
+HOˆÜ™]šY]×Ü™\]Z\™Y\ÈÙ]Ë\Ý
+
+JNÂˆÛÛœÝ^XÝY™]šY]ÜÈH]ØZ]YÙK™]˜[X]J
+
+HOˆË‹‹Ú[™ÝË—×ØÚXØYÛÍœ™YÚ\ÝžK˜[Y\Ê
+WBˆ™š[\Š
+ŠHOˆ‹œÚYXØ\Ëœ™]šY]×Ü™\]Z\™Y
+Bˆ›X\
+
+ŠHOˆ‹œÚYXØ\‹šY
+BˆœÛÜ
+
+JNÂˆÛÛœÝ™\ÜY™]šY]ÜÈH™]šY]ÜË›X\
+
+
+HOˆœÜ]
+	Î‰ËJVÌJKœÛÜ
+
+NÂˆÚXÚÊ	ÛX™[NˆHØÙ[™HXÛ\™\È]È^XÝÛÛœÝ[][Ûˆ›ØÚÙ\œØˆ^XÝY™]šY]ÜË›[™Ýˆˆ	‰ˆ”ÓÓ‹œÝš[™ÚYžJ™\ÜY™]šY]ÜÊHOOH”ÓÓ‹œÝš[™ÚYžJ^XÝY™]šY]ÜÊKˆ™\ÜY	Ò”ÓÓ‹œÝš[™ÚYžJ™\ÜY™]šY]ÜÊ_K^XÝY	Ò”ÓÓ‹œÝš[™ÚYžJ^XÝY™]šY]ÜÊ_X
+NÂˆÛÛœÝ\™H›Ø›[\Ë™š[\Š
+
+HOˆKÜ›Ýš\Ú[Û˜[PÑRÓTŸXÙZÛ\Ÿ™]šY]×Ü™\]Z\™Y\ÈÙ]ÚK\Ý
+
+JNÂˆÚXÚÊ	ÛX™[Nˆ›È[™^XÝYØY\ˆ›Ø›[\Ø\™›[™ÝOOH\™œÛXÙJÊKš›Ú[Š	È	ÊJNÂ‚ˆÛÛœÝÝXÝ\™\ÈH]ØZ]YÙK™]˜[X]J
+
+HOˆÚ[™ÝË—×ØÚXØYÛÍœ™YÚ\ÝžKœÚ^™JNÂˆÚXÚÊ	ÛX™[NˆØÙ[™H\ÈÝXÝ\™\ØÝXÝ\™\Èˆ	ÜÝXÝ\™\ßHØYY
+NÂ‚ˆËÈOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOBˆËÈLŒ8 %]™\ž][™È™[ÝËÈH[™Ùˆ\ÈšY]ÜÜ	ÜÈ›ÙK[œÈ[‚ˆËÈ›Ý\ˆÝYÙ\ÈÛÈXXÚš]ÈH[‹[Z[]HÛÛ[X[™ˆHÙXÝ[ÛœÈ\™H“ÕˆËÈ™KZ[™[Y[œÚYHHÝYÙHœ˜XÙ\ÈÛˆ\œÜÙNˆÜ˜\[™È‹[™\ÂˆËÈÛÝ[\Ý›ÞH›[YH[™XZÙHHY™ˆ][›ÙXÙY\È[œ™]šY]ØX›K‚ˆËÈHžKØØ]Ú\È\ÙˆHØ[YH™\Z\ˆ8 %H›ÝÈZY\ÝZ]H\ÙYÂˆËÈÚ[H›ØÙ\ÜÈ™Y›Ü™HHYÙKY\œ›ÜˆÚXÚËHÝ[[X\žH[™H^]ˆËÈÛÙNÈ›ÝÈ]\ÈH™XÛÜ™YRS[™HZ[Ý[[œË‚ˆËÈOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOB‚ˆËÈ™XYÛ˜ÙK\ÙY[ˆÓÈÝYÙ\ÎˆÝYÙHIÜÈ˜XÙYš]™\ˆØYYˆÚXÚÂˆËÈ[™ÝYÙH‰ÜÈ\œ˜Z[‹\›Ø›[HÚXÚÈ
+‹P•QÌØÊHÚ\™H\ÈÛ™H™XY[™Ë‚ˆËÈ]Ü›ÜÜÙ\ÈHÝYÙH›Ý[™\žH8 %›Ý[™™XØ]\ÙHHš[\™Y[ˆ™]ÂˆËÈ™Y™\™[˜ÙQ\œ›ÜˆÛˆ]ÈH[™[X[˜ÚÜ™YØØ[œÈ
+HXÚÙ]	ÜÈ[™\ÂˆËÈ[‰ÜÈš\œÝ
+H›ÝZ\ÜÙY]Ú][™È\È]Ø\È]ÛÛ[[ˆ8 %ÛÈ]\ÂˆËÈZÙ[ˆ\™K™Y›Ü™HHÜ]ÎˆHØÙ[™H˜XÝÙ]Y]™XYKÚX\ÂˆËÈ™XYY[XØ[Ú[™]™\ˆ]\ÈZÙ[‹‚ˆÛÛœÝ\œ˜Z[“ØYH]ØZ]YÙK™]˜[X]J
+
+HOˆÂˆÛÛœÝ\HHÚ[™ÝË—×ØÚXØYÛÍÂˆ]Ø]\ˆH[Âˆ]Ü›Ý[™[\ÈHÂˆ\KœØÙ[™LÙ˜]™\œÙJ
+ÊHOˆÂˆYˆ
+[Ëš\ÓY\Ú
+H™]\›ŽÂˆYˆ
+×Ø]\—×ËË\Ý
+Ë›˜[YH	ÉÊJHØ]\ˆHÎÂˆYˆ
+×\œ˜Z[—×ËË\Ý
+Ë›˜[YH	ÉÊJHÜ›Ý[™[\È
+ÏHNÂˆJNÂˆ]›ÞH[ÂˆYˆ
+Ø]\ŠHÂˆØ]\‹™Ù[ÛY]žK˜ÛÛ\]P›Ý[™[™Ð›Þ
+
+NÂˆÛÛœÝˆHØ]\‹™Ù[ÛY]žK˜›Ý[™[™Ð›ÞÂˆ›ÞHÈÎˆ
+Ê‹›X^žH‹›Z[‹ž
+KÑš^Y
+JKˆ
+Ê‹›X^žˆH‹›Z[‹žŠKÑš^Y
+JHNÂˆBˆ™]\›ˆÈ›ÞÜ›Ý[™[\ËˆËÈSÒÔ‘Q[™H[˜ÚÜˆ\ÈHÚÛHÚ[ˆœËÝ\œ˜Z[‹šœØ[Z]ÂˆËÈ\œ˜Z[ˆ\ØÚŽˆ8 )˜[™Ø]\Žˆ8 )˜[Ø^\È]HÝ\ÙˆBˆËÈÝš[™ËÛÈH›Ø›[HP“ÕUHÜ›Ý[™ÜˆHš]™\ˆ\È™XÛÙÛš\ØX›BˆËÈžH]ÈÝXš™XÝˆH[˜[˜ÚÜ™YÝ\œ˜Z[ŸØ]\‹ÚX\È™\XÙYˆËÈX]ÚYHÛÜ™[ž]Ú\™K[™Hš\œÝ›ØÚÈÙˆHÝÛˆÚÜÙBˆËÈYÛÛZ[œÈÛ™HÙˆ[H8 %›×ÜÛÝ]ÝØ]\—Ùœ˜[šÛ[˜“ÐQPTPNˆËÈ8 %\›™YÛÈÜ™[˜\žHXÙZÛ\‹X\ÜÙ]›Ý\È[ÈH™\ÜYˆËÈ\œ˜Z[ˆØY˜Z[\™Kˆš]™HÙˆH[ˆÜ[ˆ›ØÚÜÈ\™BˆËÈ›×ÜÛÝ]ÝØ]\—Ê˜ÛÈ]ÛÝ[]™Hš\™YÛˆXXÚÙˆ[H[‚ˆËÈ\›‹ˆ\È˜\œ›ÝÜÈÚ]Hš[\ˆPUÒTË›ÝÚ]HÚXÚÂˆËÈSÕÔÎˆH™X[\œ˜Z[ˆÜˆØ]\ˆ›Ø›[HÝ[\ÈÈ™H™\›Ë‚ˆ\œ˜Z[”›Ø›[\Îˆ\Kœ›Ø›[\Ë™š[\Š
+
+HOˆ×—ÊŠ\œ˜Z[ŸØ]\ŠW‹ÚK\Ý
+
+JHNÂˆJNÂ‚ˆËÈ™XYÛ˜ÙKÚ\™YžH\ÈÈ[™H
+LŒ™KXÝ]žHLLŒH[™LÍŠNˆHÝ™Y]ˆËÈ^Y\‹H›Ü˜H›ÛÝY\›Ý[™]HZ[[™È[˜ÚÜœÈ[™HÛÂˆËÈ™XYÝ]Ëˆ]ÈÚXÚÜÈÜ[ˆ›ÝÙˆÜÙH\ËÛÈH™XY[™È\ÈZÙ[‚ˆËÈ™Y›Ü™HHÜ]8 %[™ÚÚ\YÚ[ˆ™Z]\ˆ[œË™XØ]\ÙH]\ÈH[ÜÝˆËÈ^[œÚ]™HÚ[™ÛH]˜[X]H[ˆHš[Kˆ][\ÜÈÈ]ÈÝÛ‚ˆËÈšY]ÜÚ[ËÛÈ]Ù\È›ÝØ\™HÚ]˜[ˆ™Y›Ü™H]‚ˆËÂˆËÈLLŒH˜\œ›ÝÙYHÝX\™œ›ÛHœÝYÙHÈÜˆÝYÙHˆÈHÛÈT•È]ˆËÈXÝX[H™XY]ˆ\ÈH[™LHÛ›È™Y™\™[˜ÙHÈÝ™Y]^Y\˜[™ˆËÈ[™\ˆHÛÝX\™XXÚÙˆ[HÛÝ[]™HZY›Üˆ][ž]Ø^H8 %›Ý\‚ˆËÈ[Y\ÈÝ™\ˆH\ÚÝÜ\ÜÈ[œÝXYÙˆÚXÙKÛˆH™\žH™XY[™È\ÂˆËÈØ]HØ[ˆX\ÝY™›Ü™‚ˆ]Ý™Y]^Y\ˆH[ÂˆYˆ
+[žTÝYÙJËLLJJHÂˆÝ™Y]^Y\ˆH]ØZ]YÙK™]˜[X]J
+
+HOˆÂˆÛÛœÝHHÚ[™ÝË—×ØÚXØYÛÍÂˆËÈØ[\HH[˜[ZXÈ›Ü˜Hœ›ÛHHÛ›ÝÛˆžHÛÝ]]š\Ú[ÛˆšY]ÜÚ[‚ˆËÈH™XÙY[™ÈÝ™\šY]ÈÚXÚÈ[X™\˜][H[\ÜÈÝ™\ˆHš]™\ŽÂˆËÈY\ˆHY\XÚ[›™[™YÙ]][Ûˆš^[ˆ[\HÝØ\™\™H\ÈÛÜœ™XÝ‚ˆKØ[Ù\‹[\Ü
+ÈØØ[ÙNˆLËØØ[ÛŽˆLLËX]×ÙYÎˆNJNÂˆKœÝ\
+
+NÂˆ]™\XÙ\ÈHÂˆ]ÛÜœÝ˜\HHÂˆ]Ù]™\XÙ\ÈHÂˆKœÝ™Y]Ë™Ü›Ý\˜]™\œÙJ
+ÊHOˆÂˆÛÛœÝÜÈHË™Ù[ÛY]žOË™Ù]]šX]OËŠ	ÜÜÚ][Û‰ÊNÂˆYˆ
+\ÜÊH™]\›ŽÂˆ™\XÙ\È
+ÏHÜË˜ÛÝ[ÂˆÛÛœÝÝ\HX]›X^
+KX]™›ÛÜŠÜË˜ÛÝ[ÈL
+JNÂˆ›Üˆ
+]HHÈHÜË˜ÛÝ[ÈH
+ÏHÝ\
+HÂˆÛÛœÝHHÜË™Ù]
+JNÂˆÛÛœÝˆH\ÜË™Ù]ŠJNÂˆÛÜœÝ˜\HHX]›X^
+ÛÜœÝ˜\KˆX]˜XœÊÜË™Ù]JJHHK\œ˜Z[‹œÝ\™˜XÙRZYÚ
+KŠHHŒŒŠJNÂˆYˆ
+K\œ˜Z[‹š\ÕØ]\ŠKŠJHÙ]™\XÙ\ÊÊÎÂˆBˆJNÂ‚ˆËÈH›Ü›Y\ˆ˜\‹YšY[Ø[›ÜHØ\ÈHÛÛYÜš^›Û[Y\Ú][]ÜˆËÈZYÚˆ]ÛÚÙYZÙHHÙXÛÛ™\œ˜Z[ˆ^Y\‹YH˜\Ù\ÈÙˆBˆËÈZ[[™ÜÈ[™]Hš\Ú]ÜˆØ[È[™\›™X]]ˆHXÝX[›Ü˜H\ÂˆËÈ[œÝ[˜ÙYÙ[ÛY]žHÚÜÙHX]šXÙ\È]\Ý™YÚ[ˆÛˆHØ[YH\œ˜Z[‚ˆËÈØ[\\ˆHZ[[™ÜÈ[™Ý™Y]È\ÙH
+Üˆ]HØ]\ˆÝ\™˜XÙH›Ü‚ˆËÈ[Y\™Ù[[ÊKˆ\™H]\Ý™H›È™\XÙ[Y[Ø[›ÜHÛX‹‚ˆÛÛœÝØ[›ÜT™\Ù[HHXK™›Ü˜K™Ü›Ý\™Ù]Øš™XÝžS˜[YJ	Ù›Ü˜KXØ[›ÜIÊNÂˆÛÛœÝØ]\–HHK\œ˜Z[‹šZYÚšY[Ë›Y]OËØ]\—ÜÝ\™˜XÙWÛHÏÈÂˆ]›ÛÝY[ÈHÂˆ]ÛÜœÝ[›ÛÝHÂˆ]Ø]\”[ÈHÂˆ]Y\Ø]\”[ÈHÂˆ›Üˆ
+ÛÛœÝ˜[YHÙˆÉÙ›Ü˜K[™X\‰Ë	Ù›Ü˜K[ZY	Ë	Ù›Ü˜KY›Ü˜‰Ë	Ù›Ü˜K\›ÜÙ]IËˆ	Ù›Ü˜K\ÚX‰×JHÂˆÛÛœÝY\ÚHK™›Ü˜K™Ü›Ý\™Ù]Øš™XÝžS˜[YJ˜[YJNÂˆÛÛœÝX]š^HY\ÚËš[œÝ[˜ÙSX]š^Ë˜\œ˜^NÂˆYˆ
+[X]š^
+HÛÛ[YNÂˆ›Üˆ
+]HHÈHY\Ú˜ÛÝ[ÈJÊÊHÂˆÛÛœÝÈHH
+ˆMŽÂˆÛÛœÝHHX]š^ÛÈ
+ÈL—NÂˆÛÛœÝHHX]š^ÛÈ
+ÈL×NÂˆÛÛœÝˆH[X]š^ÛÈ
+ÈMNÂˆÛÛœÝ^XÝYHK\œ˜Z[‹š\ÕØ]\ŠKŠBˆÈØ]\–HˆK\œ˜Z[‹œÝ\™˜XÙRZYÚ
+KŠNÂˆÛÜœÝ[›ÛÝHX]›X^
+ÛÜœÝ[›ÛÝX]˜XœÊHH^XÝY
+JNÂˆYˆ
+K\œ˜Z[‹š\ÕØ]\ŠKŠJHÂˆØ]\”[ÊÊÎÂˆYˆ
+K™›Ü˜KœÚÜ™Q\Ý[˜ÙJKŠHˆŒJHY\Ø]\”[ÊÊÎÂˆBˆ›ÛÝY[ÊÊÎÂˆBˆBˆÛÛœÝ™YTÝ][ÛœÈHK™Y\Ë™Ü›Ý\\Ù\‘]KœÝ][ÛœÈÏÈ×NÂˆÛÛœÝÙ]™YTÝ][ÛœÈH™YTÝ][ÛœË™š[\Š
+ÈKˆJHOˆK\œ˜Z[‹š\ÕØ]\ŠKŠJNÂˆËÈ‹‹˜[™HÝ›Û™Ù\ˆ]Y\Ý[ÛˆHš]™\ˆX\ÚÈÙ\È›Ý[œÝÙ\‹ˆ\ÕØ]\˜ˆËÈ\ÚÜÈÚ]\ˆHZYÚšY[\È™[ÝÈÒÔ‘WÖKL[HS‘TˆHØ]\‚ˆËÈ[™KÛÈHÝ[H›ÛÝY[ˆ]˜[™\ÜÙ\ÈHX\ÚÈ[™Ý[™[™\œÂˆËÈÝ[™[™È[ˆHš]™\‹ˆ]™\žHÝ][ÛˆØ\œšY\ÈHÜ›Ý[™ZYÚBˆËÈ™[™\™\ˆZ[]]ÈHØ]\ˆÝ\™˜XÙHÛÛY\Èœ›ÛHH\ØÚ™XÛÜ™‚ˆÛÛœÝ›ÝÛ™Y™YTÝ][ÛœÈH™YTÝ][ÛœË™š[\Š
+ÈK‹HJHOˆ
+ˆ
+\[ÙˆHOOH	Û[X™\‰ÈÈHˆK\œ˜Z[‹œÝ\™˜XÙRZYÚ
+KŠJHØ]\–Bˆ
+JNÂˆÛÛœÝÝÙ\Ý™YTÝ][ÛˆH™YTÝ][ÛœËœ™YXÙJˆ
+ËÈK‹HJHOˆX]›Z[ŠË\[ÙˆHOOH	Û[X™\‰ÈÈHˆK\œ˜Z[‹œÝ\™˜XÙRZYÚ
+KŠJKˆ[™š[š]Kˆ
+NÂ‚ˆ][˜ÚÜ™YZ[[™ÜÈHÂˆ]ÛÜœÝZ[[™Ð[˜ÚÜˆHÂˆ]Y\\Ý™Y[™ÈHÂˆ]^Ú[™ÙP[˜ÚÜˆH[Âˆ›Üˆ
+ÛÛœÝÚY™XÛÜ™HÙˆKœ™YÚ\ÝžK™[šY\Ê
+JHÂˆÛÛœÝH™XÛÜ™œÚYXØ\ËœXÙ[Y[ÂˆÛÛœÝ]HK˜Z[[™ÜËœÜÚ][Û“ÙŠY
+NÂˆYˆ
+\X]
+HÛÛ[YNÂˆËÈH[˜ÚÜˆ\ÈHÕÑTÕÜ›Ý[™[™\ˆH›ÛÝš[›ÝHÜ›Ý[™]ˆËÈHÜšYÚ[ˆ8 %ÙYHZ[[™ÜË™Ü›Ý[™[™\Š
+KˆÛÈHÜšYÚ[ˆØ[\H\ÈBˆËÈÑRSS‘È\™K›Ý[ˆ\]X[]NˆHZ[[™ÈÛˆHÛÜH™YÈÝÛˆÈ]ÂˆËÈÝÛš[ÛÜ›™\ˆ[™Ú]È™[ÝÈ]ÈÝÛˆÜšYÚ[ˆžH\ÈH™[YY‚ˆËÈ™[™X]]ˆÚ]\ÈÝ[[œÈ\È]H[˜ÚÜˆÛÛY\Èœ›ÛHBˆËÈ\œ˜Z[ˆØ[\\ˆ][[™™]™\ˆ›Ø]ÈX›Ý™H]ÈHÛÛ\[š[ÛˆÚXÚÂˆËÈ››ÈZ[[™ÈÝ™\œÈX›Ý™HHÜ›Ý[™™[™X]]ˆYX\Ý\™\ÈHÛÜ›™\œÂˆËÈ›ÝYÚH™X[[œÝ[˜ÙHX]š^‚ˆÛÛœÝ^XÝYH™\XØ[Ø[˜ÚÜˆOOH	ÝØ]\‰ÂˆÈØ]\–HˆK\œ˜Z[‹œÝ\™˜XÙRZYÚ
+›ØØ[ÙHÏÈ›ØØ[ÛˆÏÈ
+NÂˆËÈÚYÛ™YˆX›Ý™HHÜšYÚ[‰ÜÈÜ›Ý[™\ÈH˜][™[ÝÈ]\È™Y[™Ë‚ˆÛÜœÝZ[[™Ð[˜ÚÜˆHX]›X^
+ÛÜœÝZ[[™Ð[˜ÚÜ‹]žHH^XÝY
+NÂˆY\\Ý™Y[™ÈHX]›X^
+Y\\Ý™Y[™Ë^XÝYH]žJNÂˆÛÛœÝ\œ›ÜˆHX]˜XœÊ]žHH^XÝY
+NÂˆ[˜ÚÜ™YZ[[™ÜÊÊÎÂˆYˆ
+YOOH	Ù^Ú[™ÙWØÛÙ™™YWÚÝ\ÙIÊHÂˆËÈ›]Ü›Ý[™\™KÛÈHÜšYÚ[ˆØ[\H[™H›ÛÝš[Z[š[][BˆËÈYÜ™YH[™H\]X[]H\ÈÝ[HšYÚ\ÜÙ\[Ûˆ›Üˆ\ÈÛ™K‚ˆ^Ú[™ÙP[˜ÚÜˆHÈNˆ]žK^XÝY\œ›ÜˆNÂˆBˆB‚ˆËÈžH[™\ÈÛ™H˜[YH›ÈX]\ˆÚXÚÛÛ\]Xš[]H[žHÚ[[‚ˆËÈÛ\ˆØ[\ˆ\Ù\ËˆHØ[Ë\ÜXÚYšXÈØ[\\ˆY™™\œÈÛ›HÝ™\ˆØ]\‹ˆËÈÚ\™H][X™\˜][HÝ\Y\ÈH˜]šYØ][Ûˆ˜\œšY\‹‚ˆ]ÛÜœÝžTÝ\™˜XÙP[X\ÈHÂˆ›Üˆ
+ÛÛœÝÙK—HÙˆÖÌÌNKŒL‹NL—KÌMLÍWKÎKŒ‹LLLWJHÂˆYˆ
+XK\œ˜Z[‹š\ÕØ]\ŠKŠJHÂˆÛÜœÝžTÝ\™˜XÙP[X\ÈHX]›X^
+ÛÜœÝžTÝ\™˜XÙP[X\ËˆX]˜XœÊK\œ˜Z[‹œÝ\™˜XÙRZYÚ
+KŠHHK\œ˜Z[‹Ø[ÒZYÚ
+KŠJJNÂˆBˆBˆKØ[Ù\‹[\Ü
+ÈØØ[ÙNˆL‹KØØ[ÛŽˆLLLX]×ÙYÎˆJNÂˆKœÝ\
+
+NÂˆÛÛœÝÜ›ÜÜÚ[™ÈHÂˆÝ]NˆK›˜]šYØ][Û‹œÝ™Y]Ý]Kˆ\ÝÜšXÎˆØÝ[Y[™Ù][[Y[žRY
+	ÜÝ™Y]Z\ÝÜšXÉÊOË^ÛÛ[ˆ[Ù\›ŽˆØÝ[Y[™Ù][[Y[žRY
+	ÜÝ™Y][[Ù\›‰ÊOË^ÛÛ[ˆÚÝÛŽˆYØÝ[Y[™Ù][[Y[žRY
+	ÜÝ™Y]\™XYÝ]	ÊOËš\Ð]šX]J	ÚY[‰ÊKˆNÂˆKØ[Ù\‹[\Ü
+ÈØØ[ÙNˆKŒ‹ØØ[ÛŽˆLNX]×ÙYÎˆJNÂˆKœÝ\
+
+NÂˆÛÛœÝ\›ØXÚ[™ÈHÂˆÝ]NˆK›˜]šYØ][Û‹œÝ™Y]Ý]Kˆ\ÝÜšXÎˆØÝ[Y[™Ù][[Y[žRY
+	ÜÝ™Y]Z\ÝÜšXÉÊOË^ÛÛ[ˆ[Ù\›ŽˆØÝ[Y[™Ù][[Y[žRY
+	ÜÝ™Y][[Ù\›‰ÊOË^ÛÛ[ˆZXYˆØÝ[Y[™Ù][[Y[žRY
+	ÜÝ™Y]X\›ØXÚ	ÊOË^ÛÛ[ˆNÂˆËÈ‹P•QÍˆH[™[\ÙYÈ™HSUQÝ]šYÚÚ[ˆ[žHÛ™HÙˆ]È›Ý\‚ˆËÈÛÜ›™\œÈ™[ÛˆØ]\‹ÚXÚÛÚÈHžH\ÙˆH[™[Ú]]8 %ˆËÈHÝÛ™\ˆØ]È]\ÈHÛX[‹YYÙYÜ™Y[ˆÛH[˜ÚY›ÝYÚÛÝ]ˆËÈØ]\ˆÝ™Y]ˆ]\ÈÛ\Y]HØ]\›[™H›ÝËˆ\È™KY\š]™\ÈBˆËÈ[IÜÈÝÛˆ\š]Y]XÈ[™\ÜÙ\ÈHšX˜›ÛˆØ\œšY\È]™\žH[™[ÚÜÙBˆËÈÑS•‘SS‘H\ÈžKÛÈH]\™HœÚ[\YšXØ][Ûˆˆ˜XÚÈÈ›Ü[™ÈBˆËÈ[™[˜Z[È\™H[œÝXYÙˆ[ˆHØÜ™Y[œÚÝ‚ˆÛÛœÝÕTH‹ŒNÂˆÛÛœÝRS—ÕÈHKŒÂˆ]žPÙ[™[[™T[™[ÈHÂˆ]Û\Y[™[ÈHÂˆ]Û]™\œÈHÂˆËÈLLLKˆ™KY\š]™Yœ›ÛHH[™HH[Ù[HUÔÈœ›ÛH8 %HÛÜ›‚ˆËÈÚY[[™HÚ\™HHÝ™Y]ÛÛ[Z]ÈÛ™KH]Y[™H]™\ž]Ú\™BˆËÈ[ÙH
+˜]Û˜\È][›\ÜÈ˜]Û—Ý˜XÚ×ÛØØ[Ù[WÛX\ÂˆËÈ]]Ü™Y
+Kˆ™KY\š]š[™Èœ›ÛHH]ÛÝ[ÛÝ[[™[ÈH[Ù[BˆËÈ™]™\ˆ[Z]Y[™\›ˆ[ˆ]]Ü™Y˜XÚÈ[ÈH˜[ÙH˜Z[\™H\™K‚ˆ›Üˆ
+ÛÛœÝ™XÈÙˆKœÝ™Y]Ëœ™XÛÜ™ÊHÂˆÛÛœÝ[ˆH
+™XË˜XÚ×ÝÚYÛHÏÈLJH
+ˆNÂˆÛÛœÝ[™HH™XË™˜]ÛˆÏÈ™XËœ]ÂˆÛÛœÝÈH×NÂˆ›Üˆ
+]HHNÈH[™K›[™ÝÈJÊÊHÂˆÛÛœÝHH[™VÚHHWNÂˆÛÛœÝˆH[™VÚWNÂˆÛÛœÝHX]š\Ý
+–ÌHHVÌK–ÌWHHVÌWJNÂˆÛÛœÝÈHX]›X^
+KX]˜ÙZ[
+ÈÕT
+JNÂˆ›Üˆ
+]ˆHÈˆÎÈŠÊÊHÂˆYˆ
+\Ë›[™Ý
+HËœ\Ú
+ÐVÌKVÌWWJNÂˆÛÛœÝH
+ˆ
+ÈJHÈÎÂˆËœ\Ú
+ÐVÌH
+È
+–ÌHHVÌJH
+ˆVÌWH
+È
+–ÌWHHVÌWJH
+ˆJNÂˆBˆBˆ›Üˆ
+]HHNÈHË›[™ÝÈJÊÊHÂˆÛÛœÝHHÖÚHHWNÂˆÛÛœÝˆHÖÚWNÂˆÛÛœÝHH–ÌHHVÌNÂˆÛÛœÝˆH–ÌWHHVÌWNÂˆÛÛœÝHX]š\Ý
+KŠNÂˆYˆ
+YKMJHÛÛ[YNÂˆYˆ
+K\œ˜Z[‹š\ÕØ]\ŠVÌKVÌWJHK\œ˜Z[‹š\ÕØ]\Š–ÌK–ÌWJJHÛÛ[YNÂˆžPÙ[™[[™T[™[ÊÊÎÂˆÛÛœÝYHHYˆÈÂˆÛÛœÝ[ˆHHÈÂˆÛÛœÝ™XXÚH
+LŒÙKÛŠHOˆÂˆYˆ
+XK\œ˜Z[‹š\ÕØ]\ŠL
+ÈÙH
+ˆ[‹Œ
+ÈÛˆ
+ˆ[ŠJH™]\›ˆ[ŽÂˆ]ÈHÂˆ]HH[ŽÂˆ›Üˆ
+]ÈHÈÈŽÈÊÊÊHÂˆÛÛœÝZYH
+È
+ÈJH
+ˆNÂˆYˆ
+K\œ˜Z[‹š\ÕØ]\ŠL
+ÈÙH
+ˆZYŒ
+ÈÛˆ
+ˆZY
+JHHHZYÂˆ[ÙHÈHZYÂˆBˆ™]\›ˆÎÂˆNÂˆÛÛœÝ]ÈH™XXÚ
+VÌKVÌWKYK[ŠH
+È™XXÚ
+VÌKVÌWK]YK][ŠNÂˆÛÛœÝÈH™XXÚ
+–ÌK–ÌWKYK[ŠH
+È™XXÚ
+–ÌK–ÌWK]YK][ŠNÂˆYˆ
+]È[ˆ
+ˆˆHYKMˆÈ[ˆ
+ˆˆHYKMŠHÛ\Y[™[ÊÊÎÂˆYˆ
+]ÈRS—ÕÈÈRS—ÕÊHÛ]™\œÊÊÎÂˆBˆBˆËÈLLLˆH[™[\Èˆ[™XÙ\ÈÛ›H[[]™Yš[™\ËÛÈH[Ù[BˆËÈÛÝ[È]ÈÝÛˆ[™[È›ÝÈ8 %[™^\š]Y]XÈÛÝ[Z\Ü™XY™Yš[™[Y[ˆËÈ\È^˜H›ØYØ^K‚ˆÛÛœÝ[Z]Y]XYÈHKœÝ™Y]ËœÝ]ÏËœ[™[ÈÏÈ˜SŽÂˆÛÛœÝ™Yš[™Y[™[ÈHKœÝ™Y]ËœÝ]ÏËœ™Yš[™Y[™[ÈÏÈ˜SŽÂ‚ˆËÈLLLH™YÜ™\ÜÚ[ÛˆH™\^Y˜\HØ]HX›Ý™HØ[››ÝÙYNˆBˆËÈÜ›Ý[™š\Ú[™È“ÕQÒH[™[™]ÙY[ˆ]È™\XÙ\ËˆL‰ÜÈ\›ØXÚˆËÈš[È›ÜÙH›ÝYÚH[˜\ˆšX˜›ÛˆžH\ÈKHH8 %]™\žH™\^ˆËÈ\™™XÝH˜\YH›ØY\˜\ÙYžHH\\Ý8 %[™HÝÛ™\‚ˆËÈ™XY]\È™Ü˜\ÜÈšX[™Û\Èˆ[™H›ØY™[™[™ÈˆÚÜÙˆHXÚË‚ˆËÈ›Ø™Y]H[‹\Ú[ÈÙˆ]™\žHÝ™Y]šX[™ÛNˆ™Yš[™[Y[ÛÂˆËÈH[\š[ÜˆZ\ÜÈ[™\ˆTWÕÓÓH^Ù\ÛÈ›ÜÙK]\[™[È]BˆËÈØ]\›[™H
+ŒŒHK[™\ˆHXÚÈ[™ÊKÛÈH˜\ˆ\ÈŒÍH8 %H\™ˆËÈÙˆH˜Z[\™H\ÈØ]H^\ÝÈÈØ]ÚÚ]XY›ÛÛHÝ™\ˆBˆËÈYX\Ý\™YÛÜœÝˆÙ™‹YÜšY›Ø™\È\™HÚÚ\Yˆ›ÈØ[\K›È™\™XÝ‚ˆ]ÛÜœÝÚ[šÈHÂˆKœÝ™Y]Ë™Ü›Ý\˜]™\œÙJ
+ÊHOˆÂˆÛÛœÝÜÈHË™Ù[ÛY]žOË™Ù]]šX]OËŠ	ÜÜÚ][Û‰ÊNÂˆÛÛœÝYHË™Ù[ÛY]žOËš[™^ÂˆYˆ
+\ÜÈZY
+H™]\›ŽÂˆ›Üˆ
+]HHÈHY˜ÛÝ[ÈH
+ÏHÊHÂˆÛÛœÝšHHÚY™Ù]
+JKY™Ù]
+H
+ÈJKY™Ù]
+H
+ÈŠWNÂˆÛÛœÝHšK›X\
+
+ŠHOˆÜÜË™Ù]
+ŠKÜË™Ù]JŠK\ÜË™Ù]ŠŠWJNÂˆËÈHšX[™ÛHÚ]H™\^Ù™ˆHÜšYÝ[™ÈÛˆH˜[˜XÚÂˆËÈZYÚ›ÝHYX\Ý\™[Y[8 %HX\X›Ü™\ˆÛY™ˆ\ÈH›Ü™\‚ˆËÈÛÛ™][Û‹›ÝH˜\HY™XÝ[™H™Yš[™\ˆ™Y\Ù\ÈÜÙBˆËÈ[™[È›ÜˆHØ[YH™X\ÛÛ‹‚ˆYˆ
+œÛÛYJ
+ÙK—JHOˆXK\œ˜Z[‹š[›Ý[™ÊKŠJJHÛÛ[YNÂˆ›Üˆ
+ÛÛœÝÝØKØ‹Ø×HÙˆÖÌKKKÌKWKÌKWKˆÌHÈËHÈËHÈ×WJHÂˆÛÛœÝHHÌVÌH
+ˆØH
+ÈÌWVÌH
+ˆØˆ
+ÈÌ—VÌH
+ˆØÎÂˆÛÛœÝˆHÌVÌ—H
+ˆØH
+ÈÌWVÌ—H
+ˆØˆ
+ÈÌ—VÌ—H
+ˆØÎÂˆYˆ
+XK\œ˜Z[‹š[›Ý[™ÊKŠJHÛÛ[YNÂˆÛÛœÝHHÌVÌWH
+ˆØH
+ÈÌWVÌWH
+ˆØˆ
+ÈÌ—VÌWH
+ˆØÎÂˆÛÜœÝÚ[šÈHX]›X^
+ÛÜœÝÚ[šËˆK\œ˜Z[‹œÝ\™˜XÙRZYÚ
+KŠH
+ÈŒŒˆHJNÂˆBˆBˆJNÂ‚ˆËÈLLLH›Ú[ˆ]Ù[ŽˆHÛÜ›ˆ˜XÚÈ]\Ý[ˆÛÈXXÚœšYÙBˆËÈ\›ØXÚ[™YY]HXÚËˆÝ][ÛœÈX\˜ÚHÝ™Y]	ÜÈÝÛˆÙ[™[[™BˆËÈ\›Ý›Üœ˜[˜Ú\›ØXÚ\È
+XÚÈ[™ÈH8¢$ŒLMËHÈ8¢$KËL‰ÜÂˆËÈ\œ˜Z[ˆ\›ØXÚ\ÊH[™\HX\˜›Ü›ˆ˜]ØœšYÙHš[‚ˆËÈXXÚÝ][Ûˆ]\Ý[™[œÚYHH˜]Ûˆ›ØYšX[™ÛH[ˆ[‹‚ˆËÂˆËÈLLLHÐT”’QQHPT“Ô“ˆÕUSÓ”ÈHTÕ‹ÈKˆ^H\ÙYÂˆËÈÝÜ]ˆMËH™XØ]\ÙHHÝ™Y]™XÛÜ™]Ù[ˆÝÜY]ˆN[™ˆËÈHÛÛ[Y[\™HØZYÛÎˆH˜\™HÜ™\Ý™]ÙY[ˆHšX˜›Û‰ÜÈ[™[™ˆËÈHØ]\Ù]Ø^HØ\ÈÝ]ÚYHÚ]\ÈØ]HÛÝ[ÙYKˆHÛÜ›ˆ˜XÚÈ\ÂˆËÈ›ÝÈ˜]Ûˆœ›ÛH˜]Û—Ý˜XÚ×ÛØØ[Ù[WÛXÛÈHXÚÉÜÈÝÛˆÛÝ]ˆËÈYÙH]ÍŽMËKŒÌKÛÈHÝ][ÛœÈ[ˆÈˆŒH8 %[ˆHY]™BˆËÈÚÜÙˆH›Ø\™ËÚXÚ\ÈH\ÝÜ›Ý[™]\ÈÜ›Ý[™8 %[™ˆËÈ^H\™HZÙ[ˆÛˆH[™HHšX˜›Ûˆ\È˜]Ûˆœ›ÛKÚ[˜ÙHHÝ][Û‚ˆËÈÛˆH][™H\ÝˆN\È\ÚÚ[™ÈX›Ý]HXÙHH]Ù\È›ÝˆËÈ™XXÚ‚ˆÛÛœÝÛÝ™\™YH
+KŠHOˆÂˆ]]H˜[ÙNÂˆKœÝ™Y]Ë™Ü›Ý\˜]™\œÙJ
+ÊHOˆÂˆYˆ
+]
+H™]\›ŽÂˆÛÛœÝÜÈHË™Ù[ÛY]žOË™Ù]]šX]OËŠ	ÜÜÚ][Û‰ÊNÂˆÛÛœÝYHË™Ù[ÛY]žOËš[™^ÂˆYˆ
+\ÜÈZY
+H™]\›ŽÂˆ›Üˆ
+]HHÈHY˜ÛÝ[	‰ˆZ]ÈH
+ÏHÊHÂˆÛÛœÝHÚY™Ù]
+JKY™Ù]
+H
+ÈJKY™Ù]
+H
+ÈŠWBˆ›X\
+
+ŠHOˆÜÜË™Ù]
+ŠK\ÜË™Ù]ŠŠWJNÂˆÛÛœÝÈH
+KŠHOˆ
+–ÌHHVÌJH
+ˆ
+ˆHVÌWJHH
+–ÌWHHVÌWJH
+ˆ
+HHVÌJNÂˆÛÛœÝHÊÌKÌWJNÂˆÛÛœÝHHÊÌWKÌ—JNÂˆÛÛœÝˆHÊÌ—KÌJNÂˆ]HJ
+Hˆ
+H	‰ˆ
+ˆHˆˆˆ
+JNÂˆBˆJNÂˆ™]\›ˆ]ÂˆNÂˆÛÛœÝÙ[™P]H
+Y^\Ë˜[YJHOˆÂˆÛÛœÝ™XÈHKœÝ™Y]Ëœ™XÛÜ™Ë™š[™
+
+ŠHOˆ‹šYOOHY
+NÂˆÛÛœÝÈH^\ÈOOH	ÙIÈÈˆNÂˆÛÛœÝ[™HH™XË™˜]ÛˆÏÈ™XËœ]Âˆ›Üˆ
+]HHNÈH[™K›[™ÝÈJÊÊHÂˆÛÛœÝÐK—HHÛ[™VÚHHWK[™VÚWWNÂˆÛÛœÝÈHX]›Z[ŠVÚ×K–Ú×JNÂˆÛÛœÝHHX]›X^
+VÚ×K–Ú×JNÂˆYˆ
+˜[YHÈ˜[YHˆJHÛÛ[YNÂˆÛÛœÝH
+˜[YHHVÚ×JHÈ
+–Ú×HHVÚ×HYKNJNÂˆ™]\›ˆÐVÌH
+È
+–ÌHHVÌJH
+ˆVÌWH
+È
+–ÌWHHVÌWJH
+ˆNÂˆBˆ™]\›ˆ[ÂˆNÂˆÛÛœÝ\›ØXÚØ\ÈH×NÂˆ›Üˆ
+]HHLLÍNÈHHLLNÈH
+ÏHJHÂˆÛÛœÝHÙ[™P]
+	ÚÚ[žšYIË	ÙIËJNÂˆYˆ
+\XÛÝ™\™Y
+ÌKÌWJJH\›ØXÚØ\Ëœ\Ú
+Ú[žšYHÈ	Ù_X
+NÂˆBˆ›Üˆ
+]HHMNÈHHLÌŽÈH
+ÏHJHÂˆÛÛœÝHÙ[™P]
+	ÚÚ[žšYIË	ÙIËJNÂˆYˆ
+\XÛÝ™\™Y
+ÌKÌWJJH\›ØXÚØ\Ëœ\Ú
+Ú[žšYHH	Ù_X
+NÂˆBˆ›Üˆ
+]ˆHÈˆHŒNÈˆ
+ÏHJHÂˆÛÛœÝHÙ[™P]
+	ÙX\˜›Ü›‰Ë	Û‰ËŠNÂˆYˆ
+\XÛÝ™\™Y
+ÌKÌWJJH\›ØXÚØ\Ëœ\Ú
+X\˜›Ü›ˆ	ÛŸX
+NÂˆB‚ˆÊŠ‚ˆ
+ˆLN8 %HÕUÒQHÑˆU‘T–HT“‹Ý][Û™YHØ^HH\›ØXÚ\Âˆ
+ˆX›Ý™H\™K[™›ÜˆHØ[YH™X\ÛÛŽˆHÛZ[HX›Ý]›ØYØ^H\ÈÛ›Bˆ
+ˆÛÜÚ]HÚ[Ý[™[™ÈÛˆ]\ÈÛÜ‚ˆ
+‚ˆ
+ˆ]™\žH[™[\ÙYÈ™HÜ]X\™HÈ]ÈÝÛˆÚÜ™ÛÈ]H™[™HÛÂˆ
+ˆ›ÝÜÈÜ›ÜÜÙY]HÙ[™[[™H[™]™\™ÙYÝØ\™ÈHYÙ\È[™Bˆ
+ˆÝ]ÚYHÙˆH\›ˆØ\œšYYHšX[™ÛHÙˆ[œZ[YÜ›Ý[™8 %ŒËÈL‚ˆ
+ˆÙˆ]ÝÛ‹]ÚYKÛÜœÝŒŽHLˆ]ÛÝ]Ø]\ˆÝ™Y]	ÜÈÙ\Ý\›ØXÚˆ
+ˆ
+ÛÛËÛYX\Ý\™WÜ›ØYÚ›Ú[Ë›ZœØHˆÛH[ˆ]XÙJKˆš[™HÝ][ÛœÂˆ
+ˆ\™H›ÜYS”ÒQH]ÙXÝÜˆ]XXÚ]]Ü™Y™[™Ü™XYXÜ›ÜÜÂˆ
+ˆ]È[™ÛH[™Ý]Èš[™H[ÈÙˆH[‹]ÚY[™XXÚ]\Ý[™ˆ
+ˆÛˆ˜]Ûˆ›ØYØ^Kˆ]™\žHÛ™HÙˆ[HØ\È[˜ÛÝ™\™Y™Y›Ü™HHZ]™K‚ˆ
+‚ˆ
+ˆH[]XÙH]™\È[ˆH[œÝ[Y[È\ÙHÝ][ÛœÈ\™HH\ˆ
+ˆH™[X\ÙHØ[ˆY™›Ü™ˆH™[™ÚÜÙHÝÛˆÙ[™[[™H\ÈÙ]Ø\œšY\È›Âˆ
+ˆ]Y\Ý[Ûˆ8 %›ÜØ]\ˆÝ™Y]	ÜÈ[™H[œÈ[œÚYHHØ]\ˆX\ÚÈœ›ÛBˆ
+ˆHÌÌÈHMÍ‹[™›ÈšX˜›ÛˆX^H™H˜]Ûˆ\™H][‚ˆ
+‹ÂˆÛÛœÝ›Ú[Ø\ÈH×NÂˆ]›Ú[Ý][ÛœÈHÂˆ›Üˆ
+ÛÛœÝ™XÈÙˆKœÝ™Y]Ëœ™XÛÜ™ÊHÂˆÛÛœÝ[™HH™XË™˜]ÛˆÏÈ™XËœ]ÂˆÛÛœÝ[ˆH
+™XË˜XÚ×ÝÚYÛHÏÈŠH
+ˆNÂˆ›Üˆ
+]HHNÈH[™K›[™ÝHNÈJÊÊHÂˆÛÛœÝÐK—HHÛ[™VÚHHWK[™VÚWK[™VÚH
+ÈWWNÂˆ]\›ˆHX]˜][ŒŠ–ÌWHHÌWK–ÌHHÌJBˆHX]˜][ŒŠÌWHHVÌWKÌHHVÌJNÂˆYˆ
+\›ˆˆX]”JH\›ˆOHˆ
+ˆX]”NÂˆYˆ
+\›ˆSX]”JH\›ˆ
+ÏHˆ
+ˆX]”NÂˆYˆ
+X]˜XœÊ\›ŠHŒH
+ˆX]”HÈN
+HÛÛ[YNÂˆYˆ
+K\œ˜Z[‹š\ÕØ]\ŠVÌKVÌWJHK\œ˜Z[‹š\ÕØ]\ŠÌKÌWJBˆK\œ˜Z[‹š\ÕØ]\Š–ÌK–ÌWJJHÛÛ[YNÂˆÛÛœÝHHX]š\Ý
+ÌHHVÌKÌWHHVÌWJNÂˆÛÛœÝLYHHJÌWHHVÌWJHÈNÂˆÛÛœÝL[ˆH
+ÌHHVÌJHÈNÂˆÛÛœÝÙÛˆH\›ˆˆÈHˆLNÂˆ›Üˆ
+]ÈHÈÈÎÈÊÊÊHÂˆÛÛœÝ[™ÈH
+
+È
+ÈJH
+ˆ\›ŠHÈÎÂˆÛÛœÝÈHX]˜ÛÜÊ[™ÊNÂˆÛÛœÝÛˆHX]œÚ[Š[™ÊNÂˆÛÛœÝ™HHLYH
+ˆÈHL[ˆ
+ˆÛŽÂˆÛÛœÝ›ˆHLYH
+ˆÛˆ
+ÈL[ˆ
+ˆÎÂˆ›Üˆ
+ÛÛœÝˆÙˆÌŒÍKKŽWJHÂˆÛÛœÝHHÌHHÙÛˆ
+ˆ™H
+ˆ[ˆ
+ˆŽÂˆÛÛœÝˆHÌWHHÙÛˆ
+ˆ›ˆ
+ˆ[ˆ
+ˆŽÂˆYˆ
+K\œ˜Z[‹š\ÕØ]\ŠKŠJHÛÛ[YNÂˆ›Ú[Ý][ÛœÊÊÎÂˆYˆ
+XÛÝ™\™Y
+KŠJHÂˆ›Ú[Ø\Ëœ\Ú
+	Ü™XËšYHÉÔÌ_K	ÔÌW_WH	Ê\›ˆ
+ˆNÈX]”JBˆÑš^Y
+J_HYÈ]	ÙŸX
+NÂˆBˆBˆBˆBˆB‚ˆ™]\›ˆÂˆÛÜœÝÚ[šË™Yš[™Y[™[Ë\›ØXÚØ\Ë›Ú[Ø\Ë›Ú[Ý][ÛœËˆ›Ú[ÎˆKœÝ™Y]ËœÝ]ÏËš›Ú[ÈÏÈ[ˆÜ]X\™R›Ú[ÎˆKœÝ™Y]ËœÝ]ÏËœÜ]X\™R›Ú[ÈÏÈ[ˆZ]™Y›Ú[ÎˆKœÝ™Y]ËœÝ]ÏË›Z]™Y›Ú[ÈÏÈ[ˆ˜[›™Y›Ú[ÎˆKœÝ™Y]ËœÝ]ÏË™˜[›™Y›Ú[ÈÏÈ[ˆ›Ú[˜[•šX[™Û\ÎˆKœÝ™Y]ËœÝ]ÏËš›Ú[˜[•šX[™Û\ÈÏÈ[ˆ™XÛÜ™ÎˆKœÝ™Y]Ëœ™XÛÜ™Ë›[™Ý™\XÙ\ËÛÜœÝ˜\KÙ]™\XÙ\ËˆžPÙ[™[[™T[™[ËÛ\Y[™[ËÛ]™\œË[Z]Y]XYËˆØ[›ÜT™\Ù[›ÛÝY[ËÛÜœÝ[›ÛÝØ]\”[ËY\Ø]\”[Ëˆ™YTÝ][ÛœÎˆ™YTÝ][ÛœË›[™ÝÙ]™YTÝ][ÛœÎˆÙ]™YTÝ][ÛœË›[™Ýˆ›ÝÛ™Y™YTÝ][ÛœÎˆ›ÝÛ™Y™YTÝ][ÛœË›[™ÝˆÝÙ\Ý™YTÝ][Û‹Ø]\–Kˆ™YT™Z™XÝY™[ÝÕØ]\›[™NˆK™Y\ËœÝ]ÏËœ™Z™XÝY™[ÝÕØ]\›[™HÏÈ[ˆËÈ“ÐQPT‹P•QÍKˆHÜ[][Ûˆ›ÝÛÛÙHÚXÚÜÈX›Ý™H\™H›[™Î‚ˆËÈÝ][ÛœØ\ÈÜš][ˆÛ›H[œÚYHH™X\‹YšY[[\‰ÜÈŒÌˆBˆËÈÜ]X\™KÛÈHš]™HT—ÕSP‘Tˆ›ÙY\È˜]Ûˆ\ÈHÜš^›ÛˆÚ[ÝY]BˆËÈ]™H™]™\ˆ™Y[ˆ\ÚÙYÚ\™H^HÝ[™ˆYX\Ý\™YYØZ[œÝHX\ÚÈBˆËÈ”“ÕÔÑTˆØYY›ÝHÛ™H[ˆ]KÈ8 %ÛÛËÛYX\Ý\™WÙ˜\—Ý[X™\‹œBˆËÈ\ÚÜÈHÛÛ[Z]Yž]\È[™\È›Ú™XÝ\ÈÚXÙHÚ\YHYÂˆËÈ]š[™È^XÝH[ˆ]Ø\‚ˆ˜\•[X™\•Ø]\ŽˆK™Y\Ë™˜\•[X™\•Ø]\ËŠ
+HÏÈ[ˆËÈ‹‹˜[™HÛ\]ÙY\È[HÙ™ˆHØÜ™Y[‹^\˜Ú\ÙYˆH˜[™\ÂˆËÈÛÛ™Y\›Ý[™HØ[Y\˜KÛÈ\È\ÈÈÝ[™˜\ˆ[›ÝYÚ˜XÚÈ]BˆËÈ›ÙH[ˆØ]\ˆÛX\œÈRS—ÑT—ÓH[™HÛÛ™\ˆXÝX[H™XXÚ\È]8 %ˆËÈœ›ÛHHÜ]ÛˆÚ[H™X\™\ÝÛ™H\ÈHY]™H[œÚYHH™X\‚ˆËÈÝ][Ù™‹ÚXÚ\ÈHÜ™Y[ˆØ]H]\È[ˆ›Ý[™ËˆÚ[˜ÙHLÌHBˆËÈ›ÙH]^\˜Ú\Ù\È\È›ÜØœ˜[˜ÚØ™[ÚÜÙHÙ]Ü›ÜÜÚ[™È™YÚ[œÈ]ˆËÈ]Èš\œÝ™\^
+NMKÍJH8 %ŒHHœ›ÛH\ÈÝ[™[™Hš\œÝˆËÈØ[\HÙˆHÙYÛY[\È[Z]Y]H™\^]Ù[‹ÛÈHÛ\\ÂˆËÈ™XXÚYÚ]]™\ˆHY\]™HÝ\Ù\ÈÚ]HMˆHÙˆÙ][‹‚ˆÜš^›Û•Ù]ÚÚ\Yˆ
+
+
+HOˆÂˆKØ[Ù\‹[\Ü
+ÈØØ[ÙNˆLLØØ[ÛŽˆLŒX]×ÙYÎˆJNÂˆKœÝ\
+
+NÂˆ™]\›ˆK™Y\ËœÝ]ÏËšÜš^›Û•Ù]ÚÚ\YÏÈ[ÂˆJJ
+Kˆ[˜ÚÜ™YZ[[™ÜËÛÜœÝZ[[™Ð[˜ÚÜ‹Y\\Ý™Y[™Ë^Ú[™ÙP[˜ÚÜ‹ˆÛÜœÝžTÝ\™˜XÙP[X\ËˆÛX\œÓZÙNˆKœÝ™Y]Ë˜›ØÚÜÑÜ›ÝÝ
+L‹KLLL
+KˆÙY\Ð›ØÚÑÜ™Y[ŽˆXKœÝ™Y]Ë˜›ØÚÜÑÜ›ÝÝ
+LLLN
+KˆÜ›ÜÜÚ[™Ë\›ØXÚ[™ËˆNÂˆJNÂˆB‚ˆžHÂˆËÈT•H8 %HØ]HÛÝ[ÈHÝÛˆˆ›ÝYÚH›ÜÝØÚØYH[™BˆËÈ\Ú[™\ÜÈÚYÛœÎˆH[˜ÛÜÝ\™H[™ÚYÛ˜YÙH^Y\œË[™XYÙ™ˆHØÙ[™BˆËÈÜ˜\˜]\ˆ[ˆÙ™ˆHØÜ™Y[‹‚ˆYˆ
+ÝYÙSÛŠJJHÂˆ[”ÝYÙUÛÜšÈHYNÂ‚ˆËÈKKHHœ˜[YH\È][\Ø[\YÛ™H[˜ÛYY
+LMMÊHKKKKKKKKKKKKKKKBˆËÈXZ[‹šœØ›ÛÝYÚ][X[X\ÎˆXÛØ\œÙXœ›ÛHZ[\ÝÛ™HÛÈHÝXÚˆËÈ]šXÙH™]ÈHÚÛHÝÛˆÚ]›È][\Ø[\[™È[™]ÈYÙ\È›\YˆËÈÚÛKˆYX\Ý\™Y]ÎL0åÍÎÛˆHX›\ÚYZ\œ›ÜˆžBˆËÈÛÛËÛYX\Ý\™WÜÛ™WØXK›ZœØˆÝÚ]Ú[™ÈTÐPHÛˆZÙ\È]™\žHÛ™HÙˆHMBˆËÈ^[È]Ù\™HÝØ\[™ÈÝ\™˜XÙHÝ]šYÚ[™\ˆHˆ[HYÙH8 %HY\šX[ˆËÈL]ZÙH[™X\šÙ]8 %È‘T“Ë[™HÛÜœÝ\‹\^[[Ý™[Y[œ›ÛBˆËÈLKÌMÈŽÌÍË‚ˆËÂˆËÈ\È\È\ÜÙ\YÛˆH]™HÓÓ•V˜]\ˆ[ˆÛˆH^[ÛÝ[[™BˆËÈYX\Ý\™[Y[\ÈÚNˆH›XÚÙ\ˆÓÕS•ÛÙ\ÈTÚ[ˆTÐPH\ÈÝÚ]ÚYÛ‚ˆËÈ
+KMˆ8¡¤ˆ‹ˆY\šX[
+K™XØ]\ÙHH\X[™\Ø[\HÝXÚ\È[Ü™H^[ÂˆËÈ[ˆHÚÛH›\Ù\Ëˆ[žHØ]HÜš][ˆÛˆHÛÝ[ÛÝ[]™HÈ™BˆËÈÜš][ˆ˜XÚÝØ\™Ë‚ˆËÂˆËÈ[X[X\Ø\ÈHÛÛ^XÜ™X][Ûˆ]šX]HÚ]›È[[YH[™KÚXÚˆËÈ\È^XÝHÚ]XZÙ\È]ÛÜHØ]NˆHÛ›HØ^HÈÜÙH]\ÈH™X›ÛÝˆËÈÚ]H›YÈÙ™‹[™›ÝÛ™HÝ\ˆÚXÚÈ[ˆ\Èš[HÛÝ[›ÝXÙK‚ˆËÈÙ]ÛÛ^]šX]\Ê
+X[Û™HÚ[›ÝÈ8 %]XÚÙ\ÈÚ]Ø\ÈTÒÑQ›Ü‹‚ˆËÈÐSTTØ\ÈÚ]Hœ˜[YXY™™\ˆXÝX[H\Ë‚ˆÛÛœÝ][\Ø[\HH]ØZ]YÙK™]˜[X]J
+
+HOˆÂˆÛÛœÝÛHÚ[™ÝË—×ØÚXØYÛÍœ™[™\™\‹™Ù]ÛÛ^
+
+NÂˆ™]\›ˆÂˆ\ÚÙYˆÛ™Ù]ÛÛ^]šX]\Ê
+K˜[X[X\ËˆØ[\\ÎˆÛ™Ù]\˜[Y]\ŠÛ”ÐSTTÊKˆÛØ\œÙNˆÚ[™ÝË›X]ÚYYXJ	ÊÚ[\ŽˆÛØ\œÙJIÊK›X]Ú\ËˆNÂˆJNÂˆÚXÚÊ	ÛX™[NˆHœ˜[YH\È][\Ø[\Y8 %HÝÛ‰ÜÈYÙ\È\™H™\ÛÛ™YÛˆHÛ™HÛØˆ][\Ø[\K˜\ÚÙYOOHYH	‰ˆ][\Ø[\KœØ[\\ÈH‹ˆ[X[X\ÏIÛ][\Ø[\K˜\ÚÙYHÐSTTÏIÛ][\Ø[\KœØ[\\ßHˆ
+ÈÚ[\Ž˜ÛØ\œÙOIÛ][\Ø[\K˜ÛØ\œÙ_X
+NÂ‚ˆËÈKKHHØ]HÛÝ[ÈHÝÛˆ
+LÍŠHKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKBˆËÈHÝÛ™\ˆ\ÚÙY›ÜˆH[X™\ˆÙˆZ[[™ÜÈ[™H[X™\ˆÙˆ[ÜBˆËÈ]š[™È[ˆ[HÛˆH”“Ó•ØÜ™Y[‹ˆH\ÜÙ\[Ûˆ]X]\œÈ\È›ÝˆËÈ˜H›ÝÈ\X\™Yˆ8 %]\È]H›ÝÉÜÈ•SQTSÈ\™HHÛÛ[Z]YˆËÈ]IÜË™XY˜XÚÈÝ]ÙˆH™[™\™YÓH[™ÛÛ\\™YYØZ[œÝH”ÓÓ‚ˆËÈHYÙH™]ÚYˆHØ]HØÜ™Y[ˆ][Ý[™ÈHÝ[HÛÝ[\ÈH˜Z[\™H\ÂˆËÈ\È\™HÈØ]Ú[™]\È[š\ÚX›HÈ]™\žHÝ\ˆÚXÚÈ[ˆ\Èš[K‚ˆËÂˆËÈHØ]H\ÈÝ[Ü[ˆ]\ÈÚ[[ˆH[ˆ
+HØ[È\ÝÈÛXÚÂˆËÈ›ÝYÚ]]XÚ]\ŠKÚXÚ\ÈHÛ›H[ÛY[H›ÝÈ\ÈÛˆØÜ™Y[‹‚ˆÛÛœÝØ]PÙ[œÝ\ÈH]ØZ]YÙK™]˜[X]J
+
+HOˆÂˆÛÛœÝÜÝHØÝ[Y[™Ù][[Y[žRY
+	ÙØ]KXÙ[œÝ\ÉÊNÂˆÛÛœÝš\ÚX›HHHZÜÝ	‰ˆZÜÝš\Ð]šX]J	ÚY[‰ÊNÂˆÛÛœÝšYÝ\™\ÈHË‹‹ŠÜÝËœ]Y\žTÙ[XÝÜ[
+	Ë™ØË[‰ÊH×JWK›X\
+
+[
+HOˆ[^ÛÛ[
+NÂˆ™]\›ˆÂˆš\ÚX›KˆšYÝ\™\Ëˆ^ˆÜÝÈÜÝ^ÛÛ[œ™\XÙJ×ÊËÙË	È	ÊKš[J
+Hˆ	ÉËˆ›ÞˆÜÝÈÜÝ™Ù]›Ý[™[™ÐÛY[™XÝ
+
+KÚYˆˆ]NˆÚ[™ÝË—×ØÚXØYÛÍ˜Ù[œÝ\ËˆNÂˆJNÂˆÛÛœÝÚÝÛˆHØ]PÙ[œÝ\Ë™šYÝ\™\Ë›X\
+
+
+HOˆ[X™\ŠÝš[™Ê
+Kœ™\XÙJËÙË	ÉÊJJNÂˆÛÛœÝØ[HÙØ]PÙ[œÝ\Ë™]OË˜Z[[™ÜÏËœÝ[™[™ËØ]PÙ[œÝ\Ë™]OËœ[ÜOËšÝ\ÙYNÂˆÚXÚÊ	ÛX™[NˆHØ]HÚÝÜÈHÝÛˆÙ[œÝ\ØˆØ]PÙ[œÝ\Ëš\ÚX›H	‰ˆØ]PÙ[œÝ\Ë˜›Þˆ	‰ˆÚÝÛ‹›[™ÝOOH‹ˆš\ÚX›OIÙØ]PÙ[œÝ\Ëš\ÚX›_HÚYIÙØ]PÙ[œÝ\Ë˜›ÞHšYÝ\™\ÏIÒ”ÓÓ‹œÝš[™ÚYžJØ]PÙ[œÝ\Ë™šYÝ\™\Ê_X
+NÂˆÚXÚÊ	ÛX™[NˆHØ]IÜÈšYÝ\™\È\™HHÛÛ[Z]Y]IÜØˆ[X™\‹š\Ñš[š]JØ[ÌJH	‰ˆ[X™\‹š\Ñš[š]JØ[ÌWJBˆ	‰ˆÚÝÛ–ÌHOOHØ[ÌH	‰ˆÚÝÛ–ÌWHOOHØ[ÌWKˆÚÝÙY	Ò”ÓÓ‹œÝš[™ÚYžJÚÝÛŠ_K]HØ^\È	Ò”ÓÓ‹œÝš[™ÚYžJØ[
+_X
+NÂˆËÈ™Z]\ˆšYÝ\™H\ÈHÝ[[™H›ÝÈ\ÈÈØ^HÛÈÜˆ]Z\ÛXYÎˆBˆËÈZ[[™ÜÈ\™HÛÝ[YYØZ[œÝH›ÙÜ˜[[YIÜÈ\™Ù][™H[ÜBˆËÈYØZ[œÝHÝÛ‰ÜÈÝÛˆ™XÛÜ™YÚ^™K›Ý][ÝYÝ]ÙˆHØ[YHš[K‚ˆÛÛœÝÜ›Ý\YH
+ŠHOˆÝš[™ÊŠKœ™\XÙJ×ŠÏJÌßJJÊÈW
+JKÙË	Ë	ÊNÂˆÚXÚÊ	ÛX™[NˆHØ]H˜[Y\È›Ý[›ÛZ[˜]ÜœØˆ[X™\‹š\Ñš[š]JØ]PÙ[œÝ\Ë™]OË˜Z[[™ÜÏË\™Ù]
+Bˆ	‰ˆ[X™\‹š\Ñš[š]JØ]PÙ[œÝ\Ë™]OËœ[ÜOËÝÛ—ÝÝ[
+Bˆ	‰ˆØ]PÙ[œÝ\Ë^š[˜ÛY\ÊÜ›Ý\Y
+Ø]PÙ[œÝ\Ë™]K˜Z[[™ÜË\™Ù]
+JBˆ	‰ˆØ]PÙ[œÝ\Ë^š[˜ÛY\Ê›ÝYÚH	ÙÜ›Ý\Y
+Ø]PÙ[œÝ\Ë™]Kœ[ÜKÝÛ—ÝÝ[
+_X
+KˆØ]PÙ[œÝ\Ë^
+NÂ‚ˆËÈKKHØ]\ˆ[˜ÚÜš[™È
+ØÜËÑÓ‹PÓÓ•PÕ›Y
+HKKKKKKKKKKKKKKKKKKKKKKKKKKBˆËÈHœšYÙIÜÈØØ[HH\ÈH\ÚYÛˆØ]\ˆÝ\™˜XÙK›ÝHÜ›Ý[™ÛÂˆËÈH™[™\™\ˆ]\Ý“ÕØ[\HHZYÚšY[›Üˆ]ˆZYXÚ[›™[BˆËÈÜ›Ý[™Ý\™˜XÙH\ÈHš]™\ˆ‘QÛÈH™YÜ™\ÜÚ[Ûˆ\™HÚ[šÜÈHœšYÙBˆËÈÝ]ÙˆÚYÚ[™™XYÈ\ÈHZ\ÜÚ[™È\ÜÙ]ˆH\ÜÙ\[Ûˆ\ÈÜš][ˆ\ÂˆËÈHQ‘‘T‘SÑH™]ÙY[ˆHÛÈ[˜ÚÜœÈ˜]\ˆ[ˆžHOOH‹™XØ]\ÙBˆËÈÝ™\ˆžH[™HÛÈYÜ™YH[™H\Ý]\ÜÙY\™HÛÝ[›Ý™BˆËÈ›Ý[™Ë‚ˆËÂˆËÈH™Y\ÈØ[\Y]HXÚÉÜÈRQÒS•›Ý]HXÙ[Y[ÜšYÚ[‹‚ˆËÈ]ÜšYÚ[ˆ\ÈHÛYÛÛ‰ÜÈ
+
+H8 %›Üˆ\ÈœšYÙHHÙ\Ý[™ÚXÚˆËÈžHÛÛœÝXÝ[ÛˆÚ]È^XÝHÛˆH˜XÙYØ]\›[™HÚ\™HHÜ›Ý[™ˆËÈÝ\™˜XÙHÜ›ÜÜÙ\È™\›ËˆØ[\[™È\™HÛÛ\\™\È™\›ÈYØZ[œÝ™\›È[™BˆËÈÚXÚÈ\ÜÙ\ÈÚ]]™\ˆH™[™\™\ˆÙ\Ëˆ›Ý[™žH\È\ÜÙ\[Ûˆ˜Z[[™ÂˆËÈÛˆ]Èš\œÝ[‹ÚXÚ\ÈH\™Ý[Y[›ÜˆÜš][™È]\ÈHY™™\™[˜ÙK‚ˆÛÛœÝ[˜ÚÜ™YH]ØZ]YÙK™]˜[X]J
+
+HOˆÂˆÛÛœÝ\HHÚ[™ÝË—×ØÚXØYÛÍÂˆÛÛœÝ™XÈH\Kœ™YÚ\ÝžK™Ù]
+	Û›ÜØœ˜[˜ÚØœšYÙIÊNÂˆÛÛœÝH™XÏËœÚYXØ\ËœXÙ[Y[ÂˆÛÛœÝÛHH™XÏËœÚYXØ\Ë™›ÛÝš[ËœÛYÛÛŽÂˆYˆ
+\\ÛOË›[™Ý
+H™]\›ˆÈZ\ÜÚ[™ÎˆYHNÂˆÛÛœÝÛÜ›H\K˜Z[[™ÜËœÜÚ][Û“ÙŠ	Û›ÜØœ˜[˜ÚØœšYÙIÊNÂˆËÈ›ÛÝš[˜›ÞÙ[™K›Ý]YžHH˜XØYH™X\š[™È^XÝH\ÂˆËÈØ[Ù\‹šœÉÜÈ›ÛÝš[Ñœ›ÛHÙ\Ë[ˆÙ™œÙ]ÈÛÜ›S•K‚ˆÛÛœÝ\ÈHÛK›X\
+
+ÝWJHOˆJNÂˆÛÛœÝœÈHÛK›X\
+
+Ë—JHOˆŠNÂˆÛÛœÝHH
+X]›Z[Š‹‹\ÊH
+ÈX]›X^
+‹‹\ÊJHÈŽÂˆÛÛœÝˆH
+X]›Z[Š‹‹œÊH
+ÈX]›X^
+‹‹œÊJHÈŽÂˆÛÛœÝH
+œ›Ý][Û—ÙYÈÏÈ
+H
+ˆX]”HÈNÂˆÛÛœÝZYHH
+›ØØ[ÙHÏÈ
+H
+ÈH
+ˆX]˜ÛÜÊ
+H
+Èˆ
+ˆX]œÚ[Š
+NÂˆÛÛœÝZYˆH
+›ØØ[ÛˆÏÈ
+HHH
+ˆX]œÚ[Š
+H
+Èˆ
+ˆX]˜ÛÜÊ
+NÂˆ™]\›ˆÂˆ[˜ÚÜŽˆ™\XØ[Ø[˜ÚÜ‹ˆNˆÛÜ›ÈÛÜ›žHˆ[ˆËÈH™X[Ú[›™[™Y[™Ú]H\œ˜Z[ˆ[˜ÚÜˆÛÝ[]™BˆËÈ™]\›™Y\™H8 %ÚXÚ\È“ÕH™YˆZYÚ
+
+H™\ÜÈHØY[™ÂˆËÈ˜\œšY\ˆÝ™\ˆØ]\‹ÛÈH™YÜ™\ÜÚ[Ûˆ\ÈØ]Ú\ÈYÈHœšYÙBˆËÈY]™\È[ÈHZ\ˆ˜]\ˆ[ˆÚ[šÚ[™È]‚ˆ™Yˆ\K\œ˜Z[‹™Ü›Ý[™ZYÚ
+ZYKZYŠKˆ\œ˜Z[[˜ÚÜŽˆ\K\œ˜Z[‹šZYÚ
+ZYKZYŠKˆNÂˆJNÂˆÚXÚÊ	ÛX™[NˆHœšYÙHXÛ\™\ÈHØ]\ˆ[˜ÚÜ˜ˆ[˜ÚÜ™Y˜[˜ÚÜˆOOH	ÝØ]\‰Ë	Ø[˜ÚÜ™Y˜[˜ÚÜˆÏÈ	Ü™XÛÜ™Z\ÜÚ[™ÉßX
+NÂˆÚXÚÊ	ÛX™[NˆHœšYÙHÚ]ÈÛˆHØ]\ˆ[™K›ÝÛˆH\œ˜Z[˜ˆ[˜ÚÜ™YžHOOH[	‰ˆX]˜XœÊ[˜ÚÜ™YžJHŒBˆ	‰ˆ[˜ÚÜ™Y˜™YLH	‰ˆX]˜XœÊ[˜ÚÜ™Y\œ˜Z[[˜ÚÜˆH[˜ÚÜ™YžJHˆKˆXÙYH	Ø[˜ÚÜ™YžOËÑš^Y
+Š_K™Y	Ø[˜ÚÜ™Y˜™YËÑš^Y
+Š_HKˆ
+È\œ˜Z[ˆ[˜ÚÜˆÛÝ[Ú]™H	Ø[˜ÚÜ™Y\œ˜Z[[˜ÚÜËÑš^Y
+Š_HX
+NÂ‚ˆËÈKKHH[˜ÛÜÝ\™H^Y\ˆ
+LÎ
+HKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKBˆËÂˆËÈH™[˜ÙH\ÈHš\œÝ[™È\È›Ú™XÝ\È˜]Ûˆœ›ÛHHT’SQUTˆ˜]\‚ˆËÈ[ˆH›ÛÝš[[™]\È˜]ÛˆžHH™[™\™\ˆ˜]\ˆ[ˆ˜ZÙYÛÂˆËÈ]™\žHÛ™HÙˆ\ÙH]Y\Ý[ÛœÈ\È[œÝÙ\˜X›H\™H[™›ÝÚ\™H[ÙKˆH\ÝˆËÈÛ™H\ÈHXØÙ\[˜ÙHÛ]\ÙHÙˆ]ÈXÚÙ]ˆ›ÝH]HØYYˆ]ž[ÝBˆËÈØ[ˆÙYH]œ›ÛHÚ\™HHš\Ú]ÜˆÝ[™È‹‚ˆËÂˆËÈLÈ™\XÙYH^Y\‰ÜÈ›Û™H˜]ÈØ[ˆ]Y\Ý[ÛˆÚ]HÔÔÒUBˆËÈÛ™K[™HÝØ\\ÈHÝ™[™Ý[š[™È˜]\ˆ[ˆH™[^][Û‹ˆÛ™HY\ÚˆËÈÜ[›š[™ÈHÚÛHÝÛˆ\ÈH›Ý[™[™ÈÜ\™H›Èœ\Ý[HØ[ˆÝ[ÛÂˆËÈ]™\žH™[˜ÙH[ˆÚXØYÛÈ™]È[ˆ]™\žHœ˜[YH[˜ÛY[™ÈHÛ™\È™Z[™BˆËÈØ[Y\˜H8 %ÌËMˆšX[™Û\ÈÙˆ]ÚXÚLLMHYX\Ý\™Y[™˜[YYBˆËÈ\™Ù\Ýœ™YHØ]š[™ÈY[ˆHØÙ[™KˆH^Y\ˆ›ÝÈZ[ÈÝ[[™Ë\Ú^™YˆËÈÚ[šÜË[™H\ÜÙ\[Ûˆ™[ÝÈ\ÈÚ]XZÙ\ÈH]\™H™K[Y\™ÙH˜Z[ˆËÈÝYH[œÝXYÙˆ]ZY]HÛÜÝ[™ÈHÛ™H]Èœ˜[YK‚ˆÛÛœÝ[˜ÛH]ØZ]YÙK™]˜[X]J
+
+HOˆÂˆÛÛœÝHHÚ[™ÝË—×ØÚXØYÛÍ™[˜ÛÜÝ\™\ÎÂˆÛÛœÝY\Ú\ÈH
+OË™Ü›Ý\Ë˜Ú[™[ˆÏÈ×JK™š[\Š
+ÊHOˆËš\ÓY\Ú
+NÂˆÛÛœÝ›ÞHÈZ[‘Nˆ[™š[š]KX^NˆR[™š[š]KZ[“Žˆ[™š[š]KX^ŽˆR[™š[š]HNÂˆ›Üˆ
+ÛÛœÝˆÙˆOËœ™XÛÜ™ÈÏÈ×JHÂˆ›Üˆ
+ÛÛœÝ[ˆÙˆ‹œ[œÈÏÈ×JHÂˆ›Üˆ
+ÛÛœÝÜK—HÙˆ[‹œ]ÛØØ[Ù[WÛHÏÈ×JHÂˆ›Þ›Z[‘HHX]›Z[Š›Þ›Z[‘KJNÈ›Þ›X^HHX]›X^
+›Þ›X^KJNÂˆ›Þ›Z[“ˆHX]›Z[Š›Þ›Z[“‹ŠNÈ›Þ›X^ˆHX]›X^
+›Þ›X^‹ŠNÂˆBˆBˆBˆ]ÛÜœÝHÂˆ]™\ÈHÂˆ][™Ü˜YYHÂˆ]Ü˜YYHÂˆËÈHÚY\Ý›Ý[™[™ÈÜ\™HÛˆH^Y\Žˆ\È\ÈH[X™\ˆ]XÚY\ÂˆËÈÚ]\ˆHœ\Ý[HØ[ˆÈ[ž][™È][ÛÈ]\È™XY˜]\ˆ[‚ˆËÈ[™™\œ™Yœ›ÛHHÚ[šÈÛÝ[‚ˆ]ÚY\ÝÜ\™HHÂˆ›Üˆ
+ÛÛœÝY\ÚÙˆY\Ú\ÊHÂˆÛÛœÝÈHY\Ú™Ù[ÛY]žNÂˆÛÛœÝÜÈHË™Ù]]šX]J	ÜÜÚ][Û‰ÊNÂˆ™\È
+ÏHÜË˜ÛÝ[ÂˆÚY\ÝÜ\™HHX]›X^
+ÚY\ÝÜ\™KË˜›Ý[™[™ÔÜ\™OËœ˜Y]\ÈÏÈ[™š[š]JNÂˆ›Üˆ
+]HHÈHÜË˜ÛÝ[ÈJÊÊHÂˆËÈÛÜ›\È
+K\SŠBˆÛÛœÝLHÜË™Ù]
+JNÂˆÛÛœÝŒH\ÜË™Ù]ŠJNÂˆÛÜœÝHX]›X^
+ÛÜœÝˆ›Þ›Z[‘HHLLH›Þ›X^K›Þ›Z[“ˆHŒŒH›Þ›X^ŠNÂˆBˆÛÛœÝÛÛ™ˆHË™Ù]]šX]J	×ØÛÛ™šY[˜ÙIÊNÂˆYˆ
+XÛÛ™ŠHÛÛ[YNÂˆÜ˜YY
+ÏHNÂˆ›Üˆ
+]HHÈHÛÛ™‹˜ÛÝ[ÈJÊÊHÂˆYˆ
+JÛÛ™‹™Ù]
+JHH	‰ˆÛÛ™‹™Ù]
+JHHJJH[™Ü˜YY
+ÊÎÂˆBˆBˆ™]\›ˆÂˆÙ[œÝ\ÎˆOË˜Ù[œÝ\ÈÏÈ[ˆY\Ú\ÎˆY\Ú\Ë›[™Ýˆ[œÎˆ
+OËœ™XÛÜ™ÈÏÈ×JKœ™YXÙJ
+ŠHOˆ
+È
+‹œ[œÏË›[™ÝÏÈ
+K
+KˆÜ˜YYˆ™\ËˆÚY\ÝÜ\™Kˆ[™Ü˜YYˆÝ]ÚYT[œÎˆ[X™\‹š\Ñš[š]JÛÜœÝ
+HÈÛÜœÝˆ[ˆYÎˆ
+OËœ™XÛÜ™ÈÏÈ×JK›X\
+
+ŠHOˆ‹šY
+KˆNÂˆJNÂˆÚXÚÊ	ÛX™[NˆH[˜ÛÜÝ\™H^Y\ˆ˜]ÜÈ]È™XÛÜ™Øˆ[˜Û˜Ù[œÝ\ÏË™[˜ÛÜÝ\™\ÈHH	‰ˆ[˜Û˜Ù[œÝ\ÏËœÜÝÈˆ	‰ˆ[˜Û™\Èˆˆ	Ù[˜Û˜Ù[œÝ\ÏË™[˜ÛÜÝ\™\ßH[˜ÛÜÝ\™JÊK	Ù[˜Û˜Ù[œÝ\ÏËœÜÝßHÜÝËˆ
+È	Ù[˜Û™\ßH™\XÙ\Ë	Ù[˜Û˜Ù[œÝ\ÏË™›ÜYHY[X™\ŠÊH™Y\ÙYˆ
+ÈYÈÉÙ[˜ÛšYËš›Ú[Š	Ë	Ê_WX
+NÂˆËÈLŽYYHÙXÛÛ™[ˆÙˆ\ËˆH^Y\ˆÙˆËHÛHÙˆÝ[[™H™[˜ÙBˆËÈØ[ˆ˜Z[HÝ[[™ÈÛÛ˜XÝ[ˆHÔÔÒUH\™XÝ[ÛˆÛÎˆÛ™HY\Ú\‚ˆËÈ[ˆÛÈ]™\žHÜ\™HÛX[[™ÛÜÝÈH˜]ÈØ[\ˆ™[˜ÙK[™]NBˆËÈ[œÈ]\ÈLHØ[ÈÙˆHœ˜[YIÜÈÚÛHYÙ]
+YX\Ý\™Y
+KˆÛÈ]XÚÜÂˆËÈ™ZYÚ›Ý\š[™È[œÈ[ÈHÚ\™YÚ[šË[™H˜\ˆ\È\ÜÙ\Yœ›ÛH›ÝˆËÈ[™È8 %HÚY\ÝÜ\™HÝ^\È[™\ˆHS‘HY\ÚÛÝ[Ý^\ÈÙ[ˆËÈ[™\ˆH[ˆÛÝ[ÚXÚ\ÈÚ]Ø^\ÈHXÚÚ[™È\È[›š[™È][‚ˆÚXÚÊ	ÛX™[NˆH[˜ÛÜÝ\™H^Y\ˆ\ÈÚ[šÙYÛÈHœ\Ý[HØ[ˆÝ[]ˆ[˜Û›Y\Ú\ÈˆH	‰ˆ[˜ÛÚY\ÝÜ\™HHˆ	‰ˆ[˜Ûœ[œÈˆL	‰ˆ[˜Û›Y\Ú\ÈH[˜Ûœ[œÈÈ‹ˆ	Ù[˜Û›Y\Ú\ßHY\Ú
+\ÊH›Üˆ	Ù[˜Ûœ[œßH[ŠÊH[ˆHÜ›Ý\ÚY\Ý›Ý[™[™Èˆ
+ÈÜ\™H	Ù[˜ÛÚY\ÝÜ\™OËÑš^Y
+J_HH
+Û™HÝÛ‹]ÚYHY\Ú™XYÈÌJX
+NÂˆËÈ[›X\šÙYÙ[ÛY]žH™[™\š[™È\ÈÝYÚ]Ù\™H]šY[˜ÙH\ÈHÛ™H˜Z[\™BˆËÈHÛÛ™šY[˜ÙHšY]È^\ÝÈÈ™]™[[™H^Y\ˆZ[[ˆ”ÈØ[ˆ]BˆËÈ™\^ÛˆØÜ™Y[ˆÚ]Ý]]™\ˆ\ÜÚ[™È›ÝYÚHÓˆÛÛ˜XÝ]ÛÝ[ˆËÈ]™HØ]YÚ]‚ˆÚXÚÊ	ÛX™[Nˆ]™\žH™[˜ÙH™\^Ø\œšY\ÈHÛÛ™šY[˜ÙHÜ˜YXˆ[˜Û›Y\Ú\Èˆ	‰ˆ[˜Û™Ü˜YYOOH[˜Û›Y\Ú\È	‰ˆ[˜Û[™Ü˜YYOOHˆ	Ù[˜Û™Ü˜YYHÙˆ	Ù[˜Û›Y\Ú\ßHÚ[šÊÊHØ\œžHH]šX]Kˆ
+È	Ù[˜Û[™Ü˜YYH˜[YJÊHÝ]Ùˆ˜[™ÙX
+NÂˆËÈH™[˜ÙHÝ[™ÈÚ\™HH™XÛÜ™]È]ˆHÛ\˜[˜ÙH\ÈHÜÝ	ÜÈÝÛ‚ˆËÈ[‹\ÙXÝ[Ûˆ\ÈH˜Z[	ÜËÚXÚ\ÈH[ÜÝHY[X™\ˆØ[ˆYÚ][X][BˆËÈÝ™\š[™ÈH[™H]ÈÝÛˆÙ[™H\È]]Ü™YÛ‹‚ˆÚXÚÊ	ÛX™[Nˆ›È™[˜ÙHY[X™\ˆÝ[™ÈÝ]ÚYH]ÈÝÛˆ]]Ü™Y[˜ˆ[˜Û›Ý]ÚYT[œÈOOH[	‰ˆ[˜Û›Ý]ÚYT[œÈHŒMKˆÛÜœÝÝ™\š[™È	Ù[˜Û›Ý]ÚYT[œÏËÑš^Y
+Ê_HH™^[Û™H]]Ü™Y^[
+NÂ‚ˆËÈS‘U‘PQËˆÝ[™[ˆHÙ\Ý\›ˆÝ[	ÜÈX\™ÛHÛØÚÈÛÈBˆËÈÜ˜\ÜÈØ[››ÝÝ\HHY™™\™[˜ÙK[™ÛÛ\\™HHœ˜[YHÚ]H^Y\‚ˆËÈY[‹ˆH™[˜ÙH›Ø›ÙHØ[ˆÙYHœ›ÛHHÜ›Ý[™\ÈHš\ÚX›K\›ÙÜ™\ÜÂˆËÈ[IÜÈÝÛˆ˜Z[\™HØ\ÙKÛÈ]\È\ÜÙ\Y˜]\ˆ[ˆ\ØÜšX™Y‚ˆ]ØZ]YÙK™]˜[X]J
+
+HOˆÚ[™ÝË—×ØÚXØYÛÍ™ÛÕÕ\™Ù]
+ˆÈÚ[™ˆ	Ú[\œÙXÝ[Û‰ËØØ[ÙNˆLLËËØØ[ÛŽˆLŽLˆJJNÂˆ]ØZ]YÙKØZ]›Ü•[Y[Ý]
+ÍL
+NÂˆ]ØZ]YÙK™]˜[X]J
+
+HOˆÚ[™ÝË—×ØÚXØYÛÍœÙ][š[X][Û’Û
+YJJNÂˆÛÛœÝX\™Ú]H]ØZ]YÙK™]˜[X]J
+
+HOˆÚ[™ÝË—×ØÚXØYÛÍ˜Ø\\™J
+JNÂˆ]ØZ]YÙK™]˜[X]J
+
+HOˆÈÚ[™ÝË—×ØÚXØYÛÍ™[˜ÛÜÝ\™\Ë™Ü›Ý\š\ÚX›HH˜[ÙNÈJNÂˆÛÛœÝX\™Ú]Ý]H]ØZ]YÙK™]˜[X]J
+
+HOˆÚ[™ÝË—×ØÚXØYÛÍ˜Ø\\™J
+JNÂˆ]ØZ]YÙK™]˜[X]J
+
+HOˆÈÚ[™ÝË—×ØÚXØYÛÍ™[˜ÛÜÝ\™\Ë™Ü›Ý\š\ÚX›HHYNÈJNÂˆ]ØZ]YÙK™]˜[X]J
+
+HOˆÚ[™ÝË—×ØÚXØYÛÍœÙ][š[X][Û’Û
+˜[ÙJJNÂˆÛÛœÝX\™HÚYÛ˜]\™Q\Ý[˜ÙJX\™Ú]X\™Ú]Ý]
+NÂˆÚXÚÊ	ÛX™[NˆHX\™™[˜ÙH™XXÚ\ÈHØÜ™Y[ˆœ›ÛH[œÚYHHX\™ˆX\™ÛÜœÝHˆ	‰ˆX\™›YX[ˆHŒËˆÙ[[HYX[ˆ	ÙX\™›YX[ËÑš^Y
+Š_KÛÜœÝ	ÙX\™ÛÜœÝH
+™YYÛÜœÝMŠX
+NÂ‚ˆËÈKKHHÝÛˆÝ[™\ÈH™[˜ÙK›ÝH›Þ
+LLJHKKKKKKKKKKKKKKKKKKKKKKBˆËÂˆËÈÚXØYÛÉÜÈš\œÝX›XÈZ[[™È\È[ˆ[˜ÛÜÝ\™H8 %[™™X\Îˆ˜HÛX[ÛÛÙ[‚ˆËÈ[˜ÛÜÝ\™H[™]Z]H›ÛÙ›\ÜÈˆ8 %[™]ÝÛÙ[ˆ\ÈÝÛˆ\ÈH›ÛÙ™YÙÂˆËÈ›Þ™XØ]\ÙHHÛ›H\˜Ú]\H]ÛÝ[Z[HÝÈØ[Y™XÝ[™ÛBˆËÈØ[››ÝZ[H›ÛÙ›\ÜÈÛ™Kˆ]ÈÙ[ÛY]žH›ÝÈ]™\ÈÛˆH^Y\ˆX›Ý™KˆËÈ[™H™XÛÜ™ÚÜÙHY\Ú[Ý™\È^Y\œÈØ[ˆÛÈÜ›Û™È[ˆ›Ý\ˆØ^\È]›ÂˆËÈ]\Ù]Ø]HØ[ˆÙYNˆHÓˆØ[ˆÝ[ØYHØ\™Ø[ˆ™XÛÛYBˆËÈ[œ™XXÚX›KH™]\™Y›ÛÝš[Ø[ˆÝ^H™Z[™\È[ˆ[š\ÚX›HØ[ˆËÈ[™H™[˜ÙHØ[ˆ˜Z[È˜]È][ˆÛ™H\ÜÙ\[ÛˆXXÚ‚ˆÛÛœÝ[ˆH]ØZ]YÙK™]˜[X]J
+
+HOˆÂˆÛÛœÝ\HHÚ[™ÝË—×ØÚXØYÛÍÂˆÛÛœÝ™XÈH\K›ØYYËœ™YÚ\ÝžOË™Ù]ËŠ	Ù\Ý˜^WÜ[‰ÊBˆÏÈ\Kœ™YÚ\ÝžOË™Ù]ËŠ	Ù\Ý˜^WÜ[‰ÊHÏÈ[Âˆ™]\›ˆÂˆ[“^Y\Žˆ
+\K™[˜ÛÜÝ\™\ÏËœ™XÛÜ™ÈÏÈ×JKœÛÛYJ
+ŠHOˆ‹šYOOH	Ù\Ý˜^WÜ[‰ÊKˆ\ÜÙ]ˆ™XÈÈ™XËœÚYXØ\Ë˜\ÜÙ]ÏÈ[ˆ	Ó“È‘PÓÔ‘	Ëˆ˜]ÛžNˆ™XÏËœÚYXØ\Ë™˜]Û—ØžHÏÈ[ˆ\ÑÛŽˆH\™XÏË™Û‹ˆØœÝXÝÎˆ
+\K™›ÛÝš[ÈÏÈ×JKœÛÛYJ
+ŠHOˆ‹šYOOH	Ù\Ý˜^WÜ[‰ÊKˆNÂˆJNÂˆÚXÚÊ	ÛX™[NˆH\Ý˜^H[ˆ\È˜]Ûˆ\È[ˆ[˜ÛÜÝ\™H[™˜ZÙ\È›ÈY\Úˆ[‹š[“^Y\ˆ	‰ˆ[‹˜\ÜÙ]OOH[	‰ˆ[‹™˜]ÛžHOOH	Ù[˜ÛÜÝ\™\ÉÈ	‰ˆ\[‹š\ÑÛ‹ˆÛˆH^Y\ˆ	Ü[‹š[“^Y\ŸKÚYXØ\ˆ\ÜÙ]	Ò”ÓÓ‹œÝš[™ÚYžJ[‹˜\ÜÙ]
+_Kˆ
+È˜]Û—ØžH	Ü[‹™˜]Ûž_KÛˆØYY	Ü[‹š\ÑÛŸX
+NÂˆÚXÚÊ	ÛX™[NˆH™]\™Y›ÞX]™\È›È[š\ÚX›HØ[ÛˆHX›XÈÜ]X\™Xˆ\[‹›ØœÝXÝËØ[Ù\ˆ›ÛÝš[™\Ù[ˆ	Ü[‹›ØœÝXÝßX
+NÂ‚ˆËÈÝ[™[ˆHÝ[™[™ÛÚÈ\›Ý[™]ˆÛÈ]Y\Ý[ÛœÈ[ˆÛ™HÝ[™ˆØ[ˆ[ÝBˆËÈÑQH]
+Hš\ÚX›K\›ÙÜ™\ÜÈ[IÜÈÝÛˆ\Ý
+K[™Ø[ˆ[ÝHÝ[Ü[ˆBˆËÈØ\™™Z[™]8 %ÚXÚ\ÙYÈÛÛYHœ™YHÚ]H›ÛÙˆÈÛXÚÈÛˆ[™›ÝÂˆËÈ\ÈÈ™HX\›™YžHXÚÚ[™ÈH™[˜ÙH]Ù[‹‚ˆ]ØZ]YÙK™]˜[X]J
+
+HOˆÚ[™ÝË—×ØÚXØYÛÍ™ÛÕÕ\™Ù]
+ˆÈÚ[™ˆ	Ú[\œÙXÝ[Û‰ËØØ[ÙNˆÌËŒËØØ[ÛŽˆLÍÍŒˆJJNÂˆ]ØZ]YÙKØZ]›Ü•[Y[Ý]
+ÍL
+NÂˆ]ØZ]YÙK™]˜[X]J
+
+HOˆÚ[™ÝË—×ØÚXØYÛÍœÙ][š[X][Û’Û
+YJJNÂˆÛÛœÝ[•Ú]H]ØZ]YÙK™]˜[X]J
+
+HOˆÚ[™ÝË—×ØÚXØYÛÍ˜Ø\\™J
+JNÂˆ]ØZ]YÙK™]˜[X]J
+
+HOˆÈÚ[™ÝË—×ØÚXØYÛÍ™[˜ÛÜÝ\™\Ë™Ü›Ý\š\ÚX›HH˜[ÙNÈJNÂˆÛÛœÝ[•Ú]Ý]H]ØZ]YÙK™]˜[X]J
+
+HOˆÚ[™ÝË—×ØÚXØYÛÍ˜Ø\\™J
+JNÂˆ]ØZ]YÙK™]˜[X]J
+
+HOˆÈÚ[™ÝË—×ØÚXØYÛÍ™[˜ÛÜÝ\™\Ë™Ü›Ý\š\ÚX›HHYNÈJNÂˆ]ØZ]YÙK™]˜[X]J
+
+HOˆÚ[™ÝË—×ØÚXØYÛÍœÙ][š[X][Û’Û
+˜[ÙJJNÂˆÛÛœÝ[ˆHÚYÛ˜]\™Q\Ý[˜ÙJ[•Ú][•Ú]Ý]
+NÂˆÚXÚÊ	ÛX™[NˆH[ˆ™XXÚ\ÈHØÜ™Y[ˆœ›ÛH[œÚYHH[˜ˆ[‹ÛÜœÝHˆ	‰ˆ[‹›YX[ˆHŒËˆÙ[[HYX[ˆ	Ù[‹›YX[ËÑš^Y
+Š_KÛÜœÝ	Ù[‹ÛÜœÝH
+™YYÛÜœÝMŠX
+NÂ‚ˆÛÛœÝ[”XÚÈH]ØZ]YÙK™]˜[X]J
+
+HOˆÂˆÛÛœÝ]ÈH×NÂˆ›Üˆ
+ÛÛœÝÙˆËL‹LŒËŒË—JHÂˆ›Üˆ
+ÛÛœÝHÙˆËLLŒ‹Œ—JHÂˆÛÛœÝ]HÚ[™ÝË—×ØÚXØYÛÍœXÚÊÈHJNÂˆYˆ
+]ËšY
+H]Ëœ\Ú
+]šY
+NÂˆBˆBˆ™]\›ˆ]ÎÂˆJNÂˆÚXÚÊ	ÛX™[NˆZ[Z[™È]H[‰ÜÈ™[˜ÙHÝ[Ü[œÈH[‰ÜÈØ\™ˆ[”XÚËš[˜ÛY\Ê	Ù\Ý˜^WÜ[‰ÊKˆŒZ[\È™]\›™YÉÖË‹‹›™]ÈÙ]
+[”XÚÊWKš›Ú[Š	Ë	ÊH	Û›Ý[™ÉßWX
+NÂ‚ˆËÈKKHHÛÜžX\™Ø\™[ˆXÚÙ]È
+LLŠHKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKBˆËÂˆËÈHš\œÝ™XÛÜ™Ûˆ\È^Y\ˆÚÜÙH]šY[˜ÙH\ÈH‘PUQS•˜]\ˆ[ˆBˆËÈXÙNˆHÚ[žšYK]šY]È]HÚÝÜÈXÚÙ]Y™[˜ÙYØ\™[ˆÝÈ[™›Ý[™ÂˆËÈØ^\ÈÚXÚÝ[ˆHÝÛˆYÛ™KÛÈH™XÛÜ™\ÈÑS‘TUQœ›ÛHH[BˆËÈÝ™\ˆH]YÝËˆÛÈ[™ÜÈØ[ˆÛÈÜ›Û™È]›È]\Ù]Ø]HÙY\Ë‚ˆËÈH[HØ[ˆ›ÙXÙHH™XÛÜ™H™[™\™\ˆ[ˆ˜]ÜÈ\ÈHÜ›Û™ÈÒS‘Ù‚ˆËÈ™[˜ÙH8 %H^Y\ˆÛ™]ÈÛ›HÜÝÈ[™Üš^›Û[˜Z[È[[Ù^K[™BˆËÈXÚÙ]˜]Ûˆ\È™YH˜Z[ÈÛÝ[\ÜÈ]™\žHÛÝ[[ˆ\Èš[Kˆ[™BˆËÈ™[˜ÙH]H˜XÚÈÙˆHÝØ[ˆ™H[š\ÚX›Hœ›ÛH[ž]Ú\™HHš\Ú]ÜˆÝ[™Ë‚ˆÛÛœÝXÚÙ]ÈH]ØZ]YÙK™]˜[X]J
+
+HOˆÂˆÛÛœÝHHÚ[™ÝË—×ØÚXØYÛÍ™[˜ÛÜÝ\™\ÎÂˆÛÛœÝ™XÈH
+OËœ™XÛÜ™ÈÏÈ×JK™š[™
+
+ŠHOˆ‹šYOOH	ÝÝÛ—ÙÛÜžX\™ÜXÚÙ]ÉÊNÂˆ™]\›ˆÂˆ›Ý[™ˆH\™XËˆ[œÎˆ™XÏËœ[œÏË›[™ÝÏÈˆ\Nˆ™XÏË™›Ü›OË™™[˜ÙWÝ\OË˜[YHÏÈ[ˆ[\ÎˆOË˜Ù[œÝ\ÏËœ[\ÈÏÈˆNÂˆJNÂˆÚXÚÊ	ÛX™[NˆHÝÛ‰ÜÈÝ\ÙHÝÈØ\œžHÙ[™\˜]YXÚÙ]Ø\™[œØˆXÚÙ]Ë™›Ý[™	‰ˆXÚÙ]Ëœ[œÈHL	‰ˆXÚÙ]Ë\HOOH	ÜXÚÙ]	Ëˆ™XÛÜ™	ÜXÚÙ]Ë™›Ý[™K	ÜXÚÙ]Ëœ[œßHÝ
+ÊK™[˜ÙH\H	ÜXÚÙ]Ë\_X
+NÂˆËÈH[H\ˆŒMÎHÙˆ\š[Y]\ˆ\ÈÚ]XZÙ\È]HXÚÙ][™›ÝH˜Z[ˆËÈ™[˜ÙNÈH›ÛÜˆ\È[X™\˜][H˜\ˆ[™\ˆHÛÝ[ÛÈ]\ÜÙ\ÈBˆËÈ”SÒ˜[‹›ÝH[X™\ˆ]Ú[šYÚ]H[IÜÈÝ]]‚ˆÚXÚÊ	ÛX™[NˆHXÚÙ]œ˜[˜Ú˜]ÜÈ[\Ë›Ý\ÝÜÝÈ[™˜Z[ØˆXÚÙ]Ëœ[\ÈHL	ÜXÚÙ]Ëœ[\ßH[JÊHÛˆH^Y\˜
+NÂ‚ˆËÈ[™Ý[™[ˆÛ™HÙˆHØ\™[œÈ8 %ˆ\›[Û‰ÜÈÝÛˆ˜[™Û8 %Û[™ÈBˆËÈÛØÚÈÛÈHÜ˜\ÜÈØ[››ÝÝ\HHY™™\™[˜ÙK‚ˆ]ØZ]YÙK™]˜[X]J
+
+HOˆÚ[™ÝË—×ØÚXØYÛÍ™ÛÕÕ\™Ù]
+ˆÈÚ[™ˆ	Ú[\œÙXÝ[Û‰ËØØ[ÙNˆKKØØ[ÛŽˆLŽ‹ÈJJNÂˆ]ØZ]YÙKØZ]›Ü•[Y[Ý]
+ÍL
+NÂˆ]ØZ]YÙK™]˜[X]J
+
+HOˆÚ[™ÝË—×ØÚXØYÛÍœÙ][š[X][Û’Û
+YJJNÂˆÛÛœÝØ\™[•Ú]H]ØZ]YÙK™]˜[X]J
+
+HOˆÚ[™ÝË—×ØÚXØYÛÍ˜Ø\\™J
+JNÂˆ]ØZ]YÙK™]˜[X]J
+
+HOˆÈÚ[™ÝË—×ØÚXØYÛÍ™[˜ÛÜÝ\™\Ë™Ü›Ý\š\ÚX›HH˜[ÙNÈJNÂˆÛÛœÝØ\™[•Ú]Ý]H]ØZ]YÙK™]˜[X]J
+
+HOˆÚ[™ÝË—×ØÚXØYÛÍ˜Ø\\™J
+JNÂˆ]ØZ]YÙK™]˜[X]J
+
+HOˆÈÚ[™ÝË—×ØÚXØYÛÍ™[˜ÛÜÝ\™\Ë™Ü›Ý\š\ÚX›HHYNÈJNÂˆ]ØZ]YÙK™]˜[X]J
+
+HOˆÚ[™ÝË—×ØÚXØYÛÍœÙ][š[X][Û’Û
+˜[ÙJJNÂˆÛÛœÝØ\™[ˆHÚYÛ˜]\™Q\Ý[˜ÙJØ\™[•Ú]Ø\™[•Ú]Ý]
+NÂˆÚXÚÊ	ÛX™[NˆHØ\™[ˆ™[˜ÙH™XXÚ\ÈHØÜ™Y[ˆœ›ÛHHÛÜžX\™ˆØ\™[‹ÛÜœÝHˆ	‰ˆØ\™[‹›YX[ˆHŒËˆÙ[[HYX[ˆ	ÙØ\™[‹›YX[ËÑš^Y
+Š_KÛÜœÝ	ÙØ\™[‹ÛÜœÝH
+™YYÛÜœÝMŠX
+NÂ‚ˆËÈKKHHÝÛ‰ÜÈÝ[[™HX\™™[˜Ù\È
+LŽ
+HKKKKKKKKKKKKKKKKKKKKKKKKKKKBˆËÂˆËÈHÝÛ™\Žˆ
+ˆšH[šÈ\™HÚÝ[™H[Ü™H™[˜Ù\ËˆŠˆ›Ý\ˆ[˜ÛÜÝ\™\È[ˆBˆËÈÚÛHÙˆÚXØYÛË[™]™\žHÝ\ˆÝÜ[ˆ˜Z\šYHœ›ÛHHÝ\ÙHÈBˆËÈ[^KˆH™YHÙ[™\˜]YÝÛ—ÛÝÛ[™WÊ˜™XÛÜ™È[˜ÛÜÙHHPT‘Ù‚ˆËÈ]™\žH[\›Ý™Y]YÝH[HØ[ˆš[™›ÛÛH™Z[™[™HXÚÙ]	ÜÂˆËÈXØÙ\[˜ÙHÛ]\ÙH\ÈHÕÓ‹UÒQHÛ™H8 %
+ˆš[\›Ý™YÝÈXÜ›ÜÜÈHÝÛˆ™XYˆËÈ\È™[˜ÙYŠˆ8 %ÛÈH\ÜÙ\[Ûˆ\ÈÈ™HX›Ý]ÓÕ‘TQÑH[™›ÝX›Ý]ˆËÈ^\Ý[˜ÙKˆ›Ý\ˆ˜Z[\™\È\ÈØ]Ú\È]›È]\Ù]Ø]HØ[Ž‚ˆËÂˆËÈ
+ˆH[HÚ[[H˜\œ›ÝÚ[™È
+H›ÛÝš[[Ý™\ËHÛ]\ÙHš]\È\™\ŠBˆËÈ[[H[™[ÙˆÝÈØ\œžH™[˜Ù\È[™HÝÛˆ™XYÈ\È]YÂˆËÈ
+ˆHÛÝ™\˜YÙHÝXÚÚ[™È[ˆÛ™HÛÜ›™\ˆ8 %H™XÛÜ™ÈÛÝ[˜[YHH[™™YˆËÈÝÈ[™HÙ[ÛY]žHÝ[™[ˆ™YH›ØÚÜÎÂˆËÈ
+ˆÛ™HÙˆH™YH™[˜ÙHTTÈ˜Z[[™ÈÈ™XXÚHØÜ™Y[‹ÚXÚBˆËÈ›Ø\™œ˜[˜Ú[™XYHYÛ˜ÙH
+H\HH™[™\™\ˆÙ\È›ÝÛ›ÝÈ˜[ÂˆËÈ˜XÚÈÈÜ[ˆ˜Z[È[™˜]ÜÈHX\™[ÝHØ[ˆÙYHÝ˜ZYÚ›ÝYÚ
+NÂˆËÈ
+ˆ[™HX\™]ZY]HXÜ]Z\š[™ÈHÜ›Ý[™‘PUQS•ÚXÚÛÝ[ZÙHBˆËÈ˜Z\šYHÙ™ˆH[™™YÝËˆ\ÙH™XÛÜ™ÈÝ]H›Û™HÓˆT”ÔÑH8 %BˆËÈØ\™[ˆØ[ˆØ^HÚ]]\ËHX\™Ø[››Ý8 %[™]XÚ\Ú[Ûˆ\ÂˆËÈ[š\ÚX›H[ˆ]™\žHÝ\ˆÚXÚÈ[ˆ\Èš[K‚ˆÛÛœÝÝ[™\ÈH]ØZ]YÙK™]˜[X]J
+
+HOˆÂˆÛÛœÝHHÚ[™ÝË—×ØÚXØYÛÍÂˆÛÛœÝ™XÜÈH
+K™[˜ÛÜÝ\™\ÏËœ™XÛÜ™ÈÏÈ×JK™š[\Š
+ŠHOˆ×ÝÛ—ÛÝÛ[™WËË\Ý
+‹šY
+JNÂˆÛÛœÝÝÈH™]ÈÙ]
+
+NÂˆÛÛœÝ›ØÚÜÈH™]ÈÙ]
+
+NÂˆÛÛœÝ\\ÈHßNÂˆÛÛœÝÜ˜YYHÈ^\Ý[˜ÙNˆ›Ü›Nˆ›Ü›U˜[Y\ÎˆNÂˆ][œÈHÂˆ]Y]™\ÈHÂˆ]XÛ\™\ÑÜ›Ý[™HÂˆ›Üˆ
+ÛÛœÝˆÙˆ™XÜÊHÂˆ›Üˆ
+ÛÛœÝYÙˆ‹˜ÛÝ™\˜YÙOË›ÝÈÏÈ×JHÂˆÝË˜Y
+Y
+NÂˆ›ØÚÜË˜Y
+Yœ™\XÙJ×ÛÝ
+ÉË	ÉÊJNÂˆBˆ\\ÖÜ‹™›Ü›OË™™[˜ÙWÝ\OË˜[YHÏÈ	ÏÉ×HH
+‹˜ÛÝ™\˜YÙOË›ÝÈÏÈ×JK›[™ÝÂˆ[œÈ
+ÏH
+‹œ[œÈÏÈ×JK›[™ÝÂˆYˆ
+‹™Ü›Ý[™Ë™X]Y[
+HXÛ\™\ÑÜ›Ý[™
+ÏHNÂˆYˆ
+‹™^\Ý[˜ÙOË˜ÛÛ™šY[˜ÙHOOH	Ü™XÛÛœÝXÝY	ÊHÜ˜YY™^\Ý[˜ÙH
+ÏHNÂˆ›Üˆ
+ÛÛœÝˆÙˆØš™XÝ˜[Y\Ê‹™›Ü›HÏÈßJJHÂˆÜ˜YY™›Ü›U˜[Y\È
+ÏHNÂˆYˆ
+Ë˜ÛÛ™šY[˜ÙHOOH	Ü™XÛÛœÝXÝY	ÊHÜ˜YY™›Ü›H
+ÏHNÂˆBˆ›Üˆ
+ÛÛœÝ[ˆÙˆ‹œ[œÈÏÈ×JHÂˆÛÛœÝH[‹œ]ÛØØ[Ù[WÛHÏÈ×NÂˆ›Üˆ
+]HHNÈH›[™ÝÈJÊÊHÂˆY]™\È
+ÏHX]š\Ý
+ÚWVÌHHÚHHWVÌKÚWVÌWHHÚHHWVÌWJNÂˆBˆBˆBˆËÈS‘ÒUTÈUÓ‹ˆ™XYÙ™ˆHQTÒTÈ˜]\ˆ[ˆH™XÛÜ™ËÛÈBˆËÈ™XÛÜ™]ØYY[™Z[›Ý[™ÈØ[››Ý\ÜÈ\ÎˆÚXÚHÙ[ÂˆËÈÙˆHÝÛˆÛ™[˜ÙH[X™\‹[™ÝÈ[H[\ÝÝXÚÈ[ˆXXÚˆËÈ™[˜ÙH\HÝ[™ËˆHÙ[ÛÝ[\ÈHÚX\\ÝÛ™\Ý[œÝÙ\ˆÈš\ÈBˆËÈ[˜ÛÜÝ\™HÜ™XYXÜ›ÜÜÈHÝÛˆˆ]Ù\È›Ý™YYH][ˆ\™K‚ˆÛÛœÝY\Ú\ÈH
+K™[˜ÛÜÝ\™\ÏË™Ü›Ý\Ë˜Ú[™[ˆÏÈ×JK™š[\Š
+ÊHOˆËš\ÓY\Ú
+NÂˆÛÛœÝÙ[ÈH™]ÈÙ]
+
+NÂˆ][™Ü˜YYHÂˆ]ÝY\Ú\ÈHÂˆ›Üˆ
+ÛÛœÝHÙˆY\Ú\ÊHÂˆËÈØÛÜYÈHÚ[šÜÈ\ÙH™XÛÜ™È™XXÚˆ[›Ý\ˆ™XÛÜ™Ûˆ\È^Y\‚ˆËÈ\Èœ™YHÈ™HÜ˜YY™]\ˆ[ˆ™XÛÛœÝXÝYH^HHÛÝ\˜ÙBˆËÈ\ØÜšX™\È]È™[˜ÙK[™]]\Ý›Ý˜Z[\ÈÚXÚË‚ˆYˆ
+JK\Ù\‘]Kœ™XÛÜ™YÈÏÈ×JKœÛÛYJ
+Y
+HOˆ×ÝÛ—ÛÝÛ[™WËË\Ý
+Y
+JJHÛÛ[YNÂˆÝY\Ú\È
+ÏHNÂˆÛÛœÝÜÈHK™Ù[ÛY]žK™Ù]]šX]J	ÜÜÚ][Û‰ÊNÂˆÛÛœÝÛÛ™ˆHK™Ù[ÛY]žK™Ù]]šX]J	×ØÛÛ™šY[˜ÙIÊNÂˆ›Üˆ
+]HHÈHÜË˜ÛÝ[ÈH
+ÏHÊHÂˆÙ[Ë˜Y
+	ÓX]œ›Ý[™
+ÜË™Ù]
+JHÈ
+_N‰ÓX]œ›Ý[™
+\ÜË™Ù]ŠJHÈ
+_X
+NÂˆYˆ
+ÛÛ™ˆ	‰ˆÛÛ™‹™Ù]
+JHOOHJH[™Ü˜YY
+ÏHNÂˆBˆBˆ™]\›ˆÈ™XÛÜ™Îˆ™XÜË›[™ÝÝÎˆÝËœÚ^™K›ØÚÜÎˆ›ØÚÜËœÚ^™K\\Ë[œËˆY]™\ÎˆX]œ›Ý[™
+Y]™\ÊKXÛ\™\ÑÜ›Ý[™Ù[ÎˆÙ[ËœÚ^™KˆY\Ú\ÎˆY\Ú\Ë›[™ÝÝY\Ú\ËÜ˜YY[™Ü˜YYˆ[\ÎˆK™[˜ÛÜÝ\™\ÏË˜Ù[œÝ\ÏËœ[\ÈÏÈÜÝÎˆK™[˜ÛÜÝ\™\ÏË˜Ù[œÝ\ÏËœÜÝÈÏÈNÂˆJNÂˆÚXÚÊ	ÛX™[NˆHÝÛ‰ÜÈ[\›Ý™YÝÈ™XY\È™[˜ÙY›ØÚÈY\ˆ›ØÚØˆÝ[™\Ëœ™XÛÜ™ÈOOHÈ	‰ˆÝ[™\Ë›ÝÈHL	‰ˆÝ[™\Ë˜›ØÚÜÈHMÂˆ	‰ˆÝ[™\Ëœ[œÈH	‰ˆÝ[™\Ë›Y]™\ÈHˆ	ÛÝ[™\Ëœ™XÛÜ™ßH™XÛÜ™
+ÊH™[˜Ú[™È	ÛÝ[™\Ë›ÝßH]YÝ
+ÊHXÜ›ÜÜÈˆ
+È	ÛÝ[™\Ë˜›ØÚÜßH›ØÚÊÊK	ÛÝ[™\Ëœ[œßH[ŠÊK	ÛÝ[™\Ë›Y]™\ßHX
+NÂˆÚXÚÊ	ÛX™[NˆHÝ™[˜Ù\È\™HZ[[ˆH\š[Ù	ÜÈ™YH\\ØˆØš™XÝšÙ^\ÊÝ[™\Ë\\ÊK›[™ÝOOHÂˆ	‰ˆÉØ›Ø\™	Ë	ÜXÚÙ]	Ë	ÜÜÝØ[™Ü˜Z[	×K™]™\žJ
+
+HOˆÝ[™\Ë\\ÖÝHˆ
+Kˆ\\È	Ò”ÓÓ‹œÝš[™ÚYžJÝ[™\Ë\\Ê_X
+NÂˆËÈHÙ[ËÛÈ\ÈØ[››Ý™HØ]\ÙšYYžHÛ™HÛ™È™[˜ÙNˆHÝÛ‰ÜÂˆËÈ]Y›ØÚÜÈÜ[ˆ›ÝYÚHKLHžHÌÌH[™HÛÝ™\˜YÙH]YˆËÈÛÛ\ÙY[ÈÛ™H\ÝšXÝÛÝ[™XYÙ[[™\ˆ[ˆÙˆ\Ë‚ˆÚXÚÊ	ÛX™[NˆH[˜ÛÜÝ\™H\ÈÜ™XYÝ™\ˆHÝÛ‹›ÝÝXÚÙY[ˆÛ™H\ÝšXÝˆÝ[™\Ë˜Ù[ÈHMKˆ™[˜ÙH[X™\ˆÝ[™È[ˆ	ÛÝ[™\Ë˜Ù[ßHÙ[
+ÊHÙˆX
+NÂˆÚXÚÊ	ÛX™[NˆHÝ	ÜÈX\™Ý]\È›ÈÜ›Ý[™™X]Y[ÛÈ]ÈÝØ\™Ý[™ØˆÝ[™\Ë™XÛ\™\ÑÜ›Ý[™OOHˆ	ÛÝ[™\Ë™XÛ\™\ÑÜ›Ý[™HÙˆ	ÛÝ[™\Ëœ™XÛÜ™ßHÝ[[™H™XÛÜ™
+ÊHXÛ\™HÛ™X
+NÂˆËÈØ\™Y™XÛÛœÝXÝY[ˆ›Ý[™\ÎˆÚ]H‘PÓÔ‘ÈÛZ[HX›Ý]ˆËÈ[\Ù[™\Ë[™Ú]H˜]Ûˆ™\XÙ\ÈØ\œžKˆ›Ý[™ÈÛˆ\ÈØÚ[YH\ÂˆËÈ]šY[˜ÙH[™HÛÛ™šY[˜ÙHšY]È\ÈÈ™HX›HÈZÙH[Ùˆ]]Ø^K‚ˆÚXÚÊ	ÛX™[Nˆ]™\žHÝ™[˜ÙH\ÈÜ˜YY™XÛÛœÝXÝY™XÛÜ™[™™\^ˆÝ[™\Ë™Ü˜YY™^\Ý[˜ÙHOOHÈ	‰ˆÝ[™\Ë™Ü˜YY™›Ü›U˜[Y\Èˆˆ	‰ˆÝ[™\Ë™Ü˜YY™›Ü›HOOHÝ[™\Ë™Ü˜YY™›Ü›U˜[Y\Âˆ	‰ˆÝ[™\Ë›ÝY\Ú\Èˆ	‰ˆÝ[™\Ë[™Ü˜YYOOHˆ	ÛÝ[™\Ë™Ü˜YY™^\Ý[˜Ù_KÌÈ^\Ý[˜ÙK	ÛÝ[™\Ë™Ü˜YY™›Ü›_KØˆ
+È	ÛÝ[™\Ë™Ü˜YY™›Ü›U˜[Y\ßH›Ü›H˜[Y\Ë	ÛÝ[™\Ë[™Ü˜YYH™\^Ý™\XÙ\È[ˆˆ
+È	ÛÝ[™\Ë›ÝY\Ú\ßHÚ[šÊÊHÜ˜YY™]\ˆ[ˆ™XÛÛœÝXÝY
+NÂˆËÈS‘U‘PQËœ›ÛHHÜ›Ý[™\ÙH™[˜Ù\ÈXÝX[H˜XÙKˆH[^H™Z[™ˆËÈH˜[™Û[™Ù[È›ØÚËÛÚÚ[™ÈX\ÝÝÛˆ]ˆH]š]™\ÈBˆËÈÙ\šXÙH[^H›ÝYÚHZYHÙˆ]™\žH›ØÚËH˜XÚÈÙˆ]™\žHÝÛ‚ˆËÈ›ÝÚY\ÈÜ[œÈÛÈ][™HX\™™[˜Ù\ÈÝ[™Ú][ˆ™YHY]™\ÈÙ‚ˆËÈHš\Ú]ÜˆØ[Ú[™È]ˆÛÛ\\™YÚ]H^Y\ˆY[‹Û[™ÈHÛØÚÈÛÂˆËÈHÜ˜\ÜÈØ[››ÝÝ\HHY™™\™[˜ÙH8 %HØ[YH[œÝ[Y[HØYÛÛ‚ˆËÈX\™H[ˆ[™HØ\™[œÈ\ÙK‚ˆ]ØZ]YÙK™]˜[X]J
+
+HOˆÂˆÚ[™ÝË—×ØÚXØYÛÍØ[Ù\‹[\Ü
+ÈØØ[ÙNˆÍÌØØ[ÛŽˆLÌŒËŒËX]×ÙYÎˆLJNÂˆJNÂˆ]ØZ]YÙKØZ]›Ü•[Y[Ý]
+ÍL
+NÂˆ]ØZ]YÙK™]˜[X]J
+
+HOˆÚ[™ÝË—×ØÚXØYÛÍœÙ][š[X][Û’Û
+YJJNÂˆÛÛœÝÝÚ]H]ØZ]YÙK™]˜[X]J
+
+HOˆÚ[™ÝË—×ØÚXØYÛÍ˜Ø\\™J
+JNÂˆ]ØZ]YÙK™]˜[X]J
+
+HOˆÈÚ[™ÝË—×ØÚXØYÛÍ™[˜ÛÜÝ\™\Ë™Ü›Ý\š\ÚX›HH˜[ÙNÈJNÂˆÛÛœÝÝÚ]Ý]H]ØZ]YÙK™]˜[X]J
+
+HOˆÚ[™ÝË—×ØÚXØYÛÍ˜Ø\\™J
+JNÂˆ]ØZ]YÙK™]˜[X]J
+
+HOˆÈÚ[™ÝË—×ØÚXØYÛÍ™[˜ÛÜÝ\™\Ë™Ü›Ý\š\ÚX›HHYNÈJNÂˆ]ØZ]YÙK™]˜[X]J
+
+HOˆÚ[™ÝË—×ØÚXØYÛÍœÙ][š[X][Û’Û
+˜[ÙJJNÂˆÛÛœÝÝHÚYÛ˜]\™Q\Ý[˜ÙJÝÚ]ÝÚ]Ý]
+NÂˆÚXÚÊ	ÛX™[NˆHÝ™[˜Ù\È™XXÚHØÜ™Y[ˆœ›ÛHH[^H^H˜XÙXˆÝÛÜœÝHˆ	‰ˆÝ›YX[ˆHŒËˆÙ[[HYX[ˆ	ÙÝ›YX[ËÑš^Y
+Š_KÛÜœÝ	ÙÝÛÜœÝH
+™YYÛÜœÝMŠX
+NÂ‚ˆËÈKKHHØ]YØ[˜\Ú	ÜÈX\™™[˜ÙH[™]È™Y\È
+LLJHKKKKKKKKKKKKKKKKKKBˆËÂˆËÈHš\œÝÓÔÑQ™[˜ÙH\È›Ú™XÝZ[È]\È›ÝHØ\™[ˆ[K[™ˆËÈHš\œÝ™YH[ˆ\ÈØÙ[™HÚÜÙHÜÚ][ÛˆH™XÛÜ™Ý]\È˜]\ˆ[ˆBˆËÈ[œÚ]HX[Ëˆ›Ý˜Z[\™H[Ù\È\™H˜]Ú[™È˜][È]›È]\Ù]Ø]BˆËÈØ[ˆÙYNˆH›Ø\™™[˜ÙH\HH™[™\™\ˆÙ\È›ÝÛ›ÝÈ˜[È˜XÚÈÈBˆËÈÜ[ˆ˜Z[œ˜[˜Ú[™˜]ÜÈHX\™[ÝHØ[ˆÙYHÝ˜ZYÚ›ÝYÚÚXÚ\ÂˆËÈHÜÜÚ]HÙˆÚ]™YHšY]ÜÈÙˆ\ÈÝ[ÚÝÎÈ[™HXÙYÝ[H\ÂˆËÈÛ™H˜Y^\È]Ø^Hœ›ÛHÝ[™[™È[ˆH™ZYÚ›Ý\š[™È›ØÚËÚXÚ\ÂˆËÈ^XÝHH˜][‹P•QÍXˆØ]YÚ[ˆH[\ˆ]›Üœ›ÝÜÈ]È\˜Ú]\BˆËÈœ›ÛKˆÛÈHÙ[ÛY]žH\ÈYX\Ý\™YYØZ[œÝH™XÛÜ™\™K‚ˆÛÛœÝØ]YØ[˜\ÚH]ØZ]YÙK™]˜[X]J
+
+HOˆÂˆÛÛœÝHHÚ[™ÝË—×ØÚXØYÛÍÂˆÛÛœÝ™XÈH
+K™[˜ÛÜÝ\™\ÏËœ™XÛÜ™ÈÏÈ×JK™š[™
+
+ŠHOˆ‹šYOOH	ÜØ]YØ[˜\ÚÞX\™	ÊNÂˆÛÛœÝ[ˆH™XÏËœ[œÏË–ÌOËœ]ÛØØ[Ù[WÛHÏÈ×NÂˆÛÛœÝÙYÑ\ÝH
+K‹JHOˆÂˆÛÛœÝHVÌHHÌNÂˆÛÛœÝHHVÌWHHÌWNÂˆÛÛœÝ[ŒˆH
+ˆ
+ÈH
+ˆHNÂˆ]H
+
+HHÌJH
+ˆ
+È
+ˆHÌWJH
+ˆJHÈ[ŒŽÂˆHX]›Z[ŠX]›X^
+
+KJNÂˆ™]\›ˆX]š\Ý
+ÌH
+È
+ˆHKÌWH
+ÈH
+ˆHŠNÂˆNÂˆÛÛœÝÛ”[ˆH
+KŠHOˆÂˆ]H[™š[š]NÂˆ›Üˆ
+]ÈHNÈÈ[‹›[™ÝÈÊÊÊHHX]›Z[ŠÙYÑ\Ý
+K‹[–ÚÈHWK[–Ú×JJNÂˆ™]\›ˆÂˆNÂˆËÈHUÓˆ™[˜ÙKÙ™ˆU‘T–HÚ[šÈH^Y\ˆZ[
+LÈ8 %]\ÙYÈ™BˆËÈÛ™HY\™ÙYY™™\ˆ[™™XY[™ÈÚ[™[–ÌXØ\È[›ÝYÚ
+NˆÝÈ]XÚ[X™\‚ˆËÈÝ[™ÈÛˆ\È™XÛÜ™	ÜÈÝÛˆ[™K[™ÝÈ[H[\ÝÙˆ]Ý[™ÂˆËÈÝ™\ˆHÜ›Ý[™[™\ˆ]ˆH˜Z[™[˜ÙH[™H›Ø\™™[˜ÙHÙˆHØ[YBˆËÈZYÚY™™\ˆžH[ˆÜ™\ˆÙˆXYÛš]YH[ˆHš\œÝ[X™\‹ÚXÚ\ÂˆËÈÚ]XZÙ\È\ÈH\ÝÙˆHœ˜[˜Ú˜]\ˆ[ˆÙˆH™XÛÜ™‚ˆ]Û“[™HHÂˆ]ÜHÂˆ›Üˆ
+ÛÛœÝY\ÚÙˆK™[˜ÛÜÝ\™\ÏË™Ü›Ý\Ë˜Ú[™[ˆÏÈ×JHÂˆÛÛœÝÜÈHY\Ú™Ù[ÛY]žOË™Ù]]šX]J	ÜÜÚ][Û‰ÊNÂˆ›Üˆ
+]HHÈÜÈ	‰ˆHÜË˜ÛÝ[ÈJÊÊHÂˆÛÛœÝHHÜË™Ù]
+JNÂˆÛÛœÝˆH\ÜË™Ù]ŠJNÂˆYˆ
+Û”[ŠKŠHˆŒJHÛÛ[YNÂˆÛ“[™JÊÎÂˆÜHX]›X^
+ÜÜË™Ù]JJHHK\œ˜Z[‹œÝ\™˜XÙRZYÚ
+KŠJNÂˆBˆBˆËÈ[™HÝ[\ÈHPT‘	ÜÈ[[™È™XÛÜ™XÙYXXÚ\ÚÙYÚ]\ˆ]ˆËÈÝ[™È[œÚYHH™[˜ÙH]\ÈÝ\ÜÙYÈÝ[™™Z[™ˆš[\™YÈBˆËÈX\™™XÛÜ™Ú[˜ÙHLÍˆHÛÜžX\™\ÜÈÝ]\ÈÝ[\È[Ý™\ˆBˆËÈÝÛˆ›ÝYÚHØ[YHÛÜ[™HÛÜžX\™[HÛÈ›ØÚÜÈ]Ø^H\È›ÝˆËÈ[ˆ\ØØ\YHœ›ÛH\È™[˜ÙK‚ˆÛÛœÝÝ[\ÈH
+K™Y\ÏËœÝ]ÏËœ[YÝ[\ÈÏÈ×JBˆ™š[\Š
+Ý
+HOˆÝœ™XÛÜ™OOH	ÜØ]YØ[˜\ÚÞX\™Ý™Y\ÉÊBˆ›X\
+
+Ý
+HOˆ
+Âˆ‹‹œÝˆ[–X\™ˆÝ™HˆLK	‰ˆÝ™HLNKH	‰ˆÝ›ˆLLÌˆ	‰ˆÝ›ˆˆLMLKŒËˆÛX\ŽˆÛ”[ŠÝ™KÝ›ŠKˆJJNÂˆ™]\›ˆÂˆ›Ý[™ˆH\™XËˆ\Nˆ™XÏË™›Ü›OË™™[˜ÙWÝ\OË˜[YHÏÈ[ˆÝ]Yˆ™XÏË™›Ü›OËšZYÚÛOË˜[YHÏÈ[ˆÛ“[™KˆÜˆ[YˆK™Y\ÏËœÝ]ÏËœ[YÏÈˆÝ[\ËˆNÂˆJNÂˆÚXÚÊ	ÛX™[NˆHØ]YØ[˜\Ú	ÜÈ™X\ˆX\™\È™[˜ÙYÚ]›Ø\™Ë›Ý˜Z[ØˆØ]YØ[˜\Ú™›Ý[™	‰ˆØ]YØ[˜\Ú\HOOH	Ø›Ø\™	È	‰ˆØ]YØ[˜\Ú›Û“[™HHŒˆ™XÛÜ™	ÜØ]YØ[˜\Ú™›Ý[™K\H	ÜØ]YØ[˜\Ú\_Kˆ
+È	ÜØ]YØ[˜\Ú›Û“[™_H™\XÙ\ÈÛˆ]ÈÝÛˆ[™X
+NÂˆËÈ[\ÈHÚÛHÙˆÚ][XYÙHLØ^\ÈX›Ý]\È™[˜ÙKÛÈH[X™\‚ˆËÈH™XÛÜ™\›™Y]ÛÜ™[È\ÈÈ™HH[X™\ˆÛˆHØÜ™Y[‹‚ˆÚXÚÊ	ÛX™[NˆHX\™™[˜ÙH\È˜]Ûˆ]HZYÚ]È™XÛÜ™Ý]\ØˆØ]YØ[˜\ÚœÝ]YOOH[	‰ˆX]˜XœÊØ]YØ[˜\ÚÜHØ]YØ[˜\ÚœÝ]Y
+HHŒL‹ˆ˜]Ûˆ	ÜØ]YØ[˜\ÚÜËÑš^Y
+Š_HHYØZ[œÝHÝ]Y	ÜØ]YØ[˜\ÚœÝ]YHX
+NÂˆÚXÚÊ	ÛX™[Nˆ]™\žHÝ[HHX\™	ÜÈ[[™È™XÛÜ™XÙ\ÈÝ[™È[œÚYH]X\™ˆØ]YØ[˜\ÚœÝ[\Ë›[™ÝOOHÂˆ	‰ˆØ]YØ[˜\ÚœÝ[\Ë™]™\žJ
+Ý
+HOˆÝš[–X\™	‰ˆÝ˜ÛX\ˆHŠKˆ	ÜØ]YØ[˜\ÚœÝ[\Ë›[™ÝHX\™Ý[JÊHÙˆ	ÜØ]YØ[˜\Úœ[YH[Yˆˆ
+ÈØ]YØ[˜\ÚœÝ[\Ë›X\
+
+Ý
+HOˆ	ÜÝšYH	ÜÝš[–X\™È	Ú[‰Èˆ	ÓÕU	ßHˆ
+È	ÜÝ˜ÛX\‹Ñš^Y
+J_HHÙ™ˆH™[˜ÙX
+Kš›Ú[Š	Ë	ÊJNÂ‚ˆËÈS‘U‘PQËœ›ÛHHÝ™Y]H™[˜ÙHÝ[™ÈÛ‹ˆX\šÙ]Ý™Y]™\ÚYBˆËÈHX\™ÛÚÚ[™ÈX\ÝˆH™[˜ÙH\ÈÚ^Y]™\È]Ø^H[™H™Y\ÈBˆËÈØ[YH]HÚÝÜÈ™Z[™]Ý[™Ý™\ˆ]ˆ›Ý\™HÛÛ\\™YÚ]BˆËÈ^Y\ˆY[‹Û[™ÈHÛØÚÈÛÈHÜ˜\ÜÈØ[››ÝÝ\HHY™™\™[˜ÙK‚ˆ]ØZ]YÙK™]˜[X]J
+
+HOˆÂˆÚ[™ÝË—×ØÚXØYÛÍØ[Ù\‹[\Ü
+ÈØØ[ÙNˆMKØØ[ÛŽˆLMX]×ÙYÎˆLJNÂˆJNÂˆ]ØZ]YÙKØZ]›Ü•[Y[Ý]
+ÍL
+NÂˆ]ØZ]YÙK™]˜[X]J
+
+HOˆÚ[™ÝË—×ØÚXØYÛÍœÙ][š[X][Û’Û
+YJJNÂˆÛÛœÝX\™[H]ØZ]YÙK™]˜[X]J
+
+HOˆÚ[™ÝË—×ØÚXØYÛÍ˜Ø\\™J
+JNÂˆ]ØZ]YÙK™]˜[X]J
+
+HOˆÈÚ[™ÝË—×ØÚXØYÛÍ™[˜ÛÜÝ\™\Ë™Ü›Ý\š\ÚX›HH˜[ÙNÈJNÂˆÛÛœÝX\™›Ñ™[˜ÙHH]ØZ]YÙK™]˜[X]J
+
+HOˆÚ[™ÝË—×ØÚXØYÛÍ˜Ø\\™J
+JNÂˆ]ØZ]YÙK™]˜[X]J
+
+HOˆÈÚ[™ÝË—×ØÚXØYÛÍ™[˜ÛÜÝ\™\Ë™Ü›Ý\š\ÚX›HHYNÈJNÂˆ]ØZ]YÙK™]˜[X]J
+
+HOˆÈÚ[™ÝË—×ØÚXØYÛÍ™Y\Ë™Ü›Ý\š\ÚX›HH˜[ÙNÈJNÂˆÛÛœÝX\™›Õ™Y\ÈH]ØZ]YÙK™]˜[X]J
+
+HOˆÚ[™ÝË—×ØÚXØYÛÍ˜Ø\\™J
+JNÂˆ]ØZ]YÙK™]˜[X]J
+
+HOˆÈÚ[™ÝË—×ØÚXØYÛÍ™Y\Ë™Ü›Ý\š\ÚX›HHYNÈJNÂˆ]ØZ]YÙK™]˜[X]J
+
+HOˆÚ[™ÝË—×ØÚXØYÛÍœÙ][š[X][Û’Û
+˜[ÙJJNÂˆÛÛœÝ™[˜ÙHHÚYÛ˜]\™Q\Ý[˜ÙJX\™[X\™›Ñ™[˜ÙJNÂˆÛÛœÝ™Y\ÈHÚYÛ˜]\™Q\Ý[˜ÙJX\™[X\™›Õ™Y\ÊNÂˆÚXÚÊ	ÛX™[NˆHX\™™[˜ÙH™XXÚ\ÈHØÜ™Y[ˆœ›ÛHX\šÙ]Ý™Y]ˆ™[˜ÙKÛÜœÝHˆ	‰ˆ™[˜ÙK›YX[ˆHŒËˆÙ[[HYX[ˆ	Ù™[˜ÙK›YX[ËÑš^Y
+Š_KÛÜœÝ	Ù™[˜ÙKÛÜœÝH
+™YYÛÜœÝMŠX
+NÂˆËÈHÛÛÙH^Y\ˆ\ÈY[ˆÚÛH\™KÛÈ\ÈØ^\È™Y\È\™Hš\ÚX›Hœ›ÛBˆËÈ\ÈÝ[™ˆ˜]\ˆ[ˆ\ÙH™YH\™H‹ˆ]\ÈHX\™	ÜÈÝÛˆÜ›ÝÛœÂˆËÈ]Ø\œžH]ˆHÝÛˆ\ÈÛX\™YÜ›Ý[™[™H™X\™\Ý[X™\ˆ]\ÂˆËÈ›Ý[ˆ\ÈX\™\ÈHš]™\ˆØ[\žHÛÈ›ØÚÜÈ›Ü™Z[™HØ[Ù\‹‚ˆÚXÚÊ	ÛX™[NˆH™Y\È™Z[™H™[˜ÙH™XXÚHØÜ™Y[ˆÚ]]ˆ™Y\ËÛÜœÝHˆ	‰ˆ™Y\Ë›YX[ˆHŒËˆÙ[[HYX[ˆ	Ù™Y\Ë›YX[ËÑš^Y
+Š_KÛÜœÝ	Ù™Y\ËÛÜœÝH
+™YYÛÜœÝMŠX
+NÂ‚ˆËÈKKH™[˜ÙYÜ›Ý[™\È›Ý˜Z\šYH
+LÊHKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKBˆËÂˆËÈHÝÛ™\‹Œ‹LLNˆ™]™\œXÙH]\È™[˜ÙY[ˆÛÝ[]™HHY™™\™[ˆËÈÜ›Ý[™HØYÛÛˆX\™ÛÝ[›Ø˜X›H™H\H\ÝHÜ›Ý[™[™™[˜Ù\ÂˆËÈ\›Ý[™›Ü\Y\È[œÚYHH™[˜ÙHÛÝ[›Ý™HÚ[˜Z\šYH]Ý\˜]YˆËÈ]Ûˆ[™Ø\™[ˆÜˆ[š[X[[œËˆˆ]™\žH™[˜ÙHX›Ý™H[˜ÛÜÙYHØ[YHÚ[ˆËÈÝØ\™\ÈHÜ›Ý[™Ý]ÚYH][™™YHÙˆH›Ý\ˆ™XÛÜ™ÈÐRQÓÈ[‚ˆËÈZ\ˆÝÛˆÜ›Ý[™›ØÚÜÈÚ]Ù[ÛY]žNˆ˜XœÙ[˜‚ˆËÂˆËÈÛÈ[™\Ë[™›Ý\™H\ÜÙ\Y™XØ]\ÙHZ]\ˆÛ™H[Û™HÛÚÜÈš[š\ÚY‚ˆËÈH™X]Y[ZYÝ™\ˆHÝØ\™]Ý[Ü›ÝÜÈ›ÝYÚ]\ÈHÛH[ˆBˆËÈ[Ù[[™HÝ\™\ÜÙYÝØ\™Ú]›Ý[™ÈZY[ˆ]ÈXÙH\È˜\™BˆËÈ\œ˜Z[ˆ[œÚYHH™[˜ÙKˆHXÙ\ˆ\È\ÚÙYT‘PÕH][\š[ÜˆÚ[È8 %ˆËÈHØ[YH[œÝ[Y[LL\Ù\ÈÛˆH[šÈXÚÜË[X›P]\ÂˆËÈÝ][Û“Ù˜›Üˆ]™\žHÜXÚY\ÈHÜ›Ý[™	ÜÈÝÛˆ›Û™HÛÝ[X[\™KˆËÈÚXÚ\ÈH[ˆ]™YÜ™\ÜÙYÚ[[H™Y›Ü™K‚ˆÛÛœÝ™[˜ÙYH]ØZ]YÙK™]˜[X]J
+
+HOˆÂˆÛÛœÝHHÚ[™ÝË—×ØÚXØYÛÍÂˆÛÛœÝHHKžX\™ÎÂˆÛÛœÝÝXœÈHK™›Ü˜KœÝXœÝ˜]\Ê
+NÂˆËÈÛ™H[\š[ÜˆÙˆXXÚ™X]Y[›Ø™Y]HÔS‘TÕÚ[[ˆ]8 %BˆËÈÛÜšÚ[™ÈX\™[ˆ[š[X[[ˆ[™HXÚÙ]YÛÜžX\™ˆ›ÝHÙ[›ÚYˆBˆËÈÙ\Ý\›ˆÝ[	ÜÈX\™\È[ˆÜ˜\Y›Ý[™HÝ[	ÜÈÝÛˆÛÜ›™\ˆ[™ˆËÈH]™\˜YÙHÙˆ]ÈÚ^ÛÜ›™\œÈ[™È[œÚYHHÝ[‚ˆÛÛœÝØ[YHÉÝÛÜ›—ÙX\	Ë	Ý›Ù[—ÙX\	Ë	ÙÛÜžX\™ÙØ\™[‰×NÂˆÛÛœÝÝ[™ÈHØ[Y›X\
+
+
+HOˆÂˆÛÛœÝHH
+OËš[\š[ÜœÈÏÈ×JK™š[™
+
+
+HOˆ™X]Y[OOH
+NÂˆYˆ
+ZJH™]\›ˆÈ™X]Y[ˆZ\ÜÚ[™ÎˆYHNÂˆÛÛœÝÙK—HHK˜]ÂˆÛÛœÝ›Û™HHK™›Ü˜Kž›Û™P]
+KŠNÂˆÛÛœÝˆHÝXœË™š[™
+
+
+HOˆšYOOH›Û™JNÂˆ]ÜXÚY\Ð\ÚÙYHÂˆ]ÜXÚY\Ò]ÈHÂˆ›Üˆ
+ÛÛœÝÜÙˆ
+ˆÈ‹™žK˜ÛÛ˜Ø]
+‹Ù]
+Hˆ×JJHÂˆÜXÚY\Ð\ÚÙY
+ÏHNÂˆYˆ
+K™›Ü˜KœÝ][Û“ÙŠK‹Ü
+HOOH[
+HÜXÚY\Ò]È
+ÏHNÂˆBˆ™]\›ˆÂˆ™X]Y[ˆYˆKšYK‹ˆ™XYÎˆK™X]Y[]
+KŠKˆÝ\™\ÜÙYˆKœÝ\™\ÜÙ\ÔÝØ\™
+KŠKˆ›ÛÝX›NˆK™›Ü˜Kœ[X›P]
+KŠKˆ›Û™KÜXÚY\Ð\ÚÙYÜXÚY\Ò]ËˆNÂˆJNÂˆËÈH™X]Y[	ÜÈÝÛˆÙ[ÛY]žNˆZYÜ˜YY[™Ø\Ý[™È›Ý[™ËˆBˆËÈÜ›Ý[™™X]Y[Z[™ÈÓˆHÜ›Ý[™\È›Ý[™ÈÈØ\ÝÛË[™]\ÂˆËÈ[X™\˜][HÝ]ÚYHH\›š]\™K\ÚYÝÈÛXÞH›Üˆ]™X\ÛÛ‹‚ˆ]š\ÈHÂˆ][™Ü˜YYHÂˆ]›Ý™XÛÛœÝXÝYHÂˆ]Ø\Ý[™ÈHÂˆ›Üˆ
+ÛÛœÝY\ÚÙˆOË™Ü›Ý\Ë˜Ú[™[ˆÏÈ×JHÂˆÛÛœÝÈHY\Ú™Ù[ÛY]žNÂˆš\È
+ÏHË™Ù]]šX]J	ÜÜÚ][Û‰ÊK˜ÛÝ[ÈÎÂˆYˆ
+Y\Ú˜Ø\ÝÚYÝÊHØ\Ý[™È
+ÏHNÂˆÛÛœÝÛÛ™ˆHË™Ù]]šX]J	×ØÛÛ™šY[˜ÙIÊNÂˆYˆ
+XÛÛ™ŠHÈ[™Ü˜YY
+ÏHNÈÛÛ[YNÈBˆ›Üˆ
+]HHÈHÛÛ™‹˜ÛÝ[ÈJÊÊHÂˆÛÛœÝˆHÛÛ™‹™Ù]
+JNÂˆYˆ
+JˆH	‰ˆˆHJJH[™Ü˜YY
+ÏHNÂˆ[ÙHYˆ
+ˆJH›Ý™XÛÛœÝXÝY
+ÏHNÂˆBˆBˆËÈS‘HÕT‘TÔÒSÓˆTÈÓÓ‘’S‘QˆØ[\YÝ™\ˆHÚÛH[Ù[Y›ÞÛÂˆËÈ]\ÈH›Ü\HÙˆH]\Ù]˜]\ˆ[ˆÙˆÚ\™H[ž[Û™HÝ[™Îˆ[‚ˆËÈ[\š[ÜˆÛYÛÛˆ]Ù[Ü›Û™È8 %[ˆ[˜ÛÜÙYš[™ËHÚYÛˆ›\Y8 %ˆËÈÛÝ[ZÙHH˜Z\šYHÙ™ˆ[ˆHÝÛˆ[™]™\žHÚXÚÈX›Ý™HÛÝ[ˆËÈÝ[\ÜË‚ˆÛÛœÝˆHK\œ˜Z[‹šZYÚšY[ÂˆÛÛœÝÕTHÂˆ][™HÂˆ][œÚYHHÂˆ›Üˆ
+]ˆH‹›ÜšYÚ[“ŽÈˆH‹›ÜšYÚ[“ˆ
+È‹™\NÈˆ
+ÏHÕT
+HÂˆ›Üˆ
+]HH‹›ÜšYÚ[‘NÈHH‹›ÜšYÚ[‘H
+È‹ÚYNÈH
+ÏHÕT
+HÂˆYˆ
+K\œ˜Z[‹š\ÕØ]\ŠKŠJHÛÛ[YNÂˆ[™
+ÏHNÂˆYˆ
+KœÝ\™\ÜÙ\ÔÝØ\™
+KŠJH[œÚYH
+ÏHNÂˆBˆBˆËÈS‘HÕT‘TÔÑQÔ“ÕS‘TÈHÔ“ÕS‘H‘PÓÔ‘ÈPÓT‘H
+LMÊK‚ˆËÈHØ[\Y\™XHX›Ý™H\ÈÛÛ\\™YYØZ[œÝHÚÙ[XÙH\™XHÙˆBˆËÈ[\š[ÜœÈH^Y\ˆXÝX[HZ[ÛÈH\ÜÙ\[Ûˆ\ÈX›Ý]BˆËÈ]\Ù]YÜ™YZ[™ÈÚ]]Ù[ˆ˜]\ˆ[ˆX›Ý]HÛÛœÝ[ÛÛYX›ÙBˆËÈš]YÈH™[˜Ù\ÈÙˆH^Kˆ[ˆ[˜ÛÜÙYš[™ËH›\YÚYÛˆÜˆBˆËÈÜÝÛÛÜ™[˜]H[Ý™\ÈHÛÈ\\ÈH™]È™[˜ÙKH™]ÈX\™Üˆ[‚ˆËÈ\›ÛˆHÚ^™HÙˆH›Ü	ÜÈ[Ý™\È[HÙÙ]\‹‚ˆÛÛœÝÚÙ[XÙHH
+ÊHOˆÂˆ]XØÈHÂˆ›Üˆ
+]HHˆHË›[™ÝHNÈHË›[™ÝÈˆHJÊÊHÂˆXØÈ
+ÏHÖÚ—VÌH
+ˆÖÚWVÌWHHÖÚWVÌH
+ˆÖÚ—VÌWNÂˆBˆ™]\›ˆX]˜XœÊXØÊHÈŽÂˆNÂˆÛÛœÝXÛ\™Y\™XHH
+OËš[\š[ÜœÈÏÈ×JKœ™YXÙJ
+JHOˆ
+ÈÚÙ[XÙJKœÊK
+NÂˆËÈH™XÛÜ™]PÓT‘TÈH™X]Y[[™ÛÝ›È[\š[Üˆ\ÈH˜Z[\™BˆËÈ\È^Y\ˆÛÝ[[ÜÝ]ZY]HXZÙH8 %[ˆ[\š[Üˆ\š]™Yœ›ÛH[œÈ]ˆËÈ›ÈÛ™Ù\ˆÛÜÙKÜˆ[ˆ]]Ü™Yš[™È]ÜÝHÛÛÜ™[˜]Kˆ\ÚÙYÙ‚ˆËÈH™XÛÜ™È˜]\ˆ[ˆÙˆHÛÝ[ÛÈH\ÜÙ\[ÛˆÝ\š]™\ÈHÝÛ‚ˆËÈÜ›ÝÚ[™È[›Ý\ˆ™[˜ÙK‚ˆÛÛœÝXÛ\™YH
+K™[˜ÛÜÝ\™\ÏËœ™XÛÜ™ÈÏÈ×JBˆ™š[\Š
+ŠHOˆ‹™Ü›Ý[™Ë™X]Y[
+Bˆ›X\
+
+ŠHOˆ
+ÈYˆ‹šY™X]Y[ˆ‹™Ü›Ý[™™X]Y[ˆ[\š[ÜœÎˆ
+OËš[\š[ÜœÈÏÈ×JK™š[\Š
+JHOˆKœ™XÛÜ™OOH‹šY
+K›[™ÝJJNÂˆ™]\›ˆÂˆÝ[™ËˆXÛ\™YˆÙ[œÝ\ÎˆOË˜Ù[œÝ\ÈÏÈ[ˆY\Ú\Îˆ
+OË™Ü›Ý\Ë˜Ú[™[ˆÏÈ×JK›[™Ýˆš\Ë[™Ü˜YY›Ý™XÛÛœÝXÝYØ\Ý[™ËˆÝ\™\ÜÙYœ˜XÝ[ÛŽˆ[™È[œÚYHÈ[™ˆKˆXÛ\™Y\™XKˆØ[\Y\™XNˆ[œÚYH
+ˆÕT
+ˆÕTˆNÂˆJNÂˆÚXÚÊ	ÛX™[Nˆ]™\žH™[˜ÙY[\š[Üˆ[ˆHÝÛˆØ\œšY\ÈHÜ›Ý[™™X]Y[ˆ™[˜ÙY™XÛ\™Y›[™ÝH	‰ˆ™[˜ÙY™XÛ\™Y™]™\žJ
+
+HOˆš[\š[ÜœÈHJBˆ	‰ˆ™[˜ÙY˜Ù[œÝ\ÏËš[\š[ÜœÈHN	‰ˆ™[˜ÙY›Y\Ú\ÈHÈ	‰ˆ™[˜ÙYš\Èˆˆ	‰ˆØš™XÝšÙ^\Ê™[˜ÙY˜Ù[œÝ\ÏË˜žU™X]Y[ÏÈßJK›[™ÝOOHËˆ	Ù™[˜ÙY™XÛ\™Y›[™ÝH™XÛÜ™
+ÊHXÛ\™HH™X]Y[ˆ
+ÈÉÙ™[˜ÙY™XÛ\™Y›X\
+
+
+HOˆ	ÙšYH	Ù™X]Y[H	Ùš[\š[ÜœßX
+Kš›Ú[Š	Ë	Ê_WNÈˆ
+È	Ù™[˜ÙY˜Ù[œÝ\ÏËš[\š[ÜœßH[\š[ÜŠÊH[ˆ	Ù™[˜ÙY›Y\Ú\ßHY\Ú
+\ÊKˆ
+È	Ù™[˜ÙYš\ßHšX[™Û\Ë	Ù™[˜ÙY˜Ù[œÝ\ÏË˜™YßH™Y
+ÊKˆ
+È	Ù™[˜ÙY˜Ù[œÝ\ÏËœ]ßH]
+ÊK™X]Y[Èˆ
+È”ÓÓ‹œÝš[™ÚYžJ™[˜ÙY˜Ù[œÝ\ÏË˜žU™X]Y[ÏÈßJJNÂˆ›Üˆ
+ÛÛœÝÈÙˆ™[˜ÙYœÝ[™ÊHÂˆÚXÚÊ	ÛX™[NˆHÜ›Ý[™[œÚYHH	ÉÜË™X]Y[IÈ™[˜ÙH™XYÈ\È]ÈÝÛˆ\Xˆ\Ë›Z\ÜÚ[™È	‰ˆËœ™XYÈOOHË™X]Y[	‰ˆËœÝ\™\ÜÙYOOHYKˆË›Z\ÜÚ[™ÈÈ	Û›È[\š[ÜˆØ\œšY\È\È™X]Y[][	Âˆˆ	ÜËšYH]H	ÜË™OËÑš^Y
+J_HÈˆ	ÜË›ËÑš^Y
+J_H™XYÈˆ
+È	Ò”ÓÓ‹œÝš[™ÚYžJËœ™XYÊ_X
+NÂˆÚXÚÊ	ÛX™[Nˆ›È˜Z\šYH[›ÛÝÈ[œÚYHH	ÉÜË™X]Y[IÈ™[˜ÙXˆ\Ë›Z\ÜÚ[™È	‰ˆËœ›ÛÝX›HOOH˜[ÙH	‰ˆËœÜXÚY\Ò]ÈOOH	‰ˆËœÜXÚY\Ð\ÚÙYˆˆË›Z\ÜÚ[™ÈÈ	Û›È[\š[ÜˆØ\œšY\È\È™X]Y[][	Âˆˆ›ÛÝX›H	ÜËœ›ÛÝX›_K	ÜËœÜXÚY\Ò]ßHÙˆ	ÜËœÜXÚY\Ð\ÚÙYHˆ
+È	ÜËž›Û™_HÜXÚY\ÈÜ˜[YHÝ][Û˜
+NÂˆBˆÚXÚÊ	ÛX™[NˆH™[˜ÙYÜ›Ý[™\ÈÜ˜YY™XÛÛœÝXÝY[™Ø\ÝÈ›ÈÚYÝØˆ™[˜ÙY[™Ü˜YYOOH	‰ˆ™[˜ÙY››Ý™XÛÛœÝXÝYOOH	‰ˆ™[˜ÙY˜Ø\Ý[™ÈOOHˆ	Ù™[˜ÙY[™Ü˜YYH[™Ü˜YY™\^Ý™\XÙ\Ë	Ù™[˜ÙY››Ý™XÛÛœÝXÝYHÜ˜YYˆ
+È™]\ˆ[ˆ™XÛÛœÝXÝY	Ù™[˜ÙY˜Ø\Ý[™ßHY\Ú
+\ÊHØ\Ý[™Ø
+NÂˆËÈLMÈ‘TPÑQHS‘Q’UQÑRSS‘ÈT‘K[™]\ÈÛÜØ^Z[™ÈÚXÚˆËÈXÝ]\ËˆH˜\ˆØ\ÈŒ˜ÙˆH[Ù[YžHÜ›Ý[™8 %H[X™\‚ˆËÈš]YÈH›Ý\ˆ™[˜ÙY™XÛÜ™È]^\ÝYÚ[ˆLÈÜ›ÝH][™Û™BˆËÈ]HYÚ][X]H™]È™XÛÜ™XZÙ\È™YÚ]Ý][ž][™È™Z[™ÈÜ›Û™ËˆBˆËÈ›Ü	ÜÈ\›Ûˆ\ÈËLŒp¬ˆÙˆÜ›Ý[™H]\Ù]PÓT‘TËÚXÚÛÚÈBˆËÈšYÝ\™HÈŒÍŽ	K[™˜Z\Ú[™ÈHÛÛœÝ[ÈŒHÛÝ[]™H›ÝYÚBˆËÈØ[YH™YYØZ[ˆH™^[YHHÝÛˆ[˜ÛÜÙ\ÈÛÛY][™Ë‚ˆËÂˆËÈÛÈH\ÜÙ\[Ûˆ›ÝÈÛÛ\\™\ÈHÐSTQÝ\™\ÜÚ[ÛˆYØZ[œÝHÚÙ[XÙBˆËÈ\™XHÙˆH[\š[ÜœÈH^Y\ˆZ[ˆ]\ÈÝšXÝHÚ\œ\ŽˆHÛˆËÈ˜\ˆÛÝ[›Ý[ËLŒp¬ˆÙˆ\›Ûˆœ›ÛHËLŒp¬ˆÙˆ˜Z\šYHZÙ[ˆÙ™ˆžBˆËÈHš[™È]ÜÝHÛÛÜ™[˜]K[™\ÈÛ™H˜Z[ÈÛˆHÙXÛÛ™Ú[BˆËÈ\ÜÚ[™ÈHš\œÝˆHÛ\˜[˜ÙH\ÈHHØ[\[™ÈÜšY	ÜË›ÝHYÙN‚ˆËÈÙ[K[ÙÛYÛÛœÈ™]ÙY[ˆL[™p¬ˆ\™HÛÝ[YžHZ\ˆÛÜ›™\‚ˆËÈØ[\\ËÛÈHšYZ]\ˆØ^H\ÈÚ]HY]ÙØ[ˆ™\ÛÛ™KˆHXœÛÛ]BˆËÈÙZ[[™È\ÈÙ\\ÈH›ÝË]\ÝX\™HÛÛ[Y[X›Ý™H\ØÜšX™\È8 %BˆËÈšYY]ÙˆH[Ù[YžHÜ›Ý[™ÛÈÜ™\œÈÙ™ˆš[ˆHÝÛˆ‹‚ˆËÈQPTÕT‘QÛˆH^H]Ø\ÈÜš][ŽˆÍp¬ˆXÛ\™YXÜ›ÜÜÈŒˆ[\š[ÜœÂˆËÈ[ˆH™XÛÜ™ËNLˆp¬ˆ™XÛÝ™\™YžHHØ[\\ˆ8 %Ëˆ	H\\ÛÈBˆËÈŒ	HÛ\˜[˜ÙH\Èš]™H[Y\ÈHØœÙ\™Y\ØÜ™]\Ø][Ûˆ\œ›Üˆ[™\ÈBˆËÈ›Ý[™ÛˆHQUÑ˜]\ˆ[ˆHX\™Ú[ˆš]YÈÙ^IÜÈÛYÛÛœË‚ˆÛÛœÝXÛ\™YØ\H™[˜ÙY™XÛ\™Y\™XBˆÈX]˜XœÊ™[˜ÙYœØ[\Y\™XHH™[˜ÙY™XÛ\™Y\™XJHÈ™[˜ÙY™XÛ\™Y\™XHˆNÂˆÚXÚÊ	ÛX™[NˆHÝØ\™\ÈÝ\™\ÜÙYÛˆHÜ›Ý[™H™XÛÜ™ÈXÛ\™H[™›ÝÚ\™H[ÙXˆ™[˜ÙYœÝ\™\ÜÙYœ˜XÝ[Ûˆˆ	‰ˆ™[˜ÙYœÝ\™\ÜÙYœ˜XÝ[ÛˆŒ‚ˆ	‰ˆ™[˜ÙY™XÛ\™Y\™XHˆ	‰ˆXÛ\™YØ\Œ‹ˆ	Ê™[˜ÙYœÝ\™\ÜÙYœ˜XÝ[Ûˆ
+ˆL
+KÑš^Y
+Ê_H	HÙˆH[Ù[YžHÜ›Ý[™Èˆ
+È	Ù™[˜ÙYœØ[\Y\™XKÑš^Y
+
+_Hp¬ˆØ[\YYØZ[œÝ	Ù™[˜ÙY™XÛ\™Y\™XKÑš^Y
+
+_Hp¬ˆˆ
+ÈXÛ\™YžH	Ù™[˜ÙY™XÛ\™Y›[™ÝH™XÛÜ™
+ÊH
+	ÊXÛ\™YØ\
+ˆL
+KÑš^Y
+J_H	H\\
+X
+NÂ‚ˆËÈS‘U‘PQËœ›ÛH[œÚYHÛÈÙˆH™YKˆÝ[™[ˆHÙ\Ý\›ˆÝ[	ÜÂˆËÈØYÛÛˆX\™[™[ˆÛ™HÙˆHÝÛ‰ÜÈXÚÙ]YÛÜžX\™ËÛÚÈ]HÜ›Ý[™ˆËÈ[™ÛHÛØÚÈÛÈHÜ˜\ÜÈØ[››ÝÝ\HHY™™\™[˜ÙKˆØ[YH˜\ˆ\ÂˆËÈH™[˜Ù\ËH›Ø\™È[™HÛÛÙÎˆÛÜœÝHˆ[™YX[ˆHŒË‚ˆ›Üˆ
+ÛÛœÝÝ[™ÙˆÂˆÈYˆ	ÝÛÜ›—ÙX\	Ë˜[YNˆ	ÝHØYÛÛˆX\™	ËX]ÎˆŒKˆÈYˆ	ÙÛÜžX\™ÙØ\™[‰Ë˜[YNˆ	ØHXÚÙ]YÛÜžX\™	ËX]ÎˆŒKˆJHÂˆÛÛœÝ]H™[˜ÙYœÝ[™Ë™š[™
+
+ÊHOˆË™X]Y[OOHÝ[™šY
+NÂˆYˆ
+X]]›Z\ÜÚ[™ÊHÛÛ[YNÂˆ]ØZ]YÙK™]˜[X]J
+ÈK‹X]ÈJHOˆÚ[™ÝË—×ØÚXØYÛÍØ[Ù\‹[\Ü
+ˆÈØØ[ÙNˆKØØ[ÛŽˆ‹X]×ÙYÎˆX]Ë]ÚÙYÎˆLÎJKˆÈNˆ]™KŽˆ]›‹X]ÎˆÝ[™žX]ÈJNÂˆ]ØZ]YÙKØZ]›Ü•[Y[Ý]
+ÍL
+NÂˆ]ØZ]YÙK™]˜[X]J
+
+HOˆÚ[™ÝË—×ØÚXØYÛÍœÙ][š[X][Û’Û
+YJJNÂˆÛÛœÝÚ]Ü›Ý[™H]ØZ]YÙK™]˜[X]J
+
+HOˆÚ[™ÝË—×ØÚXØYÛÍ˜Ø\\™J
+JNÂˆ]ØZ]YÙK™]˜[X]J
+
+HOˆÈÚ[™ÝË—×ØÚXØYÛÍžX\™Ë™Ü›Ý\š\ÚX›HH˜[ÙNÈJNÂˆÛÛœÝÚ]Ý]Ü›Ý[™H]ØZ]YÙK™]˜[X]J
+
+HOˆÚ[™ÝË—×ØÚXØYÛÍ˜Ø\\™J
+JNÂˆ]ØZ]YÙK™]˜[X]J
+
+HOˆÈÚ[™ÝË—×ØÚXØYÛÍžX\™Ë™Ü›Ý\š\ÚX›HHYNÈJNÂˆ]ØZ]YÙK™]˜[X]J
+
+HOˆÚ[™ÝË—×ØÚXØYÛÍœÙ][š[X][Û’Û
+˜[ÙJJNÂˆÛÛœÝHÚYÛ˜]\™Q\Ý[˜ÙJÚ]Ü›Ý[™Ú]Ý]Ü›Ý[™
+NÂˆÚXÚÊ	ÛX™[NˆHÜ›Ý[™[ˆ	ÜÝ[™›˜[Y_H™XXÚ\ÈHØÜ™Y[ˆœ›ÛH[œÚYH]ˆÛÜœÝHˆ	‰ˆ›YX[ˆHŒËˆÙ[[HYX[ˆ	Ù›YX[ËÑš^Y
+Š_KÛÜœÝ	ÙÛÜœÝH
+™YYÛÜœÝMŠX
+NÂˆB‚ˆËÈKKHHÛÜžX\™[[™ÜÈ
+LÍ
+HKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKBˆËÂˆËÈHÝÛ‹]ÚYH\ÜÈHX\™™XÛÜ™X›Ý™HØ\ÈH™XÙY[›ÜŽˆ™Y\È[™ˆËÈÝ\œ˜[\Ú\ÈX[\›Ý[™HÙ[[™ÜÈžHH[H[‚ˆËÈÛÛËÙÙ[™\˜]WÙÛÜžX\™Ü[[™ÜËœKˆH™Y\ÙYÝ[H\ÈH›Ø›[\Ø[™BˆËÈ[™˜Z[È\ÈÝZ]HÛˆ]ÈÝÛ‹ÛÈÚ]\È\ÜÙ\Y\™H\ÈHÝ\‚ˆËÈ[ˆÙˆLÍ	ÜÈXØÙ\[˜ÙNˆ][ˆÔ‘ST–HÝ\ÙH8 %HÛYÙ[˜ÞHÝ\ÙKˆËÈHÙÈÙ[[™ÈÛˆ[ˆ[™™[˜ÙYÝ8 %HX[Ý[\ÈXÝX[H™XXÚBˆËÈØÜ™Y[ˆœ›ÛHHØ[Ù\‹ˆÛØÙXˆØ\ÝIÜÈX[\ÈÛÈÛÝÛÛÛÙÂˆËÈ›Ü]Ù\ÝÙˆHÝ\ÙH[™HÝ\œ˜[Û[\žH]ÈÛÝ]YX\ÝÛÜ›™\ŽÂˆËÈHYÈ\™HH™XÛÜ™	ÜÈÝÛ‹ÛÈH™KYX[][Ý™\È\ÈÝ\ÙIÜÈÝ[\ÂˆËÈ\]\È\È\Ý[ˆHØ[YHÛÛ[Z]Üˆ˜Z[È\™KÝYK‚ˆÛÛœÝÛÜžX\™H]ØZ]YÙK™]˜[X]J
+
+HOˆÂˆÛÛœÝÝ[\ÈH
+Ú[™ÝË—×ØÚXØYÛÍ™Y\ÏËœÝ]ÏËœ[YÝ[\ÈÏÈ×JBˆ™š[\Š
+Ý
+HOˆÝœ™XÛÜ™OOH	ÝÝÛ—ÙÛÜžX\™Ü[[™ÜÉÊNÂˆ™]\›ˆÂˆÛÝ[ˆÝ[\Ë›[™ÝˆÛØÙXŽˆÝ[\Ë™š[\Š
+Ý
+HOˆÝšYœÝ\ÕÚ]
+	ØÛØÙX—ØØ\ÝWÉÊJK›X\
+
+Ý
+HOˆÝšY
+KˆNÂˆJNÂˆÚXÚÊ	ÛX™[NˆHÛÜžX\™\ÜÈ[YÝ[\ÈXÜ›ÜÜÈHÝÛ˜ˆÛÜžX\™˜ÛÝ[HLˆ	ÙÛÜžX\™˜ÛÝ[HÛÜžX\™Ý[JÊH˜]Ûˆ
+H™XÛÜ™Ý]\ÈLNÈH™Y\Ø[ˆ
+È	Ø[ÛÈ˜Z[ÈH›Ë\›Ø›[\ÈÚXÚÊIÊNÂˆÚXÚÊ	ÛX™[NˆÛØÙXˆØ\ÝIÜÈX[Ý[\È\™H[[Û™È[XˆÛÜžX\™˜ÛØÙX‹›[™ÝOOHËˆ˜]ÛŽˆ	ÙÛÜžX\™˜ÛØÙX‹š›Ú[Š	Ë	ÊH	Û›Û™IßX
+NÂˆËÈH™Y\Ëœ›ÛHH›ØYÛÝ]]Ù\ÝÙˆHÝ\ÙHÛÚÚ[™È]]ÈX\™ˆËÈ]X\\ŽˆÛÈNKLŒHÜ›ÝÛœÈX›Ý]MHHÙ™‹ˆØ[YH^Y\‹]ÙÙÛH›Ø™H[™ˆËÈØ[YHXÛ\™Y˜\ˆ\È]™\žHØÜ™Y[ˆÚXÚÈ[ˆ\Èš[K‚ˆ]ØZ]YÙK™]˜[X]J
+
+HOˆÂˆÚ[™ÝË—×ØÚXØYÛÍØ[Ù\‹[\Ü
+ÈØØ[ÙNˆÎØØ[ÛŽˆLX]×ÙYÎˆHJNÂˆJNÂˆ]ØZ]YÙKØZ]›Ü•[Y[Ý]
+ÍL
+NÂˆ]ØZ]YÙK™]˜[X]J
+
+HOˆÚ[™ÝË—×ØÚXØYÛÍœÙ][š[X][Û’Û
+YJJNÂˆÛÛœÝÛÜ•Ú]H]ØZ]YÙK™]˜[X]J
+
+HOˆÚ[™ÝË—×ØÚXØYÛÍ˜Ø\\™J
+JNÂˆ]ØZ]YÙK™]˜[X]J
+
+HOˆÈÚ[™ÝË—×ØÚXØYÛÍ™Y\Ë™Ü›Ý\š\ÚX›HH˜[ÙNÈJNÂˆÛÛœÝÛÜ•Ú]Ý]H]ØZ]YÙK™]˜[X]J
+
+HOˆÚ[™ÝË—×ØÚXØYÛÍ˜Ø\\™J
+JNÂˆ]ØZ]YÙK™]˜[X]J
+
+HOˆÈÚ[™ÝË—×ØÚXØYÛÍ™Y\Ë™Ü›Ý\š\ÚX›HHYNÈJNÂˆÛÛœÝÛÜˆHÚYÛ˜]\™Q\Ý[˜ÙJÛÜ•Ú]ÛÜ•Ú]Ý]
+NÂˆÚXÚÊ	ÛX™[NˆÛØÙXˆØuÛ^6öÚ$z{-®éÜj×card's `spread` is its billboard HALF-WIDTH â€” 1.5 m at the near far
        *  band, not a stem's radius. Counting that as the support's reach would
        *  pass any head within a card's width of one, which is the free pass the
        *  note above refuses. A card carries only the head `maybeHead` puts at
@@ -10202,14 +3361,14 @@ for (const [label, viewport, touch] of [
       /none recorded/i.test(residents.letterText)
       && /No source records an occupation/.test(residents.letterText),
       residents.letterText.slice(0, 200));
-    // T-0442/T-0462: a candidate biography is useful only if it remains visibly a
+    // T-0442/T-0462/T-0463: a candidate biography is useful only if it remains visibly a
     // candidate. The same public payload also carries negative work so silence
     // cannot be mistaken for a person who was never researched.
-    check(`${label}: 150 resident research reviews reach resident cards`,
-      residents.researchReviewed === 150
-      && residents.researchCounts.corroborated_enrichment === 31
-      && residents.researchCounts.candidate_identity === 30
-      && residents.researchCounts.no_corroboration === 89,
+    check(`${label}: 225 resident research reviews reach resident cards`,
+      residents.researchReviewed === 225
+      && residents.researchCounts.corroborated_enrichment === 47
+      && residents.researchCounts.candidate_identity === 45
+      && residents.researchCounts.no_corroboration === 133,
       `${residents.researchReviewed}: ${JSON.stringify(residents.researchCounts)}`);
     check(`${label}: candidate identities are visibly unmerged`,
       /Augustus Garrett/.test(residents.candidateText)

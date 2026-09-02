@@ -1,6 +1,6 @@
 {
   "_doc": "Resident-research source-selection and identity-resolution ledger. It governs research reviews; it is not evidence about a resident.",
-  "tickets": ["T-0442", "T-0462"],
+  "tickets": ["T-0442", "T-0462", "T-0463"],
   "reviewed_on": "2026-09-01",
   "ranked_source_types": [
     {"rank": 1, "type": "contemporary named record", "examples": ["newspaper advertisement", "letter", "court or land record"], "use": "May assert a fact when the record identifies the Chicago person."},

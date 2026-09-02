@@ -1,19 +1,20 @@
 {
-  "_doc": "T-0442 and T-0462 public resident research reviews. Candidate biographies are leads, not asserted resident facts.",
-  "version": 2,
-  "ticket": "T-0462",
+  "_doc": "T-0442, T-0462, and T-0463 public resident research reviews. Candidate biographies are leads, not asserted resident facts.",
+  "version": 3,
+  "ticket": "T-0463",
   "tickets": [
     "T-0442",
-    "T-0462"
+    "T-0462",
+    "T-0463"
   ],
   "scene_date": "1835-07-01",
   "reviewed_on": "2026-09-01",
-  "cohort_size": 150,
+  "cohort_size": 225,
   "eligible_real_named_people": 848,
   "counts": {
-    "corroborated_enrichment": 31,
-    "candidate_identity": 30,
-    "no_corroboration": 89
+    "corroborated_enrichment": 47,
+    "candidate_identity": 45,
+    "no_corroboration": 133
   },
   "passes": [
     {
@@ -32,6 +33,15 @@
         "corroborated_enrichment": 27,
         "candidate_identity": 23,
         "no_corroboration": 25
+      }
+    },
+    {
+      "ticket": "T-0463",
+      "size": 75,
+      "counts": {
+        "corroborated_enrichment": 16,
+        "candidate_identity": 15,
+        "no_corroboration": 44
       }
     }
   ],
@@ -3004,6 +3014,1538 @@
         "\"Hannah Hurlburt\" Chicago 1835",
         "\"Hannah Hurlburt\" Illinois 1834 1835",
         "\"Hannah Hurlburt\" genealogy occupation migration"
+      ],
+      "sources": [],
+      "candidates": [],
+      "identity_rule": "Candidate facts remain unasserted until a source bridges the candidate to the historical record by more than name similarity."
+    },
+    {
+      "person_id": "beckford_printer",
+      "household_id": "hh_democrat_printers",
+      "name_as_recorded": "Beckford",
+      "starting_evidence": "established_profile",
+      "reviewed_on": "2026-09-01",
+      "outcome": "no_corroboration",
+      "summary": "No reliable record found in the reviewed contemporary, institutional, local-history and index searches could be tied to this person by more than the recorded name. This is a documented no-find, not evidence that the person did not exist.",
+      "queries": [
+        "\"Beckford\" Chicago 1835",
+        "\"Beckford\" Illinois 1834 1835",
+        "\"Beckford\" genealogy occupation migration"
+      ],
+      "sources": [],
+      "candidates": [],
+      "identity_rule": "Candidate facts remain unasserted until a source bridges the candidate to the historical record by more than name similarity."
+    },
+    {
+      "person_id": "blodgett_tyler_k",
+      "household_id": "hh_blodgett_tyler_k",
+      "name_as_recorded": "Tyler K. Blodgett",
+      "starting_evidence": "established_profile",
+      "reviewed_on": "2026-09-01",
+      "outcome": "corroborated_enrichment",
+      "summary": "A contemporary-recollection compilation independently identifies Tyler K. Blodgett's 1833 north-bank brickyard and brick house. It supports the exact name and trade but does not establish his 1 July 1835 roof.",
+      "queries": [
+        "\"Tyler K. Blodgett\" Chicago 1835",
+        "\"Tyler K. Blodgett\" Illinois 1834 1835",
+        "\"Tyler K. Blodgett\" genealogy occupation migration"
+      ],
+      "sources": [
+        "ingale_early_chicago_reminiscence"
+      ],
+      "candidates": [],
+      "identity_rule": "Candidate facts remain unasserted until a source bridges the candidate to the historical record by more than name similarity."
+    },
+    {
+      "person_id": "brown_lemuel",
+      "household_id": "hh_brown_lemuel",
+      "name_as_recorded": "Lemuel Brown",
+      "starting_evidence": "established_profile",
+      "reviewed_on": "2026-09-01",
+      "outcome": "no_corroboration",
+      "summary": "No reliable record found in the reviewed contemporary, institutional, local-history and index searches could be tied to this person by more than the recorded name. This is a documented no-find, not evidence that the person did not exist.",
+      "queries": [
+        "\"Lemuel Brown\" Chicago 1835",
+        "\"Lemuel Brown\" Illinois 1834 1835",
+        "\"Lemuel Brown\" genealogy occupation migration"
+      ],
+      "sources": [],
+      "candidates": [],
+      "identity_rule": "Candidate facts remain unasserted until a source bridges the candidate to the historical record by more than name similarity."
+    },
+    {
+      "person_id": "brown_rufus",
+      "household_id": "hh_brown_rufus",
+      "name_as_recorded": "Rufus Brown",
+      "starting_evidence": "established_profile",
+      "reviewed_on": "2026-09-01",
+      "outcome": "corroborated_enrichment",
+      "summary": "The First Presbyterian history describes Rufus Brown's log boarding house as full during the church's earliest period. It corroborates the exact-name lodging role; it does not name Mrs Brown or resolve a street address.",
+      "queries": [
+        "\"Rufus Brown\" Chicago 1835",
+        "\"Rufus Brown\" Illinois 1834 1835",
+        "\"Rufus Brown\" genealogy occupation migration"
+      ],
+      "sources": [
+        "first_presbyterian_chicago_1833_1913"
+      ],
+      "candidates": [],
+      "identity_rule": "Candidate facts remain unasserted until a source bridges the candidate to the historical record by more than name similarity."
+    },
+    {
+      "person_id": "brown_mrs_rufus",
+      "household_id": "hh_brown_rufus",
+      "name_as_recorded": "Mrs Rufus Brown",
+      "starting_evidence": "established_profile",
+      "reviewed_on": "2026-09-01",
+      "outcome": "no_corroboration",
+      "summary": "No reliable record found in the reviewed contemporary, institutional, local-history and index searches could be tied to this person by more than the recorded name. This is a documented no-find, not evidence that the person did not exist.",
+      "queries": [
+        "\"Mrs Rufus Brown\" Chicago 1835",
+        "\"Mrs Rufus Brown\" Illinois 1834 1835",
+        "\"Mrs Rufus Brown\" genealogy occupation migration"
+      ],
+      "sources": [],
+      "candidates": [],
+      "identity_rule": "Candidate facts remain unasserted until a source bridges the candidate to the historical record by more than name similarity."
+    },
+    {
+      "person_id": "carver_david",
+      "household_id": "hh_carver_david",
+      "name_as_recorded": "David Carver",
+      "starting_evidence": "established_profile",
+      "reviewed_on": "2026-09-01",
+      "outcome": "corroborated_enrichment",
+      "summary": "Cook County history independently places David Carver on Chicago's 1833 voter roster. The exact name and civic chronology strengthen identity; later lumber claims remain dependent on retrospective accounts.",
+      "queries": [
+        "\"David Carver\" Chicago 1835",
+        "\"David Carver\" Illinois 1834 1835",
+        "\"David Carver\" genealogy occupation migration"
+      ],
+      "sources": [
+        "goodman_history_cook_county_early"
+      ],
+      "candidates": [],
+      "identity_rule": "Candidate facts remain unasserted until a source bridges the candidate to the historical record by more than name similarity."
+    },
+    {
+      "person_id": "casey_edward_w",
+      "household_id": "hh_casey_edward_w",
+      "name_as_recorded": "Edward W. Casey",
+      "starting_evidence": "established_profile",
+      "reviewed_on": "2026-09-01",
+      "outcome": "corroborated_enrichment",
+      "summary": "John Dean Caton's near-participant recollection says Edward W. Casey was the only other lawyer he remembered arriving in Chicago in 1833 and places him in the early circuit-court circle.",
+      "queries": [
+        "\"Edward W. Casey\" Chicago 1835",
+        "\"Edward W. Casey\" Illinois 1834 1835",
+        "\"Edward W. Casey\" genealogy occupation migration"
+      ],
+      "sources": [
+        "caton_atlantic_chicago_1893"
+      ],
+      "candidates": [],
+      "identity_rule": "Candidate facts remain unasserted until a source bridges the candidate to the historical record by more than name similarity."
+    },
+    {
+      "person_id": "church_thomas",
+      "household_id": "hh_church_thomas",
+      "name_as_recorded": "Thomas Church",
+      "starting_evidence": "established_profile",
+      "reviewed_on": "2026-09-01",
+      "outcome": "corroborated_enrichment",
+      "summary": "A published early-Chicago reminiscence says Thomas Church arrived in 1834 and describes his Lake Street building activity. It corroborates the uncommon name, migration year and merchant setting without proving scene-date occupancy.",
+      "queries": [
+        "\"Thomas Church\" Chicago 1835",
+        "\"Thomas Church\" Illinois 1834 1835",
+        "\"Thomas Church\" genealogy occupation migration"
+      ],
+      "sources": [
+        "ingale_early_chicago_reminiscence"
+      ],
+      "candidates": [],
+      "identity_rule": "Candidate facts remain unasserted until a source bridges the candidate to the historical record by more than name similarity."
+    },
+    {
+      "person_id": "cobb_silas_b",
+      "household_id": "hh_goss_cobb",
+      "name_as_recorded": "Silas B. Cobb",
+      "starting_evidence": "established_profile",
+      "reviewed_on": "2026-09-01",
+      "outcome": "corroborated_enrichment",
+      "summary": "Early reminiscence and the 1843 directory independently connect Silas B. Cobb with saddlery and harness work and later premises at 171 Lake Street. The later address extends the profile but is not back-projected to 1835.",
+      "queries": [
+        "\"Silas B. Cobb\" Chicago 1835",
+        "\"Silas B. Cobb\" Illinois 1834 1835",
+        "\"Silas B. Cobb\" genealogy occupation migration"
+      ],
+      "sources": [
+        "ingale_early_chicago_reminiscence",
+        "norris_chicago_directory_1843"
+      ],
+      "candidates": [],
+      "identity_rule": "Candidate facts remain unasserted until a source bridges the candidate to the historical record by more than name similarity."
+    },
+    {
+      "person_id": "cohen_peter",
+      "household_id": "hh_cohen_peter",
+      "name_as_recorded": "Peter Cohen",
+      "starting_evidence": "established_profile",
+      "reviewed_on": "2026-09-01",
+      "outcome": "corroborated_enrichment",
+      "summary": "Cook County history names Peter Cohen among the January 1836 Chicago Hydraulic Company incorporators. The exact name and immediate civic continuity strengthen identity but do not add a household relationship.",
+      "queries": [
+        "\"Peter Cohen\" Chicago 1835",
+        "\"Peter Cohen\" Illinois 1834 1835",
+        "\"Peter Cohen\" genealogy occupation migration"
+      ],
+      "sources": [
+        "goodman_history_cook_county_early"
+      ],
+      "candidates": [],
+      "identity_rule": "Candidate facts remain unasserted until a source bridges the candidate to the historical record by more than name similarity."
+    },
+    {
+      "person_id": "couch_james",
+      "household_id": "hh_couch_ira",
+      "name_as_recorded": "James Couch",
+      "starting_evidence": "established_profile",
+      "reviewed_on": "2026-09-01",
+      "outcome": "candidate_identity",
+      "summary": "Later Tremont histories identify James Couch as Ira Couch's brother and hotel partner, but place the brothers' hotel operation after 1835. The exact-name candidate is strong while the current scene-date role needs documentary adjudication.",
+      "queries": [
+        "\"James Couch\" Chicago 1835",
+        "\"James Couch\" Illinois 1834 1835",
+        "\"James Couch\" genealogy occupation migration"
+      ],
+      "sources": [
+        "chicagology_prefire127"
+      ],
+      "candidates": [
+        {
+          "name": "James Couch, later Tremont House proprietor",
+          "assessment": "strong",
+          "asserted": false,
+          "basis": "Exact name, brother Ira and distinctive hotel career.",
+          "conflicts": [
+            "Reviewed histories place the Couch hotel operation after the 1 July 1835 scene date."
+          ],
+          "sources": [
+            "chicagology_prefire127"
+          ]
+        }
+      ],
+      "identity_rule": "Candidate facts remain unasserted until a source bridges the candidate to the historical record by more than name similarity."
+    },
+    {
+      "person_id": "davis_john",
+      "household_id": "hh_davis_john",
+      "name_as_recorded": "John Davis",
+      "starting_evidence": "established_profile",
+      "reviewed_on": "2026-09-01",
+      "outcome": "no_corroboration",
+      "summary": "No reliable record found in the reviewed contemporary, institutional, local-history and index searches could be tied to this person by more than the recorded name. This is a documented no-find, not evidence that the person did not exist.",
+      "queries": [
+        "\"John Davis\" Chicago 1835",
+        "\"John Davis\" Illinois 1834 1835",
+        "\"John Davis\" genealogy occupation migration"
+      ],
+      "sources": [],
+      "candidates": [],
+      "identity_rule": "Candidate facts remain unasserted until a source bridges the candidate to the historical record by more than name similarity."
+    },
+    {
+      "person_id": "davis_t_o",
+      "household_id": "hh_davis_t_o",
+      "name_as_recorded": "T. O. Davis",
+      "starting_evidence": "established_profile",
+      "reviewed_on": "2026-09-01",
+      "outcome": "corroborated_enrichment",
+      "summary": "Cook County history corroborates T. O. Davis's role in establishing Chicago's Whig newspaper in 1835. Initials, place, occupation and year resolve the identity; no full-name expansion was safely found.",
+      "queries": [
+        "\"T. O. Davis\" Chicago 1835",
+        "\"T. O. Davis\" Illinois 1834 1835",
+        "\"T. O. Davis\" genealogy occupation migration"
+      ],
+      "sources": [
+        "goodman_history_cook_county_early"
+      ],
+      "candidates": [],
+      "identity_rule": "Candidate facts remain unasserted until a source bridges the candidate to the historical record by more than name similarity."
+    },
+    {
+      "person_id": "egan_emeline",
+      "household_id": "hh_egan_william_b",
+      "name_as_recorded": "Emeline Egan",
+      "starting_evidence": "established_profile",
+      "reviewed_on": "2026-09-01",
+      "outcome": "no_corroboration",
+      "summary": "No reliable record found in the reviewed contemporary, institutional, local-history and index searches could be tied to this person by more than the recorded name. This is a documented no-find, not evidence that the person did not exist.",
+      "queries": [
+        "\"Emeline Egan\" Chicago 1835",
+        "\"Emeline Egan\" Illinois 1834 1835",
+        "\"Emeline Egan\" genealogy occupation migration"
+      ],
+      "sources": [],
+      "candidates": [],
+      "identity_rule": "Candidate facts remain unasserted until a source bridges the candidate to the historical record by more than name similarity."
+    },
+    {
+      "person_id": "elston_daniel",
+      "household_id": "hh_elston_daniel",
+      "name_as_recorded": "Daniel Elston",
+      "starting_evidence": "established_profile",
+      "reviewed_on": "2026-09-01",
+      "outcome": "corroborated_enrichment",
+      "summary": "The University of Illinois finding aid identifies Daniel Elston as an English merchant arriving in Chicago in 1833 who manufactured soap and candles and later operated a distillery and brewery.",
+      "queries": [
+        "\"Daniel Elston\" Chicago 1835",
+        "\"Daniel Elston\" Illinois 1834 1835",
+        "\"Daniel Elston\" genealogy occupation migration"
+      ],
+      "sources": [
+        "uiuc_daniel_elston_papers"
+      ],
+      "candidates": [],
+      "identity_rule": "Candidate facts remain unasserted until a source bridges the candidate to the historical record by more than name similarity."
+    },
+    {
+      "person_id": "fullerton_alexander",
+      "household_id": "hh_fullerton_alexander",
+      "name_as_recorded": "Alexander N. Fullerton",
+      "starting_evidence": "established_profile",
+      "reviewed_on": "2026-09-01",
+      "outcome": "corroborated_enrichment",
+      "summary": "Cook County history identifies Alexander N. Fullerton in Chicago's early legal and municipal record, including the 1835 town-clerk chronology. This supports the exact full name and profession without establishing his roof.",
+      "queries": [
+        "\"Alexander N. Fullerton\" Chicago 1835",
+        "\"Alexander N. Fullerton\" Illinois 1834 1835",
+        "\"Alexander N. Fullerton\" genealogy occupation migration"
+      ],
+      "sources": [
+        "goodman_history_cook_county_early"
+      ],
+      "candidates": [],
+      "identity_rule": "Candidate facts remain unasserted until a source bridges the candidate to the historical record by more than name similarity."
+    },
+    {
+      "person_id": "gale_stephen_f",
+      "household_id": "hh_gale_stephen_f",
+      "name_as_recorded": "Stephen F. Gale",
+      "starting_evidence": "established_profile",
+      "reviewed_on": "2026-09-01",
+      "outcome": "corroborated_enrichment",
+      "summary": "Cook County history places Stephen F. Gale on Chicago's 1833 voter roster; a later statute bibliography identifies his Chicago printing imprint in 1839. Together they extend civic and publishing chronology without changing his 1835 trade.",
+      "queries": [
+        "\"Stephen F. Gale\" Chicago 1835",
+        "\"Stephen F. Gale\" Illinois 1834 1835",
+        "\"Stephen F. Gale\" genealogy occupation migration"
+      ],
+      "sources": [
+        "goodman_history_cook_county_early",
+        "jsp_illinois_statutes_gale_imprint"
+      ],
+      "candidates": [],
+      "identity_rule": "Candidate facts remain unasserted until a source bridges the candidate to the historical record by more than name similarity."
+    },
+    {
+      "person_id": "goss_o",
+      "household_id": "hh_goss_cobb",
+      "name_as_recorded": "O. Goss",
+      "starting_evidence": "established_profile",
+      "reviewed_on": "2026-09-01",
+      "outcome": "no_corroboration",
+      "summary": "No reliable record found in the reviewed contemporary, institutional, local-history and index searches could be tied to this person by more than the recorded name. This is a documented no-find, not evidence that the person did not exist.",
+      "queries": [
+        "\"O. Goss\" Chicago 1835",
+        "\"O. Goss\" Illinois 1834 1835",
+        "\"O. Goss\" genealogy occupation migration"
+      ],
+      "sources": [],
+      "candidates": [],
+      "identity_rule": "Candidate facts remain unasserted until a source bridges the candidate to the historical record by more than name similarity."
+    },
+    {
+      "person_id": "greene_john",
+      "household_id": "hh_greene_john",
+      "name_as_recorded": "Major John Greene",
+      "starting_evidence": "established_profile",
+      "reviewed_on": "2026-09-01",
+      "outcome": "no_corroboration",
+      "summary": "No reliable record found in the reviewed contemporary, institutional, local-history and index searches could be tied to this person by more than the recorded name. This is a documented no-find, not evidence that the person did not exist.",
+      "queries": [
+        "\"Major John Greene\" Chicago 1835",
+        "\"Major John Greene\" Illinois 1834 1835",
+        "\"Major John Greene\" genealogy occupation migration"
+      ],
+      "sources": [],
+      "candidates": [],
+      "identity_rule": "Candidate facts remain unasserted until a source bridges the candidate to the historical record by more than name similarity."
+    },
+    {
+      "person_id": "harmon_charles_l",
+      "household_id": "hh_harmon_brothers",
+      "name_as_recorded": "Charles Loomis Harmon",
+      "starting_evidence": "established_profile",
+      "reviewed_on": "2026-09-01",
+      "outcome": "no_corroboration",
+      "summary": "No reliable record found in the reviewed contemporary, institutional, local-history and index searches could be tied to this person by more than the recorded name. This is a documented no-find, not evidence that the person did not exist.",
+      "queries": [
+        "\"Charles Loomis Harmon\" Chicago 1835",
+        "\"Charles Loomis Harmon\" Illinois 1834 1835",
+        "\"Charles Loomis Harmon\" genealogy occupation migration"
+      ],
+      "sources": [],
+      "candidates": [],
+      "identity_rule": "Candidate facts remain unasserted until a source bridges the candidate to the historical record by more than name similarity."
+    },
+    {
+      "person_id": "harmon_elijah_d",
+      "household_id": "hh_harmon_elijah_d",
+      "name_as_recorded": "Dr Elijah Dewey Harmon",
+      "starting_evidence": "established_profile",
+      "reviewed_on": "2026-09-01",
+      "outcome": "corroborated_enrichment",
+      "summary": "Retrospective histories independently identify Dr Elijah D. Harmon as the early Fort Dearborn surgeon and a landholder south of town. The outlying property is retained rather than converted into downtown presence.",
+      "queries": [
+        "\"Dr Elijah Dewey Harmon\" Chicago 1835",
+        "\"Dr Elijah Dewey Harmon\" Illinois 1834 1835",
+        "\"Dr Elijah Dewey Harmon\" genealogy occupation migration"
+      ],
+      "sources": [
+        "goodman_history_cook_county_early"
+      ],
+      "candidates": [],
+      "identity_rule": "Candidate facts remain unasserted until a source bridges the candidate to the historical record by more than name similarity."
+    },
+    {
+      "person_id": "harmon_isaac_d",
+      "household_id": "hh_harmon_brothers",
+      "name_as_recorded": "Isaac Dewey Harmon",
+      "starting_evidence": "established_profile",
+      "reviewed_on": "2026-09-01",
+      "outcome": "corroborated_enrichment",
+      "summary": "A published reminiscence places Isaac D. Harmon's dry-goods store at the southwest corner of Clark and South Water and identifies him as Elijah D. Harmon's son. The relationship is sourced, not surname-derived.",
+      "queries": [
+        "\"Isaac Dewey Harmon\" Chicago 1835",
+        "\"Isaac Dewey Harmon\" Illinois 1834 1835",
+        "\"Isaac Dewey Harmon\" genealogy occupation migration"
+      ],
+      "sources": [
+        "ingale_early_chicago_reminiscence"
+      ],
+      "candidates": [],
+      "identity_rule": "Candidate facts remain unasserted until a source bridges the candidate to the historical record by more than name similarity."
+    },
+    {
+      "person_id": "heacock_russel_e",
+      "household_id": "hh_heacock_russel_e",
+      "name_as_recorded": "Russel E. Heacock",
+      "starting_evidence": "established_profile",
+      "reviewed_on": "2026-09-01",
+      "outcome": "corroborated_enrichment",
+      "summary": "An edited Illinois act identifies Russel E. Heacock through a Chicago subdivision plat, and the 1843 directory distinguishes Russel Easton Heacock and his household. These records corroborate the exact person while leaving his 1835 roof unresolved.",
+      "queries": [
+        "\"Russel E. Heacock\" Chicago 1835",
+        "\"Russel E. Heacock\" Illinois 1834 1835",
+        "\"Russel E. Heacock\" genealogy occupation migration"
+      ],
+      "sources": [
+        "jsp_russel_heacock_plat",
+        "norris_chicago_directory_1843"
+      ],
+      "candidates": [],
+      "identity_rule": "Candidate facts remain unasserted until a source bridges the candidate to the historical record by more than name similarity."
+    },
+    {
+      "person_id": "ingersoll_chester",
+      "household_id": "hh_ingersoll_chester",
+      "name_as_recorded": "Chester Ingersoll",
+      "starting_evidence": "established_profile",
+      "reviewed_on": "2026-09-01",
+      "outcome": "corroborated_enrichment",
+      "summary": "Municipal preservation research dates Chester Ingersoll's Plainfield plat to 1834, while the Green Tree history names him as the Chicago house's 1834-37 landlord. The two places are retained as a mobility question rather than silently collapsed.",
+      "queries": [
+        "\"Chester Ingersoll\" Chicago 1835",
+        "\"Chester Ingersoll\" Illinois 1834 1835",
+        "\"Chester Ingersoll\" genealogy occupation migration"
+      ],
+      "sources": [
+        "plainfield_john_temple_report",
+        "chicagology_prefire127"
+      ],
+      "candidates": [],
+      "identity_rule": "Candidate facts remain unasserted until a source bridges the candidate to the historical record by more than name similarity."
+    },
+    {
+      "person_id": "jones_benjamin",
+      "household_id": "hh_jones_benjamin",
+      "name_as_recorded": "Benjamin Jones",
+      "starting_evidence": "established_profile",
+      "reviewed_on": "2026-09-01",
+      "outcome": "corroborated_enrichment",
+      "summary": "A Library of Congress engineering history identifies Benjamin Jones as a Chicago merchant and land speculator who bought at the Manitowoc River mouth in 1835 and settled there in 1836. This supplies a dated migration lead, not a 1 July address.",
+      "queries": [
+        "\"Benjamin Jones\" Chicago 1835",
+        "\"Benjamin Jones\" Illinois 1834 1835",
+        "\"Benjamin Jones\" genealogy occupation migration"
+      ],
+      "sources": [
+        "loc_mantowoc_benjamin_jones"
+      ],
+      "candidates": [],
+      "identity_rule": "Candidate facts remain unasserted until a source bridges the candidate to the historical record by more than name similarity."
+    },
+    {
+      "person_id": "ll_aiker_samuel",
+      "household_id": "hh_ll_aiker_samuel",
+      "name_as_recorded": "Samuel Aiker",
+      "starting_evidence": "letter_list_only",
+      "reviewed_on": "2026-09-01",
+      "outcome": "no_corroboration",
+      "summary": "No reliable record found in the reviewed contemporary, institutional, local-history and index searches could be tied to this person by more than the recorded name. This is a documented no-find, not evidence that the person did not exist.",
+      "queries": [
+        "\"Samuel Aiker\" Chicago 1835",
+        "\"Samuel Aiker\" Illinois 1834 1835",
+        "\"Samuel Aiker\" genealogy occupation migration"
+      ],
+      "sources": [],
+      "candidates": [],
+      "identity_rule": "Candidate facts remain unasserted until a source bridges the candidate to the historical record by more than name similarity."
+    },
+    {
+      "person_id": "ll_akers_simon",
+      "household_id": "hh_ll_akers_simon",
+      "name_as_recorded": "Simon Akers",
+      "starting_evidence": "letter_list_only",
+      "reviewed_on": "2026-09-01",
+      "outcome": "no_corroboration",
+      "summary": "No reliable record found in the reviewed contemporary, institutional, local-history and index searches could be tied to this person by more than the recorded name. This is a documented no-find, not evidence that the person did not exist.",
+      "queries": [
+        "\"Simon Akers\" Chicago 1835",
+        "\"Simon Akers\" Illinois 1834 1835",
+        "\"Simon Akers\" genealogy occupation migration"
+      ],
+      "sources": [],
+      "candidates": [],
+      "identity_rule": "Candidate facts remain unasserted until a source bridges the candidate to the historical record by more than name similarity."
+    },
+    {
+      "person_id": "ll_allen_william",
+      "household_id": "hh_ll_allen_william",
+      "name_as_recorded": "William Allen",
+      "starting_evidence": "letter_list_only",
+      "reviewed_on": "2026-09-01",
+      "outcome": "no_corroboration",
+      "summary": "No reliable record found in the reviewed contemporary, institutional, local-history and index searches could be tied to this person by more than the recorded name. This is a documented no-find, not evidence that the person did not exist.",
+      "queries": [
+        "\"William Allen\" Chicago 1835",
+        "\"William Allen\" Illinois 1834 1835",
+        "\"William Allen\" genealogy occupation migration"
+      ],
+      "sources": [],
+      "candidates": [],
+      "identity_rule": "Candidate facts remain unasserted until a source bridges the candidate to the historical record by more than name similarity."
+    },
+    {
+      "person_id": "ll_allin_richard",
+      "household_id": "hh_ll_allin_richard",
+      "name_as_recorded": "Richard Allin",
+      "starting_evidence": "letter_list_only",
+      "reviewed_on": "2026-09-01",
+      "outcome": "no_corroboration",
+      "summary": "No reliable record found in the reviewed contemporary, institutional, local-history and index searches could be tied to this person by more than the recorded name. This is a documented no-find, not evidence that the person did not exist.",
+      "queries": [
+        "\"Richard Allin\" Chicago 1835",
+        "\"Richard Allin\" Illinois 1834 1835",
+        "\"Richard Allin\" genealogy occupation migration"
+      ],
+      "sources": [],
+      "candidates": [],
+      "identity_rule": "Candidate facts remain unasserted until a source bridges the candidate to the historical record by more than name similarity."
+    },
+    {
+      "person_id": "ll_alling_prudde",
+      "household_id": "hh_ll_alling_prudde",
+      "name_as_recorded": "Prudde Alling",
+      "starting_evidence": "letter_list_only",
+      "reviewed_on": "2026-09-01",
+      "outcome": "candidate_identity",
+      "summary": "Prudden Alling is a plausible normalization of the unusual printed Prudde Alling, but the indexed genealogy result supplies no Chicago chronology. The spelling remains unmerged pending an original scan or dated record.",
+      "queries": [
+        "\"Prudde Alling\" Chicago 1835",
+        "\"Prudde Alling\" Illinois 1834 1835",
+        "\"Prudde Alling\" genealogy occupation migration"
+      ],
+      "sources": [],
+      "candidates": [
+        {
+          "name": "Prudden Alling",
+          "assessment": "possible",
+          "asserted": false,
+          "basis": "Rare near-exact name and likely terminal-letter loss.",
+          "conflicts": [
+            "No Chicago, Illinois or scene-date discriminator was found."
+          ],
+          "sources": []
+        }
+      ],
+      "identity_rule": "Candidate facts remain unasserted until a source bridges the candidate to the historical record by more than name similarity."
+    },
+    {
+      "person_id": "ll_anderson_eli_f",
+      "household_id": "hh_ll_anderson_eli_f",
+      "name_as_recorded": "Eli F Anderson",
+      "starting_evidence": "letter_list_only",
+      "reviewed_on": "2026-09-01",
+      "outcome": "no_corroboration",
+      "summary": "No reliable record found in the reviewed contemporary, institutional, local-history and index searches could be tied to this person by more than the recorded name. This is a documented no-find, not evidence that the person did not exist.",
+      "queries": [
+        "\"Eli F Anderson\" Chicago 1835",
+        "\"Eli F Anderson\" Illinois 1834 1835",
+        "\"Eli F Anderson\" genealogy occupation migration"
+      ],
+      "sources": [],
+      "candidates": [],
+      "identity_rule": "Candidate facts remain unasserted until a source bridges the candidate to the historical record by more than name similarity."
+    },
+    {
+      "person_id": "ll_archer_joseph",
+      "household_id": "hh_ll_archer_joseph",
+      "name_as_recorded": "Joseph Archer",
+      "starting_evidence": "letter_list_only",
+      "reviewed_on": "2026-09-01",
+      "outcome": "no_corroboration",
+      "summary": "No reliable record found in the reviewed contemporary, institutional, local-history and index searches could be tied to this person by more than the recorded name. This is a documented no-find, not evidence that the person did not exist.",
+      "queries": [
+        "\"Joseph Archer\" Chicago 1835",
+        "\"Joseph Archer\" Illinois 1834 1835",
+        "\"Joseph Archer\" genealogy occupation migration"
+      ],
+      "sources": [],
+      "candidates": [],
+      "identity_rule": "Candidate facts remain unasserted until a source bridges the candidate to the historical record by more than name similarity."
+    },
+    {
+      "person_id": "ll_ayres_levi",
+      "household_id": "hh_ll_ayres_levi",
+      "name_as_recorded": "Levi Ayres",
+      "starting_evidence": "letter_list_only",
+      "reviewed_on": "2026-09-01",
+      "outcome": "no_corroboration",
+      "summary": "No reliable record found in the reviewed contemporary, institutional, local-history and index searches could be tied to this person by more than the recorded name. This is a documented no-find, not evidence that the person did not exist.",
+      "queries": [
+        "\"Levi Ayres\" Chicago 1835",
+        "\"Levi Ayres\" Illinois 1834 1835",
+        "\"Levi Ayres\" genealogy occupation migration"
+      ],
+      "sources": [],
+      "candidates": [],
+      "identity_rule": "Candidate facts remain unasserted until a source bridges the candidate to the historical record by more than name similarity."
+    },
+    {
+      "person_id": "ll_bakwith_albert",
+      "household_id": "hh_ll_bakwith_albert",
+      "name_as_recorded": "Albert Bakwith",
+      "starting_evidence": "letter_list_only",
+      "reviewed_on": "2026-09-01",
+      "outcome": "no_corroboration",
+      "summary": "No reliable record found in the reviewed contemporary, institutional, local-history and index searches could be tied to this person by more than the recorded name. This is a documented no-find, not evidence that the person did not exist.",
+      "queries": [
+        "\"Albert Bakwith\" Chicago 1835",
+        "\"Albert Bakwith\" Illinois 1834 1835",
+        "\"Albert Bakwith\" genealogy occupation migration"
+      ],
+      "sources": [],
+      "candidates": [],
+      "identity_rule": "Candidate facts remain unasserted until a source bridges the candidate to the historical record by more than name similarity."
+    },
+    {
+      "person_id": "ll_bebee_orson",
+      "household_id": "hh_ll_bebee_orson",
+      "name_as_recorded": "Orson Bebee",
+      "starting_evidence": "letter_list_only",
+      "reviewed_on": "2026-09-01",
+      "outcome": "no_corroboration",
+      "summary": "No reliable record found in the reviewed contemporary, institutional, local-history and index searches could be tied to this person by more than the recorded name. This is a documented no-find, not evidence that the person did not exist.",
+      "queries": [
+        "\"Orson Bebee\" Chicago 1835",
+        "\"Orson Bebee\" Illinois 1834 1835",
+        "\"Orson Bebee\" genealogy occupation migration"
+      ],
+      "sources": [],
+      "candidates": [],
+      "identity_rule": "Candidate facts remain unasserted until a source bridges the candidate to the historical record by more than name similarity."
+    },
+    {
+      "person_id": "ll_beeson_william",
+      "household_id": "hh_ll_beeson_william",
+      "name_as_recorded": "William Beeson",
+      "starting_evidence": "letter_list_only",
+      "reviewed_on": "2026-09-01",
+      "outcome": "no_corroboration",
+      "summary": "No reliable record found in the reviewed contemporary, institutional, local-history and index searches could be tied to this person by more than the recorded name. This is a documented no-find, not evidence that the person did not exist.",
+      "queries": [
+        "\"William Beeson\" Chicago 1835",
+        "\"William Beeson\" Illinois 1834 1835",
+        "\"William Beeson\" genealogy occupation migration"
+      ],
+      "sources": [],
+      "candidates": [],
+      "identity_rule": "Candidate facts remain unasserted until a source bridges the candidate to the historical record by more than name similarity."
+    },
+    {
+      "person_id": "ll_benton_datas_e",
+      "household_id": "hh_ll_benton_datas_e",
+      "name_as_recorded": "Datas E Benton",
+      "starting_evidence": "letter_list_only",
+      "reviewed_on": "2026-09-01",
+      "outcome": "no_corroboration",
+      "summary": "No reliable record found in the reviewed contemporary, institutional, local-history and index searches could be tied to this person by more than the recorded name. This is a documented no-find, not evidence that the person did not exist.",
+      "queries": [
+        "\"Datas E Benton\" Chicago 1835",
+        "\"Datas E Benton\" Illinois 1834 1835",
+        "\"Datas E Benton\" genealogy occupation migration"
+      ],
+      "sources": [],
+      "candidates": [],
+      "identity_rule": "Candidate facts remain unasserted until a source bridges the candidate to the historical record by more than name similarity."
+    },
+    {
+      "person_id": "ll_bishop_j_e",
+      "household_id": "hh_ll_bishop_j_e",
+      "name_as_recorded": "J. E. Bishop",
+      "starting_evidence": "letter_list_only",
+      "reviewed_on": "2026-09-01",
+      "outcome": "no_corroboration",
+      "summary": "No reliable record found in the reviewed contemporary, institutional, local-history and index searches could be tied to this person by more than the recorded name. This is a documented no-find, not evidence that the person did not exist.",
+      "queries": [
+        "\"J. E. Bishop\" Chicago 1835",
+        "\"J. E. Bishop\" Illinois 1834 1835",
+        "\"J. E. Bishop\" genealogy occupation migration"
+      ],
+      "sources": [],
+      "candidates": [],
+      "identity_rule": "Candidate facts remain unasserted until a source bridges the candidate to the historical record by more than name similarity."
+    },
+    {
+      "person_id": "ll_blair_william_g",
+      "household_id": "hh_ll_blair_william_g",
+      "name_as_recorded": "William G Blair",
+      "starting_evidence": "letter_list_only",
+      "reviewed_on": "2026-09-01",
+      "outcome": "candidate_identity",
+      "summary": "A county history lists William G. Blair among early Winnebago County settlers. Matching initials and region make a lead, but the common name and absent Chicago-letter bridge prevent identification.",
+      "queries": [
+        "\"William G Blair\" Chicago 1835",
+        "\"William G Blair\" Illinois 1834 1835",
+        "\"William G Blair\" genealogy occupation migration"
+      ],
+      "sources": [
+        "rockford_first_settlers_1835"
+      ],
+      "candidates": [
+        {
+          "name": "William G. Blair of Winnebago County",
+          "assessment": "possible",
+          "asserted": false,
+          "basis": "Exact initials and northern-Illinois chronology.",
+          "conflicts": [
+            "No direct Chicago post-office link; common name."
+          ],
+          "sources": [
+            "rockford_first_settlers_1835"
+          ]
+        }
+      ],
+      "identity_rule": "Candidate facts remain unasserted until a source bridges the candidate to the historical record by more than name similarity."
+    },
+    {
+      "person_id": "ll_bly_rouse",
+      "household_id": "hh_ll_bly_rouse",
+      "name_as_recorded": "Rouse Bly",
+      "starting_evidence": "letter_list_only",
+      "reviewed_on": "2026-09-01",
+      "outcome": "candidate_identity",
+      "summary": "Rouse Bly of Huron County, Ohio is an exact uncommon-name candidate. Ohio residence supplies competing geography, so the identity is retained as a rejected or transit lead rather than imported.",
+      "queries": [
+        "\"Rouse Bly\" Chicago 1835",
+        "\"Rouse Bly\" Illinois 1834 1835",
+        "\"Rouse Bly\" genealogy occupation migration"
+      ],
+      "sources": [
+        "ohio_firelands_rouse_bly"
+      ],
+      "candidates": [
+        {
+          "name": "Rouse Bly of New Haven Township, Ohio",
+          "assessment": "possible",
+          "asserted": false,
+          "basis": "Exact uncommon name and adult period chronology.",
+          "conflicts": [
+            "Documented Ohio residence and no Chicago migration bridge."
+          ],
+          "sources": [
+            "ohio_firelands_rouse_bly"
+          ]
+        }
+      ],
+      "identity_rule": "Candidate facts remain unasserted until a source bridges the candidate to the historical record by more than name similarity."
+    },
+    {
+      "person_id": "ll_bullen_jeduthnn",
+      "household_id": "hh_ll_bullen_jeduthnn",
+      "name_as_recorded": "Jeduthnn Bullen",
+      "starting_evidence": "letter_list_only",
+      "reviewed_on": "2026-09-01",
+      "outcome": "no_corroboration",
+      "summary": "No reliable record found in the reviewed contemporary, institutional, local-history and index searches could be tied to this person by more than the recorded name. This is a documented no-find, not evidence that the person did not exist.",
+      "queries": [
+        "\"Jeduthnn Bullen\" Chicago 1835",
+        "\"Jeduthnn Bullen\" Illinois 1834 1835",
+        "\"Jeduthnn Bullen\" genealogy occupation migration"
+      ],
+      "sources": [],
+      "candidates": [],
+      "identity_rule": "Candidate facts remain unasserted until a source bridges the candidate to the historical record by more than name similarity."
+    },
+    {
+      "person_id": "ll_bullock_stephen",
+      "household_id": "hh_ll_bullock_stephen",
+      "name_as_recorded": "Stephen Bullock",
+      "starting_evidence": "letter_list_only",
+      "reviewed_on": "2026-09-01",
+      "outcome": "no_corroboration",
+      "summary": "No reliable record found in the reviewed contemporary, institutional, local-history and index searches could be tied to this person by more than the recorded name. This is a documented no-find, not evidence that the person did not exist.",
+      "queries": [
+        "\"Stephen Bullock\" Chicago 1835",
+        "\"Stephen Bullock\" Illinois 1834 1835",
+        "\"Stephen Bullock\" genealogy occupation migration"
+      ],
+      "sources": [],
+      "candidates": [],
+      "identity_rule": "Candidate facts remain unasserted until a source bridges the candidate to the historical record by more than name similarity."
+    },
+    {
+      "person_id": "ll_burbee_jonathan",
+      "household_id": "hh_ll_burbee_jonathan",
+      "name_as_recorded": "Jonathan Burbee",
+      "starting_evidence": "letter_list_only",
+      "reviewed_on": "2026-09-01",
+      "outcome": "no_corroboration",
+      "summary": "No reliable record found in the reviewed contemporary, institutional, local-history and index searches could be tied to this person by more than the recorded name. This is a documented no-find, not evidence that the person did not exist.",
+      "queries": [
+        "\"Jonathan Burbee\" Chicago 1835",
+        "\"Jonathan Burbee\" Illinois 1834 1835",
+        "\"Jonathan Burbee\" genealogy occupation migration"
+      ],
+      "sources": [],
+      "candidates": [],
+      "identity_rule": "Candidate facts remain unasserted until a source bridges the candidate to the historical record by more than name similarity."
+    },
+    {
+      "person_id": "ll_butterfield_ben",
+      "household_id": "hh_ll_butterfield_ben",
+      "name_as_recorded": "Ben Butterfield",
+      "starting_evidence": "letter_list_only",
+      "reviewed_on": "2026-09-01",
+      "outcome": "candidate_identity",
+      "summary": "A historical marker places Ben Butterfield at Lockport and on a Danville-to-Chicago route from 1830-31. This is a strong regional candidate, but postal reachability does not establish town residence.",
+      "queries": [
+        "\"Ben Butterfield\" Chicago 1835",
+        "\"Ben Butterfield\" Illinois 1834 1835",
+        "\"Ben Butterfield\" genealogy occupation migration"
+      ],
+      "sources": [
+        "hmdb_butterfield_trail"
+      ],
+      "candidates": [
+        {
+          "name": "Ben Butterfield of Lockport",
+          "assessment": "strong",
+          "asserted": false,
+          "basis": "Exact familiar name, Cook/Will region and explicit Chicago route.",
+          "conflicts": [
+            "Lockport residence; no record links him to this letter."
+          ],
+          "sources": [
+            "hmdb_butterfield_trail"
+          ]
+        }
+      ],
+      "identity_rule": "Candidate facts remain unasserted until a source bridges the candidate to the historical record by more than name similarity."
+    },
+    {
+      "person_id": "ll_chadwick_joseph",
+      "household_id": "hh_ll_chadwick_joseph",
+      "name_as_recorded": "Joseph Chadwick",
+      "starting_evidence": "letter_list_only",
+      "reviewed_on": "2026-09-01",
+      "outcome": "candidate_identity",
+      "summary": "Joseph M. Chadwick, a military engineer who lived in Illinois before reaching Texas in December 1835, is a possible candidate. The missing middle initial and absent Chicago bridge keep the identity unasserted.",
+      "queries": [
+        "\"Joseph Chadwick\" Chicago 1835",
+        "\"Joseph Chadwick\" Illinois 1834 1835",
+        "\"Joseph Chadwick\" genealogy occupation migration"
+      ],
+      "sources": [
+        "tsaha_joseph_chadwick"
+      ],
+      "candidates": [
+        {
+          "name": "Joseph M. Chadwick, later of Goliad",
+          "assessment": "possible",
+          "asserted": false,
+          "basis": "Exact first and surname, Illinois residence and compatible chronology.",
+          "conflicts": [
+            "No Chicago location or letter linkage; candidate left for Texas by December 1835."
+          ],
+          "sources": [
+            "tsaha_joseph_chadwick"
+          ]
+        }
+      ],
+      "identity_rule": "Candidate facts remain unasserted until a source bridges the candidate to the historical record by more than name similarity."
+    },
+    {
+      "person_id": "ll_chambers_john",
+      "household_id": "hh_ll_chambers_john",
+      "name_as_recorded": "John Chambers",
+      "starting_evidence": "letter_list_only",
+      "reviewed_on": "2026-09-01",
+      "outcome": "no_corroboration",
+      "summary": "No reliable record found in the reviewed contemporary, institutional, local-history and index searches could be tied to this person by more than the recorded name. This is a documented no-find, not evidence that the person did not exist.",
+      "queries": [
+        "\"John Chambers\" Chicago 1835",
+        "\"John Chambers\" Illinois 1834 1835",
+        "\"John Chambers\" genealogy occupation migration"
+      ],
+      "sources": [],
+      "candidates": [],
+      "identity_rule": "Candidate facts remain unasserted until a source bridges the candidate to the historical record by more than name similarity."
+    },
+    {
+      "person_id": "ll_chanpagne_batist",
+      "household_id": "hh_ll_chanpagne_batist",
+      "name_as_recorded": "Batist Chanpagne",
+      "starting_evidence": "letter_list_only",
+      "reviewed_on": "2026-09-01",
+      "outcome": "no_corroboration",
+      "summary": "No reliable record found in the reviewed contemporary, institutional, local-history and index searches could be tied to this person by more than the recorded name. This is a documented no-find, not evidence that the person did not exist.",
+      "queries": [
+        "\"Batist Chanpagne\" Chicago 1835",
+        "\"Batist Chanpagne\" Illinois 1834 1835",
+        "\"Batist Chanpagne\" genealogy occupation migration"
+      ],
+      "sources": [],
+      "candidates": [],
+      "identity_rule": "Candidate facts remain unasserted until a source bridges the candidate to the historical record by more than name similarity."
+    },
+    {
+      "person_id": "ll_chase_peter",
+      "household_id": "hh_ll_chase_peter",
+      "name_as_recorded": "Peter Chase",
+      "starting_evidence": "letter_list_only",
+      "reviewed_on": "2026-09-01",
+      "outcome": "no_corroboration",
+      "summary": "No reliable record found in the reviewed contemporary, institutional, local-history and index searches could be tied to this person by more than the recorded name. This is a documented no-find, not evidence that the person did not exist.",
+      "queries": [
+        "\"Peter Chase\" Chicago 1835",
+        "\"Peter Chase\" Illinois 1834 1835",
+        "\"Peter Chase\" genealogy occupation migration"
+      ],
+      "sources": [],
+      "candidates": [],
+      "identity_rule": "Candidate facts remain unasserted until a source bridges the candidate to the historical record by more than name similarity."
+    },
+    {
+      "person_id": "ll_clark_erastus",
+      "household_id": "hh_ll_clark_erastus",
+      "name_as_recorded": "Erastus Clark",
+      "starting_evidence": "letter_list_only",
+      "reviewed_on": "2026-09-01",
+      "outcome": "no_corroboration",
+      "summary": "No reliable record found in the reviewed contemporary, institutional, local-history and index searches could be tied to this person by more than the recorded name. This is a documented no-find, not evidence that the person did not exist.",
+      "queries": [
+        "\"Erastus Clark\" Chicago 1835",
+        "\"Erastus Clark\" Illinois 1834 1835",
+        "\"Erastus Clark\" genealogy occupation migration"
+      ],
+      "sources": [],
+      "candidates": [],
+      "identity_rule": "Candidate facts remain unasserted until a source bridges the candidate to the historical record by more than name similarity."
+    },
+    {
+      "person_id": "ll_comstock_h_h",
+      "household_id": "hh_ll_comstock_h_h",
+      "name_as_recorded": "H. H. Comstock",
+      "starting_evidence": "letter_list_only",
+      "reviewed_on": "2026-09-01",
+      "outcome": "candidate_identity",
+      "summary": "H. H. Comstock appears in Kalamazoo County pioneer history around 1834. Exact initials and regional chronology are useful, but competing Michigan geography and no migration bridge bar a merge.",
+      "queries": [
+        "\"H. H. Comstock\" Chicago 1835",
+        "\"H. H. Comstock\" Illinois 1834 1835",
+        "\"H. H. Comstock\" genealogy occupation migration"
+      ],
+      "sources": [
+        "michigan_hh_comstock_history"
+      ],
+      "candidates": [
+        {
+          "name": "H. H. Comstock of Kalamazoo County",
+          "assessment": "possible",
+          "asserted": false,
+          "basis": "Exact initials, uncommon surname and Great Lakes chronology.",
+          "conflicts": [
+            "Michigan rather than Chicago residence; no letter bridge."
+          ],
+          "sources": [
+            "michigan_hh_comstock_history"
+          ]
+        }
+      ],
+      "identity_rule": "Candidate facts remain unasserted until a source bridges the candidate to the historical record by more than name similarity."
+    },
+    {
+      "person_id": "ll_absolam_reel",
+      "household_id": "hh_ll_absolam_reel",
+      "name_as_recorded": "Absolam Reel",
+      "starting_evidence": "letter_list_only",
+      "reviewed_on": "2026-09-01",
+      "outcome": "candidate_identity",
+      "summary": "A contemporary Indiana court notice names Absalom Reel in March 1834. The near-exact spelling is notable, but Indiana geography and no post-office bridge make this a competing candidate only.",
+      "queries": [
+        "\"Absolam Reel\" Chicago 1835",
+        "\"Absolam Reel\" Illinois 1834 1835",
+        "\"Absolam Reel\" genealogy occupation migration"
+      ],
+      "sources": [
+        "indiana_absalom_reel_1834"
+      ],
+      "candidates": [
+        {
+          "name": "Absalom Reel of Indiana",
+          "assessment": "possible",
+          "asserted": false,
+          "basis": "Near-exact rare name in a contemporary regional record.",
+          "conflicts": [
+            "Indiana record and no Chicago link; Absolam/Absalom spelling differs."
+          ],
+          "sources": [
+            "indiana_absalom_reel_1834"
+          ]
+        }
+      ],
+      "identity_rule": "Candidate facts remain unasserted until a source bridges the candidate to the historical record by more than name similarity."
+    },
+    {
+      "person_id": "ll_adam_vandorwerk",
+      "household_id": "hh_ll_adam_vandorwerk",
+      "name_as_recorded": "Adam Vandorwerk",
+      "starting_evidence": "letter_list_only",
+      "reviewed_on": "2026-09-01",
+      "outcome": "no_corroboration",
+      "summary": "No reliable record found in the reviewed contemporary, institutional, local-history and index searches could be tied to this person by more than the recorded name. This is a documented no-find, not evidence that the person did not exist.",
+      "queries": [
+        "\"Adam Vandorwerk\" Chicago 1835",
+        "\"Adam Vandorwerk\" Illinois 1834 1835",
+        "\"Adam Vandorwerk\" genealogy occupation migration"
+      ],
+      "sources": [],
+      "candidates": [],
+      "identity_rule": "Candidate facts remain unasserted until a source bridges the candidate to the historical record by more than name similarity."
+    },
+    {
+      "person_id": "ll_alexander_wilkes",
+      "household_id": "hh_ll_alexander_wilkes",
+      "name_as_recorded": "Alexander Wilkes",
+      "starting_evidence": "letter_list_only",
+      "reviewed_on": "2026-09-01",
+      "outcome": "no_corroboration",
+      "summary": "No reliable record found in the reviewed contemporary, institutional, local-history and index searches could be tied to this person by more than the recorded name. This is a documented no-find, not evidence that the person did not exist.",
+      "queries": [
+        "\"Alexander Wilkes\" Chicago 1835",
+        "\"Alexander Wilkes\" Illinois 1834 1835",
+        "\"Alexander Wilkes\" genealogy occupation migration"
+      ],
+      "sources": [],
+      "candidates": [],
+      "identity_rule": "Candidate facts remain unasserted until a source bridges the candidate to the historical record by more than name similarity."
+    },
+    {
+      "person_id": "ll_alexr_h_tucker",
+      "household_id": "hh_ll_alexr_h_tucker",
+      "name_as_recorded": "Alexr. H. Tucker",
+      "starting_evidence": "letter_list_only",
+      "reviewed_on": "2026-09-01",
+      "outcome": "no_corroboration",
+      "summary": "No reliable record found in the reviewed contemporary, institutional, local-history and index searches could be tied to this person by more than the recorded name. This is a documented no-find, not evidence that the person did not exist.",
+      "queries": [
+        "\"Alexr. H. Tucker\" Chicago 1835",
+        "\"Alexr. H. Tucker\" Illinois 1834 1835",
+        "\"Alexr. H. Tucker\" genealogy occupation migration"
+      ],
+      "sources": [],
+      "candidates": [],
+      "identity_rule": "Candidate facts remain unasserted until a source bridges the candidate to the historical record by more than name similarity."
+    },
+    {
+      "person_id": "ll_alfred_churchill",
+      "household_id": "hh_ll_alfred_churchill",
+      "name_as_recorded": "Alfred Churchill",
+      "starting_evidence": "letter_list_only",
+      "reviewed_on": "2026-09-01",
+      "outcome": "candidate_identity",
+      "summary": "Cook County history places an Alfred Churchill on Flag Creek and in an 1836 county political meeting. Exact name and Cook County geography are strong, but no source directly links him to the earlier letter.",
+      "queries": [
+        "\"Alfred Churchill\" Chicago 1835",
+        "\"Alfred Churchill\" Illinois 1834 1835",
+        "\"Alfred Churchill\" genealogy occupation migration"
+      ],
+      "sources": [
+        "goodman_history_cook_county_early"
+      ],
+      "candidates": [
+        {
+          "name": "Alfred Churchill of Flag Creek",
+          "assessment": "strong",
+          "asserted": false,
+          "basis": "Exact name, Cook County and near-date civic record.",
+          "conflicts": [
+            "Hinterland residence and no explicit letter linkage."
+          ],
+          "sources": [
+            "goodman_history_cook_county_early"
+          ]
+        }
+      ],
+      "identity_rule": "Candidate facts remain unasserted until a source bridges the candidate to the historical record by more than name similarity."
+    },
+    {
+      "person_id": "ll_alison_b_vaughn",
+      "household_id": "hh_ll_alison_b_vaughn",
+      "name_as_recorded": "Alison B. Vaughn",
+      "starting_evidence": "letter_list_only",
+      "reviewed_on": "2026-09-01",
+      "outcome": "no_corroboration",
+      "summary": "No reliable record found in the reviewed contemporary, institutional, local-history and index searches could be tied to this person by more than the recorded name. This is a documented no-find, not evidence that the person did not exist.",
+      "queries": [
+        "\"Alison B. Vaughn\" Chicago 1835",
+        "\"Alison B. Vaughn\" Illinois 1834 1835",
+        "\"Alison B. Vaughn\" genealogy occupation migration"
+      ],
+      "sources": [],
+      "candidates": [],
+      "identity_rule": "Candidate facts remain unasserted until a source bridges the candidate to the historical record by more than name similarity."
+    },
+    {
+      "person_id": "ll_almon_perring",
+      "household_id": "hh_ll_almon_perring",
+      "name_as_recorded": "Almon Perring",
+      "starting_evidence": "letter_list_only",
+      "reviewed_on": "2026-09-01",
+      "outcome": "no_corroboration",
+      "summary": "No reliable record found in the reviewed contemporary, institutional, local-history and index searches could be tied to this person by more than the recorded name. This is a documented no-find, not evidence that the person did not exist.",
+      "queries": [
+        "\"Almon Perring\" Chicago 1835",
+        "\"Almon Perring\" Illinois 1834 1835",
+        "\"Almon Perring\" genealogy occupation migration"
+      ],
+      "sources": [],
+      "candidates": [],
+      "identity_rule": "Candidate facts remain unasserted until a source bridges the candidate to the historical record by more than name similarity."
+    },
+    {
+      "person_id": "ll_alonzo_castle",
+      "household_id": "hh_ll_alonzo_castle",
+      "name_as_recorded": "Alonzo Castle",
+      "starting_evidence": "letter_list_only",
+      "reviewed_on": "2026-09-01",
+      "outcome": "no_corroboration",
+      "summary": "No reliable record found in the reviewed contemporary, institutional, local-history and index searches could be tied to this person by more than the recorded name. This is a documented no-find, not evidence that the person did not exist.",
+      "queries": [
+        "\"Alonzo Castle\" Chicago 1835",
+        "\"Alonzo Castle\" Illinois 1834 1835",
+        "\"Alonzo Castle\" genealogy occupation migration"
+      ],
+      "sources": [],
+      "candidates": [],
+      "identity_rule": "Candidate facts remain unasserted until a source bridges the candidate to the historical record by more than name similarity."
+    },
+    {
+      "person_id": "ll_alva_crandal",
+      "household_id": "hh_ll_alva_crandal",
+      "name_as_recorded": "Alva Crandal",
+      "starting_evidence": "letter_list_only",
+      "reviewed_on": "2026-09-01",
+      "outcome": "no_corroboration",
+      "summary": "No reliable record found in the reviewed contemporary, institutional, local-history and index searches could be tied to this person by more than the recorded name. This is a documented no-find, not evidence that the person did not exist.",
+      "queries": [
+        "\"Alva Crandal\" Chicago 1835",
+        "\"Alva Crandal\" Illinois 1834 1835",
+        "\"Alva Crandal\" genealogy occupation migration"
+      ],
+      "sources": [],
+      "candidates": [],
+      "identity_rule": "Candidate facts remain unasserted until a source bridges the candidate to the historical record by more than name similarity."
+    },
+    {
+      "person_id": "ll_alva_dunlap",
+      "household_id": "hh_ll_alva_dunlap",
+      "name_as_recorded": "Alva Dunlap",
+      "starting_evidence": "letter_list_only",
+      "reviewed_on": "2026-09-01",
+      "outcome": "candidate_identity",
+      "summary": "Local history says Alva Dunlap first traveled to Illinois in 1834 and later settled near Peoria. Exact uncommon name and date make a strong traveler candidate, not evidence of Chicago residence.",
+      "queries": [
+        "\"Alva Dunlap\" Chicago 1835",
+        "\"Alva Dunlap\" Illinois 1834 1835",
+        "\"Alva Dunlap\" genealogy occupation migration"
+      ],
+      "sources": [
+        "dunlap_alva_dunlap_history"
+      ],
+      "candidates": [
+        {
+          "name": "Alva Dunlap of Peoria County",
+          "assessment": "strong",
+          "asserted": false,
+          "basis": "Exact uncommon name and 1834 Illinois travel.",
+          "conflicts": [
+            "Later Peoria-area settlement and no direct letter bridge."
+          ],
+          "sources": [
+            "dunlap_alva_dunlap_history"
+          ]
+        }
+      ],
+      "identity_rule": "Candidate facts remain unasserted until a source bridges the candidate to the historical record by more than name similarity."
+    },
+    {
+      "person_id": "ll_amos_rathburn",
+      "household_id": "hh_ll_amos_rathburn",
+      "name_as_recorded": "Amos Rathburn",
+      "starting_evidence": "letter_list_only",
+      "reviewed_on": "2026-09-01",
+      "outcome": "no_corroboration",
+      "summary": "No reliable record found in the reviewed contemporary, institutional, local-history and index searches could be tied to this person by more than the recorded name. This is a documented no-find, not evidence that the person did not exist.",
+      "queries": [
+        "\"Amos Rathburn\" Chicago 1835",
+        "\"Amos Rathburn\" Illinois 1834 1835",
+        "\"Amos Rathburn\" genealogy occupation migration"
+      ],
+      "sources": [],
+      "candidates": [],
+      "identity_rule": "Candidate facts remain unasserted until a source bridges the candidate to the historical record by more than name similarity."
+    },
+    {
+      "person_id": "ll_andrew_miles",
+      "household_id": "hh_ll_andrew_miles",
+      "name_as_recorded": "Andrew Miles",
+      "starting_evidence": "letter_list_only",
+      "reviewed_on": "2026-09-01",
+      "outcome": "candidate_identity",
+      "summary": "Kane County history places an Andrew Miles or Mills on a Fox River claim in 1834. Exact or near-exact name and date are strong, while the spelling conflict and hinterland location remain unresolved.",
+      "queries": [
+        "\"Andrew Miles\" Chicago 1835",
+        "\"Andrew Miles\" Illinois 1834 1835",
+        "\"Andrew Miles\" genealogy occupation migration"
+      ],
+      "sources": [
+        "kane_geneva_andrew_miles"
+      ],
+      "candidates": [
+        {
+          "name": "Andrew Miles or Mills of Kane County",
+          "assessment": "strong",
+          "asserted": false,
+          "basis": "Exact given name, near-exact surname and 1834 regional claim.",
+          "conflicts": [
+            "Miles/Mills source conflict; no direct link to the Chicago letter."
+          ],
+          "sources": [
+            "kane_geneva_andrew_miles"
+          ]
+        }
+      ],
+      "identity_rule": "Candidate facts remain unasserted until a source bridges the candidate to the historical record by more than name similarity."
+    },
+    {
+      "person_id": "ll_anthony_heere",
+      "household_id": "hh_ll_anthony_heere",
+      "name_as_recorded": "Anthony Heere",
+      "starting_evidence": "letter_list_only",
+      "reviewed_on": "2026-09-01",
+      "outcome": "no_corroboration",
+      "summary": "No reliable record found in the reviewed contemporary, institutional, local-history and index searches could be tied to this person by more than the recorded name. This is a documented no-find, not evidence that the person did not exist.",
+      "queries": [
+        "\"Anthony Heere\" Chicago 1835",
+        "\"Anthony Heere\" Illinois 1834 1835",
+        "\"Anthony Heere\" genealogy occupation migration"
+      ],
+      "sources": [],
+      "candidates": [],
+      "identity_rule": "Candidate facts remain unasserted until a source bridges the candidate to the historical record by more than name similarity."
+    },
+    {
+      "person_id": "ll_aram_winsor",
+      "household_id": "hh_ll_aram_winsor",
+      "name_as_recorded": "Aram Winsor",
+      "starting_evidence": "letter_list_only",
+      "reviewed_on": "2026-09-01",
+      "outcome": "no_corroboration",
+      "summary": "No reliable record found in the reviewed contemporary, institutional, local-history and index searches could be tied to this person by more than the recorded name. This is a documented no-find, not evidence that the person did not exist.",
+      "queries": [
+        "\"Aram Winsor\" Chicago 1835",
+        "\"Aram Winsor\" Illinois 1834 1835",
+        "\"Aram Winsor\" genealogy occupation migration"
+      ],
+      "sources": [],
+      "candidates": [],
+      "identity_rule": "Candidate facts remain unasserted until a source bridges the candidate to the historical record by more than name similarity."
+    },
+    {
+      "person_id": "ll_asa_doel",
+      "household_id": "hh_ll_asa_doel",
+      "name_as_recorded": "Asa Doel",
+      "starting_evidence": "letter_list_only",
+      "reviewed_on": "2026-09-01",
+      "outcome": "no_corroboration",
+      "summary": "No reliable record found in the reviewed contemporary, institutional, local-history and index searches could be tied to this person by more than the recorded name. This is a documented no-find, not evidence that the person did not exist.",
+      "queries": [
+        "\"Asa Doel\" Chicago 1835",
+        "\"Asa Doel\" Illinois 1834 1835",
+        "\"Asa Doel\" genealogy occupation migration"
+      ],
+      "sources": [],
+      "candidates": [],
+      "identity_rule": "Candidate facts remain unasserted until a source bridges the candidate to the historical record by more than name similarity."
+    },
+    {
+      "person_id": "ll_austin_parsalls",
+      "household_id": "hh_ll_austin_parsalls",
+      "name_as_recorded": "Austin Parsalls",
+      "starting_evidence": "letter_list_only",
+      "reviewed_on": "2026-09-01",
+      "outcome": "no_corroboration",
+      "summary": "No reliable record found in the reviewed contemporary, institutional, local-history and index searches could be tied to this person by more than the recorded name. This is a documented no-find, not evidence that the person did not exist.",
+      "queries": [
+        "\"Austin Parsalls\" Chicago 1835",
+        "\"Austin Parsalls\" Illinois 1834 1835",
+        "\"Austin Parsalls\" genealogy occupation migration"
+      ],
+      "sources": [],
+      "candidates": [],
+      "identity_rule": "Candidate facts remain unasserted until a source bridges the candidate to the historical record by more than name similarity."
+    },
+    {
+      "person_id": "ll_b_r_paige",
+      "household_id": "hh_ll_b_r_paige",
+      "name_as_recorded": "B. R. Paige",
+      "starting_evidence": "letter_list_only",
+      "reviewed_on": "2026-09-01",
+      "outcome": "no_corroboration",
+      "summary": "No reliable record found in the reviewed contemporary, institutional, local-history and index searches could be tied to this person by more than the recorded name. This is a documented no-find, not evidence that the person did not exist.",
+      "queries": [
+        "\"B. R. Paige\" Chicago 1835",
+        "\"B. R. Paige\" Illinois 1834 1835",
+        "\"B. R. Paige\" genealogy occupation migration"
+      ],
+      "sources": [],
+      "candidates": [],
+      "identity_rule": "Candidate facts remain unasserted until a source bridges the candidate to the historical record by more than name similarity."
+    },
+    {
+      "person_id": "ll_bennet_bailey",
+      "household_id": "hh_ll_bennet_bailey",
+      "name_as_recorded": "Bennet Bailey",
+      "starting_evidence": "letter_list_only",
+      "reviewed_on": "2026-09-01",
+      "outcome": "candidate_identity",
+      "summary": "The 1843 Chicago directory names Bennet Bailey as a Mechanics' Institute director. Exact spelling and later Chicago civic activity make a strong candidate, but nine years and no intermediate bridge prevent a merge.",
+      "queries": [
+        "\"Bennet Bailey\" Chicago 1835",
+        "\"Bennet Bailey\" Illinois 1834 1835",
+        "\"Bennet Bailey\" genealogy occupation migration"
+      ],
+      "sources": [
+        "norris_chicago_directory_1843"
+      ],
+      "candidates": [
+        {
+          "name": "Bennet Bailey of the Chicago Mechanics' Institute",
+          "assessment": "strong",
+          "asserted": false,
+          "basis": "Exact name and later Chicago institutional role.",
+          "conflicts": [
+            "No record bridges the 1834 letter to the 1843 directory entry."
+          ],
+          "sources": [
+            "norris_chicago_directory_1843"
+          ]
+        }
+      ],
+      "identity_rule": "Candidate facts remain unasserted until a source bridges the candidate to the historical record by more than name similarity."
+    },
+    {
+      "person_id": "ll_carl_romer",
+      "household_id": "hh_ll_carl_romer",
+      "name_as_recorded": "Carl Romer",
+      "starting_evidence": "letter_list_only",
+      "reviewed_on": "2026-09-01",
+      "outcome": "no_corroboration",
+      "summary": "No reliable record found in the reviewed contemporary, institutional, local-history and index searches could be tied to this person by more than the recorded name. This is a documented no-find, not evidence that the person did not exist.",
+      "queries": [
+        "\"Carl Romer\" Chicago 1835",
+        "\"Carl Romer\" Illinois 1834 1835",
+        "\"Carl Romer\" genealogy occupation migration"
+      ],
+      "sources": [],
+      "candidates": [],
+      "identity_rule": "Candidate facts remain unasserted until a source bridges the candidate to the historical record by more than name similarity."
+    },
+    {
+      "person_id": "ll_charles_h_bartlett",
+      "household_id": "hh_ll_charles_h_bartlett",
+      "name_as_recorded": "Charles H. Bartlett",
+      "starting_evidence": "letter_list_only",
+      "reviewed_on": "2026-09-01",
+      "outcome": "candidate_identity",
+      "summary": "Chicago History Museum catalogs Charles H. Bartlett diaries beginning before his 1834 farming near Diamond Lake. Exact name, date and regional movement are strong; image-level diary review is still needed.",
+      "queries": [
+        "\"Charles H. Bartlett\" Chicago 1835",
+        "\"Charles H. Bartlett\" Illinois 1834 1835",
+        "\"Charles H. Bartlett\" genealogy occupation migration"
+      ],
+      "sources": [
+        "chm_bartlett_diaries"
+      ],
+      "candidates": [
+        {
+          "name": "Charles H. Bartlett of Diamond Lake",
+          "assessment": "strong",
+          "asserted": false,
+          "basis": "Exact full name and 1834 Lake County chronology.",
+          "conflicts": [
+            "Regional farm rather than Chicago town; letter not identified in the finding aid."
+          ],
+          "sources": [
+            "chm_bartlett_diaries"
+          ]
+        }
+      ],
+      "identity_rule": "Candidate facts remain unasserted until a source bridges the candidate to the historical record by more than name similarity."
+    },
+    {
+      "person_id": "ll_charles_t_richards",
+      "household_id": "hh_ll_charles_t_richards",
+      "name_as_recorded": "Charles T. Richards",
+      "starting_evidence": "letter_list_only",
+      "reviewed_on": "2026-09-01",
+      "outcome": "no_corroboration",
+      "summary": "No reliable record found in the reviewed contemporary, institutional, local-history and index searches could be tied to this person by more than the recorded name. This is a documented no-find, not evidence that the person did not exist.",
+      "queries": [
+        "\"Charles T. Richards\" Chicago 1835",
+        "\"Charles T. Richards\" Illinois 1834 1835",
+        "\"Charles T. Richards\" genealogy occupation migration"
+      ],
+      "sources": [],
+      "candidates": [],
+      "identity_rule": "Candidate facts remain unasserted until a source bridges the candidate to the historical record by more than name similarity."
+    },
+    {
+      "person_id": "ll_chas_h_chapman",
+      "household_id": "hh_ll_chas_h_chapman",
+      "name_as_recorded": "Chas. H. Chapman",
+      "starting_evidence": "letter_list_only",
+      "reviewed_on": "2026-09-01",
+      "outcome": "no_corroboration",
+      "summary": "No reliable record found in the reviewed contemporary, institutional, local-history and index searches could be tied to this person by more than the recorded name. This is a documented no-find, not evidence that the person did not exist.",
+      "queries": [
+        "\"Chas. H. Chapman\" Chicago 1835",
+        "\"Chas. H. Chapman\" Illinois 1834 1835",
+        "\"Chas. H. Chapman\" genealogy occupation migration"
+      ],
+      "sources": [],
+      "candidates": [],
+      "identity_rule": "Candidate facts remain unasserted until a source bridges the candidate to the historical record by more than name similarity."
+    },
+    {
+      "person_id": "ll_clark_b_albee",
+      "household_id": "hh_ll_clark_b_albee",
+      "name_as_recorded": "Clark B. Albee",
+      "starting_evidence": "letter_list_only",
+      "reviewed_on": "2026-09-01",
+      "outcome": "candidate_identity",
+      "summary": "Grand Haven history identifies exact-name Clark B. Albee in early commerce with Chicago-linked David Carver. The network is suggestive, but Michigan geography and no direct letter evidence keep the candidate unmerged.",
+      "queries": [
+        "\"Clark B. Albee\" Chicago 1835",
+        "\"Clark B. Albee\" Illinois 1834 1835",
+        "\"Clark B. Albee\" genealogy occupation migration"
+      ],
+      "sources": [
+        "migenweb_clark_albee_grand_haven"
+      ],
+      "candidates": [
+        {
+          "name": "Clark B. Albee of Grand Haven",
+          "assessment": "strong",
+          "asserted": false,
+          "basis": "Exact full name, Great Lakes trade and named Chicago associate.",
+          "conflicts": [
+            "Documented Michigan setting and no direct letter link."
+          ],
+          "sources": [
+            "migenweb_clark_albee_grand_haven"
+          ]
+        }
+      ],
+      "identity_rule": "Candidate facts remain unasserted until a source bridges the candidate to the historical record by more than name similarity."
+    },
+    {
+      "person_id": "ll_curtis_parkes",
+      "household_id": "hh_ll_curtis_parkes",
+      "name_as_recorded": "Curtis Parkes",
+      "starting_evidence": "letter_list_only",
+      "reviewed_on": "2026-09-01",
+      "outcome": "candidate_identity",
+      "summary": "Porter County history names Curtis Parkes in its February 1836 organization vote. Exact name and adjacent-region chronology are strong, but the Chicago letter may only reflect the nearest postal route.",
+      "queries": [
+        "\"Curtis Parkes\" Chicago 1835",
+        "\"Curtis Parkes\" Illinois 1834 1835",
+        "\"Curtis Parkes\" genealogy occupation migration"
+      ],
+      "sources": [
+        "porter_curtis_parkes"
+      ],
+      "candidates": [
+        {
+          "name": "Curtis Parkes of Porter County",
+          "assessment": "strong",
+          "asserted": false,
+          "basis": "Exact uncommon name and dated adjacent-county civic record.",
+          "conflicts": [
+            "Porter County residence and no direct letter bridge."
+          ],
+          "sources": [
+            "porter_curtis_parkes"
+          ]
+        }
+      ],
+      "identity_rule": "Candidate facts remain unasserted until a source bridges the candidate to the historical record by more than name similarity."
+    },
+    {
+      "person_id": "ll_ebenozer_alden",
+      "household_id": "hh_ll_ebenozer_alden",
+      "name_as_recorded": "Ebenozer Alden",
+      "starting_evidence": "letter_list_only",
+      "reviewed_on": "2026-09-01",
+      "outcome": "no_corroboration",
+      "summary": "No reliable record found in the reviewed contemporary, institutional, local-history and index searches could be tied to this person by more than the recorded name. This is a documented no-find, not evidence that the person did not exist.",
+      "queries": [
+        "\"Ebenozer Alden\" Chicago 1835",
+        "\"Ebenozer Alden\" Illinois 1834 1835",
+        "\"Ebenozer Alden\" genealogy occupation migration"
       ],
       "sources": [],
       "candidates": [],

@@ -737,6 +737,150 @@
       "archived_url": "",
       "tier": 4,
       "tier_label": "later scholarship"
+    },
+    "caton_atlantic_chicago_1893": {
+      "source_id": "caton_atlantic_chicago_1893",
+      "citation": "John Dean Caton, '’T Is Sixty Years Since in Chicago,' The Atlantic, May 1893",
+      "url": "https://www.theatlantic.com/magazine/archive/1893/05/t-is-sixty-years-since-in-chicago/633458/",
+      "archived_url": "",
+      "tier": 4,
+      "tier_label": "later scholarship"
+    },
+    "chicagology_prefire127": {
+      "source_id": "chicagology_prefire127",
+      "citation": "\"Green Tree Tavern.\" Chicagology. Transcribing the Inter Ocean of 1 July 1883 — the old-settlers hotel feature, in which named witnesses who had lived in the house are shown a sketch of it and asked to correct it — and Edwin O. Gale's Reminiscences of Early Chicago and Vicinity (1902), around nine city directories 1839-1885 and Chicago Tribune notices of the 1880 move and the 1902 collapse.",
+      "url": "https://chicagology.com/prefire/prefire127/",
+      "archived_url": "https://web.archive.org/web/20260217122931/https://chicagology.com/prefire/prefire127/",
+      "tier": 2,
+      "tier_label": "project synthesis"
+    },
+    "chm_bartlett_diaries": {
+      "source_id": "chm_bartlett_diaries",
+      "citation": "Chicago History Museum, Charles H. Bartlett diaries, 1829-1891, catalog record",
+      "url": "https://explore.chicagocollections.org/marcxml/chicagohistory/30/p26r92f/",
+      "archived_url": "",
+      "tier": 4,
+      "tier_label": "later scholarship"
+    },
+    "dunlap_alva_dunlap_history": {
+      "source_id": "dunlap_alva_dunlap_history",
+      "citation": "Dunlap Community Unit School District, community history of Alva Dunlap",
+      "url": "https://www.dunlapcusd.net/district/history",
+      "archived_url": "",
+      "tier": 4,
+      "tier_label": "later scholarship"
+    },
+    "goodman_history_cook_county_early": {
+      "source_id": "goodman_history_cook_county_early",
+      "citation": "Josiah Seymour Currey and Weston A. Goodspeed, History of Cook County, Illinois, early Chicago chapters",
+      "url": "https://libsysdigi.library.uiuc.edu/OCA/Books2009-04/historyofcookcou/historyofcookcou01good/historyofcookcou01good_djvu.txt",
+      "archived_url": "",
+      "tier": 4,
+      "tier_label": "later scholarship"
+    },
+    "hmdb_butterfield_trail": {
+      "source_id": "hmdb_butterfield_trail",
+      "citation": "Butterfield Trail historical marker transcription",
+      "url": "https://www.hmdb.org/m.asp?m=164819",
+      "archived_url": "",
+      "tier": 4,
+      "tier_label": "later scholarship"
+    },
+    "indiana_absalom_reel_1834": {
+      "source_id": "indiana_absalom_reel_1834",
+      "citation": "Western Sun & General Advertiser, 29 March 1834, Absalom Reel court notice",
+      "url": "https://newspapers.library.in.gov/?a=d&d=WSGA18340329.1.3",
+      "archived_url": "",
+      "tier": 4,
+      "tier_label": "later scholarship"
+    },
+    "jsp_illinois_statutes_gale_imprint": {
+      "source_id": "jsp_illinois_statutes_gale_imprint",
+      "citation": "Joseph Smith Papers bibliography, Public and General Statute Laws of Illinois, Chicago: Stephen F. Gale, 1839",
+      "url": "https://www.josephsmithpapers.org/paper-summary/mayors-order-to-henry-g-sherwood-8-december-1843/2",
+      "archived_url": "",
+      "tier": 4,
+      "tier_label": "later scholarship"
+    },
+    "jsp_russel_heacock_plat": {
+      "source_id": "jsp_russel_heacock_plat",
+      "citation": "Papers of Abraham Lincoln, act concerning Russel E. Heacock's Chicago subdivision plat",
+      "url": "https://papersofabrahamlincoln.org/documents/D271291",
+      "archived_url": "",
+      "tier": 4,
+      "tier_label": "later scholarship"
+    },
+    "kane_geneva_andrew_miles": {
+      "source_id": "kane_geneva_andrew_miles",
+      "citation": "History of Kane County, Geneva Township chapter, Andrew Miles or Mills passage",
+      "url": "https://genealogytrails.com/ill/kane/geneva.html",
+      "archived_url": "",
+      "tier": 4,
+      "tier_label": "later scholarship"
+    },
+    "loc_mantowoc_benjamin_jones": {
+      "source_id": "loc_mantowoc_benjamin_jones",
+      "citation": "Library of Congress, Historic American Engineering Record WI-78, Eighth Street Bridge historical report",
+      "url": "https://tile.loc.gov/storage-services/master/pnp/habshaer/wi/wi0300/wi0348/data/wi0348data.pdf",
+      "archived_url": "",
+      "tier": 4,
+      "tier_label": "later scholarship"
+    },
+    "michigan_hh_comstock_history": {
+      "source_id": "michigan_hh_comstock_history",
+      "citation": "History of Kalamazoo County, Michigan (1876), H. H. Comstock pioneer roster",
+      "url": "https://www.migenweb.org/kalamazoo/1876history.htm",
+      "archived_url": "",
+      "tier": 4,
+      "tier_label": "later scholarship"
+    },
+    "migenweb_clark_albee_grand_haven": {
+      "source_id": "migenweb_clark_albee_grand_haven",
+      "citation": "History of Grand Haven (1878), Clark B. Albee and David Carver passage",
+      "url": "https://migenweb.org/ottawa/towns/grhaven/1878history.html",
+      "archived_url": "",
+      "tier": 4,
+      "tier_label": "later scholarship"
+    },
+    "ohio_firelands_rouse_bly": {
+      "source_id": "ohio_firelands_rouse_bly",
+      "citation": "Firelands Pioneer, 1888, Rouse Bly passage",
+      "url": "https://www.ohiogenealogyexpress.com/huron/huronco_firelandpioneers_qtlys/huronco_fireland_1888_Vol_V/huronco_fireland_1888_vol_v_July_pg_060_104.htm",
+      "archived_url": "",
+      "tier": 4,
+      "tier_label": "later scholarship"
+    },
+    "porter_curtis_parkes": {
+      "source_id": "porter_curtis_parkes",
+      "citation": "History of Porter County, Indiana (1882), organization and election chapter",
+      "url": "https://www.inportercounty.org/Data/Misc/PorterCountyHistory-1882/PorterCountyHistory-1882-Chapter02.html",
+      "archived_url": "",
+      "tier": 4,
+      "tier_label": "later scholarship"
+    },
+    "rockford_first_settlers_1835": {
+      "source_id": "rockford_first_settlers_1835",
+      "citation": "History of Rockford and Winnebago County, first-settlers roster",
+      "url": "https://genealogytrails.com/ill/winnebago/firstsettlers.html",
+      "archived_url": "",
+      "tier": 4,
+      "tier_label": "later scholarship"
+    },
+    "tsaha_joseph_chadwick": {
+      "source_id": "tsaha_joseph_chadwick",
+      "citation": "Craig H. Roell, 'Chadwick, Joseph M.,' Handbook of Texas Online",
+      "url": "https://www.tshaonline.org/handbook/entries/chadwick-joseph-m",
+      "archived_url": "",
+      "tier": 4,
+      "tier_label": "later scholarship"
+    },
+    "uiuc_daniel_elston_papers": {
+      "source_id": "uiuc_daniel_elston_papers",
+      "citation": "University of Illinois, Illinois History and Lincoln Collections, Daniel Elston papers catalog record",
+      "url": "https://archon.library.illinois.edu/ihlc/index.php?p=collections/controlcard&id=614",
+      "archived_url": "",
+      "tier": 4,
+      "tier_label": "later scholarship"
     }
   }
 }
