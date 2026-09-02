@@ -18,6 +18,13 @@ jobs:
         with:
           ref: steward/resident-research-pass-4-reconciled
           fetch-depth: 1
+          filter: blob:none
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            .github/workflows/t0478-finalize.yml
+            chicago/4d
+            chicago/reference/resident-research
+            site/chicago/4d
       - name: Generate T-0478 closeout outputs
         working-directory: chicago/4d
         run: python3 tools/t0478_closeout.py
