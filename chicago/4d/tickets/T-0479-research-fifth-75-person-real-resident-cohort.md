@@ -1,7 +1,7 @@
 ---
 id: T-0479
 title: Research fifth 75-person real-resident cohort
-state: open
+state: claimed
 epic: META
 requested_by: owner
 seen: true
@@ -11,7 +11,7 @@ parent: null
 opened: 2026-09-02
 closed: null
 pr: 625
-claimed_by: null
+claimed_by: chatgpt-resident-agent-a7c4f2 9/2/2026, 3:26:42 PM CT
 blocked_on: null
 needs_bake: false
 ---
