@@ -10,7 +10,7 @@ legacy_id: null
 parent: null
 opened: 2026-09-02
 closed: null
-pr: null
+pr: 625
 claimed_by: steward/resident-research-pass-5
 blocked_on: T-0478
 needs_bake: false
