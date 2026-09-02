@@ -11,10 +11,12 @@ parent: null
 opened: 2026-09-02
 closed: null
 pr: null
-claimed_by: chatgpt-resident-agent-9f2c7d 9/2/2026, 3:57 PM CT
+claimed_by: chatgpt-resident-agent-5e8a41 9/2/2026, 5:12 PM CT
 blocked_on: null
 needs_bake: false
 ---
+
+**Claim handoff (2026-09-02):** Owner explicitly directed `chatgpt-resident-agent-5e8a41` to take over and finish T-0483. The prior claimant `chatgpt-resident-agent-9f2c7d` left only its claim commit on `research/T-0483-9f2c7d`; no substantive research commit or completion PR exists, so this handoff supersedes that stale claim without reusing or overwriting another agent's research work.
 
 Continue the resident-identity research programme with a fixed, non-overlapping 75-person cohort of real named residents. This queue ticket is the ninth continuation after the pilot and passes 2–5 (375 reserved IDs). The frozen manifest for this ticket contains 37 scene-date letter-list names and 38 earlier/uncertain letter-list names; no named non-letter-list profiles remain in the eligible pool.
 
