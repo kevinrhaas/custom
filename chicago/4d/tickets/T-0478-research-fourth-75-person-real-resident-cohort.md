@@ -1,7 +1,7 @@
 ---
 id: T-0478
 title: Research fourth 75-person real-resident cohort
-state: review
+state: done
 epic: META
 requested_by: owner
 seen: true
@@ -9,8 +9,8 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-09-02
-closed: null
-pr: null
+closed: 2026-09-02
+pr: 639
 claimed_by: steward/resident-research-pass-4-reconciled
 blocked_on: null
 needs_bake: false

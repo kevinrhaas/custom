@@ -15,9 +15,21 @@ def load(path: Path) -> dict:
     return json.loads(path.read_text())
 
 
+def load_person_index() -> dict[str, tuple[dict, dict]]:
+    residents = ROOT / "data/residents"
+    index = load(residents / "index.json")
+    people = {}
+    for item in index["households"]:
+        household = load(residents / item["file"])
+        for person in household.get("persons", []):
+            people[person["id"]] = (household, person)
+    return people
+
+
 def derive() -> dict:
     prior = load(OUT)
     cohort, findings = load(PASS4_COHORT), load(PASS4_FINDINGS)
+    person_index = load_person_index()
     baseline = prior.get("reviews", [])[:225]
     tickets = prior.get("tickets", [prior.get("ticket")])
     expected_prior = ["T-0442", "T-0462", "T-0463"]
@@ -32,7 +44,12 @@ def derive() -> dict:
 
     reviews = list(baseline)
     for person in cohort["people"]:
-        pid, name = person["person_id"], person["name"]
+        pid = person["person_id"]
+        if pid not in person_index:
+            raise SystemExit(f"{pid}: missing from canonical resident records")
+        household, canonical = person_index[pid]
+        name = canonical["name"]
+        starting_evidence = "established_profile" if person.get("stratum") == "established_profile" else "letter_list_only"
         result = findings["overrides"].get(
             pid,
             {
@@ -44,9 +61,9 @@ def derive() -> dict:
         )
         reviews.append({
             "person_id": pid,
-            "household_id": person["household_id"],
+            "household_id": household["id"],
             "name_as_recorded": name,
-            "starting_evidence": person["starting_evidence"],
+            "starting_evidence": starting_evidence,
             "reviewed_on": findings["reviewed_on"],
             "outcome": result["outcome"],
             "summary": result["summary"],
