@@ -76,7 +76,19 @@
    "sources": [
     "andreas_1884_v1"
    ],
-   "note": "Attested twice in Andreas, in two different chapters, with dates on both sides of the scene date: 'In August of 1834, Mr. and Mrs. Murphy took charge of this new hotel, which they christened the Exchange Coffee House. They remained there until 1836, when they removed to the old Sauganash'; and, in the life of Mark Beaubien, the house was 'first kept by Mr. and Mrs. John Murphy'. THIS IS THE BEST-ATTESTED OCCUPANCY OF A NAMED BUILDING BY A NAMED HOUSEHOLD IN THE DATASET."
+   "note": "Attested twice in Andreas, in two different chapters, with dates on both sides of the scene date: 'In August of 1834, Mr. and Mrs. Murphy took charge of this new hotel, which they christened the Exchange Coffee House. They remained there until 1836, when they removed to the old Sauganash'; and, in the life of Mark Beaubien, the house was 'first kept by Mr. and Mrs. John Murphy'. THIS IS THE BEST-ATTESTED OCCUPANCY OF A NAMED BUILDING BY A NAMED HOUSEHOLD IN THE DATASET.",
+   "resident_research": {
+    "programme": "resident-research-2026",
+    "ticket": "T-0478",
+    "outcome": "no_corroboration_yet",
+    "reviewed_on": "",
+    "asserted_identity": false,
+    "evidence_for": "Cook County history reports John and Harriet Murphy taking charge of Mark Beaubien's new Exchange Coffee House in August 1834 and remaining until 1836. The named spouse, hotel and bounded chronology strongly corroborate the household across the scene date.",
+    "notes": "Cook County history reports John and Harriet Murphy taking charge of Mark Beaubien's new Exchange Coffee House in August 1834 and remaining until 1836. The named spouse, hotel and bounded chronology strongly corroborate the household across the scene date.",
+    "source_ids": [
+     "goodman_history_cook_county_early"
+    ]
+   }
   },
   {
    "id": "murphy_harriet",
@@ -95,7 +107,39 @@
    "sources": [
     "andreas_1884_v1"
    ],
-   "note": "DOCUMENTED AS A PERSON, DERIVED AS A NAME. Andreas calls her only 'Mrs. Murphy'. The forename Harriet reaches this project through data/structures/exchange_coffee_house.json, whose occupants field carries 'John and Harriet Murphy, keepers', and it could not be traced back to a sentence in Andreas. The woman is documented; the forename is the reconstructed part, and that is exactly what the derived grade is for."
+   "note": "DOCUMENTED AS A PERSON, DERIVED AS A NAME. Andreas calls her only 'Mrs. Murphy'. The forename Harriet reaches this project through data/structures/exchange_coffee_house.json, whose occupants field carries 'John and Harriet Murphy, keepers', and it could not be traced back to a sentence in Andreas. The woman is documented; the forename is the reconstructed part, and that is exactly what the derived grade is for.",
+   "resident_research": {
+    "programme": "resident-research-2026",
+    "ticket": "T-0479",
+    "outcome": "candidate_identity",
+    "reviewed_on": "2026-09-02",
+    "asserted_identity": false,
+    "evidence_for": "An 1883 early-Chicago hotel feature records Mrs. Murphy as a knowledgeable witness to the Green Tree, and later history places Harriet and John Murphy managing the United States Hotel by 1836. The exact female name and hotel chronology are useful, but the later management date is not silently back-projected to the 1 July 1835 household.",
+    "evidence_against": "The management evidence begins in 1836; it does not establish her 1835 roof or maiden name.",
+    "summary": "An 1883 early-Chicago hotel feature records Mrs. Murphy as a knowledgeable witness to the Green Tree, and later history places Harriet and John Murphy managing the United States Hotel by 1836. The exact female name and hotel chronology are useful, but the later management date is not silently back-projected to the 1 July 1835 household.",
+    "notes": "An 1883 early-Chicago hotel feature records Mrs. Murphy as a knowledgeable witness to the Green Tree, and later history places Harriet and John Murphy managing the United States Hotel by 1836. The exact female name and hotel chronology are useful, but the later management date is not silently back-projected to the 1 July 1835 household.",
+    "source_ids": [
+     "chicagology_prefire127"
+    ],
+    "candidate_ids": [
+     "cand_harriet_murphy_us_hotel"
+    ],
+    "candidates": [
+     {
+      "name": "Harriet Murphy, later United States Hotel manager",
+      "assessment": "strong",
+      "asserted": false,
+      "basis": "Named early-Chicago hotel witness and later 1836 hotel chronology.",
+      "conflicts": [
+       "The management evidence begins in 1836; it does not establish her 1835 roof or maiden name."
+      ],
+      "sources": [
+       "chicagology_prefire127"
+      ],
+      "candidate_id": "cand_harriet_murphy_us_hotel"
+     }
+    ]
+   }
   }
  ],
  "touches_removal": false,

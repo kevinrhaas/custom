@@ -1,113 +1,113 @@
 {
-  "id": "hh_egan_william_b",
-  "name": "The Egan household",
-  "division": "south",
-  "head": "egan_william_b",
-  "arrival": {
-    "value": "1833-10-01",
-    "confidence": "attested",
-    "sources": [
-      "andreas_1884_v1"
-    ],
-    "note": "'In the fall of 1833' - season precision, carried as the first day of the season this project reads as autumn. The MONTH is not evidence.",
-    "precision": "season"
-  },
-  "party_size_on_arrival": {
-    "value": 2,
-    "confidence": "attested",
-    "sources": [
-      "andreas_1884_v1"
-    ],
-    "note": "His wife 'accompanied the Doctor in his pilgrimage to this city'. Two is the party the source describes."
-  },
-  "origin": {
-    "value": "County Kerry, Ireland, by way of Lancashire, Dublin, Quebec, Montreal, New York, Virginia and Newark",
-    "confidence": "attested",
-    "sources": [
-      "andreas_1884_v1"
-    ],
-    "note": "Andreas traces the whole route: born near Lake Killarney; at fifteen to Lancashire to study; London; back to Dublin for lectures; 'then embarked for Canada'; a teaching post at Quebec, then Montreal and New York, then the grammar school of the University of Virginia, where he also attended medical lectures; licensed in New Jersey in the spring of 1830 and practising at Newark and New York. THE LONGEST ATTESTED MIGRATION IN THE DATASET and a reminder that 'origin' for this population is often a chain."
-  },
-  "reason_for_coming": {
-    "value": "Confidence in the future of a new western town",
-    "confidence": "inferred",
-    "sources": [
-      "andreas_1884_v1"
-    ],
-    "note": "Andreas states the disposition rather than the decision: 'In the Doctor's unfailing confidence in the future of Chicago; in the unhesitating manner with which he embarked his means upon the then ebb-tide of the city's prosperity, he was a typical pioneer.' That is a characterisation written fifty years later, not a statement of why he came, and the grade says so."
-  },
-  "lives_at": {
-    "value": null,
-    "confidence": "reconstructed",
-    "note": "Not attested. Egan's Row on the Tremont block is his own building work and is later than the scene date's evidence; nothing places him in a house on 1 July 1835."
-  },
-  "works_at": {
-    "value": null,
-    "confidence": "reconstructed",
-    "note": "Not attested. This dataset holds no physician's office as a structure, which is itself a finding: the town had eight doctors at the end of 1833 and not one of their premises is in data/structures/."
-  },
-  "present_on_scene_date": {
-    "value": "present",
-    "confidence": "inferred",
-    "sources": [
-      "andreas_1884_v1"
-    ],
-    "note": "On the town's health committee from August 1834 and orating at the canal ground-breaking in July 1836; no absence is recorded between."
-  },
-  "persons": [
-    {
-      "id": "egan_william_b",
-      "name": "Dr William Bradshaw Egan",
-      "relationship": "head",
-      "grade": "attested",
-      "sex": "male",
-      "birth_year": {
-        "value": 1808,
-        "confidence": "attested",
-        "sources": [
-          "andreas_1884_v1"
-        ],
-        "note": "28 September 1808."
-      },
-      "age_on_scene_date": {
-        "value": 26,
-        "confidence": "attested",
-        "sources": [
-          "andreas_1884_v1"
-        ],
-        "note": "26 on 1 July 1835."
-      },
-      "occupation": {
-        "value": "physician",
-        "confidence": "attested",
-        "sources": [
-          "andreas_1884_v1"
-        ],
-        "note": "One of the eight physicians Andreas counts at the close of 1833. He studied surgery and medicine in Lancashire under a Dr Maguire, attended lectures in Dublin and 'walked' the Dublin Lying-in Hospital, and was licensed by the medical board of New Jersey in the spring of 1830."
-      },
-      "sources": [
-        "andreas_1884_v1"
-      ],
-      "note": "BORN NEAR LAKE KILLARNEY, COUNTY KERRY, IRELAND, 28 SEPTEMBER 1808 - the best-documented foreign origin in the parcel. Andreas: 'In the fall of 1833 Dr. William Bradshaw Egan came to the city.' He was appointed to the health committee for the South Division on 22 August 1834 and delivered the oration when ground was broken for the Illinois & Michigan Canal on 4 July 1836. He bought the Tremont House block from General Beaubien and built five houses on it, known as Egan's Row - which is why a physician is also one of the town's builders."
-    },
-    {
-      "id": "egan_emeline",
-      "name": "Emeline Egan",
-      "relationship": "wife",
-      "grade": "attested",
-      "sex": "female",
-      "occupation": {
-        "value": "none_recorded",
-        "confidence": "reconstructed",
-        "note": "No source records an occupation for this person. This is the ABSENCE of a record rather than a claim that they did no work — the sources of 1835 name the occupations of household heads and almost never those of wives, children or the people counted with them."
-      },
-      "sources": [
-        "andreas_1884_v1"
-      ],
-      "note": "NAMED, DATED AND PLACED ON THE JOURNEY, which is rare. Andreas: 'On January 21, 1832, he was married to Miss Emeline Mahbutt, who accompanied the Doctor in his pilgrimage to this city.' The surname is printed 'Malib.tt' in the scanned text and is read here as Mahbutt; the reading is uncertain and the forename is not."
-    }
+ "id": "hh_egan_william_b",
+ "name": "The Egan household",
+ "division": "south",
+ "head": "egan_william_b",
+ "arrival": {
+  "value": "1833-10-01",
+  "confidence": "attested",
+  "sources": [
+   "andreas_1884_v1"
   ],
-  "touches_removal": false,
-  "review_required": false,
-  "research_note": "AN IRISH DOCTOR WHO ARRIVED FOURTEEN MONTHS BEFORE THE HARBOUR MADE THE TOWN, and the record in this parcel that best answers K1's 'why they came' by refusing to answer it. Every stage of his journey from Kerry is documented; the motive for the last leg is not, and what stands in for it is a biographer's admiring sentence from 1884. THE GAP THIS HOUSEHOLD EXPOSES: eight physicians are documented in the 1833 town and this dataset contains no doctor's office, no apothecary's back room and no hospital outside the fort. That is a structures gap the residents layer has just made visible, which is what it is for."
+  "note": "'In the fall of 1833' - season precision, carried as the first day of the season this project reads as autumn. The MONTH is not evidence.",
+  "precision": "season"
+ },
+ "party_size_on_arrival": {
+  "value": 2,
+  "confidence": "attested",
+  "sources": [
+   "andreas_1884_v1"
+  ],
+  "note": "His wife 'accompanied the Doctor in his pilgrimage to this city'. Two is the party the source describes."
+ },
+ "origin": {
+  "value": "County Kerry, Ireland, by way of Lancashire, Dublin, Quebec, Montreal, New York, Virginia and Newark",
+  "confidence": "attested",
+  "sources": [
+   "andreas_1884_v1"
+  ],
+  "note": "Andreas traces the whole route: born near Lake Killarney; at fifteen to Lancashire to study; London; back to Dublin for lectures; 'then embarked for Canada'; a teaching post at Quebec, then Montreal and New York, then the grammar school of the University of Virginia, where he also attended medical lectures; licensed in New Jersey in the spring of 1830 and practising at Newark and New York. THE LONGEST ATTESTED MIGRATION IN THE DATASET and a reminder that 'origin' for this population is often a chain."
+ },
+ "reason_for_coming": {
+  "value": "Confidence in the future of a new western town",
+  "confidence": "inferred",
+  "sources": [
+   "andreas_1884_v1"
+  ],
+  "note": "Andreas states the disposition rather than the decision: 'In the Doctor's unfailing confidence in the future of Chicago; in the unhesitating manner with which he embarked his means upon the then ebb-tide of the city's prosperity, he was a typical pioneer.' That is a characterisation written fifty years later, not a statement of why he came, and the grade says so."
+ },
+ "lives_at": {
+  "value": null,
+  "confidence": "reconstructed",
+  "note": "Not attested. Egan's Row on the Tremont block is his own building work and is later than the scene date's evidence; nothing places him in a house on 1 July 1835."
+ },
+ "works_at": {
+  "value": null,
+  "confidence": "reconstructed",
+  "note": "Not attested. This dataset holds no physician's office as a structure, which is itself a finding: the town had eight doctors at the end of 1833 and not one of their premises is in data/structures/."
+ },
+ "present_on_scene_date": {
+  "value": "present",
+  "confidence": "inferred",
+  "sources": [
+   "andreas_1884_v1"
+  ],
+  "note": "On the town's health committee from August 1834 and orating at the canal ground-breaking in July 1836; no absence is recorded between."
+ },
+ "persons": [
+  {
+   "id": "egan_william_b",
+   "name": "Dr William Bradshaw Egan",
+   "relationship": "head",
+   "grade": "attested",
+   "sex": "male",
+   "birth_year": {
+    "value": 1808,
+    "confidence": "attested",
+    "sources": [
+     "andreas_1884_v1"
+    ],
+    "note": "28 September 1808."
+   },
+   "age_on_scene_date": {
+    "value": 26,
+    "confidence": "attested",
+    "sources": [
+     "andreas_1884_v1"
+    ],
+    "note": "26 on 1 July 1835."
+   },
+   "occupation": {
+    "value": "physician",
+    "confidence": "attested",
+    "sources": [
+     "andreas_1884_v1"
+    ],
+    "note": "One of the eight physicians Andreas counts at the close of 1833. He studied surgery and medicine in Lancashire under a Dr Maguire, attended lectures in Dublin and 'walked' the Dublin Lying-in Hospital, and was licensed by the medical board of New Jersey in the spring of 1830."
+   },
+   "sources": [
+    "andreas_1884_v1"
+   ],
+   "note": "BORN NEAR LAKE KILLARNEY, COUNTY KERRY, IRELAND, 28 SEPTEMBER 1808 - the best-documented foreign origin in the parcel. Andreas: 'In the fall of 1833 Dr. William Bradshaw Egan came to the city.' He was appointed to the health committee for the South Division on 22 August 1834 and delivered the oration when ground was broken for the Illinois & Michigan Canal on 4 July 1836. He bought the Tremont House block from General Beaubien and built five houses on it, known as Egan's Row - which is why a physician is also one of the town's builders."
+  },
+  {
+   "id": "egan_emeline",
+   "name": "Emeline Egan",
+   "relationship": "wife",
+   "grade": "attested",
+   "sex": "female",
+   "occupation": {
+    "value": "none_recorded",
+    "confidence": "reconstructed",
+    "note": "No source records an occupation for this person. This is the ABSENCE of a record rather than a claim that they did no work — the sources of 1835 name the occupations of household heads and almost never those of wives, children or the people counted with them."
+   },
+   "sources": [
+    "andreas_1884_v1"
+   ],
+   "note": "NAMED, DATED AND PLACED ON THE JOURNEY, which is rare. Andreas: 'On January 21, 1832, he was married to Miss Emeline Mahbutt, who accompanied the Doctor in his pilgrimage to this city.' The surname is printed 'Malib.tt' in the scanned text and is read here as Mahbutt; the reading is uncertain and the forename is not."
+  }
+ ],
+ "touches_removal": false,
+ "review_required": false,
+ "research_note": "AN IRISH DOCTOR WHO ARRIVED FOURTEEN MONTHS BEFORE THE HARBOUR MADE THE TOWN, and the record in this parcel that best answers K1's 'why they came' by refusing to answer it. Every stage of his journey from Kerry is documented; the motive for the last leg is not, and what stands in for it is a biographer's admiring sentence from 1884. THE GAP THIS HOUSEHOLD EXPOSES: eight physicians are documented in the 1833 town and this dataset contains no doctor's office, no apothecary's back room and no hospital outside the fort. That is a structures gap the residents layer has just made visible, which is what it is for."
 }

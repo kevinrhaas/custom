@@ -67,7 +67,19 @@
     "andreas_1884_v1",
     "kinzie_waubun_1856"
    ],
-   "note": "HE IS THE NAMED OCCUPANT THIS DATASET'S GOVERNMENT SMITHY HAS BEEN MISSING. data/structures/blacksmith_shop_state_st.json describes 'a building known only as a clause in other people's sentences' with an empty occupants field; McKee is the man in the clause. Andreas's list of the settlement's residents puts 'small log buildings occupied by the blacksmith, Mr. McKee, and Billy Caldwell' in the vicinity of Cobweb Castle, and he signed the 1832 militia agreement."
+   "note": "HE IS THE NAMED OCCUPANT THIS DATASET'S GOVERNMENT SMITHY HAS BEEN MISSING. data/structures/blacksmith_shop_state_st.json describes 'a building known only as a clause in other people's sentences' with an empty occupants field; McKee is the man in the clause. Andreas's list of the settlement's residents puts 'small log buildings occupied by the blacksmith, Mr. McKee, and Billy Caldwell' in the vicinity of Cobweb Castle, and he signed the 1832 militia agreement.",
+   "resident_research": {
+    "programme": "resident-research-2026",
+    "ticket": "T-0478",
+    "outcome": "no_corroboration_yet",
+    "reviewed_on": "",
+    "asserted_identity": false,
+    "evidence_for": "Early Chicago histories independently identify David McKee as the government/agency blacksmith near the foot of State Street. The occupation and institutional role are distinctive enough to corroborate the resident record, while the exact July 1835 workplace continuity is not extended beyond the sources.",
+    "notes": "Early Chicago histories independently identify David McKee as the government/agency blacksmith near the foot of State Street. The occupation and institutional role are distinctive enough to corroborate the resident record, while the exact July 1835 workplace continuity is not extended beyond the sources.",
+    "source_ids": [
+     "goodman_history_cook_county_early"
+    ]
+   }
   }
  ],
  "touches_removal": true,

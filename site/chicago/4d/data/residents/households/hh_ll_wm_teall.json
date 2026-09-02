@@ -50,7 +50,7 @@
    "id": "ll_wm_teall",
    "name": "Wm. Teall",
    "relationship": "head",
-   "grade": "attested",
+   "grade": "inferred",
    "letter_list_only": true,
    "letter_list_returns": [
     "1834-04-01"
@@ -63,7 +63,39 @@
    "sources": [
     "chicago_democrat_1833_1835"
    ],
-   "note": "KNOWN ONLY FROM THE POST OFFICE, IN ONE RETURN. The papers print 'Wm. Teall i 1 Lot Has' in a single return of letters uncalled-for at the Chicago post office — the Democrat of 1 April 1834, column 2 — dated 1834-04-01. Nothing else in the corpus names this person: no trade, no street, no household, no arrival, so every other claim here is written unattested in its own block. WHAT THAT IS WORTH: a correspondent believed a person of this name reachable at Chicago on that date, and nothing further — not that they lived here, kept a trade here, or were here on 1 July 1835. It is the weakest evidence this project accepts for a resident, and a source placing them elsewhere retires the record. THE ARGUMENT EVERY RECORD OF THIS KIND SHARES is written once instead of once per file: the ruling of 2026-08-30 and what it cost the town (docs/LIBERTIES.md L214), the refusals and the transcription standard behind the reading (tools/mint_letter_list_residents.py). No figure is drawn (L1)."
+   "note": "PROJECTED RESIDENT. Documented in Chicago post-office evidence but not independently corroborated strongly enough for attested circa-1835 residence. KNOWN ONLY FROM THE POST OFFICE, IN ONE RETURN. The papers print 'Wm. Teall i 1 Lot Has' in a single return of letters uncalled-for at the Chicago post office — the Democrat of 1 April 1834, column 2 — dated 1834-04-01. Nothing else in the corpus names this person: no trade, no street, no household, no arrival, so every other claim here is written unattested in its own block. WHAT THAT IS WORTH: a correspondent believed a person of this name reachable at Chicago on that date, and nothing further — not that they lived here, kept a trade here, or were here on 1 July 1835. It is the weakest evidence this project accepts for a resident, and a source placing them elsewhere retires the record. THE ARGUMENT EVERY RECORD OF THIS KIND SHARES is written once instead of once per file: the ruling of 2026-08-30 and what it cost the town (docs/LIBERTIES.md L214), the refusals and the transcription standard behind the reading (tools/mint_letter_list_residents.py). No figure is drawn (L1).",
+   "resident_research": {
+    "programme": "resident-research-2026",
+    "ticket": "T-0486",
+    "outcome": "candidate_identity",
+    "reviewed_on": "2026-09-02",
+    "asserted_identity": false,
+    "evidence_for": "Michigan City history records William Teall arriving in 1834, licensed May 13 to vend merchandise, and listed as a Michigan Township resident.",
+    "evidence_against": "The Chicago waiting letter is dated April 1, 1834 and no source directly identifies the Chicago addressee with the Michigan City merchant.",
+    "summary": "Michigan City history records William Teall arriving in 1834, receiving a May 13 license to vend merchandise and appearing among Michigan Township residents. The exact name, target year and Great Lakes geography make a useful candidate for the April 1834 Chicago waiting letter, but no direct source bridges the two records.",
+    "notes": "plausible Great Lakes transit; candidate only",
+    "source_ids": [
+     "chicago_democrat_1833_1835",
+     "michigan_city_history_william_teall"
+    ],
+    "candidate_ids": [
+     "cand_william_teall_michigan_city"
+    ],
+    "candidates": [
+     {
+      "id": "cand_william_teall_michigan_city",
+      "asserted": false,
+      "basis": "Exact name, merchant activity and target-year Great Lakes chronology.",
+      "conflicts": [
+       "The Chicago waiting letter is dated April 1, 1834; the Michigan City merchant license is May 13 and no source explicitly identifies the addressee with the merchant."
+      ],
+      "sources": [
+       "michigan_city_history_william_teall"
+      ]
+     }
+    ]
+   },
+   "resident_subtype": "projected_resident"
   }
  ],
  "touches_removal": false,

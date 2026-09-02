@@ -68,7 +68,20 @@
     "andreas_1884_v1",
     "chicago_democrat_1833_11_26"
    ],
-   "note": "A SECOND, INDEPENDENTLY ATTESTED OCCUPANT OF THE DEMOCRAT'S OWN JUNCTION in the same issue of the same paper - which is why this project reads the printing office and the new store as sharing a building. Andreas's 1835 town officers list has a 'W. Kimball' among the nine trustees elected at the third town election of July 1835, and if that is this man he holds office on or about the scene date. THE IDENTIFICATION IS NOT MADE HERE: the surname is common in this record, and this project already keeps a separate Kimball (Dr E. S. Kimberly's partner is Pruyne, but a druggist 'Kimball & Porter' occupied the same corner later, and Andreas spells both Kimball and Kimberly loosely). The Chicago Democrat of 26 November 1833 is the only contemporary Chicago document this project holds; an advertiser in it was paying to be found, which makes it strong evidence of existence and address in November 1833 and weak evidence of survival to 1 July 1835, nineteen months and about 2,400 people later."
+   "note": "A SECOND, INDEPENDENTLY ATTESTED OCCUPANT OF THE DEMOCRAT'S OWN JUNCTION in the same issue of the same paper - which is why this project reads the printing office and the new store as sharing a building. Andreas's 1835 town officers list has a 'W. Kimball' among the nine trustees elected at the third town election of July 1835, and if that is this man he holds office on or about the scene date. THE IDENTIFICATION IS NOT MADE HERE: the surname is common in this record, and this project already keeps a separate Kimball (Dr E. S. Kimberly's partner is Pruyne, but a druggist 'Kimball & Porter' occupied the same corner later, and Andreas spells both Kimball and Kimberly loosely). The Chicago Democrat of 26 November 1833 is the only contemporary Chicago document this project holds; an advertiser in it was paying to be found, which makes it strong evidence of existence and address in November 1833 and weak evidence of survival to 1 July 1835, nineteen months and about 2,400 people later.",
+   "resident_research": {
+    "programme": "resident-research-2026",
+    "ticket": "T-0479",
+    "outcome": "corroborated_enrichment",
+    "reviewed_on": "2026-09-02",
+    "asserted_identity": true,
+    "evidence_for": "The project's 26 November 1833 Chicago Democrat source records W. Kimball's New Store at the South Water/Clark junction. The unusual initial-plus-surname form matches the resident record and strengthens the merchant identity, but does not safely expand the initial or prove scene-date occupancy.",
+    "summary": "The project's 26 November 1833 Chicago Democrat source records W. Kimball's New Store at the South Water/Clark junction. The unusual initial-plus-surname form matches the resident record and strengthens the merchant identity, but does not safely expand the initial or prove scene-date occupancy.",
+    "notes": "The project's 26 November 1833 Chicago Democrat source records W. Kimball's New Store at the South Water/Clark junction. The unusual initial-plus-surname form matches the resident record and strengthens the merchant identity, but does not safely expand the initial or prove scene-date occupancy.",
+    "source_ids": [
+     "chicago_democrat_1833_11_26"
+    ]
+   }
   }
  ],
  "touches_removal": false,

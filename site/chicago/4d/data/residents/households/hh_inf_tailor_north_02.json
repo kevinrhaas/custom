@@ -1,7 +1,7 @@
 {
  "id": "hh_inf_tailor_north_02",
- "name": "The Eels household — a documented tailor, inferred at this roof (north division)",
- "division": "north",
+ "name": "Evidence-only household — Thomas S. Eels",
+ "division": "unplaced",
  "head": "inf_tailor_north_02",
  "arrival": {
   "value": "1834-07-23",
@@ -28,17 +28,14 @@
   "note": "Not claimed for the person. The reason the HOUSEHOLD is in the dataset is the trade argument in research_note, which is a statement about the town and not about a motive."
  },
  "lives_at": {
-  "value": "recon_1835_north_d6_044",
+  "value": null,
   "confidence": "reconstructed",
-  "sources": [
-   "owner_chicago_1835_reconstruction_spec_2026"
-  ],
-  "note": "THE HOUSEHOLD IS HOUSED, WHICH IS THE POINT OF THE LAYER. recon_1835_north_d6_044 is an anonymous reconstructed roof already standing on the plat, adopted rather than duplicated: its existence, position and footprint stay conjectural and the adoption adds only the occupant argument. Which roof of the right family and district a hypothesised household occupies is not evidence about that roof; the household needed a dwelling and the programme assigned it one."
+  "note": "T-0489: former dwelling assignment came from the retired reconstructed-household programme; real resident retained unplaced."
  },
  "works_at": {
   "value": null,
   "confidence": "reconstructed",
-  "note": "NO SEPARATE WORKPLACE. A tailor in this town worked in other people's buildings, in the street, or in the dwelling itself, and inventing a shop for the sake of a link would be inventing a building."
+  "note": "T-0489: no workplace is assigned from a reconstructed household; later placement requires evidence."
  },
  "present_on_scene_date": {
   "value": "present",
@@ -67,5 +64,5 @@
  ],
  "touches_removal": false,
  "review_required": false,
- "research_note": "RECONSTRUCTED HOUSEHOLD - second of 2 tailor households in this layer, in the north division. The same argument as the shoemaker at the smaller count a frontier town supports: ready-made clothing was a store trade and tailoring a bespoke one. Two households. METHOD: the count comes from the occupation census in data/reconstruction/1835_inferred_household_programme.json, which calibrates every trade against three things this project already holds - the 1835 town census (3,265 people, 398 dwellings), Andreas's roster of the fall of 1833 (about fifty named people, most with a trade, in a settlement of some 350), and the reconstruction specification's roof schedule, whose workshop and store family targets are treated as the ceiling on a trade rather than as its measure. Every count is stated NET of the documented layer: this dataset infers a tradesman only where it cannot name one.\n\nRETIRED AN INVENTED NAME (T-0264). This household was raised by the occupation census and named from the invented-name pools. The newspaper register matched it to Thomas S. Eels, a documented tailor the corpus names 2 time(s) and places nowhere in particular, and he now holds the roof. What changed is WHO: the argument for the household, its dwelling and its position are untouched and still the reconstruction's, and the person's grade is `inferred` — a real man with reconstructed details — rather than `attested`, which would claim the dwelling too. tools/replace_invented_residents.py derives this deal and prints every candidate it refused."
+ "research_note": "RECONSTRUCTED HOUSEHOLD - second of 2 tailor households in this layer, in the north division. The same argument as the shoemaker at the smaller count a frontier town supports: ready-made clothing was a store trade and tailoring a bespoke one. Two households. METHOD: the count comes from the occupation census in data/reconstruction/1835_inferred_household_programme.json, which calibrates every trade against three things this project already holds - the 1835 town census (3,265 people, 398 dwellings), Andreas's roster of the fall of 1833 (about fifty named people, most with a trade, in a settlement of some 350), and the reconstruction specification's roof schedule, whose workshop and store family targets are treated as the ceiling on a trade rather than as its measure. Every count is stated NET of the documented layer: this dataset infers a tradesman only where it cannot name one.\n\nRETIRED AN INVENTED NAME (T-0264). This household was raised by the occupation census and named from the invented-name pools. The newspaper register matched it to Thomas S. Eels, a documented tailor the corpus names 2 time(s) and places nowhere in particular, and he now holds the roof. What changed is WHO: the argument for the household, its dwelling and its position are untouched and still the reconstruction's, and the person's grade is `inferred` — a real man with reconstructed details — rather than `attested`, which would claim the dwelling too. tools/replace_invented_residents.py derives this deal and prints every candidate it refused. T-0489: reconstructed occupancy retired; evidence-based person retained and unplaced."
 }

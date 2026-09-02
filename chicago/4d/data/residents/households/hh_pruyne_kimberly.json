@@ -6,13 +6,28 @@
  "arrival": {
   "value": "1832",
   "confidence": "attested",
-  "sources": ["andreas_1884_v1", "history_medicine_chicago_kimberly_maxwell"],
+  "sources": [
+   "andreas_1884_v1",
+   "history_medicine_chicago_kimberly_maxwell"
+  ],
   "note": "Kimberly's year is independently stated as 1832. Pruyne's own arrival is dated only by his shop - 'early in 1833' - and the household takes the earlier of the two because that is when it first existed in the town.",
   "precision": "year"
  },
- "party_size_on_arrival": {"value": null, "confidence": "reconstructed", "note": "Not attested."},
- "origin": {"value": null, "confidence": "reconstructed", "note": "Not attested."},
- "reason_for_coming": {"value": null, "confidence": "reconstructed", "note": "Not attested."},
+ "party_size_on_arrival": {
+  "value": null,
+  "confidence": "reconstructed",
+  "note": "Not attested."
+ },
+ "origin": {
+  "value": null,
+  "confidence": "reconstructed",
+  "note": "Not attested."
+ },
+ "reason_for_coming": {
+  "value": null,
+  "confidence": "reconstructed",
+  "note": "Not attested."
+ },
  "lives_at": {
   "value": null,
   "confidence": "reconstructed",
@@ -21,13 +36,19 @@
  "works_at": {
   "value": "pruyne_kimball_drugstore",
   "confidence": "inferred",
-  "sources": ["andreas_1884_v1", "history_medicine_chicago_kimberly_maxwell"],
+  "sources": [
+   "andreas_1884_v1",
+   "history_medicine_chicago_kimberly_maxwell"
+  ],
   "note": "The partnership is documented; that it was trading on 1 July 1835 specifically is the inference, since the retrospective sources do not supply a transaction on that exact day."
  },
  "present_on_scene_date": {
   "value": "present",
   "confidence": "inferred",
-  "sources": ["andreas_1884_v1", "history_medicine_chicago_kimberly_maxwell"],
+  "sources": [
+   "andreas_1884_v1",
+   "history_medicine_chicago_kimberly_maxwell"
+  ],
   "note": "Pruyne is married at Chicago on 20 August 1835, seven weeks after the scene date; Kimberly is continuously in the town's medical and public life through this period."
  },
  "persons": [
@@ -40,11 +61,29 @@
    "occupation": {
     "value": "druggist",
     "confidence": "attested",
-    "sources": ["andreas_1884_v1", "history_medicine_chicago_kimberly_maxwell"],
+    "sources": [
+     "andreas_1884_v1",
+     "history_medicine_chicago_kimberly_maxwell"
+    ],
     "note": "Early in 1833 Peter Pruyne and Edmund Stoughton Kimberly opened Chicago's second drug store."
    },
-   "sources": ["andreas_1884_v1", "history_medicine_chicago_kimberly_maxwell"],
-   "note": "Andreas adds a dated domestic fact in a footnote: on August 20, 1835 Peter Pruyne married Rebecca, only daughter of Silas W. Sherman. That is seven weeks after the scene date, so on July 1 Rebecca Sherman is not silently added to this business household."
+   "sources": [
+    "andreas_1884_v1",
+    "history_medicine_chicago_kimberly_maxwell"
+   ],
+   "note": "Andreas adds a dated domestic fact in a footnote: on August 20, 1835 Peter Pruyne married Rebecca, only daughter of Silas W. Sherman. That is seven weeks after the scene date, so on July 1 Rebecca Sherman is not silently added to this business household.",
+   "resident_research": {
+    "programme": "resident-research-2026",
+    "ticket": "T-0478",
+    "outcome": "no_corroboration_yet",
+    "reviewed_on": "",
+    "asserted_identity": false,
+    "evidence_for": "Medical/pharmaceutical histories independently identify Peter Pruyne and Edmund Stoughton Kimberly as operators of Chicago's second drug store from early 1833. The business partnership strengthens Pruyne's profile but does not by itself establish a dwelling.",
+    "notes": "Medical/pharmaceutical histories independently identify Peter Pruyne and Edmund Stoughton Kimberly as operators of Chicago's second drug store from early 1833. The business partnership strengthens Pruyne's profile but does not by itself establish a dwelling.",
+    "source_ids": [
+     "history_medicine_chicago_kimberly_maxwell"
+    ]
+   }
   },
   {
    "id": "kimberly_edmund_s",
@@ -55,23 +94,45 @@
    "birth_year": {
     "value": 1803,
     "confidence": "attested",
-    "sources": ["history_medicine_chicago_kimberly_maxwell"],
+    "sources": [
+     "history_medicine_chicago_kimberly_maxwell"
+    ],
     "note": "T-0478 replaces the age-at-death arithmetic with an explicit biographical date: Edmund Stoughton Kimberly was born at Troy, New York, April 7, 1803."
    },
    "age_on_scene_date": {
     "value": 32,
     "confidence": "attested",
-    "sources": ["history_medicine_chicago_kimberly_maxwell"],
+    "sources": [
+     "history_medicine_chicago_kimberly_maxwell"
+    ],
     "note": "Born April 7, 1803, so he was 32 on July 1, 1835."
    },
    "occupation": {
     "value": "physician",
     "confidence": "attested",
-    "sources": ["andreas_1884_v1", "history_medicine_chicago_kimberly_maxwell"],
+    "sources": [
+     "andreas_1884_v1",
+     "history_medicine_chicago_kimberly_maxwell"
+    ],
     "note": "Kimberly moved to Chicago in 1832, practiced medicine, and was the other half of the town's second drug store."
    },
-   "sources": ["andreas_1884_v1", "history_medicine_chicago_kimberly_maxwell"],
-   "note": "T-0478 adds exact birth data and independent biography: born April 7, 1803 at Troy, New York; Union College graduate; medical training in New York; married Marie Theresa Ellis May 16, 1829; moved to Chicago in 1832. He was clerk of the August 5, 1833 incorporation meeting and one of the first town trustees."
+   "sources": [
+    "andreas_1884_v1",
+    "history_medicine_chicago_kimberly_maxwell"
+   ],
+   "note": "T-0478 adds exact birth data and independent biography: born April 7, 1803 at Troy, New York; Union College graduate; medical training in New York; married Marie Theresa Ellis May 16, 1829; moved to Chicago in 1832. He was clerk of the August 5, 1833 incorporation meeting and one of the first town trustees.",
+   "resident_research": {
+    "programme": "resident-research-2026",
+    "ticket": "T-0478",
+    "outcome": "no_corroboration_yet",
+    "reviewed_on": "",
+    "asserted_identity": false,
+    "evidence_for": "Chicago medical history expands Edmund Stoughton Kimberly with an exact birth date of April 7, 1803, medical education, 1829 marriage, 1832 move to Chicago, 1833 town-trustee service and 1834 cholera-hospital authorization. These are independent discriminators beyond surname or household association.",
+    "notes": "Chicago medical history expands Edmund Stoughton Kimberly with an exact birth date of April 7, 1803, medical education, 1829 marriage, 1832 move to Chicago, 1833 town-trustee service and 1834 cholera-hospital authorization. These are independent discriminators beyond surname or household association.",
+    "source_ids": [
+     "history_medicine_chicago_kimberly_maxwell"
+    ]
+   }
   }
  ],
  "touches_removal": false,

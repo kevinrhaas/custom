@@ -75,7 +75,16 @@
     "andreas_1884_v1",
     "drloih_hotels"
    ],
-   "note": "Both sources have him building and operating the house, and he came to Chicago about 1833, so he is present at the scene date on either build date this project holds for the Western. Andreas's later city rosters carry a William H. Stow as an alderman in 1839, which corroborates the man's continuing residence and says nothing about 1835."
+   "note": "Both sources have him building and operating the house, and he came to Chicago about 1833, so he is present at the scene date on either build date this project holds for the Western. Andreas's later city rosters carry a William H. Stow as an alderman in 1839, which corroborates the man's continuing residence and says nothing about 1835.",
+   "resident_research": {
+    "programme": "resident-research-2026",
+    "ticket": "T-0478",
+    "outcome": "no_corroboration_yet",
+    "reviewed_on": "",
+    "asserted_identity": false,
+    "evidence_for": "No reliable record found in the reviewed repository reference corpus, contemporary newspaper searches, institutional/local histories, directories and regional genealogy/index searches could be tied to this person by more than the recorded name. This is a documented no-find, not evidence that the person did not exist.",
+    "notes": "No reliable record found in the reviewed repository reference corpus, contemporary newspaper searches, institutional/local histories, directories and regional genealogy/index searches could be tied to this person by more than the recorded name. This is a documented no-find, not evidence that the person did not exist."
+   }
   }
  ],
  "touches_removal": false,

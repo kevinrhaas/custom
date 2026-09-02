@@ -69,7 +69,16 @@
    "sources": [
     "andreas_1884_v1"
    ],
-   "note": "THE MAN WHO BUILT THE ONLY BRIDGE TEAMS COULD CROSS. Andreas: the log bridge across the South Branch between Randolph and Lake 'was, prior to 1834, the only bridge across the river or its branches over which teams could pass', and its total cost was $486.20, 'of which sum the Pottawatomie Indians contributed $200'. That last clause is a documented fact about who paid for the town's first serious piece of infrastructure and it is recorded here because it belongs to the population question as much as to the bridge."
+   "note": "THE MAN WHO BUILT THE ONLY BRIDGE TEAMS COULD CROSS. Andreas: the log bridge across the South Branch between Randolph and Lake 'was, prior to 1834, the only bridge across the river or its branches over which teams could pass', and its total cost was $486.20, 'of which sum the Pottawatomie Indians contributed $200'. That last clause is a documented fact about who paid for the town's first serious piece of infrastructure and it is recorded here because it belongs to the population question as much as to the bridge.",
+   "resident_research": {
+    "programme": "resident-research-2026",
+    "ticket": "T-0478",
+    "outcome": "no_corroboration_yet",
+    "reviewed_on": "",
+    "asserted_identity": false,
+    "evidence_for": "No reliable record found in the reviewed repository reference corpus, contemporary newspaper searches, institutional/local histories, directories and regional genealogy/index searches could be tied to this person by more than the recorded name. This is a documented no-find, not evidence that the person did not exist.",
+    "notes": "No reliable record found in the reviewed repository reference corpus, contemporary newspaper searches, institutional/local histories, directories and regional genealogy/index searches could be tied to this person by more than the recorded name. This is a documented no-find, not evidence that the person did not exist."
+   }
   },
   {
    "id": "taylor_charles",
@@ -88,7 +97,17 @@
    "sources": [
     "andreas_1884_v1"
    ],
-   "note": "ONE OF THE TWENTY-EIGHT ELECTORS OF 10 AUGUST 1833, listed by Andreas as 'Charles Taylor'. This project's wolf_point_tavern record has 'Charles and Mary Taylor' keeping that house from 1831 to 1833, which would make him a tavern keeper before he was anything else and gives him a named wife; the identification is not made here because the Taylor surname is carried by at least four distinct men in this parcel's sources and merging them on a forename would be exactly the error the Isaac Harmon case was avoided for."
+   "note": "ONE OF THE TWENTY-EIGHT ELECTORS OF 10 AUGUST 1833, listed by Andreas as 'Charles Taylor'. This project's wolf_point_tavern record has 'Charles and Mary Taylor' keeping that house from 1831 to 1833, which would make him a tavern keeper before he was anything else and gives him a named wife; the identification is not made here because the Taylor surname is carried by at least four distinct men in this parcel's sources and merging them on a forename would be exactly the error the Isaac Harmon case was avoided for.",
+   "resident_research": {
+    "programme": "resident-research-2026",
+    "ticket": "T-0479",
+    "outcome": "no_corroboration",
+    "reviewed_on": "2026-09-02",
+    "asserted_identity": false,
+    "evidence_for": "The exact-name and variant sweep surfaced several later Charles H. Taylor records but no dated Chicago/Cook County discriminator that safely separates this resident from namesakes. No marriage, occupation or household fact is promoted.",
+    "summary": "The exact-name and variant sweep surfaced several later Charles H. Taylor records but no dated Chicago/Cook County discriminator that safely separates this resident from namesakes. No marriage, occupation or household fact is promoted.",
+    "notes": "The exact-name and variant sweep surfaced several later Charles H. Taylor records but no dated Chicago/Cook County discriminator that safely separates this resident from namesakes. No marriage, occupation or household fact is promoted."
+   }
   }
  ],
  "touches_removal": false,

@@ -66,7 +66,19 @@
    "sources": [
     "andreas_1884_v1"
    ],
-   "note": "THE ONLY TEACHER IN THIS PARCEL DOCUMENTED AT WORK IN THE SCENE YEAR ITSELF, and the only person in it who contradicts Andreas in his own book. Of the purpose-built schoolhouse Andreas says 'it is stated in Mr. Wells's report that these gentlemen afterwards built a house on the north bank of the river, just east of Clark Street, in which Mr. Watkins continued his school, and that it was the first house built for a school in Chicago. But this does not recur to Mr. Watkins's recollection.' Watkins wrote to the Calumet Club from Joliet in later life and Andreas quotes him directly on his first quarter: thirty scholars subscribed for but only twelve attending, 'only four of them were white: the others were quarter, half, and three-quarters Indians', and after the first quarter he moved the school into a double log house on the West Side owned by the Rev. Jesse Walker, who lived in one end while Watkins taught in the other and preached in the schoolroom on Sundays. Andreas vol. 1, printed p. 132 (scan p. 281), 'an imperfect list of the denizens of the town in the fall of 1833, not before named' - a name, a trade and usually an arrival year, compiled fifty years after the fact. It is the densest population passage this project holds and it is a retrospective, so a YEAR off it is documented and a MONTH is not."
+   "note": "THE ONLY TEACHER IN THIS PARCEL DOCUMENTED AT WORK IN THE SCENE YEAR ITSELF, and the only person in it who contradicts Andreas in his own book. Of the purpose-built schoolhouse Andreas says 'it is stated in Mr. Wells's report that these gentlemen afterwards built a house on the north bank of the river, just east of Clark Street, in which Mr. Watkins continued his school, and that it was the first house built for a school in Chicago. But this does not recur to Mr. Watkins's recollection.' Watkins wrote to the Calumet Club from Joliet in later life and Andreas quotes him directly on his first quarter: thirty scholars subscribed for but only twelve attending, 'only four of them were white: the others were quarter, half, and three-quarters Indians', and after the first quarter he moved the school into a double log house on the West Side owned by the Rev. Jesse Walker, who lived in one end while Watkins taught in the other and preached in the schoolroom on Sundays. Andreas vol. 1, printed p. 132 (scan p. 281), 'an imperfect list of the denizens of the town in the fall of 1833, not before named' - a name, a trade and usually an arrival year, compiled fifty years after the fact. It is the densest population passage this project holds and it is a retrospective, so a YEAR off it is documented and a MONTH is not.",
+   "resident_research": {
+    "programme": "resident-research-2026",
+    "ticket": "T-0478",
+    "outcome": "no_corroboration_yet",
+    "reviewed_on": "",
+    "asserted_identity": false,
+    "evidence_for": "Cook County education history specifically says John Watkins taught a successful school in Chicago in 1835; another early account says he was again on the North Side that year. This independently corroborates occupation and scene-year presence.",
+    "notes": "Cook County education history specifically says John Watkins taught a successful school in Chicago in 1835; another early account says he was again on the North Side that year. This independently corroborates occupation and scene-year presence.",
+    "source_ids": [
+     "goodman_history_cook_county_early"
+    ]
+   }
   }
  ],
  "touches_removal": false,
