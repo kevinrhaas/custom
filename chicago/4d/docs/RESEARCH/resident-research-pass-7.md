@@ -1,11 +1,13 @@
 # T-0481 — Seventh resident-research cohort (75)
 
-Status: **queued for research** · manifest frozen 2026-09-02
+Status: **research complete** · reviewed 2026-09-02
 
-This planning branch reserves 75 real named, non-reconstructed residents from the remaining letter-list-only pool: 37 scene-date names and 38 earlier/uncertain names. Passes 1–5 reserve 375 IDs; this cohort raises the reserved total to 450. The seven continuation groups together exhaust the 461 eligible named letter-list-only people.
+The frozen manifest contains 75 named, non-reconstructed letter-list residents: 37 scene-date names and 38 earlier/uncertain names. All 75 now have dated outcomes and the findings ledger contains zero pending IDs.
 
-The manifest is deterministic and non-overlapping: remaining person IDs are sorted within the present/uncertain strata, interleaved, and chunked in fixed order. It excludes reconstructed records, hypothesised inf_* records, unnamed/count placeholders and every ID reserved by the pilot or passes 2–5. Do not infer heritage, immigration origin, kinship, marriage, occupation, address or residence from a surname or a weak same-name match.
+Outcome summary: **1 corroborated enrichment, 8 candidate identities/competing regional matches, 66 documented no-corroboration outcomes, 0 pending**.
 
-The findings ledger starts every member as **pending**, not as a no-find. The research run must search the repository corpus and the strongest available primary, institutional and local-history sources; retain queries, URLs/source IDs, access date, source tier, candidate duplicates, conflicts and negative searches. Promote only evidence that resolves the person, date and Chicago/Cook County connection, and make no silent household edits.
+The strongest independent corroboration is Samuel Jackson: Cook County history identifies his June 1833 Chicago arrival and work as foreman of harbor construction. Candidate findings deliberately retain conflicting geography, including St. Charles, DuPage, Aurora, Dearborn/Detroit, Will County, Palos and La Salle evidence, rather than silently turning regional same-name records into Chicago households.
 
-This is a planning scaffold. The completion PR must add dated outcomes for all 75 members, source-ledger records and any justified candidate/household provenance, then run the relevant checks and update the cumulative research/status references before merge.
+Durable handoff: `chicago/reference/resident-research/T-0481/` with XLSX, CSV and README plus completed `pass_07_findings.json` and source records. No broad canonical household edits are made here; T-0487/T-0488 remain responsible for adjudication and provenance-preserving promotion.
+
+Cumulative reviewed total after this cohort: **525**.
