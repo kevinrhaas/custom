@@ -20,7 +20,9 @@ jobs:
           sparse-checkout: |
             .github/workflows
             chicago/4d
+            chicago/reference/resident-research
             chicago/reference/census1840/validation
+            site/chicago/4d
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
