@@ -16,6 +16,13 @@ jobs:
         with:
           ref: research/T-0479-chatgpt-a7c4f2
           fetch-depth: 1
+          sparse-checkout: |
+            .github/workflows
+            chicago/4d/tools/ticket.mjs
+            chicago/4d/tools/publish.sh
+            chicago/4d/tickets
+            site/chicago/4d/tickets.json
+          sparse-checkout-cone-mode: false
 
       - name: Claim T-0479 with repository tooling
         run: |
