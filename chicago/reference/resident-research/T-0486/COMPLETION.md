@@ -1,0 +1,1 @@
+Completion state is represented by the cohort README, CSV/XLSX package, completed pass_12_findings.json, source records, research note, and closed ticket. No canonical resident facts are promoted in this branch.
