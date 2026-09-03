@@ -1,4 +1,11 @@
 export const CHANGELOG = [ // newest first
+  { v: 451, title: 'Nothing you can see: the gate stops asking for people who left', kind: 'fix', ts: '2026-09-03T12:27:23.925Z', date: 'Sep 3, 2026, 7:27 AM CT',
+    items: [
+      'Nothing in the town changed. This is a repair to the checks that run before anything is allowed to ship, and it is here because those checks had been failing for a week for the wrong reason.',
+      'On 2 September this project retired a whole population of residents \u2014 people it had invented, with invented period names, to fill trades the town demonstrably needed. Twelve checks went on asking for them anyway. Every piece of work started since inherited the same twelve failures, which meant no release could show a clean run, and a real fault would have been lost among them.',
+      'Six of the twelve were counting. They held the size of the people layer as numbers typed in when they were written \u2014 how many households, how many people, how many research reviews \u2014 so the day those figures moved for a good reason, the checks called it a failure. They now read the figures out of the same published files your browser reads, and cross-check those files against themselves.',
+      'The other six described things that no longer exist. None was quietly deleted. Each one now asks after what replaced it, or checks that the retired thing really is gone \u2014 so if an invented name ever appears on a card again without a decision behind it, something says so.',
+    ] },
   { v: 450, title: 'John Miller\u2019s 1840 household, counted off the sheet', kind: 'fix', ts: '2026-09-03T11:42:47.617Z', date: 'Sep 3, 2026, 6:42 AM CT',
     items: [
       'One of this town\u2019s people carries a link to a household in the 1840 census, and the figures on his card came from a spreadsheet the owner has ruled lost. The photograph of that page has now been counted, column by column: 2 males and 3 females with 3 children under ten, where the lost list said 1 male and 4 females with 2 children. Five people either way, and not the same five.',
