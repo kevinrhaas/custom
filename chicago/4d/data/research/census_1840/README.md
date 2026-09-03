@@ -230,6 +230,66 @@ The inventory's figure is `lines_with_an_entry`; the difference is blank ruled l
 last household, which the page files **record as lines** rather than skip. Coverage now carries
 both numbers per image (`lines_with_an_entry` and `lines_ruled`).
 
+## Printed 229, 231 and 234 to the cell, and what the footings settle (T-0534)
+
+The three pages PR #670 also read — `33S7-9YYJ-9M5` (printed 229, 30 lines), `33S7-9YYJ-38`
+(231, 31) and `33S7-9YYJ-99F` (234, 31) — are now read to the cell. **110 of their 114 columns
+balance the enumerator's own footings and are committed**; the four that do not are named below
+and left unreconciled with their residuals stated.
+
+| printed page | image | lines | columns committed | free white males | free white females | free coloured |
+|---|---|---|---|---|---|---|
+| 229 | `33S7-9YYJ-9M5` | 30 | 36 of 38 | 70 read / 74 footed | 81 | 0 |
+| 231 | `33S7-9YYJ-38` | 31 | 37 of 38 | 83 | 71 | 0 |
+| 234 | `33S7-9YYJ-99F` | 31 | 37 of 38 | 104 | 77 read / 78 footed | 0 |
+
+All three sheets' free coloured sections are empty in all twelve columns, with no figure in any
+of the twelve footings — a swept-and-empty section, recorded rather than omitted.
+
+**Printed 229's line count is settled, and that was worth more than the cells.** The parent ticket
+put it this way: the sheet carries 30 ruled entries and #670 carries 31 rows for it, so at least
+one #670 row has no line to sit on, and the column totals are the independent test of which count
+is right. They are, and the answer is 30. There is no 31st ruled line: the foot rule and the
+totals row follow *Mrs Mary Owens* directly, with no ruled gap between them. And 36 of the 38
+footings close on a 30-line reading — including columns 5 and 18, the two heaviest on the page at
+31 and 24, which a missing household could not leave untouched. A 31st line would have to
+contribute to columns 1 and 6 alone, and column 6 is over by one, not under. **PR #670's 31st row
+for printed page 229 is not a household this sheet enumerates.**
+
+**The four columns that do not balance.**
+
+| page | column | read | footed | what it is |
+|---|---|---|---|---|
+| 229 | free white males Under 5 | 9 | 14 | six lines carry name-flourish ink inside column 1 |
+| 229 | free white males 30 under 40 | 8 | 7 | one of eight strokes is not the enumerator's |
+| 231 | free white females 5 under 10 | 9 | *blot* | the footing is an ink blot; 9 is its likeliest reading |
+| 234 | free white females 5 under 10 | 10 | 11 | line 17's mark carries a second stroke at the foot |
+
+Page 229's column 1 is the instructive one. Lines 16, 19, 22, 28, 29 and 30 each carry ink inside
+the first age band, and on every one of them it is continuous with the terminal flourish of the
+name written beside it. This pass judged all six to be flourish; the enumerator's own 14 says five
+of them are strokes. Neither reading is preferred here and both are recorded — but those six cells,
+named, are where the next reader starts, which is the whole reason for stating a residual instead
+of forcing a total.
+
+**Two readings the footings confirmed, which is what a check is for.** Printed 229 line 3 carries an
+**8** in free white males 20 under 30 — a figure the first pass could not tell from a 3, and column
+5 closes at 31 only with the eight in it. Printed 234 line 2 (*Geo. Shelley*) is the deposit's
+largest household so far — 7 males 20-30, 4 males 30-40, 6 females 20-30 and 4 females 30-40 — and
+all four of those columns close on their footings with those figures in them. A single line that
+large is a lodging house rather than a family, and it is the sort of thing T-0507's composition
+calibration will need to hold separately.
+
+**The grid has a LEAN, it is not the same lean twice, and that is now measured rather than assumed.**
+The 39 vertical rules are fitted off each image's own printed heading band and then re-fitted every
+250 px down the page, so the drift is read off the sheet instead of carried over. It runs **-30 px on
+`33S7-9YYJ-9M5` and +18 px on `33S7-9YYJ-38`** between heading and footing — up to half a column, and
+with the opposite sign on two images of the same book. T-0534's first reading of printed 231 was made
+on a grid borrowed from printed 229 and its bottom third had to be read again; one household's oldest
+man moved from *70 under 80* to *60 under 70* when the grid was measured rather than assumed. Any
+later pass that reads cells off these images should fit the lean per image, and `grid_note` on each
+page file says how.
+
 ## What has NOT been read yet, and where it is
 
 The age-band, free-coloured and industry cells are a column-by-column reading that has to
@@ -237,11 +297,12 @@ be checked against the **printed column totals at the foot of each sheet** befor
 be committed — 26 narrow columns of single strokes, where a mark one column off is a
 person of the wrong age. Committing a half-checked row would be worse than leaving it
 unread, so a page's `records[].cells` stays `null` with `cells_state: "not_read"` until that
-check is done. Five pages have had it: printed 230 and 232 (T-0530 — 62 households, every
+check is done. Eight pages have had it: printed 230 and 232 (T-0530 — 62 households, every
 age band and free coloured column read line by line, 73 of 76 footings reconciled exactly,
-the three that do not named on the page files) and printed 221, 222 and 226 (T-0532 — the
+the three that do not named on the page files), printed 221, 222 and 226 (T-0532 — the
 balance stated per column in the section above, 221 committed on 36 of 38 columns, 222 and
-226 committing nothing until their footers are re-read). On every other page here the cells
+226 committing nothing until their footers are re-read), and printed 229, 231 and 234
+(T-0534 — 110 of 114 columns committed, and printed 229's line count settled at 30). On every other page here the cells
 are still `not_read`, and those cells are their own ticket. The other images of both read groups are inventoried in
 `coverage.json` — kind, printed page, line count — and transcribed by the sibling tickets
 T-0494 and T-0495 were split into.
