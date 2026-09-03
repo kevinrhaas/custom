@@ -1,7 +1,7 @@
 ---
 id: T-0532
 title: The 1840 census images 1-25: names and cells of the left sheets printed 221, 222 and 226
-state: open
+state: claimed
 epic: META
 requested_by: owner
 seen: false
@@ -11,7 +11,7 @@ parent: T-0494
 opened: 2026-09-03
 closed: null
 pr: null
-claimed_by: null
+claimed_by: run 9/3/2026, 5:36:52 AM CT
 blocked_on: null
 needs_bake: false
 ---
