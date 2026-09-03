@@ -88,7 +88,6 @@ T-0533 — The 1840 census images 1-25: names and cells of the two short left sh
 T-0534 — The 1840 census images 1-25: the age-band, coloured and industry cells of printed pages 229, 231 and 234, checked against the sheets' own column totals
 T-0541 — The 1840 census images 1-25: continuation sheets 5V, 6H and 6Q read line by line and closed against their own printed column totals
 T-0539 — The 1840 census images 1-25: the other five continuation sheets — 8D, 9WS, B1, B2 and BF — and the left-sheet population key that pairs all eleven
-T-0530 — The 1840 census images 26-50: the age-band, coloured and industry cells of printed pages 230 and 232, checked against the sheets' own column totals
 T-0525 — The 1840 census images 26-50: names and cells of the left sheets printed 207, 208, 209 and 211
 T-0526 — The 1840 census images 26-50: names and cells of the left sheets printed 216, 217, 218 and 224
 T-0527 — The 1840 census images 26-50: names and cells of the left sheets printed 227, 239 and 241
@@ -326,3 +325,4 @@ T-0520 — The archetype builders compute their own opening rectangles beside th
 T-0536 — The census_1840 domain declares its 25 read images in its own images[] shape, which the shared research-domain gate does not read
 T-0537 — The web derivatives are stamped by an unpinned gltf-transform, so a release upstream restamps all 372 of them
 T-0542 — Andreas dates the third town election twice — July 1835 and 5 August 1835 — and which one the 1835 poll list is decides whether 85 men stood on the scene date
+T-0543 — The continuation half of printed pages 230 and 232 is on a right sheet nobody has identified, and it is not in images 26-50

@@ -1,4 +1,13 @@
 export const CHANGELOG = [ // newest first
+  { v: 450, title: 'John Miller\u2019s 1840 household, counted off the sheet', kind: 'fix', ts: '2026-09-03T11:42:47.617Z', date: 'Sep 3, 2026, 6:42 AM CT',
+    items: [
+      'One of this town\u2019s people carries a link to a household in the 1840 census, and the figures on his card came from a spreadsheet the owner has ruled lost. The photograph of that page has now been counted, column by column: 2 males and 3 females with 3 children under ten, where the lost list said 1 male and 4 females with 2 children. Five people either way, and not the same five.',
+      'Both readings are on his card. The sheet is the senior one \u2014 it is the record and the list is a memory of the record \u2014 but the link that put him on that line was built out of the list\u2019s row, so the card shows the disagreement rather than quietly picking a winner. The head of that line is written Jacob Miller on the page.',
+      'Behind it, the two calibration pages are read to the cell: all 62 households, 38 columns each \u2014 every age band, and the free coloured columns. The enumerator footed his own columns at the bottom of each sheet, and 73 of those 76 footings agree with the marks above them exactly.',
+      'The three that do not are named rather than tidied. Two of them cancel: on one page the footings put two girls in the wrong age band, and the page\u2019s total is 151 people whichever way you read it. The third does not cancel, and that page is 193 people by the marks and 195 by the footing.',
+      'What makes any of this safe is that the columns are narrow and a stroke read one column across is a person of the wrong age. The ruling on one sheet leans by a quarter of a column between its first line and its last, so the columns were found line by line rather than measured once.',
+      'None of it is a claim about 1835. A household in 1840 is five years after this scene and is never read backwards into it.',
+    ] },
   { v: 449, title: 'The other half of three 1840 census pages, read and checked', kind: 'fix', ts: '2026-09-03T11:34:32.467Z', date: 'Sep 3, 2026, 6:34 AM CT',
     items: [
       'Every household in the 1840 census is one ruled line written across two facing pages. The left page carries the names; the right page carries everything else \u2014 how many people were in the family, how many of them worked in commerce or a trade or on the canals, whether anyone in the house was a pensioner of the Revolution, how many children went to school. Only name pages had been read here. Three right-hand pages have now been read as well, line by line: ninety-one households, fifteen numeric columns each.',

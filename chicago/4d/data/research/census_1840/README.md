@@ -103,6 +103,43 @@ extrapolated back to 1835.
 swept-and-empty page is evidence, which is why coverage declares it rather than omitting
 it.
 
+## The cells, and what the sheet's own footings say about them
+
+Both calibration pages are now read to the cell. Every one of the 62 lines carries all 38
+columns of its left sheet — 13 free white male age bands, 13 free white female, 6 free
+coloured male and 6 free coloured female — as integers in the sheet's own order, under
+`records[].cells`. A blank cell on the schedule IS a zero and is recorded as one; no line
+was skipped and none is `illegible`.
+
+**How the columns were fixed, because it is the whole risk.** These are 38 narrow columns
+of single strokes and a mark read one column off is a person of the wrong age. The rules
+were located per line from the image's own darkness profile rather than from a fixed grid,
+which matters: the ruling on `33S7-9YYJ-NY` leans about 36 px between line 1 and line 31,
+so a grid measured in the middle of the sheet puts the top and bottom lines a quarter of a
+column out. Every column carrying a mark was then read a second time as a montage of its
+own 31 cells; that second pass is what caught four counting slips in the first.
+
+**The check is the enumerator's own arithmetic.** Each sheet foots its columns at the
+bottom, and `column_totals` states, per column, what the marks come to and what the footing
+says. On these two pages **73 of the 76 columns reconcile exactly**, and the three that do
+not are named rather than smoothed:
+
+| page | column | marks | the sheet's footing |
+|---|---|---|---|
+| 230 | free white females, 5 and under 10 | 15 | 13 |
+| 230 | free white females, 15 and under 20 | 3 | 5 |
+| 232 | free white males, 20 and under 30 | 33 | 35 |
+
+The two on page 230 **cancel**: 15 + 3 = 13 + 5, and the page's free white female total is
+70 whichever reading is taken, so the page's free population is 151 both ways. That is what
+a footing written into the wrong column looks like — but nothing on the sheet says so, and
+neither reading is preferred here. Page 232 has no such cancellation: its free population is
+193 by the marks and 195 by the footings.
+
+Page 230's free coloured section is empty in all 12 columns with no figure in any footing.
+Page 232 has four free coloured people, three of them on line 31 under a head this reading
+gives as `Emanuel M[o]nd[?]`, and its footings — 1, 2, 1 and 1 — reconcile exactly.
+
 ## The continuation sheets, and what closing one costs
 
 A continuation (right) sheet carries no name. It carries the other half of every household
@@ -199,10 +236,13 @@ The age-band, free-coloured and industry cells are a column-by-column reading th
 be checked against the **printed column totals at the foot of each sheet** before it can
 be committed — 26 narrow columns of single strokes, where a mark one column off is a
 person of the wrong age. Committing a half-checked row would be worse than leaving it
-unread. On the three pages T-0532 read — printed 221, 222 and 226 — the cells ARE read and
-the balance is stated per column in the section above; on every other page here
-`records[].cells` is still `null` with `cells_state: "not_read"`, and those cells are their
-own ticket. The other images of both read groups are inventoried in
+unread, so a page's `records[].cells` stays `null` with `cells_state: "not_read"` until that
+check is done. Five pages have had it: printed 230 and 232 (T-0530 — 62 households, every
+age band and free coloured column read line by line, 73 of 76 footings reconciled exactly,
+the three that do not named on the page files) and printed 221, 222 and 226 (T-0532 — the
+balance stated per column in the section above, 221 committed on 36 of 38 columns, 222 and
+226 committing nothing until their footers are re-read). On every other page here the cells
+are still `not_read`, and those cells are their own ticket. The other images of both read groups are inventoried in
 `coverage.json` — kind, printed page, line count — and transcribed by the sibling tickets
 T-0494 and T-0495 were split into.
 
@@ -210,3 +250,15 @@ One printed page number could not be read at all: `33S7-9YYJ-9MX` is a filled le
 whose top-right corner falls outside the exposure. It is recorded as `unknown` rather than
 inferred from the ids around it, because the sorted filename order is not the book order —
 this group alone runs 221, 231, 228, 206, 222, 234, 225, 219, 229, ?, 210, 215, 226, 238.
+
+The **continuation half** of these two households — the family TOTAL, the six industry
+columns, pensioners, and the schools and illiteracy columns — is on the paired right sheet,
+and which right sheet that is is not settled. It is not in this image group: no continuation
+sheet in images 26–50 foots a TOTAL of 193, and the only one footing 151 (`33SQ-GYYJ-9CZ`)
+carries a per-line total vector that does not match page 230's. `records[].cells.free_persons`
+is the fingerprint that settles it — a household is one ruled line spanning both sheets, so
+the right sheet's TOTAL column must equal it line for line. That pairing is T-0528's ticket
+and the continuation columns follow it.
+
+The other 23 images of this group are inventoried in `coverage.json` — kind, printed page,
+line count — and transcribed by the sibling tickets T-0495 was split into.

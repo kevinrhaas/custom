@@ -553,6 +553,21 @@ RESIDENTS_HOUSEHOLD_READS: dict[str, tuple[str, str]] = {
     "persons[].later_census.household.professions_engineering": ("shown", "['In a learned profession or engineering', hh.professions_engineering]"),
     "persons[].later_census.household.foreigners_not_naturalized": ("shown", "['Foreigners not naturalized', hh.foreigners_not_naturalized]"),
     "persons[].later_census.household.illiterate_over_21": ("shown", "['Over twenty-one and unable to read or write', hh.illiterate_over_21]"),
+    # And the same line read off the photograph of the sheet, shown beside the
+    # recovered figures rather than instead of them, with the sentence that says
+    # where the two disagree (T-0530).
+    "persons[].later_census.scan_verified.read_by": ("shown", "read by ${escapeHtml(scan.read_by)}"),
+    "persons[].later_census.scan_verified.sources": ("shown", "(scan.sources || []).map((id) => citationsById.get(id))"),
+    "persons[].later_census.scan_verified.image": ("shown", "From ${escapeHtml(scan.image)}"),
+    "persons[].later_census.scan_verified.line": ("shown", "Line ${escapeHtml(String(scan.line))}"),
+    "persons[].later_census.scan_verified.head_name_as_read": ("shown", "escapeHtml(scan.head_name_as_read)"),
+    "persons[].later_census.scan_verified.free_persons": ("shown", "['People on the line', scan.free_persons]"),
+    "persons[].later_census.scan_verified.males": ("shown", "['Male', scan.males]"),
+    "persons[].later_census.scan_verified.females": ("shown", "['Female', scan.females]"),
+    "persons[].later_census.scan_verified.children_under_10": ("shown", "['Children under ten', scan.children_under_10]"),
+    "persons[].later_census.scan_verified.age_bands": ("shown", "band by band: ${escapeHtml(scan.age_bands)}"),
+    "persons[].later_census.scan_verified.column_totals_check": ("shown", "escapeHtml(scan.column_totals_check)"),
+    "persons[].later_census.scan_disagreement": ("shown", "escapeHtml(census.scan_disagreement)"),
 }
 
 READS: dict[str, dict[str, tuple[str, str]]] = {

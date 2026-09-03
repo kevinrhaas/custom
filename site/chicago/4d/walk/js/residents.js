@@ -238,7 +238,48 @@ function laterCensusHtml(census, citationsById) {
       <br><span class="res-why">${escapeHtml(census.bridge_basis)}</span>
       ${tallies ? `<ul class="res-candidates">${tallies}</ul>` : ''}
       ${census.note ? `<span class="res-why">${escapeHtml(census.note)}</span>` : ''}
-      ${cite ? `<ol class="cites">${citationItems([cite])}</ol>` : ''}</dd>`;
+      ${cite ? `<ol class="cites">${citationItems([cite])}</ol>` : ''}</dd>
+    ${scanHtml(census, citationsById)}`;
+}
+
+/**
+ * The same line, read off the photograph of the sheet (T-0530).
+ *
+ * The block above it is a RECOVERY: 210 rows taken out of a workbook the owner
+ * has ruled lost, which cite no line on any page. Where the page has since been
+ * read — column by column, checked against the footings the enumerator wrote at
+ * the bottom of his own sheet — the two do not always agree, and on the one
+ * household this reaches they disagree about how many people in it were men.
+ *
+ * BOTH ARE SHOWN, and the sentence between them says which is senior and why.
+ * Replacing the recovered figures with the scan would have been tidier and would
+ * have destroyed the finding: the bridge that put this person on this line was
+ * built out of the workbook's row, so a card showing only the sheet would be
+ * quoting evidence the identification never rested on.
+ */
+function scanHtml(census, citationsById) {
+  const scan = census.scan_verified;
+  if (!scan) return '';
+  const cites = (scan.sources || []).map((id) => citationsById.get(id)).filter(Boolean);
+  const tallies = [
+    ['People on the line', scan.free_persons],
+    ['Male', scan.males],
+    ['Female', scan.females],
+    ['Children under ten', scan.children_under_10],
+  ].filter(([, n]) => Number.isFinite(n))
+    .map(([label, n]) => `<li>${escapeHtml(label)}: ${escapeHtml(String(n))}</li>`)
+    .join('');
+  return `<dt>Read again off the page itself</dt>
+    <dd>${swatch('attested')}Line ${escapeHtml(String(scan.line))} of the photographed sheet,
+      where the head of the household is written <q>${escapeHtml(scan.head_name_as_read)}</q>.
+      <br><span class="res-why">From ${escapeHtml(scan.image)}, read by ${escapeHtml(scan.read_by)}.</span>
+      ${tallies ? `<ul class="res-candidates">${tallies}</ul>` : ''}
+      <span class="res-why">On the line, band by band: ${escapeHtml(scan.age_bands)}.</span>
+      <br><span class="res-why">The sheet foots its own columns and that footing is the only
+        check this reading has: ${escapeHtml(scan.column_totals_check)}.</span>
+      ${census.scan_disagreement
+        ? `<br><span class="res-why">${escapeHtml(census.scan_disagreement)}</span>` : ''}
+      ${cites.length ? `<ol class="cites">${citationItems(cites)}</ol>` : ''}</dd>`;
 }
 
 function personHtml(person, citationsById, researchByPerson) {
