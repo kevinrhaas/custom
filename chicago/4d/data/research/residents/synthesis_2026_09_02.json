@@ -181,7 +181,6 @@
         "person_id": "ll_joshua_hathaway",
         "ticket": "T-0483",
         "changes": [
-          "occupation=forwarding_and_commission",
           "birth_year=1810"
         ],
         "source_ids": [
@@ -189,51 +188,9 @@
         ]
       },
       {
-        "person_id": "ll_morrison_orsemus",
-        "ticket": "T-0482",
-        "changes": [
-          "arrival=1833"
-        ],
-        "source_ids": [
-          "resident_research_cook_morrison_album"
-        ]
-      },
-      {
-        "person_id": "ll_myers_frederick",
-        "ticket": "T-0483",
-        "changes": [
-          "occupation=clerk"
-        ],
-        "source_ids": [
-          "resident_research_myers_glen_ellyn"
-        ]
-      },
-      {
-        "person_id": "ll_samuel_s_lathrop",
-        "ticket": "T-0485",
-        "changes": [
-          "occupation=minister"
-        ],
-        "source_ids": [
-          "rr_baptist_chicago_lathrop"
-        ]
-      },
-      {
-        "person_id": "ll_thomas_andrus",
-        "ticket": "T-0485",
-        "changes": [
-          "occupation=carpenter"
-        ],
-        "source_ids": [
-          "rr_dupage_andrus_1882"
-        ]
-      },
-      {
         "person_id": "ll_woodworth_james_h",
         "ticket": "T-0486",
         "changes": [
-          "occupation=dry_goods_merchant",
-          "arrival=1833",
           "birth_year=1804"
         ],
         "source_ids": [

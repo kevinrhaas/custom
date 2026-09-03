@@ -181,9 +181,9 @@ def promote(person, hh, item):
         if m and int(m.group(1)) <= 1835:
             year = int(m.group(1)); old = hh.get("arrival") or {}
             if value(old) in (None, "") or old.get("confidence") in ("reconstructed", "inferred"):
-                hh["arrival"] = {"value": f"{year:04d}-01-01", "confidence": "attested",
+                hh["arrival"] = {"value": f"{year:04d}", "confidence": "attested",
                     "sources": srcs, "precision": "year",
-                    "note": f"YEAR PRECISION ONLY. {item.get('ticket')} states arrival/move to Chicago in {year}; January 1 is only the dataset's year anchor."}
+                    "note": f"YEAR PRECISION ONLY. {item.get('ticket')} states arrival/move to Chicago in {year}; no month or day is asserted."}
                 changes.append(f"arrival={year}")
             break
     byear = None
@@ -361,7 +361,10 @@ def check():
 def main():
     ap=argparse.ArgumentParser(); ap.add_argument("--check",action="store_true"); args=ap.parse_args()
     if args.check: return check()
-    index=load(INDEX); before=snapshot(index); docs={p:load(p) for p in sorted(HOUSEHOLDS.glob("*.json"))}; research=research_rows()
+    index=load(INDEX); current_before=snapshot(index)
+    prior_ledger=load(LEDGER) if LEDGER.exists() else {}
+    before=(prior_ledger.get("before") if current_before.get("reconstructed")==0 and prior_ledger.get("before") else current_before)
+    docs={p:load(p) for p in sorted(HOUSEHOLDS.glob("*.json"))}; research=research_rows()
     stats={"removed_people":0,"removed_households":0,"retained_hh_inf":0,"structures_unassigned":0}; removed_people=set(); removed_hh=set(); unlink_people=set()
     for path in list(docs):
         doc=docs[path]; kept=[]
@@ -377,6 +380,10 @@ def main():
             doc["lives_at"]={"value":None,"confidence":"reconstructed","note":"T-0489: former dwelling assignment came from the retired reconstructed-household programme; real resident retained unplaced."}
             doc["works_at"]={"value":None,"confidence":"reconstructed","note":"T-0489: no workplace is assigned from a reconstructed household; later placement requires evidence."}
             doc["research_note"]=((doc.get("research_note") or "")+" T-0489: reconstructed occupancy retired; evidence-based person retained and unplaced.").strip()
+    if prior_ledger and stats["removed_people"] == 0 and stats["removed_households"] == 0:
+        prior_retirement=prior_ledger.get("retirement") or {}
+        stats["removed_people"]=int(prior_retirement.get("removed_people") or 0)
+        stats["removed_households"]=int(prior_retirement.get("removed_households") or 0)
     persons={p.get("id"):(p,d) for d in docs.values() for p in d.get("persons") or [] if p.get("id")}
     outcomes=Counter(); promoted=[]; unmatched=[]
     for pid,item in sorted(research.items()):
@@ -390,7 +397,14 @@ def main():
             else:
                 p["grade"]="inferred"; p["resident_subtype"]=PROJECTED
                 prefix="PROJECTED RESIDENT. Documented in Chicago post-office evidence but not independently corroborated strongly enough for attested circa-1835 residence. "
-            if not (p.get("note") or "").startswith(prefix): p["note"]=prefix+(p.get("note") or "")
+            existing = p.get("note") or ""
+            existing = re.sub(r"^(?:INDEPENDENTLY CORROBORATED RESIDENT\. |PROJECTED RESIDENT\. Documented in Chicago post-office evidence but not independently corroborated strongly enough for attested circa-1835 residence\. )", "", existing, flags=re.I)
+            if outcome in CORROBORATED:
+                existing = re.sub(r"^KNOWN ONLY FROM THE POST OFFICE\.\s*", "", existing, flags=re.I)
+                existing = re.sub(r"Nothing else in the corpus names this person[^.]*\.\s*", "", existing, flags=re.I)
+                existing = re.sub(r"No (?:arrival|trade|occupation)[^.]*\.\s*", "", existing, flags=re.I)
+                prefix = "INDEPENDENTLY CORROBORATED RESIDENT. Originally documented in Chicago post-office evidence; independent resident research now corroborates the identity. "
+            p["note"]=(prefix+existing).strip()
         if outcome in CORROBORATED:
             changes=promote(p,hh,item)
             if changes: promoted.append({"person_id":pid,"ticket":item.get("ticket"),"changes":changes,"source_ids":independent(item)})

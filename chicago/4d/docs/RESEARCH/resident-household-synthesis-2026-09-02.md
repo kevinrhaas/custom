@@ -25,14 +25,10 @@ A post-office letter now documents a real named person considered reachable thro
 
 ## Profile enrichment
 
-Structured promotion changed **6 corroborated profiles** where independent sources state usable facts (occupation, Chicago arrival year, birth-year/family evidence). Candidate-only matches never supply canonical facts.
+Structured promotion changed **2 corroborated profiles** where independent sources state usable facts (occupation, Chicago arrival year, birth-year/family evidence). Candidate-only matches never supply canonical facts.
 
-- `ll_joshua_hathaway` (T-0483): occupation=forwarding_and_commission, birth_year=1810
-- `ll_morrison_orsemus` (T-0482): arrival=1833
-- `ll_myers_frederick` (T-0483): occupation=clerk
-- `ll_samuel_s_lathrop` (T-0485): occupation=minister
-- `ll_thomas_andrus` (T-0485): occupation=carpenter
-- `ll_woodworth_james_h` (T-0486): occupation=dry_goods_merchant, arrival=1833, birth_year=1804
+- `ll_joshua_hathaway` (T-0483): birth_year=1810
+- `ll_woodworth_james_h` (T-0486): birth_year=1804
 
 ## 1840 census evidence
 
