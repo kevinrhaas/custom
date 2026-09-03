@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Rule on every lead volume 1 of the Newberry index offered — T-0590.
+"""Rule on every lead the Newberry index offers, over every volume read — T-0590.
 
 WHY THIS EXISTS. `tools/measure_research_spend.py` measured `newberry_index` on
 2026-09-03 at 2,619 units read and 0 ruled on: the project's largest unspent
@@ -75,7 +75,10 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 DOMAIN = ROOT / "data" / "research" / "newberry_index"
 LEADS = DOMAIN / "leads.json"
-RECORDS = DOMAIN / "records" / "entries_vol_01.json"
+# EVERY volume read so far. Was volume 1 alone when T-0590 wrote this; leads.json
+# has covered every parsed volume since T-0578, and a lead the tool cannot see the
+# cards of is a lead it cannot rule on.
+RECORDS_GLOB = "entries_vol_*.json"
 OUT = DOMAIN / "lead_crosswalk.json"
 ACQUIRE = DOMAIN / "acquisition_list.json"
 TICKET = "T-0590"
@@ -234,7 +237,14 @@ def person_anchor(lead: dict) -> list:
 def build() -> tuple:
     leads_doc = load(LEADS)
     leads = leads_doc.get("leads") or []
-    cards = {r["id"]: r for r in load(RECORDS).get("records") or []}
+    cards = {}
+    volumes = []
+    for path in sorted((DOMAIN / "records").glob(RECORDS_GLOB)):
+        doc = load(path)
+        volumes.append(doc.get("volume"))
+        for rec in doc.get("records") or []:
+            cards[rec["id"]] = rec
+    volumes = sorted(v for v in volumes if v)
 
     lead_rulings = []
     per_card = {}
@@ -313,16 +323,16 @@ def build() -> tuple:
     doc = {
         "schema": 1,
         "domain": "newberry_index",
-        "volume": 1,
+        "volumes": volumes,
         "ticket": TICKET,
         "generated_by": "tools/rule_newberry_leads.py --write",
-        "_doc": "GENERATED. Every lead volume 1 offered, ruled and ANCHORED - to the "
+        "_doc": "GENERATED. Every lead the volumes read so far offer, ruled and ANCHORED - to the "
                 "card it stands on and, where the town side is a person record, to "
                 "the person it reaches. NO MERGES, and there never will be: a card "
                 "heads a family surname over a citation and names no forename, so "
                 "every identification it seems to offer is refused. The refusals "
-                "are the output. `matched` is a reachable outcome that volume 1 "
-                "does not reach, and the test for it is run rather than assumed - "
+                "are the output. `matched` is a reachable outcome that no volume read "
+                "so far reaches, and the test for it is run rather than assumed - "
                 "see `counts.discriminators_found`.",
         "ladder": [
             {"step": 1, "class": "ocr_variant_only", "outcome": "refused",
@@ -344,10 +354,10 @@ def build() -> tuple:
         "ambiguous": ambiguous,
         "refusals": refusals,
     }
-    return doc, cards
+    return doc, cards, volumes
 
 
-def build_acquisitions(cards: dict) -> dict:
+def build_acquisitions(cards: dict, volumes: list) -> dict:
     """The 166 Chicago/Cook cards whose citation matched no work in the table.
 
     The ticket is explicit that these are a SEPARATE finding and must not be forced
@@ -376,15 +386,15 @@ def build_acquisitions(cards: dict) -> dict:
     return {
         "schema": 1,
         "domain": "newberry_index",
-        "volume": 1,
+        "volumes": volumes,
         "ticket": TICKET,
         "generated_by": "tools/rule_newberry_leads.py --write",
-        "_doc": "GENERATED. The Chicago and Cook County cards of volume 1 whose "
+        "_doc": "GENERATED. The Chicago and Cook County cards, over every volume read, whose "
                 "citation the works table did not reach. An ACQUISITION LIST, not "
                 "leads: each names a printed work that this project cannot open, "
                 "and nothing here says which work. Deliberately keyed `cards` and "
                 "not `records`, because these are already counted as read under "
-                "records/entries_vol_01.json and a second copy would read as a "
+                "records/entries_vol_NN.json and a second copy would read as a "
                 "second reading in tools/measure_research_spend.py.",
         "note": "T-0581, T-0582 and T-0583 already exist for three of the works the "
                 "Chicago cards name. This residue is the rest, and it is the "
@@ -406,7 +416,7 @@ def check() -> list:
     bad = []
     if not OUT.exists():
         return ["lead_crosswalk.json is missing - run --write"]
-    doc, cards = build()
+    doc, cards, volumes = build()
     on_disk = load(OUT)
     if on_disk != doc:
         bad.append("lead_crosswalk.json does not re-derive from leads.json and the "
@@ -445,7 +455,7 @@ def check() -> list:
     if not ACQUIRE.exists():
         bad.append("acquisition_list.json is missing - run --write")
     else:
-        want = build_acquisitions(cards)
+        want = build_acquisitions(cards, volumes)
         if load(ACQUIRE) != want:
             bad.append("acquisition_list.json does not re-derive from the committed "
                        "cards")
@@ -453,9 +463,9 @@ def check() -> list:
 
 
 def write() -> int:
-    doc, cards = build()
+    doc, cards, volumes = build()
     dump(OUT, doc)
-    dump(ACQUIRE, build_acquisitions(cards))
+    dump(ACQUIRE, build_acquisitions(cards, volumes))
     print("%d leads ruled on %d cards - %s"
           % (doc["counts"]["leads_ruled"], doc["counts"]["cards_ruled"],
              ", ".join("%s %d" % (k, v)
@@ -471,7 +481,7 @@ def self_test() -> int:
     fired = []
 
     def run(label, mutate, expect):
-        doc, cards = build()
+        doc, cards, volumes = build()
         broken = mutate(json.loads(json.dumps(doc)))
         saved = OUT.read_text(encoding="utf-8") if OUT.exists() else None
         try:

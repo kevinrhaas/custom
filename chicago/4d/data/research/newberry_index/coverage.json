@@ -2,7 +2,7 @@
   "schema": 1,
   "domain": "newberry_index",
   "generated_by": "hand — a reading pass declares the range it read, and the gate checks it",
-  "note": "The unit here is the VOLUME, not the page. All 987 pages of volume 1 were cropped, laid out and walked; the 2,579 cards kept are the ones whose body names Chicago, Cook County or Illinois, and the other ~56,000 are read and not kept. Declaring 987 pages would be a lie in the other direction — it would report a hole on every page that carries no Illinois family, and there are 344 of them.",
+  "note": "The unit here is the VOLUME, not the page. Every page of a declared volume was cropped, laid out and walked; the cards kept are the ones whose body names Chicago, Cook County or Illinois, and the rest are read and not kept. Declaring the pages would be a lie in the other direction — it would report a hole on every page that carries no Illinois family, and there are hundreds of them.",
   "declarations": [
     {
       "unit": "list",
@@ -11,13 +11,17 @@
       ],
       "ticket": "T-0570",
       "note": "Volume 1 (A-C), Internet Archive file FL2091539_CP-130151_01.pdf, 987 pages, read by its text layer in four cropped column passes. 58,488 cards assembled; 2,579 kept for naming Chicago, Cook County or Illinois; 581 of those name Chicago or Cook County."
+    },
+    {
+      "unit": "list",
+      "items": [
+        "vol_02"
+      ],
+      "ticket": "T-0578",
+      "note": "Volume 2 (C-H), Internet Archive file FL2091536_CP-130151_02.pdf, 1,016 pages, read by its text layer in the same four cropped column passes. 58,589 cards assembled; 1,987 kept for naming Chicago, Cook County or Illinois; 501 of those name Chicago or Cook County. Forty were drawn and adjudicated against the page image at 0.875 precision — 20 of 20 in the Chicago-and-Cook stratum, 15 of 20 in the Illinois-only one; the five bad keeps are two classes, and T-0600 carries the rules that would strike them. T-0601 carries the column-sliver double count the same draw found."
     }
   ],
   "not_read": [
-    {
-      "item": "vol_02",
-      "ticket": "T-0578"
-    },
     {
       "item": "vol_03",
       "ticket": "T-0579"

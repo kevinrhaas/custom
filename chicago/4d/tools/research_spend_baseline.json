@@ -9,7 +9,7 @@
   "church": 0,
   "books": 11,
   "directories": 4703,
-  "newberry_index": 1753
+  "newberry_index": 3148
  },
  "witness": {
   "civic": {
@@ -37,8 +37,8 @@
    "spent": 288
   },
   "newberry_index": {
-   "read": 2619,
-   "spent": 866
+   "read": 4646,
+   "spent": 1498
   }
  },
  "raised": [
@@ -55,6 +55,13 @@
    "to": 11,
    "date": "2026-09-03",
    "why": "T-0575 read Hurlbut's Chicago Antiquities pages 28-36 — the American Fur Company chapter — as 19 claims, and ruled on 8 of them in data/research/books/crosswalk.json: 4 merges (Gurdon S. Hubbard, Jean Baptiste Beaubien, Jamie Kinzie, Mr. John Crafts) and 6 refusals, each anchored to the claim it adjudicates. THE OTHER 11 NAME NOBODY, AND THAT IS WHAT THIS CHAPTER IS. It is prose and mostly judgement: Hurlbut's 'Chicago was the port and point of a very limited district of distribution', Hubbard's 'this place never had been preeminent as a trading-post', Hubbard buying the company's Illinois interest in 1828, Astor selling the company in 1834, a batteau, a wine bill and a list of trade goods. This instrument measures NAME adjudication, so those 11 cannot be spent by it however well they are used, and pretending otherwise by inventing name-pairs would be the corruption the instrument exists to prevent. What they CAN be spent on is the town, and four tickets were opened in the same PR to do it: T-0594 (Hubbard's arrival date against a resident record that grades the same year 'reconstructed' citing nothing), T-0595 (the Factory House origin of jb_beaubien_homestead), T-0596 (a ruling in docs/LIBERTIES.md on how much fur-trade apparatus the scene may show, which the chapter argues should be LESS), T-0597 (the Kinzie half-brotherhood). The number does not come back down when those land, because they are not crosswalk rulings; it comes down only if a later reading of this same chapter finds names in it, and it should not be raised again for prose without this same argument being made afresh."
+  },
+  {
+   "domain": "newberry_index",
+   "from": 1753,
+   "to": 3148,
+   "date": "2026-09-03",
+   "why": "T-0578 read volume 2 (C-H): 1,987 kept cards, plus the 40-card precision draw this ratchet also counts as read. It did NOT read ahead of its ruling — T-0590's gate does not allow that any more. The same PR extended tools/rule_newberry_leads.py from volume 1 to every volume read and ruled the 227 new leads volume 2 offers under T-0590's own ladder: 546 leads on 947 cards, 146 candidates testable in a held work, 400 refused, 0 merges, 0 discriminators found. So the SPEND rose with the read, from 866 to 1,498 under the counting T-0592 (PR #727) introduced. What stays unspent is what has always been unspent here — the cards standing under no lead at all, a surname nobody in this town carries. Two measurement faults this exposed are on T-0602 and neither is an excuse: the precision sample's 80 rows count as read though they are re-readings of records already counted, and an unanchored crosswalk ruling counts as nothing, so crosswalk.json's one pass and five written refusals count as zero."
   }
  ],
  "lowered": [

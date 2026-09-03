@@ -201,7 +201,6 @@ T-0503 — Eleven images of the St Mary's baptismal register 1833-1835 are depos
 # --- roughly 8,000 more cards on top of a pile nothing has drawn from once. Move it if you would
 # --- rather read all four volumes first — this placement is the same call as T-0504/T-0505 above.
 
-T-0578 — The Newberry Genealogical Index, volume 2 (C-H): the Chicago, Cook County and Illinois cards, their leads and the works they point at
 T-0579 — The Newberry Genealogical Index, volume 3 (H-P): the Chicago, Cook County and Illinois cards, their leads and the works they point at
 T-0580 — The Newberry Genealogical Index, volume 4 (P-Z): the Chicago, Cook County and Illinois cards, their leads and the works they point at
 
@@ -450,3 +449,6 @@ T-0594 — Hubbard's arrival year is graded 'reconstructed' citing nothing, and 
 T-0595 — jb_beaubien_homestead has no origin: Hurlbut says it was the United States Factory House, bought from the government in 1822 and moved into by Beaubien
 T-0596 — About 130 named articles of the Chicago Indian trade, itemised in the American Fur Company's own book: rule on what the town may show and letter nothing without it
 T-0597 — James Kinzie and John Harris Kinzie are half brothers and the two household records do not say so
+T-0600 — The Newberry index reads a state banner as a card body, and a wrecked call number as ', Ill.' — four and one of forty sampled cards
+T-0601 — A column sliver is kept as a second, truncated copy of a card the neighbouring pass read in full, and nothing counts how many
+T-0602 — The research-spend ratchet counts a precision sample as reading, and an unanchored refusal as nothing
