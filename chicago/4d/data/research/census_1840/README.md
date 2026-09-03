@@ -103,14 +103,67 @@ extrapolated back to 1835.
 swept-and-empty page is evidence, which is why coverage declares it rather than omitting
 it.
 
+## The cells, and the rule that decides whether a column is committed (T-0532)
+
+The age-band cells were read for the first time on printed pages **221, 222 and 226**.
+Reading them at all needed a way to say WHICH column a mark is in that does not depend on
+counting narrow rules by eye, so each page carries a `grid_note`: the 39 vertical rules are
+fitted as a single pitch off the empty right-hand columns of the same image, and the fit is
+**checked against the printed heading** — column 1 must read `Under 5`, column 27 `Under 10`
+under FREE COLORED MALES — before a single cell is read. Every cell is then cut at that grid
+and read as an image, one at a time. Nothing here is an OCR output.
+
+**A column is committed only when it balances.** The lines this pass read must SUM to the
+figure the enumerator wrote at the foot of the sheet; where they do not, the column is left
+unreconciled with its residual stated, exactly as the ticket required, because a half-checked
+column is worse than an unread one. So each page file carries two things per record:
+
+| field | what it is |
+|---|---|
+| `cells` | the committed reading — only the columns whose page total balanced |
+| `cells_first_pass` | the whole reading, balanced or not. **Not reconciled data.** It exists so the next reader starts from a reading rather than from the sheet. |
+
+and `cells_column_check` states, per column, the read sum, the printed total, how confidently
+that printed figure was read, whether it balanced, and the residual.
+
+**Printed page 221 balances on 36 of its 38 columns** and is committed on those. The two that
+do not are column 6 (free white males 30 under 40: read 10, printed 11) and column 15 (free
+white females 5 under 10: read 11, printed 13) — one and two marks this pass did not find,
+not a disagreement about what the sheet says.
+
+**Printed 222 and 226 commit nothing, and the reason is the TOTALS and not the cells.** Both
+sheets' footers are written across the foot rule and neither could be read to better than
+`low` — so no column on them can be certified, whatever the cells say. What the page files do
+record is that the read sums are *consistent with a plausible reading of the footer* on most
+columns (`read_sum_matches_an_alternate_reading`), which is a lead for the next reader and is
+explicitly not a balance. Re-read those two footers at higher magnification and most of both
+pages should commit without the cells being touched.
+
+## Two line counts the sheets do not agree with the inventory about (T-0532)
+
+The row grid was fitted the same way as the column grid and checked against the names, and on
+two of the three pages it finds fewer entries than the inventory declared:
+
+| printed page | image | inventory said | entries read | blank ruled lines at the foot |
+|---|---|---|---|---|
+| 221 | `33S7-9YYJ-2T` | 31 | **31** | 0 |
+| 222 | `33S7-9YYJ-98M` | 31 | **30** | 1 |
+| 226 | `33S7-9YYJ-B3` | 31 | **29** | 2 |
+
+The inventory's figure is `lines_with_an_entry`; the difference is blank ruled lines below the
+last household, which the page files **record as lines** rather than skip. Coverage now carries
+both numbers per image (`lines_with_an_entry` and `lines_ruled`).
+
 ## What has NOT been read yet, and where it is
 
 The age-band, free-coloured and industry cells are a column-by-column reading that has to
 be checked against the **printed column totals at the foot of each sheet** before it can
 be committed — 26 narrow columns of single strokes, where a mark one column off is a
 person of the wrong age. Committing a half-checked row would be worse than leaving it
-unread, so every `records[].cells` here is `null` with `cells_state: "not_read"`, and the
-cells are their own ticket. The other images of both read groups are inventoried in
+unread. On the three pages T-0532 read — printed 221, 222 and 226 — the cells ARE read and
+the balance is stated per column in the section above; on every other page here
+`records[].cells` is still `null` with `cells_state: "not_read"`, and those cells are their
+own ticket. The other images of both read groups are inventoried in
 `coverage.json` — kind, printed page, line count — and transcribed by the sibling tickets
 T-0494 and T-0495 were split into.
 
