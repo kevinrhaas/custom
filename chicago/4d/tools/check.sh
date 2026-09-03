@@ -1490,6 +1490,20 @@ step "the 1840 census line-to-serial crosswalk re-derives from the page readings
 
 step "…and its own assertions still fire when broken" \
   python3 tools/census_1840_fingerprint.py --self-test
+# T-0513. The consolidation, and the reason it is gated rather than reported: it is the
+# only file that says, for one identity, everything the project knows — and it is DERIVED
+# from seven domains that each move on their own ticket. A source read on Tuesday that
+# never reaches the master is the exact failure the owner named ("there are not outputs or
+# updates to the household and resident data"), and it looks like nothing at all until
+# somebody rebuilds by hand. --check rebuilds from the domains and fails if the committed
+# files have drifted; the invariants it holds are the acceptance's own — one row per
+# identity, no record claimed by two identities, every refusal carrying a rule that exists,
+# and no row graded above what its rung of the ratified ladder allows.
+step "the cross-domain identity master re-derives, and no grade stands above its rung" \
+  python3 tools/consolidate_resident_evidence.py --check
+
+step "…and its own assertions still fire when broken" \
+  python3 tools/consolidate_resident_evidence.py --self-test
 
 printf '\n'
 if [ "$FAILED" -eq 0 ]; then

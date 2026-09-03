@@ -140,7 +140,6 @@
 # --- nothing newly closed says so and costs a run nothing. tools/measure_research_spend.py now
 # --- measures BOTH hops — read vs ruled, and ruled vs ON A CARD. The second reads 109 rulings
 # --- reaching a town person and 0 reaching their card; this band is what moves that number.
-T-0513 — 742 of 825 households carry a single source while the crosswalks have ruled more: consolidate the closed rulings onto the cards, and again every few sources
 # --- …and T-0598 sits with it because it is what makes the consolidation MECHANICAL. T-0513 can
 # --- only spend a ruling onto a card if the ruling says what it rests on; 103 of the 109 that
 # --- reach a town person do not (civic's voter crosswalk: 99 matches, zero source ids). Without
@@ -451,3 +450,4 @@ T-0597 — James Kinzie and John Harris Kinzie are half brothers and the two hou
 T-0600 — The Newberry index reads a state banner as a card body, and a wrecked call number as ', Ill.' — four and one of forty sampled cards
 T-0601 — A column sliver is kept as a second, truncated copy of a card the neighbouring pass read in full, and nothing counts how many
 T-0602 — The research-spend ratchet counts a precision sample as reading, and an unanchored refusal as nothing
+T-0604 — Build rename_household_ids.py: the migration tool for the 747 legacy-prefixed households (T-0599 follow-up)
