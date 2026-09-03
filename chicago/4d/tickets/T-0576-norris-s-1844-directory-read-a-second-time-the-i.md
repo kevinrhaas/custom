@@ -1,7 +1,7 @@
 ---
 id: T-0576
 title: Norris's 1844 directory read a second time: the independent Genealogy Trails transcription checked entry by entry against T-0566's 2,073, and every disagreement preserved
-state: claimed
+state: done
 epic: META
 requested_by: owner
 seen: false
@@ -9,12 +9,12 @@ effort: S
 legacy_id: null
 parent: T-0556
 opened: 2026-09-03
-closed: null
-pr: null
+closed: 2026-09-03
+pr: 716
 claimed_by: run 9/3/2026, 1:22:02 PM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-03T18:46:14.521Z
 claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/33789742187
 ---
 
