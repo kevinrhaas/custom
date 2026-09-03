@@ -9,7 +9,8 @@
   "church": 0,
   "books": 11,
   "directories": 4703,
-  "newberry_index": 3148
+  "newberry_index": 3148,
+  "land_sales": 375
  },
  "witness": {
   "civic": {
@@ -39,6 +40,10 @@
   "newberry_index": {
    "read": 4646,
    "spent": 1498
+  },
+  "land_sales": {
+   "read": 375,
+   "spent": 0
   }
  },
  "raised": [
@@ -70,6 +75,14 @@
    "to": 99,
    "date": "2026-09-03",
    "why": "T-0598 stated civic/voter_crosswalk.json's source at the top of the file, and 99 rulings that were UNJUDGEABLE became judgeable. Not one of them is on a card: the 99 voters T-0493 matched to residents rest on chicago_voter_lists_1833_1835_irad and no resident record cites it. This ceiling is the size of that finding, recorded so it can be paid down rather than rediscovered — it was previously invisible because the instrument could not ask the question. T-0514/T-0515 are the mint and regrade tickets that spend it; nothing here writes a card."
+  },
+  {
+   "domain": "land_sales",
+   "hop": "read",
+   "from": null,
+   "to": 375,
+   "date": "2026-09-03",
+   "why": "NOT this ticket's read, and recorded here because dev is red without it. PR #738 (T-0557) registered the land_sales domain in domains.json and read 375 Illinois public-domain tract sales into it, and did not record a ceiling — so --gate fails on every branch cut from dev with 'no ceiling recorded', which is the gate working exactly as designed on a domain that entered the registry without one. The figure is what #738 read and has not yet ruled on; its own crosswalk matched 17 purchasers, and the number should come down as that adjudication continues. T-0598 takes no credit for it and asks that the next land_sales ticket own it."
   }
  ],
  "lowered": [
