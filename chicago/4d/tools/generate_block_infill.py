@@ -448,7 +448,23 @@ def _form_body(family: str, spec: dict, key: str, width: float, depth: float,
             "gable_front": invented(family.startswith("C"), why),
             "construction": invented(construction, why),
             "cladding": invented("clapboard" if family != "F2" else "vertical_board", why),
-            "paint": invented(paint, why), "loft": invented(family == "C2", why),
+            # T-0430. A LOFT IS AUTHORED IN THE BAND OR IT IS NOT AUTHORED AT ALL.
+            # This line used to read `family == "C2"`, so every store-residence this
+            # generator built carried a loft on top of the 1.5 levels its own crosswalk
+            # entry authors — and `tools/measure_band_claims.py` prices a loft at the
+            # half level it is worth everywhere else in this dataset, so the record
+            # claimed 2 levels while citing a band of 1.5. That is how
+            # `recon_1835_blk_randolph_clark_c2_01:levels` got into the K25(a) ratchet
+            # on 2026-08-15, and the second C2 this generator was asked for would have
+            # put a second offender in a file whose own note says it may only ever grow
+            # to record a REPAIR. The crosswalk's convention is explicit: a family that
+            # wants one writes `1 + loft` in `levels`, which `family_bands.storeys()`
+            # reads and this generator has always honoured through `loft` above. C2
+            # writes `1.5` and offers "attic rooms" in its VARIANTS column, beside
+            # "rear lean-to" and "signboard" — optional features this generator does
+            # not switch on for every instance either. So the loft follows the band and
+            # nothing else, which takes one offender back out of the ratchet.
+            "paint": invented(paint, why), "loft": invented(loft, why),
             "chimneys": invented(1 if not family.startswith("F") else 0, why),
             "shopfront": invented(not family.startswith("F"), why),
             "goods_door": invented(True, why), "goods_door_side": invented("end", why),
