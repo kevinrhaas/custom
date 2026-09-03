@@ -1,5 +1,5 @@
 export const CHANGELOG = [ // newest first
-  { v: null, title: 'The 1840 census sheets are read off the page', kind: 'fix', ts: '', date: '',
+  { v: 445, title: 'The 1840 census sheets are read off the page', kind: 'fix', ts: '2026-09-03T07:23:41.892Z', date: 'Sep 3, 2026, 2:23 AM CT',
     items: [
       'This project holds seventy-five photographs of the 1840 census sheets for Chicago, and until now the only names taken out of them came from a spreadsheet that has since been lost — two hundred and ten households, recovered second hand, with nothing pointing back at a line on a page.',
       'Two of those pages have now been read off the photographs themselves, line by line. Of the sixty-two households on them, ten agree with the recovered list on both first name and surname, and thirty-three agree on neither. Line seventeen of one page reads Gurdon S. Hubbard where the list said Saml. J. McCord; line twenty-five reads John H. Kinzie where it said John W. Rogers. Two of the most consequential names in the town were not in the list at all.',
