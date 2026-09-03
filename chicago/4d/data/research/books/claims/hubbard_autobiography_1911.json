@@ -4,7 +4,7 @@
   "source_id": "hubbard_autobiography_1911",
   "ticket": "T-0501",
   "read": "2026-09-03",
-  "_doc": "The Autobiography of Gurdon Saltonstall Hubbard (Chicago: Lakeside Press, 1911), read for everything it says about Chicago before 1836. TWO VOICES, and every claim says which: Hubbard's own narrative, written in the 1880s about 1818-1830 and stopping dead in November 1830; and Caroline M. McIlvaine's 1911 Introduction, which is where every statement about 1834, 1835 and 1836 in this file comes from. The quote is the committed text at the locator's own lines and is never typed by hand; tools/research_domains.py --check rebuilds it character for character.",
+  "_doc": "The Autobiography of Gurdon Saltonstall Hubbard (Chicago: Lakeside Press, 1911), read for everything it says about Chicago before 1836. TWO VOICES, and every claim says which: Hubbard's own narrative, written in the 1880s about 1818-1830 and stopping dead in November 1830; and Caroline M. McIlvaine's 1911 Introduction, which is where every statement about 1834, 1835 and 1836 in this file comes from. The quote is the committed text at the locator's own lines and is never typed by hand; tools/research_domains.py --check rebuilds it character for character. ONE CLAIM IS NOT IN THIS FILE. bk_hub_100 reads Hubbard's letter of 25 July 1827, printed as a note at page 174, and a rung-1 document does not belong under a record graded for a 1911 compilation: it lives at claims/hubbard_letter_1827_07_25.json with its own source record, out of the same committed text and inside the same coverage declaration.",
   "claims": [
     {
       "id": "bk_hub_001",
@@ -2072,30 +2072,6 @@
       ],
       "town_finding": true,
       "notes": "A HUNDRED AND FIFTY ARMED MEN IN AN UNGARRISONED FORT FOR THIRTY DAYS, and then the fort back in the hands of one Indian agent. The militia occupation of 1827 is a thing this project's fort chronology does not carry."
-    },
-    {
-      "id": "bk_hub_100",
-      "kind": "notice",
-      "reading": "transcription_mediated",
-      "quote": "Note.— Extract  from  a  letter  written  by  Mr. \nHubbard  to  his  sister  Elizabeth,  at  Middletown, \nConn. \n\nChicago,  July  25,  1827. \n\nYou  will  undoubtedly  hear  through  the  medium  of \nthe  newspapers  of  the  hostilities  lately  commenced \nby  the  Winnebago  Indians. \n\nGovernor  Cass  surprised  us  on  the  21st  by  his \narrival,  and  brought  us  the  first  intelligejice  of  the ",
-      "normalized": "A letter from Hubbard to his sister Elizabeth at Middletown, Conn., headed 'Chicago, July 25, 1827', reports that Governor Cass surprised them on the 21st with the first news of the Winnebago depredations.",
-      "locator": {
-        "list": "hubbard_1911_pp_165_174",
-        "text_file": "hubbard_autobiography_1911.txt",
-        "lines": [
-          7902,
-          7913
-        ],
-        "leaf": 212,
-        "page": "174"
-      },
-      "describes_date": "1827-07-25",
-      "entities": [
-        "Gurdon Saltonstall Hubbard",
-        "Lewis Cass"
-      ],
-      "town_finding": true,
-      "notes": "THE ONE PERIOD DOCUMENT IN THIS BOOK. A letter written at Chicago on a stated day, printed with its dateline, and it settles the 1827/1828 disagreement of bk_hub_091 on its own authority: Cass arrived on 21 July 1827. Graded tier 1 in the source record's transcribes[] and nowhere else in this reading."
     },
     {
       "id": "bk_hub_101",

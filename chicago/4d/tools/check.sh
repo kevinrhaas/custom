@@ -31,6 +31,16 @@ step "dataset (schema, provenance, date gates, licenses, staleness, publish)" \
 step "validator self-tests" \
   python3 tools/test_validate.py
 
+# A book's page numbers are its locators, and for Hubbard's autobiography they are DERIVED:
+# the committed text is the Internet Archive's djvu OCR, which carries no page breaks at all,
+# so the leaf boundaries are carried onto it from the deposited scan. A derivation that is not
+# gated drifts, and this one is cheap — it reads committed files only and needs no poppler.
+step "book page indexes still match the text they index" \
+  python3 tools/build_book_page_index.py --check
+
+step "…and its own assertions still fire when broken" \
+  python3 tools/build_book_page_index.py --self-test
+
 # Runs early and costs milliseconds, because the fault it catches is cheap to
 # make and expensive to ship: on 2026-08-24 three conflict-marker lines rode a
 # merge into docs/LIBERTIES.md, compiled into data/liberties.json, published to

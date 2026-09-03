@@ -7,7 +7,7 @@
   "census_1830": 0,
   "census_1840": 54,
   "church": 0,
-  "books": 11,
+  "books": 85,
   "directories": 4703,
   "newberry_index": 3148
  },
@@ -29,8 +29,8 @@
    "spent": 0
   },
   "books": {
-   "read": 19,
-   "spent": 8
+   "read": 111,
+   "spent": 26
   },
   "directories": {
    "read": 4991,
@@ -62,6 +62,14 @@
    "to": 3148,
    "date": "2026-09-03",
    "why": "T-0578 read volume 2 (C-H): 1,987 kept cards, plus the 40-card precision draw this ratchet also counts as read. It did NOT read ahead of its ruling — T-0590's gate does not allow that any more. The same PR extended tools/rule_newberry_leads.py from volume 1 to every volume read and ruled the 227 new leads volume 2 offers under T-0590's own ladder: 546 leads on 947 cards, 146 candidates testable in a held work, 400 refused, 0 merges, 0 discriminators found. So the SPEND rose with the read, from 866 to 1,498 under the counting T-0592 (PR #727) introduced. What stays unspent is what has always been unspent here — the cards standing under no lead at all, a surname nobody in this town carries. Two measurement faults this exposed are on T-0602 and neither is an excuse: the precision sample's 80 rows count as read though they are re-readings of records already counted, and an unanchored crosswalk ruling counts as nothing, so crosswalk.json's one pass and five written refusals count as zero."
+  },
+  {
+   "domain": "books",
+   "hop": "read",
+   "from": 11,
+   "to": 85,
+   "date": "2026-09-03",
+   "why": "T-0501 read Hubbard's autobiography — 92 claims out of a 226-leaf book of PROSE, and prose is the case this measure was not built for. Its unit is a sentence, not a name: 66 of the 92 name no person at all, being the plan of Fort Dearborn, the Factor House, the sand spit, the old river mouth at The Pines, Mud Lake, the wild onion on the bank and the cornhills on the River Guarie. There is nobody in them to rule on and there never will be. EVERY NAME THE BOOK PRINTS IS RULED ON: 35 distinct persons, 7 merged, 15 refused (each anchored to the claim that names them), 2 exact matches, and 11 Illinois River and Mackinaw men the source never places at Chicago, counted and named in crosswalk.json's T-0501 pass. Spending the rest would mean inventing people to rule on. The ceiling moves once, for this reading, and the domain's next pass inherits it rather than a fresh excuse."
   }
  ],
  "lowered": [

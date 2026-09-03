@@ -1,7 +1,7 @@
 {
   "id": "hubbard_autobiography_1911",
   "type": "book",
-  "citation": "Gurdon Saltonstall Hubbard, The Autobiography of Gurdon Saltonstall Hubbard, Pa-pa-ma-ta-be, \"The Swift Walker\", with an Introduction by Caroline M. McIlvaine, Librarian of the Chicago Historical Society (Chicago: R. R. Donnelley & Sons Company, The Lakeside Press, Christmas 1911) — The Lakeside Classics. Read in full for its Chicago material before 1836: the front matter, McIlvaine's Introduction (pages ix-xxvii), and Hubbard's own narrative at pages 27-41, 135-138, 141-144, 153-159, 165-174 and 178-182.",
+  "citation": "Gurdon Saltonstall Hubbard, The Autobiography of Gurdon Saltonstall Hubbard, Pa-pa-ma-ta-be, \"The Swift Walker\", with an Introduction by Caroline M. McIlvaine, Librarian of the Chicago Historical Society (Chicago: R. R. Donnelley & Sons Company, The Lakeside Press, Christmas 1911) — The Lakeside Classics. Read in full for its Chicago material before 1836: the front matter, McIlvaine's Introduction (pages ix-xxvii), and Hubbard's own narrative at pages 27-41, 135-138, 141-144, 153-159, 165-174 and 178-182. Hubbard's letter of 25 July 1827, printed as a note at page 174, is a separate source record.",
   "author": "Gurdon Saltonstall Hubbard (the narrative, written in the 1880s about 1818-1830); Caroline M. McIlvaine (the 1911 Introduction); Henry E. Hamilton (the 1888 memorial volume this text is reprinted from, and the bracketed editorial notes signed H. E. H.)",
   "date": "1911 (this printing); 1888 (the Hamilton memorial volume it reprints); the manuscript Diary itself is undated on the page and was written in the 1880s",
   "describes_date": "1818-1830 in Hubbard's own narrative, which stops abruptly in November 1830; 1830-1886 in McIlvaine's Introduction, which is where every statement this project takes about 1834, 1835 and 1836 comes from",
@@ -9,17 +9,11 @@
   "url": "https://archive.org/details/autobiographyofg00hubb",
   "archived_url": "https://archive.org/download/autobiographyofg00hubb/autobiographyofg00hubb_djvu.txt",
   "locator": "chicago/4d/data/research/books/text/hubbard_autobiography_1911.txt — byte-identical to the Internet Archive's own OCR output at the archived_url, fetched 2026-09-03 (sha256 of the committed file: 6c226cc700b47c1ee0d3ca6c7c8898d675e03c788634e0081cbcb1634ab6a4d7). Every claim's locator names its inclusive line range in that file, plus the scan LEAF and the PRINTED FOLIO from data/research/books/page_index/hubbard_autobiography_1911.json. THE DJVU TEXT CARRIES NO PAGE BREAKS AT ALL, so the leaf boundaries are transferred onto it from the deposited PDF's own text layer by tools/build_book_page_index.py, whose docstring is the argument for doing it that way; the deposit PDF's sha256 is 95571d98ba11eae0570d42e48eb4fb5fb7f68d7843d8f984f115f8dd64ca34df.",
-  "tier": 3,
+  "tier": 2,
   "rights_status": "public_domain",
   "asset_use": "text_only",
   "verified": true,
   "transcribes": [
-    {
-      "work": "A letter from Gurdon S. Hubbard to his sister Elizabeth at Middletown, Conn., printed with its dateline 'Chicago, July 25, 1827', reporting Governor Cass's arrival on the 21st with the first news of the Winnebago hostilities",
-      "date": "1827-07-25",
-      "tier": 1,
-      "note": "THE ONLY PERIOD DOCUMENT IN THE BOOK, and the one place where this volume speaks at rung 1. It is printed as a note at page 174 and this project reads it at bk_hub_100. It also settles, on its own authority, the date the surrounding narrative gets wrong: the payment-and-fire passage at page 167 is printed '1828' and everything else in the section, this letter included, says July 1827."
-    },
     {
       "work": "Hubbard's own autobiographical narrative — his engagement with the American Fur Company at Montreal and Mackinaw, the voyage of September 1818, his first entry into Chicago on 1 October 1818, the fort and its neighbours as he first saw them, the Chicago portage and Mud Lake, Hubbard's Trail, the trading posts of the Illinois River, and the Winnebago Scare of 1827 — ending abruptly at November 1830",
       "date": "Written in the 1880s; printed 1888 and again 1911. Describes 1818-1830.",
@@ -51,7 +45,8 @@
     "landscape: the prairie seen from Douglas Grove, the Blue Island grove and the Desplaines timber, wild onion and leek along the river, wild rice and head-high grass at Mud Lake, the old cultivated field on the River Guarie still legible as cornhills, and prairie fires dangerous enough to sink boats against",
     "Hubbard's Trail, dated by the man who cut it (1822 to Danville, extended north to Chicago in 1824) and the State road from Vincennes to Chicago ordered in the winter of 1833-34 that adopted most of it",
     "the settlement's size taken sideways: about forty men and women turned out to fight the fort fire in 1827, and a majority of the men at the fort that summer were Hubbard's own employees",
-    "for 1835, at one remove through McIlvaine: the brig Illinois lightered ashore on 25 May because the harbour could not take her, the passengers going on to the Green Tree Tavern, the Chicago American of 10 October 1835 on Hubbard's fire engine, and the March 1835 purchase of the eighty acres of Russell & Mather's addition for $5,000"
+    "for 1835, at one remove through McIlvaine: the brig Illinois lightered ashore on 25 May because the harbour could not take her, the passengers going on to the Green Tree Tavern, the Chicago American of 10 October 1835 on Hubbard's fire engine, and the March 1835 purchase of the eighty acres of Russell & Mather's addition for $5,000",
+    "one period document, and it is graded separately: Hubbard's letter to his sister headed 'Chicago, July 25, 1827', at data/sources/hubbard_letter_1827_07_25.json"
   ],
   "what_it_does_not_supply": [
     "Hubbard's own eyewitness on 1835. HIS NARRATIVE ENDS IN NOVEMBER 1830 and the closing note says so in as many words; the book's 1835 is Caroline McIlvaine's, written in 1911",
@@ -63,5 +58,5 @@
     "a residence for anybody in 1835. Every person Hubbard names, he names for what they did between 1812 and 1830",
     "page images. This reading is of the Internet Archive's OCR text of the scan, corroborated against the deposited PDF's own text layer; no claim here is scan_verified"
   ],
-  "note": "THE BOOK IS TWO BOOKS AND THE WHOLE VALUE OF IT DEPENDS ON KEEPING THEM APART. Hubbard's narrative is a participant's recollection of 1818-1830 at rung 2 and it stops in November 1830. Caroline McIlvaine's Introduction is 1911 compilation at rung 4, and it is the only place in the volume where the town of 1834-1836 appears at all. One period document is printed between them — Hubbard's letter of 25 July 1827 — and it alone reads at rung 1. THE RECORD'S OWN TIER IS 3 AND NOT 2 OR 1, deliberately: a page's rung is the best rung it transcribes, but this record covers the whole volume rather than one passage, and the material this project will actually reach for — the 1835 material — sits at rung 4. Anything read from the Introduction is McIlvaine and must be cited as McIlvaine. See data/research/books/coverage.json for exactly which pages were read, and data/research/books/crosswalk.json for every identity ruled on. Nothing in data/residents/, data/structures/ or data/assets/ was edited by this reading."
+  "note": "THE BOOK IS TWO BOOKS AND THE WHOLE VALUE OF IT DEPENDS ON KEEPING THEM APART. Hubbard's narrative is a participant's recollection of 1818-1830 at rung 2 and it stops in November 1830. Caroline McIlvaine's Introduction is 1911 compilation at rung 4, and it is the only place in the volume where the town of 1834-1836 appears at all. One period document is printed between them — Hubbard's letter to his sister of 25 July 1827, at page 174 — and it reads at rung 1. IT IS NOT GRADED BY THIS RECORD. A source record cites a place and not a volume, exactly as chicago_antiquities_pratt.json and chicago_antiquities_american_fur_co.json are two records of one book: the letter has its own record at data/sources/hubbard_letter_1827_07_25.json and its own claim file, so that a rung-1 document cannot lend its rung to a 1911 compilation bound in the same covers. THIS RECORD'S TIER IS 2, which is the narrative's rung and the best this record carries. The material a run will actually reach for — the 1835 material — is rung 4 inside it, and every claim taken from the Introduction says so on its face. Anything read from the Introduction is McIlvaine and must be cited as McIlvaine. See data/research/books/coverage.json for exactly which pages were read, and data/research/books/crosswalk.json for every identity ruled on. Nothing in data/residents/, data/structures/ or data/assets/ was edited by this reading."
 }
