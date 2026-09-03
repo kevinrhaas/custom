@@ -1,6 +1,6 @@
 {
   "project": "chicago-4d",
-  "generated_ct": "Sep 3, 2026, 6:42 AM",
+  "generated_ct": "Sep 3, 2026, 6:53 AM",
   "tickets": [
     {
       "id": "T-0001",
@@ -8754,7 +8754,7 @@
     {
       "id": "T-0533",
       "title": "The 1840 census images 1-25: names and cells of the two short left sheets printed 225 and 228, and of 33S7-9YYJ-9MX whose page number is off the exposure",
-      "state": "open",
+      "state": "claimed",
       "epic": "META",
       "requested_by": "owner",
       "seen": false,
@@ -8764,7 +8764,7 @@
       "opened": "2026-09-03",
       "closed": null,
       "pr": null,
-      "claimed_by": null,
+      "claimed_by": "run 9/3/2026, 5:37:06 AM CT",
       "blocked_on": null,
       "needs_bake": false,
       "queue_rank": 2
@@ -8930,6 +8930,24 @@
       "blocked_on": null,
       "needs_bake": false,
       "queue_rank": 136
+    },
+    {
+      "id": "T-0544",
+      "title": "dev's gate is red before any branch touches it: 0 platted cross-street faces, a block off the ground, the far-timber census, and six resident-name assertions in the smoke",
+      "state": "open",
+      "epic": "META",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "M",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-09-03",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "queue_rank": 137
     }
   ]
 }
