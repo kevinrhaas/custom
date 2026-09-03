@@ -85,9 +85,102 @@ def census_lookup(rows):
     return {as_int(r, "serial"): r for r in rows}
 
 
-def later_census(row, census):
+# ---------------------------------------------------------------------------
+# The scan reading of the same line, when there is one (T-0530).
+#
+# The 210 rows this tool applies are a RECOVERY from the owner's v4 workbook,
+# which he has ruled lost, and PR #683 established that where a page has since
+# been read off the deposited image the two disagree — sometimes about who the
+# head of the household even is. So where the page a bridge cites has now been
+# read line by line, the sheet's own figures are attached BESIDE the recovered
+# ones rather than instead of them: the recovered household is the argument the
+# bridge was built on, the scan is the evidence, and a card that showed only one
+# of them would be hiding the disagreement rather than resolving it.
+#
+# This is DERIVED, not authored: it is read from data/research/census_1840/pages/
+# by page and row, so it appears for a person the moment that person's page is
+# read and needs no bridge row to be touched.
+BANDS_WHITE = ["under 5", "5 to 9", "10 to 14", "15 to 19", "20 to 29", "30 to 39",
+               "40 to 49", "50 to 59", "60 to 69", "70 to 79", "80 to 89",
+               "90 to 99", "100 and over"]
+BANDS_COLOURED = ["under 10", "10 to 23", "24 to 35", "36 to 54", "55 to 99", "100 and over"]
+PAGES = DATA / "research" / "census_1840" / "pages"
+
+
+def scan_pages():
+    """(printed_page, line) -> (page doc, record), for every page read so far."""
+    out = {}
+    if not PAGES.is_dir():
+        return out
+    for path in sorted(PAGES.glob("*.json")):
+        doc = load(path)
+        if doc.get("cells_state") != "read":
+            continue
+        for rec in doc.get("records") or []:
+            if rec.get("cells"):
+                out[(doc.get("printed_page"), rec.get("line"))] = (doc, rec)
+    return out
+
+
+def _phrase(counts, bands, noun):
+    parts = [f"{n} {noun} {bands[i]}" if n == 1 else f"{n} {noun}s {bands[i]}"
+             for i, n in enumerate(counts) if n]
+    return parts
+
+
+def scan_verified(page, row, pages):
+    hit = pages.get((page, row))
+    if not hit:
+        return None
+    doc, rec = hit
+    c = rec["cells"]
+    males = sum(c["free_white_male"]) + sum(c["free_coloured_male"])
+    females = sum(c["free_white_female"]) + sum(c["free_coloured_female"])
+    under10 = (sum(c["free_white_male"][:2]) + sum(c["free_white_female"][:2])
+               + c["free_coloured_male"][0] + c["free_coloured_female"][0])
+    parts = (_phrase(c["free_white_male"], BANDS_WHITE, "male")
+             + _phrase(c["free_white_female"], BANDS_WHITE, "female")
+             + _phrase(c["free_coloured_male"], BANDS_COLOURED, "free coloured male")
+             + _phrase(c["free_coloured_female"], BANDS_COLOURED, "free coloured female"))
+    return {
+        "read_by": "T-0530",
+        "sources": ["census_1840_chicago_familysearch_images"],
+        "image": doc.get("image"),
+        "line": rec.get("line"),
+        "head_name_as_read": rec.get("as_read"),
+        "free_persons": c["free_persons"],
+        "males": males,
+        "females": females,
+        "children_under_10": under10,
+        "age_bands": "; ".join(parts) or "no person is marked on this line",
+        "column_totals_check": doc.get("reconciliation_summary"),
+    }
+
+
+def scan_disagreement(household, scan):
+    """The sentence a visitor needs, or None when the two readings agree."""
+    if not scan:
+        return None
+    pairs = [("people", household.get("persons"), scan["free_persons"]),
+             ("males", household.get("male"), scan["males"]),
+             ("females", household.get("female"), scan["females"]),
+             ("children under ten", household.get("children_under_10"), scan["children_under_10"])]
+    diff = [f"{label} {a} against {b}" for label, a, b in pairs
+            if a is not None and a != b]
+    if not diff:
+        return ("The page has since been read off the image and gives the same household: "
+                "the recovered workbook and the sheet agree line for line here.")
+    return ("The page has since been read off the image and does NOT give the same household. "
+            "Recovered workbook against the sheet: " + "; ".join(diff)
+            + ". Neither is deleted. The sheet is the senior reading — it is the record, and "
+            "the workbook is a memory of the record — but the bridge to this person was built "
+            "on the workbook's row, so the disagreement is shown rather than resolved here.")
+
+
+def later_census(row, census, pages=None):
     serial = as_int(row, "serial")
     source = census[serial]
+    scan = scan_verified(as_int(source, "page"), as_int(source, "row"), pages or {})
     household = {
         "persons": as_int(source, "persons"),
         "children_under_10": as_int(source, "children_lt_10"),
@@ -101,7 +194,7 @@ def later_census(row, census):
         "foreigners_not_naturalized": as_int(source, "foreigners_not_naturalized"),
         "illiterate_over_21": as_int(source, "illiterate_gt_21"),
     }
-    return {
+    doc = {
         "year": 1840,
         "source_id": SOURCE_ID,
         "serial": serial,
@@ -119,6 +212,12 @@ def later_census(row, census):
         "bridge_basis": row["bridge_basis"].strip(),
         "note": "LATER EVIDENCE, NOT A BACK-PROJECTION. This is the 1840 federal census household, five years after the 1835-07-01 scene; its household composition is not asserted for 1835 without separate evidence."
     }
+    # Absent until that page is read, rather than present and null: a key
+    # shipped empty to a browser is a figure nobody can see and nobody can use.
+    if scan:
+        doc["scan_verified"] = scan
+        doc["scan_disagreement"] = scan_disagreement(household, scan)
+    return doc
 
 
 def docs_and_people():
@@ -191,7 +290,14 @@ def update_ledger(rows, all_census):
         "validated_identity_bridges": len(validated),
         "provisional_identity_bridges": len(provisional),
         "not_yet_linked_to_canonical_1835_resident": len(all_census) - len(linked),
-        "legacy_partial_matcher": {
+        # Idempotence, found by running this tool twice (T-0530). The legacy
+        # block is lifted out of whatever `census_1840` held BEFORE this tool
+        # first owned it — so on the second run `old` is this tool's own output,
+        # `eligible_named_rows` is gone and `linked` is the bridge list, and the
+        # legacy result was being overwritten with a copy of the new one. Once
+        # the block exists it is carried forward verbatim: it is a record of a
+        # matcher that no longer runs, and nothing can re-derive it.
+        "legacy_partial_matcher": old.get("legacy_partial_matcher") or {
             "eligible_named_rows": old.get("eligible_named_rows"),
             "linked": old.get("linked") or [],
             "ambiguous": old.get("ambiguous") or [],
@@ -227,7 +333,7 @@ The old September 2 “0 links / 29 unmatched heads” result is preserved in th
 
 def apply():
     all_rows = census_rows(); lookup = census_lookup(all_rows)
-    rows = bridge_rows(); docs, people = docs_and_people()
+    rows = bridge_rows(); docs, people = docs_and_people(); pages = scan_pages()
     for row in rows:
         pid = row["person_id"].strip(); serial = as_int(row, "serial")
         if pid not in people:
@@ -235,7 +341,7 @@ def apply():
         if serial not in lookup:
             raise SystemExit(f"bridge SERIAL not found in 210-row census dataset: {serial}")
         person, _path, _doc = people[pid]
-        person["later_census"] = later_census(row, lookup)
+        person["later_census"] = later_census(row, lookup, pages)
     for path, doc in docs.items(): dump(path, doc, 1)
     index = rebuild_index(load(INDEX), docs); dump(INDEX, index, 1)
     update_ledger(rows, all_rows); update_summary(rows, all_rows)
@@ -250,7 +356,7 @@ def apply():
 
 def check():
     all_rows = census_rows(); lookup = census_lookup(all_rows)
-    rows = bridge_rows(); docs, people = docs_and_people(); problems=[]
+    rows = bridge_rows(); docs, people = docs_and_people(); pages = scan_pages(); problems=[]
     expected = {r["person_id"].strip(): r for r in rows}
     for pid, row in expected.items():
         if pid not in people:
@@ -263,6 +369,15 @@ def check():
             problems.append(f"bridge drift for {pid}")
         if got.get("bridge_status") != row.get("bridge_status"):
             problems.append(f"bridge status drift for {pid}")
+        # The scan block is DERIVED from the read census pages, so a hand-edited
+        # figure on a card has to fail here rather than sit in the tree looking
+        # like something that was read off a photograph (T-0530).
+        want = scan_verified(as_int(lookup[serial], "page"), as_int(lookup[serial], "row"), pages)
+        if got.get("scan_verified") != want:
+            problems.append(f"scan reading drift for {pid}: rerun apply_census_1840_bridges.py")
+        want_note = scan_disagreement(got.get("household") or {}, want) if want else None
+        if got.get("scan_disagreement") != want_note:
+            problems.append(f"scan disagreement drift for {pid}")
     actual_links = [p for p,_path,_doc in people.values() if p.get("later_census")]
     index = load(INDEX); counts=index.get("counts") or {}
     if int(counts.get("census_1840_linked") or 0) != len(actual_links): problems.append("index census_1840_linked disagrees with resident records")

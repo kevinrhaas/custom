@@ -1,7 +1,7 @@
 ---
 id: T-0544
 title: dev's gate is red before any branch touches it: 0 platted cross-street faces, a block off the ground, the far-timber census, and six resident-name assertions in the smoke
-state: open
+state: withdrawn
 epic: META
 requested_by: loop
 seen: false
@@ -9,7 +9,7 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-09-03
-closed: null
+closed: 2026-09-03
 pr: null
 claimed_by: null
 blocked_on: null
@@ -56,3 +56,5 @@ reading was taken.
 **Found by:** T-0533, which could not merge a fully verified transcription because of it.
 
 Still red at 5c0d015f (after #689, #690, #692 merged), with the identical check.sh failure set — so none of the census or voter-list work is the cause, and none of it is the fix.
+
+**Withdrawn 2026-09-03 (afternoon), on the merge of PR #693 into a green dev.** The condition this ticket named no longer holds: `bash tools/check.sh` passes on dev at 050e934c, af271bd0 and on every branch merged from it today (CHECK PASS, three times), and the smoke half was closed by T-0524 in PR #696 (parts 3 and 13 green in both viewports). Nothing here was worked; the repairs landed under other tickets.
