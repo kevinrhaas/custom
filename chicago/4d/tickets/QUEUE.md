@@ -2,6 +2,9 @@
 # The owner owns this order. Reordered by an agent on 2026-09-03 on his explicit
 # instruction: "Create several tickets as needed in the queue file on dev and add these to
 # the top of the queue file, since other tickets below are dependent and will help."
+# Same day, later: T-0524 moved into the top band on his ruling "Fix the prompt and move
+# T-0524 up" — the renderer smoke asserts a resident layer that no longer exists, so no
+# full smoke can be green until it is repaired.
 # Before that, on 2026-08-30: "lots of nothing happened in the city which is bad. any decisions
 # needed, update and improve the tickets to make progress." Earlier instructions:
 # 2026-08-29 x2 (the newspaper stream to the top, then dependencies on visible items),
@@ -73,6 +76,12 @@
 # ---   wave 3  T-0513
 # ---   wave 4  T-0514 T-0515 T-0516
 # ---   wave 5  T-0517 T-0518
+
+# --- T-0524 sits here, not at the bottom where T-0491 filed it, on the owner's ruling of
+# --- 2026-09-03: eighteen smoke assertions still describe the reconstructed residents
+# --- T-0489 retired, so every full smoke on dev is red and two runs (#1456, #1457) burned
+# --- their budget proving it. Repair it before the sweep's runs need a green smoke.
+T-0524 — The renderer smoke still asserts a reconstructed resident, 956 person entries and 150 research reviews, and the layer has none of the three
 
 T-0493 — Four voter lists of 1833-1835 name 346 entries, and the residents layer holds 99 of their 215 surnames
 T-0531 — The 1840 census images 1-25: names and cells of the left sheets printed 210, 215 and 219
@@ -316,6 +325,5 @@ T-0440 — Clark, Filer & Co.'s live placement is empty while three printings pu
 T-0449 — Four South Water frontage entries declare lots their runs never reach, and each hides its block's headroom
 T-0522 — The dev gate has been red on 10 legs since PR #670 merged the recovered census bridge
 T-0520 — The archetype builders compute their own opening rectangles beside the ones facade_openings states, and only a town-wide rebake can join them
-T-0524 — The renderer smoke still asserts a reconstructed resident, 956 person entries and 150 research reviews, and the layer has none of the three
 T-0536 — The census_1840 domain declares its 25 read images in its own images[] shape, which the shared research-domain gate does not read
 T-0537 — The web derivatives are stamped by an unpinned gltf-transform, so a release upstream restamps all 372 of them
