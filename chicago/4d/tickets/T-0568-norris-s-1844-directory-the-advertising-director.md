@@ -1,7 +1,7 @@
 ---
 id: T-0568
 title: Norris's 1844 directory: the Advertising Directory read as businesses, with proprietors, trades, addresses and founding dates
-state: open
+state: claimed
 epic: META
 requested_by: owner
 seen: false
@@ -11,7 +11,7 @@ parent: T-0555
 opened: 2026-09-03
 closed: null
 pr: null
-claimed_by: null
+claimed_by: run 9/3/2026, 12:15:53 PM CT
 blocked_on: null
 needs_bake: false
 ---
