@@ -1,7 +1,7 @@
 ---
 id: T-0571
 title: Fergus's Chicago directory for 1843, complete on Genealogy Trails: 2,427 entries of name, trade and street, read into the directories domain and date-flagged as later evidence
-state: open
+state: done
 epic: META
 requested_by: owner
 seen: false
@@ -9,11 +9,13 @@ effort: S
 legacy_id: null
 parent: T-0556
 opened: 2026-09-03
-closed: null
-pr: null
-claimed_by: null
+closed: 2026-09-03
+pr: 714
+claimed_by: run 9/3/2026, 12:53:28 PM CT
 blocked_on: null
 needs_bake: false
+closed_at: 2026-09-03T18:08:11.313Z
+claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/33783236430
 ---
 
 Fergus's Chicago directory for 1843, complete on Genealogy Trails: 2,427 entries of name, trade and street, read into the directories domain and date-flagged as later evidence.

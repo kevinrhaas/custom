@@ -60,10 +60,9 @@
     "leaves 1-14": "the 1903 republisher's front matter, press notices and Norris's preface — committed as text, not yet read out. No ticket owns it.",
     "leaves 15-30 (printed 5-20)": "the Description and Historical Sketch. READ by T-0567 — see the declaration below and claims/norris_1844_town_findings.json.",
     "leaves 76-88 (printed 66-78)": "the Statistical Account. READ by T-0567 — see the declaration below and claims/norris_1844_town_findings.json.",
-    "leaves 89-126 (printed 79-116)": "the Advertising Directory. READ by T-0568 — see its declaration below and claims/norris_1844_advertiser.json.",
+    "leaves 89-126 (printed 79-116)": "the Advertising Directory. Committed as text and READ by T-0568, which declares it in the second declaration below.",
     "leaves 127-132": "blank in the scan — no text at all, so nothing is committed for them.",
-    "printed page 65, the foot": "Norris's own General Intelligence Agency card, set inside the last directory page. It is an advertisement, not a directory entry; READ by T-0568 as the last of its 158 cards, and reached at page norris_1844_leaf_075, which this declaration already covers.",
-    "leaves 89-126 (printed 79-116)": "the Advertising Directory. Committed as text and READ by T-0568, which declares it in the second declaration below."
+    "printed page 65, the foot": "Norris's own General Intelligence Agency card, set inside the last directory page. It is an advertisement, not a directory entry; READ by T-0568 as the last of its 158 cards, and reached at page norris_1844_leaf_075, which this declaration already covers."
    }
   },
   {
@@ -153,6 +152,33 @@
     "norris_1844_leaf_126"
    ],
    "not_read_and_why": {}
+  },
+  {
+   "ticket": "T-0571",
+   "source_id": "fergus_chicago_directory_1843",
+   "unit": "page",
+   "what": "Robert Fergus, Directory of the City of Chicago, Illinois, for 1843 (Fergus Historical Series No. 28, 1896), in K. Torp's 2007 transcription on Genealogy Trails: four web pages. Page 1's BUSINESS DIRECTORY (its lines 752-1204) and the whole of the alphabetical directory on pages 2, 3 and 4 — every entry on every one of them is a claim.",
+   "items": [
+    "fergus_1843_page_001",
+    "fergus_1843_page_002",
+    "fergus_1843_page_003",
+    "fergus_1843_page_004"
+   ],
+   "entries_by_item": {
+    "fergus_1843_page_001": 174,
+    "fergus_1843_page_002": 985,
+    "fergus_1843_page_003": 783,
+    "fergus_1843_page_004": 753
+   },
+   "entries_checked_by": "tools/read_fergus_1843.py --check, which fails when the text yields a different number than this file declares. A declared page that quietly loses forty entries is the hole coverage exists to catch, and a count is the only thing that catches it.",
+   "counts_differ_from_the_ticket_and_why": "T-0571 was sized off inventory.json's line-shaped estimate of 2,427 entries (84 + 916 + 726 + 701). Read entry by entry the four pages yield 2,695, and the difference is segmentation, not discovery: the estimate counted lines, and this reading counts entries — it joins the 300-odd entries the transcription wraps onto two lines, cuts the seven it runs onto one, and reads 174 cards out of page 1's business directory where a line count saw 84. The inventory estimate is left as it stands; this declaration is what was actually read.",
+   "not_read_and_why": {
+    "page 1, lines 1-36 (INTRODUCTORY)": "Fergus's 1896 preface — how the volume was made, and his account of the 1843 canvass being 'careless and indifferent'. Prose about the SOURCE rather than about the town, and it belongs with the source record. No ticket owns it.",
+    "page 1, lines 37-750 (CITY, COUNTY, STATE AND U.-S. OFFICERS, SCHOOLS, CHURCHES, SOCIETIES, STATISTICS, ETC.)": "The civic account: officers and courts, twenty-odd churches and societies with their ministers and memberships, the newspapers, the fire and military companies, the schools, the ward population count of 1843 and the port's exports and imports for 1842-3. Every one of those is entry-shaped or finding-shaped and worth having, and none of it is a directory entry — it is a different reading with a different kind vocabulary (civic, price, shipping). T-0589 owns it.",
+    "page 1, lines 1205-1232": "The compiler's request for corrections and a facsimile of the 1844 first edition's title page, set at the foot of the web page. Not the 1843 directory.",
+    "pages 2-4, lines 1-16 (or 1-17 on page 4)": "The transcriber's repeated banner, Fergus's REMARKS on his abbreviations, and the A-Z navigation. The REMARKS are how this reading knows that bet is between, res is residence and bds is boards; they are quoted in the domain README rather than filed as claims about the town.",
+    "pages 2-4, the last two lines of each": "'©2007 Kim Torp' and 'Genealogy Trails' — the transcriber's footer."
+   }
   }
  ]
 }

@@ -8,7 +8,7 @@
   "census_1840": 562,
   "church": 0,
   "books": 0,
-  "directories": 2053,
+  "directories": 4703,
   "newberry_index": 2619
  },
  "witness": {
@@ -33,12 +33,21 @@
    "spent": 0
   },
   "directories": {
-   "read": 2296,
-   "spent": 243
+   "read": 4991,
+   "spent": 288
   },
   "newberry_index": {
    "read": 2619,
    "spent": 0
   }
- }
+ },
+ "raised": [
+  {
+   "domain": "directories",
+   "from": 2053,
+   "to": 4703,
+   "date": "2026-09-03",
+   "why": "T-0571 (PR #714) read Fergus's 1843 Chicago directory — 2,695 entries — into dev while this branch was open. The read is legitimate and already merged; this branch inherits it and cannot spend it. The ceiling is raised to admit it, NOT to excuse it: T-0588 (rank 2) spends the directory on the businesses layer and T-0587 already spent 67 of it onto resident cards, so this domain has live spend tickets and the number should come back down."
+  }
+ ]
 }
