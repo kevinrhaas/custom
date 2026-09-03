@@ -1,7 +1,7 @@
 ---
 id: T-0572
 title: The 134 Black Hawk War veterans who enrolled at Chicago in 1832, read from the Illinois State Archives index and crosswalked to the 1833-1835 town lists
-state: open
+state: done
 epic: META
 requested_by: owner
 seen: false
@@ -9,9 +9,9 @@ effort: S
 legacy_id: null
 parent: T-0556
 opened: 2026-09-03
-closed: null
-pr: null
-claimed_by: null
+closed: 2026-09-03
+pr: 711
+claimed_by: run 9/3/2026, 12:17:53 PM CT
 blocked_on: null
 needs_bake: false
 ---

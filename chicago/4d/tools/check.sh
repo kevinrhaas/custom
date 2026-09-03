@@ -1268,6 +1268,19 @@ step "the Newberry index stays a finding aid, and its reading rebuilds from the 
 
 step "…and its own assertions still fire when broken" \
   python3 tools/read_newberry_index.py --self-test
+# T-0572. The 134 Black Hawk War veterans who enrolled AT CHICAGO in 1832. Two
+# assertions carry this one. First, the reading is taken from the CACHED PAGE and not
+# from the flattened text, because the flattening drops an empty cell and 94 of the 134
+# rows leave the Rank cell empty — read from the text alone, `INDIAN` could be the rank
+# or the company and nothing on the page would say which. Second, 83 of the 134 names
+# carry no surname comma (the French and Potawatomi forms), so the parse anchors on the
+# table row and the gate fails if that count moves: a comma filter would silently drop
+# exactly the part of this town the reconstruction is least able to lose.
+step "the Black Hawk War enrollments read 134 rows and keep the 83 without a surname" \
+  python3 tools/read_blackhawk_war.py --check
+
+step "…and its own assertions still fire when broken" \
+  python3 tools/read_blackhawk_war.py --self-test
 
 step "…and its own assertions still fire when broken" \
   python3 tools/newspaper_corpus.py --self-test

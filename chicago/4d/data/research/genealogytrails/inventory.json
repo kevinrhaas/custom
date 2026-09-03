@@ -112,8 +112,8 @@
       "era": "1776-1975",
       "items_1830s": 134,
       "grade": "A",
-      "state": "unread",
-      "notes": "One item carries the whole grade: 134 Black Hawk War veterans WHO ENROLLED AT CHICAGO, three years before the scene, each with rank, company, place of enrollment and regiment. Every one of them was a man standing in this town in 1832. The rest of the section is 1861 and later.",
+      "state": "partly_read_in_repo",
+      "notes": "One item carries the whole grade: 134 Black Hawk War veterans WHO ENROLLED AT CHICAGO, three years before the scene, each with rank, company, place of enrollment and regiment. Every one of them was a man standing in this town in 1832. The rest of the section is 1861 and later. READ 2026-09-03 (T-0572): the 134 Black Hawk War rows are transcribed in full at data/research/civic/records/blackhawk_war_1832_chicago.json. The rest of the section is 1861 and later and stays unread.",
       "items": [
         {
           "item": "Black Hawk War veterans enrolled at Chicago",
@@ -123,8 +123,8 @@
           "era": "1832",
           "items_1830s": 134,
           "grade": "A",
-          "state": "unread",
-          "notes": "134 table rows counted, header excluded. Names as printed include French and Potawatomi forms without a surname comma ('AS KE WITT'), so a reader must not filter on the comma. Kercheval's company is the commonest. The Archives will supply the book entry per soldier by post only — this index is the free layer."
+          "state": "already_read_in_repo",
+          "notes": "134 table rows counted, header excluded. Names as printed include French and Potawatomi forms without a surname comma ('AS KE WITT'), so a reader must not filter on the comma. Kercheval's company is the commonest. The Archives will supply the book entry per soldier by post only — this index is the free layer. READ IN FULL 2026-09-03 by T-0572, out of the page itself rather than the flattened text: html/blackhawkwar.htm was cached the same day because the flattening drops an empty cell, and 94 of the 134 rows leave Rank empty, so the text alone cannot say whether 'INDIAN' is the rank or the company. It is the COMPANY. 83 names carry no surname comma and all 83 are carried."
         },
         {
           "item": "War of 1812 veterans data, and the Fort Dearborn massacre muster roll",
