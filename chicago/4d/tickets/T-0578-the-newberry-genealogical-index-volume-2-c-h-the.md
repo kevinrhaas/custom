@@ -1,7 +1,7 @@
 ---
 id: T-0578
 title: The Newberry Genealogical Index, volume 2 (C-H): the Chicago, Cook County and Illinois cards, their leads and the works they point at
-state: claimed
+state: done
 epic: META
 requested_by: owner
 seen: false
@@ -9,12 +9,12 @@ effort: S
 legacy_id: null
 parent: T-0562
 opened: 2026-09-03
-closed: null
-pr: null
+closed: 2026-09-03
+pr: 726
 claimed_by: run 9/3/2026, 2:37:04 PM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-03T20:26:19.204Z
 claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/33796895418
 ---
 
