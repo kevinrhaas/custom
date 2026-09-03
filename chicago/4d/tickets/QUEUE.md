@@ -181,7 +181,6 @@ T-0452 — The plat draws three sloughs off the Main Branch; this reconstruction
 # ---   T-0183  the 27 roofs of a block the river pinches out, returned to the South balance
 # ---   T-0384  Holbrook's store, read as an ordinal off the corner rather than street-only
 T-0429 — Open blk_south_water_lasalle: 8 roofs of headroom on three free lots
-T-0430 — Open blk_south_water_franklin: 4 roofs of headroom on two free lots
 T-0431 — Open blk_south_water_clark: 4 roofs of headroom on two free lots
 T-0432 — Open blk_south_water_dearborn: 4 roofs of headroom on two free lots
 

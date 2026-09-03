@@ -1,7 +1,7 @@
 ---
 id: T-0430
 title: Open blk_south_water_franklin: 4 roofs of headroom on two free lots
-state: claimed
+state: done
 epic: META
 requested_by: loop
 seen: false
@@ -9,8 +9,8 @@ effort: S
 legacy_id: null
 parent: T-0420
 opened: 2026-08-29
-closed: null
-pr: null
+closed: 2026-09-03
+pr: 686
 claimed_by: run 9/3/2026, 4:48:59 AM CT
 blocked_on: null
 needs_bake: true
