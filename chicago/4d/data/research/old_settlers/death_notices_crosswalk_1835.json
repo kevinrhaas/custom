@@ -1,0 +1,2687 @@
+{
+ "schema": 1,
+ "domain": "old_settlers",
+ "generated_by": "tools/read_fergus_obits.py --build",
+ "source_id": "fergus_1843_old_settler_death_notices",
+ "_doc": "Fergus's old-settler death notices against the 1835 residents layer. A PROPOSAL: it changes no resident record. READ THE NEXT FIELD BEFORE READING A MATCH.",
+ "the_header_admission": "Names, places * , dates, and ages at death\nof some of Chicago's Old Settlers, prior to 1843, and other well - known citizens who arrived after 1843, together\nwith others prominently connected with Illinois history:",
+ "what_a_match_here_does_not_mean": "It does not mean the person was in Chicago in 1835, and it does not mean they arrived before 1843 — the list's own header, quoted above, says it also names citizens who arrived later and others merely 'prominently connected with Illinois history'. A match means one thing: a name in the 1835 layer and a name in this list agree on surname and first initial, and the list gives that name a death date and an age. The date and the interval are the payload.",
+ "rule": "SURNAME must match after both are folded (case, punctuation and the transcriber's usual confusions removed), AND the first initial of the given name must match. A surname-only agreement is a REFUSAL, however good it looks. Where one 1835 person meets more than one entry the match is AMBIGUOUS and is filed as such; where two 1835 people meet one entry it is CONTESTED and no match is made.",
+ "counts": {
+  "residents_considered": 847,
+  "matched_one_entry": 34,
+  "matched_more_than_one_ambiguous": 11,
+  "one_entry_contested_by_two_residents": 4,
+  "surname_present_initial_absent_refused": 126,
+  "matches_carrying_a_birth_year": 20,
+  "matches_carrying_a_date_of_death": 32
+ },
+ "matches": [
+  {
+   "resident": "A. W. Flint",
+   "person_id": "ll_a_w_flint",
+   "household_id": "hh_ll_a_w_flint",
+   "grade_1835": "inferred",
+   "occupation_1835": "none_recorded",
+   "rule": "Surname 'Flint' folds to the same string as the entry's, and the given name of both begins A.",
+   "resident_given_is_initial_only": true,
+   "entries": [
+    {
+     "record": "fdn0206",
+     "as_read": "Flint, Dr. Austin, died, New York City, March 13, 1886, aged 73½.",
+     "trade_or_office": null,
+     "manner_of_death": "died",
+     "place_of_death": "New York City",
+     "death_date": "1886-03-13",
+     "age_as_printed": "aged 73½",
+     "birth_year_earliest": 1812,
+     "birth_year_latest": 1812,
+     "birth_year_arithmetic": "The page prints the death as 'March 13, 1886' and the age as 'aged 73½'. An age of 73 years and 6 months means at least that and less than 73 years and 7 months, so the birth falls between 1812-08-14 and 1812-09-13: the birth year is 1812. The subtraction is this project's; the page states no year of birth."
+    }
+   ],
+   "could_carry": [
+    "birth_year",
+    "date_of_death"
+   ],
+   "carry_rule": "Whatever is carried is carried as evidence of a DEATH and of an interval the birth falls in, never as an 1835 fact and never as a grade. T-0513 consolidates and T-0514/T-0515 apply; this file changes no record."
+  },
+  {
+   "resident": "Ashbel Steele",
+   "person_id": "steele_ashbel",
+   "household_id": "hh_steele_ashbel",
+   "grade_1835": "attested",
+   "occupation_1835": "plasterer",
+   "rule": "Surname 'Steele' folds to the same string as the entry's, and the given name of both begins A.",
+   "resident_given_is_initial_only": false,
+   "entries": [
+    {
+     "record": "fdn0625",
+     "as_read": "Steele, Ashbel, died 1861",
+     "trade_or_office": null,
+     "manner_of_death": "died",
+     "place_of_death": null,
+     "death_date": "1861",
+     "age_as_printed": null,
+     "birth_year_earliest": null,
+     "birth_year_latest": null,
+     "birth_year_arithmetic": null
+    }
+   ],
+   "could_carry": [
+    "date_of_death"
+   ],
+   "carry_rule": "Whatever is carried is carried as evidence of a DEATH and of an interval the birth falls in, never as an 1835 fact and never as a grade. T-0513 consolidates and T-0514/T-0515 apply; this file changes no record."
+  },
+  {
+   "resident": "Byram King",
+   "person_id": "doc_byram_king",
+   "household_id": "hh_doc_byram_king",
+   "grade_1835": "attested",
+   "occupation_1835": "hardware_merchant",
+   "rule": "Surname 'King' folds to the same string as the entry's, and the given name of both begins B.",
+   "resident_given_is_initial_only": false,
+   "entries": [
+    {
+     "record": "fdn0361",
+     "as_read": "King, Byram, died",
+     "trade_or_office": null,
+     "manner_of_death": "died",
+     "place_of_death": null,
+     "death_date": null,
+     "age_as_printed": null,
+     "birth_year_earliest": null,
+     "birth_year_latest": null,
+     "birth_year_arithmetic": null
+    }
+   ],
+   "could_carry": [],
+   "carry_rule": "Whatever is carried is carried as evidence of a DEATH and of an interval the birth falls in, never as an 1835 fact and never as a grade. T-0513 consolidates and T-0514/T-0515 apply; this file changes no record."
+  },
+  {
+   "resident": "Caleb Harrison",
+   "person_id": "ll_harrison_caleb",
+   "household_id": "hh_ll_harrison_caleb",
+   "grade_1835": "inferred",
+   "occupation_1835": "none_recorded",
+   "rule": "Surname 'Harrison' folds to the same string as the entry's, and the given name of both begins C.",
+   "resident_given_is_initial_only": false,
+   "entries": [
+    {
+     "record": "fdn0276",
+     "as_read": "Harrison, Carter Henry, 25th mayor of Chicago, assassinated at his home, Oct. 28, 1893, 8 p.m., by Eugene Patrick Joseph Prendergast, aged 68-8-13.",
+     "trade_or_office": "25th mayor of Chicago",
+     "manner_of_death": "assassinated",
+     "place_of_death": "at his home",
+     "death_date": "1893-10-28",
+     "age_as_printed": "aged 68-8-13",
+     "birth_year_earliest": 1825,
+     "birth_year_latest": 1825,
+     "birth_year_arithmetic": "The page prints the death as 'Oct. 28, 1893' and the age as 'aged 68-8-13'. An age printed to the day is exact: 68 years, 8 months and 13 days back from the death, so the birth falls between 1825-02-15 and 1825-02-15: the birth year is 1825. The subtraction is this project's; the page states no year of birth."
+    }
+   ],
+   "could_carry": [
+    "birth_year",
+    "date_of_death"
+   ],
+   "carry_rule": "Whatever is carried is carried as evidence of a DEATH and of an interval the birth falls in, never as an 1835 fact and never as a grade. T-0513 consolidates and T-0514/T-0515 apply; this file changes no record."
+  },
+  {
+   "resident": "Charles H. Taylor",
+   "person_id": "taylor_charles",
+   "household_id": "hh_taylor_anson",
+   "grade_1835": "attested",
+   "occupation_1835": "carpenter",
+   "rule": "Surname 'Taylor' folds to the same string as the entry's, and the given name of both begins C.",
+   "resident_given_is_initial_only": false,
+   "entries": [
+    {
+     "record": "fdn0658",
+     "as_read": "Taylor, Charles A., trunks, died August 3, 1892, aged 56.",
+     "trade_or_office": "trunks",
+     "manner_of_death": "died",
+     "place_of_death": null,
+     "death_date": "1892-08-03",
+     "age_as_printed": "aged 56",
+     "birth_year_earliest": 1835,
+     "birth_year_latest": 1836,
+     "birth_year_arithmetic": "The page prints the death as 'August 3, 1892' and the age as 'aged 56'. An age of 56 completed years means at least 56 and less than 57, so the birth falls between 1835-08-04 and 1836-08-03: the birth year is 1835 or 1836. The subtraction is this project's; the page states no year of birth."
+    }
+   ],
+   "could_carry": [
+    "birth_year",
+    "date_of_death"
+   ],
+   "carry_rule": "Whatever is carried is carried as evidence of a DEATH and of an interval the birth falls in, never as an 1835 fact and never as a grade. T-0513 consolidates and T-0514/T-0515 apply; this file changes no record."
+  },
+  {
+   "resident": "Davi Andrews",
+   "person_id": "ll_andrews_davi",
+   "household_id": "hh_ll_andrews_davi",
+   "grade_1835": "attested",
+   "occupation_1835": "none_recorded",
+   "rule": "Surname 'Andrews' folds to the same string as the entry's, and the given name of both begins D.",
+   "resident_given_is_initial_only": false,
+   "entries": [
+    {
+     "record": "fdn0010",
+     "as_read": "Andrews, David, died, Kensington, Ill., May 29, 1885, aged 77.",
+     "trade_or_office": null,
+     "manner_of_death": "died",
+     "place_of_death": "Kensington, Ill.",
+     "death_date": "1885-05-29",
+     "age_as_printed": "aged 77",
+     "birth_year_earliest": 1807,
+     "birth_year_latest": 1808,
+     "birth_year_arithmetic": "The page prints the death as 'May 29, 1885' and the age as 'aged 77'. An age of 77 completed years means at least 77 and less than 78, so the birth falls between 1807-05-30 and 1808-05-29: the birth year is 1807 or 1808. The subtraction is this project's; the page states no year of birth."
+    }
+   ],
+   "could_carry": [
+    "birth_year",
+    "date_of_death"
+   ],
+   "carry_rule": "Whatever is carried is carried as evidence of a DEATH and of an interval the birth falls in, never as an 1835 fact and never as a grade. T-0513 consolidates and T-0514/T-0515 apply; this file changes no record."
+  },
+  {
+   "resident": "David McKee",
+   "person_id": "mckee_david",
+   "household_id": "hh_mckee_david",
+   "grade_1835": "attested",
+   "occupation_1835": "blacksmith",
+   "rule": "Surname 'McKee' folds to the same string as the entry's, and the given name of both begins D.",
+   "resident_given_is_initial_only": false,
+   "entries": [
+    {
+     "record": "fdn0425",
+     "as_read": "McKee, David, died near Aurora, Ill., April 9, 1881, aged 80¼",
+     "trade_or_office": null,
+     "manner_of_death": "died",
+     "place_of_death": "near Aurora, Ill.",
+     "death_date": "1881-04-09",
+     "age_as_printed": "aged 80¼",
+     "birth_year_earliest": 1800,
+     "birth_year_latest": 1801,
+     "birth_year_arithmetic": "The page prints the death as 'April 9, 1881' and the age as 'aged 80¼'. An age of 80 years and 3 months means at least that and less than 80 years and 4 months, so the birth falls between 1800-12-10 and 1801-01-09: the birth year is 1800 or 1801. The subtraction is this project's; the page states no year of birth."
+    }
+   ],
+   "could_carry": [
+    "birth_year",
+    "date_of_death"
+   ],
+   "carry_rule": "Whatever is carried is carried as evidence of a DEATH and of an interval the birth falls in, never as an 1835 fact and never as a grade. T-0513 consolidates and T-0514/T-0515 apply; this file changes no record."
+  },
+  {
+   "resident": "Dr Peter Temple",
+   "person_id": "temple_peter",
+   "household_id": "hh_temple_john_t",
+   "grade_1835": "inferred",
+   "occupation_1835": "dentist",
+   "rule": "Surname 'Temple' folds to the same string as the entry's, and the given name of both begins P.",
+   "resident_given_is_initial_only": false,
+   "entries": [
+    {
+     "record": "fdn0661",
+     "as_read": "Temple, Dr. Peter, died, Lexington, Mo., March 18, 1889",
+     "trade_or_office": null,
+     "manner_of_death": "died",
+     "place_of_death": "Lexington, Mo.",
+     "death_date": "1889-03-18",
+     "age_as_printed": null,
+     "birth_year_earliest": null,
+     "birth_year_latest": null,
+     "birth_year_arithmetic": null
+    }
+   ],
+   "could_carry": [
+    "date_of_death"
+   ],
+   "carry_rule": "Whatever is carried is carried as evidence of a DEATH and of an interval the birth falls in, never as an 1835 fact and never as a grade. T-0513 consolidates and T-0514/T-0515 apply; this file changes no record."
+  },
+  {
+   "resident": "Dr. Josiah C. Goodhue",
+   "person_id": "inf_physician_south_01",
+   "household_id": "hh_inf_physician_south_01",
+   "grade_1835": "inferred",
+   "occupation_1835": "physician",
+   "rule": "Surname 'Goodhue' folds to the same string as the entry's, and the given name of both begins J.",
+   "resident_given_is_initial_only": false,
+   "entries": [
+    {
+     "record": "fdn0246",
+     "as_read": "Goodhue, Dr. Josiah C, died, Rockford, Ill., Dec. 31, 1847",
+     "trade_or_office": null,
+     "manner_of_death": "died",
+     "place_of_death": "Rockford, Ill.",
+     "death_date": "1847-12-31",
+     "age_as_printed": null,
+     "birth_year_earliest": null,
+     "birth_year_latest": null,
+     "birth_year_arithmetic": null
+    }
+   ],
+   "could_carry": [
+    "date_of_death"
+   ],
+   "carry_rule": "Whatever is carried is carried as evidence of a DEATH and of an interval the birth falls in, never as an 1835 fact and never as a grade. T-0513 consolidates and T-0514/T-0515 apply; this file changes no record."
+  },
+  {
+   "resident": "Edward A. Rogers",
+   "person_id": "ll_edward_a_rogers",
+   "household_id": "hh_ll_edward_a_rogers",
+   "grade_1835": "inferred",
+   "occupation_1835": "none_recorded",
+   "rule": "Surname 'Rogers' folds to the same string as the entry's, and the given name of both begins E.",
+   "resident_given_is_initial_only": false,
+   "entries": [
+    {
+     "record": "fdn0554",
+     "as_read": "Rogers, Dr. Edward Carter, died, Quincy, Mich., Feb. 19, 1887. aged 66-9-23.",
+     "trade_or_office": null,
+     "manner_of_death": "died",
+     "place_of_death": "Quincy, Mich.",
+     "death_date": "1887-02-19",
+     "age_as_printed": "aged 66-9-23",
+     "birth_year_earliest": 1820,
+     "birth_year_latest": 1820,
+     "birth_year_arithmetic": "The page prints the death as 'Feb. 19, 1887' and the age as 'aged 66-9-23'. An age printed to the day is exact: 66 years, 9 months and 23 days back from the death, so the birth falls between 1820-04-26 and 1820-04-26: the birth year is 1820. The subtraction is this project's; the page states no year of birth."
+    }
+   ],
+   "could_carry": [
+    "birth_year",
+    "date_of_death"
+   ],
+   "carry_rule": "Whatever is carried is carried as evidence of a DEATH and of an interval the birth falls in, never as an 1835 fact and never as a grade. T-0513 consolidates and T-0514/T-0515 apply; this file changes no record."
+  },
+  {
+   "resident": "Edward W. Casey",
+   "person_id": "casey_edward_w",
+   "household_id": "hh_casey_edward_w",
+   "grade_1835": "attested",
+   "occupation_1835": "attorney",
+   "rule": "Surname 'Casey' folds to the same string as the entry's, and the given name of both begins E.",
+   "resident_given_is_initial_only": false,
+   "entries": [
+    {
+     "record": "fdn0090",
+     "as_read": "Casey, Edward W., lawyer, died, New Hampshire, after 1842.",
+     "trade_or_office": "lawyer",
+     "manner_of_death": "died",
+     "place_of_death": "New Hampshire",
+     "death_date": "1842",
+     "age_as_printed": null,
+     "birth_year_earliest": null,
+     "birth_year_latest": null,
+     "birth_year_arithmetic": null
+    }
+   ],
+   "could_carry": [
+    "date_of_death"
+   ],
+   "carry_rule": "Whatever is carried is carried as evidence of a DEATH and of an interval the birth falls in, never as an 1835 fact and never as a grade. T-0513 consolidates and T-0514/T-0515 apply; this file changes no record."
+  },
+  {
+   "resident": "Ehjah Doolittle",
+   "person_id": "ll_ehjah_doolittle",
+   "household_id": "hh_ll_ehjah_doolittle",
+   "grade_1835": "inferred",
+   "occupation_1835": "none_recorded",
+   "rule": "Surname 'Doolittle' folds to the same string as the entry's, and the given name of both begins E.",
+   "resident_given_is_initial_only": false,
+   "entries": [
+    {
+     "record": "fdn0165",
+     "as_read": "Doolittle, Elijah, died, Joliet, Ill.",
+     "trade_or_office": null,
+     "manner_of_death": "died",
+     "place_of_death": "Joliet, Ill.",
+     "death_date": null,
+     "age_as_printed": null,
+     "birth_year_earliest": null,
+     "birth_year_latest": null,
+     "birth_year_arithmetic": null
+    }
+   ],
+   "could_carry": [],
+   "carry_rule": "Whatever is carried is carried as evidence of a DEATH and of an interval the birth falls in, never as an 1835 fact and never as a grade. T-0513 consolidates and T-0514/T-0515 apply; this file changes no record."
+  },
+  {
+   "resident": "Elded Smith",
+   "person_id": "ll_smith_elded",
+   "household_id": "hh_ll_smith_elded",
+   "grade_1835": "inferred",
+   "occupation_1835": "none_recorded",
+   "rule": "Surname 'Smith' folds to the same string as the entry's, and the given name of both begins E.",
+   "resident_given_is_initial_only": false,
+   "entries": [
+    {
+     "record": "fdn0608",
+     "as_read": "Smith, Lieut. Ephraim Kirby, U.S.A., died near City of Mexico, September 11, 1847, aged 41.",
+     "trade_or_office": "U.S.A",
+     "manner_of_death": "died",
+     "place_of_death": "near City of Mexico",
+     "death_date": "1847-09-11",
+     "age_as_printed": "aged 41",
+     "birth_year_earliest": 1805,
+     "birth_year_latest": 1806,
+     "birth_year_arithmetic": "The page prints the death as 'September 11, 1847' and the age as 'aged 41'. An age of 41 completed years means at least 41 and less than 42, so the birth falls between 1805-09-12 and 1806-09-11: the birth year is 1805 or 1806. The subtraction is this project's; the page states no year of birth."
+    }
+   ],
+   "could_carry": [
+    "birth_year",
+    "date_of_death"
+   ],
+   "carry_rule": "Whatever is carried is carried as evidence of a DEATH and of an interval the birth falls in, never as an 1835 fact and never as a grade. T-0513 consolidates and T-0514/T-0515 apply; this file changes no record."
+  },
+  {
+   "resident": "Geo. N. Powell",
+   "person_id": "ll_geo_n_powell",
+   "household_id": "hh_ll_geo_n_powell",
+   "grade_1835": "inferred",
+   "occupation_1835": "none_recorded",
+   "rule": "Surname 'Powell' folds to the same string as the entry's, and the given name of both begins G.",
+   "resident_given_is_initial_only": false,
+   "entries": [
+    {
+     "record": "fdn0526",
+     "as_read": "Powell, George N., died before January 21, 1851",
+     "trade_or_office": null,
+     "manner_of_death": "died",
+     "place_of_death": null,
+     "death_date": "1851-01-21",
+     "age_as_printed": null,
+     "birth_year_earliest": null,
+     "birth_year_latest": null,
+     "birth_year_arithmetic": null
+    }
+   ],
+   "could_carry": [
+    "date_of_death"
+   ],
+   "carry_rule": "Whatever is carried is carried as evidence of a DEATH and of an interval the birth falls in, never as an 1835 fact and never as a grade. T-0513 consolidates and T-0514/T-0515 apply; this file changes no record."
+  },
+  {
+   "resident": "Grenville Temple Sproat",
+   "person_id": "sproat_grenville",
+   "household_id": "hh_sproat_grenville",
+   "grade_1835": "attested",
+   "occupation_1835": "schoolteacher",
+   "rule": "Surname 'Sproat' folds to the same string as the entry's, and the given name of both begins G.",
+   "resident_given_is_initial_only": false,
+   "entries": [
+    {
+     "record": "fdn0620",
+     "as_read": "Sproat, Granville Temple, school-teacher, died, Mt. Lebanon, N.Y., February 6, 1887, aged 79.",
+     "trade_or_office": "school-teacher",
+     "manner_of_death": "died",
+     "place_of_death": "Mt. Lebanon, N.Y.",
+     "death_date": "1887-02-06",
+     "age_as_printed": "aged 79",
+     "birth_year_earliest": 1807,
+     "birth_year_latest": 1808,
+     "birth_year_arithmetic": "The page prints the death as 'February 6, 1887' and the age as 'aged 79'. An age of 79 completed years means at least 79 and less than 80, so the birth falls between 1807-02-07 and 1808-02-06: the birth year is 1807 or 1808. The subtraction is this project's; the page states no year of birth."
+    }
+   ],
+   "could_carry": [
+    "birth_year",
+    "date_of_death"
+   ],
+   "carry_rule": "Whatever is carried is carried as evidence of a DEATH and of an interval the birth falls in, never as an 1835 fact and never as a grade. T-0513 consolidates and T-0514/T-0515 apply; this file changes no record."
+  },
+  {
+   "resident": "H. B. Clarke",
+   "person_id": "doc_h_b_clarke",
+   "household_id": "hh_doc_h_b_clarke",
+   "grade_1835": "attested",
+   "occupation_1835": "hardware_merchant",
+   "rule": "Surname 'Clarke' folds to the same string as the entry's, and the given name of both begins H.",
+   "resident_given_is_initial_only": true,
+   "entries": [
+    {
+     "record": "fdn0107",
+     "as_read": "Clarke, Dr. Henry, died, Walworth, Wis., before April 23, 1853, aged 60.",
+     "trade_or_office": null,
+     "manner_of_death": "died",
+     "place_of_death": "Walworth, Wis.",
+     "death_date": "1853-04-23",
+     "age_as_printed": "aged 60",
+     "birth_year_earliest": null,
+     "birth_year_latest": null,
+     "birth_year_arithmetic": null
+    }
+   ],
+   "could_carry": [
+    "date_of_death"
+   ],
+   "carry_rule": "Whatever is carried is carried as evidence of a DEATH and of an interval the birth falls in, never as an 1835 fact and never as a grade. T-0513 consolidates and T-0514/T-0515 apply; this file changes no record."
+  },
+  {
+   "resident": "H. Crocker",
+   "person_id": "doc_h_crocker",
+   "household_id": "hh_doc_h_crocker",
+   "grade_1835": "attested",
+   "occupation_1835": "schoolteacher",
+   "rule": "Surname 'Crocker' folds to the same string as the entry's, and the given name of both begins H.",
+   "resident_given_is_initial_only": true,
+   "entries": [
+    {
+     "record": "fdn0140",
+     "as_read": "Crocker, Hans, lawyer, died, Milwaukee, Wis., Mar. 17, 1889, a. 73.",
+     "trade_or_office": "lawyer",
+     "manner_of_death": "died",
+     "place_of_death": "Milwaukee, Wis.",
+     "death_date": "1889-03-17",
+     "age_as_printed": "a. 73",
+     "birth_year_earliest": 1815,
+     "birth_year_latest": 1816,
+     "birth_year_arithmetic": "The page prints the death as 'Mar. 17, 1889' and the age as 'a. 73'. An age of 73 completed years means at least 73 and less than 74, so the birth falls between 1815-03-18 and 1816-03-17: the birth year is 1815 or 1816. The subtraction is this project's; the page states no year of birth."
+    }
+   ],
+   "could_carry": [
+    "birth_year",
+    "date_of_death"
+   ],
+   "carry_rule": "Whatever is carried is carried as evidence of a DEATH and of an interval the birth falls in, never as an 1835 fact and never as a grade. T-0513 consolidates and T-0514/T-0515 apply; this file changes no record."
+  },
+  {
+   "resident": "H. Vanderbogart",
+   "person_id": "ll_h_vanderbogart",
+   "household_id": "hh_ll_h_vanderbogart",
+   "grade_1835": "inferred",
+   "occupation_1835": "none_recorded",
+   "rule": "Surname 'Vanderbogart' folds to the same string as the entry's, and the given name of both begins H.",
+   "resident_given_is_initial_only": true,
+   "entries": [
+    {
+     "record": "fdn0683",
+     "as_read": "Van der Bogart, Dr. Henry, died, Naperville, Ill., April 8, 1835, aged 25.",
+     "trade_or_office": null,
+     "manner_of_death": "died",
+     "place_of_death": "Naperville, Ill.",
+     "death_date": "1835-04-08",
+     "age_as_printed": "aged 25",
+     "birth_year_earliest": 1809,
+     "birth_year_latest": 1810,
+     "birth_year_arithmetic": "The page prints the death as 'April 8, 1835' and the age as 'aged 25'. An age of 25 completed years means at least 25 and less than 26, so the birth falls between 1809-04-09 and 1810-04-08: the birth year is 1809 or 1810. The subtraction is this project's; the page states no year of birth."
+    }
+   ],
+   "could_carry": [
+    "birth_year",
+    "date_of_death"
+   ],
+   "carry_rule": "Whatever is carried is carried as evidence of a DEATH and of an interval the birth falls in, never as an 1835 fact and never as a grade. T-0513 consolidates and T-0514/T-0515 apply; this file changes no record."
+  },
+  {
+   "resident": "Henry Mitchell",
+   "person_id": "ll_henry_mitchell",
+   "household_id": "hh_ll_henry_mitchell",
+   "grade_1835": "attested",
+   "occupation_1835": "none_recorded",
+   "rule": "Surname 'Mitchell' folds to the same string as the entry's, and the given name of both begins H.",
+   "resident_given_is_initial_only": false,
+   "entries": [
+    {
+     "record": "fdn0465",
+     "as_read": "Mitchell, Henry, wagonmaker, d., Racine, Wis., Oct. 20, 1893, a. 83.",
+     "trade_or_office": "wagonmaker",
+     "manner_of_death": "d.",
+     "place_of_death": "Racine, Wis.",
+     "death_date": "1893-10-20",
+     "age_as_printed": "a. 83",
+     "birth_year_earliest": 1809,
+     "birth_year_latest": 1810,
+     "birth_year_arithmetic": "The page prints the death as 'Oct. 20, 1893' and the age as 'a. 83'. An age of 83 completed years means at least 83 and less than 84, so the birth falls between 1809-10-21 and 1810-10-20: the birth year is 1809 or 1810. The subtraction is this project's; the page states no year of birth."
+    }
+   ],
+   "could_carry": [
+    "birth_year",
+    "date_of_death"
+   ],
+   "carry_rule": "Whatever is carried is carried as evidence of a DEATH and of an interval the birth falls in, never as an 1835 fact and never as a grade. T-0513 consolidates and T-0514/T-0515 apply; this file changes no record."
+  },
+  {
+   "resident": "Henry Moore",
+   "person_id": "doc_henry_moore",
+   "household_id": "hh_doc_henry_moore",
+   "grade_1835": "attested",
+   "occupation_1835": "attorney",
+   "rule": "Surname 'Moore' folds to the same string as the entry's, and the given name of both begins H.",
+   "resident_given_is_initial_only": false,
+   "entries": [
+    {
+     "record": "fdn0466",
+     "as_read": "Moore, Henry, died, Concord, Mass., after 1841",
+     "trade_or_office": null,
+     "manner_of_death": "died",
+     "place_of_death": "Concord, Mass.",
+     "death_date": "1841",
+     "age_as_printed": null,
+     "birth_year_earliest": null,
+     "birth_year_latest": null,
+     "birth_year_arithmetic": null
+    }
+   ],
+   "could_carry": [
+    "date_of_death"
+   ],
+   "carry_rule": "Whatever is carried is carried as evidence of a DEATH and of an interval the birth falls in, never as an 1835 fact and never as a grade. T-0513 consolidates and T-0514/T-0515 apply; this file changes no record."
+  },
+  {
+   "resident": "Isaac Dewey Harmon",
+   "person_id": "harmon_isaac_d",
+   "household_id": "hh_harmon_brothers",
+   "grade_1835": "attested",
+   "occupation_1835": "dry_goods_merchant",
+   "rule": "Surname 'Harmon' folds to the same string as the entry's, and the given name of both begins I.",
+   "resident_given_is_initial_only": false,
+   "entries": [
+    {
+     "record": "fdn0273",
+     "as_read": "Harmon, Isaac Dewey, died April 9, 1886, aged 72.",
+     "trade_or_office": null,
+     "manner_of_death": "died",
+     "place_of_death": null,
+     "death_date": "1886-04-09",
+     "age_as_printed": "aged 72",
+     "birth_year_earliest": 1813,
+     "birth_year_latest": 1814,
+     "birth_year_arithmetic": "The page prints the death as 'April 9, 1886' and the age as 'aged 72'. An age of 72 completed years means at least 72 and less than 73, so the birth falls between 1813-04-10 and 1814-04-09: the birth year is 1813 or 1814. The subtraction is this project's; the page states no year of birth."
+    }
+   ],
+   "could_carry": [
+    "birth_year",
+    "date_of_death"
+   ],
+   "carry_rule": "Whatever is carried is carried as evidence of a DEATH and of an interval the birth falls in, never as an 1835 fact and never as a grade. T-0513 consolidates and T-0514/T-0515 apply; this file changes no record."
+  },
+  {
+   "resident": "J. A. Marshall",
+   "person_id": "doc_j_a_marshall",
+   "household_id": "hh_doc_j_a_marshall",
+   "grade_1835": "attested",
+   "occupation_1835": "schoolteacher",
+   "rule": "Surname 'Marshall' folds to the same string as the entry's, and the given name of both begins J.",
+   "resident_given_is_initial_only": true,
+   "entries": [
+    {
+     "record": "fdn0444",
+     "as_read": "Marshall, James Monroe, real estate, died July 1, 1880, aged 45-9.",
+     "trade_or_office": "real estate",
+     "manner_of_death": "died",
+     "place_of_death": null,
+     "death_date": "1880-07-01",
+     "age_as_printed": "aged 45-9",
+     "birth_year_earliest": 1834,
+     "birth_year_latest": 1834,
+     "birth_year_arithmetic": "The page prints the death as 'July 1, 1880' and the age as 'aged 45-9'. An age of 45 years and 9 months means at least that and less than 45 years and 10 months, so the birth falls between 1834-09-02 and 1834-10-01: the birth year is 1834. The subtraction is this project's; the page states no year of birth."
+    }
+   ],
+   "could_carry": [
+    "birth_year",
+    "date_of_death"
+   ],
+   "carry_rule": "Whatever is carried is carried as evidence of a DEATH and of an interval the birth falls in, never as an 1835 fact and never as a grade. T-0513 consolidates and T-0514/T-0515 apply; this file changes no record."
+  },
+  {
+   "resident": "James Grant",
+   "person_id": "doc_james_grant",
+   "household_id": "hh_doc_james_grant",
+   "grade_1835": "attested",
+   "occupation_1835": "attorney",
+   "rule": "Surname 'Grant' folds to the same string as the entry's, and the given name of both begins J.",
+   "resident_given_is_initial_only": false,
+   "entries": [
+    {
+     "record": "fdn0255",
+     "as_read": "Grant, James, lawyer, died, Oakland, Cal., Mar. 14, 1891, aged 78.",
+     "trade_or_office": "lawyer",
+     "manner_of_death": "died",
+     "place_of_death": "Oakland, Cal.",
+     "death_date": "1891-03-14",
+     "age_as_printed": "aged 78",
+     "birth_year_earliest": 1812,
+     "birth_year_latest": 1813,
+     "birth_year_arithmetic": "The page prints the death as 'Mar. 14, 1891' and the age as 'aged 78'. An age of 78 completed years means at least 78 and less than 79, so the birth falls between 1812-03-15 and 1813-03-14: the birth year is 1812 or 1813. The subtraction is this project's; the page states no year of birth."
+    }
+   ],
+   "could_carry": [
+    "birth_year",
+    "date_of_death"
+   ],
+   "carry_rule": "Whatever is carried is carried as evidence of a DEATH and of an interval the birth falls in, never as an 1835 fact and never as a grade. T-0513 consolidates and T-0514/T-0515 apply; this file changes no record."
+  },
+  {
+   "resident": "John Graham",
+   "person_id": "ll_john_graham",
+   "household_id": "hh_ll_john_graham",
+   "grade_1835": "inferred",
+   "occupation_1835": "none_recorded",
+   "rule": "Surname 'Graham' folds to the same string as the entry's, and the given name of both begins J.",
+   "resident_given_is_initial_only": false,
+   "entries": [
+    {
+     "record": "fdn0254",
+     "as_read": "Graham, Gen. James Duncan, died December 28, 1865, aged 73.",
+     "trade_or_office": null,
+     "manner_of_death": "died",
+     "place_of_death": null,
+     "death_date": "1865-12-28",
+     "age_as_printed": "aged 73",
+     "birth_year_earliest": 1791,
+     "birth_year_latest": 1792,
+     "birth_year_arithmetic": "The page prints the death as 'December 28, 1865' and the age as 'aged 73'. An age of 73 completed years means at least 73 and less than 74, so the birth falls between 1791-12-29 and 1792-12-28: the birth year is 1791 or 1792. The subtraction is this project's; the page states no year of birth."
+    }
+   ],
+   "could_carry": [
+    "birth_year",
+    "date_of_death"
+   ],
+   "carry_rule": "Whatever is carried is carried as evidence of a DEATH and of an interval the birth falls in, never as an 1835 fact and never as a grade. T-0513 consolidates and T-0514/T-0515 apply; this file changes no record."
+  },
+  {
+   "resident": "John M. Nelson",
+   "person_id": "ll_john_m_nelson",
+   "household_id": "hh_ll_john_m_nelson",
+   "grade_1835": "inferred",
+   "occupation_1835": "none_recorded",
+   "rule": "Surname 'Nelson' folds to the same string as the entry's, and the given name of both begins J.",
+   "resident_given_is_initial_only": false,
+   "entries": [
+    {
+     "record": "fdn0484",
+     "as_read": "Nelson, John A., ex-sheriff', died fall 1878",
+     "trade_or_office": "ex-sheriff'",
+     "manner_of_death": "died",
+     "place_of_death": "fall",
+     "death_date": "1878",
+     "age_as_printed": null,
+     "birth_year_earliest": null,
+     "birth_year_latest": null,
+     "birth_year_arithmetic": null
+    }
+   ],
+   "could_carry": [
+    "date_of_death"
+   ],
+   "carry_rule": "Whatever is carried is carried as evidence of a DEATH and of an interval the birth falls in, never as an 1835 fact and never as a grade. T-0513 consolidates and T-0514/T-0515 apply; this file changes no record."
+  },
+  {
+   "resident": "John Miller",
+   "person_id": "miller_john",
+   "household_id": "hh_miller_john",
+   "grade_1835": "attested",
+   "occupation_1835": "tanner",
+   "rule": "Surname 'Miller' folds to the same string as the entry's, and the given name of both begins J.",
+   "resident_given_is_initial_only": false,
+   "entries": [
+    {
+     "record": "fdn0463",
+     "as_read": "Miller, Jacob, tavern-keeper, died, Long's Bar, Feather River, Cal., January 1, 1850.",
+     "trade_or_office": "tavern-keeper",
+     "manner_of_death": "died",
+     "place_of_death": "Long's Bar, Feather River, Cal.",
+     "death_date": "1850-01-01",
+     "age_as_printed": null,
+     "birth_year_earliest": null,
+     "birth_year_latest": null,
+     "birth_year_arithmetic": null
+    }
+   ],
+   "could_carry": [
+    "date_of_death"
+   ],
+   "carry_rule": "Whatever is carried is carried as evidence of a DEATH and of an interval the birth falls in, never as an 1835 fact and never as a grade. T-0513 consolidates and T-0514/T-0515 apply; this file changes no record."
+  },
+  {
+   "resident": "John S. C. Hogan",
+   "person_id": "hogan_john_s_c",
+   "household_id": "hh_hogan_john_s_c",
+   "grade_1835": "attested",
+   "occupation_1835": "postmaster",
+   "rule": "Surname 'Hogan' folds to the same string as the entry's, and the given name of both begins J.",
+   "resident_given_is_initial_only": false,
+   "entries": [
+    {
+     "record": "fdn0301",
+     "as_read": "Hogan, John Stephen Coates, early postmaster, died, Memphis, Tenn., 1866.",
+     "trade_or_office": "early postmaster",
+     "manner_of_death": "died",
+     "place_of_death": "Memphis, Tenn.",
+     "death_date": "1866",
+     "age_as_printed": null,
+     "birth_year_earliest": null,
+     "birth_year_latest": null,
+     "birth_year_arithmetic": null
+    }
+   ],
+   "could_carry": [
+    "date_of_death"
+   ],
+   "carry_rule": "Whatever is carried is carried as evidence of a DEATH and of an interval the birth falls in, never as an 1835 fact and never as a grade. T-0513 consolidates and T-0514/T-0515 apply; this file changes no record."
+  },
+  {
+   "resident": "John Thompson",
+   "person_id": "ll_john_thompson",
+   "household_id": "hh_ll_john_thompson",
+   "grade_1835": "inferred",
+   "occupation_1835": "none_recorded",
+   "rule": "Surname 'Thompson' folds to the same string as the entry's, and the given name of both begins J.",
+   "resident_given_is_initial_only": false,
+   "entries": [
+    {
+     "record": "fdn0666",
+     "as_read": "Thompson, Gen. John Leverett, lawyer, died Jan. 31, 1888, a. 53.",
+     "trade_or_office": "lawyer",
+     "manner_of_death": "died",
+     "place_of_death": null,
+     "death_date": "1888-01-31",
+     "age_as_printed": "a. 53",
+     "birth_year_earliest": 1834,
+     "birth_year_latest": 1835,
+     "birth_year_arithmetic": "The page prints the death as 'Jan. 31, 1888' and the age as 'a. 53'. An age of 53 completed years means at least 53 and less than 54, so the birth falls between 1834-02-01 and 1835-01-31: the birth year is 1834 or 1835. The subtraction is this project's; the page states no year of birth."
+    }
+   ],
+   "could_carry": [
+    "birth_year",
+    "date_of_death"
+   ],
+   "carry_rule": "Whatever is carried is carried as evidence of a DEATH and of an interval the birth falls in, never as an 1835 fact and never as a grade. T-0513 consolidates and T-0514/T-0515 apply; this file changes no record."
+  },
+  {
+   "resident": "John Watkins",
+   "person_id": "watkins_john",
+   "household_id": "hh_watkins_john",
+   "grade_1835": "attested",
+   "occupation_1835": "schoolteacher",
+   "rule": "Surname 'Watkins' folds to the same string as the entry's, and the given name of both begins J.",
+   "resident_given_is_initial_only": false,
+   "entries": [
+    {
+     "record": "fdn0710",
+     "as_read": "Watkins, John, died, Joliet, Will Co.. Ill., March 1, 1887, aged 85.",
+     "trade_or_office": null,
+     "manner_of_death": "died",
+     "place_of_death": "Joliet, Will Co.. Ill.",
+     "death_date": "1887-03-01",
+     "age_as_printed": "aged 85",
+     "birth_year_earliest": 1801,
+     "birth_year_latest": 1802,
+     "birth_year_arithmetic": "The page prints the death as 'March 1, 1887' and the age as 'aged 85'. An age of 85 completed years means at least 85 and less than 86, so the birth falls between 1801-03-02 and 1802-03-01: the birth year is 1801 or 1802. The subtraction is this project's; the page states no year of birth."
+    }
+   ],
+   "could_carry": [
+    "birth_year",
+    "date_of_death"
+   ],
+   "carry_rule": "Whatever is carried is carried as evidence of a DEATH and of an interval the birth falls in, never as an 1835 fact and never as a grade. T-0513 consolidates and T-0514/T-0515 apply; this file changes no record."
+  },
+  {
+   "resident": "Joseph Bailly",
+   "person_id": "ll_bailly_joseph",
+   "household_id": "hh_ll_bailly_joseph",
+   "grade_1835": "inferred",
+   "occupation_1835": "none_recorded",
+   "rule": "Surname 'Bailly' folds to the same string as the entry's, and the given name of both begins J.",
+   "resident_given_is_initial_only": false,
+   "entries": [
+    {
+     "record": "fdn0015",
+     "as_read": "Bailly, Joseph, died, Baillytown, Ind., December 21, 1835, aged 61.",
+     "trade_or_office": null,
+     "manner_of_death": "died",
+     "place_of_death": "Baillytown, Ind.",
+     "death_date": "1835-12-21",
+     "age_as_printed": "aged 61",
+     "birth_year_earliest": 1773,
+     "birth_year_latest": 1774,
+     "birth_year_arithmetic": "The page prints the death as 'December 21, 1835' and the age as 'aged 61'. An age of 61 completed years means at least 61 and less than 62, so the birth falls between 1773-12-22 and 1774-12-21: the birth year is 1773 or 1774. The subtraction is this project's; the page states no year of birth."
+    }
+   ],
+   "could_carry": [
+    "birth_year",
+    "date_of_death"
+   ],
+   "carry_rule": "Whatever is carried is carried as evidence of a DEATH and of an interval the birth falls in, never as an 1835 fact and never as a grade. T-0513 consolidates and T-0514/T-0515 apply; this file changes no record."
+  },
+  {
+   "resident": "Matthias Mason",
+   "person_id": "mason_matthias",
+   "household_id": "hh_mason_matthias",
+   "grade_1835": "inferred",
+   "occupation_1835": "blacksmith",
+   "rule": "Surname 'Mason' folds to the same string as the entry's, and the given name of both begins M.",
+   "resident_given_is_initial_only": false,
+   "entries": [
+    {
+     "record": "fdn0446",
+     "as_read": "Mason, Mathias, died, Sutherland. Ia,, about December 20, 1882, aged 83.",
+     "trade_or_office": null,
+     "manner_of_death": "died",
+     "place_of_death": "Sutherland. Ia",
+     "death_date": "1882-12-20",
+     "age_as_printed": "aged 83",
+     "birth_year_earliest": null,
+     "birth_year_latest": null,
+     "birth_year_arithmetic": null
+    }
+   ],
+   "could_carry": [
+    "date_of_death"
+   ],
+   "carry_rule": "Whatever is carried is carried as evidence of a DEATH and of an interval the birth falls in, never as an 1835 fact and never as a grade. T-0513 consolidates and T-0514/T-0515 apply; this file changes no record."
+  },
+  {
+   "resident": "Peter Pruyne",
+   "person_id": "pruyne_peter",
+   "household_id": "hh_pruyne_kimberly",
+   "grade_1835": "attested",
+   "occupation_1835": "druggist",
+   "rule": "Surname 'Pruyne' folds to the same string as the entry's, and the given name of both begins P.",
+   "resident_given_is_initial_only": false,
+   "entries": [
+    {
+     "record": "fdn0531",
+     "as_read": "Pruyne, Peter, died November, 1839",
+     "trade_or_office": null,
+     "manner_of_death": "died",
+     "place_of_death": null,
+     "death_date": "1839-11",
+     "age_as_printed": null,
+     "birth_year_earliest": null,
+     "birth_year_latest": null,
+     "birth_year_arithmetic": null
+    }
+   ],
+   "could_carry": [
+    "date_of_death"
+   ],
+   "carry_rule": "Whatever is carried is carried as evidence of a DEATH and of an interval the birth falls in, never as an 1835 fact and never as a grade. T-0513 consolidates and T-0514/T-0515 apply; this file changes no record."
+  },
+  {
+   "resident": "Thomas Jefferson Vance Owen",
+   "person_id": "owen_thomas_jv",
+   "household_id": "hh_owen_thomas_jv",
+   "grade_1835": "attested",
+   "occupation_1835": "indian_agent",
+   "rule": "Surname 'Owen' folds to the same string as the entry's, and the given name of both begins T.",
+   "resident_given_is_initial_only": false,
+   "entries": [
+    {
+     "record": "fdn0503",
+     "as_read": "Owen, Thomas J. V. (Indian agent), died Oct. 15, 1835, aged 34½",
+     "trade_or_office": null,
+     "manner_of_death": "died",
+     "place_of_death": null,
+     "death_date": "1835-10-15",
+     "age_as_printed": "aged 34½",
+     "birth_year_earliest": 1801,
+     "birth_year_latest": 1801,
+     "birth_year_arithmetic": "The page prints the death as 'Oct. 15, 1835' and the age as 'aged 34½'. An age of 34 years and 6 months means at least that and less than 34 years and 7 months, so the birth falls between 1801-03-16 and 1801-04-15: the birth year is 1801. The subtraction is this project's; the page states no year of birth."
+    }
+   ],
+   "could_carry": [
+    "birth_year",
+    "date_of_death"
+   ],
+   "carry_rule": "Whatever is carried is carried as evidence of a DEATH and of an interval the birth falls in, never as an 1835 fact and never as a grade. T-0513 consolidates and T-0514/T-0515 apply; this file changes no record."
+  },
+  {
+   "resident": "William Hanford Adams",
+   "person_id": "adams_william_h",
+   "household_id": "hh_adams_william_h",
+   "grade_1835": "attested",
+   "occupation_1835": "none_recorded",
+   "rule": "Surname 'Adams' folds to the same string as the entry's, and the given name of both begins W.",
+   "resident_given_is_initial_only": false,
+   "entries": [
+    {
+     "record": "fdn0003",
+     "as_read": "Adams, William Henry, died May 12, 1877, aged 64.",
+     "trade_or_office": null,
+     "manner_of_death": "died",
+     "place_of_death": null,
+     "death_date": "1877-05-12",
+     "age_as_printed": "aged 64",
+     "birth_year_earliest": 1812,
+     "birth_year_latest": 1813,
+     "birth_year_arithmetic": "The page prints the death as 'May 12, 1877' and the age as 'aged 64'. An age of 64 completed years means at least 64 and less than 65, so the birth falls between 1812-05-13 and 1813-05-12: the birth year is 1812 or 1813. The subtraction is this project's; the page states no year of birth."
+    }
+   ],
+   "could_carry": [
+    "birth_year",
+    "date_of_death"
+   ],
+   "carry_rule": "Whatever is carried is carried as evidence of a DEATH and of an interval the birth falls in, never as an 1835 fact and never as a grade. T-0513 consolidates and T-0514/T-0515 apply; this file changes no record."
+  }
+ ],
+ "contested": [
+  {
+   "resident": "Anson H. Taylor",
+   "person_id": "taylor_anson_h",
+   "household_id": "hh_taylor_anson",
+   "grade_1835": "attested",
+   "occupation_1835": "carpenter",
+   "rule": "Surname 'Taylor' folds to the same string as the entry's, and the given name of both begins A. CONTESTED: 2 residents of 1835 meet this one entry on that rule, and at most one of them is the person printed. The match is not made.",
+   "resident_given_is_initial_only": false,
+   "entries": [
+    {
+     "record": "fdn0656",
+     "as_read": "Taylor, Anson H., died. Lakeside, May 9, 1878",
+     "trade_or_office": null,
+     "manner_of_death": "died",
+     "place_of_death": "Lakeside",
+     "death_date": "1878-05-09",
+     "age_as_printed": null,
+     "birth_year_earliest": null,
+     "birth_year_latest": null,
+     "birth_year_arithmetic": null
+    }
+   ],
+   "could_carry": [
+    "date_of_death"
+   ],
+   "carry_rule": "Whatever is carried is carried as evidence of a DEATH and of an interval the birth falls in, never as an 1835 fact and never as a grade. T-0513 consolidates and T-0514/T-0515 apply; this file changes no record.",
+   "contested_with": [
+    "Augustine Deodat Taylor"
+   ]
+  },
+  {
+   "resident": "Augustine Deodat Taylor",
+   "person_id": "taylor_augustine",
+   "household_id": "hh_taylor_augustine",
+   "grade_1835": "attested",
+   "occupation_1835": "carpenter",
+   "rule": "Surname 'Taylor' folds to the same string as the entry's, and the given name of both begins A. CONTESTED: 2 residents of 1835 meet this one entry on that rule, and at most one of them is the person printed. The match is not made.",
+   "resident_given_is_initial_only": false,
+   "entries": [
+    {
+     "record": "fdn0656",
+     "as_read": "Taylor, Anson H., died. Lakeside, May 9, 1878",
+     "trade_or_office": null,
+     "manner_of_death": "died",
+     "place_of_death": "Lakeside",
+     "death_date": "1878-05-09",
+     "age_as_printed": null,
+     "birth_year_earliest": null,
+     "birth_year_latest": null,
+     "birth_year_arithmetic": null
+    }
+   ],
+   "could_carry": [
+    "date_of_death"
+   ],
+   "carry_rule": "Whatever is carried is carried as evidence of a DEATH and of an interval the birth falls in, never as an 1835 fact and never as a grade. T-0513 consolidates and T-0514/T-0515 apply; this file changes no record.",
+   "contested_with": [
+    "Anson H. Taylor"
+   ]
+  },
+  {
+   "resident": "Madore Benjamin Beaubien",
+   "person_id": "beaubien_madore",
+   "household_id": "hh_beaubien_madore",
+   "grade_1835": "attested",
+   "occupation_1835": "merchant",
+   "rule": "Surname 'Beaubien' folds to the same string as the entry's, and the given name of both begins M. CONTESTED: 2 residents of 1835 meet this one entry on that rule, and at most one of them is the person printed. The match is not made.",
+   "resident_given_is_initial_only": false,
+   "entries": [
+    {
+     "record": "fdn0030",
+     "as_read": "Beaubien, Medore Benj., d., Silver Lake, Kas., Dec. 26, 1883, a. 74½",
+     "trade_or_office": null,
+     "manner_of_death": "d.",
+     "place_of_death": "Silver Lake, Kas.",
+     "death_date": "1883-12-26",
+     "age_as_printed": "a. 74½",
+     "birth_year_earliest": 1809,
+     "birth_year_latest": 1809,
+     "birth_year_arithmetic": "The page prints the death as 'Dec. 26, 1883' and the age as 'a. 74½'. An age of 74 years and 6 months means at least that and less than 74 years and 7 months, so the birth falls between 1809-05-27 and 1809-06-26: the birth year is 1809. The subtraction is this project's; the page states no year of birth."
+    }
+   ],
+   "could_carry": [
+    "birth_year",
+    "date_of_death"
+   ],
+   "carry_rule": "Whatever is carried is carried as evidence of a DEATH and of an interval the birth falls in, never as an 1835 fact and never as a grade. T-0513 consolidates and T-0514/T-0515 apply; this file changes no record.",
+   "contested_with": [
+    "Mark Beaubien"
+   ]
+  },
+  {
+   "resident": "Mark Beaubien",
+   "person_id": "beaubien_mark",
+   "household_id": "hh_beaubien_mark",
+   "grade_1835": "attested",
+   "occupation_1835": "tavern_keeper",
+   "rule": "Surname 'Beaubien' folds to the same string as the entry's, and the given name of both begins M. CONTESTED: 2 residents of 1835 meet this one entry on that rule, and at most one of them is the person printed. The match is not made.",
+   "resident_given_is_initial_only": false,
+   "entries": [
+    {
+     "record": "fdn0030",
+     "as_read": "Beaubien, Medore Benj., d., Silver Lake, Kas., Dec. 26, 1883, a. 74½",
+     "trade_or_office": null,
+     "manner_of_death": "d.",
+     "place_of_death": "Silver Lake, Kas.",
+     "death_date": "1883-12-26",
+     "age_as_printed": "a. 74½",
+     "birth_year_earliest": 1809,
+     "birth_year_latest": 1809,
+     "birth_year_arithmetic": "The page prints the death as 'Dec. 26, 1883' and the age as 'a. 74½'. An age of 74 years and 6 months means at least that and less than 74 years and 7 months, so the birth falls between 1809-05-27 and 1809-06-26: the birth year is 1809. The subtraction is this project's; the page states no year of birth."
+    }
+   ],
+   "could_carry": [
+    "birth_year",
+    "date_of_death"
+   ],
+   "carry_rule": "Whatever is carried is carried as evidence of a DEATH and of an interval the birth falls in, never as an 1835 fact and never as a grade. T-0513 consolidates and T-0514/T-0515 apply; this file changes no record.",
+   "contested_with": [
+    "Madore Benjamin Beaubien"
+   ]
+  }
+ ],
+ "ambiguous": [
+  {
+   "resident": "E. H. Mulford",
+   "person_id": "mulford_e_h",
+   "household_id": "hh_mulford_e_h",
+   "grade_1835": "attested",
+   "occupation_1835": "watchmaker",
+   "rule": "Surname 'Mulford' folds to the same string as the entry's, and the given name of both begins E.",
+   "resident_given_is_initial_only": true,
+   "entries": [
+    {
+     "record": "fdn0472",
+     "as_read": "Mulford, Edward A., died, Caseyville, Ky.Apr. 19, 1852, aged 42.",
+     "trade_or_office": null,
+     "manner_of_death": "died",
+     "place_of_death": "Caseyville, Ky.",
+     "death_date": "1852-04-19",
+     "age_as_printed": "aged 42",
+     "birth_year_earliest": 1809,
+     "birth_year_latest": 1810,
+     "birth_year_arithmetic": "The page prints the death as 'Apr. 19, 1852' and the age as 'aged 42'. An age of 42 completed years means at least 42 and less than 43, so the birth falls between 1809-04-20 and 1810-04-19: the birth year is 1809 or 1810. The subtraction is this project's; the page states no year of birth."
+    },
+    {
+     "record": "fdn0473",
+     "as_read": "Mulford, Edward H., died, Evanston, Ill., March 5, 1878, aged 84.",
+     "trade_or_office": null,
+     "manner_of_death": "died",
+     "place_of_death": "Evanston, Ill.",
+     "death_date": "1878-03-05",
+     "age_as_printed": "aged 84",
+     "birth_year_earliest": 1793,
+     "birth_year_latest": 1794,
+     "birth_year_arithmetic": "The page prints the death as 'March 5, 1878' and the age as 'aged 84'. An age of 84 completed years means at least 84 and less than 85, so the birth falls between 1793-03-06 and 1794-03-05: the birth year is 1793 or 1794. The subtraction is this project's; the page states no year of birth."
+    }
+   ],
+   "could_carry": [
+    "birth_year",
+    "date_of_death"
+   ],
+   "carry_rule": "Whatever is carried is carried as evidence of a DEATH and of an interval the birth falls in, never as an 1835 fact and never as a grade. T-0513 consolidates and T-0514/T-0515 apply; this file changes no record."
+  },
+  {
+   "resident": "George E. Walker",
+   "person_id": "ll_george_e_walker",
+   "household_id": "hh_ll_george_e_walker",
+   "grade_1835": "inferred",
+   "occupation_1835": "none_recorded",
+   "rule": "Surname 'Walker' folds to the same string as the entry's, and the given name of both begins G.",
+   "resident_given_is_initial_only": false,
+   "entries": [
+    {
+     "record": "fdn0695",
+     "as_read": "Walker, George E., died November 9, 1874",
+     "trade_or_office": null,
+     "manner_of_death": "died",
+     "place_of_death": null,
+     "death_date": "1874-11-09",
+     "age_as_printed": null,
+     "birth_year_earliest": null,
+     "birth_year_latest": null,
+     "birth_year_arithmetic": null
+    },
+    {
+     "record": "fdn0696",
+     "as_read": "Walker, Senator George H., died, Milwaukee, Wis., September 20, 1866. aged 55.",
+     "trade_or_office": null,
+     "manner_of_death": "died",
+     "place_of_death": "Milwaukee, Wis.",
+     "death_date": "1866-09-20",
+     "age_as_printed": "aged 55",
+     "birth_year_earliest": 1810,
+     "birth_year_latest": 1811,
+     "birth_year_arithmetic": "The page prints the death as 'September 20, 1866' and the age as 'aged 55'. An age of 55 completed years means at least 55 and less than 56, so the birth falls between 1810-09-21 and 1811-09-20: the birth year is 1810 or 1811. The subtraction is this project's; the page states no year of birth."
+    }
+   ],
+   "could_carry": [
+    "birth_year",
+    "date_of_death"
+   ],
+   "carry_rule": "Whatever is carried is carried as evidence of a DEATH and of an interval the birth falls in, never as an 1835 fact and never as a grade. T-0513 consolidates and T-0514/T-0515 apply; this file changes no record."
+  },
+  {
+   "resident": "James Kinzie",
+   "person_id": "kinzie_james",
+   "household_id": "hh_kinzie_james",
+   "grade_1835": "attested",
+   "occupation_1835": "merchant",
+   "rule": "Surname 'Kinzie' folds to the same string as the entry's, and the given name of both begins J.",
+   "resident_given_is_initial_only": false,
+   "entries": [
+    {
+     "record": "fdn0367",
+     "as_read": "Kinzie, James, died, Clyde, Iowa Co., Wis., Jan. 13, 1866, a. 62¾",
+     "trade_or_office": null,
+     "manner_of_death": "died",
+     "place_of_death": "Clyde, Iowa Co., Wis.",
+     "death_date": "1866-01-13",
+     "age_as_printed": "a. 62¾",
+     "birth_year_earliest": 1803,
+     "birth_year_latest": 1803,
+     "birth_year_arithmetic": "The page prints the death as 'Jan. 13, 1866' and the age as 'a. 62¾'. An age of 62 years and 9 months means at least that and less than 62 years and 10 months, so the birth falls between 1803-03-14 and 1803-04-13: the birth year is 1803. The subtraction is this project's; the page states no year of birth."
+    },
+    {
+     "record": "fdn0368",
+     "as_read": "Kinzie, john (Sha-ne-au-ke) Indian agent and trader, first white American settler at Chicago, 1803; died Jan. 6, 1828, a. 65-0-14",
+     "trade_or_office": "first white American settler at Chicago, 1803",
+     "manner_of_death": "died",
+     "place_of_death": null,
+     "death_date": "1828-01-06",
+     "age_as_printed": "a. 65-0-14",
+     "birth_year_earliest": 1762,
+     "birth_year_latest": 1762,
+     "birth_year_arithmetic": "The page prints the death as 'Jan. 6, 1828' and the age as 'a. 65-0-14'. An age printed to the day is exact: 65 years, 0 months and 14 days back from the death, so the birth falls between 1762-12-23 and 1762-12-23: the birth year is 1762. The subtraction is this project's; the page states no year of birth."
+    },
+    {
+     "record": "fdn0369",
+     "as_read": "Kinzie, John Harris, jr., died, Ft. St. Charles, Ark., June 17, 1863, aged 24 2/3",
+     "trade_or_office": "jr",
+     "manner_of_death": "died",
+     "place_of_death": "Ft. St. Charles, Ark.",
+     "death_date": "1863-06-17",
+     "age_as_printed": "aged 24 2/3",
+     "birth_year_earliest": 1838,
+     "birth_year_latest": 1838,
+     "birth_year_arithmetic": "The page prints the death as 'June 17, 1863' and the age as 'aged 24 2/3'. An age of 24 years and 8 months means at least that and less than 24 years and 9 months, so the birth falls between 1838-09-18 and 1838-10-17: the birth year is 1838. The subtraction is this project's; the page states no year of birth."
+    }
+   ],
+   "could_carry": [
+    "birth_year",
+    "date_of_death"
+   ],
+   "carry_rule": "Whatever is carried is carried as evidence of a DEATH and of an interval the birth falls in, never as an 1835 fact and never as a grade. T-0513 consolidates and T-0514/T-0515 apply; this file changes no record."
+  },
+  {
+   "resident": "Jesse Morgan",
+   "person_id": "ll_jesse_morgan",
+   "household_id": "hh_ll_jesse_morgan",
+   "grade_1835": "inferred",
+   "occupation_1835": "none_recorded",
+   "rule": "Surname 'Morgan' folds to the same string as the entry's, and the given name of both begins J.",
+   "resident_given_is_initial_only": false,
+   "entries": [
+    {
+     "record": "fdn0467",
+     "as_read": "Morgan, James J., died August 12, 1852",
+     "trade_or_office": null,
+     "manner_of_death": "died",
+     "place_of_death": null,
+     "death_date": "1852-08-12",
+     "age_as_printed": null,
+     "birth_year_earliest": null,
+     "birth_year_latest": null,
+     "birth_year_arithmetic": null
+    },
+    {
+     "record": "fdn0468",
+     "as_read": "Morgan, John Robert, died 1872, aged 29.",
+     "trade_or_office": null,
+     "manner_of_death": "died",
+     "place_of_death": null,
+     "death_date": "1872",
+     "age_as_printed": "aged 29",
+     "birth_year_earliest": 1842,
+     "birth_year_latest": 1843,
+     "birth_year_arithmetic": "The page prints the death as '1872' and the age as 'aged 29'. An age of 29 completed years means at least 29 and less than 30, so the birth falls between 1842-01-02 and 1843-12-31: the birth year is 1842 or 1843. The subtraction is this project's; the page states no year of birth."
+    }
+   ],
+   "could_carry": [
+    "birth_year",
+    "date_of_death"
+   ],
+   "carry_rule": "Whatever is carried is carried as evidence of a DEATH and of an interval the birth falls in, never as an 1835 fact and never as a grade. T-0513 consolidates and T-0514/T-0515 apply; this file changes no record."
+  },
+  {
+   "resident": "John Harris Kinzie",
+   "person_id": "kinzie_john_h",
+   "household_id": "hh_kinzie_john_h",
+   "grade_1835": "attested",
+   "occupation_1835": "forwarding_and_commission",
+   "rule": "Surname 'Kinzie' folds to the same string as the entry's, and the given name of both begins J.",
+   "resident_given_is_initial_only": false,
+   "entries": [
+    {
+     "record": "fdn0367",
+     "as_read": "Kinzie, James, died, Clyde, Iowa Co., Wis., Jan. 13, 1866, a. 62¾",
+     "trade_or_office": null,
+     "manner_of_death": "died",
+     "place_of_death": "Clyde, Iowa Co., Wis.",
+     "death_date": "1866-01-13",
+     "age_as_printed": "a. 62¾",
+     "birth_year_earliest": 1803,
+     "birth_year_latest": 1803,
+     "birth_year_arithmetic": "The page prints the death as 'Jan. 13, 1866' and the age as 'a. 62¾'. An age of 62 years and 9 months means at least that and less than 62 years and 10 months, so the birth falls between 1803-03-14 and 1803-04-13: the birth year is 1803. The subtraction is this project's; the page states no year of birth."
+    },
+    {
+     "record": "fdn0368",
+     "as_read": "Kinzie, john (Sha-ne-au-ke) Indian agent and trader, first white American settler at Chicago, 1803; died Jan. 6, 1828, a. 65-0-14",
+     "trade_or_office": "first white American settler at Chicago, 1803",
+     "manner_of_death": "died",
+     "place_of_death": null,
+     "death_date": "1828-01-06",
+     "age_as_printed": "a. 65-0-14",
+     "birth_year_earliest": 1762,
+     "birth_year_latest": 1762,
+     "birth_year_arithmetic": "The page prints the death as 'Jan. 6, 1828' and the age as 'a. 65-0-14'. An age printed to the day is exact: 65 years, 0 months and 14 days back from the death, so the birth falls between 1762-12-23 and 1762-12-23: the birth year is 1762. The subtraction is this project's; the page states no year of birth."
+    },
+    {
+     "record": "fdn0369",
+     "as_read": "Kinzie, John Harris, jr., died, Ft. St. Charles, Ark., June 17, 1863, aged 24 2/3",
+     "trade_or_office": "jr",
+     "manner_of_death": "died",
+     "place_of_death": "Ft. St. Charles, Ark.",
+     "death_date": "1863-06-17",
+     "age_as_printed": "aged 24 2/3",
+     "birth_year_earliest": 1838,
+     "birth_year_latest": 1838,
+     "birth_year_arithmetic": "The page prints the death as 'June 17, 1863' and the age as 'aged 24 2/3'. An age of 24 years and 8 months means at least that and less than 24 years and 9 months, so the birth falls between 1838-09-18 and 1838-10-17: the birth year is 1838. The subtraction is this project's; the page states no year of birth."
+    }
+   ],
+   "could_carry": [
+    "birth_year",
+    "date_of_death"
+   ],
+   "carry_rule": "Whatever is carried is carried as evidence of a DEATH and of an interval the birth falls in, never as an 1835 fact and never as a grade. T-0513 consolidates and T-0514/T-0515 apply; this file changes no record."
+  },
+  {
+   "resident": "John S. Wright",
+   "person_id": "wright_john_s",
+   "household_id": "hh_wright_john",
+   "grade_1835": "attested",
+   "occupation_1835": "clerk",
+   "rule": "Surname 'Wright' folds to the same string as the entry's, and the given name of both begins J.",
+   "resident_given_is_initial_only": false,
+   "entries": [
+    {
+     "record": "fdn0749",
+     "as_read": "Wright, James, undertaker, died February 16, 1880, aged 64.",
+     "trade_or_office": "undertaker",
+     "manner_of_death": "died",
+     "place_of_death": null,
+     "death_date": "1880-02-16",
+     "age_as_printed": "aged 64",
+     "birth_year_earliest": 1815,
+     "birth_year_latest": 1816,
+     "birth_year_arithmetic": "The page prints the death as 'February 16, 1880' and the age as 'aged 64'. An age of 64 completed years means at least 64 and less than 65, so the birth falls between 1815-02-17 and 1816-02-16: the birth year is 1815 or 1816. The subtraction is this project's; the page states no year of birth."
+    },
+    {
+     "record": "fdn0750",
+     "as_read": "Wright, John, died September 20, 1840, aged 57.",
+     "trade_or_office": null,
+     "manner_of_death": "died",
+     "place_of_death": null,
+     "death_date": "1840-09-20",
+     "age_as_printed": "aged 57",
+     "birth_year_earliest": 1782,
+     "birth_year_latest": 1783,
+     "birth_year_arithmetic": "The page prints the death as 'September 20, 1840' and the age as 'aged 57'. An age of 57 completed years means at least 57 and less than 58, so the birth falls between 1782-09-21 and 1783-09-20: the birth year is 1782 or 1783. The subtraction is this project's; the page states no year of birth."
+    },
+    {
+     "record": "fdn0751",
+     "as_read": "Wright, Dea. John, died September 20, 1840, aged 57.",
+     "trade_or_office": null,
+     "manner_of_death": "died",
+     "place_of_death": null,
+     "death_date": "1840-09-20",
+     "age_as_printed": "aged 57",
+     "birth_year_earliest": 1782,
+     "birth_year_latest": 1783,
+     "birth_year_arithmetic": "The page prints the death as 'September 20, 1840' and the age as 'aged 57'. An age of 57 completed years means at least 57 and less than 58, so the birth falls between 1782-09-21 and 1783-09-20: the birth year is 1782 or 1783. The subtraction is this project's; the page states no year of birth."
+    }
+   ],
+   "could_carry": [
+    "birth_year",
+    "date_of_death"
+   ],
+   "carry_rule": "Whatever is carried is carried as evidence of a DEATH and of an interval the birth falls in, never as an 1835 fact and never as a grade. T-0513 consolidates and T-0514/T-0515 apply; this file changes no record."
+  },
+  {
+   "resident": "John Scott",
+   "person_id": "ll_scott_john",
+   "household_id": "hh_ll_scott_john",
+   "grade_1835": "inferred",
+   "occupation_1835": "none_recorded",
+   "rule": "Surname 'Scott' folds to the same string as the entry's, and the given name of both begins J.",
+   "resident_given_is_initial_only": false,
+   "entries": [
+    {
+     "record": "fdn0578",
+     "as_read": "Scott, James W., publisher Times-Herald , died, New York City, April 4, 1895, aged 45-10.",
+     "trade_or_office": "publisher Times-Herald",
+     "manner_of_death": "died",
+     "place_of_death": "New York City",
+     "death_date": "1895-04-04",
+     "age_as_printed": "aged 45-10",
+     "birth_year_earliest": 1849,
+     "birth_year_latest": 1849,
+     "birth_year_arithmetic": "The page prints the death as 'April 4, 1895' and the age as 'aged 45-10'. An age of 45 years and 10 months means at least that and less than 45 years and 11 months, so the birth falls between 1849-05-05 and 1849-06-04: the birth year is 1849. The subtraction is this project's; the page states no year of birth."
+    },
+    {
+     "record": "fdn0579",
+     "as_read": "Scott, Col. Joseph Robert, 19th Illinois Vols., wounded at Stone's River, died July 8, 1863, a. 25-5-6; 1st lieutenant U.S. Zouave Cadets. 1860.",
+     "trade_or_office": "19th Illinois Vols, wounded at Stone's River",
+     "manner_of_death": "died",
+     "place_of_death": null,
+     "death_date": "1863-07-08",
+     "age_as_printed": "a. 25-5-6",
+     "birth_year_earliest": 1838,
+     "birth_year_latest": 1838,
+     "birth_year_arithmetic": "The page prints the death as 'July 8, 1863' and the age as 'a. 25-5-6'. An age printed to the day is exact: 25 years, 5 months and 6 days back from the death, so the birth falls between 1838-02-02 and 1838-02-02: the birth year is 1838. The subtraction is this project's; the page states no year of birth."
+    }
+   ],
+   "could_carry": [
+    "birth_year",
+    "date_of_death"
+   ],
+   "carry_rule": "Whatever is carried is carried as evidence of a DEATH and of an interval the birth falls in, never as an 1835 fact and never as a grade. T-0513 consolidates and T-0514/T-0515 apply; this file changes no record."
+  },
+  {
+   "resident": "John Wilson",
+   "person_id": "ll_john_wilson",
+   "household_id": "hh_ll_john_wilson",
+   "grade_1835": "inferred",
+   "occupation_1835": "none_recorded",
+   "rule": "Surname 'Wilson' folds to the same string as the entry's, and the given name of both begins J.",
+   "resident_given_is_initial_only": false,
+   "entries": [
+    {
+     "record": "fdn0738",
+     "as_read": "Wilson, John McNeil, died at Englewood. Dec. 7, 1883, aged 81.",
+     "trade_or_office": null,
+     "manner_of_death": "died",
+     "place_of_death": "at Englewood.",
+     "death_date": "1883-12-07",
+     "age_as_printed": "aged 81",
+     "birth_year_earliest": 1801,
+     "birth_year_latest": 1802,
+     "birth_year_arithmetic": "The page prints the death as 'Dec. 7, 1883' and the age as 'aged 81'. An age of 81 completed years means at least 81 and less than 82, so the birth falls between 1801-12-08 and 1802-12-07: the birth year is 1801 or 1802. The subtraction is this project's; the page states no year of birth."
+    },
+    {
+     "record": "fdn0739",
+     "as_read": "Wilson, John Quintard, died May 11, 1863, aged 82¼.",
+     "trade_or_office": null,
+     "manner_of_death": "died",
+     "place_of_death": null,
+     "death_date": "1863-05-11",
+     "age_as_printed": "aged 82¼",
+     "birth_year_earliest": 1781,
+     "birth_year_latest": 1781,
+     "birth_year_arithmetic": "The page prints the death as 'May 11, 1863' and the age as 'aged 82¼'. An age of 82 years and 3 months means at least that and less than 82 years and 4 months, so the birth falls between 1781-01-12 and 1781-02-11: the birth year is 1781. The subtraction is this project's; the page states no year of birth."
+    }
+   ],
+   "could_carry": [
+    "birth_year",
+    "date_of_death"
+   ],
+   "carry_rule": "Whatever is carried is carried as evidence of a DEATH and of an interval the birth falls in, never as an 1835 fact and never as a grade. T-0513 consolidates and T-0514/T-0515 apply; this file changes no record."
+  },
+  {
+   "resident": "John Wright",
+   "person_id": "wright_john",
+   "household_id": "hh_wright_john",
+   "grade_1835": "attested",
+   "occupation_1835": "merchant",
+   "rule": "Surname 'Wright' folds to the same string as the entry's, and the given name of both begins J.",
+   "resident_given_is_initial_only": false,
+   "entries": [
+    {
+     "record": "fdn0749",
+     "as_read": "Wright, James, undertaker, died February 16, 1880, aged 64.",
+     "trade_or_office": "undertaker",
+     "manner_of_death": "died",
+     "place_of_death": null,
+     "death_date": "1880-02-16",
+     "age_as_printed": "aged 64",
+     "birth_year_earliest": 1815,
+     "birth_year_latest": 1816,
+     "birth_year_arithmetic": "The page prints the death as 'February 16, 1880' and the age as 'aged 64'. An age of 64 completed years means at least 64 and less than 65, so the birth falls between 1815-02-17 and 1816-02-16: the birth year is 1815 or 1816. The subtraction is this project's; the page states no year of birth."
+    },
+    {
+     "record": "fdn0750",
+     "as_read": "Wright, John, died September 20, 1840, aged 57.",
+     "trade_or_office": null,
+     "manner_of_death": "died",
+     "place_of_death": null,
+     "death_date": "1840-09-20",
+     "age_as_printed": "aged 57",
+     "birth_year_earliest": 1782,
+     "birth_year_latest": 1783,
+     "birth_year_arithmetic": "The page prints the death as 'September 20, 1840' and the age as 'aged 57'. An age of 57 completed years means at least 57 and less than 58, so the birth falls between 1782-09-21 and 1783-09-20: the birth year is 1782 or 1783. The subtraction is this project's; the page states no year of birth."
+    },
+    {
+     "record": "fdn0751",
+     "as_read": "Wright, Dea. John, died September 20, 1840, aged 57.",
+     "trade_or_office": null,
+     "manner_of_death": "died",
+     "place_of_death": null,
+     "death_date": "1840-09-20",
+     "age_as_printed": "aged 57",
+     "birth_year_earliest": 1782,
+     "birth_year_latest": 1783,
+     "birth_year_arithmetic": "The page prints the death as 'September 20, 1840' and the age as 'aged 57'. An age of 57 completed years means at least 57 and less than 58, so the birth falls between 1782-09-21 and 1783-09-20: the birth year is 1782 or 1783. The subtraction is this project's; the page states no year of birth."
+    }
+   ],
+   "could_carry": [
+    "birth_year",
+    "date_of_death"
+   ],
+   "carry_rule": "Whatever is carried is carried as evidence of a DEATH and of an interval the birth falls in, never as an 1835 fact and never as a grade. T-0513 consolidates and T-0514/T-0515 apply; this file changes no record."
+  },
+  {
+   "resident": "Juliette Augusta Magill Kinzie",
+   "person_id": "kinzie_juliette",
+   "household_id": "hh_kinzie_john_h",
+   "grade_1835": "attested",
+   "occupation_1835": "none_recorded",
+   "rule": "Surname 'Kinzie' folds to the same string as the entry's, and the given name of both begins J.",
+   "resident_given_is_initial_only": false,
+   "entries": [
+    {
+     "record": "fdn0367",
+     "as_read": "Kinzie, James, died, Clyde, Iowa Co., Wis., Jan. 13, 1866, a. 62¾",
+     "trade_or_office": null,
+     "manner_of_death": "died",
+     "place_of_death": "Clyde, Iowa Co., Wis.",
+     "death_date": "1866-01-13",
+     "age_as_printed": "a. 62¾",
+     "birth_year_earliest": 1803,
+     "birth_year_latest": 1803,
+     "birth_year_arithmetic": "The page prints the death as 'Jan. 13, 1866' and the age as 'a. 62¾'. An age of 62 years and 9 months means at least that and less than 62 years and 10 months, so the birth falls between 1803-03-14 and 1803-04-13: the birth year is 1803. The subtraction is this project's; the page states no year of birth."
+    },
+    {
+     "record": "fdn0368",
+     "as_read": "Kinzie, john (Sha-ne-au-ke) Indian agent and trader, first white American settler at Chicago, 1803; died Jan. 6, 1828, a. 65-0-14",
+     "trade_or_office": "first white American settler at Chicago, 1803",
+     "manner_of_death": "died",
+     "place_of_death": null,
+     "death_date": "1828-01-06",
+     "age_as_printed": "a. 65-0-14",
+     "birth_year_earliest": 1762,
+     "birth_year_latest": 1762,
+     "birth_year_arithmetic": "The page prints the death as 'Jan. 6, 1828' and the age as 'a. 65-0-14'. An age printed to the day is exact: 65 years, 0 months and 14 days back from the death, so the birth falls between 1762-12-23 and 1762-12-23: the birth year is 1762. The subtraction is this project's; the page states no year of birth."
+    },
+    {
+     "record": "fdn0369",
+     "as_read": "Kinzie, John Harris, jr., died, Ft. St. Charles, Ark., June 17, 1863, aged 24 2/3",
+     "trade_or_office": "jr",
+     "manner_of_death": "died",
+     "place_of_death": "Ft. St. Charles, Ark.",
+     "death_date": "1863-06-17",
+     "age_as_printed": "aged 24 2/3",
+     "birth_year_earliest": 1838,
+     "birth_year_latest": 1838,
+     "birth_year_arithmetic": "The page prints the death as 'June 17, 1863' and the age as 'aged 24 2/3'. An age of 24 years and 8 months means at least that and less than 24 years and 9 months, so the birth falls between 1838-09-18 and 1838-10-17: the birth year is 1838. The subtraction is this project's; the page states no year of birth."
+    }
+   ],
+   "could_carry": [
+    "birth_year",
+    "date_of_death"
+   ],
+   "carry_rule": "Whatever is carried is carried as evidence of a DEATH and of an interval the birth falls in, never as an 1835 fact and never as a grade. T-0513 consolidates and T-0514/T-0515 apply; this file changes no record."
+  },
+  {
+   "resident": "Rev. Jeremiah Porter",
+   "person_id": "porter_jeremiah",
+   "household_id": "hh_porter_jeremiah",
+   "grade_1835": "attested",
+   "occupation_1835": "minister",
+   "rule": "Surname 'Porter' folds to the same string as the entry's, and the given name of both begins J.",
+   "resident_given_is_initial_only": false,
+   "entries": [
+    {
+     "record": "fdn0524",
+     "as_read": "Porter, Rev. Jeremiah, died, Beloit, Wis., July 25, 1893, aged 89.",
+     "trade_or_office": null,
+     "manner_of_death": "died",
+     "place_of_death": "Beloit, Wis.",
+     "death_date": "1893-07-25",
+     "age_as_printed": "aged 89",
+     "birth_year_earliest": 1803,
+     "birth_year_latest": 1804,
+     "birth_year_arithmetic": "The page prints the death as 'July 25, 1893' and the age as 'aged 89'. An age of 89 completed years means at least 89 and less than 90, so the birth falls between 1803-07-26 and 1804-07-25: the birth year is 1803 or 1804. The subtraction is this project's; the page states no year of birth."
+    },
+    {
+     "record": "fdn0525",
+     "as_read": "Porter, Rev. Jonathan G., died, Naperville, Ill., February, 1883, aged 80.",
+     "trade_or_office": null,
+     "manner_of_death": "died",
+     "place_of_death": "Naperville, Ill.",
+     "death_date": "1883-02",
+     "age_as_printed": "aged 80",
+     "birth_year_earliest": 1802,
+     "birth_year_latest": 1803,
+     "birth_year_arithmetic": "The page prints the death as 'February, 1883' and the age as 'aged 80'. An age of 80 completed years means at least 80 and less than 81, so the birth falls between 1802-02-02 and 1803-02-28: the birth year is 1802 or 1803. The subtraction is this project's; the page states no year of birth."
+    }
+   ],
+   "could_carry": [
+    "birth_year",
+    "date_of_death"
+   ],
+   "carry_rule": "Whatever is carried is carried as evidence of a DEATH and of an interval the birth falls in, never as an 1835 fact and never as a grade. T-0513 consolidates and T-0514/T-0515 apply; this file changes no record."
+  }
+ ],
+ "refusals": [
+  {
+   "resident": "A. Lamb",
+   "person_id": "ll_lamb_a",
+   "surname_in_the_list": "Lamb",
+   "candidates": 1,
+   "rule": "The surname 'Lamb' is in Fergus's death notices and no entry under it carries the initial 'A' of 'A. Lamb'. A surname-only agreement is a refusal, here as everywhere: the list prints eleven Smiths."
+  },
+  {
+   "resident": "Alanson B. Vaughan",
+   "person_id": "ll_alanson_b_vaughan",
+   "surname_in_the_list": "Vaughan",
+   "candidates": 1,
+   "rule": "The surname 'Vaughan' is in Fergus's death notices and no entry under it carries the initial 'A' of 'Alanson B. Vaughan'. A surname-only agreement is a refusal, here as everywhere: the list prints eleven Smiths."
+  },
+  {
+   "resident": "Alanson Sweet",
+   "person_id": "sweet_alanson",
+   "surname_in_the_list": "Sweet",
+   "candidates": 1,
+   "rule": "The surname 'Sweet' is in Fergus's death notices and no entry under it carries the initial 'A' of 'Alanson Sweet'. A surname-only agreement is a refusal, here as everywhere: the list prints eleven Smiths."
+  },
+  {
+   "resident": "Alexr. H. Tucker",
+   "person_id": "ll_alexr_h_tucker",
+   "surname_in_the_list": "Tucker",
+   "candidates": 1,
+   "rule": "The surname 'Tucker' is in Fergus's death notices and no entry under it carries the initial 'A' of 'Alexr. H. Tucker'. A surname-only agreement is a refusal, here as everywhere: the list prints eleven Smiths."
+  },
+  {
+   "resident": "Alva Dunlap",
+   "person_id": "ll_alva_dunlap",
+   "surname_in_the_list": "Dunlap",
+   "candidates": 1,
+   "rule": "The surname 'Dunlap' is in Fergus's death notices and no entry under it carries the initial 'A' of 'Alva Dunlap'. A surname-only agreement is a refusal, here as everywhere: the list prints eleven Smiths."
+  },
+  {
+   "resident": "Ann Airs. Day",
+   "person_id": "ll_day_ann_airs",
+   "surname_in_the_list": "Day",
+   "candidates": 1,
+   "rule": "The surname 'Day' is in Fergus's death notices and no entry under it carries the initial 'A' of 'Ann Airs. Day'. A surname-only agreement is a refusal, here as everywhere: the list prints eleven Smiths."
+  },
+  {
+   "resident": "Archibald Knox",
+   "person_id": "ll_archibald_knox",
+   "surname_in_the_list": "Knox",
+   "candidates": 1,
+   "rule": "The surname 'Knox' is in Fergus's death notices and no entry under it carries the initial 'A' of 'Archibald Knox'. A surname-only agreement is a refusal, here as everywhere: the list prints eleven Smiths."
+  },
+  {
+   "resident": "Benjamin Jones",
+   "person_id": "jones_benjamin",
+   "surname_in_the_list": "Jones",
+   "candidates": 4,
+   "rule": "The surname 'Jones' is in Fergus's death notices and no entry under it carries the initial 'B' of 'Benjamin Jones'. A surname-only agreement is a refusal, here as everywhere: the list prints eleven Smiths."
+  },
+  {
+   "resident": "Beta L.. Barber",
+   "person_id": "ll_barber_beta_l",
+   "surname_in_the_list": "Barber",
+   "candidates": 1,
+   "rule": "The surname 'Barber' is in Fergus's death notices and no entry under it carries the initial 'B' of 'Beta L.. Barber'. A surname-only agreement is a refusal, here as everywhere: the list prints eleven Smiths."
+  },
+  {
+   "resident": "Caleb Foster",
+   "person_id": "ll_caleb_foster",
+   "surname_in_the_list": "Foster",
+   "candidates": 1,
+   "rule": "The surname 'Foster' is in Fergus's death notices and no entry under it carries the initial 'C' of 'Caleb Foster'. A surname-only agreement is a refusal, here as everywhere: the list prints eleven Smiths."
+  },
+  {
+   "resident": "Caroline Miss Gooding",
+   "person_id": "ll_gooding_caroline",
+   "surname_in_the_list": "Gooding",
+   "candidates": 2,
+   "rule": "The surname 'Gooding' is in Fergus's death notices and no entry under it carries the initial 'C' of 'Caroline Miss Gooding'. A surname-only agreement is a refusal, here as everywhere: the list prints eleven Smiths."
+  },
+  {
+   "resident": "Catherine Chevalier Robinson",
+   "person_id": "robinson_catherine",
+   "surname_in_the_list": "Robinson",
+   "candidates": 1,
+   "rule": "The surname 'Robinson' is in Fergus's death notices and no entry under it carries the initial 'C' of 'Catherine Chevalier Robinson'. A surname-only agreement is a refusal, here as everywhere: the list prints eleven Smiths."
+  },
+  {
+   "resident": "Charles C. Drake",
+   "person_id": "ll_charles_c_drake",
+   "surname_in_the_list": "Drake",
+   "candidates": 1,
+   "rule": "The surname 'Drake' is in Fergus's death notices and no entry under it carries the initial 'C' of 'Charles C. Drake'. A surname-only agreement is a refusal, here as everywhere: the list prints eleven Smiths."
+  },
+  {
+   "resident": "Charles Loomis Harmon",
+   "person_id": "harmon_charles_l",
+   "surname_in_the_list": "Harmon",
+   "candidates": 2,
+   "rule": "The surname 'Harmon' is in Fergus's death notices and no entry under it carries the initial 'C' of 'Charles Loomis Harmon'. A surname-only agreement is a refusal, here as everywhere: the list prints eleven Smiths."
+  },
+  {
+   "resident": "Charles Wells",
+   "person_id": "ll_wells_charles",
+   "surname_in_the_list": "Wells",
+   "candidates": 3,
+   "rule": "The surname 'Wells' is in Fergus's death notices and no entry under it carries the initial 'C' of 'Charles Wells'. A surname-only agreement is a refusal, here as everywhere: the list prints eleven Smiths."
+  },
+  {
+   "resident": "Chas. H. Chapman",
+   "person_id": "ll_chas_h_chapman",
+   "surname_in_the_list": "Chapman",
+   "candidates": 1,
+   "rule": "The surname 'Chapman' is in Fergus's death notices and no entry under it carries the initial 'C' of 'Chas. H. Chapman'. A surname-only agreement is a refusal, here as everywhere: the list prints eleven Smiths."
+  },
+  {
+   "resident": "Col. Jean Baptiste Beaubien",
+   "person_id": "beaubien_jean_baptiste",
+   "surname_in_the_list": "Beaubien",
+   "candidates": 2,
+   "rule": "The surname 'Beaubien' is in Fergus's death notices and no entry under it carries the initial 'J' of 'Col. Jean Baptiste Beaubien'. A surname-only agreement is a refusal, here as everywhere: the list prints eleven Smiths."
+  },
+  {
+   "resident": "Damel M. Green",
+   "person_id": "ll_green_damel_m",
+   "surname_in_the_list": "Green",
+   "candidates": 1,
+   "rule": "The surname 'Green' is in Fergus's death notices and no entry under it carries the initial 'D' of 'Damel M. Green'. A surname-only agreement is a refusal, here as everywhere: the list prints eleven Smiths."
+  },
+  {
+   "resident": "Daniel Howland",
+   "person_id": "ll_daniel_howland",
+   "surname_in_the_list": "Howland",
+   "candidates": 1,
+   "rule": "The surname 'Howland' is in Fergus's death notices and no entry under it carries the initial 'D' of 'Daniel Howland'. A surname-only agreement is a refusal, here as everywhere: the list prints eleven Smiths."
+  },
+  {
+   "resident": "Daniel Newton",
+   "person_id": "ll_daniel_newton",
+   "surname_in_the_list": "Newton",
+   "candidates": 1,
+   "rule": "The surname 'Newton' is in Fergus's death notices and no entry under it carries the initial 'D' of 'Daniel Newton'. A surname-only agreement is a refusal, here as everywhere: the list prints eleven Smiths."
+  },
+  {
+   "resident": "David Bigelow",
+   "person_id": "ll_david_bigelow",
+   "surname_in_the_list": "Bigelow",
+   "candidates": 3,
+   "rule": "The surname 'Bigelow' is in Fergus's death notices and no entry under it carries the initial 'D' of 'David Bigelow'. A surname-only agreement is a refusal, here as everywhere: the list prints eleven Smiths."
+  },
+  {
+   "resident": "David Carver",
+   "person_id": "carver_david",
+   "surname_in_the_list": "Carver",
+   "candidates": 1,
+   "rule": "The surname 'Carver' is in Fergus's death notices and no entry under it carries the initial 'D' of 'David Carver'. A surname-only agreement is a refusal, here as everywhere: the list prints eleven Smiths."
+  },
+  {
+   "resident": "David Harris",
+   "person_id": "ll_david_harris",
+   "surname_in_the_list": "Harris",
+   "candidates": 1,
+   "rule": "The surname 'Harris' is in Fergus's death notices and no entry under it carries the initial 'D' of 'David Harris'. A surname-only agreement is a refusal, here as everywhere: the list prints eleven Smiths."
+  },
+  {
+   "resident": "David Swearingen",
+   "person_id": "ll_swearingen_david",
+   "surname_in_the_list": "Swearingen",
+   "candidates": 1,
+   "rule": "The surname 'Swearingen' is in Fergus's death notices and no entry under it carries the initial 'D' of 'David Swearingen'. A surname-only agreement is a refusal, here as everywhere: the list prints eleven Smiths."
+  },
+  {
+   "resident": "Dr Edmund Stoughton Kimberly",
+   "person_id": "kimberly_edmund_s",
+   "surname_in_the_list": "Kimberly",
+   "candidates": 1,
+   "rule": "The surname 'Kimberly' is in Fergus's death notices and no entry under it carries the initial 'E' of 'Dr Edmund Stoughton Kimberly'. A surname-only agreement is a refusal, here as everywhere: the list prints eleven Smiths."
+  },
+  {
+   "resident": "Dr Elijah Dewey Harmon",
+   "person_id": "harmon_elijah_d",
+   "surname_in_the_list": "Harmon",
+   "candidates": 2,
+   "rule": "The surname 'Harmon' is in Fergus's death notices and no entry under it carries the initial 'E' of 'Dr Elijah Dewey Harmon'. A surname-only agreement is a refusal, here as everywhere: the list prints eleven Smiths."
+  },
+  {
+   "resident": "Dr John Taylor Temple",
+   "person_id": "temple_john_t",
+   "surname_in_the_list": "Temple",
+   "candidates": 1,
+   "rule": "The surname 'Temple' is in Fergus's death notices and no entry under it carries the initial 'J' of 'Dr John Taylor Temple'. A surname-only agreement is a refusal, here as everywhere: the list prints eleven Smiths."
+  },
+  {
+   "resident": "Dr William Bradshaw Egan",
+   "person_id": "egan_william_b",
+   "surname_in_the_list": "Egan",
+   "candidates": 1,
+   "rule": "The surname 'Egan' is in Fergus's death notices and no entry under it carries the initial 'W' of 'Dr William Bradshaw Egan'. A surname-only agreement is a refusal, here as everywhere: the list prints eleven Smiths."
+  },
+  {
+   "resident": "Ebenezer Ford",
+   "person_id": "ll_ford_ebenezer",
+   "surname_in_the_list": "Ford",
+   "candidates": 1,
+   "rule": "The surname 'Ford' is in Fergus's death notices and no entry under it carries the initial 'E' of 'Ebenezer Ford'. A surname-only agreement is a refusal, here as everywhere: the list prints eleven Smiths."
+  },
+  {
+   "resident": "Edson White",
+   "person_id": "ll_white_edson",
+   "surname_in_the_list": "White",
+   "candidates": 1,
+   "rule": "The surname 'White' is in Fergus's death notices and no entry under it carries the initial 'E' of 'Edson White'. A surname-only agreement is a refusal, here as everywhere: the list prints eleven Smiths."
+  },
+  {
+   "resident": "Edwin A. Lincoln",
+   "person_id": "ll_lincoln_edwin_a",
+   "surname_in_the_list": "Lincoln",
+   "candidates": 1,
+   "rule": "The surname 'Lincoln' is in Fergus's death notices and no entry under it carries the initial 'E' of 'Edwin A. Lincoln'. A surname-only agreement is a refusal, here as everywhere: the list prints eleven Smiths."
+  },
+  {
+   "resident": "Eli F Anderson",
+   "person_id": "ll_anderson_eli_f",
+   "surname_in_the_list": "Anderson",
+   "candidates": 1,
+   "rule": "The surname 'Anderson' is in Fergus's death notices and no entry under it carries the initial 'E' of 'Eli F Anderson'. A surname-only agreement is a refusal, here as everywhere: the list prints eleven Smiths."
+  },
+  {
+   "resident": "Eli Gilman",
+   "person_id": "ll_gilman_eli",
+   "surname_in_the_list": "Gilman",
+   "candidates": 1,
+   "rule": "The surname 'Gilman' is in Fergus's death notices and no entry under it carries the initial 'E' of 'Eli Gilman'. A surname-only agreement is a refusal, here as everywhere: the list prints eleven Smiths."
+  },
+  {
+   "resident": "Eliza Chappel Porter",
+   "person_id": "porter_eliza_chappel",
+   "surname_in_the_list": "Porter",
+   "candidates": 2,
+   "rule": "The surname 'Porter' is in Fergus's death notices and no entry under it carries the initial 'E' of 'Eliza Chappel Porter'. A surname-only agreement is a refusal, here as everywhere: the list prints eleven Smiths."
+  },
+  {
+   "resident": "Eliza Pearce",
+   "person_id": "ll_eliza_pearce",
+   "surname_in_the_list": "Pearce",
+   "candidates": 1,
+   "rule": "The surname 'Pearce' is in Fergus's death notices and no entry under it carries the initial 'E' of 'Eliza Pearce'. A surname-only agreement is a refusal, here as everywhere: the list prints eleven Smiths."
+  },
+  {
+   "resident": "Emeline Egan",
+   "person_id": "egan_emeline",
+   "surname_in_the_list": "Egan",
+   "candidates": 1,
+   "rule": "The surname 'Egan' is in Fergus's death notices and no entry under it carries the initial 'E' of 'Emeline Egan'. A surname-only agreement is a refusal, here as everywhere: the list prints eleven Smiths."
+  },
+  {
+   "resident": "Erastus Clark",
+   "person_id": "ll_clark_erastus",
+   "surname_in_the_list": "Clark",
+   "candidates": 2,
+   "rule": "The surname 'Clark' is in Fergus's death notices and no entry under it carries the initial 'E' of 'Erastus Clark'. A surname-only agreement is a refusal, here as everywhere: the list prints eleven Smiths."
+  },
+  {
+   "resident": "Ezekiel Turner",
+   "person_id": "ll_ezekiel_turner",
+   "surname_in_the_list": "Turner",
+   "candidates": 1,
+   "rule": "The surname 'Turner' is in Fergus's death notices and no entry under it carries the initial 'E' of 'Ezekiel Turner'. A surname-only agreement is a refusal, here as everywhere: the list prints eleven Smiths."
+  },
+  {
+   "resident": "Ford Freeman",
+   "person_id": "ll_ford_freeman",
+   "surname_in_the_list": "Freeman",
+   "candidates": 1,
+   "rule": "The surname 'Freeman' is in Fergus's death notices and no entry under it carries the initial 'F' of 'Ford Freeman'. A surname-only agreement is a refusal, here as everywhere: the list prints eleven Smiths."
+  },
+  {
+   "resident": "Franklin Spalding",
+   "person_id": "ll_franklin_spalding",
+   "surname_in_the_list": "Spalding",
+   "candidates": 1,
+   "rule": "The surname 'Spalding' is in Fergus's death notices and no entry under it carries the initial 'F' of 'Franklin Spalding'. A surname-only agreement is a refusal, here as everywhere: the list prints eleven Smiths."
+  },
+  {
+   "resident": "Frederick Myers",
+   "person_id": "ll_myers_frederick",
+   "surname_in_the_list": "Myers",
+   "candidates": 3,
+   "rule": "The surname 'Myers' is in Fergus's death notices and no entry under it carries the initial 'F' of 'Frederick Myers'. A surname-only agreement is a refusal, here as everywhere: the list prints eleven Smiths."
+  },
+  {
+   "resident": "Frederick Thomas",
+   "person_id": "thomas_frederick",
+   "surname_in_the_list": "Thomas",
+   "candidates": 2,
+   "rule": "The surname 'Thomas' is in Fergus's death notices and no entry under it carries the initial 'F' of 'Frederick Thomas'. A surname-only agreement is a refusal, here as everywhere: the list prints eleven Smiths."
+  },
+  {
+   "resident": "Geo. A. Burlingame",
+   "person_id": "ll_geo_a_burlingame",
+   "surname_in_the_list": "Burlingame",
+   "candidates": 2,
+   "rule": "The surname 'Burlingame' is in Fergus's death notices and no entry under it carries the initial 'G' of 'Geo. A. Burlingame'. A surname-only agreement is a refusal, here as everywhere: the list prints eleven Smiths."
+  },
+  {
+   "resident": "George Strong",
+   "person_id": "ll_strong_george",
+   "surname_in_the_list": "Strong",
+   "candidates": 1,
+   "rule": "The surname 'Strong' is in Fergus's death notices and no entry under it carries the initial 'G' of 'George Strong'. A surname-only agreement is a refusal, here as everywhere: the list prints eleven Smiths."
+  },
+  {
+   "resident": "Gholson Kercheval",
+   "person_id": "kercheval_gholson",
+   "surname_in_the_list": "Kercheval",
+   "candidates": 1,
+   "rule": "The surname 'Kercheval' is in Fergus's death notices and no entry under it carries the initial 'G' of 'Gholson Kercheval'. A surname-only agreement is a refusal, here as everywhere: the list prints eleven Smiths."
+  },
+  {
+   "resident": "Giles Spring",
+   "person_id": "spring_giles",
+   "surname_in_the_list": "Spring",
+   "candidates": 1,
+   "rule": "The surname 'Spring' is in Fergus's death notices and no entry under it carries the initial 'G' of 'Giles Spring'. A surname-only agreement is a refusal, here as everywhere: the list prints eleven Smiths."
+  },
+  {
+   "resident": "Gurdon Saltonstall Hubbard",
+   "person_id": "hubbard_gurdon",
+   "surname_in_the_list": "Hubbard",
+   "candidates": 1,
+   "rule": "The surname 'Hubbard' is in Fergus's death notices and no entry under it carries the initial 'G' of 'Gurdon Saltonstall Hubbard'. A surname-only agreement is a refusal, here as everywhere: the list prints eleven Smiths."
+  },
+  {
+   "resident": "Hanibal Ward",
+   "person_id": "ll_ward_hanibal",
+   "surname_in_the_list": "Ward",
+   "candidates": 2,
+   "rule": "The surname 'Ward' is in Fergus's death notices and no entry under it carries the initial 'H' of 'Hanibal Ward'. A surname-only agreement is a refusal, here as everywhere: the list prints eleven Smiths."
+  },
+  {
+   "resident": "Hannah Hurlburt",
+   "person_id": "ll_hannah_hurlburt",
+   "surname_in_the_list": "Hurlburt",
+   "candidates": 1,
+   "rule": "The surname 'Hurlburt' is in Fergus's death notices and no entry under it carries the initial 'H' of 'Hannah Hurlburt'. A surname-only agreement is a refusal, here as everywhere: the list prints eleven Smiths."
+  },
+  {
+   "resident": "Harriet Murphy",
+   "person_id": "murphy_harriet",
+   "surname_in_the_list": "Murphy",
+   "candidates": 2,
+   "rule": "The surname 'Murphy' is in Fergus's death notices and no entry under it carries the initial 'H' of 'Harriet Murphy'. A surname-only agreement is a refusal, here as everywhere: the list prints eleven Smiths."
+  },
+  {
+   "resident": "Henry N. Hunt",
+   "person_id": "ll_hunt_henry_n",
+   "surname_in_the_list": "Hunt",
+   "candidates": 3,
+   "rule": "The surname 'Hunt' is in Fergus's death notices and no entry under it carries the initial 'H' of 'Henry N. Hunt'. A surname-only agreement is a refusal, here as everywhere: the list prints eleven Smiths."
+  },
+  {
+   "resident": "Henry or Little",
+   "person_id": "ll_little_henry_or",
+   "surname_in_the_list": "Little",
+   "candidates": 1,
+   "rule": "The surname 'Little' is in Fergus's death notices and no entry under it carries the initial 'H' of 'Henry or Little'. A surname-only agreement is a refusal, here as everywhere: the list prints eleven Smiths."
+  },
+  {
+   "resident": "Ira Herrick",
+   "person_id": "ll_ira_herrick",
+   "surname_in_the_list": "Herrick",
+   "candidates": 1,
+   "rule": "The surname 'Herrick' is in Fergus's death notices and no entry under it carries the initial 'I' of 'Ira Herrick'. A surname-only agreement is a refusal, here as everywhere: the list prints eleven Smiths."
+  },
+  {
+   "resident": "J. Carter",
+   "person_id": "ll_j_carter",
+   "surname_in_the_list": "Carter",
+   "candidates": 1,
+   "rule": "The surname 'Carter' is in Fergus's death notices and no entry under it carries the initial 'J' of 'J. Carter'. A surname-only agreement is a refusal, here as everywhere: the list prints eleven Smiths."
+  },
+  {
+   "resident": "J. Chester Reid",
+   "person_id": "ll_j_chester_reid",
+   "surname_in_the_list": "Reid",
+   "candidates": 1,
+   "rule": "The surname 'Reid' is in Fergus's death notices and no entry under it carries the initial 'J' of 'J. Chester Reid'. A surname-only agreement is a refusal, here as everywhere: the list prints eleven Smiths."
+  },
+  {
+   "resident": "J. D. Doty",
+   "person_id": "ll_j_d_doty",
+   "surname_in_the_list": "Doty",
+   "candidates": 1,
+   "rule": "The surname 'Doty' is in Fergus's death notices and no entry under it carries the initial 'J' of 'J. D. Doty'. A surname-only agreement is a refusal, here as everywhere: the list prints eleven Smiths."
+  },
+  {
+   "resident": "J. E. Bishop",
+   "person_id": "ll_bishop_j_e",
+   "surname_in_the_list": "Bishop",
+   "candidates": 1,
+   "rule": "The surname 'Bishop' is in Fergus's death notices and no entry under it carries the initial 'J' of 'J. E. Bishop'. A surname-only agreement is a refusal, here as everywhere: the list prints eleven Smiths."
+  },
+  {
+   "resident": "J. E. Field",
+   "person_id": "ll_field_j_e",
+   "surname_in_the_list": "Field",
+   "candidates": 2,
+   "rule": "The surname 'Field' is in Fergus's death notices and no entry under it carries the initial 'J' of 'J. E. Field'. A surname-only agreement is a refusal, here as everywhere: the list prints eleven Smiths."
+  },
+  {
+   "resident": "J. H. Collins",
+   "person_id": "doc_j_h_collins",
+   "surname_in_the_list": "Collins",
+   "candidates": 1,
+   "rule": "The surname 'Collins' is in Fergus's death notices and no entry under it carries the initial 'J' of 'J. H. Collins'. A surname-only agreement is a refusal, here as everywhere: the list prints eleven Smiths."
+  },
+  {
+   "resident": "J. W. Reed",
+   "person_id": "inf_joiner_north_02",
+   "surname_in_the_list": "Reed",
+   "candidates": 2,
+   "rule": "The surname 'Reed' is in Fergus's death notices and no entry under it carries the initial 'J' of 'J. W. Reed'. A surname-only agreement is a refusal, here as everywhere: the list prints eleven Smiths."
+  },
+  {
+   "resident": "Jacob Fake",
+   "person_id": "ll_jacob_fake",
+   "surname_in_the_list": "Fake",
+   "candidates": 1,
+   "rule": "The surname 'Fake' is in Fergus's death notices and no entry under it carries the initial 'J' of 'Jacob Fake'. A surname-only agreement is a refusal, here as everywhere: the list prints eleven Smiths."
+  },
+  {
+   "resident": "James Crawford",
+   "person_id": "ll_crawford_james",
+   "surname_in_the_list": "Crawford",
+   "candidates": 1,
+   "rule": "The surname 'Crawford' is in Fergus's death notices and no entry under it carries the initial 'J' of 'James Crawford'. A surname-only agreement is a refusal, here as everywhere: the list prints eleven Smiths."
+  },
+  {
+   "resident": "James H. Gibbs",
+   "person_id": "ll_james_h_gibbs",
+   "surname_in_the_list": "Gibbs",
+   "candidates": 1,
+   "rule": "The surname 'Gibbs' is in Fergus's death notices and no entry under it carries the initial 'J' of 'James H. Gibbs'. A surname-only agreement is a refusal, here as everywhere: the list prints eleven Smiths."
+  },
+  {
+   "resident": "James Houston Work",
+   "person_id": "ll_work_james_houston",
+   "surname_in_the_list": "Work",
+   "candidates": 1,
+   "rule": "The surname 'Work' is in Fergus's death notices and no entry under it carries the initial 'J' of 'James Houston Work'. A surname-only agreement is a refusal, here as everywhere: the list prints eleven Smiths."
+  },
+  {
+   "resident": "James L.. Dean",
+   "person_id": "ll_dean_james_l",
+   "surname_in_the_list": "Dean",
+   "candidates": 1,
+   "rule": "The surname 'Dean' is in Fergus's death notices and no entry under it carries the initial 'J' of 'James L.. Dean'. A surname-only agreement is a refusal, here as everywhere: the list prints eleven Smiths."
+  },
+  {
+   "resident": "James R. Lawrence",
+   "person_id": "ll_james_r_lawrence",
+   "surname_in_the_list": "Lawrence",
+   "candidates": 1,
+   "rule": "The surname 'Lawrence' is in Fergus's death notices and no entry under it carries the initial 'J' of 'James R. Lawrence'. A surname-only agreement is a refusal, here as everywhere: the list prints eleven Smiths."
+  },
+  {
+   "resident": "John Murphy",
+   "person_id": "murphy_john",
+   "surname_in_the_list": "Murphy",
+   "candidates": 2,
+   "rule": "The surname 'Murphy' is in Fergus's death notices and no entry under it carries the initial 'J' of 'John Murphy'. A surname-only agreement is a refusal, here as everywhere: the list prints eleven Smiths."
+  },
+  {
+   "resident": "John S. Barry",
+   "person_id": "ll_john_s_barry",
+   "surname_in_the_list": "Barry",
+   "candidates": 1,
+   "rule": "The surname 'Barry' is in Fergus's death notices and no entry under it carries the initial 'J' of 'John S. Barry'. A surname-only agreement is a refusal, here as everywhere: the list prints eleven Smiths."
+  },
+  {
+   "resident": "John Volk",
+   "person_id": "ll_john_volk",
+   "surname_in_the_list": "Volk",
+   "candidates": 1,
+   "rule": "The surname 'Volk' is in Fergus's death notices and no entry under it carries the initial 'J' of 'John Volk'. A surname-only agreement is a refusal, here as everywhere: the list prints eleven Smiths."
+  },
+  {
+   "resident": "Joseph Archer",
+   "person_id": "ll_archer_joseph",
+   "surname_in_the_list": "Archer",
+   "candidates": 1,
+   "rule": "The surname 'Archer' is in Fergus's death notices and no entry under it carries the initial 'J' of 'Joseph Archer'. A surname-only agreement is a refusal, here as everywhere: the list prints eleven Smiths."
+  },
+  {
+   "resident": "Joseph Chadwick",
+   "person_id": "ll_chadwick_joseph",
+   "surname_in_the_list": "Chadwick",
+   "candidates": 1,
+   "rule": "The surname 'Chadwick' is in Fergus's death notices and no entry under it carries the initial 'J' of 'Joseph Chadwick'. A surname-only agreement is a refusal, here as everywhere: the list prints eleven Smiths."
+  },
+  {
+   "resident": "Josette LaFramboise Beaubien",
+   "person_id": "beaubien_josette",
+   "surname_in_the_list": "Beaubien",
+   "candidates": 2,
+   "rule": "The surname 'Beaubien' is in Fergus's death notices and no entry under it carries the initial 'J' of 'Josette LaFramboise Beaubien'. A surname-only agreement is a refusal, here as everywhere: the list prints eleven Smiths."
+  },
+  {
+   "resident": "Lemuel Brown",
+   "person_id": "brown_lemuel",
+   "surname_in_the_list": "Brown",
+   "candidates": 2,
+   "rule": "The surname 'Brown' is in Fergus's death notices and no entry under it carries the initial 'L' of 'Lemuel Brown'. A surname-only agreement is a refusal, here as everywhere: the list prints eleven Smiths."
+  },
+  {
+   "resident": "Leonard, C. Hugunin",
+   "person_id": "ll_hugunin_leonard_c",
+   "surname_in_the_list": "Hugunin",
+   "candidates": 6,
+   "rule": "The surname 'Hugunin' is in Fergus's death notices and no entry under it carries the initial 'L' of 'Leonard, C. Hugunin'. A surname-only agreement is a refusal, here as everywhere: the list prints eleven Smiths."
+  },
+  {
+   "resident": "Levi Ayres",
+   "person_id": "ll_ayres_levi",
+   "surname_in_the_list": "Ayres",
+   "candidates": 1,
+   "rule": "The surname 'Ayres' is in Fergus's death notices and no entry under it carries the initial 'L' of 'Levi Ayres'. A surname-only agreement is a refusal, here as everywhere: the list prints eleven Smiths."
+  },
+  {
+   "resident": "Levi Blake",
+   "person_id": "ll_levi_blake",
+   "surname_in_the_list": "Blake",
+   "candidates": 1,
+   "rule": "The surname 'Blake' is in Fergus's death notices and no entry under it carries the initial 'L' of 'Levi Blake'. A surname-only agreement is a refusal, here as everywhere: the list prints eleven Smiths."
+  },
+  {
+   "resident": "Liman Curtis",
+   "person_id": "ll_curtis_liman",
+   "surname_in_the_list": "Curtis",
+   "candidates": 1,
+   "rule": "The surname 'Curtis' is in Fergus's death notices and no entry under it carries the initial 'L' of 'Liman Curtis'. A surname-only agreement is a refusal, here as everywhere: the list prints eleven Smiths."
+  },
+  {
+   "resident": "Lorenzo Downing",
+   "person_id": "ll_lorenzo_downing",
+   "surname_in_the_list": "Downing",
+   "candidates": 1,
+   "rule": "The surname 'Downing' is in Fergus's death notices and no entry under it carries the initial 'L' of 'Lorenzo Downing'. A surname-only agreement is a refusal, here as everywhere: the list prints eleven Smiths."
+  },
+  {
+   "resident": "Lyman Burnet",
+   "person_id": "ll_lyman_burnet",
+   "surname_in_the_list": "Burnet",
+   "candidates": 1,
+   "rule": "The surname 'Burnet' is in Fergus's death notices and no entry under it carries the initial 'L' of 'Lyman Burnet'. A surname-only agreement is a refusal, here as everywhere: the list prints eleven Smiths."
+  },
+  {
+   "resident": "Major Handy",
+   "person_id": "handy_major",
+   "surname_in_the_list": "Handy",
+   "candidates": 1,
+   "rule": "The surname 'Handy' is in Fergus's death notices and no entry under it carries the initial 'M' of 'Major Handy'. A surname-only agreement is a refusal, here as everywhere: the list prints eleven Smiths."
+  },
+  {
+   "resident": "Manson Parker",
+   "person_id": "ll_manson_parker",
+   "surname_in_the_list": "Parker",
+   "candidates": 2,
+   "rule": "The surname 'Parker' is in Fergus's death notices and no entry under it carries the initial 'M' of 'Manson Parker'. A surname-only agreement is a refusal, here as everywhere: the list prints eleven Smiths."
+  },
+  {
+   "resident": "Mary Meacham",
+   "person_id": "ll_mary_meacham",
+   "surname_in_the_list": "Meacham",
+   "candidates": 1,
+   "rule": "The surname 'Meacham' is in Fergus's death notices and no entry under it carries the initial 'M' of 'Mary Meacham'. A surname-only agreement is a refusal, here as everywhere: the list prints eleven Smiths."
+  },
+  {
+   "resident": "Mrs Rufus Brown",
+   "person_id": "brown_mrs_rufus",
+   "surname_in_the_list": "Brown",
+   "candidates": 2,
+   "rule": "The surname 'Brown' is in Fergus's death notices and no entry under it carries the initial 'R' of 'Mrs Rufus Brown'. A surname-only agreement is a refusal, here as everywhere: the list prints eleven Smiths."
+  },
+  {
+   "resident": "Mrs Temple",
+   "person_id": "temple_mrs_john_t",
+   "surname_in_the_list": "Temple",
+   "candidates": 1,
+   "rule": "The surname 'Temple' is in Fergus's death notices and no entry under it carries the initial '-' of 'Mrs Temple'. A surname-only agreement is a refusal, here as everywhere: the list prints eleven Smiths."
+  },
+  {
+   "resident": "Nancey Ann Goodell",
+   "person_id": "ll_nancey_ann_goodell",
+   "surname_in_the_list": "Goodell",
+   "candidates": 1,
+   "rule": "The surname 'Goodell' is in Fergus's death notices and no entry under it carries the initial 'N' of 'Nancey Ann Goodell'. A surname-only agreement is a refusal, here as everywhere: the list prints eleven Smiths."
+  },
+  {
+   "resident": "Nelson Douglass",
+   "person_id": "ll_nelson_douglass",
+   "surname_in_the_list": "Douglass",
+   "candidates": 2,
+   "rule": "The surname 'Douglass' is in Fergus's death notices and no entry under it carries the initial 'N' of 'Nelson Douglass'. A surname-only agreement is a refusal, here as everywhere: the list prints eleven Smiths."
+  },
+  {
+   "resident": "Niles Rose",
+   "person_id": "ll_niles_rose",
+   "surname_in_the_list": "Rose",
+   "candidates": 1,
+   "rule": "The surname 'Rose' is in Fergus's death notices and no entry under it carries the initial 'N' of 'Niles Rose'. A surname-only agreement is a refusal, here as everywhere: the list prints eleven Smiths."
+  },
+  {
+   "resident": "Orson Wheeler",
+   "person_id": "ll_wheeler_orson",
+   "surname_in_the_list": "Wheeler",
+   "candidates": 3,
+   "rule": "The surname 'Wheeler' is in Fergus's death notices and no entry under it carries the initial 'O' of 'Orson Wheeler'. A surname-only agreement is a refusal, here as everywhere: the list prints eleven Smiths."
+  },
+  {
+   "resident": "Patrick Martin",
+   "person_id": "ll_patrick_martin",
+   "surname_in_the_list": "Martin",
+   "candidates": 1,
+   "rule": "The surname 'Martin' is in Fergus's death notices and no entry under it carries the initial 'P' of 'Patrick Martin'. A surname-only agreement is a refusal, here as everywhere: the list prints eleven Smiths."
+  },
+  {
+   "resident": "Peter Chase",
+   "person_id": "ll_chase_peter",
+   "surname_in_the_list": "Chase",
+   "candidates": 2,
+   "rule": "The surname 'Chase' is in Fergus's death notices and no entry under it carries the initial 'P' of 'Peter Chase'. A surname-only agreement is a refusal, here as everywhere: the list prints eleven Smiths."
+  },
+  {
+   "resident": "Philip F. W. Peck",
+   "person_id": "peck_philip",
+   "surname_in_the_list": "Peck",
+   "candidates": 2,
+   "rule": "The surname 'Peck' is in Fergus's death notices and no entry under it carries the initial 'P' of 'Philip F. W. Peck'. A surname-only agreement is a refusal, here as everywhere: the list prints eleven Smiths."
+  },
+  {
+   "resident": "Phillips James",
+   "person_id": "ll_phillips_james",
+   "surname_in_the_list": "James",
+   "candidates": 1,
+   "rule": "The surname 'James' is in Fergus's death notices and no entry under it carries the initial 'P' of 'Phillips James'. A surname-only agreement is a refusal, here as everywhere: the list prints eleven Smiths."
+  },
+  {
+   "resident": "Philo C. Mills",
+   "person_id": "ll_philo_c_mills",
+   "surname_in_the_list": "Mills",
+   "candidates": 1,
+   "rule": "The surname 'Mills' is in Fergus's death notices and no entry under it carries the initial 'P' of 'Philo C. Mills'. A surname-only agreement is a refusal, here as everywhere: the list prints eleven Smiths."
+  },
+  {
+   "resident": "Philo Carpenter",
+   "person_id": "carpenter_philo",
+   "surname_in_the_list": "Carpenter",
+   "candidates": 2,
+   "rule": "The surname 'Carpenter' is in Fergus's death notices and no entry under it carries the initial 'P' of 'Philo Carpenter'. A surname-only agreement is a refusal, here as everywhere: the list prints eleven Smiths."
+  },
+  {
+   "resident": "Phineas How",
+   "person_id": "ll_phineas_how",
+   "surname_in_the_list": "How",
+   "candidates": 1,
+   "rule": "The surname 'How' is in Fergus's death notices and no entry under it carries the initial 'P' of 'Phineas How'. A surname-only agreement is a refusal, here as everywhere: the list prints eleven Smiths."
+  },
+  {
+   "resident": "Porter Fuller",
+   "person_id": "ll_porter_fuller",
+   "surname_in_the_list": "Fuller",
+   "candidates": 1,
+   "rule": "The surname 'Fuller' is in Fergus's death notices and no entry under it carries the initial 'P' of 'Porter Fuller'. A surname-only agreement is a refusal, here as everywhere: the list prints eleven Smiths."
+  },
+  {
+   "resident": "R. Stewart",
+   "person_id": "doc_r_stewart",
+   "surname_in_the_list": "Stewart",
+   "candidates": 1,
+   "rule": "The surname 'Stewart' is in Fergus's death notices and no entry under it carries the initial 'R' of 'R. Stewart'. A surname-only agreement is a refusal, here as everywhere: the list prints eleven Smiths."
+  },
+  {
+   "resident": "Reuben Conant",
+   "person_id": "ll_reuben_conant",
+   "surname_in_the_list": "Conant",
+   "candidates": 1,
+   "rule": "The surname 'Conant' is in Fergus's death notices and no entry under it carries the initial 'R' of 'Reuben Conant'. A surname-only agreement is a refusal, here as everywhere: the list prints eleven Smiths."
+  },
+  {
+   "resident": "Richard Steel",
+   "person_id": "ll_steel_richard",
+   "surname_in_the_list": "Steel",
+   "candidates": 1,
+   "rule": "The surname 'Steel' is in Fergus's death notices and no entry under it carries the initial 'R' of 'Richard Steel'. A surname-only agreement is a refusal, here as everywhere: the list prints eleven Smiths."
+  },
+  {
+   "resident": "Robert Allen Kinzie",
+   "person_id": "kinzie_robert_a",
+   "surname_in_the_list": "Kinzie",
+   "candidates": 5,
+   "rule": "The surname 'Kinzie' is in Fergus's death notices and no entry under it carries the initial 'R' of 'Robert Allen Kinzie'. A surname-only agreement is a refusal, here as everywhere: the list prints eleven Smiths."
+  },
+  {
+   "resident": "Rowland I!. Cook",
+   "person_id": "ll_cook_rowland_i",
+   "surname_in_the_list": "Cook",
+   "candidates": 2,
+   "rule": "The surname 'Cook' is in Fergus's death notices and no entry under it carries the initial 'R' of 'Rowland I!. Cook'. A surname-only agreement is a refusal, here as everywhere: the list prints eleven Smiths."
+  },
+  {
+   "resident": "Ruel Starr",
+   "person_id": "ll_ruel_starr",
+   "surname_in_the_list": "Starr",
+   "candidates": 1,
+   "rule": "The surname 'Starr' is in Fergus's death notices and no entry under it carries the initial 'R' of 'Ruel Starr'. A surname-only agreement is a refusal, here as everywhere: the list prints eleven Smiths."
+  },
+  {
+   "resident": "Rufus Brown",
+   "person_id": "brown_rufus",
+   "surname_in_the_list": "Brown",
+   "candidates": 2,
+   "rule": "The surname 'Brown' is in Fergus's death notices and no entry under it carries the initial 'R' of 'Rufus Brown'. A surname-only agreement is a refusal, here as everywhere: the list prints eleven Smiths."
+  },
+  {
+   "resident": "S. C. Stimson",
+   "person_id": "ll_s_c_stimson",
+   "surname_in_the_list": "Stimson",
+   "candidates": 1,
+   "rule": "The surname 'Stimson' is in Fergus's death notices and no entry under it carries the initial 'S' of 'S. C. Stimson'. A surname-only agreement is a refusal, here as everywhere: the list prints eleven Smiths."
+  },
+  {
+   "resident": "Samuel Jackson",
+   "person_id": "ll_jackson_samuel",
+   "surname_in_the_list": "Jackson",
+   "candidates": 3,
+   "rule": "The surname 'Jackson' is in Fergus's death notices and no entry under it carries the initial 'S' of 'Samuel Jackson'. A surname-only agreement is a refusal, here as everywhere: the list prints eleven Smiths."
+  },
+  {
+   "resident": "Samuel Johnson",
+   "person_id": "ll_johnson_samuel",
+   "surname_in_the_list": "Johnson",
+   "candidates": 2,
+   "rule": "The surname 'Johnson' is in Fergus's death notices and no entry under it carries the initial 'S' of 'Samuel Johnson'. A surname-only agreement is a refusal, here as everywhere: the list prints eleven Smiths."
+  },
+  {
+   "resident": "Samuel Lewis",
+   "person_id": "doc_samuel_lewis",
+   "surname_in_the_list": "Lewis",
+   "candidates": 2,
+   "rule": "The surname 'Lewis' is in Fergus's death notices and no entry under it carries the initial 'S' of 'Samuel Lewis'. A surname-only agreement is a refusal, here as everywhere: the list prints eleven Smiths."
+  },
+  {
+   "resident": "Samuel Shaw",
+   "person_id": "ll_samuel_shaw",
+   "surname_in_the_list": "Shaw",
+   "candidates": 1,
+   "rule": "The surname 'Shaw' is in Fergus's death notices and no entry under it carries the initial 'S' of 'Samuel Shaw'. A surname-only agreement is a refusal, here as everywhere: the list prints eleven Smiths."
+  },
+  {
+   "resident": "Samuel Stuart",
+   "person_id": "ll_samuel_stuart",
+   "surname_in_the_list": "Stuart",
+   "candidates": 3,
+   "rule": "The surname 'Stuart' is in Fergus's death notices and no entry under it carries the initial 'S' of 'Samuel Stuart'. A surname-only agreement is a refusal, here as everywhere: the list prints eleven Smiths."
+  },
+  {
+   "resident": "Sciota Evans",
+   "person_id": "ll_sciota_evans",
+   "surname_in_the_list": "Evans",
+   "candidates": 1,
+   "rule": "The surname 'Evans' is in Fergus's death notices and no entry under it carries the initial 'S' of 'Sciota Evans'. A surname-only agreement is a refusal, here as everywhere: the list prints eleven Smiths."
+  },
+  {
+   "resident": "Sidney Dyer",
+   "person_id": "ll_sidney_dyer",
+   "surname_in_the_list": "Dyer",
+   "candidates": 1,
+   "rule": "The surname 'Dyer' is in Fergus's death notices and no entry under it carries the initial 'S' of 'Sidney Dyer'. A surname-only agreement is a refusal, here as everywhere: the list prints eleven Smiths."
+  },
+  {
+   "resident": "Silas B. Cobb",
+   "person_id": "cobb_silas_b",
+   "surname_in_the_list": "Cobb",
+   "candidates": 5,
+   "rule": "The surname 'Cobb' is in Fergus's death notices and no entry under it carries the initial 'S' of 'Silas B. Cobb'. A surname-only agreement is a refusal, here as everywhere: the list prints eleven Smiths."
+  },
+  {
+   "resident": "Stephen F. Gale",
+   "person_id": "gale_stephen_f",
+   "surname_in_the_list": "Gale",
+   "candidates": 1,
+   "rule": "The surname 'Gale' is in Fergus's death notices and no entry under it carries the initial 'S' of 'Stephen F. Gale'. A surname-only agreement is a refusal, here as everywhere: the list prints eleven Smiths."
+  },
+  {
+   "resident": "Stephen Mack",
+   "person_id": "ll_stephen_mack",
+   "surname_in_the_list": "Mack",
+   "candidates": 1,
+   "rule": "The surname 'Mack' is in Fergus's death notices and no entry under it carries the initial 'S' of 'Stephen Mack'. A surname-only agreement is a refusal, here as everywhere: the list prints eleven Smiths."
+  },
+  {
+   "resident": "T. M. Morrison",
+   "person_id": "ll_t_m_morrison",
+   "surname_in_the_list": "Morrison",
+   "candidates": 1,
+   "rule": "The surname 'Morrison' is in Fergus's death notices and no entry under it carries the initial 'T' of 'T. M. Morrison'. A surname-only agreement is a refusal, here as everywhere: the list prints eleven Smiths."
+  },
+  {
+   "resident": "Tho. C. Webb",
+   "person_id": "ll_tho_c_webb",
+   "surname_in_the_list": "Webb",
+   "candidates": 1,
+   "rule": "The surname 'Webb' is in Fergus's death notices and no entry under it carries the initial 'T' of 'Tho. C. Webb'. A surname-only agreement is a refusal, here as everywhere: the list prints eleven Smiths."
+  },
+  {
+   "resident": "Thomas Hoit",
+   "person_id": "placed_hoit_thomas",
+   "surname_in_the_list": "Hoit",
+   "candidates": 1,
+   "rule": "The surname 'Hoit' is in Fergus's death notices and no entry under it carries the initial 'T' of 'Thomas Hoit'. A surname-only agreement is a refusal, here as everywhere: the list prints eleven Smiths."
+  },
+  {
+   "resident": "W. Kimball",
+   "person_id": "kimball_walter",
+   "surname_in_the_list": "Kimball",
+   "candidates": 2,
+   "rule": "The surname 'Kimball' is in Fergus's death notices and no entry under it carries the initial 'W' of 'W. Kimball'. A surname-only agreement is a refusal, here as everywhere: the list prints eleven Smiths."
+  },
+  {
+   "resident": "William Allen",
+   "person_id": "ll_allen_william",
+   "surname_in_the_list": "Allen",
+   "candidates": 2,
+   "rule": "The surname 'Allen' is in Fergus's death notices and no entry under it carries the initial 'W' of 'William Allen'. A surname-only agreement is a refusal, here as everywhere: the list prints eleven Smiths."
+  },
+  {
+   "resident": "William G Blair",
+   "person_id": "ll_blair_william_g",
+   "surname_in_the_list": "Blair",
+   "candidates": 3,
+   "rule": "The surname 'Blair' is in Fergus's death notices and no entry under it carries the initial 'W' of 'William G Blair'. A surname-only agreement is a refusal, here as everywhere: the list prints eleven Smiths."
+  },
+  {
+   "resident": "William Hunter",
+   "person_id": "ll_william_hunter",
+   "surname_in_the_list": "Hunter",
+   "candidates": 2,
+   "rule": "The surname 'Hunter' is in Fergus's death notices and no entry under it carries the initial 'W' of 'William Hunter'. A surname-only agreement is a refusal, here as everywhere: the list prints eleven Smiths."
+  },
+  {
+   "resident": "William Power",
+   "person_id": "ll_william_power",
+   "surname_in_the_list": "Power",
+   "candidates": 1,
+   "rule": "The surname 'Power' is in Fergus's death notices and no entry under it carries the initial 'W' of 'William Power'. A surname-only agreement is a refusal, here as everywhere: the list prints eleven Smiths."
+  },
+  {
+   "resident": "William Spencer",
+   "person_id": "ll_spencer_william",
+   "surname_in_the_list": "Spencer",
+   "candidates": 2,
+   "rule": "The surname 'Spencer' is in Fergus's death notices and no entry under it carries the initial 'W' of 'William Spencer'. A surname-only agreement is a refusal, here as everywhere: the list prints eleven Smiths."
+  },
+  {
+   "resident": "Wm. Wood",
+   "person_id": "ll_wm_wood",
+   "surname_in_the_list": "Wood",
+   "candidates": 2,
+   "rule": "The surname 'Wood' is in Fergus's death notices and no entry under it carries the initial 'W' of 'Wm. Wood'. A surname-only agreement is a refusal, here as everywhere: the list prints eleven Smiths."
+  },
+  {
+   "resident": "air. Bowen",
+   "person_id": "ll_bowen_air",
+   "surname_in_the_list": "Bowen",
+   "candidates": 2,
+   "rule": "The surname 'Bowen' is in Fergus's death notices and no entry under it carries the initial 'A' of 'air. Bowen'. A surname-only agreement is a refusal, here as everywhere: the list prints eleven Smiths."
+  },
+  {
+   "resident": "c. Warren",
+   "person_id": "ll_warren_c",
+   "surname_in_the_list": "Warren",
+   "candidates": 5,
+   "rule": "The surname 'Warren' is in Fergus's death notices and no entry under it carries the initial 'C' of 'c. Warren'. A surname-only agreement is a refusal, here as everywhere: the list prints eleven Smiths."
+  }
+ ],
+ "beside_t0554_the_calumet_club": {
+  "what": "John Wentworth's roll of forty old settlers dead since 1 January 1881 (Chicago Tribune, 25 April 1882), read under T-0554, held against Fergus's list of the same genre. Both are lists of the deaths of Chicago's old settlers, compiled fourteen years apart by different hands, and Fergus's runs late enough to cover Wentworth's years.",
+  "rule": "Surname folded, first initial equal — the same rule the crosswalk uses. A name on Wentworth's roll that Fergus does not print is recorded as absent rather than as missing: Fergus's list is explicitly 'some of' the old settlers, so a silence in it is not evidence of anything.",
+  "counts": {
+   "wentworth_names": 40,
+   "found_in_fergus_dates_agree": 5,
+   "found_in_fergus_dates_differ": 1,
+   "paired_by_the_rule_but_not_one_man": 2,
+   "not_in_fergus": 32
+  },
+  "dates_agree": [
+   {
+    "wentworth": "Thomas Q. Gage",
+    "wentworth_died_as_read": "May 18, 1881",
+    "fergus_record": "fdn0230",
+    "fergus_as_read": "Gage, Thomas Q., died, Menominee, Mich., May 18, 1881, aged 73.",
+    "fergus_death_date": "1881-05-18",
+    "fergus_age_as_printed": "aged 73",
+    "both_spell_the_forename": true
+   },
+   {
+    "wentworth": "Samuel Hoard",
+    "wentworth_died_as_read": "Nov. 25, 1881",
+    "fergus_record": "fdn0298",
+    "fergus_as_read": "Hoard, Samuel, died November 25, 1881. aged 81 years, 6 months.",
+    "fergus_death_date": "1881-11-25",
+    "fergus_age_as_printed": "aged 81",
+    "both_spell_the_forename": true
+   },
+   {
+    "wentworth": "William Hickling",
+    "wentworth_died_as_read": "Aux. 25, 1881",
+    "fergus_record": "fdn0294",
+    "fergus_as_read": "Hickling, William, died August 25, 1881, aged 66¾",
+    "fergus_death_date": "1881-08-25",
+    "fergus_age_as_printed": "aged 66¾",
+    "both_spell_the_forename": true
+   },
+   {
+    "wentworth": "David McKee",
+    "wentworth_died_as_read": "April 9, 1881",
+    "fergus_record": "fdn0425",
+    "fergus_as_read": "McKee, David, died near Aurora, Ill., April 9, 1881, aged 80¼",
+    "fergus_death_date": "1881-04-09",
+    "fergus_age_as_printed": "aged 80¼",
+    "both_spell_the_forename": true
+   },
+   {
+    "wentworth": "Ebenezer Peck",
+    "wentworth_died_as_read": "May 25, 1881",
+    "fergus_record": "fdn0512",
+    "fergus_as_read": "Peck, Hon. Ebenezer, died May 25, 1881, aged 76.",
+    "fergus_death_date": "1881-05-25",
+    "fergus_age_as_printed": "aged 76",
+    "both_spell_the_forename": true
+   }
+  ],
+  "dates_differ": [
+   {
+    "wentworth": "Simon Doyle",
+    "wentworth_died_as_read": "September, 1881",
+    "fergus_record": "fdn0174",
+    "fergus_as_read": "Doyle, Simon, cattle dealer, died November, 1851.",
+    "fergus_death_date": "1851-11",
+    "fergus_age_as_printed": null,
+    "both_spell_the_forename": true,
+    "how_they_differ": "Both lists spell the same forename and they date the death differently: Wentworth prints 'September, 1881' and Fergus prints 'November, 1851'. Neither is corrected against the other. Both are transcriptions this project has not checked against the printed pages, and either the two lists disagree about one man or they are two men of one name — a finding, not an error to be resolved by preference."
+   }
+  ],
+  "paired_by_the_rule_but_not_one_man": [
+   {
+    "wentworth": "Mark Beaubien",
+    "wentworth_died_as_read": "April 11, 1881",
+    "fergus_record": "fdn0030",
+    "fergus_as_read": "Beaubien, Medore Benj., d., Silver Lake, Kas., Dec. 26, 1883, a. 74½",
+    "fergus_death_date": "1883-12-26",
+    "fergus_age_as_printed": "a. 74½",
+    "both_spell_the_forename": true,
+    "not_one_man": "The rule pairs these two on surname and initial, and the two lists spell DIFFERENT forenames — 'mark' and 'medore'. They are two people, and the difference in dates is the rule's, not the sources'. Recorded rather than dropped, because a reader running the same rule will meet the same pair."
+   },
+   {
+    "wentworth": "Harlow Kimball",
+    "wentworth_died_as_read": "Aug. 25. 1881",
+    "fergus_record": "fdn0359",
+    "fergus_as_read": "Kimball, Henry R., died Cairo. Ill., November 4, 1854 aged 45.",
+    "fergus_death_date": "1854-11-04",
+    "fergus_age_as_printed": "aged 45",
+    "both_spell_the_forename": true,
+    "not_one_man": "The rule pairs these two on surname and initial, and the two lists spell DIFFERENT forenames — 'harlow' and 'henry'. They are two people, and the difference in dates is the rule's, not the sources'. Recorded rather than dropped, because a reader running the same rule will meet the same pair."
+   }
+  ],
+  "not_in_fergus": [
+   {
+    "wentworth": "Adam Schock",
+    "died_as_read": "Feb. 23, 1882"
+   },
+   {
+    "wentworth": "Alonzo Huntington",
+    "died_as_read": "Nov. 17, 1881"
+   },
+   {
+    "wentworth": "Benjamin Jones",
+    "died_as_read": "Aug. 11, 1881"
+   },
+   {
+    "wentworth": "Benjamin Waters",
+    "died_as_read": "May 27, 1881"
+   },
+   {
+    "wentworth": "Bennett Bailey",
+    "died_as_read": "Nov.11. 1881"
+   },
+   {
+    "wentworth": "Clemens Rose",
+    "died_as_read": "Oct. 18, 1881"
+   },
+   {
+    "wentworth": "Dennis S. Dewey",
+    "died_as_read": "March 13, 1881"
+   },
+   {
+    "wentworth": "Edward H. Haddock",
+    "died_as_read": "May 30, 1881"
+   },
+   {
+    "wentworth": "Eli B. Williams",
+    "died_as_read": "March 24, 1881"
+   },
+   {
+    "wentworth": "Ezra L. Sherman",
+    "died_as_read": "Feb.14, 1881"
+   },
+   {
+    "wentworth": "George Frederick Rumsey",
+    "died_as_read": "June 17, 1881"
+   },
+   {
+    "wentworth": "Henry Brookes",
+    "died_as_read": "March 3, 1882"
+   },
+   {
+    "wentworth": "Homer Wilimarth",
+    "died_as_read": "March 29, 1882"
+   },
+   {
+    "wentworth": "Jacob De Witt Merrill",
+    "died_as_read": "July 24, 1881"
+   },
+   {
+    "wentworth": "James Fish",
+    "died_as_read": "Aug. 18, 1881"
+   },
+   {
+    "wentworth": "James W. Steele",
+    "died_as_read": "Nov.13. 1881"
+   },
+   {
+    "wentworth": "James Wellington Norris",
+    "died_as_read": "March 3,1882"
+   },
+   {
+    "wentworth": "John Casey",
+    "died_as_read": "Dec. 8, 1881"
+   },
+   {
+    "wentworth": "John P. Reis Jr.",
+    "died_as_read": "Jan.2, 1881"
+   },
+   {
+    "wentworth": "Joseph A. Barnes",
+    "died_as_read": "March 19, 1881"
+   },
+   {
+    "wentworth": "Lathrop Johnson",
+    "died_as_read": "July 2, 1881"
+   },
+   {
+    "wentworth": "Levi D. Boone",
+    "died_as_read": "Jan. 24, 1882"
+   },
+   {
+    "wentworth": "Levi M. Ousterhoudt",
+    "died_as_read": "Nov. 15, 1881"
+   },
+   {
+    "wentworth": "Luther Nichols",
+    "died_as_read": "May 2, 1881"
+   },
+   {
+    "wentworth": "Orrin C. Moody",
+    "died_as_read": "Oct. 15, 1881"
+   },
+   {
+    "wentworth": "Peter Button",
+    "died_as_read": "March 28,1882"
+   },
+   {
+    "wentworth": "Robert M. Mitten",
+    "died_as_read": "March 13, 1881"
+   },
+   {
+    "wentworth": "Seth T. Otis",
+    "died_as_read": "Jan. 23, 1882"
+   },
+   {
+    "wentworth": "Sextus N. Wilcox",
+    "died_as_read": "June 15, 1881"
+   },
+   {
+    "wentworth": "Spencer Warner",
+    "died_as_read": "Jan. 1. 1882"
+   },
+   {
+    "wentworth": "William A. Hail",
+    "died_as_read": "August, 1861"
+   },
+   {
+    "wentworth": "William H. stow",
+    "died_as_read": "Aug. 18, 1881"
+   }
+  ]
+ }
+}

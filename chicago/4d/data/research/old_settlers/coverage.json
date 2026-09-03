@@ -1,0 +1,25 @@
+{
+ "schema": 1,
+ "domain": "old_settlers",
+ "generated_by": "hand — a reading pass declares the range it read, and the gate checks it",
+ "note": "An UNDECLARED item is not read yet and is not a fault. A DECLARED item nothing reaches is a hole, and that is what this file is for. The Calumet Club reception rosters declare themselves in receptions.json, which carries a `roster_read` flag per reception and names the one roster (1879) that is not read; this file starts with T-0574 because a list read out of a page needs a line range and a count, which a reception row has nowhere to put.",
+ "declarations": [
+  {
+   "ticket": "T-0574",
+   "source_id": "fergus_1843_old_settler_death_notices",
+   "unit": "list",
+   "what": "The OBITUARY printed in Robert Fergus's Directory of the City of Chicago, Illinois, for 1843 (Fergus Printing Company, 1896) — \"Names, places, dates, and ages at death of some of Chicago's Old Settlers\" — in K. Torp's 2007 transcription on Genealogy Trails: one web page, cached at data/research/old_settlers/text/fergus_1843_old_settler_death_notices.txt. Lines 14-813, which are the twenty-three letter sections and every entry under them. Every entry is a record.",
+   "items": [
+    "fergus_1843_old_settler_death_notices"
+   ],
+   "entries_read": 757,
+   "entries_checked_by": "tools/read_fergus_obits.py --check, which re-segments the committed text and fails when it yields a different number than this file declares. A declared list that quietly loses forty entries is the hole coverage exists to catch, and a count is the only thing that catches it.",
+   "counts_differ_from_the_ticket_and_why": "T-0574 was sized off inventory.json's line-shaped estimate of 743 entries. Read entry by entry the page yields 757, and the difference is segmentation, not discovery: the estimate counted lines, and this reading counts entries. It joins the 20 lines that are the turn of a long entry — the transcription wraps but does not indent, so \"Aug. 1, 1860, aged 55-7-11.\" under K and \"Oct. 12, 1877, a. 55-1-11.\" under O are turns and not men — and it opens entries at the eleven heads the printer or the transcriber set without a comma after the surname (\"Kimberly Col. John Ellis\", \"Kirk James Smith\", \"Scott. Maj. Martin\", \"Sweet Richard M.\", \"Saint Cyr\", \"Little Turtle\" and five more) and at the one whose surname carries a particle (\"Van de Velde, Rt.-Rev. Jas. Oliver\", which a rule stopping at the first word folded into the entry above him). The inventory estimate is left as it stands; this declaration is what was actually read.",
+   "not_read_and_why": {
+    "lines 1-13": "The transcriber's banner, the list's title and header, the bracketed source note naming the 1843 directory and the 1896 Fergus Printing Company reprint, the transcriber's credit, and the A-Z navigation. The header is not filed as a record because it is a statement about the LIST rather than about a person — it is quoted verbatim on the records file, on the crosswalk and on every record, because it is the limit the whole reading turns on. The bracketed source note is on the source record.",
+    "lines 814-816": "\"Robert Fergus, Compiler\", \"©2007 Kim Torp\" and \"Illinois Genealogy Trails\" — the compiler's name and the transcriber's footer.",
+    "the rest of the 1843 volume": "The business and alphabetical directories are READ, under T-0571, into data/research/directories/. The civic and statistical account of printed page 1 is declared unread there and owned by T-0589."
+   }
+  }
+ ]
+}

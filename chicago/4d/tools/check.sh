@@ -1264,6 +1264,22 @@ step "…and its crosswalk to the 1835 residents rebuilds too" \
 # than as a hope. It also rebuilds every quote the assessment filed in passing out of the
 # committed text, because a quote from a website is a quote from something that can change
 # under you.
+# T-0574. Fergus's list of the deaths of Chicago's old settlers, and the one source this
+# project holds that carries AGES AT DEATH — which are birth years, by subtraction this
+# project does and the page does not. Two things need holding. The segmenting, because the
+# transcription wraps a long entry without indenting the turn and the rule that tells a turn
+# from a man is delicate: "Oct. 12, 1877" under O is the tail of Daniel O'Hara's entry, and a
+# rule reading the section letter alone made a new man of the month. And the GRADE, because
+# an arithmetic birth window that quietly became `documented` would be this project's own
+# invention wearing a citation. The gate rebuilds both files out of the committed text, holds
+# the count to what coverage.json declares, and refuses a record that claims the scene year
+# or grades a derived birth above `inferred`.
+step "Fergus's old-settler death notices rebuild from their committed text" \
+  python3 tools/read_fergus_obits.py --check
+
+step "…and its own assertions still fire when broken" \
+  python3 tools/read_fergus_obits.py --self-test
+
 step "the Genealogy Trails inventory covers every section the county index links" \
   python3 tools/read_genealogytrails.py --check
 
