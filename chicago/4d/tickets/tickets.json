@@ -1,6 +1,6 @@
 {
   "project": "chicago-4d",
-  "generated_ct": "Sep 3, 2026, 5:36 AM",
+  "generated_ct": "Sep 3, 2026, 6:37 AM",
   "tickets": [
     {
       "id": "T-0001",
@@ -8840,6 +8840,24 @@
       "blocked_on": null,
       "needs_bake": false,
       "queue_rank": 136
+    },
+    {
+      "id": "T-0542",
+      "title": "Andreas dates the third town election twice — July 1835 and 5 August 1835 — and which one the 1835 poll list is decides whether 85 men stood on the scene date",
+      "state": "open",
+      "epic": "META",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "M",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-09-03",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "queue_rank": 137
     }
   ]
 }
