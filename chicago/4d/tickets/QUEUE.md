@@ -74,7 +74,6 @@
 # ---   wave 4  T-0514 T-0515 T-0516
 # ---   wave 5  T-0517 T-0518
 
-T-0493 — Four voter lists of 1833-1835 name 346 entries, and the residents layer holds 99 of their 215 surnames
 T-0531 — The 1840 census images 1-25: names and cells of the left sheets printed 210, 215 and 219
 T-0532 — The 1840 census images 1-25: names and cells of the left sheets printed 221, 222 and 226
 T-0533 — The 1840 census images 1-25: names and cells of the two short left sheets printed 225 and 228, and of 33S7-9YYJ-9MX whose page number is off the exposure
