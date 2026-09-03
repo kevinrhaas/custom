@@ -66,7 +66,16 @@
    "sources": [
     "andreas_1884_v1"
    ],
-   "note": "THE HANDOVER FALLS INSIDE THE SCENE YEAR AND NO SOURCE GIVES A MONTH. On a flat prior a transfer somewhere in 1835 is about as likely to be after 1 July as before it, so this household names Haddock, records Markle in this note, and declines to choose - exactly as data/structures/mansion_house.json does. He was Dexter Graves's son-in-law, which is the only family relation in this parcel that reaches across two households."
+   "note": "THE HANDOVER FALLS INSIDE THE SCENE YEAR AND NO SOURCE GIVES A MONTH. On a flat prior a transfer somewhere in 1835 is about as likely to be after 1 July as before it, so this household names Haddock, records Markle in this note, and declines to choose - exactly as data/structures/mansion_house.json does. He was Dexter Graves's son-in-law, which is the only family relation in this parcel that reaches across two households.",
+   "resident_research": {
+    "programme": "resident-research-2026",
+    "ticket": "T-0478",
+    "outcome": "no_corroboration_yet",
+    "reviewed_on": "",
+    "asserted_identity": false,
+    "evidence_for": "No reliable record found in the reviewed repository reference corpus, contemporary newspaper searches, institutional/local histories, directories and regional genealogy/index searches could be tied to this person by more than the recorded name. This is a documented no-find, not evidence that the person did not exist.",
+    "notes": "No reliable record found in the reviewed repository reference corpus, contemporary newspaper searches, institutional/local histories, directories and regional genealogy/index searches could be tied to this person by more than the recorded name. This is a documented no-find, not evidence that the person did not exist."
+   }
   }
  ],
  "touches_removal": false,

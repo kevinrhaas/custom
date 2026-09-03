@@ -63,7 +63,19 @@
    "sources": [
     "andreas_1884_v1"
    ],
-   "note": "Andreas vol. 1, printed p. 132 (scan p. 281), 'an imperfect list of the denizens of the town in the fall of 1833, not before named'. It gives a name, a trade and usually an arrival year, and it is a retrospective of 1884: a YEAR off it is documented, a MONTH is not, and it says nothing whatever about 1835."
+   "note": "Andreas vol. 1, printed p. 132 (scan p. 281), 'an imperfect list of the denizens of the town in the fall of 1833, not before named'. It gives a name, a trade and usually an arrival year, and it is a retrospective of 1884: a YEAR off it is documented, a MONTH is not, and it says nothing whatever about 1835.",
+   "resident_research": {
+    "programme": "resident-research-2026",
+    "ticket": "T-0478",
+    "outcome": "no_corroboration_yet",
+    "reviewed_on": "",
+    "asserted_identity": false,
+    "evidence_for": "Cook County/early-Chicago history independently places Major Handy in the 1833 river-improvement work. The exact name and distinctive public-work role strengthen the resident identity without proving a July 1835 dwelling.",
+    "notes": "Cook County/early-Chicago history independently places Major Handy in the 1833 river-improvement work. The exact name and distinctive public-work role strengthen the resident identity without proving a July 1835 dwelling.",
+    "source_ids": [
+     "goodman_history_cook_county_early"
+    ]
+   }
   }
  ],
  "touches_removal": false,

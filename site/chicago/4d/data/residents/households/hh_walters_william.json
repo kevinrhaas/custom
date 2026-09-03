@@ -73,7 +73,19 @@
     "andreas_1884_v1",
     "drloih_hotels"
    ],
-   "note": "DERIVED, AND THE REASON IS A CONTRADICTION IN THE SOURCES RATHER THAN A GAP. The same body of material that puts Walters in the house 1833-1836 also says the house stopped operating as a public house in 1834, and a landlord of a closed house is not a coherent claim. data/structures/wolf_point_tavern.json records the occupancy as inferred for exactly this reason; this household inherits the doubt and does not paper over it."
+   "note": "DERIVED, AND THE REASON IS A CONTRADICTION IN THE SOURCES RATHER THAN A GAP. The same body of material that puts Walters in the house 1833-1836 also says the house stopped operating as a public house in 1834, and a landlord of a closed house is not a coherent claim. data/structures/wolf_point_tavern.json records the occupancy as inferred for exactly this reason; this household inherits the doubt and does not paper over it.",
+   "resident_research": {
+    "programme": "resident-research-2026",
+    "ticket": "T-0478",
+    "outcome": "no_corroboration_yet",
+    "reviewed_on": "",
+    "asserted_identity": false,
+    "evidence_for": "Andreas-derived Wolf Point history gives William Walters as proprietor of the Wolf Point Tavern from 1833 through 1836. That strongly supports scene-period continuity, but because it is a retrospective year range rather than a July 1 instrument the household's cautious presence flag is not silently upgraded here.",
+    "notes": "Andreas-derived Wolf Point history gives William Walters as proprietor of the Wolf Point Tavern from 1833 through 1836. That strongly supports scene-period continuity, but because it is a retrospective year range rather than a July 1 instrument the household's cautious presence flag is not silently upgraded here.",
+    "source_ids": [
+     "chicagology_wolf_point_walters"
+    ]
+   }
   }
  ],
  "touches_removal": false,

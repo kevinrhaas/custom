@@ -69,7 +69,19 @@
    "sources": [
     "andreas_1884_v1"
    ],
-   "note": "ELECTED ONE OF THE FIVE FIRST TRUSTEES OF THE TOWN on 10 August 1833 with 20 of 28 votes, and Andreas notes that he 'being a candidate himself, refrained from voting' - so he is one of only two men in this parcel whose conduct at the poll is recorded. His brother Samuel Miller kept the tavern on the north bank at the forks and is not written as a household here, because Andreas's 1833 roster names him only in passing as 'Samuel, the landlord' and this project's miller_house record has the house 'past its innkeeping days' by the scene date. Andreas vol. 1, printed p. 132 (scan p. 281), 'an imperfect list of the denizens of the town in the fall of 1833, not before named' - a name, a trade and usually an arrival year, compiled fifty years after the fact. A YEAR off it is documented; a MONTH is not, and neither is anything about 1835."
+   "note": "ELECTED ONE OF THE FIVE FIRST TRUSTEES OF THE TOWN on 10 August 1833 with 20 of 28 votes, and Andreas notes that he 'being a candidate himself, refrained from voting' - so he is one of only two men in this parcel whose conduct at the poll is recorded. His brother Samuel Miller kept the tavern on the north bank at the forks and is not written as a household here, because Andreas's 1833 roster names him only in passing as 'Samuel, the landlord' and this project's miller_house record has the house 'past its innkeeping days' by the scene date. Andreas vol. 1, printed p. 132 (scan p. 281), 'an imperfect list of the denizens of the town in the fall of 1833, not before named' - a name, a trade and usually an arrival year, compiled fifty years after the fact. A YEAR off it is documented; a MONTH is not, and neither is anything about 1835.",
+   "resident_research": {
+    "programme": "resident-research-2026",
+    "ticket": "T-0478",
+    "outcome": "no_corroboration_yet",
+    "reviewed_on": "",
+    "asserted_identity": false,
+    "evidence_for": "Retrospective Chicago histories independently identify John Miller with the settlement's first tannery, built near the North Branch/forks in 1831. The exact name, unusual trade and site corroborate the profile without inventing a July 1835 residence.",
+    "notes": "Retrospective Chicago histories independently identify John Miller with the settlement's first tannery, built near the North Branch/forks in 1831. The exact name, unusual trade and site corroborate the profile without inventing a July 1835 residence.",
+    "source_ids": [
+     "goodman_history_cook_county_early"
+    ]
+   }
   },
   {
    "id": "hall_benjamin",
@@ -88,7 +100,17 @@
    "sources": [
     "andreas_1884_v1"
    ],
-   "note": "A DOCUMENTED PARTNER IN THE SETTLEMENT'S FIRST MANUFACTORY. Andreas: 'The only manufactory established at that early day was the rude shed called a tannery, near the Miller tavern, where John Miller and Benjamin Hall were tanning a few hides into a rough but endurable leather.' He signed the 1832 militia agreement."
+   "note": "A DOCUMENTED PARTNER IN THE SETTLEMENT'S FIRST MANUFACTORY. Andreas: 'The only manufactory established at that early day was the rude shed called a tannery, near the Miller tavern, where John Miller and Benjamin Hall were tanning a few hides into a rough but endurable leather.' He signed the 1832 militia agreement.",
+   "resident_research": {
+    "programme": "resident-research-2026",
+    "ticket": "T-0479",
+    "outcome": "no_corroboration",
+    "reviewed_on": "2026-09-02",
+    "asserted_identity": false,
+    "evidence_for": "The exact-name and variant sweep did not yield a dated Chicago/Cook County record with a discriminator beyond this common name. No occupation, kinship, address or migration fact is promoted; this documented no-find is not evidence of nonexistence.",
+    "summary": "The exact-name and variant sweep did not yield a dated Chicago/Cook County record with a discriminator beyond this common name. No occupation, kinship, address or migration fact is promoted; this documented no-find is not evidence of nonexistence.",
+    "notes": "The exact-name and variant sweep did not yield a dated Chicago/Cook County record with a discriminator beyond this common name. No occupation, kinship, address or migration fact is promoted; this documented no-find is not evidence of nonexistence."
+   }
   }
  ],
  "touches_removal": false,

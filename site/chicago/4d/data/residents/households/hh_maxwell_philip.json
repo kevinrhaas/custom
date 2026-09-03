@@ -90,7 +90,19 @@
    "sources": [
     "andreas_1884_v1"
    ],
-   "note": "A GARRISON OFFICER WHOSE TOUR BRACKETS THE SCENE DATE AT BOTH ENDS - 3 February 1833 to 29 December 1836 - which makes him one of the few people in the dataset whose presence on 1 July 1835 is a matter of record rather than of inference. Born at Guilford, Windham Co., Vt., 3 April 1799; practised at Sackett's Harbor, N.Y., and sat in the New York legislature before his appointment. He was a witness to the Indian treaty of 26 September 1833."
+   "note": "A GARRISON OFFICER WHOSE TOUR BRACKETS THE SCENE DATE AT BOTH ENDS - 3 February 1833 to 29 December 1836 - which makes him one of the few people in the dataset whose presence on 1 July 1835 is a matter of record rather than of inference. Born at Guilford, Windham Co., Vt., 3 April 1799; practised at Sackett's Harbor, N.Y., and sat in the New York legislature before his appointment. He was a witness to the Indian treaty of 26 September 1833.",
+   "resident_research": {
+    "programme": "resident-research-2026",
+    "ticket": "T-0478",
+    "outcome": "no_corroboration_yet",
+    "reviewed_on": "",
+    "asserted_identity": false,
+    "evidence_for": "Chicago medical history gives Philip Maxwell's full birth data and places him as Fort Dearborn's last surgeon from 1833 through the fort's final 1836 abandonment. This strongly corroborates his scene-period Chicago role.",
+    "notes": "Chicago medical history gives Philip Maxwell's full birth data and places him as Fort Dearborn's last surgeon from 1833 through the fort's final 1836 abandonment. This strongly corroborates his scene-period Chicago role.",
+    "source_ids": [
+     "history_medicine_chicago_kimberly_maxwell"
+    ]
+   }
   }
  ],
  "touches_removal": false,

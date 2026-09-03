@@ -71,7 +71,19 @@
     "andreas_1884_v1",
     "chicago_democrat_1833_11_26"
    ],
-   "note": "DOCUMENTED CONTEMPORANEOUSLY AND RETROSPECTIVELY, WITH AN ORIGIN IN THE CONTEMPORARY SOURCE - which makes this the only origin in the parcel that comes from a Chicago document rather than from a memoir. Andreas spells the forename both Granville and Grenville and the index carries 'Sproot, Grenville Temple'; his English and Classical School for Boys occupied the upper storey of the Temple Building. Two women are named as teachers in the same building at different times - 'Miss Chappel (Mrs. Jeremiah Porter), Miss Sarah Warren (Mrs. Abel E. Carpenter), and S. L. Carpenter' - and none of the three is written as a household here because none of them is placed in the town on any date near the scene date."
+   "note": "DOCUMENTED CONTEMPORANEOUSLY AND RETROSPECTIVELY, WITH AN ORIGIN IN THE CONTEMPORARY SOURCE - which makes this the only origin in the parcel that comes from a Chicago document rather than from a memoir. Andreas spells the forename both Granville and Grenville and the index carries 'Sproot, Grenville Temple'; his English and Classical School for Boys occupied the upper storey of the Temple Building. Two women are named as teachers in the same building at different times - 'Miss Chappel (Mrs. Jeremiah Porter), Miss Sarah Warren (Mrs. Abel E. Carpenter), and S. L. Carpenter' - and none of the three is written as a household here because none of them is placed in the town on any date near the scene date.",
+   "resident_research": {
+    "programme": "resident-research-2026",
+    "ticket": "T-0478",
+    "outcome": "no_corroboration_yet",
+    "reviewed_on": "",
+    "asserted_identity": false,
+    "evidence_for": "Early education histories identify Granville T. Sproat opening an English and Classical School in Chicago in fall 1833 and Sarah L. Warren assisting him in March 1834. The source's Granville spelling is retained as a variant against the repository's Grenville spelling rather than silently normalized.",
+    "notes": "Early education histories identify Granville T. Sproat opening an English and Classical School in Chicago in fall 1833 and Sarah L. Warren assisting him in March 1834. The source's Granville spelling is retained as a variant against the repository's Grenville spelling rather than silently normalized.",
+    "source_ids": [
+     "goodman_history_cook_county_early"
+    ]
+   }
   }
  ],
  "touches_removal": false,

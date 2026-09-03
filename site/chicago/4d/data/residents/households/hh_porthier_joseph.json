@@ -65,7 +65,19 @@
     "andreas_1884_v1",
     "buck_pioneer_milwaukee_porthier_1835"
    ],
-   "note": "A WAGE-EARNING ASSISTANT, WHICH THIS DATASET HAS ALMOST NONE OF, and a member of a family the 1833 treaty names: the schedule of payments in lieu of reservations carries 'Victoire Porthier and her children, $700'. Andreas's chapter on the early settlement treats the Mirandeau and Porthier families together as part of the French and mixed-descent community at Chicago. T-0478 adds a dated February-March 1835 migration to Milwaukee, resolving scene-date absence without inferring ancestry from the surname."
+   "note": "A WAGE-EARNING ASSISTANT, WHICH THIS DATASET HAS ALMOST NONE OF, and a member of a family the 1833 treaty names: the schedule of payments in lieu of reservations carries 'Victoire Porthier and her children, $700'. Andreas's chapter on the early settlement treats the Mirandeau and Porthier families together as part of the French and mixed-descent community at Chicago. T-0478 adds a dated February-March 1835 migration to Milwaukee, resolving scene-date absence without inferring ancestry from the surname.",
+   "resident_research": {
+    "programme": "resident-research-2026",
+    "ticket": "T-0478",
+    "outcome": "no_corroboration_yet",
+    "reviewed_on": "",
+    "asserted_identity": false,
+    "evidence_for": "Pioneer History of Milwaukee supplies a materially tighter migration chronology than the existing record: Joseph Porthier left Chicago with Horace Chase on February 27, 1835, briefly returned to Chicago for means, then left again March 21 and reached Milwaukee March 23. This places his removal before the July 1 scene date.",
+    "notes": "Pioneer History of Milwaukee supplies a materially tighter migration chronology than the existing record: Joseph Porthier left Chicago with Horace Chase on February 27, 1835, briefly returned to Chicago for means, then left again March 21 and reached Milwaukee March 23. This places his removal before the July 1 scene date.",
+    "source_ids": [
+     "buck_pioneer_milwaukee_porthier_1835"
+    ]
+   }
   }
  ],
  "touches_removal": true,

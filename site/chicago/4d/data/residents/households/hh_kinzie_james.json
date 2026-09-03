@@ -68,7 +68,19 @@
     "andreas_1884_v1",
     "kinzie_waubun_1856"
    ],
-   "note": "A BUILDER OF TAVERNS RATHER THAN A KEEPER OF THEM, which is why his structure links are thin. Andreas has him building the Green Tree and leasing it to David Clock; Charles Butler in August 1833 lodged at a tavern on the west side of the South Branch 'erected by James Kinzie, but kept by a Mr. Crook (?)' - the question mark is Andreas's or Butler's, not this project's. He is a half-brother to John H. and Robert A. Kinzie."
+   "note": "A BUILDER OF TAVERNS RATHER THAN A KEEPER OF THEM, which is why his structure links are thin. Andreas has him building the Green Tree and leasing it to David Clock; Charles Butler in August 1833 lodged at a tavern on the west side of the South Branch 'erected by James Kinzie, but kept by a Mr. Crook (?)' - the question mark is Andreas's or Butler's, not this project's. He is a half-brother to John H. and Robert A. Kinzie.",
+   "resident_research": {
+    "programme": "resident-research-2026",
+    "ticket": "T-0478",
+    "outcome": "no_corroboration_yet",
+    "reviewed_on": "",
+    "asserted_identity": false,
+    "evidence_for": "Early Chicago civic/business histories distinguish James Kinzie from the other Kinzie men and connect him with Wolf Point, auctioneering and early town affairs. The pass keeps those identities separate rather than treating the surname as a household merge rule.",
+    "notes": "Early Chicago civic/business histories distinguish James Kinzie from the other Kinzie men and connect him with Wolf Point, auctioneering and early town affairs. The pass keeps those identities separate rather than treating the surname as a household merge rule.",
+    "source_ids": [
+     "goodman_history_cook_county_early"
+    ]
+   }
   }
  ],
  "touches_removal": false,

@@ -69,7 +69,19 @@
    "sources": [
     "andreas_1884_v1"
    ],
-   "note": "ARRIVING FROM VERMONT ON 8 OCTOBER 1833 - a day-precise arrival WITH an origin, which is a combination no other household in this parcel has. Andreas gives his later Chicago career - alderman in 1837, 1838, 1843, 1844 and 1845 and two streets named after him - which corroborates the man's long residence and says nothing at all about who was at the anvil in July 1835. HE IS IN THE DATASET BECAUSE THE 1835 TOWN CANNOT BE BUILT WITHOUT HIS TRADE. Andreas's roster is the only list this project holds that names artisans at all, and every name on it is a documented alternative to an inferred one."
+   "note": "ARRIVING FROM VERMONT ON 8 OCTOBER 1833 - a day-precise arrival WITH an origin, which is a combination no other household in this parcel has. Andreas gives his later Chicago career - alderman in 1837, 1838, 1843, 1844 and 1845 and two streets named after him - which corroborates the man's long residence and says nothing at all about who was at the anvil in July 1835. HE IS IN THE DATASET BECAUSE THE 1835 TOWN CANNOT BE BUILT WITHOUT HIS TRADE. Andreas's roster is the only list this project holds that names artisans at all, and every name on it is a documented alternative to an inferred one.",
+   "resident_research": {
+    "programme": "resident-research-2026",
+    "ticket": "T-0478",
+    "outcome": "no_corroboration_yet",
+    "reviewed_on": "",
+    "asserted_identity": false,
+    "evidence_for": "Early Chicago history identifies Asahel Pierce as an October 1833 arrival and blacksmith/agricultural-implement maker. The uncommon name and distinctive trade provide independent corroboration, but no unsupported July 1835 roof is added.",
+    "notes": "Early Chicago history identifies Asahel Pierce as an October 1833 arrival and blacksmith/agricultural-implement maker. The uncommon name and distinctive trade provide independent corroboration, but no unsupported July 1835 roof is added.",
+    "source_ids": [
+     "goodman_history_cook_county_early"
+    ]
+   }
   }
  ],
  "touches_removal": false,

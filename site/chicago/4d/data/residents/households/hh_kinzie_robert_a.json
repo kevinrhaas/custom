@@ -66,7 +66,19 @@
    "sources": [
     "andreas_1884_v1"
    ],
-   "note": "HE IS THE REASON CHARLES BUTLER AND ARTHUR BRONSON CAME WEST, which is the best-documented chain of causation in the whole 1833-35 record. Butler's letter of 1881: Bronson called on the New York Indian-goods merchant Daniel Jackson for information about Chicago, and Jackson 'said that he would then introduce him to a man from Chicago, who at that moment happened to be in his store making purchases of Indian goods. This was Robert A. Kinzie.' Kinzie offered them his quarter interest in the north fractional half of Section 10 - the ground Kinzie's Addition was laid out on. He was also a candidate at the first town election of 10 August 1833 and took nine votes, the highest of any unsuccessful candidate."
+   "note": "HE IS THE REASON CHARLES BUTLER AND ARTHUR BRONSON CAME WEST, which is the best-documented chain of causation in the whole 1833-35 record. Butler's letter of 1881: Bronson called on the New York Indian-goods merchant Daniel Jackson for information about Chicago, and Jackson 'said that he would then introduce him to a man from Chicago, who at that moment happened to be in his store making purchases of Indian goods. This was Robert A. Kinzie.' Kinzie offered them his quarter interest in the north fractional half of Section 10 - the ground Kinzie's Addition was laid out on. He was also a candidate at the first town election of 10 August 1833 and took nine votes, the highest of any unsuccessful candidate.",
+   "resident_research": {
+    "programme": "resident-research-2026",
+    "ticket": "T-0478",
+    "outcome": "no_corroboration_yet",
+    "reviewed_on": "",
+    "asserted_identity": false,
+    "evidence_for": "Published Cook County biography states Robert A. Kinzie remained mostly in Chicago from 1825 to 1840, built a frame store in 1832 and became a member of Kinzie, Davis & Hyde in 1835. Exact name, family context, business and year strongly corroborate the profile.",
+    "notes": "Published Cook County biography states Robert A. Kinzie remained mostly in Chicago from 1825 to 1840, built a frame store in 1832 and became a member of Kinzie, Davis & Hyde in 1835. Exact name, family context, business and year strongly corroborate the profile.",
+    "source_ids": [
+     "goodman_history_cook_county_early"
+    ]
+   }
   }
  ],
  "touches_removal": false,

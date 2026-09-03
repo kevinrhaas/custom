@@ -87,7 +87,21 @@
    "sources": [
     "andreas_1884_v1"
    ],
-   "note": "A MINOR IN 1833 AND A FOUNDING MEMBER OF THE FIRST PRESBYTERIAN CHURCH IN JUNE OF THAT YEAR - his name is in the list of nine village citizens alongside his father's. He would have been about twenty in 1835. THE RELATIONSHIP IS THIS RECORD'S READING: Andreas lists the two Wrights separately and never says they are father and son, and 'John Wright, came in 1832, a merchant' and 'John S. Wright, then a minor ... came in 1832' arriving in the same year with the same surname and joining the same church on the same day is a strong reading and not a statement."
+   "note": "A MINOR IN 1833 AND A FOUNDING MEMBER OF THE FIRST PRESBYTERIAN CHURCH IN JUNE OF THAT YEAR - his name is in the list of nine village citizens alongside his father's. He would have been about twenty in 1835. THE RELATIONSHIP IS THIS RECORD'S READING: Andreas lists the two Wrights separately and never says they are father and son, and 'John Wright, came in 1832, a merchant' and 'John S. Wright, then a minor ... came in 1832' arriving in the same year with the same surname and joining the same church on the same day is a strong reading and not a statement.",
+   "resident_research": {
+    "programme": "resident-research-2026",
+    "ticket": "T-0479",
+    "outcome": "corroborated_enrichment",
+    "reviewed_on": "2026-09-02",
+    "asserted_identity": true,
+    "evidence_for": "The Chicago Public Library finding aid identifies John S. Wright's Chicago land purchases and original-town lots; Augustine W. Wright's 1885 In Memoriam further anchors the exact Chicago figure and his early chronology. Later deed dates are not back-projected to 1835.",
+    "summary": "The Chicago Public Library finding aid identifies John S. Wright's Chicago land purchases and original-town lots; Augustine W. Wright's 1885 In Memoriam further anchors the exact Chicago figure and his early chronology. Later deed dates are not back-projected to 1835.",
+    "notes": "The Chicago Public Library finding aid identifies John S. Wright's Chicago land purchases and original-town lots; Augustine W. Wright's 1885 In Memoriam further anchors the exact Chicago figure and his early chronology. Later deed dates are not back-projected to 1835.",
+    "source_ids": [
+     "cpl_john_s_wright_papers",
+     "wright_in_memoriam_1885"
+    ]
+   }
   }
  ],
  "touches_removal": false,

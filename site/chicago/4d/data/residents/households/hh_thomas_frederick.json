@@ -66,7 +66,19 @@
    "sources": [
     "andreas_1884_v1"
    ],
-   "note": "DOCUMENTED IN THE TOWN THREE WEEKS BEFORE THE SCENE DATE, which almost nobody in this parcel is, and with a self-reported address relative to two other things in this dataset - the American's office and the Dearborn Street drawbridge. He took a partner, Thomas Jenkins, on 11 January 1836 and retired from that partnership on 2 April 1836, so he is continuous through the scene year on both sides."
+   "note": "DOCUMENTED IN THE TOWN THREE WEEKS BEFORE THE SCENE DATE, which almost nobody in this parcel is, and with a self-reported address relative to two other things in this dataset - the American's office and the Dearborn Street drawbridge. He took a partner, Thomas Jenkins, on 11 January 1836 and retired from that partnership on 2 April 1836, so he is continuous through the scene year on both sides.",
+   "resident_research": {
+    "programme": "resident-research-2026",
+    "ticket": "T-0478",
+    "outcome": "no_corroboration_yet",
+    "reviewed_on": "",
+    "asserted_identity": false,
+    "evidence_for": "The Encyclopedia of Chicago independently identifies Frederick Thomas as Chicago's first barber-surgeon and a retail druggist in the 1830s, corroborating the unusual combined occupation. The project newspaper corpus remains the stronger path for exact 1835 advertising/address detail.",
+    "notes": "The Encyclopedia of Chicago independently identifies Frederick Thomas as Chicago's first barber-surgeon and a retail druggist in the 1830s, corroborating the unusual combined occupation. The project newspaper corpus remains the stronger path for exact 1835 advertising/address detail.",
+    "source_ids": [
+     "encyclopedia_chicago_frederick_thomas"
+    ]
+   }
   }
  ],
  "touches_removal": false,

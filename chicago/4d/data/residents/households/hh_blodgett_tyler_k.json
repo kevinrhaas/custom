@@ -88,7 +88,20 @@
    "sources": [
     "andreas_1884_v1"
    ],
-   "note": "A NAMED WORKMAN RATHER THAN A PROPRIETOR, which this parcel has almost none of - the others are Oscar Pratt and Beckford at the Democrat and Joseph Porthier at the agency anvil. The distinction between the two men is the structure record's reading and is not spelled out in the source."
+   "note": "A NAMED WORKMAN RATHER THAN A PROPRIETOR, which this parcel has almost none of - the others are Oscar Pratt and Beckford at the Democrat and Joseph Porthier at the agency anvil. The distinction between the two men is the structure record's reading and is not spelled out in the source.",
+   "resident_research": {
+    "programme": "resident-research-2026",
+    "ticket": "T-0479",
+    "outcome": "corroborated_enrichment",
+    "reviewed_on": "2026-09-02",
+    "asserted_identity": true,
+    "evidence_for": "A historical compilation states that Tyler K. Blodgett's spring 1833 north-side brickyard engaged Henry S. Lampman, then of Ann Arbor, as a workman; it calls him Chicago's first brickmaker. This adds a trade and Michigan-origin lead while leaving household membership and 1 July 1835 address unresolved.",
+    "summary": "A historical compilation states that Tyler K. Blodgett's spring 1833 north-side brickyard engaged Henry S. Lampman, then of Ann Arbor, as a workman; it calls him Chicago's first brickmaker. This adds a trade and Michigan-origin lead while leaving household membership and 1 July 1835 address unresolved.",
+    "notes": "A historical compilation states that Tyler K. Blodgett's spring 1833 north-side brickyard engaged Henry S. Lampman, then of Ann Arbor, as a workman; it calls him Chicago's first brickmaker. This adds a trade and Michigan-origin lead while leaving household membership and 1 July 1835 address unresolved.",
+    "source_ids": [
+     "chicagology_chicago_brick"
+    ]
+   }
   }
  ],
  "touches_removal": false,

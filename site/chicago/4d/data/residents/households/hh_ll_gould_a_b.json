@@ -50,7 +50,7 @@
    "id": "ll_gould_a_b",
    "name": "A. B. Gould",
    "relationship": "head",
-   "grade": "attested",
+   "grade": "inferred",
    "letter_list_only": true,
    "letter_list_returns": [
     "1835-07-01"
@@ -63,7 +63,40 @@
    "sources": [
     "chicago_democrat_1833_1835"
    ],
-   "note": "KNOWN ONLY FROM THE POST OFFICE, IN ONE RETURN. The papers print 'Gould, A. B.' in a single return of letters uncalled-for at the Chicago post office — the Democrat of 1 July 1835, column 5 — dated 1835-07-01. Nothing else in the corpus names this person: no trade, no street, no household, no arrival, so every other claim here is written unattested in its own block. WHAT THAT IS WORTH: a correspondent believed a person of this name reachable at Chicago on that date, and nothing further — not that they lived here, kept a trade here, or were here on 1 July 1835. It is the weakest evidence this project accepts for a resident, and a source placing them elsewhere retires the record. THE ARGUMENT EVERY RECORD OF THIS KIND SHARES is written once instead of once per file: the ruling of 2026-08-30 and what it cost the town (docs/LIBERTIES.md L214), the refusals and the transcription standard behind the reading (tools/mint_letter_list_residents.py). No figure is drawn (L1)."
+   "note": "PROJECTED RESIDENT. Documented in Chicago post-office evidence but not independently corroborated strongly enough for attested circa-1835 residence. KNOWN ONLY FROM THE POST OFFICE, IN ONE RETURN. The papers print 'Gould, A. B.' in a single return of letters uncalled-for at the Chicago post office — the Democrat of 1 July 1835, column 5 — dated 1835-07-01. Nothing else in the corpus names this person: no trade, no street, no household, no arrival, so every other claim here is written unattested in its own block. WHAT THAT IS WORTH: a correspondent believed a person of this name reachable at Chicago on that date, and nothing further — not that they lived here, kept a trade here, or were here on 1 July 1835. It is the weakest evidence this project accepts for a resident, and a source placing them elsewhere retires the record. THE ARGUMENT EVERY RECORD OF THIS KIND SHARES is written once instead of once per file: the ruling of 2026-08-30 and what it cost the town (docs/LIBERTIES.md L214), the refusals and the transcription standard behind the reading (tools/mint_letter_list_residents.py). No figure is drawn (L1).",
+   "resident_research": {
+    "programme": "resident-research-2026",
+    "ticket": "T-0479",
+    "outcome": "candidate_identity",
+    "reviewed_on": "2026-09-02",
+    "asserted_identity": false,
+    "evidence_for": "The 1843 Chicago directory lists Ambrose B. Gould, sailor, resident on Indiana between Pine and St. Clair. Matching initials and surname plus later Chicago residence make a useful candidate, but the eight-year gap and absence of another discriminator keep the identification unasserted.",
+    "evidence_against": "Eight-year gap after the postal entry; no source explicitly expands the 1835 initials or connects the records.",
+    "summary": "The 1843 Chicago directory lists Ambrose B. Gould, sailor, resident on Indiana between Pine and St. Clair. Matching initials and surname plus later Chicago residence make a useful candidate, but the eight-year gap and absence of another discriminator keep the identification unasserted.",
+    "notes": "The 1843 Chicago directory lists Ambrose B. Gould, sailor, resident on Indiana between Pine and St. Clair. Matching initials and surname plus later Chicago residence make a useful candidate, but the eight-year gap and absence of another discriminator keep the identification unasserted.",
+    "source_ids": [
+     "fergus_chicago_directory_1843"
+    ],
+    "candidate_ids": [
+     "cand_ambrose_b_gould_1843"
+    ],
+    "candidates": [
+     {
+      "name": "Ambrose B. Gould, Chicago sailor in 1843",
+      "assessment": "moderate",
+      "asserted": false,
+      "basis": "A. B. initials, surname and later Chicago directory residence.",
+      "conflicts": [
+       "Eight-year gap after the postal entry; no source explicitly expands the 1835 initials or connects the records."
+      ],
+      "sources": [
+       "fergus_chicago_directory_1843"
+      ],
+      "candidate_id": "cand_ambrose_b_gould_1843"
+     }
+    ]
+   },
+   "resident_subtype": "projected_resident"
   }
  ],
  "touches_removal": false,

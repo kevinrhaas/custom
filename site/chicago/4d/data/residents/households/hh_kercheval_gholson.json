@@ -66,7 +66,21 @@
    "sources": [
     "andreas_1884_v1"
    ],
-   "note": "HE GUIDED THE MEN WHO BROUGHT EASTERN MONEY TO CHICAGO, and he commanded its militia. Charles Butler's 1881 letter: preparing to travel from Detroit in the summer of 1833 they 'arranged with a young man, named Gholson Kercheval, who was familiar with the route, having been connected with the Indian agency at Chicago, to accompany us all the way from Detroit to Chicago'. The 1832 militia agreement Andreas prints begins 'we, the undersigned, agree to submit ourselves, for the time being, to Gholson Kercheval, Captain, and George W. Dole and John S. C. Hogan, First and Second Lieutenants, as commanders of the Militia of the town of Chicago, until all apprehension of danger from the Indians may have subsided' and carries about forty signatures. He is trustee for three of the payments in the 1833 treaty's schedule - $800 each for Alexander and Paschal Muller. He was one of the twenty-eight electors of 10 August 1833 and died in California."
+   "note": "HE GUIDED THE MEN WHO BROUGHT EASTERN MONEY TO CHICAGO, and he commanded its militia. Charles Butler's 1881 letter: preparing to travel from Detroit in the summer of 1833 they 'arranged with a young man, named Gholson Kercheval, who was familiar with the route, having been connected with the Indian agency at Chicago, to accompany us all the way from Detroit to Chicago'. The 1832 militia agreement Andreas prints begins 'we, the undersigned, agree to submit ourselves, for the time being, to Gholson Kercheval, Captain, and George W. Dole and John S. C. Hogan, First and Second Lieutenants, as commanders of the Militia of the town of Chicago, until all apprehension of danger from the Indians may have subsided' and carries about forty signatures. He is trustee for three of the payments in the 1833 treaty's schedule - $800 each for Alexander and Paschal Muller. He was one of the twenty-eight electors of 10 August 1833 and died in California.",
+   "resident_research": {
+    "programme": "resident-research-2026",
+    "ticket": "T-0479",
+    "outcome": "corroborated_enrichment",
+    "reviewed_on": "2026-09-02",
+    "asserted_identity": true,
+    "evidence_for": "The 1833 treaty transcription names Gholson Kercheval of Chicago in a federal payment clause, while the contemporary town record identifies him among Chicago's early civic actors. This corroborates the exact person, Chicago connection and treaty-service chronology; it does not prove a specific household or 1 July 1835 roof.",
+    "summary": "The 1833 treaty transcription names Gholson Kercheval of Chicago in a federal payment clause, while the contemporary town record identifies him among Chicago's early civic actors. This corroborates the exact person, Chicago connection and treaty-service chronology; it does not prove a specific household or 1 July 1835 roof.",
+    "notes": "The 1833 treaty transcription names Gholson Kercheval of Chicago in a federal payment clause, while the contemporary town record identifies him among Chicago's early civic actors. This corroborates the exact person, Chicago connection and treaty-service chronology; it does not prove a specific household or 1 July 1835 roof.",
+    "source_ids": [
+     "okstate_treaty_chicago_1833",
+     "chicagology_prefire278"
+    ]
+   }
   }
  ],
  "touches_removal": true,

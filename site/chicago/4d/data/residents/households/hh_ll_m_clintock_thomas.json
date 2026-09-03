@@ -50,7 +50,7 @@
    "id": "ll_m_clintock_thomas",
    "name": "Thomas M'Clintock",
    "relationship": "head",
-   "grade": "attested",
+   "grade": "inferred",
    "letter_list_only": true,
    "letter_list_returns": [
     "1834-10-22"
@@ -63,7 +63,39 @@
    "sources": [
     "chicago_democrat_1833_1835"
    ],
-   "note": "KNOWN ONLY FROM THE POST OFFICE, IN ONE RETURN. The papers print 'M'Clintock, Thomas 2' in a single return of letters uncalled-for at the Chicago post office — the Democrat of 22 October 1834, column 1 — dated 1834-10-22. Nothing else in the corpus names this person: no trade, no street, no household, no arrival, so every other claim here is written unattested in its own block. WHAT THAT IS WORTH: a correspondent believed a person of this name reachable at Chicago on that date, and nothing further — not that they lived here, kept a trade here, or were here on 1 July 1835. It is the weakest evidence this project accepts for a resident, and a source placing them elsewhere retires the record. THE ARGUMENT EVERY RECORD OF THIS KIND SHARES is written once instead of once per file: the ruling of 2026-08-30 and what it cost the town (docs/LIBERTIES.md L214), the refusals and the transcription standard behind the reading (tools/mint_letter_list_residents.py). No figure is drawn (L1)."
+   "note": "PROJECTED RESIDENT. Documented in Chicago post-office evidence but not independently corroborated strongly enough for attested circa-1835 residence. KNOWN ONLY FROM THE POST OFFICE, IN ONE RETURN. The papers print 'M'Clintock, Thomas 2' in a single return of letters uncalled-for at the Chicago post office — the Democrat of 22 October 1834, column 1 — dated 1834-10-22. Nothing else in the corpus names this person: no trade, no street, no household, no arrival, so every other claim here is written unattested in its own block. WHAT THAT IS WORTH: a correspondent believed a person of this name reachable at Chicago on that date, and nothing further — not that they lived here, kept a trade here, or were here on 1 July 1835. It is the weakest evidence this project accepts for a resident, and a source placing them elsewhere retires the record. THE ARGUMENT EVERY RECORD OF THIS KIND SHARES is written once instead of once per file: the ruling of 2026-08-30 and what it cost the town (docs/LIBERTIES.md L214), the refusals and the transcription standard behind the reading (tools/mint_letter_list_residents.py). No figure is drawn (L1).",
+   "resident_research": {
+    "programme": "resident-research-2026",
+    "ticket": "T-0484",
+    "outcome": "candidate_identity",
+    "reviewed_on": "2026-09-02",
+    "asserted_identity": false,
+    "evidence_for": "Cook County biography places Thomas McClintock Sr. and…",
+    "evidence_against": "Both father and son are Thomas; no disc…",
+    "summary": "Cook County biography places Thomas McClintock Sr. and his son Thomas Franklin McClintock in Bachelor's Grove from fall 1833. This is strong family-level Cook County chronology, but two Thomas McClintocks are simultaneously available and the postal item cannot safely identify either one.",
+    "notes": "research-only; full detail in pass_10_findings.json",
+    "source_ids": [
+     "chicago_democrat_1833_1835",
+     "cook_county_mclintock_bachelors_grove"
+    ],
+    "candidate_ids": [
+     "cand_thomas_mcclintock_bachelors_grove"
+    ],
+    "candidates": [
+     {
+      "id": "cand_thomas_mcclintock_bachelors_grove",
+      "asserted": false,
+      "basis": "Exact Thomas McClintock name within a Cook County family present from 1833.",
+      "conflicts": [
+       "Both father and son are Thomas; no discriminator assigns the letter to either individual, and Bachelor's Grove is not Chicago proper."
+      ],
+      "sources": [
+       "cook_county_mclintock_bachelors_grove"
+      ]
+     }
+    ]
+   },
+   "resident_subtype": "projected_resident"
   }
  ],
  "touches_removal": false,

@@ -66,7 +66,19 @@
    "sources": [
     "andreas_1884_v1"
    ],
-   "note": "AN ARRIVAL DATED TO THE DAY - 16 NOVEMBER 1833 - which only four households in this parcel have, and a trade that ties a person to two dated artefacts. HE IS IN THE DATASET BECAUSE THE 1835 TOWN CANNOT BE BUILT WITHOUT HIS TRADE. Andreas's roster is the only list this project holds that names artisans at all, and every name on it is a documented alternative to an inferred one."
+   "note": "AN ARRIVAL DATED TO THE DAY - 16 NOVEMBER 1833 - which only four households in this parcel have, and a trade that ties a person to two dated artefacts. HE IS IN THE DATASET BECAUSE THE 1835 TOWN CANNOT BE BUILT WITHOUT HIS TRADE. Andreas's roster is the only list this project holds that names artisans at all, and every name on it is a documented alternative to an inferred one.",
+   "resident_research": {
+    "programme": "resident-research-2026",
+    "ticket": "T-0478",
+    "outcome": "no_corroboration_yet",
+    "reviewed_on": "",
+    "asserted_identity": false,
+    "evidence_for": "Early Chicago history preserves Nelson R. Norton's own chronology: arrival November 16, 1833, construction of the Dearborn Street drawbridge beginning March 1834 and completion around June. Exact name plus the distinctive shipwright/bridge role corroborate the person.",
+    "notes": "Early Chicago history preserves Nelson R. Norton's own chronology: arrival November 16, 1833, construction of the Dearborn Street drawbridge beginning March 1834 and completion around June. Exact name plus the distinctive shipwright/bridge role corroborate the person.",
+    "source_ids": [
+     "goodman_history_cook_county_early"
+    ]
+   }
   }
  ],
  "touches_removal": false,

@@ -62,9 +62,25 @@
     "note": "No source records an occupation for this person. A list of uncalled-for letters prints a name and no trade, and this pass will not read one in."
    },
    "sources": [
-    "chicago_democrat_1833_1835"
+    "chicago_democrat_1833_1835",
+    "fcp_treaty_chicago_1833_payments"
    ],
-   "note": "KNOWN ONLY FROM THE POST OFFICE, AND HELD THERE MORE THAN ONCE. The papers print 'Nicholas Boilvin' in 2 separate returns of letters uncalled-for at the Chicago post office — the Democrat of 1 April 1834, column 1; the Democrat of 9 July 1834, column 4 — across 1834-04-01 to 1834-07-16. A name in a LATER return is somebody still being written to, months on, which is the strongest thing a letter list can say about residence and is why this person outranks a single-return name of the same surname. Nothing else in the corpus names this person: no trade, no street, no household, no arrival, so every other claim here is written unattested in its own block. WHAT THAT IS WORTH: a correspondent believed a person of this name reachable at Chicago on that date, and nothing further — not that they lived here, kept a trade here, or were here on 1 July 1835. It is the weakest evidence this project accepts for a resident, and a source placing them elsewhere retires the record. THE ARGUMENT EVERY RECORD OF THIS KIND SHARES is written once instead of once per file: the ruling of 2026-08-30 and what it cost the town (docs/LIBERTIES.md L214), the refusals and the transcription standard behind the reading (tools/mint_letter_list_residents.py). No figure is drawn (L1)."
+   "note": "INDEPENDENTLY CORROBORATED RESIDENT. Originally documented in Chicago post-office evidence; independent resident research now corroborates the identity. KNOWN ONLY FROM THE POST OFFICE, AND HELD THERE MORE THAN ONCE. The papers print 'Nicholas Boilvin' in 2 separate returns of letters uncalled-for at the Chicago post office — the Democrat of 1 April 1834, column 1; the Democrat of 9 July 1834, column 4 — across 1834-04-01 to 1834-07-16. A name in a LATER return is somebody still being written to, months on, which is the strongest thing a letter list can say about residence and is why this person outranks a single-return name of the same surname. WHAT THAT IS WORTH: a correspondent believed a person of this name reachable at Chicago on that date, and nothing further — not that they lived here, kept a trade here, or were here on 1 July 1835. It is the weakest evidence this project accepts for a resident, and a source placing them elsewhere retires the record. THE ARGUMENT EVERY RECORD OF THIS KIND SHARES is written once instead of once per file: the ruling of 2026-08-30 and what it cost the town (docs/LIBERTIES.md L214), the refusals and the transcription standard behind the reading (tools/mint_letter_list_residents.py). No figure is drawn (L1).",
+   "resident_research": {
+    "programme": "resident-research-2026",
+    "ticket": "T-0484",
+    "outcome": "corroborated_enrichment",
+    "reviewed_on": "2026-09-02",
+    "asserted_identity": true,
+    "proposed_facts": "Corroborate Nicholas Boilvin as th…",
+    "evidence_for": "The exact uncommon name Nicholas Boilvin appears in mu…",
+    "summary": "The exact uncommon name Nicholas Boilvin appears in multiple 1834 Chicago post-office returns and independently in the 1833 Treaty of Chicago payment schedule. The paired contemporary-era evidence safely corroborates the identity and treaty-era Chicago/Cook County context; it does not by itself prove a July 1, 1835 dwelling.",
+    "notes": "research-only; full detail in pass_10_findings.json",
+    "source_ids": [
+     "chicago_democrat_1833_1835",
+     "fcp_treaty_chicago_1833_payments"
+    ]
+   }
   }
  ],
  "touches_removal": false,
