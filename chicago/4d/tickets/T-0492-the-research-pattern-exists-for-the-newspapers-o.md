@@ -89,3 +89,37 @@ them as inaccessible, never as absent; Google Books fails. Never disable TLS or 
 **Links:** T-0257 (the extraction schema) · T-0299 / T-0397 (identity passes and refusals) · T-0262 (the
 coverage declaration) · T-0486 / T-0487 (the research-row contract) · `chicago/reference/resident-research/README.md`
 (the package contract) · T-0493–T-0507 (the sweep this unblocks).
+
+---
+
+**WIP 2026-09-03 — the work is done and is on `hold` in PR #680, branch
+`steward/t-0492-research-domains-scaffold`. Do not build it again.**
+
+Everything the ask names is built and verified: the six domain homes and their
+READMEs, `tools/research_domains.py --build|--check|--self-test` (20 assertions,
+all firing), cohorts 13-15 in one selector with pending ledgers and pass notes, and
+five new steps in `tools/check.sh`. All five new steps are green and the set of
+failing `check.sh` steps is byte-identical to unmodified `origin/dev`.
+
+It is not merged because **`dev` is red before the branch touches it, on T-0491's
+faults** — which this ticket's own acceptance anticipated. T-0491 was another
+slice's row in the same fan-out and had no PR when this ran.
+
+**To land it:** merge T-0491, rebase #680 on `dev`, run `bash tools/check.sh`,
+merge when green. Nothing else is outstanding.
+
+**Two measured corrections to the ask, carried in the code, the manifests and
+`docs/RESEARCH/resident-research-pass-13.md`:**
+
+- the frame is **228** named residents with no research row, not 237 (238 records
+  carry no research block, less 5 unnamed placeholders and 5 real named people in
+  `inf_*`/`hh_inf_*` records), so the cohorts are **76/76/76** and the files are
+  named for what they hold;
+- **225 of the 228 are the pilot, pass 2 and pass 3 cohorts** — reserved and never
+  researched (T-0511 from the other side). "Zero overlap with passes 1-12" is
+  therefore unmeetable as written: the population satisfying it is three people.
+  The selector enforces zero overlap among 13/14/15 and zero overlap with the 611
+  people who already hold a research row, which is the non-overlap that carries
+  the meaning.
+
+The five `inf_*` people are **T-0523**.
