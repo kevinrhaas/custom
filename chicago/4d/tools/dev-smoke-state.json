@@ -77,6 +77,134 @@
       "passed": 137,
       "failed": 0,
       "failures": [],
+      "wallSeconds": 347,
+      "takenAt": "2026-09-03T16:15:43.176Z",
+      "ref": "steward/t-0547-census-1840-5v-lines",
+      "commit": "acdd55f8af32",
+      "devCommit": "95f8a81cc64e",
+      "treeHash": "sha256:5c3ee7e7194a51d1",
+      "treeDirty": false,
+      "changelogHash": "sha256:c5a4fa4e8fad3b58",
+      "host": {
+        "kind": "local",
+        "cpus": 4,
+        "memGB": 15.7,
+        "loadavg": [
+          2.9,
+          3.3,
+          1.9
+        ]
+      },
+      "source": "/tmp/claude-0/-home-user/1020070c-cc85-5adf-b717-6fa0ab891aa1/scratchpad/smoke0547_desktop_12-13.log"
+    },
+    {
+      "viewport": "mobile",
+      "stage": "12-13",
+      "parts": [
+        12,
+        13
+      ],
+      "verdict": "pass",
+      "target": "published",
+      "passed": 137,
+      "failed": 0,
+      "failures": [],
+      "wallSeconds": 201,
+      "takenAt": "2026-09-03T16:15:43.045Z",
+      "ref": "steward/t-0547-census-1840-5v-lines",
+      "commit": "acdd55f8af32",
+      "devCommit": "95f8a81cc64e",
+      "treeHash": "sha256:5c3ee7e7194a51d1",
+      "treeDirty": false,
+      "changelogHash": "sha256:c5a4fa4e8fad3b58",
+      "host": {
+        "kind": "local",
+        "cpus": 4,
+        "memGB": 15.7,
+        "loadavg": [
+          2.9,
+          3.3,
+          1.9
+        ]
+      },
+      "source": "/tmp/claude-0/-home-user/1020070c-cc85-5adf-b717-6fa0ab891aa1/scratchpad/smoke0547_mobile_12-13.log"
+    },
+    {
+      "viewport": "desktop",
+      "stage": "12-13",
+      "parts": [
+        12,
+        13
+      ],
+      "verdict": "pass",
+      "target": "published",
+      "passed": 137,
+      "failed": 0,
+      "failures": [],
+      "wallSeconds": 476,
+      "takenAt": "2026-09-03T15:39:24.495Z",
+      "ref": "steward/t-0547-census-1840-5v-lines",
+      "commit": "5f0a6a735c92",
+      "devCommit": "96eb8179e6b7",
+      "treeHash": "sha256:5c3ee7e7194a51d1",
+      "treeDirty": false,
+      "changelogHash": "sha256:c5a4fa4e8fad3b58",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          4.4,
+          4.5,
+          3.8
+        ]
+      },
+      "source": "/tmp/s4-d.log"
+    },
+    {
+      "viewport": "mobile",
+      "stage": "12-13",
+      "parts": [
+        12,
+        13
+      ],
+      "verdict": "pass",
+      "target": "published",
+      "passed": 137,
+      "failed": 0,
+      "failures": [],
+      "wallSeconds": 253,
+      "takenAt": "2026-09-03T15:39:24.406Z",
+      "ref": "steward/t-0547-census-1840-5v-lines",
+      "commit": "5f0a6a735c92",
+      "devCommit": "96eb8179e6b7",
+      "treeHash": "sha256:5c3ee7e7194a51d1",
+      "treeDirty": false,
+      "changelogHash": "sha256:c5a4fa4e8fad3b58",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          4.4,
+          4.5,
+          3.8
+        ]
+      },
+      "source": "/tmp/s4-m.log"
+    },
+    {
+      "viewport": "desktop",
+      "stage": "12-13",
+      "parts": [
+        12,
+        13
+      ],
+      "verdict": "pass",
+      "target": "published",
+      "passed": 137,
+      "failed": 0,
+      "failures": [],
       "wallSeconds": 359,
       "takenAt": "2026-09-03T15:11:03.650Z",
       "ref": "steward/t-0533-census-1840-sheets-225-228",
@@ -1881,70 +2009,6 @@
         ]
       },
       "source": "/tmp/v-m1011.log"
-    },
-    {
-      "viewport": "desktop",
-      "stage": "11",
-      "parts": [
-        11
-      ],
-      "verdict": "pass",
-      "target": "published",
-      "passed": 22,
-      "failed": 0,
-      "failures": [],
-      "wallSeconds": 281,
-      "takenAt": "2026-08-30T06:14:59.748Z",
-      "ref": "steward/t-0170-part-9-halved",
-      "commit": "1f7b01c49903",
-      "devCommit": "1f7b01c49903",
-      "treeHash": "sha256:d4dbcf50ea1bdc0a",
-      "treeDirty": true,
-      "changelogHash": "sha256:0e138e63dcce5e98",
-      "host": {
-        "kind": "steward-runner",
-        "cpus": 4,
-        "memGB": 15.6,
-        "loadavg": [
-          3.7,
-          4.1,
-          3.5
-        ]
-      },
-      "source": "/tmp/v-d11.log"
-    },
-    {
-      "viewport": "desktop",
-      "stage": "10",
-      "parts": [
-        10
-      ],
-      "verdict": "fail",
-      "target": "published",
-      "passed": 31,
-      "failed": 1,
-      "failures": [
-        "desktop 1280x800: every drawn flower head has a plant under its own stalk — 2693 of 18893 drawn heads over 40 poses had nothing under the foot of their own stalk; worst flora-head-corymb at from_above 270deg, foot 0.36 m, 0.36 m over its base over open ground"
-      ],
-      "wallSeconds": 359,
-      "takenAt": "2026-08-30T06:14:59.661Z",
-      "ref": "steward/t-0170-part-9-halved",
-      "commit": "1f7b01c49903",
-      "devCommit": "1f7b01c49903",
-      "treeHash": "sha256:d4dbcf50ea1bdc0a",
-      "treeDirty": true,
-      "changelogHash": "sha256:0e138e63dcce5e98",
-      "host": {
-        "kind": "steward-runner",
-        "cpus": 4,
-        "memGB": 15.6,
-        "loadavg": [
-          3.7,
-          4.1,
-          3.5
-        ]
-      },
-      "source": "/tmp/v-d10.log"
     },
     {
       "viewport": "desktop",

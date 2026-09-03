@@ -109,7 +109,7 @@ T-0557 — The Illinois Public Domain Land Tract Sales database (Illinois State 
 T-0562 — The Genealogical Index of the Newberry Library (4 vols., Internet Archive chicago1835-newberry-genealogical-index): read the index for every 1835 surname and every Chicago, Cook County and Illinois citation, and follow the pointers into the genealogies that date and place residents, households and businesses
 
 T-0531 — The 1840 census images 1-25: names and cells of the left sheets printed 210, 215 and 219
-T-0547 — The 1840 census image 33S7-9YYJ-5V read line by line and closed against its own printed column totals
+T-0565 — The 1840 census sheet 33S7-9YYJ-5V: the line index of its 31 TOTAL numbers, and the seven totals still unread
 T-0548 — The 1840 census image 33S7-9YYJ-6H read line by line and closed against its own printed column totals
 T-0549 — The 1840 census image 33S7-9YYJ-6Q read line by line and closed against its own printed column totals
 T-0539 — The 1840 census images 1-25: the other five continuation sheets — 8D, 9WS, B1, B2 and BF — and the left-sheet population key that pairs all eleven
