@@ -1343,6 +1343,20 @@ step "the Black Hawk War enrollments read 134 rows and keep the 83 without a sur
 step "…and its own assertions still fire when broken" \
   python3 tools/read_blackhawk_war.py --self-test
 
+# T-0573. Father St. Cyr's marriage register and his death page, the first Chicago
+# church record. The assertion that carries this one is the page's OWN ARITHMETIC: the
+# article prints its tally by priest — St. Cyr 22 marriages, Schaeffer 18, O'Meara 87,
+# Plunkett 1 — and the parse of the entries returns exactly those four numbers
+# independently. Nobody here has seen the register or the Review, so that agreement is
+# the only check this reading can have, and it fails if any of the four moves. The other
+# one is the trap the ticket named: footnote 5 puts three of the first four entries at
+# Bear Creek, Sangamon County, not Chicago, and those rows carry it themselves.
+step "St. Cyr's register reads 128 marriages against the article's own 22+18+87+1" \
+  python3 tools/read_st_cyr_register.py --check
+
+step "…and its own assertions still fire when broken" \
+  python3 tools/read_st_cyr_register.py --self-test
+
 step "…and its own assertions still fire when broken" \
   python3 tools/newspaper_corpus.py --self-test
 
