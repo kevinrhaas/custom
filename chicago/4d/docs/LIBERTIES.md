@@ -4768,6 +4768,7 @@ stroke; any tax, insurance or sale description naming a walk in front of a lot; 
 Braunhold and Trowbridge plates as proper source records (T-0075), which would turn the committed
 path this entry cites into a `source_id` and the lettering's warrant into a citation.
 **Recorded:** 2026-08-18.
+**Amended 2026-09-03 — this walk is held between STRING PIECES (T-0460).** The one renderer that draws every plank walk in this project now lays a 0.09 m edge timber down each side of one, its top flush with the boards and its foot in the ground, taking the outermost 0.09 m of the walk's own width so nothing widens. It replaces a row of board ENDS at the walk's edge, which is what the owner reported as a jagged sawtooth where the boards met the dirt. **The invention this adds — that these walks had edge timbers at all — is argued in full at L160**, and it is the same class as the width, the rise and the plank pitch this entry already claims.
 
 
 ### L136 — The Sauganash's frontage: two more plank walks, a crossing, and two posts nobody measured
@@ -5675,6 +5676,47 @@ rung rather than the town. It is filed with its number attached rather than boug
 sixth re-basing of a ceiling, which is what T-0223, T-0229 and T-0237 exist to make harder.
 **Recorded:** 2026-08-27.
 **Revised:** 2026-08-27.
+**AMENDED 2026-09-03 — THE WALKS GET STRING PIECES, AND ONE MORE INVENTED MEMBER (T-0460).**
+The owner reported the plank walk meeting the dirt road in a **jagged sawtooth**, from a
+close stand, and said it was among the first things a visitor sees. It was: a walk laid as
+boards alone ends, at each side, in a row of board ENDS — at a 0.32 m pitch with a 0.02 m
+gap between them over a deck standing 0.11 m proud of the road, the outer edge of 3.17 km
+of sidewalk was about twenty thousand short end-grain faces with daylight between them, and
+the one member that did reach the ground (the 2.08 m bay stringer) stood 0.09 m inboard,
+in shadow under the overhanging ends. He named the only two treatments he would accept:
+the walk sits **consistently over** the road, or the boards **meet the mud** as boards in
+mud do. **The first was taken.**
+**What is now drawn, and what of it is new invention.** Each walk is held between two
+**string pieces** — 0.09 m stock running ALONG the walk down each side, taking the outermost
+0.09 m of its own 1.83 m width so the walk does not widen, its top flush with the boards it
+holds and its foot reaching the lowest ground under its own length. The boards stop at its
+inner face. This costs no timber the layer did not already draw: the string piece IS the bay
+stringer, moved out to the walk's own edge and brought up flush with the deck instead of
+stopping under it, so the box count does not move. What is NEW invention is exactly one
+thing — **that these walks were built with edge timbers at all**, and its 0.09 m section.
+No source in this repository states it. It is the same class of invention as the width,
+the rise and the plank pitch this entry already claims, and it is claimed on the same
+grounds: a plank sidewalk of ordinary sawn stock is what the plates show, and boards held
+between string pieces is how such a walk is built.
+**And a second thing moved with it, which is a correction rather than an invention.** A
+board used to sample the terrain under its own centre, which put a fresh height on the deck
+every 0.32 m — a walk laid in stringer bays does not do that, because the bay is the timber
+that carries the boards. Every board in a bay now takes THAT BAY's height, which is what
+makes the top of the string piece and the tops of the boards it holds one line to the
+millimetre. Measured over the whole town: the largest height step between two consecutive
+string pieces is **0.026 m**, against the 0.04 m the generator already audits a bay's ground
+flat to. The rises are NOT reduced — the walk standing 0.11 m over the road is the point of
+the treatment the owner chose, and what changed is that the rise now presents as one made
+face instead of a row of end-grain steps.
+**What is NOT treated, stated rather than left to be found.** The **board crossings** keep
+their 0.06 m rise and take no string piece. A crossing lies in the wheel track, its boards
+are laid ALONG the way a foot travels, and its sides are therefore already one continuous
+board face rather than a comb of ends — there is no sawtooth on a crossing to resolve, and
+an edge timber raised across a road is a thing to catch a wheel on.
+**Held by the gate:** `tools/smoke_renderer.mjs` marches one named 98.6 m run in 0.2 m
+stations and asks each of the 487 for timber from the deck down to the ground at the walk's
+own edge line. On the geometry this replaced, **487 of 487** stations read as an open edge;
+on the string piece, **0 of 487**.
 
 ### L161 — The town encloses its property: a yard fence on 109 platted lots, in three types, every metre of it invented
 
@@ -7678,6 +7720,7 @@ wharfing order for Water Street east of Dearborn; any view of the slough mouth o
 South Water bank showing the crossing's walking surface or a bank walk; a committed
 crossing at the La Salle mouth would close the one gap in the run.
 **Recorded:** 2026-08-21.
+**Amended 2026-09-03 — this walk is held between STRING PIECES (T-0460).** The one renderer that draws every plank walk in this project now lays a 0.09 m edge timber down each side of one, its top flush with the boards and its foot in the ground, taking the outermost 0.09 m of the walk's own width so nothing widens. It replaces a row of board ENDS at the walk's edge, which is what the owner reported as a jagged sawtooth where the boards met the dirt. **The invention this adds — that these walks had edge timbers at all — is argued in full at L160**, and it is the same class as the width, the rise and the plank pitch this entry already claims.
 
 ### L155 — Terrain: the fort's river frontage is cut steeper than the banks either side of it
 **Decision:** the south division's `face_profile` in

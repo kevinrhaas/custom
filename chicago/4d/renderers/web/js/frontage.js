@@ -103,6 +103,29 @@ const FENCE_RAIL_H_M = 0.13;
 const FENCE_MAX_STEP_M = 1.0;
 /** The longest piece of walk deck handed to the planting block-list at once. */
 const KEEPOUT_PIECE_M = 12;
+/**
+ * THE STRING PIECE (T-0460), and the stock it is cut from.
+ *
+ * A plank walk laid as boards alone ends, at each side, in a row of board ENDS:
+ * at a 0.32 m pitch with a 0.02 m gap between them and a deck standing 0.11 m
+ * over the road, the outer edge of the walk was ten thousand short end-grain
+ * faces with daylight between them, each casting its own shadow onto the dirt.
+ * That is the jagged sawtooth the owner reported, and it is why the walk read as
+ * a row of loose boards rather than as a made footway.
+ *
+ * A plank sidewalk is not laid that way. Its boards are held between two string
+ * pieces — the edge timbers that run ALONG the walk, take the board ends and
+ * make the face a passer-by actually sees. So this layer lays them: one down
+ * each side, its top flush with the boards it holds, its foot reaching the
+ * lowest ground under its own length. The boards stop at its inner face, so the
+ * walk's overall width does not move.
+ *
+ * The stock is 0.09 m, which is the section the bay stringers were already cut
+ * from — this timber IS those stringers, moved out to the walk's own edge and
+ * brought up flush with the deck instead of stopping under it, so the layer
+ * gains a made edge without gaining a box.
+ */
+const KERB_STOCK_M = 0.09;
 
 /**
  * One box, 12 triangles, flat-shaded from its own face normals. `u` is the
@@ -154,18 +177,41 @@ function groundAt(terrain, e, n) {
 
 /**
  * One straight run of boards laid ACROSS the way a foot travels, pushed into
- * `buf`. Each board samples the terrain under its own centre, and two short
- * stringers under its edges close the gap to the ground so the deck never reads
- * as floating over a fall it does not follow.
+ * `buf`, held between two string pieces that run ALONG it and take the board
+ * ends (T-0460 — see `KERB_STOCK_M`). Each string piece's top is flush with the
+ * boards it holds and its foot reaches the lowest ground under its own length,
+ * so the walk presents ONE made face to the road at every point of its length
+ * rather than a comb of board ends standing over it.
+ *
+ * WHERE A BOARD'S TOP COMES FROM, and it moved with this ticket. A board used to
+ * sample the terrain under its own centre, which put a fresh height on the deck
+ * every 0.32 m; a walk laid in stringer bays does not do that, because the bay
+ * is what carries the boards and the bay is one piece of timber. So on a record
+ * that states a bay, every board in a bay takes THAT BAY's height — the ground
+ * under the bay's own centre plus the walk's rise — which is what makes the top
+ * of the string piece and the top of the boards it holds the same line to the
+ * millimetre. What is left of the old jitter is one butted joint per bay, and
+ * the generator has already audited the ground under a bay flat to
+ * `EDGE_STRINGER_ROLL_M` (0.04 m). A record with no bay keeps sampling per
+ * board, and its string piece is cut to the same pitch and butted end to end.
  *
  * `deckY` (T-0119) is the committed deck a walk may RIDE — the Slough Log
  * Bridge's own `walk_surface_m`, carried onto the record as `deck_m`. Where the
  * deck stands above the ground (over the carved channel), the boards take the
- * deck and the stringers are omitted, because boards on a deck lie on the deck;
+ * deck and the string piece is cut to the board's own thickness with no foot,
+ * because boards on a deck lie on the deck and nothing has to reach the mud;
  * where the ground stands higher (the graded approaches), the ground wins,
  * exactly as the walker's own surface rule decides it.
+ *
+ * `stats` accumulates the two numbers the edge rule is reported on (T-0460):
+ * how many string pieces were laid, and the largest step between two
+ * consecutive ones — which is the whole of what is left of the sawtooth. That a
+ * board is flush with the piece holding it is not reported, because on this
+ * code path it is true by construction; the gate proves the edge GEOMETRICALLY
+ * instead, by walking the outer edge line of a named walk in the loaded page
+ * and asking for timber from the deck down to the ground at every station.
  */
-function laySegment(buf, walk, ax, ay, bx, by, terrain, level) {
+function laySegment(buf, walk, ax, ay, bx, by, terrain, level, stats = null) {
   const az = -ay;
   const bz = -by;                 // local ENU (E, N) to the renderer's (E, up, -N)
   const dx = bx - ax;
@@ -181,12 +227,19 @@ function laySegment(buf, walk, ax, ay, bx, by, terrain, level) {
   const thick = walk.plank_thickness_m ?? 0.055;
   const pitch = walk.plank_pitch_m ?? 0.26;
   const deckY = Number.isFinite(walk.deck_m) ? walk.deck_m : null;
-  // THE STRINGER BAY (T-0069). Without `stringer_pitch_m` the stringers are laid
-  // under EVERY board, which is what this layer has done since T-0082 and is
-  // exactly right for a walk a few metres long on ground that tilts. A record
-  // that states a bay lays them at that pitch instead — one pair of stringers
-  // carrying several boards — and the generator sets it only where it has
-  // audited the ground flat enough across a bay for the pair to still meet it.
+  // The string piece takes the outermost 0.09 m of the walk's own width on each
+  // side and the boards stop at its inner face, so the walk stays 1.83 m wide
+  // and no two faces are coincident.
+  const stock = Math.min(KERB_STOCK_M, halfW / 3);
+  const boardHalf = halfW - stock;
+  const kerbAt = halfW - stock / 2;
+  // THE STRINGER BAY (T-0069). Without `stringer_pitch_m` the string pieces are
+  // cut to the board pitch and butted, which is what this layer has done since
+  // T-0082 and is exactly right for a walk a few metres long on ground that
+  // tilts. A record that states a bay cuts them at that pitch instead — one
+  // piece of timber carrying several boards — and the generator sets it only
+  // where it has audited the ground flat enough across a bay for the piece to
+  // still reach it.
   const bay = Number.isFinite(walk.stringer_pitch_m) && walk.stringer_pitch_m > pitch
     ? walk.stringer_pitch_m : null;
   // A record may say its boards carry no underside (T-0069). Two triangles a
@@ -194,6 +247,53 @@ function laySegment(buf, walk, ax, ay, bx, by, terrain, level) {
   const bare = walk.plank_underside === false;
   const n = Math.max(1, Math.round(len / pitch));
   const step = len / n;
+
+  /** The lowest ground under one length of string piece: its ends and middle. */
+  const footUnder = (cx, cz, ox, oz, halfLen) => {
+    let low = null;
+    for (const d of [-halfLen, 0, halfLen]) {
+      const gs = groundAt(terrain, cx + ox + rx * d, -(cz + oz + rz * d));
+      if (gs !== null && (low === null || gs < low)) low = gs;
+    }
+    return low;
+  };
+
+  /**
+   * One length of string piece down each side: top flush with `top`, foot at the
+   * lowest ground under its own line (or cut to the board thickness where the
+   * boards ride a committed deck and there is no mud to reach).
+   */
+  const layKerb = (cx, cz, halfLen, top, onDeck) => {
+    for (const s of [-1, 1]) {
+      const ox = wx * s * kerbAt;
+      const oz = wz * s * kerbAt;
+      const low = onDeck ? null : footUnder(cx, cz, ox, oz, halfLen);
+      const depth = low === null ? thick : Math.max(thick, top - low + SKIRT_M);
+      pushBox(buf, cx + ox, top - depth / 2, cz + oz, rx, rz,
+        halfLen, stock / 2, depth / 2, level, true);
+      if (stats) stats.kerb += 1;
+    }
+  };
+
+  // THE BAY LINE. On a record that states a bay, the height of every board in a
+  // bay is the bay's own, so the boards and the string piece holding them are
+  // one line. A bay whose centre finds no ground leaves its boards to fall back
+  // on their own sample, the same way they always did.
+  const bays = bay === null ? 0 : Math.max(1, Math.round(len / bay));
+  const bstep = bays ? len / bays : 0;
+  const bayTop = [];
+  for (let i = 0; i < bays; i += 1) {
+    const t = (i + 0.5) * bstep;
+    const g = groundAt(terrain, ax + rx * t, -(az + rz * t));
+    bayTop.push(g === null ? null : g + rise);
+  }
+  if (stats) {
+    for (let i = 1; i < bayTop.length; i += 1) {
+      if (bayTop[i] === null || bayTop[i - 1] === null) continue;
+      stats.kerbStep = Math.max(stats.kerbStep, Math.abs(bayTop[i] - bayTop[i - 1]));
+    }
+  }
+
   let drawn = 0;
   for (let i = 0; i < n; i += 1) {
     const t = (i + 0.5) * step;
@@ -202,56 +302,28 @@ function laySegment(buf, walk, ax, ay, bx, by, terrain, level) {
     const g = groundAt(terrain, cx, -cz);
     if (g === null && deckY === null) continue;
     const onDeck = deckY !== null && (g === null || deckY > g);
-    const top = (onDeck ? deckY : g) + rise;
-    // The board itself, its long axis ACROSS the run.
+    const bi = bays ? Math.min(bays - 1, Math.max(0, Math.floor(t / bstep))) : -1;
+    const held = !onDeck && bi >= 0 && bayTop[bi] !== null ? bayTop[bi] : null;
+    const top = held !== null ? held : (onDeck ? deckY : g) + rise;
+    // The board itself, its long axis ACROSS the run, stopping at the inner
+    // face of the string piece that holds its ends.
     pushBox(buf, cx, top - thick / 2, cz, wx, wz,
-      halfW, Math.max(0.02, (step - PLANK_GAP_M) / 2), thick / 2, level, bare);
-    // Two stringers under its edges, from the ground to the underside — only
-    // where the ground itself carries the walk (see the header note above).
-    // Each stringer reaches the ground under ITS OWN line, not the board
-    // centre's: on cross-sloped ground (the river walk's bank verge, T-0119)
-    // the downhill edge stands a board-width of slope over the land, and a
-    // fixed-length stringer left exactly that gap open to daylight.
-    if (!onDeck && bay === null) {
-      for (const s of [-1, 1]) {
-        const sx = cx + wx * s * (halfW - 0.09);
-        const sz = cz + wz * s * (halfW - 0.09);
-        const gs = groundAt(terrain, sx, -sz);
-        const under = Math.max(0.01, (top - thick) - (gs ?? g) + SKIRT_M);
-        pushBox(buf,
-          sx, top - thick - under / 2 + SKIRT_M / 2, sz,
-          rx, rz, step / 2, 0.045, under / 2, level);
-      }
-    }
+      boardHalf, Math.max(0.02, (step - PLANK_GAP_M) / 2), thick / 2, level, bare);
+    // A board whose bay carries it is held by that bay's string piece, laid
+    // once below; every other board carries its own, cut to the board pitch and
+    // butted against its neighbours so the face stays unbroken.
+    if (held === null) layKerb(cx, cz, step / 2, top, onDeck);
     drawn += 1;
   }
-  // The bay-laid stringers, marched on their own pitch. Each one is a box, so
-  // its underside is FLAT: it takes the LOWEST ground under its own line — its
-  // two ends and its middle — so the timber reaches the land everywhere along
-  // the bay rather than leaving the downhill half of it open to daylight, and
-  // its top meets the board underside at the bay's centre.
-  if (bay !== null && deckY === null) {
-    const bays = Math.max(1, Math.round(len / bay));
-    const bstep = len / bays;
+  // The bay-laid string pieces, marched on their own pitch. Each one is a box,
+  // so its underside is FLAT: it takes the LOWEST ground under its own line —
+  // its two ends and its middle — so the timber reaches the land everywhere
+  // along the bay rather than leaving the downhill half of it open to daylight.
+  if (bays && deckY === null) {
     for (let i = 0; i < bays; i += 1) {
+      if (bayTop[i] === null) continue;
       const t = (i + 0.5) * bstep;
-      const cx = ax + rx * t;
-      const cz = az + rz * t;
-      const g = groundAt(terrain, cx, -cz);
-      if (g === null) continue;
-      for (const s of [-1, 1]) {
-        const ox = wx * s * (halfW - 0.09);
-        const oz = wz * s * (halfW - 0.09);
-        let low = null;
-        for (const d of [-bstep / 2, 0, bstep / 2]) {
-          const gs = groundAt(terrain, cx + ox + rx * d, -(cz + oz + rz * d));
-          if (gs !== null && (low === null || gs < low)) low = gs;
-        }
-        const under = Math.max(0.01, (g + rise - thick) - (low ?? g) + SKIRT_M);
-        pushBox(buf,
-          cx + ox, g + rise - thick - under / 2 + SKIRT_M / 2, cz + oz,
-          rx, rz, bstep / 2, 0.045, under / 2, level);
-      }
+      layKerb(ax + rx * t, az + rz * t, bstep / 2, bayTop[i], false);
     }
   }
   return drawn;
@@ -263,7 +335,7 @@ function laySegment(buf, walk, ax, ay, bx, by, terrain, level) {
  * carry one; a 400 m run pinned as a list of two-point records would be nine
  * ids for one claim).
  */
-function buildWalk(buf, walk, terrain, level, problems) {
+function buildWalk(buf, walk, terrain, level, problems, stats = null) {
   const line = walk.centreline_local_enu_m;
   if (!Array.isArray(line) || line.length < 2) {
     problems.push(`frontage: ${walk.id} carries no centreline — nothing is laid`);
@@ -272,7 +344,7 @@ function buildWalk(buf, walk, terrain, level, problems) {
   let drawn = 0;
   for (let i = 0; i + 1 < line.length; i += 1) {
     drawn += laySegment(buf, walk, line[i][0], line[i][1],
-      line[i + 1][0], line[i + 1][1], terrain, level);
+      line[i + 1][0], line[i + 1][1], terrain, level, stats);
   }
   if (!drawn) {
     problems.push(`frontage: ${walk.id} found no ground under any board — nothing is laid`);
@@ -627,6 +699,13 @@ export async function createFrontage({
     census: {
       records: 0, walks: 0, crossings: 0, posts: 0, hitching: 0, lettered: 0,
       fences: 0, decks: 0, refused: 0, meshes: 0,
+      /** THE EDGE RULE (T-0460). `kerb` is how many lengths of string piece the
+       *  layer laid down the sides of its walks; `kerbStep_m` is the largest
+       *  height step between two consecutive lengths on one run, which is what
+       *  is left of the sawtooth once the boards stopped each taking their own
+       *  sample of the mud. Both are reported rather than asserted here — the
+       *  gate proves the edge on the drawn geometry. */
+      kerb: 0, kerbStep_m: 0,
     },
     pickAt: () => null,
     dispose: () => {},
@@ -656,6 +735,8 @@ export async function createFrontage({
   const buf = { pos: [], nrm: [], conf: [] };
   const spans = [];
   const boards = [];
+  /** What the string pieces down the walks' edges came to (T-0460). */
+  const edgeStats = { kerb: 0, kerbStep: 0 };
   /**
    * CHUNKED TIMBER (T-0119). The layer's timber has been one draw call since
    * T-0082, and for walks a few metres long that is right. The river walk is
@@ -751,14 +832,14 @@ export async function createFrontage({
         // A named chunk: lay straight into the face's own buffer (T-0069).
         ok = crossing
           ? buildCrossing(named0.buf, walk, terrain, level, problems)
-          : buildWalk(named0.buf, walk, terrain, level, problems);
+          : buildWalk(named0.buf, walk, terrain, level, problems, edgeStats);
       } else if (chunked) {
         // One chunk per segment; the walk is laid iff any segment laid boards.
         let laid = 0;
         for (let i = 0; i + 1 < line.length; i += 1) {
           const cbuf = { pos: [], nrm: [], conf: [] };
           const boardsLaid = laySegment(cbuf, walk, line[i][0], line[i][1],
-            line[i + 1][0], line[i + 1][1], terrain, level);
+            line[i + 1][0], line[i + 1][1], terrain, level, edgeStats);
           if (!boardsLaid) continue;
           chunks.push({ buf: cbuf, pickId: walk.belongs_to });
           laid += boardsLaid;
@@ -772,7 +853,7 @@ export async function createFrontage({
         const from = buf.pos.length / 9;
         ok = crossing
           ? buildCrossing(buf, walk, terrain, level, problems)
-          : buildWalk(buf, walk, terrain, level, problems);
+          : buildWalk(buf, walk, terrain, level, problems, edgeStats);
         if (ok) spans.push({ id: walk.belongs_to, from, to: buf.pos.length / 9 });
       }
       if (!ok) continue;
@@ -959,6 +1040,8 @@ export async function createFrontage({
     chunkMeshes.push(cmesh);
   }
   out.census.meshes = group.children.length;
+  out.census.kerb = edgeStats.kerb;
+  out.census.kerbStep_m = Math.round(edgeStats.kerbStep * 1000) / 1000;
 
   const letters = makeLettering(boards);
   let letterMat = null;

@@ -4082,7 +4082,106 @@ for (const [label, viewport, touch] of [
                  recorded: q.post_height_m ?? null,
                  clear: q.clear_of_track_m ?? null, text: q.text ?? null };
       });
+      // THE EDGE RULE (T-0460), proved on the drawn geometry rather than on a
+      // number the layer reports about itself.
+      //
+      // A plank walk used to end, at each side, in a row of board ENDS: at a
+      // 0.32 m pitch with a 0.02 m gap between them over a deck standing 0.11 m
+      // proud of the road, the outer edge was ten thousand short end-grain
+      // faces with daylight between them. That is the sawtooth the owner
+      // reported, and the rule that replaces it is: **a walk's side is a
+      // continuous string piece — timber at the walk's own edge line, from the
+      // deck it holds down to the ground it stands on, at EVERY station along
+      // the run.**
+      //
+      // So this marches one named 98 m walk in 0.2 m stations, takes every
+      // vertex in the layer standing within 0.03 m of that walk's edge line on
+      // either side, and asks each station for two things: a vertex up at the
+      // deck, and a vertex down at the ground. A comb of board ends answers the
+      // first and not the second — the old bay stringer that did reach the
+      // ground stood 0.09 m inboard, outside this band, which is exactly why
+      // the edge read as ragged — so this check FAILS on the geometry it was
+      // written against and passes on the string piece that replaced it.
+      const edge = (() => {
+        const walk = (f?.walks ?? []).find((w) => w.id === 'blk_lake_clark_north_walk_1');
+        const line = walk?.centreline_local_enu_m;
+        if (!Array.isArray(line) || line.length !== 2) return null;
+        const half = (walk.width_m ?? 1.83) / 2;
+        const rise = walk.rise_m ?? 0.11;
+        const [a0, b0] = line;
+        const de = b0[0] - a0[0];
+        const dn = b0[1] - a0[1];
+        const len = Math.hypot(de, dn);
+        const ue = de / len;
+        const un = dn / len;
+        const STEP = 0.2;
+        // The run's own ends are skipped: a walk is cut where its face stops and
+        // the last half-metre is the joint, not the edge this rule is about.
+        const from = 0.5;
+        const to = len - 0.5;
+        const cells = Math.max(1, Math.floor((to - from) / STEP));
+        const hi = new Array(cells).fill(-Infinity);
+        const lo = new Array(cells).fill(Infinity);
+        // BY THE FACE, NOT BY THE VERTEX. A string piece is a box 2.08 m long,
+        // so it carries vertices only at its two ends: asked for vertices, 441
+        // of these 487 stations read empty on geometry that is in fact
+        // continuous timber. What a station has to be covered by is a FACE, so
+        // this walks the layer's triangles — the buffers are non-indexed, three
+        // vertices to a triangle — takes those lying wholly in the edge band,
+        // and fills every station the triangle spans with the height range it
+        // covers there.
+        for (const t of timber) {
+          const pos = t.geometry?.getAttribute('position');
+          if (!pos) continue;
+          for (let i = 0; i + 2 < pos.count; i += 3) {
+            let lo3 = Infinity;
+            let hi3 = -Infinity;
+            let a3 = Infinity;
+            let b3 = -Infinity;
+            let inBand = true;
+            for (let k = 0; k < 3; k++) {
+              const e = pos.getX(i + k) - a0[0];
+              const n = -pos.getZ(i + k) - a0[1];
+              if (Math.abs(Math.abs(-e * un + n * ue) - half) > 0.03) { inBand = false; break; }
+              const along = e * ue + n * un;
+              if (along < a3) a3 = along;
+              if (along > b3) b3 = along;
+              const y = pos.getY(i + k);
+              if (y < lo3) lo3 = y;
+              if (y > hi3) hi3 = y;
+            }
+            if (!inBand) continue;
+            const c0 = Math.max(0, Math.ceil((a3 - from) / STEP));
+            const c1 = Math.min(cells - 1, Math.floor((b3 - from) / STEP));
+            for (let c = c0; c <= c1; c++) {
+              if (hi3 > hi[c]) hi[c] = hi3;
+              if (lo3 < lo[c]) lo[c] = lo3;
+            }
+          }
+        }
+        let open = 0;
+        let empty = 0;
+        let worst = 0;
+        for (let c = 0; c < cells; c++) {
+          if (hi[c] === -Infinity) { empty += 1; open += 1; continue; }
+          const t = from + (c + 0.5) * STEP;
+          const g = terrain.surfaceHeight(a0[0] + ue * t, a0[1] + un * t);
+          if (!Number.isFinite(g)) continue;
+          // Up at the deck AND down at the ground: a station that answers only
+          // one of the two is an open edge, and how far the timber falls short
+          // of the ground is what the sawtooth measured.
+          const deep = lo[c] - (g + 0.02);
+          const tall = (g + rise - 0.06) - hi[c];
+          if (deep > 0 || tall > 0) {
+            open += 1;
+            worst = Math.max(worst, deep, tall);
+          }
+        }
+        return { id: walk.id, len: Math.round(len * 10) / 10, cells, open, empty,
+                 worst: Math.round(worst * 1000) / 1000 };
+      })();
       return {
+        edge,
         hitching,
         recordIds: (f?.records ?? []).map((r) => r.id),
         noBoardHere: (f?.records ?? []).find((r) => r.id === 'sauganash_frontage')
@@ -4259,6 +4358,24 @@ for (const [label, viewport, touch] of [
       + `vertex ${frontage.deckTop?.toFixed(3)} m above it, ${frontage.bandBreaches} `
       + `vertice(s) past even their own relief allowance (worst by `
       + `${frontage.worstBreach?.toFixed(3)} m)`);
+    // THE WALK'S SIDE IS A MADE EDGE, NOT A ROW OF BOARD ENDS (T-0460). The
+    // owner reported the plank walk meeting the dirt road in a jagged sawtooth
+    // — "it's like the first thing we see" — and the treatment chosen was the
+    // first of the two he would accept: the walk sits consistently OVER the
+    // road, held between two string pieces whose tops are flush with the boards
+    // and whose feet reach the ground. The probe above walks one named 98 m run
+    // in 0.2 m stations and asks every one of them for timber from the deck to
+    // the ground at the walk's own edge line; it is written to fail on the comb
+    // of board ends this replaced.
+    check(`${label}: a plank walk's side is one made edge for its whole length`,
+      frontage.edge !== null && frontage.edge.open === 0 && frontage.edge.cells > 400
+        && frontage.census?.kerb > 3000,
+      `${frontage.edge?.id ?? 'no walk probed'}: ${frontage.edge?.open} of `
+      + `${frontage.edge?.cells} station(s) over ${frontage.edge?.len} m show an open `
+      + `edge (${frontage.edge?.empty} with no timber at all, worst by `
+      + `${frontage.edge?.worst} m); the layer laid ${frontage.census?.kerb} length(s) `
+      + `of string piece, the largest step between two consecutive ones `
+      + `${frontage.census?.kerbStep_m} m`);
     // THE POST STANDS ON THE GROUND AND ITS BOARD HANGS OVER A HEAD. A pole whose
     // height came from a number beside the mesh rather than from a terrain sample
     // floats; a board hung too low is one a visitor walks through.
