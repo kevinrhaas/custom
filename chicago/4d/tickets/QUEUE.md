@@ -77,17 +77,19 @@
 # ---   wave 4  T-0514 T-0515 T-0516
 # ---   wave 5  T-0517 T-0518
 
-# --- T-0524 sits here, not at the bottom where T-0491 filed it, on the owner's ruling of
-# --- 2026-09-03: eighteen smoke assertions still describe the reconstructed residents
-# --- T-0489 retired, so every full smoke on dev is red and two runs (#1456, #1457) burned
-# --- their budget proving it. Repair it before the sweep's runs need a green smoke.
+# --- T-0524 sat here on the owner's ruling of 2026-09-03 — the smoke assertions that still
+# --- described the reconstructed residents T-0489 retired, which made every full smoke on
+# --- dev red. CLOSED in PR #696: parts 3 and 13 are green in both viewports. The band is
+# --- kept as the record of why it was ranked here, not as a slot for anything else.
 
 T-0531 — The 1840 census images 1-25: names and cells of the left sheets printed 210, 215 and 219
 T-0533 — The 1840 census images 1-25: names and cells of the two short left sheets printed 225 and 228, and of 33S7-9YYJ-9MX whose page number is off the exposure
 T-0534 — The 1840 census images 1-25: the age-band, coloured and industry cells of printed pages 229, 231 and 234, checked against the sheets' own column totals
-T-0541 — The 1840 census images 1-25: continuation sheets 5V, 6H and 6Q read line by line and closed against their own printed column totals
+T-0547 — The 1840 census image 33S7-9YYJ-5V read line by line and closed against its own printed column totals
+T-0548 — The 1840 census image 33S7-9YYJ-6H read line by line and closed against its own printed column totals
+T-0549 — The 1840 census image 33S7-9YYJ-6Q read line by line and closed against its own printed column totals
 T-0539 — The 1840 census images 1-25: the other five continuation sheets — 8D, 9WS, B1, B2 and BF — and the left-sheet population key that pairs all eleven
-T-0525 — The 1840 census images 26-50: names and cells of the left sheets printed 207, 208, 209 and 211
+T-0546 — The 1840 census images 26-50: names and cells of the left sheets printed 209 and 211
 T-0526 — The 1840 census images 26-50: names and cells of the left sheets printed 216, 217, 218 and 224
 T-0527 — The 1840 census images 26-50: names and cells of the left sheets printed 227, 239 and 241
 T-0528 — The 1840 census images 26-50: the nine continuation sheets, paired to their left sheets by printed page

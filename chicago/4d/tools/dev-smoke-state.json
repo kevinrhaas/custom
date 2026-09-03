@@ -7,247 +7,109 @@
       "parts": [
         13
       ],
-      "verdict": "pass",
+      "verdict": "fail",
       "target": "published",
-      "passed": 109,
-      "failed": 0,
-      "failures": [],
-      "wallSeconds": 332,
-      "takenAt": "2026-09-03T12:42:58.071Z",
-      "ref": "steward/t-0524-smoke-resident-layer",
-      "commit": "0ad67111a250",
-      "devCommit": "91b24a4023d2",
-      "treeHash": "sha256:d9252892f21776c1",
-      "treeDirty": true,
-      "changelogHash": "sha256:882f1845680bcb14",
-      "host": {
-        "kind": "steward-runner",
-        "cpus": 4,
-        "memGB": 15.6,
-        "loadavg": [
-          4.3,
-          4.5,
-          3.6
-        ]
-      },
-      "source": "/tmp/d13b.log"
-    },
-    {
-      "viewport": "mobile",
-      "stage": "13",
-      "parts": [
-        13
+      "passed": 103,
+      "failed": 6,
+      "failures": [
+        "desktop 1280x800: every household in the layer is on the card — 825 loaded / 825 rendered (no residents on the handle)",
+        "desktop 1280x800: the 956 person entries are counted — 849",
+        "desktop 1280x800: the letter-list cohort is held apart from the evidenced town — 98 evidenced / 727 letter-list, 727 in the group, closed on mount: true",
+        "desktop 1280x800: the households no building card can reach are marked — 770 off-card / 43 chip(s) / 727 of them letter-list",
+        "desktop 1280x800: an invented name says on the card which pool it came from",
+        "desktop 1280x800: 150 resident research reviews reach resident cards — 375: {\"corroborated_enrichment\":74,\"candidate_identity\":62,\"no_corroboration\":239}"
       ],
-      "verdict": "pass",
-      "target": "published",
-      "passed": 109,
-      "failed": 0,
-      "failures": [],
-      "wallSeconds": 176,
-      "takenAt": "2026-09-03T12:42:57.972Z",
-      "ref": "steward/t-0524-smoke-resident-layer",
-      "commit": "0ad67111a250",
+      "wallSeconds": 219,
+      "takenAt": "2026-09-03T12:09:49.345Z",
+      "ref": "steward/t-0525-census-1840-sheets-207-211",
+      "commit": "d0746b1e7027",
       "devCommit": "91b24a4023d2",
-      "treeHash": "sha256:d9252892f21776c1",
-      "treeDirty": true,
-      "changelogHash": "sha256:882f1845680bcb14",
+      "treeHash": "sha256:aa006b17608f7bc4",
+      "treeDirty": false,
+      "changelogHash": "sha256:73a7a262acf70342",
       "host": {
-        "kind": "steward-runner",
+        "kind": "local",
         "cpus": 4,
-        "memGB": 15.6,
+        "memGB": 15.7,
         "loadavg": [
-          4.3,
-          4.5,
-          3.6
+          2.6,
+          3.4,
+          2.6
         ]
       },
-      "source": "/tmp/m13b.log"
+      "source": "/tmp/claude-0/-home-user/1020070c-cc85-5adf-b717-6fa0ab891aa1/scratchpad/smoke0525_desktop_13.log"
     },
     {
       "viewport": "desktop",
-      "stage": "3",
+      "stage": "11-12",
       "parts": [
-        3
+        11,
+        12
       ],
       "verdict": "pass",
       "target": "published",
-      "passed": 74,
+      "passed": 50,
       "failed": 0,
       "failures": [],
-      "wallSeconds": 142,
-      "takenAt": "2026-09-03T12:42:57.878Z",
-      "ref": "steward/t-0524-smoke-resident-layer",
-      "commit": "0ad67111a250",
+      "wallSeconds": 312,
+      "takenAt": "2026-09-03T12:09:49.193Z",
+      "ref": "steward/t-0525-census-1840-sheets-207-211",
+      "commit": "d0746b1e7027",
       "devCommit": "91b24a4023d2",
-      "treeHash": "sha256:d9252892f21776c1",
-      "treeDirty": true,
-      "changelogHash": "sha256:882f1845680bcb14",
+      "treeHash": "sha256:aa006b17608f7bc4",
+      "treeDirty": false,
+      "changelogHash": "sha256:73a7a262acf70342",
       "host": {
-        "kind": "steward-runner",
+        "kind": "local",
         "cpus": 4,
-        "memGB": 15.6,
+        "memGB": 15.7,
         "loadavg": [
-          4.3,
-          4.5,
-          3.6
+          2.6,
+          3.4,
+          2.6
         ]
       },
-      "source": "/tmp/d3b.log"
+      "source": "/tmp/claude-0/-home-user/1020070c-cc85-5adf-b717-6fa0ab891aa1/scratchpad/smoke0525_desktop_11-12.log"
     },
     {
       "viewport": "mobile",
-      "stage": "3",
+      "stage": "11-13",
       "parts": [
-        3
-      ],
-      "verdict": "pass",
-      "target": "published",
-      "passed": 74,
-      "failed": 0,
-      "failures": [],
-      "wallSeconds": 80,
-      "takenAt": "2026-09-03T12:42:57.778Z",
-      "ref": "steward/t-0524-smoke-resident-layer",
-      "commit": "0ad67111a250",
-      "devCommit": "91b24a4023d2",
-      "treeHash": "sha256:d9252892f21776c1",
-      "treeDirty": true,
-      "changelogHash": "sha256:882f1845680bcb14",
-      "host": {
-        "kind": "steward-runner",
-        "cpus": 4,
-        "memGB": 15.6,
-        "loadavg": [
-          4.3,
-          4.5,
-          3.6
-        ]
-      },
-      "source": "/tmp/m3b.log"
-    },
-    {
-      "viewport": "mobile",
-      "stage": "13",
-      "parts": [
+        11,
+        12,
         13
       ],
-      "verdict": "pass",
+      "verdict": "fail",
       "target": "published",
-      "passed": 109,
-      "failed": 0,
-      "failures": [],
-      "wallSeconds": 174,
-      "takenAt": "2026-09-03T12:26:42.433Z",
-      "ref": "steward/t-0524-smoke-resident-layer",
-      "commit": "0ad67111a250",
-      "devCommit": "91b24a4023d2",
-      "treeHash": "sha256:d9252892f21776c1",
-      "treeDirty": true,
-      "changelogHash": "sha256:a71f525316be0f33",
-      "host": {
-        "kind": "steward-runner",
-        "cpus": 4,
-        "memGB": 15.6,
-        "loadavg": [
-          3.7,
-          4.2,
-          2.7
-        ]
-      },
-      "source": "/tmp/m13.log"
-    },
-    {
-      "viewport": "mobile",
-      "stage": "3",
-      "parts": [
-        3
+      "passed": 144,
+      "failed": 6,
+      "failures": [
+        "mobile 390x780: every household in the layer is on the card — 825 loaded / 825 rendered (no residents on the handle)",
+        "mobile 390x780: the 956 person entries are counted — 849",
+        "mobile 390x780: the letter-list cohort is held apart from the evidenced town — 98 evidenced / 727 letter-list, 727 in the group, closed on mount: true",
+        "mobile 390x780: the households no building card can reach are marked — 770 off-card / 43 chip(s) / 727 of them letter-list",
+        "mobile 390x780: an invented name says on the card which pool it came from",
+        "mobile 390x780: 150 resident research reviews reach resident cards — 375: {\"corroborated_enrichment\":74,\"candidate_identity\":62,\"no_corroboration\":239}"
       ],
-      "verdict": "pass",
-      "target": "published",
-      "passed": 74,
-      "failed": 0,
-      "failures": [],
-      "wallSeconds": 80,
-      "takenAt": "2026-09-03T12:26:42.338Z",
-      "ref": "steward/t-0524-smoke-resident-layer",
-      "commit": "0ad67111a250",
+      "wallSeconds": 309,
+      "takenAt": "2026-09-03T12:09:49.039Z",
+      "ref": "steward/t-0525-census-1840-sheets-207-211",
+      "commit": "d0746b1e7027",
       "devCommit": "91b24a4023d2",
-      "treeHash": "sha256:d9252892f21776c1",
-      "treeDirty": true,
-      "changelogHash": "sha256:a71f525316be0f33",
+      "treeHash": "sha256:aa006b17608f7bc4",
+      "treeDirty": false,
+      "changelogHash": "sha256:73a7a262acf70342",
       "host": {
-        "kind": "steward-runner",
+        "kind": "local",
         "cpus": 4,
-        "memGB": 15.6,
+        "memGB": 15.7,
         "loadavg": [
-          3.9,
-          4.2,
-          2.7
+          2.6,
+          3.4,
+          2.6
         ]
       },
-      "source": "/tmp/m3.log"
-    },
-    {
-      "viewport": "desktop",
-      "stage": "13",
-      "parts": [
-        13
-      ],
-      "verdict": "pass",
-      "target": "published",
-      "passed": 109,
-      "failed": 0,
-      "failures": [],
-      "wallSeconds": null,
-      "takenAt": "2026-09-03T12:26:37.579Z",
-      "ref": "steward/t-0524-smoke-resident-layer",
-      "commit": "0ad67111a250",
-      "devCommit": "91b24a4023d2",
-      "treeHash": "sha256:d9252892f21776c1",
-      "treeDirty": true,
-      "changelogHash": "sha256:a71f525316be0f33",
-      "host": {
-        "kind": "steward-runner",
-        "cpus": 4,
-        "memGB": 15.6,
-        "loadavg": [
-          3.9,
-          4.2,
-          2.7
-        ]
-      },
-      "source": "/tmp/m3.log /tmp/d3.log /tmp/m13.log /tmp/d13.log"
-    },
-    {
-      "viewport": "desktop",
-      "stage": "3",
-      "parts": [
-        3
-      ],
-      "verdict": "pass",
-      "target": "published",
-      "passed": 74,
-      "failed": 0,
-      "failures": [],
-      "wallSeconds": null,
-      "takenAt": "2026-09-03T12:26:37.579Z",
-      "ref": "steward/t-0524-smoke-resident-layer",
-      "commit": "0ad67111a250",
-      "devCommit": "91b24a4023d2",
-      "treeHash": "sha256:d9252892f21776c1",
-      "treeDirty": true,
-      "changelogHash": "sha256:a71f525316be0f33",
-      "host": {
-        "kind": "steward-runner",
-        "cpus": 4,
-        "memGB": 15.6,
-        "loadavg": [
-          3.9,
-          4.2,
-          2.7
-        ]
-      },
-      "source": "/tmp/m3.log /tmp/d3.log /tmp/m13.log /tmp/d13.log"
+      "source": "/tmp/claude-0/-home-user/1020070c-cc85-5adf-b717-6fa0ab891aa1/scratchpad/smoke0525_mobile_11-13.log"
     },
     {
       "viewport": "desktop",
@@ -1947,6 +1809,165 @@
         ]
       },
       "source": "/tmp/smoke-m10.log"
+    },
+    {
+      "viewport": "desktop",
+      "stage": "1",
+      "parts": [
+        1
+      ],
+      "verdict": "pass",
+      "target": "published",
+      "passed": 76,
+      "failed": 0,
+      "failures": [],
+      "wallSeconds": 216,
+      "takenAt": "2026-08-30T00:08:57.132Z",
+      "ref": "steward/t-0183-south-water-west-end",
+      "commit": "5f3d78433188",
+      "devCommit": "5f3d78433188",
+      "treeHash": "sha256:5a9223f51e96a409",
+      "treeDirty": true,
+      "changelogHash": "sha256:a66a6ee34c42c683",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          4.9,
+          3.9,
+          2.3
+        ]
+      },
+      "source": "/tmp/smoke-desktop1.log"
+    },
+    {
+      "viewport": "mobile",
+      "stage": "1-2",
+      "parts": [
+        1,
+        2
+      ],
+      "verdict": "pass",
+      "target": "published",
+      "passed": 149,
+      "failed": 0,
+      "failures": [],
+      "wallSeconds": 220,
+      "takenAt": "2026-08-30T00:08:57.056Z",
+      "ref": "steward/t-0183-south-water-west-end",
+      "commit": "5f3d78433188",
+      "devCommit": "5f3d78433188",
+      "treeHash": "sha256:5a9223f51e96a409",
+      "treeDirty": true,
+      "changelogHash": "sha256:a66a6ee34c42c683",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          4.9,
+          3.9,
+          2.3
+        ]
+      },
+      "source": "/tmp/smoke-mobile12.log"
+    },
+    {
+      "viewport": "desktop",
+      "stage": "8",
+      "parts": [
+        8
+      ],
+      "verdict": "pass",
+      "target": "published",
+      "passed": 37,
+      "failed": 0,
+      "failures": [],
+      "wallSeconds": 172,
+      "takenAt": "2026-08-29T21:01:03.970Z",
+      "ref": "steward/t-0410-spend-street-face-adoptions",
+      "commit": "a32b0146533c",
+      "devCommit": "40cb1d3b2075",
+      "treeHash": "sha256:6ec0be88a8731d60",
+      "treeDirty": false,
+      "changelogHash": "sha256:a7be73ac98bbf587",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          5.2,
+          4.6,
+          4.1
+        ]
+      },
+      "source": "/tmp/smoke-d8b.log"
+    },
+    {
+      "viewport": "mobile",
+      "stage": "3-4",
+      "parts": [
+        3,
+        4
+      ],
+      "verdict": "pass",
+      "target": "published",
+      "passed": 116,
+      "failed": 0,
+      "failures": [],
+      "wallSeconds": 437,
+      "takenAt": "2026-08-29T21:01:03.887Z",
+      "ref": "steward/t-0410-spend-street-face-adoptions",
+      "commit": "a32b0146533c",
+      "devCommit": "40cb1d3b2075",
+      "treeHash": "sha256:6ec0be88a8731d60",
+      "treeDirty": false,
+      "changelogHash": "sha256:a7be73ac98bbf587",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          5.2,
+          4.6,
+          4.1
+        ]
+      },
+      "source": "/tmp/smoke-m34b.log"
+    },
+    {
+      "viewport": "mobile",
+      "stage": "7-9",
+      "parts": [
+        7,
+        8,
+        9
+      ],
+      "verdict": "pass",
+      "target": "published",
+      "passed": 168,
+      "failed": 0,
+      "failures": [],
+      "wallSeconds": 570,
+      "takenAt": "2026-08-29T21:01:03.806Z",
+      "ref": "steward/t-0410-spend-street-face-adoptions",
+      "commit": "a32b0146533c",
+      "devCommit": "40cb1d3b2075",
+      "treeHash": "sha256:6ec0be88a8731d60",
+      "treeDirty": false,
+      "changelogHash": "sha256:a7be73ac98bbf587",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          5.2,
+          4.6,
+          4.1
+        ]
+      },
+      "source": "/tmp/smoke-m79b.log"
     }
   ]
 }
