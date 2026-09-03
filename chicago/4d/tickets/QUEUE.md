@@ -100,7 +100,6 @@
 # --- T-0562 joined them the same afternoon on his ask "make sure you have a resident household business
 # --- city data improvement ticket for https://archive.org/details/chicago1835-newberry-genealogical-index
 # --- if you do not already i am starting to move the research corpus to the internet archive".
-T-0568 — Norris's 1844 directory: the Advertising Directory read as businesses, with proprietors, trades, addresses and founding dates
 T-0569 — Norris's 1844 directory spent on the layers: the 1835 residents validated and enriched, and the businesses written and dated
 T-0571 — Fergus's Chicago directory for 1843, complete on Genealogy Trails: 2,427 entries of name, trade and street, read into the directories domain and date-flagged as later evidence
 T-0572 — The 134 Black Hawk War veterans who enrolled at Chicago in 1832, read from the Illinois State Archives index and crosswalked to the 1833-1835 town lists
