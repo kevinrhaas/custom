@@ -1,7 +1,7 @@
 ---
 id: T-0493
 title: Four voter lists of 1833-1835 name 346 entries, and the residents layer holds 99 of their 215 surnames
-state: open
+state: done
 epic: META
 requested_by: owner
 seen: false
@@ -9,9 +9,9 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-09-02
-closed: null
-pr: null
-claimed_by: null
+closed: 2026-09-03
+pr: 692
+claimed_by: run 9/3/2026, 5:36:32 AM CT
 blocked_on: null
 needs_bake: false
 ---
