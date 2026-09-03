@@ -1,6 +1,6 @@
 {
   "project": "chicago-4d",
-  "generated_ct": "Sep 3, 2026, 7:44 AM",
+  "generated_ct": "Sep 3, 2026, 8:03 AM",
   "tickets": [
     {
       "id": "T-0001",
@@ -8772,7 +8772,7 @@
     {
       "id": "T-0534",
       "title": "The 1840 census images 1-25: the age-band, coloured and industry cells of printed pages 229, 231 and 234, checked against the sheets' own column totals",
-      "state": "open",
+      "state": "split",
       "epic": "META",
       "requested_by": "owner",
       "seen": false,
@@ -8780,12 +8780,12 @@
       "legacy_id": null,
       "parent": "T-0494",
       "opened": "2026-09-03",
-      "closed": null,
+      "closed": "2026-09-03",
       "pr": null,
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 2
+      "queue_rank": null
     },
     {
       "id": "T-0535",
@@ -9038,6 +9038,42 @@
       "blocked_on": null,
       "needs_bake": false,
       "queue_rank": 5
+    },
+    {
+      "id": "T-0550",
+      "title": "The 1840 census images 1-25: the age-band, coloured and industry cells of printed pages 229 and 231, checked against the sheets' own column totals",
+      "state": "done",
+      "epic": "META",
+      "requested_by": "owner",
+      "seen": false,
+      "effort": "S",
+      "legacy_id": null,
+      "parent": "T-0534",
+      "opened": "2026-09-03",
+      "closed": "2026-09-03",
+      "pr": "697",
+      "claimed_by": "run 9/3/2026, 8:03:59 AM CT",
+      "blocked_on": null,
+      "needs_bake": false,
+      "queue_rank": null
+    },
+    {
+      "id": "T-0551",
+      "title": "The 1840 census images 1-25: the age-band, coloured and industry cells of printed page 234, checked against the sheet's own column totals",
+      "state": "open",
+      "epic": "META",
+      "requested_by": "owner",
+      "seen": false,
+      "effort": "S",
+      "legacy_id": null,
+      "parent": "T-0534",
+      "opened": "2026-09-03",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "queue_rank": 2
     }
   ]
 }
