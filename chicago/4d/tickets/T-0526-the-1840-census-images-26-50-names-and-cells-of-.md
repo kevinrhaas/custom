@@ -1,7 +1,7 @@
 ---
 id: T-0526
 title: The 1840 census images 26-50: names and cells of the left sheets printed 216, 217, 218 and 224
-state: claimed
+state: split
 epic: META
 requested_by: owner
 seen: false
@@ -9,7 +9,7 @@ effort: S
 legacy_id: null
 parent: T-0495
 opened: 2026-09-03
-closed: null
+closed: 2026-09-03
 pr: null
 claimed_by: run 9/3/2026, 7:02:25 AM CT
 blocked_on: null
