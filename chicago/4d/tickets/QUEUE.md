@@ -120,7 +120,6 @@
 # --- Dependency-safe: both consume names already on disk. T-0514/T-0515 (which WRITE the
 # --- people) are deliberately NOT moved — they are wave 4 and sit behind T-0513, which may not
 # --- be taken while any sweep ticket is open. The rest of the wave order below stands.
-T-0504 — 754 of 964 IPUMS 1840 households are unnamed while every page image carries the names: fingerprint every read page to a serial
 
 T-0575 — Hurlbut's Chicago Antiquities pages 28-36 on the American Fur Company at Chicago, read as claims about the trade the town actually carried
 T-0557 — The Illinois Public Domain Land Tract Sales database (Illinois State Archives): pull every federal land sale in the townships around Chicago through 1836 and crosswalk purchasers to residents, households and structures
