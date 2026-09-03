@@ -1,6 +1,6 @@
 {
   "project": "chicago-4d",
-  "generated_ct": "Sep 3, 2026, 8:03 AM",
+  "generated_ct": "Sep 3, 2026, 9:07 AM",
   "tickets": [
     {
       "id": "T-0001",
@@ -8628,7 +8628,7 @@
     {
       "id": "T-0526",
       "title": "The 1840 census images 26-50: names and cells of the left sheets printed 216, 217, 218 and 224",
-      "state": "open",
+      "state": "split",
       "epic": "META",
       "requested_by": "owner",
       "seen": false,
@@ -8636,12 +8636,12 @@
       "legacy_id": null,
       "parent": "T-0495",
       "opened": "2026-09-03",
-      "closed": null,
+      "closed": "2026-09-03",
       "pr": null,
-      "claimed_by": null,
+      "claimed_by": "run 9/3/2026, 7:02:25 AM CT",
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 8
+      "queue_rank": null
     },
     {
       "id": "T-0527",
@@ -9074,6 +9074,42 @@
       "blocked_on": null,
       "needs_bake": false,
       "queue_rank": 2
+    },
+    {
+      "id": "T-0552",
+      "title": "The 1840 census images 26-50: names and cells of the left sheets printed 216 and 217",
+      "state": "done",
+      "epic": "META",
+      "requested_by": "owner",
+      "seen": false,
+      "effort": "S",
+      "legacy_id": null,
+      "parent": "T-0526",
+      "opened": "2026-09-03",
+      "closed": "2026-09-03",
+      "pr": "699",
+      "claimed_by": "run 9/3/2026, 7:27:58 AM CT",
+      "blocked_on": null,
+      "needs_bake": false,
+      "queue_rank": null
+    },
+    {
+      "id": "T-0553",
+      "title": "The 1840 census images 26-50: names and cells of the left sheets printed 218 and 224",
+      "state": "open",
+      "epic": "META",
+      "requested_by": "owner",
+      "seen": false,
+      "effort": "S",
+      "legacy_id": null,
+      "parent": "T-0526",
+      "opened": "2026-09-03",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "queue_rank": 8
     }
   ]
 }

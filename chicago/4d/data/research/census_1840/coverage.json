@@ -386,7 +386,7 @@
   },
   {
    "range": "images 26-50 of 74",
-   "declared_by": "T-0495, split; this pass read NAMES on the two pages PR #670 already read and INVENTORIED the other 23. What each image is, and what has and has not been read from it, is stated per image — a hole is meant to fail rather than pass quietly. T-0530 then read the CELLS of those same two pages — the 26 free white age bands and the 12 free coloured columns on each — and checked every column against the sheet's own printed footings. T-0545 read printed 207 and 208 to the name and the cell, checked against the sheets' footings.",
+   "declared_by": "T-0495, split; this pass read NAMES on the two pages PR #670 already read and INVENTORIED the other 23. What each image is, and what has and has not been read from it, is stated per image — a hole is meant to fail rather than pass quietly. T-0530 then read the CELLS of those same two pages — the 26 free white age bands and the 12 free coloured columns on each — and checked every column against the sheet's own printed footings. T-0545 read printed 207 and 208 to the name and the cell, checked against the sheets' footings. T-0526 (names and cells of printed 216, 217, 218 and 224) was split on measurement into T-0552 (printed 216 and 217, read here) and T-0553 (printed 218 and 224): one left sheet is 31 to 33 lines across 38 hand-written columns, and two of them is a run's demonstration, not four.",
    "images": [
     {
      "index": 26,
@@ -397,8 +397,10 @@
      "lines_with_an_entry": 31,
      "what_it_is": "names + free-white age bands, filled",
      "in_pr_670_calibration_set": false,
-     "read_state": "inventoried_only",
-     "page_file": null
+     "read_state": "names_transcribed_cells_read",
+     "page_file": "data/research/census_1840/pages/33S7-9YYJ-DD.json",
+     "lines_ruled": 31,
+     "note": "read by T-0552 (piece 1 of T-0526): all 31 lines, names and every one of the 38 age-band columns, at a grid located from the image's own darkness profile. Four columns do not close against the enumerator's own footings and their residuals are on the page file; the coloured block closes exactly. The inventory's line count is restated unchanged."
     },
     {
      "index": 27,
@@ -491,11 +493,14 @@
      "file": "chicago/reference/census1840/33S7-9YYJ-RC.jpg",
      "sheet_side": "left",
      "printed_page": 217,
-     "lines_with_an_entry": 33,
+     "lines_with_an_entry": 31,
      "what_it_is": "names + free-white age bands, filled",
      "in_pr_670_calibration_set": false,
-     "read_state": "inventoried_only",
-     "page_file": null
+     "read_state": "names_transcribed_cells_read",
+     "page_file": "data/research/census_1840/pages/33S7-9YYJ-RC.json",
+     "lines_ruled": 31,
+     "note": "read by T-0552 (piece 1 of T-0526): all 31 lines, names and every one of the 38 age-band columns. All nine of the enumerator's male footings close exactly; three female footings do not and carry their residuals. THE INVENTORY SAID 33 LINES 'to the nearest line' AND THE SHEET CARRIES 31 - counted twice, once down the names and once on a drawn grid, with no blank ruled line between entries.",
+     "line_count_corrected_from": 33
     },
     {
      "index": 35,

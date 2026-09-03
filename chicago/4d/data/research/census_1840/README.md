@@ -319,3 +319,53 @@ and the continuation columns follow it.
 
 The other 23 images of this group are inventoried in `coverage.json` — kind, printed page,
 line count — and transcribed by the sibling tickets T-0495 was split into.
+
+## Printed pages 216 and 217, read to the cell (T-0552)
+
+`33S7-9YYJ-DD` (printed **216**) and `33S7-9YYJ-RC` (printed **217**) are the first two left
+sheets of image group 26–50 to be read in full: 62 households, every one of the 38 age-band
+columns on each line, and the enumerator's own footings transcribed beside them.
+
+**How the columns were fixed.** The leaf bows into the gutter, so a grid taken off the printed
+header is about a quarter of a column out in the middle of the page — the first reading of page
+216 put two marks a column to the left of where they stand because of it. Both sheets were
+therefore gridded from the image's own vertical darkness profile (page 216: free white males
+from x=0.1558 of the image width at a pitch of 0.019725, females from 0.4118 at 0.019575,
+coloured from 0.6689 at 0.01963; page 217: 0.1529/0.019523, 0.4067/0.0195, 0.6611/0.01955) and
+every line re-read from a crop with that grid drawn over it. The row ruling leans about half a
+line down page 217, which on a uniform row grid reads as a blank line between Philo Carpenter
+and Robert Crawford; it is drift, not a blank line, and the tail was re-read on a grid fitted
+to it.
+
+**A line count corrected.** The inventory declared page 217 at 33 lines "to the nearest line".
+It carries **31**, counted twice — once down the names column and once on the drawn grid — with
+no blank ruled line anywhere between entries. Page 216's declared 31 is restated unchanged.
+
+**What closes and what does not.** Every column of both sheets is checked against the figure the
+enumerator wrote at the foot of his own column, and a residual is recorded rather than adjusted
+away.
+
+| sheet | block | footings that close | that do not |
+|---|---|---|---|
+| 216 `33S7-9YYJ-DD` | free white males | 5 of 8 | under 5 (20 read / 21 footed), 10–15 (3/6), 15–20 (6/1) |
+| 216 | free white females | 7 of 9 | under 5 (15/14), 5–10 (4/2) |
+| 216 | free coloured | 3 of 3 | — |
+| 217 `33S7-9YYJ-RC` | free white males | **9 of 9** | — |
+| 217 | free white females | 5 of 8 | under 5 (20/16), 20–30 (19/18), 30–40 (15/12) |
+
+Page 217's male block closing exactly on all nine footed columns is what licenses the method:
+the same grid, read the same way, reproduces the enumerator's own arithmetic on 86 people. The
+residuals that remain are therefore a statement about the sheets, not a confession about the
+grid — and two of page 216's are as likely to be a glyph as an error, which the page file says
+where it says it (its 10–15 footing is a bottom-looped figure read as 6, and a 3 would close the
+column exactly; the reading is flagged, not assumed).
+
+**What this means for pairing.** Neither sheet is paired to its continuation — that is T-0539's
+single reading over all eleven. Each publishes its population key: page 216 at 175 by the
+footings, 180 by the lines; page 217 at 160 by the footings, 168 by the lines. Try the footing
+key first, because the TOTAL column a continuation sheet foots comes out of the same arithmetic.
+
+**Nothing here mints or regrades an 1835 resident.** Philo Carpenter is on page 217 line 29 and
+is the one name a modern reader can be sure of; the bridge from a named 1840 head to an 1835
+record is T-0505's step, under a ladder that is explicit that 1839/1840 alone is never a 1835
+resident.
