@@ -1,4 +1,12 @@
 export const CHANGELOG = [ // newest first
+  { v: 444, title: 'The rebuild button now rebuilds the town it was pointed at', kind: 'fix', ts: '2026-09-03T06:37:35.243Z', date: 'Sep 3, 2026, 1:37 AM CT',
+    items: [
+      'Nothing you can see changed today. This is about the machine that rebuilds this town\u2019s buildings, and about a fault that could have left a building standing in the scene while its own written record said something else.',
+      'Every building here is generated from a record \u2014 its size, its siding, the pitch of its roof. A check that runs on every change re-reads those records and refuses any building whose shape has stopped matching what its record says, and the remedy it prints is: rebuild that building.',
+      'On 31 August the check named two buildings on a piece of work in progress as out of date. The rebuild was run against that exact work, spent twelve minutes generating, and reported that it had rebuilt nothing. Both were telling the truth, about different things: the rebuild was quietly ignoring which version of the town it had been pointed at and building the shared one instead \u2014 which was already up to date, so there was indeed nothing to do.',
+      'It now builds the version it was handed, and the changes it produces go back to that same version. The nightly rebuild behaves exactly as before: it still builds the shared town, because the shared town is the only thing it is ever pointed at.',
+      'The fault was four lines of a build script that no test could reach, so the decision is now a small program with its own assertions \u2014 including two that fail if the build script ever stops asking it. A right answer nobody asks for is the same fault wearing a different hat.',
+    ] },
   { v: 443, title: 'Signboards come off the doors and windows they hung over', kind: 'fix', ts: '2026-09-03T06:20:49.448Z', date: 'Sep 3, 2026, 1:20 AM CT',
     items: [
       'Twenty of this town\u2019s signboards were fixed flat against a building \u2014 six boards nailed to a front, fourteen names painted straight on the boards \u2014 and every single one of them stood over a door or a window. The Sauganash\u2019s board across a window bay is the one that was reported; a sweep found it was not some of them, it was all twenty.',

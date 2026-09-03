@@ -1,7 +1,7 @@
 ---
 id: T-0454
 title: The gate calls a GLB stale and the bake declines to rebuild it, so a stale asset cannot be cleared by baking
-state: open
+state: claimed
 epic: PIPELINE
 requested_by: owner
 seen: true
@@ -11,7 +11,7 @@ parent: null
 opened: 2026-08-31
 closed: null
 pr: null
-claimed_by: null
+claimed_by: run 9/3/2026, 1:31:56 AM CT
 blocked_on: null
 needs_bake: false
 ---
@@ -80,3 +80,57 @@ message has to work.
 4. **PR #597 is re-read against the result.** It is currently blocked on exactly
    this and on nothing else — its conflicts are resolved and its gate is
    otherwise green.
+
+## What it turned out to be — 2026-09-03
+
+**Neither tool was wrong. They were never shown the same tree.**
+`.github/workflows/chicago-4d-bake.yml`'s second step ran, unconditionally:
+
+```
+if git ls-remote --exit-code --heads origin dev >/dev/null 2>&1; then
+  git checkout -B dev origin/dev
+fi
+```
+
+So a bake **dispatched against a branch discarded that branch and baked `dev`**.
+`dev` was fresh, so Blender rebuilt 360 assets byte for byte, and
+`tools/bake_content_changed.py` answered "no CONTENT" — honestly, about a tree
+nobody had asked about. `generators/build.py` never skipped anything; it was
+never asked. The gate's stale asset was on a branch the bake had thrown away
+before Blender started.
+
+Reproduced deliberately (acceptance 1), one mesh parameter moved on a branch —
+`bates_auction_room` `siding_exposure_m` 0.14 → 0.127, the same field and the
+same shape as the reported case:
+
+```
+tools/validate.py --stale     stale check: 367 match, 1 stale
+                              FAIL stale: bates_auction_room__frame_1834.glb is STALE
+                                   inputs now hash e2c58b0e5ee8, mesh built from 010608142cf0
+the workflow's step, verbatim HEAD t0454-repro fbebc203 -> dev 8ecfcb57
+                              the branch's changed parameter: 0 occurrences on disk
+                              stale check: 368 match, 0 stale  ← the fault, exactly
+build.py --only <id>          built bates_auction_room__frame_1834.glb, 36,512 bytes, ~394 tris
+   on the branch, 0.7 s       stale check: 368 match, 0 stale
+```
+
+The bake clears the gate in under a second **when it is shown the tree that
+carries the change**. The remedy the gate prints was true of `tools/bake.sh` and
+false of the workflow the same sentence names.
+
+**The fix (acceptance 2).** `tools/bake_ref.py` decides which ref a bake builds,
+reading the tiers from `.github/pipeline.json`: the schedule and any run whose
+ref is the production tier build `dev` — the nightly is unchanged, and nothing
+can PR into `main` — and everything else builds the ref it was started on. The
+PR base follows the ref that was baked.
+
+**The test (acceptance 3).** `tools/bake_ref.py --self-test`, 14 cases, wired
+into `check.sh`. Ten are the decision; four are drift guards on the workflow
+itself, because a rule nothing calls any more is the same bug wearing a
+different hat. Both halves demonstrated firing when broken.
+
+**PR #597 (acceptance 4) is re-read and needs nothing.** It **merged** on
+2026-09-01 at 00:40 UTC, so the ticket's "currently blocked on exactly this" no
+longer holds; `dev` reports 368 assets fresh and 0 stale. T-0429 has since been
+re-opened and claimed for its next deal, and it is that run — and every future
+one that moves a mesh parameter — the fix is for.
