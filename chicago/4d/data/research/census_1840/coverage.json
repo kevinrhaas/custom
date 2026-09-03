@@ -4,7 +4,7 @@
  "group": "images 26-50 of 75",
  "ordering": "ls chicago/reference/census1840/*.jpg | sort, with the duplicate copy '33S7-9YYJ-9WF (1).jpg' removed first so the index runs 1..75 over the 75 distinct images. The duplicate sorts at position 19 of the raw 76, i.e. inside group 1-25, so removing it does not move this group's window relative to the raw listing beyond a one-place shift; the list below is the authority for what this group is.",
  "duplicate_skipped": "33S7-9YYJ-9WF (1).jpg — byte-identical to 33S7-9YYJ-9WF.jpg (1,349,156 bytes each)",
- "declared_by": "T-0495, split; this pass read NAMES on the two pages PR #670 already read and INVENTORIED the other 23. What each image is, and what has and has not been read from it, is stated per image — a hole is meant to fail rather than pass quietly.",
+ "declared_by": "T-0495, split; this pass read NAMES on the two pages PR #670 already read and INVENTORIED the other 23. What each image is, and what has and has not been read from it, is stated per image — a hole is meant to fail rather than pass quietly. T-0530 then read the CELLS of those same two pages — the 26 free white age bands and the 12 free coloured columns on each — and checked every column against the sheet's own printed footings.",
  "deposit_is_read_only": true,
  "images": [
   {
@@ -76,7 +76,7 @@
    "lines_with_an_entry": 31,
    "what_it_is": "names + free-white age bands, filled",
    "in_pr_670_calibration_set": true,
-   "read_state": "names_transcribed",
+   "read_state": "names_and_cells_transcribed",
    "page_file": "data/research/census_1840/pages/33S7-9YYJ-NY.json",
    "note": "one of the seven pages PR #670 read"
   },
@@ -161,7 +161,7 @@
    "lines_with_an_entry": 31,
    "what_it_is": "names + free-white age bands, filled",
    "in_pr_670_calibration_set": true,
-   "read_state": "names_transcribed",
+   "read_state": "names_and_cells_transcribed",
    "page_file": "data/research/census_1840/pages/33S7-9YYJ-W6.json",
    "note": "one of the seven pages PR #670 read"
   },
@@ -335,7 +335,9 @@
   ],
   "names_transcribed_pages": 2,
   "names_transcribed_lines": 62,
-  "inventoried_only": 23
+  "inventoried_only": 23,
+  "cells_transcribed_pages": 2,
+  "cells_transcribed_lines": 62
  },
  "line_counts_are": "read off the contact sheet at 900x700 and are the count of ruled lines carrying an entry, not a printed figure. The two transcribed pages' counts (31 each) are confirmed line by line; the other 23 are stated to the nearest line and a transcribing pass restates them exactly.",
  "negative_and_inaccessible": [

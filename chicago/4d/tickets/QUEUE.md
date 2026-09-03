@@ -314,3 +314,4 @@ T-0449 — Four South Water frontage entries declare lots their runs never reach
 T-0522 — The dev gate has been red on 10 legs since PR #670 merged the recovered census bridge
 T-0520 — The archetype builders compute their own opening rectangles beside the ones facade_openings states, and only a town-wide rebake can join them
 T-0524 — The renderer smoke still asserts a reconstructed resident, 956 person entries and 150 research reviews, and the layer has none of the three
+T-0531 — The continuation half of printed pages 230 and 232 is on a right sheet nobody has identified, and it is not in images 26-50

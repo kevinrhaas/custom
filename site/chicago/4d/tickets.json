@@ -1,6 +1,6 @@
 {
   "project": "chicago-4d",
-  "generated_ct": "Sep 3, 2026, 3:00 AM",
+  "generated_ct": "Sep 3, 2026, 3:55 AM",
   "tickets": [
     {
       "id": "T-0001",
@@ -8714,6 +8714,24 @@
       "blocked_on": null,
       "needs_bake": false,
       "queue_rank": 3
+    },
+    {
+      "id": "T-0531",
+      "title": "The continuation half of printed pages 230 and 232 is on a right sheet nobody has identified, and it is not in images 26-50",
+      "state": "open",
+      "epic": "META",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "M",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-09-03",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "queue_rank": 133
     }
   ]
 }
