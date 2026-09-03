@@ -97,3 +97,49 @@ Description and Historical Sketch (T-0567), the Statistical Account (T-0567), th
 Advertising Directory (T-0568) and Norris's own General Intelligence Agency card at
 the foot of printed page 65. All of it is committed as page text, so those tickets
 start from the text rather than from the network.
+
+### What T-0569 spent it on — `data/residents/directory_1844.json`
+
+The crosswalk above is a PROPOSAL and stops at the edge of the residents layer. **T-0587**
+(the residents piece of T-0569) is the pass that spends it, and what it produces is a layer
+BESIDE the household records rather than a key inside them:
+`tools/spend_norris_1844.py` reads the crosswalk and writes
+`data/residents/directory_1844.json`, which `renderers/web/js/residents.js` joins on
+`person_id` and renders on the person's own card.
+
+**Why beside and not inside.** Most of the people this reaches live in records a mint
+regenerates byte for byte — `mint_letter_list_residents.py --check` and its four siblings diff
+the whole file — so a block written into them is drift by the next gate that runs. It is also
+the argument T-0442 already made for candidate identities, and the shape
+`residents/research_pilot.json` already has: an 1844 listing is EVIDENCE ABOUT 1844 offered
+beside a person of 1835, not a fact of theirs, and keeping it beside the record is what stops
+it reading as one.
+
+**67 people, and all three statuses are shown.** 48 meet exactly one entry no other person in
+this town meets, 15 meet several and the project does not choose between them, 4 share their
+one entry with another 1835 person so no match is made. A section that showed only the first
+would be reporting the crosswalk's successes and hiding its arithmetic. Of the 48, **21** have
+no trade in the 1835 layer and a trade printed against their name in 1844, and **39** have no
+1835 street and a street printed in 1844 — stated on the card as what the line HOLDS, carried
+into no 1835 claim, and moving nobody's grade.
+
+**The 171 refusals reach no card.** A refusal on this rule — the surname is in the book under
+no entry carrying the person's initial — is a statement about eleven Smiths rather than about
+the person. They stay in the crosswalk, counted in the layer file's `refusals_not_shown`, and
+171 cards saying "looked, and the rule says no" would bury the 67 that say something.
+
+**The line is quoted and its parse is not.** The crosswalk splits each printed line into a
+trade and an address, and on this volume that split is the weakest thing in the reading:
+`Adams, W. H. of W. H. A. & Co. residence iasalle. street` yields the trade `of W`. Those two
+fields do not reach the card. The line goes whole, damage and all, with its printed page and
+its entry id, and the split survives only as the `carries` statement a reader checks against
+the quote.
+
+**One correction to the crosswalk itself.** `could_carry_occupation` reported **0** and the
+true number is **21**. The residents layer writes `none_recorded` where a person's trade was
+never attested, and the test for "this record has no trade" was a truthiness test, which read
+that sentinel as a trade on 23 of the 48. A nil that looked like a finding; it was a bug, and
+the crosswalk regenerates with the count corrected.
+
+**Still 1844.** Nothing here regrades, moves, dates or employs anybody in 1835. Under the
+ratified ladder an 1844 listing alone never makes an 1835 resident.

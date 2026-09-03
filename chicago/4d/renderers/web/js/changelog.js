@@ -1,4 +1,13 @@
 export const CHANGELOG = [ // newest first
+  { v: 461, title: 'The first Chicago directory meets the people of this town', kind: 'fix', ts: '2026-09-03T17:28:32.068Z', date: 'Sep 3, 2026, 12:28 PM CT',
+    items: [
+      'Chicago\u2019s first city directory was printed in 1844, and sixty-seven people already standing in this reconstruction are named in it. Their cards now say so: the line exactly as Norris set it, the page it is printed on, and the rule that reached them.',
+      'Forty-eight of them are met by one entry and by nothing else in the book. Fifteen are met by several, and the project does not choose between them \u2014 every candidate is printed instead. Four share their one entry with somebody else in this town, and at most one of the two can be the man printed, so no match is made and the card says whose claim it competes with. All three are shown, because a section that showed only the clean matches would be reporting its successes and hiding its arithmetic.',
+      'Twenty-one of the matched people have no trade anywhere in their 1835 record and a trade printed against their name nine years later; thirty-nine have no street in 1835 and a street in 1844. The card says the line holds it. It does not write it into 1835.',
+      'The quote is the printed line and not a tidied version of it. One entry reads \u2018residence iasalle. street\u2019, and splitting that line by its commas yields the trade \u2018of W\u2019 \u2014 which is why the split is not published as though it were a reading, and the line a visitor can go and check is.',
+      'A hundred and seventy-one more people share a surname with somebody in the book and match no entry under it. Norris lists eleven Smiths, so a surname on its own is a refusal here, and those refusals are counted rather than shown.',
+      '1844 is nine years after the day this town is built for. Nobody was added, promoted, moved, dated or given a job by any of it.',
+    ] },
   { v: 460, title: 'Two more 1840 census sheets read, counting columns and all', kind: 'fix', ts: '2026-09-03T17:08:35.135Z', date: 'Sep 3, 2026, 12:08 PM CT',
     items: [
       'Two more photographs of the 1840 census have been read line by line \u2014 sixty-one households, with the narrow counting columns beside every name read as well as the name itself.',

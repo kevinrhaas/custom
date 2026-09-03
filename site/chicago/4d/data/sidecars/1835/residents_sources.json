@@ -1008,6 +1008,14 @@
       "tier": 4,
       "tier_label": "later scholarship"
     },
+    "norris_directory_1844": {
+      "source_id": "norris_directory_1844",
+      "citation": "J. W. Norris, General Directory and Business Advertiser of the City of Chicago, for the Year 1844: together with a Historical Sketch and Statistical Account, to the Present Time (Chicago: Ellis & Fergus, printers, 1844); read in the T. F. Bohan republication of 1903, University of Illinois copy",
+      "url": "https://archive.org/details/generaldirectory19norr",
+      "archived_url": "https://archive.org/details/generaldirectory19norr",
+      "tier": 1,
+      "tier_label": "period/eyewitness"
+    },
     "nps_bailly_homestead": {
       "source_id": "nps_bailly_homestead",
       "citation": "National Park Service, Joseph Bailly Homestead nomination",

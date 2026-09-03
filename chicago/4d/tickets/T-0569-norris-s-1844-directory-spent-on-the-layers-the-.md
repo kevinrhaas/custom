@@ -1,7 +1,7 @@
 ---
 id: T-0569
 title: Norris's 1844 directory spent on the layers: the 1835 residents validated and enriched, and the businesses written and dated
-state: claimed
+state: split
 epic: META
 requested_by: owner
 seen: false
@@ -9,7 +9,7 @@ effort: S
 legacy_id: null
 parent: T-0555
 opened: 2026-09-03
-closed: null
+closed: 2026-09-03
 pr: null
 claimed_by: run 9/3/2026, 12:18:48 PM CT
 blocked_on: null

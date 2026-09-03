@@ -102,7 +102,8 @@
 # --- if you do not already i am starting to move the research corpus to the internet archive".
 T-0567 — Norris's 1844 directory: the Description and Historical Sketch and the Statistical Account read as dated town findings
 T-0568 — Norris's 1844 directory: the Advertising Directory read as businesses, with proprietors, trades, addresses and founding dates
-T-0569 — Norris's 1844 directory spent on the layers: the 1835 residents validated and enriched, and the businesses written and dated
+T-0587 — Norris's 1844 directory spent on the residents layer: every 1835 person the volume meets, shown on their card with the printed line, the page and the rule
+T-0588 — Norris's 1844 directory spent on the businesses layer: the firms the volume prints, dated and written where the sketch, the advertiser or Fergus 1843 puts their founding at or before 1835
 T-0571 — Fergus's Chicago directory for 1843, complete on Genealogy Trails: 2,427 entries of name, trade and street, read into the directories domain and date-flagged as later evidence
 T-0572 — The 134 Black Hawk War veterans who enrolled at Chicago in 1832, read from the Illinois State Archives index and crosswalked to the 1833-1835 town lists
 T-0573 — Father St. Cyr's register in the Illinois Catholic Historical Review: 87 marriages of 1834-1839 with their witnesses named, and the nine deaths of 1834-1836

@@ -1211,6 +1211,20 @@ step "the newspaper corpus resolves, and nothing under data/research/ is publish
 step "the research domains hold one shape" \
   python3 tools/research_domains.py --check
 
+# T-0566, T-0569. Norris's 1844 directory arrived as three generated files that no
+# gate re-derived: the 2,073 entries, the crosswalk that proposes which of them meet
+# the people of 1835, and the layer the panel renders those meetings from. A hand-edit
+# to any of them — a match nudged out of "ambiguous", a refusal quietly dropped, a
+# trade written into a card — would have shipped unopposed. All three rebuild and diff.
+step "Norris's 1844 directory entries re-derive from the committed page text" \
+  python3 tools/read_norris_1844.py --check
+
+step "…and the 1835 crosswalk re-derives from those entries" \
+  python3 tools/crosswalk_norris_1844.py --check
+
+step "…and the 1844 findings the cards show re-derive from that crosswalk" \
+  python3 tools/spend_norris_1844.py --check
+
 # T-0554. The Calumet Club's old-settlers receptions are a source SERIES read out of the
 # Tribune's reprints, and the thing that goes wrong with a source like this is silent
 # drift: a name hand-tidied, a quote paraphrased, a merge asserted in a file and never
