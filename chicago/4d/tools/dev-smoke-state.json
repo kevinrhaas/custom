@@ -2,6 +2,99 @@
   "note": "T-0216 — dev's standing smoke result, so a branch can answer \"is this red mine, or did I inherit it?\" from the record instead of re-running the stage on a clean worktree (three agents paid that price on one red on 2026-08-27; T-0215). Written by tools/dev-smoke-state.mjs, which parses a smoke log — local or from a chicago-4d-smoke.yml run. Every reading carries the CONDITIONS it was taken under, because a quiet CI runner does not predict a loaded steward box: T-0215 measured a factor of twenty on one tree. loadavg is sampled when the reading is filed, so it includes the smoke's own load. `treeHash` digests exactly what the smoke exercises (renderers, data, assets, smoke_renderer.mjs, the published mirror), so a reading whose hash matches yours is a reading OF YOUR TREE. A RECORD, NOT A BAR: nothing here gates anything. THE PART NUMBERS CHANGED ON 2026-08-30 (T-0346): part 4 was cut into 4, 5 and 6 and the old parts 5-9 became 7-11; then T-0173 halved part 7 (8-11 -> 9-12) and T-0170 halved part 10 (11-12 -> 12-13). A reading filed before any of those is labelled in the OLD numbering of its day. Each of those also carries a treeHash that cannot match a tree containing the cut, so `ask` already reports them as not taken on your tree — but read the stage number as dated rather than current.",
   "readings": [
     {
+      "viewport": "mobile",
+      "stage": "12",
+      "parts": [
+        12
+      ],
+      "verdict": "pass",
+      "target": "published",
+      "passed": 37,
+      "failed": 0,
+      "failures": [],
+      "wallSeconds": 91,
+      "takenAt": "2026-09-03T22:16:31.854Z",
+      "ref": "steward/t-0498-census-1830-peoria",
+      "commit": "df5ca51c7539",
+      "devCommit": "1b26e8e23db0",
+      "treeHash": "sha256:872d19badeeedaa5",
+      "treeDirty": false,
+      "changelogHash": "sha256:adba6f4700c8d494",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          3.9,
+          3.6,
+          2.2
+        ]
+      },
+      "source": "/tmp/t0498/smoke_mobile_12.log"
+    },
+    {
+      "viewport": "desktop",
+      "stage": "12",
+      "parts": [
+        12
+      ],
+      "verdict": "pass",
+      "target": "published",
+      "passed": 37,
+      "failed": 0,
+      "failures": [],
+      "wallSeconds": 159,
+      "takenAt": "2026-09-03T22:16:31.757Z",
+      "ref": "steward/t-0498-census-1830-peoria",
+      "commit": "df5ca51c7539",
+      "devCommit": "1b26e8e23db0",
+      "treeHash": "sha256:872d19badeeedaa5",
+      "treeDirty": false,
+      "changelogHash": "sha256:adba6f4700c8d494",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          3.9,
+          3.6,
+          2.2
+        ]
+      },
+      "source": "/tmp/t0498/smoke_desktop_12.log"
+    },
+    {
+      "viewport": "desktop",
+      "stage": "1",
+      "parts": [
+        1
+      ],
+      "verdict": "pass",
+      "target": "published",
+      "passed": 78,
+      "failed": 0,
+      "failures": [],
+      "wallSeconds": 267,
+      "takenAt": "2026-09-03T22:16:31.659Z",
+      "ref": "steward/t-0498-census-1830-peoria",
+      "commit": "df5ca51c7539",
+      "devCommit": "1b26e8e23db0",
+      "treeHash": "sha256:872d19badeeedaa5",
+      "treeDirty": false,
+      "changelogHash": "sha256:adba6f4700c8d494",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          3.9,
+          3.6,
+          2.2
+        ]
+      },
+      "source": "/tmp/t0498/smoke_desktop_1.log"
+    },
+    {
       "viewport": "desktop",
       "stage": "13",
       "parts": [
@@ -1375,68 +1468,6 @@
     },
     {
       "viewport": "desktop",
-      "stage": "3",
-      "parts": [
-        3
-      ],
-      "verdict": "pass",
-      "target": "published",
-      "passed": 74,
-      "failed": 0,
-      "failures": [],
-      "wallSeconds": 142,
-      "takenAt": "2026-09-03T13:00:27.873Z",
-      "ref": "steward/t-0524-smoke-resident-layer",
-      "commit": "67bb0085da44",
-      "devCommit": "2b59c60ca5a2",
-      "treeHash": "sha256:2928ce3e7fd1e5c0",
-      "treeDirty": false,
-      "changelogHash": "sha256:151980251d63a297",
-      "host": {
-        "kind": "steward-runner",
-        "cpus": 4,
-        "memGB": 15.6,
-        "loadavg": [
-          5.4,
-          4.6,
-          3.8
-        ]
-      },
-      "source": "/tmp/d3c.log"
-    },
-    {
-      "viewport": "mobile",
-      "stage": "3",
-      "parts": [
-        3
-      ],
-      "verdict": "pass",
-      "target": "published",
-      "passed": 74,
-      "failed": 0,
-      "failures": [],
-      "wallSeconds": 78,
-      "takenAt": "2026-09-03T13:00:27.778Z",
-      "ref": "steward/t-0524-smoke-resident-layer",
-      "commit": "67bb0085da44",
-      "devCommit": "2b59c60ca5a2",
-      "treeHash": "sha256:2928ce3e7fd1e5c0",
-      "treeDirty": false,
-      "changelogHash": "sha256:151980251d63a297",
-      "host": {
-        "kind": "steward-runner",
-        "cpus": 4,
-        "memGB": 15.6,
-        "loadavg": [
-          5.4,
-          4.6,
-          3.8
-        ]
-      },
-      "source": "/tmp/m3c.log"
-    },
-    {
-      "viewport": "desktop",
       "stage": "11-12",
       "parts": [
         11,
@@ -1726,37 +1757,6 @@
         ]
       },
       "source": "/tmp/s_d5.log"
-    },
-    {
-      "viewport": "desktop",
-      "stage": "1",
-      "parts": [
-        1
-      ],
-      "verdict": "pass",
-      "target": "published",
-      "passed": 77,
-      "failed": 0,
-      "failures": [],
-      "wallSeconds": 216,
-      "takenAt": "2026-08-30T08:43:06.547Z",
-      "ref": "steward/t-0379-letter-list-scale",
-      "commit": "b8a7d540d43d",
-      "devCommit": "afa7c2f6e1da",
-      "treeHash": "sha256:f04d3ae0d12a9edb",
-      "treeDirty": true,
-      "changelogHash": "sha256:e90cede42bb20ab1",
-      "host": {
-        "kind": "steward-runner",
-        "cpus": 4,
-        "memGB": 15.6,
-        "loadavg": [
-          0.6,
-          2.5,
-          3.6
-        ]
-      },
-      "source": "/tmp/s_d1.log"
     },
     {
       "viewport": "mobile",
