@@ -1,6 +1,6 @@
 {
   "project": "chicago-4d",
-  "generated_ct": "Sep 3, 2026, 3:37 AM",
+  "generated_ct": "Sep 3, 2026, 4:49 AM",
   "tickets": [
     {
       "id": "T-0001",
@@ -7076,7 +7076,7 @@
     {
       "id": "T-0430",
       "title": "Open blk_south_water_franklin: 4 roofs of headroom on two free lots",
-      "state": "open",
+      "state": "claimed",
       "epic": "META",
       "requested_by": "loop",
       "seen": false,
@@ -7086,7 +7086,7 @@
       "opened": "2026-08-29",
       "closed": null,
       "pr": null,
-      "claimed_by": null,
+      "claimed_by": "run 9/3/2026, 4:48:59 AM CT",
       "blocked_on": null,
       "needs_bake": true,
       "queue_rank": 46
@@ -8822,6 +8822,24 @@
       "blocked_on": null,
       "needs_bake": false,
       "queue_rank": 136
+    },
+    {
+      "id": "T-0537",
+      "title": "The web derivatives are stamped by an unpinned gltf-transform, so a release upstream restamps all 372 of them",
+      "state": "open",
+      "epic": "META",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "M",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-09-03",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "queue_rank": 137
     }
   ]
 }

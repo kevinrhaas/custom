@@ -318,3 +318,4 @@ T-0522 — The dev gate has been red on 10 legs since PR #670 merged the recover
 T-0520 — The archetype builders compute their own opening rectangles beside the ones facade_openings states, and only a town-wide rebake can join them
 T-0524 — The renderer smoke still asserts a reconstructed resident, 956 person entries and 150 research reviews, and the layer has none of the three
 T-0536 — The census_1840 domain declares its 25 read images in its own images[] shape, which the shared research-domain gate does not read
+T-0537 — The web derivatives are stamped by an unpinned gltf-transform, so a release upstream restamps all 372 of them
