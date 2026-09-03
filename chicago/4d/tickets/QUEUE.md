@@ -309,3 +309,4 @@ T-0440 — Clark, Filer & Co.'s live placement is empty while three printings pu
 T-0449 — Four South Water frontage entries declare lots their runs never reach, and each hides its block's headroom
 T-0522 — The dev gate has been red on 10 legs since PR #670 merged the recovered census bridge
 T-0520 — The archetype builders compute their own opening rectangles beside the ones facade_openings states, and only a town-wide rebake can join them
+T-0523 — Five real named people sit in retired inf_ records and no research cohort can reach them
