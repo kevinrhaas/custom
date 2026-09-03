@@ -1,7 +1,7 @@
 ---
 id: T-0505
 title: Three of 210 named 1840 heads are bridged to 1835 residents: crosswalk every named head to residents, voters and letter-list names
-state: claimed
+state: done
 epic: META
 requested_by: owner
 seen: false
@@ -9,12 +9,12 @@ effort: S
 legacy_id: null
 parent: null
 opened: 2026-09-02
-closed: null
-pr: null
+closed: 2026-09-03
+pr: 722
 claimed_by: run 9/3/2026, 2:33:51 PM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-03T19:55:49.360Z
 claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/33796879498
 ---
 
