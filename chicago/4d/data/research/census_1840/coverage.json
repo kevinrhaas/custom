@@ -88,12 +88,13 @@
      "file": "chicago/reference/census1840/33S7-9YYJ-5V.jpg",
      "sheet_side": "right",
      "printed_page": null,
-     "lines_with_an_entry": 28,
-     "what_it_is": "continuation sheet, filled",
+     "lines_with_an_entry": null,
+     "what_it_is": "continuation sheet, filled. The eight middle columns are read and ELEVEN OF TWELVE columns and blocks close against the enumerator's own footing (commerce 27, manufactures and trades 15, the learned professions 3, and eight more at nothing written). The TOTAL column is read on 22 of its 31 numbers and does not close; its printed footing is one glyph short of legible and the page file argues it toward 165.",
      "in_pr_670_calibration_set": false,
-     "read_state": "footer_and_structure_read_cells_not_committed",
+     "read_state": "industry_columns_read_and_closed_total_column_partial",
      "page_file": "data/research/census_1840/pages/33S7-9YYJ-5V.json",
-     "note": "the enumerator's own footer row is committed; the sheet carries no horizontal ruled lines, and the line count and per-line cells are open on T-0547"
+     "note": "T-0547 was split when the sheet proved to need more than one demonstration: T-0554 read the columns (this state), T-0555 has the line index and the seven unread totals. The sheet carries no horizontal ruled lines, which is why the row index and not the digits is what is left.",
+     "lines_with_an_entry_note": "was 28, from an inventory pass, \"to the nearest line\". The reading of the sheet does not support it: the TOTAL column carries 31 numbers, 22 of them on lines a coincident industry entry fixes. 29 to 31, favouring 31 — see the page file's lines_note. Held null rather than moved from one asserted number to another."
     },
     {
      "index": 7,
