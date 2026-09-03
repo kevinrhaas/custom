@@ -1,6 +1,6 @@
 {
   "project": "chicago-4d",
-  "generated_ct": "Sep 3, 2026, 5:17 PM",
+  "generated_ct": "Sep 3, 2026, 5:24 PM",
   "tickets": [
     {
       "id": "T-0001",
@@ -8171,7 +8171,7 @@
       "parent": null,
       "opened": "2026-09-02",
       "closed": "2026-09-03",
-      "pr": "0",
+      "pr": "734",
       "claimed_by": "run 9/3/2026, 5:17:27 PM CT",
       "blocked_on": null,
       "needs_bake": false,
@@ -10051,7 +10051,7 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 9999
+      "queue_rank": 151
     }
   ]
 }
