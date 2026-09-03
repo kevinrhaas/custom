@@ -138,7 +138,11 @@ T-0459 — Signboards are mounted over doors and windows, when the same wall has
 T-0450 — SMOKE-BUDGET.md compares a per-leg cap with a whole-gate total, and calls one runner a different machine from the other
 # --- T-0454 is beside T-0450 for the same reason: it makes a gate's own instruction
 # --- untrue. The gate says re-bake a stale asset; the bake, run on that exact tree,
-# --- rebuilds nothing. PR #597 is blocked on this and nothing else.
+# --- rebuilds nothing. It NO LONGER blocks PR #597 — that merged on 2026-08-31 by
+# --- re-deriving the block's ledgers until the two GLBs cleared themselves, which is a
+# --- way round the fault and not a fix for it. What it blocks now is every future
+# --- change to a mesh parameter: each one lands in exactly this state, and the remedy
+# --- the gate itself prints is the one that does not work.
 T-0454 — The gate calls a GLB stale and the bake declines to rebuild it, so a stale asset cannot be cleared by baking
 
 # --- THE WEST DIVISION IS WRONG ON THE GROUND — OWNER FAULT REPORT, 2026-08-31.
