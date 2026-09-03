@@ -101,7 +101,10 @@
 # --- city data improvement ticket for https://archive.org/details/chicago1835-newberry-genealogical-index
 # --- if you do not already i am starting to move the research corpus to the internet archive".
 T-0554 — The Old Settlers of Chicago: the Calumet Club receptions (1879 on) for residents prior to 1 January 1840, the Tribune's 1882 roll of settlers who died that year, and the Fergus reception lists — research the people and the meetings, add residents with citations
-T-0555 — Norris's General Directory and Business Advertiser of Chicago for 1844 (HathiTrust chi.56111136): parse residents, businesses and occupations, date-flag them as later evidence, and use them to validate and enrich the 1835 residences and businesses
+T-0566 — Norris's General Directory of Chicago for 1844: the volume located on the Internet Archive and the directory proper read entry by entry, with the crosswalk to the 1835 residents
+T-0567 — Norris's 1844 directory: the Description and Historical Sketch and the Statistical Account read as dated town findings
+T-0568 — Norris's 1844 directory: the Advertising Directory read as businesses, with proprietors, trades, addresses and founding dates
+T-0569 — Norris's 1844 directory spent on the layers: the 1835 residents validated and enriched, and the businesses written and dated
 T-0556 — genealogytrails.com Cook County: inventory every section of the site, grade what it holds for 1835 Chicago, and split the extraction of residents, households, businesses, structures and occupations into tickets
 T-0557 — The Illinois Public Domain Land Tract Sales database (Illinois State Archives): pull every federal land sale in the townships around Chicago through 1836 and crosswalk purchasers to residents, households and structures
 T-0562 — The Genealogical Index of the Newberry Library (4 vols., Internet Archive chicago1835-newberry-genealogical-index): read the index for every 1835 surname and every Chicago, Cook County and Illinois citation, and follow the pointers into the genealogies that date and place residents, households and businesses
