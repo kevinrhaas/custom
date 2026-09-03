@@ -382,7 +382,7 @@
   },
   {
    "range": "images 26-50 of 74",
-   "declared_by": "T-0495, split; this pass read NAMES on the two pages PR #670 already read and INVENTORIED the other 23. What each image is, and what has and has not been read from it, is stated per image — a hole is meant to fail rather than pass quietly. T-0530 then read the CELLS of those same two pages — the 26 free white age bands and the 12 free coloured columns on each — and checked every column against the sheet's own printed footings.",
+   "declared_by": "T-0495, split; this pass read NAMES on the two pages PR #670 already read and INVENTORIED the other 23. What each image is, and what has and has not been read from it, is stated per image — a hole is meant to fail rather than pass quietly. T-0530 then read the CELLS of those same two pages — the 26 free white age bands and the 12 free coloured columns on each — and checked every column against the sheet's own printed footings. T-0545 read printed 207 and 208 to the name and the cell, checked against the sheets' footings.",
    "images": [
     {
      "index": 26,
@@ -632,11 +632,12 @@
      "file": "chicago/reference/census1840/33SQ-GYYJ-93G.jpg",
      "sheet_side": "left",
      "printed_page": 207,
-     "lines_with_an_entry": 31,
+     "lines_with_an_entry": 30,
      "what_it_is": "names + free-white age bands, filled",
      "in_pr_670_calibration_set": false,
-     "read_state": "inventoried_only",
-     "page_file": null
+     "read_state": "names_and_cells_transcribed",
+     "page_file": "data/research/census_1840/pages/33SQ-GYYJ-93G.json",
+     "note": "read line by line by T-0545. The contact-sheet inventory said 31 lines; the sheet carries 30, and the count here is now the counted one."
     },
     {
      "index": 47,
@@ -668,11 +669,12 @@
      "file": "chicago/reference/census1840/33SQ-GYYJ-992.jpg",
      "sheet_side": "left",
      "printed_page": 208,
-     "lines_with_an_entry": 31,
+     "lines_with_an_entry": 30,
      "what_it_is": "names + free-white age bands, filled",
      "in_pr_670_calibration_set": false,
-     "read_state": "inventoried_only",
-     "page_file": null
+     "read_state": "names_and_cells_transcribed",
+     "page_file": "data/research/census_1840/pages/33SQ-GYYJ-992.json",
+     "note": "read line by line by T-0545. The contact-sheet inventory said 31 lines; the sheet carries 30, and the count here is now the counted one."
     },
     {
      "index": 50,
@@ -712,11 +714,13 @@
     ],
     "names_transcribed_pages": 2,
     "names_transcribed_lines": 62,
-    "inventoried_only": 23,
+    "inventoried_only": 21,
     "cells_transcribed_pages": 2,
-    "cells_transcribed_lines": 62
+    "cells_transcribed_lines": 62,
+    "names_and_cells_transcribed_pages": 2,
+    "names_and_cells_transcribed_lines": 60
    },
-   "line_counts_are": "read off the contact sheet at 900x700 and are the count of ruled lines carrying an entry, not a printed figure. The two transcribed pages' counts (31 each) are confirmed line by line; the other 23 are stated to the nearest line and a transcribing pass restates them exactly."
+   "line_counts_are": "read off the contact sheet at 900x700 and are the count of ruled lines carrying an entry, not a printed figure. Four pages are now counted rather than estimated: printed 230 and 232 (31 each, confirmed line by line by T-0523) and printed 207 and 208 (30 each, counted by T-0545 — the contact-sheet estimate said 31 for both and was one line high). The remaining 21 are stated to the nearest line and a transcribing pass restates them exactly."
   }
  ],
  "negative_and_inaccessible": [
