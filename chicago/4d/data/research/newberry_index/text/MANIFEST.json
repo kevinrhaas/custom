@@ -46,6 +46,49 @@
       "locality_cards_kept": 2579,
       "text_file": "vol_01_locality_cards.txt",
       "text_sha256": "49c1408945606bc79737b00374b065f7affdb9addf0f4e776cd989def1530d5f"
+    },
+    "2": {
+      "file": "FL2091536_CP-130151_02.pdf",
+      "covers": "C - H (as printed on the cards)",
+      "download_url": "https://archive.org/download/chicago1835-newberry-genealogical-index/FL2091536_CP-130151_02.pdf",
+      "bytes": 211699945,
+      "sha256": "5cb90c9b4070fff48c8d2564c8aec55a6074290e2e98efd90fb2da35aa8e1d1e",
+      "pdf_pages": 1016,
+      "crop_height": 1100,
+      "passes": [
+        {
+          "column": 0,
+          "x": 0,
+          "width": 200,
+          "sha256": "3b9fcf104486a36da5d8ed30d53bf18af25a8c95f1c083b8dfbcc26eaae63588",
+          "bytes": 8350926
+        },
+        {
+          "column": 1,
+          "x": 173,
+          "width": 200,
+          "sha256": "433da83b1c0945c743dde165f41c5e8996e1b0ad7f43ee634451aecb2d768cf8",
+          "bytes": 12672400
+        },
+        {
+          "column": 2,
+          "x": 346,
+          "width": 200,
+          "sha256": "0bd07a5e74c3d815385b712f29ad2f5f750d0667097a1df062c0e78637d80848",
+          "bytes": 13500544
+        },
+        {
+          "column": 3,
+          "x": 519,
+          "width": 200,
+          "sha256": "2a37071bb565fa5535072c53d2478fde18c8fbe0e5cc2ed17b6e42956cc27326",
+          "bytes": 8259357
+        }
+      ],
+      "cards_assembled": 58589,
+      "locality_cards_kept": 1987,
+      "text_file": "vol_02_locality_cards.txt",
+      "text_sha256": "02fa6b684b89a648535f3df3c514005f62a42be180e3cb4c946a534cffba4880"
     }
   }
 }

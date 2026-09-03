@@ -384,3 +384,6 @@ T-0583 — The register of the Second Presbyterian Church of Chicago, 1842-92 (G
 T-0589 — Fergus's 1843 directory, page 1: the civic account — officers, courts, churches, societies, newspapers, fire and military companies, schools, the 1843 ward population count and the port's exports and imports for 1842-3
 T-0592 — The fine well on lot 7 of block 16 is documented and the town has no well to draw it with
 T-0593 — A documented 'large Dwelling-House' stands on a 5.36 x 6.38 m D3 count-unit, and the block's family mix was dealt before the address resolved
+T-0594 — The Newberry index reads a state banner as a card body, and a wrecked call number as ', Ill.' — four and one of forty sampled cards
+T-0595 — A column sliver is kept as a second, truncated copy of a card the neighbouring pass read in full, and nothing counts how many
+T-0596 — The research-spend ratchet measures a finding aid in units it can never earn, so the Newberry ceiling climbs by a volume every read

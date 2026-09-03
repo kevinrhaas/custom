@@ -577,45 +577,19 @@ def works_of(body: str):
     return out
 
 
-def parse(volume: int) -> dict:
-    text_name, _lines, cards = read_committed_cards(volume)
-    layers = layer_names()
+def leads_and_follow(records, layers, lead_id):
+    """The leads and the reading order over a set of records.
 
-    records = []
-    for n, card in enumerate(cards, start=1):
-        key = surname_key(card["heading"])
-        records.append({
-            "id": "nbi_v%02d_%04d" % (volume, n),
-            "as_read": "%s | %s" % (card["heading"], card["body"]),
-            "normalized": {
-                "surname_as_printed": card["heading"],
-                "surname_key": key,
-                "localities": card["buckets"],
-                # The distinction that decides what is worth reading next. A card
-                # naming Fulton or Sangamon County is Illinois and is kept; it is not
-                # Chicago, and a work is ranked on the Chicago and Cook County cards
-                # it carries, not on its county histories.
-                "chicago_or_cook": bool({"chicago", "cook_county"} & set(card["buckets"])),
-                "works_cited": works_of(card["body"]),
-            },
-            "locator": {
-                "list": "vol_%02d" % volume,
-                "text_file": text_name,
-                "lines": [card["heading_line"], card["body_line"]],
-                "index_page": card["page"],
-                "column": card["column"],
-            },
-            "reading": "transcription_mediated",
-            "confidence": "documented",
-            "notes": "A card in the Newberry index, not a statement about a person. "
-                     "What is documented is that the index files this surname with a "
-                     "citation naming %s; the citation itself is unread until the work "
-                     "it names is opened."
-                     % (", ".join(card["buckets"]) or "a locality"),
-        })
-
-    # The leads. One row per (index surname, layer), carrying every card that
-    # surname stands on and every project id it could bear on.
+    Called twice: once on ONE volume's records, for that volume's own counts, and
+    once on EVERY parsed volume's records, for the committed `leads.json` and
+    `follow_up.json`. Before T-0578 it was inlined in parse() and ran on one volume
+    only, so reading volume 2 overwrote volume 1's 319 leads with volume 2's 215
+    instead of carrying both — the reading order is a fact about the whole index, not
+    about whichever volume was read last. `lead_id` is passed in because a per-volume
+    id would collide across volumes on a surname both of them file.
+    """
+    # One row per (index surname, layer), carrying every card that surname stands
+    # on and every project id it could bear on.
     by_key = {}
     for rec in records:
         by_key.setdefault(rec["normalized"]["surname_key"], []).append(rec)
@@ -632,7 +606,7 @@ def parse(volume: int) -> dict:
             if not hits:
                 continue
             leads.append({
-                "id": "lead_v%02d_%s_%s" % (volume, key, layer),
+                "id": lead_id(key, layer),
                 "surname_key": key,
                 "spellings_as_printed": sorted({r["normalized"]["surname_as_printed"]
                                                 for r in by_key[key]}),
@@ -672,6 +646,48 @@ def parse(volume: int) -> dict:
     unmatched_chi = [r for r in unmatched if r["normalized"]["chicago_or_cook"]]
     follow.sort(key=lambda w: (-w["chicago_or_cook_cards_on_a_lead_surname"],
                                -w["chicago_or_cook_cards"], -w["cards"], w["key"]))
+    return leads, follow, unmatched, unmatched_chi, by_key
+
+
+def parse(volume: int) -> dict:
+    text_name, _lines, cards = read_committed_cards(volume)
+    layers = layer_names()
+
+    records = []
+    for n, card in enumerate(cards, start=1):
+        key = surname_key(card["heading"])
+        records.append({
+            "id": "nbi_v%02d_%04d" % (volume, n),
+            "as_read": "%s | %s" % (card["heading"], card["body"]),
+            "normalized": {
+                "surname_as_printed": card["heading"],
+                "surname_key": key,
+                "localities": card["buckets"],
+                # The distinction that decides what is worth reading next. A card
+                # naming Fulton or Sangamon County is Illinois and is kept; it is not
+                # Chicago, and a work is ranked on the Chicago and Cook County cards
+                # it carries, not on its county histories.
+                "chicago_or_cook": bool({"chicago", "cook_county"} & set(card["buckets"])),
+                "works_cited": works_of(card["body"]),
+            },
+            "locator": {
+                "list": "vol_%02d" % volume,
+                "text_file": text_name,
+                "lines": [card["heading_line"], card["body_line"]],
+                "index_page": card["page"],
+                "column": card["column"],
+            },
+            "reading": "transcription_mediated",
+            "confidence": "documented",
+            "notes": "A card in the Newberry index, not a statement about a person. "
+                     "What is documented is that the index files this surname with a "
+                     "citation naming %s; the citation itself is unread until the work "
+                     "it names is opened."
+                     % (", ".join(card["buckets"]) or "a locality"),
+        })
+
+    leads, follow, unmatched, unmatched_chi, by_key = leads_and_follow(
+        records, layers, lambda key, layer: "lead_v%02d_%s_%s" % (volume, key, layer))
 
     counts = {
         "cards": len(records),
@@ -699,33 +715,6 @@ def parse(volume: int) -> dict:
         "counts": counts,
         "records": records,
     })
-    dump(DOMAIN / "leads.json", {
-        "schema": SCHEMA,
-        "_doc": "GENERATED. Surname -> the residents, voters, 1840 heads and structures "
-                "a Newberry card COULD bear on. Never a merge: see crosswalk.json, "
-                "which holds none and says why.",
-        "generated_by": "tools/read_newberry_index.py --parse",
-        "volume": volume,
-        "counts": counts,
-        "leads": leads,
-    })
-    dump(DOMAIN / "follow_up.json", {
-        "schema": SCHEMA,
-        "_doc": "GENERATED. The works the Chicago, Cook County and Illinois cards point "
-                "at, ranked by how many of this project's people they could bear on. "
-                "This is the reading order for the follow-up tickets.",
-        "generated_by": "tools/read_newberry_index.py --parse",
-        "volume": volume,
-        "works": follow,
-        "cards_matching_no_known_work": len(unmatched),
-        "chicago_or_cook_cards_matching_no_known_work": len(unmatched_chi),
-        "note": "A card whose citation matches no pattern in WORKS is counted here and "
-                "kept in the records; it is the queue of works nobody has named yet. "
-                "Most of them are Illinois COUNTY histories — Chapman, LeBaron, Brink, "
-                "Baldwin, Murray Williamson, Power — which are Illinois and are not "
-                "Chicago, and which is why the ranking is on the Chicago and Cook "
-                "County cards.",
-    })
     index_path = DOMAIN / "entries.json"
     index = load(index_path) if index_path.exists() else {}
     volumes = index.get("volumes") or {}
@@ -741,6 +730,57 @@ def parse(volume: int) -> dict:
         "volumes_parsed": sorted(int(k) for k in volumes),
         "volumes_unread": sorted(v for v in VOLUMES if str(v) not in volumes),
         "volumes": {k: volumes[k] for k in sorted(volumes, key=int)},
+    })
+
+    # THE LEADS AND THE READING ORDER ARE FACTS ABOUT THE WHOLE INDEX, not about the
+    # volume that happened to be read last, so they are rebuilt from EVERY parsed
+    # volume's committed records. Until T-0578 they were written from this volume
+    # alone, and reading volume 2 silently replaced volume 1's 319 leads with volume
+    # 2's 215; entries.json accumulated and these two did not.
+    parsed = sorted(int(k) for k in volumes)
+    all_records = []
+    for vol in parsed:
+        path = DOMAIN / "records" / ("entries_vol_%02d.json" % vol)
+        if path.exists():
+            all_records.extend(load(path).get("records") or [])
+    leads_all, follow_all, unmatched_all, unmatched_chi_all, by_key_all = \
+        leads_and_follow(all_records, layers,
+                         lambda key, layer: "lead_%s_%s" % (key, layer))
+    dump(DOMAIN / "leads.json", {
+        "schema": SCHEMA,
+        "_doc": "GENERATED. Surname -> the residents, voters, 1840 heads and structures "
+                "a Newberry card COULD bear on, over every volume read so far. Never a "
+                "merge: see crosswalk.json, which holds none and says why.",
+        "generated_by": "tools/read_newberry_index.py --parse",
+        "volumes": parsed,
+        "counts": {
+            "cards": len(all_records),
+            "distinct_surname_keys": len(by_key_all),
+            "leads": len(leads_all),
+            "leads_by_layer": {layer: sum(1 for ld in leads_all
+                                          if ld["layer"] == layer)
+                               for layer in sorted(layers)},
+        },
+        "leads": leads_all,
+    })
+    dump(DOMAIN / "follow_up.json", {
+        "schema": SCHEMA,
+        "_doc": "GENERATED. The works the Chicago, Cook County and Illinois cards point "
+                "at, over every volume read so far, ranked by how many of this "
+                "project's people they could bear on. This is the reading order for "
+                "the follow-up tickets.",
+        "generated_by": "tools/read_newberry_index.py --parse",
+        "volumes": parsed,
+        "works": follow_all,
+        "cards": len(all_records),
+        "cards_matching_no_known_work": len(unmatched_all),
+        "chicago_or_cook_cards_matching_no_known_work": len(unmatched_chi_all),
+        "note": "A card whose citation matches no pattern in WORKS is counted here and "
+                "kept in the records; it is the queue of works nobody has named yet. "
+                "Most of them are Illinois COUNTY histories — Chapman, LeBaron, Brink, "
+                "Baldwin, Murray Williamson, Power — which are Illinois and are not "
+                "Chicago, and which is why the ranking is on the Chicago and Cook "
+                "County cards.",
     })
     return counts
 

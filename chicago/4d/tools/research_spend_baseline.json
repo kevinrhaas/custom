@@ -9,7 +9,7 @@
   "church": 0,
   "books": 0,
   "directories": 4703,
-  "newberry_index": 2619
+  "newberry_index": 4646
  },
  "witness": {
   "civic": {
@@ -37,7 +37,7 @@
    "spent": 288
   },
   "newberry_index": {
-   "read": 2619,
+   "read": 4646,
    "spent": 0
   }
  },
@@ -48,6 +48,13 @@
    "to": 4703,
    "date": "2026-09-03",
    "why": "T-0571 (PR #714) read Fergus's 1843 Chicago directory — 2,695 entries — into dev while this branch was open. The read is legitimate and already merged; this branch inherits it and cannot spend it. The ceiling is raised to admit it, NOT to excuse it: T-0588 (rank 2) spends the directory on the businesses layer and T-0587 already spent 67 of it onto resident cards, so this domain has live spend tickets and the number should come back down."
+  },
+  {
+   "domain": "newberry_index",
+   "from": 2619,
+   "to": 4646,
+   "date": "2026-09-03",
+   "why": "T-0578 read volume 2 (C-H) of the Newberry Genealogical Index: 1,987 kept cards, plus the 40-card precision draw this ratchet also counts as read. The ceiling is raised because THIS DOMAIN CANNOT BE SPENT IN THIS RATCHET'S UNITS, and that is by design rather than by neglect. A Newberry card is a pointer to a book, not a statement about a person; tools/read_newberry_index.py --check FAILS if the source id newberry_genealogical_index ever appears behind a resident, household, structure or reconstruction record, and crosswalk.json holds zero merges by rule because a shared surname is a lead and never a match. So no reading of any volume will ever move a name from 'read' to 'ruled on' here, and volumes 3 and 4 (T-0579, T-0580) will raise this number again by roughly the same amount. What this domain actually spends is the READING ORDER: follow_up.json ranks the works its Chicago cards point at, and the tickets that open those works are its output — T-0581 (Moses and Kirkland, 1895: 132 Chicago and Cook County cards over the two volumes, 35 on surnames this project already holds) is the live one. T-0596 asks the ratchet to measure a finding-aid domain on those terms instead, so this ceiling stops climbing meaninglessly. Two things it also exposed, and neither is an excuse: the precision sample's 80 rows are counted as read though they are re-readings of records already counted, and 'spent' sees only crosswalk rulings carrying an id anchor, so this crosswalk's one pass and five refusals count as zero."
   }
  ]
 }
