@@ -3,5 +3,32 @@
   "domain": "civic",
   "generated_by": "hand — a reading pass declares the range it read, and the gate checks it",
   "note": "An UNDECLARED item is not read yet and is not a fault. A DECLARED item nothing reaches is a hole, and that is what this file is for.",
-  "declarations": []
+  "declarations": [
+    {
+      "ticket": "T-0493",
+      "unit": "list",
+      "items": [
+        "poll_1833",
+        "tax_1833",
+        "poll_1834",
+        "poll_1835"
+      ],
+      "read_on": "2026-09-03",
+      "source_id": "chicago_voter_lists_1833_1835_irad",
+      "what_was_read": "Every printed entry of all four lists in the Genealogy Trails publication of Ingrid Latimer Schulz's IRAD transcription — 345 entries, in order, each carrying the line of data/research/civic/text/voter_lists_1833_1835.txt it stands on.",
+      "what_was_not_read": [
+        "the IRAD originals themselves, which nobody in this project has seen",
+        "the Chicago Genealogist XXV/4 (Summer 1993) printing, which is the transcription's own publication and is not held here",
+        "anything the lists do not print: no age, no trade, no address, no lot"
+      ],
+      "counts": {
+        "poll_1833": 30,
+        "tax_1833": 115,
+        "poll_1834": 115,
+        "poll_1835": 85,
+        "total": 345
+      },
+      "note": "T-0493 stated 346 entries and 215 distinct surnames. The deposit prints 345 and 214, and so does the live Genealogy Trails page: the 1833 poll list is 30 entries, not 31, and the supplied PDF agrees. The lower figure is the measured one."
+    }
+  ]
 }
