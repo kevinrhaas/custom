@@ -1,0 +1,480 @@
+{
+  "schema": 1,
+  "_doc": "HAND-AUTHORED. Forty cards of volume 1, drawn at random and adjudicated one by one against what the card line actually says. Nothing else in this domain measures whether the reading is any good; this does, and it is the reason the README can put a number on it instead of an adjective.",
+  "generated_by": "hand — the draw is reproducible, the verdicts are not",
+  "ticket": "T-0562",
+  "volume": 1,
+  "draw": {
+    "method": "python random.seed(1835); random.sample(chicago_or_cook, 20) + random.sample(the rest, 20)",
+    "strata": [
+      "chicago_or_cook",
+      "illinois_only"
+    ],
+    "size": 40
+  },
+  "counts": {
+    "sampled": 40,
+    "locality_correct": 39,
+    "not_demonstrated": 1,
+    "precision": 0.975
+  },
+  "found": [
+    "One systematic false positive, now struck by a rule: the index carries thousands of English cards citing the Calendarium Inquisitionum by regnal year — 'Calendarium, Hen. III. and Edw. I' — and ', III.' is the shape of ', Ill.'. tools/read_newberry_index.py REGNAL refuses them, and 35 cards left the volume when it was added. The sample was redrawn afterwards and this file adjudicates the redrawn one.",
+    "One card this reading should not have kept: nbi_v01_2226, whose whole line is 'I II.'. It is kept, with its verdict, because a struck card nobody can see is a precision figure nobody can check.",
+    "Chicago antiquities (Hurlbut, 1881) and the Second Presbyterian Church register 1842-92 (Grant) both surfaced in the sample and neither is in this project's sources. The first is now in the follow-up table."
+  ],
+  "records": [
+    {
+      "id": "nbi_v01_0510",
+      "as_read": "Remia | Chicago, III. (Andreas, A. T.) 1884-61 3. Seo Waaaaa",
+      "localities": [
+        "chicago",
+        "illinois_abbreviated"
+      ],
+      "chicago_or_cook": true,
+      "index_page": 166,
+      "verdict": "locality_correct",
+      "note": "'Chicago, Ill. (Andreas, A. T.) 1884-6' — the commonest card in the volume."
+    },
+    {
+      "id": "nbi_v01_1160",
+      "as_read": "utfertleld | Chicago, III. (Andreas, A. T.) 1334-61 __.",
+      "localities": [
+        "chicago",
+        "illinois_abbreviated"
+      ],
+      "chicago_or_cook": true,
+      "index_page": 343,
+      "verdict": "locality_correct",
+      "note": "Chicago, Andreas; the date reads '1334-61' where the card prints 1884-6."
+    },
+    {
+      "id": "nbi_v01_1082",
+      "as_read": "Burgess | Chicago, III. (Andreas, A, T.) 1884-61 1 ^",
+      "localities": [
+        "chicago",
+        "illinois_abbreviated"
+      ],
+      "chicago_or_cook": true,
+      "index_page": 321,
+      "verdict": "locality_correct",
+      "note": "Chicago, Andreas."
+    },
+    {
+      "id": "nbi_v01_1807",
+      "as_read": "Gregor f | Chicago, Wl (Andreas, A. T.l 1804-61 3. Se, Cro",
+      "localities": [
+        "chicago"
+      ],
+      "chicago_or_cook": true,
+      "index_page": 576,
+      "verdict": "locality_correct",
+      "note": "Chicago, Andreas; 'Wl' is the OCR of 'Ill.'"
+    },
+    {
+      "id": "nbi_v01_0354",
+      "as_read": "Barrett | . . Chicago, III, Second Presb, Ch, 1842-92, (Grant.",
+      "localities": [
+        "chicago",
+        "illinois_abbreviated"
+      ],
+      "chicago_or_cook": true,
+      "index_page": 122,
+      "verdict": "locality_correct",
+      "note": "Chicago, Ill., Second Presbyterian Church register 1842-92 (Grant) — a Chicago source this project does not hold."
+    },
+    {
+      "id": "nbi_v01_0978",
+      "as_read": "ooke T | ooke f a . i l y . Cook Co.,'",
+      "localities": [
+        "cook_county"
+      ],
+      "chicago_or_cook": true,
+      "index_page": 286,
+      "verdict": "locality_correct",
+      "note": "Cook Co.; the citation itself did not survive the photostat."
+    },
+    {
+      "id": "nbi_v01_2290",
+      "as_read": "Dwight | Chicago, m, ij\\„ inUi A> jj il*.",
+      "localities": [
+        "chicago"
+      ],
+      "chicago_or_cook": true,
+      "index_page": 844,
+      "verdict": "locality_correct",
+      "note": "'Chicago, m,' — Chicago with the abbreviation destroyed; the locality is still read."
+    },
+    {
+      "id": "nbi_v01_1310",
+      "as_read": "Carver | ' Cook Co.,' III. (Andreas, A. T.) 1884 i714.",
+      "localities": [
+        "cook_county"
+      ],
+      "chicago_or_cook": true,
+      "index_page": 384,
+      "verdict": "locality_correct",
+      "note": "Cook Co., Ill., Andreas 1884, page 714."
+    },
+    {
+      "id": "nbi_v01_1796",
+      "as_read": "Crawford | Chicago,",
+      "localities": [
+        "chicago"
+      ],
+      "chicago_or_cook": true,
+      "index_page": 572,
+      "verdict": "locality_correct",
+      "note": "'Chicago,' and nothing else legible. Kept, because the locality is what is being recorded."
+    },
+    {
+      "id": "nbi_v01_0988",
+      "as_read": "ohan | Chicago, III. (Andreas, A. T.) 1804-61 2-3",
+      "localities": [
+        "chicago",
+        "illinois_abbreviated"
+      ],
+      "chicago_or_cook": true,
+      "index_page": 288,
+      "verdict": "locality_correct",
+      "note": "Chicago, Andreas, volumes 2-3."
+    },
+    {
+      "id": "nbi_v01_1932",
+      "as_read": "Danelii | Cook Co., 111. (Andrew, A, T.) 1884 t5ftfi.",
+      "localities": [
+        "cook_county",
+        "illinois_abbreviated"
+      ],
+      "chicago_or_cook": true,
+      "index_page": 648,
+      "verdict": "locality_correct",
+      "note": "Cook Co., Andreas 1884."
+    },
+    {
+      "id": "nbi_v01_1966",
+      "as_read": ", Davta | 46307.2 Chicago, III. (Andreas, A. T.) 1884-6! 1-3.",
+      "localities": [
+        "chicago",
+        "illinois_abbreviated"
+      ],
+      "chicago_or_cook": true,
+      "index_page": 669,
+      "verdict": "locality_correct",
+      "note": "Chicago, Andreas; the line opens with the previous card's call number."
+    },
+    {
+      "id": "nbi_v01_1192",
+      "as_read": "aldwoll | Chicago, Hi. i , . ; . . . : , ..",
+      "localities": [
+        "chicago"
+      ],
+      "chicago_or_cook": true,
+      "index_page": 352,
+      "verdict": "locality_correct",
+      "note": "'Chicago, Hi.' — Chicago; the citation is gone."
+    },
+    {
+      "id": "nbi_v01_2156",
+      "as_read": "Dolion | Cook Co., lit. ( M r e w . A. T.) 1884 (I ,",
+      "localities": [
+        "cook_county"
+      ],
+      "chicago_or_cook": true,
+      "index_page": 771,
+      "verdict": "locality_correct",
+      "note": "Cook Co., Andreas 1884."
+    },
+    {
+      "id": "nbi_v01_1492",
+      "as_read": "Clarke | Chicago, lil, (Andreas, A. T.) 1804-61 2-3.",
+      "localities": [
+        "chicago",
+        "illinois_abbreviated"
+      ],
+      "chicago_or_cook": true,
+      "index_page": 444,
+      "verdict": "locality_correct",
+      "note": "Chicago, Andreas, volumes 2-3."
+    },
+    {
+      "id": "nbi_v01_0968",
+      "as_read": "Brooker | Chicago, 111., Directory, 1839. Fergus h r i t . » :",
+      "localities": [
+        "chicago",
+        "illinois_abbreviated"
+      ],
+      "chicago_or_cook": true,
+      "index_page": 285,
+      "verdict": "locality_correct",
+      "note": "Chicago, Ill., Directory, 1839 (Fergus historical series) — the directory this project already holds."
+    },
+    {
+      "id": "nbi_v01_1512",
+      "as_read": "Clevenror | Cook Co., III. (Andrecs, A. T.) 1684 ,485. Cloyton",
+      "localities": [
+        "cook_county",
+        "illinois_abbreviated"
+      ],
+      "chicago_or_cook": true,
+      "index_page": 453,
+      "verdict": "locality_correct",
+      "note": "Cook Co., Andreas 1884, page 485."
+    },
+    {
+      "id": "nbi_v01_1597",
+      "as_read": "Collino | Chicago o n t l q n i t l a a . (Hurlbut .ll.H.I .",
+      "localities": [
+        "chicago"
+      ],
+      "chicago_or_cook": true,
+      "index_page": 481,
+      "verdict": "locality_correct",
+      "note": "'Chicago antiquities. (Hurlbut, H. H.)' — a Chicago work the project does not hold, found by this sample and now in the follow-up table."
+    },
+    {
+      "id": "nbi_v01_1971",
+      "as_read": "Davia | Chicago, III, Weed, 0. VV.) 1891: 390.",
+      "localities": [
+        "chicago",
+        "illinois_abbreviated"
+      ],
+      "chicago_or_cook": true,
+      "index_page": 669,
+      "verdict": "locality_correct",
+      "note": "Chicago, Ill. (Wood, D. W.) 1891 — the OCR prints 'Weed, 0. VV.'"
+    },
+    {
+      "id": "nbi_v01_1771",
+      "as_read": "Craip | . Chicago, III. (Andreas, A. T.) 1884-61 -",
+      "localities": [
+        "chicago",
+        "illinois_abbreviated"
+      ],
+      "chicago_or_cook": true,
+      "index_page": 561,
+      "verdict": "locality_correct",
+      "note": "Chicago, Andreas."
+    },
+    {
+      "id": "nbi_v01_0519",
+      "as_read": ", Benner | Ogle Co., III. (Kett, H. F., i Co.) 1878: 543",
+      "localities": [
+        "illinois_abbreviated"
+      ],
+      "chicago_or_cook": false,
+      "index_page": 169,
+      "verdict": "locality_correct",
+      "note": "Ogle Co., Ill. — Illinois, and not Chicago."
+    },
+    {
+      "id": "nbi_v01_2389",
+      "as_read": "Ellis | Sangamon Co., Ill, (Power, J. C.) 1876",
+      "localities": [
+        "illinois_abbreviated"
+      ],
+      "chicago_or_cook": false,
+      "index_page": 894,
+      "verdict": "locality_correct",
+      "note": "Sangamon Co., Ill. (Power) 1876."
+    },
+    {
+      "id": "nbi_v01_1080",
+      "as_read": "I Buroh | Sangamon Co., III. (Power, J. C.) 1876.",
+      "localities": [
+        "illinois_abbreviated"
+      ],
+      "chicago_or_cook": false,
+      "index_page": 319,
+      "verdict": "locality_correct",
+      "note": "Sangamon Co., Ill."
+    },
+    {
+      "id": "nbi_v01_2546",
+      "as_read": "Feljo' | i Bureau Co., III. (Kett it Co., Pub.) 1877: 305.",
+      "localities": [
+        "illinois_abbreviated"
+      ],
+      "chicago_or_cook": false,
+      "index_page": 972,
+      "verdict": "locality_correct",
+      "note": "Bureau Co., Ill. (Kett) 1877."
+    },
+    {
+      "id": "nbi_v01_2218",
+      "as_read": "Draper | ILLINOIS",
+      "localities": [
+        "illinois_named"
+      ],
+      "chicago_or_cook": false,
+      "index_page": 802,
+      "verdict": "locality_correct",
+      "note": "A locality divider card reading ILLINOIS."
+    },
+    {
+      "id": "nbi_v01_0670",
+      "as_read": "BlatchTord | _ r.n-r-e, III. Wood, D, W.) IBBit",
+      "localities": [
+        "illinois_abbreviated"
+      ],
+      "chicago_or_cook": false,
+      "index_page": 209,
+      "verdict": "locality_correct",
+      "note": "Chicago, Ill. (Wood, D. W.) 1881 with 'Chicago' destroyed to 'r.n-r-e'; the abbreviation carries it."
+    },
+    {
+      "id": "nbi_v01_2502",
+      "as_read": "Fanning | limror-on Co., III. (LeBaron, W„ In, & Co., Piata.1 1878,",
+      "localities": [
+        "illinois_abbreviated"
+      ],
+      "chicago_or_cook": false,
+      "index_page": 952,
+      "verdict": "locality_correct",
+      "note": "An Illinois county history (LeBaron) — the county name did not survive."
+    },
+    {
+      "id": "nbi_v01_0305",
+      "as_read": "SES Bango | 28.48 Winnebago Co., III. (Kell, H. F., 4 Co., Pub.)",
+      "localities": [
+        "illinois_abbreviated"
+      ],
+      "chicago_or_cook": false,
+      "index_page": 105,
+      "verdict": "locality_correct",
+      "note": "Winnebago Co., Ill. (Kett)."
+    },
+    {
+      "id": "nbi_v01_2226",
+      "as_read": "aa r | I II.«",
+      "localities": [
+        "illinois_abbreviated"
+      ],
+      "chicago_or_cook": false,
+      "index_page": 804,
+      "verdict": "not_demonstrated",
+      "note": "'I II.' and nothing else. Three strokes and a stop is the shape of the abbreviation, and on this card it is the ONLY thing on the line: nothing here demonstrates Illinois. The one card in forty this reading should not have kept, and it is left in the records with this verdict rather than quietly dropped."
+    },
+    {
+      "id": "nbi_v01_0862",
+      "as_read": "Brainard | Bureau! Co., Ill, (hctt _ Co.,- Fun.) 1377: 330.",
+      "localities": [
+        "illinois_abbreviated"
+      ],
+      "chicago_or_cook": false,
+      "index_page": 257,
+      "verdict": "locality_correct",
+      "note": "Bureau Co., Ill. (Kett) 1877."
+    },
+    {
+      "id": "nbi_v01_1438",
+      "as_read": "Child | Sangamon Co., Ill, (Power, J, C.) 1876. Child fa",
+      "localities": [
+        "illinois_abbreviated"
+      ],
+      "chicago_or_cook": false,
+      "index_page": 426,
+      "verdict": "locality_correct",
+      "note": "Sangamon Co., Ill. (Power) 1876."
+    },
+    {
+      "id": "nbi_v01_2004",
+      "as_read": "Deardorff | Sangamon Co., III. (Power,'J. C.) 1876.",
+      "localities": [
+        "illinois_abbreviated"
+      ],
+      "chicago_or_cook": false,
+      "index_page": 688,
+      "verdict": "locality_correct",
+      "note": "Sangamon Co., Ill. (Power) 1876."
+    },
+    {
+      "id": "nbi_v01_0567",
+      "as_read": "Beet | _M^I,.n Co., III. (Brink, W. R. 4 0»M^Ü Gl. ft*. Md",
+      "localities": [
+        "illinois_abbreviated"
+      ],
+      "chicago_or_cook": false,
+      "index_page": 180,
+      "verdict": "locality_correct",
+      "note": "Madison Co., Ill. (Brink) — the county name is half-destroyed."
+    },
+    {
+      "id": "nbi_v01_0936",
+      "as_read": "Brleboya | .Co., III. (Wtron, W, lr.. 4 Co,-nx».11878:",
+      "localities": [
+        "illinois_abbreviated"
+      ],
+      "chicago_or_cook": false,
+      "index_page": 279,
+      "verdict": "locality_correct",
+      "note": "An Illinois county history; the county name is gone and the abbreviation is not."
+    },
+    {
+      "id": "nbi_v01_0605",
+      "as_read": "Biabee | — Illinois. !1 *",
+      "localities": [
+        "illinois_named"
+      ],
+      "chicago_or_cook": false,
+      "index_page": 194,
+      "verdict": "locality_correct",
+      "note": "'Illinois.' spelled out."
+    },
+    {
+      "id": "nbi_v01_1375",
+      "as_read": "Chanoe | eWien .ed Cllekle Co., III. tSrlok, McDonoosh 4 Co..",
+      "localities": [
+        "illinois_abbreviated"
+      ],
+      "chicago_or_cook": false,
+      "index_page": 407,
+      "verdict": "locality_correct",
+      "note": "An Illinois county history (Brink, McDonough & Co.)."
+    },
+    {
+      "id": "nbi_v01_1358",
+      "as_read": "Chamberlain | Illinois. Soc. Sons Am, Rev, I 8 9 6 : 9 B .",
+      "localities": [
+        "illinois_named"
+      ],
+      "chicago_or_cook": false,
+      "index_page": 402,
+      "verdict": "locality_correct",
+      "note": "Illinois Society, Sons of the American Revolution, 1896, page 98."
+    },
+    {
+      "id": "nbi_v01_0267",
+      "as_read": "Balrd | Bureau to., III. (Ketl 4 Co., Pub.) IB77) 303.",
+      "localities": [
+        "illinois_abbreviated"
+      ],
+      "chicago_or_cook": false,
+      "index_page": 91,
+      "verdict": "locality_correct",
+      "note": "Bureau Co., Ill. (Kett) 1877."
+    },
+    {
+      "id": "nbi_v01_1648",
+      "as_read": "f onrod | i _ Christian Co., III. (Brink, McDonough & Co..",
+      "localities": [
+        "illinois_abbreviated"
+      ],
+      "chicago_or_cook": false,
+      "index_page": 498,
+      "verdict": "locality_correct",
+      "note": "Christian Co., Ill. (Brink, McDonough & Co.)."
+    },
+    {
+      "id": "nbi_v01_1811",
+      "as_read": "Crowltt | Illinois. (Motet, J.) 1888-92. 2Y See Index",
+      "localities": [
+        "illinois_named"
+      ],
+      "chicago_or_cook": false,
+      "index_page": 579,
+      "verdict": "locality_correct",
+      "note": "Illinois (Moses) 1888-92."
+    }
+  ]
+}

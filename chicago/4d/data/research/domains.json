@@ -94,6 +94,13 @@
       "holds": "claims",
       "what": "The 1839 Chicago directory and its successors — entry by entry, structured, and crosswalked rather than quoted at second hand.",
       "path": "data/research/directories/"
+    },
+    {
+      "id": "newberry_index",
+      "title": "The Newberry genealogical index",
+      "holds": "records",
+      "what": "A four-volume photostat of the Newberry Library's genealogical card index (G. K. Hall, 1960), read for the cards whose citation names Chicago, Cook County or Illinois. A card says where a genealogy IS; it never places a person, and nothing here may grade one.",
+      "path": "data/research/newberry_index/"
     }
   ]
 }

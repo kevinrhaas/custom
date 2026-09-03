@@ -1208,7 +1208,7 @@ step "the newspaper corpus resolves, and nothing under data/research/ is publish
 # as its merges, and — for the two domains whose text this repo commits — the same
 # verbatim gate the papers carry, which rebuilds every quote out of the committed lines
 # and refuses one that differs by a character. The scaffold is EMPTY on purpose.
-step "the six research domains hold one shape" \
+step "the research domains hold one shape" \
   python3 tools/research_domains.py --check
 
 # T-0554. The Calumet Club's old-settlers receptions are a source SERIES read out of the
@@ -1240,6 +1240,20 @@ step "the Genealogy Trails inventory covers every section the county index links
 
 step "…and its own assertions still fire when broken" \
   python3 tools/read_genealogytrails.py --self-test
+# T-0562. The seventh domain, and the one that needs a gate of its own. The Newberry
+# Library's genealogical index is a FINDING AID: a card heads a family surname and names
+# the book that treats it, and it never places a person anywhere. Its whole failure mode
+# is that a surname in it looks like evidence, so the assertion that matters here is the
+# last one — the source id may not appear behind a resident, a household or a building.
+# The rest holds the reading honest: every `as_read` is rebuilt out of the committed
+# card text, the committed text is held to the sha256 the extraction recorded, no record
+# may be graded above `transcription_mediated`, and the hand-adjudicated precision sample
+# must still be adjudicating cards that are actually in the records.
+step "the Newberry index stays a finding aid, and its reading rebuilds from the cards" \
+  python3 tools/read_newberry_index.py --check
+
+step "…and its own assertions still fire when broken" \
+  python3 tools/read_newberry_index.py --self-test
 
 step "…and its own assertions still fire when broken" \
   python3 tools/newspaper_corpus.py --self-test

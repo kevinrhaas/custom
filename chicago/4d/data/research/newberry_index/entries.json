@@ -1,0 +1,39 @@
+{
+  "schema": 1,
+  "_doc": "GENERATED. The index of this domain's parsed entries. The entries themselves live one file per volume under records/, where tools/research_domains.py --check reads and gates them; a second copy here would drift from the gated one within a run.",
+  "generated_by": "tools/read_newberry_index.py --parse",
+  "volumes_parsed": [
+    1
+  ],
+  "volumes_unread": [
+    2,
+    3,
+    4
+  ],
+  "volumes": {
+    "1": {
+      "file": "records/entries_vol_01.json",
+      "covers": "A - C (as printed on the cards)",
+      "counts": {
+        "cards": 2579,
+        "by_locality": {
+          "chicago": 420,
+          "cook_county": 161,
+          "illinois_named": 339,
+          "illinois_abbreviated": 2036
+        },
+        "distinct_surname_keys": 1671,
+        "leads": 319,
+        "leads_by_layer": {
+          "census_1840": 81,
+          "residents": 156,
+          "structures": 18,
+          "voters": 64
+        },
+        "chicago_or_cook_cards": 581,
+        "cards_matching_no_known_work": 1514,
+        "chicago_or_cook_cards_matching_no_known_work": 166
+      }
+    }
+  }
+}
