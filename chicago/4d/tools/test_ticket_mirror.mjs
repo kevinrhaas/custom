@@ -56,6 +56,7 @@ cpSync(path.join(REPO, 'tickets'), path.join(APP, 'tickets'), { recursive: true 
 
 const SRC = path.join(APP, 'tickets', 'tickets.json');
 const MIRROR = path.join(SITE, 'tickets.json');
+const BOARD = path.join(APP, 'tickets', 'BOARD.md');
 
 // stderr is CAPTURED, not inherited: half of what runs below is expected to fail,
 // and a gate whose green log is full of other tools' FAILED banners teaches whoever
@@ -101,6 +102,20 @@ try {
     readFileSync(MIRROR, 'utf8') === readFileSync(SRC, 'utf8')
       && readFileSync(MIRROR, 'utf8').includes('"pr": "9999"'),
     `${readFileSync(MIRROR, 'utf8').length} bytes`);
+
+  // THE FINISH ORDER IS A FACT THE MIRROR CARRIES. `closed` is a day, so two
+  // tickets finished on the same day used to sort by ticket id — the board read
+  // as if the work had been done alphabetically. `done` now stamps the instant,
+  // and the board's finished section leads with the ticket that just closed.
+  const mirror = JSON.parse(readFileSync(MIRROR, 'utf8'));
+  const closedTicket = mirror.tickets.find((t) => t.id === victim);
+  check('the closed ticket carries the instant it finished, not only the day',
+    !!closedTicket?.closed_at && !Number.isNaN(Date.parse(closedTicket.closed_at)),
+    closedTicket?.closed_at ?? 'closed_at absent');
+  const finishedHead = /## Finished, newest first[^\n]*\n\n- \*\*(T-\d{4})\*\*/
+    .exec(readFileSync(BOARD, 'utf8'));
+  check('and the board lists it first under Finished, newest first',
+    finishedHead?.[1] === victim, finishedHead ? `leads with ${finishedHead[1]}` : 'no such section');
 
   /* --- half two: the gate is not weaker ---------------------------------- */
   //
