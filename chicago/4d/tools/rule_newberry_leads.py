@@ -80,6 +80,10 @@ LEADS = DOMAIN / "leads.json"
 # cards of is a lead it cannot rule on.
 RECORDS_GLOB = "entries_vol_*.json"
 OUT = DOMAIN / "lead_crosswalk.json"
+
+# The index itself, as tools/read_newberry_index.py names it. Stated on both
+# generated docs so a ruling in either can be carried to a card (T-0598).
+SOURCE_ID = "newberry_genealogical_index"
 ACQUIRE = DOMAIN / "acquisition_list.json"
 TICKET = "T-0590"
 
@@ -326,6 +330,8 @@ def build() -> tuple:
         "volumes": volumes,
         "ticket": TICKET,
         "generated_by": "tools/rule_newberry_leads.py --write",
+        # T-0598: the index every lead and every card here was ruled out of.
+        "source_id": SOURCE_ID,
         "_doc": "GENERATED. Every lead the volumes read so far offer, ruled and ANCHORED - to the "
                 "card it stands on and, where the town side is a person record, to "
                 "the person it reaches. NO MERGES, and there never will be: a card "
@@ -389,6 +395,8 @@ def build_acquisitions(cards: dict, volumes: list) -> dict:
         "volumes": volumes,
         "ticket": TICKET,
         "generated_by": "tools/rule_newberry_leads.py --write",
+        # T-0598: the index every lead and every card here was ruled out of.
+        "source_id": SOURCE_ID,
         "_doc": "GENERATED. The Chicago and Cook County cards, over every volume read, whose "
                 "citation the works table did not reach. An ACQUISITION LIST, not "
                 "leads: each names a printed work that this project cannot open, "

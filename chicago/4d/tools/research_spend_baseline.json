@@ -62,6 +62,14 @@
    "to": 3148,
    "date": "2026-09-03",
    "why": "T-0578 read volume 2 (C-H): 1,987 kept cards, plus the 40-card precision draw this ratchet also counts as read. It did NOT read ahead of its ruling — T-0590's gate does not allow that any more. The same PR extended tools/rule_newberry_leads.py from volume 1 to every volume read and ruled the 227 new leads volume 2 offers under T-0590's own ladder: 546 leads on 947 cards, 146 candidates testable in a held work, 400 refused, 0 merges, 0 discriminators found. So the SPEND rose with the read, from 866 to 1,498 under the counting T-0592 (PR #727) introduced. What stays unspent is what has always been unspent here — the cards standing under no lead at all, a surname nobody in this town carries. Two measurement faults this exposed are on T-0602 and neither is an excuse: the precision sample's 80 rows count as read though they are re-readings of records already counted, and an unanchored crosswalk ruling counts as nothing, so crosswalk.json's one pass and five written refusals count as zero."
+  },
+  {
+   "domain": "civic",
+   "hop": "write",
+   "from": null,
+   "to": 99,
+   "date": "2026-09-03",
+   "why": "T-0598 stated civic/voter_crosswalk.json's source at the top of the file, and 99 rulings that were UNJUDGEABLE became judgeable. Not one of them is on a card: the 99 voters T-0493 matched to residents rest on chicago_voter_lists_1833_1835_irad and no resident record cites it. This ceiling is the size of that finding, recorded so it can be paid down rather than rediscovered — it was previously invisible because the instrument could not ask the question. T-0514/T-0515 are the mint and regrade tickets that spend it; nothing here writes a card."
   }
  ],
  "lowered": [
@@ -74,6 +82,7 @@
   }
  ],
  "unwritten_ceiling": {
-  "census_1840": 6
+  "census_1840": 6,
+  "civic": 99
  }
 }

@@ -2,6 +2,7 @@
   "schema": 1,
   "ticket": "T-0505",
   "generated_by": "tools/crosswalk_census_1840_heads.py --build",
+  "source_id": "census_1840_chicago_familysearch_images",
   "what": "Every named head on the 1840 Chicago left sheets read in this repo, adjudicated against the 1835 name pools: matched, candidate or refused, each with the rule that decided it.",
   "scene_relation": "LATER EVIDENCE ONLY. The ratified grading ladder binds: an 1839 or 1840 appearance alone is never an 1835 resident, and 1840 household composition is never back-projected to the 1835-07-01 scene.",
   "mints_or_regrades": false,
@@ -722,7 +723,10 @@
         {
           "pool": "letter_list",
           "id": "person_thomas_smith",
-          "name": "Thomas Smith"
+          "name": "Thomas Smith",
+          "source_ids": [
+            "chicago_democrat_1833_1835"
+          ]
         }
       ],
       "outcome": "refused",
@@ -2095,23 +2099,27 @@
           "pool": "voter_lists",
           "list": "poll_1834",
           "record_id": "poll_1834_078",
-          "name": "John Murphy"
+          "name": "John Murphy",
+          "source_id": "chicago_voter_lists_1833_1835_irad"
         },
         {
           "pool": "voter_lists",
           "list": "poll_1835",
           "record_id": "poll_1835_051",
-          "name": "John Murphy"
+          "name": "John Murphy",
+          "source_id": "chicago_voter_lists_1833_1835_irad"
         },
         {
           "pool": "census_1835_bridge_candidates",
           "tier": "A — CONFIRMED 1835 VOTER",
-          "name": "John Murphy"
+          "name": "John Murphy",
+          "source_id": "resident_research_v4_1835_census_bridge"
         },
         {
           "pool": "census_1835_bridge_candidates",
           "tier": "A — CONFIRMED 1835 VOTER",
-          "name": "John Murphy"
+          "name": "John Murphy",
+          "source_id": "resident_research_v4_1835_census_bridge"
         }
       ],
       "outcome": "refused",
@@ -2207,12 +2215,14 @@
         {
           "pool": "census_1835_bridge_candidates",
           "tier": "C — CORROBORATED BACKCAST",
-          "name": "George E. Shelley"
+          "name": "George E. Shelley",
+          "source_id": "resident_research_v4_1835_census_bridge"
         },
         {
           "pool": "census_1835_bridge_candidates",
           "tier": "C — CORROBORATED BACKCAST",
-          "name": "George E. Shelley"
+          "name": "George E. Shelley",
+          "source_id": "resident_research_v4_1835_census_bridge"
         }
       ],
       "outcome": "refused",
@@ -2316,12 +2326,14 @@
         {
           "pool": "census_1835_bridge_candidates",
           "tier": "D — 1840 BACKCAST CANDIDATE",
-          "name": "James McGuyre"
+          "name": "James McGuyre",
+          "source_id": "resident_research_v4_1835_census_bridge"
         },
         {
           "pool": "census_1835_bridge_candidates",
           "tier": "D — 1840 BACKCAST CANDIDATE",
-          "name": "James McGuyre"
+          "name": "James McGuyre",
+          "source_id": "resident_research_v4_1835_census_bridge"
         }
       ],
       "outcome": "refused",
@@ -2484,17 +2496,22 @@
         {
           "pool": "letter_list",
           "id": "person_daniel_miller",
-          "name": "Daniel Miller"
+          "name": "Daniel Miller",
+          "source_ids": [
+            "chicago_democrat_1833_1835"
+          ]
         },
         {
           "pool": "census_1835_bridge_candidates",
           "tier": "D — 1840 BACKCAST CANDIDATE",
-          "name": "Daniel Miller"
+          "name": "Daniel Miller",
+          "source_id": "resident_research_v4_1835_census_bridge"
         },
         {
           "pool": "census_1835_bridge_candidates",
           "tier": "D — 1840 BACKCAST CANDIDATE",
-          "name": "Daniel Miller"
+          "name": "Daniel Miller",
+          "source_id": "resident_research_v4_1835_census_bridge"
         }
       ],
       "outcome": "refused",
@@ -2559,12 +2576,14 @@
         {
           "pool": "census_1835_bridge_candidates",
           "tier": "D — 1840 BACKCAST CANDIDATE",
-          "name": "John Wm. Patrick"
+          "name": "John Wm. Patrick",
+          "source_id": "resident_research_v4_1835_census_bridge"
         },
         {
           "pool": "census_1835_bridge_candidates",
           "tier": "D — 1840 BACKCAST CANDIDATE",
-          "name": "John Wm. Patrick"
+          "name": "John Wm. Patrick",
+          "source_id": "resident_research_v4_1835_census_bridge"
         }
       ],
       "outcome": "refused",
@@ -3078,17 +3097,26 @@
         {
           "pool": "newspapers",
           "id": "person_jno_l_wilson_co",
-          "name": "Jno. L. Wilson & Co."
+          "name": "Jno. L. Wilson & Co.",
+          "source_ids": [
+            "chicago_democrat_1833_1835"
+          ]
         },
         {
           "pool": "newspapers",
           "id": "person_jno_s_wilson_co",
-          "name": "Jno. S. Wilson & Co"
+          "name": "Jno. S. Wilson & Co",
+          "source_ids": [
+            "chicago_democrat_1833_1835"
+          ]
         },
         {
           "pool": "letter_list",
           "id": "person_john_wilson",
-          "name": "John Wilson"
+          "name": "John Wilson",
+          "source_ids": [
+            "chicago_democrat_1833_1835"
+          ]
         }
       ],
       "person_id": "ll_john_wilson",
@@ -3820,7 +3848,10 @@
         {
           "pool": "letter_list",
           "id": "person_thomas_brown",
-          "name": "Thomas Brown"
+          "name": "Thomas Brown",
+          "source_ids": [
+            "chicago_democrat_1833_1835"
+          ]
         }
       ],
       "outcome": "refused",
@@ -4583,7 +4614,10 @@
         {
           "pool": "newspapers",
           "id": "person_charles_hunt",
-          "name": "Charles Hunt"
+          "name": "Charles Hunt",
+          "source_ids": [
+            "chicago_american_1835"
+          ]
         }
       ],
       "outcome": "refused",
@@ -4978,17 +5012,20 @@
           "pool": "voter_lists",
           "list": "tax_1833",
           "record_id": "tax_1833_051",
-          "name": "Seth Johnson"
+          "name": "Seth Johnson",
+          "source_id": "chicago_voter_lists_1833_1835_irad"
         },
         {
           "pool": "census_1835_bridge_candidates",
           "tier": "C — POSSIBLE 1835",
-          "name": "Seth Johnson"
+          "name": "Seth Johnson",
+          "source_id": "resident_research_v4_1835_census_bridge"
         },
         {
           "pool": "census_1835_bridge_candidates",
           "tier": "C — POSSIBLE 1835",
-          "name": "Seth Johnson"
+          "name": "Seth Johnson",
+          "source_id": "resident_research_v4_1835_census_bridge"
         }
       ],
       "outcome": "refused",
@@ -5595,17 +5632,20 @@
           "pool": "voter_lists",
           "list": "poll_1835",
           "record_id": "poll_1835_067",
-          "name": "John C. Rue"
+          "name": "John C. Rue",
+          "source_id": "chicago_voter_lists_1833_1835_irad"
         },
         {
           "pool": "census_1835_bridge_candidates",
           "tier": "A — CONFIRMED 1835 VOTER",
-          "name": "John C Rue"
+          "name": "John C Rue",
+          "source_id": "resident_research_v4_1835_census_bridge"
         },
         {
           "pool": "census_1835_bridge_candidates",
           "tier": "A — CONFIRMED 1835 VOTER",
-          "name": "John C Rue"
+          "name": "John C Rue",
+          "source_id": "resident_research_v4_1835_census_bridge"
         }
       ],
       "outcome": "refused",
@@ -6514,7 +6554,10 @@
         {
           "pool": "newspapers",
           "id": "person_mrs_diana_hamilton",
-          "name": "Mrs. Diana Hamilton"
+          "name": "Mrs. Diana Hamilton",
+          "source_ids": [
+            "chicago_democrat_1833_1835"
+          ]
         }
       ],
       "outcome": "refused",
@@ -6745,34 +6788,43 @@
           "pool": "voter_lists",
           "list": "poll_1833",
           "record_id": "poll_1833_006",
-          "name": "Philo Carpenter"
+          "name": "Philo Carpenter",
+          "source_id": "chicago_voter_lists_1833_1835_irad"
         },
         {
           "pool": "voter_lists",
           "list": "tax_1833",
           "record_id": "tax_1833_012",
-          "name": "Philo Carpenter"
+          "name": "Philo Carpenter",
+          "source_id": "chicago_voter_lists_1833_1835_irad"
         },
         {
           "pool": "voter_lists",
           "list": "poll_1834",
           "record_id": "poll_1834_023",
-          "name": "Philo Carpenter"
+          "name": "Philo Carpenter",
+          "source_id": "chicago_voter_lists_1833_1835_irad"
         },
         {
           "pool": "newspapers",
           "id": "person_philo_carpenter",
-          "name": "Philo Carpenter"
+          "name": "Philo Carpenter",
+          "source_ids": [
+            "chicago_american_1835",
+            "chicago_democrat_1833_1835"
+          ]
         },
         {
           "pool": "census_1835_bridge_candidates",
           "tier": "B — VERY LIKELY 1835",
-          "name": "Philo Carpenter"
+          "name": "Philo Carpenter",
+          "source_id": "resident_research_v4_1835_census_bridge"
         },
         {
           "pool": "census_1835_bridge_candidates",
           "tier": "B — VERY LIKELY 1835",
-          "name": "Philo Carpenter"
+          "name": "Philo Carpenter",
+          "source_id": "resident_research_v4_1835_census_bridge"
         }
       ],
       "person_id": "carpenter_philo",
@@ -6903,12 +6955,18 @@
         {
           "pool": "letter_list",
           "id": "person_jacob_miller",
-          "name": "Jacob Miller"
+          "name": "Jacob Miller",
+          "source_ids": [
+            "chicago_democrat_1833_1835"
+          ]
         },
         {
           "pool": "letter_list",
           "id": "person_jacob_v_miller",
-          "name": "Jacob V. Miller"
+          "name": "Jacob V. Miller",
+          "source_ids": [
+            "chicago_democrat_1833_1835"
+          ]
         }
       ],
       "outcome": "refused",
@@ -7023,12 +7081,14 @@
         {
           "pool": "census_1835_bridge_candidates",
           "tier": "D — 1840 BACKCAST CANDIDATE",
-          "name": "John Mullen"
+          "name": "John Mullen",
+          "source_id": "resident_research_v4_1835_census_bridge"
         },
         {
           "pool": "census_1835_bridge_candidates",
           "tier": "D — 1840 BACKCAST CANDIDATE",
-          "name": "John Mullen"
+          "name": "John Mullen",
+          "source_id": "resident_research_v4_1835_census_bridge"
         }
       ],
       "outcome": "refused",
@@ -7077,28 +7137,36 @@
           "pool": "voter_lists",
           "list": "tax_1833",
           "record_id": "tax_1833_024",
-          "name": "John Davis"
+          "name": "John Davis",
+          "source_id": "chicago_voter_lists_1833_1835_irad"
         },
         {
           "pool": "voter_lists",
           "list": "poll_1834",
           "record_id": "poll_1834_032",
-          "name": "John Davis"
+          "name": "John Davis",
+          "source_id": "chicago_voter_lists_1833_1835_irad"
         },
         {
           "pool": "newspapers",
           "id": "person_john_davis",
-          "name": "John Davis"
+          "name": "John Davis",
+          "source_ids": [
+            "chicago_american_1835",
+            "chicago_democrat_1833_1835"
+          ]
         },
         {
           "pool": "census_1835_bridge_candidates",
           "tier": "B — VERY LIKELY 1835",
-          "name": "John Davis"
+          "name": "John Davis",
+          "source_id": "resident_research_v4_1835_census_bridge"
         },
         {
           "pool": "census_1835_bridge_candidates",
           "tier": "B — VERY LIKELY 1835",
-          "name": "John Davis"
+          "name": "John Davis",
+          "source_id": "resident_research_v4_1835_census_bridge"
         }
       ],
       "person_id": "davis_john",
@@ -7216,22 +7284,29 @@
           "pool": "voter_lists",
           "list": "tax_1833",
           "record_id": "tax_1833_046",
-          "name": "Gurdon S. Hubbard"
+          "name": "Gurdon S. Hubbard",
+          "source_id": "chicago_voter_lists_1833_1835_irad"
         },
         {
           "pool": "newspapers",
           "id": "person_gurdon_s_hubbard",
-          "name": "Gurdon S. Hubbard"
+          "name": "Gurdon S. Hubbard",
+          "source_ids": [
+            "chicago_american_1835",
+            "chicago_democrat_1833_1835"
+          ]
         },
         {
           "pool": "census_1835_bridge_candidates",
           "tier": "C — POSSIBLE 1835",
-          "name": "Gurdon S Hubbard"
+          "name": "Gurdon S Hubbard",
+          "source_id": "resident_research_v4_1835_census_bridge"
         },
         {
           "pool": "census_1835_bridge_candidates",
           "tier": "C — POSSIBLE 1835",
-          "name": "Gurdon S Hubbard"
+          "name": "Gurdon S Hubbard",
+          "source_id": "resident_research_v4_1835_census_bridge"
         }
       ],
       "person_id": "hubbard_gurdon",
@@ -7319,7 +7394,10 @@
         {
           "pool": "letter_list",
           "id": "person_james_moore",
-          "name": "James Moore"
+          "name": "James Moore",
+          "source_ids": [
+            "chicago_democrat_1833_1835"
+          ]
         }
       ],
       "outcome": "refused",
@@ -7342,12 +7420,14 @@
         {
           "pool": "census_1835_bridge_candidates",
           "tier": "C — CORROBORATED BACKCAST",
-          "name": "Morgan Stocking"
+          "name": "Morgan Stocking",
+          "source_id": "resident_research_v4_1835_census_bridge"
         },
         {
           "pool": "census_1835_bridge_candidates",
           "tier": "C — CORROBORATED BACKCAST",
-          "name": "Morgan Stocking"
+          "name": "Morgan Stocking",
+          "source_id": "resident_research_v4_1835_census_bridge"
         }
       ],
       "outcome": "refused",
@@ -7398,12 +7478,14 @@
         {
           "pool": "census_1835_bridge_candidates",
           "tier": "D — 1840 BACKCAST CANDIDATE",
-          "name": "Robert S. Hamilton"
+          "name": "Robert S. Hamilton",
+          "source_id": "resident_research_v4_1835_census_bridge"
         },
         {
           "pool": "census_1835_bridge_candidates",
           "tier": "D — 1840 BACKCAST CANDIDATE",
-          "name": "Robert S. Hamilton"
+          "name": "Robert S. Hamilton",
+          "source_id": "resident_research_v4_1835_census_bridge"
         }
       ],
       "outcome": "refused",
@@ -7427,33 +7509,44 @@
           "pool": "voter_lists",
           "list": "tax_1833",
           "record_id": "tax_1833_062",
-          "name": "John Kinzie"
+          "name": "John Kinzie",
+          "source_id": "chicago_voter_lists_1833_1835_irad"
         },
         {
           "pool": "voter_lists",
           "list": "poll_1834",
           "record_id": "poll_1834_067",
-          "name": "John H. Kinzie"
+          "name": "John H. Kinzie",
+          "source_id": "chicago_voter_lists_1833_1835_irad"
         },
         {
           "pool": "newspapers",
           "id": "person_john_h_kinzie",
-          "name": "John H. Kinzie"
+          "name": "John H. Kinzie",
+          "source_ids": [
+            "chicago_american_1835",
+            "chicago_democrat_1833_1835"
+          ]
         },
         {
           "pool": "newspapers",
           "id": "person_john_s_kinzie",
-          "name": "John S. Kinzie"
+          "name": "John S. Kinzie",
+          "source_ids": [
+            "chicago_democrat_1833_1835"
+          ]
         },
         {
           "pool": "census_1835_bridge_candidates",
           "tier": "B — VERY LIKELY 1835",
-          "name": "John Kinzie"
+          "name": "John Kinzie",
+          "source_id": "resident_research_v4_1835_census_bridge"
         },
         {
           "pool": "census_1835_bridge_candidates",
           "tier": "B — VERY LIKELY 1835",
-          "name": "John Kinzie"
+          "name": "John Kinzie",
+          "source_id": "resident_research_v4_1835_census_bridge"
         }
       ],
       "person_id": "kinzie_john_h",
@@ -7610,7 +7703,10 @@
         {
           "pool": "newspapers",
           "id": "person_byram_king",
-          "name": "Byram King"
+          "name": "Byram King",
+          "source_ids": [
+            "chicago_democrat_1833_1835"
+          ]
         }
       ],
       "person_id": "doc_byram_king",
@@ -7636,22 +7732,28 @@
           "pool": "voter_lists",
           "list": "tax_1833",
           "record_id": "tax_1833_049",
-          "name": "Samuel Jackson"
+          "name": "Samuel Jackson",
+          "source_id": "chicago_voter_lists_1833_1835_irad"
         },
         {
           "pool": "letter_list",
           "id": "person_samuel_jackson",
-          "name": "Samuel Jackson"
+          "name": "Samuel Jackson",
+          "source_ids": [
+            "chicago_democrat_1833_1835"
+          ]
         },
         {
           "pool": "census_1835_bridge_candidates",
           "tier": "C — POSSIBLE 1835",
-          "name": "Samuel Jackson"
+          "name": "Samuel Jackson",
+          "source_id": "resident_research_v4_1835_census_bridge"
         },
         {
           "pool": "census_1835_bridge_candidates",
           "tier": "C — POSSIBLE 1835",
-          "name": "Samuel Jackson"
+          "name": "Samuel Jackson",
+          "source_id": "resident_research_v4_1835_census_bridge"
         }
       ],
       "person_id": "ll_jackson_samuel",
@@ -7676,7 +7778,10 @@
         {
           "pool": "letter_list",
           "id": "person_joseph_chandler",
-          "name": "Joseph Chandler"
+          "name": "Joseph Chandler",
+          "source_ids": [
+            "chicago_democrat_1833_1835"
+          ]
         }
       ],
       "person_id": "ll_joseph_chandler",
@@ -7762,17 +7867,20 @@
           "pool": "voter_lists",
           "list": "poll_1834",
           "record_id": "poll_1834_005",
-          "name": "James Allen"
+          "name": "James Allen",
+          "source_id": "chicago_voter_lists_1833_1835_irad"
         },
         {
           "pool": "census_1835_bridge_candidates",
           "tier": "B — VERY LIKELY 1835",
-          "name": "James Allen"
+          "name": "James Allen",
+          "source_id": "resident_research_v4_1835_census_bridge"
         },
         {
           "pool": "census_1835_bridge_candidates",
           "tier": "B — VERY LIKELY 1835",
-          "name": "James Allen"
+          "name": "James Allen",
+          "source_id": "resident_research_v4_1835_census_bridge"
         }
       ],
       "outcome": "refused",
@@ -7900,28 +8008,35 @@
           "pool": "voter_lists",
           "list": "poll_1833",
           "record_id": "poll_1833_030",
-          "name": "John Wright"
+          "name": "John Wright",
+          "source_id": "chicago_voter_lists_1833_1835_irad"
         },
         {
           "pool": "voter_lists",
           "list": "tax_1833",
           "record_id": "tax_1833_114",
-          "name": "John Wright"
+          "name": "John Wright",
+          "source_id": "chicago_voter_lists_1833_1835_irad"
         },
         {
           "pool": "newspapers",
           "id": "person_john_wright",
-          "name": "John Wright"
+          "name": "John Wright",
+          "source_ids": [
+            "chicago_democrat_1833_1835"
+          ]
         },
         {
           "pool": "census_1835_bridge_candidates",
           "tier": "B — LIKELY 1835",
-          "name": "John Wright"
+          "name": "John Wright",
+          "source_id": "resident_research_v4_1835_census_bridge"
         },
         {
           "pool": "census_1835_bridge_candidates",
           "tier": "B — LIKELY 1835",
-          "name": "John Wright"
+          "name": "John Wright",
+          "source_id": "resident_research_v4_1835_census_bridge"
         }
       ],
       "outcome": "refused",
@@ -7992,17 +8107,20 @@
           "pool": "voter_lists",
           "list": "poll_1835",
           "record_id": "poll_1835_043",
-          "name": "John Knight"
+          "name": "John Knight",
+          "source_id": "chicago_voter_lists_1833_1835_irad"
         },
         {
           "pool": "census_1835_bridge_candidates",
           "tier": "A — CONFIRMED 1835 VOTER",
-          "name": "John Knight"
+          "name": "John Knight",
+          "source_id": "resident_research_v4_1835_census_bridge"
         },
         {
           "pool": "census_1835_bridge_candidates",
           "tier": "A — CONFIRMED 1835 VOTER",
-          "name": "John Knight"
+          "name": "John Knight",
+          "source_id": "resident_research_v4_1835_census_bridge"
         }
       ],
       "outcome": "refused",
@@ -8039,7 +8157,10 @@
         {
           "pool": "newspapers",
           "id": "person_james_smith",
-          "name": "James Smith"
+          "name": "James Smith",
+          "source_ids": [
+            "chicago_american_1835"
+          ]
         }
       ],
       "outcome": "refused",
@@ -8498,27 +8619,34 @@
         {
           "pool": "newspapers",
           "id": "person_wm_h_brown",
-          "name": "Wm. H. Brown"
+          "name": "Wm. H. Brown",
+          "source_ids": [
+            "chicago_democrat_1833_1835"
+          ]
         },
         {
           "pool": "census_1835_bridge_candidates",
           "tier": "C — CORROBORATED BACKCAST",
-          "name": "William H. Brown"
+          "name": "William H. Brown",
+          "source_id": "resident_research_v4_1835_census_bridge"
         },
         {
           "pool": "census_1835_bridge_candidates",
           "tier": "D — 1840 BACKCAST CANDIDATE",
-          "name": "William H. Brown?"
+          "name": "William H. Brown?",
+          "source_id": "resident_research_v4_1835_census_bridge"
         },
         {
           "pool": "census_1835_bridge_candidates",
           "tier": "C — CORROBORATED BACKCAST",
-          "name": "William H. Brown"
+          "name": "William H. Brown",
+          "source_id": "resident_research_v4_1835_census_bridge"
         },
         {
           "pool": "census_1835_bridge_candidates",
           "tier": "D — 1840 BACKCAST CANDIDATE",
-          "name": "William H. Brown?"
+          "name": "William H. Brown?",
+          "source_id": "resident_research_v4_1835_census_bridge"
         }
       ],
       "outcome": "refused",
