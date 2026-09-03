@@ -3,7 +3,7 @@
   "source": "docs/LIBERTIES.md",
   "standard": "A visitor should be able to tell you which parts we made up.",
   "note": "The confidence model covers attributes. These are the decisions that live above any single attribute: scope, omission, simplification, and the choices a visitor would otherwise have to reverse-engineer.",
-  "count": 215,
+  "count": 216,
   "liberties": [
     {
       "id": "L1",
@@ -13625,6 +13625,33 @@
         {
           "label": "Recorded",
           "text": "2026-08-30."
+        }
+      ]
+    },
+    {
+      "id": "L216",
+      "title": "The one lot-and-block address in the corpus is seated on a roof nothing says is that house",
+      "section": "per_subject",
+      "subjects": [],
+      "covers": [],
+      "recorded": "2026-09-03",
+      "revised": null,
+      "fields": [
+        {
+          "label": "Decision",
+          "text": "where a newspaper prints a LOT AND A BLOCK — the plat's own language, and the strongest placement statement this corpus makes — the address is seated on the reconstructed roof already standing on that lot, and the roof gains the address and nothing else. There is exactly one such address: G. Spring's For-Sale notice, six printings in the *Chicago Democrat* between 1834-06-18 and 1834-11-19, \"LOT No. 7, in block No. 16, one lot east of Haddock's Tavern, on Lake street … a large Dwelling-House and fine well\". `docs/LOT-ADDRESS.md` is the policy, `data/research/newspapers/lot_addresses.json` the authored address, `tools/lot_addresses.py --check` the gate that re-derives it on every commit."
+        },
+        {
+          "label": "What is not invented",
+          "text": "the address. Four of the six printings carry \"lot 7\", \"block 16\", \"Lake street\", the neighbouring tavern and the house itself unbroken, and the two that do not are named in the ledger with what the column edge took from each. Nor is the block number invented: T-0358 derived it, and it is the one derived number in that file an independent source agrees with — the notice's own \"on Lake street\" and the tavern one lot west of it land on the block the count reaches from the Wright sheet's numeral. **What is invented, and it is the step from a number to a roof.** Four lots to a block face is a reading of ONE block; the lot lines that reading divides a block into are the plat module's and are drawn from no sheet; the counter-clockwise numbering was read off block 18's crop and applied to every block by counting. So \"lot 7\" is a conjectural line bearing a documented number, and the roof whose centroid falls inside it is an anonymous count-unit the 665-roof programme raised to meet an aggregate — dealt to the D3 family long before this address resolved to anything. **Nothing says that roof is that house.** Its existence, position, footprint and every form value are exactly what they were, still conjectural under **L92**, and the seating is graded at the bottom tier for that reason: `confidence` is `const: \"reconstructed\"` in the schema and the gate re-reads the phase and fails if a documented address has promoted it. **The source says LARGE and the fabric does not answer to the word.** The roof under this address is a 5.36 × 6.38 m one-room cottage. That is a real contradiction between a documented adjective and a reconstructed massing, and it is recorded here rather than repaired, because repairing it means re-dealing the block's family mix and re-baking, which is a second demonstration. The card carries the notice's own words, so a visitor reads \"a large Dwelling-House\" beside a small one and can see the seam. **The well is documented and is not drawn.** The notice's second structure is \"a fine well\". The town has no well — no archetype, no committed structure, no yard record — so drawing this one would raise a new kind of object for the whole scene rather than place a known one, and it would be the only well in Chicago. The absence is stated on the record instead of passed over, which is the distinction this document exists for: an omission that says so is not the same liberty as one that does not. **Three things this deliberately does not claim, and each is a field or a gate.** A person: the advertiser is who to apply to for terms, `is_the_occupant` and `is_the_owner` are `false` in the ledger and refused if they are not, and this house is NOT named for G. Spring — the same man is the attorney the papers put second door west of Franklin and South Water, and **T-0412** is the same trap read from the other side. A promotion: the phase stays `reconstructed`. And a second building: an address landing on two roofs, or two addresses landing on one, are both refusals rather than allocations, because an address that names more than one building has placed none of them."
+        },
+        {
+          "label": "How to resolve",
+          "text": "a canal-commission lot record, a deed or an assessment naming this lot would replace the conjectural line with a recovered one and would make the seating a reading rather than an allocation. Thompson's own lot numerals for block 16, read off a sheet, would do the same for the numbering. A measured description of the house would end the contradiction between the word LARGE and the massing under it. Related: **L212** (street-face adoption — a face, never a lot) · **L215** (the corner ordinal — a position, and no lot) · **L92** (the anonymous roofs' own conjecture) · **L157** (the vacancy this title stops asserting) · tickets **T-0423** (this), **T-0358** (the block numbering it spends), **T-0324**, **T-0412** (the vendor trap)."
+        },
+        {
+          "label": "Recorded",
+          "text": "2026-09-03."
         }
       ]
     },

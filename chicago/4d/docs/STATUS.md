@@ -1,5 +1,63 @@
 # STATUS
 
+## Shipped 2026-09-03 — T-0423: the corpus's one lot-and-block address is seated, and stops carding as vacant
+
+**The dwelling-house on lot 7 of block 16 is named on the card a visitor opens, instead of
+"A vacant one-room frame cottage".** G. Spring's For-Sale notice ran in the *Chicago
+Democrat* six times between 1834-06-18 and 1834-11-19 — *"LOT No. 7, in block No. 16, one
+lot east of Haddock's Tavern, on Lake street … There is on said lot a large Dwelling-House
+and fine well"* — and a lot and a block is the plat's own language, which makes it the most
+precise placement statement in the whole newspaper corpus. **This is the visible half of
+T-0358**, which committed the Thompson block numbering so the sentence could reach ground.
+It reached a polygon and stopped: the roof standing on that polygon went on titling itself
+with a claim of absence made over the top of a source saying a house was there.
+
+### The third grammar, and it needed its own policy
+
+A paper of 1834 places a building three ways, and they are three different claims:
+
+| the paper says | it constrains | the policy |
+|---|---|---|
+| a platted street and nothing narrower | a face | `docs/STREET-FACE-ADOPTION.md`, L212 |
+| a count of doors off a named corner | a position, and no lot | `docs/CORNER-ORDINAL.md`, L215 |
+| **a lot and a block** | **the plat's own unit** | **`docs/LOT-ADDRESS.md`, L216** |
+
+`data/research/newspapers/lot_addresses.json` authors the address and nothing else — the
+printed words, the printings, what the notice says stood on the lot, and who the advertiser
+was. Every step from there is derived by `tools/lot_addresses.py`: block number → block
+through the committed numbering (which the ledger may not contradict), lot number → polygon
+through the committed lot grid, polygon → **exactly one** roof by footprint centroid, or the
+address is refused. Both directions are gated in `check.sh`, and nine ways the seating could
+lie are in its `--self-test`.
+
+### The grade does not move, and the chain is why
+
+The words are read. The block number is `inferred` — three blocks counted east of the one
+numeral the Wright sheet carries. The lot number is `conjectural` twice over: four lots to a
+face is a reading of one block, the lines it numbers are drawn from no sheet, and the
+counter-clockwise scheme was read off block 18. So the seating is graded at the **bottom
+tier**, `confidence` is `const: "reconstructed"` in the schema, and the gate re-reads the
+phase and fails if a documented address has quietly promoted a reconstructed roof.
+
+The seating writes **one block** and nothing else — no coordinate, no footprint, no form
+value, and not even the record's `function`, which the dooryard, fence, planting and
+signboard generators read to decide what stands in a yard. No mesh changed and nothing was
+re-baked. The town gained an address, not a building.
+
+### Three things it refuses, and two it records rather than draws
+
+It is **not** "G. Spring's house": he is who to apply to for terms, `is_the_occupant` and
+`is_the_owner` are `false` in the ledger and refused if they are not, and the same G. Spring
+is the attorney the papers put near Franklin and South Water. T-0412 is that trap read from
+the other side. It may not seat two addresses on a roof, or one address on two roofs.
+
+Recorded rather than drawn: the notice calls the house **LARGE** and the fabric under the
+address is a 5.36 × 6.38 m D3 count-unit dealt long before the address resolved (**T-0591**);
+and the **fine well** is not drawn, because this town has no well of any kind and the first
+one would stand on the single lot whose address happens to resolve (**T-0590**). Both are on
+the record in the notice's own words. A documented feature that is absent is stated, not
+omitted.
+
 ## Shipped 2026-09-01 — T-0462: the next 75 real names receive deep research
 
 **Resident identity research now covers 150 of 848 eligible real named people

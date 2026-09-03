@@ -1389,6 +1389,22 @@ step "…and its own assertions still fire when broken" \
 step "…and the ledger that spends them into the roofs refuses every way one could lie" \
   python3 tools/inferred_occupancy.py --self-test
 
+# AND THE THIRD WAY A PAPER PLACES A BUILDING (T-0423): it prints a LOT AND A BLOCK. Where
+# an adoption claims a face and an ordinal claims neither, this claims the plat's own unit,
+# and there is exactly one of it in the corpus — G. Spring's For-Sale notice, six printings,
+# "LOT No. 7, in block No. 16 … on Lake street". The address is authored in
+# data/research/newspapers/lot_addresses.json and NOTHING ELSE about it is: the block number
+# resolves through the committed numbering, the lot number through the committed lot grid,
+# and which roof stands at the address is derived from its footprint. Gated rather than
+# committed once for the same reason the adoptions are — every step of that chain moves when
+# the town does. A block renumbered, a lot line redrawn, a second roof built onto the lot or
+# a phase promoted because a documented address landed on it all fail here.
+step "the lot-and-block address re-derives, and seating it promotes no roof" \
+  python3 tools/lot_addresses.py --check
+
+step "…and its own assertions still fire when broken" \
+  python3 tools/lot_addresses.py --self-test
+
 printf '\n'
 if [ "$FAILED" -eq 0 ]; then
   printf '\033[32mCHECK PASS\033[0m\n'

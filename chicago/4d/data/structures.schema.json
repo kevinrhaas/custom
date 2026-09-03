@@ -274,6 +274,76 @@
         }
       }
     },
+    "lot_address": {
+      "type": "object",
+      "additionalProperties": false,
+      "description": "What a record asserts about the platted lot it stands on when a SOURCE names that lot. The positive counterpart of `lot_claim`, and the rarer one: a newspaper that prints 'lot 7, in block 16' is speaking the plat's own language, which is the strongest placement statement this corpus makes. The address is AUTHORED in data/research/newspapers/lot_addresses.json and every step from a printed number to a committed roof is DERIVED by tools/lot_addresses.py, which is also the gate; docs/LOT-ADDRESS.md is the policy and L216 the liberty. A block here never promotes the record: the lot lines it lands on are the plat module's and are conjectural, so the seating is graded at the bottom tier and the phase's own confidences are untouched.",
+      "required": [
+        "claims_lot",
+        "block_number",
+        "lot_number",
+        "block_id",
+        "address_text",
+        "title",
+        "confidence",
+        "sources",
+        "cites",
+        "note"
+      ],
+      "properties": {
+        "claims_lot": {
+          "const": true,
+          "description": "Always true. The block exists to declare that a source names this lot; a record with nothing to declare carries no block at all, and a record placed WITHOUT a lot says so in `lot_claim` instead."
+        },
+        "block_number": {
+          "type": "integer",
+          "description": "The block number as printed. Resolved to a block_id through data/traces/thompson_block_numbering.json, which grades the resolution `inferred`."
+        },
+        "lot_number": {
+          "type": "integer",
+          "description": "The lot number as printed. Resolved to a polygon through the lot numbering committed with the block numbers, which is graded `conjectural`."
+        },
+        "block_id": {
+          "type": "string",
+          "description": "The committed block the number resolves to. Cross-read against the numbering rather than trusted, so the two cannot drift."
+        },
+        "address_text": {
+          "type": "string",
+          "minLength": 1,
+          "description": "The address as printed, normalized."
+        },
+        "title": {
+          "type": "string",
+          "minLength": 1,
+          "description": "What a visitor sees the building called instead of a production identity. Names the ADDRESS, never the advertiser: a man who takes enquiries about terms is not the householder."
+        },
+        "confidence": {
+          "const": "reconstructed",
+          "description": "Always the bottom tier. The words are read, but the lot lines they land on are drawn from no sheet, and a chain is as strong as its weakest link."
+        },
+        "sources": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "string"
+          },
+          "description": "The source records the cited claims come out of."
+        },
+        "cites": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "string"
+          },
+          "description": "The claim ids of the legible printings of this address, `<issue_id>#<claim>`."
+        },
+        "note": {
+          "type": "string",
+          "minLength": 1,
+          "description": "What the address gains this record and what it explicitly does not, in the record’s own words."
+        }
+      }
+    },
     "xref": {
       "type": "object",
       "additionalProperties": false,
