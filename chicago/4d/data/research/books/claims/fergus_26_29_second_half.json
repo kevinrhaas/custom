@@ -1,0 +1,15 @@
+{
+  "schema": 1,
+  "domain": "books",
+  "source_id": "fergus_historical_series_26_29",
+  "ticket": "T-0500",
+  "read": "2026-09-03",
+  "target_before_reading": {
+    "declared": "2026-09-03, before a single page of the second half was read, and committed in its own commit so the count below is a MEASUREMENT and not a rationalisation.",
+    "claims": 50,
+    "town_findings": 20,
+    "reasoning": "The second half of the volume is leaves 430-858: the 1843 Business Directory (leaves 430-457), the 1843 alphabetical name directory (458-605), the Obituary (606-644), the publisher's advertisement leaves (645-657 and 851-858), and the whole of Fergus No. 29, the Biographical Sketch of Joseph Duncan (658-850). A structural sweep before reading found an 1820s-or-1830s date on 70 of those 429 leaves and they cluster in two places: Fergus's bracketed later annotations inside the 1843 directory, and the Duncan sketch's canal and 1834-5 legislature material. NONE of the 1843 directory's own entries is 1835 evidence, and this file will not pretend otherwise, so the yield was priced off those two clusters and not off the volume's length."
+  },
+  "_doc": "PLACEHOLDER — the claims are authored in the commits that follow. This commit exists only to fix the target above before the reading starts.",
+  "claims": []
+}
