@@ -1211,6 +1211,18 @@ step "the newspaper corpus resolves, and nothing under data/research/ is publish
 step "the six research domains hold one shape" \
   python3 tools/research_domains.py --check
 
+# T-0554. The Calumet Club's old-settlers receptions are a source SERIES read out of the
+# Tribune's reprints, and the thing that goes wrong with a source like this is silent
+# drift: a name hand-tidied, a quote paraphrased, a merge asserted in a file and never
+# written onto the record it names. So the rolls are REBUILT from the committed
+# transcription and compared, every quote is rebuilt out of the same lines, and every
+# merge has to be present on the resident record it claims.
+step "the old-settlers rolls rebuild from their committed transcription" \
+  python3 tools/old_settlers.py --check
+
+step "…and its own assertions still fire when broken" \
+  python3 tools/old_settlers.py --self-test
+
 step "…and its own assertions still fire when broken" \
   python3 tools/research_domains.py --self-test
 

@@ -1,0 +1,115 @@
+{
+ "schema": 1,
+ "domain": "old_settlers",
+ "generated_by": "tools/old_settlers.py --build",
+ "what": "The Calumet Club of Chicago's annual receptions to the Old Settlers — the meetings the owner asked about — as a source SERIES: one row per reception, with its date, where it was held, where its roster is printed, and how many names that roster carries. A row is DECLARED whether or not this project has read its roster yet; 'roster_read' is the honest field, and an unread roster is a hole this file makes visible rather than a silence.",
+ "the_club": {
+  "name": "The Calumet Club of Chicago",
+  "organized": "1878",
+  "first_rooms": "the residence of the late Gen. Anson Stager, Michigan Avenue at Eighteenth Street",
+  "own_building": "Michigan Avenue, north-east corner of Twentieth Street; Burnham and Root; under construction in 1882 and occupied from 1884",
+  "criterion_for_a_guest": "residents of Chicago prior to the 1st day of January, 1840, who were then 21 years of age",
+  "sources": [
+   "chicagology_goldenage_063",
+   "chicago_tribune_1882_05_19_fourth_reception"
+  ],
+  "note": "The criterion is the reason this series cannot make an 1835 resident on its own: it reaches to the end of 1839."
+ },
+ "receptions": [
+  {
+   "id": "calumet_1879_first",
+   "ordinal": 1,
+   "date": "1879-05-27",
+   "date_as_printed": "Tuesday evening, May 27, 1879",
+   "venue": "the Calumet Club's rooms, Michigan Avenue at Eighteenth Street",
+   "venue_basis": "INFERRED, and the inference is the 1888 Chicago Clubs Illustrated: the club, organised in 1878, \"occupied for the first few years of its existence the residence of the late General Anson Stager, at the corner of Michigan Avenue and Eighteenth Street\". The proceedings of 1879 were not read for the address.",
+   "host": "The Calumet Club of Chicago",
+   "roster_printed_in": "Early Chicago: Reception to the Settlers of Chicago Prior to 1840, by the Calumet Club, of Chicago (Chicago, 1879) — the club's own printed proceedings, reprinted in the Fergus Historical Series",
+   "roster_names": 149,
+   "roster_names_basis": "the proceedings' own count: \"of the settlers of Chicago prior to 1840, one hundred and forty-nine registered their names out of the large number invited\"",
+   "roster_read": false,
+   "carries_year_of_arrival": true,
+   "sources": [
+    "calumet_club_early_chicago_1879"
+   ],
+   "note": "THE RICHEST UNREAD ROSTER IN THE SERIES, and the reason a follow-up ticket exists: the proceedings tabulate \"the places of birth, the years of arrival, and ages of those who signed the registry\", so this is the one reception whose roster dates its people. The tables as printed are AGGREGATES (63 born in New York, 16 in Connecticut, and a years-of-arrival table whose OCR is mangled); the per-person registry has to be read off the page images, not the text layer."
+  },
+  {
+   "id": "calumet_1880_second",
+   "ordinal": 2,
+   "date": "1880",
+   "date_as_printed": null,
+   "venue": "the Calumet Club's rooms, Michigan Avenue at Eighteenth Street",
+   "venue_basis": "INFERRED from the 1888 Chicago Clubs Illustrated's statement that the club held the Stager residence at Michigan Avenue and Eighteenth Street for its first few years. No report of this reception has been read.",
+   "host": "The Calumet Club of Chicago",
+   "roster_printed_in": "Chicago Tribune, the morning after the reception — issue not yet located",
+   "roster_names": null,
+   "roster_names_basis": null,
+   "roster_read": false,
+   "carries_year_of_arrival": null,
+   "sources": [
+    "chicago_tribune_1882_05_19_fourth_reception"
+   ],
+   "note": "DECLARED, NOT READ. The existence and the ordinal are the arithmetic of the 1882 report: the reception of 18 May 1882 is the FOURTH annual and its report says \"As on the three previous occasions\", which places the second in 1880 and the third in 1881. Nothing here states its date or its roster."
+  },
+  {
+   "id": "calumet_1881_third",
+   "ordinal": 3,
+   "date": "1881",
+   "date_as_printed": null,
+   "venue": "the Calumet Club's rooms, Michigan Avenue at Eighteenth Street",
+   "venue_basis": "INFERRED from the 1888 Chicago Clubs Illustrated's statement that the club held the Stager residence at Michigan Avenue and Eighteenth Street for its first few years. No report of this reception has been read.",
+   "host": "The Calumet Club of Chicago",
+   "roster_printed_in": "Chicago Tribune, the morning after the reception — issue not yet located",
+   "roster_names": 160,
+   "roster_names_basis": "the 1882 report's own comparison: \"there were in the house the following-named guests—118 in number—while the number at the third reception was 160\"",
+   "roster_read": false,
+   "carries_year_of_arrival": null,
+   "sources": [
+    "chicago_tribune_1882_05_19_fourth_reception"
+   ],
+   "note": "DECLARED, NOT READ. The count is the 1882 report's, not a reading of the 1881 roster. The club's photograph gallery grew \"since May, 1881\", which dates the third reception to May."
+  },
+  {
+   "id": "calumet_1882_fourth",
+   "ordinal": 4,
+   "date": "1882-05-18",
+   "date_as_printed": "the 18th of May [1882], Thursday evening",
+   "venue": "the Calumet Club's club-room, Michigan Avenue at Eighteenth Street — the club's own building on Twentieth Street was still \"under process of construction\"",
+   "venue_basis": "the Tribune of 25 April 1882 says the reception is held in \"their club-room\" and that the club cannot invite more guests until \"their large building now under process of construction shall be completed\"; that the club-room was then the Stager residence at Michigan and Eighteenth is the 1888 Chicago Clubs Illustrated's, not the Tribune's.",
+   "host": "The Calumet Club of Chicago; Vice-President J. W. Doane welcomed the guests, the Hon. John Wentworth answered for the old settlers",
+   "roster_printed_in": "Chicago Tribune, 19 May 1882, under \"Names of Old Settlers Present, Residents and of Age Prior to 1840\"; the year's deaths in the Tribune of 25 April 1882",
+   "roster_names": 128,
+   "roster_names_basis": "read line by line off the roster as chicagology 063 reprints it; the report's own count of the guests in the house is 118",
+   "roster_read": true,
+   "carries_year_of_arrival": false,
+   "sources": [
+    "chicago_tribune_1882_05_19_fourth_reception",
+    "chicago_tribune_1882_04_25_old_settler_deaths",
+    "chicago_tribune_1882_05_17_eells_interview",
+    "chicagology_goldenage_063"
+   ],
+   "note": "THE ROSTER THIS PASS READ. It gives each guest's 1882 post-office address and NOT a year of arrival, which is why every person row here carries a null arrival year: the addresses are where these men lived in 1882, forty-seven years after the scene date, and are never read as 1835 residences."
+  }
+ ],
+ "declared_and_unresolved": [
+  {
+   "id": "os_q_1883_ordinal",
+   "question": "This project already cites an 1883 old-settlers reception as the SEVENTH annual (data/sources/chicago_old_settlers_hugunin_1883.json, \"Old Settlers of Chicago, Seventh Annual Reception proceedings, 1883\"), and a Tribune report of 18 May 1883 beside it (resident_research_tribune_mitchell_1883). But the Tribune of 25 April 1882 calls the reception of 18 May 1882 the FOURTH annual, which makes 1883 the fifth. One of the two ordinals is wrong, or they count different bodies.",
+   "not_resolved_because": "the evidence in hand is a transcription of the 1882 Tribune and a citation written from a different document. Neither existing source record is altered on that.",
+   "for": "whoever reads the 1883 proceedings (the Lane Family copy is already cited) — the title page will settle it."
+  },
+  {
+   "id": "os_q_death_count",
+   "question": "The reception report of 19 May 1882 says \"no less than thirty-five of the 414 who are known & Chicago's old settlers having gone to their rest during the year\", and Vice-President Doane repeats thirty-five from the floor. Wentworth's published list, printed on 25 April 1882 and read here, carries 40 names.",
+   "not_resolved_because": "the list is dated three weeks before the reception and covers deaths \"since the 1st of January, 1881\" — sixteen and a half months, not \"during the year\". The two counts are answering different questions, and the page does not say so.",
+   "for": "the consolidation pass (T-0513), which should carry both counts rather than pick one."
+  },
+  {
+   "id": "os_q_hail_hall",
+   "question": "\"William A. Hail\" in the death roll of 25 April 1882 and \"William A. Hall, who was employed at Fort Dearborn as a gunsmith\" in the report of 19 May 1882 are one man under two spellings, on the same web page.",
+   "not_resolved_because": "both spellings are carried as_read and no resident is merged on either. A Fort Dearborn gunsmith is a placeable trade and worth the original.",
+   "for": "the Fort Dearborn trades work and T-0513."
+  }
+ ]
+}

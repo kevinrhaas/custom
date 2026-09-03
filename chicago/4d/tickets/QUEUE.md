@@ -100,7 +100,6 @@
 # --- T-0562 joined them the same afternoon on his ask "make sure you have a resident household business
 # --- city data improvement ticket for https://archive.org/details/chicago1835-newberry-genealogical-index
 # --- if you do not already i am starting to move the research corpus to the internet archive".
-T-0554 — The Old Settlers of Chicago: the Calumet Club receptions (1879 on) for residents prior to 1 January 1840, the Tribune's 1882 roll of settlers who died that year, and the Fergus reception lists — research the people and the meetings, add residents with citations
 T-0567 — Norris's 1844 directory: the Description and Historical Sketch and the Statistical Account read as dated town findings
 T-0568 — Norris's 1844 directory: the Advertising Directory read as businesses, with proprietors, trades, addresses and founding dates
 T-0569 — Norris's 1844 directory spent on the layers: the 1835 residents validated and enriched, and the businesses written and dated
@@ -357,3 +356,4 @@ T-0537 — The web derivatives are stamped by an unpinned gltf-transform, so a r
 T-0542 — Andreas dates the third town election twice — July 1835 and 5 August 1835 — and which one the 1835 poll list is decides whether 85 men stood on the scene date
 T-0543 — The continuation half of printed pages 230 and 232 is on a right sheet nobody has identified, and it is not in images 26-50
 T-0559 — The 1840 census printed pages 229 and 231: two independent cell readings disagree on 45 of 61 lines — reconcile them against the sheets, column by column
+T-0577 — The Calumet Club's FIRST old-settlers reception, 27 May 1879: the registry of 149 settlers and their years of arrival, off the page images of Early Chicago (archive.org earlychicagorece00calu)
