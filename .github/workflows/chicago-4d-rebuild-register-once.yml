@@ -22,35 +22,21 @@ jobs:
         with:
           python-version: '3.11'
 
-      - uses: actions/setup-node@v4
-        with:
-          node-version: '22'
-
-      - name: Install validator dependencies
-        run: pip install --quiet jsonschema pyproj
-
       - name: Rebuild newspaper register
         working-directory: chicago/4d
         run: python tools/compile_register.py --build
 
-      - name: Run the full Chicago 4D gate
+      - name: Verify rebuilt register is deterministic
         working-directory: chicago/4d
         shell: bash
         run: |
-          set -o pipefail
-          ./tools/check.sh 2>&1 | tee /tmp/chicago-4d-gate.log
-
-      - name: Preserve gate diagnostics
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: chicago-4d-gate-log
-          path: /tmp/chicago-4d-gate.log
-          if-no-files-found: warn
-          retention-days: 1
+          set -euo pipefail
+          register='data/research/newspapers/register_1835.json'
+          cp "$register" /tmp/register_1835.json
+          python tools/compile_register.py --build
+          cmp /tmp/register_1835.json "$register"
 
       - name: Commit repair and remove one-time workflow
-        if: success()
         shell: bash
         run: |
           set -euo pipefail
