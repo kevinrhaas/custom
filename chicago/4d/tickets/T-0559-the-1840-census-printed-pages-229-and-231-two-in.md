@@ -1,5 +1,5 @@
 ---
-id: T-0554
+id: T-0559
 title: The 1840 census printed pages 229 and 231: two independent cell readings disagree on 45 of 61 lines — reconcile them against the sheets, column by column
 state: open
 epic: META

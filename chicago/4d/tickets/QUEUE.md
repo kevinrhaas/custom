@@ -5,6 +5,9 @@
 # Same day, later: T-0524 moved into the top band on his ruling "Fix the prompt and move
 # T-0524 up" — the renderer smoke asserts a resident layer that no longer exists, so no
 # full smoke can be green until it is repaired.
+# Same afternoon: four more source tickets (T-0554..T-0557) placed at the top of that band on
+# his instruction "Keep all of these tickets to queue near the top in the section where we are
+# working the resident and household data expansion".
 # Before that, on 2026-08-30: "lots of nothing happened in the city which is bad. any decisions
 # needed, update and improve the tickets to make progress." Earlier instructions:
 # 2026-08-29 x2 (the newspaper stream to the top, then dependencies on visible items),
@@ -72,6 +75,7 @@
 # --- summary and the index. A ticket whose inputs are open says so in its body: work the input.
 # ---   wave 0  T-0491 T-0492
 # ---   wave 1  T-0493 .. T-0503   (parallel)
+# ---   wave 1  also T-0554 .. T-0557  (added 2026-09-03 pm — the owner's four further sources)
 # ---   wave 2  T-0504 .. T-0512   (parallel)
 # ---   wave 3  T-0513
 # ---   wave 4  T-0514 T-0515 T-0516
@@ -81,6 +85,20 @@
 # --- described the reconstructed residents T-0489 retired, which made every full smoke on
 # --- dev red. CLOSED in PR #696: parts 3 and 13 are green in both viewports. The band is
 # --- kept as the record of why it was ranked here, not as a slot for anything else.
+
+# --- FOUR MORE SOURCES — OWNER REQUEST, 2026-09-03 (afternoon), placed here on his instruction:
+# --- "Keep all of these tickets to queue near the top in the section where we are working the
+# --- resident and household data expansion, this is overall expansion because while you are
+# --- parsing for residents and household people you might as well improve the business and
+# --- structure and occupation and other surrounding data and attributes that will help us
+# --- render the most complete reconstruction possible of chicago 1835". His four sources: the
+# --- Old Settlers' receptions (chicagology 063), Norris's 1844 directory (HathiTrust), the
+# --- Genealogy Trails Cook County site, and the Illinois land-sales database. They are wave-1
+# --- sweeps: parallel with the others, and T-0513 (consolidation) waits on them like the rest.
+T-0554 — The Old Settlers of Chicago: the Calumet Club receptions (1879 on) for residents prior to 1 January 1840, the Tribune's 1882 roll of settlers who died that year, and the Fergus reception lists — research the people and the meetings, add residents with citations
+T-0555 — Norris's General Directory and Business Advertiser of Chicago for 1844 (HathiTrust chi.56111136): parse residents, businesses and occupations, date-flag them as later evidence, and use them to validate and enrich the 1835 residences and businesses
+T-0556 — genealogytrails.com Cook County: inventory every section of the site, grade what it holds for 1835 Chicago, and split the extraction of residents, households, businesses, structures and occupations into tickets
+T-0557 — The Illinois Public Domain Land Tract Sales database (Illinois State Archives): pull every federal land sale in the townships around Chicago through 1836 and crosswalk purchasers to residents, households and structures
 
 T-0531 — The 1840 census images 1-25: names and cells of the left sheets printed 210, 215 and 219
 T-0533 — The 1840 census images 1-25: names and cells of the two short left sheets printed 225 and 228, and of 33S7-9YYJ-9MX whose page number is off the exposure
@@ -326,4 +344,4 @@ T-0536 — The census_1840 domain declares its 25 read images in its own images[
 T-0537 — The web derivatives are stamped by an unpinned gltf-transform, so a release upstream restamps all 372 of them
 T-0542 — Andreas dates the third town election twice — July 1835 and 5 August 1835 — and which one the 1835 poll list is decides whether 85 men stood on the scene date
 T-0543 — The continuation half of printed pages 230 and 232 is on a right sheet nobody has identified, and it is not in images 26-50
-T-0554 — The 1840 census printed pages 229 and 231: two independent cell readings disagree on 45 of 61 lines — reconcile them against the sheets, column by column
+T-0559 — The 1840 census printed pages 229 and 231: two independent cell readings disagree on 45 of 61 lines — reconcile them against the sheets, column by column

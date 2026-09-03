@@ -34,4 +34,4 @@ Piece 2 of 2 of **T-0534 — The 1840 census images 1-25: the age-band, coloured
 **Closed by PR #698**, the run that had claimed the parent T-0534 before dev split it. That run also
 read printed 229 and 231; dev's T-0550 (PR #697) had landed its own reading of those two pages first,
 and the two disagree line by line — the second reading is preserved in `second_readings/` and
-T-0554 reconciles them.
+T-0559 reconciles them.
