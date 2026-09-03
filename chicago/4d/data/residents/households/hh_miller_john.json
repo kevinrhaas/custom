@@ -66,35 +66,6 @@
     ],
     "note": "'John Miller, brother of Samuel, the landlord, came in 1831, and run a tannery just north of Miller's tavern.' John Bates, interviewed in 1883: 'Hall & Miller had, in 1833, a large tannery on Wolf Point.'"
    },
-   "later_census": {
-    "year": 1840,
-    "source_id": "census_1840_chicago_v4_research",
-    "serial": 5102035,
-    "head_name_transcribed": "John J. Miller",
-    "head_name_normalized": "John J. Miller",
-    "name_confidence": "Medium",
-    "identity_confidence": "Medium",
-    "bridge_status": "provisional",
-    "serial_mapping_confidence": "Medium-High (continuation totals + page block)",
-    "census_page": 232,
-    "census_row": 3,
-    "source_image": "33S7-9YYJ-W6.jpg",
-    "household": {
-     "persons": 5,
-     "children_under_10": 2,
-     "male": 1,
-     "female": 4,
-     "agriculture": 0,
-     "commerce": 0,
-     "manufactures_trades": 1,
-     "inland_navigation": 0,
-     "professions_engineering": 0,
-     "foreigners_not_naturalized": 0,
-     "illiterate_over_21": 0
-    },
-    "bridge_basis": "The v4 census research links the 1840 John J. Miller row to John Miller appearances in the 1833 poll and tax lists and the 1834 poll. The canonical resident is independently attested as John Miller, Chicago tanner from 1831 and an 1833 town trustee. The new middle initial in 1840 prevents a High-confidence identity assertion, so the link remains provisional.",
-    "note": "LATER EVIDENCE, NOT A BACK-PROJECTION. The five-person 1840 household is retained for household-reconciliation research; no spouse, child or other member is asserted under John Miller's 1835 roof from these counts alone."
-   },
    "sources": [
     "andreas_1884_v1"
    ],
@@ -110,6 +81,36 @@
     "source_ids": [
      "goodman_history_cook_county_early"
     ]
+   },
+   "later_census": {
+    "year": 1840,
+    "source_id": "census_1840_chicago_v4_research",
+    "serial": 5102035,
+    "head_name_transcribed": "John J. Miller",
+    "head_name_normalized": "John J. Miller",
+    "name_confidence": "Medium",
+    "identity_confidence": "Medium",
+    "bridge_status": "provisional",
+    "serial_mapping_confidence": "Medium-High (continuation totals + page block)",
+    "census_page": 232,
+    "census_row": 3,
+    "source_image": "33S7-9YYJ-W6.jpg",
+    "source_kind": "1840 census scan + continuation-sheet alignment",
+    "household": {
+     "persons": 5,
+     "children_under_10": 2,
+     "male": 1,
+     "female": 4,
+     "agriculture": 0,
+     "commerce": 0,
+     "manufactures_trades": 1,
+     "inland_navigation": 0,
+     "professions_engineering": 0,
+     "foreigners_not_naturalized": 0,
+     "illiterate_over_21": 0
+    },
+    "bridge_basis": "1833 poll and tax plus 1834 poll name continuity; existing canonical John Miller is independently attested in Chicago from 1831 as the tannery partner and 1833 town trustee; the 1840 middle initial J is new, so the bridge remains provisional",
+    "note": "LATER EVIDENCE, NOT A BACK-PROJECTION. This is the 1840 federal census household, five years after the 1835-07-01 scene; its household composition is not asserted for 1835 without separate evidence."
    }
   },
   {

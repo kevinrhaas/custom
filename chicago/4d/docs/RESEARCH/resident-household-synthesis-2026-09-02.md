@@ -13,7 +13,7 @@ T-0487 → T-0490 synthesis of the completed newspaper/letter-list sweep, reside
 | Reconstructed | 108 | 0 |
 | Letter-list-only flag | 727 | 727 |
 | Projected residents | 0 | 706 |
-| Linked to named 1840 census household | 0 | 0 |
+| Linked to named 1840 census household | 0 | 3 |
 
 **108 reconstructed people were retired** and 96 empty household containers removed. 5 evidence-based people/households formerly seated by the reconstructed programme were retained but made unplaced. Reconstructed building stock was abandoned as unassigned rather than deleted.
 
@@ -32,13 +32,13 @@ Structured promotion changed **2 corroborated profiles** where independent sourc
 
 ## 1840 census evidence
 
-**0 one-to-one resident links** were made to named 1840 census heads. Each link retains serial/page/row and separate name/serial mapping confidence plus household totals.
+The recovered v4 work is now retained as a complete dated census layer: **210 named 1840 household-head rows on printed pages 229–235, all with resolved IPUMS SERIALs and household demographic fields**. These records live under `data/census/1840/` whether or not they can yet be tied safely to a 1 July 1835 resident.
 
-**1840 is later evidence, not the 1835 household.** Children, spouses, ages and industry totals are not projected backward without a separate bridge.
+Canonical resident linkage is a separate assertion. There are currently **2 validated High-confidence 1835↔1840 identity bridges** — John Murphy (1840 p.233 r.30, SERIAL 5102066) and William Hanford Adams (p.229 r.9, SERIAL 5101954) — plus **1 provisional bridge**, John Miller ↔ John J. Miller (p.232 r.3, SERIAL 5102035). Miller is independently attested as the Chicago tanner and 1833 trustee, but the 1840 middle initial is new, so the link remains Medium/provisional rather than High.
 
-Unmatched named 1840 heads: **29**; ambiguous links: **0**. These remain follow-up research rather than silent 1835 promotions.
+**1840 is later evidence, not the 1835 household.** Household totals, children, sex structure, industry, foreigner and literacy fields are retained under the census dataset and `later_census` links for household-reconciliation research, but are not projected backward to 1 July 1835. Murphy's 1840 household has 6 people; Adams 2; Miller 5. Those counts do not themselves mint spouses, children, partners, servants or boarders into the 1835 resident layer.
 
-The committed census workbooks are inventoried in the machine ledger (sheet names/dimensions/probable headers) but no 1835 resident is minted solely from an 1840 appearance.
+The old September 2 “0 links / 29 unmatched heads” result is preserved in the machine ledger as the **legacy partial matcher** result. It came from the older pages-234/235 partial CSV plus exact normalized-name matching and did not consume the later v4 adjudication.
 
 ## Placement / structures
 

@@ -228,6 +228,11 @@ The old September 2 “0 links / 29 unmatched heads” result is preserved in th
 def apply():
     all_rows = census_rows(); lookup = census_lookup(all_rows)
     rows = bridge_rows(); docs, people = docs_and_people()
+    # The adjudicated bridge sidecar is the only authority for 1840→1835 identity.
+    # Clear any legacy exact-name census links before applying it.
+    for person, _path, _doc in people.values():
+        if (person.get("later_census") or {}).get("year") == 1840:
+            person.pop("later_census", None)
     for row in rows:
         pid = row["person_id"].strip(); serial = as_int(row, "serial")
         if pid not in people:
@@ -263,7 +268,10 @@ def check():
             problems.append(f"bridge drift for {pid}")
         if got.get("bridge_status") != row.get("bridge_status"):
             problems.append(f"bridge status drift for {pid}")
-    actual_links = [p for p,_path,_doc in people.values() if p.get("later_census")]
+    actual_link_ids = {pid for pid,(p,_path,_doc) in people.items() if p.get("later_census")}
+    unexpected = sorted(actual_link_ids - set(expected))
+    if unexpected: problems.append(f"later_census exists outside adjudicated bridge sidecar: {unexpected}")
+    actual_links = [people[pid][0] for pid in actual_link_ids]
     index = load(INDEX); counts=index.get("counts") or {}
     if int(counts.get("census_1840_linked") or 0) != len(actual_links): problems.append("index census_1840_linked disagrees with resident records")
     if int(counts.get("households") or 0) != len(docs): problems.append("index household count disagrees with records")

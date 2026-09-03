@@ -362,6 +362,9 @@ def check():
         d=load(path); a=d.get("resident_assignment") or {}
         if a.get("status") != "unassigned":
             problems.append(f"{path.name} is inferred stock without resident_assignment=unassigned")
+    from apply_census_1840_bridges import check as check_census_bridges
+    if check_census_bridges():
+        problems.append("1840 census bridge check failed")
     if problems:
         print("RESIDENT SYNTHESIS FAIL"); [print(" -",p) for p in problems]; return 1
     print(f"OK: {len(people)} people; {actual.get('attested',0)} attested, {actual.get('inferred',0)} inferred, 0 reconstructed; {sum(p.get('resident_subtype')==PROJECTED for p in people)} projected")
@@ -454,7 +457,12 @@ def main():
         for p in changed:
             q=sitestruct/p.name
             if q.exists(): q.write_text(p.read_text(encoding="utf-8"),encoding="utf-8")
-    print(json.dumps({"before":before,"after":after,"research_reviewed":len(research),"outcomes":dict(outcomes),"promoted_profiles":len(promoted),"census_links":len((ledger.get("census_1840") or {}).get("linked") or []),"retirement":stats},indent=2))
+    # Re-apply the adjudicated v4 bridge layer after the legacy synthesis pass so
+    # a future synthesis cannot regress the recovered census links to zero.
+    from apply_census_1840_bridges import apply as apply_census_bridges
+    if apply_census_bridges():
+        return 1
+    print(json.dumps({"before":before,"after":snapshot(load(INDEX)),"research_reviewed":len(research),"outcomes":dict(outcomes),"promoted_profiles":len(promoted),"census_links":snapshot(load(INDEX))["census_1840_linked"],"retirement":stats},indent=2))
     return 0
 
 if __name__ == "__main__": raise SystemExit(main())
