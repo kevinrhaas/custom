@@ -26,6 +26,25 @@ jobs:
           node-version: '22'
       - name: Install validator dependencies
         run: pip install --quiet jsonschema pyproj
+      - name: Keep the completed pilot frozen after Adams was restored
+        working-directory: chicago/4d
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          p = Path('tools/select_resident_research_pilot.py')
+          s = p.read_text()
+          old = '''    richer = sorted(\n        (hh for hh in households.values()\n         if hh.get("division") == "unplaced"\n         and not str(hh.get("id") or "").startswith("hh_inf_")\n'''
+          new = '''    # T-0442's research cohort is a frozen historical sample. William Hanford\n    # Adams was restored to the canonical population later by #669/#670, so he\n    # belongs to the current population frame but must not retroactively replace\n    # or expand a person whose completed research was already assigned.\n    post_pilot_households = {"hh_adams_william_h"}\n    richer = sorted(\n        (hh for hh in households.values()\n         if hh.get("division") == "unplaced"\n         and hh.get("id") not in post_pilot_households\n         and not str(hh.get("id") or "").startswith("hh_inf_")\n'''
+          if old not in s:
+              raise SystemExit('pilot selector insertion point not found')
+          s = s.replace(old, new, 1)
+          s = s.replace(
+              '"All richer, real named residents still lacking a dwelling were included, not sampled.",',
+              '"All richer, real named residents in the frozen T-0442 population frame still lacking a dwelling were included, not sampled.",',
+              1,
+          )
+          p.write_text(s)
+          PY
       - name: Regenerate resident-dependent artifacts
         working-directory: chicago/4d
         run: |
@@ -56,5 +75,5 @@ jobs:
           git config user.name 'Kevin Haas'
           git config user.email 'kevinroberthaas@gmail.com'
           git add -A
-          git commit -m 'fix(chicago-4d): regenerate census-dependent resident artifacts' -m 'Regenerate town census, research cohorts, scene resident sources, newspaper register, layer-read bank, and published data mirrors after the canonical population increased to 849.' -m 'Changelog: none — derived research/manifests/gate baselines for the already-merged census evidence; no new rendered geometry or visitor UI behavior.'
+          git commit -m 'fix(chicago-4d): regenerate census-dependent resident artifacts' -m 'Preserve the completed T-0442 pilot while regenerating town census, later resident cohorts, scene resident sources, newspaper register, layer-read bank, and published data mirrors after the canonical population increased to 849.' -m 'Changelog: none — derived research/manifests/gate baselines for the already-merged census evidence; no new rendered geometry or visitor UI behavior.'
           git push origin HEAD:${{ github.event.pull_request.head.ref }}
