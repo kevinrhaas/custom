@@ -73,7 +73,6 @@
 # ---   wave 3  T-0513
 # ---   wave 4  T-0514 T-0515 T-0516
 # ---   wave 5  T-0517 T-0518
-T-0492 — The research pattern exists for the newspapers only, and six new source domains have nowhere to land
 
 T-0493 — Four voter lists of 1833-1835 name 346 entries, and the residents layer holds 99 of their 215 surnames
 T-0531 — The 1840 census images 1-25: names and cells of the left sheets printed 210, 215 and 219
