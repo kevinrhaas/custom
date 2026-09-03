@@ -201,6 +201,47 @@ def slug(name: str) -> str:
                                      " ".join(words(name)).lower())).strip("_")
 
 
+def plain_fragment(name: str) -> str:
+    """surname_given..., the shape the hand-authored households already use.
+
+    Duplicated from mint_documented_residents.py rather than imported — see this
+    file's own note above on why the two passes are independent programmes.
+    `plain_fragment("B. S. Morris")` -> `morris_b_s`; T-0592.
+    """
+    fam = surname(name)
+    given: list[str] = []
+    dropped = False
+    for w in words(name):
+        if not dropped and w.lower().strip("'") == fam:
+            dropped = True
+            continue
+        given.append(w)
+    return slug(fam + " " + " ".join(given)) if given else slug(fam)
+
+
+def minted_by(path, doc: dict, pass_name: str, legacy_prefix: str) -> bool:
+    """Was this household minted by the named pass — recognized either by its
+    legacy filename prefix or by its `source_pass` field (T-0592)."""
+    return path.name.startswith(legacy_prefix) or doc.get("source_pass") == pass_name
+
+
+def household_id(cand_name: str, prefix: str, pass_name: str, docs: dict,
+                 taken_ids: set[str]) -> str:
+    """The household id for a candidate — see mint_documented_residents.py's copy
+    of this function for the full rationale. Duplicated rather than imported."""
+    legacy_id = prefix + slug(cand_name)
+    base_id = "hh_" + plain_fragment(cand_name)
+    for hid in (legacy_id, base_id):
+        path = HOUSEHOLDS / f"{hid}.json"
+        if path in docs and minted_by(path, docs[path], pass_name, prefix):
+            return hid
+    candidate_id, n = base_id, 2
+    while (HOUSEHOLDS / f"{candidate_id}.json") in docs or candidate_id in taken_ids:
+        candidate_id = f"{base_id}_{n}"
+        n += 1
+    return candidate_id
+
+
 def issue_date(claim_id: str) -> datetime.date | None:
     m = re.search(r"(\d{4})_(\d{2})_(\d{2})", claim_id.split("#")[0])
     if not m:
@@ -314,10 +355,14 @@ def town_family_names(docs: dict, index: dict, skip_prefix: str | None = PREFIX)
     prices is a LATER pass than this one, so the households this one has already
     minted are committed and standing, and a surname they hold is a surname the town
     names.
+
+    T-0592: `skip_prefix` still names this pass's legacy prefix, but the test also
+    recognizes a household minted by this pass AFTER that change — carrying a
+    plain id and `source_pass: "letter_list"` instead — via `minted_by()`.
     """
     known: set[str] = set()
     for path, doc in docs.items():
-        if skip_prefix and path.name.startswith(skip_prefix):
+        if skip_prefix and minted_by(path, doc, "letter_list", skip_prefix):
             continue
         for person in doc.get("persons") or []:
             fam = surname(person.get("name") or "")
@@ -446,7 +491,7 @@ def mint(docs: dict, index: dict):
 # the records
 # ---------------------------------------------------------------------------
 
-def record(cand: dict, gaz: dict) -> dict:
+def record(cand: dict, gaz: dict, docs: dict, taken_ids: set[str]) -> dict:
     name = display(cand["name"])
     fam = surname(cand["name"]).title()
     sources = paper_for(gaz["mentions"])
@@ -456,7 +501,10 @@ def record(cand: dict, gaz: dict) -> dict:
     dates = return_dates(gaz["mentions"])
     returns_said = "; ".join(issue_of(g[0]) for g in groups)
     titles = titles_in(cand["name"])
-    pid = PERSON_PREFIX + slug(cand["name"])
+
+    legacy_id = PREFIX + slug(cand["name"])
+    hid = household_id(cand["name"], PREFIX, "letter_list", docs, taken_ids)
+    pid = (PERSON_PREFIX + slug(cand["name"])) if hid == legacy_id else hid.removeprefix("hh_")
     span = (f"{cand['first_seen']} to {cand['last_seen']}"
             if cand["first_seen"] != cand["last_seen"] else cand["first_seen"])
 
@@ -517,10 +565,16 @@ def record(cand: dict, gaz: dict) -> dict:
 
     present = "present" if cand["last_seen"] >= SCENE_DATE else "uncertain"
     doc = {
-        "id": PREFIX + slug(cand["name"]),
+        "id": hid,
         "name": f"The {fam} household — a name from the post office's letter lists",
         "division": DIVISION,
         "head": pid,
+    }
+    if hid != legacy_id:
+        # A genuinely new mint (T-0592): see mint_documented_residents.record()'s
+        # matching comment — a household reusing its legacy id is unchanged.
+        doc["source_pass"] = "letter_list"
+    doc.update({
         "arrival": {
             "value": cand["first_seen"],
             "confidence": "inferred",
@@ -575,7 +629,7 @@ def record(cand: dict, gaz: dict) -> dict:
             f"every refusal, `--gate` proves no record here gained a roof, a trade or a "
             f"second member, and docs/LIBERTIES.md L214 carries the change of scale."
         ),
-    }
+    })
     return doc
 
 
@@ -586,13 +640,14 @@ def build(preload: dict | None = None):
     index = (json.loads(preload[INDEX]) if preload is not None and INDEX in preload
              else load(INDEX))
 
+    mine_paths = {p for p, doc in docs.items() if minted_by(p, doc, "letter_list", PREFIX)}
     accepted, refusals = mint(docs, index)
 
     files = {}
     rows = []
     seen: set[str] = set()
     for cand, gaz in accepted:
-        doc = record(cand, gaz)
+        doc = record(cand, gaz, docs, seen)
         if doc["id"] in seen:
             raise SystemExit(f"two candidates mint the same household id {doc['id']}")
         seen.add(doc["id"])
@@ -619,7 +674,8 @@ def build(preload: dict | None = None):
             "review_required": doc["review_required"],
         })
 
-    keep = [r for r in index["households"] if not r["id"].startswith(PREFIX)]
+    mine_ids = {p.stem for p in mine_paths}
+    keep = [r for r in index["households"] if r["id"] not in mine_ids]
     index["households"] = sorted(keep + rows, key=lambda r: r["id"])
     totals = {"attested": 0, "inferred": 0, "reconstructed": 0}
     persons = 0
@@ -633,22 +689,24 @@ def build(preload: dict | None = None):
     # The count sentence's own half of the parent's ask: the panel says how many
     # of the people it lists are known only from the post office, so the evidence
     # strength is legible before a visitor opens anything.
-    final = {path: doc for path, doc in docs.items()
-             if not path.name.startswith(PREFIX)}
+    final = {path: doc for path, doc in docs.items() if path not in mine_paths}
     final.update({path: json.loads(text) for path, text in files.items()
                   if path != INDEX})
     index["counts"]["letter_list_only"] = sum(
         1 for doc in final.values() for person in doc.get("persons") or []
         if person.get("letter_list_only"))
     files[INDEX] = dumps(index, 1)
-    return files, accepted, refusals
+    return files, accepted, refusals, mine_paths
 
 
-def report(accepted, refusals) -> None:
+def report(accepted, refusals, docs: dict) -> None:
     print(f"MINTED — {len(accepted)} letter-list resident(s)")
+    shown: set[str] = set()
     for cand, gaz in accepted:
+        hid = household_id(cand["name"], PREFIX, "letter_list", docs, shown)
+        shown.add(hid)
         groups = returns_of(gaz["mentions"])
-        print(f"  {PREFIX + slug(cand['name']):30s} {display(cand['name'])[:26]:28s} "
+        print(f"  {hid:30s} {display(cand['name'])[:26]:28s} "
               f"({len(groups)} return(s), {len(gaz['mentions'])} printing(s), "
               f"{cand['first_seen']}..{cand['last_seen']})")
     print(f"\nREFUSED — {len(refusals)} candidate(s) out of the same pool, with the reason")
@@ -746,7 +804,6 @@ def scale_report() -> None:
 # would stay green if the pass itself started writing a trade onto every one.
 
 ISO = re.compile(r"^\d{4}-\d{2}-\d{2}$")
-STRUCTURE_REF = re.compile(r'"(?:hh_ll_|ll_)[a-z0-9_]+"')
 
 
 def gate_problems(docs: dict, index: dict, structure_text: dict) -> list[str]:
@@ -757,10 +814,13 @@ def gate_problems(docs: dict, index: dict, structure_text: dict) -> list[str]:
     assertion about the code that wrote it.
     """
     problems: list[str] = []
-    minted = {path: doc for path, doc in docs.items() if path.name.startswith(PREFIX)}
+    mine_paths = {path for path, doc in docs.items()
+                 if minted_by(path, doc, "letter_list", PREFIX)}
+    minted = {path: docs[path] for path in mine_paths}
     if not minted:
-        return ["no hh_ll_ household records at all — this pass mints the largest "
-                "cohort in the town and an empty one is a failure, not a clean tree"]
+        return ["no letter-list household records at all — this pass mints the "
+                "largest cohort in the town and an empty one is a failure, not a "
+                "clean tree"]
 
     rows = {r["id"]: r for r in index.get("households") or []}
     flagged_persons = 0
@@ -817,8 +877,9 @@ def gate_problems(docs: dict, index: dict, structure_text: dict) -> list[str]:
                             f"so the Evidence panel cannot hold this row apart from the "
                             f"town's evidenced households without fetching every record")
 
+    mine_ids = {p.stem for p in mine_paths}
     for hid, row in rows.items():
-        if row.get("letter_list_only") and not hid.startswith(PREFIX):
+        if row.get("letter_list_only") and hid not in mine_ids:
             problems.append(f"{hid}: a manifest row outside this pass claims "
                             f"letter_list_only")
 
@@ -828,12 +889,22 @@ def gate_problems(docs: dict, index: dict, structure_text: dict) -> list[str]:
                         f"persons carry the flag — the panel's own count sentence reads "
                         f"this number")
 
-    for name, text in sorted(structure_text.items()):
-        hit = STRUCTURE_REF.search(text)
-        if hit:
-            problems.append(f"data/structures/{name}: names {hit.group(0)} — a "
-                            f"letter-list person has been given a building, which is "
-                            f"exactly what the ruling of 2026-08-30 forbids this cohort")
+    # T-0592: a letter-list person's id is no longer always `ll_...` or found
+    # under an `hh_ll_...` household — it is found by the FLAG, wherever it is
+    # minted, so the structure check is built from that rather than a static
+    # prefix pattern that a plain id would slip past.
+    ll_person_ids = {p.get("id") for doc in docs.values()
+                     for p in doc.get("persons") or []
+                     if p.get("letter_list_only") and p.get("id")}
+    if ll_person_ids:
+        structure_ref = re.compile(
+            r'"(?:' + "|".join(re.escape(pid) for pid in sorted(ll_person_ids)) + r')"')
+        for name, text in sorted(structure_text.items()):
+            hit = structure_ref.search(text)
+            if hit:
+                problems.append(f"data/structures/{name}: names {hit.group(0)} — a "
+                                f"letter-list person has been given a building, which is "
+                                f"exactly what the ruling of 2026-08-30 forbids this cohort")
     return problems
 
 
@@ -854,7 +925,7 @@ def gate() -> int:
         print(f"   {len(problems)} problem(s): the minted letter-list cohort is not what "
               f"the owner's ruling of 2026-08-30 permits")
         return 1
-    minted = sum(1 for p in docs if p.name.startswith(PREFIX))
+    minted = sum(1 for p, doc in docs.items() if minted_by(p, doc, "letter_list", PREFIX))
     print(f"   OK: {minted} letter-list household(s), every one carrying its returns' "
           f"dates, none with a roof, a trade or a second member")
     return 0
@@ -866,7 +937,8 @@ def self_test() -> int:
     if gate_problems(docs, index, structures):
         print("   the committed tree does not pass its own gate; fix that first")
         return 1
-    victim = next(p for p in sorted(docs) if p.name.startswith(PREFIX))
+    victim = next(p for p, doc in sorted(docs.items())
+                 if minted_by(p, doc, "letter_list", PREFIX))
 
     def broken(mutate):
         d = json.loads(json.dumps({str(k): v for k, v in docs.items()}))
@@ -947,14 +1019,15 @@ def main() -> int:
         scale_report()
         return 0
 
-    files, accepted, refusals = build()
+    files, accepted, refusals, mine_paths = build()
     if args.report:
-        report(accepted, refusals)
+        docs = {p: load(p) for p in sorted(HOUSEHOLDS.glob("*.json"))}
+        report(accepted, refusals, docs)
         return 0
     if args.check:
         drift = [p for p, text in files.items()
                  if not p.exists() or p.read_text(encoding="utf-8") != text]
-        stale = [p for p in sorted(HOUSEHOLDS.glob(f"{PREFIX}*.json"))
+        stale = [p for p in sorted(mine_paths)
                  if p not in files]
         for p in drift + stale:
             print(f"   DRIFT: {p.relative_to(ROOT)}")
@@ -966,7 +1039,7 @@ def main() -> int:
               f"{len(refusals)} candidate(s) refused")
         return 0
 
-    for p in sorted(HOUSEHOLDS.glob(f"{PREFIX}*.json")):
+    for p in sorted(mine_paths):
         if p not in files:
             p.unlink()
     for p, text in files.items():
