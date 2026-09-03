@@ -1,7 +1,7 @@
 ---
 id: T-0574
 title: Fergus's 743 old-settler death notices from the 1843 directory: ages at death read as birth years and crosswalked to attested residents
-state: open
+state: done
 epic: META
 requested_by: owner
 seen: false
@@ -9,11 +9,13 @@ effort: S
 legacy_id: null
 parent: T-0556
 opened: 2026-09-03
-closed: null
-pr: null
-claimed_by: null
+closed: 2026-09-03
+pr: 718
+claimed_by: run 9/3/2026, 1:20:58 PM CT
 blocked_on: null
 needs_bake: false
+closed_at: 2026-09-03T19:04:47.161Z
+claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/33789725815
 ---
 
 Fergus's 743 old-settler death notices from the 1843 directory: ages at death read as birth years and crosswalked to attested residents.
