@@ -1,7 +1,7 @@
 ---
 id: T-0566
 title: Norris's General Directory of Chicago for 1844: the volume located on the Internet Archive and the directory proper read entry by entry, with the crosswalk to the 1835 residents
-state: claimed
+state: done
 epic: META
 requested_by: owner
 seen: false
@@ -9,8 +9,8 @@ effort: S
 legacy_id: null
 parent: T-0555
 opened: 2026-09-03
-closed: null
-pr: null
+closed: 2026-09-03
+pr: 704
 claimed_by: run 9/3/2026, 10:55:09 AM CT
 blocked_on: null
 needs_bake: false
