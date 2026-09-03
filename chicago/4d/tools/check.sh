@@ -1240,6 +1240,21 @@ step "…and its own assertions still fire when broken" \
 step "…and its own assertions still fire when broken" \
   python3 tools/research_domains.py --self-test
 
+# T-0571. Fergus's 1843 directory is the earliest complete Chicago directory this project
+# can reach, and its two halves are segmented by two different rules — the shouted head of
+# a trade card on page 1, the current letter section on pages 2-4 — because the printer set
+# them differently and the web transcription this repo holds does not indent a turned line.
+# A segmenter that quietly loses forty entries is invisible to every other gate here, so the
+# reading is REBUILT from the committed text and compared, and the per-page counts are held
+# to what coverage.json declares. The crosswalk is rebuilt the same way: it is a proposal
+# that changes no resident record, and a hand-edit of a proposal is how one becomes a fact
+# nobody decided.
+step "Fergus's 1843 directory rebuilds from its committed text, at the declared counts" \
+  python3 tools/read_fergus_1843.py --check
+
+step "…and its crosswalk to the 1835 residents rebuilds too" \
+  python3 tools/crosswalk_fergus_1843.py --check
+
 # T-0556. An INVENTORY of a website is the one research artefact that rots silently: it
 # is a set of judgements about pages nobody will open again, and the only way to notice
 # that a section was quietly dropped from it is to go and re-walk the site. So the county
