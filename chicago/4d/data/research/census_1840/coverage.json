@@ -13,7 +13,7 @@
  "groups": [
   {
    "range": "images 1-25 of 74",
-   "declared_by": "T-0494. This pass read the NAMES in full on the three pages of this group that PR #670 also read (229, 231, 234), read the certificate page 206 in full, declared the blank page 238, and INVENTORIED the other 20. What each image is, and what has and has not been read from it, is stated per image — a hole is meant to fail rather than pass quietly. T-0535 (the eleven continuation sheets) was split twice as its size was measured: T-0538/T-0539, then T-0540/T-0541. T-0540 read continuation sheets 24, 5D and 5S line by line against the printed column totals at the foot of each sheet; T-0541 has 5V, 6H and 6Q; T-0539 has the remaining five and the left-sheet population key that pairs all eleven. T-0532 then read printed 221, 222 and 226 in full — names and cells — and restated those three line counts off the sheets. T-0550 read the cells of printed 229 and 231 (PR #697). The run that had claimed T-0534 before that split read the same two sheets independently and disagreed with T-0550 line by line while balancing a different set of columns; its reading is kept verbatim in second_readings/ and a reconciliation ticket asks which is right. The same run read printed 234 to the cell, landed as T-0551 (PR #698). T-0533 then read 225, 228 and the page-number-less 33S7-9YYJ-9MX in full — names AND the age-band cells, on T-0532's grid method, each column checked against the printed total at the foot of its own sheet.",
+   "declared_by": "T-0494. This pass read the NAMES in full on the three pages of this group that PR #670 also read (229, 231, 234), read the certificate page 206 in full, declared the blank page 238, and INVENTORIED the other 20. What each image is, and what has and has not been read from it, is stated per image — a hole is meant to fail rather than pass quietly. T-0535 (the eleven continuation sheets) was split twice as its size was measured: T-0538/T-0539, then T-0540/T-0541. T-0540 read continuation sheets 24, 5D and 5S line by line against the printed column totals at the foot of each sheet; T-0541 has 5V, 6H and 6Q; T-0539 has the remaining five and the left-sheet population key that pairs all eleven. T-0532 then read printed 221, 222 and 226 in full — names and cells — and restated those three line counts off the sheets. T-0550 read the cells of printed 229 and 231 (PR #697). The run that had claimed T-0534 before that split read the same two sheets independently and disagreed with T-0550 line by line while balancing a different set of columns; its reading is kept verbatim in second_readings/ and a reconciliation ticket asks which is right. The same run read printed 234 to the cell, landed as T-0551 (PR #698). T-0533 then read 225, 228 and the page-number-less 33S7-9YYJ-9MX in full — names AND the age-band cells, on T-0532's grid method, each column checked against the printed total at the foot of its own sheet. T-0584 then read printed 210 and 215 in full - names AND the age-band cells, each column checked against the printed footing at the foot of its own sheet; 36 of 38 columns close on 210 and 37 of 38 on 215, and the residual columns are recorded rather than forced. T-0585 holds printed 219, the third sheet of the T-0531 group, which was split on measurement: two left sheets to the cell is a run's demonstration, not three.",
    "images": [
     {
      "index": 1,
@@ -251,11 +251,11 @@
      "file": "chicago/reference/census1840/33S7-9YYJ-9RG.jpg",
      "sheet_side": "left",
      "printed_page": 210,
-     "lines_with_an_entry": 31,
+     "lines_with_an_entry": 30,
      "what_it_is": "names + free-white age bands, filled",
      "in_pr_670_calibration_set": false,
-     "read_state": "inventoried_only",
-     "page_file": null
+     "read_state": "names_and_cells_read",
+     "page_file": "data/research/census_1840/pages/33S7-9YYJ-9RG.json"
     },
     {
      "index": 19,
@@ -266,8 +266,8 @@
      "lines_with_an_entry": 31,
      "what_it_is": "names + free-white age bands, filled",
      "in_pr_670_calibration_set": false,
-     "read_state": "inventoried_only",
-     "page_file": null,
+     "read_state": "names_and_cells_read",
+     "page_file": "data/research/census_1840/pages/33S7-9YYJ-9WF.json",
      "note": "this is the image the deposit holds twice; '33S7-9YYJ-9WF (1).jpg' is a byte-identical copy and is not counted"
     },
     {
@@ -370,27 +370,29 @@
     "printed_page_number_unreadable": [
      "33S7-9YYJ-9MX"
     ],
-    "names_transcribed_pages": 6,
-    "names_transcribed_lines": 182,
+    "names_transcribed_pages": 8,
+    "names_transcribed_lines": 243,
     "name_confidence": {
      "high": 3,
-     "medium": 40,
-     "low": 139
+     "medium": 60,
+     "low": 180
     },
-    "inventoried_only": 8,
+    "inventoried_only": 6,
     "continuation_sheets_read": 2,
     "continuation_sheets_attempted_not_closed": 1,
     "continuation_lines_committed": 62,
-    "cells_read_pages": 6,
+    "cells_read_pages": 8,
     "cells_columns_committed": {
      "33S7-9YYJ-2T": 36,
      "33S7-9YYJ-98M": 0,
      "33S7-9YYJ-B3": 0,
      "33S7-9YYJ-9M5": 36,
      "33S7-9YYJ-38": 36,
-     "33S7-9YYJ-99F": 37
+     "33S7-9YYJ-99F": 37,
+     "33S7-9YYJ-9RG": 36,
+     "33S7-9YYJ-9WF": 37
     },
-    "line_count_corrections": "T-0532 read printed 222 and 226 line by line at a fitted row grid and found 30 and 29 lines WITH AN ENTRY against the inventory's 31 each — the difference is blank ruled lines at the foot of each sheet, which the page files record rather than skip. Printed 221's 31 stands. T-0534 tested printed 229's line count the other way round — against the enumerator's own column footings rather than against the ruling — and 17 of the 19 columns that carry a mark close exactly on 30 lines, so the sheet's 30 entries stand against PR #670's 31 rows. Printed 231's 31 stands too.",
+    "line_count_corrections": "T-0532 read printed 222 and 226 line by line at a fitted row grid and found 30 and 29 lines WITH AN ENTRY against the inventory's 31 each — the difference is blank ruled lines at the foot of each sheet, which the page files record rather than skip. Printed 221's 31 stands. T-0534 tested printed 229's line count the other way round — against the enumerator's own column footings rather than against the ruling — and 17 of the 19 columns that carry a mark close exactly on 30 lines, so the sheet's 30 entries stand against PR #670's 31 rows. Printed 231's 31 stands too. T-0584 read printed 210 and 215 to the name and the cell: 210 carries 30 ruled entries against the inventory's 31 (the last entry is Saml. E. Clarke and the table closes immediately below it, with no blank ruled writing line at the foot), and 215's 31 stands exactly.",
     "second_readings": {
      "33S7-9YYJ-9M5": "PR #698, disagrees with the committed reading",
      "33S7-9YYJ-38": "PR #698, disagrees with the committed reading"
