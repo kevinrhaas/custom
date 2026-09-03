@@ -1,7 +1,7 @@
 ---
 id: T-0444
 title: Measure the west bank of the South Branch and step the plat's sequence from it: is the line drawn as Canal really Clinton?
-state: open
+state: claimed
 epic: GROUND
 requested_by: owner
 seen: true
@@ -11,7 +11,7 @@ parent: T-0443
 opened: 2026-08-31
 closed: null
 pr: null
-claimed_by: null
+claimed_by: run 9/3/2026, 1:49:53 AM CT
 blocked_on: null
 needs_bake: false
 ---
