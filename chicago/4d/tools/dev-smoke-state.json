@@ -3,6 +3,229 @@
   "readings": [
     {
       "viewport": "desktop",
+      "stage": "2-4",
+      "parts": [
+        2,
+        3,
+        4
+      ],
+      "verdict": "fail",
+      "target": "published",
+      "passed": 160,
+      "failed": 6,
+      "failures": [
+        "desktop 1280x800: a reconstructed resident has an invented period name — name \"undefined\"",
+        "desktop 1280x800: the invented name is graded as invented and says so — name_basis undefined — \"\"",
+        "desktop 1280x800: the household is named for its head and still says which layer it is — household \"Evidence-only household — J. Garland\" against head grade inferred",
+        "desktop 1280x800: the card shows that title and keeps the reference below it — undefined: \"\" (want \"\") over reference \"\"",
+        "desktop 1280x800: search still finds it by its part number and by its household — by spec false, by household false",
+        "desktop 1280x800: a building raised for an inferred household says so — basis \"\""
+      ],
+      "wallSeconds": 386,
+      "takenAt": "2026-09-03T13:13:05.016Z",
+      "ref": "steward/t-0526-census-1840-sheets-216-224",
+      "commit": "9d7ee181d7a7",
+      "devCommit": "91b24a4023d2",
+      "treeHash": "sha256:240383d15113f5bd",
+      "treeDirty": false,
+      "changelogHash": "sha256:a304b34f0766c976",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          4.5,
+          4.4,
+          4
+        ]
+      },
+      "source": "/tmp/sm_d24.log"
+    },
+    {
+      "viewport": "mobile",
+      "stage": "1-5",
+      "parts": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "verdict": "fail",
+      "target": "published",
+      "passed": 248,
+      "failed": 6,
+      "failures": [
+        "mobile 390x780: a reconstructed resident has an invented period name — name \"undefined\"",
+        "mobile 390x780: the invented name is graded as invented and says so — name_basis undefined — \"\"",
+        "mobile 390x780: the household is named for its head and still says which layer it is — household \"Evidence-only household — J. Garland\" against head grade inferred",
+        "mobile 390x780: the card shows that title and keeps the reference below it — undefined: \"\" (want \"\") over reference \"\"",
+        "mobile 390x780: search still finds it by its part number and by its household — by spec false, by household false",
+        "mobile 390x780: a building raised for an inferred household says so — basis \"\""
+      ],
+      "wallSeconds": 565,
+      "takenAt": "2026-09-03T13:06:24.235Z",
+      "ref": "steward/t-0526-census-1840-sheets-216-224",
+      "commit": "9d7ee181d7a7",
+      "devCommit": "91b24a4023d2",
+      "treeHash": "sha256:240383d15113f5bd",
+      "treeDirty": false,
+      "changelogHash": "sha256:a304b34f0766c976",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          4.5,
+          4.4,
+          3.9
+        ]
+      },
+      "source": "/tmp/sm_m15.log"
+    },
+    {
+      "viewport": "desktop",
+      "stage": "1",
+      "parts": [
+        1
+      ],
+      "verdict": "pass",
+      "target": "published",
+      "passed": 78,
+      "failed": 0,
+      "failures": [],
+      "wallSeconds": 265,
+      "takenAt": "2026-09-03T12:56:53.802Z",
+      "ref": "steward/t-0526-census-1840-sheets-216-224",
+      "commit": "9d7ee181d7a7",
+      "devCommit": "91b24a4023d2",
+      "treeHash": "sha256:240383d15113f5bd",
+      "treeDirty": false,
+      "changelogHash": "sha256:a304b34f0766c976",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          3.8,
+          4.2,
+          3.4
+        ]
+      },
+      "source": "/tmp/sm_d1.log"
+    },
+    {
+      "viewport": "desktop",
+      "stage": "13",
+      "parts": [
+        13
+      ],
+      "verdict": "fail",
+      "target": "published",
+      "passed": 103,
+      "failed": 6,
+      "failures": [
+        "desktop 1280x800: every household in the layer is on the card — 825 loaded / 825 rendered (no residents on the handle)",
+        "desktop 1280x800: the 956 person entries are counted — 849",
+        "desktop 1280x800: the letter-list cohort is held apart from the evidenced town — 98 evidenced / 727 letter-list, 727 in the group, closed on mount: true",
+        "desktop 1280x800: the households no building card can reach are marked — 770 off-card / 43 chip(s) / 727 of them letter-list",
+        "desktop 1280x800: an invented name says on the card which pool it came from",
+        "desktop 1280x800: 150 resident research reviews reach resident cards — 375: {\"corroborated_enrichment\":74,\"candidate_identity\":62,\"no_corroboration\":239}"
+      ],
+      "wallSeconds": 277,
+      "takenAt": "2026-09-03T12:52:22.260Z",
+      "ref": "steward/t-0526-census-1840-sheets-216-224",
+      "commit": "9d7ee181d7a7",
+      "devCommit": "91b24a4023d2",
+      "treeHash": "sha256:240383d15113f5bd",
+      "treeDirty": false,
+      "changelogHash": "sha256:a304b34f0766c976",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          4.8,
+          4.5,
+          3.2
+        ]
+      },
+      "source": "/tmp/sm_d13.log"
+    },
+    {
+      "viewport": "desktop",
+      "stage": "11-12",
+      "parts": [
+        11,
+        12
+      ],
+      "verdict": "pass",
+      "target": "published",
+      "passed": 50,
+      "failed": 0,
+      "failures": [],
+      "wallSeconds": 398,
+      "takenAt": "2026-09-03T12:47:38.035Z",
+      "ref": "steward/t-0526-census-1840-sheets-216-224",
+      "commit": "9d7ee181d7a7",
+      "devCommit": "91b24a4023d2",
+      "treeHash": "sha256:240383d15113f5bd",
+      "treeDirty": false,
+      "changelogHash": "sha256:a304b34f0766c976",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          4.3,
+          4.2,
+          2.7
+        ]
+      },
+      "source": "/tmp/sm_d1112.log"
+    },
+    {
+      "viewport": "mobile",
+      "stage": "11-13",
+      "parts": [
+        11,
+        12,
+        13
+      ],
+      "verdict": "fail",
+      "target": "published",
+      "passed": 144,
+      "failed": 6,
+      "failures": [
+        "mobile 390x780: every household in the layer is on the card — 825 loaded / 825 rendered (no residents on the handle)",
+        "mobile 390x780: the 956 person entries are counted — 849",
+        "mobile 390x780: the letter-list cohort is held apart from the evidenced town — 98 evidenced / 727 letter-list, 727 in the group, closed on mount: true",
+        "mobile 390x780: the households no building card can reach are marked — 770 off-card / 43 chip(s) / 727 of them letter-list",
+        "mobile 390x780: an invented name says on the card which pool it came from",
+        "mobile 390x780: 150 resident research reviews reach resident cards — 375: {\"corroborated_enrichment\":74,\"candidate_identity\":62,\"no_corroboration\":239}"
+      ],
+      "wallSeconds": 341,
+      "takenAt": "2026-09-03T12:40:42.663Z",
+      "ref": "steward/t-0526-census-1840-sheets-216-224",
+      "commit": "9d7ee181d7a7",
+      "devCommit": "91b24a4023d2",
+      "treeHash": "sha256:240383d15113f5bd",
+      "treeDirty": false,
+      "changelogHash": "sha256:a304b34f0766c976",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          4.3,
+          3.4,
+          1.8
+        ]
+      },
+      "source": "/tmp/sm_m1113.log"
+    },
+    {
+      "viewport": "desktop",
       "stage": "13",
       "parts": [
         13
@@ -1762,195 +1985,6 @@
         ]
       },
       "source": "/tmp/smoke-mobile12.log"
-    },
-    {
-      "viewport": "desktop",
-      "stage": "8",
-      "parts": [
-        8
-      ],
-      "verdict": "pass",
-      "target": "published",
-      "passed": 37,
-      "failed": 0,
-      "failures": [],
-      "wallSeconds": 172,
-      "takenAt": "2026-08-29T21:01:03.970Z",
-      "ref": "steward/t-0410-spend-street-face-adoptions",
-      "commit": "a32b0146533c",
-      "devCommit": "40cb1d3b2075",
-      "treeHash": "sha256:6ec0be88a8731d60",
-      "treeDirty": false,
-      "changelogHash": "sha256:a7be73ac98bbf587",
-      "host": {
-        "kind": "steward-runner",
-        "cpus": 4,
-        "memGB": 15.6,
-        "loadavg": [
-          5.2,
-          4.6,
-          4.1
-        ]
-      },
-      "source": "/tmp/smoke-d8b.log"
-    },
-    {
-      "viewport": "mobile",
-      "stage": "3-4",
-      "parts": [
-        3,
-        4
-      ],
-      "verdict": "pass",
-      "target": "published",
-      "passed": 116,
-      "failed": 0,
-      "failures": [],
-      "wallSeconds": 437,
-      "takenAt": "2026-08-29T21:01:03.887Z",
-      "ref": "steward/t-0410-spend-street-face-adoptions",
-      "commit": "a32b0146533c",
-      "devCommit": "40cb1d3b2075",
-      "treeHash": "sha256:6ec0be88a8731d60",
-      "treeDirty": false,
-      "changelogHash": "sha256:a7be73ac98bbf587",
-      "host": {
-        "kind": "steward-runner",
-        "cpus": 4,
-        "memGB": 15.6,
-        "loadavg": [
-          5.2,
-          4.6,
-          4.1
-        ]
-      },
-      "source": "/tmp/smoke-m34b.log"
-    },
-    {
-      "viewport": "mobile",
-      "stage": "7-9",
-      "parts": [
-        7,
-        8,
-        9
-      ],
-      "verdict": "pass",
-      "target": "published",
-      "passed": 168,
-      "failed": 0,
-      "failures": [],
-      "wallSeconds": 570,
-      "takenAt": "2026-08-29T21:01:03.806Z",
-      "ref": "steward/t-0410-spend-street-face-adoptions",
-      "commit": "a32b0146533c",
-      "devCommit": "40cb1d3b2075",
-      "treeHash": "sha256:6ec0be88a8731d60",
-      "treeDirty": false,
-      "changelogHash": "sha256:a7be73ac98bbf587",
-      "host": {
-        "kind": "steward-runner",
-        "cpus": 4,
-        "memGB": 15.6,
-        "loadavg": [
-          5.2,
-          4.6,
-          4.1
-        ]
-      },
-      "source": "/tmp/smoke-m79b.log"
-    },
-    {
-      "viewport": "desktop",
-      "stage": "9",
-      "parts": [
-        9
-      ],
-      "verdict": "pass",
-      "target": "published",
-      "passed": 104,
-      "failed": 0,
-      "failures": [],
-      "wallSeconds": 282,
-      "takenAt": "2026-08-29T21:01:03.724Z",
-      "ref": "steward/t-0410-spend-street-face-adoptions",
-      "commit": "a32b0146533c",
-      "devCommit": "40cb1d3b2075",
-      "treeHash": "sha256:6ec0be88a8731d60",
-      "treeDirty": false,
-      "changelogHash": "sha256:a7be73ac98bbf587",
-      "host": {
-        "kind": "steward-runner",
-        "cpus": 4,
-        "memGB": 15.6,
-        "loadavg": [
-          5.2,
-          4.6,
-          4.1
-        ]
-      },
-      "source": "/tmp/smoke-d9b.log"
-    },
-    {
-      "viewport": "desktop",
-      "stage": "8",
-      "parts": [
-        8
-      ],
-      "verdict": "pass",
-      "target": "published",
-      "passed": 37,
-      "failed": 0,
-      "failures": [],
-      "wallSeconds": 128,
-      "takenAt": "2026-08-29T20:11:18.174Z",
-      "ref": "steward/t-0400-forename-forms",
-      "commit": "d1f77ae8de96",
-      "devCommit": "c7f43d4a034d",
-      "treeHash": "sha256:2deb30204051308a",
-      "treeDirty": false,
-      "changelogHash": "sha256:ab9ddda0a4628735",
-      "host": {
-        "kind": "steward-runner",
-        "cpus": 4,
-        "memGB": 15.6,
-        "loadavg": [
-          4.2,
-          3.3,
-          2.3
-        ]
-      },
-      "source": "/tmp/s_d8.log"
-    },
-    {
-      "viewport": "mobile",
-      "stage": "8",
-      "parts": [
-        8
-      ],
-      "verdict": "pass",
-      "target": "published",
-      "passed": 37,
-      "failed": 0,
-      "failures": [],
-      "wallSeconds": 72,
-      "takenAt": "2026-08-29T20:11:18.104Z",
-      "ref": "steward/t-0400-forename-forms",
-      "commit": "d1f77ae8de96",
-      "devCommit": "c7f43d4a034d",
-      "treeHash": "sha256:2deb30204051308a",
-      "treeDirty": false,
-      "changelogHash": "sha256:ab9ddda0a4628735",
-      "host": {
-        "kind": "steward-runner",
-        "cpus": 4,
-        "memGB": 15.6,
-        "loadavg": [
-          4.2,
-          3.3,
-          2.3
-        ]
-      },
-      "source": "/tmp/s_m8.log"
     }
   ]
 }
