@@ -1,6 +1,11 @@
 {
   "schema": 1,
   "domain": "civic",
+  "source_ids": [
+    "chicago_voter_lists_1833_1835_irad",
+    "blackhawk_war_chicago_enrollments_isa"
+  ],
+  "source_note": "what every ruling in this file was adjudicated FROM (T-0598). Stated once at the top because this domain's rulings all rest on the same record; a ruling resting on something more specific states that on itself and wins.",
   "note": "The ONLY place two differently-spelled names in this domain may become one person, in data/research/newspapers/identity.json's shape and under its rules: a merge needs a rule, the rule names BOTH spellings verbatim, and a surname-only merge is always a refusal. A refusal is declared as explicitly as a merge — the absence of one reads like a pair nobody has looked at yet.",
   "passes": [
     {

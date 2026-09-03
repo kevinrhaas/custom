@@ -1,0 +1,456 @@
+#!/usr/bin/env python3
+"""The 1830 federal schedule that contained Chicago, read off the film.
+
+    tools/read_census_1830.py --build    write records/ and resident_crosswalk.json
+    tools/read_census_1830.py --check    the generated files still match the text
+
+WHAT WAS READ, AND WHY IT IS NOT CALLED "THE CHICAGO CENSUS". Chicago was enumerated
+in 1830 inside the district the enumerator headed "Peoria & Putnam Counties &
+Territory attached" — the whole of northern Illinois hung off two organised counties,
+because Cook County did not exist until January 1831. The schedule never writes the
+word Chicago. So the object here is the DISTRICT, and the Chicago settlement is a run
+of households inside it. Anything that says otherwise is reading a later index back
+into the page.
+
+THE DEPOSIT. NARA microfilm M19, Illinois, reel 24, republished by the Internet
+Archive as item `populationsc18300024unit` (Greene, Morgan, Sangamon, Calhoun, Pike,
+Fulton, Knox, Henry, Adams, Hancock, Warren, Mercer, Peoria, Putnam and Jo Daviess
+counties). The item carries NO text layer — its own OCR metadata says "language not
+currently OCRable" — so nothing here was extracted; the leaves were fetched as
+images, cropped and read by eye. Leaves n580 and n582 are the two read for T-0498.
+`data/research/census_1830/text/peoria_putnam_1830_leaves_580_582.txt` is that
+reading, committed, and every record below stands on one of its lines.
+
+THE READING GRADE is `scan_verified` for every row: the page image itself was read,
+not somebody's transcription of it. That is the stronger of the two grades and it is
+claimed honestly — but see CONFIDENCE, which is a separate axis and is where the
+hand's ambiguity is recorded.
+
+CONFIDENCE. `documented` where the hand is unambiguous. `inferred` where letters are
+genuinely open and the note carries the alternates. Nothing here is `conjectural`,
+because a name nobody can read is not written down as a guess — it is written down as
+what the ink does, and the alternates go in the note.
+
+NORMALIZED is this project's spelling of the same person. It differs from `as_read`
+only where the identification is secure and the reason is stated in NORMALIZE below.
+Where it is not secure the normalized form is the reading, uppercased, and the guess
+lives in the resident crosswalk as a CANDIDATE where it can be refused.
+
+1830 IS FIVE YEARS EARLY, and this file mints nothing. A head of family on this
+schedule stood in the district in the summer of 1830. Whether he was in Chicago on
+1 July 1835 is a question for T-0513/T-0514, which have the ladder; the crosswalk
+this tool writes is the input to that and not a substitute for it.
+"""
+from __future__ import annotations
+
+import argparse
+import json
+import re
+import sys
+from pathlib import Path
+
+ROOT = Path(__file__).resolve().parent.parent
+DOMAIN = ROOT / "data" / "research" / "census_1830"
+TEXT = DOMAIN / "text" / "peoria_putnam_1830_leaves_580_582.txt"
+HOUSEHOLDS = ROOT / "data" / "residents" / "households"
+
+SOURCE_ID = "census_1830_peoria_county_chicago_precinct"
+TICKET = "T-0498"
+
+# The film item, fixed so a later run can go back to the same pixels.
+ITEM = "populationsc18300024unit"
+IMAGE_URL = "https://archive.org/download/%s/page/{leaf}_w2400.jpg" % ITEM
+
+# Rows whose letters are genuinely open. The value is what else the ink could be —
+# never a preference, and never resolved by what would be convenient.
+UNCERTAIN = {
+    ("n580", 4): "The surname is four or five letters ending -hry/-lby: 'Sehry' as written, "
+                 "'Selby' and 'Sebry' are equally available. No town person is claimed from it.",
+    ("n580", 9): "The given name's first letter is an R or a B and the rest is 'ectel'/'ectal'. "
+                 "The surname 'Vermett' is clear. A Vermet/Vermette family traded on the "
+                 "Chicago river, which is a reason to look and not a reason to read.",
+    ("n580", 16): "'Wellmacker' as written; 'Wellmaker' and 'Wallmacker' are available.",
+    ("n580", 19): "'Vernosdal' as written; the Dutch 'Van Nosdal'/'Vannostrand' forms are "
+                  "available and none of them is legible as such on the page.",
+    ("n580", 20): "'Barkee' as written; 'Barker' is available — the final letter is a long e "
+                  "or an r with no shoulder.",
+    ("n580", 24): "'Julius Paren' as written. The French 'Pare'/'Paren' and 'Julien' are "
+                  "available; the given name's ending is -ius or -ien.",
+    ("n580", 25): "'Paylin' as written; 'Poylin' and 'Baylin' are available.",
+    ("n580", 26): "'Murer' as written; 'Murier', 'Mercer' and 'Miner' are available.",
+    ("n580", 30): "The given name is written 'Clouded' or 'Cloudes' — it is the French Claude "
+                  "under an English hand, and the surname is the same 'LaFramboy' the line "
+                  "above it carries.",
+    ("n580", 31): "'Seco' as written, with no terminal r visible; 'Secor' is available and is "
+                  "the form the later Chicago record uses.",
+    ("n582", 10): "'Perkee' as written; 'Perkes', 'Parkee' and the French 'Pothier' are "
+                  "available. The hand does not settle it.",
+    ("n582", 16): "'Norman' as written; 'Naman' and 'Noman' are available.",
+    ("n582", 22): "'Coval' as written; 'Covall', 'Covel' and 'Cowal' are available.",
+    ("n582", 25): "'Mice' as written; 'Rice' and 'Nice' are available — the initial is a "
+                  "capital M or R.",
+    ("n582", 26): "'Gunner' as written; 'Gonier', 'Gunver' and 'Garnier' are available. A "
+                  "French form is likely on this page and is not legible as one.",
+}
+
+# The only places this project's spelling departs from the reading, each with the
+# reason it may. Nothing is normalised toward a famous name because it would be nice.
+NORMALIZE = {
+    "William Skammershorn": ("WILLIAM SCHERMERHORN",
+        "The hand writes 'Skammershorn'; Schermerhorn is the same Dutch name and the "
+        "enumerator spelt several of them phonetically on this leaf."),
+    "Antoine Uilmet": ("ANTOINE OUILMETTE",
+        "Ouilmette, the Grosse Pointe trader whose name the village of Wilmette carries. "
+        "'Uilmet' is the enumerator dropping the leading O, which he does elsewhere."),
+    "Joseph LaFramboy": ("JOSEPH LAFRAMBOISE",
+        "LaFramboise, the trading family of the Chicago and St Joseph country. The "
+        "enumerator writes the French -oise as -oy throughout this leaf."),
+    "Clouded L Framboy": ("CLAUDE LAFRAMBOISE",
+        "The same family, one line below Joseph. The given name is Claude under an "
+        "English hand; the surname is written 'L, Framboy' with the article split off."),
+    "John B Beaubien": ("JEAN BAPTISTE BEAUBIEN",
+        "The enumerator anglicises Jean Baptiste to John B here and for two other men "
+        "on this leaf; for Beaubien the identification is not in doubt."),
+    "Archibald Clybourn": ("ARCHIBALD CLYBOURN",
+        "Spelt as the project spells it. Recorded here so the pair is visible."),
+    "U S Garrison Fort Dearborn — Maj John Fowle Commr": ("U.S. GARRISON, FORT DEARBORN",
+        "Not a person. The enumerator braces two lines together and counts the garrison "
+        "as one household under its commanding officer; the record is kept as an "
+        "institution and is marked as one."),
+}
+
+# What each leaf's own totals row prints in the first five male columns, read off the
+# page. Carried as a calibration the next reader can check a re-count against; the
+# remaining columns of the totals row were not read and are not claimed.
+LEAF_TOTALS = {
+    "n580": {"first_five_male_columns_as_read": [20, 9, 9, 2, 3], "entries": 39},
+    "n582": {"first_five_male_columns_as_read": [16, 5, 14, 8, 10], "entries": 28},
+}
+
+
+def read_text():
+    """(line_number, leaf, entry, as_read) for every transcribed row."""
+    rows = []
+    for n, line in enumerate(TEXT.read_text(encoding="utf-8").splitlines(), start=1):
+        m = re.match(r"^(n\d+)\t(\d+)\t(.+)$", line)
+        if m:
+            rows.append((n, m.group(1), int(m.group(2)), m.group(3).strip()))
+    return rows
+
+
+def normalized_for(as_read: str) -> tuple:
+    if as_read in NORMALIZE:
+        return NORMALIZE[as_read]
+    return (as_read.upper(), None)
+
+
+def build_records():
+    rows = read_text()
+    records = []
+    for line_no, leaf, entry, as_read in rows:
+        norm, why = normalized_for(as_read)
+        uncertain = UNCERTAIN.get((leaf, entry))
+        note = []
+        if uncertain:
+            note.append("READING OPEN. " + uncertain)
+        if why:
+            note.append("NORMALISED. " + why)
+        note.append("Entry %d of %d on leaf %s of the district headed 'Peoria & Putnam "
+                    "Counties & Territory attached'. Presence in that district in the "
+                    "summer of 1830; not a Chicago residence, and never an 1835 one."
+                    % (entry, LEAF_TOTALS[leaf]["entries"], leaf))
+        records.append({
+            "id": "census1830_%s_%03d" % (leaf, entry),
+            "as_read": as_read,
+            "normalized": norm,
+            "locator": {
+                "image": leaf,
+                "entry": entry,
+                "line": line_no,
+                "text_file": TEXT.name,
+                "item": ITEM,
+                "image_url": IMAGE_URL.format(leaf=leaf),
+            },
+            "reading": "scan_verified",
+            "confidence": "inferred" if uncertain else "documented",
+            "notes": " ".join(note),
+            "institution": as_read.startswith("U S Garrison"),
+        })
+    return records
+
+
+# --- the crosswalk to the town's own people -------------------------------------
+
+def town_people():
+    """Every person in the town's households, by (surname, given) and by surname.
+
+    The household FILE NAMES cannot be used for this: the ids run
+    `hh_clybourne_archibald` beside `hh_ll_bennet_bailey` and `hh_doc_h_b_clarke`,
+    where the surname is in a different position each time. `persons[].name` is the
+    project's own spelling of the person and is what a reading has to be matched
+    against.
+    """
+    by_pair, by_surname = {}, {}
+    for path in sorted(HOUSEHOLDS.glob("hh_*.json")):
+        doc = json.loads(path.read_text(encoding="utf-8"))
+        for person in doc.get("persons") or []:
+            name = str(person.get("name") or "").strip()
+            parts = name_parts(name)
+            if not parts:
+                continue
+            sur, giv = parts
+            by_pair.setdefault((sur, giv), []).append((path.stem, name))
+            by_surname.setdefault(sur, []).append((path.stem, name))
+    return by_pair, by_surname
+
+
+# The town spells several people with a second name in brackets — the Potawatomi and
+# French names Chicago knew them by ("Billy Caldwell (Sauganash)", "Alexander Robinson
+# (Che-che-pin-qua)"). Taking the last word of that as a surname turns Robinson into
+# Che-che-pin-qua and loses the match, so the bracket is cut before the split. It is
+# cut and not read: what is inside it is a name this project should carry, and doing
+# that properly is a ticket of its own rather than a side effect of a census crosswalk.
+BRACKET = re.compile(r"\([^)]*\)")
+SUFFIXES = ("jr", "sr", "ii", "iii", "esq")
+TITLES = ("mr", "mrs", "miss", "dr", "maj", "col", "capt", "rev", "the")
+
+
+def name_parts(name: str):
+    name = BRACKET.sub(" ", str(name))
+    words = [w for w in re.split(r"[^A-Za-z]+", name) if w]
+    words = [w for w in words if w.lower() not in TITLES]
+    while words and words[-1].lower() in SUFFIXES:
+        words.pop()
+    if len(words) < 2:
+        return None
+    return words[-1].lower(), words[0].lower()
+
+
+def surname_key(surname: str) -> str:
+    """A surname reduced only as far as spelling variation this project has SEEN.
+
+    Deliberately timid. It drops a silent terminal e (Clybourn/Clybourne — the town
+    spells it with one and the enumerator without), collapses a doubled consonant,
+    and does nothing else. It never makes two names equal; it only makes them worth
+    LOOKING at, and everything it finds is written down as a candidate, not a merge.
+    """
+    s = surname.lower()
+    s = re.sub(r"([a-z])\1", r"\1", s)
+    s = re.sub(r"e$", "", s)
+    return s
+
+
+def build_crosswalk(records):
+    by_pair, by_surname = town_people()
+    by_variant = {}
+    for sur, entries in by_surname.items():
+        by_variant.setdefault(surname_key(sur), []).extend(entries)
+
+    matched, variants, candidates, refusals = [], [], [], []
+    institutions = []
+    for rec in records:
+        if rec["institution"]:
+            institutions.append({
+                "record_id": rec["id"],
+                "outcome": "not_a_person",
+                "source_id": SOURCE_ID,
+                "as_read": rec["as_read"],
+                "household": None,
+                "rule": "%r is the United States garrison entered as one household under its "
+                        "commanding officer. It is not a person and may never reach one: the "
+                        "line names no soldier, and Major John Fowle is named as the officer "
+                        "commanding rather than enumerated as a head of family. Ruled here so "
+                        "the one record on these leaves that can never be crosswalked is not "
+                        "left looking unexamined." % rec["as_read"],
+            })
+            continue
+        parts = name_parts(rec["normalized"])
+        if not parts:
+            continue
+        sur, giv = parts
+        exact = by_pair.get((sur, giv))
+        if exact:
+            hid, town_name = exact[0]
+            matched.append({
+                "record_id": rec["id"],
+                "outcome": "earlier_evidence",
+                "source_id": SOURCE_ID,
+                "as_read": rec["as_read"],
+                "normalized": rec["normalized"],
+                "household": hid,
+                "town_name": town_name,
+                "rule": "Surname and given name both agree between the 1830 reading %r and "
+                        "the town person %r in household %s. The 1830 line is carried as "
+                        "EARLIER EVIDENCE for that person and grades nothing on its own."
+                        % (rec["as_read"], town_name, hid),
+                "grade": "earlier_evidence",
+            })
+            continue
+        near = [e for e in by_variant.get(surname_key(sur), [])
+                if name_parts(e[1]) and name_parts(e[1])[1] == giv]
+        if near:
+            hid, town_name = near[0]
+            variants.append({
+                "record_id": rec["id"],
+                "outcome": "surname_variant_candidate",
+                "source_id": SOURCE_ID,
+                "as_read": rec["as_read"],
+                "normalized": rec["normalized"],
+                "household": hid,
+                "town_name": town_name,
+                "rule": "The given names agree and the surnames differ only by a silent "
+                        "terminal e or a doubled consonant: the 1830 reading %r against the "
+                        "town person %r. CANDIDATE, not a merge — the identification is "
+                        "T-0513's to make with the rest of the evidence in front of it."
+                        % (rec["as_read"], town_name),
+                "grade": "candidate",
+            })
+            continue
+        same_surname = by_surname.get(sur) or by_variant.get(surname_key(sur))
+        if same_surname:
+            others = sorted({"%s (%s)" % (n, h) for h, n in same_surname})
+            refusals.append({
+                "record_id": rec["id"],
+                "outcome": "refused_surname_only",
+                "source_id": SOURCE_ID,
+                "a": rec["as_read"],
+                "b": "; ".join(others),
+                "rule": "The 1830 reading %r shares only a surname with the town person(s) "
+                        "%s. A surname match is a clue and not an identity, so it is REFUSED "
+                        "rather than merged, and the refusal is written down so the next "
+                        "sweep does not make the same match again."
+                        % (rec["as_read"], "; ".join(others)),
+                "evidence": ["census_1830 record %s" % rec["id"],
+                             "data/residents/households/"],
+            })
+        else:
+            candidates.append({
+                "record_id": rec["id"],
+                "outcome": "no_surname_in_town",
+                "source_id": SOURCE_ID,
+                "as_read": rec["as_read"],
+                "normalized": rec["normalized"],
+                "household": None,
+                "note": "No person in the town's 825 households carries this surname. Either "
+                        "the man had gone by 1835, or he lived in the part of the district "
+                        "that was never Chicago — the Fox River and Du Page settlements are "
+                        "in it too — or he is somebody the reconstruction has not found. All "
+                        "three are findings and none of them is settled here.",
+            })
+    return matched, variants, candidates, refusals, institutions
+
+
+def build():
+    records = build_records()
+    matched, variants, candidates, refusals, institutions = build_crosswalk(records)
+    doc = {
+        "schema": 1,
+        "_doc": "GENERATED by tools/read_census_1830.py --build out of the committed reading "
+                "at data/research/census_1830/text/%s. Hand-edit and --check says so. Every "
+                "row is a hand reading of the film image named in its locator; the film "
+                "carries no text layer and nothing here was extracted." % TEXT.name,
+        "generated_by": "tools/read_census_1830.py --build",
+        "source_id": SOURCE_ID,
+        "describes_date": "1830",
+        "ticket": TICKET,
+        "district": {
+            "as_written": "Peoria & Putnam Counties & Territory attached",
+            "note": "The enumerator's own heading, written once on leaf n580 and dittoed. "
+                    "The schedule never writes 'Chicago'; there was no Chicago to write.",
+        },
+        "the_ladder": "An 1830 head of family is EARLIER EVIDENCE and never an 1835 residence "
+                      "on its own. Under the ladder ratified 2026-09-03, this schedule "
+                      "corroborates and dates; it does not mint.",
+        "counts": {
+            "records": len(records),
+            "leaves": sorted(LEAF_TOTALS),
+            "by_leaf": {k: v["entries"] for k, v in LEAF_TOTALS.items()},
+            "documented": sum(1 for r in records if r["confidence"] == "documented"),
+            "inferred": sum(1 for r in records if r["confidence"] == "inferred"),
+            "institutions": sum(1 for r in records if r["institution"]),
+        },
+        "leaf_totals_as_read": LEAF_TOTALS,
+        "records": records,
+    }
+    (DOMAIN / "records").mkdir(parents=True, exist_ok=True)
+    write(DOMAIN / "records" / "schedule_chicago_1830.json", doc)
+
+    cross = {
+        "schema": 1,
+        "_doc": "GENERATED by tools/read_census_1830.py --build. Every 1830 head of family "
+                "against the town's 825 households, positive and negative alike. A match on "
+                "surname AND given name is carried as EARLIER EVIDENCE; a match on surname "
+                "alone is REFUSED and the refusal is written down, because an unrecorded "
+                "refusal reads exactly like a pair nobody has looked at.",
+        "generated_by": "tools/read_census_1830.py --build",
+        "source_id": SOURCE_ID,
+        "ticket": TICKET,
+        "counts": {"matched": len(matched), "surname_variant_candidates": len(variants),
+                   "no_surname_in_town": len(candidates),
+                   "surname_only_refused": len(refusals),
+                   "not_a_person": len(institutions)},
+        "calibration": {
+            "nhgis_peoria_county_1830_total_population": 1236,
+            "note": "NHGIS ds5 1830 county table gives Peoria County 1,236 persons. The 67 "
+                    "households read here are two leaves of a district that runs on past "
+                    "leaf n584, so the two figures are NOT yet comparable and no ratio is "
+                    "claimed from them. The comparison becomes a real check when the rest "
+                    "of the district is read.",
+            "verified": False,
+        },
+        "matched": matched,
+        "surname_variant_candidates": variants,
+        "not_a_person": institutions,
+        "no_surname_in_town": candidates,
+        "refusals": refusals,
+    }
+    write(DOMAIN / "resident_crosswalk.json", cross)
+    print("census_1830: %d records, %d matched, %d surname-variant candidates, %d "
+          "surname-only refusals, %d with no surname in town"
+          % (len(records), len(matched), len(variants), len(refusals), len(candidates)))
+    return 0
+
+
+def write(path: Path, doc) -> None:
+    path.write_text(json.dumps(doc, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
+
+
+def check() -> int:
+    bad = []
+    for rel in ("records/schedule_chicago_1830.json", "resident_crosswalk.json"):
+        path = DOMAIN / rel
+        if not path.exists():
+            bad.append("%s: missing — run --build" % rel)
+    if bad:
+        for b in bad:
+            print("FAIL %s" % b)
+        return 1
+    before = {rel: (DOMAIN / rel).read_text(encoding="utf-8")
+              for rel in ("records/schedule_chicago_1830.json", "resident_crosswalk.json")}
+    build()
+    for rel, text in before.items():
+        if (DOMAIN / rel).read_text(encoding="utf-8") != text:
+            bad.append("%s: hand-edited — it does not match what the committed reading "
+                       "rebuilds" % rel)
+    for b in bad:
+        print("FAIL %s" % b)
+    if not bad:
+        print("read_census_1830: the generated files match the committed reading")
+    return 1 if bad else 0
+
+
+def main() -> int:
+    ap = argparse.ArgumentParser(description=__doc__.splitlines()[0])
+    ap.add_argument("--build", action="store_true")
+    ap.add_argument("--check", action="store_true")
+    args = ap.parse_args()
+    if args.check:
+        return check()
+    if args.build:
+        return build()
+    ap.print_help()
+    return 2
+
+
+if __name__ == "__main__":
+    sys.exit(main())

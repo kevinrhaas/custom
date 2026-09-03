@@ -145,7 +145,6 @@
 # --- reach a town person do not (civic's voter crosswalk: 99 matches, zero source ids). Without
 # --- T-0598 the consolidation is a human rereading each crosswalk and inferring what it meant,
 # --- which is the manual step this whole programme exists to stop relying on.
-T-0598 — 103 of 109 rulings that reach a town person cannot say what they rest on: every crosswalk states its source, so a ruling can be spent
 
 # --- ORDERED BY MEASURED YIELD — owner, 2026-09-03 (evening): "go ahead and reprioritize those
 # --- items in the queue you think will yield the best research results, those ones at the top".
@@ -184,8 +183,6 @@ T-0598 — 103 of 109 rulings that reach a town person cannot say what they rest
 # --- and, at their own measured rates, on the order of ten more matches. They are NOT withdrawn:
 # --- the 1840 deposit's coverage.json is a completeness contract and the Newberry leads are real.
 # --- They are simply no longer ahead of sources that pay ten to thirty times better per run.
-T-0557 — The Illinois Public Domain Land Tract Sales database (Illinois State Archives): pull every federal land sale in the townships around Chicago through 1836 and crosswalk purchasers to residents, households and structures
-T-0498 — Chicago was enumerated in Peoria County in 1830 and the repo holds only county aggregates: find and transcribe the named schedule
 T-0501 — Hubbard's autobiography is a 226-page scan in the deposit with no text, no source record and no mention anywhere in the project
 T-0499 — Fergus' Historical Series Nos. 26-29 sit as 1.24 MB of raw OCR with no text, no register and no claim read out of them: first half by page index
 T-0500 — Fergus' Historical Series Nos. 26-29 sit as 1.24 MB of raw OCR with no text, no register and no claim read out of them: second half by page index
@@ -452,4 +449,7 @@ T-0600 — The Newberry index reads a state banner as a card body, and a wrecked
 T-0601 — A column sliver is kept as a second, truncated copy of a card the neighbouring pass read in full, and nothing counts how many
 T-0602 — The research-spend ratchet counts a precision sample as reading, and an unanchored refusal as nothing
 T-0604 — Build rename_household_ids.py: the migration tool for the 747 legacy-prefixed households (T-0599 follow-up)
+T-0605 — The 1830 schedule's district runs on past leaf n584 and those leaves are unread: finish Peoria & Putnam & territory attached
 T-0606 — Run the household-naming migration: 747 renames, index.json, the regenerable crosswalks, publish (T-0599/T-0604 follow-up)
+T-0609 — The 1835 land purchasers hold tracts and the structures hold footprints, and nothing joins them: resolve every land_sales tract to the ground and write land_owner onto the structures it reaches
+T-0610 — Three sections of T39N R14E were truncated at the land-sales database's 150-row ceiling, and the ring townships are unread: finish the Illinois land tract sales around Chicago

@@ -1090,6 +1090,10 @@ def build(root: Path = ROOT, write: bool = True):
                 "`candidate` is what the rule reaches, and a candidate is not a merge. "
                 "The adjudications are in crosswalk.json.",
         "generated_by": "tools/read_st_cyr_register.py --build",
+        # T-0598: every ruling in this file rests on the register, stated once here
+        # rather than on each of 531 rows. Without it a ruling that reaches a town
+        # person names no source and cannot be carried to that person's card.
+        "source_id": SOURCE_ID,
         "pass": TICKET,
         "target": "data/residents/households/*.json — every named person, at every grade",
         "targets_examined": len(people),

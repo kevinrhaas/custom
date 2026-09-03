@@ -63,9 +63,25 @@ can only make this gate stricter, and is therefore free. Without the second
 direction the first is a slow leak: a domain spent to nothing would keep the
 ceiling its worst day earned and could drift back up to it in silence.
 
+THE THIRD HOP, and the only ratchet here whose ceiling is zero by default (T-0598).
+A ruling is only spendable if something can CARRY it to a card, and
+`persons[].sources` is a list of SOURCE IDS: a ruling that names a person and never
+says what it rests on can be spent by nobody but a human rereading the whole
+crosswalk. 103 of 109 rulings were in that state the evening this was written —
+civic's voter_crosswalk matched 99 voters to residents and the string
+`chicago_voter_lists_1833_1835_irad` appeared nowhere in the file adjudicating
+against it. Every generated crosswalk now states its source, at the top of the file
+where the whole file rests on one and per entry where a ruling rests on something
+specific, and `no source stated` is held at 0. Reading further ahead of your
+adjudication is a legitimate choice; ruling on a person and not saying why is not,
+so no domain gets an allowance unless somebody writes one deliberately. THE FIX FOR
+AN UNSOURCED RULING IS TO STATE THE SOURCE OR TO WITHDRAW THE RULING — never to
+invent a plausible-looking citation, which would take this gate green on a lie.
+
     tools/measure_research_spend.py              the table
     tools/measure_research_spend.py --gate       the ratchet, and what slack it sees
     tools/measure_research_spend.py --raise newberry_index --why "T-0578 read vol 2"
+    tools/measure_research_spend.py --raise <domain> --hop write|source --why "..."
     tools/measure_research_spend.py --tighten    reclaim slack after spending
     tools/measure_research_spend.py --rebaseline first write only
     tools/measure_research_spend.py --self-test
@@ -172,18 +188,51 @@ def cited_sources(doc) -> set:
     return found
 
 
+# Where a source id may be stated. `evidence` is here because the identity
+# crosswalks (civic/crosswalk.json and its shape-mates) have always written their
+# basis per refusal, as `evidence: [{source_id, locator}]`, and reading only
+# `discriminators` reported those files as stating nothing.
+SOURCE_BEARING_KEYS = ("discriminators", "same_name_support", "evidence", "support")
+
+
+def stated_sources(node) -> set:
+    """The source ids stated ON one object — `source_id` and `source_ids` alike.
+
+    Both spellings are in use in this repo and both mean the same thing: what this
+    was adjudicated FROM. A ruling may rest on several sources at once (a gazetteer
+    person read out of four issues of the American), so the plural is not a
+    convenience, it is the honest shape for that case.
+    """
+    out = set()
+    if not isinstance(node, dict):
+        return out
+    if isinstance(node.get("source_id"), str):
+        out.add(node["source_id"])
+    value = node.get("source_ids")
+    if isinstance(value, list):
+        out.update(v for v in value if isinstance(v, str))
+    return out
+
+
 def rests_on(ruling: dict) -> set:
     """The source ids a ruling rests on — what its card would have to learn."""
-    out = set()
-    for disc in ruling.get("discriminators") or []:
-        if isinstance(disc, dict) and disc.get("source_id"):
-            out.add(disc["source_id"])
-    for support in ruling.get("same_name_support") or []:
-        if isinstance(support, dict) and support.get("source_id"):
-            out.add(support["source_id"])
-    if ruling.get("source_id"):
-        out.add(ruling["source_id"])
+    out = stated_sources(ruling)
+    for key in SOURCE_BEARING_KEYS:
+        for row in ruling.get(key) or []:
+            out |= stated_sources(row)
     return out
+
+
+def doc_rests_on(doc: dict) -> set:
+    """What the FILE says its rulings rest on — the narrow form T-0598 asks for.
+
+    A crosswalk generated out of one source states it once at the top rather than
+    on each of 345 entries, and that statement is as real as a per-entry one: it
+    names what the whole file adjudicated FROM. The per-entry form is still the
+    better one wherever a ruling rests on something specific, and it WINS: a
+    ruling that names its own sources is not diluted by the file's.
+    """
+    return stated_sources(doc)
 
 
 def people_named(ruling: dict) -> list:
@@ -201,13 +250,19 @@ def count_written(domain_dir: Path, records: dict) -> tuple:
     """(reached, judgeable, wrote) for rulings that name a person in the town.
 
     JUDGEABLE IS NOT A TECHNICALITY, it is the difference between a measurement and
-    a smear. civic's voter_crosswalk matches 99 voters to residents and states no
-    `source_id` and no `discriminators` on any of them — the ruling never says what
-    it rests on, so nothing can be checked against the card, and reporting those 99
-    as "unwritten" would be the same failure as the whitelist bug: a number that
-    looks like a finding and is really an artefact of the instrument. They are
-    counted as unjudgeable and PRINTED, because an unjudgeable ruling is its own
-    small defect — a crosswalk that cannot say what it rests on cannot be spent."""
+    a smear. A ruling that never says what it rests on cannot be checked against a
+    card, and reporting it as "unwritten" would be the same failure as the
+    whitelist bug: a number that looks like a finding and is really an artefact of
+    the instrument. Such a ruling is counted UNSOURCED and printed, because it is
+    its own defect — a crosswalk that cannot say what it rests on cannot be spent.
+
+    T-0598 is that defect, held rather than merely printed. When this was written
+    civic's voter_crosswalk matched 99 voters to residents and stated no source
+    anywhere in the file; 103 of 109 rulings across the town were unsourced. The
+    fix was to say it once at the top of each generated crosswalk, which is what
+    `doc_rests_on` reads, and `--gate` now ratchets the remainder at 0 so it
+    cannot regrow. A file-level statement is a FALLBACK, never an override: a
+    ruling naming its own sources is judged against those."""
     reached = judgeable = wrote = 0
     for path in sorted(domain_dir.rglob("*.json")):
         if not is_crosswalk(path):
@@ -215,6 +270,7 @@ def count_written(domain_dir: Path, records: dict) -> tuple:
         doc = read_json(path)
         if not isinstance(doc, dict):
             continue
+        from_file = doc_rests_on(doc)
         for rulings in doc.values():
             if not isinstance(rulings, list):
                 continue
@@ -227,7 +283,7 @@ def count_written(domain_dir: Path, records: dict) -> tuple:
                 if not named:
                     continue
                 reached += 1
-                wants = rests_on(ruling)
+                wants = rests_on(ruling) or from_file
                 if not wants:
                     continue
                 judgeable += 1
@@ -317,7 +373,8 @@ def measure() -> list[dict]:
                      "unspent": read - spent, "id_pairs": pairs,
                      "reached": reached, "judgeable": judgeable, "wrote": wrote,
                      "unwritten": judgeable - wrote,
-                     "unjudgeable": reached - judgeable})
+                     "unjudgeable": reached - judgeable,
+                     "unsourced": reached - judgeable})
     return rows
 
 
@@ -408,6 +465,29 @@ def gate(quiet: bool = False) -> int:
             faults.append(f"{r['domain']}: {r['unwritten']} ruled onto a person whose card "
                           f"has not learned it, ceiling {ceiling} "
                           f"(+{r['unwritten'] - ceiling}) — {r['reached']} reached, {r['wrote']} written")
+    # THE THIRD HOP, and the one T-0598 turned from a printed number into a gate.
+    # A ruling that reaches a town person and states no source rests on nothing a
+    # tool can follow, so it can never be spent onto a card by anything but a
+    # person rereading the crosswalk. The ratchet holds it at what the backfill
+    # left, which is 0: it may be paid down, never grown.
+    # ZERO IS THE DEFAULT HERE, and it is the only ratchet in this file that has one.
+    # The other two ceilings must be recorded deliberately because reading ahead of
+    # adjudication is a legitimate choice somebody makes; there is no legitimate
+    # choice to rule on a person and not say what the ruling rests on, so a domain
+    # gets no allowance unless somebody writes one on purpose and says why.
+    unsourced = baseline.get("unsourced_ceiling", {})
+    for r in rows:
+        if not r["reached"]:
+            continue
+        ceiling = unsourced.get(r["domain"], 0)
+        if r["unsourced"] > ceiling:
+            faults.append(f"{r['domain']}: {r['unsourced']} ruling(s) reach a town person "
+                          f"and state no source, ceiling {ceiling} "
+                          f"(+{r['unsourced'] - ceiling}) — a crosswalk that cannot say "
+                          f"what it rests on cannot be spent. State the source at the top "
+                          f"of the file, or per entry where the ruling rests on something "
+                          f"specific; do NOT invent one for a ruling whose basis is "
+                          f"genuinely unrecorded — withdraw that ruling instead")
     if faults:
         print("   research read faster than the town spent it:")
         for f in faults:
@@ -424,6 +504,8 @@ def gate(quiet: bool = False) -> int:
              if r["domain"] in ceilings and ceilings[r["domain"]] > r["unspent"]]
     slack += [(f"{r['domain']} (unwritten)", written[r["domain"]] - r["unwritten"])
               for r in rows if r["domain"] in written and written[r["domain"]] > r["unwritten"]]
+    slack += [(f"{r['domain']} (unsourced)", unsourced[r["domain"]] - r["unsourced"])
+              for r in rows if r["domain"] in unsourced and unsourced[r["domain"]] > r["unsourced"]]
     if slack and not quiet:
         for domain, by in slack:
             print(f"   reclaimable: {domain} sits {by} under its ceiling")
@@ -460,6 +542,7 @@ def rebaseline() -> int:
         "generated_by": "tools/measure_research_spend.py --rebaseline",
         "unspent_ceiling": {r["domain"]: r["unspent"] for r in rows},
         "unwritten_ceiling": {r["domain"]: r["unwritten"] for r in rows if r["judgeable"]},
+        "unsourced_ceiling": {r["domain"]: r["unsourced"] for r in rows if r["reached"]},
         "witness": {r["domain"]: {"read": r["read"], "spent": r["spent"]} for r in rows},
         "raised": [],
     })
@@ -471,8 +554,13 @@ def rebaseline() -> int:
 def raise_ceiling(domain: str, why: str, hop: str = "read") -> int:
     """Raise ONE domain's ceiling on ONE hop, and record who said why.
 
-    hop 'read'  — the read-vs-ruled ceiling (`unspent_ceiling`)
-    hop 'write' — the ruled-vs-on-a-card ceiling (`unwritten_ceiling`)"""
+    hop 'read'   — the read-vs-ruled ceiling (`unspent_ceiling`)
+    hop 'write'  — the ruled-vs-on-a-card ceiling (`unwritten_ceiling`)
+    hop 'source' — the reaches-a-person-and-says-nothing ceiling (`unsourced_ceiling`)
+
+    Raising the SOURCE hop should be all but impossible to justify, and the message
+    below says so: the fix for an unsourced ruling is to state the source or to
+    withdraw the ruling, never to make room for it."""
     baseline = read_json(BASELINE)
     if not isinstance(baseline, dict):
         print(f"   no baseline at {BASELINE.name} — run --rebaseline")
@@ -485,12 +573,15 @@ def raise_ceiling(domain: str, why: str, hop: str = "read") -> int:
         print("   --why is required: a raise says the project chose to read further "
               "ahead of its adjudication, and somebody has to say why")
         return 1
-    if hop not in ("read", "write"):
-        print("   --hop must be 'read' (read vs ruled) or 'write' (ruled vs on a card)")
+    if hop not in ("read", "write", "source"):
+        print("   --hop must be 'read' (read vs ruled), 'write' (ruled vs on a card) "
+              "or 'source' (reaches a person and states nothing)")
         return 1
     row = rows[domain]
-    field = "unspent_ceiling" if hop == "read" else "unwritten_ceiling"
-    figure = row["unspent"] if hop == "read" else row["unwritten"]
+    field = {"read": "unspent_ceiling", "write": "unwritten_ceiling",
+             "source": "unsourced_ceiling"}[hop]
+    figure = {"read": row["unspent"], "write": row["unwritten"],
+              "source": row["unsourced"]}[hop]
     ceilings = baseline.setdefault(field, {})
     was = ceilings.get(domain)
     if was is not None and figure <= was:
@@ -517,6 +608,7 @@ def tighten() -> int:
         return 1
     ceilings = baseline.setdefault("unspent_ceiling", {})
     written = baseline.setdefault("unwritten_ceiling", {})
+    unsourced = baseline.setdefault("unsourced_ceiling", {})
     moved = []
     for row in measure():
         was = ceilings.get(row["domain"])
@@ -529,6 +621,10 @@ def tighten() -> int:
         if was_w is not None and row["unwritten"] < was_w:
             written[row["domain"]] = row["unwritten"]
             moved.append((f"{row['domain']} (unwritten)", was_w, row["unwritten"]))
+        was_s = unsourced.get(row["domain"])
+        if was_s is not None and row["unsourced"] < was_s:
+            unsourced[row["domain"]] = row["unsourced"]
+            moved.append((f"{row['domain']} (unsourced)", was_s, row["unsourced"]))
     if not moved:
         print("every ceiling already sits at what its domain reads — nothing to reclaim")
         return 0
@@ -542,7 +638,13 @@ def self_test() -> int:
     """Every assertion this gate makes, proved to fire when the fault is present."""
     failures = []
 
+    ran = []
+
     def fires(label: str, condition: bool) -> None:
+        # COUNTED, not tallied by hand: the case count used to be a literal 46 and
+        # T-0598 added six cases without moving it, which is a self-test that
+        # cannot say how much it tested.
+        ran.append(label)
         if not condition:
             failures.append(label)
 
@@ -640,6 +742,47 @@ def self_test() -> int:
               rests_on({"same_name_support": [{"source_id": "s1"}]}) == {"s1"})
         fires("a bare source_id counts too", rests_on({"source_id": "s2"}) == {"s2"})
         fires("a ruling resting on nothing states nothing", rests_on({}) == set())
+
+    # --- T-0598: THE THIRD HOP. A crosswalk that states no source at all is a
+    # FAULT, not merely a blind spot in the instrument, and a file-level statement
+    # is how a generated crosswalk answers for all of its rulings at once.
+    with tempfile.TemporaryDirectory() as tmp:
+        d = Path(tmp)
+        cards = {"hh_a": {"id": "hh_a", "persons": [{"sources": ["voter_lists_irad"]}]},
+                 "hh_b": {"id": "hh_b", "persons": [{"sources": ["andreas_1884_v1"]}]}}
+        bare = {"entries": [{"outcome": "matched", "matched_resident": "hh_a"},
+                            {"outcome": "matched", "matched_resident": "hh_b"}]}
+        (d / "voter_crosswalk.json").write_text(json.dumps(bare))
+        reached, judgeable, wrote = count_written(d, cards)
+        fires("a crosswalk stating no source anywhere is a FAULT, not a measurement",
+              (reached, judgeable, reached - judgeable) == (2, 0, 2))
+
+        (d / "voter_crosswalk.json").write_text(json.dumps(
+            dict(bare, source_id="voter_lists_irad")))
+        reached, judgeable, wrote = count_written(d, cards)
+        fires("…and one source_id at the top of the file answers for every ruling in it",
+              (reached, judgeable, reached - judgeable) == (2, 2, 0))
+        fires("…which then judges each card on its own merits", wrote == 1)
+
+        (d / "voter_crosswalk.json").write_text(json.dumps(
+            dict(bare, source_ids=["voter_lists_irad", "tax_1833"])))
+        _, judgeable, _ = count_written(d, cards)
+        fires("a file may rest on several sources, stated as source_ids", judgeable == 2)
+
+        (d / "voter_crosswalk.json").write_text(json.dumps({
+            "source_id": "voter_lists_irad",
+            "entries": [{"outcome": "matched", "matched_resident": "hh_b",
+                         "discriminators": [{"source_id": "andreas_1884_v1"}]}]}))
+        _, _, wrote = count_written(d, cards)
+        fires("a ruling naming its own source is judged on that, not the file's",
+              wrote == 1)
+
+        fires("evidence rows state a source like any other basis",
+              rests_on({"evidence": [{"source_id": "s3", "locator": "poll_1833 line 26"}]})
+              == {"s3"})
+        fires("source_ids is read wherever source_id is",
+              rests_on({"source_ids": ["s4", "s5"]}) == {"s4", "s5"})
+        fires("a file stating nothing rests on nothing", doc_rests_on({"entries": []}) == set())
         fires("sources are found at any depth in a record",
               cited_sources({"a": {"b": [{"sources": ["deep"]}]}}) == {"deep"})
         fires("a plural person_ids ruling names every person it reaches",
@@ -707,12 +850,35 @@ def self_test() -> int:
             fires("…and a second --tighten has nothing left to take", tighten() == 0)
             fires("…and never RAISES a ceiling that is already tight",
                   json.loads(BASELINE.read_text())["unspent_ceiling"] == live)
+
+            # T-0598: the unsourced ratchet, which defaults to zero and so needs no
+            # entry in the baseline to bite. Proved against the live tree, which
+            # states a source for every ruling that reaches a town person.
+            tight = json.loads(BASELINE.read_text())
+            tight.pop("unsourced_ceiling", None)
+            BASELINE.write_text(json.dumps(tight))
+            fires("an unsourced ceiling nobody wrote defaults to zero, and is green "
+                  "because the backfill landed", gate(quiet=True) == 0)
+            reaching = next((r["domain"] for r in measure() if r["reached"]), None)
+            fires("some domain rules onto a town person at all", reaching is not None)
+            if reaching:
+                tight["unsourced_ceiling"] = {reaching: -1}
+                BASELINE.write_text(json.dumps(tight))
+                fires("…and a domain over its unsourced ceiling fires the gate",
+                      gate(quiet=True) == 1)
+                tight["unsourced_ceiling"] = {reaching: 5}
+                BASELINE.write_text(json.dumps(tight))
+                fires("…while an allowance somebody wrote on purpose is honoured",
+                      gate(quiet=True) == 0)
+                fires("--tighten reclaims that allowance too, unasked",
+                      tighten() == 0 and
+                      json.loads(BASELINE.read_text())["unsourced_ceiling"][reaching] == 0)
     finally:
         BASELINE = kept
 
     for line in failures:
         print(f"   SILENT: {line}")
-    print("SELF-TEST %s — %d case(s)" % ("FAIL" if failures else "PASS", 46))
+    print("SELF-TEST %s — %d case(s)" % ("FAIL" if failures else "PASS", len(ran)))
     return 1 if failures else 0
 
 
@@ -723,8 +889,9 @@ def main() -> int:
     parser.add_argument("--raise", dest="raise_domain", metavar="DOMAIN",
                         help="raise ONE domain's ceiling to what it now reads; needs --why")
     parser.add_argument("--why", default="", help="the reason a raise is being taken")
-    parser.add_argument("--hop", default="read", choices=("read", "write"),
-                        help="which ceiling to raise: read (read vs ruled) or write (ruled vs on a card)")
+    parser.add_argument("--hop", default="read", choices=("read", "write", "source"),
+                        help="which ceiling to raise: read (read vs ruled), write "
+                             "(ruled vs on a card) or source (reaches a person, states nothing)")
     parser.add_argument("--tighten", action="store_true",
                         help="lower every ceiling to what its domain now reads (always safe)")
     parser.add_argument("--self-test", action="store_true", dest="self_test")
