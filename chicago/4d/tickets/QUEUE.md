@@ -101,7 +101,6 @@
 # --- city data improvement ticket for https://archive.org/details/chicago1835-newberry-genealogical-index
 # --- if you do not already i am starting to move the research corpus to the internet archive".
 T-0588 — Norris's 1844 directory spent on the businesses layer: the firms the volume prints, dated and written where the sketch, the advertiser or Fergus 1843 puts their founding at or before 1835
-T-0571 — Fergus's Chicago directory for 1843, complete on Genealogy Trails: 2,427 entries of name, trade and street, read into the directories domain and date-flagged as later evidence
 T-0573 — Father St. Cyr's register in the Illinois Catholic Historical Review: 87 marriages of 1834-1839 with their witnesses named, and the nine deaths of 1834-1836
 T-0574 — Fergus's 743 old-settler death notices from the 1843 directory: ages at death read as birth years and crosswalked to attested residents
 T-0575 — Hurlbut's Chicago Antiquities pages 28-36 on the American Fur Company at Chicago, read as claims about the trade the town actually carried
@@ -359,3 +358,4 @@ T-0577 — The Calumet Club's FIRST old-settlers reception, 27 May 1879: the reg
 T-0581 — Moses and Kirkland's History of Chicago (1895) is the largest Chicago work the Newberry index points at that this project does not hold: read its Chicago and Cook County families for 1835 residents, households and businesses
 T-0582 — The Chicago cards of the Newberry index also point at Moses's Illinois, historical and statistical (1888-92), the La Salle Book Co. Cook County volumes (1900, 1909), Wood's Chicago 1881 and Hurlbut's Chicago antiquities (1881), and none of the four is in this project's sources
 T-0583 — The register of the Second Presbyterian Church of Chicago, 1842-92 (Grant), is cited on Newberry index cards for Chicago families and is not in this project's sources: find it, and read it back to the people who were here in 1835
+T-0589 — Fergus's 1843 directory, page 1: the civic account — officers, courts, churches, societies, newspapers, fire and military companies, schools, the 1843 ward population count and the port's exports and imports for 1842-3

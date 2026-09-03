@@ -304,3 +304,89 @@ whoever takes it.
 CARDS OF SUBSCRIBERS". These 158 firms are not the trades of Chicago in 1844; they
 are the part of them that had money for display type and chose to spend it. A trade
 absent from this section is not a trade absent from the town.
+
+---
+
+## Robert Fergus's *Directory of the City of Chicago, Illinois, for 1843*
+
+**Read for T-0571** (piece 1 of 6 of the owner's T-0556). The earliest complete
+Chicago directory this project can reach, and the largest list of named
+Chicagoans it holds: **2,695 entries** — 174 classified business cards off page
+1, and 2,521 alphabetical entries off pages 2, 3 and 4.
+
+**Which copy, and it is not the printed one.** Fergus set this volume in 1896 out
+of the canvass J. W. Norris made between August and December 1843 — the same
+canvass that produced the 1844 directory T-0566 read. What this project has seen
+is K. Torp's 2007 transcription of it on Genealogy Trails, cached here on
+2026-09-03 and copied into `text/` byte for byte, so a line number means the same
+thing in `data/research/genealogytrails/text/1843directory_N.txt` and in
+`text/fergus_1843_page_00N.txt`. Every reading is `transcription_mediated`, and
+the source record says so rather than only this file.
+
+**Two shapes on four pages, because the printer set them differently.**
+
+*Page 1, the business directory.* Fergus groups 174 cards under 26 all-caps trade
+headings — ATTORNEYS, DRY GOODS GROCERIES ETC, FORWARDING AND COMMISSION,
+LOOKING-GLASSES — and shouts each card's subject at its head. The heading is
+carried onto the claim as `trade_heading`: it is the printer's own classification
+of the business, and it is worth more than anything a parser could infer from the
+prose beneath it. Every card is `kind: business`, including the ones headed by a
+man's name, because the card advertises a business and not a household; where the
+subject IS a named man his `surname` and `given` are in `normalized` anyway, which
+is how the crosswalk reaches him.
+
+*Pages 2-4, the alphabetical directory.* One sequence, broken by letter sections.
+The transcription wraps the long entries and does NOT indent the turn, so the
+indent that gives Norris its entry boundaries is unavailable here. **The rule is
+the directory's own organising principle instead: an entry begins where a line
+begins with a surname in the current letter section.** A turned line that opens
+with a capital opens with a place or a date — `Ill., Nov. 25,1893, a. 80. ]` under
+A, `Feb. 22,1862` under B — and its initial is not the section's. Where the
+capital IS the section's letter and the head carries no comma, alphabetical order
+decides: `Cass` arriving after `Clarke & Co.` is the tail of that firm's address,
+not a new name. Seven times on page 2 the transcription runs a new entry onto the
+tail of the line above; those are cut mid-line and located with `spans`.
+
+**What this directory carries that Norris's does not is a date of death.** Fergus,
+writing fifty-three years later, set each man's death in brackets after his entry —
+`[died June 6, 1882, aged 67.]` — and an age at death is a year of birth. Those
+brackets are kept whole in `normalized.bracket_notes` and carried onto every
+crosswalk match as `death_note_1843`. **They are not spent here.** T-0574 is the
+ticket that reads them.
+
+**1843 IS EIGHT YEARS LATE, and doubly late.** The town in this reconstruction is
+the town of 1 July 1835; the canvass is of 1843 and the deaths and corrections are
+of 1896. Nothing here is an 1835 fact, every claim carries `describes_date:
+"1843"`, and no resident record changed state in this ticket.
+
+**What is generated here.** `claims/fergus_1843_directory_entries.json` by
+`tools/read_fergus_1843.py --build`, and `fergus_1843_crosswalk_1835.json` by
+`tools/crosswalk_fergus_1843.py`. Both have a `--check` that rebuilds and
+compares, so a hand-edit is caught; the reader's `--check` also holds the per-page
+entry counts to what `coverage.json` declares, because a declared page that
+quietly loses forty entries is exactly the hole coverage exists to catch. The page
+text under `text/` is committed and is what the verbatim gate reads.
+
+**`normalized` is best effort and the quote is not.** The transcriber's damage is
+left in every quote on purpose — `accidentially`, `John S.Wright`, `aged - .` —
+because a tidied quote cannot be found again. The split of a printed line into
+name / occupation / address is a heuristic over punctuation that is not a grammar:
+the address begins at the first of Fergus's own abbreviations, which he prints in
+his REMARKS (`bet` for between, `res` for residence, `bds` for boards, and `cor`
+and `op.` beside them). 937 entries yield no address on that rule and 170 no
+occupation, and that is the reading being honest rather than guessing. What the
+split is FOR is the crosswalk, which needs a surname and an initial and nothing
+else to be safe.
+
+**The crosswalk: 68 matches, 33 ambiguous, 8 contested, 174 refusals** out of the
+847 people in the 1835 layer, on surname-fold plus first initial. 46 of the 68
+could carry a 1843 address the 1835 person lacks and 43 could carry a death
+notice. None of it has been spent — T-0569 is the pass that spends the matches
+and T-0574 the one that spends the notices.
+
+**Page 1's civic account is NOT read here.** Lines 37-750 — the officers and
+courts, twenty-odd churches and societies with their ministers and memberships,
+the newspapers, the fire and military companies, the schools, the 1843 ward
+population count and the port's exports and imports for 1842-3 — are a different
+reading with a different kind vocabulary. `coverage.json` names them as not read
+and names **T-0589**, which owns them.
