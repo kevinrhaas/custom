@@ -390,3 +390,64 @@ the newspapers, the fire and military companies, the schools, the 1843 ward
 population count and the port's exports and imports for 1842-3 — are a different
 reading with a different kind vocabulary. `coverage.json` names them as not read
 and names **T-0589**, which owns them.
+
+---
+
+## Do any of these firms reach the town of 1 July 1835? — `norris_1844_businesses_1835.json`
+
+**Read for T-0588** (piece 2 of the owner's T-0569). The owner's ask on the 1844
+volume was to "include the businesses with date appropriate", and the ticket set the
+test: a firm reaches this scene only if some printing DATES its founding at or before
+1835 — the Historical Sketch, the firm's own advertising card, or Fergus's 1843
+directory. `tools/date_norris_1844_businesses.py` walks all three over every firm the
+volume prints, and this file is the result.
+
+**The answer is no, and it is no 207 times.** 222 firm printings — 65 in the directory
+proper, 157 on the advertising cards — resolve to **207 distinct firms**, and not one
+of them is dated at or before 1835 by any of the three routes:
+
+- **The sketch.** 25 of its 65 town findings are dated at or before the scene, and
+  they name **no** 1844 firm. Norris's early paragraphs are about the fort, the
+  harbour, the mails, the lyceum, the two newspapers and five or six houses; the
+  businesses in them — the Fur Company's traffic, R. A. Kinzie's store at Wolf Point,
+  Mark Beaubien's Eagle — are places this town already holds, not firms his directory
+  lists nine years later.
+- **The cards.** Seven of the 158 carry a date at all, and every one of the seven is
+  December 1843 or 1844. That is T-0568's finding re-derived rather than trusted.
+- **Fergus 1843.** **153 of the 207 firms are already in it** — the single most
+  telling number here, because it says the 1844 volume is a portrait of the town of
+  1843-4, and being in print in 1843 is not being in business in 1835. Exactly one
+  entry in the whole of Fergus prints a founding year, and it prints **1839**
+  (Bristol & Porter's "first warehouse on the South Side, erected 1839").
+
+**So this pass writes nothing to the businesses layer, and the writing-nothing is the
+result.** The ticket said as much before the work began: a pass that stretches an 1844
+listing back nine years to have something to show fails it, and one that writes nothing
+and says why closes it. `written.why` in the file carries the reason, so it survives
+where a pull-request body will not.
+
+**What it did confirm.** The 206 businesses the 1835 papers give the town were walked
+against the same 207 firms on a firm-style rule — the standing surname-and-initial
+discipline adapted from people to partnerships. **Two survive into the first
+directory** under the same style: **Newberry & Dole**, and **G. S. Hubbard** against
+the papers' Hubbard & Co. One is ambiguous (B. Jones & Co. meets two Jones businesses
+of 1835) and seven are refused on a surname alone under the eleven-Smiths rule, each
+named in the file with the 1835 business it nearly met. A continuity match is worth
+less than a date and the file says so: it adds no business, dates no founding, and
+moves no grade.
+
+**No page was read for this ticket**, so `coverage.json` is untouched — the four
+inputs (`claims/norris_1844_directory_entries.json`,
+`claims/norris_1844_advertiser.json`, `claims/norris_1844_town_findings.json`,
+`claims/fergus_1843_directory_entries.json`) and the town's own
+`data/research/newspapers/gazetteer.json` were all already committed. What is new is
+the question asked of them.
+
+**A negative result is the easiest artefact here to corrupt** — nobody re-reads it,
+and one hand-edit promoting a firm to "dated 1834" would put a business in the town on
+nobody's authority. So `tools/check.sh` rebuilds the whole file and diffs it, and runs
+the tool's own twelve assertions: that the sketch route reads the printed quote and the
+reader's entity index but never this project's gloss (the gloss says "Norris's summary
+of the beginning", which would otherwise date the author's own 1844 firm to 1832), that
+a one-surname firm needs an agreeing initial on both sides, and that a founding year
+has to be carried by founding language rather than by a street number.
