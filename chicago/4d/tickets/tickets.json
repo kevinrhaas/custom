@@ -1,6 +1,6 @@
 {
   "project": "chicago-4d",
-  "generated_ct": "Sep 2, 2026, 11:56 PM",
+  "generated_ct": "Sep 3, 2026, 12:23 AM",
   "tickets": [
     {
       "id": "T-0001",
@@ -8030,6 +8030,24 @@
       "blocked_on": "T-0489 must land the inferred-resident and household integration on dev.",
       "needs_bake": false,
       "queue_rank": null
+    },
+    {
+      "id": "T-0519",
+      "title": "Both dev gates are red after PR #670: two schema errors in a source record and six resident assertions in part 13",
+      "state": "open",
+      "epic": "META",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "M",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-09-03",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "queue_rank": 101
     }
   ]
 }
