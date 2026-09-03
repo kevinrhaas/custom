@@ -1,6 +1,6 @@
 {
   "project": "chicago-4d",
-  "generated_ct": "Sep 3, 2026, 4:05 PM",
+  "generated_ct": "Sep 3, 2026, 4:20 PM",
   "tickets": [
     {
       "id": "T-0001",
@@ -9910,6 +9910,26 @@
       "queue_rank": 1
     },
     {
+      "id": "T-0599",
+      "title": "A household minted from here on gets a plain hh_<surname>_<given> id; source_pass records which pass minted it",
+      "state": "claimed",
+      "epic": "META",
+      "requested_by": "owner",
+      "seen": false,
+      "effort": "S",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-09-03",
+      "closed": null,
+      "pr": null,
+      "claimed_by": "owner 9/3/2026, 2:14:51 PM CT",
+      "blocked_on": null,
+      "needs_bake": false,
+      "closed_at": null,
+      "claimed_run": null,
+      "queue_rank": 149
+    },
+    {
       "id": "T-0600",
       "title": "The Newberry index reads a state banner as a card body, and a wrecked call number as ', Ill.' — four and one of forty sampled cards",
       "state": "open",
@@ -9927,7 +9947,7 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 149
+      "queue_rank": 150
     },
     {
       "id": "T-0601",
@@ -9947,7 +9967,7 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 150
+      "queue_rank": 151
     },
     {
       "id": "T-0602",
@@ -9967,7 +9987,7 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 151
+      "queue_rank": 152
     },
     {
       "id": "T-0603",
