@@ -1,7 +1,7 @@
 ---
 id: T-0460
 title: The plank walk meets the dirt road in a jagged sawtooth, and it is the first thing a visitor sees
-state: claimed
+state: done
 epic: RENDERING
 requested_by: owner
 seen: true
@@ -9,8 +9,8 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-08-31
-closed: null
-pr: null
+closed: 2026-09-03
+pr: 676
 claimed_by: run 9/2/2026, 11:53:13 PM CT
 blocked_on: null
 needs_bake: false
