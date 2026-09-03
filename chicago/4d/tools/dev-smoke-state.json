@@ -3,6 +3,38 @@
   "readings": [
     {
       "viewport": "desktop",
+      "stage": "11-12",
+      "parts": [
+        11,
+        12
+      ],
+      "verdict": "pass",
+      "target": "published",
+      "passed": 50,
+      "failed": 0,
+      "failures": [],
+      "wallSeconds": 430,
+      "takenAt": "2026-09-03T22:36:37.504Z",
+      "ref": "steward/t-0598-crosswalks-state-their-source",
+      "commit": "c0d5d02dbc0c",
+      "devCommit": "7566e49aa717",
+      "treeHash": "sha256:89fa9ea79ed8b3fb",
+      "treeDirty": false,
+      "changelogHash": "sha256:9a5598b9b9da40b7",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          5,
+          3.8,
+          2.9
+        ]
+      },
+      "source": "/tmp/smoke-post-merge.log"
+    },
+    {
+      "viewport": "desktop",
       "stage": "1-2",
       "parts": [
         1,
@@ -1531,38 +1563,6 @@
         ]
       },
       "source": "/tmp/d3c.log"
-    },
-    {
-      "viewport": "desktop",
-      "stage": "2-3",
-      "parts": [
-        2,
-        3
-      ],
-      "verdict": "pass",
-      "target": "published",
-      "passed": 148,
-      "failed": 0,
-      "failures": [],
-      "wallSeconds": 277,
-      "takenAt": "2026-08-30T08:57:05.780Z",
-      "ref": "steward/t-0379-letter-list-scale",
-      "commit": "b8a7d540d43d",
-      "devCommit": "afa7c2f6e1da",
-      "treeHash": "sha256:74d4f3e39f4032bf",
-      "treeDirty": true,
-      "changelogHash": "sha256:0554db9365788e55",
-      "host": {
-        "kind": "steward-runner",
-        "cpus": 4,
-        "memGB": 15.6,
-        "loadavg": [
-          3.4,
-          3.9,
-          3.8
-        ]
-      },
-      "source": "/tmp/d3.log"
     },
     {
       "viewport": "desktop",
