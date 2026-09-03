@@ -1,6 +1,6 @@
 {
   "project": "chicago-4d",
-  "generated_ct": "Sep 3, 2026, 9:58 AM",
+  "generated_ct": "Sep 3, 2026, 10:11 AM",
   "tickets": [
     {
       "id": "T-0001",
@@ -9200,6 +9200,24 @@
       "blocked_on": null,
       "needs_bake": false,
       "queue_rank": 3
+    },
+    {
+      "id": "T-0558",
+      "title": "smoke_budget.mjs prices the publish stamp site/chicago/4d/walk/index.html at all 13 parts, so every publishing PR is told to run the whole gate",
+      "state": "done",
+      "epic": "META",
+      "requested_by": "owner",
+      "seen": false,
+      "effort": "XS",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-09-03",
+      "closed": "2026-09-03",
+      "pr": "701",
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "queue_rank": null
     },
     {
       "id": "T-0559",
