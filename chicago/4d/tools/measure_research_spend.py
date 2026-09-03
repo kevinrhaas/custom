@@ -120,6 +120,122 @@ def read_json(path: Path):
         return None
 
 
+# ---------------------------------------------------------------------------
+# THE SECOND HOP. Everything above measures research READ against research RULED
+# ON. That is two thirds of the owner's original question and not the third he
+# actually asked — "there are not outputs or updates to the household and
+# resident data". A ruling lives in data/research/; a VISITOR sees data/residents/.
+#
+# Measured the evening of 2026-09-03, on the ten 1840 heads T-0505 matched or
+# graded candidate: ten name a real resident record, ten records exist, and NOT
+# ONE carries a single source its own ruling rests on. Philo Carpenter's card
+# cites `andreas_1884_v1` and nothing else while the ruling for him rests on
+# Fergus 1843 and Norris 1844 and the crosswalks hold four more. The evidence and
+# the slot have never been introduced.
+#
+# So: of the rulings that reach a person in the town, how many reach that
+# person's CARD? A ruling counts as written when the record it names cites at
+# least one source the ruling itself rests on. That is deliberately generous —
+# it asks whether the card learned ANYTHING from the ruling, not whether it
+# learned everything — because a strict test would read 0 forever and tell
+# nobody anything new.
+RESIDENTS = DATA_DIR = ROOT / "data" / "residents"
+PERSON_KEYS = ("household_id", "person_id", "person_ids", "resident", "matched_resident")
+WRITTEN_OUTCOMES = ("matched", "candidate")
+
+
+def resident_records() -> dict:
+    """Every resident record by its own id — households and the people files alike."""
+    out = {}
+    for path in sorted(RESIDENTS.rglob("*.json")):
+        doc = read_json(path)
+        if isinstance(doc, dict) and doc.get("id"):
+            out[doc["id"]] = doc
+    return out
+
+
+def cited_sources(doc) -> set:
+    """Every source id a record cites, at any depth. `sources` is the field the
+    residents layer has always used; nothing else counts as a citation."""
+    found = set()
+    def walk(node):
+        if isinstance(node, dict):
+            for key, value in node.items():
+                if key == "sources" and isinstance(value, list):
+                    found.update(v for v in value if isinstance(v, str))
+                else:
+                    walk(value)
+        elif isinstance(node, list):
+            for item in node:
+                walk(item)
+    walk(doc)
+    return found
+
+
+def rests_on(ruling: dict) -> set:
+    """The source ids a ruling rests on — what its card would have to learn."""
+    out = set()
+    for disc in ruling.get("discriminators") or []:
+        if isinstance(disc, dict) and disc.get("source_id"):
+            out.add(disc["source_id"])
+    for support in ruling.get("same_name_support") or []:
+        if isinstance(support, dict) and support.get("source_id"):
+            out.add(support["source_id"])
+    if ruling.get("source_id"):
+        out.add(ruling["source_id"])
+    return out
+
+
+def people_named(ruling: dict) -> list:
+    out = []
+    for key in PERSON_KEYS:
+        value = ruling.get(key)
+        if isinstance(value, list):
+            out.extend(str(v) for v in value if v)
+        elif value:
+            out.append(str(value))
+    return out
+
+
+def count_written(domain_dir: Path, records: dict) -> tuple:
+    """(reached, judgeable, wrote) for rulings that name a person in the town.
+
+    JUDGEABLE IS NOT A TECHNICALITY, it is the difference between a measurement and
+    a smear. civic's voter_crosswalk matches 99 voters to residents and states no
+    `source_id` and no `discriminators` on any of them — the ruling never says what
+    it rests on, so nothing can be checked against the card, and reporting those 99
+    as "unwritten" would be the same failure as the whitelist bug: a number that
+    looks like a finding and is really an artefact of the instrument. They are
+    counted as unjudgeable and PRINTED, because an unjudgeable ruling is its own
+    small defect — a crosswalk that cannot say what it rests on cannot be spent."""
+    reached = judgeable = wrote = 0
+    for path in sorted(domain_dir.rglob("*.json")):
+        if not is_crosswalk(path):
+            continue
+        doc = read_json(path)
+        if not isinstance(doc, dict):
+            continue
+        for rulings in doc.values():
+            if not isinstance(rulings, list):
+                continue
+            for ruling in rulings:
+                if not isinstance(ruling, dict):
+                    continue
+                if ruling.get(OUTCOME_KEY) not in WRITTEN_OUTCOMES:
+                    continue
+                named = [p for p in people_named(ruling) if p in records]
+                if not named:
+                    continue
+                reached += 1
+                wants = rests_on(ruling)
+                if not wants:
+                    continue
+                judgeable += 1
+                if any(wants & cited_sources(records[p]) for p in named):
+                    wrote += 1
+    return reached, judgeable, wrote
+
+
 def anchor_of(ruling: dict) -> str | None:
     """What this ruling is about, as a dedup key — or None if it names nothing.
 
@@ -187,6 +303,7 @@ def measure() -> list[dict]:
     registry = read_json(REGISTRY)
     if not isinstance(registry, dict) or not registry.get("domains"):
         raise SystemExit(f"unreadable domain registry: {REGISTRY}")
+    records = resident_records()
     rows = []
     for entry in registry["domains"]:
         domain_dir = ROOT / entry["path"]
@@ -194,9 +311,13 @@ def measure() -> list[dict]:
             raise SystemExit(f"registered domain has no directory: {entry['path']}")
         read = count_read(domain_dir)
         spent, pairs = count_spent(domain_dir)
+        reached, judgeable, wrote = count_written(domain_dir, records)
         rows.append({"domain": entry["id"], "holds": entry["holds"],
                      "read": read, "spent": spent,
-                     "unspent": read - spent, "id_pairs": pairs})
+                     "unspent": read - spent, "id_pairs": pairs,
+                     "reached": reached, "judgeable": judgeable, "wrote": wrote,
+                     "unwritten": judgeable - wrote,
+                     "unjudgeable": reached - judgeable})
     return rows
 
 
@@ -225,6 +346,24 @@ def report() -> str:
                f"{sum(r['spent'] for r in rows):>9}"
                f"{sum(r['unspent'] for r in rows):>9}"
                f"{sum(r['id_pairs'] for r in rows):>10}")
+    # The second hop, printed only for domains that have rulings reaching a person.
+    hop = [r for r in rows if r["reached"]]
+    out.append("")
+    out.append("ruled onto a town person, and whether their CARD learned it:")
+    if hop:
+        out.append("domain            reached  judgeable  on a card  unwritten  no source stated")
+        out.append("-" * 78)
+        for r in hop:
+            out.append(f"{r['domain']:<17}{r['reached']:>7}{r['judgeable']:>11}"
+                       f"{r['wrote']:>11}{r['unwritten']:>11}{r['unjudgeable']:>18}")
+        out.append("-" * 78)
+        out.append(f"{'TOTAL':<17}{sum(r['reached'] for r in hop):>7}"
+                   f"{sum(r['judgeable'] for r in hop):>11}"
+                   f"{sum(r['wrote'] for r in hop):>11}"
+                   f"{sum(r['unwritten'] for r in hop):>11}"
+                   f"{sum(r['unjudgeable'] for r in hop):>18}")
+    else:
+        out.append("  no ruling in any domain yet names a person in the residents layer")
     extra = unregistered()
     if extra:
         out.append("")
@@ -252,6 +391,23 @@ def gate(quiet: bool = False) -> int:
     for domain in ceilings:
         if not any(r["domain"] == domain for r in rows):
             faults.append(f"{domain}: in the baseline and not in domains.json")
+    # THE SECOND HOP, held the same way. A ruling that reaches a person and never
+    # reaches their card is the fault the owner reported in the first place, and
+    # it is the one thing nothing measured until now.
+    written = baseline.get("unwritten_ceiling", {})
+    for r in rows:
+        if not r["reached"]:
+            continue
+        if not r["judgeable"]:
+            continue
+        ceiling = written.get(r["domain"])
+        if ceiling is None:
+            faults.append(f"{r['domain']}: {r['unwritten']} ruling(s) reach a town person "
+                          f"and no unwritten ceiling is recorded")
+        elif r["unwritten"] > ceiling:
+            faults.append(f"{r['domain']}: {r['unwritten']} ruled onto a person whose card "
+                          f"has not learned it, ceiling {ceiling} "
+                          f"(+{r['unwritten'] - ceiling}) — {r['reached']} reached, {r['wrote']} written")
     if faults:
         print("   research read faster than the town spent it:")
         for f in faults:
@@ -266,6 +422,8 @@ def gate(quiet: bool = False) -> int:
     # lowering a ceiling can only make this gate stricter.
     slack = [(r["domain"], ceilings[r["domain"]] - r["unspent"]) for r in rows
              if r["domain"] in ceilings and ceilings[r["domain"]] > r["unspent"]]
+    slack += [(f"{r['domain']} (unwritten)", written[r["domain"]] - r["unwritten"])
+              for r in rows if r["domain"] in written and written[r["domain"]] > r["unwritten"]]
     if slack and not quiet:
         for domain, by in slack:
             print(f"   reclaimable: {domain} sits {by} under its ceiling")
@@ -301,6 +459,7 @@ def rebaseline() -> int:
                  "once and then refuses, so no run can launder every ceiling in one go."),
         "generated_by": "tools/measure_research_spend.py --rebaseline",
         "unspent_ceiling": {r["domain"]: r["unspent"] for r in rows},
+        "unwritten_ceiling": {r["domain"]: r["unwritten"] for r in rows if r["judgeable"]},
         "witness": {r["domain"]: {"read": r["read"], "spent": r["spent"]} for r in rows},
         "raised": [],
     })
@@ -309,8 +468,11 @@ def rebaseline() -> int:
     return 0
 
 
-def raise_ceiling(domain: str, why: str) -> int:
-    """Raise ONE domain's ceiling to what it currently reads, and record who said why."""
+def raise_ceiling(domain: str, why: str, hop: str = "read") -> int:
+    """Raise ONE domain's ceiling on ONE hop, and record who said why.
+
+    hop 'read'  — the read-vs-ruled ceiling (`unspent_ceiling`)
+    hop 'write' — the ruled-vs-on-a-card ceiling (`unwritten_ceiling`)"""
     baseline = read_json(BASELINE)
     if not isinstance(baseline, dict):
         print(f"   no baseline at {BASELINE.name} — run --rebaseline")
@@ -323,21 +485,25 @@ def raise_ceiling(domain: str, why: str) -> int:
         print("   --why is required: a raise says the project chose to read further "
               "ahead of its adjudication, and somebody has to say why")
         return 1
+    if hop not in ("read", "write"):
+        print("   --hop must be 'read' (read vs ruled) or 'write' (ruled vs on a card)")
+        return 1
     row = rows[domain]
-    ceilings = baseline.setdefault("unspent_ceiling", {})
+    field = "unspent_ceiling" if hop == "read" else "unwritten_ceiling"
+    figure = row["unspent"] if hop == "read" else row["unwritten"]
+    ceilings = baseline.setdefault(field, {})
     was = ceilings.get(domain)
-    if was is not None and row["unspent"] <= was:
-        print(f"   {domain} is at {row['unspent']} against a ceiling of {was} — "
+    if was is not None and figure <= was:
+        print(f"   {domain} is at {figure} against a {hop} ceiling of {was} — "
               "nothing to raise. Use --tighten to reclaim the slack.")
         return 1
-    ceilings[domain] = row["unspent"]
+    ceilings[domain] = figure
     baseline.setdefault("witness", {})[domain] = {"read": row["read"], "spent": row["spent"]}
     baseline.setdefault("raised", []).append({
-        "domain": domain, "from": was, "to": row["unspent"],
+        "domain": domain, "hop": hop, "from": was, "to": figure,
         "date": date.today().isoformat(), "why": why.strip()})
     write_baseline(baseline)
-    print(f"raised {domain}: {was} -> {row['unspent']} ({row['read']} read, "
-          f"{row['spent']} ruled on)")
+    print(f"raised {domain} ({hop}): {was} -> {figure}")
     print(f"  why: {why.strip()}")
     return 0
 
@@ -350,6 +516,7 @@ def tighten() -> int:
         print(f"   no baseline at {BASELINE.name} — run --rebaseline")
         return 1
     ceilings = baseline.setdefault("unspent_ceiling", {})
+    written = baseline.setdefault("unwritten_ceiling", {})
     moved = []
     for row in measure():
         was = ceilings.get(row["domain"])
@@ -358,6 +525,10 @@ def tighten() -> int:
             baseline.setdefault("witness", {})[row["domain"]] = {
                 "read": row["read"], "spent": row["spent"]}
             moved.append((row["domain"], was, row["unspent"]))
+        was_w = written.get(row["domain"])
+        if was_w is not None and row["unwritten"] < was_w:
+            written[row["domain"]] = row["unwritten"]
+            moved.append((f"{row['domain']} (unwritten)", was_w, row["unwritten"]))
     if not moved:
         print("every ceiling already sits at what its domain reads — nothing to reclaim")
         return 0
@@ -441,6 +612,39 @@ def self_test() -> int:
         fires("…and never reads a crosswalk as a source",
               count_read(d) == 2)
 
+    # --- the second hop
+    with tempfile.TemporaryDirectory() as tmp:
+        d = Path(tmp)
+        cards = {"hh_a": {"id": "hh_a", "persons": [{"sources": ["fergus_1843"]}]},
+                 "hh_b": {"id": "hh_b", "persons": [{"sources": ["andreas_1884_v1"]}]}}
+        (d / "x_crosswalk.json").write_text(json.dumps({"heads": [
+            {"outcome": "matched", "household_id": "hh_a",
+             "discriminators": [{"source_id": "fergus_1843"}]},
+            {"outcome": "matched", "household_id": "hh_b",
+             "discriminators": [{"source_id": "fergus_1843"}]},
+            {"outcome": "matched", "household_id": "hh_b"},
+            {"outcome": "matched", "household_id": "hh_nobody",
+             "discriminators": [{"source_id": "fergus_1843"}]},
+            {"outcome": "refused", "household_id": "hh_a",
+             "discriminators": [{"source_id": "fergus_1843"}]}]}))
+        reached, judgeable, wrote = count_written(d, cards)
+        fires("a ruling naming a person in the town is reached", reached == 3)
+        fires("…a refusal is not, however well sourced", reached == 3)
+        fires("…nor is one naming a person the town does not have", reached == 3)
+        fires("a ruling stating no source is unjudgeable, not unwritten",
+              judgeable == 2)
+        fires("a card citing the ruling's own source has learned it", wrote == 1)
+        fires("…and a card citing something else has not", judgeable - wrote == 1)
+
+        fires("same_name_support counts as what a ruling rests on",
+              rests_on({"same_name_support": [{"source_id": "s1"}]}) == {"s1"})
+        fires("a bare source_id counts too", rests_on({"source_id": "s2"}) == {"s2"})
+        fires("a ruling resting on nothing states nothing", rests_on({}) == set())
+        fires("sources are found at any depth in a record",
+              cited_sources({"a": {"b": [{"sources": ["deep"]}]}}) == {"deep"})
+        fires("a plural person_ids ruling names every person it reaches",
+              people_named({"person_ids": ["p1", "p2"]}) == ["p1", "p2"])
+
     # --- the ratchet
     def over(unspent: int, ceiling: int) -> bool:
         return unspent > ceiling
@@ -508,7 +712,7 @@ def self_test() -> int:
 
     for line in failures:
         print(f"   SILENT: {line}")
-    print("SELF-TEST %s — %d case(s)" % ("FAIL" if failures else "PASS", 35))
+    print("SELF-TEST %s — %d case(s)" % ("FAIL" if failures else "PASS", 46))
     return 1 if failures else 0
 
 
@@ -519,6 +723,8 @@ def main() -> int:
     parser.add_argument("--raise", dest="raise_domain", metavar="DOMAIN",
                         help="raise ONE domain's ceiling to what it now reads; needs --why")
     parser.add_argument("--why", default="", help="the reason a raise is being taken")
+    parser.add_argument("--hop", default="read", choices=("read", "write"),
+                        help="which ceiling to raise: read (read vs ruled) or write (ruled vs on a card)")
     parser.add_argument("--tighten", action="store_true",
                         help="lower every ceiling to what its domain now reads (always safe)")
     parser.add_argument("--self-test", action="store_true", dest="self_test")
@@ -527,7 +733,7 @@ def main() -> int:
     if args.self_test:
         return self_test()
     if args.raise_domain:
-        return raise_ceiling(args.raise_domain, args.why)
+        return raise_ceiling(args.raise_domain, args.why, args.hop)
     if args.tighten:
         return tighten()
     if args.rebaseline:
