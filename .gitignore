@@ -26,15 +26,16 @@ site/stay/artifact.html
 stay/geo-cache/
 
 # Chicago reference corpus: large source files migrated to Internet Archive.
-# Canonical copies + metadata live at archive.org/details/chicago1835-*;
-# see chicago/reference/CORPUS_MANIFEST.csv for the mapping.
-chicago/reference/andreas-history-of-chicago/
+# Canonical copies live at archive.org/details/chicago1835-*; originals sit
+# locally at projects/archive/data/chicago/reference/ (sibling to this repo,
+# not tracked). See the *.yaml / SOURCE.yaml pointer files in chicago/reference/
+# and CORPUS_MANIFEST.csv for the mapping. Guards below catch big originals
+# being re-downloaded into the tracked dirs by mistake.
 chicago/reference/fergus/*.pdf
-chicago/reference/story-of-chicago/
-chicago/reference/newberry-genealogical/
 chicago/reference/walkthroughs/*.mov
 
 # IPUMS extracts: redistribution prohibited by IPUMS license, local-only.
+# Originals live at projects/archive/data/chicago/reference/ipums/.
 # See chicago/reference/ipums/README.md.
 chicago/reference/ipums/*.csv
 chicago/reference/ipums/*.pdf
