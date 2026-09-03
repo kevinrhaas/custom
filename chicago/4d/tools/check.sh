@@ -1255,6 +1255,21 @@ step "…and its own assertions still fire when broken" \
 step "…and its own assertions still fire when broken" \
   python3 tools/research_domains.py --self-test
 
+# T-0557. The Illinois State Archives' land tract sales are the first source this project
+# reads that is not about people at all — it is a register of TRANSACTIONS, and the way it
+# goes wrong is by being read as a census. A purchase says a man bought ground; only the
+# register's own Residence column says where he lived, and it names a county. So the
+# reading is rebuilt from the committed deposit and diffed, the grade a row carries has to
+# follow from that column rather than from the buying, and the three sections the
+# database truncated at its own 150-row ceiling must never appear in the coverage
+# declaration — a ceiling recorded as a completed read is the one error here nothing
+# downstream could catch.
+step "the land tract sales re-derive from their committed deposit" \
+  python3 tools/read_land_sales.py --check
+
+step "…and its own assertions still fire when broken" \
+  python3 tools/read_land_sales.py --self-test
+
 # T-0571. Fergus's 1843 directory is the earliest complete Chicago directory this project
 # can reach, and its two halves are segmented by two different rules — the shouted head of
 # a trade card on page 1, the current letter section on pages 2-4 — because the printer set
