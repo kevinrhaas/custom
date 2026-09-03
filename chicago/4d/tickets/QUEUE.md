@@ -85,7 +85,6 @@ T-0524 — The renderer smoke still asserts a reconstructed resident, 956 person
 
 T-0493 — Four voter lists of 1833-1835 name 346 entries, and the residents layer holds 99 of their 215 surnames
 T-0531 — The 1840 census images 1-25: names and cells of the left sheets printed 210, 215 and 219
-T-0532 — The 1840 census images 1-25: names and cells of the left sheets printed 221, 222 and 226
 T-0533 — The 1840 census images 1-25: names and cells of the two short left sheets printed 225 and 228, and of 33S7-9YYJ-9MX whose page number is off the exposure
 T-0534 — The 1840 census images 1-25: the age-band, coloured and industry cells of printed pages 229, 231 and 234, checked against the sheets' own column totals
 T-0535 — The 1840 census images 1-25: the eleven continuation sheets, paired to their left sheets by printed page
