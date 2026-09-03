@@ -145,7 +145,6 @@
 # --- reach a town person do not (civic's voter crosswalk: 99 matches, zero source ids). Without
 # --- T-0598 the consolidation is a human rereading each crosswalk and inferring what it meant,
 # --- which is the manual step this whole programme exists to stop relying on.
-T-0598 — 103 of 109 rulings that reach a town person cannot say what they rest on: every crosswalk states its source, so a ruling can be spent
 
 # --- ORDERED BY MEASURED YIELD — owner, 2026-09-03 (evening): "go ahead and reprioritize those
 # --- items in the queue you think will yield the best research results, those ones at the top".

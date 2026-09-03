@@ -7,6 +7,7 @@
  ],
  "ticket": "T-0590",
  "generated_by": "tools/rule_newberry_leads.py --write",
+ "source_id": "newberry_genealogical_index",
  "_doc": "GENERATED. Every lead the volumes read so far offer, ruled and ANCHORED - to the card it stands on and, where the town side is a person record, to the person it reaches. NO MERGES, and there never will be: a card heads a family surname over a citation and names no forename, so every identification it seems to offer is refused. The refusals are the output. `matched` is a reachable outcome that no volume read so far reaches, and the test for it is run rather than assumed - see `counts.discriminators_found`.",
  "ladder": [
   {

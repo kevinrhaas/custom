@@ -29,7 +29,16 @@ disposable. The first rendered scene is `1835` (target date 1835-07-01).
 6. **No asset without license provenance.** Every file under `assets/` has an entry in
    `assets/LICENSES.md`. A source whose `rights_status` is `check_required` may be cited in
    text but must not have assets derived from it.
-7. **`tools/check.sh` passes before every commit.** It takes seconds and needs no Blender.
+7. **Every crosswalk states what it rests on.** A ruling that names a person in the town
+   and no `source_id` cannot be carried to that person's card by any tool —
+   `persons[].sources` is a list of source ids — so it can only be spent by a human
+   rereading the whole file. State it at the top of the crosswalk where the file
+   adjudicates from one source, or per entry where a ruling rests on something specific.
+   `measure_research_spend.py --gate` holds `no source stated` at 0 and `check.sh` runs it.
+   The fix for an unsourced ruling is to state the source or to WITHDRAW the ruling; rule 1
+   still binds, and a plausible-looking citation that takes this gate green is worse than
+   the missing one.
+8. **`tools/check.sh` passes before every commit.** It takes seconds and needs no Blender.
 
 ## Standing constraint — 1835 and Indigenous history
 

@@ -649,19 +649,27 @@ def crosswalk(doc: dict) -> dict:
     merges, probable, refusals = [], [], []
     for r in doc["people"]:
         m = r["residents_layer"]
+        # T-0598: the source each row was read out of, carried through from
+        # people.json rather than restated. This domain reads two rolls with two
+        # different source records, so the statement belongs on the ENTRY: a
+        # file-level one would be true of the file and false of every row in it.
+        source_id = r.get("source")
         if m["outcome"] == "merged":
             merges.append({"id": r["id"], "as_read": r["name_as_read"],
+                           "source_id": source_id,
                            "person_id": m["person_id"], "household_id": m["household_id"],
                            "resident_name": m["resident_name"], "rule": m["rule"],
                            "evidence": m["why"]})
         elif m["outcome"] == "probable":
             probable.append({"id": r["id"], "as_read": r["name_as_read"],
+                             "source_id": source_id,
                              "probable_person_id": m["probable_person_id"],
                              "household_id": m["household_id"],
                              "resident_name": m["resident_name"], "rule": m["rule"],
                              "why": m["why"]})
         else:
             refusals.append({"id": r["id"], "as_read": r["name_as_read"],
+                             "source_id": source_id,
                              "rule": m["rule"], "outcome": m["outcome"], "why": m["why"],
                              **({"candidates": m["candidates"]} if m.get("candidates") else {})})
     return {
