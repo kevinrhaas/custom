@@ -3,8 +3,8 @@
  "domain": "census_1840",
  "group": "images 26-50 of 75",
  "ordering": "ls chicago/reference/census1840/*.jpg | sort, with the duplicate copy '33S7-9YYJ-9WF (1).jpg' removed first so the index runs 1..75 over the 75 distinct images. The duplicate sorts at position 19 of the raw 76, i.e. inside group 1-25, so removing it does not move this group's window relative to the raw listing beyond a one-place shift; the list below is the authority for what this group is.",
- "duplicate_skipped": "33S7-9YYJ-9WF (1).jpg — byte-identical to 33S7-9YYJ-9WF.jpg (1,349,156 bytes each)",
- "declared_by": "T-0495, split; this pass read NAMES on the two pages PR #670 already read and INVENTORIED the other 23. What each image is, and what has and has not been read from it, is stated per image — a hole is meant to fail rather than pass quietly.",
+ "duplicate_skipped": "33S7-9YYJ-9WF (1).jpg \u2014 byte-identical to 33S7-9YYJ-9WF.jpg (1,349,156 bytes each)",
+ "declared_by": "T-0495, split; this pass read NAMES on the two pages PR #670 already read and INVENTORIED the other 23. What each image is, and what has and has not been read from it, is stated per image \u2014 a hole is meant to fail rather than pass quietly.",
  "deposit_is_read_only": true,
  "images": [
   {
@@ -123,7 +123,7 @@
    "sheet_side": "right",
    "printed_page": 237,
    "lines_with_an_entry": 33,
-   "what_it_is": "continuation sheet whose TOTAL column carries three-figure numbers (128, 131, 187, 117 ...) rather than household counts — this sheet is not a household page and wants reading as what it is before any serial is hung on it",
+   "what_it_is": "continuation sheet whose TOTAL column carries three-figure numbers (128, 131, 187, 117 ...) rather than household counts \u2014 this sheet is not a household page and wants reading as what it is before any serial is hung on it",
    "in_pr_670_calibration_set": false,
    "read_state": "inventoried_only",
    "page_file": null
@@ -172,7 +172,7 @@
    "sheet_side": "left",
    "printed_page": null,
    "lines_with_an_entry": 0,
-   "what_it_is": "a printed but UNFILLED left sheet — no page number written, no entries",
+   "what_it_is": "a printed but UNFILLED left sheet \u2014 no page number written, no entries",
    "in_pr_670_calibration_set": false,
    "read_state": "inventoried_only",
    "page_file": null
@@ -208,7 +208,7 @@
    "sheet_side": "right",
    "printed_page": null,
    "lines_with_an_entry": 0,
-   "what_it_is": "a continuation sheet struck through corner to corner with a large X and a pen doodle — cancelled, no entries",
+   "what_it_is": "a continuation sheet struck through corner to corner with a large X and a pen doodle \u2014 cancelled, no entries",
    "in_pr_670_calibration_set": false,
    "read_state": "inventoried_only",
    "page_file": null
@@ -255,11 +255,12 @@
    "file": "chicago/reference/census1840/33SQ-GYYJ-93G.jpg",
    "sheet_side": "left",
    "printed_page": 207,
-   "lines_with_an_entry": 31,
+   "lines_with_an_entry": 30,
    "what_it_is": "names + free-white age bands, filled",
    "in_pr_670_calibration_set": false,
-   "read_state": "inventoried_only",
-   "page_file": null
+   "read_state": "names_and_cells_transcribed",
+   "page_file": "data/research/census_1840/pages/33SQ-GYYJ-93G.json",
+   "note": "read line by line by T-0531. The contact-sheet inventory said 31 lines; the sheet carries 30, and the count here is now the counted one."
   },
   {
    "index": 47,
@@ -291,11 +292,12 @@
    "file": "chicago/reference/census1840/33SQ-GYYJ-992.jpg",
    "sheet_side": "left",
    "printed_page": 208,
-   "lines_with_an_entry": 31,
+   "lines_with_an_entry": 30,
    "what_it_is": "names + free-white age bands, filled",
    "in_pr_670_calibration_set": false,
-   "read_state": "inventoried_only",
-   "page_file": null
+   "read_state": "names_and_cells_transcribed",
+   "page_file": "data/research/census_1840/pages/33SQ-GYYJ-992.json",
+   "note": "read line by line by T-0531. The contact-sheet inventory said 31 lines; the sheet carries 30, and the count here is now the counted one."
   },
   {
    "index": 50,
@@ -335,15 +337,17 @@
   ],
   "names_transcribed_pages": 2,
   "names_transcribed_lines": 62,
-  "inventoried_only": 23
+  "inventoried_only": 21,
+  "names_and_cells_transcribed_pages": 2,
+  "names_and_cells_transcribed_lines": 60
  },
- "line_counts_are": "read off the contact sheet at 900x700 and are the count of ruled lines carrying an entry, not a printed figure. The two transcribed pages' counts (31 each) are confirmed line by line; the other 23 are stated to the nearest line and a transcribing pass restates them exactly.",
+ "line_counts_are": "read off the contact sheet at 900x700 and are the count of ruled lines carrying an entry, not a printed figure. Four pages are now counted rather than estimated: printed 230 and 232 (31 each, confirmed line by line by T-0523) and printed 207 and 208 (30 each, counted by T-0531 \u2014 the contact-sheet estimate said 31 for both and was one line high). The remaining 21 are stated to the nearest line and a transcribing pass restates them exactly.",
  "negative_and_inaccessible": [
   {
    "source": "FamilySearch",
    "query": "the collection page behind these image ids (collection 1786457)",
    "date": "2026-09-03",
-   "result": "login-walled — recorded as inaccessible, not as absent. The deposited JPEGs are the record this domain reads."
+   "result": "login-walled \u2014 recorded as inaccessible, not as absent. The deposited JPEGs are the record this domain reads."
   }
  ]
 }

@@ -1,4 +1,13 @@
 export const CHANGELOG = [ // newest first
+  { v: 446, title: 'Two more 1840 census sheets are read, and they check the reading', kind: 'fix', ts: '2026-09-03T08:22:08.374Z', date: 'Sep 3, 2026, 3:22 AM CT',
+    items: [
+      'Two more of the seventy-five photographed 1840 census sheets \u2014 printed pages 207 and 208 \u2014 have been read off the images: sixty households, named and counted. Where the earlier pass read names only and left every household\u2019s figures blank, this one reads the figures too, so each of these sixty lines now carries how many people of each age and sex the enumerator put under that roof.',
+      'The reason the figures were left alone before is that the form is twenty-six narrow columns of single pen strokes, and a mark read one column across is a person of the wrong age. So the columns were not judged by eye at all: the printed rules were measured off each page and fitted, and every mark was assigned to the column it actually stands in.',
+      'Then the sheet was made to check the reading. Both pages carry the enumerator\u2019s own totals along the foot, and every column was summed and compared against them. On page 208 all sixteen totals agree, and both of his grand totals come back exactly. On page 207 seventeen of eighteen agree \u2014 and one does not: he wrote 5 women aged forty to fifty and only 3 marks are in that column. That column was re-read at full resolution and there is no fourth mark. It is recorded as a disagreement rather than quietly adjusted, because a reading that always agrees with the page has stopped being a reading.',
+      'Two smaller places where the page was ambiguous are written down instead of decided: a faint grey stroke on one line and a large struck figure on another compete for the same missing man, and the sheet does not say which of them is the count.',
+      'The catalogue of these images said both pages held thirty-one lines. Counted line by line, each holds thirty. That estimate came from a contact sheet, and it is now replaced by the counted figure on both.',
+      'None of this makes anyone a resident of 1835. The 1840 census is later evidence, and this work only puts the households where they can be argued about.',
+    ] },
   { v: 445, title: 'The 1840 census sheets are read off the page', kind: 'fix', ts: '2026-09-03T07:23:41.892Z', date: 'Sep 3, 2026, 2:23 AM CT',
     items: [
       'This project holds seventy-five photographs of the 1840 census sheets for Chicago, and until now the only names taken out of them came from a spreadsheet that has since been lost — two hundred and ten households, recovered second hand, with nothing pointing back at a line on a page.',
